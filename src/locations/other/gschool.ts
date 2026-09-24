@@ -136,7 +136,7 @@ function enterWeeklyGradeUpdate(s: GameState, scene: SceneBuilder): void {
     }
     ((s as any).trait_vars = (s as any).trait_vars ?? {})['academic_exp'] = ((s as any).trait_vars['academic_exp'] ?? 0) - (Math.min(((s as any).lernHome ?? 0), 5));
     if (((s as any).lernHome ?? 0) <= 1) {
-      ((s as any).trait_vars = (s as any).trait_vars ?? {})['academic_exp'] = ((s as any).trait_vars['academic_exp'] ?? 0) + (((s as any).trait_vars ?? 0)?.['nerd_learn_home']);
+      ((s as any).trait_vars = (s as any).trait_vars ?? {})['academic_exp'] = ((s as any).trait_vars['academic_exp'] ?? 0) + ((((s as any).trait_vars ?? 0)?.['nerd_learn_home']));
       if (((s as any).trait_vars ?? 0)?.['nerd_learn_home'] < 5) {
         ((s as any).trait_vars = (s as any).trait_vars ?? {})['nerd_learn_home'] = ((s as any).trait_vars['nerd_learn_home'] ?? 0) + (1);
       } else {
@@ -185,7 +185,7 @@ function enterComputeStatDisplay(s: GameState, scene: SceneBuilder): void {
             ((s as any).stat_texts = (s as any).stat_texts ?? {})['school'] = 'You have missed school.';
             qspCall(s, 'stat_display_compute', 'queue_msg', 'school', '', 'status/gschool_red', 4);
           } else {
-            ((s as any).stat_texts = (s as any).stat_texts ?? {})['school'] = ((s as any).stat_texts ?? 0)?.['school_schedule'];
+            ((s as any).stat_texts = (s as any).stat_texts ?? {})['school'] = (((s as any).stat_texts ?? 0)?.['school_schedule']);
             qspCall(s, 'stat_display_compute', 'queue_msg', 'school', '', 'status/gschool', 4);
           }
         }
@@ -203,11 +203,11 @@ function enterComputeStatDisplay(s: GameState, scene: SceneBuilder): void {
   if (((s as any).start_type ?? 0)?.['loc'] === 'sg') {
     if (((s as any).daystart ?? 0) === ((s as any).sisboyday ?? 0) + 1  &&  ((s as any).hour ?? 0) < 18) {
       if ((((s as any).npc_QW ?? 0)?.['A33'] === 3  ||  ((s as any).npc_QW ?? 0)?.['A33'] === 5  ||  ((s as any).npc_QW ?? 0)?.['A33'] === 7  ||  (((s as any).npc_QW ?? 0)?.['A33'] >= 9  &&  ((s as any).sisboytrioQW ?? 0) !== 1))) {
-        ((s as any).stat_texts = (s as any).stat_texts ?? {})['sg_sisroom'] = 'You promised your sister not to go into your room at ' + qspFunc(s, 'time', 'get_time_string', 16, 0, ((s as any).cheatVars ?? 0)?.['time_format']) + '.';
+        ((s as any).stat_texts = (s as any).stat_texts ?? {})['sg_sisroom'] = 'You promised your sister not to go into your room at ' + qspFunc(s, 'time', 'get_time_string', 16, 0, (((s as any).cheatVars ?? 0)?.['time_format'])) + '.';
         qspCall(s, 'stat_display_compute', 'queue_msg', 'sg_sisroom');
       }
       if (((s as any).sisboytrioQW ?? 0) === 1) {
-        ((s as any).stat_texts = (s as any).stat_texts ?? {})['sg_sistrio'] = 'You promised your sister you would meet her in your room at ' + qspFunc(s, 'time', 'get_time_string', 16, 0, ((s as any).cheatVars ?? 0)?.['time_format']) + '.';
+        ((s as any).stat_texts = (s as any).stat_texts ?? {})['sg_sistrio'] = 'You promised your sister you would meet her in your room at ' + qspFunc(s, 'time', 'get_time_string', 16, 0, (((s as any).cheatVars ?? 0)?.['time_format'])) + '.';
         qspCall(s, 'stat_display_compute', 'queue_msg', 'sg_sistrio');
         if (((s as any).hour ?? 0) >= 14) {
           qspCall(s, 'stat_display_compute', 'queue_alert', 'Your sister is expecting you in your room at ' + qspFunc(s, 'time', 'get_time_string', 16, 0) + '.', 'neg');
@@ -215,14 +215,14 @@ function enterComputeStatDisplay(s: GameState, scene: SceneBuilder): void {
       }
     }
     if (((s as any).day ?? 0) === ((s as any).nyp_day ?? 0)  &&  ((s as any).month ?? 0) === 12  &&  ((s as any).gschoolVars ?? 0)?.['school_diploma'] === 0  &&  ((s as any).hour ?? 0) >= 5  &&  ((s as any).hour ?? 0) <= 14) {
-      ((s as any).stat_texts = (s as any).stat_texts ?? {})['sg_ny_school'] = 'Your school\'s New Year\'s party will start at ' + qspFunc(s, 'time', 'get_time_string', 14, 0, ((s as any).cheatVars ?? 0)?.['time_format']) + '.';
+      ((s as any).stat_texts = (s as any).stat_texts ?? {})['sg_ny_school'] = 'Your school\'s New Year\'s party will start at ' + qspFunc(s, 'time', 'get_time_string', 14, 0, (((s as any).cheatVars ?? 0)?.['time_format'])) + '.';
       qspCall(s, 'stat_display_compute', 'queue_msg', 'sg_ny_school');
       if (((s as any).hour ?? 0) >= 12) {
         qspCall(s, 'stat_display_compute', 'queue_alert', 'School New Year party starts soon (' + qspFunc(s, 'time', 'get_time_string', 14, 0) + ').', 'neg');
       }
     } else {
       if (((s as any).InvitationToDimkaNYparty ?? 0) === 1  &&  ((s as any).month ?? 0) === 12  &&  ((s as any).day ?? 0) === 31) {
-        ((s as any).stat_texts = (s as any).stat_texts ?? {})['sg_dimka_party'] = 'Go to the residential area between ' + qspFunc(s, 'time', 'get_time_string', 15, 0, ((s as any).cheatVars ?? 0)?.['time_format']) + ' and ' + qspFunc(s, 'time', 'get_time_string', 18, 0, ((s as any).cheatVars ?? 0)?.['time_format']) + ' to go to Dimka\'s New Year party.';
+        ((s as any).stat_texts = (s as any).stat_texts ?? {})['sg_dimka_party'] = 'Go to the residential area between ' + qspFunc(s, 'time', 'get_time_string', 15, 0, (((s as any).cheatVars ?? 0)?.['time_format'])) + ' and ' + qspFunc(s, 'time', 'get_time_string', 18, 0, (((s as any).cheatVars ?? 0)?.['time_format'])) + ' to go to Dimka\'s New Year party.';
         qspCall(s, 'stat_display_compute', 'queue_msg', 'sg_dimka_party');
         if (((s as any).hour ?? 0) >= 13) {
           qspCall(s, 'stat_display_compute', 'queue_alert', 'Dimka\'s New Year party starts at ' + qspFunc(s, 'time', 'get_time_string', 15, 0) + '.', 'neg');

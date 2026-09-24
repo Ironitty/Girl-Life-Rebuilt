@@ -409,7 +409,7 @@ function enterComputerAd(s: GameState, scene: SceneBuilder): void {
                   } else {
                     if (((s as any).experimentQW ?? 0)?.['trial_active'] === 'pill_gray') {
                       if (((s as any).trait_vars ?? 0)?.['panty_preference'] < 3) {
-                        ((s as any).trait_vars = (s as any).trait_vars ?? {})['panty_preference_exp'] = Math.max(((s as any).trait_vars ?? 0)?.['panty_preference_exp'], 40000);
+                        ((s as any).trait_vars = (s as any).trait_vars ?? {})['panty_preference_exp'] = Math.max((((s as any).trait_vars ?? 0)?.['panty_preference_exp']), 40000);
                         qspCall(s, 'traits', 'level', 'panty_preference', 3);
                         scene.text('Your skin feels extremely sensitive. This must have been that experimental pill you took.');
                       } else {

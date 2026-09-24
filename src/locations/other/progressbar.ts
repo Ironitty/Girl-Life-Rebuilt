@@ -41,18 +41,18 @@ function enterColor(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).color_gradient ?? 0) === 'positive') {
     if (((s as any).color_value ?? 0) < ((s as any).color_thr ?? 0)[0]) {
-      (s as any).result = ((s as any).theme_hex ?? 0)?.['v_neg'];
+      (s as any).result = (((s as any).theme_hex ?? 0)?.['v_neg']);
     } else {
       if (((s as any).color_value ?? 0) < ((s as any).color_thr ?? 0)[1]) {
-        (s as any).result = ((s as any).theme_hex ?? 0)?.['neg'];
+        (s as any).result = (((s as any).theme_hex ?? 0)?.['neg']);
       } else {
         if (((s as any).color_value ?? 0) < ((s as any).color_thr ?? 0)[2]) {
-          (s as any).result = ((s as any).theme_hex ?? 0)?.['neutral'];
+          (s as any).result = (((s as any).theme_hex ?? 0)?.['neutral']);
         } else {
           if (((s as any).color_value ?? 0) < ((s as any).color_thr ?? 0)[3]) {
-            (s as any).result = ((s as any).theme_hex ?? 0)?.['pos'];
+            (s as any).result = (((s as any).theme_hex ?? 0)?.['pos']);
           } else {
-            (s as any).result = ((s as any).theme_hex ?? 0)?.['v_pos'];
+            (s as any).result = (((s as any).theme_hex ?? 0)?.['v_pos']);
           }
         }
       }
@@ -60,18 +60,18 @@ function enterColor(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).color_gradient ?? 0) === 'negative') {
       if (((s as any).color_value ?? 0) < ((s as any).color_thr ?? 0)[0]) {
-        (s as any).result = ((s as any).theme_hex ?? 0)?.['v_pos'];
+        (s as any).result = (((s as any).theme_hex ?? 0)?.['v_pos']);
       } else {
         if (((s as any).color_value ?? 0) < ((s as any).color_thr ?? 0)[1]) {
-          (s as any).result = ((s as any).theme_hex ?? 0)?.['pos'];
+          (s as any).result = (((s as any).theme_hex ?? 0)?.['pos']);
         } else {
           if (((s as any).color_value ?? 0) < ((s as any).color_thr ?? 0)[2]) {
-            (s as any).result = ((s as any).theme_hex ?? 0)?.['neutral'];
+            (s as any).result = (((s as any).theme_hex ?? 0)?.['neutral']);
           } else {
             if (((s as any).color_value ?? 0) < ((s as any).color_thr ?? 0)[3]) {
-              (s as any).result = ((s as any).theme_hex ?? 0)?.['neg'];
+              (s as any).result = (((s as any).theme_hex ?? 0)?.['neg']);
             } else {
-              (s as any).result = ((s as any).theme_hex ?? 0)?.['v_neg'];
+              (s as any).result = (((s as any).theme_hex ?? 0)?.['v_neg']);
             }
           }
         }
@@ -79,18 +79,18 @@ function enterColor(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).color_gradient ?? 0) === 'centrum_positive') {
         if (((s as any).color_value ?? 0) < ((s as any).color_thr ?? 0)[0]) {
-          (s as any).result = ((s as any).theme_hex ?? 0)?.['v_neg'];
+          (s as any).result = (((s as any).theme_hex ?? 0)?.['v_neg']);
         } else {
           if (((s as any).color_value ?? 0) < ((s as any).color_thr ?? 0)[1]) {
-            (s as any).result = ((s as any).theme_hex ?? 0)?.['neutral'];
+            (s as any).result = (((s as any).theme_hex ?? 0)?.['neutral']);
           } else {
             if (((s as any).color_value ?? 0) < ((s as any).color_thr ?? 0)[2]) {
-              (s as any).result = ((s as any).theme_hex ?? 0)?.['v_pos'];
+              (s as any).result = (((s as any).theme_hex ?? 0)?.['v_pos']);
             } else {
               if (((s as any).color_value ?? 0) < ((s as any).color_thr ?? 0)[3]) {
-                (s as any).result = ((s as any).theme_hex ?? 0)?.['neutral'];
+                (s as any).result = (((s as any).theme_hex ?? 0)?.['neutral']);
               } else {
-                (s as any).result = ((s as any).theme_hex ?? 0)?.['v_neg'];
+                (s as any).result = (((s as any).theme_hex ?? 0)?.['v_neg']);
               }
             }
           }
@@ -98,18 +98,18 @@ function enterColor(s: GameState, scene: SceneBuilder): void {
       } else {
         if (((s as any).color_gradient ?? 0) === 'centrum_negative') {
           if (((s as any).color_value ?? 0) < ((s as any).color_thr ?? 0)[0]) {
-            (s as any).result = ((s as any).theme_hex ?? 0)?.['v_pos'];
+            (s as any).result = (((s as any).theme_hex ?? 0)?.['v_pos']);
           } else {
             if (((s as any).color_value ?? 0) < ((s as any).color_thr ?? 0)[1]) {
-              (s as any).result = ((s as any).theme_hex ?? 0)?.['neutral'];
+              (s as any).result = (((s as any).theme_hex ?? 0)?.['neutral']);
             } else {
               if (((s as any).color_value ?? 0) < ((s as any).color_thr ?? 0)[2]) {
-                (s as any).result = ((s as any).theme_hex ?? 0)?.['v_neg'];
+                (s as any).result = (((s as any).theme_hex ?? 0)?.['v_neg']);
               } else {
                 if (((s as any).color_value ?? 0) < ((s as any).color_thr ?? 0)[3]) {
-                  (s as any).result = ((s as any).theme_hex ?? 0)?.['neutral'];
+                  (s as any).result = (((s as any).theme_hex ?? 0)?.['neutral']);
                 } else {
-                  (s as any).result = ((s as any).theme_hex ?? 0)?.['v_pos'];
+                  (s as any).result = (((s as any).theme_hex ?? 0)?.['v_pos']);
                 }
               }
             }
@@ -199,27 +199,27 @@ function enterColor(s: GameState, scene: SceneBuilder): void {
   ((s as any).progressbar = (s as any).progressbar ?? {})['overlay_gradient'] = ((String((s as any).locArgs?.[5] ?? '') === '') ? ('accent') : (((s as any).locArgs?.[5] ?? 0)));
   ((s as any).progressbar = (s as any).progressbar ?? {})['label_pos'] = ((String((s as any).locArgs?.[6] ?? '') === '') ? ('auto') : (((s as any).locArgs?.[6] ?? 0)));
   ((s as any).progressbar = (s as any).progressbar ?? {})['thresholds'] = ((s as any).locArgs?.[7] ?? 0);
-  ((s as any).progressbar = (s as any).progressbar ?? {})['bar_width_val'] = ((((s as any).stat_cfg ?? 0)?.['bar_width'] > 0) ? (((s as any).stat_cfg ?? 0)?.['bar_width']) : (200));
-  ((s as any).progressbar = (s as any).progressbar ?? {})['bar_width_css'] = String(((s as any).progressbar ?? 0)?.['bar_width_val']) + 'px';
-  ((s as any).progressbar = (s as any).progressbar ?? {})['bar_width_attr'] = String(((s as any).progressbar ?? 0)?.['bar_width_val']);
+  ((s as any).progressbar = (s as any).progressbar ?? {})['bar_width_val'] = ((((s as any).stat_cfg ?? 0)?.['bar_width'] > 0) ? ((((s as any).stat_cfg ?? 0)?.['bar_width'])) : (200));
+  ((s as any).progressbar = (s as any).progressbar ?? {})['bar_width_css'] = String((((s as any).progressbar ?? 0)?.['bar_width_val'])) + 'px';
+  ((s as any).progressbar = (s as any).progressbar ?? {})['bar_width_attr'] = String((((s as any).progressbar ?? 0)?.['bar_width_val']));
   if (((s as any).progressbar ?? 0)?.['max_value'] > 0) {
     ((s as any).progressbar = (s as any).progressbar ?? {})['value'] = Math.min(100, (((s as any).progressbar ?? {})?.['raw_value'] ?? 0) * 100 / (((s as any).progressbar ?? {})?.['max_value'] ?? 0));
   } else {
-    ((s as any).progressbar = (s as any).progressbar ?? {})['value'] = Math.min(Math.max(0, ((s as any).progressbar ?? 0)?.['raw_value']), 100);
+    ((s as any).progressbar = (s as any).progressbar ?? {})['value'] = Math.min(Math.max(0, (((s as any).progressbar ?? 0)?.['raw_value'])), 100);
   }
-  ((s as any).progressbar = (s as any).progressbar ?? {})['phantom'] = Math.min(Math.max(((s as any).progressbar ?? 0)?.['value'], ((s as any).progressbar ?? 0)?.['phantom_raw']), 100) - (((s as any).progressbar ?? {})?.['value'] ?? 0);
-  ((s as any).progressbar = (s as any).progressbar ?? {})['label'] = String(((s as any).progressbar ?? 0)?.['raw_value']);
+  ((s as any).progressbar = (s as any).progressbar ?? {})['phantom'] = Math.min(Math.max((((s as any).progressbar ?? 0)?.['value']), (((s as any).progressbar ?? 0)?.['phantom_raw'])), 100) - (((s as any).progressbar ?? {})?.['value'] ?? 0);
+  ((s as any).progressbar = (s as any).progressbar ?? {})['label'] = String((((s as any).progressbar ?? 0)?.['raw_value']));
   if (((s as any).progressbar ?? 0)?.['phantom_raw'] > 0  &&  ((s as any).progressbar ?? 0)?.['phantom_raw'] !== ((s as any).progressbar ?? 0)?.['raw_value']) {
-    ((s as any).progressbar = (s as any).progressbar ?? {})['label'] = ((s as any).progressbar['label'] ?? 0) + (' (' + ((s as any).progressbar ?? 0)?.['phantom_raw'] + ')');
+    ((s as any).progressbar = (s as any).progressbar ?? {})['label'] = ((s as any).progressbar['label'] ?? 0) + (' (' + (((s as any).progressbar ?? 0)?.['phantom_raw']) + ')');
   }
-  ((s as any).progressbar = (s as any).progressbar ?? {})['label_raw'] = ((s as any).progressbar ?? 0)?.['label'];
+  ((s as any).progressbar = (s as any).progressbar ?? {})['label_raw'] = (((s as any).progressbar ?? 0)?.['label']);
   if (((s as any).progressbar ?? 0)?.['label_raw'] !== ''  &&  ((s as any).sd_font_pct ?? 0) !== 100) {
-    ((s as any).progressbar = (s as any).progressbar ?? {})['label'] = '<span style="font-size:' + String(((s as any).sd_font_pct ?? 0)) + '%;">' + ((s as any).progressbar ?? 0)?.['label_raw'] + '</span>';
+    ((s as any).progressbar = (s as any).progressbar ?? {})['label'] = '<span style="font-size:' + String(((s as any).sd_font_pct ?? 0)) + '%;">' + (((s as any).progressbar ?? 0)?.['label_raw']) + '</span>';
   }
   if (((s as any).stat_cfg ?? 0)?.['font_size'] > 0) {
-    ((s as any).progressbar = (s as any).progressbar ?? {})['label_px'] = (String(((s as any).progressbar ?? 0)?.['label']).length) * ((((s as any).stat_cfg ?? {})?.['font_size'] ?? 0) + 2);
+    ((s as any).progressbar = (s as any).progressbar ?? {})['label_px'] = (String((((s as any).progressbar ?? 0)?.['label'])).length) * ((((s as any).stat_cfg ?? {})?.['font_size'] ?? 0) + 2);
   } else {
-    ((s as any).progressbar = (s as any).progressbar ?? {})['label_px'] = (String(((s as any).progressbar ?? 0)?.['label']).length) * 9;
+    ((s as any).progressbar = (s as any).progressbar ?? {})['label_px'] = (String((((s as any).progressbar ?? 0)?.['label'])).length) * 9;
   }
   ((s as any).progressbar = (s as any).progressbar ?? {})['label_width_pct'] = (((s as any).progressbar ?? {})?.['label_px'] ?? 0) * 100 / (((s as any).progressbar ?? {})?.['bar_width_val'] ?? 0);
   if (((s as any).progressbar ?? 0)?.['label'] === ''  ||  ((s as any).progressbar ?? 0)?.['label_pos'] === 'none') {
@@ -248,24 +248,24 @@ function enterColor(s: GameState, scene: SceneBuilder): void {
       ((s as any).progressbar = (s as any).progressbar ?? {})['label_pos'] = 'bar';
     }
   }
-  ((s as any).progressbar = (s as any).progressbar ?? {})['bar_color'] = qspFunc(s, 'progressbar', 'color', ((s as any).progressbar ?? 0)?.['gradient'], ((s as any).progressbar ?? 0)?.['value'], ((s as any).progressbar ?? 0)?.['thresholds']);
+  ((s as any).progressbar = (s as any).progressbar ?? {})['bar_color'] = qspFunc(s, 'progressbar', 'color', (((s as any).progressbar ?? 0)?.['gradient']), (((s as any).progressbar ?? 0)?.['value']), (((s as any).progressbar ?? 0)?.['thresholds']));
   if (((s as any).progressbar ?? 0)?.['overlay'] > 0) {
-    ((s as any).progressbar = (s as any).progressbar ?? {})['overlay_color'] = qspFunc(s, 'progressbar', 'color', ((s as any).progressbar ?? 0)?.['overlay_gradient'], ((s as any).progressbar ?? 0)?.['overlay']);
+    ((s as any).progressbar = (s as any).progressbar ?? {})['overlay_color'] = qspFunc(s, 'progressbar', 'color', (((s as any).progressbar ?? 0)?.['overlay_gradient']), (((s as any).progressbar ?? 0)?.['overlay']));
   }
   if (((s as any).progressbar ?? 0)?.['phantom'] > 0) {
     if (((s as any).theme ?? 0)?.['is_dark']) {
-      ((s as any).progressbar = (s as any).progressbar ?? {})['phantom_color'] = qspFunc(s, 'math', 'color_mix', ((s as any).progressbar ?? 0)?.['bar_color'], '#000000', 50);
+      ((s as any).progressbar = (s as any).progressbar ?? {})['phantom_color'] = qspFunc(s, 'math', 'color_mix', (((s as any).progressbar ?? 0)?.['bar_color']), '#000000', 50);
     } else {
-      ((s as any).progressbar = (s as any).progressbar ?? {})['phantom_color'] = qspFunc(s, 'math', 'color_mix', ((s as any).progressbar ?? 0)?.['bar_color'], '#FFFFFF', 50);
+      ((s as any).progressbar = (s as any).progressbar ?? {})['phantom_color'] = qspFunc(s, 'math', 'color_mix', (((s as any).progressbar ?? 0)?.['bar_color']), '#FFFFFF', 50);
     }
   }
   if (((s as any).progressbar ?? 0)?.['label_pos'] === 'bar'  ||  ((s as any).progressbar ?? 0)?.['label_pos'] === 'phantom') {
-    (s as any).pb_lc_hex = (String(((((s as any).progressbar ?? 0)?.['label_pos'] === 'bar') ? (((s as any).progressbar ?? 0)?.['bar_color']) : (((s as any).progressbar ?? 0)?.['phantom_color']))).toUpperCase());
+    (s as any).pb_lc_hex = (String(((((s as any).progressbar ?? 0)?.['label_pos'] === 'bar') ? ((((s as any).progressbar ?? 0)?.['bar_color'])) : ((((s as any).progressbar ?? 0)?.['phantom_color'])))).toUpperCase());
     (s as any).pb_lc_bar_r = ((String('123456789ABCDEF').indexOf(String((String(((s as any).pb_lc_hex ?? 0)).slice((2)-1, ((2)-1)+(1)))))) + 1) * 16 + ((String('123456789ABCDEF').indexOf(String((String(((s as any).pb_lc_hex ?? 0)).slice((3)-1, ((3)-1)+(1)))))) + 1);
     (s as any).pb_lc_bar_g = ((String('123456789ABCDEF').indexOf(String((String(((s as any).pb_lc_hex ?? 0)).slice((4)-1, ((4)-1)+(1)))))) + 1) * 16 + ((String('123456789ABCDEF').indexOf(String((String(((s as any).pb_lc_hex ?? 0)).slice((5)-1, ((5)-1)+(1)))))) + 1);
     (s as any).pb_lc_bar_b = ((String('123456789ABCDEF').indexOf(String((String(((s as any).pb_lc_hex ?? 0)).slice((6)-1, ((6)-1)+(1)))))) + 1) * 16 + ((String('123456789ABCDEF').indexOf(String((String(((s as any).pb_lc_hex ?? 0)).slice((7)-1, ((7)-1)+(1)))))) + 1);
     (s as any).pb_lc_bar_lum = (((s as any).pb_lc_bar_r ?? 0) * 299 + ((s as any).pb_lc_bar_g ?? 0) * 587 + ((s as any).pb_lc_bar_b ?? 0) * 114) / 1000;
-    (s as any).pb_lc_font_hex = qspFunc(s, 'shortgs', 'rgb_to_hex', ((s as any).theme ?? 0)?.['fcolor']);
+    (s as any).pb_lc_font_hex = qspFunc(s, 'shortgs', 'rgb_to_hex', (((s as any).theme ?? 0)?.['fcolor']));
     (s as any).pb_lc_font_r = ((String('123456789ABCDEF').indexOf(String((String(((s as any).pb_lc_font_hex ?? 0)).slice((2)-1, ((2)-1)+(1)))))) + 1) * 16 + ((String('123456789ABCDEF').indexOf(String((String(((s as any).pb_lc_font_hex ?? 0)).slice((3)-1, ((3)-1)+(1)))))) + 1);
     (s as any).pb_lc_font_g = ((String('123456789ABCDEF').indexOf(String((String(((s as any).pb_lc_font_hex ?? 0)).slice((4)-1, ((4)-1)+(1)))))) + 1) * 16 + ((String('123456789ABCDEF').indexOf(String((String(((s as any).pb_lc_font_hex ?? 0)).slice((5)-1, ((5)-1)+(1)))))) + 1);
     (s as any).pb_lc_font_b = ((String('123456789ABCDEF').indexOf(String((String(((s as any).pb_lc_font_hex ?? 0)).slice((6)-1, ((6)-1)+(1)))))) + 1) * 16 + ((String('123456789ABCDEF').indexOf(String((String(((s as any).pb_lc_font_hex ?? 0)).slice((7)-1, ((7)-1)+(1)))))) + 1);
@@ -277,7 +277,7 @@ function enterColor(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pb_lc_diff ?? 0) >= 80) {
       (s as any).pb_lc_result = ((s as any).pb_lc_font_hex ?? 0);
     } else {
-      (s as any).pb_lc_bg_hex = qspFunc(s, 'shortgs', 'rgb_to_hex', ((s as any).theme ?? 0)?.['bcolor']);
+      (s as any).pb_lc_bg_hex = qspFunc(s, 'shortgs', 'rgb_to_hex', (((s as any).theme ?? 0)?.['bcolor']));
       if (((s as any).theme ?? 0)?.['is_dark']) {
         (s as any).pb_lc_result = qspFunc(s, 'math', 'color_mix', ((s as any).pb_lc_bg_hex ?? 0), '#000000', 60);
       } else {
@@ -305,9 +305,9 @@ function enterColor(s: GameState, scene: SceneBuilder): void {
   ((s as any).progressbar = (s as any).progressbar ?? {})['mode'] = ((String((s as any).locArgs?.[8] ?? '') > 0) ? (((s as any).locArgs?.[8] ?? 0) - 1) : (0));
   if (((s as any).progressbar ?? 0)?.['mode'] === 2) {
     if (((s as any).progressbar ?? 0)?.['bar_color'] !== '') {
-      (s as any).result = '<font color=' + ((s as any).progressbar ?? 0)?.['bar_color'] + '><b>' + ((s as any).progressbar ?? 0)?.['label'] + '</b></font>';
+      (s as any).result = '<font color=' + (((s as any).progressbar ?? 0)?.['bar_color']) + '><b>' + (((s as any).progressbar ?? 0)?.['label']) + '</b></font>';
     } else {
-      (s as any).result = '<b>' + ((s as any).progressbar ?? 0)?.['label'] + '</b>';
+      (s as any).result = '<b>' + (((s as any).progressbar ?? 0)?.['label']) + '</b>';
     }
   } else {
     if (((s as any).progressbar ?? 0)?.['mode'] === 1) {
@@ -317,12 +317,12 @@ function enterColor(s: GameState, scene: SceneBuilder): void {
         (s as any).bar_font_size = 3;
       }
       if (((s as any).stat_cfg ?? 0)?.['font_size'] > 0  &&  ((s as any).stat_cfg ?? 0)?.['font_size'] < ((s as any).bar_font_size ?? 0)) {
-        (s as any).bar_font_size = ((s as any).stat_cfg ?? 0)?.['font_size'];
+        (s as any).bar_font_size = (((s as any).stat_cfg ?? 0)?.['font_size']);
       }
       (s as any).bar_char_index = 0;
       (s as any).bar_char_step = 5;
       (s as any).bar_phantom_end = (((s as any).progressbar ?? {})?.['value'] ?? 0) + (((s as any).progressbar ?? {})?.['phantom'] ?? 0);
-      (s as any).bar_html = '<font face="courier new" size=' + ((s as any).bar_font_size ?? 0) + ' color=' + ((s as any).progressbar ?? 0)?.['bar_color'] + '> ';
+      (s as any).bar_html = '<font face="courier new" size=' + ((s as any).bar_font_size ?? 0) + ' color=' + (((s as any).progressbar ?? 0)?.['bar_color']) + '> ';
       // TODO-QSP: :progressbar_text_loop
       if (((s as any).bar_char_index ?? 0) < ((s as any).progressbar ?? 0)?.['value']) {
         // TODO-QSP: $bar_html += '█'

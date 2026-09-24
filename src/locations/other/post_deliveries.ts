@@ -1408,7 +1408,7 @@ function enter14(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'npc_relationship', 'modify', 'A28', (-5));
     qspCall(st, 'stat', '');
     // TODO-QSP: dynamic text: "I am, <<$npc_nickname[''A29'']>>. I was just delivering a pac-" you say, but yo...
-    scene.text(`"I am, ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''}. I was just delivering a pac-" you say, but your stepfather quickly puts his hand over your mouth out of your mother's view.`);
+    scene.text(`"I am, ${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')}. I was just delivering a pac-" you say, but your stepfather quickly puts his hand over your mouth out of your mother's view.`);
     scene.text('"She forgot her phone!" he quickly blurts out and you hear your mother laugh from the hallway.');
     scene.text('"That daughter of mine can be such a scatterbrain sometimes!" she replies before you hear her returning to the kitchen.');
     scene.text('"What\'s wrong with you?! Your mother doesn\'t know I bought this because I want to surprise her with it!" your stepfather grumbles, clearly annoyed about you nearly ruining his surprise.');

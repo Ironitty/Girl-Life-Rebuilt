@@ -154,11 +154,11 @@ function enterDebug(s: GameState, scene: SceneBuilder): void {
   scene.text('-<a href="#" onclick="window.__gameStore.setState((s) => { (s.nichTanya ??= {})/u0027Relationship/u0027 = s.1; (s.nichTanya ??= {})/u0027RelationshipState/u0027 = s.10; return s; }); window.__gameStore.getState().doGoto(/u0027nichUtil/u0027, /u0027debug/u0027); return false;">Casually dating</a>');
   scene.text('-<a href="#" onclick="window.__gameStore.setState((s) => { (s.nichTanya ??= {})/u0027Relationship/u0027 = s.1; (s.nichTanya ??= {})/u0027RelationshipState/u0027 = s.20; return s; }); window.__gameStore.getState().doGoto(/u0027nichUtil/u0027, /u0027debug/u0027); return false;">In a relationship</a>');
   // TODO-QSP: dynamic text: You fucked Tanya <<nichTanya[''FuckCounter'']>> times
-  scene.text(`You fucked Tanya ${((s as any).nichTanya ?? 0)?.['FuckCounter'] ?? ''} times`);
+  scene.text(`You fucked Tanya ${(((s as any).nichTanya ?? 0)?.['FuckCounter'] ?? '')} times`);
   // TODO-QSP: dynamic text: 'The last time you fucked Tanya was '+(daystart-nichTanya['FuckLast'])+' days ag...
   scene.text('\'The last time you fucked Tanya was \'+(daystart-nichTanya[\'FuckLast\'])+\' days ago\'');
   // TODO-QSP: dynamic text: Tanya has a dominance of <<nichTanya[''Dominance'']>> (range: -100 - 100)
-  scene.text(`Tanya has a dominance of ${((s as any).nichTanya ?? 0)?.['Dominance'] ?? ''} (range: -100 - 100)`);
+  scene.text(`Tanya has a dominance of ${(((s as any).nichTanya ?? 0)?.['Dominance'] ?? '')} (range: -100 - 100)`);
   scene.actions([
     { label: 'DEBUG: New Workday', handler: (st: GameState) => {
     qspCall(st, 'nichUtil', '');
@@ -314,7 +314,7 @@ function enterHired(s: GameState, scene: SceneBuilder): void {
   (s as any).nichLastInspepection = (-1);
   ((s as any).nichChoreState = (s as any).nichChoreState ?? {})[0] = 0;
   (s as any).nichSalaryBase = 10000;
-  ((s as any).npc_nickname = (s as any).npc_nickname ?? {})['A52'] = 'Master ' + ((s as any).npc_firstname ?? 0)?.['A52'];
+  ((s as any).npc_nickname = (s as any).npc_nickname ?? {})['A52'] = 'Master ' + (((s as any).npc_firstname ?? 0)?.['A52']);
   // TODO-QSP: end
   scene.build();
 }

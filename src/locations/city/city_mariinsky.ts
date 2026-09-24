@@ -34,7 +34,7 @@ function enterExit(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   if (((s as any).ARGS ?? 0) === 'hall'  ||  String((s as any).locArgs?.[0] ?? '') === 'start') {
     ((s as any).setloc = (s as any).setloc ?? {})['StageTitle'] = 'Mariinsky Theatre Foyer';
-    scene.img(((s as any).setloc ?? 0)?.['imagepath'] + 'mariinsky_hall');
+    scene.img((((s as any).setloc ?? 0)?.['imagepath']) + 'mariinsky_hall');
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'hall']; enterSetup(s, scene); (s as any).locArgs = __savedLocArgs; }
     if (((s as any).mariinskyqw ?? 0)?.['ticket'] === 0) {
       scene.actions([
@@ -87,7 +87,7 @@ function enterExit(s: GameState, scene: SceneBuilder): void {
 
 function enterTickets(s: GameState, scene: SceneBuilder): void {
   ((s as any).setloc = (s as any).setloc ?? {})['StageTitle'] = 'Mariinsky Tickets';
-  scene.img(((s as any).setloc ?? 0)?.['imagepath'] + 'mariinsky_tickets');
+  scene.img((((s as any).setloc ?? 0)?.['imagepath']) + 'mariinsky_tickets');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[0] ?? 0)]; enterSetup(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('fluff text for purchasing tickets');
   // TODO-QSP: end
@@ -96,7 +96,7 @@ function enterTickets(s: GameState, scene: SceneBuilder): void {
 
 function enterMain(s: GameState, scene: SceneBuilder): void {
   ((s as any).setloc = (s as any).setloc ?? {})['StageTitle'] = 'Mariinsky Main Stage';
-  scene.img(((s as any).setloc ?? 0)?.['imagepath'] + 'mariinsky_stage');
+  scene.img((((s as any).setloc ?? 0)?.['imagepath']) + 'mariinsky_stage');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[0] ?? 0)]; enterSetup(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('For over two centuries, the grand stage of St. Petersburgs\' has been the most prestigious of all Russia\'s ballet and opera theatres and, each year, hosts the Vaganova Ballet Academy\'s performances for their students. You gaze in wonder as you take your seat at the rich facade and feel the presence of all those illustrious performers who have tread those boards.');
   // TODO-QSP: end
@@ -158,7 +158,7 @@ function enterStageDoor(s: GameState, scene: SceneBuilder): void {
 
 function enterChangingRoom(s: GameState, scene: SceneBuilder): void {
   ((s as any).setloc = (s as any).setloc ?? {})['StageTitle'] = 'Changing Room';
-  scene.img(((s as any).setloc ?? 0)?.['imagepath'] + 'changing_room');
+  scene.img((((s as any).setloc ?? 0)?.['imagepath']) + 'changing_room');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[0] ?? 0)]; enterSetup(s, scene); (s as any).locArgs = __savedLocArgs; }
   (s as any).location_type = 'private_shared';
   if (((s as any).balletqw ?? 0)?.['rehearsals'] === 1) {

@@ -8,13 +8,13 @@ function enter(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_wkey = ((((String(((s as any).locArgs?.[0] ?? 0)).indexOf(String(' '))) + 1) > 0) ? ((String(((s as any).locArgs?.[0] ?? 0)).slice((1)-1, ((1)-1)+(((String(((s as any).locArgs?.[0] ?? 0)).indexOf(String(' '))) + 1) - 1)))) : (((s as any).locArgs?.[0] ?? 0)));
   (s as any).temp_wmods = ' ' + ((s as any).locArgs?.[0] ?? 0) + ' ';
   if (((s as any).temp_wkey ?? 0) === 'none'  ||  ((s as any).temp_wkey ?? 0) === '') {
-    (s as any).temp_color = qspFunc(s, 'shortgs', 'rgb_to_hex', ((s as any).theme ?? 0)?.['fcolor']);
+    (s as any).temp_color = qspFunc(s, 'shortgs', 'rgb_to_hex', (((s as any).theme ?? 0)?.['fcolor']));
   } else {
     if (((s as any).temp_wkey ?? 0) === 'preppy') {
-      (s as any).temp_color = ((s as any).theme_hex ?? 0)?.['accent'];
+      (s as any).temp_color = (((s as any).theme_hex ?? 0)?.['accent']);
     } else {
       if (((s as any).temp_wkey ?? 0) === 'prude') {
-        (s as any).temp_color = ((s as any).theme_hex ?? 0)?.['neutral'];
+        (s as any).temp_color = (((s as any).theme_hex ?? 0)?.['neutral']);
       } else {
         (s as any).temp_color = (((s as any).theme_hex ?? 0)?.[String((s as any).temp_wkey ?? 0)] ?? 0);
       }

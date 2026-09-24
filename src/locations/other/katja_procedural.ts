@@ -292,7 +292,7 @@ function enterMakeup(s: GameState, scene: SceneBuilder): void {
     (st as any).pcs_hairbsh = 1;
     (st as any).minut = ((st as any).minut ?? 0) + 10;
     qspCall(st, 'stat', '');
-    scene.text(`<center><b>${((st as any).npc_firstname ?? 0)?.['A14'] ?? ''} ${((st as any).npc_lastname ?? 0)?.['A14'] ?? ''}</b></center>`);
+    scene.text(`<center><b>${(((st as any).npc_firstname ?? 0)?.['A14'] ?? '')} ${(((st as any).npc_lastname ?? 0)?.['A14'] ?? '')}</b></center>`);
     scene.img('images/characters/shared/headshots_main/big14.jpg');
     scene.text('Katja happily grins as she quickly straightens your hair. "What do you want? A light touch-up, some normal make-up or shall I just shovel it on?"');
     scene.actions([
@@ -345,11 +345,11 @@ function enterMakeup(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterWillingToBeNaughty(s: GameState, scene: SceneBuilder): void {
-  (s as any).temp = ((s as any).katjaQW ?? 0)?.['slut'];
+  (s as any).temp = (((s as any).katjaQW ?? 0)?.['slut']);
   if (((s as any).katjaQW ?? 0)?.['under_influnece_of_cocaine'] > 0) {
     (s as any).temp = ((s as any).temp ?? 0) + (30/(((s as any).katjaQW ?? {})?.['coke_stage'] ?? 0));
   }
-  (s as any).temp = ((s as any).temp ?? 0) + (5*Math.max(((s as any).katjaQW ?? 0)?.['drinks'], 8)/2);
+  (s as any).temp = ((s as any).temp ?? 0) + (5*Math.max((((s as any).katjaQW ?? 0)?.['drinks']), 8)/2);
   (s as any).RESULT = ((s as any).temp ?? 0);
   // TODO-QSP: end
   scene.build();
@@ -529,7 +529,7 @@ function enterSexSet(s: GameState, scene: SceneBuilder): void {
           }
         }
         ((s as any).katjaQW = (s as any).katjaQW ?? {})['simultanous_boys'] = ((s as any).katjaQW['simultanous_boys'] ?? 0) + (Math.max(0, (Math.floor(Math.random() * (((s as any).locArgs?.[1] ?? 0) - (((s as any).katjaQW ?? {})?.['simultanous_boys'] ?? 0) - 0 + 1)) + (0))));
-        ((s as any).katjaQW = (s as any).katjaQW ?? {})['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (Math.min(((s as any).katjaQW ?? 0)?.['simultanous_boys'], ((s as any).locArgs?.[1] ?? 0))*3);
+        ((s as any).katjaQW = (s as any).katjaQW ?? {})['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (Math.min((((s as any).katjaQW ?? 0)?.['simultanous_boys']), ((s as any).locArgs?.[1] ?? 0))*3);
       }
     }
   }
@@ -584,7 +584,7 @@ function enterSexSet(s: GameState, scene: SceneBuilder): void {
           }
         }
         ((s as any).katjaQW = (s as any).katjaQW ?? {})['simultanous_girls'] = ((s as any).katjaQW['simultanous_girls'] ?? 0) + (Math.max(0, (Math.floor(Math.random() * (((s as any).locArgs?.[2] ?? 0) - (((s as any).katjaQW ?? {})?.['simultanous_girls'] ?? 0) - 0 + 1)) + (0))));
-        ((s as any).katjaQW = (s as any).katjaQW ?? {})['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (Math.min(((s as any).katjaQW ?? 0)?.['simultanous_gitls'], ((s as any).locArgs?.[2] ?? 0))*2);
+        ((s as any).katjaQW = (s as any).katjaQW ?? {})['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (Math.min((((s as any).katjaQW ?? 0)?.['simultanous_gitls']), ((s as any).locArgs?.[2] ?? 0))*2);
       }
     }
   }

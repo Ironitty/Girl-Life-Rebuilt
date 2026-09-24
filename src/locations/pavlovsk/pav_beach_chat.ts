@@ -81,7 +81,7 @@ function enterBeachHangout(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterJocksList(s: GameState, scene: SceneBuilder): void {
-  (s as any).listname = ((s as any).npc_nickname ?? 0)?.['A' + String(((s as any).i ?? 0))];
+  (s as any).listname = (((s as any).npc_nickname ?? 0)?.['A' + String(((s as any).i ?? 0))]);
   (s as any).listname = (String(((s as any).listname ?? 0)).toLowerCase());
   qspGoto(s, 'pav_beach_chat', ((s as any).listname ?? ''));
   // TODO-QSP: end
@@ -89,7 +89,7 @@ function enterJocksList(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCoolList(s: GameState, scene: SceneBuilder): void {
-  (s as any).listname = ((s as any).npc_nickname ?? 0)?.['A' + String(((s as any).i ?? 0))];
+  (s as any).listname = (((s as any).npc_nickname ?? 0)?.['A' + String(((s as any).i ?? 0))]);
   (s as any).listname = (String(((s as any).listname ?? 0)).toLowerCase());
   qspGoto(s, 'pav_beach_chat', ((s as any).listname ?? ''));
   // TODO-QSP: end
@@ -802,7 +802,7 @@ function enterKatja(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'npc_relationship', 'modify', 'A14', 'like');
     ((st as any).katjaQW = (st as any).katjaQW ?? {})['drunk_help'] = 0;
     qspCall(st, 'stat', '');
-    scene.text(`<center><b>${((st as any).npc_firstname ?? 0)?.['A14'] ?? ''} ${((st as any).npc_lastname ?? 0)?.['A14'] ?? ''}</b></center>`);
+    scene.text(`<center><b>${(((st as any).npc_firstname ?? 0)?.['A14'] ?? '')} ${(((st as any).npc_lastname ?? 0)?.['A14'] ?? '')}</b></center>`);
     scene.img('images/characters/shared/headshots_main/big14.jpg');
     // TODO-QSP: dynamic text: You approach Katja and thank her for taking you home from the disco when you wer...
     scene.text(`You approach Katja and thank her for taking you home from the disco when you were drunk and she gives you a knowing smile. "Don't mention it, ${((st as any).pcs_nickname ?? '')}! You really shouldn't get that drunk again though. It could end badly. Some of the guys there are real pigs…" she says. "Do you want to hang out after school? We could do our homework together?"`);

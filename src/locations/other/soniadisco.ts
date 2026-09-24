@@ -19,7 +19,7 @@ function enterCikl(s: GameState, scene: SceneBuilder): void {
       ((s as any).soniaQW = (s as any).soniaQW ?? {})['fallday'] = ((s as any).daystart ?? 0);
       ((s as any).soniaQW = (s as any).soniaQW ?? {})['slutdays'] = ((s as any).daystart ?? 0);
       ((s as any).npc_grupTipe = (s as any).npc_grupTipe ?? {})['A25'] = 5;
-      ((s as any).npcGoSchool = (s as any).npcGoSchool ?? {})['A25'] = '<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027gschool_outcast_chats/u0027, /u0027/u0027); return false;">' + ((s as any).npc_usedname ?? 0)?.['A25'] + '</a>';
+      ((s as any).npcGoSchool = (s as any).npcGoSchool ?? {})['A25'] = '<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027gschool_outcast_chats/u0027, /u0027/u0027); return false;">' + (((s as any).npc_usedname ?? 0)?.['A25']) + '</a>';
     }
   }
   // TODO-QSP: end
@@ -1430,7 +1430,7 @@ function enterDance1(s: GameState, scene: SceneBuilder): void {
   ((s as any).soniaQW = (s as any).soniaQW ?? {})['fallday'] = ((s as any).daystart ?? 0);
   ((s as any).soniaQW = (s as any).soniaQW ?? {})['slutdays'] = ((s as any).daystart ?? 0);
   ((s as any).npc_grupTipe = (s as any).npc_grupTipe ?? {})['A25'] = 5;
-  ((s as any).npcGoSchool = (s as any).npcGoSchool ?? {})['A25'] = '<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027gschool_outcast_chats/u0027, /u0027/u0027); return false;">' + ((s as any).npc_usedname ?? 0)?.['A25'] + '</a>';
+  ((s as any).npcGoSchool = (s as any).npcGoSchool ?? {})['A25'] = '<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027gschool_outcast_chats/u0027, /u0027/u0027); return false;">' + (((s as any).npc_usedname ?? 0)?.['A25']) + '</a>';
   scene.img('images/characters/pavlovsk/school/girl/sonia/sex/disco/cumwalk.jpg');
   if (String((s as any).locArgs?.[1] ?? '') === 'staytoend') {
     scene.text('Vitek drags a drunken Sonia around like she\'s a trophy on display. She\'s all smiles and looks pretty happy and completely wasted. You follow them inside and stop near the door.');

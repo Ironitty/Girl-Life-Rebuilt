@@ -279,7 +279,7 @@ function enterExcuses(s: GameState, scene: SceneBuilder): void {
               scene.img('images/characters/pavlovsk/resident/mom/prost1.jpg');
               scene.text('You approach your mother. "What are you doing here?" she asks without turning to face you.');
               // TODO-QSP: dynamic text: You can''t look her in the eyes as you reply and just look at the floor. "I''m s...
-              scene.text(`You can't look her in the eyes as you reply and just look at the floor. "I'm sorry for lying to you, ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''}. I know I screwed up and I'm here to ask for your forgiveness."`);
+              scene.text(`You can't look her in the eyes as you reply and just look at the floor. "I'm sorry for lying to you, ${(((s as any).npc_nickname ?? 0)?.['A29'] ?? '')}. I know I screwed up and I'm here to ask for your forgiveness."`);
               scene.text('Your mother\'s eyebrow raises in disbelief. "Do you really mean that?"');
               scene.text('You slowly nod. "Yes. I\'d like to join the sermon."');
               scene.text('"Of course you can. Sit down and let\'s listen to the word of god together."');
@@ -618,7 +618,7 @@ function enterRestroomHandjob(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   // TODO-QSP: 'Inside the restroom, it only takes you a few minutes of working his cock before the man orgasms, gr...
   if (((s as any).temp ?? 0)?.['approach_type'] === 'prostitute') {
-    qspCall(s, 'money', 'earn', ((s as any).temp ?? 0)?.['prost_money']);
+    qspCall(s, 'money', 'earn', (((s as any).temp ?? 0)?.['prost_money']));
   }
   // TODO-QSP: end
   scene.actions([
@@ -814,7 +814,7 @@ function enterRestroomFuckCondomCum(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: 'Before you can even finish the man departs, leaving you ' + iif($temp['approach_type'] = 'prostitut...
   }
   if (((s as any).temp ?? 0)?.['approach_type'] === 'prostitute') {
-    qspCall(s, 'money', 'earn', ((s as any).temp ?? 0)?.['prost_money']);
+    qspCall(s, 'money', 'earn', (((s as any).temp ?? 0)?.['prost_money']));
   }
   // TODO-QSP: end
   scene.actions([
@@ -880,7 +880,7 @@ function enterRestroomCumHand(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/sex/public/restroom/hj_cum1.mp4');
     // TODO-QSP: 'Hopping off the man''s cock, you take it in your hand and start jerking. Cum immediately spurts fro...
     if (((st as any).temp ?? 0)?.['approach_type'] === 'prostitute') {
-      qspCall(st, 'money', 'earn', ((st as any).temp ?? 0)?.['prost_money']);
+      qspCall(st, 'money', 'earn', (((st as any).temp ?? 0)?.['prost_money']));
     }
     scene.actions([
       { label: 'Finish', handler: (st: GameState) => {
@@ -901,7 +901,7 @@ function enterRestroomCumFace(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/sex/cum/facial/facial0,3.mp4');
     // TODO-QSP: 'He cums on your face. Once finished, he pulls up his pants and departs, leaving you ' + iif($temp['...
     if (((st as any).temp ?? 0)?.['approach_type'] === 'prostitute') {
-      qspCall(st, 'money', 'earn', ((st as any).temp ?? 0)?.['prost_money']);
+      qspCall(st, 'money', 'earn', (((st as any).temp ?? 0)?.['prost_money']));
     }
     scene.actions([
       { label: 'Finish', handler: (st: GameState) => {
@@ -920,7 +920,7 @@ function enterRestroomCumMouth(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/sex/cum/mouth/cum11.mp4');
     scene.text('He cums in your mouth.');
     if (((st as any).temp ?? 0)?.['approach_type'] === 'prostitute') {
-      qspCall(st, 'money', 'earn', ((st as any).temp ?? 0)?.['prost_money']);
+      qspCall(st, 'money', 'earn', (((st as any).temp ?? 0)?.['prost_money']));
     }
     scene.actions([
       { label: 'Swallow it', handler: (st: GameState) => {
@@ -1084,7 +1084,7 @@ function enterLeaveEarly(s: GameState, scene: SceneBuilder): void {
   (s as any).mom_church = ((s as any).daystart ?? 0);
   scene.img('images/characters/pavlovsk/resident/mom/prost9.jpg');
   // TODO-QSP: dynamic text: You approach your mother. "I had a great time <<$npc_nickname[''A29'']>>, but I ...
-  scene.text(`You approach your mother. "I had a great time ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''}, but I should be heading home now."`);
+  scene.text(`You approach your mother. "I had a great time ${(((s as any).npc_nickname ?? 0)?.['A29'] ?? '')}, but I should be heading home now."`);
   scene.text('"Alright. Thank you for stopping by. I hope you learned something about yourself today," she replies and lightly pats your arm before going back to praying.');
   // TODO-QSP: end
   scene.actions([

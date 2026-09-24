@@ -437,7 +437,7 @@ function enterBreakfastChat1(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
     // TODO-QSP: dynamic text: "My <<$npc_nickname[''A29'']>> is always nagging at me about being safe and doin...
-    scene.text(`"My ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''} is always nagging at me about being safe and doing something with my life. Do you ever worry about Albina and what choices she makes?"`);
+    scene.text(`"My ${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')} is always nagging at me about being safe and doing something with my life. Do you ever worry about Albina and what choices she makes?"`);
     scene.text('"All the time," she replies. "It\'s why I\'m happy that she\'s going to the university so she can eventually get herself a good job and make a better life for herself away from the bad influences she\'s been exposed to here. I don\'t want her getting pregnant and having to put her life on hold to raise a baby."');
     scene.actions([
       { label: 'Like you did?', handler: (st: GameState) => {
@@ -1030,7 +1030,7 @@ function enterPoolChat1(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
     // TODO-QSP: dynamic text: "My <<$npc_nickname[''A29'']>> is always nagging at me about being safe and doin...
-    scene.text(`"My ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''} is always nagging at me about being safe and doing something with my life. Do you ever worry about Albina and what choices she makes?"`);
+    scene.text(`"My ${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')} is always nagging at me about being safe and doing something with my life. Do you ever worry about Albina and what choices she makes?"`);
     scene.text('"All the time," she replies. "It\'s why I\'m happy that she\'s going to the university so she can eventually get herself a good job and make a better life for herself away from the bad influences she\'s been exposed to here. I don\'t want her getting pregnant and having to put her life on hold to raise a baby."');
     scene.actions([
       { label: 'Like you did?', handler: (st: GameState) => {
@@ -1598,7 +1598,7 @@ function enterLoungeChat1(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
     // TODO-QSP: dynamic text: "My <<$npc_nickname[''A29'']>> is always nagging at me about being safe and doin...
-    scene.text(`"My ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''} is always nagging at me about being safe and doing something with my life. Do you ever worry about Albina and what choices she makes?"`);
+    scene.text(`"My ${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')} is always nagging at me about being safe and doing something with my life. Do you ever worry about Albina and what choices she makes?"`);
     scene.text('"All the time," she replies. "It\'s why I\'m happy that she\'s going to the university so she can eventually get herself a good job and make a better life for herself away from the bad influences she\'s been exposed to here. I don\'t want her getting pregnant and having to put her life on hold to raise a baby."');
     scene.actions([
       { label: 'Like you did?', handler: (st: GameState) => {

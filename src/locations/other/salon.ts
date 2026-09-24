@@ -612,7 +612,7 @@ function enterPartTimeFullTime(s: GameState, scene: SceneBuilder): void {
 function enterMasseuseOrientation(s: GameState, scene: SceneBuilder): void {
   ((s as any).masseuse = (s as any).masseuse ?? {})['hired_day'] = ((s as any).daystart ?? 0);
   qspCall(s, 'jobs', 'set_employed', 'city_salon_masseuse');
-  qspCall(s, 'jobs', 'set_rank', 'city_salon_masseuse', ((s as any).masseuse ?? 0)?.['pending_rank']);
+  qspCall(s, 'jobs', 'set_rank', 'city_salon_masseuse', (((s as any).masseuse ?? 0)?.['pending_rank']));
   ((s as any).masseuse = (s as any).masseuse ?? {})['salon_state'] = '';
   ((s as any).masseuse = (s as any).masseuse ?? {})['pending_rank'] = 0;
   scene.img('images/locations/city/citycenter/mall/salon/salon.jpg');
@@ -657,7 +657,7 @@ function enterMasseuseOrientation(s: GameState, scene: SceneBuilder): void {
 function enterWhoreOrientation(s: GameState, scene: SceneBuilder): void {
   ((s as any).masseuse = (s as any).masseuse ?? {})['hired_day'] = ((s as any).daystart ?? 0);
   qspCall(s, 'jobs', 'set_employed', 'city_salon_masseuse');
-  qspCall(s, 'jobs', 'set_rank', 'city_salon_masseuse', ((s as any).masseuse ?? 0)?.['pending_rank']);
+  qspCall(s, 'jobs', 'set_rank', 'city_salon_masseuse', (((s as any).masseuse ?? 0)?.['pending_rank']));
   ((s as any).masseuse = (s as any).masseuse ?? {})['salon_state'] = '';
   ((s as any).masseuse = (s as any).masseuse ?? {})['pending_rank'] = 0;
   scene.img('images/locations/city/citycenter/mall/salon/salon.jpg');
@@ -898,7 +898,7 @@ function enterResignation(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'outfit', 'dress', 'masseuseQW');
   }
   scene.text('You retrieve your clothes from your locker and get dressed ready to leave.');
-  ((s as any).masseuse = (s as any).masseuse ?? {})['last_rank'] = ((s as any).job_rank ?? 0)?.['city_salon_masseuse'];
+  ((s as any).masseuse = (s as any).masseuse ?? {})['last_rank'] = (((s as any).job_rank ?? 0)?.['city_salon_masseuse']);
   qspCall(s, 'jobs', 'set_terminated', 'city_salon_masseuse');
   ((s as any).masseuse = (s as any).masseuse ?? {})['salon_state'] = 'resigned';
   // TODO-QSP: end
@@ -918,10 +918,10 @@ function enterPayday(s: GameState, scene: SceneBuilder): void {
     if (((s as any).job_shifts_this_period ?? 0)?.['city_salon_masseuse'] < ((s as any).masseuse ?? 0)?.['shifts_required']) {
       ((s as any).masseuse = (s as any).masseuse ?? {})['warning'] = ((s as any).masseuse['warning'] ?? 0) - (1);
       // TODO-QSP: dynamic text: "Hey, you only worked <<job_shifts_this_period[''city_salon_masseuse'']>> this w...
-      scene.text(`"Hey, you only worked ${((s as any).job_shifts_this_period ?? 0)?.['city_salon_masseuse'] ?? ''} this week. You were supposed to work ${((s as any).masseuse ?? 0)?.['shifts_required'] ?? ''}."`);
+      scene.text(`"Hey, you only worked ${(((s as any).job_shifts_this_period ?? 0)?.['city_salon_masseuse'] ?? '')} this week. You were supposed to work ${(((s as any).masseuse ?? 0)?.['shifts_required'] ?? '')}."`);
       scene.text('"Sorry," you say, reaching for the envelope. "Won\'t happen again."');
       // TODO-QSP: dynamic text: "Better not." You try to pull the envelope away, but Xian holds on tight to it, ...
-      scene.text(`"Better not." You try to pull the envelope away, but Xian holds on tight to it, not budging until you make eye contact. "${((s as any).masseuse ?? 0)?.['warning'] ?? ''} more times and you're fired."`);
+      scene.text(`"Better not." You try to pull the envelope away, but Xian holds on tight to it, not budging until you make eye contact. "${(((s as any).masseuse ?? 0)?.['warning'] ?? '')} more times and you're fired."`);
       scene.text('She lets go.');
     } else {
       if (((s as any).job_shifts_this_period ?? 0)?.['city_salon_masseuse'] >= ((s as any).masseuse ?? 0)?.['shifts_required']) {
@@ -943,13 +943,13 @@ function enterPayday(s: GameState, scene: SceneBuilder): void {
 
 function enterPaydayEnd(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: Looking inside, you see it''s stuffed with cash that counts out to <<$func(''mon...
-  scene.text(`Looking inside, you see it's stuffed with cash that counts out to ${qspFunc(s, 'money', 'string_profit', ((s as any).masseuse ?? 0)?.['paycheck'] ?? '')}.`);
-  ((s as any).masseuse = (s as any).masseuse ?? {})['money_earned'] = ((s as any).masseuse['money_earned'] ?? 0) + (((s as any).masseuse ?? 0)?.['paycheck']);
+  scene.text(`Looking inside, you see it's stuffed with cash that counts out to ${qspFunc(s, 'money', 'string_profit', (((s as any).masseuse ?? 0)?.['paycheck'] ?? ''))}.`);
+  ((s as any).masseuse = (s as any).masseuse ?? {})['money_earned'] = ((s as any).masseuse['money_earned'] ?? 0) + ((((s as any).masseuse ?? 0)?.['paycheck']));
   if (((s as any).job_rank ?? 0)?.['city_salon_masseuse'] === 2) {
-    ((s as any).masseuse = (s as any).masseuse ?? {})['nude_mass_money_earned'] = ((s as any).masseuse['nude_mass_money_earned'] ?? 0) + (((s as any).masseuse ?? 0)?.['paycheck']);
+    ((s as any).masseuse = (s as any).masseuse ?? {})['nude_mass_money_earned'] = ((s as any).masseuse['nude_mass_money_earned'] ?? 0) + ((((s as any).masseuse ?? 0)?.['paycheck']));
   } else {
     if (((s as any).job_rank ?? 0)?.['city_salon_masseuse'] > 2) {
-      ((s as any).masseuse = (s as any).masseuse ?? {})['sex_money_earned'] = ((s as any).masseuse['sex_money_earned'] ?? 0) + (((s as any).masseuse ?? 0)?.['paycheck']);
+      ((s as any).masseuse = (s as any).masseuse ?? {})['sex_money_earned'] = ((s as any).masseuse['sex_money_earned'] ?? 0) + ((((s as any).masseuse ?? 0)?.['paycheck']));
     }
   }
   ((s as any).masseuse = (s as any).masseuse ?? {})['paycheck'] = 0;
@@ -2507,7 +2507,7 @@ function enterMom(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/resident/mom/salon.jpg');
   // TODO-QSP: dynamic text: The salon seems to be pretty busy today. As you enter, you see your <<$npc_nickn...
-  scene.text(`The salon seems to be pretty busy today. As you enter, you see your ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''} and Aunt Luda. They haven't seen you yet and seem to just be chatting as they wait for their turn.`);
+  scene.text(`The salon seems to be pretty busy today. As you enter, you see your ${(((s as any).npc_nickname ?? 0)?.['A29'] ?? '')} and Aunt Luda. They haven't seen you yet and seem to just be chatting as they wait for their turn.`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Ignore them and leave', goto: ['city_mall', ''] },
@@ -2516,12 +2516,12 @@ function enterMom(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/mom/momsalon.jpg');
     // TODO-QSP: dynamic text: You walk over to your <<$npc_nickname[''A29'']>> and Luda. "Hi <<$npc_nickname['...
-    scene.text(`You walk over to your ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''} and Luda. "Hi ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''}, hi Aunt Luda! Are you guys getting your hair done?"`);
+    scene.text(`You walk over to your ${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')} and Luda. "Hi ${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')}, hi Aunt Luda! Are you guys getting your hair done?"`);
     // TODO-QSP: dynamic text: Your <<$npc_nickname[''A29'']>> looks up at you and seems a little surprised to ...
-    scene.text(`Your ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''} looks up at you and seems a little surprised to see you. "Yes. We're going to get a manicure as well. You should join us. I'll pay."`);
+    scene.text(`Your ${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')} looks up at you and seems a little surprised to see you. "Yes. We're going to get a manicure as well. You should join us. I'll pay."`);
     scene.text('Luda speaks up as well. "Yes dear, you should join us."');
     // TODO-QSP: dynamic text: Your <<$npc_nickname[''A29'']>>''s name is called and she gets up and takes a se...
-    scene.text(`Your ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''}'s name is called and she gets up and takes a seat to get her hair styled. A free manicure would be nice, but that also means having to spend time with them and listening to them talk about boring stuff.`);
+    scene.text(`Your ${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')}'s name is called and she gets up and takes a seat to get her hair styled. A free manicure would be nice, but that also means having to spend time with them and listening to them talk about boring stuff.`);
     scene.actions([
       { label: 'Tell her you\'re busy', handler: (st: GameState) => {
     qspCall(st, 'npc_relationship', 'modify', 'A29', (-1));
@@ -2530,7 +2530,7 @@ function enterMom(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/resident/mom/salon.jpg');
     scene.text('You shakes your head. "Sorry, but I can\'t. I already have plans."');
     // TODO-QSP: dynamic text: Your <<$npc_nickname[''A29'']>> sighs a little, clearly disappointed. "Well okay...
-    scene.text(`Your ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''} sighs a little, clearly disappointed. "Well okay then. Don't stay out too late."`);
+    scene.text(`Your ${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')} sighs a little, clearly disappointed. "Well okay then. Don't stay out too late."`);
     scene.text('You say goodbye to each other and they go back to talking again as you leave.');
     scene.actions([
       { label: 'Leave', goto: ['city_mall', ''] },
@@ -2545,13 +2545,13 @@ function enterMom(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/resident/mom/momsvetsalon.jpg');
     scene.text('You sit next to Luda, but only for a moment since her name is soon called and she gets up to get her hair done.');
     // TODO-QSP: dynamic text: Once she''s done, they''re both taken to have a manicure done and you''re called...
-    scene.text(`Once she's done, they're both taken to have a manicure done and you're called over to join them. The three of you sit near each other as you get manicures. Luda and your ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''} talk about a variety of topics, mostly gossip about what's going on in Pavlovsk or the people they both know, or stories about what happened at their work.`);
+    scene.text(`Once she's done, they're both taken to have a manicure done and you're called over to join them. The three of you sit near each other as you get manicures. Luda and your ${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')} talk about a variety of topics, mostly gossip about what's going on in Pavlovsk or the people they both know, or stories about what happened at their work.`);
     scene.text('You occasionally chime in, telling them about some stuff you\'ve been up to of late. It\'s surprisingly fun and you got a nice manicure out of it.');
     // TODO-QSP: dynamic text: Once you''re finished, your <<$npc_nickname[''A29'']>> pays for both of you and ...
-    scene.text(`Once you're finished, your ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''} pays for both of you and Luda pays for herself and you all walk out together.`);
+    scene.text(`Once you're finished, your ${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')} pays for both of you and Luda pays for herself and you all walk out together.`);
     scene.text('"That was fun, but I should get back and make dinner for me and Olu," Luda says.');
     // TODO-QSP: dynamic text: Your <<$npc_nickname[''A29'']>> and Luda share a brief hug. "Same here. Vlad wou...
-    scene.text(`Your ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''} and Luda share a brief hug. "Same here. Vlad wouldn't know what to do and would likely starve if I don't get dinner started soon."`);
+    scene.text(`Your ${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')} and Luda share a brief hug. "Same here. Vlad wouldn't know what to do and would likely starve if I don't get dinner started soon."`);
     scene.text('They both laugh at that and Luda says goodbye before she walks away. Your mother starts for home as well.');
     scene.text('"Dinner will be ready in about half a hour. You should come home and join us."');
     scene.actions([

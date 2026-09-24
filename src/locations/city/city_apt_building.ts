@@ -303,7 +303,7 @@ function enterCheckLiftEvents(s: GameState, scene: SceneBuilder): void {
   if ((Math.floor(Math.random() * 31) + 0) >= 7) {
     // TODO-QSP: exit
   }
-  qspGoto(s, 'city_apt_building', qspUntranslated(s, "''lift_event_<<rand(1'", { location: "city_apt_building" }), '7)>>', String((s as any).locArgs?.[1] ?? ''));
+  qspGoto(s, 'city_apt_building', qspUntranslated(s, "lift_event_(Math.floor(Math.random() * 7) + 1)", { location: "city_apt_building" }), String((s as any).locArgs?.[1] ?? ''));
   // TODO-QSP: end
   scene.build();
 }

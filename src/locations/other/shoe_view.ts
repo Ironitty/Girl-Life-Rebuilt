@@ -24,7 +24,7 @@ function enterGetWardrobeListHeader(s: GameState, scene: SceneBuilder): void {
 
 function enterFilterBuilder(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === 'setup_home_filters') {
-    qspCall(s, 'shop_utils', 'filter_builder', 'init', 'shoe_view', 'view_list', ((s as any).shop_display ?? 0)?.['link']);
+    qspCall(s, 'shop_utils', 'filter_builder', 'init', 'shoe_view', 'view_list', (((s as any).shop_display ?? 0)?.['link']));
     qspCall(s, 'shop_utils', 'filter_builder', 'setup_number_sort');
     qspCall(s, 'shop_utils', 'filter_builder', 'setup_quality_sort');
     qspCall(s, 'shop_utils', 'filter_builder', 'setup_heelsize_sort');
@@ -478,8 +478,8 @@ function enterViewItem(s: GameState, scene: SceneBuilder): void {
   ((s as any).shop_utils_view = (s as any).shop_utils_view ?? {})['number'] = ((s as any).locArgs?.[3] ?? 0);
   ((s as any).shop_utils_view = (s as any).shop_utils_view ?? {})['discount'] = ((s as any).locArgs?.[4] ?? 0);
   qspCall(s, 'stat', '');
-  scene.img(`${qspFunc(s, '$shoe_image', '', ((s as any).shop_utils_view ?? 0)?.['type'] ?? '', ((s as any).shop_utils_view ?? 0)?.['number'] ?? '')}`);
-  qspCall(s, 'shoe_attributes', '$shop_utils_view[\'type\']', ((s as any).shop_utils_view ?? 0)?.['number']);
+  scene.img(`${qspFunc(s, '$shoe_image', '', (((s as any).shop_utils_view ?? 0)?.['type'] ?? ''), (((s as any).shop_utils_view ?? 0)?.['number'] ?? ''))}`);
+  qspCall(s, 'shoe_attributes', '$shop_utils_view[\'type\']', (((s as any).shop_utils_view ?? 0)?.['number']));
   if (((s as any).ShoStyle ?? 0) === 1) {
     scene.text('This shoe is considered alternative style and makes you feel more assertive and aggressive.');
   }
@@ -538,14 +538,14 @@ function enterViewItemShop(s: GameState, scene: SceneBuilder): void {
     scene.text('You already own these shoes.');
     return;
   }
-  ((s as any).shop_utils_view = (s as any).shop_utils_view ?? {})['discount_total'] = (((s as any).shop_utils_view ?? {})?.['discount'] ?? 0) + qspFunc(s, 'shop_utils', 'get_discount', ((s as any).shop_utils_view ?? 0)?.['type'] + '_shoe', ((s as any).shop_utils_view ?? 0)?.['number']);
+  ((s as any).shop_utils_view = (s as any).shop_utils_view ?? {})['discount_total'] = (((s as any).shop_utils_view ?? {})?.['discount'] ?? 0) + qspFunc(s, 'shop_utils', 'get_discount', (((s as any).shop_utils_view ?? 0)?.['type']) + '_shoe', (((s as any).shop_utils_view ?? 0)?.['number']));
   ((s as any).shop_utils_view = (s as any).shop_utils_view ?? {})['base_price'] = ((s as any).ShoPrice ?? 0);
   ((s as any).shop_utils_view = (s as any).shop_utils_view ?? {})['price'] = (((s as any).shop_utils_view ?? {})?.['base_price'] ?? 0) * Math.max(0, 100 - (((s as any).shop_utils_view ?? {})?.['discount_total'] ?? 0)) / 100;
   ((s as any).shop_utils_view = (s as any).shop_utils_view ?? {})['price'] = (((s as any).shop_utils_view ?? {})?.['price'] ?? 0) / 50 * 50;
   if (((s as any).shop_utils_view ?? 0)?.['price'] === ((s as any).shop_utils_view ?? 0)?.['base_price']) {
-    ((s as any).shop_utils_view = (s as any).shop_utils_view ?? {})['price_string'] = qspFunc(s, 'money', 'string_price', ((s as any).shop_utils_view ?? 0)?.['price']);
+    ((s as any).shop_utils_view = (s as any).shop_utils_view ?? {})['price_string'] = qspFunc(s, 'money', 'string_price', (((s as any).shop_utils_view ?? 0)?.['price']));
   } else {
-    ((s as any).shop_utils_view = (s as any).shop_utils_view ?? {})['price_string'] = qspFunc(s, 'wrap', 'neg s', qspFunc(s, 'money', 'string_price', ((s as any).shop_utils_view ?? 0)?.['base_price'])) + ' <b>' + qspFunc(s, 'money', 'string_price', ((s as any).shop_utils_view ?? 0)?.['price']) + '</b>';
+    ((s as any).shop_utils_view = (s as any).shop_utils_view ?? {})['price_string'] = qspFunc(s, 'wrap', 'neg s', qspFunc(s, 'money', 'string_price', (((s as any).shop_utils_view ?? 0)?.['base_price']))) + ' <b>' + qspFunc(s, 'money', 'string_price', (((s as any).shop_utils_view ?? 0)?.['price'])) + '</b>';
     // TODO-QSP: 'Now ' + shop_utils_view['discount_total'] + '% off' + iif(shop_utils_view['discount_total'] <= 10, ...
   }
   // TODO-QSP: 'Price: ' + $shop_utils_view['price_string']
@@ -557,9 +557,9 @@ function enterViewItemShop(s: GameState, scene: SceneBuilder): void {
     scene.text('You do not have enough money to buy these shoes.');
   } else {
     scene.actions([
-      { label: '', labelFn: (s: GameState) => 'Buy (' + String(((s as any).shop_utils_view ?? 0)?.['price_string'] ?? '' ?? '') + ')', handler: (st: GameState) => {
-    qspCall(st, 'money', 'pay', ((st as any).shop_utils_view ?? 0)?.['price']);
-    qspCall(st, 'shoes', 'add_item', ((st as any).shop_utils_view ?? 0)?.['type'], ((st as any).shop_utils_view ?? 0)?.['number']);
+      { label: '', labelFn: (s: GameState) => 'Buy (' + String((((s as any).shop_utils_view ?? 0)?.['price_string'] ?? '') ?? '') + ')', handler: (st: GameState) => {
+    qspCall(st, 'money', 'pay', (((st as any).shop_utils_view ?? 0)?.['price']));
+    qspCall(st, 'shoes', 'add_item', (((st as any).shop_utils_view ?? 0)?.['type']), (((st as any).shop_utils_view ?? 0)?.['number']));
     dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
@@ -597,7 +597,7 @@ function enterViewItemWardrobe(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_heels ?? 0) >= ((s as any).ShoSkill ?? 0)) {
     scene.actions([
       { label: 'Wear', handler: (st: GameState) => {
-    qspCall(st, 'shoes', 'wear', ((st as any).shop_utils_view ?? 0)?.['type'], ((st as any).shop_utils_view ?? 0)?.['number']);
+    qspCall(st, 'shoes', 'wear', (((st as any).shop_utils_view ?? 0)?.['type']), (((st as any).shop_utils_view ?? 0)?.['number']));
     qspCall(st, 'shop_utils', 'cleanup');
     qspGoto(st, 'wardrobe', 'main');
   } },
@@ -641,7 +641,7 @@ function enterStorageOptions(s: GameState, scene: SceneBuilder): void {
   if (qspFunc(s, 'shoes', 'in_wardrobe', ((s as any).shop_utils_view ?? 0)?.['type'], ((s as any).shop_utils_view ?? 0)?.['number']) === 0) {
     scene.actions([
       { label: 'Move to wardrobe', handler: (st: GameState) => {
-    qspCall(st, 'shoes', 'move_to_wardrobe', ((st as any).shop_utils_view ?? 0)?.['type'], ((st as any).shop_utils_view ?? 0)?.['number']);
+    qspCall(st, 'shoes', 'move_to_wardrobe', (((st as any).shop_utils_view ?? 0)?.['type']), (((st as any).shop_utils_view ?? 0)?.['number']));
     qspGoto(st, 'shoe_view', 'view_item', (((st as any).shop_utils_view ?? {})['link']), (((st as any).shop_utils_view ?? {})['type']));
   } },
     ]);
@@ -652,7 +652,7 @@ function enterStorageOptions(s: GameState, scene: SceneBuilder): void {
   if (qspFunc(s, 'shoes', 'in_storage', ((s as any).shop_utils_view ?? 0)?.['type'], ((s as any).shop_utils_view ?? 0)?.['number']) === 0) {
     scene.actions([
       { label: 'Move to storage', handler: (st: GameState) => {
-    qspCall(st, 'shoes', 'move_to_storage', ((st as any).shop_utils_view ?? 0)?.['type'], ((st as any).shop_utils_view ?? 0)?.['number']);
+    qspCall(st, 'shoes', 'move_to_storage', (((st as any).shop_utils_view ?? 0)?.['type']), (((st as any).shop_utils_view ?? 0)?.['number']));
     qspGoto(st, 'shoe_view', 'view_item', (((st as any).shop_utils_view ?? {})['link']), (((st as any).shop_utils_view ?? {})['type']));
   } },
     ]);
@@ -660,13 +660,13 @@ function enterStorageOptions(s: GameState, scene: SceneBuilder): void {
   if (qspFunc(s, 'shoes', 'in_unwanted', ((s as any).shop_utils_view ?? 0)?.['type'], ((s as any).shop_utils_view ?? 0)?.['number']) === 0) {
     scene.actions([
       { label: 'Move to unwanted', handler: (st: GameState) => {
-    qspCall(st, 'shoes', 'move_to_unwanted', ((st as any).shop_utils_view ?? 0)?.['type'], ((st as any).shop_utils_view ?? 0)?.['number']);
+    qspCall(st, 'shoes', 'move_to_unwanted', (((st as any).shop_utils_view ?? 0)?.['type']), (((st as any).shop_utils_view ?? 0)?.['number']));
     qspGoto(st, 'shoe_view', 'view_item', (((st as any).shop_utils_view ?? {})['link']), (((st as any).shop_utils_view ?? {})['type']));
   } },
     ]);
   }
   // TODO-QSP: act $func('wrap', 'neg', 'Throw these shoes away'):
-  qspCall(s, 'shoes', 'remove_item', ((s as any).shop_utils_view ?? 0)?.['type'], ((s as any).shop_utils_view ?? 0)?.['number']);
+  qspCall(s, 'shoes', 'remove_item', (((s as any).shop_utils_view ?? 0)?.['type']), (((s as any).shop_utils_view ?? 0)?.['number']));
   qspGoto(s, 'shoe_view', 'view_list', (((s as any).shop_utils_view ?? {})['link']));
   // TODO-QSP: end
   return;

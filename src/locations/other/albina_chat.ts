@@ -1284,7 +1284,7 @@ function enterLoverConversation(s: GameState, scene: SceneBuilder): void {
     scene.text('"A bunch?" She raises an eyebrow. "How much is \'a bunch\'?"');
     if (((st as any).stat ?? 0)?.['fuckbuddies_current'] <= 10) {
       // TODO-QSP: dynamic text: "Hmmm…" You start counting off your various lovers on your fingers. "<<stat[''fu...
-      scene.text(`"Hmmm…" You start counting off your various lovers on your fingers. "${(((st as any).stat ?? {})?.['fuckbuddies_current'] ?? 0) - 1}? No wait, ${((st as any).stat ?? 0)?.['fuckbuddies_current'] ?? ''}. I just wait for them to text me if they want to fuck."`);
+      scene.text(`"Hmmm…" You start counting off your various lovers on your fingers. "${(((st as any).stat ?? {})?.['fuckbuddies_current'] ?? 0) - 1}? No wait, ${(((st as any).stat ?? 0)?.['fuckbuddies_current'] ?? '')}. I just wait for them to text me if they want to fuck."`);
     } else {
       scene.text('"Let\'s just say more than ten," you say with a wry smirk.');
     }
@@ -1327,7 +1327,7 @@ function enterLoverConversation(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'Absolutely', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: "Absolutely," you grin. "I love trying new dicks! I think I''m up to <<stat[''va...
-    scene.text(`"Absolutely," you grin. "I love trying new dicks! I think I'm up to ${((st as any).stat ?? 0)?.['vaginal'] ?? ''}."`);
+    scene.text(`"Absolutely," you grin. "I love trying new dicks! I think I'm up to ${(((st as any).stat ?? 0)?.['vaginal'] ?? '')}."`);
     scene.text('"You really are a slut!" she guffaws loudly.');
     scene.text('"Take that back, you bitch!" you laugh back.');
     scene.actions([

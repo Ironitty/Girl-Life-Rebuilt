@@ -28,30 +28,30 @@ function enterStartingStats(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'outfit', 'transfer_backup', 0, 'sex_ev');
   qspCall(s, 'outfit', 'safe_backup', 'sex_ev');
   ((s as any).sex_ev = (s as any).sex_ev ?? {})['starting_makeup'] = ((s as any).pcs_makeup ?? 0);
-  ((s as any).sex_ev = (s as any).sex_ev ?? {})['cum_vagina'] = ((s as any).cum_loc ?? 0)?.['vagina'];
-  ((s as any).sex_ev = (s as any).sex_ev ?? {})['cum_labia'] = ((s as any).cum_loc ?? 0)?.['labia'];
-  ((s as any).sex_ev = (s as any).sex_ev ?? {})['cum_panty_front'] = ((s as any).cum_loc ?? 0)?.['panty_front'];
-  ((s as any).sex_ev = (s as any).sex_ev ?? {})['cum_anus'] = ((s as any).cum_loc ?? 0)?.['anus'];
-  ((s as any).sex_ev = (s as any).sex_ev ?? {})['cum_butt'] = ((s as any).cum_loc ?? 0)?.['butt'];
-  ((s as any).sex_ev = (s as any).sex_ev ?? {})['cum_panty_back'] = ((s as any).cum_loc ?? 0)?.['panty_back'];
-  ((s as any).sex_ev = (s as any).sex_ev ?? {})['cum_clothes_groin'] = ((s as any).cum_loc ?? 0)?.['clothes_groin'];
-  ((s as any).sex_ev = (s as any).sex_ev ?? {})['cum_clothes'] = ((s as any).cum_loc ?? 0)?.['clothes'];
-  ((s as any).sex_ev = (s as any).sex_ev ?? {})['cum_back'] = ((s as any).cum_loc ?? 0)?.['back'];
-  ((s as any).sex_ev = (s as any).sex_ev ?? {})['cum_legs '] = ((s as any).cum_loc ?? 0)?.['legs '];
-  ((s as any).sex_ev = (s as any).sex_ev ?? {})['cum_arms'] = ((s as any).cum_loc ?? 0)?.['arms'];
-  ((s as any).sex_ev = (s as any).sex_ev ?? {})['cum_face'] = ((s as any).cum_loc ?? 0)?.['face'];
-  ((s as any).sex_ev = (s as any).sex_ev ?? {})['cum_mouth'] = ((s as any).cum_loc ?? 0)?.['mouth'];
-  ((s as any).sex_ev = (s as any).sex_ev ?? {})['cum_hands'] = ((s as any).cum_loc ?? 0)?.['hands'];
-  ((s as any).sex_ev = (s as any).sex_ev ?? {})['cum_stomach'] = ((s as any).cum_loc ?? 0)?.['stomach'];
-  ((s as any).sex_ev = (s as any).sex_ev ?? {})['cum_tits'] = ((s as any).cum_loc ?? 0)?.['tits'];
-  ((s as any).sex_ev = (s as any).sex_ev ?? {})['cum_hair'] = ((s as any).cum_loc ?? 0)?.['hair'];
+  ((s as any).sex_ev = (s as any).sex_ev ?? {})['cum_vagina'] = (((s as any).cum_loc ?? 0)?.['vagina']);
+  ((s as any).sex_ev = (s as any).sex_ev ?? {})['cum_labia'] = (((s as any).cum_loc ?? 0)?.['labia']);
+  ((s as any).sex_ev = (s as any).sex_ev ?? {})['cum_panty_front'] = (((s as any).cum_loc ?? 0)?.['panty_front']);
+  ((s as any).sex_ev = (s as any).sex_ev ?? {})['cum_anus'] = (((s as any).cum_loc ?? 0)?.['anus']);
+  ((s as any).sex_ev = (s as any).sex_ev ?? {})['cum_butt'] = (((s as any).cum_loc ?? 0)?.['butt']);
+  ((s as any).sex_ev = (s as any).sex_ev ?? {})['cum_panty_back'] = (((s as any).cum_loc ?? 0)?.['panty_back']);
+  ((s as any).sex_ev = (s as any).sex_ev ?? {})['cum_clothes_groin'] = (((s as any).cum_loc ?? 0)?.['clothes_groin']);
+  ((s as any).sex_ev = (s as any).sex_ev ?? {})['cum_clothes'] = (((s as any).cum_loc ?? 0)?.['clothes']);
+  ((s as any).sex_ev = (s as any).sex_ev ?? {})['cum_back'] = (((s as any).cum_loc ?? 0)?.['back']);
+  ((s as any).sex_ev = (s as any).sex_ev ?? {})['cum_legs '] = (((s as any).cum_loc ?? 0)?.['legs ']);
+  ((s as any).sex_ev = (s as any).sex_ev ?? {})['cum_arms'] = (((s as any).cum_loc ?? 0)?.['arms']);
+  ((s as any).sex_ev = (s as any).sex_ev ?? {})['cum_face'] = (((s as any).cum_loc ?? 0)?.['face']);
+  ((s as any).sex_ev = (s as any).sex_ev ?? {})['cum_mouth'] = (((s as any).cum_loc ?? 0)?.['mouth']);
+  ((s as any).sex_ev = (s as any).sex_ev ?? {})['cum_hands'] = (((s as any).cum_loc ?? 0)?.['hands']);
+  ((s as any).sex_ev = (s as any).sex_ev ?? {})['cum_stomach'] = (((s as any).cum_loc ?? 0)?.['stomach']);
+  ((s as any).sex_ev = (s as any).sex_ev ?? {})['cum_tits'] = (((s as any).cum_loc ?? 0)?.['tits']);
+  ((s as any).sex_ev = (s as any).sex_ev ?? {})['cum_hair'] = (((s as any).cum_loc ?? 0)?.['hair']);
   ((s as any).sex_ev = (s as any).sex_ev ?? {})['starting_sweat'] = ((s as any).pcs_sweat ?? 0);
   if ((!((s as any).orgasm ?? 0))) {
     ((s as any).sex_ev = (s as any).sex_ev ?? {})['never_orgasmed'] = 1;
   }
   ((s as any).sex_ev = (s as any).sex_ev ?? {})['orgasm'] = ((s as any).orgasm ?? 0);
   ((s as any).sex_ev = (s as any).sex_ev ?? {})['orgasm_limit'] = ((s as any).orgasm ?? 0) + 6;
-  ((s as any).sex_ev = (s as any).sex_ev ?? {})['pc_condom_count'] = ((s as any).mc_inventory ?? 0)?.['normal_condoms'];
+  ((s as any).sex_ev = (s as any).sex_ev ?? {})['pc_condom_count'] = (((s as any).mc_inventory ?? 0)?.['normal_condoms']);
   ((s as any).sex_ev = (s as any).sex_ev ?? {})['start_time'] = ((s as any).totminut ?? 0);
   ((s as any).sex_ev = (s as any).sex_ev ?? {})['start_hour'] = ((s as any).hour ?? 0);
   ((s as any).sex_ev = (s as any).sex_ev ?? {})['sex_stamina'] = (((s as any).npc_sex_stamina ?? 0)?.[String((s as any).npcID ?? 0)] ?? 0);
@@ -84,7 +84,7 @@ function enterSexEndStats(s: GameState, scene: SceneBuilder): void {
   ((s as any).sex_ev = (s as any).sex_ev ?? {})['last_cum_time'] = ((s as any).totminut ?? 0);
   ((s as any).sex_ev = (s as any).sex_ev ?? {})['finish_time'] = ((s as any).totminut ?? 0);
   // TODO-QSP: $npc_last_sex_enjoyment[$npcID] = $sex_ev['fuck_enjoyment']
-  ((s as any).npc_last_orgasm_count = (s as any).npc_last_orgasm_count ?? {})[String((s as any).npcID ?? 0)] = ((s as any).sex_ev ?? 0)?.['orgasm_count'];
+  ((s as any).npc_last_orgasm_count = (s as any).npc_last_orgasm_count ?? {})[String((s as any).npcID ?? 0)] = (((s as any).sex_ev ?? 0)?.['orgasm_count']);
   if (String((s as any).locArgs?.[1] ?? '') === 'unhappy') {
     ((s as any).npc_last_sex_score = (s as any).npc_last_sex_score ?? {})[String((s as any).npcID ?? 0)] = 0;
   } else {
@@ -166,29 +166,29 @@ function enterSaveStats(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sex_ev ?? 0)?.['sleep_fuck'] > 0) {
     ((s as any).npc_sleep_fuck = (s as any).npc_sleep_fuck ?? {})[String((s as any).npcID ?? 0)] = ((s as any).npc_sleep_fuck[String((s as any).npcID ?? 0)] ?? 0) + (1);
   }
-  ((s as any).npc_bareback_times = (s as any).npc_bareback_times ?? {})[String((s as any).npcID ?? 0)] = ((s as any).npc_bareback_times[String((s as any).npcID ?? 0)] ?? 0) + (((s as any).sex_ev ?? 0)?.['no_condom']);
-  ((s as any).npc_condom_times = (s as any).npc_condom_times ?? {})[String((s as any).npcID ?? 0)] = ((s as any).npc_condom_times[String((s as any).npcID ?? 0)] ?? 0) + (((s as any).sex_ev ?? 0)?.['condom']);
-  ((s as any).npc_kuni_times = (s as any).npc_kuni_times ?? {})[String((s as any).npcID ?? 0)] = ((s as any).npc_kuni_times[String((s as any).npcID ?? 0)] ?? 0) + (((s as any).sex_ev ?? 0)?.['kuni']);
-  ((s as any).npc_cum_count = (s as any).npc_cum_count ?? {})[String((s as any).npcID ?? 0)] = ((s as any).npc_cum_count[String((s as any).npcID ?? 0)] ?? 0) + (((s as any).sex_ev ?? 0)?.['cum_count']);
-  ((s as any).npc_orgasm_count = (s as any).npc_orgasm_count ?? {})[String((s as any).npcID ?? 0)] = ((s as any).npc_orgasm_count[String((s as any).npcID ?? 0)] ?? 0) + (((s as any).sex_ev ?? 0)?.['orgasm_count']);
-  ((s as any).npc_fake_orgasm_count = (s as any).npc_fake_orgasm_count ?? {})[String((s as any).npcID ?? 0)] = ((s as any).npc_fake_orgasm_count[String((s as any).npcID ?? 0)] ?? 0) + (((s as any).sex_ev ?? 0)?.['fake_orgasm_count']);
-  ((s as any).npc_creampie_count = (s as any).npc_creampie_count ?? {})[String((s as any).npcID ?? 0)] = ((s as any).npc_creampie_count[String((s as any).npcID ?? 0)] ?? 0) + (((s as any).sex_ev ?? 0)?.['creampie_count']);
-  ((s as any).npc_accidental_creampie_count = (s as any).npc_accidental_creampie_count ?? {})[String((s as any).npcID ?? 0)] = ((s as any).npc_accidental_creampie_count[String((s as any).npcID ?? 0)] ?? 0) + (((s as any).sex_ev ?? 0)?.['accidental_creampie_count']);
-  ((s as any).npc_cum_together_count = (s as any).npc_cum_together_count ?? {})[String((s as any).npcID ?? 0)] = ((s as any).npc_cum_together_count[String((s as any).npcID ?? 0)] ?? 0) + (((s as any).sex_ev ?? 0)?.['creampie_orgasm']);
-  ((s as any).stat = (s as any).stat ?? {})['simultaneous_orgasm_count'] = ((s as any).stat['simultaneous_orgasm_count'] ?? 0) + (((s as any).sex_ev ?? 0)?.['simultaneous_orgasm_count']);
-  ((s as any).npc_facial_count = (s as any).npc_facial_count ?? {})[String((s as any).npcID ?? 0)] = ((s as any).npc_facial_count[String((s as any).npcID ?? 0)] ?? 0) + (((s as any).sex_ev ?? 0)?.['facial_count']);
-  ((s as any).npc_cum_tits_count = (s as any).npc_cum_tits_count ?? {})[String((s as any).npcID ?? 0)] = ((s as any).npc_cum_tits_count[String((s as any).npcID ?? 0)] ?? 0) + (((s as any).sex_ev ?? 0)?.['cum_tits']);
-  ((s as any).npc_pullout_count = (s as any).npc_pullout_count ?? {})[String((s as any).npcID ?? 0)] = ((s as any).npc_pullout_count[String((s as any).npcID ?? 0)] ?? 0) + (((s as any).sex_ev ?? 0)?.['pullout_count']);
-  ((s as any).npc_mouth_cum_count = (s as any).npc_mouth_cum_count ?? {})[String((s as any).npcID ?? 0)] = ((s as any).npc_mouth_cum_count[String((s as any).npcID ?? 0)] ?? 0) + (((s as any).sex_ev ?? 0)?.['mouth_cum_count']);
-  ((s as any).npc_cum_hand_count = (s as any).npc_cum_hand_count ?? {})[String((s as any).npcID ?? 0)] = ((s as any).npc_cum_hand_count[String((s as any).npcID ?? 0)] ?? 0) + (((s as any).sex_ev ?? 0)?.['cum_hand']);
-  ((s as any).npc_swallow_count = (s as any).npc_swallow_count ?? {})[String((s as any).npcID ?? 0)] = ((s as any).npc_swallow_count[String((s as any).npcID ?? 0)] ?? 0) + (((s as any).sex_ev ?? 0)?.['swallow_count']);
-  ((s as any).npc_spit_count = (s as any).npc_spit_count ?? {})[String((s as any).npcID ?? 0)] = ((s as any).npc_spit_count[String((s as any).npcID ?? 0)] ?? 0) + (((s as any).sex_ev ?? 0)?.['spit_count']);
-  ((s as any).npc_shower_sex_count = (s as any).npc_shower_sex_count ?? {})[String((s as any).npcID ?? 0)] = ((s as any).npc_shower_sex_count[String((s as any).npcID ?? 0)] ?? 0) + (((s as any).sex_ev ?? 0)?.['shower_sex']);
-  ((s as any).npc_mouth_cum_count = (s as any).npc_mouth_cum_count ?? {})[String((s as any).npcID ?? 0)] = ((s as any).npc_mouth_cum_count[String((s as any).npcID ?? 0)] ?? 0) + (((s as any).sex_ev ?? 0)?.['mouth_cum_count']);
-  ((s as any).npc_virgin_deny = (s as any).npc_virgin_deny ?? {})[String((s as any).npcID ?? 0)] = ((s as any).npc_virgin_deny[String((s as any).npcID ?? 0)] ?? 0) + (((s as any).sex_ev ?? 0)?.['virgin_deny']);
-  ((s as any).npc_virgin_rapist = (s as any).npc_virgin_rapist ?? {})[String((s as any).npcID ?? 0)] = ((s as any).npc_virgin_rapist[String((s as any).npcID ?? 0)] ?? 0) + (((s as any).sex_ev ?? 0)?.['virgin_rape']);
+  ((s as any).npc_bareback_times = (s as any).npc_bareback_times ?? {})[String((s as any).npcID ?? 0)] = ((s as any).npc_bareback_times[String((s as any).npcID ?? 0)] ?? 0) + ((((s as any).sex_ev ?? 0)?.['no_condom']));
+  ((s as any).npc_condom_times = (s as any).npc_condom_times ?? {})[String((s as any).npcID ?? 0)] = ((s as any).npc_condom_times[String((s as any).npcID ?? 0)] ?? 0) + ((((s as any).sex_ev ?? 0)?.['condom']));
+  ((s as any).npc_kuni_times = (s as any).npc_kuni_times ?? {})[String((s as any).npcID ?? 0)] = ((s as any).npc_kuni_times[String((s as any).npcID ?? 0)] ?? 0) + ((((s as any).sex_ev ?? 0)?.['kuni']));
+  ((s as any).npc_cum_count = (s as any).npc_cum_count ?? {})[String((s as any).npcID ?? 0)] = ((s as any).npc_cum_count[String((s as any).npcID ?? 0)] ?? 0) + ((((s as any).sex_ev ?? 0)?.['cum_count']));
+  ((s as any).npc_orgasm_count = (s as any).npc_orgasm_count ?? {})[String((s as any).npcID ?? 0)] = ((s as any).npc_orgasm_count[String((s as any).npcID ?? 0)] ?? 0) + ((((s as any).sex_ev ?? 0)?.['orgasm_count']));
+  ((s as any).npc_fake_orgasm_count = (s as any).npc_fake_orgasm_count ?? {})[String((s as any).npcID ?? 0)] = ((s as any).npc_fake_orgasm_count[String((s as any).npcID ?? 0)] ?? 0) + ((((s as any).sex_ev ?? 0)?.['fake_orgasm_count']));
+  ((s as any).npc_creampie_count = (s as any).npc_creampie_count ?? {})[String((s as any).npcID ?? 0)] = ((s as any).npc_creampie_count[String((s as any).npcID ?? 0)] ?? 0) + ((((s as any).sex_ev ?? 0)?.['creampie_count']));
+  ((s as any).npc_accidental_creampie_count = (s as any).npc_accidental_creampie_count ?? {})[String((s as any).npcID ?? 0)] = ((s as any).npc_accidental_creampie_count[String((s as any).npcID ?? 0)] ?? 0) + ((((s as any).sex_ev ?? 0)?.['accidental_creampie_count']));
+  ((s as any).npc_cum_together_count = (s as any).npc_cum_together_count ?? {})[String((s as any).npcID ?? 0)] = ((s as any).npc_cum_together_count[String((s as any).npcID ?? 0)] ?? 0) + ((((s as any).sex_ev ?? 0)?.['creampie_orgasm']));
+  ((s as any).stat = (s as any).stat ?? {})['simultaneous_orgasm_count'] = ((s as any).stat['simultaneous_orgasm_count'] ?? 0) + ((((s as any).sex_ev ?? 0)?.['simultaneous_orgasm_count']));
+  ((s as any).npc_facial_count = (s as any).npc_facial_count ?? {})[String((s as any).npcID ?? 0)] = ((s as any).npc_facial_count[String((s as any).npcID ?? 0)] ?? 0) + ((((s as any).sex_ev ?? 0)?.['facial_count']));
+  ((s as any).npc_cum_tits_count = (s as any).npc_cum_tits_count ?? {})[String((s as any).npcID ?? 0)] = ((s as any).npc_cum_tits_count[String((s as any).npcID ?? 0)] ?? 0) + ((((s as any).sex_ev ?? 0)?.['cum_tits']));
+  ((s as any).npc_pullout_count = (s as any).npc_pullout_count ?? {})[String((s as any).npcID ?? 0)] = ((s as any).npc_pullout_count[String((s as any).npcID ?? 0)] ?? 0) + ((((s as any).sex_ev ?? 0)?.['pullout_count']));
+  ((s as any).npc_mouth_cum_count = (s as any).npc_mouth_cum_count ?? {})[String((s as any).npcID ?? 0)] = ((s as any).npc_mouth_cum_count[String((s as any).npcID ?? 0)] ?? 0) + ((((s as any).sex_ev ?? 0)?.['mouth_cum_count']));
+  ((s as any).npc_cum_hand_count = (s as any).npc_cum_hand_count ?? {})[String((s as any).npcID ?? 0)] = ((s as any).npc_cum_hand_count[String((s as any).npcID ?? 0)] ?? 0) + ((((s as any).sex_ev ?? 0)?.['cum_hand']));
+  ((s as any).npc_swallow_count = (s as any).npc_swallow_count ?? {})[String((s as any).npcID ?? 0)] = ((s as any).npc_swallow_count[String((s as any).npcID ?? 0)] ?? 0) + ((((s as any).sex_ev ?? 0)?.['swallow_count']));
+  ((s as any).npc_spit_count = (s as any).npc_spit_count ?? {})[String((s as any).npcID ?? 0)] = ((s as any).npc_spit_count[String((s as any).npcID ?? 0)] ?? 0) + ((((s as any).sex_ev ?? 0)?.['spit_count']));
+  ((s as any).npc_shower_sex_count = (s as any).npc_shower_sex_count ?? {})[String((s as any).npcID ?? 0)] = ((s as any).npc_shower_sex_count[String((s as any).npcID ?? 0)] ?? 0) + ((((s as any).sex_ev ?? 0)?.['shower_sex']));
+  ((s as any).npc_mouth_cum_count = (s as any).npc_mouth_cum_count ?? {})[String((s as any).npcID ?? 0)] = ((s as any).npc_mouth_cum_count[String((s as any).npcID ?? 0)] ?? 0) + ((((s as any).sex_ev ?? 0)?.['mouth_cum_count']));
+  ((s as any).npc_virgin_deny = (s as any).npc_virgin_deny ?? {})[String((s as any).npcID ?? 0)] = ((s as any).npc_virgin_deny[String((s as any).npcID ?? 0)] ?? 0) + ((((s as any).sex_ev ?? 0)?.['virgin_deny']));
+  ((s as any).npc_virgin_rapist = (s as any).npc_virgin_rapist ?? {})[String((s as any).npcID ?? 0)] = ((s as any).npc_virgin_rapist[String((s as any).npcID ?? 0)] ?? 0) + ((((s as any).sex_ev ?? 0)?.['virgin_rape']));
   if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) < 14  &&  ((s as any).week ?? 0) < 6  &&  ((s as any).start_type ?? 0)?.['loc'] === 'sg'  &&  ((s as any).gschoolVars ?? 0)?.['school_diploma'] === 0  &&  ((s as any).kanikuli ?? 0) === 0  &&  ((s as any).gschoolVars ?? 0)?.['last_absence'] !== ((s as any).daystart ?? 0)) {
-    ((s as any).npc_school_absences = (s as any).npc_school_absences ?? {})[String((s as any).npcID ?? 0)] = ((s as any).gschoolVars ?? 0)?.['absence_count'];
+    ((s as any).npc_school_absences = (s as any).npc_school_absences ?? {})[String((s as any).npcID ?? 0)] = (((s as any).gschoolVars ?? 0)?.['absence_count']);
   }
   if (((s as any).sex_ev ?? 0)?.['pullout_game'] === 1  &&  ((s as any).sex_ev ?? 0)?.['no_condom'] === 1  &&  ((s as any).sex_ev ?? 0)?.['creampie_count'] === 0) {
     ((s as any).npc_no_creampie_mistakes = (s as any).npc_no_creampie_mistakes ?? {})[String((s as any).npcID ?? 0)] = ((s as any).npc_no_creampie_mistakes[String((s as any).npcID ?? 0)] ?? 0) + (1);
@@ -282,12 +282,12 @@ function enterProstitutionPayCode(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).npc_rel_type ?? 0)?.[String((s as any).npcID ?? 0)] === 'sugar_daddy'  &&  ((s as any).sex_ev ?? 0)?.['sugar_daddy_paid'] === 0) {
     ((s as any).sex_ev = (s as any).sex_ev ?? {})['sugar_daddy_paid'] = 1;
-    ((s as any).sex_ev = (s as any).sex_ev ?? {})['prostitution_paid'] = ((s as any).sex_ev['prostitution_paid'] ?? 0) + (((s as any).sex_ev ?? 0)?.['prostitution_owed']);
-    qspCall(s, 'money', 'earn', ((s as any).sex_ev ?? 0)?.['prostitution_owed'], 'cash');
+    ((s as any).sex_ev = (s as any).sex_ev ?? {})['prostitution_paid'] = ((s as any).sex_ev['prostitution_paid'] ?? 0) + ((((s as any).sex_ev ?? 0)?.['prostitution_owed']));
+    qspCall(s, 'money', 'earn', (((s as any).sex_ev ?? 0)?.['prostitution_owed']), 'cash');
   } else {
     if (((s as any).sex_ev ?? 0)?.['prostitution_paid'] === 0) {
-      ((s as any).sex_ev = (s as any).sex_ev ?? {})['prostitution_paid'] = ((s as any).sex_ev['prostitution_paid'] ?? 0) + (((s as any).sex_ev ?? 0)?.['prostitution_owed']);
-      qspCall(s, 'money', 'earn', ((s as any).sex_ev ?? 0)?.['prostitution_owed'], 'cash');
+      ((s as any).sex_ev = (s as any).sex_ev ?? {})['prostitution_paid'] = ((s as any).sex_ev['prostitution_paid'] ?? 0) + ((((s as any).sex_ev ?? 0)?.['prostitution_owed']));
+      qspCall(s, 'money', 'earn', (((s as any).sex_ev ?? 0)?.['prostitution_owed']), 'cash');
     }
   }
   if (((s as any).npc_prostitution_tab ?? 0)?.[String((s as any).npcID ?? 0)] > 0) {
@@ -618,7 +618,7 @@ function enterSugarDaddyHaggleLimit(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sex_ev ?? 0)?.['haggle_limit'] > 50) {
     ((s as any).sex_ev = (s as any).sex_ev ?? {})['haggle_limit'] = 50;
   }
-  (s as any).result = ((s as any).sex_ev ?? 0)?.['haggle_limit'];
+  (s as any).result = (((s as any).sex_ev ?? 0)?.['haggle_limit']);
   // TODO-QSP: end
   // TODO-QSP: --- sex_ev_stats ---------------------------------
   scene.build();

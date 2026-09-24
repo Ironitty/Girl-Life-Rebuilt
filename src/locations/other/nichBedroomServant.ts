@@ -81,7 +81,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).mc_inventory ?? 0)?.['cocaine'] > 0) {
     // TODO-QSP: dynamic text: You have hidden <<mc_inventory[''cocaine'']>> doses of Pale Lady behind your war...
-    scene.text(`You have hidden ${((s as any).mc_inventory ?? 0)?.['cocaine'] ?? ''} doses of Pale Lady behind your wardrobe.`);
+    scene.text(`You have hidden ${(((s as any).mc_inventory ?? 0)?.['cocaine'] ?? '')} doses of Pale Lady behind your wardrobe.`);
   }
   if (((s as any).mc_inventory ?? 0)?.['cocaine'] > 0  &&  ((s as any).drugVars ?? 0)?.['cocaine_day'] !== ((s as any).daystart ?? 0)) {
     scene.actions([
@@ -241,7 +241,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).mc_inventory ?? 0)?.['cocaine'] > 0) {
     // TODO-QSP: dynamic text: You have hidden <<mc_inventory[''cocaine'']>> doses of Pale Lady behind your war...
-    scene.text(`You have hidden ${((s as any).mc_inventory ?? 0)?.['cocaine'] ?? ''} doses of Pale Lady behind your wardrobe.`);
+    scene.text(`You have hidden ${(((s as any).mc_inventory ?? 0)?.['cocaine'] ?? '')} doses of Pale Lady behind your wardrobe.`);
   }
   if (((s as any).mc_inventory ?? 0)?.['cocaine'] > 0  &&  ((s as any).drugVars ?? 0)?.['cocaine_day'] !== ((s as any).daystart ?? 0)) {
     scene.actions([
@@ -401,7 +401,7 @@ function enterReturn(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).mc_inventory ?? 0)?.['cocaine'] > 0) {
     // TODO-QSP: dynamic text: You have hidden <<mc_inventory[''cocaine'']>> doses of Pale Lady behind your war...
-    scene.text(`You have hidden ${((s as any).mc_inventory ?? 0)?.['cocaine'] ?? ''} doses of Pale Lady behind your wardrobe.`);
+    scene.text(`You have hidden ${(((s as any).mc_inventory ?? 0)?.['cocaine'] ?? '')} doses of Pale Lady behind your wardrobe.`);
   }
   if (((s as any).mc_inventory ?? 0)?.['cocaine'] > 0  &&  ((s as any).drugVars ?? 0)?.['cocaine_day'] !== ((s as any).daystart ?? 0)) {
     scene.actions([

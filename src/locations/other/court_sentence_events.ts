@@ -10,10 +10,10 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterJudgeStart(s: GameState, scene: SceneBuilder): void {
   if ((String(((s as any).locArgs?.[1] ?? 0)).slice((1)-1, ((1)-1)+(8))) === 'shoplift') {
-    qspGoto(s, 'court_sentence_events', 'judge_shoplift', '$mid($ARGS[1], 10)');
+    qspGoto(s, 'court_sentence_events', 'judge_shoplift', (String(((s as any).locArgs?.[1] ?? 0)).slice((10)-1)));
   } else {
     if ((String(((s as any).locArgs?.[1] ?? 0)).slice((1)-1, ((1)-1)+(12))) === 'prostitution') {
-      qspGoto(s, 'court_sentence_events', 'judge_prostitution', '$mid($ARGS[1], 14)');
+      qspGoto(s, 'court_sentence_events', 'judge_prostitution', (String(((s as any).locArgs?.[1] ?? 0)).slice((14)-1)));
     } else {
       qspCall(s, 'LOCA', 'mod_sentenceevents', 'hearing');
     }

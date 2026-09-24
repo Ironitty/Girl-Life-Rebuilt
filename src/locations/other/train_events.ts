@@ -247,7 +247,7 @@ function enterYoung(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/shared/train/sex/youngbj.jpg');
     scene.text('He takes your hand and walks you down the tracks a bit more. His cock is back in his pants, but you\'re completely exposed - he insisted on it and, really, you don\'t mind; it is thrilling, even with nobody around. As you pass two electricity sub-stations for the trains, he stops and pulls you between them, a mischievous grin on his face. "I saw a track worker, just a few hundred meters away," he whispers with a chuckle and pulls down his pants. "I wonder how he\'d react if he found you, sucking my cock."');
     // TODO-QSP: dynamic text: You are not sure if he''s being serious about having seen somebody or not, but y...
-    scene.text(`You are not sure if he's being serious about having seen somebody or not, but you are not thinking straight anymore; the notion that somebody might be close by who could catch you raises the stakes in an exciting way, so you don't think twice before squatting down in front of him and taking his ${((st as any).dick ?? '')}cm ${((st as any).dick_girth ?? '')} cock into your mouth. You can taste your own pussy juices on his cock as you suck him, a subtle reminder of your "warm-up". With your ${((st as any).pc_desc ?? 0)?.['lips'] ?? ''} lips lips wrapped tightly around his shaft, you start bobbing your head while one of your hands fondles his balls. If somebody's gonna find you, he's gonna get an eyeful, that's for sure!`);
+    scene.text(`You are not sure if he's being serious about having seen somebody or not, but you are not thinking straight anymore; the notion that somebody might be close by who could catch you raises the stakes in an exciting way, so you don't think twice before squatting down in front of him and taking his ${((st as any).dick ?? '')}cm ${((st as any).dick_girth ?? '')} cock into your mouth. You can taste your own pussy juices on his cock as you suck him, a subtle reminder of your "warm-up". With your ${(((st as any).pc_desc ?? 0)?.['lips'] ?? '')} lips lips wrapped tightly around his shaft, you start bobbing your head while one of your hands fondles his balls. If somebody's gonna find you, he's gonna get an eyeful, that's for sure!`);
     scene.text('After a few minutes, he pulls his cock out of your mouth and then lies down on his back again, his legs peeking out from between the sub-stations - either the track worker was imaginary or your friend is too horny to care anymore. His eyes are burning with desire, so both options are possible.');
     scene.text('"Lower yourself down on me again, baby… but this time, I want you to take my cock up your ass."');
     qspCall(st, 'arousal', 'bj', 10, 'exhibitionism', 'unknown');
@@ -498,11 +498,11 @@ function enterWeed(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Board the train to the city', handler: (st: GameState) => {
     ((st as any).temp_transportVars = (st as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_train_timecost', 'pavlovsk', 'center');
-    (st as any).minut = ((st as any).minut ?? 0) + (((st as any).temp_transportVars ?? 0)?.['timecost']);
+    (st as any).minut = ((st as any).minut ?? 0) + ((((st as any).temp_transportVars ?? 0)?.['timecost']));
     qspCall(st, 'stat', '');
     scene.img('images/locations/shared/train/cityplat.jpg');
     // TODO-QSP: dynamic text: After <<temp_transportVars[''timecost'']>> minutes, the train stops at the St. P...
-    scene.text(`After ${((st as any).temp_transportVars ?? 0)?.['timecost'] ?? ''} minutes, the train stops at the St. Petersburg city center station. The large office blocks and shopping centers fill your view. This is the train's final destination.`);
+    scene.text(`After ${(((st as any).temp_transportVars ?? 0)?.['timecost'] ?? '')} minutes, the train stops at the St. Petersburg city center station. The large office blocks and shopping centers fill your view. This is the train's final destination.`);
     scene.actions([
       { label: 'Get off the train', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 100) + 0) < 5) {
@@ -544,11 +544,11 @@ function enterWeed(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Board the train to the city', handler: (st: GameState) => {
     ((st as any).temp_transportVars = (st as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_train_timecost', 'pavlovsk', 'center');
-    (st as any).minut = ((st as any).minut ?? 0) + (((st as any).temp_transportVars ?? 0)?.['timecost']);
+    (st as any).minut = ((st as any).minut ?? 0) + ((((st as any).temp_transportVars ?? 0)?.['timecost']));
     qspCall(st, 'stat', '');
     scene.img('images/locations/shared/train/cityplat.jpg');
     // TODO-QSP: dynamic text: After <<temp_transportVars[''timecost'']>> minutes, the train stops at the St. P...
-    scene.text(`After ${((st as any).temp_transportVars ?? 0)?.['timecost'] ?? ''} minutes, the train stops at the St. Petersburg city center station. The large office blocks and shopping centers fill your view. This is the train's final destination.`);
+    scene.text(`After ${(((st as any).temp_transportVars ?? 0)?.['timecost'] ?? '')} minutes, the train stops at the St. Petersburg city center station. The large office blocks and shopping centers fill your view. This is the train's final destination.`);
     scene.actions([
       { label: 'Get off the train', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 100) + 0) < 5) {
@@ -576,7 +576,7 @@ function enterWeed(s: GameState, scene: SceneBuilder): void {
       { label: 'Suck him', handler: (st: GameState) => {
     scene.img('images/locations/shared/train/sex/weedbj.jpg');
     // TODO-QSP: dynamic text: He gently pushes you down, and that''s all the encouragement you need. You squat...
-    scene.text(`He gently pushes you down, and that's all the encouragement you need. You squat down in front of him before taking his ${((st as any).dick ?? '')}cm ${((st as any).dick_girth ?? '')} cock into your mouth and sucking it. Your tongue is giving every bit of his cock it can reach its attention, and you bob your head back and forth, your ${((st as any).pc_desc ?? 0)?.['lips'] ?? ''} lips wrapped tightly around his shaft.`);
+    scene.text(`He gently pushes you down, and that's all the encouragement you need. You squat down in front of him before taking his ${((st as any).dick ?? '')}cm ${((st as any).dick_girth ?? '')} cock into your mouth and sucking it. Your tongue is giving every bit of his cock it can reach its attention, and you bob your head back and forth, your ${(((st as any).pc_desc ?? 0)?.['lips'] ?? '')} lips wrapped tightly around his shaft.`);
     scene.text('You take him as deep into your mouth as you can, keeping him there until you start to gag and have to come up for air. After two heavy breaths to recover, you take him inside again, now rapidly moving your head, sucking and deepthroating him for all you\'re worth.');
     qspCall(st, 'arousal', 'bj', 5, 'deepthroat', 'unknown');
     scene.actions([
@@ -602,12 +602,12 @@ function enterWeed(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Board the train to the city', handler: (st: GameState) => {
     ((st as any).temp_transportVars = (st as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_train_timecost', 'pavlovsk', 'center');
-    (st as any).minut = ((st as any).minut ?? 0) + (((st as any).temp_transportVars ?? 0)?.['timecost']);
+    (st as any).minut = ((st as any).minut ?? 0) + ((((st as any).temp_transportVars ?? 0)?.['timecost']));
     qspCall(st, 'stat', '');
     scene.img('images/locations/shared/train/ride.jpg');
     scene.text('You look around, but you don\'t see the young man. You go looking for him, hoping to continue what you started and deal with your overwhelming horniness, but after checking the entire train without seeing a hint of him, you give up and find a seat.');
     // TODO-QSP: dynamic text: After <<temp_transportVars[''timecost'']>> minutes, the train stops at the St. P...
-    scene.text(`After ${((st as any).temp_transportVars ?? 0)?.['timecost'] ?? ''} minutes, the train stops at the St. Petersburg city center station. The large office blocks and shopping centers fill your view. This is the train's final destination.`);
+    scene.text(`After ${(((st as any).temp_transportVars ?? 0)?.['timecost'] ?? '')} minutes, the train stops at the St. Petersburg city center station. The large office blocks and shopping centers fill your view. This is the train's final destination.`);
     scene.actions([
       { label: 'Get off the train', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 100) + 0) < 5) {
@@ -805,7 +805,7 @@ function enterGopnik(s: GameState, scene: SceneBuilder): void {
       { label: 'Blow him', handler: (st: GameState) => {
     scene.img('images/locations/shared/train/sex/gopnikbj.jpg');
     // TODO-QSP: dynamic text: The back and forth between him being nice and an ass is weird, the place is wide...
-    scene.text(`The back and forth between him being nice and an ass is weird, the place is wide open, you barely know him - literally everything about this should discourage you from going near his crotch, and yet… You find yourself squatting down in front of him and taking his ${((st as any).dick ?? '')}cm ${((st as any).dick_girth ?? '')} cock into your mouth, your hand stroking his hard shaft as you roll your tongue around the head of his cock; you jerk his cock in tune with the bobs of your head, back and forth along his length, your ${((st as any).pc_desc ?? 0)?.['lips'] ?? ''} lips lips wrapped tightly around him.`);
+    scene.text(`The back and forth between him being nice and an ass is weird, the place is wide open, you barely know him - literally everything about this should discourage you from going near his crotch, and yet… You find yourself squatting down in front of him and taking his ${((st as any).dick ?? '')}cm ${((st as any).dick_girth ?? '')} cock into your mouth, your hand stroking his hard shaft as you roll your tongue around the head of his cock; you jerk his cock in tune with the bobs of your head, back and forth along his length, your ${(((st as any).pc_desc ?? 0)?.['lips'] ?? '')} lips lips wrapped tightly around him.`);
     scene.text('The idea that you could get caught at any moment is making this a lot more arousing than it should be. That, and the hard cock you\'re sucking with passion.');
     qspCall(st, 'arousal', 'bj', 10, 'exhibitionism', 'unknown');
     qspCall(st, 'stat', '');

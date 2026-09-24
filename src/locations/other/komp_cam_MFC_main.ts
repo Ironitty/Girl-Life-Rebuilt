@@ -42,7 +42,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'end');
     scene.img('images/pc/items/accessories/computer/camwhore3.jpg');
     // TODO-QSP: dynamic text: You enter your own chatroom on the website. You currently have <<camGirl[''MFC_V...
-    scene.text(`You enter your own chatroom on the website. You currently have ${((st as any).camGirl ?? 0)?.['MFC_Viewers'] ?? ''} viewers and ${((st as any).camGirl ?? 0)?.['MFC_Followers'] ?? ''} followers.`);
+    scene.text(`You enter your own chatroom on the website. You currently have ${(((st as any).camGirl ?? 0)?.['MFC_Viewers'] ?? '')} viewers and ${(((st as any).camGirl ?? 0)?.['MFC_Followers'] ?? '')} followers.`);
     if (((st as any).totFollowersLost ?? 0) >= 1) {
       // TODO-QSP: dynamic text: You''ve lost <<totFollowersLost>> due to inactivity
       scene.text(`You've lost ${((st as any).totFollowersLost ?? '')} due to inactivity`);
@@ -88,7 +88,7 @@ function enterStartpage(s: GameState, scene: SceneBuilder): void {
       scene.text('You currently have no viewers. Once you turn on your webcam, things will probably get busier. ');
     } else {
       // TODO-QSP: dynamic text: You casually chat with the <<camGirl[''MFC_Viewers'']>> viewers currently in you...
-      scene.text(`You casually chat with the ${((s as any).camGirl ?? 0)?.['MFC_Viewers'] ?? ''} viewers currently in your chatroom. Once you turn on your webcam, things will probably get busier.`);
+      scene.text(`You casually chat with the ${(((s as any).camGirl ?? 0)?.['MFC_Viewers'] ?? '')} viewers currently in your chatroom. Once you turn on your webcam, things will probably get busier.`);
     }
     scene.actions([
       { label: 'Turn on your webcam', goto: ['komp_cam_MFC_main', 'waitclients', 'start'] },
@@ -136,13 +136,13 @@ function enterWaitclients(s: GameState, scene: SceneBuilder): void {
     scene.text('You take a moment of rest, unfortunately, you currently have no viewers.');
   } else {
     // TODO-QSP: dynamic text: You take a moment of rest, and just chat casually with your <<camGirl[''MFC_View...
-    scene.text(`You take a moment of rest, and just chat casually with your ${((s as any).camGirl ?? 0)?.['MFC_Viewers'] ?? ''} viewers.`);
+    scene.text(`You take a moment of rest, and just chat casually with your ${(((s as any).camGirl ?? 0)?.['MFC_Viewers'] ?? '')} viewers.`);
   }
   // TODO-QSP: dynamic text: You have earned <<camGirl[''MFC_tokens'']>> tokens so far this session, which am...
-  scene.text(`You have earned ${((s as any).camGirl ?? 0)?.['MFC_tokens'] ?? ''} tokens so far this session, which amounts to ${qspFunc(s, 'money', 'string_profit', qspFunc(s, 'komp_cam_functions', 'tokens_to_rub', ((s as any).camGirl ?? 0)?.['MFC_tokens'] ?? ''))}.`);
+  scene.text(`You have earned ${(((s as any).camGirl ?? 0)?.['MFC_tokens'] ?? '')} tokens so far this session, which amounts to ${qspFunc(s, 'money', 'string_profit', qspFunc(s, 'komp_cam_functions', 'tokens_to_rub', (((s as any).camGirl ?? 0)?.['MFC_tokens'] ?? '')))}.`);
   if (((s as any).camGirl ?? 0)?.['MFC_Followers'] > 1) {
     // TODO-QSP: dynamic text: You have <<camGirl[''MFC_Followers'']>> followers
-    scene.text(`You have ${((s as any).camGirl ?? 0)?.['MFC_Followers'] ?? ''} followers`);
+    scene.text(`You have ${(((s as any).camGirl ?? 0)?.['MFC_Followers'] ?? '')} followers`);
   }
   if (((s as any).camGirl ?? 0)?.['MFC_donate_message'] !== '') {
   }
@@ -332,7 +332,7 @@ function enterPlayWithPussy(s: GameState, scene: SceneBuilder): void {
   (s as any).orgasm_txt = '';
   qspCall(s, 'arousal', 'porn', (-5));
   if (((s as any).pcs_horny ?? 0) >= 100) {
-    (s as any).orgasm_txt = 'Oh crap! You misjudged your endurance, and suddenly squirm and gasp in front of the camera. You\'re having an orgasm! When it subsides, you look at your current viewer count. Damn… you just came in front of ' + ((s as any).camGirl ?? 0)?.['MFC_Viewers'] + ' users, completely free of charge!';
+    (s as any).orgasm_txt = 'Oh crap! You misjudged your endurance, and suddenly squirm and gasp in front of the camera. You\'re having an orgasm! When it subsides, you look at your current viewer count. Damn… you just came in front of ' + (((s as any).camGirl ?? 0)?.['MFC_Viewers']) + ' users, completely free of charge!';
     (s as any).orgasm_or = 'custom';
   }
   qspCall(s, 'arousal', 'vaginal_finger', (-5));
@@ -358,7 +358,7 @@ function enterPlayWithAss(s: GameState, scene: SceneBuilder): void {
   (s as any).orgasm_txt = '';
   qspCall(s, 'arousal', 'porn', (-5));
   if (((s as any).pcs_horny ?? 0) >= 100) {
-    (s as any).orgasm_txt = 'It feels too good to stop! Before you know it, your fingers are repeatedly penetrating your ass and you moan excitedly, barely keeping yourself from screaming. You just had an anal orgasm in front of ' + ((s as any).camGirl ?? 0)?.['MFC_Viewers'] + ' viewers, completely free of charge! Oops…';
+    (s as any).orgasm_txt = 'It feels too good to stop! Before you know it, your fingers are repeatedly penetrating your ass and you moan excitedly, barely keeping yourself from screaming. You just had an anal orgasm in front of ' + (((s as any).camGirl ?? 0)?.['MFC_Viewers']) + ' viewers, completely free of charge! Oops…';
     (s as any).orgasm_or = 'custom';
   }
   qspCall(s, 'arousal', 'anal_finger', (-5));

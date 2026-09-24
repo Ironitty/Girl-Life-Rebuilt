@@ -1649,7 +1649,7 @@ function enterDormKitchen(s: GameState, scene: SceneBuilder): void {
         (s as any).edagot = '';
       }
       // TODO-QSP: dynamic text: 'Your shelf in the refrigerator holds enough food for <b><<mc_inventory[''food_b...
-      scene.text(`Your shelf in the refrigerator holds enough food for <b>${((s as any).mc_inventory ?? 0)?.['food_basic'] ?? ''}</b> ` + ((((s as any).mc_inventory ?? 0)?.['food_basic'] === 1) ? ('serving') : ('servings')) + `. ${((s as any).edagot ?? '')}`);
+      scene.text(`Your shelf in the refrigerator holds enough food for <b>${(((s as any).mc_inventory ?? 0)?.['food_basic'] ?? '')}</b> ` + ((((s as any).mc_inventory ?? 0)?.['food_basic'] === 1) ? ('serving') : ('servings')) + `. ${((s as any).edagot ?? '')}`);
     } else {
       scene.text('<center><b>Your shelf in the refrigerator is bare. There is nothing left for you to eat.</b></center>');
     }

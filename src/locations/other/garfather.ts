@@ -65,7 +65,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'cum_call', 'mouth_swallow', 'A28', 1);
     scene.img(`images/shared/sex/cum/mouth/cum1,${(Math.floor(Math.random() * 11) + 0)}.mp4`);
     // TODO-QSP: dynamic text: You continue to suck your stepfather''s dick as it continues throbbing. Suddenly...
-    scene.text(`You continue to suck your stepfather's dick as it continues throbbing. Suddenly, he arches his back and you feel cum begin to pour into your mouth. Although you try your best, the amount of cum flowing from your stepfathers dick is simply too much for you, and some of it instead flows out of your mouth and down your chin. Soon your ${((st as any).boydesc ?? '')} finishes and you pull his cock out of your sperm-smelling mouth. You can feel the taste of sperm in your mouth, and your ${((st as any).pc_desc ?? 0)?.['lips'] ?? ''} lips are wet with cum.`);
+    scene.text(`You continue to suck your stepfather's dick as it continues throbbing. Suddenly, he arches his back and you feel cum begin to pour into your mouth. Although you try your best, the amount of cum flowing from your stepfathers dick is simply too much for you, and some of it instead flows out of your mouth and down your chin. Soon your ${((st as any).boydesc ?? '')} finishes and you pull his cock out of your sperm-smelling mouth. You can feel the taste of sperm in your mouth, and your ${(((st as any).pc_desc ?? 0)?.['lips'] ?? '')} lips are wet with cum.`);
     qspCall(st, 'arousal', 'bj', 10, 'sub', 'incest');
     qspCall(st, 'arousal', 'end');
     scene.actions([

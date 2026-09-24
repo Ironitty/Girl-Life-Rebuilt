@@ -91,7 +91,7 @@ function enterFirstMeet(s: GameState, scene: SceneBuilder): void {
         scene.text('"It is good that you are at least passing, but yes, you will have to do better if you want to get into college. Vicky had some issues keeping her grades up as well, but lately she has been catching up.');
         scene.text('She recently decided she wanted to get into a medical career. And even though she has not yet decided on any particular field of study, it was enough to motivate her to work harder at school. Maybe if you think hard on what your own goals are, that could help motivate you as well." Tamara beams you a motherly smile as she talks.');
         // TODO-QSP: dynamic text: Your own <<$npc_nickname[''A29'']>> could take some parenting lessons from this ...
-        scene.text(`Your own ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''} could take some parenting lessons from this lady. All she ever did was yell and complain about how Anya isn't doing anything worthwhile; holding her up as a poster child of failure, in an attempt to 'scare' you into doing better.`);
+        scene.text(`Your own ${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')} could take some parenting lessons from this lady. All she ever did was yell and complain about how Anya isn't doing anything worthwhile; holding her up as a poster child of failure, in an attempt to 'scare' you into doing better.`);
         scene.text('"Thanks Ms. Meynold, that\'s very good advice." you reply, while nodding thoughtfully…');
         scene.text('What are your goals? Who are you? Who do you want to be? … You can\'t help but think it over as you finish the last bit of your tea.');
       } else {

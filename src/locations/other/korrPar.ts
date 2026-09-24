@@ -32,7 +32,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).blockBedrPar = 0;
   }
   if (((s as any).locat ?? 0)?.['Mother'] === 1  &&  ((s as any).hour ?? 0) === 22  &&  ((s as any).minut ?? 0) < 30  &&  ((s as any).motherQW ?? 0)?.['con_steal_talk'] + 4 < ((s as any).daystart ?? 0)  &&  ((s as any).prezikday ?? 0) + 4 > ((s as any).daystart ?? 0)  &&  (Math.floor(Math.random() * 5) + 1) === 1) {
-    qspGoto(s, 'mother', 'condom_steal', 'iif(locat[\'Stepdad\'] = 1, \'talk\', \'hear\')');
+    qspGoto(s, 'mother', 'condom_steal', ((((s as any).locat ?? 0)?.['Stepdad'] === 1) ? ('talk') : ('hear')));
   }
   if ((!((s as any).GspravkaAmbush ?? 0))) {
     (s as any).GspravkaTalked = ((s as any).daystart ?? 0);
@@ -85,7 +85,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/pc/activities/spy/peep3.jpg');
     // TODO-QSP: dynamic text: You knock on the door and your <<$npc_nickname[''A29'']>> opens it, looking like...
-    scene.text(`You knock on the door and your ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''} opens it, looking like she just got out of the shower.`);
+    scene.text(`You knock on the door and your ${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')} opens it, looking like she just got out of the shower.`);
     scene.text('"I don\'t have time right now. Go wake up your brother."');
     scene.text('She then closes the door in your face.');
     scene.actions([
@@ -220,17 +220,17 @@ function enter(s: GameState, scene: SceneBuilder): void {
       } else {
         if (((s as any).hour ?? 0) > 5) {
           // TODO-QSP: dynamic text: <br>Your dog <a href="exec: gt ''pet_dog'', ''start''"><<$rex[''name'']>></a> is...
-          scene.text(`<br>Your dog <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027pet_dog/u0027, /u0027start/u0027); return false;">${((s as any).rex ?? 0)?.['name'] ?? ''}</a> is lying on the floor.<br>`);
+          scene.text(`<br>Your dog <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027pet_dog/u0027, /u0027start/u0027); return false;">${(((s as any).rex ?? 0)?.['name'] ?? '')}</a> is lying on the floor.<br>`);
         } else {
           if (((s as any).hour ?? 0) < 6) {
             // TODO-QSP: dynamic text: <br><<$rex[''name'']>> is sleeping in his dog basket.<br>
-            scene.text(`<br>${((s as any).rex ?? 0)?.['name'] ?? ''} is sleeping in his dog basket.<br>`);
+            scene.text(`<br>${(((s as any).rex ?? 0)?.['name'] ?? '')} is sleeping in his dog basket.<br>`);
           }
         }
       }
     }
   }
-  (s as any).korrParMomHeader = '<center><h1><font color="maroon">' + ((s as any).npc_nickname ?? 0)?.['A29'] + '</font></h1></center><center><img ' + ((s as any).set_imgh ?? 0) + ' src="images/characters/pavlovsk/resident/mom/mother.jpg"></center><br />';
+  (s as any).korrParMomHeader = '<center><h1><font color="maroon">' + (((s as any).npc_nickname ?? 0)?.['A29']) + '</font></h1></center><center><img ' + ((s as any).set_imgh ?? 0) + ' src="images/characters/pavlovsk/resident/mom/mother.jpg"></center><br />';
   if (((s as any).hour ?? 0) >= 16  &&  ((s as any).hour ?? 0) <= 20  &&  ((s as any).locat ?? 0)?.['Fam_inGad'] === 0) {
     if (((s as any).artemvbrosvid ?? 0) === 1  &&  ((s as any).artemhakday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).npc_QW ?? 0)?.['A29'] < 2  &&  ((s as any).mothervideotalk ?? 0) === 0  ||  ((s as any).brotherQW ?? 0)?.['refused_seeporn_bj'] === 1  &&  ((s as any).brotherQW ?? 0)?.['refused_seeporn_bj_day'] !== ((s as any).daystart ?? 0)  &&  (!((s as any).BJvideoPublic ?? 0))) {
       (s as any).BJvideoPublic = 1;
@@ -249,7 +249,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 2;
     qspCall(st, 'stat', '');
     // TODO-QSP: dynamic text: You slap away her hand with a defiant look in your eyes. "Oh really? Well you''r...
-    scene.text(`You slap away her hand with a defiant look in your eyes. "Oh really? Well you're no angel yourself, ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''}! Does Vladimir know what YOU have been up to lately? Why don't we go and ask him?"`);
+    scene.text(`You slap away her hand with a defiant look in your eyes. "Oh really? Well you're no angel yourself, ${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')}! Does Vladimir know what YOU have been up to lately? Why don't we go and ask him?"`);
     scene.text('Your mother looks at you furiously, but is at a loss for words. After a few seconds of awkward silence, she storms off, slamming the door behind her as she goes.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
@@ -265,7 +265,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 2;
     qspCall(st, 'stat', '');
     // TODO-QSP: dynamic text: You burst into tears. "<<$npc_nickname[''A29'']>>, please forgive me! It will ne...
-    scene.text(`You burst into tears. "${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''}, please forgive me! It will never happen again! I made a stupid mistake, I'm sorry… I didn't mean to… Please… I don't… I'm sorry…"`);
+    scene.text(`You burst into tears. "${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')}, please forgive me! It will never happen again! I made a stupid mistake, I'm sorry… I didn't mean to… Please… I don't… I'm sorry…"`);
     scene.text('You fall to your knees sobbing uncontrollably, hoping she will have mercy on you.');
     scene.text('Your mother looks down at you, still angry but not quite sure what to do. She just lets out an exasperated gasp, shakes her head and walks away.');
     scene.actions([
@@ -280,7 +280,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (st as any).spank = ((st as any).spank ?? 0) + (1);
     qspCall(st, 'pain', '5', 'asscheeks', 'spank');
     qspCall(st, 'stat', '');
-    scene.text(`<center><b>${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''}</b></center>`);
+    scene.text(`<center><b>${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')}</b></center>`);
     scene.img('images/characters/pavlovsk/resident/mom/spank.jpg');
     scene.text('You stand in the hallway staring at the floor, too embarrassed to say anything before your mother suddenly grabs you by the arm and drags you into the living room. "Take off your pants and bend over!"');
     scene.text('You shake your head and refuse to budge, not liking where this is going at all.');
@@ -309,7 +309,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'npc_relationship', 'modify', 'A29', (-40));
     qspCall(st, 'stat', '');
     // TODO-QSP: dynamic text: "I don''t know what to say, <<$npc_nickname[''A29'']>>… I''m really sorry."
-    scene.text(`"I don't know what to say, ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''}… I'm really sorry."`);
+    scene.text(`"I don't know what to say, ${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')}… I'm really sorry."`);
     scene.text('Your mother is clearly very upset with you. After a short discussion, she walks away.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
@@ -335,9 +335,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
         } else {
           scene.text('"Oh my darling, where have you been? We\'ve been so worried!"');
           // TODO-QSP: dynamic text: You walk into the kitchen with your <<$npc_nickname[''A29'']>> and spend some ti...
-          scene.text(`You walk into the kitchen with your ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''} and spend some time explaining what happened to you. Many of the details are difficult to talk about, and you cry and hug her as you tell your story.`);
+          scene.text(`You walk into the kitchen with your ${(((s as any).npc_nickname ?? 0)?.['A29'] ?? '')} and spend some time explaining what happened to you. Many of the details are difficult to talk about, and you cry and hug her as you tell your story.`);
           // TODO-QSP: dynamic text: Your <<$npc_nickname[''A29'']>> tells you she''ll sort out everything with the s...
-          scene.text(`Your ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''} tells you she'll sort out everything with the school and makes you a bowl of chicken soup.`);
+          scene.text(`Your ${(((s as any).npc_nickname ?? 0)?.['A29'] ?? '')} tells you she'll sort out everything with the school and makes you a bowl of chicken soup.`);
           qspCall(s, 'food', 'family_meals');
           qspCall(s, 'food', 'aftermeal');
           // TODO-QSP: dynamic text: You eat the chicken soup, and<<$mtxt>>

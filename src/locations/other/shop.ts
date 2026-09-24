@@ -328,7 +328,7 @@ function enterDogItems(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/characters/shared/rex/dog_food.jpg');
     // TODO-QSP: dynamic text: 'The store sells dog food for ' + $func('money', 'string_price', 600) + '. Insid...
-    scene.text(`The store sells dog food for 600₽. Inside each pack is enough food for 20 meals. You have ${((st as any).objects ?? 0)?.['dog_food'] ?? ''}.`);
+    scene.text(`The store sells dog food for 600₽. Inside each pack is enough food for 20 meals. You have ${(((st as any).objects ?? 0)?.['dog_food'] ?? '')}.`);
     scene.actions([
       { label: 'Buy enough for 20 meals', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 600) === 0) {
@@ -395,7 +395,7 @@ function enterDogItems(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/shared/rex/treat_'+rand(0, 2)...
     scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/characters/shared/rex/treat_` + (Math.floor(Math.random() * 3) + 0) + '.jpg"></center>');
     // TODO-QSP: dynamic text: 'The store sells dog treats for ' + $func('money', 'string_price', 300) + '. Ins...
-    scene.text(`The store sells dog treats for 300₽. Inside each pack are 20 treats. You have ${((st as any).objects ?? 0)?.['treats'] ?? ''}.`);
+    scene.text(`The store sells dog treats for 300₽. Inside each pack are 20 treats. You have ${(((st as any).objects ?? 0)?.['treats'] ?? '')}.`);
     scene.actions([
       { label: 'Go back', goto: ['shop', 'dog_items'] },
       { label: 'Buy a pack', handler: (st: GameState) => {
@@ -493,7 +493,7 @@ function enterHardware(s: GameState, scene: SceneBuilder): void {
     } else {
       qspCall(st, 'money', 'pay', 200);
       (st as any).paint_blue = 1;
-      qspGoto(st, 'shop', '$func(\'wrap\', \'v_pos\', \'You bought a tin of paint.\')');
+      qspGoto(st, 'shop', qspFunc(s, 'wrap', 'v_pos', 'You bought a tin of paint.'));
     }
   } },
     ]);
@@ -707,13 +707,13 @@ function enterMegafon(s: GameState, scene: SceneBuilder): void {
     (s as any).line = '<tr><td align="center">Your parents are paying for the internet at home, and you can\'t take out a second internet subscription for the same address</td></tr>';
   } else {
     if (((s as any).home ?? 0)?.['internet_enabled'] === 0) {
-      (s as any).line = '<tr><td align="center">You can\'t buy an internet subscription for ' + ((s as any).home ?? 0)?.['display'] + '</td></tr>';
+      (s as any).line = '<tr><td align="center">You can\'t buy an internet subscription for ' + (((s as any).home ?? 0)?.['display']) + '</td></tr>';
     } else {
       if (((s as any).subscription ?? 0)[((s as any).home ?? 0)?.['current']] === 1) {
-        (s as any).temp_home = '' + ((s as any).home ?? 0)?.['current'] + '-date';
-        (s as any).line = '<tr><td align="center">You have an active internet subscription at ' + ((s as any).home ?? 0)?.['display'] + ' that will renew next month on day ' + (((s as any).subscription ?? 0)?.[String((s as any).temp_home ?? 0)] ?? 0) + ' for \' + $func(\'money\', \'string_price\', price) + \'</td></tr>';
+        (s as any).temp_home = '' + (((s as any).home ?? 0)?.['current']) + '-date';
+        (s as any).line = '<tr><td align="center">You have an active internet subscription at ' + (((s as any).home ?? 0)?.['display']) + ' that will renew next month on day ' + (((s as any).subscription ?? 0)?.[String((s as any).temp_home ?? 0)] ?? 0) + ' for \' + $func(\'money\', \'string_price\', price) + \'</td></tr>';
       } else {
-        (s as any).line = '<tr><td style="padding-left: 10px; padding-right: 10px; align: left; ">Monthly internet subscription for \' + $func(\'money\', \'string_price\', price) + \' at your ' + ((s as any).home ?? 0)?.['display'] + '. Automatically renews every month</td>';
+        (s as any).line = '<tr><td style="padding-left: 10px; padding-right: 10px; align: left; ">Monthly internet subscription for \' + $func(\'money\', \'string_price\', price) + \' at your ' + (((s as any).home ?? 0)?.['display']) + '. Automatically renews every month</td>';
         if ((!((s as any).bankAccount ?? 0))) {
           // TODO-QSP: $line += '<td style="padding-left: 10px; padding-right: 10px;">No bank account</td></tr>'
         } else {
@@ -772,12 +772,12 @@ function enterMegafon(s: GameState, scene: SceneBuilder): void {
   (s as any).title = '<center><h4>Mobile Internet Subscription</h4></center>';
   (s as any).price = 1200;
   if (((s as any).subscription ?? 0)?.['mobile'] === 1) {
-    (s as any).line = '<tr><td align="center">You have an active mobile internet subscription that will renew next month on day ' + ((s as any).subscription ?? 0)?.['mobile-date'] + ' for \' + $func(\'money\', \'string_price\', price) + \'</td></tr>';
+    (s as any).line = '<tr><td align="center">You have an active mobile internet subscription that will renew next month on day ' + (((s as any).subscription ?? 0)?.['mobile-date']) + ' for \' + $func(\'money\', \'string_price\', price) + \'</td></tr>';
   } else {
     if (((s as any).subscription ?? 0)?.['metered_mobile'] > 0) {
       (s as any).discount = (((s as any).subscription ?? {})?.['metered_mobile'] ?? 0) / 12;
       (s as any).discount_left = Math.max(((s as any).price ?? 0) - ((s as any).discount ?? 0), 0);
-      (s as any).line = '<tr><td align="center">You still a have a ' + qspFunc(s, 'money', 'string_price', ((s as any).subscription ?? 0)?.['metered_mobile']) + '  balance for your metered mobile internet which gives you a ' + qspFunc(s, 'money', 'string_price', ((s as any).discount ?? 0)) + ' discount</td></tr>';
+      (s as any).line = '<tr><td align="center">You still a have a ' + qspFunc(s, 'money', 'string_price', (((s as any).subscription ?? 0)?.['metered_mobile'])) + '  balance for your metered mobile internet which gives you a ' + qspFunc(s, 'money', 'string_price', ((s as any).discount ?? 0)) + ' discount</td></tr>';
     }
     // TODO-QSP: $line += '<tr><td style="padding-left: 10px; padding-right: 10px; align: left; ">Monthly mobile inte...
     if ((!((s as any).bankAccount ?? 0))) {
@@ -828,7 +828,7 @@ function enterMegafon(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: <<$title>><<$tables>><<$line>><<$tablec>>
   scene.text(`${((s as any).title ?? '')}${((s as any).tables ?? '')}${((s as any).line ?? '')}${((s as any).tablec ?? '')}`);
   // TODO-QSP: dynamic text: <center>You have <b><<subscription[''metered_mobile'']>></b> minutes for mobile ...
-  scene.text(`<center>You have <b>${((s as any).subscription ?? 0)?.['metered_mobile'] ?? ''}</b> minutes for mobile internet use</center>`);
+  scene.text(`<center>You have <b>${(((s as any).subscription ?? 0)?.['metered_mobile'] ?? '')}</b> minutes for mobile internet use</center>`);
   (s as any).title = '<center><h4>Mobile Calls and Texts</h4></center>';
   (s as any).price = 800;
   if (((s as any).subscription ?? 0)?.['monthly_calls'] === 1) {
@@ -884,7 +884,7 @@ function enterMegafon(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: <<$title>><<$tables>><<$line>><<$tablec>>
   scene.text(`${((s as any).title ?? '')}${((s as any).tables ?? '')}${((s as any).line ?? '')}${((s as any).tablec ?? '')}`);
   // TODO-QSP: dynamic text: <center>You have <b><<subscription[''metered_calls'']>> minutes</b> for mobile c...
-  scene.text(`<center>You have <b>${((s as any).subscription ?? 0)?.['metered_calls'] ?? ''} minutes</b> for mobile calls and <b>${((s as any).subscription ?? 0)?.['metered_calls-sms_limit'] ?? ''} text messages</b></center>`);
+  scene.text(`<center>You have <b>${(((s as any).subscription ?? 0)?.['metered_calls'] ?? '')} minutes</b> for mobile calls and <b>${(((s as any).subscription ?? 0)?.['metered_calls-sms_limit'] ?? '')} text messages</b></center>`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Return to the supermarket', handler: (st: GameState) => {

@@ -1284,9 +1284,9 @@ function enterBiggestDickTalk1(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Big dildo', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: "Biggest dick I''ve ever had was only about <<stat[''biggest_cock'']>>cm," you s...
-    scene.text(`"Biggest dick I've ever had was only about ${((st as any).stat ?? 0)?.['biggest_cock'] ?? ''}cm," you say.`);
+    scene.text(`"Biggest dick I've ever had was only about ${(((st as any).stat ?? 0)?.['biggest_cock'] ?? '')}cm," you say.`);
     // TODO-QSP: dynamic text: Albina seems shocked, almost offended, but before she can respond, you continue....
-    scene.text(`Albina seems shocked, almost offended, but before she can respond, you continue. "But the biggest dildo I've ever taken is ${((st as any).stat ?? 0)?.['biggest_dildo'] ?? ''}cm."`);
+    scene.text(`Albina seems shocked, almost offended, but before she can respond, you continue. "But the biggest dildo I've ever taken is ${(((st as any).stat ?? 0)?.['biggest_dildo'] ?? '')}cm."`);
     scene.text('You grin as her jaw drops before her expression recovers into her own sly grin.');
     if (((st as any).stat ?? 0)?.['biggest_dildo'] < 23) {
       scene.text('"Lazar\'s even bigger than that," she smirks.');
@@ -1300,7 +1300,7 @@ function enterBiggestDickTalk1(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Only a small one (you liked it)', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: "Hmm... Maybe... <<stat[''biggest_cock'']>>cm?" you tell her.
-    scene.text(`"Hmm... Maybe... ${((st as any).stat ?? 0)?.['biggest_cock'] ?? ''}cm?" you tell her.`);
+    scene.text(`"Hmm... Maybe... ${(((st as any).stat ?? 0)?.['biggest_cock'] ?? '')}cm?" you tell her.`);
     scene.text('Her jaw drops. "What?! That\'s practically just a finger!"');
     scene.text('"I didn\'t mind," you shrug. "I liked it."');
     scene.text('"Girl, we\'ve got to find you a real dick to fuck," she says seriously. "Unless he\'s at least 12cm, it doesn\'t count as real sex."');
@@ -1311,7 +1311,7 @@ function enterBiggestDickTalk1(s: GameState, scene: SceneBuilder): void {
     scene.text('"Not very big..." you blush and Albina raises an eyebrow.');
     scene.text('"Exactly how small is \'not very big\'?" she asks.');
     // TODO-QSP: dynamic text: "Maybe... <<stat[''biggest_cock'']>>cm?" you admit.
-    scene.text(`"Maybe... ${((st as any).stat ?? 0)?.['biggest_cock'] ?? ''}cm?" you admit.`);
+    scene.text(`"Maybe... ${(((st as any).stat ?? 0)?.['biggest_cock'] ?? '')}cm?" you admit.`);
     scene.text('Her jaw drops. "What?! That\'s practically just a finger!"');
     scene.text('"Not very impressive is it?" you say ruefully.');
     scene.text('"Girl, we\'ve got to find you a real dick to fuck," she says seriously.');
@@ -1322,7 +1322,7 @@ function enterBiggestDickTalk1(s: GameState, scene: SceneBuilder): void {
     scene.text('"Ugh! As if I could call it a dick!"');
     scene.text('Albina raises an eyebrow.');
     // TODO-QSP: dynamic text: "The ''biggest''," you start, making air quotes with your fingers. "I''ve ever h...
-    scene.text(`"The 'biggest'," you start, making air quotes with your fingers. "I've ever had was only about ${((st as any).stat ?? 0)?.['biggest_cock'] ?? ''}cm!"`);
+    scene.text(`"The 'biggest'," you start, making air quotes with your fingers. "I've ever had was only about ${(((st as any).stat ?? 0)?.['biggest_cock'] ?? '')}cm!"`);
     scene.text('Her jaw drops. "What?! That\'s practically just a finger!"');
     scene.text('"I know, right?!" you moan loudly. "What\'s a girl got to do to get a real dick to fuck?!"');
     scene.text('A playful smile crosses her lips. "I bet Lazar might be willing... He\'s fucking <i>big</i>..."');
@@ -1335,9 +1335,9 @@ function enterBiggestDickTalk1(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'Big dildo', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: "Biggest dick I''ve ever had was only about <<stat[''biggest_cock'']>>cm," you s...
-    scene.text(`"Biggest dick I've ever had was only about ${((st as any).stat ?? 0)?.['biggest_cock'] ?? ''}cm," you say.`);
+    scene.text(`"Biggest dick I've ever had was only about ${(((st as any).stat ?? 0)?.['biggest_cock'] ?? '')}cm," you say.`);
     // TODO-QSP: dynamic text: Albina seems shocked, almost offended, but before she can respond, you continue....
-    scene.text(`Albina seems shocked, almost offended, but before she can respond, you continue. "But the biggest dildo I've ever taken is ${((st as any).stat ?? 0)?.['biggest_dildo'] ?? ''}cm."`);
+    scene.text(`Albina seems shocked, almost offended, but before she can respond, you continue. "But the biggest dildo I've ever taken is ${(((st as any).stat ?? 0)?.['biggest_dildo'] ?? '')}cm."`);
     scene.text('You grin as her jaw drops before her expression recovers into her own sly grin.');
     if (((st as any).stat ?? 0)?.['biggest_dildo'] < 23) {
       scene.text('"Lazar\'s even bigger than that," she smirks.');
@@ -1351,7 +1351,7 @@ function enterBiggestDickTalk1(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Only an average one (you liked it)', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: "Hmm... Maybe... <<stat[''biggest_cock'']>>cm?" you tell her.
-    scene.text(`"Hmm... Maybe... ${((st as any).stat ?? 0)?.['biggest_cock'] ?? ''}cm?" you tell her.`);
+    scene.text(`"Hmm... Maybe... ${(((st as any).stat ?? 0)?.['biggest_cock'] ?? '')}cm?" you tell her.`);
     scene.text('"Seriously?" she asks, looking rather unimpressed. "Lazar is practically twice as big!"');
     scene.text('"I didn\'t mind," you shrug. "I liked it."');
     scene.text('"You just don\'t know what you\'re missing out on," she smirks.');
@@ -1361,7 +1361,7 @@ function enterBiggestDickTalk1(s: GameState, scene: SceneBuilder): void {
     scene.text('"Not very big..." you blush.');
     scene.text('"Exactly how small is \'not very big\'?" she asks while raising an eyebrow.');
     // TODO-QSP: dynamic text: "Maybe... <<stat[''biggest_cock'']>>cm?" you admit.
-    scene.text(`"Maybe... ${((st as any).stat ?? 0)?.['biggest_cock'] ?? ''}cm?" you admit.`);
+    scene.text(`"Maybe... ${(((st as any).stat ?? 0)?.['biggest_cock'] ?? '')}cm?" you admit.`);
     scene.text('"That\'s... Pretty average, yeah..." she replies.');
     scene.text('"Not very impressive is it?" you say ruefully.');
     scene.text('"You need to get laid by something bigger," she says seriously.');
@@ -1372,7 +1372,7 @@ function enterBiggestDickTalk1(s: GameState, scene: SceneBuilder): void {
     scene.text('"Pretty average, if you could even call it that!" you scoff.');
     scene.text('Albina raises an eyebrow. "Define \'average\'"');
     // TODO-QSP: dynamic text: "About <<stat[''biggest_cock'']>>cm," you reply.
-    scene.text(`"About ${((st as any).stat ?? 0)?.['biggest_cock'] ?? ''}cm," you reply.`);
+    scene.text(`"About ${(((st as any).stat ?? 0)?.['biggest_cock'] ?? '')}cm," you reply.`);
     scene.text('"That\'s... Pretty average, yeah..." she replies.');
     scene.text('You sigh loudly. "What\'s a girl got to do to get a real dick to fuck?"');
     scene.text('A playful smile crosses her lips. "I bet Lazar might be willing... He\'s fucking <i>big</i>..."');
@@ -1384,7 +1384,7 @@ function enterBiggestDickTalk1(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'An above average one (you liked it)', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: "Hmm... Maybe... <<stat[''biggest_cock'']>>cm?" you tell her.
-    scene.text(`"Hmm... Maybe... ${((st as any).stat ?? 0)?.['biggest_cock'] ?? ''}cm?" you tell her.`);
+    scene.text(`"Hmm... Maybe... ${(((st as any).stat ?? 0)?.['biggest_cock'] ?? '')}cm?" you tell her.`);
     scene.text('"Hhhmm..." she replies. "Lazar is still bigger than that."');
     scene.text('"I didn\'t mind," you shrug. "I liked it."');
     scene.text('"I know you did, you slut!" she smirks.');
@@ -1394,7 +1394,7 @@ function enterBiggestDickTalk1(s: GameState, scene: SceneBuilder): void {
     scene.text('"Above average..." you blush.');
     scene.text('"Exactly how big is \'above average\'?" she asks while raising an eyebrow.');
     // TODO-QSP: dynamic text: "Maybe... <<stat[''biggest_cock'']>>cm?" you admit.
-    scene.text(`"Maybe... ${((st as any).stat ?? 0)?.['biggest_cock'] ?? ''}cm?" you admit.`);
+    scene.text(`"Maybe... ${(((st as any).stat ?? 0)?.['biggest_cock'] ?? '')}cm?" you admit.`);
     scene.text('"Yeah, that\'s above average for most guys..." she replies.');
     scene.text('"It\'s something, no?" you say ruefully.');
     scene.text('"Girl, you need a guy that\'s even bigger," she says seriously.');
@@ -1405,7 +1405,7 @@ function enterBiggestDickTalk1(s: GameState, scene: SceneBuilder): void {
     scene.text('"He was above average, but I want something bigger."');
     scene.text('"Exactly how big is \'above average\'?" she asks while raising an eyebrow.');
     // TODO-QSP: dynamic text: "<<stat[''biggest_cock'']>>cm," you tell her.
-    scene.text(`"${((st as any).stat ?? 0)?.['biggest_cock'] ?? ''}cm," you tell her.`);
+    scene.text(`"${(((st as any).stat ?? 0)?.['biggest_cock'] ?? '')}cm," you tell her.`);
     scene.text('"Yeah, that\'s above average for most guys..." she replies.');
     scene.text('You sigh loudly. "What\'s a girl got to do to get a real dick to fuck?"');
     scene.text('A playful smile crosses her lips. "I bet Lazar might be willing... He\'s fucking <i>big</i>..."');
@@ -1419,7 +1419,7 @@ function enterBiggestDickTalk1(s: GameState, scene: SceneBuilder): void {
     scene.text('"I don\'t even think it\'s possible for a cock to be this big!" you laugh.');
     scene.text('She raises an eyebrow. "Try me."');
     // TODO-QSP: dynamic text: "<<stat[''biggest_cock'']>>cm," you tell her with a smile.
-    scene.text(`"${((st as any).stat ?? 0)?.['biggest_cock'] ?? ''}cm," you tell her with a smile.`);
+    scene.text(`"${(((st as any).stat ?? 0)?.['biggest_cock'] ?? '')}cm," you tell her with a smile.`);
     if (((st as any).region ?? 0) === 'city') {
       scene.text('Her jaw drops. "Holy shit! And I thought my record of 28cm was impressive! Who is this guy and where can I fuck him?"');
       scene.text('You both laugh as you tell her what it was like taking such a massive cock inside you.');
@@ -1433,7 +1433,7 @@ function enterBiggestDickTalk1(s: GameState, scene: SceneBuilder): void {
     scene.text('"I... I didn\'t even know it was possible for a guy to be this... big..." you blush.');
     scene.text('She raises an eyebrow. "Try me."');
     // TODO-QSP: dynamic text: "<<stat[''biggest_cock'']>>cm..." you blush. "He had a <<stat[''biggest_cock'']>...
-    scene.text(`"${((st as any).stat ?? 0)?.['biggest_cock'] ?? ''}cm..." you blush. "He had a ${((st as any).stat ?? 0)?.['biggest_cock'] ?? ''}cm cock...`);
+    scene.text(`"${(((st as any).stat ?? 0)?.['biggest_cock'] ?? '')}cm..." you blush. "He had a ${(((st as any).stat ?? 0)?.['biggest_cock'] ?? '')}cm cock...`);
     if (((st as any).region ?? 0) === 'city') {
       scene.text('Her jaw drops. "Holy shit! And I thought my record of 28cm was impressive! Who is this guy and where can I fuck him?"');
       scene.text('You continue blushing as she asks you what it was like taking such a massive cock inside you.');
@@ -1449,7 +1449,7 @@ function enterBiggestDickTalk1(s: GameState, scene: SceneBuilder): void {
             scene.actions([
               { label: 'A pretty big one (you liked it)', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: "Hmm... Maybe... <<stat[''biggest_cock'']>>cm?" you tell her.
-    scene.text(`"Hmm... Maybe... ${((st as any).stat ?? 0)?.['biggest_cock'] ?? ''}cm?" you tell her.`);
+    scene.text(`"Hmm... Maybe... ${(((st as any).stat ?? 0)?.['biggest_cock'] ?? '')}cm?" you tell her.`);
     scene.text('"Hhhmm..." she replies. "Lazar is still bigger than that."');
     scene.text('"I didn\'t mind," you shrug. "I liked it."');
     scene.text('"I know you did, you slut!" she smirks.');
@@ -1459,7 +1459,7 @@ function enterBiggestDickTalk1(s: GameState, scene: SceneBuilder): void {
     scene.text('"A pretty big one..." you blush.');
     scene.text('"Exactly how big is \'pretty big\'?" she asks while raising an eyebrow.');
     // TODO-QSP: dynamic text: "Maybe... <<stat[''biggest_cock'']>>cm?" you admit.
-    scene.text(`"Maybe... ${((st as any).stat ?? 0)?.['biggest_cock'] ?? ''}cm?" you admit.`);
+    scene.text(`"Maybe... ${(((st as any).stat ?? 0)?.['biggest_cock'] ?? '')}cm?" you admit.`);
     scene.text('"Yeah, that\'s pretty big," she replies.');
     scene.text('"Pretty impressive, no?" you say ruefully.');
     scene.text('"You say that, but Lazar is still bigger than that," she smiles. "Not by much, mind you."');
@@ -1469,7 +1469,7 @@ function enterBiggestDickTalk1(s: GameState, scene: SceneBuilder): void {
     scene.text('"He was pretty big, but is it wrong that I wanted something bigger?"');
     scene.text('"Exactly how big is \'pretty big\'?" she asks while raising an eyebrow.');
     // TODO-QSP: dynamic text: "<<stat[''biggest_cock'']>>cm," you tell her.
-    scene.text(`"${((st as any).stat ?? 0)?.['biggest_cock'] ?? ''}cm," you tell her.`);
+    scene.text(`"${(((st as any).stat ?? 0)?.['biggest_cock'] ?? '')}cm," you tell her.`);
     scene.text('"Not bad, but Lazar is still bigger," she replies. "Not by much, mind you."');
     scene.text('"I know!" you moan. "What does a girl have to do to get a guy who\'s hung like a horse?"');
     scene.text('A playful smile crosses her lips. "I bet Lazar might be willing to fuck you. If you can handle him, that is..."');
@@ -1481,7 +1481,7 @@ function enterBiggestDickTalk1(s: GameState, scene: SceneBuilder): void {
               scene.actions([
                 { label: 'A huge one (open)', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: "<<stat[''biggest_cock'']>>cm," you tell her with a smile.
-    scene.text(`"${((st as any).stat ?? 0)?.['biggest_cock'] ?? ''}cm," you tell her with a smile.`);
+    scene.text(`"${(((st as any).stat ?? 0)?.['biggest_cock'] ?? '')}cm," you tell her with a smile.`);
     scene.text('"Hhhmm..." she replies. "That\'s the same size as Lazar. Wait. Was it him?"');
     if (((st as any).AlbinaQW ?? 0)?.['Lazar_Threesome'] !== 0  &&  ((st as any).npc_had_sex ?? 0)?.['A149']) {
       scene.text('You nod. "Yeah. Those threesomes we have are <i>amazing</i>!"');
@@ -1521,7 +1521,7 @@ function enterBiggestDickTalk1(s: GameState, scene: SceneBuilder): void {
               scene.actions([
                 { label: 'A massive one (open)', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: "<<stat[''biggest_cock'']>>cm," you tell her with a smile.
-    scene.text(`"${((st as any).stat ?? 0)?.['biggest_cock'] ?? ''}cm," you tell her with a smile.`);
+    scene.text(`"${(((st as any).stat ?? 0)?.['biggest_cock'] ?? '')}cm," you tell her with a smile.`);
     if (((st as any).region ?? 0) === 'city') {
       // TODO-QSP: dynamic text: "Pretty impressive, <<$pcs_nickname>>," she replies with a grin. "My record is 2...
       scene.text(`"Pretty impressive, ${((st as any).pcs_nickname ?? '')}," she replies with a grin. "My record is 28cm."`);
@@ -1536,7 +1536,7 @@ function enterBiggestDickTalk1(s: GameState, scene: SceneBuilder): void {
     scene.text('"Is \'massive\' a term I could use?" you blush.');
     scene.text('"Exactly how big is \'massive\'?" she asks while raising an eyebrow.');
     // TODO-QSP: dynamic text: "Maybe... <<stat[''biggest_cock'']>>cm?" you admit.
-    scene.text(`"Maybe... ${((st as any).stat ?? 0)?.['biggest_cock'] ?? ''}cm?" you admit.`);
+    scene.text(`"Maybe... ${(((st as any).stat ?? 0)?.['biggest_cock'] ?? '')}cm?" you admit.`);
     if (((st as any).region ?? 0) === 'city') {
       // TODO-QSP: dynamic text: "Pretty impressive, <<$pcs_nickname>>," she replies with a grin. "My record is 2...
       scene.text(`"Pretty impressive, ${((st as any).pcs_nickname ?? '')}," she replies with a grin. "My record is 28cm."`);

@@ -1444,7 +1444,7 @@ function enterAfterHomeWorkStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcStat', 'A14', 'a');
   qspCall(s, 'npc_relationship', 'modify', 'A14', 'love');
   qspCall(s, 'npc_relationship', 'modify', 'A2', 'love');
-  ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = Math.min(((s as any).katjaQW ?? 0)?.['horny'], 70);
+  ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = Math.min((((s as any).katjaQW ?? 0)?.['horny']), 70);
   if (((s as any).artemQW ?? 0)?.['confidence'] < 10) {
     ((s as any).artemQW = (s as any).artemQW ?? {})['confidence'] = ((s as any).artemQW['confidence'] ?? 0) + (1);
   }

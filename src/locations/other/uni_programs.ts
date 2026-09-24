@@ -384,12 +384,12 @@ function enterGetThirdPeriodNursing(s: GameState, scene: SceneBuilder): void {
   if (((s as any).university ?? 0)?.['enrolled_in_semester'] === 1) {
     if (String((s as any).locArgs?.[1] ?? '') === 'monday') {
       if (((s as any).university ?? 0)?.['elective_semester_1_1'] !== '') {
-        (s as any).result = '' + ((s as any).university ?? 0)?.['elective_semester_1_1'] + ' ' + ((s as any).temp_up_timestamp ?? 0) + '';
+        (s as any).result = '' + (((s as any).university ?? 0)?.['elective_semester_1_1']) + ' ' + ((s as any).temp_up_timestamp ?? 0) + '';
       }
     } else {
       if (String((s as any).locArgs?.[1] ?? '') === 'tuesday') {
         if (((s as any).university ?? 0)?.['elective_semester_1_2'] !== '') {
-          (s as any).result = '' + ((s as any).university ?? 0)?.['elective_semester_1_2'] + ' ' + ((s as any).temp_up_timestamp ?? 0) + '';
+          (s as any).result = '' + (((s as any).university ?? 0)?.['elective_semester_1_2']) + ' ' + ((s as any).temp_up_timestamp ?? 0) + '';
         }
       } else {
         if (String((s as any).locArgs?.[1] ?? '') === 'wednesday') {
@@ -397,7 +397,7 @@ function enterGetThirdPeriodNursing(s: GameState, scene: SceneBuilder): void {
         } else {
           if (String((s as any).locArgs?.[1] ?? '') === 'thursday') {
             if (((s as any).university ?? 0)?.['elective_semester_1_3'] !== '') {
-              (s as any).result = '' + ((s as any).university ?? 0)?.['elective_semester_1_3'] + ' ' + ((s as any).temp_up_timestamp ?? 0) + '';
+              (s as any).result = '' + (((s as any).university ?? 0)?.['elective_semester_1_3']) + ' ' + ((s as any).temp_up_timestamp ?? 0) + '';
             }
           }
         }
@@ -407,12 +407,12 @@ function enterGetThirdPeriodNursing(s: GameState, scene: SceneBuilder): void {
     if (((s as any).university ?? 0)?.['enrolled_in_semester'] === 2) {
       if (String((s as any).locArgs?.[1] ?? '') === 'monday') {
         if (((s as any).university ?? 0)?.['elective_semester_2_1'] !== '') {
-          (s as any).result = '' + ((s as any).university ?? 0)?.['elective_semester_2_1'] + ' ' + ((s as any).temp_up_timestamp ?? 0) + '';
+          (s as any).result = '' + (((s as any).university ?? 0)?.['elective_semester_2_1']) + ' ' + ((s as any).temp_up_timestamp ?? 0) + '';
         }
       } else {
         if (String((s as any).locArgs?.[1] ?? '') === 'tuesday') {
           if (((s as any).university ?? 0)?.['elective_semester_2_2'] !== '') {
-            (s as any).result = '' + ((s as any).university ?? 0)?.['elective_semester_2_2'] + ' ' + ((s as any).temp_up_timestamp ?? 0) + '';
+            (s as any).result = '' + (((s as any).university ?? 0)?.['elective_semester_2_2']) + ' ' + ((s as any).temp_up_timestamp ?? 0) + '';
           }
         } else {
           if (String((s as any).locArgs?.[1] ?? '') === 'wednesday') {
@@ -420,7 +420,7 @@ function enterGetThirdPeriodNursing(s: GameState, scene: SceneBuilder): void {
           } else {
             if (String((s as any).locArgs?.[1] ?? '') === 'thursday') {
               if (((s as any).university ?? 0)?.['elective_semester_2_3'] !== '') {
-                (s as any).result = '' + ((s as any).university ?? 0)?.['elective_semester_2_3'] + ' ' + ((s as any).temp_up_timestamp ?? 0) + '';
+                (s as any).result = '' + (((s as any).university ?? 0)?.['elective_semester_2_3']) + ' ' + ((s as any).temp_up_timestamp ?? 0) + '';
               }
             }
           }
@@ -430,12 +430,12 @@ function enterGetThirdPeriodNursing(s: GameState, scene: SceneBuilder): void {
       if (((s as any).university ?? 0)?.['enrolled_in_semester'] === 3) {
         if (String((s as any).locArgs?.[1] ?? '') === 'monday') {
           if (((s as any).university ?? 0)?.['elective1'] !== '') {
-            (s as any).result = '' + ((s as any).university ?? 0)?.['elective_3_1'] + ' ' + ((s as any).temp_up_timestamp ?? 0) + '';
+            (s as any).result = '' + (((s as any).university ?? 0)?.['elective_3_1']) + ' ' + ((s as any).temp_up_timestamp ?? 0) + '';
           }
         } else {
           if (String((s as any).locArgs?.[1] ?? '') === 'tuesday') {
             if (((s as any).university ?? 0)?.['elective2'] !== '') {
-              (s as any).result = '' + ((s as any).university ?? 0)?.['elective_3_2'] + ' ' + ((s as any).temp_up_timestamp ?? 0) + '';
+              (s as any).result = '' + (((s as any).university ?? 0)?.['elective_3_2']) + ' ' + ((s as any).temp_up_timestamp ?? 0) + '';
             }
           } else {
             if (String((s as any).locArgs?.[1] ?? '') === 'wednesday') {
@@ -443,7 +443,7 @@ function enterGetThirdPeriodNursing(s: GameState, scene: SceneBuilder): void {
             } else {
               if (String((s as any).locArgs?.[1] ?? '') === 'thursday') {
                 if (((s as any).university ?? 0)?.['elective3'] !== '') {
-                  (s as any).result = '' + ((s as any).university ?? 0)?.['elective_3_3'] + ' ' + ((s as any).temp_up_timestamp ?? 0) + '';
+                  (s as any).result = '' + (((s as any).university ?? 0)?.['elective_3_3']) + ' ' + ((s as any).temp_up_timestamp ?? 0) + '';
                 }
               }
             }
@@ -453,12 +453,12 @@ function enterGetThirdPeriodNursing(s: GameState, scene: SceneBuilder): void {
         if (((s as any).university ?? 0)?.['enrolled_in_semester'] === 4) {
           if (String((s as any).locArgs?.[1] ?? '') === 'monday') {
             if (((s as any).university ?? 0)?.['elective1'] !== '') {
-              (s as any).result = '' + ((s as any).university ?? 0)?.['elective_4_1'] + ' ' + ((s as any).temp_up_timestamp ?? 0) + '';
+              (s as any).result = '' + (((s as any).university ?? 0)?.['elective_4_1']) + ' ' + ((s as any).temp_up_timestamp ?? 0) + '';
             }
           } else {
             if (String((s as any).locArgs?.[1] ?? '') === 'tuesday') {
               if (((s as any).university ?? 0)?.['elective2'] !== '') {
-                (s as any).result = '' + ((s as any).university ?? 0)?.['elective_4_2'] + ' ' + ((s as any).temp_up_timestamp ?? 0) + '';
+                (s as any).result = '' + (((s as any).university ?? 0)?.['elective_4_2']) + ' ' + ((s as any).temp_up_timestamp ?? 0) + '';
               }
             } else {
               if (String((s as any).locArgs?.[1] ?? '') === 'wednesday') {
@@ -466,7 +466,7 @@ function enterGetThirdPeriodNursing(s: GameState, scene: SceneBuilder): void {
               } else {
                 if (String((s as any).locArgs?.[1] ?? '') === 'thursday') {
                   if (((s as any).university ?? 0)?.['elective3'] !== '') {
-                    (s as any).result = '' + ((s as any).university ?? 0)?.['elective_4_3'] + ' ' + ((s as any).temp_up_timestamp ?? 0) + '';
+                    (s as any).result = '' + (((s as any).university ?? 0)?.['elective_4_3']) + ' ' + ((s as any).temp_up_timestamp ?? 0) + '';
                   }
                 }
               }
@@ -486,12 +486,12 @@ function enterGetThirdPeriodTeaching(s: GameState, scene: SceneBuilder): void {
   if (((s as any).university ?? 0)?.['enrolled_in_semester'] === 1) {
     if (String((s as any).locArgs?.[1] ?? '') === 'monday') {
       if (((s as any).university ?? 0)?.['elective_semester_1_1'] !== '') {
-        (s as any).result = '' + ((s as any).university ?? 0)?.['elective_semester_1_1'] + ' (' + ((s as any).temp_up_timestamp ?? 0) + ')';
+        (s as any).result = '' + (((s as any).university ?? 0)?.['elective_semester_1_1']) + ' (' + ((s as any).temp_up_timestamp ?? 0) + ')';
       }
     } else {
       if (String((s as any).locArgs?.[1] ?? '') === 'tuesday') {
         if (((s as any).university ?? 0)?.['elective_semester_1_2'] !== '') {
-          (s as any).result = '' + ((s as any).university ?? 0)?.['elective_semester_1_2'] + ' (' + ((s as any).temp_up_timestamp ?? 0) + ')';
+          (s as any).result = '' + (((s as any).university ?? 0)?.['elective_semester_1_2']) + ' (' + ((s as any).temp_up_timestamp ?? 0) + ')';
         }
       } else {
         if (String((s as any).locArgs?.[1] ?? '') === 'wednesday') {
@@ -499,7 +499,7 @@ function enterGetThirdPeriodTeaching(s: GameState, scene: SceneBuilder): void {
         } else {
           if (String((s as any).locArgs?.[1] ?? '') === 'thursday') {
             if (((s as any).university ?? 0)?.['elective_semester_1_3'] !== '') {
-              (s as any).result = '' + ((s as any).university ?? 0)?.['elective_semester_1_3'] + ' (' + ((s as any).temp_up_timestamp ?? 0) + ')';
+              (s as any).result = '' + (((s as any).university ?? 0)?.['elective_semester_1_3']) + ' (' + ((s as any).temp_up_timestamp ?? 0) + ')';
             }
           }
         }
@@ -509,12 +509,12 @@ function enterGetThirdPeriodTeaching(s: GameState, scene: SceneBuilder): void {
     if (((s as any).university ?? 0)?.['enrolled_in_semester'] === 2) {
       if (String((s as any).locArgs?.[1] ?? '') === 'monday') {
         if (((s as any).university ?? 0)?.['elective_semester_2_1'] !== '') {
-          (s as any).result = '' + ((s as any).university ?? 0)?.['elective_semester_2_1'] + ' (' + ((s as any).temp_up_timestamp ?? 0) + ')';
+          (s as any).result = '' + (((s as any).university ?? 0)?.['elective_semester_2_1']) + ' (' + ((s as any).temp_up_timestamp ?? 0) + ')';
         }
       } else {
         if (String((s as any).locArgs?.[1] ?? '') === 'tuesday') {
           if (((s as any).university ?? 0)?.['elective_semester_2_2'] !== '') {
-            (s as any).result = '' + ((s as any).university ?? 0)?.['elective_semester_2_2'] + ' (' + ((s as any).temp_up_timestamp ?? 0) + ')';
+            (s as any).result = '' + (((s as any).university ?? 0)?.['elective_semester_2_2']) + ' (' + ((s as any).temp_up_timestamp ?? 0) + ')';
           }
         } else {
           if (String((s as any).locArgs?.[1] ?? '') === 'wednesday') {
@@ -522,7 +522,7 @@ function enterGetThirdPeriodTeaching(s: GameState, scene: SceneBuilder): void {
           } else {
             if (String((s as any).locArgs?.[1] ?? '') === 'thursday') {
               if (((s as any).university ?? 0)?.['elective_semester_2_3'] !== '') {
-                (s as any).result = '' + ((s as any).university ?? 0)?.['elective_semester_2_3'] + ' (' + ((s as any).temp_up_timestamp ?? 0) + ')';
+                (s as any).result = '' + (((s as any).university ?? 0)?.['elective_semester_2_3']) + ' (' + ((s as any).temp_up_timestamp ?? 0) + ')';
               }
             }
           }
@@ -532,12 +532,12 @@ function enterGetThirdPeriodTeaching(s: GameState, scene: SceneBuilder): void {
       if (((s as any).university ?? 0)?.['enrolled_in_semester'] === 3) {
         if (String((s as any).locArgs?.[1] ?? '') === 'monday') {
           if (((s as any).university ?? 0)?.['elective1'] !== '') {
-            (s as any).result = '' + ((s as any).university ?? 0)?.['elective_3_1'] + ' (' + ((s as any).temp_up_timestamp ?? 0) + ')';
+            (s as any).result = '' + (((s as any).university ?? 0)?.['elective_3_1']) + ' (' + ((s as any).temp_up_timestamp ?? 0) + ')';
           }
         } else {
           if (String((s as any).locArgs?.[1] ?? '') === 'tuesday') {
             if (((s as any).university ?? 0)?.['elective2'] !== '') {
-              (s as any).result = '' + ((s as any).university ?? 0)?.['elective_3_2'] + ' (' + ((s as any).temp_up_timestamp ?? 0) + ')';
+              (s as any).result = '' + (((s as any).university ?? 0)?.['elective_3_2']) + ' (' + ((s as any).temp_up_timestamp ?? 0) + ')';
             }
           } else {
             if (String((s as any).locArgs?.[1] ?? '') === 'wednesday') {
@@ -545,7 +545,7 @@ function enterGetThirdPeriodTeaching(s: GameState, scene: SceneBuilder): void {
             } else {
               if (String((s as any).locArgs?.[1] ?? '') === 'thursday') {
                 if (((s as any).university ?? 0)?.['elective3'] !== '') {
-                  (s as any).result = '' + ((s as any).university ?? 0)?.['elective_3_3'] + ' (' + ((s as any).temp_up_timestamp ?? 0) + ')';
+                  (s as any).result = '' + (((s as any).university ?? 0)?.['elective_3_3']) + ' (' + ((s as any).temp_up_timestamp ?? 0) + ')';
                 }
               }
             }
@@ -555,12 +555,12 @@ function enterGetThirdPeriodTeaching(s: GameState, scene: SceneBuilder): void {
         if (((s as any).university ?? 0)?.['enrolled_in_semester'] === 4) {
           if (String((s as any).locArgs?.[1] ?? '') === 'monday') {
             if (((s as any).university ?? 0)?.['elective_4_1'] !== '') {
-              (s as any).result = '' + ((s as any).university ?? 0)?.['elective_4_1'] + ' (' + ((s as any).temp_up_timestamp ?? 0) + ')';
+              (s as any).result = '' + (((s as any).university ?? 0)?.['elective_4_1']) + ' (' + ((s as any).temp_up_timestamp ?? 0) + ')';
             }
           } else {
             if (String((s as any).locArgs?.[1] ?? '') === 'tuesday') {
               if (((s as any).university ?? 0)?.['elective2'] !== '') {
-                (s as any).result = '' + ((s as any).university ?? 0)?.['elective_4_2'] + ' (' + ((s as any).temp_up_timestamp ?? 0) + ')';
+                (s as any).result = '' + (((s as any).university ?? 0)?.['elective_4_2']) + ' (' + ((s as any).temp_up_timestamp ?? 0) + ')';
               }
             } else {
               if (String((s as any).locArgs?.[1] ?? '') === 'wednesday') {
@@ -568,7 +568,7 @@ function enterGetThirdPeriodTeaching(s: GameState, scene: SceneBuilder): void {
               } else {
                 if (String((s as any).locArgs?.[1] ?? '') === 'thursday') {
                   if (((s as any).university ?? 0)?.['elective3'] !== '') {
-                    (s as any).result = '' + ((s as any).university ?? 0)?.['elective_4_3'] + ' (' + ((s as any).temp_up_timestamp ?? 0) + ')';
+                    (s as any).result = '' + (((s as any).university ?? 0)?.['elective_4_3']) + ' (' + ((s as any).temp_up_timestamp ?? 0) + ')';
                   }
                 }
               }
@@ -1080,7 +1080,7 @@ function enterSetThirdPeriodActNursing(s: GameState, scene: SceneBuilder): void 
   if (((s as any).university ?? 0)?.['enrolled_in_semester'] === 1) {
     if (((s as any).week ?? 0) === 1  &&  ((s as any).university ?? 0)?.['elective_semester_1_1'] !== '') {
       scene.actions([
-        { label: '', labelFn: (s: GameState) => 'Go to your elective ' + String(((s as any).university ?? 0)?.['elective_semester_1_1'] ?? '' ?? ''), handler: (st: GameState) => {
+        { label: '', labelFn: (s: GameState) => 'Go to your elective ' + String((((s as any).university ?? 0)?.['elective_semester_1_1'] ?? '') ?? ''), handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + (Math.max(0, (13 - ((st as any).hour ?? 0)) * 60 + (15 - ((st as any).minut ?? 0))));
     ((st as any).uni_period = (st as any).uni_period ?? {})['third'] = ((st as any).daystart ?? 0);
     qspCall(st, 'stat', '');
@@ -1090,7 +1090,7 @@ function enterSetThirdPeriodActNursing(s: GameState, scene: SceneBuilder): void 
     } else {
       if (((s as any).week ?? 0) === 2  &&  ((s as any).university ?? 0)?.['elective_semester_1_2'] !== '') {
         scene.actions([
-          { label: '', labelFn: (s: GameState) => 'Go to your elective ' + String(((s as any).university ?? 0)?.['elective_semester_1_2'] ?? '' ?? ''), handler: (st: GameState) => {
+          { label: '', labelFn: (s: GameState) => 'Go to your elective ' + String((((s as any).university ?? 0)?.['elective_semester_1_2'] ?? '') ?? ''), handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + (Math.max(0, (13 - ((st as any).hour ?? 0)) * 60 + (15 - ((st as any).minut ?? 0))));
     ((st as any).uni_period = (st as any).uni_period ?? {})['third'] = ((st as any).daystart ?? 0);
     qspCall(st, 'stat', '');
@@ -1110,7 +1110,7 @@ function enterSetThirdPeriodActNursing(s: GameState, scene: SceneBuilder): void 
         } else {
           if (((s as any).week ?? 0) === 4  &&  ((s as any).university ?? 0)?.['elective_semester_1_3'] !== '') {
             scene.actions([
-              { label: '', labelFn: (s: GameState) => 'Go to your elective ' + String(((s as any).university ?? 0)?.['elective_semester_1_3'] ?? '' ?? ''), handler: (st: GameState) => {
+              { label: '', labelFn: (s: GameState) => 'Go to your elective ' + String((((s as any).university ?? 0)?.['elective_semester_1_3'] ?? '') ?? ''), handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + (Math.max(0, (13 - ((st as any).hour ?? 0)) * 60 + (15 - ((st as any).minut ?? 0))));
     ((st as any).uni_period = (st as any).uni_period ?? {})['third'] = ((st as any).daystart ?? 0);
     qspCall(st, 'stat', '');
@@ -1125,7 +1125,7 @@ function enterSetThirdPeriodActNursing(s: GameState, scene: SceneBuilder): void 
     if (((s as any).university ?? 0)?.['enrolled_in_semester'] === 2) {
       if (((s as any).week ?? 0) === 1  &&  ((s as any).university ?? 0)?.['elective_semester_2_1'] !== '') {
         scene.actions([
-          { label: '', labelFn: (s: GameState) => 'Go to your elective ' + String(((s as any).university ?? 0)?.['elective_semester_2_1'] ?? '' ?? ''), handler: (st: GameState) => {
+          { label: '', labelFn: (s: GameState) => 'Go to your elective ' + String((((s as any).university ?? 0)?.['elective_semester_2_1'] ?? '') ?? ''), handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + (Math.max(0, (13 - ((st as any).hour ?? 0)) * 60 + (15 - ((st as any).minut ?? 0))));
     ((st as any).uni_period = (st as any).uni_period ?? {})['third'] = ((st as any).daystart ?? 0);
     qspCall(st, 'stat', '');
@@ -1135,7 +1135,7 @@ function enterSetThirdPeriodActNursing(s: GameState, scene: SceneBuilder): void 
       } else {
         if (((s as any).week ?? 0) === 2  &&  ((s as any).university ?? 0)?.['elective_semester_2_2'] !== '') {
           scene.actions([
-            { label: '', labelFn: (s: GameState) => 'Go to your elective ' + String(((s as any).university ?? 0)?.['elective_semester_2_2'] ?? '' ?? ''), handler: (st: GameState) => {
+            { label: '', labelFn: (s: GameState) => 'Go to your elective ' + String((((s as any).university ?? 0)?.['elective_semester_2_2'] ?? '') ?? ''), handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + (Math.max(0, (13 - ((st as any).hour ?? 0)) * 60 + (15 - ((st as any).minut ?? 0))));
     ((st as any).uni_period = (st as any).uni_period ?? {})['third'] = ((st as any).daystart ?? 0);
     qspCall(st, 'stat', '');
@@ -1155,7 +1155,7 @@ function enterSetThirdPeriodActNursing(s: GameState, scene: SceneBuilder): void 
           } else {
             if (((s as any).week ?? 0) === 4  &&  ((s as any).university ?? 0)?.['elective_semester_2_3'] !== '') {
               scene.actions([
-                { label: '', labelFn: (s: GameState) => 'Go to your elective ' + String(((s as any).university ?? 0)?.['elective_semester_2_3'] ?? '' ?? ''), handler: (st: GameState) => {
+                { label: '', labelFn: (s: GameState) => 'Go to your elective ' + String((((s as any).university ?? 0)?.['elective_semester_2_3'] ?? '') ?? ''), handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + (Math.max(0, (13 - ((st as any).hour ?? 0)) * 60 + (15 - ((st as any).minut ?? 0))));
     ((st as any).uni_period = (st as any).uni_period ?? {})['third'] = ((st as any).daystart ?? 0);
     qspCall(st, 'stat', '');
@@ -1170,7 +1170,7 @@ function enterSetThirdPeriodActNursing(s: GameState, scene: SceneBuilder): void 
       if (((s as any).university ?? 0)?.['enrolled_in_semester'] === 3) {
         if (((s as any).week ?? 0) === 1  &&  ((s as any).university ?? 0)?.['elective_3_1'] !== '') {
           scene.actions([
-            { label: '', labelFn: (s: GameState) => 'Go to your elective ' + String(((s as any).university ?? 0)?.['elective_semester_3_1'] ?? '' ?? ''), handler: (st: GameState) => {
+            { label: '', labelFn: (s: GameState) => 'Go to your elective ' + String((((s as any).university ?? 0)?.['elective_semester_3_1'] ?? '') ?? ''), handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + (Math.max(0, (13 - ((st as any).hour ?? 0)) * 60 + (15 - ((st as any).minut ?? 0))));
     ((st as any).uni_period = (st as any).uni_period ?? {})['third'] = ((st as any).daystart ?? 0);
     qspCall(st, 'stat', '');
@@ -1180,7 +1180,7 @@ function enterSetThirdPeriodActNursing(s: GameState, scene: SceneBuilder): void 
         } else {
           if (((s as any).week ?? 0) === 2  &&  ((s as any).university ?? 0)?.['elective_3_2'] !== '') {
             scene.actions([
-              { label: '', labelFn: (s: GameState) => 'Go to your elective ' + String(((s as any).university ?? 0)?.['elective_semester_3_2'] ?? '' ?? ''), handler: (st: GameState) => {
+              { label: '', labelFn: (s: GameState) => 'Go to your elective ' + String((((s as any).university ?? 0)?.['elective_semester_3_2'] ?? '') ?? ''), handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + (Math.max(0, (13 - ((st as any).hour ?? 0)) * 60 + (15 - ((st as any).minut ?? 0))));
     ((st as any).uni_period = (st as any).uni_period ?? {})['third'] = ((st as any).daystart ?? 0);
     qspCall(st, 'stat', '');
@@ -1200,7 +1200,7 @@ function enterSetThirdPeriodActNursing(s: GameState, scene: SceneBuilder): void 
             } else {
               if (((s as any).week ?? 0) === 4  &&  ((s as any).university ?? 0)?.['elective_3_3'] !== '') {
                 scene.actions([
-                  { label: '', labelFn: (s: GameState) => 'Go to your elective ' + String(((s as any).university ?? 0)?.['elective_semester_3_3'] ?? '' ?? ''), handler: (st: GameState) => {
+                  { label: '', labelFn: (s: GameState) => 'Go to your elective ' + String((((s as any).university ?? 0)?.['elective_semester_3_3'] ?? '') ?? ''), handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + (Math.max(0, (13 - ((st as any).hour ?? 0)) * 60 + (15 - ((st as any).minut ?? 0))));
     ((st as any).uni_period = (st as any).uni_period ?? {})['third'] = ((st as any).daystart ?? 0);
     qspCall(st, 'stat', '');
@@ -1214,7 +1214,7 @@ function enterSetThirdPeriodActNursing(s: GameState, scene: SceneBuilder): void 
       } else {
         if (((s as any).week ?? 0) === 1  &&   ((s as any).university ?? 0)?.['elective_4_1'] !== '') {
           scene.actions([
-            { label: '', labelFn: (s: GameState) => 'Go to your elective ' + String(((s as any).university ?? 0)?.['elective_semester_4_1'] ?? '' ?? ''), handler: (st: GameState) => {
+            { label: '', labelFn: (s: GameState) => 'Go to your elective ' + String((((s as any).university ?? 0)?.['elective_semester_4_1'] ?? '') ?? ''), handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + (Math.max(0, (13 - ((st as any).hour ?? 0)) * 60 + (15 - ((st as any).minut ?? 0))));
     ((st as any).uni_period = (st as any).uni_period ?? {})['third'] = ((st as any).daystart ?? 0);
     qspCall(st, 'stat', '');
@@ -1224,7 +1224,7 @@ function enterSetThirdPeriodActNursing(s: GameState, scene: SceneBuilder): void 
         } else {
           if (((s as any).week ?? 0) === 2  &&   ((s as any).university ?? 0)?.['elective_4_2'] !== '') {
             scene.actions([
-              { label: '', labelFn: (s: GameState) => 'Go to your elective ' + String(((s as any).university ?? 0)?.['elective_semester_4_2'] ?? '' ?? ''), handler: (st: GameState) => {
+              { label: '', labelFn: (s: GameState) => 'Go to your elective ' + String((((s as any).university ?? 0)?.['elective_semester_4_2'] ?? '') ?? ''), handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + (Math.max(0, (13 - ((st as any).hour ?? 0)) * 60 + (15 - ((st as any).minut ?? 0))));
     ((st as any).uni_period = (st as any).uni_period ?? {})['third'] = ((st as any).daystart ?? 0);
     qspCall(st, 'stat', '');
@@ -1244,7 +1244,7 @@ function enterSetThirdPeriodActNursing(s: GameState, scene: SceneBuilder): void 
             } else {
               if (((s as any).week ?? 0) === 4  &&  ((s as any).university ?? 0)?.['elective_4_3'] !== '') {
                 scene.actions([
-                  { label: '', labelFn: (s: GameState) => 'Go to your elective ' + String(((s as any).university ?? 0)?.['elective_semester_4_3'] ?? '' ?? ''), handler: (st: GameState) => {
+                  { label: '', labelFn: (s: GameState) => 'Go to your elective ' + String((((s as any).university ?? 0)?.['elective_semester_4_3'] ?? '') ?? ''), handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + (Math.max(0, (13 - ((st as any).hour ?? 0)) * 60 + (15 - ((st as any).minut ?? 0))));
     ((st as any).uni_period = (st as any).uni_period ?? {})['third'] = ((st as any).daystart ?? 0);
     qspCall(st, 'stat', '');
@@ -1274,7 +1274,7 @@ function enterSetThirdPeriodActTeaching(s: GameState, scene: SceneBuilder): void
   if (((s as any).university ?? 0)?.['enrolled_in_semester'] === 1) {
     if (((s as any).week ?? 0) === 1  &&  ((s as any).university ?? 0)?.['elective_semester_1_1'] !== '') {
       scene.actions([
-        { label: '', labelFn: (s: GameState) => 'Go to your elective ' + String(((s as any).university ?? 0)?.['elective_semester_1_1'] ?? '' ?? ''), handler: (st: GameState) => {
+        { label: '', labelFn: (s: GameState) => 'Go to your elective ' + String((((s as any).university ?? 0)?.['elective_semester_1_1'] ?? '') ?? ''), handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + (Math.max(0, (13 - ((st as any).hour ?? 0)) * 60 + (15 - ((st as any).minut ?? 0))));
     ((st as any).uni_period = (st as any).uni_period ?? {})['third'] = ((st as any).daystart ?? 0);
     qspCall(st, 'stat', '');
@@ -1284,7 +1284,7 @@ function enterSetThirdPeriodActTeaching(s: GameState, scene: SceneBuilder): void
     } else {
       if (((s as any).week ?? 0) === 2  &&  ((s as any).university ?? 0)?.['elective_semester_1_2'] !== '') {
         scene.actions([
-          { label: '', labelFn: (s: GameState) => 'Go to your elective ' + String(((s as any).university ?? 0)?.['elective_semester_1_2'] ?? '' ?? ''), handler: (st: GameState) => {
+          { label: '', labelFn: (s: GameState) => 'Go to your elective ' + String((((s as any).university ?? 0)?.['elective_semester_1_2'] ?? '') ?? ''), handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + (Math.max(0, (13 - ((st as any).hour ?? 0)) * 60 + (15 - ((st as any).minut ?? 0))));
     ((st as any).uni_period = (st as any).uni_period ?? {})['third'] = ((st as any).daystart ?? 0);
     qspCall(st, 'stat', '');
@@ -1304,7 +1304,7 @@ function enterSetThirdPeriodActTeaching(s: GameState, scene: SceneBuilder): void
         } else {
           if (((s as any).week ?? 0) === 4  &&  ((s as any).university ?? 0)?.['elective_semester_1_3'] !== '') {
             scene.actions([
-              { label: '', labelFn: (s: GameState) => 'Go to your elective ' + String(((s as any).university ?? 0)?.['elective_semester_1_3'] ?? '' ?? ''), handler: (st: GameState) => {
+              { label: '', labelFn: (s: GameState) => 'Go to your elective ' + String((((s as any).university ?? 0)?.['elective_semester_1_3'] ?? '') ?? ''), handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + (Math.max(0, (13 - ((st as any).hour ?? 0)) * 60 + (15 - ((st as any).minut ?? 0))));
     ((st as any).uni_period = (st as any).uni_period ?? {})['third'] = ((st as any).daystart ?? 0);
     qspCall(st, 'stat', '');
@@ -1319,7 +1319,7 @@ function enterSetThirdPeriodActTeaching(s: GameState, scene: SceneBuilder): void
     if (((s as any).university ?? 0)?.['enrolled_in_semester'] === 2) {
       if (((s as any).week ?? 0) === 1  &&  ((s as any).university ?? 0)?.['elective_semester_2_1'] !== '') {
         scene.actions([
-          { label: '', labelFn: (s: GameState) => 'Go to your elective ' + String(((s as any).university ?? 0)?.['elective_semester_2_1'] ?? '' ?? ''), handler: (st: GameState) => {
+          { label: '', labelFn: (s: GameState) => 'Go to your elective ' + String((((s as any).university ?? 0)?.['elective_semester_2_1'] ?? '') ?? ''), handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + (Math.max(0, (13 - ((st as any).hour ?? 0)) * 60 + (15 - ((st as any).minut ?? 0))));
     ((st as any).uni_period = (st as any).uni_period ?? {})['third'] = ((st as any).daystart ?? 0);
     qspCall(st, 'stat', '');
@@ -1329,7 +1329,7 @@ function enterSetThirdPeriodActTeaching(s: GameState, scene: SceneBuilder): void
       } else {
         if (((s as any).week ?? 0) === 2  &&  ((s as any).university ?? 0)?.['elective_semester_2_2'] !== '') {
           scene.actions([
-            { label: '', labelFn: (s: GameState) => 'Go to your elective ' + String(((s as any).university ?? 0)?.['elective_semester_2_2'] ?? '' ?? ''), handler: (st: GameState) => {
+            { label: '', labelFn: (s: GameState) => 'Go to your elective ' + String((((s as any).university ?? 0)?.['elective_semester_2_2'] ?? '') ?? ''), handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + (Math.max(0, (13 - ((st as any).hour ?? 0)) * 60 + (15 - ((st as any).minut ?? 0))));
     ((st as any).uni_period = (st as any).uni_period ?? {})['third'] = ((st as any).daystart ?? 0);
     qspCall(st, 'stat', '');
@@ -1349,7 +1349,7 @@ function enterSetThirdPeriodActTeaching(s: GameState, scene: SceneBuilder): void
           } else {
             if (((s as any).week ?? 0) === 4  &&  ((s as any).university ?? 0)?.['elective_semester_2_3'] !== '') {
               scene.actions([
-                { label: '', labelFn: (s: GameState) => 'Go to your elective ' + String(((s as any).university ?? 0)?.['elective_semester_2_3'] ?? '' ?? ''), handler: (st: GameState) => {
+                { label: '', labelFn: (s: GameState) => 'Go to your elective ' + String((((s as any).university ?? 0)?.['elective_semester_2_3'] ?? '') ?? ''), handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + (Math.max(0, (13 - ((st as any).hour ?? 0)) * 60 + (15 - ((st as any).minut ?? 0))));
     ((st as any).uni_period = (st as any).uni_period ?? {})['third'] = ((st as any).daystart ?? 0);
     qspCall(st, 'stat', '');
@@ -1364,7 +1364,7 @@ function enterSetThirdPeriodActTeaching(s: GameState, scene: SceneBuilder): void
       if (((s as any).university ?? 0)?.['enrolled_in_semester'] === 3) {
         if (((s as any).week ?? 0) === 1  &&  ((s as any).university ?? 0)?.['elective_3_1'] !== '') {
           scene.actions([
-            { label: '', labelFn: (s: GameState) => 'Go to your elective ' + String(((s as any).university ?? 0)?.['elective_semester_3_1'] ?? '' ?? ''), handler: (st: GameState) => {
+            { label: '', labelFn: (s: GameState) => 'Go to your elective ' + String((((s as any).university ?? 0)?.['elective_semester_3_1'] ?? '') ?? ''), handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + (Math.max(0, (13 - ((st as any).hour ?? 0)) * 60 + (15 - ((st as any).minut ?? 0))));
     ((st as any).uni_period = (st as any).uni_period ?? {})['third'] = ((st as any).daystart ?? 0);
     qspCall(st, 'stat', '');
@@ -1374,7 +1374,7 @@ function enterSetThirdPeriodActTeaching(s: GameState, scene: SceneBuilder): void
         } else {
           if (((s as any).week ?? 0) === 2  &&  ((s as any).university ?? 0)?.['elective_3_2'] !== '') {
             scene.actions([
-              { label: '', labelFn: (s: GameState) => 'Go to your elective ' + String(((s as any).university ?? 0)?.['elective_semester_3_2'] ?? '' ?? ''), handler: (st: GameState) => {
+              { label: '', labelFn: (s: GameState) => 'Go to your elective ' + String((((s as any).university ?? 0)?.['elective_semester_3_2'] ?? '') ?? ''), handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + (Math.max(0, (13 - ((st as any).hour ?? 0)) * 60 + (15 - ((st as any).minut ?? 0))));
     ((st as any).uni_period = (st as any).uni_period ?? {})['third'] = ((st as any).daystart ?? 0);
     qspCall(st, 'stat', '');
@@ -1394,7 +1394,7 @@ function enterSetThirdPeriodActTeaching(s: GameState, scene: SceneBuilder): void
             } else {
               if (((s as any).week ?? 0) === 4  &&  ((s as any).university ?? 0)?.['elective_3_3'] !== '') {
                 scene.actions([
-                  { label: '', labelFn: (s: GameState) => 'Go to your elective ' + String(((s as any).university ?? 0)?.['elective_semester_3_3'] ?? '' ?? ''), handler: (st: GameState) => {
+                  { label: '', labelFn: (s: GameState) => 'Go to your elective ' + String((((s as any).university ?? 0)?.['elective_semester_3_3'] ?? '') ?? ''), handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + (Math.max(0, (13 - ((st as any).hour ?? 0)) * 60 + (15 - ((st as any).minut ?? 0))));
     ((st as any).uni_period = (st as any).uni_period ?? {})['third'] = ((st as any).daystart ?? 0);
     qspCall(st, 'stat', '');
@@ -1408,7 +1408,7 @@ function enterSetThirdPeriodActTeaching(s: GameState, scene: SceneBuilder): void
       } else {
         if (((s as any).week ?? 0) === 1  &&  ((s as any).university ?? 0)?.['elective_4_1'] !== '') {
           scene.actions([
-            { label: '', labelFn: (s: GameState) => 'Go to your elective ' + String(((s as any).university ?? 0)?.['elective_semester_4_1'] ?? '' ?? ''), handler: (st: GameState) => {
+            { label: '', labelFn: (s: GameState) => 'Go to your elective ' + String((((s as any).university ?? 0)?.['elective_semester_4_1'] ?? '') ?? ''), handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + (Math.max(0, (13 - ((st as any).hour ?? 0)) * 60 + (15 - ((st as any).minut ?? 0))));
     ((st as any).uni_period = (st as any).uni_period ?? {})['third'] = ((st as any).daystart ?? 0);
     qspCall(st, 'stat', '');
@@ -1418,7 +1418,7 @@ function enterSetThirdPeriodActTeaching(s: GameState, scene: SceneBuilder): void
         } else {
           if (((s as any).week ?? 0) === 2  &&  ((s as any).university ?? 0)?.['elective_4_2'] !== '') {
             scene.actions([
-              { label: '', labelFn: (s: GameState) => 'Go to your elective ' + String(((s as any).university ?? 0)?.['elective_semester_4_2'] ?? '' ?? ''), handler: (st: GameState) => {
+              { label: '', labelFn: (s: GameState) => 'Go to your elective ' + String((((s as any).university ?? 0)?.['elective_semester_4_2'] ?? '') ?? ''), handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + (Math.max(0, (13 - ((st as any).hour ?? 0)) * 60 + (15 - ((st as any).minut ?? 0))));
     ((st as any).uni_period = (st as any).uni_period ?? {})['third'] = ((st as any).daystart ?? 0);
     qspCall(st, 'stat', '');
@@ -1440,7 +1440,7 @@ function enterSetThirdPeriodActTeaching(s: GameState, scene: SceneBuilder): void
             } else {
               if (((s as any).week ?? 0) === 4  &&  ((s as any).university ?? 0)?.['elective_4_3'] !== '') {
                 scene.actions([
-                  { label: '', labelFn: (s: GameState) => 'Go to your elective ' + String(((s as any).university ?? 0)?.['elective_semester_4_3'] ?? '' ?? ''), handler: (st: GameState) => {
+                  { label: '', labelFn: (s: GameState) => 'Go to your elective ' + String((((s as any).university ?? 0)?.['elective_semester_4_3'] ?? '') ?? ''), handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + (Math.max(0, (13 - ((st as any).hour ?? 0)) * 60 + (15 - ((st as any).minut ?? 0))));
     ((st as any).uni_period = (st as any).uni_period ?? {})['third'] = ((st as any).daystart ?? 0);
     qspCall(st, 'stat', '');

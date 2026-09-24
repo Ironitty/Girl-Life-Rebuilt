@@ -95,7 +95,7 @@ function enterGetPropertyAttr(s: GameState, scene: SceneBuilder): void {
             ((s as any).property = (s as any).property ?? {})['display_0'] = 'plot of land in the St. Petersburg\'s suburbs';
             ((s as any).property = (s as any).property ?? {})['display_1'] = 'impressive mansion under construction in the St. Petersburg\'s suburbs';
             ((s as any).property = (s as any).property ?? {})['display_2'] = 'impressive mansion in the St. Petersburg\'s suburbs';
-            ((s as any).property = (s as any).property ?? {})['display'] = ((s as any).property ?? 0)?.['display_' + String(((s as any).accessible_property ?? 0)?.[String((((s as any).args ?? 0)?.[1] ?? 0)) + '-construction-status'])];
+            ((s as any).property = (s as any).property ?? {})['display'] = (((s as any).property ?? 0)?.['display_' + String((((s as any).accessible_property ?? 0)?.[String((((s as any).args ?? 0)?.[1] ?? 0)) + '-construction-status']))]);
             ((s as any).property = (s as any).property ?? {})['region'] = 'city';
             ((s as any).property = (s as any).property ?? {})['town'] = 'city';
             ((s as any).property = (s as any).property ?? {})['location'] = 'city_mansion_entrance';

@@ -26,15 +26,15 @@ function enterSetup(s: GameState, scene: SceneBuilder): void {
   ((s as any).setloc = (s as any).setloc ?? {})['imagepath'] = 'images/' + 'locations/city/canals/';
   if (((s as any).month ?? 0) >= 3  &&  ((s as any).month ?? 0) < 9) {
     if (((s as any).daystage ?? 0) === 2  ||  ((s as any).daystage ?? 0) === 3) {
-      scene.img(((s as any).setloc ?? 0)?.['imagepath'] + 'city_canals_day_' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
+      scene.img((((s as any).setloc ?? 0)?.['imagepath']) + 'city_canals_day_' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
     } else {
-      scene.img(((s as any).setloc ?? 0)?.['imagepath'] + 'city_canals_night_' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
+      scene.img((((s as any).setloc ?? 0)?.['imagepath']) + 'city_canals_night_' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
     }
   } else {
     if (((s as any).daystage ?? 0) === 2  ||  ((s as any).daystage ?? 0) === 3) {
-      scene.img(((s as any).setloc ?? 0)?.['imagepath'] + 'w_city_canals_day_1.jpg');
+      scene.img((((s as any).setloc ?? 0)?.['imagepath']) + 'w_city_canals_day_1.jpg');
     } else {
-      scene.img(((s as any).setloc ?? 0)?.['imagepath'] + 'w_city_canals_night_1.jpg');
+      scene.img((((s as any).setloc ?? 0)?.['imagepath']) + 'w_city_canals_night_1.jpg');
     }
   }
   qspCall(s, 'core_library', 'stage_title');
@@ -59,7 +59,7 @@ function enterExit(s: GameState, scene: SceneBuilder): void {
         if (String((s as any).locArgs?.[1] ?? '') === 'residential') {
           qspGoto(s, 'city_suburbs', 'start');
         } else {
-          { const __t = String((s as any).locArgs?.[1] ?? ''); if (__t) qspGoto(s, __t, '$ARGS[2]'); }
+          { const __t = String((s as any).locArgs?.[1] ?? ''); if (__t) qspGoto(s, __t, String((s as any).locArgs?.[2] ?? '')); }
         }
       }
     }
@@ -79,7 +79,7 @@ function enterContent(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 20;
     qspCall(st, 'money', 'pay', 100);
     qspCall(st, 'stat', '');
-    scene.img(`images/${((st as any).setloc ?? 0)?.['imagepath'] ?? ''}neva_river.jpg`);
+    scene.img(`images/${(((st as any).setloc ?? 0)?.['imagepath'] ?? '')}neva_river.jpg`);
     scene.text('You take a boat and travel along the Neva River and up the Malaya Neva to the world renowned Spit of Vaslievs Island. As you pull into the jetty, you can see where the river continues to flow into Neva Bay and the two islands of Dekabristov and Petrosky.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
@@ -95,7 +95,7 @@ function enterContent(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 20;
     qspCall(st, 'money', 'pay', 100);
     qspCall(st, 'stat', '');
-    scene.img(`images/${((st as any).setloc ?? 0)?.['imagepath'] ?? ''}island_canal.jpg`);
+    scene.img(`images/${(((st as any).setloc ?? 0)?.['imagepath'] ?? '')}island_canal.jpg`);
     scene.text('You take a boat and travel along the Neva River one of the arterial river that forms the lifeblood of St Petersburg. You gaze upon the many bridges as you pass them and elegant buildings that line the river banks lost in your own thoughts.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
@@ -111,7 +111,7 @@ function enterContent(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 20;
     qspCall(st, 'money', 'pay', 100);
     qspCall(st, 'stat', '');
-    scene.img(`images/${((st as any).setloc ?? 0)?.['imagepath'] ?? ''}chernaya_rechka.jpg`);
+    scene.img(`images/${(((st as any).setloc ?? 0)?.['imagepath'] ?? '')}chernaya_rechka.jpg`);
     scene.text('You get into the boat and travel along the Chernaya Rechka to the cities industrial district. You muse as you remember your history lessons about the famous poet Alexander Pushkin meeting his end on the banks in a duel.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
@@ -126,7 +126,7 @@ function enterContent(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 120;
     qspCall(st, 'money', 'pay', 150);
     qspCall(st, 'stat', '');
-    scene.img(`images/${((st as any).setloc ?? 0)?.['imagepath'] ?? ''}tour_boat_${(Math.floor(Math.random() * 2) + 1)}.jpg`);
+    scene.img(`images/${(((st as any).setloc ?? 0)?.['imagepath'] ?? '')}tour_boat_${(Math.floor(Math.random() * 2) + 1)}.jpg`);
     scene.text('You take a boat ride. Description of the boat tour goes here');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
@@ -161,7 +161,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 20;
     qspCall(st, 'money', 'pay', 100);
     qspCall(st, 'stat', '');
-    scene.img(`images/${((st as any).setloc ?? 0)?.['imagepath'] ?? ''}neva_river.jpg`);
+    scene.img(`images/${(((st as any).setloc ?? 0)?.['imagepath'] ?? '')}neva_river.jpg`);
     scene.text('You take a boat and travel along the Neva River and up the Malaya Neva to the world renowned Spit of Vaslievs Island. As you pull into the jetty, you can see where the river continues to flow into Neva Bay and the two islands of Dekabristov and Petrosky.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
@@ -177,7 +177,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 20;
     qspCall(st, 'money', 'pay', 100);
     qspCall(st, 'stat', '');
-    scene.img(`images/${((st as any).setloc ?? 0)?.['imagepath'] ?? ''}island_canal.jpg`);
+    scene.img(`images/${(((st as any).setloc ?? 0)?.['imagepath'] ?? '')}island_canal.jpg`);
     scene.text('You take a boat and travel along the Neva River one of the arterial river that forms the lifeblood of St Petersburg. You gaze upon the many bridges as you pass them and elegant buildings that line the river banks lost in your own thoughts.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
@@ -193,7 +193,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 20;
     qspCall(st, 'money', 'pay', 100);
     qspCall(st, 'stat', '');
-    scene.img(`images/${((st as any).setloc ?? 0)?.['imagepath'] ?? ''}chernaya_rechka.jpg`);
+    scene.img(`images/${(((st as any).setloc ?? 0)?.['imagepath'] ?? '')}chernaya_rechka.jpg`);
     scene.text('You get into the boat and travel along the Chernaya Rechka to the cities industrial district. You muse as you remember your history lessons about the famous poet Alexander Pushkin meeting his end on the banks in a duel.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
@@ -208,7 +208,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 120;
     qspCall(st, 'money', 'pay', 150);
     qspCall(st, 'stat', '');
-    scene.img(`images/${((st as any).setloc ?? 0)?.['imagepath'] ?? ''}tour_boat_${(Math.floor(Math.random() * 2) + 1)}.jpg`);
+    scene.img(`images/${(((st as any).setloc ?? 0)?.['imagepath'] ?? '')}tour_boat_${(Math.floor(Math.random() * 2) + 1)}.jpg`);
     scene.text('You take a boat ride. Description of the boat tour goes here');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {

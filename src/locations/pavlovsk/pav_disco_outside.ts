@@ -1065,7 +1065,7 @@ function enterSlutInvite(s: GameState, scene: SceneBuilder): void {
       }
     }
     // TODO-QSP: dynamic text: He holds out <<$func(''money'', ''string_profit'', temp[''prostitution_offer''])...
-    scene.text(`He holds out ${qspFunc(s, 'money', 'string_profit', ((st as any).temp ?? 0)?.['prostitution_offer'] ?? '')} in notes.`);
+    scene.text(`He holds out ${qspFunc(s, 'money', 'string_profit', (((st as any).temp ?? 0)?.['prostitution_offer'] ?? ''))} in notes.`);
     qspCall(st, 'willpower', 'prostitution', 'resist');
     if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([

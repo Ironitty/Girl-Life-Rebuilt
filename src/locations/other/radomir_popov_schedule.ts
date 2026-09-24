@@ -67,14 +67,14 @@ function enter(s: GameState, scene: SceneBuilder): void {
         } else {
           if (((s as any).hour ?? 0) < 16) {
             if (((s as any).locat ?? 0)?.['154_rand1'] === ((s as any).daystart ?? 0)) {
-              ((s as any).locat = (s as any).locat ?? {})['A154'] = ((s as any).locat ?? 0)?.['154_save1'];
+              ((s as any).locat = (s as any).locat ?? {})['A154'] = (((s as any).locat ?? 0)?.['154_save1']);
             } else {
               ((s as any).locat = (s as any).locat ?? {})['A154'] = 20;
             }
           } else {
             if (((s as any).hour ?? 0) < 18) {
               if (((s as any).locat ?? 0)?.['154_rand2'] === ((s as any).daystart ?? 0)) {
-                ((s as any).locat = (s as any).locat ?? {})['A154'] = ((s as any).locat ?? 0)?.['154_save2'];
+                ((s as any).locat = (s as any).locat ?? {})['A154'] = (((s as any).locat ?? 0)?.['154_save2']);
               } else {
                 if (((s as any).week ?? 0) === 3) {
                   ((s as any).locat = (s as any).locat ?? {})['A154'] = 24;
@@ -85,7 +85,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
             } else {
               if (((s as any).hour ?? 0) < 20) {
                 if (((s as any).locat ?? 0)?.['154_rand2'] === ((s as any).daystart ?? 0)) {
-                  ((s as any).locat = (s as any).locat ?? {})['A154'] = ((s as any).locat ?? 0)?.['154_save2'];
+                  ((s as any).locat = (s as any).locat ?? {})['A154'] = (((s as any).locat ?? 0)?.['154_save2']);
                 } else {
                   if (((s as any).week ?? 0) === 3) {
                     ((s as any).locat = (s as any).locat ?? {})['A154'] = 24;
@@ -96,7 +96,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
               } else {
                 if (((s as any).hour ?? 0) < 22) {
                   if (((s as any).locat ?? 0)?.['154_rand3'] === ((s as any).daystart ?? 0)) {
-                    ((s as any).locat = (s as any).locat ?? {})['A154'] = ((s as any).locat ?? 0)?.['154_save3'];
+                    ((s as any).locat = (s as any).locat ?? {})['A154'] = (((s as any).locat ?? 0)?.['154_save3']);
                   } else {
                     if (((s as any).week ?? 0) === 3) {
                       ((s as any).locat = (s as any).locat ?? {})['A154'] = 24;

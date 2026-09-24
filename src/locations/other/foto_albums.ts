@@ -20,12 +20,12 @@ function enterModelPortraits(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $temp_base_ranking_name[9] = 'Anushka K.'    &  $temp_base_ranking_link[9] = 'anushka'
   // TODO-QSP: $temp_base_ranking_name[10] = 'Olga K.'      &  $temp_base_ranking_link[10] = 'olga'
   qspCall(s, 'stat', '');
-  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).model ?? 0)?.['rank']]; enterSetAlbumText(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', (((s as any).model ?? 0)?.['rank'])]; enterSetAlbumText(s, scene); (s as any).locArgs = __savedLocArgs; }
   (s as any).model_i = 1;
   // TODO-QSP: :model_loop
   if (((s as any).model ?? 0)?.['rank'] === (11 - ((s as any).model_i ?? 0))) {
     // TODO-QSP: dynamic text: <a href="exec:gt ''foto_albums'', ''sveta''"><<model_i>>. <<$model[''firstname''...
-    scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027foto_albums/u0027, /u0027sveta/u0027); return false;">${((s as any).model_i ?? '')}. ${((s as any).model ?? 0)?.['firstname'] ?? ''} ${(String(((s as any).model ?? 0)?.['lastname'] ?? '').slice((1)-1, ((1)-1)+(1)))}.</a>`);
+    scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027foto_albums/u0027, /u0027sveta/u0027); return false;">${((s as any).model_i ?? '')}. ${(((s as any).model ?? 0)?.['firstname'] ?? '')} ${(String((((s as any).model ?? 0)?.['lastname'] ?? '')).slice((1)-1, ((1)-1)+(1)))}.</a>`);
   } else {
     // TODO-QSP: dynamic text: <a href="exec:gt ''foto_albums'', ''<<$temp_base_ranking_link[model_i]>>''"><<mo...
     scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027foto_albums/u0027, /u0027${(((s as any).temp_base_ranking_link ?? 0)?.[String((s as any).model_i ?? 0)] ?? '')}/u0027); return false;">${((s as any).model_i ?? '')}. ${(((s as any).temp_base_ranking_name ?? 0)?.[String((s as any).model_i ?? 0)] ?? '')}</a>`);
@@ -50,7 +50,7 @@ function enterSetAlbumText(s: GameState, scene: SceneBuilder): void {
       scene.img('images/locations/city/citycenter/photo/portraits/albums.jpg');
       scene.text('Here is the shelf that has the albums of the top 10 models. You saw it before when you first joined the studio, but something has changed. You read the names from left to right and your heart stops when you see the final name.');
       // TODO-QSP: dynamic text: "<<$model[''firstname'']>> <<$mid($model[''lastname''], 1, 1)>>."
-      scene.text(`"${((s as any).model ?? 0)?.['firstname'] ?? ''} ${(String(((s as any).model ?? 0)?.['lastname'] ?? '').slice((1)-1, ((1)-1)+(1)))}."`);
+      scene.text(`"${(((s as any).model ?? 0)?.['firstname'] ?? '')} ${(String((((s as any).model ?? 0)?.['lastname'] ?? '')).slice((1)-1, ((1)-1)+(1)))}."`);
       scene.text('That\'s your name! You\'re one of the top 10 models of the studio!');
     } else {
       if (String((s as any).locArgs?.[1] ?? '') === 2) {
@@ -107,7 +107,7 @@ function enterSveta(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Go back', goto: ['foto_albums', 'model_portraits'] },
-    { label: '', labelFn: (s: GameState) => 'Presenting: ' + String(((s as any).model ?? 0)?.['firstname'] ?? '' ?? '') + ' ' + String((String(((s as any).model ?? 0)?.['lastname'] ?? '').slice((1)-1, ((1)-1)+(1))) ?? ''), handler: (st: GameState) => {
+    { label: '', labelFn: (s: GameState) => 'Presenting: ' + String((((s as any).model ?? 0)?.['firstname'] ?? '') ?? '') + ' ' + String((String((((s as any).model ?? 0)?.['lastname'] ?? '')).slice((1)-1, ((1)-1)+(1))) ?? ''), handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/photo/portraits/sveta_l/1.jpg');
     scene.actions([
       { label: 'Waiting For You', handler: (st: GameState) => {

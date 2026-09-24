@@ -15,7 +15,7 @@ function enterExport(s: GameState, scene: SceneBuilder): void {
     { label: 'Continue', handler: (st: GameState) => {
     // TODO-QSP: showstat 0
     (st as any).usehtml = 0;
-    (st as any).export_str = 'cfg_vars[\'disable_autosave\'] = ' + ((st as any).cfg_vars ?? 0)?.['disable_autosave'] + '';
+    (st as any).export_str = 'cfg_vars[\'disable_autosave\'] = ' + (((st as any).cfg_vars ?? 0)?.['disable_autosave']) + '';
     // TODO-QSP: $export_str += ' & ' + "cheatVars['gameover'] = <<cheatVars['gameover']>>"
     // TODO-QSP: $export_str += ' & ' + "sound_settings['music_off'] = <<sound_settings['music_off']>>"
     // TODO-QSP: $export_str += ' & ' + "sound_settings['environment_off'] = <<sound_settings['environment_off']>>"
@@ -327,7 +327,7 @@ function enterImport(s: GameState, scene: SceneBuilder): void {
     if (((st as any).initext ?? 0) === '') {
       // TODO-QSP: exit
     }
-    qspCall(st, 'themes', 'set_theme', ((st as any).theme ?? 0)?.['name'], ((st as any).theme ?? 0)?.['type']);
+    qspCall(st, 'themes', 'set_theme', (((st as any).theme ?? 0)?.['name']), (((st as any).theme ?? 0)?.['type']));
     if (((st as any).calendar_show ?? 0)?.['disco_party'] === 1) {
       qspCall(st, 'calendar', 'add', 'disco_party');
     } else {

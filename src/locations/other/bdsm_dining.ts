@@ -23,7 +23,7 @@ function enterCheckEvents(s: GameState, scene: SceneBuilder): void {
   if ((Math.floor(Math.random() * 100) + 0) < 70) {
     // TODO-QSP: exit
   }
-  qspGoto(s, 'bdsm_dining', qspUntranslated(s, "''event_<<rand(1'", { location: "bdsm_dining" }), '10)>>');
+  qspGoto(s, 'bdsm_dining', qspUntranslated(s, "event_(Math.floor(Math.random() * 10) + 1)", { location: "bdsm_dining" }));
   // TODO-QSP: end
   scene.build();
 }

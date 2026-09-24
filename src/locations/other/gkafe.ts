@@ -68,21 +68,21 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
         if (((s as any).gschoolVars ?? 0)?.['block'] === 0) {
           if (qspFunc(s, 'homes_properties', 'has_access', 'parents_home')) {
             // TODO-QSP: dynamic text: Since your <<$npc_nickname[''A29'']>> works here, you can eat-in for free.
-            scene.text(`Since your ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''} works here, you can eat-in for free.`);
+            scene.text(`Since your ${(((s as any).npc_nickname ?? 0)?.['A29'] ?? '')} works here, you can eat-in for free.`);
           } else {
             scene.text('Since you left home, you can no longer eat here for free.');
           }
         } else {
           if (qspFunc(s, 'homes_properties', 'has_access', 'parents_home')) {
             // TODO-QSP: dynamic text: Since you got kicked out of school, you can no longer eat here for free. Your <<...
-            scene.text(`Since you got kicked out of school, you can no longer eat here for free. Your ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''} wants you to earn a living.`);
+            scene.text(`Since you got kicked out of school, you can no longer eat here for free. Your ${(((s as any).npc_nickname ?? 0)?.['A29'] ?? '')} wants you to earn a living.`);
           } else {
             scene.text('Since you were expelled from school and left home, you can no longer eat here for free.');
           }
         }
       } else {
         // TODO-QSP: dynamic text: Your <<$npc_nickname[''A29'']>> works here and when you were a kid you used to b...
-        scene.text(`Your ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''} works here and when you were a kid you used to be able to eat for free.`);
+        scene.text(`Your ${(((s as any).npc_nickname ?? 0)?.['A29'] ?? '')} works here and when you were a kid you used to be able to eat for free.`);
       }
       if (((s as any).week ?? 0) < 6) {
         if (((s as any).hour ?? 0) >= 6  &&  ((s as any).hour ?? 0) < 16) {

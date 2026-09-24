@@ -607,7 +607,7 @@ function enterOhrbj(s: GameState, scene: SceneBuilder): void {
     (st as any).picrand = (Math.floor(Math.random() * 4) + 1);
     scene.img(`images/locations/city/residential/office/sex/guard/bj${((st as any).picrand ?? '')}.jpg`);
     // TODO-QSP: dynamic text: You wrap your <<$pc_desc[''lips'']>> lips around his strong and warm 15 cm cock ...
-    scene.text(`You wrap your ${((st as any).pc_desc ?? 0)?.['lips'] ?? ''} lips around his strong and warm 15 cm cock and quickly begin by sucking the head, caressing it with your tongue and lips. Sasha groans, "I'm going to come."`);
+    scene.text(`You wrap your ${(((st as any).pc_desc ?? 0)?.['lips'] ?? '')} lips around his strong and warm 15 cm cock and quickly begin by sucking the head, caressing it with your tongue and lips. Sasha groans, "I'm going to come."`);
     qspCall(st, 'arousal', 'bj', 5, 'sub');
     qspCall(st, 'stat', '');
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterOhrbjcum(st, scene); (st as any).locArgs = __savedLocArgs; }
@@ -627,7 +627,7 @@ function enterOhrbjcum(s: GameState, scene: SceneBuilder): void {
     (st as any).picrand = (Math.floor(Math.random() * 4) + 1);
     scene.img(`images/locations/city/residential/office/sex/guard/bjcum${((st as any).picrand ?? '')}.jpg`);
     // TODO-QSP: dynamic text: You redouble your efforts, sucking his hard cock with your <<$pc_desc[''lips'']>...
-    scene.text(`You redouble your efforts, sucking his hard cock with your ${((st as any).pc_desc ?? 0)?.['lips'] ?? ''} lips. Hot sperm hits your mouth, again and again. You continue to suck, ignoring your mouth full of viscous sperm. Until he finally nothing left.`);
+    scene.text(`You redouble your efforts, sucking his hard cock with your ${(((st as any).pc_desc ?? 0)?.['lips'] ?? '')} lips. Hot sperm hits your mouth, again and again. You continue to suck, ignoring your mouth full of viscous sperm. Until he finally nothing left.`);
     qspCall(st, 'arousal', 'bj', 5, 'sub');
     qspCall(st, 'stat', '');
     scene.actions([

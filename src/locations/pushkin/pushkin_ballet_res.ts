@@ -24,13 +24,13 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 45;
   qspCall(s, 'stat', '');
   scene.text('<center><h1>Welcome and Introduction</h1></center>');
-  scene.img(`${((s as any).npc_img_path ?? 0)?.['A286'] ?? ''}/286.jpg`);
+  scene.img(`${(((s as any).npc_img_path ?? 0)?.['A286'] ?? '')}/286.jpg`);
   scene.text('As you and your group enter the halls for the first time, you are greeted by a matronly-looking woman who will be your warden during your stay.');
   // TODO-QSP: dynamic text: "Welcome, students, to your first night at these halls. I''m your warden, <<$npc...
-  scene.text(`"Welcome, students, to your first night at these halls. I'm your warden, ${((s as any).npc_firstname ?? 0)?.['A286'] ?? ''} ${((s as any).npc_lastname ?? 0)?.['A286'] ?? ''}. If you have any problems or need assistance, you can find me in the room to the right." She gestures towards a door with a brass plaque that reads "Warden".`);
+  scene.text(`"Welcome, students, to your first night at these halls. I'm your warden, ${(((s as any).npc_firstname ?? 0)?.['A286'] ?? '')} ${(((s as any).npc_lastname ?? 0)?.['A286'] ?? '')}. If you have any problems or need assistance, you can find me in the room to the right." She gestures towards a door with a brass plaque that reads "Warden".`);
   scene.text('"I will go through the student roster, and you will respond each evening. You can also find a list of rules in your bedroom, which will be strictly enforced. We do not tolerate any behavior that brings this school into disrepute."');
   // TODO-QSP: dynamic text: With that, you and the other students answer in unison, "Yes, Ms. <<$npc_lastnam...
-  scene.text(`With that, you and the other students answer in unison, "Yes, Ms. ${((s as any).npc_lastname ?? 0)?.['A286'] ?? ''}."`);
+  scene.text(`With that, you and the other students answer in unison, "Yes, Ms. ${(((s as any).npc_lastname ?? 0)?.['A286'] ?? '')}."`);
   scene.text('"Very well. I suggest you read the rules in your bedroom. Ignorance will not be accepted as an excuse."');
   scene.text('"With that out of the way, I will now assign your rooms." She consults her clipboard and starts reading out student names, ticking them off as she allocates rooms.');
   // TODO-QSP: dynamic text: "<<$pcs_firstname>> <<$pcs_lastname>>?" "Here!" you reply, "You''ve been assigne...
@@ -47,7 +47,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
 function enterBedroom(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'private';
   ((s as any).setloc = (s as any).setloc ?? {})['StageTitle'] = 'Residential Bedroom';
-  scene.img('images/' + '' + ((s as any).setloc ?? 0)?.['imagepath'] + 'ballet_residence/bedroom.jpg');
+  scene.img('images/' + '' + (((s as any).setloc ?? 0)?.['imagepath']) + 'ballet_residence/bedroom.jpg');
   qspCall(s, 'core_library', 'setloc', 'pushkin_ballet_res', ((s as any).locArgs?.[0] ?? 0));
   (s as any).region = 'pushkin';
   qspCall(s, 'shortgs', 'clothing_status');
@@ -149,7 +149,7 @@ function enterBedroom(s: GameState, scene: SceneBuilder): void {
 
 function enterHallway(s: GameState, scene: SceneBuilder): void {
   ((s as any).setloc = (s as any).setloc ?? {})['StageTitle'] = 'Residential Hallway';
-  scene.img('images/' + '' + ((s as any).setloc ?? 0)?.['imagepath'] + '/ballet_residence/hall.jpg');
+  scene.img('images/' + '' + (((s as any).setloc ?? 0)?.['imagepath']) + '/ballet_residence/hall.jpg');
   (s as any).location_type = 'public_indoors';
   qspCall(s, 'core_library', 'setloc', 'pushkin_ballet_res', ((s as any).locArgs?.[0] ?? 0));
   qspCall(s, 'core_library', 'corridor');
@@ -207,7 +207,7 @@ function enterHallway(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).ballet_day ?? 0) === 7) {
     // TODO-QSP: dynamic text: The hall is bustling with various students settling into their rooms. A few of t...
-    scene.text(`The hall is bustling with various students settling into their rooms. A few of them wave or smile to greet you as you pass by. You see Madam ${((s as any).npc_lastname ?? 0)?.['A286'] ?? ''} at the end of the hall, keeping an eye on the students and ready to provide assistance.`);
+    scene.text(`The hall is bustling with various students settling into their rooms. A few of them wave or smile to greet you as you pass by. You see Madam ${(((s as any).npc_lastname ?? 0)?.['A286'] ?? '')} at the end of the hall, keeping an eye on the students and ready to provide assistance.`);
   } else {
     (s as any).amb_event = (Math.floor(Math.random() * 4) + 1);
     if (((s as any).amb_event ?? 0) === 1) {
@@ -237,14 +237,14 @@ function enterHallway(s: GameState, scene: SceneBuilder): void {
 
 function enterMayaRoom(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'private';
-  ((s as any).setloc = (s as any).setloc ?? {})['StageTitle'] = '' + ((s as any).npc_firstname ?? 0)?.['A274'] + ' Room';
-  scene.img('images/' + '' + ((s as any).setloc ?? 0)?.['imagepath'] + '/ballet_residence/maya_room.jpg');
+  ((s as any).setloc = (s as any).setloc ?? {})['StageTitle'] = '' + (((s as any).npc_firstname ?? 0)?.['A274']) + ' Room';
+  scene.img('images/' + '' + (((s as any).setloc ?? 0)?.['imagepath']) + '/ballet_residence/maya_room.jpg');
   qspCall(s, 'core_library', 'setloc', 'pushkin_ballet_res', ((s as any).locArgs?.[0] ?? 0));
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'indoors');
   qspCall(s, 'core_library', 'stage_title');
   // TODO-QSP: dynamic text: <<$npc_firstname[''A274'']>>''s room closely resembles your own. Her wardrobe is...
-  scene.text(`${((s as any).npc_firstname ?? 0)?.['A274'] ?? ''}'s room closely resembles your own. Her wardrobe is open, and you see her collection of tutus hanging from the rails. On her desk there are several books, including an open poetry book. A quick glance reveals the page title "Like a White Stone" by Akhmatova.`);
+  scene.text(`${(((s as any).npc_firstname ?? 0)?.['A274'] ?? '')}'s room closely resembles your own. Her wardrobe is open, and you see her collection of tutus hanging from the rails. On her desk there are several books, including an open poetry book. A quick glance reveals the page title "Like a White Stone" by Akhmatova.`);
   scene.text('Next to it is an old picture of a woman in a park with a black ribbon in the corner.');
   // TODO-QSP: end
   scene.actions([
@@ -258,7 +258,7 @@ function enterMayaRoom(s: GameState, scene: SceneBuilder): void {
 
 function enterCommunalArea(s: GameState, scene: SceneBuilder): void {
   ((s as any).setloc = (s as any).setloc ?? {})['StageTitle'] = 'Communal Room';
-  scene.img('images/' + '' + ((s as any).setloc ?? 0)?.['imagepath'] + '/ballet_residence/communal.jpg');
+  scene.img('images/' + '' + (((s as any).setloc ?? 0)?.['imagepath']) + '/ballet_residence/communal.jpg');
   (s as any).location_type = 'public_indoors';
   qspCall(s, 'core_library', 'setloc', 'pushkin_ballet_res', ((s as any).locArgs?.[0] ?? 0));
   qspCall(s, 'stat', '');
@@ -292,7 +292,7 @@ function enterCommunalArea(s: GameState, scene: SceneBuilder): void {
 
 function enterKitchen(s: GameState, scene: SceneBuilder): void {
   ((s as any).setloc = (s as any).setloc ?? {})['StageTitle'] = 'Residential Kitchen';
-  scene.img('images/' + '' + ((s as any).setloc ?? 0)?.['imagepath'] + 'ballet_residence/kitchen.jpg');
+  scene.img('images/' + '' + (((s as any).setloc ?? 0)?.['imagepath']) + 'ballet_residence/kitchen.jpg');
   (s as any).location_type = 'private';
   qspCall(s, 'core_library', 'setloc', 'pushkin_ballet_res', ((s as any).locArgs?.[0] ?? 0));
   qspCall(s, 'stat', '');
@@ -316,13 +316,13 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
   } else {
     if ((((s as any).hour ?? 0) > 4  &&  ((s as any).hour ?? 0) < 8)  &&  ((s as any).mayaqw ?? 0)?.['grave'] === 4  &&  ((s as any).sharedmeal ?? 0) !== ((s as any).daystart ?? 0)) {
       scene.actions([
-        { label: '', labelFn: (s: GameState) => 'Have breakfast with ' + String(((s as any).npc_firstname ?? 0)?.['A274'] ?? '' ?? ''), handler: (st: GameState) => {
+        { label: '', labelFn: (s: GameState) => 'Have breakfast with ' + String((((s as any).npc_firstname ?? 0)?.['A274'] ?? '') ?? ''), handler: (st: GameState) => {
     (st as any).sharedmeal = ((st as any).daystart ?? 0);
     qspCall(st, 'food', 'family_meals', 'breakfast');
     qspCall(st, 'stat', '');
-    scene.img(`${((st as any).npc_img_path ?? 0)?.['A274'] ?? ''}/274-1.jpg`);
+    scene.img(`${(((st as any).npc_img_path ?? 0)?.['A274'] ?? '')}/274-1.jpg`);
     // TODO-QSP: dynamic text: You encounter <<$npc_firstname[''A274'']>> as she prepares her breakfast. You le...
-    scene.text(`You encounter ${((st as any).npc_firstname ?? 0)?.['A274'] ?? ''} as she prepares her breakfast. You lend a hand with the preparations and engage in a conversation about your upcoming lessons while enjoying your morning meal.`);
+    scene.text(`You encounter ${(((st as any).npc_firstname ?? 0)?.['A274'] ?? '')} as she prepares her breakfast. You lend a hand with the preparations and engage in a conversation about your upcoming lessons while enjoying your morning meal.`);
     scene.actions([
       { label: 'Finish breakfast', handler: (st: GameState) => {
     dynamicGoto(st, 'prevLoc', 'kitchen');
@@ -334,7 +334,7 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
       if (((s as any).hour ?? 0) > 4  &&  ((s as any).hour ?? 0) < 8) {
         scene.actions([
           { label: 'Eat breakfast', handler: (st: GameState) => {
-    scene.img('images/' + '' + ((st as any).setloc ?? 0)?.['imagepath'] + 'ballet_residence/breakfast.jpg');
+    scene.img('images/' + '' + (((st as any).setloc ?? 0)?.['imagepath']) + 'ballet_residence/breakfast.jpg');
     qspCall(st, 'food', 'family_meals', 'breakfast');
     qspCall(st, 'stat', '');
     qspCall(st, 'core_library', 'stage_title');
@@ -362,7 +362,7 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
 function enterWardenRoom(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'private';
   ((s as any).setloc = (s as any).setloc ?? {})['StageTitle'] = 'Wardens Residence';
-  scene.img('images/' + '' + ((s as any).setloc ?? 0)?.['imagepath'] + '/ballet_residence/warden.jpg');
+  scene.img('images/' + '' + (((s as any).setloc ?? 0)?.['imagepath']) + '/ballet_residence/warden.jpg');
   (s as any).location_type = 'public_indoors';
   qspCall(s, 'core_library', 'setloc', 'pushkin_ballet_res', ((s as any).locArgs?.[0] ?? 0));
   qspCall(s, 'stat', '');
@@ -424,7 +424,7 @@ function enterClassSchedule(s: GameState, scene: SceneBuilder): void {
   scene.text('Make up must be worn at all times, and you must be clean and presentable during classes. You will have access to showers during the day.');
   scene.text('The school operates a zero tolerance policy to all drugs and alcohol. If you are under the influence or suspected of taking substances you will face disciplinary action.');
   // TODO-QSP: dynamic text: If you require assistance at any point you can talk to the residence warden Mada...
-  scene.text(`If you require assistance at any point you can talk to the residence warden Madam ${((s as any).npc_lastname ?? 0)?.['A286'] ?? ''} or any teacher.`);
+  scene.text(`If you require assistance at any point you can talk to the residence warden Madam ${(((s as any).npc_lastname ?? 0)?.['A286'] ?? '')} or any teacher.`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Look away', handler: (st: GameState) => {
@@ -481,7 +481,7 @@ function enterRadio(s: GameState, scene: SceneBuilder): void {
     ((s as any).ballet_grade_score = (s as any).ballet_grade_score ?? {})['homework'] = ((s as any).ballet_grade_score['homework'] ?? 0) + ((((s as any).ballet_homework ?? 0)?.[String((s as any).week ?? 0)] ?? 0));
   }
   ((s as any).setloc = (s as any).setloc ?? {})['StageTitle'] = 'Radio';
-  scene.img('images/' + '' + ((s as any).setloc ?? 0)?.['imagepath'] + 'ballet_residence/russian_radio.jpg');
+  scene.img('images/' + '' + (((s as any).setloc ?? 0)?.['imagepath']) + 'ballet_residence/russian_radio.jpg');
   qspCall(s, 'stat', '');
   qspCall(s, 'core_library', 'stage_title');
   scene.text('You listen to the radio for half an hour, taking notes of the performance with the musical concepts from your earlier lessons. Then, you close your eyes and start to relax humming along to the familiar music after a while. ');
@@ -502,7 +502,7 @@ function enterFeetcare(s: GameState, scene: SceneBuilder): void {
   (s as any).ballet_grade_health = ((s as any).ballet_grade_health ?? 0) + (1);
   qspCall(s, 'stat', '');
   ((s as any).setloc = (s as any).setloc ?? {})['StageTitle'] = 'Feet Care';
-  scene.img('images/' + '' + ((s as any).setloc ?? 0)?.['imagepath'] + 'ballet_events/feet_soak.jpg');
+  scene.img('images/' + '' + (((s as any).setloc ?? 0)?.['imagepath']) + 'ballet_events/feet_soak.jpg');
   qspCall(s, 'core_library', 'stage_title');
   scene.text('After the long day at the ballet class, you diligently inspect your calves and feet for injuries, gently massaging Arnica Gel onto your calves and ankles to alleviate stiffness and swelling. Next, you carefully examine your calluses and check for any blisters.');
   scene.text('With your checks completed, you reach for your exercise band, commencing a series of foot-stretching exercises, culminating in a soothing massage using a tennis ball on your calves and soles.');
@@ -523,7 +523,7 @@ function enterStudy(s: GameState, scene: SceneBuilder): void {
   ((s as any).ballet_homework = (s as any).ballet_homework ?? {})[String((s as any).week ?? 0)] = ((s as any).ballet_homework[String((s as any).week ?? 0)] ?? 0) + (1);
   ((s as any).ballet_grade_score = (s as any).ballet_grade_score ?? {})['homework'] = ((s as any).ballet_grade_score['homework'] ?? 0) + ((((s as any).ballet_homework ?? 0)?.[String((s as any).week ?? 0)] ?? 0));
   ((s as any).setloc = (s as any).setloc ?? {})['StageTitle'] = 'Ballet Studies';
-  scene.img('images/' + '' + ((s as any).setloc ?? 0)?.['imagepath'] + 'ballet_residence/study.jpg');
+  scene.img('images/' + '' + (((s as any).setloc ?? 0)?.['imagepath']) + 'ballet_residence/study.jpg');
   qspCall(s, 'stat', '');
   qspCall(s, 'core_library', 'stage_title');
   scene.text('You gather your school books and notebook to begin studying ballet movements, history, and musical theory, diligently taking notes as you progress. After an hour of reading, you notice your eyes beginning to glaze over. Recognizing the need for a break, you decide to stand up and stretch.');
@@ -555,7 +555,7 @@ function enterMakeUp(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'stat', '');
   ((s as any).setloc = (s as any).setloc ?? {})['StageTitle'] = 'Make Up Practice';
-  scene.img('images/' + '' + ((s as any).setloc ?? 0)?.['imagepath'] + '/ballet_events/make-up.jpg');
+  scene.img('images/' + '' + (((s as any).setloc ?? 0)?.['imagepath']) + '/ballet_events/make-up.jpg');
   qspCall(s, 'core_library', 'stage_title');
   if (((s as any).pcs_makupskl ?? 0) <= 30) {
     scene.text('You struggle to master the basics of applying your look, wasting a lot of your expensive make-up. You begin to wonder if you need to get help with practicing.');
@@ -581,7 +581,7 @@ function enterWarden(s: GameState, scene: SceneBuilder): void {
       ((s as any).ballet_grade_discipline = (s as any).ballet_grade_discipline ?? {})[String((s as any).week ?? 0)] = ((s as any).ballet_grade_discipline[String((s as any).week ?? 0)] ?? 0) - (2);
     }
     // TODO-QSP: dynamic text: "Pushkin Ballet Residential Block, how may I help you?", you hear Madam <<$npc_l...
-    scene.text(`"Pushkin Ballet Residential Block, how may I help you?", you hear Madam ${((s as any).npc_lastname ?? 0)?.['A286'] ?? ''}'s icy voice through the intercom.`);
+    scene.text(`"Pushkin Ballet Residential Block, how may I help you?", you hear Madam ${(((s as any).npc_lastname ?? 0)?.['A286'] ?? '')}'s icy voice through the intercom.`);
     // TODO-QSP: dynamic text: "<<$pcs_firstname>> <<$pcs_lastname>>, can I be let in please?", there''s a few ...
     scene.text(`"${((s as any).pcs_firstname ?? '')} ${((s as any).pcs_lastname ?? '')}, can I be let in please?", there's a few seconds pause.`);
     // TODO-QSP: dynamic text: "<<$pcs_firstname>> <<$pcs_lastname>>, you will see me in my office. Now." You c...
@@ -590,7 +590,7 @@ function enterWarden(s: GameState, scene: SceneBuilder): void {
   } else {
     if ((((s as any).hour ?? 0) >= 17  ||  ((s as any).hour ?? 0) < 21 )  &&  ((s as any).ballet_awol ?? 0) === 1) {
       // TODO-QSP: dynamic text: "Pushkin Ballet Residential Block, how may I help you?", you hear Madam <<$npc_l...
-      scene.text(`"Pushkin Ballet Residential Block, how may I help you?", you hear Madam ${((s as any).npc_lastname ?? 0)?.['A286'] ?? ''}'s voice through the intercom.`);
+      scene.text(`"Pushkin Ballet Residential Block, how may I help you?", you hear Madam ${(((s as any).npc_lastname ?? 0)?.['A286'] ?? '')}'s voice through the intercom.`);
       // TODO-QSP: dynamic text: "<<$pcs_firstname>> <<$pcs_lastname>>, can I be let in please?", there''s a few ...
       scene.text(`"${((s as any).pcs_firstname ?? '')} ${((s as any).pcs_lastname ?? '')}, can I be let in please?", there's a few seconds pause and you hear the door being buzzed open.`);
       qspGoto(s, 'pushkin_ballet_res', 'hallway');
@@ -600,7 +600,7 @@ function enterWarden(s: GameState, scene: SceneBuilder): void {
           ((s as any).ballet_grade_discipline = (s as any).ballet_grade_discipline ?? {})[String((s as any).week ?? 0)] = ((s as any).ballet_grade_discipline[String((s as any).week ?? 0)] ?? 0) - (5);
         }
         // TODO-QSP: dynamic text: "Pushkin Ballet Residential Block, how may I help you?", you hear Madam <<$npc_l...
-        scene.text(`"Pushkin Ballet Residential Block, how may I help you?", you hear Madam ${((s as any).npc_lastname ?? 0)?.['A286'] ?? ''}'s voice through the intercom.`);
+        scene.text(`"Pushkin Ballet Residential Block, how may I help you?", you hear Madam ${(((s as any).npc_lastname ?? 0)?.['A286'] ?? '')}'s voice through the intercom.`);
         // TODO-QSP: dynamic text: "<<$pcs_firstname>> <<$pcs_lastname>>, can I be let in please?", there''s a few ...
         scene.text(`"${((s as any).pcs_firstname ?? '')} ${((s as any).pcs_lastname ?? '')}, can I be let in please?", there's a few seconds pause.`);
         // TODO-QSP: dynamic text: "<<$pcs_firstname>> <<$pcs_lastname>>, where the hell have you been? Get in here...

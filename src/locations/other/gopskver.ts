@@ -572,7 +572,7 @@ function enterBjBeerStart(s: GameState, scene: SceneBuilder): void {
   scene.text('You could really use a cold beer right now! You try to get on the boys\' good side and ask in a playful tone: "Come on guys, you know that\'s no way to talk to a lady! How about you offer me a nice cold beer instead?"');
   scene.text('You get into a seductive pose and give them your most enchanting smile. The guys look and whisper some things at each other, but Vasily quickly grins and beckons you to come closer.');
   // TODO-QSP: dynamic text: You shake your hips and teasingly lick your parched <<$pc_desc[''lips'']>> lips,...
-  scene.text(`You shake your hips and teasingly lick your parched ${((s as any).pc_desc ?? 0)?.['lips'] ?? ''} lips, and for a second you wonder if you're laying it on too thick as you approach the three guys. You can feel your mouth water when you see the cold beer they're reaching out to you though. Just when you reach out to take it from him, he suddenly pulls it away from you.`);
+  scene.text(`You shake your hips and teasingly lick your parched ${(((s as any).pc_desc ?? 0)?.['lips'] ?? '')} lips, and for a second you wonder if you're laying it on too thick as you approach the three guys. You can feel your mouth water when you see the cold beer they're reaching out to you though. Just when you reach out to take it from him, he suddenly pulls it away from you.`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Act surprised', handler: (st: GameState) => {
@@ -735,7 +735,7 @@ function enterBjBeerYes(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'willpower', 'pay', 'self');
     qspCall(st, 'stat', '');
     // TODO-QSP: dynamic text: You plead to the guys: "Please guys, I''m still a virgin! My <<$npc_nickname[''A...
-    scene.text(`You plead to the guys: "Please guys, I'm still a virgin! My ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''} would kill me if I lost my virginity, she has me checked every month! Maybe… maybe there's something else I could do to please you, if you leave my pussy alone?"`);
+    scene.text(`You plead to the guys: "Please guys, I'm still a virgin! My ${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')} would kill me if I lost my virginity, she has me checked every month! Maybe… maybe there's something else I could do to please you, if you leave my pussy alone?"`);
     scene.actions([
       { label: 'Take it in the ass', goto: ['gopskver', 'BjBeerAnal'] },
     ]);
@@ -788,7 +788,7 @@ function enterBjBeerAct(s: GameState, scene: SceneBuilder): void {
     scene.text('You actively try to please the boys, and one cock inside your throat as deep as it will go while you massage the others with your hands. You\'re not very well practised with your throat though, and soon you find yourself choking, drooping, and struggling to suppress your gag reflex.');
   } else {
     // TODO-QSP: dynamic text: Your tongue tightly hugs his penis as he pushed it all the way past your <<$pc_d...
-    scene.text(`Your tongue tightly hugs his penis as he pushed it all the way past your ${((s as any).pc_desc ?? 0)?.['lips'] ?? ''} lips, you successfully managed to take his cock all the way down your throat. Eventually, your lower lip is resting on his scrotum.`);
+    scene.text(`Your tongue tightly hugs his penis as he pushed it all the way past your ${(((s as any).pc_desc ?? 0)?.['lips'] ?? '')} lips, you successfully managed to take his cock all the way down your throat. Eventually, your lower lip is resting on his scrotum.`);
   }
   // TODO-QSP: end
   scene.actions([
@@ -876,7 +876,7 @@ function enterBjBeerDouble(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcStat', 'A10', 'a');
   scene.img(`images/locations/pavlovsk/park/sex/gop/bjbeer${((s as any).Doublerand ?? '')}.jpg`);
   // TODO-QSP: dynamic text: You spread your <<$pc_desc[''lips'']>> lips and wrap them around Vitek''s cock. ...
-  scene.text(`You spread your ${((s as any).pc_desc ?? 0)?.['lips'] ?? ''} lips and wrap them around Vitek's cock. At that moment, Dan grunts: "Open wider, slut" and begins to unceremoniously cram his dick into your mouth as well, stretching it to the limit. You try to protest, but the guys just laugh at the comical sounds you make with two cocks in your mouth. Once Dan gets settled in, the guys slowly begin to move, fucking your mouth at the same time.`);
+  scene.text(`You spread your ${(((s as any).pc_desc ?? 0)?.['lips'] ?? '')} lips and wrap them around Vitek's cock. At that moment, Dan grunts: "Open wider, slut" and begins to unceremoniously cram his dick into your mouth as well, stretching it to the limit. You try to protest, but the guys just laugh at the comical sounds you make with two cocks in your mouth. Once Dan gets settled in, the guys slowly begin to move, fucking your mouth at the same time.`);
   if (((s as any).pcs_throat ?? 0) > 15) {
     scene.text('Even though it\'s difficult, you manage to take both of their erections deep inside your mouth. You sometimes tease them with your tongue.');
   } else {
@@ -971,7 +971,7 @@ function enterBjBeerPhone(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/park/sex/gop/bjbeerphone.jpg');
   // TODO-QSP: dynamic text: You spread your <<$pc_desc[''lips'']>> lips and wrap them around Vitek''s cock. ...
-  scene.text(`You spread your ${((s as any).pc_desc ?? 0)?.['lips'] ?? ''} lips and wrap them around Vitek's cock. At that moment, Dan grunts: "Open wider, slut" and begins to unceremoniously cram his dick into your mouth as well, stretching it to the limit. You try to protest, but the guys just laugh at the comical sounds you make with two cocks in your mouth.`);
+  scene.text(`You spread your ${(((s as any).pc_desc ?? 0)?.['lips'] ?? '')} lips and wrap them around Vitek's cock. At that moment, Dan grunts: "Open wider, slut" and begins to unceremoniously cram his dick into your mouth as well, stretching it to the limit. You try to protest, but the guys just laugh at the comical sounds you make with two cocks in your mouth.`);
   // TODO-QSP: dynamic text: Suddenly Vasily pulls out his phone and begins to record a video, while he comme...
   scene.text(`Suddenly Vasily pulls out his phone and begins to record a video, while he comments on what is happening: "Hello everyone, and welcome to Pavlovsk News! Our special guest today is the one and only ${((s as any).gnikname ?? '')}, ${((s as any).pcs_nickname ?? '')}! Say hi to our viewers, ${((s as any).pcs_nickname ?? '')}!"`);
   scene.text('"Mvhr… mflm…" you try to say something, but the cocks in your mouth prevent you from talking. The boys firmly hold your head in place, and continue to fuck your mouth with their two cocks.');
@@ -991,12 +991,12 @@ function enterBjBeerPhone(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: Luckily the guys don''t last long, and finish fairly quickly. They both pull out...
   scene.text(`Luckily the guys don't last long, and finish fairly quickly. They both pull out and drop their loads on your face, and wipe their dicks on your ${((s as any).pcs_haircolor ?? '')} ${((s as any).curly_txt ?? '')} hair. They make you lick their cocks clean, but don't let go of your hair just yet.`);
   // TODO-QSP: dynamic text: Vasily grins as he tells the camera: "And that was the premiere presentation of ...
-  scene.text(`Vasily grins as he tells the camera: "And that was the premiere presentation of ${((s as any).pcs_nickname ?? '')} ${((s as any).pcs_lastname ?? '')} in her very first production called "Gagging Whore"! You delivered an excellent performance ${((s as any).pcs_nickname ?? '')}, say hi to your ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''}!" He zooms in on your face, and continues to film.`);
+  scene.text(`Vasily grins as he tells the camera: "And that was the premiere presentation of ${((s as any).pcs_nickname ?? '')} ${((s as any).pcs_lastname ?? '')} in her very first production called "Gagging Whore"! You delivered an excellent performance ${((s as any).pcs_nickname ?? '')}, say hi to your ${(((s as any).npc_nickname ?? 0)?.['A29'] ?? '')}!" He zooms in on your face, and continues to film.`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Do as he says', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: By now you would rather just disappear in a large hole in the ground and never c...
-    scene.text(`By now you would rather just disappear in a large hole in the ground and never come back, but that's not an option. You doubtfully look at the camera, wiping the tears and cum from your eyes as you softly mutter: "Hi ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''}…"`);
+    scene.text(`By now you would rather just disappear in a large hole in the ground and never come back, but that's not an option. You doubtfully look at the camera, wiping the tears and cum from your eyes as you softly mutter: "Hi ${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')}…"`);
     scene.text('You desperately hope Vasily was just having a bit of fun with you, and that he\'ll delete the recording before anyone else sees it.');
     scene.actions([
       { label: 'Try to clean yourself up', goto: ['gopskver', 'BjBeerFace'] },

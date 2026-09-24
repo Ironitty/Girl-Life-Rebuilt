@@ -34,7 +34,7 @@ function enterSpying(s: GameState, scene: SceneBuilder): void {
     }
   }
   ((s as any).sofiaQW = (s as any).sofiaQW ?? {})['spying_times'] = ((s as any).sofiaQW['spying_times'] ?? 0) + (1);
-  qspGoto(s, 'sofia', qspUntranslated(s, "''spying_sex<<rand(1'", { location: "sofia" }), '6)>>');
+  qspGoto(s, 'sofia', qspUntranslated(s, "spying_sex(Math.floor(Math.random() * 6) + 1)", { location: "sofia" }));
   // TODO-QSP: end
   scene.build();
 }

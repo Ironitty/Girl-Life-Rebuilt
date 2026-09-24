@@ -129,13 +129,13 @@ function enter(s: GameState, scene: SceneBuilder): void {
     }
   }
   // TODO-QSP: dynamic text: <center><b>Date <<KGD[''day'']>></b></center>
-  scene.text(`<center><b>Date ${((s as any).KGD ?? 0)?.['day'] ?? ''}</b></center>`);
+  scene.text(`<center><b>Date ${(((s as any).KGD ?? 0)?.['day'] ?? '')}</b></center>`);
   scene.text('<center><b>Your town</b></center>');
   ((s as any).KGD = (s as any).KGD ?? {})['table'] = '<center><table border="0" align="center">';
   ((s as any).KGD = (s as any).KGD ?? {})['table'] = ((s as any).KGD['table'] ?? 0) + ('<tr><td colspan="2" align="center">Buildings</td></tr>');
-  ((s as any).KGD = (s as any).KGD ?? {})['table'] = ((s as any).KGD['table'] ?? 0) + ('<tr><td align="center">Warehouse:</td><td align="left">which stores ' + ((s as any).KGD ?? 0)?.['money'] + ' Resources</td></tr>');
-  ((s as any).KGD = (s as any).KGD ?? {})['table'] = ((s as any).KGD['table'] ?? 0) + ('<tr><td align="right">Farms:</td><td align="left">you own ' + ((s as any).KGD ?? 0)?.['farm_owned'] + ' farms</td></tr>');
-  ((s as any).KGD = (s as any).KGD ?? {})['table'] = ((s as any).KGD['table'] ?? 0) + ('<tr><td align="right">Camp:</td><td align="left">' + ((s as any).KGD ?? 0)?.['Cavalry'] + ((s as any).KGD ?? 0)?.['Archers'] + ((s as any).KGD ?? 0)?.['Infantrie'] + ' troops</td></tr>');
+  ((s as any).KGD = (s as any).KGD ?? {})['table'] = ((s as any).KGD['table'] ?? 0) + ('<tr><td align="center">Warehouse:</td><td align="left">which stores ' + (((s as any).KGD ?? 0)?.['money']) + ' Resources</td></tr>');
+  ((s as any).KGD = (s as any).KGD ?? {})['table'] = ((s as any).KGD['table'] ?? 0) + ('<tr><td align="right">Farms:</td><td align="left">you own ' + (((s as any).KGD ?? 0)?.['farm_owned']) + ' farms</td></tr>');
+  ((s as any).KGD = (s as any).KGD ?? {})['table'] = ((s as any).KGD['table'] ?? 0) + ('<tr><td align="right">Camp:</td><td align="left">' + (((s as any).KGD ?? 0)?.['Cavalry']) + (((s as any).KGD ?? 0)?.['Archers']) + (((s as any).KGD ?? 0)?.['Infantrie']) + ' troops</td></tr>');
   ((s as any).KGD = (s as any).KGD ?? {})['table'] = ((s as any).KGD['table'] ?? 0) + ('</table></center>');
   // TODO-QSP: $KGD['table']
   if (((s as any).KGD ?? 0)?.['sput_2'] > 0) {
@@ -144,7 +144,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     ((s as any).KGD = (s as any).KGD ?? {})['table'] = '<center><table border="0"><tr><th>Name</th><th>Level</th><th>HP</th><th>DMG</th></tr>';
     // TODO-QSP: :kgdparty_loop
     if (((s as any).KGD ?? 0)['sput_' + (((s as any).i ?? 0))] > 0) {
-      ((s as any).KGD = (s as any).KGD ?? {})['table'] = ((s as any).KGD['table'] ?? 0) + ('<tr><td>' + ((s as any).KGD ?? 0)?.['name_' + String(((s as any).i ?? 0))] + '</td><td>' + ((s as any).KGD ?? 0)?.['lvl_' + String(((s as any).i ?? 0))] + '</td><td>' + ((s as any).KGD ?? 0)?.['HP_' + String(((s as any).i ?? 0))] + '</td><td>' + ((s as any).KGD ?? 0)?.['damage_' + String(((s as any).i ?? 0))] + '</td></tr>');
+      ((s as any).KGD = (s as any).KGD ?? {})['table'] = ((s as any).KGD['table'] ?? 0) + ('<tr><td>' + (((s as any).KGD ?? 0)?.['name_' + String(((s as any).i ?? 0))]) + '</td><td>' + (((s as any).KGD ?? 0)?.['lvl_' + String(((s as any).i ?? 0))]) + '</td><td>' + (((s as any).KGD ?? 0)?.['HP_' + String(((s as any).i ?? 0))]) + '</td><td>' + (((s as any).KGD ?? 0)?.['damage_' + String(((s as any).i ?? 0))]) + '</td></tr>');
     }
     (s as any).i = ((s as any).i ?? 0) + (1);
     if (((s as any).i ?? 0) <= 6) {
@@ -250,7 +250,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       (st as any).i = ((st as any).i ?? 0) + (1);
       // TODO-QSP: jump 'kgdnextday_loop'
     }
-    ((st as any).KGD = (st as any).KGD ?? {})['money'] = ((st as any).KGD['money'] ?? 0) + (((st as any).KGD ?? 0)?.['farm']);
+    ((st as any).KGD = (st as any).KGD ?? {})['money'] = ((st as any).KGD['money'] ?? 0) + ((((st as any).KGD ?? 0)?.['farm']));
     ((st as any).KGD = (st as any).KGD ?? {})['farm'] = 0;
     dynamicGoto(st, 'curloc');
   } },

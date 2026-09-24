@@ -53,7 +53,7 @@ function enterAge(s: GameState, scene: SceneBuilder): void {
   ((s as any).temp_npcVars = (s as any).temp_npcVars ?? {})['day'] = (((s as any).npc_dob ?? 0)[((s as any).locArgs?.[1] ?? 0)] % 100);
   ((s as any).temp_npcVars = (s as any).temp_npcVars ?? {})['month'] = (((s as any).npc_dob ?? 0)[((s as any).locArgs?.[1] ?? 0)] / 100) % 100;
   ((s as any).temp_npcVars = (s as any).temp_npcVars ?? {})['year'] = ((s as any).npc_dob ?? 0)[((s as any).locArgs?.[1] ?? 0)] / 10000;
-  (s as any).result = qspFunc(s, 'time', 'get_age', ((s as any).temp_timeVars ?? 0)?.['year'], ((s as any).temp_timeVars ?? 0)?.['month'], ((s as any).temp_timeVars ?? 0)?.['day']);
+  (s as any).result = qspFunc(s, 'time', 'get_age', (((s as any).temp_timeVars ?? 0)?.['year']), (((s as any).temp_timeVars ?? 0)?.['month']), (((s as any).temp_timeVars ?? 0)?.['day']));
   // TODO-QSP: end
   scene.build();
 }

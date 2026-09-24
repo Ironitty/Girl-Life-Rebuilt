@@ -442,7 +442,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     return;
   }
   if (String((s as any).locArgs?.[0] ?? '') === 'A119'  ||  String((s as any).locArgs?.[0] ?? '') === 119) {
-    (s as any).result = 'The owner of the cafe where your ' + ((s as any).npc_nickname ?? 0)?.['A29'] + ' works.';
+    (s as any).result = 'The owner of the cafe where your ' + (((s as any).npc_nickname ?? 0)?.['A29']) + ' works.';
     return;
   }
   if (String((s as any).locArgs?.[0] ?? '') === 'A121'  ||  String((s as any).locArgs?.[0] ?? '') === 121) {

@@ -38,8 +38,8 @@ function enterInhib(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: :trait_loop
   ((s as any).expgainVars = (s as any).expgainVars ?? {})['trait'] = qspUntranslated(s, "traitattskl[expgainVars['trait_index']]", { location: "exp_gain" });
   if (((s as any).expgainVars ?? 0)?.['trait'] !== '') {
-    ((s as any).expgainVars = (s as any).expgainVars ?? {})['exp_gain_mult'] = ((s as any).expgainVars['exp_gain_mult'] ?? 0) + ((((s as any).trait_vars ?? 0)?.[((s as any).expgainVars ?? 0)?.['trait'] + '-' + ((s as any).expgainVars ?? 0)?.['statName'] + '-exp_gain'] ?? 0));
-    ((s as any).expgainVars = (s as any).expgainVars ?? {})['exp_gain_mult'] = ((s as any).expgainVars['exp_gain_mult'] ?? 0) + ((((s as any).trait_vars ?? 0)?.['all-' + ((s as any).expgainVars ?? 0)?.['statName'] + '-exp_gain'] ?? 0));
+    ((s as any).expgainVars = (s as any).expgainVars ?? {})['exp_gain_mult'] = ((s as any).expgainVars['exp_gain_mult'] ?? 0) + ((((s as any).trait_vars ?? 0)?.[(((s as any).expgainVars ?? 0)?.['trait']) + '-' + (((s as any).expgainVars ?? 0)?.['statName']) + '-exp_gain'] ?? 0));
+    ((s as any).expgainVars = (s as any).expgainVars ?? {})['exp_gain_mult'] = ((s as any).expgainVars['exp_gain_mult'] ?? 0) + ((((s as any).trait_vars ?? 0)?.['all-' + (((s as any).expgainVars ?? 0)?.['statName']) + '-exp_gain'] ?? 0));
   }
   ((s as any).expgainVars = (s as any).expgainVars ?? {})['trait_index'] = ((s as any).expgainVars['trait_index'] ?? 0) + (1);
   if (((s as any).expgainVars ?? 0)?.['trait_index'] < Object.keys((s as any).traitattskl ?? {}).length) {
@@ -117,7 +117,7 @@ function enterInhib(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'exp_deg', '$ARGS[0]', 'reset');
   } else {
     if (((s as any).expgainVars ?? 0)?.['statName'] === 'magik') {
-      (s as any).magik_adj = ((s as any).magik_adj ?? 0) + (((s as any).expgainVars ?? 0)?.['exp_gain']);
+      (s as any).magik_adj = ((s as any).magik_adj ?? 0) + ((((s as any).expgainVars ?? 0)?.['exp_gain']));
     }
   }
   scene.build();

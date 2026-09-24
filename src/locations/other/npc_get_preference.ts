@@ -178,32 +178,32 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (Object.keys((s as any).temp_ngpPrefHasPos ?? {}).length > 0) {
       ((s as any).npgVars = (s as any).npgVars ?? {})['i'] = (Math.floor(Math.random() * (0 - 0 + 1)) + (0));
       ((s as any).ngpVars = (s as any).ngpVars ?? {})['trait'] = qspUntranslated(s, "temp_ngpPrefHasPos[npgVars['i']]", { location: "npc_get_preference" });
-      ((s as any).ngpPrefResult = (s as any).ngpPrefResult ?? {})['HasPos'] = ((s as any).ngpVars ?? 0)?.['trait'];
+      ((s as any).ngpPrefResult = (s as any).ngpPrefResult ?? {})['HasPos'] = (((s as any).ngpVars ?? 0)?.['trait']);
     }
     if (Object.keys((s as any).temp_ngpPrefHasInd ?? {}).length > 0) {
       ((s as any).npgVars = (s as any).npgVars ?? {})['i'] = (Math.floor(Math.random() * (0 - 0 + 1)) + (0));
       ((s as any).ngpVars = (s as any).ngpVars ?? {})['trait'] = qspUntranslated(s, "temp_ngpPrefHasInd[npgVars['i']]", { location: "npc_get_preference" });
-      ((s as any).ngpPrefResult = (s as any).ngpPrefResult ?? {})['HasInd'] = ((s as any).ngpVars ?? 0)?.['trait'];
+      ((s as any).ngpPrefResult = (s as any).ngpPrefResult ?? {})['HasInd'] = (((s as any).ngpVars ?? 0)?.['trait']);
     }
     if (Object.keys((s as any).temp_ngpPrefHasNeg ?? {}).length > 0) {
       ((s as any).npgVars = (s as any).npgVars ?? {})['i'] = (Math.floor(Math.random() * (0 - 0 + 1)) + (0));
       ((s as any).ngpVars = (s as any).ngpVars ?? {})['trait'] = qspUntranslated(s, "temp_ngpPrefHasNeg[npgVars['i']]", { location: "npc_get_preference" });
-      ((s as any).ngpPrefResult = (s as any).ngpPrefResult ?? {})['HasNeg'] = ((s as any).ngpVars ?? 0)?.['trait'];
+      ((s as any).ngpPrefResult = (s as any).ngpPrefResult ?? {})['HasNeg'] = (((s as any).ngpVars ?? 0)?.['trait']);
     }
     if (Object.keys((s as any).temp_ngpPrefNotPos ?? {}).length > 0) {
       ((s as any).npgVars = (s as any).npgVars ?? {})['i'] = (Math.floor(Math.random() * (0 - 0 + 1)) + (0));
       ((s as any).ngpVars = (s as any).ngpVars ?? {})['trait'] = qspUntranslated(s, "temp_ngpPrefNotPos[npgVars['i']]", { location: "npc_get_preference" });
-      ((s as any).ngpPrefResult = (s as any).ngpPrefResult ?? {})['NotPos'] = ((s as any).ngpVars ?? 0)?.['trait'];
+      ((s as any).ngpPrefResult = (s as any).ngpPrefResult ?? {})['NotPos'] = (((s as any).ngpVars ?? 0)?.['trait']);
     }
     if (Object.keys((s as any).temp_ngpPrefNotInd ?? {}).length > 0) {
       ((s as any).npgVars = (s as any).npgVars ?? {})['i'] = (Math.floor(Math.random() * (0 - 0 + 1)) + (0));
       ((s as any).ngpVars = (s as any).ngpVars ?? {})['trait'] = qspUntranslated(s, "temp_ngpPrefNotInd[npgVars['i']]", { location: "npc_get_preference" });
-      ((s as any).ngpPrefResult = (s as any).ngpPrefResult ?? {})['NotInd'] = ((s as any).ngpVars ?? 0)?.['trait'];
+      ((s as any).ngpPrefResult = (s as any).ngpPrefResult ?? {})['NotInd'] = (((s as any).ngpVars ?? 0)?.['trait']);
     }
     if (Object.keys((s as any).temp_ngpPrefNotNeg ?? {}).length > 0) {
       ((s as any).npgVars = (s as any).npgVars ?? {})['i'] = (Math.floor(Math.random() * (0 - 0 + 1)) + (0));
       ((s as any).ngpVars = (s as any).ngpVars ?? {})['trait'] = qspUntranslated(s, "temp_ngpPrefNotNeg[npgVars['i']]", { location: "npc_get_preference" });
-      ((s as any).ngpPrefResult = (s as any).ngpPrefResult ?? {})['NotNeg'] = ((s as any).ngpVars ?? 0)?.['trait'];
+      ((s as any).ngpPrefResult = (s as any).ngpPrefResult ?? {})['NotNeg'] = (((s as any).ngpVars ?? 0)?.['trait']);
     }
   }
   scene.build();

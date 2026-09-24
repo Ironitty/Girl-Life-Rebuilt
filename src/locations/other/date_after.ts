@@ -551,13 +551,13 @@ function enterStayAsk(s: GameState, scene: SceneBuilder): void {
       }
     }
     // TODO-QSP: dynamic text: <<$date_ev[''spend_night_question'']>>
-    scene.text(`${((st as any).date_ev ?? 0)?.['spend_night_question'] ?? ''}`);
+    scene.text(`${(((st as any).date_ev ?? 0)?.['spend_night_question'] ?? '')}`);
     if (((st as any).start_type ?? 0)?.['loc'] === 'sg') {
       scene.actions([
         { label: 'I\'m sick of my mom', handler: (st: GameState) => {
     qspCall(st, 'date_ev', 'bed_room_img');
     // TODO-QSP: dynamic text: <<$date_ev[''spend_night_question'']>>. "My mom has been such a bitch lately and...
-    scene.text(`${((st as any).date_ev ?? 0)?.['spend_night_question'] ?? ''}. "My mom has been such a bitch lately and I don't want to see her."`);
+    scene.text(`${(((st as any).date_ev ?? 0)?.['spend_night_question'] ?? '')}. "My mom has been such a bitch lately and I don't want to see her."`);
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSpendNight(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       ]);
@@ -568,7 +568,7 @@ function enterStayAsk(s: GameState, scene: SceneBuilder): void {
           { label: 'Avoid my mom', handler: (st: GameState) => {
     qspCall(st, 'date_ev', 'bed_room_img');
     // TODO-QSP: dynamic text: <<$date_ev[''spend_night_question'']>>. "If I go home now, my mom will chew me o...
-    scene.text(`${((st as any).date_ev ?? 0)?.['spend_night_question'] ?? ''}. "If I go home now, my mom will chew me out for coming back too late. She'll still chew me out later, but I don't want to deal with it right now."`);
+    scene.text(`${(((st as any).date_ev ?? 0)?.['spend_night_question'] ?? '')}. "If I go home now, my mom will chew me out for coming back too late. She'll still chew me out later, but I don't want to deal with it right now."`);
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSpendNight(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
         ]);
@@ -579,7 +579,7 @@ function enterStayAsk(s: GameState, scene: SceneBuilder): void {
         { label: 'It\'s late', handler: (st: GameState) => {
     qspCall(st, 'date_ev', 'bed_room_img');
     // TODO-QSP: dynamic text: <<$date_ev[''spend_night_question'']>>. "It''s late and I don''t want to go."
-    scene.text(`${((st as any).date_ev ?? 0)?.['spend_night_question'] ?? ''}. "It's late and I don't want to go."`);
+    scene.text(`${(((st as any).date_ev ?? 0)?.['spend_night_question'] ?? '')}. "It's late and I don't want to go."`);
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSpendNight(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       ]);
@@ -589,7 +589,7 @@ function enterStayAsk(s: GameState, scene: SceneBuilder): void {
         { label: 'I don\'t want to see my boyfriend(annoyed)', handler: (st: GameState) => {
     qspCall(st, 'date_ev', 'bed_room_img');
     // TODO-QSP: dynamic text: <<$date_ev[''spend_night_question'']>>. "My boyfriend''s been pissing me off lat...
-    scene.text(`${((st as any).date_ev ?? 0)?.['spend_night_question'] ?? ''}. "My boyfriend's been pissing me off lately and I don't want to go home to that."`);
+    scene.text(`${(((st as any).date_ev ?? 0)?.['spend_night_question'] ?? '')}. "My boyfriend's been pissing me off lately and I don't want to go home to that."`);
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSpendNight(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
         { label: 'I don\'t want to see my boyfriend(guilt)' }, // TODO-QSP: empty action body
@@ -599,7 +599,7 @@ function enterStayAsk(s: GameState, scene: SceneBuilder): void {
       { label: 'I don\'t feel like going home', handler: (st: GameState) => {
     qspCall(st, 'date_ev', 'bed_room_img');
     // TODO-QSP: dynamic text: <<$date_ev[''spend_night_question'']>>. "I don''t feel like going home tonight."
-    scene.text(`${((st as any).date_ev ?? 0)?.['spend_night_question'] ?? ''}. "I don't feel like going home tonight."`);
+    scene.text(`${(((st as any).date_ev ?? 0)?.['spend_night_question'] ?? '')}. "I don't feel like going home tonight."`);
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSpendNight(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
@@ -1123,7 +1123,7 @@ function enterSpendNightOffer(s: GameState, scene: SceneBuilder): void {
     ((st as any).date_ev = (st as any).date_ev ?? {})['cant_stay'] = 1;
     qspCall(st, 'date_ev', 'dress_loop');
     // TODO-QSP: dynamic text: "I wish I could but I really have to go," you say, <<$date_ev[''dress_describe''...
-    scene.text(`"I wish I could but I really have to go," you say, ${((st as any).date_ev ?? 0)?.['dress_describe'] ?? ''}. "Just not an option for me tonight."`);
+    scene.text(`"I wish I could but I really have to go," you say, ${(((st as any).date_ev ?? 0)?.['dress_describe'] ?? '')}. "Just not an option for me tonight."`);
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterNpcHomeLeave(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
@@ -1492,7 +1492,7 @@ function enterLeavingAction(s: GameState, scene: SceneBuilder): void {
 
 function enterLeavingEnd(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: "<<$date_ev[''leave_dialogue'']>>," you say<<$date_ev[''leave_action'']>>.
-  scene.text(`"${((s as any).date_ev ?? 0)?.['leave_dialogue'] ?? ''}," you say${((s as any).date_ev ?? 0)?.['leave_action'] ?? ''}.`);
+  scene.text(`"${(((s as any).date_ev ?? 0)?.['leave_dialogue'] ?? '')}," you say${(((s as any).date_ev ?? 0)?.['leave_action'] ?? '')}.`);
   if (((s as any).date_ev ?? 0)?.['leave_dialogue'] === 'Bye') {
     scene.text('"Bye," he smiles back as you head off.');
   } else {
@@ -1710,21 +1710,21 @@ function enterPcHomeLeavingDialogue(s: GameState, scene: SceneBuilder): void {
 function enterPcHomeLeavingEnd(s: GameState, scene: SceneBuilder): void {
   if (((s as any).date_ev ?? 0)?.['invite_today'] === 0  &&  ((s as any).date_ev ?? 0)?.['invite_tomorrow'] === 0) {
     // TODO-QSP: dynamic text: <<$date_ev[''leave_action1'']>> <<$date_ev[''leave_dialogue'']>> <<$date_ev[''le...
-    scene.text(`${((s as any).date_ev ?? 0)?.['leave_action1'] ?? ''} ${((s as any).date_ev ?? 0)?.['leave_dialogue'] ?? ''} ${((s as any).date_ev ?? 0)?.['leave_action2'] ?? ''}`);
+    scene.text(`${(((s as any).date_ev ?? 0)?.['leave_action1'] ?? '')} ${(((s as any).date_ev ?? 0)?.['leave_dialogue'] ?? '')} ${(((s as any).date_ev ?? 0)?.['leave_action2'] ?? '')}`);
   } else {
     if (((s as any).date_ev ?? 0)?.['invite_today'] === 1) {
       // TODO-QSP: dynamic text: <<$date_ev[''leave_action1'']>>
-      scene.text(`${((s as any).date_ev ?? 0)?.['leave_action1'] ?? ''}`);
+      scene.text(`${(((s as any).date_ev ?? 0)?.['leave_action1'] ?? '')}`);
       scene.text('"Want to do this again later?" you ask.');
       // TODO-QSP: dynamic text: <<$date_ev[''leave_action2'']>>
-      scene.text(`${((s as any).date_ev ?? 0)?.['leave_action2'] ?? ''}`);
+      scene.text(`${(((s as any).date_ev ?? 0)?.['leave_action2'] ?? '')}`);
     } else {
       if (((s as any).date_ev ?? 0)?.['invite_tomorrow'] === 1) {
         // TODO-QSP: dynamic text: <<$date_ev[''leave_action1'']>>
-        scene.text(`${((s as any).date_ev ?? 0)?.['leave_action1'] ?? ''}`);
+        scene.text(`${(((s as any).date_ev ?? 0)?.['leave_action1'] ?? '')}`);
         scene.text('"Want to do this again tomorrow?" you ask.');
         // TODO-QSP: dynamic text: <<$date_ev[''leave_action2'']>>
-        scene.text(`${((s as any).date_ev ?? 0)?.['leave_action2'] ?? ''}`);
+        scene.text(`${(((s as any).date_ev ?? 0)?.['leave_action2'] ?? '')}`);
       }
     }
   }

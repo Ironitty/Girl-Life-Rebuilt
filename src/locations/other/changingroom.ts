@@ -48,12 +48,12 @@ function enterViewSwimList(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).PSwim ?? 0) === 0  &&  ((s as any).clothingworntype ?? 0) !== 'nude') {
     qspCall(s, 'outfit', 'backup', 'swim');
-    qspCall(s, 'shoes', 'wear', ((s as any).lastwornshoetype ?? 0)?.['swim'], ((s as any).lastwornshoenumber ?? 0)?.['swim']);
+    qspCall(s, 'shoes', 'wear', (((s as any).lastwornshoetype ?? 0)?.['swim']), (((s as any).lastwornshoenumber ?? 0)?.['swim']));
   }
   ((s as any).temp_changingroomVars = (s as any).temp_changingroomVars ?? {})['i'] = 1;
   // TODO-QSP: :loopdanilovich_swimsuit
   if (((s as any).danilovich_swimsuit ?? 0)[((s as any).temp_changingroomVars ?? 0)?.['i']] === 1  &&  ((s as any).danilovich_swimsuit_s ?? 0)[((s as any).temp_changingroomVars ?? 0)?.['i']] === 0  &&  (((s as any).clothingworntype ?? 0) !== 'danilovich_swimsuit'  ||  ((s as any).clothingwornnumber ?? 0) !== ((s as any).i ?? 0))) {
-    scene.img(`images/pc/items/danilovich/swimwear/${((s as any).temp_changingroomVars ?? 0)?.['i'] ?? ''}.jpg`);
+    scene.img(`images/pc/items/danilovich/swimwear/${(((s as any).temp_changingroomVars ?? 0)?.['i'] ?? '')}.jpg`);
   }
   ((s as any).temp_changingroomVars = (s as any).temp_changingroomVars ?? {})['i'] = ((s as any).temp_changingroomVars['i'] ?? 0) + (1);
   if (((s as any).temp_changingroomVars ?? 0)?.['i'] <= Object.keys((s as any).danilovich_swimsuit ?? {}).length) {
@@ -62,7 +62,7 @@ function enterViewSwimList(s: GameState, scene: SceneBuilder): void {
   ((s as any).temp_changingroomVars = (s as any).temp_changingroomVars ?? {})['i'] = 1;
   // TODO-QSP: :loopscandalicious_swimsuit
   if (((s as any).scandalicious_swimsuit ?? 0)[((s as any).temp_changingroomVars ?? 0)?.['i']] === 1  &&  ((s as any).scandalicious_swimsuit_s ?? 0)[((s as any).temp_changingroomVars ?? 0)?.['i']] === 0  &&  (((s as any).clothingworntype ?? 0) !== 'scandalicious_swimsuit'  ||  ((s as any).clothingwornnumber ?? 0) !== ((s as any).i ?? 0))) {
-    scene.img(`images/pc/items/scandalicious/swim/one/${((s as any).temp_changingroomVars ?? 0)?.['i'] ?? ''}.jpg`);
+    scene.img(`images/pc/items/scandalicious/swim/one/${(((s as any).temp_changingroomVars ?? 0)?.['i'] ?? '')}.jpg`);
   }
   ((s as any).temp_changingroomVars = (s as any).temp_changingroomVars ?? {})['i'] = ((s as any).temp_changingroomVars['i'] ?? 0) + (1);
   if (((s as any).temp_changingroomVars ?? 0)?.['i'] <= Object.keys((s as any).scandalicious_swimsuit ?? {}).length) {
@@ -71,7 +71,7 @@ function enterViewSwimList(s: GameState, scene: SceneBuilder): void {
   ((s as any).temp_changingroomVars = (s as any).temp_changingroomVars ?? {})['i'] = 1;
   // TODO-QSP: :loopscandalicious_bikinis
   if (((s as any).scandalicious_bikinis ?? 0)[((s as any).temp_changingroomVars ?? 0)?.['i']] === 1  &&  ((s as any).scandalicious_bikinis_s ?? 0)[((s as any).temp_changingroomVars ?? 0)?.['i']] === 0  &&  (((s as any).clothingworntype ?? 0) !== 'scandalicious_bikinis'  ||  ((s as any).clothingwornnumber ?? 0) !== ((s as any).i ?? 0))) {
-    scene.img(`images/pc/items/scandalicious/swim/two/${((s as any).temp_changingroomVars ?? 0)?.['i'] ?? ''}.jpg`);
+    scene.img(`images/pc/items/scandalicious/swim/two/${(((s as any).temp_changingroomVars ?? 0)?.['i'] ?? '')}.jpg`);
   }
   ((s as any).temp_changingroomVars = (s as any).temp_changingroomVars ?? {})['i'] = ((s as any).temp_changingroomVars['i'] ?? 0) + (1);
   if (((s as any).temp_changingroomVars ?? 0)?.['i'] <= Object.keys((s as any).scandalicious_bikinis ?? {}).length) {
@@ -80,7 +80,7 @@ function enterViewSwimList(s: GameState, scene: SceneBuilder): void {
   ((s as any).temp_changingroomVars = (s as any).temp_changingroomVars ?? {})['i'] = 1;
   // TODO-QSP: :loopallure_swimsuit
   if (((s as any).allure_swimsuit ?? 0)[((s as any).temp_changingroomVars ?? 0)?.['i']] === 1  &&  ((s as any).allure_swimsuit_s ?? 0)[((s as any).temp_changingroomVars ?? 0)?.['i']] === 0  &&  (((s as any).clothingworntype ?? 0) !== 'allure_swimsuit'  ||  ((s as any).clothingwornnumber ?? 0) !== ((s as any).i ?? 0))) {
-    scene.img(`images/pc/items/allure/one/${((s as any).temp_changingroomVars ?? 0)?.['i'] ?? ''}.jpg`);
+    scene.img(`images/pc/items/allure/one/${(((s as any).temp_changingroomVars ?? 0)?.['i'] ?? '')}.jpg`);
   }
   ((s as any).temp_changingroomVars = (s as any).temp_changingroomVars ?? {})['i'] = ((s as any).temp_changingroomVars['i'] ?? 0) + (1);
   if (((s as any).temp_changingroomVars ?? 0)?.['i'] <= Object.keys((s as any).allure_swimsuit ?? {}).length) {
@@ -89,7 +89,7 @@ function enterViewSwimList(s: GameState, scene: SceneBuilder): void {
   ((s as any).temp_changingroomVars = (s as any).temp_changingroomVars ?? {})['i'] = 1;
   // TODO-QSP: :loopallure_bikinis
   if (((s as any).allure_bikinis ?? 0)[((s as any).temp_changingroomVars ?? 0)?.['i']] === 1  &&  ((s as any).allure_bikinis_s ?? 0)[((s as any).temp_changingroomVars ?? 0)?.['i']] === 0  &&  (((s as any).clothingworntype ?? 0) !== 'allure_bikinis'  ||  ((s as any).clothingwornnumber ?? 0) !== ((s as any).i ?? 0))) {
-    scene.img(`images/pc/items/allure/two/${((s as any).temp_changingroomVars ?? 0)?.['i'] ?? ''}.jpg`);
+    scene.img(`images/pc/items/allure/two/${(((s as any).temp_changingroomVars ?? 0)?.['i'] ?? '')}.jpg`);
   }
   ((s as any).temp_changingroomVars = (s as any).temp_changingroomVars ?? {})['i'] = ((s as any).temp_changingroomVars['i'] ?? 0) + (1);
   if (((s as any).temp_changingroomVars ?? 0)?.['i'] <= Object.keys((s as any).allure_bikinis ?? {}).length) {
@@ -98,7 +98,7 @@ function enterViewSwimList(s: GameState, scene: SceneBuilder): void {
   ((s as any).temp_changingroomVars = (s as any).temp_changingroomVars ?? {})['i'] = 1;
   // TODO-QSP: :loopnerdvana_swimsuit
   if (((s as any).nerdvana_swimsuit ?? 0)[((s as any).temp_changingroomVars ?? 0)?.['i']] === 1  &&  ((s as any).nerdvana_swimsuit_s ?? 0)[((s as any).temp_changingroomVars ?? 0)?.['i']] === 0  &&  (((s as any).clothingworntype ?? 0) !== 'nerdvana_swimsuit'  ||  ((s as any).clothingwornnumber ?? 0) !== ((s as any).i ?? 0))) {
-    scene.img(`images/pc/items/nerdvana/swim/one/${((s as any).temp_changingroomVars ?? 0)?.['i'] ?? ''}.jpg`);
+    scene.img(`images/pc/items/nerdvana/swim/one/${(((s as any).temp_changingroomVars ?? 0)?.['i'] ?? '')}.jpg`);
   }
   ((s as any).temp_changingroomVars = (s as any).temp_changingroomVars ?? {})['i'] = ((s as any).temp_changingroomVars['i'] ?? 0) + (1);
   if (((s as any).temp_changingroomVars ?? 0)?.['i'] <= Object.keys((s as any).nerdvana_swimsuit ?? {}).length) {
@@ -107,7 +107,7 @@ function enterViewSwimList(s: GameState, scene: SceneBuilder): void {
   ((s as any).temp_changingroomVars = (s as any).temp_changingroomVars ?? {})['i'] = 1;
   // TODO-QSP: :loopnerdvana_bikinis
   if (((s as any).nerdvana_bikinis ?? 0)[((s as any).temp_changingroomVars ?? 0)?.['i']] === 1  &&  ((s as any).nerdvana_bikinis_s ?? 0)[((s as any).temp_changingroomVars ?? 0)?.['i']] === 0  &&  (((s as any).clothingworntype ?? 0) !== 'nerdvana_bikinis'  ||  ((s as any).clothingwornnumber ?? 0) !== ((s as any).i ?? 0))) {
-    scene.img(`images/pc/items/nerdvana/swim/two/${((s as any).temp_changingroomVars ?? 0)?.['i'] ?? ''}.jpg`);
+    scene.img(`images/pc/items/nerdvana/swim/two/${(((s as any).temp_changingroomVars ?? 0)?.['i'] ?? '')}.jpg`);
   }
   ((s as any).temp_changingroomVars = (s as any).temp_changingroomVars ?? {})['i'] = ((s as any).temp_changingroomVars['i'] ?? 0) + (1);
   if (((s as any).temp_changingroomVars ?? 0)?.['i'] <= Object.keys((s as any).nerdvana_bikinis ?? {}).length) {

@@ -669,7 +669,7 @@ function enterCustomBodyImg(s: GameState, scene: SceneBuilder): void {
   } else {
     (s as any).cbi_class = (String(10000+((s as any).locArgs?.[1] ?? 0)).slice((2)-1));
     // TODO-QSP: bs_imgnum = rand(0, cheatVars['fix_biset_<<cheatVars[''fix_bi_set'']>>_imgnums_<<$cbi_class>>']-1)
-    (s as any).temp_img_name = (((s as any).cheatVars ?? 0)?.['fix_biset_' + ((s as any).cheatVars ?? 0)?.['fix_bi_set'] + '_img_' + ((s as any).cbi_class ?? 0) + '_' + ((s as any).bs_imgnum ?? 0) + ''] ?? 0);
+    (s as any).temp_img_name = (((s as any).cheatVars ?? 0)?.['fix_biset_' + (((s as any).cheatVars ?? 0)?.['fix_bi_set']) + '_img_' + ((s as any).cbi_class ?? 0) + '_' + ((s as any).bs_imgnum ?? 0) + ''] ?? 0);
     (s as any).temp_base_folder = qspUntranslated(s, "cheatVars['fix_biset_<<cheatVars['fix_bi_set']>>_path']", { location: "body_structure" });
     if (((s as any).temp_base_folder ?? 0) === '') {
       (s as any).temp_base_folder = ((s as any).DEFAULT_PATH ?? 0);
@@ -827,7 +827,7 @@ function enterCustomBodyDesc(s: GameState, scene: SceneBuilder): void {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).locArgs?.[1] ?? 0) / 100;
     (s as any).temp_bs_body_desc = qspUntranslated(s, "cheatVars['fix_biset_<<cheatVars['fix_bi_set']>>_desc_<<ARGS[1]>>']", { location: "body_structure" });
   } else {
-    (s as any).temp_bs_body_desc = (((s as any).cheatVars ?? 0)?.['fix_biset_' + ((s as any).cheatVars ?? 0)?.['fix_bi_set'] + '_desc_' + (String(10000+((s as any).locArgs?.[1] ?? 0)).slice((2)-1)) + ''] ?? 0);
+    (s as any).temp_bs_body_desc = (((s as any).cheatVars ?? 0)?.['fix_biset_' + (((s as any).cheatVars ?? 0)?.['fix_bi_set']) + '_desc_' + (String(10000+((s as any).locArgs?.[1] ?? 0)).slice((2)-1)) + ''] ?? 0);
   }
   if (((s as any).temp_bs_body_desc ?? 0) === '') {
     (s as any).temp_bs_body_desc = qspFunc(s, 'body_structure', 'cs_get_default_desc', ((s as any).locArgs?.[1] ?? 0));

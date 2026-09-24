@@ -66,10 +66,10 @@ function enterStdFree_Tree(s: GameState, scene: SceneBuilder): void {
   }
   ((s as any).SMSTree = (s as any).SMSTree ?? {})['b3'] = 'what is it?';
   ((s as any).SMSTree = (s as any).SMSTree ?? {})['b4'] = 'my std test came back clean';
-  ((s as any).SMSTree = (s as any).SMSTree ?? {})['ba5'] = ((s as any).SMSTree ?? 0)?.['aa5'];
-  ((s as any).SMSTree = (s as any).SMSTree ?? {})['ba6'] = ((s as any).SMSTree ?? 0)?.['aa6'];
-  ((s as any).SMSTree = (s as any).SMSTree ?? {})['bb5'] = ((s as any).SMSTree ?? 0)?.['ab5'];
-  ((s as any).SMSTree = (s as any).SMSTree ?? {})['bb6'] = ((s as any).SMSTree ?? 0)?.['ab6'];
+  ((s as any).SMSTree = (s as any).SMSTree ?? {})['ba5'] = (((s as any).SMSTree ?? 0)?.['aa5']);
+  ((s as any).SMSTree = (s as any).SMSTree ?? {})['ba6'] = (((s as any).SMSTree ?? 0)?.['aa6']);
+  ((s as any).SMSTree = (s as any).SMSTree ?? {})['bb5'] = (((s as any).SMSTree ?? 0)?.['ab5']);
+  ((s as any).SMSTree = (s as any).SMSTree ?? {})['bb6'] = (((s as any).SMSTree ?? 0)?.['ab6']);
   // TODO-QSP: end
   scene.build();
 }
@@ -77,8 +77,8 @@ function enterStdFree_Tree(s: GameState, scene: SceneBuilder): void {
 function enterAddStdFree_SMS(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0)]; enterStdFree_Tree(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'SMStext_builder', 'start');
-  qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['0']);
-  qspCall(s, 'SMStext_builder', 'add_reply', ((s as any).SMSTree ?? 0)?.['1'], 'booty_call_sms', 'SMS_Base', ((s as any).locArgs?.[1] ?? 0));
+  qspCall(s, 'SMStext_builder', 'receive', (((s as any).SMSTree ?? 0)?.['0']));
+  qspCall(s, 'SMStext_builder', 'add_reply', (((s as any).SMSTree ?? 0)?.['1']), 'booty_call_sms', 'SMS_Base', ((s as any).locArgs?.[1] ?? 0));
   qspCall(s, 'SMStext_builder', 'add_sms', ((s as any).locArgs?.[1] ?? 0));
   qspCall(s, 'SMStext_builder', 'end');
   // TODO-QSP: end
@@ -88,11 +88,11 @@ function enterAddStdFree_SMS(s: GameState, scene: SceneBuilder): void {
 function enterSMS_Base(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0)]; enterStdFree_Tree(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'SMStext_builder', 'start');
-  qspCall(s, 'SMStext_builder', 'send', ((s as any).SMSTree ?? 0)?.['1']);
+  qspCall(s, 'SMStext_builder', 'send', (((s as any).SMSTree ?? 0)?.['1']));
   qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[2] ?? 0));
-  qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['2']);
-  qspCall(s, 'SMStext_builder', 'add_reply', ((s as any).SMSTree ?? 0)?.['a3'], 'booty_call_sms', 'bc_choice1', ((s as any).locArgs?.[1] ?? 0), 'a');
-  qspCall(s, 'SMStext_builder', 'add_reply', ((s as any).SMSTree ?? 0)?.['b3'], 'booty_call_sms', 'bc_choice1', ((s as any).locArgs?.[1] ?? 0), 'b');
+  qspCall(s, 'SMStext_builder', 'receive', (((s as any).SMSTree ?? 0)?.['2']));
+  qspCall(s, 'SMStext_builder', 'add_reply', (((s as any).SMSTree ?? 0)?.['a3']), 'booty_call_sms', 'bc_choice1', ((s as any).locArgs?.[1] ?? 0), 'a');
+  qspCall(s, 'SMStext_builder', 'add_reply', (((s as any).SMSTree ?? 0)?.['b3']), 'booty_call_sms', 'bc_choice1', ((s as any).locArgs?.[1] ?? 0), 'b');
   qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[2] ?? 0));
   qspCall(s, 'SMStext_builder', 'end');
   // TODO-QSP: end
@@ -166,9 +166,9 @@ function enterPrePlannedBootyCall_Tree(s: GameState, scene: SceneBuilder): void 
 function enterAddPrePlanned_SMS(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0)]; enterPrePlannedBootyCall_Tree(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'SMStext_builder', 'start');
-  qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['0']);
-  qspCall(s, 'SMStext_builder', 'add_reply', ((s as any).SMSTree ?? 0)?.['a1'], 'booty_call_sms', 'Choice2_a', ((s as any).locArgs?.[1] ?? 0));
-  qspCall(s, 'SMStext_builder', 'add_reply', ((s as any).SMSTree ?? 0)?.['b1'], 'booty_call_sms', 'Choice2_b', ((s as any).locArgs?.[1] ?? 0));
+  qspCall(s, 'SMStext_builder', 'receive', (((s as any).SMSTree ?? 0)?.['0']));
+  qspCall(s, 'SMStext_builder', 'add_reply', (((s as any).SMSTree ?? 0)?.['a1']), 'booty_call_sms', 'Choice2_a', ((s as any).locArgs?.[1] ?? 0));
+  qspCall(s, 'SMStext_builder', 'add_reply', (((s as any).SMSTree ?? 0)?.['b1']), 'booty_call_sms', 'Choice2_b', ((s as any).locArgs?.[1] ?? 0));
   qspCall(s, 'SMStext_builder', 'add_sms', ((s as any).locArgs?.[1] ?? 0));
   qspCall(s, 'SMStext_builder', 'end');
   // TODO-QSP: end
@@ -178,7 +178,7 @@ function enterAddPrePlanned_SMS(s: GameState, scene: SceneBuilder): void {
 function enterChoice2A(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0)]; enterPrePlannedBootyCall_Tree(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'SMStext_builder', 'start');
-  qspCall(s, 'SMStext_builder', 'send', ((s as any).SMSTree ?? 0)?.['a1']);
+  qspCall(s, 'SMStext_builder', 'send', (((s as any).SMSTree ?? 0)?.['a1']));
   qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[2] ?? 0));
   qspCall(s, 'SMStext_builder', 'end');
   // TODO-QSP: end
@@ -188,11 +188,11 @@ function enterChoice2A(s: GameState, scene: SceneBuilder): void {
 function enterChoice2B(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0)]; enterPrePlannedBootyCall_Tree(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'SMStext_builder', 'start');
-  qspCall(s, 'SMStext_builder', 'send', ((s as any).SMSTree ?? 0)?.['b1']);
+  qspCall(s, 'SMStext_builder', 'send', (((s as any).SMSTree ?? 0)?.['b1']));
   qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[2] ?? 0));
-  qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['b2']);
-  qspCall(s, 'SMStext_builder', 'add_reply', ((s as any).SMSTree ?? 0)?.['ba3'], 'booty_call_sms', 'Choice2_b2', ((s as any).locArgs?.[1] ?? 0), 'ba', 'decline_booty_calla');
-  qspCall(s, 'SMStext_builder', 'add_reply', ((s as any).SMSTree ?? 0)?.['bb3'], 'booty_call_sms', 'Choice2_b2', ((s as any).locArgs?.[1] ?? 0), 'bb', 'accept_booty_call');
+  qspCall(s, 'SMStext_builder', 'receive', (((s as any).SMSTree ?? 0)?.['b2']));
+  qspCall(s, 'SMStext_builder', 'add_reply', (((s as any).SMSTree ?? 0)?.['ba3']), 'booty_call_sms', 'Choice2_b2', ((s as any).locArgs?.[1] ?? 0), 'ba', 'decline_booty_calla');
+  qspCall(s, 'SMStext_builder', 'add_reply', (((s as any).SMSTree ?? 0)?.['bb3']), 'booty_call_sms', 'Choice2_b2', ((s as any).locArgs?.[1] ?? 0), 'bb', 'accept_booty_call');
   qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[2] ?? 0));
   qspCall(s, 'SMStext_builder', 'end');
   scene.build();
@@ -231,11 +231,11 @@ function enterNewBootyCall_Tree1(s: GameState, scene: SceneBuilder): void {
   ((s as any).SMSTree = (s as any).SMSTree ?? {})['fa3'] = 'didn\'t see your message until now';
   ((s as any).SMSTree = (s as any).SMSTree ?? {})['fa4'] = 'whatsup?';
   ((s as any).SMSTree = (s as any).SMSTree ?? {})['fb3'] = 'I was doing something';
-  ((s as any).SMSTree = (s as any).SMSTree ?? {})['fb4'] = ((s as any).SMSTree ?? 0)?.['fa3'];
+  ((s as any).SMSTree = (s as any).SMSTree ?? {})['fb4'] = (((s as any).SMSTree ?? 0)?.['fa3']);
   ((s as any).SMSTree = (s as any).SMSTree ?? {})['fc3'] = 'I was at the gym';
-  ((s as any).SMSTree = (s as any).SMSTree ?? {})['fc4'] = ((s as any).SMSTree ?? 0)?.['fa3'];
+  ((s as any).SMSTree = (s as any).SMSTree ?? {})['fc4'] = (((s as any).SMSTree ?? 0)?.['fa3']);
   ((s as any).SMSTree = (s as any).SMSTree ?? {})['fd3'] = 'I was in class';
-  ((s as any).SMSTree = (s as any).SMSTree ?? {})['fd4'] = ((s as any).SMSTree ?? 0)?.['fa3'];
+  ((s as any).SMSTree = (s as any).SMSTree ?? {})['fd4'] = (((s as any).SMSTree ?? 0)?.['fa3']);
   // TODO-QSP: end
   scene.build();
 }
@@ -426,8 +426,8 @@ function enterNewBootyCall_Tree3(s: GameState, scene: SceneBuilder): void {
 function enterAddNewBootyCall_SMS(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0)]; enterNewBootyCall_Tree(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'SMStext_builder', 'start');
-  qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['0']);
-  qspCall(s, 'SMStext_builder', 'add_reply', ((s as any).SMSTree ?? 0)?.['1'], 'booty_call_sms', 'new_routing1', ((s as any).locArgs?.[1] ?? 0), '' + ((s as any).totminut ?? 0) + '');
+  qspCall(s, 'SMStext_builder', 'receive', (((s as any).SMSTree ?? 0)?.['0']));
+  qspCall(s, 'SMStext_builder', 'add_reply', (((s as any).SMSTree ?? 0)?.['1']), 'booty_call_sms', 'new_routing1', ((s as any).locArgs?.[1] ?? 0), '' + ((s as any).totminut ?? 0) + '');
   qspCall(s, 'SMStext_builder', 'add_sms', ((s as any).locArgs?.[1] ?? 0));
   qspCall(s, 'SMStext_builder', 'end');
   // TODO-QSP: end
@@ -437,22 +437,22 @@ function enterAddNewBootyCall_SMS(s: GameState, scene: SceneBuilder): void {
 function enterNewRouting1(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0)]; enterNewBootyCall_Tree(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'SMStext_builder', 'start');
-  qspCall(s, 'SMStext_builder', 'send', ((s as any).SMSTree ?? 0)?.['1']);
+  qspCall(s, 'SMStext_builder', 'send', (((s as any).SMSTree ?? 0)?.['1']));
   qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[3] ?? 0));
   if (qspFunc(s, 'booty_call_sms', 'check_late', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[3] ?? 0))) {
     qspCall(s, 'SMStext_builder', 'end');
     return;
   }
   if (((s as any).totminut ?? 0) >= parseFloat(((s as any).locArgs?.[2] ?? 0)) + 180) {
-    qspCall(s, 'SMStext_builder', 'add_reply', ((s as any).SMSTree ?? 0)?.['f2'], 'booty_call_sms', 'new_delayed', '1', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0));
+    qspCall(s, 'SMStext_builder', 'add_reply', (((s as any).SMSTree ?? 0)?.['f2']), 'booty_call_sms', 'new_delayed', '1', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0));
   } else {
     if (((s as any).hour ?? 0) >= 21  ||  ((s as any).hour ?? 0) < 4) {
-      qspCall(s, 'SMStext_builder', 'add_reply', ((s as any).SMSTree ?? 0)?.['c2'], 'booty_call_sms', 'new_routing2', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0), 'c2', 'gs \'\'npc_relationship\'\', \'\'modify\'\', \'\'' + ((s as any).locArgs?.[1] ?? 0) + '\'\', 1');
-      qspCall(s, 'SMStext_builder', 'add_reply', ((s as any).SMSTree ?? 0)?.['d2'], 'booty_call_sms', 'new_routing2', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0), 'd2', 'gs \'\'npc_relationship\'\', \'\'modify\'\', \'\'' + ((s as any).locArgs?.[1] ?? 0) + '\'\', -2');
-      qspCall(s, 'SMStext_builder', 'add_reply', ((s as any).SMSTree ?? 0)?.['e2'], 'booty_call_sms', 'new_end', ((s as any).locArgs?.[1] ?? 0), 'e2', 'decline_booty_calla', '');
+      qspCall(s, 'SMStext_builder', 'add_reply', (((s as any).SMSTree ?? 0)?.['c2']), 'booty_call_sms', 'new_routing2', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0), 'c2', 'gs \'\'npc_relationship\'\', \'\'modify\'\', \'\'' + ((s as any).locArgs?.[1] ?? 0) + '\'\', 1');
+      qspCall(s, 'SMStext_builder', 'add_reply', (((s as any).SMSTree ?? 0)?.['d2']), 'booty_call_sms', 'new_routing2', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0), 'd2', 'gs \'\'npc_relationship\'\', \'\'modify\'\', \'\'' + ((s as any).locArgs?.[1] ?? 0) + '\'\', -2');
+      qspCall(s, 'SMStext_builder', 'add_reply', (((s as any).SMSTree ?? 0)?.['e2']), 'booty_call_sms', 'new_end', ((s as any).locArgs?.[1] ?? 0), 'e2', 'decline_booty_calla', '');
     } else {
-      qspCall(s, 'SMStext_builder', 'add_reply', ((s as any).SMSTree ?? 0)?.['a2'], 'booty_call_sms', 'new_routing2', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0), 'a2', '');
-      qspCall(s, 'SMStext_builder', 'add_reply', ((s as any).SMSTree ?? 0)?.['b2'], 'booty_call_sms', 'new_routing2', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0), 'b2', '');
+      qspCall(s, 'SMStext_builder', 'add_reply', (((s as any).SMSTree ?? 0)?.['a2']), 'booty_call_sms', 'new_routing2', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0), 'a2', '');
+      qspCall(s, 'SMStext_builder', 'add_reply', (((s as any).SMSTree ?? 0)?.['b2']), 'booty_call_sms', 'new_routing2', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0), 'b2', '');
     }
   }
   qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[3] ?? 0));
@@ -465,24 +465,24 @@ function enterNewDelayed(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0)]; enterNewBootyCall_Tree(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'SMStext_builder', 'start');
   if (String((s as any).locArgs?.[1] ?? '') === '1') {
-    qspCall(s, 'SMStext_builder', 'send', ((s as any).SMSTree ?? 0)?.['f2']);
+    qspCall(s, 'SMStext_builder', 'send', (((s as any).SMSTree ?? 0)?.['f2']));
     if (qspFunc(s, 'booty_call_sms', 'check_late', ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[3] ?? 0), ((s as any).locArgs?.[4] ?? 0))) {
       qspCall(s, 'SMStext_builder', 'end');
       return;
     }
-    qspCall(s, 'SMStext_builder', 'add_reply', ((s as any).SMSTree ?? 0)?.['fa3'], 'booty_call_sms', 'new_delayed', 'a', ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[3] ?? 0));
-    qspCall(s, 'SMStext_builder', 'add_reply', ((s as any).SMSTree ?? 0)?.['fb3'], 'booty_call_sms', 'new_delayed', 'b', ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[3] ?? 0));
-    qspCall(s, 'SMStext_builder', 'add_reply', ((s as any).SMSTree ?? 0)?.['fc3'], 'booty_call_sms', 'new_delayed', 'c', ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[3] ?? 0));
+    qspCall(s, 'SMStext_builder', 'add_reply', (((s as any).SMSTree ?? 0)?.['fa3']), 'booty_call_sms', 'new_delayed', 'a', ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[3] ?? 0));
+    qspCall(s, 'SMStext_builder', 'add_reply', (((s as any).SMSTree ?? 0)?.['fb3']), 'booty_call_sms', 'new_delayed', 'b', ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[3] ?? 0));
+    qspCall(s, 'SMStext_builder', 'add_reply', (((s as any).SMSTree ?? 0)?.['fc3']), 'booty_call_sms', 'new_delayed', 'c', ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[3] ?? 0));
     if ((((s as any).gschoolVars ?? 0)?.['school_diploma'] === 0  ||  ((s as any).university ?? 0)?.['student'] === 1)  &&  (!((s as any).kanikuli ?? 0))) {
-      qspCall(s, 'SMStext_builder', 'add_reply', ((s as any).SMSTree ?? 0)?.['fd3'], 'booty_call_sms', 'new_delayed', 'd', ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[3] ?? 0));
+      qspCall(s, 'SMStext_builder', 'add_reply', (((s as any).SMSTree ?? 0)?.['fd3']), 'booty_call_sms', 'new_delayed', 'd', ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[3] ?? 0));
     }
   } else {
-    qspCall(s, 'SMStext_builder', 'send', ((s as any).SMSTree ?? 0)?.['f' + String(((s as any).locArgs?.[1] ?? 0)) + '3']);
+    qspCall(s, 'SMStext_builder', 'send', (((s as any).SMSTree ?? 0)?.['f' + String(((s as any).locArgs?.[1] ?? 0)) + '3']));
     if (qspFunc(s, 'booty_call_sms', 'check_late', ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[3] ?? 0), ((s as any).locArgs?.[4] ?? 0))) {
       qspCall(s, 'SMStext_builder', 'end');
       return;
     }
-    qspCall(s, 'SMStext_builder', 'add_reply', ((s as any).SMSTree ?? 0)?.['f' + String(((s as any).locArgs?.[1] ?? 0)) + '4'], 'booty_call_sms', 'new_routing2', ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[3] ?? 0), 'f' + ((s as any).locArgs?.[1] ?? 0) + '4', '');
+    qspCall(s, 'SMStext_builder', 'add_reply', (((s as any).SMSTree ?? 0)?.['f' + String(((s as any).locArgs?.[1] ?? 0)) + '4']), 'booty_call_sms', 'new_routing2', ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[3] ?? 0), 'f' + ((s as any).locArgs?.[1] ?? 0) + '4', '');
   }
   qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[4] ?? 0));
   qspCall(s, 'SMStext_builder', 'end');
@@ -499,18 +499,18 @@ function enterNewRouting2(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'SMStext_builder', 'end');
     return;
   }
-  qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['10']);
+  qspCall(s, 'SMStext_builder', 'receive', (((s as any).SMSTree ?? 0)?.['10']));
   qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[5] ?? 0));
   if (((s as any).npc_rel_type ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 'casual_date'  ||  ((s as any).npc_rel_type ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 'fuckbuddy') {
-    qspCall(s, 'SMStext_builder', 'add_reply', ((s as any).SMSTree ?? 0)?.['a11'], 'booty_call_sms', 'new_bootycall', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0), 'a');
-    qspCall(s, 'SMStext_builder', 'add_reply', ((s as any).SMSTree ?? 0)?.['b11'], 'booty_call_sms', 'new_bootycall', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0), 'b');
+    qspCall(s, 'SMStext_builder', 'add_reply', (((s as any).SMSTree ?? 0)?.['a11']), 'booty_call_sms', 'new_bootycall', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0), 'a');
+    qspCall(s, 'SMStext_builder', 'add_reply', (((s as any).SMSTree ?? 0)?.['b11']), 'booty_call_sms', 'new_bootycall', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0), 'b');
   } else {
-    qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['11']);
+    qspCall(s, 'SMStext_builder', 'receive', (((s as any).SMSTree ?? 0)?.['11']));
     if (1) {
-      qspCall(s, 'SMStext_builder', 'add_reply', ((s as any).SMSTree ?? 0)?.['a20'], 'booty_call_sms', 'new_routing3', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0), 'a', 'decline_booty_calla', 'gs \'\'npc_relationship\'\', \'\'modify\'\', \'\'' + ((s as any).locArgs?.[1] ?? 0) + '\'\', -2');
-      qspCall(s, 'SMStext_builder', 'add_reply', ((s as any).SMSTree ?? 0)?.['b20'], 'booty_call_sms', 'new_routing3', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0), 'b', 'accept_booty_call', '');
+      qspCall(s, 'SMStext_builder', 'add_reply', (((s as any).SMSTree ?? 0)?.['a20']), 'booty_call_sms', 'new_routing3', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0), 'a', 'decline_booty_calla', 'gs \'\'npc_relationship\'\', \'\'modify\'\', \'\'' + ((s as any).locArgs?.[1] ?? 0) + '\'\', -2');
+      qspCall(s, 'SMStext_builder', 'add_reply', (((s as any).SMSTree ?? 0)?.['b20']), 'booty_call_sms', 'new_routing3', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0), 'b', 'accept_booty_call', '');
       if (((s as any).hour ?? 0) >= 21  ||  ((s as any).hour ?? 0) <= 4) {
-        qspCall(s, 'SMStext_builder', 'add_reply', ((s as any).SMSTree ?? 0)?.['c20'], 'booty_call_sms', 'late_apology', '1', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0), 'c20');
+        qspCall(s, 'SMStext_builder', 'add_reply', (((s as any).SMSTree ?? 0)?.['c20']), 'booty_call_sms', 'late_apology', '1', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0), 'c20');
       }
     }
   }
@@ -536,8 +536,8 @@ function enterNewBootycall(s: GameState, scene: SceneBuilder): void {
     return;
   }
   qspCall(s, 'SMStext_builder', 'receive', (((s as any).SMSTree ?? 0)?.[((s as any).locArgs?.[3] ?? 0) + '12'] ?? 0));
-  qspCall(s, 'SMStext_builder', 'add_reply', ((s as any).SMSTree ?? 0)?.['a20'], 'booty_call_sms', 'new_routing3', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0), 'a', 'decline_booty_calla', '');
-  qspCall(s, 'SMStext_builder', 'add_reply', ((s as any).SMSTree ?? 0)?.['b20'], 'booty_call_sms', 'new_routing3', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0), 'b', 'accept_booty_call', '');
+  qspCall(s, 'SMStext_builder', 'add_reply', (((s as any).SMSTree ?? 0)?.['a20']), 'booty_call_sms', 'new_routing3', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0), 'a', 'decline_booty_calla', '');
+  qspCall(s, 'SMStext_builder', 'add_reply', (((s as any).SMSTree ?? 0)?.['b20']), 'booty_call_sms', 'new_routing3', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0), 'b', 'accept_booty_call', '');
   qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[4] ?? 0));
   qspCall(s, 'SMStext_builder', 'end');
   // TODO-QSP: end
@@ -553,10 +553,10 @@ function enterLateApology(s: GameState, scene: SceneBuilder): void {
     return;
   }
   if (String((s as any).locArgs?.[1] ?? '') === '1') {
-    qspCall(s, 'SMStext_builder', 'add_reply', ((s as any).SMSTree ?? 0)?.['c22'], 'booty_call_sms', 'late_apology', '2', ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[3] ?? 0), 'c22');
+    qspCall(s, 'SMStext_builder', 'add_reply', (((s as any).SMSTree ?? 0)?.['c22']), 'booty_call_sms', 'late_apology', '2', ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[3] ?? 0), 'c22');
   } else {
     if (String((s as any).locArgs?.[1] ?? '') === '2') {
-      qspCall(s, 'SMStext_builder', 'add_reply', ((s as any).SMSTree ?? 0)?.['c23'], 'booty_call_sms', 'new_routing3', ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[3] ?? 0), 'c23');
+      qspCall(s, 'SMStext_builder', 'add_reply', (((s as any).SMSTree ?? 0)?.['c23']), 'booty_call_sms', 'new_routing3', ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[3] ?? 0), 'c23');
     }
   }
   qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[5] ?? 0));
@@ -596,7 +596,7 @@ function enterNewEnd(s: GameState, scene: SceneBuilder): void {
 function enterAcceptBootyCall(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: booty_call_invite[$ARGS[1]] = daystart
   // TODO-QSP: $booty_call_hotel[$ARGS[1]] = ''
-  (s as any).temp_town = qspFunc(s, 'homes_properties_attr', 'get_property_attribute', '$town', ((s as any).home ?? 0)?.['current']);
+  (s as any).temp_town = qspFunc(s, 'homes_properties_attr', 'get_property_attribute', '$town', (((s as any).home ?? 0)?.['current']));
   if (((s as any).npc_rel_type ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 'sugar_daddy') {
     if (((s as any).temp_town ?? 0) === 'city') {
       // TODO-QSP: $booty_call_hotel[$ARGS[1]] = 'city'
@@ -648,7 +648,7 @@ function enterCheckLate(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'SMStext_builder', 'start');
     qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[3] ?? 0));
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0)]; enterNewExpiredBootyCall(s, scene); (s as any).locArgs = __savedLocArgs; }
-    qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['0']);
+    qspCall(s, 'SMStext_builder', 'receive', (((s as any).SMSTree ?? 0)?.['0']));
     qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[3] ?? 0));
     qspCall(s, 'SMStext_builder', 'end');
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[3] ?? 0)]; enterDeclineBootyCallb(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -683,12 +683,12 @@ function enterSexting1(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[2] ?? 0)]; enterNewSexting_Tree(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'SMStext_builder', 'start');
   qspCall(s, 'SMStext_builder', 'receive', (((s as any).SMSTree ?? 0)?.[((s as any).locArgs?.[1] ?? 0) + '0'] ?? 0));
-  qspCall(s, 'SMStext_builder', 'add_reply', ((s as any).SMSTree ?? 0)?.['a1'], 'booty_call_sms', 'sexting_refuse', ((s as any).locArgs?.[2] ?? 0), 'refuse');
-  qspCall(s, 'SMStext_builder', 'add_reply', ((s as any).SMSTree ?? 0)?.['b1'], 'booty_call_sms', 'sexting_refuse', ((s as any).locArgs?.[2] ?? 0), 'next');
+  qspCall(s, 'SMStext_builder', 'add_reply', (((s as any).SMSTree ?? 0)?.['a1']), 'booty_call_sms', 'sexting_refuse', ((s as any).locArgs?.[2] ?? 0), 'refuse');
+  qspCall(s, 'SMStext_builder', 'add_reply', (((s as any).SMSTree ?? 0)?.['b1']), 'booty_call_sms', 'sexting_refuse', ((s as any).locArgs?.[2] ?? 0), 'next');
   if (((String(((s as any).location_type ?? 0)).indexOf(String('outdoors'))) + 1) > 0  ||  ((String(((s as any).location_type ?? 0)).indexOf(String('public'))) + 1) > 0) {
-    qspCall(s, 'SMStext_builder', 'add_reply', ((s as any).SMSTree ?? 0)?.['c1'], 'booty_call_sms', 'sexting_public', ((s as any).locArgs?.[2] ?? 0));
+    qspCall(s, 'SMStext_builder', 'add_reply', (((s as any).SMSTree ?? 0)?.['c1']), 'booty_call_sms', 'sexting_public', ((s as any).locArgs?.[2] ?? 0));
   }
-  qspCall(s, 'SMStext_builder', 'send_selfie', ((s as any).SMSTree ?? 0)?.['s1'], 'n|b|sh|ft|fa|fp', 'booty_call_sms', 'sexting_send', ((s as any).locArgs?.[2] ?? 0));
+  qspCall(s, 'SMStext_builder', 'send_selfie', (((s as any).SMSTree ?? 0)?.['s1']), 'n|b|sh|ft|fa|fp', 'booty_call_sms', 'sexting_send', ((s as any).locArgs?.[2] ?? 0));
   qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[3] ?? 0));
   qspCall(s, 'SMStext_builder', 'end');
   // TODO-QSP: end
@@ -698,13 +698,13 @@ function enterSexting1(s: GameState, scene: SceneBuilder): void {
 function enterSextingPublic(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0)]; enterNewSexting_Tree(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'SMStext_builder', 'start');
-  qspCall(s, 'SMStext_builder', 'send', ((s as any).SMSTree ?? 0)?.['c1']);
+  qspCall(s, 'SMStext_builder', 'send', (((s as any).SMSTree ?? 0)?.['c1']));
   qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[2] ?? 0));
-  qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['c2']);
+  qspCall(s, 'SMStext_builder', 'receive', (((s as any).SMSTree ?? 0)?.['c2']));
   if (((s as any).npc_dirty_lover ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 1) {
-    qspCall(s, 'SMStext_builder', 'add_reply', ((s as any).SMSTree ?? 0)?.['a1'], 'booty_call_sms', 'sexting_refuse', ((s as any).locArgs?.[1] ?? 0), 'refuse');
-    qspCall(s, 'SMStext_builder', 'add_reply', ((s as any).SMSTree ?? 0)?.['b1'], 'booty_call_sms', 'sexting_refuse', ((s as any).locArgs?.[1] ?? 0), 'next');
-    qspCall(s, 'SMStext_builder', 'send_selfie', ((s as any).SMSTree ?? 0)?.['s1'], 'n|b|sh|ft|fa|fp', 'booty_call_sms', 'sexting_send', ((s as any).locArgs?.[1] ?? 0));
+    qspCall(s, 'SMStext_builder', 'add_reply', (((s as any).SMSTree ?? 0)?.['a1']), 'booty_call_sms', 'sexting_refuse', ((s as any).locArgs?.[1] ?? 0), 'refuse');
+    qspCall(s, 'SMStext_builder', 'add_reply', (((s as any).SMSTree ?? 0)?.['b1']), 'booty_call_sms', 'sexting_refuse', ((s as any).locArgs?.[1] ?? 0), 'next');
+    qspCall(s, 'SMStext_builder', 'send_selfie', (((s as any).SMSTree ?? 0)?.['s1']), 'n|b|sh|ft|fa|fp', 'booty_call_sms', 'sexting_send', ((s as any).locArgs?.[1] ?? 0));
   }
   qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[2] ?? 0));
   qspCall(s, 'SMStext_builder', 'end');
@@ -716,10 +716,10 @@ function enterSextingRefuse(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0)]; enterNewSexting_Tree(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'SMStext_builder', 'start');
   if (String((s as any).locArgs?.[2] ?? '') === 'refuse') {
-    qspCall(s, 'SMStext_builder', 'send', ((s as any).SMSTree ?? 0)?.['a2']);
+    qspCall(s, 'SMStext_builder', 'send', (((s as any).SMSTree ?? 0)?.['a2']));
     qspCall(s, 'npc_relationship', 'modify', ((s as any).locArgs?.[1] ?? 0), (-1));
   } else {
-    qspCall(s, 'SMStext_builder', 'send', ((s as any).SMSTree ?? 0)?.['b1']);
+    qspCall(s, 'SMStext_builder', 'send', (((s as any).SMSTree ?? 0)?.['b1']));
   }
   qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[3] ?? 0));
   qspCall(s, 'SMStext_builder', 'end');
@@ -767,8 +767,8 @@ function enterDelayedBootyCall_Tree(s: GameState, scene: SceneBuilder): void {
 function enterAddDelayedBootyCall_SMS(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0)]; enterDelayedBootyCall_Tree(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'SMStext_builder', 'start');
-  qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['0']);
-  qspCall(s, 'SMStext_builder', 'add_reply', ((s as any).SMSTree ?? 0)?.['1'], 'booty_call_sms', 'delayed1', ((s as any).locArgs?.[1] ?? 0));
+  qspCall(s, 'SMStext_builder', 'receive', (((s as any).SMSTree ?? 0)?.['0']));
+  qspCall(s, 'SMStext_builder', 'add_reply', (((s as any).SMSTree ?? 0)?.['1']), 'booty_call_sms', 'delayed1', ((s as any).locArgs?.[1] ?? 0));
   qspCall(s, 'SMStext_builder', 'add_sms', ((s as any).locArgs?.[1] ?? 0));
   qspCall(s, 'SMStext_builder', 'end');
   // TODO-QSP: end
@@ -778,13 +778,13 @@ function enterAddDelayedBootyCall_SMS(s: GameState, scene: SceneBuilder): void {
 function enterDelayed1(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0)]; enterDelayedBootyCall_Tree(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'SMStext_builder', 'start');
-  qspCall(s, 'SMStext_builder', 'send', ((s as any).SMSTree ?? 0)?.['1']);
+  qspCall(s, 'SMStext_builder', 'send', (((s as any).SMSTree ?? 0)?.['1']));
   qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[2] ?? 0));
-  qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['2']);
-  qspCall(s, 'SMStext_builder', 'add_reply', ((s as any).SMSTree ?? 0)?.['a3'], 'booty_call_sms', 'delayed2', ((s as any).locArgs?.[1] ?? 0), 'a');
-  qspCall(s, 'SMStext_builder', 'add_reply', ((s as any).SMSTree ?? 0)?.['b3'], 'booty_call_sms', 'delayed2', ((s as any).locArgs?.[1] ?? 0), 'b');
-  qspCall(s, 'SMStext_builder', 'add_reply', ((s as any).SMSTree ?? 0)?.['c3'], 'booty_call_sms', 'delayed2', ((s as any).locArgs?.[1] ?? 0), 'c');
-  qspCall(s, 'SMStext_builder', 'add_reply', ((s as any).SMSTree ?? 0)?.['d3'], 'booty_call_sms', 'delayed_decline', ((s as any).locArgs?.[1] ?? 0), ((s as any).SMSTree ?? 0)?.['d3']);
+  qspCall(s, 'SMStext_builder', 'receive', (((s as any).SMSTree ?? 0)?.['2']));
+  qspCall(s, 'SMStext_builder', 'add_reply', (((s as any).SMSTree ?? 0)?.['a3']), 'booty_call_sms', 'delayed2', ((s as any).locArgs?.[1] ?? 0), 'a');
+  qspCall(s, 'SMStext_builder', 'add_reply', (((s as any).SMSTree ?? 0)?.['b3']), 'booty_call_sms', 'delayed2', ((s as any).locArgs?.[1] ?? 0), 'b');
+  qspCall(s, 'SMStext_builder', 'add_reply', (((s as any).SMSTree ?? 0)?.['c3']), 'booty_call_sms', 'delayed2', ((s as any).locArgs?.[1] ?? 0), 'c');
+  qspCall(s, 'SMStext_builder', 'add_reply', (((s as any).SMSTree ?? 0)?.['d3']), 'booty_call_sms', 'delayed_decline', ((s as any).locArgs?.[1] ?? 0), (((s as any).SMSTree ?? 0)?.['d3']));
   qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[2] ?? 0));
   qspCall(s, 'SMStext_builder', 'end');
   // TODO-QSP: end
@@ -796,18 +796,18 @@ function enterDelayed2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'SMStext_builder', 'start');
   qspCall(s, 'SMStext_builder', 'send', (((s as any).SMSTree ?? 0)?.[((s as any).locArgs?.[2] ?? 0) + '3'] ?? 0));
   qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[3] ?? 0));
-  qspCall(s, 'SMStext_builder', 'send', ((s as any).SMSTree ?? 0)?.['4']);
+  qspCall(s, 'SMStext_builder', 'send', (((s as any).SMSTree ?? 0)?.['4']));
   qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[3] ?? 0));
-  qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['5']);
+  qspCall(s, 'SMStext_builder', 'receive', (((s as any).SMSTree ?? 0)?.['5']));
   qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[3] ?? 0));
   if (! ((s as any).hotel ?? 0)) {
-    qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['a6']);
+    qspCall(s, 'SMStext_builder', 'receive', (((s as any).SMSTree ?? 0)?.['a6']));
   } else {
-    qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['b6']);
+    qspCall(s, 'SMStext_builder', 'receive', (((s as any).SMSTree ?? 0)?.['b6']));
   }
   qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[3] ?? 0));
-  qspCall(s, 'SMStext_builder', 'add_reply', ((s as any).SMSTree ?? 0)?.['a7'], 'booty_call_sms', 'delayed_decline', ((s as any).locArgs?.[1] ?? 0), ((s as any).SMSTree ?? 0)?.['a7']);
-  qspCall(s, 'SMStext_builder', 'add_reply', ((s as any).SMSTree ?? 0)?.['b7'], 'booty_call_sms', 'delayed3', ((s as any).locArgs?.[1] ?? 0));
+  qspCall(s, 'SMStext_builder', 'add_reply', (((s as any).SMSTree ?? 0)?.['a7']), 'booty_call_sms', 'delayed_decline', ((s as any).locArgs?.[1] ?? 0), (((s as any).SMSTree ?? 0)?.['a7']));
+  qspCall(s, 'SMStext_builder', 'add_reply', (((s as any).SMSTree ?? 0)?.['b7']), 'booty_call_sms', 'delayed3', ((s as any).locArgs?.[1] ?? 0));
   qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[3] ?? 0));
   qspCall(s, 'SMStext_builder', 'end');
   // TODO-QSP: end
@@ -828,11 +828,11 @@ function enterDelayedDecline(s: GameState, scene: SceneBuilder): void {
 function enterDelayed3(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0)]; enterDelayedBootyCall_Tree(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'SMStext_builder', 'start');
-  qspCall(s, 'SMStext_builder', 'send', ((s as any).SMSTree ?? 0)?.['b7']);
+  qspCall(s, 'SMStext_builder', 'send', (((s as any).SMSTree ?? 0)?.['b7']));
   qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[2] ?? 0));
-  qspCall(s, 'SMStext_builder', 'send', ((s as any).SMSTree ?? 0)?.['b8']);
-  qspCall(s, 'SMStext_builder', 'add_reply', ((s as any).SMSTree ?? 0)?.['ba9'], 'booty_call_sms', 'delayed_decline', ((s as any).locArgs?.[1] ?? 0), ((s as any).SMSTree ?? 0)?.['ba9']);
-  qspCall(s, 'SMStext_builder', 'add_reply', ((s as any).SMSTree ?? 0)?.['bb9'], 'booty_call_sms', 'delayed4', ((s as any).locArgs?.[1] ?? 0));
+  qspCall(s, 'SMStext_builder', 'send', (((s as any).SMSTree ?? 0)?.['b8']));
+  qspCall(s, 'SMStext_builder', 'add_reply', (((s as any).SMSTree ?? 0)?.['ba9']), 'booty_call_sms', 'delayed_decline', ((s as any).locArgs?.[1] ?? 0), (((s as any).SMSTree ?? 0)?.['ba9']));
+  qspCall(s, 'SMStext_builder', 'add_reply', (((s as any).SMSTree ?? 0)?.['bb9']), 'booty_call_sms', 'delayed4', ((s as any).locArgs?.[1] ?? 0));
   qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[2] ?? 0));
   qspCall(s, 'SMStext_builder', 'end');
   // TODO-QSP: end
@@ -842,9 +842,9 @@ function enterDelayed3(s: GameState, scene: SceneBuilder): void {
 function enterDelayed4(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0)]; enterDelayedBootyCall_Tree(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'SMStext_builder', 'start');
-  qspCall(s, 'SMStext_builder', 'send', ((s as any).SMSTree ?? 0)?.['ba9']);
+  qspCall(s, 'SMStext_builder', 'send', (((s as any).SMSTree ?? 0)?.['ba9']));
   qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[2] ?? 0));
-  qspCall(s, 'SMStext_builder', 'send', ((s as any).SMSTree ?? 0)?.['ba10']);
+  qspCall(s, 'SMStext_builder', 'send', (((s as any).SMSTree ?? 0)?.['ba10']));
   qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[2] ?? 0));
   qspCall(s, 'SMStext_builder', 'end');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0)]; enterAcceptBootyCall(s, scene); (s as any).locArgs = __savedLocArgs; }

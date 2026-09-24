@@ -251,7 +251,7 @@ function enterGadriverGang(s: GameState, scene: SceneBuilder): void {
     (st as any).guy = ((st as any).guy ?? 0) + (1);
     scene.img('images/locations/gadukino/sex/river/gadriver_gang_oral3.jpg');
     // TODO-QSP: dynamic text: The drunk and horny men continue to line up, one after another. Finally, some me...
-    scene.text(`The drunk and horny men continue to line up, one after another. Finally, some men are impossibly horny that you are stuffed with two cocks in your mouth at once. You eventually suck each of them off, embracing and welcoming their hard penis with your ${((st as any).pc_desc ?? 0)?.['lips'] ?? ''} lips, pleasuring them all.`);
+    scene.text(`The drunk and horny men continue to line up, one after another. Finally, some men are impossibly horny that you are stuffed with two cocks in your mouth at once. You eventually suck each of them off, embracing and welcoming their hard penis with your ${(((st as any).pc_desc ?? 0)?.['lips'] ?? '')} lips, pleasuring them all.`);
     qspCall(st, 'arousal', 'bj', 5, 'sub', 'gangbang', 'deepthroat');
     qspCall(st, 'stat', '');
     scene.actions([

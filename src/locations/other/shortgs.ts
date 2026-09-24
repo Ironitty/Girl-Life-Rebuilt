@@ -49,7 +49,7 @@ function enterGuy(s: GameState, scene: SceneBuilder): void {
     (s as any).temptask = qspUntranslated(s, "'ABCM' else temptask = ARGS[1]", { location: "shortgs" });
   }
   if (((s as any).temptask ?? 0) === 'ABCM') {
-    (s as any).result = ((s as any).stat ?? 0)?.['male_sexual_partners'];
+    (s as any).result = (((s as any).stat ?? 0)?.['male_sexual_partners']);
   } else {
     (s as any).result = qspFunc(s, 'npc', 'get_npc_count', 'npc_sexual', ((s as any).locArgs?.[1] ?? 0), '0');
   }
@@ -63,7 +63,7 @@ function enterGirl(s: GameState, scene: SceneBuilder): void {
     (s as any).temptask = qspUntranslated(s, "'ABCM' else temptask = ARGS[1]", { location: "shortgs" });
   }
   if (((s as any).temptask ?? 0) === 'ABCM') {
-    (s as any).result = ((s as any).stat ?? 0)?.['female_sexual_partners'];
+    (s as any).result = (((s as any).stat ?? 0)?.['female_sexual_partners']);
   } else {
     (s as any).result = qspFunc(s, 'npc', 'get_npc_count', 'npc_sexual', ((s as any).locArgs?.[1] ?? 0), '1');
   }

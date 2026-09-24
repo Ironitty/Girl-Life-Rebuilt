@@ -10,15 +10,15 @@ function enter(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).podvalrape ?? 0))) {
     scene.text('You try to focus your view, to see where you are. It looks like a basement… there are no windows anywhere, and the room is rather dark. The guys push you down onto a dirty mattress in the room. Other than a lot of empty bottles and the mattress you\'re on, the room is empty. You guess this is where they often take girls they meet in the park.');
     // TODO-QSP: dynamic text: The <<$placerStringParameter[''text_someone'']>> are discussing among themselves...
-    scene.text(`The ${((s as any).placerStringParameter ?? 0)?.['text_someone'] ?? ''} are discussing among themselves: "Alright guys, we got the slut here. I'm surprised she came so readily. Anyway… who gets to go first this time?"`);
+    scene.text(`The ${(((s as any).placerStringParameter ?? 0)?.['text_someone'] ?? '')} are discussing among themselves: "Alright guys, we got the slut here. I'm surprised she came so readily. Anyway… who gets to go first this time?"`);
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     ((st as any).stat = (st as any).stat ?? {})['rape_count'] = ((st as any).stat['rape_count'] ?? 0) + (1);
     ((st as any).stat = (st as any).stat ?? {})['gangbang_count'] = ((st as any).stat['gangbang_count'] ?? 0) + (1);
     (st as any).podvalrape = 1;
     qspCall(st, 'sweat', 'add', 10);
-    (st as any).guy = ((st as any).guy ?? 0) + (((st as any).placerParameter ?? 0)?.['number_of_man']);
-    (st as any).ciklkm = ((st as any).placerParameter ?? 0)?.['number_of_man'];
+    (st as any).guy = ((st as any).guy ?? 0) + ((((st as any).placerParameter ?? 0)?.['number_of_man']));
+    (st as any).ciklkm = (((st as any).placerParameter ?? 0)?.['number_of_man']);
     if ((!((st as any).podvalrapeQW ?? 0))) {
       (st as any).podvalrapeQW = 1;
     }

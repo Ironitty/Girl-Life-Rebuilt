@@ -86,7 +86,7 @@ function enterDStraponVag(s: GameState, scene: SceneBuilder): void {
     (s as any).pcs_horny = 0;
     qspCall(s, 'mood', 'lower', 'medium');
     // TODO-QSP: dynamic text: You bite your <<$pc_desc[''lips'']>> lips in pain while tears start to flow from...
-    scene.text(`You bite your ${((s as any).pc_desc ?? 0)?.['lips'] ?? ''} lips in pain while tears start to flow from your eyes when ${((s as any).boydesc ?? '')} penetrates you, breaking your hymen. You moan while crying and ${((s as any).xyr ?? '')} rubber ${((s as any).dick ?? '')} centimeter dick fucks your bloody pussy.`);
+    scene.text(`You bite your ${(((s as any).pc_desc ?? 0)?.['lips'] ?? '')} lips in pain while tears start to flow from your eyes when ${((s as any).boydesc ?? '')} penetrates you, breaking your hymen. You moan while crying and ${((s as any).xyr ?? '')} rubber ${((s as any).dick ?? '')} centimeter dick fucks your bloody pussy.`);
     qspCall(s, 'arousal', 'vaginal', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[3] ?? 0), ((s as any).locArgs?.[4] ?? 0), ((s as any).locArgs?.[5] ?? 0), ((s as any).locArgs?.[6] ?? 0), ((s as any).locArgs?.[7] ?? 0), ((s as any).locArgs?.[8] ?? 0));
   }
   // TODO-QSP: end
@@ -293,7 +293,7 @@ function enterDoublepenetration(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'mood', 'lower', 'medium');
     (s as any).totPain = ((s as any).totPain ?? 0) + (4);
     // TODO-QSP: dynamic text: You bite your <<$pc_desc[''lips'']>> lips in pain and tears start to flow from y...
-    scene.text(`You bite your ${((s as any).pc_desc ?? 0)?.['lips'] ?? ''} lips in pain and tears start to flow from your eyes when ${((s as any).boydesc1 ?? '')} penetrates you, breaking your hymen.`);
+    scene.text(`You bite your ${(((s as any).pc_desc ?? 0)?.['lips'] ?? '')} lips in pain and tears start to flow from your eyes when ${((s as any).boydesc1 ?? '')} penetrates you, breaking your hymen.`);
   }
   (s as any).grange = 0;
   if ((((s as any).arousalVars ?? 0)?.['girth_diff'] + ((s as any).arousalVars ?? 0)?.['length_diff']) >= 20) {

@@ -109,8 +109,8 @@ function enterSetTrainTicket(s: GameState, scene: SceneBuilder): void {
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['origin'] = ((s as any).locArgs?.[1] ?? 0);
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['destination'] = ((s as any).locArgs?.[2] ?? 0);
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['name'] = ((s as any).locArgs?.[3] ?? 0);
-  ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['price'] = qspFunc(s, 'transport_functions', 'get_train_price', ((s as any).temp_transportVars ?? 0)?.['origin'], ((s as any).temp_transportVars ?? 0)?.['destination']);
-  ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['time'] = qspFunc(s, 'transport_functions', 'display_train_timecost', ((s as any).temp_transportVars ?? 0)?.['origin'], ((s as any).temp_transportVars ?? 0)?.['destination']);
+  ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['price'] = qspFunc(s, 'transport_functions', 'get_train_price', (((s as any).temp_transportVars ?? 0)?.['origin']), (((s as any).temp_transportVars ?? 0)?.['destination']));
+  ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['time'] = qspFunc(s, 'transport_functions', 'display_train_timecost', (((s as any).temp_transportVars ?? 0)?.['origin']), (((s as any).temp_transportVars ?? 0)?.['destination']));
   if (qspFunc(s, 'transport_functions', 'get_train_waitcost', ((s as any).temp_transportVars ?? 0)?.['origin'], ((s as any).temp_transportVars ?? 0)?.['destination']) > 60) {
   }
   scene.build();

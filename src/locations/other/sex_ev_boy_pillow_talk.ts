@@ -1197,7 +1197,7 @@ function enterBodycountRecent(s: GameState, scene: SceneBuilder): void {
         { label: 'Been in a dry spell', handler: (st: GameState) => {
     scene.text('"I\'ve been in kind of a dry spell lately. I\'ve only been with..."');
     // TODO-QSP: dynamic text: You raise your hand, holding up <<sex_ev[''body_count_recent'']>> fingers.
-    scene.text(`You raise your hand, holding up ${((st as any).sex_ev ?? 0)?.['body_count_recent'] ?? ''} fingers.`);
+    scene.text(`You raise your hand, holding up ${(((st as any).sex_ev ?? 0)?.['body_count_recent'] ?? '')} fingers.`);
     if (((st as any).sex_ev ?? 0)?.['body_count_recent'] === 1) {
       scene.text('"... guy in the last month."');
       // TODO-QSP: dynamic text: "Just me?" <<$npcdesc>> blinks as you nod ruefully. "So what''s the total then?"
@@ -1219,7 +1219,7 @@ function enterBodycountRecent(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Tell him the recent count', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: "Hmmm. Probably about... <<sex_ev[''body_count_recent'']>> guys in the last mont...
-    scene.text(`"Hmmm. Probably about... ${((st as any).sex_ev ?? 0)?.['body_count_recent'] ?? ''} guys in the last month?"`);
+    scene.text(`"Hmmm. Probably about... ${(((st as any).sex_ev ?? 0)?.['body_count_recent'] ?? '')} guys in the last month?"`);
     if (((st as any).sex_ev ?? 0)?.['body_count_recent'] >= 30) {
       // TODO-QSP: dynamic text: <<$npcdesc>>''s eyebrows go up at that.
       scene.text(`${((st as any).npcdesc ?? '')}'s eyebrows go up at that.`);
@@ -1265,7 +1265,7 @@ function enterBodycountSlut(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('"Wow. You\'re kind of a slut, aren\'t you?"');
   }
-  ((s as any).npc_bodycount_know = (s as any).npc_bodycount_know ?? {})[String((s as any).npcID ?? 0)] = ((s as any).stat ?? 0)?.['men_fucked'];
+  ((s as any).npc_bodycount_know = (s as any).npc_bodycount_know ?? {})[String((s as any).npcID ?? 0)] = (((s as any).stat ?? 0)?.['men_fucked']);
   qspGoto(s, 'sex_ev_boy_pillow_talk', 'bodycount_slut_responses');
   // TODO-QSP: end
   scene.build();

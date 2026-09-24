@@ -226,7 +226,7 @@ function enterEatsonia(s: GameState, scene: SceneBuilder): void {
       scene.text('Once the orgasms have passed, she climbs off you and lies down next to you to cuddle. The two of you lie intertwined, basking together in the afterglow. As much as you\'d like to stay, you know you can\'t. You know you need to get home.');
       scene.text('You reluctantly disentangle yourself from her and she gives you a small smile.');
       // TODO-QSP: dynamic text: "Sorry, I need to get going or my <<$npc_nickname[''A29'']>> will have a fit," y...
-      scene.text(`"Sorry, I need to get going or my ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''} will have a fit," you tell her.`);
+      scene.text(`"Sorry, I need to get going or my ${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')} will have a fit," you tell her.`);
     }
     scene.text('She nods. "I understand. It was fun, though."');
     scene.text('You smile at her and give her a lingering kiss before you get dressed. "Yeah, it was."');
@@ -312,7 +312,7 @@ function enterStraponFucked(s: GameState, scene: SceneBuilder): void {
       scene.text('Once you\'re both fully dressed, you both sit on the couch and giggle a little at almost getting caught having sex. Sonia leans forward and gives you a long, slow kiss on the lips.');
       scene.text('"Thanks for walking me home," she smiles. "I had fun, but if I don\'t go to bed soon, my mom is going to throw a fit!"');
       // TODO-QSP: dynamic text: You laugh a little and nod. "I know the feeling. My <<$npc_nickname[''A29'']>> w...
-      scene.text(`You laugh a little and nod. "I know the feeling. My ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''} will likely give me hell for being out this late too."`);
+      scene.text(`You laugh a little and nod. "I know the feeling. My ${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')} will likely give me hell for being out this late too."`);
     }
     scene.text('When she walks you to the door, she gives you a little wave before closing and locking the door. You turn and head to the street.');
     qspCall(st, 'arousal', 'foreplay', 5, 'lesbian');

@@ -84,9 +84,9 @@ function enterCardGameDurakPlay(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 3;
   qspCall(s, 'stat', '');
   (s as any).cgdp_pc_state = ((((s as any).cgd_clothes ?? 0)==='') ? ('You are naked!') : ('You are wearing:' + ((s as any).cgd_clothes ?? 0) + '.'));
-  (s as any).cgdp_A11_state = ((((s as any).cgd_clothes ?? 0)?.['A11']==='') ? ('Vasily is naked!') : ('Vasily is wearing:' + ((s as any).cgd_clothes ?? 0)?.['A11'] + '.'));
-  (s as any).cgdp_A10_state = ((((s as any).cgd_clothes ?? 0)?.['A10']==='') ? ('Dan is naked!') : ('Dan is wearing:' + ((s as any).cgd_clothes ?? 0)?.['A10'] + '.'));
-  (s as any).cgdp_A9_state = ((((s as any).cgd_clothes ?? 0)?.['A9']==='') ? ('Vitek is naked!') : ('Vitek is wearing:' + ((s as any).cgd_clothes ?? 0)?.['A9'] + '.'));
+  (s as any).cgdp_A11_state = ((((s as any).cgd_clothes ?? 0)?.['A11']==='') ? ('Vasily is naked!') : ('Vasily is wearing:' + (((s as any).cgd_clothes ?? 0)?.['A11']) + '.'));
+  (s as any).cgdp_A10_state = ((((s as any).cgd_clothes ?? 0)?.['A10']==='') ? ('Dan is naked!') : ('Dan is wearing:' + (((s as any).cgd_clothes ?? 0)?.['A10']) + '.'));
+  (s as any).cgdp_A9_state = ((((s as any).cgd_clothes ?? 0)?.['A9']==='') ? ('Vitek is naked!') : ('Vitek is wearing:' + (((s as any).cgd_clothes ?? 0)?.['A9']) + '.'));
   scene.text('<center><b>You\'re playing strip poker with the guys. The game will continue until one of you is completely naked.</b></center>');
   scene.img(`images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/card/${((s as any).cgd_cs ?? '')}-${6-(3+(String(((s as any).cgd_clothes ?? '')).length))/7}.jpg`);
   // TODO-QSP: dynamic text: <br><<$cgdp_pc_state>><br><<$cgdp_A11_state>><br><<$cgdp_A10_state>><br><<$cgdp_...
@@ -824,7 +824,7 @@ function enterCardGameWonCumOnGirl(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: <<$loss_npc_name>> looks concerned: "What, are you crazy!? That''s insane… and b...
   scene.text(`${((s as any).loss_npc_name ?? '')} looks concerned: "What, are you crazy!? That's insane… and besides, I can't cum that fast! That would never work!"`);
   // TODO-QSP: dynamic text: "I thought you would say that, <<$loss_npc_name>>. Don''t worry, I thought of th...
-  scene.text(`"I thought you would say that, ${((s as any).loss_npc_name ?? '')}. Don't worry, I thought of that… how about if I help you get close?" you smile at him, licking your ${((s as any).pc_desc ?? 0)?.['lips'] ?? ''} lips lips lewdly.`);
+  scene.text(`"I thought you would say that, ${((s as any).loss_npc_name ?? '')}. Don't worry, I thought of that… how about if I help you get close?" you smile at him, licking your ${(((s as any).pc_desc ?? 0)?.['lips'] ?? '')} lips lips lewdly.`);
   // TODO-QSP: dynamic text: His friends are laughing, but <<$loss_npc_name>> suddenly shows a lot more inter...
   scene.text(`His friends are laughing, but ${((s as any).loss_npc_name ?? '')} suddenly shows a lot more interest in your plan. If you're willing to blow him until he's about to burst, that's more than the others are getting from you today!`);
   // TODO-QSP: dynamic text: You leave the apartment with the guys, who are clearly excited to see this plan ...

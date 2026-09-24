@@ -12,7 +12,7 @@ function enterInitBreasttissue(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetUseableCupsize(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).lactation ?? 0)?.['useable_cupsize'] > 0) {
     ((s as any).lactation = (s as any).lactation ?? {})['breasttissueinitiated'] = 1;
-    ((s as any).lactation = (s as any).lactation ?? {})['last_useable_cupsize'] = ((s as any).lactation ?? 0)?.['useable_cupsize'];
+    ((s as any).lactation = (s as any).lactation ?? {})['last_useable_cupsize'] = (((s as any).lactation ?? 0)?.['useable_cupsize']);
     ((s as any).lactation = (s as any).lactation ?? {})['breastcount'] = 2;
     if (((s as any).lactation ?? 0)?.['breastdensitytype'] < 3) {
       ((s as any).lactation = (s as any).lactation ?? {})['breastdensitytype'] = (Math.floor(Math.random() * 3) + 3);
@@ -34,7 +34,7 @@ function enterInitBreasttissue(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
-    ((s as any).lactation = (s as any).lactation ?? {})['breastglandtissue'] = (qspFunc(s, 'lact_lib', 'bsizetoccm', ((s as any).lactation ?? 0)?.['useable_cupsize'])*(((s as any).lactation ?? {})?.['breastdensitypercent'] ?? 0))/100 + ((((s as any).lactation ?? {})?.['preggrowth'] ?? 0)/100);
+    ((s as any).lactation = (s as any).lactation ?? {})['breastglandtissue'] = (qspFunc(s, 'lact_lib', 'bsizetoccm', (((s as any).lactation ?? 0)?.['useable_cupsize']))*(((s as any).lactation ?? {})?.['breastdensitypercent'] ?? 0))/100 + ((((s as any).lactation ?? {})?.['preggrowth'] ?? 0)/100);
     ((s as any).lactation = (s as any).lactation ?? {})['breastmm'] = ((((s as any).lactation ?? {})?.['breastglandtissue'] ?? 0)*(100 + ((((s as any).lactation ?? {})?.['alveoliexpandlvl'] ?? 0) * 40)))*(((s as any).lactation ?? {})?.['breastcount'] ?? 0);
   } else {
     ((s as any).lactation = (s as any).lactation ?? {})['breastcount'] = 0;
@@ -211,7 +211,7 @@ function enterBccmtosize(s: GameState, scene: SceneBuilder): void {
 function enterLactationBreastGrowth(s: GameState, scene: SceneBuilder): void {
   if (((s as any).lactation ?? 0)?.['maturebreast'] === 1  &&  ((s as any).lactation ?? 0)?.['preggrowth'] > 0) {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetUseableCupsize(s, scene); (s as any).locArgs = __savedLocArgs; }
-    ((s as any).bodyVars = (s as any).bodyVars ?? {})['bust_lact'] = ((s as any).bodyVars['bust_lact'] ?? 0) + (qspFunc(s, 'lact_lib', 'bccmtosize', (qspFunc(s, 'lact_lib', 'bsizetoccm', ((s as any).lactation ?? 0)?.['useable_cupsize']) + ((((s as any).lactation ?? {})?.['preggrowth'] ?? 0)/100))) + (((s as any).bodyVars ?? {})?.['vofat'] ?? 0) - (((s as any).bodyVars ?? {})?.['bust_magic'] ?? 0) - (((s as any).pcs_mass ?? {})?.['bust'] ?? 0) - (((s as any).bodyVars ?? {})?.['bust_lact'] ?? 0));
+    ((s as any).bodyVars = (s as any).bodyVars ?? {})['bust_lact'] = ((s as any).bodyVars['bust_lact'] ?? 0) + (qspFunc(s, 'lact_lib', 'bccmtosize', (qspFunc(s, 'lact_lib', 'bsizetoccm', (((s as any).lactation ?? 0)?.['useable_cupsize'])) + ((((s as any).lactation ?? {})?.['preggrowth'] ?? 0)/100))) + (((s as any).bodyVars ?? {})?.['vofat'] ?? 0) - (((s as any).bodyVars ?? {})?.['bust_magic'] ?? 0) - (((s as any).pcs_mass ?? {})?.['bust'] ?? 0) - (((s as any).bodyVars ?? {})?.['bust_lact'] ?? 0));
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterInitBreasttissue(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   if (((s as any).lactation ?? 0)?.['alveoliexpandlvl_change'] !== ((s as any).lactation ?? 0)?.['alveoliexpandlvl']) {
@@ -224,7 +224,7 @@ function enterLactationBreastGrowth(s: GameState, scene: SceneBuilder): void {
         scene.text('<b>Your breasts seem to be getting smaller.</b>');
       }
     }
-    ((s as any).lactation = (s as any).lactation ?? {})['alveoliexpandlvl_change'] = ((s as any).lactation ?? 0)?.['alveoliexpandlvl'];
+    ((s as any).lactation = (s as any).lactation ?? {})['alveoliexpandlvl_change'] = (((s as any).lactation ?? 0)?.['alveoliexpandlvl']);
   }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterInitBreasttissue(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
@@ -234,31 +234,31 @@ function enterLactationBreastGrowth(s: GameState, scene: SceneBuilder): void {
 
 function enterShowBreastStat(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: lactation[''breastdensitytype''] = <<lactation[''breastdensitytype'']>>
-  scene.text(`lactation['breastdensitytype'] = ${((s as any).lactation ?? 0)?.['breastdensitytype'] ?? ''}`);
+  scene.text(`lactation['breastdensitytype'] = ${(((s as any).lactation ?? 0)?.['breastdensitytype'] ?? '')}`);
   // TODO-QSP: dynamic text: lactation[''breastdensitypercent''] = <<lactation[''breastdensitypercent'']>>
-  scene.text(`lactation['breastdensitypercent'] = ${((s as any).lactation ?? 0)?.['breastdensitypercent'] ?? ''}`);
+  scene.text(`lactation['breastdensitypercent'] = ${(((s as any).lactation ?? 0)?.['breastdensitypercent'] ?? '')}`);
   // TODO-QSP: dynamic text: lactation[''breastglandtissue'']] = <<lactation[''breastglandtissue'']>>
-  scene.text(`lactation['breastglandtissue']] = ${((s as any).lactation ?? 0)?.['breastglandtissue'] ?? ''}`);
+  scene.text(`lactation['breastglandtissue']] = ${(((s as any).lactation ?? 0)?.['breastglandtissue'] ?? '')}`);
   // TODO-QSP: dynamic text: lactation[''maturebreast''] = <<lactation[''maturebreast'']>>
-  scene.text(`lactation['maturebreast'] = ${((s as any).lactation ?? 0)?.['maturebreast'] ?? ''}`);
+  scene.text(`lactation['maturebreast'] = ${(((s as any).lactation ?? 0)?.['maturebreast'] ?? '')}`);
   // TODO-QSP: dynamic text: lactation[''alveolicount''] = <<lactation[''alveolicount'']>>
-  scene.text(`lactation['alveolicount'] = ${((s as any).lactation ?? 0)?.['alveolicount'] ?? ''}`);
+  scene.text(`lactation['alveolicount'] = ${(((s as any).lactation ?? 0)?.['alveolicount'] ?? '')}`);
   // TODO-QSP: dynamic text: lactation[''prolactinlvl''] = <<lactation[''prolactinlvl'']>>
-  scene.text(`lactation['prolactinlvl'] = ${((s as any).lactation ?? 0)?.['prolactinlvl'] ?? ''}`);
+  scene.text(`lactation['prolactinlvl'] = ${(((s as any).lactation ?? 0)?.['prolactinlvl'] ?? '')}`);
   // TODO-QSP: dynamic text: lactation[''dailyoverdemand''] = <<lactation[''dailyoverdemand'']>>
-  scene.text(`lactation['dailyoverdemand'] = ${((s as any).lactation ?? 0)?.['dailyoverdemand'] ?? ''}`);
+  scene.text(`lactation['dailyoverdemand'] = ${(((s as any).lactation ?? 0)?.['dailyoverdemand'] ?? '')}`);
   // TODO-QSP: dynamic text: lactation[''alveoliexpandlvl''] = <<lactation[''alveoliexpandlvl'']>>
-  scene.text(`lactation['alveoliexpandlvl'] = ${((s as any).lactation ?? 0)?.['alveoliexpandlvl'] ?? ''}`);
+  scene.text(`lactation['alveoliexpandlvl'] = ${(((s as any).lactation ?? 0)?.['alveoliexpandlvl'] ?? '')}`);
   // TODO-QSP: dynamic text: lactation[''alveoliexpandlvl_change''] = <<lactation[''alveoliexpandlvl_change''...
-  scene.text(`lactation['alveoliexpandlvl_change'] = ${((s as any).lactation ?? 0)?.['alveoliexpandlvl_change'] ?? ''}`);
+  scene.text(`lactation['alveoliexpandlvl_change'] = ${(((s as any).lactation ?? 0)?.['alveoliexpandlvl_change'] ?? '')}`);
   // TODO-QSP: dynamic text: lactation[''active''] = <<lactation[''active'']>>
-  scene.text(`lactation['active'] = ${((s as any).lactation ?? 0)?.['active'] ?? ''}`);
+  scene.text(`lactation['active'] = ${(((s as any).lactation ?? 0)?.['active'] ?? '')}`);
   // TODO-QSP: dynamic text: lactation[''lactaterate''] = <<lactation[''lactaterate'']>>
-  scene.text(`lactation['lactaterate'] = ${((s as any).lactation ?? 0)?.['lactaterate'] ?? ''}`);
+  scene.text(`lactation['lactaterate'] = ${(((s as any).lactation ?? 0)?.['lactaterate'] ?? '')}`);
   // TODO-QSP: dynamic text: lactation[''breastmm''] = <<lactation[''breastmm'']>>
-  scene.text(`lactation['breastmm'] = ${((s as any).lactation ?? 0)?.['breastmm'] ?? ''}`);
+  scene.text(`lactation['breastmm'] = ${(((s as any).lactation ?? 0)?.['breastmm'] ?? '')}`);
   // TODO-QSP: dynamic text: lactation[''breastmv''] = <<lactation[''breastmv'']>>
-  scene.text(`lactation['breastmv'] = ${((s as any).lactation ?? 0)?.['breastmv'] ?? ''}`);
+  scene.text(`lactation['breastmv'] = ${(((s as any).lactation ?? 0)?.['breastmv'] ?? '')}`);
   return;
   // TODO-QSP: end
   scene.build();
@@ -269,13 +269,13 @@ function enterProdMilk(s: GameState, scene: SceneBuilder): void {
     ((s as any).lactation = (s as any).lactation ?? {})['prod_milk_req'] = (((s as any).locArgs?.[1] ?? 0) - (((s as any).lactation ?? {})?.['used_lactaterate'] ?? 0));
     ((s as any).lactation = (s as any).lactation ?? {})['used_lactaterate'] = ((s as any).lactation['used_lactaterate'] ?? 0) + (((s as any).locArgs?.[1] ?? 0));
     if (((s as any).lactation ?? 0)?.['used_lactaterate'] > ((s as any).lactation ?? 0)?.['lactaterate']) {
-      ((s as any).lactation = (s as any).lactation ?? {})['used_lactaterate'] = ((s as any).lactation ?? 0)?.['lactaterate'];
+      ((s as any).lactation = (s as any).lactation ?? {})['used_lactaterate'] = (((s as any).lactation ?? 0)?.['lactaterate']);
     }
   } else {
     ((s as any).lactation = (s as any).lactation ?? {})['prod_milk_req'] = ((s as any).locArgs?.[1] ?? 0);
     ((s as any).lactation = (s as any).lactation ?? {})['used_lactaterate'] = ((s as any).lactation['used_lactaterate'] ?? 0) + (((s as any).locArgs?.[1] ?? 0));
     if (((s as any).lactation ?? 0)?.['used_lactaterate'] > ((s as any).lactation ?? 0)?.['lactaterate']) {
-      ((s as any).lactation = (s as any).lactation ?? {})['used_lactaterate'] = ((s as any).lactation ?? 0)?.['lactaterate'];
+      ((s as any).lactation = (s as any).lactation ?? {})['used_lactaterate'] = (((s as any).lactation ?? 0)?.['lactaterate']);
     }
   }
   if (((s as any).lactation ?? 0)?.['active'] > 0  &&  ((s as any).pcs_mass ?? 0)?.['body'] > 15) {
@@ -302,7 +302,7 @@ function enterProdMilk(s: GameState, scene: SceneBuilder): void {
             (s as any).pcs_energy = 1;
           }
         }
-        (s as any).result = ((s as any).lactation ?? 0)?.['prod_milk_req'];
+        (s as any).result = (((s as any).lactation ?? 0)?.['prod_milk_req']);
       } else {
         (s as any).pcs_energy = 1;
         if (((s as any).fat ?? 0) > 0) {
@@ -313,7 +313,7 @@ function enterProdMilk(s: GameState, scene: SceneBuilder): void {
         if (((s as any).pain ?? 0)?.['breasts'] < 20) {
           ((s as any).pain = (s as any).pain ?? {})['breasts'] = ((s as any).pain['breasts'] ?? 0) + (1);
         }
-        (s as any).result = ((s as any).lactation ?? 0)?.['prod_milk_req'];
+        (s as any).result = (((s as any).lactation ?? 0)?.['prod_milk_req']);
       }
     } else {
       if (((s as any).pcs_stam ?? 0) <= 0  ||  ((s as any).pcs_hydra ?? 0) <= 0) {
@@ -363,7 +363,7 @@ function enterProdMilk(s: GameState, scene: SceneBuilder): void {
         if (((s as any).pcs_stam ?? 0) < 1) {
           (s as any).pcs_stam = 1;
         }
-        (s as any).result = ((s as any).lactation ?? 0)?.['prod_milk_temp_var'];
+        (s as any).result = (((s as any).lactation ?? 0)?.['prod_milk_temp_var']);
       }
     }
   } else {
@@ -377,7 +377,7 @@ function enterProdMilk(s: GameState, scene: SceneBuilder): void {
 function enterBreastEngorment(s: GameState, scene: SceneBuilder): void {
   if (((s as any).lactation ?? 0)?.['breastmv'] >= ((s as any).lactation ?? 0)?.['breastmm']) {
     (s as any).temp_var = (((s as any).lactation ?? {})?.['breastmv'] ?? 0) - (((s as any).lactation ?? {})?.['breastmm'] ?? 0);
-    ((s as any).lactation = (s as any).lactation ?? {})['breastmv'] = ((s as any).lactation ?? 0)?.['breastmm'];
+    ((s as any).lactation = (s as any).lactation ?? {})['breastmv'] = (((s as any).lactation ?? 0)?.['breastmm']);
     if (((s as any).temp_var ?? 0) < 1000  &&  ((s as any).temp_var ?? 0) > 0) {
       ((s as any).lactation = (s as any).lactation ?? {})['engorgement'] = 0;
     } else {
@@ -445,7 +445,7 @@ function enterLactOn(s: GameState, scene: SceneBuilder): void {
     ((s as any).lactation = (s as any).lactation ?? {})['lactaterate'] = 1000*((((s as any).lactation ?? {})?.['prolactinlvl'] ?? 0)/200);
     ((s as any).lactation = (s as any).lactation ?? {})['breastmv'] = 0;
     ((s as any).lactation = (s as any).lactation ?? {})['nipgrowth'] = ((s as any).lactation['nipgrowth'] ?? 0) + ((Math.floor(Math.random() * 6) + 5));
-    (s as any).pcs_nips = ((s as any).pcs_nips ?? 0) + (((s as any).lactation ?? 0)?.['nipgrowth']);
+    (s as any).pcs_nips = ((s as any).pcs_nips ?? 0) + ((((s as any).lactation ?? 0)?.['nipgrowth']));
     if (((s as any).lactation ?? 0)?.['alveoliexpandlvl'] < 10) {
       ((s as any).lactation = (s as any).lactation ?? {})['alveoliexpandlvl'] = 10;
     }
@@ -469,7 +469,7 @@ function enterLactOff(s: GameState, scene: SceneBuilder): void {
     ((s as any).lactation = (s as any).lactation ?? {})['alveoliexpandlvl_change'] = 1;
     ((s as any).lactation = (s as any).lactation ?? {})['prolactinlvl'] = 0;
     if (((s as any).lactation ?? 0)?.['nipgrowth'] > 0  &&  ((s as any).lactation ?? 0)?.['nipgrowth'] <= 10) {
-      (s as any).pcs_nips = ((s as any).pcs_nips ?? 0) - (((s as any).lactation ?? 0)?.['nipgrowth']);
+      (s as any).pcs_nips = ((s as any).pcs_nips ?? 0) - ((((s as any).lactation ?? 0)?.['nipgrowth']));
       ((s as any).lactation = (s as any).lactation ?? {})['nipgrowth'] = 0;
     }
     ((s as any).lactation = (s as any).lactation ?? {})['nipgrowth'] = 0;
@@ -540,7 +540,7 @@ function enterBreastcycle(s: GameState, scene: SceneBuilder): void {
     if (((s as any).lactation ?? 0)?.['milkgrowday'] < ((s as any).daystart ?? 0)) {
       ((s as any).lactation = (s as any).lactation ?? {})['growthsoreness_on'] = 0;
       if (((s as any).lactation ?? 0)?.['prolactinlvl'] > 0  &&  ((s as any).lactation ?? 0)?.['prolactinlvl'] < 100  &&  ((s as any).lactation ?? 0)?.['alveoliexpandlvl'] > 0) {
-        ((s as any).lactation = (s as any).lactation ?? {})['alveoliexpandlvl_change'] = ((s as any).lactation ?? 0)?.['alveoliexpandlvl'];
+        ((s as any).lactation = (s as any).lactation ?? {})['alveoliexpandlvl_change'] = (((s as any).lactation ?? 0)?.['alveoliexpandlvl']);
         ((s as any).lactation = (s as any).lactation ?? {})['alveoliexpandlvl'] = ((s as any).lactation['alveoliexpandlvl'] ?? 0) - (1);
         ((s as any).lactation = (s as any).lactation ?? {})['growthsoreness_on'] = 1;
         if (((s as any).pain ?? 0)?.['breasts'] <= 20) {
@@ -548,7 +548,7 @@ function enterBreastcycle(s: GameState, scene: SceneBuilder): void {
         }
       } else {
         if (((s as any).lactation ?? 0)?.['prolactinlvl'] >= 100  &&  ((s as any).lactation ?? 0)?.['alveoliexpandlvl'] < 10) {
-          ((s as any).lactation = (s as any).lactation ?? {})['alveoliexpandlvl_change'] = ((s as any).lactation ?? 0)?.['alveoliexpandlvl'];
+          ((s as any).lactation = (s as any).lactation ?? {})['alveoliexpandlvl_change'] = (((s as any).lactation ?? 0)?.['alveoliexpandlvl']);
           ((s as any).lactation = (s as any).lactation ?? {})['alveoliexpandlvl'] = ((s as any).lactation['alveoliexpandlvl'] ?? 0) + (1);
           ((s as any).lactation = (s as any).lactation ?? {})['growthsoreness_on'] = 1;
           if (((s as any).pain ?? 0)?.['breasts'] <= 20) {
@@ -570,7 +570,7 @@ function enterBreastcycle(s: GameState, scene: SceneBuilder): void {
         if ((((s as any).lactation ?? 0)?.['breastmm'] / ((s as any).lactation ?? 0)?.['lactaterate']) > ((s as any).lactation ?? 0)?.['caplactaterate']) {
           ((s as any).lactation = (s as any).lactation ?? {})['max_lactrate_growth'] = (65 - (((((((s as any).lactation ?? {})?.['lactaterate'] ?? 0)/1000) - 304)*(((((s as any).lactation ?? {})?.['lactaterate'] ?? 0)/1000) - 304))/1466))*1000;
           if (((s as any).lactation ?? 0)?.['max_lactrate_growth'] < ((10*((s as any).lactation ?? 0)?.['prolactinlvl'])/2)  &&  ((s as any).lactation ?? 0)?.['max_lactrate_growth'] >= 1000) {
-            ((s as any).lactation = (s as any).lactation ?? {})['lactaterate'] = ((s as any).lactation['lactaterate'] ?? 0) + (((s as any).lactation ?? 0)?.['max_lactrate_growth']);
+            ((s as any).lactation = (s as any).lactation ?? {})['lactaterate'] = ((s as any).lactation['lactaterate'] ?? 0) + ((((s as any).lactation ?? 0)?.['max_lactrate_growth']));
           } else {
             if (((s as any).lactation ?? 0)?.['max_lactrate_growth'] < ((10*((s as any).lactation ?? 0)?.['prolactinlvl'])/2)  &&  ((s as any).lactation ?? 0)?.['max_lactrate_growth'] < 1000) {
               ((s as any).lactation = (s as any).lactation ?? {})['lactaterate'] = ((s as any).lactation['lactaterate'] ?? 0) + (1000);
@@ -617,7 +617,7 @@ function enterBreastcycle(s: GameState, scene: SceneBuilder): void {
       }
     }
     if (((s as any).lactation ?? 0)?.['breastmv'] < ((s as any).lactation ?? 0)?.['breastmm']  &&  ((s as any).lactation ?? 0)?.['lactaterate'] >= 500  &&  ((s as any).lactation ?? 0)?.['milkprod_type'] === 1) {
-      ((s as any).lactation = (s as any).lactation ?? {})['breastmv'] = ((s as any).lactation['breastmv'] ?? 0) + (qspFunc(s, 'lact_lib', 'prod_milk', ((s as any).lactation ?? 0)?.['lactaterate']));
+      ((s as any).lactation = (s as any).lactation ?? {})['breastmv'] = ((s as any).lactation['breastmv'] ?? 0) + (qspFunc(s, 'lact_lib', 'prod_milk', (((s as any).lactation ?? 0)?.['lactaterate'])));
       if (((s as any).lactation ?? 0)?.['nipgrowth'] < ((s as any).lactation ?? 0)?.['useable_cupsize']*2) {
         (s as any).tmp = Math.max(0, (Math.floor(Math.random() * ((((s as any).lactation ?? {})?.['breastmm'] ?? 0)/100000 - (-10) + 1)) + ((-10))));
         (s as any).pcs_nips = ((s as any).pcs_nips ?? 0) + (((s as any).tmp ?? 0));
@@ -625,9 +625,9 @@ function enterBreastcycle(s: GameState, scene: SceneBuilder): void {
       }
     } else {
       if (((s as any).lactation ?? 0)?.['breastmv'] < ((s as any).lactation ?? 0)?.['breastmm']  &&  ((s as any).lactation ?? 0)?.['lactaterate'] >= 500  &&  ((s as any).lactation ?? 0)?.['milkprod_type'] === 0) {
-        ((s as any).lactation = (s as any).lactation ?? {})['breastmv'] = ((s as any).lactation['breastmv'] ?? 0) + (((s as any).lactation ?? 0)?.['lactaterate']);
+        ((s as any).lactation = (s as any).lactation ?? {})['breastmv'] = ((s as any).lactation['breastmv'] ?? 0) + ((((s as any).lactation ?? 0)?.['lactaterate']));
         if (((s as any).lactation ?? 0)?.['breastmv'] > ((s as any).lactation ?? 0)?.['breastmm']) {
-          ((s as any).lactation = (s as any).lactation ?? {})['breastmv'] = ((s as any).lactation ?? 0)?.['breastmm'];
+          ((s as any).lactation = (s as any).lactation ?? {})['breastmv'] = (((s as any).lactation ?? 0)?.['breastmm']);
         }
       }
     }
@@ -748,7 +748,7 @@ function enterGetMoodmod(s: GameState, scene: SceneBuilder): void {
   if ((((s as any).lactation ?? 0)?.['moodmod'] + ((s as any).pcs_mood ?? 0)) > 100) {
     (s as any).result = (100 - ((s as any).pcs_mood ?? 0));
   } else {
-    (s as any).result = ((s as any).lactation ?? 0)?.['moodmod'];
+    (s as any).result = (((s as any).lactation ?? 0)?.['moodmod']);
   }
   return;
   // TODO-QSP: end
@@ -807,7 +807,7 @@ function enter_getBreastmilkTime(s: GameState, scene: SceneBuilder): void {
       } else {
         ((s as any).lactation = (s as any).lactation ?? {})['milk_time_output'] = (((s as any).locArgs?.[2] ?? 0)*1000)/(((s as any).lactation ?? {})?.['suck_flow_rate'] ?? 0);
       }
-      (s as any).result = ((s as any).lactation ?? 0)?.['milk_time_output'];
+      (s as any).result = (((s as any).lactation ?? 0)?.['milk_time_output']);
     } else {
       if (((s as any).lactation ?? 0)?.['breastmv'] > 0  &&  ((s as any).lactation ?? 0)?.['breastmv'] < (String((s as any).locArgs?.[2] ?? '')*1000)) {
         if (((s as any).lactation ?? 0)?.['max_nip_flow_rate'] <= ((s as any).lactation ?? 0)?.['suck_flow_rate']) {
@@ -827,7 +827,7 @@ function enter_getBreastmilkTime(s: GameState, scene: SceneBuilder): void {
             ((s as any).lactation = (s as any).lactation ?? {})['milk_time_output'] = ((s as any).lactation['milk_time_output'] ?? 0) + (((s as any).temp_var2 ?? 0)/(((s as any).lactation ?? {})?.['lactaterate_per_min'] ?? 0));
           }
         }
-        (s as any).result = ((s as any).lactation ?? 0)?.['milk_time_output'];
+        (s as any).result = (((s as any).lactation ?? 0)?.['milk_time_output']);
       } else {
         if (((s as any).lactation ?? 0)?.['breastmv'] <=0) {
           if (((s as any).lactation ?? 0)?.['max_nip_flow_rate'] <= ((s as any).lactation ?? 0)?.['suck_flow_rate']) {
@@ -843,7 +843,7 @@ function enter_getBreastmilkTime(s: GameState, scene: SceneBuilder): void {
               ((s as any).lactation = (s as any).lactation ?? {})['milk_time_output'] = (((s as any).locArgs?.[2] ?? 0)*1000)/(((s as any).lactation ?? {})?.['lactaterate_per_min'] ?? 0);
             }
           }
-          (s as any).result = ((s as any).lactation ?? 0)?.['milk_time_output'];
+          (s as any).result = (((s as any).lactation ?? 0)?.['milk_time_output']);
         } else {
           (s as any).result = 0;
         }
@@ -903,7 +903,7 @@ function enter_getBreastmilk(s: GameState, scene: SceneBuilder): void {
     } else {
       (s as any).breastcounter = ((s as any).breastcounter ?? 0) + (((s as any).pumptime ?? 0)/10);
     }
-    ((s as any).lactation = (s as any).lactation ?? {})['dailyoverdemand'] = ((s as any).lactation['dailyoverdemand'] ?? 0) + (((s as any).lactation ?? 0)?.['max_sucktion_demand']);
+    ((s as any).lactation = (s as any).lactation ?? {})['dailyoverdemand'] = ((s as any).lactation['dailyoverdemand'] ?? 0) + ((((s as any).lactation ?? 0)?.['max_sucktion_demand']));
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBreastEngorment(s, scene); (s as any).locArgs = __savedLocArgs; }
     (s as any).result = 0;
   } else {
@@ -912,17 +912,17 @@ function enter_getBreastmilk(s: GameState, scene: SceneBuilder): void {
       ((s as any).lactation = (s as any).lactation ?? {})['get_bm_milkedvolume'] = 0;
       if (((s as any).lactation ?? 0)?.['breastmv'] >= ((s as any).lactation ?? 0)?.['max_sucktion_demand']) {
         if (((s as any).lactation ?? 0)?.['max_nip_flow_rate'] >= ((s as any).lactation ?? 0)?.['suck_flow_rate']) {
-          ((s as any).lactation = (s as any).lactation ?? {})['get_bm_milkedvolume'] = ((s as any).lactation ?? 0)?.['max_sucktion_demand'];
-          ((s as any).lactation = (s as any).lactation ?? {})['breastmv'] = ((s as any).lactation['breastmv'] ?? 0) - (((s as any).lactation ?? 0)?.['max_sucktion_demand']);
+          ((s as any).lactation = (s as any).lactation ?? {})['get_bm_milkedvolume'] = (((s as any).lactation ?? 0)?.['max_sucktion_demand']);
+          ((s as any).lactation = (s as any).lactation ?? {})['breastmv'] = ((s as any).lactation['breastmv'] ?? 0) - ((((s as any).lactation ?? 0)?.['max_sucktion_demand']));
         } else {
           ((s as any).lactation = (s as any).lactation ?? {})['get_bm_milkedvolume'] = (((s as any).lactation ?? {})?.['max_nip_flow_rate'] ?? 0)*((s as any).locArgs?.[2] ?? 0);
-          ((s as any).lactation = (s as any).lactation ?? {})['breastmv'] = ((s as any).lactation['breastmv'] ?? 0) - (((s as any).lactation ?? 0)?.['get_bm_milkedvolume']);
+          ((s as any).lactation = (s as any).lactation ?? {})['breastmv'] = ((s as any).lactation['breastmv'] ?? 0) - ((((s as any).lactation ?? 0)?.['get_bm_milkedvolume']));
         }
         (s as any).pumptime = ((s as any).locArgs?.[2] ?? 0);
       } else {
         if (((s as any).lactation ?? 0)?.['breastmv'] < ((s as any).lactation ?? 0)?.['max_sucktion_demand']) {
           if (((s as any).lactation ?? 0)?.['breastmv'] <= 0) {
-            (s as any).temp_var = ((s as any).lactation ?? 0)?.['max_sucktion_demand'];
+            (s as any).temp_var = (((s as any).lactation ?? 0)?.['max_sucktion_demand']);
             (s as any).pumptime_left = ((s as any).locArgs?.[2] ?? 0);
           } else {
             (s as any).temp_var = (((s as any).lactation ?? {})?.['max_sucktion_demand'] ?? 0) - (((s as any).lactation ?? {})?.['breastmv'] ?? 0);
@@ -934,7 +934,7 @@ function enter_getBreastmilk(s: GameState, scene: SceneBuilder): void {
           }
           if (((s as any).pumptime_left ?? 0) > 0) {
             (s as any).pumptime = ((s as any).locArgs?.[2] ?? 0) - ((s as any).pumptime_left ?? 0) + 1;
-            ((s as any).lactation = (s as any).lactation ?? {})['get_bm_milkedvolume'] = ((s as any).lactation['get_bm_milkedvolume'] ?? 0) + (((s as any).lactation ?? 0)?.['breastmv']);
+            ((s as any).lactation = (s as any).lactation ?? {})['get_bm_milkedvolume'] = ((s as any).lactation['get_bm_milkedvolume'] ?? 0) + ((((s as any).lactation ?? 0)?.['breastmv']));
             ((s as any).lactation = (s as any).lactation ?? {})['breastmv'] = 0;
           } else {
             (s as any).pumptime_left = 0;
@@ -996,7 +996,7 @@ function enter_getBreastmilk(s: GameState, scene: SceneBuilder): void {
         (s as any).breastcounter = ((s as any).breastcounter ?? 0) + (((s as any).pumptime ?? 0)/10);
       }
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBreastEngorment(s, scene); (s as any).locArgs = __savedLocArgs; }
-      (s as any).result = ((s as any).lactation ?? 0)?.['get_bm_milkedvolume'];
+      (s as any).result = (((s as any).lactation ?? 0)?.['get_bm_milkedvolume']);
     }
   }
   return;

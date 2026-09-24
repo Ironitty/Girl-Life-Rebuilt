@@ -94,14 +94,14 @@ function enterSetSchedule(s: GameState, scene: SceneBuilder): void {
                       if (((s as any).locat ?? 0)?.['A2_rand1'] !== ((s as any).daystart ?? 0)) {
                         ((s as any).locat = (s as any).locat ?? {})['A2'] = 'Haninginout_outside_school';
                       } else {
-                        ((s as any).locat = (s as any).locat ?? {})['A2'] = ((s as any).locat ?? 0)?.['A2_save1'];
+                        ((s as any).locat = (s as any).locat ?? {})['A2'] = (((s as any).locat ?? 0)?.['A2_save1']);
                       }
                     } else {
                       if (((s as any).hour ?? 0) < 18) {
                         if (((s as any).locat ?? 0)?.['A2_rand1'] !== ((s as any).daystart ?? 0)) {
                           ((s as any).locat = (s as any).locat ?? {})['A2'] = 'library_nerd_study_group';
                         } else {
-                          ((s as any).locat = (s as any).locat ?? {})['A2'] = ((s as any).locat ?? 0)?.['A2_save1'];
+                          ((s as any).locat = (s as any).locat ?? {})['A2'] = (((s as any).locat ?? 0)?.['A2_save1']);
                         }
                       } else {
                         if (((s as any).hour ?? 0) < 20) {

@@ -345,7 +345,7 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   if ((!(Math.floor(Math.random() * 4) + 0))) {
-    qspGoto(s, 'pav_train_market', 'rand(1, 19)');
+    qspGoto(s, 'pav_train_market', (Math.floor(Math.random() * 19) + 1));
   }
   // TODO-QSP: end
   if (String((s as any).locArgs?.[0] ?? '') === 1) {

@@ -288,7 +288,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   (s as any).pcs_health = ((s as any).pcs_vital ?? 0) * 10 + ((s as any).pcs_stren ?? 0) * 5;
   (s as any).pcs_willpwr = ((s as any).pcs_intel ?? 0) * 5 + ((s as any).pcs_sprt ?? 0) * 5;
   (s as any).pcs_mana = (((s as any).pcs_intel ?? 0) * ((s as any).pcs_magik ?? 0)) + ((s as any).pcs_magik ?? 0) * 100 + ((s as any).pcs_vital ?? 0) * 10 + ((s as any).rikudo ?? 0);
-  (s as any).pcs_mood = ((s as any).moodVars ?? 0)?.['disp_base'];
+  (s as any).pcs_mood = (((s as any).moodVars ?? 0)?.['disp_base']);
   (s as any).pcs_energy = 40;
   (s as any).pcs_hydra = 40;
   (s as any).pcs_sleep = 100;
@@ -487,7 +487,7 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'cuni_give', 'women_munched']; enterFixStatInner(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'vaginal', 'men_vaginal_fucked', 'women_vaginal_fucked', 'herm_vaginal_fucked']; enterFixStatInner(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'anal', 'men_anal_fucked', 'women_vaginal_fucked', 'herm_anal_fucked']; enterFixStatInner(s, scene); (s as any).locArgs = __savedLocArgs; }
-  (s as any).temp_stat_diff = (((s as any).stat ?? {})?.['men_fucked'] ?? 0) - Math.max(((s as any).stat ?? 0)?.['men_vaginal_fucked'], ((s as any).stat ?? 0)?.['men_anal_fucked']);
+  (s as any).temp_stat_diff = (((s as any).stat ?? {})?.['men_fucked'] ?? 0) - Math.max((((s as any).stat ?? 0)?.['men_vaginal_fucked']), (((s as any).stat ?? 0)?.['men_anal_fucked']));
   if (((s as any).temp_stat_diff ?? 0) > 0) {
     ((s as any).stat = (s as any).stat ?? {})['men_vaginal_fucked_times'] = ((s as any).stat['men_vaginal_fucked_times'] ?? 0) + (((s as any).temp_stat_diff ?? 0));
     ((s as any).stat = (s as any).stat ?? {})['men_vaginal_fucked'] = ((s as any).stat['men_vaginal_fucked'] ?? 0) + (((s as any).temp_stat_diff ?? 0));
@@ -498,7 +498,7 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
       (s as any).temp_stats_changed = 1;
     }
   }
-  (s as any).temp_stat_diff = (((s as any).stat ?? {})?.['women_fucked'] ?? 0) - Math.max(((s as any).stat ?? 0)?.['women_vaginal_fucked'], ((s as any).stat ?? 0)?.['women_anal_fucked']);
+  (s as any).temp_stat_diff = (((s as any).stat ?? {})?.['women_fucked'] ?? 0) - Math.max((((s as any).stat ?? 0)?.['women_vaginal_fucked']), (((s as any).stat ?? 0)?.['women_anal_fucked']));
   if (((s as any).temp_stat_diff ?? 0) > 0) {
     ((s as any).stat = (s as any).stat ?? {})['women_vaginal_fucked_times'] = ((s as any).stat['women_vaginal_fucked_times'] ?? 0) + (((s as any).temp_stat_diff ?? 0));
     ((s as any).stat = (s as any).stat ?? {})['women_vaginal_fucked'] = ((s as any).stat['women_vaginal_fucked'] ?? 0) + (((s as any).temp_stat_diff ?? 0));
@@ -509,7 +509,7 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
       (s as any).temp_stats_changed = 1;
     }
   }
-  (s as any).temp_stat_diff = (((s as any).stat ?? {})?.['herm_fucked'] ?? 0) - Math.max(((s as any).stat ?? 0)?.['herm_vaginal_fucked'], ((s as any).stat ?? 0)?.['herm_anal_fucked']);
+  (s as any).temp_stat_diff = (((s as any).stat ?? {})?.['herm_fucked'] ?? 0) - Math.max((((s as any).stat ?? 0)?.['herm_vaginal_fucked']), (((s as any).stat ?? 0)?.['herm_anal_fucked']));
   if (((s as any).temp_stat_diff ?? 0) > 0) {
     ((s as any).stat = (s as any).stat ?? {})['herm_vaginal_fucked_times'] = ((s as any).stat['herm_vaginal_fucked_times'] ?? 0) + (((s as any).temp_stat_diff ?? 0));
     ((s as any).stat = (s as any).stat ?? {})['herm_vaginal_fucked'] = ((s as any).stat['herm_vaginal_fucked'] ?? 0) + (((s as any).temp_stat_diff ?? 0));
@@ -524,12 +524,12 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
   if (((s as any).stat_fix_loop_times ?? 0) < 10  &&  ((s as any).temp_stats_changed ?? 0) === 1) {
     // TODO-QSP: jump 'stat_fixing_loop'
   }
-  ((s as any).stat = (s as any).stat ?? {})['male_sexual_partners'] = Math.max(((s as any).stat ?? 0)?.['male_sexual_partners'], ((s as any).stat ?? 0)?.['men_jerked'], ((s as any).stat ?? 0)?.['men_feetfucked'], ((s as any).stat ?? 0)?.['men_titfucked'], ((s as any).stat ?? 0)?.['men_blown'], ((s as any).stat ?? 0)?.['men_fucked']);
-  ((s as any).stat = (s as any).stat ?? {})['male_sexual_times'] = Math.max(((s as any).stat ?? 0)?.['male_sexual_times'], ((s as any).stat ?? 0)?.['men_jerked_times'], ((s as any).stat ?? 0)?.['men_feetfucked_times'], ((s as any).stat ?? 0)?.['men_titfucked_times'], ((s as any).stat ?? 0)?.['men_blown_times'], ((s as any).stat ?? 0)?.['men_fucked_times']);
-  ((s as any).stat = (s as any).stat ?? {})['female_sexual_partners'] = Math.max(((s as any).stat ?? 0)?.['female_sexual_partners'], ((s as any).stat ?? 0)?.['women_fingered'], ((s as any).stat ?? 0)?.['women_feetfucked'], ((s as any).stat ?? 0)?.['women_titfucked'], ((s as any).stat ?? 0)?.['women_munched'], ((s as any).stat ?? 0)?.['women_fucked']);
-  ((s as any).stat = (s as any).stat ?? {})['female_sexual_times'] = Math.max(((s as any).stat ?? 0)?.['female_sexual_times'], ((s as any).stat ?? 0)?.['women_fingered_times'], ((s as any).stat ?? 0)?.['women_feetfucked_times'], ((s as any).stat ?? 0)?.['women_titfucked_times'], ((s as any).stat ?? 0)?.['women_munched_times'], ((s as any).stat ?? 0)?.['women_fucked_times']);
-  ((s as any).stat = (s as any).stat ?? {})['herm_sexual_partners'] = Math.max(((s as any).stat ?? 0)?.['herm_sexual_partners'], ((s as any).stat ?? 0)?.['herm_jerked'], ((s as any).stat ?? 0)?.['herm_feetfucked'], ((s as any).stat ?? 0)?.['herm_titfucked'], ((s as any).stat ?? 0)?.['herm_blown'], ((s as any).stat ?? 0)?.['herm_fucked']);
-  ((s as any).stat = (s as any).stat ?? {})['herm_sexual_times'] = Math.max(((s as any).stat ?? 0)?.['herm_sexual_times'], ((s as any).stat ?? 0)?.['herm_jerked_times'], ((s as any).stat ?? 0)?.['herm_feetfucked_times'], ((s as any).stat ?? 0)?.['herm_titfucked_times'], ((s as any).stat ?? 0)?.['herm_blown_times'], ((s as any).stat ?? 0)?.['herm_fucked_times']);
+  ((s as any).stat = (s as any).stat ?? {})['male_sexual_partners'] = Math.max((((s as any).stat ?? 0)?.['male_sexual_partners']), (((s as any).stat ?? 0)?.['men_jerked']), (((s as any).stat ?? 0)?.['men_feetfucked']), (((s as any).stat ?? 0)?.['men_titfucked']), (((s as any).stat ?? 0)?.['men_blown']), (((s as any).stat ?? 0)?.['men_fucked']));
+  ((s as any).stat = (s as any).stat ?? {})['male_sexual_times'] = Math.max((((s as any).stat ?? 0)?.['male_sexual_times']), (((s as any).stat ?? 0)?.['men_jerked_times']), (((s as any).stat ?? 0)?.['men_feetfucked_times']), (((s as any).stat ?? 0)?.['men_titfucked_times']), (((s as any).stat ?? 0)?.['men_blown_times']), (((s as any).stat ?? 0)?.['men_fucked_times']));
+  ((s as any).stat = (s as any).stat ?? {})['female_sexual_partners'] = Math.max((((s as any).stat ?? 0)?.['female_sexual_partners']), (((s as any).stat ?? 0)?.['women_fingered']), (((s as any).stat ?? 0)?.['women_feetfucked']), (((s as any).stat ?? 0)?.['women_titfucked']), (((s as any).stat ?? 0)?.['women_munched']), (((s as any).stat ?? 0)?.['women_fucked']));
+  ((s as any).stat = (s as any).stat ?? {})['female_sexual_times'] = Math.max((((s as any).stat ?? 0)?.['female_sexual_times']), (((s as any).stat ?? 0)?.['women_fingered_times']), (((s as any).stat ?? 0)?.['women_feetfucked_times']), (((s as any).stat ?? 0)?.['women_titfucked_times']), (((s as any).stat ?? 0)?.['women_munched_times']), (((s as any).stat ?? 0)?.['women_fucked_times']));
+  ((s as any).stat = (s as any).stat ?? {})['herm_sexual_partners'] = Math.max((((s as any).stat ?? 0)?.['herm_sexual_partners']), (((s as any).stat ?? 0)?.['herm_jerked']), (((s as any).stat ?? 0)?.['herm_feetfucked']), (((s as any).stat ?? 0)?.['herm_titfucked']), (((s as any).stat ?? 0)?.['herm_blown']), (((s as any).stat ?? 0)?.['herm_fucked']));
+  ((s as any).stat = (s as any).stat ?? {})['herm_sexual_times'] = Math.max((((s as any).stat ?? 0)?.['herm_sexual_times']), (((s as any).stat ?? 0)?.['herm_jerked_times']), (((s as any).stat ?? 0)?.['herm_feetfucked_times']), (((s as any).stat ?? 0)?.['herm_titfucked_times']), (((s as any).stat ?? 0)?.['herm_blown_times']), (((s as any).stat ?? 0)?.['herm_fucked_times']));
   return;
   // TODO-QSP: end
   scene.build();

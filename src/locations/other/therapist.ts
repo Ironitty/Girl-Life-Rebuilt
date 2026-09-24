@@ -12,7 +12,7 @@ function enterLeave(s: GameState, scene: SceneBuilder): void {
   if (((s as any).trait_vars ?? 0)?.['sensitivity_override'] === 1) {
     ((s as any).trait_vars = (s as any).trait_vars ?? {})['sensitivity_override'] = 0;
   }
-  { const __t = String((s as any).locArgs?.[1] ?? ''); if (__t) qspGoto(s, __t, '$ARGS[2]'); }
+  { const __t = String((s as any).locArgs?.[1] ?? ''); if (__t) qspGoto(s, __t, String((s as any).locArgs?.[2] ?? '')); }
   // TODO-QSP: end
   scene.build();
 }
@@ -2533,7 +2533,7 @@ function enterHypnoPerv(s: GameState, scene: SceneBuilder): void {
       scene.text('"With my family, <i>Master</i>."');
       scene.text('"Who lives with you?" he says.');
       // TODO-QSP: dynamic text: "My <<$npc_nickname[''A29'']>>, stepfather, my sister and my brother, <i>Master<...
-      scene.text(`"My ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''}, stepfather, my sister and my brother, <i>Master</i>"`);
+      scene.text(`"My ${(((s as any).npc_nickname ?? 0)?.['A29'] ?? '')}, stepfather, my sister and my brother, <i>Master</i>"`);
       // TODO-QSP: dynamic text: "So we need to come up with a way for you to get kicked out. There would be too ...
       scene.text(`"So we need to come up with a way for you to get kicked out. There would be too much suspicion if you simply disappeared. ${qspFunc(s, 'wrap', 'hypno', 'You will tell your mother that your stepfather got you pregnant. After you do this, you will return here.')} Understand, <i>Cunt</i>?"`);
       scene.text('"Yes, <i>Master</i>."');
@@ -2544,7 +2544,7 @@ function enterHypnoPerv(s: GameState, scene: SceneBuilder): void {
     scene.text('You dress yourself.');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    scene.text(`<center><b>Your ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''}, Natasha ${((st as any).pcs_lastname ?? '')}</b></center>`);
+    scene.text(`<center><b>Your ${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')}, Natasha ${((st as any).pcs_lastname ?? '')}</b></center>`);
     scene.img('images/characters/pavlovsk/resident/mom/mother.jpg');
     scene.text('You seem to lose consciousness and before you know it you are standing in a familiar place, in front of your mother.');
     scene.actions([
@@ -2552,7 +2552,7 @@ function enterHypnoPerv(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'therapist', '');
   } },
       { label: 'Resist!', handler: (st: GameState) => {
-    scene.text(`<center><b>Your ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''}, Natasha ${((st as any).pcs_lastname ?? '')}</b></center>`);
+    scene.text(`<center><b>Your ${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')}, Natasha ${((st as any).pcs_lastname ?? '')}</b></center>`);
     scene.img('images/characters/pavlovsk/resident/mom/mother.jpg');
     scene.text('You feel like something is off, but you can\'t quite put your finger on it. But you know for a fact that you have to do what <i>Master</i> instructed you to do. Your pussy moistens simply at the thought of him.');
     scene.actions([
@@ -2920,7 +2920,7 @@ function enterHypnoProstitute(s: GameState, scene: SceneBuilder): void {
     scene.text('');
     (st as any).hypnoProstTimes = ((st as any).hypnoProstTimes ?? 0) + (1);
     // TODO-QSP: dynamic text: He fucks your pussy hard and fast. The car fills with the sound of his hips slap...
-    scene.text(`He fucks your pussy hard and fast. The car fills with the sound of his hips slapping against your ${((st as any).pc_desc ?? 0)?.['butt'] ?? ''} and the squelching of your wet pussy.`);
+    scene.text(`He fucks your pussy hard and fast. The car fills with the sound of his hips slapping against your ${(((st as any).pc_desc ?? 0)?.['butt'] ?? '')} and the squelching of your wet pussy.`);
     scene.text('He uses your pussy for his own pleasure for some time until you start to feel his cock bulge inside of you and he lets out a moan.');
     scene.actions([
       { label: 'Take his cum', handler: (st: GameState) => {
@@ -3039,7 +3039,7 @@ function enterHypnoProstitute(s: GameState, scene: SceneBuilder): void {
     scene.text('');
     (st as any).hypnoProstTimes = ((st as any).hypnoProstTimes ?? 0) + (1);
     // TODO-QSP: dynamic text: He fucks your pussy hard and fast. The car fills with the sound of his hips slap...
-    scene.text(`He fucks your pussy hard and fast. The car fills with the sound of his hips slapping against your ${((st as any).pc_desc ?? 0)?.['butt'] ?? ''} and the squelching of your wet pussy.`);
+    scene.text(`He fucks your pussy hard and fast. The car fills with the sound of his hips slapping against your ${(((st as any).pc_desc ?? 0)?.['butt'] ?? '')} and the squelching of your wet pussy.`);
     scene.text('He uses your pussy for his own pleasure for some time until you start to feel his cock bulge inside of you and he lets out a moan.');
     scene.actions([
       { label: 'Take his cum', handler: (st: GameState) => {

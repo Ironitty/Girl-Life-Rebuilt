@@ -27,7 +27,7 @@ function enterReset(s: GameState, scene: SceneBuilder): void {
       if (Object.keys((s as any).npc_nsp_pref_traits ?? {}).length === 0) {
         ((s as any).temp_nsprefVars = (s as any).temp_nsprefVars ?? {})['pref_string'] = qspUntranslated(s, "\"killvar 'npc_pref_traits'", { location: "npc_set_preference" });
         // TODO-QSP: $npc_pref_traits[] = '<<$ARGS[1]>>'
-        ((s as any).npc_pref_values = (s as any).npc_pref_values ?? {})[String(((s as any).locArgs?.[1] ?? 0))] = ((s as any).temp_nsprefVars ?? 0)?.['value'];
+        ((s as any).npc_pref_values = (s as any).npc_pref_values ?? {})[String(((s as any).locArgs?.[1] ?? 0))] = (((s as any).temp_nsprefVars ?? 0)?.['value']);
         // TODO-QSP: "
         // TODO-QSP: $npc_preferences[$ARGS[0]] = $replace($temp_nsprefVars['pref_string'], '  ', '')
       } else {
@@ -36,7 +36,7 @@ function enterReset(s: GameState, scene: SceneBuilder): void {
           { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[0] ?? 0)]; enterRebuildPreferences(s, scene); (s as any).locArgs = __savedLocArgs; }
         } else {
           // TODO-QSP: $temp_nsprefVars['pref_string'] = "$npc_pref_traits[] = '<<$ARGS[1]>>'
-          ((s as any).npc_pref_values = (s as any).npc_pref_values ?? {})[String(((s as any).locArgs?.[1] ?? 0))] = ((s as any).temp_nsprefVars ?? 0)?.['value'];
+          ((s as any).npc_pref_values = (s as any).npc_pref_values ?? {})[String(((s as any).locArgs?.[1] ?? 0))] = (((s as any).temp_nsprefVars ?? 0)?.['value']);
           // TODO-QSP: "
           // TODO-QSP: $npc_preferences[$ARGS[0]] += $replace($temp_nsprefVars['pref_string'], '  ', '')
         }

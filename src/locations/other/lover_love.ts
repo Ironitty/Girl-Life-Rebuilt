@@ -119,8 +119,8 @@ function enterMarry(s: GameState, scene: SceneBuilder): void {
     ((s as any).spouseVars = (s as any).spouseVars ?? {})['eat_day'] = ((s as any).daystart ?? 0);
     ((s as any).spouseVars = (s as any).spouseVars ?? {})['wash_day'] = ((s as any).daystart ?? 0);
     ((s as any).spouseVars = (s as any).spouseVars ?? {})['clean_day'] = ((s as any).daystart ?? 0);
-    ((s as any).spouseVars = (s as any).spouseVars ?? {})['men_fucked_before'] = ((s as any).stat ?? 0)?.['men_fucked'];
-    ((s as any).spouseVars = (s as any).spouseVars ?? {})['women_fucked_before'] = ((s as any).stat ?? 0)?.['women_fucked'];
+    ((s as any).spouseVars = (s as any).spouseVars ?? {})['men_fucked_before'] = (((s as any).stat ?? 0)?.['men_fucked']);
+    ((s as any).spouseVars = (s as any).spouseVars ?? {})['women_fucked_before'] = (((s as any).stat ?? 0)?.['women_fucked']);
     (s as any).PRinStyle = 1;
     (s as any).PRinStyle2 = 1;
   }

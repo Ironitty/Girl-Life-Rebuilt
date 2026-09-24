@@ -1160,9 +1160,9 @@ function enterMilking(s: GameState, scene: SceneBuilder): void {
               // TODO-QSP: dynamic text: pump_bottletype: <<pump_bottletype>>
               scene.text(`pump_bottletype: ${((s as any).pump_bottletype ?? '')}`);
               // TODO-QSP: dynamic text: bpbottles: <<mc_inventory[''bottle_s'']>>
-              scene.text(`bpbottles: ${((s as any).mc_inventory ?? 0)?.['bottle_s'] ?? ''}`);
+              scene.text(`bpbottles: ${(((s as any).mc_inventory ?? 0)?.['bottle_s'] ?? '')}`);
               // TODO-QSP: dynamic text: bpbottlem: <<mc_inventory[''bottle_m'']>>
-              scene.text(`bpbottlem: ${((s as any).mc_inventory ?? 0)?.['bottle_m'] ?? ''}`);
+              scene.text(`bpbottlem: ${(((s as any).mc_inventory ?? 0)?.['bottle_m'] ?? '')}`);
             }
           } else {
             // TODO-QSP: dynamic text: You give it a few more pumps and detach the pump.<br>You filled the bottle with ...

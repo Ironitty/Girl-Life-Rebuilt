@@ -662,7 +662,14 @@ if (/^(Map|Back|Open Map)$/i.test(text)) return false;
     errors.length = 0;
 
     try {
+      await page.evaluate(() => {
+        (window as any).__origRandom = (window as any).__origRandom ?? Math.random;
+        Math.random = () => 0;
+      });
       await page.locator('button', { hasText: actionText }).first().click();
+      await page.evaluate(() => {
+        if ((window as any).__origRandom) Math.random = (window as any).__origRandom;
+      });
     } catch (e: any) {
       return { passed: false, error: `click failed: ${e.message}`, loc: label, action: actionText };
     }

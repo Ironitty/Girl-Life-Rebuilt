@@ -14,7 +14,7 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'beta_journal', 'nav_construct');
   if (((s as any).debug ?? 0)?.['journal'] !== '') {
     // TODO-QSP: dynamic text: <h2><font color = "red">Error with:</font> <<$debug[''journal'']>></h2>
-    scene.text(`<h2><font color = "red">Error with:</font> ${((s as any).debug ?? 0)?.['journal'] ?? ''}</h2>`);
+    scene.text(`<h2><font color = "red">Error with:</font> ${(((s as any).debug ?? 0)?.['journal'] ?? '')}</h2>`);
     ((s as any).debug = (s as any).debug ?? {})['journal'] = '';
   }
   if (((s as any).journal ?? 0)?.['alert'] === 1) {

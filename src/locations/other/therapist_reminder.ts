@@ -105,7 +105,7 @@ function enterIgnoreCost(s: GameState, scene: SceneBuilder): void {
     ((s as any).tempReminderVars = (s as any).tempReminderVars ?? {})['CostLow'] = qspFunc(s, 'shortgs', 'sqrt', 30 * (((s as any).tempReminderVars ?? {})?.['Mult'] ?? 0));
     ((s as any).tempReminderVars = (s as any).tempReminderVars ?? {})['CostHigh'] = qspFunc(s, 'shortgs', 'sqrt', 90 * (((s as any).tempReminderVars ?? {})?.['Mult'] ?? 0));
   }
-  qspCall(s, 'mood', 'lower', (Math.floor(Math.random() * (((s as any).tempReminderVars ?? 0)?.['CostHigh'] - ((s as any).tempReminderVars ?? 0)?.['CostLow'] + 1)) + (((s as any).tempReminderVars ?? 0)?.['CostLow'])));
+  qspCall(s, 'mood', 'lower', (Math.floor(Math.random() * ((((s as any).tempReminderVars ?? 0)?.['CostHigh']) - (((s as any).tempReminderVars ?? 0)?.['CostLow']) + 1)) + ((((s as any).tempReminderVars ?? 0)?.['CostLow']))));
   (s as any).daysSkippedHypno = ((s as any).daysSkippedHypno ?? 0) + (1);
   if (((s as any).daysSkippedHypno ?? 0) >= 5) {
     (s as any).hypnoTime = ((s as any).hypnoTime ?? 0) - (1);

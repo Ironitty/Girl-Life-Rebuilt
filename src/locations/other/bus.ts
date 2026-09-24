@@ -152,7 +152,7 @@ function enterPavstation(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).transportVars ?? 0)?.['bus_wait_pavlovsk'] > 60  &&  ((s as any).transportVars ?? 0)?.['bus_wait_gadukino'] > 60) {
     // TODO-QSP: dynamic text: It''s too late to take the bus. The next one arrives in <<min(transportVars[''bu...
-    scene.text(`It's too late to take the bus. The next one arrives in ${Math.min(((s as any).transportVars ?? 0)?.['bus_wait_pavlovsk'] ?? '', ((s as any).transportVars ?? 0)?.['bus_wait_gadukino'] ?? '') / 60} hours.`);
+    scene.text(`It's too late to take the bus. The next one arrives in ${Math.min((((s as any).transportVars ?? 0)?.['bus_wait_pavlovsk'] ?? ''), (((s as any).transportVars ?? 0)?.['bus_wait_gadukino'] ?? '')) / 60} hours.`);
   } else {
     // TODO-QSP: 'The next bus in the direction of the Pavlovsk community center ' + iif(transportVars['bus_wait_pavl...
     // TODO-QSP: 'The next bus in the direction of Gadukino ' + iif(transportVars['bus_wait_gadukino'] = 0, 'is leavi...
@@ -250,7 +250,7 @@ function enterPushkin(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'transport_functions', 'set_bus_wait_time', 'pushkin');
   if (((s as any).transportVars ?? 0)?.['bus_wait_pavlovsk'] > 60  &&  ((s as any).transportVars ?? 0)?.['bus_wait_gadukino'] > 60) {
     // TODO-QSP: dynamic text: It''s too late to take the bus. The next one arrives in <<min(transportVars[''bu...
-    scene.text(`It's too late to take the bus. The next one arrives in ${Math.min(((s as any).transportVars ?? 0)?.['bus_wait_pavlovsk'] ?? '', ((s as any).transportVars ?? 0)?.['bus_wait_gadukino'] ?? '') / 60} hours.`);
+    scene.text(`It's too late to take the bus. The next one arrives in ${Math.min((((s as any).transportVars ?? 0)?.['bus_wait_pavlovsk'] ?? ''), (((s as any).transportVars ?? 0)?.['bus_wait_gadukino'] ?? '')) / 60} hours.`);
   } else {
     // TODO-QSP: 'The next bus in the direction of Pavlovsk ' + iif(transportVars['bus_wait_pavlovsk'] = 0, 'is leavi...
     // TODO-QSP: 'The next bus in the direction of Gadukino ' + iif(transportVars['bus_wait_gadukino'] = 0, 'is leavi...
@@ -345,7 +345,7 @@ function enterConstruction(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'transport_functions', 'set_bus_wait_time', 'construction');
   if (((s as any).transportVars ?? 0)?.['bus_wait_pavlovsk'] > 60  &&  ((s as any).transportVars ?? 0)?.['bus_wait_gadukino'] > 60) {
     // TODO-QSP: dynamic text: It''s too late to take the bus. The next one arrives in <<min(transportVars[''bu...
-    scene.text(`It's too late to take the bus. The next one arrives in ${Math.min(((s as any).transportVars ?? 0)?.['bus_wait_pavlovsk'] ?? '', ((s as any).transportVars ?? 0)?.['bus_wait_gadukino'] ?? '')/60} hours.`);
+    scene.text(`It's too late to take the bus. The next one arrives in ${Math.min((((s as any).transportVars ?? 0)?.['bus_wait_pavlovsk'] ?? ''), (((s as any).transportVars ?? 0)?.['bus_wait_gadukino'] ?? ''))/60} hours.`);
   } else {
     // TODO-QSP: 'The next bus in the direction of Gadukino ' + iif(transportVars['bus_wait_gadukino'] = 0, 'is leavi...
     // TODO-QSP: 'The next bus in the direction of Pavlovsk ' + iif(transportVars['bus_wait_pavlovsk'] = 0, 'is leavi...
@@ -438,7 +438,7 @@ function enterGadukino(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'transport_functions', 'set_bus_wait_time', 'gadukino');
   if (((s as any).transportVars ?? 0)?.['bus_wait_pavlovsk'] > 60  &&  ((s as any).transportVars ?? 0)?.['bus_wait_suburbs'] > 60) {
     // TODO-QSP: dynamic text: It''s too late to take the bus. The next one arrives in <<min(transportVars[''bu...
-    scene.text(`It's too late to take the bus. The next one arrives in ${Math.min(((s as any).transportVars ?? 0)?.['bus_wait_pavlovsk'] ?? '', ((s as any).transportVars ?? 0)?.['bus_wait_suburbs'] ?? '')/60} hours.`);
+    scene.text(`It's too late to take the bus. The next one arrives in ${Math.min((((s as any).transportVars ?? 0)?.['bus_wait_pavlovsk'] ?? ''), (((s as any).transportVars ?? 0)?.['bus_wait_suburbs'] ?? ''))/60} hours.`);
   } else {
     // TODO-QSP: 'The next bus in the direction of Pavlovsk ' + iif(transportVars['bus_wait_pavlovsk'] = 0, 'is leavi...
     // TODO-QSP: 'The next bus in the direction of the suburbs of St. Petersburg ' + iif(transportVars['bus_wait_subu...
@@ -537,7 +537,7 @@ function enterCommunal(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'transport_functions', 'set_bus_wait_time', 'communal');
   if (((s as any).transportVars ?? 0)?.['bus_wait_gadukino'] > 60  &&  ((s as any).transportVars ?? 0)?.['bus_wait_suburbs'] > 60) {
     // TODO-QSP: dynamic text: It''s too late to take the bus. The next one arrives in <<min(transportVars[''bu...
-    scene.text(`It's too late to take the bus. The next one arrives in ${Math.min(((s as any).transportVars ?? 0)?.['bus_wait_gadukino'] ?? '', ((s as any).transportVars ?? 0)?.['bus_wait_suburbs'] ?? '')/60} hours.`);
+    scene.text(`It's too late to take the bus. The next one arrives in ${Math.min((((s as any).transportVars ?? 0)?.['bus_wait_gadukino'] ?? ''), (((s as any).transportVars ?? 0)?.['bus_wait_suburbs'] ?? ''))/60} hours.`);
   } else {
     // TODO-QSP: 'The next bus in the direction of Gadukino ' + iif(transportVars['bus_wait_gadukino'] = 0, 'is leavi...
     // TODO-QSP: 'The next bus in the direction of the suburbs of St. Petersburg ' + iif(transportVars['bus_wait_subu...
@@ -806,7 +806,7 @@ function enterCommunityPavstation(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_bus_wait_time', 'community');
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_bus_timecost', 'community', 'pavstation') + (((s as any).transportVars ?? {})?.['bus_wait_gadukino'] ?? 0);
-  (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
+  (s as any).minut = ((s as any).minut ?? 0) + ((((s as any).temp_transportVars ?? 0)?.['timecost']));
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = (Math.floor(Math.random() * 100) + 0);
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     qspGoto(s, 'bus_incidental', 'events');
@@ -820,7 +820,7 @@ function enterCommunityPavstation(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGetBusImage(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: dynamic text: After <<temp_transportVars[''timecost'']>> minutes, the bus stops at the Pavlovs...
-  scene.text(`After ${((s as any).temp_transportVars ?? 0)?.['timecost'] ?? ''} minutes, the bus stops at the Pavlovsk train station bus station.`);
+  scene.text(`After ${(((s as any).temp_transportVars ?? 0)?.['timecost'] ?? '')} minutes, the bus stops at the Pavlovsk train station bus station.`);
   scene.actions([
     { label: 'Get off the bus', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 100) + 0) < 5) {
@@ -837,7 +837,7 @@ function enterCommunityPushkin(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_bus_wait_time', 'community');
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_bus_timecost', 'community', 'pushkin') + (((s as any).transportVars ?? {})?.['bus_wait_gadukino'] ?? 0);
-  (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
+  (s as any).minut = ((s as any).minut ?? 0) + ((((s as any).temp_transportVars ?? 0)?.['timecost']));
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = (Math.floor(Math.random() * 100) + 0);
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     qspGoto(s, 'bus_incidental', 'events');
@@ -851,7 +851,7 @@ function enterCommunityPushkin(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGetBusImage(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: dynamic text: After <<temp_transportVars[''timecost'']>> minutes, the bus stops at the Pushkin...
-  scene.text(`After ${((s as any).temp_transportVars ?? 0)?.['timecost'] ?? ''} minutes, the bus stops at the Pushkin bus station.`);
+  scene.text(`After ${(((s as any).temp_transportVars ?? 0)?.['timecost'] ?? '')} minutes, the bus stops at the Pushkin bus station.`);
   scene.actions([
     { label: 'Get off the bus', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 100) + 0) < 5) {
@@ -868,7 +868,7 @@ function enterCommunityConstruction(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_bus_wait_time', 'community');
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_bus_timecost', 'community', 'construction') + (((s as any).transportVars ?? {})?.['bus_wait_gadukino'] ?? 0);
-  (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
+  (s as any).minut = ((s as any).minut ?? 0) + ((((s as any).temp_transportVars ?? 0)?.['timecost']));
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = (Math.floor(Math.random() * 100) + 0);
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     qspGoto(s, 'bus_incidental', 'events');
@@ -882,7 +882,7 @@ function enterCommunityConstruction(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGetBusImage(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: dynamic text: After <<temp_transportVars[''timecost'']>> minutes, the bus stops at the constru...
-  scene.text(`After ${((s as any).temp_transportVars ?? 0)?.['timecost'] ?? ''} minutes, the bus stops at the construction site bus station.`);
+  scene.text(`After ${(((s as any).temp_transportVars ?? 0)?.['timecost'] ?? '')} minutes, the bus stops at the construction site bus station.`);
   scene.actions([
     { label: 'Get off the bus', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 100) + 0) < 5) {
@@ -899,7 +899,7 @@ function enterCommunityGadukino(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_bus_wait_time', 'community');
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_bus_timecost', 'community', 'gadukino') + (((s as any).transportVars ?? {})?.['bus_wait_gadukino'] ?? 0);
-  (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
+  (s as any).minut = ((s as any).minut ?? 0) + ((((s as any).temp_transportVars ?? 0)?.['timecost']));
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = (Math.floor(Math.random() * 100) + 0);
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     qspGoto(s, 'bus_incidental', 'events');
@@ -913,7 +913,7 @@ function enterCommunityGadukino(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGetBusImage(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: dynamic text: After <<temp_transportVars[''timecost'']>> minutes, the bus stops at the Gadukin...
-  scene.text(`After ${((s as any).temp_transportVars ?? 0)?.['timecost'] ?? ''} minutes, the bus stops at the Gadukino bus station.`);
+  scene.text(`After ${(((s as any).temp_transportVars ?? 0)?.['timecost'] ?? '')} minutes, the bus stops at the Gadukino bus station.`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Get off the bus', handler: (st: GameState) => {
@@ -931,7 +931,7 @@ function enterPavstationCommunity(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_bus_wait_time', 'pavstation');
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_bus_timecost', 'pavstation', 'community') + (((s as any).transportVars ?? {})?.['bus_wait_pavlovsk'] ?? 0);
-  (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
+  (s as any).minut = ((s as any).minut ?? 0) + ((((s as any).temp_transportVars ?? 0)?.['timecost']));
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = (Math.floor(Math.random() * 100) + 0);
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     qspGoto(s, 'bus_incidental', 'events');
@@ -945,7 +945,7 @@ function enterPavstationCommunity(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGetBusImage(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: dynamic text: After <<temp_transportVars[''timecost'']>> minutes, the bus stops at the Pavlovs...
-  scene.text(`After ${((s as any).temp_transportVars ?? 0)?.['timecost'] ?? ''} minutes, the bus stops at the Pavlovsk community center bus station.`);
+  scene.text(`After ${(((s as any).temp_transportVars ?? 0)?.['timecost'] ?? '')} minutes, the bus stops at the Pavlovsk community center bus station.`);
   scene.actions([
     { label: 'Get off the bus', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 100) + 0) < 5) {
@@ -962,7 +962,7 @@ function enterPavstationPushkin(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_bus_wait_time', 'pavstation');
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_bus_timecost', 'pavstation', 'pushkin') + (((s as any).transportVars ?? {})?.['bus_wait_gadukino'] ?? 0);
-  (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
+  (s as any).minut = ((s as any).minut ?? 0) + ((((s as any).temp_transportVars ?? 0)?.['timecost']));
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = (Math.floor(Math.random() * 100) + 0);
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     qspGoto(s, 'bus_incidental', 'events');
@@ -976,7 +976,7 @@ function enterPavstationPushkin(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGetBusImage(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: dynamic text: After <<temp_transportVars[''timecost'']>> minutes, the bus stops at the Pushkin...
-  scene.text(`After ${((s as any).temp_transportVars ?? 0)?.['timecost'] ?? ''} minutes, the bus stops at the Pushkin bus station.`);
+  scene.text(`After ${(((s as any).temp_transportVars ?? 0)?.['timecost'] ?? '')} minutes, the bus stops at the Pushkin bus station.`);
   scene.actions([
     { label: 'Get off the bus', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 100) + 0) < 5) {
@@ -993,7 +993,7 @@ function enterPavstationConstruction(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_bus_wait_time', 'pavstation');
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_bus_timecost', 'pavstation', 'construction') + (((s as any).transportVars ?? {})?.['bus_wait_gadukino'] ?? 0);
-  (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
+  (s as any).minut = ((s as any).minut ?? 0) + ((((s as any).temp_transportVars ?? 0)?.['timecost']));
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = (Math.floor(Math.random() * 100) + 0);
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     qspGoto(s, 'bus_incidental', 'events');
@@ -1007,7 +1007,7 @@ function enterPavstationConstruction(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGetBusImage(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: dynamic text: After <<temp_transportVars[''timecost'']>> minutes, the bus stops at the constru...
-  scene.text(`After ${((s as any).temp_transportVars ?? 0)?.['timecost'] ?? ''} minutes, the bus stops at the construction site bus station.`);
+  scene.text(`After ${(((s as any).temp_transportVars ?? 0)?.['timecost'] ?? '')} minutes, the bus stops at the construction site bus station.`);
   scene.actions([
     { label: 'Get off the bus', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 100) + 0) < 5) {
@@ -1024,7 +1024,7 @@ function enterPavstationGadukino(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_bus_wait_time', 'pavstation');
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_bus_timecost', 'pavstation', 'gadukino') + (((s as any).transportVars ?? {})?.['bus_wait_gadukino'] ?? 0);
-  (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
+  (s as any).minut = ((s as any).minut ?? 0) + ((((s as any).temp_transportVars ?? 0)?.['timecost']));
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = (Math.floor(Math.random() * 100) + 0);
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     qspGoto(s, 'bus_incidental', 'events');
@@ -1038,7 +1038,7 @@ function enterPavstationGadukino(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGetBusImage(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: dynamic text: After <<temp_transportVars[''timecost'']>> minutes, the bus stops at the Gadukin...
-  scene.text(`After ${((s as any).temp_transportVars ?? 0)?.['timecost'] ?? ''} minutes, the bus stops at the Gadukino bus station.`);
+  scene.text(`After ${(((s as any).temp_transportVars ?? 0)?.['timecost'] ?? '')} minutes, the bus stops at the Gadukino bus station.`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Get off the bus', handler: (st: GameState) => {
@@ -1056,7 +1056,7 @@ function enterPushkinCommunity(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_bus_wait_time', 'pushkin');
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_bus_timecost', 'pushkin', 'community') + (((s as any).transportVars ?? {})?.['bus_wait_pavlovsk'] ?? 0);
-  (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
+  (s as any).minut = ((s as any).minut ?? 0) + ((((s as any).temp_transportVars ?? 0)?.['timecost']));
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = (Math.floor(Math.random() * 100) + 0);
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     qspGoto(s, 'bus_incidental', 'events');
@@ -1070,7 +1070,7 @@ function enterPushkinCommunity(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGetBusImage(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: dynamic text: After <<temp_transportVars[''timecost'']>> minutes, the bus stops at the Pavlovs...
-  scene.text(`After ${((s as any).temp_transportVars ?? 0)?.['timecost'] ?? ''} minutes, the bus stops at the Pavlovsk community center bus station.`);
+  scene.text(`After ${(((s as any).temp_transportVars ?? 0)?.['timecost'] ?? '')} minutes, the bus stops at the Pavlovsk community center bus station.`);
   scene.actions([
     { label: 'Get off the bus', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 100) + 0) < 5) {
@@ -1087,7 +1087,7 @@ function enterPushkinPavstation(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_bus_wait_time', 'pushkin');
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_bus_timecost', 'pushkin', 'pavstation') + (((s as any).transportVars ?? {})?.['bus_wait_pavlovsk'] ?? 0);
-  (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
+  (s as any).minut = ((s as any).minut ?? 0) + ((((s as any).temp_transportVars ?? 0)?.['timecost']));
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = (Math.floor(Math.random() * 100) + 0);
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     qspGoto(s, 'bus_incidental', 'events');
@@ -1101,7 +1101,7 @@ function enterPushkinPavstation(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGetBusImage(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: dynamic text: After <<temp_transportVars[''timecost'']>> minutes, the bus stops at the Pavlovs...
-  scene.text(`After ${((s as any).temp_transportVars ?? 0)?.['timecost'] ?? ''} minutes, the bus stops at the Pavlovsk train station bus station.`);
+  scene.text(`After ${(((s as any).temp_transportVars ?? 0)?.['timecost'] ?? '')} minutes, the bus stops at the Pavlovsk train station bus station.`);
   scene.actions([
     { label: 'Get off the bus', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 100) + 0) < 5) {
@@ -1118,7 +1118,7 @@ function enterPushkinConstruction(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_bus_wait_time', 'pushkin');
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_bus_timecost', 'pushkin', 'construction') + (((s as any).transportVars ?? {})?.['bus_wait_gadukino'] ?? 0);
-  (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
+  (s as any).minut = ((s as any).minut ?? 0) + ((((s as any).temp_transportVars ?? 0)?.['timecost']));
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = (Math.floor(Math.random() * 100) + 0);
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     qspGoto(s, 'bus_incidental', 'events');
@@ -1132,7 +1132,7 @@ function enterPushkinConstruction(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGetBusImage(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: dynamic text: After <<temp_transportVars[''timecost'']>> minutes, the bus stops at the constru...
-  scene.text(`After ${((s as any).temp_transportVars ?? 0)?.['timecost'] ?? ''} minutes, the bus stops at the construction site bus station.`);
+  scene.text(`After ${(((s as any).temp_transportVars ?? 0)?.['timecost'] ?? '')} minutes, the bus stops at the construction site bus station.`);
   scene.actions([
     { label: 'Get off the bus', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 100) + 0) < 5) {
@@ -1149,7 +1149,7 @@ function enterPushkinGadukino(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_bus_wait_time', 'pushkin');
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_bus_timecost', 'pushkin', 'gadukino') + (((s as any).transportVars ?? {})?.['bus_wait_gadukino'] ?? 0);
-  (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
+  (s as any).minut = ((s as any).minut ?? 0) + ((((s as any).temp_transportVars ?? 0)?.['timecost']));
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = (Math.floor(Math.random() * 100) + 0);
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     qspGoto(s, 'bus_incidental', 'events');
@@ -1163,7 +1163,7 @@ function enterPushkinGadukino(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGetBusImage(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: dynamic text: After <<temp_transportVars[''timecost'']>> minutes, the bus stops at the Gadukin...
-  scene.text(`After ${((s as any).temp_transportVars ?? 0)?.['timecost'] ?? ''} minutes, the bus stops at the Gadukino bus station.`);
+  scene.text(`After ${(((s as any).temp_transportVars ?? 0)?.['timecost'] ?? '')} minutes, the bus stops at the Gadukino bus station.`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Get off the bus', handler: (st: GameState) => {
@@ -1181,7 +1181,7 @@ function enterConstructionCommunity(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_bus_wait_time', 'construction');
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_bus_timecost', 'construction', 'community') + (((s as any).transportVars ?? {})?.['bus_wait_pavlovsk'] ?? 0);
-  (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
+  (s as any).minut = ((s as any).minut ?? 0) + ((((s as any).temp_transportVars ?? 0)?.['timecost']));
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = (Math.floor(Math.random() * 100) + 0);
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     qspGoto(s, 'bus_incidental', 'events');
@@ -1195,7 +1195,7 @@ function enterConstructionCommunity(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGetBusImage(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: dynamic text: After <<temp_transportVars[''timecost'']>> minutes, the bus stops at the Pavlovs...
-  scene.text(`After ${((s as any).temp_transportVars ?? 0)?.['timecost'] ?? ''} minutes, the bus stops at the Pavlovsk community center bus station.`);
+  scene.text(`After ${(((s as any).temp_transportVars ?? 0)?.['timecost'] ?? '')} minutes, the bus stops at the Pavlovsk community center bus station.`);
   scene.actions([
     { label: 'Get off the bus', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 100) + 0) < 5) {
@@ -1212,7 +1212,7 @@ function enterConstructionPavstation(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_bus_wait_time', 'construction');
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_bus_timecost', 'construction', 'pavstation') + (((s as any).transportVars ?? {})?.['bus_wait_pavlovsk'] ?? 0);
-  (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
+  (s as any).minut = ((s as any).minut ?? 0) + ((((s as any).temp_transportVars ?? 0)?.['timecost']));
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = (Math.floor(Math.random() * 100) + 0);
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     qspGoto(s, 'bus_incidental', 'events');
@@ -1226,7 +1226,7 @@ function enterConstructionPavstation(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGetBusImage(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: dynamic text: After <<temp_transportVars[''timecost'']>> minutes, the bus stops at the Pavlovs...
-  scene.text(`After ${((s as any).temp_transportVars ?? 0)?.['timecost'] ?? ''} minutes, the bus stops at the Pavlovsk train station bus station.`);
+  scene.text(`After ${(((s as any).temp_transportVars ?? 0)?.['timecost'] ?? '')} minutes, the bus stops at the Pavlovsk train station bus station.`);
   scene.actions([
     { label: 'Get off the bus', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 100) + 0) < 5) {
@@ -1243,7 +1243,7 @@ function enterConstructionPushkin(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_bus_wait_time', 'construction');
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_bus_timecost', 'construction', 'pushkin') + (((s as any).transportVars ?? {})?.['bus_wait_pavlovsk'] ?? 0);
-  (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
+  (s as any).minut = ((s as any).minut ?? 0) + ((((s as any).temp_transportVars ?? 0)?.['timecost']));
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = (Math.floor(Math.random() * 100) + 0);
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     qspGoto(s, 'bus_incidental', 'events');
@@ -1257,7 +1257,7 @@ function enterConstructionPushkin(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGetBusImage(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: dynamic text: After <<temp_transportVars[''timecost'']>> minutes, the bus stops at the Pushkin...
-  scene.text(`After ${((s as any).temp_transportVars ?? 0)?.['timecost'] ?? ''} minutes, the bus stops at the Pushkin bus station.`);
+  scene.text(`After ${(((s as any).temp_transportVars ?? 0)?.['timecost'] ?? '')} minutes, the bus stops at the Pushkin bus station.`);
   scene.actions([
     { label: 'Get off the bus', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 100) + 0) < 5) {
@@ -1274,7 +1274,7 @@ function enterConstructionGadukino(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_bus_wait_time', 'construction');
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_bus_timecost', 'construction', 'gadukino') + (((s as any).transportVars ?? {})?.['bus_wait_gadukino'] ?? 0);
-  (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
+  (s as any).minut = ((s as any).minut ?? 0) + ((((s as any).temp_transportVars ?? 0)?.['timecost']));
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = (Math.floor(Math.random() * 100) + 0);
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     qspGoto(s, 'bus_incidental', 'events');
@@ -1288,7 +1288,7 @@ function enterConstructionGadukino(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGetBusImage(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: dynamic text: After <<temp_transportVars[''timecost'']>> minutes, the bus stops at the Gadukin...
-  scene.text(`After ${((s as any).temp_transportVars ?? 0)?.['timecost'] ?? ''} minutes, the bus stops at the Gadukino bus station.`);
+  scene.text(`After ${(((s as any).temp_transportVars ?? 0)?.['timecost'] ?? '')} minutes, the bus stops at the Gadukino bus station.`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Get off the bus', handler: (st: GameState) => {
@@ -1306,7 +1306,7 @@ function enterGadukinoCommunity(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_bus_wait_time', 'gadukino');
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_bus_timecost', 'gadukino', 'community') + (((s as any).transportVars ?? {})?.['bus_wait_pavlovsk'] ?? 0);
-  (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
+  (s as any).minut = ((s as any).minut ?? 0) + ((((s as any).temp_transportVars ?? 0)?.['timecost']));
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = (Math.floor(Math.random() * 100) + 0);
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     qspGoto(s, 'bus_incidental', 'events');
@@ -1320,7 +1320,7 @@ function enterGadukinoCommunity(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGetBusImage(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: dynamic text: After <<temp_transportVars[''timecost'']>> minutes, the bus stops at the Pavlovs...
-  scene.text(`After ${((s as any).temp_transportVars ?? 0)?.['timecost'] ?? ''} minutes, the bus stops at the Pavlovsk community center bus station.`);
+  scene.text(`After ${(((s as any).temp_transportVars ?? 0)?.['timecost'] ?? '')} minutes, the bus stops at the Pavlovsk community center bus station.`);
   scene.actions([
     { label: 'Get off the bus', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 100) + 0) < 5) {
@@ -1337,7 +1337,7 @@ function enterGadukinoPavstation(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_bus_wait_time', 'gadukino');
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_bus_timecost', 'gadukino', 'pavstation') + (((s as any).transportVars ?? {})?.['bus_wait_pavlovsk'] ?? 0);
-  (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
+  (s as any).minut = ((s as any).minut ?? 0) + ((((s as any).temp_transportVars ?? 0)?.['timecost']));
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = (Math.floor(Math.random() * 100) + 0);
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     qspGoto(s, 'bus_incidental', 'events');
@@ -1351,7 +1351,7 @@ function enterGadukinoPavstation(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGetBusImage(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: dynamic text: After <<temp_transportVars[''timecost'']>> minutes, the bus stops at the Pavlovs...
-  scene.text(`After ${((s as any).temp_transportVars ?? 0)?.['timecost'] ?? ''} minutes, the bus stops at the Pavlovsk train station bus station.`);
+  scene.text(`After ${(((s as any).temp_transportVars ?? 0)?.['timecost'] ?? '')} minutes, the bus stops at the Pavlovsk train station bus station.`);
   scene.actions([
     { label: 'Get off the bus', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 100) + 0) < 5) {
@@ -1368,7 +1368,7 @@ function enterGadukinoPushkin(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_bus_wait_time', 'gadukino');
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_bus_timecost', 'gadukino', 'pushkin') + (((s as any).transportVars ?? {})?.['bus_wait_pavlovsk'] ?? 0);
-  (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
+  (s as any).minut = ((s as any).minut ?? 0) + ((((s as any).temp_transportVars ?? 0)?.['timecost']));
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = (Math.floor(Math.random() * 100) + 0);
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     qspGoto(s, 'bus_incidental', 'events');
@@ -1382,7 +1382,7 @@ function enterGadukinoPushkin(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGetBusImage(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: dynamic text: After <<temp_transportVars[''timecost'']>> minutes, the bus stops at the Pushkin...
-  scene.text(`After ${((s as any).temp_transportVars ?? 0)?.['timecost'] ?? ''} minutes, the bus stops at the Pushkin bus station.`);
+  scene.text(`After ${(((s as any).temp_transportVars ?? 0)?.['timecost'] ?? '')} minutes, the bus stops at the Pushkin bus station.`);
   scene.actions([
     { label: 'Get off the bus', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 100) + 0) < 5) {
@@ -1399,7 +1399,7 @@ function enterGadukinoConstruction(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_bus_wait_time', 'gadukino');
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_bus_timecost', 'gadukino', 'construction') + (((s as any).transportVars ?? {})?.['bus_wait_pavlovsk'] ?? 0);
-  (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
+  (s as any).minut = ((s as any).minut ?? 0) + ((((s as any).temp_transportVars ?? 0)?.['timecost']));
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = (Math.floor(Math.random() * 100) + 0);
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     qspGoto(s, 'bus_incidental', 'events');
@@ -1413,7 +1413,7 @@ function enterGadukinoConstruction(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGetBusImage(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: dynamic text: After <<temp_transportVars[''timecost'']>> minutes, the bus stops at the constru...
-  scene.text(`After ${((s as any).temp_transportVars ?? 0)?.['timecost'] ?? ''} minutes, the bus stops at the construction site bus station.`);
+  scene.text(`After ${(((s as any).temp_transportVars ?? 0)?.['timecost'] ?? '')} minutes, the bus stops at the construction site bus station.`);
   scene.actions([
     { label: 'Get off the bus', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 100) + 0) < 5) {
@@ -1430,7 +1430,7 @@ function enterGadukinoCommunal(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_bus_wait_time', 'gadukino');
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_bus_timecost', 'gadukino', 'communal') + (((s as any).transportVars ?? {})?.['bus_wait_suburbs'] ?? 0);
-  (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
+  (s as any).minut = ((s as any).minut ?? 0) + ((((s as any).temp_transportVars ?? 0)?.['timecost']));
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = (Math.floor(Math.random() * 100) + 0);
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     qspGoto(s, 'bus_incidental', 'events');
@@ -1444,7 +1444,7 @@ function enterGadukinoCommunal(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGetBusImage(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: dynamic text: After <<temp_transportVars[''timecost'']>> minutes, the bus stops at the communa...
-  scene.text(`After ${((s as any).temp_transportVars ?? 0)?.['timecost'] ?? ''} minutes, the bus stops at the communal village bus station.`);
+  scene.text(`After ${(((s as any).temp_transportVars ?? 0)?.['timecost'] ?? '')} minutes, the bus stops at the communal village bus station.`);
   scene.actions([
     { label: 'Get off the bus', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 100) + 0) < 5) {
@@ -1461,7 +1461,7 @@ function enterGadukinoGraveyard(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_bus_wait_time', 'gadukino');
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_bus_timecost', 'gadukino', 'graveyard') + (((s as any).transportVars ?? {})?.['bus_wait_suburbs'] ?? 0);
-  (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
+  (s as any).minut = ((s as any).minut ?? 0) + ((((s as any).temp_transportVars ?? 0)?.['timecost']));
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = (Math.floor(Math.random() * 100) + 0);
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     qspGoto(s, 'bus_incidental', 'events');
@@ -1475,7 +1475,7 @@ function enterGadukinoGraveyard(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGetBusImage(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: dynamic text: After <<temp_transportVars[''timecost'']>> minutes, the bus stops at the graveya...
-  scene.text(`After ${((s as any).temp_transportVars ?? 0)?.['timecost'] ?? ''} minutes, the bus stops at the graveyard bus station.`);
+  scene.text(`After ${(((s as any).temp_transportVars ?? 0)?.['timecost'] ?? '')} minutes, the bus stops at the graveyard bus station.`);
   scene.actions([
     { label: 'Get off the bus', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 100) + 0) < 5) {
@@ -1492,7 +1492,7 @@ function enterGadukinoSuburbs(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_bus_wait_time', 'gadukino');
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_bus_timecost', 'gadukino', 'suburbs') + (((s as any).transportVars ?? {})?.['bus_wait_suburbs'] ?? 0);
-  (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
+  (s as any).minut = ((s as any).minut ?? 0) + ((((s as any).temp_transportVars ?? 0)?.['timecost']));
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = (Math.floor(Math.random() * 100) + 0);
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     qspGoto(s, 'bus_incidental', 'events');
@@ -1506,7 +1506,7 @@ function enterGadukinoSuburbs(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGetBusImage(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: dynamic text: After <<temp_transportVars[''timecost'']>> minutes, the bus stops at the suburbs...
-  scene.text(`After ${((s as any).temp_transportVars ?? 0)?.['timecost'] ?? ''} minutes, the bus stops at the suburbs bus station.`);
+  scene.text(`After ${(((s as any).temp_transportVars ?? 0)?.['timecost'] ?? '')} minutes, the bus stops at the suburbs bus station.`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Get off the bus', handler: (st: GameState) => {
@@ -1524,7 +1524,7 @@ function enterCommunalGadukino(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_bus_wait_time', 'communal');
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_bus_timecost', 'communal', 'gadukino') + (((s as any).transportVars ?? {})?.['bus_wait_gadukino'] ?? 0);
-  (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
+  (s as any).minut = ((s as any).minut ?? 0) + ((((s as any).temp_transportVars ?? 0)?.['timecost']));
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = (Math.floor(Math.random() * 100) + 0);
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     qspGoto(s, 'bus_incidental', 'events');
@@ -1538,7 +1538,7 @@ function enterCommunalGadukino(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGetBusImage(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: dynamic text: After <<temp_transportVars[''timecost'']>> minutes, the bus stops at the Gadukin...
-  scene.text(`After ${((s as any).temp_transportVars ?? 0)?.['timecost'] ?? ''} minutes, the bus stops at the Gadukino bus station.`);
+  scene.text(`After ${(((s as any).temp_transportVars ?? 0)?.['timecost'] ?? '')} minutes, the bus stops at the Gadukino bus station.`);
   scene.actions([
     { label: 'Get off the bus', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 100) + 0) < 5) {
@@ -1555,7 +1555,7 @@ function enterCommunalGraveyard(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_bus_wait_time', 'communal');
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_bus_timecost', 'communal', 'graveyard') + (((s as any).transportVars ?? {})?.['bus_wait_suburbs'] ?? 0);
-  (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
+  (s as any).minut = ((s as any).minut ?? 0) + ((((s as any).temp_transportVars ?? 0)?.['timecost']));
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = (Math.floor(Math.random() * 100) + 0);
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     qspGoto(s, 'bus_incidental', 'events');
@@ -1569,7 +1569,7 @@ function enterCommunalGraveyard(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGetBusImage(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: dynamic text: After <<temp_transportVars[''timecost'']>> minutes, the bus stops at the graveya...
-  scene.text(`After ${((s as any).temp_transportVars ?? 0)?.['timecost'] ?? ''} minutes, the bus stops at the graveyard bus station.`);
+  scene.text(`After ${(((s as any).temp_transportVars ?? 0)?.['timecost'] ?? '')} minutes, the bus stops at the graveyard bus station.`);
   scene.actions([
     { label: 'Get off the bus', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 100) + 0) < 5) {
@@ -1586,7 +1586,7 @@ function enterCommunalSuburbs(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_bus_wait_time', 'communal');
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_bus_timecost', 'communal', 'suburbs') + (((s as any).transportVars ?? {})?.['bus_wait_suburbs'] ?? 0);
-  (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
+  (s as any).minut = ((s as any).minut ?? 0) + ((((s as any).temp_transportVars ?? 0)?.['timecost']));
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = (Math.floor(Math.random() * 100) + 0);
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     qspGoto(s, 'bus_incidental', 'events');
@@ -1600,7 +1600,7 @@ function enterCommunalSuburbs(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGetBusImage(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: dynamic text: After <<temp_transportVars[''timecost'']>> minutes, the bus stops at the suburbs...
-  scene.text(`After ${((s as any).temp_transportVars ?? 0)?.['timecost'] ?? ''} minutes, the bus stops at the suburbs bus station.`);
+  scene.text(`After ${(((s as any).temp_transportVars ?? 0)?.['timecost'] ?? '')} minutes, the bus stops at the suburbs bus station.`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Get off the bus', handler: (st: GameState) => {
@@ -1618,7 +1618,7 @@ function enterGraveyardGadukino(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_bus_wait_time', 'graveyard');
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_bus_timecost', 'graveyard', 'gadukino') + (((s as any).transportVars ?? {})?.['bus_wait_gadukino'] ?? 0);
-  (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
+  (s as any).minut = ((s as any).minut ?? 0) + ((((s as any).temp_transportVars ?? 0)?.['timecost']));
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = (Math.floor(Math.random() * 100) + 0);
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     qspGoto(s, 'bus_incidental', 'events');
@@ -1632,7 +1632,7 @@ function enterGraveyardGadukino(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGetBusImage(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: dynamic text: After <<temp_transportVars[''timecost'']>> minutes, the bus stops at the Gadukin...
-  scene.text(`After ${((s as any).temp_transportVars ?? 0)?.['timecost'] ?? ''} minutes, the bus stops at the Gadukino bus station.`);
+  scene.text(`After ${(((s as any).temp_transportVars ?? 0)?.['timecost'] ?? '')} minutes, the bus stops at the Gadukino bus station.`);
   scene.actions([
     { label: 'Get off the bus', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 100) + 0) < 5) {
@@ -1649,7 +1649,7 @@ function enterGraveyardCommunal(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_bus_wait_time', 'graveyard');
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_bus_timecost', 'graveyard', 'communal') + (((s as any).transportVars ?? {})?.['bus_wait_gadukino'] ?? 0);
-  (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
+  (s as any).minut = ((s as any).minut ?? 0) + ((((s as any).temp_transportVars ?? 0)?.['timecost']));
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = (Math.floor(Math.random() * 100) + 0);
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     qspGoto(s, 'bus_incidental', 'events');
@@ -1663,7 +1663,7 @@ function enterGraveyardCommunal(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGetBusImage(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: dynamic text: After <<temp_transportVars[''timecost'']>> minutes, the bus stops at the communa...
-  scene.text(`After ${((s as any).temp_transportVars ?? 0)?.['timecost'] ?? ''} minutes, the bus stops at the communal village bus station.`);
+  scene.text(`After ${(((s as any).temp_transportVars ?? 0)?.['timecost'] ?? '')} minutes, the bus stops at the communal village bus station.`);
   scene.actions([
     { label: 'Get off the bus', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 100) + 0) < 5) {
@@ -1680,7 +1680,7 @@ function enterGraveyardSuburbs(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_bus_wait_time', 'graveyard');
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_bus_timecost', 'graveyard', 'suburbs') + (((s as any).transportVars ?? {})?.['bus_wait_suburbs'] ?? 0);
-  (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
+  (s as any).minut = ((s as any).minut ?? 0) + ((((s as any).temp_transportVars ?? 0)?.['timecost']));
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = (Math.floor(Math.random() * 100) + 0);
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     qspGoto(s, 'bus_incidental', 'events');
@@ -1694,7 +1694,7 @@ function enterGraveyardSuburbs(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGetBusImage(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: dynamic text: After <<temp_transportVars[''timecost'']>> minutes, the bus stops at the suburbs...
-  scene.text(`After ${((s as any).temp_transportVars ?? 0)?.['timecost'] ?? ''} minutes, the bus stops at the suburbs bus station.`);
+  scene.text(`After ${(((s as any).temp_transportVars ?? 0)?.['timecost'] ?? '')} minutes, the bus stops at the suburbs bus station.`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Get off the bus', handler: (st: GameState) => {
@@ -1712,7 +1712,7 @@ function enterSuburbsGadukino(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_bus_wait_time', 'suburbs');
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_bus_timecost', 'suburbs', 'gadukino') + (((s as any).transportVars ?? {})?.['bus_wait_gadukino'] ?? 0);
-  (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
+  (s as any).minut = ((s as any).minut ?? 0) + ((((s as any).temp_transportVars ?? 0)?.['timecost']));
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = (Math.floor(Math.random() * 100) + 0);
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     qspGoto(s, 'bus_incidental', 'events');
@@ -1726,7 +1726,7 @@ function enterSuburbsGadukino(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGetBusImage(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: dynamic text: After <<temp_transportVars[''timecost'']>> minutes, the bus stops at the Gadukin...
-  scene.text(`After ${((s as any).temp_transportVars ?? 0)?.['timecost'] ?? ''} minutes, the bus stops at the Gadukino bus station.`);
+  scene.text(`After ${(((s as any).temp_transportVars ?? 0)?.['timecost'] ?? '')} minutes, the bus stops at the Gadukino bus station.`);
   scene.actions([
     { label: 'Get off the bus', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 100) + 0) < 5) {
@@ -1743,7 +1743,7 @@ function enterSuburbsCommunal(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_bus_wait_time', 'suburbs');
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_bus_timecost', 'suburbs', 'communal') + (((s as any).transportVars ?? {})?.['bus_wait_gadukino'] ?? 0);
-  (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
+  (s as any).minut = ((s as any).minut ?? 0) + ((((s as any).temp_transportVars ?? 0)?.['timecost']));
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = (Math.floor(Math.random() * 100) + 0);
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     qspGoto(s, 'bus_incidental', 'events');
@@ -1757,7 +1757,7 @@ function enterSuburbsCommunal(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGetBusImage(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: dynamic text: After <<temp_transportVars[''timecost'']>> minutes, the bus stops at the communa...
-  scene.text(`After ${((s as any).temp_transportVars ?? 0)?.['timecost'] ?? ''} minutes, the bus stops at the communal village bus station.`);
+  scene.text(`After ${(((s as any).temp_transportVars ?? 0)?.['timecost'] ?? '')} minutes, the bus stops at the communal village bus station.`);
   scene.actions([
     { label: 'Get off the bus', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 100) + 0) < 5) {
@@ -1774,7 +1774,7 @@ function enterSuburbsGraveyard(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_bus_wait_time', 'suburbs');
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_bus_timecost', 'suburbs', 'graveyard') + (((s as any).transportVars ?? {})?.['bus_wait_gadukino'] ?? 0);
-  (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
+  (s as any).minut = ((s as any).minut ?? 0) + ((((s as any).temp_transportVars ?? 0)?.['timecost']));
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = (Math.floor(Math.random() * 100) + 0);
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     qspGoto(s, 'bus_incidental', 'events');
@@ -1788,7 +1788,7 @@ function enterSuburbsGraveyard(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGetBusImage(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: dynamic text: After <<temp_transportVars[''timecost'']>> minutes, the bus stops at the graveya...
-  scene.text(`After ${((s as any).temp_transportVars ?? 0)?.['timecost'] ?? ''} minutes, the bus stops at the graveyard bus station.`);
+  scene.text(`After ${(((s as any).temp_transportVars ?? 0)?.['timecost'] ?? '')} minutes, the bus stops at the graveyard bus station.`);
   // TODO-QSP: end
   if (String((s as any).locArgs?.[0] ?? '') !== 'get_bus_image') {
     // TODO-QSP: killvar 'temp_transportVars'

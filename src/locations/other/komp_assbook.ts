@@ -8,7 +8,7 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enterMain(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
-  (s as any).subs = ((s as any).access ?? 0)?.['subscription'];
+  (s as any).subs = (((s as any).access ?? 0)?.['subscription']);
   scene.text('<center><b>Assbook</b></center>');
   if (((s as any).subscription ?? 0)?.[String((s as any).subs ?? 0)] < 1) {
     scene.img('images/pc/items/accessories/computer/eror.jpg');
@@ -47,7 +47,7 @@ function enterMain(s: GameState, scene: SceneBuilder): void {
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
-  (s as any).subs = ((s as any).access ?? 0)?.['subscription'];
+  (s as any).subs = (((s as any).access ?? 0)?.['subscription']);
   scene.text('<center><b>Assbook</b></center>');
   if (((s as any).subscription ?? 0)?.[String((s as any).subs ?? 0)] < 1) {
     scene.img('images/pc/items/accessories/computer/eror.jpg');

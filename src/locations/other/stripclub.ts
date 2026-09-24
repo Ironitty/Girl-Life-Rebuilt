@@ -277,13 +277,13 @@ function enterPayEnter(s: GameState, scene: SceneBuilder): void {
 
 function enterWorkLeave(s: GameState, scene: SceneBuilder): void {
   if (((s as any).clothingworntype ?? 0) === 'nude') {
-    qspCall(s, 'clothing', '$lastwornclothingtype[\'strip_club\']', ((s as any).lastwornclothingnumber ?? 0)?.['strip_club']);
+    qspCall(s, 'clothing', '$lastwornclothingtype[\'strip_club\']', (((s as any).lastwornclothingnumber ?? 0)?.['strip_club']));
   }
   if (((s as any).pantyworntype ?? 0) === 'none'  &&  ((s as any).lastwornpantytype ?? 0)?.['strip_club'] !== 'none') {
-    qspCall(s, 'panties', 'wear', ((s as any).lastwornpantytype ?? 0)?.['strip_club'], ((s as any).lastwornpantynumber ?? 0)?.['strip_club']);
+    qspCall(s, 'panties', 'wear', (((s as any).lastwornpantytype ?? 0)?.['strip_club']), (((s as any).lastwornpantynumber ?? 0)?.['strip_club']));
   }
   if (((s as any).braworntype ?? 0) === 'none'  &&  ((s as any).lastwornbratype ?? 0)?.['strip_club'] !== 'none') {
-    qspCall(s, 'bras', 'wear', ((s as any).lastwornbratype ?? 0)?.['strip_club'], ((s as any).lastwornbranumber ?? 0)?.['strip_club']);
+    qspCall(s, 'bras', 'wear', (((s as any).lastwornbratype ?? 0)?.['strip_club']), (((s as any).lastwornbranumber ?? 0)?.['strip_club']));
   }
   qspGoto(s, 'stripclub', 'main_floor');
   // TODO-QSP: end

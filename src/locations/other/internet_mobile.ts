@@ -118,8 +118,8 @@ function enterSuspendSubscription(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterRenewSubscription(s: GameState, scene: SceneBuilder): void {
-  (s as any).renewfee = ((s as any).subscription ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '-price'];
-  (s as any).acc_discount = ((s as any).subscription ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '-discount'];
+  (s as any).renewfee = (((s as any).subscription ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '-price']);
+  (s as any).acc_discount = (((s as any).subscription ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '-discount']);
   (s as any).app_discount = Math.min(((s as any).renewfee ?? 0), ((s as any).acc_discount ?? 0));
   (s as any).finalfee = Math.max(0, Math.min(((s as any).renewfee ?? 0) - ((s as any).app_discount ?? 0), ((s as any).renewfee ?? 0)));
   (s as any).rem_discount = Math.max(0, ((s as any).acc_discount ?? 0) - ((s as any).app_discount ?? 0));
@@ -152,10 +152,10 @@ function enterTransferSubscription(s: GameState, scene: SceneBuilder): void {
   ((s as any).allowed = (s as any).allowed ?? {})[2] = qspFunc(s, 'internet_mobile', 'check_allowed_location', ((s as any).locArgs?.[2] ?? 0));
   if (((s as any).allowed ?? 0)[1]  &&  ((s as any).allowed ?? 0)[2]) {
     // TODO-QSP: subscription[$ARGS[2]] = subscription[$ARGS[1]]
-    ((s as any).subscription = (s as any).subscription ?? {})[String(((s as any).locArgs?.[2] ?? 0)) + '-date'] = ((s as any).subscription ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '-date'];
-    ((s as any).subscription = (s as any).subscription ?? {})[String(((s as any).locArgs?.[2] ?? 0)) + '-price'] = ((s as any).subscription ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '-price'];
-    ((s as any).subscription = (s as any).subscription ?? {})[String(((s as any).locArgs?.[2] ?? 0)) + '-discount'] = ((s as any).subscription ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '-discount'];
-    ((s as any).subscription = (s as any).subscription ?? {})[String(((s as any).locArgs?.[2] ?? 0)) + '-type'] = ((s as any).subscription ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '-type'];
+    ((s as any).subscription = (s as any).subscription ?? {})[String(((s as any).locArgs?.[2] ?? 0)) + '-date'] = (((s as any).subscription ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '-date']);
+    ((s as any).subscription = (s as any).subscription ?? {})[String(((s as any).locArgs?.[2] ?? 0)) + '-price'] = (((s as any).subscription ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '-price']);
+    ((s as any).subscription = (s as any).subscription ?? {})[String(((s as any).locArgs?.[2] ?? 0)) + '-discount'] = (((s as any).subscription ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '-discount']);
+    ((s as any).subscription = (s as any).subscription ?? {})[String(((s as any).locArgs?.[2] ?? 0)) + '-type'] = (((s as any).subscription ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '-type']);
     // TODO-QSP: subscription[$ARGS[0]] = 0
   }
   // TODO-QSP: end

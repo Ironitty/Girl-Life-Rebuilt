@@ -853,7 +853,7 @@ function enterKatja(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'npc_relationship', 'modify', 'A14', 'like');
     ((st as any).katjaQW = (st as any).katjaQW ?? {})['drunk_help'] = 0;
     qspCall(st, 'stat', '');
-    scene.text(`<center><b>${((st as any).npc_firstname ?? 0)?.['A14'] ?? ''} ${((st as any).npc_lastname ?? 0)?.['A14'] ?? ''}</b></center>`);
+    scene.text(`<center><b>${(((st as any).npc_firstname ?? 0)?.['A14'] ?? '')} ${(((st as any).npc_lastname ?? 0)?.['A14'] ?? '')}</b></center>`);
     scene.img('images/characters/shared/headshots_main/big14.jpg');
     scene.text('You approach Katja and thank her for taking you home from the disco when you were drunk and she gives you a knowing smile.');
     // TODO-QSP: dynamic text: "Don''t mention it, <<$pcs_nickname>>! You really shouldn''t get that drunk agai...
@@ -1350,7 +1350,7 @@ function enterBella(s: GameState, scene: SceneBuilder): void {
 function enterBellaTampon(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/big22.jpg');
   // TODO-QSP: dynamic text: <<$temp[''tampon_ask'']>>
-  scene.text(`${((s as any).temp ?? 0)?.['tampon_ask'] ?? ''}`);
+  scene.text(`${(((s as any).temp ?? 0)?.['tampon_ask'] ?? '')}`);
   if (((s as any).temp ?? 0)?.['tampon_ask'] === '"Bella," you whisper. "My period just started  &&  I don\'t have a tampon. Can I borrow one?"'  ||  ((s as any).temp ?? 0)?.['tampon_ask'] === '"Bella," you whisper. "My period is starting soon  &&  I don\'t have a tampon. Can I borrow one?"') {
     if (((s as any).npc_rel ?? 0)?.['A22'] >= 70) {
       scene.text('Bella gives you one look and immediately digs through her purse, coming out with a tampon.');
@@ -1550,7 +1550,7 @@ function enterLizaveta(s: GameState, scene: SceneBuilder): void {
 function enterLizavetaTampon(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/big140.jpg');
   // TODO-QSP: dynamic text: <<$temp[''tampon_ask'']>>
-  scene.text(`${((s as any).temp ?? 0)?.['tampon_ask'] ?? ''}`);
+  scene.text(`${(((s as any).temp ?? 0)?.['tampon_ask'] ?? '')}`);
   if (((s as any).temp ?? 0)?.['tampon_ask'] === '"Lizaveta," you whisper. "My period just started  &&  I don\'t have a tampon. Can I borrow one?"'  ||  ((s as any).temp ?? 0)?.['tampon_ask'] === '"Lizaveta," you whisper. "My period is starting soon  &&  I don\'t have a tampon. Can I borrow one?"') {
     if (((s as any).npc_rel ?? 0)?.['A140'] >= 60) {
       scene.text('"Sure, sure," Lizaveta says, eyes sparkling as she starts going through her purse and pulls one out. "Here you go!"');
@@ -2138,7 +2138,7 @@ function enterVicky(s: GameState, scene: SceneBuilder): void {
 function enterVickyTampon(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/big15.jpg');
   // TODO-QSP: dynamic text: <<$temp[''tampon_ask'']>>
-  scene.text(`${((s as any).temp ?? 0)?.['tampon_ask'] ?? ''}`);
+  scene.text(`${(((s as any).temp ?? 0)?.['tampon_ask'] ?? '')}`);
   if (((s as any).temp ?? 0)?.['tampon_ask'] === '"Vicky," you whisper. "My period just started  &&  I don\'t have a tampon. Can I borrow one?"'  ||  ((s as any).temp ?? 0)?.['tampon_ask'] === '"Vicky," you whisper. "My period is starting soon  &&  I don\'t have a tampon. Can I borrow one?"') {
     if (((s as any).npc_rel ?? 0)?.['A15'] >= 70) {
       scene.text('"Of course you can," Vicky says without hesitation. It takes her barely any time at all to produce one from her purse. "Here you go!"');
@@ -2290,7 +2290,7 @@ function enterStasya(s: GameState, scene: SceneBuilder): void {
 function enterStasyaTampon(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/big139.jpg');
   // TODO-QSP: dynamic text: <<$temp[''tampon_ask'']>>
-  scene.text(`${((s as any).temp ?? 0)?.['tampon_ask'] ?? ''}`);
+  scene.text(`${(((s as any).temp ?? 0)?.['tampon_ask'] ?? '')}`);
   if (((s as any).temp ?? 0)?.['tampon_ask'] === '"Stasya," you whisper. "My period just started  &&  I don\'t have a tampon. Can I borrow one?"'  ||  ((s as any).temp ?? 0)?.['tampon_ask'] === '"Stasya," you whisper. "My period is starting soon  &&  I don\'t have a tampon. Can I borrow one?"') {
     if (((s as any).npc_rel ?? 0)?.['A139'] >= 70) {
       scene.text('"Yeah, of course!" she says hurriedly, immediately digging into her purse to produce one.');
@@ -2501,7 +2501,7 @@ function enterIrina(s: GameState, scene: SceneBuilder): void {
 function enterIrinaTampon(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/big17.jpg');
   // TODO-QSP: dynamic text: <<$temp[''tampon_ask'']>>
-  scene.text(`${((s as any).temp ?? 0)?.['tampon_ask'] ?? ''}`);
+  scene.text(`${(((s as any).temp ?? 0)?.['tampon_ask'] ?? '')}`);
   if (((s as any).temp ?? 0)?.['tampon_ask'] === '"Irina," you whisper. "My period just started  &&  I don\'t have a tampon. Can I borrow one?"'  ||  ((s as any).temp ?? 0)?.['tampon_ask'] === '"Irina," you whisper. "My period is starting soon  &&  I don\'t have a tampon. Can I borrow one?"') {
     if (((s as any).npc_rel ?? 0)?.['A17'] >= 70) {
       scene.text('"Yeah sure," she nods and digs into her purse to produce one.');
@@ -2713,7 +2713,7 @@ function enterSonia(s: GameState, scene: SceneBuilder): void {
 function enterSoniaTampon(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/big25.jpg');
   // TODO-QSP: dynamic text: <<$temp[''tampon_ask'']>>
-  scene.text(`${((s as any).temp ?? 0)?.['tampon_ask'] ?? ''}`);
+  scene.text(`${(((s as any).temp ?? 0)?.['tampon_ask'] ?? '')}`);
   if (((s as any).temp ?? 0)?.['tampon_ask'] === '"Sonia," you whisper. "My period just started  &&  I don\'t have a tampon. Can I borrow one?"'  ||  ((s as any).temp ?? 0)?.['tampon_ask'] === '"Sonia," you whisper. "My period is starting soon  &&  I don\'t have a tampon. Can I borrow one?"') {
     if (((s as any).npc_rel ?? 0)?.['A25'] >= 70) {
       // TODO-QSP: dynamic text: "Don''t worry <<$pcs_nickname>>, I''ve got your back," she says, immediately dig...

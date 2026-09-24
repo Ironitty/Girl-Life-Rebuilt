@@ -769,7 +769,7 @@ function enterChristinaTampon(s: GameState, scene: SceneBuilder): void {
   scene.text('"Christina," you say as you approach her discreetly. "I need your help."');
   scene.text('"Oh this ought to be good…" She looks at you flatly.');
   // TODO-QSP: dynamic text: <<$temp[''tampon_ask'']>>
-  scene.text(`${((s as any).temp ?? 0)?.['tampon_ask'] ?? ''}`);
+  scene.text(`${(((s as any).temp ?? 0)?.['tampon_ask'] ?? '')}`);
   scene.text('She looks at you in surprise.');
   scene.text('"You mean if I don\'t give you a tampon, your panties are going to get stained and blood is going to run all down your thighs, get all over your seat and embarrass you in front of the whole class?"');
   if (((s as any).pantyworntype ?? 0) !== 'none') {
@@ -1115,7 +1115,7 @@ function enterAlbina(s: GameState, scene: SceneBuilder): void {
 function enterAlbinaTampon(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/big23.jpg');
   // TODO-QSP: dynamic text: <<$temp[''tampon_ask'']>>
-  scene.text(`${((s as any).temp ?? 0)?.['tampon_ask'] ?? ''}`);
+  scene.text(`${(((s as any).temp ?? 0)?.['tampon_ask'] ?? '')}`);
   if (((s as any).temp ?? 0)?.['tampon_ask'] === '"Albina," you whisper. "My period just started  &&  I don\'t have a tampon. Can I borrow one?"'  ||  ((s as any).temp ?? 0)?.['tampon_ask'] === '"Albina," you whisper. "My period is starting soon  &&  I don\'t have a tampon. Can I borrow one?"') {
     if (((s as any).AlbinaQW ?? 0)?.['Friends'] === 2  ||  ((s as any).npc_rel ?? 0)?.['A23'] >= 70) {
       // TODO-QSP: dynamic text: She gives you a sympathetic look. "Sorry <<$pcs_nickname>>, but I don''t have an...

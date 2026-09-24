@@ -568,7 +568,7 @@ function enterSonia(s: GameState, scene: SceneBuilder): void {
 function enterSoniaTampon(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/big25.jpg');
   // TODO-QSP: dynamic text: <<$temp[''tampon_ask'']>>
-  scene.text(`${((s as any).temp ?? 0)?.['tampon_ask'] ?? ''}`);
+  scene.text(`${(((s as any).temp ?? 0)?.['tampon_ask'] ?? '')}`);
   if (((s as any).temp ?? 0)?.['tampon_ask'] === '"Sonia," you whisper. "My period just started  &&  I don\'t have a tampon. Can I borrow one?"'  ||  ((s as any).temp ?? 0)?.['tampon_ask'] === '"Sonia," you whisper. "My period is starting soon  &&  I don\'t have a tampon. Can I borrow one?"') {
     if (((s as any).npc_rel ?? 0)?.['A25'] >= 70) {
       // TODO-QSP: dynamic text: "Don''t worry <<$pcs_nickname>>, I''ve got your back," she says, immediately dig...

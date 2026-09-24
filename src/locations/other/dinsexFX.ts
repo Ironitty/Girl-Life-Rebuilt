@@ -38,7 +38,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'mood', 'lower', 'medium');
       qspCall(s, 'arousal_funcs', 'stretch', 'vaginal');
       // TODO-QSP: dynamic text: You bite your <<$pc_desc[''lips'']>> lips in pain and tears flow down your face,...
-      scene.text(`You bite your ${((s as any).pc_desc ?? 0)?.['lips'] ?? ''} lips in pain and tears flow down your face, ${((s as any).boydesc ?? '')} has torn your hymen with his ${((s as any).dick ?? '')} centimeter dick. Your bloody pussy a reminder of your lost virginity.`);
+      scene.text(`You bite your ${(((s as any).pc_desc ?? 0)?.['lips'] ?? '')} lips in pain and tears flow down your face, ${((s as any).boydesc ?? '')} has torn your hymen with his ${((s as any).dick ?? '')} centimeter dick. Your bloody pussy a reminder of your lost virginity.`);
     } else {
       if (((s as any).mesec ?? 0) > 0) {
         (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (10);

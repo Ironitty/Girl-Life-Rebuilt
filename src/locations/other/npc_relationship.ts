@@ -179,7 +179,7 @@ function enterSocialgroupSettingInternal(s: GameState, scene: SceneBuilder): voi
   (s as any).r = 1;
   // TODO-QSP: :socialgroup_loop
   if (((s as any).sg_setting_gend ?? 0) === 0  ||  ((s as any).npc_gender ?? 0)['A' + (((s as any).r ?? 0))] === ((s as any).sg_setting_gend ?? 0)-1) {
-    (s as any).i = ((s as any).npc_grupTipe ?? 0)?.['A' + String(((s as any).r ?? 0))];
+    (s as any).i = (((s as any).npc_grupTipe ?? 0)?.['A' + String(((s as any).r ?? 0))]);
     if (((s as any).i ?? 0) > 0) {
       if (((s as any).ARGS ?? 0)?.[String((s as any).i ?? 0)] !== 0) {
         { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A' + ((s as any).r ?? 0) + '', (((s as any).ARGS ?? 0)?.[String((s as any).i ?? 0)] ?? 0)]; enterModify(s, scene); (s as any).locArgs = __savedLocArgs; }

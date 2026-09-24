@@ -51,7 +51,7 @@ function enterGoingOutTalk(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'willpower', 'pay', 'force');
     ((st as any).locat = (st as any).locat ?? {})['katja'] = 52;
     ((st as any).locat = (st as any).locat ?? {})['katja_rand2'] = ((st as any).daystart ?? 0);
-    ((st as any).locat = (st as any).locat ?? {})['katja_save2'] = ((st as any).locat ?? 0)?.['katja'];
+    ((st as any).locat = (st as any).locat ?? {})['katja_save2'] = (((st as any).locat ?? 0)?.['katja']);
     ((st as any).katjaQW = (st as any).katjaQW ?? {})['dom'] = ((st as any).katjaQW['dom'] ?? 0) - ((Math.floor(Math.random() * 2) + 1));
     (st as any).minut = ((st as any).minut ?? 0) + 10;
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/dorm/dressing_up_surprised2.jpg');
@@ -72,7 +72,7 @@ function enterGoingOutTalk(s: GameState, scene: SceneBuilder): void {
       ((st as any).locat = (st as any).locat ?? {})['katja'] = 53;
     }
     ((st as any).locat = (st as any).locat ?? {})['katja_rand2'] = ((st as any).daystart ?? 0);
-    ((st as any).locat = (st as any).locat ?? {})['katja_save2'] = ((st as any).locat ?? 0)?.['katja'];
+    ((st as any).locat = (st as any).locat ?? {})['katja_save2'] = (((st as any).locat ?? 0)?.['katja']);
     ((st as any).katjaQW = (st as any).katjaQW ?? {})['dom'] = ((st as any).katjaQW['dom'] ?? 0) + ((Math.floor(Math.random() * 2) + 2));
     qspCall(st, 'npc_relationship', 'modify', 'A14', 'like');
     scene.text('"OK, you win. I\'ll go partying with you," you say.');
@@ -89,7 +89,7 @@ function enterGoingOutTalk(s: GameState, scene: SceneBuilder): void {
     }
     ((st as any).katjaQW = (st as any).katjaQW ?? {})['dom'] = ((st as any).katjaQW['dom'] ?? 0) + ((Math.floor(Math.random() * 2) + 0));
     ((st as any).locat = (st as any).locat ?? {})['katja_rand2'] = ((st as any).daystart ?? 0);
-    ((st as any).locat = (st as any).locat ?? {})['katja_save2'] = ((st as any).locat ?? 0)?.['katja'];
+    ((st as any).locat = (st as any).locat ?? {})['katja_save2'] = (((st as any).locat ?? 0)?.['katja']);
     qspCall(st, 'npc_relationship', 'modify', 'A14', 'dislike');
     qspGoto(st, 'uni_dorm', 'second_floor');
   } },
@@ -109,7 +109,7 @@ function enterGoingOutTalk(s: GameState, scene: SceneBuilder): void {
       }
     }
     ((st as any).locat = (st as any).locat ?? {})['katja_rand2'] = ((st as any).daystart ?? 0);
-    ((st as any).locat = (st as any).locat ?? {})['katja_save2'] = ((st as any).locat ?? 0)?.['katja'];
+    ((st as any).locat = (st as any).locat ?? {})['katja_save2'] = (((st as any).locat ?? 0)?.['katja']);
     qspCall(st, 'npc_relationship', 'modify', 'A14', 'like');
     qspCall(st, 'stat', '');
     scene.text('"Sounds very fun. Of course, I\'m coming with you," you say.');
@@ -129,7 +129,7 @@ function enterGoingOutTalk(s: GameState, scene: SceneBuilder): void {
       }
     }
     ((st as any).locat = (st as any).locat ?? {})['katja_rand2'] = ((st as any).daystart ?? 0);
-    ((st as any).locat = (st as any).locat ?? {})['katja_save2'] = ((st as any).locat ?? 0)?.['katja'];
+    ((st as any).locat = (st as any).locat ?? {})['katja_save2'] = (((st as any).locat ?? 0)?.['katja']);
     qspCall(st, 'npc_relationship', 'modify', 'A14', 'dislike');
     qspGoto(st, 'uni_dorm', 'second_floor');
   } },
@@ -188,7 +188,7 @@ function enterGoingOut(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'willpower', 'pay', 'force');
     ((st as any).locat = (st as any).locat ?? {})['katja'] = 52;
     ((st as any).locat = (st as any).locat ?? {})['katja_rand2'] = ((st as any).daystart ?? 0);
-    ((st as any).locat = (st as any).locat ?? {})['katja_save2'] = ((st as any).locat ?? 0)?.['katja'];
+    ((st as any).locat = (st as any).locat ?? {})['katja_save2'] = (((st as any).locat ?? 0)?.['katja']);
     ((st as any).katjaQW = (st as any).katjaQW ?? {})['dom'] = ((st as any).katjaQW['dom'] ?? 0) - ((Math.floor(Math.random() * 2) + 1));
     (st as any).minut = ((st as any).minut ?? 0) + 10;
     if (((st as any).npc_had_sex ?? 0)?.['A14']  &&  (((st as any).katjaQW ?? 0)?.['slut'] > 75  ||  ((st as any).katjaQW ?? 0)?.['pantiesQWstage'] >= 5)) {
@@ -213,7 +213,7 @@ function enterGoingOut(s: GameState, scene: SceneBuilder): void {
       ((st as any).locat = (st as any).locat ?? {})['katja'] = 53;
     }
     ((st as any).locat = (st as any).locat ?? {})['katja_rand2'] = ((st as any).daystart ?? 0);
-    ((st as any).locat = (st as any).locat ?? {})['katja_save2'] = ((st as any).locat ?? 0)?.['katja'];
+    ((st as any).locat = (st as any).locat ?? {})['katja_save2'] = (((st as any).locat ?? 0)?.['katja']);
     ((st as any).katjaQW = (st as any).katjaQW ?? {})['dom'] = ((st as any).katjaQW['dom'] ?? 0) + ((Math.floor(Math.random() * 2) + 2));
     qspCall(st, 'npc_relationship', 'modify', 'A14', 'like');
     scene.text('"OK, you win. I\'ll go partying with you" you say.');
@@ -229,7 +229,7 @@ function enterGoingOut(s: GameState, scene: SceneBuilder): void {
     }
     ((st as any).katjaQW = (st as any).katjaQW ?? {})['dom'] = ((st as any).katjaQW['dom'] ?? 0) + ((Math.floor(Math.random() * 2) + 0));
     ((st as any).locat = (st as any).locat ?? {})['katja_rand2'] = ((st as any).daystart ?? 0);
-    ((st as any).locat = (st as any).locat ?? {})['katja_save2'] = ((st as any).locat ?? 0)?.['katja'];
+    ((st as any).locat = (st as any).locat ?? {})['katja_save2'] = (((st as any).locat ?? 0)?.['katja']);
     qspCall(st, 'npc_relationship', 'modify', 'A14', 'dislike');
     qspGoto(st, 'uni_dorm', 'second_floor');
   } },
@@ -248,7 +248,7 @@ function enterGoingOut(s: GameState, scene: SceneBuilder): void {
       }
     }
     ((st as any).locat = (st as any).locat ?? {})['katja_rand2'] = ((st as any).daystart ?? 0);
-    ((st as any).locat = (st as any).locat ?? {})['katja_save2'] = ((st as any).locat ?? 0)?.['katja'];
+    ((st as any).locat = (st as any).locat ?? {})['katja_save2'] = (((st as any).locat ?? 0)?.['katja']);
     qspCall(st, 'npc_relationship', 'modify', 'A14', 'like');
     scene.text('"Sounds very fun. Of course, I\'ll come," you say.');
     // TODO-QSP: '"Yeah, we''re going to have so much fun," Katja says and gives you a '+iif(npc_had_sex['A14'] and (...
@@ -266,7 +266,7 @@ function enterGoingOut(s: GameState, scene: SceneBuilder): void {
       }
     }
     ((st as any).locat = (st as any).locat ?? {})['katja_rand2'] = ((st as any).daystart ?? 0);
-    ((st as any).locat = (st as any).locat ?? {})['katja_save2'] = ((st as any).locat ?? 0)?.['katja'];
+    ((st as any).locat = (st as any).locat ?? {})['katja_save2'] = (((st as any).locat ?? 0)?.['katja']);
     qspCall(st, 'npc_relationship', 'modify', 'A14', 'dislike');
     qspGoto(st, 'uni_dorm', 'second_floor');
   } },
@@ -280,7 +280,7 @@ function enterPartyPreparations(s: GameState, scene: SceneBuilder): void {
     ((s as any).locat = (s as any).locat ?? {})['katja'] = 53;
   }
   ((s as any).locat = (s as any).locat ?? {})['katja_rand2'] = ((s as any).daystart ?? 0);
-  ((s as any).locat = (s as any).locat ?? {})['katja_save2'] = ((s as any).locat ?? 0)?.['katja'];
+  ((s as any).locat = (s as any).locat ?? {})['katja_save2'] = (((s as any).locat ?? 0)?.['katja']);
   // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/pavlovsk/school/girl/katja/un...
   scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/characters/pavlovsk/school/girl/katja/uni/dorm/dressing_up_surprised` + ((((s as any).npc_had_sex ?? 0)?.['A14']  &&  (((s as any).katjaQW ?? 0)?.['slut'] > 75  ||  ((s as any).katjaQW ?? 0)?.['pantiesQWstage'] >= 5)) ? ('1') : ('2')) + '.jpg"></center>');
   scene.text('"I need to finish prepping. I still need to do my makeup," Katja says as she starts moving around.');

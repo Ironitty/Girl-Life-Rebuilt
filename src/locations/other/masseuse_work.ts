@@ -218,13 +218,13 @@ function enterShiftEnd(s: GameState, scene: SceneBuilder): void {
   ((s as any).masseuse = (s as any).masseuse ?? {})['worked_' + String(((s as any).daystart ?? 0)) + '_' + String(((s as any).masseuse_shift ?? 0))] = 1;
   qspCall(s, 'jobs', 'clock_out', 'city_salon_masseuse');
   ((s as any).salon = (s as any).salon ?? {})['work_minutes'] = 0;
-  qspCall(s, 'money', 'earn', ((s as any).massage ?? 0)?.['shift_tips']);
-  ((s as any).masseuse = (s as any).masseuse ?? {})['money_earned'] = ((s as any).masseuse['money_earned'] ?? 0) + (((s as any).massage ?? 0)?.['shift_tips']);
-  ((s as any).massage = (s as any).massage ?? {})['shift_tips_total'] = ((s as any).massage['shift_tips_total'] ?? 0) + (((s as any).massage ?? 0)?.['shift_tips']);
+  qspCall(s, 'money', 'earn', (((s as any).massage ?? 0)?.['shift_tips']));
+  ((s as any).masseuse = (s as any).masseuse ?? {})['money_earned'] = ((s as any).masseuse['money_earned'] ?? 0) + ((((s as any).massage ?? 0)?.['shift_tips']));
+  ((s as any).massage = (s as any).massage ?? {})['shift_tips_total'] = ((s as any).massage['shift_tips_total'] ?? 0) + ((((s as any).massage ?? 0)?.['shift_tips']));
   ((s as any).massage = (s as any).massage ?? {})['shift_tips'] = 0;
-  qspCall(s, 'money', 'earn', ((s as any).massage ?? 0)?.['sex_tips']);
-  ((s as any).masseuse = (s as any).masseuse ?? {})['money_earned'] = ((s as any).masseuse['money_earned'] ?? 0) + (((s as any).massage ?? 0)?.['sex_tips']);
-  ((s as any).massage = (s as any).massage ?? {})['sex_tips_total'] = ((s as any).massage['sex_tips_total'] ?? 0) + (((s as any).massage ?? 0)?.['sex_tips']);
+  qspCall(s, 'money', 'earn', (((s as any).massage ?? 0)?.['sex_tips']));
+  ((s as any).masseuse = (s as any).masseuse ?? {})['money_earned'] = ((s as any).masseuse['money_earned'] ?? 0) + ((((s as any).massage ?? 0)?.['sex_tips']));
+  ((s as any).massage = (s as any).massage ?? {})['sex_tips_total'] = ((s as any).massage['sex_tips_total'] ?? 0) + ((((s as any).massage ?? 0)?.['sex_tips']));
   ((s as any).massage = (s as any).massage ?? {})['sex_tips'] = 0;
   if (((s as any).job_rank ?? 0)?.['city_salon_masseuse'] === 3) {
     qspCall(s, 'fame', 'city', 'prostitute', 'tiny');
@@ -657,7 +657,7 @@ function enter1Stats(s: GameState, scene: SceneBuilder): void {
   ((s as any).salon = (s as any).salon ?? {})['work_minutes'] = ((s as any).salon['work_minutes'] ?? 0) + (30);
   if ((Math.floor(Math.random() * 3) + 0) === 2) {
     ((s as any).massage = (s as any).massage ?? {})['client_tip'] = (Math.floor(Math.random() * 201) + 0);
-    ((s as any).massage = (s as any).massage ?? {})['shift_tips'] = ((s as any).massage['shift_tips'] ?? 0) + (((s as any).massage ?? 0)?.['client_tip']);
+    ((s as any).massage = (s as any).massage ?? {})['shift_tips'] = ((s as any).massage['shift_tips'] ?? 0) + ((((s as any).massage ?? 0)?.['client_tip']));
   }
   // TODO-QSP: end
   scene.build();
@@ -671,7 +671,7 @@ function enter3Stats(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal_oneline', 'hj', ((s as any).masseuse_time_temp ?? 0), 'no_orgasm_msg', '', 'prostitution');
   if ((Math.floor(Math.random() * 3) + 0) === 2) {
     ((s as any).massage = (s as any).massage ?? {})['client_tip'] = (Math.floor(Math.random() * 201) + 0);
-    ((s as any).massage = (s as any).massage ?? {})['shift_tips'] = ((s as any).massage['shift_tips'] ?? 0) + (((s as any).massage ?? 0)?.['client_tip']);
+    ((s as any).massage = (s as any).massage ?? {})['shift_tips'] = ((s as any).massage['shift_tips'] ?? 0) + ((((s as any).massage ?? 0)?.['client_tip']));
   }
   // TODO-QSP: end
   scene.build();
@@ -682,7 +682,7 @@ function enter4Stats(s: GameState, scene: SceneBuilder): void {
   ((s as any).salon = (s as any).salon ?? {})['work_minutes'] = ((s as any).salon['work_minutes'] ?? 0) + (30);
   if ((Math.floor(Math.random() * 3) + 0) === 2) {
     ((s as any).massage = (s as any).massage ?? {})['client_tip'] = (Math.floor(Math.random() * 201) + 0);
-    ((s as any).massage = (s as any).massage ?? {})['shift_tips'] = ((s as any).massage['shift_tips'] ?? 0) + (((s as any).massage ?? 0)?.['client_tip']);
+    ((s as any).massage = (s as any).massage ?? {})['shift_tips'] = ((s as any).massage['shift_tips'] ?? 0) + ((((s as any).massage ?? 0)?.['client_tip']));
   }
   // TODO-QSP: end
   scene.build();
@@ -693,7 +693,7 @@ function enter5Stats(s: GameState, scene: SceneBuilder): void {
   ((s as any).salon = (s as any).salon ?? {})['work_minutes'] = ((s as any).salon['work_minutes'] ?? 0) + (30);
   if ((Math.floor(Math.random() * 3) + 0) === 2) {
     ((s as any).massage = (s as any).massage ?? {})['client_tip'] = (Math.floor(Math.random() * 201) + 0);
-    ((s as any).massage = (s as any).massage ?? {})['shift_tips'] = ((s as any).massage['shift_tips'] ?? 0) + (((s as any).massage ?? 0)?.['client_tip']);
+    ((s as any).massage = (s as any).massage ?? {})['shift_tips'] = ((s as any).massage['shift_tips'] ?? 0) + ((((s as any).massage ?? 0)?.['client_tip']));
   }
   // TODO-QSP: end
   scene.build();
@@ -744,9 +744,9 @@ function enter1(s: GameState, scene: SceneBuilder): void {
     scene.text('Staying professional, you ignore his arousal and continue with the massage as if you didn\'t notice. Once his time is up, he gets dressed and thanks you for the massage before leaving.');
     if ((Math.floor(Math.random() * 3) + 0) === 2) {
       ((st as any).massage = (st as any).massage ?? {})['client_tip'] = (Math.floor(Math.random() * 201) + 0);
-      ((st as any).massage = (st as any).massage ?? {})['shift_tips'] = ((st as any).massage['shift_tips'] ?? 0) + (((st as any).massage ?? 0)?.['client_tip']);
+      ((st as any).massage = (st as any).massage ?? {})['shift_tips'] = ((st as any).massage['shift_tips'] ?? 0) + ((((st as any).massage ?? 0)?.['client_tip']));
       // TODO-QSP: dynamic text: Looking back to the table, you see he left a tip of <<$func(''money'', ''string_...
-      scene.text(`Looking back to the table, you see he left a tip of ${qspFunc(s, 'money', 'string_profit', ((st as any).massage ?? 0)?.['client_tip'] ?? '')} for you on the table.`);
+      scene.text(`Looking back to the table, you see he left a tip of ${qspFunc(s, 'money', 'string_profit', (((st as any).massage ?? 0)?.['client_tip'] ?? ''))} for you on the table.`);
     }
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterNormalEnd(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
@@ -1054,9 +1054,9 @@ function enter2(s: GameState, scene: SceneBuilder): void {
     }
     if ((Math.floor(Math.random() * 3) + 0) === 2) {
       ((st as any).massage = (st as any).massage ?? {})['client_tip'] = (Math.floor(Math.random() * 301) + 0);
-      ((st as any).massage = (st as any).massage ?? {})['shift_tips'] = ((st as any).massage['shift_tips'] ?? 0) + (((st as any).massage ?? 0)?.['client_tip']);
+      ((st as any).massage = (st as any).massage ?? {})['shift_tips'] = ((st as any).massage['shift_tips'] ?? 0) + ((((st as any).massage ?? 0)?.['client_tip']));
       // TODO-QSP: dynamic text: Looking back to the table, you see he left a tip of <<$func(''money'', ''string_...
-      scene.text(`Looking back to the table, you see he left a tip of ${qspFunc(s, 'money', 'string_profit', ((st as any).massage ?? 0)?.['client_tip'] ?? '')} for you on the table.`);
+      scene.text(`Looking back to the table, you see he left a tip of ${qspFunc(s, 'money', 'string_profit', (((st as any).massage ?? 0)?.['client_tip'] ?? ''))} for you on the table.`);
     }
     (st as any).robe = 1;
     scene.text('Only once he\'s left do you reach for your robe and take a look at the clock.');
@@ -1173,9 +1173,9 @@ function enter3_1(s: GameState, scene: SceneBuilder): void {
     scene.text('Taking a towel, you quickly wipe him down, ensuring his body is cum free. Once that is done, you allow him to get up and get dressed while you stand to the side, his cum still spattering your hands and tits as an after service eye candy for him. Once dressed, you give him a short bow, saying, "Thank you for your patronage sir," as he exits the room.');
     if ((Math.floor(Math.random() * 3) + 0) === 2) {
       ((st as any).massage = (st as any).massage ?? {})['client_tip'] = (Math.floor(Math.random() * 301) + 0);
-      ((st as any).massage = (st as any).massage ?? {})['sex_tips'] = ((st as any).massage['sex_tips'] ?? 0) + (((st as any).massage ?? 0)?.['client_tip']);
+      ((st as any).massage = (st as any).massage ?? {})['sex_tips'] = ((st as any).massage['sex_tips'] ?? 0) + ((((st as any).massage ?? 0)?.['client_tip']));
       // TODO-QSP: dynamic text: Looking back to the table, you see he left a tip of <<$func(''money'', ''string_...
-      scene.text(`Looking back to the table, you see he left a tip of ${qspFunc(s, 'money', 'string_profit', ((st as any).massage ?? 0)?.['client_tip'] ?? '')} for you on the table.`);
+      scene.text(`Looking back to the table, you see he left a tip of ${qspFunc(s, 'money', 'string_profit', (((st as any).massage ?? 0)?.['client_tip'] ?? ''))} for you on the table.`);
     }
     scene.text('Only once he\'s left do you look down at the cum on your body. You ought to clean up for your next customer. If you have one that is, you think before taking a look at the clock.');
     if (((st as any).salon ?? 0)?.['work_minutes'] >= 235) {
@@ -1206,9 +1206,9 @@ function enter3_2(s: GameState, scene: SceneBuilder): void {
     (st as any).robe = 1;
     if ((Math.floor(Math.random() * 3) + 0) === 2) {
       ((st as any).massage = (st as any).massage ?? {})['client_tip'] = (Math.floor(Math.random() * 301) + 0);
-      ((st as any).massage = (st as any).massage ?? {})['sex_tips'] = ((st as any).massage['sex_tips'] ?? 0) + (((st as any).massage ?? 0)?.['client_tip']);
+      ((st as any).massage = (st as any).massage ?? {})['sex_tips'] = ((st as any).massage['sex_tips'] ?? 0) + ((((st as any).massage ?? 0)?.['client_tip']));
       // TODO-QSP: dynamic text: Looking back to the table, you see he left a tip of <<$func(''money'', ''string_...
-      scene.text(`Looking back to the table, you see he left a tip of ${qspFunc(s, 'money', 'string_profit', ((st as any).massage ?? 0)?.['client_tip'] ?? '')} for you on the table.`);
+      scene.text(`Looking back to the table, you see he left a tip of ${qspFunc(s, 'money', 'string_profit', (((st as any).massage ?? 0)?.['client_tip'] ?? ''))} for you on the table.`);
     }
     if (((st as any).salon ?? 0)?.['work_minutes'] >= 235) {
       { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLastClient(st, scene); (st as any).locArgs = __savedLocArgs; }
@@ -1304,9 +1304,9 @@ function enter4_1(s: GameState, scene: SceneBuilder): void {
     (st as any).robe = 1;
     if ((Math.floor(Math.random() * 3) + 0) === 2) {
       ((st as any).massage = (st as any).massage ?? {})['client_tip'] = (Math.floor(Math.random() * 401) + 0);
-      ((st as any).massage = (st as any).massage ?? {})['sex_tips'] = ((st as any).massage['sex_tips'] ?? 0) + (((st as any).massage ?? 0)?.['client_tip']);
+      ((st as any).massage = (st as any).massage ?? {})['sex_tips'] = ((st as any).massage['sex_tips'] ?? 0) + ((((st as any).massage ?? 0)?.['client_tip']));
       // TODO-QSP: dynamic text: Looking back to the table, you see he left a tip of <<$func(''money'', ''string_...
-      scene.text(`Looking back to the table, you see he left a tip of ${qspFunc(s, 'money', 'string_profit', ((st as any).massage ?? 0)?.['client_tip'] ?? '')} for you on the table.`);
+      scene.text(`Looking back to the table, you see he left a tip of ${qspFunc(s, 'money', 'string_profit', (((st as any).massage ?? 0)?.['client_tip'] ?? ''))} for you on the table.`);
     }
     if (((st as any).salon ?? 0)?.['work_minutes'] >= 235) {
       { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLastClient(st, scene); (st as any).locArgs = __savedLocArgs; }
@@ -1346,9 +1346,9 @@ function enter4_2(s: GameState, scene: SceneBuilder): void {
     (st as any).robe = 1;
     if ((Math.floor(Math.random() * 3) + 0) === 2) {
       ((st as any).massage = (st as any).massage ?? {})['client_tip'] = (Math.floor(Math.random() * 401) + 0);
-      ((st as any).massage = (st as any).massage ?? {})['sex_tips'] = ((st as any).massage['sex_tips'] ?? 0) + (((st as any).massage ?? 0)?.['client_tip']);
+      ((st as any).massage = (st as any).massage ?? {})['sex_tips'] = ((st as any).massage['sex_tips'] ?? 0) + ((((st as any).massage ?? 0)?.['client_tip']));
       // TODO-QSP: dynamic text: Looking back to the table, you see he left a tip of <<$func(''money'', ''string_...
-      scene.text(`Looking back to the table, you see he left a tip of ${qspFunc(s, 'money', 'string_profit', ((st as any).massage ?? 0)?.['client_tip'] ?? '')} for you on the table.`);
+      scene.text(`Looking back to the table, you see he left a tip of ${qspFunc(s, 'money', 'string_profit', (((st as any).massage ?? 0)?.['client_tip'] ?? ''))} for you on the table.`);
     }
     if (((st as any).salon ?? 0)?.['work_minutes'] >= 235) {
       { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLastClient(st, scene); (st as any).locArgs = __savedLocArgs; }
@@ -1443,9 +1443,9 @@ function enter5_1(s: GameState, scene: SceneBuilder): void {
     scene.text('Standing on unsteady legs, you wait patiently while the client dresses himself, a slurry of lubricant, pussy juice, and cum trickling down your legs the whole time. Just before he turns to leave, you give a small bow, saying, "Thank you for your patronage." The door clicks shut and you release an exhausted breath, leaning back against the table and taking a moment to rest.');
     if ((Math.floor(Math.random() * 3) + 0) === 2) {
       ((st as any).massage = (st as any).massage ?? {})['client_tip'] = (Math.floor(Math.random() * 501) + 0);
-      ((st as any).massage = (st as any).massage ?? {})['sex_tips'] = ((st as any).massage['sex_tips'] ?? 0) + (((st as any).massage ?? 0)?.['client_tip']);
+      ((st as any).massage = (st as any).massage ?? {})['sex_tips'] = ((st as any).massage['sex_tips'] ?? 0) + ((((st as any).massage ?? 0)?.['client_tip']));
       // TODO-QSP: dynamic text: Looking back to the table, you see he left a tip of <<$func(''money'', ''string_...
-      scene.text(`Looking back to the table, you see he left a tip of ${qspFunc(s, 'money', 'string_profit', ((st as any).massage ?? 0)?.['client_tip'] ?? '')} for you on the table.`);
+      scene.text(`Looking back to the table, you see he left a tip of ${qspFunc(s, 'money', 'string_profit', (((st as any).massage ?? 0)?.['client_tip'] ?? ''))} for you on the table.`);
     }
     scene.text('Then you look at the clock on the wall to check how much time you have left in your shift.');
     if (((st as any).salon ?? 0)?.['work_minutes'] >= 235) {
@@ -1496,9 +1496,9 @@ function enter5_1(s: GameState, scene: SceneBuilder): void {
     scene.text('Standing on unsteady legs, you wait patiently while the client dresses himselfm. Just before he turns to leave, you give a small bow, face still painted with his cum, and say, "Thank you for your patronage.". The door clicks shut and you release an exhausted breath, sagging against the table and taking a moment to rest. Looking at the clock on the wall to check how much time you have left in your shift.');
     if ((Math.floor(Math.random() * 3) + 0) === 2) {
       ((st as any).massage = (st as any).massage ?? {})['client_tip'] = (Math.floor(Math.random() * 501) + 0);
-      ((st as any).massage = (st as any).massage ?? {})['sex_tips'] = ((st as any).massage['sex_tips'] ?? 0) + (((st as any).massage ?? 0)?.['client_tip']);
+      ((st as any).massage = (st as any).massage ?? {})['sex_tips'] = ((st as any).massage['sex_tips'] ?? 0) + ((((st as any).massage ?? 0)?.['client_tip']));
       // TODO-QSP: dynamic text: Looking back to the table, you see he left a tip of <<$func(''money'', ''string_...
-      scene.text(`Looking back to the table, you see he left a tip of ${qspFunc(s, 'money', 'string_profit', ((st as any).massage ?? 0)?.['client_tip'] ?? '')} for you on the table.`);
+      scene.text(`Looking back to the table, you see he left a tip of ${qspFunc(s, 'money', 'string_profit', (((st as any).massage ?? 0)?.['client_tip'] ?? ''))} for you on the table.`);
     }
     if (((st as any).salon ?? 0)?.['work_minutes'] >= 235) {
       { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLastClient(st, scene); (st as any).locArgs = __savedLocArgs; }
@@ -2029,7 +2029,7 @@ function enterPartTimeFullTime(s: GameState, scene: SceneBuilder): void {
 function enterMasseuseOrientation(s: GameState, scene: SceneBuilder): void {
   ((s as any).masseuse = (s as any).masseuse ?? {})['hired_day'] = ((s as any).daystart ?? 0);
   qspCall(s, 'jobs', 'set_employed', 'city_salon_masseuse');
-  qspCall(s, 'jobs', 'set_rank', 'city_salon_masseuse', ((s as any).masseuse ?? 0)?.['pending_rank']);
+  qspCall(s, 'jobs', 'set_rank', 'city_salon_masseuse', (((s as any).masseuse ?? 0)?.['pending_rank']));
   ((s as any).masseuse = (s as any).masseuse ?? {})['salon_state'] = '';
   ((s as any).masseuse = (s as any).masseuse ?? {})['pending_rank'] = 0;
   scene.img('images/locations/city/citycenter/mall/salon/salon.jpg');
@@ -2070,7 +2070,7 @@ function enterMasseuseOrientation(s: GameState, scene: SceneBuilder): void {
 function enterWhoreOrientation(s: GameState, scene: SceneBuilder): void {
   ((s as any).masseuse = (s as any).masseuse ?? {})['hired_day'] = ((s as any).daystart ?? 0);
   qspCall(s, 'jobs', 'set_employed', 'city_salon_masseuse');
-  qspCall(s, 'jobs', 'set_rank', 'city_salon_masseuse', ((s as any).masseuse ?? 0)?.['pending_rank']);
+  qspCall(s, 'jobs', 'set_rank', 'city_salon_masseuse', (((s as any).masseuse ?? 0)?.['pending_rank']));
   ((s as any).masseuse = (s as any).masseuse ?? {})['salon_state'] = '';
   ((s as any).masseuse = (s as any).masseuse ?? {})['pending_rank'] = 0;
   scene.img('images/locations/city/citycenter/mall/salon/salon.jpg');
@@ -2380,10 +2380,10 @@ function enterPayday(s: GameState, scene: SceneBuilder): void {
     if (((s as any).job_shifts_this_period ?? 0)?.['city_salon_masseuse'] < ((s as any).masseuse ?? 0)?.['shifts_required']) {
       ((s as any).masseuse = (s as any).masseuse ?? {})['warning'] = ((s as any).masseuse['warning'] ?? 0) - (1);
       // TODO-QSP: dynamic text: "Hey, you only worked <<job_shifts_this_period[''city_salon_masseuse'']>> this w...
-      scene.text(`"Hey, you only worked ${((s as any).job_shifts_this_period ?? 0)?.['city_salon_masseuse'] ?? ''} this week. You were supposed to work ${((s as any).masseuse ?? 0)?.['shifts_required'] ?? ''}."`);
+      scene.text(`"Hey, you only worked ${(((s as any).job_shifts_this_period ?? 0)?.['city_salon_masseuse'] ?? '')} this week. You were supposed to work ${(((s as any).masseuse ?? 0)?.['shifts_required'] ?? '')}."`);
       scene.text('"Sorry," you say, reaching for the envelope. "Won\'t happen again."');
       // TODO-QSP: dynamic text: "Better not." You try to pull the envelope away but Xian holds on tight to it, n...
-      scene.text(`"Better not." You try to pull the envelope away but Xian holds on tight to it, not budging until you make eye contact. "${((s as any).masseuse ?? 0)?.['warning'] ?? ''} more times and you're fired."`);
+      scene.text(`"Better not." You try to pull the envelope away but Xian holds on tight to it, not budging until you make eye contact. "${(((s as any).masseuse ?? 0)?.['warning'] ?? '')} more times and you're fired."`);
       scene.text('She lets go.');
     } else {
       if (((s as any).job_shifts_this_period ?? 0)?.['city_salon_masseuse'] >= ((s as any).masseuse ?? 0)?.['shifts_required']) {
@@ -2403,13 +2403,13 @@ function enterPayday(s: GameState, scene: SceneBuilder): void {
 
 function enterPaydayEnd(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: Looking inside, you see it''s stuffed with cash that counts out to <<$func(''mon...
-  scene.text(`Looking inside, you see it's stuffed with cash that counts out to ${qspFunc(s, 'money', 'format', ((s as any).masseuse ?? 0)?.['paycheck'] ?? '')}.`);
-  ((s as any).masseuse = (s as any).masseuse ?? {})['money_earned'] = ((s as any).masseuse['money_earned'] ?? 0) + (((s as any).masseuse ?? 0)?.['paycheck']);
+  scene.text(`Looking inside, you see it's stuffed with cash that counts out to ${qspFunc(s, 'money', 'format', (((s as any).masseuse ?? 0)?.['paycheck'] ?? ''))}.`);
+  ((s as any).masseuse = (s as any).masseuse ?? {})['money_earned'] = ((s as any).masseuse['money_earned'] ?? 0) + ((((s as any).masseuse ?? 0)?.['paycheck']));
   if (((s as any).job_rank ?? 0)?.['city_salon_masseuse'] === 2) {
-    ((s as any).masseuse = (s as any).masseuse ?? {})['nude_mass_money_earned'] = ((s as any).masseuse['nude_mass_money_earned'] ?? 0) + (((s as any).masseuse ?? 0)?.['paycheck']);
+    ((s as any).masseuse = (s as any).masseuse ?? {})['nude_mass_money_earned'] = ((s as any).masseuse['nude_mass_money_earned'] ?? 0) + ((((s as any).masseuse ?? 0)?.['paycheck']));
   } else {
     if (((s as any).job_rank ?? 0)?.['city_salon_masseuse'] > 2) {
-      ((s as any).masseuse = (s as any).masseuse ?? {})['sex_money_earned'] = ((s as any).masseuse['sex_money_earned'] ?? 0) + (((s as any).masseuse ?? 0)?.['paycheck']);
+      ((s as any).masseuse = (s as any).masseuse ?? {})['sex_money_earned'] = ((s as any).masseuse['sex_money_earned'] ?? 0) + ((((s as any).masseuse ?? 0)?.['paycheck']));
     }
   }
   ((s as any).masseuse = (s as any).masseuse ?? {})['paycheck'] = 0;
@@ -2426,7 +2426,7 @@ function enterResignation(s: GameState, scene: SceneBuilder): void {
     scene.text('Reaching down below the desk, she shuffles around in a drawer and stuffs some money into an envelope. "Well, here\'s your pay for the shifts you worked earlier this week."');
   }
   scene.text('"If you ever want to come back, you just let us know," she smiles at you.');
-  ((s as any).masseuse = (s as any).masseuse ?? {})['last_rank'] = ((s as any).job_rank ?? 0)?.['city_salon_masseuse'];
+  ((s as any).masseuse = (s as any).masseuse ?? {})['last_rank'] = (((s as any).job_rank ?? 0)?.['city_salon_masseuse']);
   qspCall(s, 'jobs', 'set_terminated', 'city_salon_masseuse');
   ((s as any).masseuse = (s as any).masseuse ?? {})['salon_state'] = 'resigned';
   // TODO-QSP: end
@@ -2460,7 +2460,7 @@ function enterRehire1(s: GameState, scene: SceneBuilder): void {
     scene.text(`"Of course ${((s as any).pcs_firstname ?? '')}, you know we always need more girls. Did you want your old job back or did you want to change to a different one?"`);
     scene.actions([
       { label: 'My old job', handler: (st: GameState) => {
-    ((st as any).masseuse = (st as any).masseuse ?? {})['pending_rank'] = ((st as any).masseuse ?? 0)?.['last_rank'];
+    ((st as any).masseuse = (st as any).masseuse ?? {})['pending_rank'] = (((st as any).masseuse ?? 0)?.['last_rank']);
     if (((st as any).masseuse ?? 0)?.['last_rank'] === 2) {
       ((st as any).masseuse = (st as any).masseuse ?? {})['hourly'] = 125;
     } else {
@@ -2649,7 +2649,7 @@ function enterWhoreRehire(s: GameState, scene: SceneBuilder): void {
 
 function enterRehire2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'jobs', 'set_employed', 'city_salon_masseuse');
-  qspCall(s, 'jobs', 'set_rank', 'city_salon_masseuse', ((s as any).masseuse ?? 0)?.['pending_rank']);
+  qspCall(s, 'jobs', 'set_rank', 'city_salon_masseuse', (((s as any).masseuse ?? 0)?.['pending_rank']));
   ((s as any).masseuse = (s as any).masseuse ?? {})['salon_state'] = '';
   ((s as any).masseuse = (s as any).masseuse ?? {})['pending_rank'] = 0;
   scene.img('images/locations/city/citycenter/mall/salon/xian.jpg');

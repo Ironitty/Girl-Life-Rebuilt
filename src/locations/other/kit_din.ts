@@ -372,7 +372,7 @@ function enterPranik(s: GameState, scene: SceneBuilder): void {
       scene.text('You only have one more portion of tea biscuits.');
     } else {
       // TODO-QSP: dynamic text: You have enough tea biscuits for <b><<mc_inventory[''food_biscuits'']>></b> more...
-      scene.text(`You have enough tea biscuits for <b>${((s as any).mc_inventory ?? 0)?.['food_biscuits'] ?? ''}</b> more snacks.`);
+      scene.text(`You have enough tea biscuits for <b>${(((s as any).mc_inventory ?? 0)?.['food_biscuits'] ?? '')}</b> more snacks.`);
     }
     scene.actions([
       { label: 'Eat some tea biscuits (0:05)', handler: (st: GameState) => {
@@ -411,7 +411,7 @@ function enterDritea(s: GameState, scene: SceneBuilder): void {
 function enterEdaD(s: GameState, scene: SceneBuilder): void {
   if (((s as any).mc_inventory ?? 0)?.['food_diet'] > 0) {
     // TODO-QSP: dynamic text: The refrigerator contains <b><<mc_inventory[''food_diet'']>></b> healthy meals.
-    scene.text(`The refrigerator contains <b>${((s as any).mc_inventory ?? 0)?.['food_diet'] ?? ''}</b> healthy meals.`);
+    scene.text(`The refrigerator contains <b>${(((s as any).mc_inventory ?? 0)?.['food_diet'] ?? '')}</b> healthy meals.`);
     scene.actions([
       { label: 'Eat diet food (0:20)', handler: (st: GameState) => {
     (st as any).frost = 0;
@@ -512,7 +512,7 @@ function enterSandwich(s: GameState, scene: SceneBuilder): void {
 function enterLekarstvo(s: GameState, scene: SceneBuilder): void {
   if (((s as any).mc_inventory ?? 0)?.['antibiotics'] > 0) {
     // TODO-QSP: dynamic text: You have <b><<mc_inventory[''antibiotics'']>></b> antibiotics.
-    scene.text(`You have <b>${((s as any).mc_inventory ?? 0)?.['antibiotics'] ?? ''}</b> antibiotics.`);
+    scene.text(`You have <b>${(((s as any).mc_inventory ?? 0)?.['antibiotics'] ?? '')}</b> antibiotics.`);
     if (((s as any).sick ?? 0) > 0  &&  ((s as any).lekarday ?? 0) !== ((s as any).daystart ?? 0)) {
       scene.actions([
         { label: 'Take an antibiotic (0:05)', handler: (st: GameState) => {
@@ -544,7 +544,7 @@ function enterLekarstvo(s: GameState, scene: SceneBuilder): void {
 function enterVitamin(s: GameState, scene: SceneBuilder): void {
   if (((s as any).mc_inventory ?? 0)?.['vitamins'] > 0) {
     // TODO-QSP: dynamic text: You have <b><<mc_inventory[''vitamins'']>></b> vitamin drinks.
-    scene.text(`You have <b>${((s as any).mc_inventory ?? 0)?.['vitamins'] ?? ''}</b> vitamin drinks.`);
+    scene.text(`You have <b>${(((s as any).mc_inventory ?? 0)?.['vitamins'] ?? '')}</b> vitamin drinks.`);
     if (((s as any).vitaminday ?? 0) !== ((s as any).daystart ?? 0)) {
       scene.actions([
         { label: 'Take vitamins (0:02)', handler: (st: GameState) => {
@@ -827,7 +827,7 @@ function enterParentsMealOptions(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/mom/prost6.jpg');
     // TODO-QSP: dynamic text: Your <<$npc_nickname[''A29'']>> glares at you as you sit down and you realize yo...
-    scene.text(`Your ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''} glares at you as you sit down and you realize you still have cum on you!`);
+    scene.text(`Your ${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')} glares at you as you sit down and you realize you still have cum on you!`);
     scene.text('"How disgusting! And at the breakfast table! Have you no shame?! Get out of my sight, whore!"');
     scene.text('Knowing there\'s nothing you can say, you simply mumble an apology and quickly head to the bathroom.');
     scene.actions([
@@ -960,7 +960,7 @@ function enterParentsMealOptions(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/mom/prost6.jpg');
     // TODO-QSP: dynamic text: Your <<$npc_nickname[''A29'']>> glares at you as you sit down and you realize yo...
-    scene.text(`Your ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''} glares at you as you sit down and you realize you still have cum on you!`);
+    scene.text(`Your ${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')} glares at you as you sit down and you realize you still have cum on you!`);
     scene.text('"How disgusting! And at the dinner table! Have you no shame?! Get out of my sight, whore!"');
     scene.text('Knowing there\'s nothing you can say, you simply mumble an apology and quickly head to the bathroom.');
     scene.actions([

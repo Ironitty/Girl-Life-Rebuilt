@@ -14,7 +14,7 @@ function enterGadukino(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/shared/rex/rex_gadukino_'+iif...
   scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/characters/shared/rex/rex_gadukino_` + ((((s as any).month ?? 0) > 3  &&  ((s as any).month ?? 0) < 11) ? ('summer') : ('winter')) + '.jpg"></center>');
   // TODO-QSP: dynamic text: '<<$rex[''name'']>> is running around '+iif(month > 3 and month < 11, 'sniffing ...
-  scene.text(`${((s as any).rex ?? 0)?.['name'] ?? ''} is running around ` + ((((s as any).month ?? 0) > 3  &&  ((s as any).month ?? 0) < 11) ? ('sniffing everything') : ('playing in the snow')) + '. Your grandmother loves taking care of him, so you don\'t have to worry about him while you\'re in Gadukino.');
+  scene.text(`${(((s as any).rex ?? 0)?.['name'] ?? '')} is running around ` + ((((s as any).month ?? 0) > 3  &&  ((s as any).month ?? 0) < 11) ? ('sniffing everything') : ('playing in the snow')) + '. Your grandmother loves taking care of him, so you don\'t have to worry about him while you\'re in Gadukino.');
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
@@ -41,15 +41,15 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.text('<b>Chores:</b>');
     if (((s as any).rex ?? 0)?.['count_walk'] > 0) {
       // TODO-QSP: dynamic text: - You have to walk him <<rex[''count_walk'']>>x today.
-      scene.text(`- You have to walk him ${((s as any).rex ?? 0)?.['count_walk'] ?? ''}x today.`);
+      scene.text(`- You have to walk him ${(((s as any).rex ?? 0)?.['count_walk'] ?? '')}x today.`);
     }
     if (((s as any).rex ?? 0)?.['count_feed'] > 0) {
       // TODO-QSP: dynamic text: - You have to feed him <<rex[''count_feed'']>>x today.
-      scene.text(`- You have to feed him ${((s as any).rex ?? 0)?.['count_feed'] ?? ''}x today.`);
+      scene.text(`- You have to feed him ${(((s as any).rex ?? 0)?.['count_feed'] ?? '')}x today.`);
     }
     if (((s as any).rex ?? 0)?.['count_bath'] > 0) {
       // TODO-QSP: dynamic text: - You have to bath him <<rex[''count_bath'']>>x this week.
-      scene.text(`- You have to bath him ${((s as any).rex ?? 0)?.['count_bath'] ?? ''}x this week.`);
+      scene.text(`- You have to bath him ${(((s as any).rex ?? 0)?.['count_bath'] ?? '')}x this week.`);
     }
   }
   if (((s as any).rex ?? 0)?.['relationship'] < 10) {
@@ -96,7 +96,7 @@ function enterActivitiesNormal(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).clothingworntype ?? 0) === 'nude') {
     // TODO-QSP: dynamic text: <br>You should put some clothes on if you want to go for a walk with <<$rex[''na...
-    scene.text(`<br>You should put some clothes on if you want to go for a walk with ${((s as any).rex ?? 0)?.['name'] ?? ''}.`);
+    scene.text(`<br>You should put some clothes on if you want to go for a walk with ${(((s as any).rex ?? 0)?.['name'] ?? '')}.`);
   } else {
     if (((s as any).rex ?? 0)?.['count_walk'] > 0  &&  ((s as any).hour ?? 0) > (((s as any).rex ?? 0)?.['timer_walk'] + 3)) {
       if (((s as any).rex ?? 0)?.['count_run'] === 0  &&  ((s as any).PSport ?? 0) === 1) {
@@ -118,7 +118,7 @@ function enterActivitiesNormal(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).rex ?? 0)?.['count_bath'] > 0) {
     scene.actions([
-      { label: '', labelFn: (s: GameState) => 'Bath ' + String(((s as any).rex ?? 0)?.['name'] ?? '' ?? '') + ' (0:25)', goto: ['pet_dog', 'bath'] },
+      { label: '', labelFn: (s: GameState) => 'Bath ' + String((((s as any).rex ?? 0)?.['name'] ?? '') ?? '') + ' (0:25)', goto: ['pet_dog', 'bath'] },
     ]);
   }
   if (((s as any).rex ?? 0)?.['play_inside'] !== ((s as any).daystart ?? 0)  &&  ((s as any).hour ?? 0) < 23  &&  ((s as any).objects ?? 0)?.['toys'] === 1) {
@@ -142,10 +142,10 @@ function enterFeed(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/shared/rex/feeding_'+rand(0, ...
   scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/characters/shared/rex/feeding_` + (Math.floor(Math.random() * 2) + 0) + '.jpg"></center>');
   // TODO-QSP: dynamic text: '"Come '+iif(rand(0, 1) = 0, 'boy', $rex['name'])+' let''s get you something to ...
-  scene.text('"Come ' + (((!(Math.floor(Math.random() * 2) + 0))) ? ('boy') : (((s as any).rex ?? 0)?.['name'] ?? '')) + ' let\'s get you something to eat," you say and go into the kitchen. He ' + (((!(Math.floor(Math.random() * 2) + 0))) ? ('follows and watches you fill his bowl with big thankful eyes') : ('runs into the kitchen the second he hears you filling his bowl')) + ' before he eagerly digs in.');
+  scene.text('"Come ' + (((!(Math.floor(Math.random() * 2) + 0))) ? ('boy') : ((((s as any).rex ?? 0)?.['name'] ?? ''))) + ' let\'s get you something to eat," you say and go into the kitchen. He ' + (((!(Math.floor(Math.random() * 2) + 0))) ? ('follows and watches you fill his bowl with big thankful eyes') : ('runs into the kitchen the second he hears you filling his bowl')) + ' before he eagerly digs in.');
   if (((s as any).home ?? 0)?.['current'] !== 'parents_home') {
     // TODO-QSP: dynamic text: You have enough dog food for <<objects[''dog_food'']>> meals.
-    scene.text(`You have enough dog food for ${((s as any).objects ?? 0)?.['dog_food'] ?? ''} meals.`);
+    scene.text(`You have enough dog food for ${(((s as any).objects ?? 0)?.['dog_food'] ?? '')} meals.`);
   }
   // TODO-QSP: end
   scene.actions([
@@ -226,9 +226,9 @@ function enterExercise(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/shared/rex/run_'+iif(daystage...
     scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/characters/shared/rex/run_` + ((((s as any).daystage ?? 0) === 1  ||  ((s as any).daystage ?? 0) === 3  ||  ((s as any).daystage ?? 0) === 4  ||  ((s as any).daystage ?? 0) === 6) ? ('sunset') : (String((Math.floor(Math.random() * 2) + 0)))) + '.jpg"></center>');
     // TODO-QSP: dynamic text: <<$rex[''name'']>> excitedly runs around you as you put on your running shoes. H...
-    scene.text(`${((s as any).rex ?? 0)?.['name'] ?? ''} excitedly runs around you as you put on your running shoes. He loves going on runs with you. "Yes," you say with a smile. "We're going for a run. Are you ready?" He wags his tail. "Alright, let's go boy!"`);
+    scene.text(`${(((s as any).rex ?? 0)?.['name'] ?? '')} excitedly runs around you as you put on your running shoes. He loves going on runs with you. "Yes," you say with a smile. "We're going for a run. Are you ready?" He wags his tail. "Alright, let's go boy!"`);
     // TODO-QSP: dynamic text: You head out and start your run. <<$rex[''name'']>> follows obediently, sometime...
-    scene.text(`You head out and start your run. ${((s as any).rex ?? 0)?.['name'] ?? ''} follows obediently, sometimes stopping to sniff or mark his territory, but he always returns to your side before you get too far away.`);
+    scene.text(`You head out and start your run. ${(((s as any).rex ?? 0)?.['name'] ?? '')} follows obediently, sometimes stopping to sniff or mark his territory, but he always returns to your side before you get too far away.`);
     scene.text('You return home an hour later, exhausted and sweaty.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
@@ -250,7 +250,7 @@ function enterPlayInside(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/shared/rex/play_inside_'+rand...
   scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/characters/shared/rex/play_inside_` + (Math.floor(Math.random() * 4) + 0) + '.jpg"></center>');
   // TODO-QSP: dynamic text: You cavort with <<$rex[''name'']>> and lavish him with all the attention he dese...
-  scene.text(`You cavort with ${((s as any).rex ?? 0)?.['name'] ?? ''} and lavish him with all the attention he deserves. You get one of his toy balls and roll it around the apartment, playing a safe version of indoor catch. You cuddle up on the couch with him and spend the last few minutes stroking his soft fur.`);
+  scene.text(`You cavort with ${(((s as any).rex ?? 0)?.['name'] ?? '')} and lavish him with all the attention he deserves. You get one of his toy balls and roll it around the apartment, playing a safe version of indoor catch. You cuddle up on the couch with him and spend the last few minutes stroking his soft fur.`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Stop playing', handler: (st: GameState) => {
@@ -267,7 +267,7 @@ function enterBath(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/shared/rex/bath.jpg');
   // TODO-QSP: dynamic text: "Come <<$rex[''name'']>>, time to take a bath," you say and open the door to the...
-  scene.text(`"Come ${((s as any).rex ?? 0)?.['name'] ?? ''}, time to take a bath," you say and open the door to the bathroom. ${((s as any).rex ?? 0)?.['name'] ?? ''} looks a bit confused. "Come on boy," you say clicking your fingers and he finally follows you inside.`);
+  scene.text(`"Come ${(((s as any).rex ?? 0)?.['name'] ?? '')}, time to take a bath," you say and open the door to the bathroom. ${(((s as any).rex ?? 0)?.['name'] ?? '')} looks a bit confused. "Come on boy," you say clicking your fingers and he finally follows you inside.`);
   scene.text('You brush his fur before trying to get him into the tub. It takes a few tries to convince him, but he eventually listens.');
   scene.text('"Stay," you say in a calm and reassuring voice and gently start scrubbing him with dog shampoo before rinsing and drying his fur. Once you\'re finished, you let him leave the bathroom.');
   // TODO-QSP: end
@@ -284,9 +284,9 @@ function enterName(s: GameState, scene: SceneBuilder): void {
   ((s as any).rex = (s as any).rex ?? {})['count_walk_base'] = 2;
   ((s as any).rex = (s as any).rex ?? {})['count_feed_base'] = 2;
   ((s as any).rex = (s as any).rex ?? {})['count_bath_base'] = 1;
-  ((s as any).rex = (s as any).rex ?? {})['count_walk'] = ((s as any).rex ?? 0)?.['count_walk_base'];
-  ((s as any).rex = (s as any).rex ?? {})['count_feed'] = ((s as any).rex ?? 0)?.['count_feed_base'];
-  ((s as any).rex = (s as any).rex ?? {})['count_bath'] = ((s as any).rex ?? 0)?.['count_bath_base'];
+  ((s as any).rex = (s as any).rex ?? {})['count_walk'] = (((s as any).rex ?? 0)?.['count_walk_base']);
+  ((s as any).rex = (s as any).rex ?? {})['count_feed'] = (((s as any).rex ?? 0)?.['count_feed_base']);
+  ((s as any).rex = (s as any).rex ?? {})['count_bath'] = (((s as any).rex ?? 0)?.['count_bath_base']);
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/citycenter/mall/pet shop/pets/dog.jpg');
   ((s as any).rex = (s as any).rex ?? {})['name'] = window.prompt("What is the name of your dog? (Leave blank for Rex)") ?? '';

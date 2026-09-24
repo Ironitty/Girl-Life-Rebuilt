@@ -48,7 +48,7 @@ function enterShow2(s: GameState, scene: SceneBuilder): void {
 
 function enterSMSSetSelfie(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_imloc = qspFunc(s, 'phone_selfies_popup', 'SMS_get_imloc', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[3] ?? 0), ((s as any).locArgs?.[4] ?? 0));
-  (s as any).result = '<a href="exec: gs ' + ((s as any).SMSSelfieVars ?? 0)?.['return_string'] + ', ' + ((s as any).SMSSelfieVars ?? 0)?.['SMSIndex'] + ', \'' + ((s as any).temp_imloc ?? 0) + '\', \'' + ((s as any).locArgs?.[1] ?? 0) + '\', \'' + ((s as any).locArgs?.[2] ?? 0) + '\', ' + ((s as any).locArgs?.[3] ?? 0) + ', ' + ((s as any).locArgs?.[4] ?? 0) + '"><img src="' + ((s as any).temp_imloc ?? 0) + '" style="horizontal-align:center; max-height:90%; max-width:90%"></a>';
+  (s as any).result = '<a href="exec: gs ' + (((s as any).SMSSelfieVars ?? 0)?.['return_string']) + ', ' + (((s as any).SMSSelfieVars ?? 0)?.['SMSIndex']) + ', \'' + ((s as any).temp_imloc ?? 0) + '\', \'' + ((s as any).locArgs?.[1] ?? 0) + '\', \'' + ((s as any).locArgs?.[2] ?? 0) + '\', ' + ((s as any).locArgs?.[3] ?? 0) + ', ' + ((s as any).locArgs?.[4] ?? 0) + '"><img src="' + ((s as any).temp_imloc ?? 0) + '" style="horizontal-align:center; max-height:90%; max-width:90%"></a>';
   // TODO-QSP: end
   scene.build();
 }

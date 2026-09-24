@@ -124,7 +124,7 @@ function enterSoniaChat(s: GameState, scene: SceneBuilder): void {
     scene.text('"So what have you been up to lately?" you ask.');
     scene.text('She sighs dramatically. "Mostly trying to find some fun and avoid my parents. I think I\'ll hang myself if I hear one more speech about how a proper young lady has to act!"');
     // TODO-QSP: dynamic text: She ends her rant with a giggle and you smile at her. "Well, don''t do that. You...
-    scene.text(`She ends her rant with a giggle and you smile at her. "Well, don't do that. You have too pretty of a neck to bruise." You both laugh at that. "But seriously, I understand. My ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''} is <i>insanely</i> overbearing as well."`);
+    scene.text(`She ends her rant with a giggle and you smile at her. "Well, don't do that. You have too pretty of a neck to bruise." You both laugh at that. "But seriously, I understand. My ${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')} is <i>insanely</i> overbearing as well."`);
     scene.text('The two of you are soon talking about how bad your mothers are. It seems you have a lot in common with your overbearing mothers trying to control every aspect of your lives.');
     scene.actions([
       { label: 'Stop talking', goto: ['soniahome', 'sonia_room'] },
@@ -906,7 +906,7 @@ function enterLivingroomChat1(s: GameState, scene: SceneBuilder): void {
     scene.text('"So what have you been up to lately?" you ask.');
     scene.text('She sighs dramatically. "Mostly trying to find some fun and avoid my parents. I think I\'ll hang myself if I hear one more speech about how a proper young lady has to act!"');
     // TODO-QSP: dynamic text: She ends her rant with a giggle and you smile at her. "Well, don''t do that. You...
-    scene.text(`She ends her rant with a giggle and you smile at her. "Well, don't do that. You have too pretty of a neck to bruise." You both laugh at that. "But seriously, I understand. My ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''} is <i>insanely</i> overbearing as well."`);
+    scene.text(`She ends her rant with a giggle and you smile at her. "Well, don't do that. You have too pretty of a neck to bruise." You both laugh at that. "But seriously, I understand. My ${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')} is <i>insanely</i> overbearing as well."`);
     scene.text('The two of you are soon talking about how bad your mothers are. It seems you have a lot in common with your overbearing mothers trying to control every aspect of your lives.');
     scene.actions([
       { label: 'Keep talking', goto: ['soniachat', 'livingroom_chat1'] },

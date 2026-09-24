@@ -1813,7 +1813,7 @@ function enterForestSide1_1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'dinsex', 'boy_puts_condom');
   qspCall(s, 'dinsex', 'vaginal_sex', 10);
   // TODO-QSP: dynamic text: Mira is lying next to you and watches his <<dick>> centimeter piston hammer in y...
-  scene.text(`Mira is lying next to you and watches his ${((s as any).dick ?? '')} centimeter piston hammer in your ${((s as any).pc_desc ?? 0)?.['pussy'] ?? ''} vagina.`);
+  scene.text(`Mira is lying next to you and watches his ${((s as any).dick ?? '')} centimeter piston hammer in your ${(((s as any).pc_desc ?? 0)?.['pussy'] ?? '')} vagina.`);
   // TODO-QSP: dynamic text: <<$textsexhunter[4]>>
   scene.text(`${(((s as any).textsexhunter ?? 0)?.[4] ?? '')}`);
   qspCall(s, 'arousal', 'vaginal', 5, 'sub', 'rough', 'group');
@@ -2261,7 +2261,7 @@ function enterForestDog1_1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'dinsex', 'boy_puts_condom');
   qspCall(s, 'dinsex', 'vaginal_sex', 10);
   // TODO-QSP: dynamic text: Mira sits on her knees next to you and watches the <<dick>> centimeter piston ha...
-  scene.text(`Mira sits on her knees next to you and watches the ${((s as any).dick ?? '')} centimeter piston hammer in your ${((s as any).pc_desc ?? 0)?.['pussy'] ?? ''} vagina.`);
+  scene.text(`Mira sits on her knees next to you and watches the ${((s as any).dick ?? '')} centimeter piston hammer in your ${(((s as any).pc_desc ?? 0)?.['pussy'] ?? '')} vagina.`);
   // TODO-QSP: dynamic text: <<$textsexhunter[4]>>
   scene.text(`${(((s as any).textsexhunter ?? 0)?.[4] ?? '')}`);
   qspCall(s, 'arousal', 'vaginal', 5, 'sub', 'rough', 'group');

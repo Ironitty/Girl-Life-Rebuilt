@@ -242,14 +242,33 @@ function generateSceneBody(
         break;
       }
       case 'goto': {
+        const isVarRef = (v: string) => v !== '' && !/^\d+$/.test(v) && /^[a-zA-Z_$]\w*$/.test(v);
+        const isDictAccess = (v: string) => !!v && /^\$\w+\['[^']*'\]$/.test(v);
+        const isArgsAccess = (v: string) => !!v && /^\$ARGS\[\d+\]$/.test(v);
+        const isIifExpr = (v: string) => /^\s*\$?iif\(/.test(v);
+        const translateArg = (v: string, quoted: boolean): string => {
+          if (isDictAccess(v)) {
+            const m = v.replace(/^\$/, '').match(/^(\w+)\['([^']+)'\]$/);
+            if (m) return `(((s as any).${m[1]} ?? {})['${m[2]}'])`;
+          }
+          if (isArgsAccess(v)) {
+            const idx = v.match(/^\$ARGS\[(\d+)\]$/)![1];
+            return `String((s as any).locArgs?.[${idx}] ?? '')`;
+          }
+          if (isIifExpr(v)) return translateValue(v.trim(), stateReads, todos, 's');
+          if (/\w+\s*\(/.test(v) && v.includes(')')) return translateValue(v, stateReads, todos, 's');
+          if (v.startsWith('$') && !isVarRef(v)) return translateValue(v, stateReads, todos, 's');
+          if (quoted || !isVarRef(v)) return translateValue(`'${v}'`, stateReads, todos);
+          return `((s as any).${v.replace(/^\$/, '')} ?? '')`;
+        };
         if (node.target.startsWith('$')) {
           let t = node.target.replace(/^\$/, '');
           const argsMatch = t.match(/^ARGS\[(\d+)\]$/);
           if (argsMatch) {
             const idx = argsMatch[1];
-            const argVal = node.arg ? translateValue(`'${node.arg}'`, stateReads, todos) : "''";
-            const arg2Val = node.arg2 ? translateValue(`'${node.arg2}'`, stateReads, todos) : null;
-            const arg3Val = node.arg3 ? translateValue(`'${node.arg3}'`, stateReads, todos) : null;
+            const argVal = node.arg ? translateArg(node.arg, !!node.argQuoted) : "''";
+            const arg2Val = node.arg2 ? translateArg(node.arg2, !!node.arg2Quoted) : null;
+            const arg3Val = node.arg3 ? translateArg(node.arg3, !!node.arg3Quoted) : null;
             const arg2Part = arg2Val ? `, ${arg2Val}` : '';
             const arg3Part = arg3Val ? `, ${arg3Val}` : '';
             out.push(`{ const __t = String((s as any).locArgs?.[${idx}] ?? ''); if (__t) qspGoto(s, __t, ${argVal}${arg2Part}${arg3Part}); }`);
@@ -310,21 +329,6 @@ function generateSceneBody(
             out.push(`dynamicGoto(s, ${tgtExpr}, ${argVal});`);
           } else {
             targets.add(node.target);
-            const isVarRef = (v: string) => v !== '' && !/^\d+$/.test(v) && /^[a-zA-Z_$]\w*$/.test(v);
-            const isDictAccess = (v: string) => !!v && /^\$\w+\['[^']*'\]$/.test(v);
-            const isArgsAccess = (v: string) => !!v && /^\$ARGS\[\d+\]$/.test(v);
-            const translateArg = (v: string, quoted: boolean): string => {
-              if (isDictAccess(v)) {
-                const m = v.replace(/^\$/, '').match(/^(\w+)\['([^']+)'\]$/);
-                if (m) return `(((s as any).${m[1]} ?? {})['${m[2]}'])`;
-              }
-              if (isArgsAccess(v)) {
-                const idx = v.match(/^\$ARGS\[(\d+)\]$/)![1];
-                return `String((s as any).locArgs?.[${idx}] ?? '')`;
-              }
-              if (quoted || !isVarRef(v)) return translateValue(`'${v}'`, stateReads, todos);
-              return `((s as any).${v.replace(/^\$/, '')} ?? '')`;
-            };
             const argVal = translateArg(node.arg, !!node.argQuoted);
             const arg2Val = node.arg2 ? translateArg(node.arg2, !!node.arg2Quoted) : null;
             const arg3Val = node.arg3 ? translateArg(node.arg3, !!node.arg3Quoted) : null;
@@ -1452,7 +1456,7 @@ function translateValue(val: string, stateReads: string[], todos: string[], stat
     stateReads.push(arrAcc[1].replace(/^\$/, ''));
     const keyExpr = buildKeyExpr(key, stateReads, todos, stateVar);
     const fb = textContext ? " ?? ''" : '';
-    return `((${stateVar} as any).${obj} ?? 0)?.[${keyExpr}]${fb}`;
+    return `(((${stateVar} as any).${obj} ?? 0)?.[${keyExpr}]${fb})`;
   }
   // QSP array access with unquoted variable key: WORD[var] or WORD[$var]
   const arrAccUnq = v.match(/^(\$?[\w.]+)\[\$?([a-zA-Z_]\w*)\]$/);

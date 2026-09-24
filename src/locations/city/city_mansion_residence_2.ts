@@ -79,7 +79,7 @@ function enterYlounge(s: GameState, scene: SceneBuilder): void {
       }
       if (((s as any).mc_inventory ?? 0)?.['tapestry'] > 0) {
         // TODO-QSP: dynamic text: You have <<mc_inventory[''tapestry'']>> completed tapestries.
-        scene.text(`You have ${((s as any).mc_inventory ?? 0)?.['tapestry'] ?? ''} completed tapestries.`);
+        scene.text(`You have ${(((s as any).mc_inventory ?? 0)?.['tapestry'] ?? '')} completed tapestries.`);
       }
     }
   }

@@ -11,7 +11,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 function enterChampagne1(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/citycenter/photo/foto.jpg');
   // TODO-QSP: dynamic text: "<<$model[''firstname'']>>!"
-  scene.text(`"${((s as any).model ?? 0)?.['firstname'] ?? ''}!"`);
+  scene.text(`"${(((s as any).model ?? 0)?.['firstname'] ?? '')}!"`);
   scene.text('As you walk out of the changing room you hear someone call your name.');
   // TODO-QSP: end
   scene.actions([
@@ -91,7 +91,7 @@ function enterChampagne1_2(s: GameState, scene: SceneBuilder): void {
   (s as any).pcs_hairbsh = 1;
   (s as any).pcs_makeup = 5;
   (s as any).pcs_lipbalm = ((s as any).pcs_lipbalm ?? 0) + (8);
-  (s as any).modelpay = (((s as any).pcs_mdlng ?? 0)/2 * 10) + Math.min(((s as any).fame ?? 0)?.['city_modelling'], 700) + ((s as any).pcs_apprnc ?? 0);
+  (s as any).modelpay = (((s as any).pcs_mdlng ?? 0)/2 * 10) + Math.min((((s as any).fame ?? 0)?.['city_modelling']), 700) + ((s as any).pcs_apprnc ?? 0);
   (s as any).modelpayfin = 600 + (((s as any).modelpay ?? 0) * 2) + (15*(Math.floor(Math.random() * 6) + 0));
   ((s as any).modelfoto = (s as any).modelfoto ?? {})['shoots'] = ((s as any).modelfoto['shoots'] ?? 0) + (1);
   ((s as any).modelfoto = (s as any).modelfoto ?? {})['nude'] = ((s as any).modelfoto['nude'] ?? 0) + (1);

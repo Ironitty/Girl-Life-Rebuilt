@@ -57,16 +57,16 @@ function enterTimeCheatFix(s: GameState, scene: SceneBuilder): void {
 
 function enterUpdateDate(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).daystart ?? 0)]; enterToDate(s, scene); (s as any).locArgs = __savedLocArgs; }
-  (s as any).day = ((s as any).dateVars ?? 0)?.['day'];
-  (s as any).month = ((s as any).dateVars ?? 0)?.['month'];
-  (s as any).monthName = ((s as any).dateVars ?? 0)?.['monthName'];
-  (s as any).season = ((s as any).dateVars ?? 0)?.['season'];
-  (s as any).year = ((s as any).dateVars ?? 0)?.['year'];
-  (s as any).week = ((s as any).dateVars ?? 0)?.['week'];
-  (s as any).weekName = ((s as any).dateVars ?? 0)?.['weekName'];
-  (s as any).odd_week = ((s as any).dateVars ?? 0)?.['odd_week'];
-  (s as any).day_suffix = ((s as any).dateVars ?? 0)?.['suffix'];
-  (s as any).day_of_year = ((s as any).dateVars ?? 0)?.['day_of_year'];
+  (s as any).day = (((s as any).dateVars ?? 0)?.['day']);
+  (s as any).month = (((s as any).dateVars ?? 0)?.['month']);
+  (s as any).monthName = (((s as any).dateVars ?? 0)?.['monthName']);
+  (s as any).season = (((s as any).dateVars ?? 0)?.['season']);
+  (s as any).year = (((s as any).dateVars ?? 0)?.['year']);
+  (s as any).week = (((s as any).dateVars ?? 0)?.['week']);
+  (s as any).weekName = (((s as any).dateVars ?? 0)?.['weekName']);
+  (s as any).odd_week = (((s as any).dateVars ?? 0)?.['odd_week']);
+  (s as any).day_suffix = (((s as any).dateVars ?? 0)?.['suffix']);
+  (s as any).day_of_year = (((s as any).dateVars ?? 0)?.['day_of_year']);
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).year ?? 0)]; enterInitMonthends(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
@@ -86,7 +86,7 @@ function enterToDate(s: GameState, scene: SceneBuilder): void {
     ((s as any).dateVars = (s as any).dateVars ?? {})['week'] = 7;
   }
   ((s as any).dateVars = (s as any).dateVars ?? {})['weekName'] = qspUntranslated(s, "weekName[dateVars['week']]", { location: "time" });
-  ((s as any).temp_timeVars = (s as any).temp_timeVars ?? {})['inner_daystart'] = ((s as any).temp_timeVars ?? 0)?.['mod_daystart'];
+  ((s as any).temp_timeVars = (s as any).temp_timeVars ?? {})['inner_daystart'] = (((s as any).temp_timeVars ?? 0)?.['mod_daystart']);
   ((s as any).dateVars = (s as any).dateVars ?? {})['year'] = 1601;
   ((s as any).temp_timeVars = (s as any).temp_timeVars ?? {})['400cycles'] = (((s as any).temp_timeVars ?? {})?.['inner_daystart'] ?? 0) / 146097;
   ((s as any).dateVars = (s as any).dateVars ?? {})['year'] = ((s as any).dateVars['year'] ?? 0) + (400 * (((s as any).temp_timeVars ?? {})?.['400cycles'] ?? 0));
@@ -110,7 +110,7 @@ function enterToDate(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  ((s as any).dateVars = (s as any).dateVars ?? {})['year'] = ((s as any).dateVars['year'] ?? 0) + (((s as any).temp_timeVars ?? 0)?.['inner_years']);
+  ((s as any).dateVars = (s as any).dateVars ?? {})['year'] = ((s as any).dateVars['year'] ?? 0) + ((((s as any).temp_timeVars ?? 0)?.['inner_years']));
   ((s as any).temp_timeVars = (s as any).temp_timeVars ?? {})['inner_daystart'] = ((s as any).temp_timeVars['inner_daystart'] ?? 0) - (365 * (((s as any).temp_timeVars ?? {})?.['inner_years'] ?? 0));
   ((s as any).temp_timeVars = (s as any).temp_timeVars ?? {})['leapyear'] = 0;
   if (((((s as any).dateVars ?? 0)?.['year'] % 4) === 0  &&  (((s as any).dateVars ?? 0)?.['year'] % 100) !== 0)  ||  (((s as any).dateVars ?? 0)?.['year'] % 400 === 0)) {
@@ -125,7 +125,7 @@ function enterToDate(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).temp_timeVars ?? 0)?.['inner_daystart'] < 59) {
       ((s as any).dateVars = (s as any).dateVars ?? {})['month'] = 2;
-      ((s as any).temp_timeVars = (s as any).temp_timeVars ?? {})['inner_daystart'] = ((s as any).temp_timeVars['inner_daystart'] ?? 0) + (((s as any).temp_timeVars ?? 0)?.['leapyear']);
+      ((s as any).temp_timeVars = (s as any).temp_timeVars ?? {})['inner_daystart'] = ((s as any).temp_timeVars['inner_daystart'] ?? 0) + ((((s as any).temp_timeVars ?? 0)?.['leapyear']));
       ((s as any).temp_timeVars = (s as any).temp_timeVars ?? {})['inner_daystart'] = ((s as any).temp_timeVars['inner_daystart'] ?? 0) - (31);
     } else {
       if (((s as any).temp_timeVars ?? 0)?.['inner_daystart'] < 90) {
@@ -192,35 +192,35 @@ function enterToDate(s: GameState, scene: SceneBuilder): void {
     }
   }
   ((s as any).dateVars = (s as any).dateVars ?? {})['day'] = 1 + (((s as any).temp_timeVars ?? {})?.['inner_daystart'] ?? 0);
-  ((s as any).dateVars = (s as any).dateVars ?? {})['suffix'] = qspFunc(s, 'time', 'get_number_suffix', ((s as any).dateVars ?? 0)?.['day']);
+  ((s as any).dateVars = (s as any).dateVars ?? {})['suffix'] = qspFunc(s, 'time', 'get_number_suffix', (((s as any).dateVars ?? 0)?.['day']));
   if (String((s as any).locArgs?.[2] ?? '') === 'test') {
     // TODO-QSP: dynamic text: new_daystart: <<ARGS[1]>> | old_daystart: <<daystart>>
     scene.text(`new_daystart: ${((s as any).locArgs?.[1] ?? '')} | old_daystart: ${((s as any).daystart ?? '')}`);
     // TODO-QSP: dynamic text: new_day: <<dateVars[''day'']>> | old_day: <<day>>
-    scene.text(`new_day: ${((s as any).dateVars ?? 0)?.['day'] ?? ''} | old_day: ${((s as any).day ?? '')}`);
+    scene.text(`new_day: ${(((s as any).dateVars ?? 0)?.['day'] ?? '')} | old_day: ${((s as any).day ?? '')}`);
     // TODO-QSP: dynamic text: new_month: <<dateVars[''month'']>> | old_month: <<month>>
-    scene.text(`new_month: ${((s as any).dateVars ?? 0)?.['month'] ?? ''} | old_month: ${((s as any).month ?? '')}`);
+    scene.text(`new_month: ${(((s as any).dateVars ?? 0)?.['month'] ?? '')} | old_month: ${((s as any).month ?? '')}`);
     // TODO-QSP: dynamic text: new_year: <<dateVars[''year'']>> | old_year: <<year>>
-    scene.text(`new_year: ${((s as any).dateVars ?? 0)?.['year'] ?? ''} | old_year: ${((s as any).year ?? '')}`);
+    scene.text(`new_year: ${(((s as any).dateVars ?? 0)?.['year'] ?? '')} | old_year: ${((s as any).year ?? '')}`);
     // TODO-QSP: dynamic text: new_week: <<dateVars[''week'']>> | old_week: <<week>>
-    scene.text(`new_week: ${((s as any).dateVars ?? 0)?.['week'] ?? ''} | old_week: ${((s as any).week ?? '')}`);
+    scene.text(`new_week: ${(((s as any).dateVars ?? 0)?.['week'] ?? '')} | old_week: ${((s as any).week ?? '')}`);
     // TODO-QSP: dynamic text: new_odd_week: <<dateVars[''odd_week'']>> | old_odd_week: <<odd_week>>
-    scene.text(`new_odd_week: ${((s as any).dateVars ?? 0)?.['odd_week'] ?? ''} | old_odd_week: ${((s as any).odd_week ?? '')}`);
+    scene.text(`new_odd_week: ${(((s as any).dateVars ?? 0)?.['odd_week'] ?? '')} | old_odd_week: ${((s as any).odd_week ?? '')}`);
     scene.text('Temp:');
     // TODO-QSP: dynamic text: mod_daystart: <<temp_timeVars[''mod_daystart'']>>
-    scene.text(`mod_daystart: ${((s as any).temp_timeVars ?? 0)?.['mod_daystart'] ?? ''}`);
+    scene.text(`mod_daystart: ${(((s as any).temp_timeVars ?? 0)?.['mod_daystart'] ?? '')}`);
     // TODO-QSP: dynamic text: inner_daystart: <<temp_timeVars[''inner_daystart'']>>
-    scene.text(`inner_daystart: ${((s as any).temp_timeVars ?? 0)?.['inner_daystart'] ?? ''}`);
+    scene.text(`inner_daystart: ${(((s as any).temp_timeVars ?? 0)?.['inner_daystart'] ?? '')}`);
     // TODO-QSP: dynamic text: leapyear: <<temp_timeVars[''leapyear'']>>
-    scene.text(`leapyear: ${((s as any).temp_timeVars ?? 0)?.['leapyear'] ?? ''}`);
+    scene.text(`leapyear: ${(((s as any).temp_timeVars ?? 0)?.['leapyear'] ?? '')}`);
     // TODO-QSP: dynamic text: 4cycles: <<temp_timeVars[''4cycles'']>>
-    scene.text(`4cycles: ${((s as any).temp_timeVars ?? 0)?.['4cycles'] ?? ''}`);
+    scene.text(`4cycles: ${(((s as any).temp_timeVars ?? 0)?.['4cycles'] ?? '')}`);
     // TODO-QSP: dynamic text: 100cycles: <<temp_timeVars[''100cycles'']>>
-    scene.text(`100cycles: ${((s as any).temp_timeVars ?? 0)?.['100cycles'] ?? ''}`);
+    scene.text(`100cycles: ${(((s as any).temp_timeVars ?? 0)?.['100cycles'] ?? '')}`);
     // TODO-QSP: dynamic text: 400cycles: <<temp_timeVars[''400cycles'']>>
-    scene.text(`400cycles: ${((s as any).temp_timeVars ?? 0)?.['400cycles'] ?? ''}`);
+    scene.text(`400cycles: ${(((s as any).temp_timeVars ?? 0)?.['400cycles'] ?? '')}`);
     // TODO-QSP: dynamic text: inner_years: <<temp_timeVars[''inner_years'']>>
-    scene.text(`inner_years: ${((s as any).temp_timeVars ?? 0)?.['inner_years'] ?? ''}`);
+    scene.text(`inner_years: ${(((s as any).temp_timeVars ?? 0)?.['inner_years'] ?? '')}`);
   }
   return;
   // TODO-QSP: end
@@ -326,17 +326,17 @@ function enterToDaystart(s: GameState, scene: SceneBuilder): void {
   if (((s as any).dateVars ?? 0)?.['month'] > 11) {
     ((s as any).temp_timeVars = (s as any).temp_timeVars ?? {})['mod_daystart'] = ((s as any).temp_timeVars['mod_daystart'] ?? 0) + (30);
   }
-  ((s as any).temp_timeVars = (s as any).temp_timeVars ?? {})['mod_daystart'] = ((s as any).temp_timeVars['mod_daystart'] ?? 0) + (((s as any).dateVars ?? 0)?.['day']);
+  ((s as any).temp_timeVars = (s as any).temp_timeVars ?? {})['mod_daystart'] = ((s as any).temp_timeVars['mod_daystart'] ?? 0) + ((((s as any).dateVars ?? 0)?.['day']));
   ((s as any).dateVars = (s as any).dateVars ?? {})['daystart'] = ((((s as any).temp_timeVars ?? {})?.['mod_daystart'] ?? 0) - (((s as any).temp_timeVars ?? {})?.['daystart_offset'] ?? 0));
   if (String((s as any).locArgs?.[4] ?? '') === 'test') {
     // TODO-QSP: dynamic text: new_daystart <<dateVars[''daystart'']>> | old_daystart <<daystart>>
-    scene.text(`new_daystart ${((s as any).dateVars ?? 0)?.['daystart'] ?? ''} | old_daystart ${((s as any).daystart ?? '')}`);
+    scene.text(`new_daystart ${(((s as any).dateVars ?? 0)?.['daystart'] ?? '')} | old_daystart ${((s as any).daystart ?? '')}`);
     // TODO-QSP: dynamic text: mod_daystart: <<temp_timeVars[''mod_daystart'']>>
-    scene.text(`mod_daystart: ${((s as any).temp_timeVars ?? 0)?.['mod_daystart'] ?? ''}`);
+    scene.text(`mod_daystart: ${(((s as any).temp_timeVars ?? 0)?.['mod_daystart'] ?? '')}`);
     // TODO-QSP: dynamic text: year_diff: <<temp_timeVars[''year_diff'']>>
-    scene.text(`year_diff: ${((s as any).temp_timeVars ?? 0)?.['year_diff'] ?? ''}`);
+    scene.text(`year_diff: ${(((s as any).temp_timeVars ?? 0)?.['year_diff'] ?? '')}`);
     // TODO-QSP: dynamic text: daystart_offset: <<temp_timeVars[''daystart_offset'']>>
-    scene.text(`daystart_offset: ${((s as any).temp_timeVars ?? 0)?.['daystart_offset'] ?? ''}`);
+    scene.text(`daystart_offset: ${(((s as any).temp_timeVars ?? 0)?.['daystart_offset'] ?? '')}`);
   }
   return;
   // TODO-QSP: end
@@ -396,7 +396,7 @@ function enterGet_DayLength(s: GameState, scene: SceneBuilder): void {
     if (((s as any).dateVars ?? 0)?.['daystart'] !== String((s as any).locArgs?.[1] ?? '')) {
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0)]; enterToDate(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
-    ((s as any).temp_timeVars = (s as any).temp_timeVars ?? {})['day_of_year'] = ((s as any).dateVars ?? 0)?.['day_of_year'];
+    ((s as any).temp_timeVars = (s as any).temp_timeVars ?? {})['day_of_year'] = (((s as any).dateVars ?? 0)?.['day_of_year']);
   }
   ((s as any).temp_timeVars = (s as any).temp_timeVars ?? {})['DayLengthMin'] = 177;
   ((s as any).temp_timeVars = (s as any).temp_timeVars ?? {})['DayLengthMax'] = 563;
@@ -464,7 +464,7 @@ function enterGetTimeString(s: GameState, scene: SceneBuilder): void {
     ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((s as any).minut ?? 0);
   }
   if (Object.keys((s as any).ARGS ?? {}).length <= 3) {
-    ((s as any).ARGS = (s as any).ARGS ?? {})[3] = ((s as any).cheatVars ?? 0)?.['time_format'];
+    ((s as any).ARGS = (s as any).ARGS ?? {})[3] = (((s as any).cheatVars ?? 0)?.['time_format']);
   }
   if (String((s as any).locArgs?.[3] ?? '') === 0  &&  String((s as any).locArgs?.[3] ?? '') === '') {
     (s as any).result = '' + (String(100 + ((s as any).locArgs?.[1] ?? 0)).slice((2)-1, ((2)-1)+(2))) + ':' + (String(100 + ((s as any).locArgs?.[2] ?? 0)).slice((2)-1, ((2)-1)+(2))) + '';
@@ -481,9 +481,9 @@ function enterGetTimeString(s: GameState, scene: SceneBuilder): void {
       }
     }
     if (String((s as any).locArgs?.[2] ?? '') === 0) {
-      (s as any).result = '' + ((s as any).locArgs?.[1] ?? 0) + '&nbsp;' + ((s as any).dateVars ?? 0)?.['period'] + '';
+      (s as any).result = '' + ((s as any).locArgs?.[1] ?? 0) + '&nbsp;' + (((s as any).dateVars ?? 0)?.['period']) + '';
     } else {
-      (s as any).result = '' + (String(100 + ((s as any).locArgs?.[1] ?? 0)).slice((2)-1, ((2)-1)+(2))) + ':' + (String(100 + ((s as any).locArgs?.[2] ?? 0)).slice((2)-1, ((2)-1)+(2))) + '&nbsp;' + ((s as any).dateVars ?? 0)?.['period'] + '';
+      (s as any).result = '' + (String(100 + ((s as any).locArgs?.[1] ?? 0)).slice((2)-1, ((2)-1)+(2))) + ':' + (String(100 + ((s as any).locArgs?.[2] ?? 0)).slice((2)-1, ((2)-1)+(2))) + '&nbsp;' + (((s as any).dateVars ?? 0)?.['period']) + '';
     }
   }
   return;

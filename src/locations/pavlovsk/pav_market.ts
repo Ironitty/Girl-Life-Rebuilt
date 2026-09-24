@@ -40,7 +40,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   scene.text(`A rather run-down <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(/u0027pav_hotel/u0027, /u0027/u0027); return false;">hotel</a> is just across the square${((((s as any).job_hiring_step ?? 0)?.['pav_hotel_maid'] > 0) ? ('; the manager is always looking for maids among the local young girls') : (''))}. Due to its frequent use by local prostitutes, most people prefer to stay at the middle-class hotel by the main road.`);
   if (qspFunc(s, 'car_funcs', 'is_here')) {
     // TODO-QSP: dynamic text: Your <a href="exec:gs ''carF'', ''start''"><<$car[''name'']>></a> is parked in t...
-    scene.text(`Your <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027carF/u0027, /u0027start/u0027); return false;">${((s as any).car ?? 0)?.['name'] ?? ''}</a> is parked in the parking lot in front of the train station.`);
+    scene.text(`Your <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027carF/u0027, /u0027start/u0027); return false;">${(((s as any).car ?? 0)?.['name'] ?? '')}</a> is parked in the parking lot in front of the train station.`);
   }
   if (((s as any).mother ?? 0)?.['kickedout_timer'] !== 0  &&  ((s as any).mother ?? 0)?.['kickedout_timer'] + 3 <= ((s as any).daystart ?? 0)  &&  ((s as any).hour ?? 0) > 6  &&  ((s as any).hour ?? 0) <= 15  &&  ((s as any).cumloc ?? 0)[11] === 0) {
     qspCall(s, 'mother_chats', 'reconciliation_talk');
@@ -155,7 +155,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.text(`A rather run-down <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(/u0027pav_hotel/u0027, /u0027/u0027); return false;">hotel</a> is just across the square${((((s as any).job_hiring_step ?? 0)?.['pav_hotel_maid'] > 0) ? ('; the manager is always looking for maids among the local young girls') : (''))}. Due to its frequent use by local prostitutes, most people prefer to stay at the middle-class hotel by the main road.`);
   if (qspFunc(s, 'car_funcs', 'is_here')) {
     // TODO-QSP: dynamic text: Your <a href="exec:gs ''carF'', ''start''"><<$car[''name'']>></a> is parked in t...
-    scene.text(`Your <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027carF/u0027, /u0027start/u0027); return false;">${((s as any).car ?? 0)?.['name'] ?? ''}</a> is parked in the parking lot in front of the train station.`);
+    scene.text(`Your <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027carF/u0027, /u0027start/u0027); return false;">${(((s as any).car ?? 0)?.['name'] ?? '')}</a> is parked in the parking lot in front of the train station.`);
   }
   if (((s as any).mother ?? 0)?.['kickedout_timer'] !== 0  &&  ((s as any).mother ?? 0)?.['kickedout_timer'] + 3 <= ((s as any).daystart ?? 0)  &&  ((s as any).hour ?? 0) > 6  &&  ((s as any).hour ?? 0) <= 15  &&  ((s as any).cumloc ?? 0)[11] === 0) {
     qspCall(s, 'mother_chats', 'reconciliation_talk');

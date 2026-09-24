@@ -775,7 +775,7 @@ function enterFridge(s: GameState, scene: SceneBuilder): void {
   }
   scene.img('images/shared/home/kitchen/fridge.jpg');
   // TODO-QSP: dynamic text: You open the fridge and see:<<$ivanko[''water_txt'']>><<$ivanko[''soup_txt'']>><...
-  scene.text(`You open the fridge and see:${((s as any).ivanko ?? 0)?.['water_txt'] ?? ''}${((s as any).ivanko ?? 0)?.['soup_txt'] ?? ''}${((s as any).ivanko ?? 0)?.['leftover_txt'] ?? ''}${((s as any).ivanko ?? 0)?.['sandwich_txt'] ?? ''}`);
+  scene.text(`You open the fridge and see:${(((s as any).ivanko ?? 0)?.['water_txt'] ?? '')}${(((s as any).ivanko ?? 0)?.['soup_txt'] ?? '')}${(((s as any).ivanko ?? 0)?.['leftover_txt'] ?? '')}${(((s as any).ivanko ?? 0)?.['sandwich_txt'] ?? '')}`);
   if (((s as any).ivanko ?? 0)?.['leftovers'] > 0) {
     scene.actions([
       { label: 'Eat some leftovers', handler: (st: GameState) => {

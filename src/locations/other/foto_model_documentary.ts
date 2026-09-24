@@ -14,7 +14,7 @@ function enter1stDocumentary(s: GameState, scene: SceneBuilder): void {
   scene.text('You step out of the room and almost run head first into one of the managers.');
   scene.text('"Woah!" you say, jumping back. "What are you doing?"');
   // TODO-QSP: dynamic text: "Oh <<$model[''firstname'']>>, glad I caught you before you wandered off somewhe...
-  scene.text(`"Oh ${((s as any).model ?? 0)?.['firstname'] ?? ''}, glad I caught you before you wandered off somewhere else in the studio. I was just going to see if anyone else showed up today. We're looking for volunteers to participate in some interviews for a documentary."`);
+  scene.text(`"Oh ${(((s as any).model ?? 0)?.['firstname'] ?? '')}, glad I caught you before you wandered off somewhere else in the studio. I was just going to see if anyone else showed up today. We're looking for volunteers to participate in some interviews for a documentary."`);
   scene.text('"Documentary?" you ask. "What about?"');
   scene.text('"There\'s some people here today who are making a film about models, their lives, and about working here. They want to capture girls working here in their usual working environment so you wouldn\'t be dressing up or anything, just interviewed as in the studio approved dress code."');
   scene.text('<i>You mean naked…</i> you think to yourself.');
@@ -204,32 +204,32 @@ function enterDocumentary_1(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Stand on set', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + ((Math.floor(Math.random() * 3) + 2));
-    ((st as any).foto_documentary = (st as any).foto_documentary ?? {})['question_1'] = ((st as any).model ?? 0)?.['type'];
+    ((st as any).foto_documentary = (st as any).foto_documentary ?? {})['question_1'] = (((st as any).model ?? 0)?.['type']);
     scene.img('images/locations/city/citycenter/photo/foto.jpg');
     scene.text('They put you in the middle of the set and spend a few minutes getting the lighting right and fiddling with camera settings. Then the woman who spoke to you before calls out to you.');
     scene.text('"Okay, we\'re all set. Ready?"');
     scene.text('You nod.');
     scene.text('"Okay, first question then. What\'s your name, how old are you, and what is your job?"');
     scene.actions([
-      { label: '', labelFn: (s: GameState) => 'I\'m ' + String(((st as any).model ?? 0)?.['firstname'] ?? '' ?? ''), handler: (st: GameState) => {
+      { label: '', labelFn: (s: GameState) => 'I\'m ' + String((((st as any).model ?? 0)?.['firstname'] ?? '') ?? ''), handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/photo/special/interview/1.mp4');
     if (((st as any).foto_documentary ?? 0)?.['question_1'] === 'artistic nude'  ||  ((st as any).foto_documentary ?? 0)?.['question_1'] === 'erotic') {
       // TODO-QSP: dynamic text: "My name is <<$model[''firstname'']>>. I''m <<model[''age'']>> years old, and I'...
-      scene.text(`"My name is ${((st as any).model ?? 0)?.['firstname'] ?? ''}. I'm ${((st as any).model ?? 0)?.['age'] ?? ''} years old, and I'm an ${((st as any).foto_documentary ?? 0)?.['question_1'] ?? ''} model at Aphrodite photography."`);
+      scene.text(`"My name is ${(((st as any).model ?? 0)?.['firstname'] ?? '')}. I'm ${(((st as any).model ?? 0)?.['age'] ?? '')} years old, and I'm an ${(((st as any).foto_documentary ?? 0)?.['question_1'] ?? '')} model at Aphrodite photography."`);
     } else {
       // TODO-QSP: dynamic text: '"My name is <<$model[''firstname'']>>. I''m <<model[''age'']>> years old, and I...
-      scene.text(`"My name is ${((st as any).model ?? 0)?.['firstname'] ?? ''}. I'm ${((st as any).model ?? 0)?.['age'] ?? ''} years old, and I'm a ` + ((((st as any).foto_documentary ?? 0)?.['question_1'] === '') ? ('') : ('' + ((st as any).foto_documentary ?? 0)?.['question_1'] ?? '' + ' ')) + 'model at Aphrodite photography."');
+      scene.text(`"My name is ${(((st as any).model ?? 0)?.['firstname'] ?? '')}. I'm ${(((st as any).model ?? 0)?.['age'] ?? '')} years old, and I'm a ` + ((((st as any).foto_documentary ?? 0)?.['question_1'] === '') ? ('') : ('' + (((st as any).foto_documentary ?? 0)?.['question_1'] ?? '') + ' ')) + 'model at Aphrodite photography."');
     }
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDocumentary_2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
-      { label: '', labelFn: (s: GameState) => 'I\'m ' + String(((st as any).model ?? 0)?.['nickname'] ?? '' ?? ''), handler: (st: GameState) => {
+      { label: '', labelFn: (s: GameState) => 'I\'m ' + String((((st as any).model ?? 0)?.['nickname'] ?? '') ?? ''), handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/photo/special/interview/1.mp4');
     if (((st as any).foto_documentary ?? 0)?.['question_1'] === 'artistic nude'  ||  ((st as any).foto_documentary ?? 0)?.['question_1'] === 'erotic') {
       // TODO-QSP: dynamic text: "My name is <<$model[''firstname'']>>, but my friends call me <<$model[''nicknam...
-      scene.text(`"My name is ${((st as any).model ?? 0)?.['firstname'] ?? ''}, but my friends call me ${((st as any).model ?? 0)?.['nickname'] ?? ''}. I'm ${((st as any).model ?? 0)?.['age'] ?? ''} years old, and I'm an ${((st as any).foto_documentary ?? 0)?.['question_1'] ?? ''} model at Aphrodite photography."`);
+      scene.text(`"My name is ${(((st as any).model ?? 0)?.['firstname'] ?? '')}, but my friends call me ${(((st as any).model ?? 0)?.['nickname'] ?? '')}. I'm ${(((st as any).model ?? 0)?.['age'] ?? '')} years old, and I'm an ${(((st as any).foto_documentary ?? 0)?.['question_1'] ?? '')} model at Aphrodite photography."`);
     } else {
       // TODO-QSP: dynamic text: '"My name is <<$model[''firstname'']>>, but my friends call me <<$model[''nickna...
-      scene.text(`"My name is ${((st as any).model ?? 0)?.['firstname'] ?? ''}, but my friends call me ${((st as any).model ?? 0)?.['nickname'] ?? ''}. I'm ${((st as any).model ?? 0)?.['age'] ?? ''} years old, and I'm a ` + ((((st as any).foto_documentary ?? 0)?.['question_1'] === '') ? ('') : ('' + ((st as any).foto_documentary ?? 0)?.['question_1'] ?? '' + ' ')) + 'model at Aphrodite photography."');
+      scene.text(`"My name is ${(((st as any).model ?? 0)?.['firstname'] ?? '')}, but my friends call me ${(((st as any).model ?? 0)?.['nickname'] ?? '')}. I'm ${(((st as any).model ?? 0)?.['age'] ?? '')} years old, and I'm a ` + ((((st as any).foto_documentary ?? 0)?.['question_1'] === '') ? ('') : ('' + (((st as any).foto_documentary ?? 0)?.['question_1'] ?? '') + ' ')) + 'model at Aphrodite photography."');
     }
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDocumentary_2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
@@ -838,7 +838,7 @@ function enterDocumentary_8(s: GameState, scene: SceneBuilder): void {
     ((st as any).foto_documentary = (st as any).foto_documentary ?? {})['question_8'] = 'sleeping_in';
     scene.img('images/locations/city/citycenter/photo/special/interview/6.mp4');
     // TODO-QSP: dynamic text: "I''d say that my guilty pleasure is having a lie in. There''s so much that need...
-    scene.text(`"I'd say that my guilty pleasure is having a lie in. There's so much that needs to get done during the day, but sometimes I can't help but whack the off button on my alarm clock and curl back up under my covers, wake up at noon instead of ${((st as any).alarmVars ?? 0)?.['timerH'] ?? ''}. It feels good to sleep in, but I always regret it when I realize how much stuff I could have gotten done if I had just gotten up when I was supposed to."`);
+    scene.text(`"I'd say that my guilty pleasure is having a lie in. There's so much that needs to get done during the day, but sometimes I can't help but whack the off button on my alarm clock and curl back up under my covers, wake up at noon instead of ${(((st as any).alarmVars ?? 0)?.['timerH'] ?? '')}. It feels good to sleep in, but I always regret it when I realize how much stuff I could have gotten done if I had just gotten up when I was supposed to."`);
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDocumentary_9(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
@@ -969,7 +969,7 @@ function enterDocumentary_11(s: GameState, scene: SceneBuilder): void {
 function enter1stDocumentaryEnd(s: GameState, scene: SceneBuilder): void {
   ((s as any).foto = (s as any).foto ?? {})['documentary'] = 0;
   (s as any).minut = ((s as any).minut ?? 0) + 10;
-  (s as any).modelpay = (((s as any).pcs_mdlng ?? 0)/2 * 10) + Math.min(((s as any).fame ?? 0)?.['city_modelling'], 700) + ((s as any).pcs_apprnc ?? 0);
+  (s as any).modelpay = (((s as any).pcs_mdlng ?? 0)/2 * 10) + Math.min((((s as any).fame ?? 0)?.['city_modelling']), 700) + ((s as any).pcs_apprnc ?? 0);
   (s as any).modelpayfin = 600 + (((s as any).modelpay ?? 0) * 2) + (15*(Math.floor(Math.random() * 6) + 0));
   qspCall(s, 'exp_gain', 'mdlng', (Math.floor(Math.random() * 2) + 9));
   if (((s as any).pcs_inhib ?? 0) < 55) {

@@ -117,14 +117,14 @@ function enterSetLeaveAct(s: GameState, scene: SceneBuilder): void {
 
 function enterSetResizeCost(s: GameState, scene: SceneBuilder): void {
   (s as any).tailor_total_resize_cost = 0;
-  (s as any).loop_func = ((s as any).tailor_funcs ?? 0)?.['clothing_resize_cost'];
+  (s as any).loop_func = (((s as any).tailor_funcs ?? 0)?.['clothing_resize_cost']);
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterClothingLoop(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
 
 function enterResizeAll(s: GameState, scene: SceneBuilder): void {
-  (s as any).loop_func = ((s as any).tailor_funcs ?? 0)?.['clothing_resize'];
+  (s as any).loop_func = (((s as any).tailor_funcs ?? 0)?.['clothing_resize']);
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterClothingLoop(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   ((s as any).tailor_funcs = (s as any).tailor_funcs ?? {})['clothing_repair_cost'] = qspUntranslated(s, "{", { location: "tailor" });
@@ -276,22 +276,22 @@ function enterResizeAll(s: GameState, scene: SceneBuilder): void {
 
 function enterSetRepairCost(s: GameState, scene: SceneBuilder): void {
   (s as any).tailor_total_repair_cost = 0;
-  (s as any).loop_func = ((s as any).tailor_funcs ?? 0)?.['clothing_repair_cost'];
+  (s as any).loop_func = (((s as any).tailor_funcs ?? 0)?.['clothing_repair_cost']);
   ((s as any).temp_tailorVars = (s as any).temp_tailorVars ?? {})['array_postfix'] = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterClothingLoop(s, scene); (s as any).locArgs = __savedLocArgs; }
-  (s as any).loop_func = ((s as any).tailor_funcs ?? 0)?.['bra_repair_cost'];
+  (s as any).loop_func = (((s as any).tailor_funcs ?? 0)?.['bra_repair_cost']);
   ((s as any).temp_tailorVars = (s as any).temp_tailorVars ?? {})['array_postfix'] = '_bras';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBrasLoop(s, scene); (s as any).locArgs = __savedLocArgs; }
-  (s as any).loop_func = ((s as any).tailor_funcs ?? 0)?.['panty_repair_cost'];
+  (s as any).loop_func = (((s as any).tailor_funcs ?? 0)?.['panty_repair_cost']);
   ((s as any).temp_tailorVars = (s as any).temp_tailorVars ?? {})['array_postfix'] = '_panties';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPantiesLoop(s, scene); (s as any).locArgs = __savedLocArgs; }
-  (s as any).loop_func = ((s as any).tailor_funcs ?? 0)?.['bodysuit_repair_cost'];
+  (s as any).loop_func = (((s as any).tailor_funcs ?? 0)?.['bodysuit_repair_cost']);
   ((s as any).temp_tailorVars = (s as any).temp_tailorVars ?? {})['array_postfix'] = '_bodysuits';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBodysuitsLoop(s, scene); (s as any).locArgs = __savedLocArgs; }
-  (s as any).loop_func = ((s as any).tailor_funcs ?? 0)?.['coat_repair_cost'];
+  (s as any).loop_func = (((s as any).tailor_funcs ?? 0)?.['coat_repair_cost']);
   ((s as any).temp_tailorVars = (s as any).temp_tailorVars ?? {})['array_postfix'] = '_coats';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCoatsLoop(s, scene); (s as any).locArgs = __savedLocArgs; }
-  (s as any).loop_func = ((s as any).tailor_funcs ?? 0)?.['shoe_repair_cost'];
+  (s as any).loop_func = (((s as any).tailor_funcs ?? 0)?.['shoe_repair_cost']);
   ((s as any).temp_tailorVars = (s as any).temp_tailorVars ?? {})['array_postfix'] = '_shoe';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterShoesLoop(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
@@ -299,22 +299,22 @@ function enterSetRepairCost(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterRepairAll(s: GameState, scene: SceneBuilder): void {
-  (s as any).loop_func = ((s as any).tailor_funcs ?? 0)?.['clothing_repair'];
+  (s as any).loop_func = (((s as any).tailor_funcs ?? 0)?.['clothing_repair']);
   ((s as any).temp_tailorVars = (s as any).temp_tailorVars ?? {})['array_postfix'] = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterClothingLoop(s, scene); (s as any).locArgs = __savedLocArgs; }
-  (s as any).loop_func = ((s as any).tailor_funcs ?? 0)?.['bra_repair'];
+  (s as any).loop_func = (((s as any).tailor_funcs ?? 0)?.['bra_repair']);
   ((s as any).temp_tailorVars = (s as any).temp_tailorVars ?? {})['array_postfix'] = '_bras';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBrasLoop(s, scene); (s as any).locArgs = __savedLocArgs; }
-  (s as any).loop_func = ((s as any).tailor_funcs ?? 0)?.['panty_repair'];
+  (s as any).loop_func = (((s as any).tailor_funcs ?? 0)?.['panty_repair']);
   ((s as any).temp_tailorVars = (s as any).temp_tailorVars ?? {})['array_postfix'] = '_panties';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPantiesLoop(s, scene); (s as any).locArgs = __savedLocArgs; }
-  (s as any).loop_func = ((s as any).tailor_funcs ?? 0)?.['bodysuit_repair'];
+  (s as any).loop_func = (((s as any).tailor_funcs ?? 0)?.['bodysuit_repair']);
   ((s as any).temp_tailorVars = (s as any).temp_tailorVars ?? {})['array_postfix'] = '_bodysuits';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBodysuitsLoop(s, scene); (s as any).locArgs = __savedLocArgs; }
-  (s as any).loop_func = ((s as any).tailor_funcs ?? 0)?.['coat_repair'];
+  (s as any).loop_func = (((s as any).tailor_funcs ?? 0)?.['coat_repair']);
   ((s as any).temp_tailorVars = (s as any).temp_tailorVars ?? {})['array_postfix'] = '_coats';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCoatsLoop(s, scene); (s as any).locArgs = __savedLocArgs; }
-  (s as any).loop_func = ((s as any).tailor_funcs ?? 0)?.['shoe_repair'];
+  (s as any).loop_func = (((s as any).tailor_funcs ?? 0)?.['shoe_repair']);
   ((s as any).temp_tailorVars = (s as any).temp_tailorVars ?? {})['array_postfix'] = '_shoe';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterShoesLoop(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'stat', '');
@@ -323,22 +323,22 @@ function enterRepairAll(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterRepairAllCheat(s: GameState, scene: SceneBuilder): void {
-  (s as any).loop_func = ((s as any).tailor_funcs ?? 0)?.['clothing_cheat_repair'];
+  (s as any).loop_func = (((s as any).tailor_funcs ?? 0)?.['clothing_cheat_repair']);
   ((s as any).temp_tailorVars = (s as any).temp_tailorVars ?? {})['array_postfix'] = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterClothingLoop(s, scene); (s as any).locArgs = __savedLocArgs; }
-  (s as any).loop_func = ((s as any).tailor_funcs ?? 0)?.['bra_cheat_repair'];
+  (s as any).loop_func = (((s as any).tailor_funcs ?? 0)?.['bra_cheat_repair']);
   ((s as any).temp_tailorVars = (s as any).temp_tailorVars ?? {})['array_postfix'] = '_bras';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBrasLoop(s, scene); (s as any).locArgs = __savedLocArgs; }
-  (s as any).loop_func = ((s as any).tailor_funcs ?? 0)?.['panty_cheat_repair'];
+  (s as any).loop_func = (((s as any).tailor_funcs ?? 0)?.['panty_cheat_repair']);
   ((s as any).temp_tailorVars = (s as any).temp_tailorVars ?? {})['array_postfix'] = '_panties';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPantiesLoop(s, scene); (s as any).locArgs = __savedLocArgs; }
-  (s as any).loop_func = ((s as any).tailor_funcs ?? 0)?.['bodysuit_cheat_repair'];
+  (s as any).loop_func = (((s as any).tailor_funcs ?? 0)?.['bodysuit_cheat_repair']);
   ((s as any).temp_tailorVars = (s as any).temp_tailorVars ?? {})['array_postfix'] = '_bodysuits';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBodysuitsLoop(s, scene); (s as any).locArgs = __savedLocArgs; }
-  (s as any).loop_func = ((s as any).tailor_funcs ?? 0)?.['coat_cheat_repair'];
+  (s as any).loop_func = (((s as any).tailor_funcs ?? 0)?.['coat_cheat_repair']);
   ((s as any).temp_tailorVars = (s as any).temp_tailorVars ?? {})['array_postfix'] = '_coats';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCoatsLoop(s, scene); (s as any).locArgs = __savedLocArgs; }
-  (s as any).loop_func = ((s as any).tailor_funcs ?? 0)?.['shoe_cheat_repair'];
+  (s as any).loop_func = (((s as any).tailor_funcs ?? 0)?.['shoe_cheat_repair']);
   ((s as any).temp_tailorVars = (s as any).temp_tailorVars ?? {})['array_postfix'] = '_shoe';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterShoesLoop(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'stat', '');

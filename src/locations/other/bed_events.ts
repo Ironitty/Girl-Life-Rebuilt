@@ -211,20 +211,20 @@ function enterVor2(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).dog_bravery ?? 0) < 50) {
       // TODO-QSP: dynamic text: You''re lying in bed when you hear sounds from the hallway. You decide to get up...
-      scene.text(`You're lying in bed when you hear sounds from the hallway. You decide to get up and as you get to the door you see two masked men. ${((s as any).rex ?? 0)?.['name'] ?? ''} is shivering in the corner.`);
+      scene.text(`You're lying in bed when you hear sounds from the hallway. You decide to get up and as you get to the door you see two masked men. ${(((s as any).rex ?? 0)?.['name'] ?? '')} is shivering in the corner.`);
       scene.actions([
         { label: 'Scream', goto: ['bed_events', 'vor3'] },
       ]);
     } else {
       (s as any).minut = ((s as any).minut ?? 0) + 10;
       // TODO-QSP: dynamic text: You''re lying in bed when you suddenly hear a commotion out in the hallway. You ...
-      scene.text(`You're lying in bed when you suddenly hear a commotion out in the hallway. You get up to check it out and as you arrive, you see ${((s as any).rex ?? 0)?.['name'] ?? ''} chase two masked men outside. You can hear loud swearing as they run down the stairs.`);
+      scene.text(`You're lying in bed when you suddenly hear a commotion out in the hallway. You get up to check it out and as you arrive, you see ${(((s as any).rex ?? 0)?.['name'] ?? '')} chase two masked men outside. You can hear loud swearing as they run down the stairs.`);
       scene.text('You call your dog\'s name and he comes back from the stairway looking calm.');
       scene.actions([
         { label: 'Hug him', handler: (st: GameState) => {
     // TODO-QSP: delact $selact
     // TODO-QSP: dynamic text: You kneel down and hug <<$rex[''name'']>>, your heart pounding at the thought of...
-    scene.text(`You kneel down and hug ${((st as any).rex ?? 0)?.['name'] ?? ''}, your heart pounding at the thought of what could have happened if he wasn't here.`);
+    scene.text(`You kneel down and hug ${(((st as any).rex ?? 0)?.['name'] ?? '')}, your heart pounding at the thought of what could have happened if he wasn't here.`);
   } },
         { label: 'Check the lock', handler: (st: GameState) => {
     scene.text('You check the lock on the door and it appears to be intact. You\'re not sure if you forgot to lock the door when you came in or if the lock was picked. Maybe you should have a second one installed…');

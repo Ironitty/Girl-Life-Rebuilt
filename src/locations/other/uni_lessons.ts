@@ -19,16 +19,16 @@ function enterCikl(s: GameState, scene: SceneBuilder): void {
         if (((s as any).university ?? 0)?.['semester_week'] > 0  &&  ((s as any).university ?? 0)?.['semester_week'] < 15) {
           ((s as any).university = (s as any).university ?? {})['semester_week'] = ((s as any).university['semester_week'] ?? 0) + (1);
           if (((s as any).university ?? 0)?.['enrolled_in_semester'] > ((s as any).university ?? 0)?.['semester_passed']) {
-            qspCall(s, 'grades', 'calculate_grade', 'uni_' + ((s as any).university ?? 0)?.['enrolled_in'] + '_semester_' + ((s as any).university ?? 0)?.['enrolled_in_semester'] + '');
-            qspCall(s, 'grades', 'assign_grade_description', 'uni_' + ((s as any).university ?? 0)?.['enrolled_in'] + '_semester_' + ((s as any).university ?? 0)?.['enrolled_in_semester'] + '');
+            qspCall(s, 'grades', 'calculate_grade', 'uni_' + (((s as any).university ?? 0)?.['enrolled_in']) + '_semester_' + (((s as any).university ?? 0)?.['enrolled_in_semester']) + '');
+            qspCall(s, 'grades', 'assign_grade_description', 'uni_' + (((s as any).university ?? 0)?.['enrolled_in']) + '_semester_' + (((s as any).university ?? 0)?.['enrolled_in_semester']) + '');
           }
         } else {
           if (((s as any).university ?? 0)?.['semester_week'] === 15) {
             ((s as any).university = (s as any).university ?? {})['semester_week'] = 0;
             ((s as any).university = (s as any).university ?? {})['exam_week'] = 1;
             if (((s as any).university ?? 0)?.['enrolled_in_semester'] > ((s as any).university ?? 0)?.['semester_passed']) {
-              qspCall(s, 'grades', 'calculate_grade', 'uni_' + ((s as any).university ?? 0)?.['enrolled_in'] + '_semester_' + ((s as any).university ?? 0)?.['enrolled_in_semester'] + '');
-              qspCall(s, 'grades', 'assign_grade_description', 'uni_' + ((s as any).university ?? 0)?.['enrolled_in'] + '_semester_' + ((s as any).university ?? 0)?.['enrolled_in_semester'] + '');
+              qspCall(s, 'grades', 'calculate_grade', 'uni_' + (((s as any).university ?? 0)?.['enrolled_in']) + '_semester_' + (((s as any).university ?? 0)?.['enrolled_in_semester']) + '');
+              qspCall(s, 'grades', 'assign_grade_description', 'uni_' + (((s as any).university ?? 0)?.['enrolled_in']) + '_semester_' + (((s as any).university ?? 0)?.['enrolled_in_semester']) + '');
             }
           } else {
             if (((s as any).university ?? 0)?.['exam_week'] === 1) {
@@ -57,7 +57,7 @@ function enterCikl(s: GameState, scene: SceneBuilder): void {
                     // TODO-QSP: jump 'passed_exams_loop'
                   }
                   if (((s as any).passed_count ?? 0) === ((s as any).class_count ?? 0)) {
-                    ((s as any).university = (s as any).university ?? {})['semester_passed'] = ((s as any).university ?? 0)?.['enrolled_in_semester'];
+                    ((s as any).university = (s as any).university ?? {})['semester_passed'] = (((s as any).university ?? 0)?.['enrolled_in_semester']);
                   } else {
                     ((s as any).university = (s as any).university ?? {})['expelled'] = 1;
                     ((s as any).university = (s as any).university ?? {})['student'] = 0;

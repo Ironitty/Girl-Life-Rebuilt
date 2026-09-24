@@ -1172,7 +1172,7 @@ function enterSlut(s: GameState, scene: SceneBuilder): void {
     { label: 'Suck him off', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/events/newyear/sex/snybj.jpg');
     scene.text('You kneel down in front of Vasily and start sucking his cock. After a few minutes, you hear the door open and a few guys from your class wander in. Before you know it, all the boys in your class except Vitek, who was rumored to have already passed out, are surrounding you. You hear someone unzipping their fly and pulling out their cock. Shortly thereafter, the others follow suit.');
-    (st as any).rand_boy = ((st as any).npc_firstname ?? 0)?.['A9'];
+    (st as any).rand_boy = (((st as any).npc_firstname ?? 0)?.['A9']);
     qspCall(st, 'fame', 'pav', 'sex', 60);
     qspCall(st, 'npcStat', 'A11', 1);
     qspCall(st, 'arousal', 'bj', 5, (((st as any).npcID ?? 0)?.[1] ?? 0), 'sub');

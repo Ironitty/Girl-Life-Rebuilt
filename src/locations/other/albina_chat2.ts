@@ -334,7 +334,7 @@ function enterFirstModelTalkTell(s: GameState, scene: SceneBuilder): void {
     { label: 'Tell her', handler: (st: GameState) => {
     scene.text('You spend a few seconds considering tantalizing her with the knowledge, but you eventually relent.');
     // TODO-QSP: dynamic text: "Okay, okay," you snicker. "I go by <<$model[''firstname'']>> <<$model[''lastnam...
-    scene.text(`"Okay, okay," you snicker. "I go by ${((st as any).model ?? 0)?.['firstname'] ?? ''} ${((st as any).model ?? 0)?.['lastname'] ?? ''}."`);
+    scene.text(`"Okay, okay," you snicker. "I go by ${(((st as any).model ?? 0)?.['firstname'] ?? '')} ${(((st as any).model ?? 0)?.['lastname'] ?? '')}."`);
     scene.text('Her eyes light up and she immediately starts clicking away on the keyboard. Moments later, she\'s clicking a link that you know leads to your nude debut.');
     scene.actions([
       { label: 'Look at the photos', handler: (st: GameState) => {
@@ -852,7 +852,7 @@ function enterFirstModelTalkShy4(s: GameState, scene: SceneBuilder): void {
       { label: 'Tell her', handler: (st: GameState) => {
     scene.text('After a moment of hesitation, you relent.');
     // TODO-QSP: dynamic text: "I can''t believe I''m about to do this…" you sigh. "I go by <<$model[''firstnam...
-    scene.text(`"I can't believe I'm about to do this…" you sigh. "I go by ${((st as any).model ?? 0)?.['firstname'] ?? ''} ${((st as any).model ?? 0)?.['lastname'] ?? ''}."`);
+    scene.text(`"I can't believe I'm about to do this…" you sigh. "I go by ${(((st as any).model ?? 0)?.['firstname'] ?? '')} ${(((st as any).model ?? 0)?.['lastname'] ?? '')}."`);
     scene.text('Her eyes light up and she immediately starts clicking away on the keyboard. Moments later, she\'s clicking a link that you know leads to your nude debut.');
     scene.actions([
       { label: 'Look at the photos', handler: (st: GameState) => {

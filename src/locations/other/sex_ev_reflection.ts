@@ -188,7 +188,7 @@ function enterVirginWhore(s: GameState, scene: SceneBuilder): void {
     scene.text('An uncontrollable smile cracks across your face as a giddy rush goes through you.');
     scene.text('<i>... and I\'m happy with that!</i>');
     // TODO-QSP: dynamic text: You got your cherry popped! You''re a woman now! And not just that, but you got ...
-    scene.text(`You got your cherry popped! You're a woman now! And not just that, but you got ${qspFunc(s, 'money', 'string_profit', ((st as any).sex_ev ?? 0)?.['prostitution_paid'] ?? '')} on top of that? What a night!`);
+    scene.text(`You got your cherry popped! You're a woman now! And not just that, but you got ${qspFunc(s, 'money', 'string_profit', (((st as any).sex_ev ?? 0)?.['prostitution_paid'] ?? ''))} on top of that? What a night!`);
     qspGoto(st, 'sex_ev_reflection', 'top_menu');
   } },
     { label: 'Glad you got something for it', handler: (st: GameState) => {
@@ -199,7 +199,7 @@ function enterVirginWhore(s: GameState, scene: SceneBuilder): void {
     scene.text('The whole idea of virginity feels over emphasized to you. Everyone wants to lose theirs or take somebody else\'s and every girl gets the same thing for it: a sore pussy.');
     scene.text('But not you.');
     // TODO-QSP: dynamic text: You got paid for it. Your virginity was <i>worth</i> something. More than someth...
-    scene.text(`You got paid for it. Your virginity was <i>worth</i> something. More than something, a lot of somethings. About ${((st as any).sex_ev ?? 0)?.['prostitution_paid'] ?? ''} somethings.`);
+    scene.text(`You got paid for it. Your virginity was <i>worth</i> something. More than something, a lot of somethings. About ${(((st as any).sex_ev ?? 0)?.['prostitution_paid'] ?? '')} somethings.`);
     scene.text('And the thought of that can\'t help but make you smile a little.');
     qspGoto(st, 'sex_ev_reflection', 'top_menu');
   } },

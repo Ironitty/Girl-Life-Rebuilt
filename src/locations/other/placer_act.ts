@@ -7,7 +7,7 @@ import type { SceneBuilder } from '../../core/scene';
 function enter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'skverdin', '');
   qspCall(s, 'placer_man', '');
-  (s as any).ev_name = ((s as any).placerStringParameter ?? 0)?.['ev_name'];
+  (s as any).ev_name = (((s as any).placerStringParameter ?? 0)?.['ev_name']);
   if (((s as any).placerParameter ?? 0)?.['player_act'] === 0) {
     qspCall(s, 'npcgeneratec', '0', 'Stranger', (Math.floor(Math.random() * 18) + 18), 0, 1);
     qspCall(s, 'npcStat', '$npclastgenerated');
@@ -125,7 +125,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       (s as any).textsub2 = 'guys';
     }
     // TODO-QSP: dynamic text: You<<$textsub>> join the <<$placerStringParameter[''text_someone'']>> for some b...
-    scene.text(`You${((s as any).textsub ?? '')} join the ${((s as any).placerStringParameter ?? 0)?.['text_someone'] ?? ''} for some beers, and go to a more secluded area of the park. ${((s as any).boydesc ?? '')} pours beer into plastic cups and hands them out. The beer is nice and cold, and you${((s as any).textsub ?? '')} have a chat with ${((s as any).boydesc ?? '')} while the ${((s as any).textsub2 ?? '')} mess around.`);
+    scene.text(`You${((s as any).textsub ?? '')} join the ${(((s as any).placerStringParameter ?? 0)?.['text_someone'] ?? '')} for some beers, and go to a more secluded area of the park. ${((s as any).boydesc ?? '')} pours beer into plastic cups and hands them out. The beer is nice and cold, and you${((s as any).textsub ?? '')} have a chat with ${((s as any).boydesc ?? '')} while the ${((s as any).textsub2 ?? '')} mess around.`);
     if (((s as any).placerParameter ?? 0)?.['recognize_status'] === 2) {
       if (((s as any).placerParameter ?? 0)?.['friend_index'] === 0) {
         if (((s as any).placerParameter ?? 0)?.['know_slut'] === 0) {
@@ -342,7 +342,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
             scene.text('One of the other guys approaches you, and puts his hand on your chin while he takes a good look at your face. When he sees you flinch, he slaps you across the face quite hard. He orders you: "Don\'t move, bitch."');
             scene.text('You\'re too afraid to fight him, and just let him do what he wants while he runs his fingers over your lips and slips a finger inside your mouth, which you begin to suck on without even giving it any thought.');
             // TODO-QSP: dynamic text: He laughs: "I love a nice slut with a pretty face and <<$pc_desc[''lips'']>> lip...
-            scene.text(`He laughs: "I love a nice slut with a pretty face and ${((s as any).pc_desc ?? 0)?.['lips'] ?? ''} lips. Fucking them in the mouth and watching them gag on my cock… I can see you're eager to get started. Soon enough, slut. Soon enough."`);
+            scene.text(`He laughs: "I love a nice slut with a pretty face and ${(((s as any).pc_desc ?? 0)?.['lips'] ?? '')} lips. Fucking them in the mouth and watching them gag on my cock… I can see you're eager to get started. Soon enough, slut. Soon enough."`);
             scene.text('Two of them put their hands on your upper arms and shoulders, and roughly guide you towards the exit of the park: "Walk, slut. We\'ll go some place quiet, so you can earn your beer."');
             scene.actions([
               { label: 'Go "earn your beer"', handler: (st: GameState) => {
@@ -355,7 +355,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/park/gop/sex/gop/blowbang2.jpg');
     scene.text('You realize the only way you\'re getting out of this basement is by doing as they say, and you slowly get down to your knees. The guys see your resignation, and enthusiastically begin to rub their cocks against your cheeks, spreading their precum all over you. You close your lips around the closest one and diligently suck him off. After a while you really start to get into it, and reach out for two additional cocks to masturbate with your hands while your mouth is busy.');
     scene.text('You even exceed their expectations by taking two cocks in your mouth at the same time, doing your best to make them all cum as quick as possible. They tell you to look them in the eye as they shoot their warm loads all over your face one by one. One of them is particularly mean, aiming directly at your eye. His friends cheer when a spurt of cum lands directly in it.');
-    (st as any).guy = ((st as any).guy ?? 0) + (((st as any).placerParameter ?? 0)?.['number_of_man']);
+    (st as any).guy = ((st as any).guy ?? 0) + ((((st as any).placerParameter ?? 0)?.['number_of_man']));
     (st as any).temp_time_elapsed = 30 / (((st as any).placerParameter ?? {})?.['number_of_man'] ?? 0);
     (st as any).i = 0;
     // TODO-QSP: :parkbj
@@ -411,7 +411,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.text('You obediently squat before them, and take two cocks into your hands. You masturbate them slowly, spreading their precum over them as you close your lips around the first.');
     scene.text('You do your best to please them all as good as you can, and suck them off one by one like your life depended on it. For all you know, maybe it does.');
     scene.text('The guys don\'t last long at all, and cum all over your face one by one. Once the last guy is spent, they wave you off. One of them snorts: "Not bad, slut. I see your reputation is well deserved."');
-    (st as any).guy = ((st as any).guy ?? 0) + (((st as any).placerParameter ?? 0)?.['number_of_man']);
+    (st as any).guy = ((st as any).guy ?? 0) + ((((st as any).placerParameter ?? 0)?.['number_of_man']));
     (st as any).temp_time_elapsed = 30 / (((st as any).placerParameter ?? {})?.['number_of_man'] ?? 0);
     (st as any).i = 0;
     // TODO-QSP: :parkbj2

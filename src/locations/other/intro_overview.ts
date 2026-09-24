@@ -7,13 +7,13 @@ import type { SceneBuilder } from '../../core/scene';
 function enterDefault(s: GameState, scene: SceneBuilder): void {
   (s as any).pcs_hairbsh = 1;
   // TODO-QSP: view $func('$face_image')
-  (s as any).temp_cell_td_1 = '<td colspan="12" align="center" valign="middle" bgcolor="' + ((s as any).theme_hex ?? 0)?.['table_bg_alt'] + '" style="border:1px solid ' + ((s as any).theme_hex ?? 0)?.['goth'] + '; background-color: ' + ((s as any).theme_hex ?? 0)?.['table_bg_alt'] + '; text-align: center; vertical-align:middle; padding:5px;">';
+  (s as any).temp_cell_td_1 = '<td colspan="12" align="center" valign="middle" bgcolor="' + (((s as any).theme_hex ?? 0)?.['table_bg_alt']) + '" style="border:1px solid ' + (((s as any).theme_hex ?? 0)?.['goth']) + '; background-color: ' + (((s as any).theme_hex ?? 0)?.['table_bg_alt']) + '; text-align: center; vertical-align:middle; padding:5px;">';
   (s as any).temp_cell_td_1_end = '</td>';
-  (s as any).temp_cell_td_3 = '<td colspan="4" align="center" valign="middle" bgcolor="' + ((s as any).theme_hex ?? 0)?.['table_bg_alt'] + '" style="border:1px solid ' + ((s as any).theme_hex ?? 0)?.['goth'] + '; background-color: ' + ((s as any).theme_hex ?? 0)?.['table_bg_alt'] + '; text-align: center; vertical-align:middle; padding:5px;">';
+  (s as any).temp_cell_td_3 = '<td colspan="4" align="center" valign="middle" bgcolor="' + (((s as any).theme_hex ?? 0)?.['table_bg_alt']) + '" style="border:1px solid ' + (((s as any).theme_hex ?? 0)?.['goth']) + '; background-color: ' + (((s as any).theme_hex ?? 0)?.['table_bg_alt']) + '; text-align: center; vertical-align:middle; padding:5px;">';
   (s as any).temp_cell_td_3_end = '</td>';
   scene.text('<center>');
   // TODO-QSP: dynamic text: <table width="70%" cellspacing="10" bgcolor="<<$theme_hex['table_bg']>>" style="...
-  scene.text(`<table width="70%" cellspacing="10" bgcolor="${((s as any).theme_hex ?? 0)?.['table_bg'] ?? ''}" style="border:4px solid ${((s as any).theme_hex ?? 0)?.['goth'] ?? ''}; margin:10px; padding:10px; border-spacing:10px; background-color: ${((s as any).theme_hex ?? 0)?.['table_bg'] ?? ''};">`);
+  scene.text(`<table width="70%" cellspacing="10" bgcolor="${(((s as any).theme_hex ?? 0)?.['table_bg'] ?? '')}" style="border:4px solid ${(((s as any).theme_hex ?? 0)?.['goth'] ?? '')}; margin:10px; padding:10px; border-spacing:10px; background-color: ${(((s as any).theme_hex ?? 0)?.['table_bg'] ?? '')};">`);
   scene.text('<colgroup>');
   scene.text('<col width="8%">');
   scene.text('<col width="8%">');
@@ -173,7 +173,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   scene.text('</center>');
   scene.text('<center>');
   // TODO-QSP: dynamic text: <table width="70%" cellspacing="10" bgcolor="<<$theme_hex['table_bg']>>" style="...
-  scene.text(`<table width="70%" cellspacing="10" bgcolor="${((s as any).theme_hex ?? 0)?.['table_bg'] ?? ''}" style="border:4px solid ${((s as any).theme_hex ?? 0)?.['goth'] ?? ''}; margin:10px; padding:10px; border-spacing:10px; background-color: ${((s as any).theme_hex ?? 0)?.['table_bg'] ?? ''};">`);
+  scene.text(`<table width="70%" cellspacing="10" bgcolor="${(((s as any).theme_hex ?? 0)?.['table_bg'] ?? '')}" style="border:4px solid ${(((s as any).theme_hex ?? 0)?.['goth'] ?? '')}; margin:10px; padding:10px; border-spacing:10px; background-color: ${(((s as any).theme_hex ?? 0)?.['table_bg'] ?? '')};">`);
   scene.text('<colgroup>');
   scene.text('<col width="8%">');
   scene.text('<col width="8%">');
@@ -677,7 +677,7 @@ function enterGetHairlengthSetter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'intro_character_creation', 'set_hair_next_prev');
   (s as any).temp_action_left_hair_length = 'pcs_hairlng = ' + ((s as any).hairlng_prev ?? 0);
   (s as any).temp_action_right_hair_length = 'pcs_hairlng = ' + ((s as any).hairlng_next ?? 0);
-  (s as any).temp_value_hair_length = (String((String(((s as any).pc_descWordy ?? 0)?.['hair length']).slice((1)-1, ((1)-1)+(1)))).toUpperCase()) + (String(((s as any).pc_descWordy ?? 0)?.['hair length']).slice((2)-1));
+  (s as any).temp_value_hair_length = (String((String((((s as any).pc_descWordy ?? 0)?.['hair length'])).slice((1)-1, ((1)-1)+(1)))).toUpperCase()) + (String((((s as any).pc_descWordy ?? 0)?.['hair length'])).slice((2)-1));
   (s as any).result = qspFunc(s, 'intro_overview', 'render_cell', 'Hair Length', ((s as any).temp_value_hair_length ?? 0), 0, ((s as any).temp_action_left_hair_length ?? 0), ((s as any).temp_action_right_hair_length ?? 0));
   return;
   // TODO-QSP: end
@@ -1021,7 +1021,7 @@ function enterGetStartTypeGroupSetter(s: GameState, scene: SceneBuilder): void {
   if (((s as any).start_type ?? 0)?.['group'] === 'cool') {
     (s as any).temp_value_group = 'Popular';
   } else {
-    (s as any).temp_value_group = (String((String(((s as any).start_type ?? 0)?.['group']).slice((1)-1, ((1)-1)+(1)))).toUpperCase()) + (String(((s as any).start_type ?? 0)?.['group']).slice((2)-1));
+    (s as any).temp_value_group = (String((String((((s as any).start_type ?? 0)?.['group'])).slice((1)-1, ((1)-1)+(1)))).toUpperCase()) + (String((((s as any).start_type ?? 0)?.['group'])).slice((2)-1));
   }
   if (((s as any).start_type ?? 0)?.['cat'] === 'custom') {
     (s as any).result = qspFunc(s, 'intro_overview', 'render_cell', 'Social Group', ((s as any).temp_value_group ?? 0), 2);
@@ -1063,7 +1063,7 @@ function enterGetStartTypeCatSetter(s: GameState, scene: SceneBuilder): void {
                   if (((s as any).start_type ?? 0)?.['cat'] === 'chessplayer') {
                     (s as any).temp_value_cat = 'Chess Player';
                   } else {
-                    (s as any).temp_value_cat = (String((String(((s as any).start_type ?? 0)?.['cat']).slice((1)-1, ((1)-1)+(1)))).toUpperCase()) + (String(((s as any).start_type ?? 0)?.['cat']).slice((2)-1));
+                    (s as any).temp_value_cat = (String((String((((s as any).start_type ?? 0)?.['cat'])).slice((1)-1, ((1)-1)+(1)))).toUpperCase()) + (String((((s as any).start_type ?? 0)?.['cat'])).slice((2)-1));
                   }
                 }
               }
@@ -1142,7 +1142,7 @@ function enterGetStartTimeSetter(s: GameState, scene: SceneBuilder): void {
 
 function enterGetTrait(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'traits', '$ARGS[1]', 'overview');
-  (s as any).result = qspFunc(s, 'intro_overview', 'render_cell', ((s as any).trait_temp ?? 0)?.['ov_label'], ((s as any).trait_temp ?? 0)?.['ov_val'], 0, ((s as any).trait_temp ?? 0)?.['ov_left'], ((s as any).trait_temp ?? 0)?.['ov_right']);
+  (s as any).result = qspFunc(s, 'intro_overview', 'render_cell', (((s as any).trait_temp ?? 0)?.['ov_label']), (((s as any).trait_temp ?? 0)?.['ov_val']), 0, (((s as any).trait_temp ?? 0)?.['ov_left']), (((s as any).trait_temp ?? 0)?.['ov_right']));
   return;
   // TODO-QSP: end
   scene.build();
@@ -1318,7 +1318,7 @@ function enterCycleGroup(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  qspCall(s, 'intro_character_templates', 'set_template', ((s as any).start_type ?? 0)?.['cat']);
+  qspCall(s, 'intro_character_templates', 'set_template', (((s as any).start_type ?? 0)?.['cat']));
   return;
   // TODO-QSP: end
   scene.build();
@@ -1433,7 +1433,7 @@ function enterCycleSubgroup(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  qspCall(s, 'intro_character_templates', 'set_template', ((s as any).start_type ?? 0)?.['cat']);
+  qspCall(s, 'intro_character_templates', 'set_template', (((s as any).start_type ?? 0)?.['cat']));
   return;
   // TODO-QSP: end
   scene.build();

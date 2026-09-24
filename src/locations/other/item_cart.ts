@@ -25,7 +25,7 @@ function enterShoppingAisle(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: :loopshopping_cart
   if (((s as any).item_curr_aisle ?? 0)[(((s as any).i ?? 0))] !== '') {
     (s as any).temp_bcolor = qspFunc(s, 'themes', 'alt_color', ((s as any).temp_bcolor ?? 0));
-    (s as any).cart_tmp = ((s as any).var_curr_aisle ?? 0)?.[String(((s as any).i ?? 0))];
+    (s as any).cart_tmp = (((s as any).var_curr_aisle ?? 0)?.[String(((s as any).i ?? 0))]);
     (s as any).item_line = '<TR bgcolor=' + ((s as any).temp_bcolor ?? 0) + '>';
     // TODO-QSP: $item_line += '<td align="left"><<$item_curr_aisle[''<<i>>'']>></td>'
     // TODO-QSP: $item_line += '<td><<mc_inventory[$cart_tmp]>></td>'
@@ -59,7 +59,7 @@ function enterShoppingAisle(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterRemove(s: GameState, scene: SceneBuilder): void {
-  ((s as any).ARGS = (s as any).ARGS ?? {})[2] = Math.min(((s as any).cart_curr_quantity ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0))], ((s as any).locArgs?.[2] ?? 0));
+  ((s as any).ARGS = (s as any).ARGS ?? {})[2] = Math.min((((s as any).cart_curr_quantity ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0))]), ((s as any).locArgs?.[2] ?? 0));
   (s as any).cart_tally = ((s as any).cart_tally ?? 0) - (((s as any).cost_curr_aisle ?? 0)['' + ((s as any).locArgs?.[1] ?? 0) + ''] * ((s as any).locArgs?.[2] ?? 0));
   ((s as any).cart_curr_quantity = (s as any).cart_curr_quantity ?? {})[String(((s as any).locArgs?.[1] ?? 0))] = ((s as any).cart_curr_quantity[String(((s as any).locArgs?.[1] ?? 0))] ?? 0) - (((s as any).locArgs?.[2] ?? 0));
   dynamicGoto(s, 'loc_s', 'args_s');
@@ -110,7 +110,7 @@ function enterCartTotal(s: GameState, scene: SceneBuilder): void {
 function enterPurchase(s: GameState, scene: SceneBuilder): void {
   (s as any).i = 1;
   // TODO-QSP: :loopshopping_purchase
-  (s as any).cart_tmp1 = ((s as any).var_curr_aisle ?? 0)?.[String(((s as any).i ?? 0))];
+  (s as any).cart_tmp1 = (((s as any).var_curr_aisle ?? 0)?.[String(((s as any).i ?? 0))]);
   // TODO-QSP: dynamic 'cart_quantity = quantity_curr_aisle[''<<i>>''] * cart_curr_quantity[''<<i>>'']'
   // TODO-QSP: dynamic 'mc_inventory[''<<$cart_tmp1>>''] += cart_quantity'
   (s as any).i = ((s as any).i ?? 0) + (1);

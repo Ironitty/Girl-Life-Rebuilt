@@ -228,9 +228,9 @@ function enterSavingVirginity(s: GameState, scene: SceneBuilder): void {
     scene.text('"Sorry," you say, denying him. "I\'ve got to stay a virgin until I get married."');
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterChangeMind(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
-        { label: '', labelFn: (s: GameState) => 'Saving it for marriage (' + String(((s as any).npc_nickname ?? 0)?.['A29'] ?? '' ?? '') + ' says)', handler: (st: GameState) => {
+        { label: '', labelFn: (s: GameState) => 'Saving it for marriage (' + String((((s as any).npc_nickname ?? 0)?.['A29'] ?? '') ?? '') + ' says)', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: "Sorry," you say, denying him. "I''ve got to stay a virgin until I get married. ...
-    scene.text(`"Sorry," you say, denying him. "I've got to stay a virgin until I get married. ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''}'s orders."`);
+    scene.text(`"Sorry," you say, denying him. "I've got to stay a virgin until I get married. ${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')}'s orders."`);
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterChangeMind(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
         { label: 'Waiting for the right guy', handler: (st: GameState) => {
@@ -363,7 +363,7 @@ function enterLoverWait(s: GameState, scene: SceneBuilder): void {
       scene.text(`Your protests cut off in a choked scream as ${((s as any).npcdesc ?? '')} rams his cock full force into you, stabbing it through your hymen and sending waves of agony through you.`);
       scene.text('"... virgin..." you whimper helplessly, tears running down your cheeks.');
     }
-    qspCall(s, 'sex_ev_' + ((s as any).sex_ev ?? 0)?.['pos'] + '', '' + ((s as any).sex_ev ?? 0)?.['pos'] + '_goto');
+    qspCall(s, 'sex_ev_' + (((s as any).sex_ev ?? 0)?.['pos']) + '', '' + (((s as any).sex_ev ?? 0)?.['pos']) + '_goto');
   } else {
     if (((s as any).npc_sexdrive ?? 0)?.[String((s as any).npcID ?? 0)] >= (Math.floor(Math.random() * 10) + 1)  ||  (((s as any).npc_pushy ?? 0)?.[String((s as any).npcID ?? 0)] > 0)) {
       scene.img('images/shared/sex/vag/miss/pussyhump.mp4');
@@ -770,7 +770,7 @@ function enterVirginForceHappen(s: GameState, scene: SceneBuilder): void {
   ((s as any).sex_ev = (s as any).sex_ev ?? {})['position'] = 'miss';
   ((s as any).sex_ev = (s as any).sex_ev ?? {})['speed'] = 2;
   ((s as any).sex_ev = (s as any).sex_ev ?? {})['pos_speed'] = 'miss2';
-  qspCall(s, 'arousal', 'vaginal', 1, 'no_orgasm_msg', ((s as any).sex_ev ?? 0)?.['prostitution_flag']);
+  qspCall(s, 'arousal', 'vaginal', 1, 'no_orgasm_msg', (((s as any).sex_ev ?? 0)?.['prostitution_flag']));
   scene.img('images/shared/sex/vag/miss/blood1.jpg');
   scene.text('"Wait a minute! I-!"');
   // TODO-QSP: dynamic text: <<$npcdesc>> thrusts his full length inside you and the next word of whatever yo...
@@ -811,7 +811,7 @@ function enterVirginForcePanic(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Eek!', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'vaginal', 1, 'no_orgasm_msg', ((st as any).sex_ev ?? 0)?.['prostitution_flag']);
+    qspCall(st, 'arousal', 'vaginal', 1, 'no_orgasm_msg', (((st as any).sex_ev ?? 0)?.['prostitution_flag']));
     scene.img('images/shared/sex/vag/miss/blood1.jpg');
     scene.text('"<i>Eek!</i>"');
     scene.text('Your pitched noises turn into a sharp squeak as you feel something <i>rip</i> inside of you and your head snaps back into the pillow. Looking back down, you see tints of red glistening on his cock and it comes to a realization all at once.');
@@ -1451,7 +1451,7 @@ function enterMissVirgNorm1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sex_ev ?? 0)?.['condom'] !== 1) {
     ((s as any).sex_ev = (s as any).sex_ev ?? {})['no_condom'] = 1;
   }
-  qspCall(s, 'arousal', 'vaginal', 1, 'no_orgasm_msg', ((s as any).sex_ev ?? 0)?.['prostitution_flag']);
+  qspCall(s, 'arousal', 'vaginal', 1, 'no_orgasm_msg', (((s as any).sex_ev ?? 0)?.['prostitution_flag']));
   if (((s as any).dick_desc ?? 0) === 'long'  ||  ((s as any).dick_desc ?? 0) === 'huge'  ||  ((s as any).dick_desc ?? 0) === 'enormous'  ||  ((s as any).dick_desc ?? 0) === 'lengthy'  ||  ((s as any).dick_desc ?? 0) === 'gigantic'  ||  ((s as any).dick_desc ?? 0) === 'monstrous') {
     ((s as any).sex_ev = (s as any).sex_ev ?? {})['big_cock_virgin'] = 1;
     // TODO-QSP: $virginity_desc[] = 'big_dick'
@@ -1489,7 +1489,7 @@ function enterMissVirgNorm1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterMissVirgNorm1_1(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'sex_ev_virgin', '' + ((s as any).sex_ev ?? 0)?.['virgin_react'] + '_react1');
+  qspCall(s, 'sex_ev_virgin', '' + (((s as any).sex_ev ?? 0)?.['virgin_react']) + '_react1');
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
@@ -1498,7 +1498,7 @@ function enterMissVirgNorm1_1(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.img('images/shared/sex/vag/miss/blood1.jpg');
     }
-    qspCall(st, 'sex_ev_virgin', '' + ((st as any).sex_ev ?? 0)?.['virgin_react'] + '_react2');
+    qspCall(st, 'sex_ev_virgin', '' + (((st as any).sex_ev ?? 0)?.['virgin_react']) + '_react2');
     scene.text('"I\'ll be gentle," he says, and begins to move again.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
@@ -1519,9 +1519,9 @@ function enterMissVirgNorm1_1(s: GameState, scene: SceneBuilder): void {
 
 function enterMissVirgKiss(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/sex/vag/miss/kiss1.mp4');
-  qspCall(s, 'arousal', 'vaginal', 1, 'no_orgasm_msg', ((s as any).sex_ev ?? 0)?.['prostitution_flag']);
-  qspCall(s, 'arousal', 'kiss', 2, 'no_orgasm_msg', ((s as any).sex_ev ?? 0)?.['prostitution_flag']);
-  qspCall(s, 'arousal', 'kiss', (-10), 'no_orgasm_msg', ((s as any).sex_ev ?? 0)?.['prostitution_flag']);
+  qspCall(s, 'arousal', 'vaginal', 1, 'no_orgasm_msg', (((s as any).sex_ev ?? 0)?.['prostitution_flag']));
+  qspCall(s, 'arousal', 'kiss', 2, 'no_orgasm_msg', (((s as any).sex_ev ?? 0)?.['prostitution_flag']));
+  qspCall(s, 'arousal', 'kiss', (-10), 'no_orgasm_msg', (((s as any).sex_ev ?? 0)?.['prostitution_flag']));
   ((s as any).sex_ev = (s as any).sex_ev ?? {})['kiss'] = 1;
   if (((s as any).npc_no_kiss ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
     // TODO-QSP: dynamic text: Unable to contain yourself, you forget your rules and reach up, pulling <<$npcde...
@@ -1552,7 +1552,7 @@ function enterMissVirgHard1(s: GameState, scene: SceneBuilder): void {
   }
   ((s as any).sex_ev = (s as any).sex_ev ?? {})['virgin'] = 1;
   (s as any).orgasm_or = 'no';
-  qspCall(s, 'arousal', 'vaginal', 1, 'rough', 'no_orgasm_msg', ((s as any).sex_ev ?? 0)?.['prostitution_flag']);
+  qspCall(s, 'arousal', 'vaginal', 1, 'rough', 'no_orgasm_msg', (((s as any).sex_ev ?? 0)?.['prostitution_flag']));
   ((s as any).sex_ev = (s as any).sex_ev ?? {})['first_insertion'] = 1;
   ((s as any).sex_ev = (s as any).sex_ev ?? {})['speed'] = 3;
   ((s as any).sex_ev = (s as any).sex_ev ?? {})['fuck_enjoyment'] = 'painful';
@@ -1619,7 +1619,7 @@ function enterMissVirgHard2(s: GameState, scene: SceneBuilder): void {
   ((s as any).sex_ev = (s as any).sex_ev ?? {})['speed'] = 2;
   ((s as any).sex_ev = (s as any).sex_ev ?? {})['pos_speed'] = 'miss2';
   qspCall(s, 'sex_ev_sex', 'fuck_arousal_code');
-  qspCall(s, 'arousal', 'vaginal', (-15), 'no_orgasm_msg', ((s as any).sex_ev ?? 0)?.['prostitution_flag']);
+  qspCall(s, 'arousal', 'vaginal', (-15), 'no_orgasm_msg', (((s as any).sex_ev ?? 0)?.['prostitution_flag']));
   scene.img('images/shared/sex/vag/miss/med1.mp4');
   // TODO-QSP: dynamic text: <<$npcdesc>> picks up the pace as you command and you instinctively arch your ba...
   scene.text(`${((s as any).npcdesc ?? '')} picks up the pace as you command and you instinctively arch your back, getting him to thrust deeper into you. The heightened pace feels even better than it did when he was being gentle and you moan loudly with intense pleasure.`);
@@ -1640,7 +1640,7 @@ function enterMissVirgHard2_2(s: GameState, scene: SceneBuilder): void {
   ((s as any).sex_ev = (s as any).sex_ev ?? {})['speed'] = 3;
   ((s as any).sex_ev = (s as any).sex_ev ?? {})['pos_speed'] = 'miss3';
   qspCall(s, 'sex_ev_sex', 'fuck_arousal_code');
-  qspCall(s, 'arousal', 'vaginal', (-15), 'no_orgasm_msg', ((s as any).sex_ev ?? 0)?.['prostitution_flag']);
+  qspCall(s, 'arousal', 'vaginal', (-15), 'no_orgasm_msg', (((s as any).sex_ev ?? 0)?.['prostitution_flag']));
   scene.img('images/shared/sex/vag/miss/rough1.mp4');
   // TODO-QSP: dynamic text: <<$npcdesc>> picks up the pace as you command and you groan loudly, face contort...
   scene.text(`${((s as any).npcdesc ?? '')} picks up the pace as you command and you groan loudly, face contorting in a mixture of pain and pleasure. Maybe sensing something within you, he reaches up and grabs a fistful of your hair, using it to pull himself into you even harder.`);
@@ -1659,7 +1659,7 @@ function enterDoggyVirgNorm1(s: GameState, scene: SceneBuilder): void {
   ((s as any).sex_ev = (s as any).sex_ev ?? {})['virgin'] = 1;
   ((s as any).sex_ev = (s as any).sex_ev ?? {})['pos_speed'] = 'doggy1';
   (s as any).orgasm_or = 'no';
-  qspCall(s, 'arousal', 'vaginal', 1, 'no_orgasm_msg', ((s as any).sex_ev ?? 0)?.['prostitution_flag']);
+  qspCall(s, 'arousal', 'vaginal', 1, 'no_orgasm_msg', (((s as any).sex_ev ?? 0)?.['prostitution_flag']));
   qspCall(s, 'stat', '');
   ((s as any).sex_ev = (s as any).sex_ev ?? {})['position'] = 'doggy';
   ((s as any).sex_ev = (s as any).sex_ev ?? {})['pos_speed'] = 'doggy1';
@@ -1686,12 +1686,12 @@ function enterDoggyVirgNorm1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDoggyVirgNorm1_1(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'sex_ev_virgin', '' + ((s as any).sex_ev ?? 0)?.['virgin_react'] + '_react1');
+  qspCall(s, 'sex_ev_virgin', '' + (((s as any).sex_ev ?? 0)?.['virgin_react']) + '_react1');
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/shared/sex/vag/doggy/blood1.jpg');
-    qspCall(st, 'sex_ev_virgin', '' + ((st as any).sex_ev ?? 0)?.['virgin_react'] + '_react2');
+    qspCall(st, 'sex_ev_virgin', '' + (((st as any).sex_ev ?? 0)?.['virgin_react']) + '_react2');
     scene.text('"I\'ll be gentle," he says, and begins to move again.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
@@ -1747,7 +1747,7 @@ function enterDoggyVirgHard1(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Scream', handler: (st: GameState) => {
     (st as any).orgasm_or = 'no';
-    qspCall(st, 'arousal', 'vaginal', 1, 'rough', 'no_orgasm_msg', ((st as any).sex_ev ?? 0)?.['prostitution_flag']);
+    qspCall(st, 'arousal', 'vaginal', 1, 'rough', 'no_orgasm_msg', (((st as any).sex_ev ?? 0)?.['prostitution_flag']));
     qspCall(st, 'stat', '');
     scene.img('images/shared/sex/vag/doggy/laying_down1.mp4');
     scene.text('<i>"Mmmm! Mmm!! MM!! MMM!!"</i>');
@@ -1791,7 +1791,7 @@ function enterDoggyVirgHard2(s: GameState, scene: SceneBuilder): void {
   ((s as any).sex_ev = (s as any).sex_ev ?? {})['pos_speed'] = 'doggy2';
   (s as any).orgasm_or = '';
   qspCall(s, 'sex_ev_sex', 'fuck_arousal_code');
-  qspCall(s, 'arousal', 'vaginal', (-15), 'no_orgasm_msg', ((s as any).sex_ev ?? 0)?.['prostitution_flag']);
+  qspCall(s, 'arousal', 'vaginal', (-15), 'no_orgasm_msg', (((s as any).sex_ev ?? 0)?.['prostitution_flag']));
   scene.img('images/shared/sex/vag/doggy/med2.mp4');
   // TODO-QSP: dynamic text: <<$npcdesc>> picks up the pace as you command and you start to push your hips ba...
   scene.text(`${((s as any).npcdesc ?? '')} picks up the pace as you command and you start to push your hips back in times with his. The sound of your ass being clapped echoes off the walls. The heightened pace feels even better than it did when he was being gentle and you moan loudly with intense pleasure.`);
@@ -1813,7 +1813,7 @@ function enterDoggyVirgHard2_2(s: GameState, scene: SceneBuilder): void {
   ((s as any).sex_ev = (s as any).sex_ev ?? {})['pos_speed'] = 'doggy3';
   (s as any).orgasm_or = '';
   qspCall(s, 'sex_ev_sex', 'fuck_arousal_code');
-  qspCall(s, 'arousal', 'vaginal', (-15), 'no_orgasm_msg', ((s as any).sex_ev ?? 0)?.['prostitution_flag']);
+  qspCall(s, 'arousal', 'vaginal', (-15), 'no_orgasm_msg', (((s as any).sex_ev ?? 0)?.['prostitution_flag']));
   scene.img('images/shared/sex/vag/doggy/rough1.mp4');
   // TODO-QSP: dynamic text: <<$npcdesc>> picks up the pace as you command and you groan loudly, face contort...
   scene.text(`${((s as any).npcdesc ?? '')} picks up the pace as you command and you groan loudly, face contorting in a mixture of pain and pleasure. Maybe sensing something within you, he reaches up and grabs a fistful of your hair, using it to pull himself into you even harder.`);
@@ -1847,7 +1847,7 @@ function enterCowgirlVirgNorm1(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: '<b>!!!!</b>', handler: (st: GameState) => {
     (st as any).orgasm_or = 'no';
-    qspCall(st, 'arousal', 'vaginal', 1, 'no_orgasm_msg', ((st as any).sex_ev ?? 0)?.['prostitution_flag']);
+    qspCall(st, 'arousal', 'vaginal', 1, 'no_orgasm_msg', (((st as any).sex_ev ?? 0)?.['prostitution_flag']));
     qspCall(st, 'stat', '');
     scene.img('images/shared/sex/vag/cowgirl/blood1.jpg');
     // TODO-QSP: dynamic text: The pain of <<$npcdesc>>''s cock ripping through your hymen is enough to make yo...
@@ -1897,7 +1897,7 @@ function enterCowgirlVirgNorm1(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: '<b>!!!!</b>', handler: (st: GameState) => {
     (st as any).orgasm_or = 'no';
-    qspCall(st, 'arousal', 'vaginal', 1, 'no_orgasm_msg', ((st as any).sex_ev ?? 0)?.['prostitution_flag']);
+    qspCall(st, 'arousal', 'vaginal', 1, 'no_orgasm_msg', (((st as any).sex_ev ?? 0)?.['prostitution_flag']));
     qspCall(st, 'stat', '');
     scene.img('images/shared/sex/vag/cowgirl/blood1.jpg');
     // TODO-QSP: dynamic text: The pain of <<$npcdesc>>''s cock ripping through your hymen is enough to make yo...
@@ -1947,7 +1947,7 @@ function enterCowgirlVirgNorm1(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: '<b>!!!!</b>', handler: (st: GameState) => {
     (st as any).orgasm_or = 'no';
-    qspCall(st, 'arousal', 'vaginal', 1, 'no_orgasm_msg', ((st as any).sex_ev ?? 0)?.['prostitution_flag']);
+    qspCall(st, 'arousal', 'vaginal', 1, 'no_orgasm_msg', (((st as any).sex_ev ?? 0)?.['prostitution_flag']));
     qspCall(st, 'stat', '');
     scene.img('images/shared/sex/vag/cowgirl/blood1.jpg');
     // TODO-QSP: dynamic text: The pain of <<$npcdesc>>''s cock ripping through your hymen is enough to make yo...
@@ -1994,7 +1994,7 @@ function enterCowgirlVirgNorm1(s: GameState, scene: SceneBuilder): void {
 function enterCowgirlVirgHard1(s: GameState, scene: SceneBuilder): void {
   (s as any).orgasm_or = '';
   qspCall(s, 'sex_ev_sex', 'fuck_arousal_code');
-  qspCall(s, 'arousal', 'vaginal', (-10), 'no_orgasm_msg', ((s as any).sex_ev ?? 0)?.['prostitution_flag']);
+  qspCall(s, 'arousal', 'vaginal', (-10), 'no_orgasm_msg', (((s as any).sex_ev ?? 0)?.['prostitution_flag']));
   ((s as any).sex_ev = (s as any).sex_ev ?? {})['speed'] = 2;
   ((s as any).sex_ev = (s as any).sex_ev ?? {})['pos_speed'] = 'cowgirl2';
   scene.img('images/shared/sex/vag/cowgirl/med3.mp4');
@@ -2012,7 +2012,7 @@ function enterCowgirlVirgHard2(s: GameState, scene: SceneBuilder): void {
   ((s as any).sex_ev = (s as any).sex_ev ?? {})['speed'] = 3;
   (s as any).orgasm_or = 'no';
   qspCall(s, 'sex_ev_sex', 'fuck_rough_arousal_code');
-  qspCall(s, 'arousal', 'vaginal', (-10), 'no_orgasm_msg', ((s as any).sex_ev ?? 0)?.['prostitution_flag']);
+  qspCall(s, 'arousal', 'vaginal', (-10), 'no_orgasm_msg', (((s as any).sex_ev ?? 0)?.['prostitution_flag']));
   scene.img('images/shared/sex/vag/cowgirl/hard2.mp4');
   // TODO-QSP: dynamic text: With no warning other than a sudden cry, you throw yourself down on <<$npcdesc>>...
   scene.text(`With no warning other than a sudden cry, you throw yourself down on ${((s as any).npcdesc ?? '')}'s cock with as much force as you can. The impact reverberates through you flaring both the pain and the pleasure inside of your cunt. You raise yourself up and impale yourself again and again and again until you're riding him like a bucking stallion. Tears stream down your face and protracted groans of exertion escape from behind your teeth, clenched in a fierce grin. Your pussy hurts so much, and you never want this pain to end.`);
@@ -2494,7 +2494,7 @@ function enterVirginEnjoyment(s: GameState, scene: SceneBuilder): void {
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['fuck_enjoyment'] = 'unsatisfying';
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['virgin_numb'] = 1;
     (st as any).orgasm_or = 'no';
-    qspCall(st, 'arousal', 'vaginal', 1, 'no_orgasm_msg', ((st as any).sex_ev ?? 0)?.['prostitution_flag']);
+    qspCall(st, 'arousal', 'vaginal', 1, 'no_orgasm_msg', (((st as any).sex_ev ?? 0)?.['prostitution_flag']));
     (st as any).minut = ((st as any).minut ?? 0) + ((Math.floor(Math.random() * 2) + 3));
     qspCall(st, 'stat', '');
     scene.text('... still don\'t really enjoy it...');
@@ -2577,7 +2577,7 @@ function enterVirginEnjoyment(s: GameState, scene: SceneBuilder): void {
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['virgin_good'] = 1;
     (st as any).orgasm_or = '';
     qspCall(st, 'sex_ev_sex', 'fuck_arousal_code');
-    qspCall(st, 'arousal', 'vaginal', (-15), 'no_orgasm_msg', ((st as any).sex_ev ?? 0)?.['prostitution_flag']);
+    qspCall(st, 'arousal', 'vaginal', (-15), 'no_orgasm_msg', (((st as any).sex_ev ?? 0)?.['prostitution_flag']));
     qspCall(st, 'stat', '');
     scene.text('<i>... this is starting to feel really good...</i>');
     if (((st as any).sex_ev ?? 0)?.['virgin_react'] === 'hurt') {
@@ -2639,7 +2639,7 @@ function enterVirginEnjoyment(s: GameState, scene: SceneBuilder): void {
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['fuck_enjoyment'] = 'enjoy';
     (st as any).orgasm_or = '';
     qspCall(st, 'sex_ev_sex', 'fuck_arousal_code');
-    qspCall(st, 'arousal', 'vaginal', (-15), 'no_orgasm_msg', ((st as any).sex_ev ?? 0)?.['prostitution_flag']);
+    qspCall(st, 'arousal', 'vaginal', (-15), 'no_orgasm_msg', (((st as any).sex_ev ?? 0)?.['prostitution_flag']));
     qspCall(st, 'stat', '');
     // TODO-QSP: dynamic text: The initial pain you felt is still there, but somehhow it''s evolved. <<$npcdesc...
     scene.text(`The initial pain you felt is still there, but somehhow it's evolved. ${((st as any).npcdesc ?? '')}'s cock is slick with your blood cock and every time moves inside you, it feels like your vagina is going to split in half. It reaches deep inside you, like a knife stabbing into your cervix. And it feels <i>so good</i>.`);

@@ -90,7 +90,7 @@ function enterLoanEventsChat(s: GameState, scene: SceneBuilder): void {
       } else {
         if (((s as any).daystart ?? 0) < ((s as any).NatbelQW ?? 0)?.['DebtDay']) {
           // TODO-QSP: dynamic text: Natasha promises you to repay the <<NatbelQW[''Debt'']>><b>₽</b> in <<NatbelQW['...
-          scene.text(`Natasha promises you to repay the ${((s as any).NatbelQW ?? 0)?.['Debt'] ?? ''}<b>₽</b> in ${(((s as any).NatbelQW ?? {})?.['DebtDay'] ?? 0)-((s as any).daystart ?? '')} days.`);
+          scene.text(`Natasha promises you to repay the ${(((s as any).NatbelQW ?? 0)?.['Debt'] ?? '')}<b>₽</b> in ${(((s as any).NatbelQW ?? {})?.['DebtDay'] ?? 0)-((s as any).daystart ?? '')} days.`);
           scene.actions([
             { label: 'Keep talking', goto: ['natbel_chat', 'chat'] },
             { label: 'Stop talking', goto: ['natbelapt', 'natroom'] },
@@ -951,7 +951,7 @@ function enterJobQuestionsRunner(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/natasha/events/bullied/natasha34.jpg');
     // TODO-QSP: dynamic text: When you return <<$npc_usedname[''A191'']>> answers the door and tells you that ...
-    scene.text(`When you return ${((st as any).npc_usedname ?? 0)?.['A191'] ?? ''} answers the door and tells you that Natasha is in her room so you head in there to get her… Only she's not ready yet!`);
+    scene.text(`When you return ${(((st as any).npc_usedname ?? 0)?.['A191'] ?? '')} answers the door and tells you that Natasha is in her room so you head in there to get her… Only she's not ready yet!`);
     scene.text('When you enter her room you are greeted with the sight of Natasha finishing an ice cream and reading a book butt naked!');
     scene.text('Admiring the view you laugh and say "So Natasha I take it you\'re planning on a naked jog?!"');
     // TODO-QSP: dynamic text: "Oh! Shit sorry <<$pcs_nickname>> I got a bit sidetracked!"

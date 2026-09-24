@@ -134,7 +134,7 @@ function enterLevel(s: GameState, scene: SceneBuilder): void {
     if (((s as any).temp_level ?? 0)?.['dir'] === 'up') {
       // TODO-QSP: trait_vars[$ARGS[1] + '_discovered'] = 1
     }
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0), ((s as any).temp_level ?? 0)?.['dir'], ((s as any).locArgs?.[2] ?? 0)]; enterNotify(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0), (((s as any).temp_level ?? 0)?.['dir']), ((s as any).locArgs?.[2] ?? 0)]; enterNotify(s, scene); (s as any).locArgs = __savedLocArgs; }
     qspCall(s, 'traits', '$ARGS[1]', 'level', ((s as any).locArgs?.[2] ?? 0));
   }
   return;
@@ -166,9 +166,9 @@ function enterNotify(s: GameState, scene: SceneBuilder): void {
   }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0)]; enterGetDetails(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).trait_temp ?? 0)['msg-' + (String((s as any).locArgs?.[2] ?? ''))] !== '') {
-    (s as any).temp_notify = ((s as any).trait_temp ?? 0)?.['msg-' + String(((s as any).locArgs?.[2] ?? 0))];
+    (s as any).temp_notify = (((s as any).trait_temp ?? 0)?.['msg-' + String(((s as any).locArgs?.[2] ?? 0))]);
   } else {
-    (s as any).temp_notify = ((s as any).trait_temp ?? 0)?.['msg'];
+    (s as any).temp_notify = (((s as any).trait_temp ?? 0)?.['msg']);
   }
   if (((s as any).temp_notify ?? 0) !== '') {
     // TODO-QSP: msg $temp_notify
@@ -180,12 +180,12 @@ function enterNotify(s: GameState, scene: SceneBuilder): void {
 
 function enterCard(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0)]; enterGetDetails(s, scene); (s as any).locArgs = __savedLocArgs; }
-  ((s as any).temp_card = (s as any).temp_card ?? {})['icon'] = 'images/system/icons/traits/' + ((((s as any).trait_temp ?? 0)?.['icon'] !== '') ? (((s as any).trait_temp ?? 0)?.['icon']) : ('hidden.png'));
+  ((s as any).temp_card = (s as any).temp_card ?? {})['icon'] = 'images/system/icons/traits/' + ((((s as any).trait_temp ?? 0)?.['icon'] !== '') ? ((((s as any).trait_temp ?? 0)?.['icon'])) : ('hidden.png'));
   (s as any).temp_bcolor = qspFunc(s, 'themes', 'alt_color', ((s as any).temp_bcolor ?? 0));
   ((s as any).temp_card = (s as any).temp_card ?? {})['bg'] = ((s as any).temp_bcolor ?? 0);
-  ((s as any).temp_card = (s as any).temp_card ?? {})['border'] = ((s as any).theme_hex ?? 0)?.['accent'];
-  ((s as any).temp_card = (s as any).temp_card ?? {})['desc'] = ((s as any).trait_temp ?? 0)?.['desc'];
-  ((s as any).temp_card = (s as any).temp_card ?? {})['name'] = ((s as any).trait_temp ?? 0)?.['name'];
+  ((s as any).temp_card = (s as any).temp_card ?? {})['border'] = (((s as any).theme_hex ?? 0)?.['accent']);
+  ((s as any).temp_card = (s as any).temp_card ?? {})['desc'] = (((s as any).trait_temp ?? 0)?.['desc']);
+  ((s as any).temp_card = (s as any).temp_card ?? {})['name'] = (((s as any).trait_temp ?? 0)?.['name']);
   ((s as any).temp_card = (s as any).temp_card ?? {})['prog'] = '';
   if (((s as any).trait_temp ?? 0)?.['tooltip'] !== '') {
     if (((s as any).trait_temp ?? 0)?.['exp_down'] === -1) {
@@ -193,7 +193,7 @@ function enterCard(s: GameState, scene: SceneBuilder): void {
       if (((s as any).trait_temp ?? 0)?.['exp_down'] >= 1000  ||  ((s as any).trait_temp ?? 0)?.['exp_down'] <= -1000) {
         (s as any).temp_pw = '↓&nbsp\' + $str(trait_temp[\'exp_down\'] / 1000) + \'k\' + \'&nbsp|&nbsp';
       } else {
-        (s as any).temp_pw = '↓&nbsp' + String(((s as any).trait_temp ?? 0)?.['exp_down']) + '&nbsp|&nbsp';
+        (s as any).temp_pw = '↓&nbsp' + String((((s as any).trait_temp ?? 0)?.['exp_down'])) + '&nbsp|&nbsp';
       }
     }
     // TODO-QSP: $temp_pw += '<b>' + $str(trait_temp['exp']) + '</b>'
@@ -205,7 +205,7 @@ function enterCard(s: GameState, scene: SceneBuilder): void {
         // TODO-QSP: $temp_pw += '&nbsp|&nbsp' + $str(trait_temp['exp_up']) + '&nbsp↑'
       }
     }
-    ((s as any).temp_card = (s as any).temp_card ?? {})['prog'] = '<span title="' + ((s as any).trait_temp ?? 0)?.['tooltip'] + '" style="cursor:help;font-size:0.8em;white-space:nowrap;font-family:monospace;opacity:0.7;">[' + ((s as any).temp_pw ?? 0) + ']</span>';
+    ((s as any).temp_card = (s as any).temp_card ?? {})['prog'] = '<span title="' + (((s as any).trait_temp ?? 0)?.['tooltip']) + '" style="cursor:help;font-size:0.8em;white-space:nowrap;font-family:monospace;opacity:0.7;">[' + ((s as any).temp_pw ?? 0) + ']</span>';
   }
   if (((s as any).trait_temp ?? 0)?.['hidden'] === 1  &&  String((s as any).locArgs?.[2] ?? '') === 0  &&  ((s as any).trait_vars ?? 0)[String((s as any).locArgs?.[1] ?? '') + '_discovered'] === 0  &&  ((s as any).cheatVars ?? 0)?.['show_hidden_traits'] === 0) {
     ((s as any).temp_card = (s as any).temp_card ?? {})['name'] = '???';
@@ -219,13 +219,13 @@ function enterCard(s: GameState, scene: SceneBuilder): void {
     ((s as any).temp_card = (s as any).temp_card ?? {})['opac'] = '0.5';
     ((s as any).temp_card = (s as any).temp_card ?? {})['border'] = ((((s as any).theme ?? 0)?.['is_dark'] === 1) ? ('#555555') : ('#aaaaaa'));
   }
-  ((s as any).card_in = (s as any).card_in ?? {})['icon'] = ((s as any).temp_card ?? 0)?.['icon'];
-  ((s as any).card_in = (s as any).card_in ?? {})['title'] = ((s as any).temp_card ?? 0)?.['name'];
-  ((s as any).card_in = (s as any).card_in ?? {})['extra'] = ((s as any).temp_card ?? 0)?.['prog'];
-  ((s as any).card_in = (s as any).card_in ?? {})['body'] = '<div>' + ((s as any).temp_card ?? 0)?.['desc'] + '</div>';
-  ((s as any).card_in = (s as any).card_in ?? {})['border'] = ((s as any).temp_card ?? 0)?.['border'];
-  ((s as any).card_in = (s as any).card_in ?? {})['bg'] = ((s as any).temp_card ?? 0)?.['bg'];
-  ((s as any).card_in = (s as any).card_in ?? {})['opacity'] = ((s as any).temp_card ?? 0)?.['opac'];
+  ((s as any).card_in = (s as any).card_in ?? {})['icon'] = (((s as any).temp_card ?? 0)?.['icon']);
+  ((s as any).card_in = (s as any).card_in ?? {})['title'] = (((s as any).temp_card ?? 0)?.['name']);
+  ((s as any).card_in = (s as any).card_in ?? {})['extra'] = (((s as any).temp_card ?? 0)?.['prog']);
+  ((s as any).card_in = (s as any).card_in ?? {})['body'] = '<div>' + (((s as any).temp_card ?? 0)?.['desc']) + '</div>';
+  ((s as any).card_in = (s as any).card_in ?? {})['border'] = (((s as any).temp_card ?? 0)?.['border']);
+  ((s as any).card_in = (s as any).card_in ?? {})['bg'] = (((s as any).temp_card ?? 0)?.['bg']);
+  ((s as any).card_in = (s as any).card_in ?? {})['opacity'] = (((s as any).temp_card ?? 0)?.['opac']);
   qspCall(s, 'cards', 'shell');
   return;
   // TODO-QSP: end
@@ -237,7 +237,7 @@ function enterShowAll(s: GameState, scene: SceneBuilder): void {
   ((s as any).temp_show_all = (s as any).temp_show_all ?? {})['i'] = 0;
   // TODO-QSP: :show_all_loop
   if (((s as any).temp_show_all ?? 0)?.['i'] < ((s as any).trait_vars ?? 0)?.['count']) {
-    ((s as any).temp_show_all = (s as any).temp_show_all ?? {})['trait'] = (((s as any).trait_vars ?? 0)?.['list, ' + String(((s as any).temp_show_all ?? 0)?.['i'])] ?? 0);
+    ((s as any).temp_show_all = (s as any).temp_show_all ?? {})['trait'] = (((s as any).trait_vars ?? 0)?.['list, ' + String((((s as any).temp_show_all ?? 0)?.['i']))] ?? 0);
     qspCall(s, 'traits', '$temp_show_all[\'trait\']', 'details');
     if (((s as any).trait_vars ?? 0)[((s as any).temp_show_all ?? 0)?.['trait']] !== 0) {
       // TODO-QSP: $temp_active[] = $temp_show_all['trait']
@@ -298,18 +298,18 @@ function enterCumeater(s: GameState, scene: SceneBuilder): void {
     if (((s as any).trait_vars ?? 0)?.['cumeater'] === 0) {
       ((s as any).trait_temp = (s as any).trait_temp ?? {})['desc'] = 'You don\'t have a particular taste for cum.';
       ((s as any).trait_temp = (s as any).trait_temp ?? {})['msg'] = 'You\'ve lost the trait <b>Cumeater</b>.';
-      ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp'] = ((s as any).trait_vars ?? 0)?.['cumeater_exp'];
+      ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp'] = (((s as any).trait_vars ?? 0)?.['cumeater_exp']);
       ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp_down'] = (-1);
       ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp_up'] = 50;
-      ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = 'You have ' + ((s as any).trait_vars ?? 0)?.['cumeater_exp'] + ' EXP. Gain EXP by swallowing loads knowingly.';
+      ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = 'You have ' + (((s as any).trait_vars ?? 0)?.['cumeater_exp']) + ' EXP. Gain EXP by swallowing loads knowingly.';
     } else {
       if (((s as any).trait_vars ?? 0)?.['cumeater'] === 1) {
         ((s as any).trait_temp = (s as any).trait_temp ?? {})['desc'] = 'Experience led you to develop a taste for cum. Swallowing comes naturally, and new possibilities are open for dealing with spunk.';
         ((s as any).trait_temp = (s as any).trait_temp ?? {})['msg'] = 'You\'ve gained the trait <b>Cumeater</b>.';
-        ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp'] = ((s as any).trait_vars ?? 0)?.['cumeater_exp'];
+        ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp'] = (((s as any).trait_vars ?? 0)?.['cumeater_exp']);
         ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp_down'] = (-1);
         ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp_up'] = (-1);
-        ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = 'Lifetime loads swallowed: ' + ((s as any).trait_vars ?? 0)?.['cumeater_exp'] + '.';
+        ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = 'Lifetime loads swallowed: ' + (((s as any).trait_vars ?? 0)?.['cumeater_exp']) + '.';
       }
     }
   }
@@ -337,8 +337,8 @@ function enterCreampieFetish(s: GameState, scene: SceneBuilder): void {
     (s as any).temp_risky_exp = (((s as any).stat ?? {})?.['creampies_notsafe_known'] ?? 0) + (((s as any).stat ?? {})?.['creampies_risky_known'] ?? 0) * 2;
     ((s as any).trait_vars = (s as any).trait_vars ?? {})['creampie_fetish_exp_risky'] = ((s as any).trait_vars['creampie_fetish_exp_risky'] ?? 0) + (Math.max(0, ((s as any).temp_risky_exp ?? 0) - (((s as any).trait_vars ?? {})?.['creampie_fetish_exp_prev_risky'] ?? 0)));
     ((s as any).trait_vars = (s as any).trait_vars ?? {})['creampie_fetish_exp'] = ((s as any).trait_vars['creampie_fetish_exp'] ?? 0) + (Math.max(0, (((s as any).stat ?? {})?.['creampies_safe_known'] ?? 0) + ((s as any).temp_risky_exp ?? 0) * 2 - (((s as any).trait_vars ?? {})?.['creampie_fetish_exp_prev'] ?? 0)));
-    ((s as any).trait_vars = (s as any).trait_vars ?? {})['creampie_fetish_exp_prev'] = ((s as any).trait_vars ?? 0)?.['creampie_fetish_exp'];
-    ((s as any).trait_vars = (s as any).trait_vars ?? {})['creampie_fetish_exp_risky_prev'] = ((s as any).trait_vars ?? 0)?.['creampie_fetish_exp_risky'];
+    ((s as any).trait_vars = (s as any).trait_vars ?? {})['creampie_fetish_exp_prev'] = (((s as any).trait_vars ?? 0)?.['creampie_fetish_exp']);
+    ((s as any).trait_vars = (s as any).trait_vars ?? {})['creampie_fetish_exp_risky_prev'] = (((s as any).trait_vars ?? 0)?.['creampie_fetish_exp_risky']);
     if (((s as any).trait_vars ?? 0)?.['creampie_fetish_exp'] >= 200  &&  ((s as any).trait_vars ?? 0)?.['creampie_fetish_exp_risky'] >= 100) {
       if (((s as any).trait_vars ?? 0)?.['creampie_fetish'] !== 2) {
         { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'creampie_fetish', 2]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -362,30 +362,30 @@ function enterCreampieFetish(s: GameState, scene: SceneBuilder): void {
       ((s as any).trait_temp = (s as any).trait_temp ?? {})['icon'] = 'creampie_fetish.png';
       ((s as any).trait_temp = (s as any).trait_temp ?? {})['desc'] = 'Some women are really into creampies, for one reason or another. You aren\'t one of them.';
       ((s as any).trait_temp = (s as any).trait_temp ?? {})['msg'] = 'You\'ve lost the trait <b>Creampie Fetish</b>.';
-      ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp'] = ((s as any).trait_vars ?? 0)?.['creampie_fetish_exp'];
+      ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp'] = (((s as any).trait_vars ?? 0)?.['creampie_fetish_exp']);
       ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp_down'] = (-1);
       ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp_up'] = 150;
-      ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = 'You have ' + ((s as any).trait_vars ?? 0)?.['creampie_fetish_exp'] + ' EXP. Gain EXP by receiving vaginal creampies.';
+      ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = 'You have ' + (((s as any).trait_vars ?? 0)?.['creampie_fetish_exp']) + ' EXP. Gain EXP by receiving vaginal creampies.';
     } else {
       if (((s as any).trait_vars ?? 0)?.['creampie_fetish'] === 1) {
         ((s as any).trait_temp = (s as any).trait_temp ?? {})['name'] = 'Creampie Lover';
         ((s as any).trait_temp = (s as any).trait_temp ?? {})['icon'] = 'creampie_fetish.png';
         ((s as any).trait_temp = (s as any).trait_temp ?? {})['desc'] = 'Your desire for creampies is so strong that you can\'t help but orgasm almost every time a big load is poured into your pussy.';
         ((s as any).trait_temp = (s as any).trait_temp ?? {})['msg'] = 'You\'ve gained the trait <b>Creampie Fetish</b>.';
-        ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp'] = ((s as any).trait_vars ?? 0)?.['creampie_fetish_exp'];
+        ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp'] = (((s as any).trait_vars ?? 0)?.['creampie_fetish_exp']);
         ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp_down'] = (-1);
         ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp_up'] = 200;
-        ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = 'EXP: ' + ((s as any).trait_vars ?? 0)?.['creampie_fetish_exp'] + '/200. Risky/unsafe EXP: ' + ((s as any).trait_vars ?? 0)?.['creampie_fetish_exp_risky'] + '/100. Keep taking risky creampies to unlock the next level.';
+        ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = 'EXP: ' + (((s as any).trait_vars ?? 0)?.['creampie_fetish_exp']) + '/200. Risky/unsafe EXP: ' + (((s as any).trait_vars ?? 0)?.['creampie_fetish_exp_risky']) + '/100. Keep taking risky creampies to unlock the next level.';
       } else {
         if (((s as any).trait_vars ?? 0)?.['creampie_fetish'] === 2) {
           ((s as any).trait_temp = (s as any).trait_temp ?? {})['name'] = 'Breeding Slut';
           ((s as any).trait_temp = (s as any).trait_temp ?? {})['icon'] = 'creampie_fetish_breeding.png';
           ((s as any).trait_temp = (s as any).trait_temp ?? {})['desc'] = 'The only thing you love more than being filled with cum is being filled when you really shouldn\'t be. Risky creampies lead you to instant orgasm, but you\'ve grown to dislike condoms.';
           ((s as any).trait_temp = (s as any).trait_temp ?? {})['msg'] = 'You\'ve gained the trait <b>Breeding Slut</b>! The thrill of risky creampies has awakened something primal in you.';
-          ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp'] = ((s as any).trait_vars ?? 0)?.['creampie_fetish_exp'];
+          ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp'] = (((s as any).trait_vars ?? 0)?.['creampie_fetish_exp']);
           ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp_down'] = (-1);
           ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp_up'] = (-1);
-          ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = 'EXP: ' + ((s as any).trait_vars ?? 0)?.['creampie_fetish_exp'] + '. Risky/unsafe EXP: ' + ((s as any).trait_vars ?? 0)?.['creampie_fetish_exp_risky'] + '.';
+          ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = 'EXP: ' + (((s as any).trait_vars ?? 0)?.['creampie_fetish_exp']) + '. Risky/unsafe EXP: ' + (((s as any).trait_vars ?? 0)?.['creampie_fetish_exp_risky']) + '.';
         }
       }
     }
@@ -445,12 +445,12 @@ function enterFertility(s: GameState, scene: SceneBuilder): void {
       }
     } else {
       if (((s as any).trait_vars ?? 0)?.['fertility'] === 2) {
-        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'fertility', ((s as any).trait_vars ?? 0)?.['fertility_precond']]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'fertility', (((s as any).trait_vars ?? 0)?.['fertility_precond'])]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
       }
     }
   }
   if (String((s as any).locArgs?.[1] ?? '') === 'hypno_grant') {
-    ((s as any).trait_vars = (s as any).trait_vars ?? {})['fertility_precond'] = ((s as any).trait_vars ?? 0)?.['fertility'];
+    ((s as any).trait_vars = (s as any).trait_vars ?? {})['fertility_precond'] = (((s as any).trait_vars ?? 0)?.['fertility']);
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'fertility', 2]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   if (String((s as any).locArgs?.[1] ?? '') === 'details') {
@@ -476,10 +476,10 @@ function enterFertility(s: GameState, scene: SceneBuilder): void {
           ((s as any).trait_temp = (s as any).trait_temp ?? {})['icon'] = 'hyper_fertile.png';
           ((s as any).trait_temp = (s as any).trait_temp ?? {})['desc'] = 'For some reason, your body is extremely fertile. You can\'t explain why, but your chances of conception are significantly increased.<br>Luckily, you\'re already using the birth control pills Dr. Pavlov gave you, so there\'s nothing to worry about.';
           ((s as any).trait_temp = (s as any).trait_temp ?? {})['msg'] = 'For some reason, you\'ve become <b>Hormonally Conditioned</b>. Thankfully you\'re already on birth control, so there\'s nothing to worry about.';
-          ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp'] = ((s as any).trait_vars ?? 0)?.['fertility_bc_conditioning'];
+          ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp'] = (((s as any).trait_vars ?? 0)?.['fertility_bc_conditioning']);
           ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp_down'] = (-1);
           ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp_up'] = (-1);
-          ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = 'Conditioning: ' + ((s as any).trait_vars ?? 0)?.['fertility_bc_conditioning'] + '/50. Decays if the original cause is removed.';
+          ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = 'Conditioning: ' + (((s as any).trait_vars ?? 0)?.['fertility_bc_conditioning']) + '/50. Decays if the original cause is removed.';
         } else {
           if (((s as any).trait_vars ?? 0)?.['fertility'] === -1) {
             ((s as any).trait_temp = (s as any).trait_temp ?? {})['name'] = 'Infertile';
@@ -651,10 +651,10 @@ function enterNewAgain(s: GameState, scene: SceneBuilder): void {
       if (((s as any).trait_vars ?? 0)?.['new_again'] === 1) {
         ((s as any).trait_temp = (s as any).trait_temp ?? {})['desc'] = 'Being thrust into a new life has forced you to re-evaluate and relearn everything. You pick up new skills more quickly for a short time.';
         ((s as any).trait_temp = (s as any).trait_temp ?? {})['msg'] = 'You\'ve gained the trait <b>Everything Is New Again</b>.';
-        ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp'] = ((s as any).trait_vars ?? 0)?.['new_again_exp'];
+        ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp'] = (((s as any).trait_vars ?? 0)?.['new_again_exp']);
         ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp_down'] = 0;
         ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp_up'] = (-1);
-        ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = '' + ((s as any).trait_vars ?? 0)?.['new_again_exp'] + ' days remaining. ';
+        ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = '' + (((s as any).trait_vars ?? 0)?.['new_again_exp']) + ' days remaining. ';
         ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = ((s as any).trait_temp['tooltip'] ?? 0) + ('Wears off on its own over time.');
       }
     }
@@ -712,14 +712,14 @@ function enterHeelPreference(s: GameState, scene: SceneBuilder): void {
                 }
               } else {
                 if (((s as any).PShoHeels ?? 0) === 1) {
-                  ((s as any).trait_vars = (s as any).trait_vars ?? {})['heel_preference_exp'] = ((s as any).trait_vars['heel_preference_exp'] ?? 0) - (Math.min(2 * ((s as any).temp_loop_mul ?? 0), ((s as any).trait_vars ?? 0)?.['heel_preference_exp']));
+                  ((s as any).trait_vars = (s as any).trait_vars ?? {})['heel_preference_exp'] = ((s as any).trait_vars['heel_preference_exp'] ?? 0) - (Math.min(2 * ((s as any).temp_loop_mul ?? 0), (((s as any).trait_vars ?? 0)?.['heel_preference_exp'])));
                 }
               }
             }
           }
         }
       }
-      ((s as any).trait_vars = (s as any).trait_vars ?? {})['heel_preference_exp'] = Math.min(((s as any).trait_vars ?? 0)?.['heel_preference_exp'], 150000);
+      ((s as any).trait_vars = (s as any).trait_vars ?? {})['heel_preference_exp'] = Math.min((((s as any).trait_vars ?? 0)?.['heel_preference_exp']), 150000);
     }
   }
   if (String((s as any).locArgs?.[1] ?? '') === 'daily') {
@@ -733,7 +733,7 @@ function enterHeelPreference(s: GameState, scene: SceneBuilder): void {
       ((s as any).trait_vars = (s as any).trait_vars ?? {})['heel_preference_daily_limit'] = 120;
     }
     if (((s as any).trait_vars ?? 0)?.['heel_preference'] >= 0  &&  ((s as any).trait_vars ?? 0)?.['heel_preference_exp'] > 0) {
-      ((s as any).trait_vars = (s as any).trait_vars ?? {})['heel_preference_exp'] = ((s as any).trait_vars['heel_preference_exp'] ?? 0) - (Math.min(100, ((s as any).trait_vars ?? 0)?.['heel_preference_exp']));
+      ((s as any).trait_vars = (s as any).trait_vars ?? {})['heel_preference_exp'] = ((s as any).trait_vars['heel_preference_exp'] ?? 0) - (Math.min(100, (((s as any).trait_vars ?? 0)?.['heel_preference_exp'])));
     }
     if (((s as any).trait_vars ?? 0)?.['heel_preference'] >= 0) {
       if (((s as any).trait_vars ?? 0)?.['heel_preference_exp'] >= 120000) {
@@ -762,7 +762,7 @@ function enterHeelPreference(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === 'details') {
     ((s as any).trait_temp = (s as any).trait_temp ?? {})['icon'] = 'heel_preference.png';
     ((s as any).trait_temp = (s as any).trait_temp ?? {})['hidden'] = 0;
-    ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp'] = ((s as any).trait_vars ?? 0)?.['heel_preference_exp'];
+    ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp'] = (((s as any).trait_vars ?? 0)?.['heel_preference_exp']);
     if (((s as any).trait_vars ?? 0)?.['heel_preference'] === -1) {
       ((s as any).trait_temp = (s as any).trait_temp ?? {})['name'] = 'Bambi\'s First Steps';
       ((s as any).trait_temp = (s as any).trait_temp ?? {})['icon'] = 'heel_preference_bambi.png';
@@ -779,7 +779,7 @@ function enterHeelPreference(s: GameState, scene: SceneBuilder): void {
         ((s as any).trait_temp = (s as any).trait_temp ?? {})['msg'] = 'You\'ve lost the trait <b>Bambi\'s First Steps</b>.';
         ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp_down'] = (-1);
         ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp_up'] = 30000;
-        ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = 'EXP: ' + ((s as any).trait_vars ?? 0)?.['heel_preference_exp'] + '. ';
+        ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = 'EXP: ' + (((s as any).trait_vars ?? 0)?.['heel_preference_exp']) + '. ';
         ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = ((s as any).trait_temp['tooltip'] ?? 0) + ('Wear heels to build a preference. The higher, the faster. Low heels only help up to 15k. ');
         ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = ((s as any).trait_temp['tooltip'] ?? 0) + ('EXP decays by 100 daily and while wearing flats.');
       } else {
@@ -789,7 +789,7 @@ function enterHeelPreference(s: GameState, scene: SceneBuilder): void {
           ((s as any).trait_temp = (s as any).trait_temp ?? {})['msg'] = 'You\'ve gained the trait <b>Heel Accustomed</b>. Going flat feels awkward now, and heels are slightly easier to handle.';
           ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp_down'] = 30000;
           ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp_up'] = 70000;
-          ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = 'EXP: ' + ((s as any).trait_vars ?? 0)?.['heel_preference_exp'] + '. ';
+          ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = 'EXP: ' + (((s as any).trait_vars ?? 0)?.['heel_preference_exp']) + '. ';
           ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = ((s as any).trait_temp['tooltip'] ?? 0) + ('Wear heels to progress. The higher, the faster. Low heels no longer help, and mid heels only help up to 50k. ');
           ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = ((s as any).trait_temp['tooltip'] ?? 0) + ('EXP decays by 100 daily and while wearing flats.');
         } else {
@@ -799,7 +799,7 @@ function enterHeelPreference(s: GameState, scene: SceneBuilder): void {
             ((s as any).trait_temp = (s as any).trait_temp ?? {})['msg'] = 'You\'ve gained the trait <b>Heel Dependent</b>. You need your heels, and are better at handling them.';
             ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp_down'] = 70000;
             ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp_up'] = 120000;
-            ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = 'EXP: ' + ((s as any).trait_vars ?? 0)?.['heel_preference_exp'] + '. ';
+            ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = 'EXP: ' + (((s as any).trait_vars ?? 0)?.['heel_preference_exp']) + '. ';
             ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = ((s as any).trait_temp['tooltip'] ?? 0) + ('Wear high heels to progress. The higher, the faster. Low and medium heels no longer help. ');
             ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = ((s as any).trait_temp['tooltip'] ?? 0) + ('EXP decays by 100 daily and while wearing flats.');
           } else {
@@ -809,7 +809,7 @@ function enterHeelPreference(s: GameState, scene: SceneBuilder): void {
               ((s as any).trait_temp = (s as any).trait_temp ?? {})['msg'] = 'You\'ve gained the trait <b>Heel Addict</b>. Heels are a necessity now, and easier to handle.';
               ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp_down'] = 120000;
               ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp_up'] = (-1);
-              ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = 'EXP: ' + ((s as any).trait_vars ?? 0)?.['heel_preference_exp'] + '. ';
+              ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = 'EXP: ' + (((s as any).trait_vars ?? 0)?.['heel_preference_exp']) + '. ';
               ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = ((s as any).trait_temp['tooltip'] ?? 0) + ('Wear high heels to maintain this trait. ');
               ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = ((s as any).trait_temp['tooltip'] ?? 0) + ('EXP decays by 100 daily and while wearing flats.');
             }
@@ -898,14 +898,14 @@ function enterAddictivePersonality(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === 'details') {
     ((s as any).trait_temp = (s as any).trait_temp ?? {})['icon'] = 'addictive_personality.png';
     ((s as any).trait_temp = (s as any).trait_temp ?? {})['hidden'] = 0;
-    ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp'] = ((s as any).trait_vars ?? 0)?.['addictive_personality_exp'];
+    ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp'] = (((s as any).trait_vars ?? 0)?.['addictive_personality_exp']);
     if (((s as any).trait_vars ?? 0)?.['addictive_personality'] === 0) {
       ((s as any).trait_temp = (s as any).trait_temp ?? {})['name'] = 'Addictive Personality';
       ((s as any).trait_temp = (s as any).trait_temp ?? {})['desc'] = 'You\'re not particularly prone to addiction. Your relationship with substances is no different from most.';
       ((s as any).trait_temp = (s as any).trait_temp ?? {})['msg'] = 'You\'ve lost the trait <b>Addictive Personality</b>.';
       ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp_down'] = (-1);
       ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp_up'] = 2;
-      ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = 'Addictive substances encountered: ' + ((s as any).trait_vars ?? 0)?.['addictive_personality_exp'] + '. ';
+      ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = 'Addictive substances encountered: ' + (((s as any).trait_vars ?? 0)?.['addictive_personality_exp']) + '. ';
       ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = ((s as any).trait_temp['tooltip'] ?? 0) + ('Try more addictive substances to develop this trait.');
     } else {
       if (((s as any).trait_vars ?? 0)?.['addictive_personality'] === 1) {
@@ -915,7 +915,7 @@ function enterAddictivePersonality(s: GameState, scene: SceneBuilder): void {
         ((s as any).trait_temp = (s as any).trait_temp ?? {})['msg-down'] = '<b>Addictive Personality</b> has decreased to Lv. 1.';
         ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp_down'] = (-1);
         ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp_up'] = 3;
-        ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = 'Addictive substances encountered: ' + ((s as any).trait_vars ?? 0)?.['addictive_personality_exp'] + '. ';
+        ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = 'Addictive substances encountered: ' + (((s as any).trait_vars ?? 0)?.['addictive_personality_exp']) + '. ';
         ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = ((s as any).trait_temp['tooltip'] ?? 0) + ('Encounter more addictive substances to progress.');
       } else {
         if (((s as any).trait_vars ?? 0)?.['addictive_personality'] === 2) {
@@ -925,7 +925,7 @@ function enterAddictivePersonality(s: GameState, scene: SceneBuilder): void {
           ((s as any).trait_temp = (s as any).trait_temp ?? {})['msg-down'] = '<b>Addictive Personality</b> has decreased to Lv. 2.';
           ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp_down'] = (-1);
           ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp_up'] = 4;
-          ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = 'Addictive substances encountered: ' + ((s as any).trait_vars ?? 0)?.['addictive_personality_exp'] + '. ';
+          ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = 'Addictive substances encountered: ' + (((s as any).trait_vars ?? 0)?.['addictive_personality_exp']) + '. ';
           ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = ((s as any).trait_temp['tooltip'] ?? 0) + ('Encounter more addictive substances to progress.');
         } else {
           if (((s as any).trait_vars ?? 0)?.['addictive_personality'] === 3) {
@@ -934,7 +934,7 @@ function enterAddictivePersonality(s: GameState, scene: SceneBuilder): void {
             ((s as any).trait_temp = (s as any).trait_temp ?? {})['msg-up'] = '<b>Addictive Personality</b> has increased to Lv. 3.';
             ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp_down'] = (-1);
             ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp_up'] = (-1);
-            ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = 'Addictive substances encountered: ' + ((s as any).trait_vars ?? 0)?.['addictive_personality_exp'] + '.';
+            ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = 'Addictive substances encountered: ' + (((s as any).trait_vars ?? 0)?.['addictive_personality_exp']) + '.';
           }
         }
       }
@@ -1015,14 +1015,14 @@ function enterButtslut(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === 'details') {
     ((s as any).trait_temp = (s as any).trait_temp ?? {})['icon'] = 'buttslut.png';
     ((s as any).trait_temp = (s as any).trait_temp ?? {})['hidden'] = 0;
-    ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp'] = ((s as any).trait_vars ?? 0)?.['buttslut_exp'];
+    ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp'] = (((s as any).trait_vars ?? 0)?.['buttslut_exp']);
     if (((s as any).trait_vars ?? 0)?.['buttslut'] === 0) {
       ((s as any).trait_temp = (s as any).trait_temp ?? {})['name'] = 'Buttslut';
       ((s as any).trait_temp = (s as any).trait_temp ?? {})['desc'] = 'Anal sex doesn\'t particularly do it for you. You could take it or leave it.';
       ((s as any).trait_temp = (s as any).trait_temp ?? {})['msg'] = 'You\'ve lost the trait <b>Buttslut</b>.';
       ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp_down'] = (-1);
       ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp_up'] = 10;
-      ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = 'Anal orgasms: ' + ((s as any).trait_vars ?? 0)?.['buttslut_exp'] + '. ';
+      ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = 'Anal orgasms: ' + (((s as any).trait_vars ?? 0)?.['buttslut_exp']) + '. ';
       ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = ((s as any).trait_temp['tooltip'] ?? 0) + ('Have anal orgasms to gain this trait.');
     } else {
       if (((s as any).trait_vars ?? 0)?.['buttslut'] === 1) {
@@ -1032,7 +1032,7 @@ function enterButtslut(s: GameState, scene: SceneBuilder): void {
         ((s as any).trait_temp = (s as any).trait_temp ?? {})['msg-down'] = '<b>Buttslut</b> has decreased to Lv. 1.';
         ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp_down'] = (-1);
         ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp_up'] = 25;
-        ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = 'EXP: ' + ((s as any).trait_vars ?? 0)?.['buttslut_exp'] + '. ';
+        ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = 'EXP: ' + (((s as any).trait_vars ?? 0)?.['buttslut_exp']) + '. ';
         ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = ((s as any).trait_temp['tooltip'] ?? 0) + ('Have more anal orgasms to progress. ');
         ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = ((s as any).trait_temp['tooltip'] ?? 0) + ('EXP decays by 1 daily without anal orgasms, but this level cannot be lost naturally.');
       } else {
@@ -1043,7 +1043,7 @@ function enterButtslut(s: GameState, scene: SceneBuilder): void {
           ((s as any).trait_temp = (s as any).trait_temp ?? {})['msg-down'] = '<b>Buttslut</b> has decreased to Lv. 2.';
           ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp_down'] = 25;
           ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp_up'] = 75;
-          ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = 'EXP: ' + ((s as any).trait_vars ?? 0)?.['buttslut_exp'] + '. ';
+          ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = 'EXP: ' + (((s as any).trait_vars ?? 0)?.['buttslut_exp']) + '. ';
           ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = ((s as any).trait_temp['tooltip'] ?? 0) + ('Have more anal orgasms to progress. ');
           ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = ((s as any).trait_temp['tooltip'] ?? 0) + ('EXP decays by 1 daily without anal orgasms.');
         } else {
@@ -1053,7 +1053,7 @@ function enterButtslut(s: GameState, scene: SceneBuilder): void {
             ((s as any).trait_temp = (s as any).trait_temp ?? {})['msg-up'] = '<b>Buttslut</b> has increased to Lv. 3.';
             ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp_down'] = 75;
             ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp_up'] = (-1);
-            ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = 'EXP: ' + ((s as any).trait_vars ?? 0)?.['buttslut_exp'] + '. ';
+            ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = 'EXP: ' + (((s as any).trait_vars ?? 0)?.['buttslut_exp']) + '. ';
             ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = ((s as any).trait_temp['tooltip'] ?? 0) + ('EXP decays by 1 daily without anal orgasms.');
           }
         }
@@ -1119,14 +1119,14 @@ function enterExhibitionist(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === 'details') {
     ((s as any).trait_temp = (s as any).trait_temp ?? {})['icon'] = 'exhibitionist.png';
     ((s as any).trait_temp = (s as any).trait_temp ?? {})['hidden'] = 0;
-    ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp'] = ((s as any).trait_vars ?? 0)?.['exhibitionist_exp'];
+    ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp'] = (((s as any).trait_vars ?? 0)?.['exhibitionist_exp']);
     if (((s as any).trait_vars ?? 0)?.['exhibitionist'] === 0) {
       ((s as any).trait_temp = (s as any).trait_temp ?? {})['name'] = 'Exhibitionist';
       ((s as any).trait_temp = (s as any).trait_temp ?? {})['desc'] = 'You don\'t have much interest in exhibitionism. The idea of being seen naked makes you uncomfortable.';
       ((s as any).trait_temp = (s as any).trait_temp ?? {})['msg'] = 'You\'ve lost the trait <b>Exhibitionist</b>.';
       ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp_down'] = (-1);
       ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp_up'] = 10;
-      ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = 'EXP: ' + ((s as any).trait_vars ?? 0)?.['exhibitionist_exp'] + '. ';
+      ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = 'EXP: ' + (((s as any).trait_vars ?? 0)?.['exhibitionist_exp']) + '. ';
       ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = ((s as any).trait_temp['tooltip'] ?? 0) + ('Engage in exhibitionism to gain this trait. ');
       ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = ((s as any).trait_temp['tooltip'] ?? 0) + ('EXP decays by 1 daily.');
     } else {
@@ -1137,7 +1137,7 @@ function enterExhibitionist(s: GameState, scene: SceneBuilder): void {
         ((s as any).trait_temp = (s as any).trait_temp ?? {})['msg-down'] = '<b>Exhibitionist</b> has decreased to Lv. 1.';
         ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp_down'] = 10;
         ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp_up'] = 50;
-        ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = 'EXP: ' + ((s as any).trait_vars ?? 0)?.['exhibitionist_exp'] + '. ';
+        ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = 'EXP: ' + (((s as any).trait_vars ?? 0)?.['exhibitionist_exp']) + '. ';
         ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = ((s as any).trait_temp['tooltip'] ?? 0) + ('Engage in exhibitionism to progress. ');
         ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = ((s as any).trait_temp['tooltip'] ?? 0) + ('EXP decays by 1 daily.');
       } else {
@@ -1148,7 +1148,7 @@ function enterExhibitionist(s: GameState, scene: SceneBuilder): void {
           ((s as any).trait_temp = (s as any).trait_temp ?? {})['msg-down'] = '<b>Exhibitionist</b> has decreased to Lv. 2.';
           ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp_down'] = 50;
           ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp_up'] = 100;
-          ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = 'EXP: ' + ((s as any).trait_vars ?? 0)?.['exhibitionist_exp'] + '. ';
+          ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = 'EXP: ' + (((s as any).trait_vars ?? 0)?.['exhibitionist_exp']) + '. ';
           ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = ((s as any).trait_temp['tooltip'] ?? 0) + ('Engage in exhibitionism to progress. Lv. 3 requires a specific story event. ');
           ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = ((s as any).trait_temp['tooltip'] ?? 0) + ('EXP decays by 1 daily.');
         } else {
@@ -1158,7 +1158,7 @@ function enterExhibitionist(s: GameState, scene: SceneBuilder): void {
             ((s as any).trait_temp = (s as any).trait_temp ?? {})['msg-up'] = '<b>Exhibitionist</b> has increased to Lv. 3.';
             ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp_down'] = 100;
             ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp_up'] = (-1);
-            ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = 'EXP: ' + ((s as any).trait_vars ?? 0)?.['exhibitionist_exp'] + '. ';
+            ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = 'EXP: ' + (((s as any).trait_vars ?? 0)?.['exhibitionist_exp']) + '. ';
             ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = ((s as any).trait_temp['tooltip'] ?? 0) + ('EXP decays by 1 daily.');
           }
         }
@@ -1237,7 +1237,7 @@ function enterPantyPreference(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === 'details') {
     ((s as any).trait_temp = (s as any).trait_temp ?? {})['icon'] = 'commando.png';
     ((s as any).trait_temp = (s as any).trait_temp ?? {})['hidden'] = 0;
-    ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp'] = ((s as any).trait_vars ?? 0)?.['panty_preference_exp'];
+    ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp'] = (((s as any).trait_vars ?? 0)?.['panty_preference_exp']);
     if (((s as any).trait_vars ?? 0)?.['panty_preference'] === 0) {
       ((s as any).trait_temp = (s as any).trait_temp ?? {})['name'] = 'Commando';
       ((s as any).trait_temp = (s as any).trait_temp ?? {})['icon'] = 'commando-panties.png';
@@ -1245,7 +1245,7 @@ function enterPantyPreference(s: GameState, scene: SceneBuilder): void {
       ((s as any).trait_temp = (s as any).trait_temp ?? {})['msg'] = 'You\'ve lost the trait <b>Commando</b>.';
       ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp_down'] = (-1);
       ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp_up'] = 15000;
-      ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = 'EXP: ' + ((s as any).trait_vars ?? 0)?.['panty_preference_exp'] + '. ';
+      ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = 'EXP: ' + (((s as any).trait_vars ?? 0)?.['panty_preference_exp']) + '. ';
       ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = ((s as any).trait_temp['tooltip'] ?? 0) + ('Go without panties to gain this trait. ');
       ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = ((s as any).trait_temp['tooltip'] ?? 0) + ('EXP decays while wearing panties.');
     } else {
@@ -1256,7 +1256,7 @@ function enterPantyPreference(s: GameState, scene: SceneBuilder): void {
         ((s as any).trait_temp = (s as any).trait_temp ?? {})['msg-down'] = '<b>Commando</b> has decreased to Lv. 1.';
         ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp_down'] = 15000;
         ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp_up'] = 30000;
-        ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = 'EXP: ' + ((s as any).trait_vars ?? 0)?.['panty_preference_exp'] + '. ';
+        ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = 'EXP: ' + (((s as any).trait_vars ?? 0)?.['panty_preference_exp']) + '. ';
         ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = ((s as any).trait_temp['tooltip'] ?? 0) + ('Continue going without panties to progress. ');
         ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = ((s as any).trait_temp['tooltip'] ?? 0) + ('EXP decays while wearing panties.');
       } else {
@@ -1267,7 +1267,7 @@ function enterPantyPreference(s: GameState, scene: SceneBuilder): void {
           ((s as any).trait_temp = (s as any).trait_temp ?? {})['msg-down'] = '<b>Commando</b> has decreased to Lv. 2.';
           ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp_down'] = 30000;
           ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp_up'] = 40000;
-          ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = 'EXP: ' + ((s as any).trait_vars ?? 0)?.['panty_preference_exp'] + '. ';
+          ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = 'EXP: ' + (((s as any).trait_vars ?? 0)?.['panty_preference_exp']) + '. ';
           ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = ((s as any).trait_temp['tooltip'] ?? 0) + ('Continue going without panties to progress. ');
           ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = ((s as any).trait_temp['tooltip'] ?? 0) + ('EXP decays while wearing panties.');
         } else {
@@ -1277,7 +1277,7 @@ function enterPantyPreference(s: GameState, scene: SceneBuilder): void {
             ((s as any).trait_temp = (s as any).trait_temp ?? {})['msg'] = '<b>Commando</b> has increased to Lv. 3.';
             ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp_down'] = 40000;
             ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp_up'] = (-1);
-            ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = 'EXP: ' + ((s as any).trait_vars ?? 0)?.['panty_preference_exp'] + '. ';
+            ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = 'EXP: ' + (((s as any).trait_vars ?? 0)?.['panty_preference_exp']) + '. ';
             ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = ((s as any).trait_temp['tooltip'] ?? 0) + ('EXP decays while wearing panties, causing mood loss at this level.');
           }
         }
@@ -1326,13 +1326,13 @@ function enterDrinking(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).trait_vars ?? 0)?.['alko_today'] > 0) {
       ((s as any).trait_vars = (s as any).trait_vars ?? {})['drinking_days_sober'] = 0;
-      ((s as any).trait_vars = (s as any).trait_vars ?? {})['drinking_exp'] = ((s as any).trait_vars['drinking_exp'] ?? 0) + (Math.min(((s as any).trait_vars ?? 0)?.['alko_today'], 9));
+      ((s as any).trait_vars = (s as any).trait_vars ?? {})['drinking_exp'] = ((s as any).trait_vars['drinking_exp'] ?? 0) + (Math.min((((s as any).trait_vars ?? 0)?.['alko_today']), 9));
     } else {
       ((s as any).trait_vars = (s as any).trait_vars ?? {})['drinking_days_sober'] = ((s as any).trait_vars['drinking_days_sober'] ?? 0) + (1);
       ((s as any).trait_vars = (s as any).trait_vars ?? {})['drinking_exp'] = ((s as any).trait_vars['drinking_exp'] ?? 0) - (qspFunc(s, 'math', 'int_clamp', (((s as any).trait_vars ?? {})?.['drinking_days_sober'] ?? 0) / 3, 1, 9));
     }
     ((s as any).trait_vars = (s as any).trait_vars ?? {})['alko_today'] = 0;
-    ((s as any).trait_vars = (s as any).trait_vars ?? {})['drinking_exp'] = qspFunc(s, 'math', 'int_clamp', ((s as any).trait_vars ?? 0)?.['drinking_exp'], (-100), 100);
+    ((s as any).trait_vars = (s as any).trait_vars ?? {})['drinking_exp'] = qspFunc(s, 'math', 'int_clamp', (((s as any).trait_vars ?? 0)?.['drinking_exp']), (-100), 100);
     if (((s as any).trait_vars ?? 0)?.['drinking_exp'] >= 50) {
       if (((s as any).trait_vars ?? 0)?.['drinking'] !== 1) {
         { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'drinking', 1]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -1351,7 +1351,7 @@ function enterDrinking(s: GameState, scene: SceneBuilder): void {
   }
   if (String((s as any).locArgs?.[1] ?? '') === 'details') {
     ((s as any).trait_temp = (s as any).trait_temp ?? {})['hidden'] = 0;
-    ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp'] = ((s as any).trait_vars ?? 0)?.['drinking_exp'];
+    ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp'] = (((s as any).trait_vars ?? 0)?.['drinking_exp']);
     if (((s as any).trait_vars ?? 0)?.['drinking'] === 0) {
       ((s as any).trait_temp = (s as any).trait_temp ?? {})['name'] = 'Alcohol Tolerance';
       ((s as any).trait_temp = (s as any).trait_temp ?? {})['icon'] = 'alko.png';
@@ -1360,7 +1360,7 @@ function enterDrinking(s: GameState, scene: SceneBuilder): void {
       ((s as any).trait_temp = (s as any).trait_temp ?? {})['msg-down'] = 'You\'ve lost the trait <b>Heavyweight</b>. Your alcohol tolerance is now average.';
       ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp_down'] = (-50);
       ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp_up'] = 50;
-      ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = 'Tolerance EXP: ' + ((s as any).trait_vars ?? 0)?.['drinking_exp'] + '. ';
+      ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = 'Tolerance EXP: ' + (((s as any).trait_vars ?? 0)?.['drinking_exp']) + '. ';
       ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = ((s as any).trait_temp['tooltip'] ?? 0) + ('Drink regularly to build tolerance. ');
       ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = ((s as any).trait_temp['tooltip'] ?? 0) + ('Going sober reduces tolerance over time.');
     } else {
@@ -1371,7 +1371,7 @@ function enterDrinking(s: GameState, scene: SceneBuilder): void {
         ((s as any).trait_temp = (s as any).trait_temp ?? {})['msg-up'] = 'You\'ve gained the trait <b>Heavyweight</b>.';
         ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp_down'] = 50;
         ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp_up'] = (-1);
-        ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = 'Tolerance EXP: ' + ((s as any).trait_vars ?? 0)?.['drinking_exp'] + '. ';
+        ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = 'Tolerance EXP: ' + (((s as any).trait_vars ?? 0)?.['drinking_exp']) + '. ';
         ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = ((s as any).trait_temp['tooltip'] ?? 0) + ('Going sober reduces tolerance over time.');
       } else {
         if (((s as any).trait_vars ?? 0)?.['drinking'] === -1) {
@@ -1381,7 +1381,7 @@ function enterDrinking(s: GameState, scene: SceneBuilder): void {
           ((s as any).trait_temp = (s as any).trait_temp ?? {})['msg-up'] = 'You\'ve gained the trait <b>Lightweight</b>.';
           ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp_down'] = (-1);
           ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp_up'] = (-50);
-          ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = 'Tolerance EXP: ' + ((s as any).trait_vars ?? 0)?.['drinking_exp'] + '. ';
+          ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = 'Tolerance EXP: ' + (((s as any).trait_vars ?? 0)?.['drinking_exp']) + '. ';
           ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = ((s as any).trait_temp['tooltip'] ?? 0) + ('Drink alcohol regularly to recover.');
         }
       }
@@ -1472,7 +1472,7 @@ function enterAcademic(s: GameState, scene: SceneBuilder): void {
         ((s as any).trait_vars = (s as any).trait_vars ?? {})['academic_lessons'] = 0;
       }
     }
-    ((s as any).trait_vars = (s as any).trait_vars ?? {})['academic_exp'] = qspFunc(s, 'math', 'int_clamp', ((s as any).trait_vars ?? 0)?.['academic_exp'], (-500), 500);
+    ((s as any).trait_vars = (s as any).trait_vars ?? {})['academic_exp'] = qspFunc(s, 'math', 'int_clamp', (((s as any).trait_vars ?? 0)?.['academic_exp']), (-500), 500);
     if (((s as any).trait_vars ?? 0)?.['academic'] === 0) {
       if (((s as any).trait_vars ?? 0)?.['academic_exp'] > 200) {
         { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'academic', 1]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -1520,14 +1520,14 @@ function enterAcademic(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === 'details') {
     ((s as any).trait_temp = (s as any).trait_temp ?? {})['icon'] = 'nerd.png';
     ((s as any).trait_temp = (s as any).trait_temp ?? {})['hidden'] = 0;
-    ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp'] = ((s as any).trait_vars ?? 0)?.['academic_exp'];
+    ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp'] = (((s as any).trait_vars ?? 0)?.['academic_exp']);
     if (((s as any).trait_vars ?? 0)?.['academic'] === 0) {
       ((s as any).trait_temp = (s as any).trait_temp ?? {})['name'] = 'Normal Student';
       ((s as any).trait_temp = (s as any).trait_temp ?? {})['desc'] = 'You\'re not particularly studious or interested in academics. School is just something you get through.';
       ((s as any).trait_temp = (s as any).trait_temp ?? {})['msg'] = 'You\'ve lost the <b>academic</b> trait.';
       ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp_down'] = (-1);
       ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp_up'] = 200;
-      ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = 'EXP: ' + ((s as any).trait_vars ?? 0)?.['academic_exp'] + '. ';
+      ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = 'EXP: ' + (((s as any).trait_vars ?? 0)?.['academic_exp']) + '. ';
       ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = ((s as any).trait_temp['tooltip'] ?? 0) + ('Attend classes regularly to develop academic habits. ');
       ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = ((s as any).trait_temp['tooltip'] ?? 0) + ('Missing classes reduces EXP.');
     } else {
@@ -1538,7 +1538,7 @@ function enterAcademic(s: GameState, scene: SceneBuilder): void {
         ((s as any).trait_temp = (s as any).trait_temp ?? {})['msg-down'] = 'The academic trait has downgraded to <b>Likes Learning</b>.';
         ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp_down'] = 150;
         ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp_up'] = 300;
-        ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = 'EXP: ' + ((s as any).trait_vars ?? 0)?.['academic_exp'] + '. ';
+        ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = 'EXP: ' + (((s as any).trait_vars ?? 0)?.['academic_exp']) + '. ';
         ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = ((s as any).trait_temp['tooltip'] ?? 0) + ('Keep attending classes to progress. ');
         ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = ((s as any).trait_temp['tooltip'] ?? 0) + ('Missing classes reduces EXP.');
       } else {
@@ -1549,7 +1549,7 @@ function enterAcademic(s: GameState, scene: SceneBuilder): void {
           ((s as any).trait_temp = (s as any).trait_temp ?? {})['msg-down'] = 'The academic trait has downgraded to <b>Loves to Learn</b>.';
           ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp_down'] = 250;
           ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp_up'] = 400;
-          ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = 'EXP: ' + ((s as any).trait_vars ?? 0)?.['academic_exp'] + '. ';
+          ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = 'EXP: ' + (((s as any).trait_vars ?? 0)?.['academic_exp']) + '. ';
           ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = ((s as any).trait_temp['tooltip'] ?? 0) + ('Keep attending classes to progress. ');
           ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = ((s as any).trait_temp['tooltip'] ?? 0) + ('Missing classes reduces EXP.');
         } else {
@@ -1559,7 +1559,7 @@ function enterAcademic(s: GameState, scene: SceneBuilder): void {
             ((s as any).trait_temp = (s as any).trait_temp ?? {})['msg-up'] = 'The academic trait has upgraded to <b>Teacher\'s Pet</b>.';
             ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp_down'] = 350;
             ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp_up'] = (-1);
-            ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = 'EXP: ' + ((s as any).trait_vars ?? 0)?.['academic_exp'] + '. ';
+            ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = 'EXP: ' + (((s as any).trait_vars ?? 0)?.['academic_exp']) + '. ';
             ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = ((s as any).trait_temp['tooltip'] ?? 0) + ('Missing classes will cause this trait to regress.');
           }
         }
@@ -1662,20 +1662,20 @@ function enterBookworm(s: GameState, scene: SceneBuilder): void {
     ((s as any).trait_temp = (s as any).trait_temp ?? {})['name'] = 'Bookworm';
     ((s as any).trait_temp = (s as any).trait_temp ?? {})['icon'] = 'bookworm.png';
     ((s as any).trait_temp = (s as any).trait_temp ?? {})['hidden'] = 1;
-    ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp'] = ((s as any).trait_vars ?? 0)?.['bookworm_exp'];
+    ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp'] = (((s as any).trait_vars ?? 0)?.['bookworm_exp']);
     if (((s as any).trait_vars ?? 0)?.['bookworm'] === 0) {
       ((s as any).trait_temp = (s as any).trait_temp ?? {})['desc'] = 'You don\'t have a particular love of reading. Books are fine, but you can take them or leave them.';
       ((s as any).trait_temp = (s as any).trait_temp ?? {})['msg'] = 'You\'ve lost the trait <b>Bookworm</b>.';
       ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp_down'] = (-1);
       ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp_up'] = 1;
-      ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = 'Reading EXP: ' + ((s as any).trait_vars ?? 0)?.['bookworm_exp'] + '. ';
+      ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = 'Reading EXP: ' + (((s as any).trait_vars ?? 0)?.['bookworm_exp']) + '. ';
       ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = ((s as any).trait_temp['tooltip'] ?? 0) + ('Read so much that your eyesight starts to suffer.');
     } else {
       ((s as any).trait_temp = (s as any).trait_temp ?? {})['desc'] = 'You read so obsessively that your eyesight has started to suffer for it. You feel best with a book in your hand, and get restless when you go too long without one.';
       ((s as any).trait_temp = (s as any).trait_temp ?? {})['msg'] = 'You\'ve gained the trait <b>Bookworm</b>.';
       ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp_down'] = 0;
       ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp_up'] = (-1);
-      ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = 'Reading EXP: ' + ((s as any).trait_vars ?? 0)?.['bookworm_exp'] + '. Last read: \' + iif(daystart = lastreadday, \'today\', iif(daystart = lastreadday + 1, \'yesterday\', \'' + ((s as any).daystart ?? 0) - ((s as any).lastreadday ?? 0) + ' days ago\')) + \'. ';
+      ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = 'Reading EXP: ' + (((s as any).trait_vars ?? 0)?.['bookworm_exp']) + '. Last read: \' + iif(daystart = lastreadday, \'today\', iif(daystart = lastreadday + 1, \'yesterday\', \'' + ((s as any).daystart ?? 0) - ((s as any).lastreadday ?? 0) + ' days ago\')) + \'. ';
       ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = ((s as any).trait_temp['tooltip'] ?? 0) + ('EXP drops rapidly if you go more than 2 days without reading.');
     }
   }
@@ -1846,7 +1846,7 @@ function enterSizequeen(s: GameState, scene: SceneBuilder): void {
     if (((s as any).cheatVars ?? 0)?.['sizequeen_disabled']) {
       // TODO-QSP: exit
     }
-    ((s as any).trait_vars = (s as any).trait_vars ?? {})['sizequeen_exp'] = ((s as any).trait_vars['sizequeen_exp'] ?? 0) + (Math.min(((s as any).trait_vars ?? 0)?.['sizequeen_temp'], 6));
+    ((s as any).trait_vars = (s as any).trait_vars ?? {})['sizequeen_exp'] = ((s as any).trait_vars['sizequeen_exp'] ?? 0) + (Math.min((((s as any).trait_vars ?? 0)?.['sizequeen_temp']), 6));
     ((s as any).trait_vars = (s as any).trait_vars ?? {})['sizequeen_temp'] = 0;
     return;
   }
@@ -1921,14 +1921,14 @@ function enterSizequeen(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === 'details') {
     ((s as any).trait_temp = (s as any).trait_temp ?? {})['icon'] = 'sizequeen.png';
     ((s as any).trait_temp = (s as any).trait_temp ?? {})['hidden'] = 1;
-    ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp'] = ((s as any).trait_vars ?? 0)?.['sizequeen_exp'];
+    ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp'] = (((s as any).trait_vars ?? 0)?.['sizequeen_exp']);
     if (((s as any).trait_vars ?? 0)?.['sizequeen'] === 0) {
       ((s as any).trait_temp = (s as any).trait_temp ?? {})['name'] = 'Size Preference';
       ((s as any).trait_temp = (s as any).trait_temp ?? {})['desc'] = 'You can enjoy sex with partners of all sizes, with no particular preference.';
       ((s as any).trait_temp = (s as any).trait_temp ?? {})['msg'] = 'You\'ve lost the trait <b>Size Queen</b>. If this wasn\'t a cheat reset, something went wrong, so please report this.';
       ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp_down'] = (-1);
       ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp_up'] = 60;
-      ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = 'EXP: ' + ((s as any).trait_vars ?? 0)?.['sizequeen_exp'] + '. ';
+      ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = 'EXP: ' + (((s as any).trait_vars ?? 0)?.['sizequeen_exp']) + '. ';
       ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = ((s as any).trait_temp['tooltip'] ?? 0) + ('Have sex with well-endowed partners. ');
       ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = ((s as any).trait_temp['tooltip'] ?? 0) + ('EXP decays by 1 daily and from small partners.');
     } else {
@@ -1939,7 +1939,7 @@ function enterSizequeen(s: GameState, scene: SceneBuilder): void {
         ((s as any).trait_temp = (s as any).trait_temp ?? {})['msg-down'] = 'The trait <b>Size Queen</b> has decreased to Level 1. You still prefer larger partners and toys, but your preferences have softened a bit.';
         ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp_down'] = (-1);
         ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp_up'] = 120;
-        ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = 'EXP: ' + ((s as any).trait_vars ?? 0)?.['sizequeen_exp'] + '. ';
+        ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = 'EXP: ' + (((s as any).trait_vars ?? 0)?.['sizequeen_exp']) + '. ';
         ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = ((s as any).trait_temp['tooltip'] ?? 0) + ('Have sex with well-endowed partners. ');
         ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = ((s as any).trait_temp['tooltip'] ?? 0) + ('EXP decays by 1 daily and from small partners. This level cannot be lost naturally.');
       } else {
@@ -1949,7 +1949,7 @@ function enterSizequeen(s: GameState, scene: SceneBuilder): void {
           ((s as any).trait_temp = (s as any).trait_temp ?? {})['msg'] = 'The trait Size Queen has increased to level 2 - <b>Size Addict</b>! You can\'t get enough of giant dicks.';
           ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp_down'] = 120;
           ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp_up'] = (-1);
-          ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = 'EXP: ' + ((s as any).trait_vars ?? 0)?.['sizequeen_exp'] + '. ';
+          ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = 'EXP: ' + (((s as any).trait_vars ?? 0)?.['sizequeen_exp']) + '. ';
           ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = ((s as any).trait_temp['tooltip'] ?? 0) + ('EXP decays by 1 daily and from small partners. Drops to Lv. 1 below 120.');
         }
       }
@@ -2000,7 +2000,7 @@ function enterFitnessFreak(s: GameState, scene: SceneBuilder): void {
     }
     (s as any).temp_ff_gain = (((s as any).temp_ff_gain ?? 0) * Math.max(((s as any).locArgs?.[2] ?? 0), 1) + 2) / 4;
     ((s as any).trait_vars = (s as any).trait_vars ?? {})['fitness_freak_exp'] = ((s as any).trait_vars['fitness_freak_exp'] ?? 0) + (((s as any).temp_ff_gain ?? 0));
-    ((s as any).trait_vars = (s as any).trait_vars ?? {})['fitness_freak_exp'] = qspFunc(s, 'math', 'int_clamp', ((s as any).trait_vars ?? 0)?.['fitness_freak_exp'], (-10), 100);
+    ((s as any).trait_vars = (s as any).trait_vars ?? {})['fitness_freak_exp'] = qspFunc(s, 'math', 'int_clamp', (((s as any).trait_vars ?? 0)?.['fitness_freak_exp']), (-10), 100);
     if (((s as any).temp_ff_gain ?? 0) > 0) {
       ((s as any).trait_vars = (s as any).trait_vars ?? {})['fitness_freak_today'] = ((s as any).trait_vars['fitness_freak_today'] ?? 0) + (((s as any).temp_ff_gain ?? 0));
     }
@@ -2011,7 +2011,7 @@ function enterFitnessFreak(s: GameState, scene: SceneBuilder): void {
     }
     ((s as any).trait_vars = (s as any).trait_vars ?? {})['fitness_freak_today'] = 0;
     ((s as any).trait_vars = (s as any).trait_vars ?? {})['fitness_freak_exp'] = ((s as any).trait_vars['fitness_freak_exp'] ?? 0) - (1);
-    ((s as any).trait_vars = (s as any).trait_vars ?? {})['fitness_freak_exp'] = qspFunc(s, 'math', 'int_clamp', ((s as any).trait_vars ?? 0)?.['fitness_freak_exp'], (-10), 100);
+    ((s as any).trait_vars = (s as any).trait_vars ?? {})['fitness_freak_exp'] = qspFunc(s, 'math', 'int_clamp', (((s as any).trait_vars ?? 0)?.['fitness_freak_exp']), (-10), 100);
     if (((s as any).trait_vars ?? 0)?.['fitness_freak_exp'] >= 60) {
       if (((s as any).trait_vars ?? 0)?.['fitness_freak'] === 0) {
         { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'fitness_freak', 1]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -2028,13 +2028,13 @@ function enterFitnessFreak(s: GameState, scene: SceneBuilder): void {
     ((s as any).trait_temp = (s as any).trait_temp ?? {})['name'] = 'Fitness Freak';
     ((s as any).trait_temp = (s as any).trait_temp ?? {})['icon'] = 'fitness_freak.png';
     ((s as any).trait_temp = (s as any).trait_temp ?? {})['hidden'] = 1;
-    ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp'] = ((s as any).trait_vars ?? 0)?.['fitness_freak_exp'];
+    ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp'] = (((s as any).trait_vars ?? 0)?.['fitness_freak_exp']);
     if (((s as any).trait_vars ?? 0)?.['fitness_freak'] === 0) {
       ((s as any).trait_temp = (s as any).trait_temp ?? {})['desc'] = 'Exercise is just exercise for you.';
       ((s as any).trait_temp = (s as any).trait_temp ?? {})['msg'] = 'You\'ve lost the trait <b>Fitness Freak</b>. Exercise no longer turns you on.';
       ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp_down'] = (-1);
       ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp_up'] = 60;
-      ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = 'EXP: ' + ((s as any).trait_vars ?? 0)?.['fitness_freak_exp'] + '. ';
+      ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = 'EXP: ' + (((s as any).trait_vars ?? 0)?.['fitness_freak_exp']) + '. ';
       ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = ((s as any).trait_temp['tooltip'] ?? 0) + ('Work out while aroused or naked. ');
       ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = ((s as any).trait_temp['tooltip'] ?? 0) + ('EXP decays by 1 daily.');
     } else {
@@ -2042,7 +2042,7 @@ function enterFitnessFreak(s: GameState, scene: SceneBuilder): void {
       ((s as any).trait_temp = (s as any).trait_temp ?? {})['msg'] = 'You\'ve gained the trait <b>Fitness Freak</b>! Exercise now turns you on.';
       ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp_down'] = 40;
       ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp_up'] = (-1);
-      ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = 'EXP: ' + ((s as any).trait_vars ?? 0)?.['fitness_freak_exp'] + '. ';
+      ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = 'EXP: ' + (((s as any).trait_vars ?? 0)?.['fitness_freak_exp']) + '. ';
       ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = ((s as any).trait_temp['tooltip'] ?? 0) + ('EXP decays by 1 daily. Working out while not aroused lowers EXP.');
     }
   }
@@ -2266,7 +2266,7 @@ function enterBodyHairAttitude(s: GameState, scene: SceneBuilder): void {
         ((s as any).trait_vars = (s as any).trait_vars ?? {})['body_hair_attitude_exp'] = ((s as any).trait_vars['body_hair_attitude_exp'] ?? 0) - ((Math.floor(Math.random() * 2) + 1));
       }
     }
-    ((s as any).trait_vars = (s as any).trait_vars ?? {})['body_hair_attitude_exp'] = qspFunc(s, 'math', 'int_clamp', ((s as any).trait_vars ?? 0)?.['body_hair_attitude_exp'], (-500), 500);
+    ((s as any).trait_vars = (s as any).trait_vars ?? {})['body_hair_attitude_exp'] = qspFunc(s, 'math', 'int_clamp', (((s as any).trait_vars ?? 0)?.['body_hair_attitude_exp']), (-500), 500);
     if (((s as any).trait_vars ?? 0)?.['body_hair_attitude'] === 1) {
       if (((s as any).trait_vars ?? 0)?.['body_hair_attitude_exp'] < 150) {
         { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'body_hair_attitude', 0]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -2291,7 +2291,7 @@ function enterBodyHairAttitude(s: GameState, scene: SceneBuilder): void {
   }
   if (String((s as any).locArgs?.[1] ?? '') === 'details') {
     ((s as any).trait_temp = (s as any).trait_temp ?? {})['hidden'] = 1;
-    ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp'] = ((s as any).trait_vars ?? 0)?.['body_hair_attitude_exp'];
+    ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp'] = (((s as any).trait_vars ?? 0)?.['body_hair_attitude_exp']);
     if (((s as any).lashair ?? 0) === 1  &&  ((s as any).trait_vars ?? 0)?.['body_hair_attitude'] !== -2) {
       ((s as any).trait_temp = (s as any).trait_temp ?? {})['name'] = 'Hair Attitude';
       ((s as any).trait_temp = (s as any).trait_temp ?? {})['desc'] = 'You had laser hair removal — how you feel about body hair no longer matters.';
@@ -2303,7 +2303,7 @@ function enterBodyHairAttitude(s: GameState, scene: SceneBuilder): void {
         ((s as any).trait_temp = (s as any).trait_temp ?? {})['msg'] = 'You\'ve gained the trait <b>Natural</b>. Body hair just feels right on you.';
         ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp_down'] = 150;
         ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp_up'] = (-1);
-        ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = 'EXP: ' + ((s as any).trait_vars ?? 0)?.['body_hair_attitude_exp'] + '. ';
+        ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = 'EXP: ' + (((s as any).trait_vars ?? 0)?.['body_hair_attitude_exp']) + '. ';
         ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = ((s as any).trait_temp['tooltip'] ?? 0) + ('Shave consistently to lose this trait.');
       } else {
         if (((s as any).trait_vars ?? 0)?.['body_hair_attitude'] === 0) {
@@ -2313,7 +2313,7 @@ function enterBodyHairAttitude(s: GameState, scene: SceneBuilder): void {
           ((s as any).trait_temp = (s as any).trait_temp ?? {})['msg'] = 'Your feelings about body hair have returned to neutral.';
           ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp_down'] = (-400);
           ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp_up'] = 400;
-          ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = 'EXP: ' + ((s as any).trait_vars ?? 0)?.['body_hair_attitude_exp'] + '. ';
+          ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = 'EXP: ' + (((s as any).trait_vars ?? 0)?.['body_hair_attitude_exp']) + '. ';
           ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = ((s as any).trait_temp['tooltip'] ?? 0) + ('Let body hair grow for Natural. ');
           ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = ((s as any).trait_temp['tooltip'] ?? 0) + ('Shave consistently for Silky.');
         } else {
@@ -2324,7 +2324,7 @@ function enterBodyHairAttitude(s: GameState, scene: SceneBuilder): void {
             ((s as any).trait_temp = (s as any).trait_temp ?? {})['msg'] = 'You\'ve gained the trait <b>Silky</b>. Smooth skin just feels right.';
             ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp_down'] = (-1);
             ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp_up'] = (-150);
-            ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = 'EXP: ' + ((s as any).trait_vars ?? 0)?.['body_hair_attitude_exp'] + '. ';
+            ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = 'EXP: ' + (((s as any).trait_vars ?? 0)?.['body_hair_attitude_exp']) + '. ';
             ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = ((s as any).trait_temp['tooltip'] ?? 0) + ('Let body hair grow to lose this trait.');
           } else {
             if (((s as any).trait_vars ?? 0)?.['body_hair_attitude'] === -2) {
@@ -2463,7 +2463,7 @@ function enterDoormat(s: GameState, scene: SceneBuilder): void {
   }
   if (String((s as any).locArgs?.[1] ?? '') === 'details') {
     ((s as any).trait_temp = (s as any).trait_temp ?? {})['hidden'] = 1;
-    ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp'] = ((s as any).trait_vars ?? 0)?.['doormat_exp'];
+    ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp'] = (((s as any).trait_vars ?? 0)?.['doormat_exp']);
     if (((s as any).trait_vars ?? 0)?.['doormat'] === 0) {
       ((s as any).trait_temp = (s as any).trait_temp ?? {})['name'] = 'Confidence';
       ((s as any).trait_temp = (s as any).trait_temp ?? {})['icon'] = 'doormat.png';
@@ -2476,7 +2476,7 @@ function enterDoormat(s: GameState, scene: SceneBuilder): void {
         ((s as any).trait_temp = (s as any).trait_temp ?? {})['msg'] = 'You\'ve developed the trait <b>Pushover</b>. Standing up for yourself feels harder.';
         ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp_down'] = (-1);
         ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp_up'] = 5;
-        ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = 'EXP: ' + ((s as any).trait_vars ?? 0)?.['doormat_exp'] + '. Changes via specific story events.';
+        ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = 'EXP: ' + (((s as any).trait_vars ?? 0)?.['doormat_exp']) + '. Changes via specific story events.';
       } else {
         if (((s as any).trait_vars ?? 0)?.['doormat'] === 2) {
           ((s as any).trait_temp = (s as any).trait_temp ?? {})['name'] = 'Doormat';
@@ -2485,7 +2485,7 @@ function enterDoormat(s: GameState, scene: SceneBuilder): void {
           ((s as any).trait_temp = (s as any).trait_temp ?? {})['msg'] = 'Your sense of self-worth has deteriorated further. You are now a <b>Doormat</b>.';
           ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp_down'] = (-1);
           ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp_up'] = 10;
-          ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = 'EXP: ' + ((s as any).trait_vars ?? 0)?.['doormat_exp'] + '. Changes via specific story events.';
+          ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = 'EXP: ' + (((s as any).trait_vars ?? 0)?.['doormat_exp']) + '. Changes via specific story events.';
         } else {
           if (((s as any).trait_vars ?? 0)?.['doormat'] === 3) {
             ((s as any).trait_temp = (s as any).trait_temp ?? {})['name'] = 'Broken';
@@ -2494,7 +2494,7 @@ function enterDoormat(s: GameState, scene: SceneBuilder): void {
             ((s as any).trait_temp = (s as any).trait_temp ?? {})['msg'] = 'Something inside you has <b>Broken</b>. Resistance feels almost unthinkable.';
             ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp_down'] = (-1);
             ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp_up'] = (-1);
-            ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = 'EXP: ' + ((s as any).trait_vars ?? 0)?.['doormat_exp'] + '. Set by specific story events.';
+            ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = 'EXP: ' + (((s as any).trait_vars ?? 0)?.['doormat_exp']) + '. Set by specific story events.';
           }
         }
       }
@@ -2559,9 +2559,9 @@ function enterCumslut(s: GameState, scene: SceneBuilder): void {
           // TODO-QSP: temp_cumslut['exp_gain'] *= 2
         }
       }
-      ((s as any).trait_vars = (s as any).trait_vars ?? {})['cumslut_exp'] = ((s as any).trait_vars['cumslut_exp'] ?? 0) + (((s as any).temp_cumslut ?? 0)?.['exp_gain']);
+      ((s as any).trait_vars = (s as any).trait_vars ?? {})['cumslut_exp'] = ((s as any).trait_vars['cumslut_exp'] ?? 0) + ((((s as any).temp_cumslut ?? 0)?.['exp_gain']));
       if (((s as any).temp_cumslut ?? 0)?.['is_public'] === 1) {
-        ((s as any).trait_vars = (s as any).trait_vars ?? {})['cumslut_exp_public'] = ((s as any).trait_vars['cumslut_exp_public'] ?? 0) + (((s as any).temp_cumslut ?? 0)?.['exp_gain']);
+        ((s as any).trait_vars = (s as any).trait_vars ?? {})['cumslut_exp_public'] = ((s as any).trait_vars['cumslut_exp_public'] ?? 0) + ((((s as any).temp_cumslut ?? 0)?.['exp_gain']));
       }
       if ((Math.floor(Math.random() * 100) + 1) <= 10) {
         if (((s as any).trait_vars ?? 0)?.['cumslut'] === 2) {
@@ -2579,8 +2579,8 @@ function enterCumslut(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
-    ((s as any).trait_vars = (s as any).trait_vars ?? {})['cumslut_exp'] = qspFunc(s, 'math', 'int_clamp', ((s as any).trait_vars ?? 0)?.['cumslut_exp'], 0, 4000);
-    ((s as any).trait_vars = (s as any).trait_vars ?? {})['cumslut_exp_public'] = qspFunc(s, 'math', 'int_clamp', ((s as any).trait_vars ?? 0)?.['cumslut_exp_public'], 0, 2000);
+    ((s as any).trait_vars = (s as any).trait_vars ?? {})['cumslut_exp'] = qspFunc(s, 'math', 'int_clamp', (((s as any).trait_vars ?? 0)?.['cumslut_exp']), 0, 4000);
+    ((s as any).trait_vars = (s as any).trait_vars ?? {})['cumslut_exp_public'] = qspFunc(s, 'math', 'int_clamp', (((s as any).trait_vars ?? 0)?.['cumslut_exp_public']), 0, 2000);
     if (((s as any).trait_vars ?? 0)?.['cumslut_exp'] >= 2000  &&  ((s as any).trait_vars ?? 0)?.['cumslut_exp_public'] >= 1000) {
       if (((s as any).trait_vars ?? 0)?.['cumslut'] !== 2) {
         { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'cumslut', 2]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -2602,21 +2602,21 @@ function enterCumslut(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: exit
     }
     if (((s as any).trait_vars ?? 0)?.['cumslut_exp'] > 0) {
-      ((s as any).trait_vars = (s as any).trait_vars ?? {})['cumslut_exp'] = ((s as any).trait_vars['cumslut_exp'] ?? 0) - (Math.min(60, ((s as any).trait_vars ?? 0)?.['cumslut_exp']));
-      ((s as any).trait_vars = (s as any).trait_vars ?? {})['cumslut_exp_public'] = ((s as any).trait_vars['cumslut_exp_public'] ?? 0) - (Math.min(60, ((s as any).trait_vars ?? 0)?.['cumslut_exp_public']));
+      ((s as any).trait_vars = (s as any).trait_vars ?? {})['cumslut_exp'] = ((s as any).trait_vars['cumslut_exp'] ?? 0) - (Math.min(60, (((s as any).trait_vars ?? 0)?.['cumslut_exp'])));
+      ((s as any).trait_vars = (s as any).trait_vars ?? {})['cumslut_exp_public'] = ((s as any).trait_vars['cumslut_exp_public'] ?? 0) - (Math.min(60, (((s as any).trait_vars ?? 0)?.['cumslut_exp_public'])));
     }
   }
   if (String((s as any).locArgs?.[1] ?? '') === 'details') {
     ((s as any).trait_temp = (s as any).trait_temp ?? {})['icon'] = 'cumslut.png';
     ((s as any).trait_temp = (s as any).trait_temp ?? {})['hidden'] = 1;
-    ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp'] = ((s as any).trait_vars ?? 0)?.['cumslut_exp'];
+    ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp'] = (((s as any).trait_vars ?? 0)?.['cumslut_exp']);
     if (((s as any).trait_vars ?? 0)?.['cumslut'] === 2) {
       ((s as any).trait_temp = (s as any).trait_temp ?? {})['name'] = 'Cumbucket';
       ((s as any).trait_temp = (s as any).trait_temp ?? {})['desc'] = 'You\'re addicted to being glazed. Wearing cum anywhere — public or private — gets you dripping. The humiliation of being seen with it only makes it better.';
       ((s as any).trait_temp = (s as any).trait_temp ?? {})['msg'] = 'You\'ve gained the trait <b>Cumbucket</b>. You can\'t get enough of being seen covered in cum.';
       ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp_down'] = 2000;
       ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp_up'] = (-1);
-      ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = 'EXP: ' + ((s as any).trait_vars ?? 0)?.['cumslut_exp'] + '. ';
+      ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = 'EXP: ' + (((s as any).trait_vars ?? 0)?.['cumslut_exp']) + '. ';
       ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = ((s as any).trait_temp['tooltip'] ?? 0) + ('EXP decays by 60 daily.');
     } else {
       if (((s as any).trait_vars ?? 0)?.['cumslut'] === 1) {
@@ -2625,7 +2625,7 @@ function enterCumslut(s: GameState, scene: SceneBuilder): void {
         ((s as any).trait_temp = (s as any).trait_temp ?? {})['msg'] = 'You\'ve gained the trait <b>Cumslut</b>. Wearing cum in private makes you feel dirty — and you love it.';
         ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp_down'] = 300;
         ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp_up'] = 2000;
-        ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = 'EXP: ' + ((s as any).trait_vars ?? 0)?.['cumslut_exp'] + ' (public: ' + ((s as any).trait_vars ?? 0)?.['cumslut_exp_public'] + '/1000). ';
+        ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = 'EXP: ' + (((s as any).trait_vars ?? 0)?.['cumslut_exp']) + ' (public: ' + (((s as any).trait_vars ?? 0)?.['cumslut_exp_public']) + '/1000). ';
         ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = ((s as any).trait_temp['tooltip'] ?? 0) + ('Wear cum in public to advance to Lv. 2. ');
         ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = ((s as any).trait_temp['tooltip'] ?? 0) + ('EXP decays by 60 daily.');
       } else {
@@ -2635,7 +2635,7 @@ function enterCumslut(s: GameState, scene: SceneBuilder): void {
           ((s as any).trait_temp = (s as any).trait_temp ?? {})['msg'] = 'You\'ve lost the trait <b>Cumslut</b>.';
           ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp_down'] = (-1);
           ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp_up'] = 300;
-          ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = 'EXP: ' + ((s as any).trait_vars ?? 0)?.['cumslut_exp'] + '. ';
+          ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = 'EXP: ' + (((s as any).trait_vars ?? 0)?.['cumslut_exp']) + '. ';
           ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = ((s as any).trait_temp['tooltip'] ?? 0) + ('Walk around with visible cum on you to gain EXP. ');
           ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = ((s as any).trait_temp['tooltip'] ?? 0) + ('EXP decays by 60 daily.');
         }

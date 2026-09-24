@@ -321,7 +321,7 @@ function enterText2(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: "How about <<npc_meethour[$boy]>>:00?."
     scene.text(`"How about ${(((st as any).npc_meethour ?? 0)?.[String((st as any).boy ?? 0)] ?? '')}:00?."`);
     // TODO-QSP: dynamic text: <<$call4Date["CallerName"]>>, "Okay <<$call4Date["SvetaName"]>>, see you at <<np...
-    scene.text(`${((st as any).call4Date ?? 0)?.['CallerName'] ?? ''}, "Okay ${((st as any).call4Date ?? 0)?.['SvetaName'] ?? ''}, see you at ${(((st as any).npc_meethour ?? 0)?.[String((st as any).boy ?? 0)] ?? '')}:00."`);
+    scene.text(`${(((st as any).call4Date ?? 0)?.['CallerName'] ?? '')}, "Okay ${(((st as any).call4Date ?? 0)?.['SvetaName'] ?? '')}, see you at ${(((st as any).npc_meethour ?? 0)?.[String((st as any).boy ?? 0)] ?? '')}:00."`);
     scene.actions([
       { label: 'Put away your phone', handler: (st: GameState) => {
     dynamicGoto(st, 'prevLoc', 'prevArg');

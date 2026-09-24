@@ -51,30 +51,30 @@ function enterGroup(s: GameState, scene: SceneBuilder): void {
       ((s as any).npc_grupTipe = (s as any).npc_grupTipe ?? {})['A' + String(((s as any).npctemp ?? 0))] = 7;
     } else {
       ((s as any).schoolenable = (s as any).schoolenable ?? {})['A' + String(((s as any).npctemp ?? 0))] = 1;
-      ((s as any).npcGo = (s as any).npcGo ?? {})['A' + String(((s as any).npctemp ?? 0))] = '<a href="#" onclick="window.__gameStore.setState((s) => { s.numnpc = ' + ((s as any).npctemp ?? 0) + '; return s; }); window.__gameStore.getState().doGoto(/u0027Snpc/u0027, /u0027/u0027); return false;">' + ((s as any).npc_firstname ?? 0)?.['A' + String(((s as any).npctemp ?? 0))] + ' ' + ((s as any).npc_lastname ?? 0)?.['A' + String(((s as any).npctemp ?? 0))] + '</a>';
+      ((s as any).npcGo = (s as any).npcGo ?? {})['A' + String(((s as any).npctemp ?? 0))] = '<a href="#" onclick="window.__gameStore.setState((s) => { s.numnpc = ' + ((s as any).npctemp ?? 0) + '; return s; }); window.__gameStore.getState().doGoto(/u0027Snpc/u0027, /u0027/u0027); return false;">' + (((s as any).npc_firstname ?? 0)?.['A' + String(((s as any).npctemp ?? 0))]) + ' ' + (((s as any).npc_lastname ?? 0)?.['A' + String(((s as any).npctemp ?? 0))]) + '</a>';
       ((s as any).school_static_num = (s as any).school_static_num ?? {})['A' + String(((s as any).npctemp ?? 0))] = 'A' + ((s as any).npctemp ?? 0) + '';
       if (String((s as any).locArgs?.[1] ?? '') === 'teacher'  ||  String((s as any).locArgs?.[1] ?? '') === 6) {
         ((s as any).npc_grupTipe = (s as any).npc_grupTipe ?? {})['A' + String(((s as any).npctemp ?? 0))] = 6;
       } else {
         if (String((s as any).locArgs?.[1] ?? '') === 'outcast'  ||  String((s as any).locArgs?.[1] ?? '') === 5) {
           ((s as any).npc_grupTipe = (s as any).npc_grupTipe ?? {})['A' + String(((s as any).npctemp ?? 0))] = 5;
-          ((s as any).npcGoSchool = (s as any).npcGoSchool ?? {})['A' + String(((s as any).npctemp ?? 0))] = '<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027gschool_outcast_chats/u0027, /u0027/u0027); return false;">' + ((s as any).npc_usedname ?? 0)?.['A' + String(((s as any).npctemp ?? 0))] + '</a>';
+          ((s as any).npcGoSchool = (s as any).npcGoSchool ?? {})['A' + String(((s as any).npctemp ?? 0))] = '<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027gschool_outcast_chats/u0027, /u0027/u0027); return false;">' + (((s as any).npc_usedname ?? 0)?.['A' + String(((s as any).npctemp ?? 0))]) + '</a>';
         } else {
           if (String((s as any).locArgs?.[1] ?? '') === 'gopnik'  ||  String((s as any).locArgs?.[1] ?? '') === 4) {
             ((s as any).npc_grupTipe = (s as any).npc_grupTipe ?? {})['A' + String(((s as any).npctemp ?? 0))] = 4;
-            ((s as any).npcGoSchool = (s as any).npcGoSchool ?? {})['A' + String(((s as any).npctemp ?? 0))] = '<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027gschool_gopnik_chats/u0027, /u0027/u0027); return false;">' + ((s as any).npc_usedname ?? 0)?.['A' + String(((s as any).npctemp ?? 0))] + '</a>';
+            ((s as any).npcGoSchool = (s as any).npcGoSchool ?? {})['A' + String(((s as any).npctemp ?? 0))] = '<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027gschool_gopnik_chats/u0027, /u0027/u0027); return false;">' + (((s as any).npc_usedname ?? 0)?.['A' + String(((s as any).npctemp ?? 0))]) + '</a>';
           } else {
             if (String((s as any).locArgs?.[1] ?? '') === 'nerd'  ||  String((s as any).locArgs?.[1] ?? '') === 3) {
               ((s as any).npc_grupTipe = (s as any).npc_grupTipe ?? {})['A' + String(((s as any).npctemp ?? 0))] = 3;
-              ((s as any).npcGoSchool = (s as any).npcGoSchool ?? {})['A' + String(((s as any).npctemp ?? 0))] = '<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027gschool_nerd_chats/u0027, /u0027/u0027); return false;">' + ((s as any).npc_usedname ?? 0)?.['A' + String(((s as any).npctemp ?? 0))] + '</a>';
+              ((s as any).npcGoSchool = (s as any).npcGoSchool ?? {})['A' + String(((s as any).npctemp ?? 0))] = '<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027gschool_nerd_chats/u0027, /u0027/u0027); return false;">' + (((s as any).npc_usedname ?? 0)?.['A' + String(((s as any).npctemp ?? 0))]) + '</a>';
             } else {
               if (String((s as any).locArgs?.[1] ?? '') === 'jock'  ||  String((s as any).locArgs?.[1] ?? '') === 2) {
                 ((s as any).npc_grupTipe = (s as any).npc_grupTipe ?? {})['A' + String(((s as any).npctemp ?? 0))] = 2;
-                ((s as any).npcGoSchool = (s as any).npcGoSchool ?? {})['A' + String(((s as any).npctemp ?? 0))] = '<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027gschool_jock_chats/u0027, /u0027/u0027); return false;">' + ((s as any).npc_usedname ?? 0)?.['A' + String(((s as any).npctemp ?? 0))] + '</a>';
+                ((s as any).npcGoSchool = (s as any).npcGoSchool ?? {})['A' + String(((s as any).npctemp ?? 0))] = '<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027gschool_jock_chats/u0027, /u0027/u0027); return false;">' + (((s as any).npc_usedname ?? 0)?.['A' + String(((s as any).npctemp ?? 0))]) + '</a>';
               } else {
                 if (String((s as any).locArgs?.[1] ?? '') === 'coolkid'  ||  String((s as any).locArgs?.[1] ?? '') === 1) {
                   ((s as any).npc_grupTipe = (s as any).npc_grupTipe ?? {})['A' + String(((s as any).npctemp ?? 0))] = 1;
-                  ((s as any).npcGoSchool = (s as any).npcGoSchool ?? {})['A' + String(((s as any).npctemp ?? 0))] = '<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027gschool_coolkid_chats/u0027, /u0027/u0027); return false;">' + ((s as any).npc_usedname ?? 0)?.['A' + String(((s as any).npctemp ?? 0))] + '</a>';
+                  ((s as any).npcGoSchool = (s as any).npcGoSchool ?? {})['A' + String(((s as any).npctemp ?? 0))] = '<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027gschool_coolkid_chats/u0027, /u0027/u0027); return false;">' + (((s as any).npc_usedname ?? 0)?.['A' + String(((s as any).npctemp ?? 0))]) + '</a>';
                 }
               }
             }

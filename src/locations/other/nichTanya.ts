@@ -1471,7 +1471,7 @@ function enterDate(s: GameState, scene: SceneBuilder): void {
                   scene.img('images/characters/city/tanya/sexL/psovaginal/psovaginal0.jpg');
                   scene.text('Tanya mercilessly fucks you for more than ten minutes.');
                   scene.text('From your position you can\'t see her. You can only feel her hands on your hips and her fake member grinding into you.');
-                  (s as any).dick = ((s as any).nichTanya ?? 0)?.['Strapon'];
+                  (s as any).dick = (((s as any).nichTanya ?? 0)?.['Strapon']);
                   qspCall(s, 'arousal', 'vaginal_strap', 15, 'lesbian', 'sub');
                   qspCall(s, 'stat', '');
                   scene.text('After a while you hear a breath quicken. She pulls back your head by pulling on your hair. With a deep moan she cums.');
@@ -1567,22 +1567,22 @@ function enterDesc(s: GameState, scene: SceneBuilder): void {
   if (((s as any).nichTanya ?? 0)?.['Relationship'] > 0  &&  ((s as any).nichTanya ?? 0)?.['Relationship'] < 4) {
     if (((s as any).nichTanya ?? 0)?.['Dominance'] >= 70) {
       // TODO-QSP: dynamic text: She acts very dominantly around you (<<nichTanya[''Dominance'']>>)
-      scene.text(`She acts very dominantly around you (${((s as any).nichTanya ?? 0)?.['Dominance'] ?? ''})`);
+      scene.text(`She acts very dominantly around you (${(((s as any).nichTanya ?? 0)?.['Dominance'] ?? '')})`);
     } else {
       if (((s as any).nichTanya ?? 0)?.['Dominance'] >= 20) {
         // TODO-QSP: dynamic text: She acts dominantly around you (<<nichTanya[''Dominance'']>>)
-        scene.text(`She acts dominantly around you (${((s as any).nichTanya ?? 0)?.['Dominance'] ?? ''})`);
+        scene.text(`She acts dominantly around you (${(((s as any).nichTanya ?? 0)?.['Dominance'] ?? '')})`);
       } else {
         if (((s as any).nichTanya ?? 0)?.['Dominance'] <= -70) {
           // TODO-QSP: dynamic text: She acts very submissively around you (<<nichTanya[''Dominance'']>>)
-          scene.text(`She acts very submissively around you (${((s as any).nichTanya ?? 0)?.['Dominance'] ?? ''})`);
+          scene.text(`She acts very submissively around you (${(((s as any).nichTanya ?? 0)?.['Dominance'] ?? '')})`);
         } else {
           if (((s as any).nichTanya ?? 0)?.['Dominance'] <= -20) {
             // TODO-QSP: dynamic text: She acts submissively around you (<<nichTanya[''Dominance'']>>)
-            scene.text(`She acts submissively around you (${((s as any).nichTanya ?? 0)?.['Dominance'] ?? ''})`);
+            scene.text(`She acts submissively around you (${(((s as any).nichTanya ?? 0)?.['Dominance'] ?? '')})`);
           } else {
             // TODO-QSP: dynamic text: Her behaviour around you is neither remarkably dominant nor submissive (<<nichTa...
-            scene.text(`Her behaviour around you is neither remarkably dominant nor submissive (${((s as any).nichTanya ?? 0)?.['Dominance'] ?? ''})`);
+            scene.text(`Her behaviour around you is neither remarkably dominant nor submissive (${(((s as any).nichTanya ?? 0)?.['Dominance'] ?? '')})`);
           }
         }
       }
@@ -1745,7 +1745,7 @@ function enterPsovaginal(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/city/tanya/sexL/pstrapon/pstr...
   scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/characters/city/tanya/sexL/pstrapon/pstrapon` + (Math.floor(Math.random() * 4) + 0) + '.jpg"></center>');
   scene.text('You watch as Tanya puts on the strap-on, adjusting it to her hips and centering the fake cock, and then she moves to you and inserts it slowly into your pussy. You moan and grind back at her while she fucks you with it.');
-  (s as any).dick = ((s as any).nichTanya ?? 0)?.['Strapon'];
+  (s as any).dick = (((s as any).nichTanya ?? 0)?.['Strapon']);
   qspCall(s, 'arousal', 'vaginal_strap', 5, 'lesbian');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSexMatrix(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end

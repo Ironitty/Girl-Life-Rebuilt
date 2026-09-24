@@ -433,7 +433,7 @@ function enterCyc2(s: GameState, scene: SceneBuilder): void {
         // TODO-QSP: fert_thresh /= 2
       }
       if (((s as any).cheatVars ?? 0)?.['preg_chance'] !== 0) {
-        (s as any).fert_thresh = (((s as any).fert_thresh ?? 0) * 100) / qspFunc(s, '_difficulty', 'get_multiplied', ((s as any).cheatVars ?? 0)?.['preg_chance'], 100, ((s as any).cheatVars ?? 0)?.['preg_chance_custom']);
+        (s as any).fert_thresh = (((s as any).fert_thresh ?? 0) * 100) / qspFunc(s, '_difficulty', 'get_multiplied', (((s as any).cheatVars ?? 0)?.['preg_chance']), 100, (((s as any).cheatVars ?? 0)?.['preg_chance_custom']));
       }
       if (((s as any).trait_vars ?? 0)?.['fertility'] > 0) {
         // TODO-QSP: fert_thresh /= 2
@@ -636,7 +636,7 @@ function enterCyc3(s: GameState, scene: SceneBuilder): void {
     }
   } else {
     if (((s as any).preg ?? 0) === 1) {
-      (s as any).pregChemFrac = ((s as any).pregChemFrac ?? 0) + (qspFunc(s, '_difficulty', 'get_multiplied', ((s as any).cheatVars ?? 0)?.['preg_speed'], 100, ((s as any).cheatVars ?? 0)?.['preg_speed_custom']));
+      (s as any).pregChemFrac = ((s as any).pregChemFrac ?? 0) + (qspFunc(s, '_difficulty', 'get_multiplied', (((s as any).cheatVars ?? 0)?.['preg_speed']), 100, (((s as any).cheatVars ?? 0)?.['preg_speed_custom'])));
       (s as any).pregChem = ((s as any).pregChem ?? 0) + (((s as any).pregChemFrac ?? 0) / 100);
       (s as any).pregChemFrac = ((s as any).pregChemFrac ?? 0) % 100;
     }
@@ -692,7 +692,7 @@ function enterPreg(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: $childtype[nextBaby-1] = 'identical twin'
     }
   }
-  (s as any).pregChemFrac = ((s as any).pregChemFrac ?? 0) + (qspFunc(s, '_difficulty', 'get_multiplied', ((s as any).cheatVars ?? 0)?.['preg_speed'], 100, ((s as any).cheatVars ?? 0)?.['preg_speed_custom']));
+  (s as any).pregChemFrac = ((s as any).pregChemFrac ?? 0) + (qspFunc(s, '_difficulty', 'get_multiplied', (((s as any).cheatVars ?? 0)?.['preg_speed']), 100, (((s as any).cheatVars ?? 0)?.['preg_speed_custom'])));
   (s as any).pregChem = ((s as any).pregChem ?? 0) + (((s as any).pregChemFrac ?? 0) / 100);
   (s as any).pregChemFrac = ((s as any).pregChemFrac ?? 0) % 100;
   (s as any).temprand = (Math.floor(Math.random() * (800 - (-400) + 1)) + ((-400)));

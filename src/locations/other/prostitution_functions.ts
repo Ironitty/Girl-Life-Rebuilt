@@ -167,7 +167,7 @@ function enterProstituteOutfitAtHome(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       if (((s as any).prostitute ?? 0)?.['outfit_is_set']) {
-        (s as any).temp_not_wear_reason = qspFunc(s, 'clothing', 'not_wear_reason', ((s as any).prostitute ?? 0)?.['clothingworntype'], ((s as any).prostitute ?? 0)?.['clothingwornnumber']);
+        (s as any).temp_not_wear_reason = qspFunc(s, 'clothing', 'not_wear_reason', (((s as any).prostitute ?? 0)?.['clothingworntype']), (((s as any).prostitute ?? 0)?.['clothingwornnumber']));
         if (((s as any).temp_not_wear_reason ?? 0) === 'too_small') {
           scene.actions([
             { label: 'Change into prostitute outfit', handler: (st: GameState) => {
@@ -314,7 +314,7 @@ function enterIsDefault(s: GameState, scene: SceneBuilder): void {
 function enterSetDefaultOutfit(s: GameState, scene: SceneBuilder): void {
   ((s as any).prostitute = (s as any).prostitute ?? {})['clothingworntype'] = ((s as any).clothingworntype ?? 0);
   ((s as any).prostitute = (s as any).prostitute ?? {})['clothingwornnumber'] = ((s as any).clothingwornnumber ?? 0);
-  ((s as any).prostitute = (s as any).prostitute ?? {})['underweartype'] = ((s as any).underwear ?? 0)?.['type'];
+  ((s as any).prostitute = (s as any).prostitute ?? {})['underweartype'] = (((s as any).underwear ?? 0)?.['type']);
   ((s as any).prostitute = (s as any).prostitute ?? {})['bodysuitworntype'] = ((s as any).bodysuitworntype ?? 0);
   ((s as any).prostitute = (s as any).prostitute ?? {})['bodysuitwornnumber'] = ((s as any).bodysuitwornnumber ?? 0);
   ((s as any).prostitute = (s as any).prostitute ?? {})['pantyworntype'] = ((s as any).pantyworntype ?? 0);
@@ -375,16 +375,16 @@ function enterChangeIntoProstituteOutfit(s: GameState, scene: SceneBuilder): voi
   ((s as any).lastwornpursenumber = (s as any).lastwornpursenumber ?? {})['prostitute'] = ((s as any).currentpursenumber ?? 0);
   ((s as any).lastworncoattype = (s as any).lastworncoattype ?? {})['prostitute'] = ((s as any).coatworntype ?? 0);
   ((s as any).lastworncoatnumber = (s as any).lastworncoatnumber ?? {})['prostitute'] = ((s as any).coatwornnumber ?? 0);
-  qspCall(s, 'clothing', 'wear', ((s as any).prostitute ?? 0)?.['clothingworntype'], ((s as any).prostitute ?? 0)?.['clothingwornnumber']);
+  qspCall(s, 'clothing', 'wear', (((s as any).prostitute ?? 0)?.['clothingworntype']), (((s as any).prostitute ?? 0)?.['clothingwornnumber']));
   if (((s as any).prostitute ?? 0)?.['underweartype'] === 2) {
-    qspCall(s, 'underwear_bodysuits', 'wear', ((s as any).lastwornbodysuittype ?? 0)?.['prostitute'], ((s as any).lastwornbodysuitnumber ?? 0)?.['prostitute']);
+    qspCall(s, 'underwear_bodysuits', 'wear', (((s as any).lastwornbodysuittype ?? 0)?.['prostitute']), (((s as any).lastwornbodysuitnumber ?? 0)?.['prostitute']));
   } else {
-    qspCall(s, 'panties', 'wear', ((s as any).prostitute ?? 0)?.['pantyworntype'], ((s as any).prostitute ?? 0)?.['pantywornnumber']);
-    qspCall(s, 'bras', 'wear', ((s as any).prostitute ?? 0)?.['braworntype'], ((s as any).prostitute ?? 0)?.['brawornnumber']);
+    qspCall(s, 'panties', 'wear', (((s as any).prostitute ?? 0)?.['pantyworntype']), (((s as any).prostitute ?? 0)?.['pantywornnumber']));
+    qspCall(s, 'bras', 'wear', (((s as any).prostitute ?? 0)?.['braworntype']), (((s as any).prostitute ?? 0)?.['brawornnumber']));
   }
-  qspCall(s, 'shoes', 'wear', ((s as any).prostitute ?? 0)?.['shoeworntype'], ((s as any).prostitute ?? 0)?.['shoewornnumber']);
-  qspCall(s, 'purses', 'wear', ((s as any).prostitute ?? 0)?.['currentpursetype'], ((s as any).prostitute ?? 0)?.['currentpursenumber']);
-  qspCall(s, 'coats', 'wear', ((s as any).prostitute ?? 0)?.['coatworntype'], ((s as any).prostitute ?? 0)?.['coatwornnumber']);
+  qspCall(s, 'shoes', 'wear', (((s as any).prostitute ?? 0)?.['shoeworntype']), (((s as any).prostitute ?? 0)?.['shoewornnumber']));
+  qspCall(s, 'purses', 'wear', (((s as any).prostitute ?? 0)?.['currentpursetype']), (((s as any).prostitute ?? 0)?.['currentpursenumber']));
+  qspCall(s, 'coats', 'wear', (((s as any).prostitute ?? 0)?.['coatworntype']), (((s as any).prostitute ?? 0)?.['coatwornnumber']));
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterWorkClothes(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (String((s as any).locArgs?.[1] ?? '') === 'work') {
     ((s as any).prostitute = (s as any).prostitute ?? {})['changed_for_work'] = 1;
@@ -880,11 +880,11 @@ function enterPayment(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  ((s as any).prostitute = (s as any).prostitute ?? {})['payment'] = ((s as any).prostitute['payment'] ?? 0) + (((s as any).prostitute ?? 0)?.['payment_mod']);
-  ((s as any).prostitute = (s as any).prostitute ?? {})['payment_backup'] = ((s as any).prostitute ?? 0)?.['payment'];
+  ((s as any).prostitute = (s as any).prostitute ?? {})['payment'] = ((s as any).prostitute['payment'] ?? 0) + ((((s as any).prostitute ?? 0)?.['payment_mod']));
+  ((s as any).prostitute = (s as any).prostitute ?? {})['payment_backup'] = (((s as any).prostitute ?? 0)?.['payment']);
   ((s as any).prostitute = (s as any).prostitute ?? {})['payment'] = ((((s as any).prostitute ?? {})?.['payment'] ?? 0) * (100 + (((s as any).prostitute ?? {})?.['client_satisfaction'] ?? 0))) / 100;
-  ((s as any).prostitute = (s as any).prostitute ?? {})['payment'] = qspFunc(s, 'math', 'int_round', ((s as any).prostitute ?? 0)?.['payment'], 10);
-  ((s as any).prostitute = (s as any).prostitute ?? {})['payment_backup'] = qspFunc(s, 'math', 'int_round', ((s as any).prostitute ?? 0)?.['payment_backup'], 10);
+  ((s as any).prostitute = (s as any).prostitute ?? {})['payment'] = qspFunc(s, 'math', 'int_round', (((s as any).prostitute ?? 0)?.['payment']), 10);
+  ((s as any).prostitute = (s as any).prostitute ?? {})['payment_backup'] = qspFunc(s, 'math', 'int_round', (((s as any).prostitute ?? 0)?.['payment_backup']), 10);
   // TODO-QSP: end
   scene.build();
 }

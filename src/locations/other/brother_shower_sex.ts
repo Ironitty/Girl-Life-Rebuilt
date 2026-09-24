@@ -269,11 +269,11 @@ function enterBrotherShowerFuckFirst2(s: GameState, scene: SceneBuilder): void {
   if (qspFunc(s, 'pcs_has_attr', 'sex_virgin')) {
     scene.img('images/shared/home/bathroom/broshowervirgin.mp4');
     // TODO-QSP: dynamic text: Holding your breath, you push back on Kolka, feeling his tip stretch your pussy....
-    scene.text(`Holding your breath, you push back on Kolka, feeling his tip stretch your pussy. He eventually pushes the entire length of his cock inside causing you to gasp in pain as his ${((s as any).npc_dick ?? 0)?.['A34'] ?? ''} cm dick tears through your hymen. Despite your pain, neither of you stop moving, continuing to thrust against each other.`);
+    scene.text(`Holding your breath, you push back on Kolka, feeling his tip stretch your pussy. He eventually pushes the entire length of his cock inside causing you to gasp in pain as his ${(((s as any).npc_dick ?? 0)?.['A34'] ?? '')} cm dick tears through your hymen. Despite your pain, neither of you stop moving, continuing to thrust against each other.`);
   } else {
     scene.img(`images/shared/sex/shower/doggy${(Math.floor(Math.random() * 3) + 1)}.mp4`);
     // TODO-QSP: dynamic text: Your pussy easily swallows your brother''s <<npc_dick[''A34'']>> cm cock and you...
-    scene.text(`Your pussy easily swallows your brother's ${((s as any).npc_dick ?? 0)?.['A34'] ?? ''} cm cock and you immediately start building into a rhythm, pushing back on him in time with his thrusts for maximum depth of penetration.`);
+    scene.text(`Your pussy easily swallows your brother's ${(((s as any).npc_dick ?? 0)?.['A34'] ?? '')} cm cock and you immediately start building into a rhythm, pushing back on him in time with his thrusts for maximum depth of penetration.`);
   }
   // TODO-QSP: end
   scene.actions([
@@ -390,7 +390,7 @@ function enterBrotherShowerAnalVagvAnalv(s: GameState, scene: SceneBuilder): voi
   scene.img('images/shared/home/bathroom/brothershowersex2.jpg');
   scene.text('Kolka looks at you. You know he wants to go further, and you want to do more than a blowjob too, but you know you can\'t.');
   // TODO-QSP: dynamic text: "We have to stop. I want to do more, but if we continue… if I lose my virginity,...
-  scene.text(`"We have to stop. I want to do more, but if we continue… if I lose my virginity, then ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''} will kill me."`);
+  scene.text(`"We have to stop. I want to do more, but if we continue… if I lose my virginity, then ${(((s as any).npc_nickname ?? 0)?.['A29'] ?? '')} will kill me."`);
   scene.text('Kolka looks confused, and with a hint of pleading in his voice says "But… I don\'t get it. How would she know?"');
   scene.text('You are momentarily surprised he doesn\'t know before realizing that he has no reason to know. "Why do you think I have to go to the doctors every month? I have to get checked."');
   scene.text('Kolka thinks for a moment before smiling. "Are my grades good enough to become a doctor?"');
@@ -619,7 +619,7 @@ function enterBrotherFuckCum(s: GameState, scene: SceneBuilder): void {
     (s as any).brothercumchoice = 1;
   } else {
     // TODO-QSP: dynamic text: "Nnngh~!" you bite your lip as you feel your brother''s <<npc_dick[''A34'']>> cm...
-    scene.text(`"Nnngh~!" you bite your lip as you feel your brother's ${((s as any).npc_dick ?? 0)?.['A34'] ?? ''} cm cock slide all the way into your pussy. You waste no time and the two of you start furiously fucking each other like the sex crazed teenagers you are.`);
+    scene.text(`"Nnngh~!" you bite your lip as you feel your brother's ${(((s as any).npc_dick ?? 0)?.['A34'] ?? '')} cm cock slide all the way into your pussy. You waste no time and the two of you start furiously fucking each other like the sex crazed teenagers you are.`);
     (s as any).orgasm_txt = 'After a few minutes of this, you can\'t take it anymore and cum. You grab the shower faucet tight, gasping as Kolka continues to pound you even as you quiver in the throes of your orgasm.';
     qspCall(s, 'arousal', 'vaginal', (Math.floor(Math.random() * 6) + 5), 'incest');
     if (((s as any).brothercumchoice ?? 0) < 5) {
@@ -804,12 +804,12 @@ function enterBrotherFuckCum(s: GameState, scene: SceneBuilder): void {
     scene.text('"Oh my god," you say, adopting an expression of severe panic. "You just came inside me! Your own sister! Do you have any idea what that means?"');
     scene.text('He wilts back from you. "I-"');
     // TODO-QSP: dynamic text: "I could get pregnant Kolka! I''m only <<age>>! I''m not ready to be a mother! A...
-    scene.text(`"I could get pregnant Kolka! I'm only ${((st as any).age ?? '')}! I'm not ready to be a mother! Are you ready to be a father?? If I have a baby, are you going to take responsibility? Oh god, what is ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''} going to think? Her son knocking up his sister?!"`);
+    scene.text(`"I could get pregnant Kolka! I'm only ${((st as any).age ?? '')}! I'm not ready to be a mother! Are you ready to be a father?? If I have a baby, are you going to take responsibility? Oh god, what is ${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')} going to think? Her son knocking up his sister?!"`);
     scene.text('Kolka\'s face visibly pales. "Oh shit! No! What are we going to do? I don\'t want to be a dad! I don\'t want to get in trouble for this! I-! I-!"');
     scene.text('He\'s on the verge of tears now and you can\'t hold back any longer and bust into near uncontrollable laughter. Your body is wracked with giggles, trying not to let your laughs escape the room and echo outside the door.');
     scene.text('"WHY ARE YOU LAUGHING?! THIS IS SERIOUS! YOU WERE SERIOUS A SECOND AGO!!"');
     // TODO-QSP: dynamic text: "Shhhhh!" you hush him, still laughing. "Pipe down would you?? Do you want <<$np...
-    scene.text(`"Shhhhh!" you hush him, still laughing. "Pipe down would you?? Do you want ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''} and dad to find out? Relax, I'm just fucking with you. I'm on birth control, I'm not gonna get pregnant."`);
+    scene.text(`"Shhhhh!" you hush him, still laughing. "Pipe down would you?? Do you want ${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')} and dad to find out? Relax, I'm just fucking with you. I'm on birth control, I'm not gonna get pregnant."`);
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/apartment/home/vanrpar.jpg');

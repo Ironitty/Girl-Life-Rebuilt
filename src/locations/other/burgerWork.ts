@@ -158,7 +158,7 @@ function enterWork2(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/characters/city/ilyushkin/sex/ilybjcar.jpg');
     // TODO-QSP: dynamic text: Ilyushkin takes you to his car standing in the alley. He gets behind the wheel a...
-    scene.text(`Ilyushkin takes you to his car standing in the alley. He gets behind the wheel and you sit next to him. Ilyushkin gets his dick out of his pants and grabs you by the hair pulling your face to his groin until his cock is buried in your ${((st as any).pc_desc ?? 0)?.['lips'] ?? ''} lips. You open your mouth and allow the member to enter between your lips. You are trying to suck hard, using your ${((st as any).pc_desc ?? 0)?.['lips'] ?? ''} lips on the penis so Ilyushkin would be finished quickly. Ilyushkin's body finally jerks and he finishes in your mouth. You continue to suck his dick swallowing the sperm without spilling a drop. Ilyushkin tucks his dick back in his pants and says, "Okay cocksucker, get out."`);
+    scene.text(`Ilyushkin takes you to his car standing in the alley. He gets behind the wheel and you sit next to him. Ilyushkin gets his dick out of his pants and grabs you by the hair pulling your face to his groin until his cock is buried in your ${(((st as any).pc_desc ?? 0)?.['lips'] ?? '')} lips. You open your mouth and allow the member to enter between your lips. You are trying to suck hard, using your ${(((st as any).pc_desc ?? 0)?.['lips'] ?? '')} lips on the penis so Ilyushkin would be finished quickly. Ilyushkin's body finally jerks and he finishes in your mouth. You continue to suck his dick swallowing the sperm without spilling a drop. Ilyushkin tucks his dick back in his pants and says, "Okay cocksucker, get out."`);
     qspCall(st, 'arousal', 'bj', 5, 'sub');
     qspCall(st, 'arousal', 'end');
     scene.actions([
@@ -215,7 +215,7 @@ function enterWork2(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/characters/city/ilyushkin/sex/ilybjfilm.jpg');
     // TODO-QSP: dynamic text: You get down on your knees in front of Ilyushkin and clasp his member with your ...
-    scene.text(`You get down on your knees in front of Ilyushkin and clasp his member with your ${((st as any).pc_desc ?? 0)?.['lips'] ?? ''} lips. Ilyushkin films you using his camera to get a closeup of you sucking his cock. After a while he lies you down on his couch and sits on your chest to make sure his cock is right in front of your face.`);
+    scene.text(`You get down on your knees in front of Ilyushkin and clasp his member with your ${(((st as any).pc_desc ?? 0)?.['lips'] ?? '')} lips. Ilyushkin films you using his camera to get a closeup of you sucking his cock. After a while he lies you down on his couch and sits on your chest to make sure his cock is right in front of your face.`);
     scene.actions([
       { label: 'Suck', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
@@ -231,7 +231,7 @@ function enterWork2(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/characters/city/ilyushkin/sex/ilybjfilm3.jpg');
     // TODO-QSP: dynamic text: Ilyushkin begins to finish on your <<$pc_desc[''lips'']>> lips. Cum drips from y...
-    scene.text(`Ilyushkin begins to finish on your ${((st as any).pc_desc ?? 0)?.['lips'] ?? ''} lips. Cum drips from your lips on your chin and chest. Ilyushkin finally turns the camera off and puts it away in a drawer. "Not bad. You did what you were required. Wash up and then get out."`);
+    scene.text(`Ilyushkin begins to finish on your ${(((st as any).pc_desc ?? 0)?.['lips'] ?? '')} lips. Cum drips from your lips on your chin and chest. Ilyushkin finally turns the camera off and puts it away in a drawer. "Not bad. You did what you were required. Wash up and then get out."`);
     qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {

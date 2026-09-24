@@ -86,7 +86,7 @@ function enterInviteCode(s: GameState, scene: SceneBuilder): void {
   ((s as any).event_vars = (s as any).event_vars ?? {})['window_end_ts'] = (((s as any).event_vars ?? {})?.['window_start_ts'] ?? 0) + 4;
   ((s as any).event_vars = (s as any).event_vars ?? {})['duration_ts'] = 8;
   ((s as any).event_vars = (s as any).event_vars ?? {})['color'] = 13;
-  qspCall(s, 'calendar_events', 'new_event', ((s as any).event_vars ?? 0)?.['id']);
+  qspCall(s, 'calendar_events', 'new_event', (((s as any).event_vars ?? 0)?.['id']));
   // TODO-QSP: end
   scene.build();
 }
@@ -203,9 +203,9 @@ function enterDateTimePicker(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: jump 'date_time_loop'
     } else {
       // TODO-QSP: dynamic text: "How about <<temp[''meet_time'']>>?" you ask.
-      scene.text(`"How about ${((st as any).temp ?? 0)?.['meet_time'] ?? ''}?" you ask.`);
+      scene.text(`"How about ${(((st as any).temp ?? 0)?.['meet_time'] ?? '')}?" you ask.`);
       if (qspFunc(s, 'lover_schedule', 'is_free', ((st as any).npcID ?? 0))) {
-        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ((st as any).npcID ?? 0), ((st as any).temp ?? 0)?.['date_type'], ((st as any).temp ?? 0)?.['meet_time']]; enterInviteCode(st, scene); (st as any).locArgs = __savedLocArgs; }
+        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ((st as any).npcID ?? 0), (((st as any).temp ?? 0)?.['date_type']), (((st as any).temp ?? 0)?.['meet_time'])]; enterInviteCode(st, scene); (st as any).locArgs = __savedLocArgs; }
         scene.text('"Sure, that sounds good. I\'ll see you then."');
       } else {
         if (((st as any).npc_rough ?? 0)?.[String((st as any).npcID ?? 0)] > 0) {

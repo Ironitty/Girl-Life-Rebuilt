@@ -49,7 +49,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/pc/reactions/embarrassed.mp4');
     // TODO-QSP: dynamic text: You avoid his gaze as you say: "I''m sorry, Vitek. I would like to, but it''s ju...
-    scene.text(`You avoid his gaze as you say: "I'm sorry, Vitek. I would like to, but it's just too early for me. My ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''} would never forgive me."`);
+    scene.text(`You avoid his gaze as you say: "I'm sorry, Vitek. I would like to, but it's just too early for me. My ${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')} would never forgive me."`);
     // TODO-QSP: dynamic text: Vitek loses his patience and angrily says: "Damnit, <<$pcs_nickname>>. You''re <...
     scene.text(`Vitek loses his patience and angrily says: "Damnit, ${((st as any).pcs_nickname ?? '')}. You're ${((st as any).age ?? '')} years old, and hot as hell. You're my bitch, and I say it's time we fuck… I've waited long enough!"`);
     qspCall(st, 'willpower', 'sex', 'resist', 'easy');
@@ -1858,7 +1858,7 @@ function enterBj3(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/shared/sex/blowjob/kotov...
   scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/shared/sex/blowjob/kotovbj3` + (Math.floor(Math.random() * 2) + 0) + '.mp4"></video></center>');
   // TODO-QSP: dynamic text: You wrap your delicate fingers around the shaft of his cock, guiding it to your ...
-  scene.text(`You wrap your delicate fingers around the shaft of his cock, guiding it to your mouth. Ignoring his pleas, you don't take it in your mouth and just put your ${((s as any).pc_desc ?? 0)?.['lips'] ?? ''} lips lips against it, kissing it over and over.`);
+  scene.text(`You wrap your delicate fingers around the shaft of his cock, guiding it to your mouth. Ignoring his pleas, you don't take it in your mouth and just put your ${(((s as any).pc_desc ?? 0)?.['lips'] ?? '')} lips lips against it, kissing it over and over.`);
   qspCall(s, 'arousal', 'foreplay', 5, 'sub');
   qspCall(s, 'stat', '');
   // TODO-QSP: end
@@ -1882,14 +1882,14 @@ function enterBj3(s: GameState, scene: SceneBuilder): void {
 function enterBj2(s: GameState, scene: SceneBuilder): void {
   (s as any).kotov_bj_times = ((s as any).kotov_bj_times ?? 0) + (1);
   if (((s as any).pcs_piercings ?? 0)?.['tongue'] > 0) {
-    (s as any).textsexkotov = 'close your ' + ((s as any).pc_desc ?? 0)?.['lips'] + ' lips lips around the head of his cock and suck him off eagerly, making sure you rub the barbell piercing in your tongue against his dick as often as you can';
+    (s as any).textsexkotov = 'close your ' + (((s as any).pc_desc ?? 0)?.['lips']) + ' lips lips around the head of his cock and suck him off eagerly, making sure you rub the barbell piercing in your tongue against his dick as often as you can';
   } else {
-    (s as any).textsexkotov = 'close your ' + ((s as any).pc_desc ?? 0)?.['lips'] + ' lips lips around the head of his cock and suck him off eagerly';
+    (s as any).textsexkotov = 'close your ' + (((s as any).pc_desc ?? 0)?.['lips']) + ' lips lips around the head of his cock and suck him off eagerly';
   }
   // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/shared/sex/blowjob/kotov...
   scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/shared/sex/blowjob/kotovbj2` + (Math.floor(Math.random() * 7) + 0) + '.mp4"></video></center>');
   // TODO-QSP: dynamic text: You <<$textsexkotov>>. You clench your <<$pc_desc[''lips'']>> lips lips around h...
-  scene.text(`You ${((s as any).textsexkotov ?? '')}. You clench your ${((s as any).pc_desc ?? 0)?.['lips'] ?? ''} lips lips around his cock tightly, and try to give him the best blowjob you've ever given.`);
+  scene.text(`You ${((s as any).textsexkotov ?? '')}. You clench your ${(((s as any).pc_desc ?? 0)?.['lips'] ?? '')} lips lips around his cock tightly, and try to give him the best blowjob you've ever given.`);
   scene.text('The tenderness of your lips is driving Vitek crazy, and he can do little more than moan uncontrollably while you keep sucking.');
   qspCall(s, 'arousal', 'bj', 5, 'sub');
   qspCall(s, 'stat', '');

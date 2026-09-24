@@ -56,7 +56,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       scene.text('The door to Tanyas room seems to be locked. You assume that her boyfriend is in there with her now. You could spy through the keyhole.');
       scene.actions([
 { label: 'Spy', handler: (st: GameState) => {
-    (st as any).nichTempPic = qspFunc(s, 'nichUtil', 'tanyaPic', 'sexH', 'spy', 'bf' + ((st as any).nichTanya ?? 0)?.['BF'] + '');
+    (st as any).nichTempPic = qspFunc(s, 'nichUtil', 'tanyaPic', 'sexH', 'spy', 'bf' + (((st as any).nichTanya ?? 0)?.['BF']) + '');
     scene.img(`${((st as any).nichTempPic ?? '')}`);
     scene.text('"Through the keyhole you can see Tanya and her boyfriend. They are obviously in the act of doing it."');
     scene.actions([
@@ -169,7 +169,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       scene.text('The door to Tanyas room seems to be locked. You assume that her boyfriend is in there with her now. You could spy through the keyhole.');
       scene.actions([
 { label: 'Spy', handler: (st: GameState) => {
-    (st as any).nichTempPic = qspFunc(s, 'nichUtil', 'tanyaPic', 'sexH', 'spy', 'bf' + ((st as any).nichTanya ?? 0)?.['BF'] + '');
+    (st as any).nichTempPic = qspFunc(s, 'nichUtil', 'tanyaPic', 'sexH', 'spy', 'bf' + (((st as any).nichTanya ?? 0)?.['BF']) + '');
     scene.img(`${((st as any).nichTempPic ?? '')}`);
     scene.text('"Through the keyhole you can see Tanya and her boyfriend. They are obviously in the act of doing it."');
     scene.actions([
@@ -282,7 +282,7 @@ function enterReturn(s: GameState, scene: SceneBuilder): void {
       scene.text('The door to Tanyas room seems to be locked. You assume that her boyfriend is in there with her now. You could spy through the keyhole.');
       scene.actions([
 { label: 'Spy', handler: (st: GameState) => {
-    (st as any).nichTempPic = qspFunc(s, 'nichUtil', 'tanyaPic', 'sexH', 'spy', 'bf' + ((st as any).nichTanya ?? 0)?.['BF'] + '');
+    (st as any).nichTempPic = qspFunc(s, 'nichUtil', 'tanyaPic', 'sexH', 'spy', 'bf' + (((st as any).nichTanya ?? 0)?.['BF']) + '');
     scene.img(`${((st as any).nichTempPic ?? '')}`);
     scene.text('"Through the keyhole you can see Tanya and her boyfriend. They are obviously in the act of doing it."');
     scene.actions([

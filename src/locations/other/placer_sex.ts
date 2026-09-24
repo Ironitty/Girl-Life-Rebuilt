@@ -66,8 +66,8 @@ function enterMeet(s: GameState, scene: SceneBuilder): void {
     ((st as any).stat = (st as any).stat ?? {})['rape_count'] = ((st as any).stat['rape_count'] ?? 0) + (1);
     ((st as any).stat = (st as any).stat ?? {})['gangbang_count'] = ((st as any).stat['gangbang_count'] ?? 0) + (1);
     (st as any).minut = ((st as any).minut ?? 0) + 5;
-    (st as any).guy = ((st as any).guy ?? 0) + (((st as any).placerParameter ?? 0)?.['number_of_man']);
-    (st as any).ciklkm = ((st as any).placerParameter ?? 0)?.['number_of_man'];
+    (st as any).guy = ((st as any).guy ?? 0) + ((((st as any).placerParameter ?? 0)?.['number_of_man']));
+    (st as any).ciklkm = (((st as any).placerParameter ?? 0)?.['number_of_man']);
     if ((!((st as any).dormrapeQW ?? 0))) {
       (st as any).dormrapeQW = 1;
     }

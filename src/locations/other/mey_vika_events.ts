@@ -1543,7 +1543,7 @@ function enterLearning0(s: GameState, scene: SceneBuilder): void {
     scene.text('"Don\'t worry, sweetheart." Tamara says gently as she sits down again. "It\'s not like this is the first time you\'ve seen them enjoy themselves like that. I know my daughter. She\'s been teasing you for a while now, hasn\'t she? Don\'t think for a second that they mind."');
     scene.text('"I\'ve seen a lot and been through a lot in my life. And I don\'t want my children to go through the same mishaps as I did. Sex is an integral part of our lives and if you know how to properly make use of this knowledge, you will find many doors opening. There are many wrong choices you can make in life. And who would I be, if I didn\'t prepare my children for the adult life?"');
     // TODO-QSP: dynamic text: "Y-You teach them these things?" you ask. "My <<$npc_nickname[''A29'']>> would l...
-    scene.text(`"Y-You teach them these things?" you ask. "My ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''} would lock me in my room if she even thought I'd consider such things."`);
+    scene.text(`"Y-You teach them these things?" you ask. "My ${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')} would lock me in my room if she even thought I'd consider such things."`);
     scene.text('"Oh sweety, your mother isn\'t exactly making things easier on you by forcing you to find everything out on yourself. Things can be a lot easier when you have someone to teach you."');
     scene.text('Tamara Meynold sighs…');
     scene.text('"If only I could make Katja understand…"');

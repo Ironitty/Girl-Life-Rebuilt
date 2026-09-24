@@ -28,11 +28,11 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'selfplay', 'suction_dildo');
   if (((s as any).motherQW ?? 0)?.['bathroom_dildos'] > 1  &&  ((s as any).motherKnowDildo ?? 0) === 1) {
     // TODO-QSP: dynamic text: <i>Huh? Where''d my dildos go? I thought I- oh shit! <<$npc_nickname[''A29'']>> ...
-    scene.text(`<i>Huh? Where'd my dildos go? I thought I- oh shit! ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''} probably took them again…</i>`);
+    scene.text(`<i>Huh? Where'd my dildos go? I thought I- oh shit! ${(((s as any).npc_nickname ?? 0)?.['A29'] ?? '')} probably took them again…</i>`);
   } else {
     if (((s as any).motherQW ?? 0)?.['bathroom_dildos'] === 1  &&  ((s as any).motherKnowDildo ?? 0) === 1) {
       // TODO-QSP: dynamic text: <i>Huh? Where''d my dildo go? I thought I- oh shit! <<$npc_nickname[''A29'']>> p...
-      scene.text(`<i>Huh? Where'd my dildo go? I thought I- oh shit! ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''} probably took it again…</i>`);
+      scene.text(`<i>Huh? Where'd my dildo go? I thought I- oh shit! ${(((s as any).npc_nickname ?? 0)?.['A29'] ?? '')} probably took it again…</i>`);
     } else {
       if (((s as any).motherQW ?? 0)?.['bathroom_dildos'] > 1  &&  (!((s as any).vanrPar_suction_dildo ?? 0))) {
         scene.text('<i>Huh? Where\'d my dildos go? I thought I left them right here…</i>');
@@ -112,7 +112,7 @@ function enterPeek(s: GameState, scene: SceneBuilder): void {
         scene.img('images/characters/pavlovsk/resident/vladimir/sex/bath_voyer_3.jpg');
         scene.text('You suddenly hear the bathroom door creak open and turn to see your stepfather devouring your naked body with his eyes.');
         // TODO-QSP: dynamic text: In that instant, all the little moments the two of you have shared flash through...
-        scene.text(`In that instant, all the little moments the two of you have shared flash through your mind as it dawns on you that your ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''} is at work…`);
+        scene.text(`In that instant, all the little moments the two of you have shared flash through your mind as it dawns on you that your ${(((s as any).npc_nickname ?? 0)?.['A29'] ?? '')} is at work…`);
         scene.actions([
           { label: 'Daddy wants to join?', handler: (st: GameState) => {
     qspCall(st, 'vanrPar', '');

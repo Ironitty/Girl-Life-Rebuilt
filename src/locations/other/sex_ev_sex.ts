@@ -49,7 +49,7 @@ function enterSexStart(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'sex_ev_after', 'fucked_out');
     } else {
       if (((st as any).sex_ev ?? 0)?.['position'] !== '') {
-        ((st as any).sex_ev = (st as any).sex_ev ?? {})['reset_pos'] = ((st as any).sex_ev ?? 0)?.['position'];
+        ((st as any).sex_ev = (st as any).sex_ev ?? {})['reset_pos'] = (((st as any).sex_ev ?? 0)?.['position']);
         scene.actions([
           { label: 'Stay in the same position', handler: (st: GameState) => {
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterReset(st, scene); (st as any).locArgs = __savedLocArgs; }
@@ -161,7 +161,7 @@ function enterSexPre(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPositionPicker(s: GameState, scene: SceneBuilder): void {
-  ((s as any).sex_ev = (s as any).sex_ev ?? {})['last_position'] = ((s as any).sex_ev ?? 0)?.['position'];
+  ((s as any).sex_ev = (s as any).sex_ev ?? {})['last_position'] = (((s as any).sex_ev ?? 0)?.['position']);
   if ((((s as any).sex_ev ?? 0)?.['position'] === ''  ||  ((s as any).sex_ev ?? 0)?.['position'] === 'kuni'  ||  ((s as any).sex_ev ?? 0)?.['position'] === 'facesit'  ||  ((s as any).sex_ev ?? 0)?.['position'] === 'fingering'  ||  ((s as any).sex_ev ?? 0)?.['position'] === 'nipple_play'  ||  ((s as any).sex_ev ?? 0)?.['position'] === 'handjob'  ||  ((s as any).sex_ev ?? 0)?.['position'] === 'blowjob'  ||  ((s as any).sex_ev ?? 0)?.['position'] === '69'  ||  ((s as any).sex_ev ?? 0)?.['position'] === 'makeout')  ||  ((s as any).sex_ev ?? 0)?.['new_pos'] === 1) {
     if (((s as any).npc_fav_pos ?? 0)?.[String((s as any).npcID ?? 0)] === 'miss'  &&  ((s as any).sex_ev ?? 0)?.['must_fuck_anal'] === 0) {
       ((s as any).sex_ev = (s as any).sex_ev ?? {})['position'] = 'miss';
@@ -205,7 +205,7 @@ function enterPositionPicker(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPositionMenu(s: GameState, scene: SceneBuilder): void {
-  ((s as any).sex_ev = (s as any).sex_ev ?? {})['last_position'] = ((s as any).sex_ev ?? 0)?.['position'];
+  ((s as any).sex_ev = (s as any).sex_ev ?? {})['last_position'] = (((s as any).sex_ev ?? 0)?.['position']);
   qspCall(s, 'sex_ev_miss', 'miss_goto');
   qspCall(s, 'sex_ev_doggy', 'doggy_goto');
   qspCall(s, 'sex_ev_cowgirl', 'cowgirl_goto');
@@ -241,7 +241,7 @@ function enterPositionChoose(s: GameState, scene: SceneBuilder): void {
         ((s as any).sex_ev = (s as any).sex_ev ?? {})['new_pos'] = 1;
         ((s as any).sex_ev = (s as any).sex_ev ?? {})['initiative'] = 'boy';
         { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPositionPicker(s, scene); (s as any).locArgs = __savedLocArgs; }
-        qspCall(s, 'sex_ev_' + ((s as any).sex_ev ?? 0)?.['position'] + '', '' + ((s as any).sex_ev ?? 0)?.['position'] + '_goto');
+        qspCall(s, 'sex_ev_' + (((s as any).sex_ev ?? 0)?.['position']) + '', '' + (((s as any).sex_ev ?? 0)?.['position']) + '_goto');
       }
     }
   }
@@ -324,7 +324,7 @@ function enterHeInitiate(s: GameState, scene: SceneBuilder): void {
       qspGoto(s, 'sex_ev_sex', 'rand_position');
     }
   } else {
-    dynamicGoto(s, 'sex_ev_' + String((((s as any).sex_ev ?? {})['position'])), '' + ((s as any).sex_ev ?? 0)?.['position'] + '_goto');
+    dynamicGoto(s, 'sex_ev_' + String((((s as any).sex_ev ?? {})['position'])), '' + (((s as any).sex_ev ?? 0)?.['position']) + '_goto');
   }
   // TODO-QSP: end
   scene.build();
@@ -566,19 +566,19 @@ function enterInsertionArousalCode(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).sex_ev ?? 0)?.['pain_init'] === 0) {
     ((s as any).sex_ev = (s as any).sex_ev ?? {})['pain_init'] = 1;
-    ((s as any).sex_ev = (s as any).sex_ev ?? {})['vaginal_pain'] = ((s as any).pain ?? 0)?.['vagina'];
-    ((s as any).sex_ev = (s as any).sex_ev ?? {})['cervix_pain'] = ((s as any).pain ?? 0)?.['cervix'];
-    ((s as any).sex_ev = (s as any).sex_ev ?? {})['asshole_pain'] = ((s as any).pain ?? 0)?.['asshole'];
+    ((s as any).sex_ev = (s as any).sex_ev ?? {})['vaginal_pain'] = (((s as any).pain ?? 0)?.['vagina']);
+    ((s as any).sex_ev = (s as any).sex_ev ?? {})['cervix_pain'] = (((s as any).pain ?? 0)?.['cervix']);
+    ((s as any).sex_ev = (s as any).sex_ev ?? {})['asshole_pain'] = (((s as any).pain ?? 0)?.['asshole']);
   }
   ((s as any).sex_ev = (s as any).sex_ev ?? {})['orgasm'] = ((s as any).orgasm ?? 0);
   if (((s as any).sex_ev ?? 0)?.['prostitution_flag'] !== '') {
     if ((String(((s as any).sex_ev ?? 0)?.['position']).slice((1)-1, ((1)-1)+(4))) === 'anal') {
-      qspCall(s, 'arousal', 'anal', 1, 'no_orgasm_msg', ((s as any).sex_ev ?? 0)?.['prostitution_flag']);
+      qspCall(s, 'arousal', 'anal', 1, 'no_orgasm_msg', (((s as any).sex_ev ?? 0)?.['prostitution_flag']));
     } else {
       if (((s as any).stat ?? 0)?.['think_virgin'] === 1) {
         ((s as any).sex_ev = (s as any).sex_ev ?? {})['deflowered'] = 1;
       }
-      qspCall(s, 'arousal', 'vaginal', 1, 'no_orgasm_msg', ((s as any).sex_ev ?? 0)?.['prostitution_flag']);
+      qspCall(s, 'arousal', 'vaginal', 1, 'no_orgasm_msg', (((s as any).sex_ev ?? 0)?.['prostitution_flag']));
     }
   } else {
     if ((String(((s as any).sex_ev ?? 0)?.['position']).slice((1)-1, ((1)-1)+(4))) === 'anal') {
@@ -603,7 +603,7 @@ function enterFuckArousalCode(s: GameState, scene: SceneBuilder): void {
   ((s as any).sex_ev = (s as any).sex_ev ?? {})['cock_inserted'] = 1;
   ((s as any).sex_ev = (s as any).sex_ev ?? {})['fuck'] = 1;
   ((s as any).sex_ev = (s as any).sex_ev ?? {})['fuck_time_temp'] = (Math.floor(Math.random() * 4) + 1);
-  ((s as any).sex_ev = (s as any).sex_ev ?? {})['fuck_time_total'] = ((s as any).sex_ev['fuck_time_total'] ?? 0) + (((s as any).sex_ev ?? 0)?.['fuck_time_temp']);
+  ((s as any).sex_ev = (s as any).sex_ev ?? {})['fuck_time_total'] = ((s as any).sex_ev['fuck_time_total'] ?? 0) + ((((s as any).sex_ev ?? 0)?.['fuck_time_temp']));
   ((s as any).sex_ev = (s as any).sex_ev ?? {})['npc_stam'] = ((s as any).sex_ev['npc_stam'] ?? 0) - ((((s as any).sex_ev ?? {})?.['fuck_time_temp'] ?? 0) * 10);
   if (((s as any).sex_ev ?? 0)?.['fav_npc_position'] === 0) {
     if (((s as any).sex_ev ?? 0)?.['position'] === 'miss'  &&  ((s as any).npc_fav_pos ?? 0)?.[String((s as any).npcID ?? 0)] === 'miss') {
@@ -630,7 +630,7 @@ function enterFuckArousalCode(s: GameState, scene: SceneBuilder): void {
   ((s as any).sex_ev = (s as any).sex_ev ?? {})['orgasm'] = ((s as any).orgasm ?? 0);
   if (((s as any).sex_ev ?? 0)?.['prostitution_flag'] !== '') {
     if ((String(((s as any).sex_ev ?? 0)?.['position']).slice((1)-1, ((1)-1)+(4))) === 'anal') {
-      qspCall(s, 'arousal', 'anal', ((s as any).sex_ev ?? 0)?.['fuck_time_temp'], 'no_orgasm_msg', ((s as any).sex_ev ?? 0)?.['prostitution_flag']);
+      qspCall(s, 'arousal', 'anal', (((s as any).sex_ev ?? 0)?.['fuck_time_temp']), 'no_orgasm_msg', (((s as any).sex_ev ?? 0)?.['prostitution_flag']));
       ((s as any).sex_ev = (s as any).sex_ev ?? {})['anal_dirt'] = 1;
       if (((s as any).sex_ev ?? 0)?.['anal_check'] < ((s as any).sex_ev ?? 0)?.['cum_count'] + 1) {
         ((s as any).sex_ev = (s as any).sex_ev ?? {})['anal_check'] = (((s as any).sex_ev ?? {})?.['cum_count'] ?? 0) + 1;
@@ -640,7 +640,7 @@ function enterFuckArousalCode(s: GameState, scene: SceneBuilder): void {
       if (((s as any).stat ?? 0)?.['think_virgin'] === 1) {
         ((s as any).sex_ev = (s as any).sex_ev ?? {})['deflowered'] = 1;
       }
-      qspCall(s, 'arousal', 'vaginal', ((s as any).sex_ev ?? 0)?.['fuck_time_temp'], 'no_orgasm_msg', ((s as any).sex_ev ?? 0)?.['prostitution_flag']);
+      qspCall(s, 'arousal', 'vaginal', (((s as any).sex_ev ?? 0)?.['fuck_time_temp']), 'no_orgasm_msg', (((s as any).sex_ev ?? 0)?.['prostitution_flag']));
       if (((s as any).sex_ev ?? 0)?.['fuck_check'] < ((s as any).sex_ev ?? 0)?.['cum_count'] + 1) {
         ((s as any).sex_ev = (s as any).sex_ev ?? {})['fuck_check'] = (((s as any).sex_ev ?? {})?.['cum_count'] ?? 0) + 1;
         ((s as any).sex_ev = (s as any).sex_ev ?? {})['fuck_count'] = ((s as any).sex_ev['fuck_count'] ?? 0) + (1);
@@ -651,7 +651,7 @@ function enterFuckArousalCode(s: GameState, scene: SceneBuilder): void {
     }
   } else {
     if ((String(((s as any).sex_ev ?? 0)?.['position']).slice((1)-1, ((1)-1)+(4))) === 'anal') {
-      qspCall(s, 'arousal', 'anal', ((s as any).sex_ev ?? 0)?.['fuck_time_temp'], 'no_orgasm_msg');
+      qspCall(s, 'arousal', 'anal', (((s as any).sex_ev ?? 0)?.['fuck_time_temp']), 'no_orgasm_msg');
       ((s as any).sex_ev = (s as any).sex_ev ?? {})['anal_dirt'] = 1;
       if (((s as any).sex_ev ?? 0)?.['anal_check'] < ((s as any).sex_ev ?? 0)?.['cum_count'] + 1) {
         ((s as any).sex_ev = (s as any).sex_ev ?? {})['anal_check'] = (((s as any).sex_ev ?? {})?.['cum_count'] ?? 0) + 1;
@@ -661,7 +661,7 @@ function enterFuckArousalCode(s: GameState, scene: SceneBuilder): void {
       if (((s as any).stat ?? 0)?.['think_virgin'] === 1) {
         ((s as any).sex_ev = (s as any).sex_ev ?? {})['deflowered'] = 1;
       }
-      qspCall(s, 'arousal', 'vaginal', ((s as any).sex_ev ?? 0)?.['fuck_time_temp'], 'no_orgasm_msg');
+      qspCall(s, 'arousal', 'vaginal', (((s as any).sex_ev ?? 0)?.['fuck_time_temp']), 'no_orgasm_msg');
       if (((s as any).sex_ev ?? 0)?.['fuck_check'] < ((s as any).sex_ev ?? 0)?.['cum_count'] + 1) {
         ((s as any).sex_ev = (s as any).sex_ev ?? {})['fuck_check'] = (((s as any).sex_ev ?? {})?.['cum_count'] ?? 0) + 1;
         ((s as any).sex_ev = (s as any).sex_ev ?? {})['fuck_count'] = ((s as any).sex_ev['fuck_count'] ?? 0) + (1);
@@ -682,7 +682,7 @@ function enterFuckRoughArousalCode(s: GameState, scene: SceneBuilder): void {
     ((s as any).sex_ev = (s as any).sex_ev ?? {})['initiative'] = '';
   }
   ((s as any).sex_ev = (s as any).sex_ev ?? {})['fuck_time_temp'] = (Math.floor(Math.random() * 4) + 1);
-  ((s as any).sex_ev = (s as any).sex_ev ?? {})['fuck_time_total'] = ((s as any).sex_ev['fuck_time_total'] ?? 0) + (((s as any).sex_ev ?? 0)?.['fuck_time_temp']);
+  ((s as any).sex_ev = (s as any).sex_ev ?? {})['fuck_time_total'] = ((s as any).sex_ev['fuck_time_total'] ?? 0) + ((((s as any).sex_ev ?? 0)?.['fuck_time_temp']));
   ((s as any).sex_ev = (s as any).sex_ev ?? {})['npc_stam'] = ((s as any).sex_ev['npc_stam'] ?? 0) - ((((s as any).sex_ev ?? {})?.['fuck_time_temp'] ?? 0) * 20);
   qspCall(s, 'sweat', 'add', 1);
   if (((s as any).sex_ev ?? 0)?.['fuck_enjoyment'] === 'enjoy') {
@@ -692,16 +692,16 @@ function enterFuckRoughArousalCode(s: GameState, scene: SceneBuilder): void {
   }
   ((s as any).sex_ev = (s as any).sex_ev ?? {})['orgasm'] = ((s as any).orgasm ?? 0);
   if ((String(((s as any).sex_ev ?? 0)?.['position']).slice((1)-1, ((1)-1)+(4))) === 'anal') {
-    qspCall(s, 'arousal', 'anal', ((s as any).sex_ev ?? 0)?.['fuck_time_temp'], 'no_orgasm_msg', ((s as any).sex_ev ?? 0)?.['prostitution_flag'], 'rough');
+    qspCall(s, 'arousal', 'anal', (((s as any).sex_ev ?? 0)?.['fuck_time_temp']), 'no_orgasm_msg', (((s as any).sex_ev ?? 0)?.['prostitution_flag']), 'rough');
     ((s as any).sex_ev = (s as any).sex_ev ?? {})['anal_dirt'] = 1;
     if (((s as any).sex_ev ?? 0)?.['anal_check'] < ((s as any).sex_ev ?? 0)?.['cum_count'] + 1) {
-      ((s as any).sex_ev = (s as any).sex_ev ?? {})['anal_check'] = ((s as any).sex_ev ?? 0)?.['cum_count'];
+      ((s as any).sex_ev = (s as any).sex_ev ?? {})['anal_check'] = (((s as any).sex_ev ?? 0)?.['cum_count']);
       ((s as any).sex_ev = (s as any).sex_ev ?? {})['anal_count'] = ((s as any).sex_ev['anal_count'] ?? 0) + (1);
     }
   } else {
-    qspCall(s, 'arousal', 'vaginal', ((s as any).sex_ev ?? 0)?.['fuck_time_temp'], 'no_orgasm_msg', ((s as any).sex_ev ?? 0)?.['prostitution_flag'], 'rough');
+    qspCall(s, 'arousal', 'vaginal', (((s as any).sex_ev ?? 0)?.['fuck_time_temp']), 'no_orgasm_msg', (((s as any).sex_ev ?? 0)?.['prostitution_flag']), 'rough');
     if (((s as any).sex_ev ?? 0)?.['fuck_check'] < ((s as any).sex_ev ?? 0)?.['cum_count'] + 1) {
-      ((s as any).sex_ev = (s as any).sex_ev ?? {})['fuck_check'] = ((s as any).sex_ev ?? 0)?.['cum_count'];
+      ((s as any).sex_ev = (s as any).sex_ev ?? {})['fuck_check'] = (((s as any).sex_ev ?? 0)?.['cum_count']);
       ((s as any).sex_ev = (s as any).sex_ev ?? {})['fuck_count'] = ((s as any).sex_ev['fuck_count'] ?? 0) + (1);
     }
     if (((s as any).sex_ev ?? 0)?.['anal_dirt'] === 1) {
@@ -720,21 +720,21 @@ function enterFuckRoughNoCumCode(s: GameState, scene: SceneBuilder): void {
     ((s as any).sex_ev = (s as any).sex_ev ?? {})['initiative'] = '';
   }
   ((s as any).sex_ev = (s as any).sex_ev ?? {})['fuck_time_temp'] = (Math.floor(Math.random() * 4) + 1);
-  ((s as any).sex_ev = (s as any).sex_ev ?? {})['fuck_time_total'] = ((s as any).sex_ev['fuck_time_total'] ?? 0) + (((s as any).sex_ev ?? 0)?.['fuck_time_temp']);
+  ((s as any).sex_ev = (s as any).sex_ev ?? {})['fuck_time_total'] = ((s as any).sex_ev['fuck_time_total'] ?? 0) + ((((s as any).sex_ev ?? 0)?.['fuck_time_temp']));
   ((s as any).sex_ev = (s as any).sex_ev ?? {})['npc_stam'] = ((s as any).sex_ev['npc_stam'] ?? 0) - ((((s as any).sex_ev ?? {})?.['fuck_time_temp'] ?? 0) * 20);
   qspCall(s, 'sweat', 'add', 1);
   ((s as any).sex_ev = (s as any).sex_ev ?? {})['orgasm'] = ((s as any).orgasm ?? 0);
   if ((String(((s as any).sex_ev ?? 0)?.['position']).slice((1)-1, ((1)-1)+(4))) === 'anal') {
-    qspCall(s, 'arousal', 'anal', ((s as any).sex_ev ?? 0)?.['fuck_time_temp'], 'no_orgasm_msg', ((s as any).sex_ev ?? 0)?.['prostitution_flag'], 'rough');
+    qspCall(s, 'arousal', 'anal', (((s as any).sex_ev ?? 0)?.['fuck_time_temp']), 'no_orgasm_msg', (((s as any).sex_ev ?? 0)?.['prostitution_flag']), 'rough');
     ((s as any).sex_ev = (s as any).sex_ev ?? {})['anal_dirt'] = 1;
     if (((s as any).sex_ev ?? 0)?.['anal_check'] < ((s as any).sex_ev ?? 0)?.['cum_count'] + 1) {
-      ((s as any).sex_ev = (s as any).sex_ev ?? {})['anal_check'] = ((s as any).sex_ev ?? 0)?.['cum_count'];
+      ((s as any).sex_ev = (s as any).sex_ev ?? {})['anal_check'] = (((s as any).sex_ev ?? 0)?.['cum_count']);
       ((s as any).sex_ev = (s as any).sex_ev ?? {})['anal_count'] = ((s as any).sex_ev['anal_count'] ?? 0) + (1);
     }
   } else {
-    qspCall(s, 'arousal', 'vaginal', ((s as any).sex_ev ?? 0)?.['fuck_time_temp'], 'no_orgasm_msg', ((s as any).sex_ev ?? 0)?.['prostitution_flag'], 'rough');
+    qspCall(s, 'arousal', 'vaginal', (((s as any).sex_ev ?? 0)?.['fuck_time_temp']), 'no_orgasm_msg', (((s as any).sex_ev ?? 0)?.['prostitution_flag']), 'rough');
     if (((s as any).sex_ev ?? 0)?.['fuck_check'] < ((s as any).sex_ev ?? 0)?.['cum_count'] + 1) {
-      ((s as any).sex_ev = (s as any).sex_ev ?? {})['fuck_check'] = ((s as any).sex_ev ?? 0)?.['cum_count'];
+      ((s as any).sex_ev = (s as any).sex_ev ?? {})['fuck_check'] = (((s as any).sex_ev ?? 0)?.['cum_count']);
       ((s as any).sex_ev = (s as any).sex_ev ?? {})['fuck_count'] = ((s as any).sex_ev['fuck_count'] ?? 0) + (1);
     }
     if (((s as any).sex_ev ?? 0)?.['anal_dirt'] === 1) {
@@ -753,20 +753,20 @@ function enterFuckNoCumCode(s: GameState, scene: SceneBuilder): void {
     ((s as any).sex_ev = (s as any).sex_ev ?? {})['initiative'] = '';
   }
   ((s as any).sex_ev = (s as any).sex_ev ?? {})['fuck_time_temp'] = (Math.floor(Math.random() * 4) + 1);
-  ((s as any).sex_ev = (s as any).sex_ev ?? {})['fuck_time_total'] = ((s as any).sex_ev['fuck_time_total'] ?? 0) + (((s as any).sex_ev ?? 0)?.['fuck_time_temp']);
+  ((s as any).sex_ev = (s as any).sex_ev ?? {})['fuck_time_total'] = ((s as any).sex_ev['fuck_time_total'] ?? 0) + ((((s as any).sex_ev ?? 0)?.['fuck_time_temp']));
   ((s as any).sex_ev = (s as any).sex_ev ?? {})['npc_stam'] = ((s as any).sex_ev['npc_stam'] ?? 0) - ((((s as any).sex_ev ?? {})?.['fuck_time_temp'] ?? 0) * 10);
   ((s as any).sex_ev = (s as any).sex_ev ?? {})['orgasm'] = ((s as any).orgasm ?? 0);
   if ((String(((s as any).sex_ev ?? 0)?.['position']).slice((1)-1, ((1)-1)+(4))) === 'anal') {
-    qspCall(s, 'arousal', 'anal', ((s as any).sex_ev ?? 0)?.['fuck_time_temp'], 'no_orgasm_msg', ((s as any).sex_ev ?? 0)?.['prostitution_flag']);
+    qspCall(s, 'arousal', 'anal', (((s as any).sex_ev ?? 0)?.['fuck_time_temp']), 'no_orgasm_msg', (((s as any).sex_ev ?? 0)?.['prostitution_flag']));
     ((s as any).sex_ev = (s as any).sex_ev ?? {})['anal_dirt'] = 1;
     if (((s as any).sex_ev ?? 0)?.['anal_check'] < ((s as any).sex_ev ?? 0)?.['cum_count'] + 1) {
-      ((s as any).sex_ev = (s as any).sex_ev ?? {})['anal_check'] = ((s as any).sex_ev ?? 0)?.['cum_count'];
+      ((s as any).sex_ev = (s as any).sex_ev ?? {})['anal_check'] = (((s as any).sex_ev ?? 0)?.['cum_count']);
       ((s as any).sex_ev = (s as any).sex_ev ?? {})['anal_count'] = ((s as any).sex_ev['anal_count'] ?? 0) + (1);
     }
   } else {
-    qspCall(s, 'arousal', 'vaginal', ((s as any).sex_ev ?? 0)?.['fuck_time_temp'], 'no_orgasm_msg', ((s as any).sex_ev ?? 0)?.['prostitution_flag']);
+    qspCall(s, 'arousal', 'vaginal', (((s as any).sex_ev ?? 0)?.['fuck_time_temp']), 'no_orgasm_msg', (((s as any).sex_ev ?? 0)?.['prostitution_flag']));
     if (((s as any).sex_ev ?? 0)?.['fuck_check'] < ((s as any).sex_ev ?? 0)?.['cum_count'] + 1) {
-      ((s as any).sex_ev = (s as any).sex_ev ?? {})['fuck_check'] = ((s as any).sex_ev ?? 0)?.['cum_count'];
+      ((s as any).sex_ev = (s as any).sex_ev ?? {})['fuck_check'] = (((s as any).sex_ev ?? 0)?.['cum_count']);
       ((s as any).sex_ev = (s as any).sex_ev ?? {})['fuck_count'] = ((s as any).sex_ev['fuck_count'] ?? 0) + (1);
     }
     if (((s as any).sex_ev ?? 0)?.['anal_dirt'] === 1) {
@@ -789,9 +789,9 @@ function enterFuckArousalCreampieCumCode(s: GameState, scene: SceneBuilder): voi
     }
   }
   if (((s as any).sex_ev ?? 0)?.['position'] === 'miss'  ||  ((s as any).sex_ev ?? 0)?.['position'] === 'doggy'  ||  ((s as any).sex_ev ?? 0)?.['position'] === 'cowgirl') {
-    qspCall(s, 'arousal', 'vaginal', ((s as any).sex_ev ?? 0)?.['fuck_time_temp'], 'no_orgasm_msg', ((s as any).sex_ev ?? 0)?.['prostitution_flag']);
+    qspCall(s, 'arousal', 'vaginal', (((s as any).sex_ev ?? 0)?.['fuck_time_temp']), 'no_orgasm_msg', (((s as any).sex_ev ?? 0)?.['prostitution_flag']));
   } else {
-    qspCall(s, 'arousal', 'anal', ((s as any).sex_ev ?? 0)?.['fuck_time_temp'], 'no_orgasm_msg', ((s as any).sex_ev ?? 0)?.['prostitution_flag']);
+    qspCall(s, 'arousal', 'anal', (((s as any).sex_ev ?? 0)?.['fuck_time_temp']), 'no_orgasm_msg', (((s as any).sex_ev ?? 0)?.['prostitution_flag']));
   }
   qspCall(s, 'stat', '');
   // TODO-QSP: end
@@ -800,7 +800,7 @@ function enterFuckArousalCreampieCumCode(s: GameState, scene: SceneBuilder): voi
 
 function enterGirlOrgasmChangePosition(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sex_ev ?? 0)?.['position'] === ((s as any).npc_fav_pos ?? 0)?.[String((s as any).npcID ?? 0)]  ||  (Math.floor(Math.random() * 2) + 1) === 1) {
-    qspCall(s, 'sex_ev_' + ((s as any).sex_ev ?? 0)?.['position'] + '', '' + ((s as any).sex_ev ?? 0)?.['position'] + '_girl_orgasm_continue');
+    qspCall(s, 'sex_ev_' + (((s as any).sex_ev ?? 0)?.['position']) + '', '' + (((s as any).sex_ev ?? 0)?.['position']) + '_girl_orgasm_continue');
   } else {
     if ((Math.floor(Math.random() * 3) + 1) === 1) {
       qspCall(s, 'sex_ev_miss', 'miss_girl_orgasm_continue');
@@ -963,7 +963,7 @@ function enterFuckContinue(s: GameState, scene: SceneBuilder): void {
           (s as any).orgasm_or = '';
           ((s as any).sex_ev = (s as any).sex_ev ?? {})['moan'] = 0;
           ((s as any).sex_ev = (s as any).sex_ev ?? {})['dirty_talk_count'] = 1;
-          dynamicGoto(s, 'sex_ev_' + String((((s as any).sex_ev ?? {})['position'])), '' + ((s as any).sex_ev ?? 0)?.['position'] + '' + ((s as any).sex_ev ?? 0)?.['speed'] + '.2');
+          dynamicGoto(s, 'sex_ev_' + String((((s as any).sex_ev ?? {})['position'])), '' + (((s as any).sex_ev ?? 0)?.['position']) + '' + (((s as any).sex_ev ?? 0)?.['speed']) + '.2');
           if (((s as any).sex_ev ?? 0)?.['speed'] !== 3  &&  ((s as any).sex_ev ?? 0)?.['unique_npc'] === 1) {
             scene.actions([
               { label: 'Talk while fucking', handler: (st: GameState) => {
@@ -1071,7 +1071,7 @@ function enterFuckContinue(s: GameState, scene: SceneBuilder): void {
       { label: '', labelFn: (s: GameState) => 'Try to make ' + String(((s as any).npcdesc ?? '') ?? '') + ' come', handler: (st: GameState) => {
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['cum_speed_up'] = 1;
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['extra_stim'] = ((st as any).sex_ev['extra_stim'] ?? 0) + (1);
-    dynamicGoto(st, 'sex_ev_' + String((((st as any).sex_ev ?? {})['position'])), '' + ((st as any).sex_ev ?? 0)?.['position'] + '' + ((st as any).sex_ev ?? 0)?.['speed'] + '.2');
+    dynamicGoto(st, 'sex_ev_' + String((((st as any).sex_ev ?? {})['position'])), '' + (((st as any).sex_ev ?? 0)?.['position']) + '' + (((st as any).sex_ev ?? 0)?.['speed']) + '.2');
   } },
       { label: 'Change position', handler: (st: GameState) => {
     // TODO-QSP: xgt 'sex_ev_sex', 'position_change'
@@ -1541,21 +1541,21 @@ function enterMoanSelections(s: GameState, scene: SceneBuilder): void {
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['moan'] = 0;
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['dirty_talk'] = 1;
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['dirty_talk'] = 'cock';
-    dynamicGoto(st, 'sex_ev_' + String((((st as any).sex_ev ?? {})['position'])), '' + ((st as any).sex_ev ?? 0)?.['position'] + '' + ((st as any).sex_ev ?? 0)?.['speed'] + '.2');
+    dynamicGoto(st, 'sex_ev_' + String((((st as any).sex_ev ?? {})['position'])), '' + (((st as any).sex_ev ?? 0)?.['position']) + '' + (((st as any).sex_ev ?? 0)?.['speed']) + '.2');
   } },
     { label: 'Dirty talk about your arousal', handler: (st: GameState) => {
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['enthusiasm'] = ((st as any).sex_ev['enthusiasm'] ?? 0) + (2);
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['moan'] = 0;
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['dirty_talk'] = 1;
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['dirty_talk'] = 'arousal';
-    dynamicGoto(st, 'sex_ev_' + String((((st as any).sex_ev ?? {})['position'])), '' + ((st as any).sex_ev ?? 0)?.['position'] + '' + ((st as any).sex_ev ?? 0)?.['speed'] + '.2');
+    dynamicGoto(st, 'sex_ev_' + String((((st as any).sex_ev ?? {})['position'])), '' + (((st as any).sex_ev ?? 0)?.['position']) + '' + (((st as any).sex_ev ?? 0)?.['speed']) + '.2');
   } },
     { label: 'Dirty talk about his technique', handler: (st: GameState) => {
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['enthusiasm'] = ((st as any).sex_ev['enthusiasm'] ?? 0) + (2);
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['moan'] = 0;
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['dirty_talk'] = 1;
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['dirty_talk'] = 'technique';
-    dynamicGoto(st, 'sex_ev_' + String((((st as any).sex_ev ?? {})['position'])), '' + ((st as any).sex_ev ?? 0)?.['position'] + '' + ((st as any).sex_ev ?? 0)?.['speed'] + '.2');
+    dynamicGoto(st, 'sex_ev_' + String((((st as any).sex_ev ?? {})['position'])), '' + (((st as any).sex_ev ?? 0)?.['position']) + '' + (((st as any).sex_ev ?? 0)?.['speed']) + '.2');
   } },
   ]);
   scene.build();
@@ -1584,7 +1584,7 @@ function enterDirtyTalk2(s: GameState, scene: SceneBuilder): void {
   (s as any).orgasm_or = '';
   ((s as any).sex_ev = (s as any).sex_ev ?? {})['moan'] = 0;
   ((s as any).sex_ev = (s as any).sex_ev ?? {})['dirty_talk_count'] = 1;
-  dynamicGoto(s, 'sex_ev_' + String((((s as any).sex_ev ?? {})['position'])), '' + ((s as any).sex_ev ?? 0)?.['position'] + '' + ((s as any).sex_ev ?? 0)?.['speed'] + '.2');
+  dynamicGoto(s, 'sex_ev_' + String((((s as any).sex_ev ?? {})['position'])), '' + (((s as any).sex_ev ?? 0)?.['position']) + '' + (((s as any).sex_ev ?? 0)?.['speed']) + '.2');
   // TODO-QSP: end
   scene.build();
 }
@@ -2093,7 +2093,7 @@ function enterHeEndBreak(s: GameState, scene: SceneBuilder): void {
           qspCall(s, 'sex_ev_foreplay', 'bj_ask2');
         } else {
           if (((s as any).sex_ev ?? 0)?.['position_rand'] === 4  &&  (((s as any).cum_loc ?? 0)?.['vagina'] === 0  ||  ((s as any).npc_pussyeater ?? 0)?.[String((s as any).npcID ?? 0)] === 1)) {
-            qspCall(s, 'arousal', 'foreplay', (-5), 'no_orgasm_msg', ((s as any).sex_ev ?? 0)?.['prostitution_flag']);
+            qspCall(s, 'arousal', 'foreplay', (-5), 'no_orgasm_msg', (((s as any).sex_ev ?? 0)?.['prostitution_flag']));
             // TODO-QSP: dynamic text: After a few minutes, <<$npcdesc>> climbs on top of you without saying anything.
             scene.text(`After a few minutes, ${((s as any).npcdesc ?? '')} climbs on top of you without saying anything.`);
             scene.text('"Hey, what are you-" you start to ask until his head descends to your stomach. He lightly kisses it, sending shivers across your skin, before kissing again and again and again, each kiss lower than the last, slowly heading towards your thighs.');
@@ -2110,7 +2110,7 @@ function enterHeEndBreak(s: GameState, scene: SceneBuilder): void {
   } },
             ]);
           } else {
-            qspCall(s, 'arousal', 'foreplay', (-5), 'no_orgasm_msg', ((s as any).sex_ev ?? 0)?.['prostitution_flag']);
+            qspCall(s, 'arousal', 'foreplay', (-5), 'no_orgasm_msg', (((s as any).sex_ev ?? 0)?.['prostitution_flag']));
             // TODO-QSP: dynamic text: After a few minutes, <<$npcdesc>> climbs on top of you without saying anything.
             scene.text(`After a few minutes, ${((s as any).npcdesc ?? '')} climbs on top of you without saying anything.`);
             scene.text('"Hey, what are you-" you start to ask until his head descends to your neck. He lightly kisses your throat, sending shivers across your skin, before kissing again and again and again, each kiss lower than the last, blazing a trail down your collarbone to the breasts his hands are already thoroughly massaging.');
@@ -2224,7 +2224,7 @@ function enterKeepFuckingAct(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sex_ev ?? 0)?.['cock_inserted'] === 1  &&  (((s as any).sex_ev ?? 0)?.['position'] === 'miss'  ||  ((s as any).sex_ev ?? 0)?.['position'] === 'doggy'  ||  ((s as any).sex_ev ?? 0)?.['position'] === 'cowgirl')) {
     scene.actions([
       { label: 'Keep fucking', handler: (st: GameState) => {
-    ((st as any).sex_ev = (st as any).sex_ev ?? {})['reset_pos'] = ((st as any).sex_ev ?? 0)?.['position'];
+    ((st as any).sex_ev = (st as any).sex_ev ?? {})['reset_pos'] = (((st as any).sex_ev ?? 0)?.['position']);
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterReset(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspCall(st, 'sex_ev_condoms', 'condoms');
     dynamicGoto(st, 'sex_ev_' + String((((st as any).sex_ev ?? {})['reset_pos'])), '$sex_ev[\'pos_speed\']');
@@ -2650,7 +2650,7 @@ function enterPainTracking(s: GameState, scene: SceneBuilder): void {
 function enterSleepSex(s: GameState, scene: SceneBuilder): void {
   ((s as any).sex_ev = (s as any).sex_ev ?? {})['start_time'] = ((s as any).totminut ?? 0);
   ((s as any).sex_ev = (s as any).sex_ev ?? {})['sleep_fuck'] = 1;
-  qspCall(s, 'arousal', 'vaginal', (Math.floor(Math.random() * 6) + 5), 'no_orgasm_msg', ((s as any).sex_ev ?? 0)?.['prostitution_flag']);
+  qspCall(s, 'arousal', 'vaginal', (Math.floor(Math.random() * 6) + 5), 'no_orgasm_msg', (((s as any).sex_ev ?? 0)?.['prostitution_flag']));
   if (((s as any).npc_sex_speed ?? 0) <= 2) {
     ((s as any).sex_ev = (s as any).sex_ev ?? {})['sleep_video1'] = '<center><video autoplay loop ' + ((s as any).set_imgh ?? 0) + ' src="images/shared/sex/sleep/slow' + (Math.floor(Math.random() * 2) + 1) + '.mp4"></video></center>';
     ((s as any).sex_ev = (s as any).sex_ev ?? {})['sleep_video2'] = '<center><video autoplay loop ' + ((s as any).set_imgh ?? 0) + ' src="images/shared/sex/sleep/slow2.mp4"></video></center>';
@@ -3043,7 +3043,7 @@ function enterWakeupSex(s: GameState, scene: SceneBuilder): void {
   ((s as any).sex_ev = (s as any).sex_ev ?? {})['sleep_fuck'] = 1;
   ((s as any).sex_ev = (s as any).sex_ev ?? {})['wake_fuck'] = 1;
   ((s as any).sex_ev = (s as any).sex_ev ?? {})['morning_after'] = 1;
-  qspCall(s, 'arousal', 'vaginal', (Math.floor(Math.random() * 6) + 5), 'no_orgasm_msg', ((s as any).sex_ev ?? 0)?.['prostitution_flag']);
+  qspCall(s, 'arousal', 'vaginal', (Math.floor(Math.random() * 6) + 5), 'no_orgasm_msg', (((s as any).sex_ev ?? 0)?.['prostitution_flag']));
   if (((s as any).npc_sex_speed ?? 0) <= 2) {
     ((s as any).sex_ev = (s as any).sex_ev ?? {})['sleep_video1'] = '<center><video autoplay loop ' + ((s as any).set_imgh ?? 0) + ' src="images/shared/sex/sleep/slow' + (Math.floor(Math.random() * 2) + 1) + '.mp4"></video></center>';
     ((s as any).sex_ev = (s as any).sex_ev ?? {})['sleep_video2'] = '<center><video autoplay loop ' + ((s as any).set_imgh ?? 0) + ' src="images/shared/sex/sleep/slow2.mp4"></video></center>';

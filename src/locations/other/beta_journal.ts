@@ -128,7 +128,7 @@ function enterTableGen(s: GameState, scene: SceneBuilder): void {
   } else {
     (s as any).table_columns = ((s as any).locArgs?.[1] ?? 0);
   }
-  (s as any).bjq_temp_table = '<center><table cellspacing="3" bgcolor="' + ((s as any).theme ?? 0)?.['table_bg_alt'] + '" width="80%" align="center">';
+  (s as any).bjq_temp_table = '<center><table cellspacing="3" bgcolor="' + (((s as any).theme ?? 0)?.['table_bg_alt']) + '" width="80%" align="center">';
   // TODO-QSP: :jmp_table_gen
   // TODO-QSP: $bjq_temp_table +=  '<tr width="100px">'
   // TODO-QSP: :jmp_table_gen2

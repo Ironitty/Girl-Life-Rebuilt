@@ -12,7 +12,7 @@ function enterIvanVitekFight1(s: GameState, scene: SceneBuilder): void {
   (s as any).numnpc = 3;
   (s as any).ivansportday = ((s as any).daystart ?? 0);
   qspCall(s, 'stat', '');
-  scene.text(`<center><b>${((s as any).npc_firstname ?? 0)?.['A3'] ?? ''} ${((s as any).npc_lastname ?? 0)?.['A3'] ?? ''}</b></center>`);
+  scene.text(`<center><b>${(((s as any).npc_firstname ?? 0)?.['A3'] ?? '')} ${(((s as any).npc_lastname ?? 0)?.['A3'] ?? '')}</b></center>`);
   scene.img('images/characters/shared/headshots_main/big3.jpg');
   if (((s as any).loc ?? 0) === 'gdksport') {
     scene.text('When you enter the sports center, Ivan sees you come in. Even though he\'s getting ready for a training session and is only wearing his boxing shorts, he comes over for a quick chat.');
@@ -603,7 +603,7 @@ function enterIvanBoredDisco(s: GameState, scene: SceneBuilder): void {
     { label: 'Wait to see what he does', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/boy/ivan/sex/disco/restroom/disco2.jpg');
     // TODO-QSP: dynamic text: He walks up behind you and you feel his growing bulge pressed against your <<$pc...
-    scene.text(`He walks up behind you and you feel his growing bulge pressed against your ${((st as any).pc_desc ?? 0)?.['butt'] ?? ''} ass as he slowly pulls your top aside to expose your ${((st as any).pc_desc ?? 0)?.['breast'] ?? ''} breasts.`);
+    scene.text(`He walks up behind you and you feel his growing bulge pressed against your ${(((st as any).pc_desc ?? 0)?.['butt'] ?? '')} ass as he slowly pulls your top aside to expose your ${(((st as any).pc_desc ?? 0)?.['breast'] ?? '')} breasts.`);
     scene.text('He fondles them and kisses your neck before he whispers in your ear. "I want you to get down on your knees and suck my dick."');
     qspCall(st, 'arousal', 'foreplay', 1, 'sub');
     qspCall(st, 'stat', '');

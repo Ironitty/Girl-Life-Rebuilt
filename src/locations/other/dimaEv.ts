@@ -13,7 +13,7 @@ function enterAfterSchool(s: GameState, scene: SceneBuilder): void {
     qspGoto(s, 'dimaHome', 'dimkaroom');
   }
   qspCall(s, 'stat', '');
-  scene.text(`<center><b>${((s as any).npc_firstname ?? 0)?.['A1'] ?? ''} ${((s as any).npc_lastname ?? 0)?.['A1'] ?? ''}</b></center>`);
+  scene.text(`<center><b>${(((s as any).npc_firstname ?? 0)?.['A1'] ?? '')} ${(((s as any).npc_lastname ?? 0)?.['A1'] ?? '')}</b></center>`);
   scene.img('images/characters/shared/headshots_main/big1.jpg');
   scene.text('Dimka seeing you, walks up and says quietly, "Come here slut, we\'re going to go have some fun at my place." Your cheeks redden at the gross nickname');
   if (((s as any).fedorKozlovQW ?? 0) >= 10  &&  ((s as any).dimaFilm ?? 0) === 1  &&  ((s as any).FedorvsDimka ?? 0) === 1  ||  ((s as any).fedorKozlovQW ?? 0) === -15) {
@@ -103,7 +103,7 @@ function enterDrugged(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 15;
   qspCall(s, 'drugs', 'cocaine', 1);
   qspCall(s, 'stat', '');
-  scene.text(`<center><b>${((s as any).npc_firstname ?? 0)?.['A1'] ?? ''} ${((s as any).npc_lastname ?? 0)?.['A1'] ?? ''}</b></center>`);
+  scene.text(`<center><b>${(((s as any).npc_firstname ?? 0)?.['A1'] ?? '')} ${(((s as any).npc_lastname ?? 0)?.['A1'] ?? '')}</b></center>`);
   scene.img('images/characters/shared/headshots_main/big1.jpg');
   scene.text('You take several sips as you talk with Dimka. Again he doesn\'t seem to want to chat, and appears to be waiting for something. After a while you start to feel funny. For a moment you just feel numb, then you feel yourself get aroused. The heat coming from your pussy intensifying as it soaks itself. You gasp. It is almost too much to take. You desperately need someone to fuck you. "Oh, fuck". You don\'t think this is normal. He must have laced it with something. You blink a few times trying to clear your head, but soon your thoughts grow murky.');
   // TODO-QSP: end
@@ -362,7 +362,7 @@ function enterPlead(s: GameState, scene: SceneBuilder): void {
 
 function enterBlackmail(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
-  scene.text(`<center><b>${((s as any).npc_firstname ?? 0)?.['A1'] ?? ''} ${((s as any).npc_lastname ?? 0)?.['A1'] ?? ''}</b></center>`);
+  scene.text(`<center><b>${(((s as any).npc_firstname ?? 0)?.['A1'] ?? '')} ${(((s as any).npc_lastname ?? 0)?.['A1'] ?? '')}</b></center>`);
   scene.img('images/characters/shared/headshots_main/big1.jpg');
   (s as any).nodimkaK = 0;
   if (((s as any).dimkaWarn ?? 0) === 1) {
@@ -787,7 +787,7 @@ function enterDimkaWarning(s: GameState, scene: SceneBuilder): void {
     scene.text('"He said you\'ll know when you open it." Lesco replied, then after taking another long look at your breasts, he leaves.');
     scene.text('You turn the envelope over in your hands. It only has your name written on the front with the word "Private". You open it and find pictures of you sucking a dick. You realize these are from the video that Dimka made that first time you went to his house.');
     // TODO-QSP: dynamic text: On the back of one of the pictures you find a note. "<<$pcs_nickname>>, come see...
-    scene.text(`On the back of one of the pictures you find a note. "${((s as any).pcs_nickname ?? '')}, come see me or the next envelope will be for your ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''}." There is no signature.`);
+    scene.text(`On the back of one of the pictures you find a note. "${((s as any).pcs_nickname ?? '')}, come see me or the next envelope will be for your ${(((s as any).npc_nickname ?? 0)?.['A29'] ?? '')}." There is no signature.`);
     scene.actions([
       { label: 'Move away', goto: ['korrPar', ''] },
     ]);

@@ -29,9 +29,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
     ((s as any).KGZVars = (s as any).KGZVars ?? {})['dist'] = 0;
   }
   // TODO-QSP: dynamic text: Health <<KGZVars[''HP'']>>. Day <<KGZVars[''day'']>>, h <<KGZVars[''hour'']>>.
-  scene.text(`Health ${((s as any).KGZVars ?? 0)?.['HP'] ?? ''}. Day ${((s as any).KGZVars ?? 0)?.['day'] ?? ''}, h ${((s as any).KGZVars ?? 0)?.['hour'] ?? ''}.`);
+  scene.text(`Health ${(((s as any).KGZVars ?? 0)?.['HP'] ?? '')}. Day ${(((s as any).KGZVars ?? 0)?.['day'] ?? '')}, h ${(((s as any).KGZVars ?? 0)?.['hour'] ?? '')}.`);
   // TODO-QSP: dynamic text: Edged weapons:<<$KGZVars[''weapon_text'']>>
-  scene.text(`Edged weapons:${((s as any).KGZVars ?? 0)?.['weapon_text'] ?? ''}`);
+  scene.text(`Edged weapons:${(((s as any).KGZVars ?? 0)?.['weapon_text'] ?? '')}`);
   if (((s as any).KGZVars ?? 0)?.['gun_text'] !== '') {
     // TODO-QSP: dynamic text: l $KGZVars['gun_text']
     scene.text('l $KGZVars[\'gun_text\']');
@@ -45,7 +45,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.text('l $KGZVars[\'gun3_text\']');
   }
   // TODO-QSP: dynamic text: <<KGZVars[''dead'']>> zombies are making their way towards you. They are <<KGZVa...
-  scene.text(`${((s as any).KGZVars ?? 0)?.['dead'] ?? ''} zombies are making their way towards you. They are ${((s as any).KGZVars ?? 0)?.['dist'] ?? ''} meters away.`);
+  scene.text(`${(((s as any).KGZVars ?? 0)?.['dead'] ?? '')} zombies are making their way towards you. They are ${(((s as any).KGZVars ?? 0)?.['dist'] ?? '')} meters away.`);
   if (((s as any).KGZVars ?? 0)?.['dost'] === 1) {
     ((s as any).KGZVars = (s as any).KGZVars ?? {})['dead'] = ((s as any).KGZVars['dead'] ?? 0) - (1);
     scene.text('Vincent fires his rifle and a zombie falls to the ground with a hole in its head.');
@@ -139,7 +139,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).KGZVars ?? 0)?.['dist'] <= 2) {
     scene.actions([
-      { label: '', labelFn: (s: GameState) => 'Strike with ' + String(((s as any).KGZVars ?? 0)?.['weapon_texta'] ?? '' ?? ''), handler: (st: GameState) => {
+      { label: '', labelFn: (s: GameState) => 'Strike with ' + String((((s as any).KGZVars ?? 0)?.['weapon_texta'] ?? '') ?? ''), handler: (st: GameState) => {
     qspCall(st, 'KGZdyn', 'KGZfizatk');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
@@ -178,7 +178,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       } else {
         if (((st as any).KGZVars ?? 0)?.['dedrandrun'] === 1) {
           ((st as any).KGZVars = (st as any).KGZVars ?? {})['dist'] = ((st as any).KGZVars['dist'] ?? 0) - (5);
-          ((st as any).KGZVars = (st as any).KGZVars ?? {})['dead'] = ((st as any).KGZVars['dead'] ?? 0) + ((Math.floor(Math.random() * ((((st as any).KGZVars ?? {})?.['dead'] ?? 0) * 5 - ((st as any).KGZVars ?? 0)?.['dead'] + 1)) + (((st as any).KGZVars ?? 0)?.['dead'])));
+          ((st as any).KGZVars = (st as any).KGZVars ?? {})['dead'] = ((st as any).KGZVars['dead'] ?? 0) + ((Math.floor(Math.random() * ((((st as any).KGZVars ?? {})?.['dead'] ?? 0) * 5 - (((st as any).KGZVars ?? 0)?.['dead']) + 1)) + ((((st as any).KGZVars ?? 0)?.['dead']))));
           scene.text('You make a cautious approach, but manage to alert even more zombies.');
           scene.actions([
             { label: 'Fuck!', handler: (st: GameState) => {

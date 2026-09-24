@@ -44,7 +44,7 @@ function enterWineInvite(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       // TODO-QSP: dynamic text: You shake your head. "After being chewed out by your mom last time for getting b...
-      scene.text(`You shake your head. "After being chewed out by your mom last time for getting black out drunk? No thanks. I already get enough from my ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''} back home."`);
+      scene.text(`You shake your head. "After being chewed out by your mom last time for getting black out drunk? No thanks. I already get enough from my ${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')} back home."`);
       // TODO-QSP: dynamic text: "Ugh! You''re such a pussy, <<$pcs_nickname>>!" she replies while rolling her ey...
       scene.text(`"Ugh! You're such a pussy, ${((st as any).pcs_nickname ?? '')}!" she replies while rolling her eyes. "Fine, you go shower. <i>I'm</i> getting drunk again."`);
       scene.text('She pads off into the kitchen, leaving you and a trail of wet footprints behind.');

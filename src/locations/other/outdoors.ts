@@ -252,7 +252,7 @@ function enterWeather(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGetTempString(s: GameState, scene: SceneBuilder): void {
-  (s as any).temp_sd_scale = ((Object.keys((s as any).ARGS ?? {}).length <= 3) ? (((s as any).stat_cfg ?? 0)?.['temp_scale']) : (((s as any).locArgs?.[3] ?? 0)));
+  (s as any).temp_sd_scale = ((Object.keys((s as any).ARGS ?? {}).length <= 3) ? ((((s as any).stat_cfg ?? 0)?.['temp_scale'])) : (((s as any).locArgs?.[3] ?? 0)));
   if ((!((s as any).temp_sd_scale ?? 0))) {
     (s as any).result = '' + ((s as any).locArgs?.[1] ?? 0) + '.' + ((s as any).locArgs?.[2] ?? 0) + '°C';
   } else {
@@ -330,7 +330,7 @@ function enterGetTempString(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterMain(s: GameState, scene: SceneBuilder): void {
-  (s as any).weatherImage = '<img height = ' + ((s as any).stat_cfg ?? 0)?.['weather_height'] + ' src="images/system/weather/wthr' + ((s as any).DayStage ?? 0) + '';
+  (s as any).weatherImage = '<img height = ' + (((s as any).stat_cfg ?? 0)?.['weather_height']) + ' src="images/system/weather/wthr' + ((s as any).DayStage ?? 0) + '';
   if (((s as any).temper ?? 0) < -10) {
     // TODO-QSP: $weatherImage += '1'
   } else {

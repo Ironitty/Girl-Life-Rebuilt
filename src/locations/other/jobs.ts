@@ -800,7 +800,7 @@ function enterBookSlot(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: $job_booking[$ARGS[1] + ', ' + $str(ARGS[2]) + ', ' + $str(ARGS[3])] = $ARGS[4]
   // TODO-QSP: job_bookings_active[$ARGS[1]] += 1
-  qspCall(s, 'calendar_events', 'add_event', ((s as any).event_vars ?? 0)?.['id']);
+  qspCall(s, 'calendar_events', 'add_event', (((s as any).event_vars ?? 0)?.['id']));
   (s as any).result = 1;
   return;
   // TODO-QSP: end
@@ -1074,12 +1074,12 @@ function enterCreateAvailabilityEvents(s: GameState, scene: SceneBuilder): void 
 
 function enterComputeStatDisplay(s: GameState, scene: SceneBuilder): void {
   if (((s as any).SMTV_commercial ?? 0) === ((s as any).daystart ?? 0) + 1) {
-    ((s as any).stat_texts = (s as any).stat_texts ?? {})['aurora_jobs'] = 'Aurora Talent Agency commercial shoot scheduled tomorrow at ' + qspFunc(s, 'time', 'get_time_string', 10, 0, ((s as any).cheatVars ?? 0)?.['time_format']) + '.';
+    ((s as any).stat_texts = (s as any).stat_texts ?? {})['aurora_jobs'] = 'Aurora Talent Agency commercial shoot scheduled tomorrow at ' + qspFunc(s, 'time', 'get_time_string', 10, 0, (((s as any).cheatVars ?? 0)?.['time_format'])) + '.';
     qspCall(s, 'stat_display_compute', 'queue_msg', 'aurora_jobs');
   } else {
     if (((s as any).SMTV_commercial ?? 0) === ((s as any).daystart ?? 0)) {
       if (((s as any).hour ?? 0) <= 11) {
-        ((s as any).stat_texts = (s as any).stat_texts ?? {})['aurora_jobs'] = 'Aurora Talent Agency commercial shoot in the city center at ' + qspFunc(s, 'time', 'get_time_string', 10, 0, ((s as any).cheatVars ?? 0)?.['time_format']) + '!';
+        ((s as any).stat_texts = (s as any).stat_texts ?? {})['aurora_jobs'] = 'Aurora Talent Agency commercial shoot in the city center at ' + qspFunc(s, 'time', 'get_time_string', 10, 0, (((s as any).cheatVars ?? 0)?.['time_format'])) + '!';
         qspCall(s, 'stat_display_compute', 'queue_msg', 'aurora_jobs');
         qspCall(s, 'stat_display_compute', 'queue_alert', 'You have an Aurora commercial shoot today at 10:00.', 'neg');
       }
@@ -1107,14 +1107,14 @@ function enterComputeStatDisplay(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat_display_compute', 'queue_alert', 'You owe the porn studio money.', 'neg');
   }
   if (((s as any).job_booking_debt ?? 0)?.['city_pornstudio_actress'] > 0) {
-    ((s as any).stat_texts = (s as any).stat_texts ?? {})['porn_acting_debt'] = 'You owe the porn studio ' + qspFunc(s, 'money', 'format', ((s as any).job_booking_debt ?? 0)?.['city_pornstudio_actress']) + '.';
+    ((s as any).stat_texts = (s as any).stat_texts ?? {})['porn_acting_debt'] = 'You owe the porn studio ' + qspFunc(s, 'money', 'format', (((s as any).job_booking_debt ?? 0)?.['city_pornstudio_actress'])) + '.';
     qspCall(s, 'stat_display_compute', 'queue_msg', 'porn_acting_debt');
     qspCall(s, 'stat_display_compute', 'queue_alert', 'You owe the porn studio money for a shoot.', 'neg');
   }
   if (((s as any).firstkasting ?? 0) > 0  &&  ((s as any).pfilmNO ?? 0) < 1) {
     ((s as any).sd_cm = (s as any).sd_cm ?? {})['pa_avail'] = (((s as any).job_booking_max_concurrent ?? {})?.['city_pornstudio_actress'] ?? 0) - (((s as any).job_bookings_active ?? {})?.['city_pornstudio_actress'] ?? 0);
     if (((s as any).sd_cm ?? 0)?.['pa_avail'] > 0) {
-      ((s as any).stat_texts = (s as any).stat_texts ?? {})['porn_acting_avail'] = 'You can contract ' + ((((s as any).sd_cm ?? 0)?.['pa_avail'] === 1) ? ('1 more') : ('up to ' + String(((s as any).sd_cm ?? 0)?.['pa_avail']))) + ' porn shoot' + ((((s as any).sd_cm ?? 0)?.['pa_avail'] > 1) ? ('s') : ('')) + ' at the Porn Studio.';
+      ((s as any).stat_texts = (s as any).stat_texts ?? {})['porn_acting_avail'] = 'You can contract ' + ((((s as any).sd_cm ?? 0)?.['pa_avail'] === 1) ? ('1 more') : ('up to ' + String((((s as any).sd_cm ?? 0)?.['pa_avail'])))) + ' porn shoot' + ((((s as any).sd_cm ?? 0)?.['pa_avail'] > 1) ? ('s') : ('')) + ' at the Porn Studio.';
       qspCall(s, 'stat_display_compute', 'queue_msg', 'porn_acting_avail');
     }
   }
@@ -1139,7 +1139,7 @@ function enterComputeStatDisplay(s: GameState, scene: SceneBuilder): void {
       ((s as any).sd_si = (s as any).sd_si ?? {})['job'] = qspUntranslated(s, "job_list[sd_si['idx']]", { location: "jobs" });
       if (((s as any).job_status ?? 0)[((s as any).sd_si ?? 0)?.['job']] === 'employed'  &&  ((s as any).job_suspended ?? 0)[((s as any).sd_si ?? 0)?.['job']] === 0) {
         if (((s as any).job_title ?? 0)[((s as any).sd_si ?? 0)?.['job']] === '') {
-          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).sd_si ?? 0)?.['job']]; enterGetJobDefinition(s, scene); (s as any).locArgs = __savedLocArgs; }
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', (((s as any).sd_si ?? 0)?.['job'])]; enterGetJobDefinition(s, scene); (s as any).locArgs = __savedLocArgs; }
         }
         if (((s as any).job_show_stat_icon ?? 0)[((s as any).sd_si ?? 0)?.['job']] === 1  &&  qspFunc(s, 'jobs', 'is_work_day', ((s as any).sd_si ?? 0)?.['job'], ((s as any).daystart ?? 0)) === 1) {
           ((s as any).sd_si = (s as any).sd_si ?? {})['suffix'] = '';
@@ -1150,7 +1150,7 @@ function enterComputeStatDisplay(s: GameState, scene: SceneBuilder): void {
           if (((s as any).job_schedule_mode ?? 0)[((s as any).sd_si ?? 0)?.['job']] === 'booking') {
             ((s as any).sd_si = (s as any).sd_si ?? {})['crossmid'] = 0;
             if (qspFunc(s, 'jobs', 'has_booking_for_day', ((s as any).sd_si ?? 0)?.['job'], ((s as any).daystart ?? 0) - 1) === 1) {
-              { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).sd_si ?? 0)?.['job'], ((s as any).daystart ?? 0) - 1]; enterGetShiftForDay(s, scene); (s as any).locArgs = __savedLocArgs; }
+              { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', (((s as any).sd_si ?? 0)?.['job']), ((s as any).daystart ?? 0) - 1]; enterGetShiftForDay(s, scene); (s as any).locArgs = __savedLocArgs; }
               ((s as any).sd_si = (s as any).sd_si ?? {})['xm_i'] = 0;
               // TODO-QSP: :sd_v4_crossmid
               if (((s as any).sd_si ?? 0)?.['xm_i'] < ((s as any).result_slot_count ?? 0)) {
@@ -1175,7 +1175,7 @@ function enterComputeStatDisplay(s: GameState, scene: SceneBuilder): void {
               }
             }
             if (((s as any).sd_si ?? 0)?.['crossmid'] === 0  &&  qspFunc(s, 'jobs', 'has_booking_for_day', ((s as any).sd_si ?? 0)?.['job'], ((s as any).daystart ?? 0)) === 1) {
-              { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).sd_si ?? 0)?.['job'], ((s as any).daystart ?? 0)]; enterGetShiftForDay(s, scene); (s as any).locArgs = __savedLocArgs; }
+              { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', (((s as any).sd_si ?? 0)?.['job']), ((s as any).daystart ?? 0)]; enterGetShiftForDay(s, scene); (s as any).locArgs = __savedLocArgs; }
               ((s as any).sd_si = (s as any).sd_si ?? {})['best'] = 0;
               ((s as any).sd_si = (s as any).sd_si ?? {})['slot_i'] = 0;
               // TODO-QSP: :sd_v4_slot_loop
@@ -1225,7 +1225,7 @@ function enterComputeStatDisplay(s: GameState, scene: SceneBuilder): void {
                 ((s as any).sd_si = (s as any).sd_si ?? {})['show'] = 1;
               }
             } else {
-              { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).sd_si ?? 0)?.['job'], ((s as any).daystart ?? 0)]; enterGetShiftForDay(s, scene); (s as any).locArgs = __savedLocArgs; }
+              { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', (((s as any).sd_si ?? 0)?.['job']), ((s as any).daystart ?? 0)]; enterGetShiftForDay(s, scene); (s as any).locArgs = __savedLocArgs; }
               if (((s as any).job_last_work_day ?? 0)[((s as any).sd_si ?? 0)?.['job']] === ((s as any).daystart ?? 0)  &&  ((s as any).job_worked_count ?? 0)[((s as any).sd_si ?? 0)?.['job']] > 0  &&  ((s as any).sd_si ?? 0)?.['now'] >= ((s as any).result_arrival ?? 0)  &&  ((s as any).sd_si ?? 0)?.['now'] < ((s as any).iif ?? 0)(((s as any).job_clocked_in ?? 0)[((s as any).sd_si ?? 0)?.['job']] > 0, ((s as any).job_clocked_in ?? 0)[((s as any).sd_si ?? 0)?.['job']], ((s as any).result_start ?? 0)) + ((s as any).result_duration ?? 0)) {
                 ((s as any).sd_si = (s as any).sd_si ?? {})['suffix'] = 'green';
                 ((s as any).sd_si = (s as any).sd_si ?? {})['show'] = 1;
@@ -1256,47 +1256,47 @@ function enterComputeStatDisplay(s: GameState, scene: SceneBuilder): void {
             }
           }
           if (((s as any).sd_si ?? 0)?.['show'] === 1  &&  ((s as any).sd_si ?? 0)?.['suffix'] !== '') {
-            ((s as any).sd_si = (s as any).sd_si ?? {})['f_title'] = (((s as any).job_title ?? 0)?.[((s as any).sd_si ?? 0)?.['job']] ?? 0) + ' at ' + (((s as any).job_location ?? 0)?.[((s as any).sd_si ?? 0)?.['job']] ?? 0) + ': ';
+            ((s as any).sd_si = (s as any).sd_si ?? {})['f_title'] = (((s as any).job_title ?? 0)?.[(((s as any).sd_si ?? 0)?.['job'])] ?? 0) + ' at ' + (((s as any).job_location ?? 0)?.[(((s as any).sd_si ?? 0)?.['job'])] ?? 0) + ': ';
             ((s as any).sd_si = (s as any).sd_si ?? {})['f_start'] = qspFunc(s, 'time', 'get_time_string', (((s as any).sd_si ?? {})?.['r_start'] ?? 0) / 60, (((s as any).sd_si ?? {})?.['r_start'] ?? 0) % 60);
             ((s as any).sd_si = (s as any).sd_si ?? {})['f_arrival'] = qspFunc(s, 'time', 'get_time_string', (((s as any).sd_si ?? {})?.['r_arrival'] ?? 0) / 60, (((s as any).sd_si ?? {})?.['r_arrival'] ?? 0) % 60);
             if (((s as any).sd_si ?? 0)?.['suffix'] === 'green') {
-              ((s as any).sd_si = (s as any).sd_si ?? {})['msg'] = ((s as any).sd_si ?? 0)?.['f_title'] + 'Currently working.';
+              ((s as any).sd_si = (s as any).sd_si ?? {})['msg'] = (((s as any).sd_si ?? 0)?.['f_title']) + 'Currently working.';
             } else {
               if (((s as any).sd_si ?? 0)?.['suffix'] === 'blue') {
-                ((s as any).sd_si = (s as any).sd_si ?? {})['msg'] = ((s as any).sd_si ?? 0)?.['f_title'] + 'Your shift starts at ' + ((s as any).sd_si ?? 0)?.['f_start'] + '. Head there now!';
-                qspCall(s, 'stat_display_compute', 'queue_alert', ((s as any).sd_si ?? 0)?.['msg']);
+                ((s as any).sd_si = (s as any).sd_si ?? {})['msg'] = (((s as any).sd_si ?? 0)?.['f_title']) + 'Your shift starts at ' + (((s as any).sd_si ?? 0)?.['f_start']) + '. Head there now!';
+                qspCall(s, 'stat_display_compute', 'queue_alert', (((s as any).sd_si ?? 0)?.['msg']));
               } else {
                 if (((s as any).sd_si ?? 0)?.['suffix'] === 'red') {
-                  ((s as any).sd_si = (s as any).sd_si ?? {})['msg'] = ((s as any).sd_si ?? 0)?.['f_title'] + 'You missed your shift' + ((((s as any).sd_si ?? 0)?.['missed_today'] === 1) ? (' today!') : ('!'));
+                  ((s as any).sd_si = (s as any).sd_si ?? {})['msg'] = (((s as any).sd_si ?? 0)?.['f_title']) + 'You missed your shift' + ((((s as any).sd_si ?? 0)?.['missed_today'] === 1) ? (' today!') : ('!'));
                 } else {
                   if (((s as any).job_schedule_mode ?? 0)[((s as any).sd_si ?? 0)?.['job']] === 'on_demand') {
-                    ((s as any).sd_si = (s as any).sd_si ?? {})['msg'] = ((s as any).sd_si ?? 0)?.['f_title'] + 'Available today.';
+                    ((s as any).sd_si = (s as any).sd_si ?? {})['msg'] = (((s as any).sd_si ?? 0)?.['f_title']) + 'Available today.';
                   } else {
-                    ((s as any).sd_si = (s as any).sd_si ?? {})['msg'] = ((s as any).sd_si ?? 0)?.['f_title'] + 'Arrive by ' + ((s as any).sd_si ?? 0)?.['f_arrival'] + ', shift starts at ' + ((s as any).sd_si ?? 0)?.['f_start'] + '.';
-                    qspCall(s, 'stat_display_compute', 'queue_alert', ((s as any).sd_si ?? 0)?.['msg']);
+                    ((s as any).sd_si = (s as any).sd_si ?? {})['msg'] = (((s as any).sd_si ?? 0)?.['f_title']) + 'Arrive by ' + (((s as any).sd_si ?? 0)?.['f_arrival']) + ', shift starts at ' + (((s as any).sd_si ?? 0)?.['f_start']) + '.';
+                    qspCall(s, 'stat_display_compute', 'queue_alert', (((s as any).sd_si ?? 0)?.['msg']));
                   }
                 }
               }
             }
-            ((s as any).sd_si = (s as any).sd_si ?? {})['label'] = 'v4_job_' + ((s as any).sd_si ?? 0)?.['job'];
+            ((s as any).sd_si = (s as any).sd_si ?? {})['label'] = 'v4_job_' + (((s as any).sd_si ?? 0)?.['job']);
             // TODO-QSP: $stat_texts[$sd_si['label']] = $sd_si['msg']
             if (((s as any).stat_cfg ?? 0)?.['job_icon_themed'] === 1) {
-              ((s as any).sd_si = (s as any).sd_si ?? {})['icon_path'] = ((((s as any).job_icons_source ?? 0)[((s as any).sd_si ?? 0)?.['job']] !== '') ? ((((s as any).job_icons_source ?? 0)?.[((s as any).sd_si ?? 0)?.['job']] ?? 0) + '/') : ('jobs/'));
+              ((s as any).sd_si = (s as any).sd_si ?? {})['icon_path'] = ((((s as any).job_icons_source ?? 0)[((s as any).sd_si ?? 0)?.['job']] !== '') ? ((((s as any).job_icons_source ?? 0)?.[(((s as any).sd_si ?? 0)?.['job'])] ?? 0) + '/') : ('jobs/'));
               if (((s as any).sd_si ?? 0)?.['suffix'] === 'green') {
-                ((s as any).sd_si = (s as any).sd_si ?? {})['icon_path'] = ((s as any).sd_si['icon_path'] ?? 0) + (':' + ((s as any).theme_hex ?? 0)?.['v_pos']);
+                ((s as any).sd_si = (s as any).sd_si ?? {})['icon_path'] = ((s as any).sd_si['icon_path'] ?? 0) + (':' + (((s as any).theme_hex ?? 0)?.['v_pos']));
               } else {
                 if (((s as any).sd_si ?? 0)?.['suffix'] === 'blue') {
-                  ((s as any).sd_si = (s as any).sd_si ?? {})['icon_path'] = ((s as any).sd_si['icon_path'] ?? 0) + (':' + ((s as any).theme_hex ?? 0)?.['accent']);
+                  ((s as any).sd_si = (s as any).sd_si ?? {})['icon_path'] = ((s as any).sd_si['icon_path'] ?? 0) + (':' + (((s as any).theme_hex ?? 0)?.['accent']));
                 } else {
                   if (((s as any).sd_si ?? 0)?.['suffix'] === 'red') {
-                    ((s as any).sd_si = (s as any).sd_si ?? {})['icon_path'] = ((s as any).sd_si['icon_path'] ?? 0) + (':' + ((s as any).theme_hex ?? 0)?.['v_neg']);
+                    ((s as any).sd_si = (s as any).sd_si ?? {})['icon_path'] = ((s as any).sd_si['icon_path'] ?? 0) + (':' + (((s as any).theme_hex ?? 0)?.['v_neg']));
                   }
                 }
               }
             } else {
-              ((s as any).sd_si = (s as any).sd_si ?? {})['icon_path'] = ((((s as any).job_icons_source ?? 0)[((s as any).sd_si ?? 0)?.['job']] !== '') ? ((((s as any).job_icons_source ?? 0)?.[((s as any).sd_si ?? 0)?.['job']] ?? 0) + '/') : ('status/jobs/')) + ((s as any).sd_si ?? 0)?.['job'] + '_' + ((s as any).sd_si ?? 0)?.['suffix'];
+              ((s as any).sd_si = (s as any).sd_si ?? {})['icon_path'] = ((((s as any).job_icons_source ?? 0)[((s as any).sd_si ?? 0)?.['job']] !== '') ? ((((s as any).job_icons_source ?? 0)?.[(((s as any).sd_si ?? 0)?.['job'])] ?? 0) + '/') : ('status/jobs/')) + (((s as any).sd_si ?? 0)?.['job']) + '_' + (((s as any).sd_si ?? 0)?.['suffix']);
             }
-            qspCall(s, 'stat_display_compute', 'queue_msg', ((s as any).sd_si ?? 0)?.['label'], '', ((s as any).sd_si ?? 0)?.['icon_path'], 4);
+            qspCall(s, 'stat_display_compute', 'queue_msg', (((s as any).sd_si ?? 0)?.['label']), '', (((s as any).sd_si ?? 0)?.['icon_path']), 4);
           }
         }
       }
@@ -1543,12 +1543,12 @@ function enterCard(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).job_status ?? 0)?.[String((s as any).jc_id ?? 0)] === 'employed') {
     (s as any).jc_opac = '1.0';
-    (s as any).jc_border = ((s as any).theme_hex ?? 0)?.['accent'];
+    (s as any).jc_border = (((s as any).theme_hex ?? 0)?.['accent']);
     (s as any).jc_status = qspFunc(s, 'wrap', 'v_pos', '&#9679; Employed');
   } else {
     if (((s as any).job_hiring_step ?? 0)?.[String((s as any).jc_id ?? 0)] > 0) {
       (s as any).jc_opac = '0.85';
-      (s as any).jc_border = ((s as any).theme_hex ?? 0)?.['goth'];
+      (s as any).jc_border = (((s as any).theme_hex ?? 0)?.['goth']);
       (s as any).jc_status = qspFunc(s, 'wrap', 'pos', '&#9675; Not currently employed');
     } else {
       (s as any).jc_opac = '0.6';

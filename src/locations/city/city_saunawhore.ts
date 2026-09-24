@@ -382,10 +382,10 @@ function enterBathroom(s: GameState, scene: SceneBuilder): void {
   if (((s as any).mc_inventory ?? 0)?.['razor'] > 0) {
     if (((s as any).workDolg ?? 0) > 0) {
       // TODO-QSP: dynamic text: You have a handful of cheap razors you can use, enough for <<mc_inventory[''razo...
-      scene.text(`You have a handful of cheap razors you can use, enough for ${((s as any).mc_inventory ?? 0)?.['razor'] ?? ''} shaves. <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027din_van/u0027, /u0027shave_options/u0027); return false;">Shave Options</a>`);
+      scene.text(`You have a handful of cheap razors you can use, enough for ${(((s as any).mc_inventory ?? 0)?.['razor'] ?? '')} shaves. <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027din_van/u0027, /u0027shave_options/u0027); return false;">Shave Options</a>`);
     } else {
       // TODO-QSP: dynamic text: Your current pack of razors will last for <b><<mc_inventory[''razor'']>></b> mor...
-      scene.text(`Your current pack of razors will last for <b>${((s as any).mc_inventory ?? 0)?.['razor'] ?? ''}</b> more shaves. <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027din_van/u0027, /u0027shave_options/u0027); return false;">Shave Options</a>`);
+      scene.text(`Your current pack of razors will last for <b>${(((s as any).mc_inventory ?? 0)?.['razor'] ?? '')}</b> more shaves. <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027din_van/u0027, /u0027shave_options/u0027); return false;">Shave Options</a>`);
     }
     qspCall(s, 'din_van', 'brit');
   } else {
@@ -739,7 +739,7 @@ function enterBlowjob(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/locations/city/residenti...
     scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/locations/city/residential/sauna/sex/blowjob` + (Math.floor(Math.random() * 5) + 1) + '.mp4"></video></center>');
     // TODO-QSP: dynamic text: You kneel in front of him and bite your lip, caressing his cock through his pant...
-    scene.text(`You kneel in front of him and bite your lip, caressing his cock through his pants with your hands. He pulls out his ${((s as any).dick_girth ?? '')} dick and brings it to your ${((s as any).pc_desc ?? 0)?.['lips'] ?? ''} lips.`);
+    scene.text(`You kneel in front of him and bite your lip, caressing his cock through his pants with your hands. He pulls out his ${((s as any).dick_girth ?? '')} dick and brings it to your ${(((s as any).pc_desc ?? 0)?.['lips'] ?? '')} lips.`);
     scene.text('You start kissing the tip, licking it all around and putting it a bit inside your mouth and sucking the head.');
     qspCall(s, 'arousal', 'bj', 5, 'prostitution');
     qspCall(s, 'stat', '');

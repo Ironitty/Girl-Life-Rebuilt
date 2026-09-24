@@ -107,7 +107,7 @@ function enterMain(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     if (qspFunc(s, 'homes_properties', 'has_access', 'parents_home')) {
       // TODO-QSP: dynamic text: Everyone from your year is assembled in the auditorium of the school. Your teach...
-      scene.text(`Everyone from your year is assembled in the auditorium of the school. Your teachers are standing on a platform in front of several rows of chairs where you and your classmates are sitting. Some parents and siblings are sitting in the back rows. You turn your head and see your ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''} and Kolka sitting among them.`);
+      scene.text(`Everyone from your year is assembled in the auditorium of the school. Your teachers are standing on a platform in front of several rows of chairs where you and your classmates are sitting. Some parents and siblings are sitting in the back rows. You turn your head and see your ${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')} and Kolka sitting among them.`);
     } else {
       scene.text('Everyone from your year is assembled in the auditorium of the school. Your teachers are standing on a platform in front of several rows of chairs where you and your classmates are sitting. Some parents and siblings are sitting in the back rows. Nobody from your family showed up.');
     }
@@ -119,7 +119,7 @@ function enterMain(s: GameState, scene: SceneBuilder): void {
       scene.text('She starts applauding and the auditorium quickly joins in.');
       if (qspFunc(s, 'homes_properties', 'has_access', 'parents_home')) {
         // TODO-QSP: dynamic text: As you return to your place, you see your <<$npc_nickname[''A29'']>> smiling pro...
-        scene.text(`As you return to your place, you see your ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''} smiling proudly.`);
+        scene.text(`As you return to your place, you see your ${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')} smiling proudly.`);
       }
     } else {
       if (((st as any).class ?? 0)?.['school_grade_average'] >= 70) {
@@ -1054,17 +1054,17 @@ function enterFamilyExtension(s: GameState, scene: SceneBuilder): void {
       scene.text(`You hear your name and turn to find Kolka. "${((s as any).pcs_nickname ?? '')}, you won!"`);
       scene.text('"Hey Kolka, I wasn\'t aware you knew I was running."');
       // TODO-QSP: dynamic text: "<<$npc_nickname[''A29'']>> asked me to keep an eye on what you were doing since...
-      scene.text(`"${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''} asked me to keep an eye on what you were doing since you're always out in your sports gear with that water bottle, so I asked the coach."`);
+      scene.text(`"${(((s as any).npc_nickname ?? 0)?.['A29'] ?? '')} asked me to keep an eye on what you were doing since you're always out in your sports gear with that water bottle, so I asked the coach."`);
     }
     (s as any).minut = ((s as any).minut ?? 0) + 4;
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: At this point, you see your <<$npc_nickname[''A29'']>> and stepfather approachin...
-    scene.text(`At this point, you see your ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''} and stepfather approaching.`);
+    scene.text(`At this point, you see your ${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')} and stepfather approaching.`);
     if (((st as any).npc_rel ?? 0)?.['A29'] > 50) {
       // TODO-QSP: dynamic text: Your <<$npc_nickname[''A29'']>> approaches you and gives you a hug. "I know we''...
-      scene.text(`Your ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''} approaches you and gives you a hug. "I know we've had our differences, but I only want the best for you. I'm so proud of you. Why didn't you say something?"`);
+      scene.text(`Your ${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')} approaches you and gives you a hug. "I know we've had our differences, but I only want the best for you. I'm so proud of you. Why didn't you say something?"`);
       if (((st as any).npc_rel ?? 0)?.['A33'] > 50) {
         scene.text('You see Anya coming over behind Kolka. "Go girl! Well done. You should have told me about this during our nightly chats," she says before she gives you a hug.');
       } else {
@@ -1078,7 +1078,7 @@ function enterFamilyExtension(s: GameState, scene: SceneBuilder): void {
       scene.text(`Your stepfather now joins the conversation. "Come on ${((st as any).pcs_nickname ?? '')}, get showered and changed and we'll meet you outside. We're all going out for dinner to celebrate."`);
       scene.text('"You don\'t have to do that! I know money is tight and I\'m already so happy you all took the time to come and support me. It means a lot."');
       // TODO-QSP: dynamic text: "No, I insist. I''ve talked about this with your <<$npc_nickname[''A29'']>> and ...
-      scene.text(`"No, I insist. I've talked about this with your ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''} and she agrees. It's not often we get the chance to do something like this and we think that some quality family time would be good for all of us."`);
+      scene.text(`"No, I insist. I've talked about this with your ${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')} and she agrees. It's not often we get the chance to do something like this and we think that some quality family time would be good for all of us."`);
       (st as any).minut = ((st as any).minut ?? 0) + 4;
       qspCall(st, 'stat', '');
       scene.actions([
@@ -1112,7 +1112,7 @@ function enterFamilyExtension(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/school/grounds/restaurant_family.jpg');
     scene.text('At the local Del Parco restaurant, you all spend a few hours enjoying your meal as your family encourages you to continue and improve, but stressing that they\'re very proud of what you\'ve achieved so far.');
     // TODO-QSP: dynamic text: Your stepfather orders some wine and although your <<$npc_nickname[''A29'']>> gi...
-    scene.text(`Your stepfather orders some wine and although your ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''} gives him a disapproving look, he gives you a glass so you can toast your victory.`);
+    scene.text(`Your stepfather orders some wine and although your ${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')} gives him a disapproving look, he gives you a glass so you can toast your victory.`);
     scene.text('At the end of a very enjoyable meal and some quality family time, you thank them again for their kindness before there\'s a big family hug and you all return home.');
     (st as any).minut = ((st as any).minut ?? 0) + 90;
     qspCall(st, 'stat', '');
@@ -1128,13 +1128,13 @@ function enterFamilyExtension(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       // TODO-QSP: dynamic text: "<<$pcs_nickname>>, you won! Well done!" your <<$npc_nickname[''A29'']>> shouts ...
-      scene.text(`"${((st as any).pcs_nickname ?? '')}, you won! Well done!" your ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''} shouts as she approaches.`);
+      scene.text(`"${((st as any).pcs_nickname ?? '')}, you won! Well done!" your ${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')} shouts as she approaches.`);
       scene.text('"Thanks. And thanks for coming too."');
       scene.text('"I know that we have our differences, but I haven\'t stopped caring about you and I asked Kolka to let me know if he saw you around as I kept seeing you heading out in your sports gear with your water bottle and wondered what you were doing," she replies.');
       // TODO-QSP: dynamic text: You''re a little lost for words, so your <<$npc_nickname[''A29'']>> continues. "...
-      scene.text(`You're a little lost for words, so your ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''} continues. "He told me he's seen you running at the track when the school was closed and training at the community center, so I asked the coach. Anyway I'm so proud of you! Why didn't you say something?"`);
+      scene.text(`You're a little lost for words, so your ${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')} continues. "He told me he's seen you running at the track when the school was closed and training at the community center, so I asked the coach. Anyway I'm so proud of you! Why didn't you say something?"`);
       // TODO-QSP: dynamic text: When you don''t answer, your <<$npc_nickname[''A29'']>> continues. "Come on, get...
-      scene.text(`When you don't answer, your ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''} continues. "Come on, get showered and changed and I'll meet you outside."`);
+      scene.text(`When you don't answer, your ${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')} continues. "Come on, get showered and changed and I'll meet you outside."`);
       scene.text('Anya and Kolka give you a friendly wave and leave.');
       (st as any).minut = ((st as any).minut ?? 0) + 4;
       qspCall(st, 'stat', '');
@@ -1151,7 +1151,7 @@ function enterFamilyExtension(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: "Of course I''d come, <<$pcs_nickname>>! I just want the best for you and I''m p...
     scene.text(`"Of course I'd come, ${((st as any).pcs_nickname ?? '')}! I just want the best for you and I'm proud of you. Come on, let's go out for a bite to eat. I think we need to have a chat."`);
     // TODO-QSP: dynamic text: "You don''t have to, <<$npc_nickname[''A29'']>>. I''m just glad you came."
-    scene.text(`"You don't have to, ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''}. I'm just glad you came."`);
+    scene.text(`"You don't have to, ${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')}. I'm just glad you came."`);
     scene.text('"It\'s fine. I want to see if we can patch things up between us."');
     (st as any).minut = ((st as any).minut ?? 0) + 10;
     qspCall(st, 'stat', '');
@@ -1191,13 +1191,13 @@ function enterFamilyExtension(s: GameState, scene: SceneBuilder): void {
       scene.text('At the station cafe, your mother selects a corner spot away from the main area so you can keep your chat private.');
       scene.text('You both initially have some general small talk during which she again congratulates you on your win and explains that she wants the best for you and will help in any way she can, but she doesn\'t want you staying out late as you could get into trouble. She continues by saying that she wants you to go to university so that you can make a better life for yourself.');
       // TODO-QSP: dynamic text: Although you''re a little annoyed that she''s still treating you like a child, y...
-      scene.text(`Although you're a little annoyed that she's still treating you like a child, you do appreciate her concern. "I know ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''} and I'm sorry that you get worried when I get back a little late, but you know what time the disco finishes and that I'll never be home by midnight unless I leave earlier than my friends. They would laugh at me having to be home early for bedtime!"`);
+      scene.text(`Although you're a little annoyed that she's still treating you like a child, you do appreciate her concern. "I know ${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')} and I'm sorry that you get worried when I get back a little late, but you know what time the disco finishes and that I'll never be home by midnight unless I leave earlier than my friends. They would laugh at me having to be home early for bedtime!"`);
       scene.text('Your mother thinks it through for a moment. "Okay, I can accept that. I\'m also aware that you\'re nearly 18, but that won\'t stop me from worrying. Maybe I\'ve been a bit harsh in my approach out of habit with Anya but, like I said, I only want the best for you. Can you at least try to meet me halfway on this and do your best in school too?"');
       // TODO-QSP: dynamic text: Unsure how to respond, you sigh. "Okay <<$npc_nickname[''A29'']>>, I''ll try. It...
-      scene.text(`Unsure how to respond, you sigh. "Okay ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''}, I'll try. It's just that it can get a bit overbearing."`);
+      scene.text(`Unsure how to respond, you sigh. "Okay ${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')}, I'll try. It's just that it can get a bit overbearing."`);
       scene.text('Your mother continues. "Okay, let\'s just try to get our relationship back to a good place. Please promise me that you\'ll do your best in school too. Also, no matter what please know that you can always talk to me if something is worrying you. Please know that I do love you and want the best for you."');
       // TODO-QSP: dynamic text: This is the closest you''ve felt to your mother for ages, so you get up and give...
-      scene.text(`This is the closest you've felt to your mother for ages, so you get up and give her a hug. "Thanks ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''}. I'm glad we had this chat to clear the air. I love you too and it'll be good to have my ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''} back."`);
+      scene.text(`This is the closest you've felt to your mother for ages, so you get up and give her a hug. "Thanks ${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')}. I'm glad we had this chat to clear the air. I love you too and it'll be good to have my ${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')} back."`);
       scene.text('She hugs you back and you both finish your meals with some more relaxed conversation. After that, you both feel much relieved and emotionally drained, but happier.');
     }
     qspCall(st, 'npc_relationship', 'set', 'A29', 50);

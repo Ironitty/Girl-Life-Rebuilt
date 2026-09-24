@@ -137,7 +137,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
         (st as any).orgasm_or = 'no';
         scene.text('Your viewer can tell you\'re not very experienced having things up your ass, and enjoys you fingering yourself. He quickly donates some tokens as promised, and you thrust your finger in a few more times before returning to your chair.');
       } else {
-        (st as any).orgasm_txt = 'You\'re carried away so much by the sudden sensations, you\'re almost forgetting that there\'s a camera pointed at you! Your free hand quickly finds its way to your clit and rubs it eagerly, making you orgasm in front of your ' + ((st as any).camGirl ?? 0)?.['MFC_Viewers'] + ' viewers.';
+        (st as any).orgasm_txt = 'You\'re carried away so much by the sudden sensations, you\'re almost forgetting that there\'s a camera pointed at you! Your free hand quickly finds its way to your clit and rubs it eagerly, making you orgasm in front of your ' + (((st as any).camGirl ?? 0)?.['MFC_Viewers']) + ' viewers.';
         (st as any).orgasm_or = 'custom';
       }
     } else {
@@ -148,7 +148,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
           (st as any).orgasm_or = 'no';
           scene.text('Your viewer can tell you\'re not very experienced having things up your ass yet, and enjoys you fingering yourself. He quickly donates some tokens as promised, and you thrust your fingers in a few more times before returning to your chair with a tinge of regret. That actually felt nice, but there\'s money to be made…');
         } else {
-          (st as any).orgasm_txt = 'You\'re carried away so much by the sudden sensations, you\'re almost forgetting that there\'s a camera pointed at you! Your free hand quickly finds its way to your clit and rubs it eagerly, making you orgasm in front of your ' + ((st as any).camGirl ?? 0)?.['MFC_Viewers'] + ' viewers.';
+          (st as any).orgasm_txt = 'You\'re carried away so much by the sudden sensations, you\'re almost forgetting that there\'s a camera pointed at you! Your free hand quickly finds its way to your clit and rubs it eagerly, making you orgasm in front of your ' + (((st as any).camGirl ?? 0)?.['MFC_Viewers']) + ' viewers.';
           (st as any).orgasm_or = 'custom';
         }
       } else {
@@ -159,7 +159,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
             (st as any).orgasm_or = 'no';
             scene.text('Your viewer enjoys you fingering yourself, eager to have finally found a girl that isn\'t too squeamish to take some fingers in her ass without crying about it. He quickly donates some tokens as promised, and you thrust your fingers in a few more times before returning to your chair with a tinge of regret. That actually felt nice, but there\'s money to be made…');
           } else {
-            (st as any).orgasm_txt = 'You\'re carried away so much by the sudden sensations, you\'re almost forgetting that there\'s a camera pointed at you! Your free hand quickly finds its way to your clit and rubs it eagerly, making you orgasm in front of your ' + ((st as any).camGirl ?? 0)?.['MFC_Viewers'] + ' viewers.';
+            (st as any).orgasm_txt = 'You\'re carried away so much by the sudden sensations, you\'re almost forgetting that there\'s a camera pointed at you! Your free hand quickly finds its way to your clit and rubs it eagerly, making you orgasm in front of your ' + (((st as any).camGirl ?? 0)?.['MFC_Viewers']) + ' viewers.';
             (st as any).orgasm_or = 'custom';
           }
         } else {
@@ -171,7 +171,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
               (st as any).orgasm_or = 'no';
               scene.text('Your viewer enjoys you fingering yourself, eager to have finally found a girl that isn\'t too squeamish to take some fingers in her ass without crying about it. He quickly donates some tokens as promised, and you thrust your fingers in a few more times before returning to your chair with a tinge of regret. That actually felt nice, but there\'s money to be made…');
             } else {
-              (st as any).orgasm_txt = 'You\'re carried away so much by the sudden sensations, you\'re almost forgetting that there\'s a camera pointed at you! Your free hand quickly finds its way to your clit and rubs it eagerly, making you orgasm in front of your ' + ((st as any).camGirl ?? 0)?.['MFC_Viewers'] + ' viewers.';
+              (st as any).orgasm_txt = 'You\'re carried away so much by the sudden sensations, you\'re almost forgetting that there\'s a camera pointed at you! Your free hand quickly finds its way to your clit and rubs it eagerly, making you orgasm in front of your ' + (((st as any).camGirl ?? 0)?.['MFC_Viewers']) + ' viewers.';
               (st as any).orgasm_or = 'custom';
             }
           } else {
@@ -181,7 +181,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
               (st as any).orgasm_or = 'no';
               scene.text('Your viewers are ecstatic and extremely impressed with the ease at which you take large objects (such as your hand) in your ass. A few of them donate some tokens, hoping you\'ll use their money to buy the biggest dildo you can find.');
             } else {
-              (st as any).orgasm_txt = 'You\'re carried away so much by the sudden sensations, you\'re almost forgetting that there\'s a camera pointed at you! Your free hand quickly finds its way to your clit and rubs it eagerly, making you orgasm in front of your ' + ((st as any).camGirl ?? 0)?.['MFC_Viewers'] + ' viewers.';
+              (st as any).orgasm_txt = 'You\'re carried away so much by the sudden sensations, you\'re almost forgetting that there\'s a camera pointed at you! Your free hand quickly finds its way to your clit and rubs it eagerly, making you orgasm in front of your ' + (((st as any).camGirl ?? 0)?.['MFC_Viewers']) + ' viewers.';
               (st as any).orgasm_or = 'custom';
             }
           }

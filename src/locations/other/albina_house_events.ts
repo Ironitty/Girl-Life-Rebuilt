@@ -1326,7 +1326,7 @@ function enterHotTubNoPanties(s: GameState, scene: SceneBuilder): void {
   } else {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterHotTubNoPanties2(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
-  ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['commando_know'] = ((s as any).trait_vars ?? 0)?.['panty_preference'];
+  ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['commando_know'] = (((s as any).trait_vars ?? 0)?.['panty_preference']);
   // TODO-QSP: end
   scene.build();
 }
@@ -1857,7 +1857,7 @@ function enterAlbYoga_1(s: GameState, scene: SceneBuilder): void {
 function enterAlbNakedYoga(s: GameState, scene: SceneBuilder): void {
   ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['yoga_pose'] = (Math.floor(Math.random() * 5) + 1);
   ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['naked_yoga'] = ((s as any).daystart ?? 0);
-  scene.img(`images/characters/pavlovsk/school/girl/albina/yoga/${((s as any).AlbinaQW ?? 0)?.['yoga_pose'] ?? ''}.jpg`);
+  scene.img(`images/characters/pavlovsk/school/girl/albina/yoga/${(((s as any).AlbinaQW ?? 0)?.['yoga_pose'] ?? '')}.jpg`);
   if (((s as any).AlbinaQW ?? 0)?.['yoga_pose'] === 1) {
     scene.text('You walk through the door of the mansion\'s home gym and come face to face with Albina completely naked on the floor, upside down with her head between her knees, her pussy directly facing you, and something black between her ass cheeks.');
   } else {

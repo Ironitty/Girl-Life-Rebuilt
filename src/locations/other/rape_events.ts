@@ -12,7 +12,7 @@ function enterRapistGenerate(s: GameState, scene: SceneBuilder): void {
   (s as any).re_i = 0;
   ((s as any).temp = (s as any).temp ?? {})['rapist_age'] = (Math.floor(Math.random() * 27) + 19);
   // TODO-QSP: :rape_gangbang_loop
-  qspCall(s, 'npcgeneratec', '0', 'rapist', (Math.floor(Math.random() * (((((s as any).temp ?? {})?.['rapist_age'] ?? 0) + 8) - ((s as any).temp ?? 0)?.['rapist_age'] + 1)) + (((s as any).temp ?? 0)?.['rapist_age'])));
+  qspCall(s, 'npcgeneratec', '0', 'rapist', (Math.floor(Math.random() * (((((s as any).temp ?? {})?.['rapist_age'] ?? 0) + 8) - (((s as any).temp ?? 0)?.['rapist_age']) + 1)) + ((((s as any).temp ?? 0)?.['rapist_age']))));
   // TODO-QSP: $rapist[re_i] = $npclastgenerated
   (s as any).re_i = ((s as any).re_i ?? 0) + (1);
   if (((s as any).re_i ?? 0) < 3  &&  ((s as any).fight ?? 0)?.['rape_type'] === 'gang') {
@@ -28,7 +28,7 @@ function enterFightInit(s: GameState, scene: SceneBuilder): void {
   (s as any).re_i = 0;
   ((s as any).temp = (s as any).temp ?? {})['rapist_age'] = (Math.floor(Math.random() * 27) + 19);
   // TODO-QSP: :rape_gang_fight_loop
-  qspCall(s, 'npcgeneratec', '0', 'rapist', (Math.floor(Math.random() * (((((s as any).temp ?? {})?.['rapist_age'] ?? 0) + 8) - ((s as any).temp ?? 0)?.['rapist_age'] + 1)) + (((s as any).temp ?? 0)?.['rapist_age'])));
+  qspCall(s, 'npcgeneratec', '0', 'rapist', (Math.floor(Math.random() * (((((s as any).temp ?? {})?.['rapist_age'] ?? 0) + 8) - (((s as any).temp ?? 0)?.['rapist_age']) + 1)) + ((((s as any).temp ?? 0)?.['rapist_age']))));
   // TODO-QSP: $rapist[re_i] = $npclastgenerated
   qspCall(s, 'fight_npcdata', 'rapist');
   (s as any).re_i = ((s as any).re_i ?? 0) + (1);
@@ -824,7 +824,7 @@ function enterParkGangrapeTp(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Gangraped', handler: (st: GameState) => {
     ((st as any).temp = (st as any).temp ?? {})['rape_time'] = (Math.floor(Math.random() * 21) + 10);
-    qspCall(st, 'arousal', 'vaginal', ((st as any).temp ?? 0)?.['rape_time'], 'rough', 'rape');
+    qspCall(st, 'arousal', 'vaginal', (((st as any).temp ?? 0)?.['rape_time']), 'rough', 'rape');
     qspCall(st, 'arousal', 'anal', -(((st as any).temp ?? {})?.['rape_time'] ?? 0), (((st as any).rapist ?? 0)?.[1] ?? 0), 'rough', 'rape');
     qspCall(st, 'arousal', 'bj', -(((st as any).temp ?? {})?.['rape_time'] ?? 0), (((st as any).rapist ?? 0)?.[2] ?? 0), 'rough', 'rape');
     qspCall(st, 'stat', '');

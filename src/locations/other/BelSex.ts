@@ -154,7 +154,7 @@ function enterBj2(s: GameState, scene: SceneBuilder): void {
   (s as any).picrand = (Math.floor(Math.random() * 13) + 0);
   scene.img(`images/shared/sex/blowjob/bj${((s as any).picrand ?? '')}.mp4`);
   // TODO-QSP: dynamic text: You look at <<$boydesc>> with lust in your eyes. Dropping down on your knees wit...
-  scene.text(`You look at ${((s as any).boydesc ?? '')} with lust in your eyes. Dropping down on your knees without being asked, you unbutton his pants, exposing his fully erect cock. Wrapping your ${((s as any).pc_desc ?? 0)?.['lips'] ?? ''} lips around his strong and warm cock, you quickly begin by sucking the head, caressing it with your tongue and lips.`);
+  scene.text(`You look at ${((s as any).boydesc ?? '')} with lust in your eyes. Dropping down on your knees without being asked, you unbutton his pants, exposing his fully erect cock. Wrapping your ${(((s as any).pc_desc ?? 0)?.['lips'] ?? '')} lips around his strong and warm cock, you quickly begin by sucking the head, caressing it with your tongue and lips.`);
   // TODO-QSP: dynamic text: <<$boydesc>> lets out a small groan, clearly enjoying himself. Turned on by seei...
   scene.text(`${((s as any).boydesc ?? '')} lets out a small groan, clearly enjoying himself. Turned on by seeing ${((s as any).boydesc ?? '')} enjoying the blowjob, you start sucking his cock while caressing his balls.`);
   qspCall(s, 'arousal', 'bj', 10, 'sub', 'prostitution');
@@ -169,7 +169,7 @@ function enterBj2(s: GameState, scene: SceneBuilder): void {
     (st as any).picrand = (Math.floor(Math.random() * 11) + 0);
     scene.img(`images/shared/sex/cum/mouth/cum${((st as any).picrand ?? '')}.mp4`);
     // TODO-QSP: dynamic text: Redoubling your efforts, you reach the base of his wet cock with your <<$pc_desc...
-    scene.text(`Redoubling your efforts, you reach the base of his wet cock with your ${((st as any).pc_desc ?? 0)?.['lips'] ?? ''} lips. ${((st as any).boydesc ?? '')} stares you in the face while your lips glide up and down on his hard dick. You know he must be close now.`);
+    scene.text(`Redoubling your efforts, you reach the base of his wet cock with your ${(((st as any).pc_desc ?? 0)?.['lips'] ?? '')} lips. ${((st as any).boydesc ?? '')} stares you in the face while your lips glide up and down on his hard dick. You know he must be close now.`);
     scene.text('You don\'t want him to cum yet so you switch it up, using your tongue instead, sliding up and down his shaft, pulling out all of your tricks to make him feel good. You even use some techniques you learned to stall his orgasm for a moment, making it all the more intense for him when he shoots his load into your mouth.');
     (st as any).belsexpayment = 300;
     qspCall(st, 'arousal', 'end');
@@ -609,9 +609,9 @@ function enterShower(s: GameState, scene: SceneBuilder): void {
       }
     }
     if (((st as any).PSwim ?? 0) === 1) {
-      qspCall(st, 'clothing', 'wear', ((st as any).lastwornclothingtype ?? 0)?.['swim'], ((st as any).lastwornclothingnumber ?? 0)?.['swim']);
-      qspCall(st, 'panties', 'wear', ((st as any).lastwornpantytype ?? 0)?.['swim'], ((st as any).lastwornpantynumber ?? 0)?.['swim']);
-      qspCall(st, 'bras', 'wear', ((st as any).lastwornbratype ?? 0)?.['swim'], ((st as any).lastwornbranumber ?? 0)?.['swim']);
+      qspCall(st, 'clothing', 'wear', (((st as any).lastwornclothingtype ?? 0)?.['swim']), (((st as any).lastwornclothingnumber ?? 0)?.['swim']));
+      qspCall(st, 'panties', 'wear', (((st as any).lastwornpantytype ?? 0)?.['swim']), (((st as any).lastwornpantynumber ?? 0)?.['swim']));
+      qspCall(st, 'bras', 'wear', (((st as any).lastwornbratype ?? 0)?.['swim']), (((st as any).lastwornbranumber ?? 0)?.['swim']));
     }
     qspCall(st, 'arousal', 'end');
     scene.actions([

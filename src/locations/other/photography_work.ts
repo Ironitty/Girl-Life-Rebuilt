@@ -26,7 +26,7 @@ function enterStage_1(s: GameState, scene: SceneBuilder): void {
     scene.img('images/pc/activities/photography/job/tank.jpg');
     scene.text('You arrive at the Experience Center and spend the next two hours taking as many pictures of the experience as you can. The group is clearly enjoying the event; They get to ride in military vehicles across rough terrain and fire weapons at the shooting range.');
     // TODO-QSP: dynamic text: Once the day is over, you remove your SD card and hand it to the representative,...
-    scene.text(`Once the day is over, you remove your SD card and hand it to the representative, who shows the photos to the group. Once they've sorted out whether any of the customers want additional copies, your contact takes you back to the city's industrial region. When you check your account, you see that you have been paid ${((st as any).evtVars ?? 0)?.['wage'] ?? ''}.`);
+    scene.text(`Once the day is over, you remove your SD card and hand it to the representative, who shows the photos to the group. Once they've sorted out whether any of the customers want additional copies, your contact takes you back to the city's industrial region. When you check your account, you see that you have been paid ${(((st as any).evtVars ?? 0)?.['wage'] ?? '')}.`);
     scene.actions([
       { label: 'Return', handler: (st: GameState) => {
     dynamicGoto(st, 'prevLoc', 'prevArg');
@@ -46,7 +46,7 @@ function enterStage_2(s: GameState, scene: SceneBuilder): void {
   scene.text('You go to the Petrovskaya Akvatoria Model Museum to take pictures of the various exhibits on behalf of an international newspaper.');
   scene.text('After a brief introduction to a member of staff to confirm your activities, you walk around the exhibit, taking a large number of photographs so that the article has a wealth to choose from.');
   // TODO-QSP: dynamic text: Once you''re finished, you return to the shop and hand the SD card to Branko, wh...
-  scene.text(`Once you're finished, you return to the shop and hand the SD card to Branko, who gives you your fee of ${qspFunc(s, 'money', 'string_profit', ((s as any).evtVars ?? 0)?.['wage'] ?? '')}.`);
+  scene.text(`Once you're finished, you return to the shop and hand the SD card to Branko, who gives you your fee of ${qspFunc(s, 'money', 'string_profit', (((s as any).evtVars ?? 0)?.['wage'] ?? ''))}.`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
@@ -73,7 +73,7 @@ function enterStage_3(s: GameState, scene: SceneBuilder): void {
     scene.text('You meet the bride and groom and help direct them into a number of framed situations for you to take some beautiful photos of them together.');
     scene.text('Once you have enough, you spend the rest of the day in the background taking a number of photos of the wedding. Once it\'s over, you meet back up with the relative who takes the SD card from you.');
     // TODO-QSP: dynamic text: Leaving them to close up the venue, you walk out back into the residential distr...
-    scene.text(`Leaving them to close up the venue, you walk out back into the residential district. When you check your account, you see that you have been paid ${qspFunc(s, 'money', 'string_profit', ((st as any).evtVars ?? 0)?.['wage'] ?? '')}.`);
+    scene.text(`Leaving them to close up the venue, you walk out back into the residential district. When you check your account, you see that you have been paid ${qspFunc(s, 'money', 'string_profit', (((st as any).evtVars ?? 0)?.['wage'] ?? ''))}.`);
     scene.actions([
       { label: 'Return', handler: (st: GameState) => {
     dynamicGoto(st, 'prevLoc', 'prevArg');
@@ -104,7 +104,7 @@ function enterStage_4(s: GameState, scene: SceneBuilder): void {
     scene.text('When the race itself starts you roam the track, taking pictures of any event as it happens, getting high intensity shots of fast paced action, as well as the smooth professionalism of the leading drivers. It is a fantastic experience.');
     scene.text('With your job done, you find your contact again and hand them a full SD card for which they are gratified.');
     // TODO-QSP: dynamic text: Your contact then takes you back to the city''s industrial region. When you chec...
-    scene.text(`Your contact then takes you back to the city's industrial region. When you check your account, you see that you have been paid ${qspFunc(s, 'money', 'string_profit', ((st as any).evtVars ?? 0)?.['wage'] ?? '')}.`);
+    scene.text(`Your contact then takes you back to the city's industrial region. When you check your account, you see that you have been paid ${qspFunc(s, 'money', 'string_profit', (((st as any).evtVars ?? 0)?.['wage'] ?? ''))}.`);
     scene.actions([
       { label: 'Return', handler: (st: GameState) => {
     dynamicGoto(st, 'prevLoc', 'prevArg');
@@ -126,7 +126,7 @@ function enterStage_5(s: GameState, scene: SceneBuilder): void {
   scene.text('Once you\'ve ingratiated yourself into the crowd, you position yourself to take some good shots of the plaintiff accompanied by their lawyers and representatives.');
   scene.text('With the verdict read, you quickly make your way outside to the front of the courthouse to take photos of him leaving.');
   // TODO-QSP: dynamic text: Once you''re finished, you return to the shop and hand the SD card to Branko, wh...
-  scene.text(`Once you're finished, you return to the shop and hand the SD card to Branko, who gives you your fee of ${qspFunc(s, 'money', 'string_profit', ((s as any).evtVars ?? 0)?.['wage'] ?? '')}.`);
+  scene.text(`Once you're finished, you return to the shop and hand the SD card to Branko, who gives you your fee of ${qspFunc(s, 'money', 'string_profit', (((s as any).evtVars ?? 0)?.['wage'] ?? ''))}.`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
@@ -219,7 +219,7 @@ function enterJob_5(s: GameState, scene: SceneBuilder): void {
 function enter(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[0] ?? '') === "((s as any).evt_stage ?? 0)"  ||  String((s as any).locArgs?.[0] ?? '') === '') {
     ((s as any).photography = (s as any).photography ?? {})['experience'] = ((s as any).photography['experience'] ?? 0) + (1);
-    qspCall(s, 'money', 'earn', ((s as any).evtVars ?? 0)?.['wage']);
+    qspCall(s, 'money', 'earn', (((s as any).evtVars ?? 0)?.['wage']));
     qspCall(s, 'stat', '');
     qspGoto(s, 'photography_work', '\'stage_\' + evtVars[\'event_sub\']');
   }

@@ -43,7 +43,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: '', labelFn: (s: GameState) => 'Lose your virginity in front of ' + String(((s as any).camGirl ?? 0)?.['MFC_Viewers'] ?? '' ?? '') + ' people', handler: (st: GameState) => {
+        { label: '', labelFn: (s: GameState) => 'Lose your virginity in front of ' + String((((s as any).camGirl ?? 0)?.['MFC_Viewers'] ?? '') ?? '') + ' people', handler: (st: GameState) => {
     qspCall(st, 'komp_cam_functions', 'camming', 5, 'porn', 'request');
     qspCall(st, 'npcStat', 'D1');
     scene.img('images/pc/items/accessories/computer/camwhore22.jpg');
@@ -154,7 +154,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
         (st as any).orgasm_or = 'no';
         scene.text('Your viewer can tell you\'re not very experienced having things up your ass, and enjoys you fingering yourself. He quickly donates some tokens as promised, and you thrust your finger in a few more times before returning to your chair.');
       } else {
-        (st as any).orgasm_txt = 'You\'re carried away so much by the sudden sensations, you\'re almost forgetting there\'s a camera pointed at you! Your free hand quickly finds its way to your clit and rubs it eagerly, making you orgasm in front of your ' + ((st as any).camGirl ?? 0)?.['MFC_Viewers'] + ' viewers.';
+        (st as any).orgasm_txt = 'You\'re carried away so much by the sudden sensations, you\'re almost forgetting there\'s a camera pointed at you! Your free hand quickly finds its way to your clit and rubs it eagerly, making you orgasm in front of your ' + (((st as any).camGirl ?? 0)?.['MFC_Viewers']) + ' viewers.';
         (st as any).orgasm_or = 'custom';
       }
     } else {
@@ -166,7 +166,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
           (st as any).orgasm_or = 'no';
           scene.text('Your viewer can tell you\'re not very experienced having things up your ass yet and enjoys you fingering yourself. He quickly donates some tokens as promised, and you thrust your fingers in a few more times before returning to your chair with a tinge of regret. That actually felt nice, but there\'s money to be made…');
         } else {
-          (st as any).orgasm_txt = 'You\'re carried away so much by the sudden sensations, you\'re almost forgetting there\'s a camera pointed at you! Your free hand quickly finds its way to your clit and rubs it eagerly, making you orgasm in front of your ' + ((st as any).camGirl ?? 0)?.['MFC_Viewers'] + ' viewers.';
+          (st as any).orgasm_txt = 'You\'re carried away so much by the sudden sensations, you\'re almost forgetting there\'s a camera pointed at you! Your free hand quickly finds its way to your clit and rubs it eagerly, making you orgasm in front of your ' + (((st as any).camGirl ?? 0)?.['MFC_Viewers']) + ' viewers.';
           (st as any).orgasm_or = 'custom';
         }
       } else {
@@ -178,7 +178,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
             (st as any).orgasm_or = 'no';
             scene.text('Your viewer enjoys you fingering yourself, eager to have finally found a girl that isn\'t too squeamish to take some fingers in her ass without crying about it. He quickly donates some tokens as promised, and you thrust your fingers in a few more times before returning to your chair with a tinge of regret. That actually felt nice, but there\'s money to be made…');
           } else {
-            (st as any).orgasm_txt = 'You\'re carried away so much by the sudden sensations, you\'re almost forgetting there\'s a camera pointed at you! Your free hand quickly finds its way to your clit and rubs it eagerly, making you orgasm in front of your ' + ((st as any).camGirl ?? 0)?.['MFC_Viewers'] + ' viewers.';
+            (st as any).orgasm_txt = 'You\'re carried away so much by the sudden sensations, you\'re almost forgetting there\'s a camera pointed at you! Your free hand quickly finds its way to your clit and rubs it eagerly, making you orgasm in front of your ' + (((st as any).camGirl ?? 0)?.['MFC_Viewers']) + ' viewers.';
             (st as any).orgasm_or = 'custom';
           }
         } else {
@@ -191,7 +191,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
               (st as any).orgasm_or = 'no';
               scene.text('Your viewer enjoys you fingering yourself, eager to have finally found a girl that isn\'t too squeamish to take some fingers in her ass without crying about it. He quickly donates some tokens as promised, and you thrust your fingers in a few more times before returning to your chair with a tinge of regret. That actually felt nice, but there\'s money to be made…');
             } else {
-              (st as any).orgasm_txt = 'You\'re carried away so much by the sudden sensations, you\'re almost forgetting there\'s a camera pointed at you! Your free hand quickly finds its way to your clit and rubs it eagerly, making you orgasm in front of your ' + ((st as any).camGirl ?? 0)?.['MFC_Viewers'] + ' viewers.';
+              (st as any).orgasm_txt = 'You\'re carried away so much by the sudden sensations, you\'re almost forgetting there\'s a camera pointed at you! Your free hand quickly finds its way to your clit and rubs it eagerly, making you orgasm in front of your ' + (((st as any).camGirl ?? 0)?.['MFC_Viewers']) + ' viewers.';
               (st as any).orgasm_or = 'custom';
             }
           } else {
@@ -202,7 +202,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
               (st as any).orgasm_or = 'no';
               scene.text('Your viewers are absolutely ecstatic and are extremely impressed with the ease at which you take large objects (such as your hand) in your ass. A few of them donate some tokens, hoping you\'ll use their money to buy the biggest dildo you can find.');
             } else {
-              (st as any).orgasm_txt = 'You\'re carried away so much by the sudden sensations, you\'re almost forgetting there\'s a camera pointed at you! Your free hand quickly finds its way to your clit and rubs it eagerly, making you orgasm in front of your ' + ((st as any).camGirl ?? 0)?.['MFC_Viewers'] + ' viewers.';
+              (st as any).orgasm_txt = 'You\'re carried away so much by the sudden sensations, you\'re almost forgetting there\'s a camera pointed at you! Your free hand quickly finds its way to your clit and rubs it eagerly, making you orgasm in front of your ' + (((st as any).camGirl ?? 0)?.['MFC_Viewers']) + ' viewers.';
               (st as any).orgasm_or = 'custom';
             }
           }
@@ -339,7 +339,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
             (st as any).orgasm_or = 'no';
             scene.text('After you please yourself for a while, you realize you could probably get more tokens out of your viewers by not cumming just yet. You carefully remove your hand with an apologetic smile, hoping some of them will get the hint and donate more.');
           } else {
-            (st as any).orgasm_txt = 'You were already so horny, it doesn\'t take much for you to bring yourself to an orgasm in front of your ' + ((st as any).camGirl ?? 0)?.['MFC_Viewers'] + ' viewers. You feel your vaginal muscles squeezing your hand tightly while you cum, and smile apologetically at the camera when you realize you didn\'t move for a while. Wow, that orgasm was intense!';
+            (st as any).orgasm_txt = 'You were already so horny, it doesn\'t take much for you to bring yourself to an orgasm in front of your ' + (((st as any).camGirl ?? 0)?.['MFC_Viewers']) + ' viewers. You feel your vaginal muscles squeezing your hand tightly while you cum, and smile apologetically at the camera when you realize you didn\'t move for a while. Wow, that orgasm was intense!';
             (st as any).orgasm_or = 'custom';
           }
           qspCall(st, 'arousal', 'vaginal_fist', (-5));
@@ -351,7 +351,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
             (st as any).orgasm_or = 'no';
             scene.text('After you please yourself for a while, you realize you could probably get more tokens out of your viewers by not cumming just yet. You carefully remove your hands with an apologetic smile, hoping some of them will get the hint and donate more.');
           } else {
-            (st as any).orgasm_txt = 'You were already so horny, it doesn\'t take much for you to bring yourself to an orgasm in front of your ' + ((st as any).camGirl ?? 0)?.['MFC_Viewers'] + ' viewers. You feel your vaginal muscles squeezing your hand tightly while you gently tease your anus as you cum, and smile apologetically at the camera when you realize you didn\'t move for a while. Wow, that orgasm was intense!';
+            (st as any).orgasm_txt = 'You were already so horny, it doesn\'t take much for you to bring yourself to an orgasm in front of your ' + (((st as any).camGirl ?? 0)?.['MFC_Viewers']) + ' viewers. You feel your vaginal muscles squeezing your hand tightly while you gently tease your anus as you cum, and smile apologetically at the camera when you realize you didn\'t move for a while. Wow, that orgasm was intense!';
             (st as any).orgasm_or = 'custom';
           }
           qspCall(st, 'arousal', 'vaginal_fist', (-5));
@@ -749,7 +749,7 @@ function enterSetBigVagAct(s: GameState, scene: SceneBuilder): void {
         (st as any).orgasm_or = 'no';
         scene.text('Luckily the viewers can\'t see your face, and you quickly wipe a tear away while you gently move inside you for a moment, until you realize you\'ve done enough to meet the viewer\'s request and quickly take it out of you.');
       } else {
-        (st as any).orgasm_txt = 'For just a moment, you close your eyes and pretend that you\'re getting fucked by a guy. Your own horny thoughts make you fuck yourself even harder despite its size, and you orgasm noisily in front of your ' + ((st as any).camGirl ?? 0)?.['MFC_Viewers'] + ' viewers. That\'s going to hurt for a while, but your audience loved it!';
+        (st as any).orgasm_txt = 'For just a moment, you close your eyes and pretend that you\'re getting fucked by a guy. Your own horny thoughts make you fuck yourself even harder despite its size, and you orgasm noisily in front of your ' + (((st as any).camGirl ?? 0)?.['MFC_Viewers']) + ' viewers. That\'s going to hurt for a while, but your audience loved it!';
         (st as any).orgasm_or = 'custom';
       }
     } else {
@@ -758,7 +758,7 @@ function enterSetBigVagAct(s: GameState, scene: SceneBuilder): void {
         (st as any).orgasm_or = 'no';
         scene.text('The size of this particular dildo is no challenge for your vagina, and you don\'t gain a whole lot of pleasure from fucking yourself with it. The viewers enjoyed it though; when you put the dildo aside after a few minutes of fun, you notice you received several donations during your little show.');
       } else {
-        (st as any).orgasm_txt = 'For just a moment, you close your eyes and pretend that you\'re getting fucked by a guy. Your own horny thoughts make you fuck yourself even harder, and you orgasm noisily in front of your ' + ((st as any).camGirl ?? 0)?.['MFC_Viewers'] + ' viewers.';
+        (st as any).orgasm_txt = 'For just a moment, you close your eyes and pretend that you\'re getting fucked by a guy. Your own horny thoughts make you fuck yourself even harder, and you orgasm noisily in front of your ' + (((st as any).camGirl ?? 0)?.['MFC_Viewers']) + ' viewers.';
         (st as any).orgasm_or = 'custom';
       }
     }
@@ -789,7 +789,7 @@ function enterSetLargeVagAct(s: GameState, scene: SceneBuilder): void {
         (st as any).orgasm_or = 'no';
         scene.text('After a few minutes you have to stop; your poor pussy aches too much to continue! You try to give your viewers a sweet smile, but several of them point out the grimace on your face. You received some tips during your show regardless.');
       } else {
-        (st as any).orgasm_txt = 'For just a moment, you close your eyes and pretend that you\'re getting fucked by a guy. A very well-hung guy. Your own horny thoughts make you fuck yourself even harder despite its size, and you orgasm noisily in front of your ' + ((st as any).camGirl ?? 0)?.['MFC_Viewers'] + ' viewers. That\'s going to hurt for a while, but your audience loved it!';
+        (st as any).orgasm_txt = 'For just a moment, you close your eyes and pretend that you\'re getting fucked by a guy. A very well-hung guy. Your own horny thoughts make you fuck yourself even harder despite its size, and you orgasm noisily in front of your ' + (((st as any).camGirl ?? 0)?.['MFC_Viewers']) + ' viewers. That\'s going to hurt for a while, but your audience loved it!';
         (st as any).orgasm_or = 'custom';
       }
     } else {
@@ -830,7 +830,7 @@ function enterSetHugeVagAct(s: GameState, scene: SceneBuilder): void {
         (st as any).orgasm_or = 'no';
         scene.text('After a few minutes you have to stop; your poor pussy aches too much to continue! You try to give your viewers a sweet smile, but several of them point out the grimace on your face. You received some tips during your show regardless.');
       } else {
-        (st as any).orgasm_txt = 'For just a moment, you close your eyes and pretend that you\'re getting fucked by a guy. A very well-hung guy. Your own horny thoughts make you fuck yourself even harder despite its size, and you orgasm noisily in front of your ' + ((st as any).camGirl ?? 0)?.['MFC_Viewers'] + ' viewers. That\'s going to hurt for a while, but your audience loved it!';
+        (st as any).orgasm_txt = 'For just a moment, you close your eyes and pretend that you\'re getting fucked by a guy. A very well-hung guy. Your own horny thoughts make you fuck yourself even harder despite its size, and you orgasm noisily in front of your ' + (((st as any).camGirl ?? 0)?.['MFC_Viewers']) + ' viewers. That\'s going to hurt for a while, but your audience loved it!';
         (st as any).orgasm_or = 'custom';
       }
     } else {
@@ -914,7 +914,7 @@ function enterSetGiganticVagAct(s: GameState, scene: SceneBuilder): void {
         (st as any).orgasm_or = 'no';
         scene.text('after a few minutes, you have to stop; your poor pussy aches too much to continue! You try to give your viewers a sweet smile, but several of them point out the grimace on your face. You received some tips during your show regardless.');
       } else {
-        (st as any).orgasm_txt = 'For just a moment, you close your eyes and pretend that you\'re getting fucked by a guy. A very well-hung guy. Your own horny thoughts make you fuck yourself even harder despite its size, and you orgasm noisily in front of your ' + ((st as any).camGirl ?? 0)?.['MFC_Viewers'] + ' viewers. That\'s going to hurt for a while, but your audience loved it!';
+        (st as any).orgasm_txt = 'For just a moment, you close your eyes and pretend that you\'re getting fucked by a guy. A very well-hung guy. Your own horny thoughts make you fuck yourself even harder despite its size, and you orgasm noisily in front of your ' + (((st as any).camGirl ?? 0)?.['MFC_Viewers']) + ' viewers. That\'s going to hurt for a while, but your audience loved it!';
         (st as any).orgasm_or = 'custom';
       }
     } else {

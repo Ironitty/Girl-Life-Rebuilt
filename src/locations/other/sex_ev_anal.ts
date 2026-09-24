@@ -660,7 +660,7 @@ function enterAnalInsertOrgasm(s: GameState, scene: SceneBuilder): void {
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['fuck_enjoyment'] = 'enjoy';
     if (((st as any).sex_ev ?? 0)?.['orgasm'] === ((st as any).orgasm ?? 0)) {
       (st as any).orgasm_or = 'yes';
-      qspCall(st, 'arousal', 'anal', (-1), 'no_orgasm_msg', ((st as any).sex_ev ?? 0)?.['prostitution_flag']);
+      qspCall(st, 'arousal', 'anal', (-1), 'no_orgasm_msg', (((st as any).sex_ev ?? 0)?.['prostitution_flag']));
     }
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['insertion_orgasm'] = 1;
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['orgasm'] = ((st as any).orgasm ?? 0);
@@ -744,7 +744,7 @@ function enterAnalGirlOrgasmContinue(s: GameState, scene: SceneBuilder): void {
   }
   scene.text('"I\'m not finished yet," he growls from behind you.');
   ((s as any).sex_ev = (s as any).sex_ev ?? {})['position'] = 'anal';
-  ((s as any).sex_ev = (s as any).sex_ev ?? {})['pos_speed'] = 'anal' + ((s as any).sex_ev ?? 0)?.['speed'] + '';
+  ((s as any).sex_ev = (s as any).sex_ev ?? {})['pos_speed'] = 'anal' + (((s as any).sex_ev ?? 0)?.['speed']) + '';
   qspCall(s, 'sex_ev_sex', 'fuck_continue');
   // TODO-QSP: end
   scene.build();
@@ -778,7 +778,7 @@ function enterAnalGoto(s: GameState, scene: SceneBuilder): void {
           if (((s as any).sex_ev ?? 0)?.['speed'] === 0) {
             ((s as any).sex_ev = (s as any).sex_ev ?? {})['speed'] = (Math.floor(Math.random() * 3) + 1);
           }
-          ((s as any).sex_ev = (s as any).sex_ev ?? {})['pos_speed'] = 'anal' + ((s as any).sex_ev ?? 0)?.['speed'] + '';
+          ((s as any).sex_ev = (s as any).sex_ev ?? {})['pos_speed'] = 'anal' + (((s as any).sex_ev ?? 0)?.['speed']) + '';
           scene.actions([
             { label: 'Get assfucked', handler: (st: GameState) => { qspGoto(st, 'sex_ev_anal', ((st as any).sex_ev['pos_speed'] ?? '')); } },
           ]);
@@ -799,7 +799,7 @@ function enterAnalGoto2(s: GameState, scene: SceneBuilder): void {
     if (((s as any).sex_ev ?? 0)?.['speed'] === 0) {
       ((s as any).sex_ev = (s as any).sex_ev ?? {})['speed'] = (Math.floor(Math.random() * 3) + 1);
     }
-    ((s as any).sex_ev = (s as any).sex_ev ?? {})['pos_speed'] = 'anal' + ((s as any).sex_ev ?? 0)?.['speed'] + '';
+    ((s as any).sex_ev = (s as any).sex_ev ?? {})['pos_speed'] = 'anal' + (((s as any).sex_ev ?? 0)?.['speed']) + '';
     scene.actions([
       { label: 'Get assfucked', goto: ['sex_ev_anal', 'anal' + String((((s as any).sex_ev ?? {})['speed'])) + '.2'] },
     ]);
@@ -1415,7 +1415,7 @@ function enterAnal3(s: GameState, scene: SceneBuilder): void {
   ((s as any).sex_ev = (s as any).sex_ev ?? {})['anal_virgin_fuck'] = 1;
   ((s as any).sex_ev = (s as any).sex_ev ?? {})['rough_check'] = 1;
   qspCall(s, 'sex_ev_stats', 'position_tracker', 'anal', 2);
-  qspCall(s, 'arousal', 'anal', 1, 'no_orgasm_msg', ((s as any).sex_ev ?? 0)?.['prostitution_flag'], 'rough');
+  qspCall(s, 'arousal', 'anal', 1, 'no_orgasm_msg', (((s as any).sex_ev ?? 0)?.['prostitution_flag']), 'rough');
   scene.img('images/shared/sex/anal/doggy/rough1.mp4');
   // TODO-QSP: dynamic text: You gasp as <<$npcdesc>> slams his cock into you from behind, the impact ripplin...
   scene.text(`You gasp as ${((s as any).npcdesc ?? '')} slams his cock into you from behind, the impact rippling through your entire body. As your head jerks back reflexively, ${((s as any).npcdesc ?? '')}'s hand grabs hold of your hair, yanking on it to pull you harder onto his cock.`);
@@ -2794,47 +2794,47 @@ function enterAnal2_2MoanDesc(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).dick_desc ?? 0) === 'tiny'  ||  ((s as any).dick_desc ?? 0) === 'short') {
     // TODO-QSP: dynamic text: You moan <<$sex_ev[''moan_describe'']>> as <<$npcdesc>> keeps fucking you. He po...
-    scene.text(`You moan ${((s as any).sex_ev ?? 0)?.['moan_describe'] ?? ''} as ${((s as any).npcdesc ?? '')} keeps fucking you. He pounds into you from behind, giving you the strangest satisfaction of pleasure that has very little to do with the tiny dick inside you.`);
+    scene.text(`You moan ${(((s as any).sex_ev ?? 0)?.['moan_describe'] ?? '')} as ${((s as any).npcdesc ?? '')} keeps fucking you. He pounds into you from behind, giving you the strangest satisfaction of pleasure that has very little to do with the tiny dick inside you.`);
   } else {
     if (((s as any).dick_desc ?? 0) === 'chode') {
       // TODO-QSP: dynamic text: You moan <<$sex_ev[''moan_describe'']>> as <<$npcdesc>> keeps fucking you. His t...
-      scene.text(`You moan ${((s as any).sex_ev ?? 0)?.['moan_describe'] ?? ''} as ${((s as any).npcdesc ?? '')} keeps fucking you. His thick chode pounds into you from behind, wonderfully stretching your asshole like a good three-finger fucking, but better.`);
+      scene.text(`You moan ${(((s as any).sex_ev ?? 0)?.['moan_describe'] ?? '')} as ${((s as any).npcdesc ?? '')} keeps fucking you. His thick chode pounds into you from behind, wonderfully stretching your asshole like a good three-finger fucking, but better.`);
     } else {
       if (((s as any).dick_desc ?? 0) === 'skinny') {
         // TODO-QSP: dynamic text: You moan <<$sex_ev[''moan_describe'']>> as <<$npcdesc>> keeps fucking you from b...
-        scene.text(`You moan ${((s as any).sex_ev ?? 0)?.['moan_describe'] ?? ''} as ${((s as any).npcdesc ?? '')} keeps fucking you from behind. He pounds your ass, rubbing your g-spot through your intestines with his skinny dick.`);
+        scene.text(`You moan ${(((s as any).sex_ev ?? 0)?.['moan_describe'] ?? '')} as ${((s as any).npcdesc ?? '')} keeps fucking you from behind. He pounds your ass, rubbing your g-spot through your intestines with his skinny dick.`);
       } else {
         if (((s as any).dick_desc ?? 0) === 'normal') {
           // TODO-QSP: dynamic text: You moan <<$sex_ev[''moan_describe'']>> as <<$npcdesc>> keeps fucking you from b...
-          scene.text(`You moan ${((s as any).sex_ev ?? 0)?.['moan_describe'] ?? ''} as ${((s as any).npcdesc ?? '')} keeps fucking you from behind. He pounds your ass, rubbing your g-spot through your intestines with his dick.`);
+          scene.text(`You moan ${(((s as any).sex_ev ?? 0)?.['moan_describe'] ?? '')} as ${((s as any).npcdesc ?? '')} keeps fucking you from behind. He pounds your ass, rubbing your g-spot through your intestines with his dick.`);
         } else {
           if (((s as any).dick_desc ?? 0) === 'thick') {
             // TODO-QSP: dynamic text: You moan <<$sex_ev[''moan_describe'']>> as <<$npcdesc>> keeps fucking you from b...
-            scene.text(`You moan ${((s as any).sex_ev ?? 0)?.['moan_describe'] ?? ''} as ${((s as any).npcdesc ?? '')} keeps fucking you from behind, pounding you with his <i>thick</i> cock that stretches your walls, squeezing pleasure from your ass with every thrust.`);
+            scene.text(`You moan ${(((s as any).sex_ev ?? 0)?.['moan_describe'] ?? '')} as ${((s as any).npcdesc ?? '')} keeps fucking you from behind, pounding you with his <i>thick</i> cock that stretches your walls, squeezing pleasure from your ass with every thrust.`);
           } else {
             if (((s as any).dick_desc ?? 0) === 'long') {
               // TODO-QSP: dynamic text: You moan <<$sex_ev[''moan_describe'']>> as <<$npcdesc>> keeps fucking you from b...
-              scene.text(`You moan ${((s as any).sex_ev ?? 0)?.['moan_describe'] ?? ''} as ${((s as any).npcdesc ?? '')} keeps fucking you from behind, pounding you with his long-ass cock that reaches the very depths of your ass without even trying.`);
+              scene.text(`You moan ${(((s as any).sex_ev ?? 0)?.['moan_describe'] ?? '')} as ${((s as any).npcdesc ?? '')} keeps fucking you from behind, pounding you with his long-ass cock that reaches the very depths of your ass without even trying.`);
             } else {
               if (((s as any).dick_desc ?? 0) === 'huge') {
                 // TODO-QSP: dynamic text: You moan <<$sex_ev[''moan_describe'']>> as <<$npcdesc>> keeps fucking you from b...
-                scene.text(`You moan ${((s as any).sex_ev ?? 0)?.['moan_describe'] ?? ''} as ${((s as any).npcdesc ?? '')} keeps fucking you from behind, pounding you with his huge cock that fills you wonderfully and reaches the very depths of your ass without even trying.`);
+                scene.text(`You moan ${(((s as any).sex_ev ?? 0)?.['moan_describe'] ?? '')} as ${((s as any).npcdesc ?? '')} keeps fucking you from behind, pounding you with his huge cock that fills you wonderfully and reaches the very depths of your ass without even trying.`);
               } else {
                 if (((s as any).dick_desc ?? 0) === 'enormous') {
                   // TODO-QSP: dynamic text: You moan <<$sex_ev[''moan_describe'']>> as <<$npcdesc>> keeps fucking you from b...
-                  scene.text(`You moan ${((s as any).sex_ev ?? 0)?.['moan_describe'] ?? ''} as ${((s as any).npcdesc ?? '')} keeps fucking you from behind, pounding you with his enormous cock that penetrates you to the depths of your ass and stretches your walls, squeezing pleasure from your ass with every thrust.`);
+                  scene.text(`You moan ${(((s as any).sex_ev ?? 0)?.['moan_describe'] ?? '')} as ${((s as any).npcdesc ?? '')} keeps fucking you from behind, pounding you with his enormous cock that penetrates you to the depths of your ass and stretches your walls, squeezing pleasure from your ass with every thrust.`);
                 } else {
                   if (((s as any).dick_desc ?? 0) === 'lengthy') {
                     // TODO-QSP: dynamic text: You moan <<$sex_ev[''moan_describe'']>> as <<$npcdesc>> keeps fucking you from b...
-                    scene.text(`You moan ${((s as any).sex_ev ?? 0)?.['moan_describe'] ?? ''} as ${((s as any).npcdesc ?? '')} keeps fucking you from behind with his amazingly lengthy cock, literally pounding pleasure from your intestines with every thrust. Soreness is quickly building up inside you, and it feels so good. </i>`);
+                    scene.text(`You moan ${(((s as any).sex_ev ?? 0)?.['moan_describe'] ?? '')} as ${((s as any).npcdesc ?? '')} keeps fucking you from behind with his amazingly lengthy cock, literally pounding pleasure from your intestines with every thrust. Soreness is quickly building up inside you, and it feels so good. </i>`);
                   } else {
                     if (((s as any).dick_desc ?? 0) === 'gigantic') {
                       // TODO-QSP: dynamic text: You moan <<$sex_ev[''moan_describe'']>> as <<$npcdesc>> keeps fucking you from b...
-                      scene.text(`You moan ${((s as any).sex_ev ?? 0)?.['moan_describe'] ?? ''} as ${((s as any).npcdesc ?? '')} keeps fucking you from behind with his gigantic cock, literally pounding pleasure from your intestines with every thrust. Soreness is quickly building up between your legs, and it feels so good. </i>`);
+                      scene.text(`You moan ${(((s as any).sex_ev ?? 0)?.['moan_describe'] ?? '')} as ${((s as any).npcdesc ?? '')} keeps fucking you from behind with his gigantic cock, literally pounding pleasure from your intestines with every thrust. Soreness is quickly building up between your legs, and it feels so good. </i>`);
                     } else {
                       if (((s as any).dick_desc ?? 0) === 'monstrous') {
                         // TODO-QSP: dynamic text: You moan <<$sex_ev[''moan_describe'']>> as <<$npcdesc>> keeps fucking you from b...
-                        scene.text(`You moan ${((s as any).sex_ev ?? 0)?.['moan_describe'] ?? ''} as ${((s as any).npcdesc ?? '')} keeps fucking you from behind with his monstrous cock. It's stupidly huge, stretching you to breaking with every thrust and literally pounding your intestines with every thrust. Your asshole is so sore, and <i>it feels so good.</i>`);
+                        scene.text(`You moan ${(((s as any).sex_ev ?? 0)?.['moan_describe'] ?? '')} as ${((s as any).npcdesc ?? '')} keeps fucking you from behind with his monstrous cock. It's stupidly huge, stretching you to breaking with every thrust and literally pounding your intestines with every thrust. Your asshole is so sore, and <i>it feels so good.</i>`);
                       }
                     }
                   }
@@ -3779,7 +3779,7 @@ function enterAnalVirgNorm1(s: GameState, scene: SceneBuilder): void {
   ((s as any).sex_ev = (s as any).sex_ev ?? {})['anal_virgin_fuck'] = 1;
   ((s as any).sex_ev = (s as any).sex_ev ?? {})['first_anal_insertion'] = 1;
   (s as any).orgasm_or = 'no';
-  qspCall(s, 'arousal', 'anal', 1, 'no_orgasm_msg', ((s as any).sex_ev ?? 0)?.['prostitution_flag']);
+  qspCall(s, 'arousal', 'anal', 1, 'no_orgasm_msg', (((s as any).sex_ev ?? 0)?.['prostitution_flag']));
   qspCall(s, 'stat', '');
   ((s as any).sex_ev = (s as any).sex_ev ?? {})['position'] = 'anal';
   ((s as any).sex_ev = (s as any).sex_ev ?? {})['pos_speed'] = 'anal1';
@@ -3807,12 +3807,12 @@ function enterAnalVirgNorm1(s: GameState, scene: SceneBuilder): void {
 
 function enterAnalVirgNorm1_1(s: GameState, scene: SceneBuilder): void {
   ((s as any).sex_ev = (s as any).sex_ev ?? {})['anal_virgin_fuck'] = 1;
-  qspCall(s, 'sex_ev_anal', '' + ((s as any).sex_ev ?? 0)?.['virgin_react'] + '_react1');
+  qspCall(s, 'sex_ev_anal', '' + (((s as any).sex_ev ?? 0)?.['virgin_react']) + '_react1');
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/shared/sex/anal/doggy/insert2.mp4');
-    qspCall(st, 'sex_ev_anal', '' + ((st as any).sex_ev ?? 0)?.['virgin_react'] + '_react2');
+    qspCall(st, 'sex_ev_anal', '' + (((st as any).sex_ev ?? 0)?.['virgin_react']) + '_react2');
     scene.text('"I\'ll be gentle," he says, and begins to move again.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
@@ -3867,7 +3867,7 @@ function enterAnalVirgHard1(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Scream', handler: (st: GameState) => {
     (st as any).orgasm_or = 'no';
-    qspCall(st, 'arousal', 'ass', 1, 'rough', 'no_orgasm_msg', ((st as any).sex_ev ?? 0)?.['prostitution_flag']);
+    qspCall(st, 'arousal', 'ass', 1, 'rough', 'no_orgasm_msg', (((st as any).sex_ev ?? 0)?.['prostitution_flag']));
     qspCall(st, 'stat', '');
     scene.img('images/shared/sex/anal/doggy/hard2.mp4');
     scene.text('<i>"Mmmm! Mmm!! MM!! MMM!!"</i>');
@@ -3910,7 +3910,7 @@ function enterAnalVirgHard2(s: GameState, scene: SceneBuilder): void {
   ((s as any).sex_ev = (s as any).sex_ev ?? {})['pos_speed'] = 'anal2';
   (s as any).orgasm_or = '';
   qspCall(s, 'sex_ev_sex', 'fuck_arousal_code');
-  qspCall(s, 'arousal', 'anal', (-15), 'no_orgasm_msg', ((s as any).sex_ev ?? 0)?.['prostitution_flag']);
+  qspCall(s, 'arousal', 'anal', (-15), 'no_orgasm_msg', (((s as any).sex_ev ?? 0)?.['prostitution_flag']));
   scene.img('images/shared/sex/anal/doggy/med1.mp4');
   // TODO-QSP: dynamic text: <<$npcdesc>> picks up the pace as you command and you start to push your hips ba...
   scene.text(`${((s as any).npcdesc ?? '')} picks up the pace as you command and you start to push your hips back in times with his. The sound of your ass being clapped echoes off the walls. The heightened pace feels even better than it did when he was being gentle and you moan loudly with intense pleasure.`);
@@ -3930,7 +3930,7 @@ function enterAnalVirgHard2_2(s: GameState, scene: SceneBuilder): void {
   ((s as any).sex_ev = (s as any).sex_ev ?? {})['pos_speed'] = 'anal3';
   (s as any).orgasm_or = '';
   qspCall(s, 'sex_ev_sex', 'fuck_arousal_code');
-  qspCall(s, 'arousal', 'anal', (-15), 'no_orgasm_msg', ((s as any).sex_ev ?? 0)?.['prostitution_flag']);
+  qspCall(s, 'arousal', 'anal', (-15), 'no_orgasm_msg', (((s as any).sex_ev ?? 0)?.['prostitution_flag']));
   scene.img('images/shared/sex/anal/doggy/rough1.mp4');
   // TODO-QSP: dynamic text: <<$npcdesc>> picks up the pace as you command and you groan loudly, face contort...
   scene.text(`${((s as any).npcdesc ?? '')} picks up the pace as you command and you groan loudly, face contorting in a mixture of pain and pleasure. Maybe sensing something within you, he reaches up and grabs a fistful of your hair, using it to pull himself into you even harder.`);
@@ -3961,7 +3961,7 @@ function enterVirginEnjoyment(s: GameState, scene: SceneBuilder): void {
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['fuck_enjoyment'] = 'unsatisfying';
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['virgin_numb'] = 1;
     (st as any).orgasm_or = 'no';
-    qspCall(st, 'arousal', 'anal', 1, 'no_orgasm_msg', ((st as any).sex_ev ?? 0)?.['prostitution_flag']);
+    qspCall(st, 'arousal', 'anal', 1, 'no_orgasm_msg', (((st as any).sex_ev ?? 0)?.['prostitution_flag']));
     (st as any).minut = ((st as any).minut ?? 0) + ((Math.floor(Math.random() * 2) + 3));
     qspCall(st, 'stat', '');
     scene.text('... still don\'t really enjoy it...');
@@ -4036,7 +4036,7 @@ function enterVirginEnjoyment(s: GameState, scene: SceneBuilder): void {
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['virgin_good'] = 1;
     (st as any).orgasm_or = '';
     qspCall(st, 'sex_ev_sex', 'fuck_arousal_code');
-    qspCall(st, 'arousal', 'anal', (-15), 'no_orgasm_msg', ((st as any).sex_ev ?? 0)?.['prostitution_flag']);
+    qspCall(st, 'arousal', 'anal', (-15), 'no_orgasm_msg', (((st as any).sex_ev ?? 0)?.['prostitution_flag']));
     qspCall(st, 'stat', '');
     scene.text('<i>... this is starting to feel really good...</i>');
     if (((st as any).sex_ev ?? 0)?.['virgin_react'] === 'hurt') {
@@ -4075,7 +4075,7 @@ function enterVirginEnjoyment(s: GameState, scene: SceneBuilder): void {
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['virgin_pain_good'] = 1;
     (st as any).orgasm_or = '';
     qspCall(st, 'sex_ev_sex', 'fuck_arousal_code');
-    qspCall(st, 'arousal', 'anal', (-15), 'no_orgasm_msg', ((st as any).sex_ev ?? 0)?.['prostitution_flag']);
+    qspCall(st, 'arousal', 'anal', (-15), 'no_orgasm_msg', (((st as any).sex_ev ?? 0)?.['prostitution_flag']));
     qspCall(st, 'stat', '');
     // TODO-QSP: dynamic text: The initial pain you felt is still there, but somehhow it''s evolved. <<$npcdesc...
     scene.text(`The initial pain you felt is still there, but somehhow it's evolved. ${((st as any).npcdesc ?? '')}'s cock is slick with your blood cock and every time moves inside you, it feels like your vagina is going to split in half. It reaches deep inside you, like a knife stabbing into your intestines. And it feels <i>so good</i>.`);

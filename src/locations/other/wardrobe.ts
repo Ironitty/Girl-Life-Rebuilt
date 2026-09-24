@@ -1035,7 +1035,7 @@ function enterDefaultEntrySet(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_set_index = ((s as any).locArgs?.[1] ?? 0);
   // TODO-QSP: $defclothingtype[temp_set_index] = $clothingworntype
   ((s as any).defclothingnumber = (s as any).defclothingnumber ?? {})[String((s as any).temp_set_index ?? 0)] = ((s as any).clothingwornnumber ?? 0);
-  ((s as any).defunderwear = (s as any).defunderwear ?? {})[String((s as any).temp_set_index ?? 0)] = ((s as any).underwear ?? 0)?.['type'];
+  ((s as any).defunderwear = (s as any).defunderwear ?? {})[String((s as any).temp_set_index ?? 0)] = (((s as any).underwear ?? 0)?.['type']);
   // TODO-QSP: $defbodysuittype[temp_set_index] = $bodysuitworntype
   ((s as any).defbodysuitnumber = (s as any).defbodysuitnumber ?? {})[String((s as any).temp_set_index ?? 0)] = ((s as any).bodysuitwornnumber ?? 0);
   // TODO-QSP: $defbratype[temp_set_index] = $braworntype
@@ -1179,17 +1179,17 @@ function enterEntryShiftCore(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: defcoatnumber[temp_wardrobeVars['j']]    = temp_wardrobeVars['coatnumber']
   // TODO-QSP: $def_clothing_name[temp_wardrobeVars['j']]  = $temp_wardrobeVars['name']
   if (((s as any).default_sport_number ?? 0) === ((s as any).temp_wardrobeVars ?? 0)?.['i']) {
-    (s as any).default_sport_number = ((s as any).temp_wardrobeVars ?? 0)?.['j'];
+    (s as any).default_sport_number = (((s as any).temp_wardrobeVars ?? 0)?.['j']);
   } else {
     if (((s as any).default_sport_number ?? 0) === ((s as any).temp_wardrobeVars ?? 0)?.['j']) {
-      (s as any).default_sport_number = ((s as any).temp_wardrobeVars ?? 0)?.['i'];
+      (s as any).default_sport_number = (((s as any).temp_wardrobeVars ?? 0)?.['i']);
     }
   }
   if (((s as any).default_school_number ?? 0) === ((s as any).temp_wardrobeVars ?? 0)?.['i']) {
-    (s as any).default_school_number = ((s as any).temp_wardrobeVars ?? 0)?.['j'];
+    (s as any).default_school_number = (((s as any).temp_wardrobeVars ?? 0)?.['j']);
   } else {
     if (((s as any).default_school_number ?? 0) === ((s as any).temp_wardrobeVars ?? 0)?.['j']) {
-      (s as any).default_school_number = ((s as any).temp_wardrobeVars ?? 0)?.['i'];
+      (s as any).default_school_number = (((s as any).temp_wardrobeVars ?? 0)?.['i']);
     }
   }
   // TODO-QSP: end
@@ -1490,16 +1490,16 @@ function enterBackToRegularClothes(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'purses', 'wear', 'last_worn', '', 'check');
       qspCall(s, 'coats', 'wear', 'last_worn', '', 'check');
     } else {
-      qspCall(s, 'clothing', 'wear', ((s as any).lastwornclothingtype ?? 0)?.['prostitute'], ((s as any).lastwornclothingnumber ?? 0)?.['prostitute'], 'check');
+      qspCall(s, 'clothing', 'wear', (((s as any).lastwornclothingtype ?? 0)?.['prostitute']), (((s as any).lastwornclothingnumber ?? 0)?.['prostitute']), 'check');
       if (((s as any).lastwornunderwear ?? 0)?.['prostitute'] === 2) {
-        qspCall(s, 'underwear_bodysuits', 'wear', ((s as any).lastwornbodysuittype ?? 0)?.['prostitute'], ((s as any).lastwornbodysuitnumber ?? 0)?.['prostitute'], 'check');
+        qspCall(s, 'underwear_bodysuits', 'wear', (((s as any).lastwornbodysuittype ?? 0)?.['prostitute']), (((s as any).lastwornbodysuitnumber ?? 0)?.['prostitute']), 'check');
       } else {
-        qspCall(s, 'panties', 'wear', ((s as any).lastwornpantytype ?? 0)?.['prostitute'], ((s as any).lastwornpantynumber ?? 0)?.['prostitute'], 'check');
-        qspCall(s, 'bras', 'wear', ((s as any).lastwornbratype ?? 0)?.['prostitute'], ((s as any).lastwornbranumber ?? 0)?.['prostitute'], 'check');
+        qspCall(s, 'panties', 'wear', (((s as any).lastwornpantytype ?? 0)?.['prostitute']), (((s as any).lastwornpantynumber ?? 0)?.['prostitute']), 'check');
+        qspCall(s, 'bras', 'wear', (((s as any).lastwornbratype ?? 0)?.['prostitute']), (((s as any).lastwornbranumber ?? 0)?.['prostitute']), 'check');
       }
-      qspCall(s, 'shoes', 'wear', ((s as any).lastwornshoetype ?? 0)?.['prostitute'], ((s as any).lastwornshoenumber ?? 0)?.['prostitute'], 'check');
-      qspCall(s, 'purses', 'wear', ((s as any).lastwornpursetype ?? 0)?.['prostitute'], ((s as any).lastwornpursenumber ?? 0)?.['prostitute'], 'check');
-      qspCall(s, 'coats', 'wear', ((s as any).lastworncoattype ?? 0)?.['prostitute'], ((s as any).lastworncoatnumber ?? 0)?.['prostitute'], 'check');
+      qspCall(s, 'shoes', 'wear', (((s as any).lastwornshoetype ?? 0)?.['prostitute']), (((s as any).lastwornshoenumber ?? 0)?.['prostitute']), 'check');
+      qspCall(s, 'purses', 'wear', (((s as any).lastwornpursetype ?? 0)?.['prostitute']), (((s as any).lastwornpursenumber ?? 0)?.['prostitute']), 'check');
+      qspCall(s, 'coats', 'wear', (((s as any).lastworncoattype ?? 0)?.['prostitute']), (((s as any).lastworncoatnumber ?? 0)?.['prostitute']), 'check');
     }
     qspCall(s, 'prostitution_functions', 'work_clothes');
     if (((s as any).prostitute ?? 0)?.['changed_for_work']) {

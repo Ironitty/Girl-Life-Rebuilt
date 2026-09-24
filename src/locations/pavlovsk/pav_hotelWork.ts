@@ -75,9 +75,9 @@ function enterMaid(s: GameState, scene: SceneBuilder): void {
   if (((s as any).hour ?? 0) >= 19) {
     qspCall(s, 'exp_gain', 'cleaning', 0);
     if (((s as any).lastwornclothingtype ?? 0)?.['maid'] !== '') {
-      qspCall(s, 'clothing', 'wear', ((s as any).lastwornclothingtype ?? 0)?.['maid'], ((s as any).lastwornclothingnumber ?? 0)?.['maid']);
-      (s as any).lastwornclothingtype = ((s as any).lastwornclothingtype ?? 0)?.['maid'];
-      (s as any).lastwornclothingnumber = ((s as any).lastwornclothingnumber ?? 0)?.['maid'];
+      qspCall(s, 'clothing', 'wear', (((s as any).lastwornclothingtype ?? 0)?.['maid']), (((s as any).lastwornclothingnumber ?? 0)?.['maid']));
+      (s as any).lastwornclothingtype = (((s as any).lastwornclothingtype ?? 0)?.['maid']);
+      (s as any).lastwornclothingnumber = (((s as any).lastwornclothingnumber ?? 0)?.['maid']);
     }
     qspGoto(s, 'pav_hotelWork', 'ending');
   }

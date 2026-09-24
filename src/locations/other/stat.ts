@@ -20,7 +20,7 @@ function enterComputeStatDisplay(s: GameState, scene: SceneBuilder): void {
       if (((s as any).hotelRoomDays ?? 0)?.['pav'] === ((s as any).daystart ?? 0)  &&  ((s as any).hour ?? 0) < 11) {
         ((s as any).stat_texts = (s as any).stat_texts ?? {})['hotel_pav'] = 'Your room at the Pavlosk hotel checks out today at ' + qspFunc(s, 'time', 'get_time_string', 11, 0) + '.';
         qspCall(s, 'stat_display_compute', 'queue_msg', 'hotel_pav', 'neg');
-        qspCall(s, 'stat_display_compute', 'queue_alert', ((s as any).stat_texts ?? 0)?.['hotel_pav'], 'neg');
+        qspCall(s, 'stat_display_compute', 'queue_alert', (((s as any).stat_texts ?? 0)?.['hotel_pav']), 'neg');
       }
     }
   }
@@ -32,7 +32,7 @@ function enterComputeStatDisplay(s: GameState, scene: SceneBuilder): void {
       if (((s as any).hotelRoomDays ?? 0)?.['city'] === ((s as any).daystart ?? 0)  &&  ((s as any).hour ?? 0) < 11) {
         ((s as any).stat_texts = (s as any).stat_texts ?? {})['hotel_city'] = 'Your room at the St Petersburg hotel checks out today at ' + qspFunc(s, 'time', 'get_time_string', 11, 0) + '.';
         qspCall(s, 'stat_display_compute', 'queue_msg', 'hotel_city', 'neg');
-        qspCall(s, 'stat_display_compute', 'queue_alert', ((s as any).stat_texts ?? 0)?.['hotel_city'], 'neg');
+        qspCall(s, 'stat_display_compute', 'queue_alert', (((s as any).stat_texts ?? 0)?.['hotel_city']), 'neg');
       }
     }
   }
@@ -432,7 +432,7 @@ function enter15MinuteLoop(s: GameState, scene: SceneBuilder): void {
     if (((s as any).stat ?? 0)?.['rape_count'] !== ((s as any).rape_count ?? 0)) {
       qspCall(s, 'mood', 'lower', 'min');
       qspCall(s, 'mood', 'raise_trauma', ((((s as any).stat ?? {})?.['rape_count'] ?? 0) - ((s as any).rape_count ?? 0)) * 3);
-      (s as any).rape_count = ((s as any).stat ?? 0)?.['rape_count'];
+      (s as any).rape_count = (((s as any).stat ?? 0)?.['rape_count']);
       (s as any).rape_day = ((s as any).daystart ?? 0);
     }
   }
@@ -445,11 +445,11 @@ function enter15MinuteLoop(s: GameState, scene: SceneBuilder): void {
   (s as any).sex = 0;
   ((s as any).stat = (s as any).stat ?? {})['anal'] = ((s as any).stat['anal'] ?? 0) + (((s as any).anal ?? 0));
   (s as any).anal = 0;
-  (s as any).temp_rape_count = ((s as any).stat ?? 0)?.['rape_count'];
+  (s as any).temp_rape_count = (((s as any).stat ?? 0)?.['rape_count']);
   (s as any).temp_rape_this_tick = 0;
   (s as any).temp_base_act_fired = 0;
-  (s as any).temp_prev_last_sex_day = ((s as any).stat ?? 0)?.['last_sex_day'];
-  (s as any).temp_vaginal = ((s as any).stat ?? 0)?.['vaginal'];
+  (s as any).temp_prev_last_sex_day = (((s as any).stat ?? 0)?.['last_sex_day']);
+  (s as any).temp_vaginal = (((s as any).stat ?? 0)?.['vaginal']);
   if (((s as any).temp_vaginal ?? 0) > ((s as any).stat_seen_vaginal ?? 0)) {
     ((s as any).stat = (s as any).stat ?? {})['last_sex_day'] = ((s as any).daystart ?? 0);
     ((s as any).stat = (s as any).stat ?? {})['last_sex_day_vaginal'] = ((s as any).daystart ?? 0);
@@ -459,7 +459,7 @@ function enter15MinuteLoop(s: GameState, scene: SceneBuilder): void {
     }
   }
   (s as any).stat_seen_vaginal = ((s as any).temp_vaginal ?? 0);
-  (s as any).temp_anal = ((s as any).stat ?? 0)?.['anal'];
+  (s as any).temp_anal = (((s as any).stat ?? 0)?.['anal']);
   if (((s as any).temp_anal ?? 0) > ((s as any).stat_seen_anal ?? 0)) {
     ((s as any).stat = (s as any).stat ?? {})['last_sex_day'] = ((s as any).daystart ?? 0);
     ((s as any).stat = (s as any).stat ?? {})['last_sex_day_anal'] = ((s as any).daystart ?? 0);
@@ -484,7 +484,7 @@ function enter15MinuteLoop(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'archetypes', 'change', 0, 0, -(((s as any).arch_const ?? {})?.['sex_chastity_bonus_prude'] ?? 0), 0, 0, 1, 'story', 'Breaking a long dry spell');
     }
   }
-  (s as any).temp_mast = ((s as any).stat ?? 0)?.['mast'];
+  (s as any).temp_mast = (((s as any).stat ?? 0)?.['mast']);
   if (((s as any).temp_mast ?? 0) > ((s as any).stat_seen_mast ?? 0)) {
     ((s as any).stat = (s as any).stat ?? {})['last_mast_day'] = ((s as any).daystart ?? 0);
   }
@@ -494,14 +494,14 @@ function enter15MinuteLoop(s: GameState, scene: SceneBuilder): void {
     ((s as any).stat = (s as any).stat ?? {})['last_sex_day_rape'] = ((s as any).daystart ?? 0);
   }
   (s as any).stat_seen_rape = ((s as any).temp_rape_count ?? 0);
-  (s as any).temp_gangbang = ((s as any).stat ?? 0)?.['gangbang_count'];
+  (s as any).temp_gangbang = (((s as any).stat ?? 0)?.['gangbang_count']);
   if (((s as any).temp_gangbang ?? 0) > ((s as any).stat_seen_gangbang ?? 0)) {
     if ((!((s as any).temp_rape_this_tick ?? 0))) {
       qspCall(s, 'archetypes', 'sex_change', 600, (-4000), 'Gangbang');
     }
   }
   (s as any).stat_seen_gangbang = ((s as any).temp_gangbang ?? 0);
-  (s as any).temp_prostitution = ((s as any).stat ?? 0)?.['prostitution_count'];
+  (s as any).temp_prostitution = (((s as any).stat ?? 0)?.['prostitution_count']);
   if (((s as any).temp_prostitution ?? 0) > ((s as any).stat_seen_prostitution ?? 0)) {
     if ((!((s as any).temp_rape_this_tick ?? 0))) {
       qspCall(s, 'archetypes', 'sex_change', 500, (-2400), 'Prostitution');
@@ -688,7 +688,7 @@ function enter15MinuteLoop(s: GameState, scene: SceneBuilder): void {
   if (((s as any).cosmetic_tattoo ?? 0) > 0) {
     ((s as any).makeup = (s as any).makeup ?? {})['base'] = ((s as any).cosmetic_tattoo ?? 0) + 1;
     if (((s as any).pcs_makeup ?? 0) < ((s as any).makeup ?? 0)?.['base']) {
-      (s as any).pcs_makeup = ((s as any).makeup ?? 0)?.['base'];
+      (s as any).pcs_makeup = (((s as any).makeup ?? 0)?.['base']);
     }
   } else {
     ((s as any).makeup = (s as any).makeup ?? {})['base'] = 1;

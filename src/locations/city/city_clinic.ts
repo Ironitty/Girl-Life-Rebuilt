@@ -1194,11 +1194,11 @@ function enterMilkDonationRoom(s: GameState, scene: SceneBuilder): void {
       ((st as any).lact_ev = (st as any).lact_ev ?? {})['poli_milkedvolume'] = qspFunc(s, 'lact_lib', '$get_breastmilk', 4, 15);
     } else {
       // TODO-QSP: dynamic text: After <<lact_ev[''poli_pumptime'']>> minutes, the woman detaches the pump with a...
-      scene.text(`After ${((st as any).lact_ev ?? 0)?.['poli_pumptime'] ?? ''} minutes, the woman detaches the pump with a smile.`);
+      scene.text(`After ${(((st as any).lact_ev ?? 0)?.['poli_pumptime'] ?? '')} minutes, the woman detaches the pump with a smile.`);
       scene.text('"This should be enough."');
       scene.text('She nods and smiles at you.');
-      (st as any).minut = ((st as any).minut ?? 0) + (((st as any).lact_ev ?? 0)?.['poli_pumptime']);
-      ((st as any).lact_ev = (st as any).lact_ev ?? {})['poli_milkedvolume'] = qspFunc(s, 'lact_lib', '$get_breastmilk', 4, ((st as any).lact_ev ?? 0)?.['poli_pumptime']);
+      (st as any).minut = ((st as any).minut ?? 0) + ((((st as any).lact_ev ?? 0)?.['poli_pumptime']));
+      ((st as any).lact_ev = (st as any).lact_ev ?? {})['poli_milkedvolume'] = qspFunc(s, 'lact_lib', '$get_breastmilk', 4, (((st as any).lact_ev ?? 0)?.['poli_pumptime']));
     }
     scene.img('images/locations/city/residential/clinic/milkbank/small_sample.jpg');
     scene.text('The woman takes your pumped milk and signals you to cover up.');
@@ -1225,7 +1225,7 @@ function enterMilkDonationRoom(s: GameState, scene: SceneBuilder): void {
         ((st as any).lact_ev = (st as any).lact_ev ?? {})['poli_sample_sugar'] = (Math.floor(Math.random() * 25) + 45);
       }
     }
-    ((st as any).lact_ev = (st as any).lact_ev ?? {})['poli_sample_vol'] = ((st as any).lact_ev ?? 0)?.['poli_milkedvolume'];
+    ((st as any).lact_ev = (st as any).lact_ev ?? {})['poli_sample_vol'] = (((st as any).lact_ev ?? 0)?.['poli_milkedvolume']);
     ((st as any).lact_ev = (st as any).lact_ev ?? {})['poli_milkedvolume'] = 0;
     ((st as any).lact_ev = (st as any).lact_ev ?? {})['pcs_milkbank_firsttime'] = 1;
     scene.actions([
@@ -1411,11 +1411,11 @@ function enterMilkBank(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic text: Donated milk volume in liter: <<lact_ev[''poli_totalmilkdonated'']/1000>>.<<$mid...
       scene.text(`Donated milk volume in liter: ${(((st as any).lact_ev ?? {})?.['poli_totalmilkdonated'] ?? 0)/1000}.${(String(1000 + ((((st as any).lact_ev ?? {})?.['poli_totalmilkdonated'] ?? 0) % 1000)).slice((2)-1, ((2)-1)+(3)))}l`);
       // TODO-QSP: dynamic text: Donation count: <<lact_ev[''poli_totalmilkdonation_count'']>>
-      scene.text(`Donation count: ${((st as any).lact_ev ?? 0)?.['poli_totalmilkdonation_count'] ?? ''}`);
+      scene.text(`Donation count: ${(((st as any).lact_ev ?? 0)?.['poli_totalmilkdonation_count'] ?? '')}`);
       // TODO-QSP: dynamic text: Average milk volume per donation in ml: <<lact_ev[''poli_totalmilkdonated'']/lac...
       scene.text(`Average milk volume per donation in ml: ${(((st as any).lact_ev ?? {})?.['poli_totalmilkdonated'] ?? 0)/(((st as any).lact_ev ?? {})?.['poli_totalmilkdonation_count'] ?? 0)}.${(String(100 + ((100 * (((st as any).lact_ev ?? {})?.['poli_totalmilkdonated'] ?? 0) / (((st as any).lact_ev ?? {})?.['poli_totalmilkdonation_count'] ?? 0)) % 100)).slice((2)-1, ((2)-1)+(2)))}`);
       // TODO-QSP: dynamic text: Paid money: <<$func(''money'', ''string_profit'', lact_ev[''poli_totaldonatemone...
-      scene.text(`Paid money: ${qspFunc(s, 'money', 'string_profit', ((st as any).lact_ev ?? 0)?.['poli_totaldonatemoney'] ?? '')}`);
+      scene.text(`Paid money: ${qspFunc(s, 'money', 'string_profit', (((st as any).lact_ev ?? 0)?.['poli_totaldonatemoney'] ?? ''))}`);
       scene.text('<br>----------------------------------------');
     }
     scene.actions([
@@ -1450,38 +1450,38 @@ function enterMilkDonation(s: GameState, scene: SceneBuilder): void {
       ((st as any).lact_ev = (st as any).lact_ev ?? {})['poli_totalmilkdonated'] = ((st as any).lact_ev['poli_totalmilkdonated'] ?? 0) + (((((st as any).lact_ev ?? {})?.['poli_temp_var'] ?? 0)*50));
       if (((st as any).lact_ev ?? 0)?.['poli_temp_var'] >= 12) {
         // TODO-QSP: dynamic text: She looks astonished at the generous amount of milk as she stores away <<lact_ev...
-        scene.text(`She looks astonished at the generous amount of milk as she stores away ${(((st as any).lact_ev ?? {})?.['poli_temp_var'] ?? 0)*50}ml of your breast milk in ${((st as any).lact_ev ?? 0)?.['poli_temp_var'] ?? ''} bottles.`);
+        scene.text(`She looks astonished at the generous amount of milk as she stores away ${(((st as any).lact_ev ?? {})?.['poli_temp_var'] ?? 0)*50}ml of your breast milk in ${(((st as any).lact_ev ?? 0)?.['poli_temp_var'] ?? '')} bottles.`);
         // TODO-QSP: dynamic text: "I can''t believe you had that much inside you, Ms. <<$pcs_lastname>>!" she laug...
         scene.text(`"I can't believe you had that much inside you, Ms. ${((st as any).pcs_lastname ?? '')}!" she laughs heartily and you feel yourself blushing.`);
       } else {
         if (((st as any).lact_ev ?? 0)?.['poli_temp_var'] >= 10) {
           // TODO-QSP: dynamic text: She looks amazed at the copious amounts of milk as she stores away <<lact_ev[''p...
-          scene.text(`She looks amazed at the copious amounts of milk as she stores away ${(((st as any).lact_ev ?? {})?.['poli_temp_var'] ?? 0)*50}ml of your breast milk in ${((st as any).lact_ev ?? 0)?.['poli_temp_var'] ?? ''} bottles.`);
+          scene.text(`She looks amazed at the copious amounts of milk as she stores away ${(((st as any).lact_ev ?? {})?.['poli_temp_var'] ?? 0)*50}ml of your breast milk in ${(((st as any).lact_ev ?? 0)?.['poli_temp_var'] ?? '')} bottles.`);
           scene.text('"Oh my, where do you store all this?"');
         } else {
           if (((st as any).lact_ev ?? 0)?.['poli_temp_var'] >= 8) {
             // TODO-QSP: dynamic text: She looks surprised at the large amount of milk as she stores away <<lact_ev[''p...
-            scene.text(`She looks surprised at the large amount of milk as she stores away ${(((st as any).lact_ev ?? {})?.['poli_temp_var'] ?? 0)*50}ml of your breast milk in ${((st as any).lact_ev ?? 0)?.['poli_temp_var'] ?? ''} bottles.`);
+            scene.text(`She looks surprised at the large amount of milk as she stores away ${(((st as any).lact_ev ?? {})?.['poli_temp_var'] ?? 0)*50}ml of your breast milk in ${(((st as any).lact_ev ?? 0)?.['poli_temp_var'] ?? '')} bottles.`);
           } else {
             if (((st as any).lact_ev ?? 0)?.['poli_temp_var'] >= 6) {
               // TODO-QSP: dynamic text: She looks pleasantly satisfied at you as she stores away <<lact_ev[''poli_temp_v...
-              scene.text(`She looks pleasantly satisfied at you as she stores away ${(((st as any).lact_ev ?? {})?.['poli_temp_var'] ?? 0)*50}ml of your breast milk in ${((st as any).lact_ev ?? 0)?.['poli_temp_var'] ?? ''} bottles.`);
+              scene.text(`She looks pleasantly satisfied at you as she stores away ${(((st as any).lact_ev ?? {})?.['poli_temp_var'] ?? 0)*50}ml of your breast milk in ${(((st as any).lact_ev ?? 0)?.['poli_temp_var'] ?? '')} bottles.`);
               // TODO-QSP: dynamic text: "A very generous donation, Ms. <<$pcs_lastname>>."
               scene.text(`"A very generous donation, Ms. ${((st as any).pcs_lastname ?? '')}."`);
             } else {
               if (((st as any).lact_ev ?? 0)?.['poli_temp_var'] >= 4) {
                 // TODO-QSP: dynamic text: She looks satisfied at you as she stores away <<lact_ev[''poli_temp_var'']*50>>m...
-                scene.text(`She looks satisfied at you as she stores away ${(((st as any).lact_ev ?? {})?.['poli_temp_var'] ?? 0)*50}ml of your breast milk in ${((st as any).lact_ev ?? 0)?.['poli_temp_var'] ?? ''} bottles.`);
+                scene.text(`She looks satisfied at you as she stores away ${(((st as any).lact_ev ?? {})?.['poli_temp_var'] ?? 0)*50}ml of your breast milk in ${(((st as any).lact_ev ?? 0)?.['poli_temp_var'] ?? '')} bottles.`);
               } else {
                 if (((st as any).lact_ev ?? 0)?.['poli_temp_var'] >= 2) {
                   // TODO-QSP: dynamic text: She looks satisfied at you as she puts away <<lact_ev[''poli_temp_var'']*50>>ml ...
-                  scene.text(`She looks satisfied at you as she puts away ${(((st as any).lact_ev ?? {})?.['poli_temp_var'] ?? 0)*50}ml of your breast milk in ${((st as any).lact_ev ?? 0)?.['poli_temp_var'] ?? ''} bottles.`);
+                  scene.text(`She looks satisfied at you as she puts away ${(((st as any).lact_ev ?? {})?.['poli_temp_var'] ?? 0)*50}ml of your breast milk in ${(((st as any).lact_ev ?? 0)?.['poli_temp_var'] ?? '')} bottles.`);
                 } else {
                   if (((st as any).lact_ev ?? 0)?.['poli_temp_var'] === 1) {
                     scene.text('She looks satisfied at you as she puts away one bottle with 50ml of your breast milk.');
                   } else {
                     // TODO-QSP: dynamic text: She looks satisfied at you as she puts away <<lact_ev[''poli_temp_var'']*50>>ml ...
-                    scene.text(`She looks satisfied at you as she puts away ${(((st as any).lact_ev ?? {})?.['poli_temp_var'] ?? 0)*50}ml of your breast milk in ${((st as any).lact_ev ?? 0)?.['poli_temp_var'] ?? ''} bottles.`);
+                    scene.text(`She looks satisfied at you as she puts away ${(((st as any).lact_ev ?? {})?.['poli_temp_var'] ?? 0)*50}ml of your breast milk in ${(((st as any).lact_ev ?? 0)?.['poli_temp_var'] ?? '')} bottles.`);
                   }
                 }
               }
@@ -1522,10 +1522,10 @@ function enterMilkDonation(s: GameState, scene: SceneBuilder): void {
       { label: 'Enough for today', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
     if (((st as any).lact_ev ?? 0)?.['poli_donationsessioncount'] > 0) {
-      qspCall(st, 'money', 'earn', ((st as any).lact_ev ?? 0)?.['poli_donatemoney'], 'cash');
-      ((st as any).lact_ev = (st as any).lact_ev ?? {})['poli_totaldonatemoney'] = ((st as any).lact_ev['poli_totaldonatemoney'] ?? 0) + (((st as any).lact_ev ?? 0)?.['poli_donatemoney']);
+      qspCall(st, 'money', 'earn', (((st as any).lact_ev ?? 0)?.['poli_donatemoney']), 'cash');
+      ((st as any).lact_ev = (st as any).lact_ev ?? {})['poli_totaldonatemoney'] = ((st as any).lact_ev['poli_totaldonatemoney'] ?? 0) + ((((st as any).lact_ev ?? 0)?.['poli_donatemoney']));
       // TODO-QSP: dynamic text: You put your top back on and the employee hands you <<$func(''money'', ''string_...
-      scene.text(`You put your top back on and the employee hands you ${qspFunc(s, 'money', 'string_profit', ((st as any).lact_ev ?? 0)?.['poli_donatemoney'] ?? '')} for your donated breast milk.`);
+      scene.text(`You put your top back on and the employee hands you ${qspFunc(s, 'money', 'string_profit', (((st as any).lact_ev ?? 0)?.['poli_donatemoney'] ?? ''))} for your donated breast milk.`);
     } else {
       scene.text('You put your top back on.');
     }
@@ -1544,7 +1544,7 @@ function enterMilkDonation(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic text: "Sorry Ms. <<$pcs_lastname>>, but we''re closing now."
       scene.text(`"Sorry Ms. ${((s as any).pcs_lastname ?? '')}, but we're closing now."`);
       // TODO-QSP: dynamic text: You put your top back on and the employee hands you <<$func(''money'', ''string_...
-      scene.text(`You put your top back on and the employee hands you ${qspFunc(s, 'money', 'string_profit', ((s as any).lact_ev ?? 0)?.['poli_donatemoney'] ?? '')} for your donated breast milk.`);
+      scene.text(`You put your top back on and the employee hands you ${qspFunc(s, 'money', 'string_profit', (((s as any).lact_ev ?? 0)?.['poli_donatemoney'] ?? ''))} for your donated breast milk.`);
       scene.actions([
         { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;

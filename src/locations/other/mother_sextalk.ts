@@ -29,7 +29,7 @@ function enterBathroomDildoShriek1(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/resident/apartment/home/korrpar.jpg');
   scene.text('You\'re walking down the hall when you suddenly hear a shriek come from the bathroom. It sounds like your mother. You run to the door just as it opens and you see her there.');
   // TODO-QSP: dynamic text: "<<$npc_nickname[''A29'']>>! What happe-"
-  scene.text(`"${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''}! What happe-"`);
+  scene.text(`"${(((s as any).npc_nickname ?? 0)?.['A29'] ?? '')}! What happe-"`);
   if (((s as any).vanrPar_suction_dildo ?? 0) === 1) {
     scene.text('She cuts you off by holding up a dildo in front of your face.');
     // TODO-QSP: dynamic text: "<<$pcs_firstname>>. <b>What is this doing in the bathroom</b>?"
@@ -169,11 +169,11 @@ function enterBathroomDildoShriek2(s: GameState, scene: SceneBuilder): void {
     scene.text('"I need some kind of outlet!" you say, throwing your arms up in exasperation.');
     scene.text('Your mother steps back, apparently surprised at your change of tactics.');
     // TODO-QSP: dynamic text: "You''re always telling me to stay away from men and not to act like a slut. Wel...
-    scene.text(`"You're always telling me to stay away from men and not to act like a slut. Well ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''}, <i>I get horny</i>! Yeah, I was masturbating with it last time too! And if you don't want me fucking boys, getting pregnant, or worse, then this is what it takes!"`);
+    scene.text(`"You're always telling me to stay away from men and not to act like a slut. Well ${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')}, <i>I get horny</i>! Yeah, I was masturbating with it last time too! And if you don't want me fucking boys, getting pregnant, or worse, then this is what it takes!"`);
     scene.text('She blinks at your outburst but recomposes herself, taking a dignified stance. "Well, there are other ways you can deal with that!" she sniffs. "You didn\'t have to ruin yourself for marriage!" You roll your eyes in response.');
     scene.text('"Anyway, you shouldn\'t be leaving stuff like this around the house regardless. I\'m taking this as punishment," she says.');
     // TODO-QSP: dynamic text: "But <<$npc_nickname[''A29'']>>!"
-    scene.text(`"But ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''}!"`);
+    scene.text(`"But ${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')}!"`);
     scene.text('"No buts, young lady! Other people live in this household too, so you need to learn to control yourself. If you can\'t do that much, then you don\'t deserve to have one of these."');
     if (((st as any).motherQW ?? 0)?.['dildo_shower_discovery'] === 1) {
       ((st as any).motherQW = (st as any).motherQW ?? {})['dildo_shower_discovery'] = 0;
@@ -182,7 +182,7 @@ function enterBathroomDildoShriek2(s: GameState, scene: SceneBuilder): void {
       { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDildoEnding1(st, scene); (st as any).locArgs = __savedLocArgs; }
     }
     // TODO-QSP: dynamic text: <i>Ugh. Great. Now I need a new one. At least this gets <<$npc_nickname[''A29'']...
-    scene.text(`<i>Ugh. Great. Now I need a new one. At least this gets ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''} off my back…</i>`);
+    scene.text(`<i>Ugh. Great. Now I need a new one. At least this gets ${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')} off my back…</i>`);
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     dynamicGoto(st, 'prevLoc', 'prevArg');
@@ -200,7 +200,7 @@ function enterBathroomDildoShriek3(s: GameState, scene: SceneBuilder): void {
   (s as any).vanrPar_bathtub_dildo = 0;
   (s as any).vanrPar_bath_shower_dildo = 0;
   (s as any).vanrPar_suction_dildo = 0;
-  ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['dildo_suction'] = ((s as any).mc_inventory['dildo_suction'] ?? 0) + (((s as any).motherQW ?? 0)?.['bathroom_dildos']);
+  ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['dildo_suction'] = ((s as any).mc_inventory['dildo_suction'] ?? 0) + ((((s as any).motherQW ?? 0)?.['bathroom_dildos']));
   ((s as any).motherQW = (s as any).motherQW ?? {})['dildo_caught'] = ((s as any).motherQW['dildo_caught'] ?? 0) + (1);
   ((s as any).motherQW = (s as any).motherQW ?? {})['bathroom_dildos'] = 0;
   scene.img('images/locations/pavlovsk/resident/apartment/home/korrpar.jpg');
@@ -222,7 +222,7 @@ function enterBathroomDildoShriek4(s: GameState, scene: SceneBuilder): void {
   (s as any).vanrPar_bathtub_dildo = 0;
   (s as any).vanrPar_bath_shower_dildo = 0;
   (s as any).vanrPar_suction_dildo = 0;
-  ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['dildo_suction'] = ((s as any).mc_inventory['dildo_suction'] ?? 0) + (((s as any).motherQW ?? 0)?.['bathroom_dildos']);
+  ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['dildo_suction'] = ((s as any).mc_inventory['dildo_suction'] ?? 0) + ((((s as any).motherQW ?? 0)?.['bathroom_dildos']));
   ((s as any).motherQW = (s as any).motherQW ?? {})['dildo_caught'] = ((s as any).motherQW['dildo_caught'] ?? 0) + (1);
   ((s as any).motherQW = (s as any).motherQW ?? {})['bathroom_dildos'] = 0;
   scene.img('images/locations/pavlovsk/resident/apartment/home/korrpar.jpg');
@@ -292,7 +292,7 @@ function enterBathroomDildos1(s: GameState, scene: SceneBuilder): void {
     scene.text('"Well I need some kind of outlet!" you say, throwing your arms up in exasperation.');
     scene.text('Your mother steps back, apparently surprised at your change of tactics.');
     // TODO-QSP: dynamic text: "You''re always telling me to stay away from men and not to act like a slut. Wel...
-    scene.text(`"You're always telling me to stay away from men and not to act like a slut. Well ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''}, <i>I get horny</i>! If you don't want me fucking boys, getting pregnant, or worse, then this is what it takes!"`);
+    scene.text(`"You're always telling me to stay away from men and not to act like a slut. Well ${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')}, <i>I get horny</i>! If you don't want me fucking boys, getting pregnant, or worse, then this is what it takes!"`);
     scene.text('She blinks at your outburst but recomposes herself, taking a dignified stance.');
     if (((st as any).motherQW ?? 0)?.['bathroom_dildos'] === 2) {
       scene.text('"Well, there are other ways you can deal with that!" she sniffs. "You didn\'t have to ruin yourself for marriage and you certainly don\'t need <i>two</i> of these!" You roll your eyes in response.');
@@ -301,7 +301,7 @@ function enterBathroomDildos1(s: GameState, scene: SceneBuilder): void {
     }
     scene.text('"Regardless, you shouldn\'t be leaving stuff like this around the house. I\'m taking these as punishment," she says.');
     // TODO-QSP: dynamic text: "But <<$npc_nickname[''A29'']>>!"
-    scene.text(`"But ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''}!"`);
+    scene.text(`"But ${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')}!"`);
     scene.text('"No buts, young lady! Other people live in this household too, so you need to learn to control yourself. If you can\'t do that much, then you don\'t deserve to have these either."');
     if (((st as any).motherQW ?? 0)?.['dildo_shower_discovery'] === 1) {
       ((st as any).motherQW = (st as any).motherQW ?? {})['dildo_shower_discovery'] = 0;
@@ -385,11 +385,11 @@ function enterBathroomDildos2(s: GameState, scene: SceneBuilder): void {
     scene.text('"Well I need some kind of outlet!" you say, throwing your arms up in exasperation.');
     scene.text('Your mother steps back, apparently surprised at your change of tactics.');
     // TODO-QSP: dynamic text: "You''re always telling me to stay away from men and not to act like a slut. Wel...
-    scene.text(`"You're always telling me to stay away from men and not to act like a slut. Well ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''}, <i>I get horny</i>! Yeah, I was masturbating with it last time too! If you don't want me fucking boys, getting pregnant, or worse, then this is what it takes!"`);
+    scene.text(`"You're always telling me to stay away from men and not to act like a slut. Well ${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')}, <i>I get horny</i>! Yeah, I was masturbating with it last time too! If you don't want me fucking boys, getting pregnant, or worse, then this is what it takes!"`);
     scene.text('She blinks at your outburst but recomposes herself, taking a dignified stance. "Well, there are other ways you can deal with that!" she sniffs. "You didn\'t have to ruin yourself for marriage!" You roll your eyes in response.');
     scene.text('"Anyway, you shouldn\'t be leaving stuff like this around the house regardless. I\'m taking this as punishment," she says.');
     // TODO-QSP: dynamic text: "But <<$npc_nickname[''A29'']>>!"
-    scene.text(`"But ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''}!"`);
+    scene.text(`"But ${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')}!"`);
     scene.text('"No buts, young lady! Other people live in this household too, so you need to learn to control yourself. If you can\'t do that much, then you don\'t deserve to have one of these."');
     if (((st as any).motherQW ?? 0)?.['dildo_shower_discovery'] === 1) {
       ((st as any).motherQW = (st as any).motherQW ?? {})['dildo_shower_discovery'] = 0;
@@ -398,7 +398,7 @@ function enterBathroomDildos2(s: GameState, scene: SceneBuilder): void {
       { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDildoEnding1(st, scene); (st as any).locArgs = __savedLocArgs; }
     }
     // TODO-QSP: dynamic text: <i>Ugh. Great. Now I need a new one. At least this gets <<$npc_nickname[''A29'']...
-    scene.text(`<i>Ugh. Great. Now I need a new one. At least this gets ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''} off my back…</i>`);
+    scene.text(`<i>Ugh. Great. Now I need a new one. At least this gets ${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')} off my back…</i>`);
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     dynamicGoto(st, 'prevLoc', 'prevArg');
@@ -417,7 +417,7 @@ function enterBathroomDildos3(s: GameState, scene: SceneBuilder): void {
   (s as any).vanrPar_bath_shower_dildo = 0;
   (s as any).vanrPar_suction_dildo = 0;
   ((s as any).motherQW = (s as any).motherQW ?? {})['dildo_caught'] = ((s as any).motherQW['dildo_caught'] ?? 0) + (1);
-  ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['dildo_suction'] = ((s as any).mc_inventory['dildo_suction'] ?? 0) + (((s as any).motherQW ?? 0)?.['bathroom_dildos']);
+  ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['dildo_suction'] = ((s as any).mc_inventory['dildo_suction'] ?? 0) + ((((s as any).motherQW ?? 0)?.['bathroom_dildos']));
   ((s as any).motherQW = (s as any).motherQW ?? {})['bathroom_dildos'] = 0;
   scene.img('images/locations/pavlovsk/resident/apartment/home/korrpar.jpg');
   scene.text('As you step into the hall, you see your mother there waiting for you. She looks more exasperated than angry though.');
@@ -546,7 +546,7 @@ function enterDildoWakeup1(s: GameState, scene: SceneBuilder): void {
     scene.text('"Well I need some kind of outlet!" you say, sitting up in bed and throwing your arms up in exasperation.');
     scene.text('Your mother steps back, apparently surprised at your change of tactics.');
     // TODO-QSP: dynamic text: "You''re always telling me to stay away from men and not to act like a slut. Wel...
-    scene.text(`"You're always telling me to stay away from men and not to act like a slut. Well ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''}, <i>I get horny</i>! If you don't want me fucking boys, getting pregnant, or worse, then this is what it takes!"`);
+    scene.text(`"You're always telling me to stay away from men and not to act like a slut. Well ${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')}, <i>I get horny</i>! If you don't want me fucking boys, getting pregnant, or worse, then this is what it takes!"`);
     scene.text('"Mmmm. She\'s right, mom. Horny girls need satisfaction," Anya mumbles before rolling over and going back to sleep.');
     scene.text('Your mother blinks at your outburst but recomposes herself, taking a dignified stance.');
     if (((st as any).motherQW ?? 0)?.['bathroom_dildos'] === 2) {
@@ -556,7 +556,7 @@ function enterDildoWakeup1(s: GameState, scene: SceneBuilder): void {
     }
     scene.text('"Regardless, you shouldn\'t be leaving stuff like this around the house. I\'m taking these as punishment," she says.');
     // TODO-QSP: dynamic text: "But <<$npc_nickname[''A29'']>>!"
-    scene.text(`"But ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''}!"`);
+    scene.text(`"But ${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')}!"`);
     scene.text('"No buts, young lady! Other people live in this household too, so you need to learn to control yourself. If you can\'t do that much, then you don\'t deserve to have these either."');
     if (((st as any).motherQW ?? 0)?.['dildo_shower_discovery'] === 1) {
       ((st as any).motherQW = (st as any).motherQW ?? {})['dildo_shower_discovery'] = 0;
@@ -635,15 +635,15 @@ function enterDildoWakeup2(s: GameState, scene: SceneBuilder): void {
     scene.text('"Well I need some kind of outlet!" you say, throwing your arms up in exasperation.');
     scene.text('Your mother steps back, apparently surprised at your change of tactics.');
     // TODO-QSP: dynamic text: "You''re always telling me to stay away from men and not to act like a slut. Wel...
-    scene.text(`"You're always telling me to stay away from men and not to act like a slut. Well ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''}, <i>I get horny</i>! Yeah, I was masturbating with it last time too! If you don't want me fucking boys, getting pregnant, or worse, then this is what it takes!" She blinks at your outburst but recomposes herself, taking a dignified stance.`);
+    scene.text(`"You're always telling me to stay away from men and not to act like a slut. Well ${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')}, <i>I get horny</i>! Yeah, I was masturbating with it last time too! If you don't want me fucking boys, getting pregnant, or worse, then this is what it takes!" She blinks at your outburst but recomposes herself, taking a dignified stance.`);
     scene.text('"Well, there are other ways you can deal with that!" she sniffs. "You didn\'t have to ruin yourself for marriage!" You roll your eyes in response.');
     scene.text('"Anyway, you shouldn\'t be leaving stuff like this around the house regardless. I\'m taking this as punishment," she says.');
     // TODO-QSP: dynamic text: "But <<$npc_nickname[''A29'']>>!"
-    scene.text(`"But ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''}!"`);
+    scene.text(`"But ${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')}!"`);
     scene.text('"No buts, young lady! Other people live in this household too, so you need to learn to control yourself. If you can\'t do that much, then you don\'t deserve to have one of these."');
     scene.text('She walks out of your bedroom and shuts the door.');
     // TODO-QSP: dynamic text: <i>Ugh. Great.</i> you think, throwing your head back against your pillow. <i>No...
-    scene.text(`<i>Ugh. Great.</i> you think, throwing your head back against your pillow. <i>Now I need a new one. But maybe at least this gets ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''} off my back…</i>`);
+    scene.text(`<i>Ugh. Great.</i> you think, throwing your head back against your pillow. <i>Now I need a new one. But maybe at least this gets ${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')} off my back…</i>`);
     scene.actions([
       { label: 'Continue', goto: ['wakeup_events', 'event_end'] },
     ]);
@@ -660,7 +660,7 @@ function enterDildoWakeup3(s: GameState, scene: SceneBuilder): void {
   (s as any).vanrPar_bath_shower_dildo = 0;
   (s as any).vanrPar_suction_dildo = 0;
   ((s as any).motherQW = (s as any).motherQW ?? {})['dildo_caught'] = ((s as any).motherQW['dildo_caught'] ?? 0) + (1);
-  ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['dildo_suction'] = ((s as any).mc_inventory['dildo_suction'] ?? 0) + (((s as any).motherQW ?? 0)?.['bathroom_dildos']);
+  ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['dildo_suction'] = ((s as any).mc_inventory['dildo_suction'] ?? 0) + ((((s as any).motherQW ?? 0)?.['bathroom_dildos']));
   ((s as any).motherQW = (s as any).motherQW ?? {})['bathroom_dildos'] = 0;
   scene.img('images/characters/pavlovsk/resident/mom/mother.jpg');
   if (((s as any).motherQW ?? 0)?.['bathroom_dildos'] === 1) {
@@ -695,7 +695,7 @@ function enterBathroomDildoResponseSingle(s: GameState, scene: SceneBuilder): vo
     (st as any).GspravkaTimes = 2;
     scene.img('images/characters/pavlovsk/resident/mom/mother.jpg');
     // TODO-QSP: dynamic text: "I swear, <<$npc_nickname[''A29'']>>! It''s not mine! I don''t know where it cam...
-    scene.text(`"I swear, ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''}! It's not mine! I don't know where it came from!"`);
+    scene.text(`"I swear, ${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')}! It's not mine! I don't know where it came from!"`);
     // TODO-QSP: dynamic text: "Yeah? Then you won''t mind if I throw this straight into the garbage. And you w...
     scene.text(`"Yeah? Then you won't mind if I throw this straight into the garbage. And you won't mind getting a referral from the clinic either. <i>Today</i> ${((st as any).pcs_firstname ?? '')}!"`);
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDildoDumpsterEnding1(st, scene); (st as any).locArgs = __savedLocArgs; }
@@ -808,11 +808,11 @@ function enterBathroomDildoResponseSingle(s: GameState, scene: SceneBuilder): vo
     scene.text('"Well I need some kind of outlet!" you say, throwing your arms up in exasperation.');
     scene.text('Your mother steps back, apparently surprised at your change of tactics.');
     // TODO-QSP: dynamic text: "You''re always telling me to stay away from men and not to act like a slut. Wel...
-    scene.text(`"You're always telling me to stay away from men and not to act like a slut. Well ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''}, <i>I get horny</i>! If you don't want me fucking boys, getting pregnant, or worse, then this is what it takes!"`);
+    scene.text(`"You're always telling me to stay away from men and not to act like a slut. Well ${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')}, <i>I get horny</i>! If you don't want me fucking boys, getting pregnant, or worse, then this is what it takes!"`);
     scene.text('She blinks at your outburst but recomposes herself, taking a dignified stance. "Well, there are other ways you can deal with that!" she sniffs. "You didn\'t have to ruin yourself for marriage!" You roll your eyes in response.');
     scene.text('"Anyway, you shouldn\'t be leaving stuff like this around the house regardless. I\'m taking this as punishment," she says.');
     // TODO-QSP: dynamic text: "But <<$npc_nickname[''A29'']>>!"
-    scene.text(`"But ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''}!"`);
+    scene.text(`"But ${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')}!"`);
     scene.text('"No buts, young lady! Other people live in this household too, so you need to learn to control yourself. If you can\'t do that much, then you can\'t have this back."');
     if (((st as any).motherQW ?? 0)?.['dildo_shower_discovery'] === 1) {
       ((st as any).motherQW = (st as any).motherQW ?? {})['dildo_shower_discovery'] = 0;
@@ -852,7 +852,7 @@ function enterBathroomDildoResponseMultiple(s: GameState, scene: SceneBuilder): 
     (st as any).GspravkaTimes = 2;
     scene.img('images/characters/pavlovsk/resident/mom/mother.jpg');
     // TODO-QSP: dynamic text: "I swear <<$npc_nickname[''A29'']>>! They''re not mine! I don''t know where they...
-    scene.text(`"I swear ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''}! They're not mine! I don't know where they came from!"`);
+    scene.text(`"I swear ${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')}! They're not mine! I don't know where they came from!"`);
     // TODO-QSP: dynamic text: "Yeah? Then you won''t mind if I throw these straight into the garbage. And you ...
     scene.text(`"Yeah? Then you won't mind if I throw these straight into the garbage. And you won't mind getting a referral from the clinic either. <i>Today</i> ${((st as any).pcs_firstname ?? '')}."`);
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDildoDumpsterEnding1(st, scene); (st as any).locArgs = __savedLocArgs; }
@@ -960,7 +960,7 @@ function enterBathroomDildoResponseMultiple(s: GameState, scene: SceneBuilder): 
     scene.text('"Well I need some kind of outlet!" you say, throwing your arms up in exasperation.');
     scene.text('Your mother steps back, apparently surprised at your change of tactics.');
     // TODO-QSP: dynamic text: "You''re always telling me to stay away from men and not to act like a slut. Wel...
-    scene.text(`"You're always telling me to stay away from men and not to act like a slut. Well, ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''}, <i>I get horny</i>! If you don't want me fucking boys, getting pregnant, or worse, then this is what it takes!"`);
+    scene.text(`"You're always telling me to stay away from men and not to act like a slut. Well, ${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')}, <i>I get horny</i>! If you don't want me fucking boys, getting pregnant, or worse, then this is what it takes!"`);
     scene.text('She blinks at your outburst but recomposes herself, taking a dignified stance.');
     if (((st as any).motherQW ?? 0)?.['bathroom_dildos'] === 2) {
       scene.text('"Well, there are other ways you can deal with that!" she sniffs. "You didn\'t have to ruin yourself for marriage and you certainly don\'t need <i>two</i> of these!" You roll your eyes in response.');
@@ -969,7 +969,7 @@ function enterBathroomDildoResponseMultiple(s: GameState, scene: SceneBuilder): 
     }
     scene.text('"Regardless, you shouldn\'t be leaving stuff like this around the house. I\'m taking these as punishment," she says.');
     // TODO-QSP: dynamic text: "But <<$npc_nickname[''A29'']>>!"
-    scene.text(`"But ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''}!"`);
+    scene.text(`"But ${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')}!"`);
     scene.text('"No buts, young lady! Other people live in this household too, so you need to learn to control yourself. If you can\'t do that much, then you don\'t deserve to have these either."');
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDildoEnding1(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('<i>Ugh. Great. Now I need new ones.</i>');

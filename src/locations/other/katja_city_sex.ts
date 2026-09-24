@@ -707,7 +707,7 @@ function enterFirstTime(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: "This isn''t working. Get off," <<$npc_nickname[$npcID]>> says after a few minut...
     scene.text(`"This isn't working. Get off," ${(((st as any).npc_nickname ?? 0)?.[String((st as any).npcID ?? 0)] ?? '')} says after a few minutes of awkward sex and Katja obliges.`);
     // TODO-QSP: dynamic text: "You," he points at you. "Get down on all fours and shove that <<$pc_desc[''butt...
-    scene.text(`"You," he points at you. "Get down on all fours and shove that ${((st as any).pc_desc ?? 0)?.['butt'] ?? ''} ass in the air," he commands.`);
+    scene.text(`"You," he points at you. "Get down on all fours and shove that ${(((st as any).pc_desc ?? 0)?.['butt'] ?? '')} ass in the air," he commands.`);
     scene.text('You do as he says and he climbs on and starts to pound you, deep and hard. Katja lies down and starts to play with your clit as you get fucked.');
     qspCall(st, 'arousal', 'vaginal', 3, ((st as any).npcID ?? 0), 'group');
     qspCall(st, 'arousal', 'clit_finger', (-2), ((st as any).npcID1 ?? 0), 'group', 'lesbian');
@@ -947,7 +947,7 @@ function enterOnGuySex1(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: "Let''s change position," <<$npc_nickname[$npcID]>> says after a few minutes and...
     scene.text(`"Let's change position," ${(((st as any).npc_nickname ?? 0)?.[String((st as any).npcID ?? 0)] ?? '')} says after a few minutes and Katja obliges.`);
     // TODO-QSP: dynamic text: He points at you. "Get down on all fours and shove that <<$pc_desc[''butt'']>> a...
-    scene.text(`He points at you. "Get down on all fours and shove that ${((st as any).pc_desc ?? 0)?.['butt'] ?? ''} ass in the air," he commands.`);
+    scene.text(`He points at you. "Get down on all fours and shove that ${(((st as any).pc_desc ?? 0)?.['butt'] ?? '')} ass in the air," he commands.`);
     scene.text('You do as he says and he climbs onto you before he starts pounding you deep and hard. Katja lies down and starts to play with your clit as you get fucked.');
     qspCall(st, 'arousal', 'vaginal', 3, ((st as any).npcID ?? 0), 'group');
     qspCall(st, 'arousal', 'clit_finger', (-2), ((st as any).npcID1 ?? 0), 'group', 'lesbian');
@@ -1939,7 +1939,7 @@ function enterTwoGuysCumming(s: GameState, scene: SceneBuilder): void {
             }
           }
         } else {
-          ((st as any).katjaQW = (st as any).katjaQW ?? {})['slut'] = ((st as any).katjaQW['slut'] ?? 0) + (Math.min(5, ((st as any).katjaQW ?? 0)?.['dp']) + 1);
+          ((st as any).katjaQW = (st as any).katjaQW ?? {})['slut'] = ((st as any).katjaQW['slut'] ?? 0) + (Math.min(5, (((st as any).katjaQW ?? 0)?.['dp'])) + 1);
           scene.text('"So how were these guys compared to others that have destroyed both of your holes?" you ask.');
           if (((st as any).katjaQW ?? 0)?.['horny'] === 0) {
             // TODO-QSP: dynamic text: '"It was pretty good. I came hard, '+iif(npc_ass['A14'] + 4*katjaQW['lube'] <dic...

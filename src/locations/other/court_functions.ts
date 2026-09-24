@@ -28,7 +28,7 @@ function enterAddFine(s: GameState, scene: SceneBuilder): void {
   if (((s as any).policeQW ?? 0)?.['fine_deadline'] === 0) {
     ((s as any).policeQW = (s as any).policeQW ?? {})['fine_deadline'] = ((s as any).daystart ?? 0) + 28 - Math.min(14, ((s as any).temp_tot_missed ?? 0) / 4);
   } else {
-    ((s as any).policeQW = (s as any).policeQW ?? {})['fine_deadline'] = Math.max(((s as any).daystart ?? 0), ((s as any).policeQW ?? 0)?.['fine_deadline']) + 14 - Math.min(7, 2 * ((s as any).temp_current_missed ?? 0) + ((s as any).temp_tot_missed ?? 0) / 4);
+    ((s as any).policeQW = (s as any).policeQW ?? {})['fine_deadline'] = Math.max(((s as any).daystart ?? 0), (((s as any).policeQW ?? 0)?.['fine_deadline'])) + 14 - Math.min(7, 2 * ((s as any).temp_current_missed ?? 0) + ((s as any).temp_tot_missed ?? 0) / 4);
   }
   qspCall(s, 'calendar', 'add', 'fine_deadline');
   // TODO-QSP: end

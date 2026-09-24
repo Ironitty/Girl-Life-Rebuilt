@@ -84,7 +84,7 @@ function enterFlashMov(s: GameState, scene: SceneBuilder): void {
 
 function enterPayCash(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === 'split') {
-    (s as any).money = ((s as any).money ?? 0) - (((s as any).date_ev ?? 0)?.['meal_cost']);
+    (s as any).money = ((s as any).money ?? 0) - ((((s as any).date_ev ?? 0)?.['meal_cost']));
   } else {
     if (String((s as any).locArgs?.[1] ?? '') === 'pc') {
       (s as any).money = ((s as any).money ?? 0) - ((((s as any).date_ev ?? {})?.['meal_cost'] ?? 0) * 2);
@@ -97,7 +97,7 @@ function enterPayCash(s: GameState, scene: SceneBuilder): void {
 
 function enterPayCard(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === 'split') {
-    (s as any).karta = ((s as any).karta ?? 0) - (((s as any).date_ev ?? 0)?.['meal_cost']);
+    (s as any).karta = ((s as any).karta ?? 0) - ((((s as any).date_ev ?? 0)?.['meal_cost']));
   } else {
     if (String((s as any).locArgs?.[1] ?? '') === 'pc') {
       (s as any).karta = ((s as any).karta ?? 0) - ((((s as any).date_ev ?? {})?.['meal_cost'] ?? 0) * 2);
@@ -881,72 +881,72 @@ function enterNpcOrder(s: GameState, scene: SceneBuilder): void {
   if (((s as any).date_ev ?? 0)?.['npc_order'] === 1) {
     if (((s as any).date_ev ?? 0)?.['food_order'] === 'salad') {
       // TODO-QSP: dynamic text: "Make that two salads," he says, handing both of your menus back to the <<$date_...
-      scene.text(`"Make that two salads," he says, handing both of your menus back to the ${((s as any).date_ev ?? 0)?.['waiter'] ?? ''}.`);
+      scene.text(`"Make that two salads," he says, handing both of your menus back to the ${(((s as any).date_ev ?? 0)?.['waiter'] ?? '')}.`);
     } else {
       // TODO-QSP: dynamic text: "And I''ll have the salad," he says, handing both of your menus back to the <<$d...
-      scene.text(`"And I'll have the salad," he says, handing both of your menus back to the ${((s as any).date_ev ?? 0)?.['waiter'] ?? ''}.`);
+      scene.text(`"And I'll have the salad," he says, handing both of your menus back to the ${(((s as any).date_ev ?? 0)?.['waiter'] ?? '')}.`);
     }
   } else {
     if (((s as any).date_ev ?? 0)?.['npc_order'] === 2) {
       if (((s as any).date_ev ?? 0)?.['food_order'] === 'borscht') {
         // TODO-QSP: dynamic text: "I''ll have the Borscht soup as well," he says, handing both of your menus back ...
-        scene.text(`"I'll have the Borscht soup as well," he says, handing both of your menus back to the ${((s as any).date_ev ?? 0)?.['waiter'] ?? ''}.`);
+        scene.text(`"I'll have the Borscht soup as well," he says, handing both of your menus back to the ${(((s as any).date_ev ?? 0)?.['waiter'] ?? '')}.`);
       } else {
         // TODO-QSP: dynamic text: "And I''ll have the Borscht soup," he says, handing both of your menus back to t...
-        scene.text(`"And I'll have the Borscht soup," he says, handing both of your menus back to the ${((s as any).date_ev ?? 0)?.['waiter'] ?? ''}.`);
+        scene.text(`"And I'll have the Borscht soup," he says, handing both of your menus back to the ${(((s as any).date_ev ?? 0)?.['waiter'] ?? '')}.`);
       }
     } else {
       if (((s as any).date_ev ?? 0)?.['npc_order'] === 3) {
         if (((s as any).date_ev ?? 0)?.['food_order'] === 'stroganoff') {
           // TODO-QSP: dynamic text: "I''ll have the stroganoff too," he says, handing both of your menus back to the...
-          scene.text(`"I'll have the stroganoff too," he says, handing both of your menus back to the ${((s as any).date_ev ?? 0)?.['waiter'] ?? ''}.`);
+          scene.text(`"I'll have the stroganoff too," he says, handing both of your menus back to the ${(((s as any).date_ev ?? 0)?.['waiter'] ?? '')}.`);
         } else {
           // TODO-QSP: dynamic text: "And I''ll have the stroganoff," he says, handing both of your menus back to the...
-          scene.text(`"And I'll have the stroganoff," he says, handing both of your menus back to the ${((s as any).date_ev ?? 0)?.['waiter'] ?? ''}.`);
+          scene.text(`"And I'll have the stroganoff," he says, handing both of your menus back to the ${(((s as any).date_ev ?? 0)?.['waiter'] ?? '')}.`);
         }
       } else {
         if (((s as any).date_ev ?? 0)?.['npc_order'] === 4) {
           if (((s as any).date_ev ?? 0)?.['food_order'] === 'sandwich') {
             // TODO-QSP: dynamic text: "I''ll have a sandwich too," he says, handing both of your menus back to the <<$...
-            scene.text(`"I'll have a sandwich too," he says, handing both of your menus back to the ${((s as any).date_ev ?? 0)?.['waiter'] ?? ''}.`);
+            scene.text(`"I'll have a sandwich too," he says, handing both of your menus back to the ${(((s as any).date_ev ?? 0)?.['waiter'] ?? '')}.`);
           } else {
             // TODO-QSP: dynamic text: "And I''ll have a sandwich," he says, handing both of your menus back to the <<$...
-            scene.text(`"And I'll have a sandwich," he says, handing both of your menus back to the ${((s as any).date_ev ?? 0)?.['waiter'] ?? ''}.`);
+            scene.text(`"And I'll have a sandwich," he says, handing both of your menus back to the ${(((s as any).date_ev ?? 0)?.['waiter'] ?? '')}.`);
           }
         } else {
           if (((s as any).date_ev ?? 0)?.['npc_order'] === 5) {
             if (((s as any).date_ev ?? 0)?.['food_order'] === 'burger') {
               // TODO-QSP: dynamic text: "I''ll have a burger too," he says, handing both of your menus back to the <<$da...
-              scene.text(`"I'll have a burger too," he says, handing both of your menus back to the ${((s as any).date_ev ?? 0)?.['waiter'] ?? ''}.`);
+              scene.text(`"I'll have a burger too," he says, handing both of your menus back to the ${(((s as any).date_ev ?? 0)?.['waiter'] ?? '')}.`);
             } else {
               // TODO-QSP: dynamic text: "And I''ll have a burger," he says, handing both of your menus back to the <<$da...
-              scene.text(`"And I'll have a burger," he says, handing both of your menus back to the ${((s as any).date_ev ?? 0)?.['waiter'] ?? ''}.`);
+              scene.text(`"And I'll have a burger," he says, handing both of your menus back to the ${(((s as any).date_ev ?? 0)?.['waiter'] ?? '')}.`);
             }
           } else {
             if (((s as any).date_ev ?? 0)?.['npc_order'] === 6) {
               if (((s as any).date_ev ?? 0)?.['food_order'] === 'shchi') {
                 // TODO-QSP: dynamic text: "I''ll have some shchi soup too," he says, handing both of your menus back to th...
-                scene.text(`"I'll have some shchi soup too," he says, handing both of your menus back to the ${((s as any).date_ev ?? 0)?.['waiter'] ?? ''}.`);
+                scene.text(`"I'll have some shchi soup too," he says, handing both of your menus back to the ${(((s as any).date_ev ?? 0)?.['waiter'] ?? '')}.`);
               } else {
                 // TODO-QSP: dynamic text: "And I''ll have the shchi soup," he says, handing both of your menus back to the...
-                scene.text(`"And I'll have the shchi soup," he says, handing both of your menus back to the ${((s as any).date_ev ?? 0)?.['waiter'] ?? ''}.`);
+                scene.text(`"And I'll have the shchi soup," he says, handing both of your menus back to the ${(((s as any).date_ev ?? 0)?.['waiter'] ?? '')}.`);
               }
             } else {
               if (((s as any).date_ev ?? 0)?.['npc_order'] === 7) {
                 if (((s as any).date_ev ?? 0)?.['food_order'] === 'pelmeni') {
                   // TODO-QSP: dynamic text: "I''ll have some pelmeni too," he says, handing both of your menus back to the <...
-                  scene.text(`"I'll have some pelmeni too," he says, handing both of your menus back to the ${((s as any).date_ev ?? 0)?.['waiter'] ?? ''}.`);
+                  scene.text(`"I'll have some pelmeni too," he says, handing both of your menus back to the ${(((s as any).date_ev ?? 0)?.['waiter'] ?? '')}.`);
                 } else {
                   // TODO-QSP: dynamic text: "And I''ll have the pelmeni," he says, handing both of your menus back to the <<...
-                  scene.text(`"And I'll have the pelmeni," he says, handing both of your menus back to the ${((s as any).date_ev ?? 0)?.['waiter'] ?? ''}.`);
+                  scene.text(`"And I'll have the pelmeni," he says, handing both of your menus back to the ${(((s as any).date_ev ?? 0)?.['waiter'] ?? '')}.`);
                 }
               } else {
                 if (((s as any).date_ev ?? 0)?.['food_order'] === 'pelmeni') {
                   // TODO-QSP: dynamic text: "I''ll have some pelmeni too," he says, handing both of your menus back to the <...
-                  scene.text(`"I'll have some pelmeni too," he says, handing both of your menus back to the ${((s as any).date_ev ?? 0)?.['waiter'] ?? ''}.`);
+                  scene.text(`"I'll have some pelmeni too," he says, handing both of your menus back to the ${(((s as any).date_ev ?? 0)?.['waiter'] ?? '')}.`);
                 } else {
                   // TODO-QSP: dynamic text: "And I''ll have the pelmeni," he says, handing both of your menus back to the <<...
-                  scene.text(`"And I'll have the pelmeni," he says, handing both of your menus back to the ${((s as any).date_ev ?? 0)?.['waiter'] ?? ''}.`);
+                  scene.text(`"And I'll have the pelmeni," he says, handing both of your menus back to the ${(((s as any).date_ev ?? 0)?.['waiter'] ?? '')}.`);
                 }
               }
             }
@@ -978,7 +978,7 @@ function enterFoodMenu(s: GameState, scene: SceneBuilder): void {
     scene.text('"I\'ll have the salad, please."');
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterNpcOrder(st, scene); (st as any).locArgs = __savedLocArgs; }
     // TODO-QSP: dynamic text: "Okay, coming right up." The <<$date_ev[''waiter'']>> heads off to kitchen to pu...
-    scene.text(`"Okay, coming right up." The ${((st as any).date_ev ?? 0)?.['waiter'] ?? ''} heads off to kitchen to put your orders in.`);
+    scene.text(`"Okay, coming right up." The ${(((st as any).date_ev ?? 0)?.['waiter'] ?? '')} heads off to kitchen to put your orders in.`);
     scene.actions([
       { label: 'Continue', goto: ['date_casual_meal', 'pre_converse'] },
     ]);
@@ -989,7 +989,7 @@ function enterFoodMenu(s: GameState, scene: SceneBuilder): void {
     scene.text('"I\'ll have a sandwich, please."');
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterNpcOrder(st, scene); (st as any).locArgs = __savedLocArgs; }
     // TODO-QSP: dynamic text: "Okay, coming right up." The <<$date_ev[''waiter'']>> heads off to kitchen to pu...
-    scene.text(`"Okay, coming right up." The ${((st as any).date_ev ?? 0)?.['waiter'] ?? ''} heads off to kitchen to put your orders in.`);
+    scene.text(`"Okay, coming right up." The ${(((st as any).date_ev ?? 0)?.['waiter'] ?? '')} heads off to kitchen to put your orders in.`);
     scene.actions([
       { label: 'Continue', goto: ['date_casual_meal', 'pre_converse'] },
     ]);
@@ -1000,7 +1000,7 @@ function enterFoodMenu(s: GameState, scene: SceneBuilder): void {
     scene.text('"I\'ll have a burger, please."');
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterNpcOrder(st, scene); (st as any).locArgs = __savedLocArgs; }
     // TODO-QSP: dynamic text: "Okay, coming right up." The <<$date_ev[''waiter'']>> heads off to kitchen to pu...
-    scene.text(`"Okay, coming right up." The ${((st as any).date_ev ?? 0)?.['waiter'] ?? ''} heads off to kitchen to put your orders in.`);
+    scene.text(`"Okay, coming right up." The ${(((st as any).date_ev ?? 0)?.['waiter'] ?? '')} heads off to kitchen to put your orders in.`);
     scene.actions([
       { label: 'Continue', goto: ['date_casual_meal', 'pre_converse'] },
     ]);
@@ -1011,7 +1011,7 @@ function enterFoodMenu(s: GameState, scene: SceneBuilder): void {
     scene.text('"I\'ll have the shchi, please."');
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterNpcOrder(st, scene); (st as any).locArgs = __savedLocArgs; }
     // TODO-QSP: dynamic text: "Okay, coming right up." The <<$date_ev[''waiter'']>> heads off to kitchen to pu...
-    scene.text(`"Okay, coming right up." The ${((st as any).date_ev ?? 0)?.['waiter'] ?? ''} heads off to kitchen to put your orders in.`);
+    scene.text(`"Okay, coming right up." The ${(((st as any).date_ev ?? 0)?.['waiter'] ?? '')} heads off to kitchen to put your orders in.`);
     scene.actions([
       { label: 'Continue', goto: ['date_casual_meal', 'pre_converse'] },
     ]);
@@ -1022,7 +1022,7 @@ function enterFoodMenu(s: GameState, scene: SceneBuilder): void {
     scene.text('"I\'ll have the Borscht, please."');
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterNpcOrder(st, scene); (st as any).locArgs = __savedLocArgs; }
     // TODO-QSP: dynamic text: "Okay, coming right up." The <<$date_ev[''waiter'']>> heads off to kitchen to pu...
-    scene.text(`"Okay, coming right up." The ${((st as any).date_ev ?? 0)?.['waiter'] ?? ''} heads off to kitchen to put your orders in.`);
+    scene.text(`"Okay, coming right up." The ${(((st as any).date_ev ?? 0)?.['waiter'] ?? '')} heads off to kitchen to put your orders in.`);
     scene.actions([
       { label: 'Continue', goto: ['date_casual_meal', 'pre_converse'] },
     ]);
@@ -1033,7 +1033,7 @@ function enterFoodMenu(s: GameState, scene: SceneBuilder): void {
     scene.text('"I\'ll have the pelmeni, please."');
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterNpcOrder(st, scene); (st as any).locArgs = __savedLocArgs; }
     // TODO-QSP: dynamic text: "Okay, coming right up." The <<$date_ev[''waiter'']>> heads off to kitchen to pu...
-    scene.text(`"Okay, coming right up." The ${((st as any).date_ev ?? 0)?.['waiter'] ?? ''} heads off to kitchen to put your orders in.`);
+    scene.text(`"Okay, coming right up." The ${(((st as any).date_ev ?? 0)?.['waiter'] ?? '')} heads off to kitchen to put your orders in.`);
     scene.actions([
       { label: 'Continue', goto: ['date_casual_meal', 'pre_converse'] },
     ]);
@@ -1044,7 +1044,7 @@ function enterFoodMenu(s: GameState, scene: SceneBuilder): void {
     scene.text('"I\'ll have the stroganoff, please."');
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterNpcOrder(st, scene); (st as any).locArgs = __savedLocArgs; }
     // TODO-QSP: dynamic text: "Okay, coming right up." The <<$date_ev[''waiter'']>> heads off to kitchen to pu...
-    scene.text(`"Okay, coming right up." The ${((st as any).date_ev ?? 0)?.['waiter'] ?? ''} heads off to kitchen to put your orders in.`);
+    scene.text(`"Okay, coming right up." The ${(((st as any).date_ev ?? 0)?.['waiter'] ?? '')} heads off to kitchen to put your orders in.`);
     scene.actions([
       { label: 'Continue', goto: ['date_casual_meal', 'pre_converse'] },
     ]);
@@ -1149,7 +1149,7 @@ function enterCasualConversation(s: GameState, scene: SceneBuilder): void {
 
 function enterEatingMenu(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: Your <<$date_ev[''food_order'']>> finally arrives, delivered by the wait staff a...
-  scene.text(`Your ${((s as any).date_ev ?? 0)?.['food_order'] ?? ''} finally arrives, delivered by the wait staff and you both get to digging in.`);
+  scene.text(`Your ${(((s as any).date_ev ?? 0)?.['food_order'] ?? '')} finally arrives, delivered by the wait staff and you both get to digging in.`);
   ((s as any).date_ev = (s as any).date_ev ?? {})['dialogue_setting'] = 'between bites of food';
   // TODO-QSP: end
   scene.actions([
@@ -1402,13 +1402,13 @@ function enterAfterMealPay(s: GameState, scene: SceneBuilder): void {
       scene.text(`You pay the bill of ${qspFunc(s, 'money', 'string_price', (((s as any).date_ev ?? {})?.['meal_cost'] ?? 0) * 2)}`);
     } else {
       if (((s as any).date_ev ?? 0)?.['split_meal'] === 1) {
-        qspCall(s, 'money', 'pay', ((s as any).date_ev ?? 0)?.['meal_cost']);
+        qspCall(s, 'money', 'pay', (((s as any).date_ev ?? 0)?.['meal_cost']));
         // TODO-QSP: dynamic text: You split the bill and end up paying <<$func(''money'', ''string_price'', date_e...
-        scene.text(`You split the bill and end up paying ${qspFunc(s, 'money', 'string_price', ((s as any).date_ev ?? 0)?.['meal_cost'] ?? '')}`);
+        scene.text(`You split the bill and end up paying ${qspFunc(s, 'money', 'string_price', (((s as any).date_ev ?? 0)?.['meal_cost'] ?? ''))}`);
       } else {
         scene.actions([
           { label: 'Suggest splitting the bill', handler: (st: GameState) => {
-    qspCall(st, 'money', 'pay', ((st as any).date_ev ?? 0)?.['meal_cost']);
+    qspCall(st, 'money', 'pay', (((st as any).date_ev ?? 0)?.['meal_cost']));
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterRestaurauntIntImg(st, scene); (st as any).locArgs = __savedLocArgs; }
     ((st as any).date_ev = (st as any).date_ev ?? {})['split_meal'] = 1;
     scene.text('"We\'re splitting the bill, right?"');

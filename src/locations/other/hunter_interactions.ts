@@ -2067,9 +2067,9 @@ function enterCreeksideGangbang(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'cum_call', '', ((st as any).boy ?? 0), 1);
     scene.actions([
       { label: 'The men finish up and leave you', handler: (st: GameState) => {
-    qspCall(st, 'clothing', 'wear', ((st as any).lastwornclothingtype ?? 0)?.['hunters'], ((st as any).lastwornclothingnumber ?? 0)?.['hunters']);
-    qspCall(st, 'panties', 'wear', ((st as any).lastwornpantytype ?? 0)?.['hunters'], ((st as any).lastwornpantynumber ?? 0)?.['hunters']);
-    qspCall(st, 'bras', 'wear', ((st as any).lastwornbratype ?? 0)?.['hunters'], ((st as any).lastwornbranumber ?? 0)?.['hunters']);
+    qspCall(st, 'clothing', 'wear', (((st as any).lastwornclothingtype ?? 0)?.['hunters']), (((st as any).lastwornclothingnumber ?? 0)?.['hunters']));
+    qspCall(st, 'panties', 'wear', (((st as any).lastwornpantytype ?? 0)?.['hunters']), (((st as any).lastwornpantynumber ?? 0)?.['hunters']));
+    qspCall(st, 'bras', 'wear', (((st as any).lastwornbratype ?? 0)?.['hunters']), (((st as any).lastwornbranumber ?? 0)?.['hunters']));
     qspCall(st, 'stat', '');
     qspGoto(st, 'gad_swamp_yard', 'start');
   } },

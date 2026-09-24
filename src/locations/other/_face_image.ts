@@ -7,7 +7,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).face_style ?? 0)?.['avatar_path'] === '') {
       ((s as any).face_style = (s as any).face_style ?? {})['avatar_path'] = 'images/avatar.jpg';
     }
-    (s as any).result = ((s as any).face_style ?? 0)?.['avatar_path'];
+    (s as any).result = (((s as any).face_style ?? 0)?.['avatar_path']);
   } else {
     if (((s as any).face_style ?? 0)?.['type'] === 2) {
       (s as any).result = 'images/pc/body/head/';

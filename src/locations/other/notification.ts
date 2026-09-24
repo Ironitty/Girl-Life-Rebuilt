@@ -10,7 +10,7 @@ function enterDisplay(s: GameState, scene: SceneBuilder): void {
   if (((s as any)._n_counter ?? 0)?.['duration'] === 0) {
     ((s as any)._n_counter = (s as any)._n_counter ?? {})['duration'] = 4000;
   }
-  ((s as any)._n_counter = (s as any)._n_counter ?? {})['timer'] = ((s as any)._n_counter ?? 0)?.['duration'];
+  ((s as any)._n_counter = (s as any)._n_counter ?? {})['timer'] = (((s as any)._n_counter ?? 0)?.['duration']);
   ((s as any)._n_counter = (s as any)._n_counter ?? {})['shown'] = 1;
   ((s as any)._n_counter = (s as any)._n_counter ?? {})['lock'] = 0;
   // TODO-QSP: end

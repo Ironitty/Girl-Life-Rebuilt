@@ -53,7 +53,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
           ((s as any).rex = (s as any).rex ?? {})['gadukino_day'] = ((s as any).daystart ?? 0);
         }
         // TODO-QSP: dynamic text: <br><a href="exec: gt ''pet_dog'', ''gadukino''"><<$rex[''name'']>></a> is runni...
-        scene.text(`<br><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027pet_dog/u0027, /u0027gadukino/u0027); return false;">${((s as any).rex ?? 0)?.['name'] ?? ''}</a> is running around in the garden.`);
+        scene.text(`<br><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027pet_dog/u0027, /u0027gadukino/u0027); return false;">${(((s as any).rex ?? 0)?.['name'] ?? '')}</a> is running around in the garden.`);
       }
     }
   }

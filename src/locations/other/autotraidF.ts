@@ -21,7 +21,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.text('- New State law: No sale if you already own a car.');
   if (qspFunc(s, 'car_funcs', 'is_here')) {
     // TODO-QSP: dynamic text: Your <a href="exec:gs ''carF'', ''start''"><<$car[''name'']>></a> is parked just...
-    scene.text(`Your <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027carF/u0027, /u0027start/u0027); return false;">${((s as any).car ?? 0)?.['name'] ?? ''}</a> is parked just inside.`);
+    scene.text(`Your <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027carF/u0027, /u0027start/u0027); return false;">${(((s as any).car ?? 0)?.['name'] ?? '')}</a> is parked just inside.`);
   }
   if (qspFunc(s, 'autotraidF', 'is_open')) {
     if (qspFunc(s, 'car_funcs', 'has_car')) {
@@ -187,7 +187,7 @@ function enterInspect(s: GameState, scene: SceneBuilder): void {
     if (qspFunc(s, 'money', 'can_afford', qspUntranslated(s, "used_car[\u00000\u0000]", { location: "autotraidF" })) === 0) {
       s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
-      qspCall(st, 'money', 'pay', ((st as any).used_car ?? 0)?.[String(((st as any).autotraidF_carnum ?? 0)) + '_price']);
+      qspCall(st, 'money', 'pay', (((st as any).used_car ?? 0)?.[String(((st as any).autotraidF_carnum ?? 0)) + '_price']));
       qspGoto(st, 'autotraidF', 'buy_car');
     }
   } },
@@ -206,7 +206,7 @@ function enterBuyCar(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'car_funcs', 'add_car', ((s as any).autotraidF_carnum ?? 0));
   ((s as any).car = (s as any).car ?? {})['fuel'] = ((s as any).autotraidF_benz ?? 0);
   qspCall(s, 'car_funcs', 'setloc', 'autotraidF', 'start', 'city');
-  ((s as any).car = (s as any).car ?? {})['current_condition'] = ((s as any).used_car ?? 0)?.[String(((s as any).autotraidF_carnum ?? 0)) + '_condition'];
+  ((s as any).car = (s as any).car ?? {})['current_condition'] = (((s as any).used_car ?? 0)?.[String(((s as any).autotraidF_carnum ?? 0)) + '_condition']);
   // TODO-QSP: dynamic text: 'You agree and before you know it, the car salesman and you have signed all the ...
   scene.text(`You agree and before you know it, the car salesman and you have signed all the necessary documents. You pay the ' + $func('money', 'string_price', used_car['${((s as any).autotraidF_carnum ?? '')}_price']) + ', and the car is yours.`);
   scene.text('Since it\'s crammed in between about a million other vehicles, the car salesman moves it outside near the yard\'s entrance for you and warns you that there is very little gas in the tank.');
@@ -237,7 +237,7 @@ function enterInspectWreck(s: GameState, scene: SceneBuilder): void {
     if (qspFunc(s, 'money', 'can_afford', ((st as any).used_car ?? 0)?.['wrek_price']) === 0) {
       s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
-      qspCall(st, 'money', 'pay', ((st as any).used_car ?? 0)?.['wrek_price']);
+      qspCall(st, 'money', 'pay', (((st as any).used_car ?? 0)?.['wrek_price']));
       qspGoto(st, 'autotraidF', 'buy_wreck');
     }
   } },
@@ -255,7 +255,7 @@ function enterBuyWreck(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'car_funcs', 'setloc', 'autotraidF', 'start', 'city');
   ((s as any).car = (s as any).car ?? {})['fuel'] = 3;
   ((s as any).car = (s as any).car ?? {})['wreck'] = 1;
-  ((s as any).car = (s as any).car ?? {})['current_condition'] = ((s as any).used_car ?? 0)?.['wrek_condition'];
+  ((s as any).car = (s as any).car ?? {})['current_condition'] = (((s as any).used_car ?? 0)?.['wrek_condition']);
   // TODO-QSP: dynamic text: 'You agree and before you know it, the car salesman and you have signed all the ...
   scene.text('You agree and before you know it, the car salesman and you have signed all the necessary documents. You pay \' + $func(\'money\', \'string_price\', used_car[\'wrek_price\']) + \', and the car is yours.');
   scene.text('Since it\'s crammed in between about a million other vehicles, the car salesman moves it outside near the yard\'s entrance for you… and that\'s it.');

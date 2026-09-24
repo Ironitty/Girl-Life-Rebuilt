@@ -137,7 +137,7 @@ function enterDress(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'shop_utils', 'init', 'start', 'clothing', 'shop');
     qspCall(s, 'shop_utils', 'init', 'add_type', 'dolls_dress');
     qspCall(s, 'shop_utils', 'init', 'set_steps', 3, ((s as any).Clothingstock ?? 0) % 3);
-    qspCall(s, 'shop_utils', 'init', 'set_discount', ((s as any).anushkaQW ?? 0)?.['discount']);
+    qspCall(s, 'shop_utils', 'init', 'set_discount', (((s as any).anushkaQW ?? 0)?.['discount']));
     qspCall(s, 'shop_utils', 'init', 'end');
   }
   qspCall(s, 'shop_utils', 'display', 'grid_shop');
@@ -161,7 +161,7 @@ function enterClothing(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'shop_utils', 'init', 'start', 'clothing', 'shop');
     qspCall(s, 'shop_utils', 'init', 'add_type', 'dolls_outfits');
     qspCall(s, 'shop_utils', 'init', 'set_steps', 2, (((s as any).Clothingstock ?? 0) / 3) % 2);
-    qspCall(s, 'shop_utils', 'init', 'set_discount', ((s as any).anushkaQW ?? 0)?.['discount']);
+    qspCall(s, 'shop_utils', 'init', 'set_discount', (((s as any).anushkaQW ?? 0)?.['discount']));
     qspCall(s, 'shop_utils', 'init', 'end');
   }
   qspCall(s, 'shop_utils', 'display', 'grid_shop');
@@ -184,7 +184,7 @@ function enterShoes(s: GameState, scene: SceneBuilder): void {
   if (qspFunc(s, 'shop_utils', 'is_init') === 0) {
     qspCall(s, 'shop_utils', 'init', 'start', 'shoes', 'shop');
     qspCall(s, 'shop_utils', 'init', 'add_type', 'dolls');
-    qspCall(s, 'shop_utils', 'init', 'set_discount', ((s as any).anushkaQW ?? 0)?.['discount']);
+    qspCall(s, 'shop_utils', 'init', 'set_discount', (((s as any).anushkaQW ?? 0)?.['discount']));
     qspCall(s, 'shop_utils', 'init', 'end');
   }
   qspCall(s, 'shop_utils', 'display', 'grid_shop');
@@ -207,7 +207,7 @@ function enterPurses(s: GameState, scene: SceneBuilder): void {
   if (qspFunc(s, 'shop_utils', 'is_init') === 0) {
     qspCall(s, 'shop_utils', 'init', 'start', 'purses', 'shop');
     qspCall(s, 'shop_utils', 'init', 'add_type', 'dolls');
-    qspCall(s, 'shop_utils', 'init', 'set_discount', ((s as any).anushkaQW ?? 0)?.['discount']);
+    qspCall(s, 'shop_utils', 'init', 'set_discount', (((s as any).anushkaQW ?? 0)?.['discount']));
     qspCall(s, 'shop_utils', 'init', 'end');
   }
   qspCall(s, 'shop_utils', 'display', 'grid_shop');
@@ -230,7 +230,7 @@ function enterCoats(s: GameState, scene: SceneBuilder): void {
   if (qspFunc(s, 'shop_utils', 'is_init') === 0) {
     qspCall(s, 'shop_utils', 'init', 'start', 'coats', 'shop');
     qspCall(s, 'shop_utils', 'init', 'add_type', 'dolls');
-    qspCall(s, 'shop_utils', 'init', 'set_discount', ((s as any).anushkaQW ?? 0)?.['discount']);
+    qspCall(s, 'shop_utils', 'init', 'set_discount', (((s as any).anushkaQW ?? 0)?.['discount']));
     qspCall(s, 'shop_utils', 'init', 'end');
   }
   qspCall(s, 'shop_utils', 'display', 'grid_shop');

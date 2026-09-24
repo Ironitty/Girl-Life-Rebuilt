@@ -640,13 +640,13 @@ function enterActions(s: GameState, scene: SceneBuilder): void {
     ((st as any).lover_meet = (st as any).lover_meet ?? {})['ChangeParamName'] = ((st as any).locArgs?.[1] ?? 0);
     if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
-        { label: '', labelFn: (s: GameState) => 'I like my ' + String(((st as any).lover_meet ?? 0)?.['ChangeName'] ?? '' ?? '') + ' just the way it is', handler: (st: GameState) => {
+        { label: '', labelFn: (s: GameState) => 'I like my ' + String((((st as any).lover_meet ?? 0)?.['ChangeName'] ?? '') ?? '') + ' just the way it is', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: '', labelFn: (s: GameState) => 'I like my ' + String(((st as any).lover_meet ?? 0)?.['ChangeName'] ?? '' ?? '') + ' just the way it is', handler: (st: GameState) => {
+        { label: '', labelFn: (s: GameState) => 'I like my ' + String((((st as any).lover_meet ?? 0)?.['ChangeName'] ?? '') ?? '') + ' just the way it is', handler: (st: GameState) => {
     qspCall(st, 'willpower', 'pay', 'self');
     qspCall(st, 'stat', '');
     qspCall(st, 'npc_relationship', 'modify', ((st as any).npcID ?? 0), (Math.floor(Math.random() * ((-1) - (-2) + 1)) + ((-2))));
@@ -1064,7 +1064,7 @@ function enterActions(s: GameState, scene: SceneBuilder): void {
       }
     }
     scene.actions([
-      { label: '', labelFn: (s: GameState) => 'Agree with ' + String(((st as any).Xem ?? '') ?? '') + ' to change your ' + String(((st as any).lover_meet ?? 0)?.['ChangeName'] ?? '' ?? ''), goto: ['lover_change', '' + ((st as any).lover_meet ?? 0)?.['ChangeParamName'] + ''] },
+      { label: '', labelFn: (s: GameState) => 'Agree with ' + String(((st as any).Xem ?? '') ?? '') + ' to change your ' + String((((st as any).lover_meet ?? 0)?.['ChangeName'] ?? '') ?? ''), goto: ['lover_change', '' + (((st as any).lover_meet ?? 0)?.['ChangeParamName']) + ''] },
     ]);
   } },
     { label: 'I want to do something today', handler: (st: GameState) => {

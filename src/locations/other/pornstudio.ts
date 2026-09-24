@@ -346,17 +346,17 @@ function enterPa(s: GameState, scene: SceneBuilder): void {
       ((st as any).temp = (st as any).temp ?? {})['type1'] = qspUntranslated(s, "ftypecount_text[temp['pos1']]", { location: "pornstudio" });
       if (10 * ((st as any).temp ?? 0)?.['max1'] < 9 * ((st as any).temp ?? 0)?.['max0']) {
         // TODO-QSP: dynamic text: You''re known for your <<$temp[''type0'']>> scenes.
-        scene.text(`You're known for your ${((st as any).temp ?? 0)?.['type0'] ?? ''} scenes.`);
+        scene.text(`You're known for your ${(((st as any).temp ?? 0)?.['type0'] ?? '')} scenes.`);
       } else {
         ((st as any).temp = (st as any).temp ?? {})['max2'] = Math.max('ftypecount');
         ((st as any).temp = (st as any).temp ?? {})['pos2'] = qspUntranslated(s, "arrpos('ftypecount', temp['max2'])", { location: "pornstudio" });
         ((st as any).temp = (st as any).temp ?? {})['type2'] = qspUntranslated(s, "ftypecount_text[temp['pos2']]", { location: "pornstudio" });
         if (10 * ((st as any).temp ?? 0)?.['max2'] < 9 * ((st as any).temp ?? 0)?.['max0']) {
           // TODO-QSP: dynamic text: You''re known for your <<$temp[''type0'']>> and <<$temp[''type1'']>> scenes.
-          scene.text(`You're known for your ${((st as any).temp ?? 0)?.['type0'] ?? ''} and ${((st as any).temp ?? 0)?.['type1'] ?? ''} scenes.`);
+          scene.text(`You're known for your ${(((st as any).temp ?? 0)?.['type0'] ?? '')} and ${(((st as any).temp ?? 0)?.['type1'] ?? '')} scenes.`);
         } else {
           // TODO-QSP: dynamic text: You''re known for your <<$temp[''type0'']>>, <<$temp[''type1'']>> and <<$temp[''...
-          scene.text(`You're known for your ${((st as any).temp ?? 0)?.['type0'] ?? ''}, ${((st as any).temp ?? 0)?.['type1'] ?? ''} and ${((st as any).temp ?? 0)?.['type2'] ?? ''} scenes.`);
+          scene.text(`You're known for your ${(((st as any).temp ?? 0)?.['type0'] ?? '')}, ${(((st as any).temp ?? 0)?.['type1'] ?? '')} and ${(((st as any).temp ?? 0)?.['type2'] ?? '')} scenes.`);
         }
       }
     }
@@ -541,14 +541,14 @@ function enterManager(s: GameState, scene: SceneBuilder): void {
             scene.text('"I\'ll give you a chance to make it right. Another actress has gotten sick and cancelled her shoot. If you jump in for her, your debt is cancelled. And no, I don\'t remember what she was going to shoot. This day has been anything but easy due to you! You can also work it off, but that will take longer, or just pay it back if you have the money."');
             scene.actions([
               { label: 'Jump in tomorrow', handler: (st: GameState) => {
-    ((st as any).job_booking_debt = (st as any).job_booking_debt ?? {})['city_pornstudio_actress'] = ((st as any).job_booking_debt['city_pornstudio_actress'] ?? 0) - (((st as any).job_last_miss_cost ?? 0)?.['city_pornstudio_actress']);
+    ((st as any).job_booking_debt = (st as any).job_booking_debt ?? {})['city_pornstudio_actress'] = ((st as any).job_booking_debt['city_pornstudio_actress'] ?? 0) - ((((st as any).job_last_miss_cost ?? 0)?.['city_pornstudio_actress']));
     if (((st as any).job_booking_debt ?? 0)?.['city_pornstudio_actress'] < 0) {
       ((st as any).job_booking_debt = (st as any).job_booking_debt ?? {})['city_pornstudio_actress'] = 0;
     }
     ((st as any).job_last_miss_cost = (st as any).job_last_miss_cost ?? {})['city_pornstudio_actress'] = 0;
     (st as any).pfilmNOPAY = 1;
     ((st as any).porntaken = (st as any).porntaken ?? {})['1,' + String(((st as any).missday ?? 0))] = 2;
-    qspCall(st, 'jobs', 'book_slot', 'city_pornstudio_actress', ((st as any).daystart ?? 0) + 1, ((st as any).missday ?? 0), String(((st as any).pornplan ?? 0)?.['1,' + String(((st as any).missday ?? 0))]));
+    qspCall(st, 'jobs', 'book_slot', 'city_pornstudio_actress', ((st as any).daystart ?? 0) + 1, ((st as any).missday ?? 0), String((((st as any).pornplan ?? 0)?.['1,' + String(((st as any).missday ?? 0))])));
     qspGoto(st, 'pornstudio', '');
   } },
             ]);

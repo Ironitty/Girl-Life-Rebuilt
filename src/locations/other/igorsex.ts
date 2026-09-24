@@ -75,7 +75,7 @@ function enterDinSex(s: GameState, scene: SceneBuilder): void {
     scene.img('images/pc/body/cum/swallow/swallow7.jpg');
     scene.text('You continue sucking his cock and swallow the cum as soon as it reaches your mouth. The stream of sperm is never ending, so instead of trying to swallowing everything, you let it drip out of your mouth.');
     // TODO-QSP: dynamic text: Once he finally finishes, you let his limp cock slide out of your mouth. Your <<...
-    scene.text(`Once he finally finishes, you let his limp cock slide out of your mouth. Your ${((st as any).pc_desc ?? 0)?.['lips'] ?? ''} lips are wet from all the cum.`);
+    scene.text(`Once he finally finishes, you let his limp cock slide out of your mouth. Your ${(((st as any).pc_desc ?? 0)?.['lips'] ?? '')} lips are wet from all the cum.`);
     qspCall(st, 'cum_call', 'mouth_swallow', ((st as any).boy ?? 0), 1);
     qspCall(st, 'arousal', 'bj', 2);
     qspCall(st, 'stat', '');
@@ -696,7 +696,7 @@ function enterDinSisterkomKrossdress(s: GameState, scene: SceneBuilder): void {
     scene.text('You push him onto the bed and plant yourself on his face before you reach down and pull his dick out of the panties and start sucking it. He has a smaller than average dick, but his skill with his tongue is great.');
     scene.text('You continue sucking his small dick before it starts twitching. You quickly deepthroat and swallow the cum that shoots into your mouth, but some of it drips from your mouth onto Igor.');
     // TODO-QSP: dynamic text: Once he finishes, you release his now limp cock from your mouth, your <<$pc_desc...
-    scene.text(`Once he finishes, you release his now limp cock from your mouth, your ${((st as any).pc_desc ?? 0)?.['lips'] ?? ''} lips wet with semen. While you put all you might into handling Igor's cum, Igor continues licking your now dripping pussy.`);
+    scene.text(`Once he finishes, you release his now limp cock from your mouth, your ${(((st as any).pc_desc ?? 0)?.['lips'] ?? '')} lips wet with semen. While you put all you might into handling Igor's cum, Igor continues licking your now dripping pussy.`);
     scene.text('You lick up the remaining sperm from Igor\'s cock and swallow it before you turn and see Igor still going strong.');
     scene.text('You\'re impressed by his stamina when your legs start trembling and you feel a warmth in your pussy as you start screaming. You tell Igor not to stop, embracing your orgasm.');
     qspCall(st, 'arousal', 'bj', (-5));

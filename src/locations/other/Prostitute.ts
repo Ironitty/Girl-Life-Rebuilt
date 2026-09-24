@@ -167,7 +167,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
           if (((st as any).ProsMoney ?? 0) > 0) {
             scene.actions([
               { label: '', labelFn: (s: GameState) => String(qspFunc(s, 'money', 'string_profit', ((st as any).ProsMoney ?? '') * 100) ?? ''), handler: (st: GameState) => {
-    qspGoto(st, 'prostitute', 'work1', 'iif(proseventrand <= 8', 'blow job');
+    qspGoto(st, 'prostitute', 'work1', ((((st as any).proseventrand ?? 0) <= 8) ? ('blow job') : (((((st as any).proseventrand ?? 0) <= 14) ? ('sex') : ('anal')))));
   } },
             ]);
           }
@@ -183,7 +183,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
         { label: 'Continue', goto: ['prostitute', 'start'] },
       ]);
     } else {
-      qspGoto(st, 'prostitute', 'work1', 'iif(proseventrand <= 8, \'blow job\', iif(proseventrand <= 14, \'sex\', \'anal\'))');
+      qspGoto(st, 'prostitute', 'work1', ((((st as any).proseventrand ?? 0) <= 8) ? ('blow job') : (((((st as any).proseventrand ?? 0) <= 14) ? ('sex') : ('anal')))));
     }
   } },
           ]);

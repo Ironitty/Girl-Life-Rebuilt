@@ -21,7 +21,7 @@ function enterSetup(s: GameState, scene: SceneBuilder): void {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterInit(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   ((s as any).setloc = (s as any).setloc ?? {})['imagepath'] = 'images/' + 'locations/gadukino/gp_dacha/';
-  ((s as any).setloc = (s as any).setloc ?? {})['StageTitle'] = ((s as any).setloc ?? 0)?.['room_title'];
+  ((s as any).setloc = (s as any).setloc ?? {})['StageTitle'] = (((s as any).setloc ?? 0)?.['room_title']);
   scene.img((((s as any).setloc ?? {})?.['imagepath'] ?? 0) + (((s as any).setloc ?? {})?.['room_image'] ?? 0));
   (s as any).location_type = 'public_indoors';
   qspCall(s, 'shortgs', 'clothing_status');
@@ -31,9 +31,9 @@ function enterSetup(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'stage_title');
   if (((s as any).gp_debug ?? 0) === 1) {
     // TODO-QSP: dynamic text: <<$locat[''A31_loc'']>>, <<$locat[''A31_arg'']>>
-    scene.text(`${((s as any).locat ?? 0)?.['A31_loc'] ?? ''}, ${((s as any).locat ?? 0)?.['A31_arg'] ?? ''}`);
+    scene.text(`${(((s as any).locat ?? 0)?.['A31_loc'] ?? '')}, ${(((s as any).locat ?? 0)?.['A31_arg'] ?? '')}`);
     // TODO-QSP: dynamic text: <<$locat[''A32_loc'']>>, <<$locat[''A32_arg'']>>
-    scene.text(`${((s as any).locat ?? 0)?.['A32_loc'] ?? ''}, ${((s as any).locat ?? 0)?.['A32_arg'] ?? ''}`);
+    scene.text(`${(((s as any).locat ?? 0)?.['A32_loc'] ?? '')}, ${(((s as any).locat ?? 0)?.['A32_arg'] ?? '')}`);
   }
   // TODO-QSP: end
   scene.build();
@@ -411,7 +411,7 @@ function enterFamilyTripAskGoHome(s: GameState, scene: SceneBuilder): void {
   scene.text(`<center><b>Your mother, Natasha ${((s as any).pcs_lastname ?? '')}</b></center>`);
   scene.img('images/characters/pavlovsk/resident/mom/mother.jpg');
   // TODO-QSP: dynamic text: <<$npc_nickname[''A29'']>> asks, "<<$pcs_nickname>>, are you coming home with us...
-  scene.text(`${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''} asks, "${((s as any).pcs_nickname ?? '')}, are you coming home with us or are you going to stay in the village with your grandparents?"`);
+  scene.text(`${(((s as any).npc_nickname ?? 0)?.['A29'] ?? '')} asks, "${((s as any).pcs_nickname ?? '')}, are you coming home with us or are you going to stay in the village with your grandparents?"`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Stay with your grandparents', handler: (st: GameState) => {
@@ -522,9 +522,9 @@ function enterNormalEvents(s: GameState, scene: SceneBuilder): void {
 function enterNudityTroubleLimit(s: GameState, scene: SceneBuilder): void {
   if (((s as any).grandmaQW ?? 0)?.['nudity_trouble_base'] === 0  ||  ((s as any).grandmaQW ?? 0)?.['nudity_trouble_limit'] === 0) {
     ((s as any).grandmaQW = (s as any).grandmaQW ?? {})['nudity_trouble_base'] = 10;
-    ((s as any).grandmaQW = (s as any).grandmaQW ?? {})['nudity_trouble_limit'] = ((s as any).grandmaQW ?? 0)?.['nudity_trouble_base'];
+    ((s as any).grandmaQW = (s as any).grandmaQW ?? {})['nudity_trouble_limit'] = (((s as any).grandmaQW ?? 0)?.['nudity_trouble_base']);
   } else {
-    ((s as any).grandmaQW = (s as any).grandmaQW ?? {})['nudity_trouble_limit'] = ((s as any).grandmaQW ?? 0)?.['nudity_trouble_base'];
+    ((s as any).grandmaQW = (s as any).grandmaQW ?? {})['nudity_trouble_limit'] = (((s as any).grandmaQW ?? 0)?.['nudity_trouble_base']);
   }
   if (((s as any).gschoolVars ?? 0)?.['block'] === 1) {
     ((s as any).grandmaQW = (s as any).grandmaQW ?? {})['nudity_trouble_limit'] = ((s as any).grandmaQW['nudity_trouble_limit'] ?? 0) + (5);

@@ -715,7 +715,7 @@ function enterEvent6Submit2(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 20;
     qspCall(st, 'stat', '');
     // TODO-QSP: dynamic text: You enter the living room with your suitcase and just say, "<<$npc_nickname[''A2...
-    scene.text(`You enter the living room with your suitcase and just say, "${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''}, Dad, Im moving out. I have found a place to stay and I will be living there" you say and your mother stands up looking confused. "What are you talking about?" she says.`);
+    scene.text(`You enter the living room with your suitcase and just say, "${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')}, Dad, Im moving out. I have found a place to stay and I will be living there" you say and your mother stands up looking confused. "What are you talking about?" she says.`);
     scene.text('"I\'m moving out" you repeat.');
     scene.text('"I heard that, but why?" she asks as Valdimer walks up behind her to keep her back.');
     scene.text('"Dear, stop, she\'s out of school and she\'s old enough to live on her own now." He walks up to you and gives you a hug. "Just make sure you come home from time to time" he says and you can see your mother starting to cry.');

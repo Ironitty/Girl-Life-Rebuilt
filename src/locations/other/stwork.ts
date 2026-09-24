@@ -315,7 +315,7 @@ function enterTipcalculator(s: GameState, scene: SceneBuilder): void {
               scene.text(`The customers followed your movements between their conversations. After counting out your tips, it amounts to ${qspFunc(s, 'money', 'string_profit', ((s as any).paymoneyrand ?? ''))}.`);
             }
           } else {
-            (s as any).paymoneyrand = (Math.floor(Math.random() * (3 * (((s as any).strip_club ?? {})?.['strip_tips'] ?? 0) - ((s as any).strip_club ?? 0)?.['strip_tips'] + 1)) + (((s as any).strip_club ?? 0)?.['strip_tips']));
+            (s as any).paymoneyrand = (Math.floor(Math.random() * (3 * (((s as any).strip_club ?? {})?.['strip_tips'] ?? 0) - (((s as any).strip_club ?? 0)?.['strip_tips']) + 1)) + ((((s as any).strip_club ?? 0)?.['strip_tips'])));
             (s as any).paymoneyrand = Math.min(((s as any).paymoneyrand ?? 0), 500);
             qspCall(s, 'money', 'earn', ((s as any).paymoneyrand ?? 0));
             qspCall(s, 'mood', 'raise', 'small');
@@ -757,7 +757,7 @@ function enterToilet(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/shared/bathroom/toilet.jpg');
   scene.text('You enter the staff bathroom that contains a single shower, a toilet stall and a wash basin.');
   // TODO-QSP: dynamic text: 'Your razor will last <b><<mc_inventory[''razor'']>></b> more ' + iif(mc_invento...
-  scene.text(`Your razor will last <b>${((s as any).mc_inventory ?? 0)?.['razor'] ?? ''}</b> more ` + ((((s as any).mc_inventory ?? 0)?.['razor'] === 1) ? ('shave') : ('shaves')) + '. <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027din_van/u0027, /u0027shave_options/u0027); return false;">Shave Options</a>');
+  scene.text(`Your razor will last <b>${(((s as any).mc_inventory ?? 0)?.['razor'] ?? '')}</b> more ` + ((((s as any).mc_inventory ?? 0)?.['razor'] === 1) ? ('shave') : ('shaves')) + '. <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027din_van/u0027, /u0027shave_options/u0027); return false;">Shave Options</a>');
   qspCall(s, 'din_van', 'brit');
   qspCall(s, 'din_van', 'toymanage');
   qspCall(s, 'din_van', 'enema');

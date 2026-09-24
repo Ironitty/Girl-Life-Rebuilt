@@ -396,10 +396,10 @@ function enterWatchTurnon(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterTurnonBottomDesc(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (String((s as any).locArgs?.[1] ?? '') === 'romantic') {
     // TODO-QSP: dynamic text: The characters on the screen keep rubbing their bodies together, a writhing mass...
-    scene.text(`The characters on the screen keep rubbing their bodies together, a writhing mass of sensual flesh, and a heat blossoms inside you. Your brain knows its fake, but your body can't tell the difference. With a start, you realize you're squirming in your seat. Your nipples are hard, you're rubbing your legs together, and a hot moisture is ${((s as any).temp ?? 0)?.['turnon_desc'] ?? ''}`);
+    scene.text(`The characters on the screen keep rubbing their bodies together, a writhing mass of sensual flesh, and a heat blossoms inside you. Your brain knows its fake, but your body can't tell the difference. With a start, you realize you're squirming in your seat. Your nipples are hard, you're rubbing your legs together, and a hot moisture is ${(((s as any).temp ?? 0)?.['turnon_desc'] ?? '')}`);
   } else {
     // TODO-QSP: dynamic text: The characters on the screen keep rubbing their bodies together, a writhing mass...
-    scene.text(`The characters on the screen keep rubbing their bodies together, a writhing mass of sensual flesh, and a heat blossoms inside you. Your brain knows its fake, but your body can't tell the difference. With a start, you realize you're squirming in your seat. Your nipples are hard, you're rubbing your legs together, and a hot moisture is ${((s as any).temp ?? 0)?.['turnon_desc'] ?? ''}`);
+    scene.text(`The characters on the screen keep rubbing their bodies together, a writhing mass of sensual flesh, and a heat blossoms inside you. Your brain knows its fake, but your body can't tell the difference. With a start, you realize you're squirming in your seat. Your nipples are hard, you're rubbing your legs together, and a hot moisture is ${(((s as any).temp ?? 0)?.['turnon_desc'] ?? '')}`);
   }
   if ((Math.floor(Math.random() * 5) + 1) <= ((s as any).npc_sexdrive ?? 0)?.[String((s as any).npcID ?? 0)]) {
     ((s as any).date_ev = (s as any).date_ev ?? {})['boy_turned_on'] = 1;

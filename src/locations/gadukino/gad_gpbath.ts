@@ -67,8 +67,8 @@ function enterSetLeaveActs(s: GameState, scene: SceneBuilder): void {
     scene.text('It\'s undoubtedly risky leaving the bathhouse like this. But, while it\'s unlikely anyone saw you go outside in your underwear, there\'s a thrill in potentially getting caught.');
     qspCall(st, 'arousal', 'flashlite', 10, 'exhibitionism');
     if ((((st as any).pantyworntype ?? 0) !== 'none'  ||  ((st as any).braworntype ?? 0) !== 'none')) {
-      qspCall(st, 'panties', 'wear', ((st as any).lastwornpantytype ?? 0)?.['swim'], ((st as any).lastwornpantynumber ?? 0)?.['swim']);
-      qspCall(st, 'bras', 'wear', ((st as any).lastwornbratype ?? 0)?.['swim'], ((st as any).lastwornbranumber ?? 0)?.['swim']);
+      qspCall(st, 'panties', 'wear', (((st as any).lastwornpantytype ?? 0)?.['swim']), (((st as any).lastwornpantynumber ?? 0)?.['swim']));
+      qspCall(st, 'bras', 'wear', (((st as any).lastwornbratype ?? 0)?.['swim']), (((st as any).lastwornbranumber ?? 0)?.['swim']));
     }
     qspCall(st, 'stat', '');
     scene.actions([

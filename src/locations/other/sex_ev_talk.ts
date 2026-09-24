@@ -1658,7 +1658,7 @@ function enterBorrowPlanb2(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'money', 'earn', 100);
     qspCall(st, 'sex_ev_leave', 'dress_loop');
     // TODO-QSP: dynamic text: "I''m just a little short right now," you say, <<$sex_ev[''dress_describe'']>>. ...
-    scene.text(`"I'm just a little short right now," you say, ${((st as any).sex_ev ?? 0)?.['dress_describe'] ?? ''}. "Only about ${qspFunc(s, 'money', 'string_profit', 100)} or so."`);
+    scene.text(`"I'm just a little short right now," you say, ${(((st as any).sex_ev ?? 0)?.['dress_describe'] ?? '')}. "Only about ${qspFunc(s, 'money', 'string_profit', 100)} or so."`);
     // TODO-QSP: dynamic text: "Easy enough," he says and hands you a <<$func(''money'', ''string_profit'', 100...
     scene.text(`"Easy enough," he says and hands you a ${qspFunc(s, 'money', 'string_profit', 100)} note.`);
     qspCall(st, 'sex_ev_dress_talking', 'ma_pill_ask_money3');
@@ -1667,7 +1667,7 @@ function enterBorrowPlanb2(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'money', 'earn', 400);
     qspCall(st, 'sex_ev_leave', 'dress_loop');
     // TODO-QSP: dynamic text: "I''ve only got enough for half," you say, <<$sex_ev[''dress_describe'']>>. "I t...
-    scene.text(`"I've only got enough for half," you say, ${((st as any).sex_ev ?? 0)?.['dress_describe'] ?? ''}. "I think that's... ${qspFunc(s, 'money', 'string_profit', 370)}?"`);
+    scene.text(`"I've only got enough for half," you say, ${(((st as any).sex_ev ?? 0)?.['dress_describe'] ?? '')}. "I think that's... ${qspFunc(s, 'money', 'string_profit', 370)}?"`);
     // TODO-QSP: dynamic text: "Here, take <<$func(''money'', ''string_profit'', 400)>>," he says, handing you ...
     scene.text(`"Here, take ${qspFunc(s, 'money', 'string_profit', 400)}," he says, handing you a couple notes. "I'm not about to count out ${qspFunc(s, 'money', 'string_profit', 30)} in change."`);
     qspCall(st, 'sex_ev_dress_talking', 'ma_pill_ask_money3');
@@ -1675,7 +1675,7 @@ function enterBorrowPlanb2(s: GameState, scene: SceneBuilder): void {
     { label: '', labelFn: (s: GameState) => String(qspFunc(s, 'money', 'string_profit', 740) ?? '') + ' (full price)', handler: (st: GameState) => {
     qspCall(st, 'sex_ev_leave', 'dress_loop');
     // TODO-QSP: dynamic text: "<<$func(''money'', ''string_profit'', 740)>>? I think that''s how much it costs...
-    scene.text(`"${qspFunc(s, 'money', 'string_profit', 740)}? I think that's how much it costs. I... don't really have any money right now," you admit while ${((st as any).sex_ev ?? 0)?.['dress_describe'] ?? ''}.`);
+    scene.text(`"${qspFunc(s, 'money', 'string_profit', 740)}? I think that's how much it costs. I... don't really have any money right now," you admit while ${(((st as any).sex_ev ?? 0)?.['dress_describe'] ?? '')}.`);
     if (((st as any).npc_selfish ?? 0)?.[String((st as any).npcID ?? 0)] === 1) {
       qspCall(st, 'money', 'earn', 740);
       // TODO-QSP: dynamic text: "Seriously?" <<$npcdesc>> scowls as hands over the notes. "You don''t have <i>an...
@@ -1927,7 +1927,7 @@ function enterProstitutionPayment(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: You pout cutely, making doe eyes at <<$npcdesc>> who smiles back and reaches ove...
     scene.text(`You pout cutely, making doe eyes at ${((st as any).npcdesc ?? '')} who smiles back and reaches over to his wallet.`);
     // TODO-QSP: dynamic text: "Sure do," he says, pulling out <<$func(''money'', ''string_profit'', sex_ev[''p...
-    scene.text(`"Sure do," he says, pulling out ${qspFunc(s, 'money', 'string_profit', ((st as any).sex_ev ?? 0)?.['prostitution_owed'] ?? '')} in cash and handing it over to you. "There you go baby girl."`);
+    scene.text(`"Sure do," he says, pulling out ${qspFunc(s, 'money', 'string_profit', (((st as any).sex_ev ?? 0)?.['prostitution_owed'] ?? ''))} in cash and handing it over to you. "There you go baby girl."`);
     if (((st as any).npc_prostitution_tab ?? 0)?.[String((st as any).npcID ?? 0)] > 0) {
       scene.text('You see he even paid you the money he owed you from last time.');
     }
@@ -1939,10 +1939,10 @@ function enterProstitutionPayment(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/sex/after/pillow_talk3.jpg');
     if (((st as any).sex_ev ?? 0)?.['fuck_count'] > 0) {
       // TODO-QSP: dynamic text: "Okay, we''ve fucked. Can I get paid now?" you ask bluntly. <<$npcdesc>> gives y...
-      scene.text(`"Okay, we've fucked. Can I get paid now?" you ask bluntly. ${((st as any).npcdesc ?? '')} gives you a look but reaches over to his wallet and pulls out ${qspFunc(s, 'money', 'string_profit', ((st as any).sex_ev ?? 0)?.['prostitution_owed'] ?? '')}.`);
+      scene.text(`"Okay, we've fucked. Can I get paid now?" you ask bluntly. ${((st as any).npcdesc ?? '')} gives you a look but reaches over to his wallet and pulls out ${qspFunc(s, 'money', 'string_profit', (((st as any).sex_ev ?? 0)?.['prostitution_owed'] ?? ''))}.`);
     } else {
       // TODO-QSP: dynamic text: "Okay, I got you off. Can I get paid now?" you ask bluntly. <<$npcdesc>> gives y...
-      scene.text(`"Okay, I got you off. Can I get paid now?" you ask bluntly. ${((st as any).npcdesc ?? '')} gives you a look but reaches over to his wallet and pulls out ${qspFunc(s, 'money', 'string_profit', ((st as any).sex_ev ?? 0)?.['prostitution_owed'] ?? '')}.`);
+      scene.text(`"Okay, I got you off. Can I get paid now?" you ask bluntly. ${((st as any).npcdesc ?? '')} gives you a look but reaches over to his wallet and pulls out ${qspFunc(s, 'money', 'string_profit', (((st as any).sex_ev ?? 0)?.['prostitution_owed'] ?? ''))}.`);
     }
     if (((st as any).npc_prostitution_tab ?? 0)?.[String((st as any).npcID ?? 0)] > 0) {
       scene.text('You see he even paid you the money he owed you from last time.');
@@ -1982,7 +1982,7 @@ function enterProstitutionPayment(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic text: You pout cutely, making doe eyes at <<$npcdesc>> who smiles back and reaches ove...
       scene.text(`You pout cutely, making doe eyes at ${((st as any).npcdesc ?? '')} who smiles back and reaches over to his wallet.`);
       // TODO-QSP: dynamic text: "Yeah," he says, pulling out <<$func(''money'', ''string_profit'', sex_ev[''pros...
-      scene.text(`"Yeah," he says, pulling out ${qspFunc(s, 'money', 'string_profit', ((st as any).sex_ev ?? 0)?.['prostitution_owed'] ?? '')} in cash and handing it over to you. "Worth every ruble."`);
+      scene.text(`"Yeah," he says, pulling out ${qspFunc(s, 'money', 'string_profit', (((st as any).sex_ev ?? 0)?.['prostitution_owed'] ?? ''))} in cash and handing it over to you. "Worth every ruble."`);
     }
     scene.text('"Thank you very much," you smile back and put the money away into your purse.');
     qspCall(st, 'sex_ev_stats', 'prostitution_pay_code');
@@ -1993,14 +1993,14 @@ function enterProstitutionPayment(s: GameState, scene: SceneBuilder): void {
     if (((st as any).sex_ev ?? 0)?.['prostituation_paid'] > 0) {
       if (((st as any).sex_ev ?? 0)?.['p_creampie_bonus'] === 1) {
         // TODO-QSP: dynamic text: "Okay, I let you cum inside me. You owe me another <<$func(''money'', ''string_p...
-        scene.text(`"Okay, I let you cum inside me. You owe me another ${qspFunc(s, 'money', 'string_profit', ((st as any).sex_ev ?? 0)?.['prostitution_owed'] ?? '')}."`);
+        scene.text(`"Okay, I let you cum inside me. You owe me another ${qspFunc(s, 'money', 'string_profit', (((st as any).sex_ev ?? 0)?.['prostitution_owed'] ?? ''))}."`);
       } else {
         // TODO-QSP: dynamic text: "Okay, you paid for extras and we did it. You owe me another <<$func(''money'', ...
-        scene.text(`"Okay, you paid for extras and we did it. You owe me another ${qspFunc(s, 'money', 'string_profit', ((st as any).sex_ev ?? 0)?.['prostitution_owed'] ?? '')}."`);
+        scene.text(`"Okay, you paid for extras and we did it. You owe me another ${qspFunc(s, 'money', 'string_profit', (((st as any).sex_ev ?? 0)?.['prostitution_owed'] ?? ''))}."`);
       }
       if (((st as any).npc_selfish ?? 0)?.[String((st as any).npcID ?? 0)] > 0) {
         // TODO-QSP: dynamic text: "Fuck''s sake, <<$func(''money'', ''string_profit'', sex_ev[''prostitution_owed'...
-        scene.text(`"Fuck's sake, ${qspFunc(s, 'money', 'string_profit', ((st as any).sex_ev ?? 0)?.['prostitution_owed'] ?? '')}?" ${((st as any).npcdesc ?? '')} scowls as he reaches for his money and pulls out some notes. "That's what I get for thinking with my dick."`);
+        scene.text(`"Fuck's sake, ${qspFunc(s, 'money', 'string_profit', (((st as any).sex_ev ?? 0)?.['prostitution_owed'] ?? ''))}?" ${((st as any).npcdesc ?? '')} scowls as he reaches for his money and pulls out some notes. "That's what I get for thinking with my dick."`);
         scene.text('As he proffers it, you snatch it from his hand');
       } else {
         // TODO-QSP: dynamic text: "A deal''s a deal, I guess," <<$npcdesc>> says, reaching for his money to pull o...
@@ -2010,10 +2010,10 @@ function enterProstitutionPayment(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((st as any).sex_ev ?? 0)?.['fuck_count'] > 0) {
         // TODO-QSP: dynamic text: "Okay, we''ve fucked. Can I get paid now?" you ask bluntly. <<$npcdesc>> gives y...
-        scene.text(`"Okay, we've fucked. Can I get paid now?" you ask bluntly. ${((st as any).npcdesc ?? '')} gives you a look but reaches over to his wallet and pulls out ${qspFunc(s, 'money', 'string_profit', ((st as any).sex_ev ?? 0)?.['prostitution_owed'] ?? '')}.`);
+        scene.text(`"Okay, we've fucked. Can I get paid now?" you ask bluntly. ${((st as any).npcdesc ?? '')} gives you a look but reaches over to his wallet and pulls out ${qspFunc(s, 'money', 'string_profit', (((st as any).sex_ev ?? 0)?.['prostitution_owed'] ?? ''))}.`);
       } else {
         // TODO-QSP: dynamic text: "Okay, I got you off. Can I get paid now?" you ask bluntly. <<$npcdesc>> gives y...
-        scene.text(`"Okay, I got you off. Can I get paid now?" you ask bluntly. ${((st as any).npcdesc ?? '')} gives you a look but reaches over to his wallet and pulls out ${qspFunc(s, 'money', 'string_profit', ((st as any).sex_ev ?? 0)?.['prostitution_owed'] ?? '')}.`);
+        scene.text(`"Okay, I got you off. Can I get paid now?" you ask bluntly. ${((st as any).npcdesc ?? '')} gives you a look but reaches over to his wallet and pulls out ${qspFunc(s, 'money', 'string_profit', (((st as any).sex_ev ?? 0)?.['prostitution_owed'] ?? ''))}.`);
       }
       scene.text('"Here," he says. He offers it towards you and you snatch it out of his hand.');
     }

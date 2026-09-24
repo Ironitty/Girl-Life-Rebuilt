@@ -155,7 +155,7 @@ function enterTryouts(s: GameState, scene: SceneBuilder): void {
         { label: 'Try to follow Albina\'s example', handler: (st: GameState) => {
     qspCall(st, 'exercise', 'tier2', 30, 'agil', 'vital', 'cheer', 'cheer', 'danc');
     ((st as any).cheerleadingQW = (st as any).cheerleadingQW ?? {})['try_physical'] = ((st as any).pcs_agil ?? 0) + ((st as any).pcs_vital ?? 0) + ((st as any).pcs_danc ?? 0) + ((st as any).pcs_cheer ?? 0);
-    ((st as any).cheerleadingQW = (st as any).cheerleadingQW ?? {})['try_social'] = ((st as any).npc_rel ?? 0)?.['A23'];
+    ((st as any).cheerleadingQW = (st as any).cheerleadingQW ?? {})['try_social'] = (((st as any).npc_rel ?? 0)?.['A23']);
     if (((st as any).grupTipe ?? 0) === 1  ||  ((st as any).grupTipe ?? 0) === 2) {
       ((st as any).cheerleadingQW = (st as any).cheerleadingQW ?? {})['try_social'] = ((st as any).cheerleadingQW['try_social'] ?? 0) + (100);
     } else {

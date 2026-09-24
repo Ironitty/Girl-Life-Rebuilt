@@ -80,7 +80,7 @@ function enterBuilding(s: GameState, scene: SceneBuilder): void {
       s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
       (st as any).minut = ((st as any).minut ?? 0) + 2;
-      qspCall(st, 'money', 'pay', ((st as any).pav_swimpool ?? 0)?.['entrancefee']);
+      qspCall(st, 'money', 'pay', (((st as any).pav_swimpool ?? 0)?.['entrancefee']));
       ((st as any).pav_swimpool = (st as any).pav_swimpool ?? {})['entrancepaid'] = ((st as any).daystart ?? 0);
       qspCall(st, 'stat', '');
       qspGoto(st, 'pav_pool', 'entrance');
@@ -172,7 +172,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
       (st as any).minut = ((st as any).minut ?? 0) + 2;
-      qspCall(st, 'money', 'pay', ((st as any).pav_swimpool ?? 0)?.['entrancefee']);
+      qspCall(st, 'money', 'pay', (((st as any).pav_swimpool ?? 0)?.['entrancefee']));
       ((st as any).pav_swimpool = (st as any).pav_swimpool ?? {})['entrancepaid'] = ((st as any).daystart ?? 0);
       qspCall(st, 'stat', '');
       qspGoto(st, 'pav_pool', 'entrance');

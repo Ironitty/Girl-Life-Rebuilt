@@ -44,7 +44,7 @@ function enterCheckFoyerEvents(s: GameState, scene: SceneBuilder): void {
   if ((Math.floor(Math.random() * 100) + 0) < 85) {
     // TODO-QSP: exit
   }
-  qspGoto(s, 'bdsm_hallway', qspUntranslated(s, "''foyer_event_<<rand(1'", { location: "bdsm_hallway" }), '5)>>');
+  qspGoto(s, 'bdsm_hallway', qspUntranslated(s, "foyer_event_(Math.floor(Math.random() * 5) + 1)", { location: "bdsm_hallway" }));
   // TODO-QSP: end
   scene.build();
 }

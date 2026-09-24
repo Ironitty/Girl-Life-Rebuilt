@@ -229,7 +229,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                           if (((s as any).locat ?? 0)?.['katja_rand1'] !== ((s as any).daystart ?? 0)) {
                             ((s as any).locat = (s as any).locat ?? {})['katja'] = 30;
                           } else {
-                            ((s as any).locat = (s as any).locat ?? {})['katja'] = ((s as any).locat ?? 0)?.['katja_save1'];
+                            ((s as any).locat = (s as any).locat ?? {})['katja'] = (((s as any).locat ?? 0)?.['katja_save1']);
                           }
                         }
                       } else {
@@ -249,7 +249,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                           if (((s as any).locat ?? 0)?.['katja_rand1'] !== ((s as any).daystart ?? 0)) {
                             ((s as any).locat = (s as any).locat ?? {})['katja'] = 30;
                           } else {
-                            ((s as any).locat = (s as any).locat ?? {})['katja'] = ((s as any).locat ?? 0)?.['katja_save1'];
+                            ((s as any).locat = (s as any).locat ?? {})['katja'] = (((s as any).locat ?? 0)?.['katja_save1']);
                           }
                         } else {
                           if (((s as any).minut ?? 0) < 30) {
@@ -270,7 +270,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                             if (((s as any).locat ?? 0)?.['katja_rand1'] !== ((s as any).daystart ?? 0)) {
                               ((s as any).locat = (s as any).locat ?? {})['katja'] = 30;
                             } else {
-                              ((s as any).locat = (s as any).locat ?? {})['katja'] = ((s as any).locat ?? 0)?.['katja_save1'];
+                              ((s as any).locat = (s as any).locat ?? {})['katja'] = (((s as any).locat ?? 0)?.['katja_save1']);
                             }
                           }
                         } else {
@@ -289,7 +289,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                               if (((s as any).locat ?? 0)?.['katja_rand1'] !== ((s as any).daystart ?? 0)) {
                                 ((s as any).locat = (s as any).locat ?? {})['katja'] = 30;
                               } else {
-                                ((s as any).locat = (s as any).locat ?? {})['katja'] = ((s as any).locat ?? 0)?.['katja_save1'];
+                                ((s as any).locat = (s as any).locat ?? {})['katja'] = (((s as any).locat ?? 0)?.['katja_save1']);
                               }
                             }
                           } else {
@@ -298,7 +298,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                 if (((s as any).locat ?? 0)?.['katja_rand1'] !== ((s as any).daystart ?? 0)) {
                                   ((s as any).locat = (s as any).locat ?? {})['katja'] = 29;
                                 } else {
-                                  ((s as any).locat = (s as any).locat ?? {})['katja'] = ((s as any).locat ?? 0)?.['katja_save1'];
+                                  ((s as any).locat = (s as any).locat ?? {})['katja'] = (((s as any).locat ?? 0)?.['katja_save1']);
                                 }
                               } else {
                                 ((s as any).locat = (s as any).locat ?? {})['katja'] = 31;
@@ -324,12 +324,12 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                             if (((s as any).locat ?? 0)?.['katja_rand2'] !== ((s as any).daystart ?? 0)) {
                                               ((s as any).locat = (s as any).locat ?? {})['katja'] = qspFunc(s, 'random', 'pick_from', 35, 51, 51);
                                               ((s as any).locat = (s as any).locat ?? {})['katja_rand2'] = ((s as any).daystart ?? 0);
-                                              ((s as any).locat = (s as any).locat ?? {})['katja_save2'] = ((s as any).locat ?? 0)?.['katja'];
+                                              ((s as any).locat = (s as any).locat ?? {})['katja_save2'] = (((s as any).locat ?? 0)?.['katja']);
                                             } else {
                                               if (((s as any).locat ?? 0)?.['katja_save2'] === 35  &&  ((s as any).minut ?? 0) >= 45) {
                                                 ((s as any).locat = (s as any).locat ?? {})['katja_save2'] = 37;
                                               }
-                                              ((s as any).locat = (s as any).locat ?? {})['katja'] = ((s as any).locat ?? 0)?.['katja_save2'];
+                                              ((s as any).locat = (s as any).locat ?? {})['katja'] = (((s as any).locat ?? 0)?.['katja_save2']);
                                             }
                                           } else {
                                             if (((s as any).locat ?? 0)?.['katja_rand2'] !== ((s as any).daystart ?? 0)) {
@@ -342,7 +342,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                               if (((s as any).locat ?? 0)?.['katja_save2'] === 35  &&  ((s as any).minut ?? 0) >= 45) {
                                                 ((s as any).locat = (s as any).locat ?? {})['katja_save2'] = 37;
                                               }
-                                              ((s as any).locat = (s as any).locat ?? {})['katja'] = ((s as any).locat ?? 0)?.['katja_save2'];
+                                              ((s as any).locat = (s as any).locat ?? {})['katja'] = (((s as any).locat ?? 0)?.['katja_save2']);
                                             }
                                           }
                                         }
@@ -354,17 +354,17 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                             if (((s as any).locat ?? 0)?.['katja_rand2'] === ((s as any).daystart ?? 0)) {
                                               if (((s as any).locat ?? 0)?.['katja_save2'] === 51) {
                                                 ((s as any).locat = (s as any).locat ?? {})['katja'] = 52;
-                                                ((s as any).locat = (s as any).locat ?? {})['katja_save2'] = ((s as any).locat ?? 0)?.['katja'];
+                                                ((s as any).locat = (s as any).locat ?? {})['katja_save2'] = (((s as any).locat ?? 0)?.['katja']);
                                               } else {
                                                 if (((s as any).locat ?? 0)?.['katja_save2'] === 35) {
                                                   ((s as any).locat = (s as any).locat ?? {})['katja'] = 53;
-                                                  ((s as any).locat = (s as any).locat ?? {})['katja_save2'] = ((s as any).locat ?? 0)?.['katja'];
+                                                  ((s as any).locat = (s as any).locat ?? {})['katja_save2'] = (((s as any).locat ?? 0)?.['katja']);
                                                 } else {
                                                   if (((s as any).locat ?? 0)?.['katja_save2'] === 37) {
                                                     ((s as any).locat = (s as any).locat ?? {})['katja'] = 53;
-                                                    ((s as any).locat = (s as any).locat ?? {})['katja_save2'] = ((s as any).locat ?? 0)?.['katja'];
+                                                    ((s as any).locat = (s as any).locat ?? {})['katja_save2'] = (((s as any).locat ?? 0)?.['katja']);
                                                   } else {
-                                                    ((s as any).locat = (s as any).locat ?? {})['katja'] = ((s as any).locat ?? 0)?.['katja_save2'];
+                                                    ((s as any).locat = (s as any).locat ?? {})['katja'] = (((s as any).locat ?? 0)?.['katja_save2']);
                                                   }
                                                 }
                                               }
@@ -376,7 +376,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                   ((s as any).locat = (s as any).locat ?? {})['katja'] = qspFunc(s, 'random', 'pick_from', 53, 52, 52);
                                                 }
                                                 ((s as any).locat = (s as any).locat ?? {})['katja_rand2'] = ((s as any).daystart ?? 0);
-                                                ((s as any).locat = (s as any).locat ?? {})['katja_save2'] = ((s as any).locat ?? 0)?.['katja'];
+                                                ((s as any).locat = (s as any).locat ?? {})['katja_save2'] = (((s as any).locat ?? 0)?.['katja']);
                                               } else {
                                                 ((s as any).locat = (s as any).locat ?? {})['katja'] = 53;
                                               }
@@ -395,7 +395,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                 if (((s as any).locat ?? 0)?.['katja_rand2'] !== ((s as any).daystart ?? 0)) {
                                                   ((s as any).locat = (s as any).locat ?? {})['katja'] = 53;
                                                 } else {
-                                                  ((s as any).locat = (s as any).locat ?? {})['katja'] = ((s as any).locat ?? 0)?.['katja_save2'];
+                                                  ((s as any).locat = (s as any).locat ?? {})['katja'] = (((s as any).locat ?? 0)?.['katja_save2']);
                                                 }
                                               }
                                             }
@@ -478,7 +478,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
               if (((s as any).locat ?? 0)?.['katja_rand2'] !== ((s as any).daystart ?? 0)-1) {
                 ((s as any).locat = (s as any).locat ?? {})['katja'] = 53;
               } else {
-                ((s as any).locat = (s as any).locat ?? {})['katja'] = ((s as any).locat ?? 0)?.['katja_save2'];
+                ((s as any).locat = (s as any).locat ?? {})['katja'] = (((s as any).locat ?? 0)?.['katja_save2']);
               }
             } else {
               if (((s as any).hour ?? 0) === 2  &&  ((s as any).minut ?? 0) < 15) {
@@ -497,7 +497,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                         if (((s as any).locat ?? 0)?.['katja_rand1'] !== ((s as any).daystart ?? 0)) {
                           ((s as any).locat = (s as any).locat ?? {})['katja'] = 30;
                         } else {
-                          ((s as any).locat = (s as any).locat ?? {})['katja'] = ((s as any).locat ?? 0)?.['katja_save1'];
+                          ((s as any).locat = (s as any).locat ?? {})['katja'] = (((s as any).locat ?? 0)?.['katja_save1']);
                         }
                       } else {
                         if (((s as any).hour ?? 0) < 16) {
@@ -512,9 +512,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
                               ((s as any).locat = (s as any).locat ?? {})['katja'] = qspFunc(s, 'random', 'pick_from', 44, 44, 30, 31);
                             }
                             ((s as any).locat = (s as any).locat ?? {})['katja_rand1'] = ((s as any).daystart ?? 0);
-                            ((s as any).locat = (s as any).locat ?? {})['katja_save1'] = ((s as any).locat ?? 0)?.['katja'];
+                            ((s as any).locat = (s as any).locat ?? {})['katja_save1'] = (((s as any).locat ?? 0)?.['katja']);
                           } else {
-                            ((s as any).locat = (s as any).locat ?? {})['katja'] = ((s as any).locat ?? 0)?.['katja_save1'];
+                            ((s as any).locat = (s as any).locat ?? {})['katja'] = (((s as any).locat ?? 0)?.['katja_save1']);
                           }
                         } else {
                           if (((s as any).hour ?? 0) < 18) {
@@ -539,7 +539,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                     if (((s as any).locat ?? 0)?.['katja_rand2'] !== ((s as any).daystart ?? 0)) {
                                       ((s as any).locat = (s as any).locat ?? {})['katja'] = 53;
                                     } else {
-                                      ((s as any).locat = (s as any).locat ?? {})['katja'] = ((s as any).locat ?? 0)?.['katja_save2'];
+                                      ((s as any).locat = (s as any).locat ?? {})['katja'] = (((s as any).locat ?? 0)?.['katja_save2']);
                                     }
                                   }
                                 }
@@ -711,7 +711,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                             if (((s as any).locat ?? 0)?.['katja_rand1'] !== ((s as any).daystart ?? 0)) {
                               ((s as any).locat = (s as any).locat ?? {})['katja'] = 30;
                             } else {
-                              ((s as any).locat = (s as any).locat ?? {})['katja'] = ((s as any).locat ?? 0)?.['katja_save1'];
+                              ((s as any).locat = (s as any).locat ?? {})['katja'] = (((s as any).locat ?? 0)?.['katja_save1']);
                             }
                           } else {
                             ((s as any).locat = (s as any).locat ?? {})['katja'] = 29;
@@ -722,7 +722,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                           if (((s as any).locat ?? 0)?.['katja_rand1'] !== ((s as any).daystart ?? 0)) {
                             ((s as any).locat = (s as any).locat ?? {})['katja'] = 30;
                           } else {
-                            ((s as any).locat = (s as any).locat ?? {})['katja'] = ((s as any).locat ?? 0)?.['katja_save1'];
+                            ((s as any).locat = (s as any).locat ?? {})['katja'] = (((s as any).locat ?? 0)?.['katja_save1']);
                           }
                         } else {
                           if (((s as any).hour ?? 0) < 16) {
@@ -733,7 +733,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                 if (((s as any).locat ?? 0)?.['katja_rand1'] !== ((s as any).daystart ?? 0)) {
                                   ((s as any).locat = (s as any).locat ?? {})['katja'] = 30;
                                 } else {
-                                  ((s as any).locat = (s as any).locat ?? {})['katja'] = ((s as any).locat ?? 0)?.['katja_save1'];
+                                  ((s as any).locat = (s as any).locat ?? {})['katja'] = (((s as any).locat ?? 0)?.['katja_save1']);
                                 }
                               }
                             } else {
@@ -783,7 +783,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                         if (((s as any).locat ?? 0)?.['katja_save2'] === 35  &&  ((s as any).minut ?? 0) >= 45) {
                                           ((s as any).locat = (s as any).locat ?? {})['katja_save2'] = 37;
                                         }
-                                        ((s as any).locat = (s as any).locat ?? {})['katja'] = ((s as any).locat ?? 0)?.['katja_save2'];
+                                        ((s as any).locat = (s as any).locat ?? {})['katja'] = (((s as any).locat ?? 0)?.['katja_save2']);
                                       }
                                     } else {
                                       if (((s as any).hour ?? 0) < 23) {
@@ -793,7 +793,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                           if (((s as any).locat ?? 0)?.['katja_rand2'] !== ((s as any).daystart ?? 0)) {
                                             ((s as any).locat = (s as any).locat ?? {})['katja'] = 53;
                                           } else {
-                                            ((s as any).locat = (s as any).locat ?? {})['katja'] = ((s as any).locat ?? 0)?.['katja_save2'];
+                                            ((s as any).locat = (s as any).locat ?? {})['katja'] = (((s as any).locat ?? 0)?.['katja_save2']);
                                           }
                                         }
                                       } else {
@@ -810,7 +810,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                             if (((s as any).locat ?? 0)?.['katja_rand2'] !== ((s as any).daystart ?? 0)) {
                                               ((s as any).locat = (s as any).locat ?? {})['katja'] = 53;
                                             } else {
-                                              ((s as any).locat = (s as any).locat ?? {})['katja'] = ((s as any).locat ?? 0)?.['katja_save2'];
+                                              ((s as any).locat = (s as any).locat ?? {})['katja'] = (((s as any).locat ?? 0)?.['katja_save2']);
                                             }
                                           }
                                         }
@@ -890,7 +890,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                 if (((s as any).locat ?? 0)?.['katja_rand2'] !== ((s as any).daystart ?? 0)-1) {
                   ((s as any).locat = (s as any).locat ?? {})['katja'] = 53;
                 } else {
-                  ((s as any).locat = (s as any).locat ?? {})['katja'] = ((s as any).locat ?? 0)?.['katja_save2'];
+                  ((s as any).locat = (s as any).locat ?? {})['katja'] = (((s as any).locat ?? 0)?.['katja_save2']);
                 }
               } else {
                 if (((s as any).hour ?? 0) === 2  &&  ((s as any).minut ?? 0) < 15) {
@@ -909,7 +909,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                           if (((s as any).locat ?? 0)?.['katja_rand1'] !== ((s as any).daystart ?? 0)) {
                             ((s as any).locat = (s as any).locat ?? {})['katja'] = 30;
                           } else {
-                            ((s as any).locat = (s as any).locat ?? {})['katja'] = ((s as any).locat ?? 0)?.['katja_save1'];
+                            ((s as any).locat = (s as any).locat ?? {})['katja'] = (((s as any).locat ?? 0)?.['katja_save1']);
                           }
                         } else {
                           if (((s as any).hour ?? 0) < 16) {
@@ -924,9 +924,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                 ((s as any).locat = (s as any).locat ?? {})['katja'] = qspFunc(s, 'random', 'pick_from', 44, 44, 30, 31);
                               }
                               ((s as any).locat = (s as any).locat ?? {})['katja_rand1'] = ((s as any).daystart ?? 0);
-                              ((s as any).locat = (s as any).locat ?? {})['katja_save1'] = ((s as any).locat ?? 0)?.['katja'];
+                              ((s as any).locat = (s as any).locat ?? {})['katja_save1'] = (((s as any).locat ?? 0)?.['katja']);
                             } else {
-                              ((s as any).locat = (s as any).locat ?? {})['katja'] = ((s as any).locat ?? 0)?.['katja_save1'];
+                              ((s as any).locat = (s as any).locat ?? {})['katja'] = (((s as any).locat ?? 0)?.['katja_save1']);
                             }
                           } else {
                             if (((s as any).hour ?? 0) < 18) {
@@ -951,7 +951,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                       if (((s as any).locat ?? 0)?.['katja_rand2'] !== ((s as any).daystart ?? 0)-1) {
                                         ((s as any).locat = (s as any).locat ?? {})['katja'] = 53;
                                       } else {
-                                        ((s as any).locat = (s as any).locat ?? {})['katja'] = ((s as any).locat ?? 0)?.['katja_save2'];
+                                        ((s as any).locat = (s as any).locat ?? {})['katja'] = (((s as any).locat ?? 0)?.['katja_save2']);
                                       }
                                     }
                                   }
@@ -1181,7 +1181,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                           if (((s as any).locat ?? 0)?.['katja_rand1'] !== ((s as any).daystart ?? 0)) {
                             ((s as any).locat = (s as any).locat ?? {})['katja'] = 30;
                           } else {
-                            ((s as any).locat = (s as any).locat ?? {})['katja'] = ((s as any).locat ?? 0)?.['katja_save1'];
+                            ((s as any).locat = (s as any).locat ?? {})['katja'] = (((s as any).locat ?? 0)?.['katja_save1']);
                           }
                         } else {
                           if (((s as any).hour ?? 0) < 16) {
@@ -1196,9 +1196,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                 ((s as any).locat = (s as any).locat ?? {})['katja'] = qspFunc(s, 'random', 'pick_from', 44, 44, 30, 31);
                               }
                               ((s as any).locat = (s as any).locat ?? {})['katja_rand1'] = ((s as any).daystart ?? 0);
-                              ((s as any).locat = (s as any).locat ?? {})['katja_save1'] = ((s as any).locat ?? 0)?.['katja'];
+                              ((s as any).locat = (s as any).locat ?? {})['katja_save1'] = (((s as any).locat ?? 0)?.['katja']);
                             } else {
-                              ((s as any).locat = (s as any).locat ?? {})['katja'] = ((s as any).locat ?? 0)?.['katja_save1'];
+                              ((s as any).locat = (s as any).locat ?? {})['katja'] = (((s as any).locat ?? 0)?.['katja_save1']);
                             }
                           } else {
                             if (((s as any).hour ?? 0) < 18) {
@@ -1222,21 +1222,21 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                         if (((s as any).locat ?? 0)?.['katja_rand2'] !== ((s as any).daystart ?? 0)) {
                                           ((s as any).locat = (s as any).locat ?? {})['katja'] = qspFunc(s, 'random', 'pick_from', 31, 51);
                                           ((s as any).locat = (s as any).locat ?? {})['katja_rand2'] = ((s as any).daystart ?? 0);
-                                          ((s as any).locat = (s as any).locat ?? {})['katja_save2'] = ((s as any).locat ?? 0)?.['katja'];
+                                          ((s as any).locat = (s as any).locat ?? {})['katja_save2'] = (((s as any).locat ?? 0)?.['katja']);
                                         } else {
-                                          ((s as any).locat = (s as any).locat ?? {})['katja'] = ((s as any).locat ?? 0)?.['katja_save2'];
+                                          ((s as any).locat = (s as any).locat ?? {})['katja'] = (((s as any).locat ?? 0)?.['katja_save2']);
                                         }
                                       } else {
                                         if (((s as any).week ?? 0) === 4) {
                                           if (((s as any).locat ?? 0)?.['katja_rand2'] !== ((s as any).daystart ?? 0)) {
                                             ((s as any).locat = (s as any).locat ?? {})['katja'] = qspFunc(s, 'random', 'pick_from', 35, 51, 51);
                                             ((s as any).locat = (s as any).locat ?? {})['katja_rand2'] = ((s as any).daystart ?? 0);
-                                            ((s as any).locat = (s as any).locat ?? {})['katja_save2'] = ((s as any).locat ?? 0)?.['katja'];
+                                            ((s as any).locat = (s as any).locat ?? {})['katja_save2'] = (((s as any).locat ?? 0)?.['katja']);
                                           } else {
                                             if (((s as any).locat ?? 0)?.['katja_save2'] === 35  &&  ((s as any).minut ?? 0) >= 45) {
                                               ((s as any).locat = (s as any).locat ?? {})['katja_save2'] = 37;
                                             }
-                                            ((s as any).locat = (s as any).locat ?? {})['katja'] = ((s as any).locat ?? 0)?.['katja_save2'];
+                                            ((s as any).locat = (s as any).locat ?? {})['katja'] = (((s as any).locat ?? 0)?.['katja_save2']);
                                           }
                                         } else {
                                           if (((s as any).locat ?? 0)?.['katja_rand2'] !== ((s as any).daystart ?? 0)) {
@@ -1249,7 +1249,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                             if (((s as any).locat ?? 0)?.['katja_save2'] === 35  &&  ((s as any).minut ?? 0) >= 45) {
                                               ((s as any).locat = (s as any).locat ?? {})['katja_save2'] = 37;
                                             }
-                                            ((s as any).locat = (s as any).locat ?? {})['katja'] = ((s as any).locat ?? 0)?.['katja_save2'];
+                                            ((s as any).locat = (s as any).locat ?? {})['katja'] = (((s as any).locat ?? 0)?.['katja_save2']);
                                           }
                                         }
                                       }
@@ -1258,17 +1258,17 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                         if (((s as any).locat ?? 0)?.['katja_rand2'] === ((s as any).daystart ?? 0)) {
                                           if (((s as any).locat ?? 0)?.['katja_save2'] === 51) {
                                             ((s as any).locat = (s as any).locat ?? {})['katja'] = 52;
-                                            ((s as any).locat = (s as any).locat ?? {})['katja_save2'] = ((s as any).locat ?? 0)?.['katja'];
+                                            ((s as any).locat = (s as any).locat ?? {})['katja_save2'] = (((s as any).locat ?? 0)?.['katja']);
                                           } else {
                                             if (((s as any).locat ?? 0)?.['katja_save2'] === 35) {
                                               ((s as any).locat = (s as any).locat ?? {})['katja'] = 37;
-                                              ((s as any).locat = (s as any).locat ?? {})['katja_save2'] = ((s as any).locat ?? 0)?.['katja'];
+                                              ((s as any).locat = (s as any).locat ?? {})['katja_save2'] = (((s as any).locat ?? 0)?.['katja']);
                                             } else {
                                               if (((s as any).locat ?? 0)?.['katja_save2'] === 37) {
                                                 ((s as any).locat = (s as any).locat ?? {})['katja'] = 53;
-                                                ((s as any).locat = (s as any).locat ?? {})['katja_save2'] = ((s as any).locat ?? 0)?.['katja'];
+                                                ((s as any).locat = (s as any).locat ?? {})['katja_save2'] = (((s as any).locat ?? 0)?.['katja']);
                                               } else {
-                                                ((s as any).locat = (s as any).locat ?? {})['katja'] = ((s as any).locat ?? 0)?.['katja_save2'];
+                                                ((s as any).locat = (s as any).locat ?? {})['katja'] = (((s as any).locat ?? 0)?.['katja_save2']);
                                               }
                                             }
                                           }
@@ -1276,7 +1276,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                           if (((s as any).week ?? 0) < 4) {
                                             ((s as any).locat = (s as any).locat ?? {})['katja'] = qspFunc(s, 'random', 'pick_from', 31, 51);
                                             ((s as any).locat = (s as any).locat ?? {})['katja_rand2'] = ((s as any).daystart ?? 0);
-                                            ((s as any).locat = (s as any).locat ?? {})['katja_save2'] = ((s as any).locat ?? 0)?.['katja'];
+                                            ((s as any).locat = (s as any).locat ?? {})['katja_save2'] = (((s as any).locat ?? 0)?.['katja']);
                                           } else {
                                             if (((s as any).week ?? 0) === 4) {
                                               if (((s as any).katjaQW ?? 0)?.['QWstage'] < 3  &&  ((s as any).katjaQW ?? 0)?.['slut'] < 75  &&  ((s as any).katjaQW ?? 0)?.['liberated'] === 0) {
@@ -1285,7 +1285,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                 ((s as any).locat = (s as any).locat ?? {})['katja'] = qspFunc(s, 'random', 'pick_from', 53, 52, 52);
                                               }
                                               ((s as any).locat = (s as any).locat ?? {})['katja_rand2'] = ((s as any).daystart ?? 0);
-                                              ((s as any).locat = (s as any).locat ?? {})['katja_save2'] = ((s as any).locat ?? 0)?.['katja'];
+                                              ((s as any).locat = (s as any).locat ?? {})['katja_save2'] = (((s as any).locat ?? 0)?.['katja']);
                                             } else {
                                               ((s as any).locat = (s as any).locat ?? {})['katja'] = 53;
                                             }
@@ -1304,7 +1304,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                               if (((s as any).locat ?? 0)?.['katja_rand2'] !== ((s as any).daystart ?? 0)) {
                                                 ((s as any).locat = (s as any).locat ?? {})['katja'] = 53;
                                               } else {
-                                                ((s as any).locat = (s as any).locat ?? {})['katja'] = ((s as any).locat ?? 0)?.['katja_save2'];
+                                                ((s as any).locat = (s as any).locat ?? {})['katja'] = (((s as any).locat ?? 0)?.['katja_save2']);
                                               }
                                             }
                                           }
@@ -1384,7 +1384,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                   if (((s as any).locat ?? 0)?.['katja_rand2'] !== ((s as any).daystart ?? 0)-1) {
                     ((s as any).locat = (s as any).locat ?? {})['katja'] = 53;
                   } else {
-                    ((s as any).locat = (s as any).locat ?? {})['katja'] = ((s as any).locat ?? 0)?.['katja_save2'];
+                    ((s as any).locat = (s as any).locat ?? {})['katja'] = (((s as any).locat ?? 0)?.['katja_save2']);
                   }
                 } else {
                   if (((s as any).hour ?? 0) === 2  &&  ((s as any).minut ?? 0) < 15) {
@@ -1403,7 +1403,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                             if (((s as any).locat ?? 0)?.['katja_rand1'] !== ((s as any).daystart ?? 0)) {
                               ((s as any).locat = (s as any).locat ?? {})['katja'] = 30;
                             } else {
-                              ((s as any).locat = (s as any).locat ?? {})['katja'] = ((s as any).locat ?? 0)?.['katja_save1'];
+                              ((s as any).locat = (s as any).locat ?? {})['katja'] = (((s as any).locat ?? 0)?.['katja_save1']);
                             }
                           } else {
                             if (((s as any).hour ?? 0) < 16) {
@@ -1418,9 +1418,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                   ((s as any).locat = (s as any).locat ?? {})['katja'] = qspFunc(s, 'random', 'pick_from', 44, 44, 30, 31);
                                 }
                                 ((s as any).locat = (s as any).locat ?? {})['katja_rand1'] = ((s as any).daystart ?? 0);
-                                ((s as any).locat = (s as any).locat ?? {})['katja_save1'] = ((s as any).locat ?? 0)?.['katja'];
+                                ((s as any).locat = (s as any).locat ?? {})['katja_save1'] = (((s as any).locat ?? 0)?.['katja']);
                               } else {
-                                ((s as any).locat = (s as any).locat ?? {})['katja'] = ((s as any).locat ?? 0)?.['katja_save1'];
+                                ((s as any).locat = (s as any).locat ?? {})['katja'] = (((s as any).locat ?? 0)?.['katja_save1']);
                               }
                             } else {
                               if (((s as any).hour ?? 0) < 18) {
@@ -1445,7 +1445,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                         if (((s as any).locat ?? 0)?.['katja_rand2'] !== ((s as any).daystart ?? 0)) {
                                           ((s as any).locat = (s as any).locat ?? {})['katja'] = 53;
                                         } else {
-                                          ((s as any).locat = (s as any).locat ?? {})['katja'] = ((s as any).locat ?? 0)?.['katja_save2'];
+                                          ((s as any).locat = (s as any).locat ?? {})['katja'] = (((s as any).locat ?? 0)?.['katja_save2']);
                                         }
                                       }
                                     }

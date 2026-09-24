@@ -86,7 +86,7 @@ function enterNice1(s: GameState, scene: SceneBuilder): void {
     if (((st as any).succubusflag ?? 0) === 1) {
       (st as any).scfeed = ((st as any).succublvl ?? 0) + (Math.floor(Math.random() * 4) + 1);
       (st as any).sexnutrition = ((st as any).sexnutrition ?? 0) + (100 * ((st as any).scfeed ?? 0));
-      (st as any).suclezsex = ((st as any).stat ?? 0)?.['female_sexual_times'];
+      (st as any).suclezsex = (((st as any).stat ?? 0)?.['female_sexual_times']);
       (st as any).succubxp = ((st as any).succubxp ?? 0) + (6);
       (st as any).sucabslez = 1;
     }
@@ -204,7 +204,7 @@ function enterGrumpy1(s: GameState, scene: SceneBuilder): void {
     if (((st as any).succubusflag ?? 0) === 1) {
       (st as any).scfeed = ((st as any).succublvl ?? 0) + (Math.floor(Math.random() * 4) + 1);
       (st as any).sexnutrition = ((st as any).sexnutrition ?? 0) + (50 * ((st as any).scfeed ?? 0));
-      (st as any).suclezsex = ((st as any).stat ?? 0)?.['female_sexual_times'];
+      (st as any).suclezsex = (((st as any).stat ?? 0)?.['female_sexual_times']);
       (st as any).succubxp = ((st as any).succubxp ?? 0) + (6);
       (st as any).sucabslez = 1;
     }
@@ -363,7 +363,7 @@ function enterNs1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).succubusflag ?? 0) === 1) {
     (s as any).scfeed = ((s as any).succublvl ?? 0) + (Math.floor(Math.random() * 4) + 1);
     (s as any).sexnutrition = ((s as any).sexnutrition ?? 0) + (100 * ((s as any).scfeed ?? 0));
-    (s as any).suclezsex = ((s as any).stat ?? 0)?.['female_sexual_times'];
+    (s as any).suclezsex = (((s as any).stat ?? 0)?.['female_sexual_times']);
     (s as any).succubxp = ((s as any).succubxp ?? 0) + (6);
     (s as any).sucabslez = 1;
   }
@@ -401,7 +401,7 @@ function enterNs2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).succubusflag ?? 0) === 1) {
     (s as any).scfeed = ((s as any).succublvl ?? 0) + (Math.floor(Math.random() * 4) + 1);
     (s as any).sexnutrition = ((s as any).sexnutrition ?? 0) + (100 * ((s as any).scfeed ?? 0));
-    (s as any).suclezsex = ((s as any).stat ?? 0)?.['female_sexual_times'];
+    (s as any).suclezsex = (((s as any).stat ?? 0)?.['female_sexual_times']);
     (s as any).succubxp = ((s as any).succubxp ?? 0) + (6);
     (s as any).sucabslez = 1;
   }
@@ -439,7 +439,7 @@ function enterNs3(s: GameState, scene: SceneBuilder): void {
   if (((s as any).succubusflag ?? 0) === 1) {
     (s as any).scfeed = ((s as any).succublvl ?? 0) + (Math.floor(Math.random() * 4) + 1);
     (s as any).sexnutrition = ((s as any).sexnutrition ?? 0) + (100 * ((s as any).scfeed ?? 0));
-    (s as any).suclezsex = ((s as any).stat ?? 0)?.['female_sexual_times'];
+    (s as any).suclezsex = (((s as any).stat ?? 0)?.['female_sexual_times']);
     (s as any).succubxp = ((s as any).succubxp ?? 0) + (6);
     (s as any).sucabslez = 1;
   }
@@ -483,7 +483,7 @@ function enterGs1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).succubusflag ?? 0) === 1) {
     (s as any).scfeed = ((s as any).succublvl ?? 0) + (Math.floor(Math.random() * 4) + 1);
     (s as any).sexnutrition = ((s as any).sexnutrition ?? 0) + (50 * ((s as any).scfeed ?? 0));
-    (s as any).suclezsex = ((s as any).stat ?? 0)?.['female_sexual_times'];
+    (s as any).suclezsex = (((s as any).stat ?? 0)?.['female_sexual_times']);
     (s as any).succubxp = ((s as any).succubxp ?? 0) + (6);
     (s as any).sucabslez = 1;
   }
@@ -530,7 +530,7 @@ function enterGs2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).succubusflag ?? 0) === 1) {
     (s as any).scfeed = ((s as any).succublvl ?? 0) + (Math.floor(Math.random() * 4) + 1);
     (s as any).sexnutrition = ((s as any).sexnutrition ?? 0) + (50 * ((s as any).scfeed ?? 0));
-    (s as any).suclezsex = ((s as any).stat ?? 0)?.['female_sexual_times'];
+    (s as any).suclezsex = (((s as any).stat ?? 0)?.['female_sexual_times']);
     (s as any).succubxp = ((s as any).succubxp ?? 0) + (6);
     (s as any).sucabslez = 1;
   }
@@ -574,7 +574,7 @@ function enterGs3(s: GameState, scene: SceneBuilder): void {
   if (((s as any).succubusflag ?? 0) === 1) {
     (s as any).scfeed = ((s as any).succublvl ?? 0) + (Math.floor(Math.random() * 4) + 1);
     (s as any).sexnutrition = ((s as any).sexnutrition ?? 0) + (50 * ((s as any).scfeed ?? 0));
-    (s as any).suclezsex = ((s as any).stat ?? 0)?.['female_sexual_times'];
+    (s as any).suclezsex = (((s as any).stat ?? 0)?.['female_sexual_times']);
     (s as any).succubxp = ((s as any).succubxp ?? 0) + (6);
     (s as any).sucabslez = 1;
   }
@@ -631,7 +631,7 @@ function enterNL1(s: GameState, scene: SceneBuilder): void {
     if (((st as any).succubusflag ?? 0) === 1) {
       (st as any).scfeed = ((st as any).succublvl ?? 0) + (Math.floor(Math.random() * 4) + 1);
       (st as any).sexnutrition = ((st as any).sexnutrition ?? 0) + (100 * ((st as any).scfeed ?? 0));
-      (st as any).suclezsex = ((st as any).stat ?? 0)?.['female_sexual_times'];
+      (st as any).suclezsex = (((st as any).stat ?? 0)?.['female_sexual_times']);
       (st as any).succubxp = ((st as any).succubxp ?? 0) + (6);
       (st as any).sucabslez = 1;
     }
@@ -704,7 +704,7 @@ function enterGL1(s: GameState, scene: SceneBuilder): void {
     if (((st as any).succubusflag ?? 0) === 1) {
       (st as any).scfeed = ((st as any).succublvl ?? 0) + (Math.floor(Math.random() * 4) + 1);
       (st as any).sexnutrition = ((st as any).sexnutrition ?? 0) + (50 * ((st as any).scfeed ?? 0));
-      (st as any).suclezsex = ((st as any).stat ?? 0)?.['female_sexual_times'];
+      (st as any).suclezsex = (((st as any).stat ?? 0)?.['female_sexual_times']);
       (st as any).succubxp = ((st as any).succubxp ?? 0) + (6);
       (st as any).sucabslez = 1;
     }
@@ -797,7 +797,7 @@ function enterNice2(s: GameState, scene: SceneBuilder): void {
     if (((st as any).succubusflag ?? 0) === 1) {
       (st as any).scfeed = ((st as any).succublvl ?? 0) + (Math.floor(Math.random() * 4) + 1);
       (st as any).sexnutrition = ((st as any).sexnutrition ?? 0) + (100 * ((st as any).scfeed ?? 0));
-      (st as any).suclezsex = ((st as any).stat ?? 0)?.['female_sexual_times'];
+      (st as any).suclezsex = (((st as any).stat ?? 0)?.['female_sexual_times']);
       (st as any).succubxp = ((st as any).succubxp ?? 0) + (6);
       (st as any).sucabslez = 1;
     }
@@ -926,7 +926,7 @@ function enterGrumpy2(s: GameState, scene: SceneBuilder): void {
     if (((st as any).succubusflag ?? 0) === 1) {
       (st as any).scfeed = ((st as any).succublvl ?? 0) + (Math.floor(Math.random() * 4) + 1);
       (st as any).sexnutrition = ((st as any).sexnutrition ?? 0) + (50 * ((st as any).scfeed ?? 0));
-      (st as any).suclezsex = ((st as any).stat ?? 0)?.['female_sexual_times'];
+      (st as any).suclezsex = (((st as any).stat ?? 0)?.['female_sexual_times']);
       (st as any).succubxp = ((st as any).succubxp ?? 0) + (6);
       (st as any).sucabslez = 1;
     }
@@ -996,7 +996,7 @@ function enterNL2(s: GameState, scene: SceneBuilder): void {
     if (((st as any).succubusflag ?? 0) === 1) {
       (st as any).scfeed = ((st as any).succublvl ?? 0) + (Math.floor(Math.random() * 4) + 1);
       (st as any).sexnutrition = ((st as any).sexnutrition ?? 0) + (100 * ((st as any).scfeed ?? 0));
-      (st as any).suclezsex = ((st as any).stat ?? 0)?.['female_sexual_times'];
+      (st as any).suclezsex = (((st as any).stat ?? 0)?.['female_sexual_times']);
       (st as any).succubxp = ((st as any).succubxp ?? 0) + (6);
       (st as any).sucabslez = 1;
     }
@@ -1063,7 +1063,7 @@ function enterGL2(s: GameState, scene: SceneBuilder): void {
     if (((st as any).succubusflag ?? 0) === 1) {
       (st as any).scfeed = ((st as any).succublvl ?? 0) + (Math.floor(Math.random() * 4) + 1);
       (st as any).sexnutrition = ((st as any).sexnutrition ?? 0) + (50 * ((st as any).scfeed ?? 0));
-      (st as any).suclezsex = ((st as any).stat ?? 0)?.['female_sexual_times'];
+      (st as any).suclezsex = (((st as any).stat ?? 0)?.['female_sexual_times']);
       (st as any).succubxp = ((st as any).succubxp ?? 0) + (6);
       (st as any).sucabslez = 1;
     }
@@ -1102,7 +1102,7 @@ function enterNs4(s: GameState, scene: SceneBuilder): void {
   if (((s as any).succubusflag ?? 0) === 1) {
     (s as any).scfeed = ((s as any).succublvl ?? 0) + (Math.floor(Math.random() * 4) + 1);
     (s as any).sexnutrition = ((s as any).sexnutrition ?? 0) + (100 * ((s as any).scfeed ?? 0));
-    (s as any).suclezsex = ((s as any).stat ?? 0)?.['female_sexual_times'];
+    (s as any).suclezsex = (((s as any).stat ?? 0)?.['female_sexual_times']);
     (s as any).succubxp = ((s as any).succubxp ?? 0) + (6);
     (s as any).sucabslez = 1;
   }
@@ -1139,7 +1139,7 @@ function enterNs5(s: GameState, scene: SceneBuilder): void {
   if (((s as any).succubusflag ?? 0) === 1) {
     (s as any).scfeed = ((s as any).succublvl ?? 0) + (Math.floor(Math.random() * 4) + 1);
     (s as any).sexnutrition = ((s as any).sexnutrition ?? 0) + (100 * ((s as any).scfeed ?? 0));
-    (s as any).suclezsex = ((s as any).stat ?? 0)?.['female_sexual_times'];
+    (s as any).suclezsex = (((s as any).stat ?? 0)?.['female_sexual_times']);
     (s as any).succubxp = ((s as any).succubxp ?? 0) + (6);
     (s as any).sucabslez = 1;
   }
@@ -1175,7 +1175,7 @@ function enterNs6(s: GameState, scene: SceneBuilder): void {
   if (((s as any).succubusflag ?? 0) === 1) {
     (s as any).scfeed = ((s as any).succublvl ?? 0) + (Math.floor(Math.random() * 4) + 1);
     (s as any).sexnutrition = ((s as any).sexnutrition ?? 0) + (100 * ((s as any).scfeed ?? 0));
-    (s as any).suclezsex = ((s as any).stat ?? 0)?.['female_sexual_times'];
+    (s as any).suclezsex = (((s as any).stat ?? 0)?.['female_sexual_times']);
     (s as any).succubxp = ((s as any).succubxp ?? 0) + (6);
     (s as any).sucabslez = 1;
   }
@@ -1214,7 +1214,7 @@ function enterGs4(s: GameState, scene: SceneBuilder): void {
   if (((s as any).succubusflag ?? 0) === 1) {
     (s as any).scfeed = ((s as any).succublvl ?? 0) + (Math.floor(Math.random() * 4) + 1);
     (s as any).sexnutrition = ((s as any).sexnutrition ?? 0) + (50 * ((s as any).scfeed ?? 0));
-    (s as any).suclezsex = ((s as any).stat ?? 0)?.['female_sexual_times'];
+    (s as any).suclezsex = (((s as any).stat ?? 0)?.['female_sexual_times']);
     (s as any).succubxp = ((s as any).succubxp ?? 0) + (6);
     (s as any).sucabslez = 1;
   }
@@ -1254,7 +1254,7 @@ function enterGs5(s: GameState, scene: SceneBuilder): void {
   if (((s as any).succubusflag ?? 0) === 1) {
     (s as any).scfeed = ((s as any).succublvl ?? 0) + (Math.floor(Math.random() * 4) + 1);
     (s as any).sexnutrition = ((s as any).sexnutrition ?? 0) + (50 * ((s as any).scfeed ?? 0));
-    (s as any).suclezsex = ((s as any).stat ?? 0)?.['female_sexual_times'];
+    (s as any).suclezsex = (((s as any).stat ?? 0)?.['female_sexual_times']);
     (s as any).succubxp = ((s as any).succubxp ?? 0) + (6);
     (s as any).sucabslez = 1;
   }
@@ -1296,7 +1296,7 @@ function enterGs6(s: GameState, scene: SceneBuilder): void {
   if (((s as any).succubusflag ?? 0) === 1) {
     (s as any).scfeed = ((s as any).succublvl ?? 0) + (Math.floor(Math.random() * 4) + 1);
     (s as any).sexnutrition = ((s as any).sexnutrition ?? 0) + (50 * ((s as any).scfeed ?? 0));
-    (s as any).suclezsex = ((s as any).stat ?? 0)?.['female_sexual_times'];
+    (s as any).suclezsex = (((s as any).stat ?? 0)?.['female_sexual_times']);
     (s as any).succubxp = ((s as any).succubxp ?? 0) + (6);
     (s as any).sucabslez = 1;
   }

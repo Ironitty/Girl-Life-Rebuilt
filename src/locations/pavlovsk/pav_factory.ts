@@ -112,7 +112,7 @@ function enterScolding(s: GameState, scene: SceneBuilder): void {
       scene.text('He taps his pen on the desk, staring at you intently. "Do I make myself clear?"');
     }
   }
-  ((s as any).job_miss_acknowledged = (s as any).job_miss_acknowledged ?? {})['pav_factory'] = ((s as any).job_missed_total ?? 0)?.['pav_factory'];
+  ((s as any).job_miss_acknowledged = (s as any).job_miss_acknowledged ?? {})['pav_factory'] = (((s as any).job_missed_total ?? 0)?.['pav_factory']);
   // TODO-QSP: end
   scene.actions([
     { label: 'Apologize', goto: ['pav_factory', 'enter'] },

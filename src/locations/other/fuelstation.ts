@@ -56,7 +56,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     }
     if (qspFunc(s, 'car_funcs', 'is_here')) {
       // TODO-QSP: dynamic text: Your <a href="exec: gs ''carF'', ''start''"><<$car[''name'']>></a> is parked her...
-      scene.text(`Your <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027carF/u0027, /u0027start/u0027); return false;">${((s as any).car ?? 0)?.['name'] ?? ''}</a> is parked here.`);
+      scene.text(`Your <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027carF/u0027, /u0027start/u0027); return false;">${(((s as any).car ?? 0)?.['name'] ?? '')}</a> is parked here.`);
       if (((s as any).car ?? 0)?.['fuel'] < ((s as any).car ?? 0)?.['tank']) {
         (s as any).zprbenz = ((((s as any).car ?? {})?.['tank'] ?? 0) - (((s as any).car ?? {})?.['fuel'] ?? 0));
         (s as any).zprpay = ((s as any).zprbenz ?? 0) * 30;
@@ -67,7 +67,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     } else {
       (st as any).zprbenz = (((st as any).car ?? {})?.['tank'] ?? 0) - (((st as any).car ?? {})?.['fuel'] ?? 0);
       (st as any).zprpay = ((st as any).zprbenz ?? 0) * 30;
-      ((st as any).car = (st as any).car ?? {})['fuel'] = ((st as any).car ?? 0)?.['tank'];
+      ((st as any).car = (st as any).car ?? {})['fuel'] = (((st as any).car ?? 0)?.['tank']);
       qspCall(st, 'money', 'pay', ((st as any).zprpay ?? 0));
       scene.img('images/locations/shared/gas/zapr1.jpg');
       // TODO-QSP: dynamic text: 'You fill the tank and pay ' + $func('money', 'string_price', zprpay) + '.'

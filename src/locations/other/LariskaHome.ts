@@ -284,10 +284,10 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
   scene.text('The kitchen in Lariska\'s apartment is impressive, there are several small machines meant for cooking laid out, though you have no idea what most of them do.');
   if (((s as any).lariskalove ?? 0) >= 6) {
     // TODO-QSP: dynamic text: Like your <<$npc_nickname[''A29'']>> does at home, somebody living here makes la...
-    scene.text(`Like your ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''} does at home, somebody living here makes large batches of food, ready to eat anytime. You know you are welcome to anything in here though, so you look around, trying to decide what sounds good.`);
+    scene.text(`Like your ${(((s as any).npc_nickname ?? 0)?.['A29'] ?? '')} does at home, somebody living here makes large batches of food, ready to eat anytime. You know you are welcome to anything in here though, so you look around, trying to decide what sounds good.`);
   } else {
     // TODO-QSP: dynamic text: Like your <<$npc_nickname[''A29'']>> does at home, somebody living here makes la...
-    scene.text(`Like your ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''} does at home, somebody living here makes large batches of food, ready to eat anytime. You don't feel comfortable eating a full meal uninvited, but you know nobody will mind if you just have a snack.`);
+    scene.text(`Like your ${(((s as any).npc_nickname ?? 0)?.['A29'] ?? '')} does at home, somebody living here makes large batches of food, ready to eat anytime. You don't feel comfortable eating a full meal uninvited, but you know nobody will mind if you just have a snack.`);
   }
   if (((s as any).locat ?? 0)?.['Lariska'] === 3) {
     scene.text('Have <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027LariskaHome/u0027, /u0027kitchen_meal_1/u0027); return false;">breakfast</a> with Lariska.');

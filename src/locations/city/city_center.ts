@@ -58,7 +58,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'music_actions', 'start');
   if (qspFunc(s, 'car_funcs', 'is_here')) {
     // TODO-QSP: dynamic text: Your <a href="exec:gs ''carF'', ''start''"><<$car[''name'']>></a> sits in the pa...
-    scene.text(`Your <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027carF/u0027, /u0027start/u0027); return false;">${((s as any).car ?? 0)?.['name'] ?? ''}</a> sits in the parking lot.`);
+    scene.text(`Your <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027carF/u0027, /u0027start/u0027); return false;">${(((s as any).car ?? 0)?.['name'] ?? '')}</a> sits in the parking lot.`);
   }
   qspCall(s, 'taxi', '');
   // TODO-QSP: dynamic text: You have easy access to the <a href="exec: minut += 5 & gt ''train'', ''center''...
@@ -317,7 +317,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'music_actions', 'start');
   if (qspFunc(s, 'car_funcs', 'is_here')) {
     // TODO-QSP: dynamic text: Your <a href="exec:gs ''carF'', ''start''"><<$car[''name'']>></a> sits in the pa...
-    scene.text(`Your <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027carF/u0027, /u0027start/u0027); return false;">${((s as any).car ?? 0)?.['name'] ?? ''}</a> sits in the parking lot.`);
+    scene.text(`Your <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027carF/u0027, /u0027start/u0027); return false;">${(((s as any).car ?? 0)?.['name'] ?? '')}</a> sits in the parking lot.`);
   }
   qspCall(s, 'taxi', '');
   // TODO-QSP: dynamic text: You have easy access to the <a href="exec: minut += 5 & gt ''train'', ''center''...

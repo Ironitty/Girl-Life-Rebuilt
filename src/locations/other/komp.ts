@@ -25,7 +25,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   (s as any).elektro = ((s as any).elektro ?? 0) + (5);
-  (s as any).subs = ((s as any).access ?? 0)?.['subscription'];
+  (s as any).subs = (((s as any).access ?? 0)?.['subscription']);
   if (((s as any).subscription ?? 0)?.[String((s as any).subs ?? 0)] > 0) {
     if (((s as any).access ?? 0)?.['metered'] === 0) {
       scene.actions([
@@ -72,7 +72,7 @@ function enterBrowse(s: GameState, scene: SceneBuilder): void {
     scene.img('images/pc/items/accessories/computer/komp.jpg');
     if (((s as any).access ?? 0)?.['general'] !== '') {
       // TODO-QSP: dynamic text: <center><h4 style="color: red;"><b><<$access[''general'']>></b></h4></center>
-      scene.text(`<center><h4 style="color: red;"><b>${((s as any).access ?? 0)?.['general'] ?? ''}</b></h4></center>`);
+      scene.text(`<center><h4 style="color: red;"><b>${(((s as any).access ?? 0)?.['general'] ?? '')}</b></h4></center>`);
     }
     scene.text('You head to your favourite start page while you decide what you want to do.');
     scene.text('A blinking banner for a <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027komp/u0027, /u0027agent/u0027); return false;">Kirsanova Real Estate Agency</a> keeps popping up in the corner.');

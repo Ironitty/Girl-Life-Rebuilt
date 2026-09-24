@@ -288,7 +288,7 @@ function enterOptionalActivity(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).class ?? 0)[(String((s as any).locArgs?.[1] ?? '')) + '_' + (String((s as any).locArgs?.[2] ?? '')) + '_optional_weekly_grade_gain'] > ((s as any).class ?? 0)[(String((s as any).locArgs?.[1] ?? '')) + '_' + (String((s as any).locArgs?.[2] ?? '')) + '_optional_weekly_max']) {
-    ((s as any).class = (s as any).class ?? {})[String(((s as any).locArgs?.[1] ?? 0)) + '_' + String(((s as any).locArgs?.[2] ?? 0)) + '_optional_weekly_grade_gain'] = ((s as any).class ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '_' + String(((s as any).locArgs?.[2] ?? 0)) + '_optional_weekly_max'];
+    ((s as any).class = (s as any).class ?? {})[String(((s as any).locArgs?.[1] ?? 0)) + '_' + String(((s as any).locArgs?.[2] ?? 0)) + '_optional_weekly_grade_gain'] = (((s as any).class ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '_' + String(((s as any).locArgs?.[2] ?? 0)) + '_optional_weekly_max']);
   }
   // TODO-QSP: end
   scene.build();
@@ -336,7 +336,7 @@ function enterOptionalActivitySkill(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).class ?? 0)[(String((s as any).locArgs?.[1] ?? '')) + '_' + (String((s as any).locArgs?.[2] ?? '')) + '_optional_weekly_grade_gain'] > ((s as any).class ?? 0)[(String((s as any).locArgs?.[1] ?? '')) + '_' + (String((s as any).locArgs?.[2] ?? '')) + '_optional_weekly_max']) {
-    ((s as any).class = (s as any).class ?? {})[String(((s as any).locArgs?.[1] ?? 0)) + '_' + String(((s as any).locArgs?.[2] ?? 0)) + '_optional_weekly_grade_gain'] = ((s as any).class ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '_' + String(((s as any).locArgs?.[2] ?? 0)) + '_optional_weekly_max'];
+    ((s as any).class = (s as any).class ?? {})[String(((s as any).locArgs?.[1] ?? 0)) + '_' + String(((s as any).locArgs?.[2] ?? 0)) + '_optional_weekly_grade_gain'] = (((s as any).class ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '_' + String(((s as any).locArgs?.[2] ?? 0)) + '_optional_weekly_max']);
   }
   // TODO-QSP: end
   scene.build();
@@ -384,7 +384,7 @@ function enterOptionalActivityAttribute(s: GameState, scene: SceneBuilder): void
     }
   }
   if (((s as any).class ?? 0)[(String((s as any).locArgs?.[1] ?? '')) + '_' + (String((s as any).locArgs?.[2] ?? '')) + '_optional_weekly_grade_gain'] > ((s as any).class ?? 0)[(String((s as any).locArgs?.[1] ?? '')) + '_' + (String((s as any).locArgs?.[2] ?? '')) + '_optional_weekly_max']) {
-    ((s as any).class = (s as any).class ?? {})[String(((s as any).locArgs?.[1] ?? 0)) + '_' + String(((s as any).locArgs?.[2] ?? 0)) + '_optional_weekly_grade_gain'] = ((s as any).class ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '_' + String(((s as any).locArgs?.[2] ?? 0)) + '_optional_weekly_max'];
+    ((s as any).class = (s as any).class ?? {})[String(((s as any).locArgs?.[1] ?? 0)) + '_' + String(((s as any).locArgs?.[2] ?? 0)) + '_optional_weekly_grade_gain'] = (((s as any).class ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '_' + String(((s as any).locArgs?.[2] ?? 0)) + '_optional_weekly_max']);
   }
   // TODO-QSP: end
   scene.build();
@@ -463,7 +463,7 @@ function enterGradeAward(s: GameState, scene: SceneBuilder): void {
     ((s as any).class = (s as any).class ?? {})[String(((s as any).locArgs?.[1] ?? 0)) + '_' + String(((s as any).locArgs?.[2] ?? 0)) + '_grade'] = 0;
   } else {
     if (((s as any).class ?? 0)[(String((s as any).locArgs?.[1] ?? '')) + '_' + (String((s as any).locArgs?.[2] ?? '')) + '_grade'] > ((s as any).class ?? 0)[(String((s as any).locArgs?.[1] ?? '')) + '_' + (String((s as any).locArgs?.[2] ?? '')) + '_grade_cap']) {
-      ((s as any).class = (s as any).class ?? {})[String(((s as any).locArgs?.[1] ?? 0)) + '_' + String(((s as any).locArgs?.[2] ?? 0)) + '_grade'] = ((s as any).class ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '_' + String(((s as any).locArgs?.[2] ?? 0)) + '_grade_cap'];
+      ((s as any).class = (s as any).class ?? {})[String(((s as any).locArgs?.[1] ?? 0)) + '_' + String(((s as any).locArgs?.[2] ?? 0)) + '_grade'] = (((s as any).class ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '_' + String(((s as any).locArgs?.[2] ?? 0)) + '_grade_cap']);
     }
   }
   (s as any).temp_grades_sum = 0;
@@ -471,7 +471,7 @@ function enterGradeAward(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_grades_i = 0;
   // TODO-QSP: :grade_loop
   if (((s as any).class_list_institution ?? 0)?.[String((s as any).temp_grades_i ?? 0)] === String((s as any).locArgs?.[1] ?? '')) {
-    (s as any).temp_grades_sum = ((s as any).temp_grades_sum ?? 0) + (((s as any).class ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '_' + String((((s as any).class_list_name ?? 0)?.[String((s as any).temp_grades_i ?? 0)] ?? 0)) + '_grade']);
+    (s as any).temp_grades_sum = ((s as any).temp_grades_sum ?? 0) + ((((s as any).class ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '_' + String((((s as any).class_list_name ?? 0)?.[String((s as any).temp_grades_i ?? 0)] ?? 0)) + '_grade']));
     (s as any).temp_grades_n = ((s as any).temp_grades_n ?? 0) + (1);
   }
   (s as any).temp_grades_i = ((s as any).temp_grades_i ?? 0) + (1);
@@ -489,7 +489,7 @@ function enterCalculateGrade(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_grades_i = 0;
   // TODO-QSP: :grade_loop1
   if (((s as any).class_list_institution ?? 0)?.[String((s as any).temp_grades_i ?? 0)] === String((s as any).locArgs?.[1] ?? '')) {
-    ((s as any).class = (s as any).class ?? {})[String(((s as any).locArgs?.[1] ?? 0)) + '_' + String((((s as any).class_list_name ?? 0)?.[String((s as any).temp_grades_i ?? 0)] ?? 0)) + '_weekly_grade_gain'] = ((s as any).class[String(((s as any).locArgs?.[1] ?? 0)) + '_' + String((((s as any).class_list_name ?? 0)?.[String((s as any).temp_grades_i ?? 0)] ?? 0)) + '_weekly_grade_gain'] ?? 0) + (((s as any).class ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '_' + String((((s as any).class_list_name ?? 0)?.[String((s as any).temp_grades_i ?? 0)] ?? 0)) + '_optional_weekly_grade_gain']);
+    ((s as any).class = (s as any).class ?? {})[String(((s as any).locArgs?.[1] ?? 0)) + '_' + String((((s as any).class_list_name ?? 0)?.[String((s as any).temp_grades_i ?? 0)] ?? 0)) + '_weekly_grade_gain'] = ((s as any).class[String(((s as any).locArgs?.[1] ?? 0)) + '_' + String((((s as any).class_list_name ?? 0)?.[String((s as any).temp_grades_i ?? 0)] ?? 0)) + '_weekly_grade_gain'] ?? 0) + ((((s as any).class ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '_' + String((((s as any).class_list_name ?? 0)?.[String((s as any).temp_grades_i ?? 0)] ?? 0)) + '_optional_weekly_grade_gain']));
     ((s as any).class = (s as any).class ?? {})[String(((s as any).locArgs?.[1] ?? 0)) + '_' + String((((s as any).class_list_name ?? 0)?.[String((s as any).temp_grades_i ?? 0)] ?? 0)) + '_optional_weekly_grade_gain'] = 0;
     if (((s as any).class ?? 0)[(String((s as any).locArgs?.[1] ?? '')) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).temp_grades_i ?? 0)]) + '_weekly_grade_gain'] < ((s as any).class ?? 0)[(String((s as any).locArgs?.[1] ?? '')) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).temp_grades_i ?? 0)]) + '_weekly_grade_gain_breakeven_point']) {
       // TODO-QSP: class['<<$ARGS[1]>>_<<$class_list_name[temp_grades_i]>>_grade'] -= (5 - 5 * class['<<$ARGS[1]>>_<<$class_list_name[temp_grades_i]>>_weekly_grade_gain'] / class['<<$ARGS[1]>>_<<$class_list_name[temp_grades_i]>>_weekly_grade_gain_breakeven_point'])
@@ -497,9 +497,9 @@ function enterCalculateGrade(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: class['<<$ARGS[1]>>_<<$class_list_name[temp_grades_i]>>_grade'] += 3 * (class['<<$ARGS[1]>>_<<$class_list_name[temp_grades_i]>>_weekly_grade_gain'] - class['<<$ARGS[1]>>_<<$class_list_name[temp_grades_i]>>_weekly_grade_gain_breakeven_point']) / (class['<<$ARGS[1]>>_<<$class_list_name[temp_grades_i]>>_weekly_grade_gain_max'] - class['<<$ARGS[1]>>_<<$class_list_name[temp_grades_i]>>_weekly_grade_gain_breakeven_point'])
     }
     if (((s as any).class ?? 0)[(String((s as any).locArgs?.[1] ?? '')) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).temp_grades_i ?? 0)]) + '_grade'] > ((s as any).class ?? 0)[(String((s as any).locArgs?.[1] ?? '')) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).temp_grades_i ?? 0)]) + '_grade_cap']) {
-      ((s as any).class = (s as any).class ?? {})[String(((s as any).locArgs?.[1] ?? 0)) + '_' + String((((s as any).class_list_name ?? 0)?.[String((s as any).temp_grades_i ?? 0)] ?? 0)) + '_grade'] = ((s as any).class ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '_' + String((((s as any).class_list_name ?? 0)?.[String((s as any).temp_grades_i ?? 0)] ?? 0)) + '_grade_cap'];
+      ((s as any).class = (s as any).class ?? {})[String(((s as any).locArgs?.[1] ?? 0)) + '_' + String((((s as any).class_list_name ?? 0)?.[String((s as any).temp_grades_i ?? 0)] ?? 0)) + '_grade'] = (((s as any).class ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '_' + String((((s as any).class_list_name ?? 0)?.[String((s as any).temp_grades_i ?? 0)] ?? 0)) + '_grade_cap']);
     }
-    (s as any).temp_grades_sum = ((s as any).temp_grades_sum ?? 0) + (((s as any).class ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '_' + String((((s as any).class_list_name ?? 0)?.[String((s as any).temp_grades_i ?? 0)] ?? 0)) + '_grade']);
+    (s as any).temp_grades_sum = ((s as any).temp_grades_sum ?? 0) + ((((s as any).class ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '_' + String((((s as any).class_list_name ?? 0)?.[String((s as any).temp_grades_i ?? 0)] ?? 0)) + '_grade']));
     (s as any).temp_grades_n = ((s as any).temp_grades_n ?? 0) + (1);
     ((s as any).class = (s as any).class ?? {})[String(((s as any).locArgs?.[1] ?? 0)) + '_' + String((((s as any).class_list_name ?? 0)?.[String((s as any).temp_grades_i ?? 0)] ?? 0)) + '_weekly_grade_gain'] = 0;
   }

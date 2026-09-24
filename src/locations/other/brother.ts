@@ -13,11 +13,11 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   qspCall(s, 'boystat', 'A34');
-  (s as any).dick = ((s as any).npc_dick ?? 0)?.['A' + String(34)];
+  (s as any).dick = (((s as any).npc_dick ?? 0)?.['A' + String(34)]);
   scene.text('<center><b>Kolka</b></center>');
   scene.img('images/characters/shared/headshots_main/big34.jpg');
   // TODO-QSP: dynamic text: Kolka is your <<brotherQW[''Age'']>> year old brother. While you share the same ...
-  scene.text(`Kolka is your ${((s as any).brotherQW ?? 0)?.['Age'] ?? ''} year old brother. While you share the same mother, Kolka's dad is your and Anya's stepfather.`);
+  scene.text(`Kolka is your ${(((s as any).brotherQW ?? 0)?.['Age'] ?? '')} year old brother. While you share the same mother, Kolka's dad is your and Anya's stepfather.`);
   if (((s as any).gschoolVars ?? 0)?.['school_diploma'] === 0) {
     scene.text('He\'s a student at the same school as you. You can usually find him at home playing video games or playing football with his friends.');
   } else {
@@ -106,7 +106,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     }
     if ((((s as any).cumloc ?? 0)[6] === 1  ||  ((s as any).cumloc ?? 0)[7] === 1)  &&  ((s as any).clothingworntype ?? 0) !== 'nude') {
       // TODO-QSP: dynamic text: Kolka looks at your clothes, "You''re dirty. Go change your clothes or at least ...
-      scene.text(`Kolka looks at your clothes, "You're dirty. Go change your clothes or at least get ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''} to wash them."`);
+      scene.text(`Kolka looks at your clothes, "You're dirty. Go change your clothes or at least get ${(((s as any).npc_nickname ?? 0)?.['A29'] ?? '')} to wash them."`);
     }
     if (((s as any).spanked ?? 0) > 1  &&  ((s as any).clothingworntype ?? 0) === 'nude'  &&  ((s as any).pantyworntype ?? 0) === 'none') {
       scene.text('Your brother grins and stares at your backside, "Got a sore bum? Did someone punish you? You bad girl."');
@@ -130,7 +130,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
         if (((s as any).clothingworntype ?? 0) === 'nude'  &&  ((s as any).braworntype ?? 0) === 'none') {
           if (((s as any).brotherQW ?? 0)?.['Sex'] >= 7) {
             // TODO-QSP: dynamic text: Kolka looks you over, his eyes quickly glancing back and forth between your <<$t...
-            scene.text(`Kolka looks you over, his eyes quickly glancing back and forth between your ${((s as any).titsize ?? '')} breasts and ${((s as any).pc_desc ?? 0)?.['pubes'] ?? ''} pussy, "Wow, ${((s as any).pcs_nickname ?? '')}, you have an amazing body."`);
+            scene.text(`Kolka looks you over, his eyes quickly glancing back and forth between your ${((s as any).titsize ?? '')} breasts and ${(((s as any).pc_desc ?? 0)?.['pubes'] ?? '')} pussy, "Wow, ${((s as any).pcs_nickname ?? '')}, you have an amazing body."`);
           } else {
             scene.text('Kolka\'s eyes go wide at your brazen display, "What a view! Have you decided to become a nudist?"');
             if (((s as any).brotherQW ?? 0)?.['Sex'] < 2) {
@@ -367,7 +367,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'boyStat', 'A34');
     scene.text('A huge smile crosses your face, "I know what will solve this problem. Take off your pants, but be quiet."');
     // TODO-QSP: dynamic text: Kolka starts to take off his pants, his erect <<npc_dick[''A34'']>> cm cock quic...
-    scene.text(`Kolka starts to take off his pants, his erect ${((st as any).npc_dick ?? 0)?.['A34'] ?? ''} cm cock quickly popping out.`);
+    scene.text(`Kolka starts to take off his pants, his erect ${(((st as any).npc_dick ?? 0)?.['A34'] ?? '')} cm cock quickly popping out.`);
     ((st as any).brotherQW = (st as any).brotherQW ?? {})['sex_count_today'] = ((st as any).brotherQW['sex_count_today'] ?? 0) - (1);
     ((st as any).brotherQW = (st as any).brotherQW ?? {})['last_sex_day_evening'] = ((st as any).daystart ?? 0);
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBrotherSexStart(st, scene); (st as any).locArgs = __savedLocArgs; }
@@ -393,7 +393,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       scene.text('<center><b>Kolka</b></center>');
       scene.img('images/characters/shared/headshots_main/big34.jpg');
       // TODO-QSP: dynamic text: Kolka, your brother, is <<brotherQW[''Age'']>> years old. While you share the sa...
-      scene.text(`Kolka, your brother, is ${((s as any).brotherQW ?? 0)?.['Age'] ?? ''} years old. While you share the same mother, Kolka's dad is your and Anya's stepfather. He is a student at the same school as you. When not in school, he is either at home playing video games or out playing football with his friends.`);
+      scene.text(`Kolka, your brother, is ${(((s as any).brotherQW ?? 0)?.['Age'] ?? '')} years old. While you share the same mother, Kolka's dad is your and Anya's stepfather. He is a student at the same school as you. When not in school, he is either at home playing video games or out playing football with his friends.`);
       // TODO-QSP: dynamic text: Kolka turns to you and asks, "<<$pcs_nickname>>, can you help me with my homewor...
       scene.text(`Kolka turns to you and asks, "${((s as any).pcs_nickname ?? '')}, can you help me with my homework?"`);
       scene.actions([
@@ -780,7 +780,7 @@ function enterHomework(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Kolka</b></center>');
   scene.img('images/characters/shared/headshots_main/big34.jpg');
   // TODO-QSP: dynamic text: Kolka, your brother, is <<brotherQW[''Age'']>> years old. While you share the sa...
-  scene.text(`Kolka, your brother, is ${((s as any).brotherQW ?? 0)?.['Age'] ?? ''} years old. While you share the same mother, Kolka's dad is your and Anya's stepfather. He is a student at the same school as you. When not in school, he is either at home playing video games or out playing football with his friends.`);
+  scene.text(`Kolka, your brother, is ${(((s as any).brotherQW ?? 0)?.['Age'] ?? '')} years old. While you share the same mother, Kolka's dad is your and Anya's stepfather. He is a student at the same school as you. When not in school, he is either at home playing video games or out playing football with his friends.`);
   (s as any).textrand = (Math.floor(Math.random() * 8) + 1);
   if (((s as any).textrand ?? 0) === 1) {
     scene.text('You ask your brother, "Kolka, would you like help with your homework?"');
@@ -905,7 +905,7 @@ function enterBrotherSexStart(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/shared/sex/handjob/hj1.jpg');
     // TODO-QSP: dynamic text: You take his hard <<npc_dick[''A34'']>> cm cock in your hand and begin masturbat...
-    scene.text(`You take his hard ${((st as any).npc_dick ?? 0)?.['A34'] ?? ''} cm cock in your hand and begin masturbating him. It only takes a few minutes of gliding your hand up and down his shaft for him to cum. Kolka quietly groans as jets of hot cum erupt from his throbbing member all over your hand.`);
+    scene.text(`You take his hard ${(((st as any).npc_dick ?? 0)?.['A34'] ?? '')} cm cock in your hand and begin masturbating him. It only takes a few minutes of gliding your hand up and down his shaft for him to cum. Kolka quietly groans as jets of hot cum erupt from his throbbing member all over your hand.`);
     qspCall(st, 'arousal', 'hj', 5, 'incest');
     qspCall(st, 'stat', '');
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBrotherSexEnd(st, scene); (st as any).locArgs = __savedLocArgs; }
@@ -947,7 +947,7 @@ function enterFuckanal(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'end');
   scene.img(`images/characters/pavlovsk/school/boy/kolka/sex/anal,${(Math.floor(Math.random() * 5) + 0)}.mp4`);
   // TODO-QSP: dynamic text: You lie back on the sofa, pulling your knees up to your chest and expose your <<...
-  scene.text(`You lie back on the sofa, pulling your knees up to your chest and expose your ${((s as any).pc_desc ?? 0)?.['anus'] ?? ''} asshole to your sibling. "I want you to fuck my ass, Kolka," you tell him. Your brother practically pounces you, not needing more encouragement from you.`);
+  scene.text(`You lie back on the sofa, pulling your knees up to your chest and expose your ${(((s as any).pc_desc ?? 0)?.['anus'] ?? '')} asshole to your sibling. "I want you to fuck my ass, Kolka," you tell him. Your brother practically pounces you, not needing more encouragement from you.`);
   qspCall(s, 'dinSex', 'boy_wants_anal', 'Kolka', 'lubri\' & gs \'dinsex', 'analsex');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBrotherSexEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
@@ -1259,7 +1259,7 @@ function enterPregreact(s: GameState, scene: SceneBuilder): void {
   if (((s as any).knowpreg ?? 0) === 1  &&  ((s as any).kid ?? 0) === 0  &&  qspFunc(s, 'body_din', 'pregnancyVisibility') === 1) {
     if (((s as any).clothingworntype ?? 0) === 'nude'  &&  ((s as any).brotherQW ?? 0)?.['Sex'] < 7) {
       // TODO-QSP: dynamic text: Surprised, your brother looks at your stomach. "<<$pcs_nickname>>, are you pregn...
-      scene.text(`Surprised, your brother looks at your stomach. "${((s as any).pcs_nickname ?? '')}, are you pregnant? ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''} and dad are going to be pissed!" After a moments pause he adds, "You do still look good, though."`);
+      scene.text(`Surprised, your brother looks at your stomach. "${((s as any).pcs_nickname ?? '')}, are you pregnant? ${(((s as any).npc_nickname ?? 0)?.['A29'] ?? '')} and dad are going to be pissed!" After a moments pause he adds, "You do still look good, though."`);
       ((s as any).npc_pregtalk = (s as any).npc_pregtalk ?? {})['A34'] = 1;
       scene.actions([
 { label: 'Continue', goto: ['sitrPar', ''] },
@@ -1360,7 +1360,7 @@ function enterBrotherknows1(s: GameState, scene: SceneBuilder): void {
   ((s as any).npc_pregtalk = (s as any).npc_pregtalk ?? {})['A34'] = 1;
   scene.text('"Yeah, this baby is yours," you say, rubbing your belly. "And after it\'s born, I might let you help me make another one," you add before giving your brother a kiss. You look down at him and notice a lump starting to form in his pants.');
   // TODO-QSP: dynamic text: Kolka''s eyes suddenly go wide, "Wait! You''re not going to tell <<$npc_nickname...
-  scene.text(`Kolka's eyes suddenly go wide, "Wait! You're not going to tell ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''} I got you pregnant, are you?"`);
+  scene.text(`Kolka's eyes suddenly go wide, "Wait! You're not going to tell ${(((s as any).npc_nickname ?? 0)?.['A29'] ?? '')} I got you pregnant, are you?"`);
   // TODO-QSP: end
   scene.actions([
     { label: 'No', handler: (st: GameState) => {
@@ -1396,7 +1396,7 @@ function enterBrotherknows2(s: GameState, scene: SceneBuilder): void {
   scene.text('Kolka stares at you in shock, "But I don\'t know anything about raising a kid!"');
   scene.text('"Well, you should have thought of that before knocking me up! You\'re going to have to figure it out," your brother is clearly crestfallen as you walk away.');
   // TODO-QSP: dynamic text: "Wait!" Kolka yells after you. "You''re not going to tell <<$npc_nickname[''A29'...
-  scene.text(`"Wait!" Kolka yells after you. "You're not going to tell ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''} I got you pregnant, right?"`);
+  scene.text(`"Wait!" Kolka yells after you. "You're not going to tell ${(((s as any).npc_nickname ?? 0)?.['A29'] ?? '')} I got you pregnant, right?"`);
   // TODO-QSP: end
   scene.actions([
     { label: 'No (Blackmail him)', handler: (st: GameState) => {
@@ -1411,7 +1411,7 @@ function enterBrotherknows2(s: GameState, scene: SceneBuilder): void {
   } },
     { label: 'Yes', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: You glare at Kolka, "Fuck off! Can you think about anything other than yourself ...
-    scene.text(`You glare at Kolka, "Fuck off! Can you think about anything other than yourself for one second? I'm not protecting you. ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''} is going to find out, and you'll just have to deal with that!"`);
+    scene.text(`You glare at Kolka, "Fuck off! Can you think about anything other than yourself for one second? I'm not protecting you. ${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')} is going to find out, and you'll just have to deal with that!"`);
     scene.text('You storm away from Kolka, leaving him to squirm in discomfort.');
     scene.actions([
       { label: 'Continue', goto: ['sitrPar', ''] },
@@ -1468,7 +1468,7 @@ function enterBrotherknows6(s: GameState, scene: SceneBuilder): void {
     scene.text('After several minutes, you pull back and lick your lips. Still sitting in Kolka\'s lap, you say, "Every moment that we’re together is fantastic, and I love that this baby is yours, but I don\'t know if I want any more children after this. So, when we have sex after this baby is born, please try to control yourself." He nods.');
     if (((s as any).momKnowsKolka ?? 0) === 1  &&  qspFunc(s, 'homes_properties', 'has_access', 'parents_home')) {
       // TODO-QSP: dynamic text: Kolka chuckles, "Since <<$npc_nickname[''A29'']>> already knows I''ve gotten you...
-      scene.text(`Kolka chuckles, "Since ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''} already knows I've gotten you pregnant before, we probably don't need to keep this one secret, do we?"`);
+      scene.text(`Kolka chuckles, "Since ${(((s as any).npc_nickname ?? 0)?.['A29'] ?? '')} already knows I've gotten you pregnant before, we probably don't need to keep this one secret, do we?"`);
       scene.text('"No, I don\'t think we do. Even though she freaked she fuck out the first time, I\'m actually looking forward to her reaction this time. She\'s had plenty of time to come to terms with our…" You stop for a moment and grind into Kolka\'s lap, "special relationship."');
       scene.text('"God, I hope you\'re right. I don\'t think I could handle that again. I didn\'t know she could be so scary." You both laugh.');
       scene.text('You never dreamed that you would be building a family with your own brother, but now you wouldn\'t want it any other way.');
@@ -1481,13 +1481,13 @@ function enterBrotherknows6(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).momKnowsKolka ?? 0) === 1  &&  qspFunc(s, 'homes_properties', 'has_access', 'parents_home') === 0) {
         // TODO-QSP: dynamic text: "Since <<$npc_nickname[''A29'']>> already knows I''ve gotten you pregnant before...
-        scene.text(`"Since ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''} already knows I've gotten you pregnant before, we probably don't need to keep this one secret, do we?"`);
+        scene.text(`"Since ${(((s as any).npc_nickname ?? 0)?.['A29'] ?? '')} already knows I've gotten you pregnant before, we probably don't need to keep this one secret, do we?"`);
         // TODO-QSP: dynamic text: You scowl, "I don''t give a fuck what <<$npc_nickname[''A29'']>> knows. She''s n...
-        scene.text(`You scowl, "I don't give a fuck what ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''} knows. She's not speaking to me and I really don't care to say anything to her!"`);
+        scene.text(`You scowl, "I don't give a fuck what ${(((s as any).npc_nickname ?? 0)?.['A29'] ?? '')} knows. She's not speaking to me and I really don't care to say anything to her!"`);
         scene.text('Kolka softly caresses your cheek, "Sorry, I shouldn\'t have brought her up. I wasn\'t thinking."');
         scene.text('You smile, "It\'s alright. The only thing that matters right now is us and our baby."');
         // TODO-QSP: dynamic text: Once you''re finished speaking, your brother covers your <<$pc_desc[''lips'']>> ...
-        scene.text(`Once you're finished speaking, your brother covers your ${((s as any).pc_desc ?? 0)?.['lips'] ?? ''} lips with his own and you joyfully reciprocate his kiss.`);
+        scene.text(`Once you're finished speaking, your brother covers your ${(((s as any).pc_desc ?? 0)?.['lips'] ?? '')} lips with his own and you joyfully reciprocate his kiss.`);
         scene.text('You never dreamed that you would be building a family with your own brother, but now you wouldn\'t want it any other way.');
         scene.actions([
           { label: 'Continue', handler: (st: GameState) => {
@@ -1497,7 +1497,7 @@ function enterBrotherknows6(s: GameState, scene: SceneBuilder): void {
       } else {
         if (((s as any).momKnowsKolka ?? 0) === 0  &&  (!((s as any).brotherBlackmail ?? 0))) {
           // TODO-QSP: dynamic text: Kolka looks at you, somewhat uneasily, "Since <<$npc_nickname[''A29'']>> still d...
-          scene.text(`Kolka looks at you, somewhat uneasily, "Since ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''} still doesn't know I’ve gotten you pregnant before, we're going to keep it a secret still, right?"`);
+          scene.text(`Kolka looks at you, somewhat uneasily, "Since ${(((s as any).npc_nickname ?? 0)?.['A29'] ?? '')} still doesn't know I’ve gotten you pregnant before, we're going to keep it a secret still, right?"`);
           scene.text('You lay your hands on his, "Don\'t worry, I\'m not going to tell her the truth. I don\'t want my little brother to face any consequences for something that we both enjoyed. I don\'t think the same lie will work more than once, but I\'ll think of something."');
           scene.text('Kolka sighs in relief. "Thanks, sis, you\'re the best."');
           scene.text('"I know." You smile and kiss your brother one more time before getting up from his lap. Now you just need to decide what to tell your mother.');
@@ -1527,7 +1527,7 @@ function enterBrotherknows6(s: GameState, scene: SceneBuilder): void {
       scene.text('You snap at him, "You shut your goddamn mouth. You don\'t have to walk around with a baby inside you. I do. So yeah, I have every right to be pissed and you’re just going to sit back and deal with it."');
       if (((s as any).momKnowsKolka ?? 0) === 1  &&  qspFunc(s, 'homes_properties', 'has_access', 'parents_home')) {
         // TODO-QSP: dynamic text: "<<$npc_nickname[''A29'']>> already knows you got me pregnant before." You breat...
-        scene.text(`"${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''} already knows you got me pregnant before." You breath a deep sigh, "I am <i>not</i> looking forward to telling her about this."`);
+        scene.text(`"${(((s as any).npc_nickname ?? 0)?.['A29'] ?? '')} already knows you got me pregnant before." You breath a deep sigh, "I am <i>not</i> looking forward to telling her about this."`);
         scene.actions([
           { label: 'Continue', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 10;

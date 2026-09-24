@@ -720,7 +720,7 @@ function enterTips(s: GameState, scene: SceneBuilder): void {
   if (((s as any).workKafe ?? 0)?.['tips_total'] > 500) {
     ((s as any).workKafe = (s as any).workKafe ?? {})['tips_total'] = 510 - (Math.floor(Math.random() * 21) + 0);
   }
-  qspCall(s, 'money', 'earn', ((s as any).workKafe ?? 0)?.['tips_total']);
+  qspCall(s, 'money', 'earn', (((s as any).workKafe ?? 0)?.['tips_total']));
   ((s as any).workKafe = (s as any).workKafe ?? {})['tips_roll'] = 0;
   if (((s as any).pcs_servng ?? 0) < 100) {
     qspCall(s, 'exp_gain', 'servng', 1);
@@ -733,7 +733,7 @@ function enterTips(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/residential/cafe/kafe.jpg');
   scene.text('With your shift finally over, you sit at one of the tables and count out your tips for the day.');
   // TODO-QSP: dynamic text: You made <<$func(''money'', ''string_profit'', workKafe[''tips_total''])>> in ti...
-  scene.text(`You made ${qspFunc(s, 'money', 'string_profit', ((s as any).workKafe ?? 0)?.['tips_total'] ?? '')} in tips.`);
+  scene.text(`You made ${qspFunc(s, 'money', 'string_profit', (((s as any).workKafe ?? 0)?.['tips_total'] ?? ''))} in tips.`);
   scene.text('Fabi switches the lights off in the kitchen and ushers you out with a smile so he can finish closing up.');
   if ((!(Math.floor(Math.random() * 4) + 0))) {
     scene.actions([

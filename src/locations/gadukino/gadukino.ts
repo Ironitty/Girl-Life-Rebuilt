@@ -99,7 +99,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.text('A small village with many old wooden houses and even more in various states of disrepair. It has certainly seen better times.');
     if (qspFunc(s, 'car_funcs', 'is_here')) {
       // TODO-QSP: dynamic text: <a href="exec:gs ''carF'', ''start''">Your <<$car[''name'']>></a> is close by.
-      scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027carF/u0027, /u0027start/u0027); return false;">Your ${((s as any).car ?? 0)?.['name'] ?? ''}</a> is close by.`);
+      scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027carF/u0027, /u0027start/u0027); return false;">Your ${(((s as any).car ?? 0)?.['name'] ?? '')}</a> is close by.`);
     }
     // TODO-QSP: dynamic text: Several small farms are scattered around the outskirts of the village, one of wh...
     scene.text('Several small farms are scattered around the outskirts of the village, one of which belongs to <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(/u0027gad_gpyard/u0027, /u0027start/u0027); return false;">your grandparents</a>.');

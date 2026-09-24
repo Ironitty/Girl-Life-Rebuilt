@@ -57,7 +57,7 @@ function enterCikl(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: :cikl_lover_meet_loop
     ((s as any).sd_cm = (s as any).sd_cm ?? {})['npcid'] = qspUntranslated(s, "lover[sd_cm['li']]", { location: "lover" });
     if (((s as any).npc_meetday ?? 0)[((s as any).sd_cm ?? 0)?.['npcid']] > 0  &&  ((s as any).npc_meetday ?? 0)[((s as any).sd_cm ?? 0)?.['npcid']] < ((s as any).daystart ?? 0)) {
-      qspCall(s, 'npc_relationship', 'modify', ((s as any).sd_cm ?? 0)?.['npcid'], (-10));
+      qspCall(s, 'npc_relationship', 'modify', (((s as any).sd_cm ?? 0)?.['npcid']), (-10));
       // TODO-QSP: npc_meetday[$sd_cm['npcid']] = 0
     }
     ((s as any).sd_cm = (s as any).sd_cm ?? {})['li'] = ((s as any).sd_cm['li'] ?? 0) + (1);

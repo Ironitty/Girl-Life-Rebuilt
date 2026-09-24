@@ -392,7 +392,7 @@ function enterEndMorning(s: GameState, scene: SceneBuilder): void {
     { label: 'Finish getting dressed', handler: (st: GameState) => {
     // TODO-QSP: $sex_ev['bed_room']
     // TODO-QSP: dynamic text: You finish <<$sex_ev[''dress_describe'']>>.
-    scene.text(`You finish ${((st as any).sex_ev ?? 0)?.['dress_describe'] ?? ''}.`);
+    scene.text(`You finish ${(((st as any).sex_ev ?? 0)?.['dress_describe'] ?? '')}.`);
     if (((st as any).sex_ev ?? 0)?.['sleepover'] === 1  &&  ((st as any).npc_latesleeper ?? 0)?.[String((st as any).npcID ?? 0)] === 1  &&  ((st as any).sex_ev ?? 0)?.['boy_asleep'] !== 0  &&  ((st as any).sex_ev ?? 0)?.['loc'] !== 'pc_home') {
       qspCall(st, 'sex_ev_leave', 'sneak_out1');
     } else {
@@ -424,7 +424,7 @@ function enterBoyBreakfastOffer(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sex_ev ?? 0)?.['morning_fuck'] === 0) {
     scene.actions([
       { label: 'Different kind of breakfast (sex)', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'bj', 1, 'no_orgasm_msg', ((st as any).sex_ev ?? 0)?.['prostitution_flag']);
+    qspCall(st, 'arousal', 'bj', 1, 'no_orgasm_msg', (((st as any).sex_ev ?? 0)?.['prostitution_flag']));
     scene.img('images/shared/sex/blowjob/bj47.mp4');
     scene.text('"Yeah," you say crawling over to him. "I could really use some <i>meat</i> right now."');
     scene.text('You slink down between his legs, wrapping your lips around his cock and slurp hard.');
@@ -872,7 +872,7 @@ function enterPcMakeBreakfastChoices(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPcMakeBreakfastCooking(s: GameState, scene: SceneBuilder): void {
-  (s as any).minut = ((s as any).minut ?? 0) + (((s as any).sex_ev ?? 0)?.['cooking_time']);
+  (s as any).minut = ((s as any).minut ?? 0) + ((((s as any).sex_ev ?? 0)?.['cooking_time']));
   qspCall(s, 'stat', '');
   if (((s as any).sex_ev ?? 0)?.['cooking_total'] === 1) {
     if ((Array.isArray((s as any).sex_ev) ? ((s as any).sex_ev as any[]).indexOf('coffee_make') : -1) >= 0) {
@@ -1425,7 +1425,7 @@ function enterAfterBreakfastSex(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'Giggle', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'foreplay', 1, 'no_orgasm_msg', ((st as any).sex_ev ?? 0)?.['prostitution_flag']);
+    qspCall(st, 'arousal', 'foreplay', 1, 'no_orgasm_msg', (((st as any).sex_ev ?? 0)?.['prostitution_flag']));
     if (((st as any).sex_ev ?? 0)?.['wake_fuck'] === 1) {
       ((st as any).sex_ev = (st as any).sex_ev ?? {})['extra_cum'] = ((st as any).sex_ev['extra_cum'] ?? 0) + (5);
     } else {

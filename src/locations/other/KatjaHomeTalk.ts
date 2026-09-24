@@ -11,7 +11,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'vicky_meynold_schedule', '');
   qspCall(s, 'katja_meynold_schedule', '');
   qspCall(s, 'stat', '');
-  scene.text(`<center><b>${((s as any).npc_firstname ?? 0)?.['A14'] ?? ''} ${((s as any).npc_lastname ?? 0)?.['A14'] ?? ''}</b></center>`);
+  scene.text(`<center><b>${(((s as any).npc_firstname ?? 0)?.['A14'] ?? '')} ${(((s as any).npc_lastname ?? 0)?.['A14'] ?? '')}</b></center>`);
   scene.img('images/characters/shared/headshots_main/big14.jpg');
   if (((s as any).katjaQW ?? 0)?.['QWstage'] > 2) {
     if (((s as any).katjaQW ?? 0)?.['horny'] < 20) {
@@ -162,7 +162,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterChat(s: GameState, scene: SceneBuilder): void {
-  scene.text(`<center><b>${((s as any).npc_firstname ?? 0)?.['A14'] ?? ''} ${((s as any).npc_lastname ?? 0)?.['A14'] ?? ''}</b></center>`);
+  scene.text(`<center><b>${(((s as any).npc_firstname ?? 0)?.['A14'] ?? '')} ${(((s as any).npc_lastname ?? 0)?.['A14'] ?? '')}</b></center>`);
   scene.img('images/characters/shared/headshots_main/big14.jpg');
   if (((s as any).katjaQW ?? 0)?.['QWstage'] > 2) {
     if (((s as any).katjaQW ?? 0)?.['horny'] < 20) {
@@ -205,7 +205,7 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
     ((st as any).katjaQW = (st as any).katjaQW ?? {})['horny'] = ((st as any).katjaQW['horny'] ?? 0) + (1);
     (st as any).minut = ((st as any).minut ?? 0) + 15;
     qspCall(st, 'stat', '');
-    scene.text(`<center><b>${((st as any).npc_firstname ?? 0)?.['A14'] ?? ''} ${((st as any).npc_lastname ?? 0)?.['A14'] ?? ''}</b></center>`);
+    scene.text(`<center><b>${(((st as any).npc_firstname ?? 0)?.['A14'] ?? '')} ${(((st as any).npc_lastname ?? 0)?.['A14'] ?? '')}</b></center>`);
     scene.img('images/characters/shared/headshots_main/big14.jpg');
     scene.text('"So who\'s the boy you mentioned being interested in earlier?" you ask curiously.');
     if (((st as any).katjaQW ?? 0)?.['slut'] >= 60  &&  ((st as any).npc_had_sex ?? 0)?.['A14']  &&  ((st as any).katjaQW ?? 0)?.['horny'] > 40) {
@@ -296,7 +296,7 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Tell her you\'re pregnant', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
-    scene.text(`<center><b>${((st as any).npc_firstname ?? 0)?.['A14'] ?? ''} ${((st as any).npc_lastname ?? 0)?.['A14'] ?? ''}</b></center>`);
+    scene.text(`<center><b>${(((st as any).npc_firstname ?? 0)?.['A14'] ?? '')} ${(((st as any).npc_lastname ?? 0)?.['A14'] ?? '')}</b></center>`);
     scene.img('images/characters/shared/headshots_main/big14.jpg');
     scene.text('Katja\'s face lights up. "Congratulations! This is even more exciting than last time! Every time you tell me you\'re pregnant, I feel even better about my own pregnancy. Hell, that\'s probably the reason you keep getting pregnant, isn\'t it?"');
     scene.text('She giggles while looking at you affectionately.');
@@ -309,7 +309,7 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
       if (((s as any).knowKatjaPreg ?? 0) === 1) {
         scene.actions([
           { label: 'Tell her you\'re pregnant', handler: (st: GameState) => {
-    scene.text(`<center><b>${((st as any).npc_firstname ?? 0)?.['A14'] ?? ''} ${((st as any).npc_lastname ?? 0)?.['A14'] ?? ''}</b></center>`);
+    scene.text(`<center><b>${(((st as any).npc_firstname ?? 0)?.['A14'] ?? '')} ${(((st as any).npc_lastname ?? 0)?.['A14'] ?? '')}</b></center>`);
     scene.img('images/characters/shared/headshots_main/big14.jpg');
     scene.text('"What?! That\'s so exiting! You didn\'t get pregnant just to be like me, did you?" she asks playfully.');
     scene.actions([
@@ -321,7 +321,7 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
         if ((!((s as any).KatjaPreg ?? 0))) {
           scene.actions([
             { label: 'Tell her you\'re pregnant', handler: (st: GameState) => {
-    scene.text(`<center><b>${((st as any).npc_firstname ?? 0)?.['A14'] ?? ''} ${((st as any).npc_lastname ?? 0)?.['A14'] ?? ''}</b></center>`);
+    scene.text(`<center><b>${(((st as any).npc_firstname ?? 0)?.['A14'] ?? '')} ${(((st as any).npc_lastname ?? 0)?.['A14'] ?? '')}</b></center>`);
     scene.img('images/characters/shared/headshots_main/big14.jpg');
     scene.text('"What? That\'s so exiting!"');
     scene.actions([
@@ -380,7 +380,7 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
     ((st as any).katjaQW = (st as any).katjaQW ?? {})['horny'] = ((st as any).katjaQW['horny'] ?? 0) + (1);
     (st as any).minut = ((st as any).minut ?? 0) + 15;
     qspCall(st, 'stat', '');
-    scene.text(`<center><b>${((st as any).npc_firstname ?? 0)?.['A14'] ?? ''} ${((st as any).npc_lastname ?? 0)?.['A14'] ?? ''}</b></center>`);
+    scene.text(`<center><b>${(((st as any).npc_firstname ?? 0)?.['A14'] ?? '')} ${(((st as any).npc_lastname ?? 0)?.['A14'] ?? '')}</b></center>`);
     scene.img('images/characters/shared/headshots_main/big14.jpg');
     if (((st as any).flag_KissEV ?? 0) === 2) {
       scene.text('"Who do you think kissed more of the boys?" she asks.');
@@ -448,7 +448,7 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
     (st as any).pcs_hairbsh = 1;
     (st as any).minut = ((st as any).minut ?? 0) + 10;
     qspCall(st, 'stat', '');
-    scene.text(`<center><b>${((st as any).npc_firstname ?? 0)?.['A14'] ?? ''} ${((st as any).npc_lastname ?? 0)?.['A14'] ?? ''}</b></center>`);
+    scene.text(`<center><b>${(((st as any).npc_firstname ?? 0)?.['A14'] ?? '')} ${(((st as any).npc_lastname ?? 0)?.['A14'] ?? '')}</b></center>`);
     scene.img('images/characters/shared/headshots_main/big14.jpg');
     scene.text('Katja happily grins as she quickly straightens your hair. "What do you want? A light touch-up, some normal make-up or shall I just shovel it on?"');
     scene.actions([
@@ -538,7 +538,7 @@ function enterKatjaknows(s: GameState, scene: SceneBuilder): void {
             scene.text('You tell Katja that you\'re having Kolka\'s baby.');
             scene.text('"You were knocked up by your brother?! That\'s so sexy!" she moans before going in for a passionate kiss.');
             // TODO-QSP: dynamic text: As your <<$pc_desc[''lips'']>> lips separate from hers, you look into her eyes. ...
-            scene.text(`As your ${((s as any).pc_desc ?? 0)?.['lips'] ?? ''} lips separate from hers, you look into her eyes. "I didn't think admitting to incest would get me rewarded."`);
+            scene.text(`As your ${(((s as any).pc_desc ?? 0)?.['lips'] ?? '')} lips separate from hers, you look into her eyes. "I didn't think admitting to incest would get me rewarded."`);
             scene.text('She chuckles. "I appreciate honesty and I think everyone should be free to explore their passions. Even if those passions revolve around riding your brother\'s dick."');
             scene.text('You find yourself questioning what you did to deserve such a wonderful woman in your life.');
           } else {
@@ -548,7 +548,7 @@ function enterKatjaknows(s: GameState, scene: SceneBuilder): void {
               scene.text('You tell Katja that you\'re having your step-father\'s baby.');
               scene.text('"You were knocked up by your step-dad?! That\'s so sexy!" she moans before going in for a passionate kiss.');
               // TODO-QSP: dynamic text: As your <<$pc_desc[''lips'']>> lips separate from hers, you look into her eyes. ...
-              scene.text(`As your ${((s as any).pc_desc ?? 0)?.['lips'] ?? ''} lips separate from hers, you look into her eyes. "I didn't think admitting to incest would get me rewarded."`);
+              scene.text(`As your ${(((s as any).pc_desc ?? 0)?.['lips'] ?? '')} lips separate from hers, you look into her eyes. "I didn't think admitting to incest would get me rewarded."`);
               scene.text('She chuckles. "I appreciate honesty and I think everyone should be free to explore their passions. Even if those passions are part of an Electra complex."');
               scene.text('You find yourself questioning what you did to deserve such a wonderful woman in your life.');
             } else {
@@ -558,7 +558,7 @@ function enterKatjaknows(s: GameState, scene: SceneBuilder): void {
                 scene.text('You tell Katja that you\'re having your biological father\'s baby.');
                 scene.text('"You were knocked up by your own father?! That\'s so sexy!" she moans before going in for a passionate kiss.');
                 // TODO-QSP: dynamic text: As your <<$pc_desc[''lips'']>> lips separate from hers, you look into her eyes. ...
-                scene.text(`As your ${((s as any).pc_desc ?? 0)?.['lips'] ?? ''} lips separate from hers, you look into her eyes. "I didn't think admitting to incest would get me rewarded."`);
+                scene.text(`As your ${(((s as any).pc_desc ?? 0)?.['lips'] ?? '')} lips separate from hers, you look into her eyes. "I didn't think admitting to incest would get me rewarded."`);
                 scene.text('She chuckles. "I appreciate honesty and I think everyone should be free to explore their passions. Even if those passions are part of an Electra complex."');
                 scene.text('You find yourself questioning what you did to deserve such a wonderful woman in your life.');
               } else {
@@ -568,7 +568,7 @@ function enterKatjaknows(s: GameState, scene: SceneBuilder): void {
                   scene.text('You tell her that you don\'t actually know whose baby is growing inside of you.');
                   scene.text('"You\'re such a sexy slut!" she moans before going in for a passionate kiss.');
                   // TODO-QSP: dynamic text: As your <<$pc_desc[''lips'']>> lips separate from hers, you look into her eyes. ...
-                  scene.text(`As your ${((s as any).pc_desc ?? 0)?.['lips'] ?? ''} lips separate from hers, you look into her eyes. "I'm really glad you're not judging me like a lot of other people have."`);
+                  scene.text(`As your ${(((s as any).pc_desc ?? 0)?.['lips'] ?? '')} lips separate from hers, you look into her eyes. "I'm really glad you're not judging me like a lot of other people have."`);
                   // TODO-QSP: dynamic text: "<<$pcs_nickname>>, I would never judge you. Plus, if I''m being honest, I''m a ...
                   scene.text(`"${((s as any).pcs_nickname ?? '')}, I would never judge you. Plus, if I'm being honest, I'm a little jealous. I wish I could let myself have that much fun."`);
                   scene.text('You find yourself questioning what you did to deserve such a wonderful woman in your life.');
@@ -965,7 +965,7 @@ function enterTamVal(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Katja is confused', handler: (st: GameState) => {
     ((st as any).katjaQW = (st as any).katjaQW ?? {})['QWstage'] = 2;
-    scene.text(`<center><b>${((st as any).npc_firstname ?? 0)?.['A14'] ?? ''} ${((st as any).npc_lastname ?? 0)?.['A14'] ?? ''}</b></center>`);
+    scene.text(`<center><b>${(((st as any).npc_firstname ?? 0)?.['A14'] ?? '')} ${(((st as any).npc_lastname ?? 0)?.['A14'] ?? '')}</b></center>`);
     scene.img('images/characters/shared/headshots_main/big14.jpg');
     scene.text('You try to calm the hyper-ventilating redhead as she maniacally gets up and takes a peek beyond her room\'s door. Finally, she calms enough to talk with you.');
     // TODO-QSP: dynamic text: "<<$pcs_nickname>>, you saw that didn''t you? I mean… they were… oh God!"
@@ -1119,7 +1119,7 @@ function enterTamVal(s: GameState, scene: SceneBuilder): void {
     (st as any).npcbrokehymen = 1;
     ((st as any).katjaQW = (st as any).katjaQW ?? {})['dom'] = ((st as any).katjaQW['dom'] ?? 0) - (5);
     (st as any).sexnutrition = ((st as any).sexnutrition ?? 0) + (25 * ((st as any).scfeed ?? 0));
-    (st as any).suclezsex = ((st as any).stat ?? 0)?.['female_sexual_times'];
+    (st as any).suclezsex = (((st as any).stat ?? 0)?.['female_sexual_times']);
     (st as any).succubxp = ((st as any).succubxp ?? 0) + (6);
     (st as any).sucabslez = 1;
     qspCall(st, 'stat', '');
@@ -1139,7 +1139,7 @@ function enterTamVal(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Stare at her awkwardly', handler: (st: GameState) => {
-    scene.text(`<center><b>${((st as any).npc_firstname ?? 0)?.['A14'] ?? ''} ${((st as any).npc_lastname ?? 0)?.['A14'] ?? ''}</b></center>`);
+    scene.text(`<center><b>${(((st as any).npc_firstname ?? 0)?.['A14'] ?? '')} ${(((st as any).npc_lastname ?? 0)?.['A14'] ?? '')}</b></center>`);
     scene.img('images/characters/shared/headshots_main/big14.jpg');
     scene.text('"Hu?!"');
     scene.text('That is the most your brain seems capable of answering to Katja\'s question and obviously she doesn\'t take it too well.');
@@ -1793,9 +1793,9 @@ function enterGoToPark(s: GameState, scene: SceneBuilder): void {
   ((s as any).placerStringParameter = (s as any).placerStringParameter ?? {})['ev_name_a'] = 'Katja';
   ((s as any).placerStringParameter = (s as any).placerStringParameter ?? {})['ev_name_om'] = 'Katja';
   ((s as any).placerParameter = (s as any).placerParameter ?? {})['friend_index'] = 14;
-  ((s as any).placerParameter = (s as any).placerParameter ?? {})['friend_horny'] = ((s as any).katjaQW ?? 0)?.['horny'];
+  ((s as any).placerParameter = (s as any).placerParameter ?? {})['friend_horny'] = (((s as any).katjaQW ?? 0)?.['horny']);
   ((s as any).placerParameter = (s as any).placerParameter ?? {})['friend_dom'] = (((s as any).katjaQW ?? {})?.['dom'] ?? 0) + 50;
-  ((s as any).placerParameter = (s as any).placerParameter ?? {})['friend_slut'] = ((s as any).katjaQW ?? 0)?.['slut'];
+  ((s as any).placerParameter = (s as any).placerParameter ?? {})['friend_slut'] = (((s as any).katjaQW ?? 0)?.['slut']);
   ((s as any).placerParameter = (s as any).placerParameter ?? {})['friend_alko'] = 0;
   ((s as any).placerParameter = (s as any).placerParameter ?? {})['location_index'] = 0;
   qspGoto(s, 'placer', '');
@@ -2017,7 +2017,7 @@ function enterArtemBreakUpTalk(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: '"I\'m heartbroken"', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 6;
-    ((st as any).katjaQW = (st as any).katjaQW ?? {})['horny'] = Math.min(20, ((st as any).katjaQW ?? 0)?.['horny']);
+    ((st as any).katjaQW = (st as any).katjaQW ?? {})['horny'] = Math.min(20, (((st as any).katjaQW ?? 0)?.['horny']));
     if (((st as any).katjaQW ?? 0)?.['marcus_pussy'] > 0) {
       ((st as any).katjaQW = (st as any).katjaQW ?? {})['Marcus_day'] = ((st as any).daystart ?? 0);
     }
@@ -2105,7 +2105,7 @@ function enterArtemBreakUpTalk(s: GameState, scene: SceneBuilder): void {
   } },
     { label: 'Sad it had to end', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 6;
-    ((st as any).katjaQW = (st as any).katjaQW ?? {})['horny'] = Math.min(40, ((st as any).katjaQW ?? 0)?.['horny']);
+    ((st as any).katjaQW = (st as any).katjaQW ?? {})['horny'] = Math.min(40, (((st as any).katjaQW ?? 0)?.['horny']));
     qspCall(st, 'stat', '');
     scene.text('"We\'re… not together anymore," you admit, feeling a pang in your chest. "Looking back, I don\'t think there was any real way to make it last. We weren\'t good for each other, but that doesn\'t mean I\'m happy about breaking up. I miss him, as well as the good times we had together, and I\'m sad that we probably won\'t have anything like that together again."');
     scene.text('"I\'m truly sorry to hear that. Come here," Katja replies and open her arms for you. You lay your head on her bosom and hug her while she continues. "There will be others. I understand it feels like you\'ll never experience love like that again, but I promise you that you will. We\'re still young and beautiful and the world is still open for us. Give it time and everything will be alright."');

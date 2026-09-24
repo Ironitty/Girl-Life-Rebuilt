@@ -545,7 +545,7 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/characters/city/anatoly/sex/bossbjcar.jpg');
     // TODO-QSP: dynamic text: Determined to send Anatoly home with a smile, you lean over and unzip his pants....
-    scene.text(`Determined to send Anatoly home with a smile, you lean over and unzip his pants. You wrap your ${((st as any).pc_desc ?? 0)?.['lips'] ?? ''} lips around his flaccid penis, and start working your magic. Soon your mouth is full of hard throbbing cock. You make an effort to get him home quickly, and suck like a woman possessed with the need for seed. He does finish quickly, and you slurp it all down with a smile. Anatoly gets himself back in his pants, and sends you on your way saying, "Thanks babe, you're the best."`);
+    scene.text(`Determined to send Anatoly home with a smile, you lean over and unzip his pants. You wrap your ${(((st as any).pc_desc ?? 0)?.['lips'] ?? '')} lips around his flaccid penis, and start working your magic. Soon your mouth is full of hard throbbing cock. You make an effort to get him home quickly, and suck like a woman possessed with the need for seed. He does finish quickly, and you slurp it all down with a smile. Anatoly gets himself back in his pants, and sends you on your way saying, "Thanks babe, you're the best."`);
     qspCall(st, 'arousal', 'bj', 5, 'sub');
     qspCall(st, 'arousal', 'end');
     scene.actions([
@@ -770,7 +770,7 @@ function enterBj(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img(`images/characters/city/anatoly/sex/bossbj${((s as any).numbjrand ?? '')}.jpg`);
   // TODO-QSP: dynamic text: You greedily wrap your <<$pc_desc[''lips'']>> lips around the head of his cock. ...
-  scene.text(`You greedily wrap your ${((s as any).pc_desc ?? 0)?.['lips'] ?? ''} lips around the head of his cock. Smiling up at Anatoly, you give your lips a playfully little pop, before you begin to suck in earnest.`);
+  scene.text(`You greedily wrap your ${(((s as any).pc_desc ?? 0)?.['lips'] ?? '')} lips around the head of his cock. Smiling up at Anatoly, you give your lips a playfully little pop, before you begin to suck in earnest.`);
   qspCall(s, 'arousal', 'bj', 5, 'sub');
   qspCall(s, 'stat', '');
   if (((s as any).wantrand ?? 0) === 3) {
@@ -1232,7 +1232,7 @@ function enterIlyWork(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/citycenter/diner/work.jpg');
   scene.text('The senior manager Ilyushkin shows up in your office.');
   // TODO-QSP: dynamic text: Ilyushkin grins, "<<$pcs_nickname>>, <<$pcs_nickname>>, I would have never imagi...
-  scene.text(`Ilyushkin grins, "${((s as any).pcs_nickname ?? '')}, ${((s as any).pcs_nickname ?? '')}, I would have never imagined this from a sweet young thing like you." He puts a photo on your desk. You pick it up, and take a look. ${((s as any).BurgerQW ?? 0)?.['IlyQWBlackmailPhoto'] ?? ''}. Ilyushkin is looking at you like a cat about to catch a mouse: "${((s as any).pcs_nickname ?? '')}, we can't have this our boss has aims at a career in politics. If something like this were to get out it would… well we can't let that happen. I'm afraid you are just going to have to quit. Anatoly can't be known as a man who keeps a slutty secretary."`);
+  scene.text(`Ilyushkin grins, "${((s as any).pcs_nickname ?? '')}, ${((s as any).pcs_nickname ?? '')}, I would have never imagined this from a sweet young thing like you." He puts a photo on your desk. You pick it up, and take a look. ${(((s as any).BurgerQW ?? 0)?.['IlyQWBlackmailPhoto'] ?? '')}. Ilyushkin is looking at you like a cat about to catch a mouse: "${((s as any).pcs_nickname ?? '')}, we can't have this our boss has aims at a career in politics. If something like this were to get out it would… well we can't let that happen. I'm afraid you are just going to have to quit. Anatoly can't be known as a man who keeps a slutty secretary."`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Plead with him not to show the pictures', goto: ['BurgerTip', 'ily_work2'] },

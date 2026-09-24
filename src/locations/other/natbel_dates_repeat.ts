@@ -54,7 +54,7 @@ function enterGoForWalk(s: GameState, scene: SceneBuilder): void {
     { label: 'Suggest going to the cafe', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/natasha/friends/walk2.jpg');
     // TODO-QSP: dynamic text: A while into your walk, you have an idea and say, "Natasha, my <<$npc_nickname['...
-    scene.text(`A while into your walk, you have an idea and say, "Natasha, my ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''} works at Borislav's cafe near the station, so I can get free food and drinks there. So let's go over and pop in for a drink.`);
+    scene.text(`A while into your walk, you have an idea and say, "Natasha, my ${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')} works at Borislav's cafe near the station, so I can get free food and drinks there. So let's go over and pop in for a drink.`);
     // TODO-QSP: dynamic text: Natasha nods her agreement. "Yes, <<$pcs_nickname>>…" You give her a quizzical l...
     scene.text(`Natasha nods her agreement. "Yes, ${((st as any).pcs_nickname ?? '')}…" You give her a quizzical look, and she restarts, "Yes, ${((st as any).pcs_nickname ?? '')}, that would be very nice, but only if you're sure, as we shouldn't take advantage of their offer."`);
     scene.text('You agree and reply, "Yes, you\'re right. It\'s nice of Slava to have made the offer to me, so how about we just have a milkshake each?"');
@@ -593,7 +593,7 @@ function enterCityRaceDate1(s: GameState, scene: SceneBuilder): void {
       scene.text('You hug her back and kiss her on the cheek before heading off to get ready.');
       scene.text('You have a quick think and decide if you want to get a take-away from the diner or just enter the gym. Knowing that Natasha is waiting for you, you decide that you won\'t do any training today and just take part in the race then shower and meet her after.');
     }
-    (st as any).temp_gold_medals = ((st as any).runnerQW ?? 0)?.['gold_medals'];
+    (st as any).temp_gold_medals = (((st as any).runnerQW ?? 0)?.['gold_medals']);
     scene.actions([
       { label: 'Get ready', goto: ['natbel_dates_repeat', 'city_race_date_hub'] },
     ]);
@@ -706,7 +706,7 @@ function enterCityRaceDateHub(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'kickboxing_funcs', 'init_fight_vars');
     ((st as any).kickbox = (st as any).kickbox ?? {})['opponent'] = (((st as any).kickbox ?? {})?.['sash'] ?? 0) + ((Math.floor(Math.random() * (5 - (-2) + 1)) + ((-2))) / 2);
     ((st as any).temp_kickboxVars = (st as any).temp_kickboxVars ?? {})['fight_type'] = 1;
-    qspCall(st, 'kickboxing_funcs', 'generate_opponent', 'amateur_fight', ((st as any).kickbox ?? 0)?.['opponent']);
+    qspCall(st, 'kickboxing_funcs', 'generate_opponent', 'amateur_fight', (((st as any).kickbox ?? 0)?.['opponent']));
     qspGoto(st, 'havana_kickboxing', 'match');
   } },
             ]);

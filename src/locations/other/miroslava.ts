@@ -1247,7 +1247,7 @@ function enterOfferGoForest(s: GameState, scene: SceneBuilder): void {
 function enterWearStrippedClothes(s: GameState, scene: SceneBuilder): void {
   if (((s as any).clothingworntype ?? 0) === 'nude'  ||  ((s as any).PSwim ?? 0) === 1) {
     if (((s as any).MiraVars ?? 0)?.['strip_loc'] !== ''  &&  ((s as any).CloLosTyp ?? 0)[((s as any).MiraVars ?? 0)?.['strip_loc']] !== '') {
-      qspCall(s, 'outfit', 'recover_lost_outfit', ((s as any).MiraVars ?? 0)?.['strip_loc'], 1);
+      qspCall(s, 'outfit', 'recover_lost_outfit', (((s as any).MiraVars ?? 0)?.['strip_loc']), 1);
     } else {
       qspCall(s, 'outfit', 'wear_last_worn');
     }

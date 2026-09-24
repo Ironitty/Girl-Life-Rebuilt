@@ -365,8 +365,8 @@ function enterRapistFight(s: GameState, scene: SceneBuilder): void {
     scene.text('Finally, when your instincts tell you he has nothing left to give, you get off him and fix your clothes.');
     scene.text('As you make ready to leave, you look down upon your would-be-rapist-turned-meal as he lies there utterly exhausted and wonder if this experience will discourage him from such activities in the future…');
     // TODO-QSP: dynamic text: Before you leave him to contemplate such things you check his wallet and grab <<...
-    scene.text(`Before you leave him to contemplate such things you check his wallet and grab ${qspFunc(s, 'money', 'string_profit', ((st as any).succubusQW ?? 0)?.['rapist_cash'] ?? '')} as a bonus reward.`);
-    qspCall(st, 'money', 'earn', ((st as any).succubusQW ?? 0)?.['rapist_cash'], 'cash');
+    scene.text(`Before you leave him to contemplate such things you check his wallet and grab ${qspFunc(s, 'money', 'string_profit', (((st as any).succubusQW ?? 0)?.['rapist_cash'] ?? ''))} as a bonus reward.`);
+    qspCall(st, 'money', 'earn', (((st as any).succubusQW ?? 0)?.['rapist_cash']), 'cash');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
     dynamicGoto(st, 'prevLoc', 'prevArg');
@@ -608,7 +608,7 @@ function enterTatianasex(s: GameState, scene: SceneBuilder): void {
     (st as any).orgasm = ((st as any).orgasm ?? 0) + (((st as any).scfeed ?? 0));
     (st as any).pcs_willpwr = ((st as any).pcs_willpwr ?? 0) + (((st as any).scfeed ?? 0));
     (st as any).sexnutrition = ((st as any).sexnutrition ?? 0) + (25 * ((st as any).scfeed ?? 0));
-    (st as any).suclezsex = ((st as any).stat ?? 0)?.['female_sexual_times'];
+    (st as any).suclezsex = (((st as any).stat ?? 0)?.['female_sexual_times']);
     (st as any).succubxp = ((st as any).succubxp ?? 0) + (6);
     (st as any).sucabslez = 1;
     (st as any).minut = ((st as any).minut ?? 0) + (20 + (20 * ((st as any).scfeed ?? 0)) / ((st as any).succublvl ?? 0));
@@ -654,7 +654,7 @@ function enterTraining3sex(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'cuni', 15 * (Math.floor(Math.random() * 8) + 1), 'dom', 'lesbian');
     qspCall(st, 'arousal', 'cuni_give', (-15), 'dom', 'lesbian');
     qspCall(st, 'arousal', 'end');
-    (st as any).suclezsex = ((st as any).stat ?? 0)?.['female_sexual_times'];
+    (st as any).suclezsex = (((st as any).stat ?? 0)?.['female_sexual_times']);
     (st as any).tatisucsex = ((st as any).tatisucsex ?? 0) + (1);
     if ((!((st as any).tatisucsex ?? 0))) {
       (st as any).tatisucsex = 1;
@@ -965,7 +965,7 @@ function enterSucwalkinggo(s: GameState, scene: SceneBuilder): void {
     if (((s as any).car ?? 0)?.['fuel'] < 5) {
       if (qspFunc(s, 'money', 'can_afford', (30 * (((s as any).car ?? 0)?.['tank'] - ((s as any).car ?? 0)?.['fuel'])), 'cash')) {
         qspCall(s, 'money', 'pay', (30 * ((((s as any).car ?? {})?.['fuel'] ?? 0) - (((s as any).car ?? {})?.['fuel'] ?? 0))), 'cash');
-        ((s as any).car = (s as any).car ?? {})['fuel'] = ((s as any).car ?? 0)?.['tank'];
+        ((s as any).car = (s as any).car ?? {})['fuel'] = (((s as any).car ?? 0)?.['tank']);
       } else {
         if (((s as any).kanistra ?? 0) > 0) {
           ((s as any).car = (s as any).car ?? {})['fuel'] = ((s as any).car['fuel'] ?? 0) + (5);
@@ -973,7 +973,7 @@ function enterSucwalkinggo(s: GameState, scene: SceneBuilder): void {
         } else {
           qspCall(s, 'money', 'set', 0, 'cash');
           (s as any).scwalkmon = 0;
-          ((s as any).car = (s as any).car ?? {})['fuel'] = ((s as any).car['fuel'] ?? 0) + ((Math.floor(Math.random() * (((s as any).car ?? 0)?.['tank'] - 10 + 1)) + (10)));
+          ((s as any).car = (s as any).car ?? {})['fuel'] = ((s as any).car['fuel'] ?? 0) + ((Math.floor(Math.random() * ((((s as any).car ?? 0)?.['tank']) - 10 + 1)) + (10)));
         }
       }
     }

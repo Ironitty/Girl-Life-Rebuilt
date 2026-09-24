@@ -114,7 +114,7 @@ function enter11BuyGoods(s: GameState, scene: SceneBuilder): void {
   } else {
     (s as any).DoNotBuy = ((s as any).DoNotBuy ?? 0) - (1);
     // TODO-QSP: dynamic text: 'You have ' + mc_inventory['trinkets_home'] + ' trinkets stored in your home. Yo...
-    scene.text('You have ' + ((s as any).mc_inventory ?? 0)?.['trinkets_home'] ?? '' + ` trinkets stored in your home. You're only able to store ${((s as any).TovarLimitHomeRepository ?? '')} trinkets.`);
+    scene.text('You have ' + (((s as any).mc_inventory ?? 0)?.['trinkets_home'] ?? '') + ` trinkets stored in your home. You're only able to store ${((s as any).TovarLimitHomeRepository ?? '')} trinkets.`);
     (s as any).MaxQuantityHome = ((s as any).TovarLimitHomeRepository ?? 0) - (((s as any).mc_inventory ?? {})?.['trinkets_home'] ?? 0);
   }
   if (((s as any).YouCanGar ?? 0) > 0) {
@@ -123,7 +123,7 @@ function enter11BuyGoods(s: GameState, scene: SceneBuilder): void {
     } else {
       (s as any).DoNotBuy = ((s as any).DoNotBuy ?? 0) - (1);
       // TODO-QSP: dynamic text: 'You have ' + mc_inventory['trinkets_garage'] + ' trinkets stored in the garage....
-      scene.text('You have ' + ((s as any).mc_inventory ?? 0)?.['trinkets_garage'] ?? '' + ` trinkets stored in the garage. You're only able to store ${((s as any).TovarLimitGarageRepository ?? '')} trinkets.`);
+      scene.text('You have ' + (((s as any).mc_inventory ?? 0)?.['trinkets_garage'] ?? '') + ` trinkets stored in the garage. You're only able to store ${((s as any).TovarLimitGarageRepository ?? '')} trinkets.`);
       (s as any).MaxQuantityGarage = ((s as any).TovarLimitGarageRepository ?? 0) - (((s as any).mc_inventory ?? {})?.['trinkets_garage'] ?? 0);
     }
   }

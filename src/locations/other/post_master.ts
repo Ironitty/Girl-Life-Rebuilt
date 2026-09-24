@@ -172,7 +172,7 @@ function enterScolding(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  ((s as any).job_miss_acknowledged = (s as any).job_miss_acknowledged ?? {})['pav_mailgirl'] = ((s as any).job_missed_total ?? 0)?.['pav_mailgirl'];
+  ((s as any).job_miss_acknowledged = (s as any).job_miss_acknowledged ?? {})['pav_mailgirl'] = (((s as any).job_missed_total ?? 0)?.['pav_mailgirl']);
   // TODO-QSP: end
   scene.actions([
     { label: 'Apologize and leave', goto: ['post_office', 'start'] },
@@ -262,7 +262,7 @@ function enterVisitAfterRefusing2(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'Accept the job', handler: (st: GameState) => {
-    (st as any).temp_prev_job_last_work_day = ((st as any).job_last_work_day ?? 0)?.['pav_mailgirl'];
+    (st as any).temp_prev_job_last_work_day = (((st as any).job_last_work_day ?? 0)?.['pav_mailgirl']);
     qspCall(st, 'jobs', 'set_employed', 'pav_mailgirl');
     ((st as any).job_last_work_day = (st as any).job_last_work_day ?? {})['pav_mailgirl'] = ((st as any).temp_prev_job_last_work_day ?? 0);
     scene.text('"I\'ve given it some thought and I\'d like to take the job," you tell him.');
@@ -392,7 +392,7 @@ function enterJobOffer(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'Accept the job', handler: (st: GameState) => {
-    (st as any).temp_prev_job_last_work_day = ((st as any).job_last_work_day ?? 0)?.['pav_mailgirl'];
+    (st as any).temp_prev_job_last_work_day = (((st as any).job_last_work_day ?? 0)?.['pav_mailgirl']);
     qspCall(st, 'jobs', 'set_employed', 'pav_mailgirl');
     ((st as any).job_last_work_day = (st as any).job_last_work_day ?? {})['pav_mailgirl'] = ((st as any).temp_prev_job_last_work_day ?? 0);
     (st as any).minut = ((st as any).minut ?? 0) + 2;

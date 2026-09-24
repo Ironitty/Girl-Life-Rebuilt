@@ -155,7 +155,7 @@ function enterStudent(s: GameState, scene: SceneBuilder): void {
 
 function enterDiploma(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === 'get') {
-    (s as any).result = ((s as any).university ?? 0)?.['diploma'];
+    (s as any).result = (((s as any).university ?? 0)?.['diploma']);
   }
   if (String((s as any).locArgs?.[1] ?? '') === 'set') {
     ((s as any).university = (s as any).university ?? {})['diploma'] = ((s as any).locArgs?.[2] ?? 0);
@@ -182,7 +182,7 @@ function enterDiploma(s: GameState, scene: SceneBuilder): void {
 
 function enterFakeDiploma(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === 'get') {
-    (s as any).result = ((s as any).university ?? 0)?.['fakediplom'];
+    (s as any).result = (((s as any).university ?? 0)?.['fakediplom']);
   }
   if (String((s as any).locArgs?.[1] ?? '') === 'set') {
     ((s as any).university = (s as any).university ?? {})['fakediplom'] = ((s as any).locArgs?.[2] ?? 0);
@@ -216,7 +216,7 @@ function enterAppearToHaveGraduated(s: GameState, scene: SceneBuilder): void {
 
 function enterAttendance(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === 'get') {
-    (s as any).result = ((s as any).unisemestrstats ?? 0)?.['lectures_attendad'];
+    (s as any).result = (((s as any).unisemestrstats ?? 0)?.['lectures_attendad']);
   }
   if (String((s as any).locArgs?.[1] ?? '') === 'set') {
     ((s as any).unisemestrstats = (s as any).unisemestrstats ?? {})['lectures_attendad'] = ((s as any).locArgs?.[2] ?? 0);
@@ -243,7 +243,7 @@ function enterAttendance(s: GameState, scene: SceneBuilder): void {
 
 function enterAssignmentProgress(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === 'get') {
-    (s as any).result = ((s as any).unisemestrstats ?? 0)?.['assignment_progress'];
+    (s as any).result = (((s as any).unisemestrstats ?? 0)?.['assignment_progress']);
   }
   if (String((s as any).locArgs?.[1] ?? '') === 'set') {
     ((s as any).unisemestrstats = (s as any).unisemestrstats ?? {})['assignment_progress'] = ((String((s as any).locArgs?.[2] ?? '') <= 100) ? (((s as any).locArgs?.[2] ?? 0)) : (100));
@@ -267,7 +267,7 @@ function enterAssignmentProgress(s: GameState, scene: SceneBuilder): void {
 
 function enterAssignmentsDone(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === 'get') {
-    (s as any).result = ((s as any).unisemestrstats ?? 0)?.['assignments_done'];
+    (s as any).result = (((s as any).unisemestrstats ?? 0)?.['assignments_done']);
   }
   if (String((s as any).locArgs?.[1] ?? '') === 'set') {
     ((s as any).unisemestrstats = (s as any).unisemestrstats ?? {})['assignments_done'] = ((s as any).locArgs?.[2] ?? 0);
@@ -298,7 +298,7 @@ function enterAssignmentsDone(s: GameState, scene: SceneBuilder): void {
 
 function enterScholarship(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === 'get') {
-    (s as any).result = ((s as any).unisemestrstats ?? 0)?.['scholarship'];
+    (s as any).result = (((s as any).unisemestrstats ?? 0)?.['scholarship']);
   }
   if (String((s as any).locArgs?.[1] ?? '') === 'set') {
     ((s as any).unisemestrstats = (s as any).unisemestrstats ?? {})['scholarship'] = ((s as any).locArgs?.[2] ?? 0);
@@ -408,7 +408,7 @@ function enterExam(s: GameState, scene: SceneBuilder): void {
 
 function enterSemester(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === 'get') {
-    (s as any).result = ((s as any).unisemestrstats ?? 0)?.['num'];
+    (s as any).result = (((s as any).unisemestrstats ?? 0)?.['num']);
   }
   if (String((s as any).locArgs?.[1] ?? '') === 'set') {
     ((s as any).unisemestrstats = (s as any).unisemestrstats ?? {})['num'] = ((s as any).locArgs?.[2] ?? 0);
@@ -423,7 +423,7 @@ function enterSemester(s: GameState, scene: SceneBuilder): void {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'set', qspFunc(s, 'uniutil', 'semester', 'next')]; enterSemester(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   if (String((s as any).locArgs?.[1] ?? '') === 'get_year') {
-    (s as any).result = ((s as any).unisemestrstats ?? 0)?.['year'];
+    (s as any).result = (((s as any).unisemestrstats ?? 0)?.['year']);
   }
   if (String((s as any).locArgs?.[1] ?? '') === 'update_year') {
     ((s as any).unisemestrstats = (s as any).unisemestrstats ?? {})['year'] = ((s as any).year ?? 0);
@@ -451,7 +451,7 @@ function enterSemester(s: GameState, scene: SceneBuilder): void {
 
 function enterSemesterResult(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === 'get') {
-    (s as any).result = ((s as any).unisemestrstats ?? 0)?.['is_passed'];
+    (s as any).result = (((s as any).unisemestrstats ?? 0)?.['is_passed']);
   }
   if (String((s as any).locArgs?.[1] ?? '') === 'set') {
     ((s as any).unisemestrstats = (s as any).unisemestrstats ?? {})['is_passed'] = ((s as any).locArgs?.[2] ?? 0);

@@ -123,7 +123,7 @@ function enterGeneralTryout(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/citycenter/aurora/front.jpg');
   scene.text('You walk over to the receptionist.');
   // TODO-QSP: dynamic text: "Hi, I was just looking at the callboard and saw that they were holding audition...
-  scene.text(`"Hi, I was just looking at the callboard and saw that they were holding auditions for ${((s as any).audition ?? 0)?.['role'] ?? ''} today?"`);
+  scene.text(`"Hi, I was just looking at the callboard and saw that they were holding auditions for ${(((s as any).audition ?? 0)?.['role'] ?? '')} today?"`);
   scene.text('"Yes! They are! Just go to the general audition room at the end of the hall. If the door is open, you\'re free to go in."');
   scene.text('"Thanks," you nod.');
   // TODO-QSP: end
@@ -136,9 +136,9 @@ function enterGeneralTryout(s: GameState, scene: SceneBuilder): void {
 function enterDetails(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterAuditionSchedule(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: dynamic text: Pay: <<$func(''money'', ''string_profit'', acting[''pay''])>>
-  scene.text(`Pay: ${qspFunc(s, 'money', 'string_profit', ((s as any).acting ?? 0)?.['pay'] ?? '')}`);
+  scene.text(`Pay: ${qspFunc(s, 'money', 'string_profit', (((s as any).acting ?? 0)?.['pay'] ?? ''))}`);
   // TODO-QSP: dynamic text: 'Audition time: '+func('time', 'get_time_string', 16, 0)+'-'+func('time', 'get_t...
-  scene.text(`Audition time: 16:00-18:00, ${qspUntranslated(s, "weekName[audition['week']]", { location: "casting" })}, ${((s as any).audition ?? 0)?.['calendar_day'] ?? ''} of ${((s as any).audition ?? 0)?.['month'] ?? ''}.`);
+  scene.text(`Audition time: 16:00-18:00, ${qspUntranslated(s, "weekName[audition['week']]", { location: "casting" })}, ${(((s as any).audition ?? 0)?.['calendar_day'] ?? '')} of ${(((s as any).audition ?? 0)?.['month'] ?? '')}.`);
   // TODO-QSP: end
   scene.build();
 }
@@ -146,7 +146,7 @@ function enterDetails(s: GameState, scene: SceneBuilder): void {
 function enterGeneralDetails(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterAuditionSchedule(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: dynamic text: Pay: <<$func(''money'', ''string_profit'', acting[''pay''])>>
-  scene.text(`Pay: ${qspFunc(s, 'money', 'string_profit', ((s as any).acting ?? 0)?.['pay'] ?? '')}`);
+  scene.text(`Pay: ${qspFunc(s, 'money', 'string_profit', (((s as any).acting ?? 0)?.['pay'] ?? ''))}`);
   scene.text('Walk in auditions today. Ask receptionist for details.');
   // TODO-QSP: end
   scene.build();
@@ -409,7 +409,7 @@ function enterDinerWaitress(s: GameState, scene: SceneBuilder): void {
   scene.text('Requires nudity: Yes');
   scene.text('Must be comfortable with simulated sex scenes');
   // TODO-QSP: dynamic text: Number of scenes: <<acting[''scenecount'']>>
-  scene.text(`Number of scenes: ${((s as any).acting ?? 0)?.['scenecount'] ?? ''}`);
+  scene.text(`Number of scenes: ${(((s as any).acting ?? 0)?.['scenecount'] ?? '')}`);
   scene.text('One dialogue scene, one sex scene.');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDetails(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
@@ -438,7 +438,7 @@ function enterHotBartender(s: GameState, scene: SceneBuilder): void {
   scene.text('Requires nudity: Yes');
   scene.text('Must be comfortable with simulated sex scenes');
   // TODO-QSP: dynamic text: Number of scenes: <<acting[''scenecount'']>>
-  scene.text(`Number of scenes: ${((s as any).acting ?? 0)?.['scenecount'] ?? ''}`);
+  scene.text(`Number of scenes: ${(((s as any).acting ?? 0)?.['scenecount'] ?? '')}`);
   scene.text('Three dialogue scenes, including one sex scene.');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDetails(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
@@ -467,7 +467,7 @@ function enterSluttyClubGirl(s: GameState, scene: SceneBuilder): void {
   scene.text('Role Description: A party girl the main character meets at a club and unsuccessfully tries to flirt with.');
   scene.text('Requires nudity: Yes');
   // TODO-QSP: dynamic text: Number of scenes: <<acting[''scenecount'']>>
-  scene.text(`Number of scenes: ${((s as any).acting ?? 0)?.['scenecount'] ?? ''}`);
+  scene.text(`Number of scenes: ${(((s as any).acting ?? 0)?.['scenecount'] ?? '')}`);
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDetails(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.actions([
@@ -495,7 +495,7 @@ function enterYulyaGavrikov(s: GameState, scene: SceneBuilder): void {
   scene.text('Synopsis: Unashamed is a comedic drama that follows the Gavrikov family as they struggle through their problems of self image, romance, sexual identity, work and life balance, and most of all what it means to stick together as a family and be able to love each other without shame.');
   scene.text('Role Description: Yulya is a sexually free and uninhibited university student who is constantly getting into trouble with her many hookups. Though constantly getting together with people and desperately wanting some kind of genuine attachment, Yulya fears commitment and tries to cover up the fact by keeping her partners at an emotional arms length through sex and physicality.');
   // TODO-QSP: dynamic text: 'Audition: Room <<audition[''room'']>> - '+func('time', 'get_time_string', 16, 0...
-  scene.text(`Audition: Room ${((s as any).audition ?? 0)?.['room'] ?? ''} - 16:00-18:00, ${qspUntranslated(s, "weekName[audition['week']]", { location: "casting" })}, ${((s as any).audition ?? 0)?.['calendar_day'] ?? ''} of ${((s as any).audition ?? 0)?.['month'] ?? ''}.`);
+  scene.text(`Audition: Room ${(((s as any).audition ?? 0)?.['room'] ?? '')} - 16:00-18:00, ${qspUntranslated(s, "weekName[audition['week']]", { location: "casting" })}, ${(((s as any).audition ?? 0)?.['calendar_day'] ?? '')} of ${(((s as any).audition ?? 0)?.['month'] ?? '')}.`);
   scene.text('Filming duration: 2 months');
   // TODO-QSP: end
   scene.actions([

@@ -36,8 +36,8 @@ function enterCalculateRentablePropertyCount(s: GameState, scene: SceneBuilder):
   if (((s as any).temp_hpVars ?? 0)?.['i'] < ((s as any).temp_hpVars ?? 0)?.['max_i']) {
     // TODO-QSP: jump 'get_rentable_property_count_loop'
   }
-  ((s as any).accessible_property = (s as any).accessible_property ?? {})['available_for_rent_home_count'] = ((s as any).accessible_property ?? 0)?.['rentable_home_count'];
-  ((s as any).accessible_property = (s as any).accessible_property ?? {})['available_for_rent_business_count'] = ((s as any).accessible_property ?? 0)?.['rentable_business_count'];
+  ((s as any).accessible_property = (s as any).accessible_property ?? {})['available_for_rent_home_count'] = (((s as any).accessible_property ?? 0)?.['rentable_home_count']);
+  ((s as any).accessible_property = (s as any).accessible_property ?? {})['available_for_rent_business_count'] = (((s as any).accessible_property ?? 0)?.['rentable_business_count']);
   return;
   // TODO-QSP: end
   scene.build();
@@ -49,9 +49,9 @@ function enterSetHome(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'homes_properties_attr', 'get_property_attr', ((s as any).temp_homepropcode ?? 0));
     if (((String(((s as any).property ?? 0)?.['type']).indexOf(String('residence'))) + 1) > 0) {
       // TODO-QSP: copyarr 'home', 'property'
-      ((s as any).home = (s as any).home ?? {})['current'] = ((s as any).property ?? 0)?.['code'];
+      ((s as any).home = (s as any).home ?? {})['current'] = (((s as any).property ?? 0)?.['code']);
       if (((s as any).accessible_property ?? 0)[((s as any).home ?? 0)?.['current']] === 0) {
-        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).home ?? 0)?.['current'], 1]; enterSetAccess(s, scene); (s as any).locArgs = __savedLocArgs; }
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', (((s as any).home ?? 0)?.['current']), 1]; enterSetAccess(s, scene); (s as any).locArgs = __savedLocArgs; }
       }
     }
   }
@@ -95,10 +95,10 @@ function enterSetAccess(s: GameState, scene: SceneBuilder): void {
       if (((String(((s as any).property ?? 0)?.['type']).indexOf(String('residence'))) + 1) > 0) {
         ((s as any).accessible_property = (s as any).accessible_property ?? {})[String((s as any)._is_home ?? 0)] = 1;
       }
-      ((s as any).accessible_property = (s as any).accessible_property ?? {})[String((s as any)._is_rental ?? 0)] = ((s as any).property ?? 0)?.['rental'];
+      ((s as any).accessible_property = (s as any).accessible_property ?? {})[String((s as any)._is_rental ?? 0)] = (((s as any).property ?? 0)?.['rental']);
       ((s as any).accessible_property = (s as any).accessible_property ?? {})[String((s as any)._renovated ?? 0)] = ((s as any).locArgs?.[4] ?? 0);
-      ((s as any).accessible_property = (s as any).accessible_property ?? {})[String((s as any)._sales_price ?? 0)] = ((s as any).property ?? 0)?.['price'];
-      ((s as any).accessible_property = (s as any).accessible_property ?? {})[String((s as any)._rent ?? 0)] = ((s as any).property ?? 0)?.['rent'];
+      ((s as any).accessible_property = (s as any).accessible_property ?? {})[String((s as any)._sales_price ?? 0)] = (((s as any).property ?? 0)?.['price']);
+      ((s as any).accessible_property = (s as any).accessible_property ?? {})[String((s as any)._rent ?? 0)] = (((s as any).property ?? 0)?.['rent']);
     }
     if (((s as any).new_access_code ?? 0) === ((s as any).ACCESSIBLE ?? 0)  &&  ((s as any).property ?? 0)?.['rental'] === 1) {
       (s as any).new_access_code = ((s as any).RENTED ?? 0);
@@ -263,10 +263,10 @@ function enterGetPropertyCode(s: GameState, scene: SceneBuilder): void {
 
 function enterGetRentedPropertyCount(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === 'home') {
-    (s as any).result = ((s as any).accessible_property ?? 0)?.['rental_home_count'];
+    (s as any).result = (((s as any).accessible_property ?? 0)?.['rental_home_count']);
   } else {
     if (String((s as any).locArgs?.[1] ?? '') === 'business') {
-      (s as any).result = ((s as any).accessible_property ?? 0)?.['rental_business_count'];
+      (s as any).result = (((s as any).accessible_property ?? 0)?.['rental_business_count']);
     } else {
       (s as any).result = (((s as any).accessible_property ?? {})?.['rental_home_count'] ?? 0) + (((s as any).accessible_property ?? {})?.['rental_business_count'] ?? 0);
     }
@@ -278,10 +278,10 @@ function enterGetRentedPropertyCount(s: GameState, scene: SceneBuilder): void {
 
 function enterGetAccessiblePropertyCount(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === 'home') {
-    (s as any).result = ((s as any).accessible_property ?? 0)?.['accessible_home_count'];
+    (s as any).result = (((s as any).accessible_property ?? 0)?.['accessible_home_count']);
   } else {
     if (String((s as any).locArgs?.[1] ?? '') === 'business') {
-      (s as any).result = ((s as any).accessible_property ?? 0)?.['accessible_business_count'];
+      (s as any).result = (((s as any).accessible_property ?? 0)?.['accessible_business_count']);
     } else {
       (s as any).result = (((s as any).accessible_property ?? {})?.['accessible_home_count'] ?? 0) + (((s as any).accessible_property ?? {})?.['accessible_business_count'] ?? 0);
     }
@@ -293,10 +293,10 @@ function enterGetAccessiblePropertyCount(s: GameState, scene: SceneBuilder): voi
 
 function enterGetRentablePropertyCount(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === 'home') {
-    (s as any).result = ((s as any).accessible_property ?? 0)?.['rentable_home_count'];
+    (s as any).result = (((s as any).accessible_property ?? 0)?.['rentable_home_count']);
   } else {
     if (String((s as any).locArgs?.[1] ?? '') === 'business') {
-      (s as any).result = ((s as any).accessible_property ?? 0)?.['rentable_business_count'];
+      (s as any).result = (((s as any).accessible_property ?? 0)?.['rentable_business_count']);
     } else {
       (s as any).result = (((s as any).accessible_property ?? {})?.['rentable_home_count'] ?? 0) + (((s as any).accessible_property ?? {})?.['rentable_business_count'] ?? 0);
     }
@@ -308,10 +308,10 @@ function enterGetRentablePropertyCount(s: GameState, scene: SceneBuilder): void 
 
 function enterGetAvailableForRentPropertyCount(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === 'home') {
-    (s as any).result = ((s as any).accessible_property ?? 0)?.['available_for_rent_home_count'];
+    (s as any).result = (((s as any).accessible_property ?? 0)?.['available_for_rent_home_count']);
   } else {
     if (String((s as any).locArgs?.[1] ?? '') === 'business') {
-      (s as any).result = ((s as any).accessible_property ?? 0)?.['available_for_rent_business_count'];
+      (s as any).result = (((s as any).accessible_property ?? 0)?.['available_for_rent_business_count']);
     } else {
       (s as any).result = (((s as any).accessible_property ?? {})?.['available_for_rent_home_count'] ?? 0) + (((s as any).accessible_property ?? {})?.['available_for_rent_business_count'] ?? 0);
     }
@@ -323,10 +323,10 @@ function enterGetAvailableForRentPropertyCount(s: GameState, scene: SceneBuilder
 
 function enterGetFurnishablePropertyCount(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === 'home') {
-    (s as any).result = ((s as any).accessible_property ?? 0)?.['furnishable_home_count'];
+    (s as any).result = (((s as any).accessible_property ?? 0)?.['furnishable_home_count']);
   } else {
     if (String((s as any).locArgs?.[1] ?? '') === 'business') {
-      (s as any).result = ((s as any).accessible_property ?? 0)?.['furnishable_business_count'];
+      (s as any).result = (((s as any).accessible_property ?? 0)?.['furnishable_business_count']);
     } else {
       (s as any).result = (((s as any).accessible_property ?? {})?.['furnishable_home_count'] ?? 0) + (((s as any).accessible_property ?? {})?.['furnishable_business_count'] ?? 0);
     }
@@ -472,12 +472,12 @@ function enterGetPropertiesForSale(s: GameState, scene: SceneBuilder): void {
   if (((s as any).temp_hpVars ?? 0)?.['code'] !== ''  &&  ((s as any).checked_homes ?? 0)[((s as any).temp_hpVars ?? 0)?.['code']] === 0  &&  ((s as any).accessible_property ?? 0)[((s as any).temp_hpVars ?? 0)?.['code']] < 2) {
     // TODO-QSP: checked_homes[$temp_hpVars['code']] = 1
     if (((s as any).accessible_property ?? 0)[(((s as any).temp_hpVars ?? 0)?.['code']) + '-name'] === '') {
-      qspCall(s, 'homes_properties_attr', 'get_property_attr', ((s as any).temp_hpVars ?? 0)?.['code']);
+      qspCall(s, 'homes_properties_attr', 'get_property_attr', (((s as any).temp_hpVars ?? 0)?.['code']));
     }
     if (((s as any).accessible_property ?? 0)[(((s as any).temp_hpVars ?? 0)?.['code']) + '-name'] === '') {
       ((s as any).temp_hpVars = (s as any).temp_hpVars ?? {})['is_home'] = qspUntranslated(s, "instr(property['type'], 'residence') > 0", { location: "homes_properties" });
     } else {
-      ((s as any).temp_hpVars = (s as any).temp_hpVars ?? {})['is_home'] = ((String(((s as any).accessible_property ?? 0)?.[String(qspUntranslated(s, "$\u00000\u0000", { location: "homes_properties" })) + '-type']).indexOf(String('residence'))) + 1) > 0;
+      ((s as any).temp_hpVars = (s as any).temp_hpVars ?? {})['is_home'] = ((String((((s as any).accessible_property ?? 0)?.[String(qspUntranslated(s, "$\u00000\u0000", { location: "homes_properties" })) + '-type'])).indexOf(String('residence'))) + 1) > 0;
     }
     ((s as any).temp_hpVars = (s as any).temp_hpVars ?? {})['price'] = ((((s as any).accessible_property ?? 0)[(((s as any).temp_hpVars ?? 0)?.['code']) + '-name'] === '') ? (qspUntranslated(s, "property['price'] > 0", { location: "homes_properties" })) : (((s as any).accessible_property ?? 0)['' + qspUntranslated(s, "$\u00000\u0000", { location: "homes_properties" }) + '-sales-price'] > 0));
     if (((String((s as any).locArgs?.[1] ?? '') !== 'home'  &&  ((s as any).temp_hpVars ?? 0)?.['is_home'] === 0)  ||  (String((s as any).locArgs?.[1] ?? '') !== 'business'  &&  ((s as any).temp_hpVars ?? 0)?.['is_home']))  &&  ((s as any).temp_hpVars ?? 0)?.['price']) {
@@ -517,12 +517,12 @@ function enterGetPropertiesForRent(s: GameState, scene: SceneBuilder): void {
   if (((s as any).temp_hpVars ?? 0)?.['code'] !== ''  &&  ((s as any).checked_homes ?? 0)[((s as any).temp_hpVars ?? 0)?.['code']] === 0  &&  ((s as any).accessible_property ?? 0)[((s as any).temp_hpVars ?? 0)?.['code']] === 0) {
     // TODO-QSP: checked_homes[$temp_hpVars['code']] = 1
     if (((s as any).accessible_property ?? 0)[(((s as any).temp_hpVars ?? 0)?.['code']) + '-name'] === '') {
-      qspCall(s, 'homes_properties_attr', 'get_property_attr', ((s as any).temp_hpVars ?? 0)?.['code']);
+      qspCall(s, 'homes_properties_attr', 'get_property_attr', (((s as any).temp_hpVars ?? 0)?.['code']));
     }
     if (((s as any).accessible_property ?? 0)[(((s as any).temp_hpVars ?? 0)?.['code']) + '-name'] === '') {
       ((s as any).temp_hpVars = (s as any).temp_hpVars ?? {})['is_home'] = qspUntranslated(s, "instr(property['type'], 'residence') > 1", { location: "homes_properties" });
     } else {
-      ((s as any).temp_hpVars = (s as any).temp_hpVars ?? {})['is_home'] = ((String(((s as any).accessible_property ?? 0)?.[String(qspUntranslated(s, "$\u00000\u0000", { location: "homes_properties" })) + '-type']).indexOf(String('residence'))) + 1) > 1;
+      ((s as any).temp_hpVars = (s as any).temp_hpVars ?? {})['is_home'] = ((String((((s as any).accessible_property ?? 0)?.[String(qspUntranslated(s, "$\u00000\u0000", { location: "homes_properties" })) + '-type'])).indexOf(String('residence'))) + 1) > 1;
     }
     ((s as any).temp_hpVars = (s as any).temp_hpVars ?? {})['is_rental'] = ((((s as any).accessible_property ?? 0)[(((s as any).temp_hpVars ?? 0)?.['code']) + '-name'] === '') ? (qspUntranslated(s, "property['rental'] = 1", { location: "homes_properties" })) : (((s as any).accessible_property ?? 0)['' + qspUntranslated(s, "$\u00000\u0000", { location: "homes_properties" }) + '-rental'] = 1));
     if (((String((s as any).locArgs?.[1] ?? '') !== 'home'  &&  ((s as any).temp_hpVars ?? 0)?.['is_home'] === 0)  ||  (String((s as any).locArgs?.[1] ?? '') !== 'business'  &&  ((s as any).temp_hpVars ?? 0)?.['is_home']))  &&  ((s as any).temp_hpVars ?? 0)?.['is_rental']) {
@@ -562,7 +562,7 @@ function enterGetInternetEnabledProperties(s: GameState, scene: SceneBuilder): v
   ((s as any).temp_hpVars = (s as any).temp_hpVars ?? {})['code'] = qspUntranslated(s, "homes[temp_hpVars['i']]", { location: "homes_properties" });
   if (((s as any).checked_homes ?? 0)[((s as any).temp_hpVars ?? 0)?.['code']] === 0) {
     // TODO-QSP: checked_homes[$temp_hpVars['code']] = 1
-    qspCall(s, 'homes_properties_attr', 'get_property_attr', ((s as any).temp_hpVars ?? 0)?.['code']);
+    qspCall(s, 'homes_properties_attr', 'get_property_attr', (((s as any).temp_hpVars ?? 0)?.['code']));
     if (((s as any).property ?? 0)?.['internet_enabled']) {
       if ((String((s as any).locArgs?.[1] ?? '') !== 'home'  &&  ((String(((s as any).property ?? 0)?.['type']).indexOf(String('residence'))) + 1) === 0)  ||  (String((s as any).locArgs?.[1] ?? '') !== 'business'  &&  ((String(((s as any).property ?? 0)?.['type']).indexOf(String('residence'))) + 1) > 0)) {
         if ((String((s as any).locArgs?.[2] ?? '') === 'hasaccess'  &&  ((s as any).accessible_property ?? 0)[((s as any).temp_hpVars ?? 0)?.['code']] !== 0  &&  ((s as any).accessible_property ?? 0)[((s as any).temp_hpVars ?? 0)?.['code']] !== 4)  ||  String((s as any).locArgs?.[2] ?? '') === '') {
@@ -656,11 +656,11 @@ function enterGetPropertySalesInfo(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'homes_properties_attr', 'get_property_attr', ((s as any).locArgs?.[1] ?? 0));
   }
   if (((s as any).property ?? 0)?.['construction_needed'] === 1) {
-    (s as any).property_display = ((((s as any).accessible_property ?? 0)[(String((s as any).locArgs?.[1] ?? '')) + '-name'] === '') ? (((s as any).property ?? 0)?.['display_0']) : (((s as any).accessible_property ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '-display']));
+    (s as any).property_display = ((((s as any).accessible_property ?? 0)[(String((s as any).locArgs?.[1] ?? '')) + '-name'] === '') ? ((((s as any).property ?? 0)?.['display_0'])) : ((((s as any).accessible_property ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '-display'])));
   } else {
-    (s as any).property_display = ((((s as any).accessible_property ?? 0)[(String((s as any).locArgs?.[1] ?? '')) + '-name'] === '') ? (((s as any).property ?? 0)?.['display']) : (((s as any).accessible_property ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '-display']));
+    (s as any).property_display = ((((s as any).accessible_property ?? 0)[(String((s as any).locArgs?.[1] ?? '')) + '-name'] === '') ? ((((s as any).property ?? 0)?.['display'])) : ((((s as any).accessible_property ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '-display'])));
   }
-  (s as any).property_sales_price = ((((s as any).accessible_property ?? 0)[(String((s as any).locArgs?.[1] ?? '')) + '-name'] === '') ? (((s as any).property ?? 0)?.['price']) : (((s as any).accessible_property ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '-sales-price']));
+  (s as any).property_sales_price = ((((s as any).accessible_property ?? 0)[(String((s as any).locArgs?.[1] ?? '')) + '-name'] === '') ? ((((s as any).property ?? 0)?.['price'])) : ((((s as any).accessible_property ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '-sales-price'])));
   return;
   // TODO-QSP: end
   scene.build();
@@ -749,10 +749,10 @@ function enterTenantMoveOutCheck(s: GameState, scene: SceneBuilder): void {
 
 function enterGetPropertySalesPrice(s: GameState, scene: SceneBuilder): void {
   if (((s as any).accessible_property ?? 0)[(String((s as any).locArgs?.[1] ?? '')) + '-name'] !== '') {
-    (s as any).result = ((s as any).accessible_property ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '-sales-price'];
+    (s as any).result = (((s as any).accessible_property ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '-sales-price']);
   } else {
     qspCall(s, 'homes_properties_attr', 'get_property_attr', ((s as any).locArgs?.[1] ?? 0));
-    (s as any).result = ((s as any).property ?? 0)?.['price'];
+    (s as any).result = (((s as any).property ?? 0)?.['price']);
   }
   return;
   // TODO-QSP: end
@@ -783,7 +783,7 @@ function enterCancelRent(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPayRent(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'money', 'pay', ((s as any).accessible_property ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '-rent'], ((s as any).locArgs?.[2] ?? 0));
+  qspCall(s, 'money', 'pay', (((s as any).accessible_property ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '-rent']), ((s as any).locArgs?.[2] ?? 0));
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0)]; enterAddRentDays(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
@@ -822,7 +822,7 @@ function enterSetRentAmount(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGetRentDays(s: GameState, scene: SceneBuilder): void {
-  (s as any).result = ((s as any).accessible_property ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '-days-left'];
+  (s as any).result = (((s as any).accessible_property ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '-days-left']);
   return;
   // TODO-QSP: end
   scene.build();
@@ -830,10 +830,10 @@ function enterGetRentDays(s: GameState, scene: SceneBuilder): void {
 
 function enterGetRentAmount(s: GameState, scene: SceneBuilder): void {
   if (((s as any).accessible_property ?? 0)[(String((s as any).locArgs?.[1] ?? '')) + '-name'] !== '') {
-    (s as any).result = ((s as any).accessible_property ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '-rent'];
+    (s as any).result = (((s as any).accessible_property ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '-rent']);
   } else {
     qspCall(s, 'homes_properties_attr', 'get_property_attr', ((s as any).locArgs?.[1] ?? 0));
-    (s as any).result = ((s as any).property ?? 0)?.['rent'];
+    (s as any).result = (((s as any).property ?? 0)?.['rent']);
   }
   return;
   // TODO-QSP: end
@@ -869,7 +869,7 @@ function enterDaysInMonth(s: GameState, scene: SceneBuilder): void {
 
 function enterGetPropertyConstructionStatus(s: GameState, scene: SceneBuilder): void {
   (s as any).constrstatcheckpropcode = ((String((s as any).locArgs?.[1] ?? '') === '') ? ((((s as any).home_name ?? 0)?.[String((s as any).loc ?? 0)] ?? 0)) : ((((s as any).home_name ?? 0)?.[((s as any).locArgs?.[1] ?? 0)] ?? 0)));
-  (s as any).result = ((s as any).accessible_property ?? 0)?.[String(((s as any).constrstatcheckpropcode ?? 0)) + '-construction-status'];
+  (s as any).result = (((s as any).accessible_property ?? 0)?.[String(((s as any).constrstatcheckpropcode ?? 0)) + '-construction-status']);
   return;
   // TODO-QSP: end
   scene.build();
@@ -887,7 +887,7 @@ function enterProgressConstructionStatus(s: GameState, scene: SceneBuilder): voi
 
 function enterIsPropertyRenovated(s: GameState, scene: SceneBuilder): void {
   (s as any).checkrenpropcode = ((String((s as any).locArgs?.[1] ?? '') === '') ? ((((s as any).home_name ?? 0)?.[String((s as any).loc ?? 0)] ?? 0)) : ((((s as any).home_name ?? 0)?.[((s as any).locArgs?.[1] ?? 0)] ?? 0)));
-  (s as any).result = ((s as any).accessible_property ?? 0)?.[String(((s as any).checkrenpropcode ?? 0)) + '-renovated'];
+  (s as any).result = (((s as any).accessible_property ?? 0)?.[String(((s as any).checkrenpropcode ?? 0)) + '-renovated']);
   return;
   // TODO-QSP: end
   scene.build();
@@ -912,7 +912,7 @@ function enterGoHome(s: GameState, scene: SceneBuilder): void {
     if (hasLocation(((s as any).home ?? 0)?.['location'])) {
       dynamicGoto(s, (((s as any).home ?? {}))['location'], (((s as any).home ?? {}))['location_arg']);
     } else {
-      scene.text(`Home Error: home location '${((s as any).home ?? 0)?.['location'] ?? ''}' does not exist.`);
+      scene.text(`Home Error: home location '${(((s as any).home ?? 0)?.['location'] ?? '')}' does not exist.`);
     }
   }
   return;
@@ -927,7 +927,7 @@ function enterGoStraightHome(s: GameState, scene: SceneBuilder): void {
     if (hasLocation(((s as any).home ?? 0)?.['entrance'])) {
       dynamicGoto(s, (((s as any).home ?? {}))['entrance'], (((s as any).home ?? {}))['entrance_arg']);
     } else {
-      scene.text(`Home Error: home entrance '${((s as any).home ?? 0)?.['entrance'] ?? ''}' does not exist.`);
+      scene.text(`Home Error: home entrance '${(((s as any).home ?? 0)?.['entrance'] ?? '')}' does not exist.`);
     }
   }
   return;
@@ -938,12 +938,12 @@ function enterGoStraightHome(s: GameState, scene: SceneBuilder): void {
 function enterGoBathroom(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_prop_code = ((String((s as any).locArgs?.[1] ?? '') === '') ? ((((s as any).home_name ?? 0)?.[String((s as any).loc ?? 0)] ?? 0)) : ((((s as any).home_name ?? 0)?.[((s as any).locArgs?.[1] ?? 0)] ?? 0)));
   if (((s as any).temp_prop_code ?? 0) === '') {
-    (s as any).temp_prop_code = ((s as any).home ?? 0)?.['code'];
+    (s as any).temp_prop_code = (((s as any).home ?? 0)?.['code']);
   }
   qspCall(s, 'homes_properties_attr', 'get_property_attr', ((s as any).temp_prop_code ?? 0));
   if (hasLocation(((s as any).property ?? 0)?.['bathroom'])) {
   } else {
-    scene.text(`Home Error: bathroom location '${((s as any).property ?? 0)?.['bathroom'] ?? ''}' does not exist.`);
+    scene.text(`Home Error: bathroom location '${(((s as any).property ?? 0)?.['bathroom'] ?? '')}' does not exist.`);
   }
   return;
   // TODO-QSP: end
@@ -953,12 +953,12 @@ function enterGoBathroom(s: GameState, scene: SceneBuilder): void {
 function enterGoBedroom(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_prop_code = ((String((s as any).locArgs?.[1] ?? '') === '') ? ((((s as any).home_name ?? 0)?.[String((s as any).loc ?? 0)] ?? 0)) : ((((s as any).home_name ?? 0)?.[((s as any).locArgs?.[1] ?? 0)] ?? 0)));
   if (((s as any).temp_prop_code ?? 0) === '') {
-    (s as any).temp_prop_code = ((s as any).home ?? 0)?.['code'];
+    (s as any).temp_prop_code = (((s as any).home ?? 0)?.['code']);
   }
   qspCall(s, 'homes_properties_attr', 'get_property_attr', ((s as any).temp_prop_code ?? 0));
   if (hasLocation(((s as any).property ?? 0)?.['bedroom'])) {
   } else {
-    scene.text(`Home Error: bedroom location '${((s as any).property ?? 0)?.['bedroom'] ?? ''}' does not exist.`);
+    scene.text(`Home Error: bedroom location '${(((s as any).property ?? 0)?.['bedroom'] ?? '')}' does not exist.`);
   }
   return;
   // TODO-QSP: end

@@ -11,7 +11,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 function enterSetUpAccount(s: GameState, scene: SceneBuilder): void {
   ((s as any).ml_online = (s as any).ml_online ?? {})['account'] = 1;
   (s as any).minut = ((s as any).minut ?? 0) + 10;
-  qspCall(s, 'internet_mobile', 'use_internet', ((s as any).access ?? 0)?.['subscription'], 10);
+  qspCall(s, 'internet_mobile', 'use_internet', (((s as any).access ?? 0)?.['subscription']), 10);
   qspCall(s, 'stat', '');
   scene.text('You log into Youtube to set up a channel for your music. You can upload videos or live stream, but you will need to open a bank account if you want to receive any tips from viewers of your stream.');
   // TODO-QSP: end
@@ -46,13 +46,13 @@ function enterLiveStream(s: GameState, scene: SceneBuilder): void {
   }
   if ((!((s as any).bankAccount ?? 0))) {
     // TODO-QSP: dynamic text: You have earned <b><<$func(''money'', ''string_profit'', ml_streaming[''unclaime...
-    scene.text(`You have earned <b>${qspFunc(s, 'money', 'string_profit', ((s as any).ml_streaming ?? 0)?.['unclaimed_earnings'] ?? '')}</b> so far, but you need to open a bank account before you can receive the money.`);
+    scene.text(`You have earned <b>${qspFunc(s, 'money', 'string_profit', (((s as any).ml_streaming ?? 0)?.['unclaimed_earnings'] ?? ''))}</b> so far, but you need to open a bank account before you can receive the money.`);
   } else {
     // TODO-QSP: dynamic text: You have <b><<$func(''money'', ''string_profit'', ml_streaming[''unclaimed_earni...
-    scene.text(`You have <b>${qspFunc(s, 'money', 'string_profit', ((s as any).ml_streaming ?? 0)?.['unclaimed_earnings'] ?? '')}</b> on your account.`);
+    scene.text(`You have <b>${qspFunc(s, 'money', 'string_profit', (((s as any).ml_streaming ?? 0)?.['unclaimed_earnings'] ?? ''))}</b> on your account.`);
     scene.actions([
       { label: 'Stop the stream and transfer the money to your bank account', handler: (st: GameState) => {
-    qspCall(st, 'money', 'earn', ((st as any).ml_streaming ?? 0)?.['unclaimed_earnings'], 'bank');
+    qspCall(st, 'money', 'earn', (((st as any).ml_streaming ?? 0)?.['unclaimed_earnings']), 'bank');
     ((st as any).ml_streaming = (st as any).ml_streaming ?? {})['unclaimed_earnings'] = 0;
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'streaming']; enterFinish(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
@@ -232,7 +232,7 @@ function enterUploadallmusic(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: :uploadallmusic
   if (((s as any).ml_onlinesong_uploaded ?? 0)?.[String((s as any).i ?? 0)] === 0  &&  ((s as any).access ?? 0) !== 'denied') {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'internet_mobile', 'use_internet', ((s as any).access ?? 0)?.['subscription'], 5);
+    qspCall(s, 'internet_mobile', 'use_internet', (((s as any).access ?? 0)?.['subscription']), 5);
     qspCall(s, 'stat', '');
     ((s as any).ml_onlinesong_uploaded = (s as any).ml_onlinesong_uploaded ?? {})[String((s as any).i ?? 0)] = 1;
     (s as any).ml_uploadablemusic = ((s as any).ml_uploadablemusic ?? 0) - (1);
@@ -329,7 +329,7 @@ function enterFinish(s: GameState, scene: SceneBuilder): void {
 
 function enterStreamingStats(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + (((s as any).ml_streamtime ?? 0));
-  qspCall(s, 'internet_mobile', 'use_internet', ((s as any).access ?? 0)?.['subscription'], ((s as any).ml_streamtime ?? 0));
+  qspCall(s, 'internet_mobile', 'use_internet', (((s as any).access ?? 0)?.['subscription']), ((s as any).ml_streamtime ?? 0));
   (s as any).ml_maxsuperchats = ( (((s as any).fame ?? {})?.['pav_music'] ?? 0) + ((((s as any).fame ?? {})?.['city_music'] ?? 0) * 2) + (((s as any).fame ?? {})?.['pushkin_music'] ?? 0) + (((s as any).fame ?? {})?.['village_music'] ?? 0) + ((s as any).pcs_apprnc ?? 0) );
   (s as any).ml_superchats = ((Math.floor(Math.random() * (((s as any).ml_maxsuperchats ?? 0) - 0 + 1)) + (0)) * ((s as any).ml_streamtime ?? 0)) / 60;
   if (((s as any).ml_guitar ?? 0)?.['hasguitar'] === 1  &&  (((s as any).ml_guitar ?? 0)?.['carried'] === 1  ||  ((s as any).ml_guitar ?? 0)?.['location'] === ((s as any).loc ?? 0))) {

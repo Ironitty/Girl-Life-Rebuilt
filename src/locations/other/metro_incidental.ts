@@ -21,7 +21,7 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
       ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = (Math.floor(Math.random() * 2) + 2);
     }
   }
-  qspGoto(s, 'metro_incidental', 'event' + ((s as any).temp_transportVars ?? 0)?.['rand'] + '');
+  qspGoto(s, 'metro_incidental', 'event' + (((s as any).temp_transportVars ?? 0)?.['rand']) + '');
   // TODO-QSP: end
   scene.build();
 }
@@ -113,7 +113,7 @@ function enterEvent3(s: GameState, scene: SceneBuilder): void {
 
 function enterEnd(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
-  qspGoto(s, 'metro_incidental', qspUntranslated(s, "''end<<rand(1'", { location: "metro_incidental" }), '1)>>');
+  qspGoto(s, 'metro_incidental', qspUntranslated(s, "end(Math.floor(Math.random() * 1) + 1)", { location: "metro_incidental" }));
   // TODO-QSP: end
   scene.build();
 }

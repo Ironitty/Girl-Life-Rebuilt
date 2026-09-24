@@ -144,7 +144,7 @@ function enterGetImage(s: GameState, scene: SceneBuilder): void {
     ((s as any).flashVars = (s as any).flashVars ?? {})['image'] = ((s as any).flashVars['image'] ?? 0) + ('hairy');
   }
   ((s as any).flashVars = (s as any).flashVars ?? {})['rand'] = (Math.floor(Math.random() * ((((s as any).flashVars ?? 0)?.[String((s as any).temp_id_text ?? 0)] ?? 0) - 1 + 1)) + (1));
-  ((s as any).flashVars = (s as any).flashVars ?? {})['image'] = ((s as any).flashVars['image'] ?? 0) + (String(((s as any).flashVars ?? 0)?.['rand']) + '.jpg');
+  ((s as any).flashVars = (s as any).flashVars ?? {})['image'] = ((s as any).flashVars['image'] ?? 0) + (String((((s as any).flashVars ?? 0)?.['rand'])) + '.jpg');
   // TODO-QSP: end
   scene.build();
 }
@@ -168,7 +168,7 @@ function enterGenerateOutput(s: GameState, scene: SceneBuilder): void {
   }
   if (String((s as any).locArgs?.[5] ?? '') !== 1) {
     if (((s as any).flash_image ?? 0) === '') {
-      (s as any).flash_image = ((s as any).flashVars ?? 0)?.['image'];
+      (s as any).flash_image = (((s as any).flashVars ?? 0)?.['image']);
     }
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDisplayImage(s, scene); (s as any).locArgs = __savedLocArgs; }
   }

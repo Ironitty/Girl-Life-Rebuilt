@@ -101,14 +101,14 @@ function enter(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).mc_inventory ?? 0)?.['food_basic'] > 0) {
     // TODO-QSP: dynamic text: In the refrigerator food is stored that''s good for <b><<mc_inventory[''food_bas...
-    scene.text(`In the refrigerator food is stored that's good for <b>${((s as any).mc_inventory ?? 0)?.['food_basic'] ?? ''}</b> servings.`);
+    scene.text(`In the refrigerator food is stored that's good for <b>${(((s as any).mc_inventory ?? 0)?.['food_basic'] ?? '')}</b> servings.`);
   }
   if (((s as any).mc_inventory ?? 0)?.['food_diet'] === 0  &&  ((s as any).mc_inventory ?? 0)?.['food_basic'] === 0) {
     // TODO-QSP: $func('wrap', 'v_neg b', 'The fridge is empty, nothing to eat in sight.')
   }
   if (((s as any).mc_inventory ?? 0)?.['food_diet'] > 0) {
     // TODO-QSP: dynamic text: The refrigerator contains healthy meals that are good for <b><<mc_inventory[''fo...
-    scene.text(`The refrigerator contains healthy meals that are good for <b>${((s as any).mc_inventory ?? 0)?.['food_diet'] ?? ''}</b> servings.`);
+    scene.text(`The refrigerator contains healthy meals that are good for <b>${(((s as any).mc_inventory ?? 0)?.['food_diet'] ?? '')}</b> servings.`);
   }
   qspCall(s, 'kit_din', 'kitchen_acts');
   if (((s as any).hostel ?? 0)?.['status'] > 0) {

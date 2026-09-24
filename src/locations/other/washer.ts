@@ -74,14 +74,14 @@ function enterSetWashAllAct(s: GameState, scene: SceneBuilder): void {
 
 function enterSetResizeCost(s: GameState, scene: SceneBuilder): void {
   (s as any).tailor_total_resize_cost = 0;
-  (s as any).loop_func = ((s as any).washer_funcs ?? 0)?.['clothing_resize_cost'];
+  (s as any).loop_func = (((s as any).washer_funcs ?? 0)?.['clothing_resize_cost']);
   qspCall(s, 'tailor', 'clothing_loop');
   // TODO-QSP: end
   scene.build();
 }
 
 function enterResizeAll(s: GameState, scene: SceneBuilder): void {
-  (s as any).loop_func = ((s as any).washer_funcs ?? 0)?.['clothing_resize'];
+  (s as any).loop_func = (((s as any).washer_funcs ?? 0)?.['clothing_resize']);
   qspCall(s, 'tailor', 'clothing_loop');
   // TODO-QSP: end
   scene.build();
@@ -89,7 +89,7 @@ function enterResizeAll(s: GameState, scene: SceneBuilder): void {
 
 function enterCheckTotalItems(s: GameState, scene: SceneBuilder): void {
   (s as any).washer_total_wash_count = 0;
-  (s as any).loop_func = ((s as any).washer_funcs ?? 0)?.['washing_count'];
+  (s as any).loop_func = (((s as any).washer_funcs ?? 0)?.['washing_count']);
   ((s as any).temp_washerVars = (s as any).temp_washerVars ?? {})['array_postfix'] = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterClothingLoop(s, scene); (s as any).locArgs = __savedLocArgs; }
   ((s as any).temp_washerVars = (s as any).temp_washerVars ?? {})['array_postfix'] = '_bras';
@@ -104,7 +104,7 @@ function enterCheckTotalItems(s: GameState, scene: SceneBuilder): void {
 
 function enterCheckTotalCost(s: GameState, scene: SceneBuilder): void {
   (s as any).washer_total_wash_cost = 100;
-  (s as any).loop_func = ((s as any).washer_funcs ?? 0)?.['washing_cost'];
+  (s as any).loop_func = (((s as any).washer_funcs ?? 0)?.['washing_cost']);
   ((s as any).temp_washerVars = (s as any).temp_washerVars ?? {})['array_postfix'] = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterClothingLoop(s, scene); (s as any).locArgs = __savedLocArgs; }
   ((s as any).temp_washerVars = (s as any).temp_washerVars ?? {})['array_postfix'] = '_bras';
@@ -118,7 +118,7 @@ function enterCheckTotalCost(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterWashAll(s: GameState, scene: SceneBuilder): void {
-  (s as any).loop_func = ((s as any).washer_funcs ?? 0)?.['wash'];
+  (s as any).loop_func = (((s as any).washer_funcs ?? 0)?.['wash']);
   ((s as any).temp_washerVars = (s as any).temp_washerVars ?? {})['array_postfix'] = '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterClothingLoop(s, scene); (s as any).locArgs = __savedLocArgs; }
   ((s as any).temp_washerVars = (s as any).temp_washerVars ?? {})['array_postfix'] = '_bras';

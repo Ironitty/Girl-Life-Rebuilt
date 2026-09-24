@@ -129,18 +129,18 @@ function enterModcloMenu(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
-    (st as any).money = ((st as any).intro_custom ?? 0)?.['money'];
+    (st as any).money = (((st as any).intro_custom ?? 0)?.['money']);
     ((st as any).intro_custom = (st as any).intro_custom ?? {})['money'] = (-1);
-    (st as any).loc = ((st as any).intro_custom ?? 0)?.['loc'];
-    (st as any).loc_arg = ((st as any).intro_custom ?? 0)?.['loc_arg'];
+    (st as any).loc = (((st as any).intro_custom ?? 0)?.['loc']);
+    (st as any).loc_arg = (((st as any).intro_custom ?? 0)?.['loc_arg']);
     ((st as any).intro_custom = (st as any).intro_custom ?? {})['loc'] = '';
     ((st as any).intro_custom = (st as any).intro_custom ?? {})['loc_arg'] = '';
-    (st as any).menu_loc = ((st as any).intro_custom ?? 0)?.['menu_loc'];
-    (st as any).menu_arg = ((st as any).intro_custom ?? 0)?.['menu_arg'];
+    (st as any).menu_loc = (((st as any).intro_custom ?? 0)?.['menu_loc']);
+    (st as any).menu_arg = (((st as any).intro_custom ?? 0)?.['menu_arg']);
     ((st as any).intro_custom = (st as any).intro_custom ?? {})['menu_loc'] = '';
     ((st as any).intro_custom = (st as any).intro_custom ?? {})['menu_arg'] = '';
-    (st as any).loc_s = ((st as any).intro_custom ?? 0)?.['loc_s'];
-    (st as any).args_s = ((st as any).intro_custom ?? 0)?.['args_s'];
+    (st as any).loc_s = (((st as any).intro_custom ?? 0)?.['loc_s']);
+    (st as any).args_s = (((st as any).intro_custom ?? 0)?.['args_s']);
     ((st as any).intro_custom = (st as any).intro_custom ?? {})['loc_s'] = '';
     ((st as any).intro_custom = (st as any).intro_custom ?? {})['args_s'] = '';
     (st as any).intro_custom_shop_return = 0;
@@ -770,7 +770,7 @@ function enterModcloLoop(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'shop_utils', 'init', 'add_type', ((s as any).locArgs?.[2] ?? 0));
     qspCall(s, 'shop_utils', 'init', 'end');
   }
-  qspCall(s, 'shop_utils', 'display_' + ((s as any).intro_custom_shop ?? 0)?.['slot'] + '_grid_shop');
+  qspCall(s, 'shop_utils', 'display_' + (((s as any).intro_custom_shop ?? 0)?.['slot']) + '_grid_shop');
   // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
@@ -891,7 +891,7 @@ function enterModapp(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: end
   scene.actions([
-    { label: '', labelFn: (s: GameState) => 'Body fat (' + String(((s as any).pcs_mass ?? 0)?.['body'] ?? '' ?? '') + '/200)', handler: (st: GameState) => {
+    { label: '', labelFn: (s: GameState) => 'Body fat (' + String((((s as any).pcs_mass ?? 0)?.['body'] ?? '') ?? '') + '/200)', handler: (st: GameState) => {
     qspCall(st, 'intro_character_custom', '');
     // TODO-QSP: pcs_mass['body'] = nstat
   }, goto: ['intro_character_custom', 'modapp'] },
@@ -901,7 +901,7 @@ function enterModapp(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSetgenbsize(s: GameState, scene: SceneBuilder): void {
-  (s as any).nstat = ((s as any).pcs_mass ?? 0)?.['bust_gen'];
+  (s as any).nstat = (((s as any).pcs_mass ?? 0)?.['bust_gen']);
   (s as any).nstat = window.prompt("Enter value that ends in a 2 or a 7. For example, 2, 7, 12 etc.") ?? '';
   if (((s as any).nstat ?? 0) > 97) {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetval2(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -931,7 +931,7 @@ function enterModite(s: GameState, scene: SceneBuilder): void {
     }
     qspGoto(st, 'intro_character_custom', 'modite');
   } },
-    { label: '', labelFn: (s: GameState) => 'Computer (' + String(((s as any).mc_inventory ?? 0)?.['tech_computer'] ?? '' ?? '') + '/1)', handler: (st: GameState) => {
+    { label: '', labelFn: (s: GameState) => 'Computer (' + String((((s as any).mc_inventory ?? 0)?.['tech_computer'] ?? '') ?? '') + '/1)', handler: (st: GameState) => {
     if (((st as any).mc_inventory ?? 0)?.['tech_computer'] === 0) {
       ((st as any).mc_inventory = (st as any).mc_inventory ?? {})['tech_computer'] = 1;
     } else {
@@ -1223,7 +1223,7 @@ function enterSetbodymass(s: GameState, scene: SceneBuilder): void {
   scene.text('75 = chubby, curvy, herculean');
   scene.text('90 = overweight, stocky');
   scene.text('105 = fat, heavy set');
-  (s as any).nstat = ((s as any).pcs_mass ?? 0)?.['body'];
+  (s as any).nstat = (((s as any).pcs_mass ?? 0)?.['body']);
   (s as any).nstat = window.prompt("Enter value in multiples of 5, between 10 and 150. For example, 10, 15, 60 etc.") ?? '';
   if (((s as any).nstat ?? 0) > 150) {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetbodymass(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -1545,13 +1545,13 @@ function enterModrelFam(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Family relationship levels</b></center>');
   scene.text('<center><table border=0 cellspacing=0 cellpadding=25 bgcolor=#808080><th></th><th>Set to zero</th><th>Minus 10</th><th>Minus 5</th><th>Plus 5</th><th>Plus 10</th><th>Set to 100</th>');
   // TODO-QSP: dynamic text: <tr bgcolor=<<$theme[''table_bg'']>>><td>Stepfather: <<npc_rel[''A28'']>></td><t...
-  scene.text(`<tr bgcolor=${((s as any).theme ?? 0)?.['table_bg'] ?? ''}><td>Stepfather: ${((s as any).npc_rel ?? 0)?.['A28'] ?? ''}</td><td><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027npc_relationship/u0027, /u0027set/u0027, /u0027A28/u0027); return false;">zero</a></td><td bgcolor=#ff9999><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027npc_relationship/u0027, /u0027modify_exact/u0027, /u0027A28/u0027); return false;">minus 10</a></td><td bgcolor=#ff9999><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027npc_relationship/u0027, /u0027modify_exact/u0027, /u0027A28/u0027); return false;">minus 5</a></td><td bgcolor=#99ff99><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027npc_relationship/u0027, /u0027modify_exact/u0027, /u0027A28/u0027); return false;">plus 5</a></td><td bgcolor=#99ff99><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027npc_relationship/u0027, /u0027modify_exact/u0027, /u0027A28/u0027); return false;">plus 10</a></td><td><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027npc_relationship/u0027, /u0027set/u0027, /u0027A28/u0027); return false;">100</a></td>`);
+  scene.text(`<tr bgcolor=${(((s as any).theme ?? 0)?.['table_bg'] ?? '')}><td>Stepfather: ${(((s as any).npc_rel ?? 0)?.['A28'] ?? '')}</td><td><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027npc_relationship/u0027, /u0027set/u0027, /u0027A28/u0027); return false;">zero</a></td><td bgcolor=#ff9999><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027npc_relationship/u0027, /u0027modify_exact/u0027, /u0027A28/u0027); return false;">minus 10</a></td><td bgcolor=#ff9999><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027npc_relationship/u0027, /u0027modify_exact/u0027, /u0027A28/u0027); return false;">minus 5</a></td><td bgcolor=#99ff99><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027npc_relationship/u0027, /u0027modify_exact/u0027, /u0027A28/u0027); return false;">plus 5</a></td><td bgcolor=#99ff99><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027npc_relationship/u0027, /u0027modify_exact/u0027, /u0027A28/u0027); return false;">plus 10</a></td><td><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027npc_relationship/u0027, /u0027set/u0027, /u0027A28/u0027); return false;">100</a></td>`);
   // TODO-QSP: dynamic text: <tr bgcolor=<<$theme[''table_bg'']>>><td>Mother: <<npc_rel[''A29'']>></td><td><a...
-  scene.text(`<tr bgcolor=${((s as any).theme ?? 0)?.['table_bg'] ?? ''}><td>Mother: ${((s as any).npc_rel ?? 0)?.['A29'] ?? ''}</td><td><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027npc_relationship/u0027, /u0027set/u0027, /u0027A29/u0027); return false;">zero</a></td><td bgcolor=#ff9999><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027npc_relationship/u0027, /u0027modify_exact/u0027, /u0027A29/u0027); return false;">minus 10</a></td><td bgcolor=#ff9999><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027npc_relationship/u0027, /u0027modify_exact/u0027, /u0027A29/u0027); return false;">minus 5</a></td><td bgcolor=#99ff99><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027npc_relationship/u0027, /u0027modify_exact/u0027, /u0027A29/u0027); return false;">plus 5</a></td><td bgcolor=#99ff99><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027npc_relationship/u0027, /u0027modify_exact/u0027, /u0027A29/u0027); return false;">plus 10</a></td><td><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027npc_relationship/u0027, /u0027set/u0027, /u0027A29/u0027); return false;">100</a></td>`);
+  scene.text(`<tr bgcolor=${(((s as any).theme ?? 0)?.['table_bg'] ?? '')}><td>Mother: ${(((s as any).npc_rel ?? 0)?.['A29'] ?? '')}</td><td><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027npc_relationship/u0027, /u0027set/u0027, /u0027A29/u0027); return false;">zero</a></td><td bgcolor=#ff9999><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027npc_relationship/u0027, /u0027modify_exact/u0027, /u0027A29/u0027); return false;">minus 10</a></td><td bgcolor=#ff9999><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027npc_relationship/u0027, /u0027modify_exact/u0027, /u0027A29/u0027); return false;">minus 5</a></td><td bgcolor=#99ff99><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027npc_relationship/u0027, /u0027modify_exact/u0027, /u0027A29/u0027); return false;">plus 5</a></td><td bgcolor=#99ff99><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027npc_relationship/u0027, /u0027modify_exact/u0027, /u0027A29/u0027); return false;">plus 10</a></td><td><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027npc_relationship/u0027, /u0027set/u0027, /u0027A29/u0027); return false;">100</a></td>`);
   // TODO-QSP: dynamic text: <tr bgcolor=<<$theme[''table_bg'']>>><td>Sister: <<npc_rel[''A33'']>></td><td><a...
-  scene.text(`<tr bgcolor=${((s as any).theme ?? 0)?.['table_bg'] ?? ''}><td>Sister: ${((s as any).npc_rel ?? 0)?.['A33'] ?? ''}</td><td><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027npc_relationship/u0027, /u0027set/u0027, /u0027A33/u0027); return false;">zero</a></td><td bgcolor=#ff9999><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027npc_relationship/u0027, /u0027modify_exact/u0027, /u0027A33/u0027); return false;">minus 10</a></td><td bgcolor=#ff9999><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027npc_relationship/u0027, /u0027modify_exact/u0027, /u0027A33/u0027); return false;">minus 5</a></td><td bgcolor=#99ff99><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027npc_relationship/u0027, /u0027modify_exact/u0027, /u0027A33/u0027); return false;">plus 5</a></td><td bgcolor=#99ff99><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027npc_relationship/u0027, /u0027modify_exact/u0027, /u0027A33/u0027); return false;">plus 10</a></td><td><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027npc_relationship/u0027, /u0027set/u0027, /u0027A33/u0027); return false;">100</a></td>`);
+  scene.text(`<tr bgcolor=${(((s as any).theme ?? 0)?.['table_bg'] ?? '')}><td>Sister: ${(((s as any).npc_rel ?? 0)?.['A33'] ?? '')}</td><td><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027npc_relationship/u0027, /u0027set/u0027, /u0027A33/u0027); return false;">zero</a></td><td bgcolor=#ff9999><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027npc_relationship/u0027, /u0027modify_exact/u0027, /u0027A33/u0027); return false;">minus 10</a></td><td bgcolor=#ff9999><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027npc_relationship/u0027, /u0027modify_exact/u0027, /u0027A33/u0027); return false;">minus 5</a></td><td bgcolor=#99ff99><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027npc_relationship/u0027, /u0027modify_exact/u0027, /u0027A33/u0027); return false;">plus 5</a></td><td bgcolor=#99ff99><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027npc_relationship/u0027, /u0027modify_exact/u0027, /u0027A33/u0027); return false;">plus 10</a></td><td><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027npc_relationship/u0027, /u0027set/u0027, /u0027A33/u0027); return false;">100</a></td>`);
   // TODO-QSP: dynamic text: <tr bgcolor=<<$theme[''table_bg'']>>><td>Brother: <<npc_rel[''A34'']>></td><td><...
-  scene.text(`<tr bgcolor=${((s as any).theme ?? 0)?.['table_bg'] ?? ''}><td>Brother: ${((s as any).npc_rel ?? 0)?.['A34'] ?? ''}</td><td><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027npc_relationship/u0027, /u0027set/u0027, /u0027A34/u0027); return false;">zero</a></td><td bgcolor=#ff9999><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027npc_relationship/u0027, /u0027modify_exact/u0027, /u0027A34/u0027); return false;">minus 10</a></td><td bgcolor=#ff9999><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027npc_relationship/u0027, /u0027modify_exact/u0027, /u0027A34/u0027); return false;">minus 5</a></td><td bgcolor=#99ff99><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027npc_relationship/u0027, /u0027modify_exact/u0027, /u0027A34/u0027); return false;">plus 5</a></td><td bgcolor=#99ff99><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027npc_relationship/u0027, /u0027modify_exact/u0027, /u0027A34/u0027); return false;">plus 10</a></td><td><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027npc_relationship/u0027, /u0027set/u0027, /u0027A34/u0027); return false;">100</a></td>`);
+  scene.text(`<tr bgcolor=${(((s as any).theme ?? 0)?.['table_bg'] ?? '')}><td>Brother: ${(((s as any).npc_rel ?? 0)?.['A34'] ?? '')}</td><td><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027npc_relationship/u0027, /u0027set/u0027, /u0027A34/u0027); return false;">zero</a></td><td bgcolor=#ff9999><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027npc_relationship/u0027, /u0027modify_exact/u0027, /u0027A34/u0027); return false;">minus 10</a></td><td bgcolor=#ff9999><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027npc_relationship/u0027, /u0027modify_exact/u0027, /u0027A34/u0027); return false;">minus 5</a></td><td bgcolor=#99ff99><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027npc_relationship/u0027, /u0027modify_exact/u0027, /u0027A34/u0027); return false;">plus 5</a></td><td bgcolor=#99ff99><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027npc_relationship/u0027, /u0027modify_exact/u0027, /u0027A34/u0027); return false;">plus 10</a></td><td><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027npc_relationship/u0027, /u0027set/u0027, /u0027A34/u0027); return false;">100</a></td>`);
   scene.text('</table></center>');
   // TODO-QSP: end
   scene.actions([

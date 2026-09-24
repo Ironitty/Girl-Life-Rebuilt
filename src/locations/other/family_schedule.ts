@@ -100,9 +100,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
                             if (((s as any).locat ?? 0)?.['Anya_rand1'] !== ((s as any).daystart ?? 0)) {
                               ((s as any).locat = (s as any).locat ?? {})['Anya'] = qspFunc(s, 'random', 'pick_from', 10, 15);
                               ((s as any).locat = (s as any).locat ?? {})['Anya_rand1'] = ((s as any).daystart ?? 0);
-                              ((s as any).locat = (s as any).locat ?? {})['Anya_save1'] = ((s as any).locat ?? 0)?.['Anya'];
+                              ((s as any).locat = (s as any).locat ?? {})['Anya_save1'] = (((s as any).locat ?? 0)?.['Anya']);
                             } else {
-                              ((s as any).locat = (s as any).locat ?? {})['Anya'] = ((s as any).locat ?? 0)?.['Anya_save1'];
+                              ((s as any).locat = (s as any).locat ?? {})['Anya'] = (((s as any).locat ?? 0)?.['Anya_save1']);
                             }
                             if (((s as any).locat ?? 0)?.['Anya'] === 15) {
                               ((s as any).locat = (s as any).locat ?? {})['Anya_athome'] = 1;
@@ -134,9 +134,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
                               if (((s as any).locat ?? 0)?.['Anya_rand2'] !== ((s as any).daystart ?? 0)) {
                                 ((s as any).locat = (s as any).locat ?? {})['Anya'] = qspFunc(s, 'random', 'pick_from', 13, 14, 15);
                                 ((s as any).locat = (s as any).locat ?? {})['Anya_rand2'] = ((s as any).daystart ?? 0);
-                                ((s as any).locat = (s as any).locat ?? {})['Anya_save2'] = ((s as any).locat ?? 0)?.['Anya'];
+                                ((s as any).locat = (s as any).locat ?? {})['Anya_save2'] = (((s as any).locat ?? 0)?.['Anya']);
                               } else {
-                                ((s as any).locat = (s as any).locat ?? {})['Anya'] = ((s as any).locat ?? 0)?.['Anya_save2'];
+                                ((s as any).locat = (s as any).locat ?? {})['Anya'] = (((s as any).locat ?? 0)?.['Anya_save2']);
                               }
                               if (((s as any).locat ?? 0)?.['Anya'] === 15) {
                                 ((s as any).locat = (s as any).locat ?? {})['Anya_athome'] = 1;
@@ -310,7 +310,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                     ((s as any).locat = (s as any).locat ?? {})['Mother_clean1'] = 24;
                   }
                 }
-                ((s as any).locat = (s as any).locat ?? {})['Mother'] = ((s as any).locat ?? 0)?.['Mother_clean1'];
+                ((s as any).locat = (s as any).locat ?? {})['Mother'] = (((s as any).locat ?? 0)?.['Mother_clean1']);
                 ((s as any).locat = (s as any).locat ?? {})['Mom_athome'] = 1;
               } else {
                 if ((((s as any).week ?? 0) < 5  &&  ((s as any).hour ?? 0) < 16)  ||  (((s as any).week ?? 0) === 5  &&  (((s as any).hour ?? 0) < 17  ||  (((s as any).hour ?? 0) === 17  &&  ((s as any).minut ?? 0) <= 50)))) {
@@ -354,7 +354,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                       ((s as any).locat = (s as any).locat ?? {})['Mother_clean2'] = 25;
                                     }
                                   }
-                                  ((s as any).locat = (s as any).locat ?? {})['Mother'] = ((s as any).locat ?? 0)?.['Mother_clean2'];
+                                  ((s as any).locat = (s as any).locat ?? {})['Mother'] = (((s as any).locat ?? 0)?.['Mother_clean2']);
                                   ((s as any).locat = (s as any).locat ?? {})['Mom_athome'] = 1;
                                   if (((s as any).vanrPar_suction_dildo ?? 0) > 0  &&  ((s as any).loc ?? 0) !== 'vanrPar'  &&  ((s as any).locat ?? 0)?.['Mother'] === 25) {
                                     qspCall(s, 'mother_sextalk', 'discover_dildo');
@@ -432,7 +432,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                     ((s as any).locat = (s as any).locat ?? {})['Mother_clean1'] = (Math.floor(Math.random() * 2) + 23);
                   }
                 }
-                ((s as any).locat = (s as any).locat ?? {})['Mother'] = ((s as any).locat ?? 0)?.['Mother_clean1'];
+                ((s as any).locat = (s as any).locat ?? {})['Mother'] = (((s as any).locat ?? 0)?.['Mother_clean1']);
                 ((s as any).locat = (s as any).locat ?? {})['Mom_athome'] = 1;
                 if (((s as any).vanrPar_suction_dildo ?? 0) > 0  &&  ((s as any).loc ?? 0) !== 'vanrPar'  &&  ((s as any).locat ?? 0)?.['Mother'] === 25) {
                   qspCall(s, 'mother_sextalk', 'discover_dildo');

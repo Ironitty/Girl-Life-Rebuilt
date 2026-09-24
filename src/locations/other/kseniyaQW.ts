@@ -13,7 +13,7 @@ function enterEvent1(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   (s as any).exhibitionQW = 1;
   if (((s as any).trait_vars ?? 0)?.['exhibitionist'] < 1) {
-    ((s as any).trait_vars = (s as any).trait_vars ?? {})['exhibitionist_exp'] = Math.max(((s as any).trait_vars ?? 0)?.['exhibitionist_exp'], 10);
+    ((s as any).trait_vars = (s as any).trait_vars ?? {})['exhibitionist_exp'] = Math.max((((s as any).trait_vars ?? 0)?.['exhibitionist_exp']), 10);
     qspCall(s, 'traits', 'level', 'exhibitionist', 1);
   }
   qspCall(s, 'stat', '');
@@ -78,7 +78,7 @@ function enterEvent2(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   (s as any).exhibitionQW = 2;
   if (((s as any).trait_vars ?? 0)?.['exhibitionist'] < 2) {
-    ((s as any).trait_vars = (s as any).trait_vars ?? {})['exhibitionist_exp'] = Math.max(((s as any).trait_vars ?? 0)?.['exhibitionist_exp'], 50);
+    ((s as any).trait_vars = (s as any).trait_vars ?? {})['exhibitionist_exp'] = Math.max((((s as any).trait_vars ?? 0)?.['exhibitionist_exp']), 50);
     qspCall(s, 'traits', 'level', 'exhibitionist', 2);
   }
   qspCall(s, 'stat', '');
@@ -163,7 +163,7 @@ function enterEvent3(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
     (st as any).exhibitionQW = 3;
     if (((st as any).trait_vars ?? 0)?.['exhibitionist'] < 2) {
-      ((st as any).trait_vars = (st as any).trait_vars ?? {})['exhibitionist_exp'] = Math.max(((st as any).trait_vars ?? 0)?.['exhibitionist_exp'], 50);
+      ((st as any).trait_vars = (st as any).trait_vars ?? {})['exhibitionist_exp'] = Math.max((((st as any).trait_vars ?? 0)?.['exhibitionist_exp']), 50);
       qspCall(st, 'traits', 'level', 'exhibitionist', 2);
     }
     qspCall(st, 'stat', '');

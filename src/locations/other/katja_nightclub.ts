@@ -52,7 +52,7 @@ function enterActivity(s: GameState, scene: SceneBuilder): void {
               ((s as any).locat = (s as any).locat ?? {})['katja_rand2'] = ((s as any).daystart ?? 0) - 1;
             }
             ((s as any).locat = (s as any).locat ?? {})['katja_save2'] = 54;
-            ((s as any).locat = (s as any).locat ?? {})['katja'] = ((s as any).locat ?? 0)?.['katja_save2'];
+            ((s as any).locat = (s as any).locat ?? {})['katja'] = (((s as any).locat ?? 0)?.['katja_save2']);
           }
         } else {
           if ((!(Math.floor(Math.random() * 5) + 0))) {
@@ -448,7 +448,7 @@ function enterDanceTwoGuysApproach(s: GameState, scene: SceneBuilder): void {
           ((st as any).locat = (st as any).locat ?? {})['katja_rand2'] = ((st as any).daystart ?? 0) - 1;
         }
         ((st as any).locat = (st as any).locat ?? {})['katja_save2'] = 54;
-        ((st as any).locat = (st as any).locat ?? {})['katja'] = ((st as any).locat ?? 0)?.['katja_save2'];
+        ((st as any).locat = (st as any).locat ?? {})['katja'] = (((st as any).locat ?? 0)?.['katja_save2']);
         // TODO-QSP: dynamic text: 'By the end of the dance, one of the men leans in and says something to Katja th...
         scene.text('By the end of the dance, one of the men leans in and says something to Katja that you can\'t hear. ' + ((((st as any).katjaQW ?? 0)?.['simultanous_boys'] > 2  &&  qspFunc(s, 'katja_procedural', 'willing_to_be_naughty') >= 100  &&  ((st as any).katjaQW ?? 0)?.['horny'] >= 75) ? ('She immediately, and eagerly, agrees to his proposition.') : ('she seems to consider it for some time before she hesitantly agrees.')) + ' The three of them then leave the dance floor and head for the exit of the club.');
         scene.actions([
@@ -1525,7 +1525,7 @@ function enterDanceGuy3(s: GameState, scene: SceneBuilder): void {
       ((st as any).locat = (st as any).locat ?? {})['katja_rand3'] = ((st as any).daystart ?? 0) - 1;
     }
     ((st as any).locat = (st as any).locat ?? {})['katja_save2'] = 54;
-    ((st as any).locat = (st as any).locat ?? {})['katja'] = ((st as any).locat ?? 0)?.['katja_save2'];
+    ((st as any).locat = (st as any).locat ?? {})['katja'] = (((st as any).locat ?? 0)?.['katja_save2']);
     (st as any).minut = ((st as any).minut ?? 0) + 10;
     scene.text('"I know you want his cock. Just imagine it sliding in and out of your tight, wet pussy…" you whisper in her ear and you can see her start squirming.');
     // TODO-QSP: '"Okay. Let''s go," she finally says out loud and the guy''s face lights up. You walk ' + iif(temper...
@@ -1579,7 +1579,7 @@ function enterDanceGuy3(s: GameState, scene: SceneBuilder): void {
       ((st as any).locat = (st as any).locat ?? {})['katja_rand3'] = ((st as any).daystart ?? 0) - 1;
     }
     ((st as any).locat = (st as any).locat ?? {})['katja_save2'] = 54;
-    ((st as any).locat = (st as any).locat ?? {})['katja'] = ((st as any).locat ?? 0)?.['katja_save2'];
+    ((st as any).locat = (st as any).locat ?? {})['katja'] = (((st as any).locat ?? 0)?.['katja_save2']);
     // TODO-QSP: '"I just hope you''re man enough to really entertain a couple of hot girls like us. Let''s go," you ...
     scene.actions([
       { label: 'Walk to his home', goto: ['katja_city_sex', 'walking_home_with_a_guy'] },
@@ -1622,7 +1622,7 @@ function enterDanceGuy3(s: GameState, scene: SceneBuilder): void {
       ((st as any).locat = (st as any).locat ?? {})['katja_rand3'] = ((st as any).daystart ?? 0) - 1;
     }
     ((st as any).locat = (st as any).locat ?? {})['katja_save2'] = 54;
-    ((st as any).locat = (st as any).locat ?? {})['katja'] = ((st as any).locat ?? 0)?.['katja_save2'];
+    ((st as any).locat = (st as any).locat ?? {})['katja'] = (((st as any).locat ?? 0)?.['katja_save2']);
     scene.text('"You can go with him if you want," you shrug.');
     // TODO-QSP: dynamic text: 'She looks at you a little skeptical, but then turns to the guy. "My friend ' + ...
     scene.text('She looks at you a little skeptical, but then turns to the guy. "My friend ' + ((qspFunc(s, 'katja_procedural', 'willing_to_be_naughty') + ((st as any).katjaQW ?? 0)?.['horny'] > 175) ? ('is boring') : ('doesn\'t feel like it')) + ', so she isn\'t coming, but I\'d love another drink with you."');
@@ -1642,7 +1642,7 @@ function enterDanceGuy3(s: GameState, scene: SceneBuilder): void {
       ((st as any).locat = (st as any).locat ?? {})['katja_rand3'] = ((st as any).daystart ?? 0) - 1;
     }
     ((st as any).locat = (st as any).locat ?? {})['katja_save2'] = 54;
-    ((st as any).locat = (st as any).locat ?? {})['katja'] = ((st as any).locat ?? 0)?.['katja_save2'];
+    ((st as any).locat = (st as any).locat ?? {})['katja'] = (((st as any).locat ?? 0)?.['katja_save2']);
     ((st as any).katjaQW = (st as any).katjaQW ?? {})['dom'] = ((st as any).katjaQW['dom'] ?? 0) + ((Math.floor(Math.random() * 2) + 1));
     scene.text('"Well, if you really want to," you say.');
     // TODO-QSP: 'His face lights up. "Great! Follow me, my ladies." You walk ' + iif(temper < 20, 'to the wardrobe t...
@@ -1664,7 +1664,7 @@ function enterDanceGuy3(s: GameState, scene: SceneBuilder): void {
       ((st as any).locat = (st as any).locat ?? {})['katja_rand3'] = ((st as any).daystart ?? 0) - 1;
     }
     ((st as any).locat = (st as any).locat ?? {})['katja_save2'] = 54;
-    ((st as any).locat = (st as any).locat ?? {})['katja'] = ((st as any).locat ?? 0)?.['katja_save2'];
+    ((st as any).locat = (st as any).locat ?? {})['katja'] = (((st as any).locat ?? 0)?.['katja_save2']);
     // TODO-QSP: '"That does sound like fun. Let''s go," you say and his face lights up. You walk ' + iif(temper < 20...
     scene.actions([
       { label: 'Walk to his home', goto: ['katja_city_sex', 'walking_home_with_a_guy'] },
@@ -1790,7 +1790,7 @@ function enterDanceTwoGuys3(s: GameState, scene: SceneBuilder): void {
       ((st as any).locat = (st as any).locat ?? {})['katja_rand3'] = ((st as any).daystart ?? 0) - 1;
     }
     ((st as any).locat = (st as any).locat ?? {})['katja_save2'] = 54;
-    ((st as any).locat = (st as any).locat ?? {})['katja'] = ((st as any).locat ?? 0)?.['katja_save2'];
+    ((st as any).locat = (st as any).locat ?? {})['katja'] = (((st as any).locat ?? 0)?.['katja_save2']);
     (st as any).minut = ((st as any).minut ?? 0) + 10;
     scene.text('"I know you want those cocks. Just imagine one of them sliding in and out of your tight, wet pussy, while you look at me bouncing up and down the other cock…" you whisper in her ear and can see her start squirming.');
     // TODO-QSP: '"Okay. Let''s go," she finally says out loud and the men''s faces light up. You walk ' + iif(temper...
@@ -1830,7 +1830,7 @@ function enterDanceTwoGuys3(s: GameState, scene: SceneBuilder): void {
       ((st as any).locat = (st as any).locat ?? {})['katja_rand3'] = ((st as any).daystart ?? 0) - 1;
     }
     ((st as any).locat = (st as any).locat ?? {})['katja_save2'] = 54;
-    ((st as any).locat = (st as any).locat ?? {})['katja'] = ((st as any).locat ?? 0)?.['katja_save2'];
+    ((st as any).locat = (st as any).locat ?? {})['katja'] = (((st as any).locat ?? 0)?.['katja_save2']);
     // TODO-QSP: '"I just hope you''re both man enough to really entertain a couple of hot girls like us. Let''s go,"...
     scene.actions([
       { label: 'Walk to his home', goto: ['katja_city_sex', 'walking_home_with_two_guys'] },
@@ -1880,7 +1880,7 @@ function enterDanceTwoGuys3(s: GameState, scene: SceneBuilder): void {
         ((st as any).locat = (st as any).locat ?? {})['katja_rand3'] = ((st as any).daystart ?? 0) - 1;
       }
       ((st as any).locat = (st as any).locat ?? {})['katja_save2'] = 54;
-      ((st as any).locat = (st as any).locat ?? {})['katja'] = ((st as any).locat ?? 0)?.['katja_save2'];
+      ((st as any).locat = (st as any).locat ?? {})['katja'] = (((st as any).locat ?? 0)?.['katja_save2']);
       // TODO-QSP: dynamic text: 'She looks at you a little skeptical, but then turns to the men. "My friend ' + ...
       scene.text('She looks at you a little skeptical, but then turns to the men. "My friend ' + ((qspFunc(s, 'katja_procedural', 'willing_to_be_naughty') + ((st as any).katjaQW ?? 0)?.['horny'] > 175) ? ('is boring') : ('doesn\'t feel like it')) + ', so she isn\'t coming, but I\'d love another drink with you."');
       scene.text('Their faces light up and they take her hands and walk away, leaving you alone on the dance floor.');
@@ -1900,7 +1900,7 @@ function enterDanceTwoGuys3(s: GameState, scene: SceneBuilder): void {
       ((st as any).locat = (st as any).locat ?? {})['katja_rand3'] = ((st as any).daystart ?? 0) - 1;
     }
     ((st as any).locat = (st as any).locat ?? {})['katja_save2'] = 54;
-    ((st as any).locat = (st as any).locat ?? {})['katja'] = ((st as any).locat ?? 0)?.['katja_save2'];
+    ((st as any).locat = (st as any).locat ?? {})['katja'] = (((st as any).locat ?? 0)?.['katja_save2']);
     ((st as any).katjaQW = (st as any).katjaQW ?? {})['dom'] = ((st as any).katjaQW['dom'] ?? 0) + ((Math.floor(Math.random() * 2) + 1));
     scene.text('"Well, if you really want to," you say.');
     // TODO-QSP: 'Their faces lights up. "Great! Follow me, my ladies," the guy you were dancing with says and you wa...
@@ -1922,7 +1922,7 @@ function enterDanceTwoGuys3(s: GameState, scene: SceneBuilder): void {
       ((st as any).locat = (st as any).locat ?? {})['katja_rand3'] = ((st as any).daystart ?? 0) - 1;
     }
     ((st as any).locat = (st as any).locat ?? {})['katja_save2'] = 54;
-    ((st as any).locat = (st as any).locat ?? {})['katja'] = ((st as any).locat ?? 0)?.['katja_save2'];
+    ((st as any).locat = (st as any).locat ?? {})['katja'] = (((st as any).locat ?? 0)?.['katja_save2']);
     // TODO-QSP: '"That does sound like fun. Let''s go," you say and their faces light up. You walk ' + iif(temper < ...
     scene.actions([
       { label: 'Walk to his home', goto: ['katja_city_sex', 'walking_home_with_two_guys'] },

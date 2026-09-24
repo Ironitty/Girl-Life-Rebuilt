@@ -633,8 +633,8 @@ function enterDishes(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Let them cum on you', handler: (st: GameState) => {
     qspCall(st, 'cum_call', 'face', 'A75', 1);
-    qspCall(st, 'cum_call', 'face', ((st as any).BurgerQW ?? 0)?.['GroupSex1']);
-    qspCall(st, 'cum_call', 'face', ((st as any).BurgerQW ?? 0)?.['GroupSex2']);
+    qspCall(st, 'cum_call', 'face', (((st as any).BurgerQW ?? 0)?.['GroupSex1']));
+    qspCall(st, 'cum_call', 'face', (((st as any).BurgerQW ?? 0)?.['GroupSex2']));
     ((st as any).stat = (st as any).stat ?? {})['facial'] = ((st as any).stat['facial'] ?? 0) + (3);
     scene.img('images/shared/sex/group/gopdbj3.jpg');
     scene.text('Hot jets of sperm slap you in the face, you close your eyes and just feel the stinky seed on your skin. Soon after the sprays of semen stop and your face is all covered with a thick layer of sticky cum. The guys look satisfied and laugh at you. Afterwards they exit the warehouse leaving you by yourself.');
@@ -872,7 +872,7 @@ function enterBossSlut_01(s: GameState, scene: SceneBuilder): void {
       } else {
         scene.text('This should not be possible!');
         // TODO-QSP: dynamic text: You should not be able to get here with BurgerQW[''Level''] = <<BurgerQW[''Level...
-        scene.text(`You should not be able to get here with BurgerQW['Level'] = ${((st as any).BurgerQW ?? 0)?.['Level'] ?? ''}`);
+        scene.text(`You should not be able to get here with BurgerQW['Level'] = ${(((st as any).BurgerQW ?? 0)?.['Level'] ?? '')}`);
         scene.actions([
           { label: 'Leave', goto: ['burger', 'start'] },
         ]);

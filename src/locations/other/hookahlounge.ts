@@ -48,7 +48,7 @@ function enterHookah_Aliyyah(s: GameState, scene: SceneBuilder): void {
       s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
       // TODO-QSP: dynamic text: You glance at her name badge, before looking back at her. Smiling, you hand over...
-      scene.text(`You glance at her name badge, before looking back at her. Smiling, you hand over the required amount and say "Here you go, ${((st as any).npc_firstname ?? 0)?.['A262'] ?? ''}!"`);
+      scene.text(`You glance at her name badge, before looking back at her. Smiling, you hand over the required amount and say "Here you go, ${(((st as any).npc_firstname ?? 0)?.['A262'] ?? '')}!"`);
       qspCall(st, 'money', 'pay', 100, 'cash');
       (st as any).smoketab = 1;
       qspGoto(st, 'hookahlounge', 'start');

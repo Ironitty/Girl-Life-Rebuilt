@@ -91,8 +91,8 @@ function enterDegradationLoop(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: :traitdegloop
   ((s as any).temp_sklattrib = (s as any).temp_sklattrib ?? {})['trait'] = qspUntranslated(s, "traitattskl[temp_sklattrib['trait_index']]", { location: "stat_sklattrib" });
   if (((s as any).temp_sklattrib ?? 0)?.['trait'] !== '') {
-    ((s as any).temp_sklattrib = (s as any).temp_sklattrib ?? {})['deg_loss'] = ((s as any).temp_sklattrib['deg_loss'] ?? 0) + ((((s as any).trait_vars ?? 0)?.[((s as any).temp_sklattrib ?? 0)?.['trait'] + '-' + ((s as any).temp_sklattrib ?? 0)?.['name'] + '-deg_loss'] ?? 0));
-    ((s as any).temp_sklattrib = (s as any).temp_sklattrib ?? {})['deg_loss'] = ((s as any).temp_sklattrib['deg_loss'] ?? 0) + ((((s as any).trait_vars ?? 0)?.['all-' + ((s as any).temp_sklattrib ?? 0)?.['name'] + '-deg_loss'] ?? 0));
+    ((s as any).temp_sklattrib = (s as any).temp_sklattrib ?? {})['deg_loss'] = ((s as any).temp_sklattrib['deg_loss'] ?? 0) + ((((s as any).trait_vars ?? 0)?.[(((s as any).temp_sklattrib ?? 0)?.['trait']) + '-' + (((s as any).temp_sklattrib ?? 0)?.['name']) + '-deg_loss'] ?? 0));
+    ((s as any).temp_sklattrib = (s as any).temp_sklattrib ?? {})['deg_loss'] = ((s as any).temp_sklattrib['deg_loss'] ?? 0) + ((((s as any).trait_vars ?? 0)?.['all-' + (((s as any).temp_sklattrib ?? 0)?.['name']) + '-deg_loss'] ?? 0));
   }
   ((s as any).temp_sklattrib = (s as any).temp_sklattrib ?? {})['trait_index'] = ((s as any).temp_sklattrib['trait_index'] ?? 0) + (1);
   if (((s as any).temp_sklattrib ?? 0)?.['trait_index'] < Object.keys((s as any).traitattskl ?? {}).length) {

@@ -882,7 +882,7 @@ function enterStation(s: GameState, scene: SceneBuilder): void {
                           if (((s as any).metrorand ?? 0) === 14) {
                             ((s as any).metrorand = (s as any).metrorand ?? {})['rand'] = (Math.floor(Math.random() * 2) + 1);
                             // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/city/shared/metro/station/sex/...
-                            scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/city/shared/metro/station/sex/fuck` + ((s as any).metrorand ?? 0)?.['rand'] ?? '' + '.jpg"></center>');
+                            scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/city/shared/metro/station/sex/fuck` + (((s as any).metrorand ?? 0)?.['rand'] ?? '') + '.jpg"></center>');
                             scene.text('As you head through the metro station, you see a couple leaning against one of the walls, the woman struggling to keep her moans quiet as the man hammers her for all he is worth. Several people gather around to watch, many of them pulling out their phones to record the scene. A few men try to join in, but are quickly shooed away.');
                             qspCall(s, 'arousal', 'voyeur_sex', 3);
                             qspCall(s, 'stat', '');
@@ -894,7 +894,7 @@ function enterStation(s: GameState, scene: SceneBuilder): void {
   } },
                               { label: 'Record them', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/city/shared/metro/station/sex/...
-    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/city/shared/metro/station/sex/fuck` + ((st as any).metrorand ?? 0)?.['rand'] ?? '' + '.jpg"></center>');
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/city/shared/metro/station/sex/fuck` + (((st as any).metrorand ?? 0)?.['rand'] ?? '') + '.jpg"></center>');
     qspCall(st, 'exp_gain', 'photoskl', 2);
     scene.text('You pull out your phone and start recording them. He pounds her without mercy, but by the sounds of her moans, she is loving every moment of it. They fuck for several more minutes until he starts to grunt and buries himself balls deep. Once he pulls out of her, they both quickly get dressed and hurry to catch a train.');
     qspCall(st, 'arousal', 'voyeur_sex', 3);

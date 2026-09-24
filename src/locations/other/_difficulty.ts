@@ -258,7 +258,7 @@ function enterGetExpGain(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGetDegLoss(s: GameState, scene: SceneBuilder): void {
-  (s as any).result = qspFunc(s, '_difficulty', 'get_multiplied', ((s as any).egVars ?? 0)?.['deg_loss_mult'], 100, ((s as any).cheatVars ?? 0)?.['deg_speed_custom']);
+  (s as any).result = qspFunc(s, '_difficulty', 'get_multiplied', (((s as any).egVars ?? 0)?.['deg_loss_mult']), 100, (((s as any).cheatVars ?? 0)?.['deg_speed_custom']));
   return;
   // TODO-QSP: end
   scene.build();

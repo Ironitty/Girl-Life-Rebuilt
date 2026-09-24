@@ -131,7 +131,7 @@ function enterBuyCondoms(s: GameState, scene: SceneBuilder): void {
       scene.text('You awkwardly avoid eye contact, letting your gaze "wander" the shelves behind her, pretending to be looking for anything <i>except</i> condoms. You gulp, feeling your cheeks redden.');
     }
     if (((st as any).pharmacy ?? 0)?.['morning_after'] > 0  &&  ((st as any).LudaQW ?? 0)?.['condom_scold'] < ((st as any).pharmacy ?? 0)?.['morning_after']) {
-      ((st as any).LudaQW = (st as any).LudaQW ?? {})['condom_scold'] = ((st as any).pharmacy ?? 0)?.['morning_after'];
+      ((st as any).LudaQW = (st as any).LudaQW ?? {})['condom_scold'] = (((st as any).pharmacy ?? 0)?.['morning_after']);
       scene.text('"I need some <i>stuff</i>, Aunt Luda," you say in a low voice, trying to be discreet.');
       if (((st as any).fame ?? 0)?.['pav_slut'] > 150) {
         // TODO-QSP: dynamic text: "<<$pcs_nickname>>..."
@@ -779,15 +779,15 @@ function enterBuyPregTest(s: GameState, scene: SceneBuilder): void {
       scene.text('"I guess we all make those," she sighs before taking a small box off the shelf. "Goodness knows your sister\'s living proof of that. Literally."');
     }
     scene.actions([
-      { label: '', labelFn: (s: GameState) => 'Don\'t tell ' + String(((s as any).npc_nickname ?? 0)?.['A29'] ?? '' ?? ''), handler: (st: GameState) => {
+      { label: '', labelFn: (s: GameState) => 'Don\'t tell ' + String((((s as any).npc_nickname ?? 0)?.['A29'] ?? '') ?? ''), handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/pharmacy/apteka_aunt_1.jpg');
     ((st as any).LudaQW = (st as any).LudaQW ?? {})['dont_tell'] = 1;
     if (((st as any).momslut ?? 0) >= 1) {
       // TODO-QSP: dynamic text: "Please don''t tell <<$npc_nickname[''A29'']>>. She wouldn''t understand."
-      scene.text(`"Please don't tell ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''}. She wouldn't understand."`);
+      scene.text(`"Please don't tell ${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')}. She wouldn't understand."`);
       scene.text('Your aunt gives you an odd smile. "You might be surprised dear, but I promise this is our little secret."');
       // TODO-QSP: dynamic text: You sigh a little. "Yes, I know all about <<$npc_nickname[''A29'']>>. I just don...
-      scene.text(`You sigh a little. "Yes, I know all about ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''}. I just don't want to get an earful from her is all."`);
+      scene.text(`You sigh a little. "Yes, I know all about ${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')}. I just don't want to get an earful from her is all."`);
       scene.text('Luda nods and hands over the package. "It\'s our secret for now, though if that test comes back positive, there\'s nothing that will stop her from noticing when your belly starts to grow. Either way, take these."');
     } else {
       scene.text('"You might be surprised dear," your aunt says with an odd smile. "But I promise this is our little secret. At least, if that test is negative. If it comes back positive, there\'s nothing that will stop her from noticing when your belly starts to grow. Either way, take these."');
@@ -1259,11 +1259,11 @@ function enterBuyMorningAfterRaped(s: GameState, scene: SceneBuilder): void {
     scene.text('You nod shamefully.');
   }
   // TODO-QSP: dynamic text: "Please don''t tell <<$npc_nickname[''A29'']>>. She wouldn''t understand."
-  scene.text(`"Please don't tell ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''}. She wouldn't understand."`);
+  scene.text(`"Please don't tell ${(((s as any).npc_nickname ?? 0)?.['A29'] ?? '')}. She wouldn't understand."`);
   if (((s as any).momslut ?? 0) >= 1) {
     scene.text('Your aunt gives you an odd look. "You might be surprised, dear."');
     // TODO-QSP: dynamic text: You sigh a little. "Yes, I know all about <<$npc_nickname[''A29'']>>. I just don...
-    scene.text(`You sigh a little. "Yes, I know all about ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''}. I just don't want to hear about it from her is all."`);
+    scene.text(`You sigh a little. "Yes, I know all about ${(((s as any).npc_nickname ?? 0)?.['A29'] ?? '')}. I just don't want to hear about it from her is all."`);
     scene.text('Luda nods. "Well, even so, I\'m sure she\'d prefer hearing that you\'re taking this than to find out you\'re not. But I promise, this will be our little secret."');
   } else {
     scene.text('Luda nods. "Well, even so, I\'m sure she\'d prefer hearing you\'re having sex and taking this than to find out you\'re pregnant. But I promise, this will be our little secret."');
@@ -1278,25 +1278,25 @@ function enterBuyMorningAfterEnd(s: GameState, scene: SceneBuilder): void {
     { label: 'Continue shopping', handler: (st: GameState) => {
     dynamicGoto(st, 'loc_s', 'args_s');
   } },
-    { label: '', labelFn: (s: GameState) => 'Don\'t tell ' + String(((s as any).npc_nickname ?? 0)?.['A29'] ?? '' ?? ''), handler: (st: GameState) => {
+    { label: '', labelFn: (s: GameState) => 'Don\'t tell ' + String((((s as any).npc_nickname ?? 0)?.['A29'] ?? '') ?? ''), handler: (st: GameState) => {
     scene.text('<center><b>Pharmacy</b></center>');
     scene.img('images/locations/pavlovsk/pharmacy/apteka_aunt_1.jpg');
     if (((st as any).LudaQW ?? 0)?.['momslut_know'] === 1) {
       // TODO-QSP: dynamic text: "Please don''t tell <<$npc_nickname[''A29'']>>," you say.
-      scene.text(`"Please don't tell ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''}," you say.`);
+      scene.text(`"Please don't tell ${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')}," you say.`);
       scene.text('"It\'ll be our secret," she winks.');
     } else {
       if (((st as any).momslut ?? 0) >= 1) {
         ((st as any).LudaQW = (st as any).LudaQW ?? {})['momslut_know'] = 1;
         // TODO-QSP: dynamic text: "Please don''t tell <<$npc_nickname[''A29'']>>," you say.
-        scene.text(`"Please don't tell ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''}," you say.`);
+        scene.text(`"Please don't tell ${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')}," you say.`);
         scene.text('"You might be surprised dear," she says with a wry smile and you sigh tiredly.');
         // TODO-QSP: dynamic text: "Yes Aunt, I know all about <<$npc_nickname[''A29'']>>''s... habits. I just don'...
-        scene.text(`"Yes Aunt, I know all about ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''}'s... habits. I just don't want to hear about it from her is all."`);
+        scene.text(`"Yes Aunt, I know all about ${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')}'s... habits. I just don't want to hear about it from her is all."`);
         scene.text('Luda nods. "Even so, I\'m sure she\'d prefer hearing that you\'re taking this than to see you get pregnant. But I promise, this will be our little secret."');
       } else {
         // TODO-QSP: dynamic text: "Please don''t tell <<$npc_nickname[''A29'']>>," you say. "She wouldn''t underst...
-        scene.text(`"Please don't tell ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''}," you say. "She wouldn't understand."`);
+        scene.text(`"Please don't tell ${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')}," you say. "She wouldn't understand."`);
         scene.text('"You might be surprised dear," she says with a wry smile and you cock your head in confusion.');
         scene.text('<i>What\'s that supposed to mean?</i>');
         scene.text('"Well, even so," she continues. "I\'m sure she\'d prefer hearing you\'re having sex and taking this than to see you get pregnant. But I promise, this will be our little secret."');
@@ -1469,26 +1469,26 @@ function enterOintment(s: GameState, scene: SceneBuilder): void {
 function enterDontTell(s: GameState, scene: SceneBuilder): void {
   if (((s as any).LudaQW ?? 0)?.['dont_tell'] === 0) {
     scene.actions([
-      { label: '', labelFn: (s: GameState) => 'Don\'t tell ' + String(((s as any).npc_nickname ?? 0)?.['A29'] ?? '' ?? ''), handler: (st: GameState) => {
+      { label: '', labelFn: (s: GameState) => 'Don\'t tell ' + String((((s as any).npc_nickname ?? 0)?.['A29'] ?? '') ?? ''), handler: (st: GameState) => {
     ((st as any).LudaQW = (st as any).LudaQW ?? {})['dont_tell'] = 1;
     scene.text('<center><b>Pharmacy</b></center>');
     scene.img('images/locations/pavlovsk/pharmacy/apteka_aunt_1.jpg');
     if (((st as any).LudaQW ?? 0)?.['momslut_know'] === 1) {
       // TODO-QSP: dynamic text: "Please don''t tell <<$npc_nickname[''A29'']>>," you say.
-      scene.text(`"Please don't tell ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''}," you say.`);
+      scene.text(`"Please don't tell ${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')}," you say.`);
       scene.text('"It\'ll be our secret," she winks.');
     } else {
       if (((st as any).momslut ?? 0) >= 1) {
         ((st as any).LudaQW = (st as any).LudaQW ?? {})['momslut_know'] = 1;
         // TODO-QSP: dynamic text: "Please don''t tell <<$npc_nickname[''A29'']>>," you say.
-        scene.text(`"Please don't tell ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''}," you say.`);
+        scene.text(`"Please don't tell ${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')}," you say.`);
         scene.text('"You might be surprised, darling," she says with a wry smile and you sigh tiredly.');
         // TODO-QSP: dynamic text: "Yes Aunt, I know all about <<$npc_nickname[''A29'']>>''s... habits. I just don'...
-        scene.text(`"Yes Aunt, I know all about ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''}'s... habits. I just don't want to get an earful from her."`);
+        scene.text(`"Yes Aunt, I know all about ${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')}'s... habits. I just don't want to get an earful from her."`);
         scene.text('Luda nods. "Even so, I\'m sure she\'d prefer hearing that you\'re being safe. But I promise, this will be our little secret."');
       } else {
         // TODO-QSP: dynamic text: "Please don''t tell <<$npc_nickname[''A29'']>>," you say. "She wouldn''t underst...
-        scene.text(`"Please don't tell ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''}," you say. "She wouldn't understand."`);
+        scene.text(`"Please don't tell ${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')}," you say. "She wouldn't understand."`);
         scene.text('"You might be surprised, darling," she says with a wry smile and you cock your head in confusion.');
         scene.text('<i>What\'s that supposed to mean?</i>');
         scene.text('"Well, even so," she continues. "I\'m sure she\'d prefer hearing you\'re having sex and being safe about it than to hear otherwise. But I promise, this will be our little secret."');

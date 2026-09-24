@@ -122,7 +122,7 @@ function enterTitsAdmireMenu(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: '"Thank you"', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: "Thank you very much," you say, <<$sex_ev[''react_desc'']>>. "My tits accept you...
-    scene.text(`"Thank you very much," you say, ${((st as any).sex_ev ?? 0)?.['react_desc'] ?? ''}. "My tits accept your compliment and will continue letting you squeeze them."`);
+    scene.text(`"Thank you very much," you say, ${(((st as any).sex_ev ?? 0)?.['react_desc'] ?? '')}. "My tits accept your compliment and will continue letting you squeeze them."`);
     qspGoto(st, 'sex_ev_pillow_talk', 'topic_route');
   } },
     { label: 'You like my tits?', handler: (st: GameState) => {
@@ -186,7 +186,7 @@ function enterLikeMyTits(s: GameState, scene: SceneBuilder): void {
 
 function enterJustBreasts(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: "They''re just breasts, you know," you say, <<$sex_ev[''react_desc'']>>.
-  scene.text(`"They're just breasts, you know," you say, ${((s as any).sex_ev ?? 0)?.['react_desc'] ?? ''}.`);
+  scene.text(`"They're just breasts, you know," you say, ${(((s as any).sex_ev ?? 0)?.['react_desc'] ?? '')}.`);
   if (((s as any).npc_humor ?? 0)?.[String((s as any).npcID ?? 0)] === 'childish') {
     scene.text('"That\'s like saying, \'it\'s only a bag full of gold bars,\'" he grins, squeezing your chest again and again.');
   } else {
@@ -205,7 +205,7 @@ function enterJustBreasts(s: GameState, scene: SceneBuilder): void {
 
 function enterWhatDoYouLike(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: "What do you like so much about them?" you ask <<$sex_ev[''react_desc'']>>.
-  scene.text(`"What do you like so much about them?" you ask ${((s as any).sex_ev ?? 0)?.['react_desc'] ?? ''}.`);
+  scene.text(`"What do you like so much about them?" you ask ${(((s as any).sex_ev ?? 0)?.['react_desc'] ?? '')}.`);
   if (((s as any).npc_humor ?? 0)?.[String((s as any).npcID ?? 0)] === 'childish') {
     scene.text('"That they\'re boobs," he grins, squeezing your chest again. "I like that."');
   } else {
@@ -383,7 +383,7 @@ function enterPubesTrimmedResponse(s: GameState, scene: SceneBuilder): void {
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBoyLikesPubes2(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       // TODO-QSP: dynamic text: "Did you do something new down there?" <<$npcdesc>> asks, looking at your <<$pub...
-      scene.text(`"Did you do something new down there?" ${((s as any).npcdesc ?? '')} asks, looking at your ${((s as any).pube_style ?? 0)?.['shape'] ?? ''}-shaped pubic hair.`);
+      scene.text(`"Did you do something new down there?" ${((s as any).npcdesc ?? '')} asks, looking at your ${(((s as any).pube_style ?? 0)?.['shape'] ?? '')}-shaped pubic hair.`);
       qspCall(s, 'sex_ev_pillow_talk', 'changed_pube_style');
     }
   } else {

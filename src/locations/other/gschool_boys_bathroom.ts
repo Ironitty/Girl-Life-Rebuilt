@@ -137,35 +137,35 @@ function enterBoy1(s: GameState, scene: SceneBuilder): void {
   (s as any).boyrand = (Math.floor(Math.random() * 8) + 1);
   if (((s as any).boyrand ?? 0) === 1) {
     qspCall(s, 'npc_relationship', 'modify', 'A147', 1);
-    (s as any).rand_boy = ((s as any).npc_firstname ?? 0)?.['A147'];
+    (s as any).rand_boy = (((s as any).npc_firstname ?? 0)?.['A147']);
   } else {
     if (((s as any).boyrand ?? 0) === 2) {
       qspCall(s, 'npc_relationship', 'modify', 'A148', 1);
-      (s as any).rand_boy = ((s as any).npc_firstname ?? 0)?.['A148'];
+      (s as any).rand_boy = (((s as any).npc_firstname ?? 0)?.['A148']);
     } else {
       if (((s as any).boyrand ?? 0) === 3) {
         qspCall(s, 'npc_relationship', 'modify', 'A5', 1);
-        (s as any).rand_boy = ((s as any).npc_firstname ?? 0)?.['A5'];
+        (s as any).rand_boy = (((s as any).npc_firstname ?? 0)?.['A5']);
       } else {
         if (((s as any).boyrand ?? 0) === 4) {
           qspCall(s, 'npc_relationship', 'modify', 'A8', 1);
-          (s as any).rand_boy = ((s as any).npc_firstname ?? 0)?.['A8'];
+          (s as any).rand_boy = (((s as any).npc_firstname ?? 0)?.['A8']);
         } else {
           if (((s as any).boyrand ?? 0) === 5) {
             qspCall(s, 'npc_relationship', 'modify', 'A150', 1);
-            (s as any).rand_boy = ((s as any).npc_firstname ?? 0)?.['A150'];
+            (s as any).rand_boy = (((s as any).npc_firstname ?? 0)?.['A150']);
           } else {
             if (((s as any).boyrand ?? 0) === 6) {
               qspCall(s, 'npc_relationship', 'modify', 'A152', 1);
-              (s as any).rand_boy = ((s as any).npc_firstname ?? 0)?.['A152'];
+              (s as any).rand_boy = (((s as any).npc_firstname ?? 0)?.['A152']);
             } else {
               if (((s as any).boyrand ?? 0) === 7) {
                 qspCall(s, 'npc_relationship', 'modify', 'A3', 1);
-                (s as any).rand_boy = ((s as any).npc_firstname ?? 0)?.['A3'];
+                (s as any).rand_boy = (((s as any).npc_firstname ?? 0)?.['A3']);
               } else {
                 if (((s as any).boyrand ?? 0) === 8) {
                   qspCall(s, 'npc_relationship', 'modify', 'A165', 1);
-                  (s as any).rand_boy = ((s as any).npc_firstname ?? 0)?.['A165'];
+                  (s as any).rand_boy = (((s as any).npc_firstname ?? 0)?.['A165']);
                 }
               }
             }
@@ -345,7 +345,7 @@ function enterBoy2Sub(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Boy\'s bathroom</b></center>');
   scene.img('images/characters/pavlovsk/school/boy/radomir/sex/school/boy1bj.jpg');
   // TODO-QSP: dynamic text: He reaches over, grabs you by the hair and pulls your head down to his dick. You...
-  scene.text(`He reaches over, grabs you by the hair and pulls your head down to his dick. You open your mouth and take the tip of his ${((s as any).dick ?? '')}cm ${((s as any).dick_girth ?? '')} dick into your mouth. You wrap your ${((s as any).pc_desc ?? 0)?.['lips'] ?? ''} lips tightly around his shaft, your tongue moving wildly around it, and start bobbing your head up and down, blowing him for all you're worth.`);
+  scene.text(`He reaches over, grabs you by the hair and pulls your head down to his dick. You open your mouth and take the tip of his ${((s as any).dick ?? '')}cm ${((s as any).dick_girth ?? '')} dick into your mouth. You wrap your ${(((s as any).pc_desc ?? 0)?.['lips'] ?? '')} lips tightly around his shaft, your tongue moving wildly around it, and start bobbing your head up and down, blowing him for all you're worth.`);
   scene.text('One of your hands goes to his balls to fondle and play with them as you suck him off, supporting yourself with your other hand. You feel like you\'re getting into a good rhythm when he suddenly places his hand on the back of your head to \'help\' you take his dick deeper into your mouth by shoving your head down and forcing you to deepthroat him. The pace he sets and his thrusts upwards into your throat cause you to gag a few times, but he only lets you come up for air very briefly before pushing you back down.');
   scene.text('Eventually, he tells you to spread your legs for him. You comply and feel his fingers push into your pussy again.');
   qspCall(s, 'arousal', 'bj', 6, 'sub', 'rough', 'deepthroat');
@@ -1596,7 +1596,7 @@ function enterCaughtb1(s: GameState, scene: SceneBuilder): void {
       scene.img('images/characters/pavlovsk/school/teacher/makar/sex/school/caughtbj.jpg');
       scene.text('He looks down at you and seems to freeze. He doesn\'t say anything, doesn\'t move away either - all he does is look at you, transfixed with your lips. You decide to take that as a yes and reach out to unzip his pants. You reach inside and feel that his dick is almost hard already.');
       // TODO-QSP: dynamic text: He pulls his pants down just enough to release his manhood and make it easier fo...
-      scene.text(`He pulls his pants down just enough to release his manhood and make it easier for you. You give him an appreciative look and stroke his dick a few times until it's fully erect, then lean forward and start licking it; you lick up and down the shaft and run your tongue around the head, your eyes locked with his before you smile at him and take his ${((st as any).dick ?? '')}cm ${((st as any).dick_girth ?? '')} cock into your mouth. You wrap your ${((st as any).pc_desc ?? 0)?.['lips'] ?? ''} lips tightly around his dick and start bobbing your head, stroking his cock with your lips as your tongue continues making its rounds. He rests one hand on the top of your head, but he lets you completely control the action.`);
+      scene.text(`He pulls his pants down just enough to release his manhood and make it easier for you. You give him an appreciative look and stroke his dick a few times until it's fully erect, then lean forward and start licking it; you lick up and down the shaft and run your tongue around the head, your eyes locked with his before you smile at him and take his ${((st as any).dick ?? '')}cm ${((st as any).dick_girth ?? '')} cock into your mouth. You wrap your ${(((st as any).pc_desc ?? 0)?.['lips'] ?? '')} lips tightly around his dick and start bobbing your head, stroking his cock with your lips as your tongue continues making its rounds. He rests one hand on the top of your head, but he lets you completely control the action.`);
       scene.text('You caress and fondle his balls with one of your hands while the other strokes him in unison with your head\'s movement. You increase your speed over time and take him as deep into your mouth as you can without gagging. He starts moaning and you feel his hand dig into your hair, telling you that he\'s getting close.');
       qspCall(st, 'arousal', 'bj', 10, 'dom');
       qspCall(st, 'arousal', 'end');
@@ -1654,7 +1654,7 @@ function enterCaughtb1(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'npcStat', 'A128');
     scene.img('images/characters/pavlovsk/school/teacher/makar/sex/school/caughtbj.jpg');
     // TODO-QSP: dynamic text: You stroke his dick a few times until it''s fully erect, then lean forward and s...
-    scene.text(`You stroke his dick a few times until it's fully erect, then lean forward and start licking it; you lick up and down the shaft and run your tongue around the head, your eyes locked with his before you smile at him and take his ${((st as any).dick ?? '')}cm ${((st as any).dick_girth ?? '')} cock into your mouth. You wrap your ${((st as any).pc_desc ?? 0)?.['lips'] ?? ''} lips tightly around his dick and start bobbing your head, stroking his cock with your lips as your tongue continues making its rounds. He rests one hand on the top of your head, but he lets you completely control the action.`);
+    scene.text(`You stroke his dick a few times until it's fully erect, then lean forward and start licking it; you lick up and down the shaft and run your tongue around the head, your eyes locked with his before you smile at him and take his ${((st as any).dick ?? '')}cm ${((st as any).dick_girth ?? '')} cock into your mouth. You wrap your ${(((st as any).pc_desc ?? 0)?.['lips'] ?? '')} lips tightly around his dick and start bobbing your head, stroking his cock with your lips as your tongue continues making its rounds. He rests one hand on the top of your head, but he lets you completely control the action.`);
     scene.text('You caress and fondle his balls with one of your hands while the other strokes him in unison with your head\'s movement. You increase your speed over time and take him as deep into your mouth as you can without gagging.');
     qspCall(st, 'arousal', 'bj', 5, 'dom');
     qspCall(st, 'stat', '');
@@ -1897,7 +1897,7 @@ function enterCaughtb2(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'npcStat', 'A129');
       scene.img('images/characters/pavlovsk/school/teacher/serafim/sex/school/caughtbj.jpg');
       // TODO-QSP: dynamic text: He looks down at you before silently unzipping his pants and pulling his dick ou...
-      scene.text(`He looks down at you before silently unzipping his pants and pulling his dick out. It's not even hard yet, but he seems to have made his choice and so you stroke his dick a few times until it's erect, then lean forward and start licking it; you lick up and down the shaft and run your tongue around the head while looking up at him to gauge his nonexistent reaction before you take his ${((st as any).dick ?? '')}cm ${((st as any).dick_girth ?? '')} cock into your mouth. You wrap your ${((st as any).pc_desc ?? 0)?.['lips'] ?? ''} lips tightly around his dick when you feel him grab the back of your head and shove your head down, forcing his dick deep into your mouth and down your throat. You start gagging, but he doesn't relent - he pulls out briefly, only to shove his cock right back in.`);
+      scene.text(`He looks down at you before silently unzipping his pants and pulling his dick out. It's not even hard yet, but he seems to have made his choice and so you stroke his dick a few times until it's erect, then lean forward and start licking it; you lick up and down the shaft and run your tongue around the head while looking up at him to gauge his nonexistent reaction before you take his ${((st as any).dick ?? '')}cm ${((st as any).dick_girth ?? '')} cock into your mouth. You wrap your ${(((st as any).pc_desc ?? 0)?.['lips'] ?? '')} lips tightly around his dick when you feel him grab the back of your head and shove your head down, forcing his dick deep into your mouth and down your throat. You start gagging, but he doesn't relent - he pulls out briefly, only to shove his cock right back in.`);
       qspCall(st, 'arousal', 'bj', 10, 'deepthroat');
       qspCall(st, 'stat', '');
       scene.actions([
@@ -1960,7 +1960,7 @@ function enterCaughtb2(s: GameState, scene: SceneBuilder): void {
     (st as any).orgasm_or = 'no';
     scene.img('images/characters/pavlovsk/school/teacher/serafim/sex/school/caughtbj.jpg');
     // TODO-QSP: dynamic text: You do as you''re told and stroke his dick a few times until it''s fully hard, t...
-    scene.text(`You do as you're told and stroke his dick a few times until it's fully hard, then lean forward and start licking it; you lick up and down the shaft and run your tongue around the head while looking up at him to gauge his nonexistent reaction, before you take his ${((st as any).dick ?? '')}cm ${((st as any).dick_girth ?? '')} cock into your mouth. You wrap your ${((st as any).pc_desc ?? 0)?.['lips'] ?? ''} lips tightly around his dick and start bobbing your head, stroking his cock with your lips, your tongue still making its rounds. He rests one hand on the top of your head, but he lets you control the action.`);
+    scene.text(`You do as you're told and stroke his dick a few times until it's fully hard, then lean forward and start licking it; you lick up and down the shaft and run your tongue around the head while looking up at him to gauge his nonexistent reaction, before you take his ${((st as any).dick ?? '')}cm ${((st as any).dick_girth ?? '')} cock into your mouth. You wrap your ${(((st as any).pc_desc ?? 0)?.['lips'] ?? '')} lips tightly around his dick and start bobbing your head, stroking his cock with your lips, your tongue still making its rounds. He rests one hand on the top of your head, but he lets you control the action.`);
     scene.text('You caress and fondle his balls with one of your hands while the other strokes him in unison with your head\'s movement. You increase your speed over time and take him as deep into your mouth as you can without gagging. He enjoys your blowjob in silence and after several minutes of this, he grabs you by the hair and roughly pulls you up and bends you over.');
     qspCall(st, 'arousal', 'bj', 5);
     qspCall(st, 'stat', '');

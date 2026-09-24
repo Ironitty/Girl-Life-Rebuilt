@@ -365,19 +365,19 @@ function enterAttack(s: GameState, scene: SceneBuilder): void {
   ((s as any).fightAtk = (s as any).fightAtk ?? {})['MaxDamage'] = (((s as any).AttackMax ?? 0)?.[String((s as any).fightAtk_Type ?? 0)] ?? 0);
   if (((s as any).fightAtk_TargetType ?? 0) === 'opp'  &&  (!((s as any).fightAtk_AttackerNumber ?? 0))) {
     // TODO-QSP: dynamic text: You attempt to <<$fightAtk_Type_str>> <<$fightAtk["DefenderName"]>>!
-    scene.text(`You attempt to ${((s as any).fightAtk_Type_str ?? '')} ${((s as any).fightAtk ?? 0)?.['DefenderName'] ?? ''}!`);
+    scene.text(`You attempt to ${((s as any).fightAtk_Type_str ?? '')} ${(((s as any).fightAtk ?? 0)?.['DefenderName'] ?? '')}!`);
   } else {
     // TODO-QSP: dynamic text: <<$fightAtk["AttackerName"]>> attempts to <<$fightAtk_Type_str>> <<$fightAtk["De...
-    scene.text(`${((s as any).fightAtk ?? 0)?.['AttackerName'] ?? ''} attempts to ${((s as any).fightAtk_Type_str ?? '')} ${((s as any).fightAtk ?? 0)?.['DefenderName'] ?? ''}!`);
+    scene.text(`${(((s as any).fightAtk ?? 0)?.['AttackerName'] ?? '')} attempts to ${((s as any).fightAtk_Type_str ?? '')} ${(((s as any).fightAtk ?? 0)?.['DefenderName'] ?? '')}!`);
   }
   if ((0 as any) > 0) {
     (s as any).rand_fogRedDmgMax = (Math.floor(Math.random() * ((((s as any).fightAtk ?? {})?.['MaxDamage'] ?? 0)-(((s as any).fightAtk ?? {})?.['MinDamage'] ?? 0) - 0 + 1)) + (0));
-    (s as any).rand_fogRedDmgMin = (Math.floor(Math.random() * (((s as any).fightAtk ?? 0)?.['MinDamage'] - 0 + 1)) + (0));
+    (s as any).rand_fogRedDmgMin = (Math.floor(Math.random() * ((((s as any).fightAtk ?? 0)?.['MinDamage']) - 0 + 1)) + (0));
     ((s as any).fightAtk = (s as any).fightAtk ?? {})['MaxDamage'] = ((s as any).fightAtk['MaxDamage'] ?? 0) - (((s as any).rand_fogRedDmgMax ?? 0));
     ((s as any).fightAtk = (s as any).fightAtk ?? {})['MinDamage'] = ((s as any).fightAtk['MinDamage'] ?? 0) - (((s as any).rand_fogRedDmgMin ?? 0));
-    ((s as any).fightAtk = (s as any).fightAtk ?? {})['Damage'] = (Math.floor(Math.random() * (((s as any).fightAtk ?? 0)?.['MaxDamage'] - ((s as any).fightAtk ?? 0)?.['MinDamage'] + 1)) + (((s as any).fightAtk ?? 0)?.['MinDamage']));
+    ((s as any).fightAtk = (s as any).fightAtk ?? {})['Damage'] = (Math.floor(Math.random() * ((((s as any).fightAtk ?? 0)?.['MaxDamage']) - (((s as any).fightAtk ?? 0)?.['MinDamage']) + 1)) + ((((s as any).fightAtk ?? 0)?.['MinDamage'])));
     if (((s as any).fightAtk ?? 0)?.['MaxDamage'] < ((s as any).fightAtk ?? 0)?.['MinDamage']) {
-      ((s as any).fightAtk = (s as any).fightAtk ?? {})['MaxDamage'] = ((s as any).fightAtk ?? 0)?.['MinDamage'];
+      ((s as any).fightAtk = (s as any).fightAtk ?? {})['MaxDamage'] = (((s as any).fightAtk ?? 0)?.['MinDamage']);
     }
   }
   scene.build();

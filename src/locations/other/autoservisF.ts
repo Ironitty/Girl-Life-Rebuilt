@@ -38,7 +38,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     }
   } else {
     // TODO-QSP: dynamic text: Your <a href="exec:gs ''carF'', ''start''"><<$car[''name'']>></a> is parked just...
-    scene.text(`Your <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027carF/u0027, /u0027start/u0027); return false;">${((s as any).car ?? 0)?.['name'] ?? ''}</a> is parked just inside.`);
+    scene.text(`Your <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027carF/u0027, /u0027start/u0027); return false;">${(((s as any).car ?? 0)?.['name'] ?? '')}</a> is parked just inside.`);
     if (qspFunc(s, 'car_funcs', 'has_wreck')) {
       scene.text('The foreman looks at your car, if this wreckage even qualifies as one, with a professional boredom that tells you he\'s seen vehicles in similar or worse states a million times over.');
       // TODO-QSP: dynamic text: 'He quickly but thoroughly inspects it, murmuring all the while to take mental n...
@@ -51,7 +51,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       (st as any).minut = ((st as any).minut ?? 0) + 60;
       qspCall(st, 'money', 'pay', ((st as any).normrem ?? 0));
       ((st as any).car = (st as any).car ?? {})['new_condition'] = (((st as any).car ?? {})?.['new_condition'] ?? 0) / 2;
-      ((st as any).car = (st as any).car ?? {})['current_condition'] = ((st as any).car ?? 0)?.['new_condition'];
+      ((st as any).car = (st as any).car ?? {})['current_condition'] = (((st as any).car ?? 0)?.['new_condition']);
       ((st as any).car = (st as any).car ?? {})['wreck'] = 0;
       qspCall(st, 'stat', '');
       scene.img('images/locations/city/industrial/CarServiceSta/autoservis2.jpg');
@@ -83,7 +83,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     } else {
       (st as any).minut = ((st as any).minut ?? 0) + 60;
       qspCall(st, 'money', 'pay', ((st as any).normrem ?? 0));
-      ((st as any).car = (st as any).car ?? {})['current_condition'] = ((st as any).car ?? 0)?.['new_condition'];
+      ((st as any).car = (st as any).car ?? {})['current_condition'] = (((st as any).car ?? 0)?.['new_condition']);
       ((st as any).car = (st as any).car ?? {})['wreck'] = 0;
       qspCall(st, 'stat', '');
       scene.img('images/locations/city/industrial/CarServiceSta/autoservis2.jpg');

@@ -41,7 +41,7 @@ function enterKiss(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'foreplay', 3, 'lesbian');
     ((st as any).katjaQW = (st as any).katjaQW ?? {})['dom'] = ((st as any).katjaQW['dom'] ?? 0) - (1);
     ((st as any).katjaQW = (st as any).katjaQW ?? {})['horny'] = ((st as any).katjaQW['horny'] ?? 0) - (10);
-    ((st as any).katjaQW = (st as any).katjaQW ?? {})['horny'] = Math.min(((st as any).katjaQW ?? 0)?.['horny'], 60);
+    ((st as any).katjaQW = (st as any).katjaQW ?? {})['horny'] = Math.min((((st as any).katjaQW ?? 0)?.['horny']), 60);
     qspCall(st, 'willpower', 'pay', 'resist');
     qspCall(st, 'arousal', 'end');
     scene.img('images/characters/shared/headshots_main/big14.jpg');
@@ -148,7 +148,7 @@ function enterKiss(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'foreplay', 3, 'lesbian');
     ((st as any).katjaQW = (st as any).katjaQW ?? {})['dom'] = ((st as any).katjaQW['dom'] ?? 0) - (1);
     ((st as any).katjaQW = (st as any).katjaQW ?? {})['horny'] = ((st as any).katjaQW['horny'] ?? 0) - (10);
-    ((st as any).katjaQW = (st as any).katjaQW ?? {})['horny'] = Math.min(((st as any).katjaQW ?? 0)?.['horny'], 60);
+    ((st as any).katjaQW = (st as any).katjaQW ?? {})['horny'] = Math.min((((st as any).katjaQW ?? 0)?.['horny']), 60);
     qspCall(st, 'willpower', 'pay', 'resist');
     qspCall(st, 'arousal', 'end');
     scene.img('images/characters/shared/headshots_main/big14.jpg');
@@ -564,7 +564,7 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       ((st as any).katjaQW = (st as any).katjaQW ?? {})['slut'] = ((st as any).katjaQW['slut'] ?? 0) + (1);
-      ((st as any).katjaQW = (st as any).katjaQW ?? {})['horny'] = Math.min(((st as any).katjaQW ?? 0)?.['horny'], 40);
+      ((st as any).katjaQW = (st as any).katjaQW ?? {})['horny'] = Math.min((((st as any).katjaQW ?? 0)?.['horny']), 40);
       scene.text('Katja is embarrassed and pulls her hand away from you.');
       qspCall(st, 'arousal', 'end');
       if (((st as any).loc ?? 0) === 'katja_dorm') {
@@ -604,7 +604,7 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       ((st as any).katjaQW = (st as any).katjaQW ?? {})['slut'] = ((st as any).katjaQW['slut'] ?? 0) + (1);
-      ((st as any).katjaQW = (st as any).katjaQW ?? {})['horny'] = Math.min(((st as any).katjaQW ?? 0)?.['horny'], 40);
+      ((st as any).katjaQW = (st as any).katjaQW ?? {})['horny'] = Math.min((((st as any).katjaQW ?? 0)?.['horny']), 40);
       scene.text('Katja is embarrassed and removes your hand.');
       if (((st as any).loc ?? 0) === 'katja_dorm') {
         scene.actions([

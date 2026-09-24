@@ -483,7 +483,7 @@ function enterAlbinaNotHereErmias_SMSResponse(s: GameState, scene: SceneBuilder)
     qspCall(s, 'SMStext_builder', 'receive', 'Gotta go! Wish my pussy luck!');
   } else {
     if (((s as any).temp_rand ?? 0) === 1) {
-      qspCall(s, 'SMStext_builder', 'receive', '' + ((s as any).npc_usedname ?? 0)?.['A23'] + ' is a little busy right now');
+      qspCall(s, 'SMStext_builder', 'receive', '' + (((s as any).npc_usedname ?? 0)?.['A23']) + ' is a little busy right now');
       qspCall(s, 'SMStext_builder', 'send', 'Who is this?');
       qspCall(s, 'SMStext_builder', 'receive', 'A friend. Like I said, she is busy');
       qspCall(s, 'SMStext_builder', 'send', 'Doing what?');
@@ -492,14 +492,14 @@ function enterAlbinaNotHereErmias_SMSResponse(s: GameState, scene: SceneBuilder)
       qspCall(s, 'SMStext_builder', 'receive', 'See?');
     } else {
       if (((s as any).temp_rand ?? 0) === 2) {
-        qspCall(s, 'SMStext_builder', 'receive', '' + ((s as any).npc_usedname ?? 0)?.['A23'] + ' cannot use her phone right now');
+        qspCall(s, 'SMStext_builder', 'receive', '' + (((s as any).npc_usedname ?? 0)?.['A23']) + ' cannot use her phone right now');
         qspCall(s, 'SMStext_builder', 'send', 'What? Who is this?');
         qspCall(s, 'SMStext_builder', 'receive', 'A friend. Like I said, she cannot talk right now');
         qspCall(s, 'SMStext_builder', 'send', 'What do you mean?');
         qspCall(s, 'SMStext_builder', 'receive', 'She is using her mouth for other things right now');
         qspCall(s, 'SMStext_builder', 'receive_img', 'images/characters/pavlovsk/school/girl/albina/selfies/bbc_selfie2.jpg');
       } else {
-        qspCall(s, 'SMStext_builder', 'receive', '' + ((s as any).npc_usedname ?? 0)?.['A23'] + ' cannot come to the phone right now');
+        qspCall(s, 'SMStext_builder', 'receive', '' + (((s as any).npc_usedname ?? 0)?.['A23']) + ' cannot come to the phone right now');
         qspCall(s, 'SMStext_builder', 'send', 'What? Who is this?');
         qspCall(s, 'SMStext_builder', 'receive', 'A friend. Like I said, she is busy right now');
         qspCall(s, 'SMStext_builder', 'send', 'Doing what?');
@@ -509,7 +509,7 @@ function enterAlbinaNotHereErmias_SMSResponse(s: GameState, scene: SceneBuilder)
     }
   }
   if (qspFunc(s, 'SMStext_builder', 'check_if_sms_exists_from_id', ((s as any).AlbinaQW ?? 0)?.['SMSID'])) {
-    qspCall(s, 'SMStext_builder', 'update_sms_from_id', ((s as any).AlbinaQW ?? 0)?.['SMSID'], 'set_unread');
+    qspCall(s, 'SMStext_builder', 'update_sms_from_id', (((s as any).AlbinaQW ?? 0)?.['SMSID']), 'set_unread');
   } else {
     qspCall(s, 'SMStext_builder', 'add_sms', 'A23');
   }

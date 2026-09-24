@@ -386,7 +386,7 @@ function enterSisboytrioQWBedroom(s: GameState, scene: SceneBuilder): void {
   (s as any).blockBedrPar = 1;
   ((s as any).locat = (s as any).locat ?? {})['Anya'] = 15;
   ((s as any).locat = (s as any).locat ?? {})['Anya_rand1'] = ((s as any).daystart ?? 0);
-  ((s as any).locat = (s as any).locat ?? {})['Anya_save1'] = ((s as any).locat ?? 0)?.['Anya'];
+  ((s as any).locat = (s as any).locat ?? {})['Anya_save1'] = (((s as any).locat ?? 0)?.['Anya']);
   if (((s as any).hour ?? 0) === 17) {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
     qspCall(s, 'npc_relationship', 'modify', 'A33', (-10));

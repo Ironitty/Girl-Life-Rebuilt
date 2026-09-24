@@ -36,19 +36,19 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAlarmDisplay(s: GameState, scene: SceneBuilder): void {
-  (s as any).result = '<b>' + qspFunc(s, 'time', 'get_time_string', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0), ((s as any).cheatVars ?? 0)?.['time_format']) + '</b>';
+  (s as any).result = '<b>' + qspFunc(s, 'time', 'get_time_string', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0), (((s as any).cheatVars ?? 0)?.['time_format'])) + '</b>';
   // TODO-QSP: end
   scene.build();
 }
 
 function enterGetWeekDisplay(s: GameState, scene: SceneBuilder): void {
-  (s as any).result = '<b>' + qspFunc(s, 'time', 'get_time_string', ((s as any).alarmVars ?? 0)?.['timerH'], ((s as any).alarmVars ?? 0)?.['timerM'], ((s as any).cheatVars ?? 0)?.['time_format']) + '</b>';
+  (s as any).result = '<b>' + qspFunc(s, 'time', 'get_time_string', (((s as any).alarmVars ?? 0)?.['timerH']), (((s as any).alarmVars ?? 0)?.['timerM']), (((s as any).cheatVars ?? 0)?.['time_format'])) + '</b>';
   // TODO-QSP: end
   scene.build();
 }
 
 function enterGetWeekendDisplay(s: GameState, scene: SceneBuilder): void {
-  (s as any).result = '<b>' + qspFunc(s, 'time', 'get_time_string', ((s as any).alarmVars ?? 0)?.['timerEndH'], ((s as any).alarmVars ?? 0)?.['timerEndM'], ((s as any).cheatVars ?? 0)?.['time_format']) + '</b>';
+  (s as any).result = '<b>' + qspFunc(s, 'time', 'get_time_string', (((s as any).alarmVars ?? 0)?.['timerEndH']), (((s as any).alarmVars ?? 0)?.['timerEndM']), (((s as any).cheatVars ?? 0)?.['time_format'])) + '</b>';
   // TODO-QSP: end
   scene.build();
 }

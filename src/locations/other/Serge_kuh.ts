@@ -533,7 +533,7 @@ function enterIzdev1(s: GameState, scene: SceneBuilder): void {
     scene.text('After you drop to your knees before him, you begin to jerk him off slowly: "It\'s so hard…"');
     scene.text('You tease him by kissing him all over his shaft, avoiding the head for now. That will come. When you lick his shaft over and over, you can feel him stir a little: he\'s growing impatient.');
     // TODO-QSP: dynamic text: Finally, you kiss the head of his cock, smearing his precum all over your lips. ...
-    scene.text(`Finally, you kiss the head of his cock, smearing his precum all over your lips. You lick your lips afterwards and muse: "Mmm… delicious…" before taking it between your ${((st as any).pc_desc ?? 0)?.['lips'] ?? ''} lips, sucking on it eagerly.`);
+    scene.text(`Finally, you kiss the head of his cock, smearing his precum all over your lips. You lick your lips afterwards and muse: "Mmm… delicious…" before taking it between your ${(((st as any).pc_desc ?? 0)?.['lips'] ?? '')} lips, sucking on it eagerly.`);
     qspCall(st, 'arousal', 'bj', 5, 'dom');
     qspCall(st, 'stat', '');
     scene.actions([
@@ -2057,7 +2057,7 @@ function enterSex2(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/kuh/help/event/sex2-2.jpg');
     scene.text('"I\'m sorry, uncle Sergey… but your dick is just so beautiful!" you whisper at him. "It\'s like it was made to please women! I\'m so lucky!"');
     // TODO-QSP: dynamic text: Sergey relaxes when you open your mouth wide and close your <<$pc_desc[''lips'']...
-    scene.text(`Sergey relaxes when you open your mouth wide and close your ${((st as any).pc_desc ?? 0)?.['lips'] ?? ''} lips around the head of his penis. You take your time, but skillfully suck his dick to about half its length. Then a few minutes later, the whole of it is in your mouth!`);
+    scene.text(`Sergey relaxes when you open your mouth wide and close your ${(((st as any).pc_desc ?? 0)?.['lips'] ?? '')} lips around the head of his penis. You take your time, but skillfully suck his dick to about half its length. Then a few minutes later, the whole of it is in your mouth!`);
     scene.text('You look up at Sergey\'s face intently while you try out different techniques, doing your best to make him feel wonderful. Oral sex can be so much fun! You especially remember his impressed look when you took him as deep as possible down your throat, and were licking the side of his balls with your tongue out of your mouth.');
     scene.text('He put his hand behind your head a long time ago, but never forces you to do anything; everything you do today is because you want to please him. Even when you deepthroat him repeatedly… it\'s because you want to. You\'re such a slut sometimes, and you love it!');
     qspCall(st, 'arousal', 'bj', 5, 'sub', 'deepthroat');
@@ -2116,7 +2116,7 @@ function enterSex3(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'mood', 'raise', 'tiny');
   scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/kuh/help/event/sex3-1.jpg');
   // TODO-QSP: dynamic text: "You seem tense, uncle Sergey. Is there something I can do for you?" you ask inn...
-  scene.text(`"You seem tense, uncle Sergey. Is there something I can do for you?" you ask innocently, bringing your fingers to your ${((s as any).pc_desc ?? 0)?.['lips'] ?? ''} lips.`);
+  scene.text(`"You seem tense, uncle Sergey. Is there something I can do for you?" you ask innocently, bringing your fingers to your ${(((s as any).pc_desc ?? 0)?.['lips'] ?? '')} lips.`);
   scene.text('When Sergey sees you sucking on your fingers he laughs: "Hah… yes there is, you slut!"');
   scene.text('Ignoring the fact that he called you a slut, you sweetly continue: "Oh, and what would that be?"');
   scene.text('Sergey gropes your tits with one hand and slides the other hand under your clothes to finger you. He grunts: "You know perfectly well what I mean. Stop teasing me and get to it."');

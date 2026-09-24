@@ -9,7 +9,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).loc ?? 0) === 'pav_disco') {
       if (((s as any).alko ?? 0) < 3) {
         // TODO-QSP: dynamic text: <<$npc_firstname[''A9'']>>: "<<$pcs_nickname>> Hey, let''s get drunk and then do...
-        scene.text(`${((s as any).npc_firstname ?? 0)?.['A9'] ?? ''}: "${((s as any).pcs_nickname ?? '')} Hey, let's get drunk and then do something dumb."`);
+        scene.text(`${(((s as any).npc_firstname ?? 0)?.['A9'] ?? '')}: "${((s as any).pcs_nickname ?? '')} Hey, let's get drunk and then do something dumb."`);
         qspCall(s, 'willpower', 'drink', 'resist', 'medium');
         if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
           scene.actions([
@@ -49,7 +49,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       } else {
         if (((s as any).alko ?? 0) >= 3) {
           // TODO-QSP: dynamic text: <<$npc_firstname[''A9'']>>: "<<$pcs_nickname>> Hey, let''s dance."
-          scene.text(`${((s as any).npc_firstname ?? 0)?.['A9'] ?? ''}: "${((s as any).pcs_nickname ?? '')} Hey, let's dance."`);
+          scene.text(`${(((s as any).npc_firstname ?? 0)?.['A9'] ?? '')}: "${((s as any).pcs_nickname ?? '')} Hey, let's dance."`);
           qspCall(s, 'willpower', 'misc', 'resist', 'easy');
           if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
             scene.actions([
@@ -94,7 +94,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
             { label: 'Refuse', handler: (st: GameState) => {
     qspCall(st, 'npc_relationship', 'set', 'A9', 0);
     qspCall(st, 'stat', '');
-    scene.text(`<center><b>${((st as any).npc_firstname ?? 0)?.['A9'] ?? ''} ${((st as any).npc_lastname ?? 0)?.['A9'] ?? ''}</b></center>`);
+    scene.text(`<center><b>${(((st as any).npc_firstname ?? 0)?.['A9'] ?? '')} ${(((st as any).npc_lastname ?? 0)?.['A9'] ?? '')}</b></center>`);
     scene.img('images/characters/shared/headshots_main/big9.jpg');
     scene.text('You refused and Vitek looks completely confused, but he was immediately angry. "Well, then fuck you, you cock sucking whore!"');
     scene.actions([
@@ -106,7 +106,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
             { label: 'Agree', handler: (st: GameState) => {
     (st as any).kotovLoveQW = 1;
     qspCall(st, 'stat', '');
-    scene.text(`<center><b>${((st as any).npc_firstname ?? 0)?.['A9'] ?? ''} ${((st as any).npc_lastname ?? 0)?.['A9'] ?? ''}</b></center>`);
+    scene.text(`<center><b>${(((st as any).npc_firstname ?? 0)?.['A9'] ?? '')} ${(((st as any).npc_lastname ?? 0)?.['A9'] ?? '')}</b></center>`);
     scene.img('images/characters/shared/headshots_main/big9.jpg');
     scene.text('Vitek was delighted "Sweet. I almost can\'t believe that you agreed to be my chick."');
     scene.actions([
@@ -158,7 +158,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       }
     } else {
       // TODO-QSP: dynamic text: <<$npc_firstname[''A9'']>>: "Hey <<$pcs_nickname>>, I''m busy. I''ll catch up wi...
-      scene.text(`${((s as any).npc_firstname ?? 0)?.['A9'] ?? ''}: "Hey ${((s as any).pcs_nickname ?? '')}, I'm busy. I'll catch up with you later." He says as he turns back to talk to his friends.`);
+      scene.text(`${(((s as any).npc_firstname ?? 0)?.['A9'] ?? '')}: "Hey ${((s as any).pcs_nickname ?? '')}, I'm busy. I'll catch up with you later." He says as he turns back to talk to his friends.`);
       scene.actions([
         { label: 'Continue', goto: ['gschool_lessons', 'short_break'] },
       ]);

@@ -180,7 +180,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   if (((s as any).spellBookVar ?? 0)?.['Counter'] === 0) {
     ((s as any).spellBookVar = (s as any).spellBookVar ?? {})['TableText'] = '<center>You have no spells in this list.</center>';
   }
-  (s as any).result = qspFunc(s, 'cleanHTML', ((s as any).spellBookVar ?? 0)?.['TableText']);
+  (s as any).result = qspFunc(s, 'cleanHTML', (((s as any).spellBookVar ?? 0)?.['TableText']));
   scene.build();
 }
 

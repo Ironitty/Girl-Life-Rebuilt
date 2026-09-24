@@ -56,8 +56,8 @@ function enterAssignIndex(s: GameState, scene: SceneBuilder): void {
 function enterAssignDob(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'time', 'to_daystart', ((s as any).year ?? 0) - (((s as any).npcgeneratecVars ?? {})?.['age'] ?? 0) - 1, ((s as any).month ?? 0), ((s as any).day ?? 0));
   ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['min_daystart'] = (((s as any).dateVars ?? {})?.['daystart'] ?? 0) + 1;
-  ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['birth_daystart'] = (Math.floor(Math.random() * ((((s as any).npcgeneratecVars ?? {})?.['min_daystart'] ?? 0) + 364 - ((s as any).npcgeneratecVars ?? 0)?.['min_daystart'] + 1)) + (((s as any).npcgeneratecVars ?? 0)?.['min_daystart']));
-  qspCall(s, 'time', 'to_date', ((s as any).npcgeneratecVars ?? 0)?.['birth_daystart']);
+  ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['birth_daystart'] = (Math.floor(Math.random() * ((((s as any).npcgeneratecVars ?? {})?.['min_daystart'] ?? 0) + 364 - (((s as any).npcgeneratecVars ?? 0)?.['min_daystart']) + 1)) + ((((s as any).npcgeneratecVars ?? 0)?.['min_daystart'])));
+  qspCall(s, 'time', 'to_date', (((s as any).npcgeneratecVars ?? 0)?.['birth_daystart']));
   // TODO-QSP: npc_dob[$ARGS[1]] = dateVars['year'] * 10000
   // TODO-QSP: npc_dob[$ARGS[1]] += dateVars['month'] * 100
   // TODO-QSP: npc_dob[$ARGS[1]] += dateVars['day']
@@ -169,7 +169,7 @@ function enterSetDetails(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['nickname'] = qspFunc(s, 'npcrnamefile', 'get_nickname', ((s as any).npcgeneratecVars ?? 0)?.['firstname']);
+  ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['nickname'] = qspFunc(s, 'npcrnamefile', 'get_nickname', (((s as any).npcgeneratecVars ?? 0)?.['firstname']));
   ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['lastname'] = qspFunc(s, 'npcrnamefile', 'rusSur');
   // TODO-QSP: npc_haircol[$ARGS[1]] = rand(1, 4)
   if (((s as any).npc_haircol ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 1) {
@@ -1427,7 +1427,7 @@ function enterSetPreferences(s: GameState, scene: SceneBuilder): void {
     if (((s as any).npcgeneratecVars ?? 0)?.['attracted'] !== '') {
       ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['pref_attr'] = qspFunc(s, 'pcs_get_attr', 'body_tits');
       if (((s as any).npcgeneratecVars ?? 0)?.['pref_attr'] !== '') {
-        ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['rand'] = (((s as any).pref_ids ?? 0)?.[((s as any).npcgeneratecVars ?? 0)?.['pref_attr']] ?? 0);
+        ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['rand'] = (((s as any).pref_ids ?? 0)?.[(((s as any).npcgeneratecVars ?? 0)?.['pref_attr'])] ?? 0);
         if (((s as any).npcgeneratecVars ?? 0)?.['attracted'] === 'dislike') {
           ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['preftype'] = ((s as any).prefdin3 ?? 0);
         }
@@ -1448,7 +1448,7 @@ function enterSetPreferences(s: GameState, scene: SceneBuilder): void {
     if ((Math.floor(Math.random() * 10) + 0) < 3) {
       ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['pref_attr'] = qspFunc(s, 'pcs_get_attr', 'hair_pube_length');
       if (((s as any).npcgeneratecVars ?? 0)?.['pref_attr'] !== '') {
-        ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['rand'] = (((s as any).pref_ids ?? 0)?.[((s as any).npcgeneratecVars ?? 0)?.['pref_attr']] ?? 0);
+        ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['rand'] = (((s as any).pref_ids ?? 0)?.[(((s as any).npcgeneratecVars ?? 0)?.['pref_attr'])] ?? 0);
         if (((s as any).npcgeneratecVars ?? 0)?.['attracted'] === 'dislike') {
           ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['preftype'] = ((s as any).prefdin3 ?? 0);
         }
@@ -1468,7 +1468,7 @@ function enterSetPreferences(s: GameState, scene: SceneBuilder): void {
     if ((Math.floor(Math.random() * 10) + 0) < 3) {
       ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['pref_attr'] = qspFunc(s, 'pcs_get_attr', 'body_bmi');
       if (((s as any).npcgeneratecVars ?? 0)?.['pref_attr'] !== '') {
-        ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['rand'] = (((s as any).pref_ids ?? 0)?.[((s as any).npcgeneratecVars ?? 0)?.['pref_attr']] ?? 0);
+        ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['rand'] = (((s as any).pref_ids ?? 0)?.[(((s as any).npcgeneratecVars ?? 0)?.['pref_attr'])] ?? 0);
         if (((s as any).npcgeneratecVars ?? 0)?.['attracted'] === 'dislike') {
           ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['preftype'] = ((s as any).prefdin3 ?? 0);
         }
@@ -1532,7 +1532,7 @@ function enterSetPreferences(s: GameState, scene: SceneBuilder): void {
     if ((Math.floor(Math.random() * 10) + 0) < 3) {
       ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['pref_attr'] = qspFunc(s, 'pcs_get_attr', 'clothes_quality');
       if (((s as any).npcgeneratecVars ?? 0)?.['pref_attr'] !== '') {
-        ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['CloQualPref'] = (((s as any).pref_ids ?? 0)?.[((s as any).npcgeneratecVars ?? 0)?.['pref_attr']] ?? 0);
+        ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['CloQualPref'] = (((s as any).pref_ids ?? 0)?.[(((s as any).npcgeneratecVars ?? 0)?.['pref_attr'])] ?? 0);
         if (((s as any).npcgeneratecVars ?? 0)?.['attracted'] === 'dislike') {
           ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['preftype'] = ((s as any).prefdin3 ?? 0);
         }
@@ -1570,7 +1570,7 @@ function enterSetPreferences(s: GameState, scene: SceneBuilder): void {
     if ((Math.floor(Math.random() * 10) + 0) < 3) {
       ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['pref_attr'] = qspFunc(s, 'pcs_get_attr', 'clothes_cleavage');
       if (((s as any).npcgeneratecVars ?? 0)?.['pref_attr'] !== '') {
-        ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['CloTopPref'] = (((s as any).pref_ids ?? 0)?.[((s as any).npcgeneratecVars ?? 0)?.['pref_attr']] ?? 0);
+        ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['CloTopPref'] = (((s as any).pref_ids ?? 0)?.[(((s as any).npcgeneratecVars ?? 0)?.['pref_attr'])] ?? 0);
         if (((s as any).npcgeneratecVars ?? 0)?.['attracted'] === 'dislike') {
           ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['preftype'] = ((s as any).prefdin3 ?? 0);
         }
@@ -1611,7 +1611,7 @@ function enterSetPreferences(s: GameState, scene: SceneBuilder): void {
         ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['pref_attr'] = qspFunc(s, 'pcs_get_attr', 'clothes_pants');
       }
       if (((s as any).npcgeneratecVars ?? 0)?.['pref_attr'] !== '') {
-        ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['PanShorPref'] = (((s as any).pref_ids ?? 0)?.[((s as any).npcgeneratecVars ?? 0)?.['pref_attr']] ?? 0);
+        ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['PanShorPref'] = (((s as any).pref_ids ?? 0)?.[(((s as any).npcgeneratecVars ?? 0)?.['pref_attr'])] ?? 0);
         if (((s as any).npcgeneratecVars ?? 0)?.['attracted'] === 'dislike') {
           ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['preftype'] = ((s as any).prefdin3 ?? 0);
         }
@@ -1642,7 +1642,7 @@ function enterSetPreferences(s: GameState, scene: SceneBuilder): void {
     if ((Math.floor(Math.random() * 10) + 0) < 3) {
       ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['pref_attr'] = qspFunc(s, 'pcs_get_attr', 'clothes_thin');
       if (((s as any).npcgeneratecVars ?? 0)?.['pref_attr'] !== '') {
-        ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['CloThinPref'] = (((s as any).pref_ids ?? 0)?.[((s as any).npcgeneratecVars ?? 0)?.['pref_attr']] ?? 0);
+        ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['CloThinPref'] = (((s as any).pref_ids ?? 0)?.[(((s as any).npcgeneratecVars ?? 0)?.['pref_attr'])] ?? 0);
         if (((s as any).npcgeneratecVars ?? 0)?.['attracted'] === 'dislike') {
           ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['preftype'] = ((s as any).prefdin3 ?? 0);
         }
@@ -1680,7 +1680,7 @@ function enterSetPreferences(s: GameState, scene: SceneBuilder): void {
     if ((Math.floor(Math.random() * 10) + 0) < 3) {
       ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['pref_attr'] = qspFunc(s, 'pcs_get_attr', 'shoes_heels');
       if (((s as any).npcgeneratecVars ?? 0)?.['pref_attr'] !== '') {
-        ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['ShoHeelPref'] = (((s as any).pref_ids ?? 0)?.[((s as any).npcgeneratecVars ?? 0)?.['pref_attr']] ?? 0);
+        ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['ShoHeelPref'] = (((s as any).pref_ids ?? 0)?.[(((s as any).npcgeneratecVars ?? 0)?.['pref_attr'])] ?? 0);
         if (((s as any).npcgeneratecVars ?? 0)?.['attracted'] === 'dislike') {
           ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['preftype'] = ((s as any).prefdin3 ?? 0);
         }
@@ -1705,7 +1705,7 @@ function enterSetPreferences(s: GameState, scene: SceneBuilder): void {
     if ((Math.floor(Math.random() * 10) + 0) < 3) {
       ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['pref_attr'] = qspFunc(s, 'pcs_get_attr', 'cosmetics_piercings');
       if (((s as any).npcgeneratecVars ?? 0)?.['pref_attr'] !== '') {
-        ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['pierPref'] = (((s as any).pref_ids ?? 0)?.[((s as any).npcgeneratecVars ?? 0)?.['pref_attr']] ?? 0);
+        ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['pierPref'] = (((s as any).pref_ids ?? 0)?.[(((s as any).npcgeneratecVars ?? 0)?.['pref_attr'])] ?? 0);
         if (((s as any).npcgeneratecVars ?? 0)?.['attracted'] === 'dislike') {
           ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['preftype'] = ((s as any).prefdin3 ?? 0);
         }
@@ -1737,7 +1737,7 @@ function enterSetPreferences(s: GameState, scene: SceneBuilder): void {
     if ((Math.floor(Math.random() * 10) + 0) < 3) {
       ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['pref_attr'] = qspFunc(s, 'pcs_get_attr', 'cosmetics_tattoos');
       if (((s as any).npcgeneratecVars ?? 0)?.['pref_attr'] !== '') {
-        ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['tatPref'] = (((s as any).pref_ids ?? 0)?.[((s as any).npcgeneratecVars ?? 0)?.['pref_attr']] ?? 0);
+        ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['tatPref'] = (((s as any).pref_ids ?? 0)?.[(((s as any).npcgeneratecVars ?? 0)?.['pref_attr'])] ?? 0);
         if (((s as any).npcgeneratecVars ?? 0)?.['attracted'] === 'dislike') {
           ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['preftype'] = ((s as any).prefdin3 ?? 0);
         }
@@ -1765,7 +1765,7 @@ function enterSetPreferences(s: GameState, scene: SceneBuilder): void {
     if ((Math.floor(Math.random() * 10) + 0) < 3) {
       ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['pref_attr'] = qspFunc(s, 'pcs_get_attr', 'body_lips');
       if (((s as any).npcgeneratecVars ?? 0)?.['pref_attr'] !== '') {
-        ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['lipPref'] = (((s as any).pref_ids ?? 0)?.[((s as any).npcgeneratecVars ?? 0)?.['pref_attr']] ?? 0);
+        ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['lipPref'] = (((s as any).pref_ids ?? 0)?.[(((s as any).npcgeneratecVars ?? 0)?.['pref_attr'])] ?? 0);
         if (((s as any).npcgeneratecVars ?? 0)?.['attracted'] === 'dislike') {
           ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['preftype'] = ((s as any).prefdin3 ?? 0);
         }
@@ -1799,7 +1799,7 @@ function enterSetPreferences(s: GameState, scene: SceneBuilder): void {
     if (((s as any).npcgeneratecVars ?? 0)?.['attracted'] !== '') {
       ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['pref_attr'] = qspFunc(s, 'pcs_get_attr', 'cosmetics_makeup');
       if (((s as any).npcgeneratecVars ?? 0)?.['pref_attr'] !== '') {
-        ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['makeupPref'] = (((s as any).pref_ids ?? 0)?.[((s as any).npcgeneratecVars ?? 0)?.['pref_attr']] ?? 0);
+        ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['makeupPref'] = (((s as any).pref_ids ?? 0)?.[(((s as any).npcgeneratecVars ?? 0)?.['pref_attr'])] ?? 0);
         if (((s as any).npcgeneratecVars ?? 0)?.['attracted'] === 'dislike') {
           ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['preftype'] = ((s as any).prefdin3 ?? 0);
         }
@@ -1818,7 +1818,7 @@ function enterSetPreferences(s: GameState, scene: SceneBuilder): void {
     if ((Math.floor(Math.random() * 10) + 0) < 3) {
       ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['pref_attr'] = qspFunc(s, 'pcs_get_attr', 'hair_color');
       if (((s as any).npcgeneratecVars ?? 0)?.['pref_attr'] !== '') {
-        qspCall(s, 'npc_set_preference', '$ARGS[1]', ((s as any).npcgeneratecVars ?? 0)?.['pref_attr'], ((s as any).npcgeneratecVars ?? 0)?.['attracted']);
+        qspCall(s, 'npc_set_preference', '$ARGS[1]', (((s as any).npcgeneratecVars ?? 0)?.['pref_attr']), (((s as any).npcgeneratecVars ?? 0)?.['attracted']));
       }
     }
   }
@@ -1837,7 +1837,7 @@ function enterSetPreferences(s: GameState, scene: SceneBuilder): void {
     if ((Math.floor(Math.random() * 10) + 0) < 3) {
       ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['pref_attr'] = qspFunc(s, 'pcs_get_attr', 'stats_intel');
       if (((s as any).npcgeneratecVars ?? 0)?.['pref_attr'] !== '') {
-        ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['IQPref'] = (((s as any).pref_ids ?? 0)?.[((s as any).npcgeneratecVars ?? 0)?.['pref_attr']] ?? 0);
+        ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['IQPref'] = (((s as any).pref_ids ?? 0)?.[(((s as any).npcgeneratecVars ?? 0)?.['pref_attr'])] ?? 0);
         if (((s as any).npcgeneratecVars ?? 0)?.['attracted'] === 'dislike') {
           ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['preftype'] = ((s as any).prefdin3 ?? 0);
         }
@@ -1863,7 +1863,7 @@ function enterSetPreferences(s: GameState, scene: SceneBuilder): void {
     if ((Math.floor(Math.random() * 10) + 0) < 3) {
       ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['pref_attr'] = qspFunc(s, 'pcs_get_attr', 'stats_strength');
       if (((s as any).npcgeneratecVars ?? 0)?.['pref_attr'] !== '') {
-        ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['MusclePref'] = (((s as any).pref_ids ?? 0)?.[((s as any).npcgeneratecVars ?? 0)?.['pref_attr']] ?? 0);
+        ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['MusclePref'] = (((s as any).pref_ids ?? 0)?.[(((s as any).npcgeneratecVars ?? 0)?.['pref_attr'])] ?? 0);
         if (((s as any).npcgeneratecVars ?? 0)?.['attracted'] === 'dislike') {
           ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['preftype'] = ((s as any).prefdin3 ?? 0);
         }

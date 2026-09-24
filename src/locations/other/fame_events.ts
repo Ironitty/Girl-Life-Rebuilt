@@ -68,25 +68,25 @@ function enterBoy(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/shared/fame/boyapproaching1.jpg');
   if (((s as any).stat_visible_cum ?? 0) === 1) {
     // TODO-QSP: dynamic text: "Excuse me! <<$pcs_firstname>> <<$pcs_lastname>>?" you hear from behind you. Tur...
-    scene.text(`"Excuse me! ${((s as any).pcs_firstname ?? '')} ${((s as any).pcs_lastname ?? '')}?" you hear from behind you. Turning around, you see an excited boy few years younger than yourself coming towards you. "${((s as any).pcs_firstname ?? '')} ${((s as any).pcs_lastname ?? '')}! The ${((s as any).fame ?? 0)?.['noun'] ?? ''}? It is you, isn't it! You're so… uhh…" his voice falters as he notices the cum on you. He then gathers his courage and continues "so… uhh… cool!"`);
+    scene.text(`"Excuse me! ${((s as any).pcs_firstname ?? '')} ${((s as any).pcs_lastname ?? '')}?" you hear from behind you. Turning around, you see an excited boy few years younger than yourself coming towards you. "${((s as any).pcs_firstname ?? '')} ${((s as any).pcs_lastname ?? '')}! The ${(((s as any).fame ?? 0)?.['noun'] ?? '')}? It is you, isn't it! You're so… uhh…" his voice falters as he notices the cum on you. He then gathers his courage and continues "so… uhh… cool!"`);
   } else {
     if (((s as any).PCloThinness ?? 0) === 6  &&  (((s as any).braworntype ?? 0) === 'salacious'  ||  ((s as any).braworntype ?? 0) === 'none')) {
       // TODO-QSP: dynamic text: "Excuse me! <<$pcs_firstname>> <<$pcs_lastname>>?" you hear from behind you. Tur...
-      scene.text(`"Excuse me! ${((s as any).pcs_firstname ?? '')} ${((s as any).pcs_lastname ?? '')}?" you hear from behind you. Turning around, you see an excited boy few years younger than yourself coming towards you. "${((s as any).pcs_firstname ?? '')} ${((s as any).pcs_lastname ?? '')}! The ${((s as any).fame ?? 0)?.['noun'] ?? ''}? It is you, isn't it! You're so… uhh…" He trails off when he realizes that he can practically see straight through your top to your your breasts. His cheeks flush and he gulps heavily before managing to continue on in a stammer. "Uhh… great at, uh, ${((s as any).fame ?? 0)?.['activity'] ?? ''}…"`);
+      scene.text(`"Excuse me! ${((s as any).pcs_firstname ?? '')} ${((s as any).pcs_lastname ?? '')}?" you hear from behind you. Turning around, you see an excited boy few years younger than yourself coming towards you. "${((s as any).pcs_firstname ?? '')} ${((s as any).pcs_lastname ?? '')}! The ${(((s as any).fame ?? 0)?.['noun'] ?? '')}? It is you, isn't it! You're so… uhh…" He trails off when he realizes that he can practically see straight through your top to your your breasts. His cheeks flush and he gulps heavily before managing to continue on in a stammer. "Uhh… great at, uh, ${(((s as any).fame ?? 0)?.['activity'] ?? '')}…"`);
       scene.text('He smiles genuinely, but hesitantly and you can tell he\'s having a really hard time maintaining eye contact with you now. In fact, he\'s failing quite frequently.');
     } else {
       if (((s as any).PCloThinness ?? 0) === 5  &&  (((s as any).braworntype ?? 0) === 'salacious'  ||  ((s as any).braworntype ?? 0) === 'none')) {
         // TODO-QSP: dynamic text: "Excuse me! <<$pcs_firstname>> <<$pcs_lastname>>?" you hear from behind you. Tur...
-        scene.text(`"Excuse me! ${((s as any).pcs_firstname ?? '')} ${((s as any).pcs_lastname ?? '')}?" you hear from behind you. Turning around, you see an excited boy few years younger than yourself coming towards you. "${((s as any).pcs_firstname ?? '')} ${((s as any).pcs_lastname ?? '')}! The ${((s as any).fame ?? 0)?.['noun'] ?? ''}? It is you, isn't it! You're so…" He trails off for a brief moment and you see his eyes flicker downward for a moment before snapping back up. It was just a small twitch, but you suddenly feel very aware of how thin your top is and how certain things might be "poking" out.`);
+        scene.text(`"Excuse me! ${((s as any).pcs_firstname ?? '')} ${((s as any).pcs_lastname ?? '')}?" you hear from behind you. Turning around, you see an excited boy few years younger than yourself coming towards you. "${((s as any).pcs_firstname ?? '')} ${((s as any).pcs_lastname ?? '')}! The ${(((s as any).fame ?? 0)?.['noun'] ?? '')}? It is you, isn't it! You're so…" He trails off for a brief moment and you see his eyes flicker downward for a moment before snapping back up. It was just a small twitch, but you suddenly feel very aware of how thin your top is and how certain things might be "poking" out.`);
         scene.text('"Sorry," he stammers on, clearly embarrassed that you noticed his glance. "I just wanted to say that you\'re so cool!"');
       } else {
         if (((s as any).PCloThinness ?? 0) === 6) {
           // TODO-QSP: dynamic text: "Excuse me! <<$pcs_firstname>> <<$pcs_lastname>>?" you hear from behind you. Tur...
-          scene.text(`"Excuse me! ${((s as any).pcs_firstname ?? '')} ${((s as any).pcs_lastname ?? '')}?" you hear from behind you. Turning around, you see an excited boy few years younger than yourself coming towards you. "${((s as any).pcs_firstname ?? '')} ${((s as any).pcs_lastname ?? '')}! The ${((s as any).fame ?? 0)?.['noun'] ?? ''}? It is you, isn't it! You're so cool!"`);
+          scene.text(`"Excuse me! ${((s as any).pcs_firstname ?? '')} ${((s as any).pcs_lastname ?? '')}?" you hear from behind you. Turning around, you see an excited boy few years younger than yourself coming towards you. "${((s as any).pcs_firstname ?? '')} ${((s as any).pcs_lastname ?? '')}! The ${(((s as any).fame ?? 0)?.['noun'] ?? '')}? It is you, isn't it! You're so cool!"`);
           scene.text('He grins widely though it falters for a moment when his eyes grow wide, staring at your lewd outfit.');
         } else {
           // TODO-QSP: dynamic text: "Excuse me! <<$pcs_firstname>> <<$pcs_lastname>>?" you hear from behind you. Tur...
-          scene.text(`"Excuse me! ${((s as any).pcs_firstname ?? '')} ${((s as any).pcs_lastname ?? '')}?" you hear from behind you. Turning around, you see an excited boy few years younger than yourself coming towards you. "${((s as any).pcs_firstname ?? '')} ${((s as any).pcs_lastname ?? '')}! The ${((s as any).fame ?? 0)?.['noun'] ?? ''}? It is you, isn't it! You're so cool!"`);
+          scene.text(`"Excuse me! ${((s as any).pcs_firstname ?? '')} ${((s as any).pcs_lastname ?? '')}?" you hear from behind you. Turning around, you see an excited boy few years younger than yourself coming towards you. "${((s as any).pcs_firstname ?? '')} ${((s as any).pcs_lastname ?? '')}! The ${(((s as any).fame ?? 0)?.['noun'] ?? '')}? It is you, isn't it! You're so cool!"`);
         }
       }
     }
@@ -120,7 +120,7 @@ function enterBoy(s: GameState, scene: SceneBuilder): void {
     if (((st as any).fame ?? 0)?.['activity'] === 'singing') {
       qspCall(st, 'fame', '$ARGS[1]', 'music', 'medium');
     } else {
-      qspCall(st, 'fame', '$ARGS[1]', '' + ((st as any).fame ?? 0)?.['activity'] + '', 'medium');
+      qspCall(st, 'fame', '$ARGS[1]', '' + (((st as any).fame ?? 0)?.['activity']) + '', 'medium');
     }
     qspCall(st, 'stat', '');
     scene.img('images/locations/shared/fame/boyselfie1.jpg');
@@ -147,7 +147,7 @@ function enterBoy(s: GameState, scene: SceneBuilder): void {
       }
     }
     // TODO-QSP: dynamic text: "Thank you! Thank you! Thank you so much!" he says elatedly. "You are the best! ...
-    scene.text(`"Thank you! Thank you! Thank you so much!" he says elatedly. "You are the best! I will be cheering for you whenever you are ${((st as any).fame ?? 0)?.['activity'] ?? ''}" looking like he's just gotten his greatest wish fulfilled as you happily go on with your day. It seems all your hard work is finally starting to pay off.`);
+    scene.text(`"Thank you! Thank you! Thank you so much!" he says elatedly. "You are the best! I will be cheering for you whenever you are ${(((st as any).fame ?? 0)?.['activity'] ?? '')}" looking like he's just gotten his greatest wish fulfilled as you happily go on with your day. It seems all your hard work is finally starting to pay off.`);
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
     dynamicGoto(st, 'prevLoc', 'prevArg');
@@ -158,7 +158,7 @@ function enterBoy(s: GameState, scene: SceneBuilder): void {
     if (((st as any).fame ?? 0)?.['activity'] === 'singing') {
       qspCall(st, 'fame', '$ARGS[1]', 'music', (-50));
     } else {
-      qspCall(st, 'fame', '$ARGS[1]', '' + ((st as any).fame ?? 0)?.['activity'] + '', (-50));
+      qspCall(st, 'fame', '$ARGS[1]', '' + (((st as any).fame ?? 0)?.['activity']) + '', (-50));
     }
     (st as any).minut = ((st as any).minut ?? 0) + 2;
     qspCall(st, 'stat', '');
@@ -196,25 +196,25 @@ function enterGirl(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if (((s as any).stat_visible_cum ?? 0) === 1) {
     // TODO-QSP: dynamic text: "Excuse me! <<$pcs_firstname>> <<$pcs_lastname>>?" you hear from behind you. Tur...
-    scene.text(`"Excuse me! ${((s as any).pcs_firstname ?? '')} ${((s as any).pcs_lastname ?? '')}?" you hear from behind you. Turning around, you see an excited girl few years younger than yourself coming towards you. "${((s as any).pcs_firstname ?? '')} ${((s as any).pcs_lastname ?? '')}! The ${((s as any).fame ?? 0)?.['noun'] ?? ''}? It is you, isn't it! You're so… uhh…" her voice falters as she notices the cum on you. She then gathers her courage and continues "so… uhh… cool…"`);
+    scene.text(`"Excuse me! ${((s as any).pcs_firstname ?? '')} ${((s as any).pcs_lastname ?? '')}?" you hear from behind you. Turning around, you see an excited girl few years younger than yourself coming towards you. "${((s as any).pcs_firstname ?? '')} ${((s as any).pcs_lastname ?? '')}! The ${(((s as any).fame ?? 0)?.['noun'] ?? '')}? It is you, isn't it! You're so… uhh…" her voice falters as she notices the cum on you. She then gathers her courage and continues "so… uhh… cool…"`);
   } else {
     if (((s as any).PCloThinness ?? 0) === 6  &&  (((s as any).braworntype ?? 0) === 'salacious'  ||  ((s as any).braworntype ?? 0) === 'none')) {
       // TODO-QSP: dynamic text: "Excuse me! <<$pcs_firstname>> <<$pcs_lastname>>?" you hear from behind you. Tur...
-      scene.text(`"Excuse me! ${((s as any).pcs_firstname ?? '')} ${((s as any).pcs_lastname ?? '')}?" you hear from behind you. Turning around, you see an excited girl few years younger than yourself coming towards you. "${((s as any).pcs_firstname ?? '')} ${((s as any).pcs_lastname ?? '')}! The ${((s as any).fame ?? 0)?.['noun'] ?? ''}? It is you, isn't it! You're so… uhh…" She trails off when she realizes that she can practically see straight through your top. Her cheeks flush and she gulps heavily before managing to continue on in a stammer. "Uhh… great at, uh, ${((s as any).fame ?? 0)?.['activity'] ?? ''}…"`);
+      scene.text(`"Excuse me! ${((s as any).pcs_firstname ?? '')} ${((s as any).pcs_lastname ?? '')}?" you hear from behind you. Turning around, you see an excited girl few years younger than yourself coming towards you. "${((s as any).pcs_firstname ?? '')} ${((s as any).pcs_lastname ?? '')}! The ${(((s as any).fame ?? 0)?.['noun'] ?? '')}? It is you, isn't it! You're so… uhh…" She trails off when she realizes that she can practically see straight through your top. Her cheeks flush and she gulps heavily before managing to continue on in a stammer. "Uhh… great at, uh, ${(((s as any).fame ?? 0)?.['activity'] ?? '')}…"`);
       scene.text('Her blush deepens even more, very pointedly staring at your face, seemingly trying to pretend she doesn\'t notice your breasts fully on display in front of her face.');
     } else {
       if (((s as any).PCloThinness ?? 0) === 5  &&  (((s as any).braworntype ?? 0) === 'salacious'  ||  ((s as any).braworntype ?? 0) === 'none')) {
         // TODO-QSP: dynamic text: "Excuse me! <<$pcs_firstname>> <<$pcs_lastname>>?" you hear from behind you. Tur...
-        scene.text(`"Excuse me! ${((s as any).pcs_firstname ?? '')} ${((s as any).pcs_lastname ?? '')}?" you hear from behind you. Turning around, you see an excited girl few years younger than yourself coming towards you. "${((s as any).pcs_firstname ?? '')} ${((s as any).pcs_lastname ?? '')}! The ${((s as any).fame ?? 0)?.['noun'] ?? ''}? It is you, isn't it! You're so…" She trails off for a brief moment and you see her eyes flicker downward for a moment before snapping back up. It was just a small twitch, but you suddenly feel very aware of how thin your top is and how certain things might be "poking" out.`);
+        scene.text(`"Excuse me! ${((s as any).pcs_firstname ?? '')} ${((s as any).pcs_lastname ?? '')}?" you hear from behind you. Turning around, you see an excited girl few years younger than yourself coming towards you. "${((s as any).pcs_firstname ?? '')} ${((s as any).pcs_lastname ?? '')}! The ${(((s as any).fame ?? 0)?.['noun'] ?? '')}? It is you, isn't it! You're so…" She trails off for a brief moment and you see her eyes flicker downward for a moment before snapping back up. It was just a small twitch, but you suddenly feel very aware of how thin your top is and how certain things might be "poking" out.`);
         scene.text('"Sorry," she stammers on, clearly embarrassed that you noticed her glance. "I just wanted to say that you\'re so cool!"');
       } else {
         if (((s as any).PCloThinness ?? 0) === 6) {
           // TODO-QSP: dynamic text: "Excuse me! <<$pcs_firstname>> <<$pcs_lastname>>?" you hear from behind you. Tur...
-          scene.text(`"Excuse me! ${((s as any).pcs_firstname ?? '')} ${((s as any).pcs_lastname ?? '')}?" you hear from behind you. Turning around, you see an excited girl few years younger than yourself coming towards you. "${((s as any).pcs_firstname ?? '')} ${((s as any).pcs_lastname ?? '')}! The ${((s as any).fame ?? 0)?.['noun'] ?? ''}? It is you, isn't it! You're so cool!"`);
+          scene.text(`"Excuse me! ${((s as any).pcs_firstname ?? '')} ${((s as any).pcs_lastname ?? '')}?" you hear from behind you. Turning around, you see an excited girl few years younger than yourself coming towards you. "${((s as any).pcs_firstname ?? '')} ${((s as any).pcs_lastname ?? '')}! The ${(((s as any).fame ?? 0)?.['noun'] ?? '')}? It is you, isn't it! You're so cool!"`);
           scene.text('She grins widely though it falters for a moment when her eyes grow wide, staring at your lewd outfit.');
         } else {
           // TODO-QSP: dynamic text: "Excuse me! <<$pcs_firstname>> <<$pcs_lastname>>?" you hear from behind you. Tur...
-          scene.text(`"Excuse me! ${((s as any).pcs_firstname ?? '')} ${((s as any).pcs_lastname ?? '')}?" you hear from behind you. Turning around, you see an excited girl few years younger than yourself coming towards you. "${((s as any).pcs_firstname ?? '')} ${((s as any).pcs_lastname ?? '')}! The ${((s as any).fame ?? 0)?.['noun'] ?? ''}? It is you, isn't it! You're so cool!"`);
+          scene.text(`"Excuse me! ${((s as any).pcs_firstname ?? '')} ${((s as any).pcs_lastname ?? '')}?" you hear from behind you. Turning around, you see an excited girl few years younger than yourself coming towards you. "${((s as any).pcs_firstname ?? '')} ${((s as any).pcs_lastname ?? '')}! The ${(((s as any).fame ?? 0)?.['noun'] ?? '')}? It is you, isn't it! You're so cool!"`);
         }
       }
     }
@@ -247,7 +247,7 @@ function enterGirl(s: GameState, scene: SceneBuilder): void {
     if (((st as any).fame ?? 0)?.['activity'] === 'singing') {
       qspCall(st, 'fame', '$ARGS[1]', 'music', 'medium');
     } else {
-      qspCall(st, 'fame', '$ARGS[1]', '' + ((st as any).fame ?? 0)?.['activity'] + '', 'medium');
+      qspCall(st, 'fame', '$ARGS[1]', '' + (((st as any).fame ?? 0)?.['activity']) + '', 'medium');
     }
     qspCall(st, 'stat', '');
     scene.text('"Of course!" you say, scooching over towards her.');
@@ -273,7 +273,7 @@ function enterGirl(s: GameState, scene: SceneBuilder): void {
       }
     }
     // TODO-QSP: dynamic text: "Thank you! Thank you! Thank you so much!" she says elatedly. "You are the best!...
-    scene.text(`"Thank you! Thank you! Thank you so much!" she says elatedly. "You are the best! I will be cheering for you whenever you are ${((st as any).fame ?? 0)?.['activity'] ?? ''}" looking like she's just gotten her greatest wish fulfilled as you happily go on with your day. It seems all your hard work is finally starting to pay off.`);
+    scene.text(`"Thank you! Thank you! Thank you so much!" she says elatedly. "You are the best! I will be cheering for you whenever you are ${(((st as any).fame ?? 0)?.['activity'] ?? '')}" looking like she's just gotten her greatest wish fulfilled as you happily go on with your day. It seems all your hard work is finally starting to pay off.`);
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
     dynamicGoto(st, 'prevLoc', 'prevArg');
@@ -284,7 +284,7 @@ function enterGirl(s: GameState, scene: SceneBuilder): void {
     if (((st as any).fame ?? 0)?.['activity'] === 'singing') {
       qspCall(st, 'fame', '$ARGS[1]', 'music', (-50));
     } else {
-      qspCall(st, 'fame', '$ARGS[1]', '' + ((st as any).fame ?? 0)?.['activity'] + '', (-50));
+      qspCall(st, 'fame', '$ARGS[1]', '' + (((st as any).fame ?? 0)?.['activity']) + '', (-50));
     }
     (st as any).minut = ((st as any).minut ?? 0) + 2;
     qspCall(st, 'stat', '');

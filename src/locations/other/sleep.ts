@@ -84,9 +84,9 @@ function enterCalcMinutesToWakeup(s: GameState, scene: SceneBuilder): void {
     if (((s as any).sleepVars ?? 0)?.['time_now'] > ((s as any).sleepVars ?? 0)?.['alarm_time']) {
       ((s as any).sleepVars = (s as any).sleepVars ?? {})['alarm_time'] = ((s as any).sleepVars['alarm_time'] ?? 0) + (1440);
     }
-    ((s as any).sleepVars = (s as any).sleepVars ?? {})['minutes_to_wakeup'] = Math.min(((s as any).sleepVars ?? 0)?.['time_to_full'], (((s as any).sleepVars ?? {})?.['alarm_time'] ?? 0) - (((s as any).sleepVars ?? {})?.['time_now'] ?? 0));
+    ((s as any).sleepVars = (s as any).sleepVars ?? {})['minutes_to_wakeup'] = Math.min((((s as any).sleepVars ?? 0)?.['time_to_full']), (((s as any).sleepVars ?? {})?.['alarm_time'] ?? 0) - (((s as any).sleepVars ?? {})?.['time_now'] ?? 0));
   } else {
-    ((s as any).sleepVars = (s as any).sleepVars ?? {})['minutes_to_wakeup'] = ((s as any).sleepVars ?? 0)?.['time_to_full'];
+    ((s as any).sleepVars = (s as any).sleepVars ?? {})['minutes_to_wakeup'] = (((s as any).sleepVars ?? 0)?.['time_to_full']);
   }
   // TODO-QSP: end
   scene.build();

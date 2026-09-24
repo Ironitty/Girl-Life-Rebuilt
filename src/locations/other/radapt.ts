@@ -1006,19 +1006,19 @@ function enterFirstvisit(s: GameState, scene: SceneBuilder): void {
   ((s as any).locat = (s as any).locat ?? {})['A154'] = 20;
   if (((s as any).hour ?? 0) < 16) {
     ((s as any).locat = (s as any).locat ?? {})['154_rand1'] = ((s as any).daystart ?? 0);
-    ((s as any).locat = (s as any).locat ?? {})['154_save1'] = ((s as any).locat ?? 0)?.['154'];
+    ((s as any).locat = (s as any).locat ?? {})['154_save1'] = (((s as any).locat ?? 0)?.['154']);
   } else {
     if (((s as any).hour ?? 0) < 18) {
       ((s as any).locat = (s as any).locat ?? {})['154_rand2'] = ((s as any).daystart ?? 0);
-      ((s as any).locat = (s as any).locat ?? {})['154_save2'] = ((s as any).locat ?? 0)?.['154'];
+      ((s as any).locat = (s as any).locat ?? {})['154_save2'] = (((s as any).locat ?? 0)?.['154']);
     } else {
       if (((s as any).hour ?? 0) < 20) {
         ((s as any).locat = (s as any).locat ?? {})['154_rand3'] = ((s as any).daystart ?? 0);
-        ((s as any).locat = (s as any).locat ?? {})['154_save3'] = ((s as any).locat ?? 0)?.['154'];
+        ((s as any).locat = (s as any).locat ?? {})['154_save3'] = (((s as any).locat ?? 0)?.['154']);
       } else {
         if (((s as any).hour ?? 0) < 22) {
           ((s as any).locat = (s as any).locat ?? {})['154_rand4'] = ((s as any).daystart ?? 0);
-          ((s as any).locat = (s as any).locat ?? {})['154_save4'] = ((s as any).locat ?? 0)?.['154'];
+          ((s as any).locat = (s as any).locat ?? {})['154_save4'] = (((s as any).locat ?? 0)?.['154']);
         }
       }
     }

@@ -171,8 +171,8 @@ function enterMall(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Go to sleep', handler: (st: GameState) => {
     qspCall(st, 'outfit', 'strip_all');
-    (st as any).loc = ((st as any).home ?? 0)?.['bedroom'];
-    (st as any).loc_arg = ((st as any).home ?? 0)?.['bedroom_arg'];
+    (st as any).loc = (((st as any).home ?? 0)?.['bedroom']);
+    (st as any).loc_arg = (((st as any).home ?? 0)?.['bedroom_arg']);
     // TODO-QSP: MarishaQW["marisha_sleepover"] = 1
     qspCall(st, 'stat', '');
     qspGoto(st, 'pre_sleep', 'prepare_sleep');
@@ -188,8 +188,8 @@ function enterMall(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Go to sleep', handler: (st: GameState) => {
     qspCall(st, 'outfit', 'strip_all');
-    (st as any).loc = ((st as any).home ?? 0)?.['bedroom'];
-    (st as any).loc_arg = ((st as any).home ?? 0)?.['bedroom_arg'];
+    (st as any).loc = (((st as any).home ?? 0)?.['bedroom']);
+    (st as any).loc_arg = (((st as any).home ?? 0)?.['bedroom_arg']);
     // TODO-QSP: MarishaQW["marisha_sleepover"] = 1
     qspCall(st, 'stat', '');
     qspGoto(st, 'pre_sleep', 'prepare_sleep');

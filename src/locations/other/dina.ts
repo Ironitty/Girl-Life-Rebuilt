@@ -138,7 +138,7 @@ function enterHypnoAddiction(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'mood', 'lower', 'small');
       } else {
         if ((!(Math.floor(Math.random() * 2) + 0))) {
-          qspCall(s, 'exp_deg', 'sprt', ((s as any).trait_vars ?? 0)?.['cum_addict']);
+          qspCall(s, 'exp_deg', 'sprt', (((s as any).trait_vars ?? 0)?.['cum_addict']));
         }
         qspCall(s, 'mood', 'lower', 'tiny');
       }

@@ -805,7 +805,7 @@ function enterVasilyBazarNight(s: GameState, scene: SceneBuilder): void {
                     } else {
                       if (((st as any).temp_rand ?? 0) === 7) {
                         // TODO-QSP: dynamic text: "Do you like anal now <<$pcs_nickname>>? Does it hurt, or does it give you pleas...
-                        scene.text(`"Do you like anal now ${((st as any).pcs_nickname ?? '')}? Does it hurt, or does it give you pleasure?" Vasily asks.<br> "My ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''} has a dildo in her closet. I could get it if you want to find out for yourself…" you say laughing.<br> "Yeah, I'll pass," he says dryly.<br> "Party pooper," you say while sticking out your tongue at him.`);
+                        scene.text(`"Do you like anal now ${((st as any).pcs_nickname ?? '')}? Does it hurt, or does it give you pleasure?" Vasily asks.<br> "My ${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')} has a dildo in her closet. I could get it if you want to find out for yourself…" you say laughing.<br> "Yeah, I'll pass," he says dryly.<br> "Party pooper," you say while sticking out your tongue at him.`);
                       } else {
                         if (((st as any).temp_rand ?? 0) === 8) {
                           scene.text('"What\'s your favorite position?" Vasily asks.<br> "Comfortable," you answer laughing.<br> All the boys join in laughing.');
@@ -932,7 +932,7 @@ function enterDanBazar(s: GameState, scene: SceneBuilder): void {
       (st as any).den_textb = 'Dan asks you to grab him a beer. When you return from the kitchen with his beer, he politely asks you to open it for him. Rolling your eyes, you crack it open and hand it over to him. <br>"Thanks ' + ((st as any).pcs_nickname ?? 0) + '. You\'re going to make a fine little wife," Dan laughs.<br> You give him a kick in the shin before turning to leave. He just laughs, and sends you on your way with a smack on the ass.';
     }
     if (((st as any).temp_rand ?? 0) === 4) {
-      (st as any).den_textb = '"' + ((st as any).pcs_nickname ?? 0) + ', if you\'re looking for work I hear the hotel is hiring. They have a job opening for a ' + ((st as any).pc_desc ?? 0)?.['lips'] + ' set of lips," Dan says.<br> You flick your hand between his legs, and he lets out a sharp cry of pain. "Thanks for the tip asshole," you smile back at him.';
+      (st as any).den_textb = '"' + ((st as any).pcs_nickname ?? 0) + ', if you\'re looking for work I hear the hotel is hiring. They have a job opening for a ' + (((st as any).pc_desc ?? 0)?.['lips']) + ' set of lips," Dan says.<br> You flick your hand between his legs, and he lets out a sharp cry of pain. "Thanks for the tip asshole," you smile back at him.';
     }
     if (((st as any).temp_rand ?? 0) === 5) {
       (st as any).den_textb = 'Dan gives you his opinion on religion. "A church is no fit place for a woman on her knees. That should be reserved for places like alleys, bathrooms and living rooms. Speaking of which; ' + ((st as any).pcs_nickname ?? 0) + ', would you be a dear?"<br>  You walk away shaking your head before he can finish.';
@@ -948,7 +948,7 @@ function enterDanBazar(s: GameState, scene: SceneBuilder): void {
       if (((st as any).soniaQW ?? 0)?.['slut'] <= 0) {
         (st as any).den_textb_gorslut = 'Dan is idly going on about what a good girl Sonia is when he turns to you and says "Hey ' + ((st as any).pcs_nickname ?? 0) + ', you\'re friends with Sonia, right?"<br>  "Not this again, Dan…" you say with a weary sigh.<br> "Oh, come on! You both like to have a good time. It could be a lot of fun," he replies.<br> You stop him right there. "Listen Dan. I like Sonia, but she has a look in her eyes lately that makes me nervous. Besides, any girl willing to sleep with you has to be half mad. Getting two of us in the same room might be more than you could handle…" You give him a little sway of your hips as you walk away.';
       } else {
-        (st as any).den_textb_gorslut = 'Dan mockingly issues you a challenge.<br> "' + ((st as any).pcs_nickname ?? 0) + ', I can\'t decide if I prefer your cute set of ' + ((st as any).pc_desc ?? 0)?.['lips'] + ' lipss or Sonia\'s. We need to all get together to find out who has the best skills. I have a warm wet surprise for the winner."<br> "Dream on!" you say while shaking your head, though you do wonder if you might be able to best her.';
+        (st as any).den_textb_gorslut = 'Dan mockingly issues you a challenge.<br> "' + ((st as any).pcs_nickname ?? 0) + ', I can\'t decide if I prefer your cute set of ' + (((st as any).pc_desc ?? 0)?.['lips']) + ' lipss or Sonia\'s. We need to all get together to find out who has the best skills. I have a warm wet surprise for the winner."<br> "Dream on!" you say while shaking your head, though you do wonder if you might be able to best her.';
       }
     }
     if (((st as any).temp_rand ?? 0) === 2) {
@@ -975,7 +975,7 @@ function enterDanBazar(s: GameState, scene: SceneBuilder): void {
     }
     if (((st as any).bazar_count_den ?? 0) <= 0) {
       // TODO-QSP: dynamic text: "Be quiet, <<$pcs_nickname>>! That''s enough talk out of you tonight. Leave me i...
-      scene.text(`"Be quiet, ${((st as any).pcs_nickname ?? '')}! That's enough talk out of you tonight. Leave me in peace, unless you want to put those ${((st as any).pc_desc ?? 0)?.['lips'] ?? ''} lips to better use," he says.`);
+      scene.text(`"Be quiet, ${((st as any).pcs_nickname ?? '')}! That's enough talk out of you tonight. Leave me in peace, unless you want to put those ${(((st as any).pc_desc ?? 0)?.['lips'] ?? '')} lips to better use," he says.`);
     } else {
       if (((st as any).fame ?? 0)?.['pav_slut'] < 200) {
         // TODO-QSP: dynamic text: <<$den_textb>>

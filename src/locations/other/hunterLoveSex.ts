@@ -207,7 +207,7 @@ function enterDinHuntersBjH2(s: GameState, scene: SceneBuilder): void {
   scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/shared/sex/blowjob/kotovbj2` + (Math.floor(Math.random() * 7) + 0) + '.mp4"></video></center>');
   (s as any).h = (Math.floor(Math.random() * 3) + 1);
   // TODO-QSP: dynamic text: You <<$textsexkotov>>, and tightly clench your <<$pc_desc[''lips'']>> lips 
-  scene.text(`You ${((s as any).textsexkotov ?? '')}, and tightly clench your ${((s as any).pc_desc ?? 0)?.['lips'] ?? ''} lips `);
+  scene.text(`You ${((s as any).textsexkotov ?? '')}, and tightly clench your ${(((s as any).pc_desc ?? 0)?.['lips'] ?? '')} lips `);
   scene.text('The tenderness of your lips is driving him crazy');
   qspCall(s, 'arousal', 'foreplay', 5, 'sub');
   if (((s as any).hunterVars ?? 0)?.['bj_times'] < 3) {
@@ -340,7 +340,7 @@ function enterDinHuntersBjH3(s: GameState, scene: SceneBuilder): void {
   scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/shared/sex/blowjob/kotovbj3` + (Math.floor(Math.random() * 2) + 0) + '.mp4"></video></center>');
   (s as any).h = (Math.floor(Math.random() * 3) + 1);
   // TODO-QSP: dynamic text: You cover his cock with sweet kisses, gently touching your <<$pc_desc[''lips'']>...
-  scene.text(`You cover his cock with sweet kisses, gently touching your ${((s as any).pc_desc ?? 0)?.['lips'] ?? ''} lips`);
+  scene.text(`You cover his cock with sweet kisses, gently touching your ${(((s as any).pc_desc ?? 0)?.['lips'] ?? '')} lips`);
   qspCall(s, 'arousal', 'foreplay', 5, 'sub');
   if (((s as any).hunterVars ?? 0)?.['bj_times'] < 3) {
     scene.text('You slightly <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027hunterLoveSex/u0027, /u0027din_hunters_bj_bonusH3/u0027); return false;"> tease</a> his member');
@@ -6672,7 +6672,7 @@ function enterDinHuntersSexKuni(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
   if (((s as any).hunterVars ?? 0)?.['kuni'] === 0) {
-    scene.text(`<center><b>${((s as any).npc_firstname ?? 0)?.['A9'] ?? ''} ${((s as any).npc_lastname ?? 0)?.['A9'] ?? ''}</b></center>`);
+    scene.text(`<center><b>${(((s as any).npc_firstname ?? 0)?.['A9'] ?? '')} ${(((s as any).npc_lastname ?? 0)?.['A9'] ?? '')}</b></center>`);
     scene.img('images/shared/sex/oface/kotovecho.mp4');
     if (((s as any).pcs_horny ?? 0) >= 80) {
       // TODO-QSP: dynamic text: <<$boydesc>> refuses to lick your pussy.
@@ -7902,7 +7902,7 @@ function enterDinHuntersBjBonus7(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><h4>Hut</h4></center>');
   scene.img('images/shared/sex/blowjob/kotovbjbonus7.mp4');
   // TODO-QSP: dynamic text: You continue to play with his balls hugging them <<$pc_desc[''lips'']>> lips. Yo...
-  scene.text(`You continue to play with his balls hugging them ${((s as any).pc_desc ?? 0)?.['lips'] ?? ''} lips. You put them in your mouth and use your tongue to tease them as you suck each one separately.`);
+  scene.text(`You continue to play with his balls hugging them ${(((s as any).pc_desc ?? 0)?.['lips'] ?? '')} lips. You put them in your mouth and use your tongue to tease them as you suck each one separately.`);
   scene.text('-Fuck, baby, don\'t stop!');
   qspCall(s, 'arousal', 'foreplay', 5, 'sub');
   qspCall(s, 'stat', '');
@@ -8536,7 +8536,7 @@ function enterDinHuntersBj3(s: GameState, scene: SceneBuilder): void {
   scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/shared/sex/blowjob/kotovbj3` + (Math.floor(Math.random() * 2) + 0) + '.mp4"></video></center>');
   (s as any).h = (Math.floor(Math.random() * 3) + 1);
   // TODO-QSP: dynamic text: You sweetly kiss at his shaft and cock head, gently rubbing his member against y...
-  scene.text(`You sweetly kiss at his shaft and cock head, gently rubbing his member against your ${((s as any).pc_desc ?? 0)?.['lips'] ?? ''} lips`);
+  scene.text(`You sweetly kiss at his shaft and cock head, gently rubbing his member against your ${(((s as any).pc_desc ?? 0)?.['lips'] ?? '')} lips`);
   qspCall(s, 'arousal', 'foreplay', 5, 'sub');
   if (((s as any).hunterVars ?? 0)?.['bj_times'] < 3) {
     scene.text('You slightly <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027hunterLoveSex/u0027, /u0027din_hunters_bj_bonus3/u0027); return false;">tease</a> his member');
@@ -8698,7 +8698,7 @@ function enterDinHuntersBj2(s: GameState, scene: SceneBuilder): void {
   scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/shared/sex/blowjob/kotovbj2` + (Math.floor(Math.random() * 7) + 0) + '.mp4"></video></center>');
   (s as any).h = (Math.floor(Math.random() * 3) + 1);
   // TODO-QSP: dynamic text: You <<$textsexkotov>>, and tightly clench your <<$pc_desc[''lips'']>> lips 
-  scene.text(`You ${((s as any).textsexkotov ?? '')}, and tightly clench your ${((s as any).pc_desc ?? 0)?.['lips'] ?? ''} lips `);
+  scene.text(`You ${((s as any).textsexkotov ?? '')}, and tightly clench your ${(((s as any).pc_desc ?? 0)?.['lips'] ?? '')} lips `);
   scene.text('The tenderness of your lips is driving him crazy');
   qspCall(s, 'arousal', 'bj', 5, 'sub');
   if (((s as any).hunterVars ?? 0)?.['bj_times'] < 3) {
@@ -9155,7 +9155,7 @@ function enterIgor(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic text: -<<$pcs_nickname>>, I want to be the first man inside you. It will only hurt you...
       scene.text(`-${((st as any).pcs_nickname ?? '')}, I want to be the first man inside you. It will only hurt you a little and I promise to be gentle.`);
       // TODO-QSP: dynamic text: -<<$boydesc>>, honey, I really want to, but if <<$npc_nickname[''A29'']>> finds ...
-      scene.text(`-${((st as any).boydesc ?? '')}, honey, I really want to, but if ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''} finds out, she is going to kill me.`);
+      scene.text(`-${((st as any).boydesc ?? '')}, honey, I really want to, but if ${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')} finds out, she is going to kill me.`);
       scene.text('-Well… you know? I will say that we\'re serious, that we\'re in love and everything else…');
     }
     if (((st as any).hunterVars ?? 0)?.['IgorQW'] <= 45) {
@@ -9417,9 +9417,9 @@ function enterAndrei(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: -<<$pcs_nickname>>, I want to be your first, and I''m not gonna hurt you, I prom...
     scene.text(`-${((st as any).pcs_nickname ?? '')}, I want to be your first, and I'm not gonna hurt you, I promise.`);
     // TODO-QSP: dynamic text: -<<$boydesc>>, honey, I really want to, but if my <<$npc_nickname[''A29'']>> fin...
-    scene.text(`-${((st as any).boydesc ?? '')}, honey, I really want to, but if my ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''} finds out, she is going to kill me, you reply.`);
+    scene.text(`-${((st as any).boydesc ?? '')}, honey, I really want to, but if my ${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')} finds out, she is going to kill me, you reply.`);
     // TODO-QSP: dynamic text: -Well, you know what? In short, it''s either your <<$npc_nickname[''A29'']>> or ...
-    scene.text(`-Well, you know what? In short, it's either your ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''} or me…`);
+    scene.text(`-Well, you know what? In short, it's either your ${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')} or me…`);
     scene.actions([
       { label: 'To lose innocence', goto: ['hunterLoveSex', 'din_hunters_first_sex'] },
       { label: 'Part with a guy', handler: (st: GameState) => {
@@ -9648,7 +9648,7 @@ function enterSergei(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic text: -<<$pcs_nickname>>, I want to be your first, I won''t hurt you.
       scene.text(`-${((st as any).pcs_nickname ?? '')}, I want to be your first, I won't hurt you.`);
       // TODO-QSP: dynamic text: -<<$boydesc>>, honey, I really want to, but if my <<$npc_nickname[''A29'']>> fin...
-      scene.text(`-${((st as any).boydesc ?? '')}, honey, I really want to, but if my ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''} finds out, she is going to kill me.`);
+      scene.text(`-${((st as any).boydesc ?? '')}, honey, I really want to, but if my ${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')} finds out, she is going to kill me.`);
       scene.text('-Well, if she does just tell her that we love each other');
     }
     if (((st as any).hunterVars ?? 0)?.['SergeiQw'] <= 35) {

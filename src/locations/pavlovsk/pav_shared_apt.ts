@@ -73,12 +73,12 @@ function enterDailyUpdate(s: GameState, scene: SceneBuilder): void {
       }
       if (((s as any).shared_apt ?? 0)?.['weekNum'] >= ((s as any).shared_apt ?? 0)?.['rentWeekNum']) {
         if (((s as any).shared_apt ?? 0)?.['rentLeft'] > 0) {
-          ((s as any).shared_apt = (s as any).shared_apt ?? {})['rentLeft'] = ((s as any).shared_apt['rentLeft'] ?? 0) + (((s as any).shared_apt ?? 0)?.['rentWeekly']);
+          ((s as any).shared_apt = (s as any).shared_apt ?? {})['rentLeft'] = ((s as any).shared_apt['rentLeft'] ?? 0) + ((((s as any).shared_apt ?? 0)?.['rentWeekly']));
           ((s as any).shared_apt = (s as any).shared_apt ?? {})['missedWeeks'] = ((s as any).shared_apt['missedWeeks'] ?? 0) + (1);
           ((s as any).shared_apt = (s as any).shared_apt ?? {})['Lockrent'] = 1;
           ((s as any).shared_apt = (s as any).shared_apt ?? {})['rentPaid'] = 0;
         } else {
-          ((s as any).shared_apt = (s as any).shared_apt ?? {})['rentLeft'] = ((s as any).shared_apt ?? 0)?.['rentWeekly'];
+          ((s as any).shared_apt = (s as any).shared_apt ?? {})['rentLeft'] = (((s as any).shared_apt ?? 0)?.['rentWeekly']);
           ((s as any).shared_apt = (s as any).shared_apt ?? {})['missedWeeks'] = 0;
           ((s as any).shared_apt = (s as any).shared_apt ?? {})['rentPaid'] = 1;
         }
@@ -88,9 +88,9 @@ function enterDailyUpdate(s: GameState, scene: SceneBuilder): void {
           qspCall(s, 'notification', 'add', 0);
         } else {
           if (((s as any).shared_apt ?? 0)?.['missedWeeks'] > 0) {
-            qspCall(s, 'notification', 'add', qspFunc(s, 'wrap', 'neg', 'Your rent is now overdue! You owe ' + qspFunc(s, 'money', 'string_price', ((s as any).shared_apt ?? 0)?.['rentLeft']) + ' for ' + ((s as any).shared_apt ?? 0)?.['missedWeeks'] + ' week' + ((((s as any).shared_apt ?? 0)?.['missedWeeks'] > 1) ? ('s') : ('')) + ' at the shared apartment.'));
+            qspCall(s, 'notification', 'add', qspFunc(s, 'wrap', 'neg', 'Your rent is now overdue! You owe ' + qspFunc(s, 'money', 'string_price', (((s as any).shared_apt ?? 0)?.['rentLeft'])) + ' for ' + (((s as any).shared_apt ?? 0)?.['missedWeeks']) + ' week' + ((((s as any).shared_apt ?? 0)?.['missedWeeks'] > 1) ? ('s') : ('')) + ' at the shared apartment.'));
           } else {
-            qspCall(s, 'notification', 'add', qspFunc(s, 'wrap', 'accent', 'Your weekly rent of ' + qspFunc(s, 'money', 'string_price', ((s as any).shared_apt ?? 0)?.['rentWeekly']) + ' for the shared apartment is now due.'));
+            qspCall(s, 'notification', 'add', qspFunc(s, 'wrap', 'accent', 'Your weekly rent of ' + qspFunc(s, 'money', 'string_price', (((s as any).shared_apt ?? 0)?.['rentWeekly'])) + ' for the shared apartment is now due.'));
           }
         }
       }
@@ -104,12 +104,12 @@ function enterDailyUpdate(s: GameState, scene: SceneBuilder): void {
 function enterGetRentStatus(s: GameState, scene: SceneBuilder): void {
   if (((s as any).shared_apt ?? 0)?.['rentLeft'] > 0) {
     if (((s as any).shared_apt ?? 0)?.['missedWeeks'] > 1) {
-      (s as any).result = '<font color=red>You owe ' + qspFunc(s, 'money', 'string_price', ((s as any).shared_apt ?? 0)?.['rentLeft']) + ' for ' + qspFunc(s, 'string', 'parse_number', ((s as any).shared_apt ?? 0)?.['missedWeeks']) + ' week' + ((((s as any).shared_apt ?? 0)?.['missedWeeks'] > 1) ? ('s') : ('')) + ' of overdue rent.</font>';
+      (s as any).result = '<font color=red>You owe ' + qspFunc(s, 'money', 'string_price', (((s as any).shared_apt ?? 0)?.['rentLeft'])) + ' for ' + qspFunc(s, 'string', 'parse_number', (((s as any).shared_apt ?? 0)?.['missedWeeks'])) + ' week' + ((((s as any).shared_apt ?? 0)?.['missedWeeks'] > 1) ? ('s') : ('')) + ' of overdue rent.</font>';
     } else {
       if (((s as any).shared_apt ?? 0)?.['missedWeeks'] === 1) {
-        (s as any).result = '<font color=red>You have ' + qspFunc(s, 'money', 'string_price', ((s as any).shared_apt ?? 0)?.['rentLeft']) + ' of overdue rent to pay.</font>';
+        (s as any).result = '<font color=red>You have ' + qspFunc(s, 'money', 'string_price', (((s as any).shared_apt ?? 0)?.['rentLeft'])) + ' of overdue rent to pay.</font>';
       } else {
-        (s as any).result = 'You have ' + qspFunc(s, 'money', 'string_price', ((s as any).shared_apt ?? 0)?.['rentLeft']) + ' of rent left to pay for next week.';
+        (s as any).result = 'You have ' + qspFunc(s, 'money', 'string_price', (((s as any).shared_apt ?? 0)?.['rentLeft'])) + ' of rent left to pay for next week.';
       }
     }
     if (qspFunc(s, 'money', 'can_afford', ((s as any).shared_apt ?? 0)?.['rentLeft'])) {
@@ -126,7 +126,7 @@ function enterGetRentStatus(s: GameState, scene: SceneBuilder): void {
 
 function enterBlockApt(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'homes_properties', 'block_access', 'shared_apartment', 0);
-  (s as any).servitudelvl_bak = ((s as any).shared_apt ?? 0)?.['servitudeLvl'];
+  (s as any).servitudelvl_bak = (((s as any).shared_apt ?? 0)?.['servitudeLvl']);
   ((s as any).shared_apt = (s as any).shared_apt ?? {})['seenAd'] = 1;
   if (String((s as any).locArgs?.[1] ?? '') === 1) {
     ((s as any).shared_apt = (s as any).shared_apt ?? {})['evicted'] = 1;
@@ -161,18 +161,18 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><h3>Hallway</h3></center>');
   scene.img('images/locations/pavlovsk/resident/sharedapt/hallway.jpg');
   // TODO-QSP: dynamic text: It''s been <<shared_apt[''weekNum'']>> weeks since you moved in.
-  scene.text(`It's been ${((s as any).shared_apt ?? 0)?.['weekNum'] ?? ''} weeks since you moved in.`);
+  scene.text(`It's been ${(((s as any).shared_apt ?? 0)?.['weekNum'] ?? '')} weeks since you moved in.`);
   if (((s as any).NatbelQW ?? 0)?.['QWstage'] >= 4  &&  ((s as any).week ?? 0) < 6  &&  ((s as any).hour ?? 0) === 7  &&  ((s as any).kanikuli ?? 0) === 0  &&  ((s as any).gschoolVars ?? 0)?.['school_diploma'] === 0  &&  ((s as any).gschoolVars ?? 0)?.['block'] === 0  &&  (((s as any).PSchool ?? 0) === 1  ||  ((s as any).cheatVars ?? 0)?.['school_clothing'] === 1)) {
     scene.actions([
       { label: 'Go pick up Natasha before school', goto: ['natbelEv', 'carrybooks'] },
     ]);
   }
   // TODO-QSP: dynamic text: A large apartment currently serves as shared living. As well as the normal livin...
-  scene.text(`A large apartment currently serves as shared living. As well as the normal living spaces, there are four bedrooms, one rented by you and three occupied by <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027pav_shared_oleg/u0027, /u0027oleg_dick/u0027); return false;"><font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>${((s as any).npc_firstname ?? 0)?.['A266'] ?? ''}</font></a>, <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027pav_shared_nestor/u0027, /u0027nestor_dick/u0027); return false;"><font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>${((s as any).npc_firstname ?? 0)?.['A265'] ?? ''}</font></a>, <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027pav_shared_yakov/u0027, /u0027yakov_dick/u0027); return false;"><font color=#${((s as any).Yakov ?? 0)?.['font'] ?? ''}>${((s as any).npc_firstname ?? 0)?.['A264'] ?? ''}</font></a>.`);
+  scene.text(`A large apartment currently serves as shared living. As well as the normal living spaces, there are four bedrooms, one rented by you and three occupied by <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027pav_shared_oleg/u0027, /u0027oleg_dick/u0027); return false;"><font color=#${(((s as any).Oleg ?? 0)?.['font'] ?? '')}>${(((s as any).npc_firstname ?? 0)?.['A266'] ?? '')}</font></a>, <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027pav_shared_nestor/u0027, /u0027nestor_dick/u0027); return false;"><font color=#${(((s as any).Nestor ?? 0)?.['font'] ?? '')}>${(((s as any).npc_firstname ?? 0)?.['A265'] ?? '')}</font></a>, <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027pav_shared_yakov/u0027, /u0027yakov_dick/u0027); return false;"><font color=#${(((s as any).Yakov ?? 0)?.['font'] ?? '')}>${(((s as any).npc_firstname ?? 0)?.['A264'] ?? '')}</font></a>.`);
   scene.text('You stand in the hallway.');
   if (((s as any).shared_apt ?? 0)?.['rentPaid'] === 1) {
     // TODO-QSP: dynamic text: From the hallway, several doors lead to <a href="exec:gt ''pav_shared_apt'', ''O...
-    scene.text(`From the hallway, several doors lead to <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027pav_shared_apt/u0027, /u0027Oleg_Room/u0027); return false;">${((s as any).npc_firstname ?? 0)?.['A266'] ?? ''}'s</a>, <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027pav_shared_apt/u0027, /u0027Nestor_Room/u0027); return false;">${((s as any).npc_firstname ?? 0)?.['A265'] ?? ''}'s</a>, and <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027pav_shared_apt/u0027, /u0027Yakov_Room/u0027); return false;">${((s as any).npc_firstname ?? 0)?.['A264'] ?? ''}'s</a> rooms.`);
+    scene.text(`From the hallway, several doors lead to <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027pav_shared_apt/u0027, /u0027Oleg_Room/u0027); return false;">${(((s as any).npc_firstname ?? 0)?.['A266'] ?? '')}'s</a>, <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027pav_shared_apt/u0027, /u0027Nestor_Room/u0027); return false;">${(((s as any).npc_firstname ?? 0)?.['A265'] ?? '')}'s</a>, and <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027pav_shared_apt/u0027, /u0027Yakov_Room/u0027); return false;">${(((s as any).npc_firstname ?? 0)?.['A264'] ?? '')}'s</a> rooms.`);
     scene.text('The last doors lead to the <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027pav_shared_apt/u0027, /u0027pcsRoom/u0027); return false;">room</a> you have rented.');
   }
   if (((s as any).shared_apt ?? 0)?.['rentPaid'] === 1  ||  ((s as any).clothingworntype ?? 0) === 'nude') {
@@ -186,9 +186,9 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       { label: 'Go to your room', goto: ['pav_shared_apt', 'pcsRoom'] },
       { label: 'Go to the bathroom', goto: ['pav_shared_apt', 'bathroom'] },
       { label: 'Go to the kitchen', goto: ['pav_shared_apt', 'kitchen'] },
-      { label: '', labelFn: (s: GameState) => '<font color=#' + String(((s as any).Oleg ?? 0)?.['font'] ?? '' ?? '') + '>' + String(((s as any).npc_firstname ?? 0)?.['A266'] ?? '' ?? '') + '\'s room</font>', goto: ['pav_shared_apt', 'Oleg_Room'] },
-      { label: '', labelFn: (s: GameState) => '<font color=#' + String(((s as any).Nestor ?? 0)?.['font'] ?? '' ?? '') + '>' + String(((s as any).npc_firstname ?? 0)?.['A265'] ?? '' ?? '') + '\'s room</font>', goto: ['pav_shared_apt', 'Nestor_Room'] },
-      { label: '', labelFn: (s: GameState) => '<font color=#' + String(((s as any).Yakov ?? 0)?.['font'] ?? '' ?? '') + '>' + String(((s as any).npc_firstname ?? 0)?.['A264'] ?? '' ?? '') + '\'s room</font>', goto: ['pav_shared_apt', 'Yakov_Room'] },
+      { label: '', labelFn: (s: GameState) => '<font color=#' + String((((s as any).Oleg ?? 0)?.['font'] ?? '') ?? '') + '>' + String((((s as any).npc_firstname ?? 0)?.['A266'] ?? '') ?? '') + '\'s room</font>', goto: ['pav_shared_apt', 'Oleg_Room'] },
+      { label: '', labelFn: (s: GameState) => '<font color=#' + String((((s as any).Nestor ?? 0)?.['font'] ?? '') ?? '') + '>' + String((((s as any).npc_firstname ?? 0)?.['A265'] ?? '') ?? '') + '\'s room</font>', goto: ['pav_shared_apt', 'Nestor_Room'] },
+      { label: '', labelFn: (s: GameState) => '<font color=#' + String((((s as any).Yakov ?? 0)?.['font'] ?? '') ?? '') + '>' + String((((s as any).npc_firstname ?? 0)?.['A264'] ?? '') ?? '') + '\'s room</font>', goto: ['pav_shared_apt', 'Yakov_Room'] },
     ]);
   }
   qspCall(s, 'wardrobe', 'default_clothing_options');
@@ -209,9 +209,9 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       scene.img('images/characters/pavlovsk/school/boy/dimka/revenge/crying.jpg');
       scene.text('The guys call you for a house meeting. They look uncomfortable.');
       // TODO-QSP: dynamic text: <font color=#<<$Oleg[''font'']>>>"<<$pcs_firstname>>, we need to talk about your...
-      scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"${((s as any).pcs_firstname ?? '')}, we need to talk about your child situation. Our agreement was very clear about no children in the apartment."</font>`);
+      scene.text(`<font color=#${(((s as any).Oleg ?? 0)?.['font'] ?? '')}>"${((s as any).pcs_firstname ?? '')}, we need to talk about your child situation. Our agreement was very clear about no children in the apartment."</font>`);
       // TODO-QSP: dynamic text: <font color=#<<$Nestor[''font'']>>>"You have one week to make other arrangements...
-      scene.text(`<font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"You have one week to make other arrangements, or we'll have to ask you to leave."</font>`);
+      scene.text(`<font color=#${(((s as any).Nestor ?? 0)?.['font'] ?? '')}>"You have one week to make other arrangements, or we'll have to ask you to leave."</font>`);
       scene.actions([
         { label: 'Understand', goto: ['pav_shared_apt', 'start'] },
       ]);
@@ -274,18 +274,18 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><h3>Hallway</h3></center>');
   scene.img('images/locations/pavlovsk/resident/sharedapt/hallway.jpg');
   // TODO-QSP: dynamic text: It''s been <<shared_apt[''weekNum'']>> weeks since you moved in.
-  scene.text(`It's been ${((s as any).shared_apt ?? 0)?.['weekNum'] ?? ''} weeks since you moved in.`);
+  scene.text(`It's been ${(((s as any).shared_apt ?? 0)?.['weekNum'] ?? '')} weeks since you moved in.`);
   if (((s as any).NatbelQW ?? 0)?.['QWstage'] >= 4  &&  ((s as any).week ?? 0) < 6  &&  ((s as any).hour ?? 0) === 7  &&  ((s as any).kanikuli ?? 0) === 0  &&  ((s as any).gschoolVars ?? 0)?.['school_diploma'] === 0  &&  ((s as any).gschoolVars ?? 0)?.['block'] === 0  &&  (((s as any).PSchool ?? 0) === 1  ||  ((s as any).cheatVars ?? 0)?.['school_clothing'] === 1)) {
     scene.actions([
       { label: 'Go pick up Natasha before school', goto: ['natbelEv', 'carrybooks'] },
     ]);
   }
   // TODO-QSP: dynamic text: A large apartment currently serves as shared living. As well as the normal livin...
-  scene.text(`A large apartment currently serves as shared living. As well as the normal living spaces, there are four bedrooms, one rented by you and three occupied by <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027pav_shared_oleg/u0027, /u0027oleg_dick/u0027); return false;"><font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>${((s as any).npc_firstname ?? 0)?.['A266'] ?? ''}</font></a>, <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027pav_shared_nestor/u0027, /u0027nestor_dick/u0027); return false;"><font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>${((s as any).npc_firstname ?? 0)?.['A265'] ?? ''}</font></a>, <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027pav_shared_yakov/u0027, /u0027yakov_dick/u0027); return false;"><font color=#${((s as any).Yakov ?? 0)?.['font'] ?? ''}>${((s as any).npc_firstname ?? 0)?.['A264'] ?? ''}</font></a>.`);
+  scene.text(`A large apartment currently serves as shared living. As well as the normal living spaces, there are four bedrooms, one rented by you and three occupied by <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027pav_shared_oleg/u0027, /u0027oleg_dick/u0027); return false;"><font color=#${(((s as any).Oleg ?? 0)?.['font'] ?? '')}>${(((s as any).npc_firstname ?? 0)?.['A266'] ?? '')}</font></a>, <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027pav_shared_nestor/u0027, /u0027nestor_dick/u0027); return false;"><font color=#${(((s as any).Nestor ?? 0)?.['font'] ?? '')}>${(((s as any).npc_firstname ?? 0)?.['A265'] ?? '')}</font></a>, <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027pav_shared_yakov/u0027, /u0027yakov_dick/u0027); return false;"><font color=#${(((s as any).Yakov ?? 0)?.['font'] ?? '')}>${(((s as any).npc_firstname ?? 0)?.['A264'] ?? '')}</font></a>.`);
   scene.text('You stand in the hallway.');
   if (((s as any).shared_apt ?? 0)?.['rentPaid'] === 1) {
     // TODO-QSP: dynamic text: From the hallway, several doors lead to <a href="exec:gt ''pav_shared_apt'', ''O...
-    scene.text(`From the hallway, several doors lead to <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027pav_shared_apt/u0027, /u0027Oleg_Room/u0027); return false;">${((s as any).npc_firstname ?? 0)?.['A266'] ?? ''}'s</a>, <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027pav_shared_apt/u0027, /u0027Nestor_Room/u0027); return false;">${((s as any).npc_firstname ?? 0)?.['A265'] ?? ''}'s</a>, and <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027pav_shared_apt/u0027, /u0027Yakov_Room/u0027); return false;">${((s as any).npc_firstname ?? 0)?.['A264'] ?? ''}'s</a> rooms.`);
+    scene.text(`From the hallway, several doors lead to <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027pav_shared_apt/u0027, /u0027Oleg_Room/u0027); return false;">${(((s as any).npc_firstname ?? 0)?.['A266'] ?? '')}'s</a>, <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027pav_shared_apt/u0027, /u0027Nestor_Room/u0027); return false;">${(((s as any).npc_firstname ?? 0)?.['A265'] ?? '')}'s</a>, and <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027pav_shared_apt/u0027, /u0027Yakov_Room/u0027); return false;">${(((s as any).npc_firstname ?? 0)?.['A264'] ?? '')}'s</a> rooms.`);
     scene.text('The last doors lead to the <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027pav_shared_apt/u0027, /u0027pcsRoom/u0027); return false;">room</a> you have rented.');
   }
   if (((s as any).shared_apt ?? 0)?.['rentPaid'] === 1  ||  ((s as any).clothingworntype ?? 0) === 'nude') {
@@ -299,9 +299,9 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       { label: 'Go to your room', goto: ['pav_shared_apt', 'pcsRoom'] },
       { label: 'Go to the bathroom', goto: ['pav_shared_apt', 'bathroom'] },
       { label: 'Go to the kitchen', goto: ['pav_shared_apt', 'kitchen'] },
-      { label: '', labelFn: (s: GameState) => '<font color=#' + String(((s as any).Oleg ?? 0)?.['font'] ?? '' ?? '') + '>' + String(((s as any).npc_firstname ?? 0)?.['A266'] ?? '' ?? '') + '\'s room</font>', goto: ['pav_shared_apt', 'Oleg_Room'] },
-      { label: '', labelFn: (s: GameState) => '<font color=#' + String(((s as any).Nestor ?? 0)?.['font'] ?? '' ?? '') + '>' + String(((s as any).npc_firstname ?? 0)?.['A265'] ?? '' ?? '') + '\'s room</font>', goto: ['pav_shared_apt', 'Nestor_Room'] },
-      { label: '', labelFn: (s: GameState) => '<font color=#' + String(((s as any).Yakov ?? 0)?.['font'] ?? '' ?? '') + '>' + String(((s as any).npc_firstname ?? 0)?.['A264'] ?? '' ?? '') + '\'s room</font>', goto: ['pav_shared_apt', 'Yakov_Room'] },
+      { label: '', labelFn: (s: GameState) => '<font color=#' + String((((s as any).Oleg ?? 0)?.['font'] ?? '') ?? '') + '>' + String((((s as any).npc_firstname ?? 0)?.['A266'] ?? '') ?? '') + '\'s room</font>', goto: ['pav_shared_apt', 'Oleg_Room'] },
+      { label: '', labelFn: (s: GameState) => '<font color=#' + String((((s as any).Nestor ?? 0)?.['font'] ?? '') ?? '') + '>' + String((((s as any).npc_firstname ?? 0)?.['A265'] ?? '') ?? '') + '\'s room</font>', goto: ['pav_shared_apt', 'Nestor_Room'] },
+      { label: '', labelFn: (s: GameState) => '<font color=#' + String((((s as any).Yakov ?? 0)?.['font'] ?? '') ?? '') + '>' + String((((s as any).npc_firstname ?? 0)?.['A264'] ?? '') ?? '') + '\'s room</font>', goto: ['pav_shared_apt', 'Yakov_Room'] },
     ]);
   }
   qspCall(s, 'wardrobe', 'default_clothing_options');
@@ -322,9 +322,9 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       scene.img('images/characters/pavlovsk/school/boy/dimka/revenge/crying.jpg');
       scene.text('The guys call you for a house meeting. They look uncomfortable.');
       // TODO-QSP: dynamic text: <font color=#<<$Oleg[''font'']>>>"<<$pcs_firstname>>, we need to talk about your...
-      scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"${((s as any).pcs_firstname ?? '')}, we need to talk about your child situation. Our agreement was very clear about no children in the apartment."</font>`);
+      scene.text(`<font color=#${(((s as any).Oleg ?? 0)?.['font'] ?? '')}>"${((s as any).pcs_firstname ?? '')}, we need to talk about your child situation. Our agreement was very clear about no children in the apartment."</font>`);
       // TODO-QSP: dynamic text: <font color=#<<$Nestor[''font'']>>>"You have one week to make other arrangements...
-      scene.text(`<font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"You have one week to make other arrangements, or we'll have to ask you to leave."</font>`);
+      scene.text(`<font color=#${(((s as any).Nestor ?? 0)?.['font'] ?? '')}>"You have one week to make other arrangements, or we'll have to ask you to leave."</font>`);
       scene.actions([
         { label: 'Understand', goto: ['pav_shared_apt', 'start'] },
       ]);
@@ -370,7 +370,7 @@ function enterList(s: GameState, scene: SceneBuilder): void {
   scene.text(`<center><h3>${((s as any).pcs_firstname ?? '')}'s pricelist</h3></center>`);
   scene.img('images/locations/pavlovsk/resident/sharedapt/list.jpg');
   // TODO-QSP: dynamic text: The basic weekly rent is <<$func(''money'', ''string_price'', shared_apt[''rentW...
-  scene.text(`The basic weekly rent is ${qspFunc(s, 'money', 'string_price', ((s as any).shared_apt ?? 0)?.['rentWeekly'] ?? '')}.`);
+  scene.text(`The basic weekly rent is ${qspFunc(s, 'money', 'string_price', (((s as any).shared_apt ?? 0)?.['rentWeekly'] ?? ''))}.`);
   scene.text('It is possible to pay it in cash or offer services instead. The prices are following:');
   scene.text('---------------------');
   // TODO-QSP: 'Cook a warm meal: '  +shared_apt['price_cook']
@@ -389,7 +389,7 @@ function enterList(s: GameState, scene: SceneBuilder): void {
   scene.text('---------------------');
   scene.text('Not having paid the full weekly rent at the beginning of a new week will lead to termination of the accommodation services.');
   // TODO-QSP: dynamic text: Signed: <a href="exec: gt ''pav_shared_oleg'', ''oleg_dick''"><font color=#<<$Ol...
-  scene.text(`Signed: <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027pav_shared_oleg/u0027, /u0027oleg_dick/u0027); return false;"><font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>${((s as any).npc_firstname ?? 0)?.['A266'] ?? ''}</font></a>, <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027pav_shared_nestor/u0027, /u0027nestor_dick/u0027); return false;"><font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>${((s as any).npc_firstname ?? 0)?.['A265'] ?? ''}</font></a>, <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027pav_shared_yakov/u0027, /u0027yakov_dick/u0027); return false;"><font color=#${((s as any).Yakov ?? 0)?.['font'] ?? ''}>${((s as any).npc_firstname ?? 0)?.['A264'] ?? ''}</font></a>, ${((s as any).pcs_firstname ?? '')}.`);
+  scene.text(`Signed: <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027pav_shared_oleg/u0027, /u0027oleg_dick/u0027); return false;"><font color=#${(((s as any).Oleg ?? 0)?.['font'] ?? '')}>${(((s as any).npc_firstname ?? 0)?.['A266'] ?? '')}</font></a>, <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027pav_shared_nestor/u0027, /u0027nestor_dick/u0027); return false;"><font color=#${(((s as any).Nestor ?? 0)?.['font'] ?? '')}>${(((s as any).npc_firstname ?? 0)?.['A265'] ?? '')}</font></a>, <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027pav_shared_yakov/u0027, /u0027yakov_dick/u0027); return false;"><font color=#${(((s as any).Yakov ?? 0)?.['font'] ?? '')}>${(((s as any).npc_firstname ?? 0)?.['A264'] ?? '')}</font></a>, ${((s as any).pcs_firstname ?? '')}.`);
   scene.text('---------------------');
   // TODO-QSP: end
   scene.actions([
@@ -431,7 +431,7 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
   scene.text('You can cook breakfast for the guys between 6:00 and 7:00 and dinner for them between 18:00 and 19:00');
   if (((s as any).mc_inventory ?? 0)?.['dish_plates'] > 0) {
     // TODO-QSP: dynamic text: Above the sink are <b><<mc_inventory[''dish_plates'']>></b> the clean plates
-    scene.text(`Above the sink are <b>${((s as any).mc_inventory ?? 0)?.['dish_plates'] ?? ''}</b> the clean plates`);
+    scene.text(`Above the sink are <b>${(((s as any).mc_inventory ?? 0)?.['dish_plates'] ?? '')}</b> the clean plates`);
   } else {
     scene.text('<b><font color = red>You have no clean dishes left.</font></b>');
   }
@@ -441,7 +441,7 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).mc_inventory ?? 0)?.['dish_soap'] > 0) {
     // TODO-QSP: dynamic text: Above the sink is some detergent to wash the dishes with. There is enough for <b...
-    scene.text(`Above the sink is some detergent to wash the dishes with. There is enough for <b>${((s as any).mc_inventory ?? 0)?.['dish_soap'] ?? ''}</b> uses.`);
+    scene.text(`Above the sink is some detergent to wash the dishes with. There is enough for <b>${(((s as any).mc_inventory ?? 0)?.['dish_soap'] ?? '')}</b> uses.`);
   } else {
     scene.text('<b><font color = red>You do not have enough detergent, you should buy some from the supermarket.</font></b>');
   }
@@ -453,7 +453,7 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
       (s as any).edagot = '<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027kit_din/u0027, /u0027edagotd/u0027); return false;">Cook a meal for yourself (0:30)</a>';
     }
     // TODO-QSP: dynamic text: In the refrigerator there''s enough (your own) food for <b><<mc_inventory[''food...
-    scene.text(`In the refrigerator there's enough (your own) food for <b>${((s as any).mc_inventory ?? 0)?.['food_basic'] ?? ''}</b> servings. ${((s as any).edagot ?? '')}`);
+    scene.text(`In the refrigerator there's enough (your own) food for <b>${(((s as any).mc_inventory ?? 0)?.['food_basic'] ?? '')}</b> servings. ${((s as any).edagot ?? '')}`);
   }
   qspCall(s, 'kit_din', 'edahota');
   if (((s as any).mc_inventory ?? 0)?.['food_diet'] === 0  &&  ((s as any).mc_inventory ?? 0)?.['food_basic'] === 0) {
@@ -533,7 +533,7 @@ function enterPcsRoom(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).mc_inventory ?? 0)?.['cocaine'] > 0) {
     // TODO-QSP: dynamic text: You have <<mc_inventory[''cocaine'']>> doses of Pale Lady, hidden from the other...
-    scene.text(`You have ${((s as any).mc_inventory ?? 0)?.['cocaine'] ?? ''} doses of Pale Lady, hidden from the other housemates.`);
+    scene.text(`You have ${(((s as any).mc_inventory ?? 0)?.['cocaine'] ?? '')} doses of Pale Lady, hidden from the other housemates.`);
   }
   if (((s as any).mc_inventory ?? 0)?.['cocaine'] > 0  &&  ((s as any).drugVars ?? 0)?.['cocaine_day'] !== ((s as any).daystart ?? 0)) {
     scene.actions([
@@ -550,11 +550,11 @@ function enterPcsRoom(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).mc_inventory ?? 0)?.['tapestry'] > 0) {
     // TODO-QSP: dynamic text: You have <<mc_inventory[''tapestry'']>> completed tapestries.
-    scene.text(`You have ${((s as any).mc_inventory ?? 0)?.['tapestry'] ?? ''} completed tapestries.`);
+    scene.text(`You have ${(((s as any).mc_inventory ?? 0)?.['tapestry'] ?? '')} completed tapestries.`);
   }
   if (((s as any).pcs_sewng ?? 0) >= 40  &&  ((s as any).mc_inventory ?? 0)?.['sewing_fabric'] > 0) {
     // TODO-QSP: dynamic text: You have enough fabric for <<mc_inventory[''sewing_fabric'']>> lessons.
-    scene.text(`You have enough fabric for ${((s as any).mc_inventory ?? 0)?.['sewing_fabric'] ?? ''} lessons.`);
+    scene.text(`You have enough fabric for ${(((s as any).mc_inventory ?? 0)?.['sewing_fabric'] ?? '')} lessons.`);
   }
   if (((s as any).pcs_sewng ?? 0) >= 40  &&  ((s as any).mc_inventory ?? 0)?.['sewing_fabric'] <= 0) {
     scene.text('You do not have any fabric.');
@@ -589,7 +589,7 @@ function enterPcsRoom(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).mc_inventory ?? 0)?.['trinkets_home'] > 0) {
     // TODO-QSP: dynamic text: You currently have <<mc_inventory[''trinkets_home'']>> trinkets to sell at the s...
-    scene.text(`You currently have ${((s as any).mc_inventory ?? 0)?.['trinkets_home'] ?? ''} trinkets to sell at the station. The maximum you can carry with you is 30.`);
+    scene.text(`You currently have ${(((s as any).mc_inventory ?? 0)?.['trinkets_home'] ?? '')} trinkets to sell at the station. The maximum you can carry with you is 30.`);
   }
   qspCall(s, 'din_van', 'wearpan');
   qspCall(s, 'din_van', 'removepan');
@@ -640,30 +640,30 @@ function enterOleg_Room(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'boyStat', 'A266');
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   // TODO-QSP: dynamic text: <center><h3><font color=#<<$Oleg[''font'']>>><<$npc_firstname[''A266'']>>''s roo...
-  scene.text(`<center><h3><font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>${((s as any).npc_firstname ?? 0)?.['A266'] ?? ''}'s room</font></h3></center>`);
+  scene.text(`<center><h3><font color=#${(((s as any).Oleg ?? 0)?.['font'] ?? '')}>${(((s as any).npc_firstname ?? 0)?.['A266'] ?? '')}'s room</font></h3></center>`);
   scene.img('images/locations/pavlovsk/resident/sharedapt/nd/room.jpg');
   // TODO-QSP: dynamic text: The room isn''t as messy as one might expect, given that <<$npc_firstname[''A266...
-  scene.text(`The room isn't as messy as one might expect, given that ${((s as any).npc_firstname ?? 0)?.['A266'] ?? ''} is an IT guy.`);
+  scene.text(`The room isn't as messy as one might expect, given that ${(((s as any).npc_firstname ?? 0)?.['A266'] ?? '')} is an IT guy.`);
   scene.text('There is one large window with a bed below it, but the entire room is dominated by a large table with several computers and monitors.');
   scene.text('At first glance, one might mistake this room for a hacker\'s den.');
   if (((s as any).hour ?? 0) >= ((s as any).Oleg ?? 0)?.['sleeps']  &&  ((s as any).hour ?? 0) < ((s as any).Oleg ?? 0)?.['comes']) {
     // TODO-QSP: dynamic text: <<$npc_firstname[''A266'']>> is sound asleep in his bed.
-    scene.text(`${((s as any).npc_firstname ?? 0)?.['A266'] ?? ''} is sound asleep in his bed.`);
+    scene.text(`${(((s as any).npc_firstname ?? 0)?.['A266'] ?? '')} is sound asleep in his bed.`);
   } else {
     if (((s as any).hour ?? 0) >= ((s as any).Oleg ?? 0)?.['wakes']  &&  ((s as any).hour ?? 0) < ((s as any).Oleg ?? 0)?.['leaves']) {
       // TODO-QSP: dynamic text: <<$npc_firstname[''A266'']>> is already awake and getting ready to leave.
-      scene.text(`${((s as any).npc_firstname ?? 0)?.['A266'] ?? ''} is already awake and getting ready to leave.`);
+      scene.text(`${(((s as any).npc_firstname ?? 0)?.['A266'] ?? '')} is already awake and getting ready to leave.`);
       scene.actions([
         { label: 'Approach him', goto: ['pav_shared_oleg', 'Oleg'] },
       ]);
     } else {
       if (((s as any).hour ?? 0) >= ((s as any).Oleg ?? 0)?.['leaves']  &&  ((s as any).hour ?? 0) < ((s as any).Oleg ?? 0)?.['comes']) {
         // TODO-QSP: dynamic text: <<$npc_firstname[''A266'']>> is currently not here.
-        scene.text(`${((s as any).npc_firstname ?? 0)?.['A266'] ?? ''} is currently not here.`);
+        scene.text(`${(((s as any).npc_firstname ?? 0)?.['A266'] ?? '')} is currently not here.`);
       } else {
         if (((s as any).hour ?? 0) >= ((s as any).Oleg ?? 0)?.['comes']  &&  ((s as any).hour ?? 0) < ((s as any).Oleg ?? 0)?.['sleeps']) {
           // TODO-QSP: dynamic text: <<$npc_firstname[''A266'']>> is behind his desk, engrossed in programming using ...
-          scene.text(`${((s as any).npc_firstname ?? 0)?.['A266'] ?? ''} is behind his desk, engrossed in programming using an esoteric language.`);
+          scene.text(`${(((s as any).npc_firstname ?? 0)?.['A266'] ?? '')} is behind his desk, engrossed in programming using an esoteric language.`);
           scene.actions([
             { label: 'Approach him', goto: ['pav_shared_oleg', 'Oleg'] },
           ]);
@@ -694,30 +694,30 @@ function enterNestor_Room(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'boyStat', 'A265');
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   // TODO-QSP: dynamic text: <center><h3><font color=#<<$Nestor[''font'']>>><<$npc_firstname[''A265'']>>''s r...
-  scene.text(`<center><h3><font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>${((s as any).npc_firstname ?? 0)?.['A265'] ?? ''}'s room</font></h3></center>`);
+  scene.text(`<center><h3><font color=#${(((s as any).Nestor ?? 0)?.['font'] ?? '')}>${(((s as any).npc_firstname ?? 0)?.['A265'] ?? '')}'s room</font></h3></center>`);
   scene.img('images/locations/pavlovsk/resident/sharedapt/gp/room.jpg');
   scene.text('This room is a messy disaster, with clothes scattered all over the floor.');
   if (((s as any).hour ?? 0) >= ((s as any).Nestor ?? 0)?.['wakes']  &&  ((s as any).hour ?? 0) < ((s as any).Nestor ?? 0)?.['leaves']) {
     // TODO-QSP: dynamic text: <<$npc_firstname[''A265'']>> is already awake, getting ready to leave.
-    scene.text(`${((s as any).npc_firstname ?? 0)?.['A265'] ?? ''} is already awake, getting ready to leave.`);
+    scene.text(`${(((s as any).npc_firstname ?? 0)?.['A265'] ?? '')} is already awake, getting ready to leave.`);
     scene.actions([
       { label: 'Approach him', goto: ['pav_shared_nestor', 'Nestor'] },
     ]);
   } else {
     if (((s as any).hour ?? 0) >= ((s as any).Nestor ?? 0)?.['leaves']  &&  ((s as any).hour ?? 0) < ((s as any).Nestor ?? 0)?.['comes']) {
       // TODO-QSP: dynamic text: <<$npc_firstname[''A265'']>> is not here.
-      scene.text(`${((s as any).npc_firstname ?? 0)?.['A265'] ?? ''} is not here.`);
+      scene.text(`${(((s as any).npc_firstname ?? 0)?.['A265'] ?? '')} is not here.`);
     } else {
       if (((s as any).hour ?? 0) >= ((s as any).Nestor ?? 0)?.['comes']  &&  ((s as any).hour ?? 0) < ((s as any).Nestor ?? 0)?.['sleeps']) {
         // TODO-QSP: dynamic text: <<$npc_firstname[''A265'']>> is currently on his bed, listing through some magaz...
-        scene.text(`${((s as any).npc_firstname ?? 0)?.['A265'] ?? ''} is currently on his bed, listing through some magazines.`);
+        scene.text(`${(((s as any).npc_firstname ?? 0)?.['A265'] ?? '')} is currently on his bed, listing through some magazines.`);
         scene.actions([
           { label: 'Approach him', goto: ['pav_shared_nestor', 'Nestor'] },
         ]);
       } else {
         if (((s as any).hour ?? 0) >= ((s as any).Nestor ?? 0)?.['sleeps']  ||  ((s as any).hour ?? 0) < ((s as any).Nestor ?? 0)?.['wakes']) {
           // TODO-QSP: dynamic text: <<$npc_firstname[''A265'']>> is sleeping in his bed.
-          scene.text(`${((s as any).npc_firstname ?? 0)?.['A265'] ?? ''} is sleeping in his bed.`);
+          scene.text(`${(((s as any).npc_firstname ?? 0)?.['A265'] ?? '')} is sleeping in his bed.`);
         }
       }
     }
@@ -745,29 +745,29 @@ function enterYakov_Room(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'boyStat', 'A264');
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   // TODO-QSP: dynamic text: <center><h3><font color=#<<$Yakov[''font'']>>><<$npc_firstname[''A264'']>>''s ro...
-  scene.text(`<center><h3><font color=#${((s as any).Yakov ?? 0)?.['font'] ?? ''}>${((s as any).npc_firstname ?? 0)?.['A264'] ?? ''}'s room</font></h3></center>`);
+  scene.text(`<center><h3><font color=#${(((s as any).Yakov ?? 0)?.['font'] ?? '')}>${(((s as any).npc_firstname ?? 0)?.['A264'] ?? '')}'s room</font></h3></center>`);
   scene.img('images/locations/pavlovsk/resident/sharedapt/sp/room.jpg');
   scene.text('This room is very neat and organized, filled with sporting gear such as dresses, equipment, and trophies. The walls are adorned with several posters of famous athletes and sports teams.');
   if (((s as any).hour ?? 0) >= ((s as any).Yakov ?? 0)?.['wakes']  &&  ((s as any).hour ?? 0) < ((s as any).Yakov ?? 0)?.['leaves']) {
     // TODO-QSP: dynamic text: <<$npc_firstname[''A264'']>> is already awake, packing his gym bags to leave.
-    scene.text(`${((s as any).npc_firstname ?? 0)?.['A264'] ?? ''} is already awake, packing his gym bags to leave.`);
+    scene.text(`${(((s as any).npc_firstname ?? 0)?.['A264'] ?? '')} is already awake, packing his gym bags to leave.`);
     scene.actions([
       { label: 'Approach him', goto: ['pav_shared_yakov', 'Yakov'] },
     ]);
   } else {
     if (((s as any).hour ?? 0) >= ((s as any).Yakov ?? 0)?.['leaves']  &&  ((s as any).hour ?? 0) < ((s as any).Yakov ?? 0)?.['comes']) {
       // TODO-QSP: dynamic text: <<$npc_firstname[''A264'']>> is not here.
-      scene.text(`${((s as any).npc_firstname ?? 0)?.['A264'] ?? ''} is not here.`);
+      scene.text(`${(((s as any).npc_firstname ?? 0)?.['A264'] ?? '')} is not here.`);
     } else {
       if (((s as any).hour ?? 0) >= ((s as any).Yakov ?? 0)?.['comes']  &&  ((s as any).hour ?? 0) < ((s as any).Yakov ?? 0)?.['sleeps']) {
         (s as any).doesStuff = (Math.floor(Math.random() * 101) + 0);
         if (((s as any).doesStuff ?? 0) < 50) {
           // TODO-QSP: dynamic text: <<$npc_firstname[''A264'']>> is currently on his bed, listing through football m...
-          scene.text(`${((s as any).npc_firstname ?? 0)?.['A264'] ?? ''} is currently on his bed, listing through football magazines.`);
+          scene.text(`${(((s as any).npc_firstname ?? 0)?.['A264'] ?? '')} is currently on his bed, listing through football magazines.`);
         }
         if (((s as any).doesStuff ?? 0) >= 50) {
           // TODO-QSP: dynamic text: <<$npc_firstname[''A264'']>> is working out on the floor.
-          scene.text(`${((s as any).npc_firstname ?? 0)?.['A264'] ?? ''} is working out on the floor.`);
+          scene.text(`${(((s as any).npc_firstname ?? 0)?.['A264'] ?? '')} is working out on the floor.`);
         }
         scene.actions([
           { label: 'Approach him', goto: ['pav_shared_yakov', 'Yakov'] },
@@ -775,7 +775,7 @@ function enterYakov_Room(s: GameState, scene: SceneBuilder): void {
       } else {
         if (((s as any).hour ?? 0) >= ((s as any).Yakov ?? 0)?.['sleeps']  ||  ((s as any).hour ?? 0) < ((s as any).Yakov ?? 0)?.['wakes']) {
           // TODO-QSP: dynamic text: <<$npc_firstname[''A264'']>> is sleeping in his bed.
-          scene.text(`${((s as any).npc_firstname ?? 0)?.['A264'] ?? ''} is sleeping in his bed.`);
+          scene.text(`${(((s as any).npc_firstname ?? 0)?.['A264'] ?? '')} is sleeping in his bed.`);
         }
       }
     }
@@ -806,7 +806,7 @@ function enterCookForGuys(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/shared/home/kitchen/cook.jpg');
   scene.text('You prepare three meals, using what you can from the guys\' food. It\'s not very healthy but you\'re not planning to offer to do their shopping too.');
-  ((s as any).shared_apt = (s as any).shared_apt ?? {})['price'] = ((s as any).shared_apt ?? 0)?.['price_cook'];
+  ((s as any).shared_apt = (s as any).shared_apt ?? {})['price'] = (((s as any).shared_apt ?? 0)?.['price_cook']);
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave the meal', goto: ['pav_shared_apt', 'payService'] },
@@ -820,7 +820,7 @@ function enterCleanForGuys(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'mood', 'lower', 'small');
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/residential/apartment/stir.jpg');
-  ((s as any).shared_apt = (s as any).shared_apt ?? {})['price'] = ((s as any).shared_apt ?? 0)?.['price_clean'];
+  ((s as any).shared_apt = (s as any).shared_apt ?? {})['price'] = (((s as any).shared_apt ?? 0)?.['price_clean']);
   scene.text('You collect piles of dirty clothes around the room, carry them into the bathroom, put them in a basin and then pour washing powder on them. You wash them until they are finally clean.');
   if (((s as any).shared_apt ?? 0)?.['servitudeLvl'] === 2  &&  (Math.floor(Math.random() * 101) + 0) <= 50) {
     scene.text('<i>You notice bedsheets with what seems as dried out cum. Probably remainder of one of your "servings". Maybe it really is better to swallow every time…</i>');
@@ -836,7 +836,7 @@ function enterEolegAgreement(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/resident/sharedapt/sp/sp.jpg');
   scene.text('You gather the guys around and explain to them that you wish to move out.');
   // TODO-QSP: dynamic text: <font color=#<<$Yakov[''font'']>>><<$npc_firstname[''A264'']>> Looks disappointe...
-  scene.text(`<font color=#${((s as any).Yakov ?? 0)?.['font'] ?? ''}>${((s as any).npc_firstname ?? 0)?.['A264'] ?? ''} Looks disappointed as he addresses you. "That is a shame ${((s as any).pcs_firstname ?? '')} we've very much enjoyed having you stay here with us. Are you sure this is what you want?"</font>`);
+  scene.text(`<font color=#${(((s as any).Yakov ?? 0)?.['font'] ?? '')}>${(((s as any).npc_firstname ?? 0)?.['A264'] ?? '')} Looks disappointed as he addresses you. "That is a shame ${((s as any).pcs_firstname ?? '')} we've very much enjoyed having you stay here with us. Are you sure this is what you want?"</font>`);
   // TODO-QSP: end
   scene.actions([
     { label: '"Yes." End agreement', handler: (st: GameState) => {
@@ -868,14 +868,14 @@ function enterPayCash(s: GameState, scene: SceneBuilder): void {
   if (qspFunc(s, 'money', 'can_afford', ((s as any).shared_apt ?? 0)?.['rentLeft'], 'cash')) {
     if (((s as any).shared_apt ?? 0)?.['missedWeeks'] > 0) {
       // TODO-QSP: dynamic text: You paid <<$func(''money'', ''string_price'', shared_apt[''rentLeft''])>> in cas...
-      scene.text(`You paid ${qspFunc(s, 'money', 'string_price', ((s as any).shared_apt ?? 0)?.['rentLeft'] ?? '')} in cash to cover ${qspFunc(s, 'string', 'parse_number', ((s as any).shared_apt ?? 0)?.['missedWeeks'] ?? '')} week${((((s as any).shared_apt ?? 0)?.['missedWeeks'] > 1) ? ('s') : (''))} of overdue rent.`);
+      scene.text(`You paid ${qspFunc(s, 'money', 'string_price', (((s as any).shared_apt ?? 0)?.['rentLeft'] ?? ''))} in cash to cover ${qspFunc(s, 'string', 'parse_number', (((s as any).shared_apt ?? 0)?.['missedWeeks'] ?? ''))} week${((((s as any).shared_apt ?? 0)?.['missedWeeks'] > 1) ? ('s') : (''))} of overdue rent.`);
       scene.text('<font color=green>The guys are relieved that you\'ve finally paid up.</font>');
     } else {
       // TODO-QSP: dynamic text: You paid <<$func(''money'', ''string_price'', shared_apt[''rentLeft''])>> in cas...
-      scene.text(`You paid ${qspFunc(s, 'money', 'string_price', ((s as any).shared_apt ?? 0)?.['rentLeft'] ?? '')} in cash for next week's rent.`);
+      scene.text(`You paid ${qspFunc(s, 'money', 'string_price', (((s as any).shared_apt ?? 0)?.['rentLeft'] ?? ''))} in cash for next week's rent.`);
     }
-    qspCall(s, 'money', 'pay', ((s as any).shared_apt ?? 0)?.['rentLeft'], 'cash');
-    ((s as any).shared_apt = (s as any).shared_apt ?? {})['cashPaid'] = ((s as any).shared_apt['cashPaid'] ?? 0) + (((s as any).shared_apt ?? 0)?.['rentLeft']);
+    qspCall(s, 'money', 'pay', (((s as any).shared_apt ?? 0)?.['rentLeft']), 'cash');
+    ((s as any).shared_apt = (s as any).shared_apt ?? {})['cashPaid'] = ((s as any).shared_apt['cashPaid'] ?? 0) + ((((s as any).shared_apt ?? 0)?.['rentLeft']));
     ((s as any).shared_apt = (s as any).shared_apt ?? {})['rentLeft'] = 0;
     ((s as any).shared_apt = (s as any).shared_apt ?? {})['Lockrent'] = 0;
     ((s as any).shared_apt = (s as any).shared_apt ?? {})['rentPaid'] = 1;
@@ -894,10 +894,10 @@ function enterPayCash(s: GameState, scene: SceneBuilder): void {
 
 function enterPayService(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 1;
-  ((s as any).shared_apt = (s as any).shared_apt ?? {})['servicePaid'] = ((s as any).shared_apt['servicePaid'] ?? 0) + (((s as any).shared_apt ?? 0)?.['price']);
-  ((s as any).shared_apt = (s as any).shared_apt ?? {})['rentLeft'] = ((s as any).shared_apt['rentLeft'] ?? 0) - (((s as any).shared_apt ?? 0)?.['price']);
+  ((s as any).shared_apt = (s as any).shared_apt ?? {})['servicePaid'] = ((s as any).shared_apt['servicePaid'] ?? 0) + ((((s as any).shared_apt ?? 0)?.['price']));
+  ((s as any).shared_apt = (s as any).shared_apt ?? {})['rentLeft'] = ((s as any).shared_apt['rentLeft'] ?? 0) - ((((s as any).shared_apt ?? 0)?.['price']));
   // TODO-QSP: dynamic text: You''ve performed services worth <<$func(''money'', ''string_price'', shared_apt...
-  scene.text(`You've performed services worth ${qspFunc(s, 'money', 'string_price', ((s as any).shared_apt ?? 0)?.['price'] ?? '')}.`);
+  scene.text(`You've performed services worth ${qspFunc(s, 'money', 'string_price', (((s as any).shared_apt ?? 0)?.['price'] ?? ''))}.`);
   if (((s as any).shared_apt ?? 0)?.['rentLeft'] <= 0) {
     ((s as any).shared_apt = (s as any).shared_apt ?? {})['rentLeft'] = 0;
     ((s as any).shared_apt = (s as any).shared_apt ?? {})['rentPaid'] = 1;
@@ -908,7 +908,7 @@ function enterPayService(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'homes_properties', 'give_access');
   } else {
     // TODO-QSP: dynamic text: You still owe <<$func(''money'', ''string_price'', shared_apt[''rentLeft''])>> f...
-    scene.text(`You still owe ${qspFunc(s, 'money', 'string_price', ((s as any).shared_apt ?? 0)?.['rentLeft'] ?? '')} for your rent.`);
+    scene.text(`You still owe ${qspFunc(s, 'money', 'string_price', (((s as any).shared_apt ?? 0)?.['rentLeft'] ?? ''))} for your rent.`);
   }
   ((s as any).shared_apt = (s as any).shared_apt ?? {})['price'] = 0;
   // TODO-QSP: end
@@ -966,21 +966,21 @@ function enterIntro(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 2;
     scene.img('images/locations/pavlovsk/resident/sharedapt/sp/sp.jpg');
     // TODO-QSP: dynamic text: <font color=#<<$Yakov[''font'']>>><<$npc_firstname[''A264'']>> opens the door, l...
-    scene.text(`<font color=#${((s as any).Yakov ?? 0)?.['font'] ?? ''}>${((s as any).npc_firstname ?? 0)?.['A264'] ?? ''} opens the door, looking surprised to see you. "${((s as any).pcs_firstname ?? '')}! Didn't expect to see you back here."</font>`);
+    scene.text(`<font color=#${(((s as any).Yakov ?? 0)?.['font'] ?? '')}>${(((s as any).npc_firstname ?? 0)?.['A264'] ?? '')} opens the door, looking surprised to see you. "${((s as any).pcs_firstname ?? '')}! Didn't expect to see you back here."</font>`);
     if (((s as any).shared_apt ?? 0)?.['evicted'] === 1) {
       // TODO-QSP: dynamic text: <font color=#<<$Oleg[''font'']>>><<$npc_firstname[''A266'']>> appears behind him...
-      scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>${((s as any).npc_firstname ?? 0)?.['A266'] ?? ''} appears behind him. "Oh, it's you. Want to give this another try after the rent situation last time?"</font>`);
+      scene.text(`<font color=#${(((s as any).Oleg ?? 0)?.['font'] ?? '')}>${(((s as any).npc_firstname ?? 0)?.['A266'] ?? '')} appears behind him. "Oh, it's you. Want to give this another try after the rent situation last time?"</font>`);
       // TODO-QSP: dynamic text: <font color=#<<$pcs_font>>>"Yes, I''d like to rent the room again if it''s still...
       scene.text(`<font color=#${((s as any).pcs_font ?? '')}>"Yes, I'd like to rent the room again if it's still available. I promise I'll keep up with the rent this time."</font>`);
       // TODO-QSP: dynamic text: <font color=#<<$Nestor[''font'']>>><<$npc_firstname[''A265'']>> pushes his way i...
-      scene.text(`<font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>${((s as any).npc_firstname ?? 0)?.['A265'] ?? ''} pushes his way into the doorway. "Well, well, look who's back. I say we make her pay double security deposit this time!"</font>`);
+      scene.text(`<font color=#${(((s as any).Nestor ?? 0)?.['font'] ?? '')}>${(((s as any).npc_firstname ?? 0)?.['A265'] ?? '')} pushes his way into the doorway. "Well, well, look who's back. I say we make her pay double security deposit this time!"</font>`);
       // TODO-QSP: dynamic text: <font color=#<<$Oleg[''font'']>>>"Ignore him. The room is still available, but w...
-      scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"Ignore him. The room is still available, but we'll need the first week's rent upfront this time."</font>`);
+      scene.text(`<font color=#${(((s as any).Oleg ?? 0)?.['font'] ?? '')}>"Ignore him. The room is still available, but we'll need the first week's rent upfront this time."</font>`);
       if (qspFunc(s, 'money', 'can_afford', ((s as any).shared_apt ?? 0)?.['rentWeekly'], 'cash')) {
         scene.actions([
-          { label: '', labelFn: (s: GameState) => 'Pay the first week\'s rent (' + String(qspFunc(s, 'money', 'string_price', ((s as any).shared_apt ?? 0)?.['rentWeekly'] ?? '') ?? '') + ')', handler: (st: GameState) => {
-    qspCall(st, 'money', 'pay', ((st as any).shared_apt ?? 0)?.['rentWeekly'], 'cash');
-    ((st as any).shared_apt = (st as any).shared_apt ?? {})['cashPaid'] = ((st as any).shared_apt['cashPaid'] ?? 0) + (((st as any).shared_apt ?? 0)?.['rentWeekly']);
+          { label: '', labelFn: (s: GameState) => 'Pay the first week\'s rent (' + String(qspFunc(s, 'money', 'string_price', (((s as any).shared_apt ?? 0)?.['rentWeekly'] ?? '')) ?? '') + ')', handler: (st: GameState) => {
+    qspCall(st, 'money', 'pay', (((st as any).shared_apt ?? 0)?.['rentWeekly']), 'cash');
+    ((st as any).shared_apt = (st as any).shared_apt ?? {})['cashPaid'] = ((st as any).shared_apt['cashPaid'] ?? 0) + ((((st as any).shared_apt ?? 0)?.['rentWeekly']));
     ((st as any).shared_apt = (st as any).shared_apt ?? {})['enabled'] = 1;
     ((st as any).shared_apt = (st as any).shared_apt ?? {})['rentPaid'] = 1;
     ((st as any).shared_apt = (st as any).shared_apt ?? {})['evicted'] = 0;
@@ -992,19 +992,19 @@ function enterIntro(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'homes_properties', 'give_access', 'shared_apartment');
     scene.img('images/locations/pavlovsk/resident/sharedapt/hallway.jpg');
     // TODO-QSP: dynamic text: <font color=#<<$Yakov[''font'']>>>"Well, welcome back then. Same rules as before...
-    scene.text(`<font color=#${((st as any).Yakov ?? 0)?.['font'] ?? ''}>"Well, welcome back then. Same rules as before."</font>`);
+    scene.text(`<font color=#${(((st as any).Yakov ?? 0)?.['font'] ?? '')}>"Well, welcome back then. Same rules as before."</font>`);
     if (((st as any).shared_apt ?? 0)?.['servitudeLvl'] === 0) {
       // TODO-QSP: dynamic text: <font color=#<<$Oleg[''font'']>>>"Just pay your rent on time and we''ll all get ...
-      scene.text(`<font color=#${((st as any).Oleg ?? 0)?.['font'] ?? ''}>"Just pay your rent on time and we'll all get along fine."</font>`);
+      scene.text(`<font color=#${(((st as any).Oleg ?? 0)?.['font'] ?? '')}>"Just pay your rent on time and we'll all get along fine."</font>`);
     } else {
       if (((st as any).shared_apt ?? 0)?.['servitudeLvl'] === 1) {
         // TODO-QSP: dynamic text: <font color=#<<$Oleg[''font'']>>>"Remember you can pay with cleaning and cooking...
-        scene.text(`<font color=#${((st as any).Oleg ?? 0)?.['font'] ?? ''}>"Remember you can pay with cleaning and cooking services if you prefer."</font>`);
+        scene.text(`<font color=#${(((st as any).Oleg ?? 0)?.['font'] ?? '')}>"Remember you can pay with cleaning and cooking services if you prefer."</font>`);
       } else {
         // TODO-QSP: dynamic text: <font color=#<<$Nestor[''font'']>>>"Looking forward to your… special services ag...
-        scene.text(`<font color=#${((st as any).Nestor ?? 0)?.['font'] ?? ''}>"Looking forward to your… special services again."</font>`);
+        scene.text(`<font color=#${(((st as any).Nestor ?? 0)?.['font'] ?? '')}>"Looking forward to your… special services again."</font>`);
         // TODO-QSP: dynamic text: <font color=#<<$Oleg[''font'']>>>"Shut up, <<$npc_firstname[''A265'']>>."</font>
-        scene.text(`<font color=#${((st as any).Oleg ?? 0)?.['font'] ?? ''}>"Shut up, ${((st as any).npc_firstname ?? 0)?.['A265'] ?? ''}."</font>`);
+        scene.text(`<font color=#${(((st as any).Oleg ?? 0)?.['font'] ?? '')}>"Shut up, ${(((st as any).npc_firstname ?? 0)?.['A265'] ?? '')}."</font>`);
       }
     }
     // TODO-QSP: dynamic text: <font color=#<<$pcs_font>>>"Thanks guys. I''ll be a better roommate this time."<...
@@ -1018,28 +1018,28 @@ function enterIntro(s: GameState, scene: SceneBuilder): void {
         // TODO-QSP: dynamic text: <font color=#<<$pcs_font>>>"I don''t have enough for the first week right now…"<...
         scene.text(`<font color=#${((s as any).pcs_font ?? '')}>"I don't have enough for the first week right now…"</font>`);
         // TODO-QSP: dynamic text: <font color=#<<$Oleg[''font'']>>>"Sorry, but after last time, we need the money ...
-        scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"Sorry, but after last time, we need the money upfront. Come back when you have it."</font>`);
+        scene.text(`<font color=#${(((s as any).Oleg ?? 0)?.['font'] ?? '')}>"Sorry, but after last time, we need the money upfront. Come back when you have it."</font>`);
         scene.actions([
           { label: 'Leave', goto: ['pav_complex', 'start'] },
         ]);
       }
     } else {
       // TODO-QSP: dynamic text: <font color=#<<$Yakov[''font'']>>>"Did you change your mind about staying with u...
-      scene.text(`<font color=#${((s as any).Yakov ?? 0)?.['font'] ?? ''}>"Did you change your mind about staying with us?"</font>`);
+      scene.text(`<font color=#${(((s as any).Yakov ?? 0)?.['font'] ?? '')}>"Did you change your mind about staying with us?"</font>`);
       // TODO-QSP: dynamic text: <font color=#<<$pcs_font>>>"Yes, I''d like to move back in if the room is still ...
       scene.text(`<font color=#${((s as any).pcs_font ?? '')}>"Yes, I'd like to move back in if the room is still available."</font>`);
       // TODO-QSP: dynamic text: <font color=#<<$Oleg[''font'']>>>"It is. Same terms as before?"</font>
-      scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"It is. Same terms as before?"</font>`);
+      scene.text(`<font color=#${(((s as any).Oleg ?? 0)?.['font'] ?? '')}>"It is. Same terms as before?"</font>`);
       if (((s as any).shared_apt ?? 0)?.['servitudeLvl'] === 0) {
         // TODO-QSP: dynamic text: <font color=#<<$Nestor[''font'']>>>"Still just paying cash? Boring."</font>
-        scene.text(`<font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"Still just paying cash? Boring."</font>`);
+        scene.text(`<font color=#${(((s as any).Nestor ?? 0)?.['font'] ?? '')}>"Still just paying cash? Boring."</font>`);
       } else {
         if (((s as any).shared_apt ?? 0)?.['servitudeLvl'] === 1) {
           // TODO-QSP: dynamic text: <font color=#<<$Nestor[''font'']>>>"Still doing the cleaning and cooking? Or may...
-          scene.text(`<font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"Still doing the cleaning and cooking? Or maybe something more this time?"</font>`);
+          scene.text(`<font color=#${(((s as any).Nestor ?? 0)?.['font'] ?? '')}>"Still doing the cleaning and cooking? Or maybe something more this time?"</font>`);
         } else {
           // TODO-QSP: dynamic text: <font color=#<<$Nestor[''font'']>>>"Oh good, our special arrangement can continu...
-          scene.text(`<font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"Oh good, our special arrangement can continue."</font>`);
+          scene.text(`<font color=#${(((s as any).Nestor ?? 0)?.['font'] ?? '')}>"Oh good, our special arrangement can continue."</font>`);
         }
       }
       if (((s as any).shared_apt ?? 0)?.['servitudeLvl'] === 0) {
@@ -1048,16 +1048,16 @@ function enterIntro(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: <font color=#<<$pcs_font>>>"I was thinking about helping with cooking and cleani...
     scene.text(`<font color=#${((st as any).pcs_font ?? '')}>"I was thinking about helping with cooking and cleaning this time, to reduce my rent costs."</font>`);
     // TODO-QSP: dynamic text: <font color=#<<$Yakov[''font'']>>>"That would be great! We''ll put together the ...
-    scene.text(`<font color=#${((st as any).Yakov ?? 0)?.['font'] ?? ''}>"That would be great! We'll put together the list of service charges again."</font>`);
+    scene.text(`<font color=#${(((st as any).Yakov ?? 0)?.['font'] ?? '')}>"That would be great! We'll put together the list of service charges again."</font>`);
     ((st as any).shared_apt = (st as any).shared_apt ?? {})['enabled'] = 1;
     ((st as any).shared_apt = (st as any).shared_apt ?? {})['servitudeLvl'] = 1;
-    ((st as any).shared_apt = (st as any).shared_apt ?? {})['rentLeft'] = ((st as any).shared_apt ?? 0)?.['rentWeekly'];
+    ((st as any).shared_apt = (st as any).shared_apt ?? {})['rentLeft'] = (((st as any).shared_apt ?? 0)?.['rentWeekly']);
     ((st as any).shared_apt = (st as any).shared_apt ?? {})['intro_daystart'] = ((st as any).daystart ?? 0);
     ((st as any).shared_apt = (st as any).shared_apt ?? {})['weekNum'] = 0;
     ((st as any).shared_apt = (st as any).shared_apt ?? {})['rentWeekNum'] = 1;
     qspCall(st, 'homes_properties', 'give_access', 'shared_apartment');
     // TODO-QSP: dynamic text: <font color=#<<$Oleg[''font'']>>>"The room is yours. Welcome back."</font>
-    scene.text(`<font color=#${((st as any).Oleg ?? 0)?.['font'] ?? ''}>"The room is yours. Welcome back."</font>`);
+    scene.text(`<font color=#${(((st as any).Oleg ?? 0)?.['font'] ?? '')}>"The room is yours. Welcome back."</font>`);
     scene.actions([
       { label: 'Continue', goto: ['pav_shared_apt', 'rentSetup'] },
     ]);
@@ -1070,20 +1070,20 @@ function enterIntro(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: <font color=#<<$pcs_font>>>"I was thinking maybe we could include some… more per...
     scene.text(`<font color=#${((st as any).pcs_font ?? '')}>"I was thinking maybe we could include some… more personal services in our arrangement this time."</font>`);
     // TODO-QSP: dynamic text: <font color=#<<$Nestor[''font'']>>>"Now we''re talking!"</font>
-    scene.text(`<font color=#${((st as any).Nestor ?? 0)?.['font'] ?? ''}>"Now we're talking!"</font>`);
+    scene.text(`<font color=#${(((st as any).Nestor ?? 0)?.['font'] ?? '')}>"Now we're talking!"</font>`);
     // TODO-QSP: dynamic text: <font color=#<<$Oleg[''font'']>>>"Are you sure about this, <<$pcs_firstname>>?"<...
-    scene.text(`<font color=#${((st as any).Oleg ?? 0)?.['font'] ?? ''}>"Are you sure about this, ${((st as any).pcs_firstname ?? '')}?"</font>`);
+    scene.text(`<font color=#${(((st as any).Oleg ?? 0)?.['font'] ?? '')}>"Are you sure about this, ${((st as any).pcs_firstname ?? '')}?"</font>`);
     // TODO-QSP: dynamic text: <font color=#<<$Yakov[''font'']>>>"We''ll update the service list with those opt...
-    scene.text(`<font color=#${((st as any).Yakov ?? 0)?.['font'] ?? ''}>"We'll update the service list with those options too."</font>`);
+    scene.text(`<font color=#${(((st as any).Yakov ?? 0)?.['font'] ?? '')}>"We'll update the service list with those options too."</font>`);
     ((st as any).shared_apt = (st as any).shared_apt ?? {})['enabled'] = 1;
     ((st as any).shared_apt = (st as any).shared_apt ?? {})['servitudeLvl'] = 2;
-    ((st as any).shared_apt = (st as any).shared_apt ?? {})['rentLeft'] = ((st as any).shared_apt ?? 0)?.['rentWeekly'];
+    ((st as any).shared_apt = (st as any).shared_apt ?? {})['rentLeft'] = (((st as any).shared_apt ?? 0)?.['rentWeekly']);
     ((st as any).shared_apt = (st as any).shared_apt ?? {})['intro_daystart'] = ((st as any).daystart ?? 0);
     ((st as any).shared_apt = (st as any).shared_apt ?? {})['weekNum'] = 0;
     ((st as any).shared_apt = (st as any).shared_apt ?? {})['rentWeekNum'] = 1;
     qspCall(st, 'homes_properties', 'give_access', 'shared_apartment');
     // TODO-QSP: dynamic text: <font color=#<<$Nestor[''font'']>>>"This is gonna be fun."</font>
-    scene.text(`<font color=#${((st as any).Nestor ?? 0)?.['font'] ?? ''}>"This is gonna be fun."</font>`);
+    scene.text(`<font color=#${(((st as any).Nestor ?? 0)?.['font'] ?? '')}>"This is gonna be fun."</font>`);
     // TODO-QSP: dynamic text: <font color=#<<$pcs_font>>>"Don''t get too excited. It''s just business."</font>
     scene.text(`<font color=#${((st as any).pcs_font ?? '')}>"Don't get too excited. It's just business."</font>`);
     scene.actions([
@@ -1095,14 +1095,14 @@ function enterIntro(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Continue with the same arrangement', handler: (st: GameState) => {
     ((st as any).shared_apt = (st as any).shared_apt ?? {})['enabled'] = 1;
-    ((st as any).shared_apt = (st as any).shared_apt ?? {})['rentLeft'] = ((st as any).shared_apt ?? 0)?.['rentWeekly'];
+    ((st as any).shared_apt = (st as any).shared_apt ?? {})['rentLeft'] = (((st as any).shared_apt ?? 0)?.['rentWeekly']);
     ((st as any).shared_apt = (st as any).shared_apt ?? {})['intro_daystart'] = ((st as any).daystart ?? 0);
     ((st as any).shared_apt = (st as any).shared_apt ?? {})['weekNum'] = 0;
     ((st as any).shared_apt = (st as any).shared_apt ?? {})['rentWeekNum'] = 1;
     qspCall(st, 'homes_properties', 'give_access', 'shared_apartment');
     scene.img('images/locations/pavlovsk/resident/sharedapt/hallway.jpg');
     // TODO-QSP: dynamic text: <font color=#<<$Yakov[''font'']>>>"Well, welcome back then. We didn''t change an...
-    scene.text(`<font color=#${((st as any).Yakov ?? 0)?.['font'] ?? ''}>"Well, welcome back then. We didn't change anything in your room."</font>`);
+    scene.text(`<font color=#${(((st as any).Yakov ?? 0)?.['font'] ?? '')}>"Well, welcome back then. We didn't change anything in your room."</font>`);
     // TODO-QSP: dynamic text: <font color=#<<$pcs_font>>>"Thanks! It''s good to be back."</font>
     scene.text(`<font color=#${((st as any).pcs_font ?? '')}>"Thanks! It's good to be back."</font>`);
     scene.actions([
@@ -1118,11 +1118,11 @@ function enterIntro(s: GameState, scene: SceneBuilder): void {
       scene.img('images/locations/pavlovsk/resident/sharedapt/sp/sp.jpg');
       scene.text('The door is opened by a young, nice-looking athletic man.');
       // TODO-QSP: dynamic text: <font color=#<<$Yakov[''font'']>>>"Hi sweetie! What do you need?"</font>
-      scene.text(`<font color=#${((s as any).Yakov ?? 0)?.['font'] ?? ''}>"Hi sweetie! What do you need?"</font>`);
+      scene.text(`<font color=#${(((s as any).Yakov ?? 0)?.['font'] ?? '')}>"Hi sweetie! What do you need?"</font>`);
       // TODO-QSP: dynamic text: <font color=#<<$pcs_font>>>"Hello, my name is <<$pcs_firstname>> <<$pcs_lastname...
       scene.text(`<font color=#${((s as any).pcs_font ?? '')}>"Hello, my name is ${((s as any).pcs_firstname ?? '')} ${((s as any).pcs_lastname ?? '')}. I've seen the advert that someone here have a spare room for rent?"</font>`);
       // TODO-QSP: dynamic text: <font color=#<<$Yakov[''font'']>>>"Yeah, that''s true. Come in, I''ll call the g...
-      scene.text(`<font color=#${((s as any).Yakov ?? 0)?.['font'] ?? ''}>"Yeah, that's true. Come in, I'll call the guys and we can talk about it. I'm ${((s as any).npc_firstname ?? 0)?.['A264'] ?? ''} by the way."</font>`);
+      scene.text(`<font color=#${(((s as any).Yakov ?? 0)?.['font'] ?? '')}>"Yeah, that's true. Come in, I'll call the guys and we can talk about it. I'm ${(((s as any).npc_firstname ?? 0)?.['A264'] ?? '')} by the way."</font>`);
       scene.actions([
         { label: 'Go in', goto: ['pav_shared_apt', 'intro'] },
       ]);
@@ -1136,30 +1136,30 @@ function enterIntro(s: GameState, scene: SceneBuilder): void {
         scene.text('"…a girl, I tell you…" "…nice one, really, with nice round features, man…" "…better than another guy, idiot…" "…ok, ok, just be done with it…"');
         scene.text('After a while, three young men emerge in the hallway.');
         // TODO-QSP: dynamic text: <font color=#<<$Yakov[''font'']>>>"So, that''s her, guys. <<$pcs_firstname>>, co...
-        scene.text(`<font color=#${((s as any).Yakov ?? 0)?.['font'] ?? ''}>"So, that's her, guys. ${((s as any).pcs_firstname ?? '')}, could you introduce yourself to these guys?"</font>`);
+        scene.text(`<font color=#${(((s as any).Yakov ?? 0)?.['font'] ?? '')}>"So, that's her, guys. ${((s as any).pcs_firstname ?? '')}, could you introduce yourself to these guys?"</font>`);
         // TODO-QSP: dynamic text: <font color=#<<$pcs_font>>>"Hello, I''m <<$pcs_firstname>> <<$pcs_lastname>>. I'...
         scene.text(`<font color=#${((s as any).pcs_font ?? '')}>"Hello, I'm ${((s as any).pcs_firstname ?? '')} ${((s as any).pcs_lastname ?? '')}. I'd like to rent the empty room in your apartment."</font>`);
         // TODO-QSP: dynamic text: <font color=#<<$Nestor[''font'']>>>"Well, now that''s what I like! Finally, this...
-        scene.text(`<font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"Well, now that's what I like! Finally, this won't be such a dull party!"</font>`);
+        scene.text(`<font color=#${(((s as any).Nestor ?? 0)?.['font'] ?? '')}>"Well, now that's what I like! Finally, this won't be such a dull party!"</font>`);
         // TODO-QSP: dynamic text: <font color=#<<$Oleg[''font'']>>>"<<$pcs_firstname>>, please excuse my friend, <...
-        scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"${((s as any).pcs_firstname ?? '')}, please excuse my friend, ${((s as any).npc_firstname ?? 0)?.['A265'] ?? ''}. He can be quite rude. I'm ${((s as any).npc_firstname ?? 0)?.['A266'] ?? ''}."</font>`);
+        scene.text(`<font color=#${(((s as any).Oleg ?? 0)?.['font'] ?? '')}>"${((s as any).pcs_firstname ?? '')}, please excuse my friend, ${(((s as any).npc_firstname ?? 0)?.['A265'] ?? '')}. He can be quite rude. I'm ${(((s as any).npc_firstname ?? 0)?.['A266'] ?? '')}."</font>`);
         // TODO-QSP: dynamic text: <font color=#<<$Nestor[''font'']>>>"Yup, I''m <<$npc_firstname[''A265'']>>."</fo...
-        scene.text(`<font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"Yup, I'm ${((s as any).npc_firstname ?? 0)?.['A265'] ?? ''}."</font>`);
+        scene.text(`<font color=#${(((s as any).Nestor ?? 0)?.['font'] ?? '')}>"Yup, I'm ${(((s as any).npc_firstname ?? 0)?.['A265'] ?? '')}."</font>`);
         // TODO-QSP: dynamic text: <font color=#<<$Oleg[''font'']>>>"So, you want to live here with us?"</font>
-        scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"So, you want to live here with us?"</font>`);
+        scene.text(`<font color=#${(((s as any).Oleg ?? 0)?.['font'] ?? '')}>"So, you want to live here with us?"</font>`);
         // TODO-QSP: dynamic text: <font color=#<<$pcs_font>>>"Yes, I need a new place to stay."</font>
         scene.text(`<font color=#${((s as any).pcs_font ?? '')}>"Yes, I need a new place to stay."</font>`);
         // TODO-QSP: dynamic text: <font color=#<<$Nestor[''font'']>>>"How old are you, girl?"</font>
-        scene.text(`<font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"How old are you, girl?"</font>`);
+        scene.text(`<font color=#${(((s as any).Nestor ?? 0)?.['font'] ?? '')}>"How old are you, girl?"</font>`);
         // TODO-QSP: dynamic text: <font color=#<<$Oleg[''font'']>>>"<<$npc_firstname[''A265'']>>, not this again!"...
-        scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"${((s as any).npc_firstname ?? 0)?.['A265'] ?? ''}, not this again!"</font>`);
+        scene.text(`<font color=#${(((s as any).Oleg ?? 0)?.['font'] ?? '')}>"${(((s as any).npc_firstname ?? 0)?.['A265'] ?? '')}, not this again!"</font>`);
         // TODO-QSP: dynamic text: <font color=#<<$pcs_font>>>"It''s okay. I''m actually <<age>> years old. Why do ...
         scene.text(`<font color=#${((s as any).pcs_font ?? '')}>"It's okay. I'm actually ${((s as any).age ?? '')} years old. Why do you ask?"</font>`);
         // TODO-QSP: dynamic text: <font color=#<<$Oleg[''font'']>>>"He''s just an idiot; don''t listen to him."</f...
-        scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"He's just an idiot; don't listen to him."</font>`);
+        scene.text(`<font color=#${(((s as any).Oleg ?? 0)?.['font'] ?? '')}>"He's just an idiot; don't listen to him."</font>`);
         if (((s as any).age ?? 0) < 18) {
           // TODO-QSP: dynamic text: (You can see <<$npc_firstname[''A265'']>> rub his crotch just a brief moment aft...
-          scene.text(`(You can see ${((s as any).npc_firstname ?? 0)?.['A265'] ?? ''} rub his crotch just a brief moment after you told him your age. What's he up to?)`);
+          scene.text(`(You can see ${(((s as any).npc_firstname ?? 0)?.['A265'] ?? '')} rub his crotch just a brief moment after you told him your age. What's he up to?)`);
         }
         if (((s as any).knowpreg ?? 0) === 1) {
           scene.actions([
@@ -1197,31 +1197,31 @@ function enterIntro(s: GameState, scene: SceneBuilder): void {
           // TODO-QSP: dynamic text: <font color=#<<$pcs_font>>>"So what do you guys say, will you take me in?"</font...
           scene.text(`<font color=#${((s as any).pcs_font ?? '')}>"So what do you guys say, will you take me in?"</font>`);
           // TODO-QSP: dynamic text: <font color=#<<$Oleg[''font'']>>>"We may. But first, do you have the money to pa...
-          scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"We may. But first, do you have the money to pay the rent?"</font>`);
+          scene.text(`<font color=#${(((s as any).Oleg ?? 0)?.['font'] ?? '')}>"We may. But first, do you have the money to pay the rent?"</font>`);
           // TODO-QSP: dynamic text: <font color=#<<$pcs_font>>>"Well, of course I don''t expect to let me live here ...
           scene.text(`<font color=#${((s as any).pcs_font ?? '')}>"Well, of course I don't expect to let me live here for free. But I hope the rent is reasonable…"</font>`);
           // TODO-QSP: dynamic text: <font color=#<<$Oleg[''font'']>>>"It is indeed."</font>
-          scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"It is indeed."</font>`);
+          scene.text(`<font color=#${(((s as any).Oleg ?? 0)?.['font'] ?? '')}>"It is indeed."</font>`);
           // TODO-QSP: dynamic text: <font color=#<<$Yakov[''font'']>>>"<<$func(''money'', ''string_price'', shared_a...
-          scene.text(`<font color=#${((s as any).Yakov ?? 0)?.['font'] ?? ''}>"${qspFunc(s, 'money', 'string_price', ((s as any).shared_apt ?? 0)?.['rentWeekly'] ?? '')}. Per week."</font>`);
+          scene.text(`<font color=#${(((s as any).Yakov ?? 0)?.['font'] ?? '')}>"${qspFunc(s, 'money', 'string_price', (((s as any).shared_apt ?? 0)?.['rentWeekly'] ?? ''))}. Per week."</font>`);
           // TODO-QSP: dynamic text: <font color=#<<$pcs_font>>>"Uhm. That''s quite a lot. I''m not sure if I''ll be ...
           scene.text(`<font color=#${((s as any).pcs_font ?? '')}>"Uhm. That's quite a lot. I'm not sure if I'll be able to afford this…"</font>`);
           // TODO-QSP: dynamic text: <font color=#<<$Nestor[''font'']>>>"You can pay other ways if you''d like!"</fon...
-          scene.text(`<font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"You can pay other ways if you'd like!"</font>`);
+          scene.text(`<font color=#${(((s as any).Nestor ?? 0)?.['font'] ?? '')}>"You can pay other ways if you'd like!"</font>`);
           // TODO-QSP: dynamic text: <font color=#<<$Oleg[''font'']>>>"<<$npc_firstname[''A265'']>>!"</font>
-          scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"${((s as any).npc_firstname ?? 0)?.['A265'] ?? ''}!"</font>`);
+          scene.text(`<font color=#${(((s as any).Oleg ?? 0)?.['font'] ?? '')}>"${(((s as any).npc_firstname ?? 0)?.['A265'] ?? '')}!"</font>`);
           // TODO-QSP: dynamic text: <font color=#<<$pcs_font>>>"What do you mean by other ways?"</font>
           scene.text(`<font color=#${((s as any).pcs_font ?? '')}>"What do you mean by other ways?"</font>`);
           // TODO-QSP: dynamic text: <font color=#<<$Yakov[''font'']>>>"Well <<$pcs_firstname>>, since we are just gu...
-          scene.text(`<font color=#${((s as any).Yakov ?? 0)?.['font'] ?? ''}>"Well ${((s as any).pcs_firstname ?? '')}, since we are just guys here, and since we suck at these things, we could use someone as you, a girl I mean, to be something like our, let's say, handmaiden. If you know what I mean."</font>`);
+          scene.text(`<font color=#${(((s as any).Yakov ?? 0)?.['font'] ?? '')}>"Well ${((s as any).pcs_firstname ?? '')}, since we are just guys here, and since we suck at these things, we could use someone as you, a girl I mean, to be something like our, let's say, handmaiden. If you know what I mean."</font>`);
           // TODO-QSP: dynamic text: <font color=#<<$pcs_font>>>"Like cooking and cleaning?"</font>
           scene.text(`<font color=#${((s as any).pcs_font ?? '')}>"Like cooking and cleaning?"</font>`);
           // TODO-QSP: dynamic text: <font color=#<<$Yakov[''font'']>>>"Yes, exactly."</font>
-          scene.text(`<font color=#${((s as any).Yakov ?? 0)?.['font'] ?? ''}>"Yes, exactly."</font>`);
+          scene.text(`<font color=#${(((s as any).Yakov ?? 0)?.['font'] ?? '')}>"Yes, exactly."</font>`);
           // TODO-QSP: dynamic text: <font color=#<<$Nestor[''font'']>>>"And more."</font>
-          scene.text(`<font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"And more."</font>`);
+          scene.text(`<font color=#${(((s as any).Nestor ?? 0)?.['font'] ?? '')}>"And more."</font>`);
           // TODO-QSP: dynamic text: <font color=#<<$Oleg[''font'']>>>"Oh my… I give up."</font>
-          scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"Oh my… I give up."</font>`);
+          scene.text(`<font color=#${(((s as any).Oleg ?? 0)?.['font'] ?? '')}>"Oh my… I give up."</font>`);
           scene.actions([
             { label: 'More what?', goto: ['pav_shared_apt', 'intro'] },
           ]);
@@ -1229,19 +1229,19 @@ function enterIntro(s: GameState, scene: SceneBuilder): void {
           if (((s as any).shared_apt ?? 0)?.['pavIntroStep'] === 3) {
             (s as any).minut = ((s as any).minut ?? 0) + 3;
             // TODO-QSP: dynamic text: <font color=#<<$Nestor[''font'']>>>"More services."</font>
-            scene.text(`<font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"More services."</font>`);
+            scene.text(`<font color=#${(((s as any).Nestor ?? 0)?.['font'] ?? '')}>"More services."</font>`);
             // TODO-QSP: dynamic text: <font color=#<<$pcs_font>>>"What kind of "services"?"</font>
             scene.text(`<font color=#${((s as any).pcs_font ?? '')}>"What kind of "services"?"</font>`);
             // TODO-QSP: dynamic text: <font color=#<<$Yakov[''font'']>>>"the adult kind of services."</font>
-            scene.text(`<font color=#${((s as any).Yakov ?? 0)?.['font'] ?? ''}>"the adult kind of services."</font>`);
+            scene.text(`<font color=#${(((s as any).Yakov ?? 0)?.['font'] ?? '')}>"the adult kind of services."</font>`);
             // TODO-QSP: dynamic text: <font color=#<<$pcs_font>>>"You mean to be a whore for you? Instead of paying th...
             scene.text(`<font color=#${((s as any).pcs_font ?? '')}>"You mean to be a whore for you? Instead of paying the rent???"</font>`);
             // TODO-QSP: dynamic text: <font color=#<<$Oleg[''font'']>>>"Please <<$pcs_firstname>>, don''t get mad. <<$...
-            scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"Please ${((s as any).pcs_firstname ?? '')}, don't get mad. ${((s as any).npc_firstname ?? 0)?.['A265'] ?? ''} is not just an idiot, he is a rude idiot. We are definitely not asking you to be our whore or something like that."</font>`);
+            scene.text(`<font color=#${(((s as any).Oleg ?? 0)?.['font'] ?? '')}>"Please ${((s as any).pcs_firstname ?? '')}, don't get mad. ${(((s as any).npc_firstname ?? 0)?.['A265'] ?? '')} is not just an idiot, he is a rude idiot. We are definitely not asking you to be our whore or something like that."</font>`);
             // TODO-QSP: dynamic text: <font color=#<<$Oleg[''font'']>>>" As <<$npc_firstname[''A264'']>> told you, we ...
-            scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>" As ${((s as any).npc_firstname ?? 0)?.['A264'] ?? ''} told you, we could decrease your rent if you would do some housekeeping stuff we really suck at. But only if you want, of course."</font>`);
+            scene.text(`<font color=#${(((s as any).Oleg ?? 0)?.['font'] ?? '')}>" As ${(((s as any).npc_firstname ?? 0)?.['A264'] ?? '')} told you, we could decrease your rent if you would do some housekeeping stuff we really suck at. But only if you want, of course."</font>`);
             // TODO-QSP: dynamic text: <font color=#<<$Yakov[''font'']>>>"So what do you say <<$pcs_firstname>>?"</font...
-            scene.text(`<font color=#${((s as any).Yakov ?? 0)?.['font'] ?? ''}>"So what do you say ${((s as any).pcs_firstname ?? '')}?"</font>`);
+            scene.text(`<font color=#${(((s as any).Yakov ?? 0)?.['font'] ?? '')}>"So what do you say ${((s as any).pcs_firstname ?? '')}?"</font>`);
             if (((s as any).start_location ?? 0) === 3) {
               qspCall(s, 'homes_properties', 'set_home', 'shared_apartment');
             } else {
@@ -1272,19 +1272,19 @@ function enterIntro(s: GameState, scene: SceneBuilder): void {
             if (((s as any).shared_apt ?? 0)?.['pavIntroStep'] === 10) {
               (s as any).minut = ((s as any).minut ?? 0) + 2;
               // TODO-QSP: dynamic text: <font color=#<<$Yakov[''font'']>>>"Fine. So the rest of this week you have free,...
-              scene.text(`<font color=#${((s as any).Yakov ?? 0)?.['font'] ?? ''}>"Fine. So the rest of this week you have free, but you need to prepay the next week. OK?"</font>`);
+              scene.text(`<font color=#${(((s as any).Yakov ?? 0)?.['font'] ?? '')}>"Fine. So the rest of this week you have free, but you need to prepay the next week. OK?"</font>`);
               // TODO-QSP: dynamic text: <font color=#<<$pcs_font>>>"Yes, OK, I understand."</font>
               scene.text(`<font color=#${((s as any).pcs_font ?? '')}>"Yes, OK, I understand."</font>`);
               // TODO-QSP: dynamic text: <font color=#<<$Yakov[''font'']>>>"So the room is over there.</font>
-              scene.text(`<font color=#${((s as any).Yakov ?? 0)?.['font'] ?? ''}>"So the room is over there.</font>`);
+              scene.text(`<font color=#${(((s as any).Yakov ?? 0)?.['font'] ?? '')}>"So the room is over there.</font>`);
               // TODO-QSP: dynamic text: <font color=#<<$pcs_font>>>"Wait, Isn''t that the living room?"</font>
               scene.text(`<font color=#${((s as any).pcs_font ?? '')}>"Wait, Isn't that the living room?"</font>`);
               // TODO-QSP: dynamic text: <font color=#<<$Yakov[''font'']>>>"Yes, it''s available, but we''re not using it...
-              scene.text(`<font color=#${((s as any).Yakov ?? 0)?.['font'] ?? ''}>"Yes, it's available, but we're not using it, so we're renting it out. It's fully furnished with a bed, a table, and a chair. We've even added a curtain to separate the space. Feel free to move in whenever you'd like. See you later, ${((s as any).pcs_firstname ?? '')}!"</font>`);
+              scene.text(`<font color=#${(((s as any).Yakov ?? 0)?.['font'] ?? '')}>"Yes, it's available, but we're not using it, so we're renting it out. It's fully furnished with a bed, a table, and a chair. We've even added a curtain to separate the space. Feel free to move in whenever you'd like. See you later, ${((s as any).pcs_firstname ?? '')}!"</font>`);
               // TODO-QSP: dynamic text: <font color=#<<$Oleg[''font'']>>>"Have a nice day <<$pcs_firstname>>."</font>
-              scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"Have a nice day ${((s as any).pcs_firstname ?? '')}."</font>`);
+              scene.text(`<font color=#${(((s as any).Oleg ?? 0)?.['font'] ?? '')}>"Have a nice day ${((s as any).pcs_firstname ?? '')}."</font>`);
               // TODO-QSP: dynamic text: <font color=#<<$Nestor[''font'']>>>"See ya later girlie…"</font>
-              scene.text(`<font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"See ya later girlie…"</font>`);
+              scene.text(`<font color=#${(((s as any).Nestor ?? 0)?.['font'] ?? '')}>"See ya later girlie…"</font>`);
               // TODO-QSP: dynamic text: <font color=#<<$pcs_font>>>"Later guys!"</font>
               scene.text(`<font color=#${((s as any).pcs_font ?? '')}>"Later guys!"</font>`);
               ((s as any).shared_apt = (s as any).shared_apt ?? {})['servitudeLvl'] = 0;
@@ -1295,23 +1295,23 @@ function enterIntro(s: GameState, scene: SceneBuilder): void {
               if (((s as any).shared_apt ?? 0)?.['pavIntroStep'] === 20) {
                 (s as any).minut = ((s as any).minut ?? 0) + 2;
                 // TODO-QSP: dynamic text: <font color=#<<$Yakov[''font'']>>>"Fine. So the rest of this week you have free,...
-                scene.text(`<font color=#${((s as any).Yakov ?? 0)?.['font'] ?? ''}>"Fine. So the rest of this week you have free, but you need to prepay the next week. OK?"</font>`);
+                scene.text(`<font color=#${(((s as any).Yakov ?? 0)?.['font'] ?? '')}>"Fine. So the rest of this week you have free, but you need to prepay the next week. OK?"</font>`);
                 // TODO-QSP: dynamic text: <font color=#<<$pcs_font>>>"Yes, OK, I understand."</font>
                 scene.text(`<font color=#${((s as any).pcs_font ?? '')}>"Yes, OK, I understand."</font>`);
                 // TODO-QSP: dynamic text: <font color=#<<$Oleg[''font'']>>>"We will prepare a list of the charges for the ...
-                scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"We will prepare a list of the charges for the housekeeping services you may want to do, so it's clear how much will be deducted from your rent."</font>`);
+                scene.text(`<font color=#${(((s as any).Oleg ?? 0)?.['font'] ?? '')}>"We will prepare a list of the charges for the housekeeping services you may want to do, so it's clear how much will be deducted from your rent."</font>`);
                 // TODO-QSP: dynamic text: <font color=#<<$pcs_font>>>"Cool!"</font>
                 scene.text(`<font color=#${((s as any).pcs_font ?? '')}>"Cool!"</font>`);
                 // TODO-QSP: dynamic text: <font color=#<<$Yakov[''font'']>>>"So the room is over there."</font>
-                scene.text(`<font color=#${((s as any).Yakov ?? 0)?.['font'] ?? ''}>"So the room is over there."</font>`);
+                scene.text(`<font color=#${(((s as any).Yakov ?? 0)?.['font'] ?? '')}>"So the room is over there."</font>`);
                 // TODO-QSP: dynamic text: <font color=#<<$pcs_font>>>"Wait, Isn''t that the living room?"</font>
                 scene.text(`<font color=#${((s as any).pcs_font ?? '')}>"Wait, Isn't that the living room?"</font>`);
                 // TODO-QSP: dynamic text: <font color=#<<$Yakov[''font'']>>>"Yes, it''s available, but we''re not using it...
-                scene.text(`<font color=#${((s as any).Yakov ?? 0)?.['font'] ?? ''}>"Yes, it's available, but we're not using it, so we're renting it out. It's fully furnished with a bed, a table, and a chair. We've even added a curtain to separate the space. Feel free to move in whenever you'd like. See you later, ${((s as any).pcs_firstname ?? '')}!"</font>`);
+                scene.text(`<font color=#${(((s as any).Yakov ?? 0)?.['font'] ?? '')}>"Yes, it's available, but we're not using it, so we're renting it out. It's fully furnished with a bed, a table, and a chair. We've even added a curtain to separate the space. Feel free to move in whenever you'd like. See you later, ${((s as any).pcs_firstname ?? '')}!"</font>`);
                 // TODO-QSP: dynamic text: <font color=#<<$Oleg[''font'']>>>"Have a nice day, <<$pcs_firstname>>."</font>
-                scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"Have a nice day, ${((s as any).pcs_firstname ?? '')}."</font>`);
+                scene.text(`<font color=#${(((s as any).Oleg ?? 0)?.['font'] ?? '')}>"Have a nice day, ${((s as any).pcs_firstname ?? '')}."</font>`);
                 // TODO-QSP: dynamic text: <font color=#<<$Nestor[''font'']>>>"See ya later, girlie…"</font>
-                scene.text(`<font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"See ya later, girlie…"</font>`);
+                scene.text(`<font color=#${(((s as any).Nestor ?? 0)?.['font'] ?? '')}>"See ya later, girlie…"</font>`);
                 // TODO-QSP: dynamic text: <font color=#<<$pcs_font>>>"Later, guys!"</font>
                 scene.text(`<font color=#${((s as any).pcs_font ?? '')}>"Later, guys!"</font>`);
                 ((s as any).shared_apt = (s as any).shared_apt ?? {})['servitudeLvl'] = 1;
@@ -1322,25 +1322,25 @@ function enterIntro(s: GameState, scene: SceneBuilder): void {
                 if (((s as any).shared_apt ?? 0)?.['pavIntroStep'] === 30) {
                   (s as any).minut = ((s as any).minut ?? 0) + 2;
                   // TODO-QSP: dynamic text: <font color=#<<$Yakov[''font'']>>>"Fine. So, the rest of this week you have free...
-                  scene.text(`<font color=#${((s as any).Yakov ?? 0)?.['font'] ?? ''}>"Fine. So, the rest of this week you have free, but you need to prepay the next week. OK?"</font>`);
+                  scene.text(`<font color=#${(((s as any).Yakov ?? 0)?.['font'] ?? '')}>"Fine. So, the rest of this week you have free, but you need to prepay the next week. OK?"</font>`);
                   // TODO-QSP: dynamic text: <font color=#<<$pcs_font>>>"Yes, OK, I understand."</font>
                   scene.text(`<font color=#${((s as any).pcs_font ?? '')}>"Yes, OK, I understand."</font>`);
                   // TODO-QSP: dynamic text: <font color=#<<$Oleg[''font'']>>>"We will prepare a list of the charges for the ...
-                  scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"We will prepare a list of the charges for the housekeeping services you may want to do, so it's clear how much will be deducted from your rent."</font>`);
+                  scene.text(`<font color=#${(((s as any).Oleg ?? 0)?.['font'] ?? '')}>"We will prepare a list of the charges for the housekeeping services you may want to do, so it's clear how much will be deducted from your rent."</font>`);
                   // TODO-QSP: dynamic text: <font color=#<<$Nestor[''font'']>>>"The extra stuff services will be there too, ...
-                  scene.text(`<font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"The extra stuff services will be there too, girl."</font>`);
+                  scene.text(`<font color=#${(((s as any).Nestor ?? 0)?.['font'] ?? '')}>"The extra stuff services will be there too, girl."</font>`);
                   // TODO-QSP: dynamic text: <font color=#<<$pcs_font>>>"OK…"</font>
                   scene.text(`<font color=#${((s as any).pcs_font ?? '')}>"OK…"</font>`);
                   // TODO-QSP: dynamic text: <font color=#<<$Yakov[''font'']>>>"So, the room is over there."</font>
-                  scene.text(`<font color=#${((s as any).Yakov ?? 0)?.['font'] ?? ''}>"So, the room is over there."</font>`);
+                  scene.text(`<font color=#${(((s as any).Yakov ?? 0)?.['font'] ?? '')}>"So, the room is over there."</font>`);
                   // TODO-QSP: dynamic text: <font color=#<<$pcs_font>>>"Wait, isn''t that the living room?"</font>
                   scene.text(`<font color=#${((s as any).pcs_font ?? '')}>"Wait, isn't that the living room?"</font>`);
                   // TODO-QSP: dynamic text: <font color=#<<$Yakov[''font'']>>>"Yes, it is, but we don''t use it, so we are r...
-                  scene.text(`<font color=#${((s as any).Yakov ?? 0)?.['font'] ?? ''}>"Yes, it is, but we don't use it, so we are renting it out. There is all you need, a bed, a table with a chair, all this stuff. Just move in when you want, we even put a curtain over the doorway. See you later, ${((s as any).pcs_firstname ?? '')}!"</font>`);
+                  scene.text(`<font color=#${(((s as any).Yakov ?? 0)?.['font'] ?? '')}>"Yes, it is, but we don't use it, so we are renting it out. There is all you need, a bed, a table with a chair, all this stuff. Just move in when you want, we even put a curtain over the doorway. See you later, ${((s as any).pcs_firstname ?? '')}!"</font>`);
                   // TODO-QSP: dynamic text: <font color=#<<$Oleg[''font'']>>>"Have a nice day, <<$pcs_firstname>>."</font>
-                  scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"Have a nice day, ${((s as any).pcs_firstname ?? '')}."</font>`);
+                  scene.text(`<font color=#${(((s as any).Oleg ?? 0)?.['font'] ?? '')}>"Have a nice day, ${((s as any).pcs_firstname ?? '')}."</font>`);
                   // TODO-QSP: dynamic text: <font color=#<<$Nestor[''font'']>>>"See ya later, girlie…"</font>
-                  scene.text(`<font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"See ya later, girlie…"</font>`);
+                  scene.text(`<font color=#${(((s as any).Nestor ?? 0)?.['font'] ?? '')}>"See ya later, girlie…"</font>`);
                   // TODO-QSP: dynamic text: <font color=#<<$pcs_font>>>"Later, guys!"</font>
                   scene.text(`<font color=#${((s as any).pcs_font ?? '')}>"Later, guys!"</font>`);
                   ((s as any).shared_apt = (s as any).shared_apt ?? {})['servitudeLvl'] = 2;
@@ -1351,13 +1351,13 @@ function enterIntro(s: GameState, scene: SceneBuilder): void {
                   if (((s as any).shared_apt ?? 0)?.['pavIntroStep'] === 40) {
                     (s as any).minut = ((s as any).minut ?? 0) + 2;
                     // TODO-QSP: dynamic text: <font color=#<<$Oleg[''font'']>>>"I told you idiot not to scare her away!"</font...
-                    scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"I told you idiot not to scare her away!"</font>`);
+                    scene.text(`<font color=#${(((s as any).Oleg ?? 0)?.['font'] ?? '')}>"I told you idiot not to scare her away!"</font>`);
                     // TODO-QSP: dynamic text: <font color=#<<$Nestor[''font'']>>>"Sorry man! We can still lock her to the radi...
-                    scene.text(`<font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"Sorry man! We can still lock her to the radiator like I suggested in the first place…"</font>`);
+                    scene.text(`<font color=#${(((s as any).Nestor ?? 0)?.['font'] ?? '')}>"Sorry man! We can still lock her to the radiator like I suggested in the first place…"</font>`);
                     // TODO-QSP: dynamic text: <font color=#<<$Oleg[''font'']>>>"Just shut up already!"</font>
-                    scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"Just shut up already!"</font>`);
+                    scene.text(`<font color=#${(((s as any).Oleg ?? 0)?.['font'] ?? '')}>"Just shut up already!"</font>`);
                     // TODO-QSP: dynamic text: <font color=#<<$Yakov[''font'']>>>"Sorry <<$pcs_firstname>>. We respect your dec...
-                    scene.text(`<font color=#${((s as any).Yakov ?? 0)?.['font'] ?? ''}>"Sorry ${((s as any).pcs_firstname ?? '')}. We respect your decision. If you change your mind and the room is still empty, let us know and we can talk again. Goodbye!"</font>`);
+                    scene.text(`<font color=#${(((s as any).Yakov ?? 0)?.['font'] ?? '')}>"Sorry ${((s as any).pcs_firstname ?? '')}. We respect your decision. If you change your mind and the room is still empty, let us know and we can talk again. Goodbye!"</font>`);
                     scene.actions([
                       { label: 'Tell them goodbye and leave', goto: ['pav_complex', 'start'] },
                       { label: 'Change your mind and ask them about those services again', handler: (st: GameState) => {
@@ -1368,11 +1368,11 @@ function enterIntro(s: GameState, scene: SceneBuilder): void {
                     if (((s as any).shared_apt ?? 0)?.['pavIntroStep'] === 50) {
                       (s as any).minut = ((s as any).minut ?? 0) + 2;
                       // TODO-QSP: dynamic text: <font color=#<<$Oleg[''font'']>>>"I''m sorry <<$pcs_firstname>>, but we don''t w...
-                      scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"I'm sorry ${((s as any).pcs_firstname ?? '')}, but we don't want children or pets in the apartment!"</font>`);
+                      scene.text(`<font color=#${(((s as any).Oleg ?? 0)?.['font'] ?? '')}>"I'm sorry ${((s as any).pcs_firstname ?? '')}, but we don't want children or pets in the apartment!"</font>`);
                       // TODO-QSP: dynamic text: <font color=#<<$Nestor[''font'']>>>"If you get rid of the kid, come back and see...
-                      scene.text(`<font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"If you get rid of the kid, come back and see us."</font>`);
+                      scene.text(`<font color=#${(((s as any).Nestor ?? 0)?.['font'] ?? '')}>"If you get rid of the kid, come back and see us."</font>`);
                       // TODO-QSP: dynamic text: <font color=#<<$Yakov[''font'']>>>"Don''t mind him. There''s simply not enough r...
-                      scene.text(`<font color=#${((s as any).Yakov ?? 0)?.['font'] ?? ''}>"Don't mind him. There's simply not enough room for 4 people, plus kids or pets. I hope you understand"</font>`);
+                      scene.text(`<font color=#${(((s as any).Yakov ?? 0)?.['font'] ?? '')}>"Don't mind him. There's simply not enough room for 4 people, plus kids or pets. I hope you understand"</font>`);
                       if (qspFunc(s, 'homes_properties', 'has_access', 'parents_home')) {
                         scene.actions([
                           { label: 'Suggest a compromise', handler: (st: GameState) => {
@@ -1380,11 +1380,11 @@ function enterIntro(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: <font color=#<<$pcs_font>>>"I can leave them with my parents for the time being,...
     scene.text(`<font color=#${((st as any).pcs_font ?? '')}>"I can leave them with my parents for the time being, and keep them away from the apartment, how does this sound?`);
     // TODO-QSP: dynamic text: <font color=#<<$Yakov[''font'']>>>"Are you certain you want to do this?"</font>
-    scene.text(`<font color=#${((st as any).Yakov ?? 0)?.['font'] ?? ''}>"Are you certain you want to do this?"</font>`);
+    scene.text(`<font color=#${(((st as any).Yakov ?? 0)?.['font'] ?? '')}>"Are you certain you want to do this?"</font>`);
     // TODO-QSP: dynamic text: <font color=#<<$Nestor[''font'']>>>"Sounds good to me!"</font>
-    scene.text(`<font color=#${((st as any).Nestor ?? 0)?.['font'] ?? ''}>"Sounds good to me!"</font>`);
+    scene.text(`<font color=#${(((st as any).Nestor ?? 0)?.['font'] ?? '')}>"Sounds good to me!"</font>`);
     // TODO-QSP: dynamic text: <font color=#<<$Oleg[''font'']>>>"hmmmm"</font>
-    scene.text(`<font color=#${((st as any).Oleg ?? 0)?.['font'] ?? ''}>"hmmmm"</font>`);
+    scene.text(`<font color=#${(((st as any).Oleg ?? 0)?.['font'] ?? '')}>"hmmmm"</font>`);
     scene.actions([
       { label: 'Continue', goto: ['pav_shared_apt', 'intro'] },
     ]);
@@ -1394,11 +1394,11 @@ function enterIntro(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: <font color=#<<$pcs_font>>>"OK, I will make do with my current accommodation.
     scene.text(`<font color=#${((st as any).pcs_font ?? '')}>"OK, I will make do with my current accommodation.`);
     // TODO-QSP: dynamic text: <font color=#<<$Yakov[''font'']>>>"We understand"</font>
-    scene.text(`<font color=#${((st as any).Yakov ?? 0)?.['font'] ?? ''}>"We understand"</font>`);
+    scene.text(`<font color=#${(((st as any).Yakov ?? 0)?.['font'] ?? '')}>"We understand"</font>`);
     // TODO-QSP: dynamic text: <font color=#<<$Nestor[''font'']>>>"Damn"</font>
-    scene.text(`<font color=#${((st as any).Nestor ?? 0)?.['font'] ?? ''}>"Damn"</font>`);
+    scene.text(`<font color=#${(((st as any).Nestor ?? 0)?.['font'] ?? '')}>"Damn"</font>`);
     // TODO-QSP: dynamic text: <font color=#<<$Oleg[''font'']>>>"No problem <<$pcs_firstname>>"</font>
-    scene.text(`<font color=#${((st as any).Oleg ?? 0)?.['font'] ?? ''}>"No problem ${((st as any).pcs_firstname ?? '')}"</font>`);
+    scene.text(`<font color=#${(((st as any).Oleg ?? 0)?.['font'] ?? '')}>"No problem ${((st as any).pcs_firstname ?? '')}"</font>`);
     scene.actions([
       { label: 'Continue', goto: ['pav_complex', 'start'] },
     ]);
@@ -1430,10 +1430,10 @@ function enterIntro(s: GameState, scene: SceneBuilder): void {
 function enterRentSetup(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   // TODO-QSP: dynamic text: You signed a rental agreement. The weekly rent is <<$func(''money'', ''string_pr...
-  scene.text(`You signed a rental agreement. The weekly rent is ${qspFunc(s, 'money', 'string_price', ((s as any).shared_apt ?? 0)?.['rentWeekly'] ?? '')}.`);
+  scene.text(`You signed a rental agreement. The weekly rent is ${qspFunc(s, 'money', 'string_price', (((s as any).shared_apt ?? 0)?.['rentWeekly'] ?? ''))}.`);
   ((s as any).shared_apt = (s as any).shared_apt ?? {})['rentPaid'] = 1;
   ((s as any).shared_apt = (s as any).shared_apt ?? {})['cashPaid'] = 0;
-  ((s as any).shared_apt = (s as any).shared_apt ?? {})['rentLeft'] = ((s as any).shared_apt ?? 0)?.['rentWeekly'];
+  ((s as any).shared_apt = (s as any).shared_apt ?? {})['rentLeft'] = (((s as any).shared_apt ?? 0)?.['rentWeekly']);
   ((s as any).shared_apt = (s as any).shared_apt ?? {})['introDone'] = 1;
   ((s as any).shared_apt = (s as any).shared_apt ?? {})['intro_daystart'] = ((s as any).daystart ?? 0);
   ((s as any).shared_apt = (s as any).shared_apt ?? {})['pavIntroStep'] = 0;
@@ -1461,7 +1461,7 @@ function enterQuickStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'homes_properties', 'set_home', 'shared_apartment');
   ((s as any).shared_apt = (s as any).shared_apt ?? {})['rentPaid'] = 1;
   ((s as any).shared_apt = (s as any).shared_apt ?? {})['cashPaid'] = 0;
-  ((s as any).shared_apt = (s as any).shared_apt ?? {})['rentLeft'] = ((s as any).shared_apt ?? 0)?.['rentWeekly'];
+  ((s as any).shared_apt = (s as any).shared_apt ?? {})['rentLeft'] = (((s as any).shared_apt ?? 0)?.['rentWeekly']);
   ((s as any).shared_apt = (s as any).shared_apt ?? {})['introDone'] = 1;
   ((s as any).shared_apt = (s as any).shared_apt ?? {})['intro_daystart'] = ((s as any).daystart ?? 0);
   ((s as any).shared_apt = (s as any).shared_apt ?? {})['pavIntroStep'] = 0;

@@ -285,7 +285,7 @@ function enter1(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: You just want a nice, cold beer and decide to take the initiative. You ask them:...
   scene.text(`You just want a nice, cold beer and decide to take the initiative. You ask them: "Come on boys, why so rude? Surely you'll give a nice lady a beer?" in a playful tone, taking a seductive pose and giving them your most ${((s as any).text_sveta_obol ?? '')} smile. The guys look and whisper some things, but ${((s as any).shultextrand33 ?? '')} quickly grins and beckons you to come closer.`);
   // TODO-QSP: dynamic text: You shake your hips and teasingly lick your parched <<$pc_desc[''lips'']>> lips,...
-  scene.text(`You shake your hips and teasingly lick your parched ${((s as any).pc_desc ?? 0)?.['lips'] ?? ''} lips, and for a second you wonder if you're laying it on too thick as you approach the three guys. You can feel your mouth water when you see the cold beer they're reaching out to you though.`);
+  scene.text(`You shake your hips and teasingly lick your parched ${(((s as any).pc_desc ?? 0)?.['lips'] ?? '')} lips, and for a second you wonder if you're laying it on too thick as you approach the three guys. You can feel your mouth water when you see the cold beer they're reaching out to you though.`);
   // TODO-QSP: dynamic text: <<$shultextrand33>> says <<$shultextrand6>>: "<<$shul_text_byh>>"
   scene.text(`${((s as any).shultextrand33 ?? '')} says ${((s as any).shultextrand6 ?? '')}: "${((s as any).shul_text_byh ?? '')}"`);
   qspCall(s, 'willpower', 'misc', 'resist');
@@ -601,7 +601,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
       (st as any).oral_den_text = 'His cock is already fully erect, and you dutifully close your lips around it. You suppress your gag reflex as you take him all the way down your throat, drooling all over his cock while you give him a sloppy blowjob.';
     }
     if (((st as any).temp_rand ?? 0) === 2) {
-      (st as any).oral_den_text = 'You carefully close your ' + ((st as any).pc_desc ?? 0)?.['lips'] + ' lips around his cock, and guide it down your throat while you tease the shaft with your tongue. Eventually his balls are resting on your lips, his penis, and you even manage to lick them with your tongue while his cock is down your throat. You\'re not sure whether to feel proud, or ashamed.';
+      (st as any).oral_den_text = 'You carefully close your ' + (((st as any).pc_desc ?? 0)?.['lips']) + ' lips around his cock, and guide it down your throat while you tease the shaft with your tongue. Eventually his balls are resting on your lips, his penis, and you even manage to lick them with your tongue while his cock is down your throat. You\'re not sure whether to feel proud, or ashamed.';
     }
     if (((st as any).temp_rand ?? 0) === 3) {
       (st as any).oral_den_text = 'At first he lets you control the pace while you teasingly suck the head of his dick, but after a while he can\'t take your teasing any longer. He roughly grabs hold of your hair and pushes your head down onto his groan, forcing his cock down your throat. Your throat spasms around his cock while you struggle to draw breath, and after a while he realizes your troubles and pulls back enough so you can breathe through your nose while you please him with your mouth.';
@@ -706,7 +706,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
         if (((st as any).temp_randB ?? 0) === 1) {
           scene.img('images/locations/pavlovsk/park/sex/gop/bjbeerphone.jpg');
           // TODO-QSP: dynamic text: You spread your <<$pc_desc[''lips'']>> lips and wrap them around Vitek''s cock. ...
-          scene.text(`You spread your ${((st as any).pc_desc ?? 0)?.['lips'] ?? ''} lips and wrap them around Vitek's cock. At that moment, Dan grunts: "Open wider, slut" and begins to unceremoniously cram his dick into your mouth as well. You try to protest, but the guys just laugh at the comical sounds you make with two cocks in your mouth.`);
+          scene.text(`You spread your ${(((st as any).pc_desc ?? 0)?.['lips'] ?? '')} lips and wrap them around Vitek's cock. At that moment, Dan grunts: "Open wider, slut" and begins to unceremoniously cram his dick into your mouth as well. You try to protest, but the guys just laugh at the comical sounds you make with two cocks in your mouth.`);
           // TODO-QSP: dynamic text: Suddenly Vasily pulls out his phone and begins to record a video, while he comme...
           scene.text(`Suddenly Vasily pulls out his phone and begins to record a video, while he comments on what is happening: "Hello everyone, and welcome to Pavlovsk News! Our special guest today is the one and only ${((st as any).gnikname ?? '')}, ${((st as any).pcs_nickname ?? '')}! Say hi to our viewers, ${((st as any).pcs_nickname ?? '')}!"`);
           scene.text('"Mvhr… mflm…" you try to say something, but the cocks in your mouth prevent you from talking. The boys firmly hold your head in place, and continue to fuck your mouth with their two cocks.');
@@ -755,7 +755,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
       (st as any).temp_randC = (Math.floor(Math.random() * 4) + 0);
       if ((!((st as any).temp_randC ?? 0))) {
         // TODO-QSP: dynamic text: You spread your <<$pc_desc[''lips'']>> lips and wrap them around Vitek''s cock. ...
-        scene.text(`You spread your ${((st as any).pc_desc ?? 0)?.['lips'] ?? ''} lips and wrap them around Vitek's cock. At that moment, Dan grunts: "Open wider, slut" and begins to unceremoniously cram his dick into your mouth as well, stretching it to the limit. You try to protest, but the guys just laugh at the comical sounds you make with two cocks in your mouth.`);
+        scene.text(`You spread your ${(((st as any).pc_desc ?? 0)?.['lips'] ?? '')} lips and wrap them around Vitek's cock. At that moment, Dan grunts: "Open wider, slut" and begins to unceremoniously cram his dick into your mouth as well, stretching it to the limit. You try to protest, but the guys just laugh at the comical sounds you make with two cocks in your mouth.`);
         if ((Math.floor(Math.random() * 2) + 0)) {
           scene.text('Even though it\'s difficult, you manage to take both of their erections deep inside your mouth. You sometimes tease them with your tongue.');
         } else {

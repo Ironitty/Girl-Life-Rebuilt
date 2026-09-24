@@ -27,10 +27,10 @@ function enterInitCheck(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: exit
   }
   (s as any).temp_prob_chance = 300;
-  (s as any).temp_prob_chance = ((s as any).temp_prob_chance ?? 0) + (Math.max(((s as any).fame ?? 0)?.['pav_slut'], ((s as any).fame ?? 0)?.['city_slut']));
-  (s as any).temp_prob_chance = ((s as any).temp_prob_chance ?? 0) + (Math.max(((s as any).fame ?? 0)?.['pav_modelling'], ((s as any).fame ?? 0)?.['city_modelling']) / 10);
-  (s as any).temp_prob_chance = ((s as any).temp_prob_chance ?? 0) + (Math.max(((s as any).fame ?? 0)?.['pav_porn'], ((s as any).fame ?? 0)?.['city_porn']) / 10);
-  (s as any).temp_prob_chance = ((s as any).temp_prob_chance ?? 0) + (((s as any).trait_vars ?? 0)?.['exhibitionist_exp']);
+  (s as any).temp_prob_chance = ((s as any).temp_prob_chance ?? 0) + (Math.max((((s as any).fame ?? 0)?.['pav_slut']), (((s as any).fame ?? 0)?.['city_slut'])));
+  (s as any).temp_prob_chance = ((s as any).temp_prob_chance ?? 0) + (Math.max((((s as any).fame ?? 0)?.['pav_modelling']), (((s as any).fame ?? 0)?.['city_modelling'])) / 10);
+  (s as any).temp_prob_chance = ((s as any).temp_prob_chance ?? 0) + (Math.max((((s as any).fame ?? 0)?.['pav_porn']), (((s as any).fame ?? 0)?.['city_porn'])) / 10);
+  (s as any).temp_prob_chance = ((s as any).temp_prob_chance ?? 0) + ((((s as any).trait_vars ?? 0)?.['exhibitionist_exp']));
   (s as any).temp_prob_chance = ((s as any).temp_prob_chance ?? 0) - (20 * Math.min((((s as any).trait_vars ?? {})?.['exhibitionist'] ?? 0) * (((s as any).trait_vars ?? {})?.['exhibitionist'] ?? 0), 9));
   if (((s as any).temp_prob_chance ?? 0) > 600) {
     // TODO-QSP: killvar 'temp_prob_chance'
@@ -222,7 +222,7 @@ function enterCiklSetPackage(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'telefon', 'SetInSMSSchedule', 'Blackmailer', 'gs \'blackmailer\', \'Add_SMS_package_repeat\'', '(totminut > ' + ((s as any).totminut ?? 0) + 480 + ' and rand(0, 50) = 0) or (totminut > ' + ((s as any).totminut ?? 0) + 802 + ')');
   } else {
     if (((s as any).blackmailQW ?? 0)?.['cosplay_stage'] >= 5) {
-      qspCall(s, 'telefon', 'SetInSMSSchedule', ((s as any).blackmailQW ?? 0)?.['nerdvana_phone_ID'], 'gs \'blackmailer\', \'Add_SMS_package_repeat2\'', '(totminut > ' + ((s as any).totminut ?? 0) + 480 + ' and rand(0, 50) = 0) or (totminut > ' + ((s as any).totminut ?? 0) + 802 + ')');
+      qspCall(s, 'telefon', 'SetInSMSSchedule', (((s as any).blackmailQW ?? 0)?.['nerdvana_phone_ID']), 'gs \'blackmailer\', \'Add_SMS_package_repeat2\'', '(totminut > ' + ((s as any).totminut ?? 0) + 480 + ' and rand(0, 50) = 0) or (totminut > ' + ((s as any).totminut ?? 0) + 802 + ')');
     }
   }
   // TODO-QSP: end
@@ -329,7 +329,7 @@ function enterJournalQuests(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).blackmailQW ?? 0)?.['cosplay_stage'] >= 5) {
         // TODO-QSP: dynamic text: Your actions have alerted your blackmailer, and he has used your clothed selfies...
-        scene.text(`Your actions have alerted your blackmailer, and he has used your clothed selfies to trick Nerdvana clerk ${(((s as any).npc_usedname ?? 0)?.[((s as any).blackmailQW ?? 0)?.['nerdvana_phone_ID'] ?? ''] ?? '')}.`);
+        scene.text(`Your actions have alerted your blackmailer, and he has used your clothed selfies to trick Nerdvana clerk ${(((s as any).npc_usedname ?? 0)?.[(((s as any).blackmailQW ?? 0)?.['nerdvana_phone_ID'] ?? '')] ?? '')}.`);
       }
     }
   }
@@ -417,7 +417,7 @@ function enterCheatmenuForceSendsms(s: GameState, scene: SceneBuilder): void {
 function enterPurgeAll(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'telefon', 'DeleteContact', 'Blackmailer');
   qspCall(s, 'telefon', 'DeleteContact', 'Officer_bm');
-  qspCall(s, 'telefon', 'DeleteContact', ((s as any).blackmailQW ?? 0)?.['nerdvana_phone_ID']);
+  qspCall(s, 'telefon', 'DeleteContact', (((s as any).blackmailQW ?? 0)?.['nerdvana_phone_ID']));
   qspCall(s, 'calendar', 'remove', 'blackmail_payment_deadline');
   // TODO-QSP: end
   scene.build();
@@ -438,17 +438,17 @@ function enterSetNextPayment(s: GameState, scene: SceneBuilder): void {
   } else {
     ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['costume_punishment'] = 0;
   }
-  ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['next_payment'] = ((s as any).blackmailQW['next_payment'] ?? 0) + (((s as any).blackmailQW ?? 0)?.['costume_punishment']);
+  ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['next_payment'] = ((s as any).blackmailQW['next_payment'] ?? 0) + ((((s as any).blackmailQW ?? 0)?.['costume_punishment']));
   // TODO-QSP: end
   scene.build();
 }
 
 function enterMakePayment(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') <= 0) {
-    ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).blackmailQW ?? 0)?.['next_payment'];
+    ((s as any).ARGS = (s as any).ARGS ?? {})[1] = (((s as any).blackmailQW ?? 0)?.['next_payment']);
   }
   if (String((s as any).locArgs?.[1] ?? '') > ((s as any).blackmailQW ?? 0)?.['next_payment']) {
-    ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).blackmailQW ?? 0)?.['next_payment'];
+    ((s as any).ARGS = (s as any).ARGS ?? {})[1] = (((s as any).blackmailQW ?? 0)?.['next_payment']);
   }
   if (String((s as any).locArgs?.[2] ?? '') === 'money') {
     qspCall(s, 'money', 'pay', ((s as any).locArgs?.[1] ?? 0), 'cash');
@@ -502,7 +502,7 @@ function enterChooseBlackmailImage(s: GameState, scene: SceneBuilder): void {
     (s as any).result = ((s as any).blackmailQW ?? 0)['selfie_image_' + (Math.floor(Math.random() * (((s as any).in ?? 0)((((s as any).blackmailQW ?? 0)?.[String((s as any).total_material ?? 0)] ?? 0)-1, 9) - 0 + 1)) + (0)) + ''];
   }
   if (((s as any).result ?? 0) === '') {
-    (s as any).result = ((s as any).blackmailQW ?? 0)?.['init_flashimage'];
+    (s as any).result = (((s as any).blackmailQW ?? 0)?.['init_flashimage']);
   }
   // TODO-QSP: end
   scene.build();
@@ -556,10 +556,10 @@ function enterOpenPackage(s: GameState, scene: SceneBuilder): void {
   if (((String(((s as any).blackmailQW ?? 0)?.['packages_opened']).indexOf(String(';' + (String(100 + ((s as any).blackmailQW ?? 0)?.['inventory']).slice((2)-1)) + ';'))) + 1) <= 0) {
     ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['packages_opened'] = ((s as any).blackmailQW['packages_opened'] ?? 0) + ((String(100 + (((s as any).blackmailQW ?? {})?.['inventory'] ?? 0)).slice((2)-1)) + ';');
   }
-  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).blackmailQW ?? 0)?.['inventory']]; enterGetPackageContent(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', (((s as any).blackmailQW ?? 0)?.['inventory'])]; enterGetPackageContent(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).temp_package ?? 0)?.['type'] === 'clothing') {
   }
-  (s as any).result = ((s as any).temp_package ?? 0)?.['image'];
+  (s as any).result = (((s as any).temp_package ?? 0)?.['image']);
   ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['inventory'] = 0;
   // TODO-QSP: end
   scene.build();
@@ -949,7 +949,7 @@ function enterBlackmailDreams(s: GameState, scene: SceneBuilder): void {
 function enterPhotoDream1(s: GameState, scene: SceneBuilder): void {
   ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['dreamday'] = ((s as any).daystart ?? 0) + 3;
   scene.text('<center><b>Dream</b></center>');
-  scene.img(`${((s as any).blackmailQW ?? 0)?.['init_flashimage'] ?? ''}`);
+  scene.img(`${(((s as any).blackmailQW ?? 0)?.['init_flashimage'] ?? '')}`);
   (s as any).temp_dream_text = 'You dream about getting caught while flashing your ';
   // TODO-QSP: $temp_dream_text += $blackmailQW['init_flashaction']
   if (((s as any).blackmailQW ?? 0)?.['init_flashloc_desc'] !== '') {
@@ -985,18 +985,18 @@ function enterPhotoDream2(s: GameState, scene: SceneBuilder): void {
     scene.text('<center><b>Dream</b></center>');
     scene.img('images/characters/pavlovsk/resident/mom/mother.jpg');
     // TODO-QSP: dynamic text: You dream that your <<$npc_nickname[''A29'']>> is sitting at the kitchen table, ...
-    scene.text(`You dream that your ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''} is sitting at the kitchen table, looking somber, almost defeated, reading what seems to be a letter.`);
+    scene.text(`You dream that your ${(((s as any).npc_nickname ?? 0)?.['A29'] ?? '')} is sitting at the kitchen table, looking somber, almost defeated, reading what seems to be a letter.`);
     scene.actions([
-      { label: '', labelFn: (s: GameState) => 'Ask your ' + String(((s as any).npc_nickname ?? 0)?.['A29'] ?? '' ?? '') + ' what\'s wrong', handler: (st: GameState) => {
+      { label: '', labelFn: (s: GameState) => 'Ask your ' + String((((s as any).npc_nickname ?? 0)?.['A29'] ?? '') ?? '') + ' what\'s wrong', handler: (st: GameState) => {
     scene.text('<center><b>Dream</b></center>');
     scene.img('images/characters/pavlovsk/resident/mom/mum_gyno2.jpg');
     // TODO-QSP: dynamic text: You walk up to her and ask "What''s wrong <<$npc_nickname[''A29'']>>?"
-    scene.text(`You walk up to her and ask "What's wrong ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''}?"`);
+    scene.text(`You walk up to her and ask "What's wrong ${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')}?"`);
     scene.text('She drops the letter and see that it is accompanied by a picture.');
     scene.actions([
       { label: 'Look at the picture', handler: (st: GameState) => {
     scene.text('<center><b>Dream</b></center>');
-    scene.img(`${((st as any).blackmailQW ?? 0)?.['init_flashimage'] ?? ''}`);
+    scene.img(`${(((st as any).blackmailQW ?? 0)?.['init_flashimage'] ?? '')}`);
     (st as any).temp_dream_text = 'You get a clear look at the picture depicting you flashing your ';
     // TODO-QSP: $temp_dream_text += $blackmailQW['init_flashaction']
     if (((st as any).blackmailQW ?? 0)?.['init_flashloc_desc'] !== '') {
@@ -1006,13 +1006,13 @@ function enterPhotoDream2(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'flash', (-5));
     qspCall(st, 'arousal', 'end');
     // TODO-QSP: dynamic text: Overcoming the initial shock, you can barely hear that your <<$npc_nickname[''A2...
-    scene.text(`Overcoming the initial shock, you can barely hear that your ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''} is speaking to you, though you don't register what she's saying to you.`);
+    scene.text(`Overcoming the initial shock, you can barely hear that your ${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')} is speaking to you, though you don't register what she's saying to you.`);
     scene.actions([
       { label: 'Listen to your mother', handler: (st: GameState) => {
     scene.text('<center><b>Dream</b></center>');
     scene.img('images/characters/pavlovsk/resident/mom/spank.jpg');
     // TODO-QSP: dynamic text: "Oh, you slut! Your father and I worked so hard to raise you as a decent person,...
-    scene.text(`"Oh, you slut! Your father and I worked so hard to raise you as a decent person, hoping you would find a good husband some day and it turns out you're a whore who gets off on showing her ${((st as any).blackmailQW ?? 0)?.['init_flashaction'] ?? ''} to strangers!"`);
+    scene.text(`"Oh, you slut! Your father and I worked so hard to raise you as a decent person, hoping you would find a good husband some day and it turns out you're a whore who gets off on showing her ${(((st as any).blackmailQW ?? 0)?.['init_flashaction'] ?? '')} to strangers!"`);
     scene.text('Suddenly her expression steels, her mind made up. "You can still be saved. I will turn you away from this errant path, you will not shame this family even if I have to beat the sin out of you."');
     scene.text('She grabs your arm and yanks you over kitchen table, ripping donw your pants as she reaches for something outside of your view.');
     scene.text('You hear sound of metal and leather, the feel of thick, rough, leather against your naked behind. The sound as she cracks it like a whip. "This is for your own good, someday you\'ll understand."');
@@ -1023,7 +1023,7 @@ function enterPhotoDream2(s: GameState, scene: SceneBuilder): void {
     scene.text('<center><b>Dream</b></center>');
     scene.img('images/characters/pavlovsk/resident/mom/hug_sad1.jpg');
     // TODO-QSP: dynamic text: Bracing yourself for the pain that never comes, the dream shifts. You are left o...
-    scene.text(`Bracing yourself for the pain that never comes, the dream shifts. You are left on the outside looking in, the house a mess, your ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''} crying, ${((st as any).npc_nickname ?? 0)?.['A34'] ?? ''} and your ${((st as any).npc_nickname ?? 0)?.['A28'] ?? ''} nowhere to be seen.`);
+    scene.text(`Bracing yourself for the pain that never comes, the dream shifts. You are left on the outside looking in, the house a mess, your ${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')} crying, ${(((st as any).npc_nickname ?? 0)?.['A34'] ?? '')} and your ${(((st as any).npc_nickname ?? 0)?.['A28'] ?? '')} nowhere to be seen.`);
     scene.text('The lingering feelings of a happy family quickly fading.');
     scene.actions([
       { label: 'Continue sleeping', handler: (st: GameState) => {
@@ -1048,7 +1048,7 @@ function enterPhotoDream2(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Grab a polaroid', handler: (st: GameState) => {
     scene.text('<center><b>Dream</b></center>');
-    scene.img(`${((st as any).blackmailQW ?? 0)?.['init_flashimage'] ?? ''}`);
+    scene.img(`${(((st as any).blackmailQW ?? 0)?.['init_flashimage'] ?? '')}`);
     (st as any).temp_dream_text = 'You grab one of the pictures and see yourself flashing your ';
     // TODO-QSP: $temp_dream_text += $blackmailQW['init_flashaction']
     if (((st as any).blackmailQW ?? 0)?.['init_flashloc_desc'] !== '') {
@@ -1080,7 +1080,7 @@ function enterPhotoDream2(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Buy a newspaper', handler: (st: GameState) => {
     scene.text('<center><b>Dream</b></center>');
-    scene.img(`${((st as any).blackmailQW ?? 0)?.['init_flashimage'] ?? ''}`);
+    scene.img(`${(((st as any).blackmailQW ?? 0)?.['init_flashimage'] ?? '')}`);
     (st as any).temp_dream_text = 'The postmaster distandly hands you a newspaper, and on the front cover you see a picture of yourself flashing your ';
     // TODO-QSP: $temp_dream_text += $blackmailQW['init_flashaction']
     if (((st as any).blackmailQW ?? 0)?.['init_flashloc_desc'] !== '') {
@@ -1165,7 +1165,7 @@ function enterPark1(s: GameState, scene: SceneBuilder): void {
       }
       qspCall(st, 'telefon', 'ClearInSMSSchedule', 'Blackmailer');
       ((st as any).blackmailQW = (st as any).blackmailQW ?? {})['smsday'] = 0;
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ((st as any).blackmailQW ?? 0)?.['next_payment'], 'money']; enterMakePayment(st, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', (((st as any).blackmailQW ?? 0)?.['next_payment']), 'money']; enterMakePayment(st, scene); (st as any).locArgs = __savedLocArgs; }
       (st as any).minut = ((st as any).minut ?? 0) + 1;
       qspCall(st, 'stat', '');
       scene.img('images/locations/shared/park/blackmailer/dropoff.jpg');
@@ -1218,7 +1218,7 @@ function enterPark2(s: GameState, scene: SceneBuilder): void {
       ((st as any).blackmailQW = (st as any).blackmailQW ?? {})['smsday'] = 0;
       ((st as any).blackmailQW = (st as any).blackmailQW ?? {})['cosplay_stage'] = 1;
       { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 7]; enterRegisterCosplayUsed(st, scene); (st as any).locArgs = __savedLocArgs; }
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ((st as any).blackmailQW ?? 0)?.['next_payment'], 'money']; enterMakePayment(st, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', (((st as any).blackmailQW ?? 0)?.['next_payment']), 'money']; enterMakePayment(st, scene); (st as any).locArgs = __savedLocArgs; }
       (st as any).minut = ((st as any).minut ?? 0) + 1;
       qspCall(st, 'stat', '');
       scene.img('images/locations/shared/park/blackmailer/dropoff.jpg');
@@ -1300,7 +1300,7 @@ function enterParkRepeat(s: GameState, scene: SceneBuilder): void {
 function enterParkRepeatHide(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'telefon', 'ClearInSMSSchedule', 'Blackmailer');
   ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['smsday'] = 0;
-  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).blackmailQW ?? 0)?.['next_payment'], 'money']; enterMakePayment(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', (((s as any).blackmailQW ?? 0)?.['next_payment']), 'money']; enterMakePayment(s, scene); (s as any).locArgs = __savedLocArgs; }
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   qspCall(s, 'stat', '');
   scene.img('images/locations/shared/park/blackmailer/dropoff.jpg');
@@ -1385,13 +1385,13 @@ function enterPolice1(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'willpower', 'flash', 'self');
     if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
-        { label: '', labelFn: (s: GameState) => 'Tell them that somebody caught you flashing your ' + String(((st as any).blackmailQW ?? 0)?.['init_flashaction'] ?? '' ?? '') + ' [+iif($blackmailQW[\'init_flashloc_desc\'] =...]', handler: (st: GameState) => {
+        { label: '', labelFn: (s: GameState) => 'Tell them that somebody caught you flashing your ' + String((((st as any).blackmailQW ?? 0)?.['init_flashaction'] ?? '') ?? '') + ' [+iif($blackmailQW[\'init_flashloc_desc\'] =...]', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: '', labelFn: (s: GameState) => 'Tell them that somebody caught you flashing your ' + String(((st as any).blackmailQW ?? 0)?.['init_flashaction'] ?? '' ?? '') + ' [+iif($blackmailQW[\'init_flashloc_desc\'] =...]', handler: (st: GameState) => {
+        { label: '', labelFn: (s: GameState) => 'Tell them that somebody caught you flashing your ' + String((((st as any).blackmailQW ?? 0)?.['init_flashaction'] ?? '') ?? '') + ' [+iif($blackmailQW[\'init_flashloc_desc\'] =...]', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
     qspCall(st, 'stat', '');
     scene.img('images/locations/shared/police/interrogation2.jpg');
@@ -1403,12 +1403,12 @@ function enterPolice1(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Show them the messages', handler: (st: GameState) => {
     if (((st as any).blackmailQW ?? 0)?.['blackmail_image_chosen'] === '') {
-      ((st as any).blackmailQW = (st as any).blackmailQW ?? {})['blackmail_image_chosen'] = ((st as any).blackmailQW ?? 0)?.['init_flashimage'];
+      ((st as any).blackmailQW = (st as any).blackmailQW ?? {})['blackmail_image_chosen'] = (((st as any).blackmailQW ?? 0)?.['init_flashimage']);
     }
     ((st as any).blackmailQW = (st as any).blackmailQW ?? {})['escape'] = 1;
     (st as any).minut = ((st as any).minut ?? 0) + 10;
     qspCall(st, 'stat', '');
-    scene.img(`${((st as any).blackmailQW ?? 0)?.['blackmail_image_chosen'] ?? ''}`);
+    scene.img(`${(((st as any).blackmailQW ?? 0)?.['blackmail_image_chosen'] ?? '')}`);
     scene.text('You open your phone and show the police officers the messages, and the images that you were send. You see the officer raise his eyebrow and you think you can almost hear him mutter "accidentally?" under his breath.');
     scene.text('The officer fuddles around with you phone for a few minutes, his expression darkning with every bygone moment.');
     scene.text('"Ma\'am, we\'re taking this very seriously, but the perp was smart and hid his telephone number. We\'ll try our best, stake out this drop-off location, but I don\'t have high hopes that we\'ll catch him quick enough."');
@@ -1444,7 +1444,7 @@ function enterPolice1(s: GameState, scene: SceneBuilder): void {
       scene.img('images/locations/city/citycenter/police/cityext.jpg');
     }
     // TODO-QSP: dynamic text: 'Sitting in the interrogation room with the police officer, the situation sudden...
-    scene.text(`Sitting in the interrogation room with the police officer, the situation suddenly comes crashing into you. You're going to have to show some proof. That you were flashing your ${((st as any).blackmailQW ?? 0)?.['init_flashaction'] ?? ''}` + ((((st as any).blackmailQW ?? 0)?.['init_flashloc_desc'] === '') ? ('') : (' ' + ((st as any).blackmailQW ?? 0)?.['init_flashloc_desc'] ?? '' + '')) + '. They will see the texts, the photos. They will see you for who you must be on the inside. You can already feel their eyes judging you.');
+    scene.text(`Sitting in the interrogation room with the police officer, the situation suddenly comes crashing into you. You're going to have to show some proof. That you were flashing your ${(((st as any).blackmailQW ?? 0)?.['init_flashaction'] ?? '')}` + ((((st as any).blackmailQW ?? 0)?.['init_flashloc_desc'] === '') ? ('') : (' ' + (((st as any).blackmailQW ?? 0)?.['init_flashloc_desc'] ?? '') + '')) + '. They will see the texts, the photos. They will see you for who you must be on the inside. You can already feel their eyes judging you.');
     scene.text('"I-I-I can\'t, I can\'t, I can\'t…" you manage to push out, nearly hyper-ventilating.');
     scene.text('You nearly jump up out of the chair, backing up towards the door. Your eyes wide with panic "I\'m sorry, I was mistaken".');
     scene.text('The police officer just sighs and moves towards the door "If you change your mind, you kn…"');
@@ -1557,7 +1557,7 @@ function enterSetPostAct(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPostOffice1(s: GameState, scene: SceneBuilder): void {
-  ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['inventory'] = ((s as any).blackmailQW ?? 0)?.['package'];
+  ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['inventory'] = (((s as any).blackmailQW ?? 0)?.['package']);
   ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['package'] = 0;
   ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['package_day'] = 0;
   scene.img('images/locations/shared/postoffice/worker.jpg');
@@ -1656,7 +1656,7 @@ function enterPackage1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPostOfficeRepeat(s: GameState, scene: SceneBuilder): void {
-  ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['inventory'] = ((s as any).blackmailQW ?? 0)?.['package'];
+  ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['inventory'] = (((s as any).blackmailQW ?? 0)?.['package']);
   ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['package'] = 0;
   ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['package_day'] = 0;
   scene.img('images/locations/shared/postoffice/worker.jpg');
@@ -2024,7 +2024,7 @@ function enterNerdvanaCosplayTalk1_3(s: GameState, scene: SceneBuilder): void {
   scene.text('You take out your phone and note down the phone account numbers: 945-977-7397 and 5334 7262 3618 0390');
   scene.text('Before you leave you quickly add your blackmailer\'s phone number.');
   ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['nerdvana_phone_ID'] = ((s as any).npcID ?? 0);
-  qspCall(s, 'telefon', 'AddContact', ((s as any).blackmailQW ?? 0)?.['nerdvana_phone_ID'], 'icon_na', 1);
+  qspCall(s, 'telefon', 'AddContact', (((s as any).blackmailQW ?? 0)?.['nerdvana_phone_ID']), 'icon_na', 1);
   qspCall(s, 'telefon', 'AddContact', 'Blackmailer', 'images/system/phone/icons/icon_blackmailer.png', 1);
   // TODO-QSP: end
   scene.actions([
@@ -2043,7 +2043,7 @@ function enterAdd_SMS1(s: GameState, scene: SceneBuilder): void {
   ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['smsday'] = ((s as any).daystart ?? 0) + 2;
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetNextPayment(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterUpdatePaymentCalendar(s, scene); (s as any).locArgs = __savedLocArgs; }
-  ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['blackmail_image_chosen'] = ((s as any).blackmailQW ?? 0)?.['init_flashimage'];
+  ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['blackmail_image_chosen'] = (((s as any).blackmailQW ?? 0)?.['init_flashimage']);
   ((s as any).SMSTree = (s as any).SMSTree ?? {})['0'] = 'Hello ' + ((s as any).pcs_firstname ?? 0) + '!';
   if (((s as any).motherKnowWhore ?? 0) === 0  &&  ((s as any).npc_rel ?? 0)?.['A29'] > 0) {
     ((s as any).SMSTree = (s as any).SMSTree ?? {})['1'] = 'If you don\'t want your mother to see this image you will do exactly as I say';
@@ -2054,14 +2054,14 @@ function enterAdd_SMS1(s: GameState, scene: SceneBuilder): void {
       ((s as any).SMSTree = (s as any).SMSTree ?? {})['1'] = 'If you don\'t want the world to see this image you will do exactly as I say';
     }
   }
-  ((s as any).SMSTree = (s as any).SMSTree ?? {})['2'] = 'Leave ' + qspFunc(s, 'money', 'string_price', ((s as any).blackmailQW ?? 0)?.['next_payment']) + ' beneath the fourth park bench, I know you know which one.';
+  ((s as any).SMSTree = (s as any).SMSTree ?? {})['2'] = 'Leave ' + qspFunc(s, 'money', 'string_price', (((s as any).blackmailQW ?? 0)?.['next_payment'])) + ' beneath the fourth park bench, I know you know which one.';
   ((s as any).SMSTree = (s as any).SMSTree ?? {})['3'] = 'You have two days';
   qspCall(s, 'SMStext_builder', 'start');
-  qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['0']);
-  qspCall(s, 'SMSText_builder', 'receive_img', ((s as any).blackmailQW ?? 0)?.['blackmail_image_chosen']);
-  qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['1']);
-  qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['2']);
-  qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['3']);
+  qspCall(s, 'SMStext_builder', 'receive', (((s as any).SMSTree ?? 0)?.['0']));
+  qspCall(s, 'SMSText_builder', 'receive_img', (((s as any).blackmailQW ?? 0)?.['blackmail_image_chosen']));
+  qspCall(s, 'SMStext_builder', 'receive', (((s as any).SMSTree ?? 0)?.['1']));
+  qspCall(s, 'SMStext_builder', 'receive', (((s as any).SMSTree ?? 0)?.['2']));
+  qspCall(s, 'SMStext_builder', 'receive', (((s as any).SMSTree ?? 0)?.['3']));
   qspCall(s, 'SMStext_builder', 'add_sms', 'Blackmailer');
   qspCall(s, 'SMStext_builder', 'end');
   // TODO-QSP: end
@@ -2076,8 +2076,8 @@ function enterAdd_SMSReminder(s: GameState, scene: SceneBuilder): void {
     }
     ((s as any).SMSTree = (s as any).SMSTree ?? {})['0'] = '' + ((s as any).pcs_firstname ?? 0) + ' don\'t forget, if you don\'t leave \' + $func(\'money\', \'string_price\', blackmailQW[\'next_payment\']) + \' beneath the fourth park bench, you will regret it';
     qspCall(s, 'SMStext_builder', 'start');
-    qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['0']);
-    qspCall(s, 'SMSText_builder', 'receive_img', ((s as any).blackmailQW ?? 0)?.['blackmail_image_chosen']);
+    qspCall(s, 'SMStext_builder', 'receive', (((s as any).SMSTree ?? 0)?.['0']));
+    qspCall(s, 'SMSText_builder', 'receive_img', (((s as any).blackmailQW ?? 0)?.['blackmail_image_chosen']));
     qspCall(s, 'SMStext_builder', 'add_sms', 'Blackmailer');
     qspCall(s, 'SMStext_builder', 'end');
   }
@@ -2098,9 +2098,9 @@ function enterAdd_SMSFailure(s: GameState, scene: SceneBuilder): void {
     ((s as any).SMSTree = (s as any).SMSTree ?? {})['1'] = 'or you didn\'t think I\'d go through with it';
     ((s as any).SMSTree = (s as any).SMSTree ?? {})['2'] = 'we\'ll see';
     qspCall(s, 'SMStext_builder', 'start');
-    qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['0']);
-    qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['1']);
-    qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['2']);
+    qspCall(s, 'SMStext_builder', 'receive', (((s as any).SMSTree ?? 0)?.['0']));
+    qspCall(s, 'SMStext_builder', 'receive', (((s as any).SMSTree ?? 0)?.['1']));
+    qspCall(s, 'SMStext_builder', 'receive', (((s as any).SMSTree ?? 0)?.['2']));
     qspCall(s, 'SMStext_builder', 'add_sms', 'Blackmailer');
     qspCall(s, 'SMStext_builder', 'end');
     if (((s as any).blackmailQW ?? 0)?.['init_flashregion'] === 'city') {
@@ -2121,14 +2121,14 @@ function enterAdd_SMSFailure(s: GameState, scene: SceneBuilder): void {
 function enterAdd_SMSPackage1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'telefon', 'ClearInSMSSchedule', 'Blackmailer');
   ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['smsday'] = ((s as any).daystart ?? 0) + 2;
-  ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['package_day'] = ((s as any).blackmailQW ?? 0)?.['smsday'];
+  ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['package_day'] = (((s as any).blackmailQW ?? 0)?.['smsday']);
   ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['package'] = 7;
   qspCall(s, 'post_office', 'add_mail', 'city', 'gs \'blackmailer\', \'set_post_act\'');
   ((s as any).SMSTree = (s as any).SMSTree ?? {})['0'] = 'The package has arrived at the St. Petersburg post office';
   ((s as any).SMSTree = (s as any).SMSTree ?? {})['1'] = 'Pick it up in the next 2 days, or you know what will happen';
   qspCall(s, 'SMStext_builder', 'start');
-  qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['0']);
-  qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['1']);
+  qspCall(s, 'SMStext_builder', 'receive', (((s as any).SMSTree ?? 0)?.['0']));
+  qspCall(s, 'SMStext_builder', 'receive', (((s as any).SMSTree ?? 0)?.['1']));
   qspCall(s, 'SMStext_builder', 'add_sms', 'Blackmailer');
   qspCall(s, 'SMStext_builder', 'end');
   // TODO-QSP: end
@@ -2143,12 +2143,12 @@ function enterAdd_SMSOutfit1(s: GameState, scene: SceneBuilder): void {
   ((s as any).SMSTree = (s as any).SMSTree ?? {})['0'] = 'We saw that you picked the package, good girl';
   ((s as any).SMSTree = (s as any).SMSTree ?? {})['1'] = 'You\'ll have to wear it from now on when you drop off our money and we\'ll knock off ' + qspFunc(s, 'money', 'string_price', 1000);
   ((s as any).SMSTree = (s as any).SMSTree ?? {})['2'] = 'You don\'t want to upset us';
-  ((s as any).SMSTree = (s as any).SMSTree ?? {})['3'] = 'Drop ' + qspFunc(s, 'money', 'string_price', ((s as any).blackmailQW ?? 0)?.['next_payment']) + ' off at the park in the two days';
+  ((s as any).SMSTree = (s as any).SMSTree ?? {})['3'] = 'Drop ' + qspFunc(s, 'money', 'string_price', (((s as any).blackmailQW ?? 0)?.['next_payment'])) + ' off at the park in the two days';
   qspCall(s, 'SMStext_builder', 'start');
-  qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['0']);
-  qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['1']);
-  qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['2']);
-  qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['3']);
+  qspCall(s, 'SMStext_builder', 'receive', (((s as any).SMSTree ?? 0)?.['0']));
+  qspCall(s, 'SMStext_builder', 'receive', (((s as any).SMSTree ?? 0)?.['1']));
+  qspCall(s, 'SMStext_builder', 'receive', (((s as any).SMSTree ?? 0)?.['2']));
+  qspCall(s, 'SMStext_builder', 'receive', (((s as any).SMSTree ?? 0)?.['3']));
   qspCall(s, 'SMStext_builder', 'add_sms', 'Blackmailer');
   qspCall(s, 'SMStext_builder', 'end');
   // TODO-QSP: end
@@ -2164,8 +2164,8 @@ function enterAdd_SMS2(s: GameState, scene: SceneBuilder): void {
   ((s as any).SMSTree = (s as any).SMSTree ?? {})['0'] = 'Today we\'re going to have a mixup, to see if you\'re still a good girl';
   ((s as any).SMSTree = (s as any).SMSTree ?? {})['1'] = 'You have four days to send us 4 fully clothed selfies taken in your bedroom';
   qspCall(s, 'SMSText_builder', 'start');
-  qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['0']);
-  qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['1']);
+  qspCall(s, 'SMStext_builder', 'receive', (((s as any).SMSTree ?? 0)?.['0']));
+  qspCall(s, 'SMStext_builder', 'receive', (((s as any).SMSTree ?? 0)?.['1']));
   qspCall(s, 'SMStext_builder', 'send_selfie', 'Send a clothed selfie', 'c', 'blackmailer', 'Add_SMS2_1', 0);
   qspCall(s, 'SMStext_builder', 'add_sms', 'Blackmailer');
   qspCall(s, 'SMSText_builder', 'end');
@@ -2182,15 +2182,15 @@ function enterAdd_SMS2_1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'SMSText_builder', 'send_img', ((s as any).locArgs?.[3] ?? 0));
   qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[2] ?? 0));
   if (String((s as any).locArgs?.[4] ?? '') !== 'bedroom') {
-    qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['a']);
+    qspCall(s, 'SMStext_builder', 'receive', (((s as any).SMSTree ?? 0)?.['a']));
   } else {
     if (((s as any).blackmailQW ?? 0)?.['catfish_pic_0'] === String((s as any).locArgs?.[3] ?? '')  ||  ((s as any).blackmailQW ?? 0)?.['catfish_pic_1'] === String((s as any).locArgs?.[3] ?? '')  ||  ((s as any).blackmailQW ?? 0)?.['catfish_pic_2'] === String((s as any).locArgs?.[3] ?? '')) {
-      qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['b']);
+      qspCall(s, 'SMStext_builder', 'receive', (((s as any).SMSTree ?? 0)?.['b']));
     } else {
       if (String((s as any).locArgs?.[1] ?? '') < 3) {
-        qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['c']);
+        qspCall(s, 'SMStext_builder', 'receive', (((s as any).SMSTree ?? 0)?.['c']));
       } else {
-        qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['d']);
+        qspCall(s, 'SMStext_builder', 'receive', (((s as any).SMSTree ?? 0)?.['d']));
       }
       ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['catfish_pic_' + String(((s as any).locArgs?.[1] ?? 0))] = ((s as any).locArgs?.[3] ?? 0);
       ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['total_material'] = ((s as any).blackmailQW['total_material'] ?? 0) + (1);
@@ -2216,8 +2216,8 @@ function enterAdd_SMS2Reminder(s: GameState, scene: SceneBuilder): void {
   }
   ((s as any).SMSTree = (s as any).SMSTree ?? {})['0'] = '' + ((s as any).pcs_firstname ?? 0) + ' don\'t forget, if you don\'t send four clothed pictures by the end of today, you will regret it.';
   qspCall(s, 'SMStext_builder', 'start');
-  qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['0']);
-  qspCall(s, 'SMSText_builder', 'receive_img', ((s as any).blackmailQW ?? 0)?.['blackmail_image_chosen']);
+  qspCall(s, 'SMStext_builder', 'receive', (((s as any).SMSTree ?? 0)?.['0']));
+  qspCall(s, 'SMSText_builder', 'receive_img', (((s as any).blackmailQW ?? 0)?.['blackmail_image_chosen']));
   qspCall(s, 'SMStext_builder', 'add_sms', 'Blackmailer');
   qspCall(s, 'SMStext_builder', 'end');
   // TODO-QSP: end
@@ -2228,16 +2228,16 @@ function enterAdd_SMS3(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'telefon', 'ClearInSMSSchedule', 'Blackmailer');
   ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['smsday'] = 0;
   ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['cosplay_stage'] = 5;
-  qspCall(s, 'telefon', 'SetInSMSSchedule', ((s as any).blackmailQW ?? 0)?.['nerdvana_phone_ID'], 'gs \'blackmailer\', \'Add_SMS_Nerdvana\'', 'totminut > ' + ((s as any).totminut ?? 0) + 60 + (Math.floor(Math.random() * 61) + 0) + '');
+  qspCall(s, 'telefon', 'SetInSMSSchedule', (((s as any).blackmailQW ?? 0)?.['nerdvana_phone_ID']), 'gs \'blackmailer\', \'Add_SMS_Nerdvana\'', 'totminut > ' + ((s as any).totminut ?? 0) + 60 + (Math.floor(Math.random() * 61) + 0) + '');
   ((s as any).SMSTree = (s as any).SMSTree ?? {})['0'] = 'You thought you could abuse our generousity';
   ((s as any).SMSTree = (s as any).SMSTree ?? {})['1'] = 'That you could use that loser over at Nerdvana to spy for you';
   ((s as any).SMSTree = (s as any).SMSTree ?? {})['2'] = 'Well you fucked up!';
   ((s as any).SMSTree = (s as any).SMSTree ?? {})['3'] = 'And we\'ve got another toy';
   qspCall(s, 'SMStext_builder', 'start');
-  qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['0']);
-  qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['1']);
-  qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['2']);
-  qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['3']);
+  qspCall(s, 'SMStext_builder', 'receive', (((s as any).SMSTree ?? 0)?.['0']));
+  qspCall(s, 'SMStext_builder', 'receive', (((s as any).SMSTree ?? 0)?.['1']));
+  qspCall(s, 'SMStext_builder', 'receive', (((s as any).SMSTree ?? 0)?.['2']));
+  qspCall(s, 'SMStext_builder', 'receive', (((s as any).SMSTree ?? 0)?.['3']));
   qspCall(s, 'SMStext_builder', 'add_sms', 'Blackmailer');
   qspCall(s, 'SMStext_builder', 'end');
   // TODO-QSP: end
@@ -2281,81 +2281,81 @@ function enterAdd_SMS_Nerdvana(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === '') {
     qspCall(s, 'telefon', 'ClearInSMSSchedule', ((s as any).npcID9 ?? 0));
     qspCall(s, 'SMStext_builder', 'start');
-    qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['0']);
-    qspCall(s, 'SMStext_builder', 'add_reply', ((s as any).SMSTree ?? 0)?.['1'], 'blackmailer', 'Add_SMS_Nerdvana', '1');
+    qspCall(s, 'SMStext_builder', 'receive', (((s as any).SMSTree ?? 0)?.['0']));
+    qspCall(s, 'SMStext_builder', 'add_reply', (((s as any).SMSTree ?? 0)?.['1']), 'blackmailer', 'Add_SMS_Nerdvana', '1');
     qspCall(s, 'SMStext_builder', 'add_sms', ((s as any).npcID9 ?? 0));
     qspCall(s, 'SMStext_builder', 'end');
   } else {
     if (String((s as any).locArgs?.[1] ?? '') === '1') {
       qspCall(s, 'SMStext_builder', 'start');
-      qspCall(s, 'SMStext_builder', 'send', ((s as any).SMSTree ?? 0)?.['1']);
+      qspCall(s, 'SMStext_builder', 'send', (((s as any).SMSTree ?? 0)?.['1']));
       qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[2] ?? 0));
-      qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['2']);
+      qspCall(s, 'SMStext_builder', 'receive', (((s as any).SMSTree ?? 0)?.['2']));
       qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[2] ?? 0));
       qspCall(s, 'telefon', 'AddContact', ((s as any).npcID9 ?? 0), 'images/characters/shared/headshots_main/' + (String(((s as any).npcID9 ?? 0)).slice((2)-1)) + '.jpg', 0);
-      qspCall(s, 'SMStext_builder', 'receive_img', ((s as any).blackmailQW ?? 0)?.['catfish_pic_' + String((Math.floor(Math.random() * 4) + 0))]);
+      qspCall(s, 'SMStext_builder', 'receive_img', (((s as any).blackmailQW ?? 0)?.['catfish_pic_' + String((Math.floor(Math.random() * 4) + 0))]));
       qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[2] ?? 0));
-      qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['3']);
+      qspCall(s, 'SMStext_builder', 'receive', (((s as any).SMSTree ?? 0)?.['3']));
       qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[2] ?? 0));
-      qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['4']);
-      qspCall(s, 'SMStext_builder', 'add_reply', ((s as any).SMSTree ?? 0)?.['5'], 'blackmailer', 'Add_SMS_Nerdvana', '2');
+      qspCall(s, 'SMStext_builder', 'receive', (((s as any).SMSTree ?? 0)?.['4']));
+      qspCall(s, 'SMStext_builder', 'add_reply', (((s as any).SMSTree ?? 0)?.['5']), 'blackmailer', 'Add_SMS_Nerdvana', '2');
       qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[2] ?? 0));
       qspCall(s, 'SMStext_builder', 'end');
     } else {
       if (String((s as any).locArgs?.[1] ?? '') === '2') {
         qspCall(s, 'SMStext_builder', 'start');
-        qspCall(s, 'SMStext_builder', 'send', ((s as any).SMSTree ?? 0)?.['5']);
+        qspCall(s, 'SMStext_builder', 'send', (((s as any).SMSTree ?? 0)?.['5']));
         qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[2] ?? 0));
-        qspCall(s, 'SMStext_builder', 'send', ((s as any).SMSTree ?? 0)?.['6']);
+        qspCall(s, 'SMStext_builder', 'send', (((s as any).SMSTree ?? 0)?.['6']));
         qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[2] ?? 0));
-        qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['7']);
+        qspCall(s, 'SMStext_builder', 'receive', (((s as any).SMSTree ?? 0)?.['7']));
         qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[2] ?? 0));
-        qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['8']);
+        qspCall(s, 'SMStext_builder', 'receive', (((s as any).SMSTree ?? 0)?.['8']));
         qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[2] ?? 0));
-        qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['9']);
-        qspCall(s, 'SMStext_builder', 'add_reply', ((s as any).SMSTree ?? 0)?.['10'], 'blackmailer', 'Add_SMS_Nerdvana', '3');
+        qspCall(s, 'SMStext_builder', 'receive', (((s as any).SMSTree ?? 0)?.['9']));
+        qspCall(s, 'SMStext_builder', 'add_reply', (((s as any).SMSTree ?? 0)?.['10']), 'blackmailer', 'Add_SMS_Nerdvana', '3');
         qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[2] ?? 0));
         qspCall(s, 'SMStext_builder', 'end');
       } else {
         if (String((s as any).locArgs?.[1] ?? '') === '3') {
           qspCall(s, 'SMStext_builder', 'start');
-          qspCall(s, 'SMStext_builder', 'send', ((s as any).SMSTree ?? 0)?.['10']);
+          qspCall(s, 'SMStext_builder', 'send', (((s as any).SMSTree ?? 0)?.['10']));
           qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[2] ?? 0));
-          qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['11']);
+          qspCall(s, 'SMStext_builder', 'receive', (((s as any).SMSTree ?? 0)?.['11']));
           qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[2] ?? 0));
-          qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['12']);
+          qspCall(s, 'SMStext_builder', 'receive', (((s as any).SMSTree ?? 0)?.['12']));
           qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[2] ?? 0));
-          qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['13']);
+          qspCall(s, 'SMStext_builder', 'receive', (((s as any).SMSTree ?? 0)?.['13']));
           qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[2] ?? 0));
-          qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['14']);
+          qspCall(s, 'SMStext_builder', 'receive', (((s as any).SMSTree ?? 0)?.['14']));
           qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[2] ?? 0));
-          qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['15']);
-          qspCall(s, 'SMStext_builder', 'add_reply', ((s as any).SMSTree ?? 0)?.['16'], 'blackmailer', 'Add_SMS_Nerdvana', '4');
+          qspCall(s, 'SMStext_builder', 'receive', (((s as any).SMSTree ?? 0)?.['15']));
+          qspCall(s, 'SMStext_builder', 'add_reply', (((s as any).SMSTree ?? 0)?.['16']), 'blackmailer', 'Add_SMS_Nerdvana', '4');
           qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[2] ?? 0));
           qspCall(s, 'SMStext_builder', 'end');
         } else {
           if (String((s as any).locArgs?.[1] ?? '') === '4') {
             qspCall(s, 'SMStext_builder', 'start');
-            qspCall(s, 'SMStext_builder', 'send', ((s as any).SMSTree ?? 0)?.['16']);
+            qspCall(s, 'SMStext_builder', 'send', (((s as any).SMSTree ?? 0)?.['16']));
             qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[2] ?? 0));
-            qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['17']);
+            qspCall(s, 'SMStext_builder', 'receive', (((s as any).SMSTree ?? 0)?.['17']));
             qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[2] ?? 0));
-            qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['18']);
+            qspCall(s, 'SMStext_builder', 'receive', (((s as any).SMSTree ?? 0)?.['18']));
             qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[2] ?? 0));
-            qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['19']);
+            qspCall(s, 'SMStext_builder', 'receive', (((s as any).SMSTree ?? 0)?.['19']));
             qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[2] ?? 0));
-            qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['20']);
-            qspCall(s, 'SMStext_builder', 'add_reply', ((s as any).SMSTree ?? 0)?.['21'], 'blackmailer', 'Add_SMS_Nerdvana', '5');
+            qspCall(s, 'SMStext_builder', 'receive', (((s as any).SMSTree ?? 0)?.['20']));
+            qspCall(s, 'SMStext_builder', 'add_reply', (((s as any).SMSTree ?? 0)?.['21']), 'blackmailer', 'Add_SMS_Nerdvana', '5');
             qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[2] ?? 0));
             qspCall(s, 'SMStext_builder', 'end');
           } else {
             if (String((s as any).locArgs?.[1] ?? '') === '5') {
               qspCall(s, 'SMStext_builder', 'start');
-              qspCall(s, 'SMStext_builder', 'send', ((s as any).SMSTree ?? 0)?.['21']);
+              qspCall(s, 'SMStext_builder', 'send', (((s as any).SMSTree ?? 0)?.['21']));
               qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[2] ?? 0));
-              qspCall(s, 'SMStext_builder', 'send', ((s as any).SMSTree ?? 0)?.['22']);
+              qspCall(s, 'SMStext_builder', 'send', (((s as any).SMSTree ?? 0)?.['22']));
               qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[2] ?? 0));
-              qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['23']);
+              qspCall(s, 'SMStext_builder', 'receive', (((s as any).SMSTree ?? 0)?.['23']));
               qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[2] ?? 0));
               qspCall(s, 'SMStext_builder', 'end');
               { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSms_EOC(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -2392,12 +2392,12 @@ function enterSet_SMSTree(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).blackmailQW ?? 0)?.['worn_costume'] === -1) {
-    ((s as any).SMSTree = (s as any).SMSTree ?? {})['2'] = 'Leave ' + qspFunc(s, 'money', 'string_price', ((s as any).blackmailQW ?? 0)?.['next_payment']) + ' beneath the same park bench. We\'ve increased it by ' + qspFunc(s, 'money', 'string_price', ((s as any).blackmailQW ?? 0)?.['next_payment']) + ', because you were a bad girl last time.';
+    ((s as any).SMSTree = (s as any).SMSTree ?? {})['2'] = 'Leave ' + qspFunc(s, 'money', 'string_price', (((s as any).blackmailQW ?? 0)?.['next_payment'])) + ' beneath the same park bench. We\'ve increased it by ' + qspFunc(s, 'money', 'string_price', (((s as any).blackmailQW ?? 0)?.['next_payment'])) + ', because you were a bad girl last time.';
   } else {
     if (((s as any).blackmailQW ?? 0)?.['worn_costume'] === 1) {
-      ((s as any).SMSTree = (s as any).SMSTree ?? {})['2'] = 'You were a such a good girl delivering our money in that outfit. Leave ' + qspFunc(s, 'money', 'string_price', ((s as any).blackmailQW ?? 0)?.['next_payment']) + ' beneath the same park bench this time';
+      ((s as any).SMSTree = (s as any).SMSTree ?? {})['2'] = 'You were a such a good girl delivering our money in that outfit. Leave ' + qspFunc(s, 'money', 'string_price', (((s as any).blackmailQW ?? 0)?.['next_payment'])) + ' beneath the same park bench this time';
     } else {
-      ((s as any).SMSTree = (s as any).SMSTree ?? {})['2'] = 'Leave ' + qspFunc(s, 'money', 'string_price', ((s as any).blackmailQW ?? 0)?.['next_payment']) + ' beneath the same park bench';
+      ((s as any).SMSTree = (s as any).SMSTree ?? {})['2'] = 'Leave ' + qspFunc(s, 'money', 'string_price', (((s as any).blackmailQW ?? 0)?.['next_payment'])) + ' beneath the same park bench';
     }
   }
   ((s as any).SMSTree = (s as any).SMSTree ?? {})['3'] = 'You have two days';
@@ -2486,25 +2486,25 @@ function enterAdd_SMSRepeat(s: GameState, scene: SceneBuilder): void {
   ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['blackmail_image_chosen'] = qspFunc(s, 'blackmailer', 'choose_blackmail_image');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSet_SMSTree(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'SMStext_builder', 'start');
-  qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['0']);
-  qspCall(s, 'SMSText_builder', 'receive_img', ((s as any).blackmailQW ?? 0)?.['blackmail_image_chosen']);
-  qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['1']);
-  qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['2']);
-  qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['3']);
+  qspCall(s, 'SMStext_builder', 'receive', (((s as any).SMSTree ?? 0)?.['0']));
+  qspCall(s, 'SMSText_builder', 'receive_img', (((s as any).blackmailQW ?? 0)?.['blackmail_image_chosen']));
+  qspCall(s, 'SMStext_builder', 'receive', (((s as any).SMSTree ?? 0)?.['1']));
+  qspCall(s, 'SMStext_builder', 'receive', (((s as any).SMSTree ?? 0)?.['2']));
+  qspCall(s, 'SMStext_builder', 'receive', (((s as any).SMSTree ?? 0)?.['3']));
   if (((s as any).blackmailQW ?? 0)?.['stage'] >= 8) {
-    qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['x3']);
+    qspCall(s, 'SMStext_builder', 'receive', (((s as any).SMSTree ?? 0)?.['x3']));
   }
   if (((s as any).blackmailQW ?? 0)?.['next_payment'] < 2000  &&  ((s as any).blackmailQW ?? 0)?.['total_payment'] < 5000) {
-    qspCall(s, 'SMStext_builder', 'add_reply', ((s as any).SMSTree ?? 0)?.['a4'], 'blackmailer', 'sms_repeat_end1', ((s as any).SMSTree ?? 0)?.['a4']);
+    qspCall(s, 'SMStext_builder', 'add_reply', (((s as any).SMSTree ?? 0)?.['a4']), 'blackmailer', 'sms_repeat_end1', (((s as any).SMSTree ?? 0)?.['a4']));
   } else {
     if (((s as any).blackmailQW ?? 0)?.['stage'] <= 5  ||  (((s as any).blackmailQW ?? 0)?.['stage'] === 6  &&  (((s as any).blackmailQW ?? 0)?.['next_payment'] < 3000  ||  ((s as any).pcs_inhib ?? 0) < 20))) {
-      qspCall(s, 'SMStext_builder', 'add_reply', ((s as any).SMSTree ?? 0)?.['a4'], 'blackmailer', 'sms_repeat_switch1', 'a', ((s as any).SMSTree ?? 0)?.['a4']);
+      qspCall(s, 'SMStext_builder', 'add_reply', (((s as any).SMSTree ?? 0)?.['a4']), 'blackmailer', 'sms_repeat_switch1', 'a', (((s as any).SMSTree ?? 0)?.['a4']));
     } else {
       if (((s as any).blackmailQW ?? 0)?.['stage'] <= 6) {
-        qspCall(s, 'SMStext_builder', 'add_reply', ((s as any).SMSTree ?? 0)?.['a4'], 'blackmailer', 'sms_repeat_switch1', 'b', ((s as any).SMSTree ?? 0)?.['a4']);
+        qspCall(s, 'SMStext_builder', 'add_reply', (((s as any).SMSTree ?? 0)?.['a4']), 'blackmailer', 'sms_repeat_switch1', 'b', (((s as any).SMSTree ?? 0)?.['a4']));
       } else {
-        qspCall(s, 'SMStext_builder', 'add_reply', ((s as any).SMSTree ?? 0)?.['a4'], 'blackmailer', 'sms_repeat_switch1', 'c', ((s as any).SMSTree ?? 0)?.['a4']);
-        qspCall(s, 'SMStext_builder', 'add_reply', ((s as any).SMSTree ?? 0)?.['b4'], 'blackmailer', 'sms_repeat_switch1', 'd', ((s as any).SMSTree ?? 0)?.['b4']);
+        qspCall(s, 'SMStext_builder', 'add_reply', (((s as any).SMSTree ?? 0)?.['a4']), 'blackmailer', 'sms_repeat_switch1', 'c', (((s as any).SMSTree ?? 0)?.['a4']));
+        qspCall(s, 'SMStext_builder', 'add_reply', (((s as any).SMSTree ?? 0)?.['b4']), 'blackmailer', 'sms_repeat_switch1', 'd', (((s as any).SMSTree ?? 0)?.['b4']));
       }
     }
   }
@@ -2519,9 +2519,9 @@ function enterSmsRepeatEnd1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'SMStext_builder', 'start');
   qspCall(s, 'SMStext_builder', 'send', ((s as any).locArgs?.[1] ?? 0));
   qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[2] ?? 0));
-  qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['5']);
+  qspCall(s, 'SMStext_builder', 'receive', (((s as any).SMSTree ?? 0)?.['5']));
   qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[2] ?? 0));
-  qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['6']);
+  qspCall(s, 'SMStext_builder', 'receive', (((s as any).SMSTree ?? 0)?.['6']));
   qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[2] ?? 0));
   qspCall(s, 'SMStext_builder', 'end');
   // TODO-QSP: end
@@ -2542,18 +2542,18 @@ function enterSmsRepeatSwitch1(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[3] ?? 0));
   qspCall(s, 'SMStext_builder', 'receive', (((s as any).SMSTree ?? 0)?.['11' + ((s as any).locArgs?.[1] ?? 0)] ?? 0));
-  qspCall(s, 'SMStext_builder', 'add_reply', ((s as any).SMSTree ?? 0)?.['a12'], 'blackmailer', 'sms_repeat_end1', ((s as any).SMSTree ?? 0)?.['a12']);
+  qspCall(s, 'SMStext_builder', 'add_reply', (((s as any).SMSTree ?? 0)?.['a12']), 'blackmailer', 'sms_repeat_end1', (((s as any).SMSTree ?? 0)?.['a12']));
   if (((s as any).blackmailQW ?? 0)?.['selfie_stage'] === 0) {
-    qspCall(s, 'SMStext_builder', 'send_selfie', ((s as any).SMSTree ?? 0)?.['b12'], 'c;sw;u', 'blackmailer', 'sms_repeat_selfie1');
+    qspCall(s, 'SMStext_builder', 'send_selfie', (((s as any).SMSTree ?? 0)?.['b12']), 'c;sw;u', 'blackmailer', 'sms_repeat_selfie1');
   } else {
     if (((s as any).blackmailQW ?? 0)?.['selfie_stage'] === 1) {
-      qspCall(s, 'SMStext_builder', 'send_selfie', ((s as any).SMSTree ?? 0)?.['c12'], 'c;sw;u;ft;fa', 'blackmailer', 'sms_repeat_selfie1');
+      qspCall(s, 'SMStext_builder', 'send_selfie', (((s as any).SMSTree ?? 0)?.['c12']), 'c;sw;u;ft;fa', 'blackmailer', 'sms_repeat_selfie1');
     } else {
-      qspCall(s, 'SMStext_builder', 'send_selfie', ((s as any).SMSTree ?? 0)?.['d12'], 'c;sw;u;n;b;sh;ft;fa;fp', 'blackmailer', 'sms_repeat_selfie1');
+      qspCall(s, 'SMStext_builder', 'send_selfie', (((s as any).SMSTree ?? 0)?.['d12']), 'c;sw;u;n;b;sh;ft;fa;fp', 'blackmailer', 'sms_repeat_selfie1');
     }
   }
   if (String((s as any).locArgs?.[1] ?? '') === 'b') {
-    qspCall(s, 'SMStext_builder', 'add_reply', ((s as any).SMSTree ?? 0)?.['e12'], 'blackmailer', 'sms_repeat_first_favour', ((s as any).SMSTree ?? 0)?.['e12']);
+    qspCall(s, 'SMStext_builder', 'add_reply', (((s as any).SMSTree ?? 0)?.['e12']), 'blackmailer', 'sms_repeat_first_favour', (((s as any).SMSTree ?? 0)?.['e12']));
   }
   qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[3] ?? 0));
   qspCall(s, 'SMStext_builder', 'end');
@@ -2621,7 +2621,7 @@ function enterSmsRepeatSelfie1(s: GameState, scene: SceneBuilder): void {
   } else {
     ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['next_payment'] = 0;
     ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['smsday'] = 0;
-    qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['x22']);
+    qspCall(s, 'SMStext_builder', 'receive', (((s as any).SMSTree ?? 0)?.['x22']));
   }
   qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[1] ?? 0));
   qspCall(s, 'SMStext_builder', 'end');
@@ -2634,12 +2634,12 @@ function enterSmsRepeatFirstFavour(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'SMStext_builder', 'start');
   qspCall(s, 'SMStext_builder', 'send', ((s as any).locArgs?.[1] ?? 0));
   qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[2] ?? 0));
-  qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['30']);
+  qspCall(s, 'SMStext_builder', 'receive', (((s as any).SMSTree ?? 0)?.['30']));
   qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[2] ?? 0));
-  qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['31']);
-  qspCall(s, 'SMStext_builder', 'add_reply', ((s as any).SMSTree ?? 0)?.['a32'], 'blackmailer', 'sms_repeat_end1', ((s as any).SMSTree ?? 0)?.['a32']);
-  qspCall(s, 'SMStext_builder', 'add_reply', ((s as any).SMSTree ?? 0)?.['b32'], 'blackmailer', 'sms_repeat_setup_first_gift', 'b');
-  qspCall(s, 'SMStext_builder', 'add_reply', ((s as any).SMSTree ?? 0)?.['c32'], 'blackmailer', 'sms_repeat_setup_first_gift', 'c');
+  qspCall(s, 'SMStext_builder', 'receive', (((s as any).SMSTree ?? 0)?.['31']));
+  qspCall(s, 'SMStext_builder', 'add_reply', (((s as any).SMSTree ?? 0)?.['a32']), 'blackmailer', 'sms_repeat_end1', (((s as any).SMSTree ?? 0)?.['a32']));
+  qspCall(s, 'SMStext_builder', 'add_reply', (((s as any).SMSTree ?? 0)?.['b32']), 'blackmailer', 'sms_repeat_setup_first_gift', 'b');
+  qspCall(s, 'SMStext_builder', 'add_reply', (((s as any).SMSTree ?? 0)?.['c32']), 'blackmailer', 'sms_repeat_setup_first_gift', 'c');
   qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[2] ?? 0));
   qspCall(s, 'SMStext_builder', 'end');
   // TODO-QSP: end
@@ -2652,7 +2652,7 @@ function enterSmsRepeatSetupFirstGift(s: GameState, scene: SceneBuilder): void {
     ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['stage'] = 7;
   }
   ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['smsday'] = ((s as any).daystart ?? 0) + 14;
-  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).blackmailQW ?? 0)?.['next_payment'], 'favour']; enterMakePayment(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', (((s as any).blackmailQW ?? 0)?.['next_payment']), 'favour']; enterMakePayment(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'SMStext_builder', 'start');
   qspCall(s, 'SMStext_builder', 'send', (((s as any).SMSTree ?? 0)?.[((s as any).locArgs?.[1] ?? 0) + '32'] ?? 0));
   qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[2] ?? 0));
@@ -2695,12 +2695,12 @@ function enterAdd_SMSPackageRepeat(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'post_office', 'add_mail', 'city', 'gs \'blackmailer\', \'set_post_act\'');
   ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['package_day'] = ((s as any).daystart ?? 0) + 14;
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterChoosePackage(s, scene); (s as any).locArgs = __savedLocArgs; }
-  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).blackmailQW ?? 0)?.['package']]; enterDecreaseToyFund(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', (((s as any).blackmailQW ?? 0)?.['package'])]; enterDecreaseToyFund(s, scene); (s as any).locArgs = __savedLocArgs; }
   ((s as any).SMSTree = (s as any).SMSTree ?? {})['0'] = 'We\'ve send you another package. You can pick it up at the St. Petersburg post office.';
   ((s as any).SMSTree = (s as any).SMSTree ?? {})['1'] = 'You can pick it up in the next two weeks';
   qspCall(s, 'SMStext_builder', 'start');
-  qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['0']);
-  qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['1']);
+  qspCall(s, 'SMStext_builder', 'receive', (((s as any).SMSTree ?? 0)?.['0']));
+  qspCall(s, 'SMStext_builder', 'receive', (((s as any).SMSTree ?? 0)?.['1']));
   qspCall(s, 'SMStext_builder', 'add_sms', 'Blackmailer');
   qspCall(s, 'SMStext_builder', 'end');
   // TODO-QSP: end
@@ -2713,14 +2713,14 @@ function enterAdd_SMSPackageRepeat2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'post_office', 'add_mail', 'city', 'gs \'blackmailer\', \'set_post_act\'');
   ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['package_day'] = ((s as any).daystart ?? 0) + 14;
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterChoosePackage(s, scene); (s as any).locArgs = __savedLocArgs; }
-  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).blackmailQW ?? 0)?.['package']]; enterDecreaseToyFund(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', (((s as any).blackmailQW ?? 0)?.['package'])]; enterDecreaseToyFund(s, scene); (s as any).locArgs = __savedLocArgs; }
   ((s as any).SMSTree = (s as any).SMSTree ?? {})['0'] = 'Hey ' + ((s as any).pcs_nickname ?? 0) + ', it\'s ' + ((s as any).npcdesc9 ?? 0) + ', from Nerdvana.';
   ((s as any).SMSTree = (s as any).SMSTree ?? {})['1'] = 'I\'ve just deliverd a package for you at the St. Petersburg post office.';
   ((s as any).SMSTree = (s as any).SMSTree ?? {})['2'] = 'It\'ll be there for the next fourteen days.';
   qspCall(s, 'SMStext_builder', 'start');
-  qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['0']);
-  qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['1']);
-  qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['2']);
+  qspCall(s, 'SMStext_builder', 'receive', (((s as any).SMSTree ?? 0)?.['0']));
+  qspCall(s, 'SMStext_builder', 'receive', (((s as any).SMSTree ?? 0)?.['1']));
+  qspCall(s, 'SMStext_builder', 'receive', (((s as any).SMSTree ?? 0)?.['2']));
   qspCall(s, 'SMStext_builder', 'add_sms', ((s as any).npcID9 ?? 0));
   qspCall(s, 'SMStext_builder', 'end');
   // TODO-QSP: end

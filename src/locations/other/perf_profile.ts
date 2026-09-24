@@ -6,10 +6,10 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
   (s as any).prof_iterations = ((String((s as any).locArgs?.[0] ?? '') > 0) ? (((s as any).locArgs?.[0] ?? 0)) : (500000));
-  (s as any).prof_saved_gameover = ((s as any).cheatVars ?? 0)?.['gameover'];
-  (s as any).prof_saved_hunger = ((s as any).cheatVars ?? 0)?.['hunger'];
-  (s as any).prof_saved_thirst = ((s as any).cheatVars ?? 0)?.['thirst'];
-  (s as any).prof_saved_inf_willpower = ((s as any).cheatVars ?? 0)?.['inf_willpower'];
+  (s as any).prof_saved_gameover = (((s as any).cheatVars ?? 0)?.['gameover']);
+  (s as any).prof_saved_hunger = (((s as any).cheatVars ?? 0)?.['hunger']);
+  (s as any).prof_saved_thirst = (((s as any).cheatVars ?? 0)?.['thirst']);
+  (s as any).prof_saved_inf_willpower = (((s as any).cheatVars ?? 0)?.['inf_willpower']);
   ((s as any).cheatVars = (s as any).cheatVars ?? {})['gameover'] = 1;
   ((s as any).cheatVars = (s as any).cheatVars ?? {})['hunger'] = 1;
   ((s as any).cheatVars = (s as any).cheatVars ?? {})['thirst'] = 1;

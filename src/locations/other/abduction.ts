@@ -55,15 +55,15 @@ function enterAbdRoomFirstChaining(s: GameState, scene: SceneBuilder): void {
   scene.text('"Ha! Who do you think our best customers are? Slimy politicians, corrupt police officers, sleazy businessmen… We have our cover, so you should shut up and get used to it!"');
   scene.text('The man leaves without saying another word as you tearfully sob and yell for him to come back.');
   qspCall(s, 'underwear', 'remove');
-  (s as any).painkiller_bak = ((s as any).mc_inventory ?? 0)?.['painkillers'];
-  (s as any).prezik_bak = ((s as any).mc_inventory ?? 0)?.['equipped_condoms'];
-  (s as any).vitamin_bak = ((s as any).mc_inventory ?? 0)?.['vitamins'];
-  (s as any).kosmetica_bak = ((s as any).mc_inventory ?? 0)?.['cosmetics'];
-  (s as any).lipbalm_bak = ((s as any).mc_inventory ?? 0)?.['lipbalm'];
-  (s as any).tampon_bak = ((s as any).mc_inventory ?? 0)?.['tampons'];
-  (s as any).shampoo_bak = ((s as any).mc_inventory ?? 0)?.['shampoo'];
-  (s as any).stanok_bak = ((s as any).mc_inventory ?? 0)?.['razor'];
-  (s as any).deodorant_bak = ((s as any).mc_inventory ?? 0)?.['deodorant'];
+  (s as any).painkiller_bak = (((s as any).mc_inventory ?? 0)?.['painkillers']);
+  (s as any).prezik_bak = (((s as any).mc_inventory ?? 0)?.['equipped_condoms']);
+  (s as any).vitamin_bak = (((s as any).mc_inventory ?? 0)?.['vitamins']);
+  (s as any).kosmetica_bak = (((s as any).mc_inventory ?? 0)?.['cosmetics']);
+  (s as any).lipbalm_bak = (((s as any).mc_inventory ?? 0)?.['lipbalm']);
+  (s as any).tampon_bak = (((s as any).mc_inventory ?? 0)?.['tampons']);
+  (s as any).shampoo_bak = (((s as any).mc_inventory ?? 0)?.['shampoo']);
+  (s as any).stanok_bak = (((s as any).mc_inventory ?? 0)?.['razor']);
+  (s as any).deodorant_bak = (((s as any).mc_inventory ?? 0)?.['deodorant']);
   ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['painkillers'] = 0;
   ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['equipped_condoms'] = 0;
   ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['vitamins'] = 0;
@@ -726,7 +726,7 @@ function enterAbdFood(s: GameState, scene: SceneBuilder): void {
       (s as any).pluralS = '';
     }
     // TODO-QSP: dynamic text: You have <b><<mc_inventory[''painkillers'']>></b> painkiller<<$pluralS>>.
-    scene.text(`You have <b>${((s as any).mc_inventory ?? 0)?.['painkillers'] ?? ''}</b> painkiller${((s as any).pluralS ?? '')}.`);
+    scene.text(`You have <b>${(((s as any).mc_inventory ?? 0)?.['painkillers'] ?? '')}</b> painkiller${((s as any).pluralS ?? '')}.`);
     if (((s as any).pain ?? 0)?.['total'] > 0) {
       // TODO-QSP: act $func('drugs', 'painkiller_act_str'):
       qspCall(s, 'drugs', 'painkiller');

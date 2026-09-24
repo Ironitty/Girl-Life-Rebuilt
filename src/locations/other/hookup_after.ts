@@ -18,7 +18,7 @@ function enterExit(s: GameState, scene: SceneBuilder): void {
   }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDress(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).hookup ?? 0)?.['fuckbuddy'] > 0) {
-    ((s as any).know_virgin = (s as any).know_virgin ?? {})[String((s as any).npcID ?? 0)] = ((s as any).hookup ?? 0)?.['virgin'];
+    ((s as any).know_virgin = (s as any).know_virgin ?? {})[String((s as any).npcID ?? 0)] = (((s as any).hookup ?? 0)?.['virgin']);
     qspCall(s, 'lover', 'add_fuckbuddy', ((s as any).npcID ?? 0));
     ((s as any).npc_no_booty_call = (s as any).npc_no_booty_call ?? {})[String((s as any).npcID ?? 0)] = ((s as any).daystart ?? 0);
   }
@@ -1631,29 +1631,29 @@ function enterGottaGo(s: GameState, scene: SceneBuilder): void {
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDressLoop(st, scene); (st as any).locArgs = __savedLocArgs; }
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterHookupContinuation(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
-    { label: '', labelFn: (s: GameState) => 'Thanks for the ' + String(((s as any).hookup ?? 0)?.['fun'] ?? '' ?? ''), handler: (st: GameState) => {
+    { label: '', labelFn: (s: GameState) => 'Thanks for the ' + String((((s as any).hookup ?? 0)?.['fun'] ?? '') ?? ''), handler: (st: GameState) => {
     ((st as any).hookup = (st as any).hookup ?? {})['thank_for_fun'] = 1;
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDressLoop(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.img('images/pc/activities/misc/dress_1.mp4');
     if (((st as any).hookup ?? 0)?.['bed'] === 1) {
       // TODO-QSP: dynamic text: You get up from the bed and pad across the floor, bending down to pick up your d...
-      scene.text(`You get up from the bed and pad across the floor, bending down to pick up your discarded apparel. "Thanks for the ${((st as any).hookup ?? 0)?.['fun'] ?? ''}," you say, smirking over your shoulder at ${((st as any).npcdesc ?? '')} while you begin to pull your clothes on.`);
+      scene.text(`You get up from the bed and pad across the floor, bending down to pick up your discarded apparel. "Thanks for the ${(((st as any).hookup ?? 0)?.['fun'] ?? '')}," you say, smirking over your shoulder at ${((st as any).npcdesc ?? '')} while you begin to pull your clothes on.`);
     } else {
       // TODO-QSP: dynamic text: "Well, thanks for the <<$hookup[''fun'']>>," you say, bending down to pick up yo...
-      scene.text(`"Well, thanks for the ${((st as any).hookup ?? 0)?.['fun'] ?? ''}," you say, bending down to pick up your clothes.`);
+      scene.text(`"Well, thanks for the ${(((st as any).hookup ?? 0)?.['fun'] ?? '')}," you say, bending down to pick up your clothes.`);
     }
     if (((st as any).hookup ?? 0)?.['bj'] > 0  &&  ((st as any).hookup ?? 0)?.['fuck'] < 1) {
       if (((st as any).hookup ?? 0)?.['virgin'] > 0) {
         // TODO-QSP: dynamic text: "Thanks for the blowjob," he smirks back. "You give pretty good head. You sure y...
-        scene.text(`"Thanks for the blowjob," he smirks back. "You give pretty good head. You sure you're a virgin?" You don't respond, ${((st as any).hookup ?? 0)?.['dress_describe'] ?? ''}, but roll your eyes at his commentary.`);
+        scene.text(`"Thanks for the blowjob," he smirks back. "You give pretty good head. You sure you're a virgin?" You don't respond, ${(((st as any).hookup ?? 0)?.['dress_describe'] ?? '')}, but roll your eyes at his commentary.`);
       } else {
         // TODO-QSP: dynamic text: "Thanks for the blowjob," he smirks back as you''re <<$hookup[''dress_describe''...
-        scene.text(`"Thanks for the blowjob," he smirks back as you're ${((st as any).hookup ?? 0)?.['dress_describe'] ?? ''}. "You give great head."`);
+        scene.text(`"Thanks for the blowjob," he smirks back as you're ${(((st as any).hookup ?? 0)?.['dress_describe'] ?? '')}. "You give great head."`);
       }
     } else {
       if (((st as any).hookup ?? 0)?.['fuck'] > 0) {
         // TODO-QSP: dynamic text: "Right back at you," he smirks in return while you''re <<$hookup[''dress_describ...
-        scene.text(`"Right back at you," he smirks in return while you're ${((st as any).hookup ?? 0)?.['dress_describe'] ?? ''}.`);
+        scene.text(`"Right back at you," he smirks in return while you're ${(((st as any).hookup ?? 0)?.['dress_describe'] ?? '')}.`);
       }
     }
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterHookupContinuation(st, scene); (st as any).locArgs = __savedLocArgs; }
@@ -1822,7 +1822,7 @@ function enterNpcFuckbuddyRequest(s: GameState, scene: SceneBuilder): void {
   if (((s as any).hookup ?? 0)?.['thank_for_fun'] === 1) {
     scene.text('"You want to do it again sometime? Nothing serious, just sex. No strings."');
     // TODO-QSP: dynamic text: "Like what?" you ask back, <<$hookup[''dress_describe'']>>. "Friends with benefi...
-    scene.text(`"Like what?" you ask back, ${((s as any).hookup ?? 0)?.['dress_describe'] ?? ''}. "Friends with benefits? Fuckbuddies? Booty callers?"`);
+    scene.text(`"Like what?" you ask back, ${(((s as any).hookup ?? 0)?.['dress_describe'] ?? '')}. "Friends with benefits? Fuckbuddies? Booty callers?"`);
     scene.text('"Yeah, just like that," he grins.');
   } else {
     if (((s as any).hookup ?? 0)?.['npc_can_spend_the_night'] > 0) {
@@ -1831,7 +1831,7 @@ function enterNpcFuckbuddyRequest(s: GameState, scene: SceneBuilder): void {
       scene.text('"Cool. Maybe we can hook up again sometime?"');
     }
     // TODO-QSP: dynamic text: "Like what?" you ask back, <<$hookup[''dress_describe'']>>. "Friends with benefi...
-    scene.text(`"Like what?" you ask back, ${((s as any).hookup ?? 0)?.['dress_describe'] ?? ''}. "Friends with benefits? Fuckbuddies? Booty callers? No strings attached?"`);
+    scene.text(`"Like what?" you ask back, ${(((s as any).hookup ?? 0)?.['dress_describe'] ?? '')}. "Friends with benefits? Fuckbuddies? Booty callers? No strings attached?"`);
     scene.text('"Yeah, just like that. No strings attached."');
   }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterJustAHookup(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -1844,7 +1844,7 @@ function enterNpcFuckbuddyRequest(s: GameState, scene: SceneBuilder): void {
     ((st as any).hookup = (st as any).hookup ?? {})['fuckbuddy'] = 1;
     (st as any).fuckbuddy_total = ((st as any).fuckbuddy_total ?? 0) + (1);
     // TODO-QSP: dynamic text: "Sure, sounds fun," you smile, <<$hookup[''dress_describe'']>>.
-    scene.text(`"Sure, sounds fun," you smile, ${((st as any).hookup ?? 0)?.['dress_describe'] ?? ''}.`);
+    scene.text(`"Sure, sounds fun," you smile, ${(((st as any).hookup ?? 0)?.['dress_describe'] ?? '')}.`);
     scene.text('After finishing getting dressed, you tell him your number while he taps it into his phone. A few moments later, a notification pings in your messages:');
     ((st as any).hookup = (st as any).hookup ?? {})['text_message'] = (Math.floor(Math.random() * 2) + 1);
     if (((st as any).hookup ?? 0)?.['text_message'] === 1) {
@@ -1980,9 +1980,9 @@ function enterJustAHookup(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: end
   scene.actions([
-    { label: '', labelFn: (s: GameState) => 'This was a ' + String(((s as any).hookup ?? 0)?.['just_a'] ?? '' ?? ''), handler: (st: GameState) => {
+    { label: '', labelFn: (s: GameState) => 'This was a ' + String((((s as any).hookup ?? 0)?.['just_a'] ?? '') ?? ''), handler: (st: GameState) => {
     // TODO-QSP: dynamic text: "No," you shake your head. "This was just a <<$hookup[''just_a'']>>. I''m not lo...
-    scene.text(`"No," you shake your head. "This was just a ${((st as any).hookup ?? 0)?.['just_a'] ?? ''}. I'm not looking for anything lasting."`);
+    scene.text(`"No," you shake your head. "This was just a ${(((st as any).hookup ?? 0)?.['just_a'] ?? '')}. I'm not looking for anything lasting."`);
     if (((st as any).hookup ?? 0)?.['continuation'] === 1) {
       scene.text('"Whatever, your loss," he shrugs.');
       scene.text('"Pfft-! Yeah, sure," you snigger back, pulling on the rest of your clothes. You give yourself a once over, making sure everything\'s in place and wave goodbye as you head towards the door.');
@@ -2123,15 +2123,15 @@ function enterDressLoop(s: GameState, scene: SceneBuilder): void {
         ((s as any).hookup = (s as any).hookup ?? {})['dress_describe'] = ((s as any).hookup['dress_describe'] ?? 0) + (' and ');
       }
     }
-    qspCall(s, 'panties', 'wear', ((s as any).lastwornpantytype ?? 0)?.['hookup'], ((s as any).lastwornpantynumber ?? 0)?.['hookup']);
+    qspCall(s, 'panties', 'wear', (((s as any).lastwornpantytype ?? 0)?.['hookup']), (((s as any).lastwornpantynumber ?? 0)?.['hookup']));
     if (((s as any).lastwornbratype ?? 0)?.['hookup'] !== 'none') {
       ((s as any).hookup = (s as any).hookup ?? {})['dress_describe'] = ((s as any).hookup['dress_describe'] ?? 0) + ('fastening your bra around your chest');
       if (((s as any).clothingworntype ?? 0) === 'nude') {
         ((s as any).hookup = (s as any).hookup ?? {})['dress_describe'] = ((s as any).hookup['dress_describe'] ?? 0) + (' then ');
       }
     }
-    qspCall(s, 'bras', 'wear', ((s as any).lastwornbratype ?? 0)?.['hookup'], ((s as any).lastwornbranumber ?? 0)?.['hookup']);
-    qspCall(s, 'clothing', 'wear', ((s as any).lastwornclothingtype ?? 0)?.['hookup'], ((s as any).lastwornclothingnumber ?? 0)?.['hookup'], 'force');
+    qspCall(s, 'bras', 'wear', (((s as any).lastwornbratype ?? 0)?.['hookup']), (((s as any).lastwornbranumber ?? 0)?.['hookup']));
+    qspCall(s, 'clothing', 'wear', (((s as any).lastwornclothingtype ?? 0)?.['hookup']), (((s as any).lastwornclothingnumber ?? 0)?.['hookup']), 'force');
     if (((s as any).CloDress ?? 0) === 1) {
       ((s as any).hookup = (s as any).hookup ?? {})['dress_describe'] = ((s as any).hookup['dress_describe'] ?? 0) + ('pulling your dress over your shoulders');
     } else {
@@ -2202,7 +2202,7 @@ function enterPantyGift(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/romance/misc/panty_gift.mp4');
     scene.text('Just after you put on your panties, a sexy thought pops into your head.');
     // TODO-QSP: dynamic text: "<<$hookup[''panty_give_desc'']>>," you say mischievously. "I have a gift for yo...
-    scene.text(`"${((st as any).hookup ?? 0)?.['panty_give_desc'] ?? ''}," you say mischievously. "I have a gift for you."`);
+    scene.text(`"${(((st as any).hookup ?? 0)?.['panty_give_desc'] ?? '')}," you say mischievously. "I have a gift for you."`);
     if (((st as any).npc_panty_give ?? 0)?.[String((st as any).npcID ?? 0)] === 1) {
       // TODO-QSP: dynamic text: "A gift?" <<$npcdesc>> asks curiously.
       scene.text(`"A gift?" ${((st as any).npcdesc ?? '')} asks curiously.`);
@@ -2229,7 +2229,7 @@ function enterPantyGift2(s: GameState, scene: SceneBuilder): void {
       { label: 'For making me orgasm', handler: (st: GameState) => {
     // TODO-QSP: $npc_apt_bedroom[$npcID]
     // TODO-QSP: dynamic text: "For making me come," you smile, <<$hookup[''dress_describe'']>>. "That deserves...
-    scene.text(`"For making me come," you smile, ${((st as any).hookup ?? 0)?.['dress_describe'] ?? ''}. "That deserves an award."`);
+    scene.text(`"For making me come," you smile, ${(((st as any).hookup ?? 0)?.['dress_describe'] ?? '')}. "That deserves an award."`);
     if (((st as any).npc_girlfriend ?? 0)?.[String((st as any).npcID ?? 0)] === 1) {
       if (((st as any).pc_know_npc_has_girlfriend ?? 0)?.[String((st as any).npcID ?? 0)] === 0) {
         ((st as any).pc_know_npc_has_girlfriend = (st as any).pc_know_npc_has_girlfriend ?? {})[String((st as any).npcID ?? 0)] = 1;
@@ -2245,7 +2245,7 @@ function enterPantyGift2(s: GameState, scene: SceneBuilder): void {
       { label: 'For making me orgasm (tradition)', handler: (st: GameState) => {
     // TODO-QSP: $npc_apt_bedroom[$npcID]
     // TODO-QSP: dynamic text: "For making me come," you smile, <<$hookup[''dress_describe'']>>. "I always give...
-    scene.text(`"For making me come," you smile, ${((st as any).hookup ?? 0)?.['dress_describe'] ?? ''}. "I always give a boy my panties if he makes me come."`);
+    scene.text(`"For making me come," you smile, ${(((st as any).hookup ?? 0)?.['dress_describe'] ?? '')}. "I always give a boy my panties if he makes me come."`);
     if (((st as any).npc_girlfriend ?? 0)?.[String((st as any).npcID ?? 0)] === 1) {
       if (((st as any).pc_know_npc_has_girlfriend ?? 0)?.[String((st as any).npcID ?? 0)] === 0) {
         ((st as any).pc_know_npc_has_girlfriend = (st as any).pc_know_npc_has_girlfriend ?? {})[String((st as any).npcID ?? 0)] = 1;
@@ -2265,7 +2265,7 @@ function enterPantyGift2(s: GameState, scene: SceneBuilder): void {
     { label: 'You did a good job', handler: (st: GameState) => {
     // TODO-QSP: $npc_apt_bedroom[$npcID]
     // TODO-QSP: dynamic text: "You did a good job," you smile, <<$hookup[''dress_describe'']>>. "Consider that...
-    scene.text(`"You did a good job," you smile, ${((st as any).hookup ?? 0)?.['dress_describe'] ?? ''}. "Consider that your reward."`);
+    scene.text(`"You did a good job," you smile, ${(((st as any).hookup ?? 0)?.['dress_describe'] ?? '')}. "Consider that your reward."`);
     if (((st as any).npc_girlfriend ?? 0)?.[String((st as any).npcID ?? 0)] === 1) {
       if (((st as any).pc_know_npc_has_girlfriend ?? 0)?.[String((st as any).npcID ?? 0)] === 0) {
         ((st as any).pc_know_npc_has_girlfriend = (st as any).pc_know_npc_has_girlfriend ?? {})[String((st as any).npcID ?? 0)] = 1;
@@ -2283,10 +2283,10 @@ function enterPantyGift2(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: $npc_apt_bedroom[$npcID]
     if (((st as any).daystage ?? 0) > 3  ||  ((st as any).hookup ?? 0)?.['sleepover'] === 1) {
       // TODO-QSP: dynamic text: "Something to remember the night," you smile, <<$hookup[''dress_describe'']>>. "...
-      scene.text(`"Something to remember the night," you smile, ${((st as any).hookup ?? 0)?.['dress_describe'] ?? ''}. "Keep the good times in mind."`);
+      scene.text(`"Something to remember the night," you smile, ${(((st as any).hookup ?? 0)?.['dress_describe'] ?? '')}. "Keep the good times in mind."`);
     } else {
       // TODO-QSP: dynamic text: "Something to remember the day," you smile, <<$hookup[''dress_describe'']>>. "Ke...
-      scene.text(`"Something to remember the day," you smile, ${((st as any).hookup ?? 0)?.['dress_describe'] ?? ''}. "Keep the good times in mind."`);
+      scene.text(`"Something to remember the day," you smile, ${(((st as any).hookup ?? 0)?.['dress_describe'] ?? '')}. "Keep the good times in mind."`);
     }
     if (((st as any).npc_girlfriend ?? 0)?.[String((st as any).npcID ?? 0)] === 1) {
       if (((st as any).pc_know_npc_has_girlfriend ?? 0)?.[String((st as any).npcID ?? 0)] === 0) {
@@ -2303,7 +2303,7 @@ function enterPantyGift2(s: GameState, scene: SceneBuilder): void {
     { label: 'Consider it a trophy', handler: (st: GameState) => {
     // TODO-QSP: $npc_apt_bedroom[$npcID]
     // TODO-QSP: dynamic text: "Consider it a trophy," you smile, <<$hookup[''dress_describe'']>>. "A remembran...
-    scene.text(`"Consider it a trophy," you smile, ${((st as any).hookup ?? 0)?.['dress_describe'] ?? ''}. "A remembrance of conquest."`);
+    scene.text(`"Consider it a trophy," you smile, ${(((st as any).hookup ?? 0)?.['dress_describe'] ?? '')}. "A remembrance of conquest."`);
     if (((st as any).npc_girlfriend ?? 0)?.[String((st as any).npcID ?? 0)] === 1) {
       if (((st as any).pc_know_npc_has_girlfriend ?? 0)?.[String((st as any).npcID ?? 0)] === 0) {
         ((st as any).pc_know_npc_has_girlfriend = (st as any).pc_know_npc_has_girlfriend ?? {})[String((st as any).npcID ?? 0)] = 1;
@@ -2326,18 +2326,18 @@ function enterPantyGiftGirlfriend(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Hide them', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: "Just hide them," you say, <<$hookup[''dress_describe'']>>. "If you can hide a f...
-    scene.text(`"Just hide them," you say, ${((st as any).hookup ?? 0)?.['dress_describe'] ?? ''}. "If you can hide a fucking a girl in your bed, surely you can hide a pair of panties."`);
+    scene.text(`"Just hide them," you say, ${(((st as any).hookup ?? 0)?.['dress_describe'] ?? '')}. "If you can hide a fucking a girl in your bed, surely you can hide a pair of panties."`);
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFinishDressing(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Say they\'re hers', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: "Tell her they''re hers," you snicker, <<$hookup[''dress_describe'']>>. "Maybe s...
-    scene.text(`"Tell her they're hers," you snicker, ${((st as any).hookup ?? 0)?.['dress_describe'] ?? ''}. "Maybe she'll think she bought them."`);
+    scene.text(`"Tell her they're hers," you snicker, ${(((st as any).hookup ?? 0)?.['dress_describe'] ?? '')}. "Maybe she'll think she bought them."`);
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFinishDressing(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Say they\'re yours', handler: (st: GameState) => {
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDressLoop(st, scene); (st as any).locArgs = __savedLocArgs; }
     // TODO-QSP: dynamic text: "Tell her they''re yours," you snicker, <<$hookup[''dress_describe'']>>. "A guy ...
-    scene.text(`"Tell her they're yours," you snicker, ${((st as any).hookup ?? 0)?.['dress_describe'] ?? ''}. "A guy can't wear a cute pair of panties now and then?"`);
+    scene.text(`"Tell her they're yours," you snicker, ${(((st as any).hookup ?? 0)?.['dress_describe'] ?? '')}. "A guy can't wear a cute pair of panties now and then?"`);
     if (((st as any).npc_insecure ?? 0)?.[String((st as any).npcID ?? 0)] === 1) {
       // TODO-QSP: dynamic text: <<$npcdesc>>''s face immediately reddens and he looks at you with an angry glare...
       scene.text(`${((st as any).npcdesc ?? '')}'s face immediately reddens and he looks at you with an angry glare.`);
@@ -2347,7 +2347,7 @@ function enterPantyGiftGirlfriend(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: $npc_apt_bedroom[$npcID]
     scene.text('"I was just kidding," you say, rolling your eyes. "Bad joke, sorry."');
     // TODO-QSP: dynamic text: You move to <<$hookup[''dress_describe'']>> but <<$npcdesc>> continues to glare ...
-    scene.text(`You move to ${((st as any).hookup ?? 0)?.['dress_describe'] ?? ''} but ${((st as any).npcdesc ?? '')} continues to glare at you out of the corner of your eye for a few moments longer before looking away.`);
+    scene.text(`You move to ${(((st as any).hookup ?? 0)?.['dress_describe'] ?? '')} but ${((st as any).npcdesc ?? '')} continues to glare at you out of the corner of your eye for a few moments longer before looking away.`);
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLater(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
         { label: 'I was kidding (acerbic)', handler: (st: GameState) => {
@@ -2355,7 +2355,7 @@ function enterPantyGiftGirlfriend(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: "Christ, I was just kidding," you say, giving <<$npcdesc>> a look of exasperatio...
     scene.text(`"Christ, I was just kidding," you say, giving ${((st as any).npcdesc ?? '')} a look of exasperation. "Of course I wasn't seriously suggesting that. Take a joke, dumbass."`);
     // TODO-QSP: dynamic text: You start <<$hookup[''dress_describe'']>> but <<$npcdesc>> continues to glare at...
-    scene.text(`You start ${((st as any).hookup ?? 0)?.['dress_describe'] ?? ''} but ${((st as any).npcdesc ?? '')} continues to glare at you out of the corner of your eye for a few moments longer before looking away.`);
+    scene.text(`You start ${(((st as any).hookup ?? 0)?.['dress_describe'] ?? '')} but ${((st as any).npcdesc ?? '')} continues to glare at you out of the corner of your eye for a few moments longer before looking away.`);
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLater(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       ]);
@@ -2368,15 +2368,15 @@ function enterPantyGiftGirlfriend(s: GameState, scene: SceneBuilder): void {
   } },
     { label: 'Give them to her', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: "Gift them to her," you say mischievously, <<$hookup[''dress_describe'']>>. "May...
-    scene.text(`"Gift them to her," you say mischievously, ${((st as any).hookup ?? 0)?.['dress_describe'] ?? ''}. "Maybe she'll put them on."`);
+    scene.text(`"Gift them to her," you say mischievously, ${(((st as any).hookup ?? 0)?.['dress_describe'] ?? '')}. "Maybe she'll put them on."`);
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLater(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Throw them away', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: "Throw them away then," you shrug, <<$hookup[''dress_describe'']>>. "Do whatever...
-    scene.text(`"Throw them away then," you shrug, ${((st as any).hookup ?? 0)?.['dress_describe'] ?? ''}. "Do whatever you want with them.`);
+    scene.text(`"Throw them away then," you shrug, ${(((st as any).hookup ?? 0)?.['dress_describe'] ?? '')}. "Do whatever you want with them.`);
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDressLoop(st, scene); (st as any).locArgs = __savedLocArgs; }
     // TODO-QSP: dynamic text: "They''re your panties now," you add with a smirk, <<$hookup[''dress_describe'']...
-    scene.text(`"They're your panties now," you add with a smirk, ${((st as any).hookup ?? 0)?.['dress_describe'] ?? ''}.`);
+    scene.text(`"They're your panties now," you add with a smirk, ${(((st as any).hookup ?? 0)?.['dress_describe'] ?? '')}.`);
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLater(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);

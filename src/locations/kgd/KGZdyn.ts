@@ -18,13 +18,13 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     ((s as any).KGZVars = (s as any).KGZVars ?? {})['weapon_texta'] = 'Ax';
   }
   if (((s as any).KGZVars ?? 0)?.['gun'] > 0) {
-    ((s as any).KGZVars = (s as any).KGZVars ?? {})['gun_text'] = '' + ((s as any).KGZVars ?? 0)?.['bullet'] + ' pistol bullets';
+    ((s as any).KGZVars = (s as any).KGZVars ?? {})['gun_text'] = '' + (((s as any).KGZVars ?? 0)?.['bullet']) + ' pistol bullets';
   }
   if (((s as any).KGZVars ?? 0)?.['gun2'] > 0) {
-    ((s as any).KGZVars = (s as any).KGZVars ?? {})['gun2_text'] = '' + ((s as any).KGZVars ?? 0)?.['bullet2'] + ' shotgun cartridges';
+    ((s as any).KGZVars = (s as any).KGZVars ?? {})['gun2_text'] = '' + (((s as any).KGZVars ?? 0)?.['bullet2']) + ' shotgun cartridges';
   }
   if (((s as any).KGZVars ?? 0)?.['gun3'] > 0) {
-    ((s as any).KGZVars = (s as any).KGZVars ?? {})['gun3_text'] = '' + ((s as any).KGZVars ?? 0)?.['bullet3'] + ' rifle bullets';
+    ((s as any).KGZVars = (s as any).KGZVars ?? {})['gun3_text'] = '' + (((s as any).KGZVars ?? 0)?.['bullet3']) + ' rifle bullets';
   }
   if (((s as any).KGZVars ?? 0)?.['hour'] >= 24) {
     ((s as any).KGZVars = (s as any).KGZVars ?? {})['hour'] = ((s as any).KGZVars['hour'] ?? 0) - (24);
@@ -306,7 +306,7 @@ function enterKGZvihod5(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
     ((st as any).KGZVars = (st as any).KGZVars ?? {})['batl'] = 0;
     ((st as any).KGZVars = (st as any).KGZVars ?? {})['bulletrand'] = (Math.floor(Math.random() * 18) + 3);
-    ((st as any).KGZVars = (st as any).KGZVars ?? {})['bullet2'] = ((st as any).KGZVars['bullet2'] ?? 0) + (((st as any).KGZVars ?? 0)?.['bulletrand']);
+    ((st as any).KGZVars = (st as any).KGZVars ?? {})['bullet2'] = ((st as any).KGZVars['bullet2'] ?? 0) + ((((st as any).KGZVars ?? 0)?.['bulletrand']));
     qspCall(st, 'stat', '');
     scene.text('You search the store for anything useful.');
     if (((st as any).KGZVars ?? 0)?.['gun2'] === 0) {
@@ -314,7 +314,7 @@ function enterKGZvihod5(s: GameState, scene: SceneBuilder): void {
       scene.text('You have found a shotgun!');
     }
     // TODO-QSP: dynamic text: You find <<KGZVars[''bulletrand'']>> shotgun cartridges.
-    scene.text(`You find ${((st as any).KGZVars ?? 0)?.['bulletrand'] ?? ''} shotgun cartridges.`);
+    scene.text(`You find ${(((st as any).KGZVars ?? 0)?.['bulletrand'] ?? '')} shotgun cartridges.`);
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     dynamicGoto(st, 'curloc');
@@ -398,7 +398,7 @@ function enterKGZvihod6(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
     ((st as any).KGZVars = (st as any).KGZVars ?? {})['batl'] = 0;
     ((st as any).KGZVars = (st as any).KGZVars ?? {})['bulletrand'] = (Math.floor(Math.random() * 18) + 3);
-    ((st as any).KGZVars = (st as any).KGZVars ?? {})['bullet'] = ((st as any).KGZVars['bullet'] ?? 0) + (((st as any).KGZVars ?? 0)?.['bulletrand']);
+    ((st as any).KGZVars = (st as any).KGZVars ?? {})['bullet'] = ((st as any).KGZVars['bullet'] ?? 0) + ((((st as any).KGZVars ?? 0)?.['bulletrand']));
     qspCall(st, 'stat', '');
     scene.text('You search the police station for anything useful.');
     if (((st as any).KGZVars ?? 0)?.['gun'] === 0) {
@@ -406,7 +406,7 @@ function enterKGZvihod6(s: GameState, scene: SceneBuilder): void {
       scene.text('You have found a pistol!');
     }
     // TODO-QSP: dynamic text: You find <<KGZVars[''bulletrand'']>> bullets for your pistol.
-    scene.text(`You find ${((st as any).KGZVars ?? 0)?.['bulletrand'] ?? ''} bullets for your pistol.`);
+    scene.text(`You find ${(((st as any).KGZVars ?? 0)?.['bulletrand'] ?? '')} bullets for your pistol.`);
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     dynamicGoto(st, 'curloc');
@@ -569,7 +569,7 @@ function enterKGZvihod10(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: end
   scene.actions([
-    { label: '', labelFn: (s: GameState) => 'Head towards ' + String(((s as any).KGZVars ?? 0)?.['placeA_text'] ?? '' ?? ''), handler: (st: GameState) => {
+    { label: '', labelFn: (s: GameState) => 'Head towards ' + String((((s as any).KGZVars ?? 0)?.['placeA_text'] ?? '') ?? ''), handler: (st: GameState) => {
     ((st as any).KGZVars = (st as any).KGZVars ?? {})['hour'] = ((st as any).KGZVars['hour'] ?? 0) + (1);
     (st as any).minut = ((st as any).minut ?? 0) + 1;
     ((st as any).KGZVars = (st as any).KGZVars ?? {})['placeA'] = ((st as any).KGZVars['placeA'] ?? 0) + (1);
@@ -582,7 +582,7 @@ function enterKGZvihod10(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } },
-    { label: '', labelFn: (s: GameState) => 'Head towards ' + String(((s as any).KGZVars ?? 0)?.['placeB_text'] ?? '' ?? ''), handler: (st: GameState) => {
+    { label: '', labelFn: (s: GameState) => 'Head towards ' + String((((s as any).KGZVars ?? 0)?.['placeB_text'] ?? '') ?? ''), handler: (st: GameState) => {
     ((st as any).KGZVars = (st as any).KGZVars ?? {})['hour'] = ((st as any).KGZVars['hour'] ?? 0) + (1);
     (st as any).minut = ((st as any).minut ?? 0) + 1;
     ((st as any).KGZVars = (st as any).KGZVars ?? {})['placeA'] = ((st as any).KGZVars['placeA'] ?? 0) - (1);
@@ -726,9 +726,9 @@ function enterKGZvihod13(s: GameState, scene: SceneBuilder): void {
     (st as any).udacharand = (Math.floor(Math.random() * 2) + 0);
     if (((st as any).udacharand ?? 0) === 1) {
       ((st as any).KGZVars = (st as any).KGZVars ?? {})['suprand'] = (Math.floor(Math.random() * 3) + 1);
-      ((st as any).KGZVars = (st as any).KGZVars ?? {})['sup'] = ((st as any).KGZVars['sup'] ?? 0) + (((st as any).KGZVars ?? 0)?.['suprand']);
+      ((st as any).KGZVars = (st as any).KGZVars ?? {})['sup'] = ((st as any).KGZVars['sup'] ?? 0) + ((((st as any).KGZVars ?? 0)?.['suprand']));
       // TODO-QSP: dynamic text: You have found enough provisions to last <<KGZVars[''suprand'']>> day(s).
-      scene.text(`You have found enough provisions to last ${((st as any).KGZVars ?? 0)?.['suprand'] ?? ''} day(s).`);
+      scene.text(`You have found enough provisions to last ${(((st as any).KGZVars ?? 0)?.['suprand'] ?? '')} day(s).`);
     } else {
       if ((!((st as any).udacharand ?? 0))) {
         ((st as any).KGZVars = (st as any).KGZVars ?? {})['dead'] = (Math.floor(Math.random() * ((((st as any).KGZVars ?? {})?.['day'] ?? 0) * 10 - (((st as any).KGZVars ?? {})?.['day'] ?? 0) * 5 + 1)) + ((((st as any).KGZVars ?? {})?.['day'] ?? 0) * 5));
@@ -1192,10 +1192,10 @@ function enterKGZfizatk(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).KGZVars ?? 0)?.['dead'] > 0) {
     ((s as any).KGZVars = (s as any).KGZVars ?? {})['uron'] = (Math.floor(Math.random() * ((((s as any).KGZVars ?? {})?.['dead'] ?? 0) * 5 - (((s as any).KGZVars ?? {})?.['dead'] ?? 0) * 2 + 1)) + ((((s as any).KGZVars ?? {})?.['dead'] ?? 0) * 2));
-    ((s as any).KGZVars = (s as any).KGZVars ?? {})['HP'] = ((s as any).KGZVars['HP'] ?? 0) - (((s as any).KGZVars ?? 0)?.['uron']);
+    ((s as any).KGZVars = (s as any).KGZVars ?? {})['HP'] = ((s as any).KGZVars['HP'] ?? 0) - ((((s as any).KGZVars ?? 0)?.['uron']));
     // TODO-QSP: dynamic text: <<KGZVars[''dead'']>> zombie(s) swipe(s) at you while trying to bite.
-    scene.text(`${((s as any).KGZVars ?? 0)?.['dead'] ?? ''} zombie(s) swipe(s) at you while trying to bite.`);
-    scene.text(`<center><b>You have taken ${((s as any).KGZVars ?? 0)?.['uron'] ?? ''} damage.</b></center>`);
+    scene.text(`${(((s as any).KGZVars ?? 0)?.['dead'] ?? '')} zombie(s) swipe(s) at you while trying to bite.`);
+    scene.text(`<center><b>You have taken ${(((s as any).KGZVars ?? 0)?.['uron'] ?? '')} damage.</b></center>`);
   }
   // TODO-QSP: end
   scene.build();
@@ -1371,14 +1371,14 @@ function enterKGZdeadmanatk(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).KGZVars ?? 0)?.['dead'] > 0  &&  ((s as any).KGZVars ?? 0)?.['dist'] <= 2) {
     ((s as any).KGZVars = (s as any).KGZVars ?? {})['uron'] = (Math.floor(Math.random() * ((((s as any).KGZVars ?? {})?.['dead'] ?? 0) * 5 - (((s as any).KGZVars ?? {})?.['dead'] ?? 0) * 2 + 1)) + ((((s as any).KGZVars ?? {})?.['dead'] ?? 0) * 2));
-    ((s as any).KGZVars = (s as any).KGZVars ?? {})['HP'] = ((s as any).KGZVars['HP'] ?? 0) - (((s as any).KGZVars ?? 0)?.['uron']);
+    ((s as any).KGZVars = (s as any).KGZVars ?? {})['HP'] = ((s as any).KGZVars['HP'] ?? 0) - ((((s as any).KGZVars ?? 0)?.['uron']));
     // TODO-QSP: dynamic text: <<KGZVars[''dead'']>> zombie(s) swipe(s) at you while trying to bite.
-    scene.text(`${((s as any).KGZVars ?? 0)?.['dead'] ?? ''} zombie(s) swipe(s) at you while trying to bite.`);
-    scene.text(`<center><b>You have taken ${((s as any).KGZVars ?? 0)?.['uron'] ?? ''} damage.</b></center>`);
+    scene.text(`${(((s as any).KGZVars ?? 0)?.['dead'] ?? '')} zombie(s) swipe(s) at you while trying to bite.`);
+    scene.text(`<center><b>You have taken ${(((s as any).KGZVars ?? 0)?.['uron'] ?? '')} damage.</b></center>`);
   } else {
     if (((s as any).KGZVars ?? 0)?.['dist'] > 2  &&  ((s as any).KGZVars ?? 0)?.['dead'] > 0) {
       // TODO-QSP: dynamic text: <<KGZVars[''dead'']>> zombie(s) limp(s) towards you.
-      scene.text(`${((s as any).KGZVars ?? 0)?.['dead'] ?? ''} zombie(s) limp(s) towards you.`);
+      scene.text(`${(((s as any).KGZVars ?? 0)?.['dead'] ?? '')} zombie(s) limp(s) towards you.`);
     }
   }
   // TODO-QSP: end

@@ -31,7 +31,7 @@ function enterFronty(s: GameState, scene: SceneBuilder): void {
   scene.text('Your small two story house sits on the edge of the residential area. Despite that, your neighbors are pretty close and the sounds of the street fill the air.');
   if (qspFunc(s, 'car_funcs', 'is_here')) {
     // TODO-QSP: dynamic text: <a href="exec:gs ''carF'', ''start''">Your <<$car[''name'']>></a> is in the driv...
-    scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027carF/u0027, /u0027start/u0027); return false;">Your ${((s as any).car ?? 0)?.['name'] ?? ''}</a> is in the driveway.`);
+    scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027carF/u0027, /u0027start/u0027); return false;">Your ${(((s as any).car ?? 0)?.['name'] ?? '')}</a> is in the driveway.`);
   }
   if (qspFunc(s, 'homes_properties', 'is_current_home', ((s as any).loc ?? 0)) === 0) {
     scene.actions([
@@ -158,7 +158,7 @@ function enterLivroom(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).mc_inventory ?? 0)?.['tapestry'] > 0) {
       // TODO-QSP: dynamic text: You have <<mc_inventory[''tapestry'']>> completed tapestries.
-      scene.text(`You have ${((s as any).mc_inventory ?? 0)?.['tapestry'] ?? ''} completed tapestries.`);
+      scene.text(`You have ${(((s as any).mc_inventory ?? 0)?.['tapestry'] ?? '')} completed tapestries.`);
     }
   }
   // TODO-QSP: end

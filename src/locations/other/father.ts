@@ -98,7 +98,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
 { label: '"Yes, would you like to see it?"', handler: (st: GameState) => {
     ((st as any).stepfatherQW = (st as any).stepfatherQW ?? {})['piercing_tongue'] = 1;
     qspCall(st, 'stat', '');
-    scene.img(`images/pc/body/piercings/a${((st as any).pcs_piercings ?? 0)?.['tongue'] ?? ''}.jpg`);
+    scene.img(`images/pc/body/piercings/a${(((st as any).pcs_piercings ?? 0)?.['tongue'] ?? '')}.jpg`);
     scene.text('You open your mouth and stick out your tongue and wiggle it at him showing him your piercing.');
     if ((!((st as any).TouchedByFather ?? 0))) {
       // TODO-QSP: dynamic text: Your stepfather shakes his head: "<<$pcs_nickname>>, tongue piercings are only f...
@@ -124,7 +124,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
 { label: '"Don\'t you like it? I thought it looked kind of cute."', handler: (st: GameState) => {
     ((st as any).stepfatherQW = (st as any).stepfatherQW ?? {})['piercing_lip'] = 1;
     qspCall(st, 'stat', '');
-    scene.img(`images/pc/body/piercings/b${((st as any).pcs_piercings ?? 0)?.['lip'] ?? ''}.jpg`);
+    scene.img(`images/pc/body/piercings/b${(((st as any).pcs_piercings ?? 0)?.['lip'] ?? '')}.jpg`);
     scene.text('You shrug. "I don\'t know… I just like the way lip rings look, so I got one. Don\'t you think it looks cute?"');
     if ((!((st as any).TouchedByFather ?? 0))) {
       scene.text('Your stepfather shakes his head: "Kids these days, always adding new holes to themselves…"');
@@ -163,7 +163,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     ((st as any).stepfatherQW = (st as any).stepfatherQW ?? {})['piercing_talkday'] = ((st as any).daystart ?? 0);
     ((st as any).stepfatherQW = (st as any).stepfatherQW ?? {})['tattoo_lip'] = 1;
     qspCall(st, 'stat', '');
-    scene.img(`images/pc/body/tattoos/lip/tatlip${((st as any).pcs_tattoos ?? 0)?.['lip'] ?? ''}.jpg`);
+    scene.img(`images/pc/body/tattoos/lip/tatlip${(((st as any).pcs_tattoos ?? 0)?.['lip'] ?? '')}.jpg`);
     if (((st as any).pcs_tattoos ?? 0)?.['lip'] === 2) {
       (st as any).textFatherTatLip = 'A tattoo on the inside of your lip?! That must\'ve hurt like hell… it is cute, though.';
     }
@@ -770,7 +770,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (st as any).pcs_horny = ((st as any).pcs_horny ?? 0) + (15);
     qspCall(st, 'stat', '');
     ((st as any).stepfatherQW = (st as any).stepfatherQW ?? {})['piercing_pussy'] = 1;
-    scene.img(`images/pc/body/piercings/g${((st as any).pcs_piercings ?? 0)?.['pussy'] ?? ''}.jpg`);
+    scene.img(`images/pc/body/piercings/g${(((st as any).pcs_piercings ?? 0)?.['pussy'] ?? '')}.jpg`);
     // TODO-QSP: dynamic text: Moving closer to your stepfather, you tease him by showing him your pussy. He do...
     scene.text(`Moving closer to your stepfather, you tease him by showing him your pussy. He doesn't know you have a pubic piercing yet, and you plan on showing it off today. As you absently rub your fingers across your labia, the glint of metal catches his eye and he pushes your hand away before you get a chance to tell him about it. "Well well, what do we have here?" he mutters, gently rubbing his fingers over the shiny new piercing. "${((st as any).pcs_nickname ?? '')}, you are such a horny devil… I love it, we're going to have a lot of fun with this." He spends the next few minutes rubbing and tugging on your new piercing, making lewd comments the whole time. After that he reluctantly lets you go, leaving you hornier than before.`);
     scene.actions([

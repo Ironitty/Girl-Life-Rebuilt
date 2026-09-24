@@ -497,7 +497,7 @@ function enterPrivateRoom2(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: "What are you doing, <<$pcs_nickname>>?" Katja asks while getting flustered. You...
     scene.text(`"What are you doing, ${((st as any).pcs_nickname ?? '')}?" Katja asks while getting flustered. You just ignore her and continue to stroke ${((st as any).npcdesc ?? '')}'s now hard cock through his pants.`);
     // TODO-QSP: dynamic text: He takes your groping as approval and starts pawing at your <<$pc_desc[''breast'...
-    scene.text(`He takes your groping as approval and starts pawing at your ${((st as any).pc_desc ?? 0)?.['breast'] ?? ''} breasts. You're so into it, that you don't even notice Katja get up and leave.`);
+    scene.text(`He takes your groping as approval and starts pawing at your ${(((st as any).pc_desc ?? 0)?.['breast'] ?? '')} breasts. You're so into it, that you don't even notice Katja get up and leave.`);
     scene.actions([
       { label: '', labelFn: (s: GameState) => 'Have sex with ' + String(((st as any).npcdesc ?? '') ?? ''), handler: (st: GameState) => {
     (st as any).picrand = 38;
@@ -988,11 +988,11 @@ function enterBartenderBj(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/girl/katja/uni/nightclub/sex/bartender_bj1.jpg');
   // TODO-QSP: dynamic text: 'You move behind the bar, walking as seductively as possible. He stops what he''...
-  scene.text('You move behind the bar, walking as seductively as possible. He stops what he\'s doing and just stares at your ' + ((((s as any).pcs_buttsize ?? 0) > ((s as any).pcs_cupsize ?? 0)) ? (' ' + ((s as any).pc_desc ?? 0)?.['butt'] ?? '' + ' butt.') : ('' + ((s as any).pc_desc ?? 0)?.['breast'] ?? '' + ' tits.')) + ' "What… What are you doing?" he stammers.');
+  scene.text('You move behind the bar, walking as seductively as possible. He stops what he\'s doing and just stares at your ' + ((((s as any).pcs_buttsize ?? 0) > ((s as any).pcs_cupsize ?? 0)) ? (' ' + (((s as any).pc_desc ?? 0)?.['butt'] ?? '') + ' butt.') : ('' + (((s as any).pc_desc ?? 0)?.['breast'] ?? '') + ' tits.')) + ' "What… What are you doing?" he stammers.');
   scene.text('"I see the way you look at me, and I think I know how to compensate you adequately for staying open for me and my friend," you say as you sway sensuously in front of him.');
   scene.text('"H-How…" he asks, stuttering.');
   // TODO-QSP: dynamic text: You get down on your knees and move your hands towards his pants, which are bare...
-  scene.text(`You get down on your knees and move your hands towards his pants, which are barely hiding his now very hard dick. "I think you want these ${((s as any).pc_desc ?? 0)?.['lip size'] ?? ''} lips around your cock…" you say, licking your lips.`);
+  scene.text(`You get down on your knees and move your hands towards his pants, which are barely hiding his now very hard dick. "I think you want these ${(((s as any).pc_desc ?? 0)?.['lip size'] ?? '')} lips around your cock…" you say, licking your lips.`);
   scene.text('"Yes… Oh yes!" he replies.');
   // TODO-QSP: end
   scene.actions([
@@ -1429,7 +1429,7 @@ function enterCheatingConversation(s: GameState, scene: SceneBuilder): void {
       ((s as any).locat = (s as any).locat ?? {})['katja_rand2'] = ((s as any).daystart ?? 0) -1;
     }
     ((s as any).locat = (s as any).locat ?? {})['katja_save2'] = 20;
-    ((s as any).locat = (s as any).locat ?? {})['katja'] = ((s as any).locat ?? 0)?.['katja_save2'];
+    ((s as any).locat = (s as any).locat ?? {})['katja'] = (((s as any).locat ?? 0)?.['katja_save2']);
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Let her leave', goto: ['city_nightclub', 'private_rooms'] },
@@ -1492,7 +1492,7 @@ function enterCheatingConversation(s: GameState, scene: SceneBuilder): void {
       ((st as any).locat = (st as any).locat ?? {})['katja_rand2'] = ((st as any).daystart ?? 0) -1;
     }
     ((st as any).locat = (st as any).locat ?? {})['katja_save2'] = 20;
-    ((st as any).locat = (st as any).locat ?? {})['katja'] = ((st as any).locat ?? 0)?.['katja_save2'];
+    ((st as any).locat = (st as any).locat ?? {})['katja'] = (((st as any).locat ?? 0)?.['katja_save2']);
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Let her leave', goto: ['city_nightclub', 'private_rooms'] },
@@ -1677,14 +1677,14 @@ function enterPrivateBooth_FFFF(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/girl/katja/uni/nightclub/sex/two_girls_private1.jpg');
   if (((s as any).pantyworntype ?? 0) === 'none') {
     // TODO-QSP: dynamic text: You slowly and sensually strip naked. <<$npcdesc1>> has stripped down to her und...
-    scene.text(`You slowly and sensually strip naked. ${((s as any).npcdesc1 ?? '')} has stripped down to her underwear and gently starts exploring your ${((s as any).pc_descWordy ?? 0)?.['breast'] ?? ''} with her hands.`);
+    scene.text(`You slowly and sensually strip naked. ${((s as any).npcdesc1 ?? '')} has stripped down to her underwear and gently starts exploring your ${(((s as any).pc_descWordy ?? 0)?.['breast'] ?? '')} with her hands.`);
   } else {
     if (((s as any).braworntype ?? 0) === 'none') {
       // TODO-QSP: dynamic text: You slowly and sensually strip down to your panties. <<$npcdesc1>> has stripped ...
-      scene.text(`You slowly and sensually strip down to your panties. ${((s as any).npcdesc1 ?? '')} has stripped down to her underwear and gently starts exploring your ${((s as any).pc_descWordy ?? 0)?.['breast'] ?? ''} with her hands.`);
+      scene.text(`You slowly and sensually strip down to your panties. ${((s as any).npcdesc1 ?? '')} has stripped down to her underwear and gently starts exploring your ${(((s as any).pc_descWordy ?? 0)?.['breast'] ?? '')} with her hands.`);
     } else {
       // TODO-QSP: dynamic text: You slowly and sensually strip down to your underwear. <<$npcdesc1>> has done th...
-      scene.text(`You slowly and sensually strip down to your underwear. ${((s as any).npcdesc1 ?? '')} has done the same and gently removes your bra before she starts exploring your ${((s as any).pc_descWordy ?? 0)?.['breast'] ?? ''} with her hands.`);
+      scene.text(`You slowly and sensually strip down to your underwear. ${((s as any).npcdesc1 ?? '')} has done the same and gently removes your bra before she starts exploring your ${(((s as any).pc_descWordy ?? 0)?.['breast'] ?? '')} with her hands.`);
     }
   }
   // TODO-QSP: dynamic text: You look over at Katja and <<$npcdesc2>> and see that Katja have also stripped d...

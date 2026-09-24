@@ -7,10 +7,10 @@ import type { SceneBuilder } from '../../core/scene';
 function enterDefault(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npc_get_preference', '$npcID', 'randomPosIndNeg', 'body_bmi');
   if (((s as any).ngpPrefResult ?? 0)?.['HasPos'] !== '') {
-    (s as any).temp_trait = ((s as any).ngpPrefResult ?? 0)?.['HasPos'];
+    (s as any).temp_trait = (((s as any).ngpPrefResult ?? 0)?.['HasPos']);
   } else {
     if (((s as any).ngpPrefResult ?? 0)?.['NotPos'] !== '') {
-      (s as any).temp_trait = ((s as any).ngpPrefResult ?? 0)?.['NotPos'];
+      (s as any).temp_trait = (((s as any).ngpPrefResult ?? 0)?.['NotPos']);
     }
   }
   if (((s as any).temp_trait ?? 0) === 'body_bmi_starving'  ||  ((s as any).temp_trait ?? 0) === 'body_bmi_underweight') {
@@ -32,10 +32,10 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'npc_get_preference', '$npcID', 'randomPosIndNeg', 'body_tits');
   if (((s as any).ngpPrefResult ?? 0)?.['HasPos'] !== '') {
-    (s as any).temp_trait = ((s as any).ngpPrefResult ?? 0)?.['HasPos'];
+    (s as any).temp_trait = (((s as any).ngpPrefResult ?? 0)?.['HasPos']);
   } else {
     if (((s as any).ngpPrefResult ?? 0)?.['NotPos'] !== '') {
-      (s as any).temp_trait = ((s as any).ngpPrefResult ?? 0)?.['NotPos'];
+      (s as any).temp_trait = (((s as any).ngpPrefResult ?? 0)?.['NotPos']);
     }
   }
   if (((s as any).temp_trait ?? 0) === 'body_tits_small') {
@@ -62,10 +62,10 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'npc_get_preference', '$npcID', 'randomPosIndNeg', 'hair_color');
   if (((s as any).ngpPrefResult ?? 0)?.['HasPos'] !== '') {
-    (s as any).temp_trait = ((s as any).ngpPrefResult ?? 0)?.['HasPos'];
+    (s as any).temp_trait = (((s as any).ngpPrefResult ?? 0)?.['HasPos']);
   } else {
     if (((s as any).ngpPrefResult ?? 0)?.['NotPos'] !== '') {
-      (s as any).temp_trait = ((s as any).ngpPrefResult ?? 0)?.['NotPos'];
+      (s as any).temp_trait = (((s as any).ngpPrefResult ?? 0)?.['NotPos']);
     }
   }
   if (((s as any).temp_trait ?? 0) === 'hair_color_black') {
@@ -93,10 +93,10 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   (s as any).husbAge = ((s as any).boyage ?? 0);
   qspCall(s, 'npc_get_preference', '$npcID', 'randomPosIndNeg', 'cosmetics_piercings');
   if (((s as any).ngpPrefResult ?? 0)?.['HasPos'] !== '') {
-    (s as any).temp_trait = ((s as any).ngpPrefResult ?? 0)?.['HasPos'];
+    (s as any).temp_trait = (((s as any).ngpPrefResult ?? 0)?.['HasPos']);
   } else {
     if (((s as any).ngpPrefResult ?? 0)?.['NotPos'] !== '') {
-      (s as any).temp_trait = ((s as any).ngpPrefResult ?? 0)?.['NotPos'];
+      (s as any).temp_trait = (((s as any).ngpPrefResult ?? 0)?.['NotPos']);
     }
   }
   if (((s as any).temp_trait ?? 0) === 'cosmetics_piercings_none'  ||  ((s as any).temp_trait ?? 0) === 'cosmetics_piercings_few') {
@@ -118,10 +118,10 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'npc_get_preference', '$npcID', 'randomPosIndNeg', 'cosmetics_tattoos');
   if (((s as any).ngpPrefResult ?? 0)?.['HasPos'] !== '') {
-    (s as any).temp_trait = ((s as any).ngpPrefResult ?? 0)?.['HasPos'];
+    (s as any).temp_trait = (((s as any).ngpPrefResult ?? 0)?.['HasPos']);
   } else {
     if (((s as any).ngpPrefResult ?? 0)?.['NotPos'] !== '') {
-      (s as any).temp_trait = ((s as any).ngpPrefResult ?? 0)?.['NotPos'];
+      (s as any).temp_trait = (((s as any).ngpPrefResult ?? 0)?.['NotPos']);
     }
   }
   if (((s as any).temp_trait ?? 0) === 'cosmetics_tattoos_none'  ||  ((s as any).temp_trait ?? 0) === 'cosmetics_tattoos_few') {
@@ -143,10 +143,10 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'npc_get_preference', '$npcID', 'randomPosIndNeg', 'body_lips');
   if (((s as any).ngpPrefResult ?? 0)?.['HasPos'] !== '') {
-    (s as any).temp_trait = ((s as any).ngpPrefResult ?? 0)?.['HasPos'];
+    (s as any).temp_trait = (((s as any).ngpPrefResult ?? 0)?.['HasPos']);
   } else {
     if (((s as any).ngpPrefResult ?? 0)?.['NotPos'] !== '') {
-      (s as any).temp_trait = ((s as any).ngpPrefResult ?? 0)?.['NotPos'];
+      (s as any).temp_trait = (((s as any).ngpPrefResult ?? 0)?.['NotPos']);
     }
   }
   if (((s as any).temp_trait ?? 0) === 'body_lips_normal'  ||  ((s as any).temp_trait ?? 0) === 'body_lips_plump') {
@@ -191,10 +191,10 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 function enterGetMakeupPref(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npc_get_preference', '$npcID', 'randomPosIndNeg', 'cosmetics_makeup');
   if (((s as any).ngpPrefResult ?? 0)?.['HasPos'] !== '') {
-    (s as any).temp_trait = ((s as any).ngpPrefResult ?? 0)?.['HasPos'];
+    (s as any).temp_trait = (((s as any).ngpPrefResult ?? 0)?.['HasPos']);
   } else {
     if (((s as any).ngpPrefResult ?? 0)?.['NotPos'] !== '') {
-      (s as any).temp_trait = ((s as any).ngpPrefResult ?? 0)?.['NotPos'];
+      (s as any).temp_trait = (((s as any).ngpPrefResult ?? 0)?.['NotPos']);
     }
   }
   if (((s as any).temp_trait ?? 0) === 'cosmetics_makeup_light') {

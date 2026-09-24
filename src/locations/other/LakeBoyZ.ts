@@ -149,9 +149,9 @@ function enterGLBoyZ(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Follow him to his house', handler: (st: GameState) => {
-    qspCall(st, 'clothing', 'wear', ((st as any).lastwornclothingtype ?? 0)?.['swim'], ((st as any).lastwornclothingnumber ?? 0)?.['swim']);
-    qspCall(st, 'panties', 'wear', ((st as any).lastwornpantytype ?? 0)?.['swim'], ((st as any).lastwornpantynumber ?? 0)?.['swim']);
-    qspCall(st, 'bras', 'wear', ((st as any).lastwornbratype ?? 0)?.['swim'], ((st as any).lastwornbranumber ?? 0)?.['swim']);
+    qspCall(st, 'clothing', 'wear', (((st as any).lastwornclothingtype ?? 0)?.['swim']), (((st as any).lastwornclothingnumber ?? 0)?.['swim']));
+    qspCall(st, 'panties', 'wear', (((st as any).lastwornpantytype ?? 0)?.['swim']), (((st as any).lastwornpantynumber ?? 0)?.['swim']));
+    qspCall(st, 'bras', 'wear', (((st as any).lastwornbratype ?? 0)?.['swim']), (((st as any).lastwornbranumber ?? 0)?.['swim']));
     qspGoto(st, 'LBZhouse', '');
   } },
     ]);
@@ -166,14 +166,14 @@ function enterGLBoyZ(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 15;
     if (((st as any).clothingworntype ?? 0) === 'nude') {
       scene.img('images/locations/pavlovsk/lake/event/changenude.jpg');
-      qspCall(st, 'clothing', 'wear', ((st as any).lastwornclothingtype ?? 0)?.['swim'], ((st as any).lastwornclothingnumber ?? 0)?.['swim']);
-      qspCall(st, 'panties', 'wear', ((st as any).lastwornpantytype ?? 0)?.['swim'], ((st as any).lastwornpantynumber ?? 0)?.['swim']);
-      qspCall(st, 'bras', 'wear', ((st as any).lastwornbratype ?? 0)?.['swim'], ((st as any).lastwornbranumber ?? 0)?.['swim']);
+      qspCall(st, 'clothing', 'wear', (((st as any).lastwornclothingtype ?? 0)?.['swim']), (((st as any).lastwornclothingnumber ?? 0)?.['swim']));
+      qspCall(st, 'panties', 'wear', (((st as any).lastwornpantytype ?? 0)?.['swim']), (((st as any).lastwornpantynumber ?? 0)?.['swim']));
+      qspCall(st, 'bras', 'wear', (((st as any).lastwornbratype ?? 0)?.['swim']), (((st as any).lastwornbranumber ?? 0)?.['swim']));
     } else {
       scene.img('images/locations/pavlovsk/lake/event/changebikini.jpg');
-      qspCall(st, 'clothing', 'wear', ((st as any).lastwornclothingtype ?? 0)?.['swim'], ((st as any).lastwornclothingnumber ?? 0)?.['swim']);
-      qspCall(st, 'panties', 'wear', ((st as any).lastwornpantytype ?? 0)?.['swim'], ((st as any).lastwornpantynumber ?? 0)?.['swim']);
-      qspCall(st, 'bras', 'wear', ((st as any).lastwornbratype ?? 0)?.['swim'], ((st as any).lastwornbranumber ?? 0)?.['swim']);
+      qspCall(st, 'clothing', 'wear', (((st as any).lastwornclothingtype ?? 0)?.['swim']), (((st as any).lastwornclothingnumber ?? 0)?.['swim']));
+      qspCall(st, 'panties', 'wear', (((st as any).lastwornpantytype ?? 0)?.['swim']), (((st as any).lastwornpantynumber ?? 0)?.['swim']));
+      qspCall(st, 'bras', 'wear', (((st as any).lastwornbratype ?? 0)?.['swim']), (((st as any).lastwornbranumber ?? 0)?.['swim']));
     }
     qspCall(st, 'stat', '');
     // TODO-QSP: dynamic text: You quickly get changed into your regular clothes and go for a walk with <<$boyd...

@@ -9,11 +9,11 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterShellOpen(s: GameState, scene: SceneBuilder): void {
-  (s as any).cs_border = ((((s as any).card_in ?? 0)?.['border'] !== '') ? (((s as any).card_in ?? 0)?.['border']) : (((((s as any).theme ?? 0)?.['is_dark'] === 1) ? ('#555555') : ('#aaaaaa'))));
-  (s as any).cs_opac = ((((s as any).card_in ?? 0)?.['opacity'] !== '') ? (((s as any).card_in ?? 0)?.['opacity']) : ('1.0'));
-  (s as any).cs_icon_size = ((((s as any).card_in ?? 0)?.['icon_size'] > 0) ? (((s as any).card_in ?? 0)?.['icon_size']) : (48));
+  (s as any).cs_border = ((((s as any).card_in ?? 0)?.['border'] !== '') ? ((((s as any).card_in ?? 0)?.['border'])) : (((((s as any).theme ?? 0)?.['is_dark'] === 1) ? ('#555555') : ('#aaaaaa'))));
+  (s as any).cs_opac = ((((s as any).card_in ?? 0)?.['opacity'] !== '') ? ((((s as any).card_in ?? 0)?.['opacity'])) : ('1.0'));
+  (s as any).cs_icon_size = ((((s as any).card_in ?? 0)?.['icon_size'] > 0) ? ((((s as any).card_in ?? 0)?.['icon_size'])) : (48));
   (s as any).cs_col_w = ((s as any).cs_icon_size ?? 0) + 22;
-  (s as any).result = '<center><table width="90%" cellpadding="0" cellspacing="0" style="border: 2px solid ' + ((s as any).cs_border ?? 0) + '; background-color: ' + ((s as any).card_in ?? 0)?.['bg'] + '; margin-bottom: 10px; opacity: ' + ((s as any).cs_opac ?? 0) + ';">';
+  (s as any).result = '<center><table width="90%" cellpadding="0" cellspacing="0" style="border: 2px solid ' + ((s as any).cs_border ?? 0) + '; background-color: ' + (((s as any).card_in ?? 0)?.['bg']) + '; margin-bottom: 10px; opacity: ' + ((s as any).cs_opac ?? 0) + ';">';
   // TODO-QSP: $result += '<tr>'
   if (((s as any).card_in ?? 0)?.['icon'] !== '') {
     // TODO-QSP: $result += '<td width="<<cs_col_w>>" valign="middle" align="center" style="padding: 10px;">'
@@ -63,7 +63,7 @@ function enterSectionOpen(s: GameState, scene: SceneBuilder): void {
   ((s as any).card_in = (s as any).card_in ?? {})['icon'] = ((String((s as any).locArgs?.[2] ?? '') > 0) ? ('images/characters/shared/headshots_main/' + String(((s as any).locArgs?.[2] ?? 0)) + '.jpg') : (''));
   ((s as any).card_in = (s as any).card_in ?? {})['icon_size'] = 90;
   ((s as any).card_in = (s as any).card_in ?? {})['title'] = ((s as any).locArgs?.[1] ?? 0);
-  ((s as any).card_in = (s as any).card_in ?? {})['border'] = ((s as any).theme_hex ?? 0)?.['accent'];
+  ((s as any).card_in = (s as any).card_in ?? {})['border'] = (((s as any).theme_hex ?? 0)?.['accent']);
   ((s as any).card_in = (s as any).card_in ?? {})['bg'] = qspFunc(s, 'themes', 'alt_color', '');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterShellOpen(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: dynamic text: $result

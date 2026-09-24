@@ -196,7 +196,7 @@ function enterEnrollmentSemester(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Enroll', handler: (st: GameState) => {
     ((st as any).university = (st as any).university ?? {})['enrolled_in_semester'] = ((st as any).university['enrolled_in_semester'] ?? 0) + (1);
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'enroll_teaching', ((st as any).university ?? 0)?.['enrolled_in_semester']]; enterCourses(st, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'enroll_teaching', (((st as any).university ?? 0)?.['enrolled_in_semester'])]; enterCourses(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('You tell her you would like to continue pursuing a teaching degree. She smiles and nods, then finishes filling out some more paperwork about the courses you can expect to take.');
     if ((((st as any).day ?? 0) - ((st as any).week ?? 0)) >= 27  &&  ((st as any).month ?? 0) === 8) {
       ((st as any).university = (st as any).university ?? {})['semester_week'] = 1;
@@ -221,7 +221,7 @@ function enterEnrollmentSemester(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'Enroll', handler: (st: GameState) => {
     ((st as any).university = (st as any).university ?? {})['enrolled_in_semester'] = ((st as any).university['enrolled_in_semester'] ?? 0) + (1);
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'enroll_nursing', ((st as any).university ?? 0)?.['enrolled_in_semester']]; enterCourses(st, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'enroll_nursing', (((st as any).university ?? 0)?.['enrolled_in_semester'])]; enterCourses(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('You tell her you would like to continue pursuing a nursing degree. She smiles and nods, then finishes filling out some more paperwork about the courses you can expect to take.');
     if ((((st as any).day ?? 0) - ((st as any).week ?? 0)) >= 27  &&  ((st as any).month ?? 0) === 8) {
       ((st as any).university = (st as any).university ?? {})['semester_week'] = 1;
@@ -259,7 +259,7 @@ function enterSelectElectives(s: GameState, scene: SceneBuilder): void {
     scene.text('You read about the computer class, which seems to be a basic class that teaches you how to use a computer, the functions of some of the more basic programs and how to troubleshoot the OS if something goes wrong. It seems like a fairly useful class.');
     scene.actions([
       { label: 'Enroll in the computer class', handler: (st: GameState) => {
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'enroll_elective_computer', ((st as any).university ?? 0)?.['enrolled_in_semester']]; enterCourses(st, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'enroll_elective_computer', (((st as any).university ?? 0)?.['enrolled_in_semester'])]; enterCourses(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('You decide to enrol in the computer class for the first and second semester of this year.');
     scene.actions([
       { label: 'Consider other elective classes', goto: ['uni_admin', 'select_electives'] },
@@ -278,7 +278,7 @@ function enterSelectElectives(s: GameState, scene: SceneBuilder): void {
     scene.text('This class is about learning how to draw. It will start off with the basics before moving onto the more advanced art studies by the end of the second semester. It might be fun to take part in such a relaxed class.');
     scene.actions([
       { label: 'Enroll in the art class', handler: (st: GameState) => {
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'enroll_elective_art', ((st as any).university ?? 0)?.['enrolled_in_semester']]; enterCourses(st, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'enroll_elective_art', (((st as any).university ?? 0)?.['enrolled_in_semester'])]; enterCourses(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('You decide to enroll in the art class for the first and second semester of this year.');
     scene.actions([
       { label: 'Consider other elective classes', goto: ['uni_admin', 'select_electives'] },
@@ -297,7 +297,7 @@ function enterSelectElectives(s: GameState, scene: SceneBuilder): void {
     scene.text('This class is about learning psychology to better understand how and why people think they way they do. It will start off with the basics before moving onto the more advanced behavior studies by the end of the second semester. It might be fun to take part in such a relaxed class.');
     scene.actions([
       { label: 'Enroll in the psychology class', handler: (st: GameState) => {
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'enroll_elective_psychology', ((st as any).university ?? 0)?.['enrolled_in_semester']]; enterCourses(st, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'enroll_elective_psychology', (((st as any).university ?? 0)?.['enrolled_in_semester'])]; enterCourses(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('You decide to enroll in the psychology class for the first and second semester of this year.');
     scene.actions([
       { label: 'Consider other elective classes', goto: ['uni_admin', 'select_electives'] },
@@ -316,7 +316,7 @@ function enterSelectElectives(s: GameState, scene: SceneBuilder): void {
     scene.text('This class is about learning the history and culture of Africa and its people. It will start off with the history of the continent before moving on to modern day Africa by the end of the second semester. It might be fun to take part in such a relaxed class.');
     scene.actions([
       { label: 'Enroll in the African studies class', handler: (st: GameState) => {
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'enroll_elective_african', ((st as any).university ?? 0)?.['enrolled_in_semester']]; enterCourses(st, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'enroll_elective_african', (((st as any).university ?? 0)?.['enrolled_in_semester'])]; enterCourses(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('You decide to enroll in the African studies class for the first and second semester of this year.');
     scene.actions([
       { label: 'Consider other elective classes', goto: ['uni_admin', 'select_electives'] },
@@ -336,7 +336,7 @@ function enterSelectElectives(s: GameState, scene: SceneBuilder): void {
     scene.text('This class is about learning the history and culture of Asia and its people. It will start off with the history of the continent before moving on to modern day Asia by the end of the second semester. It might be fun to take part in such a relaxed class.');
     scene.actions([
       { label: 'Enroll in the Asian studies class', handler: (st: GameState) => {
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'enroll_elective_asian', ((st as any).university ?? 0)?.['enrolled_in_semester']]; enterCourses(st, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'enroll_elective_asian', (((st as any).university ?? 0)?.['enrolled_in_semester'])]; enterCourses(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('You decide to enroll in the Asian studies class for the first and second semester of this year.');
     scene.actions([
       { label: 'Consider other elective classes', goto: ['uni_admin', 'select_electives'] },

@@ -564,7 +564,7 @@ function enterKissWake(s: GameState, scene: SceneBuilder): void {
   if (((s as any).npc_earlyriser ?? 0)?.[String((s as any).npcID ?? 0)] !== 1) {
     scene.actions([
       { label: '', labelFn: (s: GameState) => 'Kiss ' + String(((s as any).npcdesc ?? '') ?? ''), handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'kiss', 1, 'no_orgasm_msg', ((st as any).sex_ev ?? 0)?.['prostitution_flag']);
+    qspCall(st, 'arousal', 'kiss', 1, 'no_orgasm_msg', (((st as any).sex_ev ?? 0)?.['prostitution_flag']));
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['boy_asleep'] = 0;
     qspCall(st, 'npc_relationship', 'modify', ((st as any).npcID ?? 0), 'like');
     scene.img('images/shared/sex/kiss/bed1.jpg');
@@ -580,7 +580,7 @@ function enterKissWake(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'sex_ev_morning', 'morning_menu1');
     scene.actions([
       { label: '', labelFn: (s: GameState) => 'Give ' + String(((st as any).npcdesc ?? '') ?? '') + ' a blowjob', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'bj', 1, 'no_orgasm_msg', ((st as any).sex_ev ?? 0)?.['prostitution_flag']);
+    qspCall(st, 'arousal', 'bj', 1, 'no_orgasm_msg', (((st as any).sex_ev ?? 0)?.['prostitution_flag']));
     scene.img('images/shared/sex/blowjob/bj47.mp4');
     scene.text('"Let me make it up to you," you smile, throwing back the covers and wrapping your lips around his morning wood.');
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBjWake(st, scene); (st as any).locArgs = __savedLocArgs; }
@@ -593,7 +593,7 @@ function enterKissWake(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'sex_ev_morning', 'morning_menu1');
     scene.actions([
       { label: '', labelFn: (s: GameState) => 'Give ' + String(((st as any).npcdesc ?? '') ?? '') + ' a blowjob', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'bj', 1, 'no_orgasm_msg', ((st as any).sex_ev ?? 0)?.['prostitution_flag']);
+    qspCall(st, 'arousal', 'bj', 1, 'no_orgasm_msg', (((st as any).sex_ev ?? 0)?.['prostitution_flag']));
     scene.img('images/shared/sex/blowjob/bj47.mp4');
     scene.text('"Let me make it up to you," you smile, throwing back the covers and wrapping your lips around his morning wood.');
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBjWake(st, scene); (st as any).locArgs = __savedLocArgs; }
@@ -606,7 +606,7 @@ function enterKissWake(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'sex_ev_morning', 'morning_menu1');
     scene.actions([
       { label: '', labelFn: (s: GameState) => 'Give ' + String(((st as any).npcdesc ?? '') ?? '') + ' a blowjob', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'bj', 1, 'no_orgasm_msg', ((st as any).sex_ev ?? 0)?.['prostitution_flag']);
+    qspCall(st, 'arousal', 'bj', 1, 'no_orgasm_msg', (((st as any).sex_ev ?? 0)?.['prostitution_flag']));
     scene.img('images/shared/sex/blowjob/bj47.mp4');
     scene.text('"Let me make it up to you," you smile, throwing back the covers and wrapping your lips around his morning wood.');
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBjWake(st, scene); (st as any).locArgs = __savedLocArgs; }
@@ -619,7 +619,7 @@ function enterKissWake(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'sex_ev_morning', 'morning_menu1');
       scene.actions([
         { label: '', labelFn: (s: GameState) => 'Give ' + String(((st as any).npcdesc ?? '') ?? '') + ' a blowjob', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'bj', 1, 'no_orgasm_msg', ((st as any).sex_ev ?? 0)?.['prostitution_flag']);
+    qspCall(st, 'arousal', 'bj', 1, 'no_orgasm_msg', (((st as any).sex_ev ?? 0)?.['prostitution_flag']));
     scene.img('images/shared/sex/blowjob/bj47.mp4');
     // TODO-QSP: dynamic text: You break the kiss from <<$npcdesc>>''s lips and start trailing them down his ne...
     scene.text(`You break the kiss from ${((st as any).npcdesc ?? '')}'s lips and start trailing them down his neck and then his chest and then his stomach and soon you have your lips wrapped around his morning wood.`);
@@ -636,7 +636,7 @@ function enterKissWake(s: GameState, scene: SceneBuilder): void {
 
 function enterBjWake(s: GameState, scene: SceneBuilder): void {
   ((s as any).sex_ev = (s as any).sex_ev ?? {})['boy_asleep'] = 0;
-  qspCall(s, 'arousal', 'bj', 1, 'no_orgasm_msg', ((s as any).sex_ev ?? 0)?.['prostitution_flag']);
+  qspCall(s, 'arousal', 'bj', 1, 'no_orgasm_msg', (((s as any).sex_ev ?? 0)?.['prostitution_flag']));
   if (((s as any).npc_end_free_time ?? 0) <= ((s as any).hour ?? 0) + 2) {
     ((s as any).sex_ev = (s as any).sex_ev ?? {})['npc_late_work'] = 1;
     scene.text('"Nngh," he grunts as you start sucking his cock. "I\'m gonna be late for work..."');
@@ -848,7 +848,7 @@ function enterCumshotWakeupBj(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterWakeupFondling(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'arousal', 'foreplay', -(Math.floor(Math.random() * 6) + 5), 'no_orgasm_msg', ((s as any).sex_ev ?? 0)?.['prostitution_flag']);
+  qspCall(s, 'arousal', 'foreplay', -(Math.floor(Math.random() * 6) + 5), 'no_orgasm_msg', (((s as any).sex_ev ?? 0)?.['prostitution_flag']));
   scene.img('images/shared/sex/sleep/fondle1.jpg');
   scene.text('You stir as you feel a hands roaming your body. One passes over your breasts, squeezing them on the way down to your stomach. The other is already snaking its way between your legs. Something stiff and warm is poking into your lower back.');
   // TODO-QSP: end
@@ -958,7 +958,7 @@ function enterForgotBcPill(s: GameState, scene: SceneBuilder): void {
         ((st as any).sex_ev = (st as any).sex_ev ?? {})['forgot_bc_act'] = '' + ((st as any).npcdesc ?? 0) + ' didn\'t come inside you';
       }
       scene.actions([
-        { label: '', labelFn: (s: GameState) => String(((st as any).sex_ev ?? 0)?.['forgot_bc_act'] ?? '' ?? ''), handler: (st: GameState) => {
+        { label: '', labelFn: (s: GameState) => String((((st as any).sex_ev ?? 0)?.['forgot_bc_act'] ?? '') ?? ''), handler: (st: GameState) => {
     if (((st as any).pharmacy_timers ?? 0)?.['birth_control'] > 0) {
       // TODO-QSP: dynamic text: '<<$npcdesc>> didn''t come inside you yesterday, so you''re not in any real dang...
       scene.text(`${((st as any).npcdesc ?? '')} didn't come inside you yesterday, so you're not in any real danger of getting pregnant right this second.` + ((((st as any).sex_ev ?? 0)?.['no_condom'] === 0) ? (' Besides, you used condoms.') : (' ')) + 'But this breaks your streak. Aunt Luda said you need to take it every day or it won\'t work. So if you take it now, does that mean you\'re still not safe?');
@@ -1122,7 +1122,7 @@ function enterCheatNoGuiltStart(s: GameState, scene: SceneBuilder): void {
 
 function enterCheatNoGuilt1(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: Thoughts of your <<$sex_ev[''cheat'']>> cross your mind.
-  scene.text(`Thoughts of your ${((s as any).sex_ev ?? 0)?.['cheat'] ?? ''} cross your mind.`);
+  scene.text(`Thoughts of your ${(((s as any).sex_ev ?? 0)?.['cheat'] ?? '')} cross your mind.`);
   if (((s as any).lover_stat ?? 0)?.['fighting_flag'] === 1) {
     scene.actions([
       { label: 'Serves them right', handler: (st: GameState) => {
@@ -1139,7 +1139,7 @@ function enterCheatNoGuilt1(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Oops', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: <i>Oops,</i> you think. <i>I think I just cheated on my <<$sex_ev[''cheat'']>>.<...
-    scene.text(`<i>Oops,</i> you think. <i>I think I just cheated on my ${((st as any).sex_ev ?? 0)?.['cheat'] ?? ''}.</i>`);
+    scene.text(`<i>Oops,</i> you think. <i>I think I just cheated on my ${(((st as any).sex_ev ?? 0)?.['cheat'] ?? '')}.</i>`);
     scene.text('The realization brings with it no guilt, to you this moment just as much of an oopsie as dropping a pencil.');
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterKissWake(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.actions([
@@ -1300,10 +1300,10 @@ function enterGuiltActRecount(s: GameState, scene: SceneBuilder): void {
 function enterCheatGuilt1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sex_ev ?? 0)?.['cheat'] === 'boyfriend'  ||  ((s as any).sex_ev ?? 0)?.['cheat'] === 'girlfriend') {
     // TODO-QSP: dynamic text: <i>My <<$sex_ev[''cheat'']>>...</i> you think.
-    scene.text(`<i>My ${((s as any).sex_ev ?? 0)?.['cheat'] ?? ''}...</i> you think.`);
+    scene.text(`<i>My ${(((s as any).sex_ev ?? 0)?.['cheat'] ?? '')}...</i> you think.`);
   } else {
     // TODO-QSP: dynamic text: <i><<$sex_ev[''cheat'']>>...</i> you think.
-    scene.text(`<i>${((s as any).sex_ev ?? 0)?.['cheat'] ?? ''}...</i> you think.`);
+    scene.text(`<i>${(((s as any).sex_ev ?? 0)?.['cheat'] ?? '')}...</i> you think.`);
   }
   // TODO-QSP: end
   scene.actions([
@@ -1313,10 +1313,10 @@ function enterCheatGuilt1(s: GameState, scene: SceneBuilder): void {
       scene.text('You sit up and throw your legs over the edge of the bed, hands at your sides, taking deep guilty breaths as your heart pounds inside your chest.');
       if (((st as any).sex_ev ?? 0)?.['cheat'] === 'boyfriend'  ||  ((st as any).sex_ev ?? 0)?.['cheat'] === 'girlfriend') {
         // TODO-QSP: dynamic text: <i>I just cheated on my <<$sex_ev[''cheat'']>>...</i>
-        scene.text(`<i>I just cheated on my ${((st as any).sex_ev ?? 0)?.['cheat'] ?? ''}...</i>`);
+        scene.text(`<i>I just cheated on my ${(((st as any).sex_ev ?? 0)?.['cheat'] ?? '')}...</i>`);
       } else {
         // TODO-QSP: dynamic text: <i>I just cheated on <<$sex_ev[''cheat'']>>...</i> you think.
-        scene.text(`<i>I just cheated on ${((st as any).sex_ev ?? 0)?.['cheat'] ?? ''}...</i> you think.`);
+        scene.text(`<i>I just cheated on ${(((st as any).sex_ev ?? 0)?.['cheat'] ?? '')}...</i> you think.`);
       }
       // TODO-QSP: dynamic text: Your thoughts wander through your night with <<$npcdesc>>...
       scene.text(`Your thoughts wander through your night with ${((st as any).npcdesc ?? '')}...`);
@@ -1353,7 +1353,7 @@ function enterCheatGuiltExcuses(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/sex/after/wakeup_shock2.mp4');
     if (((st as any).sex_ev ?? 0)?.['cheat'] === 'Julia') {
       // TODO-QSP: dynamic text: <i>It''s just sex,</i> you try to rationalize. <i>It''s not like I''m falling in...
-      scene.text(`<i>It's just sex,</i> you try to rationalize. <i>It's not like I'm falling in love with ${((st as any).npcdesc ?? '')} or anything. I just really needed some cock, which ${((st as any).sex_ev ?? 0)?.['cheat'] ?? ''} obviously doesn't have. Strap-ons and dildos aren't the same. It's not cheating. It's just sex.</i>.`);
+      scene.text(`<i>It's just sex,</i> you try to rationalize. <i>It's not like I'm falling in love with ${((st as any).npcdesc ?? '')} or anything. I just really needed some cock, which ${(((st as any).sex_ev ?? 0)?.['cheat'] ?? '')} obviously doesn't have. Strap-ons and dildos aren't the same. It's not cheating. It's just sex.</i>.`);
     } else {
       if (((st as any).sex_ev ?? 0)?.['cheat'] === 'girlfriend') {
         // TODO-QSP: dynamic text: <i>It''s just sex,</i> you try to rationalize. <i>It''s not like I''m falling in...
@@ -1436,7 +1436,7 @@ function enterCheatGuilt3(s: GameState, scene: SceneBuilder): void {
         } else {
           if (((s as any).npc_know_cheat ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
             scene.actions([
-              { label: '', labelFn: (s: GameState) => 'Thinking about your ' + String(((s as any).sex_ev ?? 0)?.['cheat'] ?? '' ?? '') }, // TODO-QSP: empty action body
+              { label: '', labelFn: (s: GameState) => 'Thinking about your ' + String((((s as any).sex_ev ?? 0)?.['cheat'] ?? '') ?? '') }, // TODO-QSP: empty action body
             ]);
           } else {
             scene.text('"Hey," he stretches, looking over at you. "You just wake up too?"');

@@ -73,7 +73,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     if (((st as any).pavlevent ?? 0) === 1) {
       // TODO-QSP: dynamic text: You''re too scared of <<$npc_nickname[''A217'']>> at the moment to meet him in a...
-      scene.text(`You're too scared of ${((st as any).npc_nickname ?? 0)?.['A217'] ?? ''} at the moment to meet him in a private place.`);
+      scene.text(`You're too scared of ${(((st as any).npc_nickname ?? 0)?.['A217'] ?? '')} at the moment to meet him in a private place.`);
       scene.actions([
 { label: 'Step away', goto: ['pav_hotel', 'skip_resepevent'] },
 ]);
@@ -83,7 +83,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
         // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/hotel/resep.girl0,'+r...
         scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/hotel/resep.girl0,` + (Math.floor(Math.random() * 11) + 0) + '.jpg"></center>');
         // TODO-QSP: dynamic text: "<<$npc_nickname[''A217'']>> expects you to be clean and made-up with your hair ...
-        scene.text(`"${((st as any).npc_nickname ?? 0)?.['A217'] ?? ''} expects you to be clean and made-up with your hair looking nice. I can't let you go up looking like this," she says.`);
+        scene.text(`"${(((st as any).npc_nickname ?? 0)?.['A217'] ?? '')} expects you to be clean and made-up with your hair looking nice. I can't let you go up looking like this," she says.`);
         scene.actions([
 { label: 'Step away', goto: ['pav_hotel', 'skip_resepevent'] },
 ]);
@@ -172,7 +172,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     if (((st as any).hotelRoomDays ?? 0)?.['pav'] > 0) {
       (st as any).totalCost = (((st as any).hotelRoomDays ?? {})?.['pav'] ?? 0) * 500;
       // TODO-QSP: dynamic text: "A normal room for <<hotelRoomDays[''pav'']>> days would be <<$func(''money'', '...
-      scene.text(`"A normal room for ${((st as any).hotelRoomDays ?? 0)?.['pav'] ?? ''} days would be ${qspFunc(s, 'money', 'string_price', ((st as any).totalCost ?? ''))} in total," she says.`);
+      scene.text(`"A normal room for ${(((st as any).hotelRoomDays ?? 0)?.['pav'] ?? '')} days would be ${qspFunc(s, 'money', 'string_price', ((st as any).totalCost ?? ''))} in total," she says.`);
       { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 1]; enterPayTheRoom(st, scene); (st as any).locArgs = __savedLocArgs; }
     } else {
       qspGoto(st, 'pav_hotel', '');
@@ -183,7 +183,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     if (((st as any).hotelRoomDays ?? 0)?.['pav'] > 0) {
       (st as any).totalCost = (((st as any).hotelRoomDays ?? {})?.['pav'] ?? 0) * 1500;
       // TODO-QSP: dynamic text: "A luxury room for <<hotelRoomDays[''pav'']>> days will be <<$func(''money'', ''...
-      scene.text(`"A luxury room for ${((st as any).hotelRoomDays ?? 0)?.['pav'] ?? ''} days will be ${qspFunc(s, 'money', 'string_price', ((st as any).totalCost ?? ''))}," she says.`);
+      scene.text(`"A luxury room for ${(((st as any).hotelRoomDays ?? 0)?.['pav'] ?? '')} days will be ${qspFunc(s, 'money', 'string_price', ((st as any).totalCost ?? ''))}," she says.`);
       { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 2]; enterPayTheRoom(st, scene); (st as any).locArgs = __savedLocArgs; }
     } else {
       qspGoto(st, 'pav_hotel', '');

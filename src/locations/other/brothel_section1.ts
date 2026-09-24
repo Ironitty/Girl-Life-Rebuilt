@@ -11,9 +11,9 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 function enterPrintStats(s: GameState, scene: SceneBuilder): void {
   scene.text('<h3>Playroom</h3>');
   // TODO-QSP: dynamic text: <b>Orgasm meter: <<brothel_vars[''orgasm_meter'']>> / 100</b>
-  scene.text(`<b>Orgasm meter: ${((s as any).brothel_vars ?? 0)?.['orgasm_meter'] ?? ''} / 100</b>`);
+  scene.text(`<b>Orgasm meter: ${(((s as any).brothel_vars ?? 0)?.['orgasm_meter'] ?? '')} / 100</b>`);
   // TODO-QSP: dynamic text: <b>Rage meter: <<brothel_vars[''rage_meter'']>> / 100</b>
-  scene.text(`<b>Rage meter: ${((s as any).brothel_vars ?? 0)?.['rage_meter'] ?? ''} / 100</b>`);
+  scene.text(`<b>Rage meter: ${(((s as any).brothel_vars ?? 0)?.['rage_meter'] ?? '')} / 100</b>`);
   return;
   // TODO-QSP: end
   scene.build();
@@ -1863,8 +1863,8 @@ function enterSection1End(s: GameState, scene: SceneBuilder): void {
 }
 
 function enter(s: GameState, scene: SceneBuilder): void {
-  ((s as any).brothel_vars = (s as any).brothel_vars ?? {})['orgasm_meter'] = Math.min(100, ((s as any).brothel_vars ?? 0)?.['orgasm_meter']);
-  ((s as any).brothel_vars = (s as any).brothel_vars ?? {})['rage_meter'] = Math.min(100, ((s as any).brothel_vars ?? 0)?.['rage_meter']);
+  ((s as any).brothel_vars = (s as any).brothel_vars ?? {})['orgasm_meter'] = Math.min(100, (((s as any).brothel_vars ?? 0)?.['orgasm_meter']));
+  ((s as any).brothel_vars = (s as any).brothel_vars ?? {})['rage_meter'] = Math.min(100, (((s as any).brothel_vars ?? 0)?.['rage_meter']));
   const arg = s.locArg;
   switch (arg) {
     case 'print_stats':

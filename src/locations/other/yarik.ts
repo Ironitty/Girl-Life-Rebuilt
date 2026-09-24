@@ -262,7 +262,7 @@ function enter5(s: GameState, scene: SceneBuilder): void {
       { label: 'Suck it', handler: (st: GameState) => {
     scene.img('images/characters/city/yaroslav/sex/rabotu_11.jpg');
     // TODO-QSP: dynamic text: He starts to move his hips, trying to get more, you hold him back for a few seco...
-    scene.text(`He starts to move his hips, trying to get more, you hold him back for a few seconds, then wrap your ${((st as any).pc_desc ?? 0)?.['lips'] ?? ''} lips around the pulsating member shift your focus to maximising his pleasure.`);
+    scene.text(`He starts to move his hips, trying to get more, you hold him back for a few seconds, then wrap your ${(((st as any).pc_desc ?? 0)?.['lips'] ?? '')} lips around the pulsating member shift your focus to maximising his pleasure.`);
     qspCall(st, 'boyStat', 'A86');
     qspCall(st, 'arousal', 'bj', 10);
     qspCall(st, 'stat', '');

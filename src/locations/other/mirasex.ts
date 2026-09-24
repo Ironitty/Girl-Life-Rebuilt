@@ -23,11 +23,11 @@ function enterMirakiss(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).temp ?? 0) === 3) {
     // TODO-QSP: dynamic text: Mira gently kisses your <<$pc_desc[''lips'']>> lips, and you feel the thrill of ...
-    scene.text(`Mira gently kisses your ${((s as any).pc_desc ?? 0)?.['lips'] ?? ''} lips, and you feel the thrill of her kiss washing over you.`);
+    scene.text(`Mira gently kisses your ${(((s as any).pc_desc ?? 0)?.['lips'] ?? '')} lips, and you feel the thrill of her kiss washing over you.`);
   }
   if (((s as any).temp ?? 0) === 4) {
     // TODO-QSP: dynamic text: Mira passionately kisses your <<$pc_desc[''lips'']>> lips, and you return the ki...
-    scene.text(`Mira passionately kisses your ${((s as any).pc_desc ?? 0)?.['lips'] ?? ''} lips, and you return the kiss, feeling exhilaration in every part of your body.`);
+    scene.text(`Mira passionately kisses your ${(((s as any).pc_desc ?? 0)?.['lips'] ?? '')} lips, and you return the kiss, feeling exhilaration in every part of your body.`);
   }
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'arousal', 'kiss', (-10), 'lesbian');
@@ -66,7 +66,7 @@ function enterForeplay(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).temp ?? 0) === 3) {
     // TODO-QSP: dynamic text: You kiss Mira, your <<$pc_desc[''lips'']>> lips touching her lips in a hot kiss,...
-    scene.text(`You kiss Mira, your ${((s as any).pc_desc ?? 0)?.['lips'] ?? ''} lips touching her lips in a hot kiss, and your hand on her crotch making her moan excitedly.`);
+    scene.text(`You kiss Mira, your ${(((s as any).pc_desc ?? 0)?.['lips'] ?? '')} lips touching her lips in a hot kiss, and your hand on her crotch making her moan excitedly.`);
   }
   scene.text('Mira starts to unbutton your top.');
   qspCall(s, 'arousal', 'foreplay', 5, 'lesbian');
@@ -296,7 +296,7 @@ function enterMiralickStart(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.img('images/characters/gadukino/mira/sex/mira_start_tanga0.jpg');
     // TODO-QSP: dynamic text: Dropping to her knees and not finding any panties, Mira licked your <<$pc_desc['...
-    scene.text(`Dropping to her knees and not finding any panties, Mira licked your ${((s as any).pc_desc ?? 0)?.['pussy'] ?? ''} vagina, sampling its taste and causing an involuntary moan of pleasure from you. You lean against the tree, close your eyes, and wait for her to continue…`);
+    scene.text(`Dropping to her knees and not finding any panties, Mira licked your ${(((s as any).pc_desc ?? 0)?.['pussy'] ?? '')} vagina, sampling its taste and causing an involuntary moan of pleasure from you. You lean against the tree, close your eyes, and wait for her to continue…`);
   }
   qspCall(s, 'arousal', 'foreplay', 5, 'lesbian');
   qspCall(s, 'stat', '');

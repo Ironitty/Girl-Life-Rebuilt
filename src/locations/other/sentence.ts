@@ -60,7 +60,7 @@ function enterHearing(s: GameState, scene: SceneBuilder): void {
       { label: 'Stand in front of the judge', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 20;
     qspCall(st, 'stat', '');
-    qspGoto(st, 'court_sentence_events', 'judge_start', '$policeQW_courthearing_subjects[0]');
+    qspGoto(st, 'court_sentence_events', 'judge_start', (((st as any).policeQW_courthearing_subjects ?? 0)?.[0] ?? 0));
   } },
     ]);
   } },
@@ -151,7 +151,7 @@ function enterPoliceArrest2(s: GameState, scene: SceneBuilder): void {
   scene.text('"I have no excuse, your honor…" you meekly answer.');
   scene.text('Their eyes piercing through you, the judge clears their throat. "I see. You have thirty days to pay your fine. If you fail to do so, you will be arrested again and given a prison sentence."');
   scene.text('You silently nod that you understand.');
-  ((s as any).policeQW = (s as any).policeQW ?? {})['fine_deadline'] = Math.max(((s as any).policeQW ?? 0)?.['fine_deadline'], ((s as any).daystart ?? 0) + 30);
+  ((s as any).policeQW = (s as any).policeQW ?? {})['fine_deadline'] = Math.max((((s as any).policeQW ?? 0)?.['fine_deadline']), ((s as any).daystart ?? 0) + 30);
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave the court', goto: ['city_center', '', 'mom_check'] },

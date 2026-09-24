@@ -119,22 +119,22 @@ function enterEventOccursInDay(s: GameState, scene: SceneBuilder): void {
   if (((s as any).event_vars ?? 0)?.['recur'] !== ''  &&  (((s as any).event_vars ?? 0)?.['recur_end'] === 0  ||  ((s as any).event_vars ?? 0)?.['recur_end'] >= String((s as any).locArgs?.[2] ?? ''))) {
     if (((s as any).event_vars ?? 0)?.['recur'] === 'yearly') {
       qspCall(s, 'time', 'to_date', ((s as any).locArgs?.[2] ?? 0));
-      (s as any).temp_month_1 = ((s as any).dateVars ?? 0)?.['month'];
-      (s as any).temp_day_1 = ((s as any).dateVars ?? 0)?.['day'];
-      qspCall(s, 'time', 'to_date', ((s as any).event_vars ?? 0)?.['daystart']);
-      (s as any).temp_month_2 = ((s as any).dateVars ?? 0)?.['month'];
-      (s as any).temp_day_2 = ((s as any).dateVars ?? 0)?.['day'];
+      (s as any).temp_month_1 = (((s as any).dateVars ?? 0)?.['month']);
+      (s as any).temp_day_1 = (((s as any).dateVars ?? 0)?.['day']);
+      qspCall(s, 'time', 'to_date', (((s as any).event_vars ?? 0)?.['daystart']));
+      (s as any).temp_month_2 = (((s as any).dateVars ?? 0)?.['month']);
+      (s as any).temp_day_2 = (((s as any).dateVars ?? 0)?.['day']);
       if (((s as any).temp_month_1 ?? 0) === ((s as any).temp_month_2 ?? 0)  &&  ((s as any).temp_day_1 ?? 0) === ((s as any).temp_day_2 ?? 0)) {
         (s as any).result = 1;
       }
     } else {
       if ((String(((s as any).event_vars ?? 0)?.['recur']).slice((1)-1, ((1)-1)+(7))) === 'yearly-') {
         qspCall(s, 'time', 'to_date', ((s as any).locArgs?.[2] ?? 0));
-        (s as any).temp_check_month = ((s as any).dateVars ?? 0)?.['month'];
-        (s as any).temp_check_day = ((s as any).dateVars ?? 0)?.['day'];
+        (s as any).temp_check_month = (((s as any).dateVars ?? 0)?.['month']);
+        (s as any).temp_check_day = (((s as any).dateVars ?? 0)?.['day']);
         (s as any).temp_check_mmdd = ((s as any).temp_check_month ?? 0) * 100 + ((s as any).temp_check_day ?? 0);
-        (s as any).temp_start_mmdd = parseFloat((String(((s as any).event_vars ?? 0)?.['recur']).slice((8)-1, ((8)-1)+(4))));
-        (s as any).temp_end_mmdd = parseFloat((String(((s as any).event_vars ?? 0)?.['recur']).slice((13)-1, ((13)-1)+(4))));
+        (s as any).temp_start_mmdd = parseFloat((String((((s as any).event_vars ?? 0)?.['recur'])).slice((8)-1, ((8)-1)+(4))));
+        (s as any).temp_end_mmdd = parseFloat((String((((s as any).event_vars ?? 0)?.['recur'])).slice((13)-1, ((13)-1)+(4))));
         if (((s as any).temp_start_mmdd ?? 0) <= ((s as any).temp_end_mmdd ?? 0)) {
           if (((s as any).temp_check_mmdd ?? 0) >= ((s as any).temp_start_mmdd ?? 0)  &&  ((s as any).temp_check_mmdd ?? 0) <= ((s as any).temp_end_mmdd ?? 0)) {
             (s as any).result = 1;
@@ -155,9 +155,9 @@ function enterEventOccursInDay(s: GameState, scene: SceneBuilder): void {
         } else {
           if (((s as any).event_vars ?? 0)?.['recur'] === 'monthly') {
             qspCall(s, 'time', 'to_date', ((s as any).locArgs?.[2] ?? 0));
-            (s as any).temp_month_day_1 = ((s as any).dateVars ?? 0)?.['day'];
-            qspCall(s, 'time', 'to_date', ((s as any).event_vars ?? 0)?.['daystart']);
-            (s as any).temp_month_day_2 = ((s as any).dateVars ?? 0)?.['day'];
+            (s as any).temp_month_day_1 = (((s as any).dateVars ?? 0)?.['day']);
+            qspCall(s, 'time', 'to_date', (((s as any).event_vars ?? 0)?.['daystart']));
+            (s as any).temp_month_day_2 = (((s as any).dateVars ?? 0)?.['day']);
             if (((s as any).temp_month_day_1 ?? 0) === ((s as any).temp_month_day_2 ?? 0)) {
               (s as any).result = 1;
             }
@@ -199,7 +199,7 @@ function enterEventOccursInDay(s: GameState, scene: SceneBuilder): void {
 function enterNextOccurrenceDaystart(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === -1) {
     if (parseFloat((String(((s as any).new_ev ?? 0)?.['recur']).slice((1)-1, ((1)-1)+(1)))) > 0) {
-      (s as any).temp_weekday = qspFunc(s, 'time', 'get_week_from_daystart', ((s as any).new_ev ?? 0)?.['daystart']);
+      (s as any).temp_weekday = qspFunc(s, 'time', 'get_week_from_daystart', (((s as any).new_ev ?? 0)?.['daystart']));
       if ((!((String(' ' + ((s as any).new_ev ?? 0)?.['recur'] + ' ').indexOf(String(' ' + String(((s as any).temp_weekday ?? 0)) + ' '))) + 1))) {
         (s as any).temp_check_day = (((s as any).new_ev ?? {})?.['daystart'] ?? 0) + 1;
         (s as any).temp_days_scanned = 0;
@@ -216,7 +216,7 @@ function enterNextOccurrenceDaystart(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
-    (s as any).result = ((s as any).new_ev ?? 0)?.['daystart'];
+    (s as any).result = (((s as any).new_ev ?? 0)?.['daystart']);
     return;
   }
   if (((s as any).new_ev ?? 0)?.['recur'] === '') {
@@ -234,57 +234,57 @@ function enterNextOccurrenceDaystart(s: GameState, scene: SceneBuilder): void {
         (s as any).candidate = ((s as any).locArgs?.[1] ?? 0) + 14;
       } else {
         if ((String(((s as any).new_ev ?? 0)?.['recur']).slice((1)-1, ((1)-1)+(8))) === 'monthly-') {
-          (s as any).temp_N = parseFloat((String(((s as any).new_ev ?? 0)?.['recur']).slice((9)-1, ((9)-1)+(1))));
-          (s as any).temp_W = parseFloat((String(((s as any).new_ev ?? 0)?.['recur']).slice((11)-1, ((11)-1)+(1))));
+          (s as any).temp_N = parseFloat((String((((s as any).new_ev ?? 0)?.['recur'])).slice((9)-1, ((9)-1)+(1))));
+          (s as any).temp_W = parseFloat((String((((s as any).new_ev ?? 0)?.['recur'])).slice((11)-1, ((11)-1)+(1))));
           qspCall(s, 'time', 'to_date', ((s as any).locArgs?.[1] ?? 0));
           (s as any).temp_month = (((s as any).dateVars ?? {})?.['month'] ?? 0) + 1;
-          (s as any).temp_year = ((s as any).dateVars ?? 0)?.['year'];
+          (s as any).temp_year = (((s as any).dateVars ?? 0)?.['year']);
           if (((s as any).temp_month ?? 0) > 12) {
             (s as any).temp_month = 1;
             (s as any).temp_year = ((s as any).temp_year ?? 0) + (1);
           }
           qspCall(s, 'time', 'to_daystart', ((s as any).temp_year ?? 0), ((s as any).temp_month ?? 0), 1);
-          qspCall(s, 'time', 'to_date', ((s as any).dateVars ?? 0)?.['daystart']);
+          qspCall(s, 'time', 'to_date', (((s as any).dateVars ?? 0)?.['daystart']));
           (s as any).temp_day = 1 + ((((s as any).temp_W ?? 0) - (((s as any).dateVars ?? {})?.['week'] ?? 0) + 7) % 7) + (((s as any).temp_N ?? 0) - 1) * 7;
           qspCall(s, 'time', 'to_daystart', ((s as any).temp_year ?? 0), ((s as any).temp_month ?? 0), ((s as any).temp_day ?? 0));
-          (s as any).candidate = ((s as any).dateVars ?? 0)?.['daystart'];
+          (s as any).candidate = (((s as any).dateVars ?? 0)?.['daystart']);
         } else {
           if (((s as any).new_ev ?? 0)?.['recur'] === 'monthly') {
             qspCall(s, 'time', 'to_date', ((s as any).locArgs?.[1] ?? 0));
-            (s as any).temp_day = ((s as any).dateVars ?? 0)?.['day'];
-            (s as any).temp_month = ((s as any).dateVars ?? 0)?.['month'];
-            (s as any).temp_year = ((s as any).dateVars ?? 0)?.['year'];
+            (s as any).temp_day = (((s as any).dateVars ?? 0)?.['day']);
+            (s as any).temp_month = (((s as any).dateVars ?? 0)?.['month']);
+            (s as any).temp_year = (((s as any).dateVars ?? 0)?.['year']);
             (s as any).temp_month = ((s as any).temp_month ?? 0) + (1);
             if (((s as any).temp_month ?? 0) > 12) {
               (s as any).temp_month = 1;
               (s as any).temp_year = ((s as any).temp_year ?? 0) + (1);
             }
             qspCall(s, 'time', 'to_daystart', ((s as any).temp_year ?? 0), ((s as any).temp_month ?? 0), ((s as any).temp_day ?? 0));
-            (s as any).candidate = ((s as any).dateVars ?? 0)?.['daystart'];
+            (s as any).candidate = (((s as any).dateVars ?? 0)?.['daystart']);
           } else {
             if (((s as any).new_ev ?? 0)?.['recur'] === 'yearly') {
               qspCall(s, 'time', 'to_date', ((s as any).locArgs?.[1] ?? 0));
-              (s as any).temp_day = ((s as any).dateVars ?? 0)?.['day'];
-              (s as any).temp_month = ((s as any).dateVars ?? 0)?.['month'];
-              (s as any).temp_year = ((s as any).dateVars ?? 0)?.['year'];
+              (s as any).temp_day = (((s as any).dateVars ?? 0)?.['day']);
+              (s as any).temp_month = (((s as any).dateVars ?? 0)?.['month']);
+              (s as any).temp_year = (((s as any).dateVars ?? 0)?.['year']);
               (s as any).temp_year = ((s as any).temp_year ?? 0) + (1);
               qspCall(s, 'time', 'to_daystart', ((s as any).temp_year ?? 0), ((s as any).temp_month ?? 0), ((s as any).temp_day ?? 0));
-              (s as any).candidate = ((s as any).dateVars ?? 0)?.['daystart'];
+              (s as any).candidate = (((s as any).dateVars ?? 0)?.['daystart']);
             } else {
               if ((String(((s as any).new_ev ?? 0)?.['recur']).slice((1)-1, ((1)-1)+(7))) === 'yearly-') {
                 qspCall(s, 'time', 'to_date', ((s as any).locArgs?.[1] ?? 0));
-                (s as any).temp_year = ((s as any).dateVars ?? 0)?.['year'];
-                (s as any).temp_start_mmdd = parseFloat((String(((s as any).new_ev ?? 0)?.['recur']).slice((8)-1, ((8)-1)+(4))));
-                (s as any).temp_end_mmdd = parseFloat((String(((s as any).new_ev ?? 0)?.['recur']).slice((13)-1, ((13)-1)+(4))));
+                (s as any).temp_year = (((s as any).dateVars ?? 0)?.['year']);
+                (s as any).temp_start_mmdd = parseFloat((String((((s as any).new_ev ?? 0)?.['recur'])).slice((8)-1, ((8)-1)+(4))));
+                (s as any).temp_end_mmdd = parseFloat((String((((s as any).new_ev ?? 0)?.['recur'])).slice((13)-1, ((13)-1)+(4))));
                 (s as any).temp_start_month = ((s as any).temp_start_mmdd ?? 0) / 100;
                 (s as any).temp_start_day = ((s as any).temp_start_mmdd ?? 0) % 100;
                 (s as any).temp_end_month = ((s as any).temp_end_mmdd ?? 0) / 100;
                 (s as any).temp_end_day = ((s as any).temp_end_mmdd ?? 0) % 100;
                 qspCall(s, 'time', 'to_daystart', ((s as any).temp_year ?? 0), ((s as any).temp_end_month ?? 0), ((s as any).temp_end_day ?? 0));
-                (s as any).temp_end_this_year = ((s as any).dateVars ?? 0)?.['daystart'];
+                (s as any).temp_end_this_year = (((s as any).dateVars ?? 0)?.['daystart']);
                 if (((s as any).temp_start_mmdd ?? 0) <= ((s as any).temp_end_mmdd ?? 0)) {
                   qspCall(s, 'time', 'to_daystart', ((s as any).temp_year ?? 0), ((s as any).temp_start_month ?? 0), ((s as any).temp_start_day ?? 0));
-                  (s as any).temp_start_this_year = ((s as any).dateVars ?? 0)?.['daystart'];
+                  (s as any).temp_start_this_year = (((s as any).dateVars ?? 0)?.['daystart']);
                   if (String((s as any).locArgs?.[1] ?? '') >= ((s as any).temp_start_this_year ?? 0)  &&  String((s as any).locArgs?.[1] ?? '') < ((s as any).temp_end_this_year ?? 0)) {
                     (s as any).candidate = ((s as any).locArgs?.[1] ?? 0) + 1;
                   } else {
@@ -293,7 +293,7 @@ function enterNextOccurrenceDaystart(s: GameState, scene: SceneBuilder): void {
                     } else {
                       (s as any).temp_year = ((s as any).temp_year ?? 0) + (1);
                       qspCall(s, 'time', 'to_daystart', ((s as any).temp_year ?? 0), ((s as any).temp_start_month ?? 0), ((s as any).temp_start_day ?? 0));
-                      (s as any).candidate = ((s as any).dateVars ?? 0)?.['daystart'];
+                      (s as any).candidate = (((s as any).dateVars ?? 0)?.['daystart']);
                     }
                   }
                 } else {
@@ -301,7 +301,7 @@ function enterNextOccurrenceDaystart(s: GameState, scene: SceneBuilder): void {
                     (s as any).candidate = ((s as any).locArgs?.[1] ?? 0) + 1;
                   } else {
                     qspCall(s, 'time', 'to_daystart', ((s as any).temp_year ?? 0), ((s as any).temp_start_month ?? 0), ((s as any).temp_start_day ?? 0));
-                    (s as any).temp_start_this_year = ((s as any).dateVars ?? 0)?.['daystart'];
+                    (s as any).temp_start_this_year = (((s as any).dateVars ?? 0)?.['daystart']);
                     if (String((s as any).locArgs?.[1] ?? '') < ((s as any).temp_start_this_year ?? 0)) {
                       (s as any).candidate = ((s as any).temp_start_this_year ?? 0);
                     } else {
@@ -386,48 +386,48 @@ function enterAddEvent(s: GameState, scene: SceneBuilder): void {
 
 function enterLoadNewEv(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === 1) {
-    ((s as any).new_ev = (s as any).new_ev ?? {})['id'] = ((s as any).event_vars ?? 0)?.['id'];
-    ((s as any).new_ev = (s as any).new_ev ?? {})['title'] = ((s as any).event_vars ?? 0)?.['title'];
-    ((s as any).new_ev = (s as any).new_ev ?? {})['loc'] = ((s as any).event_vars ?? 0)?.['loc'];
-    ((s as any).new_ev = (s as any).new_ev ?? {})['desc'] = ((s as any).event_vars ?? 0)?.['desc'];
-    ((s as any).new_ev = (s as any).new_ev ?? {})['daystart'] = ((s as any).event_vars ?? 0)?.['daystart'];
-    ((s as any).new_ev = (s as any).new_ev ?? {})['all_day'] = ((s as any).event_vars ?? 0)?.['all_day'];
-    ((s as any).new_ev = (s as any).new_ev ?? {})['color'] = ((s as any).event_vars ?? 0)?.['color'];
-    ((s as any).new_ev = (s as any).new_ev ?? {})['blocking'] = ((s as any).event_vars ?? 0)?.['blocking'];
-    ((s as any).new_ev = (s as any).new_ev ?? {})['priority'] = ((s as any).event_vars ?? 0)?.['priority'];
-    ((s as any).new_ev = (s as any).new_ev ?? {})['recur'] = ((s as any).event_vars ?? 0)?.['recur'];
-    ((s as any).new_ev = (s as any).new_ev ?? {})['recur_end'] = ((s as any).event_vars ?? 0)?.['recur_end'];
-    ((s as any).new_ev = (s as any).new_ev ?? {})['holiday'] = ((s as any).event_vars ?? 0)?.['holiday'];
-    ((s as any).new_ev = (s as any).new_ev ?? {})['flex_type'] = ((s as any).event_vars ?? 0)?.['flex_type'];
-    ((s as any).new_ev = (s as any).new_ev ?? {})['exclude_prefix'] = ((s as any).event_vars ?? 0)?.['exclude_prefix'];
-    ((s as any).new_ev = (s as any).new_ev ?? {})['duration_ts'] = ((s as any).event_vars ?? 0)?.['duration_ts'];
+    ((s as any).new_ev = (s as any).new_ev ?? {})['id'] = (((s as any).event_vars ?? 0)?.['id']);
+    ((s as any).new_ev = (s as any).new_ev ?? {})['title'] = (((s as any).event_vars ?? 0)?.['title']);
+    ((s as any).new_ev = (s as any).new_ev ?? {})['loc'] = (((s as any).event_vars ?? 0)?.['loc']);
+    ((s as any).new_ev = (s as any).new_ev ?? {})['desc'] = (((s as any).event_vars ?? 0)?.['desc']);
+    ((s as any).new_ev = (s as any).new_ev ?? {})['daystart'] = (((s as any).event_vars ?? 0)?.['daystart']);
+    ((s as any).new_ev = (s as any).new_ev ?? {})['all_day'] = (((s as any).event_vars ?? 0)?.['all_day']);
+    ((s as any).new_ev = (s as any).new_ev ?? {})['color'] = (((s as any).event_vars ?? 0)?.['color']);
+    ((s as any).new_ev = (s as any).new_ev ?? {})['blocking'] = (((s as any).event_vars ?? 0)?.['blocking']);
+    ((s as any).new_ev = (s as any).new_ev ?? {})['priority'] = (((s as any).event_vars ?? 0)?.['priority']);
+    ((s as any).new_ev = (s as any).new_ev ?? {})['recur'] = (((s as any).event_vars ?? 0)?.['recur']);
+    ((s as any).new_ev = (s as any).new_ev ?? {})['recur_end'] = (((s as any).event_vars ?? 0)?.['recur_end']);
+    ((s as any).new_ev = (s as any).new_ev ?? {})['holiday'] = (((s as any).event_vars ?? 0)?.['holiday']);
+    ((s as any).new_ev = (s as any).new_ev ?? {})['flex_type'] = (((s as any).event_vars ?? 0)?.['flex_type']);
+    ((s as any).new_ev = (s as any).new_ev ?? {})['exclude_prefix'] = (((s as any).event_vars ?? 0)?.['exclude_prefix']);
+    ((s as any).new_ev = (s as any).new_ev ?? {})['duration_ts'] = (((s as any).event_vars ?? 0)?.['duration_ts']);
     if (((s as any).new_ev ?? 0)?.['flex_type'] === 1) {
-      ((s as any).new_ev = (s as any).new_ev ?? {})['window_start_ts'] = ((s as any).event_vars ?? 0)?.['window_start_ts'];
-      ((s as any).new_ev = (s as any).new_ev ?? {})['window_end_ts'] = ((s as any).event_vars ?? 0)?.['window_end_ts'];
+      ((s as any).new_ev = (s as any).new_ev ?? {})['window_start_ts'] = (((s as any).event_vars ?? 0)?.['window_start_ts']);
+      ((s as any).new_ev = (s as any).new_ev ?? {})['window_end_ts'] = (((s as any).event_vars ?? 0)?.['window_end_ts']);
     } else {
-      ((s as any).new_ev = (s as any).new_ev ?? {})['start_ts'] = ((s as any).event_vars ?? 0)?.['start_ts'];
+      ((s as any).new_ev = (s as any).new_ev ?? {})['start_ts'] = (((s as any).event_vars ?? 0)?.['start_ts']);
     }
   } else {
-    ((s as any).event_vars = (s as any).event_vars ?? {})['id'] = ((s as any).new_ev ?? 0)?.['id'];
-    ((s as any).event_vars = (s as any).event_vars ?? {})['title'] = ((s as any).new_ev ?? 0)?.['title'];
-    ((s as any).event_vars = (s as any).event_vars ?? {})['loc'] = ((s as any).new_ev ?? 0)?.['loc'];
-    ((s as any).event_vars = (s as any).event_vars ?? {})['desc'] = ((s as any).new_ev ?? 0)?.['desc'];
-    ((s as any).event_vars = (s as any).event_vars ?? {})['daystart'] = ((s as any).new_ev ?? 0)?.['daystart'];
-    ((s as any).event_vars = (s as any).event_vars ?? {})['all_day'] = ((s as any).new_ev ?? 0)?.['all_day'];
-    ((s as any).event_vars = (s as any).event_vars ?? {})['color'] = ((s as any).new_ev ?? 0)?.['color'];
-    ((s as any).event_vars = (s as any).event_vars ?? {})['blocking'] = ((s as any).new_ev ?? 0)?.['blocking'];
-    ((s as any).event_vars = (s as any).event_vars ?? {})['priority'] = ((s as any).new_ev ?? 0)?.['priority'];
-    ((s as any).event_vars = (s as any).event_vars ?? {})['recur'] = ((s as any).new_ev ?? 0)?.['recur'];
-    ((s as any).event_vars = (s as any).event_vars ?? {})['recur_end'] = ((s as any).new_ev ?? 0)?.['recur_end'];
-    ((s as any).event_vars = (s as any).event_vars ?? {})['holiday'] = ((s as any).new_ev ?? 0)?.['holiday'];
-    ((s as any).event_vars = (s as any).event_vars ?? {})['flex_type'] = ((s as any).new_ev ?? 0)?.['flex_type'];
-    ((s as any).event_vars = (s as any).event_vars ?? {})['exclude_prefix'] = ((s as any).new_ev ?? 0)?.['exclude_prefix'];
-    ((s as any).event_vars = (s as any).event_vars ?? {})['duration_ts'] = ((s as any).new_ev ?? 0)?.['duration_ts'];
+    ((s as any).event_vars = (s as any).event_vars ?? {})['id'] = (((s as any).new_ev ?? 0)?.['id']);
+    ((s as any).event_vars = (s as any).event_vars ?? {})['title'] = (((s as any).new_ev ?? 0)?.['title']);
+    ((s as any).event_vars = (s as any).event_vars ?? {})['loc'] = (((s as any).new_ev ?? 0)?.['loc']);
+    ((s as any).event_vars = (s as any).event_vars ?? {})['desc'] = (((s as any).new_ev ?? 0)?.['desc']);
+    ((s as any).event_vars = (s as any).event_vars ?? {})['daystart'] = (((s as any).new_ev ?? 0)?.['daystart']);
+    ((s as any).event_vars = (s as any).event_vars ?? {})['all_day'] = (((s as any).new_ev ?? 0)?.['all_day']);
+    ((s as any).event_vars = (s as any).event_vars ?? {})['color'] = (((s as any).new_ev ?? 0)?.['color']);
+    ((s as any).event_vars = (s as any).event_vars ?? {})['blocking'] = (((s as any).new_ev ?? 0)?.['blocking']);
+    ((s as any).event_vars = (s as any).event_vars ?? {})['priority'] = (((s as any).new_ev ?? 0)?.['priority']);
+    ((s as any).event_vars = (s as any).event_vars ?? {})['recur'] = (((s as any).new_ev ?? 0)?.['recur']);
+    ((s as any).event_vars = (s as any).event_vars ?? {})['recur_end'] = (((s as any).new_ev ?? 0)?.['recur_end']);
+    ((s as any).event_vars = (s as any).event_vars ?? {})['holiday'] = (((s as any).new_ev ?? 0)?.['holiday']);
+    ((s as any).event_vars = (s as any).event_vars ?? {})['flex_type'] = (((s as any).new_ev ?? 0)?.['flex_type']);
+    ((s as any).event_vars = (s as any).event_vars ?? {})['exclude_prefix'] = (((s as any).new_ev ?? 0)?.['exclude_prefix']);
+    ((s as any).event_vars = (s as any).event_vars ?? {})['duration_ts'] = (((s as any).new_ev ?? 0)?.['duration_ts']);
     if (((s as any).new_ev ?? 0)?.['flex_type'] === 1) {
-      ((s as any).event_vars = (s as any).event_vars ?? {})['window_start_ts'] = ((s as any).new_ev ?? 0)?.['window_start_ts'];
-      ((s as any).event_vars = (s as any).event_vars ?? {})['window_end_ts'] = ((s as any).new_ev ?? 0)?.['window_end_ts'];
+      ((s as any).event_vars = (s as any).event_vars ?? {})['window_start_ts'] = (((s as any).new_ev ?? 0)?.['window_start_ts']);
+      ((s as any).event_vars = (s as any).event_vars ?? {})['window_end_ts'] = (((s as any).new_ev ?? 0)?.['window_end_ts']);
     } else {
-      ((s as any).event_vars = (s as any).event_vars ?? {})['start_ts'] = ((s as any).new_ev ?? 0)?.['start_ts'];
+      ((s as any).event_vars = (s as any).event_vars ?? {})['start_ts'] = (((s as any).new_ev ?? 0)?.['start_ts']);
     }
   }
   return;
@@ -447,11 +447,11 @@ function enterCheckEventConflicts(s: GameState, scene: SceneBuilder): void {
     ((s as any).new_ev = (s as any).new_ev ?? {})['len_span'] = 96;
   } else {
     if (((s as any).new_ev ?? 0)?.['flex_type'] === 1) {
-      ((s as any).new_ev = (s as any).new_ev ?? {})['start_span'] = ((s as any).new_ev ?? 0)?.['window_start_ts'];
+      ((s as any).new_ev = (s as any).new_ev ?? {})['start_span'] = (((s as any).new_ev ?? 0)?.['window_start_ts']);
       ((s as any).new_ev = (s as any).new_ev ?? {})['len_span'] = ((((s as any).new_ev ?? {})?.['window_end_ts'] ?? 0) - (((s as any).new_ev ?? {})?.['window_start_ts'] ?? 0)) + (((s as any).new_ev ?? {})?.['duration_ts'] ?? 0);
     } else {
-      ((s as any).new_ev = (s as any).new_ev ?? {})['start_span'] = ((s as any).new_ev ?? 0)?.['start_ts'];
-      ((s as any).new_ev = (s as any).new_ev ?? {})['len_span'] = Math.max(1, ((s as any).new_ev ?? 0)?.['duration_ts']);
+      ((s as any).new_ev = (s as any).new_ev ?? {})['start_span'] = (((s as any).new_ev ?? 0)?.['start_ts']);
+      ((s as any).new_ev = (s as any).new_ev ?? {})['len_span'] = Math.max(1, (((s as any).new_ev ?? 0)?.['duration_ts']));
     }
   }
   ((s as any).new_ev = (s as any).new_ev ?? {})['end_span'] = (((s as any).new_ev ?? {})?.['start_span'] ?? 0) + (((s as any).new_ev ?? {})?.['len_span'] ?? 0) - 1;
@@ -476,11 +476,11 @@ function enterCheckEventConflicts(s: GameState, scene: SceneBuilder): void {
           (s as any).other_len = 96;
         } else {
           if (((s as any).event_vars ?? 0)?.['flex_type'] === 1) {
-            (s as any).other_start = ((s as any).event_vars ?? 0)?.['window_start_ts'];
+            (s as any).other_start = (((s as any).event_vars ?? 0)?.['window_start_ts']);
             (s as any).other_len = ((((s as any).event_vars ?? {})?.['window_end_ts'] ?? 0) - (((s as any).event_vars ?? {})?.['window_start_ts'] ?? 0)) + (((s as any).event_vars ?? {})?.['duration_ts'] ?? 0);
           } else {
-            (s as any).other_start = ((s as any).event_vars ?? 0)?.['start_ts'];
-            (s as any).other_len = Math.max(1, ((s as any).event_vars ?? 0)?.['duration_ts']);
+            (s as any).other_start = (((s as any).event_vars ?? 0)?.['start_ts']);
+            (s as any).other_len = Math.max(1, (((s as any).event_vars ?? 0)?.['duration_ts']));
           }
         }
         (s as any).other_end = ((s as any).other_start ?? 0) + ((s as any).other_len ?? 0) - 1;
@@ -495,7 +495,7 @@ function enterCheckEventConflicts(s: GameState, scene: SceneBuilder): void {
           if (((s as any).event_vars ?? 0)?.['flex_type'] === 1) {
             (s as any).cec_overflow_end = (((s as any).event_vars ?? {})?.['window_start_ts'] ?? 0) + ((((s as any).event_vars ?? {})?.['window_end_ts'] ?? 0) - (((s as any).event_vars ?? {})?.['window_start_ts'] ?? 0)) + (((s as any).event_vars ?? {})?.['duration_ts'] ?? 0) - 1;
           } else {
-            (s as any).cec_overflow_end = (((s as any).event_vars ?? {})?.['start_ts'] ?? 0) + Math.max(1, ((s as any).event_vars ?? 0)?.['duration_ts']) - 1;
+            (s as any).cec_overflow_end = (((s as any).event_vars ?? {})?.['start_ts'] ?? 0) + Math.max(1, (((s as any).event_vars ?? 0)?.['duration_ts'])) - 1;
           }
           if (((s as any).cec_overflow_end ?? 0) > 95) {
             (s as any).cec_overflow_start = 0;
@@ -515,11 +515,11 @@ function enterCheckEventConflicts(s: GameState, scene: SceneBuilder): void {
             (s as any).other_len = 96;
           } else {
             if (((s as any).event_vars ?? 0)?.['flex_type'] === 1) {
-              (s as any).other_start = ((s as any).event_vars ?? 0)?.['window_start_ts'];
+              (s as any).other_start = (((s as any).event_vars ?? 0)?.['window_start_ts']);
               (s as any).other_len = ((((s as any).event_vars ?? {})?.['window_end_ts'] ?? 0) - (((s as any).event_vars ?? {})?.['window_start_ts'] ?? 0)) + (((s as any).event_vars ?? {})?.['duration_ts'] ?? 0);
             } else {
-              (s as any).other_start = ((s as any).event_vars ?? 0)?.['start_ts'];
-              (s as any).other_len = Math.max(1, ((s as any).event_vars ?? 0)?.['duration_ts']);
+              (s as any).other_start = (((s as any).event_vars ?? 0)?.['start_ts']);
+              (s as any).other_len = Math.max(1, (((s as any).event_vars ?? 0)?.['duration_ts']));
             }
           }
           (s as any).other_end = ((s as any).other_start ?? 0) + ((s as any).other_len ?? 0) - 1;

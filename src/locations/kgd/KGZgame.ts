@@ -26,16 +26,16 @@ function enter(s: GameState, scene: SceneBuilder): void {
   }
   scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027KGZstart/u0027, /u0027/u0027); return false;">Exit the game</a>');
   // TODO-QSP: dynamic text: Day <<KGZVars[''day'']>>
-  scene.text(`Day ${((s as any).KGZVars ?? 0)?.['day'] ?? ''}`);
+  scene.text(`Day ${(((s as any).KGZVars ?? 0)?.['day'] ?? '')}`);
   // TODO-QSP: dynamic text: Time <<KGZVars[''hour'']>>h.
-  scene.text(`Time ${((s as any).KGZVars ?? 0)?.['hour'] ?? ''}h.`);
+  scene.text(`Time ${(((s as any).KGZVars ?? 0)?.['hour'] ?? '')}h.`);
   // TODO-QSP: dynamic text: Health <<KGZVars[''HP'']>>
-  scene.text(`Health ${((s as any).KGZVars ?? 0)?.['HP'] ?? ''}`);
+  scene.text(`Health ${(((s as any).KGZVars ?? 0)?.['HP'] ?? '')}`);
   if (((s as any).KGZVars ?? 0)?.['sup'] <= 0) {
     scene.text('You have no provisions and are starving!');
   }
   // TODO-QSP: dynamic text: Weapon: <<$KGZVars[''weapon_text'']>>
-  scene.text(`Weapon: ${((s as any).KGZVars ?? 0)?.['weapon_text'] ?? ''}`);
+  scene.text(`Weapon: ${(((s as any).KGZVars ?? 0)?.['weapon_text'] ?? '')}`);
   if (((s as any).KGZVars ?? 0)?.['gun_text'] !== '') {
     // TODO-QSP: dynamic text: l $KGZVars['gun_text']
     scene.text('l $KGZVars[\'gun_text\']');
@@ -57,10 +57,10 @@ function enter(s: GameState, scene: SceneBuilder): void {
   if (((s as any).KGZVars ?? 0)?.['place'] === 0) {
     scene.text('<center><b>Your Apartment</b></center>');
     // TODO-QSP: dynamic text: Your apartment is a safe place. You have enough provisions to last <<KGZVars[''s...
-    scene.text(`Your apartment is a safe place. You have enough provisions to last ${((s as any).KGZVars ?? 0)?.['sup'] ?? ''} day(s).`);
+    scene.text(`Your apartment is a safe place. You have enough provisions to last ${(((s as any).KGZVars ?? 0)?.['sup'] ?? '')} day(s).`);
     if (((s as any).KGZVars ?? 0)?.['medkit'] > 0) {
       // TODO-QSP: dynamic text: You have <<KGZVars[''medkit'']>> first aid kits.
-      scene.text(`You have ${((s as any).KGZVars ?? 0)?.['medkit'] ?? ''} first aid kits.`);
+      scene.text(`You have ${(((s as any).KGZVars ?? 0)?.['medkit'] ?? '')} first aid kits.`);
       if (((s as any).KGZVars ?? 0)?.['HP'] < 100) {
         scene.actions([
           { label: 'Treat your wounds', handler: (st: GameState) => {
@@ -107,12 +107,12 @@ function enter(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     if (((s as any).KGZVars ?? 0)?.['place'] === 1) {
-      ((s as any).KGZVars = (s as any).KGZVars ?? {})['dead'] = (Math.floor(Math.random() * ((((s as any).KGZVars ?? {})?.['day'] ?? 0) * 2 - ((s as any).KGZVars ?? 0)?.['day'] + 1)) + (((s as any).KGZVars ?? 0)?.['day']));
+      ((s as any).KGZVars = (s as any).KGZVars ?? {})['dead'] = (Math.floor(Math.random() * ((((s as any).KGZVars ?? {})?.['day'] ?? 0) * 2 - (((s as any).KGZVars ?? 0)?.['day']) + 1)) + ((((s as any).KGZVars ?? 0)?.['day'])));
       scene.text('<center><b>City Streets</b></center>');
       scene.text('Corpses and abandoned vehicles litter the streets of this once bustling city.');
       if (((s as any).KGZVars ?? 0)?.['batl'] === 0) {
         // TODO-QSP: dynamic text: You carefully roam the streets, spotting <<KGZVars[''dead'']>> zombies.
-        scene.text(`You carefully roam the streets, spotting ${((s as any).KGZVars ?? 0)?.['dead'] ?? ''} zombies.`);
+        scene.text(`You carefully roam the streets, spotting ${(((s as any).KGZVars ?? 0)?.['dead'] ?? '')} zombies.`);
         ((s as any).KGZVars = (s as any).KGZVars ?? {})['agr'] = (Math.floor(Math.random() * 11) + 0);
         if (((s as any).KGZVars ?? 0)?.['agr'] <= 8) {
           scene.text('Sensing you, the dead immediately rush to attack.');
@@ -137,12 +137,12 @@ function enter(s: GameState, scene: SceneBuilder): void {
       }
     } else {
       if (((s as any).KGZVars ?? 0)?.['place'] === 2) {
-        ((s as any).KGZVars = (s as any).KGZVars ?? {})['dead'] = (Math.floor(Math.random() * ((((s as any).KGZVars ?? {})?.['day'] ?? 0) * 2 - ((s as any).KGZVars ?? 0)?.['day'] + 1)) + (((s as any).KGZVars ?? 0)?.['day']));
+        ((s as any).KGZVars = (s as any).KGZVars ?? {})['dead'] = (Math.floor(Math.random() * ((((s as any).KGZVars ?? {})?.['day'] ?? 0) * 2 - (((s as any).KGZVars ?? 0)?.['day']) + 1)) + ((((s as any).KGZVars ?? 0)?.['day'])));
         scene.text('<center><b>Abandoned Store</b></center>');
         scene.text('The stale air from spoiled food and rotten flesh overwhelms you as you enter this abandoned store.');
         if (((s as any).KGZVars ?? 0)?.['batl'] === 0) {
           // TODO-QSP: dynamic text: You spot <<KGZVars[''dead'']>> zombies as you make your way further into the sto...
-          scene.text(`You spot ${((s as any).KGZVars ?? 0)?.['dead'] ?? ''} zombies as you make your way further into the store.`);
+          scene.text(`You spot ${(((s as any).KGZVars ?? 0)?.['dead'] ?? '')} zombies as you make your way further into the store.`);
           ((s as any).KGZVars = (s as any).KGZVars ?? {})['agr'] = (Math.floor(Math.random() * 11) + 0);
           if (((s as any).KGZVars ?? 0)?.['agr'] <= 8) {
             scene.text('Sensing you, the dead immediately rush to attack.');
@@ -167,12 +167,12 @@ function enter(s: GameState, scene: SceneBuilder): void {
         }
       } else {
         if (((s as any).KGZVars ?? 0)?.['place'] === 3) {
-          ((s as any).KGZVars = (s as any).KGZVars ?? {})['dead'] = (Math.floor(Math.random() * ((((s as any).KGZVars ?? {})?.['day'] ?? 0) * 2 - ((s as any).KGZVars ?? 0)?.['day'] + 1)) + (((s as any).KGZVars ?? 0)?.['day']));
+          ((s as any).KGZVars = (s as any).KGZVars ?? {})['dead'] = (Math.floor(Math.random() * ((((s as any).KGZVars ?? {})?.['day'] ?? 0) * 2 - (((s as any).KGZVars ?? 0)?.['day']) + 1)) + ((((s as any).KGZVars ?? 0)?.['day'])));
           scene.text('<center><b>Abandoned Hospital</b></center>');
           scene.text('The floor is littered with multiple dead bodies. Once a place of healing, it now stinks of death.');
           if (((s as any).KGZVars ?? 0)?.['batl'] === 0) {
             // TODO-QSP: dynamic text: You spot <<KGZVars[''dead'']>> zombies as you make your way further into the hos...
-            scene.text(`You spot ${((s as any).KGZVars ?? 0)?.['dead'] ?? ''} zombies as you make your way further into the hospital.`);
+            scene.text(`You spot ${(((s as any).KGZVars ?? 0)?.['dead'] ?? '')} zombies as you make your way further into the hospital.`);
             ((s as any).KGZVars = (s as any).KGZVars ?? {})['agr'] = (Math.floor(Math.random() * 11) + 0);
             if (((s as any).KGZVars ?? 0)?.['agr'] <= 8) {
               scene.text('Sensing you, the dead immediately rush to attack.');
@@ -197,12 +197,12 @@ function enter(s: GameState, scene: SceneBuilder): void {
           }
         } else {
           if (((s as any).KGZVars ?? 0)?.['place'] === 4) {
-            ((s as any).KGZVars = (s as any).KGZVars ?? {})['dead'] = (Math.floor(Math.random() * ((((s as any).KGZVars ?? {})?.['day'] ?? 0) * 2 - ((s as any).KGZVars ?? 0)?.['day'] + 1)) + (((s as any).KGZVars ?? 0)?.['day']));
+            ((s as any).KGZVars = (s as any).KGZVars ?? {})['dead'] = (Math.floor(Math.random() * ((((s as any).KGZVars ?? {})?.['day'] ?? 0) * 2 - (((s as any).KGZVars ?? 0)?.['day']) + 1)) + ((((s as any).KGZVars ?? 0)?.['day'])));
             scene.text('<center><b>Boulevard</b></center>');
             scene.text('Wrecked vehicles and rotten corpses litter the streets of the boulevard.');
             if (((s as any).KGZVars ?? 0)?.['batl'] === 0) {
               // TODO-QSP: dynamic text: Wandering along the boulevard, you spot <<KGZVars[''dead'']>> zombies.
-              scene.text(`Wandering along the boulevard, you spot ${((s as any).KGZVars ?? 0)?.['dead'] ?? ''} zombies.`);
+              scene.text(`Wandering along the boulevard, you spot ${(((s as any).KGZVars ?? 0)?.['dead'] ?? '')} zombies.`);
               ((s as any).KGZVars = (s as any).KGZVars ?? {})['agr'] = (Math.floor(Math.random() * 11) + 0);
               if (((s as any).KGZVars ?? 0)?.['agr'] <= 8) {
                 scene.text('Sensing you, the dead immediately rush to attack.');
@@ -227,12 +227,12 @@ function enter(s: GameState, scene: SceneBuilder): void {
             }
           } else {
             if (((s as any).KGZVars ?? 0)?.['place'] === 5) {
-              ((s as any).KGZVars = (s as any).KGZVars ?? {})['dead'] = (Math.floor(Math.random() * ((((s as any).KGZVars ?? {})?.['day'] ?? 0) * 2 - ((s as any).KGZVars ?? 0)?.['day'] + 1)) + (((s as any).KGZVars ?? 0)?.['day']));
+              ((s as any).KGZVars = (s as any).KGZVars ?? {})['dead'] = (Math.floor(Math.random() * ((((s as any).KGZVars ?? {})?.['day'] ?? 0) * 2 - (((s as any).KGZVars ?? 0)?.['day']) + 1)) + ((((s as any).KGZVars ?? 0)?.['day'])));
               scene.text('<center><b>Wrecked Hunting Store</b></center>');
               scene.text('This hunting gear store has been looted for almost everything it once contained. The display shelves and counters have been smashed and flipped and a few corpses are strewn around.');
               if (((s as any).KGZVars ?? 0)?.['batl'] === 0) {
                 // TODO-QSP: dynamic text: You spot <<KGZVars[''dead'']>> zombies as you make your way further into the sto...
-                scene.text(`You spot ${((s as any).KGZVars ?? 0)?.['dead'] ?? ''} zombies as you make your way further into the store.`);
+                scene.text(`You spot ${(((s as any).KGZVars ?? 0)?.['dead'] ?? '')} zombies as you make your way further into the store.`);
                 ((s as any).KGZVars = (s as any).KGZVars ?? {})['agr'] = (Math.floor(Math.random() * 11) + 0);
                 if (((s as any).KGZVars ?? 0)?.['agr'] <= 8) {
                   scene.text('Sensing you, the dead immediately rush to attack.');
@@ -251,13 +251,13 @@ function enter(s: GameState, scene: SceneBuilder): void {
               }
             } else {
               if (((s as any).KGZVars ?? 0)?.['place'] === 6) {
-                ((s as any).KGZVars = (s as any).KGZVars ?? {})['dead'] = (Math.floor(Math.random() * ((((s as any).KGZVars ?? {})?.['day'] ?? 0) * 2 - ((s as any).KGZVars ?? 0)?.['day'] + 1)) + (((s as any).KGZVars ?? 0)?.['day']));
+                ((s as any).KGZVars = (s as any).KGZVars ?? {})['dead'] = (Math.floor(Math.random() * ((((s as any).KGZVars ?? {})?.['day'] ?? 0) * 2 - (((s as any).KGZVars ?? 0)?.['day']) + 1)) + ((((s as any).KGZVars ?? 0)?.['day'])));
                 scene.text('<center><b>Overrun Police Station</b></center>');
                 scene.text('The bodies of both civilians and police officers alike are scattered across the floor, with overturned tables used as makeshift barricades.');
                 scene.text('This former bastion of justice was once a safe haven for survivors and one of the last holdouts against the zombie hordes, but was eventually overwhelmed by the dead and later looted by the living.');
                 if (((s as any).KGZVars ?? 0)?.['batl'] === 0) {
                   // TODO-QSP: dynamic text: You spot <<KGZVars[''dead'']>> zombies as you make your way further into the sta...
-                  scene.text(`You spot ${((s as any).KGZVars ?? 0)?.['dead'] ?? ''} zombies as you make your way further into the station.`);
+                  scene.text(`You spot ${(((s as any).KGZVars ?? 0)?.['dead'] ?? '')} zombies as you make your way further into the station.`);
                   ((s as any).KGZVars = (s as any).KGZVars ?? {})['agr'] = (Math.floor(Math.random() * 11) + 0);
                   if (((s as any).KGZVars ?? 0)?.['agr'] <= 8) {
                     scene.text('Sensing you, the dead immediately rush to attack.');
@@ -276,12 +276,12 @@ function enter(s: GameState, scene: SceneBuilder): void {
                 }
               } else {
                 if (((s as any).KGZVars ?? 0)?.['place'] === 7) {
-                  ((s as any).KGZVars = (s as any).KGZVars ?? {})['dead'] = (Math.floor(Math.random() * ((((s as any).KGZVars ?? {})?.['day'] ?? 0) * 2 - ((s as any).KGZVars ?? 0)?.['day'] + 1)) + (((s as any).KGZVars ?? 0)?.['day']));
+                  ((s as any).KGZVars = (s as any).KGZVars ?? {})['dead'] = (Math.floor(Math.random() * ((((s as any).KGZVars ?? {})?.['day'] ?? 0) * 2 - (((s as any).KGZVars ?? 0)?.['day']) + 1)) + ((((s as any).KGZVars ?? 0)?.['day'])));
                   scene.text('<center><b>Ransacked Drug Store</b></center>');
                   scene.text('This drug store was one of the first places to be looted in the early days of the outbreak. There is barely anything left on the ransacked shelves.');
                   if (((s as any).KGZVars ?? 0)?.['batl'] === 0) {
                     // TODO-QSP: dynamic text: You spot <<KGZVars[''dead'']>> zombies as you make your way further into the sto...
-                    scene.text(`You spot ${((s as any).KGZVars ?? 0)?.['dead'] ?? ''} zombies as you make your way further into the store.`);
+                    scene.text(`You spot ${(((s as any).KGZVars ?? 0)?.['dead'] ?? '')} zombies as you make your way further into the store.`);
                     ((s as any).KGZVars = (s as any).KGZVars ?? {})['agr'] = (Math.floor(Math.random() * 11) + 0);
                     if (((s as any).KGZVars ?? 0)?.['agr'] <= 8) {
                       scene.text('Sensing you, the dead immediately rush to attack.');
@@ -306,7 +306,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                     scene.text('These abandoned vehicles now offer plentiful amounts of loot to survivors, but also allow zombies to easily ambush those caught off guard.');
                     if (((s as any).KGZVars ?? 0)?.['batl'] === 0) {
                       // TODO-QSP: dynamic text: As you wander along the highway, you spot <<KGZVars[''dead'']>> zombies.
-                      scene.text(`As you wander along the highway, you spot ${((s as any).KGZVars ?? 0)?.['dead'] ?? ''} zombies.`);
+                      scene.text(`As you wander along the highway, you spot ${(((s as any).KGZVars ?? 0)?.['dead'] ?? '')} zombies.`);
                       ((s as any).KGZVars = (s as any).KGZVars ?? {})['agr'] = (Math.floor(Math.random() * 11) + 0);
                       if (((s as any).KGZVars ?? 0)?.['agr'] <= 8) {
                         scene.text('Sensing you, the dead immediately rush to attack.');
@@ -331,12 +331,12 @@ function enter(s: GameState, scene: SceneBuilder): void {
                     }
                   } else {
                     if (((s as any).KGZVars ?? 0)?.['place'] === 9) {
-                      ((s as any).KGZVars = (s as any).KGZVars ?? {})['dead'] = (Math.floor(Math.random() * ((((s as any).KGZVars ?? {})?.['day'] ?? 0) * 2 - ((s as any).KGZVars ?? 0)?.['day'] + 1)) + (((s as any).KGZVars ?? 0)?.['day']));
+                      ((s as any).KGZVars = (s as any).KGZVars ?? {})['dead'] = (Math.floor(Math.random() * ((((s as any).KGZVars ?? {})?.['day'] ?? 0) * 2 - (((s as any).KGZVars ?? 0)?.['day']) + 1)) + ((((s as any).KGZVars ?? 0)?.['day'])));
                       scene.text('<center><b>Abandoned Gas Station</b></center>');
                       scene.text('This abandoned gas station has long been looted of its fuel supply and anything else valuable. It now serves as nothing more than a milemarker landmark on the road.');
                       if (((s as any).KGZVars ?? 0)?.['batl'] === 0) {
                         // TODO-QSP: dynamic text: You spot <<KGZVars[''dead'']>> zombies roaming around.
-                        scene.text(`You spot ${((s as any).KGZVars ?? 0)?.['dead'] ?? ''} zombies roaming around.`);
+                        scene.text(`You spot ${(((s as any).KGZVars ?? 0)?.['dead'] ?? '')} zombies roaming around.`);
                         ((s as any).KGZVars = (s as any).KGZVars ?? {})['agr'] = (Math.floor(Math.random() * 11) + 0);
                         if (((s as any).KGZVars ?? 0)?.['agr'] <= 8) {
                           scene.text('Sensing you, the dead immediately rush to attack.');
@@ -373,7 +373,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                         scene.text('Given how far away it is from the city, combined with the threat of possibly being shot by the military for straying too close to the edge of the quarantine zone, very few survivors ever venture there.');
                         if (((s as any).KGZVars ?? 0)?.['batl'] === 0) {
                           // TODO-QSP: dynamic text: You see <<KGZVars[''dead'']>> zombies roaming around as you wander along the roa...
-                          scene.text(`You see ${((s as any).KGZVars ?? 0)?.['dead'] ?? ''} zombies roaming around as you wander along the road.`);
+                          scene.text(`You see ${(((s as any).KGZVars ?? 0)?.['dead'] ?? '')} zombies roaming around as you wander along the road.`);
                           ((s as any).KGZVars = (s as any).KGZVars ?? {})['agr'] = (Math.floor(Math.random() * 11) + 0);
                           if (((s as any).KGZVars ?? 0)?.['agr'] <= 8) {
                             scene.text('Sensing you, the dead immediately rush to attack.');
@@ -403,7 +403,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                           scene.text('Fort Bragg is a small, but heavily fortified military base surrounded by a fence.');
                           if (((s as any).KGZVars ?? 0)?.['batl'] === 0) {
                             // TODO-QSP: dynamic text: You spot <<KGZVars[''dead'']>> zombies roaming around as you approach.
-                            scene.text(`You spot ${((s as any).KGZVars ?? 0)?.['dead'] ?? ''} zombies roaming around as you approach.`);
+                            scene.text(`You spot ${(((s as any).KGZVars ?? 0)?.['dead'] ?? '')} zombies roaming around as you approach.`);
                             ((s as any).KGZVars = (s as any).KGZVars ?? {})['agr'] = (Math.floor(Math.random() * 11) + 0);
                             if (((s as any).KGZVars ?? 0)?.['agr'] <= 8) {
                               scene.text('Sensing you, the dead immediately rush to attack.');
@@ -429,13 +429,13 @@ function enter(s: GameState, scene: SceneBuilder): void {
                             scene.text('<center><b>Fort Bragg Roof</b></center>');
                             scene.text('The roof is covered in rotting bodies and a number of spent bullet casings.');
                             // TODO-QSP: dynamic text: There are enough provisions here for <<KGZVars[''sup'']>> day(s).
-                            scene.text(`There are enough provisions here for ${((s as any).KGZVars ?? 0)?.['sup'] ?? ''} day(s).`);
+                            scene.text(`There are enough provisions here for ${(((s as any).KGZVars ?? 0)?.['sup'] ?? '')} day(s).`);
                             if (((s as any).KGZVars ?? 0)?.['fortQW'] > 0) {
                               scene.text('A <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027KGZdyn/u0027, /u0027KGZvincent/u0027); return false;">young man</a> leans on a sniper rifle.');
                             }
                             if (((s as any).KGZVars ?? 0)?.['medkit'] > 0) {
                               // TODO-QSP: dynamic text: There are <<KGZVars[''medkit'']>> first aid kits available.
-                              scene.text(`There are ${((s as any).KGZVars ?? 0)?.['medkit'] ?? ''} first aid kits available.`);
+                              scene.text(`There are ${(((s as any).KGZVars ?? 0)?.['medkit'] ?? '')} first aid kits available.`);
                               if (((s as any).KGZVars ?? 0)?.['HP'] < 100) {
                                 scene.actions([
                                   { label: 'Treat your wounds', handler: (st: GameState) => {
@@ -487,7 +487,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                               scene.text('A warehouse once used to stockpile rations. It\'s dark and you hear various noises coming from within.');
                               if (((s as any).KGZVars ?? 0)?.['batl'] === 0) {
                                 // TODO-QSP: dynamic text: You''re able to make out <<KGZVars[''dead'']>> zombies wandering around.
-                                scene.text(`You're able to make out ${((s as any).KGZVars ?? 0)?.['dead'] ?? ''} zombies wandering around.`);
+                                scene.text(`You're able to make out ${(((s as any).KGZVars ?? 0)?.['dead'] ?? '')} zombies wandering around.`);
                                 ((s as any).KGZVars = (s as any).KGZVars ?? {})['agr'] = (Math.floor(Math.random() * 11) + 0);
                                 if (((s as any).KGZVars ?? 0)?.['agr'] <= 8) {
                                   scene.text('Sensing you, the dead immediately rush to attack.');
@@ -511,7 +511,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                 scene.text('The infirmary is poorly lit and you can hear various noises coming from within.');
                                 if (((s as any).KGZVars ?? 0)?.['batl']=== 0) {
                                   // TODO-QSP: dynamic text: <<KGZVars[''dead'']>> zombies are roaming around.
-                                  scene.text(`${((s as any).KGZVars ?? 0)?.['dead'] ?? ''} zombies are roaming around.`);
+                                  scene.text(`${(((s as any).KGZVars ?? 0)?.['dead'] ?? '')} zombies are roaming around.`);
                                   ((s as any).KGZVars = (s as any).KGZVars ?? {})['agr'] = (Math.floor(Math.random() * 11) + 0);
                                   if (((s as any).KGZVars ?? 0)?.['agr'] <= 8) {
                                     scene.text('Sensing you, the dead immediately rush to attack.');
@@ -535,7 +535,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                   scene.text('The once fortified armory has been busted wide open.');
                                   if (((s as any).KGZVars ?? 0)?.['batl'] === 0) {
                                     // TODO-QSP: dynamic text: You spot <<KGZVars[''dead'']>> zombies wandering around.
-                                    scene.text(`You spot ${((s as any).KGZVars ?? 0)?.['dead'] ?? ''} zombies wandering around.`);
+                                    scene.text(`You spot ${(((s as any).KGZVars ?? 0)?.['dead'] ?? '')} zombies wandering around.`);
                                     ((s as any).KGZVars = (s as any).KGZVars ?? {})['agr'] = (Math.floor(Math.random() * 11) + 0);
                                     if (((s as any).KGZVars ?? 0)?.['agr'] <= 8) {
                                       scene.text('Sensing you, the dead immediately rush to attack.');
@@ -559,7 +559,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                     scene.text('The garage still contains both civilian and military vehicles, but you can hear disturbing noises coming from within the poorly lit structure.');
                                     if (((s as any).KGZVars ?? 0)?.['batl'] === 0) {
                                       // TODO-QSP: dynamic text: You spot <<KGZVars[''dead'']>> zombies roaming around.
-                                      scene.text(`You spot ${((s as any).KGZVars ?? 0)?.['dead'] ?? ''} zombies roaming around.`);
+                                      scene.text(`You spot ${(((s as any).KGZVars ?? 0)?.['dead'] ?? '')} zombies roaming around.`);
                                       ((s as any).KGZVars = (s as any).KGZVars ?? {})['agr'] = (Math.floor(Math.random() * 11) + 0);
                                       if (((s as any).KGZVars ?? 0)?.['agr'] <= 8) {
                                         scene.text('Sensing you, the dead immediately rush to attack.');
@@ -584,7 +584,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                       scene.text('They were firebombed by the military in an effort to contain the outbreak, but a few of the more sturdy houses managed to escape the flames and are still standing.');
                                       if (((s as any).KGZVars ?? 0)?.['batl'] === 0) {
                                         // TODO-QSP: dynamic text: You spot <<KGZVars[''dead'']>> zombies roaming the ruins of the streets.
-                                        scene.text(`You spot ${((s as any).KGZVars ?? 0)?.['dead'] ?? ''} zombies roaming the ruins of the streets.`);
+                                        scene.text(`You spot ${(((s as any).KGZVars ?? 0)?.['dead'] ?? '')} zombies roaming the ruins of the streets.`);
                                         ((s as any).KGZVars = (s as any).KGZVars ?? {})['agr'] = (Math.floor(Math.random() * 11) + 0);
                                         if (((s as any).KGZVars ?? 0)?.['agr'] <= 8) {
                                           scene.text('Sensing you, the dead immediately rush to attack.');
@@ -605,10 +605,10 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                       if (((s as any).KGZVars ?? 0)?.['place'] === 101) {
                                         scene.text('<center><b>Abandoned Suburban House</b></center>');
                                         // TODO-QSP: dynamic text: This house is a safe place. There are enough provisions here to last <<KGZVars['...
-                                        scene.text(`This house is a safe place. There are enough provisions here to last ${((s as any).KGZVars ?? 0)?.['sup'] ?? ''} day(s).`);
+                                        scene.text(`This house is a safe place. There are enough provisions here to last ${(((s as any).KGZVars ?? 0)?.['sup'] ?? '')} day(s).`);
                                         if (((s as any).KGZVars ?? 0)?.['medkit'] > 0) {
                                           // TODO-QSP: dynamic text: There are <<KGZVars[''medkit'']>> first aid kits available.
-                                          scene.text(`There are ${((s as any).KGZVars ?? 0)?.['medkit'] ?? ''} first aid kits available.`);
+                                          scene.text(`There are ${(((s as any).KGZVars ?? 0)?.['medkit'] ?? '')} first aid kits available.`);
                                           if (((s as any).KGZVars ?? 0)?.['HP'] < 100) {
                                             scene.actions([
                                               { label: 'Treat your wounds', handler: (st: GameState) => {
@@ -660,7 +660,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                           scene.text('This abandoned supermarket stands imposingly tall over the surrounding buildings.');
                                           if (((s as any).KGZVars ?? 0)?.['batl'] === 0) {
                                             // TODO-QSP: dynamic text: You spot <<KGZVars[''dead'']>> roaming around.
-                                            scene.text(`You spot ${((s as any).KGZVars ?? 0)?.['dead'] ?? ''} roaming around.`);
+                                            scene.text(`You spot ${(((s as any).KGZVars ?? 0)?.['dead'] ?? '')} roaming around.`);
                                             ((s as any).KGZVars = (s as any).KGZVars ?? {})['agr'] = (Math.floor(Math.random() * 11) + 0);
                                             if (((s as any).KGZVars ?? 0)?.['agr'] <= 8) {
                                               scene.text('Sensing you, the dead immediately rush to attack.');
@@ -679,12 +679,12 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                           }
                                         } else {
                                           if (((s as any).KGZVars ?? 0)?.['place'] === 200) {
-                                            ((s as any).KGZVars = (s as any).KGZVars ?? {})['dead'] = (Math.floor(Math.random() * ((((s as any).KGZVars ?? {})?.['day'] ?? 0) * 2 - ((s as any).KGZVars ?? 0)?.['day'] + 1)) + (((s as any).KGZVars ?? 0)?.['day']));
+                                            ((s as any).KGZVars = (s as any).KGZVars ?? {})['dead'] = (Math.floor(Math.random() * ((((s as any).KGZVars ?? {})?.['day'] ?? 0) * 2 - (((s as any).KGZVars ?? 0)?.['day']) + 1)) + ((((s as any).KGZVars ?? 0)?.['day'])));
                                             scene.text('<center><b>Forest</b></center>');
                                             scene.text('The haunting sounds of animals and the wind whistle through the trees of this forest.');
                                             if (((s as any).KGZVars ?? 0)?.['batl'] === 0) {
                                               // TODO-QSP: dynamic text: You spot <<KGZVars[''dead'']>> zombies roaming through the trees.
-                                              scene.text(`You spot ${((s as any).KGZVars ?? 0)?.['dead'] ?? ''} zombies roaming through the trees.`);
+                                              scene.text(`You spot ${(((s as any).KGZVars ?? 0)?.['dead'] ?? '')} zombies roaming through the trees.`);
                                               ((s as any).KGZVars = (s as any).KGZVars ?? {})['agr'] = (Math.floor(Math.random() * 11) + 0);
                                               if (((s as any).KGZVars ?? 0)?.['agr'] <= 8) {
                                                 scene.text('Sensing you, the dead immediately rush to attack.');
@@ -703,12 +703,12 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                             }
                                           } else {
                                             if (((s as any).KGZVars ?? 0)?.['place'] === 201) {
-                                              ((s as any).KGZVars = (s as any).KGZVars ?? {})['dead'] = (Math.floor(Math.random() * ((((s as any).KGZVars ?? {})?.['day'] ?? 0) * 3 - ((s as any).KGZVars ?? 0)?.['day'] + 1)) + (((s as any).KGZVars ?? 0)?.['day']));
+                                              ((s as any).KGZVars = (s as any).KGZVars ?? {})['dead'] = (Math.floor(Math.random() * ((((s as any).KGZVars ?? {})?.['day'] ?? 0) * 3 - (((s as any).KGZVars ?? 0)?.['day']) + 1)) + ((((s as any).KGZVars ?? 0)?.['day'])));
                                               scene.text('<center><b>Farm</b></center>');
                                               scene.text('A large, sturdy fence surrounds this deceptively quaint farm. Any animals that once resided here have long since disappeared.');
                                               if (((s as any).KGZVars ?? 0)?.['batl'] === 0) {
                                                 // TODO-QSP: dynamic text: You spot <<KGZVars[''dead'']>> zombies wandering through the fields.
-                                                scene.text(`You spot ${((s as any).KGZVars ?? 0)?.['dead'] ?? ''} zombies wandering through the fields.`);
+                                                scene.text(`You spot ${(((s as any).KGZVars ?? 0)?.['dead'] ?? '')} zombies wandering through the fields.`);
                                                 ((s as any).KGZVars = (s as any).KGZVars ?? {})['agr'] = (Math.floor(Math.random() * 11) + 0);
                                                 if (((s as any).KGZVars ?? 0)?.['agr'] <= 8) {
                                                   scene.text('Sensing you, the dead immediately rush to attack.');
@@ -729,10 +729,10 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                               if (((s as any).KGZVars ?? 0)?.['place'] === 202) {
                                                 scene.text('<center><b>Old Farmhouse</b></center>');
                                                 // TODO-QSP: dynamic text: This old farmhouse is a safe place. There are enough provisions here to last <<K...
-                                                scene.text(`This old farmhouse is a safe place. There are enough provisions here to last ${((s as any).KGZVars ?? 0)?.['sup'] ?? ''} day(s).`);
+                                                scene.text(`This old farmhouse is a safe place. There are enough provisions here to last ${(((s as any).KGZVars ?? 0)?.['sup'] ?? '')} day(s).`);
                                                 if (((s as any).KGZVars ?? 0)?.['medkit'] > 0) {
                                                   // TODO-QSP: dynamic text: There are <<KGZVars[''medkit'']>> first aid kits available.
-                                                  scene.text(`There are ${((s as any).KGZVars ?? 0)?.['medkit'] ?? ''} first aid kits available.`);
+                                                  scene.text(`There are ${(((s as any).KGZVars ?? 0)?.['medkit'] ?? '')} first aid kits available.`);
                                                   if (((s as any).KGZVars ?? 0)?.['HP'] < 100) {
                                                     scene.actions([
                                                       { label: 'Treat your wounds', handler: (st: GameState) => {

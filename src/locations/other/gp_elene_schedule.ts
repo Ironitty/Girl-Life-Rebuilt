@@ -11,7 +11,7 @@ function enterIsHere(s: GameState, scene: SceneBuilder): void {
   if (Object.keys((s as any).ARGS ?? {}).length === 2) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((s as any).loc_arg ?? 0);
   }
-  (s as any).result = qspFunc(s, 'gp_elene_schedule', 'here_core', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0), ((s as any).locat ?? 0)?.['A31_loc'], ((s as any).locat ?? 0)?.['A31_arg']);
+  (s as any).result = qspFunc(s, 'gp_elene_schedule', 'here_core', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0), (((s as any).locat ?? 0)?.['A31_loc']), (((s as any).locat ?? 0)?.['A31_arg']));
   return;
   // TODO-QSP: end
   scene.build();
@@ -24,7 +24,7 @@ function enterWasHere(s: GameState, scene: SceneBuilder): void {
   if (Object.keys((s as any).ARGS ?? {}).length === 2) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((s as any).loc_arg ?? 0);
   }
-  (s as any).result = qspFunc(s, 'gp_elene_schedule', 'here_core', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0), ((s as any).locat ?? 0)?.['A31_loc_prev'], ((s as any).locat ?? 0)?.['A31_arg_prev']);
+  (s as any).result = qspFunc(s, 'gp_elene_schedule', 'here_core', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0), (((s as any).locat ?? 0)?.['A31_loc_prev']), (((s as any).locat ?? 0)?.['A31_arg_prev']));
   return;
   // TODO-QSP: end
   scene.build();
@@ -44,9 +44,9 @@ function enterCikl(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  ((s as any).locat = (s as any).locat ?? {})['A31_loc_prev'] = ((s as any).locat ?? 0)?.['A31_loc'];
-  ((s as any).locat = (s as any).locat ?? {})['A31_arg_prev'] = ((s as any).locat ?? 0)?.['A31_arg'];
-  ((s as any).locat = (s as any).locat ?? {})['A31_arg1_prev'] = ((s as any).locat ?? 0)?.['A31_arg1'];
+  ((s as any).locat = (s as any).locat ?? {})['A31_loc_prev'] = (((s as any).locat ?? 0)?.['A31_loc']);
+  ((s as any).locat = (s as any).locat ?? {})['A31_arg_prev'] = (((s as any).locat ?? 0)?.['A31_arg']);
+  ((s as any).locat = (s as any).locat ?? {})['A31_arg1_prev'] = (((s as any).locat ?? 0)?.['A31_arg1']);
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterUpdateLocat(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();

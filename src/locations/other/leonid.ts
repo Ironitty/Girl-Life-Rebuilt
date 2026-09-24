@@ -48,9 +48,9 @@ function enterFirstTime(s: GameState, scene: SceneBuilder): void {
   scene.text('"Very well. I will call you if I require your presence. Until then you are free to go."');
   if (((s as any).gschoolVars ?? 0)?.['school_diploma'] === 0) {
     // TODO-QSP: dynamic text: "But Mister <<$bSurname>>, what do I tell to my <<$npc_nickname[''A29'']>>? How ...
-    scene.text(`"But Mister ${((s as any).bSurname ?? '')}, what do I tell to my ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''}? How do I explain my absence from the school and everything?"`);
+    scene.text(`"But Mister ${((s as any).bSurname ?? '')}, what do I tell to my ${(((s as any).npc_nickname ?? 0)?.['A29'] ?? '')}? How do I explain my absence from the school and everything?"`);
     // TODO-QSP: dynamic text: "Do not care about the school. I will take care of it. As for your <<$npc_nickna...
-    scene.text(`"Do not care about the school. I will take care of it. As for your ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''}, if she asks, tell her you ran from home to a friend but reconsidered and went back."`);
+    scene.text(`"Do not care about the school. I will take care of it. As for your ${(((s as any).npc_nickname ?? 0)?.['A29'] ?? '')}, if she asks, tell her you ran from home to a friend but reconsidered and went back."`);
     // TODO-QSP: dynamic text: "Yes Mister <<$bSurname>>."
     scene.text(`"Yes Mister ${((s as any).bSurname ?? '')}."`);
     ((s as any).gschoolVars = (s as any).gschoolVars ?? {})['absence_count'] = 0;

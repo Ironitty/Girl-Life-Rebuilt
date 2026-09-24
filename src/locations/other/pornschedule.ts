@@ -54,7 +54,7 @@ function enterPornmiss(s: GameState, scene: SceneBuilder): void {
 function enterSchedule(s: GameState, scene: SceneBuilder): void {
   (s as any).missedshoot = 0;
   qspCall(s, 'jobs', 'get_job_definition', 'city_pornstudio_actress');
-  (s as any).temp_sched_next = qspFunc(s, 'jobs', 'get_next_booking_day', 'city_pornstudio_actress', ((s as any).daystart ?? 0), ((s as any).job_booking_window_days ?? 0)?.['city_pornstudio_actress']);
+  (s as any).temp_sched_next = qspFunc(s, 'jobs', 'get_next_booking_day', 'city_pornstudio_actress', ((s as any).daystart ?? 0), (((s as any).job_booking_window_days ?? 0)?.['city_pornstudio_actress']));
   if (((s as any).temp_sched_next ?? 0) > 0) {
     (s as any).porndays = ((s as any).temp_sched_next ?? 0) - ((s as any).daystart ?? 0);
   } else {
@@ -93,8 +93,8 @@ function enterSchedule(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  ((s as any).pornplan = (s as any).pornplan ?? {})[String(((s as any).days ?? 0)) + ',' + String(((s as any).porns ?? 0))] = ((s as any).pornplan ?? 0)?.[String(((s as any).days ?? 0)+1) + ',' + String(((s as any).porns ?? 0))];
-  ((s as any).porntaken = (s as any).porntaken ?? {})[String(((s as any).days ?? 0)) + ',' + String(((s as any).porns ?? 0))] = ((s as any).porntaken ?? 0)?.[String(((s as any).days ?? 0)+1) + ',' + String(((s as any).porns ?? 0))];
+  ((s as any).pornplan = (s as any).pornplan ?? {})[String(((s as any).days ?? 0)) + ',' + String(((s as any).porns ?? 0))] = (((s as any).pornplan ?? 0)?.[String(((s as any).days ?? 0)+1) + ',' + String(((s as any).porns ?? 0))]);
+  ((s as any).porntaken = (s as any).porntaken ?? {})[String(((s as any).days ?? 0)) + ',' + String(((s as any).porns ?? 0))] = (((s as any).porntaken ?? 0)?.[String(((s as any).days ?? 0)+1) + ',' + String(((s as any).porns ?? 0))]);
   if (((s as any).porntaken ?? 0)[(((s as any).days ?? 0)) + ',' + (((s as any).porns ?? 0))] === 0) {
     if ((Math.floor(Math.random() * (((s as any).days ?? 0)*3/2 - 1 + 1)) + (1)) === 1) {
       ((s as any).porntaken = (s as any).porntaken ?? {})[String(((s as any).days ?? 0)) + ',' + String(((s as any).porns ?? 0))] = 1;

@@ -78,18 +78,18 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   scene.text('<br>Even from here, you can see the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(/u0027pav_church/u0027, /u0027start/u0027); return false;">Church of St. Nikolas</a>, the tallest building in town.');
   if (((s as any).flag_rape_1 ?? 0) === 1) {
     (s as any).flag_rape_1 = 0;
-    (s as any).rape_count = ((s as any).stat ?? 0)?.['rape_count'];
+    (s as any).rape_count = (((s as any).stat ?? 0)?.['rape_count']);
     (s as any).rape_day = ((s as any).daystart ?? 0);
     scene.text('You stop under the dim light of a streetlight. Breathing heavy, you occasionally stop to wince from the pain coming from your pussy. You convince yourself not to tell anyone, and to just get home, clean up and go to bed as soon as possible. The sooner you do that, the sooner you can forget this ever happened.');
   } else {
     if (((s as any).flag_rape_1 ?? 0) === 2) {
       (s as any).flag_rape_1 = 0;
-      (s as any).rape_count = ((s as any).stat ?? 0)?.['rape_count'];
+      (s as any).rape_count = (((s as any).stat ?? 0)?.['rape_count']);
       (s as any).rape_day = ((s as any).daystart ?? 0);
       scene.text('Coming out of your daze, you find you\'ve walked into the center of town without even realizing it. You feel a bit strange as you stop to think about why you aren\'t upset about having been raped. Replaying the encounter in your head, you realize you actually enjoyed it a little. All in all, you\'re not too worried about what happened.');
     } else {
       if (((s as any).stat ?? 0)?.['rape_count'] > ((s as any).rape_count ?? 0)) {
-        (s as any).rape_count = ((s as any).stat ?? 0)?.['rape_count'];
+        (s as any).rape_count = (((s as any).stat ?? 0)?.['rape_count']);
         (s as any).rape_day = ((s as any).daystart ?? 0);
         if (qspFunc(s, 'archetypes', 'get_lvl', 'bimbo') > 2) {
           scene.text('You feel great after having sex, and don\'t understand why they didn\'t just ask. Silly man.');
@@ -130,7 +130,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   }
   if (qspFunc(s, 'car_funcs', 'is_here')) {
     // TODO-QSP: dynamic text: Your <a href="exec:gs ''carF'', ''start''"><<$car[''name'']>></a> is parked in t...
-    scene.text(`Your <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027carF/u0027, /u0027start/u0027); return false;">${((s as any).car ?? 0)?.['name'] ?? ''}</a> is parked in the street.`);
+    scene.text(`Your <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027carF/u0027, /u0027start/u0027); return false;">${(((s as any).car ?? 0)?.['name'] ?? '')}</a> is parked in the street.`);
   }
   if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) <= 22) {
     scene.text('<br>At the end of the street is a small <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: $loc = /u0027pav_residential/u0027 */ return s; }); window.__gameStore.getState().doGoto(/u0027kiosk/u0027, /u0027start/u0027); return false;">kiosk</a> selling a variety of items such as cigarettes, magazines, snacks, drinks and even themes for your phone.');
@@ -338,18 +338,18 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.text('<br>Even from here, you can see the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(/u0027pav_church/u0027, /u0027start/u0027); return false;">Church of St. Nikolas</a>, the tallest building in town.');
   if (((s as any).flag_rape_1 ?? 0) === 1) {
     (s as any).flag_rape_1 = 0;
-    (s as any).rape_count = ((s as any).stat ?? 0)?.['rape_count'];
+    (s as any).rape_count = (((s as any).stat ?? 0)?.['rape_count']);
     (s as any).rape_day = ((s as any).daystart ?? 0);
     scene.text('You stop under the dim light of a streetlight. Breathing heavy, you occasionally stop to wince from the pain coming from your pussy. You convince yourself not to tell anyone, and to just get home, clean up and go to bed as soon as possible. The sooner you do that, the sooner you can forget this ever happened.');
   } else {
     if (((s as any).flag_rape_1 ?? 0) === 2) {
       (s as any).flag_rape_1 = 0;
-      (s as any).rape_count = ((s as any).stat ?? 0)?.['rape_count'];
+      (s as any).rape_count = (((s as any).stat ?? 0)?.['rape_count']);
       (s as any).rape_day = ((s as any).daystart ?? 0);
       scene.text('Coming out of your daze, you find you\'ve walked into the center of town without even realizing it. You feel a bit strange as you stop to think about why you aren\'t upset about having been raped. Replaying the encounter in your head, you realize you actually enjoyed it a little. All in all, you\'re not too worried about what happened.');
     } else {
       if (((s as any).stat ?? 0)?.['rape_count'] > ((s as any).rape_count ?? 0)) {
-        (s as any).rape_count = ((s as any).stat ?? 0)?.['rape_count'];
+        (s as any).rape_count = (((s as any).stat ?? 0)?.['rape_count']);
         (s as any).rape_day = ((s as any).daystart ?? 0);
         if (qspFunc(s, 'archetypes', 'get_lvl', 'bimbo') > 2) {
           scene.text('You feel great after having sex, and don\'t understand why they didn\'t just ask. Silly man.');
@@ -390,7 +390,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   }
   if (qspFunc(s, 'car_funcs', 'is_here')) {
     // TODO-QSP: dynamic text: Your <a href="exec:gs ''carF'', ''start''"><<$car[''name'']>></a> is parked in t...
-    scene.text(`Your <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027carF/u0027, /u0027start/u0027); return false;">${((s as any).car ?? 0)?.['name'] ?? ''}</a> is parked in the street.`);
+    scene.text(`Your <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027carF/u0027, /u0027start/u0027); return false;">${(((s as any).car ?? 0)?.['name'] ?? '')}</a> is parked in the street.`);
   }
   if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) <= 22) {
     scene.text('<br>At the end of the street is a small <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: $loc = /u0027pav_residential/u0027 */ return s; }); window.__gameStore.getState().doGoto(/u0027kiosk/u0027, /u0027start/u0027); return false;">kiosk</a> selling a variety of items such as cigarettes, magazines, snacks, drinks and even themes for your phone.');

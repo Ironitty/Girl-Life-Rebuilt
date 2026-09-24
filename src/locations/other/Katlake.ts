@@ -161,9 +161,9 @@ function enterKey(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Go with Kat', handler: (st: GameState) => {
-    qspCall(st, 'clothing', 'wear', ((st as any).lastwornclothingtype ?? 0)?.['swim'], ((st as any).lastwornclothingnumber ?? 0)?.['swim']);
-    qspCall(st, 'panties', 'wear', ((st as any).lastwornpantytype ?? 0)?.['swim'], ((st as any).lastwornpantynumber ?? 0)?.['swim']);
-    qspCall(st, 'bras', 'wear', ((st as any).lastwornbratype ?? 0)?.['swim'], ((st as any).lastwornbranumber ?? 0)?.['swim']);
+    qspCall(st, 'clothing', 'wear', (((st as any).lastwornclothingtype ?? 0)?.['swim']), (((st as any).lastwornclothingnumber ?? 0)?.['swim']));
+    qspCall(st, 'panties', 'wear', (((st as any).lastwornpantytype ?? 0)?.['swim']), (((st as any).lastwornpantynumber ?? 0)?.['swim']));
+    qspCall(st, 'bras', 'wear', (((st as any).lastwornbratype ?? 0)?.['swim']), (((st as any).lastwornbranumber ?? 0)?.['swim']));
     qspGoto(st, 'kathouse0', '');
   } },
   ]);

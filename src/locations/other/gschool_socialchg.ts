@@ -811,7 +811,7 @@ function enterGroupRelChange(s: GameState, scene: SceneBuilder): void {
   if (((s as any).npc_grupTipe ?? 0)['A' + (((s as any).temp_gsc_grl ?? 0)?.['i'])] > 0) {
     if ((((s as any).npc_grupTipe ?? 0)['A' + (((s as any).temp_gsc_grl ?? 0)?.['i'])] === ((s as any).temp_gsc_grl ?? 0)?.['group']  ||  ((s as any).temp_gsc_grl ?? 0)?.['group'] === 0)  &&  (((s as any).temp_gsc_grl ?? 0)?.['gender'] === 0  ||  ((s as any).npc_gender ?? 0)['A' + (((s as any).temp_gsc_grl ?? 0)?.['i'])] === (((s as any).temp_gsc_grl ?? 0)?.['gender'] - 1))) {
       if ((((s as any).temp_gsc_grl ?? 0)?.['change'] > 0  &&  ((s as any).npc_rel ?? 0)['A' + (((s as any).temp_gsc_grl ?? 0)?.['i'])] < 30)  ||  ((s as any).temp_gsc_grl ?? 0)?.['change'] < 0) {
-        qspCall(s, 'npc_relationship', 'modify', 'A' + ((s as any).temp_gsc_grl ?? 0)?.['i'] + '', ((s as any).temp_gsc_grl ?? 0)?.['change']);
+        qspCall(s, 'npc_relationship', 'modify', 'A' + (((s as any).temp_gsc_grl ?? 0)?.['i']) + '', (((s as any).temp_gsc_grl ?? 0)?.['change']));
       }
     }
   }

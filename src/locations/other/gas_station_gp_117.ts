@@ -210,7 +210,7 @@ function enterCondomDispenser(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'gas_station_gp_117', 'condom_dispenser');
   scene.img('images/locations/highway/gas_station_gp_117/condoms.jpg');
   // TODO-QSP: dynamic text: A condom costs <<$func(''money'', ''string_price'', 60)>> and you have <<mc_inve...
-  scene.text(`A condom costs ${qspFunc(s, 'money', 'string_price', 60)} and you have ${((s as any).mc_inventory ?? 0)?.['normal_condoms'] ?? ''} condoms.`);
+  scene.text(`A condom costs ${qspFunc(s, 'money', 'string_price', 60)} and you have ${(((s as any).mc_inventory ?? 0)?.['normal_condoms'] ?? '')} condoms.`);
   qspCall(s, 'stat', '');
   // TODO-QSP: end
   scene.actions([
@@ -345,7 +345,7 @@ function enterRestroomMen(s: GameState, scene: SceneBuilder): void {
 
 function enterGas(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: Your <a href="exec: gs ''carF'', ''start''"><<$car[''name'']>></a> is parked her...
-  scene.text(`Your <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027carF/u0027, /u0027start/u0027); return false;">${((s as any).car ?? 0)?.['name'] ?? ''}</a> is parked here.`);
+  scene.text(`Your <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027carF/u0027, /u0027start/u0027); return false;">${(((s as any).car ?? 0)?.['name'] ?? '')}</a> is parked here.`);
   // TODO-QSP: dynamic text: You can buy petrol for your car, the price is <<$func(''money'', ''string_price'...
   scene.text(`You can buy petrol for your car, the price is ${qspFunc(s, 'money', 'string_price', 30)} per liter.`);
   if (((s as any).kanistra ?? 0) < 5) {
@@ -369,7 +369,7 @@ function enterGas(s: GameState, scene: SceneBuilder): void {
         { label: 'Fill the tank with petrol', handler: (st: GameState) => {
     (st as any).zprbenz = (((st as any).car ?? {})?.['tank'] ?? 0) - (((st as any).car ?? {})?.['fuel'] ?? 0);
     (st as any).zprpay = ((st as any).zprbenz ?? 0) * 30;
-    ((st as any).car = (st as any).car ?? {})['fuel'] = ((st as any).car ?? 0)?.['tank'];
+    ((st as any).car = (st as any).car ?? {})['fuel'] = (((st as any).car ?? 0)?.['tank']);
     qspCall(st, 'money', 'pay', ((st as any).zprpay ?? 0));
     scene.img('images/locations/shared/gas/zapr1.jpg');
     // TODO-QSP: dynamic text: You fill the tank and pay <<$func(''money'', ''string_price'', zprpay)>>.

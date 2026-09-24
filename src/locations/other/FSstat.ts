@@ -94,7 +94,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     ((s as any).FSskin = (s as any).FSskin ?? {})['text'] = 'Normal skin';
   } else {
     if (((s as any).FSskin ?? 0) === 1) {
-      ((s as any).FSskin = (s as any).FSskin ?? {})['text'] = '' + ((s as any).FSsherst ?? 0)?.['text'] + ' fur on the body';
+      ((s as any).FSskin = (s as any).FSskin ?? {})['text'] = '' + (((s as any).FSsherst ?? 0)?.['text']) + ' fur on the body';
     } else {
       ((s as any).FSskin = (s as any).FSskin ?? {})['text'] = 'Scales on body';
     }
@@ -142,7 +142,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).FSdick ?? 0) > 0) {
-    ((s as any).FSdick = (s as any).FSdick ?? {})['text'] = '' + ((s as any).dicktipe ?? 0)?.['text'] + ' long dick ' + ((s as any).FSdick ?? 0) + '';
+    ((s as any).FSdick = (s as any).FSdick ?? {})['text'] = '' + (((s as any).dicktipe ?? 0)?.['text']) + ' long dick ' + ((s as any).FSdick ?? 0) + '';
   } else {
     ((s as any).FSdick = (s as any).FSdick ?? {})['text'] = '';
   }
@@ -188,13 +188,13 @@ function enter(s: GameState, scene: SceneBuilder): void {
     ((s as any).FStits = (s as any).FStits ?? {})['text'] = '';
   } else {
     if ((!((s as any).FStitsLine ?? 0))) {
-      ((s as any).FStits = (s as any).FStits ?? {})['text'] = 'Female breast ' + ((s as any).FStitrazm ?? 0)?.['text'] + '';
+      ((s as any).FStits = (s as any).FStits ?? {})['text'] = 'Female breast ' + (((s as any).FStitrazm ?? 0)?.['text']) + '';
     } else {
       if (((s as any).FStitsLine ?? 0) === 1) {
-        ((s as any).FStits = (s as any).FStits ?? {})['text'] = 'Two pairs of women\'s breasts ' + ((s as any).FStitrazm ?? 0)?.['text'] + '';
+        ((s as any).FStits = (s as any).FStits ?? {})['text'] = 'Two pairs of women\'s breasts ' + (((s as any).FStitrazm ?? 0)?.['text']) + '';
       } else {
         if (((s as any).FStitsLine ?? 0) >= 2) {
-          ((s as any).FStits = (s as any).FStits ?? {})['text'] = 'Three pairs of nipples ' + ((s as any).FStitrazm ?? 0)?.['text'] + '';
+          ((s as any).FStits = (s as any).FStits ?? {})['text'] = 'Three pairs of nipples ' + (((s as any).FStitrazm ?? 0)?.['text']) + '';
         }
       }
     }
@@ -202,7 +202,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   if (((s as any).FSpers ?? 0) <= 0) {
     ((s as any).FSpers = (s as any).FSpers ?? {})['text'] = 'You have no character';
   } else {
-    ((s as any).FSpers = (s as any).FSpers ?? {})['text'] = '' + ((s as any).FSname ?? 0)?.['text'] + '. ' + ((s as any).FSfemin ?? 0)?.['text'] + ' ' + ((s as any).FSface ?? 0)?.['text'] + ' ' + ((s as any).FScolor ?? 0)?.['text'] + ' ' + ((s as any).FSfigur ?? 0)?.['text'] + ' ' + ((s as any).FStits ?? 0)?.['text'] + ' ' + ((s as any).FSskin ?? 0)?.['text'] + ' ' + ((s as any).FShvost ?? 0)?.['text'] + ' ' + ((s as any).FSdick ?? 0)?.['text'] + ' ' + ((s as any).FSvagina ?? 0)?.['text'] + '';
+    ((s as any).FSpers = (s as any).FSpers ?? {})['text'] = '' + (((s as any).FSname ?? 0)?.['text']) + '. ' + (((s as any).FSfemin ?? 0)?.['text']) + ' ' + (((s as any).FSface ?? 0)?.['text']) + ' ' + (((s as any).FScolor ?? 0)?.['text']) + ' ' + (((s as any).FSfigur ?? 0)?.['text']) + ' ' + (((s as any).FStits ?? 0)?.['text']) + ' ' + (((s as any).FSskin ?? 0)?.['text']) + ' ' + (((s as any).FShvost ?? 0)?.['text']) + ' ' + (((s as any).FSdick ?? 0)?.['text']) + ' ' + (((s as any).FSvagina ?? 0)?.['text']) + '';
   }
   // TODO-QSP: dynamic text: Level <<FSlvl>>, exp <<FSexp>>, need for next level <<FSneedExp>> exp
   scene.text(`Level ${((s as any).FSlvl ?? '')}, exp ${((s as any).FSexp ?? '')}, need for next level ${((s as any).FSneedExp ?? '')} exp`);
@@ -254,7 +254,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       scene.text(`<center><b>Contact with ${((s as any).KGHPnpow ?? '')}</b></center>`);
     }
   } else {
-    scene.text(`${((s as any).FSnameV ?? 0)?.['text'] ?? ''} dodged your attack`);
+    scene.text(`${(((s as any).FSnameV ?? 0)?.['text'] ?? '')} dodged your attack`);
   }
   (s as any).FSatkV = qspUntranslated(s, "{", { location: "FSstat" });
   (s as any).KGOLzas = (Math.floor(Math.random() * (((s as any).FSagil ?? 0) - ((s as any).FSagil ?? 0) / 4 + 1)) + (((s as any).FSagil ?? 0) / 4));

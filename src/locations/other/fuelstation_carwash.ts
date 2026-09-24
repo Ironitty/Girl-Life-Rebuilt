@@ -28,10 +28,10 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
 
 function enterWash(s: GameState, scene: SceneBuilder): void {
   if (((s as any).region ?? 0) === 'city') {
-    (s as any).slut_compare = ((s as any).fame ?? 0)?.['city_slut'];
+    (s as any).slut_compare = (((s as any).fame ?? 0)?.['city_slut']);
   } else {
     if (((s as any).region ?? 0) === 'pav') {
-      (s as any).slut_compare = ((s as any).fame ?? 0)?.['pav_slut'];
+      (s as any).slut_compare = (((s as any).fame ?? 0)?.['pav_slut']);
     }
   }
   if (((s as any).PCloBimbo ?? 0) === 1  ||  ((s as any).PCloStyle ?? 0) === 4  ||  ((s as any).PCloProstitute ?? 0) === 1) {

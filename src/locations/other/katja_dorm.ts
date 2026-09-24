@@ -16,7 +16,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'public_indoors';
   qspCall(s, 'katja_meynold_schedule', '');
   qspCall(s, 'stat', '');
-  scene.text(`<center><b>${((s as any).npc_firstname ?? 0)?.['A14'] ?? ''} 'S Dorm Room</b></center>`);
+  scene.text(`<center><b>${(((s as any).npc_firstname ?? 0)?.['A14'] ?? '')} 'S Dorm Room</b></center>`);
   scene.img('images/characters/pavlovsk/school/girl/katja/uni/dorm/dorm_room.jpg');
   // TODO-QSP: dynamic text: 'The dorm room has two beds. The one on the left belongs to ' + iif( sofiaQW['kn...
   scene.text('The dorm room has two beds. The one on the left belongs to ' + ((((s as any).sofiaQW ?? 0)?.['know'] === 0) ? ('Katja\'s roommate') : ('Sofia')) + ' while the one on the right is Katja\'s. Above Katja\'s bed is a full bookcase, and the wall is plastered with posters and notes.');
@@ -82,7 +82,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
 function enterTalk(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'katja_meynold_schedule', '');
   qspCall(s, 'stat', '');
-  scene.text(`<center><b>${((s as any).npc_firstname ?? 0)?.['A14'] ?? ''} ${((s as any).npc_lastname ?? 0)?.['A14'] ?? ''}</b></center>`);
+  scene.text(`<center><b>${(((s as any).npc_firstname ?? 0)?.['A14'] ?? '')} ${(((s as any).npc_lastname ?? 0)?.['A14'] ?? '')}</b></center>`);
   scene.img('images/characters/shared/headshots_main/big14.jpg');
   if (((s as any).katjaQW ?? 0)?.['QWstage'] > 2) {
     if (((s as any).katjaQW ?? 0)?.['horny'] < 20) {
@@ -142,7 +142,7 @@ function enterTalk(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'willpower', 'pay', 'force');
     ((st as any).locat = (st as any).locat ?? {})['katja'] = 52;
     ((st as any).locat = (st as any).locat ?? {})['katja_rand2'] = ((st as any).daystart ?? 0);
-    ((st as any).locat = (st as any).locat ?? {})['katja_save2'] = ((st as any).locat ?? 0)?.['katja'];
+    ((st as any).locat = (st as any).locat ?? {})['katja_save2'] = (((st as any).locat ?? 0)?.['katja']);
     (st as any).minut = ((st as any).minut ?? 0) + 10;
     scene.img('images/characters/shared/headshots_main/big14.jpg');
     scene.text('"Come on, let\'s watch a movie instead! You can always study tomorrow. Why do you even need to study anyway? You\'re so smart that you know everything!" you say.');
@@ -262,7 +262,7 @@ function enterTalk(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterChat(s: GameState, scene: SceneBuilder): void {
-  scene.text(`<center><b>${((s as any).npc_firstname ?? 0)?.['A14'] ?? ''} ${((s as any).npc_lastname ?? 0)?.['A14'] ?? ''}</b></center>`);
+  scene.text(`<center><b>${(((s as any).npc_firstname ?? 0)?.['A14'] ?? '')} ${(((s as any).npc_lastname ?? 0)?.['A14'] ?? '')}</b></center>`);
   scene.img('images/characters/shared/headshots_main/big14.jpg');
   if (((s as any).katjaQW ?? 0)?.['QWstage'] > 2  &&  ((s as any).katjaQW ?? 0)?.['sex_clossedness'] < 2) {
     if (((s as any).katjaQW ?? 0)?.['horny'] < 20) {
@@ -292,7 +292,7 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
     ((st as any).katjaQW = (st as any).katjaQW ?? {})['horny'] = ((st as any).katjaQW['horny'] ?? 0) + (1);
     (st as any).minut = ((st as any).minut ?? 0) + 15;
     qspCall(st, 'stat', '');
-    scene.text(`<center><b>${((st as any).npc_firstname ?? 0)?.['A14'] ?? ''} ${((st as any).npc_lastname ?? 0)?.['A14'] ?? ''}</b></center>`);
+    scene.text(`<center><b>${(((st as any).npc_firstname ?? 0)?.['A14'] ?? '')} ${(((st as any).npc_lastname ?? 0)?.['A14'] ?? '')}</b></center>`);
     scene.img('images/characters/shared/headshots_main/big14.jpg');
     scene.text('"So, who\'s the boy you mentioned being interested in earlier?" you ask curiously.');
     if (((st as any).katjaQW ?? 0)?.['slut'] >= 60  &&  ((st as any).npc_had_sex ?? 0)?.['A14']  &&  ((st as any).katjaQW ?? 0)?.['horny'] > 40) {
@@ -371,7 +371,7 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Tell her you\'re pregnant', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
-    scene.text(`<center><b>${((st as any).npc_firstname ?? 0)?.['A14'] ?? ''} ${((st as any).npc_lastname ?? 0)?.['A14'] ?? ''}</b></center>`);
+    scene.text(`<center><b>${(((st as any).npc_firstname ?? 0)?.['A14'] ?? '')} ${(((st as any).npc_lastname ?? 0)?.['A14'] ?? '')}</b></center>`);
     scene.img('images/characters/shared/headshots_main/big14.jpg');
     scene.text('"Katja, I need to tell you something," you say. "I\'m pregnant again."');
     scene.text('Her face lights up. "Congratulations! This is even more exciting than last time! Every time you tell me you\'re pregnant, I feel better about my pregnancy. Hell, that\'s probably why you keep getting pregnant, isn\'t it?" she giggles jokingly.');
@@ -384,7 +384,7 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
       if (((s as any).knowKatjaPreg ?? 0) === 1) {
         scene.actions([
           { label: 'Tell her you\'re pregnant', handler: (st: GameState) => {
-    scene.text(`<center><b>${((st as any).npc_firstname ?? 0)?.['A14'] ?? ''} ${((st as any).npc_lastname ?? 0)?.['A14'] ?? ''}</b></center>`);
+    scene.text(`<center><b>${(((st as any).npc_firstname ?? 0)?.['A14'] ?? '')} ${(((st as any).npc_lastname ?? 0)?.['A14'] ?? '')}</b></center>`);
     scene.img('images/characters/shared/headshots_main/big14.jpg');
     scene.text('"What?! That\'s so exciting! You didn\'t get pregnant to be like me?" she asks playfully.');
     scene.actions([
@@ -396,7 +396,7 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
         if ((!((s as any).KatjaPreg ?? 0))) {
           scene.actions([
             { label: 'Tell her you\'re pregnant', handler: (st: GameState) => {
-    scene.text(`<center><b>${((st as any).npc_firstname ?? 0)?.['A14'] ?? ''} ${((st as any).npc_lastname ?? 0)?.['A14'] ?? ''}</b></center>`);
+    scene.text(`<center><b>${(((st as any).npc_firstname ?? 0)?.['A14'] ?? '')} ${(((st as any).npc_lastname ?? 0)?.['A14'] ?? '')}</b></center>`);
     scene.img('images/characters/shared/headshots_main/big14.jpg');
     scene.text('"What? That\'s so exciting!"');
     scene.actions([
@@ -455,7 +455,7 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
     ((st as any).katjaQW = (st as any).katjaQW ?? {})['horny'] = ((st as any).katjaQW['horny'] ?? 0) + (1);
     (st as any).minut = ((st as any).minut ?? 0) + 15;
     qspCall(st, 'stat', '');
-    scene.text(`<center><b>${((st as any).npc_firstname ?? 0)?.['A14'] ?? ''} ${((st as any).npc_lastname ?? 0)?.['A14'] ?? ''}</b></center>`);
+    scene.text(`<center><b>${(((st as any).npc_firstname ?? 0)?.['A14'] ?? '')} ${(((st as any).npc_lastname ?? 0)?.['A14'] ?? '')}</b></center>`);
     scene.img('images/characters/shared/headshots_main/big14.jpg');
     if (((Math.floor(Math.random() * 101) + 0) > ((st as any).katjaQW ?? 0)?.['horny'] + Math.min(((st as any).katjaQW ?? 0)?.['slut'] / 2, 50))  ||  ((st as any).katjaQW ?? 0)?.['sex_clossedness'] === 2) {
       scene.text('Katja talks about her university subjects, cosmetics, the latest fashion trends and other things she considers very important.');
@@ -1413,7 +1413,7 @@ function enterMovieTalk1(s: GameState, scene: SceneBuilder): void {
       { label: 'Go to the night club', handler: (st: GameState) => {
     ((st as any).locat = (st as any).locat ?? {})['katja'] = 53;
     ((st as any).locat = (st as any).locat ?? {})['katja_rand2'] = ((st as any).daystart ?? 0);
-    ((st as any).locat = (st as any).locat ?? {})['katja_save2'] = ((st as any).locat ?? 0)?.['katja'];
+    ((st as any).locat = (st as any).locat ?? {})['katja_save2'] = (((st as any).locat ?? 0)?.['katja']);
     ((st as any).katjaQW = (st as any).katjaQW ?? {})['party_location'] = 2;
     scene.text('"let\'s go to the night club" you say. "Okay. I know just the dress I want to wear tonight" Katja answers, and almost before you can react she is out of her clothes and into a nice dress.');
     scene.actions([

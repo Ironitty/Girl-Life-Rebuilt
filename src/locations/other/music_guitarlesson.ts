@@ -44,7 +44,7 @@ function enterEnquiry(s: GameState, scene: SceneBuilder): void {
   } },
     { label: 'You have to think', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: You hesitate for a moment "I would be, but I have to talk with my <<$npc_nicknam...
-    scene.text(`You hesitate for a moment "I would be, but I have to talk with my ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''} first."`);
+    scene.text(`You hesitate for a moment "I would be, but I have to talk with my ${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')} first."`);
     // TODO-QSP: dynamic text: The teacher nods "That''s understandable. Just come in when you know and we can ...
     scene.text(`The teacher nods "That's understandable. Just come in when you know and we can set up the lesson" He smiles at you "It was a pleasure to meet you, ${((st as any).pcs_firstname ?? '')}, and I'm looking forward to seeing you again."`);
     scene.actions([
@@ -78,7 +78,7 @@ function enterFirstLesson(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterLesson(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'money', 'pay', ((s as any).ml_guitarlesson ?? 0)?.['lessoncost']);
+  qspCall(s, 'money', 'pay', (((s as any).ml_guitarlesson ?? 0)?.['lessoncost']));
   ((s as any).ml_guitarlesson = (s as any).ml_guitarlesson ?? {})['nextlesson'] = 0;
   ((s as any).ml_guitarlesson = (s as any).ml_guitarlesson ?? {})['lessoncount'] = ((s as any).ml_guitarlesson['lessoncount'] ?? 0) + (1);
   (s as any).minut = ((s as any).minut ?? 0) + 45;
@@ -110,7 +110,7 @@ function enterGoodbye(s: GameState, scene: SceneBuilder): void {
   if (((s as any).ml_guitarlesson ?? 0)?.['lessonday'] < 8) {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGetdate(s, scene); (s as any).locArgs = __savedLocArgs; }
     // TODO-QSP: dynamic text: You agree to meet for your next lesson on <<$ml_guitarlesson[''lessonday'']>> at...
-    scene.text(`You agree to meet for your next lesson on ${((s as any).ml_guitarlesson ?? 0)?.['lessonday'] ?? ''} at ${((s as any).ml_guitarlesson ?? 0)?.['lessonhour'] ?? ''}:00 next week, on ${((s as any).newday ?? '')}/${((s as any).newmonth ?? '')}. The teacher enters it in the diary and you say goodbye before you leave.`);
+    scene.text(`You agree to meet for your next lesson on ${(((s as any).ml_guitarlesson ?? 0)?.['lessonday'] ?? '')} at ${(((s as any).ml_guitarlesson ?? 0)?.['lessonhour'] ?? '')}:00 next week, on ${((s as any).newday ?? '')}/${((s as any).newmonth ?? '')}. The teacher enters it in the diary and you say goodbye before you leave.`);
     qspCall(s, 'calendar', 'add', 'guitar_lesson');
   } else {
     scene.text('You are not sure when it would be a good day right now, so you agree to decide on a day later, you say goodbye and leave.');

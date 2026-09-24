@@ -60,11 +60,11 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   }
   if (qspFunc(s, 'car_funcs', 'is_here')) {
     // TODO-QSP: dynamic text: <a href="exec:gs ''carF'', ''start''">Your <<$car[''name'']>></a> is in the park...
-    scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027carF/u0027, /u0027start/u0027); return false;">Your ${((s as any).car ?? 0)?.['name'] ?? ''}</a> is in the parking lot.`);
+    scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027carF/u0027, /u0027start/u0027); return false;">Your ${(((s as any).car ?? 0)?.['name'] ?? '')}</a> is in the parking lot.`);
   } else {
     if (qspFunc(s, 'car_funcs', 'is_here', 'city_house_res_misc', 'fronty')) {
       // TODO-QSP: dynamic text: <a href="exec: minut += 10 & gs ''carF'', ''start''">Your <<$car[''name'']>></a>...
-      scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.10; return s; }); window.__gameStore.getState().doGoto(/u0027carF/u0027, /u0027start/u0027); return false;">Your ${((s as any).car ?? 0)?.['name'] ?? ''}</a> is in your driveway.`);
+      scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.10; return s; }); window.__gameStore.getState().doGoto(/u0027carF/u0027, /u0027start/u0027); return false;">Your ${(((s as any).car ?? 0)?.['name'] ?? '')}</a> is in your driveway.`);
     }
   }
   if (qspFunc(s, 'homes_properties', 'is_property_of_status', 'owned', 'city_house')) {
@@ -311,11 +311,11 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   }
   if (qspFunc(s, 'car_funcs', 'is_here')) {
     // TODO-QSP: dynamic text: <a href="exec:gs ''carF'', ''start''">Your <<$car[''name'']>></a> is in the park...
-    scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027carF/u0027, /u0027start/u0027); return false;">Your ${((s as any).car ?? 0)?.['name'] ?? ''}</a> is in the parking lot.`);
+    scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027carF/u0027, /u0027start/u0027); return false;">Your ${(((s as any).car ?? 0)?.['name'] ?? '')}</a> is in the parking lot.`);
   } else {
     if (qspFunc(s, 'car_funcs', 'is_here', 'city_house_res_misc', 'fronty')) {
       // TODO-QSP: dynamic text: <a href="exec: minut += 10 & gs ''carF'', ''start''">Your <<$car[''name'']>></a>...
-      scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.10; return s; }); window.__gameStore.getState().doGoto(/u0027carF/u0027, /u0027start/u0027); return false;">Your ${((s as any).car ?? 0)?.['name'] ?? ''}</a> is in your driveway.`);
+      scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.10; return s; }); window.__gameStore.getState().doGoto(/u0027carF/u0027, /u0027start/u0027); return false;">Your ${(((s as any).car ?? 0)?.['name'] ?? '')}</a> is in your driveway.`);
     }
   }
   if (qspFunc(s, 'homes_properties', 'is_property_of_status', 'owned', 'city_house')) {

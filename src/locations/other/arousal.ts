@@ -241,7 +241,7 @@ function enterVaginalFinger(s: GameState, scene: SceneBuilder): void {
   ((s as any).stim = (s as any).stim ?? {})['act'] = 80;
   if (((s as any).pain_coeff ?? 0) > 0) {
     qspCall(s, 'pain', '', (Math.floor(Math.random() * (((s as any).pain_coeff ?? 0) - 0 + 1)) + (0)), 'vaginal', 'stretch');
-    ((s as any).pain = (s as any).pain ?? {})['vaginal'] = Math.min(((s as any).pain ?? 0)?.['vaginal'], ((s as any).arousalVars ?? 0)?.['max_sex_pain']);
+    ((s as any).pain = (s as any).pain ?? {})['vaginal'] = Math.min((((s as any).pain ?? 0)?.['vaginal']), (((s as any).arousalVars ?? 0)?.['max_sex_pain']));
   }
   if (((s as any).arousalVars ?? 0)?.['no_stats'] === 0) {
     if (((s as any).arousalVars ?? 0)?.['unaware'] === 1) {
@@ -270,7 +270,7 @@ function enterVaginalFinger(s: GameState, scene: SceneBuilder): void {
 function enterVaginalFist(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'sweat', 'add', (Math.floor(Math.random() * (1 - 0 + 1)) + (0)));
   ((s as any).stim = (s as any).stim ?? {})['act'] = 70;
-  ((s as any).stim = (s as any).stim ?? {})['act'] = qspFunc(s, 'traits', 'sizequeen', 'calc_effect', ((s as any).stim ?? 0)?.['act'], 30, ((s as any).pcs_vag ?? 0));
+  ((s as any).stim = (s as any).stim ?? {})['act'] = qspFunc(s, 'traits', 'sizequeen', 'calc_effect', (((s as any).stim ?? 0)?.['act']), 30, ((s as any).pcs_vag ?? 0));
   ((s as any).orgasm_flag = (s as any).orgasm_flag ?? {})['vaginal'] = 1;
   ((s as any).tatiana = (s as any).tatiana ?? {})['virginity_restore'] = 0;
   if (((s as any).virgin_stats ?? 0)?.['lost_cause'] === '') {
@@ -278,12 +278,12 @@ function enterVaginalFist(s: GameState, scene: SceneBuilder): void {
     ((s as any).virgin_stats = (s as any).virgin_stats ?? {})['lost_cause'] = 'fisting';
   }
   if ((!((s as any).arousal_overcall ?? 0))) {
-    qspCall(s, 'arousal_funcs', 'get_hole_pain', ((s as any).pcs_vag ?? 0), ((s as any).vaginal_slip ?? 0), ((s as any).pain ?? 0)?.['vaginal'], (Math.floor(Math.random() * 6) + 15), (Math.floor(Math.random() * 6) + 35), (Math.floor(Math.random() * 3) + 0), Math.max(1, ((s as any).stim ?? 0)?.['time']));
+    qspCall(s, 'arousal_funcs', 'get_hole_pain', ((s as any).pcs_vag ?? 0), ((s as any).vaginal_slip ?? 0), (((s as any).pain ?? 0)?.['vaginal']), (Math.floor(Math.random() * 6) + 15), (Math.floor(Math.random() * 6) + 35), (Math.floor(Math.random() * 3) + 0), Math.max(1, (((s as any).stim ?? 0)?.['time'])));
     ((s as any).stim = (s as any).stim ?? {})['act'] = ((s as any).stim['act'] ?? 0) - ((((s as any).arousalVars ?? {})?.['girth_diff'] ?? 0) + (((s as any).arousalVars ?? {})?.['length_diff'] ?? 0));
     qspCall(s, 'pain', '', (((s as any).arousalVars ?? {})?.['girth_diff'] ?? 0) + (((s as any).arousalVars ?? {})?.['length_diff'] ?? 0), 'vaginal', 'stretch');
-    ((s as any).pain = (s as any).pain ?? {})['vaginal'] = Math.min(((s as any).pain ?? 0)?.['vaginal'], ((s as any).arousalVars ?? 0)?.['max_sex_pain']);
-    qspCall(s, 'pain', '', (Math.floor(Math.random() * (((s as any).arousalVars ?? 0)?.['girth_diff'] - 0 + 1)) + (0)), 'labia', 'stretch');
-    ((s as any).pain = (s as any).pain ?? {})['labia'] = Math.min(((s as any).pain ?? 0)?.['labia'], ((s as any).arousalVars ?? 0)?.['max_sex_pain']);
+    ((s as any).pain = (s as any).pain ?? {})['vaginal'] = Math.min((((s as any).pain ?? 0)?.['vaginal']), (((s as any).arousalVars ?? 0)?.['max_sex_pain']));
+    qspCall(s, 'pain', '', (Math.floor(Math.random() * ((((s as any).arousalVars ?? 0)?.['girth_diff']) - 0 + 1)) + (0)), 'labia', 'stretch');
+    ((s as any).pain = (s as any).pain ?? {})['labia'] = Math.min((((s as any).pain ?? 0)?.['labia']), (((s as any).arousalVars ?? 0)?.['max_sex_pain']));
     if (((s as any).arousalVars ?? 0)?.['girth_diff'] + ((s as any).arousalVars ?? 0)?.['length_diff'] > 2 * ((s as any).vgape ?? 0) + ((s as any).pcs_vag ?? 0) / 2) {
       (s as any).vgape = ((s as any).vgape ?? 0) + (1);
     }
@@ -316,7 +316,7 @@ function enterVaginalFist(s: GameState, scene: SceneBuilder): void {
 function enterSelfFisting(s: GameState, scene: SceneBuilder): void {
   ((s as any).orgasm_flag = (s as any).orgasm_flag ?? {})['vaginal'] = 1;
   ((s as any).stim = (s as any).stim ?? {})['act'] = 70;
-  ((s as any).stim = (s as any).stim ?? {})['act'] = qspFunc(s, 'traits', 'sizequeen', 'calc_effect', ((s as any).stim ?? 0)?.['act'], 30, ((s as any).pcs_vag ?? 0));
+  ((s as any).stim = (s as any).stim ?? {})['act'] = qspFunc(s, 'traits', 'sizequeen', 'calc_effect', (((s as any).stim ?? 0)?.['act']), 30, ((s as any).pcs_vag ?? 0));
   ((s as any).tatiana = (s as any).tatiana ?? {})['virginity_restore'] = 0;
   if (((s as any).virgin_stats ?? 0)?.['lost_cause'] === '') {
     qspCall(s, 'arousal_funcs', 'set_virginity_stats', 'fisting');
@@ -326,12 +326,12 @@ function enterSelfFisting(s: GameState, scene: SceneBuilder): void {
     (s as any).vaginal_slip = Math.max(1, ((s as any).pcs_hydra ?? 0) / 20);
   }
   if ((!((s as any).arousal_overcall ?? 0))) {
-    qspCall(s, 'arousal_funcs', 'get_hole_pain', ((s as any).pcs_vag ?? 0), ((s as any).vaginal_slip ?? 0), ((s as any).pain ?? 0)?.['vaginal'], (Math.floor(Math.random() * 6) + 10), (Math.floor(Math.random() * 6) + 30), 2, Math.max(1, ((s as any).stim ?? 0)?.['time']));
+    qspCall(s, 'arousal_funcs', 'get_hole_pain', ((s as any).pcs_vag ?? 0), ((s as any).vaginal_slip ?? 0), (((s as any).pain ?? 0)?.['vaginal']), (Math.floor(Math.random() * 6) + 10), (Math.floor(Math.random() * 6) + 30), 2, Math.max(1, (((s as any).stim ?? 0)?.['time'])));
     ((s as any).stim = (s as any).stim ?? {})['act'] = ((s as any).stim['act'] ?? 0) - ((((s as any).arousalVars ?? {})?.['girth_diff'] ?? 0) + (((s as any).arousalVars ?? {})?.['length_diff'] ?? 0));
     qspCall(s, 'pain', '', (((s as any).arousalVars ?? {})?.['girth_diff'] ?? 0) + (((s as any).arousalVars ?? {})?.['length_diff'] ?? 0), 'vaginal', 'stretch');
-    ((s as any).pain = (s as any).pain ?? {})['vaginal'] = Math.min(((s as any).pain ?? 0)?.['vaginal'], ((s as any).arousalVars ?? 0)?.['max_sex_pain']);
-    qspCall(s, 'pain', '', (Math.floor(Math.random() * (((s as any).arousalVars ?? 0)?.['girth_diff'] - 0 + 1)) + (0)), 'labia', 'stretch');
-    ((s as any).pain = (s as any).pain ?? {})['labia'] = Math.min(((s as any).pain ?? 0)?.['labia'], ((s as any).arousalVars ?? 0)?.['max_sex_pain']);
+    ((s as any).pain = (s as any).pain ?? {})['vaginal'] = Math.min((((s as any).pain ?? 0)?.['vaginal']), (((s as any).arousalVars ?? 0)?.['max_sex_pain']));
+    qspCall(s, 'pain', '', (Math.floor(Math.random() * ((((s as any).arousalVars ?? 0)?.['girth_diff']) - 0 + 1)) + (0)), 'labia', 'stretch');
+    ((s as any).pain = (s as any).pain ?? {})['labia'] = Math.min((((s as any).pain ?? 0)?.['labia']), (((s as any).arousalVars ?? 0)?.['max_sex_pain']));
     if (((s as any).arousalVars ?? 0)?.['girth_diff'] + ((s as any).arousalVars ?? 0)?.['length_diff'] > 2 * ((s as any).vgape ?? 0) + ((s as any).pcs_vag ?? 0) / 2) {
       (s as any).vgape = ((s as any).vgape ?? 0) + (1);
     }
@@ -416,7 +416,7 @@ function enterVaginal(s: GameState, scene: SceneBuilder): void {
   if (((s as any).virgin_stats ?? 0)?.['lost_cause'] === '') {
     qspCall(s, 'arousal_funcs', 'set_virginity_stats');
     ((s as any).virgin_stats = (s as any).virgin_stats ?? {})['lost_cause'] = 'vaginal';
-    ((s as any).virgin_stats = (s as any).virgin_stats ?? {})['unaware'] = ((s as any).arousalVars ?? 0)?.['unaware'];
+    ((s as any).virgin_stats = (s as any).virgin_stats ?? {})['unaware'] = (((s as any).arousalVars ?? 0)?.['unaware']);
   }
   qspCall(s, 'arousal_funcs', 'in_vag');
   scene.build();
@@ -429,7 +429,7 @@ function enterTrib(s: GameState, scene: SceneBuilder): void {
   ((s as any).arousalVars = (s as any).arousalVars ?? {})['lesbian'] = 1;
   if (((s as any).pain_coeff ?? 0) > 0) {
     qspCall(s, 'pain', '', (Math.floor(Math.random() * (((s as any).pain_coeff ?? 0) - 0 + 1)) + (0)), 'clitoris', 'twist');
-    ((s as any).pain = (s as any).pain ?? {})['clitoris'] = Math.min(((s as any).pain ?? 0)?.['clitoris'], ((s as any).arousalVars ?? 0)?.['max_sex_pain']);
+    ((s as any).pain = (s as any).pain ?? {})['clitoris'] = Math.min((((s as any).pain ?? 0)?.['clitoris']), (((s as any).arousalVars ?? 0)?.['max_sex_pain']));
   }
   if (((s as any).arousalVars ?? 0)?.['no_stats'] === 0) {
     if (((s as any).arousalVars ?? 0)?.['unaware'] === 1) {
@@ -575,7 +575,7 @@ function enterAnalFinger(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).pain_coeff ?? 0) > 0) {
     qspCall(s, 'pain', '', (Math.floor(Math.random() * (((s as any).pain_coeff ?? 0) - 0 + 1)) + (0)), 'asshole', 'stretch');
-    ((s as any).pain = (s as any).pain ?? {})['asshole'] = Math.min(((s as any).pain ?? 0)?.['asshole'], ((s as any).arousalVars ?? 0)?.['max_sex_pain']);
+    ((s as any).pain = (s as any).pain ?? {})['asshole'] = Math.min((((s as any).pain ?? 0)?.['asshole']), (((s as any).arousalVars ?? 0)?.['max_sex_pain']));
   }
   if (((s as any).arousalVars ?? 0)?.['no_stats'] === 0) {
     if (((s as any).arousalVars ?? 0)?.['unaware'] === 1) {
@@ -607,12 +607,12 @@ function enterAnalFist(s: GameState, scene: SceneBuilder): void {
   if (((s as any).trait_vars ?? 0)?.['buttslut'] >= 1) {
     ((s as any).stim = (s as any).stim ?? {})['act'] = ((s as any).stim['act'] ?? 0) + (20 * (((s as any).trait_vars ?? {})?.['buttslut'] ?? 0));
   }
-  ((s as any).stim = (s as any).stim ?? {})['act'] = qspFunc(s, 'traits', 'sizequeen', 'calc_effect', ((s as any).stim ?? 0)?.['act'], 30, ((s as any).pcs_ass ?? 0));
+  ((s as any).stim = (s as any).stim ?? {})['act'] = qspFunc(s, 'traits', 'sizequeen', 'calc_effect', (((s as any).stim ?? 0)?.['act']), 30, ((s as any).pcs_ass ?? 0));
   if ((!((s as any).arousal_overcall ?? 0))) {
-    qspCall(s, 'arousal_funcs', 'get_hole_pain', ((s as any).pcs_ass ?? 0), ((s as any).anal_slip ?? 0), ((s as any).pain ?? 0)?.['asshole'], (Math.floor(Math.random() * 6) + 15), (Math.floor(Math.random() * 6) + 35), (Math.floor(Math.random() * 3) + 0), Math.max(1, ((s as any).stim ?? 0)?.['time']));
+    qspCall(s, 'arousal_funcs', 'get_hole_pain', ((s as any).pcs_ass ?? 0), ((s as any).anal_slip ?? 0), (((s as any).pain ?? 0)?.['asshole']), (Math.floor(Math.random() * 6) + 15), (Math.floor(Math.random() * 6) + 35), (Math.floor(Math.random() * 3) + 0), Math.max(1, (((s as any).stim ?? 0)?.['time'])));
     ((s as any).stim = (s as any).stim ?? {})['act'] = ((s as any).stim['act'] ?? 0) - ((((s as any).arousalVars ?? {})?.['girth_diff'] ?? 0) + (((s as any).arousalVars ?? {})?.['length_diff'] ?? 0));
     qspCall(s, 'pain', '', (((s as any).arousalVars ?? {})?.['girth_diff'] ?? 0) + (((s as any).arousalVars ?? {})?.['length_diff'] ?? 0), 'asshole', 'stretch');
-    ((s as any).pain = (s as any).pain ?? {})['asshole'] = Math.min(((s as any).pain ?? 0)?.['asshole'], ((s as any).arousalVars ?? 0)?.['max_sex_pain']);
+    ((s as any).pain = (s as any).pain ?? {})['asshole'] = Math.min((((s as any).pain ?? 0)?.['asshole']), (((s as any).arousalVars ?? 0)?.['max_sex_pain']));
     if (((s as any).arousalVars ?? 0)?.['girth_diff'] + ((s as any).arousalVars ?? 0)?.['length_diff'] > ((s as any).agape ?? 0) * 2 + ((s as any).pcs_ass ?? 0) / 2) {
       (s as any).agape = ((s as any).agape ?? 0) + (1);
     }
@@ -648,14 +648,14 @@ function enterSelfFistingAnal(s: GameState, scene: SceneBuilder): void {
   }
   ((s as any).stim = (s as any).stim ?? {})['act'] = 30;
   if (((s as any).trait_vars ?? 0)?.['buttslut'] >= 1) {
-    ((s as any).stim = (s as any).stim ?? {})['act'] = ((s as any).stim['act'] ?? 0) + (20 * Math.min(((s as any).trait_vars ?? 0)?.['buttslut'], 2));
+    ((s as any).stim = (s as any).stim ?? {})['act'] = ((s as any).stim['act'] ?? 0) + (20 * Math.min((((s as any).trait_vars ?? 0)?.['buttslut']), 2));
   }
-  ((s as any).stim = (s as any).stim ?? {})['act'] = qspFunc(s, 'traits', 'sizequeen', 'calc_effect', ((s as any).stim ?? 0)?.['act'], 30, ((s as any).pcs_ass ?? 0));
+  ((s as any).stim = (s as any).stim ?? {})['act'] = qspFunc(s, 'traits', 'sizequeen', 'calc_effect', (((s as any).stim ?? 0)?.['act']), 30, ((s as any).pcs_ass ?? 0));
   if ((!((s as any).arousal_overcall ?? 0))) {
-    qspCall(s, 'arousal_funcs', 'get_hole_pain', ((s as any).pcs_ass ?? 0), ((s as any).anal_slip ?? 0), ((s as any).pain ?? 0)?.['asshole'], (Math.floor(Math.random() * 6) + 10), (Math.floor(Math.random() * 6) + 30), 2, Math.max(1, ((s as any).stim ?? 0)?.['time']));
+    qspCall(s, 'arousal_funcs', 'get_hole_pain', ((s as any).pcs_ass ?? 0), ((s as any).anal_slip ?? 0), (((s as any).pain ?? 0)?.['asshole']), (Math.floor(Math.random() * 6) + 10), (Math.floor(Math.random() * 6) + 30), 2, Math.max(1, (((s as any).stim ?? 0)?.['time'])));
     ((s as any).stim = (s as any).stim ?? {})['act'] = ((s as any).stim['act'] ?? 0) - ((((s as any).arousalVars ?? {})?.['girth_diff'] ?? 0) + (((s as any).arousalVars ?? {})?.['length_diff'] ?? 0));
     qspCall(s, 'pain', '', (((s as any).arousalVars ?? {})?.['girth_diff'] ?? 0) + (((s as any).arousalVars ?? {})?.['length_diff'] ?? 0), 'asshole', 'stretch');
-    ((s as any).pain = (s as any).pain ?? {})['asshole'] = Math.min(((s as any).pain ?? 0)?.['asshole'], ((s as any).arousalVars ?? 0)?.['max_sex_pain']);
+    ((s as any).pain = (s as any).pain ?? {})['asshole'] = Math.min((((s as any).pain ?? 0)?.['asshole']), (((s as any).arousalVars ?? 0)?.['max_sex_pain']));
     if (((s as any).arousalVars ?? 0)?.['girth_diff'] + ((s as any).arousalVars ?? 0)?.['length_diff'] > 2 * ((s as any).agape ?? 0) + ((s as any).pcs_ass ?? 0) / 2) {
       (s as any).agape = ((s as any).agape ?? 0) + (1);
     }
@@ -678,7 +678,7 @@ function enterRimming(s: GameState, scene: SceneBuilder): void {
   ((s as any).orgasm_flag = (s as any).orgasm_flag ?? {})['anal'] = 1;
   ((s as any).stim = (s as any).stim ?? {})['act'] = 30;
   if (((s as any).trait_vars ?? 0)?.['buttslut'] === 1) {
-    ((s as any).stim = (s as any).stim ?? {})['mag'] = ((s as any).stim['mag'] ?? 0) + (2 * Math.min(((s as any).trait_vars ?? 0)?.['buttslut'], 2));
+    ((s as any).stim = (s as any).stim ?? {})['mag'] = ((s as any).stim['mag'] ?? 0) + (2 * Math.min((((s as any).trait_vars ?? 0)?.['buttslut']), 2));
     ((s as any).stim = (s as any).stim ?? {})['act'] = ((s as any).stim['act'] ?? 0) + (20 * (((s as any).trait_vars ?? {})?.['buttslut'] ?? 0));
   }
   if (((s as any).arousalVars ?? 0)?.['no_stats'] === 0) {
@@ -804,7 +804,7 @@ function enterAnalVibe(s: GameState, scene: SceneBuilder): void {
   ((s as any).stim = (s as any).stim ?? {})['mag'] = ((s as any).stim['mag'] ?? 0) + (1);
   ((s as any).stim = (s as any).stim ?? {})['act'] = 60;
   if (((s as any).trait_vars ?? 0)?.['buttslut'] === 1) {
-    ((s as any).stim = (s as any).stim ?? {})['mag'] = ((s as any).stim['mag'] ?? 0) + (Math.min(((s as any).trait_vars ?? 0)?.['buttslut'], 2));
+    ((s as any).stim = (s as any).stim ?? {})['mag'] = ((s as any).stim['mag'] ?? 0) + (Math.min((((s as any).trait_vars ?? 0)?.['buttslut']), 2));
     ((s as any).stim = (s as any).stim ?? {})['act'] = ((s as any).stim['act'] ?? 0) + (10 + 20 * ((((s as any).trait_vars ?? {})?.['buttslut'] ?? 0) - 1));
   }
   if (((s as any).arousalVars ?? 0)?.['no_stats'] === 0) {
@@ -1856,11 +1856,11 @@ function enterPeeGive(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  ((s as any).stim = (s as any).stim ?? {})['mag'] = Math.max(1, Math.min(((s as any).stim ?? 0)?.['mag'], 9));
+  ((s as any).stim = (s as any).stim ?? {})['mag'] = Math.max(1, Math.min((((s as any).stim ?? 0)?.['mag']), 9));
   if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('no_arousal') : -1) > 1) {
     ((s as any).stim = (s as any).stim ?? {})['total'] = 0;
   } else {
-    ((s as any).stim = (s as any).stim ?? {})['total'] = qspFunc(s, 'arousal_funcs', 'calc_stimtotal', ((s as any).stim ?? 0)?.['mag'], ((s as any).stim ?? 0)?.['act'], ((s as any).stim ?? 0)?.['kink'], ((s as any).stim ?? 0)?.['pref'], ((s as any).stim ?? 0)?.['time']);
+    ((s as any).stim = (s as any).stim ?? {})['total'] = qspFunc(s, 'arousal_funcs', 'calc_stimtotal', (((s as any).stim ?? 0)?.['mag']), (((s as any).stim ?? 0)?.['act']), (((s as any).stim ?? 0)?.['kink']), (((s as any).stim ?? 0)?.['pref']), (((s as any).stim ?? 0)?.['time']));
   }
   qspCall(s, 'pain', 'calc');
   if (((s as any).pain ?? 0)?.['total'] > 0) {
@@ -1892,23 +1892,23 @@ function enterPeeGive(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).arousalVars ?? 0)?.['sizequeen_turnoff'] === 1) {
     ((s as any).stim = (s as any).stim ?? {})['total'] = 0;
-    qspCall(s, 'mood', 'lower', Math.max(((s as any).stim ?? 0)?.['time'], 10));
+    qspCall(s, 'mood', 'lower', Math.max((((s as any).stim ?? 0)?.['time']), 10));
   }
-  ((s as any).stim = (s as any).stim ?? {})['event'] = ((s as any).stim['event'] ?? 0) + (((s as any).stim ?? 0)?.['total']);
-  (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (((s as any).stim ?? 0)?.['total']);
+  ((s as any).stim = (s as any).stim ?? {})['event'] = ((s as any).stim['event'] ?? 0) + ((((s as any).stim ?? 0)?.['total']));
+  (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + ((((s as any).stim ?? 0)?.['total']));
   if (((s as any).pcs_horny ?? 0) < 0) {
     (s as any).pcs_horny = 0;
   }
   if (((s as any).arousalVars ?? 0)?.['pcs_vag_backup'] !== 0  &&  ((s as any).arousalVars ?? 0)?.['pcs_vag_backup'] !== ((s as any).pcs_vag ?? 0)) {
-    (s as any).pcs_vag = ((s as any).arousalVars ?? 0)?.['pcs_vag_backup'];
+    (s as any).pcs_vag = (((s as any).arousalVars ?? 0)?.['pcs_vag_backup']);
     ((s as any).arousalVars = (s as any).arousalVars ?? {})['pcs_vag_backup'] = 0;
   }
   if (((s as any).arousalVars ?? 0)?.['pcs_ass_backup'] !== 0  &&  ((s as any).arousalVars ?? 0)?.['pcs_ass_backup'] !== ((s as any).pcs_ass ?? 0)) {
-    (s as any).pcs_ass = ((s as any).arousalVars ?? 0)?.['pcs_ass_backup'];
+    (s as any).pcs_ass = (((s as any).arousalVars ?? 0)?.['pcs_ass_backup']);
     ((s as any).arousalVars = (s as any).arousalVars ?? {})['pcs_ass_backup'] = 0;
   }
   if (((s as any).arousalVars ?? 0)?.['pcs_throat_backup'] !== 0  &&  ((s as any).arousalVars ?? 0)?.['pcs_throat_backup'] !== ((s as any).pcs_throat ?? 0)) {
-    (s as any).pcs_throat = ((s as any).arousalVars ?? 0)?.['pcs_throat_backup'];
+    (s as any).pcs_throat = (((s as any).arousalVars ?? 0)?.['pcs_throat_backup']);
     ((s as any).arousalVars = (s as any).arousalVars ?? {})['pcs_throat_backup'] = 0;
   }
   if (Object.keys((s as any).orgasm_flag ?? {}).length > 0) {

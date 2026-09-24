@@ -30,7 +30,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.img(`images/shared/sex/blowjob/bj${(Math.floor(Math.random() * 13) + 29)}.jpg`);
     scene.text('Kneeling before him, you pull Alexei\'s pants all the way down then take a firm grasp of his erect cock.');
     // TODO-QSP: dynamic text: Leaning in closer, you give it a quick kiss with your <<$pc_desc[''lips'']>> lip...
-    scene.text(`Leaning in closer, you give it a quick kiss with your ${((st as any).pc_desc ?? 0)?.['lips'] ?? ''} lips before guiding it into your mouth.`);
+    scene.text(`Leaning in closer, you give it a quick kiss with your ${(((st as any).pc_desc ?? 0)?.['lips'] ?? '')} lips before guiding it into your mouth.`);
     scene.text('As you suck on his hard dick, he relaxes in his chair and lets you take care of his needs.');
     scene.text('Suddenly, he removes his penis from your mouth and pulls you up on your feet. He leads you to his bedroom.');
     qspCall(st, 'arousal', 'bj', 10, ((st as any).npcID ?? 0), 'sub', 'group');

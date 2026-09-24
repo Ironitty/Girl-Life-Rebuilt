@@ -62,7 +62,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
               } else {
                 ((s as any).locat = (s as any).locat ?? {})['A23_save1'] = 1;
               }
-              ((s as any).locat = (s as any).locat ?? {})['A23'] = ((s as any).locat ?? 0)?.['A23_save1'];
+              ((s as any).locat = (s as any).locat ?? {})['A23'] = (((s as any).locat ?? 0)?.['A23_save1']);
             } else {
               if (((s as any).hour ?? 0) === 12) {
                 ((s as any).locat = (s as any).locat ?? {})['A23'] = 7;
@@ -185,7 +185,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                 } else {
                   ((s as any).locat = (s as any).locat ?? {})['A23_save1'] = 1;
                 }
-                ((s as any).locat = (s as any).locat ?? {})['A23'] = ((s as any).locat ?? 0)?.['A23_save1'];
+                ((s as any).locat = (s as any).locat ?? {})['A23'] = (((s as any).locat ?? 0)?.['A23_save1']);
               } else {
                 if (((s as any).hour ?? 0) >= 12  &&  ((s as any).hour ?? 0) < 15) {
                   if (((s as any).temper ?? 0) >= 20  &&  ((s as any).sunWeather ?? 0) === 1) {
@@ -282,7 +282,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                   } else {
                     ((s as any).locat = (s as any).locat ?? {})['A23_save1'] = 1;
                   }
-                  ((s as any).locat = (s as any).locat ?? {})['A23'] = ((s as any).locat ?? 0)?.['A23_save1'];
+                  ((s as any).locat = (s as any).locat ?? {})['A23'] = (((s as any).locat ?? 0)?.['A23_save1']);
                 } else {
                   if (((s as any).hour ?? 0) >= 12  &&  ((s as any).hour ?? 0) < 15) {
                     if (((s as any).temper ?? 0) >= 20  &&  ((s as any).sunWeather ?? 0) === 1  &&  ((s as any).month ?? 0) >= 5  &&  ((s as any).month ?? 0) <= 9  &&  ((s as any).kanikuli ?? 0) !== 0) {

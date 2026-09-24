@@ -253,7 +253,7 @@ function enterDimkaDance(s: GameState, scene: SceneBuilder): void {
         { label: 'No', handler: (st: GameState) => {
     qspCall(st, 'willpower', 'pay', 'self');
     qspCall(st, 'stat', '');
-    scene.text(`<center><b>${((st as any).npc_firstname ?? 0)?.['A1'] ?? ''} ${((st as any).npc_lastname ?? 0)?.['A1'] ?? ''}</b></center>`);
+    scene.text(`<center><b>${(((st as any).npc_firstname ?? 0)?.['A1'] ?? '')} ${(((st as any).npc_lastname ?? 0)?.['A1'] ?? '')}</b></center>`);
     scene.img('images/characters/shared/headshots_main/big1.jpg');
     scene.text('You give him an apologetic look. "Sorry, but no."');
     // TODO-QSP: dynamic text: To your surprise, Dimka grins. "Don''t be shy, <<$pcs_nickname>>! Of course you ...
@@ -261,7 +261,7 @@ function enterDimkaDance(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Maybe you do have a little crush on him', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
-    scene.text(`<center><b>${((st as any).npc_firstname ?? 0)?.['A1'] ?? ''} ${((st as any).npc_lastname ?? 0)?.['A1'] ?? ''}</b></center>`);
+    scene.text(`<center><b>${(((st as any).npc_firstname ?? 0)?.['A1'] ?? '')} ${(((st as any).npc_lastname ?? 0)?.['A1'] ?? '')}</b></center>`);
     scene.img('images/characters/shared/headshots_main/big1.jpg');
     scene.text('"I don\'t know," you reply, feeling a little embarrassed. "Maybe?"');
     scene.text('He smiles. "I knew it, but I can\'t be seen going out with a nun. I want a girl who knows how to enjoy herself. You know how to have fun, right?"');
@@ -279,7 +279,7 @@ function enterDimkaDance(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Yes', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
-    scene.text(`<center><b>${((st as any).npc_firstname ?? 0)?.['A1'] ?? ''} ${((st as any).npc_lastname ?? 0)?.['A1'] ?? ''}</b></center>`);
+    scene.text(`<center><b>${(((st as any).npc_firstname ?? 0)?.['A1'] ?? '')} ${(((st as any).npc_lastname ?? 0)?.['A1'] ?? '')}</b></center>`);
     scene.img('images/characters/shared/headshots_main/big1.jpg');
     scene.text('You\'re a little surprised by his directness, but nod.');
     scene.text('He smiles. ""I knew it, but I can\'t be seen going out with a nun. I want a girl who knows how to enjoy herself. You know how to have fun, right?"');
@@ -1668,7 +1668,7 @@ function enterKatja(s: GameState, scene: SceneBuilder): void {
 
 function enterKatjaKiss(s: GameState, scene: SceneBuilder): void {
   if (((s as any).katjaQW ?? 0)?.['horny'] < 30) {
-    scene.text(`<center><b>${((s as any).npc_firstname ?? 0)?.['A14'] ?? ''} ${((s as any).npc_lastname ?? 0)?.['A14'] ?? ''}</b></center>`);
+    scene.text(`<center><b>${(((s as any).npc_firstname ?? 0)?.['A14'] ?? '')} ${(((s as any).npc_lastname ?? 0)?.['A14'] ?? '')}</b></center>`);
     scene.img('images/characters/shared/headshots_main/big14.jpg');
     scene.text('You lean in to kiss Katja. She pulls away from you as you try and kiss her, looking around to see if anyone seen you. "Not here and not now."');
     scene.actions([
@@ -1693,7 +1693,7 @@ function enterKatjaDanceAsk(s: GameState, scene: SceneBuilder): void {
       { label: 'Let her put make-up on you', handler: (st: GameState) => {
     (st as any).pcs_hairbsh = 1;
     qspCall(st, 'stat', '');
-    scene.text(`<center><b>${((st as any).npc_firstname ?? 0)?.['A14'] ?? ''} ${((st as any).npc_lastname ?? 0)?.['A14'] ?? ''}</b></center>`);
+    scene.text(`<center><b>${(((st as any).npc_firstname ?? 0)?.['A14'] ?? '')} ${(((st as any).npc_lastname ?? 0)?.['A14'] ?? '')}</b></center>`);
     scene.img('images/characters/shared/headshots_main/big14.jpg');
     scene.text('Katja happily grins as she quickly straightens your hair. "What do you want? A light touch-up, some normal make-up or shall I just shovel it on?"');
     scene.actions([

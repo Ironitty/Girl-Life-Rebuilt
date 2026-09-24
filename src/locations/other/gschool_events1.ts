@@ -417,7 +417,7 @@ function enterRandGopnic1(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'npcStat', 'A9', 'b');
     scene.img('images/locations/pavlovsk/school/building/sex/rand_scoolboy6.mp4');
     // TODO-QSP: dynamic text: You kneel down and wrap your <<$pc_desc[''lips'']>> lips around Vitek''s hard co...
-    scene.text(`You kneel down and wrap your ${((st as any).pc_desc ?? 0)?.['lips'] ?? ''} lips around Vitek's hard cock and start to suck. Not forgetting the others, you spend some time alternating between all the cocks, stroking the ones you're not sucking with your hands.`);
+    scene.text(`You kneel down and wrap your ${(((st as any).pc_desc ?? 0)?.['lips'] ?? '')} lips around Vitek's hard cock and start to suck. Not forgetting the others, you spend some time alternating between all the cocks, stroking the ones you're not sucking with your hands.`);
     scene.text('You eventually feel his cum hit your throat and Vitek moans. "That\'s right bitch! Swallow it all like a good little slut."');
     scene.text('Vitek seems satisfied and tucks his cock back in his pants before swapping places with Vasily at the door, who comes over and pulls his cock out, ready to get his turn.');
     scene.text('You immediately switch to Dan\'s cock and receive another mouthful from him. You carefully swallow his load as well, which earns you a nod of approval and a pat on the head. "Good little whore."');
@@ -653,7 +653,7 @@ function enterRandGopnic1(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'npcStat', 'A9', 'b');
     scene.img('images/locations/pavlovsk/school/building/sex/rand_scoolboy6.mp4');
     // TODO-QSP: dynamic text: You kneel down and wrap your <<$pc_desc[''lips'']>> lips around Vitek''s hard co...
-    scene.text(`You kneel down and wrap your ${((st as any).pc_desc ?? 0)?.['lips'] ?? ''} lips around Vitek's hard cock and start to suck. Not forgetting the others, you spend some time alternating between all the cocks, stroking the ones you're not sucking with your hands.`);
+    scene.text(`You kneel down and wrap your ${(((st as any).pc_desc ?? 0)?.['lips'] ?? '')} lips around Vitek's hard cock and start to suck. Not forgetting the others, you spend some time alternating between all the cocks, stroking the ones you're not sucking with your hands.`);
     scene.text('You eventually feel his cum hit your throat and Vitek moans. "That\'s right bitch! Swallow it all like a good little slut."');
     scene.text('Vitek seems satisfied and tucks his cock back in his pants before swapping places with Vasily at the door, who comes over and pulls his cock out, ready to get his turn.');
     scene.text('You immediately switch to Dan\'s cock and receive another mouthful from him. You carefully swallow his load as well, which earns you a nod of approval and a pat on the head. "Good little whore."');
@@ -778,7 +778,7 @@ function enterRandGopnic1(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'npcStat', 'A9', 'b');
     scene.img('images/locations/pavlovsk/school/building/sex/rand_scoolboy6.mp4');
     // TODO-QSP: dynamic text: You kneel down and wrap your <<$pc_desc[''lips'']>> lips around Vitek''s hard co...
-    scene.text(`You kneel down and wrap your ${((st as any).pc_desc ?? 0)?.['lips'] ?? ''} lips around Vitek's hard cock and start to suck. Not forgetting the others, you spend some time alternating between all the cocks, stroking the ones you're not sucking with your hands.`);
+    scene.text(`You kneel down and wrap your ${(((st as any).pc_desc ?? 0)?.['lips'] ?? '')} lips around Vitek's hard cock and start to suck. Not forgetting the others, you spend some time alternating between all the cocks, stroking the ones you're not sucking with your hands.`);
     scene.text('You eventually feel his cum hit your throat and Vitek moans. "That\'s right bitch! Swallow it all like a good little slut."');
     scene.text('Vitek seems satisfied and tucks his cock back in his pants before swapping places with Vasily at the door, who comes over and pulls his cock out, ready to get his turn.');
     scene.text('You immediately switch to Dan\'s cock and receive another mouthful from him. You carefully swallow his load as well, which earns you a nod of approval and a pat on the head. "Good little whore."');
@@ -853,7 +853,7 @@ function enterRandGopnic2(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'npcStat', 'A157', 'b');
     scene.img('images/locations/pavlovsk/school/building/sex/rand_scoolboy6.mp4');
     // TODO-QSP: dynamic text: You kneel down and wrap your <<$pc_desc[''lips'']>> lips around Arkadi''s hard c...
-    scene.text(`You kneel down and wrap your ${((st as any).pc_desc ?? 0)?.['lips'] ?? ''} lips around Arkadi's hard cock and start to suck. Not forgetting the others, you spend some time alternating between all the cocks, stroking the ones you're not sucking with your hands.`);
+    scene.text(`You kneel down and wrap your ${(((st as any).pc_desc ?? 0)?.['lips'] ?? '')} lips around Arkadi's hard cock and start to suck. Not forgetting the others, you spend some time alternating between all the cocks, stroking the ones you're not sucking with your hands.`);
     scene.text('You eventually feel his cum hit your throat and Arkadi moans. "That\'s right bitch! Swallow it all like a good little slut."');
     scene.text('Arkadi seems satisfied and tucks his cock back in his pants before swapping places with Niko at the door, who comes over and pulls his cock out, ready to get his turn.');
     scene.text('You immediately switch to Roman\'s cock and receive another mouthful from him. You carefully swallow his load as well, which earns you a nod of approval and a pat on the head. "Good little whore."');
@@ -1093,7 +1093,7 @@ function enterRandGopnic2(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'npcStat', 'A157', 'b');
     scene.img('images/locations/pavlovsk/school/building/sex/rand_scoolboy6.mp4');
     // TODO-QSP: dynamic text: You kneel down and wrap your <<$pc_desc[''lips'']>> lips around Arkadi''s hard c...
-    scene.text(`You kneel down and wrap your ${((st as any).pc_desc ?? 0)?.['lips'] ?? ''} lips around Arkadi's hard cock and start to suck. Not forgetting the others, you spend some time alternating between all the cocks, stroking the ones you're not sucking with your hands.`);
+    scene.text(`You kneel down and wrap your ${(((st as any).pc_desc ?? 0)?.['lips'] ?? '')} lips around Arkadi's hard cock and start to suck. Not forgetting the others, you spend some time alternating between all the cocks, stroking the ones you're not sucking with your hands.`);
     scene.text('You eventually feel his cum hit your throat and Arkadi moans. "That\'s right bitch! Swallow it all like a good little slut."');
     scene.text('Arkadi seems satisfied and tucks his cock back in his pants before swapping places with Niko at the door, who comes over and pulls his cock out, ready to get his turn.');
     scene.text('You immediately switch to Roman\'s cock and receive another mouthful from him. You carefully swallow his load as well, which earns you a nod of approval and a pat on the head. "Good little whore."');
@@ -1218,7 +1218,7 @@ function enterRandGopnic2(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'npcStat', 'A157', 'b');
     scene.img('images/locations/pavlovsk/school/building/sex/rand_scoolboy6.mp4');
     // TODO-QSP: dynamic text: You kneel down and wrap your <<$pc_desc[''lips'']>> lips around Arkadi''s hard c...
-    scene.text(`You kneel down and wrap your ${((st as any).pc_desc ?? 0)?.['lips'] ?? ''} lips around Arkadi's hard cock and start to suck. Not forgetting the others, you spend some time alternating between all the cocks, stroking the ones you're not sucking with your hands.`);
+    scene.text(`You kneel down and wrap your ${(((st as any).pc_desc ?? 0)?.['lips'] ?? '')} lips around Arkadi's hard cock and start to suck. Not forgetting the others, you spend some time alternating between all the cocks, stroking the ones you're not sucking with your hands.`);
     scene.text('You eventually feel his cum hit your throat and Arkadi moans. "That\'s right bitch! Swallow it all like a good little slut."');
     scene.text('Arkadi seems satisfied and tucks his cock back in his pants before swapping places with Niko at the door, who comes over and pulls his cock out, ready to get his turn.');
     scene.text('You immediately switch to Roman\'s cock and receive another mouthful from him. You carefully swallow his load as well, which earns you a nod of approval and a pat on the head. "Good little whore."');
@@ -1272,7 +1272,7 @@ function enterToiletBj1(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'npcStat', 'A9', 'b');
     scene.img('images/locations/pavlovsk/school/building/sex/rand_scoolboy6.mp4');
     // TODO-QSP: dynamic text: You know there''s only one way they will let you go, so you dutifully kneel down...
-    scene.text(`You know there's only one way they will let you go, so you dutifully kneel down. Vitek takes his cock out of his pants as Dan stands to your right and takes his cock out too. You wrap your ${((st as any).pc_desc ?? 0)?.['lips'] ?? ''} lips around Vitek's hard cock and start to suck. Not forgetting the others, you spend some time alternating between all the cocks, stroking the ones you're not sucking with your hands.`);
+    scene.text(`You know there's only one way they will let you go, so you dutifully kneel down. Vitek takes his cock out of his pants as Dan stands to your right and takes his cock out too. You wrap your ${(((st as any).pc_desc ?? 0)?.['lips'] ?? '')} lips around Vitek's hard cock and start to suck. Not forgetting the others, you spend some time alternating between all the cocks, stroking the ones you're not sucking with your hands.`);
     scene.text('You eventually feel a jet of sperm hit your throat. "Swallow it all, whore. If you miss a drop, you\'re licking it up off the ground," Vitek says in a menacing voice, so you diligently swallow his sperm, doing your best to lick it all up from his dick and your lips.');
     scene.text('Vitek seems satisfied and tucks his cock back in his pants before swapping place with Vasily at the door, who comes over and pulls his cock out, ready to get his turn.');
     scene.text('You immediately switch to Dan\'s cock and receive another mouthful from him. You carefully swallow his load as well, which earns you a nod of approval and a pat on the head. "Good little whore."');
@@ -1317,7 +1317,7 @@ function enterToiletBj2(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'npcStat', 'A157', 'b');
     scene.img('images/locations/pavlovsk/school/building/sex/rand_scoolboy6.mp4');
     // TODO-QSP: dynamic text: You know there''s only one way they will let you go, so you dutifully kneel down...
-    scene.text(`You know there's only one way they will let you go, so you dutifully kneel down. Arkadi takes his cock out of his pants as Roman stands to your right and takes his cock out too. You wrap your ${((st as any).pc_desc ?? 0)?.['lips'] ?? ''} lips around Arkadi's hard cock and start to suck. Not forgetting the others, you spend some time alternating between all the cocks, stroking the ones you're not sucking with your hands.`);
+    scene.text(`You know there's only one way they will let you go, so you dutifully kneel down. Arkadi takes his cock out of his pants as Roman stands to your right and takes his cock out too. You wrap your ${(((st as any).pc_desc ?? 0)?.['lips'] ?? '')} lips around Arkadi's hard cock and start to suck. Not forgetting the others, you spend some time alternating between all the cocks, stroking the ones you're not sucking with your hands.`);
     scene.text('You eventually feel a jet of sperm hit your throat and Arkadi seems satisfied as he tucks his cock back in his pants before swapping places with Niko at the door, who comes over and pulls his cock out, ready to get his turn.');
     scene.text('You immediately switch to Roman\'s cock and receive another mouthful. "Swallow it all, whore. If you miss a drop, you\'re licking it up off the ground!" he says menacingly, so you diligently swallow his cum, doing your best to lick it all up from his dick and your lips. He moves aside and you finish off Niko.');
     scene.text('As you get up off your knees, you hear Roman laugh. "Do you understand your place in life now? That place is right here, on your knees, whenever we say so. Got that?"');

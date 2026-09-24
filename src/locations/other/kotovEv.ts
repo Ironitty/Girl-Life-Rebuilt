@@ -6,7 +6,7 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
-  scene.text(`<center><b>${((s as any).npc_firstname ?? 0)?.['A9'] ?? ''} ${((s as any).npc_lastname ?? 0)?.['A9'] ?? ''}</b></center>`);
+  scene.text(`<center><b>${(((s as any).npc_firstname ?? 0)?.['A9'] ?? '')} ${(((s as any).npc_lastname ?? 0)?.['A9'] ?? '')}</b></center>`);
   scene.img('images/characters/shared/headshots_main/big9.jpg');
   if (((s as any).kotovLoveQW ?? 0) > 0  &&  ((s as any).fame ?? 0)?.['pav_slut'] > 200  &&  ((s as any).kotovsluttalk ?? 0) !== ((s as any).daystart ?? 0)) {
     // TODO-QSP: dynamic text: Vitek scowls at you and tells you: "<<$pcs_nickname>>, what is this shit I hear?...
@@ -72,7 +72,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: '"What are you doing here?"', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
-    scene.text(`<center><b>${((st as any).npc_firstname ?? 0)?.['A9'] ?? ''} ${((st as any).npc_lastname ?? 0)?.['A9'] ?? ''}</b></center>`);
+    scene.text(`<center><b>${(((st as any).npc_firstname ?? 0)?.['A9'] ?? '')} ${(((st as any).npc_lastname ?? 0)?.['A9'] ?? '')}</b></center>`);
     scene.img('images/characters/shared/headshots_main/big9.jpg');
     scene.text('"Oh you know… just going to my training," you tell him. "I never expected you in this place, what are you doing here?"');
     scene.text('Vitek snickers: "Are you serious? I\'ve been boxing since I was 8! Last year I got second place in the regional championships!"');
@@ -80,7 +80,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       { label: '"But you drink and smoke!"', handler: (st: GameState) => {
     (st as any).kotovKnowSport = 1;
     qspCall(st, 'stat', '');
-    scene.text(`<center><b>${((st as any).npc_firstname ?? 0)?.['A9'] ?? ''} ${((st as any).npc_lastname ?? 0)?.['A9'] ?? ''}</b></center>`);
+    scene.text(`<center><b>${(((st as any).npc_firstname ?? 0)?.['A9'] ?? '')} ${(((st as any).npc_lastname ?? 0)?.['A9'] ?? '')}</b></center>`);
     scene.img('images/characters/shared/headshots_main/big9.jpg');
     scene.text('He smirks when he sees the surprised look on your face. You ask: "But… you smoke and drink so much! How do you combine that with sports at all?"');
     scene.text('He laughs and tells you: "Ha! Coach says I have talent. My physical build is great for a boxer, and no one hits harder than me! I can tolerate alcohol just fine, I think I have that from my dad. Sure, he died of liver cirrhosis eventually, but up until then he was great!"');

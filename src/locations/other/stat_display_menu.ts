@@ -46,10 +46,10 @@ function enterRenderCellOpt(s: GameState, scene: SceneBuilder): void {
       ((s as any).rco = (s as any).rco ?? {})['entry_lbl'] = qspUntranslated(s, "temp_values[rco['i']]", { location: "stat_display_menu" });
     }
     if (((s as any).rco ?? 0)?.['entry_val'] === 'custom') {
-      ((s as any).rco = (s as any).rco ?? {})['custom_idx'] = ((s as any).rco ?? 0)?.['i'];
+      ((s as any).rco = (s as any).rco ?? {})['custom_idx'] = (((s as any).rco ?? 0)?.['i']);
     } else {
       if (((s as any).rco ?? 0)?.['entry_val'] === ((s as any).rco ?? 0)?.['cur_str']  ||  parseFloat(((s as any).rco ?? 0)?.['entry_val']) === ((s as any).rco ?? 0)?.['cur_num']) {
-        ((s as any).rco = (s as any).rco ?? {})['idx'] = ((s as any).rco ?? 0)?.['i'];
+        ((s as any).rco = (s as any).rco ?? {})['idx'] = (((s as any).rco ?? 0)?.['i']);
       }
     }
     ((s as any).rco = (s as any).rco ?? {})['i'] = ((s as any).rco['i'] ?? 0) + (1);
@@ -57,7 +57,7 @@ function enterRenderCellOpt(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).rco ?? 0)?.['idx'] === -1) {
     if (((s as any).rco ?? 0)?.['custom_idx'] >= 0) {
-      ((s as any).rco = (s as any).rco ?? {})['idx'] = ((s as any).rco ?? 0)?.['custom_idx'];
+      ((s as any).rco = (s as any).rco ?? {})['idx'] = (((s as any).rco ?? 0)?.['custom_idx']);
     } else {
       ((s as any).rco = (s as any).rco ?? {})['idx'] = 0;
     }
@@ -71,9 +71,9 @@ function enterRenderCellOpt(s: GameState, scene: SceneBuilder): void {
     ((s as any).rco = (s as any).rco ?? {})['entry_lbl'] = qspUntranslated(s, "temp_values[rco['idx']]", { location: "stat_display_menu" });
   }
   if (((s as any).rco ?? 0)?.['entry_val'] === 'custom') {
-    ((s as any).rco = (s as any).rco ?? {})['label'] = 'Custom: ' + ((s as any).rco ?? 0)?.['cur_str'];
+    ((s as any).rco = (s as any).rco ?? {})['label'] = 'Custom: ' + (((s as any).rco ?? 0)?.['cur_str']);
   } else {
-    ((s as any).rco = (s as any).rco ?? {})['label'] = ((s as any).rco ?? 0)?.['entry_lbl'];
+    ((s as any).rco = (s as any).rco ?? {})['label'] = (((s as any).rco ?? 0)?.['entry_lbl']);
   }
   ((s as any).rco = (s as any).rco ?? {})['action_left'] = ((((s as any).temp_actions_left ?? 0)[((s as any).rco ?? 0)?.['idx']]  !== '') ? (qspUntranslated(s, "temp_actions_left[rco['idx']]", { location: "stat_display_menu" })) : ((((s as any).temp_actions_left ?? 0)?.[0] ?? 0)));
   ((s as any).rco = (s as any).rco ?? {})['action_right'] = ((((s as any).temp_actions_right ?? 0)[((s as any).rco ?? 0)?.['idx']] !== '') ? (qspUntranslated(s, "temp_actions_right[rco['idx']]", { location: "stat_display_menu" })) : ((((s as any).temp_actions_right ?? 0)?.[0] ?? 0)));
@@ -85,10 +85,10 @@ function enterRenderCellOpt(s: GameState, scene: SceneBuilder): void {
     ((s as any).rco = (s as any).rco ?? {})['pipe'] = ((String(qspUntranslated(s, "temp_values[rco['idx_next']]", { location: "stat_display_menu" })).indexOf(String('|'))) + 1);
     ((s as any).rco = (s as any).rco ?? {})['next_val'] = ((((s as any).rco ?? 0)?.['pipe'] > 0) ? ((String(qspUntranslated(s, "temp_values[rco['idx_next']]", { location: "stat_display_menu" })).slice((1)-1, ((1)-1)+((((s as any).rco ?? {})?.['pipe'] ?? 0) - 1)))) : (qspUntranslated(s, "temp_values[rco['idx_next']]", { location: "stat_display_menu" })));
     if (((s as any).rco ?? 0)?.['action_left'] === '') {
-      ((s as any).rco = (s as any).rco ?? {})['action_left'] = ((parseFloat(((s as any).rco ?? 0)?.['prev_val']) !== 0  ||  ((s as any).rco ?? 0)?.['prev_val'] === '0') ? (((s as any).locArgs?.[2] ?? 0) + ' = ' + ((s as any).rco ?? 0)?.['prev_val']) : (((s as any).locArgs?.[2] ?? 0) + ' = \'' + ((s as any).rco ?? 0)?.['prev_val'] + '\''));
+      ((s as any).rco = (s as any).rco ?? {})['action_left'] = ((parseFloat(((s as any).rco ?? 0)?.['prev_val']) !== 0  ||  ((s as any).rco ?? 0)?.['prev_val'] === '0') ? (((s as any).locArgs?.[2] ?? 0) + ' = ' + (((s as any).rco ?? 0)?.['prev_val'])) : (((s as any).locArgs?.[2] ?? 0) + ' = \'' + (((s as any).rco ?? 0)?.['prev_val']) + '\''));
     }
     if (((s as any).rco ?? 0)?.['action_right'] === '') {
-      ((s as any).rco = (s as any).rco ?? {})['action_right'] = ((parseFloat(((s as any).rco ?? 0)?.['next_val']) !== 0  ||  ((s as any).rco ?? 0)?.['next_val'] === '0') ? (((s as any).locArgs?.[2] ?? 0) + ' = ' + ((s as any).rco ?? 0)?.['next_val']) : (((s as any).locArgs?.[2] ?? 0) + ' = \'' + ((s as any).rco ?? 0)?.['next_val'] + '\''));
+      ((s as any).rco = (s as any).rco ?? {})['action_right'] = ((parseFloat(((s as any).rco ?? 0)?.['next_val']) !== 0  ||  ((s as any).rco ?? 0)?.['next_val'] === '0') ? (((s as any).locArgs?.[2] ?? 0) + ' = ' + (((s as any).rco ?? 0)?.['next_val'])) : (((s as any).locArgs?.[2] ?? 0) + ' = \'' + (((s as any).rco ?? 0)?.['next_val']) + '\''));
     }
   }
   (s as any).result = '<table width="100%" cellpadding="0" cellspacing="0" border="0">';
@@ -123,10 +123,10 @@ function enterRenderCellNum(s: GameState, scene: SceneBuilder): void {
   ((s as any).rcn = (s as any).rcn ?? {})['def'] = ((s as any).locArgs?.[3] ?? 0);
   ((s as any).rcn = (s as any).rcn ?? {})['min'] = ((s as any).locArgs?.[4] ?? 0);
   ((s as any).rcn = (s as any).rcn ?? {})['max'] = ((s as any).locArgs?.[5] ?? 0);
-  ((s as any).rcn = (s as any).rcn ?? {})['act_left'] = ((s as any).locArgs?.[2] ?? 0) + ' = max(' + String(((s as any).rcn ?? 0)?.['min']) + ', ' + ((s as any).locArgs?.[2] ?? 0) + ' - 1)';
-  ((s as any).rcn = (s as any).rcn ?? {})['act_right'] = ((s as any).locArgs?.[2] ?? 0) + ' = min(' + String(((s as any).rcn ?? 0)?.['max']) + ', ' + ((s as any).locArgs?.[2] ?? 0) + ' + 1)';
-  ((s as any).rcn = (s as any).rcn ?? {})['act_input'] = '$rcn_inp = input(\'' + ((s as any).locArgs?.[1] ?? 0) + ' [default: ' + String(((s as any).rcn ?? 0)?.['def']) + ', Min: ' + String(((s as any).rcn ?? 0)?.['min']) + ', Max: ' + String(((s as any).rcn ?? 0)?.['max']) + ']\')';
-  ((s as any).rcn = (s as any).rcn ?? {})['act_input'] = ((s as any).rcn['act_input'] ?? 0) + (' & ' + ((s as any).locArgs?.[2] ?? 0) + ' = iif($rcn_inp = \' or val($rcn_inp) = 0 and $rcn_inp <> \'0\', ' + String(((s as any).rcn ?? 0)?.['def']) + ', min(' + String(((s as any).rcn ?? 0)?.['max']) + ', max(' + String(((s as any).rcn ?? 0)?.['min']) + ', val($rcn_inp))))');
+  ((s as any).rcn = (s as any).rcn ?? {})['act_left'] = ((s as any).locArgs?.[2] ?? 0) + ' = max(' + String((((s as any).rcn ?? 0)?.['min'])) + ', ' + ((s as any).locArgs?.[2] ?? 0) + ' - 1)';
+  ((s as any).rcn = (s as any).rcn ?? {})['act_right'] = ((s as any).locArgs?.[2] ?? 0) + ' = min(' + String((((s as any).rcn ?? 0)?.['max'])) + ', ' + ((s as any).locArgs?.[2] ?? 0) + ' + 1)';
+  ((s as any).rcn = (s as any).rcn ?? {})['act_input'] = '$rcn_inp = input(\'' + ((s as any).locArgs?.[1] ?? 0) + ' [default: ' + String((((s as any).rcn ?? 0)?.['def'])) + ', Min: ' + String((((s as any).rcn ?? 0)?.['min'])) + ', Max: ' + String((((s as any).rcn ?? 0)?.['max'])) + ']\')';
+  ((s as any).rcn = (s as any).rcn ?? {})['act_input'] = ((s as any).rcn['act_input'] ?? 0) + (' & ' + ((s as any).locArgs?.[2] ?? 0) + ' = iif($rcn_inp = \' or val($rcn_inp) = 0 and $rcn_inp <> \'0\', ' + String((((s as any).rcn ?? 0)?.['def'])) + ', min(' + String((((s as any).rcn ?? 0)?.['max'])) + ', max(' + String((((s as any).rcn ?? 0)?.['min'])) + ', val($rcn_inp))))');
   ((s as any).rcn = (s as any).rcn ?? {})['act_input'] = ((s as any).rcn['act_input'] ?? 0) + (' & killvar \'rcn_inp\'');
   (s as any).result = '<table width="100%" cellpadding="0" cellspacing="0" border="0">';
   // TODO-QSP: $result +=    '<tr>'
@@ -160,14 +160,14 @@ function enterRenderCellNum(s: GameState, scene: SceneBuilder): void {
 function enterSectionTable(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_st_key = qspUntranslated(s, "stat_order[ARGS[1]]", { location: "stat_display_menu" });
   (s as any).temp_st_icon_color = ((((s as any).theme ?? 0)?.['is_dark'] === 1) ? ('w') : ('b'));
-  (s as any).temp_st_icon_border = 'display:inline-block; padding:3px; line-height:0; border:1px solid ' + qspFunc(s, 'shortgs', 'rgb_to_hex', ((s as any).theme ?? 0)?.['fcolor']) + '; border-radius:6px;';
+  (s as any).temp_st_icon_border = 'display:inline-block; padding:3px; line-height:0; border:1px solid ' + qspFunc(s, 'shortgs', 'rgb_to_hex', (((s as any).theme ?? 0)?.['fcolor'])) + '; border-radius:6px;';
   ((s as any).temp_st_icon = (s as any).temp_st_icon ?? {})['raise'] = 'images/system/ui/angle_up_' + ((s as any).temp_st_icon_color ?? 0) + '.png';
   ((s as any).temp_st_icon = (s as any).temp_st_icon ?? {})['lower'] = 'images/system/ui/angle_down_' + ((s as any).temp_st_icon_color ?? 0) + '.png';
   ((s as any).temp_st_icon = (s as any).temp_st_icon ?? {})['hide'] = 'images/system/ui/' + ((((s as any).stat_hide ?? 0)?.[String((s as any).temp_st_key ?? 0)] === 1) ? ('hide_') : ('show_')) + ((s as any).temp_st_icon_color ?? 0) + '.png';
   ((s as any).temp_st_icon = (s as any).temp_st_icon ?? {})['expand'] = 'images/system/ui/' + ((((s as any).stat_collapse ?? 0)?.[String((s as any).temp_st_key ?? 0)] === 0) ? ('expand_') : ('collapse_')) + ((s as any).temp_st_icon_color ?? 0) + '.png';
   (s as any).temp_st_align_val = (((s as any).stat_cfg ?? 0)?.['align_' + ((s as any).temp_st_key ?? 0)] ?? 0);
   if ((!((s as any).temp_st_align_val ?? 0))) {
-    (s as any).temp_st_align_eff = ((s as any).stat_cfg ?? 0)?.['global_align'];
+    (s as any).temp_st_align_eff = (((s as any).stat_cfg ?? 0)?.['global_align']);
   } else {
     (s as any).temp_st_align_eff = ((s as any).temp_st_align_val ?? 0) - 1;
   }
@@ -187,8 +187,8 @@ function enterSectionTable(s: GameState, scene: SceneBuilder): void {
   ((s as any).temp_st_title = (s as any).temp_st_title ?? {})['hide'] = ((((s as any).stat_hide ?? 0)?.[String((s as any).temp_st_key ?? 0)] === 1) ? ('Show Section') : ('Hide Section'));
   ((s as any).temp_st_title = (s as any).temp_st_title ?? {})['expand'] = ((((s as any).stat_collapse ?? 0)?.[String((s as any).temp_st_key ?? 0)] === 0) ? ('Collapse Options') : ('Expand Options'));
   ((s as any).temp_st_td = (s as any).temp_st_td ?? {})['icon'] = '<td align="center" width="1%" style="text-align:center; padding:3px;">';
-  ((s as any).temp_st_td = (s as any).temp_st_td ?? {})['spacer'] = '<td align="center" width="1%" style="text-align:center; padding:3px;"><span style="display:inline-block; padding:2px; line-height:0; border:1px solid transparent; border-radius:6px;"><img height="32" src="' + ((s as any).temp_st_icon ?? 0)?.['raise'] + '" style="visibility:hidden"></span></td>';
-  ((s as any).temp_st_td = (s as any).temp_st_td ?? {})['cell'] = '<td align="center" valign="middle" bgcolor="' + ((s as any).theme_hex ?? 0)?.['table_bg_alt'] + '" style="border:1px solid ' + ((s as any).theme_hex ?? 0)?.['goth'] + '; background-color: ' + ((s as any).theme_hex ?? 0)?.['table_bg_alt'] + '; padding:3px; text-align:center; vertical-align:middle;">';
+  ((s as any).temp_st_td = (s as any).temp_st_td ?? {})['spacer'] = '<td align="center" width="1%" style="text-align:center; padding:3px;"><span style="display:inline-block; padding:2px; line-height:0; border:1px solid transparent; border-radius:6px;"><img height="32" src="' + (((s as any).temp_st_icon ?? 0)?.['raise']) + '" style="visibility:hidden"></span></td>';
+  ((s as any).temp_st_td = (s as any).temp_st_td ?? {})['cell'] = '<td align="center" valign="middle" bgcolor="' + (((s as any).theme_hex ?? 0)?.['table_bg_alt']) + '" style="border:1px solid ' + (((s as any).theme_hex ?? 0)?.['goth']) + '; background-color: ' + (((s as any).theme_hex ?? 0)?.['table_bg_alt']) + '; padding:3px; text-align:center; vertical-align:middle;">';
   // TODO-QSP: $result +=  '<table width="80%" cellspacing="6" bgcolor="<<$theme_hex[''table_bg'']>>" style="border...
   // TODO-QSP: $result +=  '<colgroup>'
   // TODO-QSP: $result +=    '<col width="32%">'
@@ -585,10 +585,10 @@ function enterRelationsOptions(s: GameState, scene: SceneBuilder): void {
 
 function enterReorderFlat(s: GameState, scene: SceneBuilder): void {
   ((s as any).ro = (s as any).ro ?? {})['c'] = ((((s as any).theme ?? 0)?.['is_dark'] === 1) ? ('w') : ('b'));
-  ((s as any).ro = (s as any).ro ?? {})['up'] = 'images/system/ui/angle_up_' + ((s as any).ro ?? 0)?.['c'] + '.png';
-  ((s as any).ro = (s as any).ro ?? {})['down'] = 'images/system/ui/angle_down_' + ((s as any).ro ?? 0)?.['c'] + '.png';
-  ((s as any).ro = (s as any).ro ?? {})['bdr'] = '1px solid ' + ((s as any).theme_hex ?? 0)?.['goth'] + '';
-  ((s as any).ro = (s as any).ro ?? {})['ibdr'] = 'display:inline-block; padding:4px; line-height:0; border:1px solid ' + qspFunc(s, 'shortgs', 'rgb_to_hex', ((s as any).theme ?? 0)?.['fcolor']) + '; border-radius:4px;';
+  ((s as any).ro = (s as any).ro ?? {})['up'] = 'images/system/ui/angle_up_' + (((s as any).ro ?? 0)?.['c']) + '.png';
+  ((s as any).ro = (s as any).ro ?? {})['down'] = 'images/system/ui/angle_down_' + (((s as any).ro ?? 0)?.['c']) + '.png';
+  ((s as any).ro = (s as any).ro ?? {})['bdr'] = '1px solid ' + (((s as any).theme_hex ?? 0)?.['goth']) + '';
+  ((s as any).ro = (s as any).ro ?? {})['ibdr'] = 'display:inline-block; padding:4px; line-height:0; border:1px solid ' + qspFunc(s, 'shortgs', 'rgb_to_hex', (((s as any).theme ?? 0)?.['fcolor'])) + '; border-radius:4px;';
   ((s as any).ro = (s as any).ro ?? {})['html'] = '<tr><td align="center" colspan="3" style="padding:6px 10px 2px 10px; text-align:center;"><b>Order &amp; Visibility</b>&nbsp; <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: killvar /u0027$' + ((s as any).locArgs?.[1] ?? 0) + '/u0027 */ return s; }); window.__gameStore.getState().doGoto(/u0027$menu_settings/u0027, /u0027' + ((s as any).locArgs?.[3] ?? 0) + '/u0027); return false;">[Reset]</a></td></tr>';
   ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<tr><td colspan="3" style="padding:2px 10px 8px 10px;"><center><table width="90%" cellspacing="3" cellpadding="0" border="0" style="width:90%;">');
   ((s as any).ro = (s as any).ro ?? {})['i'] = 0;
@@ -601,19 +601,19 @@ function enterReorderFlat(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: jump '_rfl_next'
   }
   ((s as any).ro = (s as any).ro ?? {})['hidden'] = 0;
-  ((s as any).ro = (s as any).ro ?? {})['hide_icon'] = 'images/system/ui/' + ((((s as any).ro ?? 0)?.['hidden'] === 1) ? ('hide_') : ('show_')) + ((s as any).ro ?? 0)?.['c'] + '.png';
-  ((s as any).ro = (s as any).ro ?? {})['label'] = ((((s as any).ro ?? 0)?.['hidden'] === 1) ? ('<font color="gray">' + (((s as any).sd_dn ?? 0)?.[((s as any).ro ?? 0)?.['key']] ?? 0) + '</font>') : ((((s as any).sd_dn ?? 0)?.[((s as any).ro ?? 0)?.['key']] ?? 0)));
-  ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<tr><td bgcolor="' + ((s as any).theme_hex ?? 0)?.['table_bg_alt'] + '" style="border:' + ((s as any).ro ?? 0)?.['bdr'] + '; background-color:' + ((s as any).theme_hex ?? 0)?.['table_bg_alt'] + '; padding:5px 6px;">');
+  ((s as any).ro = (s as any).ro ?? {})['hide_icon'] = 'images/system/ui/' + ((((s as any).ro ?? 0)?.['hidden'] === 1) ? ('hide_') : ('show_')) + (((s as any).ro ?? 0)?.['c']) + '.png';
+  ((s as any).ro = (s as any).ro ?? {})['label'] = ((((s as any).ro ?? 0)?.['hidden'] === 1) ? ('<font color="gray">' + (((s as any).sd_dn ?? 0)?.[(((s as any).ro ?? 0)?.['key'])] ?? 0) + '</font>') : ((((s as any).sd_dn ?? 0)?.[(((s as any).ro ?? 0)?.['key'])] ?? 0)));
+  ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<tr><td bgcolor="' + (((s as any).theme_hex ?? 0)?.['table_bg_alt']) + '" style="border:' + (((s as any).ro ?? 0)?.['bdr']) + '; background-color:' + (((s as any).theme_hex ?? 0)?.['table_bg_alt']) + '; padding:5px 6px;">');
   ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<table width="100%" cellpadding="0" cellspacing="0" border="0"><tr style="vertical-align:middle;">');
   ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<td width="1%" nowrap style="padding:0 3px 0 0;">');
-  ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<a style="' + ((s as any).ro ?? 0)?.['ibdr'] + '" href="exec: gs \'$menu_settings\', \'swap\', \'' + ((s as any).locArgs?.[1] ?? 0) + '\', ' + ((s as any).ro ?? 0)?.['i'] + ', \'up\' & gt \'$menu_settings\', \'' + ((s as any).locArgs?.[3] ?? 0) + '\'"><img height="18" src="' + ((s as any).ro ?? 0)?.['up'] + '"></a>');
-  ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<a style="' + ((s as any).ro ?? 0)?.['ibdr'] + '" href="exec: gs \'$menu_settings\', \'swap\', \'' + ((s as any).locArgs?.[1] ?? 0) + '\', ' + ((s as any).ro ?? 0)?.['i'] + ', \'down\' & gt \'$menu_settings\', \'' + ((s as any).locArgs?.[3] ?? 0) + '\'"><img height="18" src="' + ((s as any).ro ?? 0)?.['down'] + '"></a>');
+  ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<a style="' + (((s as any).ro ?? 0)?.['ibdr']) + '" href="exec: gs \'$menu_settings\', \'swap\', \'' + ((s as any).locArgs?.[1] ?? 0) + '\', ' + (((s as any).ro ?? 0)?.['i']) + ', \'up\' & gt \'$menu_settings\', \'' + ((s as any).locArgs?.[3] ?? 0) + '\'"><img height="18" src="' + (((s as any).ro ?? 0)?.['up']) + '"></a>');
+  ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<a style="' + (((s as any).ro ?? 0)?.['ibdr']) + '" href="exec: gs \'$menu_settings\', \'swap\', \'' + ((s as any).locArgs?.[1] ?? 0) + '\', ' + (((s as any).ro ?? 0)?.['i']) + ', \'down\' & gt \'$menu_settings\', \'' + ((s as any).locArgs?.[3] ?? 0) + '\'"><img height="18" src="' + (((s as any).ro ?? 0)?.['down']) + '"></a>');
   ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('</td>');
   ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<td align="center" style="text-align:center; padding:0 4px;">');
   ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: ' + ((s as any).locArgs?.[2] ?? 0) + '[/u0027' + qspUntranslated(s, "ro[\\u0027key\\u0027]", { location: "stat_display_menu" }) + '/u0027] = 1 - ' + ((s as any).locArgs?.[2] ?? 0) + '[/u0027' + qspUntranslated(s, "ro[\\u0027key\\u0027]", { location: "stat_display_menu" }) + '/u0027] */ return s; }); window.__gameStore.getState().doGoto(/u0027$menu_settings/u0027, /u0027' + ((s as any).locArgs?.[3] ?? 0) + '/u0027); return false;">\' + $ro[\'label\'] + \'</a>');
   ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('</td>');
   ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<td width="1%" nowrap style="padding:0 0 0 3px;">');
-  ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<a style="' + ((s as any).ro ?? 0)?.['ibdr'] + '" href="exec: ' + ((s as any).locArgs?.[2] ?? 0) + '[\'' + ((s as any).ro ?? 0)?.['key'] + '\'] = 1 - ' + ((s as any).locArgs?.[2] ?? 0) + '[\'' + ((s as any).ro ?? 0)?.['key'] + '\'] & gt \'$menu_settings\', \'' + ((s as any).locArgs?.[3] ?? 0) + '\'"><img height="18" src="' + ((s as any).ro ?? 0)?.['hide_icon'] + '"></a>');
+  ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<a style="' + (((s as any).ro ?? 0)?.['ibdr']) + '" href="exec: ' + ((s as any).locArgs?.[2] ?? 0) + '[\'' + (((s as any).ro ?? 0)?.['key']) + '\'] = 1 - ' + ((s as any).locArgs?.[2] ?? 0) + '[\'' + (((s as any).ro ?? 0)?.['key']) + '\'] & gt \'$menu_settings\', \'' + ((s as any).locArgs?.[3] ?? 0) + '\'"><img height="18" src="' + (((s as any).ro ?? 0)?.['hide_icon']) + '"></a>');
   ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('</td>');
   ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('</tr></table></td></tr>');
   // TODO-QSP: :_rfl_next
@@ -622,7 +622,7 @@ function enterReorderFlat(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: jump '_rfl_loop'
   }
   ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('</table></center></td></tr>');
-  (s as any).result = ((s as any).ro ?? 0)?.['html'];
+  (s as any).result = (((s as any).ro ?? 0)?.['html']);
   return;
   // TODO-QSP: end
   scene.build();
@@ -630,56 +630,56 @@ function enterReorderFlat(s: GameState, scene: SceneBuilder): void {
 
 function enterReorderNestedSkills(s: GameState, scene: SceneBuilder): void {
   ((s as any).ro = (s as any).ro ?? {})['c'] = ((((s as any).theme ?? 0)?.['is_dark'] === 1) ? ('w') : ('b'));
-  ((s as any).ro = (s as any).ro ?? {})['up'] = 'images/system/ui/angle_up_' + ((s as any).ro ?? 0)?.['c'] + '.png';
-  ((s as any).ro = (s as any).ro ?? {})['down'] = 'images/system/ui/angle_down_' + ((s as any).ro ?? 0)?.['c'] + '.png';
-  ((s as any).ro = (s as any).ro ?? {})['bdr'] = '1px solid ' + ((s as any).theme_hex ?? 0)?.['goth'] + '';
-  ((s as any).ro = (s as any).ro ?? {})['ibdr'] = 'display:inline-block; padding:4px; line-height:0; border:1px solid ' + qspFunc(s, 'shortgs', 'rgb_to_hex', ((s as any).theme ?? 0)?.['fcolor']) + '; border-radius:4px;';
+  ((s as any).ro = (s as any).ro ?? {})['up'] = 'images/system/ui/angle_up_' + (((s as any).ro ?? 0)?.['c']) + '.png';
+  ((s as any).ro = (s as any).ro ?? {})['down'] = 'images/system/ui/angle_down_' + (((s as any).ro ?? 0)?.['c']) + '.png';
+  ((s as any).ro = (s as any).ro ?? {})['bdr'] = '1px solid ' + (((s as any).theme_hex ?? 0)?.['goth']) + '';
+  ((s as any).ro = (s as any).ro ?? {})['ibdr'] = 'display:inline-block; padding:4px; line-height:0; border:1px solid ' + qspFunc(s, 'shortgs', 'rgb_to_hex', (((s as any).theme ?? 0)?.['fcolor'])) + '; border-radius:4px;';
   ((s as any).ro = (s as any).ro ?? {})['html'] = '<tr><td align="center" colspan="3" style="padding:6px 10px 2px 10px; text-align:center;"><b>Order &amp; Visibility</b>&nbsp; <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027$menu_settings/u0027, /u0027reset_skills/u0027); return false;">[Reset]</a></td></tr>';
   ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<tr><td colspan="3" style="padding:2px 10px 8px 10px;"><center><table width="90%" cellspacing="3" cellpadding="0" border="0" style="width:90%;">');
   ((s as any).ro = (s as any).ro ?? {})['gi'] = 0;
   // TODO-QSP: :_rns_gloop
   ((s as any).ro = (s as any).ro ?? {})['gkey'] = qspUntranslated(s, "skill_group_order[ro['gi']]", { location: "stat_display_menu" });
-  ((s as any).ro = (s as any).ro ?? {})['ghid'] = (((s as any).stat_hide ?? 0)?.[((s as any).ro ?? 0)?.['gkey']] ?? 0);
-  ((s as any).ro = (s as any).ro ?? {})['gexp'] = (((s as any).stat_cfg ?? 0)?.['show_skills_' + ((s as any).ro ?? 0)?.['gkey']] ?? 0);
-  ((s as any).ro = (s as any).ro ?? {})['ghi_ic'] = 'images/system/ui/' + ((((s as any).ro ?? 0)?.['ghid'] === 1) ? ('hide_') : ('show_')) + ((s as any).ro ?? 0)?.['c'] + '.png';
-  ((s as any).ro = (s as any).ro ?? {})['gex_ic'] = 'images/system/ui/' + ((((s as any).ro ?? 0)?.['gexp'] === 1) ? ('expand_') : ('collapse_')) + ((s as any).ro ?? 0)?.['c'] + '.png';
-  ((s as any).ro = (s as any).ro ?? {})['glbl'] = ((((s as any).ro ?? 0)?.['ghid'] === 1) ? ('<font color="gray"><b>' + (((s as any).sd_dn ?? 0)?.[((s as any).ro ?? 0)?.['gkey']] ?? 0) + '</b></font>') : ('<b>' + (((s as any).sd_dn ?? 0)?.[((s as any).ro ?? 0)?.['gkey']] ?? 0) + '</b>'));
-  ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<tr><td bgcolor="' + ((s as any).theme_hex ?? 0)?.['table_bg'] + '" style="border:' + ((s as any).ro ?? 0)?.['bdr'] + '; background-color:' + ((s as any).theme_hex ?? 0)?.['table_bg'] + '; padding:5px 6px;">');
+  ((s as any).ro = (s as any).ro ?? {})['ghid'] = (((s as any).stat_hide ?? 0)?.[(((s as any).ro ?? 0)?.['gkey'])] ?? 0);
+  ((s as any).ro = (s as any).ro ?? {})['gexp'] = (((s as any).stat_cfg ?? 0)?.['show_skills_' + (((s as any).ro ?? 0)?.['gkey'])] ?? 0);
+  ((s as any).ro = (s as any).ro ?? {})['ghi_ic'] = 'images/system/ui/' + ((((s as any).ro ?? 0)?.['ghid'] === 1) ? ('hide_') : ('show_')) + (((s as any).ro ?? 0)?.['c']) + '.png';
+  ((s as any).ro = (s as any).ro ?? {})['gex_ic'] = 'images/system/ui/' + ((((s as any).ro ?? 0)?.['gexp'] === 1) ? ('expand_') : ('collapse_')) + (((s as any).ro ?? 0)?.['c']) + '.png';
+  ((s as any).ro = (s as any).ro ?? {})['glbl'] = ((((s as any).ro ?? 0)?.['ghid'] === 1) ? ('<font color="gray"><b>' + (((s as any).sd_dn ?? 0)?.[(((s as any).ro ?? 0)?.['gkey'])] ?? 0) + '</b></font>') : ('<b>' + (((s as any).sd_dn ?? 0)?.[(((s as any).ro ?? 0)?.['gkey'])] ?? 0) + '</b>'));
+  ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<tr><td bgcolor="' + (((s as any).theme_hex ?? 0)?.['table_bg']) + '" style="border:' + (((s as any).ro ?? 0)?.['bdr']) + '; background-color:' + (((s as any).theme_hex ?? 0)?.['table_bg']) + '; padding:5px 6px;">');
   ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<table width="100%" cellpadding="0" cellspacing="0" border="0"><tr style="vertical-align:middle;">');
   ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<td width="1%" nowrap style="padding:0 3px 0 0;">');
-  ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<a style="' + ((s as any).ro ?? 0)?.['ibdr'] + '" href="exec: gs \'$menu_settings\', \'swap\', \'skill_group_order\', ' + ((s as any).ro ?? 0)?.['gi'] + ', \'up\' & gt \'$menu_settings\', \'status\'"><img height="18" src="' + ((s as any).ro ?? 0)?.['up'] + '"></a>');
-  ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<a style="' + ((s as any).ro ?? 0)?.['ibdr'] + '" href="exec: gs \'$menu_settings\', \'swap\', \'skill_group_order\', ' + ((s as any).ro ?? 0)?.['gi'] + ', \'down\' & gt \'$menu_settings\', \'status\'"><img height="18" src="' + ((s as any).ro ?? 0)?.['down'] + '"></a>');
+  ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<a style="' + (((s as any).ro ?? 0)?.['ibdr']) + '" href="exec: gs \'$menu_settings\', \'swap\', \'skill_group_order\', ' + (((s as any).ro ?? 0)?.['gi']) + ', \'up\' & gt \'$menu_settings\', \'status\'"><img height="18" src="' + (((s as any).ro ?? 0)?.['up']) + '"></a>');
+  ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<a style="' + (((s as any).ro ?? 0)?.['ibdr']) + '" href="exec: gs \'$menu_settings\', \'swap\', \'skill_group_order\', ' + (((s as any).ro ?? 0)?.['gi']) + ', \'down\' & gt \'$menu_settings\', \'status\'"><img height="18" src="' + (((s as any).ro ?? 0)?.['down']) + '"></a>');
   ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('</td>');
   ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<td align="center" style="text-align:center; padding:0 4px;">');
   ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: stat_cfg[/u0027show_skills_' + qspUntranslated(s, "ro[\\u0027gkey\\u0027]", { location: "stat_display_menu" }) + '/u0027] = 1 - stat_cfg[/u0027show_skills_' + qspUntranslated(s, "ro[\\u0027gkey\\u0027]", { location: "stat_display_menu" }) + '/u0027] */ return s; }); window.__gameStore.getState().doGoto(/u0027$menu_settings/u0027, /u0027status/u0027); return false;">\' + $ro[\'glbl\'] + \'</a>');
   ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('</td>');
   ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<td width="1%" nowrap style="padding:0 0 0 3px;">');
-  ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<a style="' + ((s as any).ro ?? 0)?.['ibdr'] + '" href="exec: stat_hide[\'' + ((s as any).ro ?? 0)?.['gkey'] + '\'] = 1 - stat_hide[\'' + ((s as any).ro ?? 0)?.['gkey'] + '\'] & gt \'$menu_settings\', \'status\'"><img height="18" src="' + ((s as any).ro ?? 0)?.['ghi_ic'] + '"></a>');
-  ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<a style="' + ((s as any).ro ?? 0)?.['ibdr'] + '" href="exec: stat_cfg[\'show_skills_' + ((s as any).ro ?? 0)?.['gkey'] + '\'] = 1 - stat_cfg[\'show_skills_' + ((s as any).ro ?? 0)?.['gkey'] + '\'] & gt \'$menu_settings\', \'status\'"><img height="18" src="' + ((s as any).ro ?? 0)?.['gex_ic'] + '"></a>');
+  ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<a style="' + (((s as any).ro ?? 0)?.['ibdr']) + '" href="exec: stat_hide[\'' + (((s as any).ro ?? 0)?.['gkey']) + '\'] = 1 - stat_hide[\'' + (((s as any).ro ?? 0)?.['gkey']) + '\'] & gt \'$menu_settings\', \'status\'"><img height="18" src="' + (((s as any).ro ?? 0)?.['ghi_ic']) + '"></a>');
+  ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<a style="' + (((s as any).ro ?? 0)?.['ibdr']) + '" href="exec: stat_cfg[\'show_skills_' + (((s as any).ro ?? 0)?.['gkey']) + '\'] = 1 - stat_cfg[\'show_skills_' + (((s as any).ro ?? 0)?.['gkey']) + '\'] & gt \'$menu_settings\', \'status\'"><img height="18" src="' + (((s as any).ro ?? 0)?.['gex_ic']) + '"></a>');
   ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('</td>');
   ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('</tr></table>');
   if (((s as any).ro ?? 0)?.['gexp'] === 1) {
     ((s as any).ro = (s as any).ro ?? {})['mi'] = 0;
     ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<table width="100%" cellspacing="3" cellpadding="0" border="0" style="margin-top:4px; padding-left:18px;">');
     // TODO-QSP: :_rns_mloop
-    ((s as any).ro = (s as any).ro ?? {})['mkey'] = (((s as any).skill_grp ?? 0)?.[((s as any).ro ?? 0)?.['gkey'] + '_' + String(((s as any).ro ?? 0)?.['mi'])] ?? 0);
+    ((s as any).ro = (s as any).ro ?? {})['mkey'] = (((s as any).skill_grp ?? 0)?.[(((s as any).ro ?? 0)?.['gkey']) + '_' + String((((s as any).ro ?? 0)?.['mi']))] ?? 0);
     if (((s as any).ro ?? 0)?.['mkey'] === '') {
       // TODO-QSP: jump '_rns_mdone'
     }
-    ((s as any).ro = (s as any).ro ?? {})['mhid'] = (((s as any).stat_hide_skill ?? 0)?.[((s as any).ro ?? 0)?.['mkey']] ?? 0);
-    ((s as any).ro = (s as any).ro ?? {})['mhi_ic'] = 'images/system/ui/' + ((((s as any).ro ?? 0)?.['mhid'] === 1) ? ('hide_') : ('show_')) + ((s as any).ro ?? 0)?.['c'] + '.png';
-    ((s as any).ro = (s as any).ro ?? {})['mlbl'] = ((((s as any).ro ?? 0)?.['mhid'] === 1) ? ('<font color="gray">' + (((s as any).sd_dn ?? 0)?.[((s as any).ro ?? 0)?.['mkey']] ?? 0) + '</font>') : ((((s as any).sd_dn ?? 0)?.[((s as any).ro ?? 0)?.['mkey']] ?? 0)));
-    ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<tr><td bgcolor="' + ((s as any).theme_hex ?? 0)?.['table_bg_alt'] + '" style="border:' + ((s as any).ro ?? 0)?.['bdr'] + '; background-color:' + ((s as any).theme_hex ?? 0)?.['table_bg_alt'] + '; padding:4px 6px;">');
+    ((s as any).ro = (s as any).ro ?? {})['mhid'] = (((s as any).stat_hide_skill ?? 0)?.[(((s as any).ro ?? 0)?.['mkey'])] ?? 0);
+    ((s as any).ro = (s as any).ro ?? {})['mhi_ic'] = 'images/system/ui/' + ((((s as any).ro ?? 0)?.['mhid'] === 1) ? ('hide_') : ('show_')) + (((s as any).ro ?? 0)?.['c']) + '.png';
+    ((s as any).ro = (s as any).ro ?? {})['mlbl'] = ((((s as any).ro ?? 0)?.['mhid'] === 1) ? ('<font color="gray">' + (((s as any).sd_dn ?? 0)?.[(((s as any).ro ?? 0)?.['mkey'])] ?? 0) + '</font>') : ((((s as any).sd_dn ?? 0)?.[(((s as any).ro ?? 0)?.['mkey'])] ?? 0)));
+    ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<tr><td bgcolor="' + (((s as any).theme_hex ?? 0)?.['table_bg_alt']) + '" style="border:' + (((s as any).ro ?? 0)?.['bdr']) + '; background-color:' + (((s as any).theme_hex ?? 0)?.['table_bg_alt']) + '; padding:4px 6px;">');
     ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<table width="100%" cellpadding="0" cellspacing="0" border="0"><tr style="vertical-align:middle;">');
     ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<td width="1%" nowrap style="padding:0 3px 0 0;">');
-    ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<a style="' + ((s as any).ro ?? 0)?.['ibdr'] + '" href="exec: gs \'$menu_settings\', \'swap_grp_member\', \'skill_grp\', \'' + ((s as any).ro ?? 0)?.['gkey'] + '\', ' + ((s as any).ro ?? 0)?.['mi'] + ', \'up\' & gt \'$menu_settings\', \'status\'"><img height="14" src="' + ((s as any).ro ?? 0)?.['up'] + '"></a>');
-    ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<a style="' + ((s as any).ro ?? 0)?.['ibdr'] + '" href="exec: gs \'$menu_settings\', \'swap_grp_member\', \'skill_grp\', \'' + ((s as any).ro ?? 0)?.['gkey'] + '\', ' + ((s as any).ro ?? 0)?.['mi'] + ', \'down\' & gt \'$menu_settings\', \'status\'"><img height="14" src="' + ((s as any).ro ?? 0)?.['down'] + '"></a>');
+    ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<a style="' + (((s as any).ro ?? 0)?.['ibdr']) + '" href="exec: gs \'$menu_settings\', \'swap_grp_member\', \'skill_grp\', \'' + (((s as any).ro ?? 0)?.['gkey']) + '\', ' + (((s as any).ro ?? 0)?.['mi']) + ', \'up\' & gt \'$menu_settings\', \'status\'"><img height="14" src="' + (((s as any).ro ?? 0)?.['up']) + '"></a>');
+    ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<a style="' + (((s as any).ro ?? 0)?.['ibdr']) + '" href="exec: gs \'$menu_settings\', \'swap_grp_member\', \'skill_grp\', \'' + (((s as any).ro ?? 0)?.['gkey']) + '\', ' + (((s as any).ro ?? 0)?.['mi']) + ', \'down\' & gt \'$menu_settings\', \'status\'"><img height="14" src="' + (((s as any).ro ?? 0)?.['down']) + '"></a>');
     ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('</td>');
     ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<td align="center" style="text-align:center; padding:0 4px;">');
     ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: stat_hide_skill[/u0027' + qspUntranslated(s, "ro[\\u0027mkey\\u0027]", { location: "stat_display_menu" }) + '/u0027] = 1 - stat_hide_skill[/u0027' + qspUntranslated(s, "ro[\\u0027mkey\\u0027]", { location: "stat_display_menu" }) + '/u0027] */ return s; }); window.__gameStore.getState().doGoto(/u0027$menu_settings/u0027, /u0027status/u0027); return false;">\' + $ro[\'mlbl\'] + \'</a>');
     ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('</td>');
     ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<td width="1%" nowrap style="padding:0 0 0 3px;">');
-    ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<a style="' + ((s as any).ro ?? 0)?.['ibdr'] + '" href="exec: stat_hide_skill[\'' + ((s as any).ro ?? 0)?.['mkey'] + '\'] = 1 - stat_hide_skill[\'' + ((s as any).ro ?? 0)?.['mkey'] + '\'] & gt \'$menu_settings\', \'status\'"><img height="14" src="' + ((s as any).ro ?? 0)?.['mhi_ic'] + '"></a>');
+    ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<a style="' + (((s as any).ro ?? 0)?.['ibdr']) + '" href="exec: stat_hide_skill[\'' + (((s as any).ro ?? 0)?.['mkey']) + '\'] = 1 - stat_hide_skill[\'' + (((s as any).ro ?? 0)?.['mkey']) + '\'] & gt \'$menu_settings\', \'status\'"><img height="14" src="' + (((s as any).ro ?? 0)?.['mhi_ic']) + '"></a>');
     ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('</td>');
     ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('</tr></table></td></tr>');
     ((s as any).ro = (s as any).ro ?? {})['mi'] = ((s as any).ro['mi'] ?? 0) + (1);
@@ -693,7 +693,7 @@ function enterReorderNestedSkills(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: jump '_rns_gloop'
   }
   ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('</table></center></td></tr>');
-  (s as any).result = ((s as any).ro ?? 0)?.['html'];
+  (s as any).result = (((s as any).ro ?? 0)?.['html']);
   return;
   // TODO-QSP: end
   scene.build();
@@ -701,115 +701,115 @@ function enterReorderNestedSkills(s: GameState, scene: SceneBuilder): void {
 
 function enterReorderNestedRelations(s: GameState, scene: SceneBuilder): void {
   ((s as any).ro = (s as any).ro ?? {})['c'] = ((((s as any).theme ?? 0)?.['is_dark'] === 1) ? ('w') : ('b'));
-  ((s as any).ro = (s as any).ro ?? {})['up'] = 'images/system/ui/angle_up_' + ((s as any).ro ?? 0)?.['c'] + '.png';
-  ((s as any).ro = (s as any).ro ?? {})['down'] = 'images/system/ui/angle_down_' + ((s as any).ro ?? 0)?.['c'] + '.png';
-  ((s as any).ro = (s as any).ro ?? {})['bdr'] = '1px solid ' + ((s as any).theme_hex ?? 0)?.['goth'] + '';
-  ((s as any).ro = (s as any).ro ?? {})['ibdr'] = 'display:inline-block; padding:4px; line-height:0; border:1px solid ' + qspFunc(s, 'shortgs', 'rgb_to_hex', ((s as any).theme ?? 0)?.['fcolor']) + '; border-radius:4px;';
+  ((s as any).ro = (s as any).ro ?? {})['up'] = 'images/system/ui/angle_up_' + (((s as any).ro ?? 0)?.['c']) + '.png';
+  ((s as any).ro = (s as any).ro ?? {})['down'] = 'images/system/ui/angle_down_' + (((s as any).ro ?? 0)?.['c']) + '.png';
+  ((s as any).ro = (s as any).ro ?? {})['bdr'] = '1px solid ' + (((s as any).theme_hex ?? 0)?.['goth']) + '';
+  ((s as any).ro = (s as any).ro ?? {})['ibdr'] = 'display:inline-block; padding:4px; line-height:0; border:1px solid ' + qspFunc(s, 'shortgs', 'rgb_to_hex', (((s as any).theme ?? 0)?.['fcolor'])) + '; border-radius:4px;';
   ((s as any).ro = (s as any).ro ?? {})['html'] = '<tr><td align="center" colspan="3" style="padding:6px 10px 2px 10px; text-align:center;"><b>Order &amp; Visibility</b>&nbsp; <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027$menu_settings/u0027, /u0027reset_rels/u0027); return false;">[Reset]</a></td></tr>';
   ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<tr><td colspan="3" style="padding:2px 10px 8px 10px;"><center><table width="90%" cellspacing="3" cellpadding="0" border="0" style="width:90%;">');
   ((s as any).ro = (s as any).ro ?? {})['gi'] = 0;
   // TODO-QSP: :_rnr_gloop
   ((s as any).ro = (s as any).ro ?? {})['gkey'] = qspUntranslated(s, "rel_group_order[ro['gi']]", { location: "stat_display_menu" });
-  ((s as any).ro = (s as any).ro ?? {})['ghid'] = (((s as any).stat_hide_rel_grp ?? 0)?.[((s as any).ro ?? 0)?.['gkey']] ?? 0);
-  ((s as any).ro = (s as any).ro ?? {})['gexp'] = (((s as any).stat_cfg ?? 0)?.['show_rels_' + ((s as any).ro ?? 0)?.['gkey']] ?? 0);
-  ((s as any).ro = (s as any).ro ?? {})['ghi_ic'] = 'images/system/ui/' + ((((s as any).ro ?? 0)?.['ghid'] === 1) ? ('hide_') : ('show_')) + ((s as any).ro ?? 0)?.['c'] + '.png';
-  ((s as any).ro = (s as any).ro ?? {})['gex_ic'] = 'images/system/ui/' + ((((s as any).ro ?? 0)?.['gexp'] === 1) ? ('expand_') : ('collapse_')) + ((s as any).ro ?? 0)?.['c'] + '.png';
-  ((s as any).ro = (s as any).ro ?? {})['glbl'] = ((((s as any).ro ?? 0)?.['ghid'] === 1) ? ('<font color="gray"><b>' + (((s as any).sd_dn ?? 0)?.[((s as any).ro ?? 0)?.['gkey']] ?? 0) + '</b></font>') : ('<b>' + (((s as any).sd_dn ?? 0)?.[((s as any).ro ?? 0)?.['gkey']] ?? 0) + '</b>'));
-  ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<tr><td bgcolor="' + ((s as any).theme_hex ?? 0)?.['table_bg'] + '" style="border:' + ((s as any).ro ?? 0)?.['bdr'] + '; background-color:' + ((s as any).theme_hex ?? 0)?.['table_bg'] + '; padding:5px 6px;">');
+  ((s as any).ro = (s as any).ro ?? {})['ghid'] = (((s as any).stat_hide_rel_grp ?? 0)?.[(((s as any).ro ?? 0)?.['gkey'])] ?? 0);
+  ((s as any).ro = (s as any).ro ?? {})['gexp'] = (((s as any).stat_cfg ?? 0)?.['show_rels_' + (((s as any).ro ?? 0)?.['gkey'])] ?? 0);
+  ((s as any).ro = (s as any).ro ?? {})['ghi_ic'] = 'images/system/ui/' + ((((s as any).ro ?? 0)?.['ghid'] === 1) ? ('hide_') : ('show_')) + (((s as any).ro ?? 0)?.['c']) + '.png';
+  ((s as any).ro = (s as any).ro ?? {})['gex_ic'] = 'images/system/ui/' + ((((s as any).ro ?? 0)?.['gexp'] === 1) ? ('expand_') : ('collapse_')) + (((s as any).ro ?? 0)?.['c']) + '.png';
+  ((s as any).ro = (s as any).ro ?? {})['glbl'] = ((((s as any).ro ?? 0)?.['ghid'] === 1) ? ('<font color="gray"><b>' + (((s as any).sd_dn ?? 0)?.[(((s as any).ro ?? 0)?.['gkey'])] ?? 0) + '</b></font>') : ('<b>' + (((s as any).sd_dn ?? 0)?.[(((s as any).ro ?? 0)?.['gkey'])] ?? 0) + '</b>'));
+  ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<tr><td bgcolor="' + (((s as any).theme_hex ?? 0)?.['table_bg']) + '" style="border:' + (((s as any).ro ?? 0)?.['bdr']) + '; background-color:' + (((s as any).theme_hex ?? 0)?.['table_bg']) + '; padding:5px 6px;">');
   ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<table width="100%" cellpadding="0" cellspacing="0" border="0"><tr style="vertical-align:middle;">');
   ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<td width="1%" nowrap style="padding:0 3px 0 0;">');
-  ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<a style="' + ((s as any).ro ?? 0)?.['ibdr'] + '" href="exec: gs \'$menu_settings\', \'swap\', \'rel_group_order\', ' + ((s as any).ro ?? 0)?.['gi'] + ', \'up\' & gt \'$menu_settings\', \'status\'"><img height="18" src="' + ((s as any).ro ?? 0)?.['up'] + '"></a>');
-  ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<a style="' + ((s as any).ro ?? 0)?.['ibdr'] + '" href="exec: gs \'$menu_settings\', \'swap\', \'rel_group_order\', ' + ((s as any).ro ?? 0)?.['gi'] + ', \'down\' & gt \'$menu_settings\', \'status\'"><img height="18" src="' + ((s as any).ro ?? 0)?.['down'] + '"></a>');
+  ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<a style="' + (((s as any).ro ?? 0)?.['ibdr']) + '" href="exec: gs \'$menu_settings\', \'swap\', \'rel_group_order\', ' + (((s as any).ro ?? 0)?.['gi']) + ', \'up\' & gt \'$menu_settings\', \'status\'"><img height="18" src="' + (((s as any).ro ?? 0)?.['up']) + '"></a>');
+  ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<a style="' + (((s as any).ro ?? 0)?.['ibdr']) + '" href="exec: gs \'$menu_settings\', \'swap\', \'rel_group_order\', ' + (((s as any).ro ?? 0)?.['gi']) + ', \'down\' & gt \'$menu_settings\', \'status\'"><img height="18" src="' + (((s as any).ro ?? 0)?.['down']) + '"></a>');
   ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('</td>');
   ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<td align="center" style="text-align:center; padding:0 4px;">');
   if (((s as any).ro ?? 0)?.['gkey'] !== 'lovers') {
     ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: stat_cfg[/u0027show_rels_' + qspUntranslated(s, "ro[\\u0027gkey\\u0027]", { location: "stat_display_menu" }) + '/u0027] = 1 - stat_cfg[/u0027show_rels_' + qspUntranslated(s, "ro[\\u0027gkey\\u0027]", { location: "stat_display_menu" }) + '/u0027] */ return s; }); window.__gameStore.getState().doGoto(/u0027$menu_settings/u0027, /u0027status/u0027); return false;">\' + $ro[\'glbl\'] + \'</a>');
   } else {
-    ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + (((s as any).ro ?? 0)?.['glbl']);
+    ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ((((s as any).ro ?? 0)?.['glbl']));
   }
   ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('</td>');
   ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<td width="1%" nowrap style="padding:0 0 0 3px;">');
-  ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<a style="' + ((s as any).ro ?? 0)?.['ibdr'] + '" href="exec: stat_hide_rel_grp[\'' + ((s as any).ro ?? 0)?.['gkey'] + '\'] = 1 - stat_hide_rel_grp[\'' + ((s as any).ro ?? 0)?.['gkey'] + '\'] & gt \'$menu_settings\', \'status\'"><img height="18" src="' + ((s as any).ro ?? 0)?.['ghi_ic'] + '"></a>');
+  ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<a style="' + (((s as any).ro ?? 0)?.['ibdr']) + '" href="exec: stat_hide_rel_grp[\'' + (((s as any).ro ?? 0)?.['gkey']) + '\'] = 1 - stat_hide_rel_grp[\'' + (((s as any).ro ?? 0)?.['gkey']) + '\'] & gt \'$menu_settings\', \'status\'"><img height="18" src="' + (((s as any).ro ?? 0)?.['ghi_ic']) + '"></a>');
   if (((s as any).ro ?? 0)?.['gkey'] !== 'lovers') {
-    ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<a style="' + ((s as any).ro ?? 0)?.['ibdr'] + '" href="exec: stat_cfg[\'show_rels_' + ((s as any).ro ?? 0)?.['gkey'] + '\'] = 1 - stat_cfg[\'show_rels_' + ((s as any).ro ?? 0)?.['gkey'] + '\'] & gt \'$menu_settings\', \'status\'"><img height="18" src="' + ((s as any).ro ?? 0)?.['gex_ic'] + '"></a>');
+    ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<a style="' + (((s as any).ro ?? 0)?.['ibdr']) + '" href="exec: stat_cfg[\'show_rels_' + (((s as any).ro ?? 0)?.['gkey']) + '\'] = 1 - stat_cfg[\'show_rels_' + (((s as any).ro ?? 0)?.['gkey']) + '\'] & gt \'$menu_settings\', \'status\'"><img height="18" src="' + (((s as any).ro ?? 0)?.['gex_ic']) + '"></a>');
   } else {
-    ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<span style="' + ((s as any).ro ?? 0)?.['ibdr'] + '; visibility:hidden;"><img height="18" src="' + ((s as any).ro ?? 0)?.['up'] + '"></span>');
+    ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<span style="' + (((s as any).ro ?? 0)?.['ibdr']) + '; visibility:hidden;"><img height="18" src="' + (((s as any).ro ?? 0)?.['up']) + '"></span>');
   }
   ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('</td>');
   ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('</tr></table>');
   if (((s as any).ro ?? 0)?.['gkey'] !== 'lovers'  &&  ((s as any).ro ?? 0)?.['gexp'] === 1) {
     ((s as any).ro = (s as any).ro ?? {})['mi'] = 0;
-    ((s as any).ro = (s as any).ro ?? {})['nm'] = ((s as any).stat_cfg ?? 0)?.['rel_name_mode'];
+    ((s as any).ro = (s as any).ro ?? {})['nm'] = (((s as any).stat_cfg ?? 0)?.['rel_name_mode']);
     ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<table width="100%" cellspacing="3" cellpadding="0" border="0" style="margin-top:4px; padding-left:18px;">');
     // TODO-QSP: :_rnr_mloop
-    ((s as any).ro = (s as any).ro ?? {})['mkey'] = (((s as any).rel_grp ?? 0)?.[((s as any).ro ?? 0)?.['gkey'] + '_' + String(((s as any).ro ?? 0)?.['mi'])] ?? 0);
+    ((s as any).ro = (s as any).ro ?? {})['mkey'] = (((s as any).rel_grp ?? 0)?.[(((s as any).ro ?? 0)?.['gkey']) + '_' + String((((s as any).ro ?? 0)?.['mi']))] ?? 0);
     if (((s as any).ro ?? 0)?.['mkey'] === '') {
       // TODO-QSP: jump '_rnr_mdone'
     }
-    ((s as any).ro = (s as any).ro ?? {})['mhid'] = (((s as any).stat_hide_rel ?? 0)?.[((s as any).ro ?? 0)?.['mkey']] ?? 0);
-    ((s as any).ro = (s as any).ro ?? {})['mhi_ic'] = 'images/system/ui/' + ((((s as any).ro ?? 0)?.['mhid'] === 1) ? ('hide_') : ('show_')) + ((s as any).ro ?? 0)?.['c'] + '.png';
-    ((s as any).ro = (s as any).ro ?? {})['eff_nm'] = ((((s as any).ro ?? 0)?.['mkey'] !== ''  &&  ((s as any).sd_rel_name_override ?? 0)[((s as any).ro ?? 0)?.['mkey']] > 0) ? ((((s as any).sd_rel_name_override ?? 0)?.[((s as any).ro ?? 0)?.['mkey']] ?? 0)) : (((s as any).ro ?? 0)?.['nm']));
+    ((s as any).ro = (s as any).ro ?? {})['mhid'] = (((s as any).stat_hide_rel ?? 0)?.[(((s as any).ro ?? 0)?.['mkey'])] ?? 0);
+    ((s as any).ro = (s as any).ro ?? {})['mhi_ic'] = 'images/system/ui/' + ((((s as any).ro ?? 0)?.['mhid'] === 1) ? ('hide_') : ('show_')) + (((s as any).ro ?? 0)?.['c']) + '.png';
+    ((s as any).ro = (s as any).ro ?? {})['eff_nm'] = ((((s as any).ro ?? 0)?.['mkey'] !== ''  &&  ((s as any).sd_rel_name_override ?? 0)[((s as any).ro ?? 0)?.['mkey']] > 0) ? ((((s as any).sd_rel_name_override ?? 0)?.[(((s as any).ro ?? 0)?.['mkey'])] ?? 0)) : ((((s as any).ro ?? 0)?.['nm'])));
     if (((s as any).ro ?? 0)?.['eff_nm'] === 1) {
-      ((s as any).ro = (s as any).ro ?? {})['mname'] = (((s as any).npc_firstname ?? 0)?.[((s as any).ro ?? 0)?.['mkey']] ?? 0);
+      ((s as any).ro = (s as any).ro ?? {})['mname'] = (((s as any).npc_firstname ?? 0)?.[(((s as any).ro ?? 0)?.['mkey'])] ?? 0);
     } else {
       if (((s as any).ro ?? 0)?.['eff_nm'] === 2) {
-        ((s as any).ro = (s as any).ro ?? {})['mname'] = (((s as any).npc_lastname ?? 0)?.[((s as any).ro ?? 0)?.['mkey']] ?? 0);
+        ((s as any).ro = (s as any).ro ?? {})['mname'] = (((s as any).npc_lastname ?? 0)?.[(((s as any).ro ?? 0)?.['mkey'])] ?? 0);
         if (((s as any).ro ?? 0)?.['mname'] === '') {
-          ((s as any).ro = (s as any).ro ?? {})['mname'] = (((s as any).npc_firstname ?? 0)?.[((s as any).ro ?? 0)?.['mkey']] ?? 0);
+          ((s as any).ro = (s as any).ro ?? {})['mname'] = (((s as any).npc_firstname ?? 0)?.[(((s as any).ro ?? 0)?.['mkey'])] ?? 0);
         }
       } else {
         if (((s as any).ro ?? 0)?.['eff_nm'] === 3) {
-          ((s as any).ro = (s as any).ro ?? {})['mname'] = (((s as any).npc_nickname ?? 0)?.[((s as any).ro ?? 0)?.['mkey']] ?? 0);
+          ((s as any).ro = (s as any).ro ?? {})['mname'] = (((s as any).npc_nickname ?? 0)?.[(((s as any).ro ?? 0)?.['mkey'])] ?? 0);
           if (((s as any).ro ?? 0)?.['mname'] === '') {
-            ((s as any).ro = (s as any).ro ?? {})['mname'] = (((s as any).npc_firstname ?? 0)?.[((s as any).ro ?? 0)?.['mkey']] ?? 0);
+            ((s as any).ro = (s as any).ro ?? {})['mname'] = (((s as any).npc_firstname ?? 0)?.[(((s as any).ro ?? 0)?.['mkey'])] ?? 0);
           }
         } else {
-          ((s as any).ro = (s as any).ro ?? {})['mname'] = (((s as any).npc_usedname ?? 0)?.[((s as any).ro ?? 0)?.['mkey']] ?? 0);
+          ((s as any).ro = (s as any).ro ?? {})['mname'] = (((s as any).npc_usedname ?? 0)?.[(((s as any).ro ?? 0)?.['mkey'])] ?? 0);
         }
       }
     }
     if (((s as any).ro ?? 0)?.['mname'] === '') {
-      ((s as any).ro = (s as any).ro ?? {})['mname'] = (((s as any).npc_usedname ?? 0)?.[((s as any).ro ?? 0)?.['mkey']] ?? 0);
+      ((s as any).ro = (s as any).ro ?? {})['mname'] = (((s as any).npc_usedname ?? 0)?.[(((s as any).ro ?? 0)?.['mkey'])] ?? 0);
     }
     if (((s as any).ro ?? 0)?.['mname'] === '') {
-      ((s as any).ro = (s as any).ro ?? {})['mname'] = (((s as any).npc_firstname ?? 0)?.[((s as any).ro ?? 0)?.['mkey']] ?? 0);
+      ((s as any).ro = (s as any).ro ?? {})['mname'] = (((s as any).npc_firstname ?? 0)?.[(((s as any).ro ?? 0)?.['mkey'])] ?? 0);
     }
     if (((s as any).ro ?? 0)?.['mname'] === '') {
-      ((s as any).ro = (s as any).ro ?? {})['mname'] = (((s as any).npc_nickname ?? 0)?.[((s as any).ro ?? 0)?.['mkey']] ?? 0);
+      ((s as any).ro = (s as any).ro ?? {})['mname'] = (((s as any).npc_nickname ?? 0)?.[(((s as any).ro ?? 0)?.['mkey'])] ?? 0);
     }
     if (((s as any).ro ?? 0)?.['mname'] === '') {
-      ((s as any).ro = (s as any).ro ?? {})['mname'] = (((s as any).npc_lastname ?? 0)?.[((s as any).ro ?? 0)?.['mkey']] ?? 0);
+      ((s as any).ro = (s as any).ro ?? {})['mname'] = (((s as any).npc_lastname ?? 0)?.[(((s as any).ro ?? 0)?.['mkey'])] ?? 0);
     }
     if (((s as any).ro ?? 0)?.['mname'] === '') {
-      ((s as any).ro = (s as any).ro ?? {})['mname'] = ((s as any).ro ?? 0)?.['mkey'];
+      ((s as any).ro = (s as any).ro ?? {})['mname'] = (((s as any).ro ?? 0)?.['mkey']);
     }
-    ((s as any).ro = (s as any).ro ?? {})['mlbl'] = ((((s as any).ro ?? 0)?.['mhid'] === 1) ? ('<font color="gray">' + ((s as any).ro ?? 0)?.['mname'] + '</font>') : (((s as any).ro ?? 0)?.['mname']));
-    ((s as any).ro = (s as any).ro ?? {})['nmo'] = (((s as any).sd_rel_name_override ?? 0)?.[((s as any).ro ?? 0)?.['mkey']] ?? 0);
+    ((s as any).ro = (s as any).ro ?? {})['mlbl'] = ((((s as any).ro ?? 0)?.['mhid'] === 1) ? ('<font color="gray">' + (((s as any).ro ?? 0)?.['mname']) + '</font>') : ((((s as any).ro ?? 0)?.['mname'])));
+    ((s as any).ro = (s as any).ro ?? {})['nmo'] = (((s as any).sd_rel_name_override ?? 0)?.[(((s as any).ro ?? 0)?.['mkey'])] ?? 0);
     if (((s as any).ro ?? 0)?.['nmo'] === 1) {
-      ((s as any).ro = (s as any).ro ?? {})['nmo_ic'] = 'images/system/ui/name_first_' + ((s as any).ro ?? 0)?.['c'] + '.png';
+      ((s as any).ro = (s as any).ro ?? {})['nmo_ic'] = 'images/system/ui/name_first_' + (((s as any).ro ?? 0)?.['c']) + '.png';
     } else {
       if (((s as any).ro ?? 0)?.['nmo'] === 2) {
-        ((s as any).ro = (s as any).ro ?? {})['nmo_ic'] = 'images/system/ui/name_family_' + ((s as any).ro ?? 0)?.['c'] + '.png';
+        ((s as any).ro = (s as any).ro ?? {})['nmo_ic'] = 'images/system/ui/name_family_' + (((s as any).ro ?? 0)?.['c']) + '.png';
       } else {
         if (((s as any).ro ?? 0)?.['nmo'] === 3) {
-          ((s as any).ro = (s as any).ro ?? {})['nmo_ic'] = 'images/system/ui/name_nickname_' + ((s as any).ro ?? 0)?.['c'] + '.png';
+          ((s as any).ro = (s as any).ro ?? {})['nmo_ic'] = 'images/system/ui/name_nickname_' + (((s as any).ro ?? 0)?.['c']) + '.png';
         } else {
-          ((s as any).ro = (s as any).ro ?? {})['nmo_ic'] = 'images/system/ui/name_default_' + ((s as any).ro ?? 0)?.['c'] + '.png';
+          ((s as any).ro = (s as any).ro ?? {})['nmo_ic'] = 'images/system/ui/name_default_' + (((s as any).ro ?? 0)?.['c']) + '.png';
         }
       }
     }
-    ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<tr><td bgcolor="' + ((s as any).theme_hex ?? 0)?.['table_bg_alt'] + '" style="border:' + ((s as any).ro ?? 0)?.['bdr'] + '; background-color:' + ((s as any).theme_hex ?? 0)?.['table_bg_alt'] + '; padding:4px 6px;">');
+    ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<tr><td bgcolor="' + (((s as any).theme_hex ?? 0)?.['table_bg_alt']) + '" style="border:' + (((s as any).ro ?? 0)?.['bdr']) + '; background-color:' + (((s as any).theme_hex ?? 0)?.['table_bg_alt']) + '; padding:4px 6px;">');
     ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<table width="100%" cellpadding="0" cellspacing="0" border="0"><tr style="vertical-align:middle;">');
     ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<td width="1%" nowrap style="padding:0 3px 0 0;">');
-    ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<a style="' + ((s as any).ro ?? 0)?.['ibdr'] + '" href="exec: gs \'$menu_settings\', \'swap_grp_member\', \'rel_grp\', \'' + ((s as any).ro ?? 0)?.['gkey'] + '\', ' + ((s as any).ro ?? 0)?.['mi'] + ', \'up\' & gt \'$menu_settings\', \'status\'"><img height="14" src="' + ((s as any).ro ?? 0)?.['up'] + '"></a>');
-    ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<a style="' + ((s as any).ro ?? 0)?.['ibdr'] + '" href="exec: gs \'$menu_settings\', \'swap_grp_member\', \'rel_grp\', \'' + ((s as any).ro ?? 0)?.['gkey'] + '\', ' + ((s as any).ro ?? 0)?.['mi'] + ', \'down\' & gt \'$menu_settings\', \'status\'"><img height="14" src="' + ((s as any).ro ?? 0)?.['down'] + '"></a>');
+    ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<a style="' + (((s as any).ro ?? 0)?.['ibdr']) + '" href="exec: gs \'$menu_settings\', \'swap_grp_member\', \'rel_grp\', \'' + (((s as any).ro ?? 0)?.['gkey']) + '\', ' + (((s as any).ro ?? 0)?.['mi']) + ', \'up\' & gt \'$menu_settings\', \'status\'"><img height="14" src="' + (((s as any).ro ?? 0)?.['up']) + '"></a>');
+    ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<a style="' + (((s as any).ro ?? 0)?.['ibdr']) + '" href="exec: gs \'$menu_settings\', \'swap_grp_member\', \'rel_grp\', \'' + (((s as any).ro ?? 0)?.['gkey']) + '\', ' + (((s as any).ro ?? 0)?.['mi']) + ', \'down\' & gt \'$menu_settings\', \'status\'"><img height="14" src="' + (((s as any).ro ?? 0)?.['down']) + '"></a>');
     ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('</td>');
     ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<td align="center" style="text-align:center; padding:0 4px;">');
     ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: stat_hide_rel[/u0027' + qspUntranslated(s, "ro[\\u0027mkey\\u0027]", { location: "stat_display_menu" }) + '/u0027] = 1 - stat_hide_rel[/u0027' + qspUntranslated(s, "ro[\\u0027mkey\\u0027]", { location: "stat_display_menu" }) + '/u0027] */ return s; }); window.__gameStore.getState().doGoto(/u0027$menu_settings/u0027, /u0027status/u0027); return false;">\' + $ro[\'mlbl\'] + \'</a>');
     ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('</td>');
     ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<td width="1%" nowrap style="padding:0 0 0 3px;">');
-    ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<a style="' + ((s as any).ro ?? 0)?.['ibdr'] + '" href="exec: stat_hide_rel[\'' + ((s as any).ro ?? 0)?.['mkey'] + '\'] = 1 - stat_hide_rel[\'' + ((s as any).ro ?? 0)?.['mkey'] + '\'] & gt \'$menu_settings\', \'status\'"><img height="14" src="' + ((s as any).ro ?? 0)?.['mhi_ic'] + '"></a>');
-    ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<a style="' + ((s as any).ro ?? 0)?.['ibdr'] + '" href="exec: sd_rel_name_override[\'' + ((s as any).ro ?? 0)?.['mkey'] + '\'] = (sd_rel_name_override[\'' + ((s as any).ro ?? 0)?.['mkey'] + '\'] + 1) mod 4 & gt \'$menu_settings\', \'status\'"><img height="14" src="' + ((s as any).ro ?? 0)?.['nmo_ic'] + '"></a>');
+    ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<a style="' + (((s as any).ro ?? 0)?.['ibdr']) + '" href="exec: stat_hide_rel[\'' + (((s as any).ro ?? 0)?.['mkey']) + '\'] = 1 - stat_hide_rel[\'' + (((s as any).ro ?? 0)?.['mkey']) + '\'] & gt \'$menu_settings\', \'status\'"><img height="14" src="' + (((s as any).ro ?? 0)?.['mhi_ic']) + '"></a>');
+    ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<a style="' + (((s as any).ro ?? 0)?.['ibdr']) + '" href="exec: sd_rel_name_override[\'' + (((s as any).ro ?? 0)?.['mkey']) + '\'] = (sd_rel_name_override[\'' + (((s as any).ro ?? 0)?.['mkey']) + '\'] + 1) mod 4 & gt \'$menu_settings\', \'status\'"><img height="14" src="' + (((s as any).ro ?? 0)?.['nmo_ic']) + '"></a>');
     ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('</td>');
     ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('</tr></table></td></tr>');
     ((s as any).ro = (s as any).ro ?? {})['mi'] = ((s as any).ro['mi'] ?? 0) + (1);
@@ -823,7 +823,7 @@ function enterReorderNestedRelations(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: jump '_rnr_gloop'
   }
   ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('</table></center></td></tr>');
-  (s as any).result = ((s as any).ro ?? 0)?.['html'];
+  (s as any).result = (((s as any).ro ?? 0)?.['html']);
   return;
   // TODO-QSP: end
   scene.build();
@@ -840,7 +840,7 @@ function enterReorderMenuBar(s: GameState, scene: SceneBuilder): void {
   ((s as any).ro = (s as any).ro ?? {})['ri_settings'] = 'icon_menu.png';
   ((s as any).ro = (s as any).ro ?? {})['ri_help'] = 'icon_help_color.png';
   ((s as any).ro = (s as any).ro ?? {})['imgbase'] = 'images/system/icons/menu/';
-  ((s as any).ro = (s as any).ro ?? {})['bdr'] = '1px solid ' + ((s as any).theme_hex ?? 0)?.['goth'] + '';
+  ((s as any).ro = (s as any).ro ?? {})['bdr'] = '1px solid ' + (((s as any).theme_hex ?? 0)?.['goth']) + '';
   (s as any).result = '<tr><td align="center" colspan="3" style="padding:6px 10px 2px 10px; text-align:center;"><b>Order</b>&nbsp; <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: killvar /u0027$menu_bar_order/u0027 */ return s; }); window.__gameStore.getState().doGoto(/u0027$menu_settings/u0027, /u0027status/u0027); return false;">[Reset]</a></td></tr>';
   // TODO-QSP: $result += '<tr><td colspan="3" style="padding:2px 10px 8px 10px;"><center><table cellspacing="6" ce...
   ((s as any).ro = (s as any).ro ?? {})['i'] = 0;
@@ -868,8 +868,8 @@ function enterReorderMenuBar(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGeneralOptions(s: GameState, scene: SceneBuilder): void {
-  ((s as any).temp_st_td = (s as any).temp_st_td ?? {})['cell'] = '<td align="center" valign="middle" bgcolor="' + ((s as any).theme_hex ?? 0)?.['table_bg_alt'] + '" style="border:1px solid ' + ((s as any).theme_hex ?? 0)?.['goth'] + '; background-color: ' + ((s as any).theme_hex ?? 0)?.['table_bg_alt'] + '; padding:5px; text-align:center; vertical-align:middle;">';
-  (s as any).result = '<table width="80%" cellspacing="10" bgcolor="' + ((s as any).theme_hex ?? 0)?.['table_bg'] + '" style="border:2px solid ' + ((s as any).theme_hex ?? 0)?.['goth'] + '; margin:10px; padding:7px; border-spacing:10px; background-color: ' + ((s as any).theme_hex ?? 0)?.['table_bg'] + ';">';
+  ((s as any).temp_st_td = (s as any).temp_st_td ?? {})['cell'] = '<td align="center" valign="middle" bgcolor="' + (((s as any).theme_hex ?? 0)?.['table_bg_alt']) + '" style="border:1px solid ' + (((s as any).theme_hex ?? 0)?.['goth']) + '; background-color: ' + (((s as any).theme_hex ?? 0)?.['table_bg_alt']) + '; padding:5px; text-align:center; vertical-align:middle;">';
+  (s as any).result = '<table width="80%" cellspacing="10" bgcolor="' + (((s as any).theme_hex ?? 0)?.['table_bg']) + '" style="border:2px solid ' + (((s as any).theme_hex ?? 0)?.['goth']) + '; margin:10px; padding:7px; border-spacing:10px; background-color: ' + (((s as any).theme_hex ?? 0)?.['table_bg']) + ';">';
   // TODO-QSP: $result +=  '<colgroup>'
   // TODO-QSP: $result +=    '<col width="32%">'
   // TODO-QSP: $result +=    '<col width="32%">'

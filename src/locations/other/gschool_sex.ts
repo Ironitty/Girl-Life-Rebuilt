@@ -112,7 +112,7 @@ function enterSuck(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/shared/sex/group/toiletbjtreesome.jpg');
     // TODO-QSP: dynamic text: You obediently squat and start stroking Vitek''s dick with your hand, getting it...
-    scene.text(`You obediently squat and start stroking Vitek's dick with your hand, getting it rock-hard. You rub his hard cock against your ${((st as any).pc_desc ?? 0)?.['lips'] ?? ''} lips, then open your mouth and start sucking his ${((st as any).dick ?? '')}cm ${((st as any).dick_girth ?? '')} cock. After making sure no one is coming, Dan and Vasily also approach you and take out their dicks, pointing them at you expectantly. Now sucking the dicks of all three boys in turn, you do your best to please the ones you're not sucking by jerking them off.`);
+    scene.text(`You obediently squat and start stroking Vitek's dick with your hand, getting it rock-hard. You rub his hard cock against your ${(((st as any).pc_desc ?? 0)?.['lips'] ?? '')} lips, then open your mouth and start sucking his ${((st as any).dick ?? '')}cm ${((st as any).dick_girth ?? '')} cock. After making sure no one is coming, Dan and Vasily also approach you and take out their dicks, pointing them at you expectantly. Now sucking the dicks of all three boys in turn, you do your best to please the ones you're not sucking by jerking them off.`);
     qspCall(st, 'arousal', 'bj', 4, ((st as any).npcID ?? 0), 'group', 'sub');
     qspCall(st, 'arousal', 'bj', 3, ((st as any).npcID1 ?? 0), 'group', 'sub');
     qspCall(st, 'arousal', 'bj', 3, ((st as any).npcID2 ?? 0), 'group', 'sub');
@@ -601,7 +601,7 @@ function enterRandBj(s: GameState, scene: SceneBuilder): void {
     { label: 'Suck his cock', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/building/sex/boysex_tualet3.jpg');
     // TODO-QSP: dynamic text: You start licking the head of his dick, ignoring the excited whispers of your cl...
-    scene.text(`You start licking the head of his dick, ignoring the excited whispers of your classmates as you wrap your ${((st as any).pc_desc ?? 0)?.['lips'] ?? ''} lips around it and start sucking, taking him in deeper and deeper with every thrust. Your hand darts down, eagerly fingering your soaking wet pussy. This is not fair! If you keep this up, he will shoot his load in your mouth and you will be left horny as hell!`);
+    scene.text(`You start licking the head of his dick, ignoring the excited whispers of your classmates as you wrap your ${(((st as any).pc_desc ?? 0)?.['lips'] ?? '')} lips around it and start sucking, taking him in deeper and deeper with every thrust. Your hand darts down, eagerly fingering your soaking wet pussy. This is not fair! If you keep this up, he will shoot his load in your mouth and you will be left horny as hell!`);
     qspCall(st, 'arousal', 'bj', 3);
     qspCall(st, 'stat', '');
     scene.actions([
@@ -744,7 +744,7 @@ function enterLunchBj(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'boyStat', '$npclastgenerated');
   scene.img('images/locations/pavlovsk/school/lunch/sex/lunchbrbj.jpg');
   // TODO-QSP: dynamic text: You lead him into the restroom, where you get down on your knees and pull down h...
-  scene.text(`You lead him into the restroom, where you get down on your knees and pull down his pants, revealing his stiff erection. You flash him a smile and close your ${((s as any).pc_desc ?? 0)?.['lips'] ?? ''} lips around his ${((s as any).dick ?? '')}cm ${((s as any).dick_girth ?? '')} cock. You don't plan on taking long and quickly use all your tricks to get him to cum as quick as you can: swirling your tongue over the head, licking the shaft and sucking for all you're worth.`);
+  scene.text(`You lead him into the restroom, where you get down on your knees and pull down his pants, revealing his stiff erection. You flash him a smile and close your ${(((s as any).pc_desc ?? 0)?.['lips'] ?? '')} lips around his ${((s as any).dick ?? '')}cm ${((s as any).dick_girth ?? '')} cock. You don't plan on taking long and quickly use all your tricks to get him to cum as quick as you can: swirling your tongue over the head, licking the shaft and sucking for all you're worth.`);
   qspCall(s, 'arousal', 'bj', 5);
   qspCall(s, 'stat', '');
   // TODO-QSP: end
@@ -767,7 +767,7 @@ function enterLunchSex(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'boyStat', '$npclastgenerated');
   scene.img('images/locations/pavlovsk/school/lunch/sex/roofbj.jpg');
   // TODO-QSP: dynamic text: Once you''re on the roof, you see several blankets and other stuff in a corner i...
-  scene.text(`Once you're on the roof, you see several blankets and other stuff in a corner in a safe spot. You grab one and the boy helps you lay it out. Once it's down, you both undress and he lays on his back. Dropping down next to him, you close your ${((s as any).pc_desc ?? 0)?.['lips'] ?? ''} lips around his ${((s as any).dick ?? '')}cm ${((s as any).dick_girth ?? '')} cock and start flicking your tongue over the head, licking the shaft and sucking for all you're worth while one of your hands plays with his balls.`);
+  scene.text(`Once you're on the roof, you see several blankets and other stuff in a corner in a safe spot. You grab one and the boy helps you lay it out. Once it's down, you both undress and he lays on his back. Dropping down next to him, you close your ${(((s as any).pc_desc ?? 0)?.['lips'] ?? '')} lips around his ${((s as any).dick ?? '')}cm ${((s as any).dick_girth ?? '')} cock and start flicking your tongue over the head, licking the shaft and sucking for all you're worth while one of your hands plays with his balls.`);
   qspCall(s, 'arousal', 'bj', 5);
   qspCall(s, 'stat', '');
   // TODO-QSP: end

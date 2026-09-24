@@ -175,7 +175,7 @@ function enterDailyAssessment(s: GameState, scene: SceneBuilder): void {
           ((s as any).balletqw = (s as any).balletqw ?? {})['rank'] = 1;
         } else {
           if (((s as any).ballet_grade_score ?? 0)?.['total'] >= 91) {
-            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).ballet_grade_score ?? 0)?.['total']]; enterFamemodifier(s, scene); (s as any).locArgs = __savedLocArgs; }
+            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', (((s as any).ballet_grade_score ?? 0)?.['total'])]; enterFamemodifier(s, scene); (s as any).locArgs = __savedLocArgs; }
             ((s as any).balletqw = (s as any).balletqw ?? {})['school'] = 5;
             ((s as any).balletqw = (s as any).balletqw ?? {})['rank'] = 1;
           }
@@ -190,7 +190,7 @@ function enterDailyAssessment(s: GameState, scene: SceneBuilder): void {
       if (((s as any).ballet_grade_score ?? 0)?.['class'] >= 125) {
         ((s as any).balletqw = (s as any).balletqw ?? {})['final_report'] = ((s as any).balletqw['final_report'] ?? 0) + ('You attended all your assigned classes, and showed no discipline issues. Your continued dedication and focus to the Arts is commendable.');
       } else {
-        ((s as any).balletqw = (s as any).balletqw ?? {})['final_report'] = ((s as any).balletqw['final_report'] ?? 0) + ('<font color="red"><b>Class attendance bug:</b></font> ' + ((s as any).ballet_grade_score ?? 0)?.['class'] + '');
+        ((s as any).balletqw = (s as any).balletqw ?? {})['final_report'] = ((s as any).balletqw['final_report'] ?? 0) + ('<font color="red"><b>Class attendance bug:</b></font> ' + (((s as any).ballet_grade_score ?? 0)?.['class']) + '');
       }
     }
     ((s as any).balletqw = (s as any).balletqw ?? {})['final_report'] = ((s as any).balletqw['final_report'] ?? 0) + ('<br>');
@@ -203,7 +203,7 @@ function enterDailyAssessment(s: GameState, scene: SceneBuilder): void {
         if (((s as any).ballet_grade_score ?? 0)?.['homework'] <= 5) {
           ((s as any).balletqw = (s as any).balletqw ?? {})['final_report'] = ((s as any).balletqw['final_report'] ?? 0) + ('You did not complete all the homework assigned to you, you lack the discipline and aptitude to become part of our school\'s Coryphée.');
         } else {
-          ((s as any).balletqw = (s as any).balletqw ?? {})['final_report'] = ((s as any).balletqw['final_report'] ?? 0) + ('<font color="red"><b>Homework debug message:</b></font> ' + ((s as any).ballet_grade_score ?? 0)?.['homework'] + ' ');
+          ((s as any).balletqw = (s as any).balletqw ?? {})['final_report'] = ((s as any).balletqw['final_report'] ?? 0) + ('<font color="red"><b>Homework debug message:</b></font> ' + (((s as any).ballet_grade_score ?? 0)?.['homework']) + ' ');
         }
       }
     }
@@ -220,7 +220,7 @@ function enterDailyAssessment(s: GameState, scene: SceneBuilder): void {
           if (((s as any).balletqw ?? 0)?.['school'] === 1) {
             ((s as any).balletqw = (s as any).balletqw ?? {})['final_report'] = ((s as any).balletqw['final_report'] ?? 0) + ('Your performance and discipline as severely lacking and was disappointing. Your attitude towards the Arts was a disgrace and we have never had a student who showed such callous disregard for the privileges you were granted. Therefore you will not be granted a place in the school\'s coryphée nor will be invited to further opportunities.');
           } else {
-            ((s as any).balletqw = (s as any).balletqw ?? {})['final_report'] = ((s as any).balletqw['final_report'] ?? 0) + ('<font color="red"><b>Award debug message:</b></font> ' + ((s as any).balletqw ?? 0)?.['school'] + '');
+            ((s as any).balletqw = (s as any).balletqw ?? {})['final_report'] = ((s as any).balletqw['final_report'] ?? 0) + ('<font color="red"><b>Award debug message:</b></font> ' + (((s as any).balletqw ?? 0)?.['school']) + '');
           }
         }
       }

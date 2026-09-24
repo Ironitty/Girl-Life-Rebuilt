@@ -15,9 +15,9 @@ function enterGetSmsId(s: GameState, scene: SceneBuilder): void {
     (s as any).result = qspUntranslated(s, "SMSIdentifier[ARGS[1]]", { location: "SMStext_builder" });
   } else {
     if (Object.keys((s as any).SMSBuilderVars ?? {}).length > 0) {
-      (s as any).result = ((s as any).SMSBuilderVars ?? 0)?.['SMSIdentifier'];
+      (s as any).result = (((s as any).SMSBuilderVars ?? 0)?.['SMSIdentifier']);
     } else {
-      (s as any).result = ((s as any).telefon ?? 0)?.['SMSIdentifier'];
+      (s as any).result = (((s as any).telefon ?? 0)?.['SMSIdentifier']);
     }
   }
   return;
@@ -225,12 +225,12 @@ function enterAddSms(s: GameState, scene: SceneBuilder): void {
   } else {
     ((s as any).SMSBuilderVars = (s as any).SMSBuilderVars ?? {})['replies'] = '';
   }
-  qspCall(s, 'telefon', 'add_sms', ((s as any).locArgs?.[1] ?? 0), ((s as any).SMSBuilderVars ?? 0)?.['text'], ((s as any).SMSBuilderVars ?? 0)?.['replies'], (((s as any).SMSBuilderImages ?? 0)?.[0] ?? 0), (((s as any).SMSBuilderImages ?? 0)?.[1] ?? 0), (((s as any).SMSBuilderImages ?? 0)?.[2] ?? 0), (((s as any).SMSBuilderImages ?? 0)?.[3] ?? 0));
+  qspCall(s, 'telefon', 'add_sms', ((s as any).locArgs?.[1] ?? 0), (((s as any).SMSBuilderVars ?? 0)?.['text']), (((s as any).SMSBuilderVars ?? 0)?.['replies']), (((s as any).SMSBuilderImages ?? 0)?.[0] ?? 0), (((s as any).SMSBuilderImages ?? 0)?.[1] ?? 0), (((s as any).SMSBuilderImages ?? 0)?.[2] ?? 0), (((s as any).SMSBuilderImages ?? 0)?.[3] ?? 0));
   ((s as any).SMSBuilderVars = (s as any).SMSBuilderVars ?? {})['reset_flag'] = 0;
   ((s as any).SMSBuilderVars = (s as any).SMSBuilderVars ?? {})['text'] = '';
   ((s as any).SMSBuilderVars = (s as any).SMSBuilderVars ?? {})['replies'] = '';
-  ((s as any).SMSBuilderVars = (s as any).SMSBuilderVars ?? {})['SMSIdentifier'] = ((s as any).telefon ?? 0)?.['SMSIdentifier'];
-  ((s as any).SMSBuilderVars = (s as any).SMSBuilderVars ?? {})['SMSIndex'] = ((s as any).telefon ?? 0)?.['SMSIndex'];
+  ((s as any).SMSBuilderVars = (s as any).SMSBuilderVars ?? {})['SMSIdentifier'] = (((s as any).telefon ?? 0)?.['SMSIdentifier']);
+  ((s as any).SMSBuilderVars = (s as any).SMSBuilderVars ?? {})['SMSIndex'] = (((s as any).telefon ?? 0)?.['SMSIndex']);
   if (String((s as any).locArgs?.[2] ?? '') !== 0  &&  String((s as any).locArgs?.[2] ?? '') !== '') {
     ((s as any).telefon = (s as any).telefon ?? {})['UnreadSMS'] = ((s as any).telefon['UnreadSMS'] ?? 0) - (1);
     // TODO-QSP: SMSMessageRead[SMSBuilderVars['SMSIndex']] = 1
@@ -255,7 +255,7 @@ function enterUpdateSms(s: GameState, scene: SceneBuilder): void {
     ((s as any).SMSBuilderVars = (s as any).SMSBuilderVars ?? {})['replies'] = '';
   }
   if (Object.keys((s as any).SMSBuilderImages ?? {}).length > 0) {
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).SMSBuilderVars ?? 0)?.['SMSIndex']]; enterPrivateSetEndImg(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', (((s as any).SMSBuilderVars ?? 0)?.['SMSIndex'])]; enterPrivateSetEndImg(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   if (((s as any).SMSBuilderVars ?? 0)?.['reset_flag'] === 1) {
     // TODO-QSP: $SMSMessage[SMSBuilderVars['SMSIndex']] = ''
@@ -263,12 +263,12 @@ function enterUpdateSms(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $SMSMessage[SMSBuilderVars['SMSIndex']] += $SMSBuilderVars['text']
   // TODO-QSP: $SMSReplies[SMSBuilderVars['SMSIndex']] = $SMSBuilderVars['replies']
   if (String((s as any).locArgs?.[2] ?? '') !== 0  ||  String((s as any).locArgs?.[2] ?? '') !== '') {
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).SMSBuilderVars ?? 0)?.['SMSIndex']]; enterSetUnread(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', (((s as any).SMSBuilderVars ?? 0)?.['SMSIndex'])]; enterSetUnread(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   ((s as any).SMSBuilderVars = (s as any).SMSBuilderVars ?? {})['reset_flag'] = 0;
   ((s as any).SMSBuilderVars = (s as any).SMSBuilderVars ?? {})['text'] = '';
   ((s as any).SMSBuilderVars = (s as any).SMSBuilderVars ?? {})['replies'] = '';
-  ((s as any).SMSBuilderVars = (s as any).SMSBuilderVars ?? {})['SMSIdentifier'] = ((s as any).telefon ?? 0)?.['SMSIdentifier'];
+  ((s as any).SMSBuilderVars = (s as any).SMSBuilderVars ?? {})['SMSIdentifier'] = (((s as any).telefon ?? 0)?.['SMSIdentifier']);
   // TODO-QSP: end
   scene.build();
 }
@@ -283,8 +283,8 @@ function enterShowSms(s: GameState, scene: SceneBuilder): void {
   if (! qspFunc(s, 'SMStext_builder', 'does_index_exist', ((s as any).SMSBuilderVars ?? 0)?.['SMSIndex'])) {
     return;
   }
-  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).SMSBuilderVars ?? 0)?.['SMSIndex']]; enterUpdateSms(s, scene); (s as any).locArgs = __savedLocArgs; }
-  qspCall(s, 'telefon', 'show_sms', ((s as any).SMSBuilderVars ?? 0)?.['SMSIndex']);
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', (((s as any).SMSBuilderVars ?? 0)?.['SMSIndex'])]; enterUpdateSms(s, scene); (s as any).locArgs = __savedLocArgs; }
+  qspCall(s, 'telefon', 'show_sms', (((s as any).SMSBuilderVars ?? 0)?.['SMSIndex']));
   // TODO-QSP: end
   scene.build();
 }

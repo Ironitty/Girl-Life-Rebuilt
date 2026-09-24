@@ -1866,7 +1866,7 @@ function enterNoCumInside(s: GameState, scene: SceneBuilder): void {
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterNoCumInsidePic(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspCall(st, 'sex_ev_stats', 'no_birth_control_know');
     // TODO-QSP: dynamic text: "Sorry. I can''t let you come inside me," you say, <<$sex_ev[''cum_describe2'']>...
-    scene.text(`"Sorry. I can't let you come inside me," you say, ${((st as any).sex_ev ?? 0)?.['cum_describe2'] ?? ''}. "I'm not on birth control."`);
+    scene.text(`"Sorry. I can't let you come inside me," you say, ${(((st as any).sex_ev ?? 0)?.['cum_describe2'] ?? '')}. "I'm not on birth control."`);
     qspCall(st, 'sex_ev_sex', 'sex_end');
   } },
         ]);
@@ -1878,13 +1878,13 @@ function enterNoCumInside(s: GameState, scene: SceneBuilder): void {
       { label: '(Apologetic)', handler: (st: GameState) => {
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterNoCumInsidePic(st, scene); (st as any).locArgs = __savedLocArgs; }
     // TODO-QSP: dynamic text: "I''m sorry," you say wistfully, <<$sex_ev[''cum_describe2'']>>. "I know how muc...
-    scene.text(`"I'm sorry," you say wistfully, ${((st as any).sex_ev ?? 0)?.['cum_describe2'] ?? ''}. "I know how much you want to finish inside me, but I'm still not on birth control."`);
+    scene.text(`"I'm sorry," you say wistfully, ${(((st as any).sex_ev ?? 0)?.['cum_describe2'] ?? '')}. "I know how much you want to finish inside me, but I'm still not on birth control."`);
     qspCall(st, 'sex_ev_sex', 'sex_end');
   } },
       { label: '(Annoyed)', handler: (st: GameState) => {
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterNoCumInsidePic(st, scene); (st as any).locArgs = __savedLocArgs; }
     // TODO-QSP: dynamic text: "Dumbass!" you scowl, <<$sex_ev[''cum_describe2'']>>. "You know I''m not on birt...
-    scene.text(`"Dumbass!" you scowl, ${((st as any).sex_ev ?? 0)?.['cum_describe2'] ?? ''}. "You know I'm not on birth control!"`);
+    scene.text(`"Dumbass!" you scowl, ${(((st as any).sex_ev ?? 0)?.['cum_describe2'] ?? '')}. "You know I'm not on birth control!"`);
     qspCall(st, 'sex_ev_sex', 'sex_end');
   } },
     ]);
@@ -1901,7 +1901,7 @@ function enterNoCumInside(s: GameState, scene: SceneBuilder): void {
         { label: '(Apologetic)', handler: (st: GameState) => {
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterNoCumInsidePic(st, scene); (st as any).locArgs = __savedLocArgs; }
     // TODO-QSP: dynamic text: "I''m sorry," you say wistfully, <<$sex_ev[''cum_describe2'']>>. "I know how muc...
-    scene.text(`"I'm sorry," you say wistfully, ${((st as any).sex_ev ?? 0)?.['cum_describe2'] ?? ''}. "I know how much you want to finish inside me, but it's a danger day. I'll get pregnant."`);
+    scene.text(`"I'm sorry," you say wistfully, ${(((st as any).sex_ev ?? 0)?.['cum_describe2'] ?? '')}. "I know how much you want to finish inside me, but it's a danger day. I'll get pregnant."`);
     qspCall(st, 'sex_ev_sex', 'sex_end');
   } },
       ]);
@@ -1911,7 +1911,7 @@ function enterNoCumInside(s: GameState, scene: SceneBuilder): void {
         { label: '(Annoyed)', handler: (st: GameState) => {
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterNoCumInsidePic(st, scene); (st as any).locArgs = __savedLocArgs; }
     // TODO-QSP: dynamic text: "Dumbass!" you scowl, <<$sex_ev[''cum_describe2'']>>. "I told you it''s a danger...
-    scene.text(`"Dumbass!" you scowl, ${((st as any).sex_ev ?? 0)?.['cum_describe2'] ?? ''}. "I told you it's a danger day for me! Are you <i>trying</i> to get me pregnant?!"`);
+    scene.text(`"Dumbass!" you scowl, ${(((st as any).sex_ev ?? 0)?.['cum_describe2'] ?? '')}. "I told you it's a danger day for me! Are you <i>trying</i> to get me pregnant?!"`);
     scene.text('"Sorry," he says sheepishly. "I forgot."');
     qspCall(st, 'sex_ev_sex', 'sex_end');
   } },
@@ -1926,22 +1926,22 @@ function enterNoCumInside(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Too intimate', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: "<<$sex_ev[''cum_describe1'']>>" you say, <<$sex_ev[''cum_describe2'']>>. "I don...
-    scene.text(`"${((st as any).sex_ev ?? 0)?.['cum_describe1'] ?? ''}" you say, ${((st as any).sex_ev ?? 0)?.['cum_describe2'] ?? ''}. "I don't like being creampied. Feels too intimate."`);
+    scene.text(`"${(((st as any).sex_ev ?? 0)?.['cum_describe1'] ?? '')}" you say, ${(((st as any).sex_ev ?? 0)?.['cum_describe2'] ?? '')}. "I don't like being creampied. Feels too intimate."`);
     qspCall(st, 'sex_ev_sex', 'sex_end');
   } },
       { label: 'Feels weird', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: "<<$sex_ev[''cum_describe1'']>> you say, <<$sex_ev[''cum_describe2'']>>. "I don'...
-    scene.text(`"${((st as any).sex_ev ?? 0)?.['cum_describe1'] ?? ''} you say, ${((st as any).sex_ev ?? 0)?.['cum_describe2'] ?? ''}. "I don't like being creampied. Feels too weird."`);
+    scene.text(`"${(((st as any).sex_ev ?? 0)?.['cum_describe1'] ?? '')} you say, ${(((st as any).sex_ev ?? 0)?.['cum_describe2'] ?? '')}. "I don't like being creampied. Feels too weird."`);
     qspCall(st, 'sex_ev_sex', 'sex_end');
   } },
       { label: 'Too messy', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: "<<$sex_ev[''cum_describe1'']>> you say, <<$sex_ev[''cum_describe2'']>>. "I don'...
-    scene.text(`"${((st as any).sex_ev ?? 0)?.['cum_describe1'] ?? ''} you say, ${((st as any).sex_ev ?? 0)?.['cum_describe2'] ?? ''}. "I don't like being creampied. Too messy."`);
+    scene.text(`"${(((st as any).sex_ev ?? 0)?.['cum_describe1'] ?? '')} you say, ${(((st as any).sex_ev ?? 0)?.['cum_describe2'] ?? '')}. "I don't like being creampied. Too messy."`);
     qspCall(st, 'sex_ev_sex', 'sex_end');
   } },
       { label: 'I don\'t like you enough for that', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: "Sorry," you say, <<$sex_ev[''cum_describe2'']>>. "I don''t like you enough to l...
-    scene.text(`"Sorry," you say, ${((st as any).sex_ev ?? 0)?.['cum_describe2'] ?? ''}. "I don't like you enough to let you do that yet."`);
+    scene.text(`"Sorry," you say, ${(((st as any).sex_ev ?? 0)?.['cum_describe2'] ?? '')}. "I don't like you enough to let you do that yet."`);
     qspCall(st, 'sex_ev_sex', 'sex_end');
   } },
       { label: 'Only my boyfriend is allowed to come inside me', handler: (st: GameState) => {
@@ -2006,7 +2006,7 @@ function enterNoTitsCum(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'That\'s gross', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: "Ewww," you grimace, <<$sex_ev[''cum_describe2'']>>. "Why do you even want to do...
-    scene.text(`"Ewww," you grimace, ${((st as any).sex_ev ?? 0)?.['cum_describe2'] ?? ''}. "Why do you even want to do that? This isn't a porno you know."`);
+    scene.text(`"Ewww," you grimace, ${(((st as any).sex_ev ?? 0)?.['cum_describe2'] ?? '')}. "Why do you even want to do that? This isn't a porno you know."`);
     qspCall(st, 'sex_ev_sex', 'sex_end');
   } },
       { label: 'Too much mess', handler: (st: GameState) => {
@@ -2037,7 +2037,7 @@ function enterNoFacial(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'That\'s gross', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: "Ewww," you grimace, <<$sex_ev[''cum_describe2'']>>. "Like I''d ever want to do ...
-    scene.text(`"Ewww," you grimace, ${((st as any).sex_ev ?? 0)?.['cum_describe2'] ?? ''}. "Like I'd ever want to do <i>that</i>. This isn't a porno you know." You shudder.`);
+    scene.text(`"Ewww," you grimace, ${(((st as any).sex_ev ?? 0)?.['cum_describe2'] ?? '')}. "Like I'd ever want to do <i>that</i>. This isn't a porno you know." You shudder.`);
     qspCall(st, 'sex_ev_sex', 'sex_end');
   } },
       { label: 'Too much mess', handler: (st: GameState) => {
@@ -2077,13 +2077,13 @@ function enterNoMouthCum(s: GameState, scene: SceneBuilder): void {
       scene.text('"Because you asked to come in my mouth," you grimace, blinking the cum away from your eyes. "This is gross enough on my face, I <i>don\'t</i> want to taste it."');
     } else {
       // TODO-QSP: dynamic text: "Ewww," you grimace, <<$sex_ev[''cum_describe2'']>>. "Like I''d ever want <i>thi...
-      scene.text(`"Ewww," you grimace, ${((st as any).sex_ev ?? 0)?.['cum_describe2'] ?? ''}. "Like I'd ever want <i>this</i> in my mouth." You shudder.`);
+      scene.text(`"Ewww," you grimace, ${(((st as any).sex_ev ?? 0)?.['cum_describe2'] ?? '')}. "Like I'd ever want <i>this</i> in my mouth." You shudder.`);
     }
     qspCall(st, 'sex_ev_sex', 'sex_end');
   } },
         { label: 'I don\'t like the taste', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: "Sorry," you smile, <<$sex_ev[''cum_describe2'']>>. "I''m really not a fan of th...
-    scene.text(`"Sorry," you smile, ${((st as any).sex_ev ?? 0)?.['cum_describe2'] ?? ''}. "I'm really not a fan of the taste of cum."`);
+    scene.text(`"Sorry," you smile, ${(((st as any).sex_ev ?? 0)?.['cum_describe2'] ?? '')}. "I'm really not a fan of the taste of cum."`);
     qspCall(st, 'sex_ev_sex', 'sex_end');
   } },
       ]);
@@ -2091,7 +2091,7 @@ function enterNoMouthCum(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'I don\'t like you enough for that', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: "Sorry," you smirk apologetically, <<$sex_ev[''cum_describe2'']>>. "I don''t lik...
-    scene.text(`"Sorry," you smirk apologetically, ${((st as any).sex_ev ?? 0)?.['cum_describe2'] ?? ''}. "I don't like you enough to let you do that yet."`);
+    scene.text(`"Sorry," you smirk apologetically, ${(((st as any).sex_ev ?? 0)?.['cum_describe2'] ?? '')}. "I don't like you enough to let you do that yet."`);
     qspCall(st, 'sex_ev_sex', 'sex_end');
   } },
     ]);

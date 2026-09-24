@@ -28,8 +28,8 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     { label: 'Continue', handler: (st: GameState) => {
     ((st as any).stat = (st as any).stat ?? {})['rape_count'] = ((st as any).stat['rape_count'] ?? 0) + (1);
     ((st as any).stat = (st as any).stat ?? {})['gangbang_count'] = ((st as any).stat['gangbang_count'] ?? 0) + (1);
-    (st as any).guy = ((st as any).guy ?? 0) + (((st as any).placerParameter ?? 0)?.['number_of_man']);
-    (st as any).ciklkm = ((st as any).placerParameter ?? 0)?.['number_of_man'];
+    (st as any).guy = ((st as any).guy ?? 0) + ((((st as any).placerParameter ?? 0)?.['number_of_man']));
+    (st as any).ciklkm = (((st as any).placerParameter ?? 0)?.['number_of_man']);
     qspCall(st, 'arousal', 'vaginal', 5, 'sub', 'group');
     qspCall(st, 'stat', '');
     qspGoto(st, 'gopnik_house', 'rape');

@@ -20,8 +20,8 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'indoors');
   // TODO-QSP: dynamic text: <center><b><<$car[''name'']>></b></center>
-  scene.text(`<center><b>${((s as any).car ?? 0)?.['name'] ?? ''}</b></center>`);
-  scene.img(`images/pc/items/accessories/car/car${((s as any).car ?? 0)?.['ID'] ?? ''}.jpg`);
+  scene.text(`<center><b>${(((s as any).car ?? 0)?.['name'] ?? '')}</b></center>`);
+  scene.img(`images/pc/items/accessories/car/car${(((s as any).car ?? 0)?.['ID'] ?? '')}.jpg`);
   if (((s as any).kanistra ?? 0) > 0) {
     // TODO-QSP: dynamic text: 'In the trunk ' + iif(kanistra = 1, 'is 1 canister', 'are <<kanistra>> canisters...
     scene.text('In the trunk ' + ((((s as any).kanistra ?? 0) === 1) ? ('is 1 canister') : ('are ' + ((s as any).kanistra ?? '') + ' canisters')) + ' of gasoline. Each canister contains 5 liters of gasoline.');
@@ -53,10 +53,10 @@ function enterSalon(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   qspCall(s, 'stat', '');
   // TODO-QSP: dynamic text: <center><b><<$car[''name'']>></b></center>
-  scene.text(`<center><b>${((s as any).car ?? 0)?.['name'] ?? ''}</b></center>`);
-  scene.img(`images/pc/items/accessories/car/salon${((s as any).car ?? 0)?.['ID'] ?? ''}.jpg`);
+  scene.text(`<center><b>${(((s as any).car ?? 0)?.['name'] ?? '')}</b></center>`);
+  scene.img(`images/pc/items/accessories/car/salon${(((s as any).car ?? 0)?.['ID'] ?? '')}.jpg`);
   // TODO-QSP: dynamic text: 'Gasoline - <<car[''fuel'']>> ' + iif(car['fuel'] = 1, 'liter', 'liters') + ', t...
-  scene.text(`Gasoline - ${((s as any).car ?? 0)?.['fuel'] ?? ''} ` + ((((s as any).car ?? 0)?.['fuel'] === 1) ? ('liter') : ('liters')) + `, the fuel tank has a capacity of ${((s as any).car ?? 0)?.['tank'] ?? ''} liters.`);
+  scene.text(`Gasoline - ${(((s as any).car ?? 0)?.['fuel'] ?? '')} ` + ((((s as any).car ?? 0)?.['fuel'] === 1) ? ('liter') : ('liters')) + `, the fuel tank has a capacity of ${(((s as any).car ?? 0)?.['tank'] ?? '')} liters.`);
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCarCondition(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (qspFunc(s, 'car_funcs', 'is_here', 'city_residential', '')) {
     scene.text('Through the windshield, you see St. Petersburg\'s residential area.');

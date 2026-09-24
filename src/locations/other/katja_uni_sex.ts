@@ -1564,7 +1564,7 @@ function enterAfterMovieMasturbation1(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/dorm/sex/after_movie_mastubation4.jpg');
     // TODO-QSP: dynamic text: Katja starts pulling down your bra, which uncovers your <<$pc_desc[''breast'']>>...
-    scene.text(`Katja starts pulling down your bra, which uncovers your ${((st as any).pc_desc ?? 0)?.['breast'] ?? ''} breasts. You then proceed to take your bras off.`);
+    scene.text(`Katja starts pulling down your bra, which uncovers your ${(((st as any).pc_desc ?? 0)?.['breast'] ?? '')} breasts. You then proceed to take your bras off.`);
     scene.actions([
       { label: 'Now her panties', goto: ['katja_uni_sex', 'after_movie_masturbation2'] },
     ]);
@@ -2046,7 +2046,7 @@ function enterAfterDateSex2(s: GameState, scene: SceneBuilder): void {
     if (((st as any).hour ?? 0) < 22  &&  ((st as any).hour ?? 0) > 7) {
       ((st as any).locat = (st as any).locat ?? {})['katja'] = 52;
       ((st as any).locat = (st as any).locat ?? {})['katja_rand2'] = ((st as any).daystart ?? 0);
-      ((st as any).locat = (st as any).locat ?? {})['katja_save2'] = ((st as any).locat ?? 0)?.['katja'];
+      ((st as any).locat = (st as any).locat ?? {})['katja_save2'] = (((st as any).locat ?? 0)?.['katja']);
       scene.text('"It\'s still early," Katja says after looking at her phone. "I think I want to watch a movie before I go to bed. Wanna join me?"');
       scene.actions([
         { label: 'Watch a movie with Katja', handler: (st: GameState) => {
@@ -2080,7 +2080,7 @@ function enterAfterDateSex2(s: GameState, scene: SceneBuilder): void {
       } else {
         ((st as any).locat = (st as any).locat ?? {})['katja_rand2'] = ((st as any).daystart ?? 0);
       }
-      ((st as any).locat = (st as any).locat ?? {})['katja_save2'] = ((st as any).locat ?? 0)?.['katja'];
+      ((st as any).locat = (st as any).locat ?? {})['katja_save2'] = (((st as any).locat ?? 0)?.['katja']);
       scene.text('"What we just did was still a perfect way to end our evening," Katja says.');
       scene.text('"Yes, it was," you agree.');
       scene.text('"Now I\'m off to bed," Katja continues.');

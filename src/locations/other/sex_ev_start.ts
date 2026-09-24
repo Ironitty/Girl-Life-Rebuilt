@@ -25,7 +25,7 @@ function enterInitiatePre(s: GameState, scene: SceneBuilder): void {
       if (((s as any).sex_ev ?? 0)?.['locat'] === 'pc_home') {
         { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPcHomeImgInit(s, scene); (s as any).locArgs = __savedLocArgs; }
       } else {
-        ((s as any).sex_ev = (s as any).sex_ev ?? {})['loc'] = ((s as any).sex_ev ?? 0)?.['locat'];
+        ((s as any).sex_ev = (s as any).sex_ev ?? {})['loc'] = (((s as any).sex_ev ?? 0)?.['locat']);
       }
     }
   }

@@ -2304,7 +2304,7 @@ function enterDelayedCreampieOrgasm1(s: GameState, scene: SceneBuilder): void {
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['came_together'] = 2;
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['react'] = 1;
     (st as any).orgasm_or = 'yes';
-    qspCall(st, 'arousal', 'vaginal', (-1), 'no_orgasm_msg', ((st as any).sex_ev ?? 0)?.['prostitution_flag']);
+    qspCall(st, 'arousal', 'vaginal', (-1), 'no_orgasm_msg', (((st as any).sex_ev ?? 0)?.['prostitution_flag']));
     qspCall(st, 'stat', '');
     if (((st as any).sex_ev ?? 0)?.['position'] === 'miss') {
       scene.img('images/shared/sex/vag/miss/orgasm1.mp4');
@@ -2510,7 +2510,7 @@ function enterCreampieAccidentFine(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: end
   scene.actions([
-    { label: '', labelFn: (s: GameState) => String(((s as any).sex_ev ?? 0)?.['its_fine'] ?? '' ?? ''), handler: (st: GameState) => {
+    { label: '', labelFn: (s: GameState) => String((((s as any).sex_ev ?? 0)?.['its_fine'] ?? '') ?? ''), handler: (st: GameState) => {
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['creampie_allowance'] = 1;
     if (((st as any).sex_ev ?? 0)?.['position'] === 'miss') {
       scene.img('images/shared/sex/vag/miss/4.jpg');
@@ -3705,15 +3705,15 @@ function enterCreampieAccidentBirthControl(s: GameState, scene: SceneBuilder): v
     }
     if (((s as any).npc_know_bc ?? 0)?.[String((s as any).npcID ?? 0)] === 0) {
       scene.actions([
-        { label: '', labelFn: (s: GameState) => 'I\'m on the ' + String(((s as any).sex_ev ?? 0)?.['bc_type'] ?? '' ?? ''), handler: (st: GameState) => {
+        { label: '', labelFn: (s: GameState) => 'I\'m on the ' + String((((s as any).sex_ev ?? 0)?.['bc_type'] ?? '') ?? ''), handler: (st: GameState) => {
     qspCall(st, 'sex_ev_stats', 'birth_control_know');
     ((st as any).npc_know_not_bc = (st as any).npc_know_not_bc ?? {})[String((st as any).npcID ?? 0)] = 0;
     if (((st as any).sex_ev ?? 0)?.['no_condom'] === 1) {
       // TODO-QSP: dynamic text: "It''s okay." you reassure him. "I''m on the <<$sex_ev[''bc_type'']>>."
-      scene.text(`"It's okay." you reassure him. "I'm on the ${((st as any).sex_ev ?? 0)?.['bc_type'] ?? ''}."`);
+      scene.text(`"It's okay." you reassure him. "I'm on the ${(((st as any).sex_ev ?? 0)?.['bc_type'] ?? '')}."`);
     } else {
       // TODO-QSP: dynamic text: "It''s okay." you reassure him. "I''m on the <<$sex_ev[''bc_type'']>>. I just li...
-      scene.text(`"It's okay." you reassure him. "I'm on the ${((st as any).sex_ev ?? 0)?.['bc_type'] ?? ''}. I just like condoms for extra safety."`);
+      scene.text(`"It's okay." you reassure him. "I'm on the ${(((st as any).sex_ev ?? 0)?.['bc_type'] ?? '')}. I just like condoms for extra safety."`);
     }
     // TODO-QSP: dynamic text: <<$npcdesc>> seems to relax, relieved that you''re not upset.
     scene.text(`${((st as any).npcdesc ?? '')} seems to relax, relieved that you're not upset.`);
@@ -3727,7 +3727,7 @@ function enterCreampieAccidentBirthControl(s: GameState, scene: SceneBuilder): v
       { label: 'Tell him you\'re kidding (on bc)', handler: (st: GameState) => {
     scene.text('The look on his face sends you into uncontrollable giggles and you relent.');
     // TODO-QSP: dynamic text: "I''m kidding," you laugh. I''m on the <<$sex_ev[''bc_type'']>>. I won''t get pr...
-    scene.text(`"I'm kidding," you laugh. I'm on the ${((st as any).sex_ev ?? 0)?.['bc_type'] ?? ''}. I won't get pregnant."`);
+    scene.text(`"I'm kidding," you laugh. I'm on the ${(((st as any).sex_ev ?? 0)?.['bc_type'] ?? '')}. I won't get pregnant."`);
     if (((st as any).npc_childfree ?? 0)?.[String((st as any).npcID ?? 0)] > 0) {
       qspCall(st, 'npc_relationship', 'modify', ((st as any).npcID ?? 0), 'dislike');
       // TODO-QSP: dynamic text: "That''s not funny!" <<$npcdesc>> scowls.

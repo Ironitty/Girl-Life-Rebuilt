@@ -13,7 +13,7 @@ function enterPavlbar(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/pavlin/pavlin.jpg');
   scene.text('You stand up, put your clothes back on and step out of the room.');
   // TODO-QSP: dynamic text: You go to the bar and see <<$npc_nickname[''A217'']>> sitting in a booth in the ...
-  scene.text(`You go to the bar and see ${((s as any).npc_nickname ?? 0)?.['A217'] ?? ''} sitting in a booth in the corner.`);
+  scene.text(`You go to the bar and see ${(((s as any).npc_nickname ?? 0)?.['A217'] ?? '')} sitting in a booth in the corner.`);
   if (((s as any).pavprosmmf ?? 0) === 1) {
     // TODO-QSP: dynamic text: "They sure left with a big smile on their faces. Good job, <<$pcs_nickname>>," h...
     scene.text(`"They sure left with a big smile on their faces. Good job, ${((s as any).pcs_nickname ?? '')}," he says as he hands you ${qspFunc(s, 'money', 'string_profit', 1200)}.`);
@@ -42,15 +42,15 @@ function enterPavlbar(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).custangry ?? 0) === 1  &&  (!((s as any).custleft ?? 0))) {
         scene.actions([
-          { label: '', labelFn: (s: GameState) => 'Go to ' + String(((s as any).npc_nickname ?? 0)?.['A217'] ?? '' ?? ''), handler: (st: GameState) => {
+          { label: '', labelFn: (s: GameState) => 'Go to ' + String((((s as any).npc_nickname ?? 0)?.['A217'] ?? '') ?? ''), handler: (st: GameState) => {
     if ((!(Math.floor(Math.random() * 6) + 0))) {
       scene.text('He looks none too pleased as you approach and gingerly sit next to him.');
       scene.text('"Explain yourself," he says sternly, noticing your wince as you sit down. His hands are clenched into fists on the table.');
       scene.text('"H-He refused to use a condom. We argued and then he... He hurt me. H-He raped me. He even forced himself into my ass."');
       // TODO-QSP: dynamic text: <<$npc_nickname[''A217'']>> stands up and leans over you. He looks furious. "Tha...
-      scene.text(`${((st as any).npc_nickname ?? 0)?.['A217'] ?? ''} stands up and leans over you. He looks furious. "That was an important customer. He came here to complain about your behaviour. You had better learn to please your customers or there's going to be hell to pay!"`);
+      scene.text(`${(((st as any).npc_nickname ?? 0)?.['A217'] ?? '')} stands up and leans over you. He looks furious. "That was an important customer. He came here to complain about your behaviour. You had better learn to please your customers or there's going to be hell to pay!"`);
       // TODO-QSP: dynamic text: Not wanting to suffer through another manhandling, you meekly hang your head. "I...
-      scene.text(`Not wanting to suffer through another manhandling, you meekly hang your head. "I-I'm sorry, ${((st as any).npc_nickname ?? 0)?.['A217'] ?? ''}... I-I didn't know..."`);
+      scene.text(`Not wanting to suffer through another manhandling, you meekly hang your head. "I-I'm sorry, ${(((st as any).npc_nickname ?? 0)?.['A217'] ?? '')}... I-I didn't know..."`);
       scene.text('"You can forget about getting paid for this. Now get out of my sight!"');
       scene.actions([
         { label: 'Go back to the hotel lobby', goto: ['pav_hotel', 'skip_resepevent'] },
@@ -60,7 +60,7 @@ function enterPavlbar(s: GameState, scene: SceneBuilder): void {
       scene.text('"Explain yourself," he says sternly, noticing your wince as you sit down. His hands are clenched into fists on the table.');
       scene.text('"H-He refused to use a condom. We argued and then he... He hurt me. H-He raped me. He even forced himself into my ass."');
       // TODO-QSP: dynamic text: <<$npc_nickname[''A217'']>> looks furious as he stands up and marches out the do...
-      scene.text(`${((st as any).npc_nickname ?? 0)?.['A217'] ?? ''} looks furious as he stands up and marches out the door. Unsure what to do, you remain seated and wait for him to return.`);
+      scene.text(`${(((st as any).npc_nickname ?? 0)?.['A217'] ?? '')} looks furious as he stands up and marches out the door. Unsure what to do, you remain seated and wait for him to return.`);
       scene.text('"He\'s nowhere to be seen!" he says angrily as he returns to the table. "That bastard didn\'t pay to fuck your ass. If he shows his face again, <i>I\'ll</i> deal with him."');
       scene.text('"Here\'s your money. You come straight to me next time if things get out of hand again."');
       { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterGetpaidpros(st, scene); (st as any).locArgs = __savedLocArgs; }
@@ -74,15 +74,15 @@ function enterPavlbar(s: GameState, scene: SceneBuilder): void {
       } else {
         if (((s as any).custangry ?? 0) === 1  &&  ((s as any).custleft ?? 0) === 1) {
           scene.actions([
-            { label: '', labelFn: (s: GameState) => 'Go to ' + String(((s as any).npc_nickname ?? 0)?.['A217'] ?? '' ?? ''), handler: (st: GameState) => {
+            { label: '', labelFn: (s: GameState) => 'Go to ' + String((((s as any).npc_nickname ?? 0)?.['A217'] ?? '') ?? ''), handler: (st: GameState) => {
     if ((!(Math.floor(Math.random() * 6) + 0))) {
       scene.text('He looks none too pleased as you approach and gingerly sit next to him.');
       scene.text('"Explain yourself," he says sternly, noticing your wince as you sit down. His hands are clenched into fists on the table.');
       scene.text('"H-He refused to use a condom. We argued and then he... He hurt me. So I fought back and told him to leave."');
       // TODO-QSP: dynamic text: <<$npc_nickname[''A217'']>> stands up and leans over you. He looks furious. "Tha...
-      scene.text(`${((st as any).npc_nickname ?? 0)?.['A217'] ?? ''} stands up and leans over you. He looks furious. "That was an important customer. He came here to demand his money back. You had better learn to please your customers or there's going to be hell to pay!"`);
+      scene.text(`${(((st as any).npc_nickname ?? 0)?.['A217'] ?? '')} stands up and leans over you. He looks furious. "That was an important customer. He came here to demand his money back. You had better learn to please your customers or there's going to be hell to pay!"`);
       // TODO-QSP: dynamic text: Not wanting to suffer through another manhandling, you meekly hang your head. "I...
-      scene.text(`Not wanting to suffer through another manhandling, you meekly hang your head. "I-I'm sorry, ${((st as any).npc_nickname ?? 0)?.['A217'] ?? ''}... I-I didn't know..."`);
+      scene.text(`Not wanting to suffer through another manhandling, you meekly hang your head. "I-I'm sorry, ${(((st as any).npc_nickname ?? 0)?.['A217'] ?? '')}... I-I didn't know..."`);
       scene.text('"You can forget about getting paid for this. Now get out of my sight!"');
       scene.actions([
         { label: 'Go back to the hotel lobby', goto: ['pav_hotel', 'skip_resepevent'] },
@@ -92,7 +92,7 @@ function enterPavlbar(s: GameState, scene: SceneBuilder): void {
       scene.text('"Explain yourself," he says sternly, noticing your wince as you sit down. His hands are clenched into fists on the table.');
       scene.text('"H-He refused to use a condom. We argued and then he... He hurt me. So I fought back and told him to leave."');
       // TODO-QSP: dynamic text: <<$npc_nickname[''A217'']>> looks furious as he stands up and marches out the do...
-      scene.text(`${((st as any).npc_nickname ?? 0)?.['A217'] ?? ''} looks furious as he stands up and marches out the door. Unsure what to do, you remain seated and wait for him to return.`);
+      scene.text(`${(((st as any).npc_nickname ?? 0)?.['A217'] ?? '')} looks furious as he stands up and marches out the door. Unsure what to do, you remain seated and wait for him to return.`);
       scene.text('"He\'s nowhere to be seen!" he says angrily as he returns to the table. "If he shows his face again, <i>I\'ll</i> deal with him."');
       scene.text('"Here\'s your money. You come straight to me next time if things get out of hand again."');
       { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterGetpaidpros(st, scene); (st as any).locArgs = __savedLocArgs; }
@@ -106,15 +106,15 @@ function enterPavlbar(s: GameState, scene: SceneBuilder): void {
         } else {
           if (((s as any).custangry ?? 0) === 0  &&  ((s as any).custleft ?? 0) === 1) {
             scene.actions([
-              { label: '', labelFn: (s: GameState) => 'Go to ' + String(((s as any).npc_nickname ?? 0)?.['A217'] ?? '' ?? ''), handler: (st: GameState) => {
+              { label: '', labelFn: (s: GameState) => 'Go to ' + String((((s as any).npc_nickname ?? 0)?.['A217'] ?? '') ?? ''), handler: (st: GameState) => {
     if ((!(Math.floor(Math.random() * 6) + 0))) {
       scene.text('He looks none too pleased as you approach and gingerly sit next to him.');
       scene.text('"Explain yourself," he says sternly. His hands are clenched into fists on the table.');
       scene.text('"H-He refused to use a condom. We argued and then he... He threw me into the wall. So I started screaming and told him to leave."');
       // TODO-QSP: dynamic text: <<$npc_nickname[''A217'']>> stands up and leans over you. He looks furious. "Tha...
-      scene.text(`${((st as any).npc_nickname ?? 0)?.['A217'] ?? ''} stands up and leans over you. He looks furious. "That was an important customer. He came here to demand his money back. You had better learn to please your customers or there's going to be hell to pay." He hisses at you.`);
+      scene.text(`${(((st as any).npc_nickname ?? 0)?.['A217'] ?? '')} stands up and leans over you. He looks furious. "That was an important customer. He came here to demand his money back. You had better learn to please your customers or there's going to be hell to pay." He hisses at you.`);
       // TODO-QSP: dynamic text: Not wanting to suffer through another manhandling, you hang your head meekly and...
-      scene.text(`Not wanting to suffer through another manhandling, you hang your head meekly and stammer: "I-I'm sorry ${((st as any).npc_nickname ?? 0)?.['A217'] ?? ''}. I-I didn't know..."`);
+      scene.text(`Not wanting to suffer through another manhandling, you hang your head meekly and stammer: "I-I'm sorry ${(((st as any).npc_nickname ?? 0)?.['A217'] ?? '')}. I-I didn't know..."`);
       scene.text('"You can forget about getting paid for this. Now get out of my sight."');
       scene.actions([
         { label: 'Go back to the hotel lobby', goto: ['pav_hotel', 'skip_resepevent'] },
@@ -124,7 +124,7 @@ function enterPavlbar(s: GameState, scene: SceneBuilder): void {
       scene.text('"Explain yourself," he says sternly, noticing your wince as you sit down. His hands are clenched into fists on the table.');
       scene.text('"H-He refused to use a condom. We argued and then he... He threw me into the wall. So I started screaming and told him to leave."');
       // TODO-QSP: dynamic text: <<$npc_nickname[''A217'']>> looks furious as he stands up and marches out the do...
-      scene.text(`${((st as any).npc_nickname ?? 0)?.['A217'] ?? ''} looks furious as he stands up and marches out the door. Unsure what to do, you remain seated and wait for him to return.`);
+      scene.text(`${(((st as any).npc_nickname ?? 0)?.['A217'] ?? '')} looks furious as he stands up and marches out the door. Unsure what to do, you remain seated and wait for him to return.`);
       scene.text('"He\'s nowhere to be seen!" he says angrily as he returns to the table. "If he shows his face again, <i>I\'ll</i> deal with him."');
       scene.text('"Here\'s your money. You come straight to me next time if things get out of hand again."');
       { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterGetpaidpros(st, scene); (st as any).locArgs = __savedLocArgs; }
@@ -168,7 +168,7 @@ function enterPavlbarcont(s: GameState, scene: SceneBuilder): void {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGetpaidpros(s, scene); (s as any).locArgs = __savedLocArgs; }
     qspCall(s, 'stat', '');
     // TODO-QSP: dynamic text: You tell <<$npc_nickname[''A217'']>> that you were basically assraped by the cli...
-    scene.text(`You tell ${((s as any).npc_nickname ?? 0)?.['A217'] ?? ''} that you were basically assraped by the client.`);
+    scene.text(`You tell ${(((s as any).npc_nickname ?? 0)?.['A217'] ?? '')} that you were basically assraped by the client.`);
     scene.text('"What the fuck? He didn\'t pay for that!" he says before he storms out to find the client.');
     scene.text('<br>');
     scene.text('...');
@@ -187,7 +187,7 @@ function enterPavlbarcont(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.text('"This was not what we agreed to," you say. "I need more..."');
     // TODO-QSP: dynamic text: <<$npc_nickname[''A217'']>> takes your hand and moves it towards his crotch. "Su...
-    scene.text(`${((s as any).npc_nickname ?? 0)?.['A217'] ?? ''} takes your hand and moves it towards his crotch. "Sure, you can have more, but you need to do some extra work for that."`);
+    scene.text(`${(((s as any).npc_nickname ?? 0)?.['A217'] ?? '')} takes your hand and moves it towards his crotch. "Sure, you can have more, but you need to do some extra work for that."`);
     qspCall(s, 'willpower', 'bj', 'resist');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
@@ -204,7 +204,7 @@ function enterPavlbarcont(s: GameState, scene: SceneBuilder): void {
     scene.text('You wiggle your hand free from his grip, take the money and get up.');
     scene.text('"This really is the last time you screwed me over!" you say.');
     // TODO-QSP: dynamic text: <<$npc_nickname[''A217'']>> is not really worried. He''s confident you''ll be ba...
-    scene.text(`${((st as any).npc_nickname ?? 0)?.['A217'] ?? ''} is not really worried. He's confident you'll be back.`);
+    scene.text(`${(((st as any).npc_nickname ?? 0)?.['A217'] ?? '')} is not really worried. He's confident you'll be back.`);
     scene.text('He leans back in his chair and checks out your ass as you\'re leaving.');
     scene.actions([
       { label: 'Go back to the hotel lobby', goto: ['pav_hotel', 'skip_resepevent'] },
@@ -223,7 +223,7 @@ function enterPavlbarcont(s: GameState, scene: SceneBuilder): void {
       scene.text('You look around to make sure nobody is watching before you lean over.');
       scene.text('After a few minutes, he tells you he\'s cumming. You don\'t want to make a mess here, so you just keep it in your mouth and swallow all the spunk.');
       // TODO-QSP: dynamic text: You sit straight again and look at <<$npc_nickname[''A217'']>>.
-      scene.text(`You sit straight again and look at ${((st as any).npc_nickname ?? 0)?.['A217'] ?? ''}.`);
+      scene.text(`You sit straight again and look at ${(((st as any).npc_nickname ?? 0)?.['A217'] ?? '')}.`);
       qspCall(st, 'arousal', 'bj', 5, 'prostitution');
       qspCall(st, 'cum_call', 'mouth_swallow', ((st as any).npcID ?? 0), 1);
     } else {
@@ -260,11 +260,11 @@ function enterPavlbarcont(s: GameState, scene: SceneBuilder): void {
     scene.text('You\'re sure the money he received from the customer was more than double this amount and bring it up.');
     scene.text('I believe I should get more money. I\'m doing all the work here and I know these guys pay you much more than this."');
     // TODO-QSP: dynamic text: The moment you mention the money, a darkness appears on <<$npc_nickname[''A217''...
-    scene.text(`The moment you mention the money, a darkness appears on ${((s as any).npc_nickname ?? 0)?.['A217'] ?? ''}'s face where there was once a smile. However, his smile reappears as fast as it disappeared.`);
+    scene.text(`The moment you mention the money, a darkness appears on ${(((s as any).npc_nickname ?? 0)?.['A217'] ?? '')}'s face where there was once a smile. However, his smile reappears as fast as it disappeared.`);
     // TODO-QSP: dynamic text: "You''re right, <<$pcs_firstname>>. Come with me to my car and I''ll give you a ...
     scene.text(`"You're right, ${((s as any).pcs_firstname ?? '')}. Come with me to my car and I'll give you a bonus today."`);
     // TODO-QSP: dynamic text: You''re excited at the prospect of finally getting the money you earned, but are...
-    scene.text(`You're excited at the prospect of finally getting the money you earned, but are unsure if you can trust ${((s as any).npc_nickname ?? 0)?.['A217'] ?? ''}.`);
+    scene.text(`You're excited at the prospect of finally getting the money you earned, but are unsure if you can trust ${(((s as any).npc_nickname ?? 0)?.['A217'] ?? '')}.`);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'willpower', 'misc', 'resist');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
@@ -295,11 +295,11 @@ function enterPavlbarcont(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 15;
     scene.img('images/characters/pavlovsk/pavlin/pavlin_violent.jpg');
     // TODO-QSP: dynamic text: You follow <<$npc_nickname[''A217'']>> outside towards the parking lot.
-    scene.text(`You follow ${((st as any).npc_nickname ?? 0)?.['A217'] ?? ''} outside towards the parking lot.`);
+    scene.text(`You follow ${(((st as any).npc_nickname ?? 0)?.['A217'] ?? '')} outside towards the parking lot.`);
     // TODO-QSP: dynamic text: Once you turn the corner and are out of sight, <<$npc_nickname[''A217'']>> sudde...
-    scene.text(`Once you turn the corner and are out of sight, ${((st as any).npc_nickname ?? 0)?.['A217'] ?? ''} suddenly grabs you by the shoulders and throws you against the wall.`);
+    scene.text(`Once you turn the corner and are out of sight, ${(((st as any).npc_nickname ?? 0)?.['A217'] ?? '')} suddenly grabs you by the shoulders and throws you against the wall.`);
     // TODO-QSP: dynamic text: You''re about to say something when <<$npc_nickname[''A217'']>> suddenly punches...
-    scene.text(`You're about to say something when ${((st as any).npc_nickname ?? 0)?.['A217'] ?? ''} suddenly punches you in the face.`);
+    scene.text(`You're about to say something when ${(((st as any).npc_nickname ?? 0)?.['A217'] ?? '')} suddenly punches you in the face.`);
     scene.text('"WHO DO YOU THINK YOU ARE, BITCH?!" he screams. "You work for ME! I decide how much money you get, UNDERSTAND?!"');
     scene.text('He punches you in the face after every sentence.');
     if (((st as any).pcs_stren ?? 0) > 60) {
@@ -308,13 +308,13 @@ function enterPavlbarcont(s: GameState, scene: SceneBuilder): void {
       scene.text('You try to defend yourself and start hitting back. He did not expect this and is startled for a moment.');
       scene.text('You see an opening and take advantage of it. With a swift movement, you\'re able to push your knee into his groin.');
       // TODO-QSP: dynamic text: This brings <<$npc_nickname[''A217'']>> to his knees and you take the opportunit...
-      scene.text(`This brings ${((st as any).npc_nickname ?? 0)?.['A217'] ?? ''} to his knees and you take the opportunity to run away.`);
+      scene.text(`This brings ${(((st as any).npc_nickname ?? 0)?.['A217'] ?? '')} to his knees and you take the opportunity to run away.`);
       scene.text('"Screw you, bitch! I\'ll get you for this!" he screams as you dash around the corner.');
       (st as any).pavldom = 1;
     } else {
       scene.img('images/characters/pavlovsk/pavlin/pavlin_violent2.jpg');
       // TODO-QSP: dynamic text: "I''m sorry, <<$npc_nickname[''A217'']>>! It won''t happen again!" you plead.
-      scene.text(`"I'm sorry, ${((st as any).npc_nickname ?? 0)?.['A217'] ?? ''}! It won't happen again!" you plead.`);
+      scene.text(`"I'm sorry, ${(((st as any).npc_nickname ?? 0)?.['A217'] ?? '')}! It won't happen again!" you plead.`);
       scene.text('"You\'re damn right it won\'t happen again!" he screams as he throws you aside. "Now get out of my sight!"');
       scene.text('You quickly crawl to your feet and run away.');
       (st as any).PavlinQW = 4;
@@ -377,9 +377,9 @@ function enterPavgenpros(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/hotel/resep.girl0,'+r...
     scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/hotel/resep.girl0,` + (Math.floor(Math.random() * 11) + 0) + '.jpg"></center>');
     // TODO-QSP: dynamic text: She picks up the phone. "<<$npc_nickname[''A217'']>>, I have <<$pcs_nickname>> h...
-    scene.text(`She picks up the phone. "${((s as any).npc_nickname ?? 0)?.['A217'] ?? ''}, I have ${((s as any).pcs_nickname ?? '')} here for you... Sure, I'll send her right up."`);
+    scene.text(`She picks up the phone. "${(((s as any).npc_nickname ?? 0)?.['A217'] ?? '')}, I have ${((s as any).pcs_nickname ?? '')} here for you... Sure, I'll send her right up."`);
     // TODO-QSP: dynamic text: She gives you a subtle smile and tells you <<$npc_nickname[''A217'']>> is waitin...
-    scene.text(`She gives you a subtle smile and tells you ${((s as any).npc_nickname ?? 0)?.['A217'] ?? ''} is waiting for you in room 305.`);
+    scene.text(`She gives you a subtle smile and tells you ${(((s as any).npc_nickname ?? 0)?.['A217'] ?? '')} is waiting for you in room 305.`);
   }
   // TODO-QSP: end
   scene.actions([
@@ -388,12 +388,12 @@ function enterPavgenpros(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/pavlin/pavlin.jpg');
     if (((st as any).hour ?? 0) >= 12  &&  ((st as any).hour ?? 0) < 20) {
       // TODO-QSP: dynamic text: You enter the room with <<$npc_nickname[''A217'']>>.
-      scene.text(`You enter the room with ${((st as any).npc_nickname ?? 0)?.['A217'] ?? ''}.`);
+      scene.text(`You enter the room with ${(((st as any).npc_nickname ?? 0)?.['A217'] ?? '')}.`);
       scene.text('"Just sit down on the bed," he tells you as he takes out his phone and walks back into the hallway.');
       scene.text('Within a minute, he steps back into the room.');
     } else {
       // TODO-QSP: dynamic text: You go to the room and knock on the door. <<$npc_nickname[''A217'']>> opens it a...
-      scene.text(`You go to the room and knock on the door. ${((st as any).npc_nickname ?? 0)?.['A217'] ?? ''} opens it a few seconds later.`);
+      scene.text(`You go to the room and knock on the door. ${(((st as any).npc_nickname ?? 0)?.['A217'] ?? '')} opens it a few seconds later.`);
       scene.text('"Just sit down on the bed," he tells you.');
     }
     if ((!((st as any).custrand ?? 0))) {
@@ -429,7 +429,7 @@ function enterPavgenpros(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: He looks at you angrily before he sighs. "Damn it, <<$pcs_nickname>>! I don''t a...
     scene.text(`He looks at you angrily before he sighs. "Damn it, ${((st as any).pcs_nickname ?? '')}! I don't appreciate you fucking up my schedule! Fine. There's a guy coming over to the room next door. I'll get my girl in there to switch with you. Come with me."`);
     // TODO-QSP: dynamic text: He leaves you in the hallway to talk with the other girl. After a minute, the tw...
-    scene.text(`He leaves you in the hallway to talk with the other girl. After a minute, the two exit the room and the girl enters the room you just left as ${((st as any).npc_nickname ?? 0)?.['A217'] ?? ''} looks at you.`);
+    scene.text(`He leaves you in the hallway to talk with the other girl. After a minute, the two exit the room and the girl enters the room you just left as ${(((st as any).npc_nickname ?? 0)?.['A217'] ?? '')} looks at you.`);
     scene.text('"You\'re lucky the guy wasn\'t here yet," he snarks. "He should arrive any second, so get in there!"');
     scene.actions([
       { label: 'Perform your duty', goto: ['pavlin', 'clientselect'] },
@@ -465,7 +465,7 @@ function enterPavgenpros(s: GameState, scene: SceneBuilder): void {
 function enterClientselect(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).custrand ?? 0))) {
     // TODO-QSP: dynamic text: There''s a knock on the door and <<$npc_nickname[''A217'']>> answers it. He has ...
-    scene.text(`There's a knock on the door and ${((s as any).npc_nickname ?? 0)?.['A217'] ?? ''} answers it. He has a short conversation with the customers before he's handed a wad of cash and allows them into the room.`);
+    scene.text(`There's a knock on the door and ${(((s as any).npc_nickname ?? 0)?.['A217'] ?? '')} answers it. He has a short conversation with the customers before he's handed a wad of cash and allows them into the room.`);
     scene.text('"I\'ll be waiting in the hotel bar. Meet me there when you\'re done, girl," he says as he leaves the room.');
     scene.actions([
       { label: 'Perform your duty', goto: ['pavlin', 'pavgenprosmmf'] },
@@ -473,14 +473,14 @@ function enterClientselect(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).custrand ?? 0) === 1) {
       // TODO-QSP: dynamic text: There''s a knock on the door and <<$npc_nickname[''A217'']>> answers it. He has ...
-      scene.text(`There's a knock on the door and ${((s as any).npc_nickname ?? 0)?.['A217'] ?? ''} answers it. He has a short conversation with the customer before he's handed a wad of cash and allows her into the room.`);
+      scene.text(`There's a knock on the door and ${(((s as any).npc_nickname ?? 0)?.['A217'] ?? '')} answers it. He has a short conversation with the customer before he's handed a wad of cash and allows her into the room.`);
       scene.text('"I\'ll be waiting in the hotel bar. Meet me there when you\'re done, girl," he says as he leaves the room.');
       scene.actions([
         { label: 'Perform your duty', goto: ['pavlin', 'pavgenprosff'] },
       ]);
     } else {
       // TODO-QSP: dynamic text: There''s a knock on the door and <<$npc_nickname[''A217'']>> answers it. He has ...
-      scene.text(`There's a knock on the door and ${((s as any).npc_nickname ?? 0)?.['A217'] ?? ''} answers it. He has a short conversation with the customer. He gets handed a wad of cash before he allows him into the room.`);
+      scene.text(`There's a knock on the door and ${(((s as any).npc_nickname ?? 0)?.['A217'] ?? '')} answers it. He has a short conversation with the customer. He gets handed a wad of cash before he allows him into the room.`);
       scene.text('"I\'ll be waiting in the hotel bar. Meet me there when you\'re done, girl," he says as he leaves the room.');
       scene.actions([
         { label: 'Perform your duty', goto: ['pavlin', 'pavgenprosmf'] },
@@ -844,7 +844,7 @@ function enterVaginalmf(s: GameState, scene: SceneBuilder): void {
     scene.text(`"Your pussy is great, but I really want to try out this sweet little asshole," ${((st as any).npcdesc ?? '')} says.`);
     scene.text('"No way! We didn\'t agree to this," you reply.');
     // TODO-QSP: dynamic text: "I don''t care, bitch! <<$npc_nickname[''A217'']>> still owes me a favor, so you...
-    scene.text(`"I don't care, bitch! ${((st as any).npc_nickname ?? 0)?.['A217'] ?? ''} still owes me a favor, so you're going to lie there and take it."`);
+    scene.text(`"I don't care, bitch! ${(((st as any).npc_nickname ?? 0)?.['A217'] ?? '')} still owes me a favor, so you're going to lie there and take it."`);
     // TODO-QSP: dynamic text: You try to get away, but <<$npcdesc>> pins you down and guides his cock towards ...
     scene.text(`You try to get away, but ${((st as any).npcdesc ?? '')} pins you down and guides his cock towards your ass.`);
     scene.text('"At least use some lube..."');
@@ -986,7 +986,7 @@ function enterPavgenprosmmf(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: The customers introduce themselves as <<$npcdesc[0]>> and <<$npcdesc[1]>>.
   scene.text(`The customers introduce themselves as ${(((s as any).npcdesc ?? 0)?.[0] ?? '')} and ${(((s as any).npcdesc ?? 0)?.[1] ?? '')}.`);
   // TODO-QSP: dynamic text: "We''ve just booked you for the next hour, so let''s have some fun. <<$npc_nickn...
-  scene.text(`"We've just booked you for the next hour, so let's have some fun. ${((s as any).npc_nickname ?? 0)?.['A217'] ?? ''} said we should agree on a price to fuck both of your holes with you. Oh, and I hope you won't insist on condoms."`);
+  scene.text(`"We've just booked you for the next hour, so let's have some fun. ${(((s as any).npc_nickname ?? 0)?.['A217'] ?? '')} said we should agree on a price to fuck both of your holes with you. Oh, and I hope you won't insist on condoms."`);
   if (((s as any).mc_inventory ?? 0)?.['equipped_condoms'] > 0) {
     qspCall(s, 'willpower', 'foreplay', 'force');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
@@ -1473,16 +1473,16 @@ function enterTwins(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/pavlin/pavlin.jpg');
   // TODO-QSP: dynamic text: "Hey <<$npc_nickname[''A217'']>>, this is my sister, Anya."
-  scene.text(`"Hey ${((s as any).npc_nickname ?? 0)?.['A217'] ?? ''}, this is my sister, Anya."`);
+  scene.text(`"Hey ${(((s as any).npc_nickname ?? 0)?.['A217'] ?? '')}, this is my sister, Anya."`);
   // TODO-QSP: dynamic text: <<$npc_nickname[''A217'']>> looks at the two of you from top to bottom with anal...
-  scene.text(`${((s as any).npc_nickname ?? 0)?.['A217'] ?? ''} looks at the two of you from top to bottom with analytical eyes before he finally cracks a smile and starts laughing.`);
+  scene.text(`${(((s as any).npc_nickname ?? 0)?.['A217'] ?? '')} looks at the two of you from top to bottom with analytical eyes before he finally cracks a smile and starts laughing.`);
   scene.text('"Well, well, you weren\'t kidding. You two look exactly alike! Okay, let me call the client."');
   scene.text('He steps away to make a quick phone call and you turn and smile at your sister excitedly. Anya smiles back, but her grin seems forced and you can tell that she\'s nervous.');
   // TODO-QSP: dynamic text: "Lighten up, sis! We''re just gonna go get dicked down and we''ll walk away paid...
-  scene.text(`"Lighten up, sis! We're just gonna go get dicked down and we'll walk away paid. It'll be fun!" you say, trying to reassure her while praying that she won't back out. You hate to think how ${((s as any).npc_firstname ?? 0)?.['A217'] ?? ''} would react if you cancelled at this stage.`);
+  scene.text(`"Lighten up, sis! We're just gonna go get dicked down and we'll walk away paid. It'll be fun!" you say, trying to reassure her while praying that she won't back out. You hate to think how ${(((s as any).npc_firstname ?? 0)?.['A217'] ?? '')} would react if you cancelled at this stage.`);
   scene.text('Anya\'s smile becomes more genuine upon seeing your excitement. "Yeah, I know. I\'m just a little nervous, but I\'ll be fine. I promise."');
   // TODO-QSP: dynamic text: You sigh with relief as <<$npc_nickname[''A217'']>> returns and ushers you both ...
-  scene.text(`You sigh with relief as ${((s as any).npc_nickname ?? 0)?.['A217'] ?? ''} returns and ushers you both to his car.`);
+  scene.text(`You sigh with relief as ${(((s as any).npc_nickname ?? 0)?.['A217'] ?? '')} returns and ushers you both to his car.`);
   scene.text('He then drives you to a nice house at the outskirts of town.');
   // TODO-QSP: end
   scene.actions([
@@ -1490,7 +1490,7 @@ function enterTwins(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'npcgeneratec', '0');
     qspCall(st, 'boyStat', '$npclastgenerated');
     // TODO-QSP: dynamic text: <<$npc_nickname[''A217'']>> drops you off and tells you he''ll come back to pick...
-    scene.text(`${((st as any).npc_nickname ?? 0)?.['A217'] ?? ''} drops you off and tells you he'll come back to pick you up in an hour. You nod and walk hand-in-hand with your sister to the door, practically dragging her alongside you before ringing the bell.`);
+    scene.text(`${(((st as any).npc_nickname ?? 0)?.['A217'] ?? '')} drops you off and tells you he'll come back to pick you up in an hour. You nod and walk hand-in-hand with your sister to the door, practically dragging her alongside you before ringing the bell.`);
     scene.text('You can see she\'s still very nervous, so you give her a little peck on the cheek. "Don\'t worry, everything\'s going to be fine. I\'ll try to keep his attention mostly on me if you\'re scared."');
     scene.text('Before Anya can respond, a man opens the door and invites you in.');
     scene.img('images/characters/pavlovsk/resident/anya/sex/twins1.jpg');
@@ -1595,9 +1595,9 @@ function enterTwins(s: GameState, scene: SceneBuilder): void {
     scene.text('You try to protest, but it\'s too late; the dick enters your mouth before any words leave it. You submit and use your tongue to thoroughly clean his cock while whimpering in disapproval.');
     scene.text('You hear Anya snicker at the idea of you being forced to taste her ass on this stranger\'s rod and shoot her an angry look from the side.');
     // TODO-QSP: dynamic text: You then hear someone honking a horn outside and look at the clock. You realize ...
-    scene.text(`You then hear someone honking a horn outside and look at the clock. You realize the whole hour has passed and ${((st as any).npc_nickname ?? 0)?.['A217'] ?? ''} has arrived.`);
+    scene.text(`You then hear someone honking a horn outside and look at the clock. You realize the whole hour has passed and ${(((st as any).npc_nickname ?? 0)?.['A217'] ?? '')} has arrived.`);
     // TODO-QSP: dynamic text: Not wanting to keep <<$npc_nickname[''A217'']>> waiting, you and your sister qui...
-    scene.text(`Not wanting to keep ${((st as any).npc_nickname ?? 0)?.['A217'] ?? ''} waiting, you and your sister quickly put on your clothes, say goodbye to ${((st as any).boydesc ?? '')}, and leave the house.`);
+    scene.text(`Not wanting to keep ${(((st as any).npc_nickname ?? 0)?.['A217'] ?? '')} waiting, you and your sister quickly put on your clothes, say goodbye to ${((st as any).boydesc ?? '')}, and leave the house.`);
     scene.actions([
       { label: 'Pavlin takes you home', goto: ['pavlin', 'twinhome'] },
     ]);
@@ -1657,9 +1657,9 @@ function enterTwins(s: GameState, scene: SceneBuilder): void {
     scene.text('You try to protest, but it\'s too late; the dick enters your mouth before any words leave it. You submit and use your tongue to thoroughly clean his cock while whimpering in disapproval.');
     scene.text('You hear Anya snicker at the idea of you being forced to taste her ass on this stranger\'s rod and shoot her an angry look from the side.');
     // TODO-QSP: dynamic text: You then hear someone honking a horn outside and look at the clock. You realize ...
-    scene.text(`You then hear someone honking a horn outside and look at the clock. You realize the whole hour has passed and ${((st as any).npc_nickname ?? 0)?.['A217'] ?? ''} has arrived.`);
+    scene.text(`You then hear someone honking a horn outside and look at the clock. You realize the whole hour has passed and ${(((st as any).npc_nickname ?? 0)?.['A217'] ?? '')} has arrived.`);
     // TODO-QSP: dynamic text: Not wanting to keep <<$npc_nickname[''A217'']>> waiting, you and your sister qui...
-    scene.text(`Not wanting to keep ${((st as any).npc_nickname ?? 0)?.['A217'] ?? ''} waiting, you and your sister quickly put on your clothes, say goodbye to ${((st as any).boydesc ?? '')}, and leave the house.`);
+    scene.text(`Not wanting to keep ${(((st as any).npc_nickname ?? 0)?.['A217'] ?? '')} waiting, you and your sister quickly put on your clothes, say goodbye to ${((st as any).boydesc ?? '')}, and leave the house.`);
     scene.actions([
       { label: 'Pavlin drives you home', goto: ['pavlin', 'twinhome'] },
     ]);
@@ -1712,9 +1712,9 @@ function enterTwins(s: GameState, scene: SceneBuilder): void {
     scene.text('Anya tries to protest, but it\'s too late; the dick enters her mouth before any words leave it. She resigns herself to the task and uses her tongue to thoroughly clean the cock while whimpering in disapproval.');
     scene.text('You can\'t help but snicker at the idea of her being forced to taste your ass on this stranger\'s rod and she shoots you an angry look from the side.');
     // TODO-QSP: dynamic text: You suddenly hear someone honking a horn outside and look at the clock. You real...
-    scene.text(`You suddenly hear someone honking a horn outside and look at the clock. You realize the whole hour has passed and ${((st as any).npc_nickname ?? 0)?.['A217'] ?? ''} has arrived.`);
+    scene.text(`You suddenly hear someone honking a horn outside and look at the clock. You realize the whole hour has passed and ${(((st as any).npc_nickname ?? 0)?.['A217'] ?? '')} has arrived.`);
     // TODO-QSP: dynamic text: Not wanting to keep <<$npc_nickname[''A217'']>> waiting, you and your sister qui...
-    scene.text(`Not wanting to keep ${((st as any).npc_nickname ?? 0)?.['A217'] ?? ''} waiting, you and your sister quickly put on your clothes, say goodbye to ${((st as any).boydesc ?? '')}, and leave the house.`);
+    scene.text(`Not wanting to keep ${(((st as any).npc_nickname ?? 0)?.['A217'] ?? '')} waiting, you and your sister quickly put on your clothes, say goodbye to ${((st as any).boydesc ?? '')}, and leave the house.`);
     scene.actions([
       { label: 'Pavlin drives you home', goto: ['pavlin', 'twinhome'] },
     ]);
@@ -1737,16 +1737,16 @@ function enterTwins(s: GameState, scene: SceneBuilder): void {
 function enterTwinhome(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'cum_call', 'face', ((s as any).npclastgenerated ?? 0));
   // TODO-QSP: dynamic text: You both jump in the car and <<$npc_nickname[''A217'']>> drives away.
-  scene.text(`You both jump in the car and ${((s as any).npc_nickname ?? 0)?.['A217'] ?? ''} drives away.`);
+  scene.text(`You both jump in the car and ${(((s as any).npc_nickname ?? 0)?.['A217'] ?? '')} drives away.`);
   // TODO-QSP: dynamic text: "Thanks for that, <<$pcs_nickname>>. You really are the greatest sister in the w...
   scene.text(`"Thanks for that, ${((s as any).pcs_nickname ?? '')}. You really are the greatest sister in the world!" Anya says before grabbing you and planting a passionate kiss on your still sticky lips.`);
   scene.text('After a while, you reach the apartment complex.');
   // TODO-QSP: dynamic text: "Great job, girls. Anya, if you ever want to come work for me like your sister, ...
-  scene.text(`"Great job, girls. Anya, if you ever want to come work for me like your sister, then feel free to drop by the hotel," ${((s as any).npc_nickname ?? 0)?.['A217'] ?? ''} offers.`);
+  scene.text(`"Great job, girls. Anya, if you ever want to come work for me like your sister, then feel free to drop by the hotel," ${(((s as any).npc_nickname ?? 0)?.['A217'] ?? '')} offers.`);
   scene.text('"Ha ha, no thanks. I\'m not a who..." Anya looks at you and stops herself before she finishes the sentence.');
   scene.text('"No, not interested. But thanks," she says while quickly leaving the car and heading inside.');
   // TODO-QSP: dynamic text: <<$npc_nickname[''A217'']>> can''t stop laughing as he hands you <<$func(''money...
-  scene.text(`${((s as any).npc_nickname ?? 0)?.['A217'] ?? ''} can't stop laughing as he hands you ${qspFunc(s, 'money', 'string_profit', 10000)}. "Ha ha ha! Lucky there's an actual whore in the family then!"`);
+  scene.text(`${(((s as any).npc_nickname ?? 0)?.['A217'] ?? '')} can't stop laughing as he hands you ${qspFunc(s, 'money', 'string_profit', 10000)}. "Ha ha ha! Lucky there's an actual whore in the family then!"`);
   // TODO-QSP: dynamic text: You leave the car, face burning red in embarrassment, and go inside to your room...
   scene.text(`You leave the car, face burning red in embarrassment, and go inside to your room. You were planning to divide the money evenly with your sister, but now that you know what she really thinks of you, you hand her ${qspFunc(s, 'money', 'string_profit', 1000)}.`);
   scene.text('"Since you\'re not a whore, I guess you don\'t deserve a whore\'s pay," you say snidely and quickly head back out of the room before Anya has a chance to respond.');
@@ -1874,14 +1874,14 @@ function enterClown(s: GameState, scene: SceneBuilder): void {
     scene.text('One of them throws your clothes at you. "Maybe next time you\'ll laugh at our jokes and you\'ll have a better time!"');
     scene.text('You start rubbing your face, cleaning off the pie when you realize you\'re standing butt naked in the hallway.');
     // TODO-QSP: dynamic text: You quickly put your clothes back on and go to the bar to meet <<$npc_nickname['...
-    scene.text(`You quickly put your clothes back on and go to the bar to meet ${((st as any).npc_nickname ?? 0)?.['A217'] ?? ''}.`);
+    scene.text(`You quickly put your clothes back on and go to the bar to meet ${(((st as any).npc_nickname ?? 0)?.['A217'] ?? '')}.`);
     scene.actions([
       { label: 'Go to the bar', handler: (st: GameState) => {
     qspCall(st, 'money', 'earn', 2000);
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/pavlin/pavlin.jpg');
     // TODO-QSP: dynamic text: You see <<$npc_nickname[''A217'']>> in his usual corner booth and go over to him...
-    scene.text(`You see ${((st as any).npc_nickname ?? 0)?.['A217'] ?? ''} in his usual corner booth and go over to him.`);
+    scene.text(`You see ${(((st as any).npc_nickname ?? 0)?.['A217'] ?? '')} in his usual corner booth and go over to him.`);
     scene.text('When he notices your face full of pie, he starts laughing.');
     // TODO-QSP: dynamic text: "Ha ha ha! It looks like you had a good time, <<$pcs_firstname>>."
     scene.text(`"Ha ha ha! It looks like you had a good time, ${((st as any).pcs_firstname ?? '')}."`);
@@ -1915,13 +1915,13 @@ function enterPregBDSM(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('"That shouldn\'t be a problem. With what he\'s willing to pay, you\'ll be able to put that kid of yours through college."');
   // TODO-QSP: dynamic text: <<$npc_nickname[''A217'']>> steps away to make the call. 10 minutes later, the c...
-  scene.text(`${((s as any).npc_nickname ?? 0)?.['A217'] ?? ''} steps away to make the call. 10 minutes later, the customer shows up.`);
+  scene.text(`${(((s as any).npc_nickname ?? 0)?.['A217'] ?? '')} steps away to make the call. 10 minutes later, the customer shows up.`);
   // TODO-QSP: dynamic text: He introduces himself as <<$boydesc>>. "Very nice, <<$npc_nickname[''A217'']>>. ...
-  scene.text(`He introduces himself as ${((s as any).boydesc ?? '')}. "Very nice, ${((s as any).npc_nickname ?? 0)?.['A217'] ?? ''}. This is exactly what I was looking for," he says while hungrily eyeing your pregnant body.`);
+  scene.text(`He introduces himself as ${((s as any).boydesc ?? '')}. "Very nice, ${(((s as any).npc_nickname ?? 0)?.['A217'] ?? '')}. This is exactly what I was looking for," he says while hungrily eyeing your pregnant body.`);
   // TODO-QSP: dynamic text: <<$npc_nickname[''A217'']>> and <<$boydesc>> have a short discussion about your ...
-  scene.text(`${((s as any).npc_nickname ?? 0)?.['A217'] ?? ''} and ${((s as any).boydesc ?? '')} have a short discussion about your price.`);
+  scene.text(`${(((s as any).npc_nickname ?? 0)?.['A217'] ?? '')} and ${((s as any).boydesc ?? '')} have a short discussion about your price.`);
   // TODO-QSP: dynamic text: <<$npc_nickname[''A217'']>> goes over to the desk girl and comes back with a key...
-  scene.text(`${((s as any).npc_nickname ?? 0)?.['A217'] ?? ''} goes over to the desk girl and comes back with a key. "We have full access to the hotel basement for the next 2 hours, so let's get on with it."`);
+  scene.text(`${(((s as any).npc_nickname ?? 0)?.['A217'] ?? '')} goes over to the desk girl and comes back with a key. "We have full access to the hotel basement for the next 2 hours, so let's get on with it."`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Go to the basement', handler: (st: GameState) => {
@@ -1931,12 +1931,12 @@ function enterPregBDSM(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'pain', '3', 'nipples', 'spank');
     qspCall(st, 'stat', '');
     // TODO-QSP: dynamic text: When the three of you arrive in the basement, <<$npc_nickname[''A217'']>> sits o...
-    scene.text(`When the three of you arrive in the basement, ${((st as any).npc_nickname ?? 0)?.['A217'] ?? ''} sits on a stool in the corner of the room while the man takes you to a table in the center.`);
+    scene.text(`When the three of you arrive in the basement, ${(((st as any).npc_nickname ?? 0)?.['A217'] ?? '')} sits on a stool in the corner of the room while the man takes you to a table in the center.`);
     scene.text('He hands you a set of leather wrist cuffs, a matching collar and a pair of heels.');
     scene.text('"Undress and wear these," he says curtly.');
     scene.text('As you\'re busy undressing and equipping your new accessories, he lays out a series of whips and crops before he turns to you with a happy grin. "Please, choose one for us to enjoy."');
     // TODO-QSP: dynamic text: You look at <<$npc_nickname[''A217'']>> with pleading eyes, but receive no sympa...
-    scene.text(`You look at ${((st as any).npc_nickname ?? 0)?.['A217'] ?? ''} with pleading eyes, but receive no sympathy in return. You realize it's too late to back out now, so you examine the foreign whips and choose the one you think would be the least painful; a thin one that appears light in weight, figuring that the heavier ones would cause much more pain.`);
+    scene.text(`You look at ${(((st as any).npc_nickname ?? 0)?.['A217'] ?? '')} with pleading eyes, but receive no sympathy in return. You realize it's too late to back out now, so you examine the foreign whips and choose the one you think would be the least painful; a thin one that appears light in weight, figuring that the heavier ones would cause much more pain.`);
     // TODO-QSP: dynamic text: <<$boydesc>> approaches you and starts caressing your swollen belly and breasts.
     scene.text(`${((st as any).boydesc ?? '')} approaches you and starts caressing your swollen belly and breasts.`);
     scene.img('images/locations/pavlovsk/hotel/pregbdsm1.jpg');
@@ -1997,7 +1997,7 @@ function enterPregBDSM(s: GameState, scene: SceneBuilder): void {
     scene.text('You try to resist and stiffen your neck, attempting to push your head back up as the smell of your piss wafts into your nostrils, hot and bitter.');
     scene.text('"Now be a good little bitch and take a sip from your bowl," he says, holding your head in place.');
     // TODO-QSP: dynamic text: You shoot a look of terror across the room to <<$npc_nickname[''A217'']>>, hopin...
-    scene.text(`You shoot a look of terror across the room to ${((st as any).npc_nickname ?? 0)?.['A217'] ?? ''}, hoping against hope that he'll stop this. Your heart sinks as he just gestures for you to go ahead and do your job.`);
+    scene.text(`You shoot a look of terror across the room to ${(((st as any).npc_nickname ?? 0)?.['A217'] ?? '')}, hoping against hope that he'll stop this. Your heart sinks as he just gestures for you to go ahead and do your job.`);
     scene.text('Your breathing becomes ragged as the panic reaches a new peak in your chest.');
     scene.actions([
       { label: 'Swallow your pride', handler: (st: GameState) => {
@@ -2045,25 +2045,25 @@ function enterPregBDSM(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.text('You start shaking your head violently and wrestle yourself free from his grip with all your strength. You roll away and break down crying on the floor.');
     // TODO-QSP: dynamic text: "What the hell, <<$npc_nickname[''A217'']>>?! You told me she was up for it! Thi...
-    scene.text(`"What the hell, ${((st as any).npc_nickname ?? 0)?.['A217'] ?? ''}?! You told me she was up for it! This is the last time I try one of your girls!"`);
+    scene.text(`"What the hell, ${(((st as any).npc_nickname ?? 0)?.['A217'] ?? '')}?! You told me she was up for it! This is the last time I try one of your girls!"`);
     // TODO-QSP: dynamic text: <<$boydesc>> quickly zips his cock away, collects his stuff, and leaves the room...
     scene.text(`${((st as any).boydesc ?? '')} quickly zips his cock away, collects his stuff, and leaves the room in a huff of anger.`);
     scene.img('images/characters/pavlovsk/pavlin/pavlin_violent4.jpg');
     // TODO-QSP: dynamic text: You look up and no longer see <<$npc_nickname[''A217'']>>''s eyes; you see a mon...
-    scene.text(`You look up and no longer see ${((st as any).npc_nickname ?? 0)?.['A217'] ?? ''}'s eyes; you see a monster. You can practically feel the rage radiating from him as he marches towards you, fists clenched.`);
+    scene.text(`You look up and no longer see ${(((st as any).npc_nickname ?? 0)?.['A217'] ?? '')}'s eyes; you see a monster. You can practically feel the rage radiating from him as he marches towards you, fists clenched.`);
     // TODO-QSP: dynamic text: You scramble to your feet as quickly as you''re able and try to reason with him....
-    scene.text(`You scramble to your feet as quickly as you're able and try to reason with him. "${((st as any).npc_nickname ?? 0)?.['A217'] ?? ''}, I'm so sorr-"`);
+    scene.text(`You scramble to your feet as quickly as you're able and try to reason with him. "${(((st as any).npc_nickname ?? 0)?.['A217'] ?? '')}, I'm so sorr-"`);
     scene.text('You don\'t even complete the sentence before you feel your nose explode under his fist.');
     scene.text('"You fucking <b>CUNT</b>! Do you know how much money you just cost me?!" he screams.');
     scene.text('You feel blood pouring from your nose as a metallic taste pools in your mouth. You attempt to shake the dizziness from your head, but a second punch slams into your jaw.');
     scene.text('"After everything I\'ve done for you, this is how you repay me?!"');
     // TODO-QSP: dynamic text: You stumble back and look at <<$npc_nickname[''A217'']>> with watery eyes. You s...
-    scene.text(`You stumble back and look at ${((st as any).npc_nickname ?? 0)?.['A217'] ?? ''} with watery eyes. You see his clenched hand rise again, so you cover your head for protection and close your eyes, bracing for impact.`);
+    scene.text(`You stumble back and look at ${(((st as any).npc_nickname ?? 0)?.['A217'] ?? '')} with watery eyes. You see his clenched hand rise again, so you cover your head for protection and close your eyes, bracing for impact.`);
     // TODO-QSP: dynamic text: All the breath leaves your body as <<$npc_nickname[''A217'']>> buries his fist i...
-    scene.text(`All the breath leaves your body as ${((st as any).npc_nickname ?? 0)?.['A217'] ?? ''} buries his fist into your pregnant belly. Your knees turn to jelly as you fall to the ground, now laying on your side. You feel a sickly, twisting pain in your stomach and everything inside you feels wrong.`);
+    scene.text(`All the breath leaves your body as ${(((st as any).npc_nickname ?? 0)?.['A217'] ?? '')} buries his fist into your pregnant belly. Your knees turn to jelly as you fall to the ground, now laying on your side. You feel a sickly, twisting pain in your stomach and everything inside you feels wrong.`);
     scene.text('Your motherly instict cries out to you as the tip of the horrible bastard\'s steel toe boot slams into your swollen belly again and again. You try to cover your womb with your arms as his assault continues, but the boot manages to make it through your desperate defense.');
     // TODO-QSP: dynamic text: "Stop <<$npc_nickname[''A217'']>>! Please! My baby..." you beg and look up at hi...
-    scene.text(`"Stop ${((st as any).npc_nickname ?? 0)?.['A217'] ?? ''}! Please! My baby..." you beg and look up at him just in time to see the sole of his boot racing down towards your face...`);
+    scene.text(`"Stop ${(((st as any).npc_nickname ?? 0)?.['A217'] ?? '')}! Please! My baby..." you beg and look up at him just in time to see the sole of his boot racing down towards your face...`);
     scene.actions([
       { label: 'Everything goes black', handler: (st: GameState) => {
     (st as any).fcolor = 0;

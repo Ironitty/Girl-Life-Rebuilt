@@ -54,10 +54,10 @@ function enterNudeDebutShaveStart(s: GameState, scene: SceneBuilder): void {
       if (((s as any).pcs_pubes ?? 0) < 10) {
         if (((s as any).foto_persuade ?? 0) === 5) {
           // TODO-QSP: dynamic text: "Just one thing. You need to shave that stubble off," he says, eyeing the fuzzy ...
-          scene.text(`"Just one thing. You need to shave that stubble off," he says, eyeing the fuzzy patch between your legs. ${((s as any).temp ?? 0)?.['model_shave'] ?? ''}`);
+          scene.text(`"Just one thing. You need to shave that stubble off," he says, eyeing the fuzzy patch between your legs. ${(((s as any).temp ?? 0)?.['model_shave'] ?? '')}`);
         } else {
           // TODO-QSP: dynamic text: "You''ll have to shave that stubble off," he says, eyeing the fuzzy patch betwee...
-          scene.text(`"You'll have to shave that stubble off," he says, eyeing the fuzzy patch between your legs. ${((s as any).temp ?? 0)?.['model_shave'] ?? ''}`);
+          scene.text(`"You'll have to shave that stubble off," he says, eyeing the fuzzy patch between your legs. ${(((s as any).temp ?? 0)?.['model_shave'] ?? '')}`);
         }
         scene.actions([
           { label: 'But I\'m growing it out', handler: (st: GameState) => {
@@ -70,10 +70,10 @@ function enterNudeDebutShaveStart(s: GameState, scene: SceneBuilder): void {
         if (((s as any).pcs_pubes ?? 0) > 3) {
           if (((s as any).foto_persuade ?? 0) === 5) {
             // TODO-QSP: dynamic text: "Just one thing. You need to shave that off first," he says, eyeing your pubic h...
-            scene.text(`"Just one thing. You need to shave that off first," he says, eyeing your pubic hair. ${((s as any).temp ?? 0)?.['model_shave'] ?? ''}`);
+            scene.text(`"Just one thing. You need to shave that off first," he says, eyeing your pubic hair. ${(((s as any).temp ?? 0)?.['model_shave'] ?? '')}`);
           } else {
             // TODO-QSP: dynamic text: "You need to shave that off first," he says, eyeing your pubic hair. <<$temp[''m...
-            scene.text(`"You need to shave that off first," he says, eyeing your pubic hair. ${((s as any).temp ?? 0)?.['model_shave'] ?? ''}`);
+            scene.text(`"You need to shave that off first," he says, eyeing your pubic hair. ${(((s as any).temp ?? 0)?.['model_shave'] ?? '')}`);
           }
           scene.actions([
             { label: 'But I like it this way', handler: (st: GameState) => {
@@ -552,7 +552,7 @@ function enterDebutAfter1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDebutAfter2(s: GameState, scene: SceneBuilder): void {
-  scene.img(`images/locations/city/citycenter/photo/shoots/nude/debut/${((s as any).modelfoto ?? 0)?.['debut_image'] ?? ''}.jpg`);
+  scene.img(`images/locations/city/citycenter/photo/shoots/nude/debut/${(((s as any).modelfoto ?? 0)?.['debut_image'] ?? '')}.jpg`);
   if (((s as any).modelfoto ?? 0)?.['debut_image'] < 7) {
     scene.actions([
       { label: 'Next set', handler: (st: GameState) => {
@@ -865,7 +865,7 @@ function enterDebutAfterReaction(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDebutEnding(s: GameState, scene: SceneBuilder): void {
-  (s as any).modelpay = (((s as any).pcs_mdlng ?? 0)/2 * 10) + Math.min(((s as any).fame ?? 0)?.['city_modelling'], 700) + ((s as any).pcs_apprnc ?? 0);
+  (s as any).modelpay = (((s as any).pcs_mdlng ?? 0)/2 * 10) + Math.min((((s as any).fame ?? 0)?.['city_modelling']), 700) + ((s as any).pcs_apprnc ?? 0);
   (s as any).modelpayfin = (600 + (((s as any).modelpay ?? 0) * 2) + (15*(Math.floor(Math.random() * 6) + 0))) * 2;
   ((s as any).modelfoto = (s as any).modelfoto ?? {})['shoots'] = ((s as any).modelfoto['shoots'] ?? 0) + (1);
   ((s as any).modelfoto = (s as any).modelfoto ?? {})['nude'] = ((s as any).modelfoto['nude'] ?? 0) + (1);

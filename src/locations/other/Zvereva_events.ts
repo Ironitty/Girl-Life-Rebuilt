@@ -109,7 +109,7 @@ function enterChristinaBu_2(s: GameState, scene: SceneBuilder): void {
     ((st as any).christinaQW = (st as any).christinaQW ?? {})['bully'] = ((st as any).christinaQW['bully'] ?? 0) - (3);
     scene.text('Your face burns as you imagine everybody in school looking at a picture of your pussy on display, and can\'t stop yourself from saying "You pervert. Do you get off taking upskirt pictures?"');
     // TODO-QSP: dynamic text: Christina just shrugs and responds with "You''re the one not wearing panties. I ...
-    scene.text(`Christina just shrugs and responds with "You're the one not wearing panties. I bet you did it on purpose so people could see your ${((st as any).pc_desc ?? 0)?.['pubes'] ?? ''} pussy, slut." She finishes sending the picture, gives you a smirk, and walks away.`);
+    scene.text(`Christina just shrugs and responds with "You're the one not wearing panties. I bet you did it on purpose so people could see your ${(((st as any).pc_desc ?? 0)?.['pubes'] ?? '')} pussy, slut." She finishes sending the picture, gives you a smirk, and walks away.`);
     scene.text('All you can do at this point is gather your fallen stuff and head out.');
     scene.actions([
       { label: 'Leave', goto: ['gschool_grounds', 'main'] },

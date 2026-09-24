@@ -52,8 +52,8 @@ function enterCoreBirthday(s: GameState, scene: SceneBuilder): void {
     scene.text('<center><a href="#" onclick="window.__gameStore.setState((s) => { s.birthday +=s.1; return s; }); window.__gameStore.getState().doGoto(/u0027intro_character_creation/u0027, /u0027core_birthday/u0027); return false;">+1 Day</a></center>');
     scene.text('<center><a href="#" onclick="window.__gameStore.setState((s) => { s.birthday -=s.1; return s; }); window.__gameStore.getState().doGoto(/u0027intro_character_creation/u0027, /u0027core_birthday/u0027); return false;">-1 Day</a></center>');
     scene.text('<center><a href="#" onclick="window.__gameStore.setState((s) => { s.birthday -=s.5; return s; }); window.__gameStore.getState().doGoto(/u0027intro_character_creation/u0027, /u0027core_birthday/u0027); return false;">-5 Days</a></center>');
-    (s as any).bm_td = 'border:1px solid ' + ((s as any).theme_hex ?? 0)?.['goth'] + '; background-color:' + ((s as any).theme_hex ?? 0)?.['table_bg_alt'] + '; padding:6px 12px; text-align:center;';
-    (s as any).bm_td_sel = 'border:1px solid ' + ((s as any).theme_hex ?? 0)?.['goth'] + '; background-color:' + ((s as any).theme_hex ?? 0)?.['accent'] + '; padding:6px 12px; text-align:center; color:#ffffff;';
+    (s as any).bm_td = 'border:1px solid ' + (((s as any).theme_hex ?? 0)?.['goth']) + '; background-color:' + (((s as any).theme_hex ?? 0)?.['table_bg_alt']) + '; padding:6px 12px; text-align:center;';
+    (s as any).bm_td_sel = 'border:1px solid ' + (((s as any).theme_hex ?? 0)?.['goth']) + '; background-color:' + (((s as any).theme_hex ?? 0)?.['accent']) + '; padding:6px 12px; text-align:center; color:#ffffff;';
     (s as any).bm_i = 1;
     // TODO-QSP: :bm_build_loop
     // TODO-QSP: $bm_lnk[bm_i] = '<td style="' + $bm_td + '"><a href="exec:birthmonth = ' + $str(bm_i) + ' & gs ''int...
@@ -205,14 +205,14 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
         // TODO-QSP: dynamic text: You are <<$pcs_firstname>> <<$pcs_lastname>>, nicknamed <<$pcs_nickname>> for sh...
         scene.text(`You are ${((s as any).pcs_firstname ?? '')} ${((s as any).pcs_lastname ?? '')}, nicknamed ${((s as any).pcs_nickname ?? '')} for short.`);
         // TODO-QSP: dynamic text: Your mother''s name is <<$npc_firstname[''A29'']>> and your biological father le...
-        scene.text(`Your mother's name is ${((s as any).npc_firstname ?? 0)?.['A29'] ?? ''} and your biological father left when you were a baby, your mother marrying your stepfather, ${((s as any).npc_firstname ?? 0)?.['A28'] ?? ''}, shortly afterwards.`);
+        scene.text(`Your mother's name is ${(((s as any).npc_firstname ?? 0)?.['A29'] ?? '')} and your biological father left when you were a baby, your mother marrying your stepfather, ${(((s as any).npc_firstname ?? 0)?.['A28'] ?? '')}, shortly afterwards.`);
         // TODO-QSP: dynamic text: <<$npc_firstname[''A33'']>> is your older sister, who is two years older than yo...
-        scene.text(`${((s as any).npc_firstname ?? 0)?.['A33'] ?? ''} is your older sister, who is two years older than you, but is still living at home while working at the local grocery store. She chose not to attend university and instead spends most of her free time drinking and going to parties with her friends, much to your mother's dismay.`);
+        scene.text(`${(((s as any).npc_firstname ?? 0)?.['A33'] ?? '')} is your older sister, who is two years older than you, but is still living at home while working at the local grocery store. She chose not to attend university and instead spends most of her free time drinking and going to parties with her friends, much to your mother's dismay.`);
         // TODO-QSP: dynamic text: You also have a younger half-brother, <<$npc_firstname[''A34'']>>, who is really...
-        scene.text(`You also have a younger half-brother, ${((s as any).npc_firstname ?? 0)?.['A34'] ?? ''}, who is really into sports, especially football, and is shaping up to be a fine athlete. He is a year younger than you and his father is your stepfather.`);
+        scene.text(`You also have a younger half-brother, ${(((s as any).npc_firstname ?? 0)?.['A34'] ?? '')}, who is really into sports, especially football, and is shaping up to be a fine athlete. He is a year younger than you and his father is your stepfather.`);
         if (((s as any).start_type ?? 0)?.['loc'] === 'sg') {
           // TODO-QSP: dynamic text: Your <<$npc_usedname[''A30'']>> lives in the same building as you do, though you...
-          scene.text(`Your ${((s as any).npc_usedname ?? 0)?.['A30'] ?? ''} lives in the same building as you do, though you rarely see her except when you pass her in the stairwell. She is your mother's older sister. ${((s as any).npc_usedname ?? 0)?.['A54'] ?? ''}, as everyone calls him, is best friends with your stepfather. ${((s as any).npc_firstname ?? 0)?.['A11'] ?? ''} ${((s as any).npc_lastname ?? 0)?.['A11'] ?? ''}, your childhood friend, is the same age as you and grew up living in the same apartment building on the floor above yours. His father, ${((s as any).npc_firstname ?? 0)?.['A112'] ?? ''}, is an old friend of your mother.`);
+          scene.text(`Your ${(((s as any).npc_usedname ?? 0)?.['A30'] ?? '')} lives in the same building as you do, though you rarely see her except when you pass her in the stairwell. She is your mother's older sister. ${(((s as any).npc_usedname ?? 0)?.['A54'] ?? '')}, as everyone calls him, is best friends with your stepfather. ${(((s as any).npc_firstname ?? 0)?.['A11'] ?? '')} ${(((s as any).npc_lastname ?? 0)?.['A11'] ?? '')}, your childhood friend, is the same age as you and grew up living in the same apartment building on the floor above yours. His father, ${(((s as any).npc_firstname ?? 0)?.['A112'] ?? '')}, is an old friend of your mother.`);
         }
         scene.actions([
           { label: 'Continue', goto: ['intro_character_creation', 'start', 'ARGS[1]', '2'] },
@@ -408,7 +408,7 @@ function enterCharselect(s: GameState, scene: SceneBuilder): void {
             { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'gopnik']; enterGroupDesc(s, scene); (s as any).locArgs = __savedLocArgs; }
             if (((s as any).tsg ?? 0)) {
               scene.actions([
-                { label: '', labelFn: (s: GameState) => 'I ' + String(((s as any).temp_verb ?? '') ?? '') + ' ' + String(((s as any).npc_nickname ?? 0)?.['A9'] ?? '' ?? '') + '\'s girlfriend', goto: ['intro_character_creation', 'group_desc', 'gopnik', 'vitekgf'] },
+                { label: '', labelFn: (s: GameState) => 'I ' + String(((s as any).temp_verb ?? '') ?? '') + ' ' + String((((s as any).npc_nickname ?? 0)?.['A9'] ?? '') ?? '') + '\'s girlfriend', goto: ['intro_character_creation', 'group_desc', 'gopnik', 'vitekgf'] },
               ]);
             }
             scene.actions([
@@ -449,7 +449,7 @@ function enterGroupDesc(s: GameState, scene: SceneBuilder): void {
       scene.text('<center><b>Popular</b></center>');
       scene.img('images/system/1_openings/2_sg/popular_0.jpg');
       // TODO-QSP: dynamic text: You spent most of your childhood outdoors, playing with other boys and girls. As...
-      scene.text(`You spent most of your childhood outdoors, playing with other boys and girls. As a result, you're quite healthy and have a keen understanding about how to get yourself out of trouble (or shifting the blame to someone else). You were never very interested in school or sports, however, and are only a sub-par student. Your popularity has negatively impacted your relationship with ${((s as any).npc_firstname ?? 0)?.['A11'] ?? ''}, and ${((((s as any).tsg ?? 0)) ? ('you\'re not') : ('you weren\'t'))} as close as you once were. ${((((s as any).tsg ?? 0)) ? ('Now') : ('You were popular because'))}...`);
+      scene.text(`You spent most of your childhood outdoors, playing with other boys and girls. As a result, you're quite healthy and have a keen understanding about how to get yourself out of trouble (or shifting the blame to someone else). You were never very interested in school or sports, however, and are only a sub-par student. Your popularity has negatively impacted your relationship with ${(((s as any).npc_firstname ?? 0)?.['A11'] ?? '')}, and ${((((s as any).tsg ?? 0)) ? ('you\'re not') : ('you weren\'t'))} as close as you once were. ${((((s as any).tsg ?? 0)) ? ('Now') : ('You were popular because'))}...`);
     } else {
       if (String((s as any).locArgs?.[2] ?? '') === 'socialite') {
         scene.text('<center><b>Sociable</b></center>');
@@ -477,7 +477,7 @@ function enterGroupDesc(s: GameState, scene: SceneBuilder): void {
             scene.img('images/system/1_openings/2_sg/popular_3.jpg');
             scene.text('You had good looks growing up and naturally ended up falling in with the cool crowd. You enjoyed being the center of attention and became obsessed with looking like the models you\'d seen on social media and in magazines. You started dieting, but took it too far and ended up losing a lot of weight, which caused some of your fellow students to start talking about you and make the odd joke at your expense. This led to a vicious cycle and as your looks deteriorated, the jokes got worse, which only spurred you on further.');
             // TODO-QSP: dynamic text: Your family and some of your friends, especially <<$npc_nickname[''A15'']>> and ...
-            scene.text(`Your family and some of your friends, especially ${((s as any).npc_nickname ?? 0)?.['A15'] ?? ''} and ${((s as any).npc_nickname ?? 0)?.['A148'] ?? ''}, became concerned and with their support, you were able to start recovering. You now have a good relationship with your mother and sister, as well as ${((s as any).npc_nickname ?? 0)?.['A15'] ?? ''} and ${((s as any).npc_nickname ?? 0)?.['A148'] ?? ''}, who defended you and prevented you from becoming an outcast. ${((((s as any).start_type ?? 0)?.['loc'] === 'sg') ? ('You\'re') : ('When you left school you were'))} still a member of your clique, albeit only barely.`);
+            scene.text(`Your family and some of your friends, especially ${(((s as any).npc_nickname ?? 0)?.['A15'] ?? '')} and ${(((s as any).npc_nickname ?? 0)?.['A148'] ?? '')}, became concerned and with their support, you were able to start recovering. You now have a good relationship with your mother and sister, as well as ${(((s as any).npc_nickname ?? 0)?.['A15'] ?? '')} and ${(((s as any).npc_nickname ?? 0)?.['A148'] ?? '')}, who defended you and prevented you from becoming an outcast. ${((((s as any).start_type ?? 0)?.['loc'] === 'sg') ? ('You\'re') : ('When you left school you were'))} still a member of your clique, albeit only barely.`);
           } else {
             if (String((s as any).locArgs?.[2] ?? '') === 'bimbo') {
               scene.text('<center><b>Simply Stunning</b></center>');
@@ -500,7 +500,7 @@ function enterGroupDesc(s: GameState, scene: SceneBuilder): void {
         scene.text('<center><b>Jock</b></center>');
         scene.img('images/system/1_openings/2_sg/jock_0.jpg');
         // TODO-QSP: dynamic text: While you were growing up, you spent virtually all of your free time outdoors. Y...
-        scene.text(`While you were growing up, you spent virtually all of your free time outdoors. You loved playing sports, running, biking and hiking. This has kept you in fairly good shape, as well as socially active in a variety of team sports over the years. Doing this, however, negatively impacted your friendship with ${((s as any).npc_firstname ?? 0)?.['A11'] ?? ''}. As you grew up, he became a gopnik and the two of you slowly started hanging out less often, although you still consider${((((s as any).tsg ?? 0)) ? ('') : ('ed'))} each other to be friends. From all the sports available, you ${((((s as any).tsg ?? 0)) ? ('are') : ('were'))} an...`);
+        scene.text(`While you were growing up, you spent virtually all of your free time outdoors. You loved playing sports, running, biking and hiking. This has kept you in fairly good shape, as well as socially active in a variety of team sports over the years. Doing this, however, negatively impacted your friendship with ${(((s as any).npc_firstname ?? 0)?.['A11'] ?? '')}. As you grew up, he became a gopnik and the two of you slowly started hanging out less often, although you still consider${((((s as any).tsg ?? 0)) ? ('') : ('ed'))} each other to be friends. From all the sports available, you ${((((s as any).tsg ?? 0)) ? ('are') : ('were'))} an...`);
       } else {
         if (String((s as any).locArgs?.[2] ?? '') === 'volleyball') {
           scene.text('<center><b>Volleyball player</b></center>');
@@ -509,7 +509,7 @@ function enterGroupDesc(s: GameState, scene: SceneBuilder): void {
           scene.text(`Ever since you first played volleyball, you have been in love with the sport. You spent a lot of your free time trying to improve your ability, and it paid off; you're actually quite good now! Your obsession with volleyball, however, had some repercussions on your school performance. ${((((s as any).tsg ?? 0)) ? ('You\'re') : ('You were'))} a sub-par student, and ${((((s as any).tsg ?? 0)) ? ('you haven\'t') : ('you didn\'t'))} made many friends other than your fellow jocks.`);
           if (((s as any).tsg ?? 0)) {
             // TODO-QSP: dynamic text: You are especially close with <<$npc_firstname[''A13'']>> and your coach.
-            scene.text(`You are especially close with ${((s as any).npc_firstname ?? 0)?.['A13'] ?? ''} and your coach.`);
+            scene.text(`You are especially close with ${(((s as any).npc_firstname ?? 0)?.['A13'] ?? '')} and your coach.`);
           } else {
             scene.text('Now that you are in the big city, it seems your talent for volleyball is less respected. Perhaps it\'s time to find something other than sports to be passionate about?');
           }
@@ -521,7 +521,7 @@ function enterGroupDesc(s: GameState, scene: SceneBuilder): void {
             scene.text(`You fell in love with dancing at an early age and never looked back. You spent a lot of your free time trying to improve your skills, and it paid off; you're actually quite good now! Your obsession with dancing, however, ${((((s as any).tsg ?? 0)) ? ('has had') : ('had'))} some repercussions on your school performance. ${((((s as any).tsg ?? 0)) ? ('You\'re') : ('You were'))} a sub-par student, and you ${((((s as any).tsg ?? 0)) ? ('haven\'t') : ('didn\'t'))} made many friends other than your fellow jocks.`);
             if (((s as any).tsg ?? 0)) {
               // TODO-QSP: dynamic text: <<$npc_firstname[''A11'']>> helpfully pointed out that an added benefit of dance...
-              scene.text(`${((s as any).npc_firstname ?? 0)?.['A11'] ?? ''} helpfully pointed out that an added benefit of dance was a greater increase in your flexibility (that is, of course, typical of ${((s as any).npc_firstname ?? 0)?.['A11'] ?? ''}). You're particularly close with ${((s as any).npc_firstname ?? 0)?.['A23'] ?? ''}, who is just as passionate about dancing as you are, and you both have a mutual respect for each other's skill and abilities.`);
+              scene.text(`${(((s as any).npc_firstname ?? 0)?.['A11'] ?? '')} helpfully pointed out that an added benefit of dance was a greater increase in your flexibility (that is, of course, typical of ${(((s as any).npc_firstname ?? 0)?.['A11'] ?? '')}). You're particularly close with ${(((s as any).npc_firstname ?? 0)?.['A23'] ?? '')}, who is just as passionate about dancing as you are, and you both have a mutual respect for each other's skill and abilities.`);
               scene.text('At the end of the school year, you took a ballet assessment and are awaiting a letter from the prestigious ballet academy to see if you were accepted into their summer school. NOTE: Ballet is currently under active development and events are character driven, which can lead to inescapable events. You must start in June to activate this content.');
             } else {
               scene.text('You were good friends with Albina Barlovskaya, a girl who was even more passionate about dancing than you. Now that you are in the big city, it seems your dancing talent is less respected. Perhaps it\'s time to find something other than sports to be passionate about?');
@@ -540,7 +540,7 @@ function enterGroupDesc(s: GameState, scene: SceneBuilder): void {
                 scene.text('<center><b>Football player</b></center>');
                 scene.img('images/system/1_openings/2_sg/jock_4.jpg');
                 // TODO-QSP: dynamic text: Ever since your first football game, you have been in love with the sport. You s...
-                scene.text(`Ever since your first football game, you have been in love with the sport. You spent a lot of your free time trying to get better at it, and it paid off; you're actually quite good now! Your obsession with football had some repercussions on your school performance, however, and ${((((s as any).tsg ?? 0)) ? ('you\'re now') : ('you were'))} a sub-par student. ${((((s as any).tsg ?? 0)) ? ('You haven\'t made many friends other than your fellow') : ('You didn\'t make many friends other than the'))} jocks, especially ${((s as any).npc_firstname ?? 0)?.['A149'] ?? ''} and your coach.`);
+                scene.text(`Ever since your first football game, you have been in love with the sport. You spent a lot of your free time trying to get better at it, and it paid off; you're actually quite good now! Your obsession with football had some repercussions on your school performance, however, and ${((((s as any).tsg ?? 0)) ? ('you\'re now') : ('you were'))} a sub-par student. ${((((s as any).tsg ?? 0)) ? ('You haven\'t made many friends other than your fellow') : ('You didn\'t make many friends other than the'))} jocks, especially ${(((s as any).npc_firstname ?? 0)?.['A149'] ?? '')} and your coach.`);
                 if ((!((s as any).tsg ?? 0))) {
                   scene.text('Now that you are in the big city, it seems your talent for football is less respected. Perhaps it\'s time to find something other than sports to be passionate about?');
                 }
@@ -556,7 +556,7 @@ function enterGroupDesc(s: GameState, scene: SceneBuilder): void {
           scene.img('images/system/1_openings/2_sg/nerd_0.jpg');
           scene.text('Growing up, you spent virtually all of your free time at home, pursuing various cerebral pursuits. These might have included reading comics, fantasy or sci-fi books, learning about chess or computers or playing cards, board games and RPGs with the other nerds, in addition to faithfully going to school. While you gained a huge amount of knowledge from this, your lack of interest in exercising as a child has left your body a little frail.');
           // TODO-QSP: dynamic text: The long nights of trying to read in poor light have also taken a toll on your e...
-          scene.text(`The long nights of trying to read in poor light have also taken a toll on your eyesight and you now require glasses. Your cerebral pursuits also had somewhat of a negative impact on your friendship with ${((s as any).npc_firstname ?? 0)?.['A11'] ?? ''} as you grew up. He became a gopnik and the two of you slowly started hanging out less often, although you still consider${((((s as any).tsg ?? 0)) ? ('') : ('ed'))} each other to be friends. On the plus side, doing well in school has made your parents happy and left you with some extra spending money as a reward for your hard work. ${((((s as any).tsg ?? 0)) ? ('Now') : ('You were'))}...`);
+          scene.text(`The long nights of trying to read in poor light have also taken a toll on your eyesight and you now require glasses. Your cerebral pursuits also had somewhat of a negative impact on your friendship with ${(((s as any).npc_firstname ?? 0)?.['A11'] ?? '')} as you grew up. He became a gopnik and the two of you slowly started hanging out less often, although you still consider${((((s as any).tsg ?? 0)) ? ('') : ('ed'))} each other to be friends. On the plus side, doing well in school has made your parents happy and left you with some extra spending money as a reward for your hard work. ${((((s as any).tsg ?? 0)) ? ('Now') : ('You were'))}...`);
         } else {
           if (String((s as any).locArgs?.[2] ?? '') === 'nerdqueen') {
             scene.text('<center><b>Queen of the nerds</b></center>');
@@ -611,7 +611,7 @@ function enterGroupDesc(s: GameState, scene: SceneBuilder): void {
             scene.img('images/system/1_openings/2_sg/gopnik_0.jpg');
             scene.text('You spent most of your childhood outdoors, playing with the other boys and girls. As a result, you\'re quite healthy. As you got older, you lost any interest you might have once had with fitting in - now you do your own thing, and you\'re ready to tell anyone where they can stick it if they have a problem with that.');
             // TODO-QSP: dynamic text: As you and <<$npc_firstname[''A11'']>> walked a similar path, your bond of frien...
-            scene.text(`As you and ${((s as any).npc_firstname ?? 0)?.['A11'] ?? ''} walked a similar path, your bond of friendship only deepened. This has had some repercussions on your school performance; you're a sub-par student. It has also had some less than enjoyable consequences, leading you into more than your fair share of fights, into all sorts of problems at home, and landing you in trouble at school. You've even had a few run-ins with the local police. Most people consider${((((s as any).tsg ?? 0)) ? ('') : ('ed'))} you...`);
+            scene.text(`As you and ${(((s as any).npc_firstname ?? 0)?.['A11'] ?? '')} walked a similar path, your bond of friendship only deepened. This has had some repercussions on your school performance; you're a sub-par student. It has also had some less than enjoyable consequences, leading you into more than your fair share of fights, into all sorts of problems at home, and landing you in trouble at school. You've even had a few run-ins with the local police. Most people consider${((((s as any).tsg ?? 0)) ? ('') : ('ed'))} you...`);
           } else {
             if (String((s as any).locArgs?.[2] ?? '') === 'gopnikstart') {
               scene.text('<center><b>Gopnik</b></center>');
@@ -654,10 +654,10 @@ function enterGroupDesc(s: GameState, scene: SceneBuilder): void {
                     scene.text('<center><b>Vitek\'s girlfriend</b></center>');
                     scene.img('images/system/1_openings/2_sg/gopnik_3.jpg');
                     // TODO-QSP: dynamic text: You are <<$npc_nickname[''A9'']>>''s girlfriend. You love the thrill and danger ...
-                    scene.text(`You are ${((s as any).npc_nickname ?? 0)?.['A9'] ?? ''}'s girlfriend. You love the thrill and danger of hanging out with the gopniks, even if you lack the true attitude yourself. You met ${((s as any).npc_nickname ?? 0)?.['A9'] ?? ''} after he and ${((s as any).npc_firstname ?? 0)?.['A11'] ?? ''} became friends. There was something about his bad boy attitude that drew you in, and you soon found yourself falling for him.`);
+                    scene.text(`You are ${(((s as any).npc_nickname ?? 0)?.['A9'] ?? '')}'s girlfriend. You love the thrill and danger of hanging out with the gopniks, even if you lack the true attitude yourself. You met ${(((s as any).npc_nickname ?? 0)?.['A9'] ?? '')} after he and ${(((s as any).npc_firstname ?? 0)?.['A11'] ?? '')} became friends. There was something about his bad boy attitude that drew you in, and you soon found yourself falling for him.`);
                     scene.text('As you developed, he started to take an interest in you as well and you soon started dating. You\'re not technically a gopnik - you\'re considered more of a wannabe - but the rest of the gopniks seem to accept you anyway.');
                     // TODO-QSP: dynamic text: You''re not sure what would happen if you ever broke up with <<$npc_nickname[''A...
-                    scene.text(`You're not sure what would happen if you ever broke up with ${((s as any).npc_nickname ?? 0)?.['A9'] ?? ''}, however, as being his girlfriend and hanging out with the other gopniks has cost you any real, close friends outside of their group. Albina in particular seems to have it out for you and the other gopniks.`);
+                    scene.text(`You're not sure what would happen if you ever broke up with ${(((s as any).npc_nickname ?? 0)?.['A9'] ?? '')}, however, as being his girlfriend and hanging out with the other gopniks has cost you any real, close friends outside of their group. Albina in particular seems to have it out for you and the other gopniks.`);
                   }
                 }
               }
@@ -671,7 +671,7 @@ function enterGroupDesc(s: GameState, scene: SceneBuilder): void {
               // TODO-QSP: dynamic text: You never really fit in. You''re just one of those individuals who, by choice or...
               scene.text(`You never really fit in. You're just one of those individuals who, by choice or circumstance, never really clicked with the other kids. As you got older things only got worse, and ${((((s as any).tsg ?? 0)) ? ('now you are') : ('you were'))} seen as an outcast, in the same vein as sluts, losers, gay boys and the like.`);
               // TODO-QSP: dynamic text: Being an outcast has also had a somewhat negative impact on your friendship with...
-              scene.text(`Being an outcast has also had a somewhat negative impact on your friendship with ${((s as any).npc_firstname ?? 0)?.['A11'] ?? ''}. As you grew up, he became a gopnik and the two of you slowly started hanging out less and less, although you still consider${((((s as any).tsg ?? 0)) ? ('') : ('ed'))} each other to be friends - if just barely. You ${((((s as any).tsg ?? 0)) ? ('have') : ('had'))} no other real friends, and you ${((((s as any).tsg ?? 0)) ? ('get') : ('were'))} bullied and made fun of all the time because...`);
+              scene.text(`Being an outcast has also had a somewhat negative impact on your friendship with ${(((s as any).npc_firstname ?? 0)?.['A11'] ?? '')}. As you grew up, he became a gopnik and the two of you slowly started hanging out less and less, although you still consider${((((s as any).tsg ?? 0)) ? ('') : ('ed'))} each other to be friends - if just barely. You ${((((s as any).tsg ?? 0)) ? ('have') : ('had'))} no other real friends, and you ${((((s as any).tsg ?? 0)) ? ('get') : ('were'))} bullied and made fun of all the time because...`);
             } else {
               if (String((s as any).locArgs?.[2] ?? '') === 'friendless') {
                 scene.text('<center><b>Friendless</b></center>');
@@ -865,7 +865,7 @@ function enterSetupPersonality(s: GameState, scene: SceneBuilder): void {
   scene.actions([
 { label: '<b>Confirm this starting option</b>', handler: (st: GameState) => {
     ((st as any).start_type = (st as any).start_type ?? {})['cat'] = ((st as any).temp_cat ?? 0);
-    qspCall(st, 'intro_character_templates', 'set_template', ((st as any).start_type ?? 0)?.['cat']);
+    qspCall(st, 'intro_character_templates', 'set_template', (((st as any).start_type ?? 0)?.['cat']));
     qspGoto(st, 'intro_character_creation', 'appearance_hub');
   } },
 { label: 'Select another start at random', goto: ['intro_character_creation', 'random_start'] },
@@ -964,7 +964,7 @@ function enterHair(s: GameState, scene: SceneBuilder): void {
   }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetHairNextPrev(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: dynamic text: <center>Hair length: <<$pc_descWordy[''hair length'']>> — <a href="exec:pcs_hair...
-  scene.text(`<center>Hair length: ${((s as any).pc_descWordy ?? 0)?.['hair length'] ?? ''} — <a href="#" onclick="window.__gameStore.setState((s) => { s.pcs_hairlng = ${((s as any).hairlng_next ?? '')}; return s; }); window.__gameStore.getState().doGoto(/u0027intro_character_creation/u0027, /u0027hair/u0027); return false;">Change length</a></center>`);
+  scene.text(`<center>Hair length: ${(((s as any).pc_descWordy ?? 0)?.['hair length'] ?? '')} — <a href="#" onclick="window.__gameStore.setState((s) => { s.pcs_hairlng = ${((s as any).hairlng_next ?? '')}; return s; }); window.__gameStore.getState().doGoto(/u0027intro_character_creation/u0027, /u0027hair/u0027); return false;">Change length</a></center>`);
   if (((s as any).curly ?? 0) <= 0) {
     // TODO-QSP: dynamic text: <center>Hair: <a href="exec:defcurly = 1 & curly = 2147483647 & gs ''intro_chara...
     scene.text(`<center>Hair: <a href="#" onclick="window.__gameStore.setState((s) => { s.defcurly = s.1; s.curly = s.2147483647; return s; }); window.__gameStore.getState().doGoto(/u0027intro_character_creation/u0027, /u0027hair/u0027); return false;">straight</a>, <a href="#" onclick="window.__gameStore.setState((s) => { s.pcs_haircol = (pcs_haircol + 1) mod 4; return s; }); window.__gameStore.getState().doGoto(/u0027intro_character_creation/u0027, /u0027hair/u0027); return false;">${((s as any).pcs_haircolor ?? '')}</a></center>`);
@@ -998,7 +998,7 @@ function enterEyes(s: GameState, scene: SceneBuilder): void {
     scene.text('<center>Adjust your eyes and eyelashes to match your avatar.</center>');
   }
   // TODO-QSP: dynamic text: <center><i><<$pc_descFull[''eyes'']>></i></center>
-  scene.text(`<center><i>${((s as any).pc_descFull ?? 0)?.['eyes'] ?? ''}</i></center>`);
+  scene.text(`<center><i>${(((s as any).pc_descFull ?? 0)?.['eyes'] ?? '')}</i></center>`);
   // TODO-QSP: dynamic text: <center><a href="exec: pcs_eyecol = (pcs_eyecol + 1) mod 4 & gs ''intro_characte...
   scene.text(`<center><a href="#" onclick="window.__gameStore.setState((s) => { s.pcs_eyecol = (pcs_eyecol + 1) mod 4; return s; }); window.__gameStore.getState().doGoto(/u0027intro_character_creation/u0027, /u0027eyes/u0027); return false;">Change eye color (${((s as any).pcs_eyecolor ?? '')})</a></center>`);
   if (((s as any).pcs_lashes ?? 0) < 2) {
@@ -1037,7 +1037,7 @@ function enterLip(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'body_desc', 'lips');
   scene.text('<center>Adjust the size of your lips to match your <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: view func(/u0027$face_image/u0027) */ return s; }); return false;">image</a>:</center>');
   // TODO-QSP: dynamic text: <center><i><<$pc_descFull[''lip'']>></i></center>
-  scene.text(`<center><i>${((s as any).pc_descFull ?? 0)?.['lip'] ?? ''}</i></center>`);
+  scene.text(`<center><i>${(((s as any).pc_descFull ?? 0)?.['lip'] ?? '')}</i></center>`);
   if (((s as any).pcs_lip ?? 0) < 4) {
     // TODO-QSP: dynamic text: <center><a href="exec:pcs_lip += 1 & gs ''intro_character_creation'', ''lip''">B...
     scene.text('<center><a href="#" onclick="window.__gameStore.setState((s) => { s.pcs_lip +=s.1; return s; }); window.__gameStore.getState().doGoto(/u0027intro_character_creation/u0027, /u0027lip/u0027); return false;">Bigger lips</a></center>');

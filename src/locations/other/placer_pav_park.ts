@@ -223,11 +223,11 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  (s as any).textSomeone = ((s as any).placerStringParameter ?? 0)?.['text_someone'];
-  (s as any).textRefuse = ((s as any).placerStringParameter ?? 0)?.['text_friend_refuse'];
+  (s as any).textSomeone = (((s as any).placerStringParameter ?? 0)?.['text_someone']);
+  (s as any).textRefuse = (((s as any).placerStringParameter ?? 0)?.['text_friend_refuse']);
   if (((s as any).placerParameter ?? 0)?.['friend_index'] > 0) {
     // TODO-QSP: dynamic text: You arrive at one of the smaller plazas in the park, together with <<$placerStri...
-    scene.text(`You arrive at one of the smaller plazas in the park, together with ${((s as any).placerStringParameter ?? 0)?.['ev_name_om'] ?? ''}. ${((s as any).textEvent ?? '')}`);
+    scene.text(`You arrive at one of the smaller plazas in the park, together with ${(((s as any).placerStringParameter ?? 0)?.['ev_name_om'] ?? '')}. ${((s as any).textEvent ?? '')}`);
     if (((s as any).placerParameter ?? 0)?.['want_to_meet'] === 0) {
       if (((s as any).placerParameter ?? 0)?.['number_of_man'] === 1  &&  ((s as any).placerStringParameter ?? 0)?.['text_start_meet'] === '') {
         ((s as any).placerStringParameter = (s as any).placerStringParameter ?? {})['text_friend_refuse'] = 'The guy looks at you, and for a second you think he\'s going to say something. However, when he gets closer, he wrinkles his nose and turns away.';
@@ -244,11 +244,11 @@ function enter(s: GameState, scene: SceneBuilder): void {
         scene.text(`You give the ${((s as any).textSomeone ?? '')} a cute smile as you walk past with your friend.`);
         if (((s as any).placerParameter ?? 0)?.['number_of_man'] === 1) {
           // TODO-QSP: dynamic text: You don''t think you''ve ever seen him before. He approaches you and says: "<<$p...
-          scene.text(`You don't think you've ever seen him before. He approaches you and says: "${((s as any).placerStringParameter ?? 0)?.['text_start_meet'] ?? ''}"`);
+          scene.text(`You don't think you've ever seen him before. He approaches you and says: "${(((s as any).placerStringParameter ?? 0)?.['text_start_meet'] ?? '')}"`);
         }
         if (((s as any).placerParameter ?? 0)?.['number_of_man'] > 1) {
           // TODO-QSP: dynamic text: You don''t think you''ve ever seen them before. The guys walk towards you, and o...
-          scene.text(`You don't think you've ever seen them before. The guys walk towards you, and one of them says: "${((s as any).placerStringParameter ?? 0)?.['text_start_meet'] ?? ''}"`);
+          scene.text(`You don't think you've ever seen them before. The guys walk towards you, and one of them says: "${(((s as any).placerStringParameter ?? 0)?.['text_start_meet'] ?? '')}"`);
         }
         scene.actions([
           { label: 'Agree to hang out', handler: (st: GameState) => {
@@ -299,11 +299,11 @@ function enter(s: GameState, scene: SceneBuilder): void {
         scene.text(`You give the ${((s as any).textSomeone ?? '')} a cute smile as you walk past. `);
         if (((s as any).placerParameter ?? 0)?.['number_of_man'] === 1) {
           // TODO-QSP: dynamic text: You don''t think you''ve ever seen him before. He approaches you and says: "<<$p...
-          scene.text(`You don't think you've ever seen him before. He approaches you and says: "${((s as any).placerStringParameter ?? 0)?.['text_start_meet'] ?? ''}"`);
+          scene.text(`You don't think you've ever seen him before. He approaches you and says: "${(((s as any).placerStringParameter ?? 0)?.['text_start_meet'] ?? '')}"`);
         }
         if (((s as any).placerParameter ?? 0)?.['number_of_man'] > 1) {
           // TODO-QSP: dynamic text: You don''t think you''ve ever seen them before. The guys walk towards you, and o...
-          scene.text(`You don't think you've ever seen them before. The guys walk towards you, and one of them says: "${((s as any).placerStringParameter ?? 0)?.['text_start_meet'] ?? ''}"`);
+          scene.text(`You don't think you've ever seen them before. The guys walk towards you, and one of them says: "${(((s as any).placerStringParameter ?? 0)?.['text_start_meet'] ?? '')}"`);
         }
         scene.actions([
           { label: 'Meet', goto: ['placer_act', ''] },

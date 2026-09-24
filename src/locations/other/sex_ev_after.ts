@@ -1764,7 +1764,7 @@ function enterAfterSex2(s: GameState, scene: SceneBuilder): void {
         if (((s as any).sex_ev ?? 0)?.['type'] === 'hookup'  &&  ((s as any).sex_ev ?? 0)?.['leaving'] === 0) {
           if (((s as any).sex_ev ?? 0)?.['mad'] < 1  &&  ((s as any).sex_ev ?? 0)?.['angry_after'] < 1) {
             scene.actions([
-              { label: '', labelFn: (s: GameState) => 'Thanks for the ' + String(((s as any).sex_ev ?? 0)?.['fun'] ?? '' ?? ''), handler: (st: GameState) => {
+              { label: '', labelFn: (s: GameState) => 'Thanks for the ' + String((((s as any).sex_ev ?? 0)?.['fun'] ?? '') ?? ''), handler: (st: GameState) => {
     // TODO-QSP: xgt 'sex_ev_hookup_leave', 'thanks_for_fun'
   } },
             ]);
@@ -2291,7 +2291,7 @@ function enterKiss(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     } else {
-      qspCall(s, 'arousal', 'kiss', (-10), 'no_orgasm_msg', ((s as any).sex_ev ?? 0)?.['prostitution_flag']);
+      qspCall(s, 'arousal', 'kiss', (-10), 'no_orgasm_msg', (((s as any).sex_ev ?? 0)?.['prostitution_flag']));
       qspCall(s, 'arousal', 'kiss', (Math.floor(Math.random() * 2) + 2));
       // TODO-QSP: dynamic text: You lean over to kiss <<$npcdesc>>, gently pressing your lips against his. Insta...
       scene.text(`You lean over to kiss ${((s as any).npcdesc ?? '')}, gently pressing your lips against his. Instantly, it sparks something within you and the kiss takes on a passion of its own and you find yourself drinking him in; his taste, his scent, his tongue, feverishly pressing your faces together as if you might die at any second.`);
@@ -3074,13 +3074,13 @@ function enterSpendNightAsk(s: GameState, scene: SceneBuilder): void {
       }
     }
     // TODO-QSP: dynamic text: <<$sex_ev[''spend_night_question'']>>
-    scene.text(`${((st as any).sex_ev ?? 0)?.['spend_night_question'] ?? ''}`);
+    scene.text(`${(((st as any).sex_ev ?? 0)?.['spend_night_question'] ?? '')}`);
     if (((st as any).start_type ?? 0)?.['loc'] === 'sg') {
       scene.actions([
         { label: 'I\'m sick of my mom', handler: (st: GameState) => {
     // TODO-QSP: $sex_ev['bed_room']
     // TODO-QSP: dynamic text: <<$sex_ev[''spend_night_question'']>>. "My mom has been such a bitch lately and ...
-    scene.text(`${((st as any).sex_ev ?? 0)?.['spend_night_question'] ?? ''}. "My mom has been such a bitch lately and I don't want to see her."`);
+    scene.text(`${(((st as any).sex_ev ?? 0)?.['spend_night_question'] ?? '')}. "My mom has been such a bitch lately and I don't want to see her."`);
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSpendNight(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       ]);
@@ -3091,7 +3091,7 @@ function enterSpendNightAsk(s: GameState, scene: SceneBuilder): void {
           { label: 'Avoid my mom', handler: (st: GameState) => {
     // TODO-QSP: $sex_ev['bed_room']
     // TODO-QSP: dynamic text: <<$sex_ev[''spend_night_question'']>>. "If I go home now, my mom will chew me ou...
-    scene.text(`${((st as any).sex_ev ?? 0)?.['spend_night_question'] ?? ''}. "If I go home now, my mom will chew me out for coming back too late. She'll still chew me out later, but I don't want to deal with it right now."`);
+    scene.text(`${(((st as any).sex_ev ?? 0)?.['spend_night_question'] ?? '')}. "If I go home now, my mom will chew me out for coming back too late. She'll still chew me out later, but I don't want to deal with it right now."`);
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSpendNight(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
         ]);
@@ -3102,7 +3102,7 @@ function enterSpendNightAsk(s: GameState, scene: SceneBuilder): void {
         { label: 'It\'s late', handler: (st: GameState) => {
     // TODO-QSP: $sex_ev['bed_room']
     // TODO-QSP: dynamic text: <<$sex_ev[''spend_night_question'']>>. "It''s late and I don''t want to go."
-    scene.text(`${((st as any).sex_ev ?? 0)?.['spend_night_question'] ?? ''}. "It's late and I don't want to go."`);
+    scene.text(`${(((st as any).sex_ev ?? 0)?.['spend_night_question'] ?? '')}. "It's late and I don't want to go."`);
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSpendNight(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       ]);
@@ -3112,7 +3112,7 @@ function enterSpendNightAsk(s: GameState, scene: SceneBuilder): void {
         { label: 'I don\'t want to see my boyfriend(annoyed)', handler: (st: GameState) => {
     // TODO-QSP: $sex_ev['bed_room']
     // TODO-QSP: dynamic text: <<$sex_ev[''spend_night_question'']>>. "My boyfriend''s been pissing me off late...
-    scene.text(`${((st as any).sex_ev ?? 0)?.['spend_night_question'] ?? ''}. "My boyfriend's been pissing me off lately and I don't want to go home to that."`);
+    scene.text(`${(((st as any).sex_ev ?? 0)?.['spend_night_question'] ?? '')}. "My boyfriend's been pissing me off lately and I don't want to go home to that."`);
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSpendNight(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       ]);
@@ -3121,7 +3121,7 @@ function enterSpendNightAsk(s: GameState, scene: SceneBuilder): void {
       { label: 'I don\'t feel like going home', handler: (st: GameState) => {
     // TODO-QSP: $sex_ev['bed_room']
     // TODO-QSP: dynamic text: <<$sex_ev[''spend_night_question'']>>. "I don''t feel like going home tonight."
-    scene.text(`${((st as any).sex_ev ?? 0)?.['spend_night_question'] ?? ''}. "I don't feel like going home tonight."`);
+    scene.text(`${(((st as any).sex_ev ?? 0)?.['spend_night_question'] ?? '')}. "I don't feel like going home tonight."`);
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSpendNight(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);

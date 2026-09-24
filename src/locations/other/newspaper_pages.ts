@@ -445,7 +445,7 @@ function enterAdvert_(s: GameState, scene: SceneBuilder): void {
 function enterGadMissing(s: GameState, scene: SceneBuilder): void {
   scene.text('<center>More missing people in Gadukino</center>');
   // TODO-QSP: dynamic text: <<$NewspaperVars[''gad_missing_name'']>>, <<NewspaperVars[''gad_missing_age'']>>...
-  scene.text(`${((s as any).NewspaperVars ?? 0)?.['gad_missing_name'] ?? ''}, ${((s as any).NewspaperVars ?? 0)?.['gad_missing_age'] ?? ''}, has been reported missing in Gadukino. Last seen four days ago while foraging in the forest, they are the ${((s as any).NewspaperVars ?? 0)?.['gad_missing_counter'] ?? ''} person who has disappeared from the village in recent months and authorities are at a loss in trying to locate them.`);
+  scene.text(`${(((s as any).NewspaperVars ?? 0)?.['gad_missing_name'] ?? '')}, ${(((s as any).NewspaperVars ?? 0)?.['gad_missing_age'] ?? '')}, has been reported missing in Gadukino. Last seen four days ago while foraging in the forest, they are the ${(((s as any).NewspaperVars ?? 0)?.['gad_missing_counter'] ?? '')} person who has disappeared from the village in recent months and authorities are at a loss in trying to locate them.`);
   // TODO-QSP: end
   scene.build();
 }

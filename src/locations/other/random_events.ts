@@ -12,7 +12,7 @@ function enterRegister(s: GameState, scene: SceneBuilder): void {
   if (((s as any).rand_events_list_last ?? 0)[((s as any).rand_events_temp ?? 0)?.['loc'] + '_' + ((s as any).rand_events_temp ?? 0)?.['name']] + ((s as any).rand_events_temp ?? 0)?.['cooldown'] * 60 > ((s as any).totminut ?? 0)) {
     // TODO-QSP: exit
   }
-  (s as any).temp_freq = Math.max(0, ((s as any).rand_events_temp ?? 0)?.['freq']);
+  (s as any).temp_freq = Math.max(0, (((s as any).rand_events_temp ?? 0)?.['freq']));
   if ((!((s as any).temp_freq ?? 0))) {
     // TODO-QSP: exit
   }

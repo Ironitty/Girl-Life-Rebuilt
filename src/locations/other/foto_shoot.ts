@@ -10,7 +10,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterModel(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
-  (s as any).modelpay = (((s as any).pcs_mdlng ?? 0)/2 * 10) + ((Math.min(((s as any).fame ?? 0)?.['city_modelling'], 700) + ((s as any).pcs_apprnc ?? 0))/2);
+  (s as any).modelpay = (((s as any).pcs_mdlng ?? 0)/2 * 10) + ((Math.min((((s as any).fame ?? 0)?.['city_modelling']), 700) + ((s as any).pcs_apprnc ?? 0))/2);
   (s as any).modelpayfin = 900 + (15*(Math.floor(Math.random() * 6) + 0));
   qspCall(s, 'stat', '');
   scene.text('<center><b>Manager</b></center>');
@@ -34,7 +34,7 @@ function enterModel(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/citycenter/photo/fotograph.jpg');
     scene.text('"Sorry, I just realized that I have something to do right now. Can I come back later?"');
     // TODO-QSP: dynamic text: "Sure, no problem <<$model[''lastname'']>>, just let us know when you''re ready ...
-    scene.text(`"Sure, no problem ${((st as any).model ?? 0)?.['lastname'] ?? ''}, just let us know when you're ready to work."`);
+    scene.text(`"Sure, no problem ${(((st as any).model ?? 0)?.['lastname'] ?? '')}, just let us know when you're ready to work."`);
     scene.actions([
       { label: 'Leave', goto: ['foto', 'studio'] },
     ]);
@@ -570,7 +570,7 @@ function enterFitnessShoot(s: GameState, scene: SceneBuilder): void {
 
 function enterFashion(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 120;
-  (s as any).modelpayfin = 300 + (((s as any).modelpay ?? 0)) + (15*(Math.floor(Math.random() * 6) + 0)) + (((s as any).pcs_apprnc ?? 0)) + (Math.min(((s as any).fame ?? 0)?.['city_modelling'], 700)/2) + (((s as any).pcs_mdlng ?? 0)/2 * 10);
+  (s as any).modelpayfin = 300 + (((s as any).modelpay ?? 0)) + (15*(Math.floor(Math.random() * 6) + 0)) + (((s as any).pcs_apprnc ?? 0)) + (Math.min((((s as any).fame ?? 0)?.['city_modelling']), 700)/2) + (((s as any).pcs_mdlng ?? 0)/2 * 10);
   ((s as any).modelfoto = (s as any).modelfoto ?? {})['fashion'] = ((s as any).modelfoto['fashion'] ?? 0) + (1);
   qspCall(s, 'exp_gain', 'mdlng', (Math.floor(Math.random() * 4) + 5));
   qspCall(s, 'fame', 'city', 'modelling', 'small');
@@ -602,7 +602,7 @@ function enterFashion(s: GameState, scene: SceneBuilder): void {
 
 function enterBikini(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 120;
-  (s as any).modelpayfin = 325 + (((s as any).modelpay ?? 0)) + (15*(Math.floor(Math.random() * 6) + 0)) + (((s as any).pcs_apprnc ?? 0)) + (Math.min(((s as any).fame ?? 0)?.['city_modelling'], 700)/2) + (((s as any).pcs_mdlng ?? 0)/2 * 10);
+  (s as any).modelpayfin = 325 + (((s as any).modelpay ?? 0)) + (15*(Math.floor(Math.random() * 6) + 0)) + (((s as any).pcs_apprnc ?? 0)) + (Math.min((((s as any).fame ?? 0)?.['city_modelling']), 700)/2) + (((s as any).pcs_mdlng ?? 0)/2 * 10);
   ((s as any).modelfoto = (s as any).modelfoto ?? {})['bikini'] = ((s as any).modelfoto['bikini'] ?? 0) + (1);
   if (((s as any).pcs_inhib ?? 0) < 20) {
     qspCall(s, 'willpower', 'pay', 'self');
@@ -635,7 +635,7 @@ function enterBikini(s: GameState, scene: SceneBuilder): void {
 
 function enterLingerie(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 120;
-  (s as any).modelpayfin = 350 + (((s as any).modelpay ?? 0)) + (15*(Math.floor(Math.random() * 6) + 0)) + (((s as any).pcs_apprnc ?? 0)) + (Math.min(((s as any).fame ?? 0)?.['city_modelling'], 700)/2) + (((s as any).pcs_mdlng ?? 0)/2 * 10);
+  (s as any).modelpayfin = 350 + (((s as any).modelpay ?? 0)) + (15*(Math.floor(Math.random() * 6) + 0)) + (((s as any).pcs_apprnc ?? 0)) + (Math.min((((s as any).fame ?? 0)?.['city_modelling']), 700)/2) + (((s as any).pcs_mdlng ?? 0)/2 * 10);
   ((s as any).modelfoto = (s as any).modelfoto ?? {})['lingerie'] = ((s as any).modelfoto['lingerie'] ?? 0) + (1);
   qspCall(s, 'exp_gain', 'mdlng', (Math.floor(Math.random() * 5) + 6));
   qspCall(s, 'fame', 'city', 'modelling', 'small');
@@ -668,7 +668,7 @@ function enterLingerie(s: GameState, scene: SceneBuilder): void {
 
 function enterSexy(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 120;
-  (s as any).modelpayfin = 500 + (((s as any).modelpay ?? 0)) + (15*(Math.floor(Math.random() * 6) + 0)) + (((s as any).pcs_apprnc ?? 0)) + (Math.min(((s as any).fame ?? 0)?.['city_modelling'], 700)/2) + (((s as any).pcs_mdlng ?? 0)/2 * 10);
+  (s as any).modelpayfin = 500 + (((s as any).modelpay ?? 0)) + (15*(Math.floor(Math.random() * 6) + 0)) + (((s as any).pcs_apprnc ?? 0)) + (Math.min((((s as any).fame ?? 0)?.['city_modelling']), 700)/2) + (((s as any).pcs_mdlng ?? 0)/2 * 10);
   ((s as any).modelfoto = (s as any).modelfoto ?? {})['glamour'] = ((s as any).modelfoto['glamour'] ?? 0) + (1);
   ((s as any).modelfoto = (s as any).modelfoto ?? {})['sexy'] = ((s as any).modelfoto['sexy'] ?? 0) + (1);
   qspCall(s, 'exp_gain', 'mdlng', (Math.floor(Math.random() * 6) + 5));
@@ -797,7 +797,7 @@ function enterTopless(s: GameState, scene: SceneBuilder): void {
 
 function enterTasteful(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 120;
-  (s as any).modelpay = (((s as any).pcs_mdlng ?? 0)/2 * 10) + Math.min(((s as any).fame ?? 0)?.['city_modelling'], 700) + ((s as any).pcs_apprnc ?? 0);
+  (s as any).modelpay = (((s as any).pcs_mdlng ?? 0)/2 * 10) + Math.min((((s as any).fame ?? 0)?.['city_modelling']), 700) + ((s as any).pcs_apprnc ?? 0);
   (s as any).modelpayfin = 600 + (((s as any).modelpay ?? 0) * 2) + (15*(Math.floor(Math.random() * 6) + 0));
   ((s as any).modelfoto = (s as any).modelfoto ?? {})['tastenude'] = ((s as any).modelfoto['tastenude'] ?? 0) + (1);
   ((s as any).modelfoto = (s as any).modelfoto ?? {})['nude'] = ((s as any).modelfoto['nude'] ?? 0) + (1);
@@ -828,7 +828,7 @@ function enterTasteful(s: GameState, scene: SceneBuilder): void {
 
 function enterToplessNude(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 120;
-  (s as any).modelpay = (((s as any).pcs_mdlng ?? 0)/2 * 10) + Math.min(((s as any).fame ?? 0)?.['city_modelling'], 700) + ((s as any).pcs_apprnc ?? 0);
+  (s as any).modelpay = (((s as any).pcs_mdlng ?? 0)/2 * 10) + Math.min((((s as any).fame ?? 0)?.['city_modelling']), 700) + ((s as any).pcs_apprnc ?? 0);
   (s as any).modelpayfin = 600 + (((s as any).modelpay ?? 0) * 2) + (15*(Math.floor(Math.random() * 6) + 0));
   ((s as any).modelfoto = (s as any).modelfoto ?? {})['nude'] = ((s as any).modelfoto['nude'] ?? 0) + (1);
   ((s as any).modelfoto = (s as any).modelfoto ?? {})['toplessnude'] = ((s as any).modelfoto['toplessnude'] ?? 0) + (1);
@@ -859,7 +859,7 @@ function enterToplessNude(s: GameState, scene: SceneBuilder): void {
 
 function enterNude(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 120;
-  (s as any).modelpay = (((s as any).pcs_mdlng ?? 0)/2 * 10) + Math.min(((s as any).fame ?? 0)?.['city_modelling'], 700) + ((s as any).pcs_apprnc ?? 0);
+  (s as any).modelpay = (((s as any).pcs_mdlng ?? 0)/2 * 10) + Math.min((((s as any).fame ?? 0)?.['city_modelling']), 700) + ((s as any).pcs_apprnc ?? 0);
   (s as any).modelpayfin = 600 + (((s as any).modelpay ?? 0) * 2) + (15*(Math.floor(Math.random() * 6) + 0));
   if (((s as any).modelfoto ?? 0)?.['nude'] === 0) {
     (s as any).modelpayfin = ((s as any).modelpayfin ?? 0) * 2;
@@ -888,7 +888,7 @@ function enterNude(s: GameState, scene: SceneBuilder): void {
       ((s as any).modelfoto = (s as any).modelfoto ?? {})['bush'] = ((s as any).modelfoto['bush'] ?? 0) + (1);
       scene.text('Already naked, you step onto the set and begin the shoot immediately.');
       // TODO-QSP: dynamic text: You spend two hours posing confidently for a photographer taking pictures of you...
-      scene.text(`You spend two hours posing confidently for a photographer taking pictures of you, your ${((s as any).pc_desc ?? 0)?.['pubes'] ?? ''} pussy providing a nice contrast to the rest of your smooth body. When the shoot ends, both you and the photographers are very proud of the results and you are paid ${qspFunc(s, 'money', 'string_profit', ((s as any).modelpayfin ?? ''))} for your work.`);
+      scene.text(`You spend two hours posing confidently for a photographer taking pictures of you, your ${(((s as any).pc_desc ?? 0)?.['pubes'] ?? '')} pussy providing a nice contrast to the rest of your smooth body. When the shoot ends, both you and the photographers are very proud of the results and you are paid ${qspFunc(s, 'money', 'string_profit', ((s as any).modelpayfin ?? ''))} for your work.`);
     }
   } else {
     if (((s as any).pcs_pubes ?? 0) < 16) {

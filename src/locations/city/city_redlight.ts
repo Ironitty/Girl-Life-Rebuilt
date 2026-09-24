@@ -73,16 +73,16 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'taxi', '');
   if (qspFunc(s, 'car_funcs', 'is_here', 'fuelstation', 'start')) {
     // TODO-QSP: dynamic text: Your <a href="exec:minut += 5 & gs ''carF'', ''start''"><<$car[''name'']>></a> i...
-    scene.text(`Your <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(/u0027carF/u0027, /u0027start/u0027); return false;">${((s as any).car ?? 0)?.['name'] ?? ''}</a> is parked near the gas station.`);
+    scene.text(`Your <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(/u0027carF/u0027, /u0027start/u0027); return false;">${(((s as any).car ?? 0)?.['name'] ?? '')}</a> is parked near the gas station.`);
   } else {
     if (qspFunc(s, 'car_funcs', 'is_here', 'city_redlight', 'start')) {
       // TODO-QSP: dynamic text: Your <a href="exec:gs ''carF'', ''start''"><<$car[''name'']>></a> sits in the pa...
-      scene.text(`Your <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027carF/u0027, /u0027start/u0027); return false;">${((s as any).car ?? 0)?.['name'] ?? ''}</a> sits in the parking lot.`);
+      scene.text(`Your <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027carF/u0027, /u0027start/u0027); return false;">${(((s as any).car ?? 0)?.['name'] ?? '')}</a> sits in the parking lot.`);
     } else {
       if (qspFunc(s, 'car_funcs', 'is_here', 'autoservisF', 'start')) {
         if (qspFunc(s, 'autoservisF', 'is_open')) {
           // TODO-QSP: dynamic text: Your <a href="exec:minut += 5 & gs ''carF'', ''start''"><<$car[''name'']>></a> i...
-          scene.text(`Your <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(/u0027carF/u0027, /u0027start/u0027); return false;">${((s as any).car ?? 0)?.['name'] ?? ''}</a> is parked at the car service center.`);
+          scene.text(`Your <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(/u0027carF/u0027, /u0027start/u0027); return false;">${(((s as any).car ?? 0)?.['name'] ?? '')}</a> is parked at the car service center.`);
         } else {
           scene.text('It looks like the repair shop moved your car outside before they closed.');
           ((s as any).car = (s as any).car ?? {})['loc'] = 'city_industrial';
@@ -92,7 +92,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
         if (qspFunc(s, 'car_funcs', 'is_here', 'autotraidF', 'start')) {
           if (qspFunc(s, 'autotraidF', 'is_open')) {
             // TODO-QSP: dynamic text: Your <a href="exec:minut += 5 & gs ''carF'', ''start''"><<$car[''name'']>></a> i...
-            scene.text(`Your <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(/u0027carF/u0027, /u0027start/u0027); return false;">${((s as any).car ?? 0)?.['name'] ?? ''}</a> is parked at the car dealership.`);
+            scene.text(`Your <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(/u0027carF/u0027, /u0027start/u0027); return false;">${(((s as any).car ?? 0)?.['name'] ?? '')}</a> is parked at the car dealership.`);
           } else {
             scene.text('It looks like the car dealership moved your car outside before they closed.');
             ((s as any).car = (s as any).car ?? {})['loc'] = 'city_industrial';
@@ -104,7 +104,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   }
   if (qspFunc(s, 'car_funcs', 'is_here', 'city_industrial', '')) {
     // TODO-QSP: dynamic text: Your <a href="exec:minut += 5 & gs ''carF'', ''start''"><<$car[''name'']>></a> s...
-    scene.text(`Your <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(/u0027carF/u0027, /u0027start/u0027); return false;">${((s as any).car ?? 0)?.['name'] ?? ''}</a> stands nearby in a parking lot at the redlight district.`);
+    scene.text(`Your <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(/u0027carF/u0027, /u0027start/u0027); return false;">${(((s as any).car ?? 0)?.['name'] ?? '')}</a> stands nearby in a parking lot at the redlight district.`);
   }
   if (((s as any).hour ?? 0) >= 20  ||  ((s as any).hour ?? 0) <= 4) {
     scene.text('Prostitutes are working near here.');

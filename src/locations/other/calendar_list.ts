@@ -21,7 +21,7 @@ function enterInitEventVars(s: GameState, scene: SceneBuilder): void {
   ((s as any).event_vars = (s as any).event_vars ?? {})['holiday'] = 0;
   ((s as any).event_vars = (s as any).event_vars ?? {})['recur'] = '';
   qspCall(s, 'time', 'to_daystart', 2024, 12, 31);
-  ((s as any).event_vars = (s as any).event_vars ?? {})['recur_end'] = ((s as any).dateVars ?? 0)?.['daystart'];
+  ((s as any).event_vars = (s as any).event_vars ?? {})['recur_end'] = (((s as any).dateVars ?? 0)?.['daystart']);
   ((s as any).event_vars = (s as any).event_vars ?? {})['flex_type'] = 0;
   ((s as any).event_vars = (s as any).event_vars ?? {})['duration_ts'] = 4;
   ((s as any).event_vars = (s as any).event_vars ?? {})['start_ts'] = 0;
@@ -43,7 +43,7 @@ function enterAssignColor(s: GameState, scene: SceneBuilder): void {
 
 function enterHolidayNewYear(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'time', 'to_daystart', 2016, 1, 1);
-  ((s as any).event_vars = (s as any).event_vars ?? {})['daystart'] = ((s as any).dateVars ?? 0)?.['daystart'];
+  ((s as any).event_vars = (s as any).event_vars ?? {})['daystart'] = (((s as any).dateVars ?? 0)?.['daystart']);
   ((s as any).event_vars = (s as any).event_vars ?? {})['id'] = 'holiday_new_year';
   ((s as any).event_vars = (s as any).event_vars ?? {})['title'] = 'New Year Holidays';
   ((s as any).event_vars = (s as any).event_vars ?? {})['all_day'] = 1;
@@ -55,7 +55,7 @@ function enterHolidayNewYear(s: GameState, scene: SceneBuilder): void {
 
 function enterHolidayChristmas(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'time', 'to_daystart', 2016, 1, 7);
-  ((s as any).event_vars = (s as any).event_vars ?? {})['daystart'] = ((s as any).dateVars ?? 0)?.['daystart'];
+  ((s as any).event_vars = (s as any).event_vars ?? {})['daystart'] = (((s as any).dateVars ?? 0)?.['daystart']);
   ((s as any).event_vars = (s as any).event_vars ?? {})['id'] = 'holiday_christmas';
   ((s as any).event_vars = (s as any).event_vars ?? {})['title'] = 'Christmas';
   ((s as any).event_vars = (s as any).event_vars ?? {})['all_day'] = 1;
@@ -67,7 +67,7 @@ function enterHolidayChristmas(s: GameState, scene: SceneBuilder): void {
 
 function enterHolidayFatherland(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'time', 'to_daystart', 2016, 2, 23);
-  ((s as any).event_vars = (s as any).event_vars ?? {})['daystart'] = ((s as any).dateVars ?? 0)?.['daystart'];
+  ((s as any).event_vars = (s as any).event_vars ?? {})['daystart'] = (((s as any).dateVars ?? 0)?.['daystart']);
   ((s as any).event_vars = (s as any).event_vars ?? {})['id'] = 'holiday_fatherland';
   ((s as any).event_vars = (s as any).event_vars ?? {})['title'] = 'Defender of Fatherland Day';
   ((s as any).event_vars = (s as any).event_vars ?? {})['all_day'] = 1;
@@ -79,7 +79,7 @@ function enterHolidayFatherland(s: GameState, scene: SceneBuilder): void {
 
 function enterHolidayWomensDay(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'time', 'to_daystart', 2016, 3, 8);
-  ((s as any).event_vars = (s as any).event_vars ?? {})['daystart'] = ((s as any).dateVars ?? 0)?.['daystart'];
+  ((s as any).event_vars = (s as any).event_vars ?? {})['daystart'] = (((s as any).dateVars ?? 0)?.['daystart']);
   ((s as any).event_vars = (s as any).event_vars ?? {})['id'] = 'holiday_womens_day';
   ((s as any).event_vars = (s as any).event_vars ?? {})['title'] = 'Women\'s Day';
   ((s as any).event_vars = (s as any).event_vars ?? {})['all_day'] = 1;
@@ -91,7 +91,7 @@ function enterHolidayWomensDay(s: GameState, scene: SceneBuilder): void {
 
 function enterHolidayLaborDay(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'time', 'to_daystart', 2016, 5, 1);
-  ((s as any).event_vars = (s as any).event_vars ?? {})['daystart'] = ((s as any).dateVars ?? 0)?.['daystart'];
+  ((s as any).event_vars = (s as any).event_vars ?? {})['daystart'] = (((s as any).dateVars ?? 0)?.['daystart']);
   ((s as any).event_vars = (s as any).event_vars ?? {})['id'] = 'holiday_labor_day';
   ((s as any).event_vars = (s as any).event_vars ?? {})['title'] = 'Spring and Labor Day';
   ((s as any).event_vars = (s as any).event_vars ?? {})['all_day'] = 1;
@@ -103,7 +103,7 @@ function enterHolidayLaborDay(s: GameState, scene: SceneBuilder): void {
 
 function enterHolidayMay_2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'time', 'to_daystart', 2016, 5, 2);
-  ((s as any).event_vars = (s as any).event_vars ?? {})['daystart'] = ((s as any).dateVars ?? 0)?.['daystart'];
+  ((s as any).event_vars = (s as any).event_vars ?? {})['daystart'] = (((s as any).dateVars ?? 0)?.['daystart']);
   ((s as any).event_vars = (s as any).event_vars ?? {})['id'] = 'holiday_may_2';
   ((s as any).event_vars = (s as any).event_vars ?? {})['title'] = 'National Holiday';
   ((s as any).event_vars = (s as any).event_vars ?? {})['all_day'] = 1;
@@ -115,7 +115,7 @@ function enterHolidayMay_2(s: GameState, scene: SceneBuilder): void {
 
 function enterHolidayVictoryDay(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'time', 'to_daystart', 2016, 5, 9);
-  ((s as any).event_vars = (s as any).event_vars ?? {})['daystart'] = ((s as any).dateVars ?? 0)?.['daystart'];
+  ((s as any).event_vars = (s as any).event_vars ?? {})['daystart'] = (((s as any).dateVars ?? 0)?.['daystart']);
   ((s as any).event_vars = (s as any).event_vars ?? {})['id'] = 'holiday_victory_day';
   ((s as any).event_vars = (s as any).event_vars ?? {})['title'] = 'Victory Day';
   ((s as any).event_vars = (s as any).event_vars ?? {})['all_day'] = 1;
@@ -127,7 +127,7 @@ function enterHolidayVictoryDay(s: GameState, scene: SceneBuilder): void {
 
 function enterHolidayRussiaDay(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'time', 'to_daystart', 2016, 6, 12);
-  ((s as any).event_vars = (s as any).event_vars ?? {})['daystart'] = ((s as any).dateVars ?? 0)?.['daystart'];
+  ((s as any).event_vars = (s as any).event_vars ?? {})['daystart'] = (((s as any).dateVars ?? 0)?.['daystart']);
   ((s as any).event_vars = (s as any).event_vars ?? {})['id'] = 'holiday_russia_day';
   ((s as any).event_vars = (s as any).event_vars ?? {})['title'] = 'Russia Day';
   ((s as any).event_vars = (s as any).event_vars ?? {})['all_day'] = 1;
@@ -139,7 +139,7 @@ function enterHolidayRussiaDay(s: GameState, scene: SceneBuilder): void {
 
 function enterHolidayJune_13(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'time', 'to_daystart', 2016, 6, 13);
-  ((s as any).event_vars = (s as any).event_vars ?? {})['daystart'] = ((s as any).dateVars ?? 0)?.['daystart'];
+  ((s as any).event_vars = (s as any).event_vars ?? {})['daystart'] = (((s as any).dateVars ?? 0)?.['daystart']);
   ((s as any).event_vars = (s as any).event_vars ?? {})['id'] = 'holiday_june_13';
   ((s as any).event_vars = (s as any).event_vars ?? {})['title'] = 'National Holiday';
   ((s as any).event_vars = (s as any).event_vars ?? {})['all_day'] = 1;
@@ -151,7 +151,7 @@ function enterHolidayJune_13(s: GameState, scene: SceneBuilder): void {
 
 function enterHolidayUnityDay(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'time', 'to_daystart', 2016, 11, 4);
-  ((s as any).event_vars = (s as any).event_vars ?? {})['daystart'] = ((s as any).dateVars ?? 0)?.['daystart'];
+  ((s as any).event_vars = (s as any).event_vars ?? {})['daystart'] = (((s as any).dateVars ?? 0)?.['daystart']);
   ((s as any).event_vars = (s as any).event_vars ?? {})['id'] = 'holiday_unity_day';
   ((s as any).event_vars = (s as any).event_vars ?? {})['title'] = 'Unity Day';
   ((s as any).event_vars = (s as any).event_vars ?? {})['all_day'] = 1;
@@ -163,7 +163,7 @@ function enterHolidayUnityDay(s: GameState, scene: SceneBuilder): void {
 
 function enterSchoolWinterBreak(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'time', 'to_daystart', 2016, 12, 31);
-  ((s as any).event_vars = (s as any).event_vars ?? {})['daystart'] = ((s as any).dateVars ?? 0)?.['daystart'];
+  ((s as any).event_vars = (s as any).event_vars ?? {})['daystart'] = (((s as any).dateVars ?? 0)?.['daystart']);
   ((s as any).event_vars = (s as any).event_vars ?? {})['id'] = 'school_winter_break';
   ((s as any).event_vars = (s as any).event_vars ?? {})['title'] = 'Winter Break';
   ((s as any).event_vars = (s as any).event_vars ?? {})['all_day'] = 1;
@@ -175,7 +175,7 @@ function enterSchoolWinterBreak(s: GameState, scene: SceneBuilder): void {
 
 function enterSchoolSpringBreak(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'time', 'to_daystart', 2016, 3, 19);
-  ((s as any).event_vars = (s as any).event_vars ?? {})['daystart'] = ((s as any).dateVars ?? 0)?.['daystart'];
+  ((s as any).event_vars = (s as any).event_vars ?? {})['daystart'] = (((s as any).dateVars ?? 0)?.['daystart']);
   ((s as any).event_vars = (s as any).event_vars ?? {})['id'] = 'school_spring_break';
   ((s as any).event_vars = (s as any).event_vars ?? {})['title'] = 'Spring Break';
   ((s as any).event_vars = (s as any).event_vars ?? {})['all_day'] = 1;
@@ -187,7 +187,7 @@ function enterSchoolSpringBreak(s: GameState, scene: SceneBuilder): void {
 
 function enterSchoolSummerBreak(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'time', 'to_daystart', 2016, 5, 31);
-  ((s as any).event_vars = (s as any).event_vars ?? {})['daystart'] = ((s as any).dateVars ?? 0)?.['daystart'];
+  ((s as any).event_vars = (s as any).event_vars ?? {})['daystart'] = (((s as any).dateVars ?? 0)?.['daystart']);
   ((s as any).event_vars = (s as any).event_vars ?? {})['id'] = 'school_summer_break';
   ((s as any).event_vars = (s as any).event_vars ?? {})['title'] = 'Summer Break';
   ((s as any).event_vars = (s as any).event_vars ?? {})['all_day'] = 1;
@@ -199,7 +199,7 @@ function enterSchoolSummerBreak(s: GameState, scene: SceneBuilder): void {
 
 function enterSchoolAutumnBreak(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'time', 'to_daystart', 2016, 11, 3);
-  ((s as any).event_vars = (s as any).event_vars ?? {})['daystart'] = ((s as any).dateVars ?? 0)?.['daystart'];
+  ((s as any).event_vars = (s as any).event_vars ?? {})['daystart'] = (((s as any).dateVars ?? 0)?.['daystart']);
   ((s as any).event_vars = (s as any).event_vars ?? {})['id'] = 'school_autumn_break';
   ((s as any).event_vars = (s as any).event_vars ?? {})['title'] = 'Autumn Break';
   ((s as any).event_vars = (s as any).event_vars ?? {})['all_day'] = 1;
@@ -211,7 +211,7 @@ function enterSchoolAutumnBreak(s: GameState, scene: SceneBuilder): void {
 
 function enterSchoolGraduation(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'time', 'to_daystart', 2017, 5, 26);
-  ((s as any).event_vars = (s as any).event_vars ?? {})['daystart'] = ((s as any).dateVars ?? 0)?.['daystart'];
+  ((s as any).event_vars = (s as any).event_vars ?? {})['daystart'] = (((s as any).dateVars ?? 0)?.['daystart']);
   ((s as any).event_vars = (s as any).event_vars ?? {})['id'] = 'school_graduation';
   ((s as any).event_vars = (s as any).event_vars ?? {})['title'] = 'School Graduation';
   ((s as any).event_vars = (s as any).event_vars ?? {})['loc'] = 'Pavlovsk Residential Area School';
@@ -226,9 +226,9 @@ function enterSchoolGraduation(s: GameState, scene: SceneBuilder): void {
 
 function enterSchoolMondayFall2016(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'time', 'to_daystart', 2016, 9, 5);
-  ((s as any).event_vars = (s as any).event_vars ?? {})['daystart'] = ((s as any).dateVars ?? 0)?.['daystart'];
+  ((s as any).event_vars = (s as any).event_vars ?? {})['daystart'] = (((s as any).dateVars ?? 0)?.['daystart']);
   qspCall(s, 'time', 'to_daystart', 2016, 11, 2);
-  ((s as any).event_vars = (s as any).event_vars ?? {})['recur_end'] = ((s as any).dateVars ?? 0)?.['daystart'];
+  ((s as any).event_vars = (s as any).event_vars ?? {})['recur_end'] = (((s as any).dateVars ?? 0)?.['daystart']);
   ((s as any).event_vars = (s as any).event_vars ?? {})['id'] = 'school_monday_fall2016';
   ((s as any).event_vars = (s as any).event_vars ?? {})['title'] = 'School Day';
   ((s as any).event_vars = (s as any).event_vars ?? {})['loc'] = 'Pavlovsk Residential Area School';
@@ -244,9 +244,9 @@ function enterSchoolMondayFall2016(s: GameState, scene: SceneBuilder): void {
 
 function enterSchoolTuesdayFall2016(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'time', 'to_daystart', 2016, 9, 6);
-  ((s as any).event_vars = (s as any).event_vars ?? {})['daystart'] = ((s as any).dateVars ?? 0)?.['daystart'];
+  ((s as any).event_vars = (s as any).event_vars ?? {})['daystart'] = (((s as any).dateVars ?? 0)?.['daystart']);
   qspCall(s, 'time', 'to_daystart', 2016, 11, 2);
-  ((s as any).event_vars = (s as any).event_vars ?? {})['recur_end'] = ((s as any).dateVars ?? 0)?.['daystart'];
+  ((s as any).event_vars = (s as any).event_vars ?? {})['recur_end'] = (((s as any).dateVars ?? 0)?.['daystart']);
   ((s as any).event_vars = (s as any).event_vars ?? {})['id'] = 'school_tuesday_fall2016';
   ((s as any).event_vars = (s as any).event_vars ?? {})['title'] = 'School Day';
   ((s as any).event_vars = (s as any).event_vars ?? {})['loc'] = 'Pavlovsk Residential Area School';
@@ -262,9 +262,9 @@ function enterSchoolTuesdayFall2016(s: GameState, scene: SceneBuilder): void {
 
 function enterSchoolWednesdayFall2016(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'time', 'to_daystart', 2016, 9, 7);
-  ((s as any).event_vars = (s as any).event_vars ?? {})['daystart'] = ((s as any).dateVars ?? 0)?.['daystart'];
+  ((s as any).event_vars = (s as any).event_vars ?? {})['daystart'] = (((s as any).dateVars ?? 0)?.['daystart']);
   qspCall(s, 'time', 'to_daystart', 2016, 11, 2);
-  ((s as any).event_vars = (s as any).event_vars ?? {})['recur_end'] = ((s as any).dateVars ?? 0)?.['daystart'];
+  ((s as any).event_vars = (s as any).event_vars ?? {})['recur_end'] = (((s as any).dateVars ?? 0)?.['daystart']);
   ((s as any).event_vars = (s as any).event_vars ?? {})['id'] = 'school_wednesday_fall2016';
   ((s as any).event_vars = (s as any).event_vars ?? {})['title'] = 'School Day';
   ((s as any).event_vars = (s as any).event_vars ?? {})['loc'] = 'Pavlovsk Residential Area School';
@@ -280,9 +280,9 @@ function enterSchoolWednesdayFall2016(s: GameState, scene: SceneBuilder): void {
 
 function enterSchoolThursdayFall2016(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'time', 'to_daystart', 2016, 9, 1);
-  ((s as any).event_vars = (s as any).event_vars ?? {})['daystart'] = ((s as any).dateVars ?? 0)?.['daystart'];
+  ((s as any).event_vars = (s as any).event_vars ?? {})['daystart'] = (((s as any).dateVars ?? 0)?.['daystart']);
   qspCall(s, 'time', 'to_daystart', 2016, 11, 2);
-  ((s as any).event_vars = (s as any).event_vars ?? {})['recur_end'] = ((s as any).dateVars ?? 0)?.['daystart'];
+  ((s as any).event_vars = (s as any).event_vars ?? {})['recur_end'] = (((s as any).dateVars ?? 0)?.['daystart']);
   ((s as any).event_vars = (s as any).event_vars ?? {})['id'] = 'school_thursday_fall2016';
   ((s as any).event_vars = (s as any).event_vars ?? {})['title'] = 'School Day';
   ((s as any).event_vars = (s as any).event_vars ?? {})['loc'] = 'Pavlovsk Residential Area School';
@@ -298,9 +298,9 @@ function enterSchoolThursdayFall2016(s: GameState, scene: SceneBuilder): void {
 
 function enterSchoolFridayFall2016(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'time', 'to_daystart', 2016, 9, 2);
-  ((s as any).event_vars = (s as any).event_vars ?? {})['daystart'] = ((s as any).dateVars ?? 0)?.['daystart'];
+  ((s as any).event_vars = (s as any).event_vars ?? {})['daystart'] = (((s as any).dateVars ?? 0)?.['daystart']);
   qspCall(s, 'time', 'to_daystart', 2016, 11, 2);
-  ((s as any).event_vars = (s as any).event_vars ?? {})['recur_end'] = ((s as any).dateVars ?? 0)?.['daystart'];
+  ((s as any).event_vars = (s as any).event_vars ?? {})['recur_end'] = (((s as any).dateVars ?? 0)?.['daystart']);
   ((s as any).event_vars = (s as any).event_vars ?? {})['id'] = 'school_friday_fall2016';
   ((s as any).event_vars = (s as any).event_vars ?? {})['title'] = 'School Day';
   ((s as any).event_vars = (s as any).event_vars ?? {})['loc'] = 'Pavlovsk Residential Area School';
@@ -316,9 +316,9 @@ function enterSchoolFridayFall2016(s: GameState, scene: SceneBuilder): void {
 
 function enterSchoolMondayWinter2016(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'time', 'to_daystart', 2016, 11, 16);
-  ((s as any).event_vars = (s as any).event_vars ?? {})['daystart'] = ((s as any).dateVars ?? 0)?.['daystart'];
+  ((s as any).event_vars = (s as any).event_vars ?? {})['daystart'] = (((s as any).dateVars ?? 0)?.['daystart']);
   qspCall(s, 'time', 'to_daystart', 2016, 12, 30);
-  ((s as any).event_vars = (s as any).event_vars ?? {})['recur_end'] = ((s as any).dateVars ?? 0)?.['daystart'];
+  ((s as any).event_vars = (s as any).event_vars ?? {})['recur_end'] = (((s as any).dateVars ?? 0)?.['daystart']);
   ((s as any).event_vars = (s as any).event_vars ?? {})['id'] = 'school_monday_winter2016';
   ((s as any).event_vars = (s as any).event_vars ?? {})['title'] = 'School Day';
   ((s as any).event_vars = (s as any).event_vars ?? {})['loc'] = 'Pavlovsk Residential Area School';
@@ -334,9 +334,9 @@ function enterSchoolMondayWinter2016(s: GameState, scene: SceneBuilder): void {
 
 function enterSchoolTuesdayWinter2016(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'time', 'to_daystart', 2016, 11, 17);
-  ((s as any).event_vars = (s as any).event_vars ?? {})['daystart'] = ((s as any).dateVars ?? 0)?.['daystart'];
+  ((s as any).event_vars = (s as any).event_vars ?? {})['daystart'] = (((s as any).dateVars ?? 0)?.['daystart']);
   qspCall(s, 'time', 'to_daystart', 2016, 12, 30);
-  ((s as any).event_vars = (s as any).event_vars ?? {})['recur_end'] = ((s as any).dateVars ?? 0)?.['daystart'];
+  ((s as any).event_vars = (s as any).event_vars ?? {})['recur_end'] = (((s as any).dateVars ?? 0)?.['daystart']);
   ((s as any).event_vars = (s as any).event_vars ?? {})['id'] = 'school_tuesday_winter2016';
   ((s as any).event_vars = (s as any).event_vars ?? {})['title'] = 'School Day';
   ((s as any).event_vars = (s as any).event_vars ?? {})['loc'] = 'Pavlovsk Residential Area School';
@@ -352,9 +352,9 @@ function enterSchoolTuesdayWinter2016(s: GameState, scene: SceneBuilder): void {
 
 function enterSchoolWednesdayWinter2016(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'time', 'to_daystart', 2016, 11, 11);
-  ((s as any).event_vars = (s as any).event_vars ?? {})['daystart'] = ((s as any).dateVars ?? 0)?.['daystart'];
+  ((s as any).event_vars = (s as any).event_vars ?? {})['daystart'] = (((s as any).dateVars ?? 0)?.['daystart']);
   qspCall(s, 'time', 'to_daystart', 2016, 12, 30);
-  ((s as any).event_vars = (s as any).event_vars ?? {})['recur_end'] = ((s as any).dateVars ?? 0)?.['daystart'];
+  ((s as any).event_vars = (s as any).event_vars ?? {})['recur_end'] = (((s as any).dateVars ?? 0)?.['daystart']);
   ((s as any).event_vars = (s as any).event_vars ?? {})['id'] = 'school_wednesday_winter2016';
   ((s as any).event_vars = (s as any).event_vars ?? {})['title'] = 'School Day';
   ((s as any).event_vars = (s as any).event_vars ?? {})['loc'] = 'Pavlovsk Residential Area School';
@@ -370,9 +370,9 @@ function enterSchoolWednesdayWinter2016(s: GameState, scene: SceneBuilder): void
 
 function enterSchoolThursdayWinter2016(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'time', 'to_daystart', 2016, 11, 12);
-  ((s as any).event_vars = (s as any).event_vars ?? {})['daystart'] = ((s as any).dateVars ?? 0)?.['daystart'];
+  ((s as any).event_vars = (s as any).event_vars ?? {})['daystart'] = (((s as any).dateVars ?? 0)?.['daystart']);
   qspCall(s, 'time', 'to_daystart', 2016, 12, 30);
-  ((s as any).event_vars = (s as any).event_vars ?? {})['recur_end'] = ((s as any).dateVars ?? 0)?.['daystart'];
+  ((s as any).event_vars = (s as any).event_vars ?? {})['recur_end'] = (((s as any).dateVars ?? 0)?.['daystart']);
   ((s as any).event_vars = (s as any).event_vars ?? {})['id'] = 'school_thursday_winter2016';
   ((s as any).event_vars = (s as any).event_vars ?? {})['title'] = 'School Day';
   ((s as any).event_vars = (s as any).event_vars ?? {})['loc'] = 'Pavlovsk Residential Area School';
@@ -388,9 +388,9 @@ function enterSchoolThursdayWinter2016(s: GameState, scene: SceneBuilder): void 
 
 function enterSchoolFridayWinter2016(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'time', 'to_daystart', 2016, 11, 13);
-  ((s as any).event_vars = (s as any).event_vars ?? {})['daystart'] = ((s as any).dateVars ?? 0)?.['daystart'];
+  ((s as any).event_vars = (s as any).event_vars ?? {})['daystart'] = (((s as any).dateVars ?? 0)?.['daystart']);
   qspCall(s, 'time', 'to_daystart', 2016, 12, 30);
-  ((s as any).event_vars = (s as any).event_vars ?? {})['recur_end'] = ((s as any).dateVars ?? 0)?.['daystart'];
+  ((s as any).event_vars = (s as any).event_vars ?? {})['recur_end'] = (((s as any).dateVars ?? 0)?.['daystart']);
   ((s as any).event_vars = (s as any).event_vars ?? {})['id'] = 'school_friday_winter2016';
   ((s as any).event_vars = (s as any).event_vars ?? {})['title'] = 'School Day';
   ((s as any).event_vars = (s as any).event_vars ?? {})['loc'] = 'Pavlovsk Residential Area School';
@@ -406,9 +406,9 @@ function enterSchoolFridayWinter2016(s: GameState, scene: SceneBuilder): void {
 
 function enterSchoolMondaySpring2017(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'time', 'to_daystart', 2017, 1, 16);
-  ((s as any).event_vars = (s as any).event_vars ?? {})['daystart'] = ((s as any).dateVars ?? 0)?.['daystart'];
+  ((s as any).event_vars = (s as any).event_vars ?? {})['daystart'] = (((s as any).dateVars ?? 0)?.['daystart']);
   qspCall(s, 'time', 'to_daystart', 2017, 3, 18);
-  ((s as any).event_vars = (s as any).event_vars ?? {})['recur_end'] = ((s as any).dateVars ?? 0)?.['daystart'];
+  ((s as any).event_vars = (s as any).event_vars ?? {})['recur_end'] = (((s as any).dateVars ?? 0)?.['daystart']);
   ((s as any).event_vars = (s as any).event_vars ?? {})['id'] = 'school_monday_spring2017';
   ((s as any).event_vars = (s as any).event_vars ?? {})['title'] = 'School Day';
   ((s as any).event_vars = (s as any).event_vars ?? {})['loc'] = 'Pavlovsk Residential Area School';
@@ -424,9 +424,9 @@ function enterSchoolMondaySpring2017(s: GameState, scene: SceneBuilder): void {
 
 function enterSchoolTuesdaySpring2017(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'time', 'to_daystart', 2017, 1, 17);
-  ((s as any).event_vars = (s as any).event_vars ?? {})['daystart'] = ((s as any).dateVars ?? 0)?.['daystart'];
+  ((s as any).event_vars = (s as any).event_vars ?? {})['daystart'] = (((s as any).dateVars ?? 0)?.['daystart']);
   qspCall(s, 'time', 'to_daystart', 2017, 3, 18);
-  ((s as any).event_vars = (s as any).event_vars ?? {})['recur_end'] = ((s as any).dateVars ?? 0)?.['daystart'];
+  ((s as any).event_vars = (s as any).event_vars ?? {})['recur_end'] = (((s as any).dateVars ?? 0)?.['daystart']);
   ((s as any).event_vars = (s as any).event_vars ?? {})['id'] = 'school_tuesday_spring2017';
   ((s as any).event_vars = (s as any).event_vars ?? {})['title'] = 'School Day';
   ((s as any).event_vars = (s as any).event_vars ?? {})['loc'] = 'Pavlovsk Residential Area School';
@@ -442,9 +442,9 @@ function enterSchoolTuesdaySpring2017(s: GameState, scene: SceneBuilder): void {
 
 function enterSchoolWednesdaySpring2017(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'time', 'to_daystart', 2017, 1, 18);
-  ((s as any).event_vars = (s as any).event_vars ?? {})['daystart'] = ((s as any).dateVars ?? 0)?.['daystart'];
+  ((s as any).event_vars = (s as any).event_vars ?? {})['daystart'] = (((s as any).dateVars ?? 0)?.['daystart']);
   qspCall(s, 'time', 'to_daystart', 2017, 3, 18);
-  ((s as any).event_vars = (s as any).event_vars ?? {})['recur_end'] = ((s as any).dateVars ?? 0)?.['daystart'];
+  ((s as any).event_vars = (s as any).event_vars ?? {})['recur_end'] = (((s as any).dateVars ?? 0)?.['daystart']);
   ((s as any).event_vars = (s as any).event_vars ?? {})['id'] = 'school_wednesday_spring2017';
   ((s as any).event_vars = (s as any).event_vars ?? {})['title'] = 'School Day';
   ((s as any).event_vars = (s as any).event_vars ?? {})['loc'] = 'Pavlovsk Residential Area School';
@@ -460,9 +460,9 @@ function enterSchoolWednesdaySpring2017(s: GameState, scene: SceneBuilder): void
 
 function enterSchoolThursdaySpring2017(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'time', 'to_daystart', 2017, 1, 19);
-  ((s as any).event_vars = (s as any).event_vars ?? {})['daystart'] = ((s as any).dateVars ?? 0)?.['daystart'];
+  ((s as any).event_vars = (s as any).event_vars ?? {})['daystart'] = (((s as any).dateVars ?? 0)?.['daystart']);
   qspCall(s, 'time', 'to_daystart', 2017, 3, 18);
-  ((s as any).event_vars = (s as any).event_vars ?? {})['recur_end'] = ((s as any).dateVars ?? 0)?.['daystart'];
+  ((s as any).event_vars = (s as any).event_vars ?? {})['recur_end'] = (((s as any).dateVars ?? 0)?.['daystart']);
   ((s as any).event_vars = (s as any).event_vars ?? {})['id'] = 'school_thursday_spring2017';
   ((s as any).event_vars = (s as any).event_vars ?? {})['title'] = 'School Day';
   ((s as any).event_vars = (s as any).event_vars ?? {})['loc'] = 'Pavlovsk Residential Area School';
@@ -478,9 +478,9 @@ function enterSchoolThursdaySpring2017(s: GameState, scene: SceneBuilder): void 
 
 function enterSchoolFridaySpring2017(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'time', 'to_daystart', 2017, 1, 20);
-  ((s as any).event_vars = (s as any).event_vars ?? {})['daystart'] = ((s as any).dateVars ?? 0)?.['daystart'];
+  ((s as any).event_vars = (s as any).event_vars ?? {})['daystart'] = (((s as any).dateVars ?? 0)?.['daystart']);
   qspCall(s, 'time', 'to_daystart', 2017, 3, 18);
-  ((s as any).event_vars = (s as any).event_vars ?? {})['recur_end'] = ((s as any).dateVars ?? 0)?.['daystart'];
+  ((s as any).event_vars = (s as any).event_vars ?? {})['recur_end'] = (((s as any).dateVars ?? 0)?.['daystart']);
   ((s as any).event_vars = (s as any).event_vars ?? {})['id'] = 'school_friday_spring2017';
   ((s as any).event_vars = (s as any).event_vars ?? {})['title'] = 'School Day';
   ((s as any).event_vars = (s as any).event_vars ?? {})['loc'] = 'Pavlovsk Residential Area School';
@@ -496,9 +496,9 @@ function enterSchoolFridaySpring2017(s: GameState, scene: SceneBuilder): void {
 
 function enterSchoolMondayFinal2017(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'time', 'to_daystart', 2017, 3, 27);
-  ((s as any).event_vars = (s as any).event_vars ?? {})['daystart'] = ((s as any).dateVars ?? 0)?.['daystart'];
+  ((s as any).event_vars = (s as any).event_vars ?? {})['daystart'] = (((s as any).dateVars ?? 0)?.['daystart']);
   qspCall(s, 'time', 'to_daystart', 2017, 5, 25);
-  ((s as any).event_vars = (s as any).event_vars ?? {})['recur_end'] = ((s as any).dateVars ?? 0)?.['daystart'];
+  ((s as any).event_vars = (s as any).event_vars ?? {})['recur_end'] = (((s as any).dateVars ?? 0)?.['daystart']);
   ((s as any).event_vars = (s as any).event_vars ?? {})['id'] = 'school_monday_final2017';
   ((s as any).event_vars = (s as any).event_vars ?? {})['title'] = 'School Day';
   ((s as any).event_vars = (s as any).event_vars ?? {})['loc'] = 'Pavlovsk Residential Area School';
@@ -514,9 +514,9 @@ function enterSchoolMondayFinal2017(s: GameState, scene: SceneBuilder): void {
 
 function enterSchoolTuesdayFinal2017(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'time', 'to_daystart', 2017, 3, 28);
-  ((s as any).event_vars = (s as any).event_vars ?? {})['daystart'] = ((s as any).dateVars ?? 0)?.['daystart'];
+  ((s as any).event_vars = (s as any).event_vars ?? {})['daystart'] = (((s as any).dateVars ?? 0)?.['daystart']);
   qspCall(s, 'time', 'to_daystart', 2017, 5, 25);
-  ((s as any).event_vars = (s as any).event_vars ?? {})['recur_end'] = ((s as any).dateVars ?? 0)?.['daystart'];
+  ((s as any).event_vars = (s as any).event_vars ?? {})['recur_end'] = (((s as any).dateVars ?? 0)?.['daystart']);
   ((s as any).event_vars = (s as any).event_vars ?? {})['id'] = 'school_tuesday_final2017';
   ((s as any).event_vars = (s as any).event_vars ?? {})['title'] = 'School Day';
   ((s as any).event_vars = (s as any).event_vars ?? {})['loc'] = 'Pavlovsk Residential Area School';
@@ -532,9 +532,9 @@ function enterSchoolTuesdayFinal2017(s: GameState, scene: SceneBuilder): void {
 
 function enterSchoolWednesdayFinal2017(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'time', 'to_daystart', 2017, 3, 29);
-  ((s as any).event_vars = (s as any).event_vars ?? {})['daystart'] = ((s as any).dateVars ?? 0)?.['daystart'];
+  ((s as any).event_vars = (s as any).event_vars ?? {})['daystart'] = (((s as any).dateVars ?? 0)?.['daystart']);
   qspCall(s, 'time', 'to_daystart', 2017, 5, 25);
-  ((s as any).event_vars = (s as any).event_vars ?? {})['recur_end'] = ((s as any).dateVars ?? 0)?.['daystart'];
+  ((s as any).event_vars = (s as any).event_vars ?? {})['recur_end'] = (((s as any).dateVars ?? 0)?.['daystart']);
   ((s as any).event_vars = (s as any).event_vars ?? {})['id'] = 'school_wednesday_final2017';
   ((s as any).event_vars = (s as any).event_vars ?? {})['title'] = 'School Day';
   ((s as any).event_vars = (s as any).event_vars ?? {})['loc'] = 'Pavlovsk Residential Area School';
@@ -550,9 +550,9 @@ function enterSchoolWednesdayFinal2017(s: GameState, scene: SceneBuilder): void 
 
 function enterSchoolThursdayFinal2017(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'time', 'to_daystart', 2017, 3, 30);
-  ((s as any).event_vars = (s as any).event_vars ?? {})['daystart'] = ((s as any).dateVars ?? 0)?.['daystart'];
+  ((s as any).event_vars = (s as any).event_vars ?? {})['daystart'] = (((s as any).dateVars ?? 0)?.['daystart']);
   qspCall(s, 'time', 'to_daystart', 2017, 5, 25);
-  ((s as any).event_vars = (s as any).event_vars ?? {})['recur_end'] = ((s as any).dateVars ?? 0)?.['daystart'];
+  ((s as any).event_vars = (s as any).event_vars ?? {})['recur_end'] = (((s as any).dateVars ?? 0)?.['daystart']);
   ((s as any).event_vars = (s as any).event_vars ?? {})['id'] = 'school_thursday_final2017';
   ((s as any).event_vars = (s as any).event_vars ?? {})['title'] = 'School Day';
   ((s as any).event_vars = (s as any).event_vars ?? {})['loc'] = 'Pavlovsk Residential Area School';
@@ -568,9 +568,9 @@ function enterSchoolThursdayFinal2017(s: GameState, scene: SceneBuilder): void {
 
 function enterSchoolFridayFinal2017(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'time', 'to_daystart', 2017, 3, 31);
-  ((s as any).event_vars = (s as any).event_vars ?? {})['daystart'] = ((s as any).dateVars ?? 0)?.['daystart'];
+  ((s as any).event_vars = (s as any).event_vars ?? {})['daystart'] = (((s as any).dateVars ?? 0)?.['daystart']);
   qspCall(s, 'time', 'to_daystart', 2017, 5, 25);
-  ((s as any).event_vars = (s as any).event_vars ?? {})['recur_end'] = ((s as any).dateVars ?? 0)?.['daystart'];
+  ((s as any).event_vars = (s as any).event_vars ?? {})['recur_end'] = (((s as any).dateVars ?? 0)?.['daystart']);
   ((s as any).event_vars = (s as any).event_vars ?? {})['id'] = 'school_friday_final2017';
   ((s as any).event_vars = (s as any).event_vars ?? {})['title'] = 'School Day';
   ((s as any).event_vars = (s as any).event_vars ?? {})['loc'] = 'Pavlovsk Residential Area School';
@@ -619,7 +619,7 @@ function enterTherapistHotelVisit(s: GameState, scene: SceneBuilder): void {
 
 function enterDiscoParty(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'time', 'to_daystart', 2016, 6, 3);
-  ((s as any).event_vars = (s as any).event_vars ?? {})['daystart'] = ((s as any).dateVars ?? 0)?.['daystart'];
+  ((s as any).event_vars = (s as any).event_vars ?? {})['daystart'] = (((s as any).dateVars ?? 0)?.['daystart']);
   ((s as any).event_vars = (s as any).event_vars ?? {})['id'] = 'disco_party';
   ((s as any).event_vars = (s as any).event_vars ?? {})['title'] = 'Disco Party';
   ((s as any).event_vars = (s as any).event_vars ?? {})['loc'] = 'Pavlovsk Community Center';
@@ -653,7 +653,7 @@ function enterGopnikInitiationEvent(s: GameState, scene: SceneBuilder): void {
 
 function enterTrainMorning(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'time', 'to_daystart', 2016, 6, 1);
-  ((s as any).event_vars = (s as any).event_vars ?? {})['daystart'] = ((s as any).dateVars ?? 0)?.['daystart'];
+  ((s as any).event_vars = (s as any).event_vars ?? {})['daystart'] = (((s as any).dateVars ?? 0)?.['daystart']);
   ((s as any).event_vars = (s as any).event_vars ?? {})['id'] = 'train_morning';
   ((s as any).event_vars = (s as any).event_vars ?? {})['title'] = 'Intercity Train';
   ((s as any).event_vars = (s as any).event_vars ?? {})['loc'] = 'Pavlovsk Station';
@@ -669,7 +669,7 @@ function enterTrainMorning(s: GameState, scene: SceneBuilder): void {
 
 function enterTrainEvening(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'time', 'to_daystart', 2016, 6, 1);
-  ((s as any).event_vars = (s as any).event_vars ?? {})['daystart'] = ((s as any).dateVars ?? 0)?.['daystart'];
+  ((s as any).event_vars = (s as any).event_vars ?? {})['daystart'] = (((s as any).dateVars ?? 0)?.['daystart']);
   ((s as any).event_vars = (s as any).event_vars ?? {})['id'] = 'train_evening';
   ((s as any).event_vars = (s as any).event_vars ?? {})['title'] = 'Intercity Train';
   ((s as any).event_vars = (s as any).event_vars ?? {})['loc'] = 'Pavlovsk Station';
@@ -685,7 +685,7 @@ function enterTrainEvening(s: GameState, scene: SceneBuilder): void {
 
 function enterChurchVigil(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'time', 'to_daystart', 2016, 6, 4);
-  ((s as any).event_vars = (s as any).event_vars ?? {})['daystart'] = ((s as any).dateVars ?? 0)?.['daystart'];
+  ((s as any).event_vars = (s as any).event_vars ?? {})['daystart'] = (((s as any).dateVars ?? 0)?.['daystart']);
   ((s as any).event_vars = (s as any).event_vars ?? {})['id'] = 'church_vigil';
   ((s as any).event_vars = (s as any).event_vars ?? {})['title'] = 'Church Vigil';
   ((s as any).event_vars = (s as any).event_vars ?? {})['loc'] = 'Pavlovsk Church';
@@ -702,7 +702,7 @@ function enterChurchVigil(s: GameState, scene: SceneBuilder): void {
 
 function enterChurchLiturgy(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'time', 'to_daystart', 2016, 6, 5);
-  ((s as any).event_vars = (s as any).event_vars ?? {})['daystart'] = ((s as any).dateVars ?? 0)?.['daystart'];
+  ((s as any).event_vars = (s as any).event_vars ?? {})['daystart'] = (((s as any).dateVars ?? 0)?.['daystart']);
   ((s as any).event_vars = (s as any).event_vars ?? {})['id'] = 'church_liturgy';
   ((s as any).event_vars = (s as any).event_vars ?? {})['title'] = 'Divine Liturgy';
   ((s as any).event_vars = (s as any).event_vars ?? {})['loc'] = 'Pavlovsk Church';
@@ -728,7 +728,7 @@ function enterStarletsPracticeRegular(s: GameState, scene: SceneBuilder): void {
   ((s as any).event_vars = (s as any).event_vars ?? {})['duration_ts'] = (2 * 4);
   ((s as any).event_vars = (s as any).event_vars ?? {})['recur'] = '1 3 6 7';
   qspCall(s, 'time', 'to_daystart', 2017, 5, 31);
-  ((s as any).event_vars = (s as any).event_vars ?? {})['recur_end'] = ((s as any).dateVars ?? 0)?.['daystart'];
+  ((s as any).event_vars = (s as any).event_vars ?? {})['recur_end'] = (((s as any).dateVars ?? 0)?.['daystart']);
   ((s as any).event_vars = (s as any).event_vars ?? {})['priority'] = 2;
   ((s as any).event_vars = (s as any).event_vars ?? {})['blocking'] = 1;
   ((s as any).event_vars = (s as any).event_vars ?? {})['holiday'] = 1;
@@ -753,7 +753,7 @@ function enterStarletsPracticeFriday(s: GameState, scene: SceneBuilder): void {
   ((s as any).event_vars = (s as any).event_vars ?? {})['duration_ts'] = (2 * 4);
   ((s as any).event_vars = (s as any).event_vars ?? {})['recur'] = 'biweekly';
   qspCall(s, 'time', 'to_daystart', 2017, 5, 31);
-  ((s as any).event_vars = (s as any).event_vars ?? {})['recur_end'] = ((s as any).dateVars ?? 0)?.['daystart'];
+  ((s as any).event_vars = (s as any).event_vars ?? {})['recur_end'] = (((s as any).dateVars ?? 0)?.['daystart']);
   ((s as any).event_vars = (s as any).event_vars ?? {})['priority'] = 2;
   ((s as any).event_vars = (s as any).event_vars ?? {})['color'] = 3;
   return;
@@ -790,7 +790,7 @@ function enterNerdGameNightEvent(s: GameState, scene: SceneBuilder): void {
   ((s as any).event_vars = (s as any).event_vars ?? {})['window_start_ts'] = (17 * 4) + (45 / 15);
   ((s as any).event_vars = (s as any).event_vars ?? {})['window_end_ts'] = (18 * 4) + (15 / 15);
   ((s as any).event_vars = (s as any).event_vars ?? {})['duration_ts'] = (3 * 4);
-  ((s as any).event_vars = (s as any).event_vars ?? {})['recur'] = String(((s as any).nerd_game ?? 0)?.['fixed_uni_day']);
+  ((s as any).event_vars = (s as any).event_vars ?? {})['recur'] = String((((s as any).nerd_game ?? 0)?.['fixed_uni_day']));
   ((s as any).event_vars = (s as any).event_vars ?? {})['recur_end'] = 0;
   ((s as any).event_vars = (s as any).event_vars ?? {})['priority'] = 1;
   ((s as any).event_vars = (s as any).event_vars ?? {})['color'] = 4;
@@ -801,7 +801,7 @@ function enterNerdGameNightEvent(s: GameState, scene: SceneBuilder): void {
 
 function enterGopnikFightNightEvent(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'time', 'to_daystart', 2016, 9, 1);
-  qspCall(s, 'time', 'to_date', ((s as any).dateVars ?? 0)?.['daystart']);
+  qspCall(s, 'time', 'to_date', (((s as any).dateVars ?? 0)?.['daystart']));
   ((s as any).event_vars = (s as any).event_vars ?? {})['daystart'] = (((s as any).dateVars ?? {})?.['daystart'] ?? 0) + ((6 - (((s as any).dateVars ?? {})?.['week'] ?? 0) + 7) % 7) + 14;
   ((s as any).event_vars = (s as any).event_vars ?? {})['id'] = 'gopnik_fight_night_event';
   ((s as any).event_vars = (s as any).event_vars ?? {})['title'] = 'Gopnik Fight Night';
@@ -820,7 +820,7 @@ function enterGopnikFightNightEvent(s: GameState, scene: SceneBuilder): void {
 
 function enterBandPracticeEvent(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'time', 'to_daystart', 2016, 6, 1);
-  ((s as any).event_vars = (s as any).event_vars ?? {})['daystart'] = ((s as any).dateVars ?? 0)?.['daystart'];
+  ((s as any).event_vars = (s as any).event_vars ?? {})['daystart'] = (((s as any).dateVars ?? 0)?.['daystart']);
   ((s as any).event_vars = (s as any).event_vars ?? {})['id'] = 'band_practice_event';
   ((s as any).event_vars = (s as any).event_vars ?? {})['title'] = 'Band Practice';
   ((s as any).event_vars = (s as any).event_vars ?? {})['loc'] = 'Five Eight Estate Garages';
@@ -831,7 +831,7 @@ function enterBandPracticeEvent(s: GameState, scene: SceneBuilder): void {
   ((s as any).event_vars = (s as any).event_vars ?? {})['duration_ts'] = (2 * 4);
   ((s as any).event_vars = (s as any).event_vars ?? {})['recur'] = '3';
   qspCall(s, 'time', 'to_daystart', 2017, 5, 31);
-  ((s as any).event_vars = (s as any).event_vars ?? {})['recur_end'] = ((s as any).dateVars ?? 0)?.['daystart'];
+  ((s as any).event_vars = (s as any).event_vars ?? {})['recur_end'] = (((s as any).dateVars ?? 0)?.['daystart']);
   ((s as any).event_vars = (s as any).event_vars ?? {})['priority'] = 0;
   ((s as any).event_vars = (s as any).event_vars ?? {})['color'] = 5;
   return;
@@ -850,7 +850,7 @@ function enterCheerleadingPractice_1(s: GameState, scene: SceneBuilder): void {
   ((s as any).event_vars = (s as any).event_vars ?? {})['duration_ts'] = (1 * 4) + (45 / 15);
   ((s as any).event_vars = (s as any).event_vars ?? {})['recur'] = '2 4';
   qspCall(s, 'time', 'to_daystart', 2016, 11, 2);
-  ((s as any).event_vars = (s as any).event_vars ?? {})['recur_end'] = ((s as any).dateVars ?? 0)?.['daystart'];
+  ((s as any).event_vars = (s as any).event_vars ?? {})['recur_end'] = (((s as any).dateVars ?? 0)?.['daystart']);
   ((s as any).event_vars = (s as any).event_vars ?? {})['priority'] = 2;
   ((s as any).event_vars = (s as any).event_vars ?? {})['color'] = 2;
   return;
@@ -860,7 +860,7 @@ function enterCheerleadingPractice_1(s: GameState, scene: SceneBuilder): void {
 
 function enterCheerleadingPractice_2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'time', 'to_daystart', 2016, 11, 11);
-  ((s as any).event_vars = (s as any).event_vars ?? {})['daystart'] = Math.max(((s as any).daystart ?? 0), ((s as any).dateVars ?? 0)?.['daystart']) - ((s as any).week ?? 0) + 2;
+  ((s as any).event_vars = (s as any).event_vars ?? {})['daystart'] = Math.max(((s as any).daystart ?? 0), (((s as any).dateVars ?? 0)?.['daystart'])) - ((s as any).week ?? 0) + 2;
   ((s as any).event_vars = (s as any).event_vars ?? {})['id'] = 'cheerleading_practice';
   ((s as any).event_vars = (s as any).event_vars ?? {})['title'] = 'Cheerleading Practice';
   ((s as any).event_vars = (s as any).event_vars ?? {})['loc'] = 'School Gym';
@@ -870,7 +870,7 @@ function enterCheerleadingPractice_2(s: GameState, scene: SceneBuilder): void {
   ((s as any).event_vars = (s as any).event_vars ?? {})['duration_ts'] = (1 * 4) + (45 / 15);
   ((s as any).event_vars = (s as any).event_vars ?? {})['recur'] = '2 4';
   qspCall(s, 'time', 'to_daystart', 2016, 12, 30);
-  ((s as any).event_vars = (s as any).event_vars ?? {})['recur_end'] = ((s as any).dateVars ?? 0)?.['daystart'];
+  ((s as any).event_vars = (s as any).event_vars ?? {})['recur_end'] = (((s as any).dateVars ?? 0)?.['daystart']);
   ((s as any).event_vars = (s as any).event_vars ?? {})['priority'] = 2;
   ((s as any).event_vars = (s as any).event_vars ?? {})['color'] = 2;
   return;
@@ -880,7 +880,7 @@ function enterCheerleadingPractice_2(s: GameState, scene: SceneBuilder): void {
 
 function enterCheerleadingPractice_3(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'time', 'to_daystart', 2017, 1, 15);
-  ((s as any).event_vars = (s as any).event_vars ?? {})['daystart'] = Math.max(((s as any).daystart ?? 0), ((s as any).dateVars ?? 0)?.['daystart']) - ((s as any).week ?? 0) + 2;
+  ((s as any).event_vars = (s as any).event_vars ?? {})['daystart'] = Math.max(((s as any).daystart ?? 0), (((s as any).dateVars ?? 0)?.['daystart'])) - ((s as any).week ?? 0) + 2;
   ((s as any).event_vars = (s as any).event_vars ?? {})['id'] = 'cheerleading_practice';
   ((s as any).event_vars = (s as any).event_vars ?? {})['title'] = 'Cheerleading Practice';
   ((s as any).event_vars = (s as any).event_vars ?? {})['loc'] = 'School Gym';
@@ -890,7 +890,7 @@ function enterCheerleadingPractice_3(s: GameState, scene: SceneBuilder): void {
   ((s as any).event_vars = (s as any).event_vars ?? {})['duration_ts'] = (1 * 4) + (45 / 15);
   ((s as any).event_vars = (s as any).event_vars ?? {})['recur'] = '2 4';
   qspCall(s, 'time', 'to_daystart', 2017, 3, 18);
-  ((s as any).event_vars = (s as any).event_vars ?? {})['recur_end'] = ((s as any).dateVars ?? 0)?.['daystart'];
+  ((s as any).event_vars = (s as any).event_vars ?? {})['recur_end'] = (((s as any).dateVars ?? 0)?.['daystart']);
   ((s as any).event_vars = (s as any).event_vars ?? {})['priority'] = 2;
   ((s as any).event_vars = (s as any).event_vars ?? {})['color'] = 2;
   return;
@@ -900,7 +900,7 @@ function enterCheerleadingPractice_3(s: GameState, scene: SceneBuilder): void {
 
 function enterCheerleadingPractice_4(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'time', 'to_daystart', 2017, 3, 26);
-  ((s as any).event_vars = (s as any).event_vars ?? {})['daystart'] = Math.max(((s as any).daystart ?? 0), ((s as any).dateVars ?? 0)?.['daystart']) - ((s as any).week ?? 0) + 2;
+  ((s as any).event_vars = (s as any).event_vars ?? {})['daystart'] = Math.max(((s as any).daystart ?? 0), (((s as any).dateVars ?? 0)?.['daystart'])) - ((s as any).week ?? 0) + 2;
   ((s as any).event_vars = (s as any).event_vars ?? {})['id'] = 'cheerleading_practice';
   ((s as any).event_vars = (s as any).event_vars ?? {})['title'] = 'Cheerleading Practice';
   ((s as any).event_vars = (s as any).event_vars ?? {})['loc'] = 'School Gym';
@@ -910,7 +910,7 @@ function enterCheerleadingPractice_4(s: GameState, scene: SceneBuilder): void {
   ((s as any).event_vars = (s as any).event_vars ?? {})['duration_ts'] = (1 * 4) + (45 / 15);
   ((s as any).event_vars = (s as any).event_vars ?? {})['recur'] = '2 4';
   qspCall(s, 'time', 'to_daystart', 2017, 5, 25);
-  ((s as any).event_vars = (s as any).event_vars ?? {})['recur_end'] = ((s as any).dateVars ?? 0)?.['daystart'];
+  ((s as any).event_vars = (s as any).event_vars ?? {})['recur_end'] = (((s as any).dateVars ?? 0)?.['daystart']);
   ((s as any).event_vars = (s as any).event_vars ?? {})['priority'] = 2;
   ((s as any).event_vars = (s as any).event_vars ?? {})['color'] = 2;
   return;
@@ -949,7 +949,7 @@ function enterCheerleadingGame_1(s: GameState, scene: SceneBuilder): void {
   ((s as any).event_vars = (s as any).event_vars ?? {})['duration_ts'] = (1 * 4) + (45 / 15);
   ((s as any).event_vars = (s as any).event_vars ?? {})['recur'] = 'biweekly';
   qspCall(s, 'time', 'to_daystart', 2016, 11, 2);
-  ((s as any).event_vars = (s as any).event_vars ?? {})['recur_end'] = ((s as any).dateVars ?? 0)?.['daystart'];
+  ((s as any).event_vars = (s as any).event_vars ?? {})['recur_end'] = (((s as any).dateVars ?? 0)?.['daystart']);
   ((s as any).event_vars = (s as any).event_vars ?? {})['priority'] = 2;
   ((s as any).event_vars = (s as any).event_vars ?? {})['color'] = 2;
   return;
@@ -959,7 +959,7 @@ function enterCheerleadingGame_1(s: GameState, scene: SceneBuilder): void {
 
 function enterCheerleadingGame_2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'time', 'to_daystart', 2016, 11, 15);
-  ((s as any).event_vars = (s as any).event_vars ?? {})['daystart'] = ((s as any).dateVars ?? 0)?.['daystart'];
+  ((s as any).event_vars = (s as any).event_vars ?? {})['daystart'] = (((s as any).dateVars ?? 0)?.['daystart']);
   ((s as any).event_vars = (s as any).event_vars ?? {})['id'] = 'cheerleading_game';
   ((s as any).event_vars = (s as any).event_vars ?? {})['title'] = 'Cheerleading at Game';
   ((s as any).event_vars = (s as any).event_vars ?? {})['loc'] = 'School Gym';
@@ -969,7 +969,7 @@ function enterCheerleadingGame_2(s: GameState, scene: SceneBuilder): void {
   ((s as any).event_vars = (s as any).event_vars ?? {})['duration_ts'] = (1 * 4) + (45 / 15);
   ((s as any).event_vars = (s as any).event_vars ?? {})['recur'] = 'biweekly';
   qspCall(s, 'time', 'to_daystart', 2016, 12, 30);
-  ((s as any).event_vars = (s as any).event_vars ?? {})['recur_end'] = ((s as any).dateVars ?? 0)?.['daystart'];
+  ((s as any).event_vars = (s as any).event_vars ?? {})['recur_end'] = (((s as any).dateVars ?? 0)?.['daystart']);
   ((s as any).event_vars = (s as any).event_vars ?? {})['priority'] = 2;
   ((s as any).event_vars = (s as any).event_vars ?? {})['color'] = 2;
   return;
@@ -979,7 +979,7 @@ function enterCheerleadingGame_2(s: GameState, scene: SceneBuilder): void {
 
 function enterCheerleadingGame_3(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'time', 'to_daystart', 2017, 1, 27);
-  ((s as any).event_vars = (s as any).event_vars ?? {})['daystart'] = ((s as any).dateVars ?? 0)?.['daystart'];
+  ((s as any).event_vars = (s as any).event_vars ?? {})['daystart'] = (((s as any).dateVars ?? 0)?.['daystart']);
   ((s as any).event_vars = (s as any).event_vars ?? {})['id'] = 'cheerleading_game';
   ((s as any).event_vars = (s as any).event_vars ?? {})['title'] = 'Cheerleading at Game';
   ((s as any).event_vars = (s as any).event_vars ?? {})['loc'] = 'School Gym';
@@ -989,7 +989,7 @@ function enterCheerleadingGame_3(s: GameState, scene: SceneBuilder): void {
   ((s as any).event_vars = (s as any).event_vars ?? {})['duration_ts'] = (1 * 4) + (45 / 15);
   ((s as any).event_vars = (s as any).event_vars ?? {})['recur'] = 'biweekly';
   qspCall(s, 'time', 'to_daystart', 2017, 3, 18);
-  ((s as any).event_vars = (s as any).event_vars ?? {})['recur_end'] = ((s as any).dateVars ?? 0)?.['daystart'];
+  ((s as any).event_vars = (s as any).event_vars ?? {})['recur_end'] = (((s as any).dateVars ?? 0)?.['daystart']);
   ((s as any).event_vars = (s as any).event_vars ?? {})['priority'] = 2;
   ((s as any).event_vars = (s as any).event_vars ?? {})['color'] = 2;
   return;
@@ -999,7 +999,7 @@ function enterCheerleadingGame_3(s: GameState, scene: SceneBuilder): void {
 
 function enterCheerleadingGame_4(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'time', 'to_daystart', 2017, 3, 24);
-  ((s as any).event_vars = (s as any).event_vars ?? {})['daystart'] = ((s as any).dateVars ?? 0)?.['daystart'];
+  ((s as any).event_vars = (s as any).event_vars ?? {})['daystart'] = (((s as any).dateVars ?? 0)?.['daystart']);
   ((s as any).event_vars = (s as any).event_vars ?? {})['id'] = 'cheerleading_game';
   ((s as any).event_vars = (s as any).event_vars ?? {})['title'] = 'Cheerleading at Game';
   ((s as any).event_vars = (s as any).event_vars ?? {})['loc'] = 'School Gym';
@@ -1009,7 +1009,7 @@ function enterCheerleadingGame_4(s: GameState, scene: SceneBuilder): void {
   ((s as any).event_vars = (s as any).event_vars ?? {})['duration_ts'] = (1 * 4) + (45 / 15);
   ((s as any).event_vars = (s as any).event_vars ?? {})['recur'] = 'biweekly';
   qspCall(s, 'time', 'to_daystart', 2017, 5, 25);
-  ((s as any).event_vars = (s as any).event_vars ?? {})['recur_end'] = ((s as any).dateVars ?? 0)?.['daystart'];
+  ((s as any).event_vars = (s as any).event_vars ?? {})['recur_end'] = (((s as any).dateVars ?? 0)?.['daystart']);
   ((s as any).event_vars = (s as any).event_vars ?? {})['priority'] = 2;
   ((s as any).event_vars = (s as any).event_vars ?? {})['color'] = 2;
   return;
@@ -1034,8 +1034,8 @@ function enterVolleyballTournament(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGuitarLesson(s: GameState, scene: SceneBuilder): void {
-  ((s as any).event_vars = (s as any).event_vars ?? {})['daystart'] = ((s as any).ml_guitarlesson ?? 0)?.['nextlesson'];
-  ((s as any).event_vars = (s as any).event_vars ?? {})['id'] = 'guitar_lessons_' + ((s as any).ml_guitarlesson ?? 0)?.['nextlesson'] + '_' + ((s as any).ml_guitarlesson ?? 0)?.['lessonhour'];
+  ((s as any).event_vars = (s as any).event_vars ?? {})['daystart'] = (((s as any).ml_guitarlesson ?? 0)?.['nextlesson']);
+  ((s as any).event_vars = (s as any).event_vars ?? {})['id'] = 'guitar_lessons_' + (((s as any).ml_guitarlesson ?? 0)?.['nextlesson']) + '_' + (((s as any).ml_guitarlesson ?? 0)?.['lessonhour']);
   ((s as any).event_vars = (s as any).event_vars ?? {})['title'] = 'Guitar Lesson';
   ((s as any).event_vars = (s as any).event_vars ?? {})['loc'] = 'Pavlovsk Community Center';
   ((s as any).event_vars = (s as any).event_vars ?? {})['flex_type'] = 1;
@@ -1065,9 +1065,9 @@ function enterMitkaDrinkingInvite(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterFineDeadline(s: GameState, scene: SceneBuilder): void {
-  ((s as any).event_vars = (s as any).event_vars ?? {})['daystart'] = ((s as any).policeQW ?? 0)?.['fine_deadline'];
-  ((s as any).event_vars = (s as any).event_vars ?? {})['id'] = 'fine_deadline_' + ((s as any).policeQW ?? 0)?.['fine_deadline'];
-  ((s as any).event_vars = (s as any).event_vars ?? {})['title'] = ((s as any).policeQW ?? 0)?.['legal_fine'] + ' Fine Due';
+  ((s as any).event_vars = (s as any).event_vars ?? {})['daystart'] = (((s as any).policeQW ?? 0)?.['fine_deadline']);
+  ((s as any).event_vars = (s as any).event_vars ?? {})['id'] = 'fine_deadline_' + (((s as any).policeQW ?? 0)?.['fine_deadline']);
+  ((s as any).event_vars = (s as any).event_vars ?? {})['title'] = (((s as any).policeQW ?? 0)?.['legal_fine']) + ' Fine Due';
   ((s as any).event_vars = (s as any).event_vars ?? {})['all_day'] = 1;
   return;
   // TODO-QSP: end
@@ -1075,14 +1075,14 @@ function enterFineDeadline(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBlackmailPaymentDeadline(s: GameState, scene: SceneBuilder): void {
-  ((s as any).event_vars = (s as any).event_vars ?? {})['daystart'] = ((s as any).blackmailQW ?? 0)?.['smsday'];
+  ((s as any).event_vars = (s as any).event_vars ?? {})['daystart'] = (((s as any).blackmailQW ?? 0)?.['smsday']);
   ((s as any).event_vars = (s as any).event_vars ?? {})['id'] = 'blackmail_payment_deadline';
   ((s as any).event_vars = (s as any).event_vars ?? {})['title'] = 'Blackmailer Payment Due';
   ((s as any).event_vars = (s as any).event_vars ?? {})['loc'] = '';
-  ((s as any).event_vars = (s as any).event_vars ?? {})['desc'] = 'Leave ' + qspFunc(s, 'money', 'string_price', ((s as any).blackmailQW ?? 0)?.['next_payment']) + ' in a park before midnight. Don\'t be late or there will be consequences.';
+  ((s as any).event_vars = (s as any).event_vars ?? {})['desc'] = 'Leave ' + qspFunc(s, 'money', 'string_price', (((s as any).blackmailQW ?? 0)?.['next_payment'])) + ' in a park before midnight. Don\'t be late or there will be consequences.';
   ((s as any).event_vars = (s as any).event_vars ?? {})['all_day'] = 1;
   ((s as any).event_vars = (s as any).event_vars ?? {})['recur'] = '';
-  ((s as any).event_vars = (s as any).event_vars ?? {})['recur_end'] = ((s as any).blackmailQW ?? 0)?.['smsday'];
+  ((s as any).event_vars = (s as any).event_vars ?? {})['recur_end'] = (((s as any).blackmailQW ?? 0)?.['smsday']);
   ((s as any).event_vars = (s as any).event_vars ?? {})['priority'] = 2;
   ((s as any).event_vars = (s as any).event_vars ?? {})['color'] = 1;
   return;
@@ -1106,7 +1106,7 @@ function enterBelgangPaymentDeadline(s: GameState, scene: SceneBuilder): void {
   ((s as any).event_vars = (s as any).event_vars ?? {})['desc'] = 'Weekly payment of ' + qspFunc(s, 'money', 'string_debt', ((s as any).belgangPayWeek ?? 0)) + ' due to Vadim Bely. Find him somewhere in town on Sunday.';
   ((s as any).event_vars = (s as any).event_vars ?? {})['all_day'] = 1;
   ((s as any).event_vars = (s as any).event_vars ?? {})['recur'] = '';
-  ((s as any).event_vars = (s as any).event_vars ?? {})['recur_end'] = ((s as any).event_vars ?? 0)?.['daystart'];
+  ((s as any).event_vars = (s as any).event_vars ?? {})['recur_end'] = (((s as any).event_vars ?? 0)?.['daystart']);
   ((s as any).event_vars = (s as any).event_vars ?? {})['priority'] = 2;
   ((s as any).event_vars = (s as any).event_vars ?? {})['color'] = 1;
   return;

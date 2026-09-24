@@ -1085,7 +1085,7 @@ function enterTier1(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: jump 'multloop1'
   }
   ((s as any).stat = (s as any).stat ?? {})['last_workout_trig'] = 1;
-  qspCall(s, 'traits', 'fitness_freak', 'workout', ((s as any).temp_exVars ?? 0)?.['mult']);
+  qspCall(s, 'traits', 'fitness_freak', 'workout', (((s as any).temp_exVars ?? 0)?.['mult']));
   // TODO-QSP: end
   scene.build();
 }
@@ -1134,7 +1134,7 @@ function enterTier2(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: jump 'multloop2'
   }
   ((s as any).stat = (s as any).stat ?? {})['last_workout_trig'] = 1;
-  qspCall(s, 'traits', 'fitness_freak', 'workout', ((s as any).temp_exVars ?? 0)?.['mult']);
+  qspCall(s, 'traits', 'fitness_freak', 'workout', (((s as any).temp_exVars ?? 0)?.['mult']));
   // TODO-QSP: end
   scene.build();
 }
@@ -1183,7 +1183,7 @@ function enterTier3(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: jump 'multloop3'
   }
   ((s as any).stat = (s as any).stat ?? {})['last_workout_trig'] = 1;
-  qspCall(s, 'traits', 'fitness_freak', 'workout', ((s as any).temp_exVars ?? 0)?.['mult']);
+  qspCall(s, 'traits', 'fitness_freak', 'workout', (((s as any).temp_exVars ?? 0)?.['mult']));
   // TODO-QSP: end
   scene.build();
 }
@@ -1232,7 +1232,7 @@ function enterTier4(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: jump 'timeexploop4'
   }
   ((s as any).stat = (s as any).stat ?? {})['last_workout_trig'] = 1;
-  qspCall(s, 'traits', 'fitness_freak', 'workout', ((s as any).temp_exVars ?? 0)?.['mult']);
+  qspCall(s, 'traits', 'fitness_freak', 'workout', (((s as any).temp_exVars ?? 0)?.['mult']));
   // TODO-QSP: end
   scene.build();
 }

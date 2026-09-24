@@ -1894,7 +1894,7 @@ function enterPubeCompliment(s: GameState, scene: SceneBuilder): void {
             scene.text('As fast as your bush drew their attention, it\'s already gone as they descend into bickering about how boys like their girls shaven and you end up taking your shower without anyone to talk to.');
           } else {
             // TODO-QSP: dynamic text: "Oh my gosh!" Bella squeals. All eyes in the room follow her gaze to home in on ...
-            scene.text(`"Oh my gosh!" Bella squeals. All eyes in the room follow her gaze to home in on the tidy ${((s as any).pube_style ?? 0)?.['shape'] ?? ''} of hair between your legs. "Your pubes are <i>so cute!</i>"`);
+            scene.text(`"Oh my gosh!" Bella squeals. All eyes in the room follow her gaze to home in on the tidy ${(((s as any).pube_style ?? 0)?.['shape'] ?? '')} of hair between your legs. "Your pubes are <i>so cute!</i>"`);
             if (((s as any).pube_style ?? 0)?.['shape'] === 'landing strip') {
               scene.text('"Finally, someone <i>else</i> with a sense of style," Irina grins, blatantly turning to show off her own landing strip to the other girls.');
               scene.text('"I guess it\'s pretty cute," Stasya says in a sweet voice with undertones of jealousy and superiority. "Andrey likes me clean shaven. Isn\'t that what all boys want?"');

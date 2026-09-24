@@ -13,7 +13,7 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
   (s as any).region = 'pushkin';
   (s as any).location_type = 'public_indoors';
   ((s as any).setloc = (s as any).setloc ?? {})['StageTitle'] = 'Ballet Secrets';
-  scene.img(((s as any).setloc ?? 0)?.['imagepath'] + '/ballet-shop-window.jpg');
+  scene.img((((s as any).setloc ?? 0)?.['imagepath']) + '/ballet-shop-window.jpg');
   (s as any).location_type = 'public_indoors';
   qspCall(s, 'themes', 'indoors');
   qspCall(s, 'core_library', 'stage_title');
@@ -57,7 +57,7 @@ function enterExit(s: GameState, scene: SceneBuilder): void {
     if (String((s as any).locArgs?.[1] ?? '') === 'pushkin') {
       qspGoto(s, 'pushkin_sq', '');
     } else {
-      { const __t = String((s as any).locArgs?.[1] ?? ''); if (__t) qspGoto(s, __t, '$ARGS[2]'); }
+      { const __t = String((s as any).locArgs?.[1] ?? ''); if (__t) qspGoto(s, __t, String((s as any).locArgs?.[2] ?? '')); }
     }
   }
   // TODO-QSP: end
@@ -67,7 +67,7 @@ function enterExit(s: GameState, scene: SceneBuilder): void {
 function enterFirstVisit(s: GameState, scene: SceneBuilder): void {
   ((s as any).balletqw = (s as any).balletqw ?? {})['ballet_secrets_visit'] = 1;
   ((s as any).balletqw = (s as any).balletqw ?? {})['shoe_order'] = ((s as any).daystart ?? 0) + 14;
-  scene.img(((s as any).setloc ?? 0)?.['imagepath'] + '/ballet_secrets_fitting_1.jpg');
+  scene.img((((s as any).setloc ?? 0)?.['imagepath']) + '/ballet_secrets_fitting_1.jpg');
   (s as any).minut = ((s as any).minut ?? 0) + 60;
   qspCall(s, 'core_library', 'stage_title');
   qspCall(s, 'stat', '');
@@ -94,7 +94,7 @@ function enterReception(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'pushkin_ballet_secrets', 'reception');
   (s as any).location_type = 'public_indoors';
   ((s as any).setloc = (s as any).setloc ?? {})['StageTitle'] = 'Ballet Secrets - Reception';
-  scene.img(((s as any).setloc ?? 0)?.['imagepath'] + '/reception.jpg');
+  scene.img((((s as any).setloc ?? 0)?.['imagepath']) + '/reception.jpg');
   (s as any).location_type = 'public_indoors';
   qspCall(s, 'core_library', 'stage_title');
   qspCall(s, 'shortgs', 'clothing_status');
@@ -243,7 +243,7 @@ function enterPhysio(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'pushkin_ballet_secrets', 'physio');
   (s as any).location_type = 'public_indoors';
   ((s as any).setloc = (s as any).setloc ?? {})['StageTitle'] = 'Ballet Secrets - Physio';
-  scene.img(((s as any).setloc ?? 0)?.['imagepath'] + '/physio.jpg');
+  scene.img((((s as any).setloc ?? 0)?.['imagepath']) + '/physio.jpg');
   (s as any).location_type = 'public_indoors';
   qspCall(s, 'themes', 'indoors');
   qspCall(s, 'core_library', 'stage_title');
@@ -258,7 +258,7 @@ function enterGymnasticsCourses(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'pushkin_ballet_secrets', 'gymnastics_courses');
   (s as any).location_type = 'public_indoors';
   ((s as any).setloc = (s as any).setloc ?? {})['StageTitle'] = 'Ballet Secrets - Gymnastics Class';
-  scene.img(((s as any).setloc ?? 0)?.['imagepath'] + '/gymnastics.jpg');
+  scene.img((((s as any).setloc ?? 0)?.['imagepath']) + '/gymnastics.jpg');
   (s as any).location_type = 'public_indoors';
   qspCall(s, 'themes', 'indoors');
   qspCall(s, 'core_library', 'stage_title');
@@ -274,12 +274,12 @@ function enterBalletCourses(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'public_indoors';
   ((s as any).setloc = (s as any).setloc ?? {})['StageTitle'] = 'Ballet Secrets - Courses';
   if (((s as any).pcs_danc ?? 0) < 50) {
-    scene.img(((s as any).setloc ?? 0)?.['imagepath'] + '/basic_class.jpg');
+    scene.img((((s as any).setloc ?? 0)?.['imagepath']) + '/basic_class.jpg');
   } else {
     if (((s as any).pcs_danc ?? 0) < 75) {
-      scene.img(((s as any).setloc ?? 0)?.['imagepath'] + '/intermediate_class.jpg');
+      scene.img((((s as any).setloc ?? 0)?.['imagepath']) + '/intermediate_class.jpg');
     } else {
-      scene.img(((s as any).setloc ?? 0)?.['imagepath'] + '/advanced_class.jpg');
+      scene.img((((s as any).setloc ?? 0)?.['imagepath']) + '/advanced_class.jpg');
     }
   }
   (s as any).location_type = 'public_indoors';
@@ -343,7 +343,7 @@ function enterYogaCourses(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'pushkin_ballet_secrets', 'yoga_courses');
   (s as any).location_type = 'public_indoors';
   ((s as any).setloc = (s as any).setloc ?? {})['StageTitle'] = 'Ballet Secrets - Yoga Class';
-  scene.img(((s as any).setloc ?? 0)?.['imagepath'] + '/yoga_class.jpg');
+  scene.img((((s as any).setloc ?? 0)?.['imagepath']) + '/yoga_class.jpg');
   (s as any).location_type = 'public_indoors';
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'gdksport', 'jocks_acceptance');
@@ -361,7 +361,7 @@ function enterYogaCourses(s: GameState, scene: SceneBuilder): void {
     if (((s as any).start_type ?? 0)?.['magic'] !== 'nomagic'  &&  ((s as any).scene_sel ?? 0) >= 55) {
       (s as any).img_sel = (Math.floor(Math.random() * 3) + 1);
       ((s as any).balletqw = (s as any).balletqw ?? {})['yoga_session'] = ((s as any).daystart ?? 0);
-      scene.img(((s as any).setloc ?? 0)?.['imagepath'] + '/awakened_yoga_' + ((s as any).img_sel ?? 0) + '.jpg');
+      scene.img((((s as any).setloc ?? 0)?.['imagepath']) + '/awakened_yoga_' + ((s as any).img_sel ?? 0) + '.jpg');
       qspCall(s, 'core_library', 'stage_title');
       scene.text('You enter the yoga studio, but instead of your usual instructor there is a group of naked woman in the class. It takes a moment to realise that they are Fae.');
       if (((s as any).trait_vars ?? 0)?.['exhibitionist'] > 1) {
@@ -435,7 +435,7 @@ function enterClothing(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'pushkin_ballet_secrets', 'clothing');
   (s as any).location_type = 'public_indoors';
   ((s as any).setloc = (s as any).setloc ?? {})['StageTitle'] = 'Ballet Secrets - Dancewear';
-  scene.img(((s as any).setloc ?? 0)?.['imagepath'] + '/sports_shop.jpg');
+  scene.img((((s as any).setloc ?? 0)?.['imagepath']) + '/sports_shop.jpg');
   (s as any).location_type = 'public_indoors';
   qspCall(s, 'core_library', 'stage_title');
   qspCall(s, 'stat', '');
@@ -451,7 +451,7 @@ function enterQuest(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'pushkin_ballet_secrets', 'quest');
   (s as any).location_type = 'public_indoors';
   ((s as any).setloc = (s as any).setloc ?? {})['StageTitle'] = 'Ballet Secrets';
-  scene.img(((s as any).setloc ?? 0)?.['imagepath'] + '/quest.jpg');
+  scene.img((((s as any).setloc ?? 0)?.['imagepath']) + '/quest.jpg');
   (s as any).location_type = 'public_indoors';
   qspCall(s, 'core_library', 'stage_title');
   qspCall(s, 'stat', '');
@@ -467,7 +467,7 @@ function enterCafe(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'pushkin_ballet_secrets', 'cafe');
   (s as any).location_type = 'public_indoors';
   ((s as any).setloc = (s as any).setloc ?? {})['StageTitle'] = 'Food Court';
-  scene.img(((s as any).setloc ?? 0)?.['imagepath'] + '/food_court.jpg');
+  scene.img((((s as any).setloc ?? 0)?.['imagepath']) + '/food_court.jpg');
   (s as any).location_type = 'public_indoors';
   qspCall(s, 'core_library', 'stage_title');
   qspCall(s, 'stat', '');
@@ -497,7 +497,7 @@ function enterCafe(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterEnergyBar(s: GameState, scene: SceneBuilder): void {
-  scene.img(((s as any).setloc ?? 0)?.['imagepath'] + '/protein_bar.jpg');
+  scene.img((((s as any).setloc ?? 0)?.['imagepath']) + '/protein_bar.jpg');
   qspCall(s, 'core_library', 'stage_title');
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'money', 'pay', 150, 'bank');
@@ -520,7 +520,7 @@ function enterEnergyBar(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterEnergyDrink(s: GameState, scene: SceneBuilder): void {
-  scene.img(((s as any).setloc ?? 0)?.['imagepath'] + '/energy_drink.jpg');
+  scene.img((((s as any).setloc ?? 0)?.['imagepath']) + '/energy_drink.jpg');
   qspCall(s, 'core_library', 'stage_title');
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'money', 'pay', 200, 'bank');

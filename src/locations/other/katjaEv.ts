@@ -145,7 +145,7 @@ function enter1(s: GameState, scene: SceneBuilder): void {
     }
   } else {
     if (((s as any).month ?? 0) === 1  ||  ((s as any).month ?? 0) === 2  ||  ((s as any).month ?? 0) === 11  ||  ((s as any).month ?? 0) === 12) {
-      scene.text(`<center><b>${((s as any).npc_firstname ?? 0)?.['A14'] ?? ''} ${((s as any).npc_lastname ?? 0)?.['A14'] ?? ''}</b></center>`);
+      scene.text(`<center><b>${(((s as any).npc_firstname ?? 0)?.['A14'] ?? '')} ${(((s as any).npc_lastname ?? 0)?.['A14'] ?? '')}</b></center>`);
       scene.img('images/characters/shared/headshots_main/big14.jpg');
     } else {
       scene.img('images/characters/pavlovsk/school/girl/katja/katja_home.jpg');
@@ -181,7 +181,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'mood', 'raise', 'small');
   qspCall(s, 'stat', '');
-  scene.text(`<center><b>${((s as any).npc_firstname ?? 0)?.['A14'] ?? ''} ${((s as any).npc_lastname ?? 0)?.['A14'] ?? ''}</b></center>`);
+  scene.text(`<center><b>${(((s as any).npc_firstname ?? 0)?.['A14'] ?? '')} ${(((s as any).npc_lastname ?? 0)?.['A14'] ?? '')}</b></center>`);
   scene.img('images/characters/shared/headshots_main/big14.jpg');
   scene.text('Katja\'s room is not that clean and her things are in a circle around her bed. Katja throws her rucksack to the floor with her textbooks and notebooks falling out.');
   // TODO-QSP: end

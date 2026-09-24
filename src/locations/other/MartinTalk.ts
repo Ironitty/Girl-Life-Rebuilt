@@ -104,7 +104,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
             scene.text('"You\'re skinny," he observes.');
             scene.text('"Excuse me?"');
             // TODO-QSP: dynamic text: 'You ' + iif($bodyVars['desc']='skinny', 'would call yourself skinny, too, but',...
-            scene.text('You ' + ((((s as any).bodyVars ?? 0)?.['desc']==='skinny') ? ('would call yourself skinny, too, but') : ('see yourself as ' + ((s as any).bodyVars ?? 0)?.['desc'] ?? '' + ' rather than skinny, so')) + ' you don\'t really see why he would bring this up.');
+            scene.text('You ' + ((((s as any).bodyVars ?? 0)?.['desc']==='skinny') ? ('would call yourself skinny, too, but') : ('see yourself as ' + (((s as any).bodyVars ?? 0)?.['desc'] ?? '') + ' rather than skinny, so')) + ' you don\'t really see why he would bring this up.');
             // TODO-QSP: dynamic text: "Are you eating right, <<$pcs_firstname>>?" He inquires, completely ignoring you...
             scene.text(`"Are you eating right, ${((s as any).pcs_firstname ?? '')}?" He inquires, completely ignoring your visible confusion.`);
             scene.text('"Uh… I guess. Wait, you didn\'t, by any chance, talk to my mother, did you?"');
@@ -799,7 +799,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
                                 scene.text('But the fact that the two are having sex does changes a few things: The meaningful looks you give each other when somebody nearby makes a dirty joke; the wanton smile you share when one of you stares at the spot where you went at it last time; the way you linger when your hands or eyes meet.');
                                 scene.text('Still, as per your unspoken agreement, you are not acting on that while Martin is working behind the bar - the fantasy of giving him a blowjob while he\'s pouring drinks has its appeal, but, the huge risk of getting caught aside, Martin has to move around too much for that to be practical.');
                                 // TODO-QSP: dynamic text: So, when one of the regulars calls for Martin, you lick your <<$pc_desc[''lip si...
-                                scene.text(`So, when one of the regulars calls for Martin, you lick your ${((s as any).pc_desc ?? 0)?.['lip size'] ?? ''} lips lasciviously and thank him for the drink in a low, sexy voice before Martin goes back to work, his walk a little funnier than before.`);
+                                scene.text(`So, when one of the regulars calls for Martin, you lick your ${(((s as any).pc_desc ?? 0)?.['lip size'] ?? '')} lips lasciviously and thank him for the drink in a low, sexy voice before Martin goes back to work, his walk a little funnier than before.`);
                                 scene.actions([
                                   { label: 'Finish your drink', goto: ['qwBarPolet', 'bar'] },
                                 ]);

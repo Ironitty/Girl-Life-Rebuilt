@@ -31,15 +31,15 @@ function enterTalk(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).grandpaQW ?? 0)?.['chore_gather_mushrooms'] === 1) {
     // TODO-QSP: dynamic text: You promised to bring grandpa <<grandpaQW[''chore_mushroom_quantity'']>> kg of m...
-    scene.text(`You promised to bring grandpa ${((s as any).grandpaQW ?? 0)?.['chore_mushroom_quantity'] ?? ''} kg of mushrooms.`);
+    scene.text(`You promised to bring grandpa ${(((s as any).grandpaQW ?? 0)?.['chore_mushroom_quantity'] ?? '')} kg of mushrooms.`);
   } else {
     if (((s as any).grandpaQW ?? 0)?.['chore_gather_berries'] === 1) {
       // TODO-QSP: dynamic text: You promised to bring grandpa <<grandpaQW[''chore_berry_quantity'']>> kg of berr...
-      scene.text(`You promised to bring grandpa ${((s as any).grandpaQW ?? 0)?.['chore_berry_quantity'] ?? ''} kg of berries.`);
+      scene.text(`You promised to bring grandpa ${(((s as any).grandpaQW ?? 0)?.['chore_berry_quantity'] ?? '')} kg of berries.`);
     } else {
       if (((s as any).grandpaQW ?? 0)?.['chore_gather_both'] === 1) {
         // TODO-QSP: dynamic text: You promised to bring grandpa <<grandpaQW[''chore_mushroom_quantity'']>> kg mush...
-        scene.text(`You promised to bring grandpa ${((s as any).grandpaQW ?? 0)?.['chore_mushroom_quantity'] ?? ''} kg mushrooms and ${((s as any).grandpaQW ?? 0)?.['chore_berry_quantity'] ?? ''} kg of berries.`);
+        scene.text(`You promised to bring grandpa ${(((s as any).grandpaQW ?? 0)?.['chore_mushroom_quantity'] ?? '')} kg mushrooms and ${(((s as any).grandpaQW ?? 0)?.['chore_berry_quantity'] ?? '')} kg of berries.`);
       }
     }
   }
@@ -1159,7 +1159,7 @@ function enterChoreGathermushrooms(s: GameState, scene: SceneBuilder): void {
   scene.text(`"${((s as any).pcs_nickname ?? '')}, could you go to the forest and pick mushrooms? I'm craving fried mushrooms."`);
   scene.text('"How much should I pick, grandpa?" you ask.');
   // TODO-QSP: dynamic text: "<<grandpaQW[''chore_mushroom_quantity'']>> kilos will be enough," grandfather r...
-  scene.text(`"${((s as any).grandpaQW ?? 0)?.['chore_mushroom_quantity'] ?? ''} kilos will be enough," grandfather replies. "Be careful so you don't get lost."`);
+  scene.text(`"${(((s as any).grandpaQW ?? 0)?.['chore_mushroom_quantity'] ?? '')} kilos will be enough," grandfather replies. "Be careful so you don't get lost."`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Tell him you will go get some soon', goto: ['gp_zlatek', 'talk'] },
@@ -1186,8 +1186,8 @@ function enterSetReportGathermushroomsAct(s: GameState, scene: SceneBuilder): vo
       scene.actions([
         { label: 'Give him the mushrooms he asked for', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
-    (st as any).boletus = ((st as any).boletus ?? 0) - (((st as any).grandpaQW ?? 0)?.['chore_mushroom_quantity']);
-    (st as any).boletus_stored = ((st as any).boletus_stored ?? 0) + (((st as any).grandpaQW ?? 0)?.['chore_mushroom_quantity']);
+    (st as any).boletus = ((st as any).boletus ?? 0) - ((((st as any).grandpaQW ?? 0)?.['chore_mushroom_quantity']));
+    (st as any).boletus_stored = ((st as any).boletus_stored ?? 0) + ((((st as any).grandpaQW ?? 0)?.['chore_mushroom_quantity']));
     ((st as any).grandpaQW = (st as any).grandpaQW ?? {})['disappointment'] = 0;
     ((st as any).grandmaQW = (st as any).grandmaQW ?? {})['help_amount'] = ((st as any).grandmaQW['help_amount'] ?? 0) + (1);
     ((st as any).grandpaQW = (st as any).grandpaQW ?? {})['chore_mushroom_quantity'] = 0;
@@ -1213,8 +1213,8 @@ function enterSetReportGathermushroomsAct(s: GameState, scene: SceneBuilder): vo
       scene.actions([
         { label: 'Give him the mushrooms he asked for', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
-    (st as any).boletus = ((st as any).boletus ?? 0) - (((st as any).grandpaQW ?? 0)?.['chore_mushroom_quantity']);
-    (st as any).boletus_stored = ((st as any).boletus_stored ?? 0) + (((st as any).grandpaQW ?? 0)?.['chore_mushroom_quantity']);
+    (st as any).boletus = ((st as any).boletus ?? 0) - ((((st as any).grandpaQW ?? 0)?.['chore_mushroom_quantity']));
+    (st as any).boletus_stored = ((st as any).boletus_stored ?? 0) + ((((st as any).grandpaQW ?? 0)?.['chore_mushroom_quantity']));
     ((st as any).grandmaQW = (st as any).grandmaQW ?? {})['help_amount'] = ((st as any).grandmaQW['help_amount'] ?? 0) + (3);
     ((st as any).grandpaQW = (st as any).grandpaQW ?? {})['chore_mushroom_quantity'] = 0;
     ((st as any).grandpaQW = (st as any).grandpaQW ?? {})['chore_gather_mushrooms'] = 0;
@@ -1248,7 +1248,7 @@ function enterChoreGatherberries(s: GameState, scene: SceneBuilder): void {
   scene.text(`"${((s as any).pcs_nickname ?? '')}, could you go to the forest to pick some berries? Grandma wants to make homemade fruit jam."`);
   scene.text('"How much should I pick, grandpa?" you ask.');
   // TODO-QSP: dynamic text: "<<grandpaQW[''chore_berry_quantity'']>> kilos will be enough," grandfather repl...
-  scene.text(`"${((s as any).grandpaQW ?? 0)?.['chore_berry_quantity'] ?? ''} kilos will be enough," grandfather replies. "Just be careful so you don't get lost."`);
+  scene.text(`"${(((s as any).grandpaQW ?? 0)?.['chore_berry_quantity'] ?? '')} kilos will be enough," grandfather replies. "Just be careful so you don't get lost."`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Tell him you will go get some soon', goto: ['gp_zlatek', 'talk'] },
@@ -1274,8 +1274,8 @@ function enterSetReportGatherberriesAct(s: GameState, scene: SceneBuilder): void
       scene.actions([
         { label: 'Give him the berries he asked for', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
-    (st as any).bilberry = ((st as any).bilberry ?? 0) - (((st as any).grandpaQW ?? 0)?.['chore_berry_quantity']);
-    (st as any).bilberry_stored = ((st as any).bilberry_stored ?? 0) + (((st as any).grandpaQW ?? 0)?.['chore_berry_quantity']);
+    (st as any).bilberry = ((st as any).bilberry ?? 0) - ((((st as any).grandpaQW ?? 0)?.['chore_berry_quantity']));
+    (st as any).bilberry_stored = ((st as any).bilberry_stored ?? 0) + ((((st as any).grandpaQW ?? 0)?.['chore_berry_quantity']));
     ((st as any).grandpaQW = (st as any).grandpaQW ?? {})['disappointment'] = 0;
     ((st as any).grandmaQW = (st as any).grandmaQW ?? {})['help_amount'] = ((st as any).grandmaQW['help_amount'] ?? 0) + (1);
     ((st as any).grandpaQW = (st as any).grandpaQW ?? {})['chore_berry_quantity'] = 0;
@@ -1300,8 +1300,8 @@ function enterSetReportGatherberriesAct(s: GameState, scene: SceneBuilder): void
       scene.actions([
         { label: 'Give him the berries he asked for', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
-    (st as any).bilberry = ((st as any).bilberry ?? 0) - (((st as any).grandpaQW ?? 0)?.['chore_berry_quantity']);
-    (st as any).bilberry_stored = ((st as any).bilberry_stored ?? 0) + (((st as any).grandpaQW ?? 0)?.['chore_berry_quantity']);
+    (st as any).bilberry = ((st as any).bilberry ?? 0) - ((((st as any).grandpaQW ?? 0)?.['chore_berry_quantity']));
+    (st as any).bilberry_stored = ((st as any).bilberry_stored ?? 0) + ((((st as any).grandpaQW ?? 0)?.['chore_berry_quantity']));
     ((st as any).grandmaQW = (st as any).grandmaQW ?? {})['help_amount'] = ((st as any).grandmaQW['help_amount'] ?? 0) + (3);
     ((st as any).grandpaQW = (st as any).grandpaQW ?? {})['chore_berry_quantity'] = 0;
     ((st as any).grandpaQW = (st as any).grandpaQW ?? {})['chore_gather_berries'] = 0;
@@ -1335,7 +1335,7 @@ function enterChoreGatherboth(s: GameState, scene: SceneBuilder): void {
   scene.text(`"${((s as any).pcs_nickname ?? '')}, can you go to the forest and pick some berries and mushrooms? Your grandmother wants to make a mushroom soup, and I am craving some fresh berries."`);
   scene.text('"How much should I pick, grandpa?"');
   // TODO-QSP: dynamic text: "<<grandpaQW[''chore_mushroom_quantity'']>> kilos of mushrooms and <<grandpaQW['...
-  scene.text(`"${((s as any).grandpaQW ?? 0)?.['chore_mushroom_quantity'] ?? ''} kilos of mushrooms and ${((s as any).grandpaQW ?? 0)?.['chore_berry_quantity'] ?? ''} kilos of berries will be enough," grandfather replies. "Just don't get lost."`);
+  scene.text(`"${(((s as any).grandpaQW ?? 0)?.['chore_mushroom_quantity'] ?? '')} kilos of mushrooms and ${(((s as any).grandpaQW ?? 0)?.['chore_berry_quantity'] ?? '')} kilos of berries will be enough," grandfather replies. "Just don't get lost."`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Tell him you will go get some soon', goto: ['gp_zlatek', 'talk'] },
@@ -1361,10 +1361,10 @@ function enterSetReportGatherbothAct(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Give him the mushrooms and berries he asked for', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
-    (st as any).boletus = ((st as any).boletus ?? 0) - (((st as any).grandpaQW ?? 0)?.['chore_mushroom_quantity']);
-    (st as any).bilberry = ((st as any).bilberry ?? 0) - (((st as any).grandpaQW ?? 0)?.['chore_berry_quantity']);
-    (st as any).boletus_stored = ((st as any).boletus_stored ?? 0) + (((st as any).grandpaQW ?? 0)?.['chore_mushroom_quantity']);
-    (st as any).bilberry_stored = ((st as any).bilberry_stored ?? 0) + (((st as any).grandpaQW ?? 0)?.['chore_berry_quantity']);
+    (st as any).boletus = ((st as any).boletus ?? 0) - ((((st as any).grandpaQW ?? 0)?.['chore_mushroom_quantity']));
+    (st as any).bilberry = ((st as any).bilberry ?? 0) - ((((st as any).grandpaQW ?? 0)?.['chore_berry_quantity']));
+    (st as any).boletus_stored = ((st as any).boletus_stored ?? 0) + ((((st as any).grandpaQW ?? 0)?.['chore_mushroom_quantity']));
+    (st as any).bilberry_stored = ((st as any).bilberry_stored ?? 0) + ((((st as any).grandpaQW ?? 0)?.['chore_berry_quantity']));
     ((st as any).grandpaQW = (st as any).grandpaQW ?? {})['disappointment'] = 0;
     ((st as any).grandmaQW = (st as any).grandmaQW ?? {})['help_amount'] = ((st as any).grandmaQW['help_amount'] ?? 0) + (3);
     ((st as any).grandpaQW = (st as any).grandpaQW ?? {})['chore_berry_quantity'] = 0;
@@ -1391,10 +1391,10 @@ function enterSetReportGatherbothAct(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Give him the mushrooms and berries he asked for', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
-    (st as any).boletus = ((st as any).boletus ?? 0) - (((st as any).grandpaQW ?? 0)?.['chore_mushroom_quantity']);
-    (st as any).bilberry = ((st as any).bilberry ?? 0) - (((st as any).grandpaQW ?? 0)?.['chore_berry_quantity']);
-    (st as any).boletus_stored = ((st as any).boletus_stored ?? 0) + (((st as any).grandpaQW ?? 0)?.['chore_mushroom_quantity']);
-    (st as any).bilberry_stored = ((st as any).bilberry_stored ?? 0) + (((st as any).grandpaQW ?? 0)?.['chore_berry_quantity']);
+    (st as any).boletus = ((st as any).boletus ?? 0) - ((((st as any).grandpaQW ?? 0)?.['chore_mushroom_quantity']));
+    (st as any).bilberry = ((st as any).bilberry ?? 0) - ((((st as any).grandpaQW ?? 0)?.['chore_berry_quantity']));
+    (st as any).boletus_stored = ((st as any).boletus_stored ?? 0) + ((((st as any).grandpaQW ?? 0)?.['chore_mushroom_quantity']));
+    (st as any).bilberry_stored = ((st as any).bilberry_stored ?? 0) + ((((st as any).grandpaQW ?? 0)?.['chore_berry_quantity']));
     ((st as any).grandmaQW = (st as any).grandmaQW ?? {})['help_amount'] = ((st as any).grandmaQW['help_amount'] ?? 0) + (3);
     ((st as any).grandpaQW = (st as any).grandpaQW ?? {})['chore_berry_quantity'] = 0;
     ((st as any).grandpaQW = (st as any).grandpaQW ?? {})['chore_mushroom_quantity'] = 0;
@@ -1563,28 +1563,28 @@ function enterStatDisplay(s: GameState, scene: SceneBuilder): void {
                                       if (((s as any).grandpaQW ?? 0)?.['chore_gather_mushrooms'] > 0  &&  ((s as any).grandpaQW ?? 0)?.['chore_gather_mushrooms'] < 3) {
                                         if (((s as any).boletus ?? 0) < ((s as any).grandpaQW ?? 0)?.['chore_mushroom_quantity']) {
                                           ((s as any).grandpaQW = (s as any).grandpaQW ?? {})['chore_gather_mushrooms'] = 1;
-                                          ((s as any).stat_texts = (s as any).stat_texts ?? {})['gadukino'] = ((s as any).stat_texts['gadukino'] ?? 0) + ('<br><b>You promised Grandpa you would pick ' + ((s as any).grandpaQW ?? 0)?.['chore_mushroom_quantity'] + ' kg of mushrooms for him today.</b>');
+                                          ((s as any).stat_texts = (s as any).stat_texts ?? {})['gadukino'] = ((s as any).stat_texts['gadukino'] ?? 0) + ('<br><b>You promised Grandpa you would pick ' + (((s as any).grandpaQW ?? 0)?.['chore_mushroom_quantity']) + ' kg of mushrooms for him today.</b>');
                                         } else {
                                           ((s as any).grandpaQW = (s as any).grandpaQW ?? {})['chore_gather_mushrooms'] = 2;
-                                          ((s as any).stat_texts = (s as any).stat_texts ?? {})['gadukino'] = ((s as any).stat_texts['gadukino'] ?? 0) + ('<br><b>You have picked the ' + ((s as any).grandpaQW ?? 0)?.['chore_mushroom_quantity'] + ' kg of mushrooms that Grandpa asked for - you should give them to him.</b>');
+                                          ((s as any).stat_texts = (s as any).stat_texts ?? {})['gadukino'] = ((s as any).stat_texts['gadukino'] ?? 0) + ('<br><b>You have picked the ' + (((s as any).grandpaQW ?? 0)?.['chore_mushroom_quantity']) + ' kg of mushrooms that Grandpa asked for - you should give them to him.</b>');
                                         }
                                       } else {
                                         if (((s as any).grandpaQW ?? 0)?.['chore_gather_berries'] > 0  &&  ((s as any).grandpaQW ?? 0)?.['chore_gather_berries'] < 3) {
                                           if (((s as any).bilberry ?? 0) < ((s as any).grandpaQW ?? 0)?.['chore_berry_quantity']) {
                                             ((s as any).grandpaQW = (s as any).grandpaQW ?? {})['chore_gather_berries'] = 1;
-                                            ((s as any).stat_texts = (s as any).stat_texts ?? {})['gadukino'] = ((s as any).stat_texts['gadukino'] ?? 0) + ('<br><b>You promised Grandpa you would pick ' + ((s as any).grandpaQW ?? 0)?.['chore_berry_quantity'] + ' kg of berries for him today.</b>');
+                                            ((s as any).stat_texts = (s as any).stat_texts ?? {})['gadukino'] = ((s as any).stat_texts['gadukino'] ?? 0) + ('<br><b>You promised Grandpa you would pick ' + (((s as any).grandpaQW ?? 0)?.['chore_berry_quantity']) + ' kg of berries for him today.</b>');
                                           } else {
                                             ((s as any).grandpaQW = (s as any).grandpaQW ?? {})['chore_gather_berries'] = 2;
-                                            ((s as any).stat_texts = (s as any).stat_texts ?? {})['gadukino'] = ((s as any).stat_texts['gadukino'] ?? 0) + ('<br><b>You have picked the ' + ((s as any).grandpaQW ?? 0)?.['chore_berry_quantity'] + ' kg of berries that Grandpa asked for - you should give them to him.</b>');
+                                            ((s as any).stat_texts = (s as any).stat_texts ?? {})['gadukino'] = ((s as any).stat_texts['gadukino'] ?? 0) + ('<br><b>You have picked the ' + (((s as any).grandpaQW ?? 0)?.['chore_berry_quantity']) + ' kg of berries that Grandpa asked for - you should give them to him.</b>');
                                           }
                                         } else {
                                           if (((s as any).grandpaQW ?? 0)?.['chore_gather_both'] > 0  &&  ((s as any).grandpaQW ?? 0)?.['chore_gather_both'] < 3) {
                                             if (((s as any).bilberry ?? 0) < ((s as any).grandpaQW ?? 0)?.['chore_berry_quantity']  ||  ((s as any).boletus ?? 0) < ((s as any).grandpaQW ?? 0)?.['chore_mushroom_quantity']) {
                                               ((s as any).grandpaQW = (s as any).grandpaQW ?? {})['chore_gather_both'] = 1;
-                                              ((s as any).stat_texts = (s as any).stat_texts ?? {})['gadukino'] = ((s as any).stat_texts['gadukino'] ?? 0) + ('<br><b>You promised Grandpa you would pick ' + ((s as any).grandpaQW ?? 0)?.['chore_mushroom_quantity'] + ' kg of mushrooms and ' + ((s as any).grandpaQW ?? 0)?.['chore_berry_quantity'] + ' kg of berries for him today.</b>');
+                                              ((s as any).stat_texts = (s as any).stat_texts ?? {})['gadukino'] = ((s as any).stat_texts['gadukino'] ?? 0) + ('<br><b>You promised Grandpa you would pick ' + (((s as any).grandpaQW ?? 0)?.['chore_mushroom_quantity']) + ' kg of mushrooms and ' + (((s as any).grandpaQW ?? 0)?.['chore_berry_quantity']) + ' kg of berries for him today.</b>');
                                             } else {
                                               ((s as any).grandpaQW = (s as any).grandpaQW ?? {})['chore_gather_both'] = 2;
-                                              ((s as any).stat_texts = (s as any).stat_texts ?? {})['gadukino'] = ((s as any).stat_texts['gadukino'] ?? 0) + ('<br><b>You have picked the ' + ((s as any).grandpaQW ?? 0)?.['chore_mushroom_quantity'] + ' kg of mushrooms and ' + ((s as any).grandpaQW ?? 0)?.['chore_berry_quantity'] + ' kg of berries that Grandpa asked for - you should give them to him.</b>');
+                                              ((s as any).stat_texts = (s as any).stat_texts ?? {})['gadukino'] = ((s as any).stat_texts['gadukino'] ?? 0) + ('<br><b>You have picked the ' + (((s as any).grandpaQW ?? 0)?.['chore_mushroom_quantity']) + ' kg of mushrooms and ' + (((s as any).grandpaQW ?? 0)?.['chore_berry_quantity']) + ' kg of berries that Grandpa asked for - you should give them to him.</b>');
                                             }
                                           }
                                         }

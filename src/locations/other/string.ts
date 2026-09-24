@@ -55,7 +55,7 @@ function enterEnumerateList(s: GameState, scene: SceneBuilder): void {
     ((s as any).temp_stringVars = (s as any).temp_stringVars ?? {})['i_max'] = 0;
   } else {
     ((s as any).temp_stringVars = (s as any).temp_stringVars ?? {})['i_max'] = (((s as any).temp_stringVars ?? {})?.['i'] ?? 0) + ((s as any).locArgs?.[3] ?? 0);
-    if (((s as any).temp_stringVars ?? 0)?.['i_max'] > Object.keys((s as any)[((s as any).temp_stringVars ?? 0)?.['name']] ?? {}).length) {
+    if (((s as any).temp_stringVars ?? 0)?.['i_max'] > Object.keys((s as any)[(((s as any).temp_stringVars ?? 0)?.['name'])] ?? {}).length) {
       ((s as any).temp_stringVars = (s as any).temp_stringVars ?? {})['i_max'] = 0;
     }
   }

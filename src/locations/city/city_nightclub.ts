@@ -338,7 +338,7 @@ function enterDance(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img(`images/shared/sex/blowjob/bj${(Math.floor(Math.random() * 13) + 29)}.jpg`);
     // TODO-QSP: dynamic text: You kneel down and wrap your <<$pc_desc[''lips'']>> lips around his cock before ...
-    scene.text(`You kneel down and wrap your ${((st as any).pc_desc ?? 0)?.['lips'] ?? ''} lips around his cock before you start sucking on it. Alexei helps by moving his hips back and forth; you notice his movement is in sync to the beat of the music he's playing. After a few minutes, he groans. "You better swallow it all. I don't want anyone to clean up our mess."`);
+    scene.text(`You kneel down and wrap your ${(((st as any).pc_desc ?? 0)?.['lips'] ?? '')} lips around his cock before you start sucking on it. Alexei helps by moving his hips back and forth; you notice his movement is in sync to the beat of the music he's playing. After a few minutes, he groans. "You better swallow it all. I don't want anyone to clean up our mess."`);
     qspCall(st, 'arousal', 'bj', 10, 'sub');
     qspCall(st, 'stat', '');
     scene.actions([
@@ -350,7 +350,7 @@ function enterDance(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img(`images/shared/sex/cum/mouth/cum${(Math.floor(Math.random() * 14) + 34)}.jpg`);
     // TODO-QSP: dynamic text: Streams of cum hit you in the mouth and start running down your <<$pc_desc[''lip...
-    scene.text(`Streams of cum hit you in the mouth and start running down your ${((st as any).pc_desc ?? 0)?.['lips'] ?? ''} lips. Alexei wipes his dick on your mouth before putting it back in his pants.`);
+    scene.text(`Streams of cum hit you in the mouth and start running down your ${(((st as any).pc_desc ?? 0)?.['lips'] ?? '')} lips. Alexei wipes his dick on your mouth before putting it back in his pants.`);
     scene.text('You begin greedily swallowing his cum and using your finger to collect the drips that escaped your mouth before licking your finger clean. Once you\'ve swallowed every last drop, you stand up and leave.');
     qspCall(st, 'arousal', 'end');
     scene.actions([

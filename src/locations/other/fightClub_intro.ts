@@ -272,7 +272,7 @@ function enterStarjersey(s: GameState, scene: SceneBuilder): void {
   ((s as any).fightClubQW = (s as any).fightClubQW ?? {})['name'] = 'Dark Star';
   // TODO-QSP: end
   scene.actions([
-    { label: '', labelFn: (s: GameState) => 'Choose a fight name (Default: ' + String(((s as any).fightClubQW ?? 0)?.['name'] ?? '' ?? '') + ')', handler: (st: GameState) => {
+    { label: '', labelFn: (s: GameState) => 'Choose a fight name (Default: ' + String((((s as any).fightClubQW ?? 0)?.['name'] ?? '') ?? '') + ')', handler: (st: GameState) => {
     ((st as any).fightClubQW = (st as any).fightClubQW ?? {})['name'] = window.prompt("Enter the name you want to be known as.") ?? '';
     if (((st as any).fightClubQW ?? 0)?.['name'] === '') {
       ((st as any).fightClubQW = (st as any).fightClubQW ?? {})['name'] = 'Dark Star';
@@ -288,7 +288,7 @@ function enterPreparations(s: GameState, scene: SceneBuilder): void {
   scene.text('Sultan helps you with the unfamiliar gloves and provides you with some information about your opponent: "She\'s made a name for herself with wild bar brawls, but that\'s just brute force; she\'s got no technique, no stamina, and she\'s probably drunk. Just dodge her and cover her with punches. And if she does hit you, our shaman will take care of you."');
   scene.text('"Who?"');
   // TODO-QSP: dynamic text: But Sultan is already out the door to give the ring announcer your fight name "<...
-  scene.text(`But Sultan is already out the door to give the ring announcer your fight name "${((s as any).fightClubQW ?? 0)?.['name'] ?? ''}".`);
+  scene.text(`But Sultan is already out the door to give the ring announcer your fight name "${(((s as any).fightClubQW ?? 0)?.['name'] ?? '')}".`);
   (s as any).minut = ((s as any).minut ?? 0) + 20;
   qspCall(s, 'stat', '');
   // TODO-QSP: end
@@ -301,7 +301,7 @@ function enterPreparations(s: GameState, scene: SceneBuilder): void {
 function enterFirstfight(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/shared/fightclub/announcer.jpg');
   // TODO-QSP: dynamic text: You enter the arena to the sound of booming music. Bright spotlights blind you s...
-  scene.text(`You enter the arena to the sound of booming music. Bright spotlights blind you so that you can't see much of the jeering crowd. A loud voice announces your fighting weight and size, and yells your fight name "${((s as any).fightClubQW ?? 0)?.['name'] ?? ''}" into the darkness.`);
+  scene.text(`You enter the arena to the sound of booming music. Bright spotlights blind you so that you can't see much of the jeering crowd. A loud voice announces your fighting weight and size, and yells your fight name "${(((s as any).fightClubQW ?? 0)?.['name'] ?? '')}" into the darkness.`);
   scene.text('You can feel the adrenaline, the blood rushing in your ears. Someone taps you on the shoulder. It\'s Oleg, who gives you an encouraging nod. You are happy and relieved, that he is in your corner. To your surprise it\'s a classical boxing ring, no cage.');
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
@@ -389,7 +389,7 @@ function enterKnockout(s: GameState, scene: SceneBuilder): void {
 function enterVictorylap(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/shared/fightclub/victorybypoints.jpg');
   // TODO-QSP: dynamic text: The announcer roars "<<$fightClubQW[''name'']>>", the crowd cheers and laughs. S...
-  scene.text(`The announcer roars "${((s as any).fightClubQW ?? 0)?.['name'] ?? ''}", the crowd cheers and laughs. Sultan climbs into the ring and raises your fists again.`);
+  scene.text(`The announcer roars "${(((s as any).fightClubQW ?? 0)?.['name'] ?? '')}", the crowd cheers and laughs. Sultan climbs into the ring and raises your fists again.`);
   scene.text('"What did I promise," he whispers to you, "a walk in the park." You grin and enjoy the feeling of victory. And than it\'s over. The speaker comes to you with a broad fake smile. He shakes your hand and murmurs: "Hurry up, we have to set up the cage for the real fights."');
   qspCall(s, 'money', 'earn', 7500, 'cash');
   (s as any).minut = ((s as any).minut ?? 0) + 1;

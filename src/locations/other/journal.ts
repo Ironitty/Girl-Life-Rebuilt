@@ -1201,12 +1201,12 @@ function enterUni(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).university ?? 0)?.['elective1'] !== ''  ||  ((s as any).university ?? 0)?.['elective2'] !== ''  ||  ((s as any).university ?? 0)?.['elective3'] !== '') {
     // TODO-QSP: dynamic text: You are taking the following elective classes this semester: <<$university[''ele...
-    scene.text(`You are taking the following elective classes this semester: ${((s as any).university ?? 0)?.['elective1'] ?? ''}, ${((s as any).university ?? 0)?.['elective2'] ?? ''}, ${((s as any).university ?? 0)?.['elective1'] ?? ''}.`);
+    scene.text(`You are taking the following elective classes this semester: ${(((s as any).university ?? 0)?.['elective1'] ?? '')}, ${(((s as any).university ?? 0)?.['elective2'] ?? '')}, ${(((s as any).university ?? 0)?.['elective1'] ?? '')}.`);
   }
   (s as any).j = 1;
   // TODO-QSP: :semester_loop
   if (((s as any).j ?? 0) <= ((s as any).university ?? 0)?.['semester_passed']) {
-    qspCall(s, 'grades', 'assign_grade_description', 'uni_' + ((s as any).university ?? 0)?.['enrolled_in'] + '_semester_' + ((s as any).j ?? 0) + '');
+    qspCall(s, 'grades', 'assign_grade_description', 'uni_' + (((s as any).university ?? 0)?.['enrolled_in']) + '_semester_' + ((s as any).j ?? 0) + '');
     // TODO-QSP: dynamic text: 'You passed the ' + $func('string', 'parse_number', j, 'ordinal') + ' semester w...
     scene.text('You passed the \' + $func(\'string\', \'parse_number\', j, \'ordinal\') + \' semester with the following grades:');
     (s as any).k = 0;
@@ -1252,7 +1252,7 @@ function enterUni(s: GameState, scene: SceneBuilder): void {
         // TODO-QSP: 'Wednesday: '  + $func('uni_programs', 'get_first_period', 'wednesday'  ) + ' ' + $func('uni_program...
         // TODO-QSP: 'Thursday: '  + $func('uni_programs', 'get_first_period', 'thursday'  ) + ' ' + $func('uni_programs'...
         scene.text('<center><h2>Grades</h2></center>');
-        qspCall(s, 'grades', 'assign_grade_description', 'uni_' + ((s as any).university ?? 0)?.['enrolled_in'] + '_semester_' + ((s as any).university ?? 0)?.['enrolled_in_semester'] + '');
+        qspCall(s, 'grades', 'assign_grade_description', 'uni_' + (((s as any).university ?? 0)?.['enrolled_in']) + '_semester_' + (((s as any).university ?? 0)?.['enrolled_in_semester']) + '');
         (s as any).j = 0;
         // TODO-QSP: :grade_loop
         if (((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)] === 'uni_' + (((s as any).university ?? 0)?.['enrolled_in']) + '_semester_' + (((s as any).university ?? 0)?.['enrolled_in_semester'])) {
@@ -1343,7 +1343,7 @@ function enterUni(s: GameState, scene: SceneBuilder): void {
       } else {
         if (((s as any).university ?? 0)?.['exam_week'] > 0) {
           // TODO-QSP: 'You are in the ' + iif(university['exam_week'] = 1, 'first', 'second') + ' of the two weeks of exam...
-          qspCall(s, 'grades', 'assign_grade_description', 'uni_' + ((s as any).university ?? 0)?.['enrolled_in'] + '_semester_' + ((s as any).university ?? 0)?.['enrolled_in_semester'] + '');
+          qspCall(s, 'grades', 'assign_grade_description', 'uni_' + (((s as any).university ?? 0)?.['enrolled_in']) + '_semester_' + (((s as any).university ?? 0)?.['enrolled_in_semester']) + '');
           (s as any).j = 0;
           // TODO-QSP: :exam_loop
           if (((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)] === 'uni_' + (((s as any).university ?? 0)?.['enrolled_in']) + '_semester_' + (((s as any).university ?? 0)?.['enrolled_in_semester'])) {

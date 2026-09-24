@@ -115,8 +115,8 @@ function enterViewItem(s: GameState, scene: SceneBuilder): void {
   ((s as any).shop_utils_view = (s as any).shop_utils_view ?? {})['type'] = ((s as any).locArgs?.[2] ?? 0);
   ((s as any).shop_utils_view = (s as any).shop_utils_view ?? {})['number'] = ((s as any).locArgs?.[3] ?? 0);
   ((s as any).shop_utils_view = (s as any).shop_utils_view ?? {})['discount'] = ((s as any).locArgs?.[4] ?? 0);
-  qspCall(s, 'tattoo_attributes', '$shop_utils_view[\'type\']', ((s as any).shop_utils_view ?? 0)?.['number']);
-  scene.img(`${qspFunc(s, 'tattoo_management', ((s as any).shop_utils_view ?? 0)?.['type'] ?? '' + '_image', ((s as any).shop_utils_view ?? 0)?.['number'] ?? '')}`);
+  qspCall(s, 'tattoo_attributes', '$shop_utils_view[\'type\']', (((s as any).shop_utils_view ?? 0)?.['number']));
+  scene.img(`${qspFunc(s, 'tattoo_management', (((s as any).shop_utils_view ?? 0)?.['type'] ?? '') + '_image', (((s as any).shop_utils_view ?? 0)?.['number'] ?? ''))}`);
   if (((s as any).shop_utils_view ?? 0)?.['link'] === 'shop') {
     qspGoto(s, 'tattoo_view', 'view_item_shop');
   }
@@ -131,14 +131,14 @@ function enterViewItem(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterViewItemShop(s: GameState, scene: SceneBuilder): void {
-  ((s as any).shop_utils_view = (s as any).shop_utils_view ?? {})['discount_total'] = (((s as any).shop_utils_view ?? {})?.['discount'] ?? 0) + qspFunc(s, 'shop_utils', 'get_discount', ((s as any).shop_utils_view ?? 0)?.['type'] + '_tattoos', ((s as any).shop_utils_view ?? 0)?.['number']);
+  ((s as any).shop_utils_view = (s as any).shop_utils_view ?? {})['discount_total'] = (((s as any).shop_utils_view ?? {})?.['discount'] ?? 0) + qspFunc(s, 'shop_utils', 'get_discount', (((s as any).shop_utils_view ?? 0)?.['type']) + '_tattoos', (((s as any).shop_utils_view ?? 0)?.['number']));
   ((s as any).shop_utils_view = (s as any).shop_utils_view ?? {})['base_price'] = ((s as any).TatPrice ?? 0);
   ((s as any).shop_utils_view = (s as any).shop_utils_view ?? {})['price'] = (((s as any).shop_utils_view ?? {})?.['base_price'] ?? 0) * Math.max(0, 100 - (((s as any).shop_utils_view ?? {})?.['discount_total'] ?? 0)) / 100;
   ((s as any).shop_utils_view = (s as any).shop_utils_view ?? {})['price'] = (((s as any).shop_utils_view ?? {})?.['price'] ?? 0) / 50 * 50;
   if (((s as any).shop_utils_view ?? 0)?.['price'] === ((s as any).shop_utils_view ?? 0)?.['base_price']) {
-    ((s as any).shop_utils_view = (s as any).shop_utils_view ?? {})['price_string'] = qspFunc(s, 'money', 'string_price', ((s as any).shop_utils_view ?? 0)?.['price']);
+    ((s as any).shop_utils_view = (s as any).shop_utils_view ?? {})['price_string'] = qspFunc(s, 'money', 'string_price', (((s as any).shop_utils_view ?? 0)?.['price']));
   } else {
-    ((s as any).shop_utils_view = (s as any).shop_utils_view ?? {})['price_string'] = qspFunc(s, 'wrap', 'neg s', qspFunc(s, 'money', 'string_price', ((s as any).shop_utils_view ?? 0)?.['base_price'])) + ' <b>' + qspFunc(s, 'money', 'string_price', ((s as any).shop_utils_view ?? 0)?.['price']) + '</b>';
+    ((s as any).shop_utils_view = (s as any).shop_utils_view ?? {})['price_string'] = qspFunc(s, 'wrap', 'neg s', qspFunc(s, 'money', 'string_price', (((s as any).shop_utils_view ?? 0)?.['base_price']))) + ' <b>' + qspFunc(s, 'money', 'string_price', (((s as any).shop_utils_view ?? 0)?.['price'])) + '</b>';
     // TODO-QSP: 'Now ' + shop_utils_view['discount_total'] + '% off' + iif(shop_utils_view['discount_total'] <= 10, ...
   }
   // TODO-QSP: 'Price: ' + $shop_utils_view['price_string']
@@ -153,10 +153,10 @@ function enterViewItemShop(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: end
   scene.actions([
-    { label: '', labelFn: (s: GameState) => 'Get this tattoo (' + String(((s as any).shop_utils_view ?? 0)?.['price_string'] ?? '' ?? '') + ')', handler: (st: GameState) => {
+    { label: '', labelFn: (s: GameState) => 'Get this tattoo (' + String((((s as any).shop_utils_view ?? 0)?.['price_string'] ?? '') ?? '') + ')', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 60;
-    qspCall(st, 'money', 'pay', ((st as any).shop_utils_view ?? 0)?.['price']);
-    qspCall(st, 'tattoo_management', 'add', ((st as any).shop_utils_view ?? 0)?.['type'], ((st as any).shop_utils_view ?? 0)?.['number']);
+    qspCall(st, 'money', 'pay', (((st as any).shop_utils_view ?? 0)?.['price']));
+    qspCall(st, 'tattoo_management', 'add', (((st as any).shop_utils_view ?? 0)?.['type']), (((st as any).shop_utils_view ?? 0)?.['number']));
     qspCall(st, 'tattoo_management', 'count');
     qspCall(st, 'stat', '');
     dynamicGoto(st, 'prevLoc', 'prevArg');

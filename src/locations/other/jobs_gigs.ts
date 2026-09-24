@@ -77,15 +77,15 @@ function enterGenerateEventSchedule(s: GameState, scene: SceneBuilder): void {
     ((s as any).evt_transient = (s as any).evt_transient ?? {})['start_time'] = ((s as any).evt_transient['start_time'] ?? 0) - ((60 + (((s as any).evt_transient ?? {})?.['time_overshoot'] ?? 0) / 5 * 5));
   }
   // TODO-QSP: :find_open_date_loop
-  qspCall(s, 'time', 'to_date', ((s as any).evt_transient ?? 0)?.['search_day']);
+  qspCall(s, 'time', 'to_date', (((s as any).evt_transient ?? 0)?.['search_day']));
   if (((String(((s as any).evt_transient ?? 0)?.['week_string']).indexOf(String(((s as any).dateVars ?? 0)?.['week']))) + 1) <= 0) {
     ((s as any).evt_transient = (s as any).evt_transient ?? {})['search_day'] = ((s as any).evt_transient['search_day'] ?? 0) + (1);
     if (((s as any).evt_transient ?? 0)?.['search_day'] <= ((s as any).evt_transient ?? 0)?.['search_limit']) {
       // TODO-QSP: jump 'find_open_date_loop'
     }
   } else {
-    ((s as any).evt_transient = (s as any).evt_transient ?? {})['event_daystart'] = ((s as any).evt_transient ?? 0)?.['search_day'];
-    ((s as any).evt_transient = (s as any).evt_transient ?? {})['event_dow'] = ((s as any).dateVars ?? 0)?.['week'];
+    ((s as any).evt_transient = (s as any).evt_transient ?? {})['event_daystart'] = (((s as any).evt_transient ?? 0)?.['search_day']);
+    ((s as any).evt_transient = (s as any).evt_transient ?? {})['event_dow'] = (((s as any).dateVars ?? 0)?.['week']);
   }
   // TODO-QSP: end
   scene.build();
@@ -141,7 +141,7 @@ function enterDispEvt(s: GameState, scene: SceneBuilder): void {
 function enterDispEvt1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'jobs_gigs', 'job_evt');
   scene.text('I have this job for you do you want to accept it?');
-  qspCall(s, 'time', 'to_date', ((s as any).evt_transient ?? 0)?.['event_daystart']);
+  qspCall(s, 'time', 'to_date', (((s as any).evt_transient ?? 0)?.['event_daystart']));
   // TODO-QSP: "Event Scheduled for: <<dateVars['day']>><<$dateVars['suffix']>>, <<$dateVars['monthName']>> <<dateV...
   // TODO-QSP: 'Job: ' + $evt_job[evt_transient['type']]
   // TODO-QSP: 'Pay: ' + $func('money', 'format', evt_transient['wage'])

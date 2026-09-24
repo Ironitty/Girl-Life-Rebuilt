@@ -750,7 +750,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                           }
                           if (qspFunc(s, 'car_funcs', 'is_here')) {
                             // TODO-QSP: dynamic text: You parked <a href="exec:gs ''carF'', ''start''">your <<$car[''name'']>></a> in ...
-                            scene.text(`You parked <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027carF/u0027, /u0027start/u0027); return false;">your ${((s as any).car ?? 0)?.['name'] ?? ''}</a> in a quieter spot on the side road to Gadukin.`);
+                            scene.text(`You parked <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027carF/u0027, /u0027start/u0027); return false;">your ${(((s as any).car ?? 0)?.['name'] ?? '')}</a> in a quieter spot on the side road to Gadukin.`);
                           }
                           if (((s as any).hour ?? 0) >= 16  &&  ((s as any).hour ?? 0) < 23  &&  ((s as any).prostitute ?? 0)?.['gadukino'] === 1) {
                             qspCall(s, 'prostitution_functions', 'work_clothes');

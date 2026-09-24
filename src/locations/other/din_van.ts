@@ -148,7 +148,7 @@ function enterShowerDo(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).mc_inventory ?? 0)?.['shampoo'] <= 5) {
       // TODO-QSP: dynamic text: You are getting low on shampoo, with only <<mc_inventory[''shampoo'']>> remainin...
-      scene.text(`You are getting low on shampoo, with only ${((s as any).mc_inventory ?? 0)?.['shampoo'] ?? ''} remaining. When you get a chance, you should stop by the supermarket and buy some more.`);
+      scene.text(`You are getting low on shampoo, with only ${(((s as any).mc_inventory ?? 0)?.['shampoo'] ?? '')} remaining. When you get a chance, you should stop by the supermarket and buy some more.`);
     }
   }
   if (((s as any).trait_vars ?? 0)?.['cum_addict'] > 0) {
@@ -320,7 +320,7 @@ function enterBathDo(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).mc_inventory ?? 0)?.['shampoo'] <= 5) {
       // TODO-QSP: dynamic text: You are getting low on shampoo, with only <<mc_inventory[''shampoo'']>> remainin...
-      scene.text(`You are getting low on shampoo, with only ${((s as any).mc_inventory ?? 0)?.['shampoo'] ?? ''} remaining. When you get a chance, you should stop by the supermarket and buy some more.`);
+      scene.text(`You are getting low on shampoo, with only ${(((s as any).mc_inventory ?? 0)?.['shampoo'] ?? '')} remaining. When you get a chance, you should stop by the supermarket and buy some more.`);
     }
   }
   if (((s as any).trait_vars ?? 0)?.['cum_addict'] > 0) {
@@ -524,7 +524,7 @@ function enterBrit(s: GameState, scene: SceneBuilder): void {
     if (((st as any).pcs_shave ?? 0)?.['free_razor'] === 1) {
       ((st as any).pcs_shave = (st as any).pcs_shave ?? {})['free_razor'] = 0;
     } else {
-      ((st as any).mc_inventory = (st as any).mc_inventory ?? {})['razor'] = ((st as any).mc_inventory['razor'] ?? 0) - (((st as any).razors_to_use ?? 0)?.['all']);
+      ((st as any).mc_inventory = (st as any).mc_inventory ?? {})['razor'] = ((st as any).mc_inventory['razor'] ?? 0) - ((((st as any).razors_to_use ?? 0)?.['all']));
     }
     qspCall(st, 'traits', 'body_hair_attitude', 'on_shave');
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'shave']; enterDryOff(st, scene); (st as any).locArgs = __savedLocArgs; }
@@ -605,7 +605,7 @@ function enterBrit(s: GameState, scene: SceneBuilder): void {
     if (((st as any).pcs_shave ?? 0)?.['free_razor'] === 1) {
       ((st as any).pcs_shave = (st as any).pcs_shave ?? {})['free_razor'] = 0;
     } else {
-      ((st as any).mc_inventory = (st as any).mc_inventory ?? {})['razor'] = ((st as any).mc_inventory['razor'] ?? 0) - (((st as any).razors_to_use ?? 0)?.['pussy']);
+      ((st as any).mc_inventory = (st as any).mc_inventory ?? {})['razor'] = ((st as any).mc_inventory['razor'] ?? 0) - ((((st as any).razors_to_use ?? 0)?.['pussy']));
     }
     // TODO-QSP: dynamic text: <<$shave_txt21>>
     scene.text(`${((st as any).shave_txt21 ?? '')}`);
@@ -632,7 +632,7 @@ function enterBrit(s: GameState, scene: SceneBuilder): void {
     if (((st as any).pcs_shave ?? 0)?.['free_razor'] === 1) {
       ((st as any).pcs_shave = (st as any).pcs_shave ?? {})['free_razor'] = 0;
     } else {
-      ((st as any).mc_inventory = (st as any).mc_inventory ?? {})['razor'] = ((st as any).mc_inventory['razor'] ?? 0) - (((st as any).razors_to_use ?? 0)?.['legs']);
+      ((st as any).mc_inventory = (st as any).mc_inventory ?? {})['razor'] = ((st as any).mc_inventory['razor'] ?? 0) - ((((st as any).razors_to_use ?? 0)?.['legs']));
     }
     scene.img('images/shared/home/bathroom/shave.jpg');
     if (((st as any).daystart ?? 0) - ((st as any).daystart_start ?? 0) < 9  &&  ((st as any).start_type ?? 0)?.['magic'] === 'tg') {
@@ -1558,18 +1558,18 @@ function enterPalelady(s: GameState, scene: SceneBuilder): void {
 function enterPrivate(s: GameState, scene: SceneBuilder): void {
   if (((s as any).lashair ?? 0) !== 1  &&  ((s as any).mc_inventory ?? 0)?.['razor'] > 0) {
     // TODO-QSP: dynamic text: Your disposable razors are good for <b><<mc_inventory[''razor'']>></b> more shav...
-    scene.text(`Your disposable razors are good for <b>${((s as any).mc_inventory ?? 0)?.['razor'] ?? ''}</b> more shaves. <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027din_van/u0027, /u0027shave_options/u0027); return false;">Shave Options</a>`);
+    scene.text(`Your disposable razors are good for <b>${(((s as any).mc_inventory ?? 0)?.['razor'] ?? '')}</b> more shaves. <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027din_van/u0027, /u0027shave_options/u0027); return false;">Shave Options</a>`);
     if (((s as any).mc_inventory ?? 0)?.['razor'] <= 2  &&  ((s as any).razor ?? 0)?.['warning'] < ((s as any).daystart ?? 0)) {
       ((s as any).razor = (s as any).razor ?? {})['warning'] = ((s as any).daystart ?? 0) + 5;
     }
   }
   if (((s as any).mc_inventory ?? 0)?.['chafing_cream'] > 0) {
     // TODO-QSP: dynamic text: On a shelf is a tube of ointment for chafing, which will be enough for <b><<mc_i...
-    scene.text(`On a shelf is a tube of ointment for chafing, which will be enough for <b>${((s as any).mc_inventory ?? 0)?.['chafing_cream'] ?? ''}</b> applications.`);
+    scene.text(`On a shelf is a tube of ointment for chafing, which will be enough for <b>${(((s as any).mc_inventory ?? 0)?.['chafing_cream'] ?? '')}</b> applications.`);
   }
   if (((s as any).mc_inventory ?? 0)?.['moisturiser'] > 0) {
     // TODO-QSP: dynamic text: You look at your moisturiser and think you have about <b><<mc_inventory[''moistu...
-    scene.text(`You look at your moisturiser and think you have about <b>${((s as any).mc_inventory ?? 0)?.['moisturiser'] ?? ''}</b> applications left.`);
+    scene.text(`You look at your moisturiser and think you have about <b>${(((s as any).mc_inventory ?? 0)?.['moisturiser'] ?? '')}</b> applications left.`);
   }
   if (((s as any).mc_inventory ?? 0)?.['tampons'] === 0  &&  ((s as any).mc_inventory ?? 0)?.['sanitary_pads'] === 0) {
     scene.text('<center><b>You have no feminine hygiene products left.</b></center>');
@@ -1595,7 +1595,7 @@ function enterPrivate(s: GameState, scene: SceneBuilder): void {
         scene.text('You only have <b>1</b> tampon left.');
       } else {
         // TODO-QSP: dynamic text: You have <b><<mc_inventory[''tampons'']>></b> tampons.
-        scene.text(`You have <b>${((s as any).mc_inventory ?? 0)?.['tampons'] ?? ''}</b> tampons.`);
+        scene.text(`You have <b>${(((s as any).mc_inventory ?? 0)?.['tampons'] ?? '')}</b> tampons.`);
       }
     }
     if (((s as any).mc_inventory ?? 0)?.['sanitary_pads'] === 0) {
@@ -1605,7 +1605,7 @@ function enterPrivate(s: GameState, scene: SceneBuilder): void {
         scene.text('You have only <b>1</b> pads left.');
       } else {
         // TODO-QSP: dynamic text: You have <b><<mc_inventory[''sanitary_pads'']>></b> pads.
-        scene.text(`You have <b>${((s as any).mc_inventory ?? 0)?.['sanitary_pads'] ?? ''}</b> pads.`);
+        scene.text(`You have <b>${(((s as any).mc_inventory ?? 0)?.['sanitary_pads'] ?? '')}</b> pads.`);
       }
     }
   }
@@ -1633,14 +1633,14 @@ function enterPrivate(s: GameState, scene: SceneBuilder): void {
         } else {
           if (((s as any).loc ?? 0) === 'uni_dorm'  &&  ((s as any).mc_inventory ?? 0)?.['shampoo'] > 0) {
             // TODO-QSP: dynamic text: You have enough shampoo for <b><<mc_inventory[''shampoo'']>></b> uses.
-            scene.text(`You have enough shampoo for <b>${((s as any).mc_inventory ?? 0)?.['shampoo'] ?? ''}</b> uses.`);
+            scene.text(`You have enough shampoo for <b>${(((s as any).mc_inventory ?? 0)?.['shampoo'] ?? '')}</b> uses.`);
             { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterShower(s, scene); (s as any).locArgs = __savedLocArgs; }
           } else {
             if (((s as any).loc ?? 0) === 'gad_gpbath') {
             } else {
               if (((s as any).mc_inventory ?? 0)?.['shampoo'] > 0) {
                 // TODO-QSP: dynamic text: You have enough shampoo for <b><<mc_inventory[''shampoo'']>></b> uses.
-                scene.text(`You have enough shampoo for <b>${((s as any).mc_inventory ?? 0)?.['shampoo'] ?? ''}</b> uses.`);
+                scene.text(`You have enough shampoo for <b>${(((s as any).mc_inventory ?? 0)?.['shampoo'] ?? '')}</b> uses.`);
                 { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterShower(s, scene); (s as any).locArgs = __savedLocArgs; }
                 { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBath(s, scene); (s as any).locArgs = __savedLocArgs; }
               } else {
@@ -1671,15 +1671,15 @@ function enterPrivate(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   if (((s as any).mc_inventory ?? 0)?.['hair_extensioncream'] > 0) {
     // TODO-QSP: dynamic text: <a href="exec:gs ''drugs'', ''hair_extensioncream''">Apply hair extension shampo...
-    scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027drugs/u0027, /u0027hair_extensioncream/u0027); return false;">Apply hair extension shampoo.</a> Uses left: ${((s as any).mc_inventory ?? 0)?.['hair_extensioncream'] ?? ''}.`);
+    scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027drugs/u0027, /u0027hair_extensioncream/u0027); return false;">Apply hair extension shampoo.</a> Uses left: ${(((s as any).mc_inventory ?? 0)?.['hair_extensioncream'] ?? '')}.`);
   }
   if (((s as any).mc_inventory ?? 0)?.['butt_injection'] > 0) {
     // TODO-QSP: dynamic text: <a href="exec:gs ''drugs'', ''butt_injection''">Inject the KBI butt enhancement ...
-    scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027drugs/u0027, /u0027butt_injection/u0027); return false;">Inject the KBI butt enhancement shot.</a> Uses left: ${((s as any).mc_inventory ?? 0)?.['butt_injection'] ?? ''}.`);
+    scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027drugs/u0027, /u0027butt_injection/u0027); return false;">Inject the KBI butt enhancement shot.</a> Uses left: ${(((s as any).mc_inventory ?? 0)?.['butt_injection'] ?? '')}.`);
   }
   if (((s as any).mc_inventory ?? 0)?.['breastcream'] > 0) {
     // TODO-QSP: dynamic text: <a href="exec:gs ''drugs'', ''breastcream''">Apply breast cream.</a> Uses left: ...
-    scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027drugs/u0027, /u0027breastcream/u0027); return false;">Apply breast cream.</a> Uses left: ${((s as any).mc_inventory ?? 0)?.['breastcream'] ?? ''}.`);
+    scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027drugs/u0027, /u0027breastcream/u0027); return false;">Apply breast cream.</a> Uses left: ${(((s as any).mc_inventory ?? 0)?.['breastcream'] ?? '')}.`);
   }
   qspCall(s, 'piercing_management', 'set_manage_string');
   if (((s as any).fillimplant ?? 0) === 1) {
@@ -2607,7 +2607,7 @@ function enterShaveOptions(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><h3><b>Shaving Options</b></h3>');
   scene.text('Here you can choose your style for pubic hair and which body parts you wish to shave.');
   // TODO-QSP: dynamic text: Your razors will last for&nbsp;<b><<mc_inventory[''razor'']>></b>&nbsp;more shav...
-  scene.text(`Your razors will last for&nbsp;<b>${((s as any).mc_inventory ?? 0)?.['razor'] ?? ''}</b>&nbsp;more shaves.`);
+  scene.text(`Your razors will last for&nbsp;<b>${(((s as any).mc_inventory ?? 0)?.['razor'] ?? '')}</b>&nbsp;more shaves.`);
   scene.text('<b>Change your shaving routine:');
   scene.text('Note: Choosing to never shave, or to shave legs only, will remove your chosen shave style.');
   scene.text('You can only choose a style if you currently have enough hair to support it.</b>');

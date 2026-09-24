@@ -103,7 +103,7 @@ function enterQuest(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/characters/city/yuri/sex/bjdance.jpg');
     // TODO-QSP: dynamic text: You tease Yuri''s cock a little further with your hands before squatting in fron...
-    scene.text(`You tease Yuri's cock a little further with your hands before squatting in front of him, grabbing it by the base and licking it. After a moment, you cup his purple head with your ${((st as any).pc_desc ?? 0)?.['lips'] ?? ''} lips and start sucking his cock. Your lips slide up and down his rock-hard cock.`);
+    scene.text(`You tease Yuri's cock a little further with your hands before squatting in front of him, grabbing it by the base and licking it. After a moment, you cup his purple head with your ${(((st as any).pc_desc ?? 0)?.['lips'] ?? '')} lips and start sucking his cock. Your lips slide up and down his rock-hard cock.`);
     scene.text('It doesn\'t take long before Yuri is groaning loudly, looking down at you while you do your best to please him. All of a sudden, he grabs hold of your head and says, "Let\'s move to the bedroom."');
     qspCall(st, 'arousal', 'bj', 5, 'sub');
     qspCall(st, 'stat', '');

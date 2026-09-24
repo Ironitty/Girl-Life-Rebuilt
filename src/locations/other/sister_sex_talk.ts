@@ -329,15 +329,15 @@ function enterVirginAsk(s: GameState, scene: SceneBuilder): void {
     scene.text('Your sister nods. "That\'s for the best. It\'s how it was with me too. But I also let people fuck my ass," she grins.');
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSexTalkContinue(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
-          { label: '', labelFn: (s: GameState) => 'I don\'t want to upset ' + String(((s as any).npc_nickname ?? 0)?.['A29'] ?? '' ?? ''), handler: (st: GameState) => {
+          { label: '', labelFn: (s: GameState) => 'I don\'t want to upset ' + String((((s as any).npc_nickname ?? 0)?.['A29'] ?? '') ?? ''), handler: (st: GameState) => {
     // TODO-QSP: dynamic text: You shake your head. "Not yet. I don''t want to upset <<$npc_nickname[''A29'']>>...
-    scene.text(`You shake your head. "Not yet. I don't want to upset ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''}, so I'm holding off."`);
+    scene.text(`You shake your head. "Not yet. I don't want to upset ${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')}, so I'm holding off."`);
     scene.text('Your sister nods. "That\'s probably a good idea. Mom was <i>pissed</i> when she found out I lost my virginity, but not as pissed as when she went to spank me and saw my asshole…"');
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSexTalkContinue(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
-          { label: '', labelFn: (s: GameState) => 'I don\'t want to deal with ' + String(((s as any).npc_nickname ?? 0)?.['A29'] ?? '' ?? ''), handler: (st: GameState) => {
+          { label: '', labelFn: (s: GameState) => 'I don\'t want to deal with ' + String((((s as any).npc_nickname ?? 0)?.['A29'] ?? '') ?? ''), handler: (st: GameState) => {
     // TODO-QSP: dynamic text: "Not yet," you say with a huff. "I want to, but with <<$npc_nickname[''A29'']>> ...
-    scene.text(`"Not yet," you say with a huff. "I want to, but with ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''} breathing down my neck, I don't want to deal with it when she finds out."`);
+    scene.text(`"Not yet," you say with a huff. "I want to, but with ${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')} breathing down my neck, I don't want to deal with it when she finds out."`);
     scene.text('Your sister nods. "That\'s probably a good idea. Mom was <i>pissed</i> when she found out I lost my virginity, but not as pissed as when she went to spank me and saw my asshole…"');
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSexTalkContinue(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },

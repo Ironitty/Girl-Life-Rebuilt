@@ -964,9 +964,9 @@ function enterEv42(s: GameState, scene: SceneBuilder): void {
       { label: 'Leave', handler: (st: GameState) => {
     qspCall(st, 'willpower', 'pay', 'resist');
     qspCall(st, 'arousal', 'end');
-    qspCall(st, 'clothing', 'wear', ((st as any).lastwornclothingtype ?? 0)?.['swim'], ((st as any).lastwornclothingnumber ?? 0)?.['swim']);
-    qspCall(st, 'panties', 'wear', ((st as any).lastwornpantytype ?? 0)?.['swim'], ((st as any).lastwornpantynumber ?? 0)?.['swim']);
-    qspCall(st, 'bras', 'wear', ((st as any).lastwornbratype ?? 0)?.['swim'], ((st as any).lastwornbranumber ?? 0)?.['swim']);
+    qspCall(st, 'clothing', 'wear', (((st as any).lastwornclothingtype ?? 0)?.['swim']), (((st as any).lastwornclothingnumber ?? 0)?.['swim']));
+    qspCall(st, 'panties', 'wear', (((st as any).lastwornpantytype ?? 0)?.['swim']), (((st as any).lastwornpantynumber ?? 0)?.['swim']));
+    qspCall(st, 'bras', 'wear', (((st as any).lastwornbratype ?? 0)?.['swim']), (((st as any).lastwornbranumber ?? 0)?.['swim']));
     qspCall(st, 'stat', '');
     qspGoto(st, 'city_center', '');
   } },
@@ -996,9 +996,9 @@ function enterEv43(s: GameState, scene: SceneBuilder): void {
       { label: 'Leave', handler: (st: GameState) => {
     qspCall(st, 'willpower', 'pay', 'resist');
     qspCall(st, 'arousal', 'end');
-    qspCall(st, 'clothing', 'wear', ((st as any).lastwornclothingtype ?? 0)?.['swim'], ((st as any).lastwornclothingnumber ?? 0)?.['swim']);
-    qspCall(st, 'panties', 'wear', ((st as any).lastwornpantytype ?? 0)?.['swim'], ((st as any).lastwornpantynumber ?? 0)?.['swim']);
-    qspCall(st, 'bras', 'wear', ((st as any).lastwornbratype ?? 0)?.['swim'], ((st as any).lastwornbranumber ?? 0)?.['swim']);
+    qspCall(st, 'clothing', 'wear', (((st as any).lastwornclothingtype ?? 0)?.['swim']), (((st as any).lastwornclothingnumber ?? 0)?.['swim']));
+    qspCall(st, 'panties', 'wear', (((st as any).lastwornpantytype ?? 0)?.['swim']), (((st as any).lastwornpantynumber ?? 0)?.['swim']));
+    qspCall(st, 'bras', 'wear', (((st as any).lastwornbratype ?? 0)?.['swim']), (((st as any).lastwornbranumber ?? 0)?.['swim']));
     qspCall(st, 'stat', '');
     qspGoto(st, 'city_center', '');
   } },
@@ -1028,9 +1028,9 @@ function enterEv44(s: GameState, scene: SceneBuilder): void {
       { label: 'Get out of here', handler: (st: GameState) => {
     qspCall(st, 'willpower', 'pay', 'resist');
     qspCall(st, 'arousal', 'end');
-    qspCall(st, 'clothing', 'wear', ((st as any).lastwornclothingtype ?? 0)?.['swim'], ((st as any).lastwornclothingnumber ?? 0)?.['swim']);
-    qspCall(st, 'panties', 'wear', ((st as any).lastwornpantytype ?? 0)?.['swim'], ((st as any).lastwornpantynumber ?? 0)?.['swim']);
-    qspCall(st, 'bras', 'wear', ((st as any).lastwornbratype ?? 0)?.['swim'], ((st as any).lastwornbranumber ?? 0)?.['swim']);
+    qspCall(st, 'clothing', 'wear', (((st as any).lastwornclothingtype ?? 0)?.['swim']), (((st as any).lastwornclothingnumber ?? 0)?.['swim']));
+    qspCall(st, 'panties', 'wear', (((st as any).lastwornpantytype ?? 0)?.['swim']), (((st as any).lastwornpantynumber ?? 0)?.['swim']));
+    qspCall(st, 'bras', 'wear', (((st as any).lastwornbratype ?? 0)?.['swim']), (((st as any).lastwornbranumber ?? 0)?.['swim']));
     qspCall(st, 'stat', '');
     qspGoto(st, 'city_center', '');
   } },
@@ -1067,9 +1067,9 @@ function enterEv45(s: GameState, scene: SceneBuilder): void {
       { label: 'Get out of here', handler: (st: GameState) => {
     qspCall(st, 'willpower', 'pay', 'resist');
     qspCall(st, 'arousal', 'end');
-    qspCall(st, 'clothing', 'wear', ((st as any).lastwornclothingtype ?? 0)?.['swim'], ((st as any).lastwornclothingnumber ?? 0)?.['swim']);
-    qspCall(st, 'panties', 'wear', ((st as any).lastwornpantytype ?? 0)?.['swim'], ((st as any).lastwornpantynumber ?? 0)?.['swim']);
-    qspCall(st, 'bras', 'wear', ((st as any).lastwornbratype ?? 0)?.['swim'], ((st as any).lastwornbranumber ?? 0)?.['swim']);
+    qspCall(st, 'clothing', 'wear', (((st as any).lastwornclothingtype ?? 0)?.['swim']), (((st as any).lastwornclothingnumber ?? 0)?.['swim']));
+    qspCall(st, 'panties', 'wear', (((st as any).lastwornpantytype ?? 0)?.['swim']), (((st as any).lastwornpantynumber ?? 0)?.['swim']));
+    qspCall(st, 'bras', 'wear', (((st as any).lastwornbratype ?? 0)?.['swim']), (((st as any).lastwornbranumber ?? 0)?.['swim']));
     qspCall(st, 'stat', '');
     qspGoto(st, 'city_center', '');
   } },
@@ -1095,9 +1095,9 @@ function enterEv46(s: GameState, scene: SceneBuilder): void {
     { label: 'Go into the water and remove bikini bottoms', goto: ['city_jorahouse', 'ev47'] },
     { label: 'Get out of here', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
-    qspCall(st, 'clothing', 'wear', ((st as any).lastwornclothingtype ?? 0)?.['swim'], ((st as any).lastwornclothingnumber ?? 0)?.['swim']);
-    qspCall(st, 'panties', 'wear', ((st as any).lastwornpantytype ?? 0)?.['swim'], ((st as any).lastwornpantynumber ?? 0)?.['swim']);
-    qspCall(st, 'bras', 'wear', ((st as any).lastwornbratype ?? 0)?.['swim'], ((st as any).lastwornbranumber ?? 0)?.['swim']);
+    qspCall(st, 'clothing', 'wear', (((st as any).lastwornclothingtype ?? 0)?.['swim']), (((st as any).lastwornclothingnumber ?? 0)?.['swim']));
+    qspCall(st, 'panties', 'wear', (((st as any).lastwornpantytype ?? 0)?.['swim']), (((st as any).lastwornpantynumber ?? 0)?.['swim']));
+    qspCall(st, 'bras', 'wear', (((st as any).lastwornbratype ?? 0)?.['swim']), (((st as any).lastwornbranumber ?? 0)?.['swim']));
     qspGoto(st, 'city_center', '');
   } },
   ]);
@@ -1124,9 +1124,9 @@ function enterEv47(s: GameState, scene: SceneBuilder): void {
       { label: 'Get out of here', handler: (st: GameState) => {
     qspCall(st, 'willpower', 'pay', 'resist');
     qspCall(st, 'arousal', 'end');
-    qspCall(st, 'clothing', 'wear', ((st as any).lastwornclothingtype ?? 0)?.['swim'], ((st as any).lastwornclothingnumber ?? 0)?.['swim']);
-    qspCall(st, 'panties', 'wear', ((st as any).lastwornpantytype ?? 0)?.['swim'], ((st as any).lastwornpantynumber ?? 0)?.['swim']);
-    qspCall(st, 'bras', 'wear', ((st as any).lastwornbratype ?? 0)?.['swim'], ((st as any).lastwornbranumber ?? 0)?.['swim']);
+    qspCall(st, 'clothing', 'wear', (((st as any).lastwornclothingtype ?? 0)?.['swim']), (((st as any).lastwornclothingnumber ?? 0)?.['swim']));
+    qspCall(st, 'panties', 'wear', (((st as any).lastwornpantytype ?? 0)?.['swim']), (((st as any).lastwornpantynumber ?? 0)?.['swim']));
+    qspCall(st, 'bras', 'wear', (((st as any).lastwornbratype ?? 0)?.['swim']), (((st as any).lastwornbranumber ?? 0)?.['swim']));
     qspCall(st, 'stat', '');
     qspGoto(st, 'city_center', '');
   } },
@@ -1159,9 +1159,9 @@ function enterEv48(s: GameState, scene: SceneBuilder): void {
       { label: 'Get out of here', handler: (st: GameState) => {
     qspCall(st, 'willpower', 'pay', 'resist');
     qspCall(st, 'arousal', 'end');
-    qspCall(st, 'clothing', 'wear', ((st as any).lastwornclothingtype ?? 0)?.['swim'], ((st as any).lastwornclothingnumber ?? 0)?.['swim']);
-    qspCall(st, 'panties', 'wear', ((st as any).lastwornpantytype ?? 0)?.['swim'], ((st as any).lastwornpantynumber ?? 0)?.['swim']);
-    qspCall(st, 'bras', 'wear', ((st as any).lastwornbratype ?? 0)?.['swim'], ((st as any).lastwornbranumber ?? 0)?.['swim']);
+    qspCall(st, 'clothing', 'wear', (((st as any).lastwornclothingtype ?? 0)?.['swim']), (((st as any).lastwornclothingnumber ?? 0)?.['swim']));
+    qspCall(st, 'panties', 'wear', (((st as any).lastwornpantytype ?? 0)?.['swim']), (((st as any).lastwornpantynumber ?? 0)?.['swim']));
+    qspCall(st, 'bras', 'wear', (((st as any).lastwornbratype ?? 0)?.['swim']), (((st as any).lastwornbranumber ?? 0)?.['swim']));
     qspCall(st, 'stat', '');
     qspGoto(st, 'city_center', '');
   } },
@@ -1194,9 +1194,9 @@ function enterEv49(s: GameState, scene: SceneBuilder): void {
       { label: 'Get out of here', handler: (st: GameState) => {
     qspCall(st, 'willpower', 'pay', 'resist');
     qspCall(st, 'arousal', 'end');
-    qspCall(st, 'clothing', 'wear', ((st as any).lastwornclothingtype ?? 0)?.['swim'], ((st as any).lastwornclothingnumber ?? 0)?.['swim']);
-    qspCall(st, 'panties', 'wear', ((st as any).lastwornpantytype ?? 0)?.['swim'], ((st as any).lastwornpantynumber ?? 0)?.['swim']);
-    qspCall(st, 'bras', 'wear', ((st as any).lastwornbratype ?? 0)?.['swim'], ((st as any).lastwornbranumber ?? 0)?.['swim']);
+    qspCall(st, 'clothing', 'wear', (((st as any).lastwornclothingtype ?? 0)?.['swim']), (((st as any).lastwornclothingnumber ?? 0)?.['swim']));
+    qspCall(st, 'panties', 'wear', (((st as any).lastwornpantytype ?? 0)?.['swim']), (((st as any).lastwornpantynumber ?? 0)?.['swim']));
+    qspCall(st, 'bras', 'wear', (((st as any).lastwornbratype ?? 0)?.['swim']), (((st as any).lastwornbranumber ?? 0)?.['swim']));
     qspCall(st, 'stat', '');
     qspGoto(st, 'city_center', '');
   } },
@@ -1228,9 +1228,9 @@ function enterEv50(s: GameState, scene: SceneBuilder): void {
       { label: 'Get out of here', handler: (st: GameState) => {
     qspCall(st, 'willpower', 'pay', 'resist');
     qspCall(st, 'arousal', 'end');
-    qspCall(st, 'clothing', 'wear', ((st as any).lastwornclothingtype ?? 0)?.['swim'], ((st as any).lastwornclothingnumber ?? 0)?.['swim']);
-    qspCall(st, 'panties', 'wear', ((st as any).lastwornpantytype ?? 0)?.['swim'], ((st as any).lastwornpantynumber ?? 0)?.['swim']);
-    qspCall(st, 'bras', 'wear', ((st as any).lastwornbratype ?? 0)?.['swim'], ((st as any).lastwornbranumber ?? 0)?.['swim']);
+    qspCall(st, 'clothing', 'wear', (((st as any).lastwornclothingtype ?? 0)?.['swim']), (((st as any).lastwornclothingnumber ?? 0)?.['swim']));
+    qspCall(st, 'panties', 'wear', (((st as any).lastwornpantytype ?? 0)?.['swim']), (((st as any).lastwornpantynumber ?? 0)?.['swim']));
+    qspCall(st, 'bras', 'wear', (((st as any).lastwornbratype ?? 0)?.['swim']), (((st as any).lastwornbranumber ?? 0)?.['swim']));
     qspCall(st, 'stat', '');
     qspGoto(st, 'city_center', '');
   } },
@@ -1261,9 +1261,9 @@ function enterEv51(s: GameState, scene: SceneBuilder): void {
       { label: 'Get out of here', handler: (st: GameState) => {
     qspCall(st, 'willpower', 'pay', 'resist');
     qspCall(st, 'arousal', 'end');
-    qspCall(st, 'clothing', 'wear', ((st as any).lastwornclothingtype ?? 0)?.['swim'], ((st as any).lastwornclothingnumber ?? 0)?.['swim']);
-    qspCall(st, 'panties', 'wear', ((st as any).lastwornpantytype ?? 0)?.['swim'], ((st as any).lastwornpantynumber ?? 0)?.['swim']);
-    qspCall(st, 'bras', 'wear', ((st as any).lastwornbratype ?? 0)?.['swim'], ((st as any).lastwornbranumber ?? 0)?.['swim']);
+    qspCall(st, 'clothing', 'wear', (((st as any).lastwornclothingtype ?? 0)?.['swim']), (((st as any).lastwornclothingnumber ?? 0)?.['swim']));
+    qspCall(st, 'panties', 'wear', (((st as any).lastwornpantytype ?? 0)?.['swim']), (((st as any).lastwornpantynumber ?? 0)?.['swim']));
+    qspCall(st, 'bras', 'wear', (((st as any).lastwornbratype ?? 0)?.['swim']), (((st as any).lastwornbranumber ?? 0)?.['swim']));
     qspCall(st, 'stat', '');
     qspGoto(st, 'city_center', '');
   } },
@@ -1296,9 +1296,9 @@ function enterEv52(s: GameState, scene: SceneBuilder): void {
       { label: 'Get out of here', handler: (st: GameState) => {
     qspCall(st, 'willpower', 'pay', 'resist');
     qspCall(st, 'arousal', 'end');
-    qspCall(st, 'clothing', 'wear', ((st as any).lastwornclothingtype ?? 0)?.['swim'], ((st as any).lastwornclothingnumber ?? 0)?.['swim']);
-    qspCall(st, 'panties', 'wear', ((st as any).lastwornpantytype ?? 0)?.['swim'], ((st as any).lastwornpantynumber ?? 0)?.['swim']);
-    qspCall(st, 'bras', 'wear', ((st as any).lastwornbratype ?? 0)?.['swim'], ((st as any).lastwornbranumber ?? 0)?.['swim']);
+    qspCall(st, 'clothing', 'wear', (((st as any).lastwornclothingtype ?? 0)?.['swim']), (((st as any).lastwornclothingnumber ?? 0)?.['swim']));
+    qspCall(st, 'panties', 'wear', (((st as any).lastwornpantytype ?? 0)?.['swim']), (((st as any).lastwornpantynumber ?? 0)?.['swim']));
+    qspCall(st, 'bras', 'wear', (((st as any).lastwornbratype ?? 0)?.['swim']), (((st as any).lastwornbranumber ?? 0)?.['swim']));
     qspCall(st, 'stat', '');
     qspGoto(st, 'city_center', '');
   } },
@@ -1342,9 +1342,9 @@ function enterEv54(s: GameState, scene: SceneBuilder): void {
       { label: 'Get out of here', handler: (st: GameState) => {
     qspCall(st, 'willpower', 'pay', 'resist');
     qspCall(st, 'arousal', 'end');
-    qspCall(st, 'clothing', 'wear', ((st as any).lastwornclothingtype ?? 0)?.['swim'], ((st as any).lastwornclothingnumber ?? 0)?.['swim']);
-    qspCall(st, 'panties', 'wear', ((st as any).lastwornpantytype ?? 0)?.['swim'], ((st as any).lastwornpantynumber ?? 0)?.['swim']);
-    qspCall(st, 'bras', 'wear', ((st as any).lastwornbratype ?? 0)?.['swim'], ((st as any).lastwornbranumber ?? 0)?.['swim']);
+    qspCall(st, 'clothing', 'wear', (((st as any).lastwornclothingtype ?? 0)?.['swim']), (((st as any).lastwornclothingnumber ?? 0)?.['swim']));
+    qspCall(st, 'panties', 'wear', (((st as any).lastwornpantytype ?? 0)?.['swim']), (((st as any).lastwornpantynumber ?? 0)?.['swim']));
+    qspCall(st, 'bras', 'wear', (((st as any).lastwornbratype ?? 0)?.['swim']), (((st as any).lastwornbranumber ?? 0)?.['swim']));
     qspCall(st, 'stat', '');
     qspGoto(st, 'city_center', '');
   } },
@@ -1389,9 +1389,9 @@ function enterEv56(s: GameState, scene: SceneBuilder): void {
       { label: 'Get out of here', handler: (st: GameState) => {
     qspCall(st, 'willpower', 'pay', 'resist');
     qspCall(st, 'arousal', 'end');
-    qspCall(st, 'clothing', 'wear', ((st as any).lastwornclothingtype ?? 0)?.['swim'], ((st as any).lastwornclothingnumber ?? 0)?.['swim']);
-    qspCall(st, 'panties', 'wear', ((st as any).lastwornpantytype ?? 0)?.['swim'], ((st as any).lastwornpantynumber ?? 0)?.['swim']);
-    qspCall(st, 'bras', 'wear', ((st as any).lastwornbratype ?? 0)?.['swim'], ((st as any).lastwornbranumber ?? 0)?.['swim']);
+    qspCall(st, 'clothing', 'wear', (((st as any).lastwornclothingtype ?? 0)?.['swim']), (((st as any).lastwornclothingnumber ?? 0)?.['swim']));
+    qspCall(st, 'panties', 'wear', (((st as any).lastwornpantytype ?? 0)?.['swim']), (((st as any).lastwornpantynumber ?? 0)?.['swim']));
+    qspCall(st, 'bras', 'wear', (((st as any).lastwornbratype ?? 0)?.['swim']), (((st as any).lastwornbranumber ?? 0)?.['swim']));
     qspCall(st, 'stat', '');
     qspGoto(st, 'city_center', '');
   } },
@@ -1463,9 +1463,9 @@ function enterEv61(s: GameState, scene: SceneBuilder): void {
       { label: 'Get out of here', handler: (st: GameState) => {
     qspCall(st, 'willpower', 'pay', 'resist');
     qspCall(st, 'arousal', 'end');
-    qspCall(st, 'clothing', 'wear', ((st as any).lastwornclothingtype ?? 0)?.['swim'], ((st as any).lastwornclothingnumber ?? 0)?.['swim']);
-    qspCall(st, 'panties', 'wear', ((st as any).lastwornpantytype ?? 0)?.['swim'], ((st as any).lastwornpantynumber ?? 0)?.['swim']);
-    qspCall(st, 'bras', 'wear', ((st as any).lastwornbratype ?? 0)?.['swim'], ((st as any).lastwornbranumber ?? 0)?.['swim']);
+    qspCall(st, 'clothing', 'wear', (((st as any).lastwornclothingtype ?? 0)?.['swim']), (((st as any).lastwornclothingnumber ?? 0)?.['swim']));
+    qspCall(st, 'panties', 'wear', (((st as any).lastwornpantytype ?? 0)?.['swim']), (((st as any).lastwornpantynumber ?? 0)?.['swim']));
+    qspCall(st, 'bras', 'wear', (((st as any).lastwornbratype ?? 0)?.['swim']), (((st as any).lastwornbranumber ?? 0)?.['swim']));
     qspCall(st, 'stat', '');
     qspGoto(st, 'city_center', '');
   } },
@@ -1605,9 +1605,9 @@ function enterEv65(s: GameState, scene: SceneBuilder): void {
   scene.text('Jora comes out of the locker room and says, "Well, you put on a good show here, the boss is delighted!"');
   scene.text('He hands you a business card with an address in the residential area on it and a handful of rubles. "If you ever need money, go to the sauna, show them this card and tell them we sent you."');
   qspCall(s, 'arousal', 'end');
-  qspCall(s, 'clothing', 'wear', ((s as any).lastwornclothingtype ?? 0)?.['swim'], ((s as any).lastwornclothingnumber ?? 0)?.['swim']);
-  qspCall(s, 'panties', 'wear', ((s as any).lastwornpantytype ?? 0)?.['swim'], ((s as any).lastwornpantynumber ?? 0)?.['swim']);
-  qspCall(s, 'bras', 'wear', ((s as any).lastwornbratype ?? 0)?.['swim'], ((s as any).lastwornbranumber ?? 0)?.['swim']);
+  qspCall(s, 'clothing', 'wear', (((s as any).lastwornclothingtype ?? 0)?.['swim']), (((s as any).lastwornclothingnumber ?? 0)?.['swim']));
+  qspCall(s, 'panties', 'wear', (((s as any).lastwornpantytype ?? 0)?.['swim']), (((s as any).lastwornpantynumber ?? 0)?.['swim']));
+  qspCall(s, 'bras', 'wear', (((s as any).lastwornbratype ?? 0)?.['swim']), (((s as any).lastwornbranumber ?? 0)?.['swim']));
   qspCall(s, 'stat', '');
   // TODO-QSP: end
   scene.actions([

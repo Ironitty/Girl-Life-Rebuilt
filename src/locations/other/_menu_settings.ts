@@ -659,7 +659,7 @@ function enterDisplay(s: GameState, scene: SceneBuilder): void {
       if (((s as any).cfg_vars ?? 0)?.['theme_main_name'] === 'White'  ||  ((s as any).cfg_vars ?? 0)?.['theme_main_name'] === 'Black'  ||  ((s as any).cfg_vars ?? 0)?.['theme_main_name'] === 'Modern Grey'  ||  ((s as any).cfg_vars ?? 0)?.['theme_main_name'] === 'Custom') {
         ((s as any).cfg_vars = (s as any).cfg_vars ?? {})['theme_main_name'] = 'Default';
       }
-      qspCall(s, 'themes', 'set_theme', 'Dynamic ' + ((s as any).cfg_vars ?? 0)?.['theme_main_name'], 'dynamic');
+      qspCall(s, 'themes', 'set_theme', 'Dynamic ' + (((s as any).cfg_vars ?? 0)?.['theme_main_name']), 'dynamic');
       qspCall(s, '$menu_obnovit', '');
       dynamicGoto(s, 'menu_settings');
     }
@@ -671,7 +671,7 @@ function enterDisplay(s: GameState, scene: SceneBuilder): void {
       if (((s as any).cfg_vars ?? 0)?.['theme_main_name'] === 'Default') {
         ((s as any).cfg_vars = (s as any).cfg_vars ?? {})['theme_main_name'] = 'White';
       }
-      qspCall(s, 'themes', 'set_theme', ((s as any).cfg_vars ?? 0)?.['theme_main_name'], 'static');
+      qspCall(s, 'themes', 'set_theme', (((s as any).cfg_vars ?? 0)?.['theme_main_name']), 'static');
       qspCall(s, '$menu_obnovit', '');
       dynamicGoto(s, 'menu_settings');
     }
@@ -714,19 +714,19 @@ function enterDisplay(s: GameState, scene: SceneBuilder): void {
   qspCall(s, '$menu_settings', 'toggle_menu', 'display', 'cfg_vars[\'use_popups\']', 'Allow Popup Pictures', 'OFF', 'ON');
   if (((s as any).cfg_vars ?? 0)?.['imgh'] > 0) {
     ((s as any).cfg_vars = (s as any).cfg_vars ?? {})['imgw'] = 0;
-    (s as any).set_imgh = 'height = ' + ((s as any).cfg_vars ?? 0)?.['imgh'] + '';
+    (s as any).set_imgh = 'height = ' + (((s as any).cfg_vars ?? 0)?.['imgh']) + '';
   } else {
     if (((s as any).cfg_vars ?? 0)?.['imgw'] > 0) {
       ((s as any).cfg_vars = (s as any).cfg_vars ?? {})['imgh'] = 0;
-      (s as any).set_imgh = 'width = ' + ((s as any).cfg_vars ?? 0)?.['imgw'] + '';
+      (s as any).set_imgh = 'width = ' + (((s as any).cfg_vars ?? 0)?.['imgw']) + '';
     } else {
       if (((s as any).cfg_vars ?? 0)?.['imgh'] <= 0  &&  ((s as any).cfg_vars ?? 0)?.['imgw'] <= 0) {
         (s as any).set_imgh = '';
       }
     }
   }
-  (s as any).temp_height = ((((s as any).cfg_vars ?? 0)?.['imgh']===0) ? ('OFF') : (String(((s as any).cfg_vars ?? 0)?.['imgh'])));
-  (s as any).temp_width = ((((s as any).cfg_vars ?? 0)?.['imgw']===0) ? ('OFF') : (String(((s as any).cfg_vars ?? 0)?.['imgw'])));
+  (s as any).temp_height = ((((s as any).cfg_vars ?? 0)?.['imgh']===0) ? ('OFF') : (String((((s as any).cfg_vars ?? 0)?.['imgh']))));
+  (s as any).temp_width = ((((s as any).cfg_vars ?? 0)?.['imgw']===0) ? ('OFF') : (String((((s as any).cfg_vars ?? 0)?.['imgw']))));
   // TODO-QSP: $menu_span + 'Force Image height:</span><a href="exec:cfg_vars[''imgw'']=0 & cfg_vars[''imgh'']=inpu...
   // TODO-QSP: $menu_span + 'Force Image width:</span><a href="exec:cfg_vars[''imgh'']=0 & cfg_vars[''imgw'']=input...
   qspCall(s, '$menu_settings', 'toggle_menu', 'display', 'cfg_vars[\'tablemap\']', 'List friends in table', 'Disabled', 'Enabled');
@@ -777,87 +777,87 @@ function enterThemeCustomize(s: GameState, scene: SceneBuilder): void {
   (s as any).icon_selector = '_w';
   (s as any).icon_height = 13;
   // TODO-QSP: dynamic text: Font Family: <<$custom_theme['fname']>>&nbsp;
-  scene.text(`Font Family: ${((s as any).custom_theme ?? 0)?.['fname'] ?? ''}&nbsp;`);
+  scene.text(`Font Family: ${(((s as any).custom_theme ?? 0)?.['fname'] ?? '')}&nbsp;`);
   scene.text('Font Size:&nbsp;');
   scene.img(`images/system/ui/less${((s as any).icon_selector ?? '')}.png`);
   // TODO-QSP: dynamic text: &nbsp;<<custom_theme['fsize']>>&nbsp;
-  scene.text(`&nbsp;${((s as any).custom_theme ?? 0)?.['fsize'] ?? ''}&nbsp;`);
+  scene.text(`&nbsp;${(((s as any).custom_theme ?? 0)?.['fsize'] ?? '')}&nbsp;`);
   scene.img(`images/system/ui/more${((s as any).icon_selector ?? '')}.png`);
   // TODO-QSP: dynamic text: BG Color: <<func('shortgs', 'rgb_to_hex', custom_theme['bcolor'])>>&nbsp;
-  scene.text(`BG Color: ${qspFunc(s, 'shortgs', 'rgb_to_hex', ((s as any).custom_theme ?? 0)?.['bcolor'] ?? '')}&nbsp;`);
+  scene.text(`BG Color: ${qspFunc(s, 'shortgs', 'rgb_to_hex', (((s as any).custom_theme ?? 0)?.['bcolor'] ?? ''))}&nbsp;`);
   // TODO-QSP: dynamic text: 'R:&nbsp;' + $func('$menu_settings', 'theme_customize_print_color_line', 'red', ...
   scene.text('R:&nbsp;\' + $func(\'$menu_settings\', \'theme_customize_print_color_line\', \'red\', \'custom_theme[\'bcolor\']\') + \'&nbsp;|&nbsp;');
   // TODO-QSP: dynamic text: 'G:&nbsp;' + $func('$menu_settings', 'theme_customize_print_color_line', 'green'...
   scene.text('G:&nbsp;\' + $func(\'$menu_settings\', \'theme_customize_print_color_line\', \'green\', \'custom_theme[\'bcolor\']\') + \'&nbsp;|&nbsp;');
   // TODO-QSP: dynamic text: FG (text) Color: <<func('shortgs', 'rgb_to_hex', custom_theme['fcolor'])>>&nbsp;
-  scene.text(`FG (text) Color: ${qspFunc(s, 'shortgs', 'rgb_to_hex', ((s as any).custom_theme ?? 0)?.['fcolor'] ?? '')}&nbsp;`);
+  scene.text(`FG (text) Color: ${qspFunc(s, 'shortgs', 'rgb_to_hex', (((s as any).custom_theme ?? 0)?.['fcolor'] ?? ''))}&nbsp;`);
   // TODO-QSP: dynamic text: 'R:&nbsp;' + $func('$menu_settings', 'theme_customize_print_color_line', 'red', ...
   scene.text('R:&nbsp;\' + $func(\'$menu_settings\', \'theme_customize_print_color_line\', \'red\', \'custom_theme[\'fcolor\']\') + \'&nbsp;|&nbsp;');
   // TODO-QSP: dynamic text: 'G:&nbsp;' + $func('$menu_settings', 'theme_customize_print_color_line', 'green'...
   scene.text('G:&nbsp;\' + $func(\'$menu_settings\', \'theme_customize_print_color_line\', \'green\', \'custom_theme[\'fcolor\']\') + \'&nbsp;|&nbsp;');
   // TODO-QSP: dynamic text: Link Color: <<func('shortgs', 'rgb_to_hex', custom_theme['lcolor'])>>&nbsp;
-  scene.text(`Link Color: ${qspFunc(s, 'shortgs', 'rgb_to_hex', ((s as any).custom_theme ?? 0)?.['lcolor'] ?? '')}&nbsp;`);
+  scene.text(`Link Color: ${qspFunc(s, 'shortgs', 'rgb_to_hex', (((s as any).custom_theme ?? 0)?.['lcolor'] ?? ''))}&nbsp;`);
   // TODO-QSP: dynamic text: 'R:&nbsp;' + $func('$menu_settings', 'theme_customize_print_color_line', 'red', ...
   scene.text('R:&nbsp;\' + $func(\'$menu_settings\', \'theme_customize_print_color_line\', \'red\', \'custom_theme[\'lcolor\']\') + \'&nbsp;|&nbsp;');
   // TODO-QSP: dynamic text: 'G:&nbsp;' + $func('$menu_settings', 'theme_customize_print_color_line', 'green'...
   scene.text('G:&nbsp;\' + $func(\'$menu_settings\', \'theme_customize_print_color_line\', \'green\', \'custom_theme[\'lcolor\']\') + \'&nbsp;|&nbsp;');
   // TODO-QSP: dynamic text: Table BG: <font color="<<$custom_theme['table_bg']>>">&#9632;</font>&nbsp;<<$cus...
-  scene.text(`Table BG: <font color="${((s as any).custom_theme ?? 0)?.['table_bg'] ?? ''}">&#9632;</font>&nbsp;${((s as any).custom_theme ?? 0)?.['table_bg'] ?? ''}&nbsp;`);
+  scene.text(`Table BG: <font color="${(((s as any).custom_theme ?? 0)?.['table_bg'] ?? '')}">&#9632;</font>&nbsp;${(((s as any).custom_theme ?? 0)?.['table_bg'] ?? '')}&nbsp;`);
   // TODO-QSP: dynamic text: Alt Table BG: <font color="<<$custom_theme['table_bg_alt']>>">&#9632;</font>&nbs...
-  scene.text(`Alt Table BG: <font color="${((s as any).custom_theme ?? 0)?.['table_bg_alt'] ?? ''}">&#9632;</font>&nbsp;${((s as any).custom_theme ?? 0)?.['table_bg_alt'] ?? ''}&nbsp;`);
+  scene.text(`Alt Table BG: <font color="${(((s as any).custom_theme ?? 0)?.['table_bg_alt'] ?? '')}">&#9632;</font>&nbsp;${(((s as any).custom_theme ?? 0)?.['table_bg_alt'] ?? '')}&nbsp;`);
   scene.text('Dark Mode&nbsp;');
   if (((s as any).custom_theme ?? 0)?.['is_dark'] === 0) {
   }
   // TODO-QSP: dynamic text: Accent: <font color="<<$custom_theme['accent']>>">&#9632;</font>&nbsp;<<$custom_...
-  scene.text(`Accent: <font color="${((s as any).custom_theme ?? 0)?.['accent'] ?? ''}">&#9632;</font>&nbsp;${((s as any).custom_theme ?? 0)?.['accent'] ?? ''}&nbsp;`);
+  scene.text(`Accent: <font color="${(((s as any).custom_theme ?? 0)?.['accent'] ?? '')}">&#9632;</font>&nbsp;${(((s as any).custom_theme ?? 0)?.['accent'] ?? '')}&nbsp;`);
   // TODO-QSP: dynamic text: V.Positive: <font color="<<$custom_theme['v_pos']>>">&#9632;</font>&nbsp;<<$cust...
-  scene.text(`V.Positive: <font color="${((s as any).custom_theme ?? 0)?.['v_pos'] ?? ''}">&#9632;</font>&nbsp;${((s as any).custom_theme ?? 0)?.['v_pos'] ?? ''}&nbsp;`);
+  scene.text(`V.Positive: <font color="${(((s as any).custom_theme ?? 0)?.['v_pos'] ?? '')}">&#9632;</font>&nbsp;${(((s as any).custom_theme ?? 0)?.['v_pos'] ?? '')}&nbsp;`);
   // TODO-QSP: dynamic text: Positive: <font color="<<$custom_theme['pos']>>">&#9632;</font>&nbsp;<<$custom_t...
-  scene.text(`Positive: <font color="${((s as any).custom_theme ?? 0)?.['pos'] ?? ''}">&#9632;</font>&nbsp;${((s as any).custom_theme ?? 0)?.['pos'] ?? ''}&nbsp;`);
+  scene.text(`Positive: <font color="${(((s as any).custom_theme ?? 0)?.['pos'] ?? '')}">&#9632;</font>&nbsp;${(((s as any).custom_theme ?? 0)?.['pos'] ?? '')}&nbsp;`);
   // TODO-QSP: dynamic text: Neutral: <font color="<<$custom_theme['neutral']>>">&#9632;</font>&nbsp;<<$custo...
-  scene.text(`Neutral: <font color="${((s as any).custom_theme ?? 0)?.['neutral'] ?? ''}">&#9632;</font>&nbsp;${((s as any).custom_theme ?? 0)?.['neutral'] ?? ''}&nbsp;`);
+  scene.text(`Neutral: <font color="${(((s as any).custom_theme ?? 0)?.['neutral'] ?? '')}">&#9632;</font>&nbsp;${(((s as any).custom_theme ?? 0)?.['neutral'] ?? '')}&nbsp;`);
   // TODO-QSP: dynamic text: Negative: <font color="<<$custom_theme['neg']>>">&#9632;</font>&nbsp;<<$custom_t...
-  scene.text(`Negative: <font color="${((s as any).custom_theme ?? 0)?.['neg'] ?? ''}">&#9632;</font>&nbsp;${((s as any).custom_theme ?? 0)?.['neg'] ?? ''}&nbsp;`);
+  scene.text(`Negative: <font color="${(((s as any).custom_theme ?? 0)?.['neg'] ?? '')}">&#9632;</font>&nbsp;${(((s as any).custom_theme ?? 0)?.['neg'] ?? '')}&nbsp;`);
   // TODO-QSP: dynamic text: V.Negative: <font color="<<$custom_theme['v_neg']>>">&#9632;</font>&nbsp;<<$cust...
-  scene.text(`V.Negative: <font color="${((s as any).custom_theme ?? 0)?.['v_neg'] ?? ''}">&#9632;</font>&nbsp;${((s as any).custom_theme ?? 0)?.['v_neg'] ?? ''}&nbsp;`);
+  scene.text(`V.Negative: <font color="${(((s as any).custom_theme ?? 0)?.['v_neg'] ?? '')}">&#9632;</font>&nbsp;${(((s as any).custom_theme ?? 0)?.['v_neg'] ?? '')}&nbsp;`);
   // TODO-QSP: dynamic text: Bimbo: <font color="<<$custom_theme['bimbo']>>">&#9632;</font>&nbsp;<<$custom_th...
-  scene.text(`Bimbo: <font color="${((s as any).custom_theme ?? 0)?.['bimbo'] ?? ''}">&#9632;</font>&nbsp;${((s as any).custom_theme ?? 0)?.['bimbo'] ?? ''}&nbsp;`);
+  scene.text(`Bimbo: <font color="${(((s as any).custom_theme ?? 0)?.['bimbo'] ?? '')}">&#9632;</font>&nbsp;${(((s as any).custom_theme ?? 0)?.['bimbo'] ?? '')}&nbsp;`);
   // TODO-QSP: dynamic text: Goth: <font color="<<$custom_theme['goth']>>">&#9632;</font>&nbsp;<<$custom_them...
-  scene.text(`Goth: <font color="${((s as any).custom_theme ?? 0)?.['goth'] ?? ''}">&#9632;</font>&nbsp;${((s as any).custom_theme ?? 0)?.['goth'] ?? ''}&nbsp;`);
+  scene.text(`Goth: <font color="${(((s as any).custom_theme ?? 0)?.['goth'] ?? '')}">&#9632;</font>&nbsp;${(((s as any).custom_theme ?? 0)?.['goth'] ?? '')}&nbsp;`);
   // TODO-QSP: dynamic text: Punk: <font color="<<$custom_theme['punk']>>">&#9632;</font>&nbsp;<<$custom_them...
-  scene.text(`Punk: <font color="${((s as any).custom_theme ?? 0)?.['punk'] ?? ''}">&#9632;</font>&nbsp;${((s as any).custom_theme ?? 0)?.['punk'] ?? ''}&nbsp;`);
+  scene.text(`Punk: <font color="${(((s as any).custom_theme ?? 0)?.['punk'] ?? '')}">&#9632;</font>&nbsp;${(((s as any).custom_theme ?? 0)?.['punk'] ?? '')}&nbsp;`);
   // TODO-QSP: dynamic text: Hypno: <font color="<<$custom_theme['hypno']>>">&#9632;</font>&nbsp;<<$custom_th...
-  scene.text(`Hypno: <font color="${((s as any).custom_theme ?? 0)?.['hypno'] ?? ''}">&#9632;</font>&nbsp;${((s as any).custom_theme ?? 0)?.['hypno'] ?? ''}&nbsp;`);
+  scene.text(`Hypno: <font color="${(((s as any).custom_theme ?? 0)?.['hypno'] ?? '')}">&#9632;</font>&nbsp;${(((s as any).custom_theme ?? 0)?.['hypno'] ?? '')}&nbsp;`);
   if (((s as any).custom_theme ?? 0)?.['increment'] === 0) {
     ((s as any).custom_theme = (s as any).custom_theme ?? {})['increment'] = 16;
   }
   scene.text('Increment:&nbsp;');
   scene.img(`images/system/ui/less${((s as any).icon_selector ?? '')}.png`);
   // TODO-QSP: dynamic text: &nbsp;<<custom_theme['increment']>>&nbsp;
-  scene.text(`&nbsp;${((s as any).custom_theme ?? 0)?.['increment'] ?? ''}&nbsp;`);
+  scene.text(`&nbsp;${(((s as any).custom_theme ?? 0)?.['increment'] ?? '')}&nbsp;`);
   scene.img(`images/system/ui/more${((s as any).icon_selector ?? '')}.png`);
   scene.text('</font></td>');
-  ((s as any).theme_hex = (s as any).theme_hex ?? {})['table_bg'] = ((s as any).custom_theme ?? 0)?.['table_bg'];
-  ((s as any).theme_hex = (s as any).theme_hex ?? {})['table_bg_alt'] = ((s as any).custom_theme ?? 0)?.['table_bg_alt'];
-  ((s as any).theme_hex = (s as any).theme_hex ?? {})['accent'] = ((s as any).custom_theme ?? 0)?.['accent'];
-  ((s as any).theme_hex = (s as any).theme_hex ?? {})['v_pos'] = ((s as any).custom_theme ?? 0)?.['v_pos'];
-  ((s as any).theme_hex = (s as any).theme_hex ?? {})['pos'] = ((s as any).custom_theme ?? 0)?.['pos'];
-  ((s as any).theme_hex = (s as any).theme_hex ?? {})['neutral'] = ((s as any).custom_theme ?? 0)?.['neutral'];
-  ((s as any).theme_hex = (s as any).theme_hex ?? {})['neg'] = ((s as any).custom_theme ?? 0)?.['neg'];
-  ((s as any).theme_hex = (s as any).theme_hex ?? {})['v_neg'] = ((s as any).custom_theme ?? 0)?.['v_neg'];
-  (s as any).tc_fg_hex = qspFunc(s, 'shortgs', 'rgb_to_hex', ((s as any).custom_theme ?? 0)?.['fcolor']);
+  ((s as any).theme_hex = (s as any).theme_hex ?? {})['table_bg'] = (((s as any).custom_theme ?? 0)?.['table_bg']);
+  ((s as any).theme_hex = (s as any).theme_hex ?? {})['table_bg_alt'] = (((s as any).custom_theme ?? 0)?.['table_bg_alt']);
+  ((s as any).theme_hex = (s as any).theme_hex ?? {})['accent'] = (((s as any).custom_theme ?? 0)?.['accent']);
+  ((s as any).theme_hex = (s as any).theme_hex ?? {})['v_pos'] = (((s as any).custom_theme ?? 0)?.['v_pos']);
+  ((s as any).theme_hex = (s as any).theme_hex ?? {})['pos'] = (((s as any).custom_theme ?? 0)?.['pos']);
+  ((s as any).theme_hex = (s as any).theme_hex ?? {})['neutral'] = (((s as any).custom_theme ?? 0)?.['neutral']);
+  ((s as any).theme_hex = (s as any).theme_hex ?? {})['neg'] = (((s as any).custom_theme ?? 0)?.['neg']);
+  ((s as any).theme_hex = (s as any).theme_hex ?? {})['v_neg'] = (((s as any).custom_theme ?? 0)?.['v_neg']);
+  (s as any).tc_fg_hex = qspFunc(s, 'shortgs', 'rgb_to_hex', (((s as any).custom_theme ?? 0)?.['fcolor']));
   scene.text('<td valign="top" style="padding:20px;">');
   // TODO-QSP: dynamic text: Lorem ipsum dolor sit amet, consectetur adipiscing elit. A <font color="<<$custo...
-  scene.text(`Lorem ipsum dolor sit amet, consectetur adipiscing elit. A <font color="${((s as any).custom_theme ?? 0)?.['bimbo'] ?? ''}">bimbo</font> wandered into a <font color="${((s as any).custom_theme ?? 0)?.['goth'] ?? ''}">goth</font> café, sparking a <font color="${((s as any).custom_theme ?? 0)?.['punk'] ?? ''}">punk</font> uprising while the air crackled with <font color="${((s as any).custom_theme ?? 0)?.['hypno'] ?? ''}">hypno</font> energy. <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027$menu_settings/u0027, /u0027theme_customize/u0027); return false;">Pellentesque habitant</a> morbi tristique senectus et netus.`);
+  scene.text(`Lorem ipsum dolor sit amet, consectetur adipiscing elit. A <font color="${(((s as any).custom_theme ?? 0)?.['bimbo'] ?? '')}">bimbo</font> wandered into a <font color="${(((s as any).custom_theme ?? 0)?.['goth'] ?? '')}">goth</font> café, sparking a <font color="${(((s as any).custom_theme ?? 0)?.['punk'] ?? '')}">punk</font> uprising while the air crackled with <font color="${(((s as any).custom_theme ?? 0)?.['hypno'] ?? '')}">hypno</font> energy. <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027$menu_settings/u0027, /u0027theme_customize/u0027); return false;">Pellentesque habitant</a> morbi tristique senectus et netus.`);
   scene.text('<table cellpadding="0" cellspacing="0" style="border-collapse:collapse; min-width:320px;">');
   // TODO-QSP: dynamic text: <tr><td style="background:<<$custom_theme['table_bg']>>; padding:6px 14px; color...
-  scene.text(`<tr><td style="background:${((s as any).custom_theme ?? 0)?.['table_bg'] ?? ''}; padding:6px 14px; color:${((s as any).tc_fg_hex ?? '')};">Row 1, Column A</td><td style="background:${((s as any).custom_theme ?? 0)?.['table_bg'] ?? ''}; padding:6px 14px; color:${((s as any).tc_fg_hex ?? '')};">Row 1, Column B</td><td style="background:${((s as any).custom_theme ?? 0)?.['table_bg'] ?? ''}; padding:6px 14px; color:${((s as any).tc_fg_hex ?? '')}; font-style:italic; opacity:0.7;">table_bg</td></tr>`);
+  scene.text(`<tr><td style="background:${(((s as any).custom_theme ?? 0)?.['table_bg'] ?? '')}; padding:6px 14px; color:${((s as any).tc_fg_hex ?? '')};">Row 1, Column A</td><td style="background:${(((s as any).custom_theme ?? 0)?.['table_bg'] ?? '')}; padding:6px 14px; color:${((s as any).tc_fg_hex ?? '')};">Row 1, Column B</td><td style="background:${(((s as any).custom_theme ?? 0)?.['table_bg'] ?? '')}; padding:6px 14px; color:${((s as any).tc_fg_hex ?? '')}; font-style:italic; opacity:0.7;">table_bg</td></tr>`);
   // TODO-QSP: dynamic text: <tr><td style="background:<<$custom_theme['table_bg_alt']>>; padding:6px 14px; c...
-  scene.text(`<tr><td style="background:${((s as any).custom_theme ?? 0)?.['table_bg_alt'] ?? ''}; padding:6px 14px; color:${((s as any).tc_fg_hex ?? '')};">Row 2, Column A</td><td style="background:${((s as any).custom_theme ?? 0)?.['table_bg_alt'] ?? ''}; padding:6px 14px; color:${((s as any).tc_fg_hex ?? '')};">Row 2, Column B</td><td style="background:${((s as any).custom_theme ?? 0)?.['table_bg_alt'] ?? ''}; padding:6px 14px; color:${((s as any).tc_fg_hex ?? '')}; font-style:italic; opacity:0.7;">table_bg_alt</td></tr>`);
+  scene.text(`<tr><td style="background:${(((s as any).custom_theme ?? 0)?.['table_bg_alt'] ?? '')}; padding:6px 14px; color:${((s as any).tc_fg_hex ?? '')};">Row 2, Column A</td><td style="background:${(((s as any).custom_theme ?? 0)?.['table_bg_alt'] ?? '')}; padding:6px 14px; color:${((s as any).tc_fg_hex ?? '')};">Row 2, Column B</td><td style="background:${(((s as any).custom_theme ?? 0)?.['table_bg_alt'] ?? '')}; padding:6px 14px; color:${((s as any).tc_fg_hex ?? '')}; font-style:italic; opacity:0.7;">table_bg_alt</td></tr>`);
   // TODO-QSP: dynamic text: <tr><td style="background:<<$custom_theme['table_bg']>>; padding:6px 14px; color...
-  scene.text(`<tr><td style="background:${((s as any).custom_theme ?? 0)?.['table_bg'] ?? ''}; padding:6px 14px; color:${((s as any).tc_fg_hex ?? '')};">Row 3, Column A</td><td style="background:${((s as any).custom_theme ?? 0)?.['table_bg'] ?? ''}; padding:6px 14px; color:${((s as any).tc_fg_hex ?? '')};">Row 3, Column B</td><td style="background:${((s as any).custom_theme ?? 0)?.['table_bg'] ?? ''}; padding:6px 14px; color:${((s as any).tc_fg_hex ?? '')}; font-style:italic; opacity:0.7;">table_bg</td></tr>`);
+  scene.text(`<tr><td style="background:${(((s as any).custom_theme ?? 0)?.['table_bg'] ?? '')}; padding:6px 14px; color:${((s as any).tc_fg_hex ?? '')};">Row 3, Column A</td><td style="background:${(((s as any).custom_theme ?? 0)?.['table_bg'] ?? '')}; padding:6px 14px; color:${((s as any).tc_fg_hex ?? '')};">Row 3, Column B</td><td style="background:${(((s as any).custom_theme ?? 0)?.['table_bg'] ?? '')}; padding:6px 14px; color:${((s as any).tc_fg_hex ?? '')}; font-style:italic; opacity:0.7;">table_bg</td></tr>`);
   // TODO-QSP: dynamic text: <tr><td style="background:<<$custom_theme['table_bg_alt']>>; padding:6px 14px; c...
-  scene.text(`<tr><td style="background:${((s as any).custom_theme ?? 0)?.['table_bg_alt'] ?? ''}; padding:6px 14px; color:${((s as any).tc_fg_hex ?? '')};">Row 4, Column A</td><td style="background:${((s as any).custom_theme ?? 0)?.['table_bg_alt'] ?? ''}; padding:6px 14px; color:${((s as any).tc_fg_hex ?? '')};">Row 4, Column B</td><td style="background:${((s as any).custom_theme ?? 0)?.['table_bg_alt'] ?? ''}; padding:6px 14px; color:${((s as any).tc_fg_hex ?? '')}; font-style:italic; opacity:0.7;">table_bg_alt</td></tr>`);
+  scene.text(`<tr><td style="background:${(((s as any).custom_theme ?? 0)?.['table_bg_alt'] ?? '')}; padding:6px 14px; color:${((s as any).tc_fg_hex ?? '')};">Row 4, Column A</td><td style="background:${(((s as any).custom_theme ?? 0)?.['table_bg_alt'] ?? '')}; padding:6px 14px; color:${((s as any).tc_fg_hex ?? '')};">Row 4, Column B</td><td style="background:${(((s as any).custom_theme ?? 0)?.['table_bg_alt'] ?? '')}; padding:6px 14px; color:${((s as any).tc_fg_hex ?? '')}; font-style:italic; opacity:0.7;">table_bg_alt</td></tr>`);
   scene.text('</table>');
   scene.text('<table style="border-collapse:collapse; vertical-align:top;"><tr>');
   scene.text('<td style="vertical-align:top; padding-right:16px;">');
@@ -1077,24 +1077,24 @@ function enterThemeCustomizePrintColorLine(s: GameState, scene: SceneBuilder): v
 }
 
 function enterThemePresetsCopy(s: GameState, scene: SceneBuilder): void {
-  ((s as any).custom_theme = (s as any).custom_theme ?? {})['fname'] = ((s as any).theme ?? 0)?.['fname'];
-  ((s as any).custom_theme = (s as any).custom_theme ?? {})['fsize'] = ((s as any).theme ?? 0)?.['fsize'];
-  ((s as any).custom_theme = (s as any).custom_theme ?? {})['bcolor'] = ((s as any).theme ?? 0)?.['bcolor'];
-  ((s as any).custom_theme = (s as any).custom_theme ?? {})['fcolor'] = ((s as any).theme ?? 0)?.['fcolor'];
-  ((s as any).custom_theme = (s as any).custom_theme ?? {})['lcolor'] = ((s as any).theme ?? 0)?.['lcolor'];
-  ((s as any).custom_theme = (s as any).custom_theme ?? {})['table_bg'] = ((s as any).theme_hex ?? 0)?.['table_bg'];
-  ((s as any).custom_theme = (s as any).custom_theme ?? {})['table_bg_alt'] = ((s as any).theme_hex ?? 0)?.['table_bg_alt'];
-  ((s as any).custom_theme = (s as any).custom_theme ?? {})['is_dark'] = ((s as any).theme ?? 0)?.['is_dark'];
-  ((s as any).custom_theme = (s as any).custom_theme ?? {})['accent'] = ((s as any).theme_hex ?? 0)?.['accent'];
-  ((s as any).custom_theme = (s as any).custom_theme ?? {})['v_pos'] = ((s as any).theme_hex ?? 0)?.['v_pos'];
-  ((s as any).custom_theme = (s as any).custom_theme ?? {})['pos'] = ((s as any).theme_hex ?? 0)?.['pos'];
-  ((s as any).custom_theme = (s as any).custom_theme ?? {})['neutral'] = ((s as any).theme_hex ?? 0)?.['neutral'];
-  ((s as any).custom_theme = (s as any).custom_theme ?? {})['neg'] = ((s as any).theme_hex ?? 0)?.['neg'];
-  ((s as any).custom_theme = (s as any).custom_theme ?? {})['v_neg'] = ((s as any).theme_hex ?? 0)?.['v_neg'];
-  ((s as any).custom_theme = (s as any).custom_theme ?? {})['punk'] = ((s as any).theme_hex ?? 0)?.['punk'];
-  ((s as any).custom_theme = (s as any).custom_theme ?? {})['bimbo'] = ((s as any).theme_hex ?? 0)?.['bimbo'];
-  ((s as any).custom_theme = (s as any).custom_theme ?? {})['goth'] = ((s as any).theme_hex ?? 0)?.['goth'];
-  ((s as any).custom_theme = (s as any).custom_theme ?? {})['hypno'] = ((s as any).theme_hex ?? 0)?.['hypno'];
+  ((s as any).custom_theme = (s as any).custom_theme ?? {})['fname'] = (((s as any).theme ?? 0)?.['fname']);
+  ((s as any).custom_theme = (s as any).custom_theme ?? {})['fsize'] = (((s as any).theme ?? 0)?.['fsize']);
+  ((s as any).custom_theme = (s as any).custom_theme ?? {})['bcolor'] = (((s as any).theme ?? 0)?.['bcolor']);
+  ((s as any).custom_theme = (s as any).custom_theme ?? {})['fcolor'] = (((s as any).theme ?? 0)?.['fcolor']);
+  ((s as any).custom_theme = (s as any).custom_theme ?? {})['lcolor'] = (((s as any).theme ?? 0)?.['lcolor']);
+  ((s as any).custom_theme = (s as any).custom_theme ?? {})['table_bg'] = (((s as any).theme_hex ?? 0)?.['table_bg']);
+  ((s as any).custom_theme = (s as any).custom_theme ?? {})['table_bg_alt'] = (((s as any).theme_hex ?? 0)?.['table_bg_alt']);
+  ((s as any).custom_theme = (s as any).custom_theme ?? {})['is_dark'] = (((s as any).theme ?? 0)?.['is_dark']);
+  ((s as any).custom_theme = (s as any).custom_theme ?? {})['accent'] = (((s as any).theme_hex ?? 0)?.['accent']);
+  ((s as any).custom_theme = (s as any).custom_theme ?? {})['v_pos'] = (((s as any).theme_hex ?? 0)?.['v_pos']);
+  ((s as any).custom_theme = (s as any).custom_theme ?? {})['pos'] = (((s as any).theme_hex ?? 0)?.['pos']);
+  ((s as any).custom_theme = (s as any).custom_theme ?? {})['neutral'] = (((s as any).theme_hex ?? 0)?.['neutral']);
+  ((s as any).custom_theme = (s as any).custom_theme ?? {})['neg'] = (((s as any).theme_hex ?? 0)?.['neg']);
+  ((s as any).custom_theme = (s as any).custom_theme ?? {})['v_neg'] = (((s as any).theme_hex ?? 0)?.['v_neg']);
+  ((s as any).custom_theme = (s as any).custom_theme ?? {})['punk'] = (((s as any).theme_hex ?? 0)?.['punk']);
+  ((s as any).custom_theme = (s as any).custom_theme ?? {})['bimbo'] = (((s as any).theme_hex ?? 0)?.['bimbo']);
+  ((s as any).custom_theme = (s as any).custom_theme ?? {})['goth'] = (((s as any).theme_hex ?? 0)?.['goth']);
+  ((s as any).custom_theme = (s as any).custom_theme ?? {})['hypno'] = (((s as any).theme_hex ?? 0)?.['hypno']);
   qspCall(s, 'themes', 'set_theme', 'Custom', 'static');
   dynamicGoto(s, 'menu_settings');
   // TODO-QSP: end
@@ -1313,31 +1313,31 @@ function enterFonts(s: GameState, scene: SceneBuilder): void {
     (s as any).tempColorActual = '';
   } else {
     if (((s as any).tempColor ?? 0) === 'Theme: Accent') {
-      (s as any).tempColorActual = ((s as any).theme_hex ?? 0)?.['accent'];
+      (s as any).tempColorActual = (((s as any).theme_hex ?? 0)?.['accent']);
     } else {
       if (((s as any).tempColor ?? 0) === 'Theme: 1') {
-        (s as any).tempColorActual = ((s as any).theme_hex ?? 0)?.['v_pos'];
+        (s as any).tempColorActual = (((s as any).theme_hex ?? 0)?.['v_pos']);
       } else {
         if (((s as any).tempColor ?? 0) === 'Theme: 2') {
-          (s as any).tempColorActual = ((s as any).theme_hex ?? 0)?.['pos'];
+          (s as any).tempColorActual = (((s as any).theme_hex ?? 0)?.['pos']);
         } else {
           if (((s as any).tempColor ?? 0) === 'Theme: 3') {
-            (s as any).tempColorActual = ((s as any).theme_hex ?? 0)?.['neutral'];
+            (s as any).tempColorActual = (((s as any).theme_hex ?? 0)?.['neutral']);
           } else {
             if (((s as any).tempColor ?? 0) === 'Theme: 4') {
-              (s as any).tempColorActual = ((s as any).theme_hex ?? 0)?.['neg'];
+              (s as any).tempColorActual = (((s as any).theme_hex ?? 0)?.['neg']);
             } else {
               if (((s as any).tempColor ?? 0) === 'Theme: 5') {
-                (s as any).tempColorActual = ((s as any).theme_hex ?? 0)?.['v_neg'];
+                (s as any).tempColorActual = (((s as any).theme_hex ?? 0)?.['v_neg']);
               } else {
                 if (((s as any).tempColor ?? 0) === 'Theme: 6') {
-                  (s as any).tempColorActual = ((s as any).theme_hex ?? 0)?.['punk'];
+                  (s as any).tempColorActual = (((s as any).theme_hex ?? 0)?.['punk']);
                 } else {
                   if (((s as any).tempColor ?? 0) === 'Theme: 7') {
-                    (s as any).tempColorActual = ((s as any).theme_hex ?? 0)?.['bimbo'];
+                    (s as any).tempColorActual = (((s as any).theme_hex ?? 0)?.['bimbo']);
                   } else {
                     if (((s as any).tempColor ?? 0) === 'Theme: 8') {
-                      (s as any).tempColorActual = ((s as any).theme_hex ?? 0)?.['goth'];
+                      (s as any).tempColorActual = (((s as any).theme_hex ?? 0)?.['goth']);
                     } else {
                       (s as any).tempColorActual = ((s as any).tempColor ?? 0);
                     }
@@ -1670,9 +1670,9 @@ function enterExplanationIcons(s: GameState, scene: SceneBuilder): void {
     scene.img('images/system/icons/menu/icon_purse.png');
   }
   // TODO-QSP: dynamic text: 'The ' + iif(bag > 0, 'fourth', 'third') + ' icon is the phone <img title="Your ...
-  scene.text('The ' + ((((s as any).bag ?? 0) > 0) ? ('fourth') : ('third')) + ` icon is the phone <img title="Your phone" height = ${((s as any).stat_cfg ?? 0)?.['menu_icon_height'] ?? ''} src="images/system/icons/menu/${((((s as any).telefon ?? 0)?.['UnreadSMS']===0) ? ('icon_phone.png') : ('icon_phone_sms.gif'))}"> which you can open if you receive messages or calls, to send messages and to take selfies.`);
+  scene.text('The ' + ((((s as any).bag ?? 0) > 0) ? ('fourth') : ('third')) + ` icon is the phone <img title="Your phone" height = ${(((s as any).stat_cfg ?? 0)?.['menu_icon_height'] ?? '')} src="images/system/icons/menu/${((((s as any).telefon ?? 0)?.['UnreadSMS']===0) ? ('icon_phone.png') : ('icon_phone_sms.gif'))}"> which you can open if you receive messages or calls, to send messages and to take selfies.`);
   // TODO-QSP: dynamic text: 'The ' + iif(bag > 0, 'fifth', 'fourth') + ' icon is your journal <img title="<<...
-  scene.text('The ' + ((((s as any).bag ?? 0) > 0) ? ('fifth') : ('fourth')) + ` icon is your journal <img title="${((s as any).journal_tooltip ?? '')}" height = ${((s as any).stat_cfg ?? 0)?.['menu_icon_height'] ?? ''} src="images/system/icons/menu/${((s as any).journalIcon ?? '')}"> which has many important tabs.`);
+  scene.text('The ' + ((((s as any).bag ?? 0) > 0) ? ('fifth') : ('fourth')) + ` icon is your journal <img title="${((s as any).journal_tooltip ?? '')}" height = ${(((s as any).stat_cfg ?? 0)?.['menu_icon_height'] ?? '')} src="images/system/icons/menu/${((s as any).journalIcon ?? '')}"> which has many important tabs.`);
   if (((s as any).start_type ?? 0)?.['magic'] !== 'nomagic') {
     scene.text('  The first tab there is very important, since you can use it to cast spells once you learn them.');
   }
@@ -2009,11 +2009,11 @@ function enterExplanationBuildArchetypes(s: GameState, scene: SceneBuilder): voi
     ((s as any).explanation_table = (s as any).explanation_table ?? {})['archetype_version'] = 1;
     ((s as any).explanation_table = (s as any).explanation_table ?? {})['archetype'] = '<table border="0" cellpadding="10" cellspacing="10">';
     ((s as any).explanation_table = (s as any).explanation_table ?? {})['archetype'] = ((s as any).explanation_table['archetype'] ?? 0) + ('<tr><th align="left">Archetype</th><th align="left">Effects</th></tr>');
-    ((s as any).explanation_table = (s as any).explanation_table ?? {})['archetype'] = ((s as any).explanation_table['archetype'] ?? 0) + ('<tr><td><b><font color="' + ((s as any).theme_hex ?? 0)?.['bimbo'] + '">Bimbo</font></b><br><i>Opposes Prude & Punk</i></td><td>Boosts appearance, charisma, erotic dance, pole dance, heels, service, modeling, and inhibition, while penalizing intelligence, chess, perception, spirit, computer, observation, and sewing. Also steadily drives arousal upward.</td></tr>');
-    ((s as any).explanation_table = (s as any).explanation_table ?? {})['archetype'] = ((s as any).explanation_table['archetype'] ?? 0) + ('<tr><td><b><font color="' + ((s as any).theme_hex ?? 0)?.['accent'] + '">Preppy</font></b><br><i>Opposes Punk & Goth</i></td><td>Boosts appearance, charisma, disposition, modeling, dancing, people skills, cheerleading, persuasion, computer, makeup, and sports, while penalizing combat, spirit, strength, artistic skill, and music. Also drains willpower.</td></tr>');
-    ((s as any).explanation_table = (s as any).explanation_table ?? {})['archetype'] = ((s as any).explanation_table['archetype'] ?? 0) + ('<tr><td><b><font color="' + ((s as any).theme_hex ?? 0)?.['neutral'] + '">Prude</font></b><br><i>Opposes Goth & Bimbo</i></td><td>Boosts intelligence, chess, computer, observation, sewing, and cleaning, while penalizing appearance, charisma, erotic dance, pole dance, heels, inhibition, makeup, songwriting, performance, and revealing sports. Also suppresses arousal.</td></tr>');
-    ((s as any).explanation_table = (s as any).explanation_table ?? {})['archetype'] = ((s as any).explanation_table['archetype'] ?? 0) + ('<tr><td><b><font color="' + ((s as any).theme_hex ?? 0)?.['punk'] + '">Punk</font></b><br><i>Opposes Bimbo & Preppy</i></td><td>Boosts strength, combat, spirit, and music, while strongly penalizing appearance and, to a lesser degree, charisma, modeling, dancing, heels, makeup, computer, service, and cleaning. Also regenerates willpower.</td></tr>');
-    ((s as any).explanation_table = (s as any).explanation_table ?? {})['archetype'] = ((s as any).explanation_table['archetype'] ?? 0) + ('<tr><td><b><font color="' + ((s as any).theme_hex ?? 0)?.['goth'] + '">Goth</font></b><br><i>Opposes Preppy & Prude</i></td><td>Boosts spirit, perception, artistic skill, makeup, songwriting, and performance, while penalizing charisma, disposition, people skills, cheerleading, persuasion, sports, and revealing sports. Also regenerates willpower.</td></tr>');
+    ((s as any).explanation_table = (s as any).explanation_table ?? {})['archetype'] = ((s as any).explanation_table['archetype'] ?? 0) + ('<tr><td><b><font color="' + (((s as any).theme_hex ?? 0)?.['bimbo']) + '">Bimbo</font></b><br><i>Opposes Prude & Punk</i></td><td>Boosts appearance, charisma, erotic dance, pole dance, heels, service, modeling, and inhibition, while penalizing intelligence, chess, perception, spirit, computer, observation, and sewing. Also steadily drives arousal upward.</td></tr>');
+    ((s as any).explanation_table = (s as any).explanation_table ?? {})['archetype'] = ((s as any).explanation_table['archetype'] ?? 0) + ('<tr><td><b><font color="' + (((s as any).theme_hex ?? 0)?.['accent']) + '">Preppy</font></b><br><i>Opposes Punk & Goth</i></td><td>Boosts appearance, charisma, disposition, modeling, dancing, people skills, cheerleading, persuasion, computer, makeup, and sports, while penalizing combat, spirit, strength, artistic skill, and music. Also drains willpower.</td></tr>');
+    ((s as any).explanation_table = (s as any).explanation_table ?? {})['archetype'] = ((s as any).explanation_table['archetype'] ?? 0) + ('<tr><td><b><font color="' + (((s as any).theme_hex ?? 0)?.['neutral']) + '">Prude</font></b><br><i>Opposes Goth & Bimbo</i></td><td>Boosts intelligence, chess, computer, observation, sewing, and cleaning, while penalizing appearance, charisma, erotic dance, pole dance, heels, inhibition, makeup, songwriting, performance, and revealing sports. Also suppresses arousal.</td></tr>');
+    ((s as any).explanation_table = (s as any).explanation_table ?? {})['archetype'] = ((s as any).explanation_table['archetype'] ?? 0) + ('<tr><td><b><font color="' + (((s as any).theme_hex ?? 0)?.['punk']) + '">Punk</font></b><br><i>Opposes Bimbo & Preppy</i></td><td>Boosts strength, combat, spirit, and music, while strongly penalizing appearance and, to a lesser degree, charisma, modeling, dancing, heels, makeup, computer, service, and cleaning. Also regenerates willpower.</td></tr>');
+    ((s as any).explanation_table = (s as any).explanation_table ?? {})['archetype'] = ((s as any).explanation_table['archetype'] ?? 0) + ('<tr><td><b><font color="' + (((s as any).theme_hex ?? 0)?.['goth']) + '">Goth</font></b><br><i>Opposes Preppy & Prude</i></td><td>Boosts spirit, perception, artistic skill, makeup, songwriting, and performance, while penalizing charisma, disposition, people skills, cheerleading, persuasion, sports, and revealing sports. Also regenerates willpower.</td></tr>');
     ((s as any).explanation_table = (s as any).explanation_table ?? {})['archetype'] = ((s as any).explanation_table['archetype'] ?? 0) + ('</table>');
   }
   // TODO-QSP: end

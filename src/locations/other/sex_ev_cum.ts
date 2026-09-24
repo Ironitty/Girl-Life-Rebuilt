@@ -23,7 +23,7 @@ function enterGirlCum(s: GameState, scene: SceneBuilder): void {
       ((s as any).sex_ev = (s as any).sex_ev ?? {})['consecutive_orgasm_desc'] = 'Come!';
     }
     scene.actions([
-      { label: '', labelFn: (s: GameState) => String(((s as any).sex_ev ?? 0)?.['consecutive_orgasm_desc'] ?? '' ?? ''), handler: (st: GameState) => {
+      { label: '', labelFn: (s: GameState) => String((((s as any).sex_ev ?? 0)?.['consecutive_orgasm_desc'] ?? '') ?? ''), handler: (st: GameState) => {
     if (((st as any).sex_ev ?? 0)?.['position'] === 'miss') {
       qspGoto(st, 'sex_ev_cum', 'miss_cum');
     } else {
@@ -50,7 +50,7 @@ function enterGirlCum(s: GameState, scene: SceneBuilder): void {
     (st as any).orgasm_or = 'no';
     qspCall(st, 'sex_ev_sex', 'fuck_arousal_code');
     qspCall(st, 'stat', '');
-    scene.img(`images/shared/sex/vag/${((st as any).sex_ev ?? 0)?.['position'] ?? ''}/slow2.mp4`);
+    scene.img(`images/shared/sex/vag/${(((st as any).sex_ev ?? 0)?.['position'] ?? '')}/slow2.mp4`);
     scene.text('"Ugh! Ugh! Ugh! <i>Ughhhh!!</i>"');
     if (((st as any).pcs_horny ?? 0) >= 80) {
       // TODO-QSP: dynamic text: <<$npcdesc>> is doing a good job, even if he''s not quite getting you off. You d...
@@ -1546,12 +1546,12 @@ function enterFacialBrace(s: GameState, scene: SceneBuilder): void {
               scene.actions([
                 { label: 'Swallowing is gross', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: "Better this than in my mouth," you grimace, <<$sex_ev[''cum_describe2'']>>. "Li...
-    scene.text(`"Better this than in my mouth," you grimace, ${((st as any).sex_ev ?? 0)?.['cum_describe2'] ?? ''}. "Like I'd ever want to swallow <i>this</i>." You gag at the thought of it.`);
+    scene.text(`"Better this than in my mouth," you grimace, ${(((st as any).sex_ev ?? 0)?.['cum_describe2'] ?? '')}. "Like I'd ever want to swallow <i>this</i>." You gag at the thought of it.`);
     qspCall(st, 'sex_ev_sex', 'sex_end');
   } },
                 { label: 'I don\'t like you enough for that', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: "I don''t like you enough to let you do that," you grimace, <<$sex_ev[''cum_desc...
-    scene.text(`"I don't like you enough to let you do that," you grimace, ${((st as any).sex_ev ?? 0)?.['cum_describe2'] ?? ''}. "God, I wish I did though. This is awful."`);
+    scene.text(`"I don't like you enough to let you do that," you grimace, ${(((st as any).sex_ev ?? 0)?.['cum_describe2'] ?? '')}. "God, I wish I did though. This is awful."`);
     qspCall(st, 'sex_ev_sex', 'sex_end');
   } },
               ]);
@@ -1560,14 +1560,14 @@ function enterFacialBrace(s: GameState, scene: SceneBuilder): void {
                 scene.actions([
                   { label: 'Feels weird', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: "I don''t like the feeling of that on my skin," you grimace, <<$sex_ev[''cum_des...
-    scene.text(`"I don't like the feeling of that on my skin," you grimace, ${((st as any).sex_ev ?? 0)?.['cum_describe2'] ?? ''}.`);
+    scene.text(`"I don't like the feeling of that on my skin," you grimace, ${(((st as any).sex_ev ?? 0)?.['cum_describe2'] ?? '')}.`);
     scene.text('"So you had me come onyour face instead?"');
     scene.text('"... Shut up!"');
     qspCall(st, 'sex_ev_sex', 'sex_end');
   } },
                   { label: 'I should\'ve let you come on my tits', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: "I should''ve let you come on my tits," you grimace, <<$sex_ev[''cum_describe2''...
-    scene.text(`"I should've let you come on my tits," you grimace, ${((st as any).sex_ev ?? 0)?.['cum_describe2'] ?? ''}. "This was a mistake!"`);
+    scene.text(`"I should've let you come on my tits," you grimace, ${(((st as any).sex_ev ?? 0)?.['cum_describe2'] ?? '')}. "This was a mistake!"`);
     qspCall(st, 'sex_ev_sex', 'sex_end');
   } },
                 ]);
@@ -2728,30 +2728,30 @@ function enterCumTogether(s: GameState, scene: SceneBuilder): void {
     if ((((s as any).sex_ev ?? 0)?.['cum_where'] === 1  ||  ((s as any).sex_ev ?? 0)?.['he_ask'] === 0)) {
       if (((s as any).sex_ev ?? 0)?.['position'] === 'miss') {
         // TODO-QSP: dynamic text: "<<$sex_ev[''cum_together_dialogue1'']>>Let''s come together," you say, smiling ...
-        scene.text(`"${((s as any).sex_ev ?? 0)?.['cum_together_dialogue1'] ?? ''}Let's come together," you say, smiling warmly into his eyes.`);
+        scene.text(`"${(((s as any).sex_ev ?? 0)?.['cum_together_dialogue1'] ?? '')}Let's come together," you say, smiling warmly into his eyes.`);
       } else {
         if (((s as any).sex_ev ?? 0)?.['position'] === 'doggy') {
           // TODO-QSP: dynamic text: "<<$sex_ev[''cum_together_dialogue1'']>>Let''s come together," you say, giving h...
-          scene.text(`"${((s as any).sex_ev ?? 0)?.['cum_together_dialogue1'] ?? ''}Let's come together," you say, giving him a warm smile over your shoulder.`);
+          scene.text(`"${(((s as any).sex_ev ?? 0)?.['cum_together_dialogue1'] ?? '')}Let's come together," you say, giving him a warm smile over your shoulder.`);
         } else {
           if (((s as any).sex_ev ?? 0)?.['position'] === 'cowgirl') {
             // TODO-QSP: dynamic text: "<<$sex_ev[''cum_together_dialogue1'']>>Let''s come together," you say, leaning ...
-            scene.text(`"${((s as any).sex_ev ?? 0)?.['cum_together_dialogue1'] ?? ''}Let's come together," you say, leaning down to smile warmly into his eyes.`);
+            scene.text(`"${(((s as any).sex_ev ?? 0)?.['cum_together_dialogue1'] ?? '')}Let's come together," you say, leaning down to smile warmly into his eyes.`);
           }
         }
       }
     } else {
       if (((s as any).sex_ev ?? 0)?.['position'] === 'miss') {
         // TODO-QSP: dynamic text: "<<$sex_ev[''cum_together_dialogue1'']>>Let''s come together instead," you say, ...
-        scene.text(`"${((s as any).sex_ev ?? 0)?.['cum_together_dialogue1'] ?? ''}Let's come together instead," you say, smiling warmly into his eyes.`);
+        scene.text(`"${(((s as any).sex_ev ?? 0)?.['cum_together_dialogue1'] ?? '')}Let's come together instead," you say, smiling warmly into his eyes.`);
       } else {
         if (((s as any).sex_ev ?? 0)?.['position'] === 'doggy') {
           // TODO-QSP: dynamic text: "<<$sex_ev[''cum_together_dialogue1'']>>Let''s come together instead," you say, ...
-          scene.text(`"${((s as any).sex_ev ?? 0)?.['cum_together_dialogue1'] ?? ''}Let's come together instead," you say, giving him a warm smile over your shoulder.`);
+          scene.text(`"${(((s as any).sex_ev ?? 0)?.['cum_together_dialogue1'] ?? '')}Let's come together instead," you say, giving him a warm smile over your shoulder.`);
         } else {
           if (((s as any).sex_ev ?? 0)?.['position'] === 'cowgirl') {
             // TODO-QSP: dynamic text: "<<$sex_ev[''cum_together_dialogue1'']>>Let''s come together instead," you say, ...
-            scene.text(`"${((s as any).sex_ev ?? 0)?.['cum_together_dialogue1'] ?? ''}Let's come together instead," you say, leaning down to smile warmly into his eyes.`);
+            scene.text(`"${(((s as any).sex_ev ?? 0)?.['cum_together_dialogue1'] ?? '')}Let's come together instead," you say, leaning down to smile warmly into his eyes.`);
           }
         }
       }
@@ -2808,34 +2808,34 @@ function enterAnalCumTogether(s: GameState, scene: SceneBuilder): void {
       } else {
         if ((((s as any).sex_ev ?? 0)?.['cum_where'] === 1  ||  ((s as any).sex_ev ?? 0)?.['he_ask'] === 0)) {
           // TODO-QSP: dynamic text: "<<$sex_ev[''cum_together_dialogue1'']>>Let''s come together," you say, smiling ...
-          scene.text(`"${((s as any).sex_ev ?? 0)?.['cum_together_dialogue1'] ?? ''}Let's come together," you say, smiling warmly into his eyes.`);
+          scene.text(`"${(((s as any).sex_ev ?? 0)?.['cum_together_dialogue1'] ?? '')}Let's come together," you say, smiling warmly into his eyes.`);
         } else {
           if (((s as any).sex_ev ?? 0)?.['position'] === 'doggy') {
             // TODO-QSP: dynamic text: "<<$sex_ev[''cum_together_dialogue1'']>>Let''s come together," you say, giving h...
-            scene.text(`"${((s as any).sex_ev ?? 0)?.['cum_together_dialogue1'] ?? ''}Let's come together," you say, giving him a warm smile over your shoulder.`);
+            scene.text(`"${(((s as any).sex_ev ?? 0)?.['cum_together_dialogue1'] ?? '')}Let's come together," you say, giving him a warm smile over your shoulder.`);
           } else {
             if (((s as any).sex_ev ?? 0)?.['position'] === 'cowgirl') {
               // TODO-QSP: dynamic text: "<<$sex_ev[''cum_together_dialogue1'']>>Let''s come together," you say, leaning ...
-              scene.text(`"${((s as any).sex_ev ?? 0)?.['cum_together_dialogue1'] ?? ''}Let's come together," you say, leaning down to smile warmly into his eyes.`);
+              scene.text(`"${(((s as any).sex_ev ?? 0)?.['cum_together_dialogue1'] ?? '')}Let's come together," you say, leaning down to smile warmly into his eyes.`);
               // TODO-QSP: end !}
               // TODO-QSP: dynamic text: "<<$sex_ev[''cum_together_dialogue1'']>>Let''s come together," you say, giving h...
-              scene.text(`"${((s as any).sex_ev ?? 0)?.['cum_together_dialogue1'] ?? ''}Let's come together," you say, giving him a warm smile over your shoulder.`);
+              scene.text(`"${(((s as any).sex_ev ?? 0)?.['cum_together_dialogue1'] ?? '')}Let's come together," you say, giving him a warm smile over your shoulder.`);
             } else {
               // TODO-QSP: dynamic text: "<<$sex_ev[''cum_together_dialogue1'']>>Let''s come together instead," you say, ...
-              scene.text(`"${((s as any).sex_ev ?? 0)?.['cum_together_dialogue1'] ?? ''}Let's come together instead," you say, smiling warmly into his eyes.`);
+              scene.text(`"${(((s as any).sex_ev ?? 0)?.['cum_together_dialogue1'] ?? '')}Let's come together instead," you say, smiling warmly into his eyes.`);
             }
           }
         }
         // TODO-QSP: dynamic text: "<<$sex_ev[''cum_together_dialogue1'']>>Let''s come together instead," you say, ...
-        scene.text(`"${((s as any).sex_ev ?? 0)?.['cum_together_dialogue1'] ?? ''}Let's come together instead," you say, giving him a warm smile over your shoulder.`);
+        scene.text(`"${(((s as any).sex_ev ?? 0)?.['cum_together_dialogue1'] ?? '')}Let's come together instead," you say, giving him a warm smile over your shoulder.`);
       }
     }
   }
   // TODO-QSP: dynamic text: "<<$sex_ev[''cum_together_dialogue1'']>>Let''s come together instead," you say, ...
-  scene.text(`"${((s as any).sex_ev ?? 0)?.['cum_together_dialogue1'] ?? ''}Let's come together instead," you say, leaning down to smile warmly into his eyes.`);
+  scene.text(`"${(((s as any).sex_ev ?? 0)?.['cum_together_dialogue1'] ?? '')}Let's come together instead," you say, leaning down to smile warmly into his eyes.`);
   // TODO-QSP: end !}
   // TODO-QSP: dynamic text: "<<$sex_ev[''cum_together_dialogue1'']>>Let''s come together instead," you say, ...
-  scene.text(`"${((s as any).sex_ev ?? 0)?.['cum_together_dialogue1'] ?? ''}Let's come together instead," you say, giving him a warm smile over your shoulder.`);
+  scene.text(`"${(((s as any).sex_ev ?? 0)?.['cum_together_dialogue1'] ?? '')}Let's come together instead," you say, giving him a warm smile over your shoulder.`);
   // TODO-QSP: end
   // TODO-QSP: end
   // TODO-QSP: end
@@ -3345,7 +3345,7 @@ function enterCreampieSurprise2(s: GameState, scene: SceneBuilder): void {
       ((st as any).sex_ev = (st as any).sex_ev ?? {})['creampie_orgasm'] = 1;
       ((st as any).sex_ev = (st as any).sex_ev ?? {})['came_together'] = 2;
       (st as any).orgasm_or = 'yes';
-      qspCall(st, 'arousal', 'vaginal', (-1), 'no_orgasm_msg', ((st as any).sex_ev ?? 0)?.['prostitution_flag']);
+      qspCall(st, 'arousal', 'vaginal', (-1), 'no_orgasm_msg', (((st as any).sex_ev ?? 0)?.['prostitution_flag']));
       qspCall(st, 'stat', '');
       if (((st as any).sex_ev ?? 0)?.['position'] === 'miss') {
         scene.img('images/shared/sex/cum/vagcreampie/creampie1.mp4');
@@ -3622,7 +3622,7 @@ function enterWhatNow(s: GameState, scene: SceneBuilder): void {
       scene.img('images/shared/sex/misc/wait.mp4');
     }
     // TODO-QSP: dynamic text: "<<$sex_ev[''more_creampies_dialogue'']>>" you grin back at <<$npcdesc>>. "Might...
-    scene.text(`"${((st as any).sex_ev ?? 0)?.['more_creampies_dialogue'] ?? ''}" you grin back at ${((st as any).npcdesc ?? '')}. "Might as well make the most of the situation."`);
+    scene.text(`"${(((st as any).sex_ev ?? 0)?.['more_creampies_dialogue'] ?? '')}" you grin back at ${((st as any).npcdesc ?? '')}. "Might as well make the most of the situation."`);
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['creampie_allowance'] = 1;
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['no_condom'] = 1;
     qspCall(st, 'sex_ev_sex', 'reset');
@@ -3726,7 +3726,7 @@ function enterAnalCreampieSurprise2(s: GameState, scene: SceneBuilder): void {
       ((st as any).sex_ev = (st as any).sex_ev ?? {})['creampie_orgasm'] = 1;
       ((st as any).sex_ev = (st as any).sex_ev ?? {})['came_together'] = 2;
       (st as any).orgasm_or = 'yes';
-      qspCall(st, 'arousal', 'anal', (-1), 'no_orgasm_msg', ((st as any).sex_ev ?? 0)?.['prostitution_flag']);
+      qspCall(st, 'arousal', 'anal', (-1), 'no_orgasm_msg', (((st as any).sex_ev ?? 0)?.['prostitution_flag']));
       qspCall(st, 'stat', '');
       scene.img('images/shared/sex/anal/doggy/orgasm1.mp4');
       scene.text('The sensation of cum filling your ass is too much for you to handle and sends you over the edge.');
@@ -3846,7 +3846,7 @@ function enterCumNotInside(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCumNotYet(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'sex_ev_' + ((s as any).sex_ev ?? 0)?.['position'] + '', '' + ((s as any).sex_ev ?? 0)?.['position'] + '_vid');
+  qspCall(s, 'sex_ev_' + (((s as any).sex_ev ?? 0)?.['position']) + '', '' + (((s as any).sex_ev ?? 0)?.['position']) + '_vid');
   if (((s as any).sex_ev ?? 0)?.['speed'] === 1) {
     // TODO-QSP: '"Not yet!" you gasp. ' + iif(orgasm_buildup >= 100, '"I''m so close! Just a little longer!"', '"Jus...
   } else {
@@ -4062,7 +4062,7 @@ function enterBrokenCondom1(s: GameState, scene: SceneBuilder): void {
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['broken_condom_creampie_cum'] = 1;
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['simultaneous_orgasm_count'] = ((st as any).sex_ev['simultaneous_orgasm_count'] ?? 0) + (1);
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['came_together'] = 1;
-    qspCall(st, 'arousal', 'vaginal', (-1), 'no_orgasm_msg', ((st as any).sex_ev ?? 0)?.['prostitution_flag']);
+    qspCall(st, 'arousal', 'vaginal', (-1), 'no_orgasm_msg', (((st as any).sex_ev ?? 0)?.['prostitution_flag']));
     if (((st as any).sex_ev ?? 0)?.['position'] === 'miss') {
       scene.img('images/shared/sex/vag/miss/orgasm1.mp4');
     } else {

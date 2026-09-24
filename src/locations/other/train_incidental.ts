@@ -12,7 +12,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterEvents(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
-  qspGoto(s, 'train_incidental', qspUntranslated(s, "''event<<rand(1'", { location: "train_incidental" }), '27)>>');
+  qspGoto(s, 'train_incidental', qspUntranslated(s, "event(Math.floor(Math.random() * 27) + 1)", { location: "train_incidental" }));
   // TODO-QSP: end
   scene.build();
 }
@@ -366,7 +366,7 @@ function enterEvent27(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterEnd(s: GameState, scene: SceneBuilder): void {
-  qspGoto(s, 'train_incidental', qspUntranslated(s, "''end<<rand(1'", { location: "train_incidental" }), '1)>>');
+  qspGoto(s, 'train_incidental', qspUntranslated(s, "end(Math.floor(Math.random() * 1) + 1)", { location: "train_incidental" }));
   // TODO-QSP: end
   scene.build();
 }

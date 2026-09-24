@@ -1741,7 +1741,7 @@ function enterAnamotel(s: GameState, scene: SceneBuilder): void {
     if (((st as any).succubusflag ?? 0) === 1) {
       (st as any).scfeed = ((st as any).succublvl ?? 0) + (Math.floor(Math.random() * 4) + 1);
       (st as any).sexnutrition = ((st as any).sexnutrition ?? 0) + (50 * ((st as any).scfeed ?? 0));
-      (st as any).suclezsex = ((st as any).stat ?? 0)?.['female_sexual_times'];
+      (st as any).suclezsex = (((st as any).stat ?? 0)?.['female_sexual_times']);
       (st as any).succubxp = ((st as any).succubxp ?? 0) + (6);
       (st as any).sucabslez = 1;
     }

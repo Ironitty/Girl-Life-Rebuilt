@@ -91,7 +91,7 @@ function enterRaceStart(s: GameState, scene: SceneBuilder): void {
           // TODO-QSP: dynamic text: Qualifying Races Attended: <<runnerQW[''prof_stage''] - 3>>
           scene.text(`Qualifying Races Attended: ${(((s as any).runnerQW ?? {})?.['prof_stage'] ?? 0) - 3}`);
           // TODO-QSP: dynamic text: Top 3 finishes in Qualifying Races: <<runnerQW[''qualifiers'']>>
-          scene.text(`Top 3 finishes in Qualifying Races: ${((s as any).runnerQW ?? 0)?.['qualifiers'] ?? ''}`);
+          scene.text(`Top 3 finishes in Qualifying Races: ${(((s as any).runnerQW ?? 0)?.['qualifiers'] ?? '')}`);
           scene.actions([
             { label: 'Go to the stadium', goto: ['havana_running', 'kval'] },
           ]);
@@ -585,7 +585,7 @@ function enterFamilyExtension(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: "Well done <<$pcs_nickname>>, that was some race! Oh my! My little girl… The Sai...
     scene.text(`"Well done ${((s as any).pcs_nickname ?? '')}, that was some race! Oh my! My little girl… The Saint Petersburg Track champion! Where to next, National races? Anyway, I just had to come when I saw your name on the start list for the race in the local paper; I know you've been training hard, but I never expected that you'd be at this level! I'm so proud of you! Give me another hug!"`);
     // TODO-QSP: dynamic text: You lean over and hug your mother. "Thanks for coming, <<$npc_nickname[''A29'']>...
-    scene.text(`You lean over and hug your mother. "Thanks for coming, ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''}. I didn't mention it as I wasn't sure how well I'd do and I didn't want to put any pressure on you to attend given we aren't exactly flush with money."`);
+    scene.text(`You lean over and hug your mother. "Thanks for coming, ${(((s as any).npc_nickname ?? 0)?.['A29'] ?? '')}. I didn't mention it as I wasn't sure how well I'd do and I didn't want to put any pressure on you to attend given we aren't exactly flush with money."`);
     // TODO-QSP: dynamic text: Your mother hugs you close. "Oh <<$pcs_nickname>>, of course I''d come! Whatever...
     scene.text(`Your mother hugs you close. "Oh ${((s as any).pcs_nickname ?? '')}, of course I'd come! Whatever differences we've had, you're my daughter and I love you and want the best for you."`);
     if (((s as any).npc_rel ?? 0)?.['A33'] > 50) {
@@ -596,7 +596,7 @@ function enterFamilyExtension(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('After the hug, your mother looks around as if searching for someone.');
       // TODO-QSP: dynamic text: "Are you okay, <<$npc_nickname[''A29'']>>? Have you lost someone?"
-      scene.text(`"Are you okay, ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''}? Have you lost someone?"`);
+      scene.text(`"Are you okay, ${(((s as any).npc_nickname ?? 0)?.['A29'] ?? '')}? Have you lost someone?"`);
       scene.text('"Yes, Anya is with me. I asked her to come and see you and do a bit of shopping after, but I can\'t see her. She must have gotten stuck on the way down. Never mind, at least I got to hug my little girl. You get showered and changed and I\'ll wait for you and Anya in reception."');
       scene.text('"Okay, sounds like a plan. I\'ve got an idea as I think this calls for something special."');
     }
@@ -643,7 +643,7 @@ function enterFamilyExtension(s: GameState, scene: SceneBuilder): void {
     scene.text('You look at him a little warily. "Okay, thanks. And the condition?"');
     scene.text('He breaks into a grin. "Well now, that\'s very simple. We take a photo of you displaying your gold medal to include in our advertising to say that you ate here with your lovely sisters after winning the race."');
     // TODO-QSP: dynamic text: At this point your mother blushes and goes bright red as you answer. "No problem...
-    scene.text(`At this point your mother blushes and goes bright red as you answer. "No problem, it'll be our pleasure… That is once my ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''} stops blushing and my sister stops giggling!"`);
+    scene.text(`At this point your mother blushes and goes bright red as you answer. "No problem, it'll be our pleasure… That is once my ${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')} stops blushing and my sister stops giggling!"`);
     scene.text('"Your mother?" he enquires.');
     scene.text('"Yes," you reply. "Although I guess you can tell by how red she\'s gone that she clearly likes your compliment."');
     scene.text('He continues. "Also one photo of you which I\'ll ask you to sign so I can show my kids."');
@@ -659,7 +659,7 @@ function enterFamilyExtension(s: GameState, scene: SceneBuilder): void {
     scene.text('Your sister winks at you and as she waves goodbye. "Thanks for that. I never thought I\'d get to eat there. Guess you\'ve already started getting used to having some fame!"');
     scene.text('Your mother adds her agreement. "Me neither. That was a special treat! Now don\'t let this go to your head too much. I still want you to work hard as a good education is important too!"');
     // TODO-QSP: dynamic text: You smile as you answer. "Yes <<$npc_nickname[''A29'']>>, I know. See you both l...
-    scene.text(`You smile as you answer. "Yes ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''}, I know. See you both later."`);
+    scene.text(`You smile as you answer. "Yes ${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')}, I know. See you both later."`);
     qspCall(st, 'drugs', 'alcohol', 'champagne', 2);
     (st as any).frost = 0;
     (st as any).pcs_health = ((st as any).pcs_health ?? 0) + (30);

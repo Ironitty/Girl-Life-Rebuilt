@@ -10,7 +10,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).notification_message ?? 0)[1] !== '') {
         (s as any).stat_msg = (String(((s as any).stat_msg ?? 0)).split((((s as any).notification_message ?? 0)?.[0] ?? 0)).join((((s as any).notification_message ?? 0)?.[1] ?? 0)));
-        ((s as any)._n_counter = (s as any)._n_counter ?? {})['timer'] = ((s as any)._n_counter ?? 0)?.['duration'];
+        ((s as any)._n_counter = (s as any)._n_counter ?? {})['timer'] = (((s as any)._n_counter ?? 0)?.['duration']);
       } else {
         (s as any).stat_msg = (String(((s as any).stat_msg ?? 0)).split((((s as any).notification_message ?? 0)?.[0] ?? 0)).join(undefined));
         ((s as any)._n_counter = (s as any)._n_counter ?? {})['shown'] = 0;

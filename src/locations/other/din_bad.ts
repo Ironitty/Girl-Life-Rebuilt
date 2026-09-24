@@ -105,24 +105,24 @@ function enterDBag(s: GameState, scene: SceneBuilder): void {
   scene.text('<td cellspacing="0" cellpadding="0" valign="top">');
   if (((s as any).mc_inventory ?? 0)?.['makeup_wipes'] > 0) {
     // TODO-QSP: dynamic text: You have <b><<mc_inventory[''makeup_wipes'']>></b> wet wipes left in your purse....
-    scene.text(`You have <b>${((s as any).mc_inventory ?? 0)?.['makeup_wipes'] ?? ''}</b> wet wipes left in your purse. <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027din_bad/u0027, /u0027d_salf/u0027); return false;">Use a tissue</a>`);
+    scene.text(`You have <b>${(((s as any).mc_inventory ?? 0)?.['makeup_wipes'] ?? '')}</b> wet wipes left in your purse. <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027din_bad/u0027, /u0027d_salf/u0027); return false;">Use a tissue</a>`);
   }
   if (((s as any).mc_inventory ?? 0)?.['painkillers'] > 0  &&  ((s as any).pain ?? 0)?.['total'] > 0) {
     // TODO-QSP: dynamic text: 'You have <b><<mc_inventory[''painkillers'']>></b> painkiller'+iif(mc_inventory[...
-    scene.text('You have <b>' + ((s as any).mc_inventory ?? 0)?.['painkillers'] ?? '' + '</b> painkiller\'+iif(mc_inventory[\'painkillers\'] > 1, \'s \', \' \')+\'left in your purse. <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027drugs/u0027, /u0027painkiller/u0027); return false;">' + qspFunc(s, 'drugs', 'painkiller_act_str') + '</a>');
+    scene.text('You have <b>' + (((s as any).mc_inventory ?? 0)?.['painkillers'] ?? '') + '</b> painkiller\'+iif(mc_inventory[\'painkillers\'] > 1, \'s \', \' \')+\'left in your purse. <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027drugs/u0027, /u0027painkiller/u0027); return false;">' + qspFunc(s, 'drugs', 'painkiller_act_str') + '</a>');
   } else {
     if (((s as any).mc_inventory ?? 0)?.['painkillers'] > 0) {
       // TODO-QSP: dynamic text: 'You have <b><<mc_inventory[''painkillers'']>></b> painkiller'+iif(mc_inventory[...
-      scene.text(`You have <b>${((s as any).mc_inventory ?? 0)?.['painkillers'] ?? ''}</b> painkiller` + ((((s as any).mc_inventory ?? 0)?.['painkillers'] > 1) ? ('s ') : (' ')) + 'left in your purse.');
+      scene.text(`You have <b>${(((s as any).mc_inventory ?? 0)?.['painkillers'] ?? '')}</b> painkiller` + ((((s as any).mc_inventory ?? 0)?.['painkillers'] > 1) ? ('s ') : (' ')) + 'left in your purse.');
     }
   }
   if (((s as any).mc_inventory ?? 0)?.['mouthwash'] > 0  &&  (((s as any).pcs_breath ?? 0) === 0  ||  ((s as any).cumloc ?? 0)[12] === 1)) {
     // TODO-QSP: dynamic text: There''s mouthwash in your purse. <b><<mc_inventory[''mouthwash'']>></b> uses re...
-    scene.text(`There's mouthwash in your purse. <b>${((s as any).mc_inventory ?? 0)?.['mouthwash'] ?? ''}</b> uses remaining. <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027din_bad/u0027, /u0027d_mouthwash/u0027); return false;">Use mouthwash</a>`);
+    scene.text(`There's mouthwash in your purse. <b>${(((s as any).mc_inventory ?? 0)?.['mouthwash'] ?? '')}</b> uses remaining. <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027din_bad/u0027, /u0027d_mouthwash/u0027); return false;">Use mouthwash</a>`);
   } else {
     if (((s as any).mc_inventory ?? 0)?.['mouthwash'] > 0  &&  ((s as any).pcs_breath ?? 0) === 1  &&  ((s as any).cumloc ?? 0)[12] === 0) {
       // TODO-QSP: dynamic text: There''s mouthwash in your purse. <b><<mc_inventory[''mouthwash'']>></b> uses re...
-      scene.text(`There's mouthwash in your purse. <b>${((s as any).mc_inventory ?? 0)?.['mouthwash'] ?? ''}</b> uses remaining.`);
+      scene.text(`There's mouthwash in your purse. <b>${(((s as any).mc_inventory ?? 0)?.['mouthwash'] ?? '')}</b> uses remaining.`);
     }
   }
   if (((s as any).mc_inventory ?? 0)?.['travel_mirror'] === 1) {
@@ -137,19 +137,19 @@ function enterDBag(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).mc_inventory ?? 0)?.['deodorant'] > 0  &&  (!((s as any).deodorant_on ?? 0))) {
     // TODO-QSP: dynamic text: There''s <a href="exec:hscrunchw = 0 & gs ''din_bad'', ''p_deodorant''">deodoran...
-    scene.text(`There's <a href="#" onclick="window.__gameStore.setState((s) => { s.hscrunchw = s.0; return s; }); window.__gameStore.getState().doGoto(/u0027din_bad/u0027, /u0027p_deodorant/u0027); return false;">deodorant</a> in your purse. <b>${((s as any).mc_inventory ?? 0)?.['deodorant'] ?? ''}</b> uses remaining.`);
+    scene.text(`There's <a href="#" onclick="window.__gameStore.setState((s) => { s.hscrunchw = s.0; return s; }); window.__gameStore.getState().doGoto(/u0027din_bad/u0027, /u0027p_deodorant/u0027); return false;">deodorant</a> in your purse. <b>${(((s as any).mc_inventory ?? 0)?.['deodorant'] ?? '')}</b> uses remaining.`);
   } else {
     if (((s as any).mc_inventory ?? 0)?.['deodorant'] > 0  &&  ((s as any).deodorant_on ?? 0) === 1) {
       // TODO-QSP: dynamic text: You are already wearing deodorant. <b><<mc_inventory[''deodorant'']>></b> uses r...
-      scene.text(`You are already wearing deodorant. <b>${((s as any).mc_inventory ?? 0)?.['deodorant'] ?? ''}</b> uses remaining.`);
+      scene.text(`You are already wearing deodorant. <b>${(((s as any).mc_inventory ?? 0)?.['deodorant'] ?? '')}</b> uses remaining.`);
     } else {
       if (((s as any).mc_inventory ?? 0)?.['deodorant'] === 0  &&  (!((s as any).deodorant_on ?? 0))) {
         // TODO-QSP: dynamic text: You are not wearing deodorant. <b><<mc_inventory[''deodorant'']>></b> uses remai...
-        scene.text(`You are not wearing deodorant. <b>${((s as any).mc_inventory ?? 0)?.['deodorant'] ?? ''}</b> uses remaining.`);
+        scene.text(`You are not wearing deodorant. <b>${(((s as any).mc_inventory ?? 0)?.['deodorant'] ?? '')}</b> uses remaining.`);
       } else {
         if (((s as any).mc_inventory ?? 0)?.['deodorant'] === 0  &&  ((s as any).deodorant_on ?? 0) === 1) {
           // TODO-QSP: dynamic text: You are already wearing deodorant. <b><<mc_inventory[''deodorant'']>></b> uses r...
-          scene.text(`You are already wearing deodorant. <b>${((s as any).mc_inventory ?? 0)?.['deodorant'] ?? ''}</b> uses remaining.`);
+          scene.text(`You are already wearing deodorant. <b>${(((s as any).mc_inventory ?? 0)?.['deodorant'] ?? '')}</b> uses remaining.`);
         }
       }
     }
@@ -165,11 +165,11 @@ function enterDBag(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_hairbsh ?? 0) > 0  &&  ((s as any).pcs_hairlng ?? 0) > 80  &&  (!((s as any).hbraids ?? 0))) {
     if (((s as any).mc_inventory ?? 0)?.['scrunchies'] >= 1  &&  ((s as any).hscrunchw ?? 0) + ((s as any).hpingripw ?? 0) === 0) {
       // TODO-QSP: dynamic text: As you have a scrunchy, you can arrange your hair into a <a href="exec:hscrunchw...
-      scene.text(`As you have a scrunchy, you can arrange your hair into a <a href="#" onclick="window.__gameStore.setState((s) => { s.hscrunchw = s.1; return s; }); window.__gameStore.getState().doGoto(/u0027din_bad/u0027, /u0027d_bag/u0027); return false;">ponytail</a>. You have ${((s as any).mc_inventory ?? 0)?.['scrunchies'] ?? ''} scrunchies left.`);
+      scene.text(`As you have a scrunchy, you can arrange your hair into a <a href="#" onclick="window.__gameStore.setState((s) => { s.hscrunchw = s.1; return s; }); window.__gameStore.getState().doGoto(/u0027din_bad/u0027, /u0027d_bag/u0027); return false;">ponytail</a>. You have ${(((s as any).mc_inventory ?? 0)?.['scrunchies'] ?? '')} scrunchies left.`);
     }
     if (((s as any).pcs_hairlng ?? 0) <= 400  &&  ((s as any).mc_inventory ?? 0)?.['kirbygrips'] >= 1  &&  ((s as any).hscrunchw ?? 0) + ((s as any).hpingripw ?? 0) === 0) {
       // TODO-QSP: dynamic text: You have several clips, pins and grips for you hair. Hence, you can <a href="exe...
-      scene.text(`You have several clips, pins and grips for you hair. Hence, you can <a href="#" onclick="window.__gameStore.setState((s) => { s.hpingripw = s.1; return s; }); window.__gameStore.getState().doGoto(/u0027din_bad/u0027, /u0027d_bag/u0027); return false;">updo your hair</a>. You have ${((s as any).mc_inventory ?? 0)?.['kirbygrips'] ?? ''} hair accessories at your disposal.`);
+      scene.text(`You have several clips, pins and grips for you hair. Hence, you can <a href="#" onclick="window.__gameStore.setState((s) => { s.hpingripw = s.1; return s; }); window.__gameStore.getState().doGoto(/u0027din_bad/u0027, /u0027d_bag/u0027); return false;">updo your hair</a>. You have ${(((s as any).mc_inventory ?? 0)?.['kirbygrips'] ?? '')} hair accessories at your disposal.`);
     }
     if (((s as any).pcs_hairlng ?? 0) <= 800  &&  ((s as any).mc_inventory ?? 0)?.['scrunchies'] >= 1) {
       if (((s as any).mc_inventory ?? 0)?.['scrunchies'] >= 2  &&  ((s as any).hscrunchw ?? 0) + ((s as any).hpingripw ?? 0) === 0) {
@@ -197,7 +197,7 @@ function enterDBag(s: GameState, scene: SceneBuilder): void {
   if (((s as any).mc_inventory ?? 0)?.['equipped_condoms'] + ((s as any).mc_inventory ?? 0)?.['normal_condoms'] + ((s as any).mc_inventory ?? 0)?.['sabotaged_condoms'] > 0) {
     if (((s as any).preziktype ?? 0) === 2  ||  ((s as any).mc_inventory ?? 0)?.['sabotaged_condoms'] > 0) {
       // TODO-QSP: dynamic text: You have <b><<iif(preziktype = 2, mc_inventory[''normal_condoms''], mc_inventory...
-      scene.text(`You have <b>${((((s as any).preziktype ?? 0) === 2) ? (((s as any).mc_inventory ?? 0)?.['normal_condoms'] ?? '') : ((((s as any).mc_inventory ?? {})?.['normal_condoms'] ?? 0)+(((s as any).mc_inventory ?? {})?.['equipped_condoms'] ?? 0)))}</b> normal condoms left, and <b>${((((s as any).preziktype ?? 0) === 2) ? ((((s as any).mc_inventory ?? {})?.['equipped_condoms'] ?? 0)+(((s as any).mc_inventory ?? {})?.['sabotaged_condoms'] ?? 0)) : (((s as any).mc_inventory ?? 0)?.['sabotaged_condoms'] ?? ''))}</b> sabotaged <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027din_bad/u0027, /u0027din_Switch_Condom_Menu/u0027); return false;">condoms left in your purse.</a>`);
+      scene.text(`You have <b>${((((s as any).preziktype ?? 0) === 2) ? ((((s as any).mc_inventory ?? 0)?.['normal_condoms'] ?? '')) : ((((s as any).mc_inventory ?? {})?.['normal_condoms'] ?? 0)+(((s as any).mc_inventory ?? {})?.['equipped_condoms'] ?? 0)))}</b> normal condoms left, and <b>${((((s as any).preziktype ?? 0) === 2) ? ((((s as any).mc_inventory ?? {})?.['equipped_condoms'] ?? 0)+(((s as any).mc_inventory ?? {})?.['sabotaged_condoms'] ?? 0)) : ((((s as any).mc_inventory ?? 0)?.['sabotaged_condoms'] ?? '')))}</b> sabotaged <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027din_bad/u0027, /u0027din_Switch_Condom_Menu/u0027); return false;">condoms left in your purse.</a>`);
     } else {
       if (((s as any).preziktype ?? 0) < 2  &&  ((s as any).mc_inventory ?? 0)?.['sabotaged_condoms'] === 0) {
         // TODO-QSP: dynamic text: You have <b><<mc_inventory[''normal_condoms'']+mc_inventory[''equipped_condoms''...
@@ -209,7 +209,7 @@ function enterDBag(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).mc_inventory ?? 0)?.['lubricant'] > 0) {
     // TODO-QSP: dynamic text: You have <b><<mc_inventory[''lubricant'']>></b> squirts of lubricant available
-    scene.text(`You have <b>${((s as any).mc_inventory ?? 0)?.['lubricant'] ?? ''}</b> squirts of lubricant available`);
+    scene.text(`You have <b>${(((s as any).mc_inventory ?? 0)?.['lubricant'] ?? '')}</b> squirts of lubricant available`);
     if ((!((s as any).auto_anal_lube ?? 0))) {
       scene.text('Automatically use for anal sex: <a href="#" onclick="window.__gameStore.setState((s) => { s.auto_anal_lube = s.1; return s; }); window.__gameStore.getState().doGoto(/u0027stat/u0027, /u0027/u0027); return false;">No</a>');
     } else {
@@ -227,15 +227,15 @@ function enterDBag(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).mc_inventory ?? 0)?.['amphetamine'] > 0) {
     // TODO-QSP: dynamic text: You have <b><<mc_inventory[''amphetamine'']>></b> tablets of amphetamine left in...
-    scene.text(`You have <b>${((s as any).mc_inventory ?? 0)?.['amphetamine'] ?? ''}</b> tablets of amphetamine left in your purse. <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027drugs/u0027, /u0027amphetamine/u0027); return false;">Take One</a>`);
+    scene.text(`You have <b>${(((s as any).mc_inventory ?? 0)?.['amphetamine'] ?? '')}</b> tablets of amphetamine left in your purse. <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027drugs/u0027, /u0027amphetamine/u0027); return false;">Take One</a>`);
   }
   if (((s as any).mc_inventory ?? 0)?.['joints'] > 0) {
     // TODO-QSP: dynamic text: You have enough weed for <b><<mc_inventory[''joints'']>></b> joints.
-    scene.text(`You have enough weed for <b>${((s as any).mc_inventory ?? 0)?.['joints'] ?? ''}</b> joints.`);
+    scene.text(`You have enough weed for <b>${(((s as any).mc_inventory ?? 0)?.['joints'] ?? '')}</b> joints.`);
   }
   if (((s as any).mc_inventory ?? 0)?.['contraceptive_pill'] > 0  &&  ((s as any).pillsleft ?? 0)?.[String((s as any).ptype ?? 0)] > 0) {
     // TODO-QSP: dynamic text: You have <b><<mc_inventory[''contraceptive_pill'']>></b> unopened packages of <a...
-    scene.text(`You have <b>${((s as any).mc_inventory ?? 0)?.['contraceptive_pill'] ?? ''}</b> unopened packages of <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027din_bad/u0027, /u0027d_tabletkied/u0027); return false;">birth control pills</a> and <b>${(((s as any).pillsleft ?? 0)?.[String((s as any).ptype ?? 0)] ?? '')}</b> pills left in your opened package.`);
+    scene.text(`You have <b>${(((s as any).mc_inventory ?? 0)?.['contraceptive_pill'] ?? '')}</b> unopened packages of <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027din_bad/u0027, /u0027d_tabletkied/u0027); return false;">birth control pills</a> and <b>${(((s as any).pillsleft ?? 0)?.[String((s as any).ptype ?? 0)] ?? '')}</b> pills left in your opened package.`);
   } else {
     if (((s as any).mc_inventory ?? 0)?.['contraceptive_pill']  === 0  &&  ((s as any).pillsleft ?? 0)?.[String((s as any).ptype ?? 0)] > 0) {
       // TODO-QSP: dynamic text: You have <b><<pillsleft[ptype]>></b> <a href="exec:gs ''din_bad'', ''d_tabletkie...
@@ -243,7 +243,7 @@ function enterDBag(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).mc_inventory ?? 0)?.['contraceptive_pill'] > 0  &&  ((s as any).pillsleft ?? 0)?.[String((s as any).ptype ?? 0)] === 0) {
         // TODO-QSP: dynamic text: You have <b><<mc_inventory[''contraceptive_pill'']>></b> unopened packages of <a...
-        scene.text(`You have <b>${((s as any).mc_inventory ?? 0)?.['contraceptive_pill'] ?? ''}</b> unopened packages of <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027din_bad/u0027, /u0027d_tabletkied/u0027); return false;">birth control pills</a> in your purse.`);
+        scene.text(`You have <b>${(((s as any).mc_inventory ?? 0)?.['contraceptive_pill'] ?? '')}</b> unopened packages of <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027din_bad/u0027, /u0027d_tabletkied/u0027); return false;">birth control pills</a> in your purse.`);
       } else {
         scene.text('You are out of <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027din_bad/u0027, /u0027d_tabletkied/u0027); return false;">birth control pills</a>.');
       }
@@ -254,31 +254,31 @@ function enterDBag(s: GameState, scene: SceneBuilder): void {
       scene.text('You have one <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027medical_din/u0027, /u0027morning_after_pill/u0027); return false;">morning after pill</a>.');
     } else {
       // TODO-QSP: dynamic text: You have <b><<mc_inventory[''morning_after_pill'']>></b> <a href="exec:gs''medic...
-      scene.text(`You have <b>${((s as any).mc_inventory ?? 0)?.['morning_after_pill'] ?? ''}</b> <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027medical_din/u0027, /u0027morning_after_pill/u0027); return false;">morning after pills</a>.`);
+      scene.text(`You have <b>${(((s as any).mc_inventory ?? 0)?.['morning_after_pill'] ?? '')}</b> <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027medical_din/u0027, /u0027morning_after_pill/u0027); return false;">morning after pills</a>.`);
     }
   } else {
     scene.text('You have no morning after pills.');
   }
   if (((s as any).mc_inventory ?? 0)?.['mentats'] > 0  &&  ((s as any).drugVars ?? 0)?.['mentats_dose'] < 3) {
     // TODO-QSP: dynamic text: <a href="exec: gs ''drugs'', ''mentats'' & gs ''din_bad'', ''d_bag'' & *pl ''<fo...
-    scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: *pl /u0027<font color = green><br>You swallow the neurobooster pill.</font>/u0027 */ return s; }); window.__gameStore.getState().doGoto(/u0027drugs/u0027, /u0027mentats/u0027); return false;">Use a neurobooster pill in your purse.</a> There are <b>${((s as any).mc_inventory ?? 0)?.['mentats'] ?? ''}</b> pills left. The warning label says not to take more than one per day.`);
+    scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: *pl /u0027<font color = green><br>You swallow the neurobooster pill.</font>/u0027 */ return s; }); window.__gameStore.getState().doGoto(/u0027drugs/u0027, /u0027mentats/u0027); return false;">Use a neurobooster pill in your purse.</a> There are <b>${(((s as any).mc_inventory ?? 0)?.['mentats'] ?? '')}</b> pills left. The warning label says not to take more than one per day.`);
   } else {
     if (((s as any).mc_inventory ?? 0)?.['mentats'] > 0) {
       // TODO-QSP: dynamic text: There are <b><<mc_inventory[''mentats'']>></b> neurobooster pills left. You real...
-      scene.text(`There are <b>${((s as any).mc_inventory ?? 0)?.['mentats'] ?? ''}</b> neurobooster pills left. You really shouldn't take any more pills today.`);
+      scene.text(`There are <b>${(((s as any).mc_inventory ?? 0)?.['mentats'] ?? '')}</b> neurobooster pills left. You really shouldn't take any more pills today.`);
     }
   }
   if (((s as any).mc_inventory ?? 0)?.['steroids'] > 0) {
     // TODO-QSP: dynamic text: <a href="exec: gs ''drugs'', ''steroids'' & gs ''din_bad'', ''d_bag''">Use stero...
-    scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027drugs/u0027, /u0027steroids/u0027); return false;">Use steroids.</a> You have <b>${((s as any).mc_inventory ?? 0)?.['steroids'] ?? ''}</b> steroids left in your purse.`);
+    scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027drugs/u0027, /u0027steroids/u0027); return false;">Use steroids.</a> You have <b>${(((s as any).mc_inventory ?? 0)?.['steroids'] ?? '')}</b> steroids left in your purse.`);
   }
   if (((s as any).mc_inventory ?? 0)?.['breastcream'] > 0) {
     // TODO-QSP: dynamic text: <a href="exec: gs ''drugs'', ''breastcream'' & gs ''din_bad'', ''d_bag''">Apply ...
-    scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027drugs/u0027, /u0027breastcream/u0027); return false;">Apply breast cream.</a> You have <b>${((s as any).mc_inventory ?? 0)?.['breastcream'] ?? ''}</b> cream left in your purse.`);
+    scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027drugs/u0027, /u0027breastcream/u0027); return false;">Apply breast cream.</a> You have <b>${(((s as any).mc_inventory ?? 0)?.['breastcream'] ?? '')}</b> cream left in your purse.`);
   }
   if (((s as any).mc_inventory ?? 0)?.['aphrodisiac'] > 0) {
     // TODO-QSP: dynamic text: <a href="exec: gs ''drugs'', ''aphrodisiac'' & gs ''din_bad'', ''d_bag'' & *pl $...
-    scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: *pl $drugVars[/u0027aphrodisiac_msg/u0027] */ /* TODO-QSP: *pl $min_arousal_msg */ /* TODO-QSP: killvar /u0027$min_arousal_msg/u0027 */ return s; }); window.__gameStore.getState().doGoto(/u0027drugs/u0027, /u0027aphrodisiac/u0027); return false;">Chew aphrodisiac gum.</a> You have <b>${((s as any).mc_inventory ?? 0)?.['aphrodisiac'] ?? ''}</b> gum left in your purse.`);
+    scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: *pl $drugVars[/u0027aphrodisiac_msg/u0027] */ /* TODO-QSP: *pl $min_arousal_msg */ /* TODO-QSP: killvar /u0027$min_arousal_msg/u0027 */ return s; }); window.__gameStore.getState().doGoto(/u0027drugs/u0027, /u0027aphrodisiac/u0027); return false;">Chew aphrodisiac gum.</a> You have <b>${(((s as any).mc_inventory ?? 0)?.['aphrodisiac'] ?? '')}</b> gum left in your purse.`);
   }
   if (((s as any).mc_inventory ?? 0)?.['refill_bottle_water'] === 4  &&  ((s as any).mc_inventory ?? 0)?.['refill_bottle'] >= 1) {
     // TODO-QSP: dynamic text: You carry your sports water bottle in your purse. It''s still completely full. <...
@@ -403,7 +403,7 @@ function enterDin_Switch_Condom_Menu(s: GameState, scene: SceneBuilder): void {
   scene.text('<td cellspacing="0" cellpadding="0" valign="top">');
   (s as any).i = 0;
   // TODO-QSP: dynamic text: You have <<iif(preziktype < 2, mc_inventory[''equipped_condoms'']+mc_inventory['...
-  scene.text(`You have ${((((s as any).preziktype ?? 0) < 2) ? ((((s as any).mc_inventory ?? {})?.['equipped_condoms'] ?? 0)+(((s as any).mc_inventory ?? {})?.['normal_condoms'] ?? 0)) : (((s as any).mc_inventory ?? 0)?.['normal_condoms'] ?? ''))} normal condoms left and ${((((s as any).preziktype ?? 0) === 2) ? ((((s as any).mc_inventory ?? {})?.['equipped_condoms'] ?? 0)+(((s as any).mc_inventory ?? {})?.['sabotaged_condoms'] ?? 0)) : (((s as any).mc_inventory ?? 0)?.['sabotaged_condoms'] ?? ''))} sabotaged condoms left.`);
+  scene.text(`You have ${((((s as any).preziktype ?? 0) < 2) ? ((((s as any).mc_inventory ?? {})?.['equipped_condoms'] ?? 0)+(((s as any).mc_inventory ?? {})?.['normal_condoms'] ?? 0)) : ((((s as any).mc_inventory ?? 0)?.['normal_condoms'] ?? '')))} normal condoms left and ${((((s as any).preziktype ?? 0) === 2) ? ((((s as any).mc_inventory ?? {})?.['equipped_condoms'] ?? 0)+(((s as any).mc_inventory ?? {})?.['sabotaged_condoms'] ?? 0)) : ((((s as any).mc_inventory ?? 0)?.['sabotaged_condoms'] ?? '')))} sabotaged condoms left.`);
   if (((s as any).preziktype ?? 0) > 0) {
     scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027din_bad/u0027, /u0027din_Do_Condom_Counts/u0027, String(window.__gameStore.getState().1 ?? /u0027/u0027)); return false;">Switch to using normal condoms</a>.');
   }
@@ -436,7 +436,7 @@ function enterDin_Table_Condom_Menu(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).i = 1;
   // TODO-QSP: dynamic text: You have <<iif(preziktype < 2, mc_inventory[''equipped_condoms'']+mc_inventory['...
-  scene.text(`You have ${((((s as any).preziktype ?? 0) < 2) ? ((((s as any).mc_inventory ?? {})?.['equipped_condoms'] ?? 0)+(((s as any).mc_inventory ?? {})?.['normal_condoms'] ?? 0)) : (((s as any).mc_inventory ?? 0)?.['normal_condoms'] ?? ''))} normal condoms left and  ${((((s as any).preziktype ?? 0) === 2) ? ((((s as any).mc_inventory ?? {})?.['equipped_condoms'] ?? 0)+(((s as any).mc_inventory ?? {})?.['sabotaged_condoms'] ?? 0)) : (((s as any).mc_inventory ?? 0)?.['sabotaged_condoms'] ?? ''))} sabotaged condoms left.`);
+  scene.text(`You have ${((((s as any).preziktype ?? 0) < 2) ? ((((s as any).mc_inventory ?? {})?.['equipped_condoms'] ?? 0)+(((s as any).mc_inventory ?? {})?.['normal_condoms'] ?? 0)) : ((((s as any).mc_inventory ?? 0)?.['normal_condoms'] ?? '')))} normal condoms left and  ${((((s as any).preziktype ?? 0) === 2) ? ((((s as any).mc_inventory ?? {})?.['equipped_condoms'] ?? 0)+(((s as any).mc_inventory ?? {})?.['sabotaged_condoms'] ?? 0)) : ((((s as any).mc_inventory ?? 0)?.['sabotaged_condoms'] ?? '')))} sabotaged condoms left.`);
   if (((s as any).preziktype ?? 0) > 0) {
     scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027din_bad/u0027, /u0027din_Do_Condom_Counts/u0027, String(window.__gameStore.getState().1 ?? /u0027/u0027)); return false;">Switch to using normal condoms</a>.');
   }
@@ -491,13 +491,13 @@ function enterDin_Do_Condom_Counts(s: GameState, scene: SceneBuilder): void {
 
 function enterSetCondomUsed(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).preziktype ?? 0))) {
-    ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['normal_condoms'] = ((s as any).mc_inventory ?? 0)?.['equipped_condoms'];
+    ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['normal_condoms'] = (((s as any).mc_inventory ?? 0)?.['equipped_condoms']);
   }
   if (((s as any).preziktype ?? 0) === 2) {
-    ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['sabotaged_condoms'] = ((s as any).mc_inventory ?? 0)?.['equipped_condoms'];
+    ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['sabotaged_condoms'] = (((s as any).mc_inventory ?? 0)?.['equipped_condoms']);
   }
   if (String((s as any).locArgs?.[1] ?? '') === 'normal') {
-    ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['equipped_condoms'] = ((s as any).mc_inventory ?? 0)?.['normal_condoms'];
+    ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['equipped_condoms'] = (((s as any).mc_inventory ?? 0)?.['normal_condoms']);
     ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['normal_condoms'] = 0;
     (s as any).preziktype = 0;
   } else {
@@ -506,7 +506,7 @@ function enterSetCondomUsed(s: GameState, scene: SceneBuilder): void {
       (s as any).preziktype = 1;
     } else {
       if (String((s as any).locArgs?.[1] ?? '') === 'sabotaged') {
-        ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['equipped_condoms'] = ((s as any).mc_inventory ?? 0)?.['sabotaged_condoms'];
+        ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['equipped_condoms'] = (((s as any).mc_inventory ?? 0)?.['sabotaged_condoms']);
         ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['sabotaged_condoms'] = 0;
         (s as any).preziktype = 2;
       }
@@ -546,7 +546,7 @@ function enterDin_Update_Condom_Counts(s: GameState, scene: SceneBuilder): void 
   }
   if ((!((s as any).preziktype ?? 0))) {
     if (((s as any).mc_inventory ?? 0)?.['normal_condoms'] > 0) {
-      ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['equipped_condoms'] = ((s as any).mc_inventory['equipped_condoms'] ?? 0) + (((s as any).mc_inventory ?? 0)?.['normal_condoms']);
+      ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['equipped_condoms'] = ((s as any).mc_inventory['equipped_condoms'] ?? 0) + ((((s as any).mc_inventory ?? 0)?.['normal_condoms']));
       ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['normal_condoms'] = 0;
     }
     if (((s as any).mc_inventory ?? 0)?.['equipped_condoms'] <= 0) {
@@ -558,13 +558,13 @@ function enterDin_Update_Condom_Counts(s: GameState, scene: SceneBuilder): void 
   } else {
     if (((s as any).preziktype ?? 0) === 1) {
       if (((s as any).mc_inventory ?? 0)?.['equipped_condoms'] > 0) {
-        ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['normal_condoms'] = ((s as any).mc_inventory['normal_condoms'] ?? 0) + (((s as any).mc_inventory ?? 0)?.['equipped_condoms']);
+        ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['normal_condoms'] = ((s as any).mc_inventory['normal_condoms'] ?? 0) + ((((s as any).mc_inventory ?? 0)?.['equipped_condoms']));
         ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['equipped_condoms'] = 0;
       }
     } else {
       if (((s as any).preziktype ?? 0) === 2) {
         if (((s as any).mc_inventory ?? 0)?.['sabotaged_condoms'] > 0) {
-          ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['equipped_condoms'] = ((s as any).mc_inventory['equipped_condoms'] ?? 0) + (((s as any).mc_inventory ?? 0)?.['sabotaged_condoms']);
+          ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['equipped_condoms'] = ((s as any).mc_inventory['equipped_condoms'] ?? 0) + ((((s as any).mc_inventory ?? 0)?.['sabotaged_condoms']));
           ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['sabotaged_condoms'] = 0;
         }
         if (((s as any).mc_inventory ?? 0)?.['equipped_condoms'] <= 0  &&  ((s as any).mc_inventory ?? 0)?.['normal_condoms'] <= 0) {
@@ -578,7 +578,7 @@ function enterDin_Update_Condom_Counts(s: GameState, scene: SceneBuilder): void 
         } else {
           if (((s as any).mc_inventory ?? 0)?.['equipped_condoms'] <= 0  &&  ((s as any).mc_inventory ?? 0)?.['normal_condoms'] > 0) {
             scene.text('You have run out of sabotaged condoms so you will have to use normal condoms.');
-            ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['equipped_condoms'] = ((s as any).mc_inventory ?? 0)?.['normal_condoms'];
+            ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['equipped_condoms'] = (((s as any).mc_inventory ?? 0)?.['normal_condoms']);
             ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['normal_condoms'] = 0;
             (s as any).preziktype = 0;
           }
@@ -599,7 +599,7 @@ function enterDTabletkied(s: GameState, scene: SceneBuilder): void {
   if (((s as any).mc_inventory ?? 0)?.['contraceptive_pill'] > 0  ||  ((s as any).pillsleft ?? 0)?.[String((s as any).ptype ?? 0)] > 0) {
     if (((s as any).mc_inventory ?? 0)?.['contraceptive_pill'] > 0  &&  ((s as any).pillsleft ?? 0)?.[String((s as any).ptype ?? 0)] > 0) {
       // TODO-QSP: dynamic text: You have <<mc_inventory[''contraceptive_pill'']>> unopened packages of birth con...
-      scene.text(`You have ${((s as any).mc_inventory ?? 0)?.['contraceptive_pill'] ?? ''} unopened packages of birth control pills and ${(((s as any).pillsleft ?? 0)?.[String((s as any).ptype ?? 0)] ?? '')} pills left in your opened package.`);
+      scene.text(`You have ${(((s as any).mc_inventory ?? 0)?.['contraceptive_pill'] ?? '')} unopened packages of birth control pills and ${(((s as any).pillsleft ?? 0)?.[String((s as any).ptype ?? 0)] ?? '')} pills left in your opened package.`);
     } else {
       if (((s as any).mc_inventory ?? 0)?.['contraceptive_pill'] === 0  &&  ((s as any).pillsleft ?? 0)?.[String((s as any).ptype ?? 0)] > 0) {
         // TODO-QSP: dynamic text: You have <<pillsleft[ptype]>> birth control pills left.
@@ -607,7 +607,7 @@ function enterDTabletkied(s: GameState, scene: SceneBuilder): void {
       } else {
         if (((s as any).mc_inventory ?? 0)?.['contraceptive_pill'] > 0  &&  ((s as any).pillsleft ?? 0)?.[String((s as any).ptype ?? 0)] === 0) {
           // TODO-QSP: dynamic text: You have <<mc_inventory[''contraceptive_pill'']>> unopened packages of birth con...
-          scene.text(`You have ${((s as any).mc_inventory ?? 0)?.['contraceptive_pill'] ?? ''} unopened packages of birth control pills.`);
+          scene.text(`You have ${(((s as any).mc_inventory ?? 0)?.['contraceptive_pill'] ?? '')} unopened packages of birth control pills.`);
         }
       }
     }
@@ -680,7 +680,7 @@ function enterDTabletkiedt(s: GameState, scene: SceneBuilder): void {
   if (((s as any).mc_inventory ?? 0)?.['contraceptive_pill'] > 0  ||  ((s as any).pillsleft ?? 0)?.[String((s as any).ptype ?? 0)] > 0) {
     if (((s as any).mc_inventory ?? 0)?.['contraceptive_pill'] > 0  &&  ((s as any).pillsleft ?? 0)?.[String((s as any).ptype ?? 0)] > 0) {
       // TODO-QSP: dynamic text: You have <<mc_inventory[''contraceptive_pill'']>> unopened packages of birth con...
-      scene.text(`You have ${((s as any).mc_inventory ?? 0)?.['contraceptive_pill'] ?? ''} unopened packages of birth control pills and ${(((s as any).pillsleft ?? 0)?.[String((s as any).ptype ?? 0)] ?? '')} pills left in your opened package.`);
+      scene.text(`You have ${(((s as any).mc_inventory ?? 0)?.['contraceptive_pill'] ?? '')} unopened packages of birth control pills and ${(((s as any).pillsleft ?? 0)?.[String((s as any).ptype ?? 0)] ?? '')} pills left in your opened package.`);
     } else {
       if (((s as any).mc_inventory ?? 0)?.['contraceptive_pill'] === 0  &&  ((s as any).pillsleft ?? 0)?.[String((s as any).ptype ?? 0)] > 0) {
         // TODO-QSP: dynamic text: You have <<pillsleft[ptype]>> birth control pills left.
@@ -688,7 +688,7 @@ function enterDTabletkiedt(s: GameState, scene: SceneBuilder): void {
       } else {
         if (((s as any).mc_inventory ?? 0)?.['contraceptive_pill'] > 0  &&  ((s as any).pillsleft ?? 0)?.[String((s as any).ptype ?? 0)] === 0) {
           // TODO-QSP: dynamic text: You have <<mc_inventory[''contraceptive_pill'']>> unopened packages of birth con...
-          scene.text(`You have ${((s as any).mc_inventory ?? 0)?.['contraceptive_pill'] ?? ''} unopened packages of birth control pills.`);
+          scene.text(`You have ${(((s as any).mc_inventory ?? 0)?.['contraceptive_pill'] ?? '')} unopened packages of birth control pills.`);
         }
       }
     }
@@ -1134,7 +1134,7 @@ function enterDCycreportUpdate(s: GameState, scene: SceneBuilder): void {
   }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterComputeCycleState(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterComputeBcStatus(s, scene); (s as any).locArgs = __savedLocArgs; }
-  (s as any).cycreport_txt = ((s as any).stat_texts ?? 0)?.['cycle_state'];
+  (s as any).cycreport_txt = (((s as any).stat_texts ?? 0)?.['cycle_state']);
   if (((s as any).stat_texts ?? 0)?.['bc_status'] !== '') {
     // TODO-QSP: $cycreport_txt += ' ' + $stat_texts['bc_status']
   }
@@ -1144,9 +1144,9 @@ function enterDCycreportUpdate(s: GameState, scene: SceneBuilder): void {
 
 function enterDCycreportUpduedate(s: GameState, scene: SceneBuilder): void {
   (s as any).implant_calc = ((s as any).daystart ?? 0) - ((s as any).lastovulation ?? 0) + 5;
-  (s as any).gastation_time = (280 * 100) / Math.max(1, qspFunc(s, '_difficulty', 'get_multiplied', ((s as any).cheatVars ?? 0)?.['preg_speed'], 100, ((s as any).cheatVars ?? 0)?.['preg_speed_custom']));
+  (s as any).gastation_time = (280 * 100) / Math.max(1, qspFunc(s, '_difficulty', 'get_multiplied', (((s as any).cheatVars ?? 0)?.['preg_speed']), 100, (((s as any).cheatVars ?? 0)?.['preg_speed_custom'])));
   qspCall(s, 'time', 'to_date', ((s as any).daystart ?? 0) + ((s as any).gastation_time ?? 0) - ((s as any).implant_calc ?? 0));
-  (s as any).pregduedate = '' + ((s as any).dateVars ?? 0)?.['day'] + ' ' + (String(((s as any).dateVars ?? 0)?.['monthName']).slice((1)-1, ((1)-1)+(3))) + ' ' + ((s as any).dateVars ?? 0)?.['year'] + '';
+  (s as any).pregduedate = '' + (((s as any).dateVars ?? 0)?.['day']) + ' ' + (String((((s as any).dateVars ?? 0)?.['monthName'])).slice((1)-1, ((1)-1)+(3))) + ' ' + (((s as any).dateVars ?? 0)?.['year']) + '';
   return;
   // TODO-QSP: end
   scene.build();
@@ -1225,7 +1225,7 @@ function enterDPregmovement(s: GameState, scene: SceneBuilder): void {
 function enterTakepill(s: GameState, scene: SceneBuilder): void {
   ((s as any).birth_control = (s as any).birth_control ?? {})['using_bc'] = 3;
   if (((s as any).mc_inventory ?? 0)?.['contraceptive_pill'] > 0  &&  ((s as any).pillsleft ?? 0)?.[String((s as any).ptype ?? 0)] === 0) {
-    (s as any).tabletkirand = (Math.floor(Math.random() * (((s as any).mc_inventory ?? 0)?.['contraceptive_pill'] - 1 + 1)) + (1));
+    (s as any).tabletkirand = (Math.floor(Math.random() * ((((s as any).mc_inventory ?? 0)?.['contraceptive_pill']) - 1 + 1)) + (1));
     if (((s as any).tabletkirand ?? 0) <= ((s as any).tabletkiold ?? 0)) {
       ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['contraceptive_pill'] = ((s as any).mc_inventory['contraceptive_pill'] ?? 0) - (1);
       (s as any).tabletkiold = ((s as any).tabletkiold ?? 0) - (1);
@@ -1304,7 +1304,7 @@ function enterTakepill(s: GameState, scene: SceneBuilder): void {
                     }
                   }
                 } else {
-                  (s as any).EggRH = ((s as any).EggRH ?? 0) + ((Math.floor(Math.random() * ((((s as any).trait_vars ?? {})?.['fertility_bc_conditioning'] ?? 0) + 30 - ((s as any).trait_vars ?? 0)?.['fertility_bc_conditioning'] + 1)) + (((s as any).trait_vars ?? 0)?.['fertility_bc_conditioning'])));
+                  (s as any).EggRH = ((s as any).EggRH ?? 0) + ((Math.floor(Math.random() * ((((s as any).trait_vars ?? {})?.['fertility_bc_conditioning'] ?? 0) + 30 - (((s as any).trait_vars ?? 0)?.['fertility_bc_conditioning']) + 1)) + ((((s as any).trait_vars ?? 0)?.['fertility_bc_conditioning']))));
                   if (((s as any).trait_vars ?? 0)?.['fertility_bc_conditioning'] < 50) {
                     ((s as any).trait_vars = (s as any).trait_vars ?? {})['fertility_bc_conditioning'] = ((s as any).trait_vars['fertility_bc_conditioning'] ?? 0) + (1);
                   }
@@ -1845,18 +1845,18 @@ function enterComputeCycleState(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).cheatVars ?? 0)?.['track_period'] === 1) {
     if (((s as any).cycle ?? 0) === 2) {
-      ((s as any).stat_texts = (s as any).stat_texts ?? {})['cycle_state'] = 'It has been ' + (((s as any).temp ?? 0)?.[1] ?? 0) + ' days since the start of your last period.' + ((s as any).stat_texts ?? 0)?.['cycle_feel'] + ' You are ovulating.';
+      ((s as any).stat_texts = (s as any).stat_texts ?? {})['cycle_state'] = 'It has been ' + (((s as any).temp ?? 0)?.[1] ?? 0) + ' days since the start of your last period.' + (((s as any).stat_texts ?? 0)?.['cycle_feel']) + ' You are ovulating.';
     } else {
       if (((s as any).cycle ?? 0) === 1  &&  ((s as any).focH ?? 0) > ((s as any).focH_max ?? 0) - 96) {
-        ((s as any).stat_texts = (s as any).stat_texts ?? {})['cycle_state'] = 'It has been ' + (((s as any).temp ?? 0)?.[1] ?? 0) + ' days since the start of your last period.' + ((s as any).stat_texts ?? 0)?.['cycle_feel'] + ' You are approaching ovulation.';
+        ((s as any).stat_texts = (s as any).stat_texts ?? {})['cycle_state'] = 'It has been ' + (((s as any).temp ?? 0)?.[1] ?? 0) + ' days since the start of your last period.' + (((s as any).stat_texts ?? 0)?.['cycle_feel']) + ' You are approaching ovulation.';
       } else {
         if (((s as any).cycle ?? 0) === 1) {
-          ((s as any).stat_texts = (s as any).stat_texts ?? {})['cycle_state'] = 'It has been ' + (((s as any).temp ?? 0)?.[1] ?? 0) + ' days since the start of your last period.' + ((s as any).stat_texts ?? 0)?.['cycle_feel'] + ' You are in your follicular phase.';
+          ((s as any).stat_texts = (s as any).stat_texts ?? {})['cycle_state'] = 'It has been ' + (((s as any).temp ?? 0)?.[1] ?? 0) + ' days since the start of your last period.' + (((s as any).stat_texts ?? 0)?.['cycle_feel']) + ' You are in your follicular phase.';
         } else {
           if (((s as any).cycle ?? 0) === 3) {
-            ((s as any).stat_texts = (s as any).stat_texts ?? {})['cycle_state'] = 'It has been ' + (((s as any).temp ?? 0)?.[1] ?? 0) + ' days since the start of your last period.' + ((s as any).stat_texts ?? 0)?.['cycle_feel'] + ' You are in your luteal phase.';
+            ((s as any).stat_texts = (s as any).stat_texts ?? {})['cycle_state'] = 'It has been ' + (((s as any).temp ?? 0)?.[1] ?? 0) + ' days since the start of your last period.' + (((s as any).stat_texts ?? 0)?.['cycle_feel']) + ' You are in your luteal phase.';
           } else {
-            ((s as any).stat_texts = (s as any).stat_texts ?? {})['cycle_state'] = 'It has been ' + (((s as any).temp ?? 0)?.[1] ?? 0) + ' days since the start of your last period.' + ((s as any).stat_texts ?? 0)?.['cycle_feel'] + '';
+            ((s as any).stat_texts = (s as any).stat_texts ?? {})['cycle_state'] = 'It has been ' + (((s as any).temp ?? 0)?.[1] ?? 0) + ' days since the start of your last period.' + (((s as any).stat_texts ?? 0)?.['cycle_feel']) + '';
           }
         }
       }
@@ -1864,19 +1864,19 @@ function enterComputeCycleState(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).pcs_intel ?? 0) >= 50) {
       if (((s as any).stat ?? 0)?.['preg_risk'] === 'safe'  &&  ((s as any).temp ?? 0)[1] < 6) {
-        ((s as any).stat_texts = (s as any).stat_texts ?? {})['cycle_state'] = 'It has been ' + (((s as any).temp ?? 0)?.[1] ?? 0) + ' days since you last remember having a period.' + ((s as any).stat_texts ?? 0)?.['cycle_feel'] + ' You think you are in your follicular phase, early in your cycle.';
+        ((s as any).stat_texts = (s as any).stat_texts ?? {})['cycle_state'] = 'It has been ' + (((s as any).temp ?? 0)?.[1] ?? 0) + ' days since you last remember having a period.' + (((s as any).stat_texts ?? 0)?.['cycle_feel']) + ' You think you are in your follicular phase, early in your cycle.';
       } else {
         if (((s as any).stat ?? 0)?.['preg_risk'] === 'safe') {
-          ((s as any).stat_texts = (s as any).stat_texts ?? {})['cycle_state'] = 'It has been ' + (((s as any).temp ?? 0)?.[1] ?? 0) + ' days since you last remember having a period.' + ((s as any).stat_texts ?? 0)?.['cycle_feel'] + ' You think you are in your luteal phase.';
+          ((s as any).stat_texts = (s as any).stat_texts ?? {})['cycle_state'] = 'It has been ' + (((s as any).temp ?? 0)?.[1] ?? 0) + ' days since you last remember having a period.' + (((s as any).stat_texts ?? 0)?.['cycle_feel']) + ' You think you are in your luteal phase.';
         } else {
           if (((s as any).stat ?? 0)?.['preg_risk'] === 'prob_safe'  &&  ((s as any).temp ?? 0)[1] < 8) {
-            ((s as any).stat_texts = (s as any).stat_texts ?? {})['cycle_state'] = 'It has been ' + (((s as any).temp ?? 0)?.[1] ?? 0) + ' days since you last remember having a period.' + ((s as any).stat_texts ?? 0)?.['cycle_feel'] + ' You think you are approaching your fertile window.';
+            ((s as any).stat_texts = (s as any).stat_texts ?? {})['cycle_state'] = 'It has been ' + (((s as any).temp ?? 0)?.[1] ?? 0) + ' days since you last remember having a period.' + (((s as any).stat_texts ?? 0)?.['cycle_feel']) + ' You think you are approaching your fertile window.';
           } else {
             if (((s as any).stat ?? 0)?.['preg_risk'] === 'prob_safe') {
-              ((s as any).stat_texts = (s as any).stat_texts ?? {})['cycle_state'] = 'It has been ' + (((s as any).temp ?? 0)?.[1] ?? 0) + ' days since you last remember having a period.' + ((s as any).stat_texts ?? 0)?.['cycle_feel'] + ' You think you are leaving your fertile window.';
+              ((s as any).stat_texts = (s as any).stat_texts ?? {})['cycle_state'] = 'It has been ' + (((s as any).temp ?? 0)?.[1] ?? 0) + ' days since you last remember having a period.' + (((s as any).stat_texts ?? 0)?.['cycle_feel']) + ' You think you are leaving your fertile window.';
             } else {
               if (((s as any).stat ?? 0)?.['preg_risk'] === 'danger') {
-                ((s as any).stat_texts = (s as any).stat_texts ?? {})['cycle_state'] = 'It has been ' + (((s as any).temp ?? 0)?.[1] ?? 0) + ' days since you last remember having a period.' + ((s as any).stat_texts ?? 0)?.['cycle_feel'] + ' You think you are in your fertile window.';
+                ((s as any).stat_texts = (s as any).stat_texts ?? {})['cycle_state'] = 'It has been ' + (((s as any).temp ?? 0)?.[1] ?? 0) + ' days since you last remember having a period.' + (((s as any).stat_texts ?? 0)?.['cycle_feel']) + ' You think you are in your fertile window.';
               } else {
                 ((s as any).stat_texts = (s as any).stat_texts ?? {})['cycle_state'] = 'It has been ' + (((s as any).temp ?? 0)?.[1] ?? 0) + ' days since you last remember having a period.';
               }
@@ -1886,15 +1886,15 @@ function enterComputeCycleState(s: GameState, scene: SceneBuilder): void {
       }
     } else {
       if (((s as any).stat ?? 0)?.['preg_risk'] === 'safe') {
-        ((s as any).stat_texts = (s as any).stat_texts ?? {})['cycle_state'] = 'It has been ' + (((s as any).temp ?? 0)?.[1] ?? 0) + ' days since you last remember having a period.' + ((s as any).stat_texts ?? 0)?.['cycle_feel'] + ' It should be safe to have unprotected sex.';
+        ((s as any).stat_texts = (s as any).stat_texts ?? {})['cycle_state'] = 'It has been ' + (((s as any).temp ?? 0)?.[1] ?? 0) + ' days since you last remember having a period.' + (((s as any).stat_texts ?? 0)?.['cycle_feel']) + ' It should be safe to have unprotected sex.';
       } else {
         if (((s as any).stat ?? 0)?.['preg_risk'] === 'prob_safe') {
-          ((s as any).stat_texts = (s as any).stat_texts ?? {})['cycle_state'] = 'It has been ' + (((s as any).temp ?? 0)?.[1] ?? 0) + ' days since you last remember having a period.' + ((s as any).stat_texts ?? 0)?.['cycle_feel'] + ' It might be a little risky to have unprotected sex.';
+          ((s as any).stat_texts = (s as any).stat_texts ?? {})['cycle_state'] = 'It has been ' + (((s as any).temp ?? 0)?.[1] ?? 0) + ' days since you last remember having a period.' + (((s as any).stat_texts ?? 0)?.['cycle_feel']) + ' It might be a little risky to have unprotected sex.';
         } else {
           if (((s as any).stat ?? 0)?.['preg_risk'] === 'danger') {
-            ((s as any).stat_texts = (s as any).stat_texts ?? {})['cycle_state'] = 'It has been ' + (((s as any).temp ?? 0)?.[1] ?? 0) + ' days since you last remember having a period.' + ((s as any).stat_texts ?? 0)?.['cycle_feel'] + ' You think you are in your fertile window.';
+            ((s as any).stat_texts = (s as any).stat_texts ?? {})['cycle_state'] = 'It has been ' + (((s as any).temp ?? 0)?.[1] ?? 0) + ' days since you last remember having a period.' + (((s as any).stat_texts ?? 0)?.['cycle_feel']) + ' You think you are in your fertile window.';
           } else {
-            ((s as any).stat_texts = (s as any).stat_texts ?? {})['cycle_state'] = 'It has been ' + (((s as any).temp ?? 0)?.[1] ?? 0) + ' days since you last remember having a period.' + ((s as any).stat_texts ?? 0)?.['cycle_feel'] + '';
+            ((s as any).stat_texts = (s as any).stat_texts ?? {})['cycle_state'] = 'It has been ' + (((s as any).temp ?? 0)?.[1] ?? 0) + ' days since you last remember having a period.' + (((s as any).stat_texts ?? 0)?.['cycle_feel']) + '';
           }
         }
       }

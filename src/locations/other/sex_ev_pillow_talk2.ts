@@ -251,7 +251,7 @@ function enterFavBodyPart(s: GameState, scene: SceneBuilder): void {
         ]);
       } else {
         if (((st as any).npc_fav_body_part ?? 0)?.[String((st as any).npcID ?? 0)] === 'pussy') {
-          qspCall(st, 'arousal', 'foreplay', 1, 'no_orgasm_msg', ((st as any).sex_ev ?? 0)?.['prostitution_flag']);
+          qspCall(st, 'arousal', 'foreplay', 1, 'no_orgasm_msg', (((st as any).sex_ev ?? 0)?.['prostitution_flag']));
           qspCall(st, 'stat', '');
           scene.text('"I love your pussy," he says, his fingers slowly running up the inside of your thigh to caress your lower lips.');
           if (((st as any).stat ?? 0)?.['think_virgin'] !== 1  &&  (((st as any).sex_ev ?? 0)?.['fuck_count'] > 0  ||  ((st as any).npc_fuck_times ?? 0)?.[String((st as any).npcID ?? 0)] > 0)) {
@@ -259,8 +259,8 @@ function enterFavBodyPart(s: GameState, scene: SceneBuilder): void {
               { label: 'You just like fucking it', handler: (st: GameState) => {
     scene.text('"You\'re just saying that because you get to fuck it," you smirk teasingly.');
     if (((st as any).npc_pussyeater ?? 0)?.[String((st as any).npcID ?? 0)] === 1  &&  (((st as any).sex_ev ?? 0)?.['kuni'] > 0  ||  ((st as any).npc_kuni_times ?? 0)?.[String((st as any).npcID ?? 0)])) {
-      qspCall(st, 'arousal', 'vaginal_finger', 1, 'no_orgasm_msg', ((st as any).sex_ev ?? 0)?.['prostitution_flag']);
-      qspCall(st, 'arousal', 'vaginal_finger', (-5), 'no_orgasm_msg', ((st as any).sex_ev ?? 0)?.['prostitution_flag']);
+      qspCall(st, 'arousal', 'vaginal_finger', 1, 'no_orgasm_msg', (((st as any).sex_ev ?? 0)?.['prostitution_flag']));
+      qspCall(st, 'arousal', 'vaginal_finger', (-5), 'no_orgasm_msg', (((st as any).sex_ev ?? 0)?.['prostitution_flag']));
       qspCall(st, 'stat', '');
       scene.text('"That\'s not true," he smirks back. "I love eating it too."');
       if (((st as any).cum_loc ?? 0)?.['vagina'] > 0) {
@@ -288,8 +288,8 @@ function enterFavBodyPart(s: GameState, scene: SceneBuilder): void {
                 { label: 'You\'re just saying that because you deflowered me', handler: (st: GameState) => {
     scene.text('"You\'re just saying that because you\'re the first one who got to fuck it," you smirk teasingly.');
     if (((st as any).npc_pussyeater ?? 0)?.[String((st as any).npcID ?? 0)] === 1  &&  (((st as any).sex_ev ?? 0)?.['kuni'] > 0  ||  ((st as any).npc_kuni_times ?? 0)?.[String((st as any).npcID ?? 0)])) {
-      qspCall(st, 'arousal', 'vaginal_finger', 1, 'no_orgasm_msg', ((st as any).sex_ev ?? 0)?.['prostitution_flag']);
-      qspCall(st, 'arousal', 'vaginal_finger', (-5), 'no_orgasm_msg', ((st as any).sex_ev ?? 0)?.['prostitution_flag']);
+      qspCall(st, 'arousal', 'vaginal_finger', 1, 'no_orgasm_msg', (((st as any).sex_ev ?? 0)?.['prostitution_flag']));
+      qspCall(st, 'arousal', 'vaginal_finger', (-5), 'no_orgasm_msg', (((st as any).sex_ev ?? 0)?.['prostitution_flag']));
       qspCall(st, 'stat', '');
       scene.text('"That\'s not true," he smirks back. "I love eating it too."');
       if (((st as any).cum_loc ?? 0)?.['vagina'] > 0) {
@@ -313,8 +313,8 @@ function enterFavBodyPart(s: GameState, scene: SceneBuilder): void {
                   { label: 'You just want to fuck me', handler: (st: GameState) => {
     scene.text('"You\'re just saying that because you want to fuck me," you smirk teasingly.');
     if (((st as any).npc_pussyeater ?? 0)?.[String((st as any).npcID ?? 0)] === 1  &&  (((st as any).sex_ev ?? 0)?.['kuni'] > 0  ||  ((st as any).npc_kuni_times ?? 0)?.[String((st as any).npcID ?? 0)])) {
-      qspCall(st, 'arousal', 'vaginal_finger', 1, 'no_orgasm_msg', ((st as any).sex_ev ?? 0)?.['prostitution_flag']);
-      qspCall(st, 'arousal', 'vaginal_finger', (-5), 'no_orgasm_msg', ((st as any).sex_ev ?? 0)?.['prostitution_flag']);
+      qspCall(st, 'arousal', 'vaginal_finger', 1, 'no_orgasm_msg', (((st as any).sex_ev ?? 0)?.['prostitution_flag']));
+      qspCall(st, 'arousal', 'vaginal_finger', (-5), 'no_orgasm_msg', (((st as any).sex_ev ?? 0)?.['prostitution_flag']));
       qspCall(st, 'stat', '');
       scene.text('"Not just that," he smirks back. "I like the taste."');
       if (((st as any).cum_loc ?? 0)?.['vagina'] > 0) {
@@ -335,8 +335,8 @@ function enterFavBodyPart(s: GameState, scene: SceneBuilder): void {
           }
           scene.actions([
             { label: 'Really? (insecure)', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'vaginal_finger', 1, 'no_orgasm_msg', ((st as any).sex_ev ?? 0)?.['prostitution_flag']);
-    qspCall(st, 'arousal', 'vaginal_finger', (-5), 'no_orgasm_msg', ((st as any).sex_ev ?? 0)?.['prostitution_flag']);
+    qspCall(st, 'arousal', 'vaginal_finger', 1, 'no_orgasm_msg', (((st as any).sex_ev ?? 0)?.['prostitution_flag']));
+    qspCall(st, 'arousal', 'vaginal_finger', (-5), 'no_orgasm_msg', (((st as any).sex_ev ?? 0)?.['prostitution_flag']));
     qspCall(st, 'stat', '');
     qspCall(st, 'sex_ev_pillow_talk', 'pillow_picture1', 2);
     scene.text('"You really think so?" you ask. "Not my boobs or my ass or-"');
@@ -369,8 +369,8 @@ function enterFavBodyPart(s: GameState, scene: SceneBuilder): void {
   } },
           ]);
         } else {
-          qspCall(st, 'arousal', 'foreplay', 1, 'no_orgasm_msg', ((st as any).sex_ev ?? 0)?.['prostitution_flag']);
-          qspCall(st, 'arousal', 'foreplay', (-5), 'no_orgasm_msg', ((st as any).sex_ev ?? 0)?.['prostitution_flag']);
+          qspCall(st, 'arousal', 'foreplay', 1, 'no_orgasm_msg', (((st as any).sex_ev ?? 0)?.['prostitution_flag']));
+          qspCall(st, 'arousal', 'foreplay', (-5), 'no_orgasm_msg', (((st as any).sex_ev ?? 0)?.['prostitution_flag']));
           qspCall(st, 'stat', '');
           scene.text('"Your legs," he says, slowly caressing you up and down the curve of your thigh. It\'s tantalizing, the way he dances the tips of his fingers across your skin, sending goosebumps wherever they go.');
           scene.actions([
@@ -1602,7 +1602,7 @@ function enterShowDanceEnd3(s: GameState, scene: SceneBuilder): void {
           qspCall(st, 'sex_ev_foreplay', 'bj_ask2');
         } else {
           if (((st as any).sex_ev ?? 0)?.['position_rand'] === 4  &&  (((st as any).cum_loc ?? 0)?.['vagina'] === 0  ||  ((st as any).npc_pussyeater ?? 0)?.[String((st as any).npcID ?? 0)] === 1)) {
-            qspCall(st, 'arousal', 'foreplay', (-5), 'no_orgasm_msg', ((st as any).sex_ev ?? 0)?.['prostitution_flag']);
+            qspCall(st, 'arousal', 'foreplay', (-5), 'no_orgasm_msg', (((st as any).sex_ev ?? 0)?.['prostitution_flag']));
             // TODO-QSP: dynamic text: <<$npcdesc>> throws you on your back and starts lightly kissing your stomach, se...
             scene.text(`${((st as any).npcdesc ?? '')} throws you on your back and starts lightly kissing your stomach, sending shivers across your skin, as each kiss goes lower than the last, slowly heading down to your pussy.`);
             qspCall(st, 'sex_ev_foreplay', 'kuni_start_acts');

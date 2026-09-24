@@ -116,7 +116,7 @@ function enterFranticUndress(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sex_ev ?? 0)?.['loc'] === 'house_party') {
     if (((s as any).npc_humor ?? 0)?.[String((s as any).npcID ?? 0)] === 'perverted'  ||  ((s as any).npc_fidelity ?? 0)?.[String((s as any).npcID ?? 0)] === 'cheater') {
       // TODO-QSP: dynamic text: You stumble into an empty room with <<$npcdesc>>, barely getting through the doo...
-      scene.text(`You stumble into an empty room with ${((s as any).npcdesc ?? '')}, barely getting through the door before clothes start getting discarded. Before you can fully get your ${((s as any).sex_ev ?? 0)?.['top_noun'] ?? ''} off, rough hands slide over your skin.`);
+      scene.text(`You stumble into an empty room with ${((s as any).npcdesc ?? '')}, barely getting through the door before clothes start getting discarded. Before you can fully get your ${(((s as any).sex_ev ?? 0)?.['top_noun'] ?? '')} off, rough hands slide over your skin.`);
       scene.text('"Girls like you all want the same thing," he grins as he tears it off and pins you to the wall. His hands seem to find every inch of your bare skin. By the time you\'re at the bed, there\'s a trail of clothing across the floor.');
     } else {
       if (((s as any).npc_humor ?? 0)?.[String((s as any).npcID ?? 0)] === 'childish') {
@@ -127,7 +127,7 @@ function enterFranticUndress(s: GameState, scene: SceneBuilder): void {
       } else {
         if (((s as any).npc_humor ?? 0)?.[String((s as any).npcID ?? 0)] === 'intellectual') {
           // TODO-QSP: dynamic text: You stumble into an empty room with <<$npcdesc>>, barely getting through the doo...
-          scene.text(`You stumble into an empty room with ${((s as any).npcdesc ?? '')}, barely getting through the door before clothes start getting discarded. Before you can fully get your ${((s as any).sex_ev ?? 0)?.['top_noun'] ?? ''} off, warm hands slide stop you.`);
+          scene.text(`You stumble into an empty room with ${((s as any).npcdesc ?? '')}, barely getting through the door before clothes start getting discarded. Before you can fully get your ${(((s as any).sex_ev ?? 0)?.['top_noun'] ?? '')} off, warm hands slide stop you.`);
           scene.text('"Hold up your arms," he orders as he expertly pulls it over your shoulders. His slightly labored breath makes you want to rush but he takes his time. By the time you\'re make the bed, you are naked and panting.');
         } else {
           scene.text('You tear each other\'s clothes off, leaving a trail of discarded fabrics.');
@@ -137,7 +137,7 @@ function enterFranticUndress(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).npc_humor ?? 0)?.[String((s as any).npcID ?? 0)] === 'perverted'  ||  ((s as any).npc_fidelity ?? 0)?.[String((s as any).npcID ?? 0)] === 'cheater') {
       // TODO-QSP: dynamic text: The moment you''re through the door, the both of you begin discarding clothes in...
-      scene.text(`The moment you're through the door, the both of you begin discarding clothes in a hurry. Before you can fully get your ${((s as any).sex_ev ?? 0)?.['top_noun'] ?? ''} off, rough hands slide over your skin.`);
+      scene.text(`The moment you're through the door, the both of you begin discarding clothes in a hurry. Before you can fully get your ${(((s as any).sex_ev ?? 0)?.['top_noun'] ?? '')} off, rough hands slide over your skin.`);
       scene.text('"Girls like you all want the same thing," he says as he rips it off and pins you to the wall. His hands seem to find every inch of your bare skin. By the time you\'re at the bed, there\'s a trail of clothing across the floor.');
     } else {
       if (((s as any).npc_humor ?? 0)?.[String((s as any).npcID ?? 0)] === 'childish') {
@@ -147,7 +147,7 @@ function enterFranticUndress(s: GameState, scene: SceneBuilder): void {
       } else {
         if (((s as any).npc_humor ?? 0)?.[String((s as any).npcID ?? 0)] === 'intellectual') {
           // TODO-QSP: dynamic text: The moment you''re through the door, the both of you begin discarding clothes in...
-          scene.text(`The moment you're through the door, the both of you begin discarding clothes in a hurry. Before you can fully get your ${((s as any).sex_ev ?? 0)?.['top_noun'] ?? ''} off, warm hands slide stop you.`);
+          scene.text(`The moment you're through the door, the both of you begin discarding clothes in a hurry. Before you can fully get your ${(((s as any).sex_ev ?? 0)?.['top_noun'] ?? '')} off, warm hands slide stop you.`);
           scene.text('"Hold up your arms," he orders as he expertly pulls it over your shoulders. His slightly labored breath makes you want to rush but he takes his time. By the time you\'re make the bed, you are naked and panting.');
         } else {
           scene.text('You tear each other\'s clothes off, leaving a trail of discarded fabrics.');
@@ -368,16 +368,16 @@ function enterDressLoop(s: GameState, scene: SceneBuilder): void {
 function enterDressLoopEnd(s: GameState, scene: SceneBuilder): void {
   ((s as any).sex_ev = (s as any).sex_ev ?? {})['undressed_check'] = 0;
   if (((s as any).pantyworntype ?? 0) === 'none'  &&  ((s as any).lastwornpantytype ?? 0)?.['sex_ev'] !== 'none') {
-    qspCall(s, 'panties', 'wear', ((s as any).lastwornpantytype ?? 0)?.['sex_ev'], ((s as any).lastwornpantynumber ?? 0)?.['sex_ev']);
+    qspCall(s, 'panties', 'wear', (((s as any).lastwornpantytype ?? 0)?.['sex_ev']), (((s as any).lastwornpantynumber ?? 0)?.['sex_ev']));
   }
   if (((s as any).braworntype ?? 0) === 'none'  &&  ((s as any).lastwornbratype ?? 0)?.['sex_ev'] !== 'none') {
-    qspCall(s, 'bras', 'wear', ((s as any).lastwornbratype ?? 0)?.['sex_ev'], ((s as any).lastwornbranumber ?? 0)?.['sex_ev']);
+    qspCall(s, 'bras', 'wear', (((s as any).lastwornbratype ?? 0)?.['sex_ev']), (((s as any).lastwornbranumber ?? 0)?.['sex_ev']));
   }
   if (((s as any).clothingworntype ?? 0) === 'nude'  &&  ((s as any).lastwornclothingtype ?? 0)?.['sex_ev'] !== 'nude') {
-    qspCall(s, 'clothing', 'wear', ((s as any).lastwornclothingtype ?? 0)?.['sex_ev'], ((s as any).lastwornclothingnumber ?? 0)?.['sex_ev'], 'force');
+    qspCall(s, 'clothing', 'wear', (((s as any).lastwornclothingtype ?? 0)?.['sex_ev']), (((s as any).lastwornclothingnumber ?? 0)?.['sex_ev']), 'force');
   }
   if (((s as any).shoeworntype ?? 0) === 'none'  &&  ((s as any).lastwornshoetype ?? 0)?.['sex_ev'] !== 'none') {
-    qspCall(s, 'shoes', 'wear', ((s as any).lastwornshoetype ?? 0)?.['sex_ev'], ((s as any).lastwornshoenumber ?? 0)?.['sex_ev']);
+    qspCall(s, 'shoes', 'wear', (((s as any).lastwornshoetype ?? 0)?.['sex_ev']), (((s as any).lastwornshoenumber ?? 0)?.['sex_ev']));
   }
   ((s as any).sex_ev = (s as any).sex_ev ?? {})['dress_end'] = 1;
   qspCall(s, 'outfit', 'remove_backup', 'sex_ev');
@@ -395,7 +395,7 @@ function enterDressLoopCode(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sex_ev ?? 0)?.['panty_wear'] === 0) {
     ((s as any).sex_ev = (s as any).sex_ev ?? {})['panty_wear'] = 1;
     if (((s as any).pantyworntype ?? 0) === 'none'  &&  ((s as any).lastwornpantytype ?? 0)?.['sex_ev'] !== 'none') {
-      qspCall(s, 'panties', 'wear', ((s as any).lastwornpantytype ?? 0)?.['sex_ev'], ((s as any).lastwornpantynumber ?? 0)?.['sex_ev']);
+      qspCall(s, 'panties', 'wear', (((s as any).lastwornpantytype ?? 0)?.['sex_ev']), (((s as any).lastwornpantynumber ?? 0)?.['sex_ev']));
       ((s as any).sex_ev = (s as any).sex_ev ?? {})['dress_describe'] = 'pulling your panties up';
       return;
     }
@@ -403,13 +403,13 @@ function enterDressLoopCode(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sex_ev ?? 0)?.['bra_wear'] === 0) {
     ((s as any).sex_ev = (s as any).sex_ev ?? {})['bra_wear'] = 1;
     if (((s as any).braworntype ?? 0) === 'none'  &&  ((s as any).lastwornbratype ?? 0)?.['sex_ev'] !== 'none') {
-      qspCall(s, 'bras', 'wear', ((s as any).lastwornbratype ?? 0)?.['sex_ev'], ((s as any).lastwornbranumber ?? 0)?.['sex_ev']);
+      qspCall(s, 'bras', 'wear', (((s as any).lastwornbratype ?? 0)?.['sex_ev']), (((s as any).lastwornbranumber ?? 0)?.['sex_ev']));
       ((s as any).sex_ev = (s as any).sex_ev ?? {})['dress_describe'] = 'fastening your bra around your chest';
       return;
     }
   }
   if (((s as any).clothingworntype ?? 0) === 'nude'  &&  ((s as any).lastwornclothingtype ?? 0)?.['sex_ev'] !== 'nude') {
-    qspCall(s, 'clothing', 'wear', ((s as any).lastwornclothingtype ?? 0)?.['sex_ev'], ((s as any).lastwornclothingnumber ?? 0)?.['sex_ev'], 'force');
+    qspCall(s, 'clothing', 'wear', (((s as any).lastwornclothingtype ?? 0)?.['sex_ev']), (((s as any).lastwornclothingnumber ?? 0)?.['sex_ev']), 'force');
   }
   if (((s as any).clothingworntype ?? 0) === 'nude') {
     scene.text('<b>Failsafe:</b> dressing did not happen properly. You are not wearing clothes.');
@@ -462,7 +462,7 @@ function enterDressLoopCode(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).sex_ev ?? 0)?.['shoe_wear'] === 0) {
     if (((s as any).shoeworntype ?? 0) === 'none'  &&  ((s as any).lastwornshoetype ?? 0)?.['sex_ev'] !== 'none') {
-      qspCall(s, 'shoes', 'wear', ((s as any).lastwornshoetype ?? 0)?.['sex_ev'], ((s as any).lastwornshoenumber ?? 0)?.['sex_ev']);
+      qspCall(s, 'shoes', 'wear', (((s as any).lastwornshoetype ?? 0)?.['sex_ev']), (((s as any).lastwornshoenumber ?? 0)?.['sex_ev']));
       ((s as any).sex_ev = (s as any).sex_ev ?? {})['shoe_wear'] = 1;
       return;
     }

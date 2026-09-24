@@ -21,7 +21,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       qspGoto(s, 'artem_katja_sex', 'home_work_ask_artem');
     }
   }
-  scene.text(`<center><b>${((s as any).npc_firstname ?? 0)?.['A2'] ?? ''} ${((s as any).npc_lastname ?? 0)?.['A2'] ?? ''}</b></center>`);
+  scene.text(`<center><b>${(((s as any).npc_firstname ?? 0)?.['A2'] ?? '')} ${(((s as any).npc_lastname ?? 0)?.['A2'] ?? '')}</b></center>`);
   scene.img('images/characters/shared/headshots_main/big2.jpg');
   if (((s as any).kotovLoveQW ?? 0) > 0  &&  (!((s as any).artemVitokQW ?? 0))) {
     scene.text('You walk across the school courtyard to meet up with Artem. He gives you a friendly nod as you approach. "You ready to go?"');

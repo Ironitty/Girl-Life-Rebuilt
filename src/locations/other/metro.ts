@@ -123,7 +123,7 @@ function enterCenter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'transport_functions', 'set_metro_wait_time', 'center');
   if (((s as any).transportVars ?? 0)?.['metro_wait_island'] > 60  &&  ((s as any).transportVars ?? 0)?.['metro_wait_suburbs'] > 60) {
     // TODO-QSP: dynamic text: It''s too late to take the metro. The next one arrives in <<min(transportVars[''...
-    scene.text(`It's too late to take the metro. The next one arrives in ${Math.min(((s as any).transportVars ?? 0)?.['metro_wait_island'] ?? '', ((s as any).transportVars ?? 0)?.['metro_wait_suburbs'] ?? '') / 60} hours.`);
+    scene.text(`It's too late to take the metro. The next one arrives in ${Math.min((((s as any).transportVars ?? 0)?.['metro_wait_island'] ?? ''), (((s as any).transportVars ?? 0)?.['metro_wait_suburbs'] ?? '')) / 60} hours.`);
   } else {
     // TODO-QSP: 'The next metro in the direction of the Vasilyevsky island ' + iif(transportVars['metro_wait_island'...
     // TODO-QSP: 'The next metro in the direction of the suburbs ' + iif(transportVars['metro_wait_suburbs'] = 0, 'is...
@@ -203,7 +203,7 @@ function enterArtisan(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'transport_functions', 'set_metro_wait_time', 'artisan');
   if (((s as any).transportVars ?? 0)?.['metro_wait_island'] > 60  &&  ((s as any).transportVars ?? 0)?.['metro_wait_suburbs'] > 60) {
     // TODO-QSP: dynamic text: It''s too late to take the metro. The next one arrives in <<min(transportVars[''...
-    scene.text(`It's too late to take the metro. The next one arrives in ${Math.min(((s as any).transportVars ?? 0)?.['metro_wait_island'] ?? '', ((s as any).transportVars ?? 0)?.['metro_wait_suburbs'] ?? '') / 60} hours.`);
+    scene.text(`It's too late to take the metro. The next one arrives in ${Math.min((((s as any).transportVars ?? 0)?.['metro_wait_island'] ?? ''), (((s as any).transportVars ?? 0)?.['metro_wait_suburbs'] ?? '')) / 60} hours.`);
   } else {
     // TODO-QSP: 'The next metro in the direction of the Vasilyevsky island ' + iif(transportVars['metro_wait_island'...
     // TODO-QSP: 'The next metro in the direction of the suburbs ' + iif(transportVars['metro_wait_suburbs'] = 0, 'is...
@@ -286,7 +286,7 @@ function enterResidential(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'transport_functions', 'set_metro_wait_time', 'residential');
   if (((s as any).transportVars ?? 0)?.['metro_wait_island'] > 60  &&  ((s as any).transportVars ?? 0)?.['metro_wait_suburbs'] > 60) {
     // TODO-QSP: dynamic text: It''s too late to take the metro. The next one arrives in <<min(transportVars[''...
-    scene.text(`It's too late to take the metro. The next one arrives in ${Math.min(((s as any).transportVars ?? 0)?.['metro_wait_island'] ?? '', ((s as any).transportVars ?? 0)?.['metro_wait_suburbs'] ?? '') / 60} hours.`);
+    scene.text(`It's too late to take the metro. The next one arrives in ${Math.min((((s as any).transportVars ?? 0)?.['metro_wait_island'] ?? ''), (((s as any).transportVars ?? 0)?.['metro_wait_suburbs'] ?? '')) / 60} hours.`);
   } else {
     // TODO-QSP: 'The next metro in the direction of the suburbs ' + iif(transportVars['metro_wait_suburbs'] = 0, 'is...
     // TODO-QSP: 'The next metro in the direction of the Vasilyevsky island ' + iif(transportVars['metro_wait_island'...
@@ -366,7 +366,7 @@ function enterIndustrial(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'transport_functions', 'set_metro_wait_time', 'industrial');
   if (((s as any).transportVars ?? 0)?.['metro_wait_island'] > 60  &&  ((s as any).transportVars ?? 0)?.['metro_wait_suburbs'] > 60) {
     // TODO-QSP: dynamic text: It''s too late to take the metro. The next one arrives in <<min(transportVars[''...
-    scene.text(`It's too late to take the metro. The next one arrives in ${Math.min(((s as any).transportVars ?? 0)?.['metro_wait_island'] ?? '', ((s as any).transportVars ?? 0)?.['metro_wait_suburbs'] ?? '') / 60} hours.`);
+    scene.text(`It's too late to take the metro. The next one arrives in ${Math.min((((s as any).transportVars ?? 0)?.['metro_wait_island'] ?? ''), (((s as any).transportVars ?? 0)?.['metro_wait_suburbs'] ?? '')) / 60} hours.`);
   } else {
     // TODO-QSP: 'The next metro in the direction of the suburbs ' + iif(transportVars['metro_wait_suburbs'] = 0, 'is...
     // TODO-QSP: 'The next metro in the direction of the Vasilyevsky island ' + iif(transportVars['metro_wait_island'...
@@ -517,7 +517,7 @@ function enterIslandCenter(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_metro_wait_time');
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'island', 'center') + (((s as any).transportVars ?? {})?.['metro_wait_suburbs'] ?? 0);
-  (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
+  (s as any).minut = ((s as any).minut ?? 0) + ((((s as any).temp_transportVars ?? 0)?.['timecost']));
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = (Math.floor(Math.random() * 100) + 1);
   if (((s as any).temp_transportVars ?? 0)?.['rand'] <= 9) {
     qspGoto(s, 'metro_incidental', 'events');
@@ -531,7 +531,7 @@ function enterIslandCenter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGetMetroImage(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: dynamic text: After <<temp_transportVars[''timecost'']>> minutes, the metro stops at the city ...
-  scene.text(`After ${((s as any).temp_transportVars ?? 0)?.['timecost'] ?? ''} minutes, the metro stops at the city center metro station.`);
+  scene.text(`After ${(((s as any).temp_transportVars ?? 0)?.['timecost'] ?? '')} minutes, the metro stops at the city center metro station.`);
   scene.actions([
     { label: 'Get off the metro', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 100) + 0) < 5) {
@@ -548,7 +548,7 @@ function enterIslandArtisan(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_metro_wait_time');
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'island', 'artisan') + (((s as any).transportVars ?? {})?.['metro_wait_suburbs'] ?? 0);
-  (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
+  (s as any).minut = ((s as any).minut ?? 0) + ((((s as any).temp_transportVars ?? 0)?.['timecost']));
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = (Math.floor(Math.random() * 100) + 0);
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     qspGoto(s, 'metro_incidental', 'events');
@@ -562,7 +562,7 @@ function enterIslandArtisan(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGetMetroImage(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: dynamic text: After <<temp_transportVars[''timecost'']>> minutes, the metro stops at the Artis...
-  scene.text(`After ${((s as any).temp_transportVars ?? 0)?.['timecost'] ?? ''} minutes, the metro stops at the Artisan district metro station.`);
+  scene.text(`After ${(((s as any).temp_transportVars ?? 0)?.['timecost'] ?? '')} minutes, the metro stops at the Artisan district metro station.`);
   scene.actions([
     { label: 'Get off the metro', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 100) + 0) < 5) {
@@ -579,7 +579,7 @@ function enterIslandResidential(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_metro_wait_time');
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'island', 'residential') + (((s as any).transportVars ?? {})?.['metro_wait_suburbs'] ?? 0);
-  (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
+  (s as any).minut = ((s as any).minut ?? 0) + ((((s as any).temp_transportVars ?? 0)?.['timecost']));
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = (Math.floor(Math.random() * 100) + 0);
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     qspGoto(s, 'metro_incidental', 'events');
@@ -593,7 +593,7 @@ function enterIslandResidential(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGetMetroImage(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: dynamic text: After <<temp_transportVars[''timecost'']>> minutes, the metro stops at the Resid...
-  scene.text(`After ${((s as any).temp_transportVars ?? 0)?.['timecost'] ?? ''} minutes, the metro stops at the Residential district metro station.`);
+  scene.text(`After ${(((s as any).temp_transportVars ?? 0)?.['timecost'] ?? '')} minutes, the metro stops at the Residential district metro station.`);
   scene.actions([
     { label: 'Get off the metro', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 100) + 0) < 5) {
@@ -610,7 +610,7 @@ function enterIslandIndustrial(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_metro_wait_time');
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'island', 'industrial') + (((s as any).transportVars ?? {})?.['metro_wait_suburbs'] ?? 0);
-  (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
+  (s as any).minut = ((s as any).minut ?? 0) + ((((s as any).temp_transportVars ?? 0)?.['timecost']));
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = (Math.floor(Math.random() * 100) + 0);
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     qspGoto(s, 'metro_incidental', 'events');
@@ -624,7 +624,7 @@ function enterIslandIndustrial(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGetMetroImage(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: dynamic text: After <<temp_transportVars[''timecost'']>> minutes, the metro stops at the Indus...
-  scene.text(`After ${((s as any).temp_transportVars ?? 0)?.['timecost'] ?? ''} minutes, the metro stops at the Industrial district metro station.`);
+  scene.text(`After ${(((s as any).temp_transportVars ?? 0)?.['timecost'] ?? '')} minutes, the metro stops at the Industrial district metro station.`);
   scene.actions([
     { label: 'Get off the metro', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 100) + 0) < 5) {
@@ -641,7 +641,7 @@ function enterIslandSuburbs(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_metro_wait_time');
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'island', 'suburbs') + (((s as any).transportVars ?? {})?.['metro_wait_suburbs'] ?? 0);
-  (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
+  (s as any).minut = ((s as any).minut ?? 0) + ((((s as any).temp_transportVars ?? 0)?.['timecost']));
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = (Math.floor(Math.random() * 100) + 0);
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     qspGoto(s, 'metro_incidental', 'events');
@@ -655,7 +655,7 @@ function enterIslandSuburbs(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGetMetroImage(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: dynamic text: After <<temp_transportVars[''timecost'']>> minutes, the metro stops at the subur...
-  scene.text(`After ${((s as any).temp_transportVars ?? 0)?.['timecost'] ?? ''} minutes, the metro stops at the suburbs metro station.`);
+  scene.text(`After ${(((s as any).temp_transportVars ?? 0)?.['timecost'] ?? '')} minutes, the metro stops at the suburbs metro station.`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Get off the metro', handler: (st: GameState) => {
@@ -673,7 +673,7 @@ function enterCenterIsland(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_metro_wait_time');
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'center', 'island') + (((s as any).transportVars ?? {})?.['metro_wait_island'] ?? 0);
-  (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
+  (s as any).minut = ((s as any).minut ?? 0) + ((((s as any).temp_transportVars ?? 0)?.['timecost']));
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = (Math.floor(Math.random() * 100) + 0);
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     qspGoto(s, 'metro_incidental', 'events');
@@ -687,7 +687,7 @@ function enterCenterIsland(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGetMetroImage(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: dynamic text: After <<temp_transportVars[''timecost'']>> minutes, the metro stops at the Vasil...
-  scene.text(`After ${((s as any).temp_transportVars ?? 0)?.['timecost'] ?? ''} minutes, the metro stops at the Vasilyevsky island metro station.`);
+  scene.text(`After ${(((s as any).temp_transportVars ?? 0)?.['timecost'] ?? '')} minutes, the metro stops at the Vasilyevsky island metro station.`);
   scene.actions([
     { label: 'Get off the metro', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 100) + 0) < 5) {
@@ -704,7 +704,7 @@ function enterCenterArtisan(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_metro_wait_time');
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'center', 'artisan') + (((s as any).transportVars ?? {})?.['metro_wait_suburbs'] ?? 0);
-  (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
+  (s as any).minut = ((s as any).minut ?? 0) + ((((s as any).temp_transportVars ?? 0)?.['timecost']));
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = (Math.floor(Math.random() * 100) + 0);
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     qspGoto(s, 'metro_incidental', 'events');
@@ -718,7 +718,7 @@ function enterCenterArtisan(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGetMetroImage(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: dynamic text: After <<temp_transportVars[''timecost'']>> minutes, the metro stops at the Artis...
-  scene.text(`After ${((s as any).temp_transportVars ?? 0)?.['timecost'] ?? ''} minutes, the metro stops at the Artisan district metro station.`);
+  scene.text(`After ${(((s as any).temp_transportVars ?? 0)?.['timecost'] ?? '')} minutes, the metro stops at the Artisan district metro station.`);
   scene.actions([
     { label: 'Get off the metro', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 100) + 0) < 5) {
@@ -735,7 +735,7 @@ function enterCenterResidential(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_metro_wait_time');
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'center', 'residential') + (((s as any).transportVars ?? {})?.['metro_wait_suburbs'] ?? 0);
-  (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
+  (s as any).minut = ((s as any).minut ?? 0) + ((((s as any).temp_transportVars ?? 0)?.['timecost']));
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = (Math.floor(Math.random() * 100) + 0);
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     qspGoto(s, 'metro_incidental', 'events');
@@ -747,7 +747,7 @@ function enterCenterResidential(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGetMetroImage(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: dynamic text: After <<temp_transportVars[''timecost'']>> minutes, the metro stops at the Resid...
-  scene.text(`After ${((s as any).temp_transportVars ?? 0)?.['timecost'] ?? ''} minutes, the metro stops at the Residential district metro station.`);
+  scene.text(`After ${(((s as any).temp_transportVars ?? 0)?.['timecost'] ?? '')} minutes, the metro stops at the Residential district metro station.`);
   scene.actions([
     { label: 'Get off the metro', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 100) + 0) < 5) {
@@ -764,7 +764,7 @@ function enterCenterIndustrial(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_metro_wait_time');
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'center', 'industrial') + (((s as any).transportVars ?? {})?.['metro_wait_suburbs'] ?? 0);
-  (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
+  (s as any).minut = ((s as any).minut ?? 0) + ((((s as any).temp_transportVars ?? 0)?.['timecost']));
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = (Math.floor(Math.random() * 100) + 0);
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     qspGoto(s, 'metro_incidental', 'events');
@@ -778,7 +778,7 @@ function enterCenterIndustrial(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGetMetroImage(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: dynamic text: After <<temp_transportVars[''timecost'']>> minutes, the metro stops at the Indus...
-  scene.text(`After ${((s as any).temp_transportVars ?? 0)?.['timecost'] ?? ''} minutes, the metro stops at the Industrial district metro station.`);
+  scene.text(`After ${(((s as any).temp_transportVars ?? 0)?.['timecost'] ?? '')} minutes, the metro stops at the Industrial district metro station.`);
   scene.actions([
     { label: 'Get off the metro', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 100) + 0) < 5) {
@@ -795,7 +795,7 @@ function enterCenterSuburbs(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_metro_wait_time');
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'center', 'suburbs') + (((s as any).transportVars ?? {})?.['metro_wait_suburbs'] ?? 0);
-  (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
+  (s as any).minut = ((s as any).minut ?? 0) + ((((s as any).temp_transportVars ?? 0)?.['timecost']));
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = (Math.floor(Math.random() * 100) + 0);
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     qspGoto(s, 'metro_incidental', 'events');
@@ -809,7 +809,7 @@ function enterCenterSuburbs(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGetMetroImage(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: dynamic text: After <<temp_transportVars[''timecost'']>> minutes, the metro stops at the subur...
-  scene.text(`After ${((s as any).temp_transportVars ?? 0)?.['timecost'] ?? ''} minutes, the metro stops at the suburbs metro station.`);
+  scene.text(`After ${(((s as any).temp_transportVars ?? 0)?.['timecost'] ?? '')} minutes, the metro stops at the suburbs metro station.`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Get off the metro', handler: (st: GameState) => {
@@ -827,7 +827,7 @@ function enterArtisanIsland(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_metro_wait_time');
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'artisan', 'island') + (((s as any).transportVars ?? {})?.['metro_wait_island'] ?? 0);
-  (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
+  (s as any).minut = ((s as any).minut ?? 0) + ((((s as any).temp_transportVars ?? 0)?.['timecost']));
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = (Math.floor(Math.random() * 100) + 0);
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     qspGoto(s, 'metro_incidental', 'events');
@@ -841,7 +841,7 @@ function enterArtisanIsland(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGetMetroImage(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: dynamic text: After <<temp_transportVars[''timecost'']>> minutes, the metro stops at the Vasil...
-  scene.text(`After ${((s as any).temp_transportVars ?? 0)?.['timecost'] ?? ''} minutes, the metro stops at the Vasilyevsky island metro station.`);
+  scene.text(`After ${(((s as any).temp_transportVars ?? 0)?.['timecost'] ?? '')} minutes, the metro stops at the Vasilyevsky island metro station.`);
   scene.actions([
     { label: 'Get off the metro', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 100) + 0) < 5) {
@@ -858,7 +858,7 @@ function enterArtisanCenter(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_metro_wait_time');
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'artisan', 'center') + (((s as any).transportVars ?? {})?.['metro_wait_island'] ?? 0);
-  (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
+  (s as any).minut = ((s as any).minut ?? 0) + ((((s as any).temp_transportVars ?? 0)?.['timecost']));
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = (Math.floor(Math.random() * 100) + 0);
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     qspGoto(s, 'metro_incidental', 'events');
@@ -872,7 +872,7 @@ function enterArtisanCenter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGetMetroImage(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: dynamic text: After <<temp_transportVars[''timecost'']>> minutes, the metro stops at the city ...
-  scene.text(`After ${((s as any).temp_transportVars ?? 0)?.['timecost'] ?? ''} minutes, the metro stops at the city center metro station.`);
+  scene.text(`After ${(((s as any).temp_transportVars ?? 0)?.['timecost'] ?? '')} minutes, the metro stops at the city center metro station.`);
   scene.actions([
     { label: 'Get off the metro', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 100) + 0) < 5) {
@@ -889,7 +889,7 @@ function enterArtisanResidential(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_metro_wait_time');
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'artisan', 'residential') + (((s as any).transportVars ?? {})?.['metro_wait_suburbs'] ?? 0);
-  (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
+  (s as any).minut = ((s as any).minut ?? 0) + ((((s as any).temp_transportVars ?? 0)?.['timecost']));
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = (Math.floor(Math.random() * 100) + 0);
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     qspGoto(s, 'metro_incidental', 'events');
@@ -903,7 +903,7 @@ function enterArtisanResidential(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGetMetroImage(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: dynamic text: After <<temp_transportVars[''timecost'']>> minutes, the metro stops at the Resid...
-  scene.text(`After ${((s as any).temp_transportVars ?? 0)?.['timecost'] ?? ''} minutes, the metro stops at the Residential district metro station.`);
+  scene.text(`After ${(((s as any).temp_transportVars ?? 0)?.['timecost'] ?? '')} minutes, the metro stops at the Residential district metro station.`);
   scene.actions([
     { label: 'Get off the metro', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 100) + 0) < 5) {
@@ -920,7 +920,7 @@ function enterArtisanIndustrial(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_metro_wait_time');
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'artisan', 'industrial') + (((s as any).transportVars ?? {})?.['metro_wait_suburbs'] ?? 0);
-  (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
+  (s as any).minut = ((s as any).minut ?? 0) + ((((s as any).temp_transportVars ?? 0)?.['timecost']));
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = (Math.floor(Math.random() * 100) + 0);
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     qspGoto(s, 'metro_incidental', 'events');
@@ -934,7 +934,7 @@ function enterArtisanIndustrial(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGetMetroImage(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: dynamic text: After <<temp_transportVars[''timecost'']>> minutes, the metro stops at the Indus...
-  scene.text(`After ${((s as any).temp_transportVars ?? 0)?.['timecost'] ?? ''} minutes, the metro stops at the Industrial district metro station.`);
+  scene.text(`After ${(((s as any).temp_transportVars ?? 0)?.['timecost'] ?? '')} minutes, the metro stops at the Industrial district metro station.`);
   scene.actions([
     { label: 'Get off the metro', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 100) + 0) < 5) {
@@ -951,7 +951,7 @@ function enterArtisanSuburbs(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_metro_wait_time');
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'artisan', 'suburbs') + (((s as any).transportVars ?? {})?.['metro_wait_suburbs'] ?? 0);
-  (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
+  (s as any).minut = ((s as any).minut ?? 0) + ((((s as any).temp_transportVars ?? 0)?.['timecost']));
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = (Math.floor(Math.random() * 100) + 0);
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     qspGoto(s, 'metro_incidental', 'events');
@@ -965,7 +965,7 @@ function enterArtisanSuburbs(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGetMetroImage(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: dynamic text: After <<temp_transportVars[''timecost'']>> minutes, the metro stops at the subur...
-  scene.text(`After ${((s as any).temp_transportVars ?? 0)?.['timecost'] ?? ''} minutes, the metro stops at the suburbs metro station.`);
+  scene.text(`After ${(((s as any).temp_transportVars ?? 0)?.['timecost'] ?? '')} minutes, the metro stops at the suburbs metro station.`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Get off the metro', handler: (st: GameState) => {
@@ -983,7 +983,7 @@ function enterResidentialIsland(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_metro_wait_time');
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'residential', 'island') + (((s as any).transportVars ?? {})?.['metro_wait_island'] ?? 0);
-  (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
+  (s as any).minut = ((s as any).minut ?? 0) + ((((s as any).temp_transportVars ?? 0)?.['timecost']));
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = (Math.floor(Math.random() * 100) + 0);
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     qspGoto(s, 'metro_incidental', 'events');
@@ -997,7 +997,7 @@ function enterResidentialIsland(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGetMetroImage(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: dynamic text: After <<temp_transportVars[''timecost'']>> minutes, the metro stops at the Vasil...
-  scene.text(`After ${((s as any).temp_transportVars ?? 0)?.['timecost'] ?? ''} minutes, the metro stops at the Vasilyevsky island metro station.`);
+  scene.text(`After ${(((s as any).temp_transportVars ?? 0)?.['timecost'] ?? '')} minutes, the metro stops at the Vasilyevsky island metro station.`);
   scene.actions([
     { label: 'Get off the metro', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 100) + 0) < 5) {
@@ -1014,7 +1014,7 @@ function enterResidentialCenter(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_metro_wait_time');
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'residential', 'center') + (((s as any).transportVars ?? {})?.['metro_wait_island'] ?? 0);
-  (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
+  (s as any).minut = ((s as any).minut ?? 0) + ((((s as any).temp_transportVars ?? 0)?.['timecost']));
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = (Math.floor(Math.random() * 100) + 0);
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     qspGoto(s, 'metro_incidental', 'events');
@@ -1028,7 +1028,7 @@ function enterResidentialCenter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGetMetroImage(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: dynamic text: After <<temp_transportVars[''timecost'']>> minutes, the metro stops at the city ...
-  scene.text(`After ${((s as any).temp_transportVars ?? 0)?.['timecost'] ?? ''} minutes, the metro stops at the city center metro station.`);
+  scene.text(`After ${(((s as any).temp_transportVars ?? 0)?.['timecost'] ?? '')} minutes, the metro stops at the city center metro station.`);
   scene.actions([
     { label: 'Get off the metro', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 100) + 0) < 5) {
@@ -1045,7 +1045,7 @@ function enterResidentialArtisan(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_metro_wait_time');
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'residential', 'artisan') + (((s as any).transportVars ?? {})?.['metro_wait_island'] ?? 0);
-  (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
+  (s as any).minut = ((s as any).minut ?? 0) + ((((s as any).temp_transportVars ?? 0)?.['timecost']));
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = (Math.floor(Math.random() * 100) + 0);
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     qspGoto(s, 'metro_incidental', 'events');
@@ -1059,7 +1059,7 @@ function enterResidentialArtisan(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGetMetroImage(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: dynamic text: After <<temp_transportVars[''timecost'']>> minutes, the metro stops at the Artis...
-  scene.text(`After ${((s as any).temp_transportVars ?? 0)?.['timecost'] ?? ''} minutes, the metro stops at the Artisan district metro station.`);
+  scene.text(`After ${(((s as any).temp_transportVars ?? 0)?.['timecost'] ?? '')} minutes, the metro stops at the Artisan district metro station.`);
   scene.actions([
     { label: 'Get off the metro', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 100) + 0) < 5) {
@@ -1076,7 +1076,7 @@ function enterResidentialIndustrial(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_metro_wait_time');
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'residential', 'industrial') + (((s as any).transportVars ?? {})?.['metro_wait_suburbs'] ?? 0);
-  (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
+  (s as any).minut = ((s as any).minut ?? 0) + ((((s as any).temp_transportVars ?? 0)?.['timecost']));
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = (Math.floor(Math.random() * 100) + 0);
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     qspGoto(s, 'metro_incidental', 'events');
@@ -1090,7 +1090,7 @@ function enterResidentialIndustrial(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGetMetroImage(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: dynamic text: After <<temp_transportVars[''timecost'']>> minutes, the metro stops at the Indus...
-  scene.text(`After ${((s as any).temp_transportVars ?? 0)?.['timecost'] ?? ''} minutes, the metro stops at the Industrial district metro station.`);
+  scene.text(`After ${(((s as any).temp_transportVars ?? 0)?.['timecost'] ?? '')} minutes, the metro stops at the Industrial district metro station.`);
   scene.actions([
     { label: 'Get off the metro', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 100) + 0) < 5) {
@@ -1107,7 +1107,7 @@ function enterResidentialSuburbs(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_metro_wait_time');
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'residential', 'suburbs') + (((s as any).transportVars ?? {})?.['metro_wait_suburbs'] ?? 0);
-  (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
+  (s as any).minut = ((s as any).minut ?? 0) + ((((s as any).temp_transportVars ?? 0)?.['timecost']));
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = (Math.floor(Math.random() * 100) + 0);
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     qspGoto(s, 'metro_incidental', 'events');
@@ -1121,7 +1121,7 @@ function enterResidentialSuburbs(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGetMetroImage(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: dynamic text: After <<temp_transportVars[''timecost'']>> minutes, the metro stops at the subur...
-  scene.text(`After ${((s as any).temp_transportVars ?? 0)?.['timecost'] ?? ''} minutes, the metro stops at the suburbs metro station.`);
+  scene.text(`After ${(((s as any).temp_transportVars ?? 0)?.['timecost'] ?? '')} minutes, the metro stops at the suburbs metro station.`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Get off the metro', handler: (st: GameState) => {
@@ -1139,7 +1139,7 @@ function enterIndustrialIsland(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_metro_wait_time');
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'industrial', 'island') + (((s as any).transportVars ?? {})?.['metro_wait_island'] ?? 0);
-  (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
+  (s as any).minut = ((s as any).minut ?? 0) + ((((s as any).temp_transportVars ?? 0)?.['timecost']));
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = (Math.floor(Math.random() * 100) + 0);
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     qspGoto(s, 'metro_incidental', 'events');
@@ -1153,7 +1153,7 @@ function enterIndustrialIsland(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGetMetroImage(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: dynamic text: After <<temp_transportVars[''timecost'']>> minutes, the metro stops at the Vasil...
-  scene.text(`After ${((s as any).temp_transportVars ?? 0)?.['timecost'] ?? ''} minutes, the metro stops at the Vasilyevsky island metro station.`);
+  scene.text(`After ${(((s as any).temp_transportVars ?? 0)?.['timecost'] ?? '')} minutes, the metro stops at the Vasilyevsky island metro station.`);
   scene.actions([
     { label: 'Get off the metro', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 100) + 0) < 5) {
@@ -1170,7 +1170,7 @@ function enterIndustrialCenter(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_metro_wait_time');
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'industrial', 'center') + (((s as any).transportVars ?? {})?.['metro_wait_island'] ?? 0);
-  (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
+  (s as any).minut = ((s as any).minut ?? 0) + ((((s as any).temp_transportVars ?? 0)?.['timecost']));
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = (Math.floor(Math.random() * 100) + 0);
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     qspGoto(s, 'metro_incidental', 'events');
@@ -1184,7 +1184,7 @@ function enterIndustrialCenter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGetMetroImage(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: dynamic text: After <<temp_transportVars[''timecost'']>> minutes, the metro stops at the city ...
-  scene.text(`After ${((s as any).temp_transportVars ?? 0)?.['timecost'] ?? ''} minutes, the metro stops at the city center metro station.`);
+  scene.text(`After ${(((s as any).temp_transportVars ?? 0)?.['timecost'] ?? '')} minutes, the metro stops at the city center metro station.`);
   scene.actions([
     { label: 'Get off the metro', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 100) + 0) < 5) {
@@ -1201,7 +1201,7 @@ function enterIndustrialArtisan(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_metro_wait_time');
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'industrial', 'artisan') + (((s as any).transportVars ?? {})?.['metro_wait_island'] ?? 0);
-  (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
+  (s as any).minut = ((s as any).minut ?? 0) + ((((s as any).temp_transportVars ?? 0)?.['timecost']));
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = (Math.floor(Math.random() * 100) + 0);
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     qspGoto(s, 'metro_incidental', 'events');
@@ -1215,7 +1215,7 @@ function enterIndustrialArtisan(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGetMetroImage(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: dynamic text: After <<temp_transportVars[''timecost'']>> minutes, the metro stops at the Artis...
-  scene.text(`After ${((s as any).temp_transportVars ?? 0)?.['timecost'] ?? ''} minutes, the metro stops at the Artisan district metro station.`);
+  scene.text(`After ${(((s as any).temp_transportVars ?? 0)?.['timecost'] ?? '')} minutes, the metro stops at the Artisan district metro station.`);
   scene.actions([
     { label: 'Get off the metro', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 100) + 0) < 5) {
@@ -1232,7 +1232,7 @@ function enterIndustrialResidential(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_metro_wait_time');
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'industrial', 'residential') + (((s as any).transportVars ?? {})?.['metro_wait_island'] ?? 0);
-  (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
+  (s as any).minut = ((s as any).minut ?? 0) + ((((s as any).temp_transportVars ?? 0)?.['timecost']));
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = (Math.floor(Math.random() * 100) + 0);
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     qspGoto(s, 'metro_incidental', 'events');
@@ -1246,7 +1246,7 @@ function enterIndustrialResidential(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGetMetroImage(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: dynamic text: After <<temp_transportVars[''timecost'']>> minutes, the metro stops at the Resid...
-  scene.text(`After ${((s as any).temp_transportVars ?? 0)?.['timecost'] ?? ''} minutes, the metro stops at the Residential district metro station.`);
+  scene.text(`After ${(((s as any).temp_transportVars ?? 0)?.['timecost'] ?? '')} minutes, the metro stops at the Residential district metro station.`);
   scene.actions([
     { label: 'Get off the metro', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 100) + 0) < 5) {
@@ -1263,7 +1263,7 @@ function enterIndustrialSuburbs(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_metro_wait_time');
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'industrial', 'suburbs') + (((s as any).transportVars ?? {})?.['metro_wait_suburbs'] ?? 0);
-  (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
+  (s as any).minut = ((s as any).minut ?? 0) + ((((s as any).temp_transportVars ?? 0)?.['timecost']));
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = (Math.floor(Math.random() * 100) + 0);
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     qspGoto(s, 'metro_incidental', 'events');
@@ -1277,7 +1277,7 @@ function enterIndustrialSuburbs(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGetMetroImage(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: dynamic text: After <<temp_transportVars[''timecost'']>> minutes, the metro stops at the subur...
-  scene.text(`After ${((s as any).temp_transportVars ?? 0)?.['timecost'] ?? ''} minutes, the metro stops at the suburbs metro station.`);
+  scene.text(`After ${(((s as any).temp_transportVars ?? 0)?.['timecost'] ?? '')} minutes, the metro stops at the suburbs metro station.`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Get off the metro', handler: (st: GameState) => {
@@ -1295,7 +1295,7 @@ function enterSuburbsIsland(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_metro_wait_time');
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'suburbs', 'island') + (((s as any).transportVars ?? {})?.['metro_wait_island'] ?? 0);
-  (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
+  (s as any).minut = ((s as any).minut ?? 0) + ((((s as any).temp_transportVars ?? 0)?.['timecost']));
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = (Math.floor(Math.random() * 100) + 0);
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     qspGoto(s, 'metro_incidental', 'events');
@@ -1309,7 +1309,7 @@ function enterSuburbsIsland(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGetMetroImage(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: dynamic text: After <<temp_transportVars[''timecost'']>> minutes, the metro stops at the Vasil...
-  scene.text(`After ${((s as any).temp_transportVars ?? 0)?.['timecost'] ?? ''} minutes, the metro stops at the Vasilyevsky island metro station.`);
+  scene.text(`After ${(((s as any).temp_transportVars ?? 0)?.['timecost'] ?? '')} minutes, the metro stops at the Vasilyevsky island metro station.`);
   scene.actions([
     { label: 'Get off the metro', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 100) + 0) < 5) {
@@ -1326,7 +1326,7 @@ function enterSuburbsCenter(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_metro_wait_time');
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'suburbs', 'center') + (((s as any).transportVars ?? {})?.['metro_wait_island'] ?? 0);
-  (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
+  (s as any).minut = ((s as any).minut ?? 0) + ((((s as any).temp_transportVars ?? 0)?.['timecost']));
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = (Math.floor(Math.random() * 100) + 0);
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     qspGoto(s, 'metro_incidental', 'events');
@@ -1340,7 +1340,7 @@ function enterSuburbsCenter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGetMetroImage(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: dynamic text: After <<temp_transportVars[''timecost'']>> minutes, the metro stops at the city ...
-  scene.text(`After ${((s as any).temp_transportVars ?? 0)?.['timecost'] ?? ''} minutes, the metro stops at the city center metro station.`);
+  scene.text(`After ${(((s as any).temp_transportVars ?? 0)?.['timecost'] ?? '')} minutes, the metro stops at the city center metro station.`);
   scene.actions([
     { label: 'Get off the metro', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 100) + 0) < 5) {
@@ -1357,7 +1357,7 @@ function enterSuburbsArtisan(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_metro_wait_time');
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'industrial', 'artisan') + (((s as any).transportVars ?? {})?.['metro_wait_island'] ?? 0);
-  (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
+  (s as any).minut = ((s as any).minut ?? 0) + ((((s as any).temp_transportVars ?? 0)?.['timecost']));
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = (Math.floor(Math.random() * 100) + 0);
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     qspGoto(s, 'metro_incidental', 'events');
@@ -1371,7 +1371,7 @@ function enterSuburbsArtisan(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGetMetroImage(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: dynamic text: After <<temp_transportVars[''timecost'']>> minutes, the metro stops at the Artis...
-  scene.text(`After ${((s as any).temp_transportVars ?? 0)?.['timecost'] ?? ''} minutes, the metro stops at the Artisan district metro station.`);
+  scene.text(`After ${(((s as any).temp_transportVars ?? 0)?.['timecost'] ?? '')} minutes, the metro stops at the Artisan district metro station.`);
   scene.actions([
     { label: 'Get off the metro', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 100) + 0) < 5) {
@@ -1388,7 +1388,7 @@ function enterSuburbsResidential(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_metro_wait_time');
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'industrial', 'residential') + (((s as any).transportVars ?? {})?.['metro_wait_island'] ?? 0);
-  (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
+  (s as any).minut = ((s as any).minut ?? 0) + ((((s as any).temp_transportVars ?? 0)?.['timecost']));
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = (Math.floor(Math.random() * 100) + 0);
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     qspGoto(s, 'metro_incidental', 'events');
@@ -1402,7 +1402,7 @@ function enterSuburbsResidential(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGetMetroImage(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: dynamic text: After <<temp_transportVars[''timecost'']>> minutes, the metro stops at the Resid...
-  scene.text(`After ${((s as any).temp_transportVars ?? 0)?.['timecost'] ?? ''} minutes, the metro stops at the Residential district metro station.`);
+  scene.text(`After ${(((s as any).temp_transportVars ?? 0)?.['timecost'] ?? '')} minutes, the metro stops at the Residential district metro station.`);
   scene.actions([
     { label: 'Get off the metro', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 100) + 0) < 5) {
@@ -1419,7 +1419,7 @@ function enterSuburbsIndustrial(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_metro_wait_time');
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'suburbs', 'industrial') + (((s as any).transportVars ?? {})?.['metro_wait_island'] ?? 0);
-  (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
+  (s as any).minut = ((s as any).minut ?? 0) + ((((s as any).temp_transportVars ?? 0)?.['timecost']));
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = (Math.floor(Math.random() * 100) + 0);
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     qspGoto(s, 'metro_incidental', 'events');
@@ -1433,7 +1433,7 @@ function enterSuburbsIndustrial(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGetMetroImage(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: dynamic text: After <<temp_transportVars[''timecost'']>> minutes, the metro stops at the indus...
-  scene.text(`After ${((s as any).temp_transportVars ?? 0)?.['timecost'] ?? ''} minutes, the metro stops at the industrial district metro station.`);
+  scene.text(`After ${(((s as any).temp_transportVars ?? 0)?.['timecost'] ?? '')} minutes, the metro stops at the industrial district metro station.`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Get off the metro', handler: (st: GameState) => {
@@ -1468,7 +1468,7 @@ function enterShop(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: '<a href="exec: gs ''money'', ''pay'', 1000, ''cash'' & mc_inventory[''mentats''] += 20 & gt ''metro...
   }
   // TODO-QSP: dynamic text: Uses left: <<mc_inventory[''mentats'']>>
-  scene.text(`Uses left: ${((s as any).mc_inventory ?? 0)?.['mentats'] ?? ''}`);
+  scene.text(`Uses left: ${(((s as any).mc_inventory ?? 0)?.['mentats'] ?? '')}`);
   scene.text('A pillbox with 10 orange pills inside, the description is removed from the box.');
   if (qspFunc(s, 'money', 'can_afford', 500, 'cash') === 0) {
     // TODO-QSP: dynamic text: 'Buy steroids ' + $func('money', 'string_price', 500) + ' (You do not have enoug...
@@ -1477,7 +1477,7 @@ function enterShop(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: '<a href="exec: gs ''money'', ''pay'', 500, ''cash'' & mc_inventory[''steroids''] += 10 & gt ''metro...
   }
   // TODO-QSP: dynamic text: Uses left: <<mc_inventory[''steroids'']>>
-  scene.text(`Uses left: ${((s as any).mc_inventory ?? 0)?.['steroids'] ?? ''}`);
+  scene.text(`Uses left: ${(((s as any).mc_inventory ?? 0)?.['steroids'] ?? '')}`);
   scene.text('Paste tube with two pictures of a woman. In the latter one, she sports an enormous bust.');
   if (qspFunc(s, 'money', 'can_afford', 500, 'cash') === 0) {
     // TODO-QSP: dynamic text: 'Buy breast cream ' + $func('money', 'string_price', 500) + ' (You do not have e...
@@ -1486,7 +1486,7 @@ function enterShop(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: '<a href="exec: gs ''money'', ''pay'', 500, ''cash'' & mc_inventory[''breastcream''] += 5 & gt ''met...
   }
   // TODO-QSP: dynamic text: Uses left: <<mc_inventory[''breastcream'']>>
-  scene.text(`Uses left: ${((s as any).mc_inventory ?? 0)?.['breastcream'] ?? ''}`);
+  scene.text(`Uses left: ${(((s as any).mc_inventory ?? 0)?.['breastcream'] ?? '')}`);
   if (((s as any).start_type ?? 0)?.['magic'] !== 'nomagic') {
     scene.text('Packet of pink chewing gum. There are 10 in one package.');
     if (qspFunc(s, 'money', 'can_afford', 200, 'cash') === 0) {
@@ -1496,7 +1496,7 @@ function enterShop(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: '<a href="exec: gs ''money'', ''pay'', 200, ''cash'' & mc_inventory[''aphrodisiac''] += 10 & gt ''me...
     }
     // TODO-QSP: dynamic text: Uses left: <<mc_inventory[''aphrodisiac'']>>
-    scene.text(`Uses left: ${((s as any).mc_inventory ?? 0)?.['aphrodisiac'] ?? ''}`);
+    scene.text(`Uses left: ${(((s as any).mc_inventory ?? 0)?.['aphrodisiac'] ?? '')}`);
   }
   if (qspFunc(s, 'money', 'can_afford', 250, 'cash') === 0) {
     // TODO-QSP: dynamic text: 'Buy enough weed for 5 joints for ' + $func('money', 'string_price', 250) + ' (Y...

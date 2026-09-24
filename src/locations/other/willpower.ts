@@ -105,7 +105,7 @@ function enterCalc(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  (s as any).will_calc = ((s as any).will_calc ?? 0) + (((s as any).pain ?? 0)?.['total']);
+  (s as any).will_calc = ((s as any).will_calc ?? 0) + ((((s as any).pain ?? 0)?.['total']));
   (s as any).will_arousal_mod = Math.max((-25), Math.min((((s as any).pcs_horny ?? 0) - 50) / 2 + ((s as any).will_fetish_mod ?? 0), 25)) + ((s as any).will_fetish_mod_pref ?? 0);
   (s as any).will_succubus_mod = ((s as any).succublvl ?? 0)*25;
   return;
@@ -191,7 +191,7 @@ function enterDifficulty(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).cheatVars ?? 0)?.['wp_cost_opt'] !== 0) {
-    (s as any).will_cost = qspFunc(s, '_difficulty', 'get_multiplied', ((s as any).cheatVars ?? 0)?.['wp_cost_opt'], ((s as any).will_cost ?? 0), ((s as any).cheatVars ?? 0)?.['wp_cost_mult']);
+    (s as any).will_cost = qspFunc(s, '_difficulty', 'get_multiplied', (((s as any).cheatVars ?? 0)?.['wp_cost_opt']), ((s as any).will_cost ?? 0), (((s as any).cheatVars ?? 0)?.['wp_cost_mult']));
   }
   return;
   // TODO-QSP: end
@@ -243,7 +243,7 @@ function enterGetWillcostString(s: GameState, scene: SceneBuilder): void {
     ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((s as any).pcs_willpwr ?? 0);
   }
   if (Object.keys((s as any).ARGS ?? {}).length === 3) {
-    ((s as any).ARGS = (s as any).ARGS ?? {})[3] = ((s as any).cheatVars ?? 0)?.['willcost_style'];
+    ((s as any).ARGS = (s as any).ARGS ?? {})[3] = (((s as any).cheatVars ?? 0)?.['willcost_style']);
   }
   if (String((s as any).locArgs?.[3] ?? '') === 1) {
     (s as any).result = '' + ((s as any).locArgs?.[1] ?? 0) + '/' + ((s as any).locArgs?.[2] ?? 0) + '';

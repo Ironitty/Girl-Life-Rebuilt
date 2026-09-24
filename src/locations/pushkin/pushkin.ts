@@ -34,7 +34,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   scene.text('Ahead you can see the road that leads to the Pushkin Ballet Theatre and it\'s <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027pushkin_ballet_center/u0027, /u0027start/u0027); return false;">residential accommodation</a>.');
   if (qspFunc(s, 'car_funcs', 'is_here')) {
     // TODO-QSP: dynamic text: <a href="exec:gs ''carF'',''start''">Your <<$car[''name'']>></a> is parked at th...
-    scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027carF/u0027, /u0027start/u0027); return false;">Your ${((s as any).car ?? 0)?.['name'] ?? ''}</a> is parked at the curb.`);
+    scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027carF/u0027, /u0027start/u0027); return false;">Your ${(((s as any).car ?? 0)?.['name'] ?? '')}</a> is parked at the curb.`);
   }
   if (((s as any).hour ?? 0) >= 13  &&  ((s as any).hour ?? 0) <= 15  &&  ((s as any).bodimodel ?? 0) === 1  &&  ((s as any).arts ?? 0) === 0  &&  ((s as any).tusa ?? 0) === 1) {
     if ((Math.floor(Math.random() * 5) + 1) === 1) {

@@ -11,7 +11,7 @@ function enterIsHere(s: GameState, scene: SceneBuilder): void {
   if (Object.keys((s as any).ARGS ?? {}).length === 2) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((s as any).loc_arg ?? 0);
   }
-  (s as any).result = qspFunc(s, 'miroslava_schedule', 'here_core', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0), ((s as any).locat ?? 0)?.['A60_loc'], ((s as any).locat ?? 0)?.['A60_arg']);
+  (s as any).result = qspFunc(s, 'miroslava_schedule', 'here_core', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0), (((s as any).locat ?? 0)?.['A60_loc']), (((s as any).locat ?? 0)?.['A60_arg']));
   return;
   // TODO-QSP: end
   scene.build();
@@ -24,7 +24,7 @@ function enterWasHere(s: GameState, scene: SceneBuilder): void {
   if (Object.keys((s as any).ARGS ?? {}).length === 2) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((s as any).loc_arg ?? 0);
   }
-  (s as any).result = qspFunc(s, 'miroslava_schedule', 'here_core', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0), ((s as any).locat ?? 0)?.['A60_loc_prev'], ((s as any).locat ?? 0)?.['A60_arg_prev']);
+  (s as any).result = qspFunc(s, 'miroslava_schedule', 'here_core', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0), (((s as any).locat ?? 0)?.['A60_loc_prev']), (((s as any).locat ?? 0)?.['A60_arg_prev']));
   return;
   // TODO-QSP: end
   scene.build();
@@ -154,7 +154,7 @@ function enterForceChange(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locat ?? 0)?.['A60_loc'] === 'gad_miroslava_home') {
     // TODO-QSP: exit
   }
-  (s as any).temp_start_loc = ((s as any).locat ?? 0)?.['A60_loc'];
+  (s as any).temp_start_loc = (((s as any).locat ?? 0)?.['A60_loc']);
   ((s as any).MiraVars = (s as any).MiraVars ?? {})['guest'] = 0;
   ((s as any).MiraVars = (s as any).MiraVars ?? {})['follow_time'] = 0;
   ((s as any).MiraVars = (s as any).MiraVars ?? {})['follower'] = 0;
@@ -174,9 +174,9 @@ function enterForceChange(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  ((s as any).locat = (s as any).locat ?? {})['A60_loc_prev'] = ((s as any).locat ?? 0)?.['A60_loc'];
-  ((s as any).locat = (s as any).locat ?? {})['A60_arg_prev'] = ((s as any).locat ?? 0)?.['A60_arg'];
-  ((s as any).locat = (s as any).locat ?? {})['A60_arg1_prev'] = ((s as any).locat ?? 0)?.['A60_arg1'];
+  ((s as any).locat = (s as any).locat ?? {})['A60_loc_prev'] = (((s as any).locat ?? 0)?.['A60_loc']);
+  ((s as any).locat = (s as any).locat ?? {})['A60_arg_prev'] = (((s as any).locat ?? 0)?.['A60_arg']);
+  ((s as any).locat = (s as any).locat ?? {})['A60_arg1_prev'] = (((s as any).locat ?? 0)?.['A60_arg1']);
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterUpdateLocat(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
@@ -207,9 +207,9 @@ function enterUpdateLocat(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: jump 'set_locarg'
   } else {
     if (((s as any).MiraVars ?? 0)?.['follow_time'] > 0) {
-      ((s as any).locat = (s as any).locat ?? {})['A60_loc'] = ((s as any).locat ?? 0)?.['A60_loc_prev'];
-      ((s as any).locat = (s as any).locat ?? {})['A60_arg'] = ((s as any).locat ?? 0)?.['A60_arg_prev'];
-      ((s as any).locat = (s as any).locat ?? {})['A60_arg1'] = ((s as any).locat ?? 0)?.['A60_arg1_prev'];
+      ((s as any).locat = (s as any).locat ?? {})['A60_loc'] = (((s as any).locat ?? 0)?.['A60_loc_prev']);
+      ((s as any).locat = (s as any).locat ?? {})['A60_arg'] = (((s as any).locat ?? 0)?.['A60_arg_prev']);
+      ((s as any).locat = (s as any).locat ?? {})['A60_arg1'] = (((s as any).locat ?? 0)?.['A60_arg1_prev']);
       return;
     }
   }

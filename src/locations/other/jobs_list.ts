@@ -370,7 +370,7 @@ function enterCityPornstudioDelivery(s: GameState, scene: SceneBuilder): void {
 function enterCityAphroditeModel(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_job_id = 'city_aphrodite_model';
   if (((s as any).model ?? 0)?.['type'] !== '') {
-    (s as any).temp_jl_desc = 'You are working as a ' + ((s as any).model ?? 0)?.['type'] + ' model at Aphrodite Photography.';
+    (s as any).temp_jl_desc = 'You are working as a ' + (((s as any).model ?? 0)?.['type']) + ' model at Aphrodite Photography.';
   } else {
     (s as any).temp_jl_desc = 'Freelance glamour and erotic modelling for Aphrodite Photography.';
   }

@@ -33,19 +33,19 @@ function enterHomeImgUpdate(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: $npc_apt_bathroom[$npcID] = '<img <<$set_imgh>> src="images/shared/romance/lovers/homes/<<$temp[''up...
     // TODO-QSP: $npc_apt_hall[$npcID] = '<img <<$set_imgh>> src="images/shared/romance/lovers/homes/<<$temp[''update...
     if (((s as any).npc_apt_guest_bathroom ?? 0)?.[String((s as any).npcID ?? 0)] !== '') {
-      ((s as any).npc_apt_guest_bathroom = (s as any).npc_apt_guest_bathroom ?? {})[String((s as any).npcID ?? 0)] = '<img ' + ((s as any).set_imgh ?? 0) + ' src="images/shared/romance/lovers/homes/' + ((s as any).temp ?? 0)?.['update_folder'] + '/' + (((s as any).npc_apt_number ?? 0)?.[String((s as any).npcID ?? 0)] ?? 0) + '/bathg.jpg">';
+      ((s as any).npc_apt_guest_bathroom = (s as any).npc_apt_guest_bathroom ?? {})[String((s as any).npcID ?? 0)] = '<img ' + ((s as any).set_imgh ?? 0) + ' src="images/shared/romance/lovers/homes/' + (((s as any).temp ?? 0)?.['update_folder']) + '/' + (((s as any).npc_apt_number ?? 0)?.[String((s as any).npcID ?? 0)] ?? 0) + '/bathg.jpg">';
     }
     if (((s as any).npc_apt_office ?? 0)?.[String((s as any).npcID ?? 0)] !== '') {
-      ((s as any).npc_apt_office = (s as any).npc_apt_office ?? {})[String((s as any).npcID ?? 0)] = '<img ' + ((s as any).set_imgh ?? 0) + ' src="images/shared/romance/lovers/homes/' + ((s as any).temp ?? 0)?.['update_folder'] + '/' + (((s as any).npc_apt_number ?? 0)?.[String((s as any).npcID ?? 0)] ?? 0) + '/office.jpg">';
+      ((s as any).npc_apt_office = (s as any).npc_apt_office ?? {})[String((s as any).npcID ?? 0)] = '<img ' + ((s as any).set_imgh ?? 0) + ' src="images/shared/romance/lovers/homes/' + (((s as any).temp ?? 0)?.['update_folder']) + '/' + (((s as any).npc_apt_number ?? 0)?.[String((s as any).npcID ?? 0)] ?? 0) + '/office.jpg">';
     }
     if (((s as any).npc_apt_pool ?? 0)?.[String((s as any).npcID ?? 0)] !== '') {
-      ((s as any).npc_apt_pool = (s as any).npc_apt_pool ?? {})[String((s as any).npcID ?? 0)] = '<img ' + ((s as any).set_imgh ?? 0) + ' src="images/shared/romance/lovers/homes/' + ((s as any).temp ?? 0)?.['update_folder'] + '/' + (((s as any).npc_apt_number ?? 0)?.[String((s as any).npcID ?? 0)] ?? 0) + '/pool.jpg">';
+      ((s as any).npc_apt_pool = (s as any).npc_apt_pool ?? {})[String((s as any).npcID ?? 0)] = '<img ' + ((s as any).set_imgh ?? 0) + ' src="images/shared/romance/lovers/homes/' + (((s as any).temp ?? 0)?.['update_folder']) + '/' + (((s as any).npc_apt_number ?? 0)?.[String((s as any).npcID ?? 0)] ?? 0) + '/pool.jpg">';
     }
     if (((s as any).npc_apt_sauna ?? 0)?.[String((s as any).npcID ?? 0)] !== '') {
-      ((s as any).npc_apt_sauna = (s as any).npc_apt_sauna ?? {})[String((s as any).npcID ?? 0)] = '<img ' + ((s as any).set_imgh ?? 0) + ' src="images/shared/romance/lovers/homes/' + ((s as any).temp ?? 0)?.['update_folder'] + '/' + (((s as any).npc_apt_number ?? 0)?.[String((s as any).npcID ?? 0)] ?? 0) + '/sauna.jpg">';
+      ((s as any).npc_apt_sauna = (s as any).npc_apt_sauna ?? {})[String((s as any).npcID ?? 0)] = '<img ' + ((s as any).set_imgh ?? 0) + ' src="images/shared/romance/lovers/homes/' + (((s as any).temp ?? 0)?.['update_folder']) + '/' + (((s as any).npc_apt_number ?? 0)?.[String((s as any).npcID ?? 0)] ?? 0) + '/sauna.jpg">';
     }
     if (((s as any).npc_apt_spare ?? 0)?.[String((s as any).npcID ?? 0)] !== '') {
-      ((s as any).npc_apt_spare = (s as any).npc_apt_spare ?? {})[String((s as any).npcID ?? 0)] = '<center><img ' + ((s as any).set_imgh ?? 0) + ' src="' + ((s as any).npcgeneratecVars ?? 0)?.['home_path'] + '/' + ((s as any).temp ?? 0)?.['update_folder'] + '/' + (((s as any).npc_apt_number ?? 0)?.[((s as any).locArgs?.[1] ?? 0)] ?? 0) + '/' + (((s as any).npc_apt_sparetype ?? 0)?.[((s as any).locArgs?.[1] ?? 0)] ?? 0) + '.jpg"></center>';
+      ((s as any).npc_apt_spare = (s as any).npc_apt_spare ?? {})[String((s as any).npcID ?? 0)] = '<center><img ' + ((s as any).set_imgh ?? 0) + ' src="' + (((s as any).npcgeneratecVars ?? 0)?.['home_path']) + '/' + (((s as any).temp ?? 0)?.['update_folder']) + '/' + (((s as any).npc_apt_number ?? 0)?.[((s as any).locArgs?.[1] ?? 0)] ?? 0) + '/' + (((s as any).npc_apt_sparetype ?? 0)?.[((s as any).locArgs?.[1] ?? 0)] ?? 0) + '.jpg"></center>';
     }
   }
   // TODO-QSP: end

@@ -12,7 +12,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   scene.text('.');
   scene.text('<b>Your current character</b>');
   // TODO-QSP: dynamic text: <<$FSpers[''text'']>>
-  scene.text(`${((s as any).FSpers ?? 0)?.['text'] ?? ''}`);
+  scene.text(`${(((s as any).FSpers ?? 0)?.['text'] ?? '')}`);
   if (((s as any).FSpers ?? 0) === 1) {
     scene.actions([
       { label: 'Load a saved game', goto: ['KGZgame', ''] },
@@ -53,7 +53,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       ((st as any).FSpers = (st as any).FSpers ?? {})['text'] = 'Player';
     }
     // TODO-QSP: dynamic text: Character Name <<$FSpers[''text'']>>
-    scene.text(`Character Name ${((st as any).FSpers ?? 0)?.['text'] ?? ''}`);
+    scene.text(`Character Name ${(((st as any).FSpers ?? 0)?.['text'] ?? '')}`);
     scene.actions([
       { label: 'Play', goto: ['FSgame', ''] },
     ]);

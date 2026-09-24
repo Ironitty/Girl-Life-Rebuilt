@@ -100,7 +100,7 @@ function enterEugene(s: GameState, scene: SceneBuilder): void {
 function enterMother(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/resident/mom/mother.jpg');
   // TODO-QSP: dynamic text: You take out your camera. "Hey, <<$npc_nickname[''A29'']>>, do you mind if I tak...
-  scene.text(`You take out your camera. "Hey, ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''}, do you mind if I take your photograph for my portfolio?"`);
+  scene.text(`You take out your camera. "Hey, ${(((s as any).npc_nickname ?? 0)?.['A29'] ?? '')}, do you mind if I take your photograph for my portfolio?"`);
   scene.text('She frowns at you. "Where did you get that camera?"');
   scene.text('You shrug a little. "I saved up and bought it. Please? I need the practice, and I think you would make a great subject."');
   scene.text('She shakes her head. "Seems like a waste of money to me."');
@@ -123,7 +123,7 @@ function enterMother(s: GameState, scene: SceneBuilder): void {
     scene.text('You show her your photos and the one you finally decided on. "Here, look, this is the one I will use for my portfolio."');
     scene.text('She smiles. "They do look nice… I still say it\'s a waste of time, though."');
     // TODO-QSP: dynamic text: You roll your eyes. "I know, <<$npc_nickname[''A29'']>>," you reply as she walks...
-    scene.text(`You roll your eyes. "I know, ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''}," you reply as she walks back inside.`);
+    scene.text(`You roll your eyes. "I know, ${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')}," you reply as she walks back inside.`);
     scene.actions([
       { label: 'Put your camera away', handler: (st: GameState) => {
     if (((st as any).region ?? 0) === 'pav') {
@@ -493,7 +493,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   (s as any).camera_return_loc = 'pav_church';
   (s as any).camera_return_loc_arg = 'start';
   ((s as any).camera_people = (s as any).camera_people ?? {})['mother'] = qspUntranslated(s, "{", { location: "camera" });
-  (s as any).camera_description = ((s as any).npc_nickname ?? 0)?.['A29'];
+  (s as any).camera_description = (((s as any).npc_nickname ?? 0)?.['A29']);
   (s as any).camera_event = 'mother';
   (s as any).camera_return_loc = '';
   (s as any).camera_return_loc_arg = '';

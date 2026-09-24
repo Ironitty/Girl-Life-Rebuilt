@@ -732,10 +732,10 @@ function enterMakePrefTmp(s: GameState, scene: SceneBuilder): void {
 function enterHairPref(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npc_get_preference', '$npcID', 'randomPosIndNeg', 'hair_color');
   if (((s as any).ngpPrefResult ?? 0)?.['HasPos'] !== '') {
-    (s as any).temp_pref = ((s as any).ngpPrefResult ?? 0)?.['HasPos'];
+    (s as any).temp_pref = (((s as any).ngpPrefResult ?? 0)?.['HasPos']);
   } else {
     if (((s as any).ngpPrefResult ?? 0)?.['NotPos'] !== '') {
-      (s as any).temp_pref = ((s as any).ngpPrefResult ?? 0)?.['NotPos'];
+      (s as any).temp_pref = (((s as any).ngpPrefResult ?? 0)?.['NotPos']);
     }
   }
   if (((s as any).temp_pref ?? 0) === 'hair_color_black') {

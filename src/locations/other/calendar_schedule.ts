@@ -62,14 +62,14 @@ function enterCollectEventsForWeek(s: GameState, scene: SceneBuilder): void {
         }
       } else {
         if (((s as any).event_vars ?? 0)?.['flex_type'] === 1) {
-          ((s as any).event_range_cache = (s as any).event_range_cache ?? {})[String(((s as any).temp_evt_id ?? 0)) + ', orig_start'] = ((s as any).event_vars ?? 0)?.['window_start_ts'];
-          ((s as any).event_range_cache = (s as any).event_range_cache ?? {})[String(((s as any).temp_evt_id ?? 0)) + ', orig_end'] = ((s as any).event_vars ?? 0)?.['window_end_ts'];
-          ((s as any).event_range_cache = (s as any).event_range_cache ?? {})[String(((s as any).temp_evt_id ?? 0)) + ', duration'] = ((s as any).event_vars ?? 0)?.['duration_ts'];
-          ((s as any).event_range_cache = (s as any).event_range_cache ?? {})[String(((s as any).temp_evt_id ?? 0)) + ', priority'] = ((s as any).event_vars ?? 0)?.['priority'];
+          ((s as any).event_range_cache = (s as any).event_range_cache ?? {})[String(((s as any).temp_evt_id ?? 0)) + ', orig_start'] = (((s as any).event_vars ?? 0)?.['window_start_ts']);
+          ((s as any).event_range_cache = (s as any).event_range_cache ?? {})[String(((s as any).temp_evt_id ?? 0)) + ', orig_end'] = (((s as any).event_vars ?? 0)?.['window_end_ts']);
+          ((s as any).event_range_cache = (s as any).event_range_cache ?? {})[String(((s as any).temp_evt_id ?? 0)) + ', duration'] = (((s as any).event_vars ?? 0)?.['duration_ts']);
+          ((s as any).event_range_cache = (s as any).event_range_cache ?? {})[String(((s as any).temp_evt_id ?? 0)) + ', priority'] = (((s as any).event_vars ?? 0)?.['priority']);
           // TODO-QSP: dyneval('$flexible_events_day_<<temp_d>>[<<temp_flex_count>>] = $temp_evt_id')
           (s as any).temp_flex_count = ((s as any).temp_flex_count ?? 0) + (1);
         } else {
-          (s as any).temp_start = ((s as any).event_vars ?? 0)?.['start_ts'];
+          (s as any).temp_start = (((s as any).event_vars ?? 0)?.['start_ts']);
           (s as any).temp_end = ((s as any).temp_start ?? 0) + (((s as any).event_vars ?? {})?.['duration_ts'] ?? 0) - 1;
           if (((s as any).temp_end ?? 0) > 95) {
             (s as any).temp_end = 95;
@@ -77,7 +77,7 @@ function enterCollectEventsForWeek(s: GameState, scene: SceneBuilder): void {
           ((s as any).event_range_cache = (s as any).event_range_cache ?? {})[String(((s as any).temp_evt_id ?? 0)) + ', start'] = ((s as any).temp_start ?? 0);
           ((s as any).event_range_cache = (s as any).event_range_cache ?? {})[String(((s as any).temp_evt_id ?? 0)) + ', end'] = ((s as any).temp_end ?? 0);
           ((s as any).event_range_cache = (s as any).event_range_cache ?? {})[String(((s as any).temp_evt_id ?? 0)) + ', duration'] = ((s as any).temp_end ?? 0) - ((s as any).temp_start ?? 0) + 1;
-          ((s as any).event_range_cache = (s as any).event_range_cache ?? {})[String(((s as any).temp_evt_id ?? 0)) + ', priority'] = ((s as any).event_vars ?? 0)?.['priority'];
+          ((s as any).event_range_cache = (s as any).event_range_cache ?? {})[String(((s as any).temp_evt_id ?? 0)) + ', priority'] = (((s as any).event_vars ?? 0)?.['priority']);
           // TODO-QSP: dyneval('$static_events_day_<<temp_d>>[<<temp_static_count>>] = $temp_evt_id')
           (s as any).temp_static_count = ((s as any).temp_static_count ?? 0) + (1);
         }
@@ -107,7 +107,7 @@ function enterPlaceAlldayEvents(s: GameState, scene: SceneBuilder): void {
     (s as any).temp_d = 1;
     // TODO-QSP: :loop_find_span
     if (((s as any).temp_d ?? 0) <= 7) {
-      (s as any).temp_daystart = ((s as any).week_schedule ?? 0)?.['days=' + String(((s as any).temp_d ?? 0)) + ', date'];
+      (s as any).temp_daystart = (((s as any).week_schedule ?? 0)?.['days=' + String(((s as any).temp_d ?? 0)) + ', date']);
       (s as any).temp_occurs = qspFunc(s, 'calendar_events', 'event_occurs_in_day', ((s as any).temp_evt_id ?? 0), ((s as any).temp_daystart ?? 0));
       if (((s as any).temp_occurs ?? 0) === 1) {
         if (((s as any).temp_first_day ?? 0) === -1) {
@@ -135,12 +135,12 @@ function enterPlaceAlldayEvents(s: GameState, scene: SceneBuilder): void {
         (s as any).temp_swap = (((s as any).allday_events_week ?? 0)?.[String((s as any).temp_i ?? 0)] ?? 0);
         // TODO-QSP: $allday_events_week[temp_i] = $allday_events_week[temp_i+1]
         // TODO-QSP: $allday_events_week[temp_i+1] = $temp_swap
-        (s as any).temp_swap_first = ((s as any).allday_spans ?? 0)?.[String(((s as any).temp_i ?? 0)) + ', first'];
-        (s as any).temp_swap_last = ((s as any).allday_spans ?? 0)?.[String(((s as any).temp_i ?? 0)) + ', last'];
-        (s as any).temp_swap_len = ((s as any).allday_spans ?? 0)?.[String(((s as any).temp_i ?? 0)) + ', length'];
-        ((s as any).allday_spans = (s as any).allday_spans ?? {})[String(((s as any).temp_i ?? 0)) + ', first'] = ((s as any).allday_spans ?? 0)?.[String(((s as any).temp_i ?? 0)+1) + ', first'];
-        ((s as any).allday_spans = (s as any).allday_spans ?? {})[String(((s as any).temp_i ?? 0)) + ', last'] = ((s as any).allday_spans ?? 0)?.[String(((s as any).temp_i ?? 0)+1) + ', last'];
-        ((s as any).allday_spans = (s as any).allday_spans ?? {})[String(((s as any).temp_i ?? 0)) + ', length'] = ((s as any).allday_spans ?? 0)?.[String(((s as any).temp_i ?? 0)+1) + ', length'];
+        (s as any).temp_swap_first = (((s as any).allday_spans ?? 0)?.[String(((s as any).temp_i ?? 0)) + ', first']);
+        (s as any).temp_swap_last = (((s as any).allday_spans ?? 0)?.[String(((s as any).temp_i ?? 0)) + ', last']);
+        (s as any).temp_swap_len = (((s as any).allday_spans ?? 0)?.[String(((s as any).temp_i ?? 0)) + ', length']);
+        ((s as any).allday_spans = (s as any).allday_spans ?? {})[String(((s as any).temp_i ?? 0)) + ', first'] = (((s as any).allday_spans ?? 0)?.[String(((s as any).temp_i ?? 0)+1) + ', first']);
+        ((s as any).allday_spans = (s as any).allday_spans ?? {})[String(((s as any).temp_i ?? 0)) + ', last'] = (((s as any).allday_spans ?? 0)?.[String(((s as any).temp_i ?? 0)+1) + ', last']);
+        ((s as any).allday_spans = (s as any).allday_spans ?? {})[String(((s as any).temp_i ?? 0)) + ', length'] = (((s as any).allday_spans ?? 0)?.[String(((s as any).temp_i ?? 0)+1) + ', length']);
         ((s as any).allday_spans = (s as any).allday_spans ?? {})[String(((s as any).temp_i ?? 0)+1) + ', first'] = ((s as any).temp_swap_first ?? 0);
         ((s as any).allday_spans = (s as any).allday_spans ?? {})[String(((s as any).temp_i ?? 0)+1) + ', last'] = ((s as any).temp_swap_last ?? 0);
         ((s as any).allday_spans = (s as any).allday_spans ?? {})[String(((s as any).temp_i ?? 0)+1) + ', length'] = ((s as any).temp_swap_len ?? 0);
@@ -165,8 +165,8 @@ function enterPlaceAlldayEvents(s: GameState, scene: SceneBuilder): void {
   if (((s as any).temp_i ?? 0) < ((s as any).temp_allday_count ?? 0)) {
     (s as any).temp_evt_id = (((s as any).allday_events_week ?? 0)?.[String((s as any).temp_i ?? 0)] ?? 0);
     qspCall(s, 'calendar_events', 'get_event', ((s as any).temp_evt_id ?? 0));
-    (s as any).temp_first_day = ((s as any).allday_spans ?? 0)?.[String(((s as any).temp_i ?? 0)) + ', first'];
-    (s as any).temp_last_day = ((s as any).allday_spans ?? 0)?.[String(((s as any).temp_i ?? 0)) + ', last'];
+    (s as any).temp_first_day = (((s as any).allday_spans ?? 0)?.[String(((s as any).temp_i ?? 0)) + ', first']);
+    (s as any).temp_last_day = (((s as any).allday_spans ?? 0)?.[String(((s as any).temp_i ?? 0)) + ', last']);
     (s as any).temp_span_days = ((s as any).temp_last_day ?? 0) - ((s as any).temp_first_day ?? 0) + 1;
     (s as any).temp_r = 0;
     // TODO-QSP: :find_row
@@ -177,8 +177,8 @@ function enterPlaceAlldayEvents(s: GameState, scene: SceneBuilder): void {
         if (((s as any).temp_d ?? 0) <= ((s as any).temp_last_day ?? 0)) {
           if (((s as any).temp_d ?? 0) === ((s as any).temp_first_day ?? 0)) {
             ((s as any).week_schedule = (s as any).week_schedule ?? {})['days=' + String(((s as any).temp_d ?? 0)) + ', allday=' + String(((s as any).temp_r ?? 0)) + ', id'] = ((s as any).temp_evt_id ?? 0);
-            ((s as any).week_schedule = (s as any).week_schedule ?? {})['days=' + String(((s as any).temp_d ?? 0)) + ', allday=' + String(((s as any).temp_r ?? 0)) + ', title'] = ((s as any).event_vars ?? 0)?.['title'];
-            ((s as any).week_schedule = (s as any).week_schedule ?? {})['days=' + String(((s as any).temp_d ?? 0)) + ', allday=' + String(((s as any).temp_r ?? 0)) + ', color'] = ((s as any).event_vars ?? 0)?.['color'];
+            ((s as any).week_schedule = (s as any).week_schedule ?? {})['days=' + String(((s as any).temp_d ?? 0)) + ', allday=' + String(((s as any).temp_r ?? 0)) + ', title'] = (((s as any).event_vars ?? 0)?.['title']);
+            ((s as any).week_schedule = (s as any).week_schedule ?? {})['days=' + String(((s as any).temp_d ?? 0)) + ', allday=' + String(((s as any).temp_r ?? 0)) + ', color'] = (((s as any).event_vars ?? 0)?.['color']);
             ((s as any).week_schedule = (s as any).week_schedule ?? {})['days=' + String(((s as any).temp_d ?? 0)) + ', allday=' + String(((s as any).temp_r ?? 0)) + ', colspan'] = ((s as any).temp_span_days ?? 0);
           } else {
             ((s as any).week_schedule = (s as any).week_schedule ?? {})['days=' + String(((s as any).temp_d ?? 0)) + ', allday=' + String(((s as any).temp_r ?? 0)) + ', id'] = '';
@@ -236,26 +236,26 @@ function enterPlaceStaticEvents(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: :loop_events_pse
     if (((s as any).temp_i ?? 0) < ((s as any).temp_static_count ?? 0)) {
       (s as any).temp_evt_id = 0;
-      (s as any).temp_evt_priority = ((s as any).event_range_cache ?? 0)?.[String(((s as any).temp_evt_id ?? 0)) + ', priority'];
+      (s as any).temp_evt_priority = (((s as any).event_range_cache ?? 0)?.[String(((s as any).temp_evt_id ?? 0)) + ', priority']);
       if (((s as any).temp_evt_priority ?? 0) === ((s as any).temp_priority ?? 0)) {
         qspCall(s, 'calendar_events', 'get_event', ((s as any).temp_evt_id ?? 0));
-        (s as any).temp_start_ts = ((s as any).event_range_cache ?? 0)?.[String(((s as any).temp_evt_id ?? 0)) + ', start'];
-        (s as any).temp_end_ts = ((s as any).event_range_cache ?? 0)?.[String(((s as any).temp_evt_id ?? 0)) + ', end'];
+        (s as any).temp_start_ts = (((s as any).event_range_cache ?? 0)?.[String(((s as any).temp_evt_id ?? 0)) + ', start']);
+        (s as any).temp_end_ts = (((s as any).event_range_cache ?? 0)?.[String(((s as any).temp_evt_id ?? 0)) + ', end']);
         { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_d ?? 0), ((s as any).temp_start_ts ?? 0), ((s as any).temp_evt_id ?? 0)]; enterAddEventToSchedule(s, scene); (s as any).locArgs = __savedLocArgs; }
         // TODO-QSP: temp_this_event_index = week_schedule['days=<<temp_d>>, timeslots=<<temp_start_ts>>, event_count'] - 1
         (s as any).temp_check_t = ((s as any).temp_end_ts ?? 0);
         // TODO-QSP: :loop_check_conflicts
         if (((s as any).temp_check_t ?? 0) >= 0) {
-          (s as any).temp_check_count = ((s as any).week_schedule ?? 0)?.['days=' + String(((s as any).temp_d ?? 0)) + ', timeslots=' + String(((s as any).temp_check_t ?? 0)) + ', event_count'];
+          (s as any).temp_check_count = (((s as any).week_schedule ?? 0)?.['days=' + String(((s as any).temp_d ?? 0)) + ', timeslots=' + String(((s as any).temp_check_t ?? 0)) + ', event_count']);
           if (((s as any).temp_check_count ?? 0) > 0) {
             (s as any).temp_check_e = 0;
             // TODO-QSP: :loop_check_events
             if (((s as any).temp_check_e ?? 0) < ((s as any).temp_check_count ?? 0)) {
-              (s as any).temp_other_id = ((s as any).week_schedule ?? 0)?.['days=' + String(((s as any).temp_d ?? 0)) + ', timeslots=' + String(((s as any).temp_check_t ?? 0)) + ', events=' + String(((s as any).temp_check_e ?? 0)) + ', id'];
+              (s as any).temp_other_id = (((s as any).week_schedule ?? 0)?.['days=' + String(((s as any).temp_d ?? 0)) + ', timeslots=' + String(((s as any).temp_check_t ?? 0)) + ', events=' + String(((s as any).temp_check_e ?? 0)) + ', id']);
               if (((s as any).temp_other_id ?? 0) !== ((s as any).temp_evt_id ?? 0)) {
                 (s as any).temp_overlaps = qspFunc(s, 'calendar_schedule', 'check_overlap', ((s as any).temp_evt_id ?? 0), ((s as any).temp_other_id ?? 0));
                 if (((s as any).temp_overlaps ?? 0) === 1) {
-                  (s as any).temp_other_priority = ((s as any).event_range_cache ?? 0)?.[String(((s as any).temp_other_id ?? 0)) + ', priority'];
+                  (s as any).temp_other_priority = (((s as any).event_range_cache ?? 0)?.[String(((s as any).temp_other_id ?? 0)) + ', priority']);
                   if (((s as any).temp_other_priority ?? 0) > ((s as any).temp_evt_priority ?? 0)) {
                     ((s as any).week_schedule = (s as any).week_schedule ?? {})['days=' + String(((s as any).temp_d ?? 0)) + ', timeslots=' + String(((s as any).temp_start_ts ?? 0)) + ', events=' + String(((s as any).temp_this_event_index ?? 0)) + ', is_hidden'] = 1;
                     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_d ?? 0), ((s as any).temp_start_ts ?? 0), ((s as any).temp_this_event_index ?? 0), (-1)]; enterChangeBusyTimeslots(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -298,7 +298,7 @@ function enterPlaceFlexibleEvents(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: :loop_events_pfe
     if (((s as any).temp_i ?? 0) < ((s as any).temp_flex_count ?? 0)) {
       (s as any).temp_evt_id = 0;
-      (s as any).temp_evt_priority = ((s as any).event_range_cache ?? 0)?.[String(((s as any).temp_evt_id ?? 0)) + ', priority'];
+      (s as any).temp_evt_priority = (((s as any).event_range_cache ?? 0)?.[String(((s as any).temp_evt_id ?? 0)) + ', priority']);
       if (((s as any).temp_evt_priority ?? 0) === ((s as any).temp_priority ?? 0)) {
         { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_d ?? 0), ((s as any).temp_evt_id ?? 0), 'conflict_free']; enterFindBestPlacement(s, scene); (s as any).locArgs = __savedLocArgs; }
         if (((s as any).placement_found ?? 0) === 1) {
@@ -336,10 +336,10 @@ function enterPlaceFlexibleEvents(s: GameState, scene: SceneBuilder): void {
 function enterCheckOverlap(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_evt1 = ((s as any).locArgs?.[1] ?? 0);
   (s as any).temp_evt2 = ((s as any).locArgs?.[2] ?? 0);
-  (s as any).temp_start1 = ((s as any).event_range_cache ?? 0)?.[String(((s as any).temp_evt1 ?? 0)) + ', start'];
-  (s as any).temp_end1 = ((s as any).event_range_cache ?? 0)?.[String(((s as any).temp_evt1 ?? 0)) + ', end'];
-  (s as any).temp_start2 = ((s as any).event_range_cache ?? 0)?.[String(((s as any).temp_evt2 ?? 0)) + ', start'];
-  (s as any).temp_end2 = ((s as any).event_range_cache ?? 0)?.[String(((s as any).temp_evt2 ?? 0)) + ', end'];
+  (s as any).temp_start1 = (((s as any).event_range_cache ?? 0)?.[String(((s as any).temp_evt1 ?? 0)) + ', start']);
+  (s as any).temp_end1 = (((s as any).event_range_cache ?? 0)?.[String(((s as any).temp_evt1 ?? 0)) + ', end']);
+  (s as any).temp_start2 = (((s as any).event_range_cache ?? 0)?.[String(((s as any).temp_evt2 ?? 0)) + ', start']);
+  (s as any).temp_end2 = (((s as any).event_range_cache ?? 0)?.[String(((s as any).temp_evt2 ?? 0)) + ', end']);
   if (((s as any).temp_start1 ?? 0) <= ((s as any).temp_end2 ?? 0)  &&  ((s as any).temp_end1 ?? 0) >= ((s as any).temp_start2 ?? 0)) {
     (s as any).result = 1;
   } else {
@@ -356,28 +356,28 @@ function enterIsRangeBlocked(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_range_end = ((s as any).locArgs?.[3] ?? 0);
   (s as any).temp_evt_id = ((s as any).locArgs?.[4] ?? 0);
   (s as any).temp_mode = ((s as any).locArgs?.[5] ?? 0);
-  (s as any).temp_evt_priority = ((s as any).event_range_cache ?? 0)?.[String(((s as any).temp_evt_id ?? 0)) + ', priority'];
+  (s as any).temp_evt_priority = (((s as any).event_range_cache ?? 0)?.[String(((s as any).temp_evt_id ?? 0)) + ', priority']);
   (s as any).temp_check_t = ((s as any).temp_range_end ?? 0);
   // TODO-QSP: :loop_scan_backward
   if (((s as any).temp_check_t ?? 0) >= 0) {
-    (s as any).temp_event_count = ((s as any).week_schedule ?? 0)?.['days=' + String(((s as any).temp_d ?? 0)) + ', timeslots=' + String(((s as any).temp_check_t ?? 0)) + ', event_count'];
+    (s as any).temp_event_count = (((s as any).week_schedule ?? 0)?.['days=' + String(((s as any).temp_d ?? 0)) + ', timeslots=' + String(((s as any).temp_check_t ?? 0)) + ', event_count']);
     if (((s as any).temp_event_count ?? 0) > 0) {
       (s as any).temp_e = 0;
       // TODO-QSP: :loop_scan_events
       if (((s as any).temp_e ?? 0) < ((s as any).temp_event_count ?? 0)) {
-        (s as any).temp_other_id = ((s as any).week_schedule ?? 0)?.['days=' + String(((s as any).temp_d ?? 0)) + ', timeslots=' + String(((s as any).temp_check_t ?? 0)) + ', events=' + String(((s as any).temp_e ?? 0)) + ', id'];
-        (s as any).temp_is_hidden = ((s as any).week_schedule ?? 0)?.['days=' + String(((s as any).temp_d ?? 0)) + ', timeslots=' + String(((s as any).temp_check_t ?? 0)) + ', events=' + String(((s as any).temp_e ?? 0)) + ', is_hidden'];
+        (s as any).temp_other_id = (((s as any).week_schedule ?? 0)?.['days=' + String(((s as any).temp_d ?? 0)) + ', timeslots=' + String(((s as any).temp_check_t ?? 0)) + ', events=' + String(((s as any).temp_e ?? 0)) + ', id']);
+        (s as any).temp_is_hidden = (((s as any).week_schedule ?? 0)?.['days=' + String(((s as any).temp_d ?? 0)) + ', timeslots=' + String(((s as any).temp_check_t ?? 0)) + ', events=' + String(((s as any).temp_e ?? 0)) + ', is_hidden']);
         if (((s as any).temp_other_id ?? 0) !== ((s as any).temp_evt_id ?? 0)  &&  (!((s as any).temp_is_hidden ?? 0))) {
-          (s as any).temp_other_is_flex = ((s as any).week_schedule ?? 0)?.['days=' + String(((s as any).temp_d ?? 0)) + ', timeslots=' + String(((s as any).temp_check_t ?? 0)) + ', events=' + String(((s as any).temp_e ?? 0)) + ', is_flex'];
+          (s as any).temp_other_is_flex = (((s as any).week_schedule ?? 0)?.['days=' + String(((s as any).temp_d ?? 0)) + ', timeslots=' + String(((s as any).temp_check_t ?? 0)) + ', events=' + String(((s as any).temp_e ?? 0)) + ', is_flex']);
           if (((s as any).temp_other_is_flex ?? 0) === 1) {
-            (s as any).temp_other_start = ((s as any).event_range_cache ?? 0)?.[String(((s as any).temp_other_id ?? 0)) + ', window_start'];
-            (s as any).temp_other_end = ((s as any).event_range_cache ?? 0)?.[String(((s as any).temp_other_id ?? 0)) + ', window_end'];
+            (s as any).temp_other_start = (((s as any).event_range_cache ?? 0)?.[String(((s as any).temp_other_id ?? 0)) + ', window_start']);
+            (s as any).temp_other_end = (((s as any).event_range_cache ?? 0)?.[String(((s as any).temp_other_id ?? 0)) + ', window_end']);
           } else {
-            (s as any).temp_other_start = ((s as any).event_range_cache ?? 0)?.[String(((s as any).temp_other_id ?? 0)) + ', start'];
-            (s as any).temp_other_end = ((s as any).event_range_cache ?? 0)?.[String(((s as any).temp_other_id ?? 0)) + ', end'];
+            (s as any).temp_other_start = (((s as any).event_range_cache ?? 0)?.[String(((s as any).temp_other_id ?? 0)) + ', start']);
+            (s as any).temp_other_end = (((s as any).event_range_cache ?? 0)?.[String(((s as any).temp_other_id ?? 0)) + ', end']);
           }
           if (((s as any).temp_other_start ?? 0) <= ((s as any).temp_range_end ?? 0)  &&  ((s as any).temp_other_end ?? 0) >= ((s as any).temp_range_start ?? 0)) {
-            (s as any).temp_other_priority = ((s as any).event_range_cache ?? 0)?.[String(((s as any).temp_other_id ?? 0)) + ', priority'];
+            (s as any).temp_other_priority = (((s as any).event_range_cache ?? 0)?.[String(((s as any).temp_other_id ?? 0)) + ', priority']);
             if (((s as any).temp_mode ?? 0) === 'conflict_free') {
               (s as any).result = 1;
               return;
@@ -415,9 +415,9 @@ function enterFindBestPlacement(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_d = ((s as any).locArgs?.[1] ?? 0);
   (s as any).temp_evt_id = ((s as any).locArgs?.[2] ?? 0);
   (s as any).temp_mode = ((s as any).locArgs?.[3] ?? 0);
-  (s as any).temp_orig_start = ((s as any).event_range_cache ?? 0)?.[String(((s as any).temp_evt_id ?? 0)) + ', orig_start'];
-  (s as any).temp_orig_end = ((s as any).event_range_cache ?? 0)?.[String(((s as any).temp_evt_id ?? 0)) + ', orig_end'];
-  (s as any).temp_duration = ((s as any).event_range_cache ?? 0)?.[String(((s as any).temp_evt_id ?? 0)) + ', duration'];
+  (s as any).temp_orig_start = (((s as any).event_range_cache ?? 0)?.[String(((s as any).temp_evt_id ?? 0)) + ', orig_start']);
+  (s as any).temp_orig_end = (((s as any).event_range_cache ?? 0)?.[String(((s as any).temp_evt_id ?? 0)) + ', orig_end']);
+  (s as any).temp_duration = (((s as any).event_range_cache ?? 0)?.[String(((s as any).temp_evt_id ?? 0)) + ', duration']);
   (s as any).temp_best_window_size = (-1);
   (s as any).placement_found = 0;
   (s as any).temp_try_start = ((s as any).temp_orig_start ?? 0);
@@ -448,8 +448,8 @@ function enterFindFreeWindowAround(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_center = ((s as any).locArgs?.[2] ?? 0);
   (s as any).temp_evt_id = ((s as any).locArgs?.[3] ?? 0);
   (s as any).temp_mode = ((s as any).locArgs?.[4] ?? 0);
-  (s as any).temp_orig_start = ((s as any).event_range_cache ?? 0)?.[String(((s as any).temp_evt_id ?? 0)) + ', orig_start'];
-  (s as any).temp_orig_end = ((s as any).event_range_cache ?? 0)?.[String(((s as any).temp_evt_id ?? 0)) + ', orig_end'];
+  (s as any).temp_orig_start = (((s as any).event_range_cache ?? 0)?.[String(((s as any).temp_evt_id ?? 0)) + ', orig_start']);
+  (s as any).temp_orig_end = (((s as any).event_range_cache ?? 0)?.[String(((s as any).temp_evt_id ?? 0)) + ', orig_end']);
   (s as any).temp_left = ((s as any).temp_center ?? 0);
   // TODO-QSP: :expand_left
   if (((s as any).temp_left ?? 0) > ((s as any).temp_orig_start ?? 0)) {
@@ -459,7 +459,7 @@ function enterFindFreeWindowAround(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: jump 'expand_left'
     }
   }
-  (s as any).temp_duration = ((s as any).event_range_cache ?? 0)?.[String(((s as any).temp_evt_id ?? 0)) + ', duration'];
+  (s as any).temp_duration = (((s as any).event_range_cache ?? 0)?.[String(((s as any).temp_evt_id ?? 0)) + ', duration']);
   (s as any).temp_right = ((s as any).temp_center ?? 0) + ((s as any).temp_duration ?? 0) - 1;
   // TODO-QSP: :expand_right
   if (((s as any).temp_right ?? 0) < ((s as any).temp_orig_end ?? 0)) {
@@ -493,18 +493,18 @@ function enterApplyPlacement(s: GameState, scene: SceneBuilder): void {
 function enterHideOverlappingLowerPriority(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_d = ((s as any).locArgs?.[1] ?? 0);
   (s as any).temp_evt_id = ((s as any).locArgs?.[2] ?? 0);
-  (s as any).temp_evt_priority = ((s as any).event_range_cache ?? 0)?.[String(((s as any).temp_evt_id ?? 0)) + ', priority'];
+  (s as any).temp_evt_priority = (((s as any).event_range_cache ?? 0)?.[String(((s as any).temp_evt_id ?? 0)) + ', priority']);
   (s as any).temp_t = 0;
   // TODO-QSP: :loop_scan
   if (((s as any).temp_t ?? 0) < 96) {
-    (s as any).temp_count = ((s as any).week_schedule ?? 0)?.['days=' + String(((s as any).temp_d ?? 0)) + ', timeslots=' + String(((s as any).temp_t ?? 0)) + ', event_count'];
+    (s as any).temp_count = (((s as any).week_schedule ?? 0)?.['days=' + String(((s as any).temp_d ?? 0)) + ', timeslots=' + String(((s as any).temp_t ?? 0)) + ', event_count']);
     if (((s as any).temp_count ?? 0) > 0) {
       (s as any).temp_e = 0;
       // TODO-QSP: :loop_events_hide
       if (((s as any).temp_e ?? 0) < ((s as any).temp_count ?? 0)) {
-        (s as any).temp_other_id = ((s as any).week_schedule ?? 0)?.['days=' + String(((s as any).temp_d ?? 0)) + ', timeslots=' + String(((s as any).temp_t ?? 0)) + ', events=' + String(((s as any).temp_e ?? 0)) + ', id'];
+        (s as any).temp_other_id = (((s as any).week_schedule ?? 0)?.['days=' + String(((s as any).temp_d ?? 0)) + ', timeslots=' + String(((s as any).temp_t ?? 0)) + ', events=' + String(((s as any).temp_e ?? 0)) + ', id']);
         if (((s as any).temp_other_id ?? 0) !== ((s as any).temp_evt_id ?? 0)) {
-          (s as any).temp_other_priority = ((s as any).event_range_cache ?? 0)?.[String(((s as any).temp_other_id ?? 0)) + ', priority'];
+          (s as any).temp_other_priority = (((s as any).event_range_cache ?? 0)?.[String(((s as any).temp_other_id ?? 0)) + ', priority']);
           if (((s as any).temp_other_priority ?? 0) < ((s as any).temp_evt_priority ?? 0)) {
             (s as any).temp_overlaps = qspFunc(s, 'calendar_schedule', 'check_overlap', ((s as any).temp_evt_id ?? 0), ((s as any).temp_other_id ?? 0));
             if (((s as any).temp_overlaps ?? 0) === 1) {
@@ -529,20 +529,20 @@ function enterAddEventToSchedule(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_d = ((s as any).locArgs?.[1] ?? 0);
   (s as any).temp_t = ((s as any).locArgs?.[2] ?? 0);
   (s as any).temp_evt_id = ((s as any).locArgs?.[3] ?? 0);
-  (s as any).temp_e = ((s as any).week_schedule ?? 0)?.['days=' + String(((s as any).temp_d ?? 0)) + ', timeslots=' + String(((s as any).temp_t ?? 0)) + ', event_count'];
+  (s as any).temp_e = (((s as any).week_schedule ?? 0)?.['days=' + String(((s as any).temp_d ?? 0)) + ', timeslots=' + String(((s as any).temp_t ?? 0)) + ', event_count']);
   qspCall(s, 'calendar_events', 'get_event', ((s as any).temp_evt_id ?? 0));
   ((s as any).week_schedule = (s as any).week_schedule ?? {})['days=' + String(((s as any).temp_d ?? 0)) + ', timeslots=' + String(((s as any).temp_t ?? 0)) + ', events=' + String(((s as any).temp_e ?? 0)) + ', id'] = ((s as any).temp_evt_id ?? 0);
-  ((s as any).week_schedule = (s as any).week_schedule ?? {})['days=' + String(((s as any).temp_d ?? 0)) + ', timeslots=' + String(((s as any).temp_t ?? 0)) + ', events=' + String(((s as any).temp_e ?? 0)) + ', title'] = ((s as any).event_vars ?? 0)?.['title'];
-  ((s as any).week_schedule = (s as any).week_schedule ?? {})['days=' + String(((s as any).temp_d ?? 0)) + ', timeslots=' + String(((s as any).temp_t ?? 0)) + ', events=' + String(((s as any).temp_e ?? 0)) + ', location'] = ((s as any).event_vars ?? 0)?.['loc'];
-  ((s as any).week_schedule = (s as any).week_schedule ?? {})['days=' + String(((s as any).temp_d ?? 0)) + ', timeslots=' + String(((s as any).temp_t ?? 0)) + ', events=' + String(((s as any).temp_e ?? 0)) + ', description'] = ((s as any).event_vars ?? 0)?.['desc'];
-  ((s as any).week_schedule = (s as any).week_schedule ?? {})['days=' + String(((s as any).temp_d ?? 0)) + ', timeslots=' + String(((s as any).temp_t ?? 0)) + ', events=' + String(((s as any).temp_e ?? 0)) + ', color'] = ((s as any).event_vars ?? 0)?.['color'];
-  ((s as any).week_schedule = (s as any).week_schedule ?? {})['days=' + String(((s as any).temp_d ?? 0)) + ', timeslots=' + String(((s as any).temp_t ?? 0)) + ', events=' + String(((s as any).temp_e ?? 0)) + ', priority'] = ((s as any).event_vars ?? 0)?.['priority'];
-  ((s as any).week_schedule = (s as any).week_schedule ?? {})['days=' + String(((s as any).temp_d ?? 0)) + ', timeslots=' + String(((s as any).temp_t ?? 0)) + ', events=' + String(((s as any).temp_e ?? 0)) + ', is_flex'] = ((s as any).event_vars ?? 0)?.['flex_type'];
-  ((s as any).week_schedule = (s as any).week_schedule ?? {})['days=' + String(((s as any).temp_d ?? 0)) + ', timeslots=' + String(((s as any).temp_t ?? 0)) + ', events=' + String(((s as any).temp_e ?? 0)) + ', start_ts'] = ((s as any).event_range_cache ?? 0)?.[String(((s as any).temp_evt_id ?? 0)) + ', start'];
+  ((s as any).week_schedule = (s as any).week_schedule ?? {})['days=' + String(((s as any).temp_d ?? 0)) + ', timeslots=' + String(((s as any).temp_t ?? 0)) + ', events=' + String(((s as any).temp_e ?? 0)) + ', title'] = (((s as any).event_vars ?? 0)?.['title']);
+  ((s as any).week_schedule = (s as any).week_schedule ?? {})['days=' + String(((s as any).temp_d ?? 0)) + ', timeslots=' + String(((s as any).temp_t ?? 0)) + ', events=' + String(((s as any).temp_e ?? 0)) + ', location'] = (((s as any).event_vars ?? 0)?.['loc']);
+  ((s as any).week_schedule = (s as any).week_schedule ?? {})['days=' + String(((s as any).temp_d ?? 0)) + ', timeslots=' + String(((s as any).temp_t ?? 0)) + ', events=' + String(((s as any).temp_e ?? 0)) + ', description'] = (((s as any).event_vars ?? 0)?.['desc']);
+  ((s as any).week_schedule = (s as any).week_schedule ?? {})['days=' + String(((s as any).temp_d ?? 0)) + ', timeslots=' + String(((s as any).temp_t ?? 0)) + ', events=' + String(((s as any).temp_e ?? 0)) + ', color'] = (((s as any).event_vars ?? 0)?.['color']);
+  ((s as any).week_schedule = (s as any).week_schedule ?? {})['days=' + String(((s as any).temp_d ?? 0)) + ', timeslots=' + String(((s as any).temp_t ?? 0)) + ', events=' + String(((s as any).temp_e ?? 0)) + ', priority'] = (((s as any).event_vars ?? 0)?.['priority']);
+  ((s as any).week_schedule = (s as any).week_schedule ?? {})['days=' + String(((s as any).temp_d ?? 0)) + ', timeslots=' + String(((s as any).temp_t ?? 0)) + ', events=' + String(((s as any).temp_e ?? 0)) + ', is_flex'] = (((s as any).event_vars ?? 0)?.['flex_type']);
+  ((s as any).week_schedule = (s as any).week_schedule ?? {})['days=' + String(((s as any).temp_d ?? 0)) + ', timeslots=' + String(((s as any).temp_t ?? 0)) + ', events=' + String(((s as any).temp_e ?? 0)) + ', start_ts'] = (((s as any).event_range_cache ?? 0)?.[String(((s as any).temp_evt_id ?? 0)) + ', start']);
   if (((s as any).event_vars ?? 0)?.['flex_type'] === 1) {
-    (s as any).temp_valid_window_start = ((s as any).event_range_cache ?? 0)?.[String(((s as any).temp_evt_id ?? 0)) + ', window_start'];
-    (s as any).temp_valid_window_end = ((s as any).event_range_cache ?? 0)?.[String(((s as any).temp_evt_id ?? 0)) + ', window_end'];
-    (s as any).temp_event_duration = ((s as any).event_range_cache ?? 0)?.[String(((s as any).temp_evt_id ?? 0)) + ', duration'];
+    (s as any).temp_valid_window_start = (((s as any).event_range_cache ?? 0)?.[String(((s as any).temp_evt_id ?? 0)) + ', window_start']);
+    (s as any).temp_valid_window_end = (((s as any).event_range_cache ?? 0)?.[String(((s as any).temp_evt_id ?? 0)) + ', window_end']);
+    (s as any).temp_event_duration = (((s as any).event_range_cache ?? 0)?.[String(((s as any).temp_evt_id ?? 0)) + ', duration']);
     (s as any).temp_window_slots = ((s as any).temp_valid_window_end ?? 0) - ((s as any).temp_valid_window_start ?? 0) + 1 - ((s as any).temp_event_duration ?? 0);
     (s as any).temp_event_slots = ((s as any).temp_event_duration ?? 0);
     (s as any).temp_total_span = ((s as any).temp_window_slots ?? 0) + ((s as any).temp_event_slots ?? 0);
@@ -553,7 +553,7 @@ function enterAddEventToSchedule(s: GameState, scene: SceneBuilder): void {
     ((s as any).week_schedule = (s as any).week_schedule ?? {})['days=' + String(((s as any).temp_d ?? 0)) + ', timeslots=' + String(((s as any).temp_t ?? 0)) + ', events=' + String(((s as any).temp_e ?? 0)) + ', window_slots'] = ((s as any).temp_window_slots ?? 0);
     ((s as any).week_schedule = (s as any).week_schedule ?? {})['days=' + String(((s as any).temp_d ?? 0)) + ', timeslots=' + String(((s as any).temp_t ?? 0)) + ', events=' + String(((s as any).temp_e ?? 0)) + ', event_slots'] = ((s as any).temp_event_slots ?? 0);
   } else {
-    ((s as any).week_schedule = (s as any).week_schedule ?? {})['days=' + String(((s as any).temp_d ?? 0)) + ', timeslots=' + String(((s as any).temp_t ?? 0)) + ', events=' + String(((s as any).temp_e ?? 0)) + ', span'] = ((s as any).event_range_cache ?? 0)?.[String(((s as any).temp_evt_id ?? 0)) + ', duration'];
+    ((s as any).week_schedule = (s as any).week_schedule ?? {})['days=' + String(((s as any).temp_d ?? 0)) + ', timeslots=' + String(((s as any).temp_t ?? 0)) + ', events=' + String(((s as any).temp_e ?? 0)) + ', span'] = (((s as any).event_range_cache ?? 0)?.[String(((s as any).temp_evt_id ?? 0)) + ', duration']);
   }
   ((s as any).week_schedule = (s as any).week_schedule ?? {})['days=' + String(((s as any).temp_d ?? 0)) + ', timeslots=' + String(((s as any).temp_t ?? 0)) + ', events=' + String(((s as any).temp_e ?? 0)) + ', is_hidden'] = 0;
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_d ?? 0), ((s as any).temp_t ?? 0), ((s as any).temp_e ?? 0), 1]; enterChangeBusyTimeslots(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -564,7 +564,7 @@ function enterAddEventToSchedule(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterChangeBusyTimeslots(s: GameState, scene: SceneBuilder): void {
-  (s as any).temp_mb_ts = ((s as any).week_schedule ?? 0)?.['days=' + String(((s as any).locArgs?.[1] ?? 0)) + ', timeslots=' + String(((s as any).locArgs?.[2] ?? 0)) + ', events=' + String(((s as any).locArgs?.[3] ?? 0)) + ', start_ts'];
+  (s as any).temp_mb_ts = (((s as any).week_schedule ?? 0)?.['days=' + String(((s as any).locArgs?.[1] ?? 0)) + ', timeslots=' + String(((s as any).locArgs?.[2] ?? 0)) + ', events=' + String(((s as any).locArgs?.[3] ?? 0)) + ', start_ts']);
   // TODO-QSP: temp_mb_end = temp_mb_ts + week_schedule['days=<<ARGS[1]>>, timeslots=<<ARGS[2]>>, events=<<ARGS[3]>>, span'] - 1
   // TODO-QSP: :inc_busy_ts_loop
   if (((s as any).temp_mb_ts ?? 0) <= ((s as any).temp_mb_end ?? 0)  &&  ((s as any).temp_mb_ts ?? 0) < 96) {
@@ -610,14 +610,14 @@ function enterAssignDayColumns(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_t = 0;
   // TODO-QSP: :loop_ts_adc
   if (((s as any).temp_t ?? 0) < 96) {
-    (s as any).temp_event_count = ((s as any).week_schedule ?? 0)?.['days=' + String(((s as any).temp_d ?? 0)) + ', timeslots=' + String(((s as any).temp_t ?? 0)) + ', event_count'];
+    (s as any).temp_event_count = (((s as any).week_schedule ?? 0)?.['days=' + String(((s as any).temp_d ?? 0)) + ', timeslots=' + String(((s as any).temp_t ?? 0)) + ', event_count']);
     if (((s as any).temp_event_count ?? 0) > 0) {
       (s as any).temp_e = 0;
       // TODO-QSP: :loop_ev_adc
       if (((s as any).temp_e ?? 0) < ((s as any).temp_event_count ?? 0)) {
-        (s as any).temp_is_hidden = ((s as any).week_schedule ?? 0)?.['days=' + String(((s as any).temp_d ?? 0)) + ', timeslots=' + String(((s as any).temp_t ?? 0)) + ', events=' + String(((s as any).temp_e ?? 0)) + ', is_hidden'];
+        (s as any).temp_is_hidden = (((s as any).week_schedule ?? 0)?.['days=' + String(((s as any).temp_d ?? 0)) + ', timeslots=' + String(((s as any).temp_t ?? 0)) + ', events=' + String(((s as any).temp_e ?? 0)) + ', is_hidden']);
         if ((!((s as any).temp_is_hidden ?? 0))) {
-          (s as any).temp_event_span = ((s as any).week_schedule ?? 0)?.['days=' + String(((s as any).temp_d ?? 0)) + ', timeslots=' + String(((s as any).temp_t ?? 0)) + ', events=' + String(((s as any).temp_e ?? 0)) + ', span'];
+          (s as any).temp_event_span = (((s as any).week_schedule ?? 0)?.['days=' + String(((s as any).temp_d ?? 0)) + ', timeslots=' + String(((s as any).temp_t ?? 0)) + ', events=' + String(((s as any).temp_e ?? 0)) + ', span']);
           (s as any).temp_event_end_slot = ((s as any).temp_t ?? 0) + ((s as any).temp_event_span ?? 0) - 1;
           (s as any).temp_col = 0;
           // TODO-QSP: :find_column
@@ -657,7 +657,7 @@ function enterCalculateDayColspans(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_t = 0;
   // TODO-QSP: :loop_init_timeslots
   if (((s as any).temp_t ?? 0) < 96) {
-    (s as any).temp_event_count = ((s as any).week_schedule ?? 0)?.['days=' + String(((s as any).temp_d ?? 0)) + ', timeslots=' + String(((s as any).temp_t ?? 0)) + ', event_count'];
+    (s as any).temp_event_count = (((s as any).week_schedule ?? 0)?.['days=' + String(((s as any).temp_d ?? 0)) + ', timeslots=' + String(((s as any).temp_t ?? 0)) + ', event_count']);
     if (((s as any).temp_event_count ?? 0) > 0) {
       (s as any).temp_e = 0;
       // TODO-QSP: :loop_init_events
@@ -673,12 +673,12 @@ function enterCalculateDayColspans(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_t = 0;
   // TODO-QSP: :loop_ts_cdc
   if (((s as any).temp_t ?? 0) < 96) {
-    (s as any).temp_event_count = ((s as any).week_schedule ?? 0)?.['days=' + String(((s as any).temp_d ?? 0)) + ', timeslots=' + String(((s as any).temp_t ?? 0)) + ', event_count'];
+    (s as any).temp_event_count = (((s as any).week_schedule ?? 0)?.['days=' + String(((s as any).temp_d ?? 0)) + ', timeslots=' + String(((s as any).temp_t ?? 0)) + ', event_count']);
     if (((s as any).temp_event_count ?? 0) > 0) {
       (s as any).temp_e = 0;
       // TODO-QSP: :loop_ev_cdc
       if (((s as any).temp_e ?? 0) < ((s as any).temp_event_count ?? 0)) {
-        (s as any).temp_is_hidden = ((s as any).week_schedule ?? 0)?.['days=' + String(((s as any).temp_d ?? 0)) + ', timeslots=' + String(((s as any).temp_t ?? 0)) + ', events=' + String(((s as any).temp_e ?? 0)) + ', is_hidden'];
+        (s as any).temp_is_hidden = (((s as any).week_schedule ?? 0)?.['days=' + String(((s as any).temp_d ?? 0)) + ', timeslots=' + String(((s as any).temp_t ?? 0)) + ', events=' + String(((s as any).temp_e ?? 0)) + ', is_hidden']);
         if ((!((s as any).temp_is_hidden ?? 0))) {
           (s as any).temp_colspan = qspFunc(s, 'calendar_schedule', 'calculate_event_colspan', ((s as any).temp_d ?? 0), ((s as any).temp_t ?? 0), ((s as any).temp_e ?? 0));
           ((s as any).week_schedule = (s as any).week_schedule ?? {})['days=' + String(((s as any).temp_d ?? 0)) + ', timeslots=' + String(((s as any).temp_t ?? 0)) + ', events=' + String(((s as any).temp_e ?? 0)) + ', colspan'] = ((s as any).temp_colspan ?? 0);
@@ -699,10 +699,10 @@ function enterCalculateEventColspan(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_d = ((s as any).locArgs?.[1] ?? 0);
   (s as any).temp_t = ((s as any).locArgs?.[2] ?? 0);
   (s as any).temp_e = ((s as any).locArgs?.[3] ?? 0);
-  (s as any).temp_col = ((s as any).week_schedule ?? 0)?.['days=' + String(((s as any).temp_d ?? 0)) + ', timeslots=' + String(((s as any).temp_t ?? 0)) + ', events=' + String(((s as any).temp_e ?? 0)) + ', column'];
-  (s as any).temp_span = ((s as any).week_schedule ?? 0)?.['days=' + String(((s as any).temp_d ?? 0)) + ', timeslots=' + String(((s as any).temp_t ?? 0)) + ', events=' + String(((s as any).temp_e ?? 0)) + ', span'];
+  (s as any).temp_col = (((s as any).week_schedule ?? 0)?.['days=' + String(((s as any).temp_d ?? 0)) + ', timeslots=' + String(((s as any).temp_t ?? 0)) + ', events=' + String(((s as any).temp_e ?? 0)) + ', column']);
+  (s as any).temp_span = (((s as any).week_schedule ?? 0)?.['days=' + String(((s as any).temp_d ?? 0)) + ', timeslots=' + String(((s as any).temp_t ?? 0)) + ', events=' + String(((s as any).temp_e ?? 0)) + ', span']);
   (s as any).temp_event_end = ((s as any).temp_t ?? 0) + ((s as any).temp_span ?? 0) - 1;
-  (s as any).temp_max_cols = ((s as any).week_schedule ?? 0)?.['days=' + String(((s as any).temp_d ?? 0)) + ', max_columns'];
+  (s as any).temp_max_cols = (((s as any).week_schedule ?? 0)?.['days=' + String(((s as any).temp_d ?? 0)) + ', max_columns']);
   (s as any).temp_colspan = 1;
   (s as any).temp_check_col = ((s as any).temp_col ?? 0) + 1;
   // TODO-QSP: :loop_expand
@@ -733,18 +733,18 @@ function enterIsColumnFreeForSpan(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_scan_t = 0;
   // TODO-QSP: :loop_earlier_timeslots
   if (((s as any).temp_scan_t ?? 0) < ((s as any).temp_start_ts ?? 0)) {
-    (s as any).temp_scan_count = ((s as any).week_schedule ?? 0)?.['days=' + String(((s as any).temp_d ?? 0)) + ', timeslots=' + String(((s as any).temp_scan_t ?? 0)) + ', event_count'];
+    (s as any).temp_scan_count = (((s as any).week_schedule ?? 0)?.['days=' + String(((s as any).temp_d ?? 0)) + ', timeslots=' + String(((s as any).temp_scan_t ?? 0)) + ', event_count']);
     if (((s as any).temp_scan_count ?? 0) > 0) {
       (s as any).temp_scan_e = 0;
       // TODO-QSP: :loop_earlier_events
       if (((s as any).temp_scan_e ?? 0) < ((s as any).temp_scan_count ?? 0)) {
-        (s as any).temp_is_hidden = ((s as any).week_schedule ?? 0)?.['days=' + String(((s as any).temp_d ?? 0)) + ', timeslots=' + String(((s as any).temp_scan_t ?? 0)) + ', events=' + String(((s as any).temp_scan_e ?? 0)) + ', is_hidden'];
+        (s as any).temp_is_hidden = (((s as any).week_schedule ?? 0)?.['days=' + String(((s as any).temp_d ?? 0)) + ', timeslots=' + String(((s as any).temp_scan_t ?? 0)) + ', events=' + String(((s as any).temp_scan_e ?? 0)) + ', is_hidden']);
         if ((!((s as any).temp_is_hidden ?? 0))) {
-          (s as any).temp_evt_span = ((s as any).week_schedule ?? 0)?.['days=' + String(((s as any).temp_d ?? 0)) + ', timeslots=' + String(((s as any).temp_scan_t ?? 0)) + ', events=' + String(((s as any).temp_scan_e ?? 0)) + ', span'];
+          (s as any).temp_evt_span = (((s as any).week_schedule ?? 0)?.['days=' + String(((s as any).temp_d ?? 0)) + ', timeslots=' + String(((s as any).temp_scan_t ?? 0)) + ', events=' + String(((s as any).temp_scan_e ?? 0)) + ', span']);
           (s as any).temp_evt_end = ((s as any).temp_scan_t ?? 0) + ((s as any).temp_evt_span ?? 0) - 1;
           if (((s as any).temp_evt_end ?? 0) >= ((s as any).temp_start_ts ?? 0)) {
-            (s as any).temp_evt_col = ((s as any).week_schedule ?? 0)?.['days=' + String(((s as any).temp_d ?? 0)) + ', timeslots=' + String(((s as any).temp_scan_t ?? 0)) + ', events=' + String(((s as any).temp_scan_e ?? 0)) + ', column'];
-            (s as any).temp_evt_colspan = ((s as any).week_schedule ?? 0)?.['days=' + String(((s as any).temp_d ?? 0)) + ', timeslots=' + String(((s as any).temp_scan_t ?? 0)) + ', events=' + String(((s as any).temp_scan_e ?? 0)) + ', colspan'];
+            (s as any).temp_evt_col = (((s as any).week_schedule ?? 0)?.['days=' + String(((s as any).temp_d ?? 0)) + ', timeslots=' + String(((s as any).temp_scan_t ?? 0)) + ', events=' + String(((s as any).temp_scan_e ?? 0)) + ', column']);
+            (s as any).temp_evt_colspan = (((s as any).week_schedule ?? 0)?.['days=' + String(((s as any).temp_d ?? 0)) + ', timeslots=' + String(((s as any).temp_scan_t ?? 0)) + ', events=' + String(((s as any).temp_scan_e ?? 0)) + ', colspan']);
             if (((s as any).temp_check_col ?? 0) >= ((s as any).temp_evt_col ?? 0)  &&  ((s as any).temp_check_col ?? 0) < ((s as any).temp_evt_col ?? 0) + ((s as any).temp_evt_colspan ?? 0)) {
               (s as any).result = 0;
               return;
@@ -761,15 +761,15 @@ function enterIsColumnFreeForSpan(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_scan_t = ((s as any).temp_start_ts ?? 0);
   // TODO-QSP: :loop_ts_icfs
   if (((s as any).temp_scan_t ?? 0) <= ((s as any).temp_end_ts ?? 0)) {
-    (s as any).temp_scan_count = ((s as any).week_schedule ?? 0)?.['days=' + String(((s as any).temp_d ?? 0)) + ', timeslots=' + String(((s as any).temp_scan_t ?? 0)) + ', event_count'];
+    (s as any).temp_scan_count = (((s as any).week_schedule ?? 0)?.['days=' + String(((s as any).temp_d ?? 0)) + ', timeslots=' + String(((s as any).temp_scan_t ?? 0)) + ', event_count']);
     if (((s as any).temp_scan_count ?? 0) > 0) {
       (s as any).temp_scan_e = 0;
       // TODO-QSP: :loop_ev_icfs
       if (((s as any).temp_scan_e ?? 0) < ((s as any).temp_scan_count ?? 0)) {
-        (s as any).temp_is_hidden = ((s as any).week_schedule ?? 0)?.['days=' + String(((s as any).temp_d ?? 0)) + ', timeslots=' + String(((s as any).temp_scan_t ?? 0)) + ', events=' + String(((s as any).temp_scan_e ?? 0)) + ', is_hidden'];
+        (s as any).temp_is_hidden = (((s as any).week_schedule ?? 0)?.['days=' + String(((s as any).temp_d ?? 0)) + ', timeslots=' + String(((s as any).temp_scan_t ?? 0)) + ', events=' + String(((s as any).temp_scan_e ?? 0)) + ', is_hidden']);
         if ((!((s as any).temp_is_hidden ?? 0))) {
-          (s as any).temp_evt_col = ((s as any).week_schedule ?? 0)?.['days=' + String(((s as any).temp_d ?? 0)) + ', timeslots=' + String(((s as any).temp_scan_t ?? 0)) + ', events=' + String(((s as any).temp_scan_e ?? 0)) + ', column'];
-          (s as any).temp_evt_colspan = ((s as any).week_schedule ?? 0)?.['days=' + String(((s as any).temp_d ?? 0)) + ', timeslots=' + String(((s as any).temp_scan_t ?? 0)) + ', events=' + String(((s as any).temp_scan_e ?? 0)) + ', colspan'];
+          (s as any).temp_evt_col = (((s as any).week_schedule ?? 0)?.['days=' + String(((s as any).temp_d ?? 0)) + ', timeslots=' + String(((s as any).temp_scan_t ?? 0)) + ', events=' + String(((s as any).temp_scan_e ?? 0)) + ', column']);
+          (s as any).temp_evt_colspan = (((s as any).week_schedule ?? 0)?.['days=' + String(((s as any).temp_d ?? 0)) + ', timeslots=' + String(((s as any).temp_scan_t ?? 0)) + ', events=' + String(((s as any).temp_scan_e ?? 0)) + ', colspan']);
           if (((s as any).temp_check_col ?? 0) >= ((s as any).temp_evt_col ?? 0)  &&  ((s as any).temp_check_col ?? 0) < ((s as any).temp_evt_col ?? 0) + ((s as any).temp_evt_colspan ?? 0)) {
             (s as any).result = 0;
             return;

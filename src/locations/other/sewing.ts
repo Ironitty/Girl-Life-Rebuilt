@@ -13,7 +13,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.text('You pull your sewing kit out from under your bed.');
   if (((s as any).mc_inventory ?? 0)?.['sewing_fabric'] > 1) {
     // TODO-QSP: dynamic text: You have <<mc_inventory[''sewing_fabric'']>> pieces of sewing fabric left.
-    scene.text(`You have ${((s as any).mc_inventory ?? 0)?.['sewing_fabric'] ?? ''} pieces of sewing fabric left.`);
+    scene.text(`You have ${(((s as any).mc_inventory ?? 0)?.['sewing_fabric'] ?? '')} pieces of sewing fabric left.`);
   } else {
     if (((s as any).mc_inventory ?? 0)?.['sewing_fabric'] === 1) {
       scene.text('You have 1 piece of sewing fabric left.');

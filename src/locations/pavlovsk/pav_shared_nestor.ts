@@ -13,7 +13,7 @@ function enterNestor(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   qspCall(s, 'boyStat', 'A265');
   // TODO-QSP: dynamic text: <h3><center><font color=#<<$Nestor[''font'']>>><<$npc_firstname[$boy]>></font></...
-  scene.text(`<h3><center><font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')}</font></h3></center>`);
+  scene.text(`<h3><center><font color=#${(((s as any).Nestor ?? 0)?.['font'] ?? '')}>${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')}</font></h3></center>`);
   scene.img('images/locations/pavlovsk/resident/sharedapt/gp/gp.jpg');
   // TODO-QSP: $func('npc_notes', $boy)
   if (((s as any).Nestor ?? 0)?.['hadSex'] === 1) {
@@ -21,7 +21,7 @@ function enterNestor(s: GameState, scene: SceneBuilder): void {
     scene.text(`As you know very well, ${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} has a ${(((s as any).npc_thdick ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} ${(((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} cm long <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027pav_shared_nestor/u0027, /u0027nestor_dick/u0027); return false;">dick</a> with somehow maintained pubic hair.`);
   }
   // TODO-QSP: dynamic text: <b>Today he looks to be in a <<$Nestor[''mood_txt'']>> mood.</b>
-  scene.text(`<b>Today he looks to be in a ${((s as any).Nestor ?? 0)?.['mood_txt'] ?? ''} mood.</b>`);
+  scene.text(`<b>Today he looks to be in a ${(((s as any).Nestor ?? 0)?.['mood_txt'] ?? '')} mood.</b>`);
   if ((((s as any).totminut ?? 0) - ((s as any).Nestor ?? 0)?.['served']) < 180) {
     ((s as any).Nestor = (s as any).Nestor ?? {})['serve'] = 0;
     // TODO-QSP: dynamic text: It''s not even been 3 hours since you last served <<$npc_firstname[$boy]>>
@@ -33,27 +33,27 @@ function enterNestor(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).cumloc ?? 0)[13] > 0  ||  ((s as any).cumloc ?? 0)[11] > 0  ||  ((s as any).cumloc ?? 0)[16] > 0  ||  ((s as any).cumloc ?? 0)[10] > 0  ||  ((s as any).cumloc ?? 0)[9] > 0) {
     // TODO-QSP: dynamic text: <font color=#<<$Nestor[''font'']>>>"Hey <<$pcs_firstname>>, is that cum? Go wash...
-    scene.text(`<font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"Hey ${((s as any).pcs_firstname ?? '')}, is that cum? Go wash yourself, I don't want you near me like that!"</font>`);
+    scene.text(`<font color=#${(((s as any).Nestor ?? 0)?.['font'] ?? '')}>"Hey ${((s as any).pcs_firstname ?? '')}, is that cum? Go wash yourself, I don't want you near me like that!"</font>`);
     scene.actions([
       { label: 'Leave', goto: ['pav_shared_apt', 'start'] },
     ]);
   } else {
     if (((s as any).cumloc ?? 0)[2] > 0  ||  ((s as any).cumloc ?? 0)[5] > 0  ||  ((s as any).cumloc ?? 0)[6] > 0  ||  ((s as any).cumloc ?? 0)[7] > 0) {
       // TODO-QSP: dynamic text: <font color=#<<$Nestor[''font'']>>>"Hey <<$pcs_firstname>>, is that cum on your ...
-      scene.text(`<font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"Hey ${((s as any).pcs_firstname ?? '')}, is that cum on your clothes? Go change, I don't want you near me like that!"</font>`);
+      scene.text(`<font color=#${(((s as any).Nestor ?? 0)?.['font'] ?? '')}>"Hey ${((s as any).pcs_firstname ?? '')}, is that cum on your clothes? Go change, I don't want you near me like that!"</font>`);
       scene.actions([
         { label: 'Leave', goto: ['pav_shared_apt', 'start'] },
       ]);
     } else {
       if ((((s as any).cumloc ?? 0)[14] > 0  ||  ((s as any).cumloc ?? 0)[15] > 0  ||  ((s as any).cumloc ?? 0)[1] > 0  ||  ((s as any).cumloc ?? 0)[4] > 0)  &&  ((s as any).clothingworntype ?? 0) === 'nude') {
         // TODO-QSP: dynamic text: <font color=#<<$Nestor[''font'']>>>"Hey <<$pcs_firstname>>, you dirty slut, you ...
-        scene.text(`<font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"Hey ${((s as any).pcs_firstname ?? '')}, you dirty slut, you forgot to wash the cum off! Get out!"</font>`);
+        scene.text(`<font color=#${(((s as any).Nestor ?? 0)?.['font'] ?? '')}>"Hey ${((s as any).pcs_firstname ?? '')}, you dirty slut, you forgot to wash the cum off! Get out!"</font>`);
         scene.actions([
           { label: 'Leave', goto: ['pav_shared_apt', 'start'] },
         ]);
       } else {
         // TODO-QSP: dynamic text: <font color=#<<$Nestor[''font'']>>>"Hey chick, here for fun?"</font>
-        scene.text(`<font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"Hey chick, here for fun?"</font>`);
+        scene.text(`<font color=#${(((s as any).Nestor ?? 0)?.['font'] ?? '')}>"Hey chick, here for fun?"</font>`);
         if (((s as any).Nestor ?? 0)?.['serve'] === 1) {
           qspGoto(s, 'pav_shared_nestor', 'Nestor_Serve');
           scene.actions([
@@ -77,7 +77,7 @@ function enterNestorDick(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'boyStat', 'A265');
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   // TODO-QSP: dynamic text: <h3><font color=#<<$Nestor[''font'']>>><<$npc_firstname[$boy]>></font></h3>
-  scene.text(`<h3><font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')}</font></h3>`);
+  scene.text(`<h3><font color=#${(((s as any).Nestor ?? 0)?.['font'] ?? '')}>${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')}</font></h3>`);
   if (((s as any).cfg_vars ?? 0)?.['imgh'] < 250) {
     scene.img('images/locations/pavlovsk/resident/sharedapt/gp/gp.jpg');
     scene.img('images/locations/pavlovsk/resident/sharedapt/gp/cockflaccid.jpg');
@@ -138,7 +138,7 @@ function enterNestorDick(s: GameState, scene: SceneBuilder): void {
   scene.text('\'Your relationship with \' + $npc_firstname[$boy] + \' is <font color=#\' + $color_rel + \'>\' + $rel_word[$boy] + \'</font>.\'');
   // TODO-QSP: $func('npc_notes', $boy)
   // TODO-QSP: dynamic text: his mood is <<$Nestor[''mood_txt'']>>
-  scene.text(`his mood is ${((s as any).Nestor ?? 0)?.['mood_txt'] ?? ''}`);
+  scene.text(`his mood is ${(((s as any).Nestor ?? 0)?.['mood_txt'] ?? '')}`);
   // TODO-QSP: dynamic text: His dick is <<npc_dick[$boy]>> cm long with somehow maintained pubic hair.
   scene.text(`His dick is ${(((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} cm long with somehow maintained pubic hair.`);
   if (((s as any).Nestor ?? 0)?.['hj'] === 1) {
@@ -146,7 +146,7 @@ function enterNestorDick(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).Nestor ?? 0)?.['hj'] > 1) {
     // TODO-QSP: dynamic text: -you have jerked him off <<Nestor[''hj'']>> times
-    scene.text(`-you have jerked him off ${((s as any).Nestor ?? 0)?.['hj'] ?? ''} times`);
+    scene.text(`-you have jerked him off ${(((s as any).Nestor ?? 0)?.['hj'] ?? '')} times`);
     // TODO-QSP: if Nestor['hjFail'] > 1: ' and failed to make him cum with your hands <<Nestor[''hjFail'']>> times'
   }
   if (((s as any).Nestor ?? 0)?.['bj'] === 1) {
@@ -154,10 +154,10 @@ function enterNestorDick(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).Nestor ?? 0)?.['bj'] > 1) {
     // TODO-QSP: dynamic text: -you have given him <<Nestor[''bj'']>> blowjobs
-    scene.text(`-you have given him ${((s as any).Nestor ?? 0)?.['bj'] ?? ''} blowjobs`);
+    scene.text(`-you have given him ${(((s as any).Nestor ?? 0)?.['bj'] ?? '')} blowjobs`);
     if (((s as any).Nestor ?? 0)?.['bjFail'] > 1) {
       // TODO-QSP: dynamic text:  and failed to make him cum with your mouth <<Nestor[''bjFail'']>> times
-      scene.text(` and failed to make him cum with your mouth ${((s as any).Nestor ?? 0)?.['bjFail'] ?? ''} times`);
+      scene.text(` and failed to make him cum with your mouth ${(((s as any).Nestor ?? 0)?.['bjFail'] ?? '')} times`);
     }
   }
   if (((s as any).Nestor ?? 0)?.['bjDeep'] === 1) {
@@ -165,23 +165,23 @@ function enterNestorDick(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).Nestor ?? 0)?.['bjDeep'] > 1) {
     // TODO-QSP: dynamic text: -you have given him <<Nestor[''bjDeep'']>> blowjobs with deepthroat
-    scene.text(`-you have given him ${((s as any).Nestor ?? 0)?.['bjDeep'] ?? ''} blowjobs with deepthroat`);
+    scene.text(`-you have given him ${(((s as any).Nestor ?? 0)?.['bjDeep'] ?? '')} blowjobs with deepthroat`);
     if (((s as any).Nestor ?? 0)?.['bjFailPuke'] > 1) {
       // TODO-QSP: dynamic text:  but failed and puked in his crotch <<Nestor[''bjFailPuke'']>> times
-      scene.text(` but failed and puked in his crotch ${((s as any).Nestor ?? 0)?.['bjFailPuke'] ?? ''} times`);
+      scene.text(` but failed and puked in his crotch ${(((s as any).Nestor ?? 0)?.['bjFailPuke'] ?? '')} times`);
     }
     if (((s as any).Nestor ?? 0)?.['bjFailFaint'] > 1) {
       // TODO-QSP: dynamic text:  but failed and fainted impaled on his cock <<Nestor[''bjFailFaint'']>> times
-      scene.text(` but failed and fainted impaled on his cock ${((s as any).Nestor ?? 0)?.['bjFailFaint'] ?? ''} times`);
+      scene.text(` but failed and fainted impaled on his cock ${(((s as any).Nestor ?? 0)?.['bjFailFaint'] ?? '')} times`);
     }
   }
   if (((s as any).Nestor ?? 0)?.['swall'] === 1) {
     // TODO-QSP: dynamic text: -you have swallowed <<Nestor[''Swall'']>> load of his cum
-    scene.text(`-you have swallowed ${((s as any).Nestor ?? 0)?.['Swall'] ?? ''} load of his cum`);
+    scene.text(`-you have swallowed ${(((s as any).Nestor ?? 0)?.['Swall'] ?? '')} load of his cum`);
   }
   if (((s as any).Nestor ?? 0)?.['swall'] > 1) {
     // TODO-QSP: dynamic text: -you have swallowed <<Nestor[''Swall'']>> loads of his cum
-    scene.text(`-you have swallowed ${((s as any).Nestor ?? 0)?.['Swall'] ?? ''} loads of his cum`);
+    scene.text(`-you have swallowed ${(((s as any).Nestor ?? 0)?.['Swall'] ?? '')} loads of his cum`);
   }
   if (((s as any).Nestor ?? 0)?.['vag'] === 1) {
     scene.text('-you had vaginal sex with him');
@@ -194,20 +194,20 @@ function enterNestorDick(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).Nestor ?? 0)?.['vag'] > 1) {
       // TODO-QSP: dynamic text: -you had vaginal sex with him <<Nestor[''vag'']>> times
-      scene.text(`-you had vaginal sex with him ${((s as any).Nestor ?? 0)?.['vag'] ?? ''} times`);
+      scene.text(`-you had vaginal sex with him ${(((s as any).Nestor ?? 0)?.['vag'] ?? '')} times`);
       if (((s as any).Nestor ?? 0)?.['vagCumInside'] >= 1) {
         // TODO-QSP: dynamic text:  and let him cum inside you <<Nestor[''vagCumInside'']>> times
-        scene.text(` and let him cum inside you ${((s as any).Nestor ?? 0)?.['vagCumInside'] ?? ''} times`);
+        scene.text(` and let him cum inside you ${(((s as any).Nestor ?? 0)?.['vagCumInside'] ?? '')} times`);
       }
       if (((s as any).Nestor ?? 0)?.['vagCumInsideUnwanted'] >= 1) {
         // TODO-QSP: dynamic text:  and he also came inside your pussy against your will <<Nestor[''vagCumInsideUnw...
-        scene.text(` and he also came inside your pussy against your will ${((s as any).Nestor ?? 0)?.['vagCumInsideUnwanted'] ?? ''} times`);
+        scene.text(` and he also came inside your pussy against your will ${(((s as any).Nestor ?? 0)?.['vagCumInsideUnwanted'] ?? '')} times`);
       }
     }
   }
   if (((s as any).Nestor ?? 0)?.['cumVag'] > 0) {
     // TODO-QSP: dynamic text: - he pumped a total of <<Nestor[''cumVag'']>> loads of cum into your pussy
-    scene.text(`- he pumped a total of ${((s as any).Nestor ?? 0)?.['cumVag'] ?? ''} loads of cum into your pussy`);
+    scene.text(`- he pumped a total of ${(((s as any).Nestor ?? 0)?.['cumVag'] ?? '')} loads of cum into your pussy`);
   }
   if (((s as any).Nestor ?? 0)?.['anal'] === 1) {
     scene.text('-you had anal sex with him');
@@ -220,19 +220,19 @@ function enterNestorDick(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).Nestor ?? 0)?.['anal'] > 1) {
     // TODO-QSP: dynamic text: -you had anal sex with him <<Nestor[''anal'']>> times
-    scene.text(`-you had anal sex with him ${((s as any).Nestor ?? 0)?.['anal'] ?? ''} times`);
+    scene.text(`-you had anal sex with him ${(((s as any).Nestor ?? 0)?.['anal'] ?? '')} times`);
     if (((s as any).Nestor ?? 0)?.['analCumInside'] >= 1) {
       // TODO-QSP: dynamic text:  and let him cum inside your ass <<Nestor[''analCumInside'']>> times
-      scene.text(` and let him cum inside your ass ${((s as any).Nestor ?? 0)?.['analCumInside'] ?? ''} times`);
+      scene.text(` and let him cum inside your ass ${(((s as any).Nestor ?? 0)?.['analCumInside'] ?? '')} times`);
     }
     if (((s as any).Nestor ?? 0)?.['analCumInsideUnwanted'] >= 1) {
       // TODO-QSP: dynamic text:  and he also came inside your ass against your will <<Nestor[''analCumInsideUnwa...
-      scene.text(` and he also came inside your ass against your will ${((s as any).Nestor ?? 0)?.['analCumInsideUnwanted'] ?? ''} times`);
+      scene.text(` and he also came inside your ass against your will ${(((s as any).Nestor ?? 0)?.['analCumInsideUnwanted'] ?? '')} times`);
     }
   }
   if (((s as any).Nestor ?? 0)?.['cumAnal'] > 0) {
     // TODO-QSP: dynamic text: - he pumped a total of <<Nestor[''cumAnal'']>> loads of cum into your anus
-    scene.text(`- he pumped a total of ${((s as any).Nestor ?? 0)?.['cumAnal'] ?? ''} loads of cum into your anus`);
+    scene.text(`- he pumped a total of ${(((s as any).Nestor ?? 0)?.['cumAnal'] ?? '')} loads of cum into your anus`);
   }
   if (((s as any).loc_arg ?? 0) === 'Nestor') {
     scene.actions([
@@ -251,7 +251,7 @@ function enterNestor_Chat(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'boyStat', 'A265');
   (s as any).loc_arg = 'Nestor_Chat';
   // TODO-QSP: dynamic text: <h3><font color=#<<$Nestor[''font'']>>><<$npc_firstname[$boy]>></font></h3>
-  scene.text(`<h3><font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')}</font></h3>`);
+  scene.text(`<h3><font color=#${(((s as any).Nestor ?? 0)?.['font'] ?? '')}>${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')}</font></h3>`);
   scene.img('images/locations/pavlovsk/resident/sharedapt/gp/gp.jpg');
   if (((s as any).hour ?? 0) >= ((s as any).Nestor ?? 0)?.['leaves']  &&  ((s as any).hour ?? 0) < ((s as any).Nestor ?? 0)?.['comes']) {
     ((s as any).shared_apt = (s as any).shared_apt ?? {})['step'] = 0;
@@ -268,24 +268,24 @@ function enterNestor_Chat(s: GameState, scene: SceneBuilder): void {
       scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} is scanning your nude body with his eyes.`);
       if (((s as any).pcs_bmi ?? 0) <= 18) {
         // TODO-QSP: dynamic text: He obviously enjoys the sight: <font color=#<<$Nestor[''font'']>>>"Nice body <<$...
-        scene.text(`He obviously enjoys the sight: <font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"Nice body ${((s as any).pcs_firstname ?? '')}. Are you here to offer it?"</font>`);
+        scene.text(`He obviously enjoys the sight: <font color=#${(((s as any).Nestor ?? 0)?.['font'] ?? '')}>"Nice body ${((s as any).pcs_firstname ?? '')}. Are you here to offer it?"</font>`);
       } else {
         if (((s as any).pcs_bmi ?? 0) <= 25) {
           // TODO-QSP: dynamic text: He is not very content with the sight: <font color=#<<$Nestor[''font'']>>>"You s...
-          scene.text(`He is not very content with the sight: <font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"You should lose some weight, ${((s as any).pcs_firstname ?? '')}, you are getting fat."</font>`);
+          scene.text(`He is not very content with the sight: <font color=#${(((s as any).Nestor ?? 0)?.['font'] ?? '')}>"You should lose some weight, ${((s as any).pcs_firstname ?? '')}, you are getting fat."</font>`);
         } else {
           // TODO-QSP: dynamic text: He seems almost disgusted by the sight: <font color=#<<$Nestor[''font'']>>>"Jeez...
-          scene.text(`He seems almost disgusted by the sight: <font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"Jeezus ${((s as any).pcs_firstname ?? '')}, stop eating you are beginning to look like an elephant!"</font>`);
+          scene.text(`He seems almost disgusted by the sight: <font color=#${(((s as any).Nestor ?? 0)?.['font'] ?? '')}>"Jeezus ${((s as any).pcs_firstname ?? '')}, stop eating you are beginning to look like an elephant!"</font>`);
         }
       }
       if (((s as any).pcs_bmi ?? 0) <= 25  &&  ((s as any).pantyworntype ?? 0) !== 'none') {
         // TODO-QSP: dynamic text: <font color=#<<$Nestor[''font'']>>>"Why did you leave those panties on <<$pcs_fi...
-        scene.text(`<font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"Why did you leave those panties on ${((s as any).pcs_firstname ?? '')}? Such a shame."</font>`);
+        scene.text(`<font color=#${(((s as any).Nestor ?? 0)?.['font'] ?? '')}>"Why did you leave those panties on ${((s as any).pcs_firstname ?? '')}? Such a shame."</font>`);
       } else {
         if (((s as any).pcs_bmi ?? 0) <= 25  &&  ((s as any).pantyworntype ?? 0) === 'none'  &&  ((s as any).analPlugIn ?? 0) === 1) {
           scene.text('As you accidentally turn around, he gazes between your asscheeks on the plug stuck in your ass.');
           // TODO-QSP: dynamic text: <font color=#<<$Nestor[''font'']>>>"Wow, you just can''t be a second without som...
-          scene.text(`<font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"Wow, you just can't be a second without something filling your holes, do you?"</font>`);
+          scene.text(`<font color=#${(((s as any).Nestor ?? 0)?.['font'] ?? '')}>"Wow, you just can't be a second without something filling your holes, do you?"</font>`);
           if ((Math.floor(Math.random() * 101) + 0) < 30) {
             scene.text('As he watches you, he gets up and goes near you, his hand reaching for your plugged ass.');
             scene.actions([
@@ -302,10 +302,10 @@ function enterNestor_Chat(s: GameState, scene: SceneBuilder): void {
         scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} is scanning your outfit with his eyes.`);
         if (((s as any).pcs_bmi ?? 0) <= 25) {
           // TODO-QSP: dynamic text: <font color=#<<$Nestor[''font'']>>>"You know I like when you dress like a mindle...
-          scene.text(`<font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"You know I like when you dress like a mindless bimbo. Not that you aren't, but anyway, good job!"</font>`);
+          scene.text(`<font color=#${(((s as any).Nestor ?? 0)?.['font'] ?? '')}>"You know I like when you dress like a mindless bimbo. Not that you aren't, but anyway, good job!"</font>`);
         } else {
           // TODO-QSP: dynamic text: <font color=#<<$Nestor[''font'']>>>"I like girls dressed like bimbos, but they s...
-          scene.text(`<font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"I like girls dressed like bimbos, but they should have the body shape for it. Waste of good clothes on you."</font>`);
+          scene.text(`<font color=#${(((s as any).Nestor ?? 0)?.['font'] ?? '')}>"I like girls dressed like bimbos, but they should have the body shape for it. Waste of good clothes on you."</font>`);
         }
       } else {
         if (((s as any).PCloStyle ?? 0) === 4  ||  ((s as any).PCloProstitute ?? 0) === 1) {
@@ -313,10 +313,10 @@ function enterNestor_Chat(s: GameState, scene: SceneBuilder): void {
           scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} is scanning your outfit with his eyes.`);
           if (((s as any).pcs_bmi ?? 0) <= 25) {
             // TODO-QSP: dynamic text: <font color=#<<$Nestor[''font'']>>>"Only thing that I like more than stupid bimb...
-            scene.text(`<font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"Only thing that I like more than stupid bimbos are whores. I won't pay you anyway, but good job!"</font>`);
+            scene.text(`<font color=#${(((s as any).Nestor ?? 0)?.['font'] ?? '')}>"Only thing that I like more than stupid bimbos are whores. I won't pay you anyway, but good job!"</font>`);
           } else {
             // TODO-QSP: dynamic text: <font color=#<<$Nestor[''font'']>>>"I literally love whores, but with your body ...
-            scene.text(`<font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"I literally love whores, but with your body shape you won't be earning much money, darling."</font>`);
+            scene.text(`<font color=#${(((s as any).Nestor ?? 0)?.['font'] ?? '')}>"I literally love whores, but with your body shape you won't be earning much money, darling."</font>`);
           }
         }
       }
@@ -335,23 +335,23 @@ function enterNestor_Chat(s: GameState, scene: SceneBuilder): void {
         (s as any).sayN = (Math.floor(Math.random() * 10) + 1);
         if (((s as any).sayN ?? 0) === 1) {
           // TODO-QSP: dynamic text: <i><font color=#<<$Nestor[''font'']>>>"Once I have kicked a guy to his nose… he ...
-          scene.text(`<i><font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"Once I have kicked a guy to his nose… he bled like a pig!"</font></i>`);
+          scene.text(`<i><font color=#${(((s as any).Nestor ?? 0)?.['font'] ?? '')}>"Once I have kicked a guy to his nose… he bled like a pig!"</font></i>`);
         }
         if (((s as any).sayN ?? 0) === 2) {
           // TODO-QSP: dynamic text: <i><font color=#<<$Nestor[''font'']>>>"Only morons have a job. I know how to mak...
-          scene.text(`<i><font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"Only morons have a job. I know how to make money without one, that's a skill!"</font></i>`);
+          scene.text(`<i><font color=#${(((s as any).Nestor ?? 0)?.['font'] ?? '')}>"Only morons have a job. I know how to make money without one, that's a skill!"</font></i>`);
         }
         if (((s as any).sayN ?? 0) === 3) {
           // TODO-QSP: dynamic text: <i><font color=#<<$Nestor[''font'']>>>"I know some cool guys of your age. They o...
-          scene.text(`<i><font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"I know some cool guys of your age. They often hang around in the park."</font></i>`);
+          scene.text(`<i><font color=#${(((s as any).Nestor ?? 0)?.['font'] ?? '')}>"I know some cool guys of your age. They often hang around in the park."</font></i>`);
         }
         if (((s as any).sayN ?? 0) === 4) {
           // TODO-QSP: dynamic text: <i><font color=#<<$Nestor[''font'']>>>"No one likes the authorities. Especially ...
-          scene.text(`<i><font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"No one likes the authorities. Especially the cops. Yes. Fuck the cops!"</font></i>`);
+          scene.text(`<i><font color=#${(((s as any).Nestor ?? 0)?.['font'] ?? '')}>"No one likes the authorities. Especially the cops. Yes. Fuck the cops!"</font></i>`);
         }
         if (((s as any).sayN ?? 0) === 5) {
           // TODO-QSP: dynamic text: <i><font color=#<<$Nestor[''font'']>>>"Don''t hang around the train station too ...
-          scene.text(`<i><font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"Don't hang around the train station too much. Shady people, you know."</font></i>`);
+          scene.text(`<i><font color=#${(((s as any).Nestor ?? 0)?.['font'] ?? '')}>"Don't hang around the train station too much. Shady people, you know."</font></i>`);
         }
         scene.text('<i>You spent some time chatting with him about his ventures and mischiefs, slightly improving your relation with him.</i>');
         qspCall(s, 'npc_relationship', 'modify', 'A265', 1);
@@ -370,11 +370,11 @@ function enterNestor_Chat(s: GameState, scene: SceneBuilder): void {
           (s as any).minut = ((s as any).minut ?? 0) + 3;
           if (((s as any).shared_apt ?? 0)?.['servitudeLvl'] === 0) {
             // TODO-QSP: dynamic text: <font color=#<<$Nestor[''font'']>>>"<<$pcs_firstname>>, have you finally decided...
-            scene.text(`<font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"${((s as any).pcs_firstname ?? '')}, have you finally decided to be our maid?"</font>`);
+            scene.text(`<font color=#${(((s as any).Nestor ?? 0)?.['font'] ?? '')}>"${((s as any).pcs_firstname ?? '')}, have you finally decided to be our maid?"</font>`);
             // TODO-QSP: dynamic text: <font color=#<<$pcs_font>>>"Jeez…"</font>
             scene.text(`<font color=#${((s as any).pcs_font ?? '')}>"Jeez…"</font>`);
             // TODO-QSP: dynamic text: <font color=#<<$Nestor[''font'']>>>"Come on girl, don''t you see I need to tidy ...
-            scene.text(`<font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"Come on girl, don't you see I need to tidy this shit-of-a-room?"</font>`);
+            scene.text(`<font color=#${(((s as any).Nestor ?? 0)?.['font'] ?? '')}>"Come on girl, don't you see I need to tidy this shit-of-a-room?"</font>`);
             scene.actions([
               { label: 'Say you are still not interested', handler: (st: GameState) => {
     // TODO-QSP: shared_apt['step'] = 0
@@ -387,11 +387,11 @@ function enterNestor_Chat(s: GameState, scene: SceneBuilder): void {
           } else {
             if (((s as any).shared_apt ?? 0)?.['servitudeLvl'] === 1) {
               // TODO-QSP: dynamic text: <font color=#<<$Nestor[''font'']>>>"<<$pcs_firstname>>, have you finally decided...
-              scene.text(`<font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"${((s as any).pcs_firstname ?? '')}, have you finally decided to be our fucktoy?"</font>`);
+              scene.text(`<font color=#${(((s as any).Nestor ?? 0)?.['font'] ?? '')}>"${((s as any).pcs_firstname ?? '')}, have you finally decided to be our fucktoy?"</font>`);
               // TODO-QSP: dynamic text: <font color=#<<$pcs_font>>>"What? I already clean and cook for you."</font>
               scene.text(`<font color=#${((s as any).pcs_font ?? '')}>"What? I already clean and cook for you."</font>`);
               // TODO-QSP: dynamic text: <font color=#<<$Nestor[''font'']>>>"Hey, you have to earn the rent money somewhe...
-              scene.text(`<font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"Hey, you have to earn the rent money somewhere anyway. This way you don't need to whore yourself on the streets you know?"</font>`);
+              scene.text(`<font color=#${(((s as any).Nestor ?? 0)?.['font'] ?? '')}>"Hey, you have to earn the rent money somewhere anyway. This way you don't need to whore yourself on the streets you know?"</font>`);
               scene.actions([
                 { label: 'Say you are no whore and you are not interested', handler: (st: GameState) => {
     // TODO-QSP: shared_apt['step'] = 0
@@ -531,14 +531,14 @@ function enterNestor_Chat(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).shared_apt ?? 0)?.['chatLvl'] === 10) {
       // TODO-QSP: dynamic text: <font color=#<<$Nestor[''font'']>>>"Helping you out!"</font>
-      scene.text(`<font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"Helping you out!"</font>`);
+      scene.text(`<font color=#${(((s as any).Nestor ?? 0)?.['font'] ?? '')}>"Helping you out!"</font>`);
       scene.img('images/locations/pavlovsk/resident/sharedapt/sex/buttplugpullout.mp4');
       scene.text('Suddenly he grabs the plug and pulls it out without a warning!');
       scene.text('PLOPPP… your ass makes a sound as the plug leaves it gaping.');
       // TODO-QSP: dynamic text: <font color=#<<$pcs_font>>>"Ouuuch!"</font>
       scene.text(`<font color=#${((s as any).pcs_font ?? '')}>"Ouuuch!"</font>`);
       // TODO-QSP: dynamic text: <font color=#<<$Nestor[''font'']>>>"You''re welcome <<$pcs_firstname>>, come aga...
-      scene.text(`<font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"You're welcome ${((s as any).pcs_firstname ?? '')}, come again!"</font>`);
+      scene.text(`<font color=#${(((s as any).Nestor ?? 0)?.['font'] ?? '')}>"You're welcome ${((s as any).pcs_firstname ?? '')}, come again!"</font>`);
       (s as any).analPlugIn = 0;
       (s as any).analPlugOut = 1;
       scene.actions([
@@ -557,7 +557,7 @@ function enterNestor_Serve(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   (s as any).loc_arg = 'Nestor_Serve';
   // TODO-QSP: dynamic text: <h3><font color=#<<$Nestor[''font'']>>><<$npc_firstname[$boy]>></font></h3>
-  scene.text(`<h3><font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')}</font></h3>`);
+  scene.text(`<h3><font color=#${(((s as any).Nestor ?? 0)?.['font'] ?? '')}>${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')}</font></h3>`);
   scene.img('images/locations/pavlovsk/resident/sharedapt/gp/gp.jpg');
   ((s as any).shared_apt = (s as any).shared_apt ?? {})['step'] = 0;
   ((s as any).shared_apt = (s as any).shared_apt ?? {})['subStep'] = 0;
@@ -565,7 +565,7 @@ function enterNestor_Serve(s: GameState, scene: SceneBuilder): void {
   if (((s as any).Nestor ?? 0)?.['mood'] >= 7) {
     ((s as any).Nestor = (s as any).Nestor ?? {})['served'] = 0;
     // TODO-QSP: dynamic text: <font color=#<<$Nestor[''font'']>>>"Not now <<$pcs_firstname>>, get lost."</font...
-    scene.text(`<font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"Not now ${((s as any).pcs_firstname ?? '')}, get lost."</font>`);
+    scene.text(`<font color=#${(((s as any).Nestor ?? 0)?.['font'] ?? '')}>"Not now ${((s as any).pcs_firstname ?? '')}, get lost."</font>`);
     scene.actions([
       { label: 'Leave', goto: ['pav_shared_apt', 'start'] },
     ]);
@@ -573,7 +573,7 @@ function enterNestor_Serve(s: GameState, scene: SceneBuilder): void {
     if (((s as any).shared_apt ?? 0)?.['sexCh'] < 40) {
       ((s as any).Nestor = (s as any).Nestor ?? {})['served'] = 0;
       // TODO-QSP: dynamic text: <font color=#<<$Nestor[''font'']>>>"Not now <<$pcs_firstname>>, can''t you see I...
-      scene.text(`<font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"Not now ${((s as any).pcs_firstname ?? '')}, can't you see I am busy?"</font>`);
+      scene.text(`<font color=#${(((s as any).Nestor ?? 0)?.['font'] ?? '')}>"Not now ${((s as any).pcs_firstname ?? '')}, can't you see I am busy?"</font>`);
       scene.actions([
         { label: 'Leave', goto: ['pav_shared_apt', 'start'] },
       ]);
@@ -581,7 +581,7 @@ function enterNestor_Serve(s: GameState, scene: SceneBuilder): void {
       ((s as any).shared_apt = (s as any).shared_apt ?? {})['actionR'] = (Math.floor(Math.random() * 5) + 2);
       if (((s as any).shared_apt ?? 0)?.['actionR'] === 2) {
         // TODO-QSP: dynamic text: <font color=#<<$Nestor[''font'']>>>"You can do me with your little hands."</font...
-        scene.text(`<font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"You can do me with your little hands."</font>`);
+        scene.text(`<font color=#${(((s as any).Nestor ?? 0)?.['font'] ?? '')}>"You can do me with your little hands."</font>`);
         scene.actions([
           { label: 'Agree', handler: (st: GameState) => {
     qspCall(st, 'npc_relationship', '');
@@ -590,7 +590,7 @@ function enterNestor_Serve(s: GameState, scene: SceneBuilder): void {
       } else {
         if (((s as any).shared_apt ?? 0)?.['actionR'] === 3) {
           // TODO-QSP: dynamic text: <font color=#<<$Nestor[''font'']>>>"Sure <<$pcs_firstname>>, blow me right now."...
-          scene.text(`<font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"Sure ${((s as any).pcs_firstname ?? '')}, blow me right now."</font>`);
+          scene.text(`<font color=#${(((s as any).Nestor ?? 0)?.['font'] ?? '')}>"Sure ${((s as any).pcs_firstname ?? '')}, blow me right now."</font>`);
           scene.actions([
             { label: 'Agree', handler: (st: GameState) => {
     qspCall(st, 'npc_relationship', '');
@@ -599,7 +599,7 @@ function enterNestor_Serve(s: GameState, scene: SceneBuilder): void {
         } else {
           if (((s as any).shared_apt ?? 0)?.['actionR'] === 4) {
             // TODO-QSP: dynamic text: <font color=#<<$Nestor[''font'']>>>"Present your pussy, <<$pcs_firstname>>."</fo...
-            scene.text(`<font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"Present your pussy, ${((s as any).pcs_firstname ?? '')}."</font>`);
+            scene.text(`<font color=#${(((s as any).Nestor ?? 0)?.['font'] ?? '')}>"Present your pussy, ${((s as any).pcs_firstname ?? '')}."</font>`);
             scene.actions([
               { label: 'Agree', handler: (st: GameState) => {
     qspCall(st, 'npc_relationship', '');
@@ -610,7 +610,7 @@ function enterNestor_Serve(s: GameState, scene: SceneBuilder): void {
               if (((s as any).Nestor ?? 0)?.['anal'] === 0) {
                 if (((s as any).Nestor ?? 0)?.['doAnal'] === 1) {
                   // TODO-QSP: dynamic text: <font color=#<<$Nestor[''font'']>>>"Hmmm… what would I like to do to you?"</font...
-                  scene.text(`<font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"Hmmm… what would I like to do to you?"</font>`);
+                  scene.text(`<font color=#${(((s as any).Nestor ?? 0)?.['font'] ?? '')}>"Hmmm… what would I like to do to you?"</font>`);
                   scene.actions([
                     { label: 'It\'s your choice', goto: ['pav_shared_nestor', 'Nestor_Serve'] },
                     { label: 'You told me you like anal, do you?', handler: (st: GameState) => {
@@ -623,7 +623,7 @@ function enterNestor_Serve(s: GameState, scene: SceneBuilder): void {
               } else {
                 if (((s as any).Nestor ?? 0)?.['anal'] >= 1) {
                   // TODO-QSP: dynamic text: <font color=#<<$Nestor[''font'']>>>"Sure <<$pcs_firstname>>, I would like to tak...
-                  scene.text(`<font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"Sure ${((s as any).pcs_firstname ?? '')}, I would like to take your ass this time."</font>`);
+                  scene.text(`<font color=#${(((s as any).Nestor ?? 0)?.['font'] ?? '')}>"Sure ${((s as any).pcs_firstname ?? '')}, I would like to take your ass this time."</font>`);
                   scene.actions([
                     { label: 'Agree', handler: (st: GameState) => {
     qspCall(st, 'npc_relationship', '');
@@ -635,7 +635,7 @@ function enterNestor_Serve(s: GameState, scene: SceneBuilder): void {
               if (((s as any).shared_apt ?? 0)?.['actionR'] === 6) {
                 if (((s as any).Nestor ?? 0)?.['doVacuum'] >= 1) {
                   // TODO-QSP: dynamic text: <font color=#<<$Nestor[''font'']>>>"Hmmm… what would I like to do to you?"</font...
-                  scene.text(`<font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"Hmmm… what would I like to do to you?"</font>`);
+                  scene.text(`<font color=#${(((s as any).Nestor ?? 0)?.['font'] ?? '')}>"Hmmm… what would I like to do to you?"</font>`);
                   scene.actions([
                     { label: 'It\'s your choice', goto: ['pav_shared_nestor', 'Nestor_Serve'] },
                     { label: 'You told me you bought some vacuum enlarger, did you?', handler: (st: GameState) => {
@@ -669,20 +669,20 @@ function enterNestor_Serve(s: GameState, scene: SceneBuilder): void {
 function enterNestorHandjobStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'boyStat', 'A265');
   // TODO-QSP: dynamic text: <b><font color=#<<$Nestor[''font'']>>><<$npc_firstname[$boy]>> - handjob</font><...
-  scene.text(`<b><font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} - handjob</font></b>`);
+  scene.text(`<b><font color=#${(((s as any).Nestor ?? 0)?.['font'] ?? '')}>${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} - handjob</font></b>`);
   if (((s as any).cfg_vars ?? 0)?.['imgh'] < 250) {
     scene.img('images/locations/pavlovsk/resident/sharedapt/gp/gp.jpg');
   } else {
     scene.img('images/locations/pavlovsk/resident/sharedapt/gp/gp.jpg');
   }
   (s as any).loc_arg = 'Nestor_handjob_start';
-  ((s as any).shared_apt = (s as any).shared_apt ?? {})['price'] = ((s as any).shared_apt ?? 0)?.['price_handjob'];
+  ((s as any).shared_apt = (s as any).shared_apt ?? {})['price'] = (((s as any).shared_apt ?? 0)?.['price_handjob']);
   scene.img('images/shared/sex/blowjob/kotovbj2.mp4');
   // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> sits on his bed, spreading his legs, showing you where ...
   scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} sits on his bed, spreading his legs, showing you where to go.`);
   scene.text('You drop on your knees, crawl to him and unzip his pants.');
   // TODO-QSP: dynamic text: His dick falls out of them, already half hard. <font color=#<<$Nestor[''font'']>...
-  scene.text(`His dick falls out of them, already half hard. <font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"Get to work, little girl."</font>`);
+  scene.text(`His dick falls out of them, already half hard. <font color=#${(((s as any).Nestor ?? 0)?.['font'] ?? '')}>"Get to work, little girl."</font>`);
   scene.text('Looking at the cock, you decide to:');
   // TODO-QSP: end
   scene.actions([
@@ -693,7 +693,7 @@ function enterNestorHandjobStart(s: GameState, scene: SceneBuilder): void {
 
 function enterNestorHandjobHeader(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: <b><font color=#<<$Nestor[''font'']>>><<$npc_firstname[$boy]>> - handjob</font><...
-  scene.text(`<b><font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} - handjob</font></b>`);
+  scene.text(`<b><font color=#${(((s as any).Nestor ?? 0)?.['font'] ?? '')}>${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} - handjob</font></b>`);
   if (((s as any).cfg_vars ?? 0)?.['imgh'] < 250) {
     if ((!((s as any).cockHard ?? 0))) {
       // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/locations/pavlovsk/resident/sharedapt/gp/...
@@ -776,7 +776,7 @@ function enterNestorHandjobLube(s: GameState, scene: SceneBuilder): void {
   scene.text('You put some lube on your hands and massage his cock with it.');
   scene.text('The slimy lube enables you to increase the sensation, making him moan even more inensively.');
   // TODO-QSP: dynamic text: <font color=#<<$Nestor[''font'']>>>"Oh yeah <<$pcs_firstname>>, this is what gir...
-  scene.text(`<font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"Oh yeah ${((s as any).pcs_firstname ?? '')}, this is what girls should learn as young as possible!"</font>`);
+  scene.text(`<font color=#${(((s as any).Nestor ?? 0)?.['font'] ?? '')}>"Oh yeah ${((s as any).pcs_firstname ?? '')}, this is what girls should learn as young as possible!"</font>`);
   qspCall(s, 'arousal', 'hj', 3);
   qspCall(s, 'stat', '');
   if (((s as any).orgB ?? 0) >= 100) {
@@ -838,14 +838,14 @@ function enterNestorHandjobCumAttempt(s: GameState, scene: SceneBuilder): void {
     if (((s as any).failC ?? 0) >= 3) {
       scene.img('images/locations/pavlovsk/resident/sharedapt/sex/bjfail.jpg');
       // TODO-QSP: dynamic text: <font color=#<<$Nestor[''font'']>>>"Come on <<$pcs_firstname>>, if you can''t su...
-      scene.text(`<font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"Come on ${((s as any).pcs_firstname ?? '')}, if you can't suck a cock stop wasting my time. Get out!"</font>`);
+      scene.text(`<font color=#${(((s as any).Nestor ?? 0)?.['font'] ?? '')}>"Come on ${((s as any).pcs_firstname ?? '')}, if you can't suck a cock stop wasting my time. Get out!"</font>`);
       scene.actions([
         { label: 'Get up', goto: ['pav_shared_nestor', 'Nestor_handjob_cum_fail'] },
       ]);
     } else {
       scene.img('images/shared/sex/handjob/kotovhj.jpg');
       // TODO-QSP: dynamic text: <font color=#<<$Nestor[''font'']>>>"Come on <<$pcs_firstname>>, what are you doi...
-      scene.text(`<font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"Come on ${((s as any).pcs_firstname ?? '')}, what are you doing down there?"</font>`);
+      scene.text(`<font color=#${(((s as any).Nestor ?? 0)?.['font'] ?? '')}>"Come on ${((s as any).pcs_firstname ?? '')}, what are you doing down there?"</font>`);
       scene.actions([
         { label: 'Jerk it slowly', goto: ['pav_shared_nestor', 'Nestor_handjob_slow'] },
         { label: 'Jerk it fast', goto: ['pav_shared_nestor', 'Nestor_handjob_fast'] },
@@ -865,7 +865,7 @@ function enterNestorHandjobCumFail(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: You get up from your knees, looking at <<$npc_firstname[$boy]>>:<font color=#<<$...
   scene.text(`You get up from your knees, looking at ${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')}:<font color=#${((s as any).pcs_font ?? '')}>"I'm sorry I was unable to satisfy you."</font>.`);
   // TODO-QSP: dynamic text: He looks really pissed:<font color=#<<$Nestor[''font'']>>>"Get out you lousy slu...
-  scene.text(`He looks really pissed:<font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"Get out you lousy slut!"</font>`);
+  scene.text(`He looks really pissed:<font color=#${(((s as any).Nestor ?? 0)?.['font'] ?? '')}>"Get out you lousy slut!"</font>`);
   qspCall(s, 'npc_relationship', 'modify', 'A265', (-3));
   ((s as any).Nestor = (s as any).Nestor ?? {})['hjFail'] = ((s as any).Nestor['hjFail'] ?? 0) + (1);
   qspCall(s, 'arousal', 'end');
@@ -883,7 +883,7 @@ function enterNestorHandjobCumSuccess(s: GameState, scene: SceneBuilder): void {
   if (((s as any).Nestor ?? 0)?.['mood'] <= 5) {
     scene.img('images/locations/pavlovsk/resident/sharedapt/sex/leave.jpg');
     // TODO-QSP: dynamic text: <font color=#<<$Nestor[''font'']>>>"Good job, <<$pcs_firstname>>. Now get out."<...
-    scene.text(`<font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"Good job, ${((s as any).pcs_firstname ?? '')}. Now get out."</font>`);
+    scene.text(`<font color=#${(((s as any).Nestor ?? 0)?.['font'] ?? '')}>"Good job, ${((s as any).pcs_firstname ?? '')}. Now get out."</font>`);
     // TODO-QSP: dynamic text: Cleaning your hands off the cum: <font color=#<<$pcs_font>>>"OK, see you later."...
     scene.text(`Cleaning your hands off the cum: <font color=#${((s as any).pcs_font ?? '')}>"OK, see you later."</font>.`);
     qspCall(s, 'npc_relationship', 'modify', 'A265', 1);
@@ -906,7 +906,7 @@ function enterNestorHandjobCumSuccess(s: GameState, scene: SceneBuilder): void {
 function enterNestor_Suck(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'boyStat', 'A265');
   // TODO-QSP: dynamic text: <b><font color=#<<$Nestor[''font'']>>><<$npc_firstname[$boy]>> - blowjob</font><...
-  scene.text(`<b><font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} - blowjob</font></b>`);
+  scene.text(`<b><font color=#${(((s as any).Nestor ?? 0)?.['font'] ?? '')}>${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} - blowjob</font></b>`);
   if (((s as any).cfg_vars ?? 0)?.['imgh'] < 250) {
     if (((s as any).shared_apt ?? 0)?.['step'] === 0) {
       // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/locations/pavlovsk/resident/sharedapt/gp/...
@@ -932,7 +932,7 @@ function enterNestor_Suck(s: GameState, scene: SceneBuilder): void {
     }
   }
   (s as any).loc_arg = 'Nestor_Suck';
-  ((s as any).shared_apt = (s as any).shared_apt ?? {})['price'] = ((s as any).shared_apt ?? 0)?.['price_blowjob'];
+  ((s as any).shared_apt = (s as any).shared_apt ?? {})['price'] = (((s as any).shared_apt ?? 0)?.['price_blowjob']);
   if (((s as any).shared_apt ?? 0)?.['step'] > 0) {
     // TODO-QSP: dynamic text: '<<$npc_firstname[$boy]>> orgasm build-up: '+orgB+'/100'
     scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} orgasm build-up: ` + ((s as any).orgB ?? '') + '/100');
@@ -1164,7 +1164,7 @@ function enterNestor_Suck(s: GameState, scene: SceneBuilder): void {
                   if (((s as any).failC ?? 0) >= 3) {
                     scene.img('images/locations/pavlovsk/resident/sharedapt/sex/bjfail.jpg');
                     // TODO-QSP: dynamic text: <font color=#<<$Nestor[''font'']>>>"You are such a lousy sucker <<$pcs_firstname...
-                    scene.text(`<font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"You are such a lousy sucker ${((s as any).pcs_firstname ?? '')}. Get out!"</font>`);
+                    scene.text(`<font color=#${(((s as any).Nestor ?? 0)?.['font'] ?? '')}>"You are such a lousy sucker ${((s as any).pcs_firstname ?? '')}. Get out!"</font>`);
                     scene.actions([
                       { label: 'Get up', handler: (st: GameState) => {
     // TODO-QSP: shared_apt['step'] = 7
@@ -1173,7 +1173,7 @@ function enterNestor_Suck(s: GameState, scene: SceneBuilder): void {
                   } else {
                     scene.img('images/locations/pavlovsk/resident/sharedapt/sex/bjfailtryagain.mp4');
                     // TODO-QSP: dynamic text: <font color=#<<$Nestor[''font'']>>>"Come on <<$pcs_firstname>>, what are you doi...
-                    scene.text(`<font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"Come on ${((s as any).pcs_firstname ?? '')}, what are you doing down there?"</font>`);
+                    scene.text(`<font color=#${(((s as any).Nestor ?? 0)?.['font'] ?? '')}>"Come on ${((s as any).pcs_firstname ?? '')}, what are you doing down there?"</font>`);
                     if (((s as any).failC ?? 0) === 1) {
                       scene.text('He is getting nervous…');
                     }
@@ -1200,7 +1200,7 @@ function enterNestor_Suck(s: GameState, scene: SceneBuilder): void {
                   // TODO-QSP: dynamic text: You get up from your knees, looking at <<$npc_firstname[$boy]>>:<font color=#<<$...
                   scene.text(`You get up from your knees, looking at ${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')}:<font color=#${((s as any).pcs_font ?? '')}>"I'm sorry I was unable to satisfy you."</font>.`);
                   // TODO-QSP: dynamic text: He looks really pissed:<font color=#<<$Nestor[''font'']>>>"Get out you lousy slu...
-                  scene.text(`He looks really pissed:<font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"Get out you lousy slut!"</font>`);
+                  scene.text(`He looks really pissed:<font color=#${(((s as any).Nestor ?? 0)?.['font'] ?? '')}>"Get out you lousy slut!"</font>`);
                   qspCall(s, 'npc_relationship', 'modify', 'A265', (-3));
                   ((s as any).shared_apt = (s as any).shared_apt ?? {})['step'] = 0;
                   ((s as any).Nestor = (s as any).Nestor ?? {})['bjFail'] = ((s as any).Nestor['bjFail'] ?? 0) + (1);
@@ -1211,11 +1211,11 @@ function enterNestor_Suck(s: GameState, scene: SceneBuilder): void {
                   if (((s as any).shared_apt ?? 0)?.['step'] === 8) {
                     scene.img('images/locations/pavlovsk/resident/sharedapt/sex/bjdeepthroatpuke.mp4');
                     // TODO-QSP: dynamic text: <font color=#<<$Nestor[''font'']>>>"Oh my god <<$pcs_firstname>>, have you just ...
-                    scene.text(`<font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"Oh my god ${((s as any).pcs_firstname ?? '')}, have you just puked your shit onto me??!!"</font>`);
+                    scene.text(`<font color=#${(((s as any).Nestor ?? 0)?.['font'] ?? '')}>"Oh my god ${((s as any).pcs_firstname ?? '')}, have you just puked your shit onto me??!!"</font>`);
                     // TODO-QSP: dynamic text: Cleaning your face and mouth with your clothes, all you can say is <font color=#...
                     scene.text(`Cleaning your face and mouth with your clothes, all you can say is <font color=#${((s as any).pcs_font ?? '')}>"I'm sorry…"</font>.`);
                     // TODO-QSP: dynamic text: <font color=#<<$Nestor[''font'']>>>"Get out you stupid cunt!"</font>
-                    scene.text(`<font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"Get out you stupid cunt!"</font>`);
+                    scene.text(`<font color=#${(((s as any).Nestor ?? 0)?.['font'] ?? '')}>"Get out you stupid cunt!"</font>`);
                     qspCall(s, 'npc_relationship', 'modify', 'A265', (-5));
                     ((s as any).shared_apt = (s as any).shared_apt ?? {})['step'] = 0;
                     ((s as any).Nestor = (s as any).Nestor ?? {})['bjFail'] = ((s as any).Nestor['bjFail'] ?? 0) + (1);
@@ -1227,11 +1227,11 @@ function enterNestor_Suck(s: GameState, scene: SceneBuilder): void {
                     if (((s as any).shared_apt ?? 0)?.['step'] === 9) {
                       scene.img('images/locations/pavlovsk/resident/sharedapt/sex/faint.jpg');
                       // TODO-QSP: dynamic text: You wake up being slapped in your face: <font color=#<<$Nestor[''font'']>>>"<<$p...
-                      scene.text(`You wake up being slapped in your face: <font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"${((s as any).pcs_firstname ?? '')}! ${((s as any).pcs_firstname ?? '')}! Wake up!"</font>`);
+                      scene.text(`You wake up being slapped in your face: <font color=#${(((s as any).Nestor ?? 0)?.['font'] ?? '')}>"${((s as any).pcs_firstname ?? '')}! ${((s as any).pcs_firstname ?? '')}! Wake up!"</font>`);
                       // TODO-QSP: dynamic text: Slowly your normal sight returns to you, but still, you are very confused. <font...
                       scene.text(`Slowly your normal sight returns to you, but still, you are very confused. <font color=#${((s as any).pcs_font ?? '')}>"Wh… what happened?</font>`);
                       // TODO-QSP: dynamic text: <font color=#<<$Nestor[''font'']>>>"I guess you took somehow bigger portion than...
-                      scene.text(`<font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"I guess you took somehow bigger portion than you can stand, ${((s as any).pcs_firstname ?? '')}!"</font> He is obviously entertained by this, even though you were unable to finish him.`);
+                      scene.text(`<font color=#${(((s as any).Nestor ?? 0)?.['font'] ?? '')}>"I guess you took somehow bigger portion than you can stand, ${((s as any).pcs_firstname ?? '')}!"</font> He is obviously entertained by this, even though you were unable to finish him.`);
                       qspCall(s, 'npc_relationship', 'modify', 'A265', 1);
                       ((s as any).shared_apt = (s as any).shared_apt ?? {})['step'] = 0;
                       ((s as any).Nestor = (s as any).Nestor ?? {})['bjFail'] = ((s as any).Nestor['bjFail'] ?? 0) + (1);
@@ -1245,7 +1245,7 @@ function enterNestor_Suck(s: GameState, scene: SceneBuilder): void {
                         if (((s as any).Nestor ?? 0)?.['mood'] <= 5) {
                           scene.img('images/locations/pavlovsk/resident/sharedapt/sex/leave.jpg');
                           // TODO-QSP: dynamic text: <font color=#<<$Nestor[''font'']>>>"Good job, <<$pcs_firstname>>. Now get out."<...
-                          scene.text(`<font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"Good job, ${((s as any).pcs_firstname ?? '')}. Now get out."</font>`);
+                          scene.text(`<font color=#${(((s as any).Nestor ?? 0)?.['font'] ?? '')}>"Good job, ${((s as any).pcs_firstname ?? '')}. Now get out."</font>`);
                           // TODO-QSP: dynamic text: Cleaning your face and mouth off the cum: <font color=#<<$pcs_font>>>"OK, see yo...
                           scene.text(`Cleaning your face and mouth off the cum: <font color=#${((s as any).pcs_font ?? '')}>"OK, see you later."</font>.`);
                           qspCall(s, 'npc_relationship', 'modify', 'A265', 1);
@@ -1281,7 +1281,7 @@ function enterNestor_Suck(s: GameState, scene: SceneBuilder): void {
 function enterNestor_SexVaginal(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'boyStat', 'A265');
   // TODO-QSP: dynamic text: <b><font color=#<<$Nestor[''font'']>>><<$npc_firstname[$boy]>> - vaginal sex</fo...
-  scene.text(`<b><font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} - vaginal sex</font></b>`);
+  scene.text(`<b><font color=#${(((s as any).Nestor ?? 0)?.['font'] ?? '')}>${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} - vaginal sex</font></b>`);
   if (((s as any).cfg_vars ?? 0)?.['imgh'] < 250) {
     if (((s as any).shared_apt ?? 0)?.['step'] === 0) {
       // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/locations/pavlovsk/resident/sharedapt/gp/...
@@ -1307,7 +1307,7 @@ function enterNestor_SexVaginal(s: GameState, scene: SceneBuilder): void {
     }
   }
   (s as any).loc_arg = 'Nestor_SexVaginal';
-  ((s as any).shared_apt = (s as any).shared_apt ?? {})['price'] = ((s as any).shared_apt ?? 0)?.['price_vaginal'];
+  ((s as any).shared_apt = (s as any).shared_apt ?? {})['price'] = (((s as any).shared_apt ?? 0)?.['price_vaginal']);
   if (((s as any).shared_apt ?? 0)?.['step'] > 0) {
     // TODO-QSP: dynamic text: '<<$npc_firstname[$boy]>> orgasm build-up: '+orgB+'/100'
     scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} orgasm build-up: ` + ((s as any).orgB ?? '') + '/100');
@@ -1324,14 +1324,14 @@ function enterNestor_SexVaginal(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'panties', 'remove');
       qspCall(s, 'stat', '');
       // TODO-QSP: dynamic text: <font color=#<<$Nestor[''font'']>>>"Hey, <<$pcs_firstname>>, you let those panti...
-      scene.text(`<font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"Hey, ${((s as any).pcs_firstname ?? '')}, you let those panties on for me to rip them off, or what?"</font>`);
+      scene.text(`<font color=#${(((s as any).Nestor ?? 0)?.['font'] ?? '')}>"Hey, ${((s as any).pcs_firstname ?? '')}, you let those panties on for me to rip them off, or what?"</font>`);
       scene.text('You entirely forgot to take them off! Or maybe you didn\'t want to actually?');
       scene.text('You reach for the ribbon of the panties, slowly slipping them off, down your legs. You blush a little.');
     }
     // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> takes you by the ass, instantly poking his fingers into...
     scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} takes you by the ass, instantly poking his fingers into your pussy.`);
     // TODO-QSP: dynamic text: <font color=#<<$Nestor[''font'']>>>"Do you want to have your pussy fucked a cert...
-    scene.text(`<font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"Do you want to have your pussy fucked a certain way, or should I choose?"</font>`);
+    scene.text(`<font color=#${(((s as any).Nestor ?? 0)?.['font'] ?? '')}>"Do you want to have your pussy fucked a certain way, or should I choose?"</font>`);
     if (((s as any).Nestor ?? 0)?.['pornPos'] === 0) {
       ((s as any).shared_apt = (s as any).shared_apt ?? {})['hisPos'] = (Math.floor(Math.random() * 3) + 1);
     }
@@ -1418,7 +1418,7 @@ function enterNestor_SexVaginal(s: GameState, scene: SceneBuilder): void {
         scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} kneels between those, roughly spreading them as wide as they go, making you scream a bit.`);
         scene.text('As he is content with the sight, he leans above you, moving his hips closer to your crotch.');
         // TODO-QSP: dynamic text: He points the tip of his <<npc_dick[$boy]>> to your pussy and looks up to your f...
-        scene.text(`He points the tip of his ${(((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} to your pussy and looks up to your face: <font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"Look at me while I penetrate your slit!"</font>`);
+        scene.text(`He points the tip of his ${(((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} to your pussy and looks up to your face: <font color=#${(((s as any).Nestor ?? 0)?.['font'] ?? '')}>"Look at me while I penetrate your slit!"</font>`);
         scene.text('Slightly shaking you do as he says…');
         scene.text('In that moment he pushes his dick inside you as far as your somewhat dry pussy let\'s him.');
         // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> bangs you wildly right from the start.
@@ -1468,7 +1468,7 @@ function enterNestor_SexVaginal(s: GameState, scene: SceneBuilder): void {
           // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> kneels behind you, probing your vagina with several of ...
           scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} kneels behind you, probing your vagina with several of his fingers.`);
           // TODO-QSP: dynamic text: <font color=#<<$Nestor[''font'']>>>"<<$pcs_firstname>>, prepare for the entry!"<...
-          scene.text(`<font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"${((s as any).pcs_firstname ?? '')}, prepare for the entry!"</font>`);
+          scene.text(`<font color=#${(((s as any).Nestor ?? 0)?.['font'] ?? '')}>"${((s as any).pcs_firstname ?? '')}, prepare for the entry!"</font>`);
           // TODO-QSP: dynamic text: After his words, he grabs your hips and thrusts all of his <<npc_dick[$boy]>> ce...
           scene.text(`After his words, he grabs your hips and thrusts all of his ${(((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} centimeters inside your pussy, making you scream from discomfort.`);
           scene.text('The first pain fades away and you can feel building warmth and a good feeling of being fucked from behind like a mare in heat.');
@@ -1519,7 +1519,7 @@ function enterNestor_SexVaginal(s: GameState, scene: SceneBuilder): void {
             // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> takes his rod, pointing the tip right to the entry of y...
             scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} takes his rod, pointing the tip right to the entry of your vagina.`);
             // TODO-QSP: dynamic text: <font color=#<<$Nestor[''font'']>>>"<<$pcs_firstname>>, prepare for the penetrat...
-            scene.text(`<font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"${((s as any).pcs_firstname ?? '')}, prepare for the penetration!"</font>`);
+            scene.text(`<font color=#${(((s as any).Nestor ?? 0)?.['font'] ?? '')}>"${((s as any).pcs_firstname ?? '')}, prepare for the penetration!"</font>`);
             // TODO-QSP: dynamic text: Then he pushes as far as his <<npc_dick[$boy]>> cm long dick can reach.
             scene.text(`Then he pushes as far as his ${(((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} cm long dick can reach.`);
             // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> bangs you wildly right from the start.
@@ -1571,7 +1571,7 @@ function enterNestor_SexVaginal(s: GameState, scene: SceneBuilder): void {
               scene.img('images/locations/pavlovsk/resident/sharedapt/sex/vagfullnelson1.jpg');
               scene.text('You let him sit on the edge of the bed, having his large dick prepared for your vagina.');
               // TODO-QSP: dynamic text: Facing him with your back, you climb on top of him and bury his <<npc_dick[$boy]...
-              scene.text(`Facing him with your back, you climb on top of him and bury his ${(((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} cm long dick in your pussy. You wanted to ride it a bit to make the fuck smoother, but he doesn't let you:<font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"No time for that ${((s as any).pcs_firstname ?? '')}, let's start already!"</font>`);
+              scene.text(`Facing him with your back, you climb on top of him and bury his ${(((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} cm long dick in your pussy. You wanted to ride it a bit to make the fuck smoother, but he doesn't let you:<font color=#${(((s as any).Nestor ?? 0)?.['font'] ?? '')}>"No time for that ${((s as any).pcs_firstname ?? '')}, let's start already!"</font>`);
               scene.text('Not waiting for your answer he grabs your legs and reaches for your head, immobilizing you entirely. Then he starts fucking you like a wild animal.');
               // TODO-QSP: dynamic text: In this position, you literally see every stroke of his <<npc_dick[$boy]>> cm lo...
               scene.text(`In this position, you literally see every stroke of his ${(((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} cm long penis into your pussy… And there is nothing else you can do.`);
@@ -1622,7 +1622,7 @@ function enterNestor_SexVaginal(s: GameState, scene: SceneBuilder): void {
                 scene.text('You take a pillow from his bed, put it on the floor and lie on it with your back.');
                 scene.text('As if you were doing yoga, you put your ass in the hands and lift it above your head, letting the feet fall down aside your head.');
                 // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> now has the very best access to your pussy: <font color...
-                scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} now has the very best access to your pussy: <font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"Now that's a sight! Every girl should be fucked like that!"</font>`);
+                scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} now has the very best access to your pussy: <font color=#${(((s as any).Nestor ?? 0)?.['font'] ?? '')}>"Now that's a sight! Every girl should be fucked like that!"</font>`);
                 scene.text('He goes to you, probing your pussy with several of his fingers.');
                 scene.text('After a while he takes his phallus, somehow bending it downwards and pushing it inside you.');
                 qspCall(s, 'arousal', 'vaginal', 10, 'lube');
@@ -1675,7 +1675,7 @@ function enterNestor_SexVaginal(s: GameState, scene: SceneBuilder): void {
                   scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} takes a vacuum dick enlarger device from his closet, putting it on his already ${(((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} cm long dick.`);
                   scene.text('As he is pushing the pump, you can see the cock getting larger with each push.');
                   // TODO-QSP: dynamic text: After some time he stops, putting a ring on the root of his dick. Today the devi...
-                  scene.text(`After some time he stops, putting a ring on the root of his dick. Today the device has enlarged it to ${((s as any).Nestor ?? 0)?.['Dick_enlarged'] ?? ''} cm!`);
+                  scene.text(`After some time he stops, putting a ring on the root of his dick. Today the device has enlarged it to ${(((s as any).Nestor ?? 0)?.['Dick_enlarged'] ?? '')} cm!`);
                   scene.actions([
                     { label: 'Let him fuck you with that monster', handler: (st: GameState) => {
     // TODO-QSP: shared_apt['subStep'] = 1
@@ -1685,11 +1685,11 @@ function enterNestor_SexVaginal(s: GameState, scene: SceneBuilder): void {
                   if (((s as any).shared_apt ?? 0)?.['subStep'] === 1) {
                     scene.img('images/locations/shared/abduction/sex/slavewhorefuckdeep1.mp4');
                     // TODO-QSP: dynamic text: <font color=#<<$Nestor[''font'']>>>"Now <<$pcs_firstname>> prepare your pussy fo...
-                    scene.text(`<font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"Now ${((s as any).pcs_firstname ?? '')} prepare your pussy for the famous Pussy Destroyer!"</font>`);
+                    scene.text(`<font color=#${(((s as any).Nestor ?? 0)?.['font'] ?? '')}>"Now ${((s as any).pcs_firstname ?? '')} prepare your pussy for the famous Pussy Destroyer!"</font>`);
                     scene.text('As he reaches for your pussy you close your eyes and brace for the expected pain.');
                     scene.text('He starts pushing it into, and even that it is quite lubed, it goes hard.');
                     // TODO-QSP: dynamic text: Finally, he slips through the inner barrier and thrusts a big part of his <<$npc...
-                    scene.text(`Finally, he slips through the inner barrier and thrusts a big part of his ${(((s as any).npc_thdick ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} enlarged, ${((s as any).Nestor ?? 0)?.['Dick_enlarged'] ?? ''} cm long dick into you.`);
+                    scene.text(`Finally, he slips through the inner barrier and thrusts a big part of his ${(((s as any).npc_thdick ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} enlarged, ${(((s as any).Nestor ?? 0)?.['Dick_enlarged'] ?? '')} cm long dick into you.`);
                     (s as any).orgB = ((s as any).orgB ?? 0) + ((Math.floor(Math.random() * 11) + 20));
                     qspCall(s, 'pain', '1', 'vaginal', 'tear');
                     scene.actions([
@@ -1796,7 +1796,7 @@ function enterNestor_SexVaginal(s: GameState, scene: SceneBuilder): void {
                             scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} finally reaches his violent orgasm and spouting his seed, he pushes you on your knees and points his tip in front of your face.`);
                             scene.text('The seed starts squirting, splashing your face with surprisingly strong force, leaking to your nose and eyes and hair…');
                             // TODO-QSP: dynamic text: <font color=#<<$Nestor[''font'']>>>"Oh yes, now that''s the right makeup for a g...
-                            scene.text(`<font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"Oh yes, now that's the right makeup for a girl!"</font>`);
+                            scene.text(`<font color=#${(((s as any).Nestor ?? 0)?.['font'] ?? '')}>"Oh yes, now that's the right makeup for a girl!"</font>`);
                             (s as any).minut = ((s as any).minut ?? 0) + 2;
                             ((s as any).Nestor = (s as any).Nestor ?? {})['lastCum'] = ((s as any).daystart ?? 0);
                             qspCall(s, 'cum_call', 'face', ((s as any).boy ?? 0), 1);
@@ -1814,12 +1814,12 @@ function enterNestor_SexVaginal(s: GameState, scene: SceneBuilder): void {
                               // TODO-QSP: dynamic text: <font color=#<<$pcs_font>>>"What are you doing? You aren''t coming inside me, ar...
                               scene.text(`<font color=#${((s as any).pcs_font ?? '')}>"What are you doing? You aren't coming inside me, are you?"</font>`);
                               // TODO-QSP: dynamic text: <font color=#<<$Nestor[''font'']>>>"Shut up <<$pcs_firstname>>, I cum where I wa...
-                              scene.text(`<font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"Shut up ${((s as any).pcs_firstname ?? '')}, I cum where I want to."</font>`);
+                              scene.text(`<font color=#${(((s as any).Nestor ?? 0)?.['font'] ?? '')}>"Shut up ${((s as any).pcs_firstname ?? '')}, I cum where I want to."</font>`);
                               if (((s as any).tabletkishot ?? 0) === 0  &&  ((s as any).pillcon ?? 0) < 0) {
                                 // TODO-QSP: dynamic text: <font color=#<<$pcs_font>>>"I am not on the pill <<$npc_firstname[$boy]>>!"</fon...
                                 scene.text(`<font color=#${((s as any).pcs_font ?? '')}>"I am not on the pill ${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')}!"</font>`);
                                 // TODO-QSP: dynamic text: <font color=#<<$Nestor[''font'']>>>"And? Your problem. Piss off."</font>
-                                scene.text(`<font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"And? Your problem. Piss off."</font>`);
+                                scene.text(`<font color=#${(((s as any).Nestor ?? 0)?.['font'] ?? '')}>"And? Your problem. Piss off."</font>`);
                                 scene.text('He is obvously annoyed by your reaction.');
                                 qspCall(s, 'npc_relationship', 'modify', 'A265', (-5));
                               } else {
@@ -1840,7 +1840,7 @@ function enterNestor_SexVaginal(s: GameState, scene: SceneBuilder): void {
                             } else {
                               if (((s as any).shared_apt ?? 0)?.['subStep'] === 6) {
                                 // TODO-QSP: dynamic text: <font color=#<<$Nestor[''font'']>>>"I will cum in your pussy or you will swallow...
-                                scene.text(`<font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"I will cum in your pussy or you will swallow it. Make your choice before it's too late, ${((s as any).pcs_firstname ?? '')}!"</font>`);
+                                scene.text(`<font color=#${(((s as any).Nestor ?? 0)?.['font'] ?? '')}>"I will cum in your pussy or you will swallow it. Make your choice before it's too late, ${((s as any).pcs_firstname ?? '')}!"</font>`);
                                 if (((s as any).Nestor ?? 0)?.['mood'] <= 4) {
                                   qspGoto(s, 'pav_shared_nestor', 'Nestor_SexVaginal');
                                   scene.actions([
@@ -1875,7 +1875,7 @@ function enterNestor_SexVaginal(s: GameState, scene: SceneBuilder): void {
                                   scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} spins the last of his cum dry from his cock, you close your mouth, swallowing the mouthful in one gulp.`);
                                   scene.text('Afterwards, you show him your tongue as proof that not a drop was left unconsumed…');
                                   // TODO-QSP: dynamic text: <font color=#<<$Nestor[''font'']>>>"Good girl, better than any food, is it?"</fo...
-                                  scene.text(`<font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"Good girl, better than any food, is it?"</font>`);
+                                  scene.text(`<font color=#${(((s as any).Nestor ?? 0)?.['font'] ?? '')}>"Good girl, better than any food, is it?"</font>`);
                                   ((s as any).Nestor = (s as any).Nestor ?? {})['lastCum'] = ((s as any).daystart ?? 0);
                                   ((s as any).Nestor = (s as any).Nestor ?? {})['swall'] = ((s as any).Nestor['swall'] ?? 0) + (1);
                                   qspCall(s, 'npc_relationship', 'modify', 'A265', 1);
@@ -1890,7 +1890,7 @@ function enterNestor_SexVaginal(s: GameState, scene: SceneBuilder): void {
                                 } else {
                                   if (((s as any).shared_apt ?? 0)?.['subStep'] === 30) {
                                     // TODO-QSP: dynamic text: <font color=#<<$Nestor[''font'']>>>"Alright I''ll cum elsewhere, but only becaus...
-                                    scene.text(`<font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"Alright I'll cum elsewhere, but only because I have a ${((s as any).Nestor ?? 0)?.['mood_txt'] ?? ''} mood today!"</font>`);
+                                    scene.text(`<font color=#${(((s as any).Nestor ?? 0)?.['font'] ?? '')}>"Alright I'll cum elsewhere, but only because I have a ${(((s as any).Nestor ?? 0)?.['mood_txt'] ?? '')} mood today!"</font>`);
                                     qspCall(s, 'npc_relationship', 'modify', 'A265', (-3));
                                     ((s as any).shared_apt = (s as any).shared_apt ?? {})['cumOutL2'] = (Math.floor(Math.random() * 3) + 2);
                                     scene.actions([
@@ -1922,7 +1922,7 @@ function enterNestor_SexVaginal(s: GameState, scene: SceneBuilder): void {
 function enterNestor_SexAnal(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'boyStat', 'A265');
   // TODO-QSP: dynamic text: <b><font color=#<<$Nestor[''font'']>>><<$npc_firstname[$boy]>> - anal sex</font>...
-  scene.text(`<b><font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} - anal sex</font></b>`);
+  scene.text(`<b><font color=#${(((s as any).Nestor ?? 0)?.['font'] ?? '')}>${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} - anal sex</font></b>`);
   if (((s as any).shared_apt ?? 0)?.['step'] === 0) {
     scene.text('<center><img height="250" src="images/locations/pavlovsk/resident/sharedapt/gp/gp.jpg"></center>');
   }
@@ -1933,7 +1933,7 @@ function enterNestor_SexAnal(s: GameState, scene: SceneBuilder): void {
     scene.text('<center><img height="250" src="images/locations/pavlovsk/resident/sharedapt/gp/gp.jpg"> <img height="250" src="images/locations/pavlovsk/resident/sharedapt/gp/cockerectvacuum.jpg"></center>');
   }
   (s as any).loc_arg = 'Nestor_SexAnal';
-  ((s as any).shared_apt = (s as any).shared_apt ?? {})['price'] = ((s as any).shared_apt ?? 0)?.['price_anal'];
+  ((s as any).shared_apt = (s as any).shared_apt ?? {})['price'] = (((s as any).shared_apt ?? 0)?.['price_anal']);
   if (((s as any).shared_apt ?? 0)?.['step'] > 0) {
     // TODO-QSP: dynamic text: '<<$npc_firstname[$boy]>> orgasm build-up: '+orgB+'/100'
     scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} orgasm build-up: ` + ((s as any).orgB ?? '') + '/100');
@@ -1950,14 +1950,14 @@ function enterNestor_SexAnal(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'panties', 'remove');
       qspCall(s, 'stat', '');
       // TODO-QSP: dynamic text: <font color=#<<$Nestor[''font'']>>>"Hey, <<$pcs_firstname>>, you let those panti...
-      scene.text(`<font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"Hey, ${((s as any).pcs_firstname ?? '')}, you let those panties on for me to rip them off, or what?"</font>`);
+      scene.text(`<font color=#${(((s as any).Nestor ?? 0)?.['font'] ?? '')}>"Hey, ${((s as any).pcs_firstname ?? '')}, you let those panties on for me to rip them off, or what?"</font>`);
       scene.text('You entirely forgot to take them off! Or maybe you didn\'t want to actually?');
       scene.text('You reach for the ribbon of the panties, slowly slipping them off, down your legs. You blush a little.');
     }
     // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> takes you by the ass, instantly poking his fingers into...
     scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} takes you by the ass, instantly poking his fingers into your anus.`);
     // TODO-QSP: dynamic text: <font color=#<<$Nestor[''font'']>>>"Do you want to have your ass fucked a certai...
-    scene.text(`<font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"Do you want to have your ass fucked a certain way, or should I choose?"</font>`);
+    scene.text(`<font color=#${(((s as any).Nestor ?? 0)?.['font'] ?? '')}>"Do you want to have your ass fucked a certain way, or should I choose?"</font>`);
     if (((s as any).Nestor ?? 0)?.['pornPos'] === 0) {
       ((s as any).shared_apt = (s as any).shared_apt ?? {})['hisPos'] = (Math.floor(Math.random() * 3) + 1);
     }
@@ -2044,7 +2044,7 @@ function enterNestor_SexAnal(s: GameState, scene: SceneBuilder): void {
         scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} kneels between those, roughly spreading them as wide as they go, making you scream a bit.`);
         scene.text('As he is content with the sight, he leans above you, moving his hips closer to your crotch.');
         // TODO-QSP: dynamic text: He points the tip of his <<npc_dick[$boy]>> to your anus and looks up to your fa...
-        scene.text(`He points the tip of his ${(((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} to your anus and looks up to your face: <font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"Look at me while I penetrate your sphincter!"</font>`);
+        scene.text(`He points the tip of his ${(((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} to your anus and looks up to your face: <font color=#${(((s as any).Nestor ?? 0)?.['font'] ?? '')}>"Look at me while I penetrate your sphincter!"</font>`);
         if (((s as any).Nestor ?? 0)?.['mood'] <= 5  ||  ((s as any).npc_rel ?? 0)?.['A265'] > 80) {
           scene.text('Before doing so, he takes some more lube on his fingers and one by one he stretches your anus with them. Making it easier for you to be penetrated.');
           scene.text('He starts pushing his dick inside, and as it is lubed, it goes in quite easily.');
@@ -2054,7 +2054,7 @@ function enterNestor_SexAnal(s: GameState, scene: SceneBuilder): void {
           // TODO-QSP: dynamic text: <font color=#<<$pcs_font>>>"Ouuuch! <<$npc_firstname[$boy]>>, that hurt!"</font>
           scene.text(`<font color=#${((s as any).pcs_font ?? '')}>"Ouuuch! ${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')}, that hurt!"</font>`);
           // TODO-QSP: dynamic text: <font color=#<<$Nestor[''font'']>>>"Shut up <<$pcs_firstname>> and take it like ...
-          scene.text(`<font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"Shut up ${((s as any).pcs_firstname ?? '')} and take it like a good little girl!"</font>`);
+          scene.text(`<font color=#${(((s as any).Nestor ?? 0)?.['font'] ?? '')}>"Shut up ${((s as any).pcs_firstname ?? '')} and take it like a good little girl!"</font>`);
           qspCall(s, 'pain', '1', 'asshole', 'tear');
         }
         // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> bangs you wildly right from the start.
@@ -2111,7 +2111,7 @@ function enterNestor_SexAnal(s: GameState, scene: SceneBuilder): void {
             // TODO-QSP: dynamic text: <font color=#<<$pcs_font>>>"Ouuuch! <<$npc_firstname[$boy]>>, that hurt!"</font>
             scene.text(`<font color=#${((s as any).pcs_font ?? '')}>"Ouuuch! ${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')}, that hurt!"</font>`);
             // TODO-QSP: dynamic text: <font color=#<<$Nestor[''font'']>>>"Shut up <<$pcs_firstname>> and take it like ...
-            scene.text(`<font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"Shut up ${((s as any).pcs_firstname ?? '')} and take it like a good little girl!"</font>`);
+            scene.text(`<font color=#${(((s as any).Nestor ?? 0)?.['font'] ?? '')}>"Shut up ${((s as any).pcs_firstname ?? '')} and take it like a good little girl!"</font>`);
             qspCall(s, 'pain', '1', 'asshole', 'tear');
           }
           // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> bangs you wildly right from the start.
@@ -2162,7 +2162,7 @@ function enterNestor_SexAnal(s: GameState, scene: SceneBuilder): void {
             // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> takes his rod, pointing the tip right to your anus.
             scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} takes his rod, pointing the tip right to your anus.`);
             // TODO-QSP: dynamic text: <font color=#<<$Nestor[''font'']>>>"<<$pcs_firstname>>, prepare for the penetrat...
-            scene.text(`<font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"${((s as any).pcs_firstname ?? '')}, prepare for the penetration!"</font>`);
+            scene.text(`<font color=#${(((s as any).Nestor ?? 0)?.['font'] ?? '')}>"${((s as any).pcs_firstname ?? '')}, prepare for the penetration!"</font>`);
             if (((s as any).Nestor ?? 0)?.['mood'] <= 5  ||  ((s as any).npc_rel ?? 0)?.['A265'] > 80) {
               scene.text('He takes some more lube on his fingers and one by one he stretches your anus with them. Making it easier for you to be penetrated later.');
               scene.text('He starts pushing his dick inside, and as it is lubed, it goes in quite easily.');
@@ -2171,7 +2171,7 @@ function enterNestor_SexAnal(s: GameState, scene: SceneBuilder): void {
               // TODO-QSP: dynamic text: <font color=#<<$pcs_font>>>"Ouuuch! <<$npc_firstname[$boy]>>, that hurt!"</font>
               scene.text(`<font color=#${((s as any).pcs_font ?? '')}>"Ouuuch! ${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')}, that hurt!"</font>`);
               // TODO-QSP: dynamic text: <font color=#<<$Nestor[''font'']>>>"Shut up <<$pcs_firstname>> and take it like ...
-              scene.text(`<font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"Shut up ${((s as any).pcs_firstname ?? '')} and take it like a good little girl!"</font>`);
+              scene.text(`<font color=#${(((s as any).Nestor ?? 0)?.['font'] ?? '')}>"Shut up ${((s as any).pcs_firstname ?? '')} and take it like a good little girl!"</font>`);
               qspCall(s, 'pain', '1', 'asshole', 'tear');
             }
             // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> bangs you wildly right from the start.
@@ -2222,7 +2222,7 @@ function enterNestor_SexAnal(s: GameState, scene: SceneBuilder): void {
               scene.img('images/locations/pavlovsk/resident/sharedapt/sex/analfullnelson1.jpg');
               scene.text('You let him sit on the edge of the bed, having his dick prepared for your anus.');
               // TODO-QSP: dynamic text: Facing him with your back, you climb on top of him and slowly bury his <<npc_dic...
-              scene.text(`Facing him with your back, you climb on top of him and slowly bury his ${(((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} cm long dick in your anus. You wanted to ride it a bit to make the fuck smoother, but he doesn't let you:<font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"No time for that ${((s as any).pcs_firstname ?? '')}, let's start already!"</font>`);
+              scene.text(`Facing him with your back, you climb on top of him and slowly bury his ${(((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} cm long dick in your anus. You wanted to ride it a bit to make the fuck smoother, but he doesn't let you:<font color=#${(((s as any).Nestor ?? 0)?.['font'] ?? '')}>"No time for that ${((s as any).pcs_firstname ?? '')}, let's start already!"</font>`);
               scene.text('Not waiting for your answer he grabs your legs and reaches for your head, immobilizing you entirely. Then he starts fucking you like a wild animal.');
               // TODO-QSP: dynamic text: In this position, you literally see every stroke of his <<npc_dick[$boy]>> cm lo...
               scene.text(`In this position, you literally see every stroke of his ${(((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} cm long penis into your anus, hidden bellow your empty pussy… But there is nothing else you can do.`);
@@ -2273,7 +2273,7 @@ function enterNestor_SexAnal(s: GameState, scene: SceneBuilder): void {
                 scene.text('You take a pillow from his bed, put it on the floor and lie on it with your back.');
                 scene.text('As if you were doing yoga, you put your ass in the hands and lift it above your head, letting the feet fall down aside your head.');
                 // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> now has the very best access to your anus: <font color=...
-                scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} now has the very best access to your anus: <font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"Now that's a sight! Every girl should be fucked like that!"</font>`);
+                scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} now has the very best access to your anus: <font color=#${(((s as any).Nestor ?? 0)?.['font'] ?? '')}>"Now that's a sight! Every girl should be fucked like that!"</font>`);
                 scene.text('He goes to you, probing your anus with several of his fingers.');
                 if (((s as any).Nestor ?? 0)?.['mood'] <= 5  ||  ((s as any).npc_rel ?? 0)?.['A265'] > 80) {
                   scene.text('He takes some more lube on his fingers and one by one he stretches your anus with them. Making it easier for you to be penetrated later.');
@@ -2284,7 +2284,7 @@ function enterNestor_SexAnal(s: GameState, scene: SceneBuilder): void {
                   // TODO-QSP: dynamic text: <font color=#<<$pcs_font>>>"Ouuuch! <<$npc_firstname[$boy]>>, that hurt!"</font>
                   scene.text(`<font color=#${((s as any).pcs_font ?? '')}>"Ouuuch! ${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')}, that hurt!"</font>`);
                   // TODO-QSP: dynamic text: <font color=#<<$Nestor[''font'']>>>"Shut up <<$pcs_firstname>> and take it like ...
-                  scene.text(`<font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"Shut up ${((s as any).pcs_firstname ?? '')} and take it like a good anal slut!"</font>`);
+                  scene.text(`<font color=#${(((s as any).Nestor ?? 0)?.['font'] ?? '')}>"Shut up ${((s as any).pcs_firstname ?? '')} and take it like a good anal slut!"</font>`);
                   qspCall(s, 'pain', '1', 'asshole', 'tear');
                 }
                 scene.text('You feel like being continuously impaled.');
@@ -2337,7 +2337,7 @@ function enterNestor_SexAnal(s: GameState, scene: SceneBuilder): void {
                   scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} takes a vacuum dick enlarger device from his closet, putting it on his already ${(((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} cm long dick.`);
                   scene.text('As he is pushing the pump, you can see the cock getting larger with each push.');
                   // TODO-QSP: dynamic text: After some time he stops, putting a ring on the root of his dick. Today the devi...
-                  scene.text(`After some time he stops, putting a ring on the root of his dick. Today the device has enlarged it to ${((s as any).Nestor ?? 0)?.['Dick_enlarged'] ?? ''} cm!`);
+                  scene.text(`After some time he stops, putting a ring on the root of his dick. Today the device has enlarged it to ${(((s as any).Nestor ?? 0)?.['Dick_enlarged'] ?? '')} cm!`);
                   scene.actions([
                     { label: 'Let him fuck you with that monster', handler: (st: GameState) => {
     // TODO-QSP: shared_apt['subStep'] = 1
@@ -2347,11 +2347,11 @@ function enterNestor_SexAnal(s: GameState, scene: SceneBuilder): void {
                   if (((s as any).shared_apt ?? 0)?.['subStep'] === 1) {
                     scene.img('images/locations/pavlovsk/resident/sharedapt/sex/gp/analvacuumenlargerpen.mp4');
                     // TODO-QSP: dynamic text: <font color=#<<$Nestor[''font'']>>>"Now <<$pcs_firstname>> prepare your pussy fo...
-                    scene.text(`<font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"Now ${((s as any).pcs_firstname ?? '')} prepare your pussy for the famous Anus Destroyer!"</font>`);
+                    scene.text(`<font color=#${(((s as any).Nestor ?? 0)?.['font'] ?? '')}>"Now ${((s as any).pcs_firstname ?? '')} prepare your pussy for the famous Anus Destroyer!"</font>`);
                     scene.text('As he reaches for your ass you close your eyes and brace for the expected pain.');
                     scene.text('He starts pushing it into you, and even that it is quite lubed, it goes hard.');
                     // TODO-QSP: dynamic text: Finally, he slips through the sphincter and thrusts a big part of his <<$npc_thd...
-                    scene.text(`Finally, he slips through the sphincter and thrusts a big part of his ${(((s as any).npc_thdick ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} enlarged, ${((s as any).Nestor ?? 0)?.['Dick_enlarged'] ?? ''} cm long dick into your ass.`);
+                    scene.text(`Finally, he slips through the sphincter and thrusts a big part of his ${(((s as any).npc_thdick ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} enlarged, ${(((s as any).Nestor ?? 0)?.['Dick_enlarged'] ?? '')} cm long dick into your ass.`);
                     (s as any).orgB = ((s as any).orgB ?? 0) + ((Math.floor(Math.random() * 11) + 20));
                     qspCall(s, 'pain', '1', 'asshole', 'tear');
                     scene.actions([
@@ -2458,7 +2458,7 @@ function enterNestor_SexAnal(s: GameState, scene: SceneBuilder): void {
                             scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} finally reaches his violent orgasm and in the moment he starts spouting his seed, he pushes you on your knees and points his tip in front of your face.`);
                             scene.text('The seed starts squirting, splashing your face with surprisingly strong force, leaking to your nose and eyes and hair…');
                             // TODO-QSP: dynamic text: <font color=#<<$Nestor[''font'']>>>"Oh yes, now that''s the right makeup for an ...
-                            scene.text(`<font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"Oh yes, now that's the right makeup for an anal whore like you!"</font>`);
+                            scene.text(`<font color=#${(((s as any).Nestor ?? 0)?.['font'] ?? '')}>"Oh yes, now that's the right makeup for an anal whore like you!"</font>`);
                             (s as any).minut = ((s as any).minut ?? 0) + 2;
                             ((s as any).Nestor = (s as any).Nestor ?? {})['lastCum'] = ((s as any).daystart ?? 0);
                             qspCall(s, 'cum_call', 'face', ((s as any).boy ?? 0), 1);
@@ -2476,11 +2476,11 @@ function enterNestor_SexAnal(s: GameState, scene: SceneBuilder): void {
                               // TODO-QSP: dynamic text: <font color=#<<$pcs_font>>>"What are you doing? You aren''t coming inside me, ar...
                               scene.text(`<font color=#${((s as any).pcs_font ?? '')}>"What are you doing? You aren't coming inside me, are you?"</font>`);
                               // TODO-QSP: dynamic text: <font color=#<<$Nestor[''font'']>>>"Shut up <<$pcs_firstname>>, I cum where I wa...
-                              scene.text(`<font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"Shut up ${((s as any).pcs_firstname ?? '')}, I cum where I want to."</font>`);
+                              scene.text(`<font color=#${(((s as any).Nestor ?? 0)?.['font'] ?? '')}>"Shut up ${((s as any).pcs_firstname ?? '')}, I cum where I want to."</font>`);
                               // TODO-QSP: dynamic text: <font color=#<<$pcs_font>>>"I told you not to! -I hate it when it slowly leaks o...
                               scene.text(`<font color=#${((s as any).pcs_font ?? '')}>"I told you not to! -I hate it when it slowly leaks out of my anus for hours!"</font>`);
                               // TODO-QSP: dynamic text: <font color=#<<$Nestor[''font'']>>>"Every girl deserves having her ass pumped wi...
-                              scene.text(`<font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"Every girl deserves having her ass pumped with cum, so piss off!"</font>`);
+                              scene.text(`<font color=#${(((s as any).Nestor ?? 0)?.['font'] ?? '')}>"Every girl deserves having her ass pumped with cum, so piss off!"</font>`);
                               scene.text('He is obviously annoyed by your reaction.');
                               scene.text('You furiously get up from the bed, putting your clothes between your legs to catch the remainder of the cum, so it doesn\'t land on your legs and carpet.');
                               ((s as any).Nestor = (s as any).Nestor ?? {})['lastCum'] = ((s as any).daystart ?? 0);
@@ -2498,7 +2498,7 @@ function enterNestor_SexAnal(s: GameState, scene: SceneBuilder): void {
                             } else {
                               if (((s as any).shared_apt ?? 0)?.['subStep'] === 6) {
                                 // TODO-QSP: dynamic text: <font color=#<<$Nestor[''font'']>>>"I will cum in your ass or you will swallow i...
-                                scene.text(`<font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"I will cum in your ass or you will swallow it. Make your choice before it's too late, ${((s as any).pcs_firstname ?? '')}!"</font>`);
+                                scene.text(`<font color=#${(((s as any).Nestor ?? 0)?.['font'] ?? '')}>"I will cum in your ass or you will swallow it. Make your choice before it's too late, ${((s as any).pcs_firstname ?? '')}!"</font>`);
                                 if (((s as any).Nestor ?? 0)?.['mood'] <= 4) {
                                   qspGoto(s, 'pav_shared_nestor', 'Nestor_SexAnal');
                                   scene.actions([
@@ -2533,7 +2533,7 @@ function enterNestor_SexAnal(s: GameState, scene: SceneBuilder): void {
                                   scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} spins the last of his cum dry from his cock, you close your mouth, swallowing the mouthful in one gulp.`);
                                   scene.text('Afterwards, you show him your tongue as proof that not a drop was left unconsumed…');
                                   // TODO-QSP: dynamic text: <font color=#<<$Nestor[''font'']>>>"Good girl, better than any food, is it?"</fo...
-                                  scene.text(`<font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"Good girl, better than any food, is it?"</font>`);
+                                  scene.text(`<font color=#${(((s as any).Nestor ?? 0)?.['font'] ?? '')}>"Good girl, better than any food, is it?"</font>`);
                                   ((s as any).Nestor = (s as any).Nestor ?? {})['swall'] = ((s as any).Nestor['swall'] ?? 0) + (1);
                                   qspCall(s, 'npc_relationship', 'modify', 'A265', 1);
                                   (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -2548,7 +2548,7 @@ function enterNestor_SexAnal(s: GameState, scene: SceneBuilder): void {
                                 } else {
                                   if (((s as any).shared_apt ?? 0)?.['subStep'] === 30) {
                                     // TODO-QSP: dynamic text: <font color=#<<$Nestor[''font'']>>>"Alright I''ll cum elsewhere, but only becaus...
-                                    scene.text(`<font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"Alright I'll cum elsewhere, but only because I have a ${((s as any).Nestor ?? 0)?.['mood_txt'] ?? ''} mood today!"</font>`);
+                                    scene.text(`<font color=#${(((s as any).Nestor ?? 0)?.['font'] ?? '')}>"Alright I'll cum elsewhere, but only because I have a ${(((s as any).Nestor ?? 0)?.['mood_txt'] ?? '')} mood today!"</font>`);
                                     qspCall(s, 'npc_relationship', 'modify', 'A265', (-3));
                                     ((s as any).shared_apt = (s as any).shared_apt ?? {})['cumOutL2'] = (Math.floor(Math.random() * 3) + 2);
                                     scene.actions([

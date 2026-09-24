@@ -1261,7 +1261,7 @@ function enterEscape(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/big1.jpg');
   if (((s as any).spellKnown ?? 0)?.['stun'] === 1  &&  ((s as any).pcs_mana ?? 0) >= ((s as any).spellMana ?? 0)?.['stun']) {
     scene.text('Fear triggers your adrenaline and instinctively, your mana responds and power words escape your mouth. Dimka then freezes and falls back paralyzed. With him momentarily out of action, you grab your clothes and run half-dressed away from his home.');
-    (s as any).pcs_mana = ((s as any).pcs_mana ?? 0) - (((s as any).spellMana ?? 0)?.['stun']);
+    (s as any).pcs_mana = ((s as any).pcs_mana ?? 0) - ((((s as any).spellMana ?? 0)?.['stun']));
   } else {
     if (((s as any).pcs_stren ?? 0) >= 40) {
       scene.text('Fear triggers your adrenaline and with newfound strength you suddenly struggle and thrash against the tape until it rips. Dimka is taken by surprise and doesn\'t react fast enough to stop you from slamming back against him. You fall back on top of him and you hear him groan and gasp as the air is knocked out of him. You scramble to your feet and grab your belongings, running away from his house half dressed.');

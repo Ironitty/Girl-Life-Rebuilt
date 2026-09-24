@@ -6,7 +6,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   ((s as any).KGD = (s as any).KGD ?? {})['needExpNextLvl'] = ((((s as any).KGD ?? {})?.['lvl'] ?? 0) * 10) * (((s as any).KGD ?? {})?.['lvl'] ?? 0);
   ((s as any).KGD = (s as any).KGD ?? {})['needExp'] = (((s as any).KGD ?? {})?.['needExpNextLvl'] ?? 0) - (((s as any).KGD ?? {})?.['exp'] ?? 0);
   if (((s as any).KGD ?? 0)?.['needExp'] <= 0  &&  ((s as any).KGD ?? 0)?.['lvl'] > ((s as any).KGD ?? 0)?.['lvlr']) {
-    ((s as any).KGD = (s as any).KGD ?? {})['lvlr'] = ((s as any).KGD ?? 0)?.['lvl'];
+    ((s as any).KGD = (s as any).KGD ?? {})['lvlr'] = (((s as any).KGD ?? 0)?.['lvl']);
     ((s as any).KGD = (s as any).KGD ?? {})['lvl'] = ((s as any).KGD['lvl'] ?? 0) + (1);
     ((s as any).KGD = (s as any).KGD ?? {})['exp'] = 0;
     ((s as any).KDG = (s as any).KDG ?? {})['HP'] = ((s as any).KDG['HP'] ?? 0) + (10);
@@ -17,7 +17,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   ((s as any).KGD = (s as any).KGD ?? {})['needExpNextLvl_' + String(((s as any).i ?? 0))] = (((s as any).KGD ?? 0)['lvl_' + ((s as any).i ?? 0) + ''] * 10) * ((s as any).KGD ?? 0)['lvl_' + ((s as any).i ?? 0) + ''];
   ((s as any).KGD = (s as any).KGD ?? {})['needExp_' + String(((s as any).i ?? 0))] = ((s as any).KGD ?? 0)['needExpNextLvl_' + ((s as any).i ?? 0) + ''] - ((s as any).KGD ?? 0)['exp_' + ((s as any).i ?? 0) + ''];
   if (((s as any).KGD ?? 0)['needExp_' + (((s as any).i ?? 0))] <= 0  &&  ((s as any).KGD ?? 0)['lvl_' + (((s as any).i ?? 0))] > ((s as any).KGD ?? 0)['lvlr_' + (((s as any).i ?? 0))]) {
-    ((s as any).KGD = (s as any).KGD ?? {})['lvlr_' + String(((s as any).i ?? 0))] = ((s as any).KGD ?? 0)?.['lvl_' + String(((s as any).i ?? 0))];
+    ((s as any).KGD = (s as any).KGD ?? {})['lvlr_' + String(((s as any).i ?? 0))] = (((s as any).KGD ?? 0)?.['lvl_' + String(((s as any).i ?? 0))]);
     ((s as any).KGD = (s as any).KGD ?? {})['lvl_' + String(((s as any).i ?? 0))] = ((s as any).KGD['lvl_' + String(((s as any).i ?? 0))] ?? 0) + (1);
     ((s as any).KGD = (s as any).KGD ?? {})['exp_' + String(((s as any).i ?? 0))] = 0;
     ((s as any).KGD = (s as any).KGD ?? {})['HP_' + String(((s as any).i ?? 0))] = ((s as any).KGD['HP_' + String(((s as any).i ?? 0))] ?? 0) + (10);

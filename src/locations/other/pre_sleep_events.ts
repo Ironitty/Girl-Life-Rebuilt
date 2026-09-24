@@ -225,7 +225,7 @@ function enterSuccubinit(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   (s as any).succubusflag = 1;
   (s as any).succublvl = 1;
-  (s as any).suclezsnapshot = ((s as any).stat ?? 0)?.['lesbian_count'];
+  (s as any).suclezsnapshot = (((s as any).stat ?? 0)?.['lesbian_count']);
   (s as any).succhungry = (-2);
   (s as any).sucwalkday = ((s as any).daystart ?? 0) + 2 + (Math.floor(Math.random() * 6) + 0);
   (s as any).sucself1 = 'that feeling';

@@ -558,7 +558,7 @@ function enterEars(s: GameState, scene: SceneBuilder): void {
 
 function enterEarsImage(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === 0) {
-    ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).pcs_piercings ?? 0)?.['ears'];
+    ((s as any).ARGS = (s as any).ARGS ?? {})[1] = (((s as any).pcs_piercings ?? 0)?.['ears']);
   }
   if (String((s as any).locArgs?.[1] ?? '') < 0) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = -((s as any).locArgs?.[1] ?? 0);
@@ -591,7 +591,7 @@ function enterNose(s: GameState, scene: SceneBuilder): void {
 
 function enterNoseImage(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === 0) {
-    ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).pcs_piercings ?? 0)?.['nose'];
+    ((s as any).ARGS = (s as any).ARGS ?? {})[1] = (((s as any).pcs_piercings ?? 0)?.['nose']);
   }
   if (String((s as any).locArgs?.[1] ?? '') < 0) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = -((s as any).locArgs?.[1] ?? 0);
@@ -624,7 +624,7 @@ function enterBrow(s: GameState, scene: SceneBuilder): void {
 
 function enterBrowImage(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === 0) {
-    ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).pcs_piercings ?? 0)?.['brow'];
+    ((s as any).ARGS = (s as any).ARGS ?? {})[1] = (((s as any).pcs_piercings ?? 0)?.['brow']);
   }
   if (String((s as any).locArgs?.[1] ?? '') < 0) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = -((s as any).locArgs?.[1] ?? 0);
@@ -657,7 +657,7 @@ function enterLip(s: GameState, scene: SceneBuilder): void {
 
 function enterLipImage(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === 0) {
-    ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).pcs_piercings ?? 0)?.['lip'];
+    ((s as any).ARGS = (s as any).ARGS ?? {})[1] = (((s as any).pcs_piercings ?? 0)?.['lip']);
   }
   if (String((s as any).locArgs?.[1] ?? '') < 0) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = -((s as any).locArgs?.[1] ?? 0);
@@ -690,7 +690,7 @@ function enterTongue(s: GameState, scene: SceneBuilder): void {
 
 function enterTongueImage(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === 0) {
-    ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).pcs_piercings ?? 0)?.['tongue'];
+    ((s as any).ARGS = (s as any).ARGS ?? {})[1] = (((s as any).pcs_piercings ?? 0)?.['tongue']);
   }
   if (String((s as any).locArgs?.[1] ?? '') < 0) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = -((s as any).locArgs?.[1] ?? 0);
@@ -723,7 +723,7 @@ function enterNavel(s: GameState, scene: SceneBuilder): void {
 
 function enterNavelImage(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === 0) {
-    ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).pcs_piercings ?? 0)?.['navel'];
+    ((s as any).ARGS = (s as any).ARGS ?? {})[1] = (((s as any).pcs_piercings ?? 0)?.['navel']);
   }
   if (String((s as any).locArgs?.[1] ?? '') < 0) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = -((s as any).locArgs?.[1] ?? 0);
@@ -756,7 +756,7 @@ function enterNipples(s: GameState, scene: SceneBuilder): void {
 
 function enterNipplesImage(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === 0) {
-    ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).pcs_piercings ?? 0)?.['nipples'];
+    ((s as any).ARGS = (s as any).ARGS ?? {})[1] = (((s as any).pcs_piercings ?? 0)?.['nipples']);
   }
   if (String((s as any).locArgs?.[1] ?? '') < 0) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = -((s as any).locArgs?.[1] ?? 0);
@@ -789,7 +789,7 @@ function enterPussy(s: GameState, scene: SceneBuilder): void {
 
 function enterPussyImage(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === 0) {
-    ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).pcs_piercings ?? 0)?.['pussy'];
+    ((s as any).ARGS = (s as any).ARGS ?? {})[1] = (((s as any).pcs_piercings ?? 0)?.['pussy']);
   }
   if (String((s as any).locArgs?.[1] ?? '') < 0) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = -((s as any).locArgs?.[1] ?? 0);

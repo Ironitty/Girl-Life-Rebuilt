@@ -132,7 +132,7 @@ function enterCalcBodyShapeBonus(s: GameState, scene: SceneBuilder): void {
           (s as any).result = ((s as any).result ?? 0) - (4);
         }
       }
-      (s as any).result = ((s as any).result ?? 0) - (Math.max(0, ((s as any).bodyVars ?? 0)?.['vofat']));
+      (s as any).result = ((s as any).result ?? 0) - (Math.max(0, (((s as any).bodyVars ?? 0)?.['vofat'])));
     }
   }
   return;

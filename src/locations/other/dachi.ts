@@ -14,7 +14,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/suburban/dachi.jpg');
   if (qspFunc(s, 'car_funcs', 'is_here')) {
     // TODO-QSP: dynamic text: In the parking is <a href="exec: gs ''carF'', ''start''">your <<$car[''name'']>>...
-    scene.text(`In the parking is <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027carF/u0027, /u0027start/u0027); return false;">your ${((s as any).car ?? 0)?.['name'] ?? ''}</a>.`);
+    scene.text(`In the parking is <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027carF/u0027, /u0027start/u0027); return false;">your ${(((s as any).car ?? 0)?.['name'] ?? '')}</a>.`);
   }
   scene.text('At the alley entrance dug into the ground is a <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027ETO_village/u0027, /u0027info_column/u0027); return false;">column with ads</a>.');
   scene.text('At the end of the alley there is <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027ETO_village/u0027, /u0027spring_water/u0027); return false;">a spring with spring water</a>.');

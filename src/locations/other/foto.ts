@@ -277,12 +277,12 @@ function enterStudio(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/citycenter/photo/fotograph.jpg');
     (st as any).temp_rand = (Math.floor(Math.random() * 9) + 0);
     if (((st as any).temp_rand ?? 0) < 6) {
-      (st as any).temp_name = ((st as any).model ?? 0)?.['nickname'];
+      (st as any).temp_name = (((st as any).model ?? 0)?.['nickname']);
     } else {
       if (((st as any).temp_rand ?? 0) < 8) {
-        (st as any).temp_name = ((st as any).model ?? 0)?.['firstname'];
+        (st as any).temp_name = (((st as any).model ?? 0)?.['firstname']);
       } else {
-        (st as any).temp_name = ((st as any).model ?? 0)?.['firstname'] + ' ' + ((st as any).model ?? 0)?.['lastname'];
+        (st as any).temp_name = (((st as any).model ?? 0)?.['firstname']) + ' ' + (((st as any).model ?? 0)?.['lastname']);
       }
     }
     (st as any).temp_ok_to_shoot = 1;
@@ -649,7 +649,7 @@ function enterManagerTalk(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/citycenter/photo/fotograph.jpg');
   scene.text('You approach the manager\'s desk.');
   // TODO-QSP: dynamic text: "Something I can help you with <<$model[''firstname'']>>?"
-  scene.text(`"Something I can help you with ${((s as any).model ?? 0)?.['firstname'] ?? ''}?"`);
+  scene.text(`"Something I can help you with ${(((s as any).model ?? 0)?.['firstname'] ?? '')}?"`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Back to the studio', goto: ['foto', 'studio'] },
@@ -937,7 +937,7 @@ function enterInterview2(s: GameState, scene: SceneBuilder): void {
         scene.text('You take off your clothes and leave them on the floor while the photographer examines you.');
       }
       // TODO-QSP: dynamic text: He circles you slowly, occasionally asking you to adjust your pose slightly, car...
-      scene.text(`He circles you slowly, occasionally asking you to adjust your pose slightly, carefully inspecting every aspect of your nude body. Your ${((st as any).pcs_eyecolor ?? '')} eyes framed by your ${((st as any).pcs_haircolor ?? '')} hair, your ${((st as any).pc_desc ?? 0)?.['lip size'] ?? ''} lips, your ${((st as any).titsize ?? '')} breasts, your ${((st as any).pc_desc ?? 0)?.['skin'] ?? ''} ${((st as any).pcs_tanstate ?? '')} skin, your thighs, even your ${((st as any).pc_desc ?? 0)?.['pubes'] ?? ''} pussy…`);
+      scene.text(`He circles you slowly, occasionally asking you to adjust your pose slightly, carefully inspecting every aspect of your nude body. Your ${((st as any).pcs_eyecolor ?? '')} eyes framed by your ${((st as any).pcs_haircolor ?? '')} hair, your ${(((st as any).pc_desc ?? 0)?.['lip size'] ?? '')} lips, your ${((st as any).titsize ?? '')} breasts, your ${(((st as any).pc_desc ?? 0)?.['skin'] ?? '')} ${((st as any).pcs_tanstate ?? '')} skin, your thighs, even your ${(((st as any).pc_desc ?? 0)?.['pubes'] ?? '')} pussy…`);
       scene.text('He spends several minutes doing this without saying anything. Several people walk by while he does, including several beautiful and nude women who glance at you, whispering to each other before moving on.');
       scene.actions([
         { label: 'Continue', handler: (st: GameState) => {
@@ -980,7 +980,7 @@ function enterInterview2(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/citycenter/photo/strip1.mp4');
     scene.text('You take a deep breath and begin to take off your clothes. As long as it\'s just this one time, you can handle it for now. You leave them on the floor while the photographer examines you.');
     // TODO-QSP: dynamic text: He circles you slowly, occasionally asking you to adjust your pose slightly, car...
-    scene.text(`He circles you slowly, occasionally asking you to adjust your pose slightly, carefully inspecting every aspect of your nude body. Your ${((st as any).pcs_eyecolor ?? '')} eyes framed by your ${((st as any).pcs_haircolor ?? '')} hair, your ${((st as any).pc_desc ?? 0)?.['lips'] ?? ''} lips, your ${((st as any).titsize ?? '')} breasts, your ${((st as any).pc_desc ?? 0)?.['skin'] ?? ''} ${((st as any).pcs_tanstate ?? '')} skin, your thighs, even your ${((st as any).pc_desc ?? 0)?.['pubes'] ?? ''} pussy…`);
+    scene.text(`He circles you slowly, occasionally asking you to adjust your pose slightly, carefully inspecting every aspect of your nude body. Your ${((st as any).pcs_eyecolor ?? '')} eyes framed by your ${((st as any).pcs_haircolor ?? '')} hair, your ${(((st as any).pc_desc ?? 0)?.['lips'] ?? '')} lips, your ${((st as any).titsize ?? '')} breasts, your ${(((st as any).pc_desc ?? 0)?.['skin'] ?? '')} ${((st as any).pcs_tanstate ?? '')} skin, your thighs, even your ${(((st as any).pc_desc ?? 0)?.['pubes'] ?? '')} pussy…`);
     scene.text('He spends several minutes doing this without saying anything. Several people walk by while he does, including several beautiful and nude women who glance at you, whispering to each other before moving on.');
     scene.text('You blush furiously at the attention, both his and the other models.');
     scene.actions([
@@ -1382,10 +1382,10 @@ function enterModelName3(s: GameState, scene: SceneBuilder): void {
   ((s as any).model = (s as any).model ?? {})['lastname'] = window.prompt("What is the last name of your model persona?") ?? '';
   scene.img('images/locations/city/citycenter/photo/foto.jpg');
   // TODO-QSP: dynamic text: "<<$model[''firstname'']>>…" he mutters, slowly typing. "<<$model[''lastname'']>...
-  scene.text(`"${((s as any).model ?? 0)?.['firstname'] ?? ''}…" he mutters, slowly typing. "${((s as any).model ?? 0)?.['lastname'] ?? ''}… Okay, there. Is this correct?"`);
+  scene.text(`"${(((s as any).model ?? 0)?.['firstname'] ?? '')}…" he mutters, slowly typing. "${(((s as any).model ?? 0)?.['lastname'] ?? '')}… Okay, there. Is this correct?"`);
   scene.text('He turns the screen around so you can see what he wrote.');
   // TODO-QSP: dynamic text: <i><<$model[''firstname'']>> "<<$model[''nickname'']>>" <<$model[''lastname'']>>...
-  scene.text(`<i>${((s as any).model ?? 0)?.['firstname'] ?? ''} "${((s as any).model ?? 0)?.['nickname'] ?? ''}" ${((s as any).model ?? 0)?.['lastname'] ?? ''}</i>`);
+  scene.text(`<i>${(((s as any).model ?? 0)?.['firstname'] ?? '')} "${(((s as any).model ?? 0)?.['nickname'] ?? '')}" ${(((s as any).model ?? 0)?.['lastname'] ?? '')}</i>`);
   if (((s as any).modelfoto ?? 0)?.['change_name'] === 0) {
     scene.actions([
       { label: 'Correct', handler: (st: GameState) => {
@@ -1578,7 +1578,7 @@ function enterBlackm(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'What do you want?', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: "Nothing special <<$model[''nickname'']>>. Just do what you appear to enjoy." he...
-    scene.text(`"Nothing special ${((st as any).model ?? 0)?.['nickname'] ?? ''}. Just do what you appear to enjoy." he nods at the pictures.`);
+    scene.text(`"Nothing special ${(((st as any).model ?? 0)?.['nickname'] ?? '')}. Just do what you appear to enjoy." he nods at the pictures.`);
     scene.actions([
       { label: 'Getting fucked in public?', handler: (st: GameState) => {
     scene.text('Victor smiled, "Well, yes, and no. You are to get fucked but it\'s not in public but on camera." You just stare at him dumbfounded. "Today, is perfect timing, I have everything ready and waiting for a girl who cancelled."');
@@ -1616,7 +1616,7 @@ function enterBlackm(s: GameState, scene: SceneBuilder): void {
       { label: 'Begin to cry', handler: (st: GameState) => {
     scene.text('You lie on the bed weeping.');
     // TODO-QSP: dynamic text: "Not bad, tears always look cool." says Victor having finally finished filming y...
-    scene.text(`"Not bad, tears always look cool." says Victor having finally finished filming you and with the camcorder by his side. "You should clean yourself up ${((st as any).model ?? 0)?.['nickname'] ?? ''}, the boys really enjoyed themselves."`);
+    scene.text(`"Not bad, tears always look cool." says Victor having finally finished filming you and with the camcorder by his side. "You should clean yourself up ${(((st as any).model ?? 0)?.['nickname'] ?? '')}, the boys really enjoyed themselves."`);
     scene.actions([
       { label: 'To the shower', handler: (st: GameState) => {
     scene.text('You follow Victor to a large shower room and clean yourself quickly. He then directs you to another room. As you walk in you see the two guys standing naked by a bed waiting for you.');
@@ -1707,10 +1707,10 @@ function enterBlackm(s: GameState, scene: SceneBuilder): void {
 
 function enterUnderwear(s: GameState, scene: SceneBuilder): void {
   if (((s as any).lastwornunderwear ?? 0) === 2) {
-    qspCall(s, 'underwear_bodysuits', 'wear', ((s as any).lastwornbodysuittype ?? 0)?.['foto'], ((s as any).lastwornbodysuitnumber ?? 0)?.['foto']);
+    qspCall(s, 'underwear_bodysuits', 'wear', (((s as any).lastwornbodysuittype ?? 0)?.['foto']), (((s as any).lastwornbodysuitnumber ?? 0)?.['foto']));
   } else {
-    qspCall(s, 'panties', 'wear', ((s as any).lastwornpantytype ?? 0)?.['foto'], ((s as any).lastwornpantynumber ?? 0)?.['foto']);
-    qspCall(s, 'bras', 'wear', ((s as any).lastwornbratype ?? 0)?.['foto'], ((s as any).lastwornbranumber ?? 0)?.['foto']);
+    qspCall(s, 'panties', 'wear', (((s as any).lastwornpantytype ?? 0)?.['foto']), (((s as any).lastwornpantynumber ?? 0)?.['foto']));
+    qspCall(s, 'bras', 'wear', (((s as any).lastwornbratype ?? 0)?.['foto']), (((s as any).lastwornbranumber ?? 0)?.['foto']));
   }
   // TODO-QSP: end
   scene.build();

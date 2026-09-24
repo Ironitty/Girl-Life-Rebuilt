@@ -40,7 +40,7 @@ function enterQueueMsg(s: GameState, scene: SceneBuilder): void {
   ((s as any).sd_qm = (s as any).sd_qm ?? {})['title'] = ((((s as any).stat_texts ?? 0)[String((s as any).locArgs?.[1] ?? '') + '_tooltip'] !== '') ? ((((s as any).stat_texts ?? 0)?.[((s as any).locArgs?.[1] ?? 0) + '_tooltip'] ?? 0)) : ((((s as any).stat_texts ?? 0)?.[((s as any).locArgs?.[1] ?? 0)] ?? 0)));
   ((s as any).sd_qm = (s as any).sd_qm ?? {})['display'] = (((s as any).stat_texts ?? 0)?.[((s as any).locArgs?.[1] ?? 0)] ?? 0);
   if (((s as any).sd_qm ?? 0)?.['action_arg'] !== '') {
-    ((s as any).sd_qm = (s as any).sd_qm ?? {})['action'] = ((s as any).sd_qm ?? 0)?.['action_arg'];
+    ((s as any).sd_qm = (s as any).sd_qm ?? {})['action'] = (((s as any).sd_qm ?? 0)?.['action_arg']);
   } else {
     if (((s as any).sd_qm ?? 0)?.['display'] !== '') {
       ((s as any).sd_qm = (s as any).sd_qm ?? {})['action'] = 'msg $stat_texts[\'' + ((s as any).locArgs?.[1] ?? 0) + '\']';
@@ -53,17 +53,17 @@ function enterQueueMsg(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).sd_qm ?? 0)?.['icon_arg'] !== ''  &&  ((String(((s as any).sd_qm ?? 0)?.['icon_arg']).indexOf(String('|'))) + 1) > 0) {
     if (((s as any).theme ?? 0)?.['is_dark'] === 0) {
-      ((s as any).sd_qm = (s as any).sd_qm ?? {})['icon'] = (String(((s as any).sd_qm ?? 0)?.['icon_arg']).slice((1)-1, ((1)-1)+(((String(((s as any).sd_qm ?? 0)?.['icon_arg']).indexOf(String('|'))) + 1) - 1)));
+      ((s as any).sd_qm = (s as any).sd_qm ?? {})['icon'] = (String((((s as any).sd_qm ?? 0)?.['icon_arg'])).slice((1)-1, ((1)-1)+(((String((((s as any).sd_qm ?? 0)?.['icon_arg'])).indexOf(String('|'))) + 1) - 1)));
     } else {
-      ((s as any).sd_qm = (s as any).sd_qm ?? {})['icon'] = (String(((s as any).sd_qm ?? 0)?.['icon_arg']).slice((((String(((s as any).sd_qm ?? 0)?.['icon_arg']).indexOf(String('|'))) + 1) + 1)-1));
+      ((s as any).sd_qm = (s as any).sd_qm ?? {})['icon'] = (String((((s as any).sd_qm ?? 0)?.['icon_arg'])).slice((((String((((s as any).sd_qm ?? 0)?.['icon_arg'])).indexOf(String('|'))) + 1) + 1)-1));
     }
   } else {
-    ((s as any).sd_qm = (s as any).sd_qm ?? {})['icon'] = ((s as any).sd_qm ?? 0)?.['icon_arg'];
+    ((s as any).sd_qm = (s as any).sd_qm ?? {})['icon'] = (((s as any).sd_qm ?? 0)?.['icon_arg']);
   }
   ((s as any).sd_qm = (s as any).sd_qm ?? {})['bg_color'] = '';
   if (((String(((s as any).sd_qm ?? 0)?.['icon']).indexOf(String(':'))) + 1) > 0) {
-    ((s as any).sd_qm = (s as any).sd_qm ?? {})['bg_color'] = (String(((s as any).sd_qm ?? 0)?.['icon']).slice((((String(((s as any).sd_qm ?? 0)?.['icon']).indexOf(String(':'))) + 1) + 1)-1));
-    ((s as any).sd_qm = (s as any).sd_qm ?? {})['icon'] = (String(((s as any).sd_qm ?? 0)?.['icon']).slice((1)-1, ((1)-1)+(((String(((s as any).sd_qm ?? 0)?.['icon']).indexOf(String(':'))) + 1) - 1)));
+    ((s as any).sd_qm = (s as any).sd_qm ?? {})['bg_color'] = (String((((s as any).sd_qm ?? 0)?.['icon'])).slice((((String((((s as any).sd_qm ?? 0)?.['icon'])).indexOf(String(':'))) + 1) + 1)-1));
+    ((s as any).sd_qm = (s as any).sd_qm ?? {})['icon'] = (String((((s as any).sd_qm ?? 0)?.['icon'])).slice((1)-1, ((1)-1)+(((String((((s as any).sd_qm ?? 0)?.['icon'])).indexOf(String(':'))) + 1) - 1)));
   }
   if (((s as any).sd_qm ?? 0)?.['gate'] === 'pos') {
     if (((s as any).stat_cfg ?? 0)?.['show_positive_icons'] === 0) {
@@ -81,9 +81,9 @@ function enterQueueMsg(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).sd_qm ?? 0)?.['icon'] !== ''  &&  (((s as any).stat_cfg ?? 0)?.['msg_display_mode'] === 0  ||  ((s as any).stat_cfg ?? 0)?.['msg_display_mode'] === 1)) {
     if (((s as any).sd_qm ?? 0)?.['bg_color'] !== '') {
-      ((s as any).sd_qm = (s as any).sd_qm ?? {})['final_icon'] = '<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: ' + qspUntranslated(s, "sd_qm[\\u0027action\\u0027]", { location: "stat_display_compute" }) + ' */ return s; }); return false;"><span style="display:inline-block;background:' + ((s as any).sd_qm ?? 0)?.['bg_color'] + ';border-radius:12px;width:' + ((s as any).stat_cfg ?? 0)?.['icon_height'] + 'px;height:' + ((s as any).stat_cfg ?? 0)?.['icon_height'] + 'px;padding:5%;box-sizing:border-box;"><img src="images/system/icons/' + ((s as any).sd_qm ?? 0)?.['icon'] + '.png" title="' + ((s as any).sd_qm ?? 0)?.['title'] + '" style="width:100%;height:100%;display:block;"></span></a>';
+      ((s as any).sd_qm = (s as any).sd_qm ?? {})['final_icon'] = '<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: ' + qspUntranslated(s, "sd_qm[\\u0027action\\u0027]", { location: "stat_display_compute" }) + ' */ return s; }); return false;"><span style="display:inline-block;background:' + (((s as any).sd_qm ?? 0)?.['bg_color']) + ';border-radius:12px;width:' + (((s as any).stat_cfg ?? 0)?.['icon_height']) + 'px;height:' + (((s as any).stat_cfg ?? 0)?.['icon_height']) + 'px;padding:5%;box-sizing:border-box;"><img src="images/system/icons/' + (((s as any).sd_qm ?? 0)?.['icon']) + '.png" title="' + (((s as any).sd_qm ?? 0)?.['title']) + '" style="width:100%;height:100%;display:block;"></span></a>';
     } else {
-      ((s as any).sd_qm = (s as any).sd_qm ?? {})['final_icon'] = '<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: ' + qspUntranslated(s, "sd_qm[\\u0027action\\u0027]", { location: "stat_display_compute" }) + ' */ return s; }); return false;"><img src="images/system/icons/' + ((s as any).sd_qm ?? 0)?.['icon'] + '.png" title="' + ((s as any).sd_qm ?? 0)?.['title'] + '" height="' + ((s as any).stat_cfg ?? 0)?.['icon_height'] + '"></a>';
+      ((s as any).sd_qm = (s as any).sd_qm ?? {})['final_icon'] = '<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: ' + qspUntranslated(s, "sd_qm[\\u0027action\\u0027]", { location: "stat_display_compute" }) + ' */ return s; }); return false;"><img src="images/system/icons/' + (((s as any).sd_qm ?? 0)?.['icon']) + '.png" title="' + (((s as any).sd_qm ?? 0)?.['title']) + '" height="' + (((s as any).stat_cfg ?? 0)?.['icon_height']) + '"></a>';
     }
     if (((s as any).sd_qm ?? 0)?.['row_arg'] === 1) {
       // TODO-QSP: $sd_icons_1[] = $sd_qm['final_icon']
@@ -100,7 +100,7 @@ function enterQueueMsg(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).sd_qm ?? 0)?.['display'] !== ''  &&  (((s as any).stat_cfg ?? 0)?.['msg_display_mode'] === 0  ||  ((s as any).stat_cfg ?? 0)?.['msg_display_mode'] === 2  ||  ((s as any).sd_qm ?? 0)?.['icon'] === '')) {
-    ((s as any).sd_qm = (s as any).sd_qm ?? {})['final_text'] = ((String((s as any).locArgs?.[2] ?? '') !== '') ? (qspFunc(s, 'wrap', ((s as any).locArgs?.[2] ?? 0), ((s as any).sd_qm ?? 0)?.['display'])) : (((s as any).sd_qm ?? 0)?.['display']));
+    ((s as any).sd_qm = (s as any).sd_qm ?? {})['final_text'] = ((String((s as any).locArgs?.[2] ?? '') !== '') ? (qspFunc(s, 'wrap', ((s as any).locArgs?.[2] ?? 0), (((s as any).sd_qm ?? 0)?.['display']))) : ((((s as any).sd_qm ?? 0)?.['display'])));
     // TODO-QSP: $sd_texts[] = $sd_qm['final_text']
   }
   return;
@@ -207,7 +207,7 @@ function enterComputeAttributesProse(s: GameState, scene: SceneBuilder): void {
       if (((s as any).sd_ap ?? 0)?.['cv'] >= 0) {
         // TODO-QSP: sd_ap['v_' + $str(sd_ap['cnt'])] = sd_ap['cv']
         // TODO-QSP: $sd_ap['n_' + $str(sd_ap['cnt'])] = $sd_ap['cn']
-        ((s as any).sd_ap = (s as any).sd_ap ?? {})['sum'] = ((s as any).sd_ap['sum'] ?? 0) + (((s as any).sd_ap ?? 0)?.['cv']);
+        ((s as any).sd_ap = (s as any).sd_ap ?? {})['sum'] = ((s as any).sd_ap['sum'] ?? 0) + ((((s as any).sd_ap ?? 0)?.['cv']));
         ((s as any).sd_ap = (s as any).sd_ap ?? {})['cnt'] = ((s as any).sd_ap['cnt'] ?? 0) + (1);
       }
     }
@@ -224,7 +224,7 @@ function enterComputeAttributesProse(s: GameState, scene: SceneBuilder): void {
   ((s as any).sd_ap = (s as any).sd_ap ?? {})['bi'] = 0;
   // TODO-QSP: :sd_ap_bucket
   if (((s as any).sd_ap ?? 0)?.['bi'] < ((s as any).sd_ap ?? 0)?.['cnt']) {
-    ((s as any).sd_ap = (s as any).sd_ap ?? {})['bv'] = (((s as any).sd_ap ?? 0)?.['v_' + String(((s as any).sd_ap ?? 0)?.['bi'])] ?? 0);
+    ((s as any).sd_ap = (s as any).sd_ap ?? {})['bv'] = (((s as any).sd_ap ?? 0)?.['v_' + String((((s as any).sd_ap ?? 0)?.['bi']))] ?? 0);
     ((s as any).sd_ap = (s as any).sd_ap ?? {})['dev'] = (((s as any).sd_ap ?? {})?.['bv'] ?? 0) - (((s as any).sd_ap ?? {})?.['mean'] ?? 0);
     if (((s as any).sd_ap ?? 0)?.['bv'] >= 80  ||  ((s as any).sd_ap ?? 0)?.['dev'] >= 15) {
       // TODO-QSP: $sd_ap['high_' + $str(sd_ap['n_high'])] = $sd_ap['n_' + $str(sd_ap['bi'])]
@@ -241,12 +241,12 @@ function enterComputeAttributesProse(s: GameState, scene: SceneBuilder): void {
   (s as any).sd_attrs_prose = '';
   if (((s as any).sd_ap ?? 0)?.['n_high'] > 0) {
     if (((s as any).sd_ap ?? 0)?.['n_high'] === 1) {
-      (s as any).sd_attrs_prose = 'Your ' + qspFunc(s, 'wrap', 'pos', ((s as any).sd_ap ?? 0)?.['high_0']) + ' stands out';
+      (s as any).sd_attrs_prose = 'Your ' + qspFunc(s, 'wrap', 'pos', (((s as any).sd_ap ?? 0)?.['high_0'])) + ' stands out';
     } else {
       if (((s as any).sd_ap ?? 0)?.['n_high'] === 2) {
-        (s as any).sd_attrs_prose = 'Your ' + qspFunc(s, 'wrap', 'pos', ((s as any).sd_ap ?? 0)?.['high_0']) + ' and ' + qspFunc(s, 'wrap', 'pos', ((s as any).sd_ap ?? 0)?.['high_1']) + ' stand out';
+        (s as any).sd_attrs_prose = 'Your ' + qspFunc(s, 'wrap', 'pos', (((s as any).sd_ap ?? 0)?.['high_0'])) + ' and ' + qspFunc(s, 'wrap', 'pos', (((s as any).sd_ap ?? 0)?.['high_1'])) + ' stand out';
       } else {
-        (s as any).sd_attrs_prose = 'Your ' + qspFunc(s, 'wrap', 'pos', ((s as any).sd_ap ?? 0)?.['high_0']);
+        (s as any).sd_attrs_prose = 'Your ' + qspFunc(s, 'wrap', 'pos', (((s as any).sd_ap ?? 0)?.['high_0']));
         ((s as any).sd_ap = (s as any).sd_ap ?? {})['ji'] = 1;
         // TODO-QSP: :sd_ap_join_high
         if (((s as any).sd_ap ?? 0)?.['ji'] < (((s as any).sd_ap ?? 0)?.['n_high'] - 1)) {
@@ -260,18 +260,18 @@ function enterComputeAttributesProse(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).sd_ap ?? 0)?.['n_low'] > 0) {
     if (((s as any).sd_ap ?? 0)?.['n_low'] === 1) {
-      ((s as any).sd_ap = (s as any).sd_ap ?? {})['low_list'] = qspFunc(s, 'wrap', 'neg', ((s as any).sd_ap ?? 0)?.['low_0']);
+      ((s as any).sd_ap = (s as any).sd_ap ?? {})['low_list'] = qspFunc(s, 'wrap', 'neg', (((s as any).sd_ap ?? 0)?.['low_0']));
       ((s as any).sd_ap = (s as any).sd_ap ?? {})['low_verb'] = 'is lacking';
     } else {
       if (((s as any).sd_ap ?? 0)?.['n_low'] === 2) {
-        ((s as any).sd_ap = (s as any).sd_ap ?? {})['low_list'] = qspFunc(s, 'wrap', 'neg', ((s as any).sd_ap ?? 0)?.['low_0']) + ' and ' + qspFunc(s, 'wrap', 'neg', ((s as any).sd_ap ?? 0)?.['low_1']);
+        ((s as any).sd_ap = (s as any).sd_ap ?? {})['low_list'] = qspFunc(s, 'wrap', 'neg', (((s as any).sd_ap ?? 0)?.['low_0'])) + ' and ' + qspFunc(s, 'wrap', 'neg', (((s as any).sd_ap ?? 0)?.['low_1']));
         ((s as any).sd_ap = (s as any).sd_ap ?? {})['low_verb'] = 'are lacking';
       } else {
-        ((s as any).sd_ap = (s as any).sd_ap ?? {})['low_list'] = qspFunc(s, 'wrap', 'neg', ((s as any).sd_ap ?? 0)?.['low_0']);
+        ((s as any).sd_ap = (s as any).sd_ap ?? {})['low_list'] = qspFunc(s, 'wrap', 'neg', (((s as any).sd_ap ?? 0)?.['low_0']));
         ((s as any).sd_ap = (s as any).sd_ap ?? {})['ji'] = 1;
         // TODO-QSP: :sd_ap_join_low
         if (((s as any).sd_ap ?? 0)?.['ji'] < (((s as any).sd_ap ?? 0)?.['n_low'] - 1)) {
-          ((s as any).sd_ap = (s as any).sd_ap ?? {})['low_list'] = ((s as any).sd_ap['low_list'] ?? 0) + (', ' + qspFunc(s, 'wrap', 'neg', (((s as any).sd_ap ?? 0)?.['low_' + String(((s as any).sd_ap ?? 0)?.['ji'])] ?? 0)));
+          ((s as any).sd_ap = (s as any).sd_ap ?? {})['low_list'] = ((s as any).sd_ap['low_list'] ?? 0) + (', ' + qspFunc(s, 'wrap', 'neg', (((s as any).sd_ap ?? 0)?.['low_' + String((((s as any).sd_ap ?? 0)?.['ji']))] ?? 0)));
           ((s as any).sd_ap = (s as any).sd_ap ?? {})['ji'] = ((s as any).sd_ap['ji'] ?? 0) + (1);
           // TODO-QSP: jump 'sd_ap_join_low'
         }
@@ -282,7 +282,7 @@ function enterComputeAttributesProse(s: GameState, scene: SceneBuilder): void {
     if (((s as any).sd_attrs_prose ?? 0) !== '') {
       // TODO-QSP: $sd_attrs_prose += ', but your ' + $sd_ap['low_list'] + ' ' + $sd_ap['low_verb']
     } else {
-      (s as any).sd_attrs_prose = 'Your ' + ((s as any).sd_ap ?? 0)?.['low_list'] + ' ' + ((s as any).sd_ap ?? 0)?.['low_verb'];
+      (s as any).sd_attrs_prose = 'Your ' + (((s as any).sd_ap ?? 0)?.['low_list']) + ' ' + (((s as any).sd_ap ?? 0)?.['low_verb']);
     }
   }
   if (((s as any).sd_attrs_prose ?? 0) !== '') {
@@ -537,10 +537,10 @@ function enterComputeStats(s: GameState, scene: SceneBuilder): void {
     ((s as any).stat_texts = (s as any).stat_texts ?? {})['mood'] = ((s as any).stat_texts['mood'] ?? 0) + (' Your mood is reduced due to an STD.');
   }
   if (((s as any).mood_trauma ?? 0) > 0) {
-    ((s as any).stat_texts = (s as any).stat_texts ?? {})['mood_trauma'] = 'Recent events have lowered your maximum mood to ' + ((s as any).moodVars ?? 0)?.['max'] + '.';
+    ((s as any).stat_texts = (s as any).stat_texts ?? {})['mood_trauma'] = 'Recent events have lowered your maximum mood to ' + (((s as any).moodVars ?? 0)?.['max']) + '.';
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'mood_trauma', 'v_neg', 'status/mood_6', 2]; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
     if (((s as any).pcs_mood ?? 0) >= ((s as any).moodVars ?? 0)?.['max'] - 10) {
-      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'Your mood is capped by trauma (max: ' + ((s as any).moodVars ?? 0)?.['max'] + ').', 'v_neg']; enterQueueAlert(s, scene); (s as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'Your mood is capped by trauma (max: ' + (((s as any).moodVars ?? 0)?.['max']) + ').', 'v_neg']; enterQueueAlert(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
   }
   if (((s as any).pcs_energy ?? 0) <= 5) {
@@ -743,7 +743,7 @@ function enterComputeStats(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).stat_cfg ?? 0)?.['render_mode_status'] === 3  &&  ((s as any).cheatVars ?? 0)?.['sleep'] === 0) {
     if (((s as any).drugVars ?? 0)?.['caffeine_dose'] > 0  &&  ((s as any).drugVars ?? 0)?.['sleep_actual'] < 100) {
-      ((s as any).sd_pr = (s as any).sd_pr ?? {})['sl'] = ((s as any).drugVars ?? 0)?.['sleep_actual'];
+      ((s as any).sd_pr = (s as any).sd_pr ?? {})['sl'] = (((s as any).drugVars ?? 0)?.['sleep_actual']);
     } else {
       ((s as any).sd_pr = (s as any).sd_pr ?? {})['sl'] = ((s as any).pcs_sleep ?? 0);
     }
@@ -824,7 +824,7 @@ function enterComputeBody(s: GameState, scene: SceneBuilder): void {
   ((s as any).stat_texts = (s as any).stat_texts ?? {})['hotcat'] = 'People would rate your appearance as a ' + ((s as any).pcs_hotcat ?? 0) + ' out of 10.';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'hotcat', '', 'status/appearance', 1, 'const']; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
   if ((!((s as any).opPRE ?? 0))) {
-    ((s as any).stat_texts = (s as any).stat_texts ?? {})['makeup_hair'] = 'Your face is ' + ((s as any).pc_descWordy ?? 0)?.['makeup'] + ', and your hair is ' + ((s as any).pcs_hairstate ?? 0) + '.';
+    ((s as any).stat_texts = (s as any).stat_texts ?? {})['makeup_hair'] = 'Your face is ' + (((s as any).pc_descWordy ?? 0)?.['makeup']) + ', and your hair is ' + ((s as any).pcs_hairstate ?? 0) + '.';
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'makeup_hair']; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   if ((!((s as any).opPRE ?? 0))) {
@@ -1104,7 +1104,7 @@ function enterComputeAppearance(s: GameState, scene: SceneBuilder): void {
     if (((s as any).temp_tot ?? 0) !== '') {
       ((s as any).stat_texts = (s as any).stat_texts ?? {})['clothes_style'] = ((s as any).stat_texts['clothes_style'] ?? 0) + (' You look like a' + ((s as any).temp_tot ?? 0) + '.');
     }
-    ((s as any).stat_texts = (s as any).stat_texts ?? {})['clothes_style_tooltip'] = ((s as any).stat_texts ?? 0)?.['clothes_tooltip'];
+    ((s as any).stat_texts = (s as any).stat_texts ?? {})['clothes_style_tooltip'] = (((s as any).stat_texts ?? 0)?.['clothes_tooltip']);
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'clothes_style']; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   if (((s as any).pcs_heels ?? 0) < ((s as any).PShoPain ?? 0)?.['mild']) {
@@ -1178,7 +1178,7 @@ function enterComputeMisc(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).policeQW ?? 0)?.['legal_fine'] > 0) {
-    ((s as any).stat_texts = (s as any).stat_texts ?? {})['fines'] = 'You have outstanding fines totalling ' + qspFunc(s, 'money', 'string_debt', ((s as any).policeQW ?? 0)?.['legal_fine']) + ' and you have ' + (((s as any).policeQW ?? {})?.['fine_deadline'] ?? 0)-((s as any).daystart ?? 0) + ' days left to pay them. You can settle your debt at the post office.';
+    ((s as any).stat_texts = (s as any).stat_texts ?? {})['fines'] = 'You have outstanding fines totalling ' + qspFunc(s, 'money', 'string_debt', (((s as any).policeQW ?? 0)?.['legal_fine'])) + ' and you have ' + (((s as any).policeQW ?? {})?.['fine_deadline'] ?? 0)-((s as any).daystart ?? 0) + ' days left to pay them. You can settle your debt at the post office.';
     if (((s as any).policeQW ?? 0)?.['fine_deadline'] === ((s as any).daystart ?? 0)) {
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'fines', '', 'status/fine', 4]; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'Your fines are due today.', 'v_neg']; enterQueueAlert(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -1243,7 +1243,7 @@ function enterComputeMisc(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).hypnoSchedule ?? 0) === 1  &&  ((s as any).therapist_weekly_block ?? 0) === 0  &&  ((s as any).week ?? 0) === 4  &&  ((s as any).therapistday ?? 0) !== ((s as any).daystart ?? 0)) {
     if (((s as any).hour ?? 0) < 18) {
-      ((s as any).stat_texts = (s as any).stat_texts ?? {})['hypno_schedule'] = 'You have a meeting scheduled with your therapist today at ' + qspFunc(s, 'time', 'get_time_string', 18, 0, ((s as any).cheatVars ?? 0)?.['time_format']) + '.';
+      ((s as any).stat_texts = (s as any).stat_texts ?? {})['hypno_schedule'] = 'You have a meeting scheduled with your therapist today at ' + qspFunc(s, 'time', 'get_time_string', 18, 0, (((s as any).cheatVars ?? 0)?.['time_format'])) + '.';
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'hypno_schedule', 'hypno', 'status/hypno_addict', 3]; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
       if (((s as any).hour ?? 0) > 16) {
         { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'Your therapy session starts soon.', 'hypno']; enterQueueAlert(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -1277,7 +1277,7 @@ function enterComputeMisc(s: GameState, scene: SceneBuilder): void {
       ((s as any).sd_cm = (s as any).sd_cm ?? {})['si'] = ((s as any).sd_cm['si'] ?? 0) + (1);
       // TODO-QSP: jump 'sd_spell_loop'
     }
-    ((s as any).stat_texts = (s as any).stat_texts ?? {})['active_spells'] = qspFunc(s, 'cleanHTML', ((s as any).sd_cm ?? 0)?.['spell_text']);
+    ((s as any).stat_texts = (s as any).stat_texts ?? {})['active_spells'] = qspFunc(s, 'cleanHTML', (((s as any).sd_cm ?? 0)?.['spell_text']));
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'active_spells']; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   if (((s as any).stat_cfg ?? 0)?.['notify_exp'] !== 1) {
@@ -1369,19 +1369,19 @@ function enterComputeMisc(s: GameState, scene: SceneBuilder): void {
       ((s as any).sd_cm = (s as any).sd_cm ?? {})['need_bilberry'] = 0;
     }
     if (((s as any).sd_cm ?? 0)?.['need_boletus'] > 0  &&  ((s as any).sd_cm ?? 0)?.['need_bilberry'] > 0) {
-      ((s as any).stat_texts = (s as any).stat_texts ?? {})['gadukino'] = ((s as any).stat_texts['gadukino'] ?? 0) + ('<br><b>You need ' + ((s as any).sd_cm ?? 0)?.['need_boletus'] + ' more ' + ((((s as any).sd_cm ?? 0)?.['need_boletus'] === 1) ? ('kilo') : ('kilos')) + ' of mushrooms and ' + ((s as any).sd_cm ?? 0)?.['need_bilberry'] + ' more ' + ((((s as any).sd_cm ?? 0)?.['need_bilberry'] === 1) ? ('kilo') : ('kilos')) + ' of berries to satisfy both of your grandparents requests.</b>');
+      ((s as any).stat_texts = (s as any).stat_texts ?? {})['gadukino'] = ((s as any).stat_texts['gadukino'] ?? 0) + ('<br><b>You need ' + (((s as any).sd_cm ?? 0)?.['need_boletus']) + ' more ' + ((((s as any).sd_cm ?? 0)?.['need_boletus'] === 1) ? ('kilo') : ('kilos')) + ' of mushrooms and ' + (((s as any).sd_cm ?? 0)?.['need_bilberry']) + ' more ' + ((((s as any).sd_cm ?? 0)?.['need_bilberry'] === 1) ? ('kilo') : ('kilos')) + ' of berries to satisfy both of your grandparents requests.</b>');
     } else {
       if (((s as any).sd_cm ?? 0)?.['need_boletus'] > 0) {
-        ((s as any).stat_texts = (s as any).stat_texts ?? {})['gadukino'] = ((s as any).stat_texts['gadukino'] ?? 0) + ('<br><b>You need ' + ((s as any).sd_cm ?? 0)?.['need_boletus'] + ' more ' + ((((s as any).sd_cm ?? 0)?.['need_boletus'] === 1) ? ('kilo') : ('kilos')) + ' of mushrooms to satisfy both of your grandparents requests.</b>');
+        ((s as any).stat_texts = (s as any).stat_texts ?? {})['gadukino'] = ((s as any).stat_texts['gadukino'] ?? 0) + ('<br><b>You need ' + (((s as any).sd_cm ?? 0)?.['need_boletus']) + ' more ' + ((((s as any).sd_cm ?? 0)?.['need_boletus'] === 1) ? ('kilo') : ('kilos')) + ' of mushrooms to satisfy both of your grandparents requests.</b>');
       } else {
         if (((s as any).sd_cm ?? 0)?.['need_bilberry'] > 0) {
-          ((s as any).stat_texts = (s as any).stat_texts ?? {})['gadukino'] = ((s as any).stat_texts['gadukino'] ?? 0) + ('<br><b>You need ' + ((s as any).sd_cm ?? 0)?.['need_bilberry'] + ' more ' + ((((s as any).sd_cm ?? 0)?.['need_bilberry'] === 1) ? ('kilo') : ('kilos')) + ' of berries to satisfy both of your grandparents requests.</b>');
+          ((s as any).stat_texts = (s as any).stat_texts ?? {})['gadukino'] = ((s as any).stat_texts['gadukino'] ?? 0) + ('<br><b>You need ' + (((s as any).sd_cm ?? 0)?.['need_bilberry']) + ' more ' + ((((s as any).sd_cm ?? 0)?.['need_bilberry'] === 1) ? ('kilo') : ('kilos')) + ' of berries to satisfy both of your grandparents requests.</b>');
         }
       }
     }
   }
   if (((s as any).stat_texts ?? 0)?.['gadukino'] !== '') {
-    ((s as any).stat_texts = (s as any).stat_texts ?? {})['gadukino_tooltip'] = qspFunc(s, 'cleanHTML', ((s as any).stat_texts ?? 0)?.['gadukino']);
+    ((s as any).stat_texts = (s as any).stat_texts ?? {})['gadukino_tooltip'] = qspFunc(s, 'cleanHTML', (((s as any).stat_texts ?? 0)?.['gadukino']));
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'gadukino']; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   ((s as any).sd_cm = (s as any).sd_cm ?? {})['lover_max'] = 0;
@@ -1390,18 +1390,18 @@ function enterComputeMisc(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: :sd_lover_loop
     ((s as any).sd_cm = (s as any).sd_cm ?? {})['npcid'] = qspUntranslated(s, "lover[sd_cm['li']]", { location: "stat_display_compute" });
     if (((s as any).npc_meetday ?? 0)[((s as any).sd_cm ?? 0)?.['npcid']] === ((s as any).daystart ?? 0)) {
-      ((s as any).sd_cm = (s as any).sd_cm ?? {})['label'] = 'lover_' + ((s as any).sd_cm ?? 0)?.['npcid'];
+      ((s as any).sd_cm = (s as any).sd_cm ?? {})['label'] = 'lover_' + (((s as any).sd_cm ?? 0)?.['npcid']);
       if (((s as any).hour ?? 0) < ((s as any).npc_meethour ?? 0)[((s as any).sd_cm ?? 0)?.['npcid']]) {
         // TODO-QSP: $stat_texts[$sd_cm['label']] = '<<$npc_usedname[$sd_cm[''npcid'']]>> will be waiting for you near <<...
-        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).sd_cm ?? 0)?.['label'], 'accent', 'status/date', 4]; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', (((s as any).sd_cm ?? 0)?.['label']), 'accent', 'status/date', 4]; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
         if (((s as any).hour ?? 0) >= ((s as any).npc_meethour ?? 0)[((s as any).sd_cm ?? 0)?.['npcid']] - 2) {
-          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', '' + (((s as any).npc_usedname ?? 0)?.[((s as any).sd_cm ?? 0)?.['npcid']] ?? 0) + ' is expecting you soon.', 'accent']; enterQueueAlert(s, scene); (s as any).locArgs = __savedLocArgs; }
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', '' + (((s as any).npc_usedname ?? 0)?.[(((s as any).sd_cm ?? 0)?.['npcid'])] ?? 0) + ' is expecting you soon.', 'accent']; enterQueueAlert(s, scene); (s as any).locArgs = __savedLocArgs; }
         }
       } else {
         if (((s as any).hour ?? 0) === ((s as any).npc_meethour ?? 0)[((s as any).sd_cm ?? 0)?.['npcid']]) {
           // TODO-QSP: $stat_texts[$sd_cm['label']] = '<<$npc_usedname[$sd_cm[''npcid'']]>> is waiting for you by <<$func('...
-          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).sd_cm ?? 0)?.['label'], 'v_neg', 'status/date', 4]; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
-          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', '' + (((s as any).npc_usedname ?? 0)?.[((s as any).sd_cm ?? 0)?.['npcid']] ?? 0) + ' is waiting for you now.', 'v_neg']; enterQueueAlert(s, scene); (s as any).locArgs = __savedLocArgs; }
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', (((s as any).sd_cm ?? 0)?.['label']), 'v_neg', 'status/date', 4]; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', '' + (((s as any).npc_usedname ?? 0)?.[(((s as any).sd_cm ?? 0)?.['npcid'])] ?? 0) + ' is waiting for you now.', 'v_neg']; enterQueueAlert(s, scene); (s as any).locArgs = __savedLocArgs; }
         }
       }
     }
@@ -1434,7 +1434,7 @@ function enterComputeMisc(s: GameState, scene: SceneBuilder): void {
       ((s as any).cal_r = (s as any).cal_r ?? {})['max'] = ((s as any).cal_upc_cache_cnt ?? 0);
       ((s as any).cal_r = (s as any).cal_r ?? {})['today_only'] = 1;
     } else {
-      ((s as any).cal_r = (s as any).cal_r ?? {})['max'] = ((s as any).stat_cfg ?? 0)?.['cal_count'];
+      ((s as any).cal_r = (s as any).cal_r ?? {})['max'] = (((s as any).stat_cfg ?? 0)?.['cal_count']);
       ((s as any).cal_r = (s as any).cal_r ?? {})['today_only'] = ((((s as any).stat_cfg ?? 0)?.['cal_today_only'] === 1) ? (0) : (1));
     }
     ((s as any).cal_r = (s as any).cal_r ?? {})['shown'] = 0;
@@ -1458,7 +1458,7 @@ function enterComputeMisc(s: GameState, scene: SceneBuilder): void {
         // TODO-QSP: jump 'cal_render_loop'
       }
       qspCall(s, 'calendar_events', 'get_event', qspUntranslated(s, "cal_upc_ids[cal_r['i']]", { location: "stat_display_compute" }));
-      ((s as any).cal_r = (s as any).cal_r ?? {})['rgb'] = qspFunc(s, 'calendar_render', 'get_event_color', ((s as any).event_vars ?? 0)?.['color']);
+      ((s as any).cal_r = (s as any).cal_r ?? {})['rgb'] = qspFunc(s, 'calendar_render', 'get_event_color', (((s as any).event_vars ?? 0)?.['color']));
       if (((s as any).cal_upc_days ?? 0)[((s as any).cal_r ?? 0)?.['i']] === ((s as any).daystart ?? 0)) {
         ((s as any).cal_r = (s as any).cal_r ?? {})['day_lbl'] = 'Today';
       } else {
@@ -1508,7 +1508,7 @@ function enterCondString(s: GameState, scene: SceneBuilder): void {
         ((s as any).sd_cs = (s as any).sd_cs ?? {})['dirt_col'] = 'neg';
       }
     }
-    ((s as any).sd_cs = (s as any).sd_cs ?? {})['out'] = qspFunc(s, 'wrap', ((s as any).sd_cs ?? 0)?.['dirt_col'], '[' + String(((s as any).sd_cs ?? 0)?.['dirt_pct']) + '% dirt]');
+    ((s as any).sd_cs = (s as any).sd_cs ?? {})['out'] = qspFunc(s, 'wrap', (((s as any).sd_cs ?? 0)?.['dirt_col']), '[' + String((((s as any).sd_cs ?? 0)?.['dirt_pct'])) + '% dirt]');
   }
   if (String((s as any).locArgs?.[4] ?? '') === 1) {
     if (((s as any).sd_cs ?? 0)?.['out'] !== '') {
@@ -1527,9 +1527,9 @@ function enterCondString(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
-    ((s as any).sd_cs = (s as any).sd_cs ?? {})['out'] = ((s as any).sd_cs['out'] ?? 0) + (qspFunc(s, 'wrap', ((s as any).sd_cs ?? 0)?.['wear_col'], '[wear ' + String(((s as any).locArgs?.[3] ?? 0)) + ']'));
+    ((s as any).sd_cs = (s as any).sd_cs ?? {})['out'] = ((s as any).sd_cs['out'] ?? 0) + (qspFunc(s, 'wrap', (((s as any).sd_cs ?? 0)?.['wear_col']), '[wear ' + String(((s as any).locArgs?.[3] ?? 0)) + ']'));
   }
-  (s as any).result = ((s as any).sd_cs ?? 0)?.['out'];
+  (s as any).result = (((s as any).sd_cs ?? 0)?.['out']);
   return;
   // TODO-QSP: end
   scene.build();
@@ -1695,7 +1695,7 @@ function enterComputeImages(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: $sd_mu_lbl[7] = 'Goth makeup'
       ((s as any).sd_img = (s as any).sd_img ?? {})['label_face'] = ((((s as any).pcs_makeup ?? 0) >= 1  &&  ((s as any).pcs_makeup ?? 0) <= 7) ? ((((s as any).sd_mu_lbl ?? 0)?.[String((s as any).pcs_makeup ?? 0)] ?? 0)) : (((((s as any).pcs_makeup ?? 0) <= 0) ? ('Smeared makeup') : ('Face'))));
     }
-    ((s as any).sd_img = (s as any).sd_img ?? {})['short_face'] = ((s as any).sd_img ?? 0)?.['label_face'];
+    ((s as any).sd_img = (s as any).sd_img ?? {})['short_face'] = (((s as any).sd_img ?? 0)?.['label_face']);
     ((s as any).sd_img = (s as any).sd_img ?? {})['cond_face'] = qspFunc(s, 'stat_display_compute', 'cond_face');
   } else {
     if (((s as any).sd_ci ?? 0)?.['key'] === 'body') {
@@ -1705,7 +1705,7 @@ function enterComputeImages(s: GameState, scene: SceneBuilder): void {
       ((s as any).sd_img = (s as any).sd_img ?? {})['cond_body'] = qspFunc(s, 'stat_display_compute', 'cond_sweat');
       if ((((s as any).cumloc ?? 0)[6] + ((s as any).cumloc ?? 0)[7] + ((s as any).cumloc ?? 0)[13] + ((s as any).cumloc ?? 0)[16]) > 0) {
         ((s as any).sd_ci = (s as any).sd_ci ?? {})['cum_line'] = qspFunc(s, 'wrap', 'v_neg', '[cum on body]');
-        ((s as any).sd_img = (s as any).sd_img ?? {})['cond_body'] = ((((s as any).sd_img ?? 0)?.['cond_body'] !== '') ? (((s as any).sd_img ?? 0)?.['cond_body'] + ' ') : (''));
+        ((s as any).sd_img = (s as any).sd_img ?? {})['cond_body'] = ((((s as any).sd_img ?? 0)?.['cond_body'] !== '') ? ((((s as any).sd_img ?? 0)?.['cond_body']) + ' ') : (''));
       }
     } else {
       if (((s as any).sd_ci ?? 0)?.['key'] === 'coat') {
@@ -1721,14 +1721,14 @@ function enterComputeImages(s: GameState, scene: SceneBuilder): void {
           ((s as any).sd_img = (s as any).sd_img ?? {})['url_clothes'] = qspFunc(s, '$body_image', '', 'clothes');
           if (((s as any).clothingworntype ?? 0) === 'nude') {
             ((s as any).sd_img = (s as any).sd_img ?? {})['label_clothes'] = ((((s as any).towel ?? 0) === 1) ? ('Towel') : (((((s as any).robe ?? 0) === 1) ? ('Robe') : ('Naked'))));
-            ((s as any).sd_img = (s as any).sd_img ?? {})['short_clothes'] = ((s as any).sd_img ?? 0)?.['label_clothes'];
+            ((s as any).sd_img = (s as any).sd_img ?? {})['short_clothes'] = (((s as any).sd_img ?? 0)?.['label_clothes']);
           } else {
             ((s as any).sd_img = (s as any).sd_img ?? {})['label_clothes'] = 'Clothes';
             ((s as any).sd_img = (s as any).sd_img ?? {})['short_clothes'] = qspFunc(s, '$short_description', '', ((s as any).clothingworntype ?? 0), ((s as any).clothingwornnumber ?? 0));
             ((s as any).sd_img = (s as any).sd_img ?? {})['cond_clothes'] = 0;
             ((s as any).sd_ci = (s as any).sd_ci ?? {})['style_line'] = qspFunc(s, 'stat_display_compute', 'cond_clo_style');
             if (((s as any).sd_ci ?? 0)?.['style_line'] !== '') {
-              ((s as any).sd_img = (s as any).sd_img ?? {})['cond_clothes'] = ((((s as any).sd_img ?? 0)?.['cond_clothes'] !== '') ? (((s as any).sd_img ?? 0)?.['cond_clothes'] + ' ') : (''));
+              ((s as any).sd_img = (s as any).sd_img ?? {})['cond_clothes'] = ((((s as any).sd_img ?? 0)?.['cond_clothes'] !== '') ? ((((s as any).sd_img ?? 0)?.['cond_clothes']) + ' ') : (''));
             }
           }
         } else {

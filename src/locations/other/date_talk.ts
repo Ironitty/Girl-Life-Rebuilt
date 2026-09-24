@@ -365,7 +365,7 @@ function enterPoliteHobbyReact(s: GameState, scene: SceneBuilder): void {
     { label: 'Inquire politely', handler: (st: GameState) => {
     scene.text('"Oh, that\'s cool," you say. "Tell me about it?"');
     // TODO-QSP: dynamic text: You listen somewhat mindlessly as he tells you about his interests <<$date_ev[''...
-    scene.text(`You listen somewhat mindlessly as he tells you about his interests ${((st as any).date_ev ?? 0)?.['dialogue_setting'] ?? ''}.`);
+    scene.text(`You listen somewhat mindlessly as he tells you about his interests ${(((st as any).date_ev ?? 0)?.['dialogue_setting'] ?? '')}.`);
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     // TODO-QSP: xgt 'date_talk', 'continue_rate'
@@ -397,7 +397,7 @@ function enterNetflixFun(s: GameState, scene: SceneBuilder): void {
     { label: 'Inquire politely', handler: (st: GameState) => {
     scene.text('"Oh, that\'s cool," you say. "Tell me about it?"');
     // TODO-QSP: dynamic text: You listen somewhat mindlessly as he tells you about his interests <<$date_ev[''...
-    scene.text(`You listen somewhat mindlessly as he tells you about his interests ${((st as any).date_ev ?? 0)?.['dialogue_setting'] ?? ''}.`);
+    scene.text(`You listen somewhat mindlessly as he tells you about his interests ${(((st as any).date_ev ?? 0)?.['dialogue_setting'] ?? '')}.`);
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     // TODO-QSP: xgt 'date_talk', 'continue_rate'
@@ -457,7 +457,7 @@ function enterNetflixReactMenu2(s: GameState, scene: SceneBuilder): void {
       scene.text('"Oh man, that was the best. And what about..."');
     }
     // TODO-QSP: dynamic text: The two of you animatedly discuss the show <<$date_ev[''dialogue_setting'']>>.
-    scene.text(`The two of you animatedly discuss the show ${((st as any).date_ev ?? 0)?.['dialogue_setting'] ?? ''}.`);
+    scene.text(`The two of you animatedly discuss the show ${(((st as any).date_ev ?? 0)?.['dialogue_setting'] ?? '')}.`);
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     // TODO-QSP: xgt 'date_talk', 'continue_rate', 'improve'
@@ -513,7 +513,7 @@ function enterNetflixWomanizer(s: GameState, scene: SceneBuilder): void {
     { label: 'Gross', handler: (st: GameState) => {
     scene.text('<i>Ew.</i>');
     // TODO-QSP: dynamic text: You wrinkle your nose, disgusted by <<$npcdesc>>''s blatant womanizing. He doesn...
-    scene.text(`You wrinkle your nose, disgusted by ${((st as any).npcdesc ?? '')}'s blatant womanizing. He doesn't seem to notice, going on about his shows ${((st as any).date_ev ?? 0)?.['dialogue_setting'] ?? ''}.`);
+    scene.text(`You wrinkle your nose, disgusted by ${((st as any).npcdesc ?? '')}'s blatant womanizing. He doesn't seem to notice, going on about his shows ${(((st as any).date_ev ?? 0)?.['dialogue_setting'] ?? '')}.`);
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     // TODO-QSP: xgt 'date_talk', 'continue_rate', 'worsen'
@@ -523,7 +523,7 @@ function enterNetflixWomanizer(s: GameState, scene: SceneBuilder): void {
     { label: 'Typical', handler: (st: GameState) => {
     scene.text('<i>Typical boy...</i>');
     // TODO-QSP: dynamic text: You suppress an eyeroll. Of course his favorite part are the sex scenes. Though ...
-    scene.text(`You suppress an eyeroll. Of course his favorite part are the sex scenes. Though you don't feel you can really hold it against him. Of course a man is going to be thinking with his dick. You continue listening to him going on about his shows ${((st as any).date_ev ?? 0)?.['dialogue_setting'] ?? ''}.`);
+    scene.text(`You suppress an eyeroll. Of course his favorite part are the sex scenes. Though you don't feel you can really hold it against him. Of course a man is going to be thinking with his dick. You continue listening to him going on about his shows ${(((st as any).date_ev ?? 0)?.['dialogue_setting'] ?? '')}.`);
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     // TODO-QSP: xgt 'date_talk', 'continue_rate', 'improve'
@@ -534,7 +534,7 @@ function enterNetflixWomanizer(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'date_funcs', 'date_rate', 'like');
     scene.text('"Yeah, it\'s pretty hot isn\'t it? I love watching sex scenes," you grin. "They really turn me on."');
     // TODO-QSP: dynamic text: <<$npcdesc>> animatedly engages with you talking about more shows, both of you d...
-    scene.text(`${((st as any).npcdesc ?? '')} animatedly engages with you talking about more shows, both of you discussing your favorite sex scenes in film and television ${((st as any).date_ev ?? 0)?.['dialogue_setting'] ?? ''}.`);
+    scene.text(`${((st as any).npcdesc ?? '')} animatedly engages with you talking about more shows, both of you discussing your favorite sex scenes in film and television ${(((st as any).date_ev ?? 0)?.['dialogue_setting'] ?? '')}.`);
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     // TODO-QSP: xgt 'date_talk', 'continue_rate', 'improve'
@@ -616,7 +616,7 @@ function enterWorkoutAsk(s: GameState, scene: SceneBuilder): void {
     scene.text(`"I know what you mean," twisting your lips in a suggestive smirk. You're a ${((st as any).pcs_hotcat ?? '')} out of 10 girl and you know it. And from the way his gaze slips down your body, you're pretty sure he knows it too.`);
     scene.text('"Looking good feels good," you grin.');
     // TODO-QSP: dynamic text: "Yeah..." he mumbles back, still ogling you <<$date_ev[''dialogue_setting'']>>.
-    scene.text(`"Yeah..." he mumbles back, still ogling you ${((st as any).date_ev ?? 0)?.['dialogue_setting'] ?? ''}.`);
+    scene.text(`"Yeah..." he mumbles back, still ogling you ${(((st as any).date_ev ?? 0)?.['dialogue_setting'] ?? '')}.`);
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     // TODO-QSP: xgt 'date_talk', 'continue_rate'
@@ -649,7 +649,7 @@ function enterWorkoutAsk(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'Continue', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: You keep chatting <<$date_ev[''dialogue_setting'']>>.
-    scene.text(`You keep chatting ${((st as any).date_ev ?? 0)?.['dialogue_setting'] ?? ''}.`);
+    scene.text(`You keep chatting ${(((st as any).date_ev ?? 0)?.['dialogue_setting'] ?? '')}.`);
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     // TODO-QSP: xgt 'date_talk', 'continue_rate'
@@ -748,7 +748,7 @@ function enterGamingFunDescribe(s: GameState, scene: SceneBuilder): void {
     scene.text('"Gotta go with rifles - nothing beats spraying down a whole squad with an AK."');
     scene.text('"Respect. I\'m all about that AWP life though. That instant delete button feeling?"');
     // TODO-QSP: dynamic text: The two of you converse back and forth animatedly <<$date_ev[''dialogue_setting'...
-    scene.text(`The two of you converse back and forth animatedly ${((st as any).date_ev ?? 0)?.['dialogue_setting'] ?? ''}.`);
+    scene.text(`The two of you converse back and forth animatedly ${(((st as any).date_ev ?? 0)?.['dialogue_setting'] ?? '')}.`);
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     // TODO-QSP: xgt 'date_talk', 'continue_rate', 'improve'
@@ -788,7 +788,7 @@ function enterGamingFunDescribe(s: GameState, scene: SceneBuilder): void {
       }
     }
     // TODO-QSP: dynamic text: <<$npcdesc>> continues animatedly educating you on the nuances of CS:GO <<$date_...
-    scene.text(`${((st as any).npcdesc ?? '')} continues animatedly educating you on the nuances of CS:GO ${((st as any).date_ev ?? 0)?.['dialogue_setting'] ?? ''}.`);
+    scene.text(`${((st as any).npcdesc ?? '')} continues animatedly educating you on the nuances of CS:GO ${(((st as any).date_ev ?? 0)?.['dialogue_setting'] ?? '')}.`);
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     // TODO-QSP: xgt 'date_talk', 'continue_rate', 'improve'
@@ -891,7 +891,7 @@ function enterAwkwardMenu(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'The usual (nothing specific)', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: "Uhm... Y''know, just the usual," you say back, cringing internally as you reali...
-    scene.text(`"Uhm... Y'know, just the usual," you say back, cringing internally as you realize that's exactly what he just said. ${((st as any).date_ev ?? 0)?.['talk_desc1'] ?? ''}..`);
+    scene.text(`"Uhm... Y'know, just the usual," you say back, cringing internally as you realize that's exactly what he just said. ${(((st as any).date_ev ?? 0)?.['talk_desc1'] ?? '')}..`);
     qspGoto(st, 'date_talk', 'awkward_silence');
   } },
   ]);
@@ -904,7 +904,7 @@ function enterAwkwardSilence(s: GameState, scene: SceneBuilder): void {
     { label: 'Suffer it', handler: (st: GameState) => {
     if (((st as any).date_ev ?? 0)?.['cont_loc'] === 'date_casual_meal') {
       // TODO-QSP: dynamic text: You sit across from <<$npcdesc>>, the clink of silverware and the murmur of dist...
-      scene.text(`You sit across from ${((st as any).npcdesc ?? '')}, the clink of silverware and the murmur of distant chatter only deepening the silence between you, the air thick and unyielding, as if it’s waiting for you to say something—anything—to shatter the unbearable quiet ${((st as any).date_ev ?? 0)?.['dialogue_setting'] ?? ''}.`);
+      scene.text(`You sit across from ${((st as any).npcdesc ?? '')}, the clink of silverware and the murmur of distant chatter only deepening the silence between you, the air thick and unyielding, as if it’s waiting for you to say something—anything—to shatter the unbearable quiet ${(((st as any).date_ev ?? 0)?.['dialogue_setting'] ?? '')}.`);
     } else {
       // TODO-QSP: dynamic text: You sit in the deepening silence between you and <<$npcdesc>>, the air thick and...
       scene.text(`You sit in the deepening silence between you and ${((st as any).npcdesc ?? '')}, the air thick and unyielding, as if it’s waiting for you to say something—anything—to shatter the unbearable quiet.`);
@@ -1074,7 +1074,7 @@ function enterSchoolTalk2(s: GameState, scene: SceneBuilder): void {
   } },
     { label: 'Talk about some gossip', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: "Well, some classmates of mine..." You tell <<$npcdesc>> about all the dirty gos...
-    scene.text(`"Well, some classmates of mine..." You tell ${((st as any).npcdesc ?? '')} about all the dirty gossip you've heard about who's fucking who and which girl blew which boy and which boy is cheating on which girl ${((st as any).date_ev ?? 0)?.['dialogue_setting'] ?? ''}.`);
+    scene.text(`"Well, some classmates of mine..." You tell ${((st as any).npcdesc ?? '')} about all the dirty gossip you've heard about who's fucking who and which girl blew which boy and which boy is cheating on which girl ${(((st as any).date_ev ?? 0)?.['dialogue_setting'] ?? '')}.`);
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     // TODO-QSP: xgt 'date_talk', 'continue_rate', 'improve'
@@ -1761,7 +1761,7 @@ function enterSexEarlier2(s: GameState, scene: SceneBuilder): void {
 
 function enterSexAgain(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: "We should do it again sometime," you smirk <<$date_ev[''dialogue_setting'']>>.
-  scene.text(`"We should do it again sometime," you smirk ${((s as any).date_ev ?? 0)?.['dialogue_setting'] ?? ''}.`);
+  scene.text(`"We should do it again sometime," you smirk ${(((s as any).date_ev ?? 0)?.['dialogue_setting'] ?? '')}.`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
@@ -1885,7 +1885,7 @@ function enterCanStillBj(s: GameState, scene: SceneBuilder): void {
     scene.text('"Is that your way of telling me I need to spend more time in the shower?" he asks wryly.');
     scene.text('"Of course. That\'s more time we can spend in there together."');
     // TODO-QSP: dynamic text: You give him a bright and innocent smile to complete the joke, which he returns ...
-    scene.text(`You give him a bright and innocent smile to complete the joke, which he returns with full understanding. The two of you continuing subtextually sex bantering ${((st as any).date_ev ?? 0)?.['dialogue_setting'] ?? ''}.`);
+    scene.text(`You give him a bright and innocent smile to complete the joke, which he returns with full understanding. The two of you continuing subtextually sex bantering ${(((st as any).date_ev ?? 0)?.['dialogue_setting'] ?? '')}.`);
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     // TODO-QSP: xgt 'date_talk', 'continue_rate', 'improve'
@@ -1912,7 +1912,7 @@ function enterCanStillBj(s: GameState, scene: SceneBuilder): void {
 
 function enterCanStillEnd(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: The two of you continuing subtextually sex bantering <<$date_ev[''dialogue_setti...
-  scene.text(`The two of you continuing subtextually sex bantering ${((s as any).date_ev ?? 0)?.['dialogue_setting'] ?? ''}.`);
+  scene.text(`The two of you continuing subtextually sex bantering ${(((s as any).date_ev ?? 0)?.['dialogue_setting'] ?? '')}.`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
@@ -1982,7 +1982,7 @@ function enterFoodRecommendations(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterFoodFlirtStart(s: GameState, scene: SceneBuilder): void {
-  qspGoto(s, 'date_talk', qspUntranslated(s, "''food_flirt_<<rand(1'", { location: "date_talk" }), '3)>>');
+  qspGoto(s, 'date_talk', qspUntranslated(s, "food_flirt_(Math.floor(Math.random() * 3) + 1)", { location: "date_talk" }));
   // TODO-QSP: end
   scene.build();
 }

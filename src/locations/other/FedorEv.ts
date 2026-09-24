@@ -8,7 +8,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   (s as any).numnpc = 5;
   (s as any).static_num = 'A5';
   qspCall(s, 'stat', '');
-  scene.text(`<center><b>${((s as any).npc_firstname ?? 0)?.['A5'] ?? ''} ${((s as any).npc_lastname ?? 0)?.['A5'] ?? ''}</b></center>`);
+  scene.text(`<center><b>${(((s as any).npc_firstname ?? 0)?.['A5'] ?? '')} ${(((s as any).npc_lastname ?? 0)?.['A5'] ?? '')}</b></center>`);
   scene.img('images/characters/shared/headshots_main/big5.jpg');
   if (((s as any).kotovLoveQW ?? 0) > 0  &&  ((s as any).week ?? 0) < 5  &&  ((s as any).kotovVSkozlov ?? 0) === 0  &&  ((s as any).fedorKozlovQW ?? 0) >= 10) {
     qspGoto(s, 'FedorEv', 'Vitek Vs Fedor');
@@ -55,7 +55,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   (s as any).numnpc = 5;
   (s as any).static_num = 'A5';
   qspCall(s, 'stat', '');
-  scene.text(`<center><b>${((s as any).npc_firstname ?? 0)?.['A5'] ?? ''} ${((s as any).npc_lastname ?? 0)?.['A5'] ?? ''}</b></center>`);
+  scene.text(`<center><b>${(((s as any).npc_firstname ?? 0)?.['A5'] ?? '')} ${(((s as any).npc_lastname ?? 0)?.['A5'] ?? '')}</b></center>`);
   scene.img('images/characters/shared/headshots_main/big5.jpg');
   if (((s as any).kotovLoveQW ?? 0) > 0  &&  ((s as any).week ?? 0) < 5  &&  ((s as any).kotovVSkozlov ?? 0) === 0  &&  ((s as any).fedorKozlovQW ?? 0) >= 10) {
     qspGoto(s, 'FedorEv', 'Vitek Vs Fedor');

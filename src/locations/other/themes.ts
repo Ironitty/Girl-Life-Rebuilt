@@ -14,13 +14,13 @@ function enterMenuToggle(s: GameState, scene: SceneBuilder): void {
     if (((s as any).cfg_vars ?? 0)?.['theme_main_name'] === 'Default'  ||  ((s as any).cfg_vars ?? 0)?.['theme_main_name'] === '') {
       ((s as any).cfg_vars = (s as any).cfg_vars ?? {})['theme_main_name'] = 'White';
     }
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).cfg_vars ?? 0)?.['theme_main_name'], 'static']; enterSetTheme(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', (((s as any).cfg_vars ?? 0)?.['theme_main_name']), 'static']; enterSetTheme(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
     ((s as any).cfg_vars = (s as any).cfg_vars ?? {})['themetype'] = 0;
     if (((s as any).cfg_vars ?? 0)?.['theme_main_name'] === 'White'  ||  ((s as any).cfg_vars ?? 0)?.['theme_main_name'] === 'Black'  ||  ((s as any).cfg_vars ?? 0)?.['theme_main_name'] === 'Modern Grey'  ||  ((s as any).cfg_vars ?? 0)?.['theme_main_name'] === 'Custom'  ||  ((s as any).cfg_vars ?? 0)?.['theme_main_name'] === '') {
       ((s as any).cfg_vars = (s as any).cfg_vars ?? {})['theme_main_name'] = 'Default';
     }
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'Dynamic ' + ((s as any).cfg_vars ?? 0)?.['theme_main_name'], 'dynamic']; enterSetTheme(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'Dynamic ' + (((s as any).cfg_vars ?? 0)?.['theme_main_name']), 'dynamic']; enterSetTheme(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   qspCall(s, '$menu_obnovit', '');
   return;
@@ -33,9 +33,9 @@ function enterMenuCell(s: GameState, scene: SceneBuilder): void {
   ((s as any).theme = (s as any).theme ?? {})['name'] = ((s as any).temp_mc_full ?? 0);
   ((s as any).theme = (s as any).theme ?? {})['type'] = ((s as any).locArgs?.[2] ?? 0);
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'indoors']; enterGetTheme(s, scene); (s as any).locArgs = __savedLocArgs; }
-  (s as any).temp_mc_bg = qspFunc(s, 'shortgs', 'rgb_to_hex', ((s as any).theme ?? 0)?.['bcolor']);
-  (s as any).temp_mc_fg = qspFunc(s, 'shortgs', 'rgb_to_hex', ((s as any).theme ?? 0)?.['fcolor']);
-  (s as any).temp_mc_sel = ((((s as any).themes_menu_cur ?? 0) === ((s as any).temp_mc_full ?? 0)) ? ('outline:3px solid ' + ((s as any).theme_hex ?? 0)?.['accent'] + '; outline-offset:-3px; ') : (''));
+  (s as any).temp_mc_bg = qspFunc(s, 'shortgs', 'rgb_to_hex', (((s as any).theme ?? 0)?.['bcolor']));
+  (s as any).temp_mc_fg = qspFunc(s, 'shortgs', 'rgb_to_hex', (((s as any).theme ?? 0)?.['fcolor']));
+  (s as any).temp_mc_sel = ((((s as any).themes_menu_cur ?? 0) === ((s as any).temp_mc_full ?? 0)) ? ('outline:3px solid ' + (((s as any).theme_hex ?? 0)?.['accent']) + '; outline-offset:-3px; ') : (''));
   // TODO-QSP: dynamic text: '<td bgcolor="' + $temp_mc_bg + '" width="250" align="center" style="background:...
   scene.text(`'<td bgcolor="' + $temp_mc_bg + '" width="250" align="center" style="background:' + $temp_mc_bg + '; ' + $temp_mc_sel + 'width:250px; text-align:center; white-space:nowrap; border-radius:4px; padding:0; overflow:hidden;"><a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: $cfg_vars[/u0027theme_main_name/u0027] = /u0027${((s as any).locArgs?.[1] ?? '')}/u0027 */ return s; }); window.__gameStore.getState().doGoto(/u0027themes/u0027, /u0027set_theme/u0027, /u0027${((s as any).temp_mc_full ?? '')}/u0027); return false;">${((s as any).locArgs?.[1] ?? '')}</a></td>'`);
   return;
@@ -53,16 +53,16 @@ function enterMenu(s: GameState, scene: SceneBuilder): void {
     (s as any).themes_menu_prev_settingmode = ((s as any).settingmode ?? 0);
     (s as any).settingmode = 1;
   }
-  (s as any).themes_menu_cur = ((s as any).theme ?? 0)?.['name'];
+  (s as any).themes_menu_cur = (((s as any).theme ?? 0)?.['name']);
   (s as any).themes_menu_mode = ((((s as any).cfg_vars ?? 0)?.['themetype'] === 0) ? ('dynamic') : ('static'));
   ((s as any).theme = (s as any).theme ?? {})['name'] = ((s as any).themes_menu_cur ?? 0);
   ((s as any).theme = (s as any).theme ?? {})['type'] = ((s as any).themes_menu_mode ?? 0);
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'indoors']; enterGetTheme(s, scene); (s as any).locArgs = __savedLocArgs; }
-  (s as any).bcolor = ((s as any).theme ?? 0)?.['bcolor'];
-  (s as any).fcolor = ((s as any).theme ?? 0)?.['fcolor'];
-  (s as any).lcolor = ((s as any).theme ?? 0)?.['lcolor'];
-  (s as any).fsize = ((s as any).theme ?? 0)?.['fsize'];
-  (s as any).fname = ((s as any).theme ?? 0)?.['fname'];
+  (s as any).bcolor = (((s as any).theme ?? 0)?.['bcolor']);
+  (s as any).fcolor = (((s as any).theme ?? 0)?.['fcolor']);
+  (s as any).lcolor = (((s as any).theme ?? 0)?.['lcolor']);
+  (s as any).fsize = (((s as any).theme ?? 0)?.['fsize']);
+  (s as any).fname = (((s as any).theme ?? 0)?.['fname']);
   (s as any).tm_label_fg = ((((s as any).theme ?? 0)?.['is_dark'] === 1) ? ('#cccccc') : ('#333333'));
   (s as any).tm_cell_bg = ((((s as any).theme ?? 0)?.['is_dark'] === 1) ? ('#000000') : ('#ffffff'));
   (s as any).tm_fg_hex = qspFunc(s, 'shortgs', 'rgb_to_hex', ((s as any).fcolor ?? 0));
@@ -135,11 +135,11 @@ function enterMenu(s: GameState, scene: SceneBuilder): void {
   ((s as any).theme = (s as any).theme ?? {})['name'] = ((s as any).themes_menu_cur ?? 0);
   ((s as any).theme = (s as any).theme ?? {})['type'] = ((s as any).themes_menu_mode ?? 0);
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'indoors']; enterGetTheme(s, scene); (s as any).locArgs = __savedLocArgs; }
-  (s as any).bcolor = ((s as any).theme ?? 0)?.['bcolor'];
-  (s as any).fcolor = ((s as any).theme ?? 0)?.['fcolor'];
-  (s as any).lcolor = ((s as any).theme ?? 0)?.['lcolor'];
-  (s as any).fsize = ((s as any).theme ?? 0)?.['fsize'];
-  (s as any).fname = ((s as any).theme ?? 0)?.['fname'];
+  (s as any).bcolor = (((s as any).theme ?? 0)?.['bcolor']);
+  (s as any).fcolor = (((s as any).theme ?? 0)?.['fcolor']);
+  (s as any).lcolor = (((s as any).theme ?? 0)?.['lcolor']);
+  (s as any).fsize = (((s as any).theme ?? 0)?.['fsize']);
+  (s as any).fname = (((s as any).theme ?? 0)?.['fname']);
   (s as any).tm_fg_hex = qspFunc(s, 'shortgs', 'rgb_to_hex', ((s as any).fcolor ?? 0));
   scene.text('<hr>');
   scene.text('<b>Preview</b>');
@@ -198,7 +198,7 @@ function enterMenu(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAltColor(s: GameState, scene: SceneBuilder): void {
-  (s as any).result = ((String((s as any).locArgs?.[1] ?? '') === ((s as any).theme_hex ?? 0)?.['table_bg']) ? (((s as any).theme_hex ?? 0)?.['table_bg_alt']) : (((s as any).theme_hex ?? 0)?.['table_bg']));
+  (s as any).result = ((String((s as any).locArgs?.[1] ?? '') === ((s as any).theme_hex ?? 0)?.['table_bg']) ? ((((s as any).theme_hex ?? 0)?.['table_bg_alt'])) : ((((s as any).theme_hex ?? 0)?.['table_bg'])));
   return;
   // TODO-QSP: end
   scene.build();
@@ -249,10 +249,10 @@ function enterIndoors(s: GameState, scene: SceneBuilder): void {
 
 function enterApply(s: GameState, scene: SceneBuilder): void {
   if (((s as any).theme ?? 0)?.['type'] === 'dynamic') {
-    ((s as any).theme = (s as any).theme ?? {})['old_is_dark'] = ((s as any).theme ?? 0)?.['is_dark'];
+    ((s as any).theme = (s as any).theme ?? {})['old_is_dark'] = (((s as any).theme ?? 0)?.['is_dark']);
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0)]; enterGetTheme(s, scene); (s as any).locArgs = __savedLocArgs; }
     if (((s as any).theme ?? 0)?.['old_is_dark'] !== ((s as any).theme ?? 0)?.['is_dark']) {
-      ((s as any).theme = (s as any).theme ?? {})['old_is_dark'] = ((s as any).theme ?? 0)?.['is_dark'];
+      ((s as any).theme = (s as any).theme ?? {})['old_is_dark'] = (((s as any).theme ?? 0)?.['is_dark']);
       if (((s as any).curloc ?? 0) !== 'menu_settings') {
         (s as any).stat_msg = '';
         qspCall(s, 'stat_display', '');
@@ -261,11 +261,11 @@ function enterApply(s: GameState, scene: SceneBuilder): void {
   } else {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0)]; enterGetTheme(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
-  (s as any).bcolor = ((s as any).theme ?? 0)?.['bcolor'];
-  (s as any).fcolor = ((s as any).theme ?? 0)?.['fcolor'];
-  (s as any).lcolor = ((s as any).theme ?? 0)?.['lcolor'];
-  (s as any).fsize = ((s as any).theme ?? 0)?.['fsize'];
-  (s as any).fname = ((s as any).theme ?? 0)?.['fname'];
+  (s as any).bcolor = (((s as any).theme ?? 0)?.['bcolor']);
+  (s as any).fcolor = (((s as any).theme ?? 0)?.['fcolor']);
+  (s as any).lcolor = (((s as any).theme ?? 0)?.['lcolor']);
+  (s as any).fsize = (((s as any).theme ?? 0)?.['fsize']);
+  (s as any).fname = (((s as any).theme ?? 0)?.['fname']);
   (s as any).noWillpower = 0;
   (s as any).noMoney = 0;
   return;
@@ -6968,25 +6968,25 @@ function enterGetTheme(s: GameState, scene: SceneBuilder): void {
                                       ((s as any).theme_hex = (s as any).theme_hex ?? {})['header'] = '#9d5958';
                                     } else {
                                       if (((s as any).theme ?? 0)?.['name'] === 'Custom') {
-                                        ((s as any).theme = (s as any).theme ?? {})['is_dark'] = ((s as any).custom_theme ?? 0)?.['is_dark'];
-                                        ((s as any).theme = (s as any).theme ?? {})['bcolor'] = ((s as any).custom_theme ?? 0)?.['bcolor'];
-                                        ((s as any).theme = (s as any).theme ?? {})['fcolor'] = ((s as any).custom_theme ?? 0)?.['fcolor'];
-                                        ((s as any).theme = (s as any).theme ?? {})['lcolor'] = ((s as any).custom_theme ?? 0)?.['lcolor'];
-                                        ((s as any).theme = (s as any).theme ?? {})['fsize'] = ((s as any).custom_theme ?? 0)?.['fsize'];
-                                        ((s as any).theme = (s as any).theme ?? {})['fname'] = ((s as any).custom_theme ?? 0)?.['fname'];
-                                        ((s as any).theme_hex = (s as any).theme_hex ?? {})['table_bg'] = ((s as any).custom_theme ?? 0)?.['table_bg'];
-                                        ((s as any).theme_hex = (s as any).theme_hex ?? {})['table_bg_alt'] = ((s as any).custom_theme ?? 0)?.['table_bg_alt'];
-                                        ((s as any).theme_hex = (s as any).theme_hex ?? {})['accent'] = ((s as any).custom_theme ?? 0)?.['accent'];
-                                        ((s as any).theme_hex = (s as any).theme_hex ?? {})['v_pos'] = ((s as any).custom_theme ?? 0)?.['v_pos'];
-                                        ((s as any).theme_hex = (s as any).theme_hex ?? {})['pos'] = ((s as any).custom_theme ?? 0)?.['pos'];
-                                        ((s as any).theme_hex = (s as any).theme_hex ?? {})['neutral'] = ((s as any).custom_theme ?? 0)?.['neutral'];
-                                        ((s as any).theme_hex = (s as any).theme_hex ?? {})['neg'] = ((s as any).custom_theme ?? 0)?.['neg'];
-                                        ((s as any).theme_hex = (s as any).theme_hex ?? {})['v_neg'] = ((s as any).custom_theme ?? 0)?.['v_neg'];
-                                        ((s as any).theme_hex = (s as any).theme_hex ?? {})['punk'] = ((s as any).custom_theme ?? 0)?.['punk'];
-                                        ((s as any).theme_hex = (s as any).theme_hex ?? {})['bimbo'] = ((s as any).custom_theme ?? 0)?.['bimbo'];
-                                        ((s as any).theme_hex = (s as any).theme_hex ?? {})['goth'] = ((s as any).custom_theme ?? 0)?.['goth'];
-                                        ((s as any).theme_hex = (s as any).theme_hex ?? {})['hypno'] = ((s as any).custom_theme ?? 0)?.['hypno'];
-                                        ((s as any).theme_hex = (s as any).theme_hex ?? {})['header'] = ((s as any).custom_theme ?? 0)?.['header'];
+                                        ((s as any).theme = (s as any).theme ?? {})['is_dark'] = (((s as any).custom_theme ?? 0)?.['is_dark']);
+                                        ((s as any).theme = (s as any).theme ?? {})['bcolor'] = (((s as any).custom_theme ?? 0)?.['bcolor']);
+                                        ((s as any).theme = (s as any).theme ?? {})['fcolor'] = (((s as any).custom_theme ?? 0)?.['fcolor']);
+                                        ((s as any).theme = (s as any).theme ?? {})['lcolor'] = (((s as any).custom_theme ?? 0)?.['lcolor']);
+                                        ((s as any).theme = (s as any).theme ?? {})['fsize'] = (((s as any).custom_theme ?? 0)?.['fsize']);
+                                        ((s as any).theme = (s as any).theme ?? {})['fname'] = (((s as any).custom_theme ?? 0)?.['fname']);
+                                        ((s as any).theme_hex = (s as any).theme_hex ?? {})['table_bg'] = (((s as any).custom_theme ?? 0)?.['table_bg']);
+                                        ((s as any).theme_hex = (s as any).theme_hex ?? {})['table_bg_alt'] = (((s as any).custom_theme ?? 0)?.['table_bg_alt']);
+                                        ((s as any).theme_hex = (s as any).theme_hex ?? {})['accent'] = (((s as any).custom_theme ?? 0)?.['accent']);
+                                        ((s as any).theme_hex = (s as any).theme_hex ?? {})['v_pos'] = (((s as any).custom_theme ?? 0)?.['v_pos']);
+                                        ((s as any).theme_hex = (s as any).theme_hex ?? {})['pos'] = (((s as any).custom_theme ?? 0)?.['pos']);
+                                        ((s as any).theme_hex = (s as any).theme_hex ?? {})['neutral'] = (((s as any).custom_theme ?? 0)?.['neutral']);
+                                        ((s as any).theme_hex = (s as any).theme_hex ?? {})['neg'] = (((s as any).custom_theme ?? 0)?.['neg']);
+                                        ((s as any).theme_hex = (s as any).theme_hex ?? {})['v_neg'] = (((s as any).custom_theme ?? 0)?.['v_neg']);
+                                        ((s as any).theme_hex = (s as any).theme_hex ?? {})['punk'] = (((s as any).custom_theme ?? 0)?.['punk']);
+                                        ((s as any).theme_hex = (s as any).theme_hex ?? {})['bimbo'] = (((s as any).custom_theme ?? 0)?.['bimbo']);
+                                        ((s as any).theme_hex = (s as any).theme_hex ?? {})['goth'] = (((s as any).custom_theme ?? 0)?.['goth']);
+                                        ((s as any).theme_hex = (s as any).theme_hex ?? {})['hypno'] = (((s as any).custom_theme ?? 0)?.['hypno']);
+                                        ((s as any).theme_hex = (s as any).theme_hex ?? {})['header'] = (((s as any).custom_theme ?? 0)?.['header']);
                                       }
                                     }
                                   }

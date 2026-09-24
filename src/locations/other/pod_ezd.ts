@@ -1156,7 +1156,7 @@ function enterFloor5Event_5(s: GameState, scene: SceneBuilder): void {
     { label: 'Leave', goto: ['pod_ezd', 'etaj_5'] },
     { label: 'Join them', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 3) + 0) === 2) {
-      qspGoto(st, 'pod_ezd', 'gopnik_events', 'rand(1, 4)');
+      qspGoto(st, 'pod_ezd', 'gopnik_events', (Math.floor(Math.random() * 4) + 1));
     } else {
       qspGoto(st, 'pod_ezd', 'gopnik_group_chat');
     }
@@ -1236,7 +1236,7 @@ function enterBoysSmoke(s: GameState, scene: SceneBuilder): void {
           { label: 'Accept and fuck them', handler: (st: GameState) => {
     qspCall(st, 'money', 'earn', ((st as any).rnd_money_sex ?? 0));
     qspCall(st, 'fame', 'pav', 'prostitute', (Math.floor(Math.random() * 7) + 3));
-    qspGoto(st, 'pod_ezd', qspUntranslated(s, "''sex_ev<<rand(1'", { location: "pod_ezd" }), '3)>>');
+    qspGoto(st, 'pod_ezd', qspUntranslated(s, "sex_ev(Math.floor(Math.random() * 3) + 1)", { location: "pod_ezd" }));
   } },
         ]);
       } else {
@@ -1270,7 +1270,7 @@ function enterBoysSmoke(s: GameState, scene: SceneBuilder): void {
           { label: 'Leave before they get any ideas', handler: (st: GameState) => { qspGoto(st, 'pod_ezd', ((st as any).smoke_loc ?? '')); } },
           { label: 'Keep smoking', handler: (st: GameState) => {
     qspCall(st, 'fame', 'pav', 'sex', 2);
-    qspGoto(st, 'pod_ezd', qspUntranslated(s, "''sex_ev<<rand(1'", { location: "pod_ezd" }), '3)>>');
+    qspGoto(st, 'pod_ezd', qspUntranslated(s, "sex_ev(Math.floor(Math.random() * 3) + 1)", { location: "pod_ezd" }));
   } },
         ]);
       }
@@ -1313,7 +1313,7 @@ function enterBoysSmoke(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'money', 'earn', ((st as any).rnd_money_sex ?? 0));
     qspCall(st, 'fame', 'pav', 'prostitute', (Math.floor(Math.random() * 7) + 3));
     ((st as any).stat = (st as any).stat ?? {})['prostitution_count'] = ((st as any).stat['prostitution_count'] ?? 0) + (1);
-    qspGoto(st, 'pod_ezd', qspUntranslated(s, "''sex_ev<<rand(1'", { location: "pod_ezd" }), '3)>>');
+    qspGoto(st, 'pod_ezd', qspUntranslated(s, "sex_ev(Math.floor(Math.random() * 3) + 1)", { location: "pod_ezd" }));
   } },
         ]);
       } else {
@@ -1394,7 +1394,7 @@ function enterJuliamil(s: GameState, scene: SceneBuilder): void {
         { label: 'Ask her what\'s wrong', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/julia/sex/stairs/julia1.jpg');
     // TODO-QSP: dynamic text: Julia says nothing, but quickly kisses your <<$pc_desc[''lips'']>> lips when you...
-    scene.text(`Julia says nothing, but quickly kisses your ${((st as any).pc_desc ?? 0)?.['lips'] ?? ''} lips when you least expect it. She's actually a pretty good kisser. You also notice a dildo poking out of her bag.`);
+    scene.text(`Julia says nothing, but quickly kisses your ${(((st as any).pc_desc ?? 0)?.['lips'] ?? '')} lips when you least expect it. She's actually a pretty good kisser. You also notice a dildo poking out of her bag.`);
     qspCall(st, 'arousal', 'foreplay', 2, 'lesbian');
     qspCall(st, 'stat', '');
     scene.actions([

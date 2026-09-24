@@ -34,13 +34,13 @@ function enterStripShowStart(s: GameState, scene: SceneBuilder): void {
 
 function enterStripShowEnd(s: GameState, scene: SceneBuilder): void {
   if (((s as any).strip_club ?? 0)?.['bra_type'] !== '') {
-    qspCall(s, 'bras', 'wear', ((s as any).strip_club ?? 0)?.['bra_type'], ((s as any).strip_club ?? 0)?.['bra_number']);
+    qspCall(s, 'bras', 'wear', (((s as any).strip_club ?? 0)?.['bra_type']), (((s as any).strip_club ?? 0)?.['bra_number']));
   }
   if (((s as any).strip_club ?? 0)?.['panty_type'] !== '') {
-    qspCall(s, 'panties', 'wear', ((s as any).strip_club ?? 0)?.['panty_type'], ((s as any).strip_club ?? 0)?.['panty_number']);
+    qspCall(s, 'panties', 'wear', (((s as any).strip_club ?? 0)?.['panty_type']), (((s as any).strip_club ?? 0)?.['panty_number']));
   }
   if (((s as any).strip_club ?? 0)?.['clothing_type'] !== '') {
-    qspCall(s, 'clothing', 'wear', ((s as any).strip_club ?? 0)?.['clothing_type'], ((s as any).strip_club ?? 0)?.['clothing_number']);
+    qspCall(s, 'clothing', 'wear', (((s as any).strip_club ?? 0)?.['clothing_type']), (((s as any).strip_club ?? 0)?.['clothing_number']));
   }
   qspGoto(s, 'stwork', 'start');
   // TODO-QSP: end
@@ -532,7 +532,7 @@ function enterManagerBonus(s: GameState, scene: SceneBuilder): void {
       scene.img('images/locations/city/redlight/studio_porn/sex/titfuck.mp4');
       scene.text('A few seconds later, he roughly pulls you off his cock and scowls down at you. "Put those nice tits to good use."');
       // TODO-QSP: dynamic text: You nod and undress your top half, exposing your <<$pc_descWordy[''breast'']>> t...
-      scene.text(`You nod and undress your top half, exposing your ${((st as any).pc_descWordy ?? 0)?.['breast'] ?? ''} to a grinning Sasha. You then obediently wrap your breasts around his warm, twitching cock and start titfucking him while continuing to suck on the head.`);
+      scene.text(`You nod and undress your top half, exposing your ${(((st as any).pc_descWordy ?? 0)?.['breast'] ?? '')} to a grinning Sasha. You then obediently wrap your breasts around his warm, twitching cock and start titfucking him while continuing to suck on the head.`);
       scene.text('A few minutes later, he finally reaches climax and grunts loudly as cum spurts out of his dick and splatters over your breasts. You release your grip on his dick and sit back on your knees as Sasha looks down at you.');
       // TODO-QSP: dynamic text: "Good job <<$pcs_nickname>>, you more than earned this," he says as he counts ou...
       scene.text(`"Good job ${((st as any).pcs_nickname ?? '')}, you more than earned this," he says as he counts out a wad of cash and hands it to you. "Keep up the good work and there will be more bonuses in the future."`);

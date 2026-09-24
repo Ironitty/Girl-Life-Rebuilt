@@ -74,7 +74,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   }
   if (qspFunc(s, 'car_funcs', 'is_here')) {
     // TODO-QSP: dynamic text: Your <a href="exec:gs ''carF'', ''start''"><<$car[''name'']>></a> is parked in t...
-    scene.text(`Your <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027carF/u0027, /u0027start/u0027); return false;">${((s as any).car ?? 0)?.['name'] ?? ''}</a> is parked in the street.`);
+    scene.text(`Your <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027carF/u0027, /u0027start/u0027); return false;">${(((s as any).car ?? 0)?.['name'] ?? '')}</a> is parked in the street.`);
   }
   if (((s as any).rexCar ?? 0) === 1  &&  ((s as any).rexCarDay ?? 0) === ((s as any).daystart ?? 0)  &&  ((s as any).hour ?? 0) >= 21  &&  ((s as any).hour ?? 0) < 23  &&  ((s as any).rexSisTalk ?? 0) === 3) {
     scene.text('<br>Rex is in his car, waiting for you at the parking lot near the apartment building where your parents live.');

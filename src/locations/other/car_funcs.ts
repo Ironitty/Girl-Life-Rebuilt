@@ -108,7 +108,7 @@ function enterGotoCar(s: GameState, scene: SceneBuilder): void {
   if (((s as any).car ?? 0)?.['ID'] === 0) {
     // TODO-QSP: exit
   }
-  (s as any).region = ((s as any).car ?? 0)?.['region'];
+  (s as any).region = (((s as any).car ?? 0)?.['region']);
   dynamicGoto(s, (((s as any).car ?? {}))['loc'], (((s as any).car ?? {}))['loc_arg']);
   // TODO-QSP: end
   scene.build();
@@ -146,7 +146,7 @@ function enterAvtonorm(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAvt(s: GameState, scene: SceneBuilder): void {
-  (s as any).tehNT = ((s as any).car ?? 0)?.['potential_new_condition'];
+  (s as any).tehNT = (((s as any).car ?? 0)?.['potential_new_condition']);
   if ((!((s as any).tehNT ?? 0))) {
     (s as any).tehNT = 200;
   }

@@ -1454,7 +1454,7 @@ function enterDelayedCreampieOrgasm1(s: GameState, scene: SceneBuilder): void {
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['came_together'] = 2;
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['react'] = 1;
     (st as any).orgasm_or = 'yes';
-    qspCall(st, 'arousal', 'vaginal', (-1), 'no_orgasm_msg', ((st as any).sex_ev ?? 0)?.['prostitution_flag']);
+    qspCall(st, 'arousal', 'vaginal', (-1), 'no_orgasm_msg', (((st as any).sex_ev ?? 0)?.['prostitution_flag']));
     qspCall(st, 'stat', '');
     if (((st as any).sex_ev ?? 0)?.['position'] === 'miss') {
       scene.img('images/shared/sex/vag/miss/orgasm1.mp4');
@@ -1652,7 +1652,7 @@ function enterCreampieAccidentFine(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: end
   scene.actions([
-    { label: '', labelFn: (s: GameState) => String(((s as any).sex_ev ?? 0)?.['its_fine'] ?? '' ?? ''), handler: (st: GameState) => {
+    { label: '', labelFn: (s: GameState) => String((((s as any).sex_ev ?? 0)?.['its_fine'] ?? '') ?? ''), handler: (st: GameState) => {
     if (((st as any).sex_ev ?? 0)?.['position'] === 'miss') {
       scene.img('images/shared/sex/vag/miss/4.jpg');
     } else {

@@ -42,10 +42,10 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   if (qspFunc(s, 'car_funcs', 'is_here')) {
     if ((!((s as any).PSwim ?? 0))) {
       // TODO-QSP: dynamic text: <a href="exec:gs ''carF'', ''start''">Your <<$car[''name'']>></a> is parked near...
-      scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027carF/u0027, /u0027start/u0027); return false;">Your ${((s as any).car ?? 0)?.['name'] ?? ''}</a> is parked near the lake.`);
+      scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027carF/u0027, /u0027start/u0027); return false;">Your ${(((s as any).car ?? 0)?.['name'] ?? '')}</a> is parked near the lake.`);
     } else {
       // TODO-QSP: dynamic text: Your <<$car[''name'']>> is parked nearby. You should get dressed into your cloth...
-      scene.text(`Your ${((s as any).car ?? 0)?.['name'] ?? ''} is parked nearby. You should get dressed into your clothes if you want to drive away.`);
+      scene.text(`Your ${(((s as any).car ?? 0)?.['name'] ?? '')} is parked nearby. You should get dressed into your clothes if you want to drive away.`);
     }
   }
   if (qspFunc(s, 'changingroom', 'count_swim_item') > 0  ||  ((s as any).clothingworntype ?? 0) === 'nude'  ||  ((s as any).PSwim ?? 0) === 1) {
@@ -1154,9 +1154,9 @@ function enterStasValera4(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/locations/city/residential/lake/sex/stas/stasValera.jpg');
     if (((st as any).PSwim ?? 0) === 1) {
-      qspCall(st, 'clothing', 'wear', ((st as any).lastwornclothingtype ?? 0)?.['swim'], ((st as any).lastwornclothingnumber ?? 0)?.['swim']);
-      qspCall(st, 'panties', 'wear', ((st as any).lastwornpantytype ?? 0)?.['swim'], ((st as any).lastwornpantynumber ?? 0)?.['swim']);
-      qspCall(st, 'bras', 'wear', ((st as any).lastwornbratype ?? 0)?.['swim'], ((st as any).lastwornbranumber ?? 0)?.['swim']);
+      qspCall(st, 'clothing', 'wear', (((st as any).lastwornclothingtype ?? 0)?.['swim']), (((st as any).lastwornclothingnumber ?? 0)?.['swim']));
+      qspCall(st, 'panties', 'wear', (((st as any).lastwornpantytype ?? 0)?.['swim']), (((st as any).lastwornpantynumber ?? 0)?.['swim']));
+      qspCall(st, 'bras', 'wear', (((st as any).lastwornbratype ?? 0)?.['swim']), (((st as any).lastwornbranumber ?? 0)?.['swim']));
       scene.text('You enter the changing booth and strip out of your swimwear before putting your regular clothes back on.');
     }
     scene.text('The three of you start to walk toward your home and you feel safe accompanied by them. They keep the conversation light and also enjoy plenty of flirtatious padding and groping. You reach the front entrance of your apartment eventually and bid them goodbye after some farewell kisses.');

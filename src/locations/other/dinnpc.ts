@@ -14,7 +14,7 @@ function enterDinPredlogDimaBj(s: GameState, scene: SceneBuilder): void {
     { label: 'Get down on your knees', handler: (st: GameState) => {
     (st as any).DimaRudeQW = ((st as any).DimaRudeQW ?? 0) + (1);
     qspCall(st, 'stat', '');
-    scene.text(`<center><b>${((st as any).npc_firstname ?? 0)?.['A1'] ?? ''} ${((st as any).npc_lastname ?? 0)?.['A1'] ?? ''}</b></center>`);
+    scene.text(`<center><b>${(((st as any).npc_firstname ?? 0)?.['A1'] ?? '')} ${(((st as any).npc_lastname ?? 0)?.['A1'] ?? '')}</b></center>`);
     scene.img('images/characters/shared/headshots_main/big1.jpg');
     scene.text('Embarrassed, blushing, but eager to please Dimka and a little intimated by him, you get on your knees before Dimka who pulls out his dick and slaps it against your face, looking at you like he owns you.');
     scene.actions([
@@ -25,7 +25,7 @@ function enterDinPredlogDimaBj(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/shared/sex/blowjob/cocksucker2.jpg');
     // TODO-QSP: dynamic text: You gently kiss the purple head of his member, hoping against hope that maybe yo...
-    scene.text(`You gently kiss the purple head of his member, hoping against hope that maybe you can set the tone and pace for this. But Dimka is already impatient and grabs your hair, ignoring your pained yelp. "Stop wasting time and start sucking." Without a second thought, you take his dick into your mouth. You begin to move your ${((st as any).pc_desc ?? 0)?.['lips'] ?? ''} lips up and down Dimka's hard cock, taking his rod deep into your mouth. You don't go slow and move your tongue around his head all the while, trying to please him, but Dimka groans and grabs your head firmly. "Take it deeper!"`);
+    scene.text(`You gently kiss the purple head of his member, hoping against hope that maybe you can set the tone and pace for this. But Dimka is already impatient and grabs your hair, ignoring your pained yelp. "Stop wasting time and start sucking." Without a second thought, you take his dick into your mouth. You begin to move your ${(((st as any).pc_desc ?? 0)?.['lips'] ?? '')} lips up and down Dimka's hard cock, taking his rod deep into your mouth. You don't go slow and move your tongue around his head all the while, trying to please him, but Dimka groans and grabs your head firmly. "Take it deeper!"`);
     qspCall(st, 'arousal', 'bj', 5, 'sub', 'rough');
     qspCall(st, 'stat', '');
     scene.actions([
@@ -90,7 +90,7 @@ function enterDinDimaPredlog(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'willpower', 'pay', 'self');
     qspCall(st, 'npc_relationship', 'set', 'A1', 0);
     qspCall(st, 'stat', '');
-    scene.text(`<center><b>${((st as any).npc_firstname ?? 0)?.['A1'] ?? ''} ${((st as any).npc_lastname ?? 0)?.['A1'] ?? ''}</b></center>`);
+    scene.text(`<center><b>${(((st as any).npc_firstname ?? 0)?.['A1'] ?? '')} ${(((st as any).npc_lastname ?? 0)?.['A1'] ?? '')}</b></center>`);
     scene.img('images/characters/shared/headshots_main/big1.jpg');
     scene.text('You give Dimka a good, hard, resounding slap that causes him to yelp like a girl as he clutched his red cheek. His immediate reaction only adds to your satisfaction, but the look he gives you is one of pure hatred - one that makes you wonder if he\'s going to hit you back now.');
     scene.text('But instead, he backs away from you, looking like an animal trapped in a corner. His voice is more of an angry hiss:');
@@ -108,7 +108,7 @@ function enterDinDimaPredlog(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: '… is he serious? Think about what he said for a moment', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
-    scene.text(`<center><b>${((st as any).npc_firstname ?? 0)?.['A1'] ?? ''} ${((st as any).npc_lastname ?? 0)?.['A1'] ?? ''}</b></center>`);
+    scene.text(`<center><b>${(((st as any).npc_firstname ?? 0)?.['A1'] ?? '')} ${(((st as any).npc_lastname ?? 0)?.['A1'] ?? '')}</b></center>`);
     scene.img('images/characters/shared/headshots_main/big1.jpg');
     scene.text('Your eyes widen and you flush at his proposal - surely, he didn\'t actually mean that you had to give him a blowjob right here, just so you could go out with him… right?');
     scene.text('As if to answer your question, Dimka unbuttons his pants. "Come on, are you gonna keep me waiting all night long? Which is it? Are you brave and fun? Or just another prude?"');
@@ -125,7 +125,7 @@ function enterDinDimaPredlog(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'willpower', 'pay', 'self');
     qspCall(st, 'npc_relationship', 'set', 'A1', 0);
     qspCall(st, 'stat', '');
-    scene.text(`<center><b>${((st as any).npc_firstname ?? 0)?.['A1'] ?? ''} ${((st as any).npc_lastname ?? 0)?.['A1'] ?? ''}</b></center>`);
+    scene.text(`<center><b>${(((st as any).npc_firstname ?? 0)?.['A1'] ?? '')} ${(((st as any).npc_lastname ?? 0)?.['A1'] ?? '')}</b></center>`);
     scene.img('images/characters/shared/headshots_main/big1.jpg');
     scene.text('You give Dimka a good, hard, resounding slap that causes him to yelp like a girl as he clutched his red cheek. His immediate reaction only adds to your satisfaction, but the look he gives you is one of pure hatred - one that makes you wonder if he\'s going to hit you back now.');
     scene.text('But instead, he backs away from you, looking like an animal trapped in a corner. His voice is more of an angry hiss:');
@@ -142,7 +142,7 @@ function enterDinDimaPredlog(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: '"And you promise not to tell anyone?"', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
-    scene.text(`<center><b>${((st as any).npc_firstname ?? 0)?.['A1'] ?? ''} ${((st as any).npc_lastname ?? 0)?.['A1'] ?? ''}</b></center>`);
+    scene.text(`<center><b>${(((st as any).npc_firstname ?? 0)?.['A1'] ?? '')} ${(((st as any).npc_lastname ?? 0)?.['A1'] ?? '')}</b></center>`);
     scene.img('images/characters/shared/headshots_main/big1.jpg');
     scene.text('You ask Dimka. You\'re really not sure if you want to do this but you also don\'t want him to think that you are a prude. You are fun… right? And as long as nobody finds out, as long as only he knows…');
     scene.text('');

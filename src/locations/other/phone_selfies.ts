@@ -726,9 +726,9 @@ function enterRetrievePussyflashSelfies(s: GameState, scene: SceneBuilder): void
 
 function enterGetNpcSelfie(s: GameState, scene: SceneBuilder): void {
   if (((s as any).npc_lastname ?? 0)['A' + (String((s as any).locArgs?.[1] ?? ''))] !== '') {
-    (s as any).result = '<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027phone_selfies/u0027, /u0027listretrieve2/u0027, /u0027' + ((s as any).locArgs?.[1] ?? 0) + '/u0027); return false;">' + ((s as any).npc_firstname ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0))] + ' ' + ((s as any).npc_lastname ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0))] + '</a>';
+    (s as any).result = '<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027phone_selfies/u0027, /u0027listretrieve2/u0027, /u0027' + ((s as any).locArgs?.[1] ?? 0) + '/u0027); return false;">' + (((s as any).npc_firstname ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0))]) + ' ' + (((s as any).npc_lastname ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0))]) + '</a>';
   } else {
-    (s as any).result = '<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027phone_selfies/u0027, /u0027listretrieve2/u0027, /u0027' + ((s as any).locArgs?.[1] ?? 0) + '/u0027); return false;">' + ((s as any).npc_firstname ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0))] + '</a>';
+    (s as any).result = '<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027phone_selfies/u0027, /u0027listretrieve2/u0027, /u0027' + ((s as any).locArgs?.[1] ?? 0) + '/u0027); return false;">' + (((s as any).npc_firstname ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0))]) + '</a>';
   }
   return;
   // TODO-QSP: end

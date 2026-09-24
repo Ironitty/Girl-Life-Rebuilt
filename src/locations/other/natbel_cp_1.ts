@@ -286,7 +286,7 @@ function enterNatDebtTimer(s: GameState, scene: SceneBuilder): void {
     ((s as any).NatbelQW = (s as any).NatbelQW ?? {})['DebtTimeLeft'] = (((s as any).NatbelQW ?? {})?.['DebtDay'] ?? 0) - ((s as any).daystart ?? 0);
     if (((s as any).NatbelQW ?? 0)?.['DebtTimeLeft'] > 0) {
       // TODO-QSP: dynamic text: Natasha has promised to pay you back in <<NatbelQW[''DebtTimeLeft'']>> day(s).
-      scene.text(`Natasha has promised to pay you back in ${((s as any).NatbelQW ?? 0)?.['DebtTimeLeft'] ?? ''} day(s).`);
+      scene.text(`Natasha has promised to pay you back in ${(((s as any).NatbelQW ?? 0)?.['DebtTimeLeft'] ?? '')} day(s).`);
     } else {
       scene.text('Natasha promised to pay you back by now, maybe you should talk to her about it.');
     }

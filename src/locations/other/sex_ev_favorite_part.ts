@@ -1920,7 +1920,7 @@ function enterPcAnalPref1(s: GameState, scene: SceneBuilder): void {
   } },
         { label: 'Sheltered upbringing', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: "Blame my sheltered upbringing," you smirk back. "With a <<$lcase($npc_nickname[...
-    scene.text(`"Blame my sheltered upbringing," you smirk back. "With a ${(String(((st as any).npc_nickname ?? 0)?.['A29'] ?? '').toLowerCase())} as controlling as mine, you end up looking one way and running the other."`);
+    scene.text(`"Blame my sheltered upbringing," you smirk back. "With a ${(String((((st as any).npc_nickname ?? 0)?.['A29'] ?? '')).toLowerCase())} as controlling as mine, you end up looking one way and running the other."`);
     qspCall(st, 'sex_ev_pillow_talk', 'topic_route');
   } },
       ]);

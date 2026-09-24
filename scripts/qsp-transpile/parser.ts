@@ -590,7 +590,7 @@ interface ParseResult {
     const gtAnyMatch = trimmed.match(/^(?:gt|xgt)\s*(.+)$/);
     if (gtAnyMatch) {
       const argsStr = gtAnyMatch[1].trim();
-      const args = argsStr.split(',').map(a => a.trim()).filter(Boolean);
+      const args = splitTopLevel(argsStr).map(a => a.trim()).filter(Boolean);
       if (args.length >= 1) {
         const target = args[0];
         const isDynamicTarget = target.startsWith('$') || target.includes('<<');

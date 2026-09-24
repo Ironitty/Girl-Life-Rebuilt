@@ -37,8 +37,8 @@ function enterUpdateBodyMeasurement(s: GameState, scene: SceneBuilder): void {
   (s as any).pcs_hips = (((s as any).pcs_hgt ?? 0) * (((s as any).bodyVars ?? {})?.['hratio'] ?? 0)) / 100 + (((s as any).bodyVars ?? {})?.['vhips'] ?? 0);
   (s as any).pcs_waist = (((s as any).pcs_hips ?? 0) * (((s as any).bodyVars ?? {})?.['wratio'] ?? 0)) / 100 + (((s as any).bodyVars ?? {})?.['vofat'] ?? 0);
   (s as any).pcs_band = (((s as any).pcs_waist ?? 0) * (((s as any).bodyVars ?? {})?.['bratio'] ?? 0)) / 100 + (((s as any).bodyVars ?? {})?.['vofat'] ?? 0);
-  (s as any).pcs_bust = (((s as any).pcs_waist ?? 0) * (((s as any).bodyVars ?? {})?.['bratio'] ?? 0)) / 100 + (((s as any).pcs_mass ?? {})?.['bust'] ?? 0) + (((s as any).bodyVars ?? {})?.['bust_bonus'] ?? 0) + (((s as any).bodyVars ?? {})?.['bust_silicone'] ?? 0) + Math.min(Math.max((-10), ((s as any).bodyVars ?? 0)?.['bust_other']), 10) + (((s as any).bodyVars ?? {})?.['bust_magic'] ?? 0) + ((((s as any).pcs_mass ?? {})?.['preg'] ?? 0) + 2) / 5 + (((s as any).bodyVars ?? {})?.['bust_lact'] ?? 0);
-  (s as any).pcs_butt = ((s as any).pcs_hips ?? 0) + Math.min(((s as any).pcs_mass ?? 0)?.['butt'], 50) + (((s as any).bodyVars ?? {})?.['butt_bonus'] ?? 0) + (((s as any).bodyVars ?? {})?.['butt_silicone'] ?? 0) + Math.min(Math.max((-10), ((s as any).bodyVars ?? 0)?.['butt_other']), 10) + ((s as any).pcs_butt_tr ?? 0) / 2;
+  (s as any).pcs_bust = (((s as any).pcs_waist ?? 0) * (((s as any).bodyVars ?? {})?.['bratio'] ?? 0)) / 100 + (((s as any).pcs_mass ?? {})?.['bust'] ?? 0) + (((s as any).bodyVars ?? {})?.['bust_bonus'] ?? 0) + (((s as any).bodyVars ?? {})?.['bust_silicone'] ?? 0) + Math.min(Math.max((-10), (((s as any).bodyVars ?? 0)?.['bust_other'])), 10) + (((s as any).bodyVars ?? {})?.['bust_magic'] ?? 0) + ((((s as any).pcs_mass ?? {})?.['preg'] ?? 0) + 2) / 5 + (((s as any).bodyVars ?? {})?.['bust_lact'] ?? 0);
+  (s as any).pcs_butt = ((s as any).pcs_hips ?? 0) + Math.min((((s as any).pcs_mass ?? 0)?.['butt']), 50) + (((s as any).bodyVars ?? {})?.['butt_bonus'] ?? 0) + (((s as any).bodyVars ?? {})?.['butt_silicone'] ?? 0) + Math.min(Math.max((-10), (((s as any).bodyVars ?? 0)?.['butt_other'])), 10) + ((s as any).pcs_butt_tr ?? 0) / 2;
   (s as any).pcs_cupsize = ((s as any).pcs_bust ?? 0) - ((s as any).pcs_band ?? 0);
   (s as any).pcs_buttsize = ((s as any).pcs_butt ?? 0) - ((s as any).pcs_hips ?? 0);
   return;
@@ -251,7 +251,7 @@ function enterUpdate_Teeth(s: GameState, scene: SceneBuilder): void {
     if (((s as any).teeth ?? 0)?.['smoked'] > 1) {
       (s as any).tempteeth = ((s as any).tempteeth ?? 0) + (1);
     }
-    (s as any).tempteeth = ((s as any).tempteeth ?? 0) - (Math.min(((s as any).teeth ?? 0)?.['brushed'], 3));
+    (s as any).tempteeth = ((s as any).tempteeth ?? 0) - (Math.min((((s as any).teeth ?? 0)?.['brushed']), 3));
     ((s as any).teeth = (s as any).teeth ?? {})['degradation'] = ((s as any).teeth['degradation'] ?? 0) + (Math.max(0, ((s as any).tempteeth ?? 0)));
     ((s as any).teeth = (s as any).teeth ?? {})['caffe_or_tea'] = 0;
     ((s as any).teeth = (s as any).teeth ?? {})['smoked'] = 0;
@@ -272,7 +272,7 @@ function enterUpdate_Teeth(s: GameState, scene: SceneBuilder): void {
 
 function enterUpdate_Body(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterUpdate_StatBuffs(s, scene); (s as any).locArgs = __savedLocArgs; }
-  ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['body_last'] = ((s as any).pcs_mass ?? 0)?.['body'];
+  ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['body_last'] = (((s as any).pcs_mass ?? 0)?.['body']);
   if (((s as any).bodyresetflag ?? 0) === 1  ||  ((s as any).cheatVars ?? 0)?.['fat'] === 1) {
     (s as any).fat = 0;
   } else {
@@ -561,10 +561,10 @@ function enterRedistribute_Mass_Inner(s: GameState, scene: SceneBuilder): void {
     (s as any).pcs_mana = ((s as any).pcs_mana ?? 0) - (Math.max(100, 2000 / ((s as any).pcs_magik ?? 0)));
   }
   if (((s as any).pcs_mass ?? 0)?.['body'] < 10) {
-    (s as any).temp_diff = Math.min(((s as any).pcs_mass ?? 0)?.['bust'], 3);
+    (s as any).temp_diff = Math.min((((s as any).pcs_mass ?? 0)?.['bust']), 3);
     ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['bust'] = ((s as any).pcs_mass['bust'] ?? 0) - (((s as any).temp_diff ?? 0));
     ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['body'] = ((s as any).pcs_mass['body'] ?? 0) + (((s as any).temp_diff ?? 0));
-    (s as any).temp_diff = Math.min(((s as any).pcs_mass ?? 0)?.['butt'], 3);
+    (s as any).temp_diff = Math.min((((s as any).pcs_mass ?? 0)?.['butt']), 3);
     ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['butt'] = ((s as any).pcs_mass['butt'] ?? 0) - (((s as any).temp_diff ?? 0));
     ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['body'] = ((s as any).pcs_mass['body'] ?? 0) + (((s as any).temp_diff ?? 0));
     return;
@@ -616,18 +616,18 @@ function enterRedistribute_Mass_Inner(s: GameState, scene: SceneBuilder): void {
 
 function enterRedistribute_MassSetMessage(s: GameState, scene: SceneBuilder): void {
   if (((s as any).bodyresetflag ?? 0) !== 0) {
-    ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['bust_message'] = ((s as any).pcs_mass ?? 0)?.['bust'];
-    ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['butt_message'] = ((s as any).pcs_mass ?? 0)?.['butt'];
+    ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['bust_message'] = (((s as any).pcs_mass ?? 0)?.['bust']);
+    ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['butt_message'] = (((s as any).pcs_mass ?? 0)?.['butt']);
     return;
   }
   if (((s as any).pcs_mass ?? 0)?.['bust'] > ((s as any).pcs_mass ?? 0)?.['bust_message'] + 3) {
-    ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['bust_message'] = ((s as any).pcs_mass ?? 0)?.['bust'];
+    ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['bust_message'] = (((s as any).pcs_mass ?? 0)?.['bust']);
     if (((s as any).pcs_mass ?? 0)?.['butt'] > ((s as any).pcs_mass ?? 0)?.['butt_message'] + 3) {
-      ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['butt_message'] = ((s as any).pcs_mass ?? 0)?.['butt'];
+      ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['butt_message'] = (((s as any).pcs_mass ?? 0)?.['butt']);
       scene.text('<b>Your breasts and ass seem fuller</b>');
     } else {
       if (((s as any).pcs_mass ?? 0)?.['butt'] < ((s as any).pcs_mass ?? 0)?.['butt_message'] - 3) {
-        ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['butt_message'] = ((s as any).pcs_mass ?? 0)?.['butt'];
+        ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['butt_message'] = (((s as any).pcs_mass ?? 0)?.['butt']);
         scene.text('<b>Your breasts seem fuller and ass seems to be getting smaller</b>');
       } else {
         scene.text('<b>Your breasts seem fuller</b>');
@@ -635,13 +635,13 @@ function enterRedistribute_MassSetMessage(s: GameState, scene: SceneBuilder): vo
     }
   } else {
     if (((s as any).pcs_mass ?? 0)?.['bust'] < ((s as any).pcs_mass ?? 0)?.['bust_message'] - 3) {
-      ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['bust_message'] = ((s as any).pcs_mass ?? 0)?.['bust'];
+      ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['bust_message'] = (((s as any).pcs_mass ?? 0)?.['bust']);
       if (((s as any).pcs_mass ?? 0)?.['butt'] > ((s as any).pcs_mass ?? 0)?.['butt_message'] + 3) {
-        ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['butt_message'] = ((s as any).pcs_mass ?? 0)?.['butt'];
+        ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['butt_message'] = (((s as any).pcs_mass ?? 0)?.['butt']);
         scene.text('<b>Your breasts seem to be getting smaller and your ass seems fuller</b>');
       } else {
         if (((s as any).pcs_mass ?? 0)?.['butt'] < ((s as any).pcs_mass ?? 0)?.['butt_message'] - 3) {
-          ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['butt_message'] = ((s as any).pcs_mass ?? 0)?.['butt'];
+          ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['butt_message'] = (((s as any).pcs_mass ?? 0)?.['butt']);
           scene.text('<b>Your breasts and ass seem to be getting smaller</b>');
         } else {
           scene.text('<b>Your breasts seem to be getting smaller</b>');
@@ -649,11 +649,11 @@ function enterRedistribute_MassSetMessage(s: GameState, scene: SceneBuilder): vo
       }
     } else {
       if (((s as any).pcs_mass ?? 0)?.['butt'] > ((s as any).pcs_mass ?? 0)?.['butt_message'] + 3) {
-        ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['butt_message'] = ((s as any).pcs_mass ?? 0)?.['butt'];
+        ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['butt_message'] = (((s as any).pcs_mass ?? 0)?.['butt']);
         scene.text('<b>Your ass seems fuller</b>');
       } else {
         if (((s as any).pcs_mass ?? 0)?.['butt'] < ((s as any).pcs_mass ?? 0)?.['butt_message'] - 3) {
-          ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['butt_message'] = ((s as any).pcs_mass ?? 0)?.['butt'];
+          ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['butt_message'] = (((s as any).pcs_mass ?? 0)?.['butt']);
           scene.text('<b>Your ass seem to be getting smaller</b>');
         }
       }
@@ -668,16 +668,16 @@ function enterResetMassDistribution(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_total_mass = (((s as any).pcs_mass ?? {})?.['body'] ?? 0) + (((s as any).pcs_mass ?? {})?.['bust'] ?? 0) + (((s as any).pcs_mass ?? {})?.['butt'] ?? 0);
   (s as any).temp_total_gen_mass = 60 + (((s as any).pcs_mass ?? {})?.['bust_gen'] ?? 0) + (((s as any).pcs_mass ?? {})?.['butt_gen'] ?? 0);
   if (((s as any).temp_total_mass ?? 0) >= ((s as any).temp_total_gen_mass ?? 0) - 10  &&  ((s as any).temp_total_mass ?? 0) <= ((s as any).temp_total_gen_mass ?? 0)) {
-    ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['bust'] = ((s as any).pcs_mass ?? 0)?.['bust_gen'];
-    ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['butt'] = ((s as any).pcs_mass ?? 0)?.['butt_gen'];
+    ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['bust'] = (((s as any).pcs_mass ?? 0)?.['bust_gen']);
+    ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['butt'] = (((s as any).pcs_mass ?? 0)?.['butt_gen']);
   } else {
     ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['bust'] = ((((s as any).pcs_mass ?? {})?.['bust_gen'] ?? 0) * ((s as any).temp_total_mass ?? 0)) / ((s as any).temp_total_gen_mass ?? 0);
     ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['butt'] = ((((s as any).pcs_mass ?? {})?.['butt_gen'] ?? 0) * ((s as any).temp_total_mass ?? 0)) / ((s as any).temp_total_gen_mass ?? 0);
   }
   ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['body'] = ((s as any).temp_total_mass ?? 0) - (((s as any).pcs_mass ?? {})?.['bust'] ?? 0) - (((s as any).pcs_mass ?? {})?.['butt'] ?? 0);
   ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['body_message'] = ((s as any).temp_total_mass ?? 0);
-  ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['bust_message'] = ((s as any).pcs_mass ?? 0)?.['bust'];
-  ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['butt_message'] = ((s as any).pcs_mass ?? 0)?.['butt'];
+  ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['bust_message'] = (((s as any).pcs_mass ?? 0)?.['bust']);
+  ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['butt_message'] = (((s as any).pcs_mass ?? 0)?.['butt']);
   ((s as any).bodyVars = (s as any).bodyVars ?? {})['vhips'] = ((((s as any).pcs_mass ?? {})?.['body'] ?? 0) + (((s as any).pcs_mass ?? {})?.['butt'] ?? 0) - 80) / 2;
   return;
   // TODO-QSP: end
@@ -701,16 +701,16 @@ function enterResetPregMass(s: GameState, scene: SceneBuilder): void {
 function enterSetMassDistributionUsingBody(s: GameState, scene: SceneBuilder): void {
   ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['body'] = ((s as any).locArgs?.[1] ?? 0);
   if (String((s as any).locArgs?.[1] ?? '') >= 50  &&  String((s as any).locArgs?.[1] ?? '') <= 60) {
-    ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['bust'] = ((s as any).pcs_mass ?? 0)?.['bust_gen'];
-    ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['butt'] = ((s as any).pcs_mass ?? 0)?.['butt_gen'];
+    ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['bust'] = (((s as any).pcs_mass ?? 0)?.['bust_gen']);
+    ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['butt'] = (((s as any).pcs_mass ?? 0)?.['butt_gen']);
   } else {
     ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['bust'] = ((((s as any).pcs_mass ?? {})?.['bust_gen'] ?? 0) * (((s as any).pcs_mass ?? {})?.['body'] ?? 0)) / 60;
     ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['butt'] = ((((s as any).pcs_mass ?? {})?.['butt_gen'] ?? 0) * (((s as any).pcs_mass ?? {})?.['body'] ?? 0)) / 60;
   }
   ((s as any).bodyVars = (s as any).bodyVars ?? {})['vhips'] = ((((s as any).pcs_mass ?? {})?.['body'] ?? 0) + (((s as any).pcs_mass ?? {})?.['butt'] ?? 0) - 80) / 2;
   ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['body_message'] = (((s as any).pcs_mass ?? {})?.['body'] ?? 0) + (((s as any).pcs_mass ?? {})?.['bust'] ?? 0) + (((s as any).pcs_mass ?? {})?.['butt'] ?? 0);
-  ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['bust_message'] = ((s as any).pcs_mass ?? 0)?.['bust'];
-  ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['butt_message'] = ((s as any).pcs_mass ?? 0)?.['butt'];
+  ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['bust_message'] = (((s as any).pcs_mass ?? 0)?.['bust']);
+  ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['butt_message'] = (((s as any).pcs_mass ?? 0)?.['butt']);
   if ((!((s as any).dounspell ?? 0))) {
     (s as any).temp_weight = qspFunc(s, 'body', 'CalcWeight2');
     ((s as any).pcs_weight = (s as any).pcs_weight ?? {})[0] = ((s as any).temp_weight ?? 0) / 10;
@@ -838,8 +838,8 @@ function enterHardreset(s: GameState, scene: SceneBuilder): void {
       }
     }
     ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['body_message'] = (((s as any).pcs_mass ?? {})?.['body'] ?? 0) + (((s as any).pcs_mass ?? {})?.['bust'] ?? 0) + (((s as any).pcs_mass ?? {})?.['butt'] ?? 0);
-    ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['bust_message'] = ((s as any).pcs_mass ?? 0)?.['bust'];
-    ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['butt_message'] = ((s as any).pcs_mass ?? 0)?.['butt'];
+    ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['bust_message'] = (((s as any).pcs_mass ?? 0)?.['bust']);
+    ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['butt_message'] = (((s as any).pcs_mass ?? 0)?.['butt']);
     qspCall(s, 'body', 'reset_preg_mass');
     (s as any).bodyresetflag = 0;
     (s as any).normbuffpick = 0;
@@ -863,7 +863,7 @@ function enterInitial(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_mass ?? 0)?.['butt_gen'] === 0) {
     ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['butt_gen'] = 20;
   }
-  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).pcs_mass ?? 0)?.['body']]; enterSetMassDistributionUsingBody(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', (((s as any).pcs_mass ?? 0)?.['body'])]; enterSetMassDistributionUsingBody(s, scene); (s as any).locArgs = __savedLocArgs; }
   (s as any).strenbuf = ((s as any).pcs_stren ?? 0);
   (s as any).agilbuf = ((s as any).pcs_agil ?? 0);
   (s as any).vitalbuf = ((s as any).pcs_vital ?? 0);

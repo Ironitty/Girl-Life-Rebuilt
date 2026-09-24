@@ -51,7 +51,7 @@ function enterAdd(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'calendar_list', 'init_event_vars');
   qspCall(s, 'calendar_list', '$ARGS[1]');
   qspCall(s, 'calendar_list', 'assign_color');
-  qspCall(s, 'calendar_events', 'new_event', ((s as any).event_vars ?? 0)?.['id']);
+  qspCall(s, 'calendar_events', 'new_event', (((s as any).event_vars ?? 0)?.['id']));
   return;
   // TODO-QSP: end
   scene.build();
@@ -168,9 +168,9 @@ function enterCycleRebuild(s: GameState, scene: SceneBuilder): void {
   ((s as any).event_vars = (s as any).event_vars ?? {})['daystart'] = ((s as any).chain_end ?? 0) + 1;
   ((s as any).event_vars = (s as any).event_vars ?? {})['recur_end'] = Math.max(((s as any).chain_end ?? 0) + (((s as any).cal_cycle ?? {})?.['dur_'] ?? 0), ((s as any).daystart ?? 0));
   if (((s as any).calCycleOpts ?? 0)['show_' + ((s as any).ph_idx ?? 0)] === 1) {
-    qspCall(s, 'calendar_events', 'new_event', ((s as any).event_vars ?? 0)?.['id']);
+    qspCall(s, 'calendar_events', 'new_event', (((s as any).event_vars ?? 0)?.['id']));
   }
-  (s as any).chain_end = ((s as any).event_vars ?? 0)?.['recur_end'];
+  (s as any).chain_end = (((s as any).event_vars ?? 0)?.['recur_end']);
   (s as any).ph_n = ((s as any).ph_n ?? 0) + (1);
   if (((s as any).ph_n ?? 0) < 4) {
     // TODO-QSP: jump 'phase_loop'

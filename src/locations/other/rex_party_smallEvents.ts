@@ -709,7 +709,7 @@ function enterSisterDrink(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Anya</b></center>');
   scene.img('images/locations/pavlovsk/resident/rekshome/party/party_sister_2.jpg');
   // TODO-QSP: dynamic text: Anya hands you a bottle. You take a swig and hand it back. "Keep the bottle, lit...
-  scene.text(`Anya hands you a bottle. You take a swig and hand it back. "Keep the bottle, little sis. I won't tell ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''}," she says with a wink.`);
+  scene.text(`Anya hands you a bottle. You take a swig and hand it back. "Keep the bottle, little sis. I won't tell ${(((s as any).npc_nickname ?? 0)?.['A29'] ?? '')}," she says with a wink.`);
   if (((s as any).alko ?? 0) >= 7) {
     scene.text('With her encouragement, you end up drinking more than you should.');
     scene.text('Suddenly your head is severely spinning…');

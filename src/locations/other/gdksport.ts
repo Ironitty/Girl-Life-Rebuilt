@@ -188,7 +188,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).mc_inventory ?? 0)?.['deodorant'] > 0  &&  (!((s as any).deodorant_on ?? 0))) {
     scene.actions([
-      { label: '', labelFn: (s: GameState) => 'Apply deodorant (' + String(((s as any).mc_inventory ?? 0)?.['deodorant'] ?? '' ?? '') + ' ' + String(((((s as any).mc_inventory ?? 0)?.['deodorant'] === 1) ? ('application') : ('applications')) ?? '') + ' left)', handler: (st: GameState) => {
+      { label: '', labelFn: (s: GameState) => 'Apply deodorant (' + String((((s as any).mc_inventory ?? 0)?.['deodorant'] ?? '') ?? '') + ' ' + String(((((s as any).mc_inventory ?? 0)?.['deodorant'] === 1) ? ('application') : ('applications')) ?? '') + ' left)', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
     ((st as any).mc_inventory = (st as any).mc_inventory ?? {})['deodorant'] = ((st as any).mc_inventory['deodorant'] ?? 0) - (1);
     qspCall(st, 'sweat', 'deo');
@@ -314,7 +314,7 @@ function enterVball1(s: GameState, scene: SceneBuilder): void {
   scene.text('Volleyball lessons cost 300₽ for 30 lessons.');
   if (((s as any).vballVars ?? 0)?.['lessons_remaining'] > 0) {
     // TODO-QSP: dynamic text: You have <<vballVars[''lessons_remaining'']>> lessons remaining.
-    scene.text(`You have ${((s as any).vballVars ?? 0)?.['lessons_remaining'] ?? ''} lessons remaining.`);
+    scene.text(`You have ${(((s as any).vballVars ?? 0)?.['lessons_remaining'] ?? '')} lessons remaining.`);
   }
   if (((s as any).vballVars ?? 0)?.['lessons_remaining'] <= 0) {
     scene.actions([

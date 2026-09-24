@@ -87,7 +87,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   if (((s as any).cumprecheck ?? 0) === 1) {
     if (((s as any).sexcontra ?? 0) < 3  &&  (!((s as any).spafinloc ?? 0))) {
       // TODO-QSP: $cumarrnam[cumarrtemp] = $npcID
-      ((s as any).cumarrcnt = (s as any).cumarrcnt ?? {})[String((s as any).cumarrtemp ?? 0)] = ((s as any).stat ?? 0)?.['cum_count'];
+      ((s as any).cumarrcnt = (s as any).cumarrcnt ?? {})[String((s as any).cumarrtemp ?? 0)] = (((s as any).stat ?? 0)?.['cum_count']);
       ((s as any).cumarrppt = (s as any).cumarrppt ?? {})[String((s as any).cumarrtemp ?? 0)] = ((s as any).sexspecpot ?? 0);
       ((s as any).cumarrage = (s as any).cumarrage ?? {})[String((s as any).cumarrtemp ?? 0)] = 0;
       ((s as any).cumarrdel = (s as any).cumarrdel ?? {})[String((s as any).cumarrtemp ?? 0)] = 0;
@@ -109,7 +109,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: $cumarrnam[cumarrtemp] = $npcID
       ((s as any).cumarrage = (s as any).cumarrage ?? {})[String((s as any).cumarrtemp ?? 0)] = 0;
       ((s as any).cumarrdel = (s as any).cumarrdel ?? {})[String((s as any).cumarrtemp ?? 0)] = 0;
-      ((s as any).cumarrcnt = (s as any).cumarrcnt ?? {})[String((s as any).cumarrtemp ?? 0)] = ((s as any).stat ?? 0)?.['cum_count'];
+      ((s as any).cumarrcnt = (s as any).cumarrcnt ?? {})[String((s as any).cumarrtemp ?? 0)] = (((s as any).stat ?? 0)?.['cum_count']);
       ((s as any).cumarrppt = (s as any).cumarrppt ?? {})[String((s as any).cumarrtemp ?? 0)] = ((s as any).sexspecpot ?? 0);
       if (((s as any).sexcontra ?? 0) > 2) {
         if (((s as any).noprotect ?? 0) === 1) {
@@ -176,7 +176,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
               ((s as any).sparrage = (s as any).sparrage ?? {})[String((s as any).sparrtemp ?? 0)] = 0;
               ((s as any).sparrloc = (s as any).sparrloc ?? {})[String((s as any).sparrtemp ?? 0)] = 0;
               // TODO-QSP: $sparrnam[sparrtemp] = $npcID
-              ((s as any).sparrcnt = (s as any).sparrcnt ?? {})[String((s as any).sparrtemp ?? 0)] = ((s as any).stat ?? 0)?.['cum_count'];
+              ((s as any).sparrcnt = (s as any).sparrcnt ?? {})[String((s as any).sparrtemp ?? 0)] = (((s as any).stat ?? 0)?.['cum_count']);
               ((s as any).sparrppt = (s as any).sparrppt ?? {})[String((s as any).sparrtemp ?? 0)] = ((s as any).sexspecpot ?? 0);
               ((s as any).sparrvol = (s as any).sparrvol ?? {})[String((s as any).sparrtemp ?? 0)] = ((s as any).sparrvol[String((s as any).sparrtemp ?? 0)] ?? 0) + (((s as any).sexvolume ?? 0));
               (s as any).cumsumbod = ((s as any).cumsumbod ?? 0) + (((s as any).sexvolume ?? 0));
@@ -207,7 +207,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
             ((s as any).sparrage = (s as any).sparrage ?? {})[String((s as any).sparrtemp ?? 0)] = 0;
             ((s as any).sparrloc = (s as any).sparrloc ?? {})[String((s as any).sparrtemp ?? 0)] = 0;
             // TODO-QSP: $sparrnam[sparrtemp] = $npcID
-            ((s as any).sparrcnt = (s as any).sparrcnt ?? {})[String((s as any).sparrtemp ?? 0)] = ((s as any).stat ?? 0)?.['cum_count'];
+            ((s as any).sparrcnt = (s as any).sparrcnt ?? {})[String((s as any).sparrtemp ?? 0)] = (((s as any).stat ?? 0)?.['cum_count']);
             ((s as any).sparrppt = (s as any).sparrppt ?? {})[String((s as any).sparrtemp ?? 0)] = ((s as any).sexspecpot ?? 0);
             ((s as any).sparrvol = (s as any).sparrvol ?? {})[String((s as any).sparrtemp ?? 0)] = ((s as any).sparrvol[String((s as any).sparrtemp ?? 0)] ?? 0) + (((s as any).sexvolume ?? 0));
             (s as any).cumsumbod = ((s as any).cumsumbod ?? 0) + (((s as any).sexvolume ?? 0));
@@ -227,7 +227,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
               ((s as any).sparrage = (s as any).sparrage ?? {})[String((s as any).sparrtemp ?? 0)] = 0;
               ((s as any).sparrloc = (s as any).sparrloc ?? {})[String((s as any).sparrtemp ?? 0)] = 17;
               // TODO-QSP: $sparrnam[sparrtemp] = $npcID
-              ((s as any).sparrcnt = (s as any).sparrcnt ?? {})[String((s as any).sparrtemp ?? 0)] = ((s as any).stat ?? 0)?.['cum_count'];
+              ((s as any).sparrcnt = (s as any).sparrcnt ?? {})[String((s as any).sparrtemp ?? 0)] = (((s as any).stat ?? 0)?.['cum_count']);
               ((s as any).sparrppt = (s as any).sparrppt ?? {})[String((s as any).sparrtemp ?? 0)] = ((s as any).sexspecpot ?? 0);
               ((s as any).sparrvol = (s as any).sparrvol ?? {})[String((s as any).sparrtemp ?? 0)] = ((s as any).sparrvol[String((s as any).sparrtemp ?? 0)] ?? 0) + (((s as any).sexvolume ?? 0));
               (s as any).cumsumbod = ((s as any).cumsumbod ?? 0) + (((s as any).sexvolume ?? 0));
@@ -257,7 +257,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
                     ((s as any).sparrage = (s as any).sparrage ?? {})[String((s as any).sparrtemp ?? 0)] = 0;
                     ((s as any).sparrloc = (s as any).sparrloc ?? {})[String((s as any).sparrtemp ?? 0)] = 0;
                     // TODO-QSP: $sparrnam[sparrtemp] = $boy
-                    ((s as any).sparrcnt = (s as any).sparrcnt ?? {})[String((s as any).sparrtemp ?? 0)] = ((s as any).stat ?? 0)?.['cum_count'];
+                    ((s as any).sparrcnt = (s as any).sparrcnt ?? {})[String((s as any).sparrtemp ?? 0)] = (((s as any).stat ?? 0)?.['cum_count']);
                     ((s as any).sparrppt = (s as any).sparrppt ?? {})[String((s as any).sparrtemp ?? 0)] = ((s as any).sexspecpot ?? 0);
                     ((s as any).sparrvol = (s as any).sparrvol ?? {})[String((s as any).sparrtemp ?? 0)] = ((s as any).sparrvol[String((s as any).sparrtemp ?? 0)] ?? 0) + (((s as any).sexvolume ?? 0));
                     (s as any).cumsumbod = ((s as any).cumsumbod ?? 0) + (((s as any).sexvolume ?? 0));
@@ -282,7 +282,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
                       ((s as any).sparrage = (s as any).sparrage ?? {})[String((s as any).sparrtemp ?? 0)] = 0;
                       ((s as any).sparrloc = (s as any).sparrloc ?? {})[String((s as any).sparrtemp ?? 0)] = 0;
                       // TODO-QSP: $sparrnam[sparrtemp] = $boy
-                      ((s as any).sparrcnt = (s as any).sparrcnt ?? {})[String((s as any).sparrtemp ?? 0)] = ((s as any).stat ?? 0)?.['cum_count'];
+                      ((s as any).sparrcnt = (s as any).sparrcnt ?? {})[String((s as any).sparrtemp ?? 0)] = (((s as any).stat ?? 0)?.['cum_count']);
                       ((s as any).sparrppt = (s as any).sparrppt ?? {})[String((s as any).sparrtemp ?? 0)] = ((s as any).sexspecpot ?? 0);
                       ((s as any).sparrvol = (s as any).sparrvol ?? {})[String((s as any).sparrtemp ?? 0)] = ((s as any).sparrvol[String((s as any).sparrtemp ?? 0)] ?? 0) + (((s as any).sexvolume ?? 0));
                       (s as any).cumsumbod = ((s as any).cumsumbod ?? 0) + (((s as any).sexvolume ?? 0));
@@ -306,7 +306,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
         ((s as any).sparrage = (s as any).sparrage ?? {})[String((s as any).sparrtemp ?? 0)] = 0;
         ((s as any).sparrloc = (s as any).sparrloc ?? {})[String((s as any).sparrtemp ?? 0)] = 0;
         // TODO-QSP: $sparrnam[sparrtemp] = $npcID
-        ((s as any).sparrcnt = (s as any).sparrcnt ?? {})[String((s as any).sparrtemp ?? 0)] = ((s as any).stat ?? 0)?.['cum_count'];
+        ((s as any).sparrcnt = (s as any).sparrcnt ?? {})[String((s as any).sparrtemp ?? 0)] = (((s as any).stat ?? 0)?.['cum_count']);
         ((s as any).sparrppt = (s as any).sparrppt ?? {})[String((s as any).sparrtemp ?? 0)] = ((s as any).sexspecpot ?? 0);
         ((s as any).sparrvol = (s as any).sparrvol ?? {})[String((s as any).sparrtemp ?? 0)] = ((s as any).sparrvol[String((s as any).sparrtemp ?? 0)] ?? 0) + (((s as any).sexvolume ?? 0));
         (s as any).cumsumbod = ((s as any).cumsumbod ?? 0) + (((s as any).sexvolume ?? 0));
@@ -385,7 +385,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).sexcontra ?? 0) < 3) {
         ((s as any).sparrage = (s as any).sparrage ?? {})[String((s as any).sparrtemp ?? 0)] = 0;
-        ((s as any).sparrcnt = (s as any).sparrcnt ?? {})[String((s as any).sparrtemp ?? 0)] = ((s as any).stat ?? 0)?.['cum_count'];
+        ((s as any).sparrcnt = (s as any).sparrcnt ?? {})[String((s as any).sparrtemp ?? 0)] = (((s as any).stat ?? 0)?.['cum_count']);
         if ((((s as any).pantyworntype ?? 0) === 'none'  ||  ((s as any).clothingworntype ?? 0) === 'nude')  &&  (((s as any).spafinloc ?? 0) === 2  ||  ((s as any).spafinloc ?? 0) === 5)) {
           (s as any).spafinloc = ((s as any).spafinloc ?? 0) - (1);
         }
@@ -544,14 +544,14 @@ function enterCumCompute(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: :cum_c_ageloop
   if (((s as any).cumvolume ?? 0)[(((s as any).temp_cum_manage_i ?? 0)) + ':' + (((s as any).temp_cum_manage_j ?? 0))] > 0) {
     ((s as any).cumloc = (s as any).cumloc ?? {})[String((s as any).temp_cum_manage_i ?? 0)] = 1;
-    ((s as any).cumvol = (s as any).cumvol ?? {})[String((s as any).temp_cum_manage_i ?? 0)] = ((s as any).cumvolume ?? 0)?.[String(((s as any).temp_cum_manage_i ?? 0)) + ':' + String(((s as any).temp_cum_manage_j ?? 0))];
+    ((s as any).cumvol = (s as any).cumvol ?? {})[String((s as any).temp_cum_manage_i ?? 0)] = (((s as any).cumvolume ?? 0)?.[String(((s as any).temp_cum_manage_i ?? 0)) + ':' + String(((s as any).temp_cum_manage_j ?? 0))]);
     if (((s as any).temp_cum_manage_j ?? 0) === 4) {
-      (s as any).cumsumbod = ((s as any).cumsumbod ?? 0) + (((s as any).cumvolume ?? 0)?.[String(((s as any).temp_cum_manage_i ?? 0)) + ':' + String(((s as any).temp_cum_manage_j ?? 0))]);
-      (s as any).cumsumvag = ((s as any).cumsumvag ?? 0) + ((((!((s as any).temp_cum_manage_i ?? 0))) ? (((s as any).cumvolume ?? 0)?.[String(((s as any).temp_cum_manage_i ?? 0)) + ':' + String(((s as any).temp_cum_manage_j ?? 0))]) : (0)));
-      (s as any).cumsumass = ((s as any).cumsumass ?? 0) + (((((s as any).temp_cum_manage_i ?? 0) === 3) ? (((s as any).cumvolume ?? 0)?.[String(((s as any).temp_cum_manage_i ?? 0)) + ':' + String(((s as any).temp_cum_manage_j ?? 0))]) : (0)));
+      (s as any).cumsumbod = ((s as any).cumsumbod ?? 0) + ((((s as any).cumvolume ?? 0)?.[String(((s as any).temp_cum_manage_i ?? 0)) + ':' + String(((s as any).temp_cum_manage_j ?? 0))]));
+      (s as any).cumsumvag = ((s as any).cumsumvag ?? 0) + ((((!((s as any).temp_cum_manage_i ?? 0))) ? ((((s as any).cumvolume ?? 0)?.[String(((s as any).temp_cum_manage_i ?? 0)) + ':' + String(((s as any).temp_cum_manage_j ?? 0))])) : (0)));
+      (s as any).cumsumass = ((s as any).cumsumass ?? 0) + (((((s as any).temp_cum_manage_i ?? 0) === 3) ? ((((s as any).cumvolume ?? 0)?.[String(((s as any).temp_cum_manage_i ?? 0)) + ':' + String(((s as any).temp_cum_manage_j ?? 0))])) : (0)));
     } else {
       if (((s as any).temp_cum_manage_j ?? 0) < 4  &&  ((s as any).temp_cum_manage_j ?? 0) > 0) {
-        (s as any).cumsumbod = ((s as any).cumsumbod ?? 0) + (((s as any).cumvolume ?? 0)?.[String(((s as any).temp_cum_manage_i ?? 0)) + ':' + String(((s as any).temp_cum_manage_j ?? 0))]);
+        (s as any).cumsumbod = ((s as any).cumsumbod ?? 0) + ((((s as any).cumvolume ?? 0)?.[String(((s as any).temp_cum_manage_i ?? 0)) + ':' + String(((s as any).temp_cum_manage_j ?? 0))]));
       }
     }
   }
@@ -599,7 +599,7 @@ function enterComputeStatDisplay(s: GameState, scene: SceneBuilder): void {
       if (((s as any).sd_cum ?? 0)?.['i'] === 2  &&  ((s as any).PCloPanties ?? 0) === 1) {
         ((s as any).sd_cum = (s as any).sd_cum ?? {})['loc_adj'] = 'across ';
         ((s as any).sd_cum = (s as any).sd_cum ?? {})['loc'] = 'the front of your panties';
-        ((s as any).sd_cum = (s as any).sd_cum ?? {})['icon_loc'] = ((s as any).sd_cum ?? 0)?.['loc'];
+        ((s as any).sd_cum = (s as any).sd_cum ?? {})['icon_loc'] = (((s as any).sd_cum ?? 0)?.['loc']);
       } else {
         if (((s as any).sd_cum ?? 0)?.['i'] === 3) {
           ((s as any).sd_cum = (s as any).sd_cum ?? {})['loc_adj'] = 'across ';
@@ -614,7 +614,7 @@ function enterComputeStatDisplay(s: GameState, scene: SceneBuilder): void {
             if (((s as any).sd_cum ?? 0)?.['i'] === 5  &&  ((s as any).PCloPanties ?? 0) === 1) {
               ((s as any).sd_cum = (s as any).sd_cum ?? {})['loc_adj'] = 'painting ';
               ((s as any).sd_cum = (s as any).sd_cum ?? {})['loc'] = 'the back of your panties';
-              ((s as any).sd_cum = (s as any).sd_cum ?? {})['icon_loc'] = ((s as any).sd_cum ?? 0)?.['loc'];
+              ((s as any).sd_cum = (s as any).sd_cum ?? {})['icon_loc'] = (((s as any).sd_cum ?? 0)?.['loc']);
             } else {
               if (((s as any).sd_cum ?? 0)?.['i'] === 6) {
                 ((s as any).sd_cum = (s as any).sd_cum ?? {})['loc_adj'] = 'on ';
@@ -633,17 +633,17 @@ function enterComputeStatDisplay(s: GameState, scene: SceneBuilder): void {
                   if (((s as any).sd_cum ?? 0)?.['i'] === 8) {
                     ((s as any).sd_cum = (s as any).sd_cum ?? {})['loc_adj'] = 'down ';
                     ((s as any).sd_cum = (s as any).sd_cum ?? {})['loc'] = 'your back';
-                    ((s as any).sd_cum = (s as any).sd_cum ?? {})['icon_loc'] = ((s as any).sd_cum ?? 0)?.['loc'];
+                    ((s as any).sd_cum = (s as any).sd_cum ?? {})['icon_loc'] = (((s as any).sd_cum ?? 0)?.['loc']);
                   } else {
                     if (((s as any).sd_cum ?? 0)?.['i'] === 9) {
                       ((s as any).sd_cum = (s as any).sd_cum ?? {})['loc_adj'] = 'on ';
                       ((s as any).sd_cum = (s as any).sd_cum ?? {})['loc'] = 'your legs';
-                      ((s as any).sd_cum = (s as any).sd_cum ?? {})['icon_loc'] = ((s as any).sd_cum ?? 0)?.['loc'];
+                      ((s as any).sd_cum = (s as any).sd_cum ?? {})['icon_loc'] = (((s as any).sd_cum ?? 0)?.['loc']);
                     } else {
                       if (((s as any).sd_cum ?? 0)?.['i'] === 10) {
                         ((s as any).sd_cum = (s as any).sd_cum ?? {})['loc_adj'] = 'on ';
                         ((s as any).sd_cum = (s as any).sd_cum ?? {})['loc'] = 'your arms';
-                        ((s as any).sd_cum = (s as any).sd_cum ?? {})['icon_loc'] = ((s as any).sd_cum ?? 0)?.['loc'];
+                        ((s as any).sd_cum = (s as any).sd_cum ?? {})['icon_loc'] = (((s as any).sd_cum ?? 0)?.['loc']);
                       } else {
                         if (((s as any).sd_cum ?? 0)?.['i'] === 11) {
                           if ((!((s as any).pcs_haircol ?? 0))) {
@@ -672,7 +672,7 @@ function enterComputeStatDisplay(s: GameState, scene: SceneBuilder): void {
                           if (((s as any).sd_cum ?? 0)?.['i'] === 13) {
                             ((s as any).sd_cum = (s as any).sd_cum ?? {})['loc_adj'] = 'over ';
                             ((s as any).sd_cum = (s as any).sd_cum ?? {})['loc'] = 'your hands';
-                            ((s as any).sd_cum = (s as any).sd_cum ?? {})['icon_loc'] = ((s as any).sd_cum ?? 0)?.['loc'];
+                            ((s as any).sd_cum = (s as any).sd_cum ?? {})['icon_loc'] = (((s as any).sd_cum ?? 0)?.['loc']);
                           } else {
                             if (((s as any).sd_cum ?? 0)?.['i'] === 14) {
                               ((s as any).sd_cum = (s as any).sd_cum ?? {})['loc_adj'] = 'across ';
@@ -691,7 +691,7 @@ function enterComputeStatDisplay(s: GameState, scene: SceneBuilder): void {
                                 } else {
                                   if (((s as any).sd_cum ?? 0)?.['i'] === 17) {
                                     ((s as any).sd_cum = (s as any).sd_cum ?? {})['loc'] = 'in your vagina in a slipped condom';
-                                    ((s as any).sd_cum = (s as any).sd_cum ?? {})['icon_loc'] = ((s as any).sd_cum ?? 0)?.['loc'];
+                                    ((s as any).sd_cum = (s as any).sd_cum ?? {})['icon_loc'] = (((s as any).sd_cum ?? 0)?.['loc']);
                                   } else {
                                     ((s as any).sd_cum = (s as any).sd_cum ?? {})['loc_adj'] = 'on ';
                                     ((s as any).sd_cum = (s as any).sd_cum ?? {})['icon_loc'] = 'the gusset of your panties';
@@ -793,7 +793,7 @@ function enterComputeStatDisplay(s: GameState, scene: SceneBuilder): void {
             }
           }
           if (((s as any).cumvolume ?? 0)[(((s as any).sd_cum ?? 0)?.['i']) + ':' + (((s as any).sd_cum ?? 0)?.['j'])] < 40) {
-            ((s as any).sd_cum = (s as any).sd_cum ?? {})['proxy'] = ((s as any).sd_cum['proxy'] ?? 0) + (((s as any).sd_cum ?? 0)?.['loc_adj']);
+            ((s as any).sd_cum = (s as any).sd_cum ?? {})['proxy'] = ((s as any).sd_cum['proxy'] ?? 0) + ((((s as any).sd_cum ?? 0)?.['loc_adj']));
           }
         }
       }
@@ -828,9 +828,9 @@ function enterComputeStatDisplay(s: GameState, scene: SceneBuilder): void {
           }
           ((s as any).sd_cum = (s as any).sd_cum ?? {})['k'] = ((s as any).sd_cum['k'] ?? 0) + (1);
           if (((s as any).npc_usedname ?? 0)[((s as any).cumowner ?? 0)[(((s as any).sd_cum ?? 0)?.['i']) + ':' + (((s as any).sd_cum ?? 0)?.['j']) + ':' + (((s as any).sd_cum ?? 0)?.['k'])]] === 'stranger') {
-            ((s as any).sd_cum = (s as any).sd_cum ?? {})['person'] = ((s as any).sd_cum['person'] ?? 0) + (' and \' + $npc_firstname[$cumowner[\'' + ((s as any).sd_cum ?? 0)?.['i'] + ':' + ((s as any).sd_cum ?? 0)?.['j'] + ':' + ((s as any).sd_cum ?? 0)?.['k'] + '\']] + \' ');
+            ((s as any).sd_cum = (s as any).sd_cum ?? {})['person'] = ((s as any).sd_cum['person'] ?? 0) + (' and \' + $npc_firstname[$cumowner[\'' + (((s as any).sd_cum ?? 0)?.['i']) + ':' + (((s as any).sd_cum ?? 0)?.['j']) + ':' + (((s as any).sd_cum ?? 0)?.['k']) + '\']] + \' ');
           } else {
-            ((s as any).sd_cum = (s as any).sd_cum ?? {})['person'] = ((s as any).sd_cum['person'] ?? 0) + (' and \' + $npc_usedname[$cumowner[\'' + ((s as any).sd_cum ?? 0)?.['i'] + ':' + ((s as any).sd_cum ?? 0)?.['j'] + ':' + ((s as any).sd_cum ?? 0)?.['k'] + '\']] + \' ');
+            ((s as any).sd_cum = (s as any).sd_cum ?? {})['person'] = ((s as any).sd_cum['person'] ?? 0) + (' and \' + $npc_usedname[$cumowner[\'' + (((s as any).sd_cum ?? 0)?.['i']) + ':' + (((s as any).sd_cum ?? 0)?.['j']) + ':' + (((s as any).sd_cum ?? 0)?.['k']) + '\']] + \' ');
           }
         }
       } else {
@@ -876,26 +876,26 @@ function enterComputeStatDisplay(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
-    ((s as any).sd_cum = (s as any).sd_cum ?? {})['icon_iscum'] = ((s as any).sd_cum ?? 0)?.['iscum'];
+    ((s as any).sd_cum = (s as any).sd_cum ?? {})['icon_iscum'] = (((s as any).sd_cum ?? 0)?.['iscum']);
     if (((s as any).sd_cum ?? 0)?.['j'] <= 4  &&  ((s as any).trait_vars ?? 0)?.['cumeater'] === 1  &&  ((s as any).sd_cum ?? 0)?.['iscum'] === 'cum'  &&  qspFunc(s, 'cum_manage', 'check_private', ((s as any).sd_cum ?? 0)?.['i']) === 1  &&  ((((s as any).sd_cum ?? 0)?.['i'] !== 0  &&  ((s as any).sd_cum ?? 0)?.['i'] !== 3)  ||  qspFunc(s, 'cum_manage', 'check_inner_overflow', ((s as any).sd_cum ?? 0)?.['i']) === 1  ||  ((s as any).cheatVars ?? 0)?.['enema'] === 1)) {
-      ((s as any).sd_cum = (s as any).sd_cum ?? {})['iscum'] = '<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027cum_manage/u0027, /u0027cumeater/u0027); return false;">' + ((s as any).sd_cum ?? 0)?.['iscum'] + '</a>';
+      ((s as any).sd_cum = (s as any).sd_cum ?? {})['iscum'] = '<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027cum_manage/u0027, /u0027cumeater/u0027); return false;">' + (((s as any).sd_cum ?? 0)?.['iscum']) + '</a>';
     }
     if (((s as any).sd_cum ?? 0)?.['person'] !== '') {
-      ((s as any).sd_cum = (s as any).sd_cum ?? {})['person'] = ' from ' + ((s as any).sd_cum ?? 0)?.['person'] + '';
+      ((s as any).sd_cum = (s as any).sd_cum ?? {})['person'] = ' from ' + (((s as any).sd_cum ?? 0)?.['person']) + '';
     }
     if (((s as any).sd_cum ?? 0)?.['j'] === 0) {
       ((s as any).sd_cum = (s as any).sd_cum ?? {})['display'] = 'Your mouth has the tangy aftertaste of sperm.';
-      ((s as any).sd_cum = (s as any).sd_cum ?? {})['tooltip'] = ((s as any).sd_cum ?? 0)?.['display'];
+      ((s as any).sd_cum = (s as any).sd_cum ?? {})['tooltip'] = (((s as any).sd_cum ?? 0)?.['display']);
     } else {
       ((s as any).sd_cum = (s as any).sd_cum ?? {})['tail'] = '.';
       if (((s as any).sd_cum ?? 0)?.['i'] === 0  &&  ((s as any).sd_cum ?? 0)?.['j'] === 4  &&  ((s as any).vibratorIN ?? 0) === 0  &&  ((s as any).pcs_vag ?? 0) * 10 < ((s as any).cumvolume ?? 0)[(((s as any).sd_cum ?? 0)?.['i']) + ':' + (((s as any).sd_cum ?? 0)?.['j'])]  &&  ((s as any).cumvolume ?? 0)[(((s as any).sd_cum ?? 0)?.['i']) + ':' + (((s as any).sd_cum ?? 0)?.['j'])] >= 20) {
         ((s as any).sd_cum = (s as any).sd_cum ?? {})['tail'] = ((((s as any).pantyworntype ?? 0) !== 'none') ? (' into your panties.') : (' down your legs.'));
       }
-      ((s as any).sd_cum = (s as any).sd_cum ?? {})['tooltip'] = '' + ((s as any).sd_cum ?? 0)?.['amount'] + 'amounts of ' + ((s as any).sd_cum ?? 0)?.['icon_iscum'] + '' + ((s as any).sd_cum ?? 0)?.['person'] + ' is ' + ((s as any).sd_cum ?? 0)?.['proxy'] + '' + ((s as any).sd_cum ?? 0)?.['icon_loc'] + '' + ((s as any).sd_cum ?? 0)?.['tail'] + '';
+      ((s as any).sd_cum = (s as any).sd_cum ?? {})['tooltip'] = '' + (((s as any).sd_cum ?? 0)?.['amount']) + 'amounts of ' + (((s as any).sd_cum ?? 0)?.['icon_iscum']) + '' + (((s as any).sd_cum ?? 0)?.['person']) + ' is ' + (((s as any).sd_cum ?? 0)?.['proxy']) + '' + (((s as any).sd_cum ?? 0)?.['icon_loc']) + '' + (((s as any).sd_cum ?? 0)?.['tail']) + '';
       if (((s as any).sd_cum ?? 0)?.['j'] >= 5  &&  (!((s as any).cumcondslip_aware ?? 0))) {
         ((s as any).sd_cum = (s as any).sd_cum ?? {})['display'] = '';
       } else {
-        ((s as any).sd_cum = (s as any).sd_cum ?? {})['display'] = '' + ((s as any).sd_cum ?? 0)?.['amount'] + 'amounts of ' + ((s as any).sd_cum ?? 0)?.['iscum'] + '' + ((s as any).sd_cum ?? 0)?.['person'] + ' is ' + ((s as any).sd_cum ?? 0)?.['proxy'] + '' + ((s as any).sd_cum ?? 0)?.['loc'] + '' + ((s as any).sd_cum ?? 0)?.['tail'] + '';
+        ((s as any).sd_cum = (s as any).sd_cum ?? {})['display'] = '' + (((s as any).sd_cum ?? 0)?.['amount']) + 'amounts of ' + (((s as any).sd_cum ?? 0)?.['iscum']) + '' + (((s as any).sd_cum ?? 0)?.['person']) + ' is ' + (((s as any).sd_cum ?? 0)?.['proxy']) + '' + (((s as any).sd_cum ?? 0)?.['loc']) + '' + (((s as any).sd_cum ?? 0)?.['tail']) + '';
       }
     }
     if (((s as any).sd_cum ?? 0)?.['display'] !== '') {

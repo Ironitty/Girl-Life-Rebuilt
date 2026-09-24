@@ -128,17 +128,17 @@ function enterLocInit(s: GameState, scene: SceneBuilder): void {
 function enterDressCloth(s: GameState, scene: SceneBuilder): void {
   if (((s as any).clothingworntype ?? 0) === 'nude') {
     if (((s as any).lastwornclothingtype ?? 0)?.['lover_ev'] !== ''  &&  ((s as any).lastwornclothingtype ?? 0)?.['lover_ev'] !== 'nude') {
-      qspCall(s, 'clothing', 'wear', ((s as any).lastwornclothingtype ?? 0)?.['lover_ev'], ((s as any).lastwornclothingnumber ?? 0)?.['lover_ev']);
+      qspCall(s, 'clothing', 'wear', (((s as any).lastwornclothingtype ?? 0)?.['lover_ev']), (((s as any).lastwornclothingnumber ?? 0)?.['lover_ev']));
     }
   }
   if (((s as any).pantyworntype ?? 0) === 'none') {
     if (((s as any).lastwornpantytype ?? 0)?.['lover_ev'] !== ''  &&  ((s as any).lastwornpantytype ?? 0)?.['lover_ev'] !== 'none') {
-      qspCall(s, 'panties', 'wear', ((s as any).lastwornpantytype ?? 0)?.['lover_ev'], ((s as any).lastwornpantynumber ?? 0)?.['lover_ev']);
+      qspCall(s, 'panties', 'wear', (((s as any).lastwornpantytype ?? 0)?.['lover_ev']), (((s as any).lastwornpantynumber ?? 0)?.['lover_ev']));
     }
   }
   if (((s as any).braworntype ?? 0) === 'none') {
     if (((s as any).lastwornbratype ?? 0)?.['lover_ev'] !== ''  &&  ((s as any).lastwornbratype ?? 0)?.['lover_ev'] !== 'none') {
-      qspCall(s, 'bras', 'wear', ((s as any).lastwornbratype ?? 0)?.['lover_ev'], ((s as any).lastwornbranumber ?? 0)?.['lover_ev']);
+      qspCall(s, 'bras', 'wear', (((s as any).lastwornbratype ?? 0)?.['lover_ev']), (((s as any).lastwornbranumber ?? 0)?.['lover_ev']));
     }
   }
   qspCall(s, 'outfit', 'remove_backup', 'lover_ev');

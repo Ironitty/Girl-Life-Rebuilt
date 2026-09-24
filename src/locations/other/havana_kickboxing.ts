@@ -37,7 +37,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'kickboxing_funcs', 'init_fight_vars');
     ((st as any).kickbox = (st as any).kickbox ?? {})['opponent'] = (((st as any).kickbox ?? {})?.['sash'] ?? 0) + ((Math.floor(Math.random() * (5 - (-2) + 1)) + ((-2))) / 2);
     ((st as any).temp_kickboxVars = (st as any).temp_kickboxVars ?? {})['fight_type'] = 1;
-    qspCall(st, 'kickboxing_funcs', 'generate_opponent', 'amateur_fight', ((st as any).kickbox ?? 0)?.['opponent']);
+    qspCall(st, 'kickboxing_funcs', 'generate_opponent', 'amateur_fight', (((st as any).kickbox ?? 0)?.['opponent']));
     qspGoto(st, 'havana_kickboxing', 'match');
   } },
           ]);
@@ -132,11 +132,11 @@ function enterMatch(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).temp_kickboxVars ?? 0)?.['round'] >= 1) {
     // TODO-QSP: dynamic text: <center><b>Round <<temp_kickboxVars[''round'']>></b></center>
-    scene.text(`<center><b>Round ${((s as any).temp_kickboxVars ?? 0)?.['round'] ?? ''}</b></center>`);
+    scene.text(`<center><b>Round ${(((s as any).temp_kickboxVars ?? 0)?.['round'] ?? '')}</b></center>`);
     if (((s as any).temp_kickboxVars ?? 0)?.['fight_type'] === 0) {
       scene.img('images/locations/city/citycenter/gym/kickboxing/kik1.jpg');
     } else {
-      scene.img(`images/locations/city/citycenter/gym/kickboxing/ring${((s as any).temp_kickboxVars ?? 0)?.['round'] ?? ''}.jpg`);
+      scene.img(`images/locations/city/citycenter/gym/kickboxing/ring${(((s as any).temp_kickboxVars ?? 0)?.['round'] ?? '')}.jpg`);
     }
     qspCall(s, 'kickboxing_funcs', 'display_header');
     ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['time'] = ((s as any).temp_kickboxVars['time'] ?? 0) + (1);
@@ -219,7 +219,7 @@ function enterSta(s: GameState, scene: SceneBuilder): void {
   if (((s as any).temp_kickboxVars ?? 0)?.['time'] === 6) {
     ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['time'] = 0;
     // TODO-QSP: dynamic text: The bell rings, indicating the end of round <<temp_kickboxVars[''round'']>>.
-    scene.text(`The bell rings, indicating the end of round ${((s as any).temp_kickboxVars ?? 0)?.['round'] ?? ''}.`);
+    scene.text(`The bell rings, indicating the end of round ${(((s as any).temp_kickboxVars ?? 0)?.['round'] ?? '')}.`);
     ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['round'] = ((s as any).temp_kickboxVars['round'] ?? 0) + (1);
     if (((s as any).temp_kickboxVars ?? 0)?.['round'] <= ((s as any).temp_kickboxVars ?? 0)?.['max_rounds']) {
       scene.actions([

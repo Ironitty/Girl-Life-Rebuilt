@@ -17,7 +17,7 @@ function enterCenter(s: GameState, scene: SceneBuilder): void {
   scene.text('The grand old station in the city center is an impressive building. It is busy and has a number of shops and bars.');
   if (qspFunc(s, 'car_funcs', 'is_here', 'city_center', '')) {
     // TODO-QSP: dynamic text: <a href="exec:gs ''carF'',''start''">Your <<$car[''name'']>></a> is in the parki...
-    scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027carF/u0027, /u0027start/u0027); return false;">Your ${((s as any).car ?? 0)?.['name'] ?? ''}</a> is in the parking lot.`);
+    scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027carF/u0027, /u0027start/u0027); return false;">Your ${(((s as any).car ?? 0)?.['name'] ?? '')}</a> is in the parking lot.`);
   }
   if (((s as any).daystart ?? 0) >= ((s as any).transportVars ?? 0)?.['trainpass_day']) {
     scene.actions([
@@ -209,7 +209,7 @@ function enterCenterIndustrial(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_train_wait_time', 'center');
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_train_timecost', 'center', 'industrial') + (((s as any).transportVars ?? {})?.['train_wait_pavlovsk'] ?? 0);
-  (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
+  (s as any).minut = ((s as any).minut ?? 0) + ((((s as any).temp_transportVars ?? 0)?.['timecost']));
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = (Math.floor(Math.random() * 100) + 0);
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     qspGoto(s, 'train_incidental', 'events');
@@ -229,7 +229,7 @@ function enterCenterIndustrial(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/shared/train/indusplat.jpg');
   // TODO-QSP: dynamic text: After <<temp_transportVars[''timecost'']>> minutes, the train stops at the St. P...
-  scene.text(`After ${((s as any).temp_transportVars ?? 0)?.['timecost'] ?? ''} minutes, the train stops at the St. Petersburg city industrial area station.`);
+  scene.text(`After ${(((s as any).temp_transportVars ?? 0)?.['timecost'] ?? '')} minutes, the train stops at the St. Petersburg city industrial area station.`);
   scene.actions([
     { label: 'Get off the train', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 100) + 0) < 5) {
@@ -246,7 +246,7 @@ function enterCenterCommunal(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_train_wait_time', 'center');
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_train_timecost', 'center', 'communal') + (((s as any).transportVars ?? {})?.['train_wait_pavlovsk'] ?? 0);
-  (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
+  (s as any).minut = ((s as any).minut ?? 0) + ((((s as any).temp_transportVars ?? 0)?.['timecost']));
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = (Math.floor(Math.random() * 100) + 0);
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     qspGoto(s, 'train_incidental', 'events');
@@ -260,7 +260,7 @@ function enterCenterCommunal(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/shared/train/oldplat.jpg');
   // TODO-QSP: dynamic text: After <<temp_transportVars[''timecost'']>> minutes you arrive at an old railway ...
-  scene.text(`After ${((s as any).temp_transportVars ?? 0)?.['timecost'] ?? ''} minutes you arrive at an old railway platform near the communal village.`);
+  scene.text(`After ${(((s as any).temp_transportVars ?? 0)?.['timecost'] ?? '')} minutes you arrive at an old railway platform near the communal village.`);
   scene.actions([
     { label: 'Get off the train', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 10) + 0) < 5) {
@@ -277,7 +277,7 @@ function enterCenterGadukino(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_train_wait_time', 'center');
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_train_timecost', 'center', 'gadukino') + (((s as any).transportVars ?? {})?.['train_wait_pavlovsk'] ?? 0);
-  (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
+  (s as any).minut = ((s as any).minut ?? 0) + ((((s as any).temp_transportVars ?? 0)?.['timecost']));
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = (Math.floor(Math.random() * 100) + 0);
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     qspGoto(s, 'train_incidental', 'events');
@@ -291,7 +291,7 @@ function enterCenterGadukino(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/shared/train/gadplat.jpg');
   // TODO-QSP: dynamic text: After <<temp_transportVars[''timecost'']>> minutes, the train stops at the small...
-  scene.text(`After ${((s as any).temp_transportVars ?? 0)?.['timecost'] ?? ''} minutes, the train stops at the small station near the village of Gadukino.`);
+  scene.text(`After ${(((s as any).temp_transportVars ?? 0)?.['timecost'] ?? '')} minutes, the train stops at the small station near the village of Gadukino.`);
   scene.actions([
     { label: 'Get off the train', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 100) + 0) <= 5) {
@@ -308,7 +308,7 @@ function enterCenterPavlovsk(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_train_wait_time', 'center');
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_train_timecost', 'center', 'pavlovsk') + (((s as any).transportVars ?? {})?.['train_wait_pavlovsk'] ?? 0);
-  (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
+  (s as any).minut = ((s as any).minut ?? 0) + ((((s as any).temp_transportVars ?? 0)?.['timecost']));
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = (Math.floor(Math.random() * 100) + 0);
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     qspGoto(s, 'train_incidental', 'events');
@@ -334,7 +334,7 @@ function enterCenterPavlovsk(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/shared/train/pavplat.jpg');
   // TODO-QSP: dynamic text: After <<temp_transportVars[''timecost'']>> minutes, you see the town of Pavlovsk...
-  scene.text(`After ${((s as any).temp_transportVars ?? 0)?.['timecost'] ?? ''} minutes, you see the town of Pavlovsk approaching. Pavlovsk Castle is an impressive sight, even from a long distance. The train stops at its final destination, a platform in Pavlovsk station.`);
+  scene.text(`After ${(((s as any).temp_transportVars ?? 0)?.['timecost'] ?? '')} minutes, you see the town of Pavlovsk approaching. Pavlovsk Castle is an impressive sight, even from a long distance. The train stops at its final destination, a platform in Pavlovsk station.`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Get off the train', handler: (st: GameState) => {
@@ -352,7 +352,7 @@ function enterIndustrialCenter(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_train_wait_time', 'industrial');
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_train_timecost', 'industrial', 'center') + (((s as any).transportVars ?? {})?.['train_wait_center'] ?? 0);
-  (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
+  (s as any).minut = ((s as any).minut ?? 0) + ((((s as any).temp_transportVars ?? 0)?.['timecost']));
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = (Math.floor(Math.random() * 100) + 0);
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     qspGoto(s, 'train_incidental', 'events');
@@ -374,7 +374,7 @@ function enterIndustrialCenter(s: GameState, scene: SceneBuilder): void {
   scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/shared/train/electri_` + (Math.floor(Math.random() * 5) + 1) + '.jpg"></center>');
   scene.text('You pay for the ticket and board the next train going to the city center.');
   // TODO-QSP: dynamic text: After <<temp_transportVars[''timecost'']>> minutes, you see the office blocks an...
-  scene.text(`After ${((s as any).temp_transportVars ?? 0)?.['timecost'] ?? ''} minutes, you see the office blocks and shops at the heart of the city before the train stops at its final destination, the busy station in the city center.`);
+  scene.text(`After ${(((s as any).temp_transportVars ?? 0)?.['timecost'] ?? '')} minutes, you see the office blocks and shops at the heart of the city before the train stops at its final destination, the busy station in the city center.`);
   scene.actions([
     { label: 'Get off the train at this station', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 100) + 0) < 5) {
@@ -391,7 +391,7 @@ function enterIndustrialCommunal(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_train_wait_time', 'industrial');
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_train_timecost', 'industrial', 'communal') + (((s as any).transportVars ?? {})?.['train_wait_pavlovsk'] ?? 0);
-  (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
+  (s as any).minut = ((s as any).minut ?? 0) + ((((s as any).temp_transportVars ?? 0)?.['timecost']));
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = (Math.floor(Math.random() * 100) + 0);
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     qspGoto(s, 'train_incidental', 'events');
@@ -405,7 +405,7 @@ function enterIndustrialCommunal(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/shared/train/oldplat.jpg');
   // TODO-QSP: dynamic text: After <<temp_transportVars[''timecost'']>> minutes you arrive at an old railway ...
-  scene.text(`After ${((s as any).temp_transportVars ?? 0)?.['timecost'] ?? ''} minutes you arrive at an old railway platform near the communal village.`);
+  scene.text(`After ${(((s as any).temp_transportVars ?? 0)?.['timecost'] ?? '')} minutes you arrive at an old railway platform near the communal village.`);
   scene.actions([
     { label: 'Get off the train', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 100) + 0) < 5) {
@@ -422,7 +422,7 @@ function enterIndustrialGadukino(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_train_wait_time', 'industrial');
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_train_timecost', 'industrial', 'gadukino') + (((s as any).transportVars ?? {})?.['train_wait_pavlovsk'] ?? 0);
-  (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
+  (s as any).minut = ((s as any).minut ?? 0) + ((((s as any).temp_transportVars ?? 0)?.['timecost']));
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = (Math.floor(Math.random() * 100) + 0);
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     qspGoto(s, 'train_incidental', 'events');
@@ -436,7 +436,7 @@ function enterIndustrialGadukino(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/shared/train/gadplat.jpg');
   // TODO-QSP: dynamic text: After <<temp_transportVars[''timecost'']>> minutes, the train stops at the small...
-  scene.text(`After ${((s as any).temp_transportVars ?? 0)?.['timecost'] ?? ''} minutes, the train stops at the small station near the village of Gadukino.`);
+  scene.text(`After ${(((s as any).temp_transportVars ?? 0)?.['timecost'] ?? '')} minutes, the train stops at the small station near the village of Gadukino.`);
   scene.actions([
     { label: 'Get off the train', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 100) + 0) < 5) {
@@ -453,7 +453,7 @@ function enterIndustrialPavlovsk(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_train_wait_time', 'industrial');
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_train_timecost', 'industrial', 'pavlovsk') + (((s as any).transportVars ?? {})?.['train_wait_pavlovsk'] ?? 0);
-  (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
+  (s as any).minut = ((s as any).minut ?? 0) + ((((s as any).temp_transportVars ?? 0)?.['timecost']));
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = (Math.floor(Math.random() * 100) + 0);
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     qspGoto(s, 'train_incidental', 'events');
@@ -479,7 +479,7 @@ function enterIndustrialPavlovsk(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/shared/train/pavplat.jpg');
   // TODO-QSP: dynamic text: After <<temp_transportVars[''timecost'']>> minutes, you see the town of Pavlovsk...
-  scene.text(`After ${((s as any).temp_transportVars ?? 0)?.['timecost'] ?? ''} minutes, you see the town of Pavlovsk approaching. Pavlovsk Castle is an impressive sight, even from a long distance. The train stops at its final destination, a platform in Pavlovsk station.`);
+  scene.text(`After ${(((s as any).temp_transportVars ?? 0)?.['timecost'] ?? '')} minutes, you see the town of Pavlovsk approaching. Pavlovsk Castle is an impressive sight, even from a long distance. The train stops at its final destination, a platform in Pavlovsk station.`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Get off the train', handler: (st: GameState) => {
@@ -497,7 +497,7 @@ function enterCommunalCenter(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_train_wait_time', 'communal');
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_train_timecost', 'communal', 'center') + (((s as any).transportVars ?? {})?.['train_wait_center'] ?? 0);
-  (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
+  (s as any).minut = ((s as any).minut ?? 0) + ((((s as any).temp_transportVars ?? 0)?.['timecost']));
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = (Math.floor(Math.random() * 100) + 0);
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     qspGoto(s, 'train_incidental', 'events');
@@ -511,7 +511,7 @@ function enterCommunalCenter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/shared/train/cityplat.jpg');
   // TODO-QSP: dynamic text: After <<temp_transportVars[''timecost'']>> minutes, the train stops at the St. P...
-  scene.text(`After ${((s as any).temp_transportVars ?? 0)?.['timecost'] ?? ''} minutes, the train stops at the St. Petersburg city center station. The large office blocks and shopping centers fill your view.`);
+  scene.text(`After ${(((s as any).temp_transportVars ?? 0)?.['timecost'] ?? '')} minutes, the train stops at the St. Petersburg city center station. The large office blocks and shopping centers fill your view.`);
   scene.actions([
     { label: 'Get off the train', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 100) + 0) < 5) {
@@ -528,7 +528,7 @@ function enterCommunalIndustrial(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_train_wait_time', 'communal');
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_train_timecost', 'communal', 'industrial') + (((s as any).transportVars ?? {})?.['train_wait_center'] ?? 0);
-  (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
+  (s as any).minut = ((s as any).minut ?? 0) + ((((s as any).temp_transportVars ?? 0)?.['timecost']));
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = (Math.floor(Math.random() * 100) + 0);
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     qspGoto(s, 'train_incidental', 'events');
@@ -542,7 +542,7 @@ function enterCommunalIndustrial(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/shared/train/indusplat.jpg');
   // TODO-QSP: dynamic text: After <<temp_transportVars[''timecost'']>> minutes, the train stops at the St. P...
-  scene.text(`After ${((s as any).temp_transportVars ?? 0)?.['timecost'] ?? ''} minutes, the train stops at the St. Petersburg city industrial area station.`);
+  scene.text(`After ${(((s as any).temp_transportVars ?? 0)?.['timecost'] ?? '')} minutes, the train stops at the St. Petersburg city industrial area station.`);
   scene.actions([
     { label: 'Get off the train', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 100) + 0) < 5) {
@@ -559,7 +559,7 @@ function enterCommunalGadukino(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_train_wait_time', 'communal');
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_train_timecost', 'communal', 'gadukino') + (((s as any).transportVars ?? {})?.['train_wait_pavlovsk'] ?? 0);
-  (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
+  (s as any).minut = ((s as any).minut ?? 0) + ((((s as any).temp_transportVars ?? 0)?.['timecost']));
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = (Math.floor(Math.random() * 100) + 0);
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     qspGoto(s, 'train_incidental', 'events');
@@ -573,7 +573,7 @@ function enterCommunalGadukino(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/shared/train/gadplat.jpg');
   // TODO-QSP: dynamic text: After <<temp_transportVars[''timecost'']>> minutes, the train stops at the small...
-  scene.text(`After ${((s as any).temp_transportVars ?? 0)?.['timecost'] ?? ''} minutes, the train stops at the small station near the village of Gadukino.`);
+  scene.text(`After ${(((s as any).temp_transportVars ?? 0)?.['timecost'] ?? '')} minutes, the train stops at the small station near the village of Gadukino.`);
   scene.actions([
     { label: 'Get off the train', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 100) + 0) < 5) {
@@ -590,7 +590,7 @@ function enterCommunalPavlovsk(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_train_wait_time', 'communal');
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_train_timecost', 'communal', 'pavlovsk') + (((s as any).transportVars ?? {})?.['train_wait_pavlovsk'] ?? 0);
-  (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
+  (s as any).minut = ((s as any).minut ?? 0) + ((((s as any).temp_transportVars ?? 0)?.['timecost']));
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = (Math.floor(Math.random() * 100) + 0);
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     qspGoto(s, 'train_incidental', 'events');
@@ -604,7 +604,7 @@ function enterCommunalPavlovsk(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/shared/train/pavplat.jpg');
   // TODO-QSP: dynamic text: After <<temp_transportVars[''timecost'']>> minutes, you see the town of Pavlovsk...
-  scene.text(`After ${((s as any).temp_transportVars ?? 0)?.['timecost'] ?? ''} minutes, you see the town of Pavlovsk approaching. Pavlovsk Castle is an impressive sight, even from a long distance. The train stops at its final destination, a platform in Pavlovsk station.`);
+  scene.text(`After ${(((s as any).temp_transportVars ?? 0)?.['timecost'] ?? '')} minutes, you see the town of Pavlovsk approaching. Pavlovsk Castle is an impressive sight, even from a long distance. The train stops at its final destination, a platform in Pavlovsk station.`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Get off the train', handler: (st: GameState) => {
@@ -622,7 +622,7 @@ function enterGadukinoCenter(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_train_wait_time', 'gadukino');
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_train_timecost', 'gadukino', 'center') + (((s as any).transportVars ?? {})?.['train_wait_center'] ?? 0);
-  (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
+  (s as any).minut = ((s as any).minut ?? 0) + ((((s as any).temp_transportVars ?? 0)?.['timecost']));
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = (Math.floor(Math.random() * 100) + 0);
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     qspGoto(s, 'train_incidental', 'events');
@@ -636,7 +636,7 @@ function enterGadukinoCenter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/shared/train/cityplat.jpg');
   // TODO-QSP: dynamic text: After <<temp_transportVars[''timecost'']>> minutes, the train stops at the St. P...
-  scene.text(`After ${((s as any).temp_transportVars ?? 0)?.['timecost'] ?? ''} minutes, the train stops at the St. Petersburg city center station. The large office blocks and shopping centers fill your view.`);
+  scene.text(`After ${(((s as any).temp_transportVars ?? 0)?.['timecost'] ?? '')} minutes, the train stops at the St. Petersburg city center station. The large office blocks and shopping centers fill your view.`);
   scene.actions([
     { label: 'Get off the train', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 100) + 0) < 5) {
@@ -653,7 +653,7 @@ function enterGadukinoIndustrial(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_train_wait_time', 'gadukino');
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_train_timecost', 'gadukino', 'industrial') + (((s as any).transportVars ?? {})?.['train_wait_center'] ?? 0);
-  (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
+  (s as any).minut = ((s as any).minut ?? 0) + ((((s as any).temp_transportVars ?? 0)?.['timecost']));
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = (Math.floor(Math.random() * 100) + 0);
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     qspGoto(s, 'train_incidental', 'events');
@@ -667,7 +667,7 @@ function enterGadukinoIndustrial(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/shared/train/indusplat.jpg');
   // TODO-QSP: dynamic text: After <<temp_transportVars[''timecost'']>> minutes, the train stops at the St. P...
-  scene.text(`After ${((s as any).temp_transportVars ?? 0)?.['timecost'] ?? ''} minutes, the train stops at the St. Petersburg city industrial area station.`);
+  scene.text(`After ${(((s as any).temp_transportVars ?? 0)?.['timecost'] ?? '')} minutes, the train stops at the St. Petersburg city industrial area station.`);
   scene.actions([
     { label: 'Get off the train', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 100) + 0) < 5) {
@@ -684,7 +684,7 @@ function enterGadukinoCommunal(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_train_wait_time', 'gadukino');
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_train_timecost', 'gadukino', 'communal') + (((s as any).transportVars ?? {})?.['train_wait_center'] ?? 0);
-  (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
+  (s as any).minut = ((s as any).minut ?? 0) + ((((s as any).temp_transportVars ?? 0)?.['timecost']));
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = (Math.floor(Math.random() * 100) + 0);
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     qspGoto(s, 'train_incidental', 'events');
@@ -698,7 +698,7 @@ function enterGadukinoCommunal(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/shared/train/oldplat.jpg');
   // TODO-QSP: dynamic text: After <<temp_transportVars[''timecost'']>> minutes, you arrive at an old railway...
-  scene.text(`After ${((s as any).temp_transportVars ?? 0)?.['timecost'] ?? ''} minutes, you arrive at an old railway platform near the communal village.`);
+  scene.text(`After ${(((s as any).temp_transportVars ?? 0)?.['timecost'] ?? '')} minutes, you arrive at an old railway platform near the communal village.`);
   scene.actions([
     { label: 'Get off the train', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 100) + 0) < 5) {
@@ -715,7 +715,7 @@ function enterGadukinoPavlovsk(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_train_wait_time', 'gadukino');
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_train_timecost', 'gadukino', 'pavlovsk') + (((s as any).transportVars ?? {})?.['train_wait_pavlovsk'] ?? 0);
-  (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
+  (s as any).minut = ((s as any).minut ?? 0) + ((((s as any).temp_transportVars ?? 0)?.['timecost']));
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = (Math.floor(Math.random() * 100) + 0);
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     qspGoto(s, 'train_incidental', 'events');
@@ -729,7 +729,7 @@ function enterGadukinoPavlovsk(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/shared/train/pavplat.jpg');
   // TODO-QSP: dynamic text: After <<temp_transportVars[''timecost'']>> minutes, you see the town of Pavlovsk...
-  scene.text(`After ${((s as any).temp_transportVars ?? 0)?.['timecost'] ?? ''} minutes, you see the town of Pavlovsk approaching. Pavlovsk Castle is an impressive sight, even from a long distance. The train stops at its final destination, a platform in Pavlovsk station.`);
+  scene.text(`After ${(((s as any).temp_transportVars ?? 0)?.['timecost'] ?? '')} minutes, you see the town of Pavlovsk approaching. Pavlovsk Castle is an impressive sight, even from a long distance. The train stops at its final destination, a platform in Pavlovsk station.`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Get off the train', handler: (st: GameState) => {
@@ -747,7 +747,7 @@ function enterPavlovskCenter(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_train_wait_time', 'pavlovsk');
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_train_timecost', 'pavlovsk', 'center') + (((s as any).transportVars ?? {})?.['train_wait_center'] ?? 0);
-  (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
+  (s as any).minut = ((s as any).minut ?? 0) + ((((s as any).temp_transportVars ?? 0)?.['timecost']));
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = (Math.floor(Math.random() * 100) + 0);
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     qspGoto(s, 'train_incidental', 'events');
@@ -779,7 +779,7 @@ function enterPavlovskCenter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/shared/train/cityplat.jpg');
   // TODO-QSP: dynamic text: After <<temp_transportVars[''timecost'']>> minutes, the train stops at the St. P...
-  scene.text(`After ${((s as any).temp_transportVars ?? 0)?.['timecost'] ?? ''} minutes, the train stops at the St. Petersburg city center station. The large office blocks and shopping centers fill your view.`);
+  scene.text(`After ${(((s as any).temp_transportVars ?? 0)?.['timecost'] ?? '')} minutes, the train stops at the St. Petersburg city center station. The large office blocks and shopping centers fill your view.`);
   scene.actions([
     { label: 'Get off the train', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 100) + 0) < 5) {
@@ -796,7 +796,7 @@ function enterPavlovskIndustrial(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_train_wait_time', 'pavlovsk');
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_train_timecost', 'pavlovsk', 'industrial') + (((s as any).transportVars ?? {})?.['train_wait_center'] ?? 0);
-  (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
+  (s as any).minut = ((s as any).minut ?? 0) + ((((s as any).temp_transportVars ?? 0)?.['timecost']));
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = (Math.floor(Math.random() * 100) + 0);
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     qspGoto(s, 'train_incidental', 'events');
@@ -822,7 +822,7 @@ function enterPavlovskIndustrial(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/shared/train/indusplat.jpg');
   // TODO-QSP: dynamic text: After <<temp_transportVars[''timecost'']>> minutes, the train stops at the St. P...
-  scene.text(`After ${((s as any).temp_transportVars ?? 0)?.['timecost'] ?? ''} minutes, the train stops at the St. Petersburg city industrial area station.`);
+  scene.text(`After ${(((s as any).temp_transportVars ?? 0)?.['timecost'] ?? '')} minutes, the train stops at the St. Petersburg city industrial area station.`);
   scene.actions([
     { label: 'Get off the train', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 100) + 0) < 5) {
@@ -839,7 +839,7 @@ function enterPavlovskCommunal(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_train_wait_time', 'pavlovsk');
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_train_timecost', 'pavlovsk', 'communal') + (((s as any).transportVars ?? {})?.['train_wait_center'] ?? 0);
-  (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
+  (s as any).minut = ((s as any).minut ?? 0) + ((((s as any).temp_transportVars ?? 0)?.['timecost']));
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = (Math.floor(Math.random() * 100) + 0);
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     qspGoto(s, 'train_incidental', 'events');
@@ -853,7 +853,7 @@ function enterPavlovskCommunal(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/shared/train/oldplat.jpg');
   // TODO-QSP: dynamic text: After <<temp_transportVars[''timecost'']>> minutes you arrive at an old railway ...
-  scene.text(`After ${((s as any).temp_transportVars ?? 0)?.['timecost'] ?? ''} minutes you arrive at an old railway platform near the communal village.`);
+  scene.text(`After ${(((s as any).temp_transportVars ?? 0)?.['timecost'] ?? '')} minutes you arrive at an old railway platform near the communal village.`);
   scene.actions([
     { label: 'Get off the train', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 100) + 0) < 5) {
@@ -870,7 +870,7 @@ function enterPavlovskGadukino(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'public_indoors';
   qspCall(s, 'transport_functions', 'set_train_wait_time', 'pavlovsk');
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_train_timecost', 'pavlovsk', 'gadukino') + (((s as any).transportVars ?? {})?.['train_wait_center'] ?? 0);
-  (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
+  (s as any).minut = ((s as any).minut ?? 0) + ((((s as any).temp_transportVars ?? 0)?.['timecost']));
   ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = (Math.floor(Math.random() * 100) + 0);
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     qspGoto(s, 'train_incidental', 'events');
@@ -884,7 +884,7 @@ function enterPavlovskGadukino(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/shared/train/gadplat.jpg');
   // TODO-QSP: dynamic text: After <<temp_transportVars[''timecost'']>> minutes, the train stops at the small...
-  scene.text(`After ${((s as any).temp_transportVars ?? 0)?.['timecost'] ?? ''} minutes, the train stops at the small station near the village of Gadukino.`);
+  scene.text(`After ${(((s as any).temp_transportVars ?? 0)?.['timecost'] ?? '')} minutes, the train stops at the small station near the village of Gadukino.`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Get off the train', handler: (st: GameState) => {

@@ -9,8 +9,8 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBody(s: GameState, scene: SceneBuilder): void {
-  (s as any).body_image_msg = 'You are ' + ((s as any).pcs_hgt ?? 0) + 'cm tall and ' + ((s as any).bodyVars ?? 0)?.['desc'] + '.';
-  (s as any).result = ((s as any).bodyVars ?? 0)?.['img'];
+  (s as any).body_image_msg = 'You are ' + ((s as any).pcs_hgt ?? 0) + 'cm tall and ' + (((s as any).bodyVars ?? 0)?.['desc']) + '.';
+  (s as any).result = (((s as any).bodyVars ?? 0)?.['img']);
   // TODO-QSP: end
   scene.build();
 }

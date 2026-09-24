@@ -592,7 +592,7 @@ function enterBjRandom(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).stat ?? 0)?.['bj'] <= 10) {
     // TODO-QSP: dynamic text: Hesitantly bringing your face to <<$boydesc>>''s crotch, you lightly press your ...
-    scene.text(`Hesitantly bringing your face to ${((s as any).boydesc ?? '')}'s crotch, you lightly press your ${((s as any).pc_desc ?? 0)?.['lips'] ?? ''} lips against ${((s as any).xyr ?? '')} dick, tasting the slight saltiness.`);
+    scene.text(`Hesitantly bringing your face to ${((s as any).boydesc ?? '')}'s crotch, you lightly press your ${(((s as any).pc_desc ?? 0)?.['lips'] ?? '')} lips against ${((s as any).xyr ?? '')} dick, tasting the slight saltiness.`);
     scene.text('Then you start flicking your tongue around the head as you wrap your lips further, stroking the shaft in the meantime.');
   } else {
     if (((s as any).stat ?? 0)?.['bj'] <= 25) {
@@ -602,13 +602,13 @@ function enterBjRandom(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).stat ?? 0)?.['bj'] <= 40) {
         // TODO-QSP: dynamic text: You wrap your <<$pc_desc[''lips'']>> lips around the <<$penis_desc>> in front of...
-        scene.text(`You wrap your ${((s as any).pc_desc ?? 0)?.['lips'] ?? ''} lips around the ${((s as any).penis_desc ?? '')} in front of you. You give ${((s as any).boydesc ?? '')} a moment to adjust to the warmthness with more than half his cock resting in your mouth`);
+        scene.text(`You wrap your ${(((s as any).pc_desc ?? 0)?.['lips'] ?? '')} lips around the ${((s as any).penis_desc ?? '')} in front of you. You give ${((s as any).boydesc ?? '')} a moment to adjust to the warmthness with more than half his cock resting in your mouth`);
         // TODO-QSP: dynamic text: Then you greedily lean forwards, taking <<$xyr>> dick deeper in your mouth and s...
         scene.text(`Then you greedily lean forwards, taking ${((s as any).xyr ?? '')} dick deeper in your mouth and start to bob your head back and forth along ${((s as any).xyr ?? '')} ${((s as any).penis_desc ?? '')}`);
       } else {
         if (((s as any).stat ?? 0)?.['bj'] <= 60) {
           // TODO-QSP: dynamic text: Imagining how the hard cock in front of your face would feel between your <<$pc_...
-          scene.text(`Imagining how the hard cock in front of your face would feel between your ${((s as any).pc_desc ?? 0)?.['lips'] ?? ''} lips, you just can't hold back and hungrily take the whole length in your mouth until its tip is resting at the entrance of your throat`);
+          scene.text(`Imagining how the hard cock in front of your face would feel between your ${(((s as any).pc_desc ?? 0)?.['lips'] ?? '')} lips, you just can't hold back and hungrily take the whole length in your mouth until its tip is resting at the entrance of your throat`);
           scene.text('You playfully roll your tongue around the cock you are sucking and try to see if you can swallow the whole length down your throat.');
         } else {
           // TODO-QSP: dynamic text: You lock eyes with <<$boydesc>> and relax your throat as you swallow <<$xyr>> <<...

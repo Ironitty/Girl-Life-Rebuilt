@@ -104,7 +104,7 @@ function enterHomework(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/sex/handjob/kotovhj.jpg');
     scene.text('Picking up the pace for a quick burst of speed, you feel his hot cum burst all over your hand. Pulling back, you smile at the look of bliss on his face before leaning in for one more loving kiss.');
     // TODO-QSP: dynamic text: "I think we''ll have to call the session early if that''s alright with you," you...
-    scene.text(`"I think we'll have to call the session early if that's alright with you," you say, purposefully looking down at the sticky cum covering your hands. "I'm gonna go get cleaned up. You should soon too unless you want ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''} to catch you with your dick out like that."`);
+    scene.text(`"I think we'll have to call the session early if that's alright with you," you say, purposefully looking down at the sticky cum covering your hands. "I'm gonna go get cleaned up. You should soon too unless you want ${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')} to catch you with your dick out like that."`);
     scene.text('"Y-yeah…" he mumbles back, still dazed from his orgasm.');
     scene.actions([
       { label: 'Finish and get up', goto: ['sitrPar', ''] },
@@ -445,7 +445,7 @@ function enterAnatomylesson1(s: GameState, scene: SceneBuilder): void {
     scene.text('You hug him back, feeling the warmth of your bare skin spreading into his shirt. "Aww, thanks Kolka."');
     scene.text('He pulls back from the hug, eagerly sitting in front of you. "Will you help me with this again sometime?"');
     // TODO-QSP: dynamic text: "Of course I will. But you need to let me get dressed before <<$npc_nickname[''A...
-    scene.text(`"Of course I will. But you need to let me get dressed before ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''} or dad sees me helping you out like this. I don't think they'd approve. Do you?" He twists his mouth up and shakes his head. "I didn't think so. So make sure you don't tell anyone else about this. But if you need more help, just ask me and I'll see what I can do," you say, giving him a sweet smile before getting dressed again.`);
+    scene.text(`"Of course I will. But you need to let me get dressed before ${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')} or dad sees me helping you out like this. I don't think they'd approve. Do you?" He twists his mouth up and shakes his head. "I didn't think so. So make sure you don't tell anyone else about this. But if you need more help, just ask me and I'll see what I can do," you say, giving him a sweet smile before getting dressed again.`);
     scene.actions([
       { label: 'Get dressed', handler: (st: GameState) => {
     qspCall(st, 'outfit', 'wear_last_worn');
@@ -824,11 +824,11 @@ function enterAnatomylesson2_2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).npc_QW ?? 0)?.['A34'] === 4) {
     if (((s as any).analPlugIn ?? 0) === 1) {
       // TODO-QSP: dynamic text: You turn your ass towards your brother and lean forward, resting your elbows on ...
-      scene.text(`You turn your ass towards your brother and lean forward, resting your elbows on the chair, revealing your ${((s as any).pc_desc ?? 0)?.['pussy'] ?? ''} pussy and ${((s as any).anustipe ?? '')} anus, which has an anal plug inserted into it.`);
+      scene.text(`You turn your ass towards your brother and lean forward, resting your elbows on the chair, revealing your ${(((s as any).pc_desc ?? 0)?.['pussy'] ?? '')} pussy and ${((s as any).anustipe ?? '')} anus, which has an anal plug inserted into it.`);
       qspCall(s, 'brother', 'anus_check');
     } else {
       // TODO-QSP: dynamic text: You turn around and bend over, exposing your <<$pc_desc[''pussy'']>> pussy and <...
-      scene.text(`You turn around and bend over, exposing your ${((s as any).pc_desc ?? 0)?.['pussy'] ?? ''} pussy and ${((s as any).anustipe ?? '')} asshole to your brother.`);
+      scene.text(`You turn around and bend over, exposing your ${(((s as any).pc_desc ?? 0)?.['pussy'] ?? '')} pussy and ${((s as any).anustipe ?? '')} asshole to your brother.`);
       qspCall(s, 'brother', 'anus_check');
     }
     scene.text('"Oh…" is all Kolka can manage to say as he stares at your nakedness.');
@@ -840,11 +840,11 @@ function enterAnatomylesson2_2(s: GameState, scene: SceneBuilder): void {
     if (((s as any).npc_QW ?? 0)?.['A34'] > 4) {
       if (((s as any).analPlugIn ?? 0) === 1) {
         // TODO-QSP: dynamic text: You turn your ass towards your brother and lean forward, resting your elbows on ...
-        scene.text(`You turn your ass towards your brother and lean forward, resting your elbows on the chair, revealing your ${((s as any).pc_desc ?? 0)?.['pussy'] ?? ''} pussy and ${((s as any).anustipe ?? '')} anus, which has an anal plug inserted into it.`);
+        scene.text(`You turn your ass towards your brother and lean forward, resting your elbows on the chair, revealing your ${(((s as any).pc_desc ?? 0)?.['pussy'] ?? '')} pussy and ${((s as any).anustipe ?? '')} anus, which has an anal plug inserted into it.`);
         qspCall(s, 'brother', 'anus_check');
       } else {
         // TODO-QSP: dynamic text: You turn around and bend over, exposing your <<$pc_desc[''pussy'']>> pussy and <...
-        scene.text(`You turn around and bend over, exposing your ${((s as any).pc_desc ?? 0)?.['pussy'] ?? ''} pussy and ${((s as any).anustipe ?? '')} asshole to your brother.`);
+        scene.text(`You turn around and bend over, exposing your ${(((s as any).pc_desc ?? 0)?.['pussy'] ?? '')} pussy and ${((s as any).anustipe ?? '')} asshole to your brother.`);
         qspCall(s, 'brother', 'anus_check');
       }
       scene.text('"Wow, nice view!" Kolka says after a short pause.');
@@ -929,7 +929,7 @@ function enterAnatomylesson2_4(s: GameState, scene: SceneBuilder): void {
   if (((s as any).npc_QW ?? 0)?.['A34'] === 4) {
     ((s as any).npc_QW = (s as any).npc_QW ?? {})['A34'] = 5;
     // TODO-QSP: dynamic text: You turn and sit down in the chair then spread your legs wide apart. Using the t...
-    scene.text(`You turn and sit down in the chair then spread your legs wide apart. Using the tips of your fingers, you gently pull at your labia, revealing your ${((s as any).pc_desc ?? 0)?.['pussy'] ?? ''} pussy to Kolka.`);
+    scene.text(`You turn and sit down in the chair then spread your legs wide apart. Using the tips of your fingers, you gently pull at your labia, revealing your ${(((s as any).pc_desc ?? 0)?.['pussy'] ?? '')} pussy to Kolka.`);
     scene.text('"Oh…" your brother gasps, voice trembling.');
     scene.text('You let go of your lips and start to stand up, "Okay, that\'s everything? Are you happy?"');
     scene.text('Kolka clasps his hands, almost begging, "Wait, wait, show me more! Please!"');
@@ -945,7 +945,7 @@ function enterAnatomylesson2_4(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).npc_QW ?? 0)?.['A34'] > 4) {
       // TODO-QSP: dynamic text: You turn and sit down in the chair then spread your legs wide. Using the tips of...
-      scene.text(`You turn and sit down in the chair then spread your legs wide. Using the tips of your fingers, you gently pull at your labia, revealing your ${((s as any).pc_desc ?? 0)?.['pussy'] ?? ''} pussy to Kolka.`);
+      scene.text(`You turn and sit down in the chair then spread your legs wide. Using the tips of your fingers, you gently pull at your labia, revealing your ${(((s as any).pc_desc ?? 0)?.['pussy'] ?? '')} pussy to Kolka.`);
       scene.text('Your sibling is mesmerized, "Wow!"');
       scene.text('"Satisfied, now?" you ask.');
       scene.text('Kolka continues to stare at your exposed pussy, "Almost…"');
@@ -1052,7 +1052,7 @@ function enterAnatomylesson2_5(s: GameState, scene: SceneBuilder): void {
       scene.text('You slip your fingers into your burning pussy, the sensation causing you to moan.');
     }
     // TODO-QSP: dynamic text: You watch as Kolka pulls down his pants and his fully erect <<npc_dick[''A34'']>...
-    scene.text(`You watch as Kolka pulls down his pants and his fully erect ${((s as any).npc_dick ?? 0)?.['A34'] ?? ''} cm cock pops free. He kneels between your spread knees and starts to jerk himself off while he watches you play with yourself. Your heart begins to beat faster and faster, you start panting as you feel a primitive heat bubbling up deep from within. Moments later, you hear Kolka groan and watch as ropes of hot cum fly out of his cock, splashing over your crotch, stomach and even your breasts. It's too much for you and soon you join your brother in ecstasy when your own release finally peaks. It takes everything inside of you to keep from screaming in bliss as your hips buck up and down, your fingers rubbing faster as you ride wave after wave of your orgasm.`);
+    scene.text(`You watch as Kolka pulls down his pants and his fully erect ${(((s as any).npc_dick ?? 0)?.['A34'] ?? '')} cm cock pops free. He kneels between your spread knees and starts to jerk himself off while he watches you play with yourself. Your heart begins to beat faster and faster, you start panting as you feel a primitive heat bubbling up deep from within. Moments later, you hear Kolka groan and watch as ropes of hot cum fly out of his cock, splashing over your crotch, stomach and even your breasts. It's too much for you and soon you join your brother in ecstasy when your own release finally peaks. It takes everything inside of you to keep from screaming in bliss as your hips buck up and down, your fingers rubbing faster as you ride wave after wave of your orgasm.`);
     (s as any).orgasm_or = 'yes';
     qspCall(s, 'arousal', 'vaginal_finger', 10, 'masturbate', 'incest', 'no_orgasm_msg');
     qspCall(s, 'arousal', 'foreplay', (-10), 'incest');
@@ -1071,7 +1071,7 @@ function enterAnatomylesson2_5(s: GameState, scene: SceneBuilder): void {
       scene.text('"Kolka…" you whisper to him, breath suddenly filling your lungs.');
       scene.text('He doesn\'t bother to lower his volume, "That was… <i>fucking amazing</i>!"');
       // TODO-QSP: dynamic text: "Kolka, keep your voice down. Do you want <<$npc_nickname[''A29'']>> to hear you...
-      scene.text(`"Kolka, keep your voice down. Do you want ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''} to hear you?" you chide him.`);
+      scene.text(`"Kolka, keep your voice down. Do you want ${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')} to hear you?" you chide him.`);
       scene.text('He looks towards the hallway, "No."');
       scene.text('You move his face back to yours, "Not a word to anybody, do you hear me?"');
       scene.text('"O-of course," he stammers.');
@@ -1107,7 +1107,7 @@ function enterAnatomylesson2_5(s: GameState, scene: SceneBuilder): void {
         scene.text('You slip your fingers into your burning pussy, the sensation causing you to moan.');
       }
       // TODO-QSP: dynamic text: You watch as Kolka pulls down his pants and his fully erect <<npc_dick[''A34'']>...
-      scene.text(`You watch as Kolka pulls down his pants and his fully erect ${((s as any).npc_dick ?? 0)?.['A34'] ?? ''} cm cock pops free. You follow his movements as he walks up to your head and kneels, his hardened member mere inches from your face. You open your mouth, ready to accept him orally. Kolka pushes forward slowly, your ${((s as any).pc_desc ?? 0)?.['lips'] ?? ''} lips moving over his head and inching down his shaft more and more until he stops. He holds you for a moment before he begins gently thrusting into your mouth. Your fingers continue to play with your own body, as you focus on your sibling. You swirl your tongue around his cock and suck, his moans growing deeper all the while.`);
+      scene.text(`You watch as Kolka pulls down his pants and his fully erect ${(((s as any).npc_dick ?? 0)?.['A34'] ?? '')} cm cock pops free. You follow his movements as he walks up to your head and kneels, his hardened member mere inches from your face. You open your mouth, ready to accept him orally. Kolka pushes forward slowly, your ${(((s as any).pc_desc ?? 0)?.['lips'] ?? '')} lips moving over his head and inching down his shaft more and more until he stops. He holds you for a moment before he begins gently thrusting into your mouth. Your fingers continue to play with your own body, as you focus on your sibling. You swirl your tongue around his cock and suck, his moans growing deeper all the while.`);
       scene.text('A fire had been building inside you since you disrobed and now your body is nearly engulfed when you feel Kolka stiffen, his penis twitching inside your mouth. He whispers your name as he cums, his jism filling your mouth and you begin to greedily swallow. Your own orgasm isn\'t far behind; your entire body begins to convulse and you start to suck your brother\'s throbbing dick harder, hoping for more of his delicious cum. The world fades for a few moments…');
       qspCall(s, 'arousal', 'foreplay', 5, 'incest');
       (s as any).orgasm_or = 'custom';
@@ -1147,7 +1147,7 @@ function enterAnatomylesson2_5(s: GameState, scene: SceneBuilder): void {
           scene.text('You slip your fingers into your burning pussy, the sensation causing you to moan.');
         }
         // TODO-QSP: dynamic text: You watch as Kolka pulls down his pants and his fully erect <<npc_dick[''A34'']>...
-        scene.text(`You watch as Kolka pulls down his pants and his fully erect ${((s as any).npc_dick ?? 0)?.['A34'] ?? ''} cm cock pops free. You follow his movements as he walks up to your head and kneels, his hardened member mere inches from your face. You open your mouth, ready to accept him orally. Kolka pushes forward slowly, your ${((s as any).pc_desc ?? 0)?.['lips'] ?? ''} lips moving over his head and inching down his shaft more and more until he stops. He holds you for a moment before he begins gently thrusting into your mouth. Your fingers continue to play with your own body, as you focus on your sibling. You swirl your tongue around his cock and suck, his moans growing deeper all the while.`);
+        scene.text(`You watch as Kolka pulls down his pants and his fully erect ${(((s as any).npc_dick ?? 0)?.['A34'] ?? '')} cm cock pops free. You follow his movements as he walks up to your head and kneels, his hardened member mere inches from your face. You open your mouth, ready to accept him orally. Kolka pushes forward slowly, your ${(((s as any).pc_desc ?? 0)?.['lips'] ?? '')} lips moving over his head and inching down his shaft more and more until he stops. He holds you for a moment before he begins gently thrusting into your mouth. Your fingers continue to play with your own body, as you focus on your sibling. You swirl your tongue around his cock and suck, his moans growing deeper all the while.`);
         scene.text('A fire had been building inside you since you disrobed and now your body is nearly engulfed when you feel Kolka stiffen, his penis twitching inside your mouth. He whispers your name as he cums, his jism filling your mouth and you begin to greedily swallow. Your own orgasm isn\'t far behind; your entire body begins to convulse and you start to suck your brother\'s throbbing dick harder, hoping for more of his delicious cum. The world fades for a few moments…');
         qspCall(s, 'arousal', 'foreplay', 5, 'incest');
         (s as any).orgasm_or = 'custom';
@@ -1353,7 +1353,7 @@ function enterAnatomylesson4(s: GameState, scene: SceneBuilder): void {
     scene.text('Your smile gets a bit more strength when you reply, "Good? Kolka you blew my fucking mind!"');
     scene.text('"Well, I had a great teacher didn\'t I?" he says before starting to lick your pussy again.');
     // TODO-QSP: dynamic text: "Ohhh! Kolka~!" you say, pushing his head away with more than a small amount of ...
-    scene.text(`"Ohhh! Kolka~!" you say, pushing his head away with more than a small amount of regret. "As much as I'd love to let you keep going, we have to stop now. We don't want ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''} or dad to catch us."`);
+    scene.text(`"Ohhh! Kolka~!" you say, pushing his head away with more than a small amount of regret. "As much as I'd love to let you keep going, we have to stop now. We don't want ${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')} or dad to catch us."`);
     scene.text('"Yeah I know…" he says in a disappointed tone. "You just taste so good I want more!"');
     scene.text('You\'re so tempted but your fear outweighs your temptation right now. "Maybe some other time kiddo," you say before you find the strength to put your clothes on while Kolka packs up his schoolwork.');
     scene.actions([
@@ -1406,7 +1406,7 @@ function enterAnatomylessonConceptionSexBc(s: GameState, scene: SceneBuilder): v
       { label: 'You\'re on birth control', handler: (st: GameState) => {
     ((st as any).brotherQW = (st as any).brotherQW ?? {})['creampie_allowance'] = ((st as any).daystart ?? 0);
     // TODO-QSP: dynamic text: "Don''t worry," you coo. "I''m on the <<$birth_control[''type'']>>."
-    scene.text(`"Don't worry," you coo. "I'm on the ${((st as any).birth_control ?? 0)?.['type'] ?? ''}."`);
+    scene.text(`"Don't worry," you coo. "I'm on the ${(((st as any).birth_control ?? 0)?.['type'] ?? '')}."`);
     scene.actions([
       { label: 'Continue with the lesson', goto: ['brother_lessons', 'anatomylesson_conception_sex1'] },
     ]);

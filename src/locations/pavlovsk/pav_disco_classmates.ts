@@ -108,7 +108,7 @@ function enterClassmates(s: GameState, scene: SceneBuilder): void {
     (s as any).i = 1;
     // TODO-QSP: :discogop_loop
     if (((s as any).npc_grupTipe ?? 0)['A' + (((s as any).i ?? 0))] === 4  &&  ((s as any).discoenable ?? 0)['A' + (((s as any).i ?? 0))] === 1  &&  ((s as any).discobloc ?? 0)['A' + (((s as any).i ?? 0))] !== ((s as any).daystart ?? 0)) {
-      (s as any).loopname = ((s as any).npc_nickname ?? 0)?.['A' + String(((s as any).i ?? 0))];
+      (s as any).loopname = (((s as any).npc_nickname ?? 0)?.['A' + String(((s as any).i ?? 0))]);
       (s as any).loopname = (String(((s as any).loopname ?? 0)).toLowerCase());
       if ((!((s as any).i2 ?? 0))) {
         // TODO-QSP: $table_disco += '<tr>'
@@ -176,7 +176,7 @@ function enterClassmates(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterJocksList(s: GameState, scene: SceneBuilder): void {
-  (s as any).listname = ((s as any).npc_nickname ?? 0)?.['A' + String(((s as any).i ?? 0))];
+  (s as any).listname = (((s as any).npc_nickname ?? 0)?.['A' + String(((s as any).i ?? 0))]);
   (s as any).listname = (String(((s as any).listname ?? 0)).toLowerCase());
   qspGoto(s, 'pav_disco_jocks', ((s as any).listname ?? ''));
   // TODO-QSP: end
@@ -184,7 +184,7 @@ function enterJocksList(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCoolList(s: GameState, scene: SceneBuilder): void {
-  (s as any).listname = ((s as any).npc_nickname ?? 0)?.['A' + String(((s as any).i ?? 0))];
+  (s as any).listname = (((s as any).npc_nickname ?? 0)?.['A' + String(((s as any).i ?? 0))]);
   (s as any).listname = (String(((s as any).listname ?? 0)).toLowerCase());
   qspGoto(s, 'pav_disco_coolkids', ((s as any).listname ?? ''));
   // TODO-QSP: end
@@ -192,7 +192,7 @@ function enterCoolList(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGopList(s: GameState, scene: SceneBuilder): void {
-  (s as any).listname = ((s as any).npc_nickname ?? 0)?.['A' + String(((s as any).i ?? 0))];
+  (s as any).listname = (((s as any).npc_nickname ?? 0)?.['A' + String(((s as any).i ?? 0))]);
   (s as any).listname = (String(((s as any).listname ?? 0)).toLowerCase());
   qspGoto(s, 'pav_disco_gopniks', ((s as any).listname ?? ''));
   // TODO-QSP: end

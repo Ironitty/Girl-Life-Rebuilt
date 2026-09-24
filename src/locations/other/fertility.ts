@@ -17,7 +17,7 @@ function enterAutoPill(s: GameState, scene: SceneBuilder): void {
   (s as any).tabletkipi = 0;
   (s as any).tabletkipt = 0;
   if (((s as any).tabletkicheck ?? 0) === 1) {
-    (s as any).temp_img = '<img height = ' + ((s as any).stat_cfg ?? 0)?.['icon_height'] + ' src="images/system/icons/status/bc_pill.png"><br>';
+    (s as any).temp_img = '<img height = ' + (((s as any).stat_cfg ?? 0)?.['icon_height']) + ' src="images/system/icons/status/bc_pill.png"><br>';
     if (((s as any).mc_inventory ?? 0)?.['contraceptive_pill'] === 0  &&  ((s as any).pillsleft ?? 0)?.[String((s as any).ptype ?? 0)] === 0) {
       (s as any).tabletkicheck = 0;
       qspCall(s, 'notification', 'add', '' + ((s as any).temp_img ?? 0) + 'You are out of birth control pills.');
@@ -359,7 +359,7 @@ function enterCumArrcheat(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: $cycletemp[8] = ''
   }
   // TODO-QSP: dynamic text: You are currently <<$cycletemp[1]>><<$cycletemp[2]>><<$cycletemp[4]>> <<$cyclete...
-  scene.text(`You are currently ${(((s as any).cycletemp ?? 0)?.[1] ?? '')}${(((s as any).cycletemp ?? 0)?.[2] ?? '')}${(((s as any).cycletemp ?? 0)?.[4] ?? '')} ${(((s as any).cycletemp ?? 0)?.[8] ?? '')} Your womb damage is at ${((s as any).sterilewb ?? '')} and your Ovary damage is at ${((s as any).sterileov ?? '')}${(((s as any).cycletemp ?? 0)?.[2] ?? '')}. You have been cummed on or inside yourself ${((s as any).stat ?? 0)?.['cum_count'] ?? ''} times.`);
+  scene.text(`You are currently ${(((s as any).cycletemp ?? 0)?.[1] ?? '')}${(((s as any).cycletemp ?? 0)?.[2] ?? '')}${(((s as any).cycletemp ?? 0)?.[4] ?? '')} ${(((s as any).cycletemp ?? 0)?.[8] ?? '')} Your womb damage is at ${((s as any).sterilewb ?? '')} and your Ovary damage is at ${((s as any).sterileov ?? '')}${(((s as any).cycletemp ?? 0)?.[2] ?? '')}. You have been cummed on or inside yourself ${(((s as any).stat ?? 0)?.['cum_count'] ?? '')} times.`);
   (s as any).cycletemp_cnt = 0;
   if (((s as any).cycletemp_cnt ?? 0) > 0) {
     (s as any).cycletemp = 0;

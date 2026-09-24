@@ -59,7 +59,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/city/mikhail/terminal/trfatherqw_17.jpg');
     scene.text('The last time you met your father you spent a lot of time talking about yourself and about the family, but now you wanted to hear his side of the story.');
     // TODO-QSP: dynamic text: "Every time you were brought up, <<$npc_nickname[''A29'']>> told me that you alw...
-    scene.text(`"Every time you were brought up, ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''} told me that you always were drinking and swearing a lot and in the end she could not take it anymore so she filed for divorce. Was she telling me the truth?`);
+    scene.text(`"Every time you were brought up, ${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')} told me that you always were drinking and swearing a lot and in the end she could not take it anymore so she filed for divorce. Was she telling me the truth?`);
     // TODO-QSP: dynamic text: "Well <<$pcs_nickname>>, I always knew your mother would be bad talking me, but ...
     scene.text(`"Well ${((st as any).pcs_nickname ?? '')}, I always knew your mother would be bad talking me, but you must believe me while there is some truth to it many things have surely been exaggerated.`);
     scene.text('As your father tells you this, you look in his eyes and can only see sadness…');
@@ -70,7 +70,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/city/mikhail/terminal/trfatherqw_19.jpg');
     scene.text('Without any hesitation you decided to support your father, gently touching the palm of his hand.');
     // TODO-QSP: dynamic text: "Don''t worry dad, I''ve noticed the sadness in your eyes. <<$npc_nickname[''A29...
-    scene.text(`"Don't worry dad, I've noticed the sadness in your eyes. ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''} changed the story so many times I knew something was off. So tell me the truth, what happened?`);
+    scene.text(`"Don't worry dad, I've noticed the sadness in your eyes. ${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')} changed the story so many times I knew something was off. So tell me the truth, what happened?`);
     scene.text('"So it was difficult time for the both of us. Your mother was always stressed, yelling at me to take better care of the family. And I really tried my best I always gave her what I\'ve earned so she could buy stuff for the two of you. We tried working it out but the whole situation just escalated.');
     scene.text('There was no affection between us anymore and we became cold to each other. At the end she began to mysteriously disappear in the evening just as I came back from work, and I was sure she was cheating on me with someone. As she did that I began to spend more time with my friends, drinking. Yes, sometimes I had a bit too much to drink, but you must understand it wasn\'t a pleasant life we were living…');
     scene.text('You notice that your father is having a hard time with this and you decide to not pry further.');
@@ -558,7 +558,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.text('It doesn\'t take long before your father begins groaning as his cock twitches, quickly finishing in your mouth, letting all the cum dribble into your mouth so you could swallow it…');
     scene.text('As you swallow the remaining sperm, you turn to Mikhail with a serious look…');
     // TODO-QSP: dynamic text: "We should be safe now that you''ve cum. I demand that you fuck me, otherwise I'...
-    scene.text(`"We should be safe now that you've cum. I demand that you fuck me, otherwise I'll go and tell ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''} that you forced me to suck your cock."`);
+    scene.text(`"We should be safe now that you've cum. I demand that you fuck me, otherwise I'll go and tell ${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')} that you forced me to suck your cock."`);
     scene.actions([
       { label: 'Drag him out', handler: (st: GameState) => {
     scene.img('images/characters/city/mikhail/sex/trfatherqw_43.jpg');

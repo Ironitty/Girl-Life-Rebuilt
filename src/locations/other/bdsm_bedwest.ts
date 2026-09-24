@@ -121,7 +121,7 @@ function enterCheckGuestEvents(s: GameState, scene: SceneBuilder): void {
   if ((Math.floor(Math.random() * 100) + 0) < 96) {
     // TODO-QSP: exit
   }
-  qspGoto(s, 'bdsm_bedwest', qspUntranslated(s, "''guest_event_<<rand(1'", { location: "bdsm_bedwest" }), '2)>>');
+  qspGoto(s, 'bdsm_bedwest', qspUntranslated(s, "guest_event_(Math.floor(Math.random() * 2) + 1)", { location: "bdsm_bedwest" }));
   // TODO-QSP: end
   scene.build();
 }

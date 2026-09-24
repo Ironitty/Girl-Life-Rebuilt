@@ -113,7 +113,7 @@ function enterSetCoffeeHoleChats(s: GameState, scene: SceneBuilder): void {
   if (((s as any).natbel_here ?? 0)) {
     (s as any).temp_familiar_here = 1;
     // TODO-QSP: dynamic text: You spot <<$npc_usedname[''A16'']>> sitting at a corner table.
-    scene.text(`You spot ${((s as any).npc_usedname ?? 0)?.['A16'] ?? ''} sitting at a corner table.`);
+    scene.text(`You spot ${(((s as any).npc_usedname ?? 0)?.['A16'] ?? '')} sitting at a corner table.`);
   }
   return;
   // TODO-QSP: end

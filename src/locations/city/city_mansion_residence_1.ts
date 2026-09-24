@@ -93,11 +93,11 @@ function enterYfoyer(s: GameState, scene: SceneBuilder): void {
       } else {
         if (((s as any).hour ?? 0) > 5) {
           // TODO-QSP: dynamic text: <br>Your dog <a href="exec: gt ''pet_dog'', ''start''"><<$rex[''name'']>></a> is...
-          scene.text(`<br>Your dog <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027pet_dog/u0027, /u0027start/u0027); return false;">${((s as any).rex ?? 0)?.['name'] ?? ''}</a> is lying on the floor.<br>`);
+          scene.text(`<br>Your dog <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027pet_dog/u0027, /u0027start/u0027); return false;">${(((s as any).rex ?? 0)?.['name'] ?? '')}</a> is lying on the floor.<br>`);
         } else {
           if (((s as any).hour ?? 0) < 6) {
             // TODO-QSP: dynamic text: <br><<$rex[''name'']>> is sleeping in his dog basket.<br>
-            scene.text(`<br>${((s as any).rex ?? 0)?.['name'] ?? ''} is sleeping in his dog basket.<br>`);
+            scene.text(`<br>${(((s as any).rex ?? 0)?.['name'] ?? '')} is sleeping in his dog basket.<br>`);
           }
         }
       }
@@ -208,7 +208,7 @@ function enterYkitchen(s: GameState, scene: SceneBuilder): void {
     scene.text('A well stocked kitchen containing all the necessities to make whatever meal you please.');
     if (((s as any).mc_inventory ?? 0)?.['dish_plates'] > 0) {
       // TODO-QSP: dynamic text: You have <b><<mc_inventory[''dish_plates'']>></b> clean plates left.
-      scene.text(`You have <b>${((s as any).mc_inventory ?? 0)?.['dish_plates'] ?? ''}</b> clean plates left.`);
+      scene.text(`You have <b>${(((s as any).mc_inventory ?? 0)?.['dish_plates'] ?? '')}</b> clean plates left.`);
     } else {
       scene.text('<center><b>You don\'t have any clean plates left.</b></center>');
     }
@@ -229,7 +229,7 @@ function enterYkitchen(s: GameState, scene: SceneBuilder): void {
         (s as any).edagot = '<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027kit_din/u0027, /u0027edagotd/u0027); return false;">Cook a meal</a>';
       }
       // TODO-QSP: dynamic text: 'There''s enough food for <b><<mc_inventory[''food_basic'']>></b> ' + iif(mc_inv...
-      scene.text(`There's enough food for <b>${((s as any).mc_inventory ?? 0)?.['food_basic'] ?? ''}</b> ` + ((((s as any).mc_inventory ?? 0)?.['food_basic'] === 1) ? ('serving') : ('servings')) + `. ${((s as any).edagot ?? '')}`);
+      scene.text(`There's enough food for <b>${(((s as any).mc_inventory ?? 0)?.['food_basic'] ?? '')}</b> ` + ((((s as any).mc_inventory ?? 0)?.['food_basic'] === 1) ? ('serving') : ('servings')) + `. ${((s as any).edagot ?? '')}`);
     } else {
       if (((s as any).mc_inventory ?? 0)?.['food_diet'] === 0  &&  ((s as any).mc_inventory ?? 0)?.['food_basic'] === 0) {
         scene.text('<center><b>The fridge is empty. You have nothing to eat.</b></center>');

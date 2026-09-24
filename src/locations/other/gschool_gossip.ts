@@ -1701,7 +1701,7 @@ function enterSoniaDiscoGossip(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  ((s as any).soniafall = (s as any).soniafall ?? {})['gossip'] = ((s as any).soniaQW ?? 0)?.['soniafall'];
+  ((s as any).soniafall = (s as any).soniafall ?? {})['gossip'] = (((s as any).soniaQW ?? 0)?.['soniafall']);
   // TODO-QSP: end
   scene.build();
 }

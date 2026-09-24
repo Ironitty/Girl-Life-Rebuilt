@@ -28,7 +28,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'placer_man', '');
         scene.text('You don\'t think you\'ve ever seen them before as the guys walk towards you.');
         // TODO-QSP: dynamic text: "<<$placerStringParameter[''text_start_meet'']>>"
-        scene.text(`"${((s as any).placerStringParameter ?? 0)?.['text_start_meet'] ?? ''}"`);
+        scene.text(`"${(((s as any).placerStringParameter ?? 0)?.['text_start_meet'] ?? '')}"`);
         scene.actions([
           { label: 'Meet', goto: ['placer_act', ''] },
         ]);
@@ -66,7 +66,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'placer_man', '');
         scene.text('You don\'t think you\'ve ever seen them before as the guys walk towards you.');
         // TODO-QSP: dynamic text: "<<$placerStringParameter[''text_start_meet'']>>"
-        scene.text(`"${((s as any).placerStringParameter ?? 0)?.['text_start_meet'] ?? ''}"`);
+        scene.text(`"${(((s as any).placerStringParameter ?? 0)?.['text_start_meet'] ?? '')}"`);
         scene.actions([
           { label: 'Meet', goto: ['placer_act', ''] },
         ]);

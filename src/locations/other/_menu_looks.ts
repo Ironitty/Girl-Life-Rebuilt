@@ -50,7 +50,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   scene.img(`${((s as any).img_temp ?? '')}`);
   if (((s as any).face_style ?? 0)?.['avatar_hair'] !== '') {
     // TODO-QSP: dynamic text: Your hair: <<$face_style[''avatar_hair'']>>.
-    scene.text(`Your hair: ${((s as any).face_style ?? 0)?.['avatar_hair'] ?? ''}.`);
+    scene.text(`Your hair: ${(((s as any).face_style ?? 0)?.['avatar_hair'] ?? '')}.`);
   } else {
     // TODO-QSP: dynamic text: <<$hair>>
     scene.text(`${((s as any).hair ?? '')}`);
@@ -64,16 +64,16 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.text(`Your hair should be straight for another ${((s as any).straight ?? '')} days.`);
   }
   // TODO-QSP: dynamic text: <<$pc_descFull[''lip'']>>
-  scene.text(`${((s as any).pc_descFull ?? 0)?.['lip'] ?? ''}`);
+  scene.text(`${(((s as any).pc_descFull ?? 0)?.['lip'] ?? '')}`);
   // TODO-QSP: $pcs_teeth_txt
   // TODO-QSP: dynamic text: <<$pc_descFull[''throat'']>>
-  scene.text(`${((s as any).pc_descFull ?? 0)?.['throat'] ?? ''}`);
+  scene.text(`${(((s as any).pc_descFull ?? 0)?.['throat'] ?? '')}`);
   // TODO-QSP: dynamic text: <<$pc_descFull[''skin'']>>
-  scene.text(`${((s as any).pc_descFull ?? 0)?.['skin'] ?? ''}`);
+  scene.text(`${(((s as any).pc_descFull ?? 0)?.['skin'] ?? '')}`);
   // TODO-QSP: dynamic text: <<$pc_descFull[''eyes'']>>
-  scene.text(`${((s as any).pc_descFull ?? 0)?.['eyes'] ?? ''}`);
+  scene.text(`${(((s as any).pc_descFull ?? 0)?.['eyes'] ?? '')}`);
   // TODO-QSP: dynamic text: <<$pc_descFull[''makeup'']>>.
-  scene.text(`${((s as any).pc_descFull ?? 0)?.['makeup'] ?? ''}.`);
+  scene.text(`${(((s as any).pc_descFull ?? 0)?.['makeup'] ?? '')}.`);
   // TODO-QSP: $settings['table_end']
   // TODO-QSP: end
   scene.build();
@@ -89,7 +89,7 @@ function enterFace(s: GameState, scene: SceneBuilder): void {
   scene.img(`${((s as any).img_temp ?? '')}`);
   if (((s as any).face_style ?? 0)?.['avatar_hair'] !== '') {
     // TODO-QSP: dynamic text: Your hair: <<$face_style[''avatar_hair'']>>.
-    scene.text(`Your hair: ${((s as any).face_style ?? 0)?.['avatar_hair'] ?? ''}.`);
+    scene.text(`Your hair: ${(((s as any).face_style ?? 0)?.['avatar_hair'] ?? '')}.`);
   } else {
     // TODO-QSP: dynamic text: <<$hair>>
     scene.text(`${((s as any).hair ?? '')}`);
@@ -103,16 +103,16 @@ function enterFace(s: GameState, scene: SceneBuilder): void {
     scene.text(`Your hair should be straight for another ${((s as any).straight ?? '')} days.`);
   }
   // TODO-QSP: dynamic text: <<$pc_descFull[''lip'']>>
-  scene.text(`${((s as any).pc_descFull ?? 0)?.['lip'] ?? ''}`);
+  scene.text(`${(((s as any).pc_descFull ?? 0)?.['lip'] ?? '')}`);
   // TODO-QSP: $pcs_teeth_txt
   // TODO-QSP: dynamic text: <<$pc_descFull[''throat'']>>
-  scene.text(`${((s as any).pc_descFull ?? 0)?.['throat'] ?? ''}`);
+  scene.text(`${(((s as any).pc_descFull ?? 0)?.['throat'] ?? '')}`);
   // TODO-QSP: dynamic text: <<$pc_descFull[''skin'']>>
-  scene.text(`${((s as any).pc_descFull ?? 0)?.['skin'] ?? ''}`);
+  scene.text(`${(((s as any).pc_descFull ?? 0)?.['skin'] ?? '')}`);
   // TODO-QSP: dynamic text: <<$pc_descFull[''eyes'']>>
-  scene.text(`${((s as any).pc_descFull ?? 0)?.['eyes'] ?? ''}`);
+  scene.text(`${(((s as any).pc_descFull ?? 0)?.['eyes'] ?? '')}`);
   // TODO-QSP: dynamic text: <<$pc_descFull[''makeup'']>>.
-  scene.text(`${((s as any).pc_descFull ?? 0)?.['makeup'] ?? ''}.`);
+  scene.text(`${(((s as any).pc_descFull ?? 0)?.['makeup'] ?? '')}.`);
   // TODO-QSP: $settings['table_end']
   // TODO-QSP: end
   scene.build();
@@ -538,56 +538,56 @@ function enterPiercing(s: GameState, scene: SceneBuilder): void {
 
 function enterPiercingEars(s: GameState, scene: SceneBuilder): void {
   qspCall(s, '$menu_looks', 'piercing');
-  scene.img(`images/pc/body/piercings/c${((s as any).pcs_piercings ?? 0)?.['ears'] ?? ''}.jpg`);
+  scene.img(`images/pc/body/piercings/c${(((s as any).pcs_piercings ?? 0)?.['ears'] ?? '')}.jpg`);
   // TODO-QSP: end
   scene.build();
 }
 
 function enterPiercingNose(s: GameState, scene: SceneBuilder): void {
   qspCall(s, '$menu_looks', 'piercing');
-  scene.img(`images/pc/body/piercings/d${((s as any).pcs_piercings ?? 0)?.['nose'] ?? ''}.jpg`);
+  scene.img(`images/pc/body/piercings/d${(((s as any).pcs_piercings ?? 0)?.['nose'] ?? '')}.jpg`);
   // TODO-QSP: end
   scene.build();
 }
 
 function enterPiercingBrow(s: GameState, scene: SceneBuilder): void {
   qspCall(s, '$menu_looks', 'piercing');
-  scene.img(`images/pc/body/piercings/e${((s as any).pcs_piercings ?? 0)?.['brow'] ?? ''}.jpg`);
+  scene.img(`images/pc/body/piercings/e${(((s as any).pcs_piercings ?? 0)?.['brow'] ?? '')}.jpg`);
   // TODO-QSP: end
   scene.build();
 }
 
 function enterPiercingLip(s: GameState, scene: SceneBuilder): void {
   qspCall(s, '$menu_looks', 'piercing');
-  scene.img(`images/pc/body/piercings/b${((s as any).pcs_piercings ?? 0)?.['lip'] ?? ''}.jpg`);
+  scene.img(`images/pc/body/piercings/b${(((s as any).pcs_piercings ?? 0)?.['lip'] ?? '')}.jpg`);
   // TODO-QSP: end
   scene.build();
 }
 
 function enterPiercingTongue(s: GameState, scene: SceneBuilder): void {
   qspCall(s, '$menu_looks', 'piercing');
-  scene.img(`images/pc/body/piercings/a${((s as any).pcs_piercings ?? 0)?.['tongue'] ?? ''}.jpg`);
+  scene.img(`images/pc/body/piercings/a${(((s as any).pcs_piercings ?? 0)?.['tongue'] ?? '')}.jpg`);
   // TODO-QSP: end
   scene.build();
 }
 
 function enterPiercingNavel(s: GameState, scene: SceneBuilder): void {
   qspCall(s, '$menu_looks', 'piercing');
-  scene.img(`images/pc/body/piercings/n${((s as any).pcs_piercings ?? 0)?.['navel'] ?? ''}.jpg`);
+  scene.img(`images/pc/body/piercings/n${(((s as any).pcs_piercings ?? 0)?.['navel'] ?? '')}.jpg`);
   // TODO-QSP: end
   scene.build();
 }
 
 function enterPiercingNipples(s: GameState, scene: SceneBuilder): void {
   qspCall(s, '$menu_looks', 'piercing');
-  scene.img(`images/pc/body/piercings/f${((s as any).pcs_piercings ?? 0)?.['nipples'] ?? ''}.jpg`);
+  scene.img(`images/pc/body/piercings/f${(((s as any).pcs_piercings ?? 0)?.['nipples'] ?? '')}.jpg`);
   // TODO-QSP: end
   scene.build();
 }
 
 function enterPiercingPussy(s: GameState, scene: SceneBuilder): void {
   qspCall(s, '$menu_looks', 'piercing');
-  scene.img(`images/pc/body/piercings/g${((s as any).pcs_piercings ?? 0)?.['pussy'] ?? ''}.jpg`);
+  scene.img(`images/pc/body/piercings/g${(((s as any).pcs_piercings ?? 0)?.['pussy'] ?? '')}.jpg`);
   // TODO-QSP: end
   scene.build();
 }
