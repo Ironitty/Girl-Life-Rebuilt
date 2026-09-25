@@ -38,7 +38,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'willpower', 'pay', 'resist');
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/arthur/artur.jpg');
-    // TODO-QSP: dynamic text: Sensing the man has "other" intentions, you start to refuse and back away from t...
     scene.text(`Sensing the man has "other" intentions, you start to refuse and back away from the Armenian. He puts his hand out to stop your retreat and says "Hey, I mean no offense. Perhaps my Russian is no good. Nothing bad will happen I swear! I'll even give you ${((((st as any).bag ?? 0)===0) ? ('a handbag') : ('cosmetics'))} if you come and spend some time with me."`);
     qspCall(st, 'willpower', 'drink', 'resist');
     if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
@@ -133,16 +132,13 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterWork_1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/resident/arthur/artur.jpg');
-  // TODO-QSP: dynamic text: "Good job <<$pcs_nickname>>, but time has come to get to work darling."
   scene.text(`"Good job ${((s as any).pcs_nickname ?? '')}, but time has come to get to work darling."`);
-  // TODO-QSP: end
   scene.actions([
     { label: 'Trade', handler: (st: GameState) => {
     (st as any).hour = 18;
@@ -159,7 +155,6 @@ function enterWork_1(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'money', 'earn', 1250);
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/arthur/arturqw_4.jpg');
-    // TODO-QSP: dynamic text: Arthur comes up behind you and firmly grabs a handful of your ass. "<<$pcs_nickn...
     scene.text(`Arthur comes up behind you and firmly grabs a handful of your ass. "${((st as any).pcs_nickname ?? '')}, here you go, you earned this." He hands you ${qspFunc(s, 'money', 'string_profit', 1250)}.`);
     scene.text('"I like helping you very much, thank you very much Arturik." You look at him with grateful eyes and take the money.');
     scene.text('"Well, you know, the sight of your beautiful eyes nearly overwhelm me every time I see them. So does your tight ass." He says, smiling lecherously at you');
@@ -182,7 +177,6 @@ function enterWork_2(s: GameState, scene: SceneBuilder): void {
     scene.text('"I see my new, super sexy secretary came." Arthur smiles while eyeing you lustfully.');
   }
   scene.text('You quickly get to work. "We\'ve got the usual paperwork to complete." Arthur instructs you as you begin.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Work', handler: (st: GameState) => {
     (st as any).hour = 17;
@@ -196,7 +190,6 @@ function enterWork_2(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'money', 'earn', 2500);
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/arthur/arturqw_7.jpg');
-    // TODO-QSP: dynamic text: "<<$pcs_nickname>> that looks perfect! Now that the accounts are taken care of, ...
     scene.text(`"${((st as any).pcs_nickname ?? '')} that looks perfect! Now that the accounts are taken care of, I can relax." Arthur says, leaning back in his chair in a relaxed pose.`);
     scene.text('"Yes, but you\'ve still got a lot I haven\'t finished yet. There is far more to do." You say, concerned.');
     scene.text('"Oh well, we will have time to figure it all out. Some other night, perhaps." He says nonchalantly.');

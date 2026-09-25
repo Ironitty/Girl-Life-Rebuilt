@@ -17,7 +17,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   (s as any).picrand = (Math.floor(Math.random() * 2) + 0);
   qspGoto(s, 'sexdvanadva', 'var');
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -78,9 +77,7 @@ function enterVar(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if (((s as any).sexvar ?? 0) < 3) {
     scene.actions([
-      { label: 'More', handler: (st: GameState) => {
-    // TODO-QSP: xgt 'sexdvanadva', 'var'
-  } },
+      { label: 'More', goto: ['sexdvanadva', 'var'] },
     ]);
   }
   if (((s as any).sexvar ?? 0) >= 3) {
@@ -88,7 +85,6 @@ function enterVar(s: GameState, scene: SceneBuilder): void {
       { label: 'Finish', goto: ['sexdvanadva', 'end'] },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -97,13 +93,14 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcgeneratec', '0', 'Random Guy', (Math.floor(Math.random() * 28) + 18));
   qspCall(s, 'boyStat', '$npclastgenerated');
   qspCall(s, 'cum_call', 'mouth_swallow', 'Random Guy');
+  (s as any).sexvar = undefined;
+  (s as any).sexdvarand = undefined;
   if (((s as any).pcs_horny ?? 0) >= 80) {
     (s as any).orgasm_or = 'yes';
   }
   scene.img(`images/locations/shared/sex/sexdvanadva/cum${((s as any).picrand ?? '')}.jpg`);
   scene.text('They spill semen all over both of you. You lick it off each other and share a deep kiss before you both swallow.');
   qspCall(s, 'arousal', 'end');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     if (((st as any).kafesexrand ?? 0) === 1) {

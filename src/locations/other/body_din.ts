@@ -33,7 +33,9 @@ function enterPregnancyVisibility(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
+  (s as any).pregchemTemp = undefined;
+  (s as any).clothingworntypeTemp = undefined;
+  (s as any).clothingwornnumberTemp = undefined;
   scene.build();
 }
 

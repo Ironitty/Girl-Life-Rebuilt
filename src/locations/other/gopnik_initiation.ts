@@ -12,8 +12,9 @@ function enterInitiation(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/events/gopnikinvite/lenameet.jpg');
   scene.text('You meet Lena by the apartment garages and find her and Lera already there, squatting and smoking while they wait for you. When you get close, Lena stands up. "You ready little bunny?" Before you can even answer, she starts off down the street with Lera in tow, talking as she goes. "We\'re going to that little liquor store in town."');
   scene.text('You follow them, not sure what to say. You know this is likely going to be a test of some sort to join them, you\'re just not sure what it is.');
+  (s as any).gopnik_initiation = undefined;
+  (s as any).gopnik_initiation_day = undefined;
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the store', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/events/gopnikinvite/liqstoreout.jpg');
@@ -93,7 +94,6 @@ function enterWalkoff(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/events/gopnikinvite/liqstoreout.jpg');
   scene.text('You shake your head again. "Sorry I wasted your time then." With that, you walk away while Lena and Lera shout out all kind of names at you. You know you\'ve made a target of yourself to the gopniks, but you\'re no thief. You don\'t even know why you thought joining them was a good idea in the first place.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the gang', goto: ['pav_residential', ''] },
   ]);
@@ -106,7 +106,6 @@ function enterSomethingelse(s: GameState, scene: SceneBuilder): void {
   scene.text('Lena gives you a once over while Lera gets a devious look on her face as she leans over and whispers something to Lena, who listens and laughs before nodding. "Okay slut, you want in that bad? Are you willing to do anything for the gopniks to become one of us?"');
   scene.text('You nod your head and she crosses her arms and gives you a look of slight disdain. "Fine. You can be the group bitch. We\'ll take you to the party and you have to do anything anyone tells you. If I tell you to lick my boots, then you will lick my fucking boots. If one of the guys tells you to suck his dick, then you suck his dick. If the guys decide to pull a train on you, then you let them. Got it? You still want in that badly?" Lera is grinning like a wolf as they wait for your reply.');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Yes, I\'ll do anything', goto: ['gopnik_initiation', 'doanything'] },
     { label: 'No', goto: ['gopnik_initiation', 'noslut'] },
@@ -119,7 +118,6 @@ function enterAgreesteal(s: GameState, scene: SceneBuilder): void {
   scene.text('You nod your head as you grin at them. "Let\'s go get some booze, bitches!"');
   scene.text('Lena snorts a slight laugh and Lera smiles a little before they head inside. You wait a few minutes then follow them in.');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Wait for the distraction', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/events/gopnikinvite/distraction.mp4');
@@ -193,7 +191,6 @@ function enterDoanything(s: GameState, scene: SceneBuilder): void {
   scene.text('You nod your head. "Okay, I\'ll do anything! I\'ll be anything you guys want me to be."');
   scene.text('They exchange looks and Lena shrugs and turns to Lera. "You were right." She then looks back at you. "Well? Come on then, slut." With that, she turns and leads you toward the party as she texts on her phone.');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the party', goto: ['gopnik_initiation', 'gopnik slut'] },
   ]);
@@ -208,7 +205,6 @@ function enterNoslut(s: GameState, scene: SceneBuilder): void {
   ((s as any).old_grupvalue = (s as any).old_grupvalue ?? {})[4] = (((s as any).grupvalue ?? 0)?.[4] ?? 0);
   qspCall(s, 'gopnik_initiation', 'group_rel_change', 'gopniks', (-10));
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the gang', goto: ['pav_residential', ''] },
   ]);
@@ -239,7 +235,6 @@ function enterGopnikParty(s: GameState, scene: SceneBuilder): void {
   scene.text('You follow Lena and Lera, who talk the whole way about how you did such a good job. Upon arriving at the old school, Lena and Lera slip through the busted front door and down the main hallway to see Vitek, who is waiting in the old school offices with the rest of the gopniks.');
   (s as any).minut = ((s as any).minut ?? 0) + 10;
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Join the party', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/oldschool/main.jpg');
@@ -253,7 +248,6 @@ function enterGopnikParty(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/school/oldschool/gophangout/party/party.jpg');
     scene.text('You happily walk over to the rest of the group. When they see that Vitek is carrying several bottles of vodka with him, they begin to yell and holler.');
     scene.text('"Didn\'t I promise you all that I would deliver? Never doubt me again!" he proudly proclaims.');
-    // TODO-QSP: dynamic text: Lena quickly chimes in. "Well, it''s all thanks to our new friend, <<$pcs_nickna...
     scene.text(`Lena quickly chimes in. "Well, it's all thanks to our new friend, ${((st as any).pcs_nickname ?? '')}. She really proved herself today."`);
     scene.text('The rest of the group all cheer as they impatiently wait for the bottles to get opened. "Tell us how you managed to pull this one off," some of them ask.');
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -268,6 +262,8 @@ function enterGopnikParty(s: GameState, scene: SceneBuilder): void {
       scene.text('"So we decided that Lena and Lera would be the distraction while I was supposed to grab some bottles, so in they went and I followed shortly thereafter. I walked passed them and as soon as I reached the liquor, they started making out in front of the clerk." The boys start to cheer as Lena and Lera blush a little.');
       scene.text('After everyone settles down, you continue. "While they\'re making out, I easily take a couple of bottles and then simply walk out without anyone noticing me."');
       scene.text('Excited by your story, Vitek cracks open a bottle and offers you a drink. "You\'ve earned the right to have the first drink."');
+      (st as any).LenaDis = undefined;
+      (st as any).LeraDis = undefined;
       scene.actions([
         { label: 'Drink', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/oldschool/gophangout/party/drinkvodka.jpg');
@@ -282,7 +278,6 @@ function enterGopnikParty(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.text('"So we decided that Lera and I would be the distraction while Lena was supposed to grab some bottles, so in we go and Lera and I stop in front of the clerk…" You take a dramatic pause. "And Lera leans in and starts making out with me!" The boys start to cheer as you blush a little.');
-      // TODO-QSP: dynamic text: As everyone cheers, Lera chimes in. "<<$pcs_nickname>> is really a good kisser. ...
       scene.text(`As everyone cheers, Lera chimes in. "${((st as any).pcs_nickname ?? '')} is really a good kisser. Just wanted the information to be out there in case," she winks at you.`);
       scene.text('Excited by your story, Vitek cracks open a bottle and offers you a drink. "Since you\'re new here, have the first drink."');
       scene.actions([
@@ -312,10 +307,9 @@ function enterExplore(s: GameState, scene: SceneBuilder): void {
   (s as any).menu_arg = 'explore';
   (s as any).location_type = 'public_indoors';
   scene.img('images/locations/pavlovsk/school/oldschool/gophangout/party/party.jpg');
-  scene.text('Once your story has been told and everyone has taken a drink or more of the vodka, the large crowd disperses and smaller groups have formed instead. <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027gopnik_initiation/u0027, /u0027tVitek/u0027); return false;">Vitek</a> and <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027gopnik_initiation/u0027, /u0027tLavrenti/u0027); return false;">Lavrenti</a> are discussing something, while <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027gopnik_initiation/u0027, /u0027tDan/u0027); return false;">Dan</a> is sitting on the sofa with a drink in his hand carefully listening to the discussion.');
-  scene.text('You can see <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027gopnik_initiation/u0027, /u0027Niko/u0027); return false;">Niko</a> leaning against a wall, chatting with Roman. <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027gopnik_initiation/u0027, /u0027tVasily/u0027); return false;">Vasily</a> is standing nearby pouring himself a drink. <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027gopnik_initiation/u0027, /u0027tLena/u0027); return false;">Lena</a> and <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027gopnik_initiation/u0027, /u0027tLera/u0027); return false;">Lera</a> are standing a little farther away talking to each other while <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027gopnik_initiation/u0027, /u0027tPauline/u0027); return false;">Pauline</a> is standing by the window smoking a cigarette.');
+  scene.text('Once your story has been told and everyone has taken a drink or more of the vodka, the large crowd disperses and smaller groups have formed instead. <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027gopnik_initiation\u0027, \u0027tVitek\u0027); return false;">Vitek</a> and <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027gopnik_initiation\u0027, \u0027tLavrenti\u0027); return false;">Lavrenti</a> are discussing something, while <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027gopnik_initiation\u0027, \u0027tDan\u0027); return false;">Dan</a> is sitting on the sofa with a drink in his hand carefully listening to the discussion.');
+  scene.text('You can see <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027gopnik_initiation\u0027, \u0027Niko\u0027); return false;">Niko</a> leaning against a wall, chatting with Roman. <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027gopnik_initiation\u0027, \u0027tVasily\u0027); return false;">Vasily</a> is standing nearby pouring himself a drink. <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027gopnik_initiation\u0027, \u0027tLena\u0027); return false;">Lena</a> and <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027gopnik_initiation\u0027, \u0027tLera\u0027); return false;">Lera</a> are standing a little farther away talking to each other while <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027gopnik_initiation\u0027, \u0027tPauline\u0027); return false;">Pauline</a> is standing by the window smoking a cigarette.');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['gschool_grounds', 'main'] },
     { label: 'Go to the old principal\'s office', goto: ['gopnik_initiation', 'office'] },
@@ -331,7 +325,6 @@ function enterTVitek(s: GameState, scene: SceneBuilder): void {
   scene.text('"I\'m sure my sister will find something exciting for you to do. She always does something stupid and I have to come to her rescue."');
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Does that happen a lot?', handler: (st: GameState) => {
     scene.img('images/characters/shared/headshots_main/big9.jpg');
@@ -369,7 +362,6 @@ function enterTDan(s: GameState, scene: SceneBuilder): void {
   scene.text('Something strikes a nerve in you and you feel the urge to confront him, but you\'re also new to the gopniks. Maybe you should just let it go…');
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Ignore him', goto: ['gopnik_initiation', 'explore'] },
     { label: 'What was wrong with our approach?', handler: (st: GameState) => {
@@ -429,11 +421,9 @@ function enterTVasily(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/big11.jpg');
   scene.text('You approach Vasily as he\'s pouring himself a drink. He\'s quite tipsy and is having a hard time pouring the liquor into the cup.');
   scene.text('"Do you need some help?" you ask him.');
-  // TODO-QSP: dynamic text: Looking at you, he mumbles something incomprehensible and then wraps his arm aro...
   scene.text(`Looking at you, he mumbles something incomprehensible and then wraps his arm around your shoulder. "Want to have some fun, ${((s as any).pcs_nickname ?? '')}?"`);
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'What do you have in mind', handler: (st: GameState) => {
     scene.img('images/characters/shared/headshots_main/big11.jpg');
@@ -479,7 +469,6 @@ function enterTLavrenti(s: GameState, scene: SceneBuilder): void {
   scene.text('Lavrenti laughs. "I can understand that. Either way, it was nice to have someone else provide the booze this time."');
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Oh?', handler: (st: GameState) => {
     scene.img('images/characters/shared/headshots_main/big155.jpg');
@@ -523,12 +512,10 @@ function enterTLena(s: GameState, scene: SceneBuilder): void {
   scene.text('You approach Lena and Lera and ask Lera if you can speak with Lena. Lera happily nods and moves away while Lena smiles at you.');
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Thank her', handler: (st: GameState) => {
     scene.img('images/characters/shared/headshots_main/big20.jpg');
     scene.text('"I just wanted to thank you for giving me the chance to show the group that I\'m worthy," you say.');
-    // TODO-QSP: dynamic text: "Don''t be silly <<$pcs_nickname>>, there''s no need for that. You did good and ...
     scene.text(`"Don't be silly ${((st as any).pcs_nickname ?? '')}, there's no need for that. You did good and proved yourself," she replies.`);
     scene.text('You can\'t help but smile. "You\'re going to make me blush."');
     scene.text('Lena smiles back. "I\'m sure everyone will make you feel welcome. You\'re the hero of the day after all."');
@@ -571,12 +558,10 @@ function enterTLera(s: GameState, scene: SceneBuilder): void {
   scene.text('You approach Lena and Lera and ask Lena if you can speak with Lera. Lena happily nods and moves away while Lera smiles at you.');
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'I had fun today', handler: (st: GameState) => {
     scene.img('images/characters/shared/headshots_main/big21.jpg');
     scene.text('You tell her that you had a lot of fun and thank her for giving you the opportunity to prove yourself.');
-    // TODO-QSP: dynamic text: "Don''t be silly <<$pcs_nickname>>, it was fun helping! You proved you belong he...
     scene.text(`"Don't be silly ${((st as any).pcs_nickname ?? '')}, it was fun helping! You proved you belong here today," she replies.`);
     (st as any).minut = ((st as any).minut ?? 0) + 2;
     qspCall(st, 'stat', '');
@@ -585,7 +570,6 @@ function enterTLera(s: GameState, scene: SceneBuilder): void {
         { label: 'Talk about the kiss', handler: (st: GameState) => {
     scene.img('images/characters/shared/headshots_main/big21.jpg');
     scene.text('"It was pretty wild kissing like that," you tell her.');
-    // TODO-QSP: dynamic text: Lera shrugs her shoulders. "It''s not the first time Lena and I pulled something...
     scene.text(`Lera shrugs her shoulders. "It's not the first time Lena and I pulled something like that off. We mostly do it to tease the guys as it makes them go crazy. You're not a bad kisser ${((st as any).pcs_nickname ?? '')}. Hopefully it wasn't the last time we do that…" she slyly winks at you.`);
     scene.text('You start blushing as Lera laughs. "Relax, we tease each other all the time. It\'s what we do. You\'ll get used to it." she teases you.');
     scene.text('You mumble something and quickly move away from her.');
@@ -663,7 +647,6 @@ function enterTPauline(s: GameState, scene: SceneBuilder): void {
     scene.text('The lack of reaction makes you uneasy. "I\'m sorry, did I offend you in some way?"');
     scene.text('Pauline continues glaring at you before she starts laughing. "I can\'t keep it up anymore. Did I scare you? I wanted to see how you would react."');
     scene.text('You start laughing. "Yeah, you had me scared. I didn\'t know what I should do."');
-    // TODO-QSP: dynamic text: "No need to worry. You''re all good <<$pcs_nickname>>," she says between fits of...
     scene.text(`"No need to worry. You're all good ${((st as any).pcs_nickname ?? '')}," she says between fits of laughter.`);
     scene.text('You keep talking while you finish your cigarette.');
     (st as any).minut = ((st as any).minut ?? 0) + 2;
@@ -721,12 +704,10 @@ function enterTPauline(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterNiko(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: dynamic text: <center><b><h4><font color=#E400FF><<"Nikolai [Niko] Volkov">></font></h4></b></...
   scene.text(`<center><b><h4><font color=#E400FF>${'Nikolai [Niko] Volkov'}</font></h4></b></center>`);
   qspCall(s, 'stat', '');
   if ((!((s as any).NikoGOPParty ?? 0))) {
@@ -742,7 +723,6 @@ function enterNiko(s: GameState, scene: SceneBuilder): void {
         if (((s as any).NikoVolkovQW ?? 0) >= 5  &&  ((s as any).NikoEv ?? 0) > 0) {
           qspCall(s, 'drugs', 'alcohol', 'vodka', 1);
           scene.img(`images/characters/pavlovsk/school/boy/niko/nikoev/avatars/${((s as any).week ?? '')}.jpg`);
-          // TODO-QSP: dynamic text: Niko slowly turns to you as you approach. "Hey <<$pcs_nickname>>, how are you en...
           scene.text(`Niko slowly turns to you as you approach. "Hey ${((s as any).pcs_nickname ?? '')}, how are you enjoying the party?" You give him a smile as he reaches out for your hand and guides you towards the seat next to him. He wraps his arm around your neck before kissing up your neck and pressing a bottle of vodka against the table, slamming his hand down on it to pop the top off before handing it to you.`);
           scene.actions([
             { label: 'Have a drink', handler: (st: GameState) => {
@@ -757,7 +737,6 @@ function enterNiko(s: GameState, scene: SceneBuilder): void {
         } else {
           if (((s as any).NikoIntro ?? 0) > 0) {
             scene.img(`images/characters/pavlovsk/school/boy/niko/nikoev/avatars/${((s as any).week ?? '')}.jpg`);
-            // TODO-QSP: dynamic text: Niko slowly turns to you as you approach. "Hello there, <<$pcs_firstname>>. Welc...
             scene.text(`Niko slowly turns to you as you approach. "Hello there, ${((s as any).pcs_firstname ?? '')}. Welcome to the party. Here, have a drink." He presses a bottle of vodka against the table and slams his hand down on it, popping the top off before handing it to you.`);
             qspCall(s, 'drugs', 'alcohol', 'vodka', 1);
             scene.actions([
@@ -776,7 +755,6 @@ function enterNiko(s: GameState, scene: SceneBuilder): void {
           } else {
             qspCall(s, 'drugs', 'alcohol', 'vodka', 1);
             scene.img(`images/characters/pavlovsk/school/boy/niko/nikoev/avatars/${((s as any).week ?? '')}.jpg`);
-            // TODO-QSP: dynamic text: Niko slowly turns to you as you approach. "Hello there. <<$pcs_firstname>>, righ...
             scene.text(`Niko slowly turns to you as you approach. "Hello there. ${((s as any).pcs_firstname ?? '')}, right? Welcome to the party. Here, have a drink." He presses a bottle of vodka against the table and slams his hand down on it, popping the top off before handing it to you.`);
             scene.actions([
               { label: 'Have a drink', handler: (st: GameState) => {
@@ -808,7 +786,6 @@ function enterNiko(s: GameState, scene: SceneBuilder): void {
       { label: 'Walk away', goto: ['gopnik_initiation', 'explore'] },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -818,7 +795,6 @@ function enterOffice(s: GameState, scene: SceneBuilder): void {
   scene.text('You then hear some noises coming from inside. You jump back a little before you gather some courage and stick your head back in.');
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: '"Anyone in here?"', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/oldschool/princoff.jpg');
@@ -878,11 +854,10 @@ function enterOffice(s: GameState, scene: SceneBuilder): void {
 
 function enterLounge(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/school/oldschool/teachloung.jpg');
-  scene.text('Upon entering the teachers lounge, you are struck by the strong scent of marijuana. It\'s so strong that you think you already have a contact buzz. Through the smoky haze, you see <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027gopnik_initiation/u0027, /u0027tRadomir/u0027); return false;">Radomir</a> intensely explaining something to <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027gopnik_initiation/u0027, /u0027tValentin/u0027); return false;">Valentin</a> and <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027gopnik_initiation/u0027, /u0027tArkadi/u0027); return false;">Arkadi</a> by a makeshift table as they\'re pouring themselves a drink.');
-  scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027gopnik_initiation/u0027, /u0027tAnushka/u0027); return false;">Anushka</a> and <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027gopnik_initiation/u0027, /u0027tAlyona/u0027); return false;">Alyona</a> are sitting on a sofa looking spaced out while passing a joint back and forth. <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027gopnik_initiation/u0027, /u0027tEkaterina/u0027); return false;">Katyusha</a> is standing in one of the corners by herself, deep in her own thoughts.');
+  scene.text('Upon entering the teachers lounge, you are struck by the strong scent of marijuana. It\'s so strong that you think you already have a contact buzz. Through the smoky haze, you see <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027gopnik_initiation\u0027, \u0027tRadomir\u0027); return false;">Radomir</a> intensely explaining something to <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027gopnik_initiation\u0027, \u0027tValentin\u0027); return false;">Valentin</a> and <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027gopnik_initiation\u0027, \u0027tArkadi\u0027); return false;">Arkadi</a> by a makeshift table as they\'re pouring themselves a drink.');
+  scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027gopnik_initiation\u0027, \u0027tAnushka\u0027); return false;">Anushka</a> and <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027gopnik_initiation\u0027, \u0027tAlyona\u0027); return false;">Alyona</a> are sitting on a sofa looking spaced out while passing a joint back and forth. <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027gopnik_initiation\u0027, \u0027tEkaterina\u0027); return false;">Katyusha</a> is standing in one of the corners by herself, deep in her own thoughts.');
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return to the main office', goto: ['gopnik_initiation', 'explore'] },
     { label: 'Leave', goto: ['gschool_grounds', 'main'] },
@@ -911,7 +886,6 @@ function enterTRadomir(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Maybe', handler: (st: GameState) => {
     scene.img('images/characters/shared/headshots_main/big154.jpg');
@@ -943,10 +917,8 @@ function enterTRadomir(s: GameState, scene: SceneBuilder): void {
       { label: 'Answer him', handler: (st: GameState) => {
     scene.img('images/characters/shared/headshots_main/big154.jpg');
     scene.text('"Excuse me, but I need to go and throw up," you answer.');
-    // TODO-QSP: dynamic text: "Don''t play hard to get <<$pcs_nickname>>. Go and ask the other girls here abou...
     scene.text(`"Don't play hard to get ${((st as any).pcs_nickname ?? '')}. Go and ask the other girls here about how good of a fuck I am," he confidently replies.`);
     scene.text('"Yeah, I\'m not going to do that, you creep. As a matter of fact, I don\'t want to partake in this conversation anymore," you angrily say.');
-    // TODO-QSP: dynamic text: He yells out as you turn around and walk away from him. "I''ll be seeing you aga...
     scene.text(`He yells out as you turn around and walk away from him. "I'll be seeing you again soon ${((st as any).pcs_nickname ?? '')}, but next time I would prefer seeing you without a single thread on you."`);
     (st as any).minut = ((st as any).minut ?? 0) + 2;
     qspCall(st, 'npc_relationship', 'modify', 'A154', 1);
@@ -965,7 +937,6 @@ function enterTRadomir(s: GameState, scene: SceneBuilder): void {
 
 function enterTValentin(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/big158.jpg');
-  // TODO-QSP: dynamic text: You approach Valentin and he smiles and greets you. "Hi <<$pcs_nickname>>. Are y...
   scene.text(`You approach Valentin and he smiles and greets you. "Hi ${((s as any).pcs_nickname ?? '')}. Are you enjoying yourself?"`);
   scene.text('You smile back at him. "Hi Valentin. Yeah, it\'s been pretty fun so far."');
   (s as any).minut = ((s as any).minut ?? 0) + 2;
@@ -1026,7 +997,6 @@ function enterTValentin(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1036,7 +1006,6 @@ function enterTArkadi(s: GameState, scene: SceneBuilder): void {
   scene.text('Arkadi looks at you and spits on the side. "Nothing much. Just another boring day here in Pavlovsk. Man, this place sucks monkey balls."');
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Don\'t say that', handler: (st: GameState) => {
     scene.img('images/characters/shared/headshots_main/big156.jpg');
@@ -1071,7 +1040,6 @@ function enterTArkadi(s: GameState, scene: SceneBuilder): void {
 
 function enterTAnushka(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/big144.jpg');
-  // TODO-QSP: dynamic text: You sit on the sofa next to Anushka, who gives you a huge grin. "Hey <<$pcs_nick...
   scene.text(`You sit on the sofa next to Anushka, who gives you a huge grin. "Hey ${((s as any).pcs_nickname ?? '')}, what have you been up to?" You notice a blunt that's been placed on the table.`);
   scene.text('You shrug your shoulders. "Nothing much. Been talking to people, having fun."');
   scene.text('"Good, I hope none of the guys tried to hump your leg. They can be a pain in the ass sometimes," she says.');
@@ -1079,7 +1047,6 @@ function enterTAnushka(s: GameState, scene: SceneBuilder): void {
   scene.text('"I see that you\'ve been eyeing that blunt for a while now. Want a smoke?" she asks as she looks in the direction of the blunt.');
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'No thanks', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/oldschool/gophangout/party/smokemakeout.jpg');
@@ -1097,7 +1064,6 @@ function enterTAnushka(s: GameState, scene: SceneBuilder): void {
     scene.text('You happily nod your head and Anushka smiles and reaches for the blunt. She wraps her lips around it, lights it and inhales the smoke. As she exhales, she passes it over to you.');
     scene.text('You excitingly grab hold of the blunt and repeat what Anushka did. You inhale the smoke deeply and can feel your lungs fill up with smoke. You can almost instantly feel the weed kick in as you start to feel a bit light-headed.');
     scene.text('You pass it to Alyona, who also inhales deep and shotguns the smoke to Anushka. After a while, you begin to relax and start talking about nothing and everything with Anushka and Alyona. You\'re laughing almost all the time and sometimes you\'re even having a hard time to catch a breath.');
-    // TODO-QSP: dynamic text: Anushka then gets your attention. "Let me show you something fun, <<$pcs_nicknam...
     scene.text(`Anushka then gets your attention. "Let me show you something fun, ${((st as any).pcs_nickname ?? '')}!"`);
     (st as any).minut = ((st as any).minut ?? 0) + 10;
     qspCall(st, 'npc_relationship', 'modify', 'A144', 1);
@@ -1130,7 +1096,6 @@ function enterTAlyona(s: GameState, scene: SceneBuilder): void {
   scene.text('"I would\'ve gone in and knocked the clerk out to be honest," Alyona looks at you seriously. "He wouldn\'t dare to report it. Think about it. A man getting beaten up by a girl? The police would have laughed at him."');
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'That\'s a bit too violent for me', handler: (st: GameState) => {
     scene.img('images/characters/shared/headshots_main/big143.jpg');
@@ -1164,7 +1129,6 @@ function enterTEkaterina(s: GameState, scene: SceneBuilder): void {
   scene.text('Katyusha looks your way and nods. "Yeah, I was just thinking about this poor quality vodka you brought back with you."');
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Is that so?', handler: (st: GameState) => {
     scene.img('images/characters/shared/headshots_main/big145.jpg');
@@ -1229,7 +1193,6 @@ function enterGopnikSlut(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'gopnik_initiation', 'group_rel_change', 'gopniks', 5);
   scene.img('images/locations/pavlovsk/school/oldschool/hall.jpg');
   scene.text('You follow Lena and Lera, who don\'t really talk to you. You get the feeling you might have made a mistake, but you agreed to be the party slut and you\'re not sure they would even let you back out now. Once you\'re at the old school, they slip through the busted front door and head down the main hallway that leads to the old offices and teacher\'s lounge.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Join the party', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/oldschool/main.jpg');
@@ -1240,14 +1203,12 @@ function enterGopnikSlut(s: GameState, scene: SceneBuilder): void {
       { label: 'Party favor', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/oldschool/gophangout/slut/1.jpg');
     scene.text('As you look around, you notice Vitek giving you a hard stare, Lena seemingly having filled him in on your unwillinginess to steal and your deal to still join. He doesn\'t look remotely pleased as he walks over to you and roughly grabs a handful of your hair. He pushes you forward, guiding you painfully by your hair as he talks. At some point, someone cuts the music and his voice carries clearly around the room.');
-    // TODO-QSP: dynamic text: "It seems little <<$pcs_nickname>> here is too good to steal or even help steal....
     scene.text(`"It seems little ${((st as any).pcs_nickname ?? '')} here is too good to steal or even help steal." You hear a chorus of booing, hisses and threats.`);
     qspCall(st, 'pain', '2', 'hair', 'twist');
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'In position', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/oldschool/gophangout/slut/2.jpg');
-    // TODO-QSP: dynamic text: He painfully pushes you up against the largest and sturdiest of the tables, then...
     scene.text(`He painfully pushes you up against the largest and sturdiest of the tables, then lifts you by your hair, forcing you to crawl up on the table. Once on the table, he makes you get down on your hands and knees before he turns to address the crowd. "I know, I know. I wondered why my sister brought her as well, but it turns out that while our little ${((st as any).pcs_nickname ?? '')} might not want to be one of us, she is willing to show us all a good time. She has offered herself up to be the party slut, if we will take her in. We can do any and everything we want to her. So what do you say guys?"`);
     scene.text('There\'s an awkward silence before the guys roar with approval. You overhear a number of crude comments that you wish you hadn\'t.');
     qspCall(st, 'pain', '2', 'hair', 'twist');
@@ -1296,18 +1257,15 @@ function enterGopnikSlut(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/school/oldschool/gophangout/slut/8.jpg');
     scene.text('Once they get bored taking your picture, a few of the guys come over and start fondling your naked body. One of them pinches your nipple hard before they start taking turns roughly fingering your pussy, squeezing your tits and pinching your nipples. After a while, you\'ve lost track of how many guys have manhandled you.');
     (st as any).temp_i = 0;
-    // TODO-QSP: :guys_manhandling_loop
-    qspCall(st, 'npcgeneratec', '0', 'A guy from the disco', (Math.floor(Math.random() * 4) + 17), 1, 1);
-    qspCall(st, 'npcStat', '$npclastgenerated', 2);
-    qspCall(st, 'arousal', 'vaginal_finger', 1, (((st as any).npcID ?? 0)?.[1+((st as any).temp_i ?? 0)] ?? 0), 'group', 'rough', 'sub', 'humiliation', 'exhibitionism');
-    (st as any).temp_i = ((st as any).temp_i ?? 0) + (1);
-    if (((st as any).temp_i ?? 0) < 5) {
-      // TODO-QSP: jump 'guys_manhandling_loop'
-    }
-    qspCall(st, 'pain', '5', 'nipples', 'pinch');
-    qspCall(st, 'stat', '');
-    scene.actions([
-      { label: 'Lena', handler: (st: GameState) => {
+    do {
+      qspCall(st, 'npcgeneratec', '0', 'A guy from the disco', (Math.floor(Math.random() * 4) + 17), 1, 1);
+      qspCall(st, 'npcStat', '$npclastgenerated', 2);
+      qspCall(st, 'arousal', 'vaginal_finger', 1, (((st as any).npcID ?? 0)?.[1+((st as any).temp_i ?? 0)] ?? 0), 'group', 'rough', 'sub', 'humiliation', 'exhibitionism');
+      (st as any).temp_i = ((st as any).temp_i ?? 0) + (1);
+      qspCall(st, 'pain', '5', 'nipples', 'pinch');
+      qspCall(st, 'stat', '');
+      scene.actions([
+        { label: 'Lena', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/oldschool/gophangout/slut/9.jpg');
     scene.text('Lena comes back over and drives the guys off. "My turn boys." She reaches down and pinches your clit hard before she alternates between rubbing your clit, slipping her finger into you to finger bang you and pinching your clit. The switching between pleasure and pain is maddening.');
     qspCall(st, 'arousal', 'vaginal_finger', 5, ((st as any).npcID1 ?? 0), 'group', 'rough', 'sub', 'humiliation', 'lesbian', 'exhibitionism');
@@ -1393,7 +1351,8 @@ function enterGopnikSlut(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } },
-    ]);
+      ]);
+    } while (((st as any).temp_i ?? 0) < 5);
   } },
     ]);
   } },

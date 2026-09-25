@@ -41,7 +41,6 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   qspCall(s, 'lover', 'lover_events');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -88,7 +87,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   qspCall(s, 'lover', 'lover_events');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -117,7 +115,6 @@ function enterReception(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go back to the foyer', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -156,6 +153,8 @@ function enterPayTheRoom(s: GameState, scene: SceneBuilder): void {
         { label: 'You can\'t afford to stay in the Royal Suite for that long', goto: ['city_hotel', ''] },
       ]);
     }
+    (s as any).totalCost = undefined;
+    (s as any).hotel_room_id = undefined;
   } else {
     scene.actions([
       { label: 'Pay ( [+$func(\'money\', \'string_price\', totalCost...]', handler: (st: GameState) => {
@@ -163,17 +162,19 @@ function enterPayTheRoom(s: GameState, scene: SceneBuilder): void {
     ((st as any).HotelRoom = (st as any).HotelRoom ?? {})['city'] = ((st as any).hotel_room_id ?? 0);
     ((st as any).hotelRoomDays = (st as any).hotelRoomDays ?? {})['city'] = ((st as any).daystart ?? 0) + (((st as any).hotelRoomDays ?? {})?.['city'] ?? 0);
     scene.text('You pay for the room and she gives you the key in return.');
-    // TODO-QSP: dynamic text: '"Thank you ' + iif(pavHotelMaid = 0, 'miss', $pcs_nickname) +', I hope you enjo...
     scene.text('"Thank you ' + (((!((st as any).pavHotelMaid ?? 0))) ? ('miss') : (((st as any).pcs_nickname ?? ''))) + ', I hope you enjoy your stay!"');
+    (st as any).totalCost = undefined;
+    (st as any).hotel_room_id = undefined;
     scene.actions([
       { label: 'Step away from the reception desk', goto: ['city_hotel', ''] },
     ]);
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Change your mind', handler: (st: GameState) => {
+    (st as any).totalCost = undefined;
+    (st as any).hotel_room_id = undefined;
     qspGoto(st, 'city_hotel', '');
   } },
   ]);
@@ -189,7 +190,7 @@ function enterRentARoom(s: GameState, scene: SceneBuilder): void {
     scene.text('She looks at the computer. "I see you already have a room here. As it\'s already booked and paid for, the only way to change it to a different room would be to cancel your existing booking. To do so without notice would forfeit your payment. I would advise against this, but you may do so if you wish."');
     scene.actions([
       { label: 'Cancel your booking', handler: (st: GameState) => {
-    // TODO-QSP: HotelRoom['city'] = 0
+    ((st as any).HotelRoom = (st as any).HotelRoom ?? {})['city'] = 0;
   }, goto: ['city_hotel', ''] },
       { label: 'No', goto: ['city_hotel', ''] },
     ]);
@@ -198,19 +199,15 @@ function enterRentARoom(s: GameState, scene: SceneBuilder): void {
       { label: 'Yes', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/hotel/receptionist.jpg');
     scene.text('She smiles at you happily. "Excellent! We have the following rooms available right now:"');
-    // TODO-QSP: dynamic text: 'Standard room - ' + $func('money', 'string_price', 500) + ' a night;'
-    scene.text('Standard room - 500₽ a night;');
-    // TODO-QSP: dynamic text: 'Luxury room - ' + $func('money', 'string_price', 1500) + ' a night;'
-    scene.text('Luxury room - 1500₽ a night;');
-    // TODO-QSP: dynamic text: 'Royal Suite - ' + $func('money', 'string_price', 10000) + ' a night.'
-    scene.text('Royal Suite - 10000₽ a night.');
+    scene.text('\'Standard room - 500₽ a night;\'');
+    scene.text('\'Luxury room - 1500₽ a night;\'');
+    scene.text('\'Royal Suite - 10000₽ a night.\'');
     scene.actions([
       { label: 'Standard room', handler: (st: GameState) => {
     ((st as any).hotelRoomDays = (st as any).hotelRoomDays ?? {})['city'] = window.prompt("For how long would you like to stay?") ?? '';
     if (((st as any).hotelRoomDays ?? 0)?.['city'] > 0) {
       (st as any).totalCost = (((st as any).hotelRoomDays ?? {})?.['city'] ?? 0) * 500;
-      // TODO-QSP: dynamic text: '"A standard room for <<hotelRoomDays[''city'']>> days will be ' + $func('money'...
-      scene.text(`"A standard room for ${(((st as any).hotelRoomDays ?? 0)?.['city'] ?? '')} days will be ' + $func('money', 'string_price', totalCost) + '," the receptionist says.`);
+      scene.text(`'"A standard room for ${(((st as any).hotelRoomDays ?? 0)?.['city'] ?? '')} days will be ' + $func('money', 'string_price', totalCost) + '," the receptionist says.'`);
       { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 1]; enterPayTheRoom(st, scene); (st as any).locArgs = __savedLocArgs; }
     } else {
       qspGoto(st, 'city_hotel', '');
@@ -220,8 +217,7 @@ function enterRentARoom(s: GameState, scene: SceneBuilder): void {
     ((st as any).hotelRoomDays = (st as any).hotelRoomDays ?? {})['city'] = window.prompt("For how long would you like to stay?") ?? '';
     if (((st as any).hotelRoomDays ?? 0)?.['city'] > 0) {
       (st as any).totalCost = (((st as any).hotelRoomDays ?? {})?.['city'] ?? 0) * 1500;
-      // TODO-QSP: dynamic text: '"A luxury room for <<hotelRoomDays[''city'']>> days will be ' + $func('money', ...
-      scene.text(`"A luxury room for ${(((st as any).hotelRoomDays ?? 0)?.['city'] ?? '')} days will be ' + $func('money', 'string_price', totalCost) + '," the receptionist says.`);
+      scene.text(`'"A luxury room for ${(((st as any).hotelRoomDays ?? 0)?.['city'] ?? '')} days will be ' + $func('money', 'string_price', totalCost) + '," the receptionist says.'`);
       { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 2]; enterPayTheRoom(st, scene); (st as any).locArgs = __savedLocArgs; }
     } else {
       qspGoto(st, 'city_hotel', '');
@@ -231,8 +227,7 @@ function enterRentARoom(s: GameState, scene: SceneBuilder): void {
     ((st as any).hotelRoomDays = (st as any).hotelRoomDays ?? {})['city'] = window.prompt("For how long would you like to stay?") ?? '';
     if (((st as any).hotelRoomDays ?? 0)?.['city'] > 0) {
       (st as any).totalCost = (((st as any).hotelRoomDays ?? {})?.['city'] ?? 0) * 10000;
-      // TODO-QSP: dynamic text: '"The royal suite for <<hotelRoomDays[''city'']>> days would be ' + $func('money...
-      scene.text(`"The royal suite for ${(((st as any).hotelRoomDays ?? 0)?.['city'] ?? '')} days would be ' + $func('money', 'string_price', totalCost) + '," the receptionist says.`);
+      scene.text(`'"The royal suite for ${(((st as any).hotelRoomDays ?? 0)?.['city'] ?? '')} days would be ' + $func('money', 'string_price', totalCost) + '," the receptionist says.'`);
       { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 3]; enterPayTheRoom(st, scene); (st as any).locArgs = __savedLocArgs; }
     } else {
       qspGoto(st, 'city_hotel', '');
@@ -244,7 +239,6 @@ function enterRentARoom(s: GameState, scene: SceneBuilder): void {
       { label: 'No thank you', goto: ['city_hotel', ''] },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 

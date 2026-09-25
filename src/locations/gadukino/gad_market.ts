@@ -24,10 +24,8 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterClose(s, scene); (s as any).locArgs = __savedLocArgs; }
     return;
   }
-  // TODO-QSP: dynamic text: 'On one side you spot a stand where' + iif(hunterVars['were_met'] = 1, ' the hun...
-  scene.text('On one side you spot a stand where' + ((((s as any).hunterVars ?? 0)?.['were_met'] === 1) ? (' the hunters are ') : (' ')) + 'selling <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(/u0027gad_market/u0027, /u0027hunter_stand/u0027); return false;">dried goods</a>.');
-  // TODO-QSP: dynamic text: You spot a stand filled with <a href="exec:minut += 1 & gt ''gad_market'', ''clo...
-  scene.text('You spot a stand filled with <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(/u0027gad_market/u0027, /u0027clothing_stand/u0027); return false;">cheap clothing</a>.');
+  scene.text('On one side you spot a stand where' + ((((s as any).hunterVars ?? 0)?.['were_met'] === 1) ? (' the hunters are ') : (' ')) + 'selling <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027gad_market\u0027, \u0027hunter_stand\u0027); return false;">dried goods</a>.');
+  scene.text('You spot a stand filled with <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027gad_market\u0027, \u0027clothing_stand\u0027); return false;">cheap clothing</a>.');
   if (((s as any).gad_stand ?? 0) === 1) {
     if (((s as any).hour ?? 0) <= 20) {
       scene.actions([
@@ -56,7 +54,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       { label: 'Return', goto: ['gad_market', 'leave'] },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: '', labelFn: (s: GameState) => 'Browse the ' + String(((((s as any).hunterVars ?? 0)?.['were_met'] === 1) ? ('hunters') : ('dried food')) ?? '') + ' stand', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -87,7 +84,6 @@ function enterHunterStand(s: GameState, scene: SceneBuilder): void {
       { label: 'Talk to one of the hunters', goto: ['gad_market', 'hunter_talk'] },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Browse the stand', goto: ['gad_market', 'hunter_cart'] },
     { label: 'Stop browsing', goto: ['gad_market', 'start'] },
@@ -111,10 +107,9 @@ function enterHunterCart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'item_cart', 'shopping_aisle', 'gad_market_hunter');
   qspCall(s, 'stat', '');
   scene.img('images/locations/gadukino/market/hunter_stand.jpg');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Exit shopping cart', handler: (st: GameState) => {
-    // TODO-QSP: $backimage = ''
+    (st as any).backimage = '';
   }, goto: ['gad_market', 'hunter_stand'] },
     { label: 'Leave the stand', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -136,7 +131,6 @@ function enterClothingStand(s: GameState, scene: SceneBuilder): void {
 ]);
     return;
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Browse the clothes', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -170,7 +164,6 @@ function enterClothingCart(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'shop_utils', 'init', 'end');
   }
   qspCall(s, 'shop_utils', 'display', 'grid_shop');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -211,7 +204,6 @@ function enterSwimsuitCart(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'shop_utils', 'init', 'end');
   }
   qspCall(s, 'shop_utils', 'display', 'grid_shop');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -226,7 +218,6 @@ function enterBuildStand(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/gadukino/market/build_stand.jpg');
   scene.text('It takes you roughly an hour to setup your stand.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + ((Math.floor(Math.random() * 21) + 40));
@@ -241,7 +232,6 @@ function enterBreakdownStand(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/gadukino/market/build_stand.jpg');
   scene.text('It takes you roughly half an hour to break down your stand.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + ((Math.floor(Math.random() * 11) + 20));
@@ -258,7 +248,6 @@ function enterYourStand(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Your Stand</b></center>');
   scene.img('images/locations/gadukino/market/your_stand.jpg');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSeeStored(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Try and sell your wares', goto: ['gad_market', 'sell_wares'] },
     { label: 'Go back', goto: ['gad_market', 'start'] },
@@ -300,7 +289,7 @@ function enterSellWares(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
+  (s as any).temp_rand = undefined;
   scene.build();
 }
 
@@ -392,7 +381,6 @@ function enterSellTalk(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/gadukino/market/sell_talk.jpg');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSeeStored(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('A couple of people walk up to your stand and you spend ten minutes making some small-talk.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue trying to sell your wares', goto: ['gad_market', 'sell_wares'] },
     { label: 'Stop selling your wares', goto: ['gad_market', 'your_stand'] },
@@ -402,21 +390,17 @@ function enterSellTalk(s: GameState, scene: SceneBuilder): void {
 
 function enterSeeStored(s: GameState, scene: SceneBuilder): void {
   if (((s as any).boletus_stored ?? 0) > 0) {
-    // TODO-QSP: dynamic text: You currently are storing <b><<boletus_stored>></b> kg of raw mushrooms.
     scene.text(`You currently are storing <b>${((s as any).boletus_stored ?? '')}</b> kg of raw mushrooms.`);
   }
   if (((s as any).bilberry_stored ?? 0) > 0) {
-    // TODO-QSP: dynamic text: You currently are storing <b><<bilberry_stored>></b> kg of raw berries.
     scene.text(`You currently are storing <b>${((s as any).bilberry_stored ?? '')}</b> kg of raw berries.`);
   }
   if (((s as any).fish_stored ?? 0) > 0) {
-    // TODO-QSP: dynamic text: You currently are storing <b><<fish_stored>></b> kg of preserved fish.
     scene.text(`You currently are storing <b>${((s as any).fish_stored ?? '')}</b> kg of preserved fish.`);
   }
   if (((s as any).boletus_stored ?? 0) + ((s as any).bilberry_stored ?? 0) + ((s as any).fish_stored ?? 0) === 0) {
     scene.text('You currently have nothing that you can sell');
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -425,7 +409,6 @@ function enterHunterTalk(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/gadukino/market/hunter_stand.jpg');
   scene.text('You spend a few minutes in idle conversation with the trio, but they appear to be rather busy with tending to their market stand.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return', goto: ['gad_market', 'hunter_stand'] },
   ]);
@@ -445,14 +428,13 @@ function enterClose(s: GameState, scene: SceneBuilder): void {
       { label: 'Return', goto: ['gad_market', 'leave'] },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterLeave(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
+  (s as any).temp_rand = undefined;
   qspGoto(s, 'gadukino', '');
-  // TODO-QSP: end
   scene.build();
 }
 

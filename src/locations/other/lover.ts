@@ -54,19 +54,16 @@ function enterCikl(s: GameState, scene: SceneBuilder): void {
   ((s as any).sd_cm = (s as any).sd_cm ?? {})['lover_max'] = 0;
   if (((s as any).sd_cm ?? 0)?.['lover_max'] > 0) {
     ((s as any).sd_cm = (s as any).sd_cm ?? {})['li'] = 0;
-    // TODO-QSP: :cikl_lover_meet_loop
-    ((s as any).sd_cm = (s as any).sd_cm ?? {})['npcid'] = qspUntranslated(s, "lover[sd_cm['li']]", { location: "lover" });
-    if (((s as any).npc_meetday ?? 0)[((s as any).sd_cm ?? 0)?.['npcid']] > 0  &&  ((s as any).npc_meetday ?? 0)[((s as any).sd_cm ?? 0)?.['npcid']] < ((s as any).daystart ?? 0)) {
-      qspCall(s, 'npc_relationship', 'modify', (((s as any).sd_cm ?? 0)?.['npcid']), (-10));
-      // TODO-QSP: npc_meetday[$sd_cm['npcid']] = 0
-    }
-    ((s as any).sd_cm = (s as any).sd_cm ?? {})['li'] = ((s as any).sd_cm['li'] ?? 0) + (1);
-    if (((s as any).sd_cm ?? 0)?.['li'] < ((s as any).sd_cm ?? 0)?.['lover_max']) {
-      // TODO-QSP: jump 'cikl_lover_meet_loop'
-    }
+    do {
+      ((s as any).sd_cm = (s as any).sd_cm ?? {})['npcid'] = qspUntranslated(s, "lover[sd_cm['li']]", { location: "lover" });
+      if (((s as any).npc_meetday ?? 0)[((s as any).sd_cm ?? 0)?.['npcid']] > 0  &&  ((s as any).npc_meetday ?? 0)[((s as any).sd_cm ?? 0)?.['npcid']] < ((s as any).daystart ?? 0)) {
+        qspCall(s, 'npc_relationship', 'modify', (((s as any).sd_cm ?? 0)?.['npcid']), (-10));
+        ((s as any).npc_meetday = (s as any).npc_meetday ?? {})[(((s as any).sd_cm ?? 0)?.['npcid'])] = 0;
+      }
+      ((s as any).sd_cm = (s as any).sd_cm ?? {})['li'] = ((s as any).sd_cm['li'] ?? 0) + (1);
+    } while (((s as any).sd_cm ?? 0)?.['li'] < ((s as any).sd_cm ?? 0)?.['lover_max']);
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -78,21 +75,21 @@ function enterAdd(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'npcStat', '$ARGS[1]');
   }
   if ((Array.isArray((s as any).lover) ? ((s as any).lover as any[]).indexOf(((s as any).npcID ?? 0)) : -1) < 0) {
-    // TODO-QSP: $lover[] = $npcID
+    (s as any).lover = [...((s as any).lover ?? []), ((s as any).npcID ?? 0)];
     qspCall(s, 'telefon', 'AddContact', ((s as any).npcID ?? 0), (((s as any).npc_icon ?? 0)?.[String((s as any).npcID ?? 0)] ?? 0), 0);
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterRemove(s: GameState, scene: SceneBuilder): void {
   (s as any).lover_index = qspUntranslated(s, "arrpos('lover', ARGS[1])", { location: "lover" });
   if (((s as any).lover_index ?? 0) < 0) {
+    (s as any).lover_index = undefined;
     return;
   }
   if (((s as any).npc_rel_type ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 'husband'  ||  ((s as any).npc_rel_type ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 'wife'  ||  ((s as any).npc_rel_type ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 'dating'  ||  ((s as any).npc_rel_type ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 'boyfriend'  ||   ((s as any).npc_rel_type ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 'girlfriend'  ||  ((s as any).npc_rel_type ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 'fuckbuddy'  ||  ((s as any).npc_rel_type ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 'sugar_daddy') {
-    // TODO-QSP: $npc_rel_type[$ARGS[1]] = 'ex-' + $npc_rel_type[$ARGS[1]]
+    ((s as any).npc_rel_type = (s as any).npc_rel_type ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'ex-' + (((s as any).npc_rel_type ?? 0)?.[((s as any).locArgs?.[1] ?? 0)] ?? 0);
   }
   if ((String(((s as any).locArgs?.[1] ?? 0)).slice((1)-1, ((1)-1)+(1))) === 'B'  &&  (String(((s as any).locArgs?.[1] ?? 0)).length) > 1  &&  !isNaN((String(((s as any).locArgs?.[1] ?? 0)).slice((2)-1))) && (String(((s as any).locArgs?.[1] ?? 0)).slice((2)-1)) !== '') {
     qspCall(s, 'telefon', 'ClearCallSchedule', ((s as any).locArgs?.[1] ?? 0));
@@ -101,22 +98,23 @@ function enterRemove(s: GameState, scene: SceneBuilder): void {
     if (((s as any).telefon_index ?? 0) >= 0) {
       ((s as any).contactAnon = (s as any).contactAnon ?? {})[String((s as any).telefon_index ?? 0)] = 1;
     }
+    (s as any).telefon_index = undefined;
   }
+  (s as any).lover_index = undefined;
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterAddDating(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0)]; enterAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).npc_rel_type ?? 0)?.[String((s as any).npcID ?? 0)] === 'dating') {
-    // TODO-QSP: exit
+    return;
   }
   if (((s as any).npc_rel_type ?? 0)?.[String((s as any).npcID ?? 0)] !== '') {
     qspCall(s, 'lover', 'change_' + (((s as any).npc_rel_type ?? 0)?.[String((s as any).npcID ?? 0)] ?? 0) + '', ((s as any).npcID ?? 0));
   }
   qspCall(s, 'lover_call', 'set_base_schedule', ((s as any).npcID ?? 0));
-  // TODO-QSP: $npc_rel_type[$npcID] = 'dating'
+  ((s as any).npc_rel_type = (s as any).npc_rel_type ?? {})[String((s as any).npcID ?? 0)] = 'dating';
   ((s as any).stat = (s as any).stat ?? {})['dating_current'] = ((s as any).stat['dating_current'] ?? 0) + (1);
   ((s as any).stat = (s as any).stat ?? {})['total_lovers_current'] = ((s as any).stat['total_lovers_current'] ?? 0) + (1);
   return;
@@ -126,13 +124,13 @@ function enterAddDating(s: GameState, scene: SceneBuilder): void {
 function enterAddBoyfriend(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0)]; enterAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).npc_rel_type ?? 0)?.[String((s as any).npcID ?? 0)] === 'boyfriend') {
-    // TODO-QSP: exit
+    return;
   }
   if (((s as any).npc_rel_type ?? 0)?.[String((s as any).npcID ?? 0)] !== '') {
     qspCall(s, 'lover', 'change_' + (((s as any).npc_rel_type ?? 0)?.[String((s as any).npcID ?? 0)] ?? 0) + '', ((s as any).npcID ?? 0));
   }
   qspCall(s, 'lover_call', 'set_base_schedule', ((s as any).npcID ?? 0));
-  // TODO-QSP: $npc_rel_type[$npcID] = 'boyfriend'
+  ((s as any).npc_rel_type = (s as any).npc_rel_type ?? {})[String((s as any).npcID ?? 0)] = 'boyfriend';
   ((s as any).stat = (s as any).stat ?? {})['boyfriends_current'] = ((s as any).stat['boyfriends_current'] ?? 0) + (1);
   ((s as any).stat = (s as any).stat ?? {})['total_lovers_current'] = ((s as any).stat['total_lovers_current'] ?? 0) + (1);
   return;
@@ -142,13 +140,13 @@ function enterAddBoyfriend(s: GameState, scene: SceneBuilder): void {
 function enterAddGirlfriend(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0)]; enterAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).npc_rel_type ?? 0)?.[String((s as any).npcID ?? 0)] === 'girlfriend') {
-    // TODO-QSP: exit
+    return;
   }
   if (((s as any).npc_rel_type ?? 0)?.[String((s as any).npcID ?? 0)] !== '') {
     qspCall(s, 'lover', 'change_' + (((s as any).npc_rel_type ?? 0)?.[String((s as any).npcID ?? 0)] ?? 0) + '', ((s as any).npcID ?? 0));
   }
   qspCall(s, 'lover_call', 'set_base_schedule', ((s as any).npcID ?? 0));
-  // TODO-QSP: $npc_rel_type[$npcID] = 'girlfriend'
+  ((s as any).npc_rel_type = (s as any).npc_rel_type ?? {})[String((s as any).npcID ?? 0)] = 'girlfriend';
   ((s as any).stat = (s as any).stat ?? {})['girlfriends_current'] = ((s as any).stat['girlfriends_current'] ?? 0) + (1);
   ((s as any).stat = (s as any).stat ?? {})['total_lovers_current'] = ((s as any).stat['total_lovers_current'] ?? 0) + (1);
   return;
@@ -158,12 +156,12 @@ function enterAddGirlfriend(s: GameState, scene: SceneBuilder): void {
 function enterAddFuckbuddy(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0)]; enterAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).npc_rel_type ?? 0)?.[String((s as any).npcID ?? 0)] === 'fuckbuddy') {
-    // TODO-QSP: exit
+    return;
   }
   if (((s as any).npc_rel_type ?? 0)?.[String((s as any).npcID ?? 0)] !== '') {
     qspCall(s, 'lover', 'change_' + (((s as any).npc_rel_type ?? 0)?.[String((s as any).npcID ?? 0)] ?? 0) + '', ((s as any).npcID ?? 0));
   }
-  // TODO-QSP: $npc_rel_type[$npcID] = 'fuckbuddy'
+  ((s as any).npc_rel_type = (s as any).npc_rel_type ?? {})[String((s as any).npcID ?? 0)] = 'fuckbuddy';
   ((s as any).stat = (s as any).stat ?? {})['fuckbuddies_current'] = ((s as any).stat['fuckbuddies_current'] ?? 0) + (1);
   ((s as any).stat = (s as any).stat ?? {})['total_lovers_current'] = ((s as any).stat['total_lovers_current'] ?? 0) + (1);
   return;
@@ -173,12 +171,12 @@ function enterAddFuckbuddy(s: GameState, scene: SceneBuilder): void {
 function enterAddSugarDaddy(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0)]; enterAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).npc_rel_type ?? 0)?.[String((s as any).npcID ?? 0)] === 'sugar_daddy') {
-    // TODO-QSP: exit
+    return;
   }
   if (((s as any).npc_rel_type ?? 0)?.[String((s as any).npcID ?? 0)] !== '') {
     qspCall(s, 'lover', 'change_' + (((s as any).npc_rel_type ?? 0)?.[String((s as any).npcID ?? 0)] ?? 0) + '', ((s as any).npcID ?? 0));
   }
-  // TODO-QSP: $npc_rel_type[$npcID] = 'sugar_daddy'
+  ((s as any).npc_rel_type = (s as any).npc_rel_type ?? {})[String((s as any).npcID ?? 0)] = 'sugar_daddy';
   ((s as any).stat = (s as any).stat ?? {})['sugardaddies_current'] = ((s as any).stat['sugardaddies_current'] ?? 0) + (1);
   ((s as any).stat = (s as any).stat ?? {})['total_lovers_current'] = ((s as any).stat['total_lovers_current'] ?? 0) + (1);
   return;
@@ -188,13 +186,13 @@ function enterAddSugarDaddy(s: GameState, scene: SceneBuilder): void {
 function enterAddHusband(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0)]; enterAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).npc_rel_type ?? 0)?.[String((s as any).npcID ?? 0)] === 'husband') {
-    // TODO-QSP: exit
+    return;
   }
   if (((s as any).npc_rel_type ?? 0)?.[String((s as any).npcID ?? 0)] !== '') {
     qspCall(s, 'lover', 'change_' + (((s as any).npc_rel_type ?? 0)?.[String((s as any).npcID ?? 0)] ?? 0) + '', ((s as any).npcID ?? 0));
   }
   (s as any).husID = ((s as any).npcID ?? 0);
-  // TODO-QSP: $npc_rel_type[$husID] = 'husband'
+  ((s as any).npc_rel_type = (s as any).npc_rel_type ?? {})[String((s as any).husID ?? 0)] = 'husband';
   qspCall(s, 'npc_relationship', 'set', ((s as any).husID ?? 0), 100);
   ((s as any).stat = (s as any).stat ?? {})['husbands_current'] = ((s as any).stat['husbands_current'] ?? 0) + (1);
   ((s as any).stat = (s as any).stat ?? {})['total_lovers_current'] = ((s as any).stat['total_lovers_current'] ?? 0) + (1);
@@ -205,18 +203,17 @@ function enterAddHusband(s: GameState, scene: SceneBuilder): void {
 function enterAddWife(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0)]; enterAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).npc_rel_type ?? 0)?.[String((s as any).npcID ?? 0)] === 'wife') {
-    // TODO-QSP: exit
+    return;
   }
   if (((s as any).npc_rel_type ?? 0)?.[String((s as any).npcID ?? 0)] !== '') {
     qspCall(s, 'lover', 'change_' + (((s as any).npc_rel_type ?? 0)?.[String((s as any).npcID ?? 0)] ?? 0) + '', ((s as any).npcID ?? 0));
   }
   (s as any).wifID = ((s as any).npcID ?? 0);
-  // TODO-QSP: $npc_rel_type[$wifID] = 'wife'
+  ((s as any).npc_rel_type = (s as any).npc_rel_type ?? {})[String((s as any).wifID ?? 0)] = 'wife';
   qspCall(s, 'npc_relationship', 'set', ((s as any).wifID ?? 0), 100);
   ((s as any).stat = (s as any).stat ?? {})['wifes_current'] = ((s as any).stat['wifes_current'] ?? 0) + (1);
   ((s as any).stat = (s as any).stat ?? {})['total_lovers_current'] = ((s as any).stat['total_lovers_current'] ?? 0) + (1);
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -267,7 +264,6 @@ function enterRemoveWife(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterChangeWife(s, scene); (s as any).locArgs = __savedLocArgs; }
   ((s as any).stat = (s as any).stat ?? {})['ex_wifes'] = ((s as any).stat['ex_wifes'] ?? 0) + (1);
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -300,17 +296,20 @@ function enterChangeSugarDaddy(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterChangeHusband(s: GameState, scene: SceneBuilder): void {
+  (s as any).husID = undefined;
   ((s as any).stat = (s as any).stat ?? {})['husbands_current'] = ((s as any).stat['husbands_current'] ?? 0) - (1);
   ((s as any).stat = (s as any).stat ?? {})['total_lovers_current'] = ((s as any).stat['total_lovers_current'] ?? 0) - (1);
+  (s as any).spouseVars = undefined;
   return;
   scene.build();
 }
 
 function enterChangeWife(s: GameState, scene: SceneBuilder): void {
+  (s as any).wifID = undefined;
   ((s as any).stat = (s as any).stat ?? {})['wifes_current'] = ((s as any).stat['wifes_current'] ?? 0) - (1);
   ((s as any).stat = (s as any).stat ?? {})['total_lovers_current'] = ((s as any).stat['total_lovers_current'] ?? 0) - (1);
+  (s as any).spouseVars = undefined;
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -321,70 +320,71 @@ function enterDrawRandomFrom(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).lover_i = 0;
   (s as any).lover_max_i = 0;
-  // TODO-QSP: :draw_from_lover_loop
-  (s as any).lover_temp_npcID = (((s as any).lover ?? 0)?.[String((s as any).lover_i ?? 0)] ?? 0);
-  if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf(((s as any).npc_rel_type ?? 0)?.[String((s as any).lover_temp_npcID ?? 0)]) : -1) > 0) {
-    // TODO-QSP: $lover_temp_lovers[] = $lover_temp_npcID
-  }
-  (s as any).lover_i = ((s as any).lover_i ?? 0) + (1);
-  if (((s as any).lover_i ?? 0) < ((s as any).lover_max_i ?? 0)) {
-    // TODO-QSP: jump 'draw_from_lover_loop'
-  }
-  (s as any).lover_temp_index = (Math.floor(Math.random() * (0 - 0 + 1)) + (0));
-  (s as any).result = (((s as any).lover_temp_lovers ?? 0)?.[String((s as any).lover_temp_index ?? 0)] ?? 0);
-  return;
-  // TODO-QSP: end
+  do {
+    (s as any).lover_temp_npcID = (((s as any).lover ?? 0)?.[String((s as any).lover_i ?? 0)] ?? 0);
+    if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf(((s as any).npc_rel_type ?? 0)?.[String((s as any).lover_temp_npcID ?? 0)]) : -1) > 0) {
+      (s as any).lover_temp_lovers = [...((s as any).lover_temp_lovers ?? []), ((s as any).lover_temp_npcID ?? 0)];
+    }
+    (s as any).lover_i = ((s as any).lover_i ?? 0) + (1);
+    (s as any).lover_temp_index = (Math.floor(Math.random() * (0 - 0 + 1)) + (0));
+    (s as any).result = (((s as any).lover_temp_lovers ?? 0)?.[String((s as any).lover_temp_index ?? 0)] ?? 0);
+    (s as any).lover_temp_npcID = undefined;
+    (s as any).lover_temp_lovers = undefined;
+    (s as any).lover_temp_index = undefined;
+    return;
+  } while (((s as any).lover_i ?? 0) < ((s as any).lover_max_i ?? 0));
   scene.build();
 }
 
 function enterClearAll(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_lover_index = 0;
-  // TODO-QSP: :clear_lovers_loop
-  if (Object.keys((s as any).lover ?? {}).length > ((s as any).temp_lover_index ?? 0)) {
-    if (((s as any).npc_rel_type ?? 0)[((s as any).lover ?? 0)?.[String((s as any).temp_lover_index ?? 0)]] === 'boyfriend') {
-      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', (((s as any).lover ?? 0)?.[String((s as any).temp_lover_index ?? 0)] ?? 0)]; enterRemoveBoyfriend(s, scene); (s as any).locArgs = __savedLocArgs; }
-    } else {
-      if (((s as any).npc_rel_type ?? 0)[((s as any).lover ?? 0)?.[String((s as any).temp_lover_index ?? 0)]] === 'girlfriend') {
-        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', (((s as any).lover ?? 0)?.[String((s as any).temp_lover_index ?? 0)] ?? 0)]; enterRemoveGirlfriend(s, scene); (s as any).locArgs = __savedLocArgs; }
+  while (true) {
+    if (Object.keys((s as any).lover ?? {}).length > ((s as any).temp_lover_index ?? 0)) {
+      if (((s as any).npc_rel_type ?? 0)[((s as any).lover ?? 0)?.[String((s as any).temp_lover_index ?? 0)]] === 'boyfriend') {
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', (((s as any).lover ?? 0)?.[String((s as any).temp_lover_index ?? 0)] ?? 0)]; enterRemoveBoyfriend(s, scene); (s as any).locArgs = __savedLocArgs; }
       } else {
-        if (((s as any).npc_rel_type ?? 0)[((s as any).lover ?? 0)?.[String((s as any).temp_lover_index ?? 0)]] === 'fuckbuddy') {
-          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', (((s as any).lover ?? 0)?.[String((s as any).temp_lover_index ?? 0)] ?? 0)]; enterRemoveFuckbuddy(s, scene); (s as any).locArgs = __savedLocArgs; }
+        if (((s as any).npc_rel_type ?? 0)[((s as any).lover ?? 0)?.[String((s as any).temp_lover_index ?? 0)]] === 'girlfriend') {
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', (((s as any).lover ?? 0)?.[String((s as any).temp_lover_index ?? 0)] ?? 0)]; enterRemoveGirlfriend(s, scene); (s as any).locArgs = __savedLocArgs; }
         } else {
-          if (((s as any).npc_rel_type ?? 0)[((s as any).lover ?? 0)?.[String((s as any).temp_lover_index ?? 0)]] === 'sugar_daddy') {
-            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', (((s as any).lover ?? 0)?.[String((s as any).temp_lover_index ?? 0)] ?? 0)]; enterRemoveSugarDaddy(s, scene); (s as any).locArgs = __savedLocArgs; }
+          if (((s as any).npc_rel_type ?? 0)[((s as any).lover ?? 0)?.[String((s as any).temp_lover_index ?? 0)]] === 'fuckbuddy') {
+            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', (((s as any).lover ?? 0)?.[String((s as any).temp_lover_index ?? 0)] ?? 0)]; enterRemoveFuckbuddy(s, scene); (s as any).locArgs = __savedLocArgs; }
           } else {
-            if (((s as any).npc_rel_type ?? 0)[((s as any).lover ?? 0)?.[String((s as any).temp_lover_index ?? 0)]] === 'husband') {
-              qspCall(s, 'lover_love', 'divorce');
+            if (((s as any).npc_rel_type ?? 0)[((s as any).lover ?? 0)?.[String((s as any).temp_lover_index ?? 0)]] === 'sugar_daddy') {
+              { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', (((s as any).lover ?? 0)?.[String((s as any).temp_lover_index ?? 0)] ?? 0)]; enterRemoveSugarDaddy(s, scene); (s as any).locArgs = __savedLocArgs; }
             } else {
-              if (((s as any).npc_rel_type ?? 0)[((s as any).lover ?? 0)?.[String((s as any).temp_lover_index ?? 0)]] === 'wife') {
+              if (((s as any).npc_rel_type ?? 0)[((s as any).lover ?? 0)?.[String((s as any).temp_lover_index ?? 0)]] === 'husband') {
                 qspCall(s, 'lover_love', 'divorce');
+              } else {
+                if (((s as any).npc_rel_type ?? 0)[((s as any).lover ?? 0)?.[String((s as any).temp_lover_index ?? 0)]] === 'wife') {
+                  qspCall(s, 'lover_love', 'divorce');
+                }
               }
             }
           }
         }
       }
+      (s as any).temp_lover_index = ((s as any).temp_lover_index ?? 0) + (1);
+      break;
     }
-    (s as any).temp_lover_index = ((s as any).temp_lover_index ?? 0) + (1);
-    // TODO-QSP: jump 'clear_lovers_loop'
-  }
-  return;
-  // TODO-QSP: end
-  if (((s as any).ARGS ?? 0) === 'lover_events') {
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGenerateExceptionLinks(s, scene); (s as any).locArgs = __savedLocArgs; }
-    if (Object.keys((s as any).lover ?? {}).length > 0) {
-      (s as any).temp_lover_i = 0;
-      // TODO-QSP: :loop_events
-      (s as any).temp_lover_id = (((s as any).lover ?? 0)?.[String((s as any).temp_lover_i ?? 0)] ?? 0);
-      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_lover_id ?? 0)]; enterGenerateDateLink(s, scene); (s as any).locArgs = __savedLocArgs; }
-      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_lover_id ?? 0)]; enterGenerateHomeLink(s, scene); (s as any).locArgs = __savedLocArgs; }
-      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_lover_id ?? 0)]; enterGenerateHotelLink(s, scene); (s as any).locArgs = __savedLocArgs; }
-      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_lover_id ?? 0)]; enterGenerateOldDateLink(s, scene); (s as any).locArgs = __savedLocArgs; }
-      (s as any).temp_lover_i = ((s as any).temp_lover_i ?? 0) + (1);
-      if (((s as any).temp_lover_i ?? 0) < Object.keys((s as any).lover ?? {}).length) {
-        // TODO-QSP: jump 'loop_events'
-      }
-    }
+    (s as any).temp_lover_index = undefined;
     return;
+    if (((s as any).ARGS ?? 0) === 'lover_events') {
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGenerateExceptionLinks(s, scene); (s as any).locArgs = __savedLocArgs; }
+      if (Object.keys((s as any).lover ?? {}).length > 0) {
+        (s as any).temp_lover_i = 0;
+        do {
+          (s as any).temp_lover_id = (((s as any).lover ?? 0)?.[String((s as any).temp_lover_i ?? 0)] ?? 0);
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_lover_id ?? 0)]; enterGenerateDateLink(s, scene); (s as any).locArgs = __savedLocArgs; }
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_lover_id ?? 0)]; enterGenerateHomeLink(s, scene); (s as any).locArgs = __savedLocArgs; }
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_lover_id ?? 0)]; enterGenerateHotelLink(s, scene); (s as any).locArgs = __savedLocArgs; }
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_lover_id ?? 0)]; enterGenerateOldDateLink(s, scene); (s as any).locArgs = __savedLocArgs; }
+          (s as any).temp_lover_i = ((s as any).temp_lover_i ?? 0) + (1);
+          (s as any).temp_lover_i = undefined;
+          (s as any).temp_lover_id = undefined;
+        } while (((s as any).temp_lover_i ?? 0) < Object.keys((s as any).lover ?? {}).length);
+      }
+      return;
+    }
   }
   scene.build();
 }
@@ -392,12 +392,10 @@ function enterClearAll(s: GameState, scene: SceneBuilder): void {
 function enterGenerateHomeLink(s: GameState, scene: SceneBuilder): void {
   if (((s as any).npc_residence ?? 0)[String((s as any).locArgs?.[1] ?? '')] === ((s as any).loc ?? 0)) {
     if (((String(';fuckbuddy;sugar_daddy;').indexOf(String(';' + (((s as any).npc_rel_type ?? 0)[String((s as any).locArgs?.[1] ?? '')]) + ';'))) + 1) > 0) {
-      // TODO-QSP: dynamic text: '<a href="exec: minut += 2 & gt ''sex_ev_start'', ''initiate_pre'', ''<<$ARGS[1]...
-      scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.2; return s; }); window.__gameStore.getState().doGoto(/u0027sex_ev_start/u0027, /u0027initiate_pre/u0027, /u0027${((s as any).locArgs?.[1] ?? '')}/u0027); return false;">${(((s as any).npc_firstname ?? 0)?.[((s as any).locArgs?.[1] ?? '')] ?? '')}'s</a>` + ((((s as any).npc_residence ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 'uni_grounds') ? ('dorm') : ('apartment')) + ' is nearby.');
+      scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.2; return s; }); window.__gameStore.getState().doGoto(/u0027sex_ev_start/u0027, /u0027initiate_pre/u0027, ((s as any).locArgs?.[1] ?? /u0027/u0027)); return false;">${(((s as any).npc_firstname ?? 0)?.[((s as any).locArgs?.[1] ?? '')] ?? '')}'s</a>` + ((((s as any).npc_residence ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 'uni_grounds') ? ('dorm') : ('apartment')) + ' is nearby.');
     }
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -405,32 +403,27 @@ function enterGenerateHotelLink(s: GameState, scene: SceneBuilder): void {
   if (qspFunc(s, 'lover', 'is_hotel', ((s as any).loc ?? 0))) {
     if (((s as any).booty_call_hotel ?? 0)[String((s as any).locArgs?.[1] ?? '')] === ((s as any).region ?? 0)  &&  ((s as any).booty_call_invite ?? 0)[String((s as any).locArgs?.[1] ?? '')] === ((s as any).daystart ?? 0)) {
       if (((String(';fuckbuddy;sugar_daddy;').indexOf(String(';' + (((s as any).npc_rel_type ?? 0)[String((s as any).locArgs?.[1] ?? '')]) + ';'))) + 1) > 0) {
-        // TODO-QSP: dynamic text: <a href="exec: minut += 2 & gt ''sex_ev_start'', ''initiate_pre'', ''<<$ARGS[1]>...
-        scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.2; return s; }); window.__gameStore.getState().doGoto(/u0027sex_ev_start/u0027, /u0027initiate_pre/u0027, /u0027${((s as any).locArgs?.[1] ?? '')}/u0027); return false;">${(((s as any).npc_firstname ?? 0)?.[((s as any).locArgs?.[1] ?? '')] ?? '')}</a> booked a hotel room to meet you in.`);
+        scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.2; return s; }); window.__gameStore.getState().doGoto(/u0027sex_ev_start/u0027, /u0027initiate_pre/u0027, ((s as any).locArgs?.[1] ?? /u0027/u0027)); return false;">${(((s as any).npc_firstname ?? 0)?.[((s as any).locArgs?.[1] ?? '')] ?? '')}</a> booked a hotel room to meet you in.`);
       }
     }
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterGenerateDateLink(s: GameState, scene: SceneBuilder): void {
   if (((s as any).npc_date_loc ?? 0)[String((s as any).locArgs?.[1] ?? '')] === ((s as any).loc ?? 0)  &&  ((s as any).daystart ?? 0) === ((s as any).npc_date_invite ?? 0)[String((s as any).locArgs?.[1] ?? '')]  &&  ((s as any).daystart ?? 0) > ((s as any).npc_last_date ?? 0)[String((s as any).locArgs?.[1] ?? '')]) {
     if (((s as any).hour ?? 0) < ((s as any).npc_date_meethour ?? 0)[String((s as any).locArgs?.[1] ?? '')]) {
-      // TODO-QSP: dynamic text: You have a date with <<$npc_firstname[$ARGS[1]]>> at <<func(''time'', ''get_time...
       scene.text(`You have a date with ${(((s as any).npc_firstname ?? 0)?.[((s as any).locArgs?.[1] ?? '')] ?? '')} at ${qspFunc(s, 'time', 'get_time_string', (((s as any).npc_date_meethour ?? 0)?.[((s as any).locArgs?.[1] ?? '')] ?? ''), 0)}.`);
     } else {
       if (((s as any).hour ?? 0) === ((s as any).npc_date_meethour ?? 0)[String((s as any).locArgs?.[1] ?? '')]) {
-        // TODO-QSP: dynamic text: <a href="exec: minut += 2 & gt ''date_ev'', ''initiate_pre'', ''<<$ARGS[1]>>'' "...
-        scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.2; return s; }); window.__gameStore.getState().doGoto(/u0027date_ev/u0027, /u0027initiate_pre/u0027, /u0027${((s as any).locArgs?.[1] ?? '')}/u0027); return false;">${(((s as any).npc_firstname ?? 0)?.[((s as any).locArgs?.[1] ?? '')] ?? '')} is waiting for you</a>.`);
+        scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.2; return s; }); window.__gameStore.getState().doGoto(/u0027date_ev/u0027, /u0027initiate_pre/u0027, ((s as any).locArgs?.[1] ?? /u0027/u0027)); return false;">${(((s as any).npc_firstname ?? 0)?.[((s as any).locArgs?.[1] ?? '')] ?? '')} is waiting for you</a>.`);
       } else {
         scene.text(`You missed your date with ${(((s as any).npc_firstname ?? 0)?.[((s as any).locArgs?.[1] ?? '')] ?? '')} at ${qspFunc(s, 'time', 'get_time_string', (((s as any).npc_date_meethour ?? 0)?.[((s as any).locArgs?.[1] ?? '')] ?? ''), 0)}.`);
       }
     }
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -438,12 +431,10 @@ function enterGenerateOldDateLink(s: GameState, scene: SceneBuilder): void {
   if (qspFunc(s, 'lover', 'check_home_loc_old_content')) {
     if (((s as any).daystart ?? 0) === ((s as any).npc_meetday ?? 0)[String((s as any).locArgs?.[1] ?? '')]) {
       if (((s as any).hour ?? 0) < ((s as any).npc_meethour ?? 0)[String((s as any).locArgs?.[1] ?? '')]) {
-        // TODO-QSP: dynamic text: <b><<$npc_usedname[$ARGS[1]]>> will be waiting for you by <<$func(''homes_proper...
         scene.text(`<b>${(((s as any).npc_usedname ?? 0)?.[((s as any).locArgs?.[1] ?? '')] ?? '')} will be waiting for you by ${qspFunc(s, 'homes_properties', 'get_home_desc')} at ${qspFunc(s, 'time', 'get_time_string', (((s as any).npc_meethour ?? 0)?.[((s as any).locArgs?.[1] ?? '')] ?? ''), 0)}.</b>`);
       } else {
         if (((s as any).hour ?? 0) === ((s as any).npc_meethour ?? 0)[String((s as any).locArgs?.[1] ?? '')]) {
-          // TODO-QSP: dynamic text: <b><a href="exec: gt ''lover_meet'', ''start'', ''<<$ARGS[1]>>''"><<$npc_usednam...
-          scene.text(`<b><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027lover_meet/u0027, /u0027start/u0027, /u0027${((s as any).locArgs?.[1] ?? '')}/u0027); return false;">${(((s as any).npc_usedname ?? 0)?.[((s as any).locArgs?.[1] ?? '')] ?? '')}</a> is waiting for you by ${qspFunc(s, 'homes_properties', 'get_home_desc')}.</b>`);
+          scene.text(`<b><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027lover_meet/u0027, /u0027start/u0027, ((s as any).locArgs?.[1] ?? /u0027/u0027)); return false;">${(((s as any).npc_usedname ?? 0)?.[((s as any).locArgs?.[1] ?? '')] ?? '')}</a> is waiting for you by ${qspFunc(s, 'homes_properties', 'get_home_desc')}.</b>`);
         } else {
           scene.text(`<center><b>${(((s as any).npc_usedname ?? 0)?.[((s as any).locArgs?.[1] ?? '')] ?? '')} was waiting for you by ${qspFunc(s, 'homes_properties', 'get_home_desc')} at ${qspFunc(s, 'time', 'get_time_string', (((s as any).npc_meethour ?? 0)?.[((s as any).locArgs?.[1] ?? '')] ?? ''), 0)}.</b></center>`);
         }
@@ -451,7 +442,6 @@ function enterGenerateOldDateLink(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -459,18 +449,15 @@ function enterGenerateExceptionLinks(s: GameState, scene: SceneBuilder): void {
   if (qspFunc(s, 'lover', 'check_home_loc_old_content')) {
     if (((s as any).daystart ?? 0) === ((s as any).vladimirQW ?? 0)?.['day']  &&  ((s as any).hour ?? 0) >= 16  &&  ((s as any).week ?? 0) === 6) {
       if (((s as any).vladimirQW ?? 0)?.['stage'] === 30) {
-        // TODO-QSP: dynamic text: <a href="exec: gt ''vladimirQW_meet'', ''2''">There''s an Audi parked near <<$fu...
         scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027vladimirQW_meet/u0027, /u00272/u0027); return false;">There's an Audi parked near ${qspFunc(s, 'homes_properties', 'get_home_desc')}, and standing beside it, you notice Vladimir</a>.`);
       } else {
         if (((s as any).vladimirQW ?? 0)?.['stage'] === 40) {
-          // TODO-QSP: dynamic text: <a href="exec: gt ''vladimirQW_meet'', ''3''">There''s an Audi parked near <<$fu...
           scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027vladimirQW_meet/u0027, /u00273/u0027); return false;">There's an Audi parked near ${qspFunc(s, 'homes_properties', 'get_home_desc')}, and standing beside it, you notice Vladimir</a>.`);
         }
       }
     }
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -504,14 +491,12 @@ function enterCheckHomeLocOldContent(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterIsHotel(s: GameState, scene: SceneBuilder): void {
   (s as any).result = (String((s as any).locArgs?.[1] ?? '') === 'pav_hotel'  ||  String((s as any).locArgs?.[1] ?? '') === 'city_hotel');
   return;
-  // TODO-QSP: end
   scene.build();
 }
 

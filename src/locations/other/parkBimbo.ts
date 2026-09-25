@@ -31,7 +31,6 @@ function enterPos1(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Help the old guy out', goto: ['parkBimbo', 'pos2'] },
   ]);
@@ -58,7 +57,6 @@ function enterPos2(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
   }
   scene.text('Getting up, you swallow his sperm and wink at him as you walk away.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'finish', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');

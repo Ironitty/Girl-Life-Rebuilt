@@ -39,14 +39,14 @@ function enterKiss(s: GameState, scene: SceneBuilder): void {
       ((s as any).count = (s as any).count ?? {})['hidden_kiss'] = 1;
       if (((s as any).arousalVars ?? 0)?.['self'] === 0) {
         if ((Array.isArray((s as any).arousal_npc_hidden_kissed) ? ((s as any).arousal_npc_hidden_kissed as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_hidden_kissed[] = $npcID10
+          (s as any).arousal_npc_hidden_kissed = [...((s as any).arousal_npc_hidden_kissed ?? []), ((s as any).npcID10 ?? 0)];
         }
       }
     } else {
       ((s as any).count = (s as any).count ?? {})['kiss'] = 1;
       if (((s as any).arousalVars ?? 0)?.['self'] === 0) {
         if ((Array.isArray((s as any).arousal_npc_kissed) ? ((s as any).arousal_npc_kissed as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_kissed[] = $npcID10
+          (s as any).arousal_npc_kissed = [...((s as any).arousal_npc_kissed ?? []), ((s as any).npcID10 ?? 0)];
         }
       }
     }
@@ -170,14 +170,14 @@ function enterClitFinger(s: GameState, scene: SceneBuilder): void {
       ((s as any).count = (s as any).count ?? {})['hidden_clit_finger'] = 1;
       if (((s as any).arousalVars ?? 0)?.['self'] === 0) {
         if ((Array.isArray((s as any).arousal_npc_hidden_sexual) ? ((s as any).arousal_npc_hidden_sexual as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_hidden_sexual[] = $npcID10
+          (s as any).arousal_npc_hidden_sexual = [...((s as any).arousal_npc_hidden_sexual ?? []), ((s as any).npcID10 ?? 0)];
         }
       }
     } else {
       ((s as any).count = (s as any).count ?? {})['clit_finger'] = 1;
       if (((s as any).arousalVars ?? 0)?.['self'] === 0) {
         if ((Array.isArray((s as any).arousal_npc_sexual) ? ((s as any).arousal_npc_sexual as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_sexual[] = $npcID10
+          (s as any).arousal_npc_sexual = [...((s as any).arousal_npc_sexual ?? []), ((s as any).npcID10 ?? 0)];
         }
       }
     }
@@ -195,14 +195,14 @@ function enterClitSuck(s: GameState, scene: SceneBuilder): void {
       ((s as any).count = (s as any).count ?? {})['hidden_clit_suck'] = 1;
       if (((s as any).arousalVars ?? 0)?.['self'] === 0) {
         if ((Array.isArray((s as any).arousal_npc_hidden_sexual) ? ((s as any).arousal_npc_hidden_sexual as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_hidden_sexual[] = $npcID10
+          (s as any).arousal_npc_hidden_sexual = [...((s as any).arousal_npc_hidden_sexual ?? []), ((s as any).npcID10 ?? 0)];
         }
       }
     } else {
       ((s as any).count = (s as any).count ?? {})['clit_suck'] = 1;
       if (((s as any).arousalVars ?? 0)?.['self'] === 0) {
         if ((Array.isArray((s as any).arousal_npc_sexual) ? ((s as any).arousal_npc_sexual as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_sexual[] = $npcID10
+          (s as any).arousal_npc_sexual = [...((s as any).arousal_npc_sexual ?? []), ((s as any).npcID10 ?? 0)];
         }
       }
     }
@@ -220,14 +220,14 @@ function enterClitVibe(s: GameState, scene: SceneBuilder): void {
       ((s as any).count = (s as any).count ?? {})['hidden_clit_vibe'] = 1;
       if (((s as any).arousalVars ?? 0)?.['self'] === 0) {
         if ((Array.isArray((s as any).arousal_npc_hidden_sexual) ? ((s as any).arousal_npc_hidden_sexual as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_hidden_sexual[] = $npcID10
+          (s as any).arousal_npc_hidden_sexual = [...((s as any).arousal_npc_hidden_sexual ?? []), ((s as any).npcID10 ?? 0)];
         }
       }
     } else {
       ((s as any).count = (s as any).count ?? {})['clit_vibe'] = 1;
       if (((s as any).arousalVars ?? 0)?.['self'] === 0) {
         if ((Array.isArray((s as any).arousal_npc_sexual) ? ((s as any).arousal_npc_sexual as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_sexual[] = $npcID10
+          (s as any).arousal_npc_sexual = [...((s as any).arousal_npc_sexual ?? []), ((s as any).npcID10 ?? 0)];
         }
       }
     }
@@ -248,14 +248,14 @@ function enterVaginalFinger(s: GameState, scene: SceneBuilder): void {
       ((s as any).count = (s as any).count ?? {})['hidden_vaginal_finger'] = 1;
       if (((s as any).arousalVars ?? 0)?.['self'] === 0) {
         if ((Array.isArray((s as any).arousal_npc_hidden_sexual) ? ((s as any).arousal_npc_hidden_sexual as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_hidden_sexual[] = $npcID10
+          (s as any).arousal_npc_hidden_sexual = [...((s as any).arousal_npc_hidden_sexual ?? []), ((s as any).npcID10 ?? 0)];
         }
       }
     } else {
       ((s as any).count = (s as any).count ?? {})['vaginal_finger'] = 1;
       if (((s as any).arousalVars ?? 0)?.['self'] === 0) {
         if ((Array.isArray((s as any).arousal_npc_sexual) ? ((s as any).arousal_npc_sexual as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_sexual[] = $npcID10
+          (s as any).arousal_npc_sexual = [...((s as any).arousal_npc_sexual ?? []), ((s as any).npcID10 ?? 0)];
         }
       }
     }
@@ -294,14 +294,14 @@ function enterVaginalFist(s: GameState, scene: SceneBuilder): void {
       ((s as any).count = (s as any).count ?? {})['hidden_vaginal_fist'] = 1;
       if (((s as any).arousalVars ?? 0)?.['self'] === 0) {
         if ((Array.isArray((s as any).arousal_npc_hidden_sexual) ? ((s as any).arousal_npc_hidden_sexual as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_hidden_sexual[] = $npcID10
+          (s as any).arousal_npc_hidden_sexual = [...((s as any).arousal_npc_hidden_sexual ?? []), ((s as any).npcID10 ?? 0)];
         }
       }
     } else {
       ((s as any).count = (s as any).count ?? {})['vaginal_fist'] = 1;
       if (((s as any).arousalVars ?? 0)?.['self'] === 0) {
         if ((Array.isArray((s as any).arousal_npc_sexual) ? ((s as any).arousal_npc_sexual as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_sexual[] = $npcID10
+          (s as any).arousal_npc_sexual = [...((s as any).arousal_npc_sexual ?? []), ((s as any).npcID10 ?? 0)];
         }
       }
     }
@@ -360,14 +360,14 @@ function enterCuni(s: GameState, scene: SceneBuilder): void {
       ((s as any).count = (s as any).count ?? {})['hidden_cuni'] = 1;
       if (((s as any).arousalVars ?? 0)?.['self'] === 0) {
         if ((Array.isArray((s as any).arousal_npc_hidden_sexual) ? ((s as any).arousal_npc_hidden_sexual as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_hidden_sexual[] = $npcID10
+          (s as any).arousal_npc_hidden_sexual = [...((s as any).arousal_npc_hidden_sexual ?? []), ((s as any).npcID10 ?? 0)];
         }
       }
     } else {
       ((s as any).count = (s as any).count ?? {})['cuni'] = 1;
       if (((s as any).arousalVars ?? 0)?.['self'] === 0) {
         if ((Array.isArray((s as any).arousal_npc_sexual) ? ((s as any).arousal_npc_sexual as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_sexual[] = $npcID10
+          (s as any).arousal_npc_sexual = [...((s as any).arousal_npc_sexual ?? []), ((s as any).npcID10 ?? 0)];
         }
       }
     }
@@ -389,20 +389,20 @@ function enterVaginal(s: GameState, scene: SceneBuilder): void {
       ((s as any).count = (s as any).count ?? {})['hidden_vaginal'] = 1;
       if (((s as any).arousalVars ?? 0)?.['self'] === 0) {
         if ((Array.isArray((s as any).arousal_npc_hidden_sexual) ? ((s as any).arousal_npc_hidden_sexual as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_hidden_sexual[] = $npcID10
+          (s as any).arousal_npc_hidden_sexual = [...((s as any).arousal_npc_hidden_sexual ?? []), ((s as any).npcID10 ?? 0)];
         }
         if ((Array.isArray((s as any).arousal_npc_hidden_vaginal) ? ((s as any).arousal_npc_hidden_vaginal as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_hidden_vaginal[] = $npcID10
+          (s as any).arousal_npc_hidden_vaginal = [...((s as any).arousal_npc_hidden_vaginal ?? []), ((s as any).npcID10 ?? 0)];
         }
       }
     } else {
       ((s as any).count = (s as any).count ?? {})['vaginal'] = 1;
       if (((s as any).arousalVars ?? 0)?.['self'] === 0) {
         if ((Array.isArray((s as any).arousal_npc_sexual) ? ((s as any).arousal_npc_sexual as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_sexual[] = $npcID10
+          (s as any).arousal_npc_sexual = [...((s as any).arousal_npc_sexual ?? []), ((s as any).npcID10 ?? 0)];
         }
         if ((Array.isArray((s as any).arousal_npc_vaginal) ? ((s as any).arousal_npc_vaginal as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_vaginal[] = $npcID10
+          (s as any).arousal_npc_vaginal = [...((s as any).arousal_npc_vaginal ?? []), ((s as any).npcID10 ?? 0)];
         }
       }
       if (((s as any).stat ?? 0)?.['biggest_cock'] < ((s as any).dick_length11 ?? 0)) {
@@ -436,20 +436,20 @@ function enterTrib(s: GameState, scene: SceneBuilder): void {
       ((s as any).count = (s as any).count ?? {})['hidden_trib'] = 1;
       if (((s as any).arousalVars ?? 0)?.['self'] === 0) {
         if ((Array.isArray((s as any).arousal_npc_hidden_sexual) ? ((s as any).arousal_npc_hidden_sexual as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_hidden_sexual[] = $npcID10
+          (s as any).arousal_npc_hidden_sexual = [...((s as any).arousal_npc_hidden_sexual ?? []), ((s as any).npcID10 ?? 0)];
         }
         if ((Array.isArray((s as any).arousal_npc_hidden_vaginal) ? ((s as any).arousal_npc_hidden_vaginal as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_hidden_vaginal[] = $npcID10
+          (s as any).arousal_npc_hidden_vaginal = [...((s as any).arousal_npc_hidden_vaginal ?? []), ((s as any).npcID10 ?? 0)];
         }
       }
     } else {
       ((s as any).count = (s as any).count ?? {})['trib'] = 1;
       if (((s as any).arousalVars ?? 0)?.['self'] === 0) {
         if ((Array.isArray((s as any).arousal_npc_sexual) ? ((s as any).arousal_npc_sexual as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_sexual[] = $npcID10
+          (s as any).arousal_npc_sexual = [...((s as any).arousal_npc_sexual ?? []), ((s as any).npcID10 ?? 0)];
         }
         if ((Array.isArray((s as any).arousal_npc_vaginal) ? ((s as any).arousal_npc_vaginal as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_vaginal[] = $npcID10
+          (s as any).arousal_npc_vaginal = [...((s as any).arousal_npc_vaginal ?? []), ((s as any).npcID10 ?? 0)];
         }
       }
     }
@@ -472,20 +472,20 @@ function enterVaginalDildo(s: GameState, scene: SceneBuilder): void {
       ((s as any).count = (s as any).count ?? {})['hidden_vaginal_dildo'] = 1;
       if (((s as any).arousalVars ?? 0)?.['self'] === 0) {
         if ((Array.isArray((s as any).arousal_npc_hidden_sexual) ? ((s as any).arousal_npc_hidden_sexual as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_hidden_sexual[] = $npcID10
+          (s as any).arousal_npc_hidden_sexual = [...((s as any).arousal_npc_hidden_sexual ?? []), ((s as any).npcID10 ?? 0)];
         }
         if ((Array.isArray((s as any).arousal_npc_hidden_vaginal) ? ((s as any).arousal_npc_hidden_vaginal as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_hidden_vaginal[] = $npcID10
+          (s as any).arousal_npc_hidden_vaginal = [...((s as any).arousal_npc_hidden_vaginal ?? []), ((s as any).npcID10 ?? 0)];
         }
       }
     } else {
       ((s as any).count = (s as any).count ?? {})['vaginal_dildo'] = 1;
       if (((s as any).arousalVars ?? 0)?.['self'] === 0) {
         if ((Array.isArray((s as any).arousal_npc_sexual) ? ((s as any).arousal_npc_sexual as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_sexual[] = $npcID10
+          (s as any).arousal_npc_sexual = [...((s as any).arousal_npc_sexual ?? []), ((s as any).npcID10 ?? 0)];
         }
         if ((Array.isArray((s as any).arousal_npc_vaginal) ? ((s as any).arousal_npc_vaginal as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_vaginal[] = $npcID10
+          (s as any).arousal_npc_vaginal = [...((s as any).arousal_npc_vaginal ?? []), ((s as any).npcID10 ?? 0)];
         }
       }
     }
@@ -509,20 +509,20 @@ function enterVaginalStrap(s: GameState, scene: SceneBuilder): void {
       ((s as any).count = (s as any).count ?? {})['hidden_vaginal_strap'] = 1;
       if (((s as any).arousalVars ?? 0)?.['self'] === 0) {
         if ((Array.isArray((s as any).arousal_npc_hidden_sexual) ? ((s as any).arousal_npc_hidden_sexual as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_hidden_sexual[] = $npcID10
+          (s as any).arousal_npc_hidden_sexual = [...((s as any).arousal_npc_hidden_sexual ?? []), ((s as any).npcID10 ?? 0)];
         }
         if ((Array.isArray((s as any).arousal_npc_hidden_vaginal) ? ((s as any).arousal_npc_hidden_vaginal as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_hidden_vaginal[] = $npcID10
+          (s as any).arousal_npc_hidden_vaginal = [...((s as any).arousal_npc_hidden_vaginal ?? []), ((s as any).npcID10 ?? 0)];
         }
       }
     } else {
       ((s as any).count = (s as any).count ?? {})['vaginal_strap'] = 1;
       if (((s as any).arousalVars ?? 0)?.['self'] === 0) {
         if ((Array.isArray((s as any).arousal_npc_sexual) ? ((s as any).arousal_npc_sexual as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_sexual[] = $npcID10
+          (s as any).arousal_npc_sexual = [...((s as any).arousal_npc_sexual ?? []), ((s as any).npcID10 ?? 0)];
         }
         if ((Array.isArray((s as any).arousal_npc_vaginal) ? ((s as any).arousal_npc_vaginal as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_vaginal[] = $npcID10
+          (s as any).arousal_npc_vaginal = [...((s as any).arousal_npc_vaginal ?? []), ((s as any).npcID10 ?? 0)];
         }
       }
     }
@@ -541,20 +541,20 @@ function enterVaginalVibe(s: GameState, scene: SceneBuilder): void {
       ((s as any).count = (s as any).count ?? {})['hidden_vaginal_vibe'] = 1;
       if (((s as any).arousalVars ?? 0)?.['self'] === 0) {
         if ((Array.isArray((s as any).arousal_npc_hidden_sexual) ? ((s as any).arousal_npc_hidden_sexual as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_hidden_sexual[] = $npcID10
+          (s as any).arousal_npc_hidden_sexual = [...((s as any).arousal_npc_hidden_sexual ?? []), ((s as any).npcID10 ?? 0)];
         }
         if ((Array.isArray((s as any).arousal_npc_hidden_vaginal) ? ((s as any).arousal_npc_hidden_vaginal as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_hidden_vaginal[] = $npcID10
+          (s as any).arousal_npc_hidden_vaginal = [...((s as any).arousal_npc_hidden_vaginal ?? []), ((s as any).npcID10 ?? 0)];
         }
       }
     } else {
       ((s as any).count = (s as any).count ?? {})['vaginal_vibe'] = 1;
       if (((s as any).arousalVars ?? 0)?.['self'] === 0) {
         if ((Array.isArray((s as any).arousal_npc_sexual) ? ((s as any).arousal_npc_sexual as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_sexual[] = $npcID10
+          (s as any).arousal_npc_sexual = [...((s as any).arousal_npc_sexual ?? []), ((s as any).npcID10 ?? 0)];
         }
         if ((Array.isArray((s as any).arousal_npc_vaginal) ? ((s as any).arousal_npc_vaginal as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_vaginal[] = $npcID10
+          (s as any).arousal_npc_vaginal = [...((s as any).arousal_npc_vaginal ?? []), ((s as any).npcID10 ?? 0)];
         }
       }
     }
@@ -582,14 +582,14 @@ function enterAnalFinger(s: GameState, scene: SceneBuilder): void {
       ((s as any).count = (s as any).count ?? {})['hidden_anal_finger'] = 1;
       if (((s as any).arousalVars ?? 0)?.['self'] === 0) {
         if ((Array.isArray((s as any).arousal_npc_hidden_sexual) ? ((s as any).arousal_npc_hidden_sexual as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_hidden_sexual[] = $npcID10
+          (s as any).arousal_npc_hidden_sexual = [...((s as any).arousal_npc_hidden_sexual ?? []), ((s as any).npcID10 ?? 0)];
         }
       }
     } else {
       ((s as any).count = (s as any).count ?? {})['anal_finger'] = 1;
       if (((s as any).arousalVars ?? 0)?.['self'] === 0) {
         if ((Array.isArray((s as any).arousal_npc_sexual) ? ((s as any).arousal_npc_sexual as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_sexual[] = $npcID10
+          (s as any).arousal_npc_sexual = [...((s as any).arousal_npc_sexual ?? []), ((s as any).npcID10 ?? 0)];
         }
       }
     }
@@ -623,14 +623,14 @@ function enterAnalFist(s: GameState, scene: SceneBuilder): void {
       ((s as any).count = (s as any).count ?? {})['hidden_anal_fist'] = 1;
       if (((s as any).arousalVars ?? 0)?.['self'] === 0) {
         if ((Array.isArray((s as any).arousal_npc_hidden_sexual) ? ((s as any).arousal_npc_hidden_sexual as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_hidden_sexual[] = $npcID10
+          (s as any).arousal_npc_hidden_sexual = [...((s as any).arousal_npc_hidden_sexual ?? []), ((s as any).npcID10 ?? 0)];
         }
       }
     } else {
       ((s as any).count = (s as any).count ?? {})['anal_fist'] = 1;
       if (((s as any).arousalVars ?? 0)?.['self'] === 0) {
         if ((Array.isArray((s as any).arousal_npc_sexual) ? ((s as any).arousal_npc_sexual as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_sexual[] = $npcID10
+          (s as any).arousal_npc_sexual = [...((s as any).arousal_npc_sexual ?? []), ((s as any).npcID10 ?? 0)];
         }
       }
     }
@@ -686,14 +686,14 @@ function enterRimming(s: GameState, scene: SceneBuilder): void {
       ((s as any).count = (s as any).count ?? {})['hidden_rimming'] = 1;
       if (((s as any).arousalVars ?? 0)?.['self'] === 0) {
         if ((Array.isArray((s as any).arousal_npc_hidden_sexual) ? ((s as any).arousal_npc_hidden_sexual as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_hidden_sexual[] = $npcID10
+          (s as any).arousal_npc_hidden_sexual = [...((s as any).arousal_npc_hidden_sexual ?? []), ((s as any).npcID10 ?? 0)];
         }
       }
     } else {
       ((s as any).count = (s as any).count ?? {})['rimming'] = 1;
       if (((s as any).arousalVars ?? 0)?.['self'] === 0) {
         if ((Array.isArray((s as any).arousal_npc_sexual) ? ((s as any).arousal_npc_sexual as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_sexual[] = $npcID10
+          (s as any).arousal_npc_sexual = [...((s as any).arousal_npc_sexual ?? []), ((s as any).npcID10 ?? 0)];
         }
       }
     }
@@ -710,20 +710,20 @@ function enterAnal(s: GameState, scene: SceneBuilder): void {
       ((s as any).count = (s as any).count ?? {})['hidden_anal'] = 1;
       if (((s as any).arousalVars ?? 0)?.['self'] === 0) {
         if ((Array.isArray((s as any).arousal_npc_hidden_sexual) ? ((s as any).arousal_npc_hidden_sexual as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_hidden_sexual[] = $npcID10
+          (s as any).arousal_npc_hidden_sexual = [...((s as any).arousal_npc_hidden_sexual ?? []), ((s as any).npcID10 ?? 0)];
         }
         if ((Array.isArray((s as any).arousal_npc_hidden_anal) ? ((s as any).arousal_npc_hidden_anal as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_hidden_anal[] = $npcID10
+          (s as any).arousal_npc_hidden_anal = [...((s as any).arousal_npc_hidden_anal ?? []), ((s as any).npcID10 ?? 0)];
         }
       }
     } else {
       ((s as any).count = (s as any).count ?? {})['anal'] = 1;
       if (((s as any).arousalVars ?? 0)?.['self'] === 0) {
         if ((Array.isArray((s as any).arousal_npc_sexual) ? ((s as any).arousal_npc_sexual as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_sexual[] = $npcID10
+          (s as any).arousal_npc_sexual = [...((s as any).arousal_npc_sexual ?? []), ((s as any).npcID10 ?? 0)];
         }
         if ((Array.isArray((s as any).arousal_npc_anal) ? ((s as any).arousal_npc_anal as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_anal[] = $npcID10
+          (s as any).arousal_npc_anal = [...((s as any).arousal_npc_anal ?? []), ((s as any).npcID10 ?? 0)];
         }
       }
       if (((s as any).stat ?? 0)?.['biggest_cock_anal'] < ((s as any).dick_length11 ?? 0)) {
@@ -745,20 +745,20 @@ function enterAnalDildo(s: GameState, scene: SceneBuilder): void {
       ((s as any).count = (s as any).count ?? {})['hidden_anal_dildo'] = 1;
       if (((s as any).arousalVars ?? 0)?.['self'] === 0) {
         if ((Array.isArray((s as any).arousal_npc_hidden_sexual) ? ((s as any).arousal_npc_hidden_sexual as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_hidden_sexual[] = $npcID10
+          (s as any).arousal_npc_hidden_sexual = [...((s as any).arousal_npc_hidden_sexual ?? []), ((s as any).npcID10 ?? 0)];
         }
         if ((Array.isArray((s as any).arousal_npc_hidden_anal) ? ((s as any).arousal_npc_hidden_anal as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_hidden_anal[] = $npcID10
+          (s as any).arousal_npc_hidden_anal = [...((s as any).arousal_npc_hidden_anal ?? []), ((s as any).npcID10 ?? 0)];
         }
       }
     } else {
       ((s as any).count = (s as any).count ?? {})['anal_dildo'] = 1;
       if (((s as any).arousalVars ?? 0)?.['self'] === 0) {
         if ((Array.isArray((s as any).arousal_npc_sexual) ? ((s as any).arousal_npc_sexual as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_sexual[] = $npcID10
+          (s as any).arousal_npc_sexual = [...((s as any).arousal_npc_sexual ?? []), ((s as any).npcID10 ?? 0)];
         }
         if ((Array.isArray((s as any).arousal_npc_anal) ? ((s as any).arousal_npc_anal as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_anal[] = $npcID10
+          (s as any).arousal_npc_anal = [...((s as any).arousal_npc_anal ?? []), ((s as any).npcID10 ?? 0)];
         }
       }
     }
@@ -776,20 +776,20 @@ function enterAnalStrap(s: GameState, scene: SceneBuilder): void {
       ((s as any).count = (s as any).count ?? {})['hidden_anal_strap'] = 1;
       if (((s as any).arousalVars ?? 0)?.['self'] === 0) {
         if ((Array.isArray((s as any).arousal_npc_hidden_sexual) ? ((s as any).arousal_npc_hidden_sexual as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_hidden_sexual[] = $npcID10
+          (s as any).arousal_npc_hidden_sexual = [...((s as any).arousal_npc_hidden_sexual ?? []), ((s as any).npcID10 ?? 0)];
         }
         if ((Array.isArray((s as any).arousal_npc_hidden_anal) ? ((s as any).arousal_npc_hidden_anal as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_hidden_anal[] = $npcID10
+          (s as any).arousal_npc_hidden_anal = [...((s as any).arousal_npc_hidden_anal ?? []), ((s as any).npcID10 ?? 0)];
         }
       }
     } else {
       ((s as any).count = (s as any).count ?? {})['anal_strap'] = 1;
       if (((s as any).arousalVars ?? 0)?.['self'] === 0) {
         if ((Array.isArray((s as any).arousal_npc_sexual) ? ((s as any).arousal_npc_sexual as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_sexual[] = $npcID10
+          (s as any).arousal_npc_sexual = [...((s as any).arousal_npc_sexual ?? []), ((s as any).npcID10 ?? 0)];
         }
         if ((Array.isArray((s as any).arousal_npc_anal) ? ((s as any).arousal_npc_anal as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_anal[] = $npcID10
+          (s as any).arousal_npc_anal = [...((s as any).arousal_npc_anal ?? []), ((s as any).npcID10 ?? 0)];
         }
       }
     }
@@ -812,20 +812,20 @@ function enterAnalVibe(s: GameState, scene: SceneBuilder): void {
       ((s as any).count = (s as any).count ?? {})['hidden_anal_vibe'] = 1;
       if (((s as any).arousalVars ?? 0)?.['self'] === 0) {
         if ((Array.isArray((s as any).arousal_npc_hidden_sexual) ? ((s as any).arousal_npc_hidden_sexual as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_hidden_sexual[] = $npcID10
+          (s as any).arousal_npc_hidden_sexual = [...((s as any).arousal_npc_hidden_sexual ?? []), ((s as any).npcID10 ?? 0)];
         }
         if ((Array.isArray((s as any).arousal_npc_hidden_anal) ? ((s as any).arousal_npc_hidden_anal as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_hidden_anal[] = $npcID10
+          (s as any).arousal_npc_hidden_anal = [...((s as any).arousal_npc_hidden_anal ?? []), ((s as any).npcID10 ?? 0)];
         }
       }
     } else {
       ((s as any).count = (s as any).count ?? {})['anal_vibe'] = 1;
       if (((s as any).arousalVars ?? 0)?.['self'] === 0) {
         if ((Array.isArray((s as any).arousal_npc_sexual) ? ((s as any).arousal_npc_sexual as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_sexual[] = $npcID10
+          (s as any).arousal_npc_sexual = [...((s as any).arousal_npc_sexual ?? []), ((s as any).npcID10 ?? 0)];
         }
         if ((Array.isArray((s as any).arousal_npc_anal) ? ((s as any).arousal_npc_anal as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_anal[] = $npcID10
+          (s as any).arousal_npc_anal = [...((s as any).arousal_npc_anal ?? []), ((s as any).npcID10 ?? 0)];
         }
       }
     }
@@ -844,14 +844,14 @@ function enterBDSM(s: GameState, scene: SceneBuilder): void {
       ((s as any).count = (s as any).count ?? {})['hidden_BDSM'] = 1;
       if (((s as any).arousalVars ?? 0)?.['self'] === 0) {
         if ((Array.isArray((s as any).arousal_npc_hidden_sexual) ? ((s as any).arousal_npc_hidden_sexual as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_hidden_sexual[] = $npcID10
+          (s as any).arousal_npc_hidden_sexual = [...((s as any).arousal_npc_hidden_sexual ?? []), ((s as any).npcID10 ?? 0)];
         }
       }
     } else {
       ((s as any).count = (s as any).count ?? {})['BDSM'] = 1;
       if (((s as any).arousalVars ?? 0)?.['self'] === 0) {
         if ((Array.isArray((s as any).arousal_npc_sexual) ? ((s as any).arousal_npc_sexual as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_sexual[] = $npcID10
+          (s as any).arousal_npc_sexual = [...((s as any).arousal_npc_sexual ?? []), ((s as any).npcID10 ?? 0)];
         }
       }
     }
@@ -866,14 +866,14 @@ function enterPee(s: GameState, scene: SceneBuilder): void {
       ((s as any).count = (s as any).count ?? {})['hidden_pee'] = 1;
       if (((s as any).arousalVars ?? 0)?.['self'] === 0) {
         if ((Array.isArray((s as any).arousal_npc_hidden_sexual) ? ((s as any).arousal_npc_hidden_sexual as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_hidden_sexual[] = $npcID10
+          (s as any).arousal_npc_hidden_sexual = [...((s as any).arousal_npc_hidden_sexual ?? []), ((s as any).npcID10 ?? 0)];
         }
       }
     } else {
       ((s as any).count = (s as any).count ?? {})['pee'] = 1;
       if (((s as any).arousalVars ?? 0)?.['self'] === 0) {
         if ((Array.isArray((s as any).arousal_npc_sexual) ? ((s as any).arousal_npc_sexual as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_sexual[] = $npcID10
+          (s as any).arousal_npc_sexual = [...((s as any).arousal_npc_sexual ?? []), ((s as any).npcID10 ?? 0)];
         }
       }
     }
@@ -925,20 +925,20 @@ function enterHj(s: GameState, scene: SceneBuilder): void {
       ((s as any).count = (s as any).count ?? {})['hidden_hj'] = 1;
       if (((s as any).arousalVars ?? 0)?.['self'] === 0) {
         if ((Array.isArray((s as any).arousal_npc_hidden_sexual) ? ((s as any).arousal_npc_hidden_sexual as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_hidden_sexual[] = $npcID10
+          (s as any).arousal_npc_hidden_sexual = [...((s as any).arousal_npc_hidden_sexual ?? []), ((s as any).npcID10 ?? 0)];
         }
         if ((Array.isArray((s as any).arousal_npc_hidden_handstuff) ? ((s as any).arousal_npc_hidden_handstuff as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_hidden_handstuff[] = $npcID10
+          (s as any).arousal_npc_hidden_handstuff = [...((s as any).arousal_npc_hidden_handstuff ?? []), ((s as any).npcID10 ?? 0)];
         }
       }
     } else {
       ((s as any).count = (s as any).count ?? {})['hj'] = 1;
       if (((s as any).arousalVars ?? 0)?.['self'] === 0) {
         if ((Array.isArray((s as any).arousal_npc_sexual) ? ((s as any).arousal_npc_sexual as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_sexual[] = $npcID10
+          (s as any).arousal_npc_sexual = [...((s as any).arousal_npc_sexual ?? []), ((s as any).npcID10 ?? 0)];
         }
         if ((Array.isArray((s as any).arousal_npc_handstuff) ? ((s as any).arousal_npc_handstuff as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_handstuff[] = $npcID10
+          (s as any).arousal_npc_handstuff = [...((s as any).arousal_npc_handstuff ?? []), ((s as any).npcID10 ?? 0)];
         }
       }
     }
@@ -954,20 +954,20 @@ function enterClitFingerGive(s: GameState, scene: SceneBuilder): void {
       ((s as any).count = (s as any).count ?? {})['hidden_clit_finger_give'] = 1;
       if (((s as any).arousalVars ?? 0)?.['self'] === 0) {
         if ((Array.isArray((s as any).arousal_npc_hidden_sexual) ? ((s as any).arousal_npc_hidden_sexual as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_hidden_sexual[] = $npcID10
+          (s as any).arousal_npc_hidden_sexual = [...((s as any).arousal_npc_hidden_sexual ?? []), ((s as any).npcID10 ?? 0)];
         }
         if ((Array.isArray((s as any).arousal_npc_hidden_handstuff) ? ((s as any).arousal_npc_hidden_handstuff as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_hidden_handstuff[] = $npcID10
+          (s as any).arousal_npc_hidden_handstuff = [...((s as any).arousal_npc_hidden_handstuff ?? []), ((s as any).npcID10 ?? 0)];
         }
       }
     } else {
       ((s as any).count = (s as any).count ?? {})['clit_finger_give'] = 1;
       if (((s as any).arousalVars ?? 0)?.['self'] === 0) {
         if ((Array.isArray((s as any).arousal_npc_sexual) ? ((s as any).arousal_npc_sexual as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_sexual[] = $npcID10
+          (s as any).arousal_npc_sexual = [...((s as any).arousal_npc_sexual ?? []), ((s as any).npcID10 ?? 0)];
         }
         if ((Array.isArray((s as any).arousal_npc_handstuff) ? ((s as any).arousal_npc_handstuff as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_handstuff[] = $npcID10
+          (s as any).arousal_npc_handstuff = [...((s as any).arousal_npc_handstuff ?? []), ((s as any).npcID10 ?? 0)];
         }
       }
     }
@@ -984,20 +984,20 @@ function enterVaginalFingerGive(s: GameState, scene: SceneBuilder): void {
       ((s as any).count = (s as any).count ?? {})['hidden_vaginal_finger_give'] = 1;
       if (((s as any).arousalVars ?? 0)?.['self'] === 0) {
         if ((Array.isArray((s as any).arousal_npc_hidden_sexual) ? ((s as any).arousal_npc_hidden_sexual as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_hidden_sexual[] = $npcID10
+          (s as any).arousal_npc_hidden_sexual = [...((s as any).arousal_npc_hidden_sexual ?? []), ((s as any).npcID10 ?? 0)];
         }
         if ((Array.isArray((s as any).arousal_npc_hidden_handstuff) ? ((s as any).arousal_npc_hidden_handstuff as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_hidden_handstuff[] = $npcID10
+          (s as any).arousal_npc_hidden_handstuff = [...((s as any).arousal_npc_hidden_handstuff ?? []), ((s as any).npcID10 ?? 0)];
         }
       }
     } else {
       ((s as any).count = (s as any).count ?? {})['vaginal_finger_give'] = 1;
       if (((s as any).arousalVars ?? 0)?.['self'] === 0) {
         if ((Array.isArray((s as any).arousal_npc_sexual) ? ((s as any).arousal_npc_sexual as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_sexual[] = $npcID10
+          (s as any).arousal_npc_sexual = [...((s as any).arousal_npc_sexual ?? []), ((s as any).npcID10 ?? 0)];
         }
         if ((Array.isArray((s as any).arousal_npc_handstuff) ? ((s as any).arousal_npc_handstuff as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_handstuff[] = $npcID10
+          (s as any).arousal_npc_handstuff = [...((s as any).arousal_npc_handstuff ?? []), ((s as any).npcID10 ?? 0)];
         }
       }
     }
@@ -1014,20 +1014,20 @@ function enterVaginalFistGive(s: GameState, scene: SceneBuilder): void {
       ((s as any).count = (s as any).count ?? {})['hidden_vaginal_fist_give'] = 1;
       if (((s as any).arousalVars ?? 0)?.['self'] === 0) {
         if ((Array.isArray((s as any).arousal_npc_hidden_sexual) ? ((s as any).arousal_npc_hidden_sexual as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_hidden_sexual[] = $npcID10
+          (s as any).arousal_npc_hidden_sexual = [...((s as any).arousal_npc_hidden_sexual ?? []), ((s as any).npcID10 ?? 0)];
         }
         if ((Array.isArray((s as any).arousal_npc_hidden_handstuff) ? ((s as any).arousal_npc_hidden_handstuff as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_hidden_handstuff[] = $npcID10
+          (s as any).arousal_npc_hidden_handstuff = [...((s as any).arousal_npc_hidden_handstuff ?? []), ((s as any).npcID10 ?? 0)];
         }
       }
     } else {
       ((s as any).count = (s as any).count ?? {})['vaginal_fist_give'] = 1;
       if (((s as any).arousalVars ?? 0)?.['self'] === 0) {
         if ((Array.isArray((s as any).arousal_npc_sexual) ? ((s as any).arousal_npc_sexual as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_sexual[] = $npcID10
+          (s as any).arousal_npc_sexual = [...((s as any).arousal_npc_sexual ?? []), ((s as any).npcID10 ?? 0)];
         }
         if ((Array.isArray((s as any).arousal_npc_handstuff) ? ((s as any).arousal_npc_handstuff as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_handstuff[] = $npcID10
+          (s as any).arousal_npc_handstuff = [...((s as any).arousal_npc_handstuff ?? []), ((s as any).npcID10 ?? 0)];
         }
       }
     }
@@ -1043,20 +1043,20 @@ function enterAnalFingerGive(s: GameState, scene: SceneBuilder): void {
       ((s as any).count = (s as any).count ?? {})['hidden_anal_finger_give'] = 1;
       if (((s as any).arousalVars ?? 0)?.['self'] === 0) {
         if ((Array.isArray((s as any).arousal_npc_hidden_sexual) ? ((s as any).arousal_npc_hidden_sexual as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_hidden_sexual[] = $npcID10
+          (s as any).arousal_npc_hidden_sexual = [...((s as any).arousal_npc_hidden_sexual ?? []), ((s as any).npcID10 ?? 0)];
         }
         if ((Array.isArray((s as any).arousal_npc_hidden_handstuff) ? ((s as any).arousal_npc_hidden_handstuff as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_hidden_handstuff[] = $npcID10
+          (s as any).arousal_npc_hidden_handstuff = [...((s as any).arousal_npc_hidden_handstuff ?? []), ((s as any).npcID10 ?? 0)];
         }
       }
     } else {
       ((s as any).count = (s as any).count ?? {})['anal_finger_give'] = 1;
       if (((s as any).arousalVars ?? 0)?.['self'] === 0) {
         if ((Array.isArray((s as any).arousal_npc_sexual) ? ((s as any).arousal_npc_sexual as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_sexual[] = $npcID10
+          (s as any).arousal_npc_sexual = [...((s as any).arousal_npc_sexual ?? []), ((s as any).npcID10 ?? 0)];
         }
         if ((Array.isArray((s as any).arousal_npc_handstuff) ? ((s as any).arousal_npc_handstuff as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_handstuff[] = $npcID10
+          (s as any).arousal_npc_handstuff = [...((s as any).arousal_npc_handstuff ?? []), ((s as any).npcID10 ?? 0)];
         }
       }
     }
@@ -1072,20 +1072,20 @@ function enterAnalFistGive(s: GameState, scene: SceneBuilder): void {
       ((s as any).count = (s as any).count ?? {})['hidden_anal_fist_give'] = 1;
       if (((s as any).arousalVars ?? 0)?.['self'] === 0) {
         if ((Array.isArray((s as any).arousal_npc_hidden_sexual) ? ((s as any).arousal_npc_hidden_sexual as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_hidden_sexual[] = $npcID10
+          (s as any).arousal_npc_hidden_sexual = [...((s as any).arousal_npc_hidden_sexual ?? []), ((s as any).npcID10 ?? 0)];
         }
         if ((Array.isArray((s as any).arousal_npc_hidden_handstuff) ? ((s as any).arousal_npc_hidden_handstuff as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_hidden_handstuff[] = $npcID10
+          (s as any).arousal_npc_hidden_handstuff = [...((s as any).arousal_npc_hidden_handstuff ?? []), ((s as any).npcID10 ?? 0)];
         }
       }
     } else {
       ((s as any).count = (s as any).count ?? {})['anal_fist_give'] = 1;
       if (((s as any).arousalVars ?? 0)?.['self'] === 0) {
         if ((Array.isArray((s as any).arousal_npc_sexual) ? ((s as any).arousal_npc_sexual as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_sexual[] = $npcID10
+          (s as any).arousal_npc_sexual = [...((s as any).arousal_npc_sexual ?? []), ((s as any).npcID10 ?? 0)];
         }
         if ((Array.isArray((s as any).arousal_npc_handstuff) ? ((s as any).arousal_npc_handstuff as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_handstuff[] = $npcID10
+          (s as any).arousal_npc_handstuff = [...((s as any).arousal_npc_handstuff ?? []), ((s as any).npcID10 ?? 0)];
         }
       }
     }
@@ -1101,20 +1101,20 @@ function enterDildoHands(s: GameState, scene: SceneBuilder): void {
       ((s as any).count = (s as any).count ?? {})['hidden_dildo_hands'] = 1;
       if (((s as any).arousalVars ?? 0)?.['self'] === 0) {
         if ((Array.isArray((s as any).arousal_npc_hidden_sexual) ? ((s as any).arousal_npc_hidden_sexual as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_hidden_sexual[] = $npcID10
+          (s as any).arousal_npc_hidden_sexual = [...((s as any).arousal_npc_hidden_sexual ?? []), ((s as any).npcID10 ?? 0)];
         }
         if ((Array.isArray((s as any).arousal_npc_hidden_handstuff) ? ((s as any).arousal_npc_hidden_handstuff as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_hidden_handstuff[] = $npcID10
+          (s as any).arousal_npc_hidden_handstuff = [...((s as any).arousal_npc_hidden_handstuff ?? []), ((s as any).npcID10 ?? 0)];
         }
       }
     } else {
       ((s as any).count = (s as any).count ?? {})['dildo_hands'] = 1;
       if (((s as any).arousalVars ?? 0)?.['self'] === 0) {
         if ((Array.isArray((s as any).arousal_npc_sexual) ? ((s as any).arousal_npc_sexual as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_sexual[] = $npcID10
+          (s as any).arousal_npc_sexual = [...((s as any).arousal_npc_sexual ?? []), ((s as any).npcID10 ?? 0)];
         }
         if ((Array.isArray((s as any).arousal_npc_handstuff) ? ((s as any).arousal_npc_handstuff as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_handstuff[] = $npcID10
+          (s as any).arousal_npc_handstuff = [...((s as any).arousal_npc_handstuff ?? []), ((s as any).npcID10 ?? 0)];
         }
       }
     }
@@ -1130,20 +1130,20 @@ function enterStrapHands(s: GameState, scene: SceneBuilder): void {
       ((s as any).count = (s as any).count ?? {})['hidden_strap_hands'] = 1;
       if (((s as any).arousalVars ?? 0)?.['self'] === 0) {
         if ((Array.isArray((s as any).arousal_npc_hidden_sexual) ? ((s as any).arousal_npc_hidden_sexual as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_hidden_sexual[] = $npcID10
+          (s as any).arousal_npc_hidden_sexual = [...((s as any).arousal_npc_hidden_sexual ?? []), ((s as any).npcID10 ?? 0)];
         }
         if ((Array.isArray((s as any).arousal_npc_hidden_handstuff) ? ((s as any).arousal_npc_hidden_handstuff as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_hidden_handstuff[] = $npcID10
+          (s as any).arousal_npc_hidden_handstuff = [...((s as any).arousal_npc_hidden_handstuff ?? []), ((s as any).npcID10 ?? 0)];
         }
       }
     } else {
       ((s as any).count = (s as any).count ?? {})['strap_hands'] = 1;
       if (((s as any).arousalVars ?? 0)?.['self'] === 0) {
         if ((Array.isArray((s as any).arousal_npc_sexual) ? ((s as any).arousal_npc_sexual as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_sexual[] = $npcID10
+          (s as any).arousal_npc_sexual = [...((s as any).arousal_npc_sexual ?? []), ((s as any).npcID10 ?? 0)];
         }
         if ((Array.isArray((s as any).arousal_npc_handstuff) ? ((s as any).arousal_npc_handstuff as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_handstuff[] = $npcID10
+          (s as any).arousal_npc_handstuff = [...((s as any).arousal_npc_handstuff ?? []), ((s as any).npcID10 ?? 0)];
         }
       }
     }
@@ -1159,20 +1159,20 @@ function enterTitjob(s: GameState, scene: SceneBuilder): void {
       ((s as any).count = (s as any).count ?? {})['hidden_titjob'] = 1;
       if (((s as any).arousalVars ?? 0)?.['self'] === 0) {
         if ((Array.isArray((s as any).arousal_npc_hidden_sexual) ? ((s as any).arousal_npc_hidden_sexual as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_hidden_sexual[] = $npcID10
+          (s as any).arousal_npc_hidden_sexual = [...((s as any).arousal_npc_hidden_sexual ?? []), ((s as any).npcID10 ?? 0)];
         }
         if ((Array.isArray((s as any).arousal_npc_hidden_titstuff) ? ((s as any).arousal_npc_hidden_titstuff as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_hidden_titstuff[] = $npcID10
+          (s as any).arousal_npc_hidden_titstuff = [...((s as any).arousal_npc_hidden_titstuff ?? []), ((s as any).npcID10 ?? 0)];
         }
       }
     } else {
       ((s as any).count = (s as any).count ?? {})['titjob'] = 1;
       if (((s as any).arousalVars ?? 0)?.['self'] === 0) {
         if ((Array.isArray((s as any).arousal_npc_sexual) ? ((s as any).arousal_npc_sexual as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_sexual[] = $npcID10
+          (s as any).arousal_npc_sexual = [...((s as any).arousal_npc_sexual ?? []), ((s as any).npcID10 ?? 0)];
         }
         if ((Array.isArray((s as any).arousal_npc_titstuff) ? ((s as any).arousal_npc_titstuff as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_titstuff[] = $npcID10
+          (s as any).arousal_npc_titstuff = [...((s as any).arousal_npc_titstuff ?? []), ((s as any).npcID10 ?? 0)];
         }
       }
     }
@@ -1192,20 +1192,20 @@ function enterFootjob(s: GameState, scene: SceneBuilder): void {
       ((s as any).count = (s as any).count ?? {})['hidden_footjob'] = 1;
       if (((s as any).arousalVars ?? 0)?.['self'] === 0) {
         if ((Array.isArray((s as any).arousal_npc_hidden_sexual) ? ((s as any).arousal_npc_hidden_sexual as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_hidden_sexual[] = $npcID10
+          (s as any).arousal_npc_hidden_sexual = [...((s as any).arousal_npc_hidden_sexual ?? []), ((s as any).npcID10 ?? 0)];
         }
         if ((Array.isArray((s as any).arousal_npc_hidden_footstuff) ? ((s as any).arousal_npc_hidden_footstuff as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_hidden_footstuff[] = $npcID10
+          (s as any).arousal_npc_hidden_footstuff = [...((s as any).arousal_npc_hidden_footstuff ?? []), ((s as any).npcID10 ?? 0)];
         }
       }
     } else {
       ((s as any).count = (s as any).count ?? {})['footjob'] = 1;
       if (((s as any).arousalVars ?? 0)?.['self'] === 0) {
         if ((Array.isArray((s as any).arousal_npc_sexual) ? ((s as any).arousal_npc_sexual as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_sexual[] = $npcID10
+          (s as any).arousal_npc_sexual = [...((s as any).arousal_npc_sexual ?? []), ((s as any).npcID10 ?? 0)];
         }
         if ((Array.isArray((s as any).arousal_npc_footstuff) ? ((s as any).arousal_npc_footstuff as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_footstuff[] = $npcID10
+          (s as any).arousal_npc_footstuff = [...((s as any).arousal_npc_footstuff ?? []), ((s as any).npcID10 ?? 0)];
         }
       }
     }
@@ -1221,20 +1221,20 @@ function enterBj(s: GameState, scene: SceneBuilder): void {
       ((s as any).count = (s as any).count ?? {})['hidden_bj'] = 1;
       if (((s as any).arousalVars ?? 0)?.['self'] === 0) {
         if ((Array.isArray((s as any).arousal_npc_hidden_sexual) ? ((s as any).arousal_npc_hidden_sexual as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_hidden_sexual[] = $npcID10
+          (s as any).arousal_npc_hidden_sexual = [...((s as any).arousal_npc_hidden_sexual ?? []), ((s as any).npcID10 ?? 0)];
         }
         if ((Array.isArray((s as any).arousal_npc_hidden_oral) ? ((s as any).arousal_npc_hidden_oral as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_hidden_oral[] = $npcID10
+          (s as any).arousal_npc_hidden_oral = [...((s as any).arousal_npc_hidden_oral ?? []), ((s as any).npcID10 ?? 0)];
         }
       }
     } else {
       ((s as any).count = (s as any).count ?? {})['bj'] = 1;
       if (((s as any).arousalVars ?? 0)?.['self'] === 0) {
         if ((Array.isArray((s as any).arousal_npc_sexual) ? ((s as any).arousal_npc_sexual as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_sexual[] = $npcID10
+          (s as any).arousal_npc_sexual = [...((s as any).arousal_npc_sexual ?? []), ((s as any).npcID10 ?? 0)];
         }
         if ((Array.isArray((s as any).arousal_npc_oral) ? ((s as any).arousal_npc_oral as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_oral[] = $npcID10
+          (s as any).arousal_npc_oral = [...((s as any).arousal_npc_oral ?? []), ((s as any).npcID10 ?? 0)];
         }
       }
     }
@@ -1252,20 +1252,20 @@ function enterClitSuckGive(s: GameState, scene: SceneBuilder): void {
       ((s as any).count = (s as any).count ?? {})['hidden_clit_suck_give'] = 1;
       if (((s as any).arousalVars ?? 0)?.['self'] === 0) {
         if ((Array.isArray((s as any).arousal_npc_hidden_sexual) ? ((s as any).arousal_npc_hidden_sexual as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_hidden_sexual[] = $npcID10
+          (s as any).arousal_npc_hidden_sexual = [...((s as any).arousal_npc_hidden_sexual ?? []), ((s as any).npcID10 ?? 0)];
         }
         if ((Array.isArray((s as any).arousal_npc_hidden_oral) ? ((s as any).arousal_npc_hidden_oral as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_hidden_oral[] = $npcID10
+          (s as any).arousal_npc_hidden_oral = [...((s as any).arousal_npc_hidden_oral ?? []), ((s as any).npcID10 ?? 0)];
         }
       }
     } else {
       ((s as any).count = (s as any).count ?? {})['clit_suck_give'] = 1;
       if (((s as any).arousalVars ?? 0)?.['self'] === 0) {
         if ((Array.isArray((s as any).arousal_npc_sexual) ? ((s as any).arousal_npc_sexual as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_sexual[] = $npcID10
+          (s as any).arousal_npc_sexual = [...((s as any).arousal_npc_sexual ?? []), ((s as any).npcID10 ?? 0)];
         }
         if ((Array.isArray((s as any).arousal_npc_oral) ? ((s as any).arousal_npc_oral as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_oral[] = $npcID10
+          (s as any).arousal_npc_oral = [...((s as any).arousal_npc_oral ?? []), ((s as any).npcID10 ?? 0)];
         }
       }
     }
@@ -1283,20 +1283,20 @@ function enterCuniGive(s: GameState, scene: SceneBuilder): void {
       ((s as any).count = (s as any).count ?? {})['hidden_cuni_give'] = 1;
       if (((s as any).arousalVars ?? 0)?.['self'] === 0) {
         if ((Array.isArray((s as any).arousal_npc_hidden_sexual) ? ((s as any).arousal_npc_hidden_sexual as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_hidden_sexual[] = $npcID10
+          (s as any).arousal_npc_hidden_sexual = [...((s as any).arousal_npc_hidden_sexual ?? []), ((s as any).npcID10 ?? 0)];
         }
         if ((Array.isArray((s as any).arousal_npc_hidden_oral) ? ((s as any).arousal_npc_hidden_oral as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_hidden_oral[] = $npcID10
+          (s as any).arousal_npc_hidden_oral = [...((s as any).arousal_npc_hidden_oral ?? []), ((s as any).npcID10 ?? 0)];
         }
       }
     } else {
       ((s as any).count = (s as any).count ?? {})['cuni_give'] = 1;
       if (((s as any).arousalVars ?? 0)?.['self'] === 0) {
         if ((Array.isArray((s as any).arousal_npc_sexual) ? ((s as any).arousal_npc_sexual as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_sexual[] = $npcID10
+          (s as any).arousal_npc_sexual = [...((s as any).arousal_npc_sexual ?? []), ((s as any).npcID10 ?? 0)];
         }
         if ((Array.isArray((s as any).arousal_npc_oral) ? ((s as any).arousal_npc_oral as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_oral[] = $npcID10
+          (s as any).arousal_npc_oral = [...((s as any).arousal_npc_oral ?? []), ((s as any).npcID10 ?? 0)];
         }
       }
     }
@@ -1312,20 +1312,20 @@ function enterRimmingGive(s: GameState, scene: SceneBuilder): void {
       ((s as any).count = (s as any).count ?? {})['hidden_rimming_give'] = 1;
       if (((s as any).arousalVars ?? 0)?.['self'] === 0) {
         if ((Array.isArray((s as any).arousal_npc_hidden_sexual) ? ((s as any).arousal_npc_hidden_sexual as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_hidden_sexual[] = $npcID10
+          (s as any).arousal_npc_hidden_sexual = [...((s as any).arousal_npc_hidden_sexual ?? []), ((s as any).npcID10 ?? 0)];
         }
         if ((Array.isArray((s as any).arousal_npc_hidden_oral) ? ((s as any).arousal_npc_hidden_oral as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_hidden_oral[] = $npcID10
+          (s as any).arousal_npc_hidden_oral = [...((s as any).arousal_npc_hidden_oral ?? []), ((s as any).npcID10 ?? 0)];
         }
       }
     } else {
       ((s as any).count = (s as any).count ?? {})['rimming_give'] = 1;
       if (((s as any).arousalVars ?? 0)?.['self'] === 0) {
         if ((Array.isArray((s as any).arousal_npc_sexual) ? ((s as any).arousal_npc_sexual as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_sexual[] = $npcID10
+          (s as any).arousal_npc_sexual = [...((s as any).arousal_npc_sexual ?? []), ((s as any).npcID10 ?? 0)];
         }
         if ((Array.isArray((s as any).arousal_npc_oral) ? ((s as any).arousal_npc_oral as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_oral[] = $npcID10
+          (s as any).arousal_npc_oral = [...((s as any).arousal_npc_oral ?? []), ((s as any).npcID10 ?? 0)];
         }
       }
     }
@@ -1342,20 +1342,20 @@ function enterDildoSuck(s: GameState, scene: SceneBuilder): void {
       ((s as any).count = (s as any).count ?? {})['hidden_dildo_suck'] = 1;
       if (((s as any).arousalVars ?? 0)?.['self'] === 0) {
         if ((Array.isArray((s as any).arousal_npc_hidden_sexual) ? ((s as any).arousal_npc_hidden_sexual as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_hidden_sexual[] = $npcID10
+          (s as any).arousal_npc_hidden_sexual = [...((s as any).arousal_npc_hidden_sexual ?? []), ((s as any).npcID10 ?? 0)];
         }
         if ((Array.isArray((s as any).arousal_npc_hidden_oral) ? ((s as any).arousal_npc_hidden_oral as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_hidden_oral[] = $npcID10
+          (s as any).arousal_npc_hidden_oral = [...((s as any).arousal_npc_hidden_oral ?? []), ((s as any).npcID10 ?? 0)];
         }
       }
     } else {
       ((s as any).count = (s as any).count ?? {})['dildo_suck'] = 1;
       if (((s as any).arousalVars ?? 0)?.['self'] === 0) {
         if ((Array.isArray((s as any).arousal_npc_sexual) ? ((s as any).arousal_npc_sexual as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_sexual[] = $npcID10
+          (s as any).arousal_npc_sexual = [...((s as any).arousal_npc_sexual ?? []), ((s as any).npcID10 ?? 0)];
         }
         if ((Array.isArray((s as any).arousal_npc_oral) ? ((s as any).arousal_npc_oral as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_oral[] = $npcID10
+          (s as any).arousal_npc_oral = [...((s as any).arousal_npc_oral ?? []), ((s as any).npcID10 ?? 0)];
         }
       }
     }
@@ -1372,20 +1372,20 @@ function enterStrapSuck(s: GameState, scene: SceneBuilder): void {
       ((s as any).count = (s as any).count ?? {})['hidden_strap_suck'] = 1;
       if (((s as any).arousalVars ?? 0)?.['self'] === 0) {
         if ((Array.isArray((s as any).arousal_npc_hidden_sexual) ? ((s as any).arousal_npc_hidden_sexual as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_hidden_sexual[] = $npcID10
+          (s as any).arousal_npc_hidden_sexual = [...((s as any).arousal_npc_hidden_sexual ?? []), ((s as any).npcID10 ?? 0)];
         }
         if ((Array.isArray((s as any).arousal_npc_hidden_oral) ? ((s as any).arousal_npc_hidden_oral as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_hidden_oral[] = $npcID10
+          (s as any).arousal_npc_hidden_oral = [...((s as any).arousal_npc_hidden_oral ?? []), ((s as any).npcID10 ?? 0)];
         }
       }
     } else {
       ((s as any).count = (s as any).count ?? {})['strap_suck'] = 1;
       if (((s as any).arousalVars ?? 0)?.['self'] === 0) {
         if ((Array.isArray((s as any).arousal_npc_sexual) ? ((s as any).arousal_npc_sexual as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_sexual[] = $npcID10
+          (s as any).arousal_npc_sexual = [...((s as any).arousal_npc_sexual ?? []), ((s as any).npcID10 ?? 0)];
         }
         if ((Array.isArray((s as any).arousal_npc_oral) ? ((s as any).arousal_npc_oral as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_oral[] = $npcID10
+          (s as any).arousal_npc_oral = [...((s as any).arousal_npc_oral ?? []), ((s as any).npcID10 ?? 0)];
         }
       }
     }
@@ -1401,14 +1401,14 @@ function enterMagicdHj(s: GameState, scene: SceneBuilder): void {
       ((s as any).count = (s as any).count ?? {})['hidden_magicd_hj'] = 1;
       if (((s as any).arousalVars ?? 0)?.['self'] === 0) {
         if ((Array.isArray((s as any).arousal_npc_hidden_sexual) ? ((s as any).arousal_npc_hidden_sexual as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_hidden_sexual[] = $npcID10
+          (s as any).arousal_npc_hidden_sexual = [...((s as any).arousal_npc_hidden_sexual ?? []), ((s as any).npcID10 ?? 0)];
         }
       }
     } else {
       ((s as any).count = (s as any).count ?? {})['magicd_hj'] = 1;
       if (((s as any).arousalVars ?? 0)?.['self'] === 0) {
         if ((Array.isArray((s as any).arousal_npc_sexual) ? ((s as any).arousal_npc_sexual as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_sexual[] = $npcID10
+          (s as any).arousal_npc_sexual = [...((s as any).arousal_npc_sexual ?? []), ((s as any).npcID10 ?? 0)];
         }
       }
     }
@@ -1424,14 +1424,14 @@ function enterDildoHandsGive(s: GameState, scene: SceneBuilder): void {
       ((s as any).count = (s as any).count ?? {})['hidden_dildo_hands_give'] = 1;
       if (((s as any).arousalVars ?? 0)?.['self'] === 0) {
         if ((Array.isArray((s as any).arousal_npc_hidden_sexual) ? ((s as any).arousal_npc_hidden_sexual as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_hidden_sexual[] = $npcID10
+          (s as any).arousal_npc_hidden_sexual = [...((s as any).arousal_npc_hidden_sexual ?? []), ((s as any).npcID10 ?? 0)];
         }
       }
     } else {
       ((s as any).count = (s as any).count ?? {})['dildo_hands_give'] = 1;
       if (((s as any).arousalVars ?? 0)?.['self'] === 0) {
         if ((Array.isArray((s as any).arousal_npc_sexual) ? ((s as any).arousal_npc_sexual as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_sexual[] = $npcID10
+          (s as any).arousal_npc_sexual = [...((s as any).arousal_npc_sexual ?? []), ((s as any).npcID10 ?? 0)];
         }
       }
     }
@@ -1446,14 +1446,14 @@ function enterStrapHandsGive(s: GameState, scene: SceneBuilder): void {
       ((s as any).count = (s as any).count ?? {})['hidden_strap_hands_give'] = 1;
       if (((s as any).arousalVars ?? 0)?.['self'] === 0) {
         if ((Array.isArray((s as any).arousal_npc_hidden_sexual) ? ((s as any).arousal_npc_hidden_sexual as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_hidden_sexual[] = $npcID10
+          (s as any).arousal_npc_hidden_sexual = [...((s as any).arousal_npc_hidden_sexual ?? []), ((s as any).npcID10 ?? 0)];
         }
       }
     } else {
       ((s as any).count = (s as any).count ?? {})['strap_hands_give'] = 1;
       if (((s as any).arousalVars ?? 0)?.['self'] === 0) {
         if ((Array.isArray((s as any).arousal_npc_sexual) ? ((s as any).arousal_npc_sexual as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_sexual[] = $npcID10
+          (s as any).arousal_npc_sexual = [...((s as any).arousal_npc_sexual ?? []), ((s as any).npcID10 ?? 0)];
         }
       }
     }
@@ -1468,14 +1468,14 @@ function enterMagicdBj(s: GameState, scene: SceneBuilder): void {
       ((s as any).count = (s as any).count ?? {})['hidden_magicd_bj'] = 1;
       if (((s as any).arousalVars ?? 0)?.['self'] === 0) {
         if ((Array.isArray((s as any).arousal_npc_hidden_sexual) ? ((s as any).arousal_npc_hidden_sexual as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_hidden_sexual[] = $npcID10
+          (s as any).arousal_npc_hidden_sexual = [...((s as any).arousal_npc_hidden_sexual ?? []), ((s as any).npcID10 ?? 0)];
         }
       }
     } else {
       ((s as any).count = (s as any).count ?? {})['magicd_bj'] = 1;
       if (((s as any).arousalVars ?? 0)?.['self'] === 0) {
         if ((Array.isArray((s as any).arousal_npc_sexual) ? ((s as any).arousal_npc_sexual as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_sexual[] = $npcID10
+          (s as any).arousal_npc_sexual = [...((s as any).arousal_npc_sexual ?? []), ((s as any).npcID10 ?? 0)];
         }
       }
     }
@@ -1491,14 +1491,14 @@ function enterDildoSuckGive(s: GameState, scene: SceneBuilder): void {
       ((s as any).count = (s as any).count ?? {})['hidden_dildo_suck_give'] = 1;
       if (((s as any).arousalVars ?? 0)?.['self'] === 0) {
         if ((Array.isArray((s as any).arousal_npc_hidden_sexual) ? ((s as any).arousal_npc_hidden_sexual as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_hidden_sexual[] = $npcID10
+          (s as any).arousal_npc_hidden_sexual = [...((s as any).arousal_npc_hidden_sexual ?? []), ((s as any).npcID10 ?? 0)];
         }
       }
     } else {
       ((s as any).count = (s as any).count ?? {})['dildo_suck_give'] = 1;
       if (((s as any).arousalVars ?? 0)?.['self'] === 0) {
         if ((Array.isArray((s as any).arousal_npc_sexual) ? ((s as any).arousal_npc_sexual as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_sexual[] = $npcID10
+          (s as any).arousal_npc_sexual = [...((s as any).arousal_npc_sexual ?? []), ((s as any).npcID10 ?? 0)];
         }
       }
     }
@@ -1513,14 +1513,14 @@ function enterStrapSuckGive(s: GameState, scene: SceneBuilder): void {
       ((s as any).count = (s as any).count ?? {})['hidden_strap_suck_give'] = 1;
       if (((s as any).arousalVars ?? 0)?.['self'] === 0) {
         if ((Array.isArray((s as any).arousal_npc_hidden_sexual) ? ((s as any).arousal_npc_hidden_sexual as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_hidden_sexual[] = $npcID10
+          (s as any).arousal_npc_hidden_sexual = [...((s as any).arousal_npc_hidden_sexual ?? []), ((s as any).npcID10 ?? 0)];
         }
       }
     } else {
       ((s as any).count = (s as any).count ?? {})['strap_suck_give'] = 1;
       if (((s as any).arousalVars ?? 0)?.['self'] === 0) {
         if ((Array.isArray((s as any).arousal_npc_sexual) ? ((s as any).arousal_npc_sexual as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_sexual[] = $npcID10
+          (s as any).arousal_npc_sexual = [...((s as any).arousal_npc_sexual ?? []), ((s as any).npcID10 ?? 0)];
         }
       }
     }
@@ -1537,14 +1537,14 @@ function enterVaginalDildoGive(s: GameState, scene: SceneBuilder): void {
       ((s as any).count = (s as any).count ?? {})['hidden_vaginal_dildo_give'] = 1;
       if (((s as any).arousalVars ?? 0)?.['self'] === 0) {
         if ((Array.isArray((s as any).arousal_npc_hidden_sexual) ? ((s as any).arousal_npc_hidden_sexual as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_hidden_sexual[] = $npcID10
+          (s as any).arousal_npc_hidden_sexual = [...((s as any).arousal_npc_hidden_sexual ?? []), ((s as any).npcID10 ?? 0)];
         }
       }
     } else {
       ((s as any).count = (s as any).count ?? {})['vaginal_dildo_give'] = 1;
       if (((s as any).arousalVars ?? 0)?.['self'] === 0) {
         if ((Array.isArray((s as any).arousal_npc_sexual) ? ((s as any).arousal_npc_sexual as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_sexual[] = $npcID10
+          (s as any).arousal_npc_sexual = [...((s as any).arousal_npc_sexual ?? []), ((s as any).npcID10 ?? 0)];
         }
       }
     }
@@ -1561,14 +1561,14 @@ function enterVaginalVibeGive(s: GameState, scene: SceneBuilder): void {
       ((s as any).count = (s as any).count ?? {})['hidden_vaginal_vibe_give'] = 1;
       if (((s as any).arousalVars ?? 0)?.['self'] === 0) {
         if ((Array.isArray((s as any).arousal_npc_hidden_sexual) ? ((s as any).arousal_npc_hidden_sexual as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_hidden_sexual[] = $npcID10
+          (s as any).arousal_npc_hidden_sexual = [...((s as any).arousal_npc_hidden_sexual ?? []), ((s as any).npcID10 ?? 0)];
         }
       }
     } else {
       ((s as any).count = (s as any).count ?? {})['vaginal_vibe_give'] = 1;
       if (((s as any).arousalVars ?? 0)?.['self'] === 0) {
         if ((Array.isArray((s as any).arousal_npc_sexual) ? ((s as any).arousal_npc_sexual as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_sexual[] = $npcID10
+          (s as any).arousal_npc_sexual = [...((s as any).arousal_npc_sexual ?? []), ((s as any).npcID10 ?? 0)];
         }
       }
     }
@@ -1586,14 +1586,14 @@ function enterVaginalStrapGive(s: GameState, scene: SceneBuilder): void {
       ((s as any).count = (s as any).count ?? {})['hidden_vaginal_strap_give'] = 1;
       if (((s as any).arousalVars ?? 0)?.['self'] === 0) {
         if ((Array.isArray((s as any).arousal_npc_hidden_sexual) ? ((s as any).arousal_npc_hidden_sexual as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_hidden_sexual[] = $npcID10
+          (s as any).arousal_npc_hidden_sexual = [...((s as any).arousal_npc_hidden_sexual ?? []), ((s as any).npcID10 ?? 0)];
         }
       }
     } else {
       ((s as any).count = (s as any).count ?? {})['vaginal_strap_give'] = 1;
       if (((s as any).arousalVars ?? 0)?.['self'] === 0) {
         if ((Array.isArray((s as any).arousal_npc_sexual) ? ((s as any).arousal_npc_sexual as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_sexual[] = $npcID10
+          (s as any).arousal_npc_sexual = [...((s as any).arousal_npc_sexual ?? []), ((s as any).npcID10 ?? 0)];
         }
       }
     }
@@ -1609,14 +1609,14 @@ function enterMagicdVaginal(s: GameState, scene: SceneBuilder): void {
       ((s as any).count = (s as any).count ?? {})['hidden_magicd_vaginal'] = 1;
       if (((s as any).arousalVars ?? 0)?.['self'] === 0) {
         if ((Array.isArray((s as any).arousal_npc_hidden_sexual) ? ((s as any).arousal_npc_hidden_sexual as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_hidden_sexual[] = $npcID10
+          (s as any).arousal_npc_hidden_sexual = [...((s as any).arousal_npc_hidden_sexual ?? []), ((s as any).npcID10 ?? 0)];
         }
       }
     } else {
       ((s as any).count = (s as any).count ?? {})['magicd_vaginal'] = 1;
       if (((s as any).arousalVars ?? 0)?.['self'] === 0) {
         if ((Array.isArray((s as any).arousal_npc_sexual) ? ((s as any).arousal_npc_sexual as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_sexual[] = $npcID10
+          (s as any).arousal_npc_sexual = [...((s as any).arousal_npc_sexual ?? []), ((s as any).npcID10 ?? 0)];
         }
       }
     }
@@ -1633,14 +1633,14 @@ function enterAnalDildoGive(s: GameState, scene: SceneBuilder): void {
       ((s as any).count = (s as any).count ?? {})['hidden_anal_dildo_give'] = 1;
       if (((s as any).arousalVars ?? 0)?.['self'] === 0) {
         if ((Array.isArray((s as any).arousal_npc_hidden_sexual) ? ((s as any).arousal_npc_hidden_sexual as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_hidden_sexual[] = $npcID10
+          (s as any).arousal_npc_hidden_sexual = [...((s as any).arousal_npc_hidden_sexual ?? []), ((s as any).npcID10 ?? 0)];
         }
       }
     } else {
       ((s as any).count = (s as any).count ?? {})['anal_dildo_give'] = 1;
       if (((s as any).arousalVars ?? 0)?.['self'] === 0) {
         if ((Array.isArray((s as any).arousal_npc_sexual) ? ((s as any).arousal_npc_sexual as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_sexual[] = $npcID10
+          (s as any).arousal_npc_sexual = [...((s as any).arousal_npc_sexual ?? []), ((s as any).npcID10 ?? 0)];
         }
       }
     }
@@ -1656,14 +1656,14 @@ function enterAnalVibeGive(s: GameState, scene: SceneBuilder): void {
       ((s as any).count = (s as any).count ?? {})['hidden_anal_vibe_give'] = 1;
       if (((s as any).arousalVars ?? 0)?.['self'] === 0) {
         if ((Array.isArray((s as any).arousal_npc_hidden_sexual) ? ((s as any).arousal_npc_hidden_sexual as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_hidden_sexual[] = $npcID10
+          (s as any).arousal_npc_hidden_sexual = [...((s as any).arousal_npc_hidden_sexual ?? []), ((s as any).npcID10 ?? 0)];
         }
       }
     } else {
       ((s as any).count = (s as any).count ?? {})['anal_vibe_give'] = 1;
       if (((s as any).arousalVars ?? 0)?.['self'] === 0) {
         if ((Array.isArray((s as any).arousal_npc_sexual) ? ((s as any).arousal_npc_sexual as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_sexual[] = $npcID10
+          (s as any).arousal_npc_sexual = [...((s as any).arousal_npc_sexual ?? []), ((s as any).npcID10 ?? 0)];
         }
       }
     }
@@ -1680,14 +1680,14 @@ function enterAnalStrapGive(s: GameState, scene: SceneBuilder): void {
       ((s as any).count = (s as any).count ?? {})['hidden_anal_strap_give'] = 1;
       if (((s as any).arousalVars ?? 0)?.['self'] === 0) {
         if ((Array.isArray((s as any).arousal_npc_hidden_sexual) ? ((s as any).arousal_npc_hidden_sexual as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_hidden_sexual[] = $npcID10
+          (s as any).arousal_npc_hidden_sexual = [...((s as any).arousal_npc_hidden_sexual ?? []), ((s as any).npcID10 ?? 0)];
         }
       }
     } else {
       ((s as any).count = (s as any).count ?? {})['anal_strap_give'] = 1;
       if (((s as any).arousalVars ?? 0)?.['self'] === 0) {
         if ((Array.isArray((s as any).arousal_npc_sexual) ? ((s as any).arousal_npc_sexual as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_sexual[] = $npcID10
+          (s as any).arousal_npc_sexual = [...((s as any).arousal_npc_sexual ?? []), ((s as any).npcID10 ?? 0)];
         }
       }
     }
@@ -1703,14 +1703,14 @@ function enterMagicdAnal(s: GameState, scene: SceneBuilder): void {
       ((s as any).count = (s as any).count ?? {})['hidden_magicd_anal'] = 1;
       if (((s as any).arousalVars ?? 0)?.['self'] === 0) {
         if ((Array.isArray((s as any).arousal_npc_hidden_sexual) ? ((s as any).arousal_npc_hidden_sexual as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_hidden_sexual[] = $npcID10
+          (s as any).arousal_npc_hidden_sexual = [...((s as any).arousal_npc_hidden_sexual ?? []), ((s as any).npcID10 ?? 0)];
         }
       }
     } else {
       ((s as any).count = (s as any).count ?? {})['magicd_anal'] = 1;
       if (((s as any).arousalVars ?? 0)?.['self'] === 0) {
         if ((Array.isArray((s as any).arousal_npc_sexual) ? ((s as any).arousal_npc_sexual as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_sexual[] = $npcID10
+          (s as any).arousal_npc_sexual = [...((s as any).arousal_npc_sexual ?? []), ((s as any).npcID10 ?? 0)];
         }
       }
     }
@@ -1727,14 +1727,14 @@ function enterBDSMGive(s: GameState, scene: SceneBuilder): void {
       ((s as any).count = (s as any).count ?? {})['hidden_BDSM_give'] = 1;
       if (((s as any).arousalVars ?? 0)?.['self'] === 0) {
         if ((Array.isArray((s as any).arousal_npc_hidden_sexual) ? ((s as any).arousal_npc_hidden_sexual as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_hidden_sexual[] = $npcID10
+          (s as any).arousal_npc_hidden_sexual = [...((s as any).arousal_npc_hidden_sexual ?? []), ((s as any).npcID10 ?? 0)];
         }
       }
     } else {
       ((s as any).count = (s as any).count ?? {})['BDSM_give'] = 1;
       if (((s as any).arousalVars ?? 0)?.['self'] === 0) {
         if ((Array.isArray((s as any).arousal_npc_sexual) ? ((s as any).arousal_npc_sexual as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_sexual[] = $npcID10
+          (s as any).arousal_npc_sexual = [...((s as any).arousal_npc_sexual ?? []), ((s as any).npcID10 ?? 0)];
         }
       }
     }
@@ -1750,19 +1750,18 @@ function enterPeeGive(s: GameState, scene: SceneBuilder): void {
       ((s as any).count = (s as any).count ?? {})['hidden_pee_give'] = 1;
       if (((s as any).arousalVars ?? 0)?.['self'] === 0) {
         if ((Array.isArray((s as any).arousal_npc_hidden_sexual) ? ((s as any).arousal_npc_hidden_sexual as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_hidden_sexual[] = $npcID10
+          (s as any).arousal_npc_hidden_sexual = [...((s as any).arousal_npc_hidden_sexual ?? []), ((s as any).npcID10 ?? 0)];
         }
       }
     } else {
       ((s as any).count = (s as any).count ?? {})['pee_give'] = 1;
       if (((s as any).arousalVars ?? 0)?.['self'] === 0) {
         if ((Array.isArray((s as any).arousal_npc_sexual) ? ((s as any).arousal_npc_sexual as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
-          // TODO-QSP: $arousal_npc_sexual[] = $npcID10
+          (s as any).arousal_npc_sexual = [...((s as any).arousal_npc_sexual ?? []), ((s as any).npcID10 ?? 0)];
         }
       }
     }
   }
-  // TODO-QSP: end
   if (((s as any).pcs_hairbsh ?? 0) >= 0) {
     if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('rape') : -1) >= 0) {
       // TODO-QSP: if rand(30, pcs_hairlng) > 30:  pcs_hairbsh = -1
@@ -1889,6 +1888,8 @@ function enterPeeGive(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
+    (s as any).temp_maso_exp = undefined;
+    (s as any).temp_maso_pref = undefined;
   }
   if (((s as any).arousalVars ?? 0)?.['sizequeen_turnoff'] === 1) {
     ((s as any).stim = (s as any).stim ?? {})['total'] = 0;
@@ -1961,13 +1962,18 @@ function enterPeeGive(s: GameState, scene: SceneBuilder): void {
                 }
               }
             }
+            (s as any).temp_org_buildup = undefined;
+            (s as any).temp_stim_total = undefined;
           }
         }
       }
     }
   }
-  // TODO-QSP: copyarr('temp_arousal_args', 'ARGS')
+  (s as any)[ARGS] ? (s as any)[ARGS] = { ...(s as any)[temp_arousal_args] } : (s as any)[ARGS] = { ...(s as any)[temp_arousal_args] };
   qspCall(s, 'arousal_funcs', 'check_events', 'temp_arousal_args');
+  (s as any).temp_arousal_args = undefined;
+  (s as any).orgasm_txt = undefined;
+  (s as any).arousalVars = undefined;
   scene.build();
 }
 
@@ -1982,6 +1988,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
       return;
     }
   }
+  (s as any).arousalVars = undefined;
+  (s as any).orgasm_flag = undefined;
   if (((s as any).arousal_overcall ?? 0)?.['args'] === String((s as any).locArgs?.[0] ?? '') + String((s as any).locArgs?.[1] ?? '') + String((s as any).locArgs?.[2] ?? '') + String((s as any).locArgs?.[3] ?? '') + String((s as any).locArgs?.[4] ?? '') + String((s as any).locArgs?.[5] ?? '') + String((s as any).locArgs?.[6] ?? '') + String((s as any).locArgs?.[7] ?? '') + String((s as any).locArgs?.[8] ?? '')) {
     (s as any).arousal_overcall = 1;
   } else {
@@ -1997,6 +2005,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     }
   }
   ((s as any).stim = (s as any).stim ?? {})['time'] = ((((s as any).temp_time ?? 0) > 0) ? (((s as any).temp_time ?? 0)) : (-((s as any).temp_time ?? 0)));
+  (s as any).temp_time = undefined;
   if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('unaware') : -1) >= 0) {
     ((s as any).arousalVars = (s as any).arousalVars ?? {})['unaware'] = 1;
   }
@@ -2050,6 +2059,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
         } else {
           qspCall(s, 'npcStat', '$arousal_npcID2', 'k');
         }
+        (s as any).arousal_npcID1 = undefined;
+        (s as any).arousal_npcID2 = undefined;
       } else {
         if (((s as any).npcID ?? 0) === '') {
           ((s as any).arousalVars = (s as any).arousalVars ?? {})['self'] = 1;
@@ -2076,6 +2087,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   ((s as any).arousalVars = (s as any).arousalVars ?? {})['girth_range'] = Math.min(Math.max(1, (((s as any).dick_width11 ?? 0) - 9) * 5), 30);
   if ((String(((s as any).locArgs?.[0] ?? 0)).slice((1)-1, ((1)-1)+(4))) === 'anal'  &&  (Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('anal_finger') : -1) < 0) {
     if (((s as any).anal_slip ?? 0) < Math.max(1, 8 + ((s as any).pain ?? 0)?.['asshole']/2 - ((s as any).pcs_ass ?? 0))) {
+      (s as any).anslipVars = undefined;
       ((s as any).anslipVars = (s as any).anslipVars ?? {})['cum'] = (Math.floor(Math.random() * (3 * ((s as any).cumvol ?? 0)[3] - 2 * ((s as any).cumvol ?? 0)[3] + 1)) + (2 * ((s as any).cumvol ?? 0)[3]));
       if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('spit') : -1) >= 0) {
         ((s as any).anslipVars = (s as any).anslipVars ?? {})['spit'] = 4;
@@ -2095,6 +2107,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         }
       }
       (s as any).anal_slip = Math.max('anslipVars');
+      (s as any).anslipVars = undefined;
       if (((s as any).anal_slip ?? 0) !== ((s as any).lubonus ?? 0)  &&  ((s as any).lubonus ?? 0) > 0) {
         (s as any).anal_slip = ((s as any).anal_slip ?? 0) + (((s as any).lubonus ?? 0));
         (s as any).lubonus = ((s as any).anal_slip ?? 0);
@@ -2103,6 +2116,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   }
   if ((String(((s as any).locArgs?.[0] ?? 0)).slice((1)-1, ((1)-1)+(4))) === 'vagi'  &&  (Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('vaginal_finger') : -1) < 0) {
     if (((s as any).vaginal_slip ?? 0) < Math.max(1, 8 + ((s as any).pain ?? 0)?.['vaginal'] / 2 - ((s as any).pcs_vag ?? 0))) {
+      (s as any).vagslipVars = undefined;
       ((s as any).vagslipVars = (s as any).vagslipVars ?? {})['horny'] = Math.min(((s as any).pcs_horny ?? 0) / 10, 10);
       ((s as any).vagslipVars = (s as any).vagslipVars ?? {})['cum'] = (Math.floor(Math.random() * (2 * ((s as any).cumvol ?? 0)[0] - (((s as any).cumvol ?? 0)?.[0] ?? 0) + 1)) + ((((s as any).cumvol ?? 0)?.[0] ?? 0)));
       if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('spit') : -1) >= 0) {
@@ -2123,6 +2137,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         }
       }
       (s as any).vaginal_slip = Math.max('vagslipVars');
+      (s as any).vagslipVars = undefined;
     }
   }
   if ((String(((s as any).locArgs?.[0] ?? 0)).slice(((String(((s as any).locArgs?.[0] ?? 0)).length) - 3)-1)) !== 'give') {

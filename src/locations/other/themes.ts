@@ -24,7 +24,6 @@ function enterMenuToggle(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, '$menu_obnovit', '');
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -36,10 +35,12 @@ function enterMenuCell(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_mc_bg = qspFunc(s, 'shortgs', 'rgb_to_hex', (((s as any).theme ?? 0)?.['bcolor']));
   (s as any).temp_mc_fg = qspFunc(s, 'shortgs', 'rgb_to_hex', (((s as any).theme ?? 0)?.['fcolor']));
   (s as any).temp_mc_sel = ((((s as any).themes_menu_cur ?? 0) === ((s as any).temp_mc_full ?? 0)) ? ('outline:3px solid ' + (((s as any).theme_hex ?? 0)?.['accent']) + '; outline-offset:-3px; ') : (''));
-  // TODO-QSP: dynamic text: '<td bgcolor="' + $temp_mc_bg + '" width="250" align="center" style="background:...
-  scene.text(`'<td bgcolor="' + $temp_mc_bg + '" width="250" align="center" style="background:' + $temp_mc_bg + '; ' + $temp_mc_sel + 'width:250px; text-align:center; white-space:nowrap; border-radius:4px; padding:0; overflow:hidden;"><a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: $cfg_vars[/u0027theme_main_name/u0027] = /u0027${((s as any).locArgs?.[1] ?? '')}/u0027 */ return s; }); window.__gameStore.getState().doGoto(/u0027themes/u0027, /u0027set_theme/u0027, /u0027${((s as any).temp_mc_full ?? '')}/u0027); return false;">${((s as any).locArgs?.[1] ?? '')}</a></td>'`);
+  scene.text('<td bgcolor="' + ((s as any).temp_mc_bg ?? '') + '" width="250" align="center" style="background:' + ((s as any).temp_mc_bg ?? '') + '; ' + ((s as any).temp_mc_sel ?? '') + `width:250px; text-align:center; white-space:nowrap; border-radius:4px; padding:0; overflow:hidden;"><a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: $cfg_vars[/u0027theme_main_name/u0027] = /u0027${((s as any).locArgs?.[1] ?? '')}/u0027 */ return s; }); window.__gameStore.getState().doGoto(/u0027themes/u0027, /u0027set_theme/u0027, String((s as any).temp_mc_full ?? /u0027/u0027)); return false;">${((s as any).locArgs?.[1] ?? '')}</a></td>`);
+  (s as any).temp_mc_full = undefined;
+  (s as any).temp_mc_bg = undefined;
+  (s as any).temp_mc_fg = undefined;
+  (s as any).temp_mc_sel = undefined;
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -68,21 +69,15 @@ function enterMenu(s: GameState, scene: SceneBuilder): void {
   (s as any).tm_fg_hex = qspFunc(s, 'shortgs', 'rgb_to_hex', ((s as any).fcolor ?? 0));
   scene.text('<center>');
   if (((s as any).cfg_vars ?? 0)?.['themetype'] === 0) {
-    // TODO-QSP: dynamic text: '<a href="exec: gs ''themes'', ''menu_toggle'' & gt ''themes'', ''menu''" style=...
-    scene.text('\'<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027themes/u0027, /u0027menu_toggle/u0027); return false;">Dynamic</a>\'');
-    // TODO-QSP: dynamic text: '<a href="exec: gs ''themes'', ''menu_toggle'' & gt ''themes'', ''menu''" style=...
-    scene.text('\'<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027themes/u0027, /u0027menu_toggle/u0027); return false;">Static</a>\'');
+    scene.text('\'<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027themes\u0027, \u0027menu_toggle\u0027 & gt \u0027themes\u0027, \u0027menu\u0027); return false;">Dynamic</a>\'');
+    scene.text('\'<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027themes\u0027, \u0027menu_toggle\u0027 & gt \u0027themes\u0027, \u0027menu\u0027); return false;">Static</a>\'');
   } else {
-    // TODO-QSP: dynamic text: '<a href="exec: gs ''themes'', ''menu_toggle'' & gt ''themes'', ''menu''" style=...
-    scene.text('\'<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027themes/u0027, /u0027menu_toggle/u0027); return false;">Dynamic</a>\'');
-    // TODO-QSP: dynamic text: '<a href="exec: gs ''themes'', ''menu_toggle'' & gt ''themes'', ''menu''" style=...
-    scene.text('\'<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027themes/u0027, /u0027menu_toggle/u0027); return false;">Static</a>\'');
+    scene.text('\'<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027themes\u0027, \u0027menu_toggle\u0027 & gt \u0027themes\u0027, \u0027menu\u0027); return false;">Dynamic</a>\'');
+    scene.text('\'<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027themes\u0027, \u0027menu_toggle\u0027 & gt \u0027themes\u0027, \u0027menu\u0027); return false;">Static</a>\'');
   }
   scene.text('<table style="border-collapse:separate; border-spacing:0 6px;">');
-  // TODO-QSP: dynamic text: '<tr><td style="color:' + $tm_label_fg + '; padding:2px 4px;"><b>Classic</b></td...
-  scene.text('\'<tr><td style="color:\' + $tm_label_fg + \'; padding:2px 4px;"><b>Classic</b></td></tr>\'');
-  // TODO-QSP: dynamic text: '<tr><td bgcolor="' + $tm_cell_bg + '" style="background:' + $tm_cell_bg + '; pa...
-  scene.text('\'<tr><td bgcolor="\' + $tm_cell_bg + \'" style="background:\' + $tm_cell_bg + \'; padding:8px; border-radius:6px;"><table style="border-collapse:separate; border-spacing:16px 0;"><tr>\'');
+  scene.text('<tr><td style="color:' + ((s as any).tm_label_fg ?? '') + '; padding:2px 4px;"><b>Classic</b></td></tr>');
+  scene.text('<tr><td bgcolor="' + ((s as any).tm_cell_bg ?? '') + '" style="background:' + ((s as any).tm_cell_bg ?? '') + '; padding:8px; border-radius:6px;"><table style="border-collapse:separate; border-spacing:16px 0;"><tr>');
   if (((s as any).cfg_vars ?? 0)?.['themetype'] === 0) {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'Default', 'dynamic']; enterMenuCell(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
@@ -92,40 +87,30 @@ function enterMenu(s: GameState, scene: SceneBuilder): void {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'Custom', 'static']; enterMenuCell(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   scene.text('</tr></table></td></tr>');
-  // TODO-QSP: dynamic text: '<tr><td style="color:' + $tm_label_fg + '; padding:2px 4px;"><b>Catppuccin</b><...
-  scene.text('\'<tr><td style="color:\' + $tm_label_fg + \'; padding:2px 4px;"><b>Catppuccin</b></td></tr>\'');
-  // TODO-QSP: dynamic text: '<tr><td bgcolor="' + $tm_cell_bg + '" style="background:' + $tm_cell_bg + '; pa...
-  scene.text('\'<tr><td bgcolor="\' + $tm_cell_bg + \'" style="background:\' + $tm_cell_bg + \'; padding:8px; border-radius:6px;"><table style="border-collapse:separate; border-spacing:16px 0;"><tr>\'');
+  scene.text('<tr><td style="color:' + ((s as any).tm_label_fg ?? '') + '; padding:2px 4px;"><b>Catppuccin</b></td></tr>');
+  scene.text('<tr><td bgcolor="' + ((s as any).tm_cell_bg ?? '') + '" style="background:' + ((s as any).tm_cell_bg ?? '') + '; padding:8px; border-radius:6px;"><table style="border-collapse:separate; border-spacing:16px 0;"><tr>');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'Latte', ((s as any).themes_menu_mode ?? 0)]; enterMenuCell(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'Frappé', ((s as any).themes_menu_mode ?? 0)]; enterMenuCell(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'Macchiato', ((s as any).themes_menu_mode ?? 0)]; enterMenuCell(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'Mocha', ((s as any).themes_menu_mode ?? 0)]; enterMenuCell(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('</tr></table></td></tr>');
-  // TODO-QSP: dynamic text: '<tr><td style="color:' + $tm_label_fg + '; padding:2px 4px;"><b>Nord</b></td></...
-  scene.text('\'<tr><td style="color:\' + $tm_label_fg + \'; padding:2px 4px;"><b>Nord</b></td></tr>\'');
-  // TODO-QSP: dynamic text: '<tr><td bgcolor="' + $tm_cell_bg + '" style="background:' + $tm_cell_bg + '; pa...
-  scene.text('\'<tr><td bgcolor="\' + $tm_cell_bg + \'" style="background:\' + $tm_cell_bg + \'; padding:8px; border-radius:6px;"><table style="border-collapse:separate; border-spacing:16px 0;"><tr>\'');
+  scene.text('<tr><td style="color:' + ((s as any).tm_label_fg ?? '') + '; padding:2px 4px;"><b>Nord</b></td></tr>');
+  scene.text('<tr><td bgcolor="' + ((s as any).tm_cell_bg ?? '') + '" style="background:' + ((s as any).tm_cell_bg ?? '') + '; padding:8px; border-radius:6px;"><table style="border-collapse:separate; border-spacing:16px 0;"><tr>');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'Nord Light', ((s as any).themes_menu_mode ?? 0)]; enterMenuCell(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'Nord Dark', ((s as any).themes_menu_mode ?? 0)]; enterMenuCell(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('</tr></table></td></tr>');
-  // TODO-QSP: dynamic text: '<tr><td style="color:' + $tm_label_fg + '; padding:2px 4px;"><b>Solarized</b></...
-  scene.text('\'<tr><td style="color:\' + $tm_label_fg + \'; padding:2px 4px;"><b>Solarized</b></td></tr>\'');
-  // TODO-QSP: dynamic text: '<tr><td bgcolor="' + $tm_cell_bg + '" style="background:' + $tm_cell_bg + '; pa...
-  scene.text('\'<tr><td bgcolor="\' + $tm_cell_bg + \'" style="background:\' + $tm_cell_bg + \'; padding:8px; border-radius:6px;"><table style="border-collapse:separate; border-spacing:16px 0;"><tr>\'');
+  scene.text('<tr><td style="color:' + ((s as any).tm_label_fg ?? '') + '; padding:2px 4px;"><b>Solarized</b></td></tr>');
+  scene.text('<tr><td bgcolor="' + ((s as any).tm_cell_bg ?? '') + '" style="background:' + ((s as any).tm_cell_bg ?? '') + '; padding:8px; border-radius:6px;"><table style="border-collapse:separate; border-spacing:16px 0;"><tr>');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'Solarized Light', ((s as any).themes_menu_mode ?? 0)]; enterMenuCell(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'Solarized Dark', ((s as any).themes_menu_mode ?? 0)]; enterMenuCell(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('</tr></table></td></tr>');
-  // TODO-QSP: dynamic text: '<tr><td style="color:' + $tm_label_fg + '; padding:2px 4px;"><b>Tokyo Night</b>...
-  scene.text('\'<tr><td style="color:\' + $tm_label_fg + \'; padding:2px 4px;"><b>Tokyo Night</b></td></tr>\'');
-  // TODO-QSP: dynamic text: '<tr><td bgcolor="' + $tm_cell_bg + '" style="background:' + $tm_cell_bg + '; pa...
-  scene.text('\'<tr><td bgcolor="\' + $tm_cell_bg + \'" style="background:\' + $tm_cell_bg + \'; padding:8px; border-radius:6px;"><table style="border-collapse:separate; border-spacing:16px 0;"><tr>\'');
+  scene.text('<tr><td style="color:' + ((s as any).tm_label_fg ?? '') + '; padding:2px 4px;"><b>Tokyo Night</b></td></tr>');
+  scene.text('<tr><td bgcolor="' + ((s as any).tm_cell_bg ?? '') + '" style="background:' + ((s as any).tm_cell_bg ?? '') + '; padding:8px; border-radius:6px;"><table style="border-collapse:separate; border-spacing:16px 0;"><tr>');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'Tokyo Night Light', ((s as any).themes_menu_mode ?? 0)]; enterMenuCell(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'Tokyo Night', ((s as any).themes_menu_mode ?? 0)]; enterMenuCell(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('</tr></table></td></tr>');
-  // TODO-QSP: dynamic text: '<tr><td style="color:' + $tm_label_fg + '; padding:2px 4px;"><b>Rosé Pine</b></...
-  scene.text('\'<tr><td style="color:\' + $tm_label_fg + \'; padding:2px 4px;"><b>Rosé Pine</b></td></tr>\'');
-  // TODO-QSP: dynamic text: '<tr><td bgcolor="' + $tm_cell_bg + '" style="background:' + $tm_cell_bg + '; pa...
-  scene.text('\'<tr><td bgcolor="\' + $tm_cell_bg + \'" style="background:\' + $tm_cell_bg + \'; padding:8px; border-radius:6px;"><table style="border-collapse:separate; border-spacing:16px 0;"><tr>\'');
+  scene.text('<tr><td style="color:' + ((s as any).tm_label_fg ?? '') + '; padding:2px 4px;"><b>Rosé Pine</b></td></tr>');
+  scene.text('<tr><td bgcolor="' + ((s as any).tm_cell_bg ?? '') + '" style="background:' + ((s as any).tm_cell_bg ?? '') + '; padding:8px; border-radius:6px;"><table style="border-collapse:separate; border-spacing:16px 0;"><tr>');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'Rosé Pine Dawn', ((s as any).themes_menu_mode ?? 0)]; enterMenuCell(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'Rosé Pine', ((s as any).themes_menu_mode ?? 0)]; enterMenuCell(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'Rosé Pine Moon', ((s as any).themes_menu_mode ?? 0)]; enterMenuCell(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -143,99 +128,85 @@ function enterMenu(s: GameState, scene: SceneBuilder): void {
   (s as any).tm_fg_hex = qspFunc(s, 'shortgs', 'rgb_to_hex', ((s as any).fcolor ?? 0));
   scene.text('<hr>');
   scene.text('<b>Preview</b>');
-  // TODO-QSP: dynamic text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor ...
-  scene.text('\'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. A <font color="\' + $theme_hex[\'bimbo\'] + \'">bimbo</font> wandered into a <font color="\' + $theme_hex[\'goth\'] + \'">goth</font> café, sparking a <font color="\' + $theme_hex[\'punk\'] + \'">punk</font> uprising while the air crackled with <font color="\' + $theme_hex[\'hypno\'] + \'">hypno</font> energy. <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027themes/u0027, /u0027menu/u0027); return false;">Pellentesque habitant</a> morbi tristique senectus et netus et malesuada fames. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. The <font color="\' + $theme_hex[\'bimbo\'] + \'">bimbo</font> smiled serenely, the <font color="\' + $theme_hex[\'goth\'] + \'">goth</font> raised an eyebrow, the <font color="\' + $theme_hex[\'punk\'] + \'">punk</font> tuned her guitar. <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027themes/u0027, /u0027menu/u0027); return false;">Excepteur sint occaecat</a> cupidatat non proident. The <font color="\' + $theme_hex[\'hypno\'] + \'">hypno</font> spiral deepened, and all four found something unexpected in the silence that followed.\'');
+  scene.text('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. A <font color="' + (((s as any).theme_hex ?? 0)?.['bimbo'] ?? '') + '">bimbo</font> wandered into a <font color="' + (((s as any).theme_hex ?? 0)?.['goth'] ?? '') + '">goth</font> café, sparking a <font color="' + (((s as any).theme_hex ?? 0)?.['punk'] ?? '') + '">punk</font> uprising while the air crackled with <font color="' + (((s as any).theme_hex ?? 0)?.['hypno'] ?? '') + '">hypno</font> energy. <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027themes\u0027, \u0027menu\u0027); return false;">Pellentesque habitant</a> morbi tristique senectus et netus et malesuada fames. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. The <font color="' + (((s as any).theme_hex ?? 0)?.['bimbo'] ?? '') + '">bimbo</font> smiled serenely, the <font color="' + (((s as any).theme_hex ?? 0)?.['goth'] ?? '') + '">goth</font> raised an eyebrow, the <font color="' + (((s as any).theme_hex ?? 0)?.['punk'] ?? '') + '">punk</font> tuned her guitar. <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027themes\u0027, \u0027menu\u0027); return false;">Excepteur sint occaecat</a> cupidatat non proident. The <font color="' + (((s as any).theme_hex ?? 0)?.['hypno'] ?? '') + '">hypno</font> spiral deepened, and all four found something unexpected in the silence that followed.');
   scene.text('<table style="border-collapse:collapse; vertical-align:top;"><tr>');
   scene.text('<td valign="top" style="vertical-align:top; padding-right:32px;">');
   scene.text('<table cellpadding="0" cellspacing="0" style="border-collapse:collapse; min-width:320px;">');
-  // TODO-QSP: dynamic text: '<tr><td bgcolor="' + $theme_hex['table_bg'] + '" style="background:' + $theme_h...
-  scene.text('\'<tr><td bgcolor="\' + $theme_hex[\'table_bg\'] + \'" style="background:\' + $theme_hex[\'table_bg\'] + \'; padding:6px 14px; color:\' + $tm_fg_hex + \';">Row 1, Column A</td><td bgcolor="\' + $theme_hex[\'table_bg\'] + \'" style="background:\' + $theme_hex[\'table_bg\'] + \'; padding:6px 14px; color:\' + $tm_fg_hex + \';">Row 1, Column B</td><td bgcolor="\' + $theme_hex[\'table_bg\'] + \'" style="background:\' + $theme_hex[\'table_bg\'] + \'; padding:6px 14px; color:\' + $tm_fg_hex + \'; font-style:italic; opacity:0.7;">table_bg</td></tr>\'');
-  // TODO-QSP: dynamic text: '<tr><td bgcolor="' + $theme_hex['table_bg_alt'] + '" style="background:' + $the...
-  scene.text('\'<tr><td bgcolor="\' + $theme_hex[\'table_bg_alt\'] + \'" style="background:\' + $theme_hex[\'table_bg_alt\'] + \'; padding:6px 14px; color:\' + $tm_fg_hex + \';">Row 2, Column A</td><td bgcolor="\' + $theme_hex[\'table_bg_alt\'] + \'" style="background:\' + $theme_hex[\'table_bg_alt\'] + \'; padding:6px 14px; color:\' + $tm_fg_hex + \';">Row 2, Column B</td><td bgcolor="\' + $theme_hex[\'table_bg_alt\'] + \'" style="background:\' + $theme_hex[\'table_bg_alt\'] + \'; padding:6px 14px; color:\' + $tm_fg_hex + \'; font-style:italic; opacity:0.7;">table_bg_alt</td></tr>\'');
-  // TODO-QSP: dynamic text: '<tr><td bgcolor="' + $theme_hex['table_bg'] + '" style="background:' + $theme_h...
-  scene.text('\'<tr><td bgcolor="\' + $theme_hex[\'table_bg\'] + \'" style="background:\' + $theme_hex[\'table_bg\'] + \'; padding:6px 14px; color:\' + $tm_fg_hex + \';">Row 3, Column A</td><td bgcolor="\' + $theme_hex[\'table_bg\'] + \'" style="background:\' + $theme_hex[\'table_bg\'] + \'; padding:6px 14px; color:\' + $tm_fg_hex + \';">Row 3, Column B</td><td bgcolor="\' + $theme_hex[\'table_bg\'] + \'" style="background:\' + $theme_hex[\'table_bg\'] + \'; padding:6px 14px; color:\' + $tm_fg_hex + \'; font-style:italic; opacity:0.7;">table_bg</td></tr>\'');
-  // TODO-QSP: dynamic text: '<tr><td bgcolor="' + $theme_hex['table_bg_alt'] + '" style="background:' + $the...
-  scene.text('\'<tr><td bgcolor="\' + $theme_hex[\'table_bg_alt\'] + \'" style="background:\' + $theme_hex[\'table_bg_alt\'] + \'; padding:6px 14px; color:\' + $tm_fg_hex + \';">Row 4, Column A</td><td bgcolor="\' + $theme_hex[\'table_bg_alt\'] + \'" style="background:\' + $theme_hex[\'table_bg_alt\'] + \'; padding:6px 14px; color:\' + $tm_fg_hex + \';">Row 4, Column B</td><td bgcolor="\' + $theme_hex[\'table_bg_alt\'] + \'" style="background:\' + $theme_hex[\'table_bg_alt\'] + \'; padding:6px 14px; color:\' + $tm_fg_hex + \'; font-style:italic; opacity:0.7;">table_bg_alt</td></tr>\'');
+  scene.text('<tr><td bgcolor="' + (((s as any).theme_hex ?? 0)?.['table_bg'] ?? '') + '" style="background:' + (((s as any).theme_hex ?? 0)?.['table_bg'] ?? '') + '; padding:6px 14px; color:' + ((s as any).tm_fg_hex ?? '') + ';">Row 1, Column A</td><td bgcolor="' + (((s as any).theme_hex ?? 0)?.['table_bg'] ?? '') + '" style="background:' + (((s as any).theme_hex ?? 0)?.['table_bg'] ?? '') + '; padding:6px 14px; color:' + ((s as any).tm_fg_hex ?? '') + ';">Row 1, Column B</td><td bgcolor="' + (((s as any).theme_hex ?? 0)?.['table_bg'] ?? '') + '" style="background:' + (((s as any).theme_hex ?? 0)?.['table_bg'] ?? '') + '; padding:6px 14px; color:' + ((s as any).tm_fg_hex ?? '') + '; font-style:italic; opacity:0.7;">table_bg</td></tr>');
+  scene.text('<tr><td bgcolor="' + (((s as any).theme_hex ?? 0)?.['table_bg_alt'] ?? '') + '" style="background:' + (((s as any).theme_hex ?? 0)?.['table_bg_alt'] ?? '') + '; padding:6px 14px; color:' + ((s as any).tm_fg_hex ?? '') + ';">Row 2, Column A</td><td bgcolor="' + (((s as any).theme_hex ?? 0)?.['table_bg_alt'] ?? '') + '" style="background:' + (((s as any).theme_hex ?? 0)?.['table_bg_alt'] ?? '') + '; padding:6px 14px; color:' + ((s as any).tm_fg_hex ?? '') + ';">Row 2, Column B</td><td bgcolor="' + (((s as any).theme_hex ?? 0)?.['table_bg_alt'] ?? '') + '" style="background:' + (((s as any).theme_hex ?? 0)?.['table_bg_alt'] ?? '') + '; padding:6px 14px; color:' + ((s as any).tm_fg_hex ?? '') + '; font-style:italic; opacity:0.7;">table_bg_alt</td></tr>');
+  scene.text('<tr><td bgcolor="' + (((s as any).theme_hex ?? 0)?.['table_bg'] ?? '') + '" style="background:' + (((s as any).theme_hex ?? 0)?.['table_bg'] ?? '') + '; padding:6px 14px; color:' + ((s as any).tm_fg_hex ?? '') + ';">Row 3, Column A</td><td bgcolor="' + (((s as any).theme_hex ?? 0)?.['table_bg'] ?? '') + '" style="background:' + (((s as any).theme_hex ?? 0)?.['table_bg'] ?? '') + '; padding:6px 14px; color:' + ((s as any).tm_fg_hex ?? '') + ';">Row 3, Column B</td><td bgcolor="' + (((s as any).theme_hex ?? 0)?.['table_bg'] ?? '') + '" style="background:' + (((s as any).theme_hex ?? 0)?.['table_bg'] ?? '') + '; padding:6px 14px; color:' + ((s as any).tm_fg_hex ?? '') + '; font-style:italic; opacity:0.7;">table_bg</td></tr>');
+  scene.text('<tr><td bgcolor="' + (((s as any).theme_hex ?? 0)?.['table_bg_alt'] ?? '') + '" style="background:' + (((s as any).theme_hex ?? 0)?.['table_bg_alt'] ?? '') + '; padding:6px 14px; color:' + ((s as any).tm_fg_hex ?? '') + ';">Row 4, Column A</td><td bgcolor="' + (((s as any).theme_hex ?? 0)?.['table_bg_alt'] ?? '') + '" style="background:' + (((s as any).theme_hex ?? 0)?.['table_bg_alt'] ?? '') + '; padding:6px 14px; color:' + ((s as any).tm_fg_hex ?? '') + ';">Row 4, Column B</td><td bgcolor="' + (((s as any).theme_hex ?? 0)?.['table_bg_alt'] ?? '') + '" style="background:' + (((s as any).theme_hex ?? 0)?.['table_bg_alt'] ?? '') + '; padding:6px 14px; color:' + ((s as any).tm_fg_hex ?? '') + '; font-style:italic; opacity:0.7;">table_bg_alt</td></tr>');
   scene.text('</table>');
   scene.text('</td>');
   scene.text('<td valign="top" style="vertical-align:top;">');
-  // TODO-QSP: dynamic text: $func('progressbar', 'positive', 100, 0, 0, 0, '', '', '21,41,61,81')
   scene.text(qspFunc(s, 'progressbar', 'positive', 100, 0, 0, 0, '', '', '21,41,61,81'));
-  // TODO-QSP: dynamic text: $func('progressbar', 'positive', 80, 0, 0, 0, '', '', '21,41,61,81')
   scene.text(qspFunc(s, 'progressbar', 'positive', 80, 0, 0, 0, '', '', '21,41,61,81'));
-  // TODO-QSP: dynamic text: $func('progressbar', 'positive', 60, 0, 0, 0, '', '', '21,41,61,81')
   scene.text(qspFunc(s, 'progressbar', 'positive', 60, 0, 0, 0, '', '', '21,41,61,81'));
-  // TODO-QSP: dynamic text: $func('progressbar', 'positive', 40, 0, 0, 0, '', '', '21,41,61,81')
   scene.text(qspFunc(s, 'progressbar', 'positive', 40, 0, 0, 0, '', '', '21,41,61,81'));
-  // TODO-QSP: dynamic text: $func('progressbar', 'positive', 20, 0, 0, 0, '', '', '21,41,61,81')
   scene.text(qspFunc(s, 'progressbar', 'positive', 20, 0, 0, 0, '', '', '21,41,61,81'));
   scene.text('</td>');
   scene.text('<td valign="top" style="vertical-align:top; padding-left:32px;">');
-  // TODO-QSP: dynamic text: $func('progressbar', 'mono:accent', 100)
   scene.text(qspFunc(s, 'progressbar', 'mono:accent', 100));
-  // TODO-QSP: dynamic text: $func('progressbar', 'mono:accent', 80)
   scene.text(qspFunc(s, 'progressbar', 'mono:accent', 80));
-  // TODO-QSP: dynamic text: $func('progressbar', 'mono:accent', 60)
   scene.text(qspFunc(s, 'progressbar', 'mono:accent', 60));
-  // TODO-QSP: dynamic text: $func('progressbar', 'mono:accent', 40)
   scene.text(qspFunc(s, 'progressbar', 'mono:accent', 40));
-  // TODO-QSP: dynamic text: $func('progressbar', 'mono:accent', 20)
   scene.text(qspFunc(s, 'progressbar', 'mono:accent', 20));
   scene.text('</td>');
   scene.text('</tr></table>');
+  (s as any).themes_menu_cur = undefined;
+  (s as any).themes_menu_mode = undefined;
+  (s as any).tm_label_fg = undefined;
+  (s as any).tm_cell_bg = undefined;
+  (s as any).tm_fg_hex = undefined;
   scene.actions([
 { label: 'Leave', handler: (st: GameState) => {
     (st as any).temp_ret_loc = ((st as any).themes_menu_ret_loc ?? 0);
     (st as any).temp_ret_arg = ((st as any).themes_menu_ret_arg ?? 0);
     (st as any).settingmode = ((st as any).themes_menu_prev_settingmode ?? 0);
     (st as any).themes_menu_active = 0;
+    (st as any).themes_menu_ret_loc = undefined;
+    (st as any).themes_menu_ret_arg = undefined;
+    (st as any).themes_menu_prev_settingmode = undefined;
     dynamicGoto(st, 'temp_ret_loc', 'temp_ret_arg');
   } },
 ]);
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterAltColor(s: GameState, scene: SceneBuilder): void {
   (s as any).result = ((String((s as any).locArgs?.[1] ?? '') === ((s as any).theme_hex ?? 0)?.['table_bg']) ? ((((s as any).theme_hex ?? 0)?.['table_bg_alt'])) : ((((s as any).theme_hex ?? 0)?.['table_bg'])));
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterClothing(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_bcolor = qspFunc(s, 'themes', 'alt_color', ((s as any).temp_bcolor ?? 0));
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterWrap(s: GameState, scene: SceneBuilder): void {
   (s as any).result = qspFunc(s, 'wrap', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[3] ?? 0), ((s as any).locArgs?.[4] ?? 0));
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterWrapHex(s: GameState, scene: SceneBuilder): void {
   (s as any).result = '<font color="' + ((s as any).locArgs?.[1] ?? 0) + '">' + ((s as any).locArgs?.[2] ?? 0) + '</font>';
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterWrapThought(s: GameState, scene: SceneBuilder): void {
   (s as any).result = ((s as any).OpenInnerThought ?? 0) + ((s as any).locArgs?.[1] ?? 0) + ((s as any).CloseInnerThought ?? 0);
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterOutdoors(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[0] ?? 0)]; enterApply(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -243,7 +214,6 @@ function enterIndoors(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[0] ?? 0)]; enterApply(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'indoors', '');
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -269,16 +239,19 @@ function enterApply(s: GameState, scene: SceneBuilder): void {
   (s as any).noWillpower = 0;
   (s as any).noMoney = 0;
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterReset(s: GameState, scene: SceneBuilder): void {
+  (s as any).theme = undefined;
+  (s as any).theme_hex = undefined;
+  (s as any).bcolor = undefined;
+  (s as any).fcolor = undefined;
+  (s as any).lcolor = undefined;
   (s as any).fsize = 12;
   (s as any).fname = 'Tahoma';
   ((s as any).theme = (s as any).theme ?? {})['is_dark'] = 0;
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -289,7 +262,6 @@ function enterSetTheme(s: GameState, scene: SceneBuilder): void {
   ((s as any).theme = (s as any).theme ?? {})['fsize'] = 12;
   ((s as any).theme = (s as any).theme ?? {})['fname'] = 'Tahoma';
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -349,7 +321,6 @@ function enterCheckCustomVars(s: GameState, scene: SceneBuilder): void {
     ((s as any).custom_theme = (s as any).custom_theme ?? {})['header'] = '#f0c6c6';
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -374,7 +345,6 @@ function enterDefaultTheme(s: GameState, scene: SceneBuilder): void {
   ((s as any).theme_hex = (s as any).theme_hex ?? {})['hypno'] = '#fe640b';
   ((s as any).theme_hex = (s as any).theme_hex ?? {})['header'] = '#d24b4b';
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -7006,11 +6976,10 @@ function enterGetTheme(s: GameState, scene: SceneBuilder): void {
       }
     } else {
       // TODO-QSP: "Invalid parameter call for themes / get_theme. You've found a bug! please let us know."
-      // TODO-QSP: $theme['type']
+      scene.text(String(qspFunc(s, 'theme', 'type') || ''));
     }
   }
   return;
-  // TODO-QSP: end
   // TODO-QSP: "Invalid parameter call for themes. You've found a bug! please let us know."
   scene.build();
 }

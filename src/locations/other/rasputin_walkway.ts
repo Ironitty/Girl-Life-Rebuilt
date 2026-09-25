@@ -15,6 +15,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pushkin/rasputin/walkway.jpg');
   scene.text('You enter the passage way that leads to various sections of the club.');
   if (((s as any).hour ?? 0) > 2  &&  ((s as any).hour ?? 0) < 15) {
+    alert('The club is closing up for the day and the staff lead you outside.');
     qspGoto(s, 'pushkin_sq', '');
   } else {
     if ((((s as any).hour ?? 0) >= 15  &&  ((s as any).hour ?? 0) < 17)  ||  (((s as any).hour ?? 0) === 17  &&  ((s as any).minut ?? 0) < 30)) {
@@ -33,16 +34,13 @@ function enter(s: GameState, scene: SceneBuilder): void {
         ]);
       } else {
         if (((s as any).hour ?? 0) === 17  ||  (((s as any).hour ?? 0) === 18  &&  ((s as any).minut ?? 0) < 30)) {
-          // TODO-QSP: dynamic text: 'The staff informs you that you are too late for the first half of the burlesque...
-          scene.text('The staff informs you that you are too late for the first half of the burlesque show, but you can still enter after the intermission between 19:30 and 20:00.');
+          scene.text('\'The staff informs you that you are too late for the first half of the burlesque show, but you can still enter after the intermission between 19:30 and 20:00.\'');
         } else {
           if (((s as any).hour ?? 0) === 18  ||  (((s as any).hour ?? 0) === 19  &&  ((s as any).minut ?? 0) < 30)) {
             if (((s as any).rasputin ?? 0)?.['burlesque_ticket'] === 2) {
-              // TODO-QSP: dynamic text: 'A member of staff informs you that entry for the second half of the burlesque s...
-              scene.text('A member of staff informs you that entry for the second half of the burlesque show is between 19:30 and 20:00');
+              scene.text('\'A member of staff informs you that entry for the second half of the burlesque show is between 19:30 and 20:00\'');
             } else {
-              // TODO-QSP: dynamic text: 'A member of staff informs you that you are too late for the first half of the b...
-              scene.text('A member of staff informs you that you are too late for the first half of the burlesque show, but you can still enter after the intermission between 19:30 and 20:00.');
+              scene.text('\'A member of staff informs you that you are too late for the first half of the burlesque show, but you can still enter after the intermission between 19:30 and 20:00.\'');
             }
           } else {
             if (((s as any).hour ?? 0) === 19) {
@@ -58,8 +56,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
               ]);
             } else {
               if (((s as any).hour ?? 0) < 21) {
-                // TODO-QSP: dynamic text: 'A member of staff informs you that the burlesque show has finished and the exot...
-                scene.text('A member of staff informs you that the burlesque show has finished and the exotic variety show will be starting from 21:00');
+                scene.text('\'A member of staff informs you that the burlesque show has finished and the exotic variety show will be starting from 21:00\'');
               } else {
                 if (((s as any).hour ?? 0) === 21) {
                   scene.actions([
@@ -74,16 +71,13 @@ function enter(s: GameState, scene: SceneBuilder): void {
                   ]);
                 } else {
                   if (((s as any).hour ?? 0) === 22) {
-                    // TODO-QSP: dynamic text: 'The staff apologizes and let you know that you are too late for the enter the f...
-                    scene.text('The staff apologizes and let you know that you are too late for the enter the first half of the show and asks you to return during the intermission between 23:30 and midnight.');
+                    scene.text('\'The staff apologizes and let you know that you are too late for the enter the first half of the show and asks you to return during the intermission between 23:30 and midnight.\'');
                   } else {
                     if (((s as any).hour ?? 0) === 23  &&  ((s as any).minut ?? 0) < 30) {
                       if (((s as any).rasputin ?? 0)?.['variety_ticket'] === 2) {
-                        // TODO-QSP: dynamic text: 'A member of staff informs you that entry for the second half of the erotic vari...
-                        scene.text('A member of staff informs you that entry for the second half of the erotic variety show is between 23:30 and 0:00');
+                        scene.text('\'A member of staff informs you that entry for the second half of the erotic variety show is between 23:30 and 0:00\'');
                       } else {
-                        // TODO-QSP: dynamic text: 'A member of staff informs you that you are too late for the first half of the e...
-                        scene.text('A member of staff informs you that you are too late for the first half of the erotic variety show, but you can still enter after the intermission between 23:30 and midnight.');
+                        scene.text('\'A member of staff informs you that you are too late for the first half of the erotic variety show, but you can still enter after the intermission between 23:30 and midnight.\'');
                       }
                       scene.actions([
                         { label: 'Watch second half of the erotic variety show', handler: (st: GameState) => {

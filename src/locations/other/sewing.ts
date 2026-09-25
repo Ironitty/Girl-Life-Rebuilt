@@ -12,7 +12,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.img('images/pc/activities/sewing/kit.jpg');
   scene.text('You pull your sewing kit out from under your bed.');
   if (((s as any).mc_inventory ?? 0)?.['sewing_fabric'] > 1) {
-    // TODO-QSP: dynamic text: You have <<mc_inventory[''sewing_fabric'']>> pieces of sewing fabric left.
     scene.text(`You have ${(((s as any).mc_inventory ?? 0)?.['sewing_fabric'] ?? '')} pieces of sewing fabric left.`);
   } else {
     if (((s as any).mc_inventory ?? 0)?.['sewing_fabric'] === 1) {
@@ -22,9 +21,8 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).pcs_sewng ?? 0) > 50  &&  ((s as any).mc_inventory ?? 0)?.['sewing_fabric'] >= 1) {
-    scene.text('You can resize your own clothing when viewing items in the wardrobe list <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027clothing_view/u0027, /u0027view_lists_list/u0027, /u0027wardrobe/u0027); return false;">here</a>.');
+    scene.text('You can resize your own clothing when viewing items in the wardrobe list <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027clothing_view\u0027, \u0027view_lists_list\u0027, \u0027wardrobe\u0027); return false;">here</a>.');
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     dynamicGoto(st, 'prevLoc', 'prevArg');
@@ -67,18 +65,17 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
         } else {
           if (((st as any).mc_inventory ?? 0)?.['trinkets_home'] >= 30  &&  (((st as any).YouCanGar ?? 0) === 0  ||  ((st as any).mc_inventory ?? 0)?.['trinkets_garage'] >= 100)) {
             scene.img('images/pc/activities/sewing/kit.jpg');
-            // TODO-QSP: dynamic text: 'You put together another trinket but then realize you have too many trinkets al...
             scene.text('You put together another trinket but then realize you have too many trinkets already. ' + ((((st as any).YouCanGar ?? 0) > 0) ? ('Even the space in your stepfather\'s garage is full. ') : ('')) + 'With a deep sense of regret, you throw it away, having no place to store it. At least you learned more about sewing…');
           } else {
             scene.img('images/pc/activities/sewing/trinket.jpg');
             scene.text('You spend some time trying to sew something together. After a half hour, you find yourself rewarded for your effort with a small trinket that\'s actually of decently high quality. ');
             if (((st as any).mc_inventory ?? 0)?.['trinkets_home'] < 30) {
               ((st as any).mc_inventory = (st as any).mc_inventory ?? {})['trinkets_home'] = ((st as any).mc_inventory['trinkets_home'] ?? 0) + (1);
-              // TODO-QSP: 'Storing it away, you figure you ' + iif(mc_inventory['trinkets_home'] < 30, 'still have space for a...
+              scene.text('Storing it away, you figure you ' + ((((st as any).mc_inventory ?? 0)?.['trinkets_home'] < 30) ? ('still have space for about ' + 30 - (((st as any).mc_inventory ?? {})?.['trinkets_home'] ?? 0) + '') : ('probably don\'t have room for any')) + ' more of these in your room.' + ((((st as any).mc_inventory ?? 0)?.['trinkets_home'] >= 30  &&  ((st as any).YouCanGar ?? 0) > 0) ? (' If you make any more of these, you\'ll need to start storing them in your stepfather\'s garage.') : ('')));
               scene.text('You wonder if you can sell them somewhere.');
             } else {
               ((st as any).mc_inventory = (st as any).mc_inventory ?? {})['trinkets_garage'] = ((st as any).mc_inventory['trinkets_garage'] ?? 0) + (1);
-              // TODO-QSP: 'The storage space in your room is full, but you can still store it in your stepfather''s garage, ' ...
+              scene.text('The storage space in your room is full, but you can still store it in your stepfather\'s garage, ' + ((((st as any).mc_inventory ?? 0)?.['trinkets_garage'] < 100) ? ('along with probably another ' + 100 - (((st as any).mc_inventory ?? {})?.['trinkets_garage'] ?? 0) + '.') : ('though it doesn\'t look like there\'s space for any more beyond that there either.')));
               scene.text('You wonder how many you can sell at the train station.');
             }
           }
@@ -114,10 +111,10 @@ function enterTapestry(s: GameState, scene: SceneBuilder): void {
     (s as any).newgobelen = ((s as any).newgobelen ?? 0) + ((Math.floor(Math.random() * (((s as any).gobramax ?? 0) - ((s as any).gobramin ?? 0) + 1)) + (((s as any).gobramin ?? 0))));
     qspCall(s, 'stat', '');
     if (((s as any).newgobelen ?? 0) < 1000) {
-      // TODO-QSP: dynamic text: You spend an hour working on your tapestry, which is now <<newgobelen/10>> perce...
       scene.text(`You spend an hour working on your tapestry, which is now ${((s as any).newgobelen ?? '')/10} percent finished.`);
     }
     if (((s as any).newgobelen ?? 0) >= 1000) {
+      (s as any).newgobelen = undefined;
       ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['tapestry'] = ((s as any).mc_inventory['tapestry'] ?? 0) + (1);
       scene.text('Your work on the tapestry is done.');
     }
@@ -127,7 +124,6 @@ function enterTapestry(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 

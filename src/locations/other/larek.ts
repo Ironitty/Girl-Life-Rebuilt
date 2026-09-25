@@ -12,8 +12,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   qspCall(s, 'stat', '');
   scene.img('images/locations/pushkin/cafe/larek.jpg');
-  scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027larek/u0027, /u0027sofood/u0027); return false;">Select Products</a>');
-  // TODO-QSP: end
+  scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027larek\u0027, \u0027sofood\u0027); return false;">Select Products</a>');
   scene.actions([
     { label: 'Leave the store', handler: (st: GameState) => {
     dynamicGoto(st, 'prevLoc', 'prevArg');
@@ -29,7 +28,6 @@ function enterSofood(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 3;
     qspGoto(s, 'larek', 'food');
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -39,8 +37,8 @@ function enterFood(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'themes', 'indoors');
   scene.text('<center><b>Grocery department</b></center>');
   scene.img('images/locations/pushkin/cafe/larek.jpg');
-  scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027larek/u0027, /u0027buyfood/u0027); return false;">One serving food - 50 RUB</a>');
-  scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027larek/u0027, /u0027buyfood2/u0027); return false;">One serving of diet friendly food - 250 RUB</a>');
+  scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027larek\u0027, \u0027buyfood\u0027); return false;">One serving food - 50 RUB</a>');
+  scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027larek\u0027, \u0027buyfood2\u0027); return false;">One serving of diet friendly food - 250 RUB</a>');
   if (((s as any).bottle ?? 0)===0  &&  ((s as any).bag ?? 0)>0) {
     scene.actions([
       { label: 'Buy a bottle of water', handler: (st: GameState) => {
@@ -92,7 +90,6 @@ function enterFood(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Exit Department', goto: ['larek', 'start'] },
     { label: 'Buy tea biscuits', handler: (st: GameState) => {
@@ -122,7 +119,6 @@ function enterBuyfood(s: GameState, scene: SceneBuilder): void {
       qspGoto(s, 'larek', 'buyfood_1');
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -141,7 +137,6 @@ function enterBuyfood_1(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'money', 'pay', ((s as any).portion ?? 0) * 50);
     scene.text('You paid cash for the food.');
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Move away from the counter', goto: ['larek', 'food'] },
   ]);
@@ -158,7 +153,6 @@ function enterBuyfood2(s: GameState, scene: SceneBuilder): void {
       qspGoto(s, 'larek', 'buyfood2_1');
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -176,7 +170,6 @@ function enterBuyfood2_1(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pushkin/cafe/larek.jpg');
     scene.text('You paid cash for the food.');
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Move away from the counter', goto: ['larek', 'food'] },
   ]);

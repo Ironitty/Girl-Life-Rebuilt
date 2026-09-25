@@ -17,30 +17,28 @@ function enterSetloc(s: GameState, scene: SceneBuilder): void {
   (s as any).loc_arg = ((s as any).locArgs?.[2] ?? 0);
   (s as any).menu_arg = ((s as any).locArgs?.[2] ?? 0);
   (s as any).locM_arg = ((s as any).locArgs?.[2] ?? 0);
+  (s as any).locclass = undefined;
   if ((String(((s as any).loc ?? 0)).slice((1)-1, ((1)-1)+(4))) === 'pav_') {
-    // TODO-QSP: $region[1] = 'pav'
+    ((s as any).region = (s as any).region ?? {})[1] = 'pav';
   } else {
     if ((String(((s as any).loc ?? 0)).slice((1)-1, ((1)-1)+(5))) === 'city_') {
-      // TODO-QSP: $region[1] = 'city'
+      ((s as any).region = (s as any).region ?? {})[1] = 'city';
     } else {
       if ((String(((s as any).loc ?? 0)).slice((1)-1, ((1)-1)+(3))) === 'gad') {
-        // TODO-QSP: $region[1] = 'gad'
+        ((s as any).region = (s as any).region ?? {})[1] = 'gad';
       } else {
         if ((String(((s as any).loc ?? 0)).slice((1)-1, ((1)-1)+(7))) === 'pushkin') {
-          // TODO-QSP: $region[1] = 'pushkin'
+          ((s as any).region = (s as any).region ?? {})[1] = 'pushkin';
         }
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterStageTitle(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: dynamic text: <center><h2><<$setloc[''StageTitle'']>></h2></center>
   scene.text(`<center><h2>${(((s as any).setloc ?? 0)?.['StageTitle'] ?? '')}</h2></center>`);
   scene.img(`images/${(((s as any).setloc ?? 0)?.['StageImage'] ?? '')}`);
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -48,8 +46,7 @@ function enterEventViewer(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[5] ?? '') === 'random') {
     (s as any).array_idx = (Math.floor(Math.random() * (((s as any).locArgs?.[1] ?? 0) - 0 + 1)) + (0));
   }
-  // TODO-QSP: $events_viewer[] = 'gs <<$ARGS[3]>>, <<$ARGS[4]>>, <<array_idx>>'
-  // TODO-QSP: end
+  (s as any).events_viewer = [...((s as any).events_viewer ?? []), 'gs ' + ((s as any).locArgs?.[3] ?? 0) + ', ' + ((s as any).locArgs?.[4] ?? 0) + ', ' + ((s as any).array_idx ?? 0) + ''];
   scene.build();
 }
 
@@ -64,20 +61,17 @@ function enterCorridor(s: GameState, scene: SceneBuilder): void {
     if ((String(((s as any).location_type ?? 0)).slice((1)-1, ((1)-1)+(6))) === 'public') {
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterBathroom(s: GameState, scene: SceneBuilder): void {
   if (((s as any).location_type ?? 0) === 'private'  ||  ((s as any).location_type ?? 0) === 'bathroom') {
     scene.text('Your accommodation for the week has the luxury of a private shower and a bath. There\'s a poster on the wall promoting the health benefits of ice baths and other advice on looking after your body.');
-    // TODO-QSP: dynamic text: 'There is a shower, toilet, sink, and a <a href="exec:gt ''mirror'',''start''">m...
-    scene.text('There is a shower, toilet, sink, and a <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027start/u0027); return false;">mirror</a> where you can ' + (((!((s as any).pcs_hairbsh ?? 0))) ? ('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027brush/u0027); return false;">brush</a>') : ('brush')) + ' your hair.');
+    scene.text('There is a shower, toilet, sink, and a <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027start\u0027); return false;">mirror</a> where you can ' + (((!((s as any).pcs_hairbsh ?? 0))) ? ('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027brush\u0027); return false;">brush</a>') : ('brush')) + ' your hair.');
     qspCall(s, 'din_van', 'private');
   } else {
     if ((String(((s as any).location_type ?? 0)).slice((1)-1, ((1)-1)+(6))) === 'public'  ||  ((s as any).location_type ?? 0) === 'private_shared') {
-      // TODO-QSP: dynamic text: 'There is a shower and <a href="exec:gt ''mirror'',''start''">mirrors</a> where ...
-      scene.text('There is a shower and <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027start/u0027); return false;">mirrors</a> where you can ' + (((!((s as any).pcs_hairbsh ?? 0))) ? ('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027brush/u0027); return false;">brush</a>') : ('brush')) + ' your hair.');
+      scene.text('There is a shower and <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027start\u0027); return false;">mirrors</a> where you can ' + (((!((s as any).pcs_hairbsh ?? 0))) ? ('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027brush\u0027); return false;">brush</a>') : ('brush')) + ' your hair.');
       scene.actions([
         { label: 'Take a shower', handler: (st: GameState) => {
     (st as any).pcs_hairbsh = 0;
@@ -108,13 +102,13 @@ function enterBathroom(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   if (((s as any).deodorant ?? 0) > 0  &&  (!((s as any).deodorant_on ?? 0))) {
-    // TODO-QSP: 'Your deodorant will last you for <b><<deodorant>></b> more '+iif(deodorant = 1, 'application.', 'ap...
+    scene.text(`Your deodorant will last you for <b>${((s as any).deodorant ?? '')}</b> more ` + ((((s as any).deodorant ?? 0) === 1) ? ('application.') : ('applications.')));
     scene.actions([
       { label: 'Apply deodorant (0:01)', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
     (st as any).deodorant = ((st as any).deodorant ?? 0) - (1);
     qspCall(st, 'sweat', 'deo');
-    // TODO-QSP: iif(func('body_din', 'pregnancyVisibility'), '<center><img <<$set_imgh>> src="images/shared/home/bat...
+    scene.text(`iif(func('body_din', 'pregnancyVisibility'), '<center><img ${((st as any).set_imgh ?? '')} src="images/shared/home/bathroom/deodorant_preg.jpg"></center>', '<center><img ${((st as any).set_imgh ?? '')} src="images/shared/home/bathroom/deodorant.jpg"></center>')`);
     scene.text('You apply deodorant to your armpits. It will keep you feeling fresh and clean for longer.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
@@ -125,7 +119,6 @@ function enterBathroom(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -159,7 +152,6 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'kit_din', 'driwater');
   qspCall(s, 'kit_din', 'dritea');
   qspCall(s, 'kit_din', 'fill_bottle');
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -176,7 +168,6 @@ function enterBedroom(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'library_functions', 'set_home_read_acts');
   qspCall(s, 'exercise', 'start');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Relax on your bed', goto: ['bed', 'start'] },
     { label: 'Open wardrobe', goto: ['wardrobe', 'start'] },

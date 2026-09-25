@@ -15,14 +15,10 @@ function enter(s: GameState, scene: SceneBuilder): void {
       { label: 'Say hello to Coach', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/community/gym/volley/event/voltrenerspeak11.jpg');
     scene.text('After greeting Mikhail, an awkward silence follows because you don\'t know what to say.');
-    // TODO-QSP: dynamic text: "<<$pcs_nickname>>, what are you doing here?" Mikhail asks you in astonishment.
     scene.text(`"${((st as any).pcs_nickname ?? '')}, what are you doing here?" Mikhail asks you in astonishment.`);
-    // TODO-QSP: dynamic text: '"Well, I wanted to improve my physical fitness, and since the sports club doesn...
-    scene.text('"Well, I wanted to improve my physical fitness, and since the sports club doesn\'t open until 14:00, I figured it was worth the trip into the city to come here," you explain hastily.');
-    // TODO-QSP: dynamic text: The coach looks at you with an approving nod, "That is good, <<$pcs_nickname>>."
+    scene.text('\'"Well, I wanted to improve my physical fitness, and since the sports club doesn\'t open until 14:00, I figured it was worth the trip into the city to come here," you explain hastily.\'');
     scene.text(`The coach looks at you with an approving nod, "That is good, ${((st as any).pcs_nickname ?? '')}."`);
     scene.text('The stranger smiles at you and says, "I am Guang. Your coach and I are old friends from when we used to compete against each other. He represented the people of the Soviet Republics, and I, naturally, represented the people of the Republic of China. After my team beat his so many times, his government finally convinced me to change sides as it were. Now I train the athletes of the Russian Federation, and Mikhail and I meet here from time to time."');
-    // TODO-QSP: dynamic text: "I am sorry, <<$pcs_nickname>> and Guang, but my wife is expecting me and I must...
     scene.text(`"I am sorry, ${((st as any).pcs_nickname ?? '')} and Guang, but my wife is expecting me and I must be going," the coach says, looking at his watch. He then departs, leaving you in the company of the Chinese trainer.`);
     scene.actions([
       { label: 'Ask about the coach', handler: (st: GameState) => {
@@ -82,7 +78,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       { label: 'Surprised', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/community/gym/volley/event/voltrenerspeak17.jpg');
     scene.text('"He almost ended up in jail, but the officials decided to avoid a scandal and just kicked Mikhail off of the team," Guang concluded his story.');
-    // TODO-QSP: $OpenInnerThought + '"Now I understand why coach shies away from me whenever we start to get close,"...
+    scene.text('$OpenInnerThought + \'"Now I understand why coach shies away from me whenever we start to get close,"\' + $CloseInnerThought + \'you think to yourself.\'');
     scene.actions([
       { label: 'Move away', goto: ['havana', 'start'] },
     ]);

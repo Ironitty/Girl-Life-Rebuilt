@@ -12,7 +12,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   (s as any).i = (Math.floor(Math.random() * 2) + 1);
   scene.img(`images/locations/shared/abduction/girltocar${((s as any).i ?? '')}.jpg`);
   scene.text('You suddenly hear what sounds like someone rushing up behind you, but before you can turn and look, you feel something hit your head hard. You stumble as your vision goes black…');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Pass out', goto: ['abduction', 'abdCarTrunk'] },
   ]);
@@ -23,7 +22,6 @@ function enterAbdCarTrunk(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/shared/abduction/trunkint1.jpg');
   scene.text('You wake up in a very tight, dark place. You quickly realize that you\'re in the trunk of a moving car.');
   scene.text('You try to kick the walls with your feet, but after a while you can see that it\'s pointless.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['abduction', 'abdRoomFirstEntry'] },
   ]);
@@ -35,7 +33,6 @@ function enterAbdRoomFirstEntry(s: GameState, scene: SceneBuilder): void {
   scene.text('The car stops and you hear the sound of someone walking outside before the trunk opens up.');
   scene.text('Before your eyes adjust to the bright flow of daylight, you\'re hoisted up by a strong man and carried into a house.');
   scene.text('He carries you downstairs into the basement.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['abduction', 'abdRoomFirstChaining'] },
   ]);
@@ -87,7 +84,6 @@ function enterAbdRoomFirstChaining(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'money', 'set', 0);
   qspCall(s, 'stat', '');
   qspCall(s, 'clothing', 'strip');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['abduction', 'abdRoom'] },
   ]);
@@ -113,7 +109,6 @@ function enterAbdRoom(s: GameState, scene: SceneBuilder): void {
       { label: 'Take a nap (4:00)', goto: ['abduction', 'abdSleep'] },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Look around', goto: ['abduction', 'abdFood'] },
   ]);
@@ -202,7 +197,6 @@ function enterAbdSomeoneComing(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -229,7 +223,6 @@ function enterAbdExamStart(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Obey', goto: ['abduction', 'abdExamObey'] },
   ]);
@@ -243,7 +236,6 @@ function enterAbdExamResist(s: GameState, scene: SceneBuilder): void {
   scene.text('He yanks roughly on your chain, your collar choking you as he pulls you to the ground in front of him. He slaps your face hard and leaves it stinging with a red handmark across your cheek.');
   scene.text('"You\'re only making it harder bitch!" he yells in your face before effortlessly picking you up and slamming you into the chair, winding you. He removes your shackles before tightly restraining you.');
   scene.text('He then calmly sits down in a chair in the far corner of the room.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['abduction', 'abdExam1'] },
   ]);
@@ -255,7 +247,6 @@ function enterAbdExamObey(s: GameState, scene: SceneBuilder): void {
   scene.text('Like an obedient slave, you willingly climb up onto the chair as you wonder what perverse things are going to happen to you.');
   scene.text('The man ties you up anyway, probably to make sure you don\'t try to escape after they start. This makes you even more nervous. He also removes your shackles.');
   scene.text('He then calmly sits down in a chair in the far corner of the room.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['abduction', 'abdExam1'] },
   ]);
@@ -267,7 +258,6 @@ function enterAbdExam1(s: GameState, scene: SceneBuilder): void {
   scene.text('A man enters the room dressed like a doctor, wearing a lab coat and suit with a stethoscope around his neck. He walks as if he\'s unconcerned about you.');
   scene.text('Obviously, he doesn\'t speak to you, but rather to the man sitting in the chair. "Wow, a nice catch indeed." the doctor exclaims.');
   scene.text('The doctor puts on a pair of rubber gloves and sits down on a small chair in front of you. He looks at your spread legs and what\'s between them.');
-  // TODO-QSP: dynamic text: He continues to speak to the man. "She''s about <<age>> years old."
   scene.text(`He continues to speak to the man. "She's about ${((s as any).age ?? '')} years old."`);
   if (((s as any).age ?? 0) < 18) {
     scene.text('"Geez, you like them young, don\'t you?"');
@@ -275,20 +265,16 @@ function enterAbdExam1(s: GameState, scene: SceneBuilder): void {
     scene.text('"Heh, I see…" He continues with the usual report of his findings.');
   }
   scene.text('He continues to examine every inch of you. "Regarding her usage levels:"');
-  // TODO-QSP: dynamic text: He shines a light in your mouth. "Her throat is <<$throattipe>>."
   scene.text(`He shines a light in your mouth. "Her throat is ${((s as any).throattipe ?? '')}."`);
-  // TODO-QSP: dynamic text: Next, he prods a finger around in your ass. "And her ass is <<$anustipe>>."
   scene.text(`Next, he prods a finger around in your ass. "And her ass is ${((s as any).anustipe ?? '')}."`);
   scene.text('He pulls his finger out of your ass and finally reaches for your pussy.');
   if (qspFunc(s, 'pcs_has_attr', 'sex_virgin')) {
     scene.text('"Oh, you\'ll like this. Her pussy is fresh. We have a virgin here."');
     scene.text('"Looks like we hit the jackpot once again dear Doctor," the man replies with a happy smile.');
   } else {
-    // TODO-QSP: dynamic text: "And her pussy is <<$vaginatipe>>.
     scene.text(`"And her pussy is ${((s as any).vaginatipe ?? '')}.`);
   }
   scene.text('The doctor finally takes his hands off of you and prepares several needles filled with unknown fluids.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['abduction', 'abdExam2'] },
   ]);
@@ -303,7 +289,6 @@ function enterAbdExam2(s: GameState, scene: SceneBuilder): void {
   scene.text('The doctor leaves the room and the man puts your shackles and blindfold back on before leading you back down to the basement.');
   qspCall(s, 'medical_din', 'healSTDs');
   (s as any).examed = 1;
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['abduction', 'abdRoom'] },
   ]);
@@ -330,7 +315,6 @@ function enterAbdBrokenGiveTools(s: GameState, scene: SceneBuilder): void {
       scene.text('You\'re relieved that you can now empty your painfully full breasts.');
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['abduction', 'abdRoom'] },
   ]);
@@ -391,7 +375,6 @@ function enterAbdBreak1(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -416,7 +399,6 @@ function enterAbdBrokenGivePainkiller(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Take and swallow it', goto: ['abduction', 'abdBrokenGivePainkillerYes'] },
   ]);
@@ -432,7 +414,6 @@ function enterAbdBrokenGivePainkillerYes(s: GameState, scene: SceneBuilder): voi
     scene.text('Your master nods in approval and hands you a small pack of painkillers.');
     ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['painkillers'] = ((s as any).mc_inventory['painkillers'] ?? 0) + (6);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'How can I thank you, Master?', goto: ['abduction', 'abdBrokenAsk'] },
   ]);
@@ -453,7 +434,6 @@ function enterAbdBrokenGivePainkillerNo(s: GameState, scene: SceneBuilder): void
   ((s as any).pain = (s as any).pain ?? {})['throat'] = ((s as any).pain['throat'] ?? 0) + (5);
   ((s as any).pain = (s as any).pain ?? {})['nose'] = ((s as any).pain['nose'] ?? 0) + (5);
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['abduction', 'abdTorture'] },
   ]);
@@ -478,7 +458,6 @@ function enterAbdBrokenAsk(s: GameState, scene: SceneBuilder): void {
       { label: 'Please punish me, Master', goto: ['abduction', 'abdTorture'] },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Please fuck my mouth, Master', goto: ['abduction', 'abdBreak2FuckB1'] },
   ]);
@@ -496,7 +475,6 @@ function enterAbdBreak2FuckA1(s: GameState, scene: SceneBuilder): void {
   scene.text('His dick penetrates your pussy easily with the saliva doing its job.');
   qspCall(s, 'arousal', 'vaginal', 15, 'sub', 'bound');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['abduction', 'abdBreak2FuckA2'] },
   ]);
@@ -517,7 +495,6 @@ function enterAbdBreak2FuckA2(s: GameState, scene: SceneBuilder): void {
   (s as any).broken = ((s as any).broken ?? 0) + (1);
   qspCall(s, 'arousal', 'bj', 5, 'sub', 'bound');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['abduction', 'abdRoom'] },
   ]);
@@ -536,7 +513,6 @@ function enterAbdBreak2FuckB1(s: GameState, scene: SceneBuilder): void {
   scene.text('When he\'s about to cum, he pulls his dick out and points it towards your face. You stick your tongue out in anticipation. His cum soon splatters across your face and tongue.');
   qspCall(s, 'arousal', 'bj', 20, 'sub', 'bound', 'rough');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['abduction', 'abdBreak2FuckB2'] },
   ]);
@@ -557,7 +533,6 @@ function enterAbdBreak2FuckB2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'cum_call', 'anus', 'Master');
   qspCall(s, 'arousal', 'anal', 20, 'sub', 'bound');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['abduction', 'abdRoom'] },
   ]);
@@ -568,7 +543,6 @@ function enterAbdSleep(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'sleep_simple', 'forced', 240);
   scene.img('images/locations/shared/abduction/bed1.jpg');
   scene.text('You\'ve slept for several hours, but nightmares have awakened you.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['abduction', 'abdRoom'] },
   ]);
@@ -580,7 +554,6 @@ function enterAbdEscape(s: GameState, scene: SceneBuilder): void {
   scene.text('Looking at the only window in the basement, you notice that there\'s a lock on it to prevent your escape.');
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Try to break the lock', goto: ['abduction', 'abdEscapeWindow1'] },
     { label: 'Go back to your bed and re-attach your leash to the wall', goto: ['abduction', 'abdRoom'] },
@@ -607,7 +580,6 @@ function enterAbdEscapeWindow1(s: GameState, scene: SceneBuilder): void {
       { label: 'Go back', goto: ['abduction', 'abdFood'] },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -634,7 +606,6 @@ function enterAbdEscapeWindow2(s: GameState, scene: SceneBuilder): void {
       { label: 'Run away', goto: ['abduction', 'abdEscapeWindow3'] },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -678,7 +649,6 @@ function enterAbdEscapeWindow3(s: GameState, scene: SceneBuilder): void {
   ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['shampoo'] = ((s as any).shampoo_bak ?? 0);
   ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['razor'] = ((s as any).stanok_bak ?? 0);
   ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['deodorant'] = ((s as any).deodorant_bak ?? 0);
-  // TODO-QSP: end
   scene.actions([
     { label: 'Turn and run the opposite direction', goto: ['road', '12'] },
     { label: 'Run left', goto: ['city_industrial', ''] },
@@ -701,14 +671,14 @@ function enterAbdFood(s: GameState, scene: SceneBuilder): void {
   scene.text('A half broken, dirty mirror provides some means to inspect your appearance.');
   scene.text('In the corner is something remotely similar to a shower. It only has cold water though.');
   if (((s as any).pcs_energy ?? 0) >= 10) {
-    scene.text('There\'s enough space to do some basic <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027abduction/u0027, /u0027abdexercise/u0027); return false;">exercise</a>.');
+    scene.text('There\'s enough space to do some basic <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027abduction\u0027, \u0027abdexercise\u0027); return false;">exercise</a>.');
   } else {
     scene.text('There\'s enough space to do some basic exercise but you are too hungry to do them.');
   }
   (s as any).chainChance = (Math.floor(Math.random() * 100) + 1);
   if (((s as any).chainChance ?? 0) <= 20  &&  (((s as any).rapeCount ?? 0) > 5  ||  ((s as any).tortureCount ?? 0) > 5)) {
     scene.text('You spot a loose link on your chain. You try to manipulate it, and manage to free yourself from the wall.');
-    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027abduction/u0027, /u0027abdEscape/u0027); return false;">Run to the window.</a>');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027abduction\u0027, \u0027abdEscape\u0027); return false;">Run to the window.</a>');
   }
   if (((s as any).abdTools ?? 0) === 1) {
     if (((s as any).mc_inventory ?? 0)?.['breast_pump'] > 0  &&  ((s as any).bp_unbox ?? 0) >= 1) {
@@ -725,30 +695,30 @@ function enterAbdFood(s: GameState, scene: SceneBuilder): void {
     if (((s as any).mc_inventory ?? 0)?.['painkillers']) {
       (s as any).pluralS = '';
     }
-    // TODO-QSP: dynamic text: You have <b><<mc_inventory[''painkillers'']>></b> painkiller<<$pluralS>>.
     scene.text(`You have <b>${(((s as any).mc_inventory ?? 0)?.['painkillers'] ?? '')}</b> painkiller${((s as any).pluralS ?? '')}.`);
     if (((s as any).pain ?? 0)?.['total'] > 0) {
-      // TODO-QSP: act $func('drugs', 'painkiller_act_str'):
-      qspCall(s, 'drugs', 'painkiller');
-      if (((s as any).pcs_hydra ?? 0) >= 100) {
-        (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) + (25);
-      } else {
-        (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) + (50);
-      }
-      qspCall(s, 'stat', '');
-      scene.text('You take a painkiller and gulp it down with a glass of water.');
       scene.actions([
-        { label: 'Continue', goto: ['abduction', 'abdFood'] },
+        { label: '', labelFn: (s: GameState) => String(qspFunc(s, 'drugs', 'painkiller_act_str') ?? ''), handler: (st: GameState) => {
+    qspCall(st, 'drugs', 'painkiller');
+    if (((st as any).pcs_hydra ?? 0) >= 100) {
+      (st as any).pcs_hydra = ((st as any).pcs_hydra ?? 0) + (25);
+    } else {
+      (st as any).pcs_hydra = ((st as any).pcs_hydra ?? 0) + (50);
+    }
+    qspCall(st, 'stat', '');
+    scene.text('You take a painkiller and gulp it down with a glass of water.');
+    scene.actions([
+      { label: 'Continue', goto: ['abduction', 'abdFood'] },
+    ]);
+  } },
       ]);
     }
   }
-  // TODO-QSP: end
   if (((s as any).pcs_hairbsh ?? 0) < 1) {
     scene.actions([
       { label: 'Brush your hair', goto: ['mirror', 'brush'] },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Eat dried food (0:10)', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 10;
@@ -816,16 +786,13 @@ function enterAbdFood(s: GameState, scene: SceneBuilder): void {
 function enterAbdexercise(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'exercise', 'tier2', 30, 'stren');
   scene.img('images/pc/activities/exercises/push_nude.mp4');
-  // TODO-QSP: dynamic text: You do push-ups for <<$timestring>> minutes, improving your strength.
   scene.text(`You do push-ups for ${((s as any).timestring ?? '')} minutes, improving your strength.`);
   qspCall(s, 'exercise', 'pushups_inner');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     qspCall(st, 'exercise', 'tier2', 30, 'vital');
     scene.img('images/pc/activities/exercises/abdominal_nude.mp4');
-    // TODO-QSP: dynamic text: You do a series of abdominal exercises for <<$timestring>> minutes, improving yo...
     scene.text(`You do a series of abdominal exercises for ${((st as any).timestring ?? '')} minutes, improving your endurance.`);
     qspCall(st, 'stat', '');
     scene.actions([
@@ -882,7 +849,6 @@ function enterAbdRape(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'cum_call', 'anus', 'Master');
         (s as any).gifornot = 0;
         if (((s as any).gifornot ?? 0) > 50) {
-          // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/shared/abduction/sex/fucktieda...
           scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/shared/abduction/sex/fucktiedanal` + (Math.floor(Math.random() * 4) + 1) + '.jpg"></center>');
         } else {
           scene.img('images/locations/shared/abduction/sex/fucktiedanal1.mp4');
@@ -898,7 +864,6 @@ function enterAbdRape(s: GameState, scene: SceneBuilder): void {
         if (((s as any).rapeType ?? 0) === 4) {
           ((s as any).pain = (s as any).pain ?? {})['asshole'] = ((s as any).pain['asshole'] ?? 0) + (8);
           qspCall(s, 'arousal_funcs', 'stretch', 'anal', 1);
-          // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/shared/abduction/sex/fistanal'...
           scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/shared/abduction/sex/fistanal` + (Math.floor(Math.random() * 5) + 1) + '.jpg"></center>');
           scene.text('Your hands and feet are bound as you hang upside down with your ass in the air.');
           scene.text('The guy starts trying to push his thick fist inside your anus. At least he used a bit of lubricant…');
@@ -915,7 +880,6 @@ function enterAbdRape(s: GameState, scene: SceneBuilder): void {
             ((s as any).pain = (s as any).pain ?? {})['vaginal'] = ((s as any).pain['vaginal'] ?? 0) + (5);
             ((s as any).pain = (s as any).pain ?? {})['cervix'] = ((s as any).pain['cervix'] ?? 0) + (10);
             qspCall(s, 'arousal_funcs', 'stretch', 'vaginal');
-            // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/shared/abduction/sex/fistvagin...
             scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/shared/abduction/sex/fistvaginal` + (Math.floor(Math.random() * 5) + 1) + '.jpg"></center>');
             scene.text('Your hands and feet are tied with your ass raised higher than your head.');
             scene.text('The guy starts pushing his thick fist deep inside your pussy. At least he used a bit of lubricant…');
@@ -952,7 +916,6 @@ function enterAbdRape(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -981,7 +944,6 @@ function enterAbdTorture(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'mood', 'lower', 'min');
     qspCall(s, 'stat', '');
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -994,7 +956,6 @@ function enterAbdTortureA1(s: GameState, scene: SceneBuilder): void {
   scene.text('You\'re dragged from your bed and led to the far side of the basement. Suspicious looking rings and straps can be seen attached to the wall.');
   scene.text('Your hands are secured with a rope high on the wall and your legs are unpleasantly lifted above your head and secured as well.');
   scene.text('You\'re now hanging by your hands with your pussy and ass available for any perverted usage.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['abduction', 'abdTortureA2'] },
   ]);
@@ -1010,7 +971,6 @@ function enterAbdTortureA2(s: GameState, scene: SceneBuilder): void {
   scene.text('In response, the tormentor slaps a gag in your mouth and walks away, leaving you alone.');
   qspCall(s, 'arousal', 'foreplay', 10, 'sub', 'bound', 'maso');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['abduction', 'abdTortureA3'] },
   ]);
@@ -1028,7 +988,6 @@ function enterAbdTortureA3(s: GameState, scene: SceneBuilder): void {
   scene.text('You swing on the rope left and right trying to push the dildo out of your ass. However, it\'s too deep inside you.');
   qspCall(s, 'arousal', 'anal_dildo', 30, 'sub', 'bound', 'maso', 'humiliation');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['abduction', 'abdTortureA4'] },
   ]);
@@ -1044,7 +1003,6 @@ function enterAbdTortureA4(s: GameState, scene: SceneBuilder): void {
   scene.text('You start to tremble, but you know it\'s finally over.');
   qspCall(s, 'arousal', 'foreplay', 10, 'sub', 'bound', 'maso', 'humiliation');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['abduction', 'abdRoom'] },
   ]);
@@ -1057,7 +1015,6 @@ function enterAbdTortureB1(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/shared/abduction/sex/tortureb1.jpg');
   scene.text('You\'re forced to lay on your stomach on the cold ground.');
   scene.text('Your hands are tied together and raised high in the air. You can feel your joints being bent to their limits. Your legs are then forced wide apart and secured on opposite sides. You can\'t move an inch.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['abduction', 'abdTortureB2'] },
   ]);
@@ -1072,7 +1029,6 @@ function enterAbdTortureB2(s: GameState, scene: SceneBuilder): void {
   scene.text('You are given a thorough ass whipping.');
   qspCall(s, 'arousal', 'foreplay', 10, 'sub', 'bound', 'maso', 'humiliation');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['abduction', 'abdTortureB3'] },
   ]);
@@ -1088,7 +1044,6 @@ function enterAbdTortureB3(s: GameState, scene: SceneBuilder): void {
   scene.text('You\'re given no time to adjust, and both your holes are fucked viciously, fast and deep.');
   qspCall(s, 'arousal', 'vaginal_dildo', 10, 'sub', 'bound', 'maso', 'humiliation');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['abduction', 'abdTortureB4'] },
   ]);
@@ -1100,7 +1055,6 @@ function enterAbdTortureB4(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/shared/abduction/sex/tortureb4.jpg');
   scene.text('Finally, your pussy and ass are left alone. Whatever was inside you has been removed.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['abduction', 'abdRoom'] },
   ]);
@@ -1114,7 +1068,6 @@ function enterAbdTortureC1(s: GameState, scene: SceneBuilder): void {
   scene.text('He spins you around and whips whatever comes before him. Ass, back, stomach, pussy, legs, breasts. The whip hits your exposed flesh and leaves angry looking welts behind.');
   qspCall(s, 'arousal', 'foreplay', 10, 'sub', 'bound', 'maso', 'humiliation');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['abduction', 'abdTortureC2'] },
   ]);
@@ -1133,7 +1086,6 @@ function enterAbdTortureC2(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/shared/abduction/sex/torturec2.jpg');
   scene.text('Twenty minutes of thorough whipping leaves your body trembling and severely bruised.');
   scene.text('Your tender breasts are especially sore.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['abduction', 'abdRoom'] },
   ]);
@@ -1146,7 +1098,6 @@ function enterAbdTortureD1(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/shared/abduction/sex/tortured1.jpg');
   scene.text('Your tormentor brings a crude rope and you tremble as you wonder what he\'s going to do with it.');
   scene.text('You almost sigh in relief when he "just" ties you up.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['abduction', 'abdTortureD2'] },
   ]);
@@ -1160,7 +1111,6 @@ function enterAbdTortureD2(s: GameState, scene: SceneBuilder): void {
   scene.text('With a single thrust, something is shoved deep inside your anus. Tears stream down your face and you cry out loudly.');
   qspCall(s, 'arousal', 'anal_dildo', 10, 'sub', 'bound', 'maso', 'humiliation');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['abduction', 'abdTortureD3'] },
   ]);
@@ -1176,7 +1126,6 @@ function enterAbdTortureD3(s: GameState, scene: SceneBuilder): void {
   scene.text('Your tormentor walks away to leave you in this state for what feels like an eternity.');
   qspCall(s, 'arousal', 'vaginal_dildo', 60, 'sub', 'bound', 'maso', 'humiliation');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['abduction', 'abdTortureD4'] },
   ]);
@@ -1190,7 +1139,6 @@ function enterAbdTortureD4(s: GameState, scene: SceneBuilder): void {
   scene.text('You have no choice but to do what he orders.');
   qspCall(s, 'arousal', 'bj', 60, 'sub', 'bound', 'maso', 'humiliation');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['abduction', 'abdTortureD5'] },
   ]);
@@ -1212,7 +1160,6 @@ function enterAbdTortureD5(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'anal', 20, 'sub', 'bound', 'maso', 'humiliation');
   qspCall(s, 'arousal', 'bj', 20, 'sub', 'bound', 'maso', 'humiliation');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['abduction', 'abdRoom'] },
   ]);
@@ -1221,7 +1168,6 @@ function enterAbdTortureD5(s: GameState, scene: SceneBuilder): void {
 
 function enterAbdBeSold(s: GameState, scene: SceneBuilder): void {
   scene.text('"We have a buyer for you…" your master says with a cruel smile.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'I don\'t want to be sold', goto: ['abduction', 'abdConsiderSold'] },
     { label: 'I want to leave', goto: ['abduction', 'abdSoldSauna'] },
@@ -1231,7 +1177,6 @@ function enterAbdBeSold(s: GameState, scene: SceneBuilder): void {
 
 function enterAbdConsiderSold(s: GameState, scene: SceneBuilder): void {
   scene.text('"Are you sure slave?" he asks. "You\'ll stay here and continue to be used…"');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Yes', goto: ['abduction', 'abdNotSold'] },
     { label: 'Change your mind', goto: ['abduction', 'abdSoldSauna'] },
@@ -1241,7 +1186,6 @@ function enterAbdConsiderSold(s: GameState, scene: SceneBuilder): void {
 
 function enterAbdNotSold(s: GameState, scene: SceneBuilder): void {
   scene.text('"Very well. We\'ll see each other again soon," your master says.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['abduction', 'abdRoom'] },
   ]);
@@ -1251,8 +1195,7 @@ function enterAbdNotSold(s: GameState, scene: SceneBuilder): void {
 function enterAbdSoldSauna(s: GameState, scene: SceneBuilder): void {
   scene.text('"A nice lady from an established business." he smiles.');
   scene.text('You are blindfolded and led away to a car. After some time, you are led through doors and the blindfold is removed. You are in a backroom of a brothel.');
-  // TODO-QSP: dynamic text: '"The madame of the brothel stands before you. "I paid ' + $func('money', 'strin...
-  scene.text('"The madame of the brothel stands before you. "I paid \' + $func(\'money\', \'string_debt_addition\', 8000) + \' for you, bitch. Don\'t make me regret this."');
+  scene.text('"The madame of the brothel stands before you. "I paid ' + qspFunc(s, 'money', 'string_debt_addition', 8000) + ' for you, bitch. Don\'t make me regret this."');
   scene.text('"Yes, madame." you obediently reply.');
   scene.text('"I\'m not a bad person," she continues. "If you earn me at least five times more than what I paid, I may let you go."');
   scene.text('With this faint sign of hope, she leaves you alone.');
@@ -1270,7 +1213,6 @@ function enterAbdSoldSauna(s: GameState, scene: SceneBuilder): void {
   ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['shampoo'] = ((s as any).shampoo_bak ?? 0);
   ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['razor'] = ((s as any).stanok_bak ?? 0);
   ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['deodorant'] = ((s as any).deodorant_bak ?? 0);
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['city_sauna', 'saunaroom'] },
   ]);
@@ -1283,7 +1225,6 @@ function enterAbdFailedCustomer(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/shared/abduction/sex/slavewhorefailed.mp4');
   scene.text('Your master angrily leads you back to the basement.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['abduction', 'abdFailedCustomer1'] },
   ]);
@@ -1296,7 +1237,6 @@ function enterAbdFailedCustomer1(s: GameState, scene: SceneBuilder): void {
   scene.text('First, he takes some ropes and ties you up. Your breasts start to turn purple from the lack of blood circulation because of how tightly fastened they are.');
   qspCall(s, 'arousal', 'foreplay', 15, 'sub', 'bound', 'maso', 'humiliation');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['abduction', 'abdFailedCustomer2'] },
   ]);
@@ -1309,7 +1249,6 @@ function enterAbdFailedCustomer2(s: GameState, scene: SceneBuilder): void {
   scene.text('He then forces a considerable plug into your anus with little warning. Being tied up, you can\'t resist in any way.');
   qspCall(s, 'arousal', 'anal_dildo', 5, 'sub', 'bound', 'maso', 'humiliation');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['abduction', 'abdFailedCustomer3'] },
   ]);
@@ -1344,7 +1283,6 @@ function enterAbdFailedCustomer3(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1360,7 +1298,6 @@ function enterAbdFailedCustomerElectro1(s: GameState, scene: SceneBuilder): void
   scene.text('You moan loudly and beg for him to stop.');
   qspCall(s, 'arousal', 'foreplay', 30, 'sub', 'bound', 'maso', 'humiliation');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['abduction', 'abdFailedCustomerElectro2'] },
   ]);
@@ -1377,7 +1314,6 @@ function enterAbdFailedCustomerElectro2(s: GameState, scene: SceneBuilder): void
   scene.text('The remote button is pushed again, and this time you can feel it inside your intestines and anus.');
   qspCall(s, 'arousal', 'anal_dildo', 30, 'sub', 'bound', 'maso', 'humiliation');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['abduction', 'abdFailedCustomerElectro3'] },
   ]);
@@ -1398,7 +1334,6 @@ function enterAbdFailedCustomerElectro3(s: GameState, scene: SceneBuilder): void
   scene.text('You just nod that you understand and remain silent.');
   scene.text('Your master leaves without another word - and you are left hanging on the wall.');
   scene.text('You are tired, everything hurts, and there seems to be no sign of when you will be removed from this terrible bondage, if at all.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['abduction', 'abdFailedCustomerChainedBack'] },
   ]);
@@ -1413,7 +1348,6 @@ function enterAbdFailedCustomerHook1(s: GameState, scene: SceneBuilder): void {
   scene.text('You cry in both pain and surprise.');
   qspCall(s, 'arousal', 'anal_dildo', 10, 'sub', 'bound', 'maso', 'humiliation');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['abduction', 'abdFailedCustomerHook2'] },
   ]);
@@ -1431,7 +1365,6 @@ function enterAbdFailedCustomerHook2(s: GameState, scene: SceneBuilder): void {
   (s as any).orgasm_or = 'yes';
   qspCall(s, 'arousal', 'vaginal_vibe', 30, 'sub', 'bound', 'maso', 'humiliation');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['abduction', 'abdFailedCustomerHook3'] },
   ]);
@@ -1447,7 +1380,6 @@ function enterAbdFailedCustomerHook3(s: GameState, scene: SceneBuilder): void {
   scene.text('You try to beg for mercy, but he doesn\'t care. He wants you to suffer - this is your punishment…');
   qspCall(s, 'arousal', 'vaginal', 20, 'sub', 'bound', 'maso', 'humiliation', 'rough');
   qspCall(s, 'arousal', 'end');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['abduction', 'abdFailedCustomerHook4'] },
   ]);
@@ -1467,7 +1399,6 @@ function enterAbdFailedCustomerHook4(s: GameState, scene: SceneBuilder): void {
   scene.text('You start to realize the pain of hanging by your asshole, so you try to push your legs up to move your ass even higher.');
   scene.text('However, you can only remain in that position for a few minutes before you get tired and are forced to relax your legs, allowing the pain to quickly return to your stretched asshole.');
   scene.text('Nobody is nearby, but you know all too well that no one will take pity on you anyway. You just have to hope that this part of your punishment will end soon.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Wait', goto: ['abduction', 'abdFailedCustomerChainedBack'] },
   ]);
@@ -1483,7 +1414,6 @@ function enterAbdFailedCustomerWhip1(s: GameState, scene: SceneBuilder): void {
   scene.text('He starts to spank your pussy with his hand.');
   qspCall(s, 'arousal', 'foreplay', 10, 'sub', 'bound', 'maso', 'humiliation');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['abduction', 'abdFailedCustomerWhip2'] },
   ]);
@@ -1502,7 +1432,6 @@ function enterAbdFailedCustomerWhip2(s: GameState, scene: SceneBuilder): void {
   scene.text('From time to time, he alternates, giving your asscheeks an even harder hit.');
   qspCall(s, 'arousal', 'foreplay', 20, 'sub', 'bound', 'maso', 'humiliation');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['abduction', 'abdFailedCustomerWhip3'] },
   ]);
@@ -1521,7 +1450,6 @@ function enterAbdFailedCustomerWhip3(s: GameState, scene: SceneBuilder): void {
   scene.text('His target is the same - your now raw and heavily stinging labia and clitoris.');
   qspCall(s, 'arousal', 'anal', 20, 'sub', 'bound', 'maso', 'humiliation', 'rough');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['abduction', 'abdFailedCustomerWhip4'] },
   ]);
@@ -1543,7 +1471,6 @@ function enterAbdFailedCustomerWhip4(s: GameState, scene: SceneBuilder): void {
   scene.text('You pass in and out of consciousness while having intense orgasms mixed with a lot of pain. You tremble helplessly, the only sounds in the room being your moans and the humming of the vibrator.');
   qspCall(s, 'arousal', 'vaginal_vibe', 240, 'sub', 'bound', 'maso', 'humiliation');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Endure it', goto: ['abduction', 'abdFailedCustomerChainedBack'] },
   ]);
@@ -1554,7 +1481,6 @@ function enterAbdFailedCustomerChainedBack(s: GameState, scene: SceneBuilder): v
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   scene.img('images/locations/shared/abduction/chainedback.jpg');
   scene.text('After what seems like an eternity, you\'re unbound and chained back to the wall.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['abduction', 'abdRoom'] },
   ]);
@@ -1574,7 +1500,6 @@ function enterAbdTrainDildos(s: GameState, scene: SceneBuilder): void {
       { label: 'Train your pussy', goto: ['abduction', 'abdTrainDildosVaginaGate'] },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Train your ass', goto: ['abduction', 'abdTrainDildosAnalGate'] },
     { label: 'Train your mouth', goto: ['abduction', 'abdTrainDildosMouthGate'] },
@@ -1585,7 +1510,6 @@ function enterAbdTrainDildos(s: GameState, scene: SceneBuilder): void {
 
 function enterAbdTrainDildosVaginaGate(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/shared/abduction/sex/slavewhoredildos1.jpg');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Pick the small dildo', goto: ['abduction', 'abdTrainDildosSmall'] },
     { label: 'Pick the regular dildo', goto: ['abduction', 'abdTrainDildosRegular'] },
@@ -1598,7 +1522,6 @@ function enterAbdTrainDildosVaginaGate(s: GameState, scene: SceneBuilder): void 
 
 function enterAbdTrainDildosAnalGate(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/shared/abduction/sex/slavewhoredildos1.jpg');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Pick the small dildo', goto: ['abduction', 'abdTrainDildosAnalSmall'] },
     { label: 'Pick the regular dildo', goto: ['abduction', 'abdTrainDildosAnalRegular'] },
@@ -1611,7 +1534,6 @@ function enterAbdTrainDildosAnalGate(s: GameState, scene: SceneBuilder): void {
 
 function enterAbdTrainDildosMouthGate(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/shared/abduction/sex/slavewhoredildos1.jpg');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Pick the small dildo', goto: ['abduction', 'abdTrainDildosMouthSmall'] },
     { label: 'Pick the regular dildo', goto: ['abduction', 'abdTrainDildosMouthRegular'] },
@@ -1628,7 +1550,6 @@ function enterAbdTrainDildosSmall(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('This dildo will stretch your pussy, making it a bit deeper and wider.');
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Use it', goto: ['abduction', 'abdTrainDildosSmallUse'] },
     { label: 'Choose different dildo', goto: ['abduction', 'abdTrainDildosVaginaGate'] },
@@ -1654,7 +1575,6 @@ function enterAbdTrainDildosSmallUse(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'vaginal_dildo', 60, 'rough');
   }
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['abduction', 'abdTrainDildosSmall'] },
   ]);
@@ -1677,7 +1597,6 @@ function enterAbdTrainDildosRegular(s: GameState, scene: SceneBuilder): void {
       scene.text('You can clearly see that this dildo will tear your pussy apart if it\'s inserted all the way in.');
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Choose different dildo', goto: ['abduction', 'abdTrainDildosVaginaGate'] },
     { label: 'Go back to your bed', handler: (st: GameState) => {
@@ -1702,7 +1621,6 @@ function enterAbdTrainDildosRegularUse(s: GameState, scene: SceneBuilder): void 
     qspCall(s, 'arousal', 'vaginal_dildo', 60, 'rough');
   }
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['abduction', 'abdTrainDildosRegular'] },
   ]);
@@ -1725,7 +1643,6 @@ function enterAbdTrainDildosBig(s: GameState, scene: SceneBuilder): void {
       scene.text('You can clearly see that this dildo will tear your pussy apart if it\'s inserted all the way in.');
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Choose different dildo', goto: ['abduction', 'abdTrainDildosVaginaGate'] },
     { label: 'Go back to your bed', handler: (st: GameState) => {
@@ -1750,7 +1667,6 @@ function enterAbdTrainDildosBigUse(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'vaginal_dildo', 60, 'rough');
   }
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['abduction', 'abdTrainDildosBig'] },
   ]);
@@ -1773,7 +1689,6 @@ function enterAbdTrainDildosHorse(s: GameState, scene: SceneBuilder): void {
       scene.text('You can clearly see that this dildo will tear your pussy apart if it\'s inserted all the way in.');
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Choose different dildo', goto: ['abduction', 'abdTrainDildosVaginaGate'] },
     { label: 'Go back to your bed', handler: (st: GameState) => {
@@ -1798,7 +1713,6 @@ function enterAbdTrainDildosHorseUse(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'vaginal_dildo', 60, 'rough');
   }
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['abduction', 'abdTrainDildosHorse'] },
   ]);
@@ -1811,7 +1725,6 @@ function enterAbdTrainDildosAnalSmall(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('This dildo will stretch your anus, making it a bit deeper and wider.');
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Use it', goto: ['abduction', 'abdTrainDildosAnalSmallUse'] },
     { label: 'Choose different dildo', goto: ['abduction', 'abdTrainDildosAnalGate'] },
@@ -1837,7 +1750,6 @@ function enterAbdTrainDildosAnalSmallUse(s: GameState, scene: SceneBuilder): voi
     qspCall(s, 'arousal', 'anal_dildo', 60, 'rough');
   }
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['abduction', 'abdTrainDildosAnalSmall'] },
   ]);
@@ -1860,7 +1772,6 @@ function enterAbdTrainDildosAnalRegular(s: GameState, scene: SceneBuilder): void
       scene.text('You can clearly see that this dildo will tear your anus apart if it\'s inserted all the way in.');
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Choose different dildo', goto: ['abduction', 'abdTrainDildosAnalGate'] },
     { label: 'Go back to your bed', handler: (st: GameState) => {
@@ -1885,7 +1796,6 @@ function enterAbdTrainDildosAnalRegularUse(s: GameState, scene: SceneBuilder): v
     qspCall(s, 'arousal', 'anal_dildo', 60, 'rough');
   }
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['abduction', 'abdTrainDildosAnalRegular'] },
   ]);
@@ -1908,7 +1818,6 @@ function enterAbdTrainDildosAnalBig(s: GameState, scene: SceneBuilder): void {
       scene.text('You can clearly see that this dildo will tear your anus apart if it\'s inserted all the way in.');
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Choose different dildo', goto: ['abduction', 'abdTrainDildosAnalGate'] },
     { label: 'Go back to your bed', handler: (st: GameState) => {
@@ -1933,7 +1842,6 @@ function enterAbdTrainDildosAnalBigUse(s: GameState, scene: SceneBuilder): void 
     qspCall(s, 'arousal', 'anal_dildo', 60, 'rough');
   }
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['abduction', 'abdTrainDildosAnalBig'] },
   ]);
@@ -1956,7 +1864,6 @@ function enterAbdTrainDildosAnalHorse(s: GameState, scene: SceneBuilder): void {
       scene.text('You can clearly see that this dildo will tear your anus apart if it\'s inserted all the way in.');
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Choose different dildo', goto: ['abduction', 'abdTrainDildosAnalGate'] },
     { label: 'Go back to your bed', handler: (st: GameState) => {
@@ -1981,7 +1888,6 @@ function enterAbdTrainDildosAnalHorseUse(s: GameState, scene: SceneBuilder): voi
     qspCall(s, 'arousal', 'anal_dildo', 60, 'rough');
   }
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['abduction', 'abdTrainDildosAnalHorse'] },
   ]);
@@ -1994,7 +1900,6 @@ function enterAbdTrainDildosMouthSmall(s: GameState, scene: SceneBuilder): void 
   } else {
     scene.text('This dildo will stretch your throat, making it a bit deeper.');
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Use it', goto: ['abduction', 'abdTrainDildosMouthSmallUse'] },
     { label: 'Choose different dildo', goto: ['abduction', 'abdTrainDildosMouthGate'] },
@@ -2020,7 +1925,6 @@ function enterAbdTrainDildosMouthSmallUse(s: GameState, scene: SceneBuilder): vo
     qspCall(s, 'arousal', 'dildo_suck', 60, 'rough');
   }
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['abduction', 'abdTrainDildosMouthSmall'] },
   ]);
@@ -2043,7 +1947,6 @@ function enterAbdTrainDildosMouthRegular(s: GameState, scene: SceneBuilder): voi
       scene.text('You can clearly see that this dildo will tear your throat apart if it\'s inserted all the way in.');
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Choose different dildo', goto: ['abduction', 'abdTrainDildosMouthGate'] },
     { label: 'Go back to your bed', handler: (st: GameState) => {
@@ -2068,7 +1971,6 @@ function enterAbdTrainDildosMouthRegularUse(s: GameState, scene: SceneBuilder): 
     qspCall(s, 'arousal', 'dildo_suck', 60, 'rough');
   }
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['abduction', 'abdTrainDildosMouthRegular'] },
   ]);
@@ -2091,7 +1993,6 @@ function enterAbdTrainDildosMouthBig(s: GameState, scene: SceneBuilder): void {
       scene.text('You can clearly see that this dildo will tear your throat apart if it\'s inserted all the way in.');
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Choose different dildo', goto: ['abduction', 'abdTrainDildosMouthGate'] },
     { label: 'Go back to your bed', handler: (st: GameState) => {
@@ -2116,7 +2017,6 @@ function enterAbdTrainDildosMouthBigUse(s: GameState, scene: SceneBuilder): void
     qspCall(s, 'arousal', 'dildo_suck', 60, 'rough');
   }
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['abduction', 'abdTrainDildosMouthBig'] },
   ]);
@@ -2139,7 +2039,6 @@ function enterAbdTrainDildosMouthHorse(s: GameState, scene: SceneBuilder): void 
       scene.text('You can clearly see that this dildo will tear your throat apart if it\'s inserted all the way in.');
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Choose different dildo', goto: ['abduction', 'abdTrainDildosMouthGate'] },
     { label: 'Go back to your bed', handler: (st: GameState) => {
@@ -2165,7 +2064,6 @@ function enterAbdTrainDildosMouthHorseUse(s: GameState, scene: SceneBuilder): vo
     qspCall(s, 'arousal', 'dildo_suck', 60, 'rough');
   }
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['abduction', 'abdTrainDildosMouthHorse'] },
   ]);

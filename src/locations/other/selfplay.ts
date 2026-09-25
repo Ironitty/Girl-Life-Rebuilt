@@ -24,11 +24,9 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'stat', '');
   if (((s as any).loc ?? 0) === 'bedrPar'  ||  ((s as any).loc ?? 0) === 'gad_gpbarn') {
-    // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/shared/sex/mast/start.jpg"></center>
     scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/shared/sex/mast/start.jpg"></center>`);
   }
   if (((s as any).loc ?? 0) === 'vanrPar') {
-    // TODO-QSP: dynamic text: <center><video autoplay loop <<$set_imgh>> src="images/shared/sex/mast/startvann...
     scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/shared/sex/mast/startvann.mp4"></video></center>`);
   }
   if (((s as any).sisboytrio ?? 0) > 0  &&  ((s as any).sis_watch ?? 0) === 0  &&  ((s as any).loc ?? 0) === 'bedrPar') {
@@ -77,7 +75,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     }
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterVagmastDildoStart(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspCall(st, 'stat', '');
-    // TODO-QSP: dynamic text: <<$AnyaMsg>>
     scene.text(`${((st as any).AnyaMsg ?? '')}`);
     scene.actions([
       { label: 'Stop fucking your pussy', goto: ['selfplay', 'start'] },
@@ -98,7 +95,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       }
       { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterVagmastDildoStart(st, scene); (st as any).locArgs = __savedLocArgs; }
       qspCall(st, 'stat', '');
-      // TODO-QSP: dynamic text: <<$AnyaMsg>>
       scene.text(`${((st as any).AnyaMsg ?? '')}`);
       scene.actions([
         { label: 'Stop fucking your pussy', goto: ['selfplay', 'start'] },
@@ -139,7 +135,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     ((s as any).npc_horny = (s as any).npc_horny ?? {})['A66'] = ((s as any).npc_horny['A66'] ?? 0) + (1);
     scene.text('Bandit the dog is watching you curiously.');
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Stop masturbating', goto: ['selfplay', 'stop'] },
   ]);
@@ -365,7 +360,6 @@ function enterHoleCapDesc(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -436,7 +430,6 @@ function enterHoleCapCalc(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -463,7 +456,6 @@ function enterDildosizeDesc(s: GameState, scene: SceneBuilder): void {
   if (((s as any).dildonumber ?? 0) === 7) {
     (s as any).dildo_desc = 'gigantic, 40cm long dildo';
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -472,9 +464,7 @@ function enterDildoOptions(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterHoleCapDesc(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDildosizeDesc(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).dildonumber ?? 0) !== 0) {
-    // TODO-QSP: dynamic text: l
     scene.text('l');
-    // TODO-QSP: dynamic text: l 'You decide to play with your <<$dildo_desc>>. <<$pussy_cap_desc>> <<$anal_cap...
     scene.text(`l 'You decide to play with your ${((s as any).dildo_desc ?? '')}. ${((s as any).pussy_cap_desc ?? '')} ${((s as any).anal_cap_desc ?? '')}'`);
   }
   if (((s as any).mc_inventory ?? 0)?.['dildo_small'] === 1) {
@@ -505,7 +495,6 @@ function enterDildoOptions(s: GameState, scene: SceneBuilder): void {
     if (((s as any).dildonumber ?? 0) === 7) {
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -532,7 +521,6 @@ function enterBrushplay(s: GameState, scene: SceneBuilder): void {
     scene.text('You moan softly as the handle slides into your pussy. You close your eyes for a moment as you enjoy the feeling of having something filling up your pussy. You wait a moment for your pussy to adjust before you slowly start moving, letting the handle slide almost all the way out of your hole and then pushing it back inside…');
   }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSisProv(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: dynamic text: <<$AnyaMsg>>
   scene.text(`${((s as any).AnyaMsg ?? '')}`);
   qspCall(s, 'arousal', 'vaginal_dildo', 5, 'masturbate');
   qspCall(s, 'stat', '');
@@ -541,7 +529,6 @@ function enterBrushplay(s: GameState, scene: SceneBuilder): void {
       { label: 'Keep playing with the brush', goto: ['selfplay', 'brushplay', 'brush_keepgoing'] },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Stop masturbating', goto: ['selfplay', 'stop'] },
   ]);
@@ -575,7 +562,6 @@ function enterVagmastDildoStart(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: dynamic text: <<$lubemessage>>Deciding that your pussy is as prepared as you can get it, you l...
   scene.text(`${((s as any).lubemessage ?? '')}Deciding that your pussy is as prepared as you can get it, you line up the ${((s as any).dildo_desc ?? '')} against your entrance.`);
   if (qspFunc(s, 'pcs_has_attr', 'sex_virgin')) {
     if (((s as any).pcs_horny ?? 0) < 80) {
@@ -615,14 +601,14 @@ function enterVagmastDildoStart(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: dynamic text: <<$entrymessage>>Once you have part of it''s length inside, you stop for a momen...
   scene.text(`${((s as any).entrymessage ?? '')}Once you have part of it's length inside, you stop for a moment to give yourself time to adjust to the length and girth of the toy stretching you open. It's not long before you slowly start moving, letting the dildo slide almost all the way out of your pussy before preparing to push it back inside…`);
   (s as any).mast_vag = ((s as any).dildonumber ?? 0) + 1;
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSisProv(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: dynamic text: <<$AnyaMsg>>
   scene.text(`${((s as any).AnyaMsg ?? '')}`);
   qspCall(s, 'arousal', 'vaginal_dildo', 5, 'masturbate');
   qspCall(s, 'stat', '');
+  (s as any).entrymessage = undefined;
+  (s as any).temp_mens = undefined;
   if (((s as any).pcs_horny ?? 0) > 0) {
     if (((s as any).org_temp ?? 0) < ((s as any).orgasm ?? 0)) {
       scene.actions([
@@ -632,6 +618,7 @@ function enterVagmastDildoStart(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Masturbate a different way', handler: (st: GameState) => {
+    (st as any).mast_vag = undefined;
     qspGoto(st, 'selfplay', 'start');
   } },
       ]);
@@ -644,7 +631,7 @@ function enterVagmastDildoStart(s: GameState, scene: SceneBuilder): void {
       { label: 'Stop masturbating', goto: ['selfplay', 'stop'] },
     ]);
   }
-  // TODO-QSP: end
+  (s as any).lubemessage = undefined;
   scene.build();
 }
 
@@ -658,7 +645,6 @@ function enterPussyDildoMast(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === 'vag_keepgoing') {
     if (((s as any).pcs_horny ?? 0) >= 85) {
       if (((s as any).dildonumber ?? 0) < 3) {
-        // TODO-QSP: dynamic text: 'You keep going. You''re so horny right now, it feels like you can''t think of a...
         scene.text('You keep going. You\'re so horny right now, it feels like you can\'t think of anything besides fucking your pussy with this rubber cock. You\'re pounding your pussy, again and again and again. Slamming the dildo in and out of your hole at increasing speeds, grabbing at your breasts or flicking your clit' + ((((s as any).trait_vars ?? 0)?.['buttslut'] > 1) ? (', even rubbing a finger against your sensitive asshole') : ('')) + ' as you chase down an orgasm. Your eyes are closed as you gasp and moan loudly, accompanied by the lewd sounds of the toy smacking against your snatch.');
         (s as any).orgasm_txt = 'Pleasure and heat build between your legs until finally you slam the dildo all the way up inside you and climax hard all over it. Your walls squeeze tight and you can feel the entire shape of the rubber cock inside your pussy. You moan and gasp, grinding the base against your pussy as you ride out your orgasm, trying to make it last as long as possible before the overstimulation makes you stop.';
         if ((!((s as any).vgape ?? 0))) {
@@ -666,7 +652,6 @@ function enterPussyDildoMast(s: GameState, scene: SceneBuilder): void {
         }
       } else {
         if (((s as any).dildonumber ?? 0) >= 3  &&  ((s as any).dildonumber ?? 0) < 5) {
-          // TODO-QSP: dynamic text: 'You keep going. You''re so horny right now, it feels like you can''t think of a...
           scene.text('You keep going. You\'re so horny right now, it feels like you can\'t think of anything besides fucking your pussy with this big rubber cock. You\'re pounding your pussy, again and again and again. Slamming the dildo in and out of your hole at increasing speeds, grabbing at your breasts or flicking your clit' + ((((s as any).trait_vars ?? 0)?.['buttslut'] > 1) ? (', even rubbing a finger against your sensitive asshole') : ('')) + ' as you chase down an orgasm. Your eyes are closed as you gasp and moan loudly, accompanied by the lewd squelching sounds of the large toy sliding in and out of your sloppy pussy.');
           (s as any).orgasm_txt = 'Pleasure and heat build between your legs until finally you slam the dildo all the way up inside you and climax hard all over it. Your walls squeeze tight and you can feel the entire shape of the large toy inside your pussy. Gasping, quivering, and clenching, you ride out your orgasm while impaled by the big rubber cock.';
           if (((s as any).vgape ?? 0) === 1) {
@@ -678,7 +663,6 @@ function enterPussyDildoMast(s: GameState, scene: SceneBuilder): void {
           }
         } else {
           if (((s as any).dildonumber ?? 0) > 5) {
-            // TODO-QSP: dynamic text: 'You keep going. You''re so horny right now, it feels like you can''t think of a...
             scene.text('You keep going. You\'re so horny right now, it feels like you can\'t think of anything besides fucking your pussy with this massive rubber cock. You\'re pounding your pussy, again and again and again. Slamming the heavy dildo in and out of your hole at increasing speeds, grabbing at your breasts or flicking your clit' + ((((s as any).trait_vars ?? 0)?.['buttslut'] > 1) ? (', even rubbing a finger against your sensitive asshole') : ('')) + ' as you chase down an orgasm. Your eyes are closed as you gasp and moan loudly, accompanied by the lewd squelching sounds of the massive toy sliding in and out of your sloppy, wide stretched cunt.');
             (s as any).orgasm_txt = 'Pleasure and heat build between your legs until finally you slam the dildo as deep as it can go for the final time. You cum explosively, your widely stretched walls squeezing even tighter around it, almost making the massive toy feel even larger inside you. Gasping, quivering, and clenching, you ride out your orgasm, every twitch making it last longer before you collapse in exhausted bliss.';
             if (((s as any).vgape ?? 0) === 2) {
@@ -737,7 +721,6 @@ function enterPussyDildoMast(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).pcs_horny ?? 0) >= 85) {
       if (((s as any).dildonumber ?? 0) < 3) {
-        // TODO-QSP: dynamic text: You''re so horny you don''t even think of starting off slow. You slam the dildo ...
         scene.text(`You're so horny you don't even think of starting off slow. You slam the dildo up inside your dripping pussy, gasping in pleasure as you take the full length and feel the base rest against your crotch.${((s as any).assslutmessage ?? '')}${((s as any).temp_mens ?? '')}`);
         (s as any).orgasm_txt = 'Pleasure and heat build between your legs until finally you slam the dildo all the way up inside you and climax hard all over it. Your walls squeeze tight and you can feel the entire shape of the rubber cock inside your pussy. You moan and gasp, grinding the base against your pussy as you ride out your orgasm, trying to make it last as long as possible before the overstimulation makes you stop.';
         if ((!((s as any).vgape ?? 0))) {
@@ -745,7 +728,6 @@ function enterPussyDildoMast(s: GameState, scene: SceneBuilder): void {
         }
       } else {
         if (((s as any).dildonumber ?? 0) >= 3  &&  ((s as any).dildonumber ?? 0) < 5) {
-          // TODO-QSP: dynamic text: You''re so horny you don''t even think of starting off slow. You start slamming ...
           scene.text(`You're so horny you don't even think of starting off slow. You start slamming the large dildo up inside your dripping pussy and after just a few thrusts you have it just about balls deep in your hungry hole. You gasp and moan as you enjoy the extra length and girth of the large toy stretching and filling your snatch.${((s as any).assslutmessage ?? '')}${((s as any).temp_mens ?? '')}`);
           (s as any).orgasm_txt = 'Pleasure and heat build between your legs until finally you slam the dildo all the way up inside you and climax hard all over it. Your walls squeeze tight and you can feel the entire shape of the large toy inside your pussy. Gasping, quivering, and clenching, you ride out your orgasm while impaled by the big rubber cock.';
           if (((s as any).vgape ?? 0) === 1) {
@@ -757,7 +739,6 @@ function enterPussyDildoMast(s: GameState, scene: SceneBuilder): void {
           }
         } else {
           if (((s as any).dildonumber ?? 0) > 5) {
-            // TODO-QSP: dynamic text: You''re so horny you don''t even think of starting off slow, despite the toy''s ...
             scene.text(`You're so horny you don't even think of starting off slow, despite the toy's massive size. You start slamming the dildo up inside your dripping pussy, caring less about control and more about stuffing your hole with the heavy toy as quickly as possible. You gasp and moan as the extreme length and girth fills you completely, your snatch stretched tightly around it. Much of the toy just doesn't fit, but it doesn't stop you from slamming it back in again and again.${((s as any).assslutmessage ?? '')}${((s as any).temp_mens ?? '')}`);
             (s as any).orgasm_txt = 'Pleasure and heat build between your legs until finally you slam the dildo as deep as it can go for the final time. You cum explosively, your widely stretched walls squeezing even tighter around it, almost making the massive toy feel even larger inside you. Gasping, quivering, and clenching, you ride out your orgasm, every twitch making it last longer before you collapse in exhausted bliss.';
             if (((s as any).vgape ?? 0) === 2) {
@@ -776,14 +757,12 @@ function enterPussyDildoMast(s: GameState, scene: SceneBuilder): void {
       }
     } else {
       if (((s as any).dildonumber ?? 0) < 3) {
-        // TODO-QSP: dynamic text: You slide the dildo in and out of your pussy, slowly ramping up the speed and ta...
         scene.text(`You slide the dildo in and out of your pussy, slowly ramping up the speed and taking it deeper with each thrust. It's not long before you've got the base pushing against your crotch.${((s as any).assslutmessage ?? '')}${((s as any).temp_mens ?? '')}`);
         if ((!((s as any).vgape ?? 0))) {
           (s as any).vgape = 1;
         }
       } else {
         if (((s as any).dildonumber ?? 0) >= 3  &&  ((s as any).dildonumber ?? 0) < 5) {
-          // TODO-QSP: dynamic text: You slide the large dildo in and out of your pussy, slowly ramping up the speed ...
           scene.text(`You slide the large dildo in and out of your pussy, slowly ramping up the speed and taking it deeper with each thrust, enjoying the extra length and girth as you feel your hole stretch around it. You try your hardest to get it as close to balls deep as you can manage.${((s as any).assslutmessage ?? '')}${((s as any).temp_mens ?? '')}`);
           if (((s as any).vgape ?? 0) === 1) {
             (s as any).vgape = 2;
@@ -794,7 +773,6 @@ function enterPussyDildoMast(s: GameState, scene: SceneBuilder): void {
           }
         } else {
           if (((s as any).dildonumber ?? 0) > 5) {
-            // TODO-QSP: dynamic text: You slide the massive dildo in and out of your pussy, the heavy toy a bit hard t...
             scene.text(`You slide the massive dildo in and out of your pussy, the heavy toy a bit hard to control as you slowly ramp up the speed and take it deeper with each thrust. The extreme length and girth completely stuffs your pussy and stretches you wide. Your pussy stretched wide and stuffed to the fullest, yet there's still so much of the toy that just can't fit inside you.${((s as any).assslutmessage ?? '')}${((s as any).temp_mens ?? '')}`);
             if (((s as any).vgape ?? 0) === 2) {
               (s as any).vgape = 3;
@@ -811,10 +789,10 @@ function enterPussyDildoMast(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
+    (s as any).temp_mens = undefined;
   }
   (s as any).mast_anal = ((s as any).dildonumber ?? 0) + 1;
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSisProv(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: dynamic text: <<$AnyaMsg>>
   scene.text(`${((s as any).AnyaMsg ?? '')}`);
   qspCall(s, 'arousal', 'vaginal_dildo', 5, 'masturbate');
   qspCall(s, 'stat', '');
@@ -827,6 +805,7 @@ function enterPussyDildoMast(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Masturbate a different way', handler: (st: GameState) => {
+    (st as any).mast_vag = undefined;
     qspGoto(st, 'selfplay', 'start');
   } },
       ]);
@@ -839,7 +818,6 @@ function enterPussyDildoMast(s: GameState, scene: SceneBuilder): void {
       { label: 'Stop masturbating', goto: ['selfplay', 'stop'] },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -963,7 +941,6 @@ function enterAnalDildoStart(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: dynamic text: <<$virginmessage>><<$plugmessage>><<$lubemessage>><<$warmupmessage>> After finge...
   scene.text(`${((s as any).virginmessage ?? '')}${((s as any).plugmessage ?? '')}${((s as any).lubemessage ?? '')}${((s as any).warmupmessage ?? '')} After fingering your ass for a few more seconds, you pull them out and place the ${((s as any).dildo_desc ?? '')} near your hole.`);
   (s as any).entrymessage = '';
   (s as any).assslutmessage = '';
@@ -999,11 +976,15 @@ function enterAnalDildoStart(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: dynamic text: <<$entrymessage>>Once you have most of it''s length inside your hole, you stop f...
   scene.text(`${((s as any).entrymessage ?? '')}Once you have most of it's length inside your hole, you stop for a moment to give yourself time to adjust to the length and girth of the toy stretching you open. It's not long before you slowly start moving, letting your dildo slide almost all the way out of your ass before pushing it back inside…`);
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSisProv(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: dynamic text: <<$AnyaMsg>>
   scene.text(`${((s as any).AnyaMsg ?? '')}`);
+  (s as any).virginmessage = undefined;
+  (s as any).plugmessage = undefined;
+  (s as any).lubemessage = undefined;
+  (s as any).warmupmessage = undefined;
+  (s as any).assslutmessage = undefined;
+  (s as any).entrymessage = undefined;
   (s as any).orgasm_txt = 'You\'re so horny that the small amount of fingering and the initial penetration of the dildo makes you cum already.';
   qspCall(s, 'arousal', 'anal_dildo', 5, 'masturbate');
   qspCall(s, 'stat', '');
@@ -1016,6 +997,7 @@ function enterAnalDildoStart(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Masturbate a different way', handler: (st: GameState) => {
+    (st as any).mast_anal = undefined;
     qspGoto(st, 'selfplay', 'start');
   } },
       ]);
@@ -1028,7 +1010,6 @@ function enterAnalDildoStart(s: GameState, scene: SceneBuilder): void {
       { label: 'Stop masturbating', goto: ['selfplay', 'stop'] },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1042,7 +1023,6 @@ function enterAnalDildoMast(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === 'anal_keepgoing') {
     if (((s as any).pcs_horny ?? 0) >= 85) {
       if (((s as any).dildonumber ?? 0) < 3) {
-        // TODO-QSP: dynamic text: 'You keep going. You''re so horny right now, it feels like you can''t think of a...
         scene.text('You keep going. You\'re so horny right now, it feels like you can\'t think of anything besides fucking your ass with this rubber cock. You\'re pounding your ass, again and again and again. Slamming the dildo in and out of your hole at increasing speeds, grabbing at your breasts and pinching your nipples' + ((((s as any).trait_vars ?? 0)?.['buttslut'] < 2) ? (' or sliding a hand between your legs to rub your pussy') : (', ignoring your pussy and focussing on what your slutty ass is feeling')) + ' as you chase down an orgasm. Your eyes are closed as you gasp and moan loudly, accompanied by the lewd sounds of the toy smacking up between your cheeks.');
         (s as any).orgasm_txt = 'Pleasure and heat build between your legs until you slam the dildo all the way up inside your ass and finally climax, hard. Your asshole clamps down tight and you focus on the feel of the toy rubbing between your ass cheeks. You moan and gasp, grinding down on it even harder as you ride out your orgasm, trying to make it last as long as possible before the overstimulation makes you stop.';
         if ((!((s as any).agape ?? 0))) {
@@ -1050,7 +1030,6 @@ function enterAnalDildoMast(s: GameState, scene: SceneBuilder): void {
         }
       } else {
         if (((s as any).dildonumber ?? 0) >= 3  &&  ((s as any).dildonumber ?? 0) < 5) {
-          // TODO-QSP: dynamic text: 'You keep going. You''re so horny right now, it feels like you can''t think of a...
           scene.text('You keep going. You\'re so horny right now, it feels like you can\'t think of anything besides fucking your ass with this big rubber cock. You\'re pounding your ass, again and again and again. Slamming the dildo in and out of your hole at increasing speeds, grabbing at your breasts and pinching your nipples' + ((((s as any).trait_vars ?? 0)?.['buttslut'] < 2) ? (' or sliding a hand between your legs to rub your pussy') : (', ignoring your pussy and focussing on what your slutty ass is feeling')) + ' as you chase down an orgasm. Your eyes are closed as you gasp and moan loudly, accompanied by the lewd squelching sounds of the large toy sliding in and out of your well fucked ass.');
           (s as any).orgasm_txt = 'Pleasure and heat build between your legs until you slam the large dildo all the way up inside your ass and finally climax, hard. Your asshole clamps down tight and you focus on the feel of the toy rubbing between your ass cheeks and filling up your insides. Gasping, quivering, and clenching, you ride out your orgasm while impaled by the big rubber cock.';
           if (((s as any).agape ?? 0) === 1) {
@@ -1062,7 +1041,6 @@ function enterAnalDildoMast(s: GameState, scene: SceneBuilder): void {
           }
         } else {
           if (((s as any).dildonumber ?? 0) > 5) {
-            // TODO-QSP: dynamic text: 'You keep going. You''re so horny right now, it feels like you can''t think of a...
             scene.text('You keep going. You\'re so horny right now, it feels like you can\'t think of anything besides fucking your ass with this massive rubber cock. You\'re pounding your ass, again and again and again. Slamming the heavy dildo in and out of your hole at increasing speeds, grabbing at your breasts and pinching your nipples' + ((((s as any).trait_vars ?? 0)?.['buttslut'] < 2) ? (' or sliding a hand between your legs to rub your pussy') : (', ignoring your pussy and focussing on what your slutty ass is feeling')) + ' as you chase down an orgasm. Your eyes are closed as you gasp and moan loudly, accompanied by the lewd squelching sounds of the massive toy sliding in and out of your well fucked ass.');
             (s as any).orgasm_txt = 'Pleasure and heat build between your legs until you slam yourself down, taking the huge dildo balls deep up inside your ass again and finally climax. You cum explosively, your widely stretched asshole clamping down as tight as it can around the rubber monster, head thrown back and eyes rolled up as the full length bulges out your stomach. Gasping, quivering, and clenching, you ride out your orgasm, every twitch making it last longer before you ' + (((Math.floor(Math.random() * 3) + 0) === 1) ? ('collapse to the side in exhausted bliss, the toy slipping out of your hole with a lewd pop.') : ('settle back in exhausted bliss.'));
             if (((s as any).agape ?? 0) === 2) {
@@ -1116,7 +1094,6 @@ function enterAnalDildoMast(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).pcs_horny ?? 0) >= 85) {
       if (((s as any).dildonumber ?? 0) < 3) {
-        // TODO-QSP: dynamic text: You''re so horny you don''t even think of starting off slow. You slam the dildo ...
         scene.text(`You're so horny you don't even think of starting off slow. You slam the dildo inside your twitching asshole, gasping in pleasure as you take the full length and feel its balls smack against your crotch as your asshole swallows it all the way to the base.${((s as any).assslutmessage ?? '')}`);
         (s as any).orgasm_txt = 'The pleasure sneaks up on you as you suddenly climax, hard. Your asshole clamps down tight and you focus on the feel of the toy rubbing between your ass cheeks. You moan and gasp, grinding down on it even harder as you ride out your orgasm, trying to make it last as long as possible before the overstimulation makes you stop.';
         if ((!((s as any).agape ?? 0))) {
@@ -1124,7 +1101,6 @@ function enterAnalDildoMast(s: GameState, scene: SceneBuilder): void {
         }
       } else {
         if (((s as any).dildonumber ?? 0) >= 3  &&  ((s as any).dildonumber ?? 0) < 5) {
-          // TODO-QSP: dynamic text: You''re so horny you don''t even think of starting off slow. You start slamming ...
           scene.text(`You're so horny you don't even think of starting off slow. You start slamming the large dildo up inside your eager asshole and after just a few thrusts you have it pushed balls deep in your hungry hole. You gasp and moan as you enjoy the extra length and girth of the large toy stretching and filling your ass.${((s as any).assslutmessage ?? '')}`);
           (s as any).orgasm_txt = 'The pleasure sneaks up on you as you suddenly climax, hard. Your asshole clamps down tight and you focus on the feel of the toy rubbing between your ass cheeks and filling up your insides. Gasping, quivering, and clenching, you ride out your orgasm while impaled by the big rubber cock.';
           if (((s as any).agape ?? 0) === 1) {
@@ -1137,14 +1113,12 @@ function enterAnalDildoMast(s: GameState, scene: SceneBuilder): void {
         } else {
           if (((s as any).dildonumber ?? 0) > 5) {
             if (((s as any).analcap ?? 0) <= 0  &&  (Math.floor(Math.random() * 5) + 0) === 1) {
-              // TODO-QSP: dynamic text: You''re so horny you don''t even think of starting off slow, plopping the massiv...
               scene.text(`You're so horny you don't even think of starting off slow, plopping the massive toy on the ground before squatting down above and taking it in again. Your excited impatience works against you however as your legs slip, causing you to just… drop. With a heavy grunt, you find yourself seated on the floor, your eyes rolled back as your asshole is instantly stuffed and tightly stretched around a massive rubber cock. You catch your breath and moan loudly, putting a hand on your now bulging stomach. Thank God your hole is experienced… and that you stretched beforehand.${((s as any).assslutmessage ?? '')}`);
               (s as any).orgasm_txt = 'As the moment of shock disappears, ' + ((((s as any).trait_vars ?? 0)?.['buttslut'] === 3) ? ('the pleasure of having your slutty asshole stuffed so suddenly and so completely makes you climax.') : ('the pleasure sneaks up on you and you climax.')) + ' You cum explosively, your widely stretched asshole clamping down as tight as it can around the rubber monster, head thrown back and eyes rolled up as the full length bulges out your stomach. Gasping, quivering, and clenching, you ride out your sudden orgasm, every twitch making it last longer before you ' + (((Math.floor(Math.random() * 3) + 0) === 1) ? ('collapse to the side in exhausted bliss, the toy slipping out of your hole with a lewd pop.') : ('settle back in exhausted bliss.'));
               if (((s as any).trait_vars ?? 0)?.['buttslut'] === 3) {
                 (s as any).orgasm_or = 'yes';
               }
             } else {
-              // TODO-QSP: dynamic text: You''re so horny you don''t even think of starting off slow, plopping the massiv...
               scene.text(`You're so horny you don't even think of starting off slow, plopping the massive toy on the ground before sitting back and taking it in again. All you care about now is stuffing your eager asshole as much and as fast as possible. Too long after, you find yourself fully seated with the massive rubber cock stuffed balls deep in your rear. You moan loudly as you place your hand on your bulging stomach with your asshole stretched tightly around its extreme girth.${((s as any).assslutmessage ?? '')}`);
               (s as any).orgasm_txt = 'Pleasure and heat build between your legs until you slam yourself down, taking the huge dildo balls deep up inside your ass again and finally climax. You cum explosively, your widely stretched asshole clamping down as tight as it can around the rubber monster, head thrown back and eyes rolled up as the full length bulges out your stomach. Gasping, quivering, and clenching, you ride out your orgasm, every twitch making it last longer before you ' + (((Math.floor(Math.random() * 3) + 0) === 1) ? ('collapse to the side in exhausted bliss, the toy slipping out of your hole with a lewd pop.') : ('settle back in exhausted bliss.'));
             }
@@ -1164,14 +1138,12 @@ function enterAnalDildoMast(s: GameState, scene: SceneBuilder): void {
       }
     } else {
       if (((s as any).dildonumber ?? 0) < 3) {
-        // TODO-QSP: dynamic text: You slide the dildo in and out of your ass, slowly ramping up the speed and taki...
         scene.text(`You slide the dildo in and out of your ass, slowly ramping up the speed and taking it deeper with each thrust. It's not long before you've got its balls smacking against your crotch as your asshole swallows it all the way to the base.${((s as any).assslutmessage ?? '')}`);
         if ((!((s as any).agape ?? 0))) {
           (s as any).agape = 1;
         }
       } else {
         if (((s as any).dildonumber ?? 0) >= 3  &&  ((s as any).dildonumber ?? 0) < 5) {
-          // TODO-QSP: dynamic text: You slide the large dildo in and out of your ass, slowly ramping up the speed an...
           scene.text(`You slide the large dildo in and out of your ass, slowly ramping up the speed and taking it deeper with each thrust, enjoying the extra length and girth as you feel your asshole stretch around it. It's not long before you've got its balls smacking against your crotch as your asshole swallows the large toy all the way to the base.${((s as any).assslutmessage ?? '')}`);
           if (((s as any).agape ?? 0) === 1) {
             (s as any).agape = 2;
@@ -1182,7 +1154,6 @@ function enterAnalDildoMast(s: GameState, scene: SceneBuilder): void {
           }
         } else {
           if (((s as any).dildonumber ?? 0) > 5) {
-            // TODO-QSP: dynamic text: With the massive dildo standing on the floor behind you, you sit back as you sli...
             scene.text(`With the massive dildo standing on the floor behind you, you sit back as you slide it in and out of your ass, the sheer size making it a bit harder to take it in easily, slowly ramping up the speed as it slips deeper. Your asshole is tightly stretched around its extreme girth and you can feel it's length making your stomach bulge. It doesn't take much longer before you find yourself fully seated with the massive rubber dick stuffed up your ass.${((s as any).assslutmessage ?? '')}`);
             if (((s as any).agape ?? 0) === 2) {
               (s as any).agape = 3;
@@ -1201,7 +1172,6 @@ function enterAnalDildoMast(s: GameState, scene: SceneBuilder): void {
     }
   }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSisProv(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: dynamic text: <<$AnyaMsg>>
   scene.text(`${((s as any).AnyaMsg ?? '')}`);
   qspCall(s, 'arousal', 'anal_dildo', 5, 'masturbate');
   qspCall(s, 'stat', '');
@@ -1214,6 +1184,7 @@ function enterAnalDildoMast(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Masturbate a different way', handler: (st: GameState) => {
+    (st as any).mast_anal = undefined;
     qspGoto(st, 'selfplay', 'start');
   } },
       ]);
@@ -1226,47 +1197,43 @@ function enterAnalDildoMast(s: GameState, scene: SceneBuilder): void {
       { label: 'Stop masturbating', goto: ['selfplay', 'stop'] },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterSuctionDildo(s: GameState, scene: SceneBuilder): void {
   if ((0 as any) === 1) {
-    scene.text('Your <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027selfplay/u0027, /u0027bath_suction_dildo/u0027); return false;">suction dildo</a> is stuck to the bath tub.');
+    scene.text('Your <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027selfplay\u0027, \u0027bath_suction_dildo\u0027); return false;">suction dildo</a> is stuck to the bath tub.');
   } else {
     if (((s as any).mc_inventory ?? 0)?.['dildo_suction'] > 0) {
-      scene.text('You can stick your suction dildo to the <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027selfplay/u0027, /u0027bathtub_suction_dildo_apply/u0027); return false;">bath tub</a> to play with.');
+      scene.text('You can stick your suction dildo to the <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027selfplay\u0027, \u0027\u0027bathtub_suction_dildo_apply\u0027 & gt $loc\u0027, window.__gameStore.getState().prevArg); return false;">bath tub</a> to play with.');
     }
   }
   if ((0 as any) === 1  ||  (0 as any) === 1) {
-    scene.text('Your suction dildo is <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027selfplay/u0027, /u0027shower_suction_dildo/u0027); return false;">inside the shower</a>.');
+    scene.text('Your suction dildo is <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027selfplay\u0027, \u0027shower_suction_dildo\u0027); return false;">inside the shower</a>.');
   } else {
     if (((s as any).mc_inventory ?? 0)?.['dildo_suction'] > 0) {
-      scene.text('You can also stick a suction dildo inside <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027selfplay/u0027, /u0027shower_suction_dildo_apply/u0027); return false;">the shower</a>.');
+      scene.text('You can also stick a suction dildo inside <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027selfplay\u0027, \u0027\u0027shower_suction_dildo_apply\u0027 & gt $loc\u0027, window.__gameStore.getState().prevArg); return false;">the shower</a>.');
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterBathtubSuctionDildoApply(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: dynamic '<<$loc>>_bathtub_dildo = 1'
-  // TODO-QSP: dynamic '<<$loc>>_suction_dildo += 1'
+  scene.text('' + ((s as any).loc ?? 0) + '_bathtub_dildo = 1');
+  scene.text('' + ((s as any).loc ?? 0) + '_suction_dildo += 1');
   ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['dildo_suction'] = ((s as any).mc_inventory['dildo_suction'] ?? 0) - (1);
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterBathtubSuctionDildoRemove(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: dynamic '<<$loc>>_bathtub_dildo = 0'
-  // TODO-QSP: dynamic '<<$loc>>_suction_dildo -= 1'
+  scene.text('' + ((s as any).loc ?? 0) + '_bathtub_dildo = 0');
+  scene.text('' + ((s as any).loc ?? 0) + '_suction_dildo -= 1');
   ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['dildo_suction'] = ((s as any).mc_inventory['dildo_suction'] ?? 0) + (1);
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterShowerSuctionDildoApply(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: dynamic '<<$loc>>_suction_dildo += 1'
+  scene.text('' + ((s as any).loc ?? 0) + '_suction_dildo += 1');
   if (((s as any).bathtype ?? 0) === 'bathtub shower') {
     // TODO-QSP: dynamic '<<$loc>>_bath_shower_dildo = 1'
   } else {
@@ -1275,12 +1242,11 @@ function enterShowerSuctionDildoApply(s: GameState, scene: SceneBuilder): void {
     }
   }
   ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['dildo_suction'] = ((s as any).mc_inventory['dildo_suction'] ?? 0) - (1);
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterShowerSuctionDildoRemove(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: dynamic '<<$loc>>_suction_dildo -= 1'
+  scene.text('' + ((s as any).loc ?? 0) + '_suction_dildo -= 1');
   if (((s as any).bathtype ?? 0) === 'bathtub shower') {
     // TODO-QSP: dynamic '<<$loc>>_bath_shower_dildo = 0'
   } else {
@@ -1289,7 +1255,6 @@ function enterShowerSuctionDildoRemove(s: GameState, scene: SceneBuilder): void 
     }
   }
   ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['dildo_suction'] = ((s as any).mc_inventory['dildo_suction'] ?? 0) + (1);
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1299,7 +1264,6 @@ function enterBathtubDildoCheck(s: GameState, scene: SceneBuilder): void {
       { label: 'Ride your bathtub dildo', goto: ['selfplay', 'bath_bathtub_suction_dildo_ride'] },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1320,14 +1284,12 @@ function enterShowerDildoCheck(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterBathSuctionDildo(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/home/bathroom/bathtub_dildo.jpg');
   scene.text('Your suction dildo is currently stuck onto the bathtub.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave it there', handler: (st: GameState) => {
     dynamicGoto(st, 'prevLoc', 'prevArg');
@@ -1344,7 +1306,6 @@ function enterBathSuctionDildo(s: GameState, scene: SceneBuilder): void {
 function enterShowerSuctionDildo(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/home/bathroom/shower_dildo.jpg');
   scene.text('Your suction dildo is currently stuck on the wall of the shower.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave it there', handler: (st: GameState) => {
     dynamicGoto(st, 'prevLoc', 'prevArg');
@@ -1379,7 +1340,6 @@ function enterBathSuctionDildoRide(s: GameState, scene: SceneBuilder): void {
   (s as any).orgasm_txt = 'Pleasure and heat build between your legs until finally you slam yourself all the way down onto your dildo and climax hard all over it. Your walls squeeze tight and you can feel the entire shape of the rubber cock inside you. Gasping, quivering, and clenching, you ride out your orgasm while impaled on your bathtub dildo.';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 1]; enterDildoMasturbateOptions(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'arousal', 'vaginal_dildo', 5, 'masturbate');
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1428,7 +1388,6 @@ function enterShowerBathtubSuctionDildoRide(s: GameState, scene: SceneBuilder): 
   }
   qspCall(s, 'arousal', 'vaginal_dildo', 5, 'masturbate');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 2]; enterDildoMasturbateOptions(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1485,7 +1444,6 @@ function enterBathBathtubSuctionDildoRide(s: GameState, scene: SceneBuilder): vo
   }
   qspCall(s, 'arousal', 'vaginal_dildo', 5, 'masturbate');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 3]; enterDildoMasturbateOptions(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1546,7 +1504,6 @@ function enterShowerBathtubWallDildoFuck(s: GameState, scene: SceneBuilder): voi
   }
   qspCall(s, 'arousal', 'vaginal_dildo', 5, 'masturbate');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 4]; enterDildoMasturbateOptions(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1578,7 +1535,6 @@ function enterGlassShowerSuctionDildoFuck(s: GameState, scene: SceneBuilder): vo
   }
   qspCall(s, 'arousal', 'vaginal_dildo', 5, 'masturbate');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 5]; enterDildoMasturbateOptions(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1592,35 +1548,35 @@ function enterDildoMasturbateOptions(s: GameState, scene: SceneBuilder): void {
   if (((s as any).dildo_type ?? 0) === 1) {
     scene.actions([
       { label: 'Keep masturbating', handler: (st: GameState) => {
-    // TODO-QSP: killvar 'dildo_type'
+    (st as any).dildo_type = undefined;
   }, goto: ['selfplay', 'bath_suction_dildo_ride'] },
     ]);
   } else {
     if (((s as any).dildo_type ?? 0) === 2) {
       scene.actions([
         { label: 'Keep masturbating', handler: (st: GameState) => {
-    // TODO-QSP: killvar 'dildo_type'
+    (st as any).dildo_type = undefined;
   }, goto: ['selfplay', 'shower_bathtub_suction_dildo_ride'] },
       ]);
     } else {
       if (((s as any).dildo_type ?? 0) === 3) {
         scene.actions([
           { label: 'Keep masturbating', handler: (st: GameState) => {
-    // TODO-QSP: killvar 'dildo_type'
+    (st as any).dildo_type = undefined;
   }, goto: ['selfplay', 'bath_bathtub_suction_dildo_ride'] },
         ]);
       } else {
         if (((s as any).dildo_type ?? 0) === 4) {
           scene.actions([
             { label: 'Keep masturbating', handler: (st: GameState) => {
-    // TODO-QSP: killvar 'dildo_type'
+    (st as any).dildo_type = undefined;
   }, goto: ['selfplay', 'shower_bathtub_wall_dildo_fuck'] },
           ]);
         } else {
           if (((s as any).dildo_type ?? 0) === 5) {
             scene.actions([
               { label: 'Keep masturbating', handler: (st: GameState) => {
-    // TODO-QSP: killvar 'dildo_type'
+    (st as any).dildo_type = undefined;
   }, goto: ['selfplay', 'glass_shower_suction_dildo_fuck'] },
             ]);
           }
@@ -1628,7 +1584,6 @@ function enterDildoMasturbateOptions(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Finish masturbating [+iif(dildo_type = 1, \', \' and dry off\')]', handler: (st: GameState) => {
     (st as any).dildo_timer = 0;
@@ -1636,6 +1591,7 @@ function enterDildoMasturbateOptions(s: GameState, scene: SceneBuilder): void {
     if (((st as any).dildo_type ?? 0) !== 1) {
       (st as any).mirror_steam = ((st as any).hour ?? 0);
     }
+    (st as any).dildo_type = undefined;
     dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     { label: 'Finish masturbating [+iif(dildo_type = 1, \' and unmount your d...]', handler: (st: GameState) => {
@@ -1649,6 +1605,7 @@ function enterDildoMasturbateOptions(s: GameState, scene: SceneBuilder): void {
     if (((st as any).dildo_type ?? 0) !== 1) {
       (st as any).mirror_steam = ((st as any).hour ?? 0);
     }
+    (st as any).dildo_type = undefined;
     dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
@@ -1680,7 +1637,6 @@ function enterSisProv(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1723,7 +1679,6 @@ function enterSisReact(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1733,7 +1688,6 @@ function enterVanVtor(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'mood', 'lower', 'small');
     qspCall(s, 'stat', '');
     scene.text('You hear shouting from outside the bathroom door.');
-    // TODO-QSP: dynamic text: "<<$pcs_nickname>>? What''s taking so long? Hurry up and get out of there!"
     scene.text(`"${((s as any).pcs_nickname ?? '')}? What's taking so long? Hurry up and get out of there!"`);
     scene.actions([
 { label: 'Get out of the bath and dry yourself off', goto: ['selfplay', 'stop'] },
@@ -1742,7 +1696,6 @@ function enterVanVtor(s: GameState, scene: SceneBuilder): void {
   } else {
     (s as any).selfplaytime = ((s as any).selfplaytime ?? 0) - (15);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1766,12 +1719,10 @@ function enterClitPlay(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'arousal', 'clit_finger', (-20), 'masturbate');
   qspCall(s, 'stat', '');
-  // TODO-QSP: dynamic text: <<$AnyaMsg>>
   scene.text(`${((s as any).AnyaMsg ?? '')}`);
   if (((s as any).org_temp ?? 0) === ((s as any).orgasm ?? 0)) {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterFingering(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Stop masturbating', goto: ['selfplay', 'stop'] },
   ]);
@@ -1805,7 +1756,6 @@ function enterFingering(s: GameState, scene: SceneBuilder): void {
         }
       }
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSisProv(s, scene); (s as any).locArgs = __savedLocArgs; }
-      // TODO-QSP: dynamic text: <<$AnyaMsg>>
       scene.text(`${((s as any).AnyaMsg ?? '')}`);
       qspCall(s, 'arousal', 'vaginal_finger', 2, 'masturbate');
       qspCall(s, 'stat', '');
@@ -1821,7 +1771,6 @@ function enterFingering(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Stop masturbating', goto: ['selfplay', 'stop'] },
   ]);
@@ -1849,7 +1798,6 @@ function enterFingering2(s: GameState, scene: SceneBuilder): void {
     }
   }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSisProv(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: dynamic text: <<$AnyaMsg>>
   scene.text(`${((s as any).AnyaMsg ?? '')}`);
   qspCall(s, 'arousal', 'vaginal_finger', 10, 'masturbate');
   qspCall(s, 'stat', '');
@@ -1888,7 +1836,6 @@ function enterFingering2(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Stop masturbating', goto: ['selfplay', 'stop'] },
   ]);
@@ -1926,7 +1873,6 @@ function enterFingering3(s: GameState, scene: SceneBuilder): void {
     }
   }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSisProv(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: dynamic text: <<$AnyaMsg>>
   scene.text(`${((s as any).AnyaMsg ?? '')}`);
   qspCall(s, 'arousal', 'vaginal_finger', 2, 'masturbate');
   qspCall(s, 'stat', '');
@@ -1940,7 +1886,6 @@ function enterFingering3(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Stop masturbating', goto: ['selfplay', 'stop'] },
   ]);
@@ -1980,7 +1925,6 @@ function enterFingering4(s: GameState, scene: SceneBuilder): void {
     scene.text('Your pussy walls are stretched nicely from the finger fucking and you feel a pleasant warmth spread in your lower body.');
   }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSisProv(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: dynamic text: <<$AnyaMsg>>
   scene.text(`${((s as any).AnyaMsg ?? '')}`);
   qspCall(s, 'arousal', 'vaginal_finger', 10, 'masturbate');
   qspCall(s, 'stat', '');
@@ -2021,7 +1965,6 @@ function enterFingering4(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Stop masturbating', goto: ['selfplay', 'stop'] },
   ]);
@@ -2061,7 +2004,6 @@ function enterSelfFisting_1(s: GameState, scene: SceneBuilder): void {
     }
   }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSisProv(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: dynamic text: <<$AnyaMsg>>
   scene.text(`${((s as any).AnyaMsg ?? '')}`);
   qspCall(s, 'arousal', 'self_fisting', 2, 'masturbate');
   qspCall(s, 'stat', '');
@@ -2075,7 +2017,6 @@ function enterSelfFisting_1(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Stop masturbating', goto: ['selfplay', 'stop'] },
   ]);
@@ -2110,7 +2051,6 @@ function enterSelfFisting_2(s: GameState, scene: SceneBuilder): void {
     scene.text('You\'re stretching your pussy to the point where it becomes rather painful and don\'t get any enjoyment out of it.');
   }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSisProv(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: dynamic text: <<$AnyaMsg>>
   scene.text(`${((s as any).AnyaMsg ?? '')}`);
   qspCall(s, 'arousal', 'self_fisting', 10, 'masturbate');
   qspCall(s, 'stat', '');
@@ -2123,6 +2063,7 @@ function enterSelfFisting_2(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Masturbate a different way', handler: (st: GameState) => {
+    (st as any).mast_vag = undefined;
     qspGoto(st, 'selfplay', 'start');
   } },
       ]);
@@ -2133,7 +2074,6 @@ function enterSelfFisting_2(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Stop masturbating', goto: ['selfplay', 'stop'] },
   ]);
@@ -2178,7 +2118,6 @@ function enterAnalFingering(s: GameState, scene: SceneBuilder): void {
     }
   }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSisProv(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: dynamic text: <<$AnyaMsg>>
   scene.text(`${((s as any).AnyaMsg ?? '')}`);
   qspCall(s, 'arousal', 'anal_finger', 5, 'masturbate');
   qspCall(s, 'stat', '');
@@ -2190,11 +2129,11 @@ function enterAnalFingering(s: GameState, scene: SceneBuilder): void {
       { label: 'Keep fingering your ass', goto: ['selfplay', 'anal_fingering', '1'] },
       { label: 'Add a second finger', goto: ['selfplay', 'anal_fingering2'] },
       { label: 'Choose a different way to masturbate', handler: (st: GameState) => {
+    (st as any).mast_anal = undefined;
     qspGoto(st, 'selfplay', 'start');
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Stop masturbating', goto: ['selfplay', 'stop'] },
   ]);
@@ -2262,7 +2201,6 @@ function enterAnalFingering2(s: GameState, scene: SceneBuilder): void {
     }
   }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSisProv(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: dynamic text: <<$AnyaMsg>>
   scene.text(`${((s as any).AnyaMsg ?? '')}`);
   qspCall(s, 'arousal', 'anal_finger', 5, 'masturbate');
   qspCall(s, 'stat', '');
@@ -2278,11 +2216,11 @@ function enterAnalFingering2(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Thrust a third finger into your ass', goto: ['selfplay', 'anal_fingering3'] },
       { label: 'Choose a different way to masturbate', handler: (st: GameState) => {
+    (st as any).mast_anal = undefined;
     qspGoto(st, 'selfplay', 'start');
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Stop masturbating', goto: ['selfplay', 'stop'] },
   ]);
@@ -2353,7 +2291,6 @@ function enterAnalFingering3(s: GameState, scene: SceneBuilder): void {
     }
   }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSisProv(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: dynamic text: <<$AnyaMsg>>
   scene.text(`${((s as any).AnyaMsg ?? '')}`);
   qspCall(s, 'arousal', 'anal_finger', 5, 'masturbate');
   qspCall(s, 'stat', '');
@@ -2369,11 +2306,11 @@ function enterAnalFingering3(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Push a fourth finger into your asshole', goto: ['selfplay', 'anal_fingering4'] },
       { label: 'Choose a different way to masturbate', handler: (st: GameState) => {
+    (st as any).mast_anal = undefined;
     qspGoto(st, 'selfplay', 'start');
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Stop masturbating', goto: ['selfplay', 'stop'] },
   ]);
@@ -2445,7 +2382,6 @@ function enterAnalFingering4(s: GameState, scene: SceneBuilder): void {
     }
   }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSisProv(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: dynamic text: <<$AnyaMsg>>
   scene.text(`${((s as any).AnyaMsg ?? '')}`);
   qspCall(s, 'arousal', 'anal_finger', 5, 'masturbate');
   qspCall(s, 'stat', '');
@@ -2461,11 +2397,11 @@ function enterAnalFingering4(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Stuff your whole hand in', goto: ['selfplay', 'anal_fisting'] },
       { label: 'Choose a different way to masturbate', handler: (st: GameState) => {
+    (st as any).mast_anal = undefined;
     qspGoto(st, 'selfplay', 'start');
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Stop masturbating', goto: ['selfplay', 'stop'] },
   ]);
@@ -2523,7 +2459,6 @@ function enterAnalFisting(s: GameState, scene: SceneBuilder): void {
     }
   }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSisProv(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: dynamic text: <<$AnyaMsg>>
   scene.text(`${((s as any).AnyaMsg ?? '')}`);
   qspCall(s, 'arousal', 'self_fisting_anal', 5, 'masturbate');
   qspCall(s, 'stat', '');
@@ -2539,6 +2474,7 @@ function enterAnalFisting(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Masturbate a different way', handler: (st: GameState) => {
+    (st as any).mast_anal = undefined;
     qspGoto(st, 'selfplay', 'start');
   } },
       ]);
@@ -2547,7 +2483,6 @@ function enterAnalFisting(s: GameState, scene: SceneBuilder): void {
       { label: 'Keep fisting yourself', goto: ['selfplay', 'anal_fisting', '1'] },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Stop masturbating', goto: ['selfplay', 'stop'] },
   ]);
@@ -2558,6 +2493,10 @@ function enterStop(s: GameState, scene: SceneBuilder): void {
   (s as any).selfplaytime = 0;
   (s as any).mastrOnce = 0;
   (s as any).proverkasisterhere = 0;
+  (s as any).ass_temp = undefined;
+  (s as any).vag_temp = undefined;
+  (s as any).mast_vag = undefined;
+  (s as any).mast_anal = undefined;
   if (((s as any).vaginaTemp ?? 0) > ((s as any).pcs_vag ?? 0) * 2) {
     qspCall(s, 'arousal_funcs', 'stretch', 'vaginal');
     (s as any).vaginaTemp = 0;
@@ -2571,15 +2510,16 @@ function enterStop(s: GameState, scene: SceneBuilder): void {
     scene.img('images/pc/body/analplug.jpg');
     scene.text('You had fun playing with your ass and look forward to doing it again. It doesn\'t feel right being so empty now though, so you quickly pop your assplug back up your slutty hole where it belongs. It\'s just <i>so</i> much better staying stretched and filled.');
     (s as any).analPlugIn = 1;
+    (s as any).analPlugOut = undefined;
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } else {
+    (s as any).analPlugOut = undefined;
     dynamicGoto(s, 'prevLoc', 'prevArg');
   }
-  // TODO-QSP: end
   scene.build();
 }
 

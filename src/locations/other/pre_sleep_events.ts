@@ -1,4 +1,4 @@
-import { qspCall, qspGoto } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -6,23 +6,25 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
   ((s as any).sleepVars = (s as any).sleepVars ?? {})['stat_display'] = 1;
+  (s as any).sleep_events = undefined;
+  (s as any).sleep_events_priority = undefined;
   if (((s as any).sleepVars ?? 0)?.['events_active'] === 1) {
     ((s as any).sleepVars = (s as any).sleepVars ?? {})['events_done'] = 0;
     if (((s as any).succubusQW ?? 0) === 2) {
-      // TODO-QSP: $sleep_events_priority[] = 'gs ''pre_sleep_events'', ''suc_event'' '
+      (s as any).sleep_events_priority = [...((s as any).sleep_events_priority ?? []), 'gs \'pre_sleep_events\', \'suc_event\' '];
     }
     if (((s as any).magf2bdo ?? 0) === 2) {
-      // TODO-QSP: $sleep_events_priority[] = 'gs ''pre_sleep_events'', ''magb_event'' '
+      (s as any).sleep_events_priority = [...((s as any).sleep_events_priority ?? []), 'gs \'pre_sleep_events\', \'magb_event\' '];
     }
     if (((s as any).nichGalaOpponent ?? 0) === 30  &&  ((s as any).hour ?? 0) >= 19  &&  ((s as any).nichDebug ?? 0) === 1) {
-      // TODO-QSP: $sleep_events_priority[] = 'gs ''pre_sleep_events'', ''nichServentSleepEvents_handler'', 2 '
+      (s as any).sleep_events_priority = [...((s as any).sleep_events_priority ?? []), 'gs \'pre_sleep_events\', \'nichServentSleepEvents_handler\', 2 '];
     } else {
       if (((s as any).nichGalaContractTaras ?? 0) === 1  &&  ((s as any).daystart ?? 0) >= ((s as any).nichGalaContractTarasLast ?? 0) + (Math.floor(Math.random() * 8) + 3)  &&  (((s as any).nichWork ?? 0) === 1  ||  ((s as any).nichWork ?? 0) === 2)) {
-        // TODO-QSP: $sleep_events_priority[] = 'gs ''pre_sleep_events'', ''nichServentSleepEvents_handler'', 1 '
+        (s as any).sleep_events_priority = [...((s as any).sleep_events_priority ?? []), 'gs \'pre_sleep_events\', \'nichServentSleepEvents_handler\', 1 '];
       }
     }
     if (((s as any).loc ?? 0) === 'HotelRoom'  &&  ((s as any).loc_arg ?? 0) === 'therapist'  &&  ((s as any).locat ?? 0)?.['A186'] === 2) {
-      // TODO-QSP: $sleep_events_priority[] = 'gs ''therapist_home'', ''pre_sleep'' '
+      (s as any).sleep_events_priority = [...((s as any).sleep_events_priority ?? []), 'gs \'therapist_home\', \'pre_sleep\' '];
     }
     if (((s as any).daystart ?? 0) > ((s as any).sleepVars ?? 0)?.['sleep_reflection_day']) {
       qspCall(s, 'sleep_reflections', 'event_check');
@@ -30,29 +32,30 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     qspGoto(s, 'pre_sleep_events', 'mod_sleepevents');
   }
   qspGoto(s, 'pre_sleep_events', 'continue');
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
   ((s as any).sleepVars = (s as any).sleepVars ?? {})['stat_display'] = 1;
+  (s as any).sleep_events = undefined;
+  (s as any).sleep_events_priority = undefined;
   if (((s as any).sleepVars ?? 0)?.['events_active'] === 1) {
     ((s as any).sleepVars = (s as any).sleepVars ?? {})['events_done'] = 0;
     if (((s as any).succubusQW ?? 0) === 2) {
-      // TODO-QSP: $sleep_events_priority[] = 'gs ''pre_sleep_events'', ''suc_event'' '
+      (s as any).sleep_events_priority = [...((s as any).sleep_events_priority ?? []), 'gs \'pre_sleep_events\', \'suc_event\' '];
     }
     if (((s as any).magf2bdo ?? 0) === 2) {
-      // TODO-QSP: $sleep_events_priority[] = 'gs ''pre_sleep_events'', ''magb_event'' '
+      (s as any).sleep_events_priority = [...((s as any).sleep_events_priority ?? []), 'gs \'pre_sleep_events\', \'magb_event\' '];
     }
     if (((s as any).nichGalaOpponent ?? 0) === 30  &&  ((s as any).hour ?? 0) >= 19  &&  ((s as any).nichDebug ?? 0) === 1) {
-      // TODO-QSP: $sleep_events_priority[] = 'gs ''pre_sleep_events'', ''nichServentSleepEvents_handler'', 2 '
+      (s as any).sleep_events_priority = [...((s as any).sleep_events_priority ?? []), 'gs \'pre_sleep_events\', \'nichServentSleepEvents_handler\', 2 '];
     } else {
       if (((s as any).nichGalaContractTaras ?? 0) === 1  &&  ((s as any).daystart ?? 0) >= ((s as any).nichGalaContractTarasLast ?? 0) + (Math.floor(Math.random() * 8) + 3)  &&  (((s as any).nichWork ?? 0) === 1  ||  ((s as any).nichWork ?? 0) === 2)) {
-        // TODO-QSP: $sleep_events_priority[] = 'gs ''pre_sleep_events'', ''nichServentSleepEvents_handler'', 1 '
+        (s as any).sleep_events_priority = [...((s as any).sleep_events_priority ?? []), 'gs \'pre_sleep_events\', \'nichServentSleepEvents_handler\', 1 '];
       }
     }
     if (((s as any).loc ?? 0) === 'HotelRoom'  &&  ((s as any).loc_arg ?? 0) === 'therapist'  &&  ((s as any).locat ?? 0)?.['A186'] === 2) {
-      // TODO-QSP: $sleep_events_priority[] = 'gs ''therapist_home'', ''pre_sleep'' '
+      (s as any).sleep_events_priority = [...((s as any).sleep_events_priority ?? []), 'gs \'therapist_home\', \'pre_sleep\' '];
     }
     if (((s as any).daystart ?? 0) > ((s as any).sleepVars ?? 0)?.['sleep_reflection_day']) {
       qspCall(s, 'sleep_reflections', 'event_check');
@@ -60,14 +63,12 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     qspGoto(s, 'pre_sleep_events', 'mod_sleepevents');
   }
   qspGoto(s, 'pre_sleep_events', 'continue');
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterModSleepevents(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'mod_system', 'sleep', 'pre_sleep_events', 'mod_sleepevents');
   qspGoto(s, 'pre_sleep_events', 'event_handler');
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -82,7 +83,6 @@ function enterEventHandler(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspGoto(s, 'pre_sleep_events', 'continue');
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -91,46 +91,53 @@ function enterEventHandler2(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === 'priority') {
     (s as any).temp_slev_id = (Math.floor(Math.random() * (0 - 0 + 1)) + (0));
     (s as any).temp_sleep_event_chosen = (((s as any).sleep_events_priority ?? 0)?.[String((s as any).temp_slev_id ?? 0)] ?? 0);
+    (s as any).sleep_events_priority = undefined;
   } else {
     (s as any).temp_slev_id = (Math.floor(Math.random() * (0 - 0 + 1)) + (0));
     (s as any).temp_sleep_event_chosen = (((s as any).sleep_events ?? 0)?.[String((s as any).temp_slev_id ?? 0)] ?? 0);
+    (s as any).sleep_events = undefined;
   }
+  (s as any).temp_slev_id = undefined;
+  qspFunc(s, 'temp_sleep_event_chosen');
   qspGoto(s, 'pre_sleep_events', 'event_end');
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterEventEnd(s: GameState, scene: SceneBuilder): void {
+  (s as any).temp_sleep_event_chosen = undefined;
   qspGoto(s, 'pre_sleep_events', 'event_handler');
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterExit(s: GameState, scene: SceneBuilder): void {
   ((s as any).sleepVars = (s as any).sleepVars ?? {})['events_done'] = 0;
   ((s as any).sleepVars = (s as any).sleepVars ?? {})['stat_display'] = 0;
+  (s as any).sleep_events = undefined;
+  (s as any).sleep_events_priority = undefined;
+  (s as any).temp_slev_id = undefined;
+  (s as any).temp_sleep_event_chosen = undefined;
   (s as any).inSleep = 0;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterContinue(s: GameState, scene: SceneBuilder): void {
   ((s as any).sleepVars = (s as any).sleepVars ?? {})['events_done'] = 0;
   ((s as any).sleepVars = (s as any).sleepVars ?? {})['stat_display'] = 0;
+  (s as any).sleep_events = undefined;
+  (s as any).sleep_events_priority = undefined;
+  (s as any).temp_slev_id = undefined;
+  (s as any).temp_sleep_event_chosen = undefined;
   qspGoto(s, 'pre_sleep', 'pre_sleep2');
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterSucEvent(s: GameState, scene: SceneBuilder): void {
   qspGoto(s, 'pre_sleep_events', 'succhoice');
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterMagbEvent(s: GameState, scene: SceneBuilder): void {
   qspGoto(s, 'pre_sleep_events', 'magbstchoice');
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -143,7 +150,6 @@ function enterNichServentSleepEventsHandler(s: GameState, scene: SceneBuilder): 
       qspGoto(s, 'nichBedroomServant', 'sleepEvents', '1000');
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -161,7 +167,6 @@ function enterSucchoice(s: GameState, scene: SceneBuilder): void {
   scene.text('Thinking about it you realize that you could push the energy out or pull it in!');
   scene.text('');
   scene.text('<center><b>You also feel that both are <i>permanent</i> choices.</b></center>');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Try to ignore it and go to sleep', handler: (st: GameState) => {
     qspCall(st, 'pre_sleep_events', '');
@@ -184,7 +189,6 @@ function enterSucchoiceNO(s: GameState, scene: SceneBuilder): void {
   (s as any).pcs_horny = 0;
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go to sleep', handler: (st: GameState) => {
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterEventEnd(st, scene); (st as any).locArgs = __savedLocArgs; }
@@ -213,7 +217,6 @@ function enterSucchoiceYES(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
   scene.text('Power bursts through your body causing you to hop out of bed.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['pre_sleep_events', 'succubinit'] },
   ]);
@@ -238,7 +241,6 @@ function enterSuccubinit(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'medical_din', 'remove_preg');
     (s as any).RecovH = 0;
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', handler: (st: GameState) => {
     qspCall(st, 'pre_sleep_events', '');
@@ -250,13 +252,14 @@ function enterSuccubinit(s: GameState, scene: SceneBuilder): void {
 function enterMagbstchoice(s: GameState, scene: SceneBuilder): void {
   (s as any).tittmp = ((s as any).tits ?? 0) + 1;
   scene.img(`images/pc/body/tits/t${((s as any).tittmp ?? '')}.jpg`);
+  (s as any).tittmp = undefined;
   scene.text('You have an odd dream where you are looking at your naked chest in a mirror and your breasts seem larger…');
   scene.text('As the dream starts to drift away, you find yourself gazing at the reflection of your breasts and think:');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Nice, I wish my breasts really would grow.', handler: (st: GameState) => {
     (st as any).magf2bdo = 1;
     (st as any).magtarcup = ((st as any).magtarcup ?? 0) + (1);
+    (st as any).mgf2bnocnt = undefined;
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterEventEnd(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Eh, I don\'t like them like that.', handler: (st: GameState) => {

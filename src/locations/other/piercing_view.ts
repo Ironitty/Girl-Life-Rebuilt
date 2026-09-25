@@ -40,7 +40,6 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
     return;
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -48,7 +47,7 @@ function enterSorted(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === 'add') {
     qspCall(s, 'piercing_attributes', '$ARGS[2]', ((s as any).locArgs?.[3] ?? 0));
     if ((!((s as any).PirQuality ?? 0))) {
-      // TODO-QSP: exit
+      return;
     }
     qspCall(s, 'shop_utils', 'sorted', 'add_to_number', ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[3] ?? 0), ((s as any).locArgs?.[4] ?? 0));
     qspCall(s, 'shop_utils', 'sorted', 'add_to_quality', ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[3] ?? 0), ((s as any).PirQuality ?? 0));
@@ -56,7 +55,6 @@ function enterSorted(s: GameState, scene: SceneBuilder): void {
     return;
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -76,7 +74,6 @@ function enterDisplay(s: GameState, scene: SceneBuilder): void {
     return;
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -96,7 +93,6 @@ function enterViewItem(s: GameState, scene: SceneBuilder): void {
   } },
 ]);
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -121,18 +117,16 @@ function enterViewItemShop(s: GameState, scene: SceneBuilder): void {
       ((s as any).shop_utils_view = (s as any).shop_utils_view ?? {})['price_string'] = qspFunc(s, 'money', 'string_price', (((s as any).shop_utils_view ?? 0)?.['price']));
     } else {
       ((s as any).shop_utils_view = (s as any).shop_utils_view ?? {})['price_string'] = qspFunc(s, 'wrap', 'neg s', qspFunc(s, 'money', 'string_price', (((s as any).shop_utils_view ?? 0)?.['base_price']))) + ' <b>' + qspFunc(s, 'money', 'string_price', (((s as any).shop_utils_view ?? 0)?.['price'])) + '</b>';
-      // TODO-QSP: 'Now ' + shop_utils_view['discount_total'] + '% off' + iif(shop_utils_view['discount_total'] <= 10, ...
+      scene.text('Now ' + (((s as any).shop_utils_view ?? 0)?.['discount_total'] ?? '') + '% off' + ((((s as any).shop_utils_view ?? 0)?.['discount_total'] <= 10) ? ('') : ('!')));
     }
-    // TODO-QSP: 'Price: ' + $shop_utils_view['price_string']
+    scene.text('Price: ' + (((s as any).shop_utils_view ?? 0)?.['price_string'] ?? ''));
     if (qspFunc(s, 'money', 'can_afford', ((s as any).shop_utils_view ?? 0)?.['price']) === 0) {
-      // TODO-QSP: dynamic text: You cannot afford to get your <<$shop_utils_view[''type'']>> pierced with this p...
       scene.text(`You cannot afford to get your ${(((s as any).shop_utils_view ?? 0)?.['type'] ?? '')} pierced with this piercing.`);
     } else {
       scene.actions([
         { label: '', labelFn: (s: GameState) => 'Get your ' + String((((s as any).shop_utils_view ?? 0)?.['type'] ?? '') ?? '') + ' pierced and buy this piercing (0:05, ' + String((((s as any).shop_utils_view ?? 0)?.['price_string'] ?? '') ?? '') + ')', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
     scene.img(`${qspFunc(s, 'piercing_management', (((st as any).shop_utils_view ?? 0)?.['type'] ?? '') + '_image', (((st as any).shop_utils_view ?? 0)?.['number'] ?? ''))}`);
-    // TODO-QSP: dynamic text: The tattooist disinfects the area, pierces your <<$shop_utils_view[''type'']>> a...
     scene.text(`The tattooist disinfects the area, pierces your ${(((st as any).shop_utils_view ?? 0)?.['type'] ?? '')} and inserts your chosen piercing.`);
     qspCall(st, 'money', 'pay', (((st as any).shop_utils_view ?? 0)?.['price']));
     qspCall(st, 'piercing_management', 'add', (((st as any).shop_utils_view ?? 0)?.['type']), (((st as any).shop_utils_view ?? 0)?.['number']));
@@ -151,9 +145,9 @@ function enterViewItemShop(s: GameState, scene: SceneBuilder): void {
       ((s as any).shop_utils_view = (s as any).shop_utils_view ?? {})['price_string'] = qspFunc(s, 'money', 'string_price', (((s as any).shop_utils_view ?? 0)?.['price']));
     } else {
       ((s as any).shop_utils_view = (s as any).shop_utils_view ?? {})['price_string'] = qspFunc(s, 'wrap', 'neg s', qspFunc(s, 'money', 'string_price', (((s as any).shop_utils_view ?? 0)?.['base_price']))) + ' <b>' + qspFunc(s, 'money', 'string_price', (((s as any).shop_utils_view ?? 0)?.['price'])) + '</b>';
-      // TODO-QSP: 'Now ' + shop_utils_view['discount_total'] + '% off' + iif(shop_utils_view['discount_total'] <= 10, ...
+      scene.text('Now ' + (((s as any).shop_utils_view ?? 0)?.['discount_total'] ?? '') + '% off' + ((((s as any).shop_utils_view ?? 0)?.['discount_total'] <= 10) ? ('') : ('!')));
     }
-    // TODO-QSP: 'Price: ' + $shop_utils_view['price_string']
+    scene.text('Price: ' + (((s as any).shop_utils_view ?? 0)?.['price_string'] ?? ''));
     if (qspFunc(s, 'money', 'can_afford', ((s as any).shop_utils_view ?? 0)?.['price']) === 0) {
       scene.text('You don\'t have enough money for this piercing.');
     } else {
@@ -174,7 +168,6 @@ function enterViewItemShop(s: GameState, scene: SceneBuilder): void {
   } },
 ]);
   return;
-  // TODO-QSP: end
   scene.build();
 }
 

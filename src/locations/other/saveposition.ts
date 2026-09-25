@@ -3,8 +3,8 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: $MWindow[] = $maintxt
-  // TODO-QSP: $AWindow[] = $curacts
+  (s as any).MWindow = [...((s as any).MWindow ?? []), ((s as any).maintxt ?? 0)];
+  (s as any).AWindow = [...((s as any).AWindow ?? []), ((s as any).curacts ?? 0)];
   scene.build();
 }
 

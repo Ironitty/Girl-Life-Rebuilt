@@ -35,7 +35,6 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       ((s as any).KGZVars = (s as any).KGZVars ?? {})['sup'] = ((s as any).KGZVars['sup'] ?? 0) - (1);
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -44,7 +43,6 @@ function enterKGZvihod(s: GameState, scene: SceneBuilder): void {
     ((s as any).KGZVars = (s as any).KGZVars ?? {})['weapon'] = 1;
     scene.text('You find a cudgel lying on the pavement, seemingly having been dropped by another survivor.');
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go to your apartment', handler: (st: GameState) => {
     ((st as any).KGZVars = (st as any).KGZVars ?? {})['hour'] = ((st as any).KGZVars['hour'] ?? 0) + (1);
@@ -103,7 +101,6 @@ function enterKGZvihod(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterKGZvihod2(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return to the street', handler: (st: GameState) => {
     ((st as any).KGZVars = (st as any).KGZVars ?? {})['hour'] = ((st as any).KGZVars['hour'] ?? 0) + (1);
@@ -147,7 +144,6 @@ function enterKGZvihod2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterKGZvihod3(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return to the street', handler: (st: GameState) => {
     ((st as any).KGZVars = (st as any).KGZVars ?? {})['hour'] = ((st as any).KGZVars['hour'] ?? 0) + (1);
@@ -214,7 +210,6 @@ function enterKGZvihod4(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go down the side street', handler: (st: GameState) => {
     ((st as any).KGZVars = (st as any).KGZVars ?? {})['hour'] = ((st as any).KGZVars['hour'] ?? 0) + (1);
@@ -286,7 +281,6 @@ function enterKGZvihod4(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterKGZvihod5(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the store', handler: (st: GameState) => {
     ((st as any).KGZVars = (st as any).KGZVars ?? {})['hour'] = ((st as any).KGZVars['hour'] ?? 0) + (1);
@@ -313,7 +307,6 @@ function enterKGZvihod5(s: GameState, scene: SceneBuilder): void {
       ((st as any).KGZVars = (st as any).KGZVars ?? {})['gun2'] = 1;
       scene.text('You have found a shotgun!');
     }
-    // TODO-QSP: dynamic text: You find <<KGZVars[''bulletrand'']>> shotgun cartridges.
     scene.text(`You find ${(((st as any).KGZVars ?? 0)?.['bulletrand'] ?? '')} shotgun cartridges.`);
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
@@ -349,7 +342,7 @@ function enterKGZvihod6(s: GameState, scene: SceneBuilder): void {
     scene.text('You have found 500 bullets for your machine gun, but the noise you made has alerted the dead.');
     scene.actions([
       { label: 'Defend yourself', handler: (st: GameState) => {
-    // TODO-QSP: KGZVars['dist'] = rand(5, 8)
+    ((st as any).KGZVars = (st as any).KGZVars ?? {})['dist'] = (Math.floor(Math.random() * 4) + 5);
   }, goto: ['KGZfight', ''] },
     ]);
   } },
@@ -378,7 +371,6 @@ function enterKGZvihod6(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return to the street', handler: (st: GameState) => {
     ((st as any).KGZVars = (st as any).KGZVars ?? {})['hour'] = ((st as any).KGZVars['hour'] ?? 0) + (1);
@@ -405,7 +397,6 @@ function enterKGZvihod6(s: GameState, scene: SceneBuilder): void {
       ((st as any).KGZVars = (st as any).KGZVars ?? {})['gun'] = 1;
       scene.text('You have found a pistol!');
     }
-    // TODO-QSP: dynamic text: You find <<KGZVars[''bulletrand'']>> bullets for your pistol.
     scene.text(`You find ${(((st as any).KGZVars ?? 0)?.['bulletrand'] ?? '')} bullets for your pistol.`);
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
@@ -418,7 +409,6 @@ function enterKGZvihod6(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterKGZvihod7(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return to the street', handler: (st: GameState) => {
     ((st as any).KGZVars = (st as any).KGZVars ?? {})['hour'] = ((st as any).KGZVars['hour'] ?? 0) + (1);
@@ -489,7 +479,6 @@ function enterKGZvihod8(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return to the Boulevard', handler: (st: GameState) => {
     ((st as any).KGZVars = (st as any).KGZVars ?? {})['hour'] = ((st as any).KGZVars['hour'] ?? 0) + (1);
@@ -522,7 +511,6 @@ function enterKGZvihod8(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterKGZvihod9(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return to the highway', handler: (st: GameState) => {
     ((st as any).KGZVars = (st as any).KGZVars ?? {})['hour'] = ((st as any).KGZVars['hour'] ?? 0) + (1);
@@ -567,7 +555,6 @@ function enterKGZvihod10(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: '', labelFn: (s: GameState) => 'Head towards ' + String((((s as any).KGZVars ?? 0)?.['placeA_text'] ?? '') ?? ''), handler: (st: GameState) => {
     ((st as any).KGZVars = (st as any).KGZVars ?? {})['hour'] = ((st as any).KGZVars['hour'] ?? 0) + (1);
@@ -616,7 +603,7 @@ function enterKGZvihod11(s: GameState, scene: SceneBuilder): void {
     scene.text('You run to the warehouse while surrounded on all sides by the dead.');
     scene.actions([
       { label: 'Defend yourself', handler: (st: GameState) => {
-    // TODO-QSP: KGZVars['dist'] = rand(5, 12)
+    ((st as any).KGZVars = (st as any).KGZVars ?? {})['dist'] = (Math.floor(Math.random() * 8) + 5);
   }, goto: ['KGZfight', ''] },
     ]);
   } },
@@ -630,7 +617,7 @@ function enterKGZvihod11(s: GameState, scene: SceneBuilder): void {
     scene.text('You run to the infirmary while surrounded on all sides by zombies.');
     scene.actions([
       { label: 'Defend yourself', handler: (st: GameState) => {
-    // TODO-QSP: KGZVars['dist'] = rand(5, 12)
+    ((st as any).KGZVars = (st as any).KGZVars ?? {})['dist'] = (Math.floor(Math.random() * 8) + 5);
   }, goto: ['KGZfight', ''] },
     ]);
   } },
@@ -644,7 +631,7 @@ function enterKGZvihod11(s: GameState, scene: SceneBuilder): void {
     scene.text('You run to the armory while surrounded on all sides by zombies.');
     scene.actions([
       { label: 'Defend yourself', handler: (st: GameState) => {
-    // TODO-QSP: KGZVars['dist'] = rand(5, 12)
+    ((st as any).KGZVars = (st as any).KGZVars ?? {})['dist'] = (Math.floor(Math.random() * 8) + 5);
   }, goto: ['KGZfight', ''] },
     ]);
   } },
@@ -658,13 +645,12 @@ function enterKGZvihod11(s: GameState, scene: SceneBuilder): void {
     scene.text('You run to the garage while surrounded on all sides by zombies.');
     scene.actions([
       { label: 'Defend yourself', handler: (st: GameState) => {
-    // TODO-QSP: KGZVars['dist'] = rand(5, 12)
+    ((st as any).KGZVars = (st as any).KGZVars ?? {})['dist'] = (Math.floor(Math.random() * 8) + 5);
   }, goto: ['KGZfight', ''] },
     ]);
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return to the highway', handler: (st: GameState) => {
     ((st as any).KGZVars = (st as any).KGZVars ?? {})['hour'] = ((st as any).KGZVars['hour'] ?? 0) + (1);
@@ -693,7 +679,7 @@ function enterKGZvihod11(s: GameState, scene: SceneBuilder): void {
     scene.text('You head for the roof while surrounded on all sides by zombies.');
     scene.actions([
       { label: 'Defend yourself', handler: (st: GameState) => {
-    // TODO-QSP: KGZVars['dist'] = rand(5, 12)
+    ((st as any).KGZVars = (st as any).KGZVars ?? {})['dist'] = (Math.floor(Math.random() * 8) + 5);
   }, goto: ['KGZfight', ''] },
     ]);
   } },
@@ -702,7 +688,6 @@ function enterKGZvihod11(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterKGZvihod13(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: end
   scene.actions([
     { label: 'Head outside', handler: (st: GameState) => {
     ((st as any).KGZVars = (st as any).KGZVars ?? {})['hour'] = ((st as any).KGZVars['hour'] ?? 0) + (1);
@@ -727,7 +712,6 @@ function enterKGZvihod13(s: GameState, scene: SceneBuilder): void {
     if (((st as any).udacharand ?? 0) === 1) {
       ((st as any).KGZVars = (st as any).KGZVars ?? {})['suprand'] = (Math.floor(Math.random() * 3) + 1);
       ((st as any).KGZVars = (st as any).KGZVars ?? {})['sup'] = ((st as any).KGZVars['sup'] ?? 0) + ((((st as any).KGZVars ?? 0)?.['suprand']));
-      // TODO-QSP: dynamic text: You have found enough provisions to last <<KGZVars[''suprand'']>> day(s).
       scene.text(`You have found enough provisions to last ${(((st as any).KGZVars ?? 0)?.['suprand'] ?? '')} day(s).`);
     } else {
       if ((!((st as any).udacharand ?? 0))) {
@@ -735,7 +719,7 @@ function enterKGZvihod13(s: GameState, scene: SceneBuilder): void {
         scene.text('Stuck in the dark, you struggle to read what\'s written on a box when you suddenly hear the dead screeching and moaning as they rush towards you.');
         scene.actions([
 { label: 'Defend yourself', handler: (st: GameState) => {
-    // TODO-QSP: KGZVars['dist'] = rand(5, 10)
+    ((st as any).KGZVars = (st as any).KGZVars ?? {})['dist'] = (Math.floor(Math.random() * 6) + 5);
   }, goto: ['KGZfight', ''] },
 ]);
         return;
@@ -752,7 +736,6 @@ function enterKGZvihod13(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterKGZvihod14(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: end
   scene.actions([
     { label: 'Head outside', handler: (st: GameState) => {
     ((st as any).KGZVars = (st as any).KGZVars ?? {})['hour'] = ((st as any).KGZVars['hour'] ?? 0) + (1);
@@ -783,7 +766,7 @@ function enterKGZvihod14(s: GameState, scene: SceneBuilder): void {
         scene.text('Stuck in the dark, you struggle to read what\'s written on a box when you suddenly hear the dead screeching and moaning as they rush towards you.');
         scene.actions([
 { label: 'Defend yourself', handler: (st: GameState) => {
-    // TODO-QSP: KGZVars['dist'] = rand(5, 10)
+    ((st as any).KGZVars = (st as any).KGZVars ?? {})['dist'] = (Math.floor(Math.random() * 6) + 5);
   }, goto: ['KGZfight', ''] },
 ]);
         return;
@@ -800,7 +783,6 @@ function enterKGZvihod14(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterKGZvihod15(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: end
   scene.actions([
     { label: 'Head outside', handler: (st: GameState) => {
     ((st as any).KGZVars = (st as any).KGZVars ?? {})['hour'] = ((st as any).KGZVars['hour'] ?? 0) + (1);
@@ -867,7 +849,7 @@ function enterKGZvihod16(s: GameState, scene: SceneBuilder): void {
     scene.text('You floor it along the road, dodging abandoned cars littering the area until the truck slides on the slippery road and overturns as it crashes into a ditch. You\'re soon surrounded by a group of zombies and have no choice but to fight your way out.');
     scene.actions([
       { label: 'Defend yourself', handler: (st: GameState) => {
-    // TODO-QSP: KGZVars['dist'] = rand(5, 10)
+    ((st as any).KGZVars = (st as any).KGZVars ?? {})['dist'] = (Math.floor(Math.random() * 6) + 5);
   }, goto: ['KGZfight', ''] },
     ]);
   } },
@@ -879,7 +861,7 @@ function enterKGZvihod16(s: GameState, scene: SceneBuilder): void {
     scene.text('You make good progress until you reach a group of cars you can\'t pass. You try going offroad to get around them, but end up getting stuck. You\'re soon surrounded by a group of zombies and have no choice but to fight your way out.');
     scene.actions([
       { label: 'Defend yourself', handler: (st: GameState) => {
-    // TODO-QSP: KGZVars['dist'] = rand(5, 10)
+    ((st as any).KGZVars = (st as any).KGZVars ?? {})['dist'] = (Math.floor(Math.random() * 6) + 5);
   }, goto: ['KGZfight', ''] },
     ]);
   } },
@@ -891,7 +873,7 @@ function enterKGZvihod16(s: GameState, scene: SceneBuilder): void {
     scene.text('You take your time driving along the road, but soon come to a group of cars you can\'t pass and climb out of the truck to investigate. As you try to figure out what to do, you\'re quickly surrounded by a group of zombies and have no choice but to fight your way out.');
     scene.actions([
       { label: 'Defend yourself', handler: (st: GameState) => {
-    // TODO-QSP: KGZVars['dist'] = rand(5, 10)
+    ((st as any).KGZVars = (st as any).KGZVars ?? {})['dist'] = (Math.floor(Math.random() * 6) + 5);
   }, goto: ['KGZfight', ''] },
     ]);
   } },
@@ -903,7 +885,7 @@ function enterKGZvihod16(s: GameState, scene: SceneBuilder): void {
     scene.text('You drive slowly along the road, weaving around the various cars littering the area before you suddenly collide with something and are forced to stop. You climb out of the truck to investigate, but are quickly surrounded by a group of zombies and have no choice but to fight your way out.');
     scene.actions([
       { label: 'Defend yourself', handler: (st: GameState) => {
-    // TODO-QSP: KGZVars['dist'] = rand(5, 10)
+    ((st as any).KGZVars = (st as any).KGZVars ?? {})['dist'] = (Math.floor(Math.random() * 6) + 5);
   }, goto: ['KGZfight', ''] },
     ]);
   } },
@@ -941,7 +923,6 @@ function enterKGZvihod16(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Head outside', handler: (st: GameState) => {
     ((st as any).KGZVars = (st as any).KGZVars ?? {})['hour'] = ((st as any).KGZVars['hour'] ?? 0) + (1);
@@ -979,7 +960,6 @@ function enterKGZvihod100(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Wander through the suburbs', handler: (st: GameState) => {
     ((st as any).KGZVars = (st as any).KGZVars ?? {})['hour'] = ((st as any).KGZVars['hour'] ?? 0) + (1);
@@ -994,7 +974,7 @@ function enterKGZvihod100(s: GameState, scene: SceneBuilder): void {
       scene.text('You find a solid house with iron bars on the windows.');
       scene.actions([
         { label: 'Enter the house', handler: (st: GameState) => {
-    // TODO-QSP: KGZVars['place'] = 101
+    ((st as any).KGZVars = (st as any).KGZVars ?? {})['place'] = 101;
     dynamicGoto(st, 'curloc');
   } },
       ]);
@@ -1004,7 +984,7 @@ function enterKGZvihod100(s: GameState, scene: SceneBuilder): void {
         scene.text('You find a large supermarket which might contain a variety of worthwhile supplies.');
         scene.actions([
           { label: 'Enter the supermarket', handler: (st: GameState) => {
-    // TODO-QSP: KGZVars['place'] = 102
+    ((st as any).KGZVars = (st as any).KGZVars ?? {})['place'] = 102;
     dynamicGoto(st, 'curloc');
   } },
         ]);
@@ -1035,7 +1015,6 @@ function enterKGZvihod100(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterKGZvihod102(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the supermarket', handler: (st: GameState) => {
     ((st as any).KGZVars = (st as any).KGZVars ?? {})['hour'] = ((st as any).KGZVars['hour'] ?? 0) + (1);
@@ -1079,7 +1058,6 @@ function enterKGZvihod102(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterKGZvihod200(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: end
   scene.actions([
     { label: 'Walk through the forest towards the highway', handler: (st: GameState) => {
     ((st as any).KGZVars = (st as any).KGZVars ?? {})['hour'] = ((st as any).KGZVars['hour'] ?? 0) + (1);
@@ -1112,7 +1090,6 @@ function enterKGZvihod200(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterKGZvihod201(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the forest', handler: (st: GameState) => {
     ((st as any).KGZVars = (st as any).KGZVars ?? {})['hour'] = ((st as any).KGZVars['hour'] ?? 0) + (1);
@@ -1151,7 +1128,6 @@ function enterKGZvincent(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('Vincent questions why you\'re here and wonders aloud if you have a deathwish running around the zombie infested base.');
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     dynamicGoto(st, 'curloc');
@@ -1193,11 +1169,9 @@ function enterKGZfizatk(s: GameState, scene: SceneBuilder): void {
   if (((s as any).KGZVars ?? 0)?.['dead'] > 0) {
     ((s as any).KGZVars = (s as any).KGZVars ?? {})['uron'] = (Math.floor(Math.random() * ((((s as any).KGZVars ?? {})?.['dead'] ?? 0) * 5 - (((s as any).KGZVars ?? {})?.['dead'] ?? 0) * 2 + 1)) + ((((s as any).KGZVars ?? {})?.['dead'] ?? 0) * 2));
     ((s as any).KGZVars = (s as any).KGZVars ?? {})['HP'] = ((s as any).KGZVars['HP'] ?? 0) - ((((s as any).KGZVars ?? 0)?.['uron']));
-    // TODO-QSP: dynamic text: <<KGZVars[''dead'']>> zombie(s) swipe(s) at you while trying to bite.
     scene.text(`${(((s as any).KGZVars ?? 0)?.['dead'] ?? '')} zombie(s) swipe(s) at you while trying to bite.`);
     scene.text(`<center><b>You have taken ${(((s as any).KGZVars ?? 0)?.['uron'] ?? '')} damage.</b></center>`);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1227,7 +1201,6 @@ function enterKGZgunatk(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1257,7 +1230,6 @@ function enterKGZgunatk2(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1287,81 +1259,74 @@ function enterKGZgunatk3(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterKGZgunatk4(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: :KGZmarkgun
-  ((s as any).KGZVars = (s as any).KGZVars ?? {})['bulgun'] = ((s as any).KGZVars['bulgun'] ?? 0) - (1);
-  ((s as any).KGZVars = (s as any).KGZVars ?? {})['uspeh'] = (Math.floor(Math.random() * 101) + 0);
-  if (((s as any).KGZVars ?? 0)?.['dead'] > 0) {
-    if (((s as any).KGZVars ?? 0)?.['dist'] <= 5) {
-      if (((s as any).KGZVars ?? 0)?.['uspeh'] <= 80) {
-        ((s as any).KGZVars = (s as any).KGZVars ?? {})['dead'] = ((s as any).KGZVars['dead'] ?? 0) - (1);
-        scene.text('At this range, it\'s almost impossible to miss. You take aim at the zombie\'s head and fire, the burst of gunshots ringing out as the zombie falls to the ground motionless.');
-      } else {
-        scene.text('You shoot the zombie, but it has no effect.');
-      }
-    } else {
-      if (((s as any).KGZVars ?? 0)?.['dist'] <= 10) {
-        if (((s as any).KGZVars ?? 0)?.['uspeh'] <= 70) {
+  do {
+    ((s as any).KGZVars = (s as any).KGZVars ?? {})['bulgun'] = ((s as any).KGZVars['bulgun'] ?? 0) - (1);
+    ((s as any).KGZVars = (s as any).KGZVars ?? {})['uspeh'] = (Math.floor(Math.random() * 101) + 0);
+    if (((s as any).KGZVars ?? 0)?.['dead'] > 0) {
+      if (((s as any).KGZVars ?? 0)?.['dist'] <= 5) {
+        if (((s as any).KGZVars ?? 0)?.['uspeh'] <= 80) {
           ((s as any).KGZVars = (s as any).KGZVars ?? {})['dead'] = ((s as any).KGZVars['dead'] ?? 0) - (1);
-          scene.text('You carefully take aim at the zombie\'s head and fire, the burst of gunshots ringing out as the zombie falls to the ground motionless.');
+          scene.text('At this range, it\'s almost impossible to miss. You take aim at the zombie\'s head and fire, the burst of gunshots ringing out as the zombie falls to the ground motionless.');
         } else {
           scene.text('You shoot the zombie, but it has no effect.');
         }
       } else {
-        if (((s as any).KGZVars ?? 0)?.['uspeh'] <= 60) {
-          ((s as any).KGZVars = (s as any).KGZVars ?? {})['dead'] = ((s as any).KGZVars['dead'] ?? 0) - (1);
-          scene.text('The zombie is at a distance, but you decide to take the shot anyway. You take aim at the zombie\'s head and fire, the burst of gunshots ringing out as the zombie falls to the ground motionless.');
+        if (((s as any).KGZVars ?? 0)?.['dist'] <= 10) {
+          if (((s as any).KGZVars ?? 0)?.['uspeh'] <= 70) {
+            ((s as any).KGZVars = (s as any).KGZVars ?? {})['dead'] = ((s as any).KGZVars['dead'] ?? 0) - (1);
+            scene.text('You carefully take aim at the zombie\'s head and fire, the burst of gunshots ringing out as the zombie falls to the ground motionless.');
+          } else {
+            scene.text('You shoot the zombie, but it has no effect.');
+          }
         } else {
-          scene.text('You shoot the zombie, but it has no effect.');
+          if (((s as any).KGZVars ?? 0)?.['uspeh'] <= 60) {
+            ((s as any).KGZVars = (s as any).KGZVars ?? {})['dead'] = ((s as any).KGZVars['dead'] ?? 0) - (1);
+            scene.text('The zombie is at a distance, but you decide to take the shot anyway. You take aim at the zombie\'s head and fire, the burst of gunshots ringing out as the zombie falls to the ground motionless.');
+          } else {
+            scene.text('You shoot the zombie, but it has no effect.');
+          }
         }
       }
     }
-  }
-  if (((s as any).KGZVars ?? 0)?.['bulgun'] > 0) {
-    // TODO-QSP: jump 'KGZmarkgun'
-  }
-  // TODO-QSP: end
+  } while (((s as any).KGZVars ?? 0)?.['bulgun'] > 0);
   scene.build();
 }
 
 function enterKGZgunatk5(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: :KGZmarkgunb
-  ((s as any).KGZVars = (s as any).KGZVars ?? {})['bulgun'] = ((s as any).KGZVars['bulgun'] ?? 0) - (1);
-  ((s as any).KGZVars = (s as any).KGZVars ?? {})['uspeh'] = (Math.floor(Math.random() * 101) + 0);
-  if (((s as any).KGZVars ?? 0)?.['dead'] > 0) {
-    if (((s as any).KGZVars ?? 0)?.['dist'] <= 5) {
-      if (((s as any).KGZVars ?? 0)?.['uspeh'] <= 70) {
-        ((s as any).KGZVars = (s as any).KGZVars ?? {})['dead'] = ((s as any).KGZVars['dead'] ?? 0) - (1);
-        scene.text('At this range, it\'s almost impossible to miss. You take aim at the zombie\'s head and fire, gunshots continuing to ring out even after the zombie falls to the ground motionless.');
-      } else {
-        scene.text('You shoot the zombie, but even going full auto has no effect.');
-      }
-    } else {
-      if (((s as any).KGZVars ?? 0)?.['dist'] <= 10) {
-        if (((s as any).KGZVars ?? 0)?.['uspeh'] <= 60) {
+  do {
+    ((s as any).KGZVars = (s as any).KGZVars ?? {})['bulgun'] = ((s as any).KGZVars['bulgun'] ?? 0) - (1);
+    ((s as any).KGZVars = (s as any).KGZVars ?? {})['uspeh'] = (Math.floor(Math.random() * 101) + 0);
+    if (((s as any).KGZVars ?? 0)?.['dead'] > 0) {
+      if (((s as any).KGZVars ?? 0)?.['dist'] <= 5) {
+        if (((s as any).KGZVars ?? 0)?.['uspeh'] <= 70) {
           ((s as any).KGZVars = (s as any).KGZVars ?? {})['dead'] = ((s as any).KGZVars['dead'] ?? 0) - (1);
-          scene.text('You carefully take aim at the zombie\'s head and fire, the burst of gunshots ringing out as the zombie falls to the ground motionless.');
+          scene.text('At this range, it\'s almost impossible to miss. You take aim at the zombie\'s head and fire, gunshots continuing to ring out even after the zombie falls to the ground motionless.');
         } else {
           scene.text('You shoot the zombie, but even going full auto has no effect.');
         }
       } else {
-        if (((s as any).KGZVars ?? 0)?.['uspeh'] <= 50) {
-          ((s as any).KGZVars = (s as any).KGZVars ?? {})['dead'] = ((s as any).KGZVars['dead'] ?? 0) - (1);
-          scene.text('The zombie is at a distance, but you decide to take the shot anyway. You take aim at the zombie\'s head and fire, gunshots continuing to ring out even after the zombie falls to the ground motionless.');
+        if (((s as any).KGZVars ?? 0)?.['dist'] <= 10) {
+          if (((s as any).KGZVars ?? 0)?.['uspeh'] <= 60) {
+            ((s as any).KGZVars = (s as any).KGZVars ?? {})['dead'] = ((s as any).KGZVars['dead'] ?? 0) - (1);
+            scene.text('You carefully take aim at the zombie\'s head and fire, the burst of gunshots ringing out as the zombie falls to the ground motionless.');
+          } else {
+            scene.text('You shoot the zombie, but even going full auto has no effect.');
+          }
         } else {
-          scene.text('You shoot the zombie, but even going full auto has no effect.');
+          if (((s as any).KGZVars ?? 0)?.['uspeh'] <= 50) {
+            ((s as any).KGZVars = (s as any).KGZVars ?? {})['dead'] = ((s as any).KGZVars['dead'] ?? 0) - (1);
+            scene.text('The zombie is at a distance, but you decide to take the shot anyway. You take aim at the zombie\'s head and fire, gunshots continuing to ring out even after the zombie falls to the ground motionless.');
+          } else {
+            scene.text('You shoot the zombie, but even going full auto has no effect.');
+          }
         }
       }
     }
-  }
-  if (((s as any).KGZVars ?? 0)?.['bulgun'] > 0) {
-    // TODO-QSP: jump 'KGZmarkgunb'
-  }
-  // TODO-QSP: end
+  } while (((s as any).KGZVars ?? 0)?.['bulgun'] > 0);
   scene.build();
 }
 
@@ -1372,16 +1337,13 @@ function enterKGZdeadmanatk(s: GameState, scene: SceneBuilder): void {
   if (((s as any).KGZVars ?? 0)?.['dead'] > 0  &&  ((s as any).KGZVars ?? 0)?.['dist'] <= 2) {
     ((s as any).KGZVars = (s as any).KGZVars ?? {})['uron'] = (Math.floor(Math.random() * ((((s as any).KGZVars ?? {})?.['dead'] ?? 0) * 5 - (((s as any).KGZVars ?? {})?.['dead'] ?? 0) * 2 + 1)) + ((((s as any).KGZVars ?? {})?.['dead'] ?? 0) * 2));
     ((s as any).KGZVars = (s as any).KGZVars ?? {})['HP'] = ((s as any).KGZVars['HP'] ?? 0) - ((((s as any).KGZVars ?? 0)?.['uron']));
-    // TODO-QSP: dynamic text: <<KGZVars[''dead'']>> zombie(s) swipe(s) at you while trying to bite.
     scene.text(`${(((s as any).KGZVars ?? 0)?.['dead'] ?? '')} zombie(s) swipe(s) at you while trying to bite.`);
     scene.text(`<center><b>You have taken ${(((s as any).KGZVars ?? 0)?.['uron'] ?? '')} damage.</b></center>`);
   } else {
     if (((s as any).KGZVars ?? 0)?.['dist'] > 2  &&  ((s as any).KGZVars ?? 0)?.['dead'] > 0) {
-      // TODO-QSP: dynamic text: <<KGZVars[''dead'']>> zombie(s) limp(s) towards you.
       scene.text(`${(((s as any).KGZVars ?? 0)?.['dead'] ?? '')} zombie(s) limp(s) towards you.`);
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1408,7 +1370,6 @@ function enterKGZgranatk(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 

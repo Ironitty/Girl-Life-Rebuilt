@@ -12,10 +12,10 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterWashSheets(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 30;
+  (s as any).cum_sheets = undefined;
   scene.img('images/system/image_needed.png');
   scene.text('You wash your sheets.');
   // TODO-QSP: act'Continue': gt 'bed_get_out', 'start'
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -28,7 +28,6 @@ function enterVomitingCheck(s: GameState, scene: SceneBuilder): void {
     ((s as any).vomit = (s as any).vomit ?? {})['hangover'] = 0;
     ((s as any).vomit = (s as any).vomit ?? {})['unlucky'] = 0;
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -142,7 +141,6 @@ function enterVomitingImages(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -160,10 +158,9 @@ function enterMorningVomit(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'outfit', 'strip_all');
   }
   qspCall(s, 'stat', '');
-  // TODO-QSP: $home_activity['vomit_bedroom']
+  scene.text(String(qspFunc(s, 'home_activity', 'vomit_bedroom') || ''));
   scene.text('Before you even open your eyes, your stomach churns. Nausea courses through you, acid burns at the back of your throat, and you know without a doubt:');
   scene.text('<b>You\'re about to throw up.</b>');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Run to the bathroom', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -288,15 +285,13 @@ function enterPregScare(s: GameState, scene: SceneBuilder): void {
   } else {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPregScareReact(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterThinkPregReact(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: end
   scene.actions([
     { label: 'This is scaring you', handler: (st: GameState) => {
-    // TODO-QSP: $home_activity['vomit_bathroom']
+    scene.text(String(qspFunc(s, 'home_activity', 'vomit_bathroom') || ''));
     scene.text('Anxiety fills your chest, replacing the bile recently vacated from it.');
     scene.text('You don\'t like the frequency with which this is happening. More and more, the evidence is pointing towards you being pregnant.');
     scene.text('<i>What am I going to do?</i> you think to yourself.');
@@ -305,7 +300,7 @@ function enterThinkPregReact(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'I better not be pregnant', handler: (st: GameState) => {
-    // TODO-QSP: $home_activity['vomit_bathroom']
+    scene.text(String(qspFunc(s, 'home_activity', 'vomit_bathroom') || ''));
     scene.text('Disgust and irritation fill you as you reach out to flush the toilet.');
     scene.text('<i>Oh God,</i> you groan internally. <i>I swear, this better be a stomach bug and not pregnancy. I am not ready for motherhood.</i>');
     scene.actions([
@@ -313,7 +308,7 @@ function enterThinkPregReact(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'I can\'t wait for this baby', handler: (st: GameState) => {
-    // TODO-QSP: $home_activity['vomit_bathroom']
+    scene.text(String(qspFunc(s, 'home_activity', 'vomit_bathroom') || ''));
     scene.text('Even through the pain and the horrid taste on your lips, you can\'t help but smile.');
     scene.text('<i>I\'m so ready for this baby!</i> you think excitedly.');
     scene.actions([
@@ -321,7 +316,7 @@ function enterThinkPregReact(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'Baby good, morning sickness bad', handler: (st: GameState) => {
-    // TODO-QSP: $home_activity['vomit_bathroom']
+    scene.text(String(qspFunc(s, 'home_activity', 'vomit_bathroom') || ''));
     scene.text('You clutch your head, wincing at the sharp pain that lances through it.');
     scene.text('<i>This baby can not come sooner,</i> you think to yourself. <i>Really looking forward to watching it grow, but <b>really</b> hate this pregnancy stuff.</i>');
     scene.actions([
@@ -336,7 +331,7 @@ function enterPregScareReact(s: GameState, scene: SceneBuilder): void {
   if (((s as any).stat ?? 0)?.['think_virgin'] === 1) {
     scene.actions([
       { label: 'This is impossible', handler: (st: GameState) => {
-    // TODO-QSP: $home_activity['vomit_bathroom']
+    scene.text(String(qspFunc(s, 'home_activity', 'vomit_bathroom') || ''));
     scene.text('<i>This doesn\'t make any sense,</i> you think, putting your hand on your head as you feel woozy again.');
     scene.actions([
       { label: 'Continue', goto: ['bed_get_out', 'start'] },
@@ -347,7 +342,7 @@ function enterPregScareReact(s: GameState, scene: SceneBuilder): void {
     if (((s as any).stat ?? 0)?.['vaginal'] === 1) {
       scene.actions([
         { label: 'You\'ve only had sex once!', handler: (st: GameState) => {
-    // TODO-QSP: $home_activity['vomit_bathroom']
+    scene.text(String(qspFunc(s, 'home_activity', 'vomit_bathroom') || ''));
     scene.text('<i>But I\'ve only had sex once!</i> you cry internally. <i>How can I already be pregnant?!</i>');
     scene.actions([
       { label: 'Continue', goto: ['bed_get_out', 'start'] },
@@ -356,24 +351,23 @@ function enterPregScareReact(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'I need a test!', handler: (st: GameState) => {
-    // TODO-QSP: $home_activity['vomit_bathroom']
+    scene.text(String(qspFunc(s, 'home_activity', 'vomit_bathroom') || ''));
     scene.text('<i>I need to take a pregnancy test right now!</i> you think urgently. <i>I need to figure out what is going on!</i>');
     scene.actions([
       { label: 'Continue', goto: ['bed_get_out', 'start'] },
     ]);
   } },
     { label: 'This is really bad', handler: (st: GameState) => {
-    // TODO-QSP: $home_activity['vomit_bathroom']
+    scene.text(String(qspFunc(s, 'home_activity', 'vomit_bathroom') || ''));
     scene.text('<i>This is really really bad!</i> you think, the blood draining from your face. <i>I don\'t want to be a mom! Not now!</i>');
     scene.actions([
       { label: 'Continue', goto: ['bed_get_out', 'start'] },
     ]);
   } },
     { label: 'This is wonderful!', handler: (st: GameState) => {
-    // TODO-QSP: $home_activity['vomit_bathroom']
+    scene.text(String(qspFunc(s, 'home_activity', 'vomit_bathroom') || ''));
     if ((!((st as any).kid ?? 0))) {
       scene.text('<i>I\'m going to be a mom!</i> you think, smiling to yourself. <i>This is the best day of my life!</i>');
     } else {
@@ -392,7 +386,6 @@ function enterVomitingExit(s: GameState, scene: SceneBuilder): void {
   ((s as any).vomit = (s as any).vomit ?? {})['hangover'] = 0;
   ((s as any).vomit = (s as any).vomit ?? {})['unlucky'] = 0;
   qspCall(s, 'homes_properties', 'go_bathroom');
-  // TODO-QSP: end
   scene.build();
 }
 

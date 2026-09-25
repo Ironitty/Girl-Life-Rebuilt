@@ -13,7 +13,6 @@ function enterIsHere(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).result = qspFunc(s, 'gp_elene_schedule', 'here_core', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0), (((s as any).locat ?? 0)?.['A31_loc']), (((s as any).locat ?? 0)?.['A31_arg']));
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -26,20 +25,17 @@ function enterWasHere(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).result = qspFunc(s, 'gp_elene_schedule', 'here_core', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0), (((s as any).locat ?? 0)?.['A31_loc_prev']), (((s as any).locat ?? 0)?.['A31_arg_prev']));
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterHereCore(s: GameState, scene: SceneBuilder): void {
   (s as any).result = (String((s as any).locArgs?.[3] ?? '') === String((s as any).locArgs?.[1] ?? '')  &&  String((s as any).locArgs?.[4] ?? '') === String((s as any).locArgs?.[2] ?? ''));
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterCikl(s: GameState, scene: SceneBuilder): void {
   ((s as any).locat = (s as any).locat ?? {})['A31_rand'] = (Math.floor(Math.random() * 840) + 0);
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -48,7 +44,6 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   ((s as any).locat = (s as any).locat ?? {})['A31_arg_prev'] = (((s as any).locat ?? 0)?.['A31_arg']);
   ((s as any).locat = (s as any).locat ?? {})['A31_arg1_prev'] = (((s as any).locat ?? 0)?.['A31_arg1']);
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterUpdateLocat(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -61,7 +56,7 @@ function enterUpdateLocat(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).temp_elene_locat = qspFunc(s, 'gp_elene_schedule', 'get_random_schedule', ((s as any).temp_elene_locat ?? 0));
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_elene_locat ?? 0)]; enterSetLocats(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
+  (s as any).temp_elene_locat = undefined;
   scene.build();
 }
 
@@ -143,7 +138,6 @@ function enterGetBaseSchedule(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -193,8 +187,8 @@ function enterGetRandomSchedule(s: GameState, scene: SceneBuilder): void {
       }
     }
     (s as any).result = 111 + ((s as any).temp_subloc ?? 0);
+    (s as any).temp_subloc = undefined;
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -270,7 +264,6 @@ function enterSetLocats(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -305,7 +298,6 @@ function enterGetLocation(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 

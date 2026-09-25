@@ -16,7 +16,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('Entering the passage, you discover a strange collection of shades of brown, the walls covered in streaks, cracks, and plaster and the floor dirty. It seems this area is not as well maintained as the outside.');
   }
-  scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027artstudia/u0027, /u0027bodimod1/u0027); return false;">Quiet courtyard</a>.');
+  scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027artstudia\u0027, \u0027bodimod1\u0027); return false;">Quiet courtyard</a>.');
   if (((s as any).pcs_horny ?? 0) >= 90  &&  ((s as any).pcs_inhib ?? 0) > 30) {
     scene.actions([
       { label: 'Masturbate', handler: (st: GameState) => {

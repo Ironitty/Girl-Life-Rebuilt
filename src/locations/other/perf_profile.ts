@@ -16,24 +16,27 @@ function enter(s: GameState, scene: SceneBuilder): void {
   ((s as any).cheatVars = (s as any).cheatVars ?? {})['inf_willpower'] = 1;
   (s as any).prof_start = ((s as any).msecscount ?? 0);
   (s as any).prof_i = 0;
-  // TODO-QSP: :prof_loop
-  (s as any).minut = ((s as any).minut ?? 0) + 5;
-  qspCall(s, 'stat', '');
-  (s as any).prof_i = ((s as any).prof_i ?? 0) + (1);
-  if (((s as any).prof_i ?? 0) < ((s as any).prof_iterations ?? 0)) {
-    // TODO-QSP: jump 'prof_loop'
-  }
-  (s as any).prof_end = ((s as any).msecscount ?? 0);
-  ((s as any).cheatVars = (s as any).cheatVars ?? {})['gameover'] = ((s as any).prof_saved_gameover ?? 0);
-  ((s as any).cheatVars = (s as any).cheatVars ?? {})['hunger'] = ((s as any).prof_saved_hunger ?? 0);
-  ((s as any).cheatVars = (s as any).cheatVars ?? {})['thirst'] = ((s as any).prof_saved_thirst ?? 0);
-  ((s as any).cheatVars = (s as any).cheatVars ?? {})['inf_willpower'] = ((s as any).prof_saved_inf_willpower ?? 0);
-  (s as any).prof_total_ms = ((s as any).prof_end ?? 0) - ((s as any).prof_start ?? 0);
-  (s as any).prof_avg_ms = ((s as any).prof_total_ms ?? 0) / ((s as any).prof_iterations ?? 0);
-  (s as any).prof_per_sec = ((((s as any).prof_total_ms ?? 0) > 0) ? (((s as any).prof_iterations ?? 0) * 1000 / ((s as any).prof_total_ms ?? 0)) : (0));
-  scene.actions([
-    { label: 'Run again', goto: ['perf_profile', ''] },
-  ]);
+  do {
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    qspCall(s, 'stat', '');
+    (s as any).prof_i = ((s as any).prof_i ?? 0) + (1);
+    (s as any).prof_end = ((s as any).msecscount ?? 0);
+    ((s as any).cheatVars = (s as any).cheatVars ?? {})['gameover'] = ((s as any).prof_saved_gameover ?? 0);
+    ((s as any).cheatVars = (s as any).cheatVars ?? {})['hunger'] = ((s as any).prof_saved_hunger ?? 0);
+    ((s as any).cheatVars = (s as any).cheatVars ?? {})['thirst'] = ((s as any).prof_saved_thirst ?? 0);
+    ((s as any).cheatVars = (s as any).cheatVars ?? {})['inf_willpower'] = ((s as any).prof_saved_inf_willpower ?? 0);
+    (s as any).prof_saved_gameover = undefined;
+    (s as any).prof_saved_thirst = undefined;
+    (s as any).prof_total_ms = ((s as any).prof_end ?? 0) - ((s as any).prof_start ?? 0);
+    (s as any).prof_avg_ms = ((s as any).prof_total_ms ?? 0) / ((s as any).prof_iterations ?? 0);
+    (s as any).prof_per_sec = ((((s as any).prof_total_ms ?? 0) > 0) ? (((s as any).prof_iterations ?? 0) * 1000 / ((s as any).prof_total_ms ?? 0)) : (0));
+    (s as any).prof_iterations = undefined;
+    (s as any).prof_start = undefined;
+    (s as any).prof_total_ms = undefined;
+    scene.actions([
+      { label: 'Run again', goto: ['perf_profile', ''] },
+    ]);
+  } while (((s as any).prof_i ?? 0) < ((s as any).prof_iterations ?? 0));
   scene.build();
 }
 

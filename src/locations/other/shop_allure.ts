@@ -7,6 +7,7 @@ import type { SceneBuilder } from '../../core/scene';
 function enterDefault(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'shop_allure', 'start');
   (s as any).location_type = 'public_indoors';
+  (s as any).locclass = undefined;
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'indoors');
   scene.text('<center><b>shop_allure</b></center>');
@@ -16,7 +17,6 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/residential/lake/allure/shop.jpg');
   }
   scene.text('This shop has the feel of a summer at the beach, which you\'d expect seeing as it sells swimwear.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     if (((st as any).region ?? 0) === 'pav') {
@@ -40,6 +40,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'shop_allure', 'start');
   (s as any).location_type = 'public_indoors';
+  (s as any).locclass = undefined;
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'indoors');
   scene.text('<center><b>shop_allure</b></center>');
@@ -49,7 +50,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/residential/lake/allure/shop.jpg');
   }
   scene.text('This shop has the feel of a summer at the beach, which you\'d expect seeing as it sells swimwear.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     if (((st as any).region ?? 0) === 'pav') {
@@ -82,7 +82,6 @@ function enterSwim(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'shop_utils', 'init', 'end');
   }
   qspCall(s, 'shop_utils', 'display', 'grid_shop');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -105,7 +104,6 @@ function enterBikinis(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'shop_utils', 'init', 'end');
   }
   qspCall(s, 'shop_utils', 'display', 'grid_shop');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;

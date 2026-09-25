@@ -21,7 +21,6 @@ function enterRimmasexdi(s: GameState, scene: SceneBuilder): void {
   if (((s as any).RimmaRandEvent ?? 0) === 23) {
     scene.img('mod/bestmod/images/beast/zoo/rimma14.jpg');
     qspCall(s, 'arousal_funcs', 'stretch', 'oral', 3);
-    // TODO-QSP: dynamic text: Rima pulls a massive strap-on out of her purse and puts it on, and you feel a hi...
     scene.text(`Rima pulls a massive strap-on out of her purse and puts it on, and you feel a hint of fear mingled into your excitement, knowing that she's going to fuck you with it. Wasting no time on ordering you around, she roughly pushes you down on your knees and slips it past your ${(((s as any).pc_desc ?? 0)?.['lips'] ?? '')} lips.`);
     scene.text('You instinctively start moving your tongue around its thick tip, her hand at the back of your head holding you in place as she guides it into your throat. Given its size, it doesn\'t come as a surprise that your gag reflex starts acting up but you endure as best you can, covering it generously in saliva.');
     qspCall(s, 'arousal', 'bj', 10, 'sub', 'lesbian');
@@ -29,7 +28,7 @@ function enterRimmasexdi(s: GameState, scene: SceneBuilder): void {
     scene.actions([
 { label: 'Further', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
-    // TODO-QSP: $ImageNeededPlacholder
+    s.scene = { ...s.scene, mainText: String((st as any).ImageNeededPlacholder || ''), curActs: [] };
     // TODO-QSP: ! WD: IMAGE NEEDED
     scene.text('');
     (st as any).orgasm_or = 'yes';
@@ -45,7 +44,6 @@ function enterRimmasexdi(s: GameState, scene: SceneBuilder): void {
     if (((s as any).RimmaRandEvent ?? 0) === 22) {
       scene.img('mod/bestmod/images/beast/zoo/rimmabj.jpg');
       qspCall(s, 'arousal_funcs', 'stretch', 'oral', 3);
-      // TODO-QSP: dynamic text: Rima pulled the strap-on out of her purse, followed by collar with a chain attac...
       scene.text(`Rima pulled the strap-on out of her purse, followed by collar with a chain attached to it. At her order, you put on the collar and hand the chain to Rima who put on the strap-on while you were occupied. She roughly pushes you down on your knees and slips it past your ${(((s as any).pc_desc ?? 0)?.['lips'] ?? '')} lips.`);
       scene.text('You instinctively start moving your tongue around its thick tip, her hand at the back of your head holding you in place as she guides it into your throat. Given its size, it doesn\'t come as a surprise that your gag reflex starts acting up but you endure as best you can, covering it generously in saliva.');
       qspCall(s, 'arousal', 'bj', 10, 'sub', 'lesbian');
@@ -53,7 +51,7 @@ function enterRimmasexdi(s: GameState, scene: SceneBuilder): void {
       scene.actions([
 { label: 'Further', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
-    // TODO-QSP: $ImageNeededPlacholder
+    s.scene = { ...s.scene, mainText: String((st as any).ImageNeededPlacholder || ''), curActs: [] };
     // TODO-QSP: ! WD: IMAGE NEEDED
     scene.text('');
     (st as any).orgasm_or = 'yes';
@@ -77,7 +75,6 @@ function enterRimmasexdi(s: GameState, scene: SceneBuilder): void {
           if (((s as any).pcs_throat ?? 0) < 25) {
             qspCall(s, 'arousal_funcs', 'stretch', 'oral', 3);
           }
-          // TODO-QSP: dynamic text: Rima pulls a massive strap-on out of her purse and puts it on, and you feel a hi...
           scene.text(`Rima pulls a massive strap-on out of her purse and puts it on, and you feel a hint of fear mingled into your excitement, knowing that she's going to fuck you with it. Wasting no time on ordering you around, she roughly pushes you down on your knees and slips it past your ${(((s as any).pc_desc ?? 0)?.['lips'] ?? '')} lips.`);
           scene.text('You instinctively start moving your tongue around its thick tip, her hand at the back of your head holding you in place as she guides it into your throat. Given its size, it doesn\'t come as a surprise that your gag reflex starts acting up but you endure as best you can, covering it generously in saliva.');
           qspCall(s, 'arousal', 'bj', 10, 'sub', 'lesbian');
@@ -104,7 +101,6 @@ function enterRimmasexdi(s: GameState, scene: SceneBuilder): void {
           if (((s as any).RimmaRandEvent ?? 0) === 19) {
             scene.img('mod/bestmod/images/beast/zoo/rimmabj.jpg');
             qspCall(s, 'arousal_funcs', 'stretch', 'oral', 3);
-            // TODO-QSP: dynamic text: Rima pulled the strap-on out of her purse, followed by collar with a chain attac...
             scene.text(`Rima pulled the strap-on out of her purse, followed by collar with a chain attached to it. At her order, you put on the collar and hand the chain to Rima who put on the strap-on while you were occupied. She roughly pushes you down on your knees and slips it past your ${(((s as any).pc_desc ?? 0)?.['lips'] ?? '')} lips.`);
             scene.text('You instinctively start moving your tongue around its thick tip, her hand at the back of your head holding you in place as she guides it into your throat. Given its size, it doesn\'t come as a surprise that your gag reflex starts acting up but you endure as best you can, covering it generously in saliva.');
             qspCall(s, 'arousal', 'bj', 10, 'sub', 'lesbian');
@@ -130,7 +126,6 @@ function enterRimmasexdi(s: GameState, scene: SceneBuilder): void {
             if (((s as any).RimmaRandEvent ?? 0) === 18) {
               scene.img('mod/bestmod/images/beast/zoo/rimma14.jpg');
               qspCall(s, 'arousal_funcs', 'stretch', 'oral', 3);
-              // TODO-QSP: dynamic text: Rima pulls a massive strap-on out of her purse and puts it on, and you feel a hi...
               scene.text(`Rima pulls a massive strap-on out of her purse and puts it on, and you feel a hint of fear mingled into your excitement, knowing that she's going to fuck you with it. Wasting no time on ordering you around, she roughly pushes you down on your knees and slips it past your ${(((s as any).pc_desc ?? 0)?.['lips'] ?? '')} lips.`);
               scene.text('You instinctively start moving your tongue around its thick tip, her hand at the back of your head holding you in place as she guides it into your throat. Given its size, it doesn\'t come as a surprise that your gag reflex starts acting up but you endure as best you can, covering it generously in saliva.');
               qspCall(s, 'arousal', 'bj', 10, 'sub', 'lesbian');
@@ -155,7 +150,6 @@ function enterRimmasexdi(s: GameState, scene: SceneBuilder): void {
               if (((s as any).RimmaRandEvent ?? 0) === 17) {
                 scene.img('mod/bestmod/images/beast/zoo/rimma14.jpg');
                 qspCall(s, 'arousal_funcs', 'stretch', 'oral', 3);
-                // TODO-QSP: dynamic text: Rima pulls a massive strap-on out of her purse and puts it on, and you feel a hi...
                 scene.text(`Rima pulls a massive strap-on out of her purse and puts it on, and you feel a hint of fear mingled into your excitement, knowing that she's going to fuck you with it. Wasting no time on ordering you around, she roughly pushes you down on your knees and slips it past your ${(((s as any).pc_desc ?? 0)?.['lips'] ?? '')} lips.`);
                 scene.text('You instinctively start moving your tongue around its thick tip, her hand at the back of your head holding you in place as she guides it into your throat. Given its size, it doesn\'t come as a surprise that your gag reflex starts acting up but you endure as best you can, covering it generously in saliva.');
                 qspCall(s, 'arousal', 'bj', 10, 'sub', 'lesbian');
@@ -180,7 +174,6 @@ function enterRimmasexdi(s: GameState, scene: SceneBuilder): void {
                 if (((s as any).RimmaRandEvent ?? 0) === 16) {
                   scene.img('mod/bestmod/images/beast/zoo/rimma14.jpg');
                   qspCall(s, 'arousal_funcs', 'stretch', 'oral', 3);
-                  // TODO-QSP: dynamic text: Rima pulls a massive strap-on out of her purse and puts it on, and you feel a hi...
                   scene.text(`Rima pulls a massive strap-on out of her purse and puts it on, and you feel a hint of fear mingled into your excitement, knowing that she's going to fuck you with it. Wasting no time on ordering you around, she roughly pushes you down on your knees and slips it past your ${(((s as any).pc_desc ?? 0)?.['lips'] ?? '')} lips.`);
                   scene.text('You instinctively start moving your tongue around its thick tip, her hand at the back of your head holding you in place as she guides it into your throat. Given its size, it doesn\'t come as a surprise that your gag reflex starts acting up but you endure as best you can, covering it generously in saliva.');
                   qspCall(s, 'arousal', 'bj', 10, 'sub', 'lesbian');
@@ -205,7 +198,6 @@ function enterRimmasexdi(s: GameState, scene: SceneBuilder): void {
                   if (((s as any).RimmaRandEvent ?? 0) === 15) {
                     scene.img('mod/bestmod/images/beast/zoo/rimma14.jpg');
                     qspCall(s, 'arousal_funcs', 'stretch', 'oral', 3);
-                    // TODO-QSP: dynamic text: Rima pulls a massive strap-on out of her purse and puts it on, and you feel a hi...
                     scene.text(`Rima pulls a massive strap-on out of her purse and puts it on, and you feel a hint of fear mingled into your excitement, knowing that she's going to fuck you with it. Wasting no time on ordering you around, she roughly pushes you down on your knees and slips it past your ${(((s as any).pc_desc ?? 0)?.['lips'] ?? '')} lips.`);
                     scene.text('You instinctively start moving your tongue around its thick tip, her hand at the back of your head holding you in place as she guides it into your throat. Given its size, it doesn\'t come as a surprise that your gag reflex starts acting up but you endure as best you can, covering it generously in saliva.');
                     qspCall(s, 'arousal', 'bj', 10, 'sub', 'lesbian');
@@ -323,7 +315,7 @@ function enterRimmasexdi(s: GameState, scene: SceneBuilder): void {
                                       scene.text('Once again, Rima takes you into your bedroom and has you lie down. Your memories of how she went down on you very present in your mind, you eagerly spread your legs for her and she smiles broadly as lowers her mouth onto you.');
                                       scene.text('Two of her fingers are inside your wet pussy in an instant but other than that, she takes her time, teasing and touching you with unfathomable skill, only slowly picking up speed. When you are getting closer to orgasm, she inserts a third finger but slows down at the same time, your groans turning from lust to frustration as she teases you, inches away from release.');
                                       scene.text('But Rima is merciless: She slowly, ever so slowly works you down from that almost-climax, then back up again, to that same breaking point… then introduces a fourth finger and slows down once again.');
-                                      // TODO-QSP: nl
+                                      scene.text('');
                                       scene.text('You barely even register when she sinks her whole hand into your depths - at that point, you are so desperately horny that you are literally begging her to make you cum, and this time, her fist inside you, she finally relents.');
                                       scene.text('From one moment to the next, she starts fucking you with her whole hand, pushing you right to the edge and over, then right to the next and over again. You can feel yourself twitching around her hand, gripping her like a vice, but the rest of your body is a shaking, screaming, sweating mess. That doesn\'t change the fact, though, that Rima gave you a couple of incredible orgasms, though.');
                                       (s as any).orgasm_or = 'yes';
@@ -336,7 +328,7 @@ function enterRimmasexdi(s: GameState, scene: SceneBuilder): void {
                                         scene.text('Rima and you go into the bedroom and you lie down on your back, opening yourself to your female company. She doesn\'t even try to resist the enticing view and you can feel her tongue on your clit before she\'s come to rest on the bed.');
                                         scene.text('You feel her fingers penetrate you, your folds wet and ready with anticipation, and her touch is heavenly. Rima seems to have an almost supernatural intuition for where she has to touch your insides to elicit the highest moans from you and you are all too willing to let them erupt.');
                                         scene.text('While there is a lot of variation in the way she angles her hand and hooks her fingers, she never gets slower - her index and middle finger went from teasingly slow to a good, hard fingerfuck and she seems certain that she can hold out longer than you.');
-                                        // TODO-QSP: nl
+                                        scene.text('');
                                         scene.text('She\'s right, too: When she adds a third finger - without slowing down - an incredible orgasm rips through you and you have to hold on for dear life. All you can manage when Rima kisses you is a weak smile as you taste yourself on her lips.');
                                         (s as any).orgasm_or = 'yes';
                                         qspCall(s, 'arousal', 'vaginal_finger', 20, 'lesbian', 'sub');
@@ -391,7 +383,6 @@ function enterRimmasexdi(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Say goodbye to Rima', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
@@ -406,7 +397,6 @@ function enter(s: GameState, scene: SceneBuilder): void {
   (s as any).rimmaday = ((s as any).daystart ?? 0);
   qspCall(s, 'stat', '');
   scene.text('You go over to Rima who smiles affably as she greets you.');
-  // TODO-QSP: dynamic text: "Hi <<$pcs_nickname>>. My shift is almost over. Do you want to do something?"
   scene.text(`"Hi ${((s as any).pcs_nickname ?? '')}. My shift is almost over. Do you want to do something?"`);
   scene.actions([
     { label: '"Sorry, I can\'t right now"', goto: ['shop_moncheri', 'start'] },
@@ -417,7 +407,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'money', 'pay', 250, 'cash');
       qspCall(st, 'stat', '');
       scene.text('Rima enthusiastically agrees. While she finishes work for the day, you call a taxi.');
-      // TODO-QSP: nl
+      scene.text('');
       scene.text('Only half an hour later, you unlock the door to your apartment and beckon Rima inside. As soon as the door is closed, Rima and you start kissing and tearing eachother\'s clothes off.');
       qspCall(st, 'arousal', 'foreplay', 30, 'lesbian');
       qspCall(st, 'stat', '');

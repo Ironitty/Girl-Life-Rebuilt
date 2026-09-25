@@ -12,9 +12,9 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterQueueAlert(s: GameState, scene: SceneBuilder): void {
   ((s as any).sd_qa = (s as any).sd_qa ?? {})['text'] = ((String((s as any).locArgs?.[2] ?? '') !== ''  &&  String((s as any).locArgs?.[2] ?? '') !== 'none') ? (qspFunc(s, 'wrap', ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[1] ?? 0))) : (((s as any).locArgs?.[1] ?? 0)));
-  // TODO-QSP: $sd_alerts[] = $sd_qa['text']
+  (s as any).sd_alerts = [...((s as any).sd_alerts ?? []), (((s as any).sd_qa ?? 0)?.['text'])];
+  (s as any).sd_qa = undefined;
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -86,29 +86,37 @@ function enterQueueMsg(s: GameState, scene: SceneBuilder): void {
       ((s as any).sd_qm = (s as any).sd_qm ?? {})['final_icon'] = '<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: ' + qspUntranslated(s, "sd_qm[\\u0027action\\u0027]", { location: "stat_display_compute" }) + ' */ return s; }); return false;"><img src="images/system/icons/' + (((s as any).sd_qm ?? 0)?.['icon']) + '.png" title="' + (((s as any).sd_qm ?? 0)?.['title']) + '" height="' + (((s as any).stat_cfg ?? 0)?.['icon_height']) + '"></a>';
     }
     if (((s as any).sd_qm ?? 0)?.['row_arg'] === 1) {
-      // TODO-QSP: $sd_icons_1[] = $sd_qm['final_icon']
+      (s as any).sd_icons_1 = [...((s as any).sd_icons_1 ?? []), (((s as any).sd_qm ?? 0)?.['final_icon'])];
     } else {
       if (((s as any).sd_qm ?? 0)?.['row_arg'] === 2) {
-        // TODO-QSP: $sd_icons_2[] = $sd_qm['final_icon']
+        (s as any).sd_icons_2 = [...((s as any).sd_icons_2 ?? []), (((s as any).sd_qm ?? 0)?.['final_icon'])];
       } else {
         if (((s as any).sd_qm ?? 0)?.['row_arg'] === 3) {
-          // TODO-QSP: $sd_icons_3[] = $sd_qm['final_icon']
+          (s as any).sd_icons_3 = [...((s as any).sd_icons_3 ?? []), (((s as any).sd_qm ?? 0)?.['final_icon'])];
         } else {
-          // TODO-QSP: $sd_icons_4[] = $sd_qm['final_icon']
+          (s as any).sd_icons_4 = [...((s as any).sd_icons_4 ?? []), (((s as any).sd_qm ?? 0)?.['final_icon'])];
         }
       }
     }
   }
   if (((s as any).sd_qm ?? 0)?.['display'] !== ''  &&  (((s as any).stat_cfg ?? 0)?.['msg_display_mode'] === 0  ||  ((s as any).stat_cfg ?? 0)?.['msg_display_mode'] === 2  ||  ((s as any).sd_qm ?? 0)?.['icon'] === '')) {
     ((s as any).sd_qm = (s as any).sd_qm ?? {})['final_text'] = ((String((s as any).locArgs?.[2] ?? '') !== '') ? (qspFunc(s, 'wrap', ((s as any).locArgs?.[2] ?? 0), (((s as any).sd_qm ?? 0)?.['display']))) : ((((s as any).sd_qm ?? 0)?.['display'])));
-    // TODO-QSP: $sd_texts[] = $sd_qm['final_text']
+    (s as any).sd_texts = [...((s as any).sd_texts ?? []), (((s as any).sd_qm ?? 0)?.['final_text'])];
   }
+  (s as any).sd_qm = undefined;
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterComputeData(s: GameState, scene: SceneBuilder): void {
+  (s as any).stat_texts = undefined;
+  (s as any).stat_nums = undefined;
+  (s as any).sd_alerts = undefined;
+  (s as any).sd_texts = undefined;
+  (s as any).sd_icons_1 = undefined;
+  (s as any).sd_icons_2 = undefined;
+  (s as any).sd_icons_3 = undefined;
+  (s as any).sd_icons_4 = undefined;
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterComputeStats(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterComputeBody(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'din_bad', 'compute_cycle_state');
@@ -127,7 +135,6 @@ function enterComputeData(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterComputeMisc(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterComputeImages(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -136,61 +143,62 @@ function enterComputeAttributesProse(s: GameState, scene: SceneBuilder): void {
   ((s as any).sd_ap = (s as any).sd_ap ?? {})['sum'] = 0;
   ((s as any).sd_ap = (s as any).sd_ap ?? {})['ai'] = 0;
   ((s as any).sd_ap = (s as any).sd_ap ?? {})['amax'] = 0;
-  // TODO-QSP: :sd_ap_collect
-  if (((s as any).sd_ap ?? 0)?.['ai'] < ((s as any).sd_ap ?? 0)?.['amax']) {
-    ((s as any).sd_ap = (s as any).sd_ap ?? {})['ck'] = qspUntranslated(s, "attr_bar_order[sd_ap['ai']]", { location: "stat_display_compute" });
-    if (((s as any).stat_hide_bar ?? 0)[((s as any).sd_ap ?? 0)?.['ck']] === 0) {
-      ((s as any).sd_ap = (s as any).sd_ap ?? {})['cv'] = (-1);
-      if (((s as any).sd_ap ?? 0)?.['ck'] === 'inhib') {
-        ((s as any).sd_ap = (s as any).sd_ap ?? {})['cv'] = 100 - ((s as any).pcs_inhib ?? 0);
-        ((s as any).sd_ap = (s as any).sd_ap ?? {})['cn'] = 'Inhibition';
-      } else {
-        if (((s as any).sd_ap ?? 0)?.['ck'] === 'stren') {
-          ((s as any).sd_ap = (s as any).sd_ap ?? {})['cv'] = ((s as any).pcs_stren ?? 0);
-          ((s as any).sd_ap = (s as any).sd_ap ?? {})['cn'] = 'Strength';
+  while (true) {
+    if (((s as any).sd_ap ?? 0)?.['ai'] < ((s as any).sd_ap ?? 0)?.['amax']) {
+      ((s as any).sd_ap = (s as any).sd_ap ?? {})['ck'] = qspUntranslated(s, "attr_bar_order[sd_ap['ai']]", { location: "stat_display_compute" });
+      if (((s as any).stat_hide_bar ?? 0)[((s as any).sd_ap ?? 0)?.['ck']] === 0) {
+        ((s as any).sd_ap = (s as any).sd_ap ?? {})['cv'] = (-1);
+        if (((s as any).sd_ap ?? 0)?.['ck'] === 'inhib') {
+          ((s as any).sd_ap = (s as any).sd_ap ?? {})['cv'] = 100 - ((s as any).pcs_inhib ?? 0);
+          ((s as any).sd_ap = (s as any).sd_ap ?? {})['cn'] = 'Inhibition';
         } else {
-          if (((s as any).sd_ap ?? 0)?.['ck'] === 'agil') {
-            ((s as any).sd_ap = (s as any).sd_ap ?? {})['cv'] = ((s as any).pcs_agil ?? 0);
-            ((s as any).sd_ap = (s as any).sd_ap ?? {})['cn'] = 'Agility';
+          if (((s as any).sd_ap ?? 0)?.['ck'] === 'stren') {
+            ((s as any).sd_ap = (s as any).sd_ap ?? {})['cv'] = ((s as any).pcs_stren ?? 0);
+            ((s as any).sd_ap = (s as any).sd_ap ?? {})['cn'] = 'Strength';
           } else {
-            if (((s as any).sd_ap ?? 0)?.['ck'] === 'vital') {
-              ((s as any).sd_ap = (s as any).sd_ap ?? {})['cv'] = ((s as any).pcs_vital ?? 0);
-              ((s as any).sd_ap = (s as any).sd_ap ?? {})['cn'] = 'Endurance';
+            if (((s as any).sd_ap ?? 0)?.['ck'] === 'agil') {
+              ((s as any).sd_ap = (s as any).sd_ap ?? {})['cv'] = ((s as any).pcs_agil ?? 0);
+              ((s as any).sd_ap = (s as any).sd_ap ?? {})['cn'] = 'Agility';
             } else {
-              if (((s as any).sd_ap ?? 0)?.['ck'] === 'intel') {
-                ((s as any).sd_ap = (s as any).sd_ap ?? {})['cv'] = ((s as any).pcs_intel ?? 0);
-                ((s as any).sd_ap = (s as any).sd_ap ?? {})['cn'] = 'Intelligence';
+              if (((s as any).sd_ap ?? 0)?.['ck'] === 'vital') {
+                ((s as any).sd_ap = (s as any).sd_ap ?? {})['cv'] = ((s as any).pcs_vital ?? 0);
+                ((s as any).sd_ap = (s as any).sd_ap ?? {})['cn'] = 'Endurance';
               } else {
-                if (((s as any).sd_ap ?? 0)?.['ck'] === 'sprt') {
-                  ((s as any).sd_ap = (s as any).sd_ap ?? {})['cv'] = ((s as any).pcs_sprt ?? 0);
-                  ((s as any).sd_ap = (s as any).sd_ap ?? {})['cn'] = 'Spirit';
+                if (((s as any).sd_ap ?? 0)?.['ck'] === 'intel') {
+                  ((s as any).sd_ap = (s as any).sd_ap ?? {})['cv'] = ((s as any).pcs_intel ?? 0);
+                  ((s as any).sd_ap = (s as any).sd_ap ?? {})['cn'] = 'Intelligence';
                 } else {
-                  if (((s as any).sd_ap ?? 0)?.['ck'] === 'react') {
-                    ((s as any).sd_ap = (s as any).sd_ap ?? {})['cv'] = ((s as any).pcs_react ?? 0);
-                    ((s as any).sd_ap = (s as any).sd_ap ?? {})['cn'] = 'Reaction';
+                  if (((s as any).sd_ap ?? 0)?.['ck'] === 'sprt') {
+                    ((s as any).sd_ap = (s as any).sd_ap ?? {})['cv'] = ((s as any).pcs_sprt ?? 0);
+                    ((s as any).sd_ap = (s as any).sd_ap ?? {})['cn'] = 'Spirit';
                   } else {
-                    if (((s as any).sd_ap ?? 0)?.['ck'] === 'chrsm') {
-                      ((s as any).sd_ap = (s as any).sd_ap ?? {})['cv'] = ((s as any).pcs_chrsm ?? 0);
-                      ((s as any).sd_ap = (s as any).sd_ap ?? {})['cn'] = 'Charisma';
+                    if (((s as any).sd_ap ?? 0)?.['ck'] === 'react') {
+                      ((s as any).sd_ap = (s as any).sd_ap ?? {})['cv'] = ((s as any).pcs_react ?? 0);
+                      ((s as any).sd_ap = (s as any).sd_ap ?? {})['cn'] = 'Reaction';
                     } else {
-                      if (((s as any).sd_ap ?? 0)?.['ck'] === 'prcptn') {
-                        ((s as any).sd_ap = (s as any).sd_ap ?? {})['cv'] = ((s as any).pcs_prcptn ?? 0);
-                        ((s as any).sd_ap = (s as any).sd_ap ?? {})['cn'] = 'Perception';
+                      if (((s as any).sd_ap ?? 0)?.['ck'] === 'chrsm') {
+                        ((s as any).sd_ap = (s as any).sd_ap ?? {})['cv'] = ((s as any).pcs_chrsm ?? 0);
+                        ((s as any).sd_ap = (s as any).sd_ap ?? {})['cn'] = 'Charisma';
                       } else {
-                        if (((s as any).sd_ap ?? 0)?.['ck'] === 'apprnc') {
-                          ((s as any).sd_ap = (s as any).sd_ap ?? {})['cv'] = ((s as any).pcs_apprnc ?? 0) * 100 / 200;
-                          ((s as any).sd_ap = (s as any).sd_ap ?? {})['cn'] = 'Attractiveness';
+                        if (((s as any).sd_ap ?? 0)?.['ck'] === 'prcptn') {
+                          ((s as any).sd_ap = (s as any).sd_ap ?? {})['cv'] = ((s as any).pcs_prcptn ?? 0);
+                          ((s as any).sd_ap = (s as any).sd_ap ?? {})['cn'] = 'Perception';
                         } else {
-                          if (((s as any).sd_ap ?? 0)?.['ck'] === 'magik') {
-                            if (((s as any).start_type ?? 0)?.['magic'] !== 'nomagic') {
-                              ((s as any).sd_ap = (s as any).sd_ap ?? {})['cv'] = ((s as any).pcs_magik ?? 0);
-                              ((s as any).sd_ap = (s as any).sd_ap ?? {})['cn'] = 'Magic';
-                            }
+                          if (((s as any).sd_ap ?? 0)?.['ck'] === 'apprnc') {
+                            ((s as any).sd_ap = (s as any).sd_ap ?? {})['cv'] = ((s as any).pcs_apprnc ?? 0) * 100 / 200;
+                            ((s as any).sd_ap = (s as any).sd_ap ?? {})['cn'] = 'Attractiveness';
                           } else {
-                            if (((s as any).sd_ap ?? 0)?.['ck'] === 'sucexcess') {
-                              if (((s as any).start_type ?? 0)?.['magic'] !== 'nomagic'  &&  ((s as any).succubusflag ?? 0) === 1) {
-                                ((s as any).sd_ap = (s as any).sd_ap ?? {})['cv'] = ((s as any).sucexcess ?? 0);
-                                ((s as any).sd_ap = (s as any).sd_ap ?? {})['cn'] = 'Succubus Energy';
+                            if (((s as any).sd_ap ?? 0)?.['ck'] === 'magik') {
+                              if (((s as any).start_type ?? 0)?.['magic'] !== 'nomagic') {
+                                ((s as any).sd_ap = (s as any).sd_ap ?? {})['cv'] = ((s as any).pcs_magik ?? 0);
+                                ((s as any).sd_ap = (s as any).sd_ap ?? {})['cn'] = 'Magic';
+                              }
+                            } else {
+                              if (((s as any).sd_ap ?? 0)?.['ck'] === 'sucexcess') {
+                                if (((s as any).start_type ?? 0)?.['magic'] !== 'nomagic'  &&  ((s as any).succubusflag ?? 0) === 1) {
+                                  ((s as any).sd_ap = (s as any).sd_ap ?? {})['cv'] = ((s as any).sucexcess ?? 0);
+                                  ((s as any).sd_ap = (s as any).sd_ap ?? {})['cn'] = 'Succubus Energy';
+                                }
                               }
                             }
                           }
@@ -203,121 +211,124 @@ function enterComputeAttributesProse(s: GameState, scene: SceneBuilder): void {
             }
           }
         }
-      }
-      if (((s as any).sd_ap ?? 0)?.['cv'] >= 0) {
-        // TODO-QSP: sd_ap['v_' + $str(sd_ap['cnt'])] = sd_ap['cv']
-        // TODO-QSP: $sd_ap['n_' + $str(sd_ap['cnt'])] = $sd_ap['cn']
-        ((s as any).sd_ap = (s as any).sd_ap ?? {})['sum'] = ((s as any).sd_ap['sum'] ?? 0) + ((((s as any).sd_ap ?? 0)?.['cv']));
-        ((s as any).sd_ap = (s as any).sd_ap ?? {})['cnt'] = ((s as any).sd_ap['cnt'] ?? 0) + (1);
-      }
-    }
-    ((s as any).sd_ap = (s as any).sd_ap ?? {})['ai'] = ((s as any).sd_ap['ai'] ?? 0) + (1);
-    // TODO-QSP: jump 'sd_ap_collect'
-  }
-  if (((s as any).sd_ap ?? 0)?.['cnt'] > 0) {
-    ((s as any).sd_ap = (s as any).sd_ap ?? {})['mean'] = (((s as any).sd_ap ?? {})?.['sum'] ?? 0) / (((s as any).sd_ap ?? {})?.['cnt'] ?? 0);
-  } else {
-    ((s as any).sd_ap = (s as any).sd_ap ?? {})['mean'] = 50;
-  }
-  ((s as any).sd_ap = (s as any).sd_ap ?? {})['n_high'] = 0;
-  ((s as any).sd_ap = (s as any).sd_ap ?? {})['n_low'] = 0;
-  ((s as any).sd_ap = (s as any).sd_ap ?? {})['bi'] = 0;
-  // TODO-QSP: :sd_ap_bucket
-  if (((s as any).sd_ap ?? 0)?.['bi'] < ((s as any).sd_ap ?? 0)?.['cnt']) {
-    ((s as any).sd_ap = (s as any).sd_ap ?? {})['bv'] = (((s as any).sd_ap ?? 0)?.['v_' + String((((s as any).sd_ap ?? 0)?.['bi']))] ?? 0);
-    ((s as any).sd_ap = (s as any).sd_ap ?? {})['dev'] = (((s as any).sd_ap ?? {})?.['bv'] ?? 0) - (((s as any).sd_ap ?? {})?.['mean'] ?? 0);
-    if (((s as any).sd_ap ?? 0)?.['bv'] >= 80  ||  ((s as any).sd_ap ?? 0)?.['dev'] >= 15) {
-      // TODO-QSP: $sd_ap['high_' + $str(sd_ap['n_high'])] = $sd_ap['n_' + $str(sd_ap['bi'])]
-      ((s as any).sd_ap = (s as any).sd_ap ?? {})['n_high'] = ((s as any).sd_ap['n_high'] ?? 0) + (1);
-    } else {
-      if (((s as any).sd_ap ?? 0)?.['bv'] <= 15  ||  ((s as any).sd_ap ?? 0)?.['dev'] <= -15) {
-        // TODO-QSP: $sd_ap['low_' + $str(sd_ap['n_low'])] = $sd_ap['n_' + $str(sd_ap['bi'])]
-        ((s as any).sd_ap = (s as any).sd_ap ?? {})['n_low'] = ((s as any).sd_ap['n_low'] ?? 0) + (1);
-      }
-    }
-    ((s as any).sd_ap = (s as any).sd_ap ?? {})['bi'] = ((s as any).sd_ap['bi'] ?? 0) + (1);
-    // TODO-QSP: jump 'sd_ap_bucket'
-  }
-  (s as any).sd_attrs_prose = '';
-  if (((s as any).sd_ap ?? 0)?.['n_high'] > 0) {
-    if (((s as any).sd_ap ?? 0)?.['n_high'] === 1) {
-      (s as any).sd_attrs_prose = 'Your ' + qspFunc(s, 'wrap', 'pos', (((s as any).sd_ap ?? 0)?.['high_0'])) + ' stands out';
-    } else {
-      if (((s as any).sd_ap ?? 0)?.['n_high'] === 2) {
-        (s as any).sd_attrs_prose = 'Your ' + qspFunc(s, 'wrap', 'pos', (((s as any).sd_ap ?? 0)?.['high_0'])) + ' and ' + qspFunc(s, 'wrap', 'pos', (((s as any).sd_ap ?? 0)?.['high_1'])) + ' stand out';
-      } else {
-        (s as any).sd_attrs_prose = 'Your ' + qspFunc(s, 'wrap', 'pos', (((s as any).sd_ap ?? 0)?.['high_0']));
-        ((s as any).sd_ap = (s as any).sd_ap ?? {})['ji'] = 1;
-        // TODO-QSP: :sd_ap_join_high
-        if (((s as any).sd_ap ?? 0)?.['ji'] < (((s as any).sd_ap ?? 0)?.['n_high'] - 1)) {
-          // TODO-QSP: $sd_attrs_prose += ', ' + $func('wrap', 'pos', $sd_ap['high_' + $str(sd_ap['ji'])])
-          ((s as any).sd_ap = (s as any).sd_ap ?? {})['ji'] = ((s as any).sd_ap['ji'] ?? 0) + (1);
-          // TODO-QSP: jump 'sd_ap_join_high'
+        if (((s as any).sd_ap ?? 0)?.['cv'] >= 0) {
+          ((s as any).sd_ap = (s as any).sd_ap ?? {})['v_' + String((((s as any).sd_ap ?? 0)?.['cnt']))] = (((s as any).sd_ap ?? 0)?.['cv']);
+          ((s as any).sd_ap = (s as any).sd_ap ?? {})['n_' + String((((s as any).sd_ap ?? 0)?.['cnt']))] = (((s as any).sd_ap ?? 0)?.['cn']);
+          ((s as any).sd_ap = (s as any).sd_ap ?? {})['sum'] = ((s as any).sd_ap['sum'] ?? 0) + ((((s as any).sd_ap ?? 0)?.['cv']));
+          ((s as any).sd_ap = (s as any).sd_ap ?? {})['cnt'] = ((s as any).sd_ap['cnt'] ?? 0) + (1);
         }
-        // TODO-QSP: $sd_attrs_prose += ', and ' + $func('wrap', 'pos', $sd_ap['high_' + $str(sd_ap['n_high'] - 1)]) + ' ...
       }
+      ((s as any).sd_ap = (s as any).sd_ap ?? {})['ai'] = ((s as any).sd_ap['ai'] ?? 0) + (1);
+      break;
     }
-  }
-  if (((s as any).sd_ap ?? 0)?.['n_low'] > 0) {
-    if (((s as any).sd_ap ?? 0)?.['n_low'] === 1) {
-      ((s as any).sd_ap = (s as any).sd_ap ?? {})['low_list'] = qspFunc(s, 'wrap', 'neg', (((s as any).sd_ap ?? 0)?.['low_0']));
-      ((s as any).sd_ap = (s as any).sd_ap ?? {})['low_verb'] = 'is lacking';
+    if (((s as any).sd_ap ?? 0)?.['cnt'] > 0) {
+      ((s as any).sd_ap = (s as any).sd_ap ?? {})['mean'] = (((s as any).sd_ap ?? {})?.['sum'] ?? 0) / (((s as any).sd_ap ?? {})?.['cnt'] ?? 0);
     } else {
-      if (((s as any).sd_ap ?? 0)?.['n_low'] === 2) {
-        ((s as any).sd_ap = (s as any).sd_ap ?? {})['low_list'] = qspFunc(s, 'wrap', 'neg', (((s as any).sd_ap ?? 0)?.['low_0'])) + ' and ' + qspFunc(s, 'wrap', 'neg', (((s as any).sd_ap ?? 0)?.['low_1']));
-        ((s as any).sd_ap = (s as any).sd_ap ?? {})['low_verb'] = 'are lacking';
-      } else {
-        ((s as any).sd_ap = (s as any).sd_ap ?? {})['low_list'] = qspFunc(s, 'wrap', 'neg', (((s as any).sd_ap ?? 0)?.['low_0']));
-        ((s as any).sd_ap = (s as any).sd_ap ?? {})['ji'] = 1;
-        // TODO-QSP: :sd_ap_join_low
-        if (((s as any).sd_ap ?? 0)?.['ji'] < (((s as any).sd_ap ?? 0)?.['n_low'] - 1)) {
-          ((s as any).sd_ap = (s as any).sd_ap ?? {})['low_list'] = ((s as any).sd_ap['low_list'] ?? 0) + (', ' + qspFunc(s, 'wrap', 'neg', (((s as any).sd_ap ?? 0)?.['low_' + String((((s as any).sd_ap ?? 0)?.['ji']))] ?? 0)));
-          ((s as any).sd_ap = (s as any).sd_ap ?? {})['ji'] = ((s as any).sd_ap['ji'] ?? 0) + (1);
-          // TODO-QSP: jump 'sd_ap_join_low'
+      ((s as any).sd_ap = (s as any).sd_ap ?? {})['mean'] = 50;
+    }
+    ((s as any).sd_ap = (s as any).sd_ap ?? {})['n_high'] = 0;
+    ((s as any).sd_ap = (s as any).sd_ap ?? {})['n_low'] = 0;
+    ((s as any).sd_ap = (s as any).sd_ap ?? {})['bi'] = 0;
+    while (true) {
+      if (((s as any).sd_ap ?? 0)?.['bi'] < ((s as any).sd_ap ?? 0)?.['cnt']) {
+        ((s as any).sd_ap = (s as any).sd_ap ?? {})['bv'] = (((s as any).sd_ap ?? 0)?.['v_' + String((((s as any).sd_ap ?? 0)?.['bi']))] ?? 0);
+        ((s as any).sd_ap = (s as any).sd_ap ?? {})['dev'] = (((s as any).sd_ap ?? {})?.['bv'] ?? 0) - (((s as any).sd_ap ?? {})?.['mean'] ?? 0);
+        if (((s as any).sd_ap ?? 0)?.['bv'] >= 80  ||  ((s as any).sd_ap ?? 0)?.['dev'] >= 15) {
+          ((s as any).sd_ap = (s as any).sd_ap ?? {})['high_' + String((((s as any).sd_ap ?? 0)?.['n_high']))] = (((s as any).sd_ap ?? 0)?.['n_' + String((((s as any).sd_ap ?? 0)?.['bi']))] ?? 0);
+          ((s as any).sd_ap = (s as any).sd_ap ?? {})['n_high'] = ((s as any).sd_ap['n_high'] ?? 0) + (1);
+        } else {
+          if (((s as any).sd_ap ?? 0)?.['bv'] <= 15  ||  ((s as any).sd_ap ?? 0)?.['dev'] <= -15) {
+            ((s as any).sd_ap = (s as any).sd_ap ?? {})['low_' + String((((s as any).sd_ap ?? 0)?.['n_low']))] = (((s as any).sd_ap ?? 0)?.['n_' + String((((s as any).sd_ap ?? 0)?.['bi']))] ?? 0);
+            ((s as any).sd_ap = (s as any).sd_ap ?? {})['n_low'] = ((s as any).sd_ap['n_low'] ?? 0) + (1);
+          }
         }
-        ((s as any).sd_ap = (s as any).sd_ap ?? {})['low_list'] = ((s as any).sd_ap['low_list'] ?? 0) + (',  &&  ' + qspFunc(s, 'wrap', 'neg', (((s as any).sd_ap ?? 0)?.['low_' + String(((s as any).sd_ap ?? 0)?.['n_low'] - 1)] ?? 0)));
-        ((s as any).sd_ap = (s as any).sd_ap ?? {})['low_verb'] = 'are lacking';
+        ((s as any).sd_ap = (s as any).sd_ap ?? {})['bi'] = ((s as any).sd_ap['bi'] ?? 0) + (1);
+        break;
       }
-    }
-    if (((s as any).sd_attrs_prose ?? 0) !== '') {
-      // TODO-QSP: $sd_attrs_prose += ', but your ' + $sd_ap['low_list'] + ' ' + $sd_ap['low_verb']
-    } else {
-      (s as any).sd_attrs_prose = 'Your ' + (((s as any).sd_ap ?? 0)?.['low_list']) + ' ' + (((s as any).sd_ap ?? 0)?.['low_verb']);
+      (s as any).sd_attrs_prose = '';
+      if (((s as any).sd_ap ?? 0)?.['n_high'] > 0) {
+        if (((s as any).sd_ap ?? 0)?.['n_high'] === 1) {
+          (s as any).sd_attrs_prose = 'Your ' + qspFunc(s, 'wrap', 'pos', (((s as any).sd_ap ?? 0)?.['high_0'])) + ' stands out';
+        } else {
+          if (((s as any).sd_ap ?? 0)?.['n_high'] === 2) {
+            (s as any).sd_attrs_prose = 'Your ' + qspFunc(s, 'wrap', 'pos', (((s as any).sd_ap ?? 0)?.['high_0'])) + ' and ' + qspFunc(s, 'wrap', 'pos', (((s as any).sd_ap ?? 0)?.['high_1'])) + ' stand out';
+          } else {
+            (s as any).sd_attrs_prose = 'Your ' + qspFunc(s, 'wrap', 'pos', (((s as any).sd_ap ?? 0)?.['high_0']));
+            ((s as any).sd_ap = (s as any).sd_ap ?? {})['ji'] = 1;
+            while (true) {
+              if (((s as any).sd_ap ?? 0)?.['ji'] < (((s as any).sd_ap ?? 0)?.['n_high'] - 1)) {
+                (s as any).sd_attrs_prose = ((s as any).sd_attrs_prose ?? 0) + (', ' + qspFunc(s, 'wrap', 'pos', (((s as any).sd_ap ?? 0)?.['high_' + String((((s as any).sd_ap ?? 0)?.['ji']))] ?? 0)));
+                ((s as any).sd_ap = (s as any).sd_ap ?? {})['ji'] = ((s as any).sd_ap['ji'] ?? 0) + (1);
+                break;
+              }
+              (s as any).sd_attrs_prose = ((s as any).sd_attrs_prose ?? 0) + (', and \' + $func(\'wrap\', \'pos\', $sd_ap[\'high_\' + $str(sd_ap[\'n_high\'] - 1)]) + \' stand out');
+            }
+          }
+        }
+      }
+      if (((s as any).sd_ap ?? 0)?.['n_low'] > 0) {
+        if (((s as any).sd_ap ?? 0)?.['n_low'] === 1) {
+          ((s as any).sd_ap = (s as any).sd_ap ?? {})['low_list'] = qspFunc(s, 'wrap', 'neg', (((s as any).sd_ap ?? 0)?.['low_0']));
+          ((s as any).sd_ap = (s as any).sd_ap ?? {})['low_verb'] = 'is lacking';
+        } else {
+          if (((s as any).sd_ap ?? 0)?.['n_low'] === 2) {
+            ((s as any).sd_ap = (s as any).sd_ap ?? {})['low_list'] = qspFunc(s, 'wrap', 'neg', (((s as any).sd_ap ?? 0)?.['low_0'])) + ' and ' + qspFunc(s, 'wrap', 'neg', (((s as any).sd_ap ?? 0)?.['low_1']));
+            ((s as any).sd_ap = (s as any).sd_ap ?? {})['low_verb'] = 'are lacking';
+          } else {
+            ((s as any).sd_ap = (s as any).sd_ap ?? {})['low_list'] = qspFunc(s, 'wrap', 'neg', (((s as any).sd_ap ?? 0)?.['low_0']));
+            ((s as any).sd_ap = (s as any).sd_ap ?? {})['ji'] = 1;
+            while (true) {
+              if (((s as any).sd_ap ?? 0)?.['ji'] < (((s as any).sd_ap ?? 0)?.['n_low'] - 1)) {
+                ((s as any).sd_ap = (s as any).sd_ap ?? {})['low_list'] = ((s as any).sd_ap['low_list'] ?? 0) + (', ' + qspFunc(s, 'wrap', 'neg', (((s as any).sd_ap ?? 0)?.['low_' + String((((s as any).sd_ap ?? 0)?.['ji']))] ?? 0)));
+                ((s as any).sd_ap = (s as any).sd_ap ?? {})['ji'] = ((s as any).sd_ap['ji'] ?? 0) + (1);
+                break;
+              }
+              ((s as any).sd_ap = (s as any).sd_ap ?? {})['low_list'] = ((s as any).sd_ap['low_list'] ?? 0) + (',  &&  ' + qspFunc(s, 'wrap', 'neg', (((s as any).sd_ap ?? 0)?.['low_' + String(((s as any).sd_ap ?? 0)?.['n_low'] - 1)] ?? 0)));
+              ((s as any).sd_ap = (s as any).sd_ap ?? {})['low_verb'] = 'are lacking';
+            }
+          }
+        }
+        if (((s as any).sd_attrs_prose ?? 0) !== '') {
+          (s as any).sd_attrs_prose = ((s as any).sd_attrs_prose ?? 0) + (', but your ' + (((s as any).sd_ap ?? 0)?.['low_list']) + ' ' + (((s as any).sd_ap ?? 0)?.['low_verb']));
+        } else {
+          (s as any).sd_attrs_prose = 'Your ' + (((s as any).sd_ap ?? 0)?.['low_list']) + ' ' + (((s as any).sd_ap ?? 0)?.['low_verb']);
+        }
+      }
+      if (((s as any).sd_attrs_prose ?? 0) !== '') {
+        (s as any).sd_attrs_prose = ((s as any).sd_attrs_prose ?? 0) + ('.');
+      } else {
+        (s as any).sd_attrs_prose = 'Your attributes are well-balanced.';
+      }
+      (s as any).sd_ap = undefined;
+      return;
     }
   }
-  if (((s as any).sd_attrs_prose ?? 0) !== '') {
-    // TODO-QSP: $sd_attrs_prose += '.'
-  } else {
-    (s as any).sd_attrs_prose = 'Your attributes are well-balanced.';
-  }
-  return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterComputeStats(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_horny ?? 0) >= 100) {
-    ((s as any).stat_texts = (s as any).stat_texts ?? {})['arousal'] = 'Craving floods your senses. You are <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = /u0027images/pc/body/pussy/aroused//u0027 + /u0027__qspDyn/u0027 + /u0027_high.jpg/u0027; return s; }); return false;">soaked</a> from your juices.';
+    ((s as any).stat_texts = (s as any).stat_texts ?? {})['arousal'] = 'Craving floods your senses. You are <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = \u0027images/pc/body/pussy/aroused/\u0027 + \u0027__qspDyn\u0027 + \u0027_high.jpg\u0027; return s; }); return false;">soaked</a> from your juices.';
     ((s as any).stat_texts = (s as any).stat_texts ?? {})['arousal_tooltip'] = 'Craving floods your senses. You are soaked from your juices.';
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'arousal', 'bimbo', 'status/arousal_high', 2]; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'You are overwhelmed by arousal.', 'bimbo']; enterQueueAlert(s, scene); (s as any).locArgs = __savedLocArgs; }
     if (((s as any).stat_cfg ?? 0)?.['render_mode_status'] === 3) {
-      // TODO-QSP: $sd_pr_urgent[] = 'overcome with desire'
+      (s as any).sd_pr_urgent = [...((s as any).sd_pr_urgent ?? []), 'overcome with desire'];
     }
   } else {
     if (((s as any).pcs_horny ?? 0) >= 75) {
-      ((s as any).stat_texts = (s as any).stat_texts ?? {})['arousal'] = 'You can\'t stop thinking about sex. You are <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = /u0027images/pc/body/pussy/aroused//u0027 + /u0027__qspDyn/u0027 + /u0027_low.jpg/u0027; return s; }); return false;">itching</a> with arousal.';
+      ((s as any).stat_texts = (s as any).stat_texts ?? {})['arousal'] = 'You can\'t stop thinking about sex. You are <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = \u0027images/pc/body/pussy/aroused/\u0027 + \u0027__qspDyn\u0027 + \u0027_low.jpg\u0027; return s; }); return false;">itching</a> with arousal.';
       ((s as any).stat_texts = (s as any).stat_texts ?? {})['arousal_tooltip'] = 'You can\'t stop thinking about sex. You are itching with arousal.';
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'arousal', 'bimbo', 'status/arousal_high', 2]; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
       if (((s as any).stat_cfg ?? 0)?.['render_mode_status'] === 3) {
-        // TODO-QSP: $sd_pr_warning[] = 'very aroused'
+        (s as any).sd_pr_warning = [...((s as any).sd_pr_warning ?? []), 'very aroused'];
       }
     } else {
       if (((s as any).pcs_horny ?? 0) >= 50) {
         ((s as any).stat_texts = (s as any).stat_texts ?? {})['arousal'] = 'A warm desire quickens your pulse.';
         { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'arousal', 'punk', 'status/arousal_med', 2]; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
         if (((s as any).stat_cfg ?? 0)?.['render_mode_status'] === 3) {
-          // TODO-QSP: $sd_pr_mild[] = 'a bit flushed'
+          (s as any).sd_pr_mild = [...((s as any).sd_pr_mild ?? []), 'a bit flushed'];
         }
       } else {
         if (((s as any).pcs_horny ?? 0) >= 25) {
@@ -335,7 +346,7 @@ function enterComputeStats(s: GameState, scene: SceneBuilder): void {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'pain', 'v_neg', 'status/pain_3', 2, 'gt \'$menu_character\', \'pain\'']; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'You are in agony.', 'v_neg']; enterQueueAlert(s, scene); (s as any).locArgs = __savedLocArgs; }
     if (((s as any).stat_cfg ?? 0)?.['render_mode_status'] === 3) {
-      // TODO-QSP: $sd_pr_urgent[] = 'in agony'
+      (s as any).sd_pr_urgent = [...((s as any).sd_pr_urgent ?? []), 'in agony'];
     }
   } else {
     if (((s as any).pain ?? 0)?.['total'] > 50) {
@@ -343,14 +354,14 @@ function enterComputeStats(s: GameState, scene: SceneBuilder): void {
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'pain', 'neg', 'status/pain_2', 2, 'gt \'$menu_character\', \'pain\'']; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'You are in sharp pain.', 'neg']; enterQueueAlert(s, scene); (s as any).locArgs = __savedLocArgs; }
       if (((s as any).stat_cfg ?? 0)?.['render_mode_status'] === 3) {
-        // TODO-QSP: $sd_pr_warning[] = 'in sharp pain'
+        (s as any).sd_pr_warning = [...((s as any).sd_pr_warning ?? []), 'in sharp pain'];
       }
     } else {
       if (((s as any).pain ?? 0)?.['total'] > 25) {
         ((s as any).stat_texts = (s as any).stat_texts ?? {})['pain'] = 'A nagging pain distracts your focus.';
         { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'pain', 'neutral', 'status/pain_1', 2, 'gt \'$menu_character\', \'pain\'']; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
         if (((s as any).stat_cfg ?? 0)?.['render_mode_status'] === 3) {
-          // TODO-QSP: $sd_pr_mild[] = 'a bit achy'
+          (s as any).sd_pr_mild = [...((s as any).sd_pr_mild ?? []), 'a bit achy'];
         }
       } else {
         if (((s as any).pain ?? 0)?.['total'] > 5) {
@@ -369,21 +380,21 @@ function enterComputeStats(s: GameState, scene: SceneBuilder): void {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'health', 'v_neg']; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'You are in critical condition.', 'v_neg']; enterQueueAlert(s, scene); (s as any).locArgs = __savedLocArgs; }
     if (((s as any).stat_cfg ?? 0)?.['render_mode_status'] === 3) {
-      // TODO-QSP: $sd_pr_urgent[] = 'critically ill'
+      (s as any).sd_pr_urgent = [...((s as any).sd_pr_urgent ?? []), 'critically ill'];
     }
   } else {
     if (((s as any).stat_nums ?? 0)?.['health_percent'] < 30) {
       ((s as any).stat_texts = (s as any).stat_texts ?? {})['health'] = 'Your health falters under strain.';
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'health', 'neg']; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
       if (((s as any).stat_cfg ?? 0)?.['render_mode_status'] === 3) {
-        // TODO-QSP: $sd_pr_warning[] = 'in poor health'
+        (s as any).sd_pr_warning = [...((s as any).sd_pr_warning ?? []), 'in poor health'];
       }
     } else {
       if (((s as any).stat_nums ?? 0)?.['health_percent'] < 60) {
         ((s as any).stat_texts = (s as any).stat_texts ?? {})['health'] = 'You feel noticeably unwell.';
         { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'health', 'neutral']; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
         if (((s as any).stat_cfg ?? 0)?.['render_mode_status'] === 3) {
-          // TODO-QSP: $sd_pr_mild[] = 'feeling unwell'
+          (s as any).sd_pr_mild = [...((s as any).sd_pr_mild ?? []), 'feeling unwell'];
         }
       } else {
         if (((s as any).stat_nums ?? 0)?.['health_percent'] < 90) {
@@ -402,14 +413,14 @@ function enterComputeStats(s: GameState, scene: SceneBuilder): void {
       ((s as any).stat_texts = (s as any).stat_texts ?? {})['mana'] = 'You are drained of arcane energy.';
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'mana', 'v_neg']; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
       if (((s as any).stat_cfg ?? 0)?.['render_mode_status'] === 3) {
-        // TODO-QSP: $sd_pr_warning[] = 'mana-drained'
+        (s as any).sd_pr_warning = [...((s as any).sd_pr_warning ?? []), 'mana-drained'];
       }
     } else {
       if (((s as any).stat_nums ?? 0)?.['mana_percent'] < 30) {
         ((s as any).stat_texts = (s as any).stat_texts ?? {})['mana'] = 'Your magical reserves run thin and strained.';
         { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'mana', 'neg']; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
         if (((s as any).stat_cfg ?? 0)?.['render_mode_status'] === 3) {
-          // TODO-QSP: $sd_pr_mild[] = 'low on mana'
+          (s as any).sd_pr_mild = [...((s as any).sd_pr_mild ?? []), 'low on mana'];
         }
       } else {
         if (((s as any).stat_nums ?? 0)?.['mana_percent'] < 60) {
@@ -433,21 +444,21 @@ function enterComputeStats(s: GameState, scene: SceneBuilder): void {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'willpower', 'v_neg', 'status/willpower_low', 2]; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'Your willpower is broken.', 'v_neg']; enterQueueAlert(s, scene); (s as any).locArgs = __savedLocArgs; }
     if (((s as any).stat_cfg ?? 0)?.['render_mode_status'] === 3) {
-      // TODO-QSP: $sd_pr_urgent[] = 'broken in will'
+      (s as any).sd_pr_urgent = [...((s as any).sd_pr_urgent ?? []), 'broken in will'];
     }
   } else {
     if (((s as any).stat_nums ?? 0)?.['willpower_percent'] < 40) {
       ((s as any).stat_texts = (s as any).stat_texts ?? {})['willpower'] = 'Your resolve wavers under pressure.';
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'willpower', 'pos', 'status/willpower_low', 2]; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
       if (((s as any).stat_cfg ?? 0)?.['render_mode_status'] === 3) {
-        // TODO-QSP: $sd_pr_warning[] = 'weak-willed'
+        (s as any).sd_pr_warning = [...((s as any).sd_pr_warning ?? []), 'weak-willed'];
       }
     } else {
       if (((s as any).stat_nums ?? 0)?.['willpower_percent'] < 60) {
         ((s as any).stat_texts = (s as any).stat_texts ?? {})['willpower'] = 'Doubt creeps into your thoughts.';
         { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'willpower', 'neutral', 'status/willpower_med', 2]; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
         if (((s as any).stat_cfg ?? 0)?.['render_mode_status'] === 3) {
-          // TODO-QSP: $sd_pr_mild[] = 'irresolute'
+          (s as any).sd_pr_mild = [...((s as any).sd_pr_mild ?? []), 'irresolute'];
         }
       } else {
         if (((s as any).stat_nums ?? 0)?.['willpower_percent'] < 80) {
@@ -465,21 +476,21 @@ function enterComputeStats(s: GameState, scene: SceneBuilder): void {
     ((s as any).stat_texts = (s as any).stat_texts ?? {})['stamina'] = 'Your energy is utterly spent.';
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'stamina', 'v_neg']; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
     if (((s as any).stat_cfg ?? 0)?.['render_mode_status'] === 3) {
-      // TODO-QSP: $sd_pr_urgent[] = 'spent'
+      (s as any).sd_pr_urgent = [...((s as any).sd_pr_urgent ?? []), 'spent'];
     }
   } else {
     if (((s as any).stat_nums ?? 0)?.['stamina_percent'] < 30) {
       ((s as any).stat_texts = (s as any).stat_texts ?? {})['stamina'] = 'Your limbs tremble from exertion.';
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'stamina', 'neg']; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
       if (((s as any).stat_cfg ?? 0)?.['render_mode_status'] === 3) {
-        // TODO-QSP: $sd_pr_warning[] = 'exhausted'
+        (s as any).sd_pr_warning = [...((s as any).sd_pr_warning ?? []), 'exhausted'];
       }
     } else {
       if (((s as any).stat_nums ?? 0)?.['stamina_percent'] < 60) {
         ((s as any).stat_texts = (s as any).stat_texts ?? {})['stamina'] = 'Your breath catches with effort.';
         { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'stamina', 'neutral']; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
         if (((s as any).stat_cfg ?? 0)?.['render_mode_status'] === 3) {
-          // TODO-QSP: $sd_pr_mild[] = 'winded'
+          (s as any).sd_pr_mild = [...((s as any).sd_pr_mild ?? []), 'winded'];
         }
       } else {
         if (((s as any).stat_nums ?? 0)?.['stamina_percent'] < 90) {
@@ -497,7 +508,7 @@ function enterComputeStats(s: GameState, scene: SceneBuilder): void {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'mood', 'v_neg', 'status/mood_6', 2]; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'You are in deep despair.', 'v_neg']; enterQueueAlert(s, scene); (s as any).locArgs = __savedLocArgs; }
     if (((s as any).stat_cfg ?? 0)?.['render_mode_status'] === 3) {
-      // TODO-QSP: $sd_pr_urgent[] = 'sunk in despair'
+      (s as any).sd_pr_urgent = [...((s as any).sd_pr_urgent ?? []), 'sunk in despair'];
     }
   } else {
     if (((s as any).pcs_mood ?? 0) < 25) {
@@ -505,14 +516,14 @@ function enterComputeStats(s: GameState, scene: SceneBuilder): void {
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'mood', 'v_neg', 'status/mood_5', 2]; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'You are very unhappy.', 'v_neg']; enterQueueAlert(s, scene); (s as any).locArgs = __savedLocArgs; }
       if (((s as any).stat_cfg ?? 0)?.['render_mode_status'] === 3) {
-        // TODO-QSP: $sd_pr_warning[] = 'deeply unhappy'
+        (s as any).sd_pr_warning = [...((s as any).sd_pr_warning ?? []), 'deeply unhappy'];
       }
     } else {
       if (((s as any).pcs_mood ?? 0) < 40) {
         ((s as any).stat_texts = (s as any).stat_texts ?? {})['mood'] = 'A heaviness clouds your mood.';
         { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'mood', 'neg', 'status/mood_4', 2]; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
         if (((s as any).stat_cfg ?? 0)?.['render_mode_status'] === 3) {
-          // TODO-QSP: $sd_pr_mild[] = 'gloomy'
+          (s as any).sd_pr_mild = [...((s as any).sd_pr_mild ?? []), 'gloomy'];
         }
       } else {
         if (((s as any).pcs_mood ?? 0) < 55) {
@@ -526,7 +537,7 @@ function enterComputeStats(s: GameState, scene: SceneBuilder): void {
             ((s as any).stat_texts = (s as any).stat_texts ?? {})['mood'] = 'Your spirits lift with a bright ease.';
             { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'mood', 'v_pos', 'status/mood_1', 2, 'pos']; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
             if (((s as any).stat_cfg ?? 0)?.['render_mode_status'] === 3) {
-              // TODO-QSP: $sd_pr_upbeat[] = 'in great spirits'
+              (s as any).sd_pr_upbeat = [...((s as any).sd_pr_upbeat ?? []), 'in great spirits'];
             }
           }
         }
@@ -546,19 +557,19 @@ function enterComputeStats(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_energy ?? 0) <= 5) {
     ((s as any).stat_texts = (s as any).stat_texts ?? {})['energy'] = 'You are about to collapse from hunger.';
     if (((s as any).stat_cfg ?? 0)?.['render_mode_status'] === 3) {
-      // TODO-QSP: $sd_pr_urgent[] = 'starving'
+      (s as any).sd_pr_urgent = [...((s as any).sd_pr_urgent ?? []), 'starving'];
     }
   } else {
     if (((s as any).pcs_energy ?? 0) <= 25) {
       ((s as any).stat_texts = (s as any).stat_texts ?? {})['energy'] = 'You are nearly starving.';
       if (((s as any).stat_cfg ?? 0)?.['render_mode_status'] === 3) {
-        // TODO-QSP: $sd_pr_warning[] = 'very hungry'
+        (s as any).sd_pr_warning = [...((s as any).sd_pr_warning ?? []), 'very hungry'];
       }
     } else {
       if (((s as any).pcs_energy ?? 0) <= 50) {
         ((s as any).stat_texts = (s as any).stat_texts ?? {})['energy'] = 'Hunger tugs at your focus.';
         if (((s as any).stat_cfg ?? 0)?.['render_mode_status'] === 3) {
-          // TODO-QSP: $sd_pr_mild[] = 'getting hungry'
+          (s as any).sd_pr_mild = [...((s as any).sd_pr_mild ?? []), 'getting hungry'];
         }
       } else {
         if (((s as any).pcs_energy ?? 0) <= 75) {
@@ -590,19 +601,19 @@ function enterComputeStats(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_hydra ?? 0) <= 5) {
     ((s as any).stat_texts = (s as any).stat_texts ?? {})['thirst'] = 'You burn with unrelenting thirst.';
     if (((s as any).stat_cfg ?? 0)?.['render_mode_status'] === 3) {
-      // TODO-QSP: $sd_pr_urgent[] = 'parched dry'
+      (s as any).sd_pr_urgent = [...((s as any).sd_pr_urgent ?? []), 'parched dry'];
     }
   } else {
     if (((s as any).pcs_hydra ?? 0) <= 25) {
       ((s as any).stat_texts = (s as any).stat_texts ?? {})['thirst'] = 'You\'re so thirsty you could faint.';
       if (((s as any).stat_cfg ?? 0)?.['render_mode_status'] === 3) {
-        // TODO-QSP: $sd_pr_warning[] = 'parched'
+        (s as any).sd_pr_warning = [...((s as any).sd_pr_warning ?? []), 'parched'];
       }
     } else {
       if (((s as any).pcs_hydra ?? 0) <= 50) {
         ((s as any).stat_texts = (s as any).stat_texts ?? {})['thirst'] = 'Your throat tightens with thirst.';
         if (((s as any).stat_cfg ?? 0)?.['render_mode_status'] === 3) {
-          // TODO-QSP: $sd_pr_mild[] = 'thirsty'
+          (s as any).sd_pr_mild = [...((s as any).sd_pr_mild ?? []), 'thirsty'];
         }
       } else {
         if (((s as any).pcs_hydra ?? 0) <= 75) {
@@ -740,6 +751,7 @@ function enterComputeStats(s: GameState, scene: SceneBuilder): void {
         { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'Divine Liturgy is this morning.', 'prude']; enterQueueAlert(s, scene); (s as any).locArgs = __savedLocArgs; }
       }
     }
+    (s as any).temp_weekday = undefined;
   }
   if (((s as any).stat_cfg ?? 0)?.['render_mode_status'] === 3  &&  ((s as any).cheatVars ?? 0)?.['sleep'] === 0) {
     if (((s as any).drugVars ?? 0)?.['caffeine_dose'] > 0  &&  ((s as any).drugVars ?? 0)?.['sleep_actual'] < 100) {
@@ -748,75 +760,85 @@ function enterComputeStats(s: GameState, scene: SceneBuilder): void {
       ((s as any).sd_pr = (s as any).sd_pr ?? {})['sl'] = ((s as any).pcs_sleep ?? 0);
     }
     if (((s as any).sd_pr ?? 0)?.['sl'] <= 5) {
-      // TODO-QSP: $sd_pr_urgent[] = 'about to collapse'
+      (s as any).sd_pr_urgent = [...((s as any).sd_pr_urgent ?? []), 'about to collapse'];
     } else {
       if (((s as any).sd_pr ?? 0)?.['sl'] <= 25) {
-        // TODO-QSP: $sd_pr_warning[] = 'barely awake'
+        (s as any).sd_pr_warning = [...((s as any).sd_pr_warning ?? []), 'barely awake'];
       } else {
         if (((s as any).sd_pr ?? 0)?.['sl'] <= 50) {
-          // TODO-QSP: $sd_pr_mild[] = 'sleepy'
+          (s as any).sd_pr_mild = [...((s as any).sd_pr_mild ?? []), 'sleepy'];
         }
       }
     }
     if (((s as any).drugVars ?? 0)?.['caffeine_dose'] > 0  &&  ((s as any).pcs_sleep ?? 0) > ((s as any).drugVars ?? 0)?.['sleep_actual']  &&  ((s as any).drugVars ?? 0)?.['sleep_actual'] <= 50) {
-      // TODO-QSP: $sd_pr_mild[] = 'wired on caffeine'
+      (s as any).sd_pr_mild = [...((s as any).sd_pr_mild ?? []), 'wired on caffeine'];
     }
   }
   if (((s as any).stat_cfg ?? 0)?.['render_mode_status'] === 3) {
+    (s as any).sd_pr_flat = undefined;
     ((s as any).sd_pr = (s as any).sd_pr ?? {})['i'] = 0;
-    // TODO-QSP: :sd_pr_flatten_urgent
-    if (((s as any).sd_pr ?? 0)?.['i'] < Object.keys((s as any).sd_pr_urgent ?? {}).length) {
-      // TODO-QSP: $sd_pr_flat[] = $func('wrap', 'v_neg', $sd_pr_urgent[sd_pr['i']])
-      ((s as any).sd_pr = (s as any).sd_pr ?? {})['i'] = ((s as any).sd_pr['i'] ?? 0) + (1);
-      // TODO-QSP: jump 'sd_pr_flatten_urgent'
-    }
-    ((s as any).sd_pr = (s as any).sd_pr ?? {})['i'] = 0;
-    // TODO-QSP: :sd_pr_flatten_warning
-    if (((s as any).sd_pr ?? 0)?.['i'] < Object.keys((s as any).sd_pr_warning ?? {}).length) {
-      // TODO-QSP: $sd_pr_flat[] = $func('wrap', 'neg', $sd_pr_warning[sd_pr['i']])
-      ((s as any).sd_pr = (s as any).sd_pr ?? {})['i'] = ((s as any).sd_pr['i'] ?? 0) + (1);
-      // TODO-QSP: jump 'sd_pr_flatten_warning'
-    }
-    ((s as any).sd_pr = (s as any).sd_pr ?? {})['i'] = 0;
-    // TODO-QSP: :sd_pr_flatten_mild
-    if (((s as any).sd_pr ?? 0)?.['i'] < Object.keys((s as any).sd_pr_mild ?? {}).length) {
-      // TODO-QSP: $sd_pr_flat[] = $func('wrap', 'neutral', $sd_pr_mild[sd_pr['i']])
-      ((s as any).sd_pr = (s as any).sd_pr ?? {})['i'] = ((s as any).sd_pr['i'] ?? 0) + (1);
-      // TODO-QSP: jump 'sd_pr_flatten_mild'
-    }
-    ((s as any).sd_pr = (s as any).sd_pr ?? {})['total'] = 0;
-    if (((s as any).sd_pr ?? 0)?.['total'] === 0) {
-      if (Object.keys((s as any).sd_pr_upbeat ?? {}).length > 0) {
-        (s as any).sd_status_prose = 'You feel fine, and ' + (((s as any).sd_pr_upbeat ?? 0)?.[0] ?? 0) + '.';
-      } else {
-        (s as any).sd_status_prose = 'You feel fine overall.';
+    while (true) {
+      if (((s as any).sd_pr ?? 0)?.['i'] < Object.keys((s as any).sd_pr_urgent ?? {}).length) {
+        (s as any).sd_pr_flat = [...((s as any).sd_pr_flat ?? []), qspFunc(s, 'wrap', 'v_neg', qspUntranslated(s, "sd_pr_urgent[sd_pr['i']]", { location: "stat_display_compute" }))];
+        ((s as any).sd_pr = (s as any).sd_pr ?? {})['i'] = ((s as any).sd_pr['i'] ?? 0) + (1);
+        break;
       }
-    } else {
-      if (((s as any).sd_pr ?? 0)?.['total'] === 1) {
-        (s as any).sd_status_prose = 'You are ' + (((s as any).sd_pr_flat ?? 0)?.[0] ?? 0);
-      } else {
-        if (((s as any).sd_pr ?? 0)?.['total'] === 2) {
-          (s as any).sd_status_prose = 'You are ' + (((s as any).sd_pr_flat ?? 0)?.[0] ?? 0) + ' and ' + (((s as any).sd_pr_flat ?? 0)?.[1] ?? 0);
-        } else {
-          (s as any).sd_status_prose = 'You are ' + (((s as any).sd_pr_flat ?? 0)?.[0] ?? 0);
-          ((s as any).sd_pr = (s as any).sd_pr ?? {})['i'] = 1;
-          // TODO-QSP: :sd_pr_join_loop
-          if (((s as any).sd_pr ?? 0)?.['i'] < (((s as any).sd_pr ?? 0)?.['total'] - 1)) {
-            // TODO-QSP: $sd_status_prose += ', ' + $sd_pr_flat[sd_pr['i']]
+      ((s as any).sd_pr = (s as any).sd_pr ?? {})['i'] = 0;
+      while (true) {
+        if (((s as any).sd_pr ?? 0)?.['i'] < Object.keys((s as any).sd_pr_warning ?? {}).length) {
+          (s as any).sd_pr_flat = [...((s as any).sd_pr_flat ?? []), qspFunc(s, 'wrap', 'neg', qspUntranslated(s, "sd_pr_warning[sd_pr['i']]", { location: "stat_display_compute" }))];
+          ((s as any).sd_pr = (s as any).sd_pr ?? {})['i'] = ((s as any).sd_pr['i'] ?? 0) + (1);
+          break;
+        }
+        ((s as any).sd_pr = (s as any).sd_pr ?? {})['i'] = 0;
+        while (true) {
+          if (((s as any).sd_pr ?? 0)?.['i'] < Object.keys((s as any).sd_pr_mild ?? {}).length) {
+            (s as any).sd_pr_flat = [...((s as any).sd_pr_flat ?? []), qspFunc(s, 'wrap', 'neutral', qspUntranslated(s, "sd_pr_mild[sd_pr['i']]", { location: "stat_display_compute" }))];
             ((s as any).sd_pr = (s as any).sd_pr ?? {})['i'] = ((s as any).sd_pr['i'] ?? 0) + (1);
-            // TODO-QSP: jump 'sd_pr_join_loop'
+            break;
           }
-          // TODO-QSP: $sd_status_prose += ', and ' + $sd_pr_flat[sd_pr['total'] - 1]
+          ((s as any).sd_pr = (s as any).sd_pr ?? {})['total'] = 0;
+          if (((s as any).sd_pr ?? 0)?.['total'] === 0) {
+            if (Object.keys((s as any).sd_pr_upbeat ?? {}).length > 0) {
+              (s as any).sd_status_prose = 'You feel fine, and ' + (((s as any).sd_pr_upbeat ?? 0)?.[0] ?? 0) + '.';
+            } else {
+              (s as any).sd_status_prose = 'You feel fine overall.';
+            }
+          } else {
+            if (((s as any).sd_pr ?? 0)?.['total'] === 1) {
+              (s as any).sd_status_prose = 'You are ' + (((s as any).sd_pr_flat ?? 0)?.[0] ?? 0);
+            } else {
+              if (((s as any).sd_pr ?? 0)?.['total'] === 2) {
+                (s as any).sd_status_prose = 'You are ' + (((s as any).sd_pr_flat ?? 0)?.[0] ?? 0) + ' and ' + (((s as any).sd_pr_flat ?? 0)?.[1] ?? 0);
+              } else {
+                (s as any).sd_status_prose = 'You are ' + (((s as any).sd_pr_flat ?? 0)?.[0] ?? 0);
+                ((s as any).sd_pr = (s as any).sd_pr ?? {})['i'] = 1;
+                while (true) {
+                  if (((s as any).sd_pr ?? 0)?.['i'] < (((s as any).sd_pr ?? 0)?.['total'] - 1)) {
+                    (s as any).sd_status_prose = ((s as any).sd_status_prose ?? 0) + (', ' + qspUntranslated(s, "sd_pr_flat[sd_pr['i']]", { location: "stat_display_compute" }));
+                    ((s as any).sd_pr = (s as any).sd_pr ?? {})['i'] = ((s as any).sd_pr['i'] ?? 0) + (1);
+                    break;
+                  }
+                  (s as any).sd_status_prose = ((s as any).sd_status_prose ?? 0) + (',  &&  ' + ((s as any).sd_pr_flat ?? 0)[((s as any).sd_pr ?? 0)?.['total'] - 1]);
+                }
+              }
+            }
+            if (Object.keys((s as any).sd_pr_upbeat ?? {}).length > 0) {
+              (s as any).sd_status_prose = ((s as any).sd_status_prose ?? 0) + ('—but ' + qspFunc(s, 'wrap', 'v_pos', (((s as any).sd_pr_upbeat ?? 0)?.[0] ?? 0)));
+            }
+            (s as any).sd_status_prose = ((s as any).sd_status_prose ?? 0) + ('.');
+          }
         }
       }
-      if (Object.keys((s as any).sd_pr_upbeat ?? {}).length > 0) {
-        // TODO-QSP: $sd_status_prose += '—but ' + $func('wrap', 'v_pos', $sd_pr_upbeat[0])
-      }
-      // TODO-QSP: $sd_status_prose += '.'
     }
   }
+  (s as any).sd_pr_urgent = undefined;
+  (s as any).sd_pr_warning = undefined;
+  (s as any).sd_pr_mild = undefined;
+  (s as any).sd_pr_upbeat = undefined;
+  (s as any).sd_pr_flat = undefined;
+  (s as any).sd_pr = undefined;
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1065,8 +1087,8 @@ function enterComputeBody(s: GameState, scene: SceneBuilder): void {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'std_yeast', 'v_neg', 'status/std', 3]; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   ((s as any).stat_nums = (s as any).stat_nums ?? {})['std_count'] = ((s as any).temp_std_count ?? 0);
+  (s as any).temp_std_count = undefined;
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1075,24 +1097,24 @@ function enterComputeAppearance(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_mu = '';
   (s as any).temp_tot = '';
   if (((s as any).PShoBimbo ?? 0) === 1) {
-    // TODO-QSP: $temp_shoes += ' ' + $func('wrap', 'bimbo', 'bimbo')
+    (s as any).temp_shoes = ((s as any).temp_shoes ?? 0) + (' ' + qspFunc(s, 'wrap', 'bimbo', 'bimbo'));
     if (((s as any).PCloBimbo ?? 0) === 1  &&  ((s as any).pcs_makeup ?? 0) === 6) {
-      // TODO-QSP: $temp_mu += ' ' + $func('wrap', 'bimbo', 'bimbo')
-      // TODO-QSP: $temp_tot += ' ' + $func('wrap', 'bimbo', 'bimbo')
+      (s as any).temp_mu = ((s as any).temp_mu ?? 0) + (' ' + qspFunc(s, 'wrap', 'bimbo', 'bimbo'));
+      (s as any).temp_tot = ((s as any).temp_tot ?? 0) + (' ' + qspFunc(s, 'wrap', 'bimbo', 'bimbo'));
     }
   }
   if (((s as any).PShoGoth ?? 0) === 1) {
-    // TODO-QSP: $temp_shoes += ' ' + $func('wrap', 'goth', 'goth')
+    (s as any).temp_shoes = ((s as any).temp_shoes ?? 0) + (' ' + qspFunc(s, 'wrap', 'goth', 'goth'));
     if (((s as any).PCloGoth ?? 0) === 1  &&  ((s as any).pcs_makeup ?? 0) === 7) {
-      // TODO-QSP: $temp_mu += ' ' + $func('wrap', 'goth', 'goth')
-      // TODO-QSP: $temp_tot += ' ' + $func('wrap', 'goth', 'goth')
+      (s as any).temp_mu = ((s as any).temp_mu ?? 0) + (' ' + qspFunc(s, 'wrap', 'goth', 'goth'));
+      (s as any).temp_tot = ((s as any).temp_tot ?? 0) + (' ' + qspFunc(s, 'wrap', 'goth', 'goth'));
     }
   }
   if (((s as any).PShoPunk ?? 0) === 1) {
-    // TODO-QSP: $temp_shoes += ' ' + $func('wrap', 'punk', 'punk')
+    (s as any).temp_shoes = ((s as any).temp_shoes ?? 0) + (' ' + qspFunc(s, 'wrap', 'punk', 'punk'));
     if (((s as any).PCloPunk ?? 0) === 1  &&  ((s as any).pcs_makeup ?? 0) >= 1  &&  ((s as any).pcs_makeup ?? 0) < 3) {
-      // TODO-QSP: $temp_mu += $iif(pcs_makeup = 1, ' no', ' ' + $func('wrap', 'punk', 'punk'))
-      // TODO-QSP: $temp_tot += ' ' + $func('wrap', 'punk', 'punk')
+      (s as any).temp_mu = ((s as any).temp_mu ?? 0) + (((((s as any).pcs_makeup ?? 0) === 1) ? (' no') : (' ' + qspFunc(s, 'wrap', 'punk', 'punk'))));
+      (s as any).temp_tot = ((s as any).temp_tot ?? 0) + (' ' + qspFunc(s, 'wrap', 'punk', 'punk'));
     }
   }
   if (((s as any).temp_shoes ?? 0) !== '') {
@@ -1107,6 +1129,9 @@ function enterComputeAppearance(s: GameState, scene: SceneBuilder): void {
     ((s as any).stat_texts = (s as any).stat_texts ?? {})['clothes_style_tooltip'] = (((s as any).stat_texts ?? 0)?.['clothes_tooltip']);
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'clothes_style']; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
+  (s as any).temp_shoes = undefined;
+  (s as any).temp_mu = undefined;
+  (s as any).temp_tot = undefined;
   if (((s as any).pcs_heels ?? 0) < ((s as any).PShoPain ?? 0)?.['mild']) {
     if (((s as any).pain ?? 0)?.['feet'] >= 70) {
       ((s as any).stat_texts = (s as any).stat_texts ?? {})['feet_pain'] = 'Your feet are killing you. You should wear more comfortable shoes.';
@@ -1139,7 +1164,6 @@ function enterComputeAppearance(s: GameState, scene: SceneBuilder): void {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A used condom is stuck inside you.', 'v_neg']; enterQueueAlert(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1239,6 +1263,7 @@ function enterComputeMisc(s: GameState, scene: SceneBuilder): void {
   if (((s as any).trait_vars ?? 0)?.['body_hair_attitude'] === -2  &&  (((s as any).pcs_pubes ?? 0) >= 4  ||  ((s as any).pcs_leghair ?? 0) >= 4)) {
     (s as any).temp_area = ((((s as any).pcs_pubes ?? 0) < 4  &&  ((s as any).pcs_leghair ?? 0) < 4) ? ('legs and pubic mound') : (((((s as any).pcs_pubes ?? 0) < 4) ? ('legs') : ('pubic mound'))));
     ((s as any).stat_texts = (s as any).stat_texts ?? {})['body_hair_attitude_discomfort'] = 'Your ' + ((s as any).temp_area ?? 0) + ' feel rough to the touch, lowering your mood.';
+    (s as any).temp_area = undefined;
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'body_hair_attitude_discomfort', 'v_neg', 'status/hypno_addict', 3]; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   if (((s as any).hypnoSchedule ?? 0) === 1  &&  ((s as any).therapist_weekly_block ?? 0) === 0  &&  ((s as any).week ?? 0) === 4  &&  ((s as any).therapistday ?? 0) !== ((s as any).daystart ?? 0)) {
@@ -1271,14 +1296,16 @@ function enterComputeMisc(s: GameState, scene: SceneBuilder): void {
   if (Object.keys((s as any).spellComplete ?? {}).length > 0) {
     ((s as any).sd_cm = (s as any).sd_cm ?? {})['spell_text'] = '<br><b>' + qspFunc(s, 'wrap', 'bimbo', 'Active Spells') + '</b>';
     ((s as any).sd_cm = (s as any).sd_cm ?? {})['si'] = 0;
-    // TODO-QSP: :sd_spell_loop
-    if (((s as any).sd_cm ?? 0)?.['si'] < Object.keys((s as any).spellComplete ?? {}).length) {
-      ((s as any).sd_cm = (s as any).sd_cm ?? {})['spell_text'] = ((s as any).sd_cm['spell_text'] ?? 0) + (qspFunc(s, 'wrap', 'bimbo', '<br>' + (((s as any).spellName ?? 0)?.[qspUntranslated(s, "spellTimeName[sd_cm['si']]", { location: "stat_display_compute" })] ?? 0) + ''));
-      ((s as any).sd_cm = (s as any).sd_cm ?? {})['si'] = ((s as any).sd_cm['si'] ?? 0) + (1);
-      // TODO-QSP: jump 'sd_spell_loop'
+    while (true) {
+      if (((s as any).sd_cm ?? 0)?.['si'] < Object.keys((s as any).spellComplete ?? {}).length) {
+        ((s as any).sd_cm = (s as any).sd_cm ?? {})['spell_text'] = ((s as any).sd_cm['spell_text'] ?? 0) + (qspFunc(s, 'wrap', 'bimbo', '<br>' + (((s as any).spellName ?? 0)?.[qspUntranslated(s, "spellTimeName[sd_cm['si']]", { location: "stat_display_compute" })] ?? 0) + ''));
+        ((s as any).sd_cm = (s as any).sd_cm ?? {})['si'] = ((s as any).sd_cm['si'] ?? 0) + (1);
+        break;
+      }
+      ((s as any).stat_texts = (s as any).stat_texts ?? {})['active_spells'] = qspFunc(s, 'cleanHTML', (((s as any).sd_cm ?? 0)?.['spell_text']));
+      (s as any).sd_cm = undefined;
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'active_spells']; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
-    ((s as any).stat_texts = (s as any).stat_texts ?? {})['active_spells'] = qspFunc(s, 'cleanHTML', (((s as any).sd_cm ?? 0)?.['spell_text']));
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'active_spells']; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   if (((s as any).stat_cfg ?? 0)?.['notify_exp'] !== 1) {
     if (qspFunc(s, 'exp_notification', 'is_empty') === 0) {
@@ -1346,13 +1373,13 @@ function enterComputeMisc(s: GameState, scene: SceneBuilder): void {
         ((s as any).stat_texts = (s as any).stat_texts ?? {})['gadukino'] = 'Your basket is partially full.';
       }
       if (((s as any).boletus ?? 0) > 0) {
-        ((s as any).stat_texts = (s as any).stat_texts ?? {})['gadukino'] = ((s as any).stat_texts['gadukino'] ?? 0) + ('<br>Mushrooms: <a href="#" onclick="window.__gameStore.setState((s) => { s.boletus -=s.1; return s; }); window.__gameStore.getState().doGoto(/u0027stat/u0027, /u0027/u0027); return false;"><b>' + ((s as any).boletus ?? 0) + '</b></a> kg.');
+        ((s as any).stat_texts = (s as any).stat_texts ?? {})['gadukino'] = ((s as any).stat_texts['gadukino'] ?? 0) + ('<br>Mushrooms: <a href="#" onclick="window.__gameStore.setState((s) => { s.boletus -=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027stat\u0027, \u0027\u0027); return false;"><b>' + ((s as any).boletus ?? 0) + '</b></a> kg.');
       }
       if (((s as any).boletus_cooked ?? 0) > 0) {
-        ((s as any).stat_texts = (s as any).stat_texts ?? {})['gadukino'] = ((s as any).stat_texts['gadukino'] ?? 0) + ('<br>Cooked Mushrooms: <a href="#" onclick="window.__gameStore.setState((s) => { s.boletus_cooked -=s.1; return s; }); window.__gameStore.getState().doGoto(/u0027stat/u0027, /u0027/u0027); return false;"><b>' + ((s as any).boletus_cooked ?? 0) + '</b></a> kg.');
+        ((s as any).stat_texts = (s as any).stat_texts ?? {})['gadukino'] = ((s as any).stat_texts['gadukino'] ?? 0) + ('<br>Cooked Mushrooms: <a href="#" onclick="window.__gameStore.setState((s) => { s.boletus_cooked -=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027stat\u0027, \u0027\u0027); return false;"><b>' + ((s as any).boletus_cooked ?? 0) + '</b></a> kg.');
       }
       if (((s as any).bilberry ?? 0) > 0) {
-        ((s as any).stat_texts = (s as any).stat_texts ?? {})['gadukino'] = ((s as any).stat_texts['gadukino'] ?? 0) + ('<br>Berries: <a href="#" onclick="window.__gameStore.setState((s) => { s.bilberry -=s.1; return s; }); window.__gameStore.getState().doGoto(/u0027stat/u0027, /u0027/u0027); return false;"><b>' + ((s as any).bilberry ?? 0) + '</b></a> kg.');
+        ((s as any).stat_texts = (s as any).stat_texts ?? {})['gadukino'] = ((s as any).stat_texts['gadukino'] ?? 0) + ('<br>Berries: <a href="#" onclick="window.__gameStore.setState((s) => { s.bilberry -=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027stat\u0027, \u0027\u0027); return false;"><b>' + ((s as any).bilberry ?? 0) + '</b></a> kg.');
       }
       ((s as any).stat_texts = (s as any).stat_texts ?? {})['gadukino'] = ((s as any).stat_texts['gadukino'] ?? 0) + ('<br>(Click numbers to throw away one a time)');
     }
@@ -1387,46 +1414,50 @@ function enterComputeMisc(s: GameState, scene: SceneBuilder): void {
   ((s as any).sd_cm = (s as any).sd_cm ?? {})['lover_max'] = 0;
   if (((s as any).sd_cm ?? 0)?.['lover_max'] > 0) {
     ((s as any).sd_cm = (s as any).sd_cm ?? {})['li'] = 0;
-    // TODO-QSP: :sd_lover_loop
-    ((s as any).sd_cm = (s as any).sd_cm ?? {})['npcid'] = qspUntranslated(s, "lover[sd_cm['li']]", { location: "stat_display_compute" });
-    if (((s as any).npc_meetday ?? 0)[((s as any).sd_cm ?? 0)?.['npcid']] === ((s as any).daystart ?? 0)) {
-      ((s as any).sd_cm = (s as any).sd_cm ?? {})['label'] = 'lover_' + (((s as any).sd_cm ?? 0)?.['npcid']);
-      if (((s as any).hour ?? 0) < ((s as any).npc_meethour ?? 0)[((s as any).sd_cm ?? 0)?.['npcid']]) {
-        // TODO-QSP: $stat_texts[$sd_cm['label']] = '<<$npc_usedname[$sd_cm[''npcid'']]>> will be waiting for you near <<...
-        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', (((s as any).sd_cm ?? 0)?.['label']), 'accent', 'status/date', 4]; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
-        if (((s as any).hour ?? 0) >= ((s as any).npc_meethour ?? 0)[((s as any).sd_cm ?? 0)?.['npcid']] - 2) {
-          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', '' + (((s as any).npc_usedname ?? 0)?.[(((s as any).sd_cm ?? 0)?.['npcid'])] ?? 0) + ' is expecting you soon.', 'accent']; enterQueueAlert(s, scene); (s as any).locArgs = __savedLocArgs; }
-        }
-      } else {
-        if (((s as any).hour ?? 0) === ((s as any).npc_meethour ?? 0)[((s as any).sd_cm ?? 0)?.['npcid']]) {
-          // TODO-QSP: $stat_texts[$sd_cm['label']] = '<<$npc_usedname[$sd_cm[''npcid'']]>> is waiting for you by <<$func('...
-          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', (((s as any).sd_cm ?? 0)?.['label']), 'v_neg', 'status/date', 4]; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
-          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', '' + (((s as any).npc_usedname ?? 0)?.[(((s as any).sd_cm ?? 0)?.['npcid'])] ?? 0) + ' is waiting for you now.', 'v_neg']; enterQueueAlert(s, scene); (s as any).locArgs = __savedLocArgs; }
+    do {
+      ((s as any).sd_cm = (s as any).sd_cm ?? {})['npcid'] = qspUntranslated(s, "lover[sd_cm['li']]", { location: "stat_display_compute" });
+      if (((s as any).npc_meetday ?? 0)[((s as any).sd_cm ?? 0)?.['npcid']] === ((s as any).daystart ?? 0)) {
+        ((s as any).sd_cm = (s as any).sd_cm ?? {})['label'] = 'lover_' + (((s as any).sd_cm ?? 0)?.['npcid']);
+        if (((s as any).hour ?? 0) < ((s as any).npc_meethour ?? 0)[((s as any).sd_cm ?? 0)?.['npcid']]) {
+          ((s as any).stat_texts = (s as any).stat_texts ?? {})[(((s as any).sd_cm ?? 0)?.['label'])] = '' + (((s as any).npc_usedname ?? 0)?.[(((s as any).sd_cm ?? 0)?.['npcid'])] ?? 0) + ' will be waiting for you near ' + qspFunc(s, 'homes_properties', 'get_home_desc') + ' at ' + (((s as any).npc_meethour ?? 0)?.[(((s as any).sd_cm ?? 0)?.['npcid'])] ?? 0) + ':00.';
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', (((s as any).sd_cm ?? 0)?.['label']), 'accent', 'status/date', 4]; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
+          if (((s as any).hour ?? 0) >= ((s as any).npc_meethour ?? 0)[((s as any).sd_cm ?? 0)?.['npcid']] - 2) {
+            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', '' + (((s as any).npc_usedname ?? 0)?.[(((s as any).sd_cm ?? 0)?.['npcid'])] ?? 0) + ' is expecting you soon.', 'accent']; enterQueueAlert(s, scene); (s as any).locArgs = __savedLocArgs; }
+          }
+        } else {
+          if (((s as any).hour ?? 0) === ((s as any).npc_meethour ?? 0)[((s as any).sd_cm ?? 0)?.['npcid']]) {
+            ((s as any).stat_texts = (s as any).stat_texts ?? {})[(((s as any).sd_cm ?? 0)?.['label'])] = '' + (((s as any).npc_usedname ?? 0)?.[(((s as any).sd_cm ?? 0)?.['npcid'])] ?? 0) + ' is waiting for you by ' + qspFunc(s, 'homes_properties', 'get_home_desc') + '.';
+            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', (((s as any).sd_cm ?? 0)?.['label']), 'v_neg', 'status/date', 4]; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
+            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', '' + (((s as any).npc_usedname ?? 0)?.[(((s as any).sd_cm ?? 0)?.['npcid'])] ?? 0) + ' is waiting for you now.', 'v_neg']; enterQueueAlert(s, scene); (s as any).locArgs = __savedLocArgs; }
+          }
         }
       }
-    }
-    ((s as any).sd_cm = (s as any).sd_cm ?? {})['li'] = ((s as any).sd_cm['li'] ?? 0) + (1);
-    if (((s as any).sd_cm ?? 0)?.['li'] < ((s as any).sd_cm ?? 0)?.['lover_max']) {
-      // TODO-QSP: jump 'sd_lover_loop'
-    }
+      ((s as any).sd_cm = (s as any).sd_cm ?? {})['li'] = ((s as any).sd_cm['li'] ?? 0) + (1);
+    } while (((s as any).sd_cm ?? 0)?.['li'] < ((s as any).sd_cm ?? 0)?.['lover_max']);
   }
+  (s as any).sd_cm = undefined;
   if (Object.keys((s as any).events_list ?? {}).length > 0) {
     if (((s as any).cal_upcoming_dirty ?? 0) === 1  ||  ((s as any).cal_day_cache_key ?? 0) !== ((s as any).daystart ?? 0)) {
       qspCall(s, 'calendar_query', 'get_upcoming', 10, ((s as any).daystart ?? 0), 0);
+      (s as any).cal_upc_ids = undefined;
+      (s as any).cal_upc_days = undefined;
+      (s as any).cal_upc_ts = undefined;
+      (s as any).cal_upc_all_day = undefined;
       ((s as any).cal_r = (s as any).cal_r ?? {})['ci'] = 0;
-      // TODO-QSP: :cal_cache_copy
-      if (((s as any).cal_r ?? 0)?.['ci'] < ((s as any).upcoming_count ?? 0)) {
-        // TODO-QSP: $cal_upc_ids[cal_r['ci']]  = $upcoming_ids[cal_r['ci']]
-        // TODO-QSP: cal_upc_days[cal_r['ci']]  = upcoming_days[cal_r['ci']]
-        // TODO-QSP: cal_upc_ts[cal_r['ci']]    = upcoming_ts[cal_r['ci']]
-        qspCall(s, 'calendar_events', 'get_event', qspUntranslated(s, "upcoming_ids[cal_r['ci']]", { location: "stat_display_compute" }));
-        // TODO-QSP: cal_upc_all_day[cal_r['ci']] = event_vars['all_day']
-        ((s as any).cal_r = (s as any).cal_r ?? {})['ci'] = ((s as any).cal_r['ci'] ?? 0) + (1);
-        // TODO-QSP: jump 'cal_cache_copy'
+      while (true) {
+        if (((s as any).cal_r ?? 0)?.['ci'] < ((s as any).upcoming_count ?? 0)) {
+          ((s as any).cal_upc_ids = (s as any).cal_upc_ids ?? {})[(((s as any).cal_r ?? 0)?.['ci'])] = qspUntranslated(s, "upcoming_ids[cal_r['ci']]", { location: "stat_display_compute" });
+          ((s as any).cal_upc_days = (s as any).cal_upc_days ?? {})[(((s as any).cal_r ?? 0)?.['ci'])] = qspUntranslated(s, "upcoming_days[cal_r['ci']]", { location: "stat_display_compute" });
+          ((s as any).cal_upc_ts = (s as any).cal_upc_ts ?? {})[(((s as any).cal_r ?? 0)?.['ci'])] = qspUntranslated(s, "upcoming_ts[cal_r['ci']]", { location: "stat_display_compute" });
+          qspCall(s, 'calendar_events', 'get_event', qspUntranslated(s, "upcoming_ids[cal_r['ci']]", { location: "stat_display_compute" }));
+          ((s as any).cal_upc_all_day = (s as any).cal_upc_all_day ?? {})[(((s as any).cal_r ?? 0)?.['ci'])] = (((s as any).event_vars ?? 0)?.['all_day']);
+          ((s as any).cal_r = (s as any).cal_r ?? {})['ci'] = ((s as any).cal_r['ci'] ?? 0) + (1);
+          break;
+        }
+        (s as any).cal_upc_cache_cnt = ((s as any).upcoming_count ?? 0);
+        (s as any).cal_day_cache_key = ((s as any).daystart ?? 0);
+        (s as any).cal_upcoming_dirty = 0;
       }
-      (s as any).cal_upc_cache_cnt = ((s as any).upcoming_count ?? 0);
-      (s as any).cal_day_cache_key = ((s as any).daystart ?? 0);
-      (s as any).cal_upcoming_dirty = 0;
     }
     (s as any).cal_upcoming_html = '';
     ((s as any).cal_r = (s as any).cal_r ?? {})['now_ts'] = ((s as any).hour ?? 0) * 4 + ((s as any).minut ?? 0) / 15;
@@ -1439,62 +1470,63 @@ function enterComputeMisc(s: GameState, scene: SceneBuilder): void {
     }
     ((s as any).cal_r = (s as any).cal_r ?? {})['shown'] = 0;
     ((s as any).cal_r = (s as any).cal_r ?? {})['i'] = 0;
-    // TODO-QSP: :cal_render_loop
-    if (((s as any).cal_r ?? 0)?.['i'] < ((s as any).cal_upc_cache_cnt ?? 0)  &&  ((s as any).cal_r ?? 0)?.['shown'] < ((s as any).cal_r ?? 0)?.['max']) {
-      if (((s as any).cal_r ?? 0)?.['today_only'] === 1  &&  ((s as any).cal_upc_days ?? 0)[((s as any).cal_r ?? 0)?.['i']] !== ((s as any).daystart ?? 0)) {
-        ((s as any).cal_r = (s as any).cal_r ?? {})['i'] = ((s as any).cal_r['i'] ?? 0) + (1);
-        // TODO-QSP: jump 'cal_render_loop'
-      }
-      if (((s as any).cal_upc_days ?? 0)[((s as any).cal_r ?? 0)?.['i']] > ((s as any).daystart ?? 0) + 5) {
-        ((s as any).cal_r = (s as any).cal_r ?? {})['i'] = ((s as any).cal_r['i'] ?? 0) + (1);
-        // TODO-QSP: jump 'cal_render_loop'
-      }
-      if (((s as any).stat_cfg ?? 0)?.['cal_show_all_day'] === 1  &&  ((s as any).cal_upc_all_day ?? 0)[((s as any).cal_r ?? 0)?.['i']] === 1) {
-        ((s as any).cal_r = (s as any).cal_r ?? {})['i'] = ((s as any).cal_r['i'] ?? 0) + (1);
-        // TODO-QSP: jump 'cal_render_loop'
-      }
-      if (((s as any).cal_upc_days ?? 0)[((s as any).cal_r ?? 0)?.['i']] === ((s as any).daystart ?? 0)  &&  ((s as any).cal_upc_all_day ?? 0)[((s as any).cal_r ?? 0)?.['i']] === 0  &&  ((s as any).cal_upc_ts ?? 0)[((s as any).cal_r ?? 0)?.['i']] <= ((s as any).cal_r ?? 0)?.['now_ts']) {
-        ((s as any).cal_r = (s as any).cal_r ?? {})['i'] = ((s as any).cal_r['i'] ?? 0) + (1);
-        // TODO-QSP: jump 'cal_render_loop'
-      }
-      qspCall(s, 'calendar_events', 'get_event', qspUntranslated(s, "cal_upc_ids[cal_r['i']]", { location: "stat_display_compute" }));
-      ((s as any).cal_r = (s as any).cal_r ?? {})['rgb'] = qspFunc(s, 'calendar_render', 'get_event_color', (((s as any).event_vars ?? 0)?.['color']));
-      if (((s as any).cal_upc_days ?? 0)[((s as any).cal_r ?? 0)?.['i']] === ((s as any).daystart ?? 0)) {
-        ((s as any).cal_r = (s as any).cal_r ?? {})['day_lbl'] = 'Today';
-      } else {
-        if (((s as any).cal_upc_days ?? 0)[((s as any).cal_r ?? 0)?.['i']] === ((s as any).daystart ?? 0) + 1) {
-          ((s as any).cal_r = (s as any).cal_r ?? {})['day_lbl'] = 'Tomorrow';
-        } else {
-          ((s as any).cal_r = (s as any).cal_r ?? {})['day_lbl'] = qspUntranslated(s, "weekName[func('time', 'get_week_from_daystart', cal_upc_days[cal_r['i']])]", { location: "stat_display_compute" });
+    while (true) {
+      if (((s as any).cal_r ?? 0)?.['i'] < ((s as any).cal_upc_cache_cnt ?? 0)  &&  ((s as any).cal_r ?? 0)?.['shown'] < ((s as any).cal_r ?? 0)?.['max']) {
+        if (((s as any).cal_r ?? 0)?.['today_only'] === 1  &&  ((s as any).cal_upc_days ?? 0)[((s as any).cal_r ?? 0)?.['i']] !== ((s as any).daystart ?? 0)) {
+          ((s as any).cal_r = (s as any).cal_r ?? {})['i'] = ((s as any).cal_r['i'] ?? 0) + (1);
+          break;
         }
-      }
-      if (((s as any).event_vars ?? 0)?.['all_day'] === 1) {
-        ((s as any).cal_r = (s as any).cal_r ?? {})['time_lbl'] = '';
-      } else {
-        if (((s as any).event_vars ?? 0)?.['flex_type'] === 1) {
-          ((s as any).cal_r = (s as any).cal_r ?? {})['time_lbl'] = qspFunc(s, 'time', 'get_time_string', (((s as any).event_vars ?? {})?.['window_start_ts'] ?? 0) / 4, ((((s as any).event_vars ?? {})?.['window_start_ts'] ?? 0) % 4) * 15, 0) + '&ndash;' + qspFunc(s, 'time', 'get_time_string', (((s as any).event_vars ?? {})?.['window_end_ts'] ?? 0) / 4, ((((s as any).event_vars ?? {})?.['window_end_ts'] ?? 0) % 4) * 15, 0);
-        } else {
-          ((s as any).cal_r = (s as any).cal_r ?? {})['time_lbl'] = qspFunc(s, 'time', 'get_time_string', ((s as any).cal_upc_ts ?? 0)[(((s as any).cal_r ?? {})?.['i'] ?? 0)] / 4, (((s as any).cal_upc_ts ?? 0)[(((s as any).cal_r ?? {})?.['i'] ?? 0)] % 4) * 15, 0);
+        if (((s as any).cal_upc_days ?? 0)[((s as any).cal_r ?? 0)?.['i']] > ((s as any).daystart ?? 0) + 5) {
+          ((s as any).cal_r = (s as any).cal_r ?? {})['i'] = ((s as any).cal_r['i'] ?? 0) + (1);
+          break;
         }
+        if (((s as any).stat_cfg ?? 0)?.['cal_show_all_day'] === 1  &&  ((s as any).cal_upc_all_day ?? 0)[((s as any).cal_r ?? 0)?.['i']] === 1) {
+          ((s as any).cal_r = (s as any).cal_r ?? {})['i'] = ((s as any).cal_r['i'] ?? 0) + (1);
+          break;
+        }
+        if (((s as any).cal_upc_days ?? 0)[((s as any).cal_r ?? 0)?.['i']] === ((s as any).daystart ?? 0)  &&  ((s as any).cal_upc_all_day ?? 0)[((s as any).cal_r ?? 0)?.['i']] === 0  &&  ((s as any).cal_upc_ts ?? 0)[((s as any).cal_r ?? 0)?.['i']] <= ((s as any).cal_r ?? 0)?.['now_ts']) {
+          ((s as any).cal_r = (s as any).cal_r ?? {})['i'] = ((s as any).cal_r['i'] ?? 0) + (1);
+          break;
+        }
+        qspCall(s, 'calendar_events', 'get_event', qspUntranslated(s, "cal_upc_ids[cal_r['i']]", { location: "stat_display_compute" }));
+        ((s as any).cal_r = (s as any).cal_r ?? {})['rgb'] = qspFunc(s, 'calendar_render', 'get_event_color', (((s as any).event_vars ?? 0)?.['color']));
+        if (((s as any).cal_upc_days ?? 0)[((s as any).cal_r ?? 0)?.['i']] === ((s as any).daystart ?? 0)) {
+          ((s as any).cal_r = (s as any).cal_r ?? {})['day_lbl'] = 'Today';
+        } else {
+          if (((s as any).cal_upc_days ?? 0)[((s as any).cal_r ?? 0)?.['i']] === ((s as any).daystart ?? 0) + 1) {
+            ((s as any).cal_r = (s as any).cal_r ?? {})['day_lbl'] = 'Tomorrow';
+          } else {
+            ((s as any).cal_r = (s as any).cal_r ?? {})['day_lbl'] = qspUntranslated(s, "weekName[func('time', 'get_week_from_daystart', cal_upc_days[cal_r['i']])]", { location: "stat_display_compute" });
+          }
+        }
+        if (((s as any).event_vars ?? 0)?.['all_day'] === 1) {
+          ((s as any).cal_r = (s as any).cal_r ?? {})['time_lbl'] = '';
+        } else {
+          if (((s as any).event_vars ?? 0)?.['flex_type'] === 1) {
+            ((s as any).cal_r = (s as any).cal_r ?? {})['time_lbl'] = qspFunc(s, 'time', 'get_time_string', (((s as any).event_vars ?? {})?.['window_start_ts'] ?? 0) / 4, ((((s as any).event_vars ?? {})?.['window_start_ts'] ?? 0) % 4) * 15, 0) + '&ndash;' + qspFunc(s, 'time', 'get_time_string', (((s as any).event_vars ?? {})?.['window_end_ts'] ?? 0) / 4, ((((s as any).event_vars ?? {})?.['window_end_ts'] ?? 0) % 4) * 15, 0);
+          } else {
+            ((s as any).cal_r = (s as any).cal_r ?? {})['time_lbl'] = qspFunc(s, 'time', 'get_time_string', ((s as any).cal_upc_ts ?? 0)[(((s as any).cal_r ?? {})?.['i'] ?? 0)] / 4, (((s as any).cal_upc_ts ?? 0)[(((s as any).cal_r ?? {})?.['i'] ?? 0)] % 4) * 15, 0);
+          }
+        }
+        (s as any).cal_upcoming_html = ((s as any).cal_upcoming_html ?? 0) + (((((s as any).cal_upcoming_html ?? 0) !== '') ? ('<br>') : ('')) + '<span style="color:rgb(' + (((s as any).cal_r ?? 0)?.['rgb']) + ')">&#9679;</span>&ensp;' + (((s as any).event_vars ?? 0)?.['title']) + '&ensp;<span style="opacity:0.7">' + (((s as any).cal_r ?? 0)?.['day_lbl']) + ((((s as any).cal_r ?? 0)?.['time_lbl'] !== '') ? ('&ensp;' + (((s as any).cal_r ?? 0)?.['time_lbl'])) : ('')) + '</span>');
+        ((s as any).cal_r = (s as any).cal_r ?? {})['shown'] = ((s as any).cal_r['shown'] ?? 0) + (1);
+        ((s as any).cal_r = (s as any).cal_r ?? {})['i'] = ((s as any).cal_r['i'] ?? 0) + (1);
+        break;
       }
-      // TODO-QSP: $cal_upcoming_html += iif($cal_upcoming_html <> '', '<br>', '') + '<span style="color:rgb(<<$cal_r['...
-      ((s as any).cal_r = (s as any).cal_r ?? {})['shown'] = ((s as any).cal_r['shown'] ?? 0) + (1);
-      ((s as any).cal_r = (s as any).cal_r ?? {})['i'] = ((s as any).cal_r['i'] ?? 0) + (1);
-      // TODO-QSP: jump 'cal_render_loop'
+      (s as any).cal_r = undefined;
     }
   }
   if (((s as any).loc ?? 0) !== 'map') {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'Map', '', 'map', 1, 'gt \'map_view\', \'' + ((s as any).loc ?? 0) + '\'']; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterCondString(s: GameState, scene: SceneBuilder): void {
   (s as any).result = '';
   if (String((s as any).locArgs?.[2] ?? '') === 0  &&  String((s as any).locArgs?.[4] ?? '') === 0) {
-    // TODO-QSP: exit
+    return;
   }
   ((s as any).sd_cs = (s as any).sd_cs ?? {})['out'] = '';
   if (String((s as any).locArgs?.[2] ?? '') === 1) {
@@ -1530,8 +1562,8 @@ function enterCondString(s: GameState, scene: SceneBuilder): void {
     ((s as any).sd_cs = (s as any).sd_cs ?? {})['out'] = ((s as any).sd_cs['out'] ?? 0) + (qspFunc(s, 'wrap', (((s as any).sd_cs ?? 0)?.['wear_col']), '[wear ' + String(((s as any).locArgs?.[3] ?? 0)) + ']'));
   }
   (s as any).result = (((s as any).sd_cs ?? 0)?.['out']);
+  (s as any).sd_cs = undefined;
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1550,7 +1582,6 @@ function enterCondFace(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1569,7 +1600,6 @@ function enterCondSweat(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1588,8 +1618,8 @@ function enterCondCoatTemp(s: GameState, scene: SceneBuilder): void {
       (s as any).result = qspFunc(s, 'wrap', 'v_neg', '[too cold!]');
     }
   }
+  (s as any).sd_cs = undefined;
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1612,35 +1642,34 @@ function enterCondHeelSkill(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterCondCloStyle(s: GameState, scene: SceneBuilder): void {
   (s as any).result = '';
   if (((s as any).clothingworntype ?? 0) === 'nude') {
-    // TODO-QSP: exit
+    return;
   }
   if (((s as any).PCloSwimwear ?? 0) === 1) {
-    // TODO-QSP: $result += ', ' + $func('wrap', 'bimbo', '[Swimwear]')
+    (s as any).result = ((s as any).result ?? 0) + (', ' + qspFunc(s, 'wrap', 'bimbo', '[Swimwear]'));
   } else {
     if (((s as any).PCloStyle2 ?? 0) === 6) {
-      // TODO-QSP: $result += ', ' + $func('wrap', 'bimbo', '[Gym]')
+      (s as any).result = ((s as any).result ?? 0) + (', ' + qspFunc(s, 'wrap', 'bimbo', '[Gym]'));
     } else {
       if (((s as any).PCloStyle2 ?? 0) === 5) {
-        // TODO-QSP: $result += ', ' + $func('wrap', 'bimbo', '[Office]')
+        (s as any).result = ((s as any).result ?? 0) + (', ' + qspFunc(s, 'wrap', 'bimbo', '[Office]'));
       } else {
         if (((s as any).PCloStyle2 ?? 0) === 4) {
-          // TODO-QSP: $result += ', ' + $func('wrap', 'bimbo', '[School]')
+          (s as any).result = ((s as any).result ?? 0) + (', ' + qspFunc(s, 'wrap', 'bimbo', '[School]'));
         } else {
           if (((s as any).PCloStyle2 ?? 0) === 3) {
-            // TODO-QSP: $result += ', ' + $func('wrap', 'bimbo', '[Stripper]')
+            (s as any).result = ((s as any).result ?? 0) + (', ' + qspFunc(s, 'wrap', 'bimbo', '[Stripper]'));
           } else {
             if (((s as any).PCloStyle2 ?? 0) === 2) {
-              // TODO-QSP: $result += ', ' + $func('wrap', 'bimbo', '[Server]')
+              (s as any).result = ((s as any).result ?? 0) + (', ' + qspFunc(s, 'wrap', 'bimbo', '[Server]'));
             } else {
               if (((s as any).PCloStyle2 ?? 0) === 1) {
-                // TODO-QSP: $result += ', ' + $func('wrap', 'bimbo', '[Maid]')
+                (s as any).result = ((s as any).result ?? 0) + (', ' + qspFunc(s, 'wrap', 'bimbo', '[Maid]'));
               }
             }
           }
@@ -1649,133 +1678,136 @@ function enterCondCloStyle(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).PCloStyle ?? 0) === 4) {
-    // TODO-QSP: $result += ', ' + $func('wrap', 'bimbo', '[Prostitution]')
+    (s as any).result = ((s as any).result ?? '') + ', ' + qspFunc(s, 'wrap', 'bimbo', '[Prostitution]');
   }
   if (((s as any).PCloInhibit ?? 0) >= 40  ||  ((s as any).PCloThinness ?? 0) === 6) {
-    // TODO-QSP: $result += ', ' + $func('wrap', 'bimbo', '[Exhibitionist]')
+    (s as any).result = ((s as any).result ?? '') + ', ' + qspFunc(s, 'wrap', 'bimbo', '[Exhibitionist]');
   }
   if (((s as any).PCloBimbo ?? 0) === 1  &&  ((s as any).cheatVars ?? 0)?.['bimbo'] === 0) {
-    // TODO-QSP: $result += ', ' + $func('wrap', 'bimbo', '[Bimbo]')
+    (s as any).result = ((s as any).result ?? '') + ', ' + qspFunc(s, 'wrap', 'bimbo', '[Bimbo]');
   }
   if (((s as any).PCloGoth ?? 0) === 1) {
-    // TODO-QSP: $result += ', ' + $func('wrap', 'goth', '[Goth]')
+    (s as any).result = ((s as any).result ?? '') + ', ' + qspFunc(s, 'wrap', 'goth', '[Goth]');
   }
   if (((s as any).PCloPunk ?? 0) === 1) {
-    // TODO-QSP: $result += ', ' + $func('wrap', 'punk', '[Punk]')
+    (s as any).result = ((s as any).result ?? '') + ', ' + qspFunc(s, 'wrap', 'punk', '[Punk]');
   }
   if (((s as any).result ?? 0) !== '') {
     (s as any).result = (String(((s as any).result ?? 0)).slice((3)-1));
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterComputeImages(s: GameState, scene: SceneBuilder): void {
-  ((s as any).sd_img = (s as any).sd_img ?? {})['count'] = 0;
-  ((s as any).sd_ci = (s as any).sd_ci ?? {})['max'] = 0;
-  ((s as any).sd_ci = (s as any).sd_ci ?? {})['i'] = 0;
-  // TODO-QSP: :sd_compute_images_loop
-  ((s as any).sd_ci = (s as any).sd_ci ?? {})['key'] = qspUntranslated(s, "image_order[sd_ci['i']]", { location: "stat_display_compute" });
-  if (((s as any).stat_hide ?? 0)[((s as any).sd_ci ?? 0)?.['key']] === 1) {
-    // TODO-QSP: jump 'sd_compute_images_next'
-  }
-  if (((s as any).sd_ci ?? 0)?.['key'] === 'face') {
-    ((s as any).sd_img = (s as any).sd_img ?? {})['url_face'] = qspFunc(s, '$face_image', '');
-    if (((s as any).face_style ?? 0)?.['type'] !== 2) {
-      ((s as any).sd_img = (s as any).sd_img ?? {})['label_face'] = 'Face';
-    } else {
-      // TODO-QSP: $sd_mu_lbl[0] = 'Smeared makeup'
-      // TODO-QSP: $sd_mu_lbl[1] = 'No makeup'
-      // TODO-QSP: $sd_mu_lbl[2] = 'Light makeup'
-      // TODO-QSP: $sd_mu_lbl[3] = 'Vibrant makeup'
-      // TODO-QSP: $sd_mu_lbl[4] = 'Heavy makeup'
-      // TODO-QSP: $sd_mu_lbl[5] = 'Pro makeup'
-      // TODO-QSP: $sd_mu_lbl[6] = 'Bimbo makeup'
-      // TODO-QSP: $sd_mu_lbl[7] = 'Goth makeup'
-      ((s as any).sd_img = (s as any).sd_img ?? {})['label_face'] = ((((s as any).pcs_makeup ?? 0) >= 1  &&  ((s as any).pcs_makeup ?? 0) <= 7) ? ((((s as any).sd_mu_lbl ?? 0)?.[String((s as any).pcs_makeup ?? 0)] ?? 0)) : (((((s as any).pcs_makeup ?? 0) <= 0) ? ('Smeared makeup') : ('Face'))));
+  while (true) {
+    (s as any).sd_img = undefined;
+    ((s as any).sd_img = (s as any).sd_img ?? {})['count'] = 0;
+    ((s as any).sd_ci = (s as any).sd_ci ?? {})['max'] = 0;
+    ((s as any).sd_ci = (s as any).sd_ci ?? {})['i'] = 0;
+    // LABEL: sd_compute_images_loop
+    ((s as any).sd_ci = (s as any).sd_ci ?? {})['key'] = qspUntranslated(s, "image_order[sd_ci['i']]", { location: "stat_display_compute" });
+    if (((s as any).stat_hide ?? 0)[((s as any).sd_ci ?? 0)?.['key']] === 1) {
+      break;
     }
-    ((s as any).sd_img = (s as any).sd_img ?? {})['short_face'] = (((s as any).sd_img ?? 0)?.['label_face']);
-    ((s as any).sd_img = (s as any).sd_img ?? {})['cond_face'] = qspFunc(s, 'stat_display_compute', 'cond_face');
-  } else {
-    if (((s as any).sd_ci ?? 0)?.['key'] === 'body') {
-      ((s as any).sd_img = (s as any).sd_img ?? {})['url_body'] = qspFunc(s, '$body_image', '', 'body');
-      ((s as any).sd_img = (s as any).sd_img ?? {})['label_body'] = 'Body';
-      ((s as any).sd_img = (s as any).sd_img ?? {})['short_body'] = 'Body';
-      ((s as any).sd_img = (s as any).sd_img ?? {})['cond_body'] = qspFunc(s, 'stat_display_compute', 'cond_sweat');
-      if ((((s as any).cumloc ?? 0)[6] + ((s as any).cumloc ?? 0)[7] + ((s as any).cumloc ?? 0)[13] + ((s as any).cumloc ?? 0)[16]) > 0) {
-        ((s as any).sd_ci = (s as any).sd_ci ?? {})['cum_line'] = qspFunc(s, 'wrap', 'v_neg', '[cum on body]');
-        ((s as any).sd_img = (s as any).sd_img ?? {})['cond_body'] = ((((s as any).sd_img ?? 0)?.['cond_body'] !== '') ? ((((s as any).sd_img ?? 0)?.['cond_body']) + ' ') : (''));
-      }
-    } else {
-      if (((s as any).sd_ci ?? 0)?.['key'] === 'coat') {
-        if (((s as any).coatworntype ?? 0) === 'none'  ||  ((s as any).coatworntype ?? 0) === '') {
-          // TODO-QSP: jump 'sd_compute_images_next'
-        }
-        ((s as any).sd_img = (s as any).sd_img ?? {})['url_coat'] = qspFunc(s, '$body_image', '', 'coat');
-        ((s as any).sd_img = (s as any).sd_img ?? {})['label_coat'] = 'Coat';
-        ((s as any).sd_img = (s as any).sd_img ?? {})['short_coat'] = qspFunc(s, '$item_description', '', 'coat', ((s as any).coatworntype ?? 0), ((s as any).coatwornnumber ?? 0));
-        ((s as any).sd_img = (s as any).sd_img ?? {})['cond_coat'] = qspFunc(s, 'stat_display_compute', 'cond_coat_temp');
+    if (((s as any).sd_ci ?? 0)?.['key'] === 'face') {
+      ((s as any).sd_img = (s as any).sd_img ?? {})['url_face'] = qspFunc(s, '$face_image', '');
+      if (((s as any).face_style ?? 0)?.['type'] !== 2) {
+        ((s as any).sd_img = (s as any).sd_img ?? {})['label_face'] = 'Face';
       } else {
-        if (((s as any).sd_ci ?? 0)?.['key'] === 'clothes') {
-          ((s as any).sd_img = (s as any).sd_img ?? {})['url_clothes'] = qspFunc(s, '$body_image', '', 'clothes');
-          if (((s as any).clothingworntype ?? 0) === 'nude') {
-            ((s as any).sd_img = (s as any).sd_img ?? {})['label_clothes'] = ((((s as any).towel ?? 0) === 1) ? ('Towel') : (((((s as any).robe ?? 0) === 1) ? ('Robe') : ('Naked'))));
-            ((s as any).sd_img = (s as any).sd_img ?? {})['short_clothes'] = (((s as any).sd_img ?? 0)?.['label_clothes']);
-          } else {
-            ((s as any).sd_img = (s as any).sd_img ?? {})['label_clothes'] = 'Clothes';
-            ((s as any).sd_img = (s as any).sd_img ?? {})['short_clothes'] = qspFunc(s, '$short_description', '', ((s as any).clothingworntype ?? 0), ((s as any).clothingwornnumber ?? 0));
-            ((s as any).sd_img = (s as any).sd_img ?? {})['cond_clothes'] = 0;
-            ((s as any).sd_ci = (s as any).sd_ci ?? {})['style_line'] = qspFunc(s, 'stat_display_compute', 'cond_clo_style');
-            if (((s as any).sd_ci ?? 0)?.['style_line'] !== '') {
-              ((s as any).sd_img = (s as any).sd_img ?? {})['cond_clothes'] = ((((s as any).sd_img ?? 0)?.['cond_clothes'] !== '') ? ((((s as any).sd_img ?? 0)?.['cond_clothes']) + ' ') : (''));
-            }
+        ((s as any).sd_mu_lbl = (s as any).sd_mu_lbl ?? {})[0] = 'Smeared makeup';
+        ((s as any).sd_mu_lbl = (s as any).sd_mu_lbl ?? {})[1] = 'No makeup';
+        ((s as any).sd_mu_lbl = (s as any).sd_mu_lbl ?? {})[2] = 'Light makeup';
+        ((s as any).sd_mu_lbl = (s as any).sd_mu_lbl ?? {})[3] = 'Vibrant makeup';
+        ((s as any).sd_mu_lbl = (s as any).sd_mu_lbl ?? {})[4] = 'Heavy makeup';
+        ((s as any).sd_mu_lbl = (s as any).sd_mu_lbl ?? {})[5] = 'Pro makeup';
+        ((s as any).sd_mu_lbl = (s as any).sd_mu_lbl ?? {})[6] = 'Bimbo makeup';
+        ((s as any).sd_mu_lbl = (s as any).sd_mu_lbl ?? {})[7] = 'Goth makeup';
+        ((s as any).sd_img = (s as any).sd_img ?? {})['label_face'] = ((((s as any).pcs_makeup ?? 0) >= 1  &&  ((s as any).pcs_makeup ?? 0) <= 7) ? ((((s as any).sd_mu_lbl ?? 0)?.[String((s as any).pcs_makeup ?? 0)] ?? 0)) : (((((s as any).pcs_makeup ?? 0) <= 0) ? ('Smeared makeup') : ('Face'))));
+        (s as any).sd_mu_lbl = undefined;
+      }
+      ((s as any).sd_img = (s as any).sd_img ?? {})['short_face'] = (((s as any).sd_img ?? 0)?.['label_face']);
+      ((s as any).sd_img = (s as any).sd_img ?? {})['cond_face'] = qspFunc(s, 'stat_display_compute', 'cond_face');
+    } else {
+      if (((s as any).sd_ci ?? 0)?.['key'] === 'body') {
+        ((s as any).sd_img = (s as any).sd_img ?? {})['url_body'] = qspFunc(s, '$body_image', '', 'body');
+        ((s as any).sd_img = (s as any).sd_img ?? {})['label_body'] = 'Body';
+        ((s as any).sd_img = (s as any).sd_img ?? {})['short_body'] = 'Body';
+        ((s as any).sd_img = (s as any).sd_img ?? {})['cond_body'] = qspFunc(s, 'stat_display_compute', 'cond_sweat');
+        if ((((s as any).cumloc ?? 0)[6] + ((s as any).cumloc ?? 0)[7] + ((s as any).cumloc ?? 0)[13] + ((s as any).cumloc ?? 0)[16]) > 0) {
+          ((s as any).sd_ci = (s as any).sd_ci ?? {})['cum_line'] = qspFunc(s, 'wrap', 'v_neg', '[cum on body]');
+          ((s as any).sd_img = (s as any).sd_img ?? {})['cond_body'] = 'TODO';
+        }
+      } else {
+        if (((s as any).sd_ci ?? 0)?.['key'] === 'coat') {
+          if (((s as any).coatworntype ?? 0) === 'none'  ||  ((s as any).coatworntype ?? 0) === '') {
+            break;
           }
+          ((s as any).sd_img = (s as any).sd_img ?? {})['url_coat'] = qspFunc(s, '$body_image', '', 'coat');
+          ((s as any).sd_img = (s as any).sd_img ?? {})['label_coat'] = 'Coat';
+          ((s as any).sd_img = (s as any).sd_img ?? {})['short_coat'] = qspFunc(s, '$item_description', '', 'coat', ((s as any).coatworntype ?? 0), ((s as any).coatwornnumber ?? 0));
+          ((s as any).sd_img = (s as any).sd_img ?? {})['cond_coat'] = qspFunc(s, 'stat_display_compute', 'cond_coat_temp');
         } else {
-          if (((s as any).sd_ci ?? 0)?.['key'] === 'bra') {
-            ((s as any).sd_img = (s as any).sd_img ?? {})['url_bra'] = qspFunc(s, '$body_image', '', 'bra');
-            if (((s as any).braworntype ?? 0) === 'none'  ||  ((s as any).braworntype ?? 0) === '') {
-              ((s as any).sd_img = (s as any).sd_img ?? {})['label_bra'] = 'Breasts';
-              ((s as any).sd_img = (s as any).sd_img ?? {})['short_bra'] = 'Breasts';
+          if (((s as any).sd_ci ?? 0)?.['key'] === 'clothes') {
+            ((s as any).sd_img = (s as any).sd_img ?? {})['url_clothes'] = qspFunc(s, '$body_image', '', 'clothes');
+            if (((s as any).clothingworntype ?? 0) === 'nude') {
+              ((s as any).sd_img = (s as any).sd_img ?? {})['label_clothes'] = ((((s as any).towel ?? 0) === 1) ? ('Towel') : (((((s as any).robe ?? 0) === 1) ? ('Robe') : ('Naked'))));
+              ((s as any).sd_img = (s as any).sd_img ?? {})['short_clothes'] = (((s as any).sd_img ?? 0)?.['label_clothes']);
             } else {
-              ((s as any).sd_img = (s as any).sd_img ?? {})['label_bra'] = 'Bra';
-              ((s as any).sd_img = (s as any).sd_img ?? {})['short_bra'] = qspFunc(s, '$item_description', '', 'bra', ((s as any).braworntype ?? 0), ((s as any).brawornnumber ?? 0));
-              ((s as any).sd_img = (s as any).sd_img ?? {})['cond_bra'] = qspFunc(s, 'stat_display_compute', 'cond_string', ((s as any).PBraDirt ?? 0), 1, 0, 0);
+              ((s as any).sd_img = (s as any).sd_img ?? {})['label_clothes'] = 'Clothes';
+              ((s as any).sd_img = (s as any).sd_img ?? {})['short_clothes'] = qspFunc(s, '$short_description', '', ((s as any).clothingworntype ?? 0), ((s as any).clothingwornnumber ?? 0));
+              ((s as any).sd_img = (s as any).sd_img ?? {})['cond_clothes'] = 0;
+              ((s as any).sd_ci = (s as any).sd_ci ?? {})['style_line'] = qspFunc(s, 'stat_display_compute', 'cond_clo_style');
+              if (((s as any).sd_ci ?? 0)?.['style_line'] !== '') {
+                ((s as any).sd_img = (s as any).sd_img ?? {})['cond_clothes'] = 'TODO';
+              }
             }
           } else {
-            if (((s as any).sd_ci ?? 0)?.['key'] === 'panties') {
-              ((s as any).sd_img = (s as any).sd_img ?? {})['url_panties'] = qspFunc(s, '$body_image', '', 'panties');
-              if (((s as any).pantyworntype ?? 0) === 'none'  ||  ((s as any).pantyworntype ?? 0) === '') {
-                ((s as any).sd_img = (s as any).sd_img ?? {})['label_panties'] = 'Pussy';
-                ((s as any).sd_img = (s as any).sd_img ?? {})['short_panties'] = 'Pussy';
+            if (((s as any).sd_ci ?? 0)?.['key'] === 'bra') {
+              ((s as any).sd_img = (s as any).sd_img ?? {})['url_bra'] = qspFunc(s, '$body_image', '', 'bra');
+              if (((s as any).braworntype ?? 0) === 'none'  ||  ((s as any).braworntype ?? 0) === '') {
+                ((s as any).sd_img = (s as any).sd_img ?? {})['label_bra'] = 'Breasts';
+                ((s as any).sd_img = (s as any).sd_img ?? {})['short_bra'] = 'Breasts';
               } else {
-                ((s as any).sd_img = (s as any).sd_img ?? {})['label_panties'] = 'Panties';
-                ((s as any).sd_img = (s as any).sd_img ?? {})['short_panties'] = qspFunc(s, '$item_description', '', 'panty', ((s as any).pantyworntype ?? 0), ((s as any).pantywornnumber ?? 0));
-                ((s as any).sd_img = (s as any).sd_img ?? {})['cond_panties'] = qspFunc(s, 'stat_display_compute', 'cond_string', ((s as any).PPanDirt ?? 0), 1, 0, 0);
+                ((s as any).sd_img = (s as any).sd_img ?? {})['label_bra'] = 'Bra';
+                ((s as any).sd_img = (s as any).sd_img ?? {})['short_bra'] = qspFunc(s, '$item_description', '', 'bra', ((s as any).braworntype ?? 0), ((s as any).brawornnumber ?? 0));
+                ((s as any).sd_img = (s as any).sd_img ?? {})['cond_bra'] = qspFunc(s, 'stat_display_compute', 'cond_string', ((s as any).PBraDirt ?? 0), 1, 0, 0);
               }
             } else {
-              if (((s as any).sd_ci ?? 0)?.['key'] === 'shoes') {
-                ((s as any).sd_img = (s as any).sd_img ?? {})['url_shoes'] = qspFunc(s, '$body_image', '', 'shoes');
-                if (((s as any).shoeworntype ?? 0) === 'none'  ||  ((s as any).shoeworntype ?? 0) === '') {
-                  ((s as any).sd_img = (s as any).sd_img ?? {})['label_shoes'] = 'Feet';
-                  ((s as any).sd_img = (s as any).sd_img ?? {})['short_shoes'] = 'Feet';
+              if (((s as any).sd_ci ?? 0)?.['key'] === 'panties') {
+                ((s as any).sd_img = (s as any).sd_img ?? {})['url_panties'] = qspFunc(s, '$body_image', '', 'panties');
+                if (((s as any).pantyworntype ?? 0) === 'none'  ||  ((s as any).pantyworntype ?? 0) === '') {
+                  ((s as any).sd_img = (s as any).sd_img ?? {})['label_panties'] = 'Pussy';
+                  ((s as any).sd_img = (s as any).sd_img ?? {})['short_panties'] = 'Pussy';
                 } else {
-                  ((s as any).sd_img = (s as any).sd_img ?? {})['label_shoes'] = 'Shoes';
-                  ((s as any).sd_img = (s as any).sd_img ?? {})['short_shoes'] = qspFunc(s, '$shoe_description', '', ((s as any).shoeworntype ?? 0), ((s as any).shoewornnumber ?? 0));
+                  ((s as any).sd_img = (s as any).sd_img ?? {})['label_panties'] = 'Panties';
+                  ((s as any).sd_img = (s as any).sd_img ?? {})['short_panties'] = qspFunc(s, '$item_description', '', 'panty', ((s as any).pantyworntype ?? 0), ((s as any).pantywornnumber ?? 0));
+                  ((s as any).sd_img = (s as any).sd_img ?? {})['cond_panties'] = qspFunc(s, 'stat_display_compute', 'cond_string', ((s as any).PPanDirt ?? 0), 1, 0, 0);
                 }
-                ((s as any).sd_img = (s as any).sd_img ?? {})['cond_shoes'] = qspFunc(s, 'stat_display_compute', 'cond_heel_skill');
               } else {
-                if (((s as any).sd_ci ?? 0)?.['key'] === 'bodysuit') {
-                  if (((s as any).bodysuitwornnumber ?? 0) === 0  ||  ((s as any).bodysuitworntype ?? 0) === 'none'  ||  ((s as any).bodysuitworntype ?? 0) === '') {
-                    // TODO-QSP: jump 'sd_compute_images_next'
+                if (((s as any).sd_ci ?? 0)?.['key'] === 'shoes') {
+                  ((s as any).sd_img = (s as any).sd_img ?? {})['url_shoes'] = qspFunc(s, '$body_image', '', 'shoes');
+                  if (((s as any).shoeworntype ?? 0) === 'none'  ||  ((s as any).shoeworntype ?? 0) === '') {
+                    ((s as any).sd_img = (s as any).sd_img ?? {})['label_shoes'] = 'Feet';
+                    ((s as any).sd_img = (s as any).sd_img ?? {})['short_shoes'] = 'Feet';
+                  } else {
+                    ((s as any).sd_img = (s as any).sd_img ?? {})['label_shoes'] = 'Shoes';
+                    ((s as any).sd_img = (s as any).sd_img ?? {})['short_shoes'] = qspFunc(s, '$shoe_description', '', ((s as any).shoeworntype ?? 0), ((s as any).shoewornnumber ?? 0));
                   }
-                  if (((s as any).stat_hide ?? 0)?.['bra'] === 1  &&  ((s as any).stat_hide ?? 0)?.['panties'] === 1) {
-                    // TODO-QSP: jump 'sd_compute_images_next'
+                  ((s as any).sd_img = (s as any).sd_img ?? {})['cond_shoes'] = qspFunc(s, 'stat_display_compute', 'cond_heel_skill');
+                } else {
+                  if (((s as any).sd_ci ?? 0)?.['key'] === 'bodysuit') {
+                    if (((s as any).bodysuitwornnumber ?? 0) === 0  ||  ((s as any).bodysuitworntype ?? 0) === 'none'  ||  ((s as any).bodysuitworntype ?? 0) === '') {
+                      break;
+                    }
+                    if (((s as any).stat_hide ?? 0)?.['bra'] === 1  &&  ((s as any).stat_hide ?? 0)?.['panties'] === 1) {
+                      break;
+                    }
+                    ((s as any).sd_img = (s as any).sd_img ?? {})['url_bodysuit'] = qspFunc(s, '$body_image', '', 'bodysuit');
+                    ((s as any).sd_img = (s as any).sd_img ?? {})['label_bodysuit'] = 'Bodysuit';
+                    ((s as any).sd_img = (s as any).sd_img ?? {})['short_bodysuit'] = qspFunc(s, '$item_description', '', 'bodysuit', ((s as any).bodysuitworntype ?? 0), ((s as any).bodysuitwornnumber ?? 0));
+                    ((s as any).sd_img = (s as any).sd_img ?? {})['cond_bodysuit'] = qspFunc(s, 'stat_display_compute', 'cond_string', ((s as any).PPanDirt ?? 0), 1, 0, 0);
                   }
-                  ((s as any).sd_img = (s as any).sd_img ?? {})['url_bodysuit'] = qspFunc(s, '$body_image', '', 'bodysuit');
-                  ((s as any).sd_img = (s as any).sd_img ?? {})['label_bodysuit'] = 'Bodysuit';
-                  ((s as any).sd_img = (s as any).sd_img ?? {})['short_bodysuit'] = qspFunc(s, '$item_description', '', 'bodysuit', ((s as any).bodysuitworntype ?? 0), ((s as any).bodysuitwornnumber ?? 0));
-                  ((s as any).sd_img = (s as any).sd_img ?? {})['cond_bodysuit'] = qspFunc(s, 'stat_display_compute', 'cond_string', ((s as any).PPanDirt ?? 0), 1, 0, 0);
                 }
               }
             }
@@ -1783,19 +1815,20 @@ function enterComputeImages(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
+    if (((s as any).sd_img ?? 0)['url_' + ((s as any).sd_ci ?? 0)?.['key']] === '') {
+      break;
+    }
+    ((s as any).sd_img = (s as any).sd_img ?? {})['order_' + String((((s as any).sd_img ?? 0)?.['count']))] = (((s as any).sd_ci ?? 0)?.['key']);
+    ((s as any).sd_img = (s as any).sd_img ?? {})['count'] = ((s as any).sd_img['count'] ?? 0) + (1);
+    break;
   }
-  if (((s as any).sd_img ?? 0)['url_' + ((s as any).sd_ci ?? 0)?.['key']] === '') {
-    // TODO-QSP: jump 'sd_compute_images_next'
-  }
-  // TODO-QSP: $sd_img['order_' + $str(sd_img['count'])] = $sd_ci['key']
-  ((s as any).sd_img = (s as any).sd_img ?? {})['count'] = ((s as any).sd_img['count'] ?? 0) + (1);
-  // TODO-QSP: :sd_compute_images_next
+  // LABEL: sd_compute_images_next
   ((s as any).sd_ci = (s as any).sd_ci ?? {})['i'] = ((s as any).sd_ci['i'] ?? 0) + (1);
   if (((s as any).sd_ci ?? 0)?.['i'] < ((s as any).sd_ci ?? 0)?.['max']) {
     // TODO-QSP: jump 'sd_compute_images_loop'
   }
+  (s as any).sd_ci = undefined;
   return;
-  // TODO-QSP: end
   scene.build();
 }
 

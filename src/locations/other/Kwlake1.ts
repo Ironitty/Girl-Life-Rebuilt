@@ -12,7 +12,6 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
   scene.text('"You\'re such a pervert!" you grin, watching Kat close her lips around the stone cock.');
   scene.text('Kat laughs with you, and says: "Hey! I know how to make a man want me, so I can then make him do whatever I want…"');
   scene.text('She tosses the rock to the side carelessly, and you continue on your walk.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['Nudelake', ''] },
   ]);
@@ -82,7 +81,6 @@ function enter(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/locations/city/residential/lake/sex/kwlake1/kwlake6.jpg');
     scene.text('Then the guy groans for Kat to get on all fours, which she does without a doubt. Your eyes bulge when you see her take his cock in her ass without a complaint.');
-    // TODO-QSP: dynamic text: "<<$pcs_nickname>>!" Katja says intently.
     scene.text(`"${((st as any).pcs_nickname ?? '')}!" Katja says intently.`);
     scene.text('"Wa… what?" you mutter, lost in your own thoughts for a moment.');
     scene.text('"Get your ass over here and give me that piece of rock already!" Kat orders you, between moans. "I want you to feel what I feel…"');

@@ -7,54 +7,58 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSort(s: GameState, scene: SceneBuilder): void {
+  (s as any).deckFace = undefined;
+  (s as any).deckImg = undefined;
   (s as any).i = 0;
-  // TODO-QSP: :loop1
-  if (((s as any).i ?? 0) < 4) {
-    (s as any).i = ((s as any).i ?? 0) + (1);
-    if (((s as any).i ?? 0) === 1) {
-      (s as any).text = 'Spades';
-    } else {
-      if (((s as any).i ?? 0) === 2) {
-        (s as any).text = 'Hearts';
+  while (true) {
+    if (((s as any).i ?? 0) < 4) {
+      (s as any).i = ((s as any).i ?? 0) + (1);
+      if (((s as any).i ?? 0) === 1) {
+        (s as any).text = 'Spades';
       } else {
-        if (((s as any).i ?? 0) === 3) {
-          (s as any).text = 'Clubs';
+        if (((s as any).i ?? 0) === 2) {
+          (s as any).text = 'Hearts';
         } else {
-          if (((s as any).i ?? 0) === 4) {
-            (s as any).text = 'Diamonds';
+          if (((s as any).i ?? 0) === 3) {
+            (s as any).text = 'Clubs';
+          } else {
+            if (((s as any).i ?? 0) === 4) {
+              (s as any).text = 'Diamonds';
+            }
           }
         }
       }
+      (s as any).j = 0;
+      while (true) {
+        if (((s as any).j ?? 0) < 13) {
+          (s as any).j = ((s as any).j ?? 0) + (1);
+          (s as any).deckFace = [...((s as any).deckFace ?? []), ((s as any).j ?? 0)];
+          (s as any).deckImg = [...((s as any).deckImg ?? []), 'images/locations/city/industrial/casino/cards/' + ((s as any).text ?? 0) + '/' + ((s as any).j ?? 0) + '.jpg'];
+          break;
+        }
+        break;
+      }
     }
-    (s as any).j = 0;
-    // TODO-QSP: :loop2
-    if (((s as any).j ?? 0) < 13) {
-      (s as any).j = ((s as any).j ?? 0) + (1);
-      // TODO-QSP: deckFace[] = j
-      // TODO-QSP: $deckImg[] = 'images/locations/city/industrial/casino/cards/<<$text>>/<<j>>.jpg'
-      // TODO-QSP: jump 'loop2'
-    }
-    // TODO-QSP: jump 'loop1'
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterShuffle(s: GameState, scene: SceneBuilder): void {
   (s as any).i = 0;
-  // TODO-QSP: :loop3
-  if (((s as any).i ?? 0) < 52) {
-    (s as any).j = (Math.floor(Math.random() * 52) + 0);
-    (s as any).temp = (((s as any).deckFace ?? 0)?.[String((s as any).i ?? 0)] ?? 0);
-    ((s as any).deckFace = (s as any).deckFace ?? {})[String((s as any).i ?? 0)] = (((s as any).deckFace ?? 0)?.[String((s as any).j ?? 0)] ?? 0);
-    ((s as any).deckFace = (s as any).deckFace ?? {})[String((s as any).j ?? 0)] = ((s as any).temp ?? 0);
-    (s as any).text = (((s as any).deckImg ?? 0)?.[String((s as any).i ?? 0)] ?? 0);
-    // TODO-QSP: $deckImg[i] = $deckImg[j]
-    // TODO-QSP: $deckImg[j] = $text
-    (s as any).i = ((s as any).i ?? 0) + (1);
-    // TODO-QSP: jump 'loop3'
+  while (true) {
+    if (((s as any).i ?? 0) < 52) {
+      (s as any).j = (Math.floor(Math.random() * 52) + 0);
+      (s as any).temp = (((s as any).deckFace ?? 0)?.[String((s as any).i ?? 0)] ?? 0);
+      ((s as any).deckFace = (s as any).deckFace ?? {})[String((s as any).i ?? 0)] = (((s as any).deckFace ?? 0)?.[String((s as any).j ?? 0)] ?? 0);
+      ((s as any).deckFace = (s as any).deckFace ?? {})[String((s as any).j ?? 0)] = ((s as any).temp ?? 0);
+      (s as any).text = (((s as any).deckImg ?? 0)?.[String((s as any).i ?? 0)] ?? 0);
+      ((s as any).deckImg = (s as any).deckImg ?? {})[String((s as any).i ?? 0)] = (((s as any).deckImg ?? 0)?.[String((s as any).j ?? 0)] ?? 0);
+      ((s as any).deckImg = (s as any).deckImg ?? {})[String((s as any).j ?? 0)] = ((s as any).text ?? 0);
+      (s as any).i = ((s as any).i ?? 0) + (1);
+      break;
+    }
+    (s as any).temp = undefined;
   }
-  // TODO-QSP: end
   scene.build();
 }
 

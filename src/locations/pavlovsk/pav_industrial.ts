@@ -26,20 +26,16 @@ function enter(s: GameState, scene: SceneBuilder): void {
   scene.text('This is the Industrial region of Pavlovsk. It houses some factories and warehouses, along with the old houses that are small and run down.');
   scene.text('This area is dominated by one of the biggest employers in Pavlovsk, the local textile factory. It\'s owned by G&M, who opened up a store opposite.');
   if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) < 20  &&  ((s as any).week ?? 0) >= 1  &&  ((s as any).week ?? 0) <= 5) {
-    // TODO-QSP: dynamic text: Behind the security checkpoint, you can see the <a href="exec:minut += 5 & gt ''...
-    scene.text('Behind the security checkpoint, you can see the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(/u0027pav_factory/u0027, /u0027enter/u0027); return false;">entrance</a> that every employee passes through.');
+    scene.text('Behind the security checkpoint, you can see the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(\u0027pav_factory\u0027, \u0027enter\u0027); return false;">entrance</a> that every employee passes through.');
   } else {
     if (((s as any).hour ?? 0) < 8  ||  ((s as any).hour ?? 0) > 20  ||  ((s as any).week ?? 0) > 5) {
       scene.text('The factory is currently closed.');
     }
   }
   scene.text('Opening hours are Monday through Friday:');
-  // TODO-QSP: dynamic text: 'First shift - '+func('time', 'get_time_string', 8, 0)+' to '+func('time', 'get_...
-  scene.text('First shift - 8:00 to 16:00');
-  // TODO-QSP: dynamic text: 'Second shift - '+func('time', 'get_time_string', 16, 0)+' to '+func('time', 'ge...
-  scene.text('Second shift - 16:00 to 20:00');
-  // TODO-QSP: dynamic text: 'In a smaller building right next to the factory is the local '+iif(week < 7 and...
-  scene.text('In a smaller building right next to the factory is the local ' + ((((s as any).week ?? 0) < 7  &&  ((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) < 18) ? ('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027pav_factory/u0027, /u0027tailor/u0027); return false;">tailor</a>') : ('tailor')) + ' shop, a service offered by the factory. Opening hours are Monday to Saturday, between 8:00 to 17:00.');
+  scene.text('\'First shift - 8:00 to 16:00\'');
+  scene.text('\'Second shift - 16:00 to 20:00\'');
+  scene.text('In a smaller building right next to the factory is the local ' + ((((s as any).week ?? 0) < 7  &&  ((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) < 18) ? ('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027pav_factory\u0027, \u0027tailor\u0027); return false;">tailor</a>') : ('tailor')) + ' shop, a service offered by the factory. Opening hours are Monday to Saturday, between 8:00 to 17:00.');
   if (((((s as any).month ?? 0) === 9  &&  ((s as any).day ?? 0) > 16)  ||  ((s as any).month ?? 0) >= 10)  &&  (((s as any).AlbinaQW ?? 0)?.['StarletsShutDown'] === 0  ||  ((s as any).AlbinaQW ?? 0)?.['Chernov'] === 0)) {
     scene.text('You can see election posters on the walls all over town. They say: "Vote for Boris Barlovsky!" Wait a minute… isn\'t that Albina\'s father?');
   }
@@ -58,7 +54,6 @@ function enter(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (qspFunc(s, 'car_funcs', 'is_here')) {
-    // TODO-QSP: dynamic text: Your <a href="exec:gs ''carF'', ''start''"><<$car[''name'']>></a> is parked in t...
     scene.text(`Your <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027carF/u0027, /u0027start/u0027); return false;">${(((s as any).car ?? 0)?.['name'] ?? '')}</a> is parked in the street.`);
   }
   if (((s as any).week ?? 0) < 7  &&  ((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) < 20) {

@@ -30,7 +30,7 @@ function enterYfoyer(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'courtletter', '');
   if (((s as any).ymanrem ?? 0)[3] >= 1) {
     scene.text('The main hall of Matryona Mansion. You can visit the different rooms in the mansion from here.');
-    scene.text('There\'s a <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027start/u0027); return false;">mirror</a> hanging on the wall.');
+    scene.text('There\'s a <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027start\u0027); return false;">mirror</a> hanging on the wall.');
     if (((s as any).mc_inventory ?? 0)?.['umbrella'] > 0) {
       scene.text('There\'s an umbrella hanging on a hook by the door.');
     }
@@ -92,24 +92,22 @@ function enterYfoyer(s: GameState, scene: SceneBuilder): void {
         qspGoto(s, 'pet_dog', 'name');
       } else {
         if (((s as any).hour ?? 0) > 5) {
-          // TODO-QSP: dynamic text: <br>Your dog <a href="exec: gt ''pet_dog'', ''start''"><<$rex[''name'']>></a> is...
           scene.text(`<br>Your dog <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027pet_dog/u0027, /u0027start/u0027); return false;">${(((s as any).rex ?? 0)?.['name'] ?? '')}</a> is lying on the floor.<br>`);
         } else {
           if (((s as any).hour ?? 0) < 6) {
-            // TODO-QSP: dynamic text: <br><<$rex[''name'']>> is sleeping in his dog basket.<br>
             scene.text(`<br>${(((s as any).rex ?? 0)?.['name'] ?? '')} is sleeping in his dog basket.<br>`);
           }
         }
       }
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Walk outside', handler: (st: GameState) => {
     if (((st as any).clothingworntype ?? 0) !== 'nude') {
       (st as any).minut = ((st as any).minut ?? 0) + 5;
       qspGoto(st, 'city_mansion_entrance', '');
     } else {
+      alert('<b><font color = red>You need to get dressed.</font></b>');
       qspGoto(st, 'city_mansion_residence_1', 'yfoyer');
     }
   } },
@@ -139,14 +137,13 @@ function enterYbedroom(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   if (((s as any).ymanrem ?? 0)[4] === 2) {
-    scene.text('It\'s a bright and beautiful room, with a large <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027bed/u0027, /u0027start/u0027); return false;">continental bed</a>.');
-    scene.text('There\'s a table and a <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027start/u0027); return false;">mirror</a> placed in one of the corners.');
+    scene.text('It\'s a bright and beautiful room, with a large <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027bed\u0027, \u0027start\u0027); return false;">continental bed</a>.');
+    scene.text('There\'s a table and a <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027start\u0027); return false;">mirror</a> placed in one of the corners.');
     if (((s as any).mc_inventory ?? 0)?.['mag_porn'] > 0) {
       scene.text('You have hidden your porn magazine in your nightstand.');
     }
-    scene.text('On one side of the room is the entrance to a walk-in <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027wardrobe/u0027, /u0027start/u0027); return false;">wardrobe</a>.');
+    scene.text('On one side of the room is the entrance to a walk-in <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027wardrobe\u0027, \u0027start\u0027); return false;">wardrobe</a>.');
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the room', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -172,14 +169,12 @@ function enterYbathroom(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).ymanrem ?? 0)[5] === 2) {
-    // TODO-QSP: dynamic text: 'The ornate room holds a shower, toilet, sink, <a href="exec:gt ''mirror'',''sta...
-    scene.text('The ornate room holds a shower, toilet, sink, <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027start/u0027); return false;">mirror</a> where you can ' + ((((s as any).pcs_hairbsh ?? 0) < 1) ? ('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027brush/u0027); return false;">brush</a>') : ('brush')) + ' your hair, and even a bath tub.');
+    scene.text('The ornate room holds a shower, toilet, sink, <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027start\u0027); return false;">mirror</a> where you can ' + ((((s as any).pcs_hairbsh ?? 0) < 1) ? ('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027brush\u0027); return false;">brush</a>') : ('brush')) + ' your hair, and even a bath tub.');
     qspCall(s, 'selfplay', 'suction_dildo');
     qspCall(s, 'din_van', 'private');
     qspCall(s, 'din_van', 'misery_2');
     qspCall(s, 'home_events', 'bathroom');
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the room', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -207,17 +202,15 @@ function enterYkitchen(s: GameState, scene: SceneBuilder): void {
   if (((s as any).ymanrem ?? 0)[6] === 2) {
     scene.text('A well stocked kitchen containing all the necessities to make whatever meal you please.');
     if (((s as any).mc_inventory ?? 0)?.['dish_plates'] > 0) {
-      // TODO-QSP: dynamic text: You have <b><<mc_inventory[''dish_plates'']>></b> clean plates left.
       scene.text(`You have <b>${(((s as any).mc_inventory ?? 0)?.['dish_plates'] ?? '')}</b> clean plates left.`);
     } else {
       scene.text('<center><b>You don\'t have any clean plates left.</b></center>');
     }
     if (((s as any).dirttarelka ?? 0) > 0) {
-      // TODO-QSP: dynamic text: There are <b><<dirttarelka>></b> dirty dishes in the sink. <a href="exec:gs ''ki...
       scene.text(`There are <b>${((s as any).dirttarelka ?? '')}</b> dirty dishes in the sink. <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027kit_din/u0027, /u0027dirtarm/u0027); return false;">Wash the dishes</a>.`);
     }
     if (((s as any).mc_inventory ?? 0)?.['dish_soap'] > 0) {
-      // TODO-QSP: 'Under the sink is some dishwashing detergent, which is enough for <b><<mc_inventory[''dish_soap'']>...
+      scene.text(`Under the sink is some dishwashing detergent, which is enough for <b>${(((s as any).mc_inventory ?? 0)?.['dish_soap'] ?? '')}</b> ` + ((((s as any).mc_inventory ?? 0)?.['dish_soap'] === 1) ? ('time.') : ('times.')));
     } else {
       scene.text('<center><b>You have nothing to wash dishes with. You should buy some detergent.</b></center>');
     }
@@ -226,9 +219,8 @@ function enterYkitchen(s: GameState, scene: SceneBuilder): void {
         (s as any).edagot = '';
       }
       if (((s as any).mc_inventory ?? 0)?.['dish_plates'] > 0  &&  (!((s as any).edahot ?? 0))) {
-        (s as any).edagot = '<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027kit_din/u0027, /u0027edagotd/u0027); return false;">Cook a meal</a>';
+        (s as any).edagot = '<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027kit_din\u0027, \u0027edagotd\u0027); return false;">Cook a meal</a>';
       }
-      // TODO-QSP: dynamic text: 'There''s enough food for <b><<mc_inventory[''food_basic'']>></b> ' + iif(mc_inv...
       scene.text(`There's enough food for <b>${(((s as any).mc_inventory ?? 0)?.['food_basic'] ?? '')}</b> ` + ((((s as any).mc_inventory ?? 0)?.['food_basic'] === 1) ? ('serving') : ('servings')) + `. ${((s as any).edagot ?? '')}`);
     } else {
       if (((s as any).mc_inventory ?? 0)?.['food_diet'] === 0  &&  ((s as any).mc_inventory ?? 0)?.['food_basic'] === 0) {
@@ -239,7 +231,6 @@ function enterYkitchen(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'lover_living', 'kitchen');
     qspCall(s, 'core_library', 'kitchen', 'full');
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the room', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;

@@ -17,14 +17,12 @@ function enterGetProgramName(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterProgramName(s: GameState, scene: SceneBuilder): void {
   (s as any).result = qspFunc(s, 'uni_programs', 'get_program_name');
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -37,7 +35,6 @@ function enterGetFirstPeriod(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -114,8 +111,8 @@ function enterGetFirstPeriodNursing(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  (s as any).temp_up_timestamp = undefined;
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -192,8 +189,8 @@ function enterGetFirstPeriodTeaching(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  (s as any).temp_up_timestamp = undefined;
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -206,7 +203,6 @@ function enterGetSecondPeriod(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -283,8 +279,8 @@ function enterGetSecondPeriodNursing(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  (s as any).temp_up_timestamp = undefined;
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -361,8 +357,8 @@ function enterGetSecondPeriodTeaching(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  (s as any).temp_up_timestamp = undefined;
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -375,7 +371,6 @@ function enterGetThirdPeriod(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -476,8 +471,8 @@ function enterGetThirdPeriodNursing(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  (s as any).temp_up_timestamp = undefined;
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -578,7 +573,6 @@ function enterGetThirdPeriodTeaching(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -591,19 +585,17 @@ function enterSetFirstPeriodAct(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterSetFirstPeriodActNursing(s: GameState, scene: SceneBuilder): void {
   if (((s as any).university ?? 0)?.['enrolled_in_semester'] < 1  ||  ((s as any).university ?? 0)?.['enrolled_in_semester'] > 4) {
-    // TODO-QSP: exit
+    return;
   }
   if (((s as any).week ?? 0) > 4) {
-    // TODO-QSP: exit
+    return;
   }
-  // TODO-QSP: dynamic text: 'Your next class will start at ' + $func('time', 'get_time_string', 9, 0) + '. Y...
-  scene.text('Your next class will start at 9:00. You can go to it now or do other things first, but you need to be at the university plaza before it starts if you want to attend it.');
+  scene.text('\'Your next class will start at 9:00. You can go to it now or do other things first, but you need to be at the university plaza before it starts if you want to attend it.\'');
   if (((s as any).university ?? 0)?.['enrolled_in_semester'] === 1) {
     if (((s as any).week ?? 0) === 1  ||  ((s as any).week ?? 0) === 4) {
       scene.actions([
@@ -734,19 +726,17 @@ function enterSetFirstPeriodActNursing(s: GameState, scene: SceneBuilder): void 
     }
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterSetFirstPeriodActTeaching(s: GameState, scene: SceneBuilder): void {
   if (((s as any).university ?? 0)?.['enrolled_in_semester'] < 1  ||  ((s as any).university ?? 0)?.['enrolled_in_semester'] > 4) {
-    // TODO-QSP: exit
+    return;
   }
   if (((s as any).week ?? 0) > 4) {
-    // TODO-QSP: exit
+    return;
   }
-  // TODO-QSP: dynamic text: 'Your next class will start at ' + $func('time', 'get_time_string', 9, 0) + '. Y...
-  scene.text('Your next class will start at 9:00. You can go to it now or do other things first, but you need to be at the university plaza before it starts if you want to attend it.');
+  scene.text('\'Your next class will start at 9:00. You can go to it now or do other things first, but you need to be at the university plaza before it starts if you want to attend it.\'');
   if (((s as any).university ?? 0)?.['enrolled_in_semester'] === 1) {
     if (((s as any).week ?? 0) >= 1  &&  ((s as any).week ?? 0) < 4) {
       scene.actions([
@@ -835,7 +825,6 @@ function enterSetFirstPeriodActTeaching(s: GameState, scene: SceneBuilder): void
     }
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -848,19 +837,17 @@ function enterSetSecondPeriodAct(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterSetSecondPeriodActNursing(s: GameState, scene: SceneBuilder): void {
   if (((s as any).university ?? 0)?.['enrolled_in_semester'] < 1  ||  ((s as any).university ?? 0)?.['enrolled_in_semester'] > 4) {
-    // TODO-QSP: exit
+    return;
   }
   if (((s as any).week ?? 0) > 4) {
-    // TODO-QSP: exit
+    return;
   }
-  // TODO-QSP: dynamic text: 'Your next class will start at ' + $func('time', 'get_time_string', 11, 0) + '. ...
-  scene.text('Your next class will start at 11:00. You can go to it now or do other things first, but you need to be at the university plaza before it starts if you want to attend it.');
+  scene.text('\'Your next class will start at 11:00. You can go to it now or do other things first, but you need to be at the university plaza before it starts if you want to attend it.\'');
   if (((s as any).university ?? 0)?.['enrolled_in_semester'] === 1) {
     if (((s as any).week ?? 0) === 1  ||  ((s as any).week ?? 0) === 4) {
       scene.actions([
@@ -950,19 +937,17 @@ function enterSetSecondPeriodActNursing(s: GameState, scene: SceneBuilder): void
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterSetSecondPeriodActTeaching(s: GameState, scene: SceneBuilder): void {
   if (((s as any).university ?? 0)?.['enrolled_in_semester'] < 1  ||  ((s as any).university ?? 0)?.['enrolled_in_semester'] > 4) {
-    // TODO-QSP: exit
+    return;
   }
   if (((s as any).week ?? 0) > 4) {
-    // TODO-QSP: exit
+    return;
   }
-  // TODO-QSP: dynamic text: 'Your next class will start at ' + $func('time', 'get_time_string', 11, 0) + '. ...
-  scene.text('Your next class will start at 11:00. You can go to it now or do other things first, but you need to be at the university plaza before it starts if you want to attend it.');
+  scene.text('\'Your next class will start at 11:00. You can go to it now or do other things first, but you need to be at the university plaza before it starts if you want to attend it.\'');
   if (((s as any).university ?? 0)?.['enrolled_in_semester'] === 1) {
     if (((s as any).week ?? 0) === 1  ||  ((s as any).week ?? 0) === 3) {
       scene.actions([
@@ -1051,7 +1036,6 @@ function enterSetSecondPeriodActTeaching(s: GameState, scene: SceneBuilder): voi
     }
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1064,19 +1048,17 @@ function enterSetThirdPeriodAct(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterSetThirdPeriodActNursing(s: GameState, scene: SceneBuilder): void {
   if (((s as any).university ?? 0)?.['enrolled_in_semester'] < 1  ||  ((s as any).university ?? 0)?.['enrolled_in_semester'] > 4) {
-    // TODO-QSP: exit
+    return;
   }
   if (((s as any).week ?? 0) > 4) {
-    // TODO-QSP: exit
+    return;
   }
-  // TODO-QSP: dynamic text: 'Your next class will start at ' + $func('time', 'get_time_string', 13, 15) + '....
-  scene.text('Your next class will start at 13:15. You can go to it now or do other things first, but you need to be at the university plaza before it starts if you want to attend it.');
+  scene.text('\'Your next class will start at 13:15. You can go to it now or do other things first, but you need to be at the university plaza before it starts if you want to attend it.\'');
   if (((s as any).university ?? 0)?.['enrolled_in_semester'] === 1) {
     if (((s as any).week ?? 0) === 1  &&  ((s as any).university ?? 0)?.['elective_semester_1_1'] !== '') {
       scene.actions([
@@ -1258,19 +1240,17 @@ function enterSetThirdPeriodActNursing(s: GameState, scene: SceneBuilder): void 
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterSetThirdPeriodActTeaching(s: GameState, scene: SceneBuilder): void {
   if (((s as any).university ?? 0)?.['enrolled_in_semester'] < 1  ||  ((s as any).university ?? 0)?.['enrolled_in_semester'] > 4) {
-    // TODO-QSP: exit
+    return;
   }
   if (((s as any).week ?? 0) > 4) {
-    // TODO-QSP: exit
+    return;
   }
-  // TODO-QSP: dynamic text: 'Your next class will start at ' + $func('time', 'get_time_string', 13, 15) + '....
-  scene.text('Your next class will start at 13:15. You can go to it now or do other things first, but you need to be at the university plaza before it starts if you want to attend it.');
+  scene.text('\'Your next class will start at 13:15. You can go to it now or do other things first, but you need to be at the university plaza before it starts if you want to attend it.\'');
   if (((s as any).university ?? 0)?.['enrolled_in_semester'] === 1) {
     if (((s as any).week ?? 0) === 1  &&  ((s as any).university ?? 0)?.['elective_semester_1_1'] !== '') {
       scene.actions([
@@ -1427,8 +1407,7 @@ function enterSetThirdPeriodActTeaching(s: GameState, scene: SceneBuilder): void
             ]);
           } else {
             if (((s as any).week ?? 0) === 3) {
-              // TODO-QSP: dynamic text: 'Your next class will start at ' + $func('time', 'get_time_string', 13, 15) + '....
-              scene.text('Your next class will start at 13:15. You can go to it now or do other things first, but you need to be at the university plaza before it starts if you want to attend it.');
+              scene.text('\'Your next class will start at 13:15. You can go to it now or do other things first, but you need to be at the university plaza before it starts if you want to attend it.\'');
               scene.actions([
                 { label: 'Go to your Psychology of a Student 201 class', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + (Math.max(0, (13 - ((st as any).hour ?? 0)) * 60 + (15 - ((st as any).minut ?? 0))));
@@ -1455,7 +1434,6 @@ function enterSetThirdPeriodActTeaching(s: GameState, scene: SceneBuilder): void
     }
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1468,7 +1446,6 @@ function enterGetExamSchedule(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1561,7 +1538,6 @@ function enterGetExamScheduleNursing(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1654,7 +1630,6 @@ function enterGetExamScheduleTeaching(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1667,7 +1642,6 @@ function enterIsExamOver(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1776,7 +1750,6 @@ function enterIsExamOverNursing(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1885,7 +1858,6 @@ function enterIsExamOverTeaching(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1898,7 +1870,6 @@ function enterSetExamAct(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1906,8 +1877,7 @@ function enterSetExamActNursing(s: GameState, scene: SceneBuilder): void {
   if (((s as any).university ?? 0)?.['enrolled_in_semester'] === 1) {
     if (((s as any).university ?? 0)?.['exam_week'] === 1) {
       if (((s as any).week ?? 0) === 4) {
-        // TODO-QSP: dynamic text: 'Your Patient Care 101 exam will start at ' + $func('time', 'get_time_string', 9...
-        scene.text('Your Patient Care 101 exam will start at 9:00 today. You can go to it now or do other things first, but you need to be at the university plaza before it starts if you want to attend it.');
+        scene.text('\'Your Patient Care 101 exam will start at 9:00 today. You can go to it now or do other things first, but you need to be at the university plaza before it starts if you want to attend it.\'');
         scene.actions([
           { label: 'Go to your Patient Care 101 exam', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + (Math.max(0, (9 - ((st as any).hour ?? 0))*60 - ((st as any).minut ?? 0)));
@@ -1919,8 +1889,7 @@ function enterSetExamActNursing(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).university ?? 0)?.['exam_week'] === 2) {
         if (((s as any).week ?? 0) === 2) {
-          // TODO-QSP: dynamic text: 'Your Anatomy and Physiology 101 exam will start at ' + $func('time', 'get_time_...
-          scene.text('Your Anatomy and Physiology 101 exam will start at 9:00. You can go to it now or do other things first, but you need to be at the university plaza before it starts if you want to attend it.');
+          scene.text('\'Your Anatomy and Physiology 101 exam will start at 9:00. You can go to it now or do other things first, but you need to be at the university plaza before it starts if you want to attend it.\'');
           scene.actions([
             { label: 'Go to your Anatomy and Physiology 101 exam', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + (Math.max(0, (9 - ((st as any).hour ?? 0))*60 - ((st as any).minut ?? 0)));
@@ -1930,8 +1899,7 @@ function enterSetExamActNursing(s: GameState, scene: SceneBuilder): void {
           ]);
         } else {
           if (((s as any).week ?? 0) === 4) {
-            // TODO-QSP: dynamic text: 'Your Examination and Treatment 101 exam will start at ' + $func('time', 'get_ti...
-            scene.text('Your Examination and Treatment 101 exam will start at 9:00. You can go to it now or do other things first, but you need to be at the university plaza before it starts if you want to attend it.');
+            scene.text('\'Your Examination and Treatment 101 exam will start at 9:00. You can go to it now or do other things first, but you need to be at the university plaza before it starts if you want to attend it.\'');
             scene.actions([
               { label: 'Go to your Examination and Treatment 101 exam', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + (Math.max(0, (9 - ((st as any).hour ?? 0))*60 - ((st as any).minut ?? 0)));
@@ -1947,8 +1915,7 @@ function enterSetExamActNursing(s: GameState, scene: SceneBuilder): void {
     if (((s as any).university ?? 0)?.['enrolled_in_semester'] === 2) {
       if (((s as any).university ?? 0)?.['exam_week'] === 1) {
         if (((s as any).week ?? 0) === 4) {
-          // TODO-QSP: dynamic text: 'Your Patient Care 102 exam will start at ' + $func('time', 'get_time_string', 9...
-          scene.text('Your Patient Care 102 exam will start at 9:00 today. You can go to it now or do other things first, but you need to be at the university plaza before it starts if you want to attend it.');
+          scene.text('\'Your Patient Care 102 exam will start at 9:00 today. You can go to it now or do other things first, but you need to be at the university plaza before it starts if you want to attend it.\'');
           scene.actions([
             { label: 'Go to your General Education 102 exam', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + (Math.max(0, (9 - ((st as any).hour ?? 0))*60 - ((st as any).minut ?? 0)));
@@ -1960,8 +1927,7 @@ function enterSetExamActNursing(s: GameState, scene: SceneBuilder): void {
       } else {
         if (((s as any).university ?? 0)?.['exam_week'] === 2) {
           if (((s as any).week ?? 0) === 2) {
-            // TODO-QSP: dynamic text: 'Your Anatomy and Physiology 102 exam will start at ' + $func('time', 'get_time_...
-            scene.text('Your Anatomy and Physiology 102 exam will start at 9:00. You can go to it now or do other things first, but you need to be at the university plaza before it starts if you want to attend it.');
+            scene.text('\'Your Anatomy and Physiology 102 exam will start at 9:00. You can go to it now or do other things first, but you need to be at the university plaza before it starts if you want to attend it.\'');
             scene.actions([
               { label: 'Go to your Teaching Methods exam 102', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + (Math.max(0, (9 - ((st as any).hour ?? 0))*60 - ((st as any).minut ?? 0)));
@@ -1971,8 +1937,7 @@ function enterSetExamActNursing(s: GameState, scene: SceneBuilder): void {
             ]);
           } else {
             if (((s as any).week ?? 0) === 4) {
-              // TODO-QSP: dynamic text: 'Your Examination and Treatment 102 exam will start at ' + $func('time', 'get_ti...
-              scene.text('Your Examination and Treatment 102 exam will start at 9:00. You can go to it now or do other things first, but you need to be at the university plaza before it starts if you want to attend it.');
+              scene.text('\'Your Examination and Treatment 102 exam will start at 9:00. You can go to it now or do other things first, but you need to be at the university plaza before it starts if you want to attend it.\'');
               scene.actions([
                 { label: 'Go to your Psychology of a Student 101 exam', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + (Math.max(0, (9 - ((st as any).hour ?? 0))*60 - ((st as any).minut ?? 0)));
@@ -1988,8 +1953,7 @@ function enterSetExamActNursing(s: GameState, scene: SceneBuilder): void {
       if (((s as any).university ?? 0)?.['enrolled_in_semester'] === 3) {
         if (((s as any).university ?? 0)?.['exam_week'] === 1) {
           if (((s as any).week ?? 0) === 4) {
-            // TODO-QSP: dynamic text: 'Your Patient Care 201 exam will start at ' + $func('time', 'get_time_string', 9...
-            scene.text('Your Patient Care 201 exam will start at 9:00 today. You can go to it now or do other things first, but you need to be at the university plaza before it starts if you want to attend it.');
+            scene.text('\'Your Patient Care 201 exam will start at 9:00 today. You can go to it now or do other things first, but you need to be at the university plaza before it starts if you want to attend it.\'');
             scene.actions([
               { label: 'Go to your Patient Care 201 exam', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + (Math.max(0, (9 - ((st as any).hour ?? 0))*60 - ((st as any).minut ?? 0)));
@@ -2001,8 +1965,7 @@ function enterSetExamActNursing(s: GameState, scene: SceneBuilder): void {
         } else {
           if (((s as any).university ?? 0)?.['exam_week'] === 2) {
             if (((s as any).week ?? 0) === 2) {
-              // TODO-QSP: dynamic text: 'Your Anatomy and Physiology 201 exam will start at ' + $func('time', 'get_time_...
-              scene.text('Your Anatomy and Physiology 201 exam will start at 9:00. You can go to it now or do other things first, but you need to be at the university plaza before it starts if you want to attend it.');
+              scene.text('\'Your Anatomy and Physiology 201 exam will start at 9:00. You can go to it now or do other things first, but you need to be at the university plaza before it starts if you want to attend it.\'');
               scene.actions([
                 { label: 'Go to your Anatomy and Physiology 201 exam', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + (Math.max(0, (9 - ((st as any).hour ?? 0))*60 - ((st as any).minut ?? 0)));
@@ -2012,8 +1975,7 @@ function enterSetExamActNursing(s: GameState, scene: SceneBuilder): void {
               ]);
             } else {
               if (((s as any).week ?? 0) === 4) {
-                // TODO-QSP: dynamic text: 'Your Dosages and Pharmaceuticals 101 exam will start at ' + $func('time', 'get_...
-                scene.text('Your Dosages and Pharmaceuticals 101 exam will start at 9:00. You can go to it now or do other things first, but you need to be at the university plaza before it starts if you want to attend it.');
+                scene.text('\'Your Dosages and Pharmaceuticals 101 exam will start at 9:00. You can go to it now or do other things first, but you need to be at the university plaza before it starts if you want to attend it.\'');
                 scene.actions([
                   { label: 'Go to your Dosages and Pharmaceuticals 101 exam', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + (Math.max(0, (9 - ((st as any).hour ?? 0))*60 - ((st as any).minut ?? 0)));
@@ -2029,8 +1991,7 @@ function enterSetExamActNursing(s: GameState, scene: SceneBuilder): void {
         if (((s as any).university ?? 0)?.['enrolled_in_semester'] === 4) {
           if (((s as any).university ?? 0)?.['exam_week'] === 1) {
             if (((s as any).week ?? 0) === 4) {
-              // TODO-QSP: dynamic text: 'Your Patient Care 202 exam will start at ' + $func('time', 'get_time_string', 9...
-              scene.text('Your Patient Care 202 exam will start at 9:00 today. You can go to it now or do other things first, but you need to be at the university plaza before it starts if you want to attend it.');
+              scene.text('\'Your Patient Care 202 exam will start at 9:00 today. You can go to it now or do other things first, but you need to be at the university plaza before it starts if you want to attend it.\'');
               scene.actions([
                 { label: 'Go to your Patient Care 202 exam', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + (Math.max(0, (9 - ((st as any).hour ?? 0))*60 - ((st as any).minut ?? 0)));
@@ -2042,8 +2003,7 @@ function enterSetExamActNursing(s: GameState, scene: SceneBuilder): void {
           } else {
             if (((s as any).university ?? 0)?.['exam_week'] === 2) {
               if (((s as any).week ?? 0) === 2) {
-                // TODO-QSP: dynamic text: 'Your Anatomy and Physiology 202 exam will start at ' + $func('time', 'get_time_...
-                scene.text('Your Anatomy and Physiology 202 exam will start at 9:00. You can go to it now or do other things first, but you need to be at the university plaza before it starts if you want to attend it.');
+                scene.text('\'Your Anatomy and Physiology 202 exam will start at 9:00. You can go to it now or do other things first, but you need to be at the university plaza before it starts if you want to attend it.\'');
                 scene.actions([
                   { label: 'Go to your Anatomy and Physiology 202 exam', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + (Math.max(0, (9 - ((st as any).hour ?? 0))*60 - ((st as any).minut ?? 0)));
@@ -2053,8 +2013,7 @@ function enterSetExamActNursing(s: GameState, scene: SceneBuilder): void {
                 ]);
               } else {
                 if (((s as any).week ?? 0) === 4) {
-                  // TODO-QSP: dynamic text: 'Your Dosages and Pharmaceuticals 102 exam will start at ' + $func('time', 'get_...
-                  scene.text('Your Dosages and Pharmaceuticals 102 exam will start at 9:00. You can go to it now or do other things first, but you need to be at the university plaza before it starts if you want to attend it.');
+                  scene.text('\'Your Dosages and Pharmaceuticals 102 exam will start at 9:00. You can go to it now or do other things first, but you need to be at the university plaza before it starts if you want to attend it.\'');
                   scene.actions([
                     { label: 'Go to your Dosages and Pharmaceuticals 102 exam', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + (Math.max(0, (9 - ((st as any).hour ?? 0))*60 - ((st as any).minut ?? 0)));
@@ -2071,7 +2030,6 @@ function enterSetExamActNursing(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -2079,8 +2037,7 @@ function enterSetExamActTeaching(s: GameState, scene: SceneBuilder): void {
   if (((s as any).university ?? 0)?.['enrolled_in_semester'] === 1) {
     if (((s as any).university ?? 0)?.['exam_week'] === 1) {
       if (((s as any).week ?? 0) === 4) {
-        // TODO-QSP: dynamic text: 'Your General Education 101 exam will start at ' + $func('time', 'get_time_strin...
-        scene.text('Your General Education 101 exam will start at 9:00 today. You can go to it now or do other things first, but you need to be at the university plaza before it starts if you want to attend it.');
+        scene.text('\'Your General Education 101 exam will start at 9:00 today. You can go to it now or do other things first, but you need to be at the university plaza before it starts if you want to attend it.\'');
         scene.actions([
           { label: 'Go to your General Education 101 exam', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + (Math.max(0, (9 - ((st as any).hour ?? 0))*60 - ((st as any).minut ?? 0)));
@@ -2092,8 +2049,7 @@ function enterSetExamActTeaching(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).university ?? 0)?.['exam_week'] === 2) {
         if (((s as any).week ?? 0) === 2) {
-          // TODO-QSP: dynamic text: 'Your Teaching Methods 101 exam will start at ' + $func('time', 'get_time_string...
-          scene.text('Your Teaching Methods 101 exam will start at 9:00. You can go to it now or do other things first, but you need to be at the university plaza before it starts if you want to attend it.');
+          scene.text('\'Your Teaching Methods 101 exam will start at 9:00. You can go to it now or do other things first, but you need to be at the university plaza before it starts if you want to attend it.\'');
           scene.actions([
             { label: 'Go to your Teaching Methods 101 exam', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + (Math.max(0, (9 - ((st as any).hour ?? 0))*60 - ((st as any).minut ?? 0)));
@@ -2103,8 +2059,7 @@ function enterSetExamActTeaching(s: GameState, scene: SceneBuilder): void {
           ]);
         } else {
           if (((s as any).week ?? 0) === 4) {
-            // TODO-QSP: dynamic text: 'Your Learning Theories 101 exam will start at ' + $func('time', 'get_time_strin...
-            scene.text('Your Learning Theories 101 exam will start at 9:00. You can go to it now or do other things first, but you need to be at the university plaza before it starts if you want to attend it.');
+            scene.text('\'Your Learning Theories 101 exam will start at 9:00. You can go to it now or do other things first, but you need to be at the university plaza before it starts if you want to attend it.\'');
             scene.actions([
               { label: 'Go to your Learning Theories 101 exam', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + (Math.max(0, (9 - ((st as any).hour ?? 0))*60 - ((st as any).minut ?? 0)));
@@ -2120,8 +2075,7 @@ function enterSetExamActTeaching(s: GameState, scene: SceneBuilder): void {
     if (((s as any).university ?? 0)?.['enrolled_in_semester'] === 2) {
       if (((s as any).university ?? 0)?.['exam_week'] === 1) {
         if (((s as any).week ?? 0) === 4) {
-          // TODO-QSP: dynamic text: 'Your General Education 102 exam will start at ' + $func('time', 'get_time_strin...
-          scene.text('Your General Education 102 exam will start at 9:00 today. You can go to it now or do other things first, but you need to be at the university plaza before it starts if you want to attend it.');
+          scene.text('\'Your General Education 102 exam will start at 9:00 today. You can go to it now or do other things first, but you need to be at the university plaza before it starts if you want to attend it.\'');
           scene.actions([
             { label: 'Go to your General Education 102 exam', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + (Math.max(0, (9 - ((st as any).hour ?? 0))*60- ((st as any).minut ?? 0)));
@@ -2133,8 +2087,7 @@ function enterSetExamActTeaching(s: GameState, scene: SceneBuilder): void {
       } else {
         if (((s as any).university ?? 0)?.['exam_week'] === 2) {
           if (((s as any).week ?? 0) === 2) {
-            // TODO-QSP: dynamic text: 'Your Teaching Methods 102 exam will start at ' + $func('time', 'get_time_string...
-            scene.text('Your Teaching Methods 102 exam will start at 9:00. You can go to it now or do other things first, but you need to be at the university plaza before it starts if you want to attend it.');
+            scene.text('\'Your Teaching Methods 102 exam will start at 9:00. You can go to it now or do other things first, but you need to be at the university plaza before it starts if you want to attend it.\'');
             scene.actions([
               { label: 'Go to your Teaching Methods exam 102', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + (Math.max(0, (9 - ((st as any).hour ?? 0))*60 - ((st as any).minut ?? 0)));
@@ -2144,8 +2097,7 @@ function enterSetExamActTeaching(s: GameState, scene: SceneBuilder): void {
             ]);
           } else {
             if (((s as any).week ?? 0) === 4) {
-              // TODO-QSP: dynamic text: 'Your Psychology of a Student 101 exam will start at ' + $func('time', 'get_time...
-              scene.text('Your Psychology of a Student 101 exam will start at 9:00. You can go to it now or do other things first, but you need to be at the university plaza before it starts if you want to attend it.');
+              scene.text('\'Your Psychology of a Student 101 exam will start at 9:00. You can go to it now or do other things first, but you need to be at the university plaza before it starts if you want to attend it.\'');
               scene.actions([
                 { label: 'Go to your Psychology of a Student 101 exam', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + (Math.max(0, (9 - ((st as any).hour ?? 0))*60 - ((st as any).minut ?? 0)));
@@ -2161,8 +2113,7 @@ function enterSetExamActTeaching(s: GameState, scene: SceneBuilder): void {
       if (((s as any).university ?? 0)?.['enrolled_in_semester'] === 3) {
         if (((s as any).university ?? 0)?.['exam_week'] === 1) {
           if (((s as any).week ?? 0) === 4) {
-            // TODO-QSP: dynamic text: 'Your General Education 102 exam will start at ' + $func('time', 'get_time_strin...
-            scene.text('Your General Education 102 exam will start at 9:00 today. You can go to it now or do other things first, but you need to be at the university plaza before it starts if you want to attend it.');
+            scene.text('\'Your General Education 102 exam will start at 9:00 today. You can go to it now or do other things first, but you need to be at the university plaza before it starts if you want to attend it.\'');
             scene.actions([
               { label: 'Go to your General Education 102 exam', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + (Math.max(0, (9 - ((st as any).hour ?? 0))*60 - ((st as any).minut ?? 0)));
@@ -2174,8 +2125,7 @@ function enterSetExamActTeaching(s: GameState, scene: SceneBuilder): void {
         } else {
           if (((s as any).university ?? 0)?.['exam_week'] === 2) {
             if (((s as any).week ?? 0) === 2) {
-              // TODO-QSP: dynamic text: 'Your Assessment 201 exam will start at ' + $func('time', 'get_time_string', 9, ...
-              scene.text('Your Assessment 201 exam will start at 9:00. You can go to it now or do other things first, but you need to be at the university plaza before it starts if you want to attend it.');
+              scene.text('\'Your Assessment 201 exam will start at 9:00. You can go to it now or do other things first, but you need to be at the university plaza before it starts if you want to attend it.\'');
               scene.actions([
                 { label: 'Go to your Assessment 201 exam', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + (Math.max(0, (9 - ((st as any).hour ?? 0))*60 - ((st as any).minut ?? 0)));
@@ -2185,8 +2135,7 @@ function enterSetExamActTeaching(s: GameState, scene: SceneBuilder): void {
               ]);
             } else {
               if (((s as any).week ?? 0) === 4) {
-                // TODO-QSP: dynamic text: 'Your Learning Theories 201 exam will start at ' + $func('time', 'get_time_strin...
-                scene.text('Your Learning Theories 201 exam will start at 9:00. You can go to it now or do other things first, but you need to be at the university plaza before it starts if you want to attend it.');
+                scene.text('\'Your Learning Theories 201 exam will start at 9:00. You can go to it now or do other things first, but you need to be at the university plaza before it starts if you want to attend it.\'');
                 scene.actions([
                   { label: 'Go to your Learning Theories 201 exam', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + (Math.max(0, (9 - ((st as any).hour ?? 0))*60 - ((st as any).minut ?? 0)));
@@ -2202,8 +2151,7 @@ function enterSetExamActTeaching(s: GameState, scene: SceneBuilder): void {
         if (((s as any).university ?? 0)?.['enrolled_in_semester'] === 4) {
           if (((s as any).university ?? 0)?.['exam_week'] === 1) {
             if (((s as any).week ?? 0) === 4) {
-              // TODO-QSP: dynamic text: 'Your General Education 202 exam will start at ' + $func('time', 'get_time_strin...
-              scene.text('Your General Education 202 exam will start at 9:00 today. You can go to it now or do other things first, but you need to be at the university plaza before it starts if you want to attend it.');
+              scene.text('\'Your General Education 202 exam will start at 9:00 today. You can go to it now or do other things first, but you need to be at the university plaza before it starts if you want to attend it.\'');
               scene.actions([
                 { label: 'Go to your General Education 202 exam', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + (Math.max(0, (9 - ((st as any).hour ?? 0))*60 - ((st as any).minut ?? 0)));
@@ -2215,8 +2163,7 @@ function enterSetExamActTeaching(s: GameState, scene: SceneBuilder): void {
           } else {
             if (((s as any).university ?? 0)?.['exam_week'] === 2) {
               if (((s as any).week ?? 0) === 2) {
-                // TODO-QSP: dynamic text: 'Your Learning Theories 202 exam will start at ' + $func('time', 'get_time_strin...
-                scene.text('Your Learning Theories 202 exam will start at 9:00. You can go to it now or do other things first, but you need to be at the university plaza before it starts if you want to attend it.');
+                scene.text('\'Your Learning Theories 202 exam will start at 9:00. You can go to it now or do other things first, but you need to be at the university plaza before it starts if you want to attend it.\'');
                 scene.actions([
                   { label: 'Go to your Learning Theories 202 exam', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + (Math.max(0, (9 - ((st as any).hour ?? 0))*60 - ((st as any).minut ?? 0)));
@@ -2226,8 +2173,7 @@ function enterSetExamActTeaching(s: GameState, scene: SceneBuilder): void {
                 ]);
               } else {
                 if (((s as any).week ?? 0) === 4) {
-                  // TODO-QSP: dynamic text: 'Your Psychology of a Student 201 exam will start at ' + $func('time', 'get_time...
-                  scene.text('Your Psychology of a Student 201 exam will start at 9:00. You can go to it now or do other things first, but you need to be at the university plaza before it starts if you want to attend it.');
+                  scene.text('\'Your Psychology of a Student 201 exam will start at 9:00. You can go to it now or do other things first, but you need to be at the university plaza before it starts if you want to attend it.\'');
                   scene.actions([
                     { label: 'Go to your Psychology of a Student 201 exam', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + (Math.max(0, (9 - ((st as any).hour ?? 0))*60 - ((st as any).minut ?? 0)));
@@ -2244,7 +2190,6 @@ function enterSetExamActTeaching(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -2254,7 +2199,6 @@ function enterUniPeriodFirst(s: GameState, scene: SceneBuilder): void {
   } else {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetFirstPeriodAct(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -2264,7 +2208,6 @@ function enterUniPeriodSecond(s: GameState, scene: SceneBuilder): void {
   } else {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetSecondPeriodAct(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -2274,7 +2217,6 @@ function enterUniPeriodThird(s: GameState, scene: SceneBuilder): void {
   } else {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetThirdPeriodAct(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -2288,7 +2230,6 @@ function enterExam(s: GameState, scene: SceneBuilder): void {
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetExamAct(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 

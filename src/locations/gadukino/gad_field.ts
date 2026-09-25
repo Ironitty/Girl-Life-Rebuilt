@@ -23,7 +23,7 @@ function enterField(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).hour ?? 0) >= 9  &&  ((s as any).hour ?? 0) <= 17  &&  ((s as any).npc_qw ?? 0)?.['A221'] === 0) {
       qspCall(s, 'grigory', 'meet');
-      // TODO-QSP: exit
+      return;
     }
   } else {
     if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) < 18) {
@@ -43,7 +43,6 @@ function enterField(s: GameState, scene: SceneBuilder): void {
     qspGoto(s, 'grigory', 'flower8');
   }
   qspCall(s, 'gp_zlatek', 'check_for_chores', 'field');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Head back to the road (0:10)', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 10;
@@ -60,7 +59,6 @@ function enterHorse(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/gadukino/village/horse.jpg');
   scene.text('Your grandfather\'s horse, Desperado.');
   qspCall(s, 'gp_zlatek', 'check_for_chores', 'field_horse');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go back to the field', goto: ['gad_field', 'field'] },
   ]);
@@ -76,7 +74,7 @@ function enterCow(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/gadukino/village/cow.jpg');
   scene.text('The cattle herd is standing in the middle of the field. Some cows are munching on grass, and others just stare idly around.');
   if (((s as any).locat ?? 0)?.['A60_loc'] === 'gad_field') {
-    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027miroslava/u0027, /u0027start/u0027); return false;">Mira</a> is standing next to you.');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027miroslava\u0027, \u0027start\u0027); return false;">Mira</a> is standing next to you.');
   }
   if (((s as any).grandpaQW ?? 0)?.['chore_herd_cattle'] === 0) {
     if (((s as any).hour ?? 0) === 19) {
@@ -140,7 +138,6 @@ function enterCow(s: GameState, scene: SceneBuilder): void {
     ((st as any).grandmaQW = (st as any).grandmaQW ?? {})['help_amount'] = ((st as any).grandmaQW['help_amount'] ?? 0) + ((Math.floor(Math.random() * 2) + 0));
     qspCall(st, 'exp_gain', 'hndiwrk', (Math.floor(Math.random() * 4) + 0));
     qspCall(st, 'stat', '');
-    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/village/graze_cow'+ra...
     scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/gadukino/village/graze_cow` + (Math.floor(Math.random() * 4) + 1) + '.jpg"></center>');
     scene.text('You spend an hour herding the cows, watching for stragglers and driving them back to the herd. Then, instead of letting your grandfather do all the work, you roll up your sleeves and try to do most of the work yourself.');
     scene.actions([
@@ -173,7 +170,6 @@ function enterCow(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -187,10 +183,9 @@ function enterCow2(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/gadukino/village/cow_river.jpg');
   scene.text('The cattle herd is near the river. Some cows are munching on grass, some drink from the river, and some just stand or lie around.');
   if (((s as any).locat ?? 0)?.['A60_loc'] === 'gad_field') {
-    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027miroslava/u0027, /u0027start/u0027); return false;">Mira</a> is sitting next to you.');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027miroslava\u0027, \u0027start\u0027); return false;">Mira</a> is sitting next to you.');
   }
   if (((s as any).temper ?? 0) >= 15  &&  ((s as any).sunWeather ?? 0) === 1) {
-    // TODO-QSP: dynamic text: "You can go for a swim if you want, <<$pcs_nickname>>. I''ll keep an eye on the ...
     scene.text(`"You can go for a swim if you want, ${((s as any).pcs_nickname ?? '')}. I'll keep an eye on the herd," says your grandfather.`);
   }
   if (((s as any).grandpaQW ?? 0)?.['chore_herd_cattle'] === 1) {
@@ -212,7 +207,6 @@ function enterCow2(s: GameState, scene: SceneBuilder): void {
     ((st as any).grandmaQW = (st as any).grandmaQW ?? {})['help_amount'] = ((st as any).grandmaQW['help_amount'] ?? 0) + ((Math.floor(Math.random() * 2) + 0));
     qspCall(st, 'exp_gain', 'hndiwrk', (Math.floor(Math.random() * 4) + 0));
     qspCall(st, 'stat', '');
-    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/village/graze_cow'+ra...
     scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/gadukino/village/graze_cow` + (Math.floor(Math.random() * 4) + 1) + '.jpg"></center>');
     scene.text('You spend an hour herding the cows, watching for stragglers and driving them back to the herd. Then, instead of letting your grandfather do all the work, you roll up your sleeves and try to do most of the work yourself.');
     scene.actions([
@@ -244,7 +238,6 @@ function enterCow2(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -258,7 +251,7 @@ function enterCow3(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/gadukino/village/cow_forest.jpg');
   scene.text('The cattle herd is grazing in a field near the forest.');
   if (((s as any).locat ?? 0)?.['A60_loc'] === 'gad_field') {
-    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027miroslava/u0027, /u0027start/u0027); return false;">Mira</a> is sitting next to you.');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027miroslava\u0027, \u0027start\u0027); return false;">Mira</a> is sitting next to you.');
   }
   if (((s as any).grandpaQW ?? 0)?.['chore_herd_cattle'] === 1) {
     if (((s as any).hour ?? 0) < 19) {
@@ -279,7 +272,6 @@ function enterCow3(s: GameState, scene: SceneBuilder): void {
     ((st as any).grandmaQW = (st as any).grandmaQW ?? {})['help_amount'] = ((st as any).grandmaQW['help_amount'] ?? 0) + ((Math.floor(Math.random() * 2) + 0));
     qspCall(st, 'exp_gain', 'hndiwrk', (Math.floor(Math.random() * 4) + 0));
     qspCall(st, 'stat', '');
-    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/village/graze_cow'+ra...
     scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/gadukino/village/graze_cow` + (Math.floor(Math.random() * 4) + 1) + '.jpg"></center>');
     scene.text('You spend an hour herding the cows, watching for stragglers and driving them back to the herd. Then, instead of letting your grandfather do all the work, you roll up your sleeves and try to do most of the work yourself.');
     scene.actions([
@@ -311,11 +303,9 @@ function enterCow3(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
-  // TODO-QSP: end
   if (((s as any).grandpaQW ?? 0)?.['chore_herd_cattle'] === 1  &&  ((s as any).locat ?? 0)?.['A60_loc'] === 'gad_field'  &&  ((s as any).locat ?? 0)?.['A60_loc_prev'] !== 'gad_field') {
     scene.img('images/characters/gadukino/mira/mira2.jpg');
     scene.text('While keeping an eye on the cow herd, you see Mira in the distance, approaching. You happily wave to her.');
-    // TODO-QSP: dynamic text: "Hi, <<$pcs_nickname>>. I wanted to visit you, and I''ve brought some water with...
     scene.text(`"Hi, ${((s as any).pcs_nickname ?? '')}. I wanted to visit you, and I've brought some water with me," she says, nearing you. "Have you missed me?"`);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'npc_relationship', 'modify', 'A60', 1);
@@ -450,7 +440,6 @@ function enterSetNomiraActs(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'Read a book (1:00)', handler: (st: GameState) => {
     qspCall(st, 'library_functions', 'read_book');
-    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/village/graze_cow_boo...
     scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/gadukino/village/graze_cow_book` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
     if (((st as any).temper ?? 0) >= 25) {
       (st as any).pcs_hydra = ((st as any).pcs_hydra ?? 0) - (12);
@@ -477,7 +466,6 @@ function enterSetNomiraActs(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 

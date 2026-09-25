@@ -1,4 +1,4 @@
-import { qspCall, qspGoto } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -14,11 +14,9 @@ function enterBreakFun_1(s: GameState, scene: SceneBuilder): void {
   scene.text('You look around for Albina, but she\'s nowhere to be seen. Just then, you get an alert on your phone and open it to find a message from her.');
   scene.text('"Come to the girls restroom now. No questions."');
   scene.text('You decide not to keep her waiting and make your way to the restroom.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the restroom', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/albina/sex/school/bathroom/bathroom1.jpg');
-    // TODO-QSP: dynamic text: You enter the girls restroom to find that nobody is inside. As you walk further ...
     scene.text(`You enter the girls restroom to find that nobody is inside. As you walk further in, you hear Albina. "In here, ${((st as any).pcs_nickname ?? '')}."`);
     scene.text('You walk over to the furthest stall and find Albina inside sitting on the toilet, her legs spread wide. She has a mischievous grin on her face and you know exactly what kind of mood she\'s in.');
     scene.text('"Don\'t worry, nobody will disturb us. I made sure of it," she says with a smile and motions for you to come closer.');
@@ -26,7 +24,6 @@ function enterBreakFun_1(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/albina/sex/school/bathroom/bathroom2.jpg');
     scene.text('You\'re pretty certain you already know <i>exactly</i> she wants to do, but decide to ask anyway. "What are you doing in here?"');
-    // TODO-QSP: dynamic text: She justs laughs at your question as she stands and walks up to you. "Come on <<...
     scene.text(`She justs laughs at your question as she stands and walks up to you. "Come on ${((st as any).pcs_nickname ?? '')}, you're not that stupid. I was thinking about the times we've had some fun and how good your tongue felt on my pussy."`);
     scene.text('She pulls up her skirt and invintingly wiggles her ass at you. "Now I\'m wet and want you to eat me out."');
     qspCall(st, 'willpower', 'sex', 'resist', 'medium');
@@ -89,7 +86,6 @@ function enterBreakFun_2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcStat', 'A23');
   if ((!(Math.floor(Math.random() * 2) + 0))) {
     scene.img('images/locations/pavlovsk/school/bathroom/maekup.jpg');
-    // TODO-QSP: dynamic text: Satisfied, she climbs off of you and helps you to your feet. "That was amazing, ...
     scene.text(`Satisfied, she climbs off of you and helps you to your feet. "That was amazing, ${((s as any).pcs_nickname ?? '')}! I really needed that," she says before pulling her thong back on and fixing her skirt.`);
     scene.text('She then walks over to the mirror to touch up her makeup when her phone pings with a text message and she suddenly takes off. "I\'d love to return the favor, but I promised Vicky I\'d do something with her before our next class. I need to go, but I owe you one!" she says and winks at you before walking out the door with some sway in her hips.');
     scene.text('You clean up at the sink and prepare to leave yourself, feeling very horny and a little disappointed that you won\'t get a release.');
@@ -101,11 +97,9 @@ function enterBreakFun_2(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.img('images/characters/pavlovsk/school/girl/albina/sex/school/bathroom/bathroom5.jpg');
-    // TODO-QSP: dynamic text: Satisfied, she climbs off of you and helps you to your feet. "That was amazing, ...
     scene.text(`Satisfied, she climbs off of you and helps you to your feet. "That was amazing, ${((s as any).pcs_nickname ?? '')}! I really needed that," she says before pulling her thong back on and fixing her skirt.`);
     scene.text('A sly grin appears on her face as she pulls her phone out and looks at it. "We\'ve got just enough time for me to return the favor..." she says before pushing you down onto the toilet and kneeling in front of you.');
     if (((s as any).pantyworntype ?? 0) === 'none') {
-      // TODO-QSP: dynamic text: She pushes your skirt up and is surprised at what she sees. "No panties, <<$pcs_...
       scene.text(`She pushes your skirt up and is surprised at what she sees. "No panties, ${((s as any).pcs_nickname ?? '')}? You are a naughty girl!" she says with a laugh before spreading your legs and burying her face in your crotch.`);
     } else {
       scene.text('She pushes your skirt up before pulling your panties off and spreading your legs wide. She then smiles up at you before burying her face in your crotch.');
@@ -133,14 +127,12 @@ function enterBreakFun_2(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterLunchFun_1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/shared/headshots_main/big23.jpg');
-  // TODO-QSP: dynamic text: As you approach Albina, she gives you a sly grin. "Hey <<$pcs_nickname>>. I''m f...
   scene.text(`As you approach Albina, she gives you a sly grin. "Hey ${((s as any).pcs_nickname ?? '')}. I'm feeling a little bored, so why don't we go and have a little <i>fun</i>?" she softly whispers in your ear.`);
   scene.text('You know exactly what she means by this.');
   qspCall(s, 'willpower', 'sex', 'resist', 'medium');
@@ -166,7 +158,6 @@ function enterLunchFun_1(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Accept', handler: (st: GameState) => {
     scene.img('images/characters/shared/headshots_main/big23.jpg');
@@ -194,13 +185,10 @@ function enterLunchFun_1_2(s: GameState, scene: SceneBuilder): void {
   scene.text('You both walk over to the desk where Julia is sitting, which is cluttered with studying materials. Albina leans on the desk as you stand behind Julia and take a peek at what she\'s doing.');
   scene.text('"Why are you all alone in here? Shouldn\'t you be with the other geeks?" Albina asks teasingly as Julia squirms in her chair.');
   scene.text('"Uh... We... Uhh, have a test coming up. I, uh, just needed a quiet place... T-To study.... Away from... The others. Wha... What are you doing here?" she stutters, clearly frightened of what Albina\'s intentions are.');
-  // TODO-QSP: dynamic text: Albina leans over into Julia''s face. "<<$pcs_nickname>> and I were just going t...
   scene.text(`Albina leans over into Julia's face. "${((s as any).pcs_nickname ?? '')} and I were just going to have a little fun is all. I know you would <i>love</i> to watch that..."`);
   scene.text('Julia blushes and looks around for a way out as Albina smiles. "Don\'t be shy, Julia. I know you love staring at my ass, and who can blame you? It\'s so <i>big</i> and <i>firm</i> and you\'d just love to feel it in your hands and give it a good squeeze, wouldn\'t you?"');
   scene.text('Julia blushes and squirms even more as she looks at the floor. "I, I... What are you... Talking about?"');
-  // TODO-QSP: dynamic text: '"Don''t be like that, Julia! I''d like it, no <i>love</i> it, if you played wit...
-  scene.text('"Don\'t be like that, Julia! I\'d like it, no <i>love</i> it, if you played with my ass right here, right now. \'+iif(func(\'pcs_has_attr\', \'OR\', \'body_ass_big\', \'body_ass_heart\', \'body_ass_bubble\'),\'I bet you\'d love to have a feel of ' + ((s as any).pcs_nickname ?? '') + '\'s ass as well, wouldn\'t you?\',\')+\'"');
-  // TODO-QSP: end
+  scene.text('"Don\'t be like that, Julia! I\'d like it, no <i>love</i> it, if you played with my ass right here, right now. ' + ((qspFunc(s, 'pcs_has_attr', ' || ', 'body_ass_big', 'body_ass_heart', 'body_ass_bubble')) ? ('I bet you\'d love to have a feel of ' + ((s as any).pcs_nickname ?? '') + '\'s ass as well, wouldn\'t you?') : ('')) + '"');
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/albina/sex/school/classroom/threesome2.jpg');
@@ -236,7 +224,6 @@ function enterLunchFun_1_2(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'cuni', (-15), 'lesbian');
     qspCall(st, 'stat', '');
     scene.text('Julia soon brings Albina over the edge and her muffled moans feel amazing against your sensitive clit before you climb off her and she flops back on the desk in ecstasy.');
-    // TODO-QSP: dynamic text: "Fuck Julia, you''re an absolute pro! Only <<$pcs_nickname>> has come close to e...
     scene.text(`"Fuck Julia, you're an absolute pro! Only ${((st as any).pcs_nickname ?? '')} has come close to eating my pussy as good as you did!" She then sits up and looks down at the meek looking nerd, who's clearly aroused and in need of a release. "Get up here. It's your turn."`);
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
@@ -285,11 +272,9 @@ function enterLunchFun_2(s: GameState, scene: SceneBuilder): void {
   scene.text('After a few more seconds where she moans even louder and grinds even faster, she suddenly pulls herself off of you, her breath heavy.');
   (s as any).orgasm_or = 'no';
   qspCall(s, 'arousal', 'cuni_give', 2);
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/albina/sex/school/classroom/class2.jpg');
-    // TODO-QSP: dynamic text: She pulls you up to your feet and you practically rip each other''s clothes off ...
     scene.text(`She pulls you up to your feet and you practically rip each other's clothes off and make out before she lies back on a desk and spreads her legs. "Get that magic tongue of yours over here and make me cum, ${((st as any).pcs_nickname ?? '')}!"`);
     scene.text('You smile at her as you climb onto the desk and crawl over to her, teasing her a little by sucking on her nipple before moving down to her now dripping wet pussy.');
     scene.text('She tightly wraps her legs around your head, pressing your face against her crotch as you lick and suck on her engorged clit.');
@@ -302,7 +287,6 @@ function enterLunchFun_2(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/girl/albina/sex/school/classroom/class3.jpg');
     scene.text('"Oh... Oh wow. That was... I really needed that..." she pants as she rides out her orgasm. "I should return the favor..."');
     scene.text('She then climbs off the desk and pulls you over to the edge as you lie back, licking her lips before she buries her head in your crotch, causing you to moan loudly as she eats you out. She knows exactly what she\'s doing and has you approaching orgasm within minutes.');
-    // TODO-QSP: dynamic text: Seeing this, she stops licking your pussy and stands up; you barely have time to...
     scene.text(`Seeing this, she stops licking your pussy and stands up; you barely have time to ask what's happening before she jams her fingers deep inside you and starts fingerbanging you. "Cum for me, ${((st as any).pcs_nickname ?? '')}..." she whispers in your ear before making out with you.`);
     scene.text('You moan loudly into her mouth as she brings you to a powerful orgasm, leaving you panting on the desk as she pulls her fingers out and sucks on them. "You taste really fucking good, you know that?" she says teasingly with a wink.');
     qspCall(st, 'arousal', 'cuni', 5, 'lesbian');
@@ -320,7 +304,6 @@ function enterLunchFun_2(s: GameState, scene: SceneBuilder): void {
       { label: 'Spank her', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/classroom/classafter.jpg');
     scene.text('Her ass is too inviting and she yelps in surprise when you smack it hard.');
-    // TODO-QSP: dynamic text: "<<$pcs_nickname>>!!!" she says while looking back and biting her lip. "You know...
     scene.text(`"${((st as any).pcs_nickname ?? '')}!!!" she says while looking back and biting her lip. "You know I'd love it if you continued, but we need to get dressed before someone finds us."`);
     scene.text('You nod and start getting dressed, Albina making a show of giving you what you can only describe as a reverse striptease. Once you\'re dressed, she gives you a final kiss and surprises you by spanking you back, making you jump a little as she smiles and walks out the door with some sway in her hips.');
     scene.text('You quickly hurry out behind her as the bell for your next class rings.');
@@ -334,7 +317,6 @@ function enterLunchFun_2(s: GameState, scene: SceneBuilder): void {
       { label: 'Finger her', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/classroom/classafter.jpg');
     scene.text('Her legs are slightly spread, so you move in behind her and slide your fingers inside her still wet hole.');
-    // TODO-QSP: dynamic text: "Ooohh <<$pcs_nickname>>..." she moans softly. "While I''d love a round two, we ...
     scene.text(`"Ooohh ${((st as any).pcs_nickname ?? '')}..." she moans softly. "While I'd love a round two, we should get dressed before someone finds us."`);
     scene.text('You nod and start getting dressed, Albina making a show of giving you what you can only describe as a reverse striptease. Once you\'re dressed, she gives you a final kiss and gets her own back by pinching your nipple, making you squeal a little as she smiles and walks out the door with some sway in her hips.');
     scene.text('You quickly hurry out behind her as the bell for your next class rings.');

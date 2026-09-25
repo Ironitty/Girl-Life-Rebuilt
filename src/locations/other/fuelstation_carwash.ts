@@ -22,7 +22,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   } else {
     qspGoto(s, 'fuelstation_carwash', 'wash');
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -40,7 +39,6 @@ function enterWash(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'mood', 'lower', 'tiny');
     qspCall(s, 'sweat', 'add', 2);
     if (((s as any).pcs_apprnc ?? 0) >= 60) {
-      // TODO-QSP: dynamic text: You wash the windows of several cars and earn <<$func(''money'', ''string_profit...
       scene.text(`You wash the windows of several cars and earn ${qspFunc(s, 'money', 'string_profit', 100)}.`);
       qspCall(s, 'money', 'earn', 100);
       if ((Math.floor(Math.random() * 100) + 1) <= Math.min(Math.max(20, ((s as any).slut_compare ?? 0)), 80)) {
@@ -67,7 +65,6 @@ function enterWash(s: GameState, scene: SceneBuilder): void {
         { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterFlashPassing(s, scene); (s as any).locArgs = __savedLocArgs; }
       }
     } else {
-      // TODO-QSP: dynamic text: You wash the windows of several cars and earn <<$func(''money'', ''string_profit...
       scene.text(`You wash the windows of several cars and earn ${qspFunc(s, 'money', 'string_profit', 80)}.`);
       qspCall(s, 'money', 'earn', 80);
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterFlashPassing(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -78,11 +75,9 @@ function enterWash(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'sweat', 'add', 2);
     qspCall(s, 'money', 'earn', 60);
     scene.img(`images/locations/shared/carwash/regular${(Math.floor(Math.random() * 4) + 1)}.jpg`);
-    // TODO-QSP: dynamic text: You wash the windows of several cars and earn <<$func(''money'', ''string_profit...
     scene.text(`You wash the windows of several cars and earn ${qspFunc(s, 'money', 'string_profit', 60)}.`);
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterFlashPassing(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -104,7 +99,6 @@ function enterFlashPassing(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['fuelstation', 'start'] },
   ]);
@@ -113,14 +107,12 @@ function enterFlashPassing(s: GameState, scene: SceneBuilder): void {
 
 function enterTitsQ(s: GameState, scene: SceneBuilder): void {
   scene.img(`images/locations/shared/carwash/bimboclean${(Math.floor(Math.random() * 4) + 1)}.jpg`);
-  // TODO-QSP: dynamic text: "Want to earn some more cash, girl? Show me your tits and I''ll give you <<$func...
   scene.text(`"Want to earn some more cash, girl? Show me your tits and I'll give you ${qspFunc(s, 'money', 'string_profit', 50)}. It's easy money."`);
   if (((s as any).trait_vars ?? 0)?.['exhibitionist'] > 0  ||  ((s as any).pcs_inhib ?? 0) >= 35  ||  ((s as any).pcs_horny ?? 0) >= 40) {
     scene.actions([
       { label: 'Agree', goto: ['fuelstation_carwash', 'titsFlash', 'Paid', 'Question'] },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Refuse', goto: ['fuelstation_carwash', 'refuse'] },
   ]);
@@ -129,14 +121,12 @@ function enterTitsQ(s: GameState, scene: SceneBuilder): void {
 
 function enterAssQ(s: GameState, scene: SceneBuilder): void {
   scene.img(`images/locations/shared/carwash/bimboclean${(Math.floor(Math.random() * 4) + 1)}.jpg`);
-  // TODO-QSP: dynamic text: "What a nice ass you have there. Will <<$func(''money'', ''string_profit'', 50)>...
   scene.text(`"What a nice ass you have there. Will ${qspFunc(s, 'money', 'string_profit', 50)} convince you to show it to me?"`);
   if (((s as any).trait_vars ?? 0)?.['exhibitionist'] > 0  ||  ((s as any).pcs_horny ?? 0) >= 60) {
     scene.actions([
       { label: 'Agree', goto: ['fuelstation_carwash', 'assFlash', 'Paid', 'Question'] },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Refuse', goto: ['fuelstation_carwash', 'refuse'] },
   ]);
@@ -145,14 +135,12 @@ function enterAssQ(s: GameState, scene: SceneBuilder): void {
 
 function enterPussyQ(s: GameState, scene: SceneBuilder): void {
   scene.img(`images/locations/shared/carwash/bimboclean${(Math.floor(Math.random() * 4) + 1)}.jpg`);
-  // TODO-QSP: dynamic text: "You look like a cool girl. Let me see your pussy and I''ll give you <<$func(''m...
   scene.text(`"You look like a cool girl. Let me see your pussy and I'll give you ${qspFunc(s, 'money', 'string_profit', 50)}."`);
   if (((s as any).trait_vars ?? 0)?.['exhibitionist'] > 1  ||  ((s as any).pcs_horny ?? 0) >= 80) {
     scene.actions([
       { label: 'Agree', goto: ['fuelstation_carwash', 'pussyFlash', 'Paid', 'Question'] },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Refuse', goto: ['fuelstation_carwash', 'refuse'] },
   ]);
@@ -161,14 +149,12 @@ function enterPussyQ(s: GameState, scene: SceneBuilder): void {
 
 function enterHandQ(s: GameState, scene: SceneBuilder): void {
   scene.img(`images/locations/shared/carwash/bimboclean${(Math.floor(Math.random() * 4) + 1)}.jpg`);
-  // TODO-QSP: dynamic text: "Could you help me out, girl? It''s getting tight down here in my pants just loo...
   scene.text(`"Could you help me out, girl? It's getting tight down here in my pants just looking at you. How about you… help me out? I'll pay you ${qspFunc(s, 'money', 'string_profit', 200)}."`);
   if (((s as any).slut_compare ?? 0) >= 25  ||  ((s as any).pcs_horny ?? 0) >= 25) {
     scene.actions([
       { label: 'Give him a handjob', goto: ['fuelstation_carwash', 'handjob', 'Paid'] },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Refuse', goto: ['fuelstation_carwash', 'refuse'] },
   ]);
@@ -177,14 +163,12 @@ function enterHandQ(s: GameState, scene: SceneBuilder): void {
 
 function enterBlowQ(s: GameState, scene: SceneBuilder): void {
   scene.img(`images/locations/shared/carwash/bimboclean${(Math.floor(Math.random() * 4) + 1)}.jpg`);
-  // TODO-QSP: dynamic text: "Looking hot today, girl! How about you put your mouth to good use? I''ll pay yo...
   scene.text(`"Looking hot today, girl! How about you put your mouth to good use? I'll pay you ${qspFunc(s, 'money', 'string_profit', 200)}."`);
   if (((s as any).slut_compare ?? 0) >= 30  ||  ((s as any).pcs_horny ?? 0) >= 30) {
     scene.actions([
       { label: 'Give him a blowjob', goto: ['fuelstation_carwash', 'blowjob', 'Paid', 'Question'] },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Refuse', goto: ['fuelstation_carwash', 'refuse'] },
   ]);
@@ -199,7 +183,6 @@ function enterRefuse(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/pc/reactions/no.mp4');
   scene.text('You consider his offer, but decide to turn him down and walk away.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go back to washing cars', goto: ['fuelstation', 'start'] },
   ]);
@@ -224,17 +207,17 @@ function enterTitsFlash(s: GameState, scene: SceneBuilder): void {
   }
   if (String((s as any).locArgs?.[1] ?? '') === 'Paid') {
     (s as any).temp_loc_type = 'secluded';
-    // TODO-QSP: $flash_text[0] = 'You ' + iif(PCloSkirt > 0, 'pull down', 'lift up') + ' your top and show him your ...
-    // TODO-QSP: $flash_text[1] = 'You quickly cover up and take your money.'
+    ((s as any).flash_text = (s as any).flash_text ?? {})[0] = 'You ' + ((((s as any).PCloSkirt ?? 0) > 0) ? ('pull down') : ('lift up')) + ' your top and show him your breasts for a few seconds.';
+    ((s as any).flash_text = (s as any).flash_text ?? {})[1] = 'You quickly cover up and take your money.';
   } else {
     if (String((s as any).locArgs?.[2] ?? '') === 'Question') {
       (s as any).temp_loc_type = 'secluded';
-      // TODO-QSP: $flash_text[0] = 'You ' + iif(PCloSkirt > 0, 'pull down', 'lift up') + ' your top and show him your ...
-      // TODO-QSP: $flash_text[1] = 'You ' + iif(PCloSkirt > 0, 'lift up', 'pull down') + ' your top and cover up.'
+      ((s as any).flash_text = (s as any).flash_text ?? {})[0] = 'You ' + ((((s as any).PCloSkirt ?? 0) > 0) ? ('pull down') : ('lift up')) + ' your top and show him your breasts for a few seconds. You give your breasts a little shake for him.';
+      ((s as any).flash_text = (s as any).flash_text ?? {})[1] = 'You ' + ((((s as any).PCloSkirt ?? 0) > 0) ? ('lift up') : ('pull down')) + ' your top and cover up.';
     } else {
       (s as any).temp_loc_type = 'outdoors';
-      // TODO-QSP: $flash_text[0] = 'You ' + iif(PCloSkirt > 0, 'pull down', 'lift up') + ' your top and expose your br...
-      // TODO-QSP: $flash_text[1] = 'You ' + iif(PCloSkirt > 0, 'lift up', 'pull down') + ' your top and cover up.'
+      ((s as any).flash_text = (s as any).flash_text ?? {})[0] = 'You ' + ((((s as any).PCloSkirt ?? 0) > 0) ? ('pull down') : ('lift up')) + ' your top and expose your breasts to the road for a few seconds. A few cars pass by and honk in appreciation as you give your breasts a little shake.';
+      ((s as any).flash_text = (s as any).flash_text ?? {})[1] = 'You ' + ((((s as any).PCloSkirt ?? 0) > 0) ? ('lift up') : ('pull down')) + ' your top and cover up.';
     }
   }
   qspCall(s, 'flash', 'tits', ((s as any).temp_loc_type ?? 0), 1, 2);
@@ -286,7 +269,6 @@ function enterTitsFlash(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -309,17 +291,17 @@ function enterAssFlash(s: GameState, scene: SceneBuilder): void {
   }
   if (String((s as any).locArgs?.[1] ?? '') === 'Paid') {
     (s as any).temp_loc_type = 'secluded';
-    // TODO-QSP: $flash_text[0] = 'You ' + iif(PCloSkirt > 0, 'lift your ' + iif(PCloDress = 1, 'dress', 'skirt') + '...
-    // TODO-QSP: $flash_text[1] = 'You quickly cover up and take your money.'
+    ((s as any).flash_text = (s as any).flash_text ?? {})[0] = 'You ' + ((((s as any).PCloSkirt ?? 0) > 0) ? ('lift your ' + ((((s as any).PCloDress ?? 0) === 1) ? ('dress') : ('skirt')) + ' up') : ('pull your pants down')) + ' and show him your ass for a few seconds.';
+    ((s as any).flash_text = (s as any).flash_text ?? {})[1] = 'You quickly cover up and take your money.';
   } else {
     if (String((s as any).locArgs?.[2] ?? '') === 'Question') {
       (s as any).temp_loc_type = 'secluded';
-      // TODO-QSP: $flash_text[0] = 'You ' + iif(PCloSkirt > 0, 'lift your ' + iif(PCloDress = 1, 'dress', 'skirt') + '...
-      // TODO-QSP: $flash_text[1] = 'You ' + iif(PCloSkirt > 0, 'pull your ' + iif(PCloDress = 1, 'dress', 'skirt') + '...
+      ((s as any).flash_text = (s as any).flash_text ?? {})[0] = 'You ' + ((((s as any).PCloSkirt ?? 0) > 0) ? ('lift your ' + ((((s as any).PCloDress ?? 0) === 1) ? ('dress') : ('skirt')) + ' up') : ('pull your pants down')) + ' and show him your ass for a few seconds. You give your ass a little shake for him before covering up.';
+      ((s as any).flash_text = (s as any).flash_text ?? {})[1] = 'You ' + ((((s as any).PCloSkirt ?? 0) > 0) ? ('pull your ' + ((((s as any).PCloDress ?? 0) === 1) ? ('dress') : ('skirt')) + ' down') : ('pull your pants up')) + ' and cover up.';
     } else {
       (s as any).temp_loc_type = 'outdoors';
-      // TODO-QSP: $flash_text[0] = 'You ' + iif(PCloSkirt > 0, 'lift your ' + iif(PCloDress = 1, 'dress', 'skirt') + '...
-      // TODO-QSP: $flash_text[1] = 'You ' + iif(PCloSkirt > 0, 'pull your ' + iif(PCloDress = 1, 'dress', 'skirt') + '...
+      ((s as any).flash_text = (s as any).flash_text ?? {})[0] = 'You ' + ((((s as any).PCloSkirt ?? 0) > 0) ? ('lift your ' + ((((s as any).PCloDress ?? 0) === 1) ? ('dress') : ('skirt')) + ' up') : ('pull your pants down')) + ' and expose your ass to the road for a few seconds. A few cars pass by and honk in appreciation as you give your ass a little shake.';
+      ((s as any).flash_text = (s as any).flash_text ?? {})[1] = 'You ' + ((((s as any).PCloSkirt ?? 0) > 0) ? ('pull your ' + ((((s as any).PCloDress ?? 0) === 1) ? ('dress') : ('skirt')) + ' down') : ('pull your pants up')) + ' and cover up.';
     }
   }
   qspCall(s, 'flash', 'butt', ((s as any).temp_loc_type ?? 0), 1, 2);
@@ -365,24 +347,23 @@ function enterAssFlash(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterPussyFlash(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === 'Paid') {
     (s as any).temp_loc_type = 'secluded';
-    // TODO-QSP: $flash_text[0] = 'You ' + iif(PCloSkirt > 0, 'lift your ' + iif(PCloDress = 1, 'dress', 'skirt') + '...
-    // TODO-QSP: $flash_text[1] = 'You quickly cover up and take your money.'
+    ((s as any).flash_text = (s as any).flash_text ?? {})[0] = 'You ' + ((((s as any).PCloSkirt ?? 0) > 0) ? ('lift your ' + ((((s as any).PCloDress ?? 0) === 1) ? ('dress') : ('skirt')) + ' up ') : ('pull your pants down')) + ' and show him your pussy for a few seconds.';
+    ((s as any).flash_text = (s as any).flash_text ?? {})[1] = 'You quickly cover up and take your money.';
   } else {
     if (String((s as any).locArgs?.[2] ?? '') === 'Question') {
       (s as any).temp_loc_type = 'secluded';
-      // TODO-QSP: $flash_text[0] = 'You ' + iif(PCloSkirt > 0, 'lift your ' + iif(PCloDress = 1, 'dress', 'skirt') + '...
-      // TODO-QSP: $flash_text[1] = 'You ' + iif(PCloSkirt > 0, 'pull your ' + iif(PCloDress = 1, 'dress', 'skirt') + '...
+      ((s as any).flash_text = (s as any).flash_text ?? {})[0] = 'You ' + ((((s as any).PCloSkirt ?? 0) > 0) ? ('lift your ' + ((((s as any).PCloDress ?? 0) === 1) ? ('dress') : ('skirt')) + ' up') : ('pull your pants down')) + ' and show him your pussy for a few seconds, rubbing your clit a little for him.';
+      ((s as any).flash_text = (s as any).flash_text ?? {})[1] = 'You ' + ((((s as any).PCloSkirt ?? 0) > 0) ? ('pull your ' + ((((s as any).PCloDress ?? 0) === 1) ? ('dress') : ('skirt')) + ' down') : ('pull your pants up')) + ' and cover up.';
     } else {
       (s as any).temp_loc_type = 'outdoors';
-      // TODO-QSP: $flash_text[0] = 'You ' + iif(PCloSkirt > 0, 'lift your ' + iif(PCloDress = 1, 'dress', 'skirt') + '...
-      // TODO-QSP: $flash_text[1] = 'You ' + iif(PCloSkirt > 0, 'pull your ' + iif(PCloDress = 1, 'dress', 'skirt') + '...
+      ((s as any).flash_text = (s as any).flash_text ?? {})[0] = 'You ' + ((((s as any).PCloSkirt ?? 0) > 0) ? ('lift your ' + ((((s as any).PCloDress ?? 0) === 1) ? ('dress') : ('skirt')) + ' up') : ('pull your pants down')) + ' and expose your pussy to the road for a few seconds. A few cars pass by and honk in appreciation as you rub your clit a little.';
+      ((s as any).flash_text = (s as any).flash_text ?? {})[1] = 'You ' + ((((s as any).PCloSkirt ?? 0) > 0) ? ('pull your ' + ((((s as any).PCloDress ?? 0) === 1) ? ('dress') : ('skirt')) + ' down') : ('pull your pants up')) + ' and cover up.';
     }
   }
   qspCall(s, 'flash', 'full', ((s as any).temp_loc_type ?? 0), 3, 2);
@@ -422,7 +403,6 @@ function enterPussyFlash(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -472,14 +452,12 @@ function enterHandjob(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'stat', '');
-  // TODO-QSP: dynamic text: After a while, the man starts pulling your head closer to him. "I''ll give you <...
   scene.text(`After a while, the man starts pulling your head closer to him. "I'll give you ${qspFunc(s, 'money', 'string_profit', 200)} if you open that mouth for me."`);
   if ((((s as any).arch_vars ?? 0)?.['main_active'] === 'bimbo'  &&  ((s as any).pcs_inhib ?? 0) >= 30)  ||  ((s as any).pcs_horny ?? 0) >= 30) {
     scene.actions([
       { label: 'Give him a blowjob', goto: ['fuelstation_carwash', 'blowjob', 'Paid', 'handjob'] },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Keep using your hand', goto: ['fuelstation_carwash', 'handjobEndQ'] },
   ]);
@@ -539,7 +517,6 @@ function enterBlowjob(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'stat', '');
-  // TODO-QSP: dynamic text: After a while, the man starts trying to remove your clothes. "I''ll give you <<$...
   scene.text(`After a while, the man starts trying to remove your clothes. "I'll give you ${qspFunc(s, 'money', 'string_profit', 400)} if you let me take your pussy."`);
   if ((((s as any).arch_vars ?? 0)?.['main_active'] === 'bimbo'  &&  ((s as any).pcs_inhib ?? 0) >= 40)  ||  ((s as any).pcs_horny ?? 0) >= 40) {
     if (((s as any).stat ?? 0)?.['think_virgin'] === 1) {
@@ -553,7 +530,6 @@ function enterBlowjob(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Suck harder to make him cum', goto: ['fuelstation_carwash', 'blowjobEndQ'] },
   ]);
@@ -595,7 +571,6 @@ function enterFuckPussy(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['fuelstation_carwash', 'pussyEndQ'] },
   ]);
@@ -648,7 +623,6 @@ function enterFuckAnal(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', goto: ['fuelstation_carwash', 'analEndQ'] },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -675,7 +649,6 @@ function enterRapePussy(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', goto: ['fuelstation_carwash', 'rapePussyYes', 'normal'] },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -693,7 +666,6 @@ function enterRapePussyYes(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'arousal', 'vaginal', 30, 'sub', 'prostitution', 'rough', 'rape', 'unknown');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['fuelstation_carwash', 'vaginaCum', 'rape'] },
   ]);
@@ -702,7 +674,6 @@ function enterRapePussyYes(s: GameState, scene: SceneBuilder): void {
 
 function enterPussyEndQ(s: GameState, scene: SceneBuilder): void {
   scene.text('You can feel that the man is about to cum, so you decide to…');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Let him cum in your pussy', goto: ['fuelstation_carwash', 'vaginaCum', 'consensual'] },
     { label: 'Let him cum on your face', goto: ['fuelstation_carwash', 'blowjobEndFace', 'inside'] },
@@ -713,7 +684,6 @@ function enterPussyEndQ(s: GameState, scene: SceneBuilder): void {
 
 function enterAnalEndQ(s: GameState, scene: SceneBuilder): void {
   scene.text('You can feel that the man is about to ejaculate, so you decide to…');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Let him cum in your ass', goto: ['fuelstation_carwash', 'assCum'] },
     { label: 'Let him cum on your face', goto: ['fuelstation_carwash', 'blowjobEndFace', 'inside'] },
@@ -741,7 +711,6 @@ function enterVaginaCum(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'arousal', 'end');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go back to the gas station', goto: ['fuelstation', 'start'] },
   ]);
@@ -761,7 +730,6 @@ function enterAssCum(s: GameState, scene: SceneBuilder): void {
   scene.img(`images/locations/shared/carwash/sex/cumanal${(Math.floor(Math.random() * 2) + 1)}.mp4`);
   scene.text('You let him cum inside your ass. A pleasant warmth fills your insides as he shoots his load deep inside you. When he pulls out, some of it leaks out of you before you can tighten your worn out anus.');
   qspCall(s, 'arousal', 'end');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go back to gas station', goto: ['fuelstation', 'start'] },
   ]);
@@ -770,7 +738,6 @@ function enterAssCum(s: GameState, scene: SceneBuilder): void {
 
 function enterHandjobEndQ(s: GameState, scene: SceneBuilder): void {
   scene.text('You can feel that the man is about to cum, so you decide to take it…');
-  // TODO-QSP: end
   scene.actions([
     { label: 'On your face', goto: ['fuelstation_carwash', 'blowjobEndFace', 'outside'] },
     { label: 'On your hands', goto: ['fuelstation_carwash', 'handjobEndHands'] },
@@ -792,7 +759,6 @@ function enterHandjobEndHands(s: GameState, scene: SceneBuilder): void {
   }
   scene.text('When the man starts cumming, you quickly point his cock away from your face. Your hands are covered in cum by the time he\'s done.');
   qspCall(s, 'arousal', 'end');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go back to the gas station', goto: ['fuelstation', 'start'] },
   ]);
@@ -801,7 +767,6 @@ function enterHandjobEndHands(s: GameState, scene: SceneBuilder): void {
 
 function enterBlowjobEndQ(s: GameState, scene: SceneBuilder): void {
   scene.text('You can feel that the man is about to cum, so you decide to take it…');
-  // TODO-QSP: end
   scene.actions([
     { label: 'On your face', goto: ['fuelstation_carwash', 'blowjobEndFace', 'outside'] },
     { label: 'In your mouth', goto: ['fuelstation_carwash', 'blowjobEndMouth', 'outside'] },
@@ -829,7 +794,6 @@ function enterBlowjobEndFace(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'arousal', 'end');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go back to the gas station', goto: ['fuelstation', 'start'] },
   ]);
@@ -850,7 +814,6 @@ function enterBlowjobEndMouth(s: GameState, scene: SceneBuilder): void {
     }
   }
   scene.text('Your mouth is full of cum. You decide to…');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Swallow it', goto: ['fuelstation_carwash', 'blowjobEndMouthSwallow'] },
     { label: 'Spit it out', goto: ['fuelstation_carwash', 'blowjobEndMouthSpit'] },
@@ -869,7 +832,6 @@ function enterBlowjobEndMouthSwallow(s: GameState, scene: SceneBuilder): void {
   scene.img(`images/locations/shared/carwash/sex/swallow${(Math.floor(Math.random() * 4) + 1)}.jpg`);
   scene.text('You gulp down the mouthful of cum and present your tongue to him.');
   scene.text('The man smiles and slaps you mildly on the face. "What a nice young slut you are. Next time I need a refill, I\'ll be sure to stop by."');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go back to the gas station', goto: ['fuelstation', 'start'] },
   ]);
@@ -891,7 +853,6 @@ function enterBlowjobEndMouthSpit(s: GameState, scene: SceneBuilder): void {
   scene.text('You spit the cum out between the legs of your customer.');
   scene.text('His face darkens. "What, my cum isn\'t good enough for you to swallow? I\'ll teach you, bitch!"');
   scene.text('He moves closer to you with an angry scowl on his face…');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Run back to the gas station', goto: ['fuelstation_carwash', 'runback'] },
   ]);
@@ -934,7 +895,6 @@ function enterRunback(s: GameState, scene: SceneBuilder): void {
       { label: 'Endure his punishment', goto: ['fuelstation_carwash', 'punish'] },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -943,7 +903,6 @@ function enterFight(s: GameState, scene: SceneBuilder): void {
   (s as any).pcs_hydra = Math.max(0, ((s as any).pcs_hydra ?? 0) - 35);
   qspCall(s, 'arousal', 'end');
   qspGoto(s, 'fuelstation', 'start');
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -958,7 +917,6 @@ function enterPunish(s: GameState, scene: SceneBuilder): void {
       qspGoto(s, 'fuelstation_carwash', 'punishSpank');
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -974,7 +932,6 @@ function enterPunishSpank(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'foreplay', 15, 'sub', 'rough', 'unknown');
   qspCall(s, 'arousal', 'end');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPunishEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -992,7 +949,6 @@ function enterPunishAnal(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'anal', 30, 'sub', 'rough', 'rape', 'unknown');
   qspCall(s, 'arousal', 'end');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPunishEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1025,7 +981,6 @@ function enterPunishPussyQ(s: GameState, scene: SceneBuilder): void {
       { label: 'Endure it', goto: ['fuelstation_carwash', 'punishPussy', 'normal'] },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1049,7 +1004,6 @@ function enterPunishPussy(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'vaginal', 30, 'sub', 'rough', 'rape', 'unknown');
   qspCall(s, 'arousal', 'end');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPunishEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1085,7 +1039,9 @@ function enterPunishEnd(s: GameState, scene: SceneBuilder): void {
       { label: 'Escape', goto: ['fuelstation', 'start'] },
     ]);
   }
-  // TODO-QSP: end
+  (s as any).carwashscene = undefined;
+  (s as any).punishType = undefined;
+  (s as any).penetrate = undefined;
   scene.build();
 }
 

@@ -16,7 +16,6 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   scene.text('<i>Is this… a brothel? Am I in the room for… voyeurs?!</i>');
   scene.text('As you\'re processing this information, Vika enters the room dressed in a pink baby doll and lies on the bed.');
   scene.text('She looks at you through the glass as she massages her pussy through her panties.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Watch her work', handler: (st: GameState) => {
     scene.img('images/locations/city/residential/sauna/sex/bvika2.jpg');
@@ -78,7 +77,6 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['bordelv', 'end'] },
   ]);
@@ -94,7 +92,6 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
   (s as any).orgasm_or = 'custom';
   qspCall(s, 'arousal', 'clit_finger', 5, 'masturbate');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Wait in the room', handler: (st: GameState) => {
     scene.img('images/locations/city/residential/sauna/sex/bvika9.jpg');
@@ -208,7 +205,6 @@ function enterOut(s: GameState, scene: SceneBuilder): void {
   scene.text('Panicking, you run out of the room and rush towards the first door you notice, but find yourself in another room where a girl is "working."');
   scene.text('She quickly shoos you out and slams the door as you rush to the next room and find the same thing again. You rush through the corridors, but all the doors look the same and you start to panic.');
   scene.text('Just as you\'re about to give up and cry, someone pats you on the shoulder. You turn and see a still naked Vika, her face covered in cum.');
-  // TODO-QSP: dynamic text: "<<$pcs_nickname>>, wait! Relax! You promised to keep quiet…" she whispers.
   scene.text(`"${((s as any).pcs_nickname ?? '')}, wait! Relax! You promised to keep quiet…" she whispers.`);
   scene.text('"Where\'s the way out, whore?!" you scream.');
   scene.text('Vika just looks at you, her lips trembling as her eyes slowly tear up.');
@@ -235,7 +231,6 @@ function enterOut(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     qspCall(st, 'npc_relationship', 'set', 'A220', 0);

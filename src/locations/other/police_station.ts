@@ -14,7 +14,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Police Station Entrance</b></center>');
   scene.img('images/locations/city/citycenter/police/cityext.jpg');
   scene.text('The St. Petersburg police station has definitely seen better days, but continues to stand the test of time. While not as large as other police stations, it still strikes fear into any criminal that passes through its doors.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return to the city center', goto: ['city_center', ''] },
     { label: 'Go to the reception desk', goto: ['police_station', 'reception'] },
@@ -33,7 +32,6 @@ function enterReception(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   qspCall(s, 'blackmailer', 'set_police_act');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return to the center', goto: ['city_center', ''] },
   ]);
@@ -46,7 +44,6 @@ function enterRapeReport(s: GameState, scene: SceneBuilder): void {
   scene.text('"Can I help you?"');
   scene.text('"I- I\'d like t-to report a r-rape…" you stammer out.');
   scene.text('The officer nods, but his expression doesn\'t change in the slightest. "Someone will come out to meet you. Follow them and they\'ll take your statement in the back."');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + ((Math.floor(Math.random() * 4) + 2));
@@ -147,7 +144,6 @@ function enterEntrance(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/citycenter/police/cityrec.jpg');
   scene.text('The officer drags you in by the arm, his grip tightening whenever he feels the slightest bit of resistance from you. You expect him to take you straight in to be booked, but to your dismay he stops at the front desk to put you on display to the other officers as he gloats.');
   qspCall(s, 'court_arrest_events', 'booking_start', ((s as any).locArgs?.[1] ?? 0));
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -157,7 +153,6 @@ function enterBooking(s: GameState, scene: SceneBuilder): void {
   } else {
     qspGoto(s, 'police_station', 'booking2');
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -168,11 +163,8 @@ function enterBooking1(s: GameState, scene: SceneBuilder): void {
   scene.text('As you\'re taken through the station, the officer leads you into a large area with lots of chairs. It looks like a large reception area.');
   scene.text('"Sit over there," he commands, pointing to the area for booking criminals. You take a seat as ordered, and the officer walks away towards the front desk to talk to the staff there.');
   scene.text('You sit in silence, trying to overhear what\'s being said, but you can\'t hear them. After a few minutes, the officer returns with another officer.');
-  // TODO-QSP: dynamic text: "Alright, <<$pcs_lastname>>, I''ll be leaving you here with my colleague. He''ll...
   scene.text(`"Alright, ${((s as any).pcs_lastname ?? '')}, I'll be leaving you here with my colleague. He'll sort you out," the first officer says as they turn to their colleague. "I've already checked her pockets, there was nothing of interest."`);
-  // TODO-QSP: dynamic text: The other officer looks you up and down, evaluating you at a glance. "<<$pcs_las...
   scene.text(`The other officer looks you up and down, evaluating you at a glance. "${((s as any).pcs_lastname ?? '')} was it, right?"`);
-  // TODO-QSP: end
   scene.actions([
     { label: 'Play along', goto: ['police_station', 'booking1_play_along'] },
     { label: 'Answer brashly', goto: ['police_station', 'booking1_brash'] },
@@ -186,11 +178,9 @@ function enterBooking1PlayAlong(s: GameState, scene: SceneBuilder): void {
   ((s as any).policeQW = (s as any).policeQW ?? {})['bookingofficer_rel'] = ((s as any).policeQW['bookingofficer_rel'] ?? 0) + (2);
   (s as any).book_response = 1;
   qspCall(s, 'stat', '');
-  // TODO-QSP: dynamic text: "That''s right… <<$pcs_firstname>> <<$pcs_lastname>>," you cautiously answer.
   scene.text(`"That's right… ${((s as any).pcs_firstname ?? '')} ${((s as any).pcs_lastname ?? '')}," you cautiously answer.`);
   scene.text('"Good, good. I hope we can continue to keep it civil like this," he smiles halfheartedly. "Now, let me tell you how this is gonna go: I\'ll ask you some questions and you\'ll answer them - <i>truthfully</i>," he emphasizes with a pointed look. "Then I\'ll take your fingerprints and mugshot. Understood?"');
   scene.text('Dispirited, you nod weakly. "Good. Now follow me," he orders. He opens the door and signals you to walk through after him.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Follow him to the desk', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 10;
@@ -237,7 +227,6 @@ function enterBooking1Brash(s: GameState, scene: SceneBuilder): void {
   scene.text('"My name is <i>go fuck yourself, pig</i>," you brashly answer.');
   scene.text('"Well, that\'s not nice!" he scowls. "I guess we can do the process later and put you into a holding cell to calm down and think about what you\'ve said."');
   scene.text('The officer forcefully yanks you up from the chair and drags you to a holding cell. You try to resist, but they\'re too strong. Before you know it, the door slams behind you and the only thing you can do is slam your fists against it.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Inside the holding cell', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 120;
@@ -295,7 +284,6 @@ function enterBooking1Weasel(s: GameState, scene: SceneBuilder): void {
   scene.text('He just looks at you, not really picking up on your signals. "Follow me over to the desk please," he says monotonously.');
   scene.text('As he starts asking your personal details, you make sure to give him a good view of your breasts as you hunch over the desk as much as possible.');
   scene.text('After a while, you\'re done with the form and he tells you to follow him to a small room to take your fingerprints and mugshot.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Follow him inside the room', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'foreplay', 5, 'exhibitionism', 'sub');
@@ -442,12 +430,9 @@ function enterBooking2(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/citycenter/police/holdingarea.jpg');
   scene.text('You walk into a familiar settings. Not much has changed since last time and you already know what awaits you. The officer points to one of the chairs and you sit while he walks over to the reception area. You take a seat and observe what\'s happening around you.');
   scene.text('After what feels like an eternity, the officer returns with a colleague.');
-  // TODO-QSP: dynamic text: "Alright <<$pcs_lastname>>, you know the drill. My colleague will sort you out,"...
   scene.text(`"Alright ${((s as any).pcs_lastname ?? '')}, you know the drill. My colleague will sort you out," he says as he turns to the other officer. "I've already checked her pockets. There was nothing of interest."`);
-  // TODO-QSP: dynamic text: The officer observes you with a smile. "<<$pcs_lastname>>, hmm? I remember you f...
   scene.text(`The officer observes you with a smile. "${((s as any).pcs_lastname ?? '')}, hmm? I remember you from last time."`);
   scene.text('You sigh as you recall the last time you were with him…');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Follow him to the desk', goto: ['police_station', 'booking2_follow'] },
     { label: 'Answer brashly', goto: ['police_station', 'booking2_brash'] },
@@ -462,11 +447,9 @@ function enterBooking2Follow(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 10;
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/citycenter/police/booking0.jpg');
-  // TODO-QSP: dynamic text: The officer walks briskly and you struggle to keep up, but you manage. "We just ...
   scene.text(`The officer walks briskly and you struggle to keep up, but you manage. "We just need to update some information since the last time you were here, ${((s as any).pcs_lastname ?? '')}" The officer then proceeds to ask you several questions and writes every answer carefully down.`);
   scene.text('You answer every question quickly as you know making trouble won\'t lead to anything good, and if you cooperate they might go easier on you.');
   scene.text('As you finish with the questioning the officer doesn\'t even look your way as he says, "Over there is where we take your fingerprints and the mugshot."');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Take the mugshot', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 20;
@@ -496,7 +479,6 @@ function enterBooking2Brash(s: GameState, scene: SceneBuilder): void {
   scene.text('Your eyes narrow as your lips curl into a grimace. The officer is staring you down, and something in you snaps. Without warning, you spit in his face, taking him by surprise.');
   scene.text('The officer forcefully grabs hold of you and drags you to a holding cell. "Disgusting bitch!"');
   scene.text('Before you know it, the door slams behind you and the only thing you can do is slam your fists against the door.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Inside the holding cell', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 120;
@@ -536,7 +518,6 @@ function enterBooking2Flirt(s: GameState, scene: SceneBuilder): void {
   scene.text('He looks at you, seemingly not paying attention. "This way, please," he says monotonously.');
   scene.text('As he\'s gathering your personal details, you again make sure to give him a view of your breasts as you hunch over the desk as much as possible.');
   scene.text('After a while, you\'re done with the form and he tells you to follow him to a small room where you will continue the process.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Follow him inside the room', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'foreplay', 5, 'exhibitionism', 'sub');
@@ -735,7 +716,6 @@ function enterHoldingcell(s: GameState, scene: SceneBuilder): void {
   scene.text('You find a clean spot in one of the corners of the holding cell which you sit down on. As you sit, the cold concrete bench causes you to shiver.');
   scene.text('As you wait in silence for someone to come and pick you up, another woman enters the holding cell. She\'s sobbing uncontrollably, clearly shaken over being locked up.');
   scene.text('You keep to yourself as she keeps hitting the cell door. Deep in your own thoughts of what she could have done to get locked up, you don\'t notice her staring at you. When you finally look up, she\'s staring you down…');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Stare back', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
@@ -749,7 +729,6 @@ function enterHoldingcell(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/locations/city/citycenter/police/cityhold.jpg');
     scene.text('You quickly avert your gaze, looking at your feet as you ignore the cries of the woman. After some time, an officer opens the door and both you and the other woman in the holding cell look up, hoping you\'re the one to be called out.');
-    // TODO-QSP: dynamic text: "<<$pcs_lastname>>!" the officer yells out.
     scene.text(`"${((st as any).pcs_lastname ?? '')}!" the officer yells out.`);
     scene.text('You\'re surprised, but relieved. "Yes, that\'s me!"');
     scene.text('"The detective finally has time to question you. Come on, get off your ass and follow me!" he orders with a frown.');
@@ -799,7 +778,6 @@ function enterInterrogation(s: GameState, scene: SceneBuilder): void {
   scene.text('He tells you to take a seat and you quietly comply.');
   scene.text('"I\'ll be right back. I need to get something…" he says.');
   scene.text('You take a seat on the chair and look around anxiously while waiting for the detective to return. When he returns, you see him holding a paper.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     if (((st as any).book_response ?? 0) === 1) {
@@ -863,14 +841,13 @@ function enterInterrogation(s: GameState, scene: SceneBuilder): void {
 
 function enterReturncell(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 180;
-  // TODO-QSP: policeQW_courtletter_dates[] = daystart + 7
-  // TODO-QSP: $policeQW_courtletter_subjects[] = '<<$policeQW[''crime_flag'']>>_<<$policeQW[''detective_type'']>>'
+  (s as any).policeQW_courtletter_dates = [...((s as any).policeQW_courtletter_dates ?? []), ((s as any).daystart ?? 0) + 7];
+  (s as any).policeQW_courtletter_subjects = [...((s as any).policeQW_courtletter_subjects ?? []), '' + (((s as any).policeQW ?? 0)?.['crime_flag']) + '_' + (((s as any).policeQW ?? 0)?.['detective_type']) + ''];
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/citycenter/police/cityhold.jpg');
   scene.text('As you\'re brought back to the holding cell by the detective, you notice that the sobbing woman is gone and has been replaced by a dangerous looking woman.');
   scene.text('"You\'ll be released soon, just let me take care of the paperwork. As soon it\'s done, you\'ll be out of this place." the detective tells you.');
   scene.text('You nod and he closes the cell door. As soon you turn around, the woman walks up to you. "What are you locked up for?"');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Answer her', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
@@ -880,7 +857,6 @@ function enterReturncell(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/locations/city/citycenter/police/cityhold.jpg');
     scene.text('The two of you keep talking before you\'re suddenly interrupted by an officer opening the cell door.');
-    // TODO-QSP: dynamic text: "<<$pcs_lastname>>, come with me. You''re about to get released," he says.
     scene.text(`"${((st as any).pcs_lastname ?? '')}, come with me. You're about to get released," he says.`);
     scene.text('You look at him in surprise. "Already? Time really flew by while we were talking," you say to the woman.');
     scene.text('"Go on before they change their mind," she smiles.');
@@ -896,7 +872,6 @@ function enterReturncell(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/citycenter/police/cityhold.jpg');
     scene.text('You let out a sigh. "I don\'t want to talk about it. I\'m sick and tired of this shit."');
     scene.text('"Fine then! Be that way," she sourly answers. "I was just trying to make conversation. Fucking bitch…"');
-    // TODO-QSP: dynamic text: You ignore her and some time passes by before the cell door opens. "<<$pcs_lastn...
     scene.text(`You ignore her and some time passes by before the cell door opens. "${((st as any).pcs_lastname ?? '')}, it's your time to get released."`);
     scene.text('You quickly jump up and hurry out from the holding cell. The officer leads you towards the entrance and as the doors open, you feel the fresh wind breeze against your face.');
     scene.actions([

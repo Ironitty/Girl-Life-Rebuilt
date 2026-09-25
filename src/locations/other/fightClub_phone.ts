@@ -11,7 +11,6 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 function enterSultan(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'telefon', 'AddContact', 'A295', 'images/locations/city/shared/fightclub/sultan_portrait.jpg', 0);
   qspCall(s, 'telefon', 'SetOutCallSchedule', 'A295', 'gt \'fightClub_phone\', \'dial\'', 'fightClubQW[\'sultancall\'] ! daystart');
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -40,7 +39,6 @@ function enterDial(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -48,16 +46,13 @@ function enterInvitation(s: GameState, scene: SceneBuilder): void {
   ((s as any).fightClubQW = (s as any).fightClubQW ?? {})['story'] = 3;
   scene.img('images/locations/city/shared/fightclub/sultan_portrait.jpg');
   scene.text('After a short time, a male voice answers: "Who is this?"');
-  // TODO-QSP: dynamic text: "<<$pcs_nickname>>, you spoke to me at the Havana Gym."
   scene.text(`"${((s as any).pcs_nickname ?? '')}, you spoke to me at the Havana Gym."`);
-  // TODO-QSP: dynamic text: "Ah, <<$pcs_nickname>>, I knew you were smart. I''m glad you called."
   scene.text(`"Ah, ${((s as any).pcs_nickname ?? '')}, I knew you were smart. I'm glad you called."`);
   scene.text('"You said we could talk, and I have some questions."');
   scene.text('"Sure, but not on the phone, sweetie. I have an office in the industrial area. You can usually find me there between noon and 5 pm. Why don\'t you just come by and we can talk quietly, okay?"');
   scene.text('"Yeah, sure." He gives you the address - it is the same that is on his business card - and hangs up. You stare at the phone. It looked like you\'d interrupted something. But maybe that\'s a good sign with a manager.');
   (s as any).minut = ((s as any).minut ?? 0) + 4;
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Hang up, you should visit him soon', handler: (st: GameState) => {
     dynamicGoto(st, 'prevLoc', 'prevArg');
@@ -71,7 +66,6 @@ function enterOutofoffice(s: GameState, scene: SceneBuilder): void {
   scene.text('It rings, but in the end you only reach the voicemail, which tells you that you\'d better try between 8.00 and 20.00.');
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Hang up, maybe try at another time?', handler: (st: GameState) => {
     dynamicGoto(st, 'prevLoc', 'prevArg');

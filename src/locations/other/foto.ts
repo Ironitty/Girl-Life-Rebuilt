@@ -95,7 +95,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['city_center', ''] },
     { label: 'Strip down', handler: (st: GameState) => {
@@ -150,7 +149,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       scene.text('You really wish you had brought panties today…');
     }
     if (((st as any).mesec ?? 0) > 0  &&  (!((st as any).isprok ?? 0))) {
-      // TODO-QSP: msg 'As your panties come off you realize you''re going to have a problem when your pad goes with it...
+      alert('As your panties come off you realize you\'re going to have a problem when your pad goes with it and blood immediately starts running down your legs. Maybe you should switch to tampons…');
     }
     qspCall(st, 'outfit', 'backup', 'foto');
     if (((st as any).clothingworntype ?? 0) !== 'nude') {
@@ -171,7 +170,6 @@ function enterStudioClosing(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Photography studio</b></center>');
   scene.img('images/locations/city/citycenter/photo/foto.jpg');
   scene.text('It\'s after midnight and the studio is closing down. You get dressed and leave before you get locked in.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['city_center', ''] },
   ]);
@@ -188,6 +186,7 @@ function enterStudio(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'foto', 'studio');
   (s as any).location_type = 'public_indoors';
   (s as any).practice_session = 0;
+  (s as any).modelopt = undefined;
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'indoors');
@@ -242,10 +241,10 @@ function enterStudio(s: GameState, scene: SceneBuilder): void {
   if (((s as any).job_status ?? 0)?.['city_aphrodite_model'] !== 'employed') {
     scene.text('You step into a large warehouse. Scattered throughout, you see large lights brightening a myriad of sets designed to look like different rooms or locations. As you look farther inside, you spot people move between or on the sets. Among them are beautiful women, some wearing fancy dresses or expensive underwear, and shockingly, some of them are nude. Those that stand on sets are surrounded by crews of people wearing black with cameras and other equipment. Strangely, every single woman you see who is not on a set is completely naked.');
     scene.text('It appears you are in some kind of photography studio. Just near the door you came in is a reception desk, out of place due to the fact that it simply sits in the middle of the room. A man sits behind it in the light of a desk lamp, doing something on a computer.');
-    scene.text('Farther along, you can see what appear to be <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027foto_albums/u0027, /u0027model_portraits/u0027); return false;">photo albums</a> that sit on a shelf.');
+    scene.text('Farther along, you can see what appear to be <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027foto_albums\u0027, \u0027model_portraits\u0027); return false;">photo albums</a> that sit on a shelf.');
   } else {
-    scene.text('You step onto the main floor of the studio, standing amongst the various sets and photographers who are working those sets. Sitting by the door is a <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027shortgs/u0027, /u0027img msg/u0027, /u0027images/locations/city/citycenter/photo/dress_code.jpg/u0027); return false;">sign</a> to remind models of the dress code.');
-    scene.text('Farther along are the studio\'s collection of <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027foto_albums/u0027, /u0027model_portraits/u0027); return false;">photo albums</a> of their top 10 models. ');
+    scene.text('You step onto the main floor of the studio, standing amongst the various sets and photographers who are working those sets. Sitting by the door is a <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027shortgs\u0027, \u0027img msg\u0027, \u0027images/locations/city/citycenter/photo/dress_code.jpg\u0027); return false;">sign</a> to remind models of the dress code.');
+    scene.text('Farther along are the studio\'s collection of <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027foto_albums\u0027, \u0027model_portraits\u0027); return false;">photo albums</a> of their top 10 models. ');
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterWanderingModels(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   if (((s as any).job_status ?? 0)?.['city_aphrodite_model'] === 'employed') {
@@ -270,7 +269,6 @@ function enterStudio(s: GameState, scene: SceneBuilder): void {
 ]);
     return;
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Look for work', handler: (st: GameState) => {
     scene.text('<center><b>Floor Manager</b></center>');
@@ -288,12 +286,10 @@ function enterStudio(s: GameState, scene: SceneBuilder): void {
     (st as any).temp_ok_to_shoot = 1;
     if (((st as any).Venera ?? 0) > 2) {
       (st as any).temp_ok_to_shoot = 0;
-      // TODO-QSP: dynamic text: <<$temp_name>>! There is no way anyone is going to want to see pictures of you w...
       scene.text(`${((st as any).temp_name ?? '')}! There is no way anyone is going to want to see pictures of you while your STD is so obvious, you should see a doctor.`);
     }
     if (qspFunc(s, 'body_din', 'pregnancyVisibility') === 1) {
       (st as any).temp_ok_to_shoot = 0;
-      // TODO-QSP: dynamic text: "<<$temp_name>>! Who knocked you up!? Didn''t we pay you enough to use contracep...
       scene.text(`"${((st as any).temp_name ?? '')}! Who knocked you up!? Didn't we pay you enough to use contraception? Sorry, but we don't specialize in this type of shots."`);
     }
     if (((st as any).pcs_apprnc ?? 0) < 80) {
@@ -302,7 +298,6 @@ function enterStudio(s: GameState, scene: SceneBuilder): void {
     }
     if (((st as any).cumsumbod ?? 0) - ((st as any).cumsumvag ?? 0) - ((st as any).cumsumass ?? 0) > (Math.floor(Math.random() * 6) + 0)) {
       (st as any).temp_ok_to_shoot = 0;
-      // TODO-QSP: dynamic text: "Ugh, <<$temp_name>>, what the hell is that?" he looks at you and the cum on you...
       scene.text(`"Ugh, ${((st as any).temp_name ?? '')}, what the hell is that?" he looks at you and the cum on you with disgust. "We don't care what your sexual habits are outside of work, but we're not shooting Japanese porn here. At least take a shower after getting laid."`);
     }
     if (((st as any).pcs_leghair ?? 0) > 3) {
@@ -311,7 +306,6 @@ function enterStudio(s: GameState, scene: SceneBuilder): void {
     }
     if (((st as any).mesec ?? 0) > 0  &&  (!((st as any).isprok ?? 0))) {
       (st as any).temp_ok_to_shoot = 0;
-      // TODO-QSP: dynamic text: "What the hell <<$temp_name>>!"
       scene.text(`"What the hell ${((st as any).temp_name ?? '')}!"`);
       scene.text('You follow his gaze to see the blood running down your legs.');
       scene.text('"Go wash that off and put a tampon in already! There\'s a dispenser in the shower room."');
@@ -322,12 +316,10 @@ function enterStudio(s: GameState, scene: SceneBuilder): void {
     }
     if ((!((st as any).pcs_makeup ?? 0))) {
       (st as any).temp_ok_to_shoot = 0;
-      // TODO-QSP: dynamic text: "Your makeup is smeared all over your face <<$temp_name>>. Go clean up and see t...
       scene.text(`"Your makeup is smeared all over your face ${((st as any).temp_name ?? '')}. Go clean up and see the makeup artists first."`);
     }
     if (((st as any).pcs_makeup ?? 0) === 1) {
       (st as any).temp_ok_to_shoot = 0;
-      // TODO-QSP: dynamic text: "<<$temp_name>>, you forget to do your makeup. Hurry up! We don''t have all day....
       scene.text(`"${((st as any).temp_name ?? '')}, you forget to do your makeup. Hurry up! We don't have all day."`);
     }
     if (((st as any).temp_ok_to_shoot ?? 0)) {
@@ -343,7 +335,6 @@ function enterStudio(s: GameState, scene: SceneBuilder): void {
           qspGoto(st, 'foto_model_documentary', '1st_documentary');
         }
       }
-      // TODO-QSP: dynamic text: "Hello <<$temp_name>>. Are you here to work?"
       scene.text(`"Hello ${((st as any).temp_name ?? '')}. Are you here to work?"`);
       if (((st as any).first_fame_event ?? 0) === 2) {
         scene.actions([
@@ -361,6 +352,9 @@ function enterStudio(s: GameState, scene: SceneBuilder): void {
         { label: 'Never mind', goto: ['foto', 'studio'] },
       ]);
     }
+    (st as any).temp_name = undefined;
+    (st as any).temp_rand = undefined;
+    (st as any).temp_ok_to_shoot = undefined;
   } },
     { label: 'Leave studio', handler: (st: GameState) => {
     if (((st as any).studio_underwear_steal ?? 0) > 0) {
@@ -392,7 +386,7 @@ function enterBathroom(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'bathroom';
   qspCall(s, 'stat', '');
   scene.img(`images/locations/city/citycenter/photo/models${(Math.floor(Math.random() * 2) + 1)}.jpg`);
-  scene.text('A gaggle of models crowd the <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027start/u0027); return false;">mirrors</a> and sinks, loudly chatting, giggling, and generally gossiping about life in the city and the studio.');
+  scene.text('A gaggle of models crowd the <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027start\u0027); return false;">mirrors</a> and sinks, loudly chatting, giggling, and generally gossiping about life in the city and the studio.');
   scene.text('Why they don\'t do their makeup in the back where the mirrors and the lights are better is beyond you. But it can\'t be helped you suppose. The bathroom <i>is</i> the traditional place for girls to gossip after all.');
   if (((s as any).mc_inventory ?? 0)?.['deodorant'] > 0  &&  (!((s as any).deodorant_on ?? 0))) {
     scene.actions([
@@ -400,7 +394,7 @@ function enterBathroom(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
     ((st as any).mc_inventory = (st as any).mc_inventory ?? {})['deodorant'] = ((st as any).mc_inventory['deodorant'] ?? 0) - (1);
     qspCall(st, 'sweat', 'deo');
-    // TODO-QSP: iif(func('body_din', 'pregnancyVisibility') = 1, '<center><img <<$set_imgh>> src="images/shared/home...
+    scene.text(`iif(func('body_din', 'pregnancyVisibility') = 1, '<center><img ${((st as any).set_imgh ?? '')} src="images/shared/home/bathroom/deodorant_preg.jpg"></center>', '<center><img ${((st as any).set_imgh ?? '')} src="images/shared/home/bathroom/deodorant.jpg"></center>')`);
     scene.text('You apply deodorant to your armpits. It will keep you feeling fresh and clean for longer.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
@@ -440,7 +434,6 @@ function enterBathroom(s: GameState, scene: SceneBuilder): void {
       { label: 'Search the props\' room', goto: ['tatiana_missions', 'mission2A'] },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the studio floor', goto: ['foto', 'studio'] },
     { label: 'Go to the showers', goto: ['foto', 'showers'] },
@@ -526,7 +519,7 @@ function enterShowers(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027din_van/u0027, /u0027shave_options/u0027); return false;">Shave Options</a>');
+  scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027din_van\u0027, \u0027shave_options\u0027); return false;">Shave Options</a>');
   if (((s as any).mesec ?? 0) > 0  &&  (!((s as any).isprok ?? 0))) {
     scene.actions([
       { label: 'Use a tampon', handler: (st: GameState) => {
@@ -552,7 +545,7 @@ function enterShowers(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
     ((st as any).mc_inventory = (st as any).mc_inventory ?? {})['deodorant'] = ((st as any).mc_inventory['deodorant'] ?? 0) - (1);
     qspCall(st, 'sweat', 'deo');
-    // TODO-QSP: iif(func('body_din', 'pregnancyVisibility') = 1, '<center><img <<$set_imgh>> src="images/shared/home...
+    scene.text(`iif(func('body_din', 'pregnancyVisibility') = 1, '<center><img ${((st as any).set_imgh ?? '')} src="images/shared/home/bathroom/deodorant_preg.jpg"></center>', '<center><img ${((st as any).set_imgh ?? '')} src="images/shared/home/bathroom/deodorant.jpg"></center>')`);
     scene.text('You apply deodorant to your armpits. It will keep you feeling fresh and clean for longer.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
@@ -564,16 +557,15 @@ function enterShowers(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   qspCall(s, 'din_van', 'brit');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the studio floor', handler: (st: GameState) => {
-    // TODO-QSP: pcs_shave['free_razor'] = 0
+    ((st as any).pcs_shave = (st as any).pcs_shave ?? {})['free_razor'] = 0;
   }, goto: ['foto', 'studio'] },
     { label: 'Go to your makeup station', handler: (st: GameState) => {
-    // TODO-QSP: pcs_shave['free_razor'] = 0
+    ((st as any).pcs_shave = (st as any).pcs_shave ?? {})['free_razor'] = 0;
   }, goto: ['foto', 'makeup'] },
     { label: 'Go to the bathroom', handler: (st: GameState) => {
-    // TODO-QSP: pcs_shave['free_razor'] = 0
+    ((st as any).pcs_shave = (st as any).pcs_shave ?? {})['free_razor'] = 0;
   }, goto: ['foto', 'bathroom'] },
   ]);
   scene.build();
@@ -624,7 +616,7 @@ function enterMakeup(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
     ((st as any).mc_inventory = (st as any).mc_inventory ?? {})['deodorant'] = ((st as any).mc_inventory['deodorant'] ?? 0) - (1);
     qspCall(st, 'sweat', 'deo');
-    // TODO-QSP: iif(func('body_din', 'pregnancyVisibility') = 1, '<center><img <<$set_imgh>> src="images/shared/home...
+    scene.text(`iif(func('body_din', 'pregnancyVisibility') = 1, '<center><img ${((st as any).set_imgh ?? '')} src="images/shared/home/bathroom/deodorant_preg.jpg"></center>', '<center><img ${((st as any).set_imgh ?? '')} src="images/shared/home/bathroom/deodorant.jpg"></center>')`);
     scene.text('You apply deodorant to your armpits. It will keep you feeling fresh and clean for longer.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
@@ -635,7 +627,6 @@ function enterMakeup(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Back to the studio', goto: ['foto', 'studio'] },
     { label: 'Go to the showers', goto: ['foto', 'showers'] },
@@ -648,9 +639,7 @@ function enterManagerTalk(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/citycenter/photo/fotograph.jpg');
   scene.text('You approach the manager\'s desk.');
-  // TODO-QSP: dynamic text: "Something I can help you with <<$model[''firstname'']>>?"
   scene.text(`"Something I can help you with ${(((s as any).model ?? 0)?.['firstname'] ?? '')}?"`);
-  // TODO-QSP: end
   scene.actions([
     { label: 'Back to the studio', goto: ['foto', 'studio'] },
     { label: 'Change your model name', handler: (st: GameState) => {
@@ -680,12 +669,10 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
     (s as any).practice_session = 0;
   }
   qspGoto(s, 'foto', 'studio');
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterHiringAsk(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: end
   scene.actions([
     { label: 'Ask about working as a glamour model', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -736,7 +723,6 @@ function enterHiringAsk(s: GameState, scene: SceneBuilder): void {
                   { label: 'Come clean and tell the truth', handler: (st: GameState) => {
     (st as any).fotofakepassport = 2;
     scene.text('You sigh. There\'s no point in dragging this out. You\'ll never be able to work here at this rate. Leaning over the desk, you whisper to him.');
-    // TODO-QSP: dynamic text: "Okay, here''s the truth. I''m not the age I said I was. I''m <<$func(''string''...
     scene.text(`"Okay, here's the truth. I'm not the age I said I was. I'm ${qspFunc(s, 'string', 'parse_number', ((st as any).age ?? ''))}. But I still want to work here. Isn't there some way we can work this out?"`);
     scene.text('"Hmmm…" He rubs his chin thoughtfully, smiling while he looks you up and down. Just the way he stares gives you the impression that he\'s undressing you with his eyes, remembering what you look like naked. "Alright. I\'m not supposed to do this but I like your tits and I wouldn\'t mind seeing more of that around here."');
     scene.text('<i>He was thinking about me naked! I knew it!</i>');
@@ -745,8 +731,7 @@ function enterHiringAsk(s: GameState, scene: SceneBuilder): void {
     scene.text('"Good. Now don\'t come back without that passport. I don\'t like having my time wasted."');
     scene.text('He shoos you away and you leave the studio, getting ready for the next step.');
     if (qspFunc(s, 'money', 'can_afford', 30000) === 0) {
-      // TODO-QSP: dynamic text: '<i>Great. Now I just need to find ' + $func('money', 'string_price', 30000) + '...
-      scene.text('<i>Great. Now I just need to find 30000₽ for the fake passport. Just great. Big load of trouble this job is…</i>');
+      scene.text('\'<i>Great. Now I just need to find 30000₽ for the fake passport. Just great. Big load of trouble this job is…</i>\'');
     }
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
@@ -843,7 +828,6 @@ function enterInterview(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -861,7 +845,6 @@ function enterInterview2(s: GameState, scene: SceneBuilder): void {
       scene.text('"I see. Alright, undress. Let me take a look at you."');
     } else {
       if (((s as any).age_truth ?? 0) === 1  ||  ((s as any).age ?? 0) >= 18) {
-        // TODO-QSP: dynamic text: "I''m <<age>>."
         scene.text(`"I'm ${((s as any).age ?? '')}."`);
         scene.text('"I see. Alright, undress. Let me take a look at you."');
       }
@@ -906,7 +889,7 @@ function enterInterview2(s: GameState, scene: SceneBuilder): void {
         (st as any).fotofit = 1;
       }
       scene.text('You strip off your clothing for the photographer once again, holding your breath and hoping that you\'ve slimmed down enough to work here now.');
-      // TODO-QSP: 'Just like before, he circles you, asks you to adjust your pose for him, carefully inspecting every ...
+      scene.text('Just like before, he circles you, asks you to adjust your pose for him, carefully inspecting every aspect of your nude body.' + ((((st as any).pcs_mdlng ?? 0) >= 20) ? (' Instinctively, you adjust as he continues his walk, giving him a better angle on you wherever he is.') : (' ')));
       if (((st as any).foto_cupsize ?? 0) > ((st as any).tits ?? 0)) {
         scene.text('He pauses a moment, staring at your breasts more intently than you remember him looking last time.');
         if (((st as any).pcs_inhib ?? 0) < 50) {
@@ -936,7 +919,6 @@ function enterInterview2(s: GameState, scene: SceneBuilder): void {
       } else {
         scene.text('You take off your clothes and leave them on the floor while the photographer examines you.');
       }
-      // TODO-QSP: dynamic text: He circles you slowly, occasionally asking you to adjust your pose slightly, car...
       scene.text(`He circles you slowly, occasionally asking you to adjust your pose slightly, carefully inspecting every aspect of your nude body. Your ${((st as any).pcs_eyecolor ?? '')} eyes framed by your ${((st as any).pcs_haircolor ?? '')} hair, your ${(((st as any).pc_desc ?? 0)?.['lip size'] ?? '')} lips, your ${((st as any).titsize ?? '')} breasts, your ${(((st as any).pc_desc ?? 0)?.['skin'] ?? '')} ${((st as any).pcs_tanstate ?? '')} skin, your thighs, even your ${(((st as any).pc_desc ?? 0)?.['pubes'] ?? '')} pussy…`);
       scene.text('He spends several minutes doing this without saying anything. Several people walk by while he does, including several beautiful and nude women who glance at you, whispering to each other before moving on.');
       scene.actions([
@@ -979,7 +961,6 @@ function enterInterview2(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/locations/city/citycenter/photo/strip1.mp4');
     scene.text('You take a deep breath and begin to take off your clothes. As long as it\'s just this one time, you can handle it for now. You leave them on the floor while the photographer examines you.');
-    // TODO-QSP: dynamic text: He circles you slowly, occasionally asking you to adjust your pose slightly, car...
     scene.text(`He circles you slowly, occasionally asking you to adjust your pose slightly, carefully inspecting every aspect of your nude body. Your ${((st as any).pcs_eyecolor ?? '')} eyes framed by your ${((st as any).pcs_haircolor ?? '')} hair, your ${(((st as any).pc_desc ?? 0)?.['lips'] ?? '')} lips, your ${((st as any).titsize ?? '')} breasts, your ${(((st as any).pc_desc ?? 0)?.['skin'] ?? '')} ${((st as any).pcs_tanstate ?? '')} skin, your thighs, even your ${(((st as any).pc_desc ?? 0)?.['pubes'] ?? '')} pussy…`);
     scene.text('He spends several minutes doing this without saying anything. Several people walk by while he does, including several beautiful and nude women who glance at you, whispering to each other before moving on.');
     scene.text('You blush furiously at the attention, both his and the other models.');
@@ -996,7 +977,6 @@ function enterInterview2(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'I can\'t do it', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/photo/foto.jpg');
@@ -1063,7 +1043,6 @@ function enterJobDecline(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1076,18 +1055,15 @@ function enterJobOffer(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).age_truth ?? 0) === 1) {
         scene.text('"Well done!" he says, with a smile. "You\'ve slimmed down to meet our requirements and you have a beautiful body. Unfortunately… how old was it that you said you were again?"');
-        // TODO-QSP: dynamic text: "<<age>>," you reply slowly.
         scene.text(`"${((s as any).age ?? '')}," you reply slowly.`);
         scene.text('"Ahuh… Well, you see, legally we can only hire girls 18 years and older, so unfortunately, you aren\'t going to be allowed to work here right now."');
       }
     }
   } else {
     if (((s as any).age ?? 0) >= 18  ||  ((s as any).fakepassport ?? 0) === 1  ||  ((s as any).age_lie ?? 0) === 1) {
-      // TODO-QSP: dynamic text: 'When he''s finished, he stands in front of you and says,' + iif(pcs_mdlng >= 20...
       scene.text('When he\'s finished, he stands in front of you and says,' + ((((s as any).pcs_mdlng ?? 0) >= 20) ? ('"You\'re a natural. You already move like you\'ve been trained. ') : ('"You fit the criteria for the kind of images we want to produce. ')) + 'I just need to see your passport to confirm your age and put your info into our database," holding out his hand.');
     } else {
       if (((s as any).age_truth ?? 0) === 1) {
-        // TODO-QSP: dynamic text: 'After several minutes, he stands in front of you and says,' + iif(pcs_mdlng >= ...
         scene.text('After several minutes, he stands in front of you and says,' + ((((s as any).pcs_mdlng ?? 0) >= 20) ? ('"You\'re a natural. You already move like you\'ve been trained. ') : ('"You fit the criteria for the kind of images we want to produce. ')) + 'However, you need to be 18 to work here. If you come back then, we\'ll be happy to have you." He smiles at you and starts heading back to his computer.');
       }
     }
@@ -1128,7 +1104,6 @@ function enterJobOffer(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/citycenter/photo/fotograph.jpg');
     (st as any).fakepassport = 2;
     (st as any).fotofakepassport = 3;
-    // TODO-QSP: dynamic text: "Oh please!" you shout abruptly. "The truth is, I''m only <<age>>. But it just m...
     scene.text(`"Oh please!" you shout abruptly. "The truth is, I'm only ${((st as any).age ?? '')}. But it just makes me so fucking horny to know that strange men I'll never meet could be out there looking at pictures of my naked body!"`);
     scene.text('You stand there trembling with tight muscles before him. You can feel your juices starting to flow from between your legs with a heightened sense of arousal in anticipation.');
     scene.text('"Hmmm…" He rubs his chin thoughtfully while continuing to look at your body, especially the fluids that have already begun to leak out of your pussy and slip down your thighs, before saying, "Alright, listen, I\'m not supposed to do this but you really do have an exceptional body so I\'m going to make an exception. There\'s a man who runs a small printing shop in the Red Light District. If you can come up with 30.000 cash, he can sell you a fake passport that says you\'re 18. If you can do that, I can at least have some deniability and you can work here. Sound good?"');
@@ -1151,7 +1126,6 @@ function enterJobOffer(s: GameState, scene: SceneBuilder): void {
     scene.text('"Umm, yeah! I\'ll just have to dig through some boxes and stuff… Uhm, could be a while if I can\'t find it!" Awkward laughter escapes your lips and you hope that your smile looks convincing.');
     scene.text('"Alright, well just bring it back with you when you do," he says as he turns back to his computer.');
     scene.text('…');
-    // TODO-QSP: dynamic text: "Great, I can work here. Now all I have to do is find a passport that says I''m ...
     scene.text(`"Great, I can work here. Now all I have to do is find a passport that says I'm 18 instead of ${((st as any).age ?? '')}…" you mutter dejectedly as you get dressed.`);
     qspCall(st, 'outfit', 'restore', 'foto');
     qspCall(st, 'stat', '');
@@ -1165,7 +1139,6 @@ function enterJobOffer(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/citycenter/photo/fotograph.jpg');
     (st as any).fakepassport = 2;
     (st as any).fotofakepassport = 2;
-    // TODO-QSP: dynamic text: You take a deep breath and step closer to him to say, "Okay, the truth is that I...
     scene.text(`You take a deep breath and step closer to him to say, "Okay, the truth is that I'm not really 18. I'm ${((st as any).age ?? '')} okay? But I really need the money! Can't we work something out?"`);
     if (((st as any).pcs_inhib ?? 0) < 40) {
       scene.text('He studies you for a moment, still completely naked before him, not a scrap of clothing to hide your naked body. You realize it suddenly, almost as if you had forgotten and you feel your face flush with embarrassment.');
@@ -1313,7 +1286,6 @@ function enterJobOffer(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/citycenter/photo/fotograph.jpg');
     if (((st as any).fotofit ?? 0) !== 1) {
       scene.text('You slap his hand away and give him the middle finger before walking back towards your clothes.');
-      // TODO-QSP: dynamic text: "I''m not going to work for some pervert who forces <<age>> year old girls to ge...
       scene.text(`"I'm not going to work for some pervert who forces ${((st as any).age ?? '')} year old girls to get naked and jerk off to them."`);
     } else {
       scene.text('"No, fuck you!" you spit at him. "I\'m not going to work for some manipulative ass who gets off on underage girls and leading them on. I\'m done here."');
@@ -1334,7 +1306,6 @@ function enterJobOffer(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1342,7 +1313,6 @@ function enterModelName1(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/citycenter/photo/foto.jpg');
   scene.text('"A few more things to fill out your profile. Did you want to have a model name or a pseudonym? Or would you prefer to use your real name?"');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterModelName2(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1357,7 +1327,6 @@ function enterModelName2(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Use your real name', handler: (st: GameState) => {
     ((st as any).model = (st as any).model ?? {})['firstname'] = ((st as any).pcs_firstname ?? 0);
@@ -1381,10 +1350,8 @@ function enterModelName3(s: GameState, scene: SceneBuilder): void {
   ((s as any).model = (s as any).model ?? {})['nickname'] = window.prompt("What is the shortened version or nickname of your model persona?") ?? '';
   ((s as any).model = (s as any).model ?? {})['lastname'] = window.prompt("What is the last name of your model persona?") ?? '';
   scene.img('images/locations/city/citycenter/photo/foto.jpg');
-  // TODO-QSP: dynamic text: "<<$model[''firstname'']>>…" he mutters, slowly typing. "<<$model[''lastname'']>...
   scene.text(`"${(((s as any).model ?? 0)?.['firstname'] ?? '')}…" he mutters, slowly typing. "${(((s as any).model ?? 0)?.['lastname'] ?? '')}… Okay, there. Is this correct?"`);
   scene.text('He turns the screen around so you can see what he wrote.');
-  // TODO-QSP: dynamic text: <i><<$model[''firstname'']>> "<<$model[''nickname'']>>" <<$model[''lastname'']>>...
   scene.text(`<i>${(((s as any).model ?? 0)?.['firstname'] ?? '')} "${(((s as any).model ?? 0)?.['nickname'] ?? '')}" ${(((s as any).model ?? 0)?.['lastname'] ?? '')}</i>`);
   if (((s as any).modelfoto ?? 0)?.['change_name'] === 0) {
     scene.actions([
@@ -1408,7 +1375,6 @@ function enterModelName3(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Incorrect', goto: ['foto', 'model_name3'] },
   ]);
@@ -1417,7 +1383,6 @@ function enterModelName3(s: GameState, scene: SceneBuilder): void {
 
 function enterModelProfile(s: GameState, scene: SceneBuilder): void {
   scene.text('"We\'ll also need some additional details, so our readers can learn a little about you. Doesn\'t have to be true," ');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     ((st as any).model = (st as any).model ?? {})['likes1'] = window.prompt("Write one thing you like. <br>Examples: reading, rainy days, sleeping") ?? '';
@@ -1447,7 +1412,6 @@ function enterGavePassport(s: GameState, scene: SceneBuilder): void {
     ((s as any).model = (s as any).model ?? {})['age'] = ((s as any).age ?? 0);
   }
   ((s as any).model = (s as any).model ?? {})['start_year'] = ((s as any).year ?? 0);
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the studio', handler: (st: GameState) => {
     qspCall(st, 'outfit', '');
@@ -1464,33 +1428,33 @@ function enterWanderingModels(s: GameState, scene: SceneBuilder): void {
     if (((s as any).anastasia ?? 0)?.['busy_cooldown_day'] !== ((s as any).daystart ?? 0)  ||  ((s as any).anastasia ?? 0)?.['busy_cooldown'] <= ((s as any).hour ?? 0)) {
       if (((s as any).anastasia ?? 0)?.['status'] > 0) {
         if (((s as any).anastasia_in ?? 0) === 1) {
-          scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027model_anastasia/u0027, /u0027anastasia1/u0027); return false;">Anastasia</a>');
+          scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027model_anastasia\u0027, \u0027anastasia1\u0027); return false;">Anastasia</a>');
         }
       } else {
         if (((s as any).anastasia_in ?? 0) === 1) {
-          scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027model_anastasia/u0027, /u0027anastasia1/u0027); return false;">unknown model</a>');
+          scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027model_anastasia\u0027, \u0027anastasia1\u0027); return false;">unknown model</a>');
         }
       }
     }
     if (((s as any).emily ?? 0)?.['busy_cooldown_day'] !== ((s as any).daystart ?? 0)  ||  ((s as any).emily ?? 0)?.['busy_cooldown'] <= ((s as any).hour ?? 0)) {
       if (((s as any).emily ?? 0)?.['status'] >= 2) {
         if (((s as any).emily_in ?? 0) === 1) {
-          scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027model_emily1/u0027, /u0027emily_1/u0027); return false;">Emily</a>');
+          scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027model_emily1\u0027, \u0027emily_1\u0027); return false;">Emily</a>');
         }
       } else {
         if (((s as any).emily_in ?? 0) === 1) {
-          scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027model_emily1/u0027, /u0027emily_1/u0027); return false;">unknown model</a>');
+          scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027model_emily1\u0027, \u0027emily_1\u0027); return false;">unknown model</a>');
         }
       }
     }
     if (((s as any).jeff ?? 0)?.['busy_cooldown_day'] !== ((s as any).daystart ?? 0)  ||  ((s as any).jeff ?? 0)?.['busy_cooldown'] <= ((s as any).hour ?? 0)) {
       if (((s as any).jeff ?? 0)?.['status'] > 0) {
         if (((s as any).jeff_in ?? 0) === 1) {
-          scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027model_jeff1/u0027, /u0027jeff_1/u0027); return false;">Jeff</a>');
+          scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027model_jeff1\u0027, \u0027jeff_1\u0027); return false;">Jeff</a>');
         }
       } else {
         if (((s as any).jeff_in ?? 0) === 1) {
-          scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027model_jeff1/u0027, /u0027jeff_1/u0027); return false;">unknown model</a>');
+          scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027model_jeff1\u0027, \u0027jeff_1\u0027); return false;">unknown model</a>');
         }
       }
     }
@@ -1500,32 +1464,31 @@ function enterWanderingModels(s: GameState, scene: SceneBuilder): void {
     if (((s as any).krystal ?? 0)?.['busy_cooldown_day'] !== ((s as any).daystart ?? 0)  ||  ((s as any).krystal ?? 0)?.['busy_cooldown'] <= ((s as any).hour ?? 0)) {
       if (((s as any).krystal ?? 0)?.['status'] > 0) {
         if (((s as any).krystal_in ?? 0) === 1) {
-          scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027model_krystal/u0027, /u0027krystal1/u0027); return false;">Krystal</a>');
+          scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027model_krystal\u0027, \u0027krystal1\u0027); return false;">Krystal</a>');
         }
       } else {
         if (((s as any).krystal_in ?? 0) === 1) {
-          scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027model_krystal/u0027, /u0027krystal1/u0027); return false;">unknown model</a>');
+          scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027model_krystal\u0027, \u0027krystal1\u0027); return false;">unknown model</a>');
         }
       }
     }
     if ((((s as any).mari ?? 0)?.['busy_cooldown_day'] !== ((s as any).daystart ?? 0)  ||  ((s as any).mari ?? 0)?.['busy_cooldown'] <= ((s as any).hour ?? 0))  &&  ((s as any).mari ?? 0)?.['weekend_gone'] < ((s as any).daystart ?? 0)) {
       if (((s as any).mari ?? 0)?.['status'] > 0) {
         if (((s as any).mari_in ?? 0) === 1) {
-          scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027model_mari/u0027, /u0027mari_1/u0027); return false;">Mari</a>');
+          scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027model_mari\u0027, \u0027mari_1\u0027); return false;">Mari</a>');
         }
       } else {
         if (((s as any).mari_in ?? 0) === 1) {
-          scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027model_mari/u0027, /u0027mari_1/u0027); return false;">unknown model</a>');
+          scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027model_mari\u0027, \u0027mari_1\u0027); return false;">unknown model</a>');
         }
       }
     }
     if (((s as any).locat ?? 0)?.['A144'] === 11) {
-      scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027foto_models2/u0027, /u0027anushka_1/u0027); return false;">Anushka</a>');
+      scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027foto_models2\u0027, \u0027anushka_1\u0027); return false;">Anushka</a>');
     }
   } else {
     scene.text('The studio is fairly empty. Most of the other models have gone home for the night.');
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1543,8 +1506,7 @@ function enterMicrocameraAsk(s: GameState, scene: SceneBuilder): void {
       (st as any).artemIzdev = 3;
     }
     if (qspFunc(s, 'money', 'can_afford', 70000) === 0) {
-      // TODO-QSP: dynamic text: 'You do not have the ' + $func('money', 'string_price', 70000) + ' required.'
-      scene.text('You do not have the 70000₽ required.');
+      scene.text('\'You do not have the 70000₽ required.\'');
     } else {
       scene.text('"Oh, looks like you have enough money."');
       scene.actions([
@@ -1567,7 +1529,6 @@ function enterMicrocameraAsk(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1577,7 +1538,6 @@ function enterBlackm(s: GameState, scene: SceneBuilder): void {
     scene.text('An unfamiliar man appears and tells you he is Victor. "I pay good money to new actresses when I introduce them to the industry. So you have to work to repay your debt to me."');
     scene.actions([
       { label: 'What do you want?', handler: (st: GameState) => {
-    // TODO-QSP: dynamic text: "Nothing special <<$model[''nickname'']>>. Just do what you appear to enjoy." he...
     scene.text(`"Nothing special ${(((st as any).model ?? 0)?.['nickname'] ?? '')}. Just do what you appear to enjoy." he nods at the pictures.`);
     scene.actions([
       { label: 'Getting fucked in public?', handler: (st: GameState) => {
@@ -1615,7 +1575,6 @@ function enterBlackm(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Begin to cry', handler: (st: GameState) => {
     scene.text('You lie on the bed weeping.');
-    // TODO-QSP: dynamic text: "Not bad, tears always look cool." says Victor having finally finished filming y...
     scene.text(`"Not bad, tears always look cool." says Victor having finally finished filming you and with the camcorder by his side. "You should clean yourself up ${(((st as any).model ?? 0)?.['nickname'] ?? '')}, the boys really enjoyed themselves."`);
     scene.actions([
       { label: 'To the shower', handler: (st: GameState) => {
@@ -1701,7 +1660,6 @@ function enterBlackm(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1712,7 +1670,6 @@ function enterUnderwear(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'panties', 'wear', (((s as any).lastwornpantytype ?? 0)?.['foto']), (((s as any).lastwornpantynumber ?? 0)?.['foto']));
     qspCall(s, 'bras', 'wear', (((s as any).lastwornbratype ?? 0)?.['foto']), (((s as any).lastwornbranumber ?? 0)?.['foto']));
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1748,7 +1705,6 @@ function enterCikl(s: GameState, scene: SceneBuilder): void {
     (s as any).model_job_week = 0;
     qspCall(s, 'jobs', 'resume_job', 'city_aphrodite_model');
   }
-  // TODO-QSP: end
   scene.build();
 }
 

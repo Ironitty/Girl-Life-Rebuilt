@@ -11,8 +11,9 @@ function enterLeave(s: GameState, scene: SceneBuilder): void {
       return;
     }
   }
+  (s as any).temp_changingroomVars = undefined;
+  (s as any).locclass = undefined;
   dynamicGoto(s, 'prevLoc', 'prevArg');
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -23,7 +24,6 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   ((s as any).temp_changingroomVars = (s as any).temp_changingroomVars ?? {})['ignore_inhib'] = Math.min(Math.max(0, ((s as any).locArgs?.[0] ?? 0)), 2);
   ((s as any).temp_changingroomVars = (s as any).temp_changingroomVars ?? {})['leave_naked'] = ((s as any).locArgs?.[1] ?? 0);
   qspGoto(s, 'changingroom', 'view_swim_list');
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -51,82 +51,67 @@ function enterViewSwimList(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'shoes', 'wear', (((s as any).lastwornshoetype ?? 0)?.['swim']), (((s as any).lastwornshoenumber ?? 0)?.['swim']));
   }
   ((s as any).temp_changingroomVars = (s as any).temp_changingroomVars ?? {})['i'] = 1;
-  // TODO-QSP: :loopdanilovich_swimsuit
-  if (((s as any).danilovich_swimsuit ?? 0)[((s as any).temp_changingroomVars ?? 0)?.['i']] === 1  &&  ((s as any).danilovich_swimsuit_s ?? 0)[((s as any).temp_changingroomVars ?? 0)?.['i']] === 0  &&  (((s as any).clothingworntype ?? 0) !== 'danilovich_swimsuit'  ||  ((s as any).clothingwornnumber ?? 0) !== ((s as any).i ?? 0))) {
-    scene.img(`images/pc/items/danilovich/swimwear/${(((s as any).temp_changingroomVars ?? 0)?.['i'] ?? '')}.jpg`);
-  }
-  ((s as any).temp_changingroomVars = (s as any).temp_changingroomVars ?? {})['i'] = ((s as any).temp_changingroomVars['i'] ?? 0) + (1);
-  if (((s as any).temp_changingroomVars ?? 0)?.['i'] <= Object.keys((s as any).danilovich_swimsuit ?? {}).length) {
-    // TODO-QSP: jump 'loopdanilovich_swimsuit'
-  }
-  ((s as any).temp_changingroomVars = (s as any).temp_changingroomVars ?? {})['i'] = 1;
-  // TODO-QSP: :loopscandalicious_swimsuit
-  if (((s as any).scandalicious_swimsuit ?? 0)[((s as any).temp_changingroomVars ?? 0)?.['i']] === 1  &&  ((s as any).scandalicious_swimsuit_s ?? 0)[((s as any).temp_changingroomVars ?? 0)?.['i']] === 0  &&  (((s as any).clothingworntype ?? 0) !== 'scandalicious_swimsuit'  ||  ((s as any).clothingwornnumber ?? 0) !== ((s as any).i ?? 0))) {
-    scene.img(`images/pc/items/scandalicious/swim/one/${(((s as any).temp_changingroomVars ?? 0)?.['i'] ?? '')}.jpg`);
-  }
-  ((s as any).temp_changingroomVars = (s as any).temp_changingroomVars ?? {})['i'] = ((s as any).temp_changingroomVars['i'] ?? 0) + (1);
-  if (((s as any).temp_changingroomVars ?? 0)?.['i'] <= Object.keys((s as any).scandalicious_swimsuit ?? {}).length) {
-    // TODO-QSP: jump 'loopscandalicious_swimsuit'
-  }
-  ((s as any).temp_changingroomVars = (s as any).temp_changingroomVars ?? {})['i'] = 1;
-  // TODO-QSP: :loopscandalicious_bikinis
-  if (((s as any).scandalicious_bikinis ?? 0)[((s as any).temp_changingroomVars ?? 0)?.['i']] === 1  &&  ((s as any).scandalicious_bikinis_s ?? 0)[((s as any).temp_changingroomVars ?? 0)?.['i']] === 0  &&  (((s as any).clothingworntype ?? 0) !== 'scandalicious_bikinis'  ||  ((s as any).clothingwornnumber ?? 0) !== ((s as any).i ?? 0))) {
-    scene.img(`images/pc/items/scandalicious/swim/two/${(((s as any).temp_changingroomVars ?? 0)?.['i'] ?? '')}.jpg`);
-  }
-  ((s as any).temp_changingroomVars = (s as any).temp_changingroomVars ?? {})['i'] = ((s as any).temp_changingroomVars['i'] ?? 0) + (1);
-  if (((s as any).temp_changingroomVars ?? 0)?.['i'] <= Object.keys((s as any).scandalicious_bikinis ?? {}).length) {
-    // TODO-QSP: jump 'loopscandalicious_bikinis'
-  }
-  ((s as any).temp_changingroomVars = (s as any).temp_changingroomVars ?? {})['i'] = 1;
-  // TODO-QSP: :loopallure_swimsuit
-  if (((s as any).allure_swimsuit ?? 0)[((s as any).temp_changingroomVars ?? 0)?.['i']] === 1  &&  ((s as any).allure_swimsuit_s ?? 0)[((s as any).temp_changingroomVars ?? 0)?.['i']] === 0  &&  (((s as any).clothingworntype ?? 0) !== 'allure_swimsuit'  ||  ((s as any).clothingwornnumber ?? 0) !== ((s as any).i ?? 0))) {
-    scene.img(`images/pc/items/allure/one/${(((s as any).temp_changingroomVars ?? 0)?.['i'] ?? '')}.jpg`);
-  }
-  ((s as any).temp_changingroomVars = (s as any).temp_changingroomVars ?? {})['i'] = ((s as any).temp_changingroomVars['i'] ?? 0) + (1);
-  if (((s as any).temp_changingroomVars ?? 0)?.['i'] <= Object.keys((s as any).allure_swimsuit ?? {}).length) {
-    // TODO-QSP: jump 'loopallure_swimsuit'
-  }
-  ((s as any).temp_changingroomVars = (s as any).temp_changingroomVars ?? {})['i'] = 1;
-  // TODO-QSP: :loopallure_bikinis
-  if (((s as any).allure_bikinis ?? 0)[((s as any).temp_changingroomVars ?? 0)?.['i']] === 1  &&  ((s as any).allure_bikinis_s ?? 0)[((s as any).temp_changingroomVars ?? 0)?.['i']] === 0  &&  (((s as any).clothingworntype ?? 0) !== 'allure_bikinis'  ||  ((s as any).clothingwornnumber ?? 0) !== ((s as any).i ?? 0))) {
-    scene.img(`images/pc/items/allure/two/${(((s as any).temp_changingroomVars ?? 0)?.['i'] ?? '')}.jpg`);
-  }
-  ((s as any).temp_changingroomVars = (s as any).temp_changingroomVars ?? {})['i'] = ((s as any).temp_changingroomVars['i'] ?? 0) + (1);
-  if (((s as any).temp_changingroomVars ?? 0)?.['i'] <= Object.keys((s as any).allure_bikinis ?? {}).length) {
-    // TODO-QSP: jump 'loopallure_bikinis'
-  }
-  ((s as any).temp_changingroomVars = (s as any).temp_changingroomVars ?? {})['i'] = 1;
-  // TODO-QSP: :loopnerdvana_swimsuit
-  if (((s as any).nerdvana_swimsuit ?? 0)[((s as any).temp_changingroomVars ?? 0)?.['i']] === 1  &&  ((s as any).nerdvana_swimsuit_s ?? 0)[((s as any).temp_changingroomVars ?? 0)?.['i']] === 0  &&  (((s as any).clothingworntype ?? 0) !== 'nerdvana_swimsuit'  ||  ((s as any).clothingwornnumber ?? 0) !== ((s as any).i ?? 0))) {
-    scene.img(`images/pc/items/nerdvana/swim/one/${(((s as any).temp_changingroomVars ?? 0)?.['i'] ?? '')}.jpg`);
-  }
-  ((s as any).temp_changingroomVars = (s as any).temp_changingroomVars ?? {})['i'] = ((s as any).temp_changingroomVars['i'] ?? 0) + (1);
-  if (((s as any).temp_changingroomVars ?? 0)?.['i'] <= Object.keys((s as any).nerdvana_swimsuit ?? {}).length) {
-    // TODO-QSP: jump 'loopnerdvana_swimsuit'
-  }
-  ((s as any).temp_changingroomVars = (s as any).temp_changingroomVars ?? {})['i'] = 1;
-  // TODO-QSP: :loopnerdvana_bikinis
-  if (((s as any).nerdvana_bikinis ?? 0)[((s as any).temp_changingroomVars ?? 0)?.['i']] === 1  &&  ((s as any).nerdvana_bikinis_s ?? 0)[((s as any).temp_changingroomVars ?? 0)?.['i']] === 0  &&  (((s as any).clothingworntype ?? 0) !== 'nerdvana_bikinis'  ||  ((s as any).clothingwornnumber ?? 0) !== ((s as any).i ?? 0))) {
-    scene.img(`images/pc/items/nerdvana/swim/two/${(((s as any).temp_changingroomVars ?? 0)?.['i'] ?? '')}.jpg`);
-  }
-  ((s as any).temp_changingroomVars = (s as any).temp_changingroomVars ?? {})['i'] = ((s as any).temp_changingroomVars['i'] ?? 0) + (1);
-  if (((s as any).temp_changingroomVars ?? 0)?.['i'] <= Object.keys((s as any).nerdvana_bikinis ?? {}).length) {
-    // TODO-QSP: jump 'loopnerdvana_bikinis'
-  }
-  if (((String(((s as any).clothingworntype ?? 0)).indexOf(String('swimsuit'))) + 1)) {
-    scene.text('<center>You are wearing a swimsuit.</center>');
-  } else {
-    if (((String(((s as any).clothingworntype ?? 0)).indexOf(String('bikini'))) + 1)) {
-      scene.text('<center>You are wearing a bikini.</center>');
+  do {
+    if (((s as any).danilovich_swimsuit ?? 0)[((s as any).temp_changingroomVars ?? 0)?.['i']] === 1  &&  ((s as any).danilovich_swimsuit_s ?? 0)[((s as any).temp_changingroomVars ?? 0)?.['i']] === 0  &&  (((s as any).clothingworntype ?? 0) !== 'danilovich_swimsuit'  ||  ((s as any).clothingwornnumber ?? 0) !== ((s as any).i ?? 0))) {
+      scene.img(`images/pc/items/danilovich/swimwear/${(((s as any).temp_changingroomVars ?? 0)?.['i'] ?? '')}.jpg`);
     }
-  }
-  // TODO-QSP: end
+    ((s as any).temp_changingroomVars = (s as any).temp_changingroomVars ?? {})['i'] = ((s as any).temp_changingroomVars['i'] ?? 0) + (1);
+    ((s as any).temp_changingroomVars = (s as any).temp_changingroomVars ?? {})['i'] = 1;
+    do {
+      if (((s as any).scandalicious_swimsuit ?? 0)[((s as any).temp_changingroomVars ?? 0)?.['i']] === 1  &&  ((s as any).scandalicious_swimsuit_s ?? 0)[((s as any).temp_changingroomVars ?? 0)?.['i']] === 0  &&  (((s as any).clothingworntype ?? 0) !== 'scandalicious_swimsuit'  ||  ((s as any).clothingwornnumber ?? 0) !== ((s as any).i ?? 0))) {
+        scene.img(`images/pc/items/scandalicious/swim/one/${(((s as any).temp_changingroomVars ?? 0)?.['i'] ?? '')}.jpg`);
+      }
+      ((s as any).temp_changingroomVars = (s as any).temp_changingroomVars ?? {})['i'] = ((s as any).temp_changingroomVars['i'] ?? 0) + (1);
+      ((s as any).temp_changingroomVars = (s as any).temp_changingroomVars ?? {})['i'] = 1;
+      do {
+        if (((s as any).scandalicious_bikinis ?? 0)[((s as any).temp_changingroomVars ?? 0)?.['i']] === 1  &&  ((s as any).scandalicious_bikinis_s ?? 0)[((s as any).temp_changingroomVars ?? 0)?.['i']] === 0  &&  (((s as any).clothingworntype ?? 0) !== 'scandalicious_bikinis'  ||  ((s as any).clothingwornnumber ?? 0) !== ((s as any).i ?? 0))) {
+          scene.img(`images/pc/items/scandalicious/swim/two/${(((s as any).temp_changingroomVars ?? 0)?.['i'] ?? '')}.jpg`);
+        }
+        ((s as any).temp_changingroomVars = (s as any).temp_changingroomVars ?? {})['i'] = ((s as any).temp_changingroomVars['i'] ?? 0) + (1);
+        ((s as any).temp_changingroomVars = (s as any).temp_changingroomVars ?? {})['i'] = 1;
+        do {
+          if (((s as any).allure_swimsuit ?? 0)[((s as any).temp_changingroomVars ?? 0)?.['i']] === 1  &&  ((s as any).allure_swimsuit_s ?? 0)[((s as any).temp_changingroomVars ?? 0)?.['i']] === 0  &&  (((s as any).clothingworntype ?? 0) !== 'allure_swimsuit'  ||  ((s as any).clothingwornnumber ?? 0) !== ((s as any).i ?? 0))) {
+            scene.img(`images/pc/items/allure/one/${(((s as any).temp_changingroomVars ?? 0)?.['i'] ?? '')}.jpg`);
+          }
+          ((s as any).temp_changingroomVars = (s as any).temp_changingroomVars ?? {})['i'] = ((s as any).temp_changingroomVars['i'] ?? 0) + (1);
+          ((s as any).temp_changingroomVars = (s as any).temp_changingroomVars ?? {})['i'] = 1;
+          do {
+            if (((s as any).allure_bikinis ?? 0)[((s as any).temp_changingroomVars ?? 0)?.['i']] === 1  &&  ((s as any).allure_bikinis_s ?? 0)[((s as any).temp_changingroomVars ?? 0)?.['i']] === 0  &&  (((s as any).clothingworntype ?? 0) !== 'allure_bikinis'  ||  ((s as any).clothingwornnumber ?? 0) !== ((s as any).i ?? 0))) {
+              scene.img(`images/pc/items/allure/two/${(((s as any).temp_changingroomVars ?? 0)?.['i'] ?? '')}.jpg`);
+            }
+            ((s as any).temp_changingroomVars = (s as any).temp_changingroomVars ?? {})['i'] = ((s as any).temp_changingroomVars['i'] ?? 0) + (1);
+            ((s as any).temp_changingroomVars = (s as any).temp_changingroomVars ?? {})['i'] = 1;
+            do {
+              if (((s as any).nerdvana_swimsuit ?? 0)[((s as any).temp_changingroomVars ?? 0)?.['i']] === 1  &&  ((s as any).nerdvana_swimsuit_s ?? 0)[((s as any).temp_changingroomVars ?? 0)?.['i']] === 0  &&  (((s as any).clothingworntype ?? 0) !== 'nerdvana_swimsuit'  ||  ((s as any).clothingwornnumber ?? 0) !== ((s as any).i ?? 0))) {
+                scene.img(`images/pc/items/nerdvana/swim/one/${(((s as any).temp_changingroomVars ?? 0)?.['i'] ?? '')}.jpg`);
+              }
+              ((s as any).temp_changingroomVars = (s as any).temp_changingroomVars ?? {})['i'] = ((s as any).temp_changingroomVars['i'] ?? 0) + (1);
+              ((s as any).temp_changingroomVars = (s as any).temp_changingroomVars ?? {})['i'] = 1;
+              do {
+                if (((s as any).nerdvana_bikinis ?? 0)[((s as any).temp_changingroomVars ?? 0)?.['i']] === 1  &&  ((s as any).nerdvana_bikinis_s ?? 0)[((s as any).temp_changingroomVars ?? 0)?.['i']] === 0  &&  (((s as any).clothingworntype ?? 0) !== 'nerdvana_bikinis'  ||  ((s as any).clothingwornnumber ?? 0) !== ((s as any).i ?? 0))) {
+                  scene.img(`images/pc/items/nerdvana/swim/two/${(((s as any).temp_changingroomVars ?? 0)?.['i'] ?? '')}.jpg`);
+                }
+                ((s as any).temp_changingroomVars = (s as any).temp_changingroomVars ?? {})['i'] = ((s as any).temp_changingroomVars['i'] ?? 0) + (1);
+                if (((String(((s as any).clothingworntype ?? 0)).indexOf(String('swimsuit'))) + 1)) {
+                  scene.text('<center>You are wearing a swimsuit.</center>');
+                } else {
+                  if (((String(((s as any).clothingworntype ?? 0)).indexOf(String('bikini'))) + 1)) {
+                    scene.text('<center>You are wearing a bikini.</center>');
+                  }
+                }
+              } while (((s as any).temp_changingroomVars ?? 0)?.['i'] <= Object.keys((s as any).nerdvana_bikinis ?? {}).length);
+            } while (((s as any).temp_changingroomVars ?? 0)?.['i'] <= Object.keys((s as any).nerdvana_swimsuit ?? {}).length);
+          } while (((s as any).temp_changingroomVars ?? 0)?.['i'] <= Object.keys((s as any).allure_bikinis ?? {}).length);
+        } while (((s as any).temp_changingroomVars ?? 0)?.['i'] <= Object.keys((s as any).allure_swimsuit ?? {}).length);
+      } while (((s as any).temp_changingroomVars ?? 0)?.['i'] <= Object.keys((s as any).scandalicious_bikinis ?? {}).length);
+    } while (((s as any).temp_changingroomVars ?? 0)?.['i'] <= Object.keys((s as any).scandalicious_swimsuit ?? {}).length);
+  } while (((s as any).temp_changingroomVars ?? 0)?.['i'] <= Object.keys((s as any).danilovich_swimsuit ?? {}).length);
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     qspCall(st, 'changingroom', '');
   } },
     { label: 'Choose an outfit', handler: (st: GameState) => {
-    // TODO-QSP: killvar 'locclass'
+    (st as any).locclass = undefined;
   }, goto: ['wardrobe', 'main'] },
   ]);
   scene.build();
@@ -135,7 +120,6 @@ function enterViewSwimList(s: GameState, scene: SceneBuilder): void {
 function enterViewSwimItem(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'clothing_attributes', '$ARGS[1]', ((s as any).locArgs?.[2] ?? 0));
   scene.img(`${qspFunc(s, '$clothing_image', '', ((s as any).locArgs?.[1] ?? ''), ((s as any).locArgs?.[2] ?? ''))}`);
-  // TODO-QSP: dynamic text: <<$ARGS[1]>> no.<<ARGS[2]>>
   scene.text(`${((s as any).locArgs?.[1] ?? '')} no.${((s as any).locArgs?.[2] ?? '')}`);
   ((s as any).temp_changingroomVars = (s as any).temp_changingroomVars ?? {})['strength'] = ((s as any).CloStrength ?? 0);
   if (((s as any).temp_changingroomVars ?? 0)?.['strength'] <= 0) {
@@ -199,7 +183,6 @@ function enterViewSwimItem(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     dynamicGoto(st, 'menu_loc', 'menu_arg');
@@ -212,82 +195,67 @@ function enterCountSwimItem(s: GameState, scene: SceneBuilder): void {
   (s as any).result = 0;
   if (String((s as any).locArgs?.[1] ?? '') === 'danilovich_swimsuit'  ||  String((s as any).locArgs?.[1] ?? '') === '') {
     ((s as any).temp_changingroomVars = (s as any).temp_changingroomVars ?? {})['i'] = 1;
-    // TODO-QSP: :loopcount_danilovich_swimsuit
-    if (((s as any).danilovich_swimsuit ?? 0)[((s as any).temp_changingroomVars ?? 0)?.['i']] === 1  &&  ((s as any).danilovich_swimsuit_s ?? 0)[((s as any).temp_changingroomVars ?? 0)?.['i']] === 0) {
-      (s as any).result = ((s as any).result ?? 0) + (1);
-    }
-    ((s as any).temp_changingroomVars = (s as any).temp_changingroomVars ?? {})['i'] = ((s as any).temp_changingroomVars['i'] ?? 0) + (1);
-    if (((s as any).temp_changingroomVars ?? 0)?.['i'] <= Object.keys((s as any).danilovich_swimsuit ?? {}).length) {
-      // TODO-QSP: jump 'loopcount_danilovich_swimsuit'
-    }
+    do {
+      if (((s as any).danilovich_swimsuit ?? 0)[((s as any).temp_changingroomVars ?? 0)?.['i']] === 1  &&  ((s as any).danilovich_swimsuit_s ?? 0)[((s as any).temp_changingroomVars ?? 0)?.['i']] === 0) {
+        (s as any).result = ((s as any).result ?? 0) + (1);
+      }
+      ((s as any).temp_changingroomVars = (s as any).temp_changingroomVars ?? {})['i'] = ((s as any).temp_changingroomVars['i'] ?? 0) + (1);
+    } while (((s as any).temp_changingroomVars ?? 0)?.['i'] <= Object.keys((s as any).danilovich_swimsuit ?? {}).length);
   }
   if (String((s as any).locArgs?.[1] ?? '') === 'scandalicious_swimsuit'  ||  String((s as any).locArgs?.[1] ?? '') === '') {
     ((s as any).temp_changingroomVars = (s as any).temp_changingroomVars ?? {})['i'] = 1;
-    // TODO-QSP: :loopcount_scandalicious_swimsuit
-    if (((s as any).scandalicious_swimsuit ?? 0)[((s as any).temp_changingroomVars ?? 0)?.['i']] === 1  &&  ((s as any).scandalicious_swimsuit_s ?? 0)[((s as any).temp_changingroomVars ?? 0)?.['i']] === 0) {
-      (s as any).result = ((s as any).result ?? 0) + (1);
-    }
-    ((s as any).temp_changingroomVars = (s as any).temp_changingroomVars ?? {})['i'] = ((s as any).temp_changingroomVars['i'] ?? 0) + (1);
-    if (((s as any).temp_changingroomVars ?? 0)?.['i'] <= Object.keys((s as any).scandalicious_swimsuit ?? {}).length) {
-      // TODO-QSP: jump 'loopcount_scandalicious_swimsuit'
-    }
+    do {
+      if (((s as any).scandalicious_swimsuit ?? 0)[((s as any).temp_changingroomVars ?? 0)?.['i']] === 1  &&  ((s as any).scandalicious_swimsuit_s ?? 0)[((s as any).temp_changingroomVars ?? 0)?.['i']] === 0) {
+        (s as any).result = ((s as any).result ?? 0) + (1);
+      }
+      ((s as any).temp_changingroomVars = (s as any).temp_changingroomVars ?? {})['i'] = ((s as any).temp_changingroomVars['i'] ?? 0) + (1);
+    } while (((s as any).temp_changingroomVars ?? 0)?.['i'] <= Object.keys((s as any).scandalicious_swimsuit ?? {}).length);
   }
   if (String((s as any).locArgs?.[1] ?? '') === 'scandalicious_bikinis'  ||  String((s as any).locArgs?.[1] ?? '') === '') {
     ((s as any).temp_changingroomVars = (s as any).temp_changingroomVars ?? {})['i'] = 1;
-    // TODO-QSP: :loopcount_scandalicious_bikinis
-    if (((s as any).scandalicious_bikinis ?? 0)[((s as any).temp_changingroomVars ?? 0)?.['i']] === 1  &&  ((s as any).scandalicious_bikinis_s ?? 0)[((s as any).temp_changingroomVars ?? 0)?.['i']] === 0) {
-      (s as any).result = ((s as any).result ?? 0) + (1);
-    }
-    ((s as any).temp_changingroomVars = (s as any).temp_changingroomVars ?? {})['i'] = ((s as any).temp_changingroomVars['i'] ?? 0) + (1);
-    if (((s as any).temp_changingroomVars ?? 0)?.['i'] <= Object.keys((s as any).scandalicious_bikinis ?? {}).length) {
-      // TODO-QSP: jump 'loopcount_scandalicious_bikinis'
-    }
+    do {
+      if (((s as any).scandalicious_bikinis ?? 0)[((s as any).temp_changingroomVars ?? 0)?.['i']] === 1  &&  ((s as any).scandalicious_bikinis_s ?? 0)[((s as any).temp_changingroomVars ?? 0)?.['i']] === 0) {
+        (s as any).result = ((s as any).result ?? 0) + (1);
+      }
+      ((s as any).temp_changingroomVars = (s as any).temp_changingroomVars ?? {})['i'] = ((s as any).temp_changingroomVars['i'] ?? 0) + (1);
+    } while (((s as any).temp_changingroomVars ?? 0)?.['i'] <= Object.keys((s as any).scandalicious_bikinis ?? {}).length);
   }
   if (String((s as any).locArgs?.[1] ?? '') === 'allure_swimsuit'  ||  String((s as any).locArgs?.[1] ?? '') === '') {
     ((s as any).temp_changingroomVars = (s as any).temp_changingroomVars ?? {})['i'] = 1;
-    // TODO-QSP: :loopcount_allure_swimsuit
-    if (((s as any).allure_swimsuit ?? 0)[((s as any).temp_changingroomVars ?? 0)?.['i']] === 1  &&  ((s as any).allure_swimsuit_s ?? 0)[((s as any).temp_changingroomVars ?? 0)?.['i']] === 0) {
-      (s as any).result = ((s as any).result ?? 0) + (1);
-    }
-    ((s as any).temp_changingroomVars = (s as any).temp_changingroomVars ?? {})['i'] = ((s as any).temp_changingroomVars['i'] ?? 0) + (1);
-    if (((s as any).temp_changingroomVars ?? 0)?.['i'] <= Object.keys((s as any).allure_swimsuit ?? {}).length) {
-      // TODO-QSP: jump 'loopcount_allure_swimsuit'
-    }
+    do {
+      if (((s as any).allure_swimsuit ?? 0)[((s as any).temp_changingroomVars ?? 0)?.['i']] === 1  &&  ((s as any).allure_swimsuit_s ?? 0)[((s as any).temp_changingroomVars ?? 0)?.['i']] === 0) {
+        (s as any).result = ((s as any).result ?? 0) + (1);
+      }
+      ((s as any).temp_changingroomVars = (s as any).temp_changingroomVars ?? {})['i'] = ((s as any).temp_changingroomVars['i'] ?? 0) + (1);
+    } while (((s as any).temp_changingroomVars ?? 0)?.['i'] <= Object.keys((s as any).allure_swimsuit ?? {}).length);
   }
   if (String((s as any).locArgs?.[1] ?? '') === 'allure_bikinis'  ||  String((s as any).locArgs?.[1] ?? '') === '') {
     ((s as any).temp_changingroomVars = (s as any).temp_changingroomVars ?? {})['i'] = 1;
-    // TODO-QSP: :loopcount_allure_bikinis
-    if (((s as any).allure_bikinis ?? 0)[((s as any).temp_changingroomVars ?? 0)?.['i']] === 1  &&  ((s as any).allure_bikinis_s ?? 0)[((s as any).temp_changingroomVars ?? 0)?.['i']] === 0) {
-      (s as any).result = ((s as any).result ?? 0) + (1);
-    }
-    ((s as any).temp_changingroomVars = (s as any).temp_changingroomVars ?? {})['i'] = ((s as any).temp_changingroomVars['i'] ?? 0) + (1);
-    if (((s as any).temp_changingroomVars ?? 0)?.['i'] <= Object.keys((s as any).allure_bikinis ?? {}).length) {
-      // TODO-QSP: jump 'loopcount_allure_bikinis'
-    }
+    do {
+      if (((s as any).allure_bikinis ?? 0)[((s as any).temp_changingroomVars ?? 0)?.['i']] === 1  &&  ((s as any).allure_bikinis_s ?? 0)[((s as any).temp_changingroomVars ?? 0)?.['i']] === 0) {
+        (s as any).result = ((s as any).result ?? 0) + (1);
+      }
+      ((s as any).temp_changingroomVars = (s as any).temp_changingroomVars ?? {})['i'] = ((s as any).temp_changingroomVars['i'] ?? 0) + (1);
+    } while (((s as any).temp_changingroomVars ?? 0)?.['i'] <= Object.keys((s as any).allure_bikinis ?? {}).length);
   }
   if (String((s as any).locArgs?.[1] ?? '') === 'nerdvana_swimsuit'  ||  String((s as any).locArgs?.[1] ?? '') === '') {
     ((s as any).temp_changingroomVars = (s as any).temp_changingroomVars ?? {})['i'] = 1;
-    // TODO-QSP: :loopcount_nerdvana_swimsuit
-    if (((s as any).nerdvana_swimsuit ?? 0)[((s as any).temp_changingroomVars ?? 0)?.['i']] === 1  &&  ((s as any).nerdvana_swimsuit_s ?? 0)[((s as any).temp_changingroomVars ?? 0)?.['i']] === 0) {
-      (s as any).result = ((s as any).result ?? 0) + (1);
-    }
-    ((s as any).temp_changingroomVars = (s as any).temp_changingroomVars ?? {})['i'] = ((s as any).temp_changingroomVars['i'] ?? 0) + (1);
-    if (((s as any).temp_changingroomVars ?? 0)?.['i'] <= Object.keys((s as any).nerdvana_swimsuit ?? {}).length) {
-      // TODO-QSP: jump 'loopcount_nerdvana_swimsuit'
-    }
+    do {
+      if (((s as any).nerdvana_swimsuit ?? 0)[((s as any).temp_changingroomVars ?? 0)?.['i']] === 1  &&  ((s as any).nerdvana_swimsuit_s ?? 0)[((s as any).temp_changingroomVars ?? 0)?.['i']] === 0) {
+        (s as any).result = ((s as any).result ?? 0) + (1);
+      }
+      ((s as any).temp_changingroomVars = (s as any).temp_changingroomVars ?? {})['i'] = ((s as any).temp_changingroomVars['i'] ?? 0) + (1);
+    } while (((s as any).temp_changingroomVars ?? 0)?.['i'] <= Object.keys((s as any).nerdvana_swimsuit ?? {}).length);
   }
   if (String((s as any).locArgs?.[1] ?? '') === 'nerdvana_bikinis'  ||  String((s as any).locArgs?.[1] ?? '') === '') {
     ((s as any).temp_changingroomVars = (s as any).temp_changingroomVars ?? {})['i'] = 1;
-    // TODO-QSP: :loopcount_nerdvana_bikinis
-    if (((s as any).nerdvana_bikinis ?? 0)[((s as any).temp_changingroomVars ?? 0)?.['i']] === 1  &&  ((s as any).nerdvana_bikinis_s ?? 0)[((s as any).temp_changingroomVars ?? 0)?.['i']] === 0) {
-      (s as any).result = ((s as any).result ?? 0) + (1);
-    }
-    ((s as any).temp_changingroomVars = (s as any).temp_changingroomVars ?? {})['i'] = ((s as any).temp_changingroomVars['i'] ?? 0) + (1);
-    if (((s as any).temp_changingroomVars ?? 0)?.['i'] <= Object.keys((s as any).nerdvana_bikinis ?? {}).length) {
-      // TODO-QSP: jump 'loopcount_nerdvana_bikinis'
-    }
+    do {
+      if (((s as any).nerdvana_bikinis ?? 0)[((s as any).temp_changingroomVars ?? 0)?.['i']] === 1  &&  ((s as any).nerdvana_bikinis_s ?? 0)[((s as any).temp_changingroomVars ?? 0)?.['i']] === 0) {
+        (s as any).result = ((s as any).result ?? 0) + (1);
+      }
+      ((s as any).temp_changingroomVars = (s as any).temp_changingroomVars ?? {})['i'] = ((s as any).temp_changingroomVars['i'] ?? 0) + (1);
+    } while (((s as any).temp_changingroomVars ?? 0)?.['i'] <= Object.keys((s as any).nerdvana_bikinis ?? {}).length);
   }
-  // TODO-QSP: end
   scene.build();
 }
 

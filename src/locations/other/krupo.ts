@@ -23,9 +23,11 @@ function enter(s: GameState, scene: SceneBuilder): void {
       (s as any).minut = ((s as any).minut ?? 0) + 60;
       qspCall(s, 'exp_gain', 'sewng', (Math.floor(Math.random() * (((s as any).pcs_intel ?? 0)/10 - ((s as any).pcs_intel ?? 0)/20 + 1)) + (((s as any).pcs_intel ?? 0)/20)));
       scene.text('She has some spare fabric for you as it\'s the first time you need some, but she tells you to bring some next time.');
+      alert('The teacher tells you that you will need to bring in fabric for further studies, you can buy some in the hardware department at the supermarket.');
       (s as any).tkanfirst = 1;
     } else {
       if (((s as any).mc_inventory ?? 0)?.['sewing_fabric'] <= 0) {
+        alert('The teacher reminds you, that in order to further improve your skills, you need to buy some fabric to work with.');
         scene.text('You can\'t do your lesson without fabric so there is nothing you can do here now.');
       } else {
         (s as any).minut = ((s as any).minut ?? 0) + 60;
@@ -42,10 +44,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: dynamic text: Your sewing skill is now <<pcs_sewng>>.
   scene.text(`Your sewing skill is now ${((s as any).pcs_sewng ?? '')}.`);
   if (((s as any).mc_inventory ?? 0)?.['sewing_fabric'] >= 0) {
-    // TODO-QSP: dynamic text: Your cloth will suffice for <<mc_inventory[''sewing_fabric'']>> more lessons.
     scene.text(`Your cloth will suffice for ${(((s as any).mc_inventory ?? 0)?.['sewing_fabric'] ?? '')} more lessons.`);
   }
   qspCall(s, 'stat', '');

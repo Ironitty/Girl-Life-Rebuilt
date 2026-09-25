@@ -19,7 +19,6 @@ function enterResetAll(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterResetSchool(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterResetSex(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -55,7 +54,6 @@ function enterResetTraits(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'traits', 'cheat', 'pain_tolerance', (-99));
   ((s as any).trait_vars = (s as any).trait_vars ?? {})['nerd_learn_home'] = 0;
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -83,7 +81,6 @@ function enterResetBody(s: GameState, scene: SceneBuilder): void {
   (s as any).pcs_vag = 15;
   (s as any).pcs_ass = 0;
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -113,6 +110,7 @@ function enterResetInventory(s: GameState, scene: SceneBuilder): void {
   ((s as any).license = (s as any).license ?? {})['drive'] = 0;
   ((s as any).license = (s as any).license ?? {})['secretary'] = 0;
   ((s as any).license = (s as any).license ?? {})['masseuse'] = 0;
+  (s as any).mc_inventory = undefined;
   ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['shampoo'] = 10;
   (s as any).internet = 0;
   (s as any).bag = 0;
@@ -129,13 +127,12 @@ function enterResetInventory(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'purses', 'wear', 'gm', 7);
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterResetFame(s: GameState, scene: SceneBuilder): void {
+  (s as any).fame = undefined;
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -148,20 +145,20 @@ function enterResetOther(s: GameState, scene: SceneBuilder): void {
   (s as any).gsAboBeg = 0;
   (s as any).church_moral = 0;
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterResetSex(s: GameState, scene: SceneBuilder): void {
+  (s as any).stat = undefined;
   (s as any).guy = 0;
   (s as any).orgasm = 0;
+  (s as any).virgin_stats = undefined;
   (s as any).motherKnowSpravka = 0;
   (s as any).motherKnowWhore = 0;
   (s as any).sisterknowslut = 0;
   ((s as any).brotherQW = (s as any).brotherQW ?? {})['know_slut'] = 0;
   (s as any).GspravkaT = 0;
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -239,21 +236,27 @@ function enterResetSkills(s: GameState, scene: SceneBuilder): void {
     (s as any).pcs_comphckng = ((s as any).pcs_comphckng ?? 0) + (10);
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterResetRelationships(s: GameState, scene: SceneBuilder): void {
+  (s as any).grupTipe = undefined;
+  (s as any).grupvalue = undefined;
+  (s as any).kotovLoveQW = undefined;
+  (s as any).vitekvisit = undefined;
+  (s as any).AlbinaQW = undefined;
   qspCall(s, 'npc_relationship', 'default');
   qspCall(s, 'npc_relationship', 'default_family_friends');
   qspCall(s, 'npc_relationship', 'set', 'A18', 1);
   qspCall(s, 'array', 'remove_element', 'npc_vaginal_count', 'A9');
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterResetSchool(s: GameState, scene: SceneBuilder): void {
+  (s as any).class_list_institution = undefined;
+  (s as any).class_list_name = undefined;
+  (s as any).class = undefined;
   qspCall(s, 'grades', 'createclass', 'school', 'math', 3, 2, 'yes', 'yes', 0, 0);
   qspCall(s, 'grades', 'createclass', 'school', 'rus', 3, 2, 'yes', 'yes', 0, 0);
   qspCall(s, 'grades', 'createclass', 'school', 'lit', 2, 2, 'yes', 'yes', 0, 0);
@@ -281,7 +284,6 @@ function enterResetSchool(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'grades', 'grade_award', 'school', 'mus', 55);
   qspCall(s, 'grades', 'grade_award', 'school', 'pe', 55);
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -294,7 +296,6 @@ function enterSetUniTeacherCourse(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'grades', 'grade_award', 'uni_teaching_studies_semester_1', 'teaching methods 101', 35);
   qspCall(s, 'grades', 'grade_award', 'uni_teaching_studies_semester_1', 'learning theories 101', 35);
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -307,7 +308,6 @@ function enterSetUniNursingCourse(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'grades', 'grade_award', 'uni_nursing_semester_1', 'anatomy and physiology 101', 35);
   qspCall(s, 'grades', 'grade_award', 'uni_nursing_semester_1', 'examination and treatment 101', 35);
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -324,7 +324,6 @@ function enterSetDefault(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 

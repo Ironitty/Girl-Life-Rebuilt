@@ -42,7 +42,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).nichTanyAct ?? 0) === 'bathMorning') {
-    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichTanya/u0027, /u0027bathroom/u0027); return false;">Tanya</a> is currently in here using the shower.');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027nichTanya\u0027, \u0027bathroom\u0027); return false;">Tanya</a> is currently in here using the shower.');
     (s as any).nichCleanAppropriate = 0;
   } else {
     if (((s as any).nichTanyAct ?? 0) === 'bathEvening') {
@@ -62,7 +62,6 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'nichChore', 'inspect', 'masterbath');
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the master bedroom', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -114,7 +113,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).nichTanyAct ?? 0) === 'bathMorning') {
-    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichTanya/u0027, /u0027bathroom/u0027); return false;">Tanya</a> is currently in here using the shower.');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027nichTanya\u0027, \u0027bathroom\u0027); return false;">Tanya</a> is currently in here using the shower.');
     (s as any).nichCleanAppropriate = 0;
   } else {
     if (((s as any).nichTanyAct ?? 0) === 'bathEvening') {
@@ -134,7 +133,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'nichChore', 'inspect', 'masterbath');
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the master bedroom', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -186,7 +184,7 @@ function enterReturn(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).nichTanyAct ?? 0) === 'bathMorning') {
-    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichTanya/u0027, /u0027bathroom/u0027); return false;">Tanya</a> is currently in here using the shower.');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027nichTanya\u0027, \u0027bathroom\u0027); return false;">Tanya</a> is currently in here using the shower.');
     (s as any).nichCleanAppropriate = 0;
   } else {
     if (((s as any).nichTanyAct ?? 0) === 'bathEvening') {
@@ -206,7 +204,6 @@ function enterReturn(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'nichChore', 'inspect', 'masterbath');
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the master bedroom', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;

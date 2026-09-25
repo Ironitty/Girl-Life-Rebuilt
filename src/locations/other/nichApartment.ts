@@ -9,21 +9,22 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     qspGoto(s, 'nichApartment', 'visitTanya');
   }
   (s as any).location_type = 'private';
+  (s as any).locclass = undefined;
   qspCall(s, 'stat', '');
   scene.text('<center><b>Nicholas\' Apartment</b></center>');
   scene.img('images/locations/city/citycenter/nichApartment/hallway.jpg');
   scene.text('You are standing in a luxurious and spacious city center home.');
-  (s as any).nickFamDesc = 'It belongs to <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichNicholas/u0027, /u0027desc/u0027); return false;">Nicholas</a>, who is also the head of home.';
+  (s as any).nickFamDesc = 'It belongs to <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027nichNicholas\u0027, \u0027desc\u0027); return false;">Nicholas</a>, who is also the head of home.';
   if ((!((s as any).nichGalaDisabled ?? 0))) {
-    // TODO-QSP: $nickFamDesc += ' He lives here with his wife <a href="exec: gt ''nichGala'', ''desc''">Gala</a>.'
+    (s as any).nickFamDesc = ((s as any).nickFamDesc ?? '') + ' He lives here with his wife <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027nichGala\u0027, \u0027desc\u0027); return false;">Gala</a>.';
   }
-  // TODO-QSP: $nickFamDesc += ' <a href="exec: gt ''nichTanya'', ''desc''">Tanya</a> is the daughter of Gala and s...
-  // TODO-QSP: $nickFamDesc
+  (s as any).nickFamDesc = ((s as any).nickFamDesc ?? 0) + (' <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027nichTanya\u0027, \u0027desc\u0027); return false;">Tanya</a> is the daughter of Gala and step-daughter of Nicholas. She also lives here.');
+  s.scene = { ...s.scene, mainText: String((s as any).nickFamDesc || ''), curActs: [] };
+  (s as any).nickFamDesc = undefined;
   if (((s as any).nichWork ?? 0) === 2) {
     scene.text('You work here as a live-in maid.');
     if (((s as any).nichNote ?? 0) === 1) {
       scene.text('<font color = red><b>You see a note hanging at the door to your room:</b></font>');
-      // TODO-QSP: dynamic text: "<<$pcs_nickname>>, you missed work. This is unacceptable. Take your stuff and l...
       scene.text(`"${((s as any).pcs_nickname ?? '')}, you missed work. This is unacceptable. Take your stuff and leave. You are fired. -Nicholas"`);
       scene.text('You see all your belongings standing in front of the door prepared for your departure.');
       scene.actions([
@@ -35,13 +36,11 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).nichNote ?? 0) === 2) {
         scene.text('<font color = red><b>You see a note hanging at the door to your room:</b></font>');
-        // TODO-QSP: dynamic text: "<<$pcs_nickname>>, you missed work. This is unacceptable. I expect this not to ...
         scene.text(`"${((s as any).pcs_nickname ?? '')}, you missed work. This is unacceptable. I expect this not to happen again. -Nicholas"`);
-        scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichApartment/u0027, /u0027removeNote/u0027); return false;">Remove note</a>');
+        scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027nichApartment\u0027, \u0027removeNote\u0027); return false;">Remove note</a>');
       } else {
         if (((s as any).nichNote ?? 0) === 11) {
           scene.text('<font color = red><b>You see a note hanging at the door to your room:</b></font>');
-          // TODO-QSP: dynamic text: "<<$pcs_nickname>>, you missed your last mandatory evaluation. This is unaccepta...
           scene.text(`"${((s as any).pcs_nickname ?? '')}, you missed your last mandatory evaluation. This is unacceptable. Take your stuff and leave. You are fired. -Nicholas"`);
           scene.text('You see all your belongings standing in front of the door prepared for your departure.');
           scene.actions([
@@ -53,9 +52,8 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
         } else {
           if (((s as any).nichNote ?? 0) === 12) {
             scene.text('<font color = red><b>You see a note hanging at the door to your room:</b></font>');
-            // TODO-QSP: dynamic text: "<<$pcs_nickname>>, you missed your last mandatory evaluation. This is unaccepta...
             scene.text(`"${((s as any).pcs_nickname ?? '')}, you missed your last mandatory evaluation. This is unacceptable. I expect this not to happen again. -Nicholas"`);
-            scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichApartment/u0027, /u0027removeNote/u0027); return false;">Remove note</a>');
+            scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027nichApartment\u0027, \u0027removeNote\u0027); return false;">Remove note</a>');
           }
         }
       }
@@ -70,7 +68,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   (s as any).nichNichAct = qspFunc(s, 'nichUtil', 'npcActivity', 'nicholas');
   (s as any).nichTanyAct = qspFunc(s, 'nichUtil', 'npcActivity', 'tanya');
   if (((s as any).nichNichAct ?? 0) === 'leaveWork') {
-    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichNicholas/u0027, /u0027start/u0027); return false;">Nicholas</a> is wearing an expensive suit and is about to leave for work.');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027nichNicholas\u0027, \u0027start\u0027); return false;">Nicholas</a> is wearing an expensive suit and is about to leave for work.');
   } else {
     if (((s as any).nichNichAct ?? 0) === 'returnWork') {
       scene.text('Nicholas is wearing one of his expensive suits. Apparently he just returned from work.');
@@ -152,6 +150,8 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  (s as any).nichNichAct = undefined;
+  (s as any).nichGalaAct = undefined;
   if (((s as any).nichWork ?? 0) === 2) {
     scene.actions([
       { label: '<b>Go to your bedroom</b>', handler: (st: GameState) => {
@@ -189,13 +189,13 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: '<b>Leave and go to the city center</b>', handler: (st: GameState) => {
     if (((st as any).clothingworntype ?? 0) !== 'nude') {
       (st as any).minut = ((st as any).minut ?? 0) + 5;
       qspGoto(st, 'city_center', '');
     } else {
+      alert('<b><font color = red>You can\'t walk around the city like that! You need to get dressed first.</font></b>');
       dynamicGoto(st, 'curloc');
     }
   } },
@@ -228,21 +228,22 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     qspGoto(s, 'nichApartment', 'visitTanya');
   }
   (s as any).location_type = 'private';
+  (s as any).locclass = undefined;
   qspCall(s, 'stat', '');
   scene.text('<center><b>Nicholas\' Apartment</b></center>');
   scene.img('images/locations/city/citycenter/nichApartment/hallway.jpg');
   scene.text('You are standing in a luxurious and spacious city center home.');
-  (s as any).nickFamDesc = 'It belongs to <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichNicholas/u0027, /u0027desc/u0027); return false;">Nicholas</a>, who is also the head of home.';
+  (s as any).nickFamDesc = 'It belongs to <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027nichNicholas\u0027, \u0027desc\u0027); return false;">Nicholas</a>, who is also the head of home.';
   if ((!((s as any).nichGalaDisabled ?? 0))) {
-    // TODO-QSP: $nickFamDesc += ' He lives here with his wife <a href="exec: gt ''nichGala'', ''desc''">Gala</a>.'
+    (s as any).nickFamDesc = ((s as any).nickFamDesc ?? '') + ' He lives here with his wife <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027nichGala\u0027, \u0027desc\u0027); return false;">Gala</a>.';
   }
-  // TODO-QSP: $nickFamDesc += ' <a href="exec: gt ''nichTanya'', ''desc''">Tanya</a> is the daughter of Gala and s...
-  // TODO-QSP: $nickFamDesc
+  (s as any).nickFamDesc = ((s as any).nickFamDesc ?? 0) + (' <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027nichTanya\u0027, \u0027desc\u0027); return false;">Tanya</a> is the daughter of Gala and step-daughter of Nicholas. She also lives here.');
+  s.scene = { ...s.scene, mainText: String((s as any).nickFamDesc || ''), curActs: [] };
+  (s as any).nickFamDesc = undefined;
   if (((s as any).nichWork ?? 0) === 2) {
     scene.text('You work here as a live-in maid.');
     if (((s as any).nichNote ?? 0) === 1) {
       scene.text('<font color = red><b>You see a note hanging at the door to your room:</b></font>');
-      // TODO-QSP: dynamic text: "<<$pcs_nickname>>, you missed work. This is unacceptable. Take your stuff and l...
       scene.text(`"${((s as any).pcs_nickname ?? '')}, you missed work. This is unacceptable. Take your stuff and leave. You are fired. -Nicholas"`);
       scene.text('You see all your belongings standing in front of the door prepared for your departure.');
       scene.actions([
@@ -254,13 +255,11 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).nichNote ?? 0) === 2) {
         scene.text('<font color = red><b>You see a note hanging at the door to your room:</b></font>');
-        // TODO-QSP: dynamic text: "<<$pcs_nickname>>, you missed work. This is unacceptable. I expect this not to ...
         scene.text(`"${((s as any).pcs_nickname ?? '')}, you missed work. This is unacceptable. I expect this not to happen again. -Nicholas"`);
-        scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichApartment/u0027, /u0027removeNote/u0027); return false;">Remove note</a>');
+        scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027nichApartment\u0027, \u0027removeNote\u0027); return false;">Remove note</a>');
       } else {
         if (((s as any).nichNote ?? 0) === 11) {
           scene.text('<font color = red><b>You see a note hanging at the door to your room:</b></font>');
-          // TODO-QSP: dynamic text: "<<$pcs_nickname>>, you missed your last mandatory evaluation. This is unaccepta...
           scene.text(`"${((s as any).pcs_nickname ?? '')}, you missed your last mandatory evaluation. This is unacceptable. Take your stuff and leave. You are fired. -Nicholas"`);
           scene.text('You see all your belongings standing in front of the door prepared for your departure.');
           scene.actions([
@@ -272,9 +271,8 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
         } else {
           if (((s as any).nichNote ?? 0) === 12) {
             scene.text('<font color = red><b>You see a note hanging at the door to your room:</b></font>');
-            // TODO-QSP: dynamic text: "<<$pcs_nickname>>, you missed your last mandatory evaluation. This is unaccepta...
             scene.text(`"${((s as any).pcs_nickname ?? '')}, you missed your last mandatory evaluation. This is unacceptable. I expect this not to happen again. -Nicholas"`);
-            scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichApartment/u0027, /u0027removeNote/u0027); return false;">Remove note</a>');
+            scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027nichApartment\u0027, \u0027removeNote\u0027); return false;">Remove note</a>');
           }
         }
       }
@@ -289,7 +287,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   (s as any).nichNichAct = qspFunc(s, 'nichUtil', 'npcActivity', 'nicholas');
   (s as any).nichTanyAct = qspFunc(s, 'nichUtil', 'npcActivity', 'tanya');
   if (((s as any).nichNichAct ?? 0) === 'leaveWork') {
-    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichNicholas/u0027, /u0027start/u0027); return false;">Nicholas</a> is wearing an expensive suit and is about to leave for work.');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027nichNicholas\u0027, \u0027start\u0027); return false;">Nicholas</a> is wearing an expensive suit and is about to leave for work.');
   } else {
     if (((s as any).nichNichAct ?? 0) === 'returnWork') {
       scene.text('Nicholas is wearing one of his expensive suits. Apparently he just returned from work.');
@@ -371,6 +369,8 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  (s as any).nichNichAct = undefined;
+  (s as any).nichGalaAct = undefined;
   if (((s as any).nichWork ?? 0) === 2) {
     scene.actions([
       { label: '<b>Go to your bedroom</b>', handler: (st: GameState) => {
@@ -408,13 +408,13 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: '<b>Leave and go to the city center</b>', handler: (st: GameState) => {
     if (((st as any).clothingworntype ?? 0) !== 'nude') {
       (st as any).minut = ((st as any).minut ?? 0) + 5;
       qspGoto(st, 'city_center', '');
     } else {
+      alert('<b><font color = red>You can\'t walk around the city like that! You need to get dressed first.</font></b>');
       dynamicGoto(st, 'curloc');
     }
   } },
@@ -447,21 +447,22 @@ function enterReturn(s: GameState, scene: SceneBuilder): void {
     qspGoto(s, 'nichApartment', 'visitTanya');
   }
   (s as any).location_type = 'private';
+  (s as any).locclass = undefined;
   qspCall(s, 'stat', '');
   scene.text('<center><b>Nicholas\' Apartment</b></center>');
   scene.img('images/locations/city/citycenter/nichApartment/hallway.jpg');
   scene.text('You are standing in a luxurious and spacious city center home.');
-  (s as any).nickFamDesc = 'It belongs to <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichNicholas/u0027, /u0027desc/u0027); return false;">Nicholas</a>, who is also the head of home.';
+  (s as any).nickFamDesc = 'It belongs to <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027nichNicholas\u0027, \u0027desc\u0027); return false;">Nicholas</a>, who is also the head of home.';
   if ((!((s as any).nichGalaDisabled ?? 0))) {
-    // TODO-QSP: $nickFamDesc += ' He lives here with his wife <a href="exec: gt ''nichGala'', ''desc''">Gala</a>.'
+    (s as any).nickFamDesc = ((s as any).nickFamDesc ?? '') + ' He lives here with his wife <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027nichGala\u0027, \u0027desc\u0027); return false;">Gala</a>.';
   }
-  // TODO-QSP: $nickFamDesc += ' <a href="exec: gt ''nichTanya'', ''desc''">Tanya</a> is the daughter of Gala and s...
-  // TODO-QSP: $nickFamDesc
+  (s as any).nickFamDesc = ((s as any).nickFamDesc ?? 0) + (' <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027nichTanya\u0027, \u0027desc\u0027); return false;">Tanya</a> is the daughter of Gala and step-daughter of Nicholas. She also lives here.');
+  s.scene = { ...s.scene, mainText: String((s as any).nickFamDesc || ''), curActs: [] };
+  (s as any).nickFamDesc = undefined;
   if (((s as any).nichWork ?? 0) === 2) {
     scene.text('You work here as a live-in maid.');
     if (((s as any).nichNote ?? 0) === 1) {
       scene.text('<font color = red><b>You see a note hanging at the door to your room:</b></font>');
-      // TODO-QSP: dynamic text: "<<$pcs_nickname>>, you missed work. This is unacceptable. Take your stuff and l...
       scene.text(`"${((s as any).pcs_nickname ?? '')}, you missed work. This is unacceptable. Take your stuff and leave. You are fired. -Nicholas"`);
       scene.text('You see all your belongings standing in front of the door prepared for your departure.');
       scene.actions([
@@ -473,13 +474,11 @@ function enterReturn(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).nichNote ?? 0) === 2) {
         scene.text('<font color = red><b>You see a note hanging at the door to your room:</b></font>');
-        // TODO-QSP: dynamic text: "<<$pcs_nickname>>, you missed work. This is unacceptable. I expect this not to ...
         scene.text(`"${((s as any).pcs_nickname ?? '')}, you missed work. This is unacceptable. I expect this not to happen again. -Nicholas"`);
-        scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichApartment/u0027, /u0027removeNote/u0027); return false;">Remove note</a>');
+        scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027nichApartment\u0027, \u0027removeNote\u0027); return false;">Remove note</a>');
       } else {
         if (((s as any).nichNote ?? 0) === 11) {
           scene.text('<font color = red><b>You see a note hanging at the door to your room:</b></font>');
-          // TODO-QSP: dynamic text: "<<$pcs_nickname>>, you missed your last mandatory evaluation. This is unaccepta...
           scene.text(`"${((s as any).pcs_nickname ?? '')}, you missed your last mandatory evaluation. This is unacceptable. Take your stuff and leave. You are fired. -Nicholas"`);
           scene.text('You see all your belongings standing in front of the door prepared for your departure.');
           scene.actions([
@@ -491,9 +490,8 @@ function enterReturn(s: GameState, scene: SceneBuilder): void {
         } else {
           if (((s as any).nichNote ?? 0) === 12) {
             scene.text('<font color = red><b>You see a note hanging at the door to your room:</b></font>');
-            // TODO-QSP: dynamic text: "<<$pcs_nickname>>, you missed your last mandatory evaluation. This is unaccepta...
             scene.text(`"${((s as any).pcs_nickname ?? '')}, you missed your last mandatory evaluation. This is unacceptable. I expect this not to happen again. -Nicholas"`);
-            scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichApartment/u0027, /u0027removeNote/u0027); return false;">Remove note</a>');
+            scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027nichApartment\u0027, \u0027removeNote\u0027); return false;">Remove note</a>');
           }
         }
       }
@@ -508,7 +506,7 @@ function enterReturn(s: GameState, scene: SceneBuilder): void {
   (s as any).nichNichAct = qspFunc(s, 'nichUtil', 'npcActivity', 'nicholas');
   (s as any).nichTanyAct = qspFunc(s, 'nichUtil', 'npcActivity', 'tanya');
   if (((s as any).nichNichAct ?? 0) === 'leaveWork') {
-    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichNicholas/u0027, /u0027start/u0027); return false;">Nicholas</a> is wearing an expensive suit and is about to leave for work.');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027nichNicholas\u0027, \u0027start\u0027); return false;">Nicholas</a> is wearing an expensive suit and is about to leave for work.');
   } else {
     if (((s as any).nichNichAct ?? 0) === 'returnWork') {
       scene.text('Nicholas is wearing one of his expensive suits. Apparently he just returned from work.');
@@ -590,6 +588,8 @@ function enterReturn(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  (s as any).nichNichAct = undefined;
+  (s as any).nichGalaAct = undefined;
   if (((s as any).nichWork ?? 0) === 2) {
     scene.actions([
       { label: '<b>Go to your bedroom</b>', handler: (st: GameState) => {
@@ -627,13 +627,13 @@ function enterReturn(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: '<b>Leave and go to the city center</b>', handler: (st: GameState) => {
     if (((st as any).clothingworntype ?? 0) !== 'nude') {
       (st as any).minut = ((st as any).minut ?? 0) + 5;
       qspGoto(st, 'city_center', '');
     } else {
+      alert('<b><font color = red>You can\'t walk around the city like that! You need to get dressed first.</font></b>');
       dynamicGoto(st, 'curloc');
     }
   } },
@@ -687,7 +687,6 @@ function enterJobInterview(s: GameState, scene: SceneBuilder): void {
       scene.text('"Hello. My name is Tanya. You are here for the maid-job I guess? Just follow me to the living room. My parents are waiting for you."');
     } else {
       scene.text('In front of you stands a cute girl smiling at you. It is Tanya!');
-      // TODO-QSP: dynamic text: "<<$pcs_nickname>>? You are the girl applying as a maid? Why didn''t you tell me...
       scene.text(`"${((st as any).pcs_nickname ?? '')}? You are the girl applying as a maid? Why didn't you tell me that you are interested in a maid-job? Anyways, follow me. My parents want to meet you."`);
     }
     scene.actions([
@@ -696,7 +695,6 @@ function enterJobInterview(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -710,11 +708,9 @@ function enterHiring(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/city/nicholas/01.jpg');
   scene.text('Tanya leads you into the living room. Nicholas, her step-father, and her mother Gala are already sitting there.');
   if (((s as any).nichHireMode ?? 0) === 1) {
-    // TODO-QSP: dynamic text: "This is <<$pcs_nickname>>." Tanya says before sitting down next to her mother. ...
     scene.text(`"This is ${((s as any).pcs_nickname ?? '')}." Tanya says before sitting down next to her mother. You have the feeling that you are expected to keep standing.`);
   } else {
     if (((s as any).nichHireMode ?? 0) === 2) {
-      // TODO-QSP: dynamic text: "This is <<$pcs_nickname>>, the girl I told you about." Tanya says before sittin...
       scene.text(`"This is ${((s as any).pcs_nickname ?? '')}, the girl I told you about." Tanya says before sitting down next to her mother. You have the feeling that you are expected to keep standing.`);
     }
   }
@@ -734,13 +730,11 @@ function enterHiring(s: GameState, scene: SceneBuilder): void {
     (s as any).nichGalaOpinion = 1;
     if (((s as any).nichHireMode ?? 0) === 1) {
       scene.text('Gala look at your uniform disparagingly. "Nicholas, what did you say you wanted the new maid to wear? This girl looks like a hooker."');
-      // TODO-QSP: dynamic text: "The rule is to wear a maid uniform. If <<$pcs_nickname>> is comfortable showing...
       scene.text(`"The rule is to wear a maid uniform. If ${((s as any).pcs_nickname ?? '')} is comfortable showing her skin we won't judge her." Nicholas' voice is friendly but also commands authority.`);
     } else {
       if (((s as any).nichHireMode ?? 0) === 2) {
         scene.text('Gala look at your uniform disparagingly. "Tanya, what did you tell this girl we would hire her as? Did you tell her to dress like a hooker?"');
         scene.text('Tanya squirms a little and her head turns red "Of course not…"');
-        // TODO-QSP: dynamic text: Nicholas raises his hand. The gesture is subtle. Nevertheless it immediately sil...
         scene.text(`Nicholas raises his hand. The gesture is subtle. Nevertheless it immediately silences both women. "The rule is to wear a maid uniform. If ${((s as any).pcs_nickname ?? '')} is comfortable showing her skin we won't judge her." Nicholas' voice is friendly but also commands authority.`);
       }
     }
@@ -788,14 +782,13 @@ function enterHiring(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_hairbsh ?? 0) < 1) {
     (s as any).nichImperfections = ((s as any).nichImperfections ?? 0) + (1);
     scene.text('Of course, he cannot miss the fact that your hair is tangled and uncombed. He almost imperceptibly shakes his head at you.');
-    // TODO-QSP: dynamic text: "<<$pcs_nickname>>, I expect from my maids what I expect from all of my employee...
     scene.text(`"${((s as any).pcs_nickname ?? '')}, I expect from my maids what I expect from all of my employees, and what they can expect of me: An immaculate appearance that commands respect, for you, for me, for my company, for my family. If you want to work for us you will start taking care of your hair."`);
   }
   if ((!((s as any).nichImperfections ?? 0))) {
     scene.text('Unable to find anything to criticize, he gives you an approving nod.');
-    // TODO-QSP: dynamic text: "The uniform suits you, <<$pcs_nickname>>, and it seems you know how to take car...
     scene.text(`"The uniform suits you, ${((s as any).pcs_nickname ?? '')}, and it seems you know how to take care of your appearance. Good."`);
   }
+  (s as any).nichImperfections = undefined;
   if (((s as any).nichHireMode ?? 0) === 1) {
     scene.text('He sits back down and takes a look at your referral. Then he looks at the two women sitting next to him. Both of them shrug.');
   } else {
@@ -808,15 +801,12 @@ function enterHiring(s: GameState, scene: SceneBuilder): void {
   scene.text('2. Your job is to clean the apartment, to buy groceries and to prepare breakfast. Sometimes we will have special requests which you are also required to follow.');
   scene.text('3. You have your own bedroom and a personal bathroom. Every other room is your working place only and you will always act and be treated as a maid there.');
   scene.text('4. You will work from Thursday to Tuesday. Once your probation is over Wednesday will be your free day.');
-  // TODO-QSP: dynamic text: 5. Your payment is <<$func(''money'', ''string_profit'', 10000)>> each month. I ...
   scene.text(`5. Your payment is ${qspFunc(s, 'money', 'string_profit', 10000)} each month. I will transfer the money to your bank account at the first day of each month.`);
   if (((s as any).day ?? 0) > 24) {
-    // TODO-QSP: dynamic text: Since only a few days of this month remain your first salary will be <<$func(''m...
     scene.text(`Since only a few days of this month remain your first salary will be ${qspFunc(s, 'money', 'string_profit', 2500)}.`);
     (s as any).nichSalaryNext = 2500;
   } else {
     if (((s as any).day ?? 0) > 15) {
-      // TODO-QSP: dynamic text: Since you start in the middle of the month your first salary will be <<$func(''m...
       scene.text(`Since you start in the middle of the month your first salary will be ${qspFunc(s, 'money', 'string_profit', 5000)}.`);
       (s as any).nichSalaryNext = 5000;
     } else {
@@ -826,18 +816,15 @@ function enterHiring(s: GameState, scene: SceneBuilder): void {
   scene.text('6. You will call me Master Nicholas, my wife is Mistress Gala and from now on Tanya is Miss Tanya to you. You will also curtsy when you approach one of us.');
   scene.text('7. Starting tomorrow you are on probation. You will do all your chores during the day and report to me in the evening. If you do everything to my satisfaction for three days I will formally employ you.');
   scene.text('Do you accept these conditions?"');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Yes', handler: (st: GameState) => {
     qspCall(st, 'nichUtil', 'hired');
     scene.text('"I do, Master Nicholas."');
     scene.text('"Good. Your work will start tomorrow. You are dismissed for the evening. Tanya will show you your room."');
     if (((st as any).nichHireMode ?? 0) === 1) {
-      // TODO-QSP: dynamic text: Tanya stands up. She looks not too excited. "Of course. Follow me, <<$pcs_nickna...
       scene.text(`Tanya stands up. She looks not too excited. "Of course. Follow me, ${((st as any).pcs_nickname ?? '')}!"`);
     } else {
       if (((st as any).nichHireMode ?? 0) === 2) {
-        // TODO-QSP: dynamic text: Tanya jumps up. She looks excited. "Of course. Follow me, <<$pcs_nickname>>!"
         scene.text(`Tanya jumps up. She looks excited. "Of course. Follow me, ${((st as any).pcs_nickname ?? '')}!"`);
       }
     }
@@ -850,12 +837,14 @@ function enterHiring(s: GameState, scene: SceneBuilder): void {
     scene.text('She leads you to your new room.');
     scene.text('It has a small double bed, a wardrobe, a desk and enough free space for doing exercises. A door leads to your personal bathroom.');
     if (((st as any).nichHireMode ?? 0) === 1) {
+      (st as any).nichHireMode = undefined;
       scene.text('After showing you around your tiny new home she leaves you.');
       scene.actions([
         { label: 'Continue', goto: ['nichBedroomServant', ''] },
       ]);
     } else {
       if (((st as any).nichHireMode ?? 0) === 2) {
+        (st as any).nichHireMode = undefined;
         scene.text('After showing you around your tiny new home she sits down on your bed.');
         scene.text('"Do I really have to call you Miss Tanya now, Miss Tanya?"');
         scene.text('She laughs out. "No, of course not. Only when Nicholas is around. Following the \'protocol\' is very important to him."');
@@ -907,7 +896,6 @@ function enterVisitTanya(s: GameState, scene: SceneBuilder): void {
       qspGoto(s, 'nichApartment', 'casual_visit');
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -918,11 +906,9 @@ function enterAgreedToJob(s: GameState, scene: SceneBuilder): void {
   if (((s as any).nichTanya ?? 0)?.['FuckLast'] === ((s as any).daystart ?? 0)) {
     scene.text('Now that the immediate lust is sated and you\'re both enjoying your postcoital bliss, you rest naked in each other\'s arms.');
     if ((!((s as any).PMaid ?? 0))) {
-      // TODO-QSP: dynamic text: "<<$pcs_nickname>>, I really enjoy this. But I kind of promised to my parents th...
       scene.text(`"${((s as any).pcs_nickname ?? '')}, I really enjoy this. But I kind of promised to my parents that you will apply for the maid job. I really need you to quit your current job."`);
       scene.text('You promise her to do it as soon as possible before putting your uniform back on.');
     } else {
-      // TODO-QSP: dynamic text: "<<$pcs_nickname>>, I really enjoy this. But I kind of promised to my parents th...
       scene.text(`"${((s as any).pcs_nickname ?? '')}, I really enjoy this. But I kind of promised to my parents that you will apply for the maid job. I really need you to wear a maid uniform the next time you come over."`);
       scene.text('You promise her to do so before putting your clothes back on.');
     }
@@ -931,7 +917,6 @@ function enterAgreedToJob(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     if (((s as any).PMaid ?? 0) === 1) {
-      // TODO-QSP: dynamic text: When Tanya opens the door she takes a few seconds to admire your look. "Wow, <<$...
       scene.text(`When Tanya opens the door she takes a few seconds to admire your look. "Wow, ${((s as any).pcs_nickname ?? '')}, this uniform really suits you. How does it feel?"`);
       scene.actions([
         { label: 'Great', handler: (st: GameState) => {
@@ -957,7 +942,6 @@ function enterAgreedToJob(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       if (((s as any).PMaid ?? 0)) {
-        // TODO-QSP: dynamic text: When Tanya opens the door she takes a few seconds to admire your look. "Wow, <<$...
         scene.text(`When Tanya opens the door she takes a few seconds to admire your look. "Wow, ${((s as any).pcs_nickname ?? '')}, this uniform really suits you. Are you ready to have your interview with my parents?"`);
         scene.text('"Not yet. I still have to quit my current job."');
         scene.text('Tanya looks a little bit disappointed but then she smirks at you. "Oh, I understand. You are wearing this outfit for me and not for my parents."');
@@ -968,7 +952,6 @@ function enterAgreedToJob(s: GameState, scene: SceneBuilder): void {
       } else {
         if ((((s as any).work ?? 0) === 0  ||  ((s as any).cheatVars ?? 0)?.['work'] === 0)) {
           scene.text('When Tanya opens the door she looks a little be disappointed.');
-          // TODO-QSP: dynamic text: "<<$pcs_nickname>>, I told you that you need to wear a maid uniform when you mee...
           scene.text(`"${((s as any).pcs_nickname ?? '')}, I told you that you need to wear a maid uniform when you meet my parents. Remember?"`);
           scene.text('She bites down on her lip. "But since you are here we could have some fun as well."');
           scene.text('Not giving you a chance to say a word, she leads you to her room and pushes you on her bed.');
@@ -979,14 +962,12 @@ function enterAgreedToJob(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterJobOffer(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/city/tanya/door_01.jpg');
   scene.text('Tanya opens the door for you. As you look into her eyes, they seem to be sparkling with excitement, and her entire face lights up as she smiles at you.');
-  // TODO-QSP: dynamic text: "<<$pcs_nickname>>, it''s so good you are here. I have the best idea ever! Our m...
   scene.text(`"${((s as any).pcs_nickname ?? '')}, it's so good you are here. I have the best idea ever! Our maid left us recently, and my stepfather is looking for a replacement. I could suggest <b>you</b> to him! He pays really well, and all you gotta do is tidy up a bit, but you would be able to live right here with us!"`);
   scene.text('Tanya is so giddy that you almost don\'t dare to voice your concerns: "And where do you get the idea that your stepfather would employ me? I\'ve never worked as a maid before and I\'m sure that, with his kind of money, he could get a much better one."');
   scene.text('"Believe me, if I ask him <i>nicely</i>, he will hire you", Tanya smiles lasciviously.');
@@ -1048,31 +1029,26 @@ function enterJobOffer(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterCasualVisit(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/city/tanya/door_01.jpg');
   if (((s as any).nichJobRefusedTReact ?? 0) === 1) {
-    // TODO-QSP: dynamic text: Tanya opens the door looking angrily at you. "You got some nerve showing up like...
     scene.text(`Tanya opens the door looking angrily at you. "You got some nerve showing up like nothing happened, ${((s as any).pcs_nickname ?? '')}! Do you even realize how I felt after you changed your mind about working for us in the very last second?!"`);
     scene.text('She bites down on her lip. Apparently her lust for you is bigger than her anger.');
     scene.text('"Well, since you are here you could as well come in. Maybe you find a good way to apologize."');
+    (s as any).nichJobRefusedTReact = undefined;
   } else {
     if (((s as any).nichTanya ?? 0)?.['FuckLast'] === ((s as any).daystart ?? 0) - 1) {
-      // TODO-QSP: dynamic text: Tanya opens the door and smiles warmly at you. "Hello <<$pcs_nickname>>! I didn'...
       scene.text(`Tanya opens the door and smiles warmly at you. "Hello ${((s as any).pcs_nickname ?? '')}! I didn't expect to see you so soon again."`);
     } else {
       if (((s as any).nichTanya ?? 0)?.['FuckLast'] > ((s as any).daystart ?? 0) - 8) {
-        // TODO-QSP: dynamic text: Tanya opens the door and smiles warmly at you. "Hello <<$pcs_nickname>>! I was h...
         scene.text(`Tanya opens the door and smiles warmly at you. "Hello ${((s as any).pcs_nickname ?? '')}! I was hoping you would show up today."`);
       } else {
         if (((s as any).nichTanya ?? 0)?.['FuckLast'] > ((s as any).daystart ?? 0) - 30) {
-          // TODO-QSP: dynamic text: Tanya opens the door and smiles warmly at you. "Hello <<$pcs_nickname>>! Where h...
           scene.text(`Tanya opens the door and smiles warmly at you. "Hello ${((s as any).pcs_nickname ?? '')}! Where have you been in the past weeks? I was beginning to wonder if you had forgotten me."`);
         } else {
-          // TODO-QSP: dynamic text: Tanya opens the door and smiles warmly at you. "Hello <<$pcs_nickname>>! After a...
           scene.text(`Tanya opens the door and smiles warmly at you. "Hello ${((s as any).pcs_nickname ?? '')}! After all these weeks of not hearing anything from you I was beginning to wonder if you would show up again. I'm very happy you did."`);
         }
       }
@@ -1082,7 +1058,6 @@ function enterCasualVisit(s: GameState, scene: SceneBuilder): void {
   if ((((s as any).nichTanya ?? 0)?.['DateCounter'] > 0  ||  ((s as any).nichJobRefused ?? 0) === 1)  &&  (((s as any).nichTanya ?? 0)?.['DateLast'] !== ((s as any).daystart ?? 0)  ||  ((s as any).nichDebug ?? 0) === 1)) {
     qspCall(s, 'nichTanya', 'date_proposal');
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Have sex with Tanya', goto: ['nichTanya', 'sexL'] },
     { label: 'Chat with Tanya', goto: ['nichTanya', 'chat'] },
@@ -1093,7 +1068,6 @@ function enterCasualVisit(s: GameState, scene: SceneBuilder): void {
 function enterRemoveNote(s: GameState, scene: SceneBuilder): void {
   (s as any).nichNote = 0;
   dynamicGoto(s, 'prevLoc');
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1102,20 +1076,15 @@ function enterMaidJobReHire(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Nicholas\' Apartment</b></center>');
   scene.img('images/locations/city/citycenter/nichApartment/hallway.jpg');
   scene.text('Your memory leads you to a very expensive looking apartment building you once grew accustomed to. A porter stands at the door, inspecting you while you come closer.');
-  // TODO-QSP: dynamic text: '"Hi," you greet the familiar man. "Is '+$npc_nickname['A52']+' home?"'
-  scene.text('\'"Hi," you greet the familiar man. "Is \'+$npc_nickname[\'A52\']+\' home?"\'');
-  // TODO-QSP: dynamic text: The man''s eyes light up as he reckognises you. "Hello, Miss <<$pcs_lastname>>! ...
+  scene.text('"Hi," you greet the familiar man. "Is ' + (((s as any).npc_nickname ?? 0)?.['A52'] ?? '') + ' home?"');
   scene.text(`The man's eyes light up as he reckognises you. "Hello, Miss ${((s as any).pcs_lastname ?? '')}! What brings you here?"`);
-  // TODO-QSP: dynamic text: '"I am here to see if '+$npc_nickname['A52']+' still needs a maid," you answer p...
-  scene.text('\'"I am here to see if \'+$npc_nickname[\'A52\']+\' still needs a maid," you answer politely.\'');
+  scene.text('"I am here to see if ' + (((s as any).npc_nickname ?? 0)?.['A52'] ?? '') + ' still needs a maid," you answer politely.');
   scene.text('"I see. Master Nicholas is currently in his study. I am sure he will be glad to see you," he replies as he lets you in.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Head to the study.', handler: (st: GameState) => {
     scene.img('images/characters/city/tanya/01.jpg');
     scene.text('As you enter the apartment, a happy face greets you.');
     scene.text('In front of you stands a cute girl smiling at you. It\'s Tanya!');
-    // TODO-QSP: dynamic text: "<<$pcs_nickname>>! I heard a new maid was coming, is that you? This is great! N...
     scene.text(`"${((st as any).pcs_nickname ?? '')}! I heard a new maid was coming, is that you? This is great! Nicholas is in the study, see you later!"`);
     scene.actions([
       { label: 'Get changed into the maid outfit and go to the study.', handler: (st: GameState) => {

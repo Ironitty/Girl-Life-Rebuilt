@@ -17,7 +17,6 @@ function enterProfessors(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'journal_NPC_information', 'A270');
   qspCall(s, 'journal_NPC_information', 'A271');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterLeaveactions(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go back', goto: ['journal', 'uni'] },
   ]);
@@ -56,7 +55,6 @@ function enterPavlovskUniversityStudents(s: GameState, scene: SceneBuilder): voi
   qspCall(s, 'journal_NPC_information', 'A7', 'uni');
   qspCall(s, 'journal_NPC_information', 'A159', 'uni');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterLeaveactions(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go back', goto: ['journal', 'uni'] },
   ]);
@@ -80,7 +78,6 @@ function enterUniversityStudents(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'journal_NPC_information', 'A267', 'uni');
   qspCall(s, 'journal_NPC_information', 'A268', 'uni');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterLeaveactions(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go back', goto: ['journal', 'uni'] },
   ]);
@@ -125,7 +122,6 @@ function enterFormerPavlovskStudents(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'journal_NPC_information', 'A5', 'uni');
   }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterLeaveactions(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go back', goto: ['journal', 'uni'] },
   ]);
@@ -133,9 +129,9 @@ function enterFormerPavlovskStudents(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterLeaveactions(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: end
   scene.actions([
     { label: 'Put your notebook down', handler: (st: GameState) => {
+    (st as any).jumploc = undefined;
     (st as any).jclose = 1;
     dynamicGoto(st, 'menu_loc', 'menu_arg');
   } },

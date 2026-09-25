@@ -10,7 +10,6 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'private';
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/suburb/bdsm_club/wlanding.jpg');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go downstairs to the foyer', goto: ['bdsm_hallway', 'foyer'] },
     { label: 'Visit the master bedroom', goto: ['bdsm_bedwest', 'master'] },
@@ -24,10 +23,9 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterCheckEvents(s: GameState, scene: SceneBuilder): void {
   if ((Math.floor(Math.random() * 100) + 0) < 97) {
-    // TODO-QSP: exit
+    return;
   }
   qspGoto(s, 'bdsm_landing', 'event_1');
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -36,7 +34,6 @@ function enterEvent_1(s: GameState, scene: SceneBuilder): void {
   scene.text('A maid is being helped with the vacuum cleaning by a man in casual clothing, you think about reporting him, but he\'s a bit busy right now.');
   qspCall(s, 'arousal', 'voyeur_sex', 5);
   qspCall(s, 'arousal', 'end');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return', goto: ['bdsm_landing', 'west'] },
   ]);

@@ -36,7 +36,6 @@ function enterStairwellChat(s: GameState, scene: SceneBuilder): void {
                 scene.text('Tryndin and you chat about life, computers and other things, cracking jokes and enjoying each other\'s company.');
               } else {
                 if (((s as any).tryndinQW ?? 0)?.['stairwell_chat'] >= 8) {
-                  // TODO-QSP: dynamic text: "<<$pcs_nickname>>, we''ve been chatting here many times so I hope you don''t mi...
                   scene.text(`"${((s as any).pcs_nickname ?? '')}, we've been chatting here many times so I hope you don't mind me asking but there is something that has been bugging me; where do I recognize you from? I swear I have seen you somewhere else that I can't just put my finger on."`);
                   scene.text('You smile at the question and contemplate on just what you will tell him…');
                   if (((s as any).pcs_hotcat ?? 0) >= 6  &&  ((s as any).job_status ?? 0)?.['city_aphrodite_model'] === 'employed') {
@@ -73,7 +72,6 @@ function enterStairwellChat(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -81,7 +79,6 @@ function enterTryndinmetro(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   qspCall(s, 'stat', '');
   scene.img('images/characters/shared/headshots_main/big77.jpg');
-  // TODO-QSP: dynamic text: Tryndin sees you and greets you, "Hello <<$pcs_nickname>>. How are you doing tod...
   scene.text(`Tryndin sees you and greets you, "Hello ${((s as any).pcs_nickname ?? '')}. How are you doing today?"`);
   if (((s as any).tryndinQW ?? 0)?.['stairwell_chat'] >= 1) {
     if (((s as any).cumloc ?? 0)[7] === 1  ||  ((s as any).cumloc ?? 0)[6] === 1) {
@@ -97,7 +94,6 @@ function enterTryndinmetro(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       if (((s as any).cumloc ?? 0)[11] === 1) {
-        // TODO-QSP: dynamic text: He looks at your face puzzled. "<<$pcs_nickname>>, your face is smeared with som...
         scene.text(`He looks at your face puzzled. "${((s as any).pcs_nickname ?? '')}, your face is smeared with something." He stares at you, and after a moment, he realizes that's cum on your face. "What's that? Cum?" he asks suspiciously.`);
         scene.actions([
           { label: 'Make an excuse', handler: (st: GameState) => {
@@ -113,7 +109,6 @@ function enterTryndinmetro(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Get out of the car', goto: ['metro', 'start'] },
   ]);
@@ -128,7 +123,6 @@ function enterModel(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/photos/big77.jpg');
   scene.text('"Wow, I mean… you look stunning so I shouldn\'t be surprised but yeah, I must have seen you in a magazine or something…" He says as he looks you over from head to toe.');
   scene.text('You have a short conversation after his revelation and go you\'re separate ways but perhaps you will try to get to know him a bit more as well.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Say goodbye', goto: ['city_apt_building', 'floor_4'] },
   ]);
@@ -143,7 +137,6 @@ function enterPornstar(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/photos/big77.jpg');
   scene.text('Tryndin blushes at the discovery; not just that you are a pornstar but also that there is only one source of content that he could recognize you from. "Well… maybe a friend of mine showed me your picture… yeah in fact I\'m sure of it… anyway, nice weather we\'re having?"');
   scene.text('You then politely decide to not let the awkward moment hang in the air and have a nice conversation before parting ways, all the while thinking to yourself that he was more curious then he was willing to admit.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Say goodbye', goto: ['city_apt_building', 'floor_4'] },
   ]);
@@ -159,7 +152,6 @@ function enterUniStudent(s: GameState, scene: SceneBuilder): void {
   scene.text('You think for a moment then shrug a bit. "I go to the University on the island."');
   scene.text('He snaps his fingers like he just figured something out. "That must be it, I go there as well."');
   scene.text('The two of you talk about the classes, fellow students and professors now. After a brief chat, you say your goodbyes.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Say goodbye', goto: ['city_apt_building', 'floor_4'] },
   ]);
@@ -174,7 +166,6 @@ function enterUnknown(s: GameState, scene: SceneBuilder): void {
   scene.text('You shrug a bit. "I\'m not sure who you could be mistaking me for but honestly I just live alone in the apartment"');
   scene.text('He gets thoughtful for a moment. "Maybe I just seen you around the neighborhood or something…"');
   scene.text('Which leads to the two of you talking about the various local places to shop and eat you have both found in the area. After a brief chat, you say your goodbyes.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Say goodbye', goto: ['city_apt_building', 'floor_4'] },
   ]);
@@ -269,7 +260,6 @@ function enterA77_AptInvEv_1(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Say your goodbyes', goto: ['city_apt_building', 'floor_4'] },
   ]);

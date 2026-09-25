@@ -170,7 +170,6 @@ function enterDjibrilRoom(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -187,7 +186,6 @@ function enterDjibrilPlaygames(s: GameState, scene: SceneBuilder): void {
   scene.text('After an hour, he finally turns it off. "I had fun, but I need to get some studying done. Maybe you can come by again some other day?"');
   scene.text('You nod and put the controller down before gathering up your stuff. "Sure, I\'d like that. Well, have fun studying."');
   scene.text('He laughs before escorting you to the door.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['uni_dorm', 'eighth_floor'] },
   ]);
@@ -232,7 +230,6 @@ function enterDjibrilChat(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['uni_dorm', 'eighth_floor'] },
     { label: 'Make small talk', handler: (st: GameState) => {
@@ -399,7 +396,6 @@ function enterInvite(s: GameState, scene: SceneBuilder): void {
       { label: 'Text Anushka', goto: ['djibril', 'textnush'] },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Have fun without a third', handler: (st: GameState) => {
     (st as any).OluLoc = 5;
@@ -472,7 +468,6 @@ function enterTextanya(s: GameState, scene: SceneBuilder): void {
       { label: 'Wait for Anya', goto: ['djibrilev1', 'djibril_anya'] },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -541,7 +536,6 @@ function enterTextnush(s: GameState, scene: SceneBuilder): void {
       { label: 'Wait for Anushka', goto: ['djibrilev1', 'djibril_nush'] },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 

@@ -14,7 +14,6 @@ function enterRecords(s: GameState, scene: SceneBuilder): void {
   (s as any).BACKIMAGE = '';
   qspCall(s, 'housing', 'rent');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterJournalmenu(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -22,19 +21,19 @@ function enterJournalmenu(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   (s as any).tablebody = '<tr>';
   if (((s as any).start_type ?? 0)?.['magic'] !== 'nomagic') {
-    // TODO-QSP: $tablebody += '<th><a href="exec:menutrack = 0 & gs ''journal'', ''magictab''">Magic</a></th>'
+    (s as any).tablebody = ((s as any).tablebody ?? '') + '<th><a href="#" onclick="window.__gameStore.setState((s) => { s.menutrack = s.0; return s; }); window.__gameStore.getState().doGoto(\u0027journal\u0027, \u0027magictab\u0027); return false;">Magic</a></th>';
   }
-  // TODO-QSP: $tablebody += '<th><a href="exec:menutrack = 1 & gt ''journal'', ''calendar''">Calendar</a></th>'
-  // TODO-QSP: $tablebody += '<th><a href="exec:menutrack = 2 & gt ''journal'', ''housingtab''">Housing</a></th>'
-  // TODO-QSP: $tablebody += '<th><a href="exec:menutrack = 3 & gt ''journal_work'', ''start''">Work</a></th>'
-  // TODO-QSP: $tablebody += '<th><a href="exec:menutrack = 4 & gt ''journal_quests'', ''start''">Quests</a></th>'
-  // TODO-QSP: $tablebody += '<th><a href="exec:menutrack = 5 & gt ''journal'', ''relationstab''">Relations</a></th...
-  // TODO-QSP: $tablebody += '<th><a href="exec:menutrack = 6 & gt ''journal'', ''generaltab''">Game Information</a...
-  // TODO-QSP: $tablebody += '<th><a href="exec:menutrack = 7 & gt ''journal'', ''notestab''">Notes</a></th>'
-  // TODO-QSP: $tablebody += '<th><a href="exec:menutrack = 8 & gt ''journal'', ''notification_log''">Notifications...
-  // TODO-QSP: $tablebody += '</tr>'
-  // TODO-QSP: dynamic text: <center><table width="90%" align="center" width="90%" cellspacing="0" cellpaddin...
+  (s as any).tablebody = ((s as any).tablebody ?? 0) + ('<th><a href="#" onclick="window.__gameStore.setState((s) => { s.menutrack = s.1; return s; }); window.__gameStore.getState().doGoto(\u0027journal\u0027, \u0027calendar\u0027); return false;">Calendar</a></th>');
+  (s as any).tablebody = ((s as any).tablebody ?? 0) + ('<th><a href="#" onclick="window.__gameStore.setState((s) => { s.menutrack = s.2; return s; }); window.__gameStore.getState().doGoto(\u0027journal\u0027, \u0027housingtab\u0027); return false;">Housing</a></th>');
+  (s as any).tablebody = ((s as any).tablebody ?? 0) + ('<th><a href="#" onclick="window.__gameStore.setState((s) => { s.menutrack = s.3; return s; }); window.__gameStore.getState().doGoto(\u0027journal_work\u0027, \u0027start\u0027); return false;">Work</a></th>');
+  (s as any).tablebody = ((s as any).tablebody ?? 0) + ('<th><a href="#" onclick="window.__gameStore.setState((s) => { s.menutrack = s.4; return s; }); window.__gameStore.getState().doGoto(\u0027journal_quests\u0027, \u0027start\u0027); return false;">Quests</a></th>');
+  (s as any).tablebody = ((s as any).tablebody ?? 0) + ('<th><a href="#" onclick="window.__gameStore.setState((s) => { s.menutrack = s.5; return s; }); window.__gameStore.getState().doGoto(\u0027journal\u0027, \u0027relationstab\u0027); return false;">Relations</a></th>');
+  (s as any).tablebody = ((s as any).tablebody ?? 0) + ('<th><a href="#" onclick="window.__gameStore.setState((s) => { s.menutrack = s.6; return s; }); window.__gameStore.getState().doGoto(\u0027journal\u0027, \u0027generaltab\u0027); return false;">Game Information</a></th>');
+  (s as any).tablebody = ((s as any).tablebody ?? 0) + ('<th><a href="#" onclick="window.__gameStore.setState((s) => { s.menutrack = s.7; return s; }); window.__gameStore.getState().doGoto(\u0027journal\u0027, \u0027notestab\u0027); return false;">Notes</a></th>');
+  (s as any).tablebody = ((s as any).tablebody ?? 0) + ('<th><a href="#" onclick="window.__gameStore.setState((s) => { s.menutrack = s.8; return s; }); window.__gameStore.getState().doGoto(\u0027journal\u0027, \u0027notification_log\u0027); return false;">Notifications</a></th>');
+  (s as any).tablebody = ((s as any).tablebody ?? 0) + ('</tr>');
   scene.text(`<center><table width="90%" align="center" width="90%" cellspacing="0" cellpadding="0" valign="top"><tr>${((s as any).tablebody ?? '')}</tr></table></center>`);
+  (s as any).tablebody = undefined;
   if (((s as any).jumploc ?? 0) === 'worktab'  &&  ((s as any).jclose ?? 0) === 1) {
     (s as any).jclose = 0;
     (s as any).menutrack = 3;
@@ -52,14 +51,12 @@ function enterJournalmenu(s: GameState, scene: SceneBuilder): void {
     }
   }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterLeaveactions(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterCalendar(s: GameState, scene: SceneBuilder): void {
   (s as any).jumploc = 'calendar';
   qspCall(s, 'calendar', 'show');
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -68,23 +65,21 @@ function enterMagictab(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterJournalmenu(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('<center><h2>Magic</h2></center><br>');
   scene.text('<center><h2>Spells to Cast</h2></center><br>');
-  // TODO-QSP: func('spellBook', 'cast', '$nonComSpells', 'gt ''journal'', ''magictab''', 'jclose = 1')
+  scene.text(String(qspFunc(s, 'spellBook', 'cast', "$nonComSpells", "gt 'journal', 'magictab'", "jclose = 1") || ''));
   scene.text('<br><center><h2>Spell Learning</h2></center><br>');
   scene.text('<br><center><h3>Combat</h3></center><br>');
-  // TODO-QSP: func('spellBook', 'learn', '$combatSpells')
+  scene.text(String(qspFunc(s, 'spellBook', 'learn', "$combatSpells") || ''));
   scene.text('<br><center><h3>Story</h3></center><br>');
-  // TODO-QSP: func('spellBook', 'learn', '$storySpells')
+  scene.text(String(qspFunc(s, 'spellBook', 'learn', "$storySpells") || ''));
   scene.text('<br><center><h3>Non-Combat</h3></center><br>');
-  // TODO-QSP: func('spellBook', 'learn', '$nonComSpells')
+  scene.text(String(qspFunc(s, 'spellBook', 'learn', "$nonComSpells") || ''));
   scene.text('<br><center><h2>Known Spells</h2></center><br>');
   scene.text('<br><center><h3>Combat</h3></center><br>');
-  // TODO-QSP: func('spellBook', 'list', '$combatSpells')
+  scene.text(String(qspFunc(s, 'spellBook', 'list', "$combatSpells") || ''));
   scene.text('<br><center><h3>Story</h3></center><br>');
-  // TODO-QSP: func('spellBook', 'list', '$storySpells')
+  scene.text(String(qspFunc(s, 'spellBook', 'list', "$storySpells") || ''));
   scene.text('<br><center><h3>Non-Combat</h3></center><br>');
-  // TODO-QSP: func('spellBook', 'list', '$nonComSpells')
-  // TODO-QSP: delact 'Never mind'
-  // TODO-QSP: end
+  scene.text(String(qspFunc(s, 'spellBook', 'list', "$nonComSpells") || ''));
   scene.build();
 }
 
@@ -96,7 +91,6 @@ function enterHousingtab(s: GameState, scene: SceneBuilder): void {
     scene.text('You share an apartment with three others in Pavlovsk. Your bills are paid by the other tenants in exchange for your house services.');
   }
   if (((s as any).accessible_property ?? 0)?.['city_apartment'] === 1) {
-    // TODO-QSP: dynamic text: You rent a two bedroom apartment in the city residential area. Your rent for the...
     scene.text(`You rent a two bedroom apartment in the city residential area. Your rent for the apartment is subtracted automatically in sum of ${qspFunc(s, 'money', 'string_price', qspUntranslated(s, "(func('homes_properties', 'get_rent_amount', 'city_apartment'))", { location: "journal" }))} plus electric bill on 25th of each month. You are currently paid up for <b>${qspFunc(s, 'homes_properties', 'get_rent_days', 'city_apartment')}</b> days.`);
   }
   if (((s as any).accessible_property ?? 0)?.['city_apartment'] === 2) {
@@ -112,17 +106,16 @@ function enterHousingtab(s: GameState, scene: SceneBuilder): void {
     scene.text('You own a small holiday cottage with an adjacent allotment in the communal village.');
   }
   if (((s as any).accessible_property ?? 0)?.['old_town_apartment'] === 1) {
-    // TODO-QSP: dynamic text: You rent a two bedroom apartment in Pushkin. Your rent for the apartment is subt...
     scene.text(`You rent a two bedroom apartment in Pushkin. Your rent for the apartment is subtracted automatically in the sum of ${qspFunc(s, 'money', 'string_price', qspUntranslated(s, "(func('homes_properties', 'get_rent_amount', 'old_town_apartment'))", { location: "journal" }))} plus electric bill on the 25th of each month. You are currently paid up for <b>${qspFunc(s, 'homes_properties', 'get_rent_days', 'old_town_apartment')}</b> days.`);
   }
   if (((s as any).accessible_property ?? 0)?.['matryona_mansion'] === 2  &&  (!((s as any).constructionstatus ?? 0))) {
     scene.text('You own a vacant block in the city suburbs.');
   }
   if (((s as any).accessible_property ?? 0)?.['matryona_mansion'] === 2  &&  ((s as any).constructionstatus ?? 0) === 1) {
-    // TODO-QSP: 'You own a plot of land in the city suburbs upon which you are building a house.' + iif(banaMansion ...
+    scene.text('You own a plot of land in the city suburbs upon which you are building a house.' + ((((s as any).banaMansion ?? 0) === 1) ? ('Your utility bills are due on the 25th of each month.') : ('')));
   }
   if (((s as any).accessible_property ?? 0)?.['matryona_mansion'] === 2  &&  ((s as any).constructionstatus ?? 0) === 2) {
-    // TODO-QSP: 'You own an impressive mansion in the city suburbs. ' + iif(banaMansion = 1, 'Your utility bills are...
+    scene.text('You own an impressive mansion in the city suburbs. ' + ((((s as any).banaMansion ?? 0) === 1) ? ('Your utility bills are due on the 25th of each month.') : ('')));
   }
   if (((s as any).accessible_property ?? 0)?.['city_house'] === 2) {
     scene.text('You own a nice house on the edge of the city residential district. Your utility bills are due on the 25th of each month.');
@@ -236,7 +229,6 @@ function enterHousingtab(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -273,27 +265,25 @@ function enterRelationstab(s: GameState, scene: SceneBuilder): void {
       }
     }
     if ((!((s as any).grupTipe ?? 0))) {
-      // TODO-QSP: 'You are not a member of any particular school social group.' + $journal_school_standing
+      scene.text('You are not a member of any particular school social group.' + ((s as any).journal_school_standing ?? ''));
     } else {
       if (((s as any).grupTipe ?? 0) === 1) {
-        // TODO-QSP: 'Your school social group consists of the popular, cool and beautiful.' + $journal_school_standing
+        scene.text('Your school social group consists of the popular, cool and beautiful.' + ((s as any).journal_school_standing ?? ''));
       } else {
         if (((s as any).grupTipe ?? 0) === 2) {
-          // TODO-QSP: 'Your school social group consists of jocks and natural athletes.' + $journal_school_standing
+          scene.text('Your school social group consists of jocks and natural athletes.' + ((s as any).journal_school_standing ?? ''));
         } else {
           if (((s as any).grupTipe ?? 0) === 3) {
-            // TODO-QSP: 'Your school social group consists of nerds, geeks and good students.' + $journal_school_standing
+            scene.text('Your school social group consists of nerds, geeks and good students.' + ((s as any).journal_school_standing ?? ''));
             if (((s as any).nerd_game ?? 0)?.['game_day'] > ((s as any).daystart ?? 0)) {
-              // TODO-QSP: dynamic text: 'You have been invited to a games night on <<$weekName[(week + (nerd_game[''game...
-              scene.text(`You have been invited to a games night on ${(((s as any).weekName ?? 0)?.[(((s as any).week ?? '') + ((((s as any).nerd_game ?? {})?.['game_day'] ?? 0) - ((s as any).daystart ?? '')))] ?? '')} at 20:00 in the community center library.`);
+              scene.text(`'You have been invited to a games night on ${(((s as any).weekName ?? 0)?.[(((s as any).week ?? '') + ((((s as any).nerd_game ?? {})?.['game_day'] ?? 0) - ((s as any).daystart ?? '')))] ?? '')} at 20:00 in the community center library.'`);
             }
             if (((s as any).nerd_game ?? 0)?.['game_day'] === ((s as any).daystart ?? 0)) {
-              // TODO-QSP: dynamic text: 'You have been invited to a games night tonight at ' + func('time', 'get_time_st...
-              scene.text('You have been invited to a games night tonight at 20:00 in the community center library.');
+              scene.text('\'You have been invited to a games night tonight at 20:00 in the community center library.\'');
             }
           } else {
             if (((s as any).grupTipe ?? 0) === 4) {
-              // TODO-QSP: 'Your school social group consists of gopniks, rebels, punks or troublemakers.' + $journal_school_st...
+              scene.text('Your school social group consists of gopniks, rebels, punks or troublemakers.' + ((s as any).journal_school_standing ?? ''));
             } else {
               if (((s as any).grupTipe ?? 0) === 5) {
                 scene.text('Your school social group consists of losers, teacher\'s pets, sluts and the ugly.');
@@ -304,334 +294,334 @@ function enterRelationstab(s: GameState, scene: SceneBuilder): void {
       }
     }
     (s as any).i = 1;
-    // TODO-QSP: :grupbar_loop
-    if (((s as any).i ?? 0) === 1) {
-      (s as any).grupbar_name = 'Cool Kids';
-    }
-    if (((s as any).i ?? 0) === 2) {
-      (s as any).grupbar_name = 'Jocks';
-    }
-    if (((s as any).i ?? 0) === 3) {
-      (s as any).grupbar_name = 'Nerds';
-    }
-    if (((s as any).i ?? 0) === 4) {
-      (s as any).grupbar_name = 'Gopnik';
-    }
-    if (((s as any).grupTipe ?? 0) === ((s as any).i ?? 0)) {
-      if (((s as any).grupvalue ?? 0)?.[String((s as any).i ?? 0)] / 10 < 20) {
-        (s as any).grupbar_standing = '<font color="#FF0000">You will be kicked out</font>';
-      } else {
-        if (((s as any).grupvalue ?? 0)?.[String((s as any).i ?? 0)] / 10 < 30) {
-          (s as any).grupbar_standing = '<font color="#FF6600">On last warning</font>';
-        } else {
-          if (((s as any).grupvalue ?? 0)?.[String((s as any).i ?? 0)] / 10 < 40) {
-            (s as any).grupbar_standing = '<font color="#0000FF">Tolerated</font>';
-          } else {
-            if (((s as any).grupvalue ?? 0)?.[String((s as any).i ?? 0)] / 10 < 60) {
-              (s as any).grupbar_standing = '<font color="#00CED1">Barely a member</font>';
-            } else {
-              if (((s as any).grupvalue ?? 0)?.[String((s as any).i ?? 0)] / 10 < 85) {
-                (s as any).grupbar_standing = '<font color="#B3B300">Member</font>';
-              } else {
-                (s as any).grupbar_standing = '<font color="#00FF00">Popular member</font>';
-              }
-            }
-          }
-        }
+    do {
+      if (((s as any).i ?? 0) === 1) {
+        (s as any).grupbar_name = 'Cool Kids';
       }
-    } else {
-      if (((s as any).grupvalue ?? 0)?.[String((s as any).i ?? 0)] / 10 < 10) {
-        (s as any).grupbar_standing = '<font color="#FF0000">Hated</font>';
-      } else {
+      if (((s as any).i ?? 0) === 2) {
+        (s as any).grupbar_name = 'Jocks';
+      }
+      if (((s as any).i ?? 0) === 3) {
+        (s as any).grupbar_name = 'Nerds';
+      }
+      if (((s as any).i ?? 0) === 4) {
+        (s as any).grupbar_name = 'Gopnik';
+      }
+      if (((s as any).grupTipe ?? 0) === ((s as any).i ?? 0)) {
         if (((s as any).grupvalue ?? 0)?.[String((s as any).i ?? 0)] / 10 < 20) {
-          (s as any).grupbar_standing = '<font color="#FF6600">Disliked</font>';
+          (s as any).grupbar_standing = '<font color="#FF0000">You will be kicked out</font>';
         } else {
-          if (((s as any).grupvalue ?? 0)?.[String((s as any).i ?? 0)] / 10 < 50) {
-            (s as any).grupbar_standing = '<font color="#0000FF">Tolerated</font>';
+          if (((s as any).grupvalue ?? 0)?.[String((s as any).i ?? 0)] / 10 < 30) {
+            (s as any).grupbar_standing = '<font color="#FF6600">On last warning</font>';
           } else {
-            if (((s as any).grupvalue ?? 0)?.[String((s as any).i ?? 0)] / 10 < 70) {
-              (s as any).grupbar_standing = '<font color="#00CED1">Liked</font>';
+            if (((s as any).grupvalue ?? 0)?.[String((s as any).i ?? 0)] / 10 < 40) {
+              (s as any).grupbar_standing = '<font color="#0000FF">Tolerated</font>';
             } else {
-              if (((s as any).grupvalue ?? 0)?.[String((s as any).i ?? 0)] / 10 < 80) {
-                (s as any).grupbar_standing = '<font color="#B3B300">Really Liked</font>';
+              if (((s as any).grupvalue ?? 0)?.[String((s as any).i ?? 0)] / 10 < 60) {
+                (s as any).grupbar_standing = '<font color="#00CED1">Barely a member</font>';
               } else {
-                (s as any).grupbar_standing = '<font color="#00FF00">Will be asked to join</font>';
+                if (((s as any).grupvalue ?? 0)?.[String((s as any).i ?? 0)] / 10 < 85) {
+                  (s as any).grupbar_standing = '<font color="#B3B300">Member</font>';
+                } else {
+                  (s as any).grupbar_standing = '<font color="#00FF00">Popular member</font>';
+                }
+              }
+            }
+          }
+        }
+      } else {
+        if (((s as any).grupvalue ?? 0)?.[String((s as any).i ?? 0)] / 10 < 10) {
+          (s as any).grupbar_standing = '<font color="#FF0000">Hated</font>';
+        } else {
+          if (((s as any).grupvalue ?? 0)?.[String((s as any).i ?? 0)] / 10 < 20) {
+            (s as any).grupbar_standing = '<font color="#FF6600">Disliked</font>';
+          } else {
+            if (((s as any).grupvalue ?? 0)?.[String((s as any).i ?? 0)] / 10 < 50) {
+              (s as any).grupbar_standing = '<font color="#0000FF">Tolerated</font>';
+            } else {
+              if (((s as any).grupvalue ?? 0)?.[String((s as any).i ?? 0)] / 10 < 70) {
+                (s as any).grupbar_standing = '<font color="#00CED1">Liked</font>';
+              } else {
+                if (((s as any).grupvalue ?? 0)?.[String((s as any).i ?? 0)] / 10 < 80) {
+                  (s as any).grupbar_standing = '<font color="#B3B300">Really Liked</font>';
+                } else {
+                  (s as any).grupbar_standing = '<font color="#00FF00">Will be asked to join</font>';
+                }
               }
             }
           }
         }
       }
-    }
-    // TODO-QSP: dynamic text: <<$grupbar_name>>
-    scene.text(`${((s as any).grupbar_name ?? '')}`);
-    (s as any).i = ((s as any).i ?? 0) + (1);
-    if (((s as any).i ?? 0) <= 4) {
-      // TODO-QSP: jump 'grupbar_loop'
-    }
-    scene.text('<center><h2>Popular Kids Relations</h2></center>');
-    if (((s as any).npc_known ?? 0)?.['A1'] === 1) {
-      scene.text('Friendship with Dimka:');
-      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A1']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
-    }
-    if (((s as any).npc_known ?? 0)?.['A4'] === 1) {
-      scene.text('Friendship with Igor:');
-      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A4']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
-    }
-    if (((s as any).npc_known ?? 0)?.['A14'] === 1) {
-      scene.text('Friendship with Katja:');
-      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A14']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
-    }
-    if (((s as any).npc_known ?? 0)?.['A15'] === 1) {
-      scene.text('Friendship with Vicky:');
-      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A15']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
-    }
-    if (((s as any).npc_known ?? 0)?.['A17'] === 1) {
-      scene.text('Friendship with Irina:');
-      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A17']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
-    }
-    if (((s as any).npc_known ?? 0)?.['A22'] === 1) {
-      scene.text('Friendship with Bella:');
-      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A22']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
-    }
-    if (((s as any).npc_known ?? 0)?.['A146'] === 1) {
-      scene.text('Friendship with Marcus:');
-      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A146']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
-    }
-    if (((s as any).npc_known ?? 0)?.['A147'] === 1) {
-      scene.text('Friendship with Andrey:');
-      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A147']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
-    }
-    if (((s as any).npc_known ?? 0)?.['A148'] === 1) {
-      scene.text('Friendship with Mefodiy:');
-      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A148']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
-    }
-    if (((s as any).soniaQW ?? 0)?.['slut'] === 0  &&  ((s as any).npc_known ?? 0)?.['A25'] === 1) {
-      scene.text('Friendship with Sonia:');
-      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A25']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
-    }
-    if (((s as any).npc_known ?? 0)?.['A139'] === 1) {
-      scene.text('Friendship with Stasya:');
-      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A139']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
-    }
-    if (((s as any).npc_known ?? 0)?.['A140'] === 1) {
-      scene.text('Friendship with Lizaveta:');
-      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A140']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
-    }
-    scene.text('<center><h2>Jocks Relations</h2></center>');
-    if (((s as any).npc_known ?? 0)?.['A3'] === 1) {
-      scene.text('Friendship with Ivan:');
-      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A3']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
-    }
-    if (((s as any).fedormasha ?? 0) === 0  &&  ((s as any).npc_known ?? 0)?.['A5'] === 1) {
-      scene.text('Friendship with Fedor:');
-      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A5']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
-    }
-    if (((s as any).npc_known ?? 0)?.['A8'] === 1) {
-      scene.text('Friendship with Svyatoslav:');
-      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A8']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
-    }
-    if (((s as any).npc_known ?? 0)?.['A13'] === 1) {
-      scene.text('Friendship with Lariska:');
-      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A13']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
-    }
-    if (((s as any).npc_known ?? 0)?.['A18'] === 1) {
-      scene.text('Friendship with Christina:');
-      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A18']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
-    }
-    if (((s as any).npc_known ?? 0)?.['A19'] === 1) {
-      scene.text('Friendship with Lina:');
-      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A19']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
-    }
-    if (((s as any).npc_known ?? 0)?.['A23'] === 1) {
-      scene.text('Friendship with Albina:');
-      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A23']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
-    }
-    if (((s as any).npc_known ?? 0)?.['A149'] === 1) {
-      scene.text('Friendship with Lazar:');
-      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A149']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
-    }
-    if (((s as any).npc_known ?? 0)?.['A150'] === 1) {
-      scene.text('Friendship with Erast:');
-      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A150']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
-    }
-    if (((s as any).npc_known ?? 0)?.['A141'] === 1) {
-      scene.text('Friendship with Veronika:');
-      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A141']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
-    }
-    if (((s as any).npc_known ?? 0)?.['A165'] === 1) {
-      scene.text('Friendship with Vanya:');
-      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A165']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
-    }
-    scene.text('<center><h2>Nerds Relations</h2></center>');
-    if (((s as any).npc_known ?? 0)?.['A2'] === 1) {
-      scene.text('Friendship with Artem:');
-      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A2']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
-    }
-    if (((s as any).npc_known ?? 0)?.['A6'] === 1) {
-      scene.text('Friendship with Petka:');
-      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A6']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
-    }
-    if (((s as any).npc_known ?? 0)?.['A12'] === 1) {
-      scene.text('Friendship with Julia:');
-      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A12']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
-    }
-    if (((s as any).npc_known ?? 0)?.['A16'] === 1) {
-      scene.text('Friendship with Natasha:');
-      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A16']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
-    }
-    if (((s as any).npc_known ?? 0)?.['A151'] === 1) {
-      scene.text('Friendship with Evgeny:');
-      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A151']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
-    }
-    if (((s as any).npc_known ?? 0)?.['A152'] === 1) {
-      scene.text('Friendship with Feofan:');
-      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A152']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
-    }
-    if (((s as any).npc_known ?? 0)?.['A153'] === 1) {
-      scene.text('Friendship with Gerasim:');
-      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A153']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
-    }
-    if (((s as any).npc_known ?? 0)?.['A142'] === 1) {
-      scene.text('Friendship with Zinaida:');
-      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A142']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
-    }
-    if (((s as any).npc_known ?? 0)?.['A240'] === 1) {
-      scene.text('Friendship with Natalia:');
-      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A240']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
-    }
-    scene.text('<center><h2>Gopnik Relations</h2></center>');
-    if (((s as any).npc_known ?? 0)?.['A9'] === 1) {
-      scene.text('Friendship with Vitek:');
-      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A9']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
-    }
-    if (((s as any).npc_known ?? 0)?.['A10'] === 1) {
-      scene.text('Friendship with Dan:');
-      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A10']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
-    }
-    if (((s as any).npc_known ?? 0)?.['A11'] === 1) {
-      scene.text('Friendship with Vasily:');
-      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A11']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
-    }
-    if (((s as any).npc_known ?? 0)?.['A20'] === 1) {
-      scene.text('Friendship with Lena:');
-      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A20']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
-    }
-    if (((s as any).npc_known ?? 0)?.['A21'] === 1) {
-      scene.text('Friendship with Lera:');
-      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A21']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
-    }
-    if (((s as any).npc_known ?? 0)?.['A24'] === 1) {
-      scene.text('Friendship with Pauline:');
-      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A24']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
-    }
-    if (((s as any).npc_known ?? 0)?.['A154'] === 1) {
-      scene.text('Friendship with Radomir:');
-      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A154']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
-    }
-    if (((s as any).npc_known ?? 0)?.['A155'] === 1) {
-      scene.text('Friendship with Lavrenti:');
-      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A155']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
-    }
-    if (((s as any).npc_known ?? 0)?.['A156'] === 1) {
-      scene.text('Friendship with Arkadi:');
-      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A156']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
-    }
-    if (((s as any).npc_known ?? 0)?.['A157'] === 1) {
-      scene.text('Friendship with Roman:');
-      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A157']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
-    }
-    if (((s as any).npc_known ?? 0)?.['A158'] === 1) {
-      scene.text('Friendship with Valentin:');
-      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A158']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
-    }
-    if (((s as any).npc_known ?? 0)?.['A143'] === 1) {
-      scene.text('Friendship with Alyona:');
-      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A143']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
-    }
-    if (((s as any).npc_known ?? 0)?.['A144'] === 1) {
-      scene.text('Friendship with Anushka:');
-      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A144']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
-    }
-    if (((s as any).npc_known ?? 0)?.['A145'] === 1) {
-      scene.text('Friendship with Katyusha:');
-      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A145']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
-    }
-    if (((s as any).npc_known ?? 0)?.['A189'] === 1) {
-      scene.text('Friendship with Niko:');
-      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A189']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
-    }
-    scene.text('<center><h2>Outcast/Loner Relations</h2></center>');
-    if (((s as any).npc_known ?? 0)?.['A7'] === 1) {
-      scene.text('Friendship with Lesco:');
-      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A7']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
-    }
-    if (((s as any).npc_known ?? 0)?.['A159'] === 1) {
-      scene.text('Friendship with Petia:');
-      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A159']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
-    }
-    if (((s as any).soniaQW ?? 0)?.['slut'] > 0  &&  ((s as any).npc_known ?? 0)?.['A25'] === 1) {
-      scene.text('Friendship with Sonia:');
-      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A25']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
-    }
-    if (((s as any).fedormasha ?? 0) === 1  &&  ((s as any).npc_known ?? 0)?.['A5'] === 1) {
-      scene.text('Friendship with Fedor:');
-      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A5']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
-    }
-    scene.text('<center><h2>Teachers/Coaches/School Staff Relations</h2></center>');
-    if (((s as any).npc_known ?? 0)?.['A26'] === 1) {
-      scene.text('Friendship with Anatoly Tsarev (Math Teacher):');
-      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A26']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
-    }
-    if (((s as any).npc_known ?? 0)?.['A69'] === 1) {
-      scene.text('Friendship with Mikhail Nikolaevich (Volleyball Coach):');
-      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A69']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
-    }
-    if (((s as any).npc_known ?? 0)?.['A128'] === 1) {
-      scene.text('Friendship with Makar Vasilyev (Art Teacher):');
-      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A128']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
-    }
-    if (((s as any).npc_known ?? 0)?.['A129'] === 1) {
-      scene.text('Friendship with Serafim Ivanov (Computer Science Teacher):');
-      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A129']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
-    }
-    if (((s as any).npc_known ?? 0)?.['A130'] === 1) {
-      scene.text('Friendship with Ilya Yenotin (Literature Teacher):');
-      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A130']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
-    }
-    if (((s as any).npc_known ?? 0)?.['A131'] === 1) {
-      scene.text('Friendship with Viktor Pavlovich (P.E. Teacher):');
-      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A131']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
-    }
-    if (((s as any).npc_known ?? 0)?.['A132'] === 1) {
-      scene.text('Friendship with Ruslan Kuznetsov (Shop Teacher):');
-      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A132']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
-    }
-    if (((s as any).npc_known ?? 0)?.['A133'] === 1) {
-      scene.text('Friendship with Rolan Metveev (Janitor):');
-      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A133']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
-    }
-    if (((s as any).npc_known ?? 0)?.['A134'] === 1) {
-      scene.text('Friendship with Aleksandrina Volkov (Headmistress):');
-      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A134']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
-    }
-    if (((s as any).npc_known ?? 0)?.['A135'] === 1) {
-      scene.text('Friendship with Yeva Sokoloff (Geography Teacher):');
-      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A135']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
-    }
-    if (((s as any).npc_known ?? 0)?.['A136'] === 1) {
-      scene.text('Friendship with Olga Aleksandrov (School Nurse):');
-      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A136']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
-    }
-    if (((s as any).npc_known ?? 0)?.['A137'] === 1) {
-      scene.text('Friendship with Raven Braakman (English Teacher):');
-      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A137']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
-    }
-    if (((s as any).npc_known ?? 0)?.['A138'] === 1) {
-      scene.text('Friendship with Arina Orlov (Biology Teacher):');
-      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A138']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
-    }
-    if (((s as any).npc_known ?? 0)?.['A93'] === 1  ||  ((s as any).npc_rel ?? 0)?.['A41'] > 0  ||  ((s as any).npc_rel ?? 0)?.['A42'] > 0  ||  ((s as any).npc_known ?? 0)?.['A43'] === 1  ||  ((s as any).gosh ?? 0) > 0  ||  ((s as any).npc_known ?? 0)?.['A220'] === 1  ||  ((s as any).npc_known ?? 0)?.['A219'] === 1  ||  ((s as any).npc_QW ?? 0)?.['A192'] > 0  ||  ((s as any).npc_known ?? 0)?.['A218'] === 1) {
-    }
+      scene.text(`${((s as any).grupbar_name ?? '')}`);
+      (s as any).i = ((s as any).i ?? 0) + (1);
+      (s as any).grupbar_name = undefined;
+      (s as any).grupbar_standing = undefined;
+      (s as any).i = undefined;
+      scene.text('<center><h2>Popular Kids Relations</h2></center>');
+      if (((s as any).npc_known ?? 0)?.['A1'] === 1) {
+        scene.text('Friendship with Dimka:');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A1']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
+      }
+      if (((s as any).npc_known ?? 0)?.['A4'] === 1) {
+        scene.text('Friendship with Igor:');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A4']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
+      }
+      if (((s as any).npc_known ?? 0)?.['A14'] === 1) {
+        scene.text('Friendship with Katja:');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A14']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
+      }
+      if (((s as any).npc_known ?? 0)?.['A15'] === 1) {
+        scene.text('Friendship with Vicky:');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A15']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
+      }
+      if (((s as any).npc_known ?? 0)?.['A17'] === 1) {
+        scene.text('Friendship with Irina:');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A17']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
+      }
+      if (((s as any).npc_known ?? 0)?.['A22'] === 1) {
+        scene.text('Friendship with Bella:');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A22']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
+      }
+      if (((s as any).npc_known ?? 0)?.['A146'] === 1) {
+        scene.text('Friendship with Marcus:');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A146']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
+      }
+      if (((s as any).npc_known ?? 0)?.['A147'] === 1) {
+        scene.text('Friendship with Andrey:');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A147']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
+      }
+      if (((s as any).npc_known ?? 0)?.['A148'] === 1) {
+        scene.text('Friendship with Mefodiy:');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A148']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
+      }
+      if (((s as any).soniaQW ?? 0)?.['slut'] === 0  &&  ((s as any).npc_known ?? 0)?.['A25'] === 1) {
+        scene.text('Friendship with Sonia:');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A25']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
+      }
+      if (((s as any).npc_known ?? 0)?.['A139'] === 1) {
+        scene.text('Friendship with Stasya:');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A139']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
+      }
+      if (((s as any).npc_known ?? 0)?.['A140'] === 1) {
+        scene.text('Friendship with Lizaveta:');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A140']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
+      }
+      scene.text('<center><h2>Jocks Relations</h2></center>');
+      if (((s as any).npc_known ?? 0)?.['A3'] === 1) {
+        scene.text('Friendship with Ivan:');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A3']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
+      }
+      if (((s as any).fedormasha ?? 0) === 0  &&  ((s as any).npc_known ?? 0)?.['A5'] === 1) {
+        scene.text('Friendship with Fedor:');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A5']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
+      }
+      if (((s as any).npc_known ?? 0)?.['A8'] === 1) {
+        scene.text('Friendship with Svyatoslav:');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A8']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
+      }
+      if (((s as any).npc_known ?? 0)?.['A13'] === 1) {
+        scene.text('Friendship with Lariska:');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A13']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
+      }
+      if (((s as any).npc_known ?? 0)?.['A18'] === 1) {
+        scene.text('Friendship with Christina:');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A18']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
+      }
+      if (((s as any).npc_known ?? 0)?.['A19'] === 1) {
+        scene.text('Friendship with Lina:');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A19']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
+      }
+      if (((s as any).npc_known ?? 0)?.['A23'] === 1) {
+        scene.text('Friendship with Albina:');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A23']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
+      }
+      if (((s as any).npc_known ?? 0)?.['A149'] === 1) {
+        scene.text('Friendship with Lazar:');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A149']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
+      }
+      if (((s as any).npc_known ?? 0)?.['A150'] === 1) {
+        scene.text('Friendship with Erast:');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A150']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
+      }
+      if (((s as any).npc_known ?? 0)?.['A141'] === 1) {
+        scene.text('Friendship with Veronika:');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A141']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
+      }
+      if (((s as any).npc_known ?? 0)?.['A165'] === 1) {
+        scene.text('Friendship with Vanya:');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A165']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
+      }
+      scene.text('<center><h2>Nerds Relations</h2></center>');
+      if (((s as any).npc_known ?? 0)?.['A2'] === 1) {
+        scene.text('Friendship with Artem:');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A2']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
+      }
+      if (((s as any).npc_known ?? 0)?.['A6'] === 1) {
+        scene.text('Friendship with Petka:');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A6']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
+      }
+      if (((s as any).npc_known ?? 0)?.['A12'] === 1) {
+        scene.text('Friendship with Julia:');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A12']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
+      }
+      if (((s as any).npc_known ?? 0)?.['A16'] === 1) {
+        scene.text('Friendship with Natasha:');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A16']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
+      }
+      if (((s as any).npc_known ?? 0)?.['A151'] === 1) {
+        scene.text('Friendship with Evgeny:');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A151']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
+      }
+      if (((s as any).npc_known ?? 0)?.['A152'] === 1) {
+        scene.text('Friendship with Feofan:');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A152']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
+      }
+      if (((s as any).npc_known ?? 0)?.['A153'] === 1) {
+        scene.text('Friendship with Gerasim:');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A153']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
+      }
+      if (((s as any).npc_known ?? 0)?.['A142'] === 1) {
+        scene.text('Friendship with Zinaida:');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A142']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
+      }
+      if (((s as any).npc_known ?? 0)?.['A240'] === 1) {
+        scene.text('Friendship with Natalia:');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A240']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
+      }
+      scene.text('<center><h2>Gopnik Relations</h2></center>');
+      if (((s as any).npc_known ?? 0)?.['A9'] === 1) {
+        scene.text('Friendship with Vitek:');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A9']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
+      }
+      if (((s as any).npc_known ?? 0)?.['A10'] === 1) {
+        scene.text('Friendship with Dan:');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A10']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
+      }
+      if (((s as any).npc_known ?? 0)?.['A11'] === 1) {
+        scene.text('Friendship with Vasily:');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A11']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
+      }
+      if (((s as any).npc_known ?? 0)?.['A20'] === 1) {
+        scene.text('Friendship with Lena:');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A20']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
+      }
+      if (((s as any).npc_known ?? 0)?.['A21'] === 1) {
+        scene.text('Friendship with Lera:');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A21']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
+      }
+      if (((s as any).npc_known ?? 0)?.['A24'] === 1) {
+        scene.text('Friendship with Pauline:');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A24']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
+      }
+      if (((s as any).npc_known ?? 0)?.['A154'] === 1) {
+        scene.text('Friendship with Radomir:');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A154']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
+      }
+      if (((s as any).npc_known ?? 0)?.['A155'] === 1) {
+        scene.text('Friendship with Lavrenti:');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A155']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
+      }
+      if (((s as any).npc_known ?? 0)?.['A156'] === 1) {
+        scene.text('Friendship with Arkadi:');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A156']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
+      }
+      if (((s as any).npc_known ?? 0)?.['A157'] === 1) {
+        scene.text('Friendship with Roman:');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A157']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
+      }
+      if (((s as any).npc_known ?? 0)?.['A158'] === 1) {
+        scene.text('Friendship with Valentin:');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A158']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
+      }
+      if (((s as any).npc_known ?? 0)?.['A143'] === 1) {
+        scene.text('Friendship with Alyona:');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A143']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
+      }
+      if (((s as any).npc_known ?? 0)?.['A144'] === 1) {
+        scene.text('Friendship with Anushka:');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A144']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
+      }
+      if (((s as any).npc_known ?? 0)?.['A145'] === 1) {
+        scene.text('Friendship with Katyusha:');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A145']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
+      }
+      if (((s as any).npc_known ?? 0)?.['A189'] === 1) {
+        scene.text('Friendship with Niko:');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A189']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
+      }
+      scene.text('<center><h2>Outcast/Loner Relations</h2></center>');
+      if (((s as any).npc_known ?? 0)?.['A7'] === 1) {
+        scene.text('Friendship with Lesco:');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A7']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
+      }
+      if (((s as any).npc_known ?? 0)?.['A159'] === 1) {
+        scene.text('Friendship with Petia:');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A159']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
+      }
+      if (((s as any).soniaQW ?? 0)?.['slut'] > 0  &&  ((s as any).npc_known ?? 0)?.['A25'] === 1) {
+        scene.text('Friendship with Sonia:');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A25']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
+      }
+      if (((s as any).fedormasha ?? 0) === 1  &&  ((s as any).npc_known ?? 0)?.['A5'] === 1) {
+        scene.text('Friendship with Fedor:');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A5']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
+      }
+      scene.text('<center><h2>Teachers/Coaches/School Staff Relations</h2></center>');
+      if (((s as any).npc_known ?? 0)?.['A26'] === 1) {
+        scene.text('Friendship with Anatoly Tsarev (Math Teacher):');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A26']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
+      }
+      if (((s as any).npc_known ?? 0)?.['A69'] === 1) {
+        scene.text('Friendship with Mikhail Nikolaevich (Volleyball Coach):');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A69']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
+      }
+      if (((s as any).npc_known ?? 0)?.['A128'] === 1) {
+        scene.text('Friendship with Makar Vasilyev (Art Teacher):');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A128']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
+      }
+      if (((s as any).npc_known ?? 0)?.['A129'] === 1) {
+        scene.text('Friendship with Serafim Ivanov (Computer Science Teacher):');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A129']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
+      }
+      if (((s as any).npc_known ?? 0)?.['A130'] === 1) {
+        scene.text('Friendship with Ilya Yenotin (Literature Teacher):');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A130']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
+      }
+      if (((s as any).npc_known ?? 0)?.['A131'] === 1) {
+        scene.text('Friendship with Viktor Pavlovich (P.E. Teacher):');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A131']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
+      }
+      if (((s as any).npc_known ?? 0)?.['A132'] === 1) {
+        scene.text('Friendship with Ruslan Kuznetsov (Shop Teacher):');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A132']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
+      }
+      if (((s as any).npc_known ?? 0)?.['A133'] === 1) {
+        scene.text('Friendship with Rolan Metveev (Janitor):');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A133']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
+      }
+      if (((s as any).npc_known ?? 0)?.['A134'] === 1) {
+        scene.text('Friendship with Aleksandrina Volkov (Headmistress):');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A134']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
+      }
+      if (((s as any).npc_known ?? 0)?.['A135'] === 1) {
+        scene.text('Friendship with Yeva Sokoloff (Geography Teacher):');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A135']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
+      }
+      if (((s as any).npc_known ?? 0)?.['A136'] === 1) {
+        scene.text('Friendship with Olga Aleksandrov (School Nurse):');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A136']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
+      }
+      if (((s as any).npc_known ?? 0)?.['A137'] === 1) {
+        scene.text('Friendship with Raven Braakman (English Teacher):');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A137']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
+      }
+      if (((s as any).npc_known ?? 0)?.['A138'] === 1) {
+        scene.text('Friendship with Arina Orlov (Biology Teacher):');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A138']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
+      }
+      if (((s as any).npc_known ?? 0)?.['A93'] === 1  ||  ((s as any).npc_rel ?? 0)?.['A41'] > 0  ||  ((s as any).npc_rel ?? 0)?.['A42'] > 0  ||  ((s as any).npc_known ?? 0)?.['A43'] === 1  ||  ((s as any).gosh ?? 0) > 0  ||  ((s as any).npc_known ?? 0)?.['A220'] === 1  ||  ((s as any).npc_known ?? 0)?.['A219'] === 1  ||  ((s as any).npc_QW ?? 0)?.['A192'] > 0  ||  ((s as any).npc_known ?? 0)?.['A218'] === 1) {
+      }
+    } while (((s as any).i ?? 0) <= 4);
   }
   if (((s as any).university ?? 0)?.['student'] === 1) {
     scene.text('<center><h2>University Students from Pavlovsk</h2></center>');
@@ -1027,54 +1017,50 @@ function enterRelationstab(s: GameState, scene: SceneBuilder): void {
     if (((s as any).kid ?? 0) > 0) {
       (s as any).i = 0;
       if (((s as any).kid ?? 0) === 1) {
-        // TODO-QSP: dynamic text: You have a child, a <<$polreb[0]>> named <<$kidname[0]>>. Born <<daykid[0]>>-<<m...
         scene.text(`You have a child, a ${(((s as any).polreb ?? 0)?.[0] ?? '')} named ${(((s as any).kidname ?? 0)?.[0] ?? '')}. Born ${(((s as any).daykid ?? 0)?.[0] ?? '')}-${(((s as any).monthkid ?? 0)?.[0] ?? '')}-${(((s as any).yearkid ?? 0)?.[0] ?? '')}. Aged ${(((s as any).kidage ?? 0)?.[0] ?? '')}.`);
       } else {
         scene.text('You have children:');
-        // TODO-QSP: :LoopKidCounter
-        if (((s as any).i ?? 0) < ((s as any).kid ?? 0)) {
-          // TODO-QSP: dynamic text: <br> a <<$polreb[i]>> named <<$kidname[i]>>. Born <<daykid[i]>>-<<monthkid[i]>>-...
-          scene.text(`<br> a ${(((s as any).polreb ?? 0)?.[String((s as any).i ?? 0)] ?? '')} named ${(((s as any).kidname ?? 0)?.[String((s as any).i ?? 0)] ?? '')}. Born ${(((s as any).daykid ?? 0)?.[String((s as any).i ?? 0)] ?? '')}-${(((s as any).monthkid ?? 0)?.[String((s as any).i ?? 0)] ?? '')}-${(((s as any).yearkid ?? 0)?.[String((s as any).i ?? 0)] ?? '')}. Aged ${(((s as any).kidage ?? 0)?.[String((s as any).i ?? 0)] ?? '')}.`);
-          (s as any).i = ((s as any).i ?? 0) + (1);
-          // TODO-QSP: jump 'LoopKidCounter'
+        while (true) {
+          if (((s as any).i ?? 0) < ((s as any).kid ?? 0)) {
+            scene.text(`<br> a ${(((s as any).polreb ?? 0)?.[String((s as any).i ?? 0)] ?? '')} named ${(((s as any).kidname ?? 0)?.[String((s as any).i ?? 0)] ?? '')}. Born ${(((s as any).daykid ?? 0)?.[String((s as any).i ?? 0)] ?? '')}-${(((s as any).monthkid ?? 0)?.[String((s as any).i ?? 0)] ?? '')}-${(((s as any).yearkid ?? 0)?.[String((s as any).i ?? 0)] ?? '')}. Aged ${(((s as any).kidage ?? 0)?.[String((s as any).i ?? 0)] ?? '')}.`);
+            (s as any).i = ((s as any).i ?? 0) + (1);
+            break;
+          }
         }
       }
     }
     (s as any).jnl_i = 0;
     (s as any).jnl_max_i = 0;
-    // TODO-QSP: :loverjournalloop
-    if (((s as any).jnl_i ?? 0) < ((s as any).jnl_max_i ?? 0)) {
-      qspCall(s, 'npcStat', '', (((s as any).lover ?? 0)?.[String((s as any).jnl_i ?? 0)] ?? 0), 'j');
-      if ((String((((s as any).npc_rel_type ?? 0)?.[String((s as any).npcID10 ?? 0)] ?? 0)).slice((1)-1, ((1)-1)+(2))) === 'ex') {
-        (s as any).jnl_i = ((s as any).jnl_i ?? 0) + (1);
-        // TODO-QSP: jump 'loverjournalloop'
-      }
-      if (((s as any).npc_rel_type ?? 0)?.[String((s as any).npcID10 ?? 0)] === 'husband') {
-        // TODO-QSP: dynamic text: You have been married for <<daystart - spouseVars[''marry_day'']>> days. Your hu...
-        scene.text(`You have been married for ${((s as any).daystart ?? '') - (((s as any).spouseVars ?? {})?.['marry_day'] ?? 0)} days. Your husband ${((s as any).npcdesc10 ?? '')} is ${((s as any).npcheight10 ?? '')} and ${((s as any).npcbuild10 ?? '')} with ${((s as any).npchair10 ?? '')} hair. ${((s as any).npcdesc10 ?? '')} is usually wearing ${((s as any).npcClo10 ?? '')}. Member ${((s as any).dick_desc10 ?? '')} cock and ${((s as any).dick_girth10 ?? '')}. Relationship ${(((s as any).npc_rel ?? 0)?.[String((s as any).npcID10 ?? 0)] ?? '')}.`);
-      } else {
-        // TODO-QSP: dynamic text: Your <<$npcrelat10>> <<$npcdesc10>> is <<$npcheight10>> and <<$npcbuild10>> with...
-        scene.text(`Your ${((s as any).npcrelat10 ?? '')} ${((s as any).npcdesc10 ?? '')} is ${((s as any).npcheight10 ?? '')} and ${((s as any).npcbuild10 ?? '')} with ${((s as any).npchair10 ?? '')} hair. ${((s as any).npcdesc10 ?? '')} is usually wearing ${((s as any).npcClo10 ?? '')}. Your relationship is ${(((s as any).npc_rel ?? 0)?.[String((s as any).npcID10 ?? 0)] ?? '')} after ${(((s as any).npc_dates ?? 0)?.[String((s as any).npcID10 ?? 0)] ?? '')} dates and ${((s as any).daystart ?? '') - (((s as any).npc_daygenerated ?? 0)?.[String((s as any).npcID10 ?? 0)] ?? 0)} days dating.`);
-      }
-      if (((s as any).npc_rel ?? 0)?.[String((s as any).npcID10 ?? 0)] > 1) {
-        if (((s as any).npc_gentle ?? 0)?.[String((s as any).npcID10 ?? 0)] === 1) {
-          // TODO-QSP: dynamic text: <<$Xec10>> is timid and lacks confidence.
-          scene.text(`${((s as any).Xec10 ?? '')} is timid and lacks confidence.`);
+    while (true) {
+      if (((s as any).jnl_i ?? 0) < ((s as any).jnl_max_i ?? 0)) {
+        qspCall(s, 'npcStat', '', (((s as any).lover ?? 0)?.[String((s as any).jnl_i ?? 0)] ?? 0), 'j');
+        if ((String((((s as any).npc_rel_type ?? 0)?.[String((s as any).npcID10 ?? 0)] ?? 0)).slice((1)-1, ((1)-1)+(2))) === 'ex') {
+          (s as any).jnl_i = ((s as any).jnl_i ?? 0) + (1);
+          break;
+        }
+        if (((s as any).npc_rel_type ?? 0)?.[String((s as any).npcID10 ?? 0)] === 'husband') {
+          scene.text(`You have been married for ${((s as any).daystart ?? '') - (((s as any).spouseVars ?? {})?.['marry_day'] ?? 0)} days. Your husband ${((s as any).npcdesc10 ?? '')} is ${((s as any).npcheight10 ?? '')} and ${((s as any).npcbuild10 ?? '')} with ${((s as any).npchair10 ?? '')} hair. ${((s as any).npcdesc10 ?? '')} is usually wearing ${((s as any).npcClo10 ?? '')}. Member ${((s as any).dick_desc10 ?? '')} cock and ${((s as any).dick_girth10 ?? '')}. Relationship ${(((s as any).npc_rel ?? 0)?.[String((s as any).npcID10 ?? 0)] ?? '')}.`);
         } else {
-          if (((s as any).npc_rough ?? 0)?.[String((s as any).npcID10 ?? 0)] === 0) {
-            // TODO-QSP: dynamic text: <<$Xec10>> has a cheerful and sociable personality.
-            scene.text(`${((s as any).Xec10 ?? '')} has a cheerful and sociable personality.`);
+          scene.text(`Your ${((s as any).npcrelat10 ?? '')} ${((s as any).npcdesc10 ?? '')} is ${((s as any).npcheight10 ?? '')} and ${((s as any).npcbuild10 ?? '')} with ${((s as any).npchair10 ?? '')} hair. ${((s as any).npcdesc10 ?? '')} is usually wearing ${((s as any).npcClo10 ?? '')}. Your relationship is ${(((s as any).npc_rel ?? 0)?.[String((s as any).npcID10 ?? 0)] ?? '')} after ${(((s as any).npc_dates ?? 0)?.[String((s as any).npcID10 ?? 0)] ?? '')} dates and ${((s as any).daystart ?? '') - (((s as any).npc_daygenerated ?? 0)?.[String((s as any).npcID10 ?? 0)] ?? 0)} days dating.`);
+        }
+        if (((s as any).npc_rel ?? 0)?.[String((s as any).npcID10 ?? 0)] > 1) {
+          if (((s as any).npc_gentle ?? 0)?.[String((s as any).npcID10 ?? 0)] === 1) {
+            scene.text(`${((s as any).Xec10 ?? '')} is timid and lacks confidence.`);
           } else {
-            // TODO-QSP: dynamic text: <<$Xec10>> is short-tempered and strict.
-            scene.text(`${((s as any).Xec10 ?? '')} is short-tempered and strict.`);
+            if (((s as any).npc_rough ?? 0)?.[String((s as any).npcID10 ?? 0)] === 0) {
+              scene.text(`${((s as any).Xec10 ?? '')} has a cheerful and sociable personality.`);
+            } else {
+              scene.text(`${((s as any).Xec10 ?? '')} is short-tempered and strict.`);
+            }
           }
         }
+        (s as any).jnl_i = ((s as any).jnl_i ?? 0) + (1);
+        break;
       }
-      (s as any).jnl_i = ((s as any).jnl_i ?? 0) + (1);
-      // TODO-QSP: jump 'loverjournalloop'
+      (s as any).jnl_i = undefined;
+      (s as any).jnl_max_i = undefined;
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1087,23 +1073,22 @@ function enterGeneraltab(s: GameState, scene: SceneBuilder): void {
       { label: 'View your photography portfolio', goto: ['journal_portfolio', ''] },
     ]);
   }
-  scene.text('<br><center><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027journal/u0027, /u0027locations/u0027); return false;">Locations</a></center>');
-  scene.text('<br><center><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027journal/u0027, /u0027family/u0027); return false;">Family</a></center>');
-  scene.text('<br><center><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027journal/u0027, /u0027pav_res/u0027); return false;">Pavlovsk Residents</a></center>');
-  scene.text('<br><center><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027journal/u0027, /u0027gad_res/u0027); return false;">Gadukino Residents</a></center>');
-  scene.text('<br><center><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027journal/u0027, /u0027city_res/u0027); return false;">City Residents</a></center>');
+  scene.text('<br><center><a href="#" onclick="window.__gameStore.getState().doGoto(\u0027journal\u0027, \u0027locations\u0027); return false;">Locations</a></center>');
+  scene.text('<br><center><a href="#" onclick="window.__gameStore.getState().doGoto(\u0027journal\u0027, \u0027family\u0027); return false;">Family</a></center>');
+  scene.text('<br><center><a href="#" onclick="window.__gameStore.getState().doGoto(\u0027journal\u0027, \u0027pav_res\u0027); return false;">Pavlovsk Residents</a></center>');
+  scene.text('<br><center><a href="#" onclick="window.__gameStore.getState().doGoto(\u0027journal\u0027, \u0027gad_res\u0027); return false;">Gadukino Residents</a></center>');
+  scene.text('<br><center><a href="#" onclick="window.__gameStore.getState().doGoto(\u0027journal\u0027, \u0027city_res\u0027); return false;">City Residents</a></center>');
   if (((s as any).ballet ?? 0)?.['blocker'] > 0  ||  ((s as any).balletqw ?? 0)?.['school'] > 0) {
-    scene.text('<br><center><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027journal/u0027, /u0027ballet/u0027); return false;">Ballet Career</a></center>');
+    scene.text('<br><center><a href="#" onclick="window.__gameStore.getState().doGoto(\u0027journal\u0027, \u0027ballet\u0027); return false;">Ballet Career</a></center>');
   }
   if (((s as any).gschoolVars ?? 0)?.['school_diploma'] === 0  &&  ((s as any).start_type ?? 0)?.['loc'] === 'sg'  &&  ((s as any).gschoolVars ?? 0)?.['block'] === 0) {
-    scene.text('<br><center><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027journal_school/u0027, /u0027school/u0027); return false;">School</a></center>');
-    scene.text('<br><center><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027journal_school/u0027, /u0027coursesinfo/u0027); return false;">School Courses and Grades</a></center>');
+    scene.text('<br><center><a href="#" onclick="window.__gameStore.getState().doGoto(\u0027journal_school\u0027, \u0027school\u0027); return false;">School</a></center>');
+    scene.text('<br><center><a href="#" onclick="window.__gameStore.getState().doGoto(\u0027journal_school\u0027, \u0027coursesinfo\u0027); return false;">School Courses and Grades</a></center>');
   }
   if (((s as any).university ?? 0)?.['student'] === 1) {
-    scene.text('<br><center><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027journal/u0027, /u0027uni/u0027); return false;">University</a></center>');
+    scene.text('<br><center><a href="#" onclick="window.__gameStore.getState().doGoto(\u0027journal\u0027, \u0027uni\u0027); return false;">University</a></center>');
   }
-  scene.text('<br><center><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027journal/u0027, /u0027clothing/u0027); return false;">Clothing information</a></center>');
-  // TODO-QSP: end
+  scene.text('<br><center><a href="#" onclick="window.__gameStore.getState().doGoto(\u0027journal\u0027, \u0027clothing\u0027); return false;">Clothing information</a></center>');
   scene.build();
 }
 
@@ -1112,16 +1097,16 @@ function enterNotestab(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterJournalmenu(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('<center><h2>Notes</h2></center>');
   scene.text('Create notes to keep track of any information you need.');
-  scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: $zapis[] = input(/u0027What do you want to record?/u0027) */ return s; }); window.__gameStore.getState().doGoto(/u0027journal/u0027, /u0027notestab/u0027); return false;">Make a note</a>');
+  scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: $zapis[] = input(\u0027What do you want to record?\u0027) */ return s; }); window.__gameStore.getState().doGoto(\u0027journal\u0027, \u0027notestab\u0027); return false;">Make a note</a>');
   (s as any).jur_temp = 0;
-  // TODO-QSP: :jur_loop
-  if (((s as any).jur_temp ?? 0) < Object.keys((s as any).zapis ?? {}).length) {
-    // TODO-QSP: dynamic text: <<$zapis[jur_temp]>> <a href="exec: dynamic ''killvar''''$zapis'''',<<jur_temp>>...
-    scene.text(`${(((s as any).zapis ?? 0)?.[String((s as any).jur_temp ?? 0)] ?? '')} <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: dynamic /u0027killvar/u0027/u0027$zapis/u0027/u0027,${((s as any).jur_temp ?? '')} */ return s; }); window.__gameStore.getState().doGoto(/u0027/u0027, /u0027/u0027); return false;">Delete</a>`);
-    (s as any).jur_temp = ((s as any).jur_temp ?? 0) + (1);
-    // TODO-QSP: jump 'jur_loop'
+  while (true) {
+    if (((s as any).jur_temp ?? 0) < Object.keys((s as any).zapis ?? {}).length) {
+      scene.text(`${(((s as any).zapis ?? 0)?.[String((s as any).jur_temp ?? 0)] ?? '')} <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: dynamic /u0027killvar/u0027/u0027$zapis/u0027/u0027,${((s as any).jur_temp ?? '')} */ return s; }); window.__gameStore.getState().doGoto(/u0027/u0027journal/u0027/u0027, /u0027/u0027notestab/u0027/u0027/u0027); return false;">Delete</a>`);
+      (s as any).jur_temp = ((s as any).jur_temp ?? 0) + (1);
+      break;
+    }
+    (s as any).jur_temp = undefined;
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1133,13 +1118,10 @@ function enterNotificationLog(s: GameState, scene: SceneBuilder): void {
     scene.text('Notification log is empty.');
   } else {
     (s as any).notification_log_loop_index = 0;
-    // TODO-QSP: :notification_log_loop
-    (s as any).notification_log_loop_index = ((s as any).notification_log_loop_index ?? 0) - (1);
-    if (((s as any).notification_log_loop_index ?? 0) >= 0) {
-      // TODO-QSP: jump 'notification_log_loop'
-    }
+    do {
+      (s as any).notification_log_loop_index = ((s as any).notification_log_loop_index ?? 0) - (1);
+    } while (((s as any).notification_log_loop_index ?? 0) >= 0);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1165,7 +1147,6 @@ function enterBallet(s: GameState, scene: SceneBuilder): void {
   scene.text('   • Get drunk too often or fall pregnant - kicked off the Corp De Ballet.');
   scene.text('   • Fail to maintain your appearance - reprimands or loss of income, leading to expulsion.');
   scene.text('These are the obvious repercussions, but there will be subtle consequences for your interactions with NPCs. This mod is meant to be played blind for your initial playthrough and the only feedback will be the varying conversations.');
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1184,7 +1165,6 @@ function enterClothing(s: GameState, scene: SceneBuilder): void {
   scene.text('  Good quality outfit');
   scene.text('  Outstanding quality outfit');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterLeaveactions(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1193,211 +1173,187 @@ function enterUni(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterJournalmenu(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('<center><h2>University</h2></center>');
   if (((s as any).university ?? 0)?.['diploma'] > 0) {
-    // TODO-QSP: dynamic text: 'You have graduated from the University of St. Petersburg with a degree in ' + $...
-    scene.text('You have graduated from the University of St. Petersburg with a degree in \' + $func(\'uni_programs\', \'get_program_name\') + \'.');
+    scene.text('You have graduated from the University of St. Petersburg with a degree in ' + qspFunc(s, 'uni_programs', 'get_program_name') + '.');
   } else {
-    // TODO-QSP: dynamic text: 'You are currently enrolled in the ' + $func('string', 'parse_number', universit...
-    scene.text('You are currently enrolled in the \' + $func(\'string\', \'parse_number\', university[\'enrolled_in_semester\'], \'ordinal\') + \' semester of the \' + $func(\'uni_programs\', \'get_program_name\') + \' degree at the University of St. Petersburg.');
+    scene.text('You are currently enrolled in the ' + qspFunc(s, 'string', 'parse_number', (((s as any).university ?? 0)?.['enrolled_in_semester'] ?? ''), 'ordinal') + ' semester of the ' + qspFunc(s, 'uni_programs', 'get_program_name') + ' degree at the University of St. Petersburg.');
   }
   if (((s as any).university ?? 0)?.['elective1'] !== ''  ||  ((s as any).university ?? 0)?.['elective2'] !== ''  ||  ((s as any).university ?? 0)?.['elective3'] !== '') {
-    // TODO-QSP: dynamic text: You are taking the following elective classes this semester: <<$university[''ele...
     scene.text(`You are taking the following elective classes this semester: ${(((s as any).university ?? 0)?.['elective1'] ?? '')}, ${(((s as any).university ?? 0)?.['elective2'] ?? '')}, ${(((s as any).university ?? 0)?.['elective1'] ?? '')}.`);
   }
   (s as any).j = 1;
-  // TODO-QSP: :semester_loop
-  if (((s as any).j ?? 0) <= ((s as any).university ?? 0)?.['semester_passed']) {
-    qspCall(s, 'grades', 'assign_grade_description', 'uni_' + (((s as any).university ?? 0)?.['enrolled_in']) + '_semester_' + ((s as any).j ?? 0) + '');
-    // TODO-QSP: dynamic text: 'You passed the ' + $func('string', 'parse_number', j, 'ordinal') + ' semester w...
-    scene.text('You passed the \' + $func(\'string\', \'parse_number\', j, \'ordinal\') + \' semester with the following grades:');
-    (s as any).k = 0;
-    // TODO-QSP: :class_loop
-    if (((s as any).class_list_institution ?? 0)?.[String((s as any).k ?? 0)] === 'uni_' + (((s as any).university ?? 0)?.['enrolled_in']) + '_semester_' + (((s as any).j ?? 0))) {
-      // TODO-QSP: dynamic text: <<$class_list_name[k]>>: <<$class_grade_desc[''<<$class_list_institution[k]>>_<<...
-      scene.text(`${(((s as any).class_list_name ?? 0)?.[String((s as any).k ?? 0)] ?? '')}: ${qspUntranslated(s, "class_grade_desc['<<class_list_institution[k]", { location: "journal" })}_${(((s as any).class_list_name ?? 0)?.[String((s as any).k ?? 0)] ?? '')}_grade']>>`);
-    }
-    (s as any).k = ((s as any).k ?? 0) + (1);
-    if (((s as any).k ?? 0) < Object.keys((s as any).class_list_institution ?? {}).length) {
-      // TODO-QSP: jump 'class_loop'
-    }
-  }
-  (s as any).j = ((s as any).j ?? 0) + (1);
-  if (((s as any).j ?? 0) < 8) {
-    // TODO-QSP: jump 'semester_loop'
-  }
-  if (((s as any).university ?? 0)?.['semester_passed'] === ((s as any).university ?? 0)?.['enrolled_in_semester']  &&  ((s as any).university ?? 0)?.['diploma'] === 0) {
-    scene.text('You need to register for your next semester at the university administration building.');
-  } else {
-    if (((s as any).university ?? 0)?.['break'] === 1) {
-      scene.text('You currently have a break between semesters.');
-      if (((s as any).university ?? 0)?.['semester_week'] === -1) {
-        scene.text('The next semester will start next week.');
-      }
-      scene.text('<center><h2>Class schedule for Next Semester</h2></center>');
-      // TODO-QSP: 'Monday: '    + $func('uni_programs', 'get_first_period', 'monday'  ) + ' ' + $func('uni_programs', ...
-      // TODO-QSP: 'Tuesday: '    + $func('uni_programs', 'get_first_period', 'tuesday'  ) + ' ' + $func('uni_programs'...
-      // TODO-QSP: 'Wednesday: '  + $func('uni_programs', 'get_first_period', 'wednesday'  ) + ' ' + $func('uni_program...
-      // TODO-QSP: 'Thursday: '  + $func('uni_programs', 'get_first_period', 'thursday'  ) + ' ' + $func('uni_programs'...
-    } else {
-      if (((s as any).university ?? 0)?.['semester_week'] >  0) {
-        if (((s as any).university ?? 0)?.['semester_week'] < 11) {
-          // TODO-QSP: dynamic text: 'You are in the ' + $func('string', 'parse_number', university['semester_week'],...
-          scene.text('You are in the \' + $func(\'string\', \'parse_number\', university[\'semester_week\'], \'ordinal\') + \' week of the semester, which last 15 weeks.');
-        } else {
-          // TODO-QSP: dynamic text: 'You are in the ' + $str(university['semester_week']) + 'th week of the semester...
-          scene.text('\'You are in the \' + $str(university[\'semester_week\']) + \'th week of the semester, which last 15 weeks.\'');
+  do {
+    if (((s as any).j ?? 0) <= ((s as any).university ?? 0)?.['semester_passed']) {
+      qspCall(s, 'grades', 'assign_grade_description', 'uni_' + (((s as any).university ?? 0)?.['enrolled_in']) + '_semester_' + ((s as any).j ?? 0) + '');
+      scene.text('You passed the ' + qspFunc(s, 'string', 'parse_number', ((s as any).j ?? ''), 'ordinal') + ' semester with the following grades:');
+      (s as any).k = 0;
+      do {
+        if (((s as any).class_list_institution ?? 0)?.[String((s as any).k ?? 0)] === 'uni_' + (((s as any).university ?? 0)?.['enrolled_in']) + '_semester_' + (((s as any).j ?? 0))) {
+          scene.text(`${(((s as any).class_list_name ?? 0)?.[String((s as any).k ?? 0)] ?? '')}: ${(((s as any).class_grade_desc ?? 0)?.[String((((s as any).class_list_institution ?? 0)?.[String((s as any).k ?? 0)] ?? 0)) + '_' + String((((s as any).class_list_name ?? 0)?.[String((s as any).k ?? 0)] ?? 0)) + '_grade'] ?? '')}`);
         }
-        scene.text('<center><h2>Class schedule</h2></center>');
-        // TODO-QSP: 'Monday: '    + $func('uni_programs', 'get_first_period', 'monday'  ) + ' ' + $func('uni_programs', ...
-        // TODO-QSP: 'Tuesday: '    + $func('uni_programs', 'get_first_period', 'tuesday'  ) + ' ' + $func('uni_programs'...
-        // TODO-QSP: 'Wednesday: '  + $func('uni_programs', 'get_first_period', 'wednesday'  ) + ' ' + $func('uni_program...
-        // TODO-QSP: 'Thursday: '  + $func('uni_programs', 'get_first_period', 'thursday'  ) + ' ' + $func('uni_programs'...
-        scene.text('<center><h2>Grades</h2></center>');
-        qspCall(s, 'grades', 'assign_grade_description', 'uni_' + (((s as any).university ?? 0)?.['enrolled_in']) + '_semester_' + (((s as any).university ?? 0)?.['enrolled_in_semester']) + '');
-        (s as any).j = 0;
-        // TODO-QSP: :grade_loop
-        if (((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)] === 'uni_' + (((s as any).university ?? 0)?.['enrolled_in']) + '_semester_' + (((s as any).university ?? 0)?.['enrolled_in_semester'])) {
-          if (((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_grade'] >= (3 * ((s as any).university ?? 0)?.['semester_week'] + 52)) {
-            // TODO-QSP: dynamic text: You think you''re doing great in <<$class_list_name[j]>> and will probably pass ...
-            scene.text(`You think you're doing great in ${(((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)] ?? '')} and will probably pass with a top grade if you keep this up.`);
-            if (((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_weekly_grade_gain'] + ((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_optional_weekly_grade_gain'] < ((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_weekly_grade_gain_breakeven_point']) {
-              scene.text('So far you have not done enough work this week an if you don\'t go to more classes and are active there or study more outside classes, you will not just fail to keep up, you will actually make your chances of getting good grade worse.');
-            } else {
-              if (3 * (((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_weekly_grade_gain'] + ((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_optional_weekly_grade_gain'] - ((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_weekly_grade_gain_breakeven_point']) < 3 * (((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_weekly_grade_gain_max'] - ((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_weekly_grade_gain_breakeven_point'])) {
-                scene.text('The work you have put in this week so far is not enough to keep up, but at least you are not falling to much behind.');
-              } else {
-                scene.text('You have so far put in the amount of work this week to keep up.');
-              }
-            }
+        (s as any).k = ((s as any).k ?? 0) + (1);
+        (s as any).k = undefined;
+      } while (((s as any).k ?? 0) < Object.keys((s as any).class_list_institution ?? {}).length);
+    }
+    (s as any).j = ((s as any).j ?? 0) + (1);
+    (s as any).j = undefined;
+    if (((s as any).university ?? 0)?.['semester_passed'] === ((s as any).university ?? 0)?.['enrolled_in_semester']  &&  ((s as any).university ?? 0)?.['diploma'] === 0) {
+      scene.text('You need to register for your next semester at the university administration building.');
+    } else {
+      if (((s as any).university ?? 0)?.['break'] === 1) {
+        scene.text('You currently have a break between semesters.');
+        if (((s as any).university ?? 0)?.['semester_week'] === -1) {
+          scene.text('The next semester will start next week.');
+        }
+        scene.text('<center><h2>Class schedule for Next Semester</h2></center>');
+        scene.text('Monday: ' + qspFunc(s, 'uni_programs', 'get_first_period', 'monday') + ' ' + qspFunc(s, 'uni_programs', 'get_second_period', 'monday') + ' ' + qspFunc(s, 'uni_programs', 'get_third_period', 'monday'));
+        scene.text('Tuesday: ' + qspFunc(s, 'uni_programs', 'get_first_period', 'tuesday') + ' ' + qspFunc(s, 'uni_programs', 'get_second_period', 'tuesday') + ' ' + qspFunc(s, 'uni_programs', 'get_third_period', 'tuesday'));
+        scene.text('Wednesday: ' + qspFunc(s, 'uni_programs', 'get_first_period', 'wednesday') + ' ' + qspFunc(s, 'uni_programs', 'get_second_period', 'wednesday') + ' ' + qspFunc(s, 'uni_programs', 'get_third_period', 'wednesday'));
+        scene.text('Thursday: ' + qspFunc(s, 'uni_programs', 'get_first_period', 'thursday') + ' ' + qspFunc(s, 'uni_programs', 'get_second_period', 'thursday') + ' ' + qspFunc(s, 'uni_programs', 'get_third_period', 'thursday'));
+      } else {
+        if (((s as any).university ?? 0)?.['semester_week'] >  0) {
+          if (((s as any).university ?? 0)?.['semester_week'] < 11) {
+            scene.text('You are in the ' + qspFunc(s, 'string', 'parse_number', (((s as any).university ?? 0)?.['semester_week'] ?? ''), 'ordinal') + ' week of the semester, which last 15 weeks.');
           } else {
-            if (((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_grade'] > (2 * ((s as any).university ?? 0)?.['semester_week'] + 32)) {
-              // TODO-QSP: dynamic text: You''re following the <<$class_list_name[j]>> class well and will probably pass ...
-              scene.text(`You're following the ${(((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)] ?? '')} class well and will probably pass with a good grade if you keep this up, but to get the top mark you'll need to put in some more effort.`);
-              if (((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_weekly_grade_gain'] + ((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_optional_weekly_grade_gain'] < ((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_weekly_grade_gain_breakeven_point']) {
-                scene.text('So far you have not done enough work this week an if you don\'t go to more classes and are active there or study more outside classes, you will not just fail to keep up, you will actually make your chances of getting good grade worse.');
-              } else {
-                if (3 * (((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_weekly_grade_gain'] + ((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_optional_weekly_grade_gain'] - ((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_weekly_grade_gain_breakeven_point']) < 2 * (((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_weekly_grade_gain_max\'] - class[\'' + (((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_weekly_grade_gain_breakeven_point'])) {
-                  scene.text('The work you have put in this week so far is not enough to keep up, but at least you are not falling to much behind.');
+            scene.text('You are in the ' + String((((s as any).university ?? 0)?.['semester_week'] ?? '')) + 'th week of the semester, which last 15 weeks.');
+          }
+          scene.text('<center><h2>Class schedule</h2></center>');
+          scene.text('Monday: ' + qspFunc(s, 'uni_programs', 'get_first_period', 'monday') + ' ' + qspFunc(s, 'uni_programs', 'get_second_period', 'monday') + ' ' + qspFunc(s, 'uni_programs', 'get_third_period', 'monday'));
+          scene.text('Tuesday: ' + qspFunc(s, 'uni_programs', 'get_first_period', 'tuesday') + ' ' + qspFunc(s, 'uni_programs', 'get_second_period', 'tuesday') + ' ' + qspFunc(s, 'uni_programs', 'get_third_period', 'tuesday'));
+          scene.text('Wednesday: ' + qspFunc(s, 'uni_programs', 'get_first_period', 'wednesday') + ' ' + qspFunc(s, 'uni_programs', 'get_second_period', 'wednesday') + ' ' + qspFunc(s, 'uni_programs', 'get_third_period', 'wednesday'));
+          scene.text('Thursday: ' + qspFunc(s, 'uni_programs', 'get_first_period', 'thursday') + ' ' + qspFunc(s, 'uni_programs', 'get_second_period', 'thursday') + ' ' + qspFunc(s, 'uni_programs', 'get_third_period', 'thursday'));
+          scene.text('<center><h2>Grades</h2></center>');
+          qspCall(s, 'grades', 'assign_grade_description', 'uni_' + (((s as any).university ?? 0)?.['enrolled_in']) + '_semester_' + (((s as any).university ?? 0)?.['enrolled_in_semester']) + '');
+          (s as any).j = 0;
+          do {
+            if (((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)] === 'uni_' + (((s as any).university ?? 0)?.['enrolled_in']) + '_semester_' + (((s as any).university ?? 0)?.['enrolled_in_semester'])) {
+              if (((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_grade'] >= (3 * ((s as any).university ?? 0)?.['semester_week'] + 52)) {
+                scene.text(`You think you're doing great in ${(((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)] ?? '')} and will probably pass with a top grade if you keep this up.`);
+                if (((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_weekly_grade_gain'] + ((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_optional_weekly_grade_gain'] < ((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_weekly_grade_gain_breakeven_point']) {
+                  scene.text('So far you have not done enough work this week an if you don\'t go to more classes and are active there or study more outside classes, you will not just fail to keep up, you will actually make your chances of getting good grade worse.');
                 } else {
-                  if (3 * (((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_weekly_grade_gain'] + ((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_optional_weekly_grade_gain'] - ((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_weekly_grade_gain_breakeven_point']) >= 4 * (((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_weekly_grade_gain_max'] - ((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_weekly_grade_gain_breakeven_point'])) {
-                    scene.text('You have so far put in more than enough work this week, and you situation is improving you keeping this up and you might end with good grade instead of a decent one.');
+                  if (3 * (((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_weekly_grade_gain'] + ((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_optional_weekly_grade_gain'] - ((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_weekly_grade_gain_breakeven_point']) < 3 * (((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_weekly_grade_gain_max'] - ((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_weekly_grade_gain_breakeven_point'])) {
+                    scene.text('The work you have put in this week so far is not enough to keep up, but at least you are not falling to much behind.');
                   } else {
                     scene.text('You have so far put in the amount of work this week to keep up.');
                   }
                 }
-              }
-            } else {
-              if (((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_grade'] >= (1 * ((s as any).university ?? 0)?.['semester_week'] + 32)) {
-                // TODO-QSP: dynamic text: You have trouble following the <<$class_list_name[j]>> class, but will probably ...
-                scene.text(`You have trouble following the ${(((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)] ?? '')} class, but will probably still pass. If you want a good grade, then you'll really need to do something about it.`);
-                if (((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_weekly_grade_gain'] + ((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_optional_weekly_grade_gain'] < ((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_weekly_grade_gain_breakeven_point']) {
-                  scene.text('So far you have not done enough work this week an if you don\'t go to more classes and are active there or study more outside classes, you will not just fail to keep up, you will actually make your chances of getting good grade worse.');
-                } else {
-                  if (3 * (((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_weekly_grade_gain'] + ((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_optional_weekly_grade_gain'] - ((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_weekly_grade_gain_breakeven_point']) < (((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_weekly_grade_gain_max'] - ((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_weekly_grade_gain_breakeven_point'])) {
-                    scene.text('The work you have put in this week so far is not enough to keep up, but at least you are not falling to much behind.');
-                  } else {
-                    if (3 * (((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_weekly_grade_gain'] + ((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_optional_weekly_grade_gain'] - ((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_weekly_grade_gain_breakeven_point']) >= 3 * (((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_weekly_grade_gain_max'] - ((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_weekly_grade_gain_breakeven_point'])) {
-                      scene.text('You have so far put in more than enough work this week, and you situation is improving you might soon not have trouble following the class anymore.');
-                    } else {
-                      scene.text('You have so far put in the amount of work this week to keep up.');
-                    }
-                  }
-                }
               } else {
-                if (((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_grade'] < 40) {
-                  // TODO-QSP: dynamic text: You will fail your <<$class_list_name[j]>> class unless you do something about i...
-                  scene.text(`You will fail your ${(((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)] ?? '')} class unless you do something about it right now. It might even be too late to catch up.`);
+                if (((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_grade'] > (2 * ((s as any).university ?? 0)?.['semester_week'] + 32)) {
+                  scene.text(`You're following the ${(((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)] ?? '')} class well and will probably pass with a good grade if you keep this up, but to get the top mark you'll need to put in some more effort.`);
                   if (((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_weekly_grade_gain'] + ((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_optional_weekly_grade_gain'] < ((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_weekly_grade_gain_breakeven_point']) {
-                    scene.text('So far you have not done enough work this week an if you don\'t go to more classes and are active there or study more outside classes, you be even further from passing the class.');
+                    scene.text('So far you have not done enough work this week an if you don\'t go to more classes and are active there or study more outside classes, you will not just fail to keep up, you will actually make your chances of getting good grade worse.');
                   } else {
-                    if (3 * (((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_weekly_grade_gain'] + ((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_optional_weekly_grade_gain'] - ((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_weekly_grade_gain_breakeven_point']) / (((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_weekly_grade_gain_max'] - ((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_weekly_grade_gain_breakeven_point']) >= (40 - ((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_grade'])) {
-                      scene.text('You have put in enough work so far this week that you think you can pass the class if you keep this up for the rest of the semester.');
-                    } else {
-                      scene.text('The amount of work you have put in this week so far will improve your chance, but it is still not enough to guarantee that you pass the class.');
-                    }
-                  }
-                } else {
-                  // TODO-QSP: dynamic text: You are hopelessly behind in your <<$class_list_name[j]>> class, but can probabl...
-                  scene.text(`You are hopelessly behind in your ${(((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)] ?? '')} class, but can probably still pass. Any hope of getting a good grade will require that you start doing something about it right now.`);
-                  if (((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_weekly_grade_gain'] + ((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_optional_weekly_grade_gain'] < ((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_weekly_grade_gain_breakeven_point']) {
-                    scene.text('So far you have not done enough work this week an if you don\'t go to more classes and are active there or study more outside classes, you will not just fail to keep up, you will actually make your chances of even passing the class worse.');
-                  } else {
-                    if (3 * (((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_weekly_grade_gain'] + ((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_optional_weekly_grade_gain'] - ((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_weekly_grade_gain_breakeven_point']) < (((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_weekly_grade_gain_max'] - ((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_weekly_grade_gain_breakeven_point'])) {
+                    if (3 * (((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_weekly_grade_gain'] + ((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_optional_weekly_grade_gain'] - ((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_weekly_grade_gain_breakeven_point']) < 2 * (((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_weekly_grade_gain_max\'] - class[\'' + (((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_weekly_grade_gain_breakeven_point'])) {
                       scene.text('The work you have put in this week so far is not enough to keep up, but at least you are not falling to much behind.');
                     } else {
-                      if (3 * (((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_weekly_grade_gain'] + ((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_optional_weekly_grade_gain'] - ((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_weekly_grade_gain_breakeven_point']) >= 3 * (((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_weekly_grade_gain_max'] - ((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_weekly_grade_gain_breakeven_point'])) {
-                        scene.text('The work you have put in so far is more than enough work this week, and you situation is improving.');
+                      if (3 * (((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_weekly_grade_gain'] + ((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_optional_weekly_grade_gain'] - ((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_weekly_grade_gain_breakeven_point']) >= 4 * (((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_weekly_grade_gain_max'] - ((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_weekly_grade_gain_breakeven_point'])) {
+                        scene.text('You have so far put in more than enough work this week, and you situation is improving you keeping this up and you might end with good grade instead of a decent one.');
                       } else {
-                        scene.text('You have so far put in the amount of work this week to keep up, but not really improve which is not good in your situation.');
+                        scene.text('You have so far put in the amount of work this week to keep up.');
                       }
                     }
                   }
-                }
-              }
-            }
-          }
-        }
-        (s as any).j = ((s as any).j ?? 0) + (1);
-        if (((s as any).j ?? 0) < Object.keys((s as any).class_list_institution ?? {}).length) {
-          // TODO-QSP: jump 'grade_loop'
-        }
-      } else {
-        if (((s as any).university ?? 0)?.['exam_week'] > 0) {
-          // TODO-QSP: 'You are in the ' + iif(university['exam_week'] = 1, 'first', 'second') + ' of the two weeks of exam...
-          qspCall(s, 'grades', 'assign_grade_description', 'uni_' + (((s as any).university ?? 0)?.['enrolled_in']) + '_semester_' + (((s as any).university ?? 0)?.['enrolled_in_semester']) + '');
-          (s as any).j = 0;
-          // TODO-QSP: :exam_loop
-          if (((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)] === 'uni_' + (((s as any).university ?? 0)?.['enrolled_in']) + '_semester_' + (((s as any).university ?? 0)?.['enrolled_in_semester'])) {
-            if (((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_exam_done'] === 1) {
-              // TODO-QSP: dynamic text: You completed your <<$class_list_name[j]>> exam and think you will get an <<$cla...
-              scene.text(`You completed your ${(((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)] ?? '')} exam and think you will get an ${qspUntranslated(s, "class_grade_desc['<<class_list_institution[j]", { location: "journal" })}_${(((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)] ?? '')}_grade']>>.`);
-            } else {
-              if (qspFunc(s, 'uni_programs', 'is_exam_over', (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)] ?? 0)) === 1) {
-                // TODO-QSP: dynamic text: Your exam <<$class_list_name[j]>> is over, but you did not attend. This means yo...
-                scene.text(`Your exam ${(((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)] ?? '')} is over, but you did not attend. This means you will fail the class and therefore the semester.`);
-              } else {
-                if (((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_grade'] < 40) {
-                  // TODO-QSP: dynamic text: If your <<$class_list_name[j]>> exam was today, then you would fail. Time to hit...
-                  scene.text(`If your ${(((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)] ?? '')} exam was today, then you would fail. Time to hit the books if you don't want to fail the semester.`);
                 } else {
-                  if (((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_grade'] < 70) {
-                    // TODO-QSP: dynamic text: You think you''ve prepared enough to pass your <<$class_list_name[j]>> exam, but...
-                    scene.text(`You think you've prepared enough to pass your ${(((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)] ?? '')} exam, but if you want a good grade, then you'll need to do some serious studying.`);
-                  } else {
-                    if (((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_grade'] < 90) {
-                      // TODO-QSP: dynamic text: You think that you''ve prepared pretty well for your <<$class_list_name[j]>> exa...
-                      scene.text(`You think that you've prepared pretty well for your ${(((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)] ?? '')} exam and will probably get a 4. With some more studying, you might get a 5.`);
+                  if (((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_grade'] >= (1 * ((s as any).university ?? 0)?.['semester_week'] + 32)) {
+                    scene.text(`You have trouble following the ${(((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)] ?? '')} class, but will probably still pass. If you want a good grade, then you'll really need to do something about it.`);
+                    if (((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_weekly_grade_gain'] + ((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_optional_weekly_grade_gain'] < ((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_weekly_grade_gain_breakeven_point']) {
+                      scene.text('So far you have not done enough work this week an if you don\'t go to more classes and are active there or study more outside classes, you will not just fail to keep up, you will actually make your chances of getting good grade worse.');
                     } else {
-                      if (((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_grade'] < 100) {
-                        // TODO-QSP: dynamic text: You think you''re well prepared for your <<$class_list_name[j]>> exam and will p...
-                        scene.text(`You think you're well prepared for your ${(((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)] ?? '')} exam and will probably pass with a 5, but a little more studying never hurts.`);
+                      if (3 * (((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_weekly_grade_gain'] + ((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_optional_weekly_grade_gain'] - ((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_weekly_grade_gain_breakeven_point']) < (((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_weekly_grade_gain_max'] - ((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_weekly_grade_gain_breakeven_point'])) {
+                        scene.text('The work you have put in this week so far is not enough to keep up, but at least you are not falling to much behind.');
                       } else {
-                        // TODO-QSP: dynamic text: You think you''re well prepared for your <<$class_list_name[j]>> exam and will p...
-                        scene.text(`You think you're well prepared for your ${(((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)] ?? '')} exam and will probably pass with the highest mark possible.`);
+                        if (3 * (((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_weekly_grade_gain'] + ((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_optional_weekly_grade_gain'] - ((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_weekly_grade_gain_breakeven_point']) >= 3 * (((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_weekly_grade_gain_max'] - ((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_weekly_grade_gain_breakeven_point'])) {
+                          scene.text('You have so far put in more than enough work this week, and you situation is improving you might soon not have trouble following the class anymore.');
+                        } else {
+                          scene.text('You have so far put in the amount of work this week to keep up.');
+                        }
+                      }
+                    }
+                  } else {
+                    if (((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_grade'] < 40) {
+                      scene.text(`You will fail your ${(((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)] ?? '')} class unless you do something about it right now. It might even be too late to catch up.`);
+                      if (((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_weekly_grade_gain'] + ((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_optional_weekly_grade_gain'] < ((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_weekly_grade_gain_breakeven_point']) {
+                        scene.text('So far you have not done enough work this week an if you don\'t go to more classes and are active there or study more outside classes, you be even further from passing the class.');
+                      } else {
+                        if (3 * (((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_weekly_grade_gain'] + ((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_optional_weekly_grade_gain'] - ((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_weekly_grade_gain_breakeven_point']) / (((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_weekly_grade_gain_max'] - ((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_weekly_grade_gain_breakeven_point']) >= (40 - ((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_grade'])) {
+                          scene.text('You have put in enough work so far this week that you think you can pass the class if you keep this up for the rest of the semester.');
+                        } else {
+                          scene.text('The amount of work you have put in this week so far will improve your chance, but it is still not enough to guarantee that you pass the class.');
+                        }
+                      }
+                    } else {
+                      scene.text(`You are hopelessly behind in your ${(((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)] ?? '')} class, but can probably still pass. Any hope of getting a good grade will require that you start doing something about it right now.`);
+                      if (((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_weekly_grade_gain'] + ((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_optional_weekly_grade_gain'] < ((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_weekly_grade_gain_breakeven_point']) {
+                        scene.text('So far you have not done enough work this week an if you don\'t go to more classes and are active there or study more outside classes, you will not just fail to keep up, you will actually make your chances of even passing the class worse.');
+                      } else {
+                        if (3 * (((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_weekly_grade_gain'] + ((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_optional_weekly_grade_gain'] - ((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_weekly_grade_gain_breakeven_point']) < (((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_weekly_grade_gain_max'] - ((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_weekly_grade_gain_breakeven_point'])) {
+                          scene.text('The work you have put in this week so far is not enough to keep up, but at least you are not falling to much behind.');
+                        } else {
+                          if (3 * (((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_weekly_grade_gain'] + ((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_optional_weekly_grade_gain'] - ((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_weekly_grade_gain_breakeven_point']) >= 3 * (((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_weekly_grade_gain_max'] - ((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_weekly_grade_gain_breakeven_point'])) {
+                            scene.text('The work you have put in so far is more than enough work this week, and you situation is improving.');
+                          } else {
+                            scene.text('You have so far put in the amount of work this week to keep up, but not really improve which is not good in your situation.');
+                          }
+                        }
                       }
                     }
                   }
                 }
               }
             }
-          }
-          (s as any).j = ((s as any).j ?? 0) + (1);
-          if (((s as any).j ?? 0) < Object.keys((s as any).class_list_institution ?? {}).length) {
-            // TODO-QSP: jump 'exam_loop'
+            (s as any).j = ((s as any).j ?? 0) + (1);
+            (s as any).j = undefined;
+          } while (((s as any).j ?? 0) < Object.keys((s as any).class_list_institution ?? {}).length);
+        } else {
+          if (((s as any).university ?? 0)?.['exam_week'] > 0) {
+            scene.text('You are in the ' + ((((s as any).university ?? 0)?.['exam_week'] === 1) ? ('first') : ('second')) + ' of the two weeks of exams. ' + qspFunc(s, 'uni_programs', 'get_exam_schedule'));
+            qspCall(s, 'grades', 'assign_grade_description', 'uni_' + (((s as any).university ?? 0)?.['enrolled_in']) + '_semester_' + (((s as any).university ?? 0)?.['enrolled_in_semester']) + '');
+            (s as any).j = 0;
+            do {
+              if (((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)] === 'uni_' + (((s as any).university ?? 0)?.['enrolled_in']) + '_semester_' + (((s as any).university ?? 0)?.['enrolled_in_semester'])) {
+                if (((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_exam_done'] === 1) {
+                  scene.text(`You completed your ${(((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)] ?? '')} exam and think you will get an ${(((s as any).class_grade_desc ?? 0)?.[String((((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)] ?? 0)) + '_' + String((((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)] ?? 0)) + '_grade'] ?? '')}.`);
+                } else {
+                  if (qspFunc(s, 'uni_programs', 'is_exam_over', (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)] ?? 0)) === 1) {
+                    scene.text(`Your exam ${(((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)] ?? '')} is over, but you did not attend. This means you will fail the class and therefore the semester.`);
+                  } else {
+                    if (((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_grade'] < 40) {
+                      scene.text(`If your ${(((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)] ?? '')} exam was today, then you would fail. Time to hit the books if you don't want to fail the semester.`);
+                    } else {
+                      if (((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_grade'] < 70) {
+                        scene.text(`You think you've prepared enough to pass your ${(((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)] ?? '')} exam, but if you want a good grade, then you'll need to do some serious studying.`);
+                      } else {
+                        if (((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_grade'] < 90) {
+                          scene.text(`You think that you've prepared pretty well for your ${(((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)] ?? '')} exam and will probably get a 4. With some more studying, you might get a 5.`);
+                        } else {
+                          if (((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_grade'] < 100) {
+                            scene.text(`You think you're well prepared for your ${(((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)] ?? '')} exam and will probably pass with a 5, but a little more studying never hurts.`);
+                          } else {
+                            scene.text(`You think you're well prepared for your ${(((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)] ?? '')} exam and will probably pass with the highest mark possible.`);
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+              (s as any).j = ((s as any).j ?? 0) + (1);
+              (s as any).j = undefined;
+            } while (((s as any).j ?? 0) < Object.keys((s as any).class_list_institution ?? {}).length);
           }
         }
       }
     }
-  }
-  scene.text('<center><h2>Students and Teachers</h2></center>');
-  scene.text('<br><center><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027journal_uni/u0027, /u0027professors/u0027); return false;">Professors</a></center>');
-  scene.text('<br><center><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027journal_uni/u0027, /u0027pavlovsk_university_students/u0027); return false;">University Students from Pavlovsk</a></center>');
-  scene.text('<br><center><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027journal_uni/u0027, /u0027university_students/u0027); return false;">Other University Students</a></center>');
-  scene.text('<br><center><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027journal_uni/u0027, /u0027former_pavlovsk_students/u0027); return false;">Former Pavlovsk Students</a></center>');
-  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterLeaveactions(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
-  scene.actions([
-    { label: 'Go back', goto: ['journal', 'generaltab'] },
-  ]);
+    scene.text('<center><h2>Students and Teachers</h2></center>');
+    scene.text('<br><center><a href="#" onclick="window.__gameStore.getState().doGoto(\u0027journal_uni\u0027, \u0027professors\u0027); return false;">Professors</a></center>');
+    scene.text('<br><center><a href="#" onclick="window.__gameStore.getState().doGoto(\u0027journal_uni\u0027, \u0027pavlovsk_university_students\u0027); return false;">University Students from Pavlovsk</a></center>');
+    scene.text('<br><center><a href="#" onclick="window.__gameStore.getState().doGoto(\u0027journal_uni\u0027, \u0027university_students\u0027); return false;">Other University Students</a></center>');
+    scene.text('<br><center><a href="#" onclick="window.__gameStore.getState().doGoto(\u0027journal_uni\u0027, \u0027former_pavlovsk_students\u0027); return false;">Former Pavlovsk Students</a></center>');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterLeaveactions(s, scene); (s as any).locArgs = __savedLocArgs; }
+    scene.actions([
+      { label: 'Go back', goto: ['journal', 'generaltab'] },
+    ]);
+  } while (((s as any).j ?? 0) < 8);
   scene.build();
 }
 
@@ -1412,7 +1368,6 @@ function enterLocations(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><h2>St. Petersburg</h2></center>');
   scene.text('You\'ve heard many rumors about the city from both family members and school friends. They all say it\'s both a great and bad place. The few memories you have are connected to the big park that you and your family visited once, which had a large amusement park with lots of rides. You also know about the University because you\'ve overheard Anya and your mother argue about it. Sometimes, your mother would drag you and Anya along to the city mall while she was visiting the beauty salon. You remember running through the stores asking your mother to buy you clothes.');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterLeaveactions(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go back', goto: ['journal', 'generaltab'] },
   ]);
@@ -1518,7 +1473,6 @@ function enterCityRes(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'journal_NPC_information', 'A158', 'uni');
   }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterLeaveactions(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go back', goto: ['journal', 'generaltab'] },
   ]);
@@ -1530,9 +1484,9 @@ function enterRelindex(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterLeaveactions(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: end
   scene.actions([
     { label: 'Put your notebook down', handler: (st: GameState) => {
+    (st as any).jumploc = undefined;
     (st as any).jclose = 1;
     dynamicGoto(st, 'menu_loc', 'menu_arg');
   } },

@@ -19,12 +19,10 @@ function enterSetHotelActs(s: GameState, scene: SceneBuilder): void {
       (st as any).pavHotelMaid = 1;
       scene.text('You report in for work at the front desk and the brunette manning the desk quickly makes sure no customers will need her before motioning for you to follow.');
       scene.text('"Come with me. I\'ll show you to the locker room," she says as she stands up and walks into a room behind the desk. "I didn\'t catch your name last time. I\'m Elisabet."');
-      // TODO-QSP: dynamic text: "I''m <<$pcs_nickname>>," you reply as she opens a wardrobe and pulls out a maid...
       scene.text(`"I'm ${((st as any).pcs_nickname ?? '')}," you reply as she opens a wardrobe and pulls out a maid uniform.`);
       scene.text('"This should be about your size. If it doesn\'t fit, then just grab another from here. We have a few different sizes." She gives you a friendly smile. "It\'s company policy that you need to wear it while you work, but you can put your own clothes in a locker for safekeeping. I have to get back to the desk now before I\'m missed. Good luck!"');
     } else {
       scene.text('You report in for work at the front desk.');
-      // TODO-QSP: dynamic text: "Go and get changed, <<$pcs_nickname>>," Elisabet smiles. "I''ll put your name o...
       scene.text(`"Go and get changed, ${((st as any).pcs_nickname ?? '')}," Elisabet smiles. "I'll put your name on the worksheet for today."`);
     }
     scene.actions([
@@ -36,7 +34,6 @@ function enterSetHotelActs(s: GameState, scene: SceneBuilder): void {
     if (((st as any).pcs_inhib ?? 0) < 30) {
       (st as any).inhib_exp = ((st as any).inhib_exp ?? 0) + (1);
     }
-    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/hotel/maid.cloth' + r...
     scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/hotel/maid.cloth` + (Math.floor(Math.random() * 6) + 0) + '.jpg"></center>');
     scene.text('You sit in the locker room and look at the maid uniform, running your hands over the delicate fabric.');
     scene.text('You quickly take off your own clothes and put the maid uniform on as instructed. After a few quick poses in the mirror, you\'re convinced that the manager is a pervert!');
@@ -67,7 +64,6 @@ function enterSetHotelActs(s: GameState, scene: SceneBuilder): void {
       { label: 'Collect your salary', goto: ['pav_hotelReception', ''] },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -86,7 +82,6 @@ function enterMaid(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/hotel/hotel.corr.jpg');
   scene.text('You check your planning and go to the next room on your list.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Enter the room', handler: (st: GameState) => {
     qspGoto(st, 'pav_hotelWork', 'work');
@@ -99,85 +94,86 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'mood', 'lower', 'tiny');
   qspCall(s, 'sweat', 'add', 5);
   qspCall(s, 'stat', '');
-  // TODO-QSP: :new_maid_event
-  if (((s as any).soniaQW ?? 0)?.['slut'] === 5  &&  ((s as any).maidcheck_sonia ?? 0) !== ((s as any).daystart ?? 0)) {
-    (s as any).maidrand = (Math.floor(Math.random() * 161) + 0);
-  } else {
-    (s as any).maidrand = (Math.floor(Math.random() * 121) + 0);
-  }
-  if (((s as any).job_rank ?? 0)?.['pav_hotel_maid'] < 100) {
-    ((s as any).job_rank = (s as any).job_rank ?? {})['pav_hotel_maid'] = ((s as any).job_rank['pav_hotel_maid'] ?? 0) + ((Math.floor(Math.random() * 2) + 0));
-  }
-  (s as any).chai1 = (Math.floor(Math.random() * (100 - ((((s as any).job_rank ?? {})?.['pav_hotel_maid'] ?? 0) / 2) - 0 + 1)) + (0));
-  if (((s as any).chai1 ?? 0) < 25) {
-    (s as any).chai = 20 + (Math.floor(Math.random() * 41) + 0) + (Math.floor(Math.random() * ((((s as any).job_rank ?? {})?.['pav_hotel_maid'] ?? 0) - 0 + 1)) + (0));
-  }
-  if (((s as any).maidrand ?? 0) <= 10) {
-    qspGoto(s, 'pav_hotelWork', 'work0');
-  } else {
-    if (((s as any).maidrand ?? 0) <= 15) {
-      qspGoto(s, 'pav_hotelWork', 'work1');
+  while (true) {
+    if (((s as any).soniaQW ?? 0)?.['slut'] === 5  &&  ((s as any).maidcheck_sonia ?? 0) !== ((s as any).daystart ?? 0)) {
+      (s as any).maidrand = (Math.floor(Math.random() * 161) + 0);
     } else {
-      if (((s as any).maidrand ?? 0) <= 20) {
-        if (((s as any).maidcheck ?? 0)[1] === ((s as any).daystart ?? 0)) {
-          // TODO-QSP: jump 'new_maid_event'
-        }
-        ((s as any).maidcheck = (s as any).maidcheck ?? {})[1] = ((s as any).daystart ?? 0);
-        qspGoto(s, 'pav_hotelWork', 'work2');
+      (s as any).maidrand = (Math.floor(Math.random() * 121) + 0);
+    }
+    if (((s as any).job_rank ?? 0)?.['pav_hotel_maid'] < 100) {
+      ((s as any).job_rank = (s as any).job_rank ?? {})['pav_hotel_maid'] = ((s as any).job_rank['pav_hotel_maid'] ?? 0) + ((Math.floor(Math.random() * 2) + 0));
+    }
+    (s as any).chai1 = (Math.floor(Math.random() * (100 - ((((s as any).job_rank ?? {})?.['pav_hotel_maid'] ?? 0) / 2) - 0 + 1)) + (0));
+    if (((s as any).chai1 ?? 0) < 25) {
+      (s as any).chai = 20 + (Math.floor(Math.random() * 41) + 0) + (Math.floor(Math.random() * ((((s as any).job_rank ?? {})?.['pav_hotel_maid'] ?? 0) - 0 + 1)) + (0));
+    }
+    if (((s as any).maidrand ?? 0) <= 10) {
+      qspGoto(s, 'pav_hotelWork', 'work0');
+    } else {
+      if (((s as any).maidrand ?? 0) <= 15) {
+        qspGoto(s, 'pav_hotelWork', 'work1');
       } else {
-        if (((s as any).maidrand ?? 0) <= 25) {
-          if (((s as any).maidcheck ?? 0)[2] === ((s as any).daystart ?? 0)) {
-            // TODO-QSP: jump 'new_maid_event'
+        if (((s as any).maidrand ?? 0) <= 20) {
+          if (((s as any).maidcheck ?? 0)[1] === ((s as any).daystart ?? 0)) {
+            break;
           }
-          ((s as any).maidcheck = (s as any).maidcheck ?? {})[2] = ((s as any).daystart ?? 0);
-          qspGoto(s, 'pav_hotelWork', 'work3');
+          ((s as any).maidcheck = (s as any).maidcheck ?? {})[1] = ((s as any).daystart ?? 0);
+          qspGoto(s, 'pav_hotelWork', 'work2');
         } else {
-          if (((s as any).maidrand ?? 0) <= 35) {
-            if (((s as any).maidcheck ?? 0)[3] === ((s as any).daystart ?? 0)) {
-              // TODO-QSP: jump 'new_maid_event'
+          if (((s as any).maidrand ?? 0) <= 25) {
+            if (((s as any).maidcheck ?? 0)[2] === ((s as any).daystart ?? 0)) {
+              break;
             }
-            ((s as any).maidcheck = (s as any).maidcheck ?? {})[3] = ((s as any).daystart ?? 0);
-            qspGoto(s, 'pav_hotelWork', 'work4');
+            ((s as any).maidcheck = (s as any).maidcheck ?? {})[2] = ((s as any).daystart ?? 0);
+            qspGoto(s, 'pav_hotelWork', 'work3');
           } else {
-            if (((s as any).maidrand ?? 0) <= 55) {
-              qspGoto(s, 'pav_hotelWork', 'work5');
+            if (((s as any).maidrand ?? 0) <= 35) {
+              if (((s as any).maidcheck ?? 0)[3] === ((s as any).daystart ?? 0)) {
+                break;
+              }
+              ((s as any).maidcheck = (s as any).maidcheck ?? {})[3] = ((s as any).daystart ?? 0);
+              qspGoto(s, 'pav_hotelWork', 'work4');
             } else {
-              if (((s as any).maidrand ?? 0) <= 65) {
-                qspGoto(s, 'pav_hotelWork', 'work6');
+              if (((s as any).maidrand ?? 0) <= 55) {
+                qspGoto(s, 'pav_hotelWork', 'work5');
               } else {
-                if (((s as any).maidrand ?? 0) <= 70) {
-                  qspGoto(s, 'pav_hotelWork', 'work7');
+                if (((s as any).maidrand ?? 0) <= 65) {
+                  qspGoto(s, 'pav_hotelWork', 'work6');
                 } else {
-                  if (((s as any).maidrand ?? 0) <= 80) {
-                    qspGoto(s, 'pav_hotelWork', 'work8');
+                  if (((s as any).maidrand ?? 0) <= 70) {
+                    qspGoto(s, 'pav_hotelWork', 'work7');
                   } else {
-                    if (((s as any).maidrand ?? 0) <= 90) {
-                      qspGoto(s, 'pav_hotelWork', 'work9');
+                    if (((s as any).maidrand ?? 0) <= 80) {
+                      qspGoto(s, 'pav_hotelWork', 'work8');
                     } else {
-                      if (((s as any).maidrand ?? 0) <= 95) {
-                        qspGoto(s, 'pav_hotelWork', 'work10');
+                      if (((s as any).maidrand ?? 0) <= 90) {
+                        qspGoto(s, 'pav_hotelWork', 'work9');
                       } else {
-                        if (((s as any).maidrand ?? 0) <= 110) {
-                          qspGoto(s, 'pav_hotelWork', 'work11');
+                        if (((s as any).maidrand ?? 0) <= 95) {
+                          qspGoto(s, 'pav_hotelWork', 'work10');
                         } else {
-                          if (((s as any).maidrand ?? 0) <= 120) {
-                            if (((s as any).maidcheck ?? 0)[4] === ((s as any).daystart ?? 0)) {
-                              // TODO-QSP: jump 'new_maid_event'
-                            }
-                            ((s as any).maidcheck = (s as any).maidcheck ?? {})[4] = ((s as any).daystart ?? 0);
-                            qspGoto(s, 'pav_hotelWork', 'work12');
+                          if (((s as any).maidrand ?? 0) <= 110) {
+                            qspGoto(s, 'pav_hotelWork', 'work11');
                           } else {
-                            if (((s as any).maidrand ?? 0) <= 140) {
-                              (s as any).maidcheck_sonia = ((s as any).daystart ?? 0);
-                              qspGoto(s, 'pav_hotelWork', 'work13');
+                            if (((s as any).maidrand ?? 0) <= 120) {
+                              if (((s as any).maidcheck ?? 0)[4] === ((s as any).daystart ?? 0)) {
+                                break;
+                              }
+                              ((s as any).maidcheck = (s as any).maidcheck ?? {})[4] = ((s as any).daystart ?? 0);
+                              qspGoto(s, 'pav_hotelWork', 'work12');
                             } else {
-                              if (((s as any).maidrand ?? 0) <= 150) {
+                              if (((s as any).maidrand ?? 0) <= 140) {
                                 (s as any).maidcheck_sonia = ((s as any).daystart ?? 0);
-                                qspGoto(s, 'pav_hotelWork', 'work14');
+                                qspGoto(s, 'pav_hotelWork', 'work13');
                               } else {
-                                if (((s as any).maidrand ?? 0) <= 160) {
+                                if (((s as any).maidrand ?? 0) <= 150) {
                                   (s as any).maidcheck_sonia = ((s as any).daystart ?? 0);
-                                  qspGoto(s, 'pav_hotelWork', 'work15');
+                                  qspGoto(s, 'pav_hotelWork', 'work14');
+                                } else {
+                                  if (((s as any).maidrand ?? 0) <= 160) {
+                                    (s as any).maidcheck_sonia = ((s as any).daystart ?? 0);
+                                    qspGoto(s, 'pav_hotelWork', 'work15');
+                                  }
                                 }
                               }
                             }
@@ -194,7 +190,6 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -209,14 +204,12 @@ function enterEnding(s: GameState, scene: SceneBuilder): void {
       qspGoto(s, 'pav_hotelWork', 'ending2');
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterWork0(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 35;
   qspCall(s, 'stat', '');
-  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/hotel/work/maid.work0...
   scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/hotel/work/maid.work0,` + (Math.floor(Math.random() * 4) + 0) + '.jpg"></center>');
   scene.text('You put some fresh sheets on the bed and clean the room for the next visitor to enjoy.');
   if (((s as any).job_rank ?? 0)?.['pav_hotel_maid'] < 20) {
@@ -234,12 +227,10 @@ function enterWork0(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).chai ?? 0) > 0) {
     qspCall(s, 'money', 'earn', ((s as any).chai ?? 0), 'cash');
-    // TODO-QSP: dynamic text: While you''re cleaning the room, you find some money underneath a pillow. Looks ...
     scene.text(`While you're cleaning the room, you find some money underneath a pillow. Looks like someone left you a ${qspFunc(s, 'money', 'string_profit', ((s as any).chai ?? ''))} tip!`);
     (s as any).earned_tips = ((s as any).earned_tips ?? 0) + (((s as any).chai ?? 0));
     (s as any).chai = 0;
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['pav_hotelWork', 'maid'] },
   ]);
@@ -299,7 +290,6 @@ function enterWork1(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', goto: ['pav_hotelWork', 'maid'] },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -310,7 +300,6 @@ function enterWork2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('While you\'re cleaning the room, a man, a woman and two young children suddenly enter.');
   scene.text('"Oh, you\'ve sent by the heavens!" the man says when he sees you. "Can you please take my children for a walk so my wife and I can have some… \'alone\' time?"');
-  // TODO-QSP: dynamic text: He places <<$func(''money'', ''string_profit'', 100)>> in your hand and pushes y...
   scene.text(`He places ${qspFunc(s, 'money', 'string_profit', 100)} in your hand and pushes you out the door with the children before you can even open your mouth to respond.`);
   if (((s as any).month ?? 0) > 5  &&  ((s as any).month ?? 0) < 10  &&  ((s as any).sunWeather ?? 0) === 1) {
     scene.actions([
@@ -353,7 +342,6 @@ function enterWork2(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -507,7 +495,6 @@ function enterWork3(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['pav_hotelWork', 'maid'] },
   ]);
@@ -531,10 +518,8 @@ function enterWork4(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'You\'re too shocked to move', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/resident/Anna/peeping/2.jpg');
-    // TODO-QSP: dynamic text: 'The blonde girl lays on the floor, clearly exhausted as ' + iif(LariskaQW['metA...
     scene.text('The blonde girl lays on the floor, clearly exhausted as ' + ((((st as any).LariskaQW ?? 0)?.['metAnna'] === 1) ? ('Anna') : ('the brunette')) + ' hits and softly teases her pussy. She moans, clearly very excited as she tries to push herself back and get more from each strike of the crop.');
     scene.text('"Mmmmh… Mmmoooh… Mmmaah…"');
-    // TODO-QSP: dynamic text: '"You''re enjoying this?" ' + iif(LariskaQW['metAnna'] = 1, 'Anna', 'the brunett...
     scene.text('"You\'re enjoying this?" ' + ((((st as any).LariskaQW ?? 0)?.['metAnna'] === 1) ? ('Anna') : ('the brunette')) + ' grins. "You want me to keep hitting your worthless pussy?"');
     scene.text('"Mmmm.. Fff… Lesssshh…"');
     scene.text('"Maybe I should just keep going until you\'re satisfied, but not today. You have to earn that. Now stand up."');
@@ -543,7 +528,7 @@ function enterWork4(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Continue watching', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/resident/Anna/peeping/3.jpg');
-    // TODO-QSP: iif(LariskaQW['metAnna'] = 1, 'Anna', 'The brunette') + ' removes the gag from the girl once she has...
+    scene.text(((((st as any).LariskaQW ?? 0)?.['metAnna'] === 1) ? ('Anna') : ('The brunette')) + ' removes the gag from the girl once she has stood up before she sits up on the table that should have the TV and kettle on it and raises a leg up in front of the blonde.');
     scene.text('The blonde eagerly starts to clean her boot. She licks them sensuously like they are a lover, never hurrying and making sure not to miss a spot. She even cleans the sole and heel.');
     scene.text('"Good girl. Now you may have a reward."');
     qspCall(st, 'arousal', 'voyeur', 10);
@@ -551,9 +536,8 @@ function enterWork4(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Continue watching', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/resident/Anna/peeping/4.jpg');
-    // TODO-QSP: iif(LariskaQW['metAnna'] = 1, 'Anna', 'The brunette') + ' picks up a chain leash and the blonde move...
+    scene.text(((((st as any).LariskaQW ?? 0)?.['metAnna'] === 1) ? ('Anna') : ('The brunette')) + ' picks up a chain leash and the blonde moves close so she can attach it to her collar. She then links the chain to her own collar and lifts one leg up on to the table, spreading her legs wide.');
     scene.text('The blonde girl doesn\'t need any instruction and leans straight over the older women\'s leg, going down toward her "reward."');
-    // TODO-QSP: dynamic text: 'You realize from this angle that ' + iif(LariskaQW['metAnna'] = 1, 'Anna Igorev...
     scene.text('You realize from this angle that ' + ((((st as any).LariskaQW ?? 0)?.['metAnna'] === 1) ? ('Anna Igorevna') : ('the brunette')) + ' could see you. Worried that she might have already, you ease the door shut.');
     qspCall(st, 'arousal', 'voyeur', 10);
     qspCall(st, 'arousal', 'end');
@@ -571,13 +555,12 @@ function enterWork4(s: GameState, scene: SceneBuilder): void {
       (s as any).IgorevnaBDSM = ((s as any).IgorevnaBDSM ?? 0) + (1);
       scene.img('images/characters/pavlovsk/resident/Anna/peeping/5.jpg');
       scene.text('After your previous experience with this room, you carefully approach as you\'re expecting to see another act, but this blows your expectations away…');
-      // TODO-QSP: iif(LariskaQW['metAnna'] = 1, 'Anna', 'The brunette') + ' is on her knees completely naked, collared...
+      scene.text(((((s as any).LariskaQW ?? 0)?.['metAnna'] === 1) ? ('Anna') : ('The brunette')) + ' is on her knees completely naked, collared and leashed by a woman you\'ve never seen before.');
       qspCall(s, 'arousal', 'voyeur', 3);
       qspCall(s, 'stat', '');
       scene.actions([
         { label: 'Watch them', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/resident/Anna/peeping/6.jpg');
-    // TODO-QSP: dynamic text: 'Her nipples are pinched with nipple clamps and all of her limbs are cuffed as t...
     scene.text('Her nipples are pinched with nipple clamps and all of her limbs are cuffed as the other woman gently taps ' + ((((st as any).LariskaQW ?? 0)?.['metAnna'] === 1) ? ('Anna') : ('The brunette')) + ' between her legs with a whip.');
     scene.text('She seems to enjoy it. Last time, the woman being submissive this time was dominating a woman last time… It\'s making you quite confused… and aroused.');
     qspCall(st, 'arousal', 'voyeur', 3);
@@ -586,18 +569,15 @@ function enterWork4(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue watching', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/resident/Anna/peeping/7.jpg');
     scene.text('"Crawl to me and start licking my boots!" the woman commands.');
-    // TODO-QSP: dynamic text: 'Without objecting, ' + iif(LariskaQW['metAnna'] = 1, 'Anna', 'the brunette') + ...
     scene.text('Without objecting, ' + ((((st as any).LariskaQW ?? 0)?.['metAnna'] === 1) ? ('Anna') : ('the brunette')) + ' crawls over to the woman and does as instructed.');
     scene.text('Is she willingly letting her have this control over her?');
-    // TODO-QSP: dynamic text: '"Good girl. Now is the time for your reward. Here, put this on. You''ll need it...
     scene.text('"Good girl. Now is the time for your reward. Here, put this on. You\'ll need it," the other woman says as she hands a gag connected to some leather straps to ' + ((((st as any).LariskaQW ?? 0)?.['metAnna'] === 1) ? ('Anna') : ('the brunette')) + '.');
     qspCall(st, 'arousal', 'voyeur', 3);
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Continue watching', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/resident/Anna/peeping/8.jpg');
-    // TODO-QSP: iif(LariskaQW['metAnna'] = 1, 'Anna', 'The brunette') + ' quietly obeys, placing the gag in her mout...
-    // TODO-QSP: dynamic text: 'The woman chains her arms and legs to the bench. "Take this, bitch! I''ll teach...
+    scene.text(((((st as any).LariskaQW ?? 0)?.['metAnna'] === 1) ? ('Anna') : ('The brunette')) + ' quietly obeys, placing the gag in her mouth and securing it in place with the straps before she climbs onto the strange bench and spreading herself to the unknown woman.');
     scene.text('The woman chains her arms and legs to the bench. "Take this, bitch! I\'ll teach you your place!" she yells as she starts whipping ' + ((((st as any).LariskaQW ?? 0)?.['metAnna'] === 1) ? ('Anna') : ('the brunette')) + '.');
     scene.text('You watch them for some time, flabbergasted by what you\'re seeing. After a while, you feel you\'ve seen enough and decide to leave.');
     qspCall(st, 'arousal', 'voyeur', 3);
@@ -615,12 +595,9 @@ function enterWork4(s: GameState, scene: SceneBuilder): void {
       if (((s as any).IgorevnaBDSM ?? 0) === 2) {
         (s as any).IgorevnaBDSM = ((s as any).IgorevnaBDSM ?? 0) + (1);
         scene.img('images/characters/pavlovsk/resident/Anna/peeping/9.jpg');
-        // TODO-QSP: dynamic text: 'While passing near the room where you have seen ' + iif(LariskaQW['metAnna'] = ...
         scene.text('While passing near the room where you have seen ' + ((((s as any).LariskaQW ?? 0)?.['metAnna'] === 1) ? ('Lariska\'s mother') : ('the brunette')) + ', you hear a male voice. Curious as to why, you decide to open the door a little using you passkey.');
-        // TODO-QSP: dynamic text: 'When you open the door, you see ' + iif(LariskaQW['metAnna'] = 1, 'Anna', 'the ...
         scene.text('When you open the door, you see ' + ((((s as any).LariskaQW ?? 0)?.['metAnna'] === 1) ? ('Anna') : ('the brunette')) + ' completely naked except for a pair of gloves and some stockings and suspenders, along with some rope tied like very skimpy underwear. You can\'t hear them clearly as they talk quietly, but from what you\'re able to hear, she does not seem to be in any danger.');
         scene.text('"Only after I put your gag back can you can start to moan and <i>only</i> after I tell you. Am I clear?" the man says while pulling her hair and groping her breasts.');
-        // TODO-QSP: dynamic text: '' + iif(LariskaQW['metAnna'] = 1, 'Anna', 'The brunette') + ', can''t move, her...
         scene.text('' + ((((s as any).LariskaQW ?? 0)?.['metAnna'] === 1) ? ('Anna') : ('The brunette')) + ', can\'t move, her hands tied to a rope hanging from the ceiling, so she just simply nods. You can see from her expression that she\'s affected by his groping.');
         scene.text('After a few seconds, the man finally moves his hand away and picks up the gag.');
         scene.text('"Thank you…" she mumbles.');
@@ -641,10 +618,8 @@ function enterWork4(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Continue watching', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/resident/Anna/peeping/11.jpg');
-    // TODO-QSP: dynamic text: 'The man completely strips ' + iif(LariskaQW['metAnna'] = 1, 'Anna', 'the brunet...
     scene.text('The man completely strips ' + ((((st as any).LariskaQW ?? 0)?.['metAnna'] === 1) ? ('Anna') : ('the brunette')) + ', removing the ropes, stockings, suspender belt and the gloves, but not the gag.');
     scene.text('He buckles a blindfold over her eyes, then binds her arms and ankles to a wooden pillar in the middle of the room with a rope, while another rope links her big toes to the blindfold.');
-    // TODO-QSP: dynamic text: 'It seems this man know what he''s doing as he places the vibrator between ' + i...
     scene.text('It seems this man know what he\'s doing as he places the vibrator between ' + ((((st as any).LariskaQW ?? 0)?.['metAnna'] === 1) ? ('Anna\'s') : ('the brunette\'s')) + ' legs, pushing it right up against her pussy.');
     scene.text('"Now your reward," he grins.');
     qspCall(st, 'arousal', 'voyeur', 3);
@@ -654,7 +629,6 @@ function enterWork4(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/resident/Anna/peeping/12.jpg');
     scene.text('The man sits on a chair, admiring his work before he adjusts the controller and turns on the vibrator. "You can start."');
     scene.text('You can hear the buzz and she immediately starts to moan. This must be a very powerful vibrator.');
-    // TODO-QSP: dynamic text: 'You can''t move your eyes from ' + iif(LariskaQW['metAnna'] = 1, 'Anna', 'the b...
     scene.text('You can\'t move your eyes from ' + ((((st as any).LariskaQW ?? 0)?.['metAnna'] === 1) ? ('Anna') : ('the brunette')) + ' clearly enjoying this as she moves in search of the head of the vibrator, but is struggling to reach it. The man immediately reaches down and pushes it forward, clearly keen to see her climax.');
     scene.text('You really should get back to work and decide to leave them to finish in peace. You silently close the door and return to your duties.');
     qspCall(st, 'arousal', 'voyeur', 3);
@@ -672,21 +646,18 @@ function enterWork4(s: GameState, scene: SceneBuilder): void {
         if (((s as any).IgorevnaBDSM ?? 0) === 3) {
           (s as any).IgorevnaBDSM = ((s as any).IgorevnaBDSM ?? 0) + (1);
           scene.img('images/characters/pavlovsk/resident/Anna/peeping/13.jpg');
-          // TODO-QSP: dynamic text: 'You pass near the room that ' + iif(LariskaQW['metAnna'] = 1, 'Lariska''s mothe...
           scene.text('You pass near the room that ' + ((((s as any).LariskaQW ?? 0)?.['metAnna'] === 1) ? ('Lariska\'s mother') : ('the brunette')) + ' usually rents.');
           scene.text('You hear some voices coming from the room. Someone is definitely in there, so you decide open the door slightly…');
-          // TODO-QSP: iif(LariskaQW['metAnna'] = 1, 'Anna', 'The brunette') + ' is standing next to a buff young man weari...
+          scene.text(((((s as any).LariskaQW ?? 0)?.['metAnna'] === 1) ? ('Anna') : ('The brunette')) + ' is standing next to a buff young man wearing nothing but a necktie.');
           scene.text('He\'s probably a male stripper she must have hired, but why? Your attention then focuses on something shiny. Are those… nipple clamps?');
           qspCall(s, 'arousal', 'voyeur', 3);
           qspCall(s, 'stat', '');
           scene.actions([
             { label: 'Continue watching', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/resident/Anna/peeping/14.jpg');
-    // TODO-QSP: dynamic text: 'You''re having a hard time processing what''s happening as ' + iif(LariskaQW['m...
     scene.text('You\'re having a hard time processing what\'s happening as ' + ((((st as any).LariskaQW ?? 0)?.['metAnna'] === 1) ? ('Anna') : ('the brunette')) + ' suddenly slaps his face a few times. "You have been behaving really bad, really, really bad."');
     scene.text('"I-I\'m sorry… I\'ll do better…" the man pleads.');
     scene.text('"All I hear are promises. Is that all I get to hear from you?"');
-    // TODO-QSP: dynamic text: '"What the fuck?" you quietly mumble as ' + iif(LariskaQW['metAnna'] = 1, 'Anna'...
     scene.text('"What the fuck?" you quietly mumble as ' + ((((st as any).LariskaQW ?? 0)?.['metAnna'] === 1) ? ('Anna') : ('the brunette')) + ' continues by pulling the guy\'s necktie and beating his chest with a cane.');
     scene.text('"I-I\'m sorry Miss…" the man starts, but is interrupted by the slaps.');
     scene.text('"You didn\'t do your homework, again! How do you expect to improve your grades? Do you think your sweet smile is enough? Pull down your boxers and assume the position! Now!" she shouts.');
@@ -695,7 +666,6 @@ function enterWork4(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Continue watching', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/resident/Anna/peeping/15.jpg');
-    // TODO-QSP: dynamic text: 'The young man pulls down his boxers and steps into the middle of the room as ' ...
     scene.text('The young man pulls down his boxers and steps into the middle of the room as ' + ((((st as any).LariskaQW ?? 0)?.['metAnna'] === 1) ? ('Anna') : ('the brunette')) + ' strips down to her underwear. Once done, she starts spanking his ass with two paddles.');
     scene.text('Despite the beating, the guy stays in his place. His ass is turning bright red, but he isn\'t trying to escape the punishment. He\'s not even moving.');
     scene.text('"Say you like it… say you did it on purpose." Not waiting for an answer, she continues to beat him. Satisfied with her work, she commands him to lay on the table before she approaches and starts binding him.');
@@ -704,12 +674,11 @@ function enterWork4(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Continue watching', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/resident/Anna/peeping/16.jpg');
-    // TODO-QSP: iif(LariskaQW['metAnna'] = 1, 'Anna', 'The brunette') + ' takes a seat on a chair, pulls out a strap...
+    scene.text(((((st as any).LariskaQW ?? 0)?.['metAnna'] === 1) ? ('Anna') : ('The brunette')) + ' takes a seat on a chair, pulls out a strap-on from the dresser and puts it on. She starts to tap the man\'s chest with a riding crop while she uses a vibrator on herself.');
     scene.text('"We\'ll see if you didn\'t do it on purpose!" she sternly replies.');
     scene.text('"Y-yes Mistress…" he mumbles as he knows what\'s about to happen…');
     scene.text('"Yes what?" she yells back, clearly annoyed.');
     scene.text('The man struggles to find the correct words. "N-no Mistress… I\'m sorry, Mistress… I-I mean thank you, Mistress…"');
-    // TODO-QSP: dynamic text: 'Hearing this, ' + iif(LariskaQW['metAnna'] = 1, 'Anna', 'the brunette') + ' spi...
     scene.text('Hearing this, ' + ((((st as any).LariskaQW ?? 0)?.['metAnna'] === 1) ? ('Anna') : ('the brunette')) + ' spits on the tip of the strap-on before she grins. "Bad news. No lube for bad behaving slaves."');
     scene.text('You can\'t believe what you\'re seeing and decide to leave, although something in you wants to stay to see what happens…');
     qspCall(st, 'arousal', 'voyeur', 3);
@@ -738,11 +707,10 @@ function enterWork4(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/resident/Anna/peeping/18.jpg');
     scene.text('"See? She obeys everything," the woman who gave the order say. You don\'t recognize the voice.');
     scene.text('"She obeys everything too?" says a now familiar voice. "Take care of our guest!"');
-    // TODO-QSP: dynamic text: 'The girl with the red gag obeys the order and crawls toward the other girl and ...
     scene.text('The girl with the red gag obeys the order and crawls toward the other girl and starts caressing her. You can clearly see now that ' + ((((st as any).LariskaQW ?? 0)?.['metAnna'] === 1) ? ('Anna') : ('the brunette')) + ' is the one ordering the girl with the red gag.');
     scene.text('"I\'m not saying you aren\'t good at what you do, I\'m only saying that you cannot excel at both. Not to say that this is uncommon, but not everybody can change their ways. I just think that you can only truly be one or the other and shouldn\'t be able to change your mind as you wish."');
     scene.text('The unknown woman continues. "Don\'t take me the wrong way, I\'ve known you for what 20, 25 years? And you\'ve never disappointed me, but you\'re strange, and exceptional."');
-    // TODO-QSP: iif(LariskaQW['metAnna'] = 1, 'Anna', 'The brunette') + ' looks a little disappointed. "I''ll take i...
+    scene.text(((((st as any).LariskaQW ?? 0)?.['metAnna'] === 1) ? ('Anna') : ('The brunette')) + ' looks a little disappointed. "I\'ll take it as a compliment, El."');
     scene.text('The girls on the floor continue their duties, but you aren\'t able to see much more because you\'re following the conversation and now the unknown woman is preparing to leave…');
     if (((st as any).bdsmclub ?? 0)?.['intro'] === 1) {
       scene.text('Now that you can see the unknown woman clearly, you realize it\'s Mistress Elektra from the BDSM mansion!');
@@ -753,35 +721,28 @@ function enterWork4(s: GameState, scene: SceneBuilder): void {
       { label: 'Keep quiet', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/resident/Anna/peeping/19.jpg');
     scene.text('"Well it\'s time for me to leave. You know how I can\'t leave my place alone. If Uslada is left wandering around the mansion alone for more than two hours, I\'ll come back to a hot mess!"');
-    // TODO-QSP: dynamic text: 'Both the women start laughing, then ' + iif(bdsmclub['intro'] = 1, 'Mistress El...
     scene.text('Both the women start laughing, then ' + ((((st as any).bdsmclub ?? 0)?.['intro'] === 1) ? ('Mistress Elektra') : ('the unknown woman')) + ' pulls on the leash of one of the girls. "See how easy it is to control?"');
-    // TODO-QSP: dynamic text: 'The mood suddenly shifts and ' + iif(bdsmclub['intro'] = 1, 'Mistress Elektra',...
     scene.text('The mood suddenly shifts and ' + ((((st as any).bdsmclub ?? 0)?.['intro'] === 1) ? ('Mistress Elektra') : ('the unknown woman')) + ' becomes serious. "That\'s exactly what led me to our discussion. How are you able to not become influenced by switching back and forth? I can understand that some people want to switch it up every once in a while, but you? You switch as easily as day and night. It\'s not so simple, and you should know it better than anyone. Be upfront with me. Are you sick? Have you started abusing drugs?"');
-    // TODO-QSP: iif(LariskaQW['metAnna'] = 1, 'Anna', 'The brunette') + ' laughs. "Don''t be silly! There''s nothing...
-    // TODO-QSP: dynamic text: '' + iif(bdsmclub['intro'] = 1, 'Mistress Elektra', 'the unknown woman') + ' shr...
+    scene.text(((((st as any).LariskaQW ?? 0)?.['metAnna'] === 1) ? ('Anna') : ('The brunette')) + ' laughs. "Don\'t be silly! There\'s nothing wrong, I just let the weather influence me."');
     scene.text('' + ((((st as any).bdsmclub ?? 0)?.['intro'] === 1) ? ('Mistress Elektra') : ('the unknown woman')) + ' shrugs her shoulders. "If you say so, but I really have to go now. Let me know when you\'re in that mood so we can spend some \'good\' time together."');
-    // TODO-QSP: dynamic text: '"You should try it some time. Who knows, you might like it," ' + iif(LariskaQW[...
     scene.text('"You should try it some time. Who knows, you might like it," ' + ((((st as any).LariskaQW ?? 0)?.['metAnna'] === 1) ? ('Anna') : ('the brunette')) + ' cockily replies back.');
-    // TODO-QSP: iif(bdsmclub['intro'] = 1, 'Mistress Elektra', 'the unknown woman') + ' approaches the door, so you ...
+    scene.text(((((st as any).bdsmclub ?? 0)?.['intro'] === 1) ? ('Mistress Elektra') : ('the unknown woman')) + ' approaches the door, so you quickly move away to stand in front of a different door to avoid being seen. You notice that she didn\'t close the door completely and curiously move back…');
     qspCall(st, 'arousal', 'voyeur', 3);
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Go back', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/resident/Anna/peeping/20.jpg');
-    // TODO-QSP: dynamic text: 'You turn around and go back. ' + iif(LariskaQW['metAnna'] = 1, 'Anna', 'the bru...
     scene.text('You turn around and go back. ' + ((((st as any).LariskaQW ?? 0)?.['metAnna'] === 1) ? ('Anna') : ('the brunette')) + ' is sitting in the chair, slapping the girl\'s ass. "You\'re a good girl, you know? I\'m in a good mood today, so I\'ll let you choose, pain or pleasure? But before that, I think we should say hello to our guest, don\'t you agree?"');
-    // TODO-QSP: dynamic text: 'Caught, you start to panic as ' + iif(LariskaQW['metAnna'] = 1, 'Anna', 'the br...
     scene.text('Caught, you start to panic as ' + ((((st as any).LariskaQW ?? 0)?.['metAnna'] === 1) ? ('Anna') : ('the brunette')) + ' pushes the girl away and quickly walks toward the door…');
     qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Run away', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/resident/Anna/peeping/a.jpg');
-    // TODO-QSP: dynamic text: 'You aren''t fast enough and the door swings wide open. "Got you! Did you like t...
     scene.text('You aren\'t fast enough and the door swings wide open. "Got you! Did you like the show?" ' + ((((st as any).LariskaQW ?? 0)?.['metAnna'] === 1) ? ('Anna') : ('the brunette')) + ' asks.');
     scene.text('You\'re feeling quite embarrassed and aren\'t able to say anything in your defense, afraid she might get you fired.');
     scene.text('"You know I should charge you for watching. I don\'t do many shows nowadays, but I know I\'m good," she says with a smile.');
     scene.text('"I-I…" you stammer, quickly trying to come up with an excuse.');
-    // TODO-QSP: iif(LariskaQW['metAnna'] = 1, 'Anna', 'The brunette') + ' looks at you. "I understand. You''re worri...
+    scene.text(((((st as any).LariskaQW ?? 0)?.['metAnna'] === 1) ? ('Anna') : ('The brunette')) + ' looks at you. "I understand. You\'re worried about your job. Don\'t be. I won\'t tattle on you, but let us agree on something. If you want to find out more, maybe get to understand what it is I do or just find somewhere you can watch these things, then come and visit me in this room at 20:00 on Monday or Tuesday."');
     if (((st as any).LariskaQW ?? 0)?.['metAnna'] === 0) {
       ((st as any).LariskaQW = (st as any).LariskaQW ?? {})['metAnna'] = 1;
       scene.text('By the way, I\'m Lariska\'s mother. I\'ve seen you at the school."');
@@ -806,7 +767,6 @@ function enterWork4(s: GameState, scene: SceneBuilder): void {
             ]);
           } else {
             if (((s as any).IgorevnaBDSM ?? 0) >= 5) {
-              // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/pavlovsk/resident/Anna/peepin...
               scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/characters/pavlovsk/resident/Anna/peeping/` + (Math.floor(Math.random() * 4) + 21) + '.jpg"></center>');
               scene.text('You peep through the keyhole to see what Anna is up to tonight, but the door is locked.');
               scene.text('You can\'t get a good look, but as always, it is both unusual and sexy.');
@@ -818,7 +778,6 @@ function enterWork4(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Get back to work', goto: ['pav_hotelWork', 'maid'] },
   ]);
@@ -827,24 +786,20 @@ function enterWork4(s: GameState, scene: SceneBuilder): void {
 
 function enterTip(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'money', 'earn', ((s as any).chai ?? 0), 'cash');
-  // TODO-QSP: dynamic text: You find <<$func(''money'', ''string_profit'', chai)>> in a jar on the table. Lo...
   scene.text(`You find ${qspFunc(s, 'money', 'string_profit', ((s as any).chai ?? ''))} in a jar on the table. Looks like someone left you a tip!`);
   (s as any).earned_tips = ((s as any).earned_tips ?? 0) + (((s as any).chai ?? 0));
   (s as any).chai = 0;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterWork5(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 35;
   qspCall(s, 'stat', '');
-  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/hotel/work/maid.work2...
   scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/hotel/work/maid.work2,` + (Math.floor(Math.random() * 5) + 0) + '.jpg"></center>');
   scene.text('You thoroughly clean the room, making sure you wipe all the dust off the furniture.');
   if (((s as any).chai ?? 0) > 0) {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterTip(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['pav_hotelWork', 'maid'] },
   ]);
@@ -854,13 +809,11 @@ function enterWork5(s: GameState, scene: SceneBuilder): void {
 function enterWork6(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 45;
   qspCall(s, 'stat', '');
-  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/hotel/work/maid.work3...
   scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/hotel/work/maid.work3,` + (Math.floor(Math.random() * 5) + 0) + '.jpg"></center>');
   scene.text('You clean the room faster than you were expecting and spend most of the next 45 minutes on your knees, thoroughly washing the floor.');
   if (((s as any).chai ?? 0) > 0) {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterTip(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['pav_hotelWork', 'maid'] },
   ]);
@@ -881,9 +834,7 @@ function enterWork7(s: GameState, scene: SceneBuilder): void {
     scene.text('The girl chases after you into the hallway. "Excuse me? Come back here for a second!"');
     scene.actions([
       { label: 'See what she wants', handler: (st: GameState) => {
-    // TODO-QSP: dynamic text: She notices you staring at her jiggling breasts as she approaches you and grins ...
     scene.text(`She notices you staring at her jiggling breasts as she approaches you and grins when she sees your embarrassed look. She gives you ${qspFunc(s, 'money', 'string_profit', ((st as any).chai ?? ''))}.`);
-    // TODO-QSP: dynamic text: She gives you a sexy smile as she hands over <<$func(''money'', ''string_profit'...
     scene.text(`She gives you a sexy smile as she hands over ${qspFunc(s, 'money', 'string_profit', ((st as any).chai ?? ''))}. "Here, sweetie… For your discretion. You have a nice day now!"`);
     scene.text('Still rendered speechless, you realize you really should say something now.');
     scene.text('"Tha-, erm… Thank you, miss!" you manage to mumble, trying to hide the deep red blush on your cheeks.');
@@ -898,12 +849,10 @@ function enterWork7(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterWork8(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/locations/pavlovsk/hotel...
   scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/hotel/sex/1,` + (Math.floor(Math.random() * 8) + 0) + '.mp4"></video></center>');
   scene.text('You open the door to the next room and immediately freeze in place when you hear a loud moaning coming from inside.');
   scene.text('Curious as you are, you decide to sneak a peek and see what\'s happening in the room. You see a couple fucking enthusiastically on the bed, completely oblivious to your presence.');
@@ -925,7 +874,6 @@ function enterWork8(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Watch them for a while', handler: (st: GameState) => {
     scene.text('Making sure you don\'t make a sound, you put your things away and watch them for a while while softly fondling yourself through your clothes. It feels great, and the couple on the bed looks like they\'re having a great time as well.');
@@ -941,7 +889,6 @@ function enterWork8(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterWork9(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/hotel/sex/maid.event3...
   scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/hotel/sex/maid.event3,` + (Math.floor(Math.random() * 8) + 0) + '.jpg"></center>');
   scene.text('You open the door to the next room and immediately freeze in place when you hear a loud moaning coming from inside.');
   scene.text('Curious as you are, you decide to sneak a peek and see what\'s happening in the room. You carefully put your things away and look around the corner. You see a girl, but she\'s not with one man, but two! They\'re fucking her quite roughly.');
@@ -963,7 +910,6 @@ function enterWork9(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Watch them for a while', handler: (st: GameState) => {
     (st as any).threesomewatched = ((st as any).threesomewatched ?? 0) + (1);
@@ -981,7 +927,6 @@ function enterWork9(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterWork10(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/hotel/sex/maid.event4...
   scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/hotel/sex/maid.event4,` + (Math.floor(Math.random() * 7) + 0) + '.jpg"></center>');
   scene.text('You open the door to the next room and immediately freeze in place when you hear a somewhat desperate moan coming from inside. Curious as you are, you decide to sneak a peek to see what\'s happening in the room.');
   scene.text('You carefully put your things away and look around the corner. You see a girl, but she\'s not with one man, but a whole bunch of them! From what you can see, there are at least five of them taking turns fucking her however they like.');
@@ -1003,7 +948,6 @@ function enterWork10(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Watch them for a while', handler: (st: GameState) => {
     scene.text('You decide to watch them for a while longer, and idly start fondling yourself through your clothes. You notice they\'re quite rough with the girl and she sometimes struggles a little.');
@@ -1025,12 +969,10 @@ function enterWork11(s: GameState, scene: SceneBuilder): void {
   scene.text('You work in the hotel restaurant, moving dirty dishes to the kitchen and preparing tables for the next guests.');
   if (((s as any).chai ?? 0) > 0) {
     qspCall(s, 'money', 'earn', ((s as any).chai ?? 0), 'cash');
-    // TODO-QSP: dynamic text: While you move to pick up a tray, you find some money tucked under a plate. Look...
     scene.text(`While you move to pick up a tray, you find some money tucked under a plate. Looks like someone left you a ${qspFunc(s, 'money', 'string_profit', ((s as any).chai ?? ''))} tip!`);
     (s as any).earned_tips = ((s as any).earned_tips ?? 0) + (((s as any).chai ?? 0));
     (s as any).chai = 0;
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['pav_hotelWork', 'maid'] },
   ]);
@@ -1040,7 +982,6 @@ function enterWork11(s: GameState, scene: SceneBuilder): void {
 function enterWork12(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_rand = (Math.floor(Math.random() * 100) + 0);
   if (((s as any).temp_rand ?? 0) < 25) {
-    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/hotel/work/events/bed...
     scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/hotel/work/events/bed` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
     scene.text('You open the door to the next room to see a woman in a green dress on her bed smiling at you.');
     scene.text('"Hi. I work evenings and was just relaxing before my shift. Can you come back later?" she asks.');
@@ -1077,7 +1018,6 @@ function enterWork12(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       if (((s as any).temp_rand ?? 0) < 75) {
-        // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/hotel/work/events/nud...
         scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/hotel/work/events/nude` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
         scene.text('You walk into the room to find a regular guest standing there completely naked.');
         scene.text('She\'s clearly distracted and doesn\'t notice you, so you decide to go back out and close the door.');
@@ -1150,12 +1090,11 @@ function enterWork12(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
+  (s as any).temp_rand = undefined;
   scene.build();
 }
 
 function enterWork13(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/pavlovsk/school/girl/sonia/se...
   scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/characters/pavlovsk/school/girl/sonia/sex/hotel/sonia.hotel.boy0,` + (Math.floor(Math.random() * 5) + 0) + '.jpg"></center>');
   scene.text('You open the door to the next room and immediately freeze in place when you hear gagging sounds coming from inside. Curious as you are, you decide to sneak a peek and see what\'s happening in the room.');
   scene.text('When you look around the corner, you see a girl giving a guy an enthusiastic blowjob, happily gagging on his cock while she tries to take it down her throat over and over. Wait a minute… That\'s Sonia!');
@@ -1180,7 +1119,6 @@ function enterWork13(s: GameState, scene: SceneBuilder): void {
   if ((Math.floor(Math.random() * 10) + 0) < 60) {
     scene.actions([
       { label: 'Keep watching', handler: (st: GameState) => {
-    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/pavlovsk/school/girl/sonia/se...
     scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/characters/pavlovsk/school/girl/sonia/sex/hotel/sonia.hotel.boy.cum0,` + (Math.floor(Math.random() * 5) + 0) + '.jpg"></center>');
     scene.text('The man doesn\'t last very long. Within minutes, he shoots his load all over Sonia\'s face.');
     scene.text('She lets it sit for a minute so he can admire his handiwork before greedily wiping it towards her mouth and lapping it up.');
@@ -1195,7 +1133,6 @@ function enterWork13(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Keep watching', handler: (st: GameState) => {
-    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/pavlovsk/school/girl/sonia/se...
     scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/characters/pavlovsk/school/girl/sonia/sex/hotel/sonia.hotel.boy1,` + (Math.floor(Math.random() * 4) + 0) + '.jpg"></center>');
     scene.text('After a few minutes of Sonia enthusiastically sucking his dick and licking his balls, the guy decides he wants to fuck her now.');
     scene.text('He spreads Sonia\'s legs and slides his cock into her in one fluent motion. Sonia moans eagerly and starts bucking her hips against him.');
@@ -1203,7 +1140,6 @@ function enterWork13(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Further', handler: (st: GameState) => {
-    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/pavlovsk/school/girl/sonia/se...
     scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/characters/pavlovsk/school/girl/sonia/sex/hotel/sonia.hotel.boy.cum0,` + (Math.floor(Math.random() * 5) + 0) + '.jpg"></center>');
     scene.text('The man doesn\'t last very long. Within minutes, he tells Sonia to get on her knees before he shoots his load all over her face.');
     scene.text('She lets it sit for a minute so he can admire his handiwork before greedily wiping it towards her mouth and lapping it up.');
@@ -1218,12 +1154,10 @@ function enterWork13(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterWork14(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/pavlovsk/school/girl/sonia/se...
   scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/characters/pavlovsk/school/girl/sonia/sex/hotel/sonia.hotel.boy.nigga0,` + (Math.floor(Math.random() * 3) + 0) + '.jpg"></center>');
   scene.text('You open the door to the next room and immediately freeze in place when you hear gagging sounds coming from inside. Curious as you are, you decide to sneak a peek and see what\'s happening in the room.');
   scene.text('When you look around the corner, you see Sonia giving a black guy an enthusiastic blowjob, happily gagging on his cock while she tries to take it down her throat over and over.');
@@ -1263,7 +1197,6 @@ function enterWork14(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Keep watching', handler: (st: GameState) => {
-    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/pavlovsk/school/girl/sonia/se...
     scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/characters/pavlovsk/school/girl/sonia/sex/hotel/sonia.hotel.boy.nigga1,` + (Math.floor(Math.random() * 6) + 0) + '.jpg"></center>');
     scene.text('After a few minutes of Sonia enthusiastically sucking his dick and licking his balls, the black guy decides he wants to fuck her now.');
     scene.text('He spreads Sonia\'s legs and slides his cock into her in one fluent motion. You can see her pussy lips stretch around his huge cock as Sonia moans loudly, trying to hold him back for a second so she can get used to the size.');
@@ -1285,12 +1218,10 @@ function enterWork14(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterWork15(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/pavlovsk/school/girl/sonia/se...
   scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/characters/pavlovsk/school/girl/sonia/sex/hotel/sonia.hotel.two.nigga0,` + (Math.floor(Math.random() * 2) + 0) + '.jpg"></center>');
   scene.text('You open the door to the next room and immediately freeze in place when you hear gagging sounds coming from inside. Curious as you are, you decide to sneak a peek and see what\'s happening in the room.');
   scene.text('When you look around the corner, you see Sonia with not one, but two huge black guys. She\'s happily sucking their enormous dicks in turn, massaging the one she doesn\'t currently have in her mouth with her delicate fingers.');
@@ -1315,7 +1246,6 @@ function enterWork15(s: GameState, scene: SceneBuilder): void {
   if ((Math.floor(Math.random() * 100) + 0) < 60) {
     scene.actions([
       { label: 'Keep watching', handler: (st: GameState) => {
-    // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/characters/pavlovsk/scho...
     scene.text(`<center><video autoplay loop ${((st as any).set_imgh ?? '')} src="images/characters/pavlovsk/school/girl/sonia/sex/sonia.cum0,` + (Math.floor(Math.random() * 2) + 0) + '.mp4"></video></center>');
     scene.text('Sonia must\'ve been doing a really good job. Within minutes, both of them moan and quickly jerk themselves off before shooting their loads all over her face.');
     scene.text('She lets it sit for a minute so they can admire their handiwork before greedily wiping it towards her mouth and lapping it up.');
@@ -1330,7 +1260,6 @@ function enterWork15(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Keep watching', handler: (st: GameState) => {
-    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/pavlovsk/school/girl/sonia/se...
     scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/characters/pavlovsk/school/girl/sonia/sex/hotel/sonia.hotel.two.nigga1,` + (Math.floor(Math.random() * 4) + 0) + '.jpg"></center>');
     scene.text('After a few minutes, the black guys pull Sonia away from their dicks, ignoring her pleas to have them back.');
     scene.text('One of them starts fucking her pussy while the other stuffs his dick in her mouth again. You\'re somewhat amazed at how easily she takes their huge dicks in her pussy and think she must\'ve had a lot of practice with them already.');
@@ -1339,7 +1268,6 @@ function enterWork15(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Keep watching', handler: (st: GameState) => {
-    // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/characters/pavlovsk/scho...
     scene.text(`<center><video autoplay loop ${((st as any).set_imgh ?? '')} src="images/characters/pavlovsk/school/girl/sonia/sex/sonia.cum0,` + (Math.floor(Math.random() * 2) + 0) + '.mp4"></video></center>');
     scene.text('Sonia does as they say and seconds later, the first spurt of cum hits her face. She licks some of it up, but waits patiently for the other guy to also finish.');
     scene.text('You quickly pull away from the door when you see her looking in your general direction. You quickly gather your things and leave before she gets the idea to check if anyone was watching her.');
@@ -1353,7 +1281,6 @@ function enterWork15(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1378,7 +1305,6 @@ function enterHotcouple(s: GameState, scene: SceneBuilder): void {
     scene.text('You can feel how wet they already are.');
   }
   scene.text('Motya is sitting in a chair next to the bed, happily watching the scene unfold.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'massage', 10, (((st as any).npcID ?? 0)?.[0] ?? 0));
@@ -1443,7 +1369,6 @@ function enterHotcouple(s: GameState, scene: SceneBuilder): void {
     scene.text('"Just relax, honey. He\'ll be <i>very</i> gentle," she says while giving you a little smile.');
     scene.text('Motya presses his dick into your pussy. He\'s slow and careful not to push too hard.');
     scene.text('You let out a little moan as he slowly but surely invades your pussy, his shaft sinking in deeper before you suddenly let out a little grunt. You look into Motya\'s eyes and you both know that your virginity is no more.');
-    // TODO-QSP: dynamic text: You can feel every inch of his <<dick>> cm dick inside you now as he gives you a...
     scene.text(`You can feel every inch of his ${((st as any).dick ?? '')} cm dick inside you now as he gives you a little wink and starts moving.`);
     scene.text('As he\'s fucking you, Uliana gently rubs against your clit while kissing her husband.');
     scene.text('After a few minutes, you all change positions.');
@@ -1476,7 +1401,6 @@ function enterHotcoupledoggy(s: GameState, scene: SceneBuilder): void {
   scene.text('You then feel Motya\'s dick pushing against your pussy. He enters without much problem and starts rhythmically pumping, his hips slapping against your ass.');
   scene.text('"Mmm, Uliana… This girl is so tight, I don\'t think I can hold out much longer!" he groans.');
   scene.text('He pulls out of you and grabs you by the waist before he swiftly turns you around so you end up on your back on the bed.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['pav_hotelWork', 'hotcoupfin'] },
   ]);
@@ -1491,7 +1415,6 @@ function enterHotcoupfin(s: GameState, scene: SceneBuilder): void {
   scene.text('You obey and Motya soon blows his load all over your face before Uliana licks most of it up.');
   scene.img('images/locations/pavlovsk/hotel/sex/hotcouple9.jpg');
   scene.text('You decide to end the evening with a three-way French kiss before Uliana and Motya both wave goodbye and tell you that you\'re always welcome to repeat this experience.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Back to the lobby', goto: ['pav_hotel', ''] },
   ]);
@@ -1502,9 +1425,7 @@ function enterFirsthotelprosevent(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'event';
   (s as any).threesometojoin = 2;
   scene.text('"Okay girl, let me introduce myself first. I\'m Varsonofy Panteleimonovich Krestovozdvizhensky, but you can call me Pavlin. What may I call you?"');
-  // TODO-QSP: dynamic text: "<<$pcs_firstname>>," you answer.
   scene.text(`"${((s as any).pcs_firstname ?? '')}," you answer.`);
-  // TODO-QSP: dynamic text: "Welcome to my humble abode, Miss <<$pcs_firstname>>. Let me introduce you to my...
   scene.text(`"Welcome to my humble abode, Miss ${((s as any).pcs_firstname ?? '')}. Let me introduce you to my good friend, Mr. Black."`);
   scene.text('You look in the direction he gestures and see a big black dude sitting on a couch, already stroking his cock through his pants, his thick muscles evident through his fitted clothing.');
   scene.text('"Why hello there, honey. Are you here to entertain us tonight?" he asks in a deep, husky voice.');
@@ -1517,12 +1438,11 @@ function enterFirsthotelprosevent(s: GameState, scene: SceneBuilder): void {
   scene.text('You switch from one cock to the other for the next few minutes, occasionally trying to take both of them in your mouth at the same time.');
   qspCall(s, 'arousal', 'bj', 10, 'prostitution');
   qspCall(s, 'arousal', 'end');
-  // TODO-QSP: end
   scene.actions([
     { label: 'On to the main event', handler: (st: GameState) => {
     qspCall(st, 'npcgeneratec', '0', 'Black guy', (Math.floor(Math.random() * 23) + 18), 0, 1);
     ((st as any).npc_dick = (st as any).npc_dick ?? {})[String((st as any).npclastgenerated ?? 0)] = (Math.floor(Math.random() * 7) + 20);
-    // TODO-QSP: $npc_thdick[$npclastgenerated] = 'massive'
+    ((st as any).npc_thdick = (st as any).npc_thdick ?? {})[String((st as any).npclastgenerated ?? 0)] = 'massive';
     qspCall(st, 'npcStat', '$npclastgenerated');
     qspCall(st, 'npcStat', 'A217', 1);
     scene.img('images/locations/pavlovsk/hotel/sex/hotel_threesome2.jpg');
@@ -1532,7 +1452,6 @@ function enterFirsthotelprosevent(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('Your heart skips a beat as you feel the massive member rub up against your pussy, arousal and excitement already coursing through you.');
     }
-    // TODO-QSP: dynamic text: He places one calloused hand on your back and starts pushing his massive <<dick>...
     scene.text(`He places one calloused hand on your back and starts pushing his massive ${((st as any).dick ?? '')} cm cock inside your pussy.`);
     scene.text('"Oh fuck!" you groan as he buries himself as deep inside you as he can in one thrust.');
     if (((st as any).stat ?? 0)?.['think_virgin'] === 1) {
@@ -1553,11 +1472,9 @@ function enterFirsthotelprosevent(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/hotel/sex/hotel_threesome3.jpg');
     scene.text('You suddenly feel the huge black cock slide out of your pussy, leaving your hole gaping wide and drooling with your arousal as well as a sense of emptiness. A moment later, you squeal as you feel three of his thick fingers drive into your gaping hole and thrust a few times, each pulling another gasp from you before he rubs them on your asshole as lube.');
     if (qspFunc(s, 'pcs_has_attr', 'sex_virgin') === 0  &&  qspFunc(s, 'pcs_has_attr', 'sex_anal_virgin')) {
-      // TODO-QSP: dynamic text: "<<$openinnerthought>>He''s going to take that virginity too?! It''s the only on...
       scene.text(`"${((st as any).openinnerthought ?? '')}He's going to take that virginity too?! It's the only one I have left!${((st as any).closeinnerthought ?? '')}"`);
     }
     scene.text('The fear wells up inside you once again, but you push it down and reason with yourself as you brace for what\'s to come.');
-    // TODO-QSP: dynamic text: You feel the impossibly large head of his cock push up against your back door be...
     scene.text(`You feel the impossibly large head of his cock push up against your back door before he slowly he applies pressure, pushing his ${((st as any).dick ?? '')} cm dick into your ass.`);
     scene.text('Your anus resists, but you eventually feel the head break through, stretching your sphincter as you let out a pained yelp, wincing as your eyes start to water again.');
     scene.text('Showing a bit of chivalry this time, Mr. Black waits a moment so you can get used to the feeling, but all too soon the mercy disappears as he starts pumping his dick into your ass, driving deeper with each thrust.');
@@ -1590,7 +1507,6 @@ function enterFirsthotelprosevent(s: GameState, scene: SceneBuilder): void {
     if ((!((st as any).prosmoneyhot ?? 0))) {
       scene.text('"This was fun, but I want my money," you say assertively, the smell of sticky jizz filling your nostrils.');
       scene.text('"Sure, no problem. You definitely earned it," Pavlin says before chuckling at your cum covered face.');
-      // TODO-QSP: dynamic text: He takes a wad of cash out of his pocket and gives it to you. You start counting...
       scene.text(`He takes a wad of cash out of his pocket and gives it to you. You start counting it and notice it's only ${qspFunc(s, 'money', 'string_profit', 1500)}.`);
       scene.text('"This is not enough! Where is the rest?!" you yell at them, your face red with anger.');
       scene.text('"That\'s all that\'s left, bitch. I spent the rest on cheap whores like you. If you want to earn more money, you can come back anytime. Just go to the receptionist and ask for \'The Peacock\'. She\'ll understand."');
@@ -1604,7 +1520,6 @@ function enterFirsthotelprosevent(s: GameState, scene: SceneBuilder): void {
       if (((st as any).prosmoneyhot ?? 0) === 1) {
         scene.text('You shyly look at Pavlin. "So… Can I have my money back now?"');
         scene.text('"Sure, no problem. You definitely earned it," he replies before he takes a wad of cash out of his pocket and gives it to you.');
-        // TODO-QSP: dynamic text: Cum drips down your face as you count it and notice it''s only <<$func(''money''...
         scene.text(`Cum drips down your face as you count it and notice it's only ${qspFunc(s, 'money', 'string_profit', 500)}. "Where's the rest?"`);
         scene.text('"That\'s all there is today. I spent the rest on cheap whores like you. If you want to earn back the rest, you can come by any time. Just go to the receptionist and ask for \'The Peacock\'. She\'ll understand."');
         scene.text('You reluctantly put the money away, defeated and depressed before dressing and leaving the room.');
@@ -1616,7 +1531,6 @@ function enterFirsthotelprosevent(s: GameState, scene: SceneBuilder): void {
       } else {
         if (((st as any).prosmoneyhot ?? 0) === 2) {
           scene.text('You look at Pavlin. "My money?"');
-          // TODO-QSP: dynamic text: "Sure, no problem. You definitely earned it," he says before he takes two <<$fun...
           scene.text(`"Sure, no problem. You definitely earned it," he says before he takes two ${qspFunc(s, 'money', 'string_profit', 100)} bills out of his pocket and slaps them onto your forehead, the bills sticking to the cum still covering your face.`);
           scene.text('"If you want to earn back the rest of your money, you can come by any day. Just go to the receptionist and ask for \'The Peacock\'. She\'ll understand."');
           scene.text('You pull the sticky bills off of your head and reluctantly put the money away. Tears start streaming down your cheeks as you get dressed and leave the room, feeling cheap and used.');
@@ -1643,7 +1557,6 @@ function enterEnding0(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/hotel/maid.cloth6.jpg');
   scene.text('You finish your shift after several hours of hard work. You return to the locker room and take off the skimpy maid uniform before putting your own clothes back on.');
   scene.text('Leaving the uniform in a neat pile on the table, you grab your things and go to the hotel lobby.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['pav_hotel', ''] },
   ]);
@@ -1751,7 +1664,6 @@ function enterEnding1(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1759,7 +1671,6 @@ function enterEnding2(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/hotel/maid.cloth6.jpg');
   scene.text('After several hours of hard work, you finish your shift. You return to the locker room and take off the skimpy maid uniform before putting your own clothes back on.');
   scene.text('Leaving the uniform in a neat pile on the table, you grab your things and make your way to the hotel lobby. On your way to the lobby, you pass the room where the two men were enjoying themselves with a girl. You try to resist the urge to peep again.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Walk past the door and go to the lobby', goto: ['pav_hotel', ''] },
     { label: 'Peep through the keyhole', handler: (st: GameState) => {
@@ -1806,7 +1717,6 @@ function enterEnding2(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'stat', '');
       scene.text('"Hey!" you exclaim, instinctively reaching out to take it back, but the glare he shoots your way freezes you in your tracks.');
       scene.text('He rummages through your purse until he finds your wallet and takes all of your cash, giving it a disdainful glance before stuffing it into his pocket and roughly throwing your purse back at you.');
-      // TODO-QSP: dynamic text: "What the hell? Only <<$func(''money'', ''format'', montake)>>? Our show is wort...
       scene.text(`"What the hell? Only ${qspFunc(s, 'money', 'format', ((st as any).montake ?? ''))}? Our show is worth much more than this! The only thing you get for this chump change is one slap on the ass."`);
       scene.text('He forcefully turns you around and gives you a hard smack on the ass before gripping your arm and pushing you out the door.');
       (st as any).threesometojoin = 0;

@@ -21,34 +21,21 @@ function enterCoursesinfo(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'grades', 'assign_grade_description', 'school');
   (s as any).temp_grade_thr = '20,40,70,90';
   scene.text('<table cellpadding="2" cellspacing="0">');
-  // TODO-QSP: dynamic text: '<tr><td>Math:</td><td><<$class_grade_desc[''school_math_grade'']>></td><td>' + ...
-  scene.text(`<tr><td>Math:</td><td>${(((s as any).class_grade_desc ?? 0)?.['school_math_grade'] ?? '')}</td><td>' + $func('progressbar', 'positive', class['school_math_grade'], 0, 0, 0, ', ', $temp_grade_thr) + '</td></tr>`);
-  // TODO-QSP: dynamic text: '<tr><td>Russian:</td><td><<$class_grade_desc[''school_rus_grade'']>></td><td>' ...
-  scene.text(`<tr><td>Russian:</td><td>${(((s as any).class_grade_desc ?? 0)?.['school_rus_grade'] ?? '')}</td><td>' + $func('progressbar', 'positive', class['school_rus_grade'], 0, 0, 0, ', ', $temp_grade_thr) + '</td></tr>`);
-  // TODO-QSP: dynamic text: '<tr><td>Literature:</td><td><<$class_grade_desc[''school_lit_grade'']>></td><td...
-  scene.text(`<tr><td>Literature:</td><td>${(((s as any).class_grade_desc ?? 0)?.['school_lit_grade'] ?? '')}</td><td>' + $func('progressbar', 'positive', class['school_lit_grade'], 0, 0, 0, ', ', $temp_grade_thr) + '</td></tr>`);
-  // TODO-QSP: dynamic text: '<tr><td>Art:</td><td><<$class_grade_desc[''school_art_grade'']>></td><td>' + $f...
-  scene.text(`<tr><td>Art:</td><td>${(((s as any).class_grade_desc ?? 0)?.['school_art_grade'] ?? '')}</td><td>' + $func('progressbar', 'positive', class['school_art_grade'], 0, 0, 0, ', ', $temp_grade_thr) + '</td></tr>`);
-  // TODO-QSP: dynamic text: '<tr><td>Biology:</td><td><<$class_grade_desc[''school_bio_grade'']>></td><td>' ...
-  scene.text(`<tr><td>Biology:</td><td>${(((s as any).class_grade_desc ?? 0)?.['school_bio_grade'] ?? '')}</td><td>' + $func('progressbar', 'positive', class['school_bio_grade'], 0, 0, 0, ', ', $temp_grade_thr) + '</td></tr>`);
-  // TODO-QSP: dynamic text: '<tr><td>English:</td><td><<$class_grade_desc[''school_eng_grade'']>></td><td>' ...
-  scene.text(`<tr><td>English:</td><td>${(((s as any).class_grade_desc ?? 0)?.['school_eng_grade'] ?? '')}</td><td>' + $func('progressbar', 'positive', class['school_eng_grade'], 0, 0, 0, ', ', $temp_grade_thr) + '</td></tr>`);
-  // TODO-QSP: dynamic text: '<tr><td>Geography:</td><td><<$class_grade_desc[''school_geo_grade'']>></td><td>...
-  scene.text(`<tr><td>Geography:</td><td>${(((s as any).class_grade_desc ?? 0)?.['school_geo_grade'] ?? '')}</td><td>' + $func('progressbar', 'positive', class['school_geo_grade'], 0, 0, 0, ', ', $temp_grade_thr) + '</td></tr>`);
-  // TODO-QSP: dynamic text: '<tr><td>Science:</td><td><<$class_grade_desc[''school_sci_grade'']>></td><td>' ...
-  scene.text(`<tr><td>Science:</td><td>${(((s as any).class_grade_desc ?? 0)?.['school_sci_grade'] ?? '')}</td><td>' + $func('progressbar', 'positive', class['school_sci_grade'], 0, 0, 0, ', ', $temp_grade_thr) + '</td></tr>`);
-  // TODO-QSP: dynamic text: '<tr><td>History:</td><td><<$class_grade_desc[''school_his_grade'']>></td><td>' ...
-  scene.text(`<tr><td>History:</td><td>${(((s as any).class_grade_desc ?? 0)?.['school_his_grade'] ?? '')}</td><td>' + $func('progressbar', 'positive', class['school_his_grade'], 0, 0, 0, ', ', $temp_grade_thr) + '</td></tr>`);
-  // TODO-QSP: dynamic text: '<tr><td>Shop:</td><td><<$class_grade_desc[''school_shop_grade'']>></td><td>' + ...
-  scene.text(`<tr><td>Shop:</td><td>${(((s as any).class_grade_desc ?? 0)?.['school_shop_grade'] ?? '')}</td><td>' + $func('progressbar', 'positive', class['school_shop_grade'], 0, 0, 0, ', ', $temp_grade_thr) + '</td></tr>`);
-  // TODO-QSP: dynamic text: '<tr><td>Computer:</td><td><<$class_grade_desc[''school_comp_grade'']>></td><td>...
-  scene.text(`<tr><td>Computer:</td><td>${(((s as any).class_grade_desc ?? 0)?.['school_comp_grade'] ?? '')}</td><td>' + $func('progressbar', 'positive', class['school_comp_grade'], 0, 0, 0, ', ', $temp_grade_thr) + '</td></tr>`);
-  // TODO-QSP: dynamic text: '<tr><td>Music:</td><td><<$class_grade_desc[''school_mus_grade'']>></td><td>' + ...
-  scene.text(`<tr><td>Music:</td><td>${(((s as any).class_grade_desc ?? 0)?.['school_mus_grade'] ?? '')}</td><td>' + $func('progressbar', 'positive', class['school_mus_grade'], 0, 0, 0, ', ', $temp_grade_thr) + '</td></tr>`);
-  // TODO-QSP: dynamic text: '<tr><td>P.E.:</td><td><<$class_grade_desc[''school_pe_grade'']>></td><td>' + $f...
-  scene.text(`<tr><td>P.E.:</td><td>${(((s as any).class_grade_desc ?? 0)?.['school_pe_grade'] ?? '')}</td><td>' + $func('progressbar', 'positive', class['school_pe_grade'], 0, 0, 0, ', ', $temp_grade_thr) + '</td></tr>`);
+  scene.text(`'<tr><td>Math:</td><td>${(((s as any).class_grade_desc ?? 0)?.['school_math_grade'] ?? '')}</td><td>' + $func('progressbar', 'positive', class['school_math_grade'], 0, 0, 0, ', ', $temp_grade_thr) + '</td></tr>'`);
+  scene.text(`'<tr><td>Russian:</td><td>${(((s as any).class_grade_desc ?? 0)?.['school_rus_grade'] ?? '')}</td><td>' + $func('progressbar', 'positive', class['school_rus_grade'], 0, 0, 0, ', ', $temp_grade_thr) + '</td></tr>'`);
+  scene.text(`'<tr><td>Literature:</td><td>${(((s as any).class_grade_desc ?? 0)?.['school_lit_grade'] ?? '')}</td><td>' + $func('progressbar', 'positive', class['school_lit_grade'], 0, 0, 0, ', ', $temp_grade_thr) + '</td></tr>'`);
+  scene.text(`'<tr><td>Art:</td><td>${(((s as any).class_grade_desc ?? 0)?.['school_art_grade'] ?? '')}</td><td>' + $func('progressbar', 'positive', class['school_art_grade'], 0, 0, 0, ', ', $temp_grade_thr) + '</td></tr>'`);
+  scene.text(`'<tr><td>Biology:</td><td>${(((s as any).class_grade_desc ?? 0)?.['school_bio_grade'] ?? '')}</td><td>' + $func('progressbar', 'positive', class['school_bio_grade'], 0, 0, 0, ', ', $temp_grade_thr) + '</td></tr>'`);
+  scene.text(`'<tr><td>English:</td><td>${(((s as any).class_grade_desc ?? 0)?.['school_eng_grade'] ?? '')}</td><td>' + $func('progressbar', 'positive', class['school_eng_grade'], 0, 0, 0, ', ', $temp_grade_thr) + '</td></tr>'`);
+  scene.text(`'<tr><td>Geography:</td><td>${(((s as any).class_grade_desc ?? 0)?.['school_geo_grade'] ?? '')}</td><td>' + $func('progressbar', 'positive', class['school_geo_grade'], 0, 0, 0, ', ', $temp_grade_thr) + '</td></tr>'`);
+  scene.text(`'<tr><td>Science:</td><td>${(((s as any).class_grade_desc ?? 0)?.['school_sci_grade'] ?? '')}</td><td>' + $func('progressbar', 'positive', class['school_sci_grade'], 0, 0, 0, ', ', $temp_grade_thr) + '</td></tr>'`);
+  scene.text(`'<tr><td>History:</td><td>${(((s as any).class_grade_desc ?? 0)?.['school_his_grade'] ?? '')}</td><td>' + $func('progressbar', 'positive', class['school_his_grade'], 0, 0, 0, ', ', $temp_grade_thr) + '</td></tr>'`);
+  scene.text(`'<tr><td>Shop:</td><td>${(((s as any).class_grade_desc ?? 0)?.['school_shop_grade'] ?? '')}</td><td>' + $func('progressbar', 'positive', class['school_shop_grade'], 0, 0, 0, ', ', $temp_grade_thr) + '</td></tr>'`);
+  scene.text(`'<tr><td>Computer:</td><td>${(((s as any).class_grade_desc ?? 0)?.['school_comp_grade'] ?? '')}</td><td>' + $func('progressbar', 'positive', class['school_comp_grade'], 0, 0, 0, ', ', $temp_grade_thr) + '</td></tr>'`);
+  scene.text(`'<tr><td>Music:</td><td>${(((s as any).class_grade_desc ?? 0)?.['school_mus_grade'] ?? '')}</td><td>' + $func('progressbar', 'positive', class['school_mus_grade'], 0, 0, 0, ', ', $temp_grade_thr) + '</td></tr>'`);
+  scene.text(`'<tr><td>P.E.:</td><td>${(((s as any).class_grade_desc ?? 0)?.['school_pe_grade'] ?? '')}</td><td>' + $func('progressbar', 'positive', class['school_pe_grade'], 0, 0, 0, ', ', $temp_grade_thr) + '</td></tr>'`);
   scene.text('</table>');
-  // TODO-QSP: dynamic text: A grade of 1 means "Very Poor" and is generally only used for absence. 2 means "...
+  (s as any).temp_grade_thr = undefined;
   scene.text(`A grade of 1 means "Very Poor" and is generally only used for absence. 2 means "Unsatisfactory" and is also a failing grade. 3 means "Satisfactory" and is a passing grade. 4 means "Good". 5 means "Excellent" and is only given to the best students. The number shown on the progress bar (0–100) is the internal variable grade that changes with ${((s as any).pcs_nickname ?? '')}'s actions; the letter grade beside it is the official mark.`);
   qspCall(s, 'grades', 'grade above', 'school', 90);
   qspCall(s, 'grades', 'grade above', 'school', 70);
@@ -136,7 +123,6 @@ function enterCoursesinfo(s: GameState, scene: SceneBuilder): void {
     }
   }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterLeaveactions(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go back', goto: ['journal', 'generaltab'] },
   ]);
@@ -150,23 +136,22 @@ function enterCreateGrid(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_grid_groupname = ((s as any).locArgs?.[2] ?? 0);
   scene.text('<center><table cellspacing="3">');
   (s as any).i = 1;
-  // TODO-QSP: :grid_loop
-  if (((s as any).npc_grupTipe ?? 0)['A' + (((s as any).i ?? 0))] === ((s as any).temp_grid_grouptipe ?? 0)  &&  ((s as any).schoolenable ?? 0)['A' + (((s as any).i ?? 0))] === 1) {
-    // TODO-QSP: $grid_text += '<td><table bgcolor=<<$theme[''table_bg_alt'']>>><tr><td align="center"><a href="exec:...
-    (s as any).grid_count = ((s as any).grid_count ?? 0) + (1);
-    if (((s as any).grid_count ?? 0) === 6  &&  ((s as any).npc_grupTipe ?? 0)['A' + (((s as any).i ?? 0))] === ((s as any).temp_grid_grouptipe ?? 0)) {
-      // TODO-QSP: $grid_text += '</tr><tr>'
-      (s as any).grid_count = 0;
+  do {
+    if (((s as any).npc_grupTipe ?? 0)['A' + (((s as any).i ?? 0))] === ((s as any).temp_grid_grouptipe ?? 0)  &&  ((s as any).schoolenable ?? 0)['A' + (((s as any).i ?? 0))] === 1) {
+      (s as any).grid_text = ((s as any).grid_text ?? 0) + ('<td><table bgcolor=' + (((s as any).theme ?? 0)?.['table_bg_alt']) + '><tr><td align="center"><a href="#" onclick="window.__gameStore.getState().doGoto(\u0027journal_school\u0027, \u0027\u0027 + $temp_grid_groupname + \u0027\u0027); return false;"><img height="100" src="images/characters/shared/headshots_main/' + ((s as any).i ?? 0) + '.jpg"></a></td></tr><tr><td align="center">' + (((s as any).npc_usedname ?? 0)?.['A' + String(((s as any).i ?? 0))]) + '</td></tr></table>\' + \'</td>');
+      (s as any).grid_count = ((s as any).grid_count ?? 0) + (1);
+      if (((s as any).grid_count ?? 0) === 6  &&  ((s as any).npc_grupTipe ?? 0)['A' + (((s as any).i ?? 0))] === ((s as any).temp_grid_grouptipe ?? 0)) {
+        (s as any).grid_text = ((s as any).grid_text ?? 0) + ('</tr><tr>');
+        (s as any).grid_count = 0;
+      }
     }
-  }
-  (s as any).i = ((s as any).i ?? 0) + (1);
-  if (((s as any).i ?? 0) <= ((s as any).aarraynumber ?? 0)) {
-    // TODO-QSP: jump 'grid_loop'
-  }
-  // TODO-QSP: dynamic text: <<$grid_text>>
-  scene.text(`${((s as any).grid_text ?? '')}`);
-  scene.text('</table></center>');
-  // TODO-QSP: end
+    (s as any).i = ((s as any).i ?? 0) + (1);
+    scene.text(`${((s as any).grid_text ?? '')}`);
+    scene.text('</table></center>');
+    (s as any).i = undefined;
+    (s as any).temp_grid_grupTipe = undefined;
+    (s as any).temp_grid_groupname = undefined;
+  } while (((s as any).i ?? 0) <= ((s as any).aarraynumber ?? 0));
   scene.build();
 }
 
@@ -194,7 +179,6 @@ function enterSchool(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><h2>Teachers & Facility</h2></center>');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 6, 'teachers']; enterCreateGrid(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterLeaveactions(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go back', goto: ['journal', 'generaltab'] },
   ]);
@@ -220,7 +204,6 @@ function enterPopular(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'journal_NPC_information', 'A148', 'gschool');
   qspCall(s, 'journal_NPC_information', 'A4', 'gschool');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterLeaveactions(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go back', goto: ['journal_school', 'school'] },
   ]);
@@ -245,7 +228,6 @@ function enterJocks(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'journal_NPC_information', 'A141', 'gschool');
   qspCall(s, 'journal_NPC_information', 'A19', 'gschool');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterLeaveactions(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go back', goto: ['journal_school', 'school'] },
   ]);
@@ -266,7 +248,6 @@ function enterNerds(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'journal_NPC_information', 'A151', 'gschool');
   qspCall(s, 'journal_NPC_information', 'A240', 'gschool');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterLeaveactions(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go back', goto: ['journal_school', 'school'] },
   ]);
@@ -293,7 +274,6 @@ function enterGopniks(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'journal_NPC_information', 'A155', 'gschool');
   qspCall(s, 'journal_NPC_information', 'A189', 'gschool');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterLeaveactions(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go back', goto: ['journal_school', 'school'] },
   ]);
@@ -312,7 +292,6 @@ function enterOutcasts(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'journal_NPC_information', 'A5', 'gschool');
   }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterLeaveactions(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go back', goto: ['journal_school', 'school'] },
   ]);
@@ -336,7 +315,6 @@ function enterTeachers(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'journal_NPC_information', 'A136', 'gschool');
   qspCall(s, 'journal_NPC_information', 'A133', 'gschool');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterLeaveactions(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go back', goto: ['journal_school', 'school'] },
   ]);
@@ -344,9 +322,9 @@ function enterTeachers(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterLeaveactions(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: end
   scene.actions([
     { label: 'Put your notebook down', handler: (st: GameState) => {
+    (st as any).jumploc = undefined;
     (st as any).jclose = 1;
     dynamicGoto(st, 'menu_loc', 'menu_arg');
   } },

@@ -32,8 +32,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).StasKafe ?? 0) === 1) {
       scene.img('images/locations/city/citycenter/diner/kafe.jpg');
-      // TODO-QSP: dynamic text: 'After the dance, you sit down again at the table. The waitress brings the bill ...
-      scene.text('After the dance, you sit down again at the table. The waitress brings the bill over. You take a look at the bill and are slightly stunned by the total. 5000₽! Stas takes the bill out of your hands and says, "Do not worry, I\'ll pay."');
+      scene.text('\'After the dance, you sit down again at the table. The waitress brings the bill over. You take a look at the bill and are slightly stunned by the total. 5000₽! Stas takes the bill out of your hands and says, "Do not worry, I\'ll pay."\'');
       scene.actions([
         { label: 'No thank you, I\'ll pay', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 5000) === 0) {

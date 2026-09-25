@@ -19,7 +19,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/suburb/bdsm_club/bedb.jpg');
   scene.text('Guest bedroom 2');
   qspCall(s, 'bdsm_bedeast', 'events');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the landing', goto: ['bdsm_landing', ''] },
   ]);
@@ -28,10 +27,9 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
 
 function enterCheckEvents(s: GameState, scene: SceneBuilder): void {
   if ((Math.floor(Math.random() * 100) + 0) < 70) {
-    // TODO-QSP: exit
+    return;
   }
   qspGoto(s, 'bdsm_bedeast', qspUntranslated(s, "event_(Math.floor(Math.random() * 10) + 1)", { location: "bdsm_bedeast" }));
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -40,7 +38,6 @@ function enterEvent_1(s: GameState, scene: SceneBuilder): void {
   scene.text('A submissive woman is cleaning up her dom\'s cum from another woman\'s chest.');
   qspCall(s, 'arousal', 'voyeur_sex', 5);
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return', goto: ['bdsm_bedeast', 'start'] },
   ]);
@@ -52,7 +49,6 @@ function enterEvent_2(s: GameState, scene: SceneBuilder): void {
   scene.text('You see three submissive women on the bed, they are tied and gagged.');
   qspCall(s, 'arousal', 'voyeur', 5);
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return', goto: ['bdsm_bedeast', 'start'] },
   ]);
@@ -82,7 +78,6 @@ function enterEvent_3(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return', goto: ['bdsm_bedeast', 'start'] },
   ]);
@@ -111,7 +106,6 @@ function enterEvent_4(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return', goto: ['bdsm_bedeast', 'start'] },
   ]);
@@ -123,7 +117,6 @@ function enterEvent_5(s: GameState, scene: SceneBuilder): void {
   scene.text('A man and two women are having a threesome, you can\'t tell who is sub or dom, but they are so carried away in their act that you don\'t suppose that\'s important right now.');
   qspCall(s, 'arousal', 'voyeur_sex', 5);
   qspCall(s, 'arousal', 'end');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return', goto: ['bdsm_bedeast', 'start'] },
   ]);
@@ -135,7 +128,6 @@ function enterEvent_6(s: GameState, scene: SceneBuilder): void {
   scene.text('A submissive woman has been tied and gagged with a body massager strapped to her pussy. Poor thing, hopefully someone will let her go soon.');
   qspCall(s, 'arousal', 'voyeur_sex', 5);
   qspCall(s, 'arousal', 'end');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return', goto: ['bdsm_bedeast', 'start'] },
   ]);
@@ -147,7 +139,6 @@ function enterEvent_7(s: GameState, scene: SceneBuilder): void {
   scene.text('A submissive woman is gagged and tied to a stool and the bedstead and her dom is fucking her roughly.');
   qspCall(s, 'arousal', 'voyeur_sex', 5);
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return', goto: ['bdsm_bedeast', 'start'] },
   ]);
@@ -184,7 +175,6 @@ function enterEvent_8(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return', goto: ['bdsm_bedeast', 'start'] },
   ]);
@@ -196,7 +186,6 @@ function enterEvent_9(s: GameState, scene: SceneBuilder): void {
   scene.text('A submissive woman appears to have broken the dress code and is being punished.');
   qspCall(s, 'arousal', 'voyeur', 5);
   qspCall(s, 'arousal', 'end');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return', goto: ['bdsm_bedeast', 'start'] },
   ]);
@@ -208,7 +197,6 @@ function enterEvent_10(s: GameState, scene: SceneBuilder): void {
   scene.text('A submissive woman is having her face fucked by a dom in a suit.');
   qspCall(s, 'arousal', 'voyeur_sex', 5);
   qspCall(s, 'arousal', 'end');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return', goto: ['bdsm_bedeast', 'start'] },
   ]);

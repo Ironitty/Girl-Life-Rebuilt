@@ -12,9 +12,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('<center><b>Cinema</b></center>');
   scene.img('images/characters/city/boyfriend/sex/event/cinema/0.jpg');
-  // TODO-QSP: dynamic text: You and <<$telsob>> buy your tickets, drinks, and popcorn. With that done you he...
   scene.text(`You and ${((s as any).telsob ?? '')} buy your tickets, drinks, and popcorn. With that done you head into the theater where your movie is showing.`);
-  // TODO-QSP: end
   scene.actions([
     { label: 'Watch the movie', handler: (st: GameState) => {
     if (((st as any).telsob ?? 0) === 'Alla') {
@@ -75,11 +73,14 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
             } else {
               (st as any).kisvrand = (Math.floor(Math.random() * 21) + 0);
               if (((st as any).kisvrand ?? 0) <= 4) {
+                (st as any).kisvrand = undefined;
                 qspGoto(st, 'kinosvid', '1');
               } else {
                 if (((st as any).kisvrand ?? 0) === 5) {
+                  (st as any).kisvrand = undefined;
                   qspGoto(st, 'kinosvid', '2');
                 } else {
+                  (st as any).kisvrand = undefined;
                   qspGoto(st, 'kinosvid', '3');
                 }
               }
@@ -95,16 +96,12 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enter1(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/city/boyfriend/sex/event/cinema/1.jpg');
-  // TODO-QSP: dynamic text: With some playful flirting, you settle into your seats ready to watch the movie ...
   scene.text(`With some playful flirting, you settle into your seats ready to watch the movie and notice it is almost completely empty. While you're engrossed in the movie, ${((s as any).telsob ?? '')} takes the opportunity to "accidentally" drop some popcorn down your top.`);
-  // TODO-QSP: end
   scene.actions([
     { label: 'Oh, my', handler: (st: GameState) => {
     scene.img('images/characters/city/boyfriend/sex/event/cinema/2.jpg');
     scene.text('"I\'m so clumsy. Let me help you clean that up", she whispers.');
-    // TODO-QSP: dynamic text: <<$telsob>> glides her hand under your shirt slowly gathering up bits of popcorn...
     scene.text(`${((st as any).telsob ?? '')} glides her hand under your shirt slowly gathering up bits of popcorn. Her slow sensual caress isn't part of any popcorn removal technique, but it has its intended effect of making you breathe heavy. To give her better access you slowly lift your shirt, exposing your bare midriff all the way to the bottom of your breasts.`);
-    // TODO-QSP: dynamic text: <<$telsob>> looks around the theater, and seeing that the two of you are alone s...
     scene.text(`${((st as any).telsob ?? '')} looks around the theater, and seeing that the two of you are alone says: "It would be a shame to waste this popcorn, when it is sitting on such a lovely plate." With that, she leans down to gather popcorn with her lips and tongue.`);
     qspCall(st, 'arousal', 'foreplay', 10, 'lesbian');
     qspCall(st, 'stat', '');
@@ -120,18 +117,15 @@ function enter1(s: GameState, scene: SceneBuilder): void {
 
 function enter10(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/city/boyfriend/sex/event/cinema/3.jpg');
-  // TODO-QSP: dynamic text: Soon the popcorn is long forgotten, as <<$telsob>> works her way down between yo...
   scene.text(`Soon the popcorn is long forgotten, as ${((s as any).telsob ?? '')} works her way down between your legs. Her expert tongue along with the thrill of doing this in a movie theater brings you to orgasm almost immediately.`);
   scene.text('The devilish look she gives you tells you she isn\'t done with you yet.');
   (s as any).orgasm_or = 'yes';
   qspCall(s, 'arousal', 'cuni', 10, 'lesbian');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue to enjoy it', handler: (st: GameState) => {
     qspCall(st, 'arousal_funcs', 'stretch', 'vaginal');
     scene.img('images/characters/city/boyfriend/sex/event/cinema/4.jpg');
-    // TODO-QSP: dynamic text: <<$telsob>> continues to massage your clitoris with her tongue, as she slowly wo...
     scene.text(`${((st as any).telsob ?? '')} continues to massage your clitoris with her tongue, as she slowly works the first of her fingers inside you. Working gently, she adds fingers one at a time until you are wrapped around her entire hand. The feeling is so intense that she brings you to a second orgasm, which runs though your entire body.`);
     (st as any).orgasm_or = 'yes';
     qspCall(st, 'arousal', 'cuni', 10, 'lesbian');
@@ -150,13 +144,11 @@ function enter10(s: GameState, scene: SceneBuilder): void {
 
 function enter11(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/city/boyfriend/sex/event/cinema/5.jpg');
-  // TODO-QSP: dynamic text: You rise up from your chair, lifting <<$telsob>>''s shirt as you go. Your mouth ...
   scene.text(`You rise up from your chair, lifting ${((s as any).telsob ?? '')}'s shirt as you go. Your mouth finds one of her nipples, while you work your hand down her pants. After a minute of working your hand, ${((s as any).telsob ?? '')} lets out a load moan, soaking your hand with her juices.`);
   scene.text('This girl is driving you wild. It\'s time to get her pants off.');
   qspCall(s, 'arousal', 'foreplay', 10, 'lesbian');
   qspCall(s, 'arousal', 'vaginal_finger_give', (-10), 'lesbian');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Lick her pussy', goto: ['kinosvid', '14'] },
     { label: 'Lick her ass', goto: ['kinosvid', '15'] },
@@ -167,13 +159,10 @@ function enter11(s: GameState, scene: SceneBuilder): void {
 
 function enter12(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/city/boyfriend/sex/event/cinema/6.jpg');
-  // TODO-QSP: dynamic text: You slide down in you seat, and motion <<$telsob>> upward. She quickly realizes ...
   scene.text(`You slide down in you seat, and motion ${((s as any).telsob ?? '')} upward. She quickly realizes what you want, and straddles your face. You raise your tongue up to meet her dripping wet pussy, and begin to lick.`);
-  // TODO-QSP: dynamic text: After a few minutes <<$telsob>> starts breathing heavy, and frantically grinding...
   scene.text(`After a few minutes ${((s as any).telsob ?? '')} starts breathing heavy, and frantically grinding her crotch against your face, which is then covered by her additional wetness. She let's out a few plaintive moans, before finally coming to a stop.`);
   qspCall(s, 'arousal', 'cuni_give', 10, 'lesbian');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', goto: ['kinosvid', '3'] },
   ]);
@@ -182,12 +171,10 @@ function enter12(s: GameState, scene: SceneBuilder): void {
 
 function enter13(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/city/boyfriend/sex/event/cinema/7.jpg');
-  // TODO-QSP: dynamic text: You kneel down between <<$telsob>>''s legs, and gently lap at her folds. As you ...
   scene.text(`You kneel down between ${((s as any).telsob ?? '')}'s legs, and gently lap at her folds. As you reach her clitoris, thinking she might like the same thing, you gently begin to insert fingers one by one. Eventually she is stretched enough to envelope your entire hand. This brings a loud cry of pleasure from her, as her body shakes with an orgasm.`);
   qspCall(s, 'arousal', 'cuni_give', 10, 'lesbian');
   qspCall(s, 'arousal', 'vaginal_finger_give', (-10), 'lesbian');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Show her your backside', goto: ['kinosvid', '110'] },
     { label: 'Finish', goto: ['kinosvid', '3'] },
@@ -197,11 +184,9 @@ function enter13(s: GameState, scene: SceneBuilder): void {
 
 function enter14(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/city/boyfriend/sex/event/cinema/8.jpg');
-  // TODO-QSP: dynamic text: You guide her to the chair, and pull her pants down around her knees. She reache...
   scene.text(`You guide her to the chair, and pull her pants down around her knees. She reaches back to pull her panties aside, giving you access to her glistening sex. You give her a few long slow licks, before you focus her clitoris. When you do, ${((s as any).telsob ?? '')} pushes her backside against you, moaning for more.`);
   qspCall(s, 'arousal', 'cuni_give', 10, 'lesbian');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Keep going', goto: ['kinosvid', '17'] },
   ]);
@@ -210,11 +195,9 @@ function enter14(s: GameState, scene: SceneBuilder): void {
 
 function enter15(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/city/boyfriend/sex/event/cinema/9.jpg');
-  // TODO-QSP: dynamic text: You guide her to the chair, and pull her pants down around her knees. She reache...
   scene.text(`You guide her to the chair, and pull her pants down around her knees. She reaches back to pull her panties aside, giving you access to her cute little hole. You give her a few teasing licks between her cheeks, before your tongue finds its way to her hole. When it does, ${((s as any).telsob ?? '')} gasps, and reaches back to hold your head begging for more.`);
   qspCall(s, 'arousal', 'cuni_give', 10, 'lesbian');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go further', goto: ['kinosvid', '17'] },
   ]);
@@ -223,11 +206,9 @@ function enter15(s: GameState, scene: SceneBuilder): void {
 
 function enter16(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/city/boyfriend/sex/event/cinema/11.jpg');
-  // TODO-QSP: dynamic text: Deciding that it''s your turn, you gently push <<$telsob>> to her knees. She eag...
   scene.text(`Deciding that it's your turn, you gently push ${((s as any).telsob ?? '')} to her knees. She eagerly drops down looking up at you with lust, as you unbutton your pants for her. When you expose your pussy for her, she rushes forward to plant her lips on yours. You encourage her fine work, with soft moans and thrusts of your pelvis`);
   qspCall(s, 'arousal', 'cuni_give', 10, 'lesbian');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'More', goto: ['kinosvid', '18'] },
     { label: 'It\'s her turn', goto: ['kinosvid', '19'] },
@@ -237,12 +218,10 @@ function enter16(s: GameState, scene: SceneBuilder): void {
 
 function enter17(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/city/boyfriend/sex/event/cinema/10.jpg');
-  // TODO-QSP: dynamic text: You gradually work your fingers into her pussy, while you continue to lick her b...
   scene.text(`You gradually work your fingers into her pussy, while you continue to lick her backside. Finger by finger you stretch her until your entire hand is inside her. ${((s as any).telsob ?? '')} almost seems overwhelmed by all this attention. Her cries of pleasure are loud enough that you fear an usher might come in to see what's going. This thought gives you a wicked little thrill, but it's probably better to finish up.`);
   qspCall(s, 'arousal', 'cuni_give', 10, 'lesbian');
   qspCall(s, 'arousal', 'vaginal_finger_give', (-10), 'lesbian');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', goto: ['kinosvid', '3'] },
   ]);
@@ -251,12 +230,10 @@ function enter17(s: GameState, scene: SceneBuilder): void {
 
 function enter18(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/city/boyfriend/sex/event/cinema/12.jpg');
-  // TODO-QSP: dynamic text: You hike a leg up onto the chair, and motion <<$telsob>> forward. She reaches up...
   scene.text(`You hike a leg up onto the chair, and motion ${((s as any).telsob ?? '')} forward. She reaches up to gently caress one of you cheeks, as she brings her mouth close to your waiting pussy. She teases you with a few deep hot breaths, before her mouth finds its target. A few minutes of kissing and licking later, you are thoroughly satisfied.`);
   (s as any).orgasm_or = 'yes';
   qspCall(s, 'arousal', 'cuni', 10, 'lesbian');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', goto: ['kinosvid', '3'] },
   ]);
@@ -265,11 +242,9 @@ function enter18(s: GameState, scene: SceneBuilder): void {
 
 function enter19(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/city/boyfriend/sex/event/cinema/13.jpg');
-  // TODO-QSP: dynamic text: You help <<$telsob>> up onto the back of the chair, and spread her legs wide. Yo...
   scene.text(`You help ${((s as any).telsob ?? '')} up onto the back of the chair, and spread her legs wide. You start to tease her with little licks, but overcome with passion she grabs the back of your head, forcing you deep between her thighs. She moans and grinds against your face until she is spent. Afterward, you continue to slowly lick her still quiver folds, very pleased with your work.`);
   qspCall(s, 'arousal', 'cuni_give', 10, 'lesbian');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', goto: ['kinosvid', '3'] },
   ]);
@@ -278,12 +253,10 @@ function enter19(s: GameState, scene: SceneBuilder): void {
 
 function enter110(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/city/boyfriend/sex/event/cinema/14.jpg');
-  // TODO-QSP: dynamic text: You get up on the chair and wiggle you butt at <<$telsob>>. Needing no further e...
   scene.text(`You get up on the chair and wiggle you butt at ${((s as any).telsob ?? '')}. Needing no further encouragement, ${((s as any).telsob ?? '')} spreads your cheeks, and buries her tongue deep in your ass. Your gasp of surprise is quickly replaced with moans of pleasure, as she continues to aggressively tongue your bottom. After a few minutes of this your knees buckle, and you collapse on the chair spent.`);
   (s as any).orgasm_or = 'yes';
   qspCall(s, 'arousal', 'rimming', 10, 'lesbian');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', goto: ['kinosvid', '3'] },
   ]);
@@ -292,18 +265,15 @@ function enter110(s: GameState, scene: SceneBuilder): void {
 
 function enter2(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/city/boyfriend/sex/event/cinema/0.jpg');
-  // TODO-QSP: dynamic text: With some playful flirting, you settle into your seats ready to watch the movie ...
   scene.text(`With some playful flirting, you settle into your seats ready to watch the movie and notice it is almost completely empty, just a few people spread out watching the movie. The two of you watch the movie for a while before, ${((s as any).telsob ?? '')} reaches over and slides her hands between your legs and starts rubbing your crotch. Just as it is really starting to feel good, she says: "I have to use the little girls room. I'll be right back."`);
   qspCall(s, 'arousal', 'foreplay', 10, 'lesbian');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Wait', handler: (st: GameState) => {
     if (((st as any).pcs_hotcat ?? 0) >= 5) {
       scene.img('images/characters/city/university/girl/kendra/theater/theater1.jpg');
       if ((!((st as any).kendra_theater ?? 0))) {
         if (((st as any).meet_kendra ?? 0) === 1) {
-          // TODO-QSP: dynamic text: While she is gone, Kendra plops right down in the chair next to you. She starts ...
           scene.text(`While she is gone, Kendra plops right down in the chair next to you. She starts eating your popcorn and places a hand on your knee. Too stunned to say anything, you just sit there a few moments as she rubs your knee and eats the popcorn. "Hello again ${((st as any).pcs_nickname ?? '')}, so what are you doing." She says as she looks at you like a piece of property.`);
         } else {
           scene.text('While she is gone, a black girl sits down beside you, starts eating your popcorn and places a hand on your knee. Too stunned to say anything, you just sit there a few moments as she rubs your knee and eats the popcorn. "So whats your name?" She asks.');
@@ -314,16 +284,12 @@ function enter2(s: GameState, scene: SceneBuilder): void {
     if (((st as any).meet_kendra ?? 0) === 1) {
       scene.text('You explain you are on a date. "Uh… sorry but I am already on a date. She should be back any moment."');
       scene.text('The Kendra snorts. "Yeah I seen that white bitch you was with, you could do way better."');
-      // TODO-QSP: dynamic text: Before she can say more <<$telsob>> comes back and grabs her by the arm and pull...
       scene.text(`Before she can say more ${((st as any).telsob ?? '')} comes back and grabs her by the arm and pulls her up out of the chair. "She's with me, get out of here."`);
-      // TODO-QSP: dynamic text: The Kendra jerks her arm free and then laughs at <<$telsob>>, before walking off...
       scene.text(`The Kendra jerks her arm free and then laughs at ${((st as any).telsob ?? '')}, before walking off. ${((st as any).telsob ?? '')} is very agitated for a while as the two of you watch the movie complaining about the black girl that was just here, eventually she calms down and the two of you watch the rest of the movie in peace.`);
     } else {
       scene.text('You explain you are on a date. "Uh… sorry but I am already on a date. She should be back any moment."');
       scene.text('The black girl snorts. "Yeah I seen that white bitch you was with, you could do better."');
-      // TODO-QSP: dynamic text: Before she can say more <<$telsob>> comes back and grabs her by the arm and pull...
       scene.text(`Before she can say more ${((st as any).telsob ?? '')} comes back and grabs her by the arm and pulls her up out of the chair. "She's with me, get out of here."`);
-      // TODO-QSP: dynamic text: The black girl jerks her arm free and then laughs at <<$telsob>>, before walking...
       scene.text(`The black girl jerks her arm free and then laughs at ${((st as any).telsob ?? '')}, before walking off. ${((st as any).telsob ?? '')} is very agitated for a while as the two of you watch the movie complaining about the black girl that was just here, eventually she calms down and the two of you watch the rest of the movie in peace.`);
     }
     scene.actions([
@@ -340,7 +306,6 @@ function enter2(s: GameState, scene: SceneBuilder): void {
     } else {
       (st as any).meet_kendra = 1;
       qspCall(st, 'npc_relationship', 'set', 'A84', 40);
-      // TODO-QSP: dynamic text: "<<$pcs_nickname>>." You tell her and then explain you are on a date. "Uh… sorry...
       scene.text(`"${((st as any).pcs_nickname ?? '')}." You tell her and then explain you are on a date. "Uh… sorry but I am already sorta on a date. She should be back any moment."`);
       scene.text('Then black girl snorts. "Yeah I seen that white bitch you was with, you could do better."');
       scene.text('You blush a little at the compliment, there is just something about this girl. She just oozes confidence and authority, you get the feeling she is use to always getting her way, just by the way she acts and says things and she seems interested in you. "Thanks" You tell her not sure what more to say, this is an awkward situation, on a date with a girl while another girl flirts with you.');
@@ -351,9 +316,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/city/university/girl/kendra/theater/theater5.jpg');
     scene.text('You shake your head no. "No thanks, like I said my date should be back any moment."');
     scene.text('The Kendra snorts. "You afraid of what she might do if she see\'s you with someone better than her?"');
-    // TODO-QSP: dynamic text: Before you can answer <<$telsob>> comes back and grabs Kendra by the arm and pul...
     scene.text(`Before you can answer ${((st as any).telsob ?? '')} comes back and grabs Kendra by the arm and pulls her up out of the chair. "She's with me, get out of here."`);
-    // TODO-QSP: dynamic text: The Kendra jerks her arm free and then laughs at <<$telsob>>, before walking off...
     scene.text(`The Kendra jerks her arm free and then laughs at ${((st as any).telsob ?? '')}, before walking off. ${((st as any).telsob ?? '')} is very agitated for a while as the two of you watch the movie complaining about the black girl that was just here, eventually she calms down and the two of you watch the rest of the movie in peace.`);
     scene.actions([
       { label: 'Finish', goto: ['kinosvid', '3'] },
@@ -370,9 +333,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/city/university/girl/kendra/theater/theater5.jpg');
     scene.text('You shake your head no. "No I can\'t, not to mention my date should be back any moment."');
     scene.text('The Kendra snorts. "You afraid of what she might do if she see\'s you with someone better than her?"');
-    // TODO-QSP: dynamic text: Before you can answer <<$telsob>> comes back and grabs Kendra by the arm and pul...
     scene.text(`Before you can answer ${((st as any).telsob ?? '')} comes back and grabs Kendra by the arm and pulls her up out of the chair. "She's with me, get out of here."`);
-    // TODO-QSP: dynamic text: The Kendra jerks her arm free and then laughs at <<$telsob>>, before walking off...
     scene.text(`The Kendra jerks her arm free and then laughs at ${((st as any).telsob ?? '')}, before walking off. ${((st as any).telsob ?? '')} is very agitated for a while as the two of you watch the movie complaining about the black girl that was just here, eventually she calms down and the two of you watch the rest of the movie in peace.`);
     scene.actions([
       { label: 'Finish', goto: ['kinosvid', '3'] },
@@ -394,9 +355,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'girl interrupted', handler: (st: GameState) => {
     scene.img('images/characters/city/university/girl/kendra/theater/theater5.jpg');
-    // TODO-QSP: dynamic text: Just as it is starting to really feel good, <<$telsob>> shows up and grabs Kendr...
     scene.text(`Just as it is starting to really feel good, ${((st as any).telsob ?? '')} shows up and grabs Kendra by the arm yanking her up. Kendra doesn't put up a fight, and even starts laughing as she goes. Kendra calls back to you before she walks off: "If you ever get a taste for dark chocolate come see me at the dorm, ask for me by name. I know you want to." She leaves licking her still wet fingers.`);
-    // TODO-QSP: dynamic text: Furious, <<$telsob>> throws her a parting shot: "Get the fuck out of here you cr...
     scene.text(`Furious, ${((st as any).telsob ?? '')} throws her a parting shot: "Get the fuck out of here you crazy black bitch! ${((st as any).pcs_nickname ?? '')} is my girl." She says the last part so only you can hear, as she sits back down.`);
     scene.actions([
       { label: 'Wait', goto: ['kinosvid', '23'] },
@@ -412,16 +371,13 @@ function enter2(s: GameState, scene: SceneBuilder): void {
   } },
         ]);
       } else {
-        // TODO-QSP: dynamic text: While she is gone, Kendra plops right down in the chair next to you. She starts ...
         scene.text(`While she is gone, Kendra plops right down in the chair next to you. She starts eating your popcorn and places a hand on your knee. Too stunned to say anything, you just sit there a few moments as she rubs your knee and eats the popcorn. "Hello again ${((st as any).pcs_nickname ?? '')}, I bet your all wet for me again." She says as she looks at you like a piece of property.`);
         scene.actions([
           { label: 'On a date', handler: (st: GameState) => {
     scene.img('images/characters/city/university/girl/kendra/theater/theater5.jpg');
     scene.text('You explain you are on a date. "Uh… sorry but I am already on a date, like last time. She should be back any moment."');
     scene.text('The Kendra snorts. "Yeah I seen that white bitch you was with, you could do way better and you know it."');
-    // TODO-QSP: dynamic text: Before she can say more <<$telsob>> comes back and grabs her by the arm and pull...
     scene.text(`Before she can say more ${((st as any).telsob ?? '')} comes back and grabs her by the arm and pulls her up out of the chair. "She's with me, get out of here."`);
-    // TODO-QSP: dynamic text: The Kendra jerks her arm free and then laughs at <<$telsob>>, before walking off...
     scene.text(`The Kendra jerks her arm free and then laughs at ${((st as any).telsob ?? '')}, before walking off. ${((st as any).telsob ?? '')} is very agitated for a while as the two of you watch the movie complaining about the black girl that was just here, eventually she calms down and the two of you watch the rest of the movie in peace.`);
     scene.actions([
       { label: 'Finish', goto: ['kinosvid', '3'] },
@@ -438,7 +394,6 @@ function enter2(s: GameState, scene: SceneBuilder): void {
       { label: 'Show her', handler: (st: GameState) => {
     qspCall(st, 'npc_relationship', 'modify', 'A84', 'like');
     scene.img('images/characters/city/university/girl/kendra/theater/theater3.jpg');
-    // TODO-QSP: dynamic text: You pulls your clothes aside until you can bare your pussy to her. As she looks ...
     scene.text(`You pulls your clothes aside until you can bare your pussy to her. As she looks down at your pussy she licks her lips. "Oh, are you all wet for me ${((st as any).pcs_nickname ?? '')}, or are you hot for that white bitch?" After a few moments she reaches over and starts to rub your thigh gently. Her hand starts sliding up your thigh to your pussy.`);
     qspCall(st, 'arousal', 'flash', 2, 'lesbian');
     qspCall(st, 'stat', '');
@@ -452,9 +407,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
       { label: 'girl interrupted', handler: (st: GameState) => {
     qspCall(st, 'npc_relationship', 'set', 'A84', 40);
     scene.img('images/characters/city/university/girl/kendra/theater/theater5.jpg');
-    // TODO-QSP: dynamic text: Just as it is starting to really feel good, <<$telsob>> shows up and grabs Kendr...
     scene.text(`Just as it is starting to really feel good, ${((st as any).telsob ?? '')} shows up and grabs Kendra by the arm yanking her up. Kendra doesn't put up a fight, and even starts laughing as she goes. Kendra calls back to you before she walks off: "Come see me when you get tired of that white bitch. I know what you really want ${((st as any).pcs_nickname ?? '')}." She leaves licking her still wet fingers.`);
-    // TODO-QSP: dynamic text: Furious, <<$telsob>> throws her a parting shot: "Get the fuck out of here you cr...
     scene.text(`Furious, ${((st as any).telsob ?? '')} throws her a parting shot: "Get the fuck out of here you crazy black bitch! ${((st as any).pcs_nickname ?? '')} is my girl." She says the last part so only you can hear, as she sits back down.`);
     scene.actions([
       { label: 'Wait', goto: ['kinosvid', '23'] },
@@ -482,13 +435,10 @@ function enter2(s: GameState, scene: SceneBuilder): void {
 
 function enter23(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/city/boyfriend/sex/event/cinema/21.jpg');
-  // TODO-QSP: dynamic text: When <<$telsob>> has calmed down a little, she looks at you with hunger in her e...
   scene.text(`When ${((s as any).telsob ?? '')} has calmed down a little, she looks at you with hunger in her eyes. You were so shocked by the encounter that you were still sitting there legs spread. ${((s as any).telsob ?? '')} reaches over and starts to unbutton your top too. It looks like she intends to claim her prize.`);
-  // TODO-QSP: end
   scene.actions([
     { label: 'Let her', handler: (st: GameState) => {
     scene.img('images/characters/city/boyfriend/sex/event/cinema/22.jpg');
-    // TODO-QSP: dynamic text: <<$telsob>> gives you a slow deep kiss, as she works two fingers into your pussy...
     scene.text(`${((st as any).telsob ?? '')} gives you a slow deep kiss, as she works two fingers into your pussy. She curls her fingers up, and gives a firm tug. "This is mine", she whispers against your lips.`);
     scene.text('All you can do is whimper, "Yes."');
     (st as any).orgasm_or = 'yes';
@@ -497,9 +447,7 @@ function enter23(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Submit', handler: (st: GameState) => {
     scene.img('images/characters/city/boyfriend/sex/event/cinema/23.jpg');
-    // TODO-QSP: dynamic text: You obediently roll over to your knees, when <<$telsob>> tells you to. She gets ...
     scene.text(`You obediently roll over to your knees, when ${((st as any).telsob ?? '')} tells you to. She gets to work, stretching your little pussy with finger after finger. She isn't rough, but she leaves no doubt about who is in charge.`);
-    // TODO-QSP: dynamic text: "I want you to cum for me now, <<$pcs_nickname>>", she says, in a firm voice.
     scene.text(`"I want you to cum for me now, ${((st as any).pcs_nickname ?? '')}", she says, in a firm voice.`);
     scene.text('You do.');
     (st as any).orgasm_or = 'yes';
@@ -508,7 +456,6 @@ function enter23(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Pleasure her', handler: (st: GameState) => {
     scene.img('images/characters/city/boyfriend/sex/event/cinema/24.jpg');
-    // TODO-QSP: dynamic text: <<$telsob>> gets into position, and guides your hand between her legs. "Do it to...
     scene.text(`${((st as any).telsob ?? '')} gets into position, and guides your hand between her legs. "Do it to me now, sweetie", she tells you. You slowly do the same thing that she has just done to you, slowly stretching her until you get four fingers inside her. After a short time ${((st as any).telsob ?? '')} bucks wildly against your hand, as she climaxes. When she recovers she gives you a little kiss on the cheek, and goes back to watching the movie, without a word.`);
     qspCall(st, 'arousal', 'vaginal_finger_give', 5, 'lesbian');
     qspCall(st, 'stat', '');
@@ -528,18 +475,14 @@ function enter23(s: GameState, scene: SceneBuilder): void {
 
 function enter21(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/city/boyfriend/sex/event/cinema/25.jpg');
-  // TODO-QSP: dynamic text: As an apology, you sit on the floor, motioning for <<$telsob>> to straddle your ...
   scene.text(`As an apology, you sit on the floor, motioning for ${((s as any).telsob ?? '')} to straddle your face. She takes her position, and slowly grinds herself against your face. Eventually, the movement of her hips becomes more and more urgent. All you can do is hold on, as she brings herself to orgasm, against your face.`);
   qspCall(s, 'arousal', 'cuni_give', 10, 'lesbian');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Sit back down', handler: (st: GameState) => {
     scene.img('images/characters/city/boyfriend/sex/event/cinema/26.jpg');
-    // TODO-QSP: dynamic text: When you are dressed and watching the movie again, <<$telsob>> turns to you sayi...
     scene.text(`When you are dressed and watching the movie again, ${((st as any).telsob ?? '')} turns to you saying: "Oh, OK apology accepted."`);
     scene.text('She drops to her knees, spreading your legs as she goes. Her expert tongue brings you to orgasm in no time.');
-    // TODO-QSP: dynamic text: You lie back, breathing heavy, basking in the afterglow, and the thought of <<$t...
     scene.text(`You lie back, breathing heavy, basking in the afterglow, and the thought of ${((st as any).telsob ?? '')} no longer being mad about the incident.`);
     (st as any).orgasm_or = 'yes';
     qspCall(st, 'arousal', 'cuni', 10, 'lesbian');
@@ -554,11 +497,9 @@ function enter21(s: GameState, scene: SceneBuilder): void {
 
 function enter22(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/city/boyfriend/sex/event/cinema/27.jpg');
-  // TODO-QSP: dynamic text: You gently push <<$telsob>> back in her chair, getting her hips up in the air as...
   scene.text(`You gently push ${((s as any).telsob ?? '')} back in her chair, getting her hips up in the air as you do. She pulls on of her cheeks aside giving you better access to her sex. After a few minutes of your expert tongue, ${((s as any).telsob ?? '')} is left collapsed in her chair, trembling.`);
   qspCall(s, 'arousal', 'cuni_give', 10, 'lesbian');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', goto: ['kinosvid', '3'] },
   ]);
@@ -572,7 +513,6 @@ function enter3(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/city/boyfriend/sex/event/cinema/0.jpg');
   scene.text('With some playful flirting, you settle into your seats ready to watch the movie and notice the theater is packed, you struggle to find a pair of empty seats next to each other.');
   if (((s as any).telsob ?? 0) === 'Alla'  ||  ((s as any).telsob ?? 0) === 'Masha'  ||  ((s as any).telsob ?? 0) === 'Kate') {
-    // TODO-QSP: dynamic text: When the movie ends, <<$telsob>> says she has get home. She leaves you with a de...
     scene.text(`When the movie ends, ${((s as any).telsob ?? '')} says she has get home. She leaves you with a deep kiss, leaving you wanting more.`);
     if (((s as any).home ?? 0)?.['town'] === 'pavlovsk') {
       scene.actions([
@@ -584,7 +524,6 @@ function enter3(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   } else {
-    // TODO-QSP: dynamic text: When the movie ends, <<$telsob>> looks at you and waits for your next move.
     scene.text(`When the movie ends, ${((s as any).telsob ?? '')} looks at you and waits for your next move.`);
     if (((s as any).home ?? 0)?.['town'] === 'pavlovsk') {
       scene.actions([
@@ -599,7 +538,6 @@ function enter3(s: GameState, scene: SceneBuilder): void {
       { label: 'Kiss her and invite her to your home', goto: ['lezbsex', 'startloverhome'] },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 

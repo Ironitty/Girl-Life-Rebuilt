@@ -32,7 +32,6 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.text('<center><b>Sewing circle</b></center>');
     scene.img('images/locations/pavlovsk/community/sew/sewing_class.jpg');
-    // TODO-QSP: dynamic text: You go to the sewing club room. As you walk in, a teacher looks at you and says ...
     scene.text(`You go to the sewing club room. As you walk in, a teacher looks at you and says "It costs ${qspFunc(s, 'money', 'string_price', 500)} for one month's lessons and you can attend as many times as you like. The days you did not attend are not refundable when the one month is finished."`);
     if (qspFunc(s, 'money', 'can_afford', 500) === 1) {
       scene.actions([
@@ -64,7 +63,6 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.text('<center><b>Chess Circle</b></center>');
     scene.img('images/locations/pavlovsk/community/chess/kruchess.jpg');
-    // TODO-QSP: dynamic text: You go to the chess club room. As you walk in, a teacher looks at you and says "...
     scene.text(`You go to the chess club room. As you walk in, a teacher looks at you and says "It costs ${qspFunc(s, 'money', 'string_price', 500)} for one month to join and you can come as many days as you like. Once the month is up, any days you did not attend are not refunded."`);
     if (qspFunc(s, 'money', 'can_afford', 500) === 1) {
       scene.actions([

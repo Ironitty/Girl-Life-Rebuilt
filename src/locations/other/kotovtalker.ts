@@ -8,7 +8,6 @@ function enter(s: GameState, scene: SceneBuilder): void {
   if (((s as any).numnpc ?? 0) === 9  &&  ((s as any).fame ?? 0)?.['pav_slut'] < 200  &&  ((s as any).kotovLoveQW ?? 0) >= 0  &&  (((s as any).npc_rel ?? 0)?.['A9'] >= 80  ||  ((s as any).pcs_hotcat ?? 0) >= 5)) {
     if (((s as any).loc ?? 0) === 'pav_disco') {
       if (((s as any).alko ?? 0) < 3) {
-        // TODO-QSP: dynamic text: <<$npc_firstname[''A9'']>>: "<<$pcs_nickname>> Hey, let''s get drunk and then do...
         scene.text(`${(((s as any).npc_firstname ?? 0)?.['A9'] ?? '')}: "${((s as any).pcs_nickname ?? '')} Hey, let's get drunk and then do something dumb."`);
         qspCall(s, 'willpower', 'drink', 'resist', 'medium');
         if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
@@ -48,7 +47,6 @@ function enter(s: GameState, scene: SceneBuilder): void {
         ]);
       } else {
         if (((s as any).alko ?? 0) >= 3) {
-          // TODO-QSP: dynamic text: <<$npc_firstname[''A9'']>>: "<<$pcs_nickname>> Hey, let''s dance."
           scene.text(`${(((s as any).npc_firstname ?? 0)?.['A9'] ?? '')}: "${((s as any).pcs_nickname ?? '')} Hey, let's dance."`);
           qspCall(s, 'willpower', 'misc', 'resist', 'easy');
           if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
@@ -88,7 +86,6 @@ function enter(s: GameState, scene: SceneBuilder): void {
         ]);
       } else {
         if (((st as any).kotovQW ?? 0) >= 5  &&  ((st as any).npc_rel ?? 0)?.['A9'] !== 0) {
-          // TODO-QSP: dynamic text: The dance ended and Vitek took you by the hand, steering you to the wall. "Hey <...
           scene.text(`The dance ended and Vitek took you by the hand, steering you to the wall. "Hey ${((st as any).pcs_nickname ?? '')}, wanna go out with me, be my chick? I'll wring any guy's neck for you."`);
           scene.actions([
             { label: 'Refuse', handler: (st: GameState) => {
@@ -120,7 +117,6 @@ function enter(s: GameState, scene: SceneBuilder): void {
       }
     } else {
       if (((st as any).kotovLoveQW ?? 0) > 0) {
-        // TODO-QSP: dynamic text: The dance ends and Vitek hugged you "<<$pcs_nickname>>, lets go to my house, whe...
         scene.text(`The dance ends and Vitek hugged you "${((st as any).pcs_nickname ?? '')}, lets go to my house, where I can have my way with you." He says in his best seductive tone.`);
         qspCall(st, 'willpower', 'sex', 'resist', 'medium');
         if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
@@ -157,7 +153,6 @@ function enter(s: GameState, scene: SceneBuilder): void {
         }
       }
     } else {
-      // TODO-QSP: dynamic text: <<$npc_firstname[''A9'']>>: "Hey <<$pcs_nickname>>, I''m busy. I''ll catch up wi...
       scene.text(`${(((s as any).npc_firstname ?? 0)?.['A9'] ?? '')}: "Hey ${((s as any).pcs_nickname ?? '')}, I'm busy. I'll catch up with you later." He says as he turns back to talk to his friends.`);
       scene.actions([
         { label: 'Continue', goto: ['gschool_lessons', 'short_break'] },
@@ -165,7 +160,6 @@ function enter(s: GameState, scene: SceneBuilder): void {
     }
   } else {
     if (((s as any).kotovLoveQW ?? 0) > 0  &&  ((s as any).fame ?? 0)?.['pav_slut'] > 200) {
-      // TODO-QSP: dynamic text: Vitek scowled and tells you "Well <<$pcs_nickname>>, whats this garbage I hear a...
       scene.text(`Vitek scowled and tells you "Well ${((s as any).pcs_nickname ?? '')}, whats this garbage I hear about what you and ${((s as any).gnikname ?? '')} did? The whole town already knows, the guys have been telling me all about it. You fucking bitch! "`);
       qspCall(s, 'willpower', 'misc', 'force', 'hard');
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
@@ -220,7 +214,6 @@ function enter(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).loc ?? 0) === 'pav_disco') {
         if (((s as any).fame ?? 0)?.['pav_slut'] < 280) {
-          // TODO-QSP: dynamic text: <<$npc_firstname[$static_num]>>: "<<$pcs_nickname>> Hey, let''s get drunk and th...
           scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).static_num ?? 0)] ?? '')}: "${((s as any).pcs_nickname ?? '')} Hey, let's get drunk and then do something dumb."`);
           qspCall(s, 'willpower', 'drink', 'resist', 'medium');
           if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
@@ -254,7 +247,6 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
           ]);
         } else {
-          // TODO-QSP: dynamic text: <<$npc_firstname[$static_num]>>: "Then what the fuck are you doing here cumwhore...
           scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).static_num ?? 0)] ?? '')}: "Then what the fuck are you doing here cumwhore? Came to suck some dick?"`);
           scene.actions([
             { label: 'Leave', handler: (st: GameState) => {

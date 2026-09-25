@@ -1,3 +1,5 @@
+import { qspFunc } from '../_shared/qspBridge';
+
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
@@ -7,74 +9,75 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDanilovich(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: $result += 'training shoe.'
+  (s as any).result = ((s as any).result ?? 0) + ('training shoe.');
   if (((s as any).ShoHeels ?? 0) <= 1) {
-    // TODO-QSP: $result += 'flat '
+    (s as any).result = ((s as any).result ?? 0) + ('flat ');
   } else {
     if (((s as any).ShoHeels ?? 0) === 2) {
-      // TODO-QSP: $result += 'low heel '
+      (s as any).result = ((s as any).result ?? 0) + ('low heel ');
     } else {
       if (((s as any).ShoHeels ?? 0) === 3) {
-        // TODO-QSP: $result += 'mid heel '
+        (s as any).result = ((s as any).result ?? 0) + ('mid heel ');
       } else {
         if (((s as any).ShoHeels ?? 0) === 4) {
-          // TODO-QSP: $result += 'high heel '
+          (s as any).result = ((s as any).result ?? 0) + ('high heel ');
         } else {
           if (((s as any).ShoHeels ?? 0) === 5) {
-            // TODO-QSP: $result += 'ultra high heel '
+            (s as any).result = ((s as any).result ?? 0) + ('ultra high heel ');
           } else {
-            // TODO-QSP: $result += 'fetish heel '
+            (s as any).result = ((s as any).result ?? 0) + ('fetish heel ');
           }
         }
       }
     }
   }
   if (((s as any).ShoCut ?? 0) <= 1) {
-    // TODO-QSP: $result += 'shoe.'
+    (s as any).result = ((s as any).result ?? 0) + ('shoe.');
   } else {
     if (((s as any).ShoCut ?? 0) === 2) {
-      // TODO-QSP: $result += 'ankle boot.'
+      (s as any).result = ((s as any).result ?? 0) + ('ankle boot.');
     } else {
       if (((s as any).ShoCut ?? 0) === 3) {
-        // TODO-QSP: $result += 'calf high boot.'
+        (s as any).result = ((s as any).result ?? 0) + ('calf high boot.');
       } else {
         if (((s as any).ShoCut ?? 0) === 4) {
-          // TODO-QSP: $result += 'knee high boot.'
+          (s as any).result = ((s as any).result ?? 0) + ('knee high boot.');
         } else {
           if (((s as any).ShoCut ?? 0) === 5) {
-            // TODO-QSP: $result += 'thigh high boot.'
+            (s as any).result = ((s as any).result ?? 0) + ('thigh high boot.');
           } else {
-            // TODO-QSP: $result += 'groin high boot.'
+            (s as any).result = ((s as any).result ?? 0) + ('groin high boot.');
           }
         }
       }
     }
   }
-  // TODO-QSP: end
   if (((s as any).ShoStyle ?? 0) === 1) {
-    // TODO-QSP: $result += ' These shoes are considered alternative shoes.'
+    (s as any).result = ((s as any).result ?? 0) + (' These shoes are considered alternative shoes.');
   }
   if (((s as any).ShoStyle2 ?? 0) === 1  ||  ((s as any).ShoStrip ?? 0) === 1) {
-    // TODO-QSP: $result += ' These shoes are considered stripper shoes.'
+    (s as any).result = ((s as any).result ?? 0) + (' These shoes are considered stripper shoes.');
   } else {
     if (((s as any).ShoStyle2 ?? 0) === 2  ||  ((s as any).ShoSport ?? 0) === 1) {
-      // TODO-QSP: $result += ' These shoes are considered exercise shoes.'
+      (s as any).result = ((s as any).result ?? 0) + (' These shoes are considered exercise shoes.');
     }
   }
+  (s as any).temp_shoe_desc = undefined;
   if (((s as any).ShoBimbo ?? 0) === 1) {
-    // TODO-QSP: $temp_shoe_desc[] = 'bimbo'
+    (s as any).temp_shoe_desc = [...((s as any).temp_shoe_desc ?? []), 'bimbo'];
   }
   if (((s as any).ShoGoth ?? 0) === 1) {
-    // TODO-QSP: $temp_shoe_desc[] = 'goth'
+    (s as any).temp_shoe_desc = [...((s as any).temp_shoe_desc ?? []), 'goth'];
   }
   if (((s as any).ShoPunk ?? 0) === 1) {
-    // TODO-QSP: $temp_shoe_desc[] = 'punk'
+    (s as any).temp_shoe_desc = [...((s as any).temp_shoe_desc ?? []), 'punk'];
   }
   if (Object.keys((s as any).temp_shoe_desc ?? {}).length > 0) {
-    // TODO-QSP: $result += ' These shoes are considered '
-    // TODO-QSP: $result += func('string', 'enumerate_list', '$temp_shoe_desc')
-    // TODO-QSP: $result += ' shoes.'
+    (s as any).result = ((s as any).result ?? 0) + (' These shoes are considered ');
+    (s as any).result = ((s as any).result ?? 0) + (qspFunc(s, 'string', 'enumerate_list', '$temp_shoe_desc'));
+    (s as any).result = ((s as any).result ?? 0) + (' shoes.');
   }
+  (s as any).temp_shoe_desc = undefined;
   scene.build();
 }
 

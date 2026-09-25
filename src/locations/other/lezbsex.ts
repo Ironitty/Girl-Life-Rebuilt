@@ -14,14 +14,12 @@ function enterStartloverhome(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 15;
   qspCall(s, 'stat', '');
   scene.img('images/shared/sex/lesbian/lezbsexhome.jpg');
-  // TODO-QSP: dynamic text: You spend some time with <<$npcdesc>> in the kitchen when she gets impatient and...
   scene.text(`You spend some time with ${((s as any).npcdesc ?? '')} in the kitchen when she gets impatient and caresses you.`);
   if (((s as any).npc_love ?? 0)?.[String((s as any).npcID ?? 0)] === 0  &&  ((s as any).npc_rel ?? 0)?.[String((s as any).npcID ?? 0)] >= 100  &&  ((s as any).daystart ?? 0) - ((s as any).npc_daygenerated ?? 0)?.[String((s as any).npcID ?? 0)] >= 180  &&  ((s as any).npc_dates ?? 0)?.[String((s as any).npcID ?? 0)] >= 30  &&  ((s as any).husID ?? 0) === ''  &&  ((s as any).wifID ?? 0) === '') {
     scene.actions([
       { label: 'Talk about cohabitation', goto: ['love', 'start'] },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Kiss her back and take her to the bedroom', handler: (st: GameState) => {
     qspCall(st, 'npc_relationship', 'modify', ((st as any).npcID ?? 0), 1);
@@ -29,6 +27,7 @@ function enterStartloverhome(s: GameState, scene: SceneBuilder): void {
   } },
     { label: 'Stop her and say goodbye', handler: (st: GameState) => {
     qspCall(st, 'npc_relationship', 'modify', ((st as any).npcID ?? 0), (-2));
+    (st as any).lezbsexhome = undefined;
     qspGoto(st, 'homes_properties', 'go_straight_home');
   } },
   ]);
@@ -47,7 +46,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   }
   scene.img('images/shared/sex/lesbian/lezbsexstart.jpg');
   qspGoto(s, 'lezbsex', 'var');
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -96,7 +94,6 @@ function enterVar(s: GameState, scene: SceneBuilder): void {
       { label: 'Play with the dildo', goto: ['lezbsex', 'dvag'] },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Eat her out', goto: ['lezbsex', 'ukuni'] },
   ]);
@@ -109,11 +106,8 @@ function enterUkuni(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'cuni_give', 5, 'lesbian');
   qspCall(s, 'arousal', 'vaginal_finger_give', (-5), 'lesbian');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
-    { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: xgt 'lezbsex', 'var'
-  } },
+    { label: 'Continue', goto: ['lezbsex', 'var'] },
     { label: 'Finish', goto: ['lezbsex', 'end'] },
   ]);
   scene.build();
@@ -124,11 +118,8 @@ function enterKuni(s: GameState, scene: SceneBuilder): void {
   scene.text('She begins by dragging her tongue up your thighs to your crotch and plants light kisses from the top of your slit down to the opening of your vagina. Her tongue pushes into your slickened hole a few times, then slides back up your cunny to caress your tingling clitoris again.');
   qspCall(s, 'arousal', 'cuni', 5, 'lesbian');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
-    { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: xgt 'lezbsex', 'var'
-  } },
+    { label: 'Continue', goto: ['lezbsex', 'var'] },
     { label: 'Finish', goto: ['lezbsex', 'end'] },
   ]);
   scene.build();
@@ -139,11 +130,8 @@ function enterAnuli(s: GameState, scene: SceneBuilder): void {
   scene.text('She kisses your buttocks in ever-decreasing circles, eventually reaching the center where your puckered anus is waiting. Reaching her goal, she licks all around the tender star to get it plenty moist, then firmly pushes her tongue forward, penetrating your ass with just the tip. Finally, she retracts it, again licking all around your anus, and repeats her tongue invasion into that most private entrance.');
   qspCall(s, 'arousal', 'rimming', 5, 'lesbian');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
-    { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: xgt 'lezbsex', 'var'
-  } },
+    { label: 'Continue', goto: ['lezbsex', 'var'] },
     { label: 'Finish', goto: ['lezbsex', 'end'] },
   ]);
   scene.build();
@@ -154,11 +142,8 @@ function enterUanuli(s: GameState, scene: SceneBuilder): void {
   scene.text('You kiss her buttocks in ever-decreasing circles, eventually reaching the center where her puckered anus is waiting. Reaching your goal, you lick all around the tender star to get it plenty moist, then firmly push your tongue forward, penetrating her ass with just the tip. Finally, you retract it, again licking all around her anus and repeating your tongue invasion into that most private entrance.');
   qspCall(s, 'arousal', 'rimming_give', 5, 'lesbian');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
-    { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: xgt 'lezbsex', 'var'
-  } },
+    { label: 'Continue', goto: ['lezbsex', 'var'] },
     { label: 'Finish', goto: ['lezbsex', 'end'] },
   ]);
   scene.build();
@@ -169,11 +154,8 @@ function enterSvag(s: GameState, scene: SceneBuilder): void {
   scene.text('You put on the strap-on, adjusting it to your hips and centring it, and then insert it slowly into her pussy. She moans and grinds back at you while you fuck her with it.');
   qspCall(s, 'arousal', 'vaginal_strap_give', 5, 'lesbian');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
-    { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: xgt 'lezbsex', 'var'
-  } },
+    { label: 'Continue', goto: ['lezbsex', 'var'] },
     { label: 'Finish', goto: ['lezbsex', 'end'] },
   ]);
   scene.build();
@@ -181,15 +163,11 @@ function enterSvag(s: GameState, scene: SceneBuilder): void {
 
 function enterSanal(s: GameState, scene: SceneBuilder): void {
   scene.img(`images/shared/sex/lesbian/sanal${((s as any).picrand ?? '')}.jpg`);
-  // TODO-QSP: dynamic text: You suck on the shaft to get it well-lubed, then put on the strap-on and gently ...
   scene.text(`You suck on the shaft to get it well-lubed, then put on the strap-on and gently insert it into ${((s as any).lezbsexname ?? '')}'s anus, pressing into her slowly at first. Then, as she adjusts to the backdoor invasion, you push in and out, faster and faster.`);
   qspCall(s, 'arousal', 'anal_strap_give', 5, 'lesbian');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
-    { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: xgt 'lezbsex', 'var'
-  } },
+    { label: 'Continue', goto: ['lezbsex', 'var'] },
     { label: 'Finish', goto: ['lezbsex', 'end'] },
   ]);
   scene.build();
@@ -200,11 +178,8 @@ function enterUsvag(s: GameState, scene: SceneBuilder): void {
   scene.text('You watch as she puts on the strap-on, adjusting it to her hips and centring the fake cock, and then she moves to you and inserts it slowly into your pussy. You moan and grind back at her while she fucks you with it.');
   qspCall(s, 'arousal', 'vaginal_strap', 5, 'lesbian');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
-    { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: xgt 'lezbsex', 'var'
-  } },
+    { label: 'Continue', goto: ['lezbsex', 'var'] },
     { label: 'Finish', goto: ['lezbsex', 'end'] },
   ]);
   scene.build();
@@ -215,11 +190,8 @@ function enterUsanal(s: GameState, scene: SceneBuilder): void {
   scene.text('She spits on the crack of your ass, collecting some saliva to moisten the tip of the strap-on and slowly presses it against your pucker, firmly pushing it into you as you adjust to the invasion. You feel the fullness of it as it moves in and out of your ass with every thrust, pumping faster and deeper.');
   qspCall(s, 'arousal', 'anal_strap', 5, 'lesbian');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
-    { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: xgt 'lezbsex', 'var'
-  } },
+    { label: 'Continue', goto: ['lezbsex', 'var'] },
     { label: 'Finish', goto: ['lezbsex', 'end'] },
   ]);
   scene.build();
@@ -230,11 +202,8 @@ function enterDvag(s: GameState, scene: SceneBuilder): void {
   scene.text('You take a dildo and poke her wet pussy with it. She pulls your face to hers and kisses you while you drive one shaft into her cunny with one hand and caress her breasts with a second dildo.');
   qspCall(s, 'arousal', 'vaginal_dildo_give', 5, 'lesbian');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
-    { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: xgt 'lezbsex', 'var'
-  } },
+    { label: 'Continue', goto: ['lezbsex', 'var'] },
     { label: 'Finish', goto: ['lezbsex', 'end'] },
   ]);
   scene.build();
@@ -242,15 +211,11 @@ function enterDvag(s: GameState, scene: SceneBuilder): void {
 
 function enterDanal(s: GameState, scene: SceneBuilder): void {
   scene.img(`images/shared/sex/lesbian/danal${((s as any).picrand ?? '')}.jpg`);
-  // TODO-QSP: dynamic text: You take a dildo, ensuring that she''s watching you slowly lick it, trying to co...
   scene.text(`You take a dildo, ensuring that she's watching you slowly lick it, trying to cover it with the maximum amount of your thick saliva, and gently insert it into ${((s as any).lezbsexname ?? '')}'s anus. At first, you ease it in slowly, getting her used to the invasion, then push it deeper, stroking it into her faster and faster.`);
   qspCall(s, 'arousal', 'anal_dildo_give', 5, 'lesbian');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
-    { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: xgt 'lezbsex', 'var'
-  } },
+    { label: 'Continue', goto: ['lezbsex', 'var'] },
     { label: 'Finish', goto: ['lezbsex', 'end'] },
   ]);
   scene.build();
@@ -258,15 +223,11 @@ function enterDanal(s: GameState, scene: SceneBuilder): void {
 
 function enterUdvag(s: GameState, scene: SceneBuilder): void {
   scene.img(`images/shared/sex/lesbian/udvag${((s as any).picrand ?? '')}.jpg`);
-  // TODO-QSP: dynamic text: <<$lezbsexname>> inserts the dildo into your wet pussy, moving it in and out whi...
   scene.text(`${((s as any).lezbsexname ?? '')} inserts the dildo into your wet pussy, moving it in and out while constantly twisting and turning it in her hands to stimulate your love hole as much as possible.`);
   qspCall(s, 'arousal', 'vaginal_dildo', 5, 'lesbian');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
-    { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: xgt 'lezbsex', 'var'
-  } },
+    { label: 'Continue', goto: ['lezbsex', 'var'] },
     { label: 'Finish', goto: ['lezbsex', 'end'] },
   ]);
   scene.build();
@@ -274,15 +235,11 @@ function enterUdvag(s: GameState, scene: SceneBuilder): void {
 
 function enterUdanal(s: GameState, scene: SceneBuilder): void {
   scene.img(`images/shared/sex/lesbian/udanal${((s as any).picrand ?? '')}.jpg`);
-  // TODO-QSP: dynamic text: <<$lezbsexname>> spits in your asscrack, watching it slowly glide down to your p...
   scene.text(`${((s as any).lezbsexname ?? '')} spits in your asscrack, watching it slowly glide down to your pucker as she collects some of the saliva and rubs it all around the tip of the dildo before pressing it against your anus. You feel it stretching your puckered hole as it pushes farther inside, bringing you that unique back-door pleasure.`);
   qspCall(s, 'arousal', 'anal_dildo', 5, 'lesbian');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
-    { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: xgt 'lezbsex', 'var'
-  } },
+    { label: 'Continue', goto: ['lezbsex', 'var'] },
     { label: 'Finish', goto: ['lezbsex', 'end'] },
   ]);
   scene.build();
@@ -290,16 +247,16 @@ function enterUdanal(s: GameState, scene: SceneBuilder): void {
 
 function enterEnd(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/sex/lesbian/lezbsexstart.jpg');
-  // TODO-QSP: dynamic text: When you have finished playing, <<$lezbsexname>> thanks you for the excellent ti...
   scene.text(`When you have finished playing, ${((s as any).lezbsexname ?? '')} thanks you for the excellent time and leaves.`);
   qspCall(s, 'arousal', 'end');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     if (((st as any).gfsex ?? 0) === 1) {
+      (st as any).gfsex = undefined;
       qspGoto(st, 'dateF', ((st as any).dateFType ?? ''));
     }
     if (((st as any).lezbsexhome ?? 0) === 1) {
+      (st as any).lezbsexhome = undefined;
       qspGoto(st, 'homes_properties', 'go_straight_home');
     }
     if (((st as any).sexloc ?? 0) === 'stwork') {

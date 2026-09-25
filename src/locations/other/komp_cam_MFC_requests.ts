@@ -6,10 +6,10 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
   if (((s as any).camGirl ?? 0)?.['MFC_Viewers'] === 0) {
-    // TODO-QSP: exit
+    return;
   }
   if (((s as any).totminut ?? 0) < ((s as any).camGirl ?? 0)?.['MFC_lastrequest'] + 15) {
-    // TODO-QSP: exit
+    return;
   }
   if (((s as any).braworntype ?? 0) !== 'none'  &&  ((s as any).pantyworntype ?? 0) !== 'none') {
     if (((s as any).pcs_apprnc ?? 0) < 100) {

@@ -13,7 +13,6 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 function enterSetPavlovskHours(s: GameState, scene: SceneBuilder): void {
   ((s as any).prostitute = (s as any).prostitute ?? {})['pav_start_hour'] = ((s as any).locArgs?.[1] ?? 0);
   ((s as any).prostitute = (s as any).prostitute ?? {})['pav_end_hour'] = ((s as any).locArgs?.[2] ?? 0);
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -24,7 +23,6 @@ function enterWlBlock(s: GameState, scene: SceneBuilder): void {
   } else {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 14, 2]; enterSetPavlovskHours(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
-  // TODO-QSP: end
   if (String((s as any).locArgs?.[1] ?? '') === 'block') {
     ((s as any).prostitute = (s as any).prostitute ?? {})['full_block'] = ((s as any).locArgs?.[1] ?? 0);
   }
@@ -34,18 +32,15 @@ function enterWlBlock(s: GameState, scene: SceneBuilder): void {
 function enterCheckForWlife(s: GameState, scene: SceneBuilder): void {
   if (Object.keys((s as any).mod_name ?? {}).length > 0) {
     (s as any).mod_i = 0;
-    // TODO-QSP: :mod_exec
-    if (((s as any).mod_name ?? 0)?.[String((s as any).mod_i ?? 0)] === 'wlife') {
-      if (((s as any).prostitute ?? 0)?.['payment_method'] === 0) {
-        ((s as any).prostitute = (s as any).prostitute ?? {})['wl_block'] = 1;
+    do {
+      if (((s as any).mod_name ?? 0)?.[String((s as any).mod_i ?? 0)] === 'wlife') {
+        if (((s as any).prostitute ?? 0)?.['payment_method'] === 0) {
+          ((s as any).prostitute = (s as any).prostitute ?? {})['wl_block'] = 1;
+        }
       }
-    }
-    (s as any).mod_i = ((s as any).mod_i ?? 0) + (1);
-    if (((s as any).mod_i ?? 0) < Object.keys((s as any).mod_name ?? {}).length) {
-      // TODO-QSP: jump 'mod_exec'
-    }
+      (s as any).mod_i = ((s as any).mod_i ?? 0) + (1);
+    } while (((s as any).mod_i ?? 0) < Object.keys((s as any).mod_name ?? {}).length);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -57,7 +52,6 @@ function enterUpdateProstitutionLocations(s: GameState, scene: SceneBuilder): vo
   if (((s as any).prostitute ?? 0)?.['road'] === 0) {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetHighwayProstitute(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -69,7 +63,6 @@ function enterSetPavlovskProstitute(s: GameState, scene: SceneBuilder): void {
   } else {
     ((s as any).prostitute = (s as any).prostitute ?? {})['pavlovsk'] = 0;
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -81,7 +74,6 @@ function enterSetGadukinoProstitute(s: GameState, scene: SceneBuilder): void {
   } else {
     ((s as any).prostitute = (s as any).prostitute ?? {})['gadukino'] = 0;
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -93,7 +85,6 @@ function enterSetHighwayProstitute(s: GameState, scene: SceneBuilder): void {
   } else {
     ((s as any).prostitute = (s as any).prostitute ?? {})['road'] = 0;
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -108,33 +99,31 @@ function enterProstituteWorkHours(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterIsSolicitationLocation(s: GameState, scene: SceneBuilder): void {
   (s as any).result = 0;
   if (((s as any).curloc ?? 0) === 'shop') {
-    // TODO-QSP: exit
+    return;
   }
   if (((s as any).curloc ?? 0) === 'prostitution_pavlovsk') {
-    // TODO-QSP: exit
+    return;
   }
   if (((s as any).loc ?? 0) !== ((s as any).curloc ?? 0)) {
-    // TODO-QSP: exit
+    return;
   }
   if (((s as any).menu_off ?? 0) === 1) {
-    // TODO-QSP: exit
+    return;
   }
   if (((s as any).loc_arg ?? 0) !== ''  &&  ((s as any).loc_arg ?? 0) !== 'start') {
-    // TODO-QSP: exit
+    return;
   }
   if ((Array.isArray((s as any).solicitation_locations) ? ((s as any).solicitation_locations as any[]).indexOf(((s as any).loc ?? 0)) : -1) < 0) {
-    // TODO-QSP: exit
+    return;
   }
   (s as any).result = 1;
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -171,28 +160,28 @@ function enterProstituteOutfitAtHome(s: GameState, scene: SceneBuilder): void {
         if (((s as any).temp_not_wear_reason ?? 0) === 'too_small') {
           scene.actions([
             { label: 'Change into prostitute outfit', handler: (st: GameState) => {
-    // TODO-QSP: msg $func('wrap', 'neg', 'Unavailable as your outfit is too ...
+    alert(qspFunc(st, 'wrap', 'neg', 'Unavailable as your outfit is too small!'));
   } },
           ]);
         } else {
           if (((s as any).temp_not_wear_reason ?? 0) === 'too_large') {
             scene.actions([
               { label: 'Change into prostitute outfit', handler: (st: GameState) => {
-    // TODO-QSP: msg $func('wrap', 'neg', 'Unavailable as your outfit is too ...
+    alert(qspFunc(st, 'wrap', 'neg', 'Unavailable as your outfit is too large!'));
   } },
             ]);
           } else {
             if (((s as any).temp_not_wear_reason ?? 0) === 'low_strength') {
               scene.actions([
                 { label: 'Change into prostitute outfit', handler: (st: GameState) => {
-    // TODO-QSP: msg $func('wrap', 'neg', 'Unavailable as outfit is worn out!...
+    alert(qspFunc(st, 'wrap', 'neg', 'Unavailable as outfit is worn out!'));
   } },
               ]);
             } else {
               if (((s as any).temp_not_wear_reason ?? 0) === 'not_owned') {
                 scene.actions([
                   { label: 'Change into prostitute outfit', handler: (st: GameState) => {
-    // TODO-QSP: msg $func('wrap', 'neg', 'Unavailable as you don''t own that...
+    alert(0);
   } },
                 ]);
               } else {
@@ -206,17 +195,17 @@ function enterProstituteOutfitAtHome(s: GameState, scene: SceneBuilder): void {
             }
           }
         }
+        (s as any).temp_not_wear_reason = undefined;
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterRandomApproachChance(s: GameState, scene: SceneBuilder): void {
   (s as any).result = 0;
   if (((s as any).pcs_hotcat ?? 0) < 4) {
-    // TODO-QSP: exit
+    return;
   }
   if (((s as any).pcs_hotcat ?? 0) < 6) {
     (s as any).result = 5;
@@ -231,7 +220,6 @@ function enterRandomApproachChance(s: GameState, scene: SceneBuilder): void {
     (s as any).result = ((s as any).result ?? 0) + (5);
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -239,7 +227,7 @@ function enterWorkClothes(s: GameState, scene: SceneBuilder): void {
   ((s as any).prostitute = (s as any).prostitute ?? {})['work_clothes'] = 0;
   (s as any).PProstitute = 0;
   if ((!((s as any).PCloProstitute ?? 0))) {
-    // TODO-QSP: exit
+    return;
   }
   if (((s as any).PShoStrip ?? 0)) {
   } else {
@@ -254,60 +242,58 @@ function enterWorkClothes(s: GameState, scene: SceneBuilder): void {
   ((s as any).prostitute = (s as any).prostitute ?? {})['work_clothes'] = 1;
   (s as any).PProstitute = 1;
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterIsDefault(s: GameState, scene: SceneBuilder): void {
   (s as any).result = 0;
   if (((s as any).clothingworntype ?? 0) !== ((s as any).prostitute ?? 0)?.['clothingworntype']) {
-    // TODO-QSP: exit
+    return;
   }
   if (((s as any).clothingwornnumber ?? 0) !== ((s as any).prostitute ?? 0)?.['clothingwornnumber']) {
-    // TODO-QSP: exit
+    return;
   }
   if (((s as any).shoeworntype ?? 0) !== ((s as any).prostitute ?? 0)?.['shoeworntype']) {
-    // TODO-QSP: exit
+    return;
   }
   if (((s as any).shoewornnumber ?? 0) !== ((s as any).prostitute ?? 0)?.['shoewornnumber']) {
-    // TODO-QSP: exit
+    return;
   }
   if (((s as any).currentpursetype ?? 0) !== ((s as any).prostitute ?? 0)?.['currentpursetype']) {
-    // TODO-QSP: exit
+    return;
   }
   if (((s as any).currentpursenumber ?? 0) !== ((s as any).prostitute ?? 0)?.['currentpursenumber']) {
-    // TODO-QSP: exit
+    return;
   }
   if (((s as any).coatworntype ?? 0) !== ((s as any).prostitute ?? 0)?.['coatworntype']) {
-    // TODO-QSP: exit
+    return;
   }
   if (((s as any).coatwornnumber ?? 0) !== ((s as any).prostitute ?? 0)?.['coatwornnumber']) {
-    // TODO-QSP: exit
+    return;
   }
   if (((s as any).prostitute ?? 0)?.['underweartype'] === 2) {
     if (((s as any).bodysuitworntype ?? 0) !== ((s as any).prostitute ?? 0)?.['bodysuitworntype']) {
-      // TODO-QSP: exit
+      return;
     }
     if (((s as any).bodysuitwornnumber ?? 0) !== ((s as any).prostitute ?? 0)?.['bodysuitwornnumber']) {
-      // TODO-QSP: exit
+      return;
     }
   } else {
     if (((s as any).pantyworntype ?? 0) !== ((s as any).prostitute ?? 0)?.['pantyworntype']) {
-      // TODO-QSP: exit
+      return;
     }
     if (((s as any).pantywornnumber ?? 0) !== ((s as any).prostitute ?? 0)?.['pantywornnumber']) {
-      // TODO-QSP: exit
+      return;
     }
     if (((s as any).braworntype ?? 0) !== ((s as any).prostitute ?? 0)?.['braworntype']) {
-      // TODO-QSP: exit
+      return;
     }
     if (((s as any).brawornnumber ?? 0) !== ((s as any).prostitute ?? 0)?.['brawornnumber']) {
-      // TODO-QSP: exit
+      return;
     }
   }
   (s as any).result = 1;
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -328,7 +314,6 @@ function enterSetDefaultOutfit(s: GameState, scene: SceneBuilder): void {
   ((s as any).prostitute = (s as any).prostitute ?? {})['coatworntype'] = ((s as any).coatworntype ?? 0);
   ((s as any).prostitute = (s as any).prostitute ?? {})['coatwornnumber'] = ((s as any).coatwornnumber ?? 0);
   ((s as any).prostitute = (s as any).prostitute ?? {})['outfit_is_set'] = 1;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -349,7 +334,6 @@ function enterClearingDefaultOutfit(s: GameState, scene: SceneBuilder): void {
   ((s as any).prostitute = (s as any).prostitute ?? {})['coatworntype'] = '';
   ((s as any).prostitute = (s as any).prostitute ?? {})['coatwornnumber'] = 0;
   ((s as any).prostitute = (s as any).prostitute ?? {})['outfit_is_set'] = 0;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -389,7 +373,6 @@ function enterChangeIntoProstituteOutfit(s: GameState, scene: SceneBuilder): voi
   if (String((s as any).locArgs?.[1] ?? '') === 'work') {
     ((s as any).prostitute = (s as any).prostitute ?? {})['changed_for_work'] = 1;
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -402,23 +385,21 @@ function enterChangeIntoRegularClothes(s: GameState, scene: SceneBuilder): void 
       qspCall(s, 'wardrobe', 'back_to_regular_clothes');
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterChangeToWork(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 10;
   if (String((s as any).locArgs?.[1] ?? '') === 'car') {
-    // TODO-QSP: iif($loc_desc = '', 'You quickly change into your working outfit in your car.', $loc_desc)
+    scene.text('iif($loc_desc = \', \'You quickly change into your working outfit in your car.\', $loc_desc)');
   }
   if (String((s as any).locArgs?.[1] ?? '') === 'restroom') {
-    // TODO-QSP: iif($loc_desc = '', 'You slip into a stall and quickly change into your working outfit, trying to av...
+    scene.text('iif($loc_desc = \', \'You slip into a stall and quickly change into your working outfit, trying to avoid your clothes touching the floor or, really, anything before you place them safely in your bag.\', $loc_desc)');
   }
   if (String((s as any).locArgs?.[1] ?? '') === 'road_side') {
-    // TODO-QSP: iif($loc_desc = '', 'You quickly change into your working outfit behind some bushes by the road.', $...
+    scene.text('iif($loc_desc = \', \'You quickly change into your working outfit behind some bushes by the road.\', $loc_desc)');
   }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'work']; enterChangeIntoProstituteOutfit(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', handler: (st: GameState) => {
     dynamicGoto(st, 'prevLoc', 'prevArg');
@@ -442,7 +423,6 @@ function enterChangeBack(s: GameState, scene: SceneBuilder): void {
     scene.text('You quickly change into your everyday clothes behind some bushes by the road.');
   }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterChangeIntoRegularClothes(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', handler: (st: GameState) => {
     dynamicGoto(st, 'prevLoc', 'prevArg');
@@ -464,7 +444,6 @@ function enterCheckSolicitationEvent(s: GameState, scene: SceneBuilder): void {
     }
     ((s as any).prostitute = (s as any).prostitute ?? {})['pav_residential_prost_day'] = ((s as any).daystart ?? 0);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -488,7 +467,6 @@ function enterWillUnprotected(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'willpower', 'difficulty', '' + ((s as any).locArgs?.[2] ?? 0) + '');
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -516,7 +494,6 @@ function enterWillRimming(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'willpower', 'difficulty', '' + ((s as any).locArgs?.[2] ?? 0) + '');
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -544,19 +521,20 @@ function enterWillAtm(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'willpower', 'difficulty', '' + ((s as any).locArgs?.[2] ?? 0) + '');
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterStdCheck(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'dinSex', 'std_trigger', ((s as any).locArgs?.[1] ?? 0));
-  // TODO-QSP: end
+  (s as any).pro_std_check_rand = undefined;
+  (s as any).pro_std_rand = undefined;
   scene.build();
 }
 
 function enterStdCheckOral(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'dinSex', 'std_trigger_oral', ((s as any).locArgs?.[1] ?? 0));
-  // TODO-QSP: end
+  (s as any).pro_std_check_rand = undefined;
+  (s as any).pro_std_rand = undefined;
   scene.build();
 }
 
@@ -572,7 +550,6 @@ function enterRemoveCondom(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -595,7 +572,6 @@ function enterYourCondom(s: GameState, scene: SceneBuilder): void {
   } else {
     (s as any).sexcontra = 0;
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -603,9 +579,7 @@ function enterHisCondom(s: GameState, scene: SceneBuilder): void {
   (s as any).bwa_boy = ((String((s as any).locArgs?.[1] ?? '') === '') ? (((s as any).boydesc ?? 0)) : (((s as any).locArgs?.[1] ?? 0)));
   (s as any).protect = 1;
   (s as any).sexcontra = 3;
-  // TODO-QSP: dynamic text: <<ucase(mid($bwa_boy,1,1))>><<mid($bwa_boy,2,len($bwa_boy)-1)>> takes his condom...
   scene.text(`${(String((String(((s as any).bwa_boy ?? '')).slice((1)-1, ((1)-1)+(1)))).toUpperCase())}${(String(((s as any).bwa_boy ?? '')).slice((2)-1, ((2)-1)+((String(((s as any).bwa_boy ?? '')).length)-1)))} takes his condom and puts it on his ${((s as any).dick ?? '')} centimeter dick.`);
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -613,7 +587,6 @@ function enterDarkness(s: GameState, scene: SceneBuilder): void {
   (s as any).fcolor = 0;
   (s as any).bcolor = 0;
   (s as any).lcolor = 0;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -718,7 +691,6 @@ function enterParameters(s: GameState, scene: SceneBuilder): void {
   } else {
     ((s as any).prostitute = (s as any).prostitute ?? {})['propose'] = 1;
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -744,7 +716,6 @@ function enterSolicitationEffort(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -761,7 +732,6 @@ function enterClientEffort(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -770,13 +740,14 @@ function enterDailyEffects(s: GameState, scene: SceneBuilder): void {
     (s as any).temp_age_mod_remain = qspUntranslated(s, "prostitute['age_mod'] MOD 100", { location: "prostitution_functions" });
     (s as any).vidageday = ((s as any).vidageday ?? 0) - ((((((s as any).prostitute ?? {})?.['age_mod'] ?? 0) - ((s as any).temp_age_mod_remain ?? 0)) / 100));
     ((s as any).prostitute = (s as any).prostitute ?? {})['age_mod'] = ((s as any).temp_age_mod_remain ?? 0);
+    (s as any).temp_age_mod_remain = undefined;
   }
   if (((s as any).prostitute ?? 0)?.['skin_penalty'] >= 100) {
     (s as any).temp_skin_remain = qspUntranslated(s, "prostitute['skin_penalty'] MOD 100", { location: "prostitution_functions" });
     (s as any).skinDailyPenalty = ((s as any).skinDailyPenalty ?? 0) + ((((((s as any).prostitute ?? {})?.['skin_penalty'] ?? 0) - ((s as any).temp_skin_remain ?? 0)) / 100));
     ((s as any).prostitute = (s as any).prostitute ?? {})['skin_penalty'] = ((s as any).temp_skin_remain ?? 0);
+    (s as any).temp_skin_remain = undefined;
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -885,7 +856,6 @@ function enterPayment(s: GameState, scene: SceneBuilder): void {
   ((s as any).prostitute = (s as any).prostitute ?? {})['payment'] = ((((s as any).prostitute ?? {})?.['payment'] ?? 0) * (100 + (((s as any).prostitute ?? {})?.['client_satisfaction'] ?? 0))) / 100;
   ((s as any).prostitute = (s as any).prostitute ?? {})['payment'] = qspFunc(s, 'math', 'int_round', (((s as any).prostitute ?? 0)?.['payment']), 10);
   ((s as any).prostitute = (s as any).prostitute ?? {})['payment_backup'] = qspFunc(s, 'math', 'int_round', (((s as any).prostitute ?? 0)?.['payment_backup']), 10);
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -910,90 +880,91 @@ function enterAbortion(s: GameState, scene: SceneBuilder): void {
       (s as any).sterilewb = ((s as any).sterilewb ?? 0) + (10);
     }
   }
+  (s as any).abortrand = undefined;
   (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) + (20);
   if (((s as any).broodcurse ?? 0) > 0) {
     qspGoto(s, 'gameover', 'force', '13');
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterRandomName(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: $pro_boyname[1] = ''
-  // TODO-QSP: $pro_boyname[2] = ''
-  // TODO-QSP: :pro_rng_jump
-  (s as any).temp_pro_roll = (Math.floor(Math.random() * 24) + 0);
-  if ((!((s as any).temp_pro_roll ?? 0))) {
-    (s as any).pro_temp = 'Abram';
-  } else {
-    if (((s as any).temp_pro_roll ?? 0) === 1) {
-      (s as any).pro_temp = 'Alexei';
+  ((s as any).pro_boyname = (s as any).pro_boyname ?? {})[1] = '';
+  ((s as any).pro_boyname = (s as any).pro_boyname ?? {})[2] = '';
+  while (true) {
+    (s as any).temp_pro_roll = (Math.floor(Math.random() * 24) + 0);
+    if ((!((s as any).temp_pro_roll ?? 0))) {
+      (s as any).pro_temp = 'Abram';
     } else {
-      if (((s as any).temp_pro_roll ?? 0) === 2) {
-        (s as any).pro_temp = 'Adrian';
+      if (((s as any).temp_pro_roll ?? 0) === 1) {
+        (s as any).pro_temp = 'Alexei';
       } else {
-        if (((s as any).temp_pro_roll ?? 0) === 3) {
-          (s as any).pro_temp = 'Dima';
+        if (((s as any).temp_pro_roll ?? 0) === 2) {
+          (s as any).pro_temp = 'Adrian';
         } else {
-          if (((s as any).temp_pro_roll ?? 0) === 4) {
-            (s as any).pro_temp = 'Dimitri';
+          if (((s as any).temp_pro_roll ?? 0) === 3) {
+            (s as any).pro_temp = 'Dima';
           } else {
-            if (((s as any).temp_pro_roll ?? 0) === 5) {
-              (s as any).pro_temp = 'Igor';
+            if (((s as any).temp_pro_roll ?? 0) === 4) {
+              (s as any).pro_temp = 'Dimitri';
             } else {
-              if (((s as any).temp_pro_roll ?? 0) === 6) {
-                (s as any).pro_temp = 'Leonid';
+              if (((s as any).temp_pro_roll ?? 0) === 5) {
+                (s as any).pro_temp = 'Igor';
               } else {
-                if (((s as any).temp_pro_roll ?? 0) === 7) {
-                  (s as any).pro_temp = 'Petka';
+                if (((s as any).temp_pro_roll ?? 0) === 6) {
+                  (s as any).pro_temp = 'Leonid';
                 } else {
-                  if (((s as any).temp_pro_roll ?? 0) === 8) {
-                    (s as any).pro_temp = 'Michail';
+                  if (((s as any).temp_pro_roll ?? 0) === 7) {
+                    (s as any).pro_temp = 'Petka';
                   } else {
-                    if (((s as any).temp_pro_roll ?? 0) === 9) {
-                      (s as any).pro_temp = 'Vasily';
+                    if (((s as any).temp_pro_roll ?? 0) === 8) {
+                      (s as any).pro_temp = 'Michail';
                     } else {
-                      if (((s as any).temp_pro_roll ?? 0) === 10) {
-                        (s as any).pro_temp = 'Oleg';
+                      if (((s as any).temp_pro_roll ?? 0) === 9) {
+                        (s as any).pro_temp = 'Vasily';
                       } else {
-                        if (((s as any).temp_pro_roll ?? 0) === 11) {
-                          (s as any).pro_temp = 'Olezka';
+                        if (((s as any).temp_pro_roll ?? 0) === 10) {
+                          (s as any).pro_temp = 'Oleg';
                         } else {
-                          if (((s as any).temp_pro_roll ?? 0) === 12) {
-                            (s as any).pro_temp = 'Pasha';
+                          if (((s as any).temp_pro_roll ?? 0) === 11) {
+                            (s as any).pro_temp = 'Olezka';
                           } else {
-                            if (((s as any).temp_pro_roll ?? 0) === 13) {
-                              (s as any).pro_temp = 'Pavel';
+                            if (((s as any).temp_pro_roll ?? 0) === 12) {
+                              (s as any).pro_temp = 'Pasha';
                             } else {
-                              if (((s as any).temp_pro_roll ?? 0) === 14) {
-                                (s as any).pro_temp = 'Sacha';
+                              if (((s as any).temp_pro_roll ?? 0) === 13) {
+                                (s as any).pro_temp = 'Pavel';
                               } else {
-                                if (((s as any).temp_pro_roll ?? 0) === 15) {
-                                  (s as any).pro_temp = 'Slava';
+                                if (((s as any).temp_pro_roll ?? 0) === 14) {
+                                  (s as any).pro_temp = 'Sacha';
                                 } else {
-                                  if (((s as any).temp_pro_roll ?? 0) === 16) {
-                                    (s as any).pro_temp = 'Ruslan';
+                                  if (((s as any).temp_pro_roll ?? 0) === 15) {
+                                    (s as any).pro_temp = 'Slava';
                                   } else {
-                                    if (((s as any).temp_pro_roll ?? 0) === 17) {
-                                      (s as any).pro_temp = 'Taras';
+                                    if (((s as any).temp_pro_roll ?? 0) === 16) {
+                                      (s as any).pro_temp = 'Ruslan';
                                     } else {
-                                      if (((s as any).temp_pro_roll ?? 0) === 18) {
-                                        (s as any).pro_temp = 'Timofey';
+                                      if (((s as any).temp_pro_roll ?? 0) === 17) {
+                                        (s as any).pro_temp = 'Taras';
                                       } else {
-                                        if (((s as any).temp_pro_roll ?? 0) === 19) {
-                                          (s as any).pro_temp = 'Vanya';
+                                        if (((s as any).temp_pro_roll ?? 0) === 18) {
+                                          (s as any).pro_temp = 'Timofey';
                                         } else {
-                                          if (((s as any).temp_pro_roll ?? 0) === 20) {
-                                            (s as any).pro_temp = 'Viktor';
+                                          if (((s as any).temp_pro_roll ?? 0) === 19) {
+                                            (s as any).pro_temp = 'Vanya';
                                           } else {
-                                            if (((s as any).temp_pro_roll ?? 0) === 21) {
-                                              (s as any).pro_temp = 'Vladimir';
+                                            if (((s as any).temp_pro_roll ?? 0) === 20) {
+                                              (s as any).pro_temp = 'Viktor';
                                             } else {
-                                              if (((s as any).temp_pro_roll ?? 0) === 22) {
-                                                (s as any).pro_temp = 'Yaromir';
+                                              if (((s as any).temp_pro_roll ?? 0) === 21) {
+                                                (s as any).pro_temp = 'Vladimir';
                                               } else {
-                                                if (((s as any).temp_pro_roll ?? 0) === 23) {
-                                                  (s as any).pro_temp = 'Yevgeni';
+                                                if (((s as any).temp_pro_roll ?? 0) === 22) {
+                                                  (s as any).pro_temp = 'Yaromir';
+                                                } else {
+                                                  if (((s as any).temp_pro_roll ?? 0) === 23) {
+                                                    (s as any).pro_temp = 'Yevgeni';
+                                                  }
                                                 }
                                               }
                                             }
@@ -1017,26 +988,26 @@ function enterRandomName(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
-  }
-  if (((s as any).pro_boyname ?? 0)[1] === '') {
-    // TODO-QSP: $pro_boyname[1] = $pro_temp
-    // TODO-QSP: jump 'pro_rng_jump'
-  } else {
-    if (((s as any).pro_boyname ?? 0)[2] === '') {
-      // TODO-QSP: $pro_boyname[2] = $pro_temp
+    if (((s as any).pro_boyname ?? 0)[1] === '') {
+      ((s as any).pro_boyname = (s as any).pro_boyname ?? {})[1] = ((s as any).pro_temp ?? 0);
+      break;
+    } else {
+      if (((s as any).pro_boyname ?? 0)[2] === '') {
+        ((s as any).pro_boyname = (s as any).pro_boyname ?? {})[2] = ((s as any).pro_temp ?? 0);
+      }
     }
+    if (((s as any).pro_boyname ?? 0)[1] === ((s as any).pro_boyname ?? 0)[2]) {
+      ((s as any).pro_boyname = (s as any).pro_boyname ?? {})[2] = '';
+      break;
+    }
+    (s as any).pro_temp = undefined;
+    (s as any).pro_temp = undefined;
   }
-  if (((s as any).pro_boyname ?? 0)[1] === ((s as any).pro_boyname ?? 0)[2]) {
-    // TODO-QSP: $pro_boyname[2] = ''
-    // TODO-QSP: jump 'pro_rng_jump'
-  }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterTatPierceCount(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'pirsingsalon', 'count');
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1106,7 +1077,6 @@ function enterPavClient(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'npcgeneratec', '0', 'pavlovsk client', (Math.floor(Math.random() * 28) + 18));
   qspCall(s, 'boyStat', '$npclastgenerated');
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1136,26 +1106,24 @@ function enterStdCumCheck(s: GameState, scene: SceneBuilder): void {
   } else {
     ((s as any).prostitute = (s as any).prostitute ?? {})['cum_undressed'] = 0;
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterExactRound(s: GameState, scene: SceneBuilder): void {
   (s as any).result = qspFunc(s, 'math', 'int_round', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0));
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enter(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: $solicitation_locations[0] = 'pav_commcenter'
-  // TODO-QSP: $solicitation_locations[1] = 'pav_residential'
-  // TODO-QSP: $solicitation_locations[2] = 'pav_industrial'
-  // TODO-QSP: $solicitation_locations[3] = 'pav_commercial'
-  // TODO-QSP: $solicitation_locations[4] = 'pav_market'
-  // TODO-QSP: $solicitation_locations[5] = 'pav_complex'
-  // TODO-QSP: $solicitation_locations[6] = 'pav_park'
-  // TODO-QSP: $solicitation_locations[7] = 'pushkin'
+  ((s as any).solicitation_locations = (s as any).solicitation_locations ?? {})[0] = 'pav_commcenter';
+  ((s as any).solicitation_locations = (s as any).solicitation_locations ?? {})[1] = 'pav_residential';
+  ((s as any).solicitation_locations = (s as any).solicitation_locations ?? {})[2] = 'pav_industrial';
+  ((s as any).solicitation_locations = (s as any).solicitation_locations ?? {})[3] = 'pav_commercial';
+  ((s as any).solicitation_locations = (s as any).solicitation_locations ?? {})[4] = 'pav_market';
+  ((s as any).solicitation_locations = (s as any).solicitation_locations ?? {})[5] = 'pav_complex';
+  ((s as any).solicitation_locations = (s as any).solicitation_locations ?? {})[6] = 'pav_park';
+  ((s as any).solicitation_locations = (s as any).solicitation_locations ?? {})[7] = 'pushkin';
   const arg = s.locArg;
   switch (arg) {
     case 'set_pavlovsk_hours':

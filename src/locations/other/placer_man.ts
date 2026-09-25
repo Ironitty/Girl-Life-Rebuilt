@@ -81,6 +81,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
         }
       }
       ((s as any).placerStringParameter = (s as any).placerStringParameter ?? {})['text_start_meet'] = '' + ((s as any).txt_a ?? 0) + ' ' + ((s as any).txt_b ?? 0) + '';
+      (s as any).txt_a = undefined;
+      (s as any).txt_b = undefined;
     }
   } else {
     if (((s as any).placerParameter ?? 0)?.['friend_index'] === 0) {
@@ -151,6 +153,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
+    (s as any).temp_rand = undefined;
   }
   scene.build();
 }

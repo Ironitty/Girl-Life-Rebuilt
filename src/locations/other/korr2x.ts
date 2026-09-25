@@ -9,6 +9,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'core_library', 'setloc', 'korr2x', '');
   (s as any).location_type = 'private';
+  (s as any).locclass = undefined;
   ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['plasma_tv'] = 1;
   (s as any).popolaini = 0;
   (s as any).saunaYouRoom = 0;
@@ -23,11 +24,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.text('Your umbrella is on a hook.');
   }
   if (((s as any).krolik ?? 0) === 1) {
-    // TODO-QSP: dynamic text: Your rabbit <a href="exec:gt ''krol'', ''start''"><<$namekrol>></a> sits in it''...
     scene.text(`Your rabbit <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027krol/u0027, /u0027start/u0027); return false;">${((s as any).namekrol ?? '')}</a> sits in it's cage on the floor.`);
   }
   if (((s as any).ParrotQW ?? 0)?.['Owned1'] === 1) {
-    // TODO-QSP: dynamic text: Your parrot <a href="exec:gt ''popu'', ''start''"><<$ParrotQW[''Name1'']>></a> s...
     scene.text(`Your parrot <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027popu/u0027, /u0027start/u0027); return false;">${(((s as any).ParrotQW ?? 0)?.['Name1'] ?? '')}</a> sits in it's cage.`);
   }
   qspCall(s, 'daily_routine', 'offer_here');
@@ -43,18 +42,15 @@ function enter(s: GameState, scene: SceneBuilder): void {
         qspGoto(s, 'pet_dog', 'name');
       } else {
         if (((s as any).hour ?? 0) > 5) {
-          // TODO-QSP: dynamic text: <br>Your dog <a href="exec: gt ''pet_dog'', ''start''"><<$rex[''name'']>></a> is...
           scene.text(`<br>Your dog <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027pet_dog/u0027, /u0027start/u0027); return false;">${(((s as any).rex ?? 0)?.['name'] ?? '')}</a> is lying on the floor.<br>`);
         } else {
           if (((s as any).hour ?? 0) < 6) {
-            // TODO-QSP: dynamic text: <br><<$rex[''name'']>> is sleeping in his dog basket.<br>
             scene.text(`<br>${(((s as any).rex ?? 0)?.['name'] ?? '')} is sleeping in his dog basket.<br>`);
           }
         }
       }
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the bedroom', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;

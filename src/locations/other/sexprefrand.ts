@@ -13,6 +13,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       (s as any).RESULT = 'anal';
     }
   }
+  (s as any).sexprefrand = undefined;
   scene.build();
 }
 

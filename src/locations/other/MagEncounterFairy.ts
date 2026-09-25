@@ -56,7 +56,6 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -67,7 +66,6 @@ function enterFairyChatNo1(s: GameState, scene: SceneBuilder): void {
   scene.text('You take a closer look at the floating glowing orb. What you mistook for a large firefly is actually a small woman with translucent wings on her back: A fairy!');
   scene.text('"Hello, biggie!", she says in a high pitched voice. "You can see me, right?"');
   scene.text('"It\'s so nice to meet you! Finally someone who can see me!", she goes on before you have a chance to answer. "Finally someone to chat with!!! You have no idea how annoying it is to be here and nobody recognizes you. It\'s sooo BORING!!!"');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Chat with the fairy', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 30;
@@ -131,7 +129,6 @@ function enterFairyShoo(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -139,7 +136,6 @@ function enterFairyChat(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/park/fae.jpg');
   scene.text('You take the few steps over to the glowing orb that apparently only you can recognize as what it truly is: a fairy.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Chat with the fairy', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 30;
@@ -310,6 +306,7 @@ function enterFairychattopic(s: GameState, scene: SceneBuilder): void {
                               if (((s as any).frandchat ?? 0) === 15) {
                                 scene.text('Today the fairy introduces you to fairy knock-knock jokes. She spends almost half an hour telling joke after joke, but you failed to understand a single one. By the time you\'re ready to leave, she\'s complaining about how humans have no sense of humor.');
                               } else {
+                                (s as any).frandchat = undefined;
                                 qspGoto(s, 'MagEncounterFairy', 'teleport');
                               }
                             }
@@ -326,7 +323,7 @@ function enterFairychattopic(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
+  (s as any).frandchat = undefined;
   scene.actions([
     { label: 'Go on your way', handler: (st: GameState) => {
     dynamicGoto(st, 'prevLoc', 'prevArg');
@@ -357,14 +354,13 @@ function enterTeleport(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.text('The Fairy nudges you into the nearby tree circle, and giggles as you hear her incant "inla", then flies out of the ring.');
-    // TODO-QSP: $tpRand[0] = 'gad_forest'
-    // TODO-QSP: $tpRand[1] = 'PushkinPark'
-    // TODO-QSP: $tpRand[2] = 'Village'
+    ((s as any).tpRand = (s as any).tpRand ?? {})[0] = 'gad_forest';
+    ((s as any).tpRand = (s as any).tpRand ?? {})[1] = 'PushkinPark';
+    ((s as any).tpRand = (s as any).tpRand ?? {})[2] = 'Village';
     scene.actions([
       { label: 'See where the Fairy teleports you to', goto: ['treeCircle', 'tpRand[rand(0', 'qspUntranslated(s, "2)]", { location: "MagEncounterFairy" })'] },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 

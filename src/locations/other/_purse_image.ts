@@ -53,7 +53,6 @@ function enterMoncheri(s: GameState, scene: SceneBuilder): void {
 
 function enterBomba(s: GameState, scene: SceneBuilder): void {
   (s as any).RESULT = 'images/pc/items/bomba/purses/' + ((s as any).locArgs?.[1] ?? 0) + '.jpg';
-  // TODO-QSP: end
   scene.build();
 }
 

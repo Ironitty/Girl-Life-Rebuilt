@@ -30,7 +30,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) <= 22) {
-    // TODO-QSP: dynamic text: 'Near the house you see ' + iif(npc_QW['A64'] = 0, 'Mira''s father', 'Afanasiy')...
     scene.text('Near the house you see ' + ((((s as any).npc_QW ?? 0)?.['A64'] === 0) ? ('Mira\'s father') : ('Afanasiy')) + ' working.');
     if (((s as any).month ?? 0) >= 5  &&  ((s as any).month ?? 0) <= 9  &&  ((s as any).hour ?? 0) >= 18  &&  ((s as any).hour ?? 0) <= 21  &&  ((s as any).week ?? 0) === 5  &&  ((s as any).mirabrotherday ?? 0) !== ((s as any).daystart ?? 0)) {
       scene.text('You see a motorcycle parked outside of Mira\'s house. Mira\'s brother has come in from the city to visit his sister and father.');
@@ -52,7 +51,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       { label: 'Go back to the village center', goto: ['gadukino', ''] },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -61,7 +59,6 @@ function enterMirabrother(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   qspCall(s, 'stat', '');
   scene.img('images/characters/shared/headshots_main/big65.jpg');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave him be', goto: ['gad_miroslava_home', 'start'] },
     { label: 'Ask if you can get a ride on his motorcycle', handler: (st: GameState) => {

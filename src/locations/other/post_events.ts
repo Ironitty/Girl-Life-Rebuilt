@@ -16,7 +16,6 @@ function enter1(s: GameState, scene: SceneBuilder): void {
   scene.text('You return to the man\'s house after you leave the post office and ring the doorbell. "Ah, you came back!" he smiles happily when he opens the door. "Please come in, this will only take a minute of your time."');
   scene.text('"I only need to make sure it fits your body well. So, you know, she doesn\'t hate me!" he laughs nervously. "Anyway, right this way!"');
   scene.text('He ushers you into the bathroom, giving you the gown after taking it out of the package carefully. He tells you to take as long as you need and closes the door so you have some privacy.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Model the gown for him', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -106,7 +105,6 @@ function enter1(s: GameState, scene: SceneBuilder): void {
     scene.text('The man snaps out of his daydream and instantly feels guilty for lusting over you. "Erm, yes!" he mutters. "Thank you! That was exactly what I needed to see. It looks great…"');
     scene.text('"Great on me, you mean?" you laugh while nodding at the tenting erection in his pants. The man nods embarrassedly and leaves so you can change.');
     scene.text('You put your regular clothes back on and find him waiting outside, clearly looking relieved.');
-    // TODO-QSP: dynamic text: He offers you <<$func(''money'', ''string_profit'', 300)>> and a wide smile. "Th...
     scene.text(`He offers you ${qspFunc(s, 'money', 'string_profit', 300)} and a wide smile. "Thank you so much! I know it was weird of me to ask, but you really helped me out today. Please take this for your time."`);
     scene.actions([
       { label: 'Take the money and leave', goto: ['pav_residential', ''] },
@@ -124,7 +122,6 @@ function enter1(s: GameState, scene: SceneBuilder): void {
     scene.text('"Uhh… That\'s all you needed from me, right?" you ask after he\'s been staring at your outfit for a while.');
     scene.text('The man snaps out of his daydream and nods. "Erm, yes! Thank you! That was exactly what I needed to see. It looks great!"');
     scene.text('You change back into your regular clothes and find him waiting outside, clearly looking relieved.');
-    // TODO-QSP: dynamic text: "If this won''t do it, I don''t know what will," he mutters before he offers you...
     scene.text(`"If this won't do it, I don't know what will," he mutters before he offers you ${qspFunc(s, 'money', 'string_profit', 300)} and a wide smile. "Thank you so much! I know it was weird of me to ask…"`);
     scene.actions([
       { label: 'Take the money and leave', goto: ['pav_residential', ''] },
@@ -149,7 +146,6 @@ function enter1_1(s: GameState, scene: SceneBuilder): void {
   scene.text('Within a few minutes, the man\'s breaths grow shorter and shallower until he groans. "Oh m- I\'m going to cum!"');
   qspCall(s, 'arousal', 'bj', 10);
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Take his load on your body', handler: (st: GameState) => {
     qspCall(st, 'cum_call', 'breasts', 'Nice man');
@@ -199,7 +195,6 @@ function enter2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('"He loves it when I do that!" she whispers in your ear as she keeps undressing you. "And… I do too! Shhh!"');
   scene.text('She gives you a conspiratory wink and undresses too.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Follow her to the bedroom', handler: (st: GameState) => {
     scene.img('images/locations/shared/postoffice/sex/postevent2-3.jpg');
@@ -337,7 +332,6 @@ function enter2_1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'bj', 10);
   qspCall(s, 'stat', '');
   scene.text('For the next few minutes, you suck Arsen off while Maksim takes dozens of photos.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -425,7 +419,6 @@ function enter2_2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'bj', 5);
   qspCall(s, 'arousal', 'cuni', (-5));
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/locations/shared/postoffice/sex/postevent2-13.jpg');
@@ -607,9 +600,7 @@ function enter3(s: GameState, scene: SceneBuilder): void {
   scene.text('"So, girl… Tell me. Who are you and why are you here holding the cock of a man you\'ve just met?" he asks sharply, letting out a satisfied groan when you start moving your hand slowly. His cock is definitely not small, that\'s for sure!');
   qspCall(s, 'arousal', 'hj', 5, 'prostitution');
   qspCall(s, 'stat', '');
-  // TODO-QSP: dynamic text: "Uhhh, I''m <<$pcs_firstname>>," you say. "And I''m here because…"
   scene.text(`"Uhhh, I'm ${((s as any).pcs_firstname ?? '')}," you say. "And I'm here because…"`);
-  // TODO-QSP: end
   scene.actions([
     { label: '"I want what\'s in that package."', handler: (st: GameState) => {
     scene.text('"I want what\'s in that package."');
@@ -719,7 +710,6 @@ function enter3_1(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -735,7 +725,6 @@ function enter3_2(s: GameState, scene: SceneBuilder): void {
   scene.text('"My last little slut was too scared that her parents would ask questions about how she paid for all those new clothes, so she kept everything I bought her here," he continues, nodding at the closet\'s contents. "Then, one day, she stopped visiting. Turns out her parents found out about me fucking their precious little daughter and forced her to move away with them! Haven\'t heard from her since. Damn shame, too. She didn\'t know much when I first found her, but she was always so eager to please…"');
   scene.text('He shoots you a seductive smile. "Anyway, long story short: you like clothes, I have a closet full of them. And I like you. See where I\'m going with this?"');
   scene.text('You feel his hand sliding underneath your skirt and fondling your ass cheeks.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/locations/shared/postoffice/events/postwardrobe.jpg');
@@ -810,12 +799,10 @@ function enter4(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'willpower', 'pay', 'force');
     qspCall(st, 'stat', '');
     scene.text('"Not good enough!" you yell as you tighten your grip on his junk even more. "You take advantage of me while I\'m just trying to do my job!? How many girls have you degraded like this before me? I really should make you suffer…"');
-    // TODO-QSP: dynamic text: "N-no! Please! I can pay! I''ll give you <<$func(''money'', ''string_profit'', 1...
     scene.text(`"N-no! Please! I can pay! I'll give you ${qspFunc(s, 'money', 'string_profit', 1000)}, just please let go! I won't bother anyone ever again! I promise!" he cries out. You'd swear he's nearly in tears now.`);
     scene.actions([
       { label: 'Accept the money', handler: (st: GameState) => {
     qspCall(st, 'money', 'earn', 1000);
-    // TODO-QSP: dynamic text: "Now you''re talking!" you say menacingly. Without you even letting go, the man ...
     scene.text(`"Now you're talking!" you say menacingly. Without you even letting go, the man promptly reaches for his wallet on the nightstand and pulls out the ${qspFunc(s, 'money', 'string_profit', 1000)} he promised you.`);
     scene.text('You let go of his cock and balls to take the money from his trembling hand, causing the man to sigh in relief. "Oh thank God… I thought you were going to crush them!"');
     scene.text('"I was seriously considering it. And you definitely would\'ve deserved it. Now sign so I never have to see your face again!"');
@@ -852,7 +839,6 @@ function enter4(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Show some skin to get him off faster', handler: (st: GameState) => {
     if ((!(Math.floor(Math.random() * 2) + 0))) {
@@ -914,7 +900,6 @@ function enter4(s: GameState, scene: SceneBuilder): void {
     scene.text('You don\'t want his cum on your face or on your clothes. How would you explain that?');
     scene.text('Closing your lips tightly around the head, you flick your tongue over his cock a few times and feel his warm, tangy cum spurt against the back of your mouth.');
     scene.text('When he\'s mostly done, you let his cock slide out of your mouth and lick the head a few times, showing him his load on your tongue before swallowing it.');
-    // TODO-QSP: dynamic text: "Oh wow! You''re… I''ve visited whores that weren''t as good…" he pants, simply ...
     scene.text(`"Oh wow! You're… I've visited whores that weren't as good…" he pants, simply amazed. He signs for his mail and gives you ${qspFunc(s, 'money', 'string_profit', 200)}. "Here, take this. If you ever want to make some extra cash during your round, you know where I live! Knock twice."`);
     scene.text('"Uhh, I\'ll keep it in mind," you tell him as you stand up to leave his apartment.');
     scene.actions([

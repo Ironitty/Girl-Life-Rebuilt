@@ -3,6 +3,7 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
+  alert('Deprecated Warning for $menu_panties. This function leads to nothing');
   scene.build();
 }
 

@@ -17,26 +17,21 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'jobs', 'show_all');
   if (((s as any).teacher ?? 0)?.['job'] > 2) {
-    // TODO-QSP: dynamic text: 'You work as a teacher at the Lycée and your schedule is Monday to Saturday, tea...
-    scene.text(`You work as a teacher at the Lycée and your schedule is Monday to Saturday, teaching between 14:00 and 16:00. Your salary is ${qspFunc(s, 'money', 'string_profit', 300)} per day.`);
+    scene.text(`'You work as a teacher at the Lycée and your schedule is Monday to Saturday, teaching between 14:00 and 16:00. Your salary is ${qspFunc(s, 'money', 'string_profit', 300)} per day.'`);
   }
   if (((s as any).bumtolik ?? 0) === 4) {
     scene.text('You have been asked to help the homeless at the Mercy Clinic in the city industrial region.');
   }
   if (((s as any).bumtolik ?? 0) >= 5) {
-    // TODO-QSP: dynamic text: 'You volunteer at the Mercy Clinic in the city industrial region and work with t...
-    scene.text('You volunteer at the Mercy Clinic in the city industrial region and work with the homeless. Working hours are from 9:00 to 17:00 on Saturday and Sunday.');
+    scene.text('\'You volunteer at the Mercy Clinic in the city industrial region and work with the homeless. Working hours are from 9:00 to 17:00 on Saturday and Sunday.\'');
   }
   if (((s as any).audition ?? 0)?.['day'] === ((s as any).daystart ?? 0)) {
-    // TODO-QSP: dynamic text: Your audition for the role of <<$role>> is today!
     scene.text(`Your audition for the role of ${((s as any).role ?? '')} is today!`);
   } else {
     if (((s as any).audition ?? 0)?.['day'] - ((s as any).daystart ?? 0) === 1) {
-      // TODO-QSP: dynamic text: You are auditioning for the role of <<$role>> tomorrow.
       scene.text(`You are auditioning for the role of ${((s as any).role ?? '')} tomorrow.`);
     } else {
       if (((s as any).audition ?? 0)?.['day'] - ((s as any).daystart ?? 0) > 1) {
-        // TODO-QSP: dynamic text: You are auditioning for the role of <<$role>> in <<audition[''day''] - daystart>...
         scene.text(`You are auditioning for the role of ${((s as any).role ?? '')} in ${(((s as any).audition ?? {})?.['day'] ?? 0) - ((s as any).daystart ?? '')} days.`);
       }
     }
@@ -46,17 +41,14 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
       scene.text('You are ');
     } else {
       if (((s as any).acting ?? 0)?.['shoot_day'] - ((s as any).daystart ?? 0) === 1) {
-        // TODO-QSP: dynamic text: You are scheduled to play the part of <<$role>> <<acting[''shoot_day''] - daysta...
         scene.text(`You are scheduled to play the part of ${((s as any).role ?? '')} ${(((s as any).acting ?? {})?.['shoot_day'] ?? 0) - ((s as any).daystart ?? '')} days from now.`);
       } else {
         if (((s as any).acting ?? 0)?.['shoot_day'] - ((s as any).daystart ?? 0) > 1) {
-          // TODO-QSP: dynamic text: You are scheduled to play the part of <<$role>> <<acting[''shoot_day''] - daysta...
           scene.text(`You are scheduled to play the part of ${((s as any).role ?? '')} ${(((s as any).acting ?? {})?.['shoot_day'] ?? 0) - ((s as any).daystart ?? '')} days from now.`);
         }
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 

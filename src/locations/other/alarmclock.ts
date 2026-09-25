@@ -13,7 +13,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/home/bedroom/bed2.jpg');
   scene.text('<center><h4>Enter the time using the number pad and click on set to change alarm times, don\'t forget to turn your alarm on.</h></center>');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuildTable(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', handler: (st: GameState) => {
     (st as any).bud1 = 0;
@@ -37,25 +36,21 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
 
 function enterAlarmDisplay(s: GameState, scene: SceneBuilder): void {
   (s as any).result = '<b>' + qspFunc(s, 'time', 'get_time_string', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0), (((s as any).cheatVars ?? 0)?.['time_format'])) + '</b>';
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterGetWeekDisplay(s: GameState, scene: SceneBuilder): void {
   (s as any).result = '<b>' + qspFunc(s, 'time', 'get_time_string', (((s as any).alarmVars ?? 0)?.['timerH']), (((s as any).alarmVars ?? 0)?.['timerM']), (((s as any).cheatVars ?? 0)?.['time_format'])) + '</b>';
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterGetWeekendDisplay(s: GameState, scene: SceneBuilder): void {
   (s as any).result = '<b>' + qspFunc(s, 'time', 'get_time_string', (((s as any).alarmVars ?? 0)?.['timerEndH']), (((s as any).alarmVars ?? 0)?.['timerEndM']), (((s as any).cheatVars ?? 0)?.['time_format'])) + '</b>';
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterBaseAlarmclockText(s: GameState, scene: SceneBuilder): void {
-  (s as any).result = 'Your <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027alarmclock/u0027, /u0027start/u0027); return false;">alarm clock</a> is set to ' + qspFunc(s, 'alarmclock', 'get_week_display') + ' during the week and ' + qspFunc(s, 'alarmclock', 'get_weekend_display') + ' during the weekend. It is currently turned ' + ((((s as any).alarmVars ?? 0)?.['alarmOn'] === 0) ? ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.alarmVars ??= {})/u0027alarmOn/u0027 = s.1; return s; }); window.__gameStore.getState().doGoto(window.__gameStore.getState().prevLoc, window.__gameStore.getState().prevArg); return false;">OFF</a>.') : ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.alarmVars ??= {})/u0027alarmOn/u0027 = s.0; return s; }); window.__gameStore.getState().doGoto(window.__gameStore.getState().prevLoc, window.__gameStore.getState().prevArg); return false;">ON</a>.'));
-  // TODO-QSP: end
+  (s as any).result = 'Your <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027alarmclock\u0027, \u0027start\u0027); return false;">alarm clock</a> is set to ' + qspFunc(s, 'alarmclock', 'get_week_display') + ' during the week and ' + qspFunc(s, 'alarmclock', 'get_weekend_display') + ' during the weekend. It is currently turned ' + ((((s as any).alarmVars ?? 0)?.['alarmOn'] === 0) ? ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.alarmVars ??= {})\u0027alarmOn\u0027 = s.1; return s; }); window.__gameStore.getState().doGoto(window.__gameStore.getState().prevLoc, window.__gameStore.getState().prevArg); return false;">OFF</a>.') : ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.alarmVars ??= {})\u0027alarmOn\u0027 = s.0; return s; }); window.__gameStore.getState().doGoto(window.__gameStore.getState().prevLoc, window.__gameStore.getState().prevArg); return false;">ON</a>.'));
   scene.build();
 }
 
@@ -66,7 +61,6 @@ function enterClear(s: GameState, scene: SceneBuilder): void {
   (s as any).bud4 = 0;
   (s as any).numbud = 0;
   qspGoto(s, 'alarmclock', 'start');
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -92,7 +86,6 @@ function enterTime(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspGoto(s, 'alarmclock', 'start');
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -114,7 +107,6 @@ function enter1(s: GameState, scene: SceneBuilder): void {
     (s as any).numbud = 1;
   }
   qspGoto(s, 'alarmclock', 'start');
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -136,7 +128,6 @@ function enter2(s: GameState, scene: SceneBuilder): void {
     (s as any).numbud = 1;
   }
   qspGoto(s, 'alarmclock', 'start');
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -158,7 +149,6 @@ function enter3(s: GameState, scene: SceneBuilder): void {
     (s as any).numbud = 1;
   }
   qspGoto(s, 'alarmclock', 'start');
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -180,7 +170,6 @@ function enter4(s: GameState, scene: SceneBuilder): void {
     (s as any).numbud = 1;
   }
   qspGoto(s, 'alarmclock', 'start');
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -202,7 +191,6 @@ function enter5(s: GameState, scene: SceneBuilder): void {
     (s as any).numbud = 1;
   }
   qspGoto(s, 'alarmclock', 'start');
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -224,7 +212,6 @@ function enter6(s: GameState, scene: SceneBuilder): void {
     (s as any).numbud = 1;
   }
   qspGoto(s, 'alarmclock', 'start');
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -246,7 +233,6 @@ function enter7(s: GameState, scene: SceneBuilder): void {
     (s as any).numbud = 1;
   }
   qspGoto(s, 'alarmclock', 'start');
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -268,7 +254,6 @@ function enter8(s: GameState, scene: SceneBuilder): void {
     (s as any).numbud = 1;
   }
   qspGoto(s, 'alarmclock', 'start');
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -290,7 +275,6 @@ function enter9(s: GameState, scene: SceneBuilder): void {
     (s as any).numbud = 1;
   }
   qspGoto(s, 'alarmclock', 'start');
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -312,7 +296,6 @@ function enter0(s: GameState, scene: SceneBuilder): void {
     (s as any).numbud = 1;
   }
   qspGoto(s, 'alarmclock', 'start');
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -330,7 +313,6 @@ function enterReset(s: GameState, scene: SceneBuilder): void {
   (s as any).bud4 = 0;
   (s as any).numbud = 0;
   qspGoto(s, 'alarmclock', 'start');
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -359,37 +341,41 @@ function enterBuildTable(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).numbud ?? 0))) {
     (s as any).alarm_html = '<u>' + ((s as any).bud1 ?? 0) + '</u>' + ((s as any).bud2 ?? 0) + ' : ' + ((s as any).bud3 ?? 0) + '' + ((s as any).bud4 ?? 0) + '';
   }
-  (s as any).numbud_table = '<tr><td colspan=3 align="center"><b><font size="+2"><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027alarmclock/u0027, /u0027clear/u0027); return false;">Clear</a></font></b></td></tr>';
-  // TODO-QSP: $numbud_table += '<tr><<$num_html>><a href="exec:gt ''alarmclock'', ''1''">1<<$html_num>>'
-  // TODO-QSP: $numbud_table += '<<$num_html>><a href="exec:gt ''alarmclock'', ''2''">2<<$html_num>>'
-  // TODO-QSP: $numbud_table += '<<$num_html>><a href="exec:gt ''alarmclock'', ''3''">3<<$html_num>></tr>'
-  // TODO-QSP: $numbud_table += '<tr><<$num_html>><a href="exec:gt ''alarmclock'', ''4''">4<<$html_num>>'
-  // TODO-QSP: $numbud_table += '<<$num_html>><a href="exec:gt ''alarmclock'', ''5''">5<<$html_num>>'
-  // TODO-QSP: $numbud_table += '<<$num_html>><a href="exec:gt ''alarmclock'', ''6''">6<<$html_num>></tr>'
-  // TODO-QSP: $numbud_table += '<tr><<$num_html>><a href="exec:gt ''alarmclock'', ''7''">7<<$html_num>>'
-  // TODO-QSP: $numbud_table += '<<$num_html>><a href="exec:gt ''alarmclock'', ''8''">8<<$html_num>>'
-  // TODO-QSP: $numbud_table += '<<$num_html>><a href="exec:gt ''alarmclock'', ''9''">9<<$html_num>></tr>'
-  // TODO-QSP: $numbud_table += '<tr><td colspan=3 align="center"><b><font size="+2"><a href="exec:gt ''alarmclock'...
+  (s as any).numbud_table = '<tr><td colspan=3 align="center"><b><font size="+2"><a href="#" onclick="window.__gameStore.getState().doGoto(\u0027alarmclock\u0027, \u0027clear\u0027); return false;">Clear</a></font></b></td></tr>';
+  (s as any).numbud_table = ((s as any).numbud_table ?? 0) + ('<tr>' + ((s as any).num_html ?? 0) + '<a href="exec:gt \'alarmclock\', \'1\'">1' + ((s as any).html_num ?? 0) + '');
+  (s as any).numbud_table = ((s as any).numbud_table ?? 0) + ('' + ((s as any).num_html ?? 0) + '<a href="exec:gt \'alarmclock\', \'2\'">2' + ((s as any).html_num ?? 0) + '');
+  (s as any).numbud_table = ((s as any).numbud_table ?? 0) + ('' + ((s as any).num_html ?? 0) + '<a href="exec:gt \'alarmclock\', \'3\'">3' + ((s as any).html_num ?? 0) + '</tr>');
+  (s as any).numbud_table = ((s as any).numbud_table ?? 0) + ('<tr>' + ((s as any).num_html ?? 0) + '<a href="exec:gt \'alarmclock\', \'4\'">4' + ((s as any).html_num ?? 0) + '');
+  (s as any).numbud_table = ((s as any).numbud_table ?? 0) + ('' + ((s as any).num_html ?? 0) + '<a href="exec:gt \'alarmclock\', \'5\'">5' + ((s as any).html_num ?? 0) + '');
+  (s as any).numbud_table = ((s as any).numbud_table ?? 0) + ('' + ((s as any).num_html ?? 0) + '<a href="exec:gt \'alarmclock\', \'6\'">6' + ((s as any).html_num ?? 0) + '</tr>');
+  (s as any).numbud_table = ((s as any).numbud_table ?? 0) + ('<tr>' + ((s as any).num_html ?? 0) + '<a href="exec:gt \'alarmclock\', \'7\'">7' + ((s as any).html_num ?? 0) + '');
+  (s as any).numbud_table = ((s as any).numbud_table ?? 0) + ('' + ((s as any).num_html ?? 0) + '<a href="exec:gt \'alarmclock\', \'8\'">8' + ((s as any).html_num ?? 0) + '');
+  (s as any).numbud_table = ((s as any).numbud_table ?? 0) + ('' + ((s as any).num_html ?? 0) + '<a href="exec:gt \'alarmclock\', \'9\'">9' + ((s as any).html_num ?? 0) + '</tr>');
+  (s as any).numbud_table = ((s as any).numbud_table ?? 0) + ('<tr><td colspan=3 align="center"><b><font size="+2"><a href="#" onclick="window.__gameStore.getState().doGoto(\u0027alarmclock\u0027, \u00270\u0027); return false;">0</a></font></b></td></tr></table></center>');
   (s as any).alarmVars_table = '<center><table border=0 cellpadding=0 cellspacing=5><font size="+1"<b>';
-  // TODO-QSP: $alarmVars_table += '<tr><td><b><a href="exec: bud_weekend = 0 & gt ''alarmclock'', ''Reset''">Reset...
-  // TODO-QSP: $alarmVars_table += '<td><b><a href="exec: bud_weekend = 0 & gt ''alarmclock'', ''Time''">Set weekda...
-  // TODO-QSP: $alarmVars_table += '<td><b>Currently set for <<func(''time'', ''get_time_string'', alarmVars[''time...
-  // TODO-QSP: $alarmVars_table += '<tr><td><b><a href="exec: bud_weekend = 1 & gt ''alarmclock'', ''Reset''">Reset...
-  // TODO-QSP: $alarmVars_table += '<td><b><a href="exec: bud_weekend = 1 & gt ''alarmclock'', ''Time''">Set weeken...
-  // TODO-QSP: $alarmVars_table += '<td><b>Currently set for <<func(''time'', ''get_time_string'', alarmVars[''time...
+  (s as any).alarmVars_table = ((s as any).alarmVars_table ?? 0) + ('<tr><td><b><a href="#" onclick="window.__gameStore.setState((s) => { s.bud_weekend = s.0; return s; }); window.__gameStore.getState().doGoto(\u0027alarmclock\u0027, \u0027Reset\u0027); return false;">Reset weekday alarm</a></b></td>');
+  (s as any).alarmVars_table = ((s as any).alarmVars_table ?? 0) + ('<td><b><a href="#" onclick="window.__gameStore.setState((s) => { s.bud_weekend = s.0; return s; }); window.__gameStore.getState().doGoto(\u0027alarmclock\u0027, \u0027Time\u0027); return false;">Set weekday alarm</a></b></td>');
+  (s as any).alarmVars_table = ((s as any).alarmVars_table ?? 0) + ('<td><b>Currently set for ' + qspFunc(s, 'time', 'get_time_string', (((s as any).alarmVars ?? 0)?.['timerH']), (((s as any).alarmVars ?? 0)?.['timerM']), (((s as any).cheatVars ?? 0)?.['time_format'])) + '</b></td></tr>');
+  (s as any).alarmVars_table = ((s as any).alarmVars_table ?? 0) + ('<tr><td><b><a href="#" onclick="window.__gameStore.setState((s) => { s.bud_weekend = s.1; return s; }); window.__gameStore.getState().doGoto(\u0027alarmclock\u0027, \u0027Reset\u0027); return false;">Reset weekend alarm</a></b></td>');
+  (s as any).alarmVars_table = ((s as any).alarmVars_table ?? 0) + ('<td><b><a href="#" onclick="window.__gameStore.setState((s) => { s.bud_weekend = s.1; return s; }); window.__gameStore.getState().doGoto(\u0027alarmclock\u0027, \u0027Time\u0027); return false;">Set weekend alarm</a></b></td>');
+  (s as any).alarmVars_table = ((s as any).alarmVars_table ?? 0) + ('<td><b>Currently set for ' + qspFunc(s, 'time', 'get_time_string', (((s as any).alarmVars ?? 0)?.['timerEndH']), (((s as any).alarmVars ?? 0)?.['timerEndM']), (((s as any).cheatVars ?? 0)?.['time_format'])) + '</b></td></tr>');
   if (((s as any).start_type ?? 0)?.['loc'] === 'sg') {
-    // TODO-QSP: $alarmVars_table += '<tr><td colspan="3"><b>Use weekend alarm for holidays - ' + iif(alarmVars['alar...
+    (s as any).alarmVars_table = ((s as any).alarmVars_table ?? 0) + ('<tr><td colspan="3"><b>Use weekend alarm for holidays - ' + ((((s as any).alarmVars ?? 0)?.['alarm_holiday'] === 0) ? ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.alarmVars ??= {})\u0027alarm_holiday\u0027 = s.1; return s; }); window.__gameStore.getState().doGoto(\u0027alarmclock\u0027, \u0027start\u0027); return false;">OFF</a>') : ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.alarmVars ??= {})\u0027alarm_holiday\u0027 = s.0; return s; }); window.__gameStore.getState().doGoto(\u0027alarmclock\u0027, \u0027start\u0027); return false;">ON</a>')) + '</b></td></tr>');
   }
-  // TODO-QSP: $alarmVars_table += '<tr><td colspan="3"><b>Your alarm is currently turned ' + iif(alarmVars['alarmO...
+  (s as any).alarmVars_table = ((s as any).alarmVars_table ?? 0) + ('<tr><td colspan="3"><b>Your alarm is currently turned ' + ((((s as any).alarmVars ?? 0)?.['alarmOn'] === 0) ? ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.alarmVars ??= {})\u0027alarmOn\u0027 = s.1; return s; }); window.__gameStore.getState().doGoto(\u0027alarmclock\u0027, \u0027start\u0027); return false;">OFF</a>') : ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.alarmVars ??= {})\u0027alarmOn\u0027 = s.0; return s; }); window.__gameStore.getState().doGoto(\u0027alarmclock\u0027, \u0027start\u0027); return false;">ON</a>')) + '.</b></td></tr>');
   if (((s as any).alarmVars ?? 0)?.['alarmOn'] === 1) {
-    // TODO-QSP: $alarmVars_table += '</table></center><center><table border=0 cellpadding=0 cellspacing=10><tr><td><...
+    (s as any).alarmVars_table = ((s as any).alarmVars_table ?? 0) + ('</table></center><center><table border=0 cellpadding=0 cellspacing=10><tr><td><b>Your Alarm is ' + ((((s as any).alarmVars ?? 0)?.['timerH'] <= 0  &&  ((s as any).alarmVars ?? 0)?.['timerM'] <= 0) ? ('not set') : ('set to ' + qspFunc(s, 'time', 'get_time_string', (((s as any).alarmVars ?? 0)?.['timerH']), (((s as any).alarmVars ?? 0)?.['timerM'])))) + ' for the weekdays ' + ((((s as any).alarmVars ?? 0)?.['timerEndH'] <= 0  &&  ((s as any).alarmVars ?? 0)?.['timerEndM'] <= 0) ? ('and not set') : ('and set to ' + qspFunc(s, 'time', 'get_time_string', (((s as any).alarmVars ?? 0)?.['timerEndH']), (((s as any).alarmVars ?? 0)?.['timerEndM'])))) + ' for the weekend' + ((((s as any).alarmVars ?? 0)?.['alarm_holiday'] === 1) ? (' and holidays') : ('')) + '.</b></td></tr>');
   }
-  // TODO-QSP: $alarmVars_table += '</b></font></table></center>'
-  // TODO-QSP: dynamic text: <<$more_html>><<$alarm_html>><<$even_more_html>><<$numbud_table>>
+  (s as any).alarmVars_table = ((s as any).alarmVars_table ?? 0) + ('</b></font></table></center>');
   scene.text(`${((s as any).more_html ?? '')}${((s as any).alarm_html ?? '')}${((s as any).even_more_html ?? '')}${((s as any).numbud_table ?? '')}`);
-  // TODO-QSP: dynamic text: <<$alarmVars_table>>
   scene.text(`${((s as any).alarmVars_table ?? '')}`);
-  // TODO-QSP: end
+  (s as any).num_html = undefined;
+  (s as any).html_num = undefined;
+  (s as any).alarm_html = undefined;
+  (s as any).numbud_table = undefined;
+  (s as any).more_html = undefined;
+  (s as any).even_more_html = undefined;
+  (s as any).alarmVars_table = undefined;
   scene.build();
 }
 

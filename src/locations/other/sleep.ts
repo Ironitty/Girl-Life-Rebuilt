@@ -5,38 +5,38 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterFull(s: GameState, scene: SceneBuilder): void {
+  alert('gt \'sleep\', \'full\' is deprecated! If you did not load an old save, please report this bug. You can continue playing without worry.');
   qspGoto(s, 'pre_sleep', 'start');
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterSleep(s: GameState, scene: SceneBuilder): void {
+  alert('gt \'sleep\', \'sleep\' is deprecated! If you did not load an old save, please report this bug. You can continue playing without worry.');
   qspGoto(s, 'pre_sleep', 'prepare_sleep');
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterDream(s: GameState, scene: SceneBuilder): void {
+  alert('gt \'sleep\', \'dream\' is deprecated! If you did not load an old save, please report this bug. You can continue playing without worry.');
   qspGoto(s, 'sleep', 'start');
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterWake(s: GameState, scene: SceneBuilder): void {
+  alert('gt \'sleep\', \'wake\' is deprecated! If you did not load an old save, please report this bug. You can continue playing without worry.');
   qspGoto(s, 'wakeup', 'start');
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterEnd(s: GameState, scene: SceneBuilder): void {
+  alert('gt \'sleep\', \'end\' is deprecated! If you did not load an old save, please report this bug. You can continue playing without worry.');
   qspGoto(s, 'bed_get_out', 'start');
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
+  alert('gt \'sleep\', is deprecated! If you did not load an old save, please report this bug. You can continue playing without worry.');
   qspGoto(s, 'pre_sleep', 'start');
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -52,13 +52,11 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   }
   ((s as any).sleepVars = (s as any).sleepVars ?? {})['time_to_full'] = ((s as any).sleepVars['time_to_full'] ?? 0) + (60 + (Math.floor(Math.random() * 91) + 0));
   qspGoto(s, 'dream_events', 'start');
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterPostDream(s: GameState, scene: SceneBuilder): void {
   qspGoto(s, 'sleep', 'sleep_handler');
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -69,7 +67,6 @@ function enterSleepHandler(s: GameState, scene: SceneBuilder): void {
   } else {
     qspGoto(s, 'sleep', 'post_sleep');
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -88,7 +85,6 @@ function enterCalcMinutesToWakeup(s: GameState, scene: SceneBuilder): void {
   } else {
     ((s as any).sleepVars = (s as any).sleepVars ?? {})['minutes_to_wakeup'] = (((s as any).sleepVars ?? 0)?.['time_to_full']);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -111,83 +107,78 @@ function enterIsTomorrowSchoolVacation(s: GameState, scene: SceneBuilder): void 
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterSleepLoop(s: GameState, scene: SceneBuilder): void {
   ((s as any).sleepVars = (s as any).sleepVars ?? {})['stat_display'] = 0;
-  // TODO-QSP: :sleep_loop_loop
-  (s as any).minut = ((s as any).minut ?? 0) + 1;
-  ((s as any).sleepVars = (s as any).sleepVars ?? {})['stime'] = ((s as any).sleepVars['stime'] ?? 0) + (1);
-  ((s as any).sleepVars = (s as any).sleepVars ?? {})['time_now'] = ((s as any).sleepVars['time_now'] ?? 0) + (1);
-  ((s as any).sleepVars = (s as any).sleepVars ?? {})['minutes_to_wakeup'] = ((s as any).sleepVars['minutes_to_wakeup'] ?? 0) - (1);
-  ((s as any).sleepVars = (s as any).sleepVars ?? {})['time_to_full'] = ((s as any).sleepVars['time_to_full'] ?? 0) - (1);
-  if (((s as any).vibratorIN ?? 0) === 1) {
-    ((s as any).sleepVars = (s as any).sleepVars ?? {})['vtime'] = ((s as any).sleepVars['vtime'] ?? 0) + (1);
-    if (((s as any).sleepVars ?? 0)?.['vtime'] >= 5) {
-      (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (1);
-      ((s as any).sleepVars = (s as any).sleepVars ?? {})['vtime'] = 0;
-    }
-  }
-  if (((s as any).recuperation ?? 0) === 0  ||  ((s as any).sleepVars ?? 0)?.['no_health'] === 1) {
-    ((s as any).sleepVars = (s as any).sleepVars ?? {})['health_stock'] = ((s as any).sleepVars['health_stock'] ?? 0) + (((s as any).healthmax ?? 0));
-  }
-  if (((s as any).sleepVars ?? 0)?.['health_stock'] >= 960) {
-    (s as any).pcs_health = ((s as any).pcs_health ?? 0) + ((((s as any).sleepVars ?? {})?.['health_stock'] ?? 0) / 960);
-    ((s as any).sleepVars = (s as any).sleepVars ?? {})['health_stock'] = (((s as any).sleepVars ?? {})?.['health_stock'] ?? 0) % 960;
-  }
-  if (((s as any).trait_vars ?? 0)?.['sleep_duration'] === 1) {
-    if (((s as any).sleepVars ?? 0)?.['stime'] % 5 === 0) {
-      (s as any).pcs_sleep = ((s as any).pcs_sleep ?? 0) + (1);
-    }
-    if (((s as any).sleepVars ?? 0)?.['stime'] % 11 === 0) {
-      (s as any).pcs_sleep = ((s as any).pcs_sleep ?? 0) + (1);
-    }
-  } else {
-    if (((s as any).trait_vars ?? 0)?.['sleep_duration'] === -1) {
-      if (((s as any).sleepVars ?? 0)?.['stime'] % 7 === 0) {
-        (s as any).pcs_sleep = ((s as any).pcs_sleep ?? 0) + (1);
-        if ((Math.floor(Math.random() * 100) + 1) <= 18) {
-          (s as any).pcs_sleep = ((s as any).pcs_sleep ?? 0) + (1);
-        }
+  do {
+    (s as any).minut = ((s as any).minut ?? 0) + 1;
+    ((s as any).sleepVars = (s as any).sleepVars ?? {})['stime'] = ((s as any).sleepVars['stime'] ?? 0) + (1);
+    ((s as any).sleepVars = (s as any).sleepVars ?? {})['time_now'] = ((s as any).sleepVars['time_now'] ?? 0) + (1);
+    ((s as any).sleepVars = (s as any).sleepVars ?? {})['minutes_to_wakeup'] = ((s as any).sleepVars['minutes_to_wakeup'] ?? 0) - (1);
+    ((s as any).sleepVars = (s as any).sleepVars ?? {})['time_to_full'] = ((s as any).sleepVars['time_to_full'] ?? 0) - (1);
+    if (((s as any).vibratorIN ?? 0) === 1) {
+      ((s as any).sleepVars = (s as any).sleepVars ?? {})['vtime'] = ((s as any).sleepVars['vtime'] ?? 0) + (1);
+      if (((s as any).sleepVars ?? 0)?.['vtime'] >= 5) {
+        (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (1);
+        ((s as any).sleepVars = (s as any).sleepVars ?? {})['vtime'] = 0;
       }
-    } else {
+    }
+    if (((s as any).recuperation ?? 0) === 0  ||  ((s as any).sleepVars ?? 0)?.['no_health'] === 1) {
+      ((s as any).sleepVars = (s as any).sleepVars ?? {})['health_stock'] = ((s as any).sleepVars['health_stock'] ?? 0) + (((s as any).healthmax ?? 0));
+    }
+    if (((s as any).sleepVars ?? 0)?.['health_stock'] >= 960) {
+      (s as any).pcs_health = ((s as any).pcs_health ?? 0) + ((((s as any).sleepVars ?? {})?.['health_stock'] ?? 0) / 960);
+      ((s as any).sleepVars = (s as any).sleepVars ?? {})['health_stock'] = (((s as any).sleepVars ?? {})?.['health_stock'] ?? 0) % 960;
+    }
+    if (((s as any).trait_vars ?? 0)?.['sleep_duration'] === 1) {
       if (((s as any).sleepVars ?? 0)?.['stime'] % 5 === 0) {
         (s as any).pcs_sleep = ((s as any).pcs_sleep ?? 0) + (1);
       }
-    }
-  }
-  if (((s as any).sleepVars ?? 0)?.['stime'] >= 60) {
-    ((s as any).sleepVars = (s as any).sleepVars ?? {})['stime'] = 0;
-    if (((s as any).pcs_sleep ?? 0) >= 100  ||  ((s as any).succublvl ?? 0) > 0) {
-      ((s as any).pcs_condition = (s as any).pcs_condition ?? {})['lack_of_sleep'] = 0;
+      if (((s as any).sleepVars ?? 0)?.['stime'] % 11 === 0) {
+        (s as any).pcs_sleep = ((s as any).pcs_sleep ?? 0) + (1);
+      }
     } else {
-      if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] > 0) {
-        ((s as any).pcs_condition = (s as any).pcs_condition ?? {})['lack_of_sleep'] = ((s as any).pcs_condition['lack_of_sleep'] ?? 0) - (1);
+      if (((s as any).trait_vars ?? 0)?.['sleep_duration'] === -1) {
+        if (((s as any).sleepVars ?? 0)?.['stime'] % 7 === 0) {
+          (s as any).pcs_sleep = ((s as any).pcs_sleep ?? 0) + (1);
+          if ((Math.floor(Math.random() * 100) + 1) <= 18) {
+            (s as any).pcs_sleep = ((s as any).pcs_sleep ?? 0) + (1);
+          }
+        }
+      } else {
+        if (((s as any).sleepVars ?? 0)?.['stime'] % 5 === 0) {
+          (s as any).pcs_sleep = ((s as any).pcs_sleep ?? 0) + (1);
+        }
       }
     }
-    qspCall(s, 'stat', '');
-  }
-  if (((s as any).minut ?? 0) === 60) {
-    qspCall(s, 'stat', '');
-  }
-  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterModSleeptriggers(s, scene); (s as any).locArgs = __savedLocArgs; }
-  if (((s as any).sleepVars ?? 0)?.['stime'] % 5 === 0) {
-    qspCall(s, 'sleep_events', 'start');
-  }
-  if (((s as any).sleepVars ?? 0)?.['minutes_to_wakeup'] > 0) {
-    // TODO-QSP: jump 'sleep_loop_loop'
-  }
-  ((s as any).sleepVars = (s as any).sleepVars ?? {})['no_health'] = 0;
-  qspGoto(s, 'sleep', 'post_sleep');
-  // TODO-QSP: end
+    if (((s as any).sleepVars ?? 0)?.['stime'] >= 60) {
+      ((s as any).sleepVars = (s as any).sleepVars ?? {})['stime'] = 0;
+      if (((s as any).pcs_sleep ?? 0) >= 100  ||  ((s as any).succublvl ?? 0) > 0) {
+        ((s as any).pcs_condition = (s as any).pcs_condition ?? {})['lack_of_sleep'] = 0;
+      } else {
+        if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] > 0) {
+          ((s as any).pcs_condition = (s as any).pcs_condition ?? {})['lack_of_sleep'] = ((s as any).pcs_condition['lack_of_sleep'] ?? 0) - (1);
+        }
+      }
+      qspCall(s, 'stat', '');
+    }
+    if (((s as any).minut ?? 0) === 60) {
+      qspCall(s, 'stat', '');
+    }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterModSleeptriggers(s, scene); (s as any).locArgs = __savedLocArgs; }
+    if (((s as any).sleepVars ?? 0)?.['stime'] % 5 === 0) {
+      qspCall(s, 'sleep_events', 'start');
+    }
+    ((s as any).sleepVars = (s as any).sleepVars ?? {})['no_health'] = 0;
+    qspGoto(s, 'sleep', 'post_sleep');
+  } while (((s as any).sleepVars ?? 0)?.['minutes_to_wakeup'] > 0);
   scene.build();
 }
 
 function enterModSleeptriggers(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'mod_system', 'sleep', 'sleep', 'mod_sleeptriggers');
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -211,7 +202,6 @@ function enterPostSleep(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'stat', '');
   qspGoto(s, 'wakeup', 'start');
-  // TODO-QSP: end
   scene.build();
 }
 

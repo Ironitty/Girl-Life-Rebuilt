@@ -22,7 +22,6 @@ function enterDispose(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -41,7 +40,6 @@ function enterBackup(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'bras', 'remove');
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -55,7 +53,6 @@ function enterStrip(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -69,7 +66,6 @@ function enterRemove(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -81,7 +77,6 @@ function enterRestore(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'bras', 'wear', (((s as any).lastwornbratype ?? 0)?.['backup']), (((s as any).lastwornbranumber ?? 0)?.['backup']));
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -93,7 +88,6 @@ function enterWear(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'bras', 'wear', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0));
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -101,7 +95,6 @@ function enterDresser(s: GameState, scene: SceneBuilder): void {
   scene.text('In your dresser, you can sort through all your underwear. Much of it is just regular underwear, but you can also own some distinct items.');
   scene.text('The distinct items are sorted into bras and panties and by the shop in which they were purchased. They must be picked here, and automatic options will default to regular underwear.');
   scene.text('The wear panties and bra options here are for the regular underwear, the large buttons for choosing unique items.');
-  // TODO-QSP: dynamic text: Your dresser contains <<func(''panties'',''sum'',''dresser'')>> pairs of regular...
   scene.text(`Your dresser contains ${qspFunc(s, 'panties', 'sum', 'dresser')} pairs of regular panties and ${qspFunc(s, 'bras', 'sum', 'dresser')} regular bras.`);
   scene.img('images/system/icons/bra.png');
   qspCall(s, 'din_van', 'wearpan');
@@ -112,7 +105,6 @@ function enterDresser(s: GameState, scene: SceneBuilder): void {
   } },
 ]);
   return;
-  // TODO-QSP: end
   scene.build();
 }
 

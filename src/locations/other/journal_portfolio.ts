@@ -7,24 +7,19 @@ import type { SceneBuilder } from '../../core/scene';
 function enterDefault(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><h1>Here are all your best photos. You can click on them for a full view.</h1></center>');
   (s as any).i = 0;
-  // TODO-QSP: :looplocations
-  if (((s as any).portfolio_locations ?? 0)?.[String((s as any).i ?? 0)] === 1) {
-    scene.img(`images/pc/activities/photography/foto/locations/${((s as any).i ?? '')}.jpg`);
-  }
-  (s as any).i = ((s as any).i ?? 0) + (1);
-  if (((s as any).i ?? 0) < Object.keys((s as any).portfolio_locations ?? {}).length) {
-    // TODO-QSP: jump 'looplocations'
-  }
-  (s as any).i = 0;
-  // TODO-QSP: :looppeople
-  if (((s as any).portfolio_people ?? 0)?.[String((s as any).i ?? 0)] === 1) {
-    scene.img(`images/pc/activities/photography/foto/people/${((s as any).i ?? '')}.jpg`);
-  }
-  (s as any).i = ((s as any).i ?? 0) + (1);
-  if (((s as any).i ?? 0) < Object.keys((s as any).portfolio_people ?? {}).length) {
-    // TODO-QSP: jump 'looppeople'
-  }
-  // TODO-QSP: end
+  do {
+    if (((s as any).portfolio_locations ?? 0)?.[String((s as any).i ?? 0)] === 1) {
+      scene.img(`images/pc/activities/photography/foto/locations/${((s as any).i ?? '')}.jpg`);
+    }
+    (s as any).i = ((s as any).i ?? 0) + (1);
+    (s as any).i = 0;
+    do {
+      if (((s as any).portfolio_people ?? 0)?.[String((s as any).i ?? 0)] === 1) {
+        scene.img(`images/pc/activities/photography/foto/people/${((s as any).i ?? '')}.jpg`);
+      }
+      (s as any).i = ((s as any).i ?? 0) + (1);
+    } while (((s as any).i ?? 0) < Object.keys((s as any).portfolio_people ?? {}).length);
+  } while (((s as any).i ?? 0) < Object.keys((s as any).portfolio_locations ?? {}).length);
   scene.actions([
     { label: 'Return', goto: ['journal', 'records'] },
     { label: 'Put your journal down', handler: (st: GameState) => {
@@ -36,7 +31,6 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterImageView(s: GameState, scene: SceneBuilder): void {
   scene.img(`images/pc/activities/photography/foto/${((s as any).locArgs?.[1] ?? '')}/${((s as any).locArgs?.[2] ?? '')}.jpg`);
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return', goto: ['journal_portfolio', ''] },
   ]);

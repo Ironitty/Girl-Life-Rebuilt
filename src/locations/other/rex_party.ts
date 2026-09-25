@@ -39,17 +39,14 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   (s as any).menu_arg = 'start';
   (s as any).minut = ((s as any).minut ?? 0) + 15;
   qspCall(s, 'stat', '');
-  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/resident/rekshome/par...
   scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/rekshome/party/reksparty_1_` + (Math.floor(Math.random() * 5) + 1) + '.jpg"></center>');
   scene.text('You arrive at Rex\'s apartment for the weekend party. Going inside with the others, the loud music drowns out any noise from outside. As soon as you are inside, several boys immediately start offering you drinks.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Drink', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
     (st as any).alkoParty = ((st as any).alkoParty ?? 0) + (1);
     qspCall(st, 'drugs', 'alcohol', 'vodka');
     qspCall(st, 'stat', '');
-    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/resident/rekshome/par...
     scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/rekshome/party/reksparty_2_` + (Math.floor(Math.random() * 4) + 1) + '.jpg"></center>');
     scene.text('In all this mess, you are unable to find a clean cup and are handed a full bottle of booze. Clinking glasses with the bottle, you put your lips to its mouth and turn it up, gulping down several swigs of strong drink, noticing the effects almost at once.');
     scene.text('The party has just begun. You can still walk through the apartment and find something to do.');
@@ -69,7 +66,6 @@ function enterRexRoom(s: GameState, scene: SceneBuilder): void {
   qspCall(s, '$loc', 'EventUpdate');
   scene.text('<center><b>Rex\'s Room</b></center>');
   qspCall(s, 'rex_party', 'Event' + ((s as any).eventNumber ?? 0) + '', 'RexRoom');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the living room', goto: ['rex_party', 'LivingRoom'] },
   ]);
@@ -84,7 +80,6 @@ function enterLivingRoom(s: GameState, scene: SceneBuilder): void {
   qspCall(s, '$loc', 'EventUpdate');
   scene.text('<center><b>Living room</b></center>');
   qspCall(s, 'rex_party', 'Event' + ((s as any).eventNumber ?? 0) + '', 'LivingRoom');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go to Rex\'s room', goto: ['rex_party', 'RexRoom'] },
     { label: 'Go to the kitchen', goto: ['rex_party', 'Kitchen'] },
@@ -103,7 +98,6 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Kitchen room</b></center>');
   scene.img('images/locations/pavlovsk/resident/rekshome/party/kuh.jpg');
   qspCall(s, 'rex_party', 'Event' + ((s as any).eventNumber ?? 0) + '', 'Kitchen');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the living room', goto: ['rex_party', 'LivingRoom'] },
   ]);
@@ -123,7 +117,7 @@ function enterToilet(s: GameState, scene: SceneBuilder): void {
   }
   scene.text('<center><b>Toilet</b></center>');
   scene.img('images/locations/pavlovsk/resident/rekshome/toilet.jpg');
-  scene.text('Here you can wash your face, freshen up or touch up your make-up at <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027start/u0027); return false;">mirrors</a>.');
+  scene.text('Here you can wash your face, freshen up or touch up your make-up at <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027start\u0027); return false;">mirrors</a>.');
   if (((s as any).cumloc ?? 0)[11] === 1  ||  ((s as any).cumloc ?? 0)[12] === 1) {
     scene.actions([
       { label: 'Clean the sperm from your face (0:10)', handler: (st: GameState) => {
@@ -144,7 +138,6 @@ function enterToilet(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the living room', goto: ['rex_party', 'LivingRoom'] },
   ]);
@@ -157,64 +150,58 @@ function enterEventUpdate(s: GameState, scene: SceneBuilder): void {
   } else {
     (s as any).eventNumber = 2;
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterEvent1(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === 'RexRoom') {
     scene.text('<center><b>Rex\'s Room</b></center>');
-    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/resident/rekshome/par...
     scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/rekshome/party/reksparty_1_` + (Math.floor(Math.random() * 5) + 1) + '.jpg"></center>');
-    scene.text('You sit at a table and drink with your friends. Sitting to one side of you sharing a bottle as always are <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027rex_party_smallEvents/u0027, /u0027lena/u0027); return false;">Lena</a> who is always fun, her slightly more reserved friend <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027rex_party_smallEvents/u0027, /u0027ira/u0027); return false;">Ira</a>, and always upbeat <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027rex_party_smallEvents/u0027, /u0027rex/u0027); return false;">Rex</a>.');
-    scene.text('To your other side sits your sister <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027rex_party_smallEvents/u0027, /u0027anya/u0027); return false;">Anya</a>, drinking already, and <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027rex_party_smallEvents/u0027, /u0027roma/u0027); return false;">Roma</a>, who himself sits just a bit away looking more serious than normal, plus lots of <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027rex_party_smallEvents/u0027, /u0027party_girls/u0027); return false;">girls</a> and <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027rex_party_smallEvents/u0027, /u0027party_boys/u0027); return false;">guys</a> you barely know.');
-    scene.text('One of the guys offers you a bottle to <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027rex_party_smallEvents/u0027, /u0027party_drink/u0027); return false;">drink</a> from as he says, "A little more to set the mood."');
+    scene.text('You sit at a table and drink with your friends. Sitting to one side of you sharing a bottle as always are <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027rex_party_smallEvents\u0027, \u0027lena\u0027); return false;">Lena</a> who is always fun, her slightly more reserved friend <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027rex_party_smallEvents\u0027, \u0027ira\u0027); return false;">Ira</a>, and always upbeat <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027rex_party_smallEvents\u0027, \u0027rex\u0027); return false;">Rex</a>.');
+    scene.text('To your other side sits your sister <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027rex_party_smallEvents\u0027, \u0027anya\u0027); return false;">Anya</a>, drinking already, and <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027rex_party_smallEvents\u0027, \u0027roma\u0027); return false;">Roma</a>, who himself sits just a bit away looking more serious than normal, plus lots of <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027rex_party_smallEvents\u0027, \u0027party_girls\u0027); return false;">girls</a> and <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027rex_party_smallEvents\u0027, \u0027party_boys\u0027); return false;">guys</a> you barely know.');
+    scene.text('One of the guys offers you a bottle to <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027rex_party_smallEvents\u0027, \u0027party_drink\u0027); return false;">drink</a> from as he says, "A little more to set the mood."');
   }
   if (String((s as any).locArgs?.[1] ?? '') === 'LivingRoom') {
     scene.img('images/locations/pavlovsk/resident/rekshome/party/reksparty_3.jpg');
-    scene.text('This is a large living room. Hardly anyone is here, most are all still sitting in the other room talking and drinking. Only one <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027rex_party_smallEvents/u0027, /u0027dj/u0027); return false;">guy</a> is in here tinkering with a turntable.');
+    scene.text('This is a large living room. Hardly anyone is here, most are all still sitting in the other room talking and drinking. Only one <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027rex_party_smallEvents\u0027, \u0027dj\u0027); return false;">guy</a> is in here tinkering with a turntable.');
   }
   if (String((s as any).locArgs?.[1] ?? '') === 'Kitchen') {
-    scene.text('The kitchen is spacious, but kinda dirty. The kitchen table is covered in cans and bottles of beer as well as 5ths of booze. You can grab any bottle you want and <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027rex_party_smallEvents/u0027, /u0027party_drink/u0027); return false;">drink</a>.');
+    scene.text('The kitchen is spacious, but kinda dirty. The kitchen table is covered in cans and bottles of beer as well as 5ths of booze. You can grab any bottle you want and <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027rex_party_smallEvents\u0027, \u0027party_drink\u0027); return false;">drink</a>.');
     if (((s as any).party_dj ?? 0) ===1  &&  ((s as any).dj_beer ?? 0) < 1) {
-      scene.text('You grab two bottle for the <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027rex_party_smallEvents/u0027, /u0027dj_take_beer/u0027); return false;">DJ and his friend</a>.');
+      scene.text('You grab two bottle for the <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027rex_party_smallEvents\u0027, \u0027dj_take_beer\u0027); return false;">DJ and his friend</a>.');
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterEvent2(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === 'RexRoom') {
-    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/resident/rekshome/par...
     scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/rekshome/party/reksparty_party_home_1_` + (Math.floor(Math.random() * 5) + 1) + '.jpg"></center>');
-    scene.text('After a while, everyone gets up to go dance and drink. Only a few <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027rex_party_smallEvents/u0027, /u0027party_girls/u0027); return false;">girls</a> are left in the room, but they are fun to hang out and gossip with.');
-    // TODO-QSP: iif(party_girls_talk >= 2, 'You <a href="exec: gt ''rex_party_smallEvents'', ''talk''">chat</a> and ...
+    scene.text('After a while, everyone gets up to go dance and drink. Only a few <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027rex_party_smallEvents\u0027, \u0027party_girls\u0027); return false;">girls</a> are left in the room, but they are fun to hang out and gossip with.');
+    scene.text('iif(party_girls_talk >= 2, \'You <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027rex_party_smallEvents\u0027, \u0027talk\u0027); return false;">chat</a> and gossip with them. One of the girls pulls out some marijuana and invites all of you to <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027rex_party_smallEvents\u0027, \u0027smoke\u0027); return false;">have a smoke</a>.\', \'You <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027rex_party_smallEvents\u0027, \u0027talk\u0027); return false;">chat</a> and gossip with them.\')');
     if (((s as any).pcs_mood ?? 0) === 100  &&  ((s as any).pcs_horny ?? 0) >= 50  &&  ((s as any).girls_smoke ?? 0) > 1) {
-      scene.text('All the girls are in a good mood, and several of them excitedly pull you with them to have some <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027rex_party_smallEvents/u0027, /u0027fun/u0027); return false;">fun</a>.');
+      scene.text('All the girls are in a good mood, and several of them excitedly pull you with them to have some <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027rex_party_smallEvents\u0027, \u0027fun\u0027); return false;">fun</a>.');
     }
   }
   if (String((s as any).locArgs?.[1] ?? '') === 'LivingRoom') {
-    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/resident/rekshome/par...
     scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/rekshome/party/reksparty_4_` + (Math.floor(Math.random() * 8) + 1) + '.jpg"></center>');
-    scene.text('The party is in full swing. In one corner. a <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027rex_party_smallEvents/u0027, /u0027dj/u0027); return false;">guy</a>, the party DJ, is spinning beats at the turntable. You want to give it a try and <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027rex_party_smallEvents/u0027, /u0027dance/u0027); return false;">spin some beats</a>.');
-    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027rex_party_smallEvents/u0027, /u0027roma/u0027); return false;">Roma</a> and <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027rex_party_smallEvents/u0027, /u0027anya/u0027); return false;">Anya</a> are locked together having fun dancing.');
+    scene.text('The party is in full swing. In one corner. a <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027rex_party_smallEvents\u0027, \u0027dj\u0027); return false;">guy</a>, the party DJ, is spinning beats at the turntable. You want to give it a try and <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027rex_party_smallEvents\u0027, \u0027dance\u0027); return false;">spin some beats</a>.');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027rex_party_smallEvents\u0027, \u0027roma\u0027); return false;">Roma</a> and <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027rex_party_smallEvents\u0027, \u0027anya\u0027); return false;">Anya</a> are locked together having fun dancing.');
     if ((!((s as any).rex_love ?? 0))) {
-      scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027rex_party_smallEvents/u0027, /u0027rex/u0027); return false;">Rex</a> is having fun dancing with some <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027rex_party_smallEvents/u0027, /u0027party_girls/u0027); return false;">girls</a>.');
+      scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027rex_party_smallEvents\u0027, \u0027rex\u0027); return false;">Rex</a> is having fun dancing with some <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027rex_party_smallEvents\u0027, \u0027party_girls\u0027); return false;">girls</a>.');
     }
     if (((s as any).rex_love ?? 0) === 1) {
-      scene.text('You are dancing with some <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027rex_party_smallEvents/u0027, /u0027party_girls/u0027); return false;">girls</a> and <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027rex_party_smallEvents/u0027, /u0027rex/u0027); return false;">Rex</a>, who looks at you with loving eyes.');
+      scene.text('You are dancing with some <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027rex_party_smallEvents\u0027, \u0027party_girls\u0027); return false;">girls</a> and <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027rex_party_smallEvents\u0027, \u0027rex\u0027); return false;">Rex</a>, who looks at you with loving eyes.');
     }
-    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027rex_party_smallEvents/u0027, /u0027ira_lena_livingRoom/u0027); return false;">Lena</a> and <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027rex_party_smallEvents/u0027, /u0027ira_lena_livingRoom/u0027); return false;">Ira</a> are having fun in the company of drunken <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027rex_party_smallEvents/u0027, /u0027party_boys/u0027); return false;">guys</a>.');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027rex_party_smallEvents\u0027, \u0027ira_lena_livingRoom\u0027); return false;">Lena</a> and <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027rex_party_smallEvents\u0027, \u0027ira_lena_livingRoom\u0027); return false;">Ira</a> are having fun in the company of drunken <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027rex_party_smallEvents\u0027, \u0027party_boys\u0027); return false;">guys</a>.');
   }
   if (String((s as any).locArgs?.[1] ?? '') === 'Kitchen') {
-    scene.text('The kitchen is spacious, but kinda dirty. The kitchen table is covered in cans and bottles of beer as well as 5ths of booze. You can grab any bottle you want and <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027rex_party_smallEvents/u0027, /u0027party_drink/u0027); return false;">drink</a>.');
+    scene.text('The kitchen is spacious, but kinda dirty. The kitchen table is covered in cans and bottles of beer as well as 5ths of booze. You can grab any bottle you want and <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027rex_party_smallEvents\u0027, \u0027party_drink\u0027); return false;">drink</a>.');
     if (((s as any).party_dj ?? 0) ===1  &&  ((s as any).dj_beer ?? 0) < 1) {
-      scene.text('You grab two bottle for the <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027rex_party_smallEvents/u0027, /u0027dj_take_beer/u0027); return false;">DJ and his friend</a>.');
+      scene.text('You grab two bottle for the <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027rex_party_smallEvents\u0027, \u0027dj_take_beer\u0027); return false;">DJ and his friend</a>.');
     }
-    scene.text('Some <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027rex_party_smallEvents/u0027, /u0027party_boys/u0027); return false;">guys</a> bang their empty drinks down on the table. Refilling, they offer a cup to you and try to get you to <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027rex_party_smallEvents/u0027, /u0027kitchen_boy_drink/u0027); return false;">drink</a> with them.');
+    scene.text('Some <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027rex_party_smallEvents\u0027, \u0027party_boys\u0027); return false;">guys</a> bang their empty drinks down on the table. Refilling, they offer a cup to you and try to get you to <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027rex_party_smallEvents\u0027, \u0027kitchen_boy_drink\u0027); return false;">drink</a> with them.');
   }
-  // TODO-QSP: end
   scene.build();
 }
 

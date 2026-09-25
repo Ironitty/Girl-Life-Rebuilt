@@ -15,7 +15,6 @@ function enterToilet1(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/citycenter/nightclub/sex/glory.jpg');
   scene.text('You head into the stall and close the door. The walls are covered with obscene graffiti and circular holes are carved in the walls. Sitting on the toilet, you hear a noise coming from the next stall.');
   scene.text('The next thing you know, a cock is pushed through the hole. "Here\'s a treat for you, baby," a lustful voice says with a laugh.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['city_nightclub', 'inside'] },
     { label: 'Take a closer look', handler: (st: GameState) => {
@@ -42,7 +41,6 @@ function enterToilet1(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/citycenter/nightclub/sex/glory3.jpg');
     scene.text('You swallow. The cum has a sharp, tart taste which makes you grimace.');
     scene.text('"That was fucking great, and you swallow! Here, you deserve it."');
-    // TODO-QSP: dynamic text: <<$func(''money'', ''string_profit'', 1000)>> is pushed through the hole.
     scene.text(`${qspFunc(s, 'money', 'string_profit', 1000)} is pushed through the hole.`);
     qspCall(st, 'arousal', 'end');
     scene.actions([
@@ -55,7 +53,6 @@ function enterToilet1(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'money', 'earn', 500, 'cash');
     scene.img('images/locations/city/citycenter/nightclub/sex/glory3.jpg');
     scene.text('The sharp, tart taste overwhelms you and you spit the cum out onto the floor.');
-    // TODO-QSP: dynamic text: <<$func(''money'', ''string_profit'', 500)>> is pushed through the hole.
     scene.text(`${qspFunc(s, 'money', 'string_profit', 500)} is pushed through the hole.`);
     qspCall(st, 'arousal', 'end');
     scene.actions([
@@ -74,7 +71,6 @@ function enterToilet(s: GameState, scene: SceneBuilder): void {
   scene.text('You grab some toilet paper to wipe yourself, but press a little too hard and feel a warmth growing between your legs.');
   qspCall(s, 'arousal', 'clit_finger', 3, 'masturbation');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
@@ -89,7 +85,6 @@ function enterToilet(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/shared/sex/mast/tomas.jpg');
     scene.text('You caress your swollen pussy with your fingers until you orgasm. When you catch your breath, you notice someone peeking at you through a hole in the wall.');
-    // TODO-QSP: dynamic text: <<$func(''money'', ''string_profit'', 500)>> is pushed through the hole as the m...
     scene.text(`${qspFunc(s, 'money', 'string_profit', 500)} is pushed through the hole as the man thanks you for the show.`);
     (st as any).orgasm_or = 'yes';
     qspCall(st, 'arousal', 'clit_finger', 5, 'exhibitionism', 'masturbate');
@@ -105,7 +100,6 @@ function enterToilet(s: GameState, scene: SceneBuilder): void {
 function enterToilet2(s: GameState, scene: SceneBuilder): void {
   scene.text('As you\'re sitting on the toilet, you hear both adjacent stall doors closing.');
   scene.text('"Don\'t be afraid baby, we won\'t hurt you. On the contrary, we\'ll give you some delicious candy with extra cream filling!" a voice says with a laugh.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['city_nightclub', 'inside'] },
     { label: 'Continue', handler: (st: GameState) => {
@@ -154,7 +148,6 @@ function enterToilet2(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'money', 'earn', 2000, 'cash');
     (st as any).TQuest = 3;
     scene.text('"You were great, I think you\'ve earned a reward."');
-    // TODO-QSP: dynamic text: <<$func(''money'', ''string_profit'', 2000)>> pokes through the hole.
     scene.text(`${qspFunc(s, 'money', 'string_profit', 2000)} pokes through the hole.`);
     (st as any).guy = ((st as any).guy ?? 0) + (2);
     qspCall(st, 'arousal', 'end');

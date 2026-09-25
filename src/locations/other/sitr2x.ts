@@ -16,11 +16,11 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/residential/apartment/sitr2.jpg');
   if (((s as any).mc_inventory ?? 0)?.['tech_computer'] === 1) {
     qspCall(s, 'internet_mobile', 'get_access');
-    (s as any).komp = ' with your <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027komp/u0027, /u0027start/u0027); return false;">computer</a> on it along with some papers and pens.';
+    (s as any).komp = ' with your <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027komp\u0027, \u0027start\u0027); return false;">computer</a> on it along with some papers and pens.';
   }
-  scene.text('huge plasma <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027TV/u0027, /u0027start/u0027); return false;">TV</a>');
-  scene.text('luxurious <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027divan/u0027, /u0027start/u0027); return false;">leather sofa</a>');
-  // TODO-QSP: 'modern <a href="exec:gt ''stol'',''start''">desk</a>' + iif($komp = '', '.', $komp)
+  scene.text('huge plasma <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027TV\u0027, \u0027start\u0027); return false;">TV</a>');
+  scene.text('luxurious <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027divan\u0027, \u0027start\u0027); return false;">leather sofa</a>');
+  scene.text('modern <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027stol\u0027, \u0027start\u0027); return false;">desk</a>' + ((((s as any).komp ?? 0) === '') ? ('.') : (((s as any).komp ?? ''))));
   if (((s as any).mc_inventory ?? 0)?.['hula_hoop'] > 0) {
     scene.text('Your hula hoop stands in a corner.');
   }
@@ -31,7 +31,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.text('Your book on yoga and your yoga mat are in the cabinet.');
   }
   if (((s as any).mishka ?? 0) > 0) {
-    // TODO-QSP: iif(mishka = 1, 'Your teddy bear is', 'Your <<mishka>> teddy bears are') + 'sitting on a shelf.'
+    scene.text(((((s as any).mishka ?? 0) === 1) ? ('Your teddy bear is') : ('Your ' + ((s as any).mishka ?? '') + ' teddy bears are')) + 'sitting on a shelf.');
   }
   if (((s as any).ml_guitar ?? 0)?.['location'] === ((s as any).loc ?? 0)) {
     scene.text('Your guitar rests on its stand next to the sofa.');
@@ -46,7 +46,6 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       { label: 'Masturbate', goto: ['sitr2x', 'masturbate'] },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the corridor', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -74,7 +73,6 @@ function enterMasturbate(s: GameState, scene: SceneBuilder): void {
   (s as any).orgasm_or = 'custom';
   qspCall(s, 'arousal', 'vaginal_dildo', 10, 'masturbate', 'no_orgasm_msg');
   qspCall(s, 'arousal', 'end');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Breathe', goto: ['sitr2x', ''] },
   ]);

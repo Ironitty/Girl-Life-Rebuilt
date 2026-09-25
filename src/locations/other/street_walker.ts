@@ -86,7 +86,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -109,7 +108,6 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
   }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterStart(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('You check your reflection in a store window, doing a last minute check of your outfit and makeup before making your way down the sidewalk looking for a customer.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Work the street', goto: ['street_walker', 'event1'] },
     { label: 'Leave (don\'t work)', goto: ['street_walker', 'end'] },
@@ -120,8 +118,7 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
 function enterEvent1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).hour ?? 0) > 5  &&  ((s as any).hour ?? 0) < 20) {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterStart(s, scene); (s as any).locArgs = __savedLocArgs; }
-    // TODO-QSP: dynamic text: 'It''s past '+func('time', 'get_time_string', 5, 0)+', and too late to find any ...
-    scene.text('It\'s past 5:00, and too late to find any work now. You can try again after 20:00.');
+    scene.text('\'It\'s past 5:00, and too late to find any work now. You can try again after 20:00.\'');
     scene.actions([
       { label: 'Leave', goto: ['street_walker', 'end'] },
     ]);
@@ -158,7 +155,6 @@ function enterEvent1(s: GameState, scene: SceneBuilder): void {
       if (((s as any).month ?? 0) >= 11  ||  ((s as any).month ?? 0) <= 3) {
         scene.img('images/locations/city/shared/streetwalker/workingw1.jpg');
       } else {
-        // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/city/shared/streetwalker/worki...
         scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/city/shared/streetwalker/working` + (Math.floor(Math.random() * 4) + 1) + '.jpg"></center>');
       }
       scene.text('You walk along the street trying to entice the drivers of cars that pass by, but are unable to get anyone to stop.');
@@ -168,7 +164,6 @@ function enterEvent1(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -178,11 +173,9 @@ function enterEvent2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).month ?? 0) >= 11  ||  ((s as any).month ?? 0) <= 3) {
     scene.img('images/locations/city/shared/streetwalker/hookersw1.jpg');
   } else {
-    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/city/shared/streetwalker/hooke...
     scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/city/shared/streetwalker/hookers` + (Math.floor(Math.random() * 4) + 1) + '.jpg"></center>');
   }
   scene.text('As you walk along the street trying to entice one of the slower moving cars, you spot some other girls working the streets as well. It doesn\'t look like they\'re having any luck either.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Stop working for the night', goto: ['street_walker', 'end'] },
     { label: 'Keep working the street', goto: ['street_walker', 'event1'] },
@@ -192,7 +185,6 @@ function enterEvent2(s: GameState, scene: SceneBuilder): void {
       if (((st as any).month ?? 0) >= 11  ||  ((st as any).month ?? 0) <= 3) {
         scene.img('images/locations/city/shared/streetwalker/hookersw1.jpg');
       } else {
-        // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/city/shared/streetwalker/hooke...
         scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/city/shared/streetwalker/hookers` + (Math.floor(Math.random() * 4) + 1) + '.jpg"></center>');
       }
       scene.text('You walk over and smile at the other girls, but are met with dark and dangerous stares.');
@@ -218,7 +210,6 @@ function enterEvent2(s: GameState, scene: SceneBuilder): void {
       if (((st as any).month ?? 0) >= 11  ||  ((st as any).month ?? 0) <= 3) {
         scene.img('images/locations/city/shared/streetwalker/hookersw1.jpg');
       } else {
-        // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/city/shared/streetwalker/hooke...
         scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/city/shared/streetwalker/hookers` + (Math.floor(Math.random() * 4) + 1) + '.jpg"></center>');
       }
       if (((st as any).ruslan_pimp ?? 0) === 2) {
@@ -282,7 +273,6 @@ function enterEvent3(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Accept his deal', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -334,7 +324,6 @@ function enterEvent4(s: GameState, scene: SceneBuilder): void {
       { label: 'Offer him a blowjob', goto: ['street_walker', 'policeblowjob'] },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -353,7 +342,6 @@ function enterEvent5(s: GameState, scene: SceneBuilder): void {
   if (((s as any).month ?? 0) >= 11  ||  ((s as any).month ?? 0) <= 3) {
     scene.img('images/locations/city/shared/streetwalker/barginw1.jpg');
   } else {
-    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/city/shared/streetwalker/bargi...
     scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/city/shared/streetwalker/bargin` + (Math.floor(Math.random() * 3) + 1) + '.jpg"></center>');
   }
   scene.text('A car slows down and pulls up to the curb where you\'re walking, so you walk over to him. As you do, he rolls down his window. You bend over and practically lean into his window. "You looking to party, handsome?"');
@@ -395,7 +383,6 @@ function enterEvent5(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -406,7 +393,6 @@ function enterBlowjob(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/shared/streetwalker/ridefront.jpg');
   scene.text('You barely have time to close the door before he pulls away. He drives until he finds a pretty deserted area and stops the car.');
   scene.text('Once he does, he looks over at you. "This looks good." His eyes wander over your body as he leans back in his seat.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Unbutton his pants', handler: (st: GameState) => {
     scene.img('images/locations/city/shared/streetwalker/sex/bj1.jpg');
@@ -456,7 +442,6 @@ function enterVaginal(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/shared/streetwalker/rideback.jpg');
   scene.text('Once you close the door, he pulls away from the curb and drives until he finds a pretty deserted area and stops the car. "This looks good."');
   scene.text('He gets out of the car and walks to the back door. You slide over, giving him room as he gets in the back with you.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Wait', handler: (st: GameState) => {
     scene.img('images/locations/city/shared/streetwalker/sex/fuck1.jpg');
@@ -634,7 +619,6 @@ function enterAnal(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -716,7 +700,6 @@ function enterPoliceblowjob(s: GameState, scene: SceneBuilder): void {
       { label: 'Drive to the police station', goto: ['police_station', 'entrance', 'prst'] },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -731,7 +714,6 @@ function enterPolicelie(s: GameState, scene: SceneBuilder): void {
   scene.text('Your eyes immediately drop to the ground at the mention of being arrested. Your heart racing, you take a deep breath before nodding slowly. "I\'m sorry, sir… You\'re right. I was out here working…"');
   scene.text('He scoffs. "What, suddenly you\'re shy about it? Let me hear you <i>say</i> it," he orders coldly.');
   scene.text('"I was… I am a prostitute, sir…" you say quietly.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Beg him to let you go', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 10) + 1) > 4) {
@@ -765,7 +747,6 @@ function enterPoliceexp(s: GameState, scene: SceneBuilder): void {
   scene.text('"You\'re really going to continue <i>lying</i> to me?! You\'re just making this a whole lot worse for yourself…" He tightens his grip even further, causing you to wince softly. It\'s not enough to really hurt you, but it gets his point across.');
   scene.text('"Alright, alright! I was whoring!" you admit with a huff. "Please… Please just give me a break! I don\'t want to go to jail… I can\'t!"');
   scene.text('Before the last words are out your mouth, you start to sniffle and tears are soon rolling down your cheeks.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Beg him to let you go', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 10) + 1) > 4) {
@@ -798,7 +779,6 @@ function enterPolicebribe(s: GameState, scene: SceneBuilder): void {
   scene.text('Your heart skips a beat as you think of what to do. He must already know you\'re out here whoring, so lying would definitely get you into more trouble. You heard that some girls offer sexual favors to avoid trouble, but that feels like too much of a risk. As you stand there squirming, you suddenly get an idea that you hope will get you out of this situation.');
   scene.text('"I have some money that I… earned tonight…" You start to reach for your pocket, but he tenses, wary of what you might be grabbing for. "No, no! It\'s just money, I promise!" you reassure him as you slowly pull out a handful of crumpled bills. "This is all I have, and you can have it if… you let me go," you say quietly, your hand held out to him.');
   scene.text('He looks at you, then at the money with an unreadable expression. The silence seems to stretch on forever until you speak again, trying to further convince him. "Please, sir… I really don\'t want to go to jail…"');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Wait for his reaction', goto: ['street_walker', 'briberyreaction'] },
   ]);
@@ -867,7 +847,7 @@ function enterBriberyreaction(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
+  (s as any).temp_rand = undefined;
   scene.build();
 }
 
@@ -886,7 +866,6 @@ function enterPolicesub1(s: GameState, scene: SceneBuilder): void {
   scene.text('"Such a dirty little whore…" He punctuates his sentence by taking your nipples between his fingers and pinching down hard.');
   qspCall(s, 'arousal', 'foreplay', 5, 'prostitution', 'rough');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Beg him to be gentler', handler: (st: GameState) => {
     scene.text('"Ah! Please! Not so rough!" you beg, but it goes unheard. He continues to pinch and twist your nipples until they\'re left red and tender. When he releases your arms, you collapse against the wall with a sigh of relief. You can\'t see it, but you definitely hear the crinkle of a condom wrapper. At least he\'s using protection.');
@@ -920,7 +899,6 @@ function enterPolicesub2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'foreplay', 10, 'prostitution', 'rough', 'sub');
   qspCall(s, 'arousal', 'vaginal', (-10), 'rough', 'sub', 'prostitute');
   qspCall(s, 'arousal', 'end');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Walk away', goto: ['street_walker', 'work'] },
   ]);
@@ -937,7 +915,6 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
       qspGoto(s, 'city_residential', '');
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 

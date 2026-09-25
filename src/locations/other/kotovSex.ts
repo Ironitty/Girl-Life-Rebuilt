@@ -14,7 +14,6 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     if (((s as any).LariskaQW ?? 0)?.['VitekHelp'] === 1  &&  ((s as any).lariskaQwestDay ?? 0) === ((s as any).daystart ?? 0)) {
       scene.text('You give Vitek a light kiss on his lips, and whisper in his ear: "It\'s time my hero gets his reward…"');
     }
-    // TODO-QSP: dynamic text: Vitek begins to grope you, while he aggressively kisses you on your lips. He gru...
     scene.text(`Vitek begins to grope you, while he aggressively kisses you on your lips. He grunts: "${((s as any).pcs_nickname ?? '')}, take off your clothes."`);
     if (((s as any).stat ?? 0)?.['think_virgin'] === 1) {
       if (((s as any).gschoolVars ?? 0)?.['school_diploma'] === 0) {
@@ -48,9 +47,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
     qspCall(st, 'stat', '');
     scene.img('images/pc/reactions/embarrassed.mp4');
-    // TODO-QSP: dynamic text: You avoid his gaze as you say: "I''m sorry, Vitek. I would like to, but it''s ju...
     scene.text(`You avoid his gaze as you say: "I'm sorry, Vitek. I would like to, but it's just too early for me. My ${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')} would never forgive me."`);
-    // TODO-QSP: dynamic text: Vitek loses his patience and angrily says: "Damnit, <<$pcs_nickname>>. You''re <...
     scene.text(`Vitek loses his patience and angrily says: "Damnit, ${((st as any).pcs_nickname ?? '')}. You're ${((st as any).age ?? '')} years old, and hot as hell. You're my bitch, and I say it's time we fuck… I've waited long enough!"`);
     qspCall(st, 'willpower', 'sex', 'resist', 'easy');
     if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
@@ -103,7 +100,6 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Take off your clothes', handler: (st: GameState) => {
-    // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/shared/sex/undress/kotov...
     scene.text(`<center><video autoplay loop ${((st as any).set_imgh ?? '')} src="images/shared/sex/undress/kotovpre1` + (Math.floor(Math.random() * 4) + 1) + '.mp4"></video></center>');
     qspCall(st, 'shortgs', 'undress');
     (st as any).minut = ((st as any).minut ?? 0) + 2;
@@ -122,14 +118,12 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       scene.text('Vitek notices a glimmer in your mouth when you talk, and asks: "Wait, what\'s that in your mouth?"');
       scene.text('You stick out your tongue and show him your piercing. He grins at you: "Oh, nice… aren\'t those supposed to make it feel better when you suck a dick? Is that why you got it?"');
       scene.text('You act insulted and give him a weak slap on his chest: "Viktor, come on!"');
-      // TODO-QSP: dynamic text: He''s still grinning, intrigued by your tongue piercing. He says: "Don''t worry,...
       scene.text(`He's still grinning, intrigued by your tongue piercing. He says: "Don't worry, ${((s as any).pcs_nickname ?? '')}. I won't tell anyone. Now I really want to know how it feels on my cock, though…"`);
     }
   } else {
     ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})[String((s as any).boy ?? 0)] = 1;
     (s as any).i = (Math.floor(Math.random() * 6) + 1);
     if (((s as any).i ?? 0) <= 2) {
-      // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/shared/sex/sequence/koto...
       scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/shared/sex/sequence/kotovpre` + (Math.floor(Math.random() * 5) + 0) + '.mp4"></video></center>');
       if (((s as any).LariskaQW ?? 0)?.['VitekHelp'] === 1  &&  ((s as any).lariskaQwestDay ?? 0) === ((s as any).daystart ?? 0)) {
         scene.text('You give Vitek a light kiss on his lips, and whisper in his ear: "It\'s time my hero gets his reward…"');
@@ -139,7 +133,6 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'stat', '');
       scene.actions([
         { label: 'Hop on his lap', handler: (st: GameState) => {
-    // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/shared/sex/sequence/koto...
     scene.text(`<center><video autoplay loop ${((st as any).set_imgh ?? '')} src="images/shared/sex/sequence/kotovpre2` + (Math.floor(Math.random() * 4) + 0) + '.mp4"></video></center>');
     scene.text('You eagerly hop onto your boyfriend\'s lap, and keep kissing him while you grind your groin against his. You can clearly feel his erection through his clothes.');
     qspCall(st, 'arousal', 'foreplay', 5);
@@ -150,7 +143,6 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
         { label: 'Take off your clothes', handler: (st: GameState) => {
-    // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/shared/sex/undress/kotov...
     scene.text(`<center><video autoplay loop ${((st as any).set_imgh ?? '')} src="images/shared/sex/undress/kotovpre1` + (Math.floor(Math.random() * 4) + 1) + '.mp4"></video></center>');
     scene.text('You quickly take off your clothes, and can\'t help but admire Vitek\'s muscular body when he does the same.');
     qspCall(st, 'shortgs', 'undress');
@@ -207,7 +199,6 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
             ]);
           } else {
             if (((s as any).i ?? 0) === 6) {
-              // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/shared/sex/undress/kotov...
               scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/shared/sex/undress/kotovpre4` + (Math.floor(Math.random() * 3) + 0) + '.mp4"></video></center>');
               if (((s as any).LariskaQW ?? 0)?.['VitekHelp'] === 1  &&  ((s as any).lariskaQwestDay ?? 0) === ((s as any).daystart ?? 0)) {
                 scene.text('You give Vitek a light kiss on his lips, and whisper in his ear: "It\'s time my hero gets his reward…"');
@@ -229,11 +220,9 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       scene.text('Vitek notices a glimmer in your mouth when you talk, and asks: "Wait, what\'s that in your mouth?"');
       scene.text('You stick out your tongue and show him your piercing. He grins at you: "Oh, nice! Aren\'t those supposed to make it feel better for the guy when you suck his dick? Is that why you got it?"');
       scene.text('You act insulted and give him a weak slap on his chest: "Viktor, come on!"');
-      // TODO-QSP: dynamic text: He''s still grinning, intrigued by your tongue piercing. He says: "Don''t worry ...
       scene.text(`He's still grinning, intrigued by your tongue piercing. He says: "Don't worry ${((s as any).pcs_nickname ?? '')}, I won't tell anyone. Now I really want to know how it feels on my cock, though…"`);
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -249,7 +238,6 @@ function enterBj(s: GameState, scene: SceneBuilder): void {
   scene.img(`images/shared/sex/blowjob/kotovbj${((s as any).bjrand ?? '')}.jpg`);
   scene.text('You lightly pat his crotch while you give him a teasing grin: "Oooo, feels like someone is happy to see me!" when his cock becomes more and more erect.');
   scene.text('Vitek wastes no time and quickly takes off his pants, and you close your fingers around his exposed cock immediately. "Just relax, Vitek…" you whisper in his ears, before closing your lips around the head.');
-  // TODO-QSP: dynamic text: You do your best to give your boyfriend a good blowjob, <<$textsexkotov>>. Befor...
   scene.text(`You do your best to give your boyfriend a good blowjob, ${((s as any).textsexkotov ?? '')}. Before you know it, his cock is mostly in your mouth and you feel the head pushing against your throat. Vitek groans: "${((s as any).pcs_nickname ?? '')}, I'm going to come!"`);
   qspCall(s, 'arousal', 'bj', 5, 'sub');
   qspCall(s, 'stat', '');
@@ -294,7 +282,6 @@ function enterBj(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Keep sucking', handler: (st: GameState) => {
     scene.img('images/shared/sex/cum/kotovbjcum.jpg');
@@ -360,13 +347,11 @@ function enterAnal(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/sex/anal/doggy/anal31.jpg');
   qspCall(s, 'dinSex', 'boy_wants_anal');
   (s as any).anala = ((s as any).anala ?? 0) + (1);
-  // TODO-QSP: dynamic text: He laughs: "Wow <<$pcs_nickname>>, you fuck like a bunny! You''ve drained me com...
   scene.text(`He laughs: "Wow ${((s as any).pcs_nickname ?? '')}, you fuck like a bunny! You've drained me completely, for now… I really don't think I can go again! You were great though…"`);
   qspCall(s, 'arousal', 'anal', 15, 'sub');
   qspCall(s, 'arousal', 'end');
   qspCall(s, 'cum_call', 'anus', 'A9', 1);
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: '"Baby, I want more…"', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
@@ -391,13 +376,11 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
   scene.text('You lie down on your back and willingly spread your legs for Vitek, inviting him to fuck you.');
   (s as any).sexa = ((s as any).sexa ?? 0) + (1);
   (s as any).kotovVagSex = ((s as any).kotovVagSex ?? 0) + (1);
-  // TODO-QSP: dynamic text: He laughs: "Wow <<$pcs_nickname>>, you fuck like a bunny! You''ve drained me com...
   scene.text(`He laughs: "Wow ${((s as any).pcs_nickname ?? '')}, you fuck like a bunny! You've drained me completely, for now… I really don't think I can go again! It was great though…"`);
   qspCall(s, 'arousal', 'vaginal', 15, 'sub');
   qspCall(s, 'arousal', 'end');
   qspCall(s, 'cum_call', '', 'A9', 1);
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Ask for more', handler: (st: GameState) => {
     scene.text('Once he recovers a bit, you grin at Vitek while you gently rub his cock: "Babe, do you think you can go again? I\'d be up for more, if you are…"');
@@ -430,7 +413,6 @@ function enterCumface7(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'cum_call', 'face', 'A9', 1, '', '', 30);
   qspCall(s, 'cum_call', 'mouth', 'A9', 1, '', '', 10);
   qspCall(s, 'arousal', 'end');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Relax in his room', goto: ['kotovdom', 'after_sex'] },
   ]);
@@ -440,14 +422,11 @@ function enterCumface7(s: GameState, scene: SceneBuilder): void {
 function enterCumface6(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/sex/cum/cumf60.mp4');
   qspCall(s, 'sweat', 'add', 10);
-  // TODO-QSP: dynamic text: You feel his member throb down your throat, and you hold still to let him enjoy ...
   scene.text(`You feel his member throb down your throat, and you hold still to let him enjoy his orgasm the way he pleases. You swallow most of his sperm, but don't catch all of it. With your ${((s as any).pcs_eyecolor ?? '')} eyes fixated onto his, you let it leak out of your mouth and eventually suck his cock clean when you feel he's finished.`);
-  // TODO-QSP: dynamic text: He laughs at your lewd display and says: "You''re such an insatiable slut, <<$pc...
   scene.text(`He laughs at your lewd display and says: "You're such an insatiable slut, ${((s as any).pcs_nickname ?? '')}. That was exactly what I needed today."`);
   qspCall(s, 'arousal', 'bj', 5, 'sub', 'deepthroat');
   qspCall(s, 'cum_call', 'mouth_swallow', 'A9', 1);
   qspCall(s, 'arousal', 'end');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Relax in his room', goto: ['kotovdom', 'after_sex'] },
   ]);
@@ -463,7 +442,6 @@ function enterCumface5(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'cum_call', 'face', 'A9', 1, '', '', 20);
   qspCall(s, 'cum_call', 'breasts', 'A9', 1, '', '', 20);
   qspCall(s, 'arousal', 'end');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Relax in his room', goto: ['kotovdom', 'after_sex'] },
   ]);
@@ -473,13 +451,11 @@ function enterCumface5(s: GameState, scene: SceneBuilder): void {
 function enterCumface4(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/sex/cum/cumf40.mp4');
   scene.text('When Vitek is close to orgasming, you point his cock at your boobs and keep jerking him off until his sperm is all over them. When you\'re certain he has nothing left, you let go of him and give him a lewd smile while you rub his cum out all over them.');
-  // TODO-QSP: dynamic text: Vitek flashes you a grin and jokes: "Hey <<$pcs_nickname>>… do you think it''s t...
   scene.text(`Vitek flashes you a grin and jokes: "Hey ${((s as any).pcs_nickname ?? '')}… do you think it's true that boobs can grow by doing that a lot? I'd love for you to be my busty beauty…"`);
   qspCall(s, 'sweat', 'add', 10);
   qspCall(s, 'arousal', 'hj', 5);
   qspCall(s, 'cum_call', 'breasts', 'A9', 1);
   qspCall(s, 'arousal', 'end');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Relax in his room', goto: ['kotovdom', 'after_sex'] },
   ]);
@@ -493,7 +469,6 @@ function enterCumface3(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'hj', 5, 'dom');
   qspCall(s, 'sweat', 'add', 10);
   qspCall(s, 'arousal', 'end');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Relax in his room', goto: ['kotovdom', 'after_sex'] },
   ]);
@@ -507,10 +482,8 @@ function enterCumface2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'sweat', 'add', 10);
   qspCall(s, 'cum_call', 'mouth', 'A9', 1);
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Swallow it', handler: (st: GameState) => {
-    // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/locations/pavlovsk/resid...
     scene.text(`<center><video autoplay loop ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/rekshome/party/reksparty_party_kuh_4_` + (Math.floor(Math.random() * 2) + 13) + '.mp4"></video></center>');
     (st as any).minut = ((st as any).minut ?? 0) + 1;
     qspCall(st, 'cum_call', 'mouth_swallow', 'A9', 1);
@@ -537,16 +510,13 @@ function enterCumface2(s: GameState, scene: SceneBuilder): void {
 
 function enterCumface1(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/sex/cum/cumf10.mp4');
-  // TODO-QSP: dynamic text: You open your mouth widely for him and look up to him with your <<$pcs_eyecolor>...
   scene.text(`You open your mouth widely for him and look up to him with your ${((s as any).pcs_eyecolor ?? '')} eyes, inviting him to shoot as much sperm in your mouth as he can. He tries, but when he shoots his load, very little of it ends up in your mouth.`);
-  // TODO-QSP: dynamic text: "You''re such a cute little slut with my cum on your face, <<$pcs_nickname>>… I ...
   scene.text(`"You're such a cute little slut with my cum on your face, ${((s as any).pcs_nickname ?? '')}… I love it!" he grins at you, while he helps you up from your kneeled position. You give him a cute smile while pretending you want to kiss him, and he laughs while he tries to keep you away from his face.`);
   qspCall(s, 'arousal', 'hj', 5, 'dom');
   qspCall(s, 'sweat', 'add', 10);
   qspCall(s, 'cum_call', 'mouth', 'A9', 1, '', '', 5);
   qspCall(s, 'cum_call', 'face', 'A9', 1, '', '', 35);
   qspCall(s, 'arousal', 'end');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Relax in his room', goto: ['kotovdom', 'after_sex'] },
   ]);
@@ -590,7 +560,6 @@ function enterCum11(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -603,7 +572,6 @@ function enterCum10(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'cum_call', 'stomach', 'A9', 1, '', '', 25);
   qspCall(s, 'cum_call', 'breasts', 'A9', 1, '', '', 15);
   qspCall(s, 'arousal', 'end');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go freshen up', goto: ['kotovdom', 'vann'] },
   ]);
@@ -647,7 +615,6 @@ function enterCum9(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -687,7 +654,6 @@ function enterCum8(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -726,7 +692,6 @@ function enterCum7(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -765,7 +730,6 @@ function enterCum6(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -778,7 +742,6 @@ function enterCum5(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'cum_call', 'butt', 'A9', 1, '', '', 20);
   qspCall(s, 'cum_call', 'back', 'A9', 1, '', '', 20);
   qspCall(s, 'arousal', 'end');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Relax in his room', goto: ['kotovdom', 'after_sex'] },
   ]);
@@ -794,7 +757,6 @@ function enterCum4(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'cum_call', 'butt', 'A9', 1, '', '', 20);
   qspCall(s, 'cum_call', 'back', 'A9', 1, '', '', 20);
   qspCall(s, 'arousal', 'end');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Relax in his room', goto: ['kotovdom', 'after_sex'] },
   ]);
@@ -806,12 +768,10 @@ function enterCum3(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'sweat', 'add', 10);
   scene.img('images/shared/sex/cum/cum3.mp4');
   scene.text('Vitek pulls his cock out of you just before he reaches his orgasm, and you feel warm drops land on your back and ass cheeks.');
-  // TODO-QSP: dynamic text: He then helps you up from the bed and says with a satisfied smile on his face: "...
   scene.text(`He then helps you up from the bed and says with a satisfied smile on his face: "Hell, ${((s as any).pcs_nickname ?? '')}… you kept going and going in this position, you are insatiable!" before kissing you gently on the cheek.`);
   qspCall(s, 'cum_call', 'butt', 'A9', 1, '', '', 20);
   qspCall(s, 'cum_call', 'legs', 'A9', 1, '', '', 20);
   qspCall(s, 'arousal', 'end');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go freshen up', goto: ['kotovdom', 'vann'] },
   ]);
@@ -827,7 +787,6 @@ function enterCum2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'cum_call', 'breasts', 'A9', 1, '', '', 20);
   qspCall(s, 'cum_call', 'stomach', 'A9', 1, '', '', 20);
   qspCall(s, 'arousal', 'end');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go freshen up', goto: ['kotovdom', 'vann'] },
   ]);
@@ -842,7 +801,6 @@ function enterCum1(s: GameState, scene: SceneBuilder): void {
   scene.text('Vitek kisses your forehead gently and smiles blissfully at you: "Wow, kitten… that was great! You\'re the best!"');
   qspCall(s, 'cum_call', 'anus', 'A9', 1);
   qspCall(s, 'arousal', 'end');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go freshen up', goto: ['kotovdom', 'vann'] },
   ]);
@@ -858,7 +816,6 @@ function enterBellAnal(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'anal_finger', 10, 'sub');
   qspCall(s, 'arousal', 'anal', (-10), 'sub');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Make him cum', handler: (st: GameState) => {
     // TODO-QSP: if rand(0, 1) = 1 : gt 'kotovSex', 'cum1' else gt 'kotovSex'...
@@ -871,7 +828,6 @@ function enterCowAnal1(s: GameState, scene: SceneBuilder): void {
   if ((!(Math.floor(Math.random() * 5) + 0))) {
     scene.img('images/shared/sex/anal/cowgirl/kotovsexanal34.mp4');
   } else {
-    // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/shared/sex/anal/cowgirl/...
     scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/shared/sex/anal/cowgirl/kotovsexanal3` + (Math.floor(Math.random() * 4) + 0) + '.mp4"></video></center>');
   }
   qspCall(s, 'dinsex', 'boy_wants_anal');
@@ -880,7 +836,6 @@ function enterCowAnal1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'anal_finger', 10, 'sub');
   qspCall(s, 'arousal', 'anal', (-10), 'sub');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Make him cum', handler: (st: GameState) => {
     // TODO-QSP: if rand(0, 1) = 1 : gt 'kotovSex', 'cum1' else gt 'kotovSex'...
@@ -890,7 +845,6 @@ function enterCowAnal1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDogAnal(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/shared/sex/anal/doggy/ko...
   scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/shared/sex/anal/doggy/kotovsexanal1` + (Math.floor(Math.random() * 2) + 0) + '.mp4"></video></center>');
   qspCall(s, 'dinsex', 'boy_wants_anal');
   scene.text('You silently smile to yourself when Vitek makes you get on your hands and knees and rubs his finger against your tight sphincter; luckily you prepared for anal today!');
@@ -898,7 +852,6 @@ function enterDogAnal(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'anal_finger', 10, 'sub');
   qspCall(s, 'arousal', 'anal', (-10), 'sub');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Make him cum', handler: (st: GameState) => {
     // TODO-QSP: if rand(0, 1) = 1 : gt 'kotovSex', 'cum1' else gt 'kotovSex'...
@@ -908,7 +861,6 @@ function enterDogAnal(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterMisionaryAnal(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/shared/sex/anal/mis/koto...
   scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/shared/sex/anal/mis/kotovsexanal` + (Math.floor(Math.random() * 2) + 0) + '.mp4"></video></center>');
   qspCall(s, 'dinsex', 'boy_wants_anal');
   scene.text('You silently smile to yourself when Vitek pushes you back against the bed and rubs his finger against your tight sphincter; luckily you prepared for anal today!');
@@ -917,7 +869,6 @@ function enterMisionaryAnal(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'anal_finger', 10, 'sub');
   qspCall(s, 'arousal', 'anal', (-10), 'sub');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Make him cum', goto: ['kotovSex', 'cum1'] },
   ]);
@@ -931,7 +882,6 @@ function enterAnalNo(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/sex/anal/kotovsexanalno.mp4');
   scene.text('You quickly stop him when he reaches for your anus: "Sorry babe, I did not prepare for that. Wouldn\'t want to make a mess, if you know what I mean."');
   scene.text('He looks disappointed for just a second, but rebounds quickly: "I understand. Make sure you\'re clean next time, okay? I want your ass, kitten." He then suggests you…');
-  // TODO-QSP: end
   scene.actions([
     { label: 'blowjob', goto: ['kotovSex', 'bj' + (Math.floor(Math.random() * 13) + 1) + ''] },
     { label: 'Use your tits to please him', goto: ['kotovSex', 'titjob'] },
@@ -946,7 +896,6 @@ function enterAnalNo(s: GameState, scene: SceneBuilder): void {
 }
 
 function enter69(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/shared/sex/69/kotovsex7'...
   scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/shared/sex/69/kotovsex7` + (Math.floor(Math.random() * 3) + 0) + '.mp4"></video></center>');
   scene.text('While Vitek is laying on the bed, you straddle his face and grind your wet snatch against his mouth. Before he can object you close your fingers around his cock and guide it to your mouth, sucking him off passionately.');
   scene.text('Vitek licks your pussy skillfully, and you have to take a moment to catch your breath and recover before you continue to suck on his dick. For someone who pretends to not be into this, he\'s awfully good at it…');
@@ -961,7 +910,6 @@ function enter69(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'cuni', 5, 'sub');
   qspCall(s, 'arousal', 'bj', (-5), 'sub');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'blowjob', goto: ['kotovSex', 'bj' + (Math.floor(Math.random() * 13) + 1) + ''] },
     { label: 'Use your tits to please him', goto: ['kotovSex', 'titjob'] },
@@ -987,7 +935,6 @@ function enterHand2(s: GameState, scene: SceneBuilder): void {
   scene.text('You support your weight by wrapping your arms around his neck and ride his cock with reckless abandon, feeling his cock bottoming out in your cunt with every thrust.');
   qspCall(s, 'arousal', 'vaginal', 5, 'sub');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'blowjob', goto: ['kotovSex', 'bj' + (Math.floor(Math.random() * 13) + 1) + ''] },
     { label: 'Use your tits to please him', goto: ['kotovSex', 'titjob'] },
@@ -1013,7 +960,6 @@ function enterHand1(s: GameState, scene: SceneBuilder): void {
   scene.text('Vitek puts his strong hands on your legs while you wrap your arms around his neck, and he pulls you up effortlessly. It\'s as if you\'re as light as a feather to him… he\'s so strong! He enters you abruptly, and begins to fuck you with long firm strokes.');
   qspCall(s, 'arousal', 'vaginal', 5, 'sub');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'blowjob', goto: ['kotovSex', 'bj' + (Math.floor(Math.random() * 13) + 1) + ''] },
     { label: 'Use your tits to please him', goto: ['kotovSex', 'titjob'] },
@@ -1042,7 +988,6 @@ function enterBell3(s: GameState, scene: SceneBuilder): void {
   scene.text('You obediently grind your ass against him, while he keeps telling you what a good little slut you are for him.');
   qspCall(s, 'arousal', 'vaginal', 5, 'sub');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'blowjob', goto: ['kotovSex', 'bj' + (Math.floor(Math.random() * 13) + 1) + ''] },
     { label: 'Use your tits to please him', goto: ['kotovSex', 'titjob'] },
@@ -1069,7 +1014,6 @@ function enterBell2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'kiss', 5, 'sub');
   qspCall(s, 'arousal', 'vaginal', (-5), 'sub');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'blowjob', goto: ['kotovSex', 'bj' + (Math.floor(Math.random() * 13) + 1) + ''] },
     { label: 'Use your tits to please him', goto: ['kotovSex', 'titjob'] },
@@ -1088,7 +1032,6 @@ function enterBell2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBell1(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/shared/sex/vag/facedown/...
   scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/shared/sex/vag/facedown/kotovsex4` + (Math.floor(Math.random() * 6) + 0) + '.mp4"></video></center>');
   if ((!((s as any).protect ?? 0))) {
     qspCall(s, 'dinsex', 'boy_puts_condom');
@@ -1096,7 +1039,6 @@ function enterBell1(s: GameState, scene: SceneBuilder): void {
   scene.text('You smile and just lay down on your stomach, offering him the chance to fuck you how he likes. Vitek wastes no time getting on top of you and eagerly guides his cock to your wet snatch, while he puts one hand in your neck.');
   qspCall(s, 'arousal', 'vaginal', 5, 'sub');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'blowjob', goto: ['kotovSex', 'bj' + (Math.floor(Math.random() * 13) + 1) + ''] },
     { label: 'Use your tits to please him', goto: ['kotovSex', 'titjob'] },
@@ -1122,7 +1064,6 @@ function enterSexCow5(s: GameState, scene: SceneBuilder): void {
   scene.text('You kiss passionately, while you continue to buck your hips against his. He pulls you even tighter against him, and you can\'t help but feel safe and secure in his arms while you share an intimate moment together.');
   qspCall(s, 'arousal', 'vaginal', 5, 'sub');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'blowjob', goto: ['kotovSex', 'bj' + (Math.floor(Math.random() * 13) + 1) + ''] },
     { label: 'Use your tits to please him', goto: ['kotovSex', 'titjob'] },
@@ -1146,13 +1087,11 @@ function enterSexCow4(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'dinsex', 'boy_puts_condom');
   }
   scene.text('Almost immediately, Vitek sits up and puts his strong muscular arms around you, pulling you tightly against his chest. Meanwhile you put your slender arms around his neck, and try not to moan too loudly in his ear when he keeps driving his cock deep inside your cunt.');
-  // TODO-QSP: dynamic text: He''s firmly in control of you in this position, and groans softly: "You''re suc...
   scene.text(`He's firmly in control of you in this position, and groans softly: "You're such a hot little bitch, ${((s as any).pcs_nickname ?? '')}. <i>My</i> hot little bitch."`);
   scene.text('Before you can respond he puts his mouth on your nipple, and you do your best to stifle a cry when he bites down on it softly.');
   qspCall(s, 'arousal', 'vaginal', 5, 'sub');
   qspCall(s, 'stat', '');
   scene.text('When he lets go of your boob for a second, you quickly put your hand on his chin and kiss him when he looks up.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'blowjob', goto: ['kotovSex', 'bj' + (Math.floor(Math.random() * 13) + 1) + ''] },
     { label: 'Use your tits to please him', goto: ['kotovSex', 'titjob'] },
@@ -1171,7 +1110,6 @@ function enterSexCow4(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSexCow3(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/shared/sex/vag/cowgirl/k...
   scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/shared/sex/vag/cowgirl/kotovsexbonus` + (Math.floor(Math.random() * 3) + 17) + '.mp4"></video></center>');
   if ((!((s as any).protect ?? 0))) {
     qspCall(s, 'dinsex', 'boy_puts_condom');
@@ -1180,7 +1118,6 @@ function enterSexCow3(s: GameState, scene: SceneBuilder): void {
   scene.text('Vitek can\'t resist playing with your ass cheeks, and gently kneads them while he moans: "Damn, babe… your ass looks so fucking great…"');
   qspCall(s, 'arousal', 'vaginal', 5, 'sub');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'blowjob', goto: ['kotovSex', 'bj' + (Math.floor(Math.random() * 13) + 1) + ''] },
     { label: 'Use your tits to please him', goto: ['kotovSex', 'titjob'] },
@@ -1199,7 +1136,6 @@ function enterSexCow3(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSexCow2(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/shared/sex/vag/cowgirl/k...
   scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/shared/sex/vag/cowgirl/kotovsexbonus` + (Math.floor(Math.random() * 3) + 14) + '.mp4"></video></center>');
   if ((!((s as any).protect ?? 0))) {
     qspCall(s, 'dinsex', 'boy_puts_condom');
@@ -1210,7 +1146,6 @@ function enterSexCow2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'vaginal', 5, 'sub');
   qspCall(s, 'stat', '');
   scene.text('You pause for a second and slowly turn your back to him, making sure his cock doesn\'t slip out while you do.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'blowjob', goto: ['kotovSex', 'bj' + (Math.floor(Math.random() * 13) + 1) + ''] },
     { label: 'Use your tits to please him', goto: ['kotovSex', 'titjob'] },
@@ -1229,7 +1164,6 @@ function enterSexCow2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSexCow1(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/shared/sex/vag/cowgirl/k...
   scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/shared/sex/vag/cowgirl/kotovsex2` + (Math.floor(Math.random() * 2) + 0) + '.mp4"></video></center>');
   if ((!((s as any).protect ?? 0))) {
     qspCall(s, 'dinsex', 'boy_puts_condom');
@@ -1237,7 +1171,6 @@ function enterSexCow1(s: GameState, scene: SceneBuilder): void {
   scene.text('Vitek gets on his back, and offers you a helping hand while you sit down on his lap, guiding his cock inside your eager pussy.');
   qspCall(s, 'arousal', 'vaginal', 5, 'sub');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'blowjob', goto: ['kotovSex', 'bj' + (Math.floor(Math.random() * 13) + 1) + ''] },
     { label: 'Use your tits to please him', goto: ['kotovSex', 'titjob'] },
@@ -1256,17 +1189,14 @@ function enterSexCow1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDog4(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/shared/sex/sequence/koto...
   scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/shared/sex/sequence/kotovsexbonus` + (Math.floor(Math.random() * 3) + 11) + '.mp4"></video></center>');
   if ((!((s as any).protect ?? 0))) {
     qspCall(s, 'dinsex', 'boy_puts_condom');
   }
   scene.text('You\'re not about to let him show you up! While you grind your ass back against his hips you say: "Hold still babe, I\'m going to fuck myself with your cock."');
-  // TODO-QSP: dynamic text: He reluctantly stops, looking at you questioningly. When he sees what you means,...
   scene.text(`He reluctantly stops, looking at you questioningly. When he sees what you means, he grins and encourages you: "You're like a little bitch in heat, ${((s as any).pcs_nickname ?? '')}! I love it… keep going! Come on, harder!"`);
   qspCall(s, 'arousal', 'vaginal', 5, 'dom');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'blowjob', goto: ['kotovSex', 'bj' + (Math.floor(Math.random() * 13) + 1) + ''] },
     { label: 'Use your tits to please him', goto: ['kotovSex', 'titjob'] },
@@ -1285,7 +1215,6 @@ function enterDog4(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDog3(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/shared/sex/vag/doggy/kot...
   scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/shared/sex/vag/doggy/kotovsexbonus` + (Math.floor(Math.random() * 3) + 7) + '.mp4"></video></center>');
   if ((!((s as any).protect ?? 0))) {
     qspCall(s, 'dinsex', 'boy_puts_condom');
@@ -1293,7 +1222,6 @@ function enterDog3(s: GameState, scene: SceneBuilder): void {
   scene.text('You lazily lean down against the mattress, happy to let him do the work while you focus on the pleasure he is giving you. With a blissful smile you rest your face on his soft sheets, while Vitek continues to pound you from behind.');
   qspCall(s, 'arousal', 'vaginal', 5, 'sub');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'blowjob', goto: ['kotovSex', 'bj' + (Math.floor(Math.random() * 13) + 1) + ''] },
     { label: 'Use your tits to please him', goto: ['kotovSex', 'titjob'] },
@@ -1312,7 +1240,6 @@ function enterDog3(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDog2(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/shared/sex/sequence/koto...
   scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/shared/sex/sequence/kotovsexbonus` + (Math.floor(Math.random() * 2) + 21) + '.mp4"></video></center>');
   if ((!((s as any).protect ?? 0))) {
     qspCall(s, 'dinsex', 'boy_puts_condom');
@@ -1320,7 +1247,6 @@ function enterDog2(s: GameState, scene: SceneBuilder): void {
   scene.text('Vitek puts his powerful arms around you and helps you get up, his cock never leaving your pussy. When you\'re standing up straight, he holds you tightly and redoubles his efforts. The sounds of him violently slamming his hard cock into your hole over and over and your loud moaning fill the room, and you feel like a ragdoll in his hands when he treats you like this. And to be honest… you love every second of it!');
   qspCall(s, 'arousal', 'vaginal', 5, 'sub');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'blowjob', goto: ['kotovSex', 'bj' + (Math.floor(Math.random() * 13) + 1) + ''] },
     { label: 'Use your tits to please him', goto: ['kotovSex', 'titjob'] },
@@ -1339,7 +1265,6 @@ function enterDog2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDog1(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/shared/sex/vag/doggy/kot...
   scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/shared/sex/vag/doggy/kotovsex1` + (Math.floor(Math.random() * 4) + 0) + '.mp4"></video></center>');
   if ((!((s as any).protect ?? 0))) {
     qspCall(s, 'dinsex', 'boy_puts_condom');
@@ -1347,7 +1272,6 @@ function enterDog1(s: GameState, scene: SceneBuilder): void {
   scene.text('Vitek picks you up and throws you down onto the bed, making you land on your hands and knees in front of him. With a devious smile you arch your back and stick out your ass as much as you can while you look over your shoulder, asking in a seductive voice: "See anything you like, babe?"');
   qspCall(s, 'arousal', 'vaginal', 5, 'sub');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Masturbate him', goto: ['kotovSex', 'bj6'] },
     { label: 'Lick his balls', goto: ['kotovSex', 'bj7'] },
@@ -1369,7 +1293,6 @@ function enterDog1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterMisionary4(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/shared/sex/vag/miss/koto...
   scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/shared/sex/vag/miss/kotovsexbonus` + (Math.floor(Math.random() * 2) + 5) + '.mp4"></video></center>');
   if ((!((s as any).protect ?? 0))) {
     qspCall(s, 'dinsex', 'boy_puts_condom');
@@ -1378,7 +1301,6 @@ function enterMisionary4(s: GameState, scene: SceneBuilder): void {
   scene.text('For the next few minutes he keeps kissing you passionately while he fucks you slowly, making it a very intimate session. He can be so tender sometimes, when you least expect it…');
   qspCall(s, 'arousal', 'vaginal', 5, 'sub');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'blowjob', goto: ['kotovSex', 'bj' + (Math.floor(Math.random() * 13) + 1) + ''] },
     { label: 'Use your tits to please him', goto: ['kotovSex', 'titjob'] },
@@ -1408,7 +1330,6 @@ function enterMisionary3(s: GameState, scene: SceneBuilder): void {
   scene.text('He nods and slips his cock back inside your snatch. It feels so intense this way! You moan softly as he begins to fuck you carefully, but gradually increases the length and power of his thrusts when he notices you can take it just fine.');
   qspCall(s, 'arousal', 'vaginal', 5, 'dom');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'blowjob', goto: ['kotovSex', 'bj' + (Math.floor(Math.random() * 13) + 1) + ''] },
     { label: 'Use your tits to please him', goto: ['kotovSex', 'titjob'] },
@@ -1427,7 +1348,6 @@ function enterMisionary3(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterMisionary2(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/shared/sex/vag/miss/koto...
   scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/shared/sex/vag/miss/kotovsexbonus` + (Math.floor(Math.random() * 4) + 0) + '.mp4"></video></center>');
   if ((!((s as any).protect ?? 0))) {
     qspCall(s, 'dinsex', 'boy_puts_condom');
@@ -1436,7 +1356,6 @@ function enterMisionary2(s: GameState, scene: SceneBuilder): void {
   scene.text('The sight of your exposed pussy greatly arouses him, and Vitek eagerly climbs on top of you and fucks you roughly in this position. Just the way you like it.');
   qspCall(s, 'arousal', 'vaginal', 5, 'sub', 'rough');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'blowjob', goto: ['kotovSex', 'bj' + (Math.floor(Math.random() * 13) + 1) + ''] },
     { label: 'Use your tits to please him', goto: ['kotovSex', 'titjob'] },
@@ -1460,7 +1379,6 @@ function enterKuni(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/sex/oface/kotovecho.mp4');
     qspCall(s, 'stat', '');
     if (((s as any).npc_rel ?? 0)?.['A9'] <= 75) {
-      // TODO-QSP: dynamic text: Vitek flat out refuses to lick your pussy: "Don''t be ridiculous, <<$pcs_nicknam...
       scene.text(`Vitek flat out refuses to lick your pussy: "Don't be ridiculous, ${((s as any).pcs_nickname ?? '')}. I'm a man, not some kid! Come on, spread your legs and let's fuck."`);
       scene.actions([
         { label: 'Missionary', goto: ['kotovSex', 'misionary' + 0 + ''] },
@@ -1470,7 +1388,6 @@ function enterKuni(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Spread your legs and present your pussy', handler: (st: GameState) => {
     (st as any).kotov_kuni = 1;
-    // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/shared/sex/kuni/kotovsex...
     scene.text(`<center><video autoplay loop ${((st as any).set_imgh ?? '')} src="images/shared/sex/kuni/kotovsex3` + (Math.floor(Math.random() * 4) + 0) + '.mp4"></video></center>');
     scene.text('You secretly smile to yourself when he agrees, you must mean a lot to him. Being the cocky alpha male that he is, he\'d never agree to do this if he didn\'t really care for you. He moves his head between your legs and begins to work your pussy with his tongue, without a whole lot of enthusiasm but a surprising amount of skill.');
     qspCall(st, 'arousal', 'cuni', 5, 'dom');
@@ -1501,7 +1418,6 @@ function enterKuni(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   } else {
-    // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/shared/sex/kuni/kotovsex...
     scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/shared/sex/kuni/kotovsex3` + (Math.floor(Math.random() * 4) + 0) + '.mp4"></video></center>');
     scene.text('Vitek smiles and gets between your legs without protest, spreading them slightly further with his hands. He does his best to make you feel good, enthusiastically rubbing his tongue over and between your wet pussy lips.');
     if (((s as any).pcs_horny ?? 0) >= 90) {
@@ -1529,12 +1445,10 @@ function enterKuni(s: GameState, scene: SceneBuilder): void {
       { label: 'Make him cum', goto: ['kotovSex', 'cum10'] },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterMisionary1(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/shared/sex/vag/miss/koto...
   scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/shared/sex/vag/miss/kotovsex` + (Math.floor(Math.random() * 4) + 0) + '.mp4"></video></center>');
   if ((!((s as any).protect ?? 0))) {
     qspCall(s, 'dinsex', 'boy_puts_condom');
@@ -1542,7 +1456,6 @@ function enterMisionary1(s: GameState, scene: SceneBuilder): void {
   scene.text('Vitek pushes you down on your back eagerly, and you automatically spread your legs for him.');
   qspCall(s, 'arousal', 'vaginal', 5, 'sub');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'blowjob', goto: ['kotovSex', 'bj' + (Math.floor(Math.random() * 13) + 1) + ''] },
     { label: 'Use your tits to please him', goto: ['kotovSex', 'titjob'] },
@@ -1562,18 +1475,15 @@ function enterMisionary1(s: GameState, scene: SceneBuilder): void {
 
 function enterTitjob(s: GameState, scene: SceneBuilder): void {
   (s as any).kotov_bj_times = ((s as any).kotov_bj_times ?? 0) + (1);
-  // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/shared/sex/blowjob/kotov...
   scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/shared/sex/blowjob/kotovbj14` + (Math.floor(Math.random() * 3) + 0) + '.mp4"></video></center>');
   scene.text('You give him a devious smile and ask him: "Honey… you like my boobs, don\'t you?"');
   scene.text('He nods eagerly: "You know I do, babe… they\'re amazing!"');
   scene.text('"Why don\'t you show me?" you challenge him.');
-  // TODO-QSP: dynamic text: Vitek knows exactly what you''re getting at, and rests his penis between your <<...
   scene.text(`Vitek knows exactly what you're getting at, and rests his penis between your ${((s as any).titsize ?? '')} breasts. You squeeze your breasts together for him and spit on his cock for lubrication, as he slowly begins to move his hips.`);
   scene.text('After a while he pushes your hands away and takes over, pushing your tits tighter around his cock while he fucks them harder.');
   scene.text('You moan softly, this feels even better than you thought it would…');
   qspCall(s, 'arousal', 'titjob', 5, 'sub');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'blowjob', goto: ['kotovSex', 'bj' + (Math.floor(Math.random() * 13) + 1) + ''] },
     { label: 'Use your tits to please him', goto: ['kotovSex', 'titjob'] },
@@ -1593,12 +1503,10 @@ function enterTitjob(s: GameState, scene: SceneBuilder): void {
 
 function enterBj13(s: GameState, scene: SceneBuilder): void {
   (s as any).kotov_bj_times = ((s as any).kotov_bj_times ?? 0) + (1);
-  // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/shared/sex/blowjob/kotov...
   scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/shared/sex/blowjob/kotovbj13` + (Math.floor(Math.random() * 2) + 0) + '.mp4"></video></center>');
   scene.text('You firmly grasp his member, and rub the head of his cock against your nipple while you talk dirty to him. Your nipple hardens at the touch of his erection, and you get even more turned on when the precum he\'s leaking makes everything even slicker.');
   qspCall(s, 'arousal', 'hj', 5, 'sub');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'blowjob', goto: ['kotovSex', 'bj' + (Math.floor(Math.random() * 13) + 1) + ''] },
     { label: 'Use your tits to please him', goto: ['kotovSex', 'titjob'] },
@@ -1618,13 +1526,11 @@ function enterBj13(s: GameState, scene: SceneBuilder): void {
 
 function enterBj12(s: GameState, scene: SceneBuilder): void {
   (s as any).kotov_bj_times = ((s as any).kotov_bj_times ?? 0) + (1);
-  // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/shared/sex/blowjob/kotov...
   scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/shared/sex/blowjob/kotovbj12` + (Math.floor(Math.random() * 3) + 0) + '.mp4"></video></center>');
   scene.text('He looks down at you happily, and suggests: "How about you blow me, babe? But to make it more challenging, without using your hands…"');
   scene.text('A challenge? You\'re not one to back down from a challenge! You close your lips around his cock while you theatrically show that your hands are nowhere near it, and slowly begin to bob your head up and down. His cock is pretty big, and you don\'t feel confident you can take it down much more than half-way.');
   qspCall(s, 'arousal', 'bj', 5, 'sub');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'blowjob', goto: ['kotovSex', 'bj' + (Math.floor(Math.random() * 13) + 1) + ''] },
     { label: 'Use your tits to please him', goto: ['kotovSex', 'titjob'] },
@@ -1644,13 +1550,11 @@ function enterBj12(s: GameState, scene: SceneBuilder): void {
 
 function enterBj11(s: GameState, scene: SceneBuilder): void {
   (s as any).kotov_bj_times = ((s as any).kotov_bj_times ?? 0) + (1);
-  // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/shared/sex/blowjob/kotov...
   scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/shared/sex/blowjob/kotovbj11` + (Math.floor(Math.random() * 5) + 0) + '.mp4"></video></center>');
   scene.text('You grab the base of his penis and guide it to your mouth, beginning to suck on it greedily.');
   scene.text('His cock is fairly large, and you\'re not sure you want to shove it all the way into that little mouth of yours right now. Instead, you suck on the head of his cock and look at him seductively while your slender fingers work his shaft.');
   qspCall(s, 'arousal', 'bj', 5, 'sub');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'blowjob', goto: ['kotovSex', 'bj' + (Math.floor(Math.random() * 13) + 1) + ''] },
     { label: 'Use your tits to please him', goto: ['kotovSex', 'titjob'] },
@@ -1671,14 +1575,12 @@ function enterBj11(s: GameState, scene: SceneBuilder): void {
 function enterBj10(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal_funcs', 'stretch', 'oral', 1);
   (s as any).kotov_bj_times = ((s as any).kotov_bj_times ?? 0) + (1);
-  // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/shared/sex/blowjob/kotov...
   scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/shared/sex/blowjob/kotovbj10` + (Math.floor(Math.random() * 4) + 0) + '.mp4"></video></center>');
   scene.text('Even though he\'s more gentle with you than you thought he would be before hooking up with him, you know he likes to assert his dominance over girls from time to time.');
   scene.text('When he tells you he\'s going to fuck your throat next, you meekly nod and fully relax your throat while he begins to work his cock further into your mouth.');
   scene.text('You nearly choke and have to do your best to suppress your gag reflex while he slowly fucks your throat. Nevertheless, the proud grin on his face makes it all worth it. It\'s not something you would do all the time, but maybe you secretly enjoy surrendering yourself to him like this every once in a while?');
   qspCall(s, 'arousal', 'bj', 5, 'sub', 'deepthroat', 'rough');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'blowjob', goto: ['kotovSex', 'bj' + (Math.floor(Math.random() * 13) + 1) + ''] },
     { label: 'Use your tits to please him', goto: ['kotovSex', 'titjob'] },
@@ -1699,13 +1601,11 @@ function enterBj10(s: GameState, scene: SceneBuilder): void {
 function enterBj9(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal_funcs', 'stretch', 'oral', 1);
   (s as any).kotov_bj_times = ((s as any).kotov_bj_times ?? 0) + (1);
-  // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/shared/sex/blowjob/kotov...
   scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/shared/sex/blowjob/kotovbj9` + (Math.floor(Math.random() * 2) + 0) + '.mp4"></video></center>');
   scene.text('You tell him to keep his hands to himself, and slowly wrap your lips around his cock before taking more and more of his length in your mouth.');
   scene.text('Eventually the head of his cock is around where your throat begins, and you stimulate it teasingly by swallowing, squeezing your throat tightly against the head every time.');
   qspCall(s, 'arousal', 'bj', 5, 'sub', 'deepthroat');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'blowjob', goto: ['kotovSex', 'bj' + (Math.floor(Math.random() * 13) + 1) + ''] },
     { label: 'Use your tits to please him', goto: ['kotovSex', 'titjob'] },
@@ -1725,15 +1625,12 @@ function enterBj9(s: GameState, scene: SceneBuilder): void {
 
 function enterBj8(s: GameState, scene: SceneBuilder): void {
   (s as any).kotov_bj_times = ((s as any).kotov_bj_times ?? 0) + (1);
-  // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/shared/sex/blowjob/kotov...
   scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/shared/sex/blowjob/kotovbj8` + (Math.floor(Math.random() * 2) + 0) + '.mp4"></video></center>');
   scene.text('You work your way down and gently lick the underside of his testicles, before you slip your tongue over his anus. At first he assumes it\'s a mistake, but he looks a bit panicked when you keep teasing it rhythmically with the tip of your tongue.');
-  // TODO-QSP: dynamic text: He groans: "Oh shit, <<$pcs_nickname>>! What are you doing!?"
   scene.text(`He groans: "Oh shit, ${((s as any).pcs_nickname ?? '')}! What are you doing!?"`);
   scene.text('When you look into his eyes and just keep licking it with the tip of your tongue, a soft moan escapes his lips. After a few seconds he admits: "That… that feels great! Just don\'t tell the boys, okay?"');
   qspCall(s, 'arousal', 'cuni_give', 5, 'sub');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'blowjob', goto: ['kotovSex', 'bj' + (Math.floor(Math.random() * 13) + 1) + ''] },
     { label: 'Use your tits to please him', goto: ['kotovSex', 'titjob'] },
@@ -1753,12 +1650,10 @@ function enterBj8(s: GameState, scene: SceneBuilder): void {
 
 function enterBj7(s: GameState, scene: SceneBuilder): void {
   (s as any).kotov_bj_times = ((s as any).kotov_bj_times ?? 0) + (1);
-  // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/shared/sex/blowjob/kotov...
   scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/shared/sex/blowjob/kotovbj7` + (Math.floor(Math.random() * 5) + 0) + '.mp4"></video></center>');
   scene.text('You slowly work your way down, and caress his balls with your tongue. His groaning makes you feel like he\'s enjoying it, and encourages you to lick them more vigorously.');
   qspCall(s, 'arousal', 'foreplay', 5, 'sub');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'blowjob', goto: ['kotovSex', 'bj' + (Math.floor(Math.random() * 13) + 1) + ''] },
     { label: 'Use your tits to please him', goto: ['kotovSex', 'titjob'] },
@@ -1778,14 +1673,11 @@ function enterBj7(s: GameState, scene: SceneBuilder): void {
 
 function enterBj6(s: GameState, scene: SceneBuilder): void {
   (s as any).kotov_bj_times = ((s as any).kotov_bj_times ?? 0) + (1);
-  // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/shared/sex/blowjob/kotov...
   scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/shared/sex/blowjob/kotovbj6` + (Math.floor(Math.random() * 2) + 0) + '.mp4"></video></center>');
   scene.text('You take his dick in your hand, and begin to stroke him off while you look at him confidently. You know this isn\'t what he wants, but it\'s fun to get a rise out of him!');
-  // TODO-QSP: dynamic text: It doesn''t take long for him to say: "<<$pcs_nickname>>… it doesn''t feel bad, ...
   scene.text(`It doesn't take long for him to say: "${((s as any).pcs_nickname ?? '')}… it doesn't feel bad, but I can just jerk myself off whenever I want. Why aren't you putting your lady parts to use?"`);
   qspCall(s, 'arousal', 'hj', 5, 'sub');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'blowjob', goto: ['kotovSex', 'bj' + (Math.floor(Math.random() * 13) + 1) + ''] },
     { label: 'Use your tits to please him', goto: ['kotovSex', 'titjob'] },
@@ -1805,12 +1697,10 @@ function enterBj6(s: GameState, scene: SceneBuilder): void {
 
 function enterBj5(s: GameState, scene: SceneBuilder): void {
   (s as any).kotov_bj_times = ((s as any).kotov_bj_times ?? 0) + (1);
-  // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/shared/sex/blowjob/kotov...
   scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/shared/sex/blowjob/kotovbj5` + (Math.floor(Math.random() * 4) + 0) + '.mp4"></video></center>');
   scene.text('You don\'t take his cock in your mouth just yet. Instead you lick its entire length in long, firm strokes, enjoying the warm rigid feeling against your tongue, and the slightly salty taste of his precum whenever you reach the head. Slowly but surely, you\'re coating his entire dick with your saliva.');
   qspCall(s, 'arousal', 'foreplay', 5, 'sub');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'blowjob', goto: ['kotovSex', 'bj' + (Math.floor(Math.random() * 13) + 1) + ''] },
     { label: 'Use your tits to please him', goto: ['kotovSex', 'titjob'] },
@@ -1830,12 +1720,10 @@ function enterBj5(s: GameState, scene: SceneBuilder): void {
 
 function enterBj4(s: GameState, scene: SceneBuilder): void {
   (s as any).kotov_bj_times = ((s as any).kotov_bj_times ?? 0) + (1);
-  // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/shared/sex/blowjob/kotov...
   scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/shared/sex/blowjob/kotovbj4` + (Math.floor(Math.random() * 2) + 0) + '.mp4"></video></center>');
   scene.text('It feels so nice in your hand. You rub the shaft, admiring the way his foreskin pops over the head of his cock and back when you masturbate him slowly. The head of his cock becomes more and more slippery with precum.');
   qspCall(s, 'arousal', 'hj', 5, 'sub');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'blowjob', goto: ['kotovSex', 'bj' + (Math.floor(Math.random() * 13) + 1) + ''] },
     { label: 'Use your tits to please him', goto: ['kotovSex', 'titjob'] },
@@ -1855,13 +1743,10 @@ function enterBj4(s: GameState, scene: SceneBuilder): void {
 
 function enterBj3(s: GameState, scene: SceneBuilder): void {
   (s as any).kotov_bj_times = ((s as any).kotov_bj_times ?? 0) + (1);
-  // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/shared/sex/blowjob/kotov...
   scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/shared/sex/blowjob/kotovbj3` + (Math.floor(Math.random() * 2) + 0) + '.mp4"></video></center>');
-  // TODO-QSP: dynamic text: You wrap your delicate fingers around the shaft of his cock, guiding it to your ...
   scene.text(`You wrap your delicate fingers around the shaft of his cock, guiding it to your mouth. Ignoring his pleas, you don't take it in your mouth and just put your ${(((s as any).pc_desc ?? 0)?.['lips'] ?? '')} lips lips against it, kissing it over and over.`);
   qspCall(s, 'arousal', 'foreplay', 5, 'sub');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'blowjob', goto: ['kotovSex', 'bj' + (Math.floor(Math.random() * 13) + 1) + ''] },
     { label: 'Use your tits to please him', goto: ['kotovSex', 'titjob'] },
@@ -1886,14 +1771,11 @@ function enterBj2(s: GameState, scene: SceneBuilder): void {
   } else {
     (s as any).textsexkotov = 'close your ' + (((s as any).pc_desc ?? 0)?.['lips']) + ' lips lips around the head of his cock and suck him off eagerly';
   }
-  // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/shared/sex/blowjob/kotov...
   scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/shared/sex/blowjob/kotovbj2` + (Math.floor(Math.random() * 7) + 0) + '.mp4"></video></center>');
-  // TODO-QSP: dynamic text: You <<$textsexkotov>>. You clench your <<$pc_desc[''lips'']>> lips lips around h...
   scene.text(`You ${((s as any).textsexkotov ?? '')}. You clench your ${(((s as any).pc_desc ?? 0)?.['lips'] ?? '')} lips lips around his cock tightly, and try to give him the best blowjob you've ever given.`);
   scene.text('The tenderness of your lips is driving Vitek crazy, and he can do little more than moan uncontrollably while you keep sucking.');
   qspCall(s, 'arousal', 'bj', 5, 'sub');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'blowjob', goto: ['kotovSex', 'bj' + (Math.floor(Math.random() * 13) + 1) + ''] },
     { label: 'Use your tits to please him', goto: ['kotovSex', 'titjob'] },
@@ -1918,14 +1800,11 @@ function enterBj1(s: GameState, scene: SceneBuilder): void {
   } else {
     (s as any).textsexkotov = 'lick the head of his cock with your tongue';
   }
-  // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/shared/sex/blowjob/kotov...
   scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/shared/sex/blowjob/kotovbj1` + (Math.floor(Math.random() * 4) + 0) + '.mp4"></video></center>');
-  // TODO-QSP: dynamic text: You gently <<$textsexkotov>>.
   scene.text(`You gently ${((s as any).textsexkotov ?? '')}.`);
   scene.text('When you flick your tongue against the opening of his urethra, his body spasms a little. You found a sensitive spot, that should be fun!');
   qspCall(s, 'arousal', 'foreplay', 5, 'sub');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'blowjob', goto: ['kotovSex', 'bj' + (Math.floor(Math.random() * 13) + 1) + ''] },
     { label: 'Use your tits to please him', goto: ['kotovSex', 'titjob'] },
@@ -1950,7 +1829,6 @@ function enterSub(s: GameState, scene: SceneBuilder): void {
   scene.text('Then he tells you to…');
   qspCall(s, 'arousal', 'foreplay', 5, 'sub');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'blowjob', goto: ['kotovSex', 'bj' + (Math.floor(Math.random() * 13) + 1) + ''] },
     { label: 'Use your tits to please him', goto: ['kotovSex', 'titjob'] },
@@ -1976,7 +1854,6 @@ function enterFirstSex(s: GameState, scene: SceneBuilder): void {
   scene.text('You don\'t object as Vitek pushes you down onto your back and spreads your legs, slowly guiding his cock to your virgin pussy.');
   qspCall(s, 'arousal', 'vaginal', 30, 'sub');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Recover', handler: (st: GameState) => {
     qspCall(st, 'shortgs', 'dress');
@@ -1994,7 +1871,6 @@ function enterFirstSex(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/sex/grab/ass_grab1.mp4');
     scene.text('You don\'t talk about much while he walks you home, but you\'re touched by the fact that he\'s holding your hand. He\'s usually not this sensitive… taking your virginity must\'ve meant a lot to him too.');
     scene.text('When you arrive at your apartment door, Vitek kisses you goodbye. It\'s a long and deep kiss, and his hands are groping your ass the whole time.');
-    // TODO-QSP: dynamic text: With a grin on his face he says: "See you soon, <<$pcs_nickname>>."
     scene.text(`With a grin on his face he says: "See you soon, ${((st as any).pcs_nickname ?? '')}."`);
     qspCall(st, 'arousal', 'end');
     scene.actions([

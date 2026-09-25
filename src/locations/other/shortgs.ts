@@ -1,5 +1,3 @@
-import { qspUntranslated } from '../_shared/qspUntranslated';
-
 import { qspCall, qspFunc } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
@@ -23,7 +21,6 @@ function enterAutosave(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -31,28 +28,31 @@ function enterShowTable(s: GameState, scene: SceneBuilder): void {
   (s as any).tab_tmp = Math.max(1, parseFloat(((s as any).locArgs?.[2] ?? 0)), ((s as any).locArgs?.[2] ?? 0));
   (s as any).result = '';
   if ((!(((s as any).st_count ?? 0) % ((s as any).tab_tmp ?? 0)))) {
-    // TODO-QSP: $result += "<tr>"
+    (s as any).result = ((s as any).result ?? '') + '<tr>';
   }
-  // TODO-QSP: $result += "<td><<$ARGS[1]>></td>"
+  (s as any).result = ((s as any).result ?? 0) + ('<td>' + ((s as any).locArgs?.[1] ?? 0) + '</td>');
   if ((((s as any).st_count ?? 0) % ((s as any).tab_tmp ?? 0)) + 1 === ((s as any).tab_tmp ?? 0)) {
-    // TODO-QSP: $result += "</tr>"
+    (s as any).result = ((s as any).result ?? '') + '</tr>';
   }
-  // TODO-QSP: $show_table += $result
+  (s as any).show_table = ((s as any).show_table ?? 0) + (((s as any).result ?? 0));
   (s as any).st_count = ((s as any).st_count ?? 0) + (1);
+  (s as any).tab_tmp = undefined;
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterGuy(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === '') {
-    (s as any).temptask = qspUntranslated(s, "'ABCM' else temptask = ARGS[1]", { location: "shortgs" });
+    (s as any).temptask = 'ABCM';
+  } else {
+    (s as any).temptask = ((s as any).locArgs?.[1] ?? 0);
   }
   if (((s as any).temptask ?? 0) === 'ABCM') {
     (s as any).result = (((s as any).stat ?? 0)?.['male_sexual_partners']);
   } else {
     (s as any).result = qspFunc(s, 'npc', 'get_npc_count', 'npc_sexual', ((s as any).locArgs?.[1] ?? 0), '0');
   }
+  (s as any).temptask = undefined;
   return;
   // TODO-QSP: end & !! --- guy ---
   scene.build();
@@ -60,13 +60,16 @@ function enterGuy(s: GameState, scene: SceneBuilder): void {
 
 function enterGirl(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === '') {
-    (s as any).temptask = qspUntranslated(s, "'ABCM' else temptask = ARGS[1]", { location: "shortgs" });
+    (s as any).temptask = 'ABCM';
+  } else {
+    (s as any).temptask = ((s as any).locArgs?.[1] ?? 0);
   }
   if (((s as any).temptask ?? 0) === 'ABCM') {
     (s as any).result = (((s as any).stat ?? 0)?.['female_sexual_partners']);
   } else {
     (s as any).result = qspFunc(s, 'npc', 'get_npc_count', 'npc_sexual', ((s as any).locArgs?.[1] ?? 0), '1');
   }
+  (s as any).temptask = undefined;
   return;
   // TODO-QSP: end & !! --- girl ---
   scene.build();
@@ -88,6 +91,7 @@ function enterDress(s: GameState, scene: SceneBuilder): void {
 
 function enterCheckdress(s: GameState, scene: SceneBuilder): void {
   if (((s as any).clothingworntype ?? 0) === 'nude') {
+    alert(qspFunc(s, 'wrap', 'neg b', 'You need to get dressed before going out.'));
   }
   scene.build();
 }

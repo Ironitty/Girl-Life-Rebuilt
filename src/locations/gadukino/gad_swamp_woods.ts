@@ -22,15 +22,12 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.text('You can pick up some firewood around here to keep the fire going.');
     scene.actions([
       { label: 'Collect firewood (0:15)', handler: (st: GameState) => {
-    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/hunters/'+iif($clothi...
     scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/gadukino/hunters/` + ((((st as any).clothingworntype ?? 0) !== 'nude') ? ('firewood_normal.jpg') : ('firewood_nude.jpg')) + '"></center>');
     scene.text('You pick up some dry branches and twigs, putting them in a pile near the fire pit before returning.');
     (st as any).firewood = ((st as any).firewood ?? 0) + ((Math.floor(Math.random() * 5) + 2));
     if (((st as any).firewood ?? 0) < 15) {
-      // TODO-QSP: dynamic text: You have <<firewood>> pieces of firewood and should probably grab some more to k...
       scene.text(`You have ${((st as any).firewood ?? '')} pieces of firewood and should probably grab some more to keep the fire going.`);
     } else {
-      // TODO-QSP: dynamic text: You have <<firewood>> pieces of firewood and should have enough firewood to get ...
       scene.text(`You have ${((st as any).firewood ?? '')} pieces of firewood and should have enough firewood to get a fire going.`);
     }
     (st as any).minut = ((st as any).minut ?? 0) + 15;
@@ -43,7 +40,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('You think about picking up firewood before remembering you have plenty back at the yard.');
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go back to the hut', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 10;
@@ -66,7 +62,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 30;
     (st as any).nearby_woods_check = (Math.floor(Math.random() * 10) + 1);
     if (((st as any).nearby_woods_check ?? 0) === 1) {
-      // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/hunters/'+iif($clothi...
       scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/gadukino/hunters/` + ((((st as any).clothingworntype ?? 0) !== 'nude') ? ('nearby_woods_success.jpg') : ('nearby_woods_success_nude.jpg')) + '"></center>');
       scene.text('You stick as close to the swamp as possible and follow the edge in one direction.');
       scene.text('Even though you occasionally step into the swamp, you manage to not get stuck.');
@@ -78,7 +73,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       if (((st as any).nearby_woods_check ?? 0) <= 3) {
-        // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/hunters/'+iif($clothi...
         scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/gadukino/hunters/` + ((((st as any).clothingworntype ?? 0) !== 'nude') ? ('nearby_woods_stuck.jpg') : ('nearby_woods_stuck_nude.jpg')) + '"></center>');
         scene.text('You stick as close to the swamp as possible and follow the edge in one direction.');
         scene.text('Trusting the ground, you keep going, but you sink right into the swamp at some point without even realizing it.');
@@ -89,7 +83,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   }, goto: ['gad_swamp', 'stuck'] },
         ]);
       } else {
-        // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/hunters/'+iif($clothi...
         scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/gadukino/hunters/` + ((((st as any).clothingworntype ?? 0) !== 'nude') ? ('nearby_woods_hike.jpg') : ('nearby_woods_hike_nude.jpg')) + '"></center>');
         scene.text('You start going into the woods in a direction you think will take you around the swamp.');
         scene.text('After a few hours of walking, you realize your surroundings are familiar.');
@@ -106,7 +99,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
         ]);
       } else {
         (st as any).minut = ((st as any).minut ?? 0) + 90;
-        // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/hunters/'+iif($clothi...
         scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/gadukino/hunters/` + ((((st as any).clothingworntype ?? 0) !== 'nude') ? ('pathfinder.jpg') : ('pathfinder_nude.jpg')) + '"></center>');
         scene.text('You have a rough idea of how the forest curves around the swamp from seeing part of the swamp\'s edge from the hut yard.');
         scene.text('With that in mind, you go into the forest, aware of your surroundings, to ensure you are not stepping too far from the swamp\'s edge.');

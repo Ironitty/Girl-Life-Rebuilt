@@ -15,10 +15,8 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('<center><h4>Swamp</h4></center>');
   if (((s as any).month ?? 0) >= 4  &&  ((s as any).month ?? 0) <= 10) {
-    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/hunters/' + iif(DaySt...
     scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/gadukino/hunters/` + ((((s as any).DayStage ?? 0) < 4) ? ('swamp.jpg') : ('swamp_night.jpg')) + '"></center>');
   } else {
-    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/hunters/' + iif(DaySt...
     scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/gadukino/hunters/` + ((((s as any).DayStage ?? 0) < 4) ? ('swamp_winter.jpg') : ('swamp_winter_night.jpg')) + '"></center>');
   }
   scene.text('You are at the village\'s swamp on the far side of the woods.');
@@ -40,7 +38,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Head back to the forest (0:15)', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 15;
@@ -63,7 +60,6 @@ function enterStuck(s: GameState, scene: SceneBuilder): void {
         scene.img('images/locations/gadukino/hunters/goswamp_ski1.jpg');
       } else {
         if (((s as any).clothingworntype ?? 0) === 'nude') {
-          // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/hunters/goswamp_nude0...
           scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/gadukino/hunters/goswamp_nude0.` + (Math.floor(Math.random() * 2) + 4) + '.jpg"></center>');
         }
       }
@@ -125,6 +121,7 @@ function enterStuck(s: GameState, scene: SceneBuilder): void {
     }
     if (((st as any).swamp_stuck ?? 0) === 10) {
       qspCall(st, 'gameover', 'check', 10);
+      alert('<font color=red><b>You should die in this swamp, but Cheat Mode keeps you Alive.</b></font>');
     }
     if (((st as any).swamp_check ?? 0) > ((st as any).swamprand ?? 0)) {
       scene.text('<center><h4>Swamp</h4></center>');
@@ -139,7 +136,6 @@ function enterStuck(s: GameState, scene: SceneBuilder): void {
             if ((!((st as any).swamprand ?? 0))) {
               scene.img('images/locations/gadukino/hunters/goswamp_nude0..jpg');
             } else {
-              // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/hunters/goswamp_nude0...
               scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/gadukino/hunters/goswamp_nude0.` + (Math.floor(Math.random() * 3) + 1) + '.jpg"></center>');
             }
           }
@@ -158,7 +154,6 @@ function enterStuck(s: GameState, scene: SceneBuilder): void {
           scene.img('images/locations/gadukino/hunters/goswamp_ski1.jpg');
         } else {
           if (((st as any).clothingworntype ?? 0) === 'nude') {
-            // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/hunters/goswamp_nude0...
             scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/gadukino/hunters/goswamp_nude0.` + (Math.floor(Math.random() * 2) + 4) + '.jpg"></center>');
           }
         }
@@ -173,10 +168,8 @@ function enterStuck(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('<center><h4>Swamp</h4></center>');
     if (((s as any).month ?? 0) >= 4  &&  ((s as any).month ?? 0) <= 10) {
-      // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/hunters/' + iif(DaySt...
       scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/gadukino/hunters/` + ((((s as any).DayStage ?? 0) < 4) ? ('gadforestlostswamp.jpg') : ('gadforestlostswamp_night.jpg')) + '"></center>');
     } else {
-      // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/hunters/' + iif(DaySt...
       scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/gadukino/hunters/` + ((((s as any).DayStage ?? 0) < 4) ? ('gadforestlostswamp_winter.jpg') : ('gadforestlostswamp_winter_night.jpg')) + '"></center>');
     }
     if (String((s as any).locArgs?.[1] ?? '') === 'forest_edge') {
@@ -193,7 +186,6 @@ function enterStuck(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', goto: ['gad_swamp_yard', 'start'] },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 

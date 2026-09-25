@@ -58,7 +58,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'telefon', 'ClearInSMSSchedule', 'A144');
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -78,6 +77,7 @@ function enterWeek1(s: GameState, scene: SceneBuilder): void {
       if (((s as any).temp_pos ?? 0) === -1  ||  ((s as any).contactAnon ?? 0)?.[String((s as any).temp_pos ?? 0)] === 1) {
         qspCall(s, 'telefon', 'AddContact', 'A144', 'images/characters/shared/headshots_main/big144.jpg', 0);
       }
+      (s as any).temp_pos = undefined;
       qspCall(s, 'SMStext_builder', 'start');
       qspCall(s, 'SMStext_builder', 'send', (((s as any).SMSTree ?? 0)?.['a1']));
       qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[2] ?? 0));
@@ -204,7 +204,7 @@ function enterWeek11(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'SMStext_builder', 'add_sms', 'A144');
     qspCall(s, 'SMStext_builder', 'end');
   }
-  // TODO-QSP: end
+  (s as any).SMSTree = undefined;
   scene.build();
 }
 

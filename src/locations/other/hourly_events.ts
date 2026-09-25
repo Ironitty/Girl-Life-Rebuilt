@@ -138,14 +138,20 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).pcs_period ?? 0)?.['period_warning'] === 0  &&  ((s as any).placebopart ?? 0) > 0  &&  ((s as any).lutH ?? 0) > 0  &&  (!((s as any).knowpreg ?? 0))) {
       ((s as any).pcs_period = (s as any).pcs_period ?? {})['period_warning'] = 1;
+      alert('Your stomach suddenly twinges, muscles contracting so tightly that they start to cramp. It seems your period is on its way.');
     } else {
       if (((s as any).pcs_period ?? 0)?.['period_warning'] === 1  &&  ((s as any).lutH_max ?? 0) - ((s as any).lutH ?? 0) <= 2) {
         ((s as any).pcs_period = (s as any).pcs_period ?? {})['period_warning'] = 2;
         if (((s as any).isprok ?? 0) === 1) {
+          alert('Your stomach twinges again. Another cramp of pain. It must mean your period is about to start. Good thing you\'re already put a tampon in.');
         } else {
           if (((s as any).location_type ?? 0) === 'private'  &&  ((s as any).isprokp ?? 0) === 1) {
+            alert('Your stomach twinges again. Another cramp of pain. You\'re pretty sure you know what\'s happening but take advantage of the privacy pull down your panties anyways to confirm; Yup. Your pad is already spotting, which must mean your period is imminent. Good thing you\'re already prepared.');
           } else {
             if (((s as any).location_type ?? 0) === 'private'  &&  ((s as any).pantyworntype ?? 0) !== 'none') {
+              alert('Your stomach twinges again. Another cramp of pain. You\'re pretty sure you know what\'s happening but take advantage of the privacy pull down your panties anyways to confirm; Yup. Your underwear is already spotting. Your period is imminent.');
+            } else {
+              alert('Your stomach twinges again. Another cramp of pain. It must mean your period is about to start. You really need to get a tampon in there ASAP.');
             }
           }
         }
@@ -296,6 +302,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       ((s as any).stat = (s as any).stat ?? {})['pube_growth_timer'] = ((s as any).totminut ?? 0);
       (s as any).pcs_pubes = ((s as any).pcs_pubes ?? 0) + (1);
     }
+    (s as any).temp_hair_interval = undefined;
     qspCall(s, 'body_desc', 'pube_desc_update');
   }
   qspCall(s, 'komp_cam_functions', 'hourly_events');

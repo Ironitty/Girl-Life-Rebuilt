@@ -14,7 +14,6 @@ function enterKurit(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/residential/apartment/kurit.jpg');
   scene.text('You put the cigarette in your mouth and tightly squeeze it with your lips as you light it. You inhale the smoke and hold it in for for a second before continuing and enjoying your smoke.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Throw the cigarette butt over the railing', goto: ['balkon', 'start'] },
   ]);
@@ -34,7 +33,6 @@ function enterDemo1(s: GameState, scene: SceneBuilder): void {
   }
   scene.text('<center>You defiantly pose on the balcony, much to the delight of your neighbor. He eagerly looks at you while furiously masturbating before he cums and returns to his apartment.</center>');
   qspCall(s, 'arousal', 'end');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['balkon', 'start'] },
   ]);
@@ -47,15 +45,12 @@ function enterPalec1(s: GameState, scene: SceneBuilder): void {
   (s as any).sosedBalDay = ((s as any).daystart ?? 0);
   qspCall(s, 'stat', '');
   if (((s as any).pantyworntype ?? 0) !== 'none') {
-    // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/pc/reactions/fuckyou_underwear.jpg"></cen...
     scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/pc/reactions/fuckyou_underwear.jpg"></center>`);
   }
   if (((s as any).pantyworntype ?? 0) === 'none') {
-    // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/pc/reactions/fuckyou_naked.jpg"></center>
     scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/pc/reactions/fuckyou_naked.jpg"></center>`);
   }
   scene.text('<center>You flip off the neighbor, who quickly heads back indoors.</center>');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Further', goto: ['balkon', 'start'] },
   ]);
@@ -94,7 +89,6 @@ function enterNiz(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', goto: ['balkon', 'start'] },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -147,7 +141,6 @@ function enterSosed(s: GameState, scene: SceneBuilder): void {
       { label: 'Flip him off', goto: ['balkon2', 'palec1'] },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -197,7 +190,6 @@ function enterMasopt(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Masturbate', handler: (st: GameState) => {
     qspCall(st, 'arousal_funcs', 'stretch', 'vaginal', (Math.floor(Math.random() * 2) + 0));
@@ -212,7 +204,6 @@ function enterFinger(s: GameState, scene: SceneBuilder): void {
   scene.text('Standing naked in the open is arousing you. Feeling emboldened, you stick your fingers in your mouth, preparing them for what\'s to come…');
   qspCall(s, 'arousal', 'foreplay', 2, 'exhibitionism', 'masturbate');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Rub your clit', handler: (st: GameState) => {
     scene.img('images/locations/city/residential/apartment/sex/balcony_mas1-2.jpg');
@@ -264,7 +255,6 @@ function enterFingerSolo(s: GameState, scene: SceneBuilder): void {
   (s as any).orgasm_or = 'no';
   qspCall(s, 'arousal', 'clit_finger', 3, 'masturbate', 'exhibitionism');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Keep it up', handler: (st: GameState) => {
     scene.img('images/locations/city/residential/apartment/sex/balcony_mas1-6.jpg');

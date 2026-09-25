@@ -17,9 +17,7 @@ function enterShowertalk1(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/home/bathroom/brothertalk1.jpg');
   scene.text('Through the crack in the door you make eye contact with your brother.');
   scene.text('"Hey Kolka!"');
-  // TODO-QSP: dynamic text: You see the shock in his eyes as he realizes he''s been caught and moves away, t...
   scene.text(`You see the shock in his eyes as he realizes he's been caught and moves away, trying to close the door. "Wait! Come in here a sec!" you say, a bright and good-humored smile on your face. "And shut the door behind you! Quick! Before ${(((s as any).npc_nickname ?? 0)?.['A29'] ?? '')} or dad see!"`);
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/shared/home/bathroom/brothertalk2.jpg');
@@ -41,7 +39,6 @@ function enterShowertalk1(s: GameState, scene: SceneBuilder): void {
     }
     scene.img('images/shared/home/bathroom/brothertalk4.jpg');
     scene.text('"Kolka…" When you say this he starts to turn towards you a little bit but then stops himself and continues to stare at the wall. You sigh sympathetically. "It\'s okay to look at me you know."');
-    // TODO-QSP: dynamic text: He perks up and turns towards you slowly. "R-really?" His wide eyes rapidly flit...
     scene.text(`He perks up and turns towards you slowly. "R-really?" His wide eyes rapidly flit between your face, your breasts, your ${(((st as any).pc_desc ?? 0)?.['pubes'] ?? '')} pussy, the walls, and the floor, unable to make up his mind of where he should be looking.`);
     scene.text('"Yes really!" you laugh. "I told you, I\'m not mad! Yeah, yeah, I know. I\'ve got boobs. I\'ve got a pussy instead of a penis. I know it\'s strange and distracting and all that, but you\'re my brother and I love you! I don\'t want to have to share my conversations between you and the wall. So, I don\'t mind you looking. If it means I can spend this time getting closer to you, you can look all you want. Okay?"');
     scene.text('Kolka\'s eyes finally come to rest on your face, looking at you confidently now. You can tell there\'s love in his eyes and this vulnerability you\'ve shown really means something to him and your relationship with him. "Okay!" he says with an enthusiastic smile.');
@@ -130,15 +127,12 @@ function enterShowertalk2(s: GameState, scene: SceneBuilder): void {
       scene.text('He nods shyly at you. "Okay, come on in! Don\'t forget to close the door!"');
     } else {
       if (((s as any).brotherQW ?? 0)?.['shower_look'] < 1) {
-        // TODO-QSP: dynamic text: He nods eagerly. You can''t help but smile at his resemblance to a begging puppy...
         scene.text(`He nods eagerly. You can't help but smile at his resemblance to a begging puppy. "Well hurry up then!" you say. "Quick! Before ${(((s as any).npc_nickname ?? 0)?.['A29'] ?? '')} catches you coming in!"`);
       } else {
-        // TODO-QSP: dynamic text: He nods enthusiastically, unable to hide his eager grin. "Well hurry up then!" y...
         scene.text(`He nods enthusiastically, unable to hide his eager grin. "Well hurry up then!" you say with a smile to match his. "Quick! Before ${(((s as any).npc_nickname ?? 0)?.['A29'] ?? '')} catches us!"`);
       }
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     if (((st as any).brotherQW ?? 0)?.['shower_look'] >= 1) {
@@ -225,7 +219,6 @@ function enterShowertalk2(s: GameState, scene: SceneBuilder): void {
     (st as any).bro_ass_compliment = (Math.floor(Math.random() * 3) + 1);
     scene.img('images/shared/home/bathroom/brothertalk4.jpg');
     scene.text('"Kolka…" When you say this he starts to turn towards you a little bit but then stops himself and continues to stare at the wall. You sigh sympathetically. "It\'s okay to look at me you know."');
-    // TODO-QSP: dynamic text: He perks up and turns towards you slowly. "R-really?" His wide eyes rapidly flit...
     scene.text(`He perks up and turns towards you slowly. "R-really?" His wide eyes rapidly flit between your face, your breasts, your ${(((st as any).pc_desc ?? 0)?.['pubes'] ?? '')} pussy, the walls, and the floor, unable to make up his mind of where he should be looking.`);
     scene.text('"Yes really!" you laugh. "Yeah, yeah, I know. I\'ve got boobs. I\'ve got a pussy instead of a penis. I know it\'s strange and distracting and all that, but you\'re my brother and I love you! I don\'t want to have to share my conversations between you and the wall. So, I don\'t mind you looking. If it means I can spend this time getting closer to you, you can look all you want. Okay?"');
     scene.text('Kolka\'s eyes finally come to rest on your face, looking confidently at you confidently now. You can tell there\'s love in his eyes and this vulnerability you\'ve shown really means something to him and your relationship with him. "Okay!" he says with an enthusiastic smile.');
@@ -306,7 +299,6 @@ function enterBrothershowerlook(s: GameState, scene: SceneBuilder): void {
       { label: 'Ask if he wants to shower with you', goto: ['brother_voyeur', 'brother_shower_together_ask'] },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Ask him about his day', handler: (st: GameState) => {
     (st as any).brothershowerdaytalk = (Math.floor(Math.random() * 3) + 1);
@@ -352,7 +344,6 @@ function enterBrothershowerlook(s: GameState, scene: SceneBuilder): void {
     (st as any).brothershowerfriendtalk = (Math.floor(Math.random() * 3) + 1);
     scene.img('images/shared/home/bathroom/brothershowertalk.mp4');
     if (((st as any).brotherQW ?? 0)?.['shower_talk'] < 10) {
-      // TODO-QSP: dynamic text: He cheerfully talks to you about him and his friends and what mischief they get ...
       scene.text(`He cheerfully talks to you about him and his friends and what mischief they get up to together, shamelessly taking long appreciative looks at your ${(((st as any).pc_desc ?? 0)?.['pubes'] ?? '')} pussy at random intervals of the conversation. Not that it matters to you. Where he wants to look is his business. After all, you're the one who invited him in, you can hardly complain now. You're just happy to be spending some quality time with him.`);
     } else {
       scene.text('He cheerfully talks to you about him and his friends and what mischief they get up to together, only looking at your pussy when his attention is inadvertently drawn by you washing between your legs. For the most part, he seems more engaged in the conversation than your naked body.');
@@ -380,14 +371,11 @@ function enterDayTalk(s: GameState, scene: SceneBuilder): void {
     scene.text('"That\'s always good to hear!" you reply.');
   } else {
     if (((s as any).brother_shower ?? 0)?.['talk'] === 2) {
-      // TODO-QSP: dynamic text: "… so, yeah. <<$npc_nickname[''A29'']>> wants me to clean up my stuff on the cou...
       scene.text(`"… so, yeah. ${(((s as any).npc_nickname ?? 0)?.['A29'] ?? '')} wants me to clean up my stuff on the couch, but if I'm going to sleep there anyways, why does it matter?" he asks, snapping you out of your idle thoughts and bringing you back to the room.`);
       if (((s as any).npc_rel ?? 0)?.['A29'] >= 40) {
-        // TODO-QSP: dynamic text: "I know it seems pointless but you should listen to <<$npc_nickname[''A29'']>>. ...
         scene.text(`"I know it seems pointless but you should listen to ${(((s as any).npc_nickname ?? 0)?.['A29'] ?? '')}. You'll get in trouble otherwise," you admonish him.`);
       } else {
         if (((s as any).npc_rel ?? 0)?.['A29'] < 40) {
-          // TODO-QSP: dynamic text: "Ugh, I know! <<$npc_nickname[''A29'']>> is always nagging me about everything! ...
           scene.text(`"Ugh, I know! ${(((s as any).npc_nickname ?? 0)?.['A29'] ?? '')} is always nagging me about everything! She can be such a pain in the ass sometimes!" you `);
         }
       }
@@ -404,7 +392,6 @@ function enterDayTalk(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -434,7 +421,6 @@ function enterSchoolTalk(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -449,10 +435,8 @@ function enterFriendTalk(s: GameState, scene: SceneBuilder): void {
       scene.text('"<i>Excuse me?</i> You were planning to do <i>what</i> with my underwear??" you say, sternly staring at him while he twiddles his thumbs and tries to pretend he didn\'t say anything.');
     } else {
       if (((s as any).brother_shower ?? 0)?.['talk'] === 3) {
-        // TODO-QSP: dynamic text: "I wish I had more time to play football with Zhendos and Mishan though," he say...
         scene.text(`"I wish I had more time to play football with Zhendos and Mishan though," he says, snapping you out of your idle thoughts and bringing you back to the room. "I can't do anything with them when ${(((s as any).npc_nickname ?? 0)?.['A29'] ?? '')} is dragging us to Gadukino every other weekend."`);
         if ((!((s as any).seepornofut ?? 0))) {
-          // TODO-QSP: dynamic text: "It''s okay Kolka," you console him. "Just enjoy the time you have with them. In...
           scene.text(`"It's okay Kolka," you console him. "Just enjoy the time you have with them. In a couple years ${(((s as any).npc_nickname ?? 0)?.['A29'] ?? '')} might not force you to go anymore but you all might end up too busy to hang out."`);
         } else {
           if (((s as any).seepornofut ?? 0) >= 1) {
@@ -463,7 +447,6 @@ function enterFriendTalk(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -477,9 +460,7 @@ function enterBrotherShowerTogetherAsk(s: GameState, scene: SceneBuilder): void 
   scene.text('"Why don\'t we save some water? Want to jump in with me while we talk?"');
   scene.text('Kolka\'s eyes go wide at your suggestion. "Woah… R-really…?" he asks in disbelief.');
   scene.text('"What, a girl can\'t take shower with her younger brother?" you grin. "What is the world coming to?"');
-  // TODO-QSP: dynamic text: "But what if <<$npc_nickname[''A29'']>> finds out?" he asks hesitantly.
   scene.text(`"But what if ${(((s as any).npc_nickname ?? 0)?.['A29'] ?? '')} finds out?" he asks hesitantly.`);
-  // TODO-QSP: end
   scene.actions([
     { label: 'Maybe he\'s right, it\'s risky', goto: ['brother_voyeur', 'brothershowerlook'] },
     { label: 'Just close the latch', handler: (st: GameState) => {
@@ -507,7 +488,6 @@ function enterBrotherShowerTogetherAsk(s: GameState, scene: SceneBuilder): void 
   } },
     { label: '', labelFn: (s: GameState) => 'Fuck ' + String((((s as any).npc_nickname ?? 0)?.['A29'] ?? '') ?? '') + '!', handler: (st: GameState) => {
     scene.img('images/shared/home/bathroom/brothertalkbusy.jpg');
-    // TODO-QSP: dynamic text: "Fuck <<$npc_nickname[''A29'']>>!" you scoff. "I don''t care if she finds you in...
     scene.text(`"Fuck ${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')}!" you scoff. "I don't care if she finds you in here with your cock up my ass, I'll do what I want! Now are you going to get in here with me or what?"`);
     scene.text('He hesitates for a moment and you can see he\'s still conflicted but in the end his baser instincts win and he starts to undress, already sporting a fine erection from your description of anal sex with him.');
     scene.actions([
@@ -538,7 +518,6 @@ function enterBrotherShowerTogetherFirst(s: GameState, scene: SceneBuilder): voi
   } },
       { label: 'Compliment his cock', handler: (st: GameState) => {
     scene.img('images/shared/home/bathroom/brothershower.jpg');
-    // TODO-QSP: dynamic text: You look straight at his hard <<dick>>cm cock, completely unashamed, saying, "He...
     scene.text(`You look straight at his hard ${((st as any).dick ?? '')}cm cock, completely unashamed, saying, "Hey, you're pretty big for a little brother, you know that?"`);
     scene.text('He blushes hard and covers himself.');
     scene.text('"Don\'t be like that!" you grin at him and playfully punch his arm. "I\'m telling you you\'ve got a nice dick!"');
@@ -550,7 +529,6 @@ function enterBrotherShowerTogetherFirst(s: GameState, scene: SceneBuilder): voi
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Just ignore it', handler: (st: GameState) => {
     scene.img('images/shared/home/bathroom/brothershower.jpg');
@@ -629,7 +607,6 @@ function enterBrotherShowerTogether(s: GameState, scene: SceneBuilder): void {
         { label: 'Blow him', goto: ['brother_shower_sex', 'brother_shower_bj'] },
       ]);
     } else {
-      // TODO-QSP: dynamic text: Looking at Kolka, he glances back at you to see a mischievous twinkle in your ey...
       scene.text(`Looking at Kolka, he glances back at you to see a mischievous twinkle in your eye. Without a second's thought or warning, you get on your knees and wrap your lips around his ${((st as any).dick ?? '')} cm cock.`);
       scene.actions([
         { label: 'Blow him', goto: ['brother_shower_sex', 'brother_shower_bj'] },
@@ -639,7 +616,6 @@ function enterBrotherShowerTogether(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Talk while you shower', handler: (st: GameState) => {
     scene.actions([
@@ -746,7 +722,6 @@ function enterBrotherWashFirst(s: GameState, scene: SceneBuilder): void {
   scene.text('"Don\'t be like that!" you say. "You\'re doing me a favor and I know that means I have to pay the \'play with boobs\' tax. So cheer up kiddo!" you say, putting his free hand back on your breast and squeezing with his hand. He seems to perk up a bit at that.');
   scene.text('"Besides, you wash my back I\'ll wash yours. I might just cop a feel myself," you whisper, firmly grabbing his cock and lathering it with the leftover soap on your hand. With that, you turn your back to him, saying, "So do you want to wash each other or not?" He nods eagerly. "Then let\'s get started!"');
   (s as any).brotherwash = ((s as any).brotherwash ?? 0) + (1);
-  // TODO-QSP: end
   scene.actions([
     { label: 'Wash each other (0:05)', goto: ['brother_voyeur', 'brother_wash'] },
   ]);
@@ -770,15 +745,12 @@ function enterBrotherWash(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'end');
   if ((((s as any).pcs_leghair ?? 0) > 3  ||  ((s as any).pcs_pubes ?? 0) > 3)  &&  ((s as any).brotherQW ?? 0)?.['shave_day'] < ((s as any).daystart ?? 0)) {
     if (((s as any).pcs_leghair ?? 0) > 3  &&  ((s as any).pcs_pubes ?? 0) > 3) {
-      // TODO-QSP: dynamic text: As you rinse off, your brother gives a meaningful look at your lower body and yo...
       scene.text(`As you rinse off, your brother gives a meaningful look at your lower body and you follow his gaze to your ${(((s as any).pc_desc ?? 0)?.['legs'] ?? '')} legs and ${(((s as any).pc_desc ?? 0)?.['pubes'] ?? '')} pussy.`);
     } else {
       if (((s as any).pcs_leghair ?? 0) > 3  &&  ((s as any).pcs_pubes ?? 0) < 3) {
-        // TODO-QSP: dynamic text: As you rinse off, your brother gives a meaningful look at your lower body and yo...
         scene.text(`As you rinse off, your brother gives a meaningful look at your lower body and you follow his gaze to your ${(((s as any).pc_desc ?? 0)?.['legs'] ?? '')} legs.`);
       } else {
         if (((s as any).pcs_leghair ?? 0) < 3  &&  ((s as any).pcs_pubes ?? 0) > 3) {
-          // TODO-QSP: dynamic text: As you rinse off, your brother gives a meaningful look at your lower body and yo...
           scene.text(`As you rinse off, your brother gives a meaningful look at your lower body and you follow his gaze to your ${(((s as any).pc_desc ?? 0)?.['pubes'] ?? '')} pussy.`);
         }
       }
@@ -865,7 +837,6 @@ function enterBrotherWash(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Finish showering', goto: ['brother_voyeur', 'brother_shower_end'] },
   ]);
@@ -907,7 +878,6 @@ function enterBrotherShowerShave(s: GameState, scene: SceneBuilder): void {
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterShavePussy(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -920,7 +890,6 @@ function enterShaveAlternatives(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Finish showering together', goto: ['brother_voyeur', 'brother_shower_end'] },
   ]);
@@ -930,6 +899,7 @@ function enterShaveAlternatives(s: GameState, scene: SceneBuilder): void {
 function enterShaveBoth(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_leghair ?? 0) > 3  &&  ((s as any).pcs_pubes ?? 0) > 3) {
     if (((s as any).mc_inventory ?? 0)?.['razor'] < ((s as any).razors_to_use ?? 0)?.['all']) {
+      alert('As you pick up your razor, you realize that it\'s probably only sharp enough for one more use. You\'ll have to decide between a ' + (((s as any).pc_desc ?? 0)?.['pubes']) + ' pussy or ' + (((s as any).pc_desc ?? 0)?.['legs']) + ' legs.');
     } else {
       scene.actions([
         { label: 'Shave your legs and pussy (0:15)', handler: (st: GameState) => {
@@ -977,7 +947,6 @@ function enterShaveBoth(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -994,7 +963,7 @@ function enterShaveLegs(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/home/bathroom/shave2.jpg');
     scene.text('You lather up your legs and then start carefully shaving them.');
     if (((st as any).pcs_pubes ?? 0) > 3) {
-      // TODO-QSP: 'Kolka frowns. "You''re not going to shave your '+iif(pcs_pubes <= 20, 'pussy?"', 'bush?"')
+      scene.text('Kolka frowns. "You\'re not going to shave your ' + ((((st as any).pcs_pubes ?? 0) <= 20) ? ('pussy?"') : ('bush?"')));
       if (((st as any).mc_inventory ?? 0)?.['razor'] < ((st as any).razors_to_use ?? 0)?.['pussy']) {
         scene.actions([
           { label: '"I can\'t. Razor\'s gone dull"', handler: (st: GameState) => {
@@ -1023,10 +992,10 @@ function enterShaveLegs(s: GameState, scene: SceneBuilder): void {
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterShowerEnd(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
         { label: 'I guess I did', handler: (st: GameState) => {
-    // TODO-QSP: brother_shower['shave_request'] = 1
+    ((st as any).brother_shower = (st as any).brother_shower ?? {})['shave_request'] = 1;
   }, goto: ['brother_voyeur', 'brother_shower_shave'] },
         { label: 'Oh alright', handler: (st: GameState) => {
-    // TODO-QSP: brother_shower['shave_request'] = 2
+    ((st as any).brother_shower = (st as any).brother_shower ?? {})['shave_request'] = 2;
   }, goto: ['brother_voyeur', 'brother_shower_shave'] },
       ]);
     } else {
@@ -1055,10 +1024,10 @@ function enterShaveLegs(s: GameState, scene: SceneBuilder): void {
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterShowerEnd(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
         { label: 'I guess I did', handler: (st: GameState) => {
-    // TODO-QSP: brother_shower['shave_request'] = 1
+    ((st as any).brother_shower = (st as any).brother_shower ?? {})['shave_request'] = 1;
   }, goto: ['brother_voyeur', 'brother_shower_shave'] },
         { label: 'Oh alright', handler: (st: GameState) => {
-    // TODO-QSP: brother_shower['shave_request'] = 2
+    ((st as any).brother_shower = (st as any).brother_shower ?? {})['shave_request'] = 2;
   }, goto: ['brother_voyeur', 'brother_shower_shave'] },
       ]);
     }
@@ -1078,10 +1047,10 @@ function enterShaveLegs(s: GameState, scene: SceneBuilder): void {
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterShowerEnd(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
           { label: 'I guess I did', handler: (st: GameState) => {
-    // TODO-QSP: brother_shower['shave_request'] = 1
+    ((st as any).brother_shower = (st as any).brother_shower ?? {})['shave_request'] = 1;
   }, goto: ['brother_voyeur', 'brother_shower_shave'] },
           { label: 'Oh alright', handler: (st: GameState) => {
-    // TODO-QSP: brother_shower['shave_request'] = 2
+    ((st as any).brother_shower = (st as any).brother_shower ?? {})['shave_request'] = 2;
   }, goto: ['brother_voyeur', 'brother_shower_shave'] },
         ]);
       } else {
@@ -1142,7 +1111,6 @@ function enterShaveLegs(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1252,7 +1220,6 @@ function enterShavePussy(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1338,7 +1305,6 @@ function enterShowerfun(s: GameState, scene: SceneBuilder): void {
     scene.text('Feeling turned on from your brother\'s hands on you, you lean back into him, teasingly handling his package. He responds in kind, fondling your breasts, eliciting moans when he pinches your nipples.');
     qspCall(s, 'brother_shower_sex', 'sex_menu');
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1353,7 +1319,6 @@ function enterBrotherShowerEnd(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'cum_cleanup', '');
   scene.img('images/locations/pavlovsk/resident/apartment/home/vanrpar.jpg');
   scene.text('The two of you now feeling fresh and clean, you turn off the water and step out.');
-  // TODO-QSP: end
   scene.actions([
     { label: '"Did you have fun?"', handler: (st: GameState) => {
     scene.text('You help towel him off since he needs to leave before you anyways to prevent suspicion and soon he stands dry before you. And you, still nude and dripping.');
@@ -1404,12 +1369,10 @@ function enterAssCompliment(s: GameState, scene: SceneBuilder): void {
   (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (1);
   scene.img('images/shared/home/bathroom/ass_compliment.mp4');
   scene.text('While you\'re shampooing your hair, your brother decides to speak up about something.');
-  // TODO-QSP: dynamic text: "Hey <<$pcs_nickname>>. Can I say something?"
   scene.text(`"Hey ${((s as any).pcs_nickname ?? '')}. Can I say something?"`);
   scene.text('"Hmm? Sure, what is it Kolka?"');
   scene.text('"You have a great ass!"');
   scene.text('Feeling his smile radiating from behind you, you look over your shoulder and give him a grin and a little shake of your ass to show your appreciation for his compliment.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['brother_voyeur', 'shave'] },
   ]);
@@ -1425,15 +1388,12 @@ function enterShave(s: GameState, scene: SceneBuilder): void {
     scene.text('You\'re rinsing off when you notice Kolka staring at your legs and what\'s between them.');
     scene.text('"Excuse me?" you ask him pointedly. "Can I help you with something?"');
     if (((s as any).pcs_pubes ?? 0) < 11  &&  ((s as any).pcs_leghair ?? 0) > 3) {
-      // TODO-QSP: dynamic text: His lips twisted in thought, he says, "You''re looking kind of stubbly down ther...
       scene.text(`His lips twisted in thought, he says, "You're looking kind of stubbly down there." You follow his gaze to look at your ${(((s as any).pc_desc ?? 0)?.['legs'] ?? '')} legs and pussy. "Aren't you going to shave?"`);
     } else {
       if (((s as any).pcs_pubes ?? 0) >= 11  &&  ((s as any).pcs_pubes ?? 0) < 21  &&  ((s as any).pcs_leghair ?? 0) > 3) {
-        // TODO-QSP: dynamic text: His lips twisted in thought, he says, "You''re growing a bit of a bush down ther...
         scene.text(`His lips twisted in thought, he says, "You're growing a bit of a bush down there." You follow his gaze to look at your ${(((s as any).pc_desc ?? 0)?.['legs'] ?? '')} legs and your trimmed pussy hair. "Looks like your legs are growing grass to match. Aren't you going to shave?"`);
       } else {
         if (((s as any).pcs_pubes ?? 0) >= 21  &&  ((s as any).pcs_leghair ?? 0) > 3) {
-          // TODO-QSP: dynamic text: His lips twisted in thought, he says, "That bush you''ve got is looking more lik...
           scene.text(`His lips twisted in thought, he says, "That bush you've got is looking more like a forest right now." You follow his gaze to look at your ${(((s as any).pc_desc ?? 0)?.['legs'] ?? '')} legs and the thick bush of pubic hair that covers your pussy. "Plus it looks like your legs are growing grass to match. Aren't you going to shave?"`);
         } else {
           if (((s as any).pcs_leghair ?? 0) <= 3  &&  ((s as any).pcs_pubes ?? 0) < 11) {
@@ -1446,7 +1406,6 @@ function enterShave(s: GameState, scene: SceneBuilder): void {
                 scene.text('His lips twisted in thought, he says, "That bush you\'ve got is looking more like a forest right now." You follow his gaze to look at the thick bush of pubic hair that covers your pussy.');
               } else {
                 if (((s as any).pcs_leghair ?? 0) > 3  &&  ((s as any).pcs_pubes ?? 0) <= 3) {
-                  // TODO-QSP: dynamic text: His lips twisted in thought, he says, "You''re looking a little hairy down there...
                   scene.text(`His lips twisted in thought, he says, "You're looking a little hairy down there." You follow his gaze to look at your ${(((s as any).pc_desc ?? 0)?.['legs'] ?? '')} legs. "Aren't you going to shave?"`);
                 }
               }
@@ -1467,6 +1426,7 @@ function enterShave(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       if (((s as any).pcs_leghair ?? 0) > 3  &&  ((s as any).pcs_pubes ?? 0) > 3  &&  ((s as any).mc_inventory ?? 0)?.['razor'] < ((s as any).razors_to_use ?? 0)?.['all']) {
+        alert('As you pick up your razor, you realize that it\'s probably only sharp enough for shaving one set of things. If you want to shave you\'ll have to decide between keeping a ' + (((s as any).pc_desc ?? 0)?.['pubes']) + ' pussy or ' + (((s as any).pc_desc ?? 0)?.['legs']) + ' legs.');
       }
       if (((s as any).pcs_pubes ?? 0) < 21) {
         scene.actions([
@@ -1823,7 +1783,6 @@ function enterShave(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1832,9 +1791,7 @@ function enterShaveNotDone(s: GameState, scene: SceneBuilder): void {
   scene.text('Kolka on the other hand, frowns in dissatisfaction.');
   scene.text('"What do you mean? You\'re not done?"');
   scene.text('"Uhh, yeah I am. This is the way I like my pubic hair."');
-  // TODO-QSP: dynamic text: "You''re <i>supposed</i> to shave everything clean <<$pcs_nickname>>."
   scene.text(`"You're <i>supposed</i> to shave everything clean ${((s as any).pcs_nickname ?? '')}."`);
-  // TODO-QSP: end
   scene.actions([
     { label: 'Roll your eyes', handler: (st: GameState) => {
     scene.text('"Oh Kolka," you roll your eyes. "If you think that every girl out there is going to keep it smooth, you\'re going to be in for a rude surprise."');
@@ -1901,9 +1858,7 @@ function enterDryoff(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Dry off and stay to use the mirror', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/apartment/home/vanrpar.jpg');
-    // TODO-QSP: dynamic text: "I don''t mean to kick you out Kolka but I''ve gotta brush my hair and stuff. I ...
     scene.text(`"I don't mean to kick you out Kolka but I've gotta brush my hair and stuff. I don't want ${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')} and dad to start wondering where you are so why don't you go on out ahead?"`);
-    // TODO-QSP: dynamic text: "Okay. I''ll see you later <<$pcs_nickname>>!" he says before slipping out the d...
     scene.text(`"Okay. I'll see you later ${((st as any).pcs_nickname ?? '')}!" he says before slipping out the door and closing it behind him.`);
     scene.text('You smile faintly and go back to making sure you\'re wiped dry.');
     (st as any).minut = ((st as any).minut ?? 0) + 10;
@@ -1923,18 +1878,15 @@ function enterDryoff(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterShowertalkbusy(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/home/bathroom/brothertalk1.jpg');
   scene.text('You see your brother spying on you through the crack in the door again. When you make eye contact with him, he opens it up a bit to talk to you.');
-  // TODO-QSP: dynamic text: "<<$pcs_nickname>>," he whispers. "Can I come in?"
   scene.text(`"${((s as any).pcs_nickname ?? '')}," he whispers. "Can I come in?"`);
   scene.text('"Did you want to talk right now?" He nods furiously and starts to widen the door to come in you stop him. "I\'m sorry Kolka! I\'m kind of busy today, I don\'t have time to take a longer shower right now. Maybe next time, okay?" you say apologetically.');
   scene.text('"Oh, okay…" he says dejectedly before closing the door and leaving you to finish your shower. You feel bad, but you really just don\'t have time for him right now.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Get out and dry off', handler: (st: GameState) => {
     dynamicGoto(st, 'prevLoc');
@@ -1944,7 +1896,6 @@ function enterShowertalkbusy(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGetFrisky(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: end
   scene.actions([
     { label: 'Get frisky', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'foreplay', 1, 'incest');
@@ -1957,13 +1908,11 @@ function enterGetFrisky(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterShowerEnd(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: end
   scene.actions([
     { label: 'Finish showering together', goto: ['brother_voyeur', 'brother_shower_end'] },
     { label: 'Cheer him up', handler: (st: GameState) => {
     scene.img('images/shared/sex/shower/finger1.mp4');
     scene.text('"Oh don\'t be like that Kolka," you say, gently taking his hand. "I can\'t have you being all pouty on me. I guess your big sister will have to do something about that."');
-    // TODO-QSP: dynamic text: You pull his hand over to your pussy, rubbing his fingers up against your clit. ...
     scene.text(`You pull his hand over to your pussy, rubbing his fingers up against your clit. He jumps at the opportunity, immediately sticking his fingers inside and fingerblasting you. You smile at his eagerness. Doesn't seem bothered by your ${(((st as any).pc_desc ?? 0)?.['pubes'] ?? '')} pussy now…`);
     qspCall(st, 'brother_shower_sex', 'sex_menu');
   } },
@@ -1972,7 +1921,6 @@ function enterShowerEnd(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterShowerEnd_2(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: end
   scene.actions([
     { label: 'Finish showering together', goto: ['brother_voyeur', 'brother_shower_end'] },
     { label: 'Have some fun', handler: (st: GameState) => {
@@ -1996,7 +1944,6 @@ function enterBrotherGoAway(s: GameState, scene: SceneBuilder): void {
   scene.text('You shriek, covering your pussy and breasts with both hands. " What the <i>fuck</i> Kolka!? Get the fuck out of here!"');
   scene.text('Caught red-handed, Kolka slams the door and runs away. You finish showering quietly and dry yourself off.');
   qspCall(s, 'brother_shower_sex', 'brother_shower_finish');
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -2010,7 +1957,6 @@ function enterBrotherGoAway2(s: GameState, scene: SceneBuilder): void {
   scene.text('Caught red-handed, Kolka backs away slowly and the door clicks shut.');
   scene.text('<i>Ugh, boys…</i> you think to yourself, rolling your eyes in annoyance. You finish showering and dry yourself off.');
   qspCall(s, 'brother_shower_sex', 'brother_shower_finish');
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -2027,7 +1973,6 @@ function enterBrotherVoyeurEnd(s: GameState, scene: SceneBuilder): void {
   scene.text('You feel uncomfortable and ashamed, but smile at recalling his wide open eyes, his flushed face and red ears and how they increased the more you decided to tease him.');
   qspCall(s, 'arousal', 'end');
   qspCall(s, 'brother_shower_sex', 'brother_shower_finish');
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -2050,7 +1995,6 @@ function enterBrotherVoyeurEv1(s: GameState, scene: SceneBuilder): void {
       { label: 'Play with your tits', goto: ['brother_voyeur', 'brother_voyeur_ev2'] },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Wipes', goto: ['brother_voyeur', 'brother_voyeur_end'] },
   ]);
@@ -2065,7 +2009,6 @@ function enterBrotherVoyeurEv2(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'npc_relationship', 'modify', 'A34', (Math.floor(Math.random() * 2) + 1));
   }
   scene.img(`images/characters/pavlovsk/resident/kolka/event/shower/c (${((s as any).picrand ?? '')}).jpg`);
-  // TODO-QSP: dynamic text: You turn to face the door, giving Kolka a better view of your body and then erot...
   scene.text(`You turn to face the door, giving Kolka a better view of your body and then erotically squeeze your ${((s as any).titsize ?? '')} tits. Your fingers graze over your ${(((s as any).pc_desc ?? 0)?.['nipples'] ?? '')} nipples and you can't help but give them a slight pinch. You reach for the detachable showerhead and begin spraying water over your chest, all the way gazing at your awestruck sibling. You close your eyes and in the heat of the moment, your heart flutters and you let out a light moan.`);
   qspCall(s, 'arousal', 'foreplay', 3, 'incest');
   qspCall(s, 'stat', '');
@@ -2079,7 +2022,6 @@ function enterBrotherVoyeurEv2(s: GameState, scene: SceneBuilder): void {
       { label: 'Direct the water at your pussy', goto: ['brother_voyeur', 'brother_voyeur_ev3'] },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue your shower', goto: ['brother_voyeur', 'brother_voyeur_end'] },
   ]);
@@ -2098,7 +2040,6 @@ function enterBrotherVoyeurEv3(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'mood', 'raise', 'small');
   scene.img(`images/characters/pavlovsk/resident/kolka/event/shower/d (${((s as any).picrand ?? '')}).jpg`);
-  // TODO-QSP: dynamic text: You move your feet a little wider apart and move the showerhead down your body u...
   scene.text(`You move your feet a little wider apart and move the showerhead down your body until it hovers just over your aching pussy. The spray of water is intense against your oh-so-sensitive lips and ${(((s as any).pc_desc ?? 0)?.['clit'] ?? '')} clit. It doesn't take long before the sensation is too much and you orgasm - wave after wave hitting your entire body, you bite down on your tongue to muffle your moans, but are unable to keep completely silent; the occasional gasp escaping your lips.`);
   (s as any).orgasm_or = 'no';
   qspCall(s, 'arousal', 'clit_vibe', (-5), 'incest', 'masturbate');
@@ -2107,7 +2048,6 @@ function enterBrotherVoyeurEv3(s: GameState, scene: SceneBuilder): void {
   (s as any).orgasm_or = 'custom';
   qspCall(s, 'arousal', 'clit_vibe', 5, 'incest', 'masturbate');
   qspCall(s, 'arousal', 'end');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Dry yourself off', goto: ['brother_voyeur', 'brother_voyeur_end'] },
   ]);
@@ -2129,7 +2069,6 @@ function enterBrotherVoyeurEv3_2(s: GameState, scene: SceneBuilder): void {
   scene.text('After you gesture for Kolka to enter the room, he closes the latch on the door.');
   if (((s as any).brotherQW ?? 0)?.['know_not_virgin']) {
     scene.text('"I dreamed about this, you know," he says, quickly shedding his clothing before stepping into the shower.');
-    // TODO-QSP: dynamic text: You turn your ass to Kolka as he strokes his hardening <<npc_dick[''A34'']>> cm ...
     scene.text(`You turn your ass to Kolka as he strokes his hardening ${(((s as any).npc_dick ?? 0)?.['A34'] ?? '')} cm long member, before guiding it into your waiting pussy.`);
   } else {
     ((s as any).brotherQW = (s as any).brotherQW ?? {})['know_not_virgin'] = 1;
@@ -2140,7 +2079,6 @@ function enterBrotherVoyeurEv3_2(s: GameState, scene: SceneBuilder): void {
       ((s as any).brotherQW = (s as any).brotherQW ?? {})['virgin_think_took'] = 1;
       scene.text('"Yes, I am," you nod to him. "You will be my first, little brother."');
       scene.text('He takes a deep breath to sort himself before shedding his clothes and stepping into the shower.');
-      // TODO-QSP: dynamic text: You turn your ass to Kolka as he strokes his hardening <<npc_dick[''A34'']>> cm ...
       scene.text(`You turn your ass to Kolka as he strokes his hardening ${(((s as any).npc_dick ?? 0)?.['A34'] ?? '')} cm long member, before guiding it into your waiting pussy.`);
       if (((s as any).stat ?? 0)?.['hidden_vaginal'] > 0) {
         scene.text('To your surprise his entry in your pussy does not cause you any pain. Of course you have heard about stories that say it didn\'t hurt, but you always thought it fake. You feel lucky to be wrong about that.');
@@ -2148,7 +2086,6 @@ function enterBrotherVoyeurEv3_2(s: GameState, scene: SceneBuilder): void {
         scene.text('You feel a small, sharp pain between your legs, like a needle, but it quickly fades. You turn your head to look back at Kolka, his expression pure rapture.');
       }
     } else {
-      // TODO-QSP: dynamic text: You turn your ass to Kolka as he strokes his hardening <<npc_dick[''A34'']>> cm ...
       scene.text(`You turn your ass to Kolka as he strokes his hardening ${(((s as any).npc_dick ?? 0)?.['A34'] ?? '')} cm long member, before guiding it into your waiting pussy.`);
       if (((s as any).npc_dick ?? 0)?.['A34'] > ((s as any).pcs_vag ?? 0)) {
         scene.text('Kolka\'s dick causes you to flinch a little as your pussy stretches to accept his size.');
@@ -2161,12 +2098,9 @@ function enterBrotherVoyeurEv3_2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('Your brother quickly starts to move his cock inside of you and it doesn\'t take you long to start feeling the oncoming waves of an orgasm. You suddenly grasp at his hands around your hips as you\'re overtaken by a powerful climax. Your pussy pulsates as your walls clamp down around Kolka\'s cock; your greedy, hungry box wanting every drop of your brother\'s cum. A few seconds later, Kolka joins you in orgasm as he shoots his load deep inside of you.');
   qspCall(s, 'cuminsidereact', '');
-  // TODO-QSP: dynamic text: The two of you stay latched together for a few more seconds. You finally release...
   scene.text(`The two of you stay latched together for a few more seconds. You finally release Kolka's hands and he slowly withdraws his softening penis. You turn to face your younger sibling, the two of you blushing as your eyes meet. Kolka grins, "Thank you, ${((s as any).pcs_nickname ?? '')}. You've made me very happy."`);
-  // TODO-QSP: dynamic text: Kolka steps out of the shower and begins to dry off. You stay under the water, s...
   scene.text(`Kolka steps out of the shower and begins to dry off. You stay under the water, still somewhat out of breath, as he gets dressed. He heads for the bathroom door, checking momentarily to see if the coast is clear, before turning back to you one last time, "Thanks again, ${((s as any).pcs_nickname ?? '')}, I really mean it."`);
   scene.text('"That was one of the best thing I have ever done. Thank you!" he says, then he quietly listens at the door for any movement outside, opens the door and leave you alone.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Finish your shower', goto: ['brother', 'brother_sex_end'] },
   ]);

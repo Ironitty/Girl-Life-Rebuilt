@@ -1,4 +1,4 @@
-import type { QspLocation, QspNode, QspScene, QspIf, QspAct, QspText, QspImage, QspAssign, QspGoto, QspGsCall, QspTime, QspSetup, QspExit, QspUnknown } from './ast';
+import type { QspLocation, QspNode, QspScene, QspIf, QspWhile, QspAct, QspText, QspImage, QspAssign, QspGoto, QspGsCall, QspTime, QspSetup, QspExit, QspJump, QspLabel, QspUnknown } from './ast';
 
 export interface GenResult {
   code: string;
@@ -15,6 +15,247 @@ export interface GenResult {
 
 const metrics = { dynamicText: 0, fallbackCount: 0 };
 let currentLocName = 'unknown';
+
+function findJumpsInBody(nodes: QspNode[], labelName: string): boolean {
+  for (const node of nodes) {
+    if (node.kind === 'jump' && node.label === labelName) return true;
+    if (node.kind === 'if') {
+      if (findJumpsInBody(node.thenBody, labelName) || findJumpsInBody(node.elseBody, labelName)) return true;
+    } else if (node.kind === 'scene') {
+      if (findJumpsInBody(node.body, labelName)) return true;
+    } else if (node.kind === 'act') {
+      if (findJumpsInBody(node.body, labelName)) return true;
+    } else if (node.kind === 'while' || node.kind === 'dowhile') {
+      if (findJumpsInBody(node.body, labelName)) return true;
+    }
+  }
+  return false;
+}
+
+function replaceJumpsWithContinue(nodes: QspNode[], labelName: string): QspNode[] {
+  const result: QspNode[] = [];
+  for (const node of nodes) {
+    if (node.kind === 'jump' && node.label === labelName) {
+      result.push({ kind: 'continue' });
+    } else if (node.kind === 'if') {
+      result.push({ ...node, thenBody: replaceJumpsWithContinue(node.thenBody, labelName), elseBody: replaceJumpsWithContinue(node.elseBody, labelName) });
+    } else if (node.kind === 'scene') {
+      result.push({ ...node, body: replaceJumpsWithContinue(node.body, labelName) });
+    } else if (node.kind === 'act') {
+      result.push({ ...node, body: replaceJumpsWithContinue(node.body, labelName) });
+    } else if (node.kind === 'while' || node.kind === 'dowhile') {
+      result.push({ ...node, body: replaceJumpsWithContinue(node.body, labelName) });
+    } else {
+      result.push(node);
+    }
+  }
+  return result;
+}
+
+function replaceJumpsWithBreak(nodes: QspNode[], labelName: string): QspNode[] {
+  const result: QspNode[] = [];
+  for (const node of nodes) {
+    if (node.kind === 'jump' && node.label === labelName) {
+      result.push({ kind: 'break' });
+    } else if (node.kind === 'if') {
+      result.push({ ...node, thenBody: replaceJumpsWithBreak(node.thenBody, labelName), elseBody: replaceJumpsWithBreak(node.elseBody, labelName) });
+    } else if (node.kind === 'scene') {
+      result.push({ ...node, body: replaceJumpsWithBreak(node.body, labelName) });
+    } else if (node.kind === 'act') {
+      result.push({ ...node, body: replaceJumpsWithBreak(node.body, labelName) });
+    } else if (node.kind === 'while' || node.kind === 'dowhile') {
+      result.push({ ...node, body: replaceJumpsWithBreak(node.body, labelName) });
+    } else {
+      result.push(node);
+    }
+  }
+  return result;
+}
+
+function replaceJumpsWithAssign(nodes: QspNode[], labelName: string, flagName: string): QspNode[] {
+  const result: QspNode[] = [];
+  for (const node of nodes) {
+    if (node.kind === 'jump' && node.label === labelName) {
+      result.push({ kind: 'assign', var: flagName, op: '=', value: 'true' });
+    } else if (node.kind === 'if') {
+      result.push({ ...node, thenBody: replaceJumpsWithAssign(node.thenBody, labelName, flagName), elseBody: replaceJumpsWithAssign(node.elseBody, labelName, flagName) });
+    } else if (node.kind === 'scene') {
+      result.push({ ...node, body: replaceJumpsWithAssign(node.body, labelName, flagName) });
+    } else if (node.kind === 'act') {
+      result.push({ ...node, body: replaceJumpsWithAssign(node.body, labelName, flagName) });
+    } else if (node.kind === 'while' || node.kind === 'dowhile') {
+      result.push({ ...node, body: replaceJumpsWithAssign(node.body, labelName, flagName) });
+    } else {
+      result.push(node);
+    }
+  }
+  return result;
+}
+
+// Detects cross-branch goto: an if whose thenBody has jumps to label L,
+// and whose elseBody is a single if whose thenBody starts with label L.
+function detectCrossBranchGoto(node: QspIf): { labelName: string; innerIf: QspIf } | null {
+  if (node.elseBody.length !== 1 || node.elseBody[0].kind !== 'if') return null;
+  const innerIf = node.elseBody[0] as QspIf;
+  if (innerIf.thenBody.length === 0 || innerIf.thenBody[0].kind !== 'label') return null;
+  const labelName = (innerIf.thenBody[0] as QspLabel).name;
+  if (!findJumpsInBody(node.thenBody, labelName)) return null;
+  return { labelName, innerIf };
+}
+
+function findNextLabelAfter(nodes: QspNode[], startIdx: number, endIdx: number): string | null {
+  for (let i = startIdx; i < endIdx && i < nodes.length; i++) {
+    if (nodes[i].kind === 'label') return (nodes[i] as QspLabel).name;
+  }
+  return null;
+}
+
+function findGotoEndLabels(nodes: QspNode[]): Set<string> {
+  const labels = new Set<string>();
+  for (let i = 0; i < nodes.length; i++) {
+    if (nodes[i].kind === 'label') {
+      const labelName = (nodes[i] as QspLabel).name;
+      // Check if any preceding node has a jump to this label
+      for (let k = 0; k < i; k++) {
+        if (findJumpsInBody([nodes[k]], labelName)) {
+          labels.add(labelName);
+          break;
+        }
+      }
+    }
+  }
+  return labels;
+}
+
+function transformLoops(nodes: QspNode[]): QspNode[] {
+  const result: QspNode[] = [];
+  const gotoEndLabels = findGotoEndLabels(nodes);
+  let i = 0;
+  while (i < nodes.length) {
+    const node = nodes[i];
+    if (node.kind === 'label') {
+      const labelName = node.name;
+      // Goto-end pattern: label has preceding jumps
+      if (gotoEndLabels.has(labelName)) {
+        // Wrap all preceding nodes in while(true) + break
+        const precedingBody: QspNode[] = [];
+        for (let k = 0; k < i; k++) {
+          precedingBody.push(nodes[k]);
+        }
+        const transformedPreceding = transformLoops(precedingBody);
+        const breakBody = replaceJumpsWithBreak(transformedPreceding, labelName);
+        // Add fall-through break so the body runs exactly once (replicates fall-through to label)
+        breakBody.push({ kind: 'break' });
+        // Clear result (preceding nodes were already pushed) and replace with loop
+        result.length = 0;
+        result.push({ kind: 'while', condition: 'true', body: breakBody });
+        result.push(node);
+        i++;
+        continue;
+      }
+      const body: QspNode[] = [];
+      let j = i + 1;
+      let foundJump = false;
+      const jumpConditions: string[] = [];
+      let jumpsAtTop = true;
+      while (j < nodes.length) {
+        const n = nodes[j];
+        // Stop if we encounter another label that has jumps to it in the body
+        if (n.kind === 'label' && findJumpsInBody(body, n.name)) break;
+        if (n.kind === 'if') {
+          // Case 1: if cond: jump 'label'
+          if (n.thenBody.length === 1 && n.thenBody[0].kind === 'jump' && n.thenBody[0].label === labelName && n.elseBody.length === 0) {
+            if (body.length > 0) jumpsAtTop = false;
+            jumpConditions.push(n.condition);
+            foundJump = true;
+            j++;
+            continue;
+          }
+          // Case 2: if cond: ... else: jump 'label'
+          if (n.elseBody.length === 1 && n.elseBody[0].kind === 'jump' && n.elseBody[0].label === labelName) {
+            if (body.length > 0) jumpsAtTop = false;
+            jumpConditions.push(`!(${n.condition})`);
+            foundJump = true;
+            j++;
+            continue;
+          }
+          // Not a jump to this label — push to body and continue
+          body.push(n);
+          j++;
+          continue;
+        }
+        body.push(n);
+        j++;
+      }
+      if (foundJump) {
+        const transformedBody = transformLoops(body);
+        const combinedCond = jumpConditions.join(' || ');
+        // Check if there's a next label after the loop body — jumps to it should become break
+        const nextLabel = findNextLabelAfter(nodes, j, nodes.length);
+        let finalBody = transformedBody;
+        if (nextLabel && findJumpsInBody(transformedBody, nextLabel)) {
+          finalBody = replaceJumpsWithBreak(transformedBody, nextLabel);
+        }
+        if (jumpsAtTop) {
+          result.push({ kind: 'while', condition: combinedCond, body: finalBody });
+        } else {
+          result.push({ kind: 'dowhile', condition: combinedCond, body: finalBody });
+        }
+        i = j;
+      } else if (findJumpsInBody(body, labelName)) {
+        // Jumps exist but are nested inside if/else blocks — use while(true) + break
+        // (jumps target the label which is after the body, so break exits the loop)
+        const transformedBody = transformLoops(body);
+        const continuedBody = replaceJumpsWithBreak(transformedBody, labelName);
+        result.push({ kind: 'while', condition: 'true', body: continuedBody });
+        i = j;
+      } else {
+        result.push(node);
+        i++;
+      }
+    } else {
+      if (node.kind === 'if') {
+        const crossBranch = detectCrossBranchGoto(node);
+        if (crossBranch) {
+          const flagName = '__jumped_' + crossBranch.labelName;
+          const innerIf = crossBranch.innerIf;
+          // Prepend flag init
+          result.push({ kind: 'assign', var: flagName, op: '=', value: 'false' });
+          // Convert jumps to label in thenBody to flag set
+          const outerThenBody = replaceJumpsWithAssign(node.thenBody, crossBranch.labelName, flagName);
+          // Inner if: condition becomes innerCond or flag, thenBody without the label
+          const newInnerIf: QspIf = {
+            kind: 'if',
+            condition: innerIf.condition + ' or ' + flagName,
+            thenBody: innerIf.thenBody.slice(1),
+            elseBody: innerIf.elseBody,
+          };
+          const newOuterIf: QspIf = {
+            kind: 'if',
+            condition: node.condition,
+            thenBody: transformLoops(outerThenBody),
+            elseBody: [transformLoops([newInnerIf])[0]],
+          };
+          result.push(newOuterIf);
+        } else {
+          result.push({ ...node, thenBody: transformLoops(node.thenBody), elseBody: transformLoops(node.elseBody) });
+        }
+      } else if (node.kind === 'scene') {
+        result.push({ ...node, body: transformLoops(node.body) });
+      } else if (node.kind === 'act') {
+        result.push({ ...node, body: transformLoops(node.body) });
+      } else if (node.kind === 'while') {
+        result.push({ ...node, body: transformLoops(node.body) });
+      } else if (node.kind === 'dowhile') {
+        result.push({ ...node, body: transformLoops(node.body) });
+      } else {
+        result.push(node);
+      }
+      i++;
+    }
+  }
+  return result;
+}
 
 export function generateTs(loc: QspLocation): GenResult {
   const todos: string[] = [];
@@ -46,8 +287,11 @@ export function generateTs(loc: QspLocation): GenResult {
     sceneList = [{ kind: 'scene' as const, arg: '', body: loc.topLevel }];
   }
 
+  const transformedScenes = sceneList.map(s => ({ ...s, body: transformLoops(s.body) }));
+  const transformedTopLevel = transformLoops(loc.topLevel);
+
   if (sceneList.length === 1) {
-    const scene = sceneList[0];
+    const scene = transformedScenes[0];
     const body = generateSceneBody(scene.body, todos, unsupported, stateWrites, stateReads, gsCalls, targets, loc.name, {});
     lines.push(`function enter(s: GameState, scene: SceneBuilder): void {`);
     for (const bl of body) lines.push(`  ${bl}`);
@@ -67,11 +311,11 @@ export function generateTs(loc: QspLocation): GenResult {
       nameMap.set(si, fn);
       argToFunc[scene.arg] = fn;
     }
-    const topLevelBody = loc.topLevel.length > 0
-      ? generateSceneBody(loc.topLevel, todos, unsupported, stateWrites, stateReads, gsCalls, targets, loc.name, argToFunc)
+    const topLevelBody = transformedTopLevel.length > 0
+      ? generateSceneBody(transformedTopLevel, todos, unsupported, stateWrites, stateReads, gsCalls, targets, loc.name, argToFunc)
       : [];
     for (let si = 0; si < sceneList.length; si++) {
-      const scene = sceneList[si];
+      const scene = transformedScenes[si];
       const funcName = nameMap.get(si)!;
       const body = generateSceneBody(scene.body, todos, unsupported, stateWrites, stateReads, gsCalls, targets, loc.name, argToFunc);
       lines.push(`function ${funcName}(s: GameState, scene: SceneBuilder): void {`);
@@ -183,8 +427,12 @@ function generateSceneBody(
       }
       case 'text': {
         if (node.dynamic) {
-          out.push(`// TODO-QSP: dynamic text: ${truncate(node.content, 80)}`);
-          out.push(`scene.text(${qspStringToJs(node.content, stateReads, todos)});`);
+          const todoLen = todos.length;
+          const translated = qspStringToJs(node.content, stateReads, todos);
+          if (todos.length > todoLen) {
+            out.push(`// TODO-QSP: dynamic text: ${truncate(node.content, 80)}`);
+          }
+          out.push(`scene.text(${translated});`);
         } else {
           out.push(`scene.text(${qspStringToJs(node.content, stateReads, todos)});`);
         }
@@ -219,6 +467,12 @@ function generateSceneBody(
             stateWrites.push(varName);
             break;
           }
+        if (lhs.endsWith('[]')) {
+          const arrName = lhs.slice(0, -2).replace(/^\$/, '');
+          out.push(`(s as any).${arrName} = [...((s as any).${arrName} ?? []), ${val}];`);
+          stateWrites.push(varName);
+          break;
+        }
         const bracketIdx = lhs.indexOf('[');
         if (bracketIdx !== -1) {
           const objName = lhs.slice(0, bracketIdx);
@@ -228,6 +482,10 @@ function generateSceneBody(
             out.push(`${guarded} = ${val};`);
           } else if (node.op === '+=') {
             out.push(`${guarded} = ((s as any).${objName}${rest} ?? 0) + (${val});`);
+          } else if (node.op === '*=') {
+            out.push(`${guarded} = ((s as any).${objName}${rest} ?? 0) * (${val});`);
+          } else if (node.op === '/=') {
+            out.push(`${guarded} = ((s as any).${objName}${rest} ?? 0) / (${val});`);
           } else {
             out.push(`${guarded} = ((s as any).${objName}${rest} ?? 0) - (${val});`);
           }
@@ -235,6 +493,10 @@ function generateSceneBody(
           out.push(`(s as any).${lhs} = ${val};`);
         } else if (node.op === '+=') {
           out.push(`(s as any).${lhs} = ((s as any).${lhs} ?? 0) + (${val});`);
+        } else if (node.op === '*=') {
+          out.push(`(s as any).${lhs} = ((s as any).${lhs} ?? 0) * (${val});`);
+        } else if (node.op === '/=') {
+          out.push(`(s as any).${lhs} = ((s as any).${lhs} ?? 0) / (${val});`);
         } else {
           out.push(`(s as any).${lhs} = ((s as any).${lhs} ?? 0) - (${val});`);
         }
@@ -384,11 +646,118 @@ function generateSceneBody(
           out.push(`s.scene = { ...s.scene, mainText: String((s as any).${bareFlag[1]} || ''), curActs: [] };`);
           stateReads.push(bareFlag[1]);
         }
-        const varAssign = node.raw.match(/^\$(\w+)\s*=\s*(.+)$/);
+        const dollarArrCall = node.raw.match(/^\$(\w+)\['([^']+)'\]\s*$/);
+        if (dollarArrCall) {
+          out.push(`scene.text(String(qspFunc(s, '${dollarArrCall[1]}', '${dollarArrCall[2]}') || ''));`);
+        }
+        const dollarArrVarCall = node.raw.match(/^\$(\w+)\[(\$?\w+(?:\[\d+\])?)\]\s*$/);
+        if (dollarArrVarCall) {
+          const varName = dollarArrVarCall[1];
+          const key = dollarArrVarCall[2].replace(/^\$/, '');
+          const keyExpr = key.includes('[')
+            ? `String(((s as any).${key.replace(/\[\d+\]/, '')} ?? 0)${key.replace(/^\w+/, '').replace(/\]/, '')})`
+            : /^\d+$/.test(key)
+              ? key
+              : `String((s as any).${key} ?? '')`;
+          out.push(`scene.text(String(((s as any).${varName} ?? {})[${keyExpr}] || ''));`);
+        }
+        const dynSingle = node.raw.match(/^dynamic\s+'((?:[^']|'')*)'\s*$/);
+        if (dynSingle) {
+          const expr = dynSingle[1].replace(/''/g, "'");
+          const arrAssignMatch = expr.match(/^(\w+)\['(.+)'\]\s*=\s*(.+)$/);
+          if (arrAssignMatch) {
+            const varName = arrAssignMatch[1];
+            const key = translateValue(`'${arrAssignMatch[2]}'`, stateReads, todos);
+            const val = translateValue(arrAssignMatch[3].trim(), stateReads, todos);
+            out.push(`(s as any)[${varName}][${key}] = ${val};`);
+          } else {
+            const dynVal = translateValue(`'${dynSingle[1]}'`, stateReads, todos);
+            out.push(`scene.text(${dynVal});`);
+          }
+        }
+        const dynDollar = node.raw.match(/^dynamic\s+(\$\w+(?:\['[^']*'\]|\[\$\w+\]|\[\d+\])?(?:\s*,\s*.+)?)\s*$/);
+        if (dynDollar) {
+          const expr = dynDollar[1].trim();
+          const parts = splitTopLevel(expr).map((p: string) => p.trim());
+          const funcName = parts[0].replace(/^\$/, '');
+          const funcArgs = parts.slice(1).map((a: string) => translateValue(a, stateReads, todos));
+          const funcNameJs = funcName.includes('[') ? translateValue(`'${funcName}'`, stateReads, todos) : `'${funcName}'`;
+          out.push(`qspFunc(s, ${funcNameJs}${funcArgs.length ? `, ${funcArgs.join(', ')}` : ''});`);
+        }
+        const varAssign = node.raw.match(/^\$(\w+)\s*(\+=|-=|=)\s*(.+)$/);
         if (varAssign) {
           const varName = varAssign[1];
-          const value = translateValue(varAssign[2].trim(), stateReads, todos);
-          out.push(`(s as any).${varName} = ${value};`);
+          const op = varAssign[2];
+          const value = translateValue(varAssign[3].trim(), stateReads, todos);
+          if (op === '=') {
+            out.push(`(s as any).${varName} = ${value};`);
+          } else if (op === '+=') {
+            out.push(`(s as any).${varName} = ((s as any).${varName} ?? '') + ${value};`);
+          } else {
+            out.push(`(s as any).${varName} = ((s as any).${varName} ?? 0) - (${value});`);
+          }
+          stateWrites.push(varName);
+        }
+        const copyarrMatch = node.raw.match(/^copyarr\s*(?:\()?\s*'([^']*)'\s*,\s*'([^']*)'\s*(?:\))?\s*$/);
+        if (copyarrMatch) {
+          const src = copyarrMatch[1].replace(/^\$/, '');
+          const dst = copyarrMatch[2].replace(/^\$/, '');
+          const srcExpr = src.includes('<<') ? translateValue(`'${copyarrMatch[1]}'`, stateReads, todos) : src;
+          const dstExpr = dst.includes('<<') ? translateValue(`'${copyarrMatch[2]}'`, stateReads, todos) : dst;
+          out.push(`(s as any)[${dstExpr}] ? (s as any)[${dstExpr}] = { ...(s as any)[${srcExpr}] } : (s as any)[${dstExpr}] = { ...(s as any)[${srcExpr}] };`);
+        }
+        const killvarMatch = node.raw.match(/^killvar\s+'([^']+)'/);
+        if (killvarMatch) {
+          const rawName = killvarMatch[1];
+          const varName = rawName.replace(/^\$/, '');
+          if (varName.includes('<<')) {
+            const dynExpr = translateValue(`'${rawName}'`, stateReads, todos);
+            out.push(`delete (s as any)[${dynExpr}];`);
+          } else {
+            out.push(`(s as any).${varName} = undefined;`);
+          }
+        }
+        const msgMatch = node.raw.match(/^msg\s*(.+)$/);
+        if (msgMatch) {
+          const val = translateValue(msgMatch[1].trim(), stateReads, todos);
+          out.push(`alert(${val});`);
+        }
+        const viewPathSetup = node.raw.match(/^view\s+'((?:[^']|'')*)'$/);
+        if (viewPathSetup) {
+          const imgPath = viewPathSetup[1].replace(/''/g, "'");
+          if (!imgPath.includes('<<')) {
+            out.push(`s.viewImage = '${imgPath}';`);
+          } else {
+            const singleMatch = imgPath.match(/^<<(.+?)>>$/);
+            if (singleMatch) {
+              const e = singleMatch[1].trim();
+              if (/^\$?\w+$/.test(e)) {
+                out.push(`s.viewImage = (s as any).${e.replace(/^\$/, '')};`);
+              } else {
+                const dynVal = translateValue(`'${imgPath}'`, stateReads, todos);
+                out.push(`s.viewImage = ${dynVal};`);
+              }
+            } else {
+              const dynVal = translateValue(`'${imgPath}'`, stateReads, todos);
+              out.push(`s.viewImage = ${dynVal};`);
+            }
+          }
+        }
+        const viewFuncMatch = node.raw.match(/^view\s+(\$?func\((.+)\))$/);
+        if (viewFuncMatch) {
+          const args = splitTopLevel(viewFuncMatch[2]).map((a: string) => a.trim());
+          const module = args[0]?.replace(/^'|'$/g, '') || '';
+          const func = args[1]?.replace(/^'|'$/g, '') || '';
+          const extraArgs = args.slice(2).map((a: string) => JSON.stringify(a.replace(/^'|'$/g, '').replace(/''/g, "'")));
+          out.push(`s.viewImage = String(qspFunc(s, '${module}', '${func}'${extraArgs.length ? `, ${extraArgs.join(', ')}` : ''}) || '');`);
+        }
+        const standaloneFuncSetup = node.raw.match(/^func\((.+)\)\s*$/);
+        if (standaloneFuncSetup) {
+          const args = splitTopLevel(standaloneFuncSetup[1]).map((a: string) => a.trim());
+          const module = args[0]?.replace(/^'|'$/g, '') || '';
+          const func = args[1]?.replace(/^'|'$/g, '') || '';
+          const extraArgs = args.slice(2).map((a: string) => JSON.stringify(a.replace(/^'|'$/g, '').replace(/''/g, "'")));
+          out.push(`scene.text(String(qspFunc(s, '${module}', '${func}'${extraArgs.length ? `, ${extraArgs.join(', ')}` : ''}) || ''));`);
         }
         break;
       }
@@ -398,6 +767,22 @@ function generateSceneBody(
           actions.length = 0;
         }
         out.push(`return;`);
+        break;
+      }
+      case 'continue': {
+        if (actions.length > 0) {
+          out.push(`scene.actions([\n${actions.join('\n')}\n]);`);
+          actions.length = 0;
+        }
+        out.push(`continue;`);
+        break;
+      }
+      case 'break': {
+        if (actions.length > 0) {
+          out.push(`scene.actions([\n${actions.join('\n')}\n]);`);
+          actions.length = 0;
+        }
+        out.push(`break;`);
         break;
       }
       case 'comment': {
@@ -430,6 +815,30 @@ function generateSceneBody(
         }
         break;
       }
+      case 'while': {
+        const cond = translateCondition(node.condition, stateReads, todos);
+        out.push(`while (${cond}) {`);
+        const bodyLines = generateSceneBody(node.body, todos, unsupported, stateWrites, stateReads, gsCalls, targets, locName, argToFunc);
+        for (const bl of bodyLines) out.push(`  ${bl}`);
+        out.push(`}`);
+        break;
+      }
+      case 'dowhile': {
+        const cond = translateCondition(node.condition, stateReads, todos);
+        out.push(`do {`);
+        const bodyLines = generateSceneBody(node.body, todos, unsupported, stateWrites, stateReads, gsCalls, targets, locName, argToFunc);
+        for (const bl of bodyLines) out.push(`  ${bl}`);
+        out.push(`} while (${cond});`);
+        break;
+      }
+      case 'label': {
+        out.push(`// LABEL: ${node.name}`);
+        break;
+      }
+      case 'jump': {
+        out.push(`// TODO-QSP: jump '${node.label}'`);
+        break;
+      }
       case 'unknown': {
         out.push(`// TODO-QSP: ${truncate(node.raw, 100)}`);
         break;
@@ -457,6 +866,11 @@ function generateAct(
   locName: string,
   argToFunc: Record<string, string>,
 ): string {
+  if (node.inlineText !== undefined) {
+    const text = esc(node.inlineText);
+    return `{ ${generateLabelCode(node.label, stateReads, todos, node.dynamicLabel)}, handler: (st: GameState) => { scene.text('${text}'); } },`;
+  }
+
   if (node.inlineGoto) {
     targets.add(node.inlineGoto.target);
     const isDictArg = (a?: string) => !!a && /\w+\['[^']*'\]/.test(a);
@@ -470,13 +884,13 @@ function generateAct(
       const arg2Expr = node.inlineGoto.arg2 ? (node.inlineGoto.arg2.startsWith('$') ? `((st as any).${node.inlineGoto.arg2.replace(/^\$/, '')} ?? '')` : isIifArg(node.inlineGoto.arg2) || isArithArg(node.inlineGoto.arg2) ? translateValue(node.inlineGoto.arg2, stateReads, todos, 'st') : translateValue(`'${node.inlineGoto.arg2}'`, stateReads, todos)) : null;
       const arg3Expr = node.inlineGoto.arg3 ? (node.inlineGoto.arg3.startsWith('$') ? `((st as any).${node.inlineGoto.arg3.replace(/^\$/, '')} ?? '')` : isIifArg(node.inlineGoto.arg3) || isArithArg(node.inlineGoto.arg3) ? translateValue(node.inlineGoto.arg3, stateReads, todos, 'st') : translateValue(`'${node.inlineGoto.arg3}'`, stateReads, todos)) : null;
       const handlerArgs = [argExpr, arg2Expr, arg3Expr].filter(Boolean).join(', ');
-      return `{ ${generateLabelCode(node.label, stateReads, todos)}, handler: (st: GameState) => { qspGoto(st, '${node.inlineGoto.target}', ${handlerArgs}); } },`;
+      return `{ ${generateLabelCode(node.label, stateReads, todos, node.dynamicLabel)}, handler: (st: GameState) => { qspGoto(st, '${node.inlineGoto.target}', ${handlerArgs}); } },`;
     }
     const toStatic = (v: string) => v.replace(/\bst\b/g, 's');
     const argVal = toStatic(translateValue(`'${node.inlineGoto.arg}'`, stateReads, todos));
     const arg2Part = node.inlineGoto.arg2 ? `, ${toStatic(translateValue(`'${node.inlineGoto.arg2}'`, stateReads, todos))}` : '';
     const arg3Part = node.inlineGoto.arg3 ? `, ${toStatic(translateValue(`'${node.inlineGoto.arg3}'`, stateReads, todos))}` : '';
-    return `{ ${generateLabelCode(node.label, stateReads, todos)}, goto: ['${node.inlineGoto.target}', ${argVal}${arg2Part}${arg3Part}] },`;
+    return `{ ${generateLabelCode(node.label, stateReads, todos, node.dynamicLabel)}, goto: ['${node.inlineGoto.target}', ${argVal}${arg2Part}${arg3Part}] },`;
   }
 
   if (node.inlineStatements) {
@@ -486,7 +900,7 @@ function generateAct(
   }
 
   if (node.body.length === 0) {
-    return `{ ${generateLabelCode(node.label, stateReads, todos)} }, // TODO-QSP: empty action body`;
+    return `{ ${generateLabelCode(node.label, stateReads, todos, node.dynamicLabel)} }, // TODO-QSP: empty action body`;
   }
 
   const bodyLines = generateSceneBody(node.body, todos, unsupported, stateWrites, stateReads, gsCalls, targets, locName, argToFunc);
@@ -511,7 +925,7 @@ function generateAct(
   }
 
   if (bodyLines.length === 0 && gotoCode) {
-    return `{ ${generateLabelCode(node.label, stateReads, todos)}, ${gotoCode} },`;
+    return `{ ${generateLabelCode(node.label, stateReads, todos, node.dynamicLabel)}, ${gotoCode} },`;
   }
 
   const handlerLines = bodyLines.map(l =>
@@ -527,7 +941,7 @@ function generateAct(
     parts.push(`handler: (st: GameState) => {\n${handlerLines.map(l => `    ${l}`).join('\n')}\n  }`);
   }
   if (gotoCode) parts.push(gotoCode);
-  return `{ ${generateLabelCode(node.label, stateReads, todos)}, ${parts.join(', ')} },`;
+  return `{ ${generateLabelCode(node.label, stateReads, todos, node.dynamicLabel)}, ${parts.join(', ')} },`;
 }
 
 function translateInlineAct(
@@ -544,7 +958,7 @@ function translateInlineAct(
   let goto: { target: string; arg: string; arg2?: string; arg3?: string } | null = null;
 
   for (const part of parts) {
-    const gtAnyMatch = part.match(/^gt\s*(.+)$/);
+    const gtAnyMatch = part.match(/^(?:gt|xgt)\s*(.+)$/);
     if (gtAnyMatch) {
       const argsStr = gtAnyMatch[1].trim();
       const args = argsStr.split(',').map(a => a.trim()).filter(Boolean);
@@ -706,6 +1120,23 @@ function translateInlineAct(
       handlerBits.push(`(st as any).minut = ((st as any).minut ?? 0) + ${timeMatch[1]};`);
       continue;
     }
+    const arrAssignMatch = part.match(/^(\w+)\['([^']+)'\]\s*(\+=|-=|=)\s*(.+)$/);
+    if (arrAssignMatch) {
+      const objName = arrAssignMatch[1];
+      const key = arrAssignMatch[2];
+      const op = arrAssignMatch[3];
+      const val = translateValue(arrAssignMatch[4].trim(), stateReads, todos, 'st');
+      const guarded = `((st as any).${objName} = (st as any).${objName} ?? {})['${key}']`;
+      if (op === '=') {
+        handlerBits.push(`${guarded} = ${val};`);
+      } else if (op === '+=') {
+        handlerBits.push(`${guarded} = (${guarded} ?? 0) + (${val});`);
+      } else {
+        handlerBits.push(`${guarded} = (${guarded} ?? 0) - (${val});`);
+      }
+      stateWrites.push(objName);
+      continue;
+    }
     const assignMatch = part.match(/^(\w+)\s*(\+=|-=|=)\s*(.+)$/);
     if (assignMatch) {
       const val = translateValue(assignMatch[3].trim(), stateReads, todos, 'st');
@@ -721,7 +1152,81 @@ function translateInlineAct(
       stateWrites.push(assignMatch[1]);
       continue;
     }
+    const dollarAssignMatch = part.match(/^\$(\w+)\s*(\+=|-=|=)\s*(.+)$/);
+    if (dollarAssignMatch) {
+      const varName = dollarAssignMatch[1];
+      const op = dollarAssignMatch[2];
+      const val = translateValue(dollarAssignMatch[3].trim(), stateReads, todos, 'st');
+      if (op === '=') {
+        handlerBits.push(`(st as any).${varName} = ${val};`);
+      } else if (op === '+=') {
+        handlerBits.push(`(st as any).${varName} = ((st as any).${varName} ?? 0) + (${val});`);
+      } else {
+        handlerBits.push(`(st as any).${varName} = ((st as any).${varName} ?? 0) - (${val});`);
+      }
+      stateWrites.push(varName);
+      continue;
+    }
+    const arrNumIdxMatch2 = part.match(/^(\$?\w+)\[(\d+)\]\s*(\+=|-=|=)\s*(.+)$/);
+    if (arrNumIdxMatch2) {
+      const varName = arrNumIdxMatch2[1].replace(/^\$/, '');
+      const idx = arrNumIdxMatch2[2];
+      const op = arrNumIdxMatch2[3];
+      const val = translateValue(arrNumIdxMatch2[4].trim(), stateReads, todos, 'st');
+      if (op === '=') {
+        handlerBits.push(`(st as any).${varName}[${idx}] = ${val};`);
+      } else if (op === '+=') {
+        handlerBits.push(`(st as any).${varName}[${idx}] = ((st as any).${varName}[${idx}] ?? 0) + (${val});`);
+      } else {
+        handlerBits.push(`(st as any).${varName}[${idx}] = ((st as any).${varName}[${idx}] ?? 0) - (${val});`);
+      }
+      stateWrites.push(varName);
+      continue;
+    }
+    const arrVarAssignMatch2 = part.match(/^(\$?\w+)\[(.+?)\]\s*(\*=?|\/=?|\+=|-=|=)\s*(.+)$/);
+    if (arrVarAssignMatch2) {
+      const varName = arrVarAssignMatch2[1].replace(/^\$/, '');
+      const key = arrVarAssignMatch2[2];
+      const op = arrVarAssignMatch2[3];
+      const val = translateValue(arrVarAssignMatch2[4].trim(), stateReads, todos, 'st');
+      const keyTrimmed = key.trim();
+      const keyExpr = keyTrimmed.startsWith("'") && keyTrimmed.endsWith("'")
+        ? keyTrimmed.slice(1, -1).replace(/''/g, "'")
+        : `String((st as any).${keyTrimmed.replace(/^\$/, '')} ?? '')`;
+      const base = `(st as any).${varName}[${keyExpr}]`;
+      if (op === '=') {
+        handlerBits.push(`${base} = ${val};`);
+      } else if (op === '+=') {
+        handlerBits.push(`${base} = (${base} ?? 0) + (${val});`);
+      } else if (op === '-=') {
+        handlerBits.push(`${base} = (${base} ?? 0) - (${val});`);
+      } else if (op === '*=') {
+        handlerBits.push(`${base} = (${base} ?? 0) * (${val});`);
+      } else if (op === '/=') {
+        handlerBits.push(`${base} = (${base} ?? 0) / (${val});`);
+      }
+      stateWrites.push(varName);
+      continue;
+    }
     if (part === 'cla' || part === '*clr' || part.startsWith('*clr')) continue;
+    const killvarInlineMatch = part.match(/^killvar\s+'([^']+)'/);
+    if (killvarInlineMatch) {
+      const rawName = killvarInlineMatch[1];
+      const varName = rawName.replace(/^\$/, '');
+      if (varName.includes('<<')) {
+        const dynExpr = translateValue(`'${rawName}'`, stateReads, todos);
+        handlerBits.push(`delete (st as any)[${dynExpr}];`);
+      } else {
+        handlerBits.push(`(st as any).${varName} = undefined;`);
+      }
+      continue;
+    }
+    const msgInlineMatch = part.match(/^msg\s*(.+)$/);
+    if (msgInlineMatch) {
+      const val = translateValue(msgInlineMatch[1].trim(), stateReads, todos, 'st');
+      handlerBits.push(`alert(${val});`);
+      continue;
+    }
     const flagMatch = part.match(/^\$(\w+)$/);
     if (flagMatch) {
       handlerBits.push(`st.scene = { ...st.scene, mainText: String((st as any).${flagMatch[1]} || ''), curActs: [] };`);
@@ -748,6 +1253,13 @@ function translateInlineAct(
         continue;
       }
       handlerBits.push(`// TODO-QSP: ${truncate(part, 60)}`);
+      continue;
+    }
+    const funcWrapInline = part.match(/^\$func\('wrap',\s*'([^']*)',\s*'((?:[^']|'')*)'\)\s*$/);
+    if (funcWrapInline) {
+      const style = funcWrapInline[1];
+      const text = funcWrapInline[2].replace(/''/g, "'");
+      handlerBits.push(`st.scene = { ...st.scene, mainText: String(qspFunc(st, 'wrap', '${style}', '${esc(text)}') || ''), curActs: [] };`);
       continue;
     }
     handlerBits.push(`// TODO-QSP: ${truncate(part, 60)}`);
@@ -1255,13 +1767,21 @@ function translateAssignLhs(varName: string, stateReads: string[], stateVar: str
     stateReads.push(obj, idx);
     return `${obj}[String((${stateVar} as any).${idx} ?? 0)]`;
   }
+  const arrComplex = varName.match(/^(\w+)\[(.+)\]$/);
+  if (arrComplex) {
+    const obj = arrComplex[1];
+    const key = arrComplex[2];
+    stateReads.push(obj);
+    const keyExpr = translateValue(key, stateReads, [], stateVar);
+    return `${obj}[${keyExpr}]`;
+  }
   return varName;
 }
 
 function translateValue(val: string, stateReads: string[], todos: string[], stateVar: string = 's', textContext: boolean = false): string {
   let v = val.trim();
   if (/^\u0000\d+\u0000$/.test(v)) return v;
-  v = convertExecLinks(v);
+  v = convertExecLinks(v, stateReads, todos, stateVar);
   const exprPhs: [string, string][] = [];
   // QSP & !! or & ! trailing comment (non-numeric values)
   const ampComment = v.match(/^(.*?)\s*&\s*!+/);
@@ -1785,7 +2305,7 @@ function translateValue(val: string, stateReads: string[], todos: string[], stat
       if (ch === '(') depth++;
       else if (ch === ')') { depth--; if (depth === 0) { end = j; break; } }
     }
-    if (end !== -1) {
+    if (end !== -1 && v.slice(end + 1).trim() === '') {
       const inner = v.slice(openIdx + 1, end);
       const parts = splitTopLevel(inner);
       if (parts.length === 3) {
@@ -2195,7 +2715,7 @@ function extractDescription(nodes: QspNode[]): string | null {
 }
 
 function esc(s: string): string {
-  return s.replace(/''/g, '\u0000').replace(/\\/g, '/').replace(/'/g, "\\'").replace(/\u0000/g, "\\'").replace(/\n/g, '\\n');
+  return s.replace(/''/g, '\u0000').replace(/\\(?!u0027)/g, '/').replace(/'/g, "\\'").replace(/\u0000/g, "\\'").replace(/\n/g, '\\n');
 }
 
 function translateFragment(frag: string, stateReads: string[], todos: string[], stateVar: string, textContext: boolean): string {
@@ -2254,7 +2774,11 @@ function unescapeDoubled(v: string): string {
   return out;
 }
 
-function generateLabelCode(label: string, stateReads: string[], todos: string[]): string {
+function generateLabelCode(label: string, stateReads: string[], todos: string[], dynamicLabel?: boolean): string {
+  if (dynamicLabel) {
+    const translated = translateValue(label, stateReads, todos, 's', true);
+    return `label: '', labelFn: (s: GameState) => String(${translated} ?? '')`;
+  }
   const resolved = resolveStaticFuncs(label);
   if (resolved.includes('<<')) {
     const parts: string[] = [];
@@ -2278,6 +2802,7 @@ function generateLabelCode(label: string, stateReads: string[], todos: string[])
 function resolveStaticFuncs(s: string): string {
   if (!s.includes("func(") && !s.includes("$func(")) return s;
   const re = /(\[|'?)\s*\+\s*\$?func\(\s*'([^']+)'\s*,\s*'([^']+)'\s*(?:,\s*([^)]+))?\)(\]|\s*\+\s*'?)/g;
+  let didResolve = false;
   let out = s.replace(re, (_m, pre: string, mod: string, fn: string, argsStr: string | undefined, post: string) => {
     const args = argsStr ? argsStr.split(',').map((a: string) => a.trim()) : [];
     let resolved: string | null = null;
@@ -2307,21 +2832,48 @@ function resolveStaticFuncs(s: string): string {
       } else {
         resolved = '(Willpower)';
       }
-    } else if (mod === 'wrap' && args.length >= 1) {
-      resolved = args[0].replace(/^'|'$/g, '');
     }
     if (resolved === null) return _m;
+    didResolve = true;
     if (pre === '[') return `[${resolved}]`;
     if (post === ']') return `[${resolved}]`;
     return resolved;
   });
-  out = out.replace(/'\s*$/g, '').replace(/^\s*'/g, '');
+  if (didResolve) {
+    const trailMatch = out.match(/^(.*)'\s*$/);
+    if (trailMatch) {
+      const before = trailMatch[1].length > 0 ? trailMatch[1][trailMatch[1].length - 1] : '';
+      if (before === '' || before === '+' || /\s/.test(before)) out = trailMatch[1];
+    }
+    const leadMatch = out.match(/^\s*'(.*)/);
+    if (leadMatch) {
+      const after = leadMatch[1].length > 0 ? leadMatch[1][0] : '';
+      if (after === '' || after === '+' || /\s/.test(after)) out = leadMatch[1];
+    }
+  }
   return out;
 }
 
-function execArgToJs(a: string): string {
+function execArgToJs(a: string, stateReads?: string[], todos?: string[], stateVar?: string): string {
   const t = a.trim();
-  if (t.startsWith("'") && t.endsWith("'") && t.length >= 2) return t;
+  const sv = stateVar || 's';
+  if (t.startsWith("'") && t.endsWith("'") && t.length >= 2) {
+    const inner = t.slice(1, -1);
+    if (inner.includes('<<') && inner.includes('>>')) {
+      const parts = inner.split(/(<<.+?>>)/g).filter((p: string) => p);
+      const jsParts = parts.map((p: string) => {
+        const m = p.match(/^<<(.+?)>>$/);
+        if (m) {
+          const e = m[1].trim();
+          if (/^\$?\w+$/.test(e)) return `String((${sv} as any).${e.replace(/^\$/, '')} ?? '')`;
+          return translateValue(e, stateReads || [], todos || [], sv, true);
+        }
+        return `'${p.replace(/\\/g, '\\\\').replace(/'/g, "\\'")}'`;
+      });
+      return jsParts.join(' + ');
+    }
+    return t;
+  }
   if (t === '$loc') return `window.__gameStore.getState().prevLoc`;
   if (t === '$loc_arg') return `window.__gameStore.getState().prevArg`;
   if (t.startsWith('$')) return `String(window.__gameStore.getState().${t.slice(1)} ?? '')`;
@@ -2335,15 +2887,29 @@ function execValToJs(v: string): string {
   return t;
 }
 
-function convertExecLinks(s: string): string {
-  const re = /<a[^>]*href="(?:"?)?exec:([^"]+?)"{1,3}[^>]*>((?:[^<]|<(?!\/a>))*)<\/a>/g;
+function convertExecLinks(s: string, stateReads?: string[], todos?: string[], stateVar?: string): string {
+  const re = /<a(?:[^>"]|"[^"]*")*href="(?:"?)?exec:([^"]+?)"{1,3}(?:[^>"]|"[^"]*")*>((?:[^<]|<(?!\/a>))*)<\/a>/g;
   return s.replace(re, (_m, execStr: string, text: string) => {
     const clean = execStr.replace(/''/g, "'");
-    const gtMatch = clean.match(/(?:^|&\s*|\s)(?:gt|gs)\s*((?:'[^']*'|\$?\w+)(?:\s*,\s*(?:'[^']*'|\$?\w+)){0,2})/);
-    const argParts = gtMatch ? gtMatch[1].split(',').map((a: string) => a.trim()) : [];
-    const locJs = argParts[0] !== undefined ? execArgToJs(argParts[0]) : null;
-    const argJs = argParts[1] !== undefined ? execArgToJs(argParts[1]) : "''";
-    const arg2Js = argParts[2] !== undefined ? execArgToJs(argParts[2]) : null;
+    const gtMatch = clean.match(/(?:^|&\s*|\s)(?:gt|gs)\s+(.*)/);
+    const argParts: string[] = [];
+    if (gtMatch) {
+      const rest = gtMatch[1].trim();
+      const segments = rest.split(',').map((s: string) => s.trim());
+      for (const seg of segments) {
+        if (argParts.length >= 3) break;
+        if (seg.startsWith("'") && seg.endsWith("'") && seg.length >= 2) {
+          argParts.push(seg);
+        } else if (/^\$?\w+$/.test(seg)) {
+          argParts.push(seg);
+        } else if (seg) {
+          argParts.push(`'${seg}'`);
+        }
+      }
+    }
+    const locJs = argParts[0] !== undefined ? execArgToJs(argParts[0], stateReads, todos, stateVar) : null;
+    const argJs = argParts[1] !== undefined ? execArgToJs(argParts[1], stateReads, todos, stateVar) : "''";
+    const arg2Js = argParts[2] !== undefined ? execArgToJs(argParts[2], stateReads, todos, stateVar) : null;
     const stmts = clean.split('&').map((st: string) => st.trim()).filter((st: string) => st && !st.startsWith('gt') && !st.startsWith('gs'));
     const stmtCode = stmts.map((st: string) => {
       const setMatch = st.match(/^(\w+)\[('[^']*')\]\s*([+\-]?=)\s*(.+)$/);
@@ -2360,6 +2926,12 @@ function convertExecLinks(s: string): string {
         const op = simpleMatch[2];
         const val = execValToJs(simpleMatch[3]);
         return op === '=' ? `s.${obj} = ${val};` : `s.${obj} ${op}${val};`;
+      }
+      const msgMatch = st.match(/^msg\s+(.+)$/);
+      if (msgMatch) {
+        let expr = msgMatch[1].trim();
+        expr = expr.replace(/func\(([^)]+)\)/g, (_m: string, args: string) => `qspFunc(s, ${args})`);
+        return `alert(${expr});`;
       }
       const viewMatch = st.match(/^view\s*'(.*)'$/);
       if (viewMatch) {
@@ -2382,6 +2954,14 @@ function convertExecLinks(s: string): string {
           return `'${p.replace(/\\/g, '\\\\').replace(/'/g, "\\'")}'`;
         });
         return `s.viewImage = ${jsParts.join(' + ')};`;
+      }
+      const viewFuncMatch = st.match(/^view\s+(\$?func\((.+)\))$/);
+      if (viewFuncMatch) {
+        const args = viewFuncMatch[2].split(',').map((a: string) => a.trim().replace(/^''|''$/g, "'"));
+        const module = args[0]?.replace(/^'|'$/g, '') || '';
+        const func = args[1]?.replace(/^'|'$/g, '') || '';
+        const extraArgs = args.slice(2).map((a: string) => a.replace(/^'|'$/g, ''));
+        return `s.viewImage = String(qspFunc(s, '${module}', '${func}'${extraArgs.length ? `, ${extraArgs.map((a) => `'${a}'`).join(', ')}` : ''}) || '');`;
       }
       return `/* TODO-QSP: ${st} */`;
     }).join(' ');
@@ -2426,22 +3006,19 @@ function qspStringToJs(s: string, stateReads: string[], todos: string[], stateVa
   }
   const bareVar = s.match(/^\$(\w+)$/);
   if (bareVar) return `String((${stateVar} as any).${bareVar[1]} ?? '')`;
-    if (s.match(/'\s*\+\s*\w+/)) {
-      if (s.startsWith("'")) {
+  if (s.match(/'\s*\+\s*\w+/) || s.match(/^[a-zA-Z_$][\w$]*\s*\([^)]*\)\s*\+\s*'/) || s.match(/^'[^']*'\s*\+\s*/)) {
+    if (s.startsWith("'") || s.match(/^[a-zA-Z_$][\w$]*\s*\(/)) {
       let work = s;
       const leadPlus = work.match(/^'\s*\+/);
       if (leadPlus) work = work.slice(leadPlus[0].length);
-      work = convertExecLinks(work);
+      work = convertExecLinks(work, stateReads, todos, stateVar);
       const parts: string[] = [];
       let depth = 0, inStr = false, strCh = '', cur = '';
       for (let i = 0; i < work.length; i++) {
         const ch = work[i];
         if (inStr) {
-          cur += ch;
-          if (ch === strCh) {
-            if (strCh === "'" && work[i + 1] === "'") { cur += "'"; i++; }
-            else inStr = false;
-          }
+          if (ch === strCh && strCh === "'" && work[i + 1] === "'") { cur += "''"; i++; }
+          else { cur += ch; if (ch === strCh) inStr = false; }
         } else if (ch === '<' && work[i + 1] === '<') {
           const closeIdx = work.indexOf('>>', i + 2);
           if (closeIdx !== -1) { cur += work.slice(i, closeIdx + 2); i = closeIdx + 1; }
@@ -2450,19 +3027,21 @@ function qspStringToJs(s: string, stateReads: string[], todos: string[], stateVa
           inStr = true; strCh = ch; cur += ch;
         } else if (ch === '(') { depth++; cur += ch; }
         else if (ch === ')') { depth--; cur += ch; }
-        else if (ch === '+' && depth === 0) {
-          const t = cur.trim();
-          if (t) parts.push(t);
-          cur = '';
+        else if (ch === '+') {
+          if (depth === 0) {
+            const t = cur.trim();
+            if (t) parts.push(t);
+            cur = '';
+          } else { cur += ch; }
         } else { cur += ch; }
       }
       const t = cur.trim();
       if (t) parts.push(t);
-      const transpiled = parts.map(p => {
+      const transpiled = parts.map((p, idx) => {
         if (/^'.*'$/.test(p)) {
           const inner = p.slice(1, -1);
           if (inner.includes('<<')) return qspStringToJs(inner, stateReads, todos, stateVar);
-          return `'${esc(convertExecLinks(inner).replace(/''/g, "'"))}'`;
+          return `'${esc(convertExecLinks(inner, stateReads, todos, stateVar).replace(/''/g, "'"))}'`;
         }
         return translateValue(p, stateReads, todos, stateVar, true);
       });
@@ -2470,19 +3049,23 @@ function qspStringToJs(s: string, stateReads: string[], todos: string[], stateVa
     }
     return translateValue(`'${s}'`, stateReads, todos, stateVar, true);
   }
-  if (!s.includes('<<')) return `'${esc(convertExecLinks(s))}'`;
-  s = convertExecLinks(s);
+  if (!s.includes('<<')) return `'${esc(convertExecLinks(s, stateReads, todos, stateVar))}'`;
+  s = convertExecLinks(s, stateReads, todos, stateVar);
   // Segment IR: split into text / expr segments, then emit ONE template literal.
   const segs: { type: 'text' | 'expr'; value: string }[] = [];
   let rest = s;
   while (rest.includes('<<') && rest.includes('>>')) {
     const idx = rest.indexOf('<<');
-    const closeIdx = rest.indexOf('>>', idx + 2);
+    let depth = 0, closeIdx = -1;
+    for (let ci = idx; ci < rest.length - 1; ci++) {
+      if (rest[ci] === '<' && rest[ci + 1] === '<') { depth++; ci++; }
+      else if (rest[ci] === '>' && rest[ci + 1] === '>' && depth > 0) { depth--; ci++; if (depth === 0) { closeIdx = ci; break; } }
+    }
     if (closeIdx === -1) break;
     if (idx > 0) segs.push({ type: 'text', value: rest.slice(0, idx) });
-    const expr = rest.slice(idx + 2, closeIdx).replace(/''/g, "'");
+    const expr = rest.slice(idx + 2, closeIdx - 1).replace(/''/g, "'");
     segs.push({ type: 'expr', value: translateValue(expr.trim(), stateReads, todos, stateVar, true) });
-    rest = rest.slice(closeIdx + 2);
+    rest = rest.slice(closeIdx + 1);
   }
   if (rest.length > 0) segs.push({ type: 'text', value: rest });
   metrics.dynamicText++;
@@ -2579,10 +3162,10 @@ function splitTopLevel(s: string): string[] {
   for (let i = 0; i < s.length; i++) {
     const ch = s[i];
     if (inStr) {
-      cur += ch;
-      if (ch === strCh) {
-        if (strCh === "'" && s[i + 1] === "'") { cur += "'"; i++; }
-        else inStr = false;
+      if (ch === strCh && strCh === "'" && s[i + 1] === "'") {
+        cur += "''"; i++;
+      } else {
+        cur += ch; if (ch === strCh) inStr = false;
       }
     } else if (ch === "'" || ch === '"') {
       inStr = true;

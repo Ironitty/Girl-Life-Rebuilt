@@ -49,14 +49,12 @@ function enterGetTotal(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterTotals(s: GameState, scene: SceneBuilder): void {
   (s as any).total = qspFunc(s, 'purses', 'get_total', ((s as any).locArgs?.[1] ?? 0));
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -72,7 +70,7 @@ function enterNotWearReason(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).result = '';
   if (qspFunc(s, 'purses', 'is_immutable', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0))) {
-    // TODO-QSP: exit
+    return;
   }
   if (qspFunc(s, 'purses', 'is_owned', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0)) === 0) {
     (s as any).result = 'not_owned';
@@ -83,7 +81,6 @@ function enterNotWearReason(s: GameState, scene: SceneBuilder): void {
     return;
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -99,7 +96,6 @@ function enterCanWear(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).result = (qspFunc(s, 'purses', 'not_wear_reason', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0), 'attributes_set') === '');
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -112,7 +108,6 @@ function enterIsOwned(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).result = 0;
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -128,7 +123,6 @@ function enterInWardrobe(s: GameState, scene: SceneBuilder): void {
     (s as any).result = 0;
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -144,7 +138,6 @@ function enterInStorage(s: GameState, scene: SceneBuilder): void {
     (s as any).result = 0;
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -160,47 +153,39 @@ function enterInUnwanted(s: GameState, scene: SceneBuilder): void {
     (s as any).result = 0;
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterIsWearingAny(s: GameState, scene: SceneBuilder): void {
   (s as any).result = (((s as any).currentpursetype ?? 0) !== ''  &&  ((s as any).currentpursetype ?? 0) !== 'none');
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterIsWearing(s: GameState, scene: SceneBuilder): void {
   (s as any).result = (((s as any).currentpursetype ?? 0) === String((s as any).locArgs?.[1] ?? '')  &&  ((s as any).currentpursenumber ?? 0) === String((s as any).locArgs?.[2] ?? ''));
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterIsImmutable(s: GameState, scene: SceneBuilder): void {
   (s as any).result = 0;
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterAddItem(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === '') {
-    // TODO-QSP: exit
+    return;
   }
   if (String((s as any).locArgs?.[2] ?? '') === 0) {
-    // TODO-QSP: exit
+    return;
   }
   qspCall(s, 'purse_attributes', '$ARGS[1]', ((s as any).locArgs?.[2] ?? 0));
   if ((!((s as any).PursePrice ?? 0))) {
-    // TODO-QSP: exit
+    return;
   }
-  // TODO-QSP: dynamic "
-  // TODO-QSP: <<$ARGS[1]>>_purses[<<ARGS[2]>>] = 1
-  // TODO-QSP: "
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -212,11 +197,8 @@ function enterRemoveItem(s: GameState, scene: SceneBuilder): void {
     ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((s as any).currentpursenumber ?? 0);
   }
   if (String((s as any).locArgs?.[1] ?? '') === ''  ||  String((s as any).locArgs?.[1] ?? '') === 'none') {
-    // TODO-QSP: exit
+    return;
   }
-  // TODO-QSP: dynamic "
-  // TODO-QSP: <<$ARGS[1]>>_purses[<<ARGS[2]>>] = 0
-  // TODO-QSP: "
   if (String((s as any).locArgs?.[1] ?? '') === ((s as any).currentpursetype ?? 0)  &&  String((s as any).locArgs?.[2] ?? '') === ((s as any).currentpursenumber ?? 0)) {
     qspCall(s, 'purses', 'strip');
     qspCall(s, 'outfit', 'set_derived_vars');
@@ -224,20 +206,17 @@ function enterRemoveItem(s: GameState, scene: SceneBuilder): void {
     (s as any).lastwornpursenumber = 0;
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterResetImmutables(s: GameState, scene: SceneBuilder): void {
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterDispose(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).currentpursetype ?? 0), ((s as any).currentpursenumber ?? 0)]; enterRemoveItem(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 

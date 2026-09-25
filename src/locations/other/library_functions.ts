@@ -11,6 +11,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 function enterReadBook(s: GameState, scene: SceneBuilder): void {
   if (((s as any).blizoruk ?? 0) === 500  ||  ((s as any).glassqw ?? 0) === 1) {
     (s as any).glassqw = 1;
+    alert('  The text blurs across the page. It seems you have poor eyesight. Maybe you should visit an ophthalmologist?');
     dynamicGoto(s, 'prevLoc', 'prevArg');
   }
   (s as any).blizoruk = ((s as any).blizoruk ?? 0) + (1);

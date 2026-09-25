@@ -21,7 +21,6 @@ function enterClientTalk(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     if (((s as any).clothingworntype ?? 0) === 'nude') {
-      // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/resident/apartment/ho...
       scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/home/event/whore/door_nude` + (Math.floor(Math.random() * 3) + 1) + '.jpg"></center>');
     } else {
       if (((s as any).clothingworntype ?? 0) === 'moncheri_dress'  ||  ((s as any).clothingworntype ?? 0) === 'moncheri_gown'  ||  ((s as any).clothingworntype ?? 0) === 'fashionista_dress') {
@@ -30,7 +29,6 @@ function enterClientTalk(s: GameState, scene: SceneBuilder): void {
         scene.img('images/locations/pavlovsk/resident/apartment/home/event/whore/door.jpg');
       }
     }
-    // TODO-QSP: dynamic text: When you open the door, you see a stranger quickly eyeing you up and down. He sm...
     scene.text(`When you open the door, you see a stranger quickly eyeing you up and down. He smiles and asks: "Excuse me, are you ${((s as any).pcs_nickname ?? '')}?"`);
     qspCall(s, 'willpower', 'misc', 'resist', 'medium');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
@@ -81,7 +79,6 @@ function enterClientTalk(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -223,7 +220,6 @@ function enterSetup(s: GameState, scene: SceneBuilder): void {
   (s as any).whore_money_groupsex = ((s as any).whore_money_bjsex ?? 0) + ((s as any).whore_money_analsex ?? 0) + ((s as any).whore_money_clsex ?? 0) + ((s as any).whore_dopmoney ?? 0);
   (s as any).whore_money_bjvagsex = ((s as any).whore_money_bjsex ?? 0) + ((s as any).whore_money_clsex ?? 0);
   (s as any).whore_money_bjanalsex = ((s as any).whore_money_bjsex ?? 0) + ((s as any).whore_money_analsex ?? 0);
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -268,6 +264,8 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
         if (((s as any).temp_rand ?? 0) === 5) {
           (s as any).txt_pod_whore_bj = 'You follow the man into the stairwell and squat down, pulling his pants down. Wow… his cock is big. You admire his dick for a second and then take a deep breath before licking the head. You try to close your lips around the head and suck him off, but you already know you won\'t be able to deepthroat this guy. He puts his hands on the back of your head but doesn\'t force you to take him in any deeper, he\'s content with the amount of effort you\'re putting in. Occasionally you look up at him and look him into the eyes, and you can tell he\'s turned on by that.';
         }
+        (s as any).txt_pod_whore_bj = undefined;
+        (s as any).temp_rand = undefined;
       }
       if (String((s as any).locArgs?.[1] ?? '') === 'text_pod_whore_vag') {
         (s as any).temp_rand = (Math.floor(Math.random() * 3) + 1);
@@ -280,6 +278,8 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
         if (((s as any).temp_rand ?? 0) === 3) {
           (s as any).txt_pod_whore_vag = 'The man puts his hand on your shoulder and turns you around, moving his hand down your back and letting it rest on your ass for a moment, before giving it a loud slap. The sound of the slap and your yelp that followed echo throughout the stairwell, and desperately you hope no one heard you. He explores your pussy for a moment with his hands, and you hang your head in shame when you see his admiring look, and hear the loud sopping sounds of his fingers digging into your wet pussy over and over. Then, he decides he wants to fuck you and slams his dick in. From the short and hurried thrusts you can tell he doesn\'t want to be here for long. You must\'ve been moaning too much, since he covers up your mouth with the hand that was just on your pussy, and you can smell yourself on his fingers. The smell arouses you even more.';
         }
+        (s as any).txt_pod_whore_vag = undefined;
+        (s as any).temp_rand = undefined;
       }
       if (String((s as any).locArgs?.[1] ?? '') === 'text_pod_whore_anal') {
         { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'pod_whore_lubri']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -291,6 +291,8 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
           (s as any).txt_pod_whore_anal = 'You pull your clothes to the side and show him your bare ass as you bend over for him and offer him your asshole. He eagerly accepts your invitation and walks up to you, immediately rubbing the head of his cock against your clenched anus. ' + ((s as any).pod_whore_lubri_text ?? 0) + ' He decides he\'s been patient enough, and roughly shoves his cock half-way into your anus in one thrust. Then he begins to fuck your ass roughly, while slapping your ass cheeks quite hard. You do your best to stifle your moans, but you\'re too loud for his tastes. You feel him move a little and soon he covers your mouth with one of his hands, while he keeps slapping your ass with the other. You groan into his hand as he picks up the pace and fucks your ass even faster. He has an evil grin on his face and laughs when he tells you: "Keep it down, whore. People live here. Do you want them all to come over and see you\'re selling your ass for money in the stairwell?" You desperately shake your head no and try to hold back your moans, but he\'s really not making it easy on you when he slaps your ass even harder, trying to provoke a squeal out of you. ';
         }
         { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'pod_whore_analPlugIn']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
+        (s as any).txt_pod_whore_anal = undefined;
+        (s as any).temp_rand = undefined;
       }
       if (String((s as any).locArgs?.[1] ?? '') === 'text_pod_whore_cum') {
         (s as any).temp_rand = (Math.floor(Math.random() * 4) + 1);
@@ -306,6 +308,8 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
         if (((s as any).temp_rand ?? 0) === 4) {
           (s as any).txt_pod_whore_cum = 'The man didn\'t give you any warming, and you\'re slightly surprised by the jets of his hot sperm suddenly landing on the back of your throat while you suck him off like he told you to. Realizing he\'s paying you good money for your services, you decide not to throw a fuss and simply keep sucking, swallowing the cum that he shoots into your mouth. After you\'re pretty sure he\'s finished, you slowly pull your head back and lick the remains of sperm from his cock. You can see his face is flustered, and it takes him a second to recuperate. He gently runs his hand through your hair and smiles at you: "Wow… you\'re the best whore I\'ve ever had, that was amazing!" Then he quickly straightens his clothes. You can\'t help but feel a tinge of pride as you see him count out your well-earned money… another happy customer!';
         }
+        (s as any).txt_pod_whore_cum = undefined;
+        (s as any).temp_rand = undefined;
       }
       if (String((s as any).locArgs?.[1] ?? '') === 'rnd_client_text_bj') {
         (s as any).temp_rand = (Math.floor(Math.random() * 10) + 1);
@@ -340,6 +344,8 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
           (s as any).rnd_client_text_bj = 'I want you to take my cock as far down your throat as it\'ll go!';
         }
         (s as any).result = ((s as any).rnd_client_text_bj ?? 0);
+        (s as any).rnd_client_text_bj = undefined;
+        (s as any).temp_rand = undefined;
       }
       if (String((s as any).locArgs?.[1] ?? '') === 'rnd_client_text_vag') {
         (s as any).temp_rand = (Math.floor(Math.random() * 10) + 1);
@@ -374,6 +380,8 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
           (s as any).rnd_client_text_vag = 'Is it okay if I take some photos of you as I fuck your pussy? No? Okay… I still want you.';
         }
         (s as any).result = ((s as any).rnd_client_text_vag ?? 0);
+        (s as any).rnd_client_text_vag = undefined;
+        (s as any).temp_rand = undefined;
       }
       if (String((s as any).locArgs?.[1] ?? '') === 'rnd_client_text_anal') {
         (s as any).temp_rand = (Math.floor(Math.random() * 10) + 1);
@@ -408,6 +416,8 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
           (s as any).rnd_client_text_anal = 'I want to see you bounce that butt on my cock while I fuck your ass.';
         }
         (s as any).result = ((s as any).rnd_client_text_anal ?? 0);
+        (s as any).rnd_client_text_anal = undefined;
+        (s as any).temp_rand = undefined;
       }
       if (String((s as any).locArgs?.[1] ?? '') === 'rnd_client_text_all') {
         (s as any).temp_rand = (Math.floor(Math.random() * 10) + 1);
@@ -442,6 +452,8 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
           (s as any).rnd_client_text_all = 'I\'m still fairly new to sex. How about I just pay you for everything, and we see where it leads?';
         }
         (s as any).result = ((s as any).rnd_client_text_all ?? 0);
+        (s as any).rnd_client_text_all = undefined;
+        (s as any).temp_rand = undefined;
       }
       if (String((s as any).locArgs?.[1] ?? '') === 'rnd_client_text_group') {
         (s as any).temp_rand = (Math.floor(Math.random() * 10) + 1);
@@ -476,6 +488,8 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
           (s as any).rnd_client_text_group = 'We\'re looking for a girl that\'s not so squeamish. You want to get fucked by my buddy and me?';
         }
         (s as any).result = ((s as any).rnd_client_text_group ?? 0);
+        (s as any).rnd_client_text_group = undefined;
+        (s as any).temp_rand = undefined;
       }
       if (String((s as any).locArgs?.[1] ?? '') === 'rnd_client_text_bj_vag') {
         (s as any).temp_rand = (Math.floor(Math.random() * 10) + 1);
@@ -510,6 +524,8 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
           (s as any).rnd_client_text_bj_vag = 'I bet your lips would look great around my cock. Both sets of lips, if you know what I mean.';
         }
         (s as any).result = ((s as any).rnd_client_text_bj_vag ?? 0);
+        (s as any).rnd_client_text_bj_vag = undefined;
+        (s as any).temp_rand = undefined;
       }
       if (String((s as any).locArgs?.[1] ?? '') === 'rnd_client_text_bj_anal') {
         (s as any).temp_rand = (Math.floor(Math.random() * 10) + 1);
@@ -544,6 +560,8 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
           (s as any).rnd_client_text_bj_anal = 'Your pussy can get some rest today, I want to fuck your ass. You can lubricate my cock by giving me a blowjob first.';
         }
         (s as any).result = ((s as any).rnd_client_text_bj_anal ?? 0);
+        (s as any).rnd_client_text_bj_anal = undefined;
+        (s as any).temp_rand = undefined;
       }
       if (String((s as any).locArgs?.[1] ?? '') === 'rnd_client_torgtext1') {
         (s as any).temp_rand = (Math.floor(Math.random() * 5) + 1);
@@ -563,6 +581,8 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
           (s as any).rnd_client_torgtext = 'But I don\'t think you\'re worth that money. Let\'s agree on ' + qspFunc(s, 'money', 'string_profit', 100) + ' cheaper.';
         }
         (s as any).result = ((s as any).rnd_client_torgtext ?? 0);
+        (s as any).rnd_client_torgtext = undefined;
+        (s as any).temp_rand = undefined;
       }
       if (String((s as any).locArgs?.[1] ?? '') === 'rnd_client_torgtext2') {
         (s as any).temp_rand = (Math.floor(Math.random() * 5) + 1);
@@ -582,6 +602,8 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
           (s as any).rnd_client_torgtext2 = 'But I\'m a little bit short on money. Can you do it for ' + qspFunc(s, 'money', 'string_profit', 50) + ' less?';
         }
         (s as any).result = ((s as any).rnd_client_torgtext2 ?? 0);
+        (s as any).rnd_client_torgtext2 = undefined;
+        (s as any).temp_rand = undefined;
       }
       if (String((s as any).locArgs?.[1] ?? '') === 'rnd_client_torgtext3') {
         (s as any).temp_rand = (Math.floor(Math.random() * 5) + 1);
@@ -601,6 +623,8 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
           (s as any).rnd_client_torgtext3 = 'But wow… you\'re way too greedy, for that money I can fuck three whores in the city - at once!';
         }
         (s as any).result = ((s as any).rnd_client_torgtext3 ?? 0);
+        (s as any).rnd_client_torgtext3 = undefined;
+        (s as any).temp_rand = undefined;
       }
       if (String((s as any).locArgs?.[1] ?? '') === 'rnd_client_torgtext4') {
         (s as any).temp_rand = (Math.floor(Math.random() * 7) + 1);
@@ -626,6 +650,8 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
           (s as any).rnd_client_torgtext4 = 'How about it?';
         }
         (s as any).result = ((s as any).rnd_client_torgtext4 ?? 0);
+        (s as any).rnd_client_torgtext4 = undefined;
+        (s as any).temp_rand = undefined;
       }
       if (String((s as any).locArgs?.[1] ?? '') === 'rnd_client_torgtext5') {
         (s as any).temp_rand = (Math.floor(Math.random() * 5) + 1);
@@ -645,6 +671,8 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
           (s as any).rnd_client_torgtext5 = 'I think you\'re worth';
         }
         (s as any).result = ((s as any).rnd_client_torgtext5 ?? 0);
+        (s as any).rnd_client_torgtext5 = undefined;
+        (s as any).temp_rand = undefined;
       }
       if (String((s as any).locArgs?.[1] ?? '') === 'pod_whore_no') {
         qspCall(s, 'stat', '');
@@ -667,7 +695,6 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
         if (((s as any).whore_money_rnd ?? 0) <= 0) {
           scene.text('You give him a seductive smile: "You know what, you\'re cute. I\'ll give you a special deal on my prices."');
         }
-        // TODO-QSP: dynamic text: "A blowjob will cost you <<$func(''money'', ''string_profit'', whore_money_bjsex...
         scene.text(`"A blowjob will cost you ${qspFunc(s, 'money', 'string_profit', ((s as any).whore_money_bjsex ?? ''))}<br>fucking my pussy is ${qspFunc(s, 'money', 'string_profit', ((s as any).whore_money_clsex ?? ''))}<br>or you can fuck my ass for ${qspFunc(s, 'money', 'string_profit', ((s as any).whore_money_analsex ?? ''))}.<br>You can also just give me ${qspFunc(s, 'money', 'string_profit', ((s as any).whore_money_allsex ?? ''))}, you can fuck me any way you like then for as long as you want… no holes barred.<br>If you are with your friends, I'll be happy to take all of you on at once for ${qspFunc(s, 'money', 'string_profit', ((s as any).whore_money_groupsex ?? ''))}.`);
         (s as any).rnd_client_event = (Math.floor(Math.random() * 7) + 1);
         if (((s as any).rnd_client_event ?? 0) === 1) {
@@ -858,7 +885,6 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
       }
       if (String((s as any).locArgs?.[1] ?? '') === 'pod_client_talk_bazar6') {
         qspCall(s, 'stat', '');
-        // TODO-QSP: dynamic text: You keep teasing him: "Well, you could always just go from door to door, trying ...
         scene.text(`You keep teasing him: "Well, you could always just go from door to door, trying to find a girl named ${((s as any).pcs_nickname ?? '')}…", while you do your best not to laugh.`);
         scene.text('The guy is clearly taken aback, his face deeply red with embarrassment.');
         qspCall(s, 'willpower', 'prostitution', 'resist', 'medium');
@@ -889,7 +915,6 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
         ]);
       }
       if (String((s as any).locArgs?.[1] ?? '') === 'pod_client_talk_bazar8') {
-        // TODO-QSP: dynamic text: You feel bad for the guy, and confess: "I''m sorry babe, I was just teasing you....
         scene.text(`You feel bad for the guy, and confess: "I'm sorry babe, I was just teasing you. I'm ${((s as any).pcs_nickname ?? '')}. How can I make it up to you? All of my holes are at your disposal, I'll even give you a discount…"`);
         scene.text('He looks relieved, and it takes him a second to realize why he\'s here. Then it hits him, and he says: "Right… how much do you charge?"');
         scene.actions([
@@ -897,9 +922,7 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
         ]);
       }
       if (String((s as any).locArgs?.[1] ?? '') === 'pod_client_talk_bazar9') {
-        // TODO-QSP: dynamic text: You can barely hide your smile when you say: "Is that all you have to say for yo...
         scene.text(`You can barely hide your smile when you say: "Is that all you have to say for yourself? You know, my name also happens to be ${((s as any).pcs_nickname ?? '')}…"`);
-        // TODO-QSP: dynamic text: The man looks at you with a somewhat confused look on his face: "Wait… so you''r...
         scene.text(`The man looks at you with a somewhat confused look on his face: "Wait… so you're not the ${((s as any).pcs_nickname ?? '')} that's being advertised on the walls? Are you also in the business or not?"`);
         scene.actions([
           { label: '"Maybe…"', goto: ['pod_whore', 'hide', 'pod_client_talk_bazar10'] },
@@ -915,7 +938,6 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
         ]);
       }
       if (String((s as any).locArgs?.[1] ?? '') === 'pod_client_talk_bazar11') {
-        // TODO-QSP: dynamic text: You decide to let him off easy, and just admit it: "I was just kidding, babe. I'...
         scene.text(`You decide to let him off easy, and just admit it: "I was just kidding, babe. I'm ${((s as any).pcs_nickname ?? '')}."`);
         scene.text('The guy looks at you, not quite sure what to think: "Wait… so you were just leading me on?"');
         scene.text('You give him a friendly smile and say: "I\'m sorry, babe. Maybe I can make it up to you? I bet I could make you feel good…"');
@@ -946,7 +968,6 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
       }
       if (String((s as any).locArgs?.[1] ?? '') === 'pod_client_talk_bazar14') {
         scene.text('You can\'t keep toying with this poor man! You chuckle and tell him: "I\'m sorry sweetie, I don\'t think I could take my clients to a place like that!"');
-        // TODO-QSP: dynamic text: The man is silent for a moment while he connects the dots in his mind, and then ...
         scene.text(`The man is silent for a moment while he connects the dots in his mind, and then mutters: "Wait… so you are <b>the</b> ${((s as any).pcs_nickname ?? '')} and you were messing with me the whole time!?"`);
         scene.text('You laugh out loud and tell him: "Sorry babe, I was testing you. I like you though, you\'re cute. How about I give you a discount, maybe I can make it up to you?"');
         scene.text('The man looks a tad embarrassed, but is mostly just relieved you are who he thinks you are: "Damn, you got me there! Alright then… how much do you charge?"');
@@ -956,7 +977,6 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
       }
       if (String((s as any).locArgs?.[1] ?? '') === 'pod_client_talk_no') {
         qspCall(s, 'stat', '');
-        // TODO-QSP: dynamic text: You shake your head: "I''m sorry, I don''t know who this <<$pcs_nickname>> is. Y...
         scene.text(`You shake your head: "I'm sorry, I don't know who this ${((s as any).pcs_nickname ?? '')} is. You must be at the wrong number."`);
         scene.text('The man smiles and apologizes: "I\'m sorry, miss. Could you tell me where I could find a willing girl? I have more than enough money on me."');
         scene.actions([
@@ -989,10 +1009,8 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
         (s as any).pod_whore_client_count = ((s as any).pod_whore_client_count ?? 0) - (1);
         qspCall(s, 'fame', 'pav', 'prostitute', (Math.floor(Math.random() * 7) + 6));
         qspCall(s, 'arousal', 'end');
-        // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/locations/pavlovsk/resid...
         scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/stairs/sex/cum` + (Math.floor(Math.random() * 7) + 1) + '.mp4"></video></center>');
         { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'text_pod_whore_cum']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
-        // TODO-QSP: dynamic text: The man gives you <<$func(''money'', ''string_profit'', total_money)>>, as promi...
         scene.text(`The man gives you ${qspFunc(s, 'money', 'string_profit', ((s as any).total_money ?? ''))}, as promised.`);
         if (((s as any).clothingworntype ?? 0) === 'nude') {
           scene.actions([
@@ -1014,7 +1032,6 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
         ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})[String((s as any).boy ?? 0)] = 1;
         qspCall(s, 'arousal', 'bj', (Math.floor(Math.random() * 11) + 5), 'prostitution');
         qspCall(s, 'stat', '');
-        // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/locations/pavlovsk/resid...
         scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/stairs/sex/bj` + (Math.floor(Math.random() * 17) + 1) + '.mp4"></video></center>');
         { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'text_pod_whore_bj']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
         qspCall(s, 'gopsex', 'hide', 'accview_ggsex');
@@ -1028,7 +1045,6 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
         ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})[String((s as any).boy ?? 0)] = 1;
         qspCall(s, 'arousal', 'vaginal', (Math.floor(Math.random() * 9) + 7), 'prostitution');
         qspCall(s, 'stat', '');
-        // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/locations/pavlovsk/resid...
         scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/stairs/sex/sex` + (Math.floor(Math.random() * 7) + 1) + '.mp4"></video></center>');
         { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'text_pod_whore_vag']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
         qspCall(s, 'gopsex', 'gg_sex_orgasm');
@@ -1043,7 +1059,6 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
         ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})[String((s as any).boy ?? 0)] = 1;
         qspCall(s, 'arousal', 'anal', (Math.floor(Math.random() * 9) + 7), 'prostitution');
         qspCall(s, 'stat', '');
-        // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/locations/pavlovsk/resid...
         scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/stairs/sex/sex` + (Math.floor(Math.random() * 7) + 8) + '.mp4"></video></center>');
         { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'text_pod_whore_anal']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
         qspCall(s, 'gopsex', 'hide', 'accview_ggsex');
@@ -1057,14 +1072,12 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
         ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})[String((s as any).boy ?? 0)] = 1;
         qspCall(s, 'arousal', 'bj', (Math.floor(Math.random() * 10) + 3), 'prostitution');
         qspCall(s, 'stat', '');
-        // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/locations/pavlovsk/resid...
         scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/stairs/sex/bj` + (Math.floor(Math.random() * 17) + 1) + '.mp4"></video></center>');
         { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'text_pod_whore_bj']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
         scene.actions([
           { label: 'Continue', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'vaginal', (Math.floor(Math.random() * 9) + 5), 'prostitution');
     qspCall(st, 'stat', '');
-    // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/locations/pavlovsk/resid...
     scene.text(`<center><video autoplay loop ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/stairs/sex/sex` + (Math.floor(Math.random() * 7) + 1) + '.mp4"></video></center>');
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'text_pod_whore_vag']; enterHide(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspCall(st, 'gopsex', 'gg_sex_orgasm');
@@ -1073,7 +1086,6 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'anal', (Math.floor(Math.random() * 9) + 7), 'prostitution');
     qspCall(st, 'stat', '');
-    // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/locations/pavlovsk/resid...
     scene.text(`<center><video autoplay loop ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/stairs/sex/sex` + (Math.floor(Math.random() * 7) + 8) + '.mp4"></video></center>');
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'text_pod_whore_anal']; enterHide(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.actions([
@@ -1090,14 +1102,12 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
         ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})[String((s as any).boy ?? 0)] = 1;
         qspCall(s, 'arousal', 'bj', (Math.floor(Math.random() * 11) + 5), 'prostitution');
         qspCall(s, 'stat', '');
-        // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/locations/pavlovsk/resid...
         scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/stairs/sex/bj` + (Math.floor(Math.random() * 17) + 1) + '.mp4"></video></center>');
         { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'text_pod_whore_bj']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
         scene.actions([
           { label: 'Continue', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'vaginal', (Math.floor(Math.random() * 9) + 7), 'prostitution');
     qspCall(st, 'stat', '');
-    // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/locations/pavlovsk/resid...
     scene.text(`<center><video autoplay loop ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/stairs/sex/sex` + (Math.floor(Math.random() * 7) + 1) + '.mp4"></video></center>');
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'text_pod_whore_vag']; enterHide(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspCall(st, 'gopsex', 'gg_sex_orgasm');
@@ -1114,14 +1124,12 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
         ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})[String((s as any).boy ?? 0)] = 1;
         qspCall(s, 'arousal', 'bj', (Math.floor(Math.random() * 11) + 5), 'prostitution');
         qspCall(s, 'stat', '');
-        // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/locations/pavlovsk/resid...
         scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/stairs/sex/bj` + (Math.floor(Math.random() * 17) + 1) + '.mp4"></video></center>');
         { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'text_pod_whore_bj']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
         scene.actions([
           { label: 'Continue', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'anal', (Math.floor(Math.random() * 9) + 7), 'prostitution');
     qspCall(st, 'stat', '');
-    // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/locations/pavlovsk/resid...
     scene.text(`<center><video autoplay loop ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/stairs/sex/sex` + (Math.floor(Math.random() * 7) + 8) + '.mp4"></video></center>');
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'text_pod_whore_anal']; enterHide(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspCall(st, 'gopsex', 'hide', 'accview_ggsex');
@@ -1145,6 +1153,8 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
         if (((s as any).temp_rand ?? 0) === 4) {
           (s as any).txt_pod_whore_groupbj = 'You move up between the guys and put your arms around their waists, and say: "Come on guys, let\'s go into the stairwell. How do you want me?" You can tell the boys are uncomfortable, and you guide them towards a quiet corner. You try to reassure them: "Relax boys… we\'ll be fine here, no one ever walks through here at this time of day. Why don\'t you show me what you have for me?" They\'re still rather timid. You drop to your haunches and undo the pants of one of the guys, pulling out his limp dick. You close your mouth around it and begin to suck, and slowly but surely you can feel it grow erect in your mouth. The other guy fumbles with your clothes for a moment. After he manages to get your boobs to hang out of your top, he also offers you his cock. It\'s already hard, you can tell the horniness of the guys is slowly trumping the embarrassment they felt before. You figure this is their first time with a prostitute, and you want to do your best to make it a time to remember. You suck them off and stroke them enthusiastically, giving them a sweet smile and encouraging them to be more daring. After a few minutes, you take the cock you\'re currently sucking on out of your mouth and ask them: "So boys, what do you say… would you like to fuck me now?"';
         }
+        (s as any).txt_pod_whore_groupbj = undefined;
+        (s as any).temp_rand = undefined;
       }
       if (String((s as any).locArgs?.[1] ?? '') === 'text_pod_whore_groupsex') {
         (s as any).temp_rand = (Math.floor(Math.random() * 3) + 1);
@@ -1157,6 +1167,8 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
         if (((s as any).temp_rand ?? 0) === 3) {
           (s as any).txt_pod_whore_groupsex = 'When you lean against the railing, one of the guys immediately follows you and you feel his hard erection poking against your back. He groans: "Put some back into it girl, I expect to feel those hips slapping back against me." You nod obediently and enthusiastically ride him once he enters his dick inside you. It feels surprisingly good… maybe even better than it should. You could definitely get used to having men come to your house! As much cock as you want, and you don\'t even have to go look for it! The other guy is watching your face intently while slowly jerking himself off. You can tell that your pleasure in getting fucked is arousing him a great deal.';
         }
+        (s as any).txt_pod_whore_groupsex = undefined;
+        (s as any).temp_rand = undefined;
       }
       if (String((s as any).locArgs?.[1] ?? '') === 'pod_whore_ev5') {
         (s as any).temp_rand = (Math.floor(Math.random() * 2) + 1);
@@ -1166,6 +1178,7 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
         if (((s as any).temp_rand ?? 0) === 2) {
           qspGoto(s, 'pod_whore', 'hide', 'pod_whore_groupsexev2');
         }
+        (s as any).temp_rand = undefined;
       }
       if (String((s as any).locArgs?.[1] ?? '') === 'pod_whore_groupsexev1') {
         qspCall(s, 'npcgeneratec', '0', 'customer', (Math.floor(Math.random() * 23) + 18));
@@ -1177,14 +1190,12 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'arousal', 'bj', (Math.floor(Math.random() * 3) + 3), (((s as any).npcID ?? 0)?.[1] ?? 0), 'prostitution', 'group');
         qspCall(s, 'arousal', 'bj', (Math.floor(Math.random() * 3) + 3), (((s as any).npcID ?? 0)?.[2] ?? 0), 'prostitution', 'group');
         qspCall(s, 'stat', '');
-        // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/resident/apartment/st...
         scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/stairs/sex/1_1_` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
         { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'text_pod_whore_groupbj']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
         scene.actions([
           { label: 'Continue', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'vaginal', (Math.floor(Math.random() * 7) + 5), (((st as any).npcID ?? 0)?.[1] ?? 0), 'prostitution', 'group');
     qspCall(st, 'stat', '');
-    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/resident/apartment/st...
     scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/stairs/sex/1_2_` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'text_pod_whore_groupsex']; enterHide(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspCall(st, 'gopsex', 'gg_sex_orgasm');
@@ -1216,14 +1227,11 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
     (st as any).pod_whore_client_day = ((st as any).daystart ?? 0);
     (st as any).pod_whore_client_count = ((st as any).pod_whore_client_count ?? 0) - (1);
     qspCall(st, 'arousal', 'end');
-    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/resident/apartment/st...
     scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/stairs/sex/1_4_` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
     scene.text('After they fucked you in several positions and both had their turns, they tell you they want to cum on your face.');
     scene.text('You eagerly drop to your knees and stick out your tongue, inviting them to cum in your mouth while you look them deep in the eyes.');
-    // TODO-QSP: dynamic text: Soon enough, the hot jets of cum splatter down on your face, mostly on your expo...
     scene.text(`Soon enough, the hot jets of cum splatter down on your face, mostly on your exposed tongue. A few drips run down your chin and drop onto your ${((st as any).titsize ?? '')} boobs. You absent-mindedly rub them, spreading their cum all over them.`);
     scene.text('You can tell the men are truly spent, and enjoyed your services a great deal.');
-    // TODO-QSP: dynamic text: One guy produces the money you were promised, and hands you the <<$func(''money'...
     scene.text(`One guy produces the money you were promised, and hands you the ${qspFunc(s, 'money', 'string_profit', ((st as any).total_money ?? ''))}. He smiles happily: "You were great, girl. We'll definitely be back."`);
     scene.actions([
       { label: 'Thank them and leave', handler: (st: GameState) => {
@@ -1247,7 +1255,6 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'arousal', 'bj', (Math.floor(Math.random() * 3) + 3), (((s as any).npcID ?? 0)?.[1] ?? 0), 'prostitution', 'group');
         qspCall(s, 'arousal', 'bj', (Math.floor(Math.random() * 3) + 3), (((s as any).npcID ?? 0)?.[2] ?? 0), 'prostitution', 'group');
         qspCall(s, 'stat', '');
-        // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/locations/pavlovsk/resid...
         scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/stairs/sex/2_1_` + (Math.floor(Math.random() * 2) + 1) + '.mp4"></video></center>');
         { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'text_pod_whore_groupbj']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
         scene.actions([
@@ -1273,7 +1280,6 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + ((Math.floor(Math.random() * 6) + 5));
     qspCall(st, 'stat', '');
-    // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/locations/pavlovsk/resid...
     scene.text(`<center><video autoplay loop ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/stairs/sex/2_2_` + (Math.floor(Math.random() * 2) + 2) + '.mp4"></video></center>');
     scene.text('Then the guy fucking you lies down on his back, his cock never leaving your pussy. He drags you with him, and you steady your hands on his chest behind you. He expects you to ride him now, while the other guy moves back up to your face and tells you to keep sucking.');
     scene.text('You don\'t give it any more thought and just open your mouth as he says, and close your lips around it again.');
@@ -1311,7 +1317,6 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/resident/apartment/stairs/sex/2_4.jpg');
     scene.text('After a few more minutes of getting fucked, you suddenly feel the guy underneath you spasm. Seconds later you feel a warm liquid inside you, and when he pulls his cock out of you his cum slowly drips from your pussy. A few more jets of cum come out, landing on your stomach. The other guy cums inside your mouth at the same time, without any warning. You swallow his load as best you can, and only miss a few drops that end up on your chin.');
     scene.text('The guys don\'t pay much attention to you when they put their clothes back on. They\'re mostly talking to one another about how much of a good fuck you were, pretending you\'re not there.');
-    // TODO-QSP: dynamic text: Then one guy turns to you and gives you the money: "You''re a pretty decent fuck...
     scene.text(`Then one guy turns to you and gives you the money: "You're a pretty decent fuck, ${((st as any).pcs_nickname ?? '')}. Here are the ${qspFunc(s, 'money', 'string_profit', ((st as any).total_money ?? ''))} we agreed upon. See you around."`);
     scene.actions([
       { label: 'Thank them and leave', handler: (st: GameState) => {
@@ -1330,6 +1335,42 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
         ]);
       }
       if (String((s as any).locArgs?.[1] ?? '') === 'clean') {
+        (s as any).temp_rand = undefined;
+        (s as any).goto_rnd_client_event = undefined;
+        (s as any).rnd_client_money = undefined;
+        (s as any).rnd_client_money2 = undefined;
+        (s as any).rnd_client_money3 = undefined;
+        (s as any).pod_whore_lubri_text = undefined;
+        (s as any).money_silicone = undefined;
+        (s as any).money_mop = undefined;
+        (s as any).money_hapri = undefined;
+        (s as any).money_glamur = undefined;
+        (s as any).money_odethooker = undefined;
+        (s as any).money_skin = undefined;
+        (s as any).money_skin_tan = undefined;
+        (s as any).money_leghair = undefined;
+        (s as any).money_resnic = undefined;
+        (s as any).money_pcs_lipbalm = undefined;
+        (s as any).whore_dopmoney = undefined;
+        (s as any).money_throat = undefined;
+        (s as any).money_vnesh = undefined;
+        (s as any).money_horny = undefined;
+        (s as any).money_cumfrot = undefined;
+        (s as any).money_sweat = undefined;
+        (s as any).money_cumlip = undefined;
+        (s as any).money_cumface = undefined;
+        (s as any).money_cumbelly = undefined;
+        (s as any).money_cumpussy = undefined;
+        (s as any).money_cumanus = undefined;
+        (s as any).money_cumass = undefined;
+        (s as any).money_son = undefined;
+        (s as any).whore_money_bjsex = undefined;
+        (s as any).whore_money_clsex = undefined;
+        (s as any).whore_money_analsex = undefined;
+        (s as any).whore_money_groupsex = undefined;
+        (s as any).whore_money_bjvagsex = undefined;
+        (s as any).whore_money_bjanalsex = undefined;
+        (s as any).whore_money_rnd = undefined;
       }
       // TODO-QSP: end & !! --- hide ---
     }

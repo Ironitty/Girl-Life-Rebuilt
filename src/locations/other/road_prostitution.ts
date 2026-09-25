@@ -1,4 +1,4 @@
-import { qspCall, qspGoto } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -19,7 +19,7 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'prostitution_functions', 'parameters');
   if (((s as any).prostitute_names ?? 0)?.[String((s as any).prostitution_location ?? 0)] === '') {
     scene.text('If you want, you can tell your clients a different name.');
-    // TODO-QSP: $prostitute_names[$prostitution_location] = input("What name do you want to tell your clients? (Leav...
+    ((s as any).prostitute_names = (s as any).prostitute_names ?? {})[String((s as any).prostitution_location ?? 0)] = window.prompt("What name do you want to tell your clients? (Leave blank for " + (((s as any).pcs_nickname ?? 0)) + ")") ?? '';
     if (((s as any).prostitute_names ?? 0)?.[String((s as any).prostitution_location ?? 0)] === '') {
       ((s as any).prostitute_names = (s as any).prostitute_names ?? {})[String((s as any).prostitution_location ?? 0)] = ((s as any).pcs_nickname ?? 0);
     }
@@ -36,7 +36,7 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
     scene.text('<br>You have visible cum stains on you. Most clients won\'t like that and will offer less money.');
   }
   if (((s as any).prostitute ?? 0)?.['earnings_day'] > 0) {
-    // TODO-QSP: 'You have earned <<$func(''money'', ''string_profit'', prostitute[''earnings_day''])>> today.'+iif(p...
+    scene.text(`You have earned ${qspFunc(s, 'money', 'string_profit', (((s as any).prostitute ?? 0)?.['earnings_day'] ?? ''))} today.` + ((((s as any).prostitute ?? 0)?.['payment_method'] === 0) ? (' Your share is ' + qspFunc(s, 'money', 'string_profit', (((s as any).prostitute ?? {})?.['earnings_day'] ?? 0) * (((s as any).prostitute ?? {})?.['share_player'] ?? 0) / 100) + '' + ((((s as any).prostitute ?? 0)?.['debt_amount'] > 0) ? (', but your pimp will keep ' + qspFunc(s, 'money', 'string_profit', (((s as any).prostitute ?? {})?.['earnings_day'] ?? 0) * (((s as any).prostitute ?? {})?.['debt_payment_percent'] ?? 0) / 100) + ' to pay down your debt.') : ('.'))) : ('')));
   }
   if (((s as any).prostitute ?? 0)?.['payment_method'] === 0) {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterEventCheck(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -72,7 +72,6 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'prostitution_car_negotiation', 'general_description');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Stop working', goto: ['road', ''] },
   ]);
@@ -80,7 +79,6 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterEventCheck(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -159,7 +157,6 @@ function enterRoadSegment(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 

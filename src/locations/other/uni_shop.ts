@@ -10,6 +10,8 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   (s as any).menu_loc = 'uni_shop';
   (s as any).menu_arg = 'start';
   (s as any).location_type = 'public_indoors';
+  (s as any).locclass = undefined;
+  (s as any).shoplocation = undefined;
   qspCall(s, 'themes', 'indoors');
   if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
   }
@@ -23,8 +25,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
 ]);
     return;
   }
-  scene.text('In the store is an <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027uni_shop/u0027, /u0027atm/u0027); return false;">ATM</a>, from which you can withdraw money and deposit money into your bank account.');
-  // TODO-QSP: end
+  scene.text('In the store is an <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027uni_shop\u0027, \u0027atm\u0027); return false;">ATM</a>, from which you can withdraw money and deposit money into your bank account.');
   scene.actions([
     { label: 'Browse the aisles', goto: ['uni_shop', 'cart'] },
     { label: 'Leave the store', handler: (st: GameState) => {
@@ -40,6 +41,8 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   (s as any).menu_loc = 'uni_shop';
   (s as any).menu_arg = 'start';
   (s as any).location_type = 'public_indoors';
+  (s as any).locclass = undefined;
+  (s as any).shoplocation = undefined;
   qspCall(s, 'themes', 'indoors');
   if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
   }
@@ -53,8 +56,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 ]);
     return;
   }
-  scene.text('In the store is an <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027uni_shop/u0027, /u0027atm/u0027); return false;">ATM</a>, from which you can withdraw money and deposit money into your bank account.');
-  // TODO-QSP: end
+  scene.text('In the store is an <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027uni_shop\u0027, \u0027atm\u0027); return false;">ATM</a>, from which you can withdraw money and deposit money into your bank account.');
   scene.actions([
     { label: 'Browse the aisles', goto: ['uni_shop', 'cart'] },
     { label: 'Leave the store', handler: (st: GameState) => {
@@ -71,14 +73,12 @@ function enterAtm(s: GameState, scene: SceneBuilder): void {
     scene.text('You don\'t have a bank account yet!');
   } else {
     if (((s as any).karta ?? 0) >= ((s as any).bankDebtLimit ?? 0)) {
-      // TODO-QSP: dynamic text: You have <<$func(''money'', ''format_balance'', ''bank'')>> in your account.
       scene.text(`You have ${qspFunc(s, 'money', 'format_balance', 'bank')} in your account.`);
-      // TODO-QSP: 'You have an overdraft limit of ' + $func('wrap', 'accent','<<$func(''money'', ''format'', bankDebtL...
+      scene.text('You have an overdraft limit of ' + qspFunc(s, 'wrap', 'accent', '' + qspFunc(s, 'money', 'format', ((s as any).bankDebtLimit ?? '')) + '!'));
     } else {
-      // TODO-QSP: 'You are overdrawn by ' + $func('wrap', 'neg', '<<$func(''money'', ''format'', bankDebtLimit - karta...
-      // TODO-QSP: 'You have a remaining credit limit of ' + $func('wrap', 'accent','<<$func(''money'', ''format'', kar...
+      scene.text('You are overdrawn by ' + qspFunc(s, 'wrap', 'neg', '' + qspFunc(s, 'money', ((s as any).format ?? ''), ((s as any).bankDebtLimit ?? '') - ((s as any).karta ?? '')) + ' <b>₽</b>.'));
+      scene.text('You have a remaining credit limit of ' + qspFunc(s, 'wrap', 'accent', '' + qspFunc(s, 'money', 'format', ((s as any).karta ?? '')) + '!'));
     }
-    // TODO-QSP: dynamic text: <br>ATM Deposit Fee: <<$func(''money'', ''string_price'', 100)>>
     scene.text(`<br>ATM Deposit Fee: ${qspFunc(s, 'money', 'string_price', 100)}`);
     if (((s as any).money ?? 0) > 0) {
       scene.actions([
@@ -123,7 +123,6 @@ function enterAtm(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Move away', goto: ['uni_shop', 'start'] },
   ]);
@@ -138,7 +137,6 @@ function enterCart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'item_cart', 'shopping_aisle', 'uni');
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/island/unimarket.jpg');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Exit shopping cart', goto: ['uni_shop', 'start'] },
   ]);

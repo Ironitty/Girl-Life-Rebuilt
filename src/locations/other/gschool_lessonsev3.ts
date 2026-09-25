@@ -185,7 +185,6 @@ function enterLiterature(s: GameState, scene: SceneBuilder): void {
       scene.img('images/locations/pavlovsk/school/classroom/literature/events/heavy_petting.mp4');
       scene.text('You spread your legs for him, and without hesitation, Roman\'s hand dips between your legs, his fingers trailing along your inner thigh until he\'s pressing against your pussy through your panties. You shiver with anticipation as he teasingly traces a finger along the outline of your lips. Slowly, he begins massaging circles around your clit, and in the heat of the moment, you let out a soft moan that catches the attention of the girl sitting a few feet away. You quickly drape your arm over your lap and lean forward to obscure her view. You give her a reassuring smile and hope she\'ll leave it at that, but she continues to stare, convinced that something is happening.');
       scene.text('"Don\'t worry, I\'m--" Your words get caught in your throat as Roman starts rubbing your sensitive button even harder. "I-I\'m fine…" you finally manage to say and the girl gives you one last look before slowly turning around, hopefully none the wiser.');
-      // TODO-QSP: dynamic text: "Something wrong, <<$pcs_nickname>>?" Roman asks and you glance over at the gopn...
       scene.text(`"Something wrong, ${((st as any).pcs_nickname ?? '')}?" Roman asks and you glance over at the gopnik to find him smiling wickedly at you. Without warning, he slides your panties aside and plunges two fingers into your wet pussy. Stifling a gasp, you can only nod as he crooks his fingers slightly, finding your sweet spot with ease. Biting your lip, you begin to rock yourself on his hand while his thumb teases your clit. You don't know when you closed your eyes, but when you open them again you notice Roman watching you intently, an amused smirk on his face as you continue to fuck yourself on his fingers.`);
       scene.text('You soon feel your body tense up as the waves of your orgasm wash over you. You ride out the pleasure in silence until it finally passes, leaving you light-headed and dizzy. You look over at Roman and find him admiring his fingers, wet and shining with your juices.');
       scene.text('"Well?" he asks, and you realize that he needs to clean them off. Readjusting your soaked panties, you get up to get a tissue, but Roman laughs and shakes his head. Without warning, he uses your skirt to clean up. "This\'ll do."');
@@ -193,7 +192,6 @@ function enterLiterature(s: GameState, scene: SceneBuilder): void {
       scene.img('images/locations/pavlovsk/school/classroom/literature/events/heavy_petting.mp4');
       scene.text('You spread your legs for him, and without hesitation, Roman\'s hand dips between your legs, his fingers trailing along your inner thigh until he\'s pressing against your bare pussy. You shiver with anticipation as he teasingly traces a finger along your lips. Slowly, he begins massaging circles around your clit, and in the heat of the moment, you let out a soft moan that catches the attention of the girl sitting a few feet away. You quickly drape your arm over your lap and lean forward to obscure her view. You give her a reassuring smile and hope she\'ll leave it at that, but she continues to stare, convinced that something is happening.');
       scene.text('"Don\'t worry, I\'m--" Your words get caught in your throat as Roman starts rubbing your sensitive button even harder. "I-I\'m fine…" You finally manage to say and the girl gives you one last look before slowly turning around, hopefully none the wiser.');
-      // TODO-QSP: dynamic text: "Something wrong, <<$pcs_nickname>>?" Roman asks and you glance over at the gopn...
       scene.text(`"Something wrong, ${((st as any).pcs_nickname ?? '')}?" Roman asks and you glance over at the gopnik to find him smiling wickedly at you. Without warning, he plunges two fingers into your wet pussy. Stifling a gasp, you can only nod as he crooks his fingers slightly, finding your sweet spot with ease. You bite your lip as you begin to rock yourself on his hand while his thumb teases your clit. You don't know when you closed your eyes but when you open them again, you notice Roman watching you intently, an amused smirk on his face as you continue to fuck yourself on his fingers.`);
       scene.text('You soon feel your body tense up as the waves of your orgasm wash over you. You ride out the pleasure in silence until it finally passes, leaving you light-headed and dizzy. You look over at Roman and find him admiring his fingers, wet and shining with your juices.');
       scene.text('"Well?" he asks, and you realize that he needs to clean them off. Readjusting your uniform, you get up to get a tissue, but Roman laughs and shakes his head. Without warning, he uses your skirt to clean up. "This\'ll do."');
@@ -208,7 +206,6 @@ function enterLiterature(s: GameState, scene: SceneBuilder): void {
               } else {
                 if (((s as any).scooltiperand ?? 0) === 7) {
                   scene.img('images/locations/pavlovsk/school/classroom/literature/events/humpday.mp4');
-                  // TODO-QSP: dynamic text: You''re standing at your desk when Anushka suddenly appears behind you, grinning...
                   scene.text(`You're standing at your desk when Anushka suddenly appears behind you, grinning wildly. "Guess what day it is today is, ${((s as any).pcs_nickname ?? '')}."`);
                   scene.text('Before you can react, she grabs you by the waist and pulls you close, your ass now pressed against her hips as she starts roughly thrusting against you. "It\'s hump day!"');
                   qspCall(s, 'willpower', 'exhib', 'resist');
@@ -330,7 +327,6 @@ function enterLiterature(s: GameState, scene: SceneBuilder): void {
   } else {
     qspGoto(s, 'gschool_lessons', 'short_break');
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -340,12 +336,10 @@ function enterReading(s: GameState, scene: SceneBuilder): void {
   ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = ((s as any).grupvalue[3] ?? 0) + (3);
   scene.img('images/locations/pavlovsk/school/classroom/ask.jpg');
   scene.text('You raise your hand, and with a nod, Ms. Braakman lets you speak. You read the passage clearly without any mistakes, which earns you some praise.');
-  // TODO-QSP: dynamic text: "Very nice, Miss <<$pcs_lastname>>," Ms. Braakman says with a small smile before...
   scene.text(`"Very nice, Miss ${((s as any).pcs_lastname ?? '')}," Ms. Braakman says with a small smile before continuing on with the lesson.`);
   (s as any).scooltiperand = (Math.floor(Math.random() * 4) + 1);
   if (((s as any).scooltiperand ?? 0) === 1) {
     scene.img('images/characters/shared/headshots_main/big159.jpg');
-    // TODO-QSP: dynamic text: "Screw reading! <<$pcs_nickname>>''s mouth is better suited for sucking cock!" y...
     scene.text(`"Screw reading! ${((s as any).pcs_nickname ?? '')}'s mouth is better suited for sucking cock!" you overhear someone say behind you and turn around to see Petia staring back at you. Unashamed, a perverted smile spreads across his face and you get the feeling he's undressing you with his eyes.`);
     qspCall(s, 'willpower', 'bj', 'self', 'easy');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
@@ -395,7 +389,6 @@ function enterReading(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.text('"Fuck off you fat, disgusting pig!" you shout, jaw clenched and eyes narrowed. As if he had been slapped across the face, Petia\'s expression falls and is replaced by a mix of surprise and fear as he cowers slightly under your heated gaze.');
     scene.text('"I was just joking…" he says quietly while sinking back into his seat.');
-    // TODO-QSP: dynamic text: "Damn, <<$pcs_nickname>> isn''t fucking around!" Anushka marvels while giving yo...
     scene.text(`"Damn, ${((st as any).pcs_nickname ?? '')} isn't fucking around!" Anushka marvels while giving you a nod of approval.`);
     scene.text('"Just hit that fat piece of shit! Nobody\'s going to care," Roman comments as he turns to face Petia with a scowl.');
     scene.text('"When are you going to realize that <i>nobody. Fucking. Likes. You</i>, you smelly fucking cunt?" Arkadi adds, his lips curled back in disgust.');
@@ -441,7 +434,6 @@ function enterReading(s: GameState, scene: SceneBuilder): void {
     ((st as any).grupvalue = (st as any).grupvalue ?? {})[4] = ((st as any).grupvalue[4] ?? 0) + (1);
     scene.text('"You\'re too fat to even see your own dick, so what would you know about blowjobs besides being a pro at giving them?" you say with a mocking smile.');
     scene.text('There\'s a moment of stunned silence before laughter breaks out in the class. Watching Petia\'s face flush bright red as he struggles to defend himself fills you with a smug satisfaction.');
-    // TODO-QSP: dynamic text: "Miss <<$pcs_lastname>>! I don''t want to hear that kind of language in my class...
     scene.text(`"Miss ${((st as any).pcs_lastname ?? '')}! I don't want to hear that kind of language in my class!" Ms. Braakman shouts, barely managing to speak above the noise of the class.`);
     scene.actions([
       { label: 'Wait for the end of the lesson', goto: ['gschool_lessons', 'short_break'] },
@@ -474,7 +466,6 @@ function enterReading(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       if (((s as any).scooltiperand ?? 0) === 3) {
-        // TODO-QSP: dynamic text: "Very nice work, Miss <<$pcs_lastname>>," Arkadi says mockingly, his voice a poo...
         scene.text(`"Very nice work, Miss ${((s as any).pcs_lastname ?? '')}," Arkadi says mockingly, his voice a poor imitation of Ms. Braakman. You turn around to see him and Roman snickering.`);
         scene.actions([
           { label: 'Wait for the end of the lesson', goto: ['gschool_lessons', 'short_break'] },
@@ -493,7 +484,6 @@ function enterReading(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -518,7 +508,6 @@ function enterGetphone(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/teacher/raven/angry.jpg');
     scene.text('"Whatever. Can I just have my phone back?" you moan, crossing your arms over your chest as you roll your eyes impatiently.');
     scene.text('Ms. Braakman\'s expression darkens as she stands from her seat, the sound of the chair scraping against the floor cutting through the silence like a knife. As she comes out from behind her desk, you notice she\'s holding something in her hand. It isn\'t until she\'s standing a few steps away that you realize it\'s the long wooden pointer she uses during class.');
-    // TODO-QSP: dynamic text: "I think that answers my question," she says, her voice low and oddly calm. "Tur...
     scene.text(`"I think that answers my question," she says, her voice low and oddly calm. "Turn around, ${((st as any).pcs_lastname ?? '')}."`);
     scene.actions([
       { label: 'Obey', handler: (st: GameState) => {
@@ -535,7 +524,6 @@ function enterGetphone(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/school/classroom/literature/punishment2.jpg');
     scene.text('You inhale sharply as you feel the sting from the first strike. You instinctively flinch away from the pain, but Ms. Braakman makes sure to pull you back before continuing. You try to convince yourself that it doesn\'t hurt as much after the first few hits, but it does little to comfort you as the pointer whistles through the air and connects with your reddened ass for a seventh time.');
     scene.text('By the end of the caning, you\'ve collapsed completely onto the desk, your sensitive flesh throbbing and covered with bright red welts. Ms. Braakman steps back to admire her work, a twisted smile spreading across her face as she listens to your muffled whimpers.');
-    // TODO-QSP: dynamic text: "Clean yourself up, <<$pcs_lastname>>. You don''t want to be late to your next c...
     scene.text(`"Clean yourself up, ${((st as any).pcs_lastname ?? '')}. You don't want to be late to your next class," she says, her voice dripping with smug satisfaction as your phone is dropped onto the desk you're still bent over. You slowly stand up straight and use the back of your hand to wipe away the tears before carefully pulling up your panties. Grabbing your phone, you keep your head hung low as you inch your way to the door and down the hallway to your next class, trying your best to hide the pain.`);
     scene.actions([
       { label: 'Wait for the end of the lesson', goto: ['gschool_lessons', 'short_break'] },
@@ -555,7 +543,6 @@ function enterGetphone(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/school/classroom/literature/punishment2.jpg');
     scene.text('You inhale sharply as you feel the sting from the first strike. You instinctively flinch away from the pain, but Ms. Braakman makes sure to pull you back before continuing. You try to convince yourself that it doesn\'t hurt as much after the first few hits, but it does little to comfort you as the pointer whistles through the air and connects with your reddened ass for a seventh time.');
     scene.text('By the end of the caning, you\'ve collapsed completely onto the desk, your sensitive flesh throbbing and covered with bright red welts. Ms. Braakman steps back to admire her work, a twisted smile spreading across her face as she listens to your muffled whimpers.');
-    // TODO-QSP: dynamic text: "Clean yourself up fast, <<$pcs_lastname>>. You don''t want to be late to your n...
     scene.text(`"Clean yourself up fast, ${((st as any).pcs_lastname ?? '')}. You don't want to be late to your next class," she says, her voice dripping with smug satisfaction as your phone is dropped onto the desk you're still bent over. You slowly stand up straight and use the back of your hand to wipe away the tears before carefully pulling your skirt back down. Grabbing your phone, you keep your head hung low as you inch your way to the door and down the hallway to your next class, trying your best to hide the pain.`);
     scene.actions([
       { label: 'Wait for the end of the lesson', goto: ['gschool_lessons', 'short_break'] },
@@ -582,7 +569,6 @@ function enterGetphone(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/school/classroom/literature/punishment2.jpg');
     scene.text('You inhale sharply as you feel the sting from the first strike. You instinctively flinch away from the pain, but Ms. Braakman makes sure to pull you back before continuing. You try to convince yourself that it doesn\'t hurt as much after the first few hits, but it does little to comfort you as the pointer whistles through the air and connects with your reddened ass for a seventh time.');
     scene.text('By the end of the caning, you\'ve collapsed completely onto the desk, your sensitive flesh throbbing and covered with bright red welts. Ms. Braakman steps back to admire her work, a twisted smile spreading across her face as she listens to your muffled whimpers.');
-    // TODO-QSP: dynamic text: "Clean yourself up, <<$pcs_lastname>>. You don''t want to be late to your next c...
     scene.text(`"Clean yourself up, ${((st as any).pcs_lastname ?? '')}. You don't want to be late to your next class," she says, her voice dripping with smug satisfaction as your phone is dropped onto the desk you're still bent over. You slowly stand up straight and use the back of your hand to wipe away the tears before carefully pulling up your panties. Grabbing your phone, you keep your head hung low as you inch your way to the door and down the hallway to your next class, trying your best to hide the pain.`);
     scene.actions([
       { label: 'Wait for the end of the lesson', goto: ['gschool_lessons', 'short_break'] },
@@ -603,7 +589,6 @@ function enterGetphone(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/school/classroom/literature/punishment2.jpg');
     scene.text('You inhale sharply as you feel the sting from the first strike. You instinctively flinch away from the pain, but Ms. Braakman makes sure to pull you back before continuing. You try to convince yourself that it doesn\'t hurt as much after the first few hits, but it does little to comfort you as the pointer whistles through the air and connects with your reddened ass for a seventh time.');
     scene.text('By the end of the caning, you\'ve collapsed completely onto the desk, your sensitive flesh throbbing and covered with bright red welts. Ms. Braakman steps back to admire her work, a twisted smile spreading across her face as she listens to your muffled whimpers.');
-    // TODO-QSP: dynamic text: "Clean yourself up fast, <<$pcs_lastname>>. You don''t want to be late to your n...
     scene.text(`"Clean yourself up fast, ${((st as any).pcs_lastname ?? '')}. You don't want to be late to your next class," she says, her voice dripping with smug satisfaction as your phone is dropped onto the desk you're still bent over. You slowly stand up straight and use the back of your hand to wipe away the tears before carefully pulling your skirt back down. Grabbing your phone, you keep your head hung low as you inch your way to the door and down the hallway to your next class, trying your best to hide the pain.`);
     scene.actions([
       { label: 'Wait for the end of the lesson', goto: ['gschool_lessons', 'short_break'] },
@@ -638,7 +623,6 @@ function enterGetphone(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -774,7 +758,6 @@ function enterEnglish(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/school/classroom/eavesdrop.jpg');
     scene.text('"You\'re all just jealous that Veronika actually has a talent that isn\'t dick riding," you say with a smirk. "It must really scare you knowing that she\'s going to do something with her life, while the rest of you will end up pregnant before your 21st birthday by a deadbeat who\'ll see you as nothing more than a warm, wet hole he can stick his dick in."');
     scene.text('The girls and even Veronika stare at you in stunned silence. Did you go too far? You start to worry you did something wrong, but then you notice the smallest hint of a smile on Veronika\'s face.');
-    // TODO-QSP: dynamic text: "S-screw you, <<$pcs_nickname>>!" one of the girls stutters as she and her group...
     scene.text(`"S-screw you, ${((st as any).pcs_nickname ?? '')}!" one of the girls stutters as she and her group quickly retreat with their tails between their legs.`);
     scene.actions([
       { label: 'Wait for the end of the lesson', goto: ['gschool_lessons', 'short_break'] },
@@ -885,7 +868,6 @@ function enterEnglish(s: GameState, scene: SceneBuilder): void {
   } else {
     qspGoto(s, 'gschool_lessons', 'short_break');
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -981,7 +963,6 @@ function enterWorking(s: GameState, scene: SceneBuilder): void {
       scene.text('"I can help you if you want?" you offer.');
       scene.text('"Yeah, you\'ve got good grades, so you know all about this stuff," Lena says with a grin.');
       scene.text('With a smile, you start going through the problems with them. They still struggle with certain parts, but you easily break down the words and explain everything in a way that they can understand.');
-      // TODO-QSP: dynamic text: "Thanks <<$pcs_nickname>>. If it weren''t for you, Lera would have never gotten ...
       scene.text(`"Thanks ${((st as any).pcs_nickname ?? '')}. If it weren't for you, Lera would have never gotten this stuff right," Lena teases.`);
       scene.text('"Me?! You\'re the one that was having trouble!" Lera objects with a smile.');
       scene.actions([
@@ -1050,7 +1031,6 @@ function enterWorking(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1071,7 +1051,6 @@ function enterHelpRadomir(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Take your work back', handler: (st: GameState) => {
     qspCall(st, 'npc_relationship', 'modify', 'A154', (-2));
-    // TODO-QSP: dynamic text: Fed up, you take your paper back. He doesn''t notice at first, but when he final...
     scene.text(`Fed up, you take your paper back. He doesn't notice at first, but when he finally turns back around and sees it's missing, he starts to look for it. "Hey ${((st as any).pcs_nickname ?? '')}, I think I lost your work."`);
     scene.text('"You didn\'t lose it. I took it back since you weren\'t doing anything with it," you reply.');
     scene.text('Hearing this, Radomir tries to explain that he\'d just turned round for a moment and asks you to give him another chance, but you refuse. Angry, he mutters something under his breath before leaving you alone.');
@@ -1118,7 +1097,6 @@ function enterHelpRadomir(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1211,7 +1189,6 @@ function enterMusic(s: GameState, scene: SceneBuilder): void {
               if (((s as any).scooltiperand ?? 0) === 6) {
                 scene.img('images/locations/pavlovsk/school/classroom/boobg.mp4');
                 scene.text('During class, you feel a hand slide around your side and grab one of your breasts. You squeak loudly and try to smack Radomir\'s hand away, but he jerks it away and all you manage to do is smack your breast.');
-                // TODO-QSP: dynamic text: "Is there a problem, Miss <<$pcs_lastname>>?" Mr. Vasilyev asks and you glance a...
                 scene.text(`"Is there a problem, Miss ${((s as any).pcs_lastname ?? '')}?" Mr. Vasilyev asks and you glance around and notice everyone is staring at you as Radomir snickers behind you. Mr. Vasilyev looks at you curiously.`);
                 qspCall(s, 'willpower', 'misc', 'self', 'medium');
                 if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
@@ -1260,7 +1237,6 @@ function enterMusic(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'npc_relationship', 'modify', 'A154', (-3));
     scene.img('images/locations/pavlovsk/school/events/rand_scoolboy1.jpg');
     scene.text('You ignore Mr. Vasilyev and turn around and slap Radomir with all your force. Radomir recoils, his hand going to his cheek as students start murmuring about what happened and some laugh.');
-    // TODO-QSP: dynamic text: Mr. Vasilyev''s voice cuts through the noise. "That''s enough of that, Miss <<$p...
     scene.text(`Mr. Vasilyev's voice cuts through the noise. "That's enough of that, Miss ${((st as any).pcs_lastname ?? '')}! Go to the principal's office!"`);
     scene.actions([
       { label: 'Go to the principal\'s office', goto: ['gschool_office', 'principal'] },
@@ -1280,7 +1256,6 @@ function enterMusic(s: GameState, scene: SceneBuilder): void {
                   { label: 'Embarrassed', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/classroom/boobg.mp4');
     scene.text('You squeak loudly as his fingers quickly pinch your sensitive nipple and your hand quickly flies to your breast to shield it from further attack.');
-    // TODO-QSP: dynamic text: "Is there a problem, Miss <<$pcs_lastname>>?" Mr. Vasilyev asks and you glance a...
     scene.text(`"Is there a problem, Miss ${((st as any).pcs_lastname ?? '')}?" Mr. Vasilyev asks and you glance around and notice everyone is staring at you as Radomir snickers behind you.`);
     scene.actions([
       { label: 'Wait for the end of the lesson', goto: ['gschool_lessons', 'short_break'] },
@@ -1335,7 +1310,6 @@ function enterMusic(s: GameState, scene: SceneBuilder): void {
                 if (((s as any).scooltiperand ?? 0) === 7  &&  ((s as any).braworntype ?? 0) !== 'none') {
                   scene.img('images/locations/pavlovsk/school/classroom/brasnap.jpg');
                   scene.text('During class, you feel a hand grab and pull on your bra strap. Before you can turn or protest they let go, causing it to snap back painfully. You let out a little yelp and turn to glare at Lavrenti behind you.');
-                  // TODO-QSP: dynamic text: "Is there a problem, Miss <<$pcs_lastname>>?" Mr. Vasilyev asks and you glance a...
                   scene.text(`"Is there a problem, Miss ${((s as any).pcs_lastname ?? '')}?" Mr. Vasilyev asks and you glance around and notice everyone is staring at you as Lavrenti snickers behind you. Mr. Vasilyev looks at you accusingly.`);
                   qspCall(s, 'willpower', 'misc', 'self', 'medium');
                   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
@@ -1384,7 +1358,6 @@ function enterMusic(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'npc_relationship', 'modify', 'A155', (-1));
     scene.img('images/locations/pavlovsk/school/events/rand_scoolboy1.jpg');
     scene.text('You ignore Mr. Vasilyev and turn around and slap Lavrenti with all your force. Lavrenti recoils, his hand going to his cheek. Students start murmuring about what happened, while some laugh.');
-    // TODO-QSP: dynamic text: Mr. Vasilyev''s voice cuts through the noise. "That''s enough of that, Miss <<$p...
     scene.text(`Mr. Vasilyev's voice cuts through the noise. "That's enough of that, Miss ${((st as any).pcs_lastname ?? '')}! Go to the principal's office!"`);
     scene.actions([
       { label: 'Go to the principal\'s office', goto: ['gschool_office', 'principal'] },
@@ -1581,7 +1554,6 @@ function enterMusic(s: GameState, scene: SceneBuilder): void {
         if (((st as any).grupTipe ?? 0) === 5) {
           scene.text('Bella gives a disapproving look and makes no effort to hide her dislike of you. "How can you get to your age and not have at least one friend? You need to grow up."');
         } else {
-          // TODO-QSP: dynamic text: You sit next to Bella and she rolls her eyes. "What do you want, <<$pcs_nickname...
           scene.text(`You sit next to Bella and she rolls her eyes. "What do you want, ${((st as any).pcs_nickname ?? '')}? I don't have time to sit here and talk to kids."`);
         }
       }
@@ -1726,136 +1698,135 @@ function enterMusic(s: GameState, scene: SceneBuilder): void {
   } else {
     qspGoto(s, 'gschool_lessons', 'short_break');
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterArt(s: GameState, scene: SceneBuilder): void {
   if ((Math.floor(Math.random() * 6) + 0) > 0) {
     (s as any).school_event_hour = 1;
-    // TODO-QSP: :art_event_once_more
-    (s as any).scooltiperand = (Math.floor(Math.random() * 19) + 1);
-    if (((s as any).scooltiperand ?? 0) === 1) {
-      if (((s as any).katjaQW ?? 0)?.['pantiesQWstage'] >= 5  &&  ((s as any).pantyworntype ?? 0) !== 'none') {
-        qspCall(s, 'arousal', 'flash', (-5));
-        scene.img('images/locations/pavlovsk/school/events/scoolrand_1.jpg');
-        scene.text('As you walk into the classroom, Katja runs up to you with a slight blush on her face. Before you know it, she gives you a deep kiss and pulls up your skirt to touch your ass. You return the kiss, not caring about the hooting and hollering in the background from your fellow classmates.');
-        qspCall(s, 'arousal', 'foreplay', 2);
-        qspCall(s, 'arousal', 'end');
-        scene.actions([
-          { label: 'Wait for the end of the lesson', goto: ['gschool_lessons', 'short_break'] },
-        ]);
-      } else {
-        // TODO-QSP: jump 'art_event_once_more'
-      }
-    } else {
-      if (((s as any).scooltiperand ?? 0) === 2) {
-        scene.img('images/locations/pavlovsk/school/events/scoolrand_2.jpg');
-        scene.text('Irina looks like she has it all figured out. Her grades are excellent, all the guys in school like her, and she doesn\'t have to answer to anyone. She\'s currently sitting back in a chair, giving herself a manicure.');
-        scene.actions([
-          { label: 'Wait for the end of the lesson', goto: ['gschool_lessons', 'short_break'] },
-        ]);
-      } else {
-        if (((s as any).scooltiperand ?? 0) === 3) {
-          qspCall(s, 'mood', 'lower', 'small');
-          qspCall(s, 'stat', '');
-          if (((s as any).pantyworntype ?? 0) === 'none'  &&  ((s as any).analPlugIn ?? 0) === 0  &&  (((s as any).cum_loc ?? 0)?.['vagina'] > 0  ||  ((s as any).cum_loc ?? 0)?.['anus'] > 0)) {
-            ((s as any).pcs_memory = (s as any).pcs_memory ?? {})['school_no_panty_cum_flash'] = ((s as any).daystart ?? 0);
-            scene.img('images/locations/pavlovsk/school/events/scoolrand_4_2.jpg');
-            scene.text('Before you can answer the question Mr. Vasilyev poses, you have to clean the blackboard, but accidentally drop the cloth. As you bend over to pick it up, you suddenly feel something <i>spurt</i> down your leg.');
-            if (((s as any).cum_loc ?? 0)?.['vagina'] > 0  &&  ((s as any).cum_loc ?? 0)?.['anus'] > 0) {
-              qspCall(s, 'fame', 'pav', 'sex', (Math.floor(Math.random() * 8) + 8));
-              scene.text('There are histling and shouting sounds from the boys and whispers of intense disapproval from most of the girls behind you, and you realize that not only is your complete lack of panties on display for everyone to see, so are both your holes leaking cum that\'s dribbling down your thigh. You quickly straighten up, but it\'s too late and the class explodes into chaos, Mr. Vasilyev having no idea why as he tries to shout for order.');
-            } else {
-              if (((s as any).cum_loc ?? 0)?.['vagina'] > 0) {
-                qspCall(s, 'fame', 'pav', 'sex', (Math.floor(Math.random() * 5) + 8));
-                scene.text('There are whistling and shouting sounds from the boys and whispers of intense disapproval from most of the girls behind you, and you realize that not only is your complete lack of panties on display for everyone to see, so is the cum leaking from your pussy and dribbling down your thigh. You quickly straighten up, but it\'s too late and the class explodes into chaos, Mr. Vasilyev having no idea why as he tries to shout for order.');
-              } else {
-                if (((s as any).cum_loc ?? 0)?.['anus'] > 0) {
-                  qspCall(s, 'fame', 'pav', 'sex', (Math.floor(Math.random() * 8) + 8));
-                  scene.text('There are whistling and shouting sounds from the boys and whispers of intense disapproval from most of the girls behind you, and you realize that not only is your complete lack of panties on display for everyone to see, so is the cum leaking from between your ass cheeks and dribbling down your thigh. You quickly straighten up, but it\'s too late and the class explodes into chaos, Mr. Vasilyev having no idea why as he tries to shout for order.');
-                }
-              }
-            }
-          } else {
-            if (((s as any).pantyworntype ?? 0) !== 'none') {
-              qspCall(s, 'arousal', 'flash', (-5));
-              qspCall(s, 'fame', 'pav', 'sex', 1);
-              scene.img('images/locations/pavlovsk/school/events/scoolrand_4_1.jpg');
-              scene.text('When you walk up to the blackboard to answer a question, you trip and fall. Somehow, you manage to fall in such a way that your skirt ends up on your back and the whole class can see your panty-clad ass. You quickly get up and straighten your clothes with a bright red face, trying to ignore the hollering from your classmates. You can tell that most of the guys and even a few girls definitely appreciated your show, even if it was involuntarily.');
-            } else {
-              qspCall(s, 'arousal', 'flash', (-5));
-              qspCall(s, 'fame', 'pav', 'sex', 2);
-              scene.img('images/locations/pavlovsk/school/events/scoolrand_4_2.jpg');
-              scene.text('Before you can answer the question Mr. Vasilyev poses you, you have to clean the blackboard, but accidentally drop the cloth and totally forget that you aren\'t wearing panties. The whistling and shouting from the boys and murmurs of disapproval from most of the girls behind you tell you that everyone has a clear view of your bare ass and pussy.');
-              scene.text('Everyone but Mr. Vasilyev that is, who has no clue why the class is so riled up and desperately tries to calm them down.');
-            }
-          }
+    while (true) {
+      (s as any).scooltiperand = (Math.floor(Math.random() * 19) + 1);
+      if (((s as any).scooltiperand ?? 0) === 1) {
+        if (((s as any).katjaQW ?? 0)?.['pantiesQWstage'] >= 5  &&  ((s as any).pantyworntype ?? 0) !== 'none') {
+          qspCall(s, 'arousal', 'flash', (-5));
+          scene.img('images/locations/pavlovsk/school/events/scoolrand_1.jpg');
+          scene.text('As you walk into the classroom, Katja runs up to you with a slight blush on her face. Before you know it, she gives you a deep kiss and pulls up your skirt to touch your ass. You return the kiss, not caring about the hooting and hollering in the background from your fellow classmates.');
+          qspCall(s, 'arousal', 'foreplay', 2);
+          qspCall(s, 'arousal', 'end');
           scene.actions([
             { label: 'Wait for the end of the lesson', goto: ['gschool_lessons', 'short_break'] },
           ]);
         } else {
-          if (((s as any).scooltiperand ?? 0) === 4) {
-            if (((s as any).katjaQW ?? 0)?.['pantiesQWstage'] >= 5) {
-              scene.img('images/characters/pavlovsk/school/girl/katja/pantyquest/classroom_showing_pussy.jpg');
-              scene.text('Katja is sitting with both of her legs on her chair and is trying to draw your attention for some reason. When she notices you\'re watching, she quickly makes sure no one else is paying attention and spread her legs slightly, revealing her bare pussy to you. You bite your lip and give her an appreciative nod.');
-              qspCall(s, 'arousal', 'erotic_nudity', (-5));
-              qspCall(s, 'arousal', 'end');
-              scene.actions([
-                { label: 'Wait for the end of the lesson', goto: ['gschool_lessons', 'short_break'] },
-              ]);
-            } else {
-              // TODO-QSP: jump 'art_event_once_more'
-            }
-          } else {
-            if (((s as any).scooltiperand ?? 0) === 5) {
-              if (((s as any).npc_had_sex ?? 0)?.['A12']) {
-                scene.img('images/locations/pavlovsk/school/events/scoolrand_7.jpg');
-                scene.text('Julia looks fantastic today: the transparent blouse she\'s wearing does a very nice job of accenting her breasts to anyone willing to look her way. Just when you were wondering who she\'s so dressed up for, you notice her glancing your way and then quickly looking away when she realizes you spotted her, a deep blush forming on her cheeks. She keeps glancing at you for the rest of class.');
-                scene.actions([
-                  { label: 'Wait for the end of the lesson', goto: ['gschool_lessons', 'short_break'] },
-                ]);
+          break;
+        }
+      } else {
+        if (((s as any).scooltiperand ?? 0) === 2) {
+          scene.img('images/locations/pavlovsk/school/events/scoolrand_2.jpg');
+          scene.text('Irina looks like she has it all figured out. Her grades are excellent, all the guys in school like her, and she doesn\'t have to answer to anyone. She\'s currently sitting back in a chair, giving herself a manicure.');
+          scene.actions([
+            { label: 'Wait for the end of the lesson', goto: ['gschool_lessons', 'short_break'] },
+          ]);
+        } else {
+          if (((s as any).scooltiperand ?? 0) === 3) {
+            qspCall(s, 'mood', 'lower', 'small');
+            qspCall(s, 'stat', '');
+            if (((s as any).pantyworntype ?? 0) === 'none'  &&  ((s as any).analPlugIn ?? 0) === 0  &&  (((s as any).cum_loc ?? 0)?.['vagina'] > 0  ||  ((s as any).cum_loc ?? 0)?.['anus'] > 0)) {
+              ((s as any).pcs_memory = (s as any).pcs_memory ?? {})['school_no_panty_cum_flash'] = ((s as any).daystart ?? 0);
+              scene.img('images/locations/pavlovsk/school/events/scoolrand_4_2.jpg');
+              scene.text('Before you can answer the question Mr. Vasilyev poses, you have to clean the blackboard, but accidentally drop the cloth. As you bend over to pick it up, you suddenly feel something <i>spurt</i> down your leg.');
+              if (((s as any).cum_loc ?? 0)?.['vagina'] > 0  &&  ((s as any).cum_loc ?? 0)?.['anus'] > 0) {
+                qspCall(s, 'fame', 'pav', 'sex', (Math.floor(Math.random() * 8) + 8));
+                scene.text('There are histling and shouting sounds from the boys and whispers of intense disapproval from most of the girls behind you, and you realize that not only is your complete lack of panties on display for everyone to see, so are both your holes leaking cum that\'s dribbling down your thigh. You quickly straighten up, but it\'s too late and the class explodes into chaos, Mr. Vasilyev having no idea why as he tries to shout for order.');
               } else {
-                // TODO-QSP: jump 'art_event_once_more'
+                if (((s as any).cum_loc ?? 0)?.['vagina'] > 0) {
+                  qspCall(s, 'fame', 'pav', 'sex', (Math.floor(Math.random() * 5) + 8));
+                  scene.text('There are whistling and shouting sounds from the boys and whispers of intense disapproval from most of the girls behind you, and you realize that not only is your complete lack of panties on display for everyone to see, so is the cum leaking from your pussy and dribbling down your thigh. You quickly straighten up, but it\'s too late and the class explodes into chaos, Mr. Vasilyev having no idea why as he tries to shout for order.');
+                } else {
+                  if (((s as any).cum_loc ?? 0)?.['anus'] > 0) {
+                    qspCall(s, 'fame', 'pav', 'sex', (Math.floor(Math.random() * 8) + 8));
+                    scene.text('There are whistling and shouting sounds from the boys and whispers of intense disapproval from most of the girls behind you, and you realize that not only is your complete lack of panties on display for everyone to see, so is the cum leaking from between your ass cheeks and dribbling down your thigh. You quickly straighten up, but it\'s too late and the class explodes into chaos, Mr. Vasilyev having no idea why as he tries to shout for order.');
+                  }
+                }
               }
             } else {
-              if (((s as any).scooltiperand ?? 0) === 6) {
-                scene.img('images/locations/pavlovsk/school/events/urok7.jpg');
-                scene.text('As you wait for the end of the lesson, you notice you\'re not the only one being a bit drowsy; Anushka is very close to falling asleep on her desk.');
+              if (((s as any).pantyworntype ?? 0) !== 'none') {
+                qspCall(s, 'arousal', 'flash', (-5));
+                qspCall(s, 'fame', 'pav', 'sex', 1);
+                scene.img('images/locations/pavlovsk/school/events/scoolrand_4_1.jpg');
+                scene.text('When you walk up to the blackboard to answer a question, you trip and fall. Somehow, you manage to fall in such a way that your skirt ends up on your back and the whole class can see your panty-clad ass. You quickly get up and straighten your clothes with a bright red face, trying to ignore the hollering from your classmates. You can tell that most of the guys and even a few girls definitely appreciated your show, even if it was involuntarily.');
+              } else {
+                qspCall(s, 'arousal', 'flash', (-5));
+                qspCall(s, 'fame', 'pav', 'sex', 2);
+                scene.img('images/locations/pavlovsk/school/events/scoolrand_4_2.jpg');
+                scene.text('Before you can answer the question Mr. Vasilyev poses you, you have to clean the blackboard, but accidentally drop the cloth and totally forget that you aren\'t wearing panties. The whistling and shouting from the boys and murmurs of disapproval from most of the girls behind you tell you that everyone has a clear view of your bare ass and pussy.');
+                scene.text('Everyone but Mr. Vasilyev that is, who has no clue why the class is so riled up and desperately tries to calm them down.');
+              }
+            }
+            scene.actions([
+              { label: 'Wait for the end of the lesson', goto: ['gschool_lessons', 'short_break'] },
+            ]);
+          } else {
+            if (((s as any).scooltiperand ?? 0) === 4) {
+              if (((s as any).katjaQW ?? 0)?.['pantiesQWstage'] >= 5) {
+                scene.img('images/characters/pavlovsk/school/girl/katja/pantyquest/classroom_showing_pussy.jpg');
+                scene.text('Katja is sitting with both of her legs on her chair and is trying to draw your attention for some reason. When she notices you\'re watching, she quickly makes sure no one else is paying attention and spread her legs slightly, revealing her bare pussy to you. You bite your lip and give her an appreciative nod.');
+                qspCall(s, 'arousal', 'erotic_nudity', (-5));
+                qspCall(s, 'arousal', 'end');
                 scene.actions([
                   { label: 'Wait for the end of the lesson', goto: ['gschool_lessons', 'short_break'] },
                 ]);
               } else {
-                if (((s as any).scooltiperand ?? 0) === 7) {
-                  scene.img('images/locations/pavlovsk/school/classroom/soniaflash.jpg');
-                  scene.text('You hear some whispers and see some other students looking towards the back every time Mr. Vasilyev is not looking. You glance back and see Anushka flashing her breasts at Erast every time Mr. Vasilyev looks away, while the boys take pictures of her each time and keep encouraging her to show more.');
-                  qspCall(s, 'arousal', 'erotic_nudity', 5);
-                  qspCall(s, 'arousal', 'end');
+                break;
+              }
+            } else {
+              if (((s as any).scooltiperand ?? 0) === 5) {
+                if (((s as any).npc_had_sex ?? 0)?.['A12']) {
+                  scene.img('images/locations/pavlovsk/school/events/scoolrand_7.jpg');
+                  scene.text('Julia looks fantastic today: the transparent blouse she\'s wearing does a very nice job of accenting her breasts to anyone willing to look her way. Just when you were wondering who she\'s so dressed up for, you notice her glancing your way and then quickly looking away when she realizes you spotted her, a deep blush forming on her cheeks. She keeps glancing at you for the rest of class.');
                   scene.actions([
                     { label: 'Wait for the end of the lesson', goto: ['gschool_lessons', 'short_break'] },
                   ]);
                 } else {
-                  if (((s as any).scooltiperand ?? 0) === 8  &&  ((s as any).bag ?? 0) === 1) {
-                    scene.img('images/locations/pavlovsk/school/classroom/dickpic.jpg');
-                    scene.text('You get an alert on your phone and pull it out of your purse before placing it in your lap. You glance down and see someone has sent you an image; opening it, you see a picture of someone\'s dick. You hear some snickering and look up to see who it was, but you can\'t tell where it came from. Unsure what to do and not wanting to be caught looking at it, you delete the image.');
-                    qspCall(s, 'arousal', 'erotic', 5);
+                  break;
+                }
+              } else {
+                if (((s as any).scooltiperand ?? 0) === 6) {
+                  scene.img('images/locations/pavlovsk/school/events/urok7.jpg');
+                  scene.text('As you wait for the end of the lesson, you notice you\'re not the only one being a bit drowsy; Anushka is very close to falling asleep on her desk.');
+                  scene.actions([
+                    { label: 'Wait for the end of the lesson', goto: ['gschool_lessons', 'short_break'] },
+                  ]);
+                } else {
+                  if (((s as any).scooltiperand ?? 0) === 7) {
+                    scene.img('images/locations/pavlovsk/school/classroom/soniaflash.jpg');
+                    scene.text('You hear some whispers and see some other students looking towards the back every time Mr. Vasilyev is not looking. You glance back and see Anushka flashing her breasts at Erast every time Mr. Vasilyev looks away, while the boys take pictures of her each time and keep encouraging her to show more.');
+                    qspCall(s, 'arousal', 'erotic_nudity', 5);
                     qspCall(s, 'arousal', 'end');
                     scene.actions([
                       { label: 'Wait for the end of the lesson', goto: ['gschool_lessons', 'short_break'] },
                     ]);
                   } else {
-                    if (((s as any).scooltiperand ?? 0) === 9) {
-                      scene.img('images/locations/pavlovsk/school/classroom/wedgieb.jpg');
-                      scene.text('You hear a pained grasp, as do several others and glance over just in time to see Dan letting go of Petia\'s underwear. He\'s pulled his underwear half way up his back and you wince slightly at what looks like a painful wedgie.');
+                    if (((s as any).scooltiperand ?? 0) === 8  &&  ((s as any).bag ?? 0) === 1) {
+                      scene.img('images/locations/pavlovsk/school/classroom/dickpic.jpg');
+                      scene.text('You get an alert on your phone and pull it out of your purse before placing it in your lap. You glance down and see someone has sent you an image; opening it, you see a picture of someone\'s dick. You hear some snickering and look up to see who it was, but you can\'t tell where it came from. Unsure what to do and not wanting to be caught looking at it, you delete the image.');
+                      qspCall(s, 'arousal', 'erotic', 5);
+                      qspCall(s, 'arousal', 'end');
                       scene.actions([
                         { label: 'Wait for the end of the lesson', goto: ['gschool_lessons', 'short_break'] },
                       ]);
                     } else {
-                      if (((s as any).scooltiperand ?? 0) <= 11) {
-                        scene.img('images/locations/pavlovsk/school/classroom/talkgirl3.jpg');
-                        scene.text('As you arrive in class you look around and decide to sit next to…');
+                      if (((s as any).scooltiperand ?? 0) === 9) {
+                        scene.img('images/locations/pavlovsk/school/classroom/wedgieb.jpg');
+                        scene.text('You hear a pained grasp, as do several others and glance over just in time to see Dan letting go of Petia\'s underwear. He\'s pulled his underwear half way up his back and you wince slightly at what looks like a painful wedgie.');
                         scene.actions([
-                          { label: 'Erast', handler: (st: GameState) => {
+                          { label: 'Wait for the end of the lesson', goto: ['gschool_lessons', 'short_break'] },
+                        ]);
+                      } else {
+                        if (((s as any).scooltiperand ?? 0) <= 11) {
+                          scene.img('images/locations/pavlovsk/school/classroom/talkgirl3.jpg');
+                          scene.text('As you arrive in class you look around and decide to sit next to…');
+                          scene.actions([
+                            { label: 'Erast', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/classroom/talkgirl3.jpg');
     qspCall(st, 'exp_gain', 'chrsm', (Math.floor(Math.random() * 2) + 1));
     if (((st as any).fame ?? 0)?.['pav_slut'] >= 150) {
@@ -1878,7 +1849,7 @@ function enterArt(s: GameState, scene: SceneBuilder): void {
       { label: 'Wait for the end of the lesson', goto: ['gschool_lessons', 'short_break'] },
     ]);
   } },
-                          { label: 'Julia', handler: (st: GameState) => {
+                            { label: 'Julia', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/classroom/talkgirl3.jpg');
     qspCall(st, 'exp_gain', 'chrsm', (Math.floor(Math.random() * 2) + 1));
     if (((st as any).fame ?? 0)?.['pav_slut'] >= 150) {
@@ -1901,7 +1872,7 @@ function enterArt(s: GameState, scene: SceneBuilder): void {
       { label: 'Wait for the end of the lesson', goto: ['gschool_lessons', 'short_break'] },
     ]);
   } },
-                          { label: 'Katja', handler: (st: GameState) => {
+                            { label: 'Katja', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/classroom/talkgirl3.jpg');
     qspCall(st, 'exp_gain', 'chrsm', (Math.floor(Math.random() * 2) + 1));
     if (((st as any).fame ?? 0)?.['pav_slut'] >= 150) {
@@ -1924,7 +1895,7 @@ function enterArt(s: GameState, scene: SceneBuilder): void {
       { label: 'Wait for the end of the lesson', goto: ['gschool_lessons', 'short_break'] },
     ]);
   } },
-                          { label: 'Albina', handler: (st: GameState) => {
+                            { label: 'Albina', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/classroom/talkgirl3.jpg');
     qspCall(st, 'exp_gain', 'chrsm', (Math.floor(Math.random() * 2) + 1));
     if (((st as any).fame ?? 0)?.['pav_slut'] >= 150  &&  ((st as any).AlbinaQW ?? 0)?.['Friends'] === 2) {
@@ -1975,7 +1946,7 @@ function enterArt(s: GameState, scene: SceneBuilder): void {
       { label: 'Wait for the end of the lesson', goto: ['gschool_lessons', 'short_break'] },
     ]);
   } },
-                          { label: 'Anushka', handler: (st: GameState) => {
+                            { label: 'Anushka', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/classroom/talkgirl3.jpg');
     qspCall(st, 'exp_gain', 'chrsm', (Math.floor(Math.random() * 2) + 1));
     if (((st as any).fame ?? 0)?.['pav_slut'] >= 150) {
@@ -1998,7 +1969,7 @@ function enterArt(s: GameState, scene: SceneBuilder): void {
       { label: 'Wait for the end of the lesson', goto: ['gschool_lessons', 'short_break'] },
     ]);
   } },
-                          { label: 'Natasha', handler: (st: GameState) => {
+                            { label: 'Natasha', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/classroom/talkgirl3.jpg');
     qspCall(st, 'exp_gain', 'chrsm', (Math.floor(Math.random() * 2) + 1));
     if (((st as any).fame ?? 0)?.['pav_slut'] >= 150) {
@@ -2021,7 +1992,7 @@ function enterArt(s: GameState, scene: SceneBuilder): void {
       { label: 'Wait for the end of the lesson', goto: ['gschool_lessons', 'short_break'] },
     ]);
   } },
-                          { label: 'Feofan', handler: (st: GameState) => {
+                            { label: 'Feofan', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/classroom/talkgirl3.jpg');
     qspCall(st, 'exp_gain', 'chrsm', (Math.floor(Math.random() * 2) + 1));
     if (((st as any).fame ?? 0)?.['pav_slut'] >= 150) {
@@ -2044,7 +2015,7 @@ function enterArt(s: GameState, scene: SceneBuilder): void {
       { label: 'Wait for the end of the lesson', goto: ['gschool_lessons', 'short_break'] },
     ]);
   } },
-                          { label: 'Svyatoslav', handler: (st: GameState) => {
+                            { label: 'Svyatoslav', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/classroom/talkgirl3.jpg');
     qspCall(st, 'exp_gain', 'chrsm', (Math.floor(Math.random() * 2) + 1));
     if (((st as any).fame ?? 0)?.['pav_slut'] >= 150) {
@@ -2068,7 +2039,7 @@ function enterArt(s: GameState, scene: SceneBuilder): void {
       { label: 'Wait for the end of the lesson', goto: ['gschool_lessons', 'short_break'] },
     ]);
   } },
-                          { label: 'Vicky', handler: (st: GameState) => {
+                            { label: 'Vicky', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/classroom/talkgirl3.jpg');
     qspCall(st, 'exp_gain', 'chrsm', (Math.floor(Math.random() * 2) + 1));
     if (((st as any).fame ?? 0)?.['pav_slut'] >= 150) {
@@ -2091,7 +2062,7 @@ function enterArt(s: GameState, scene: SceneBuilder): void {
       { label: 'Wait for the end of the lesson', goto: ['gschool_lessons', 'short_break'] },
     ]);
   } },
-                          { label: 'Zinaida', handler: (st: GameState) => {
+                            { label: 'Zinaida', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/classroom/talkgirl3.jpg');
     qspCall(st, 'exp_gain', 'chrsm', (Math.floor(Math.random() * 2) + 1));
     if (((st as any).fame ?? 0)?.['pav_slut'] >= 150) {
@@ -2114,24 +2085,24 @@ function enterArt(s: GameState, scene: SceneBuilder): void {
       { label: 'Wait for the end of the lesson', goto: ['gschool_lessons', 'short_break'] },
     ]);
   } },
-                        ]);
-                      } else {
-                        if (((s as any).scooltiperand ?? 0) === 12) {
-                          scene.img('images/locations/pavlovsk/school/classroom/open.jpg');
-                          scene.text('The lesson takes a brief pause as one of the students asks Mr. Vasilyev a question about her paper. With nothing to do for the moment, you doodle lazily in the margin of your notebook.');
-                          scene.text('When you look back up, you notice Feofan turning his head away. You don\'t think much of it at first, until you catch him a second time. Was he looking at you, or just in your direction? Even Mr. Vasilyev walks by and pauses next to your desk for a moment before continuing on.');
-                          scene.text('Class resumes, and things return to normal, but part-way through the lesson, you look at Feofan again and find him staring at you. He\'s clearly not trying to make eye contact, however, or he would have noticed you looking back at him.');
-                          scene.text('Following his gaze down, you spot what\'s caught his attention: your uniform has lost a button, which is giving him a good view of your cleavage.');
-                          qspCall(s, 'willpower', 'skill', 'inhib', 'self', 'easy');
-                          if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
-                            scene.actions([
-                              { label: 'Ignore it', handler: (st: GameState) => {
+                          ]);
+                        } else {
+                          if (((s as any).scooltiperand ?? 0) === 12) {
+                            scene.img('images/locations/pavlovsk/school/classroom/open.jpg');
+                            scene.text('The lesson takes a brief pause as one of the students asks Mr. Vasilyev a question about her paper. With nothing to do for the moment, you doodle lazily in the margin of your notebook.');
+                            scene.text('When you look back up, you notice Feofan turning his head away. You don\'t think much of it at first, until you catch him a second time. Was he looking at you, or just in your direction? Even Mr. Vasilyev walks by and pauses next to your desk for a moment before continuing on.');
+                            scene.text('Class resumes, and things return to normal, but part-way through the lesson, you look at Feofan again and find him staring at you. He\'s clearly not trying to make eye contact, however, or he would have noticed you looking back at him.');
+                            scene.text('Following his gaze down, you spot what\'s caught his attention: your uniform has lost a button, which is giving him a good view of your cleavage.');
+                            qspCall(s, 'willpower', 'skill', 'inhib', 'self', 'easy');
+                            if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+                              scene.actions([
+                                { label: 'Ignore it', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
-                            ]);
-                          } else {
-                            scene.actions([
-                              { label: 'Ignore it', handler: (st: GameState) => {
+                              ]);
+                            } else {
+                              scene.actions([
+                                { label: 'Ignore it', handler: (st: GameState) => {
     qspCall(st, 'willpower', 'pay', 'self');
     qspCall(st, 'fame', 'pav', 'sex', 1);
     qspCall(st, 'stat', '');
@@ -2142,35 +2113,35 @@ function enterArt(s: GameState, scene: SceneBuilder): void {
       { label: 'Wait for the end of the lesson', goto: ['gschool_lessons', 'short_break'] },
     ]);
   } },
-                            ]);
-                          }
-                          scene.actions([
-                            { label: 'Pull your shirt closed', handler: (st: GameState) => {
+                              ]);
+                            }
+                            scene.actions([
+                              { label: 'Pull your shirt closed', handler: (st: GameState) => {
     scene.text('You quickly grasp both sides of your blouse and pull them tightly together. Feofan\'s face turns red when he realizes he\'s been caught, and he immediately turns back to face the blackboard.');
     scene.actions([
       { label: 'Wait for the end of the lesson', goto: ['gschool_lessons', 'short_break'] },
     ]);
   } },
-                          ]);
-                        } else {
-                          if (((s as any).scooltiperand ?? 0) === 13  &&  ((s as any).NatbelQW ?? 0)?.['panty_stuff_day'] !== ((s as any).daystart ?? 0)) {
-                            scene.img('images/locations/pavlovsk/school/classroom/art/natpanties.jpg');
-                            scene.text('Natasha asks Anushka if she can borrow a pencil as she seems to have lost hers. Anushka agrees and offers her one, but keeps pulling it slightly out of reach of Natasha, who keeps stretching forward to reach it. By the time Natasha grabs the pencil from Anushka, she has given everyone behind her a nice look at her panty-clad ass.');
-                            qspCall(s, 'arousal', 'erotic', 5);
-                            qspCall(s, 'arousal', 'end');
-                            scene.actions([
-                              { label: 'Wait for the end of the lesson', goto: ['gschool_lessons', 'short_break'] },
                             ]);
                           } else {
-                            if (((s as any).scooltiperand ?? 0) === 14) {
-                              scene.img('images/locations/pavlovsk/school/classroom/art/julnushalbvic1.jpg');
-                              scene.text('Near the end of class, Mr. Vasilyev lets the class practice their own thing. Feofan pulls a fairly nice camera from his bag and starts taking pictures of his fellow students, which quickly gets the girls to pose in groups. At one point, he gets Julia, Anushka, Albina and Vicky to all pose together, but when he tries to take their picture, Anushka sticks her tongue out between her fingers in the universal \'eat me\' sign.');
-                              scene.text('Feofan laughs it off. "Very funny Anushka, but I want to take a serious picture of you. so can you not stick your tongue out this time?"');
-                              scene.text('Anushka\'s only reply is to roll her eyes at him.');
+                            if (((s as any).scooltiperand ?? 0) === 13  &&  ((s as any).NatbelQW ?? 0)?.['panty_stuff_day'] !== ((s as any).daystart ?? 0)) {
+                              scene.img('images/locations/pavlovsk/school/classroom/art/natpanties.jpg');
+                              scene.text('Natasha asks Anushka if she can borrow a pencil as she seems to have lost hers. Anushka agrees and offers her one, but keeps pulling it slightly out of reach of Natasha, who keeps stretching forward to reach it. By the time Natasha grabs the pencil from Anushka, she has given everyone behind her a nice look at her panty-clad ass.');
                               qspCall(s, 'arousal', 'erotic', 5);
-                              qspCall(s, 'stat', '');
+                              qspCall(s, 'arousal', 'end');
                               scene.actions([
-                                { label: 'Next picture', handler: (st: GameState) => {
+                                { label: 'Wait for the end of the lesson', goto: ['gschool_lessons', 'short_break'] },
+                              ]);
+                            } else {
+                              if (((s as any).scooltiperand ?? 0) === 14) {
+                                scene.img('images/locations/pavlovsk/school/classroom/art/julnushalbvic1.jpg');
+                                scene.text('Near the end of class, Mr. Vasilyev lets the class practice their own thing. Feofan pulls a fairly nice camera from his bag and starts taking pictures of his fellow students, which quickly gets the girls to pose in groups. At one point, he gets Julia, Anushka, Albina and Vicky to all pose together, but when he tries to take their picture, Anushka sticks her tongue out between her fingers in the universal \'eat me\' sign.');
+                                scene.text('Feofan laughs it off. "Very funny Anushka, but I want to take a serious picture of you. so can you not stick your tongue out this time?"');
+                                scene.text('Anushka\'s only reply is to roll her eyes at him.');
+                                qspCall(s, 'arousal', 'erotic', 5);
+                                qspCall(s, 'stat', '');
+                                scene.actions([
+                                  { label: 'Next picture', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/classroom/art/julnushalbvic2.jpg');
     scene.text('As Feofan kneels to take their picture again, Mr. Vasilyev watches, looking pleased at Feofan\'s seriousness. Julia, Albina and Vicky pose seriously again while Anushka doesn\'t stick her tongue out this time, but instead lifts up the front of her skirt to show off her panties.');
     scene.text('Feofan blushes as Mr. Vasilyev speaks up. "That\'s enough of that, Miss Konstantinov."');
@@ -2186,34 +2157,34 @@ function enterArt(s: GameState, scene: SceneBuilder): void {
       { label: 'Wait for the end of the lesson', goto: ['gschool_lessons', 'short_break'] },
     ]);
   } },
-                              ]);
-                            } else {
-                              if (((s as any).scooltiperand ?? 0) === 15) {
-                                scene.img('images/locations/pavlovsk/school/classroom/art/vickypanties.jpg');
-                                scene.text('You notice Erast paying special attention to Vicky today and it seems she\'s noticed as well. At one point, she turns to sit sideways in her desk and spreads her legs, causing her skirt to ride up until it gives Erast a very nice view of her panties. His eyes grow wide as she giggles, straightens her skirt back in place and turns back to the front of class.');
-                                qspCall(s, 'arousal', 'erotic', 5);
-                                qspCall(s, 'arousal', 'end');
-                                scene.actions([
-                                  { label: 'Wait for the end of the lesson', goto: ['gschool_lessons', 'short_break'] },
                                 ]);
                               } else {
-                                if (((s as any).scooltiperand ?? 0) === 16) {
-                                  scene.img('images/locations/pavlovsk/school/classroom/art/nushvic.jpg');
-                                  scene.text('Near the end of class, when Mr. Vasilyev lets the class have some free time to experiment with their own artwork, some of the girls get together to gossip about boys. Vicky starts talking about a date her and Vanya recently went on, even going so far as to act out a little bit of it. At one point, she bends over and talks about how she was rubbing her butt against Vanya\'s crotch while dancing, but before she can say what Vanya did, Anushka steps up behind her, grabs her hips and starts dry humping her. "This is what he was wanting to do to you."');
-                                  scene.text('She gets all the girls to crack up, most agreeing that is all any boys talk about.');
+                                if (((s as any).scooltiperand ?? 0) === 15) {
+                                  scene.img('images/locations/pavlovsk/school/classroom/art/vickypanties.jpg');
+                                  scene.text('You notice Erast paying special attention to Vicky today and it seems she\'s noticed as well. At one point, she turns to sit sideways in her desk and spreads her legs, causing her skirt to ride up until it gives Erast a very nice view of her panties. His eyes grow wide as she giggles, straightens her skirt back in place and turns back to the front of class.');
                                   qspCall(s, 'arousal', 'erotic', 5);
                                   qspCall(s, 'arousal', 'end');
                                   scene.actions([
                                     { label: 'Wait for the end of the lesson', goto: ['gschool_lessons', 'short_break'] },
                                   ]);
                                 } else {
-                                  if (((s as any).scooltiperand ?? 0) === 17) {
-                                    scene.img('images/locations/pavlovsk/school/classroom/art/nushpanties1.jpg');
-                                    scene.text('During one of Mr. Vasilyev\'s lectures about art history, you get a little bored and glace around. You notice Anushka sitting in her desk with one of her knees pulled up almost to her chest, with her foot on the chair. This gives gives anyone looking a very clear view of her panties.');
+                                  if (((s as any).scooltiperand ?? 0) === 16) {
+                                    scene.img('images/locations/pavlovsk/school/classroom/art/nushvic.jpg');
+                                    scene.text('Near the end of class, when Mr. Vasilyev lets the class have some free time to experiment with their own artwork, some of the girls get together to gossip about boys. Vicky starts talking about a date her and Vanya recently went on, even going so far as to act out a little bit of it. At one point, she bends over and talks about how she was rubbing her butt against Vanya\'s crotch while dancing, but before she can say what Vanya did, Anushka steps up behind her, grabs her hips and starts dry humping her. "This is what he was wanting to do to you."');
+                                    scene.text('She gets all the girls to crack up, most agreeing that is all any boys talk about.');
                                     qspCall(s, 'arousal', 'erotic', 5);
                                     qspCall(s, 'arousal', 'end');
                                     scene.actions([
-                                      { label: 'Look away', handler: (st: GameState) => {
+                                      { label: 'Wait for the end of the lesson', goto: ['gschool_lessons', 'short_break'] },
+                                    ]);
+                                  } else {
+                                    if (((s as any).scooltiperand ?? 0) === 17) {
+                                      scene.img('images/locations/pavlovsk/school/classroom/art/nushpanties1.jpg');
+                                      scene.text('During one of Mr. Vasilyev\'s lectures about art history, you get a little bored and glace around. You notice Anushka sitting in her desk with one of her knees pulled up almost to her chest, with her foot on the chair. This gives gives anyone looking a very clear view of her panties.');
+                                      qspCall(s, 'arousal', 'erotic', 5);
+                                      qspCall(s, 'arousal', 'end');
+                                      scene.actions([
+                                        { label: 'Look away', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/classroom/classart.jpg');
     scene.text('You quickly turn away and focus on paying attention to the rest of Mr. Vasilyev\'s lecture.');
     qspCall(st, 'arousal', 'end');
@@ -2221,11 +2192,10 @@ function enterArt(s: GameState, scene: SceneBuilder): void {
       { label: 'Wait for the end of the lesson', goto: ['gschool_lessons', 'short_break'] },
     ]);
   } },
-                                      { label: 'Keep looking', handler: (st: GameState) => {
+                                        { label: 'Keep looking', handler: (st: GameState) => {
     if (((st as any).pcs_hotcat ?? 0) >= 6) {
       scene.img('images/locations/pavlovsk/school/classroom/art/nushpanties2.jpg');
       scene.text('When she notices you staring, she gives you a little kissy face before reaching down to her panties and pulling them aside to show you her shaved pussy while smiling at you.');
-      // TODO-QSP: dynamic text: Before you can look away, you hear Mr. Vasilyev clear his throat. When you glanc...
       scene.text(`Before you can look away, you hear Mr. Vasilyev clear his throat. When you glance at him, he gives you a stern look. "Please pay attention, Miss ${((st as any).pcs_lastname ?? '')}. I know art history is a bit dry and boring, but this will be in your test."`);
       scene.text('You nod and he goes back to the lecture. When you glance back, you see that Anushka is now sitting normally.');
     } else {
@@ -2238,21 +2208,22 @@ function enterArt(s: GameState, scene: SceneBuilder): void {
       { label: 'Wait for the end of the lesson', goto: ['gschool_lessons', 'short_break'] },
     ]);
   } },
-                                    ]);
-                                  } else {
-                                    qspCall(s, 'stat', '');
-                                    scene.img('images/locations/pavlovsk/school/classroom/class1.jpg');
-                                    scene.text('As you sit in class listening to the lesson, you hear some of your fellow students talking behind you.');
-                                    scene.actions([
-                                      { label: 'Ignore them and wait for the end of the lesson', goto: ['gschool_lessons', 'short_break'] },
-                                      { label: 'Eavesdrop', handler: (st: GameState) => {
+                                      ]);
+                                    } else {
+                                      qspCall(s, 'stat', '');
+                                      scene.img('images/locations/pavlovsk/school/classroom/class1.jpg');
+                                      scene.text('As you sit in class listening to the lesson, you hear some of your fellow students talking behind you.');
+                                      scene.actions([
+                                        { label: 'Ignore them and wait for the end of the lesson', goto: ['gschool_lessons', 'short_break'] },
+                                        { label: 'Eavesdrop', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/classroom/eavesdrop.jpg');
     qspCall(st, 'gschool_gossip', 'lesson');
     scene.actions([
       { label: 'Wait for the end of the lesson', goto: ['gschool_lessons', 'short_break'] },
     ]);
   } },
-                                    ]);
+                                      ]);
+                                    }
                                   }
                                 }
                               }
@@ -2272,7 +2243,6 @@ function enterArt(s: GameState, scene: SceneBuilder): void {
   } else {
     qspGoto(s, 'gschool_lessons', 'short_break');
   }
-  // TODO-QSP: end
   scene.build();
 }
 

@@ -15,7 +15,7 @@ function enterZariyahPassingBy(s: GameState, scene: SceneBuilder): void {
   } else {
     qspCall(s, 'music_actions', 'finish');
   }
-  // TODO-QSP: end
+  (s as any).ml_approach = undefined;
   scene.build();
 }
 
@@ -27,10 +27,10 @@ function enterDelparcoStart(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).ml_delparcoQW ?? 0)?.['Weed Rule'] === 1) {
     if (((s as any).ruletext ?? 0) !== ''  &&  ((s as any).ml_delparcoQW ?? 0)?.['Outfit Rule'] === 0) {
-      // TODO-QSP: $ruletext += 'and don''t be high'
+      (s as any).ruletext = ((s as any).ruletext ?? 0) + ('and don\'t be high');
     } else {
       if (((s as any).ruletext ?? 0) !== ''  &&  ((s as any).ml_delparcoQW ?? 0)?.['Outfit Rule'] === 1) {
-        // TODO-QSP: $ruletext += ', don''t be high'
+        (s as any).ruletext = ((s as any).ruletext ?? 0) + (', don\'t be high');
       } else {
         (s as any).ruletext = 'don\'t be high';
       }
@@ -39,7 +39,7 @@ function enterDelparcoStart(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).ml_delparcoQW ?? 0)?.['Outfit Rule'] === 1) {
     if (((s as any).ruletext ?? 0) !== '') {
-      // TODO-QSP: $ruletext += 'and wear appropriate clothing.'
+      (s as any).ruletext = ((s as any).ruletext ?? 0) + ('and wear appropriate clothing.');
     } else {
       (s as any).ruletext = 'wear and appropriate outfit.';
     }
@@ -51,11 +51,10 @@ function enterDelparcoStart(s: GameState, scene: SceneBuilder): void {
     scene.text('"I\'m Zariyah, I\'m managing Del Parco and we are planning to run some live music evenings and I\'m looking for musicians. I wouldn\'t want to drag you into this right now,"');
     scene.text('she says, looking at your swollen belly "but I was thinking that maybe when you gave birth and recovered a little, you would be interested." She reaches into her purse,');
     scene.text('and pulls out a business card "Here is my number and obviously, you can come to the cafe if that\'s better. I\'m there every weekday." ');
-    // TODO-QSP: dynamic text: You take the card a bit hesitantly "Hi, I''m <<$pcs_nickname>> and thank you… I ...
     scene.text(`You take the card a bit hesitantly "Hi, I'm ${((s as any).pcs_nickname ?? '')} and thank you… I will think about it." you answer a bit confused, looking at the smiling woman "Splendid," she says `);
     scene.text('"I\'m looking forward to it and please rest and don\'t tire yourself out. And I really, really would like to see you again and meet the baby too… oh, damn " she looks at her watch');
-    // TODO-QSP: dynamic text: "I must run to work, but it was lovely to meet you <<$pcs_nickname>>, I hope I w...
     scene.text(`"I must run to work, but it was lovely to meet you ${((s as any).pcs_nickname ?? '')}, I hope I will run into you soon and looking forward to your answer!" she gives you a last smile and hurries off.`);
+    (s as any).rules = undefined;
     qspCall(s, 'music_checks', 'reset_checks');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
@@ -94,7 +93,6 @@ function enterDelparcoStart(s: GameState, scene: SceneBuilder): void {
       { label: 'Decline', goto: ['music_gigstarts', 'delparco_decline'] },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -108,11 +106,10 @@ function enterDelparcoAccept(s: GameState, scene: SceneBuilder): void {
     scene.text('She nods "Well, it\'s a small cafe so you wouldn\'t be playing on a stage, per se, but yes, in front of people. You would sing and play your music." she looks at her watch "I will have to go, but please come to the cafe before next Friday, during the week, and we can discuss the details. Poka!" she gives a small wave and hurries off.');
   } else {
     scene.text('She nods "Well, it\'s a small cafe so you wouldn\'t be playing on a stage, per se, but yes, in front of people. You would sing and play your music." she looks at her watch "I will have to go, but please come to the cafe before next Friday, during the week, and we can discuss the details. Poka!" she gives a small wave but then turns around');
-    // TODO-QSP: dynamic text: "Oh, just one thing, please, when you visit me and whenever you play at the café...
     scene.text(`"Oh, just one thing, please, when you visit me and whenever you play at the café${((s as any).ruletext ?? '')}" she smiles at you and hurries off.`);
   }
+  (s as any).rules = undefined;
   qspCall(s, 'music_checks', 'reset_checks');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     qspCall(st, 'music_actions', '');
@@ -134,11 +131,10 @@ function enterDelparcoDecline(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('She looks at you for a long moment then shakes her head "You need to be a bit more confident if you want do anything with music. Listen, " - she looks at her watch - " I have to run, but I would like you to think about it when you are… calmer… and if you change your mind, come to the cafe on a weekday and we can talk. You are good, and you should not miss out on opportunities." - she says, smiling at you.');
     }
-    // TODO-QSP: dynamic text: "Oh, just one thing, please, when you visit me and if you decide to play at the ...
     scene.text(`"Oh, just one thing, please, when you visit me and if you decide to play at the café${((s as any).ruletext ?? '')}" - she waves goodbye and hurries off.`);
   }
+  (s as any).rules = undefined;
   qspCall(s, 'music_checks', 'reset_checks');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     qspCall(st, 'music_actions', '');

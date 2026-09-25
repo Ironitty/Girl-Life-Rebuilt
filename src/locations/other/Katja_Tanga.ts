@@ -16,7 +16,6 @@ function enterSecretroom(s: GameState, scene: SceneBuilder): void {
   }
   scene.img('images/characters/pavlovsk/school/girl/katja/tanga4_4.jpg');
   scene.text('You hurry down the hall hand in hand with Katja towards the storage room she told you about as each of you tries to pull up the other\'s skirt. Once at the door, she pulls out a key and unlocks it. You grab and squeeze her ass as she does before she pushes the door open and turns towards you. You both immediately start kissing and fondling each other, barely avoiding tumbling into the room before you manage to close the door and lock it.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Bare her breasts', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'foreplay', (-5), 'lesbian');
@@ -154,7 +153,6 @@ function enterSchool(s: GameState, scene: SceneBuilder): void {
   }
   scene.text('');
   scene.text('"I showed you mine," you state. "Now I want to know if you\'re wearing any panties."');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Katja\'s turn', handler: (st: GameState) => {
     if (((st as any).katjaQW ?? 0)?.['pantiesQWstage'] === 5) {
@@ -181,9 +179,7 @@ function enterSchool(s: GameState, scene: SceneBuilder): void {
 
 function enterSchool1(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/girl/katja/tanga2.jpg');
-  // TODO-QSP: dynamic text: Katja blushes in embarrassment and covers her eyes, "You''re such a bad influenc...
   scene.text(`Katja blushes in embarrassment and covers her eyes, "You're such a bad influence, ${((s as any).pcs_nickname ?? '')}! I always wear shorts since the boys in this school are all perverts."`);
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['gschool_lessons', 'short_break'] },
   ]);
@@ -198,7 +194,6 @@ function enterSchool2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img(`images/characters/pavlovsk/school/girl/katja/tanga3_${(Math.floor(Math.random() * 6) + 1)}.jpg`);
   scene.text('Katja looks around to make sure nobody is nearby before furtively lifting up her skirt and showing you her panties. "See? I\'m wearing panties."');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['gschool_lessons', 'short_break'] },
   ]);
@@ -210,7 +205,6 @@ function enterSchool3(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/girl/katja/tanga4_1.jpg');
   scene.text('You give Katja a slightly disappointed frown. "Still wearing panties, huh?"');
   scene.text('Katja blushes. "Yes, but I\'m not wearing a bra…" she whispers.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Share', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'erotic', (-5));
@@ -229,7 +223,6 @@ function enterSchool3(s: GameState, scene: SceneBuilder): void {
       if (((st as any).katjaQW ?? 0)?.['school_sex'] === 1) {
         ((st as any).katjaQW = (st as any).katjaQW ?? {})['slut'] = ((st as any).katjaQW['slut'] ?? 0) + (1);
       }
-      // TODO-QSP: dynamic text: Blushing, Katja pulls away from you and buttons her shirt back up, looking aroun...
       scene.text(`Blushing, Katja pulls away from you and buttons her shirt back up, looking around to see if anyone has seen you. "${((st as any).pcs_nickname ?? '')}, are you crazy?! Someone could have seen us! What would they say?!"`);
     }
     scene.actions([
@@ -250,7 +243,6 @@ function enterSchool4(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('Katja quickly lifts her skirt, showing her thong-clad ass. "Still wearing panties, huh?" you ask and Katja hisses at you. "So? It\'s not like you haven\'t seen everything before."');
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Denied', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'kiss', (-5), 'lesbian');
@@ -317,7 +309,6 @@ function enterSchool5(s: GameState, scene: SceneBuilder): void {
   scene.img(`images/characters/pavlovsk/school/girl/katja/tanga6_${(Math.floor(Math.random() * 6) + 1)}.jpg`);
   scene.text('Without any hesitation, Katja pulls up her skirt and shows you her pussy.');
   scene.text('"Like what you see?" she asks with a teasing smile.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['gschool_lessons', 'short_break'] },
   ]);
@@ -332,7 +323,6 @@ function enterDance(s: GameState, scene: SceneBuilder): void {
   (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + ((Math.floor(Math.random() * 2) + 1));
   scene.img(`images/characters/pavlovsk/school/girl/katja/katja_disco2_${(Math.floor(Math.random() * 3) + 1)}.jpg`);
   scene.text('You lift the edge of your skirt up and flash your pussy at Katja. "I showed you mine, now show me yours."');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Ask to see', handler: (st: GameState) => {
     if (((st as any).katjaQW ?? 0)?.['slut'] <= 20) {

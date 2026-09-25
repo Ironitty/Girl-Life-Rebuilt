@@ -25,7 +25,6 @@ function enterFrontDoor(s: GameState, scene: SceneBuilder): void {
     if (((s as any).week ?? 0) <= 5) {
       scene.img('images/characters/shared/headshots_main/big13.jpg');
       scene.text('You knock on Lariska\'s apartment door.');
-      // TODO-QSP: dynamic text: Lariska answers the door. "Come in, <<$pcs_nickname>>."
       scene.text(`Lariska answers the door. "Come in, ${((s as any).pcs_nickname ?? '')}."`);
       scene.actions([
         { label: 'Enter the apartment', goto: ['LariskaHome', 'hallway'] },
@@ -57,15 +56,11 @@ function enterFrontDoor(s: GameState, scene: SceneBuilder): void {
       if (((s as any).LariskaQW ?? 0)?.['metAnna'] === 0) {
         scene.text('You knock on Lariska\'s apartment door and a smart looking brunette opens the door. You look helplessly into her impressive cleavage and let out an involuntary sigh.');
         scene.text('"Hello, are you looking for Lariska?" the woman asks with a smile.');
-        // TODO-QSP: dynamic text: "Yes, I''m <<$pcs_nickname>>." you reply tearing your eyes away from her nearly ...
         scene.text(`"Yes, I'm ${((s as any).pcs_nickname ?? '')}." you reply tearing your eyes away from her nearly exposed breasts.`);
-        // TODO-QSP: dynamic text: "Ah, <<$pcs_nickname>>, Lariska has told me all about you. I''m Anna, Lariska''s...
         scene.text(`"Ah, ${((s as any).pcs_nickname ?? '')}, Lariska has told me all about you. I'm Anna, Lariska's mother. My bunny has been so joyous lately, I am so glad she has found such a good friend! She needed someone to help get her back on her feet."`);
-        // TODO-QSP: dynamic text: "<<$text_home>>"
         scene.text(`"${((s as any).text_home ?? '')}"`);
         ((s as any).LariskaQW = (s as any).LariskaQW ?? {})['metAnna'] = 1;
       } else {
-        // TODO-QSP: dynamic text: Lariska''s mother opens the door. "Hello, <<$pcs_nickname>>. Come inside, <<$tex...
         scene.text(`Lariska's mother opens the door. "Hello, ${((s as any).pcs_nickname ?? '')}. Come inside, ${((s as any).text_home ?? '')}"`);
       }
       scene.actions([
@@ -111,28 +106,22 @@ function enterFrontDoor(s: GameState, scene: SceneBuilder): void {
       if (((s as any).LariskaQW ?? 0)?.['metAnna'] === 0) {
         scene.text('You knock on Lariska\'s apartment door and a smart looking brunette opens the door. You look helplessly into her impressive cleavage and let out an involuntary sigh.');
         scene.text('"Hello, are you looking for Lariska?" the woman asks with a smile.');
-        // TODO-QSP: dynamic text: "Yes, I''m <<$pcs_nickname>>." you reply tearing your eyes away from her nearly ...
         scene.text(`"Yes, I'm ${((s as any).pcs_nickname ?? '')}." you reply tearing your eyes away from her nearly exposed breasts.`);
-        // TODO-QSP: dynamic text: "Ah, <<$pcs_nickname>>, Lariska has told me all about you. I''m Anna, Lariska''s...
         scene.text(`"Ah, ${((s as any).pcs_nickname ?? '')}, Lariska has told me all about you. I'm Anna, Lariska's mother. My bunny has been so joyous lately, I am so glad she has found such a good friend! She needed someone to help get her back on her feet."`);
-        // TODO-QSP: dynamic text: "<<$text_home>>"
         scene.text(`"${((s as any).text_home ?? '')}"`);
         ((s as any).LariskaQW = (s as any).LariskaQW ?? {})['metAnna'] = 1;
       } else {
-        // TODO-QSP: dynamic text: Lariska''s mother opens the door. "Hello, <<$pcs_nickname>>. <<$text_home>>"
         scene.text(`Lariska's mother opens the door. "Hello, ${((s as any).pcs_nickname ?? '')}. ${((s as any).text_home ?? '')}"`);
       }
     } else {
       scene.img('images/characters/pavlovsk/school/girl/lariska/lariska_door.jpg');
       scene.text('You knock on Lariska\'s door, but nobody answers.');
-      // TODO-QSP: dynamic text: <<$text_home>>
       scene.text(`${((s as any).text_home ?? '')}`);
     }
     scene.actions([
       { label: 'Go back to town', goto: ['pav_residential', ''] },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -170,20 +159,19 @@ function enterHallway(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: dynamic text: Lariska <<$text_home>>.
   scene.text(`Lariska ${((s as any).text_home ?? '')}.`);
   if (((s as any).LariskaQW ?? 0)?.['metAnna'] >= 1) {
     scene.actions([
       { label: 'Anna\'s Bedroom', goto: ['LariskaHome', 'anna_bedroom'] },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go back to town', handler: (st: GameState) => {
     if (((st as any).clothingworntype ?? 0) !== 'nude') {
       (st as any).minut = ((st as any).minut ?? 0) + 5;
       qspGoto(st, 'pav_residential', '');
     } else {
+      alert('<b><font color = red>You need to get dressed.</font></b>');
       qspGoto(st, 'LariskaHome', 'hallway');
     }
   } },
@@ -210,15 +198,14 @@ function enterLivingroom(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/girl/lariska/lariska_livingroom.jpg');
   scene.text('A spacious room with a comfy looking couch and a nice tv hanging on the wall. Various plants adorn the room.');
   if (((s as any).locat ?? 0)?.['Lariska'] === 14) {
-    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027LariskaHome/u0027, /u0027livingroom_tv_1/u0027); return false;">Lariska</a> is curled up on the couch, watching tv.');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027LariskaHome\u0027, \u0027livingroom_tv_1\u0027); return false;">Lariska</a> is curled up on the couch, watching tv.');
   }
   if (((s as any).locat ?? 0)?.['Lariska'] === 16) {
-    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027LariskaHome/u0027, /u0027livingroom_exercise_1/u0027); return false;">Lariska</a> is here working out.');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027LariskaHome\u0027, \u0027livingroom_exercise_1\u0027); return false;">Lariska</a> is here working out.');
   }
   if (((s as any).locat ?? 0)?.['Lariska'] === 18) {
-    scene.text('You see <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027LariskaHome/u0027, /u0027livingroom_clean_1/u0027); return false;">Lariska</a> cleaning.');
+    scene.text('You see <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027LariskaHome\u0027, \u0027livingroom_clean_1\u0027); return false;">Lariska</a> cleaning.');
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return to the hallway', goto: ['LariskaHome', 'hallway'] },
   ]);
@@ -232,7 +219,6 @@ function enterLivingroomTv_1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npc_relationship', 'modify', 'A13', 'like');
   qspCall(s, 'mood', 'raise', 'small');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['LariskaHome', 'livingroom'] },
   ]);
@@ -246,7 +232,6 @@ function enterLivingroomExercise_1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npc_relationship', 'modify', 'A13', 'like');
   qspCall(s, 'mood', 'raise', 'tiny');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['LariskaHome', 'livingroom'] },
   ]);
@@ -260,7 +245,6 @@ function enterLivingroomClean_1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npc_relationship', 'modify', 'A13', 'like');
   qspCall(s, 'mood', 'raise', 'tiny');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['LariskaHome', 'livingroom'] },
   ]);
@@ -283,27 +267,25 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/girl/lariska/lariska_kitchen.jpg');
   scene.text('The kitchen in Lariska\'s apartment is impressive, there are several small machines meant for cooking laid out, though you have no idea what most of them do.');
   if (((s as any).lariskalove ?? 0) >= 6) {
-    // TODO-QSP: dynamic text: Like your <<$npc_nickname[''A29'']>> does at home, somebody living here makes la...
     scene.text(`Like your ${(((s as any).npc_nickname ?? 0)?.['A29'] ?? '')} does at home, somebody living here makes large batches of food, ready to eat anytime. You know you are welcome to anything in here though, so you look around, trying to decide what sounds good.`);
   } else {
-    // TODO-QSP: dynamic text: Like your <<$npc_nickname[''A29'']>> does at home, somebody living here makes la...
     scene.text(`Like your ${(((s as any).npc_nickname ?? 0)?.['A29'] ?? '')} does at home, somebody living here makes large batches of food, ready to eat anytime. You don't feel comfortable eating a full meal uninvited, but you know nobody will mind if you just have a snack.`);
   }
   if (((s as any).locat ?? 0)?.['Lariska'] === 3) {
-    scene.text('Have <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027LariskaHome/u0027, /u0027kitchen_meal_1/u0027); return false;">breakfast</a> with Lariska.');
+    scene.text('Have <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027LariskaHome\u0027, \u0027kitchen_meal_1\u0027); return false;">breakfast</a> with Lariska.');
   }
   if (((s as any).locat ?? 0)?.['Lariska'] === 11) {
     if (((s as any).LariskaQW ?? 0)?.['story'] === 11  &&  ((s as any).week ?? 0) < 6  &&  ((s as any).LariskaBoyDay ?? 0) <= ((s as any).daystart ?? 0)) {
-      scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027lariska_storyline/u0027, /u0027Boyfriend_2/u0027); return false;">Lariska</a> is cooking dinner.');
+      scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027lariska_storyline\u0027, \u0027Boyfriend_2\u0027); return false;">Lariska</a> is cooking dinner.');
     } else {
-      scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027LariskaHome/u0027, /u0027kitchen_cooking_1/u0027); return false;">Lariska</a> is cooking dinner.');
+      scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027LariskaHome\u0027, \u0027kitchen_cooking_1\u0027); return false;">Lariska</a> is cooking dinner.');
     }
   }
   if (((s as any).locat ?? 0)?.['Lariska'] === 12) {
-    scene.text('Have <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027LariskaHome/u0027, /u0027kitchen_meal_1/u0027); return false;">dinner</a> with Lariska.');
+    scene.text('Have <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027LariskaHome\u0027, \u0027kitchen_meal_1\u0027); return false;">dinner</a> with Lariska.');
   }
   if (((s as any).locat ?? 0)?.['Lariska'] === 19) {
-    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027LariskaHome/u0027, /u0027kitchen_cleaning_1/u0027); return false;">Lariska</a> is here cleaning.');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027LariskaHome\u0027, \u0027kitchen_cleaning_1\u0027); return false;">Lariska</a> is here cleaning.');
   }
   if (((s as any).lariskalove ?? 0) >= 6) {
     scene.actions([
@@ -319,7 +301,6 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   qspCall(s, 'core_library', 'kitchen', 'full');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return to the hallway', goto: ['LariskaHome', 'hallway'] },
   ]);
@@ -345,7 +326,6 @@ function enterKitchenMeal_1(s: GameState, scene: SceneBuilder): void {
   (s as any).pcs_breath = 0;
   qspCall(s, 'mood', 'raise', 'small');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Finish eating', goto: ['LariskaHome', 'kitchen'] },
   ]);
@@ -359,7 +339,6 @@ function enterKitchenCooking_1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npc_relationship', 'modify', 'A13', 'like');
   qspCall(s, 'mood', 'raise', 'tiny');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Finish the conversation', goto: ['LariskaHome', 'kitchen'] },
   ]);
@@ -373,7 +352,6 @@ function enterKitchenCleaning_1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npc_relationship', 'modify', 'A13', 'like');
   qspCall(s, 'mood', 'raise', 'tiny');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['LariskaHome', 'kitchen'] },
   ]);
@@ -396,19 +374,17 @@ function enterBathroom(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b><font color="DeepSkyBlue">Bathroom</font></b></center>');
   scene.img('images/characters/pavlovsk/school/girl/lariska/lariska_bathroom.jpg');
   scene.text('The room is clean, and even smells like sage.');
-  // TODO-QSP: dynamic text: 'There is a shower, toilet, sink, <a href="exec:gt ''mirror'',''start''">mirror<...
-  scene.text('There is a shower, toilet, sink, <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027start/u0027); return false;">mirror</a>, where you can ' + ((((s as any).pcs_hairbsh ?? 0) < 1) ? ('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027brush/u0027); return false;">brush</a>') : ('brush')) + ' your hair, and even a separate bath tub.');
+  scene.text('There is a shower, toilet, sink, <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027start\u0027); return false;">mirror</a>, where you can ' + ((((s as any).pcs_hairbsh ?? 0) < 1) ? ('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027brush\u0027); return false;">brush</a>') : ('brush')) + ' your hair, and even a separate bath tub.');
   if (((s as any).locat ?? 0)?.['Lariska'] === 13) {
-    scene.text('Since <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027LariskaHome/u0027, /u0027bathroom_join_1/u0027); return false;">Lariska</a> didn\'t lock the door, you are able to enter unnoticed. Maybe you can join her…');
+    scene.text('Since <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027LariskaHome\u0027, \u0027bathroom_join_1\u0027); return false;">Lariska</a> didn\'t lock the door, you are able to enter unnoticed. Maybe you can join her…');
   }
   if (((s as any).locat ?? 0)?.['Lariska'] === 20) {
-    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027LariskaHome/u0027, /u0027bathroom_cleaning_1/u0027); return false;">Lariska</a> is here, cleaning the bathroom.');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027LariskaHome\u0027, \u0027bathroom_cleaning_1\u0027); return false;">Lariska</a> is here, cleaning the bathroom.');
   }
   if (((s as any).locat ?? 0)?.['Lariska'] !== 13) {
     qspCall(s, 'din_van', 'private');
     qspCall(s, 'din_van', 'prvt_pee');
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return to the hallway', goto: ['LariskaHome', 'hallway'] },
   ]);
@@ -422,7 +398,6 @@ function enterBathroomCleaning_1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npc_relationship', 'modify', 'A13', 'like');
   qspCall(s, 'mood', 'raise', 'tiny');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['LariskaHome', 'bathroom'] },
   ]);
@@ -454,7 +429,6 @@ function enterBathroomJoin_1(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -470,7 +444,6 @@ function enterBathroomJoin_2(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Finish the shower', handler: (st: GameState) => {
     (st as any).noshampoo = 1;
@@ -500,7 +473,6 @@ function enterBathroomJoin_3(s: GameState, scene: SceneBuilder): void {
   (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
   qspCall(s, 'arousal', 'kiss', (-8), 'lesbian');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Spread your legs', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/lariska/lariska_shower_4.jpg');
@@ -549,7 +521,6 @@ function enterAnnaBedroom(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/girl/lariska/lariska_mom_bedroom.jpg');
   scene.text('The japanese styled bedroom is clean and orderly. You see an extra door off to one side.');
   scene.text('There is not much for you to do here at this time.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return to the hallway', goto: ['LariskaHome', 'hallway'] },
     { label: 'Go into the side room', handler: (st: GameState) => {
@@ -576,7 +547,6 @@ function enterBdsmRoom(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/girl/lariska/home_2.jpg');
   scene.text('This room is full of all kinds of scary looking equipment.');
   scene.text('Until you get to know Anna better, you shouldn\'t mess with anything here.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the room', goto: ['LariskaHome', 'anna_bedroom'] },
   ]);
@@ -596,28 +566,28 @@ function enterLariskaBedroom(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'lariska_schedule', '');
   scene.text('<center><b><font color="DeepSkyBlue">Lariska\'s Bedroom</font></b></center>');
   scene.img('images/characters/pavlovsk/school/girl/lariska/lariska_bedroom.jpg');
-  scene.text('The bedroom has hints of japanese style, although not as overwhelming as the rest of the apartment. Against the wall is a <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027wardrobe/u0027, /u0027start/u0027); return false;">wardrobe</a> where you can choose outfits and organise your clothing.');
+  scene.text('The bedroom has hints of japanese style, although not as overwhelming as the rest of the apartment. Against the wall is a <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027wardrobe\u0027, \u0027start\u0027); return false;">wardrobe</a> where you can choose outfits and organise your clothing.');
   if (((s as any).lariskalove ?? 0) >= 12) {
-    scene.text('Her <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027bed2/u0027, /u0027/u0027); return false;">bed</a> sits directly on the floor, without space underneath.');
+    scene.text('Her <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027bed2\u0027, \u0027\u0027); return false;">bed</a> sits directly on the floor, without space underneath.');
   } else {
     scene.text('Her bed sits directly on the floor, without space underneath.');
   }
   scene.text('<table><tr><td valign="top">');
-  // TODO-QSP: func('alarmclock', 'base_alarmclock_text')
+  scene.text(String(qspFunc(s, 'alarmclock', 'base_alarmclock_text') || ''));
   if (((s as any).locat ?? 0)?.['Lariska'] === 1) {
-    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027LariskaHome/u0027, /u0027lariska_asleep_1/u0027); return false;">Lariska</a> is sound asleep, curled up and wrapped in blankets.');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027LariskaHome\u0027, \u0027lariska_asleep_1\u0027); return false;">Lariska</a> is sound asleep, curled up and wrapped in blankets.');
   }
   if (((s as any).locat ?? 0)?.['Lariska'] === 2) {
-    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027LariskaHome/u0027, /u0027lariska_dressing_1/u0027); return false;">Lariska</a> is getting dressed right now.');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027LariskaHome\u0027, \u0027lariska_dressing_1\u0027); return false;">Lariska</a> is getting dressed right now.');
   }
   if (((s as any).locat ?? 0)?.['Lariska'] === 8) {
     scene.text('Lariska is doing on her school work.');
   }
   if (((s as any).locat ?? 0)?.['Lariska'] === 15) {
-    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027LariskaHome/u0027, /u0027lariska_reading_1/u0027); return false;">Lariska</a> is reading in bed.');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027LariskaHome\u0027, \u0027lariska_reading_1\u0027); return false;">Lariska</a> is reading in bed.');
   }
   if (((s as any).locat ?? 0)?.['Lariska'] === 17) {
-    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027LariskaHome/u0027, /u0027lariska_cleaning_1/u0027); return false;">Lariska</a> is here cleaning.');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027LariskaHome\u0027, \u0027lariska_cleaning_1\u0027); return false;">Lariska</a> is here cleaning.');
   }
   if (((s as any).locat ?? 0)?.['Lariska'] === 22) {
     scene.text('Lariska is here, doing various things.');
@@ -648,7 +618,7 @@ function enterLariskaBedroom(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Drop the subject', goto: ['LariskaHome', 'lariska_bedroom'] },
         { label: 'Tell her you\'ll go with her for support.', handler: (st: GameState) => {
-    // TODO-QSP: LariskaQW['join_team'] = 1
+    ((st as any).LariskaQW = (st as any).LariskaQW ?? {})['join_team'] = 1;
     (st as any).minut = ((st as any).minut ?? 0) + 15;
   }, goto: ['volley_coach', 'lariska_join'] },
       ]);
@@ -657,7 +627,7 @@ function enterLariskaBedroom(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'Drop the subject', goto: ['LariskaHome', 'lariska_bedroom'] },
           { label: 'Tell her you\'ll go with her for support.', handler: (st: GameState) => {
-    // TODO-QSP: LariskaQW['join_team'] = 2
+    ((st as any).LariskaQW = (st as any).LariskaQW ?? {})['join_team'] = 2;
     (st as any).minut = ((st as any).minut ?? 0) + 15;
   }, goto: ['volley_coach', 'lariska_join'] },
         ]);
@@ -666,7 +636,7 @@ function enterLariskaBedroom(s: GameState, scene: SceneBuilder): void {
           scene.actions([
             { label: 'Drop the subject', goto: ['LariskaHome', 'lariska_bedroom'] },
             { label: 'Tell her that you should both try to get on the team.', handler: (st: GameState) => {
-    // TODO-QSP: LariskaQW['join_team'] = 3
+    ((st as any).LariskaQW = (st as any).LariskaQW ?? {})['join_team'] = 3;
     (st as any).minut = ((st as any).minut ?? 0) + 15;
   }, goto: ['volley_coach', 'lariska_join'] },
           ]);
@@ -675,7 +645,7 @@ function enterLariskaBedroom(s: GameState, scene: SceneBuilder): void {
             scene.actions([
               { label: 'Drop the subject', goto: ['LariskaHome', 'lariska_bedroom'] },
               { label: 'Tell her you\'ll go with her and since you\'re already on the team, you can help convince the coach.', handler: (st: GameState) => {
-    // TODO-QSP: LariskaQW['join_team'] = 4
+    ((st as any).LariskaQW = (st as any).LariskaQW ?? {})['join_team'] = 4;
     (st as any).minut = ((st as any).minut ?? 0) + 15;
   }, goto: ['volley_coach', 'lariska_join'] },
             ]);
@@ -683,7 +653,7 @@ function enterLariskaBedroom(s: GameState, scene: SceneBuilder): void {
             scene.actions([
               { label: 'Drop the subject', goto: ['LariskaHome', 'lariska_bedroom'] },
               { label: 'Tell her you\'ll go with her for support.', handler: (st: GameState) => {
-    // TODO-QSP: LariskaQW['join_team'] = 1
+    ((st as any).LariskaQW = (st as any).LariskaQW ?? {})['join_team'] = 1;
     (st as any).minut = ((st as any).minut ?? 0) + 15;
   }, goto: ['volley_coach', 'lariska_join'] },
             ]);
@@ -748,11 +718,12 @@ function enterLariskaBedroom(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return to the hallway', handler: (st: GameState) => {
     if (((st as any).clothingworntype ?? 0) !== 'nude') {
       qspGoto(st, 'LariskaHome', 'hallway');
+    } else {
+      alert('<b><font color = red>You need to get dressed first.</font></b>');
     }
   } },
   ]);
@@ -765,7 +736,6 @@ function enterLariskaAsleep_1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npc_relationship', 'modify', 'A13', 'like');
   (s as any).minut = ((s as any).minut ?? 0) + 10;
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Move away from the bed', goto: ['LariskaHome', 'lariska_bedroom'] },
   ]);
@@ -778,7 +748,6 @@ function enterLariskaDressing_1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npc_relationship', 'modify', 'A13', 'like');
   (s as any).minut = ((s as any).minut ?? 0) + 10;
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Finish this conversation', goto: ['LariskaHome', 'lariska_bedroom'] },
   ]);
@@ -791,7 +760,6 @@ function enterLariskaCleaning_1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npc_relationship', 'modify', 'A13', 'like');
   (s as any).minut = ((s as any).minut ?? 0) + 15;
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Finish this conversation', goto: ['LariskaHome', 'lariska_bedroom'] },
   ]);
@@ -804,7 +772,6 @@ function enterLariskaReading_1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npc_relationship', 'modify', 'A13', 'like');
   (s as any).minut = ((s as any).minut ?? 0) + 20;
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Finish this conversation', goto: ['LariskaHome', 'lariska_bedroom'] },
   ]);
@@ -826,7 +793,6 @@ function enterHomework(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('You did your homework together and Lariska explained the hard parts to you.');
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Finish up', goto: ['LariskaHome', 'lariska_bedroom'] },
   ]);
@@ -870,14 +836,12 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterCommunityCenterInvite(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/big13.jpg');
   scene.text('Lariska looks at her watch and says, "It\'s time to go to the sports club."');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Say goodbye and leave', goto: ['pav_residential', ''] },
     { label: 'Go with Lariska', handler: (st: GameState) => {

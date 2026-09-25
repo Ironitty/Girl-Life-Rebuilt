@@ -9,55 +9,59 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCanFlash(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).PCloOnePiece ?? 0) === 1) {
-    // TODO-QSP: jump 'flash_can_flash_end'
-  }
-  (s as any).temp_threshold = ((s as any).pcs_inhib ?? 0) + (((s as any).trait_vars ?? {})?.['exhibitionist'] ?? 0) * 10 + ((((s as any).trait_vars ?? 0)?.['exhibitionist'] === 3) ? (5) : (0)) + ((s as any).alko ?? 0) / 2;
-  if (String((s as any).locArgs?.[1] ?? '') === 'bra') {
-    if (((s as any).clothingworntype ?? 0) === 'nude'  ||  ((s as any).braworntype ?? 0) === 'none'  ||  ((s as any).PCloCoverTop ?? 0) >= 4) {
-      // TODO-QSP: jump 'flash_can_flash_end'
+  while (true) {
+    if (((s as any).PCloOnePiece ?? 0) === 1) {
+      break;
     }
-    (s as any).result = Math.max(1, (35 - ((((s as any).temp_threshold ?? 0) / 5) * 5)) / 5 + 1);
-  } else {
-    if (String((s as any).locArgs?.[1] ?? '') === 'pantyrear') {
-      if (((s as any).clothingworntype ?? 0) === 'nude'  ||  ((s as any).pantyworntype ?? 0) === 'none'  ||  ((s as any).PCloCoverBack ?? 0) >= 4) {
-        // TODO-QSP: jump 'flash_can_flash_end'
+    (s as any).temp_threshold = ((s as any).pcs_inhib ?? 0) + (((s as any).trait_vars ?? {})?.['exhibitionist'] ?? 0) * 10 + ((((s as any).trait_vars ?? 0)?.['exhibitionist'] === 3) ? (5) : (0)) + ((s as any).alko ?? 0) / 2;
+    if (String((s as any).locArgs?.[1] ?? '') === 'bra') {
+      if (((s as any).clothingworntype ?? 0) === 'nude'  ||  ((s as any).braworntype ?? 0) === 'none'  ||  ((s as any).PCloCoverTop ?? 0) >= 4) {
+        break;
       }
-      (s as any).result = Math.max(1, (40 - ((((s as any).temp_threshold ?? 0) / 5) * 5)) / 5 + 1);
+      (s as any).result = Math.max(1, (35 - ((((s as any).temp_threshold ?? 0) / 5) * 5)) / 5 + 1);
     } else {
-      if (String((s as any).locArgs?.[1] ?? '') === 'panties') {
-        if (((s as any).clothingworntype ?? 0) === 'nude'  ||  ((s as any).pantyworntype ?? 0) === 'none'  ||  ((s as any).PCloCoverFront ?? 0) >= 4) {
-          // TODO-QSP: jump 'flash_can_flash_end'
+      if (String((s as any).locArgs?.[1] ?? '') === 'pantyrear') {
+        if (((s as any).clothingworntype ?? 0) === 'nude'  ||  ((s as any).pantyworntype ?? 0) === 'none'  ||  ((s as any).PCloCoverBack ?? 0) >= 4) {
+          break;
         }
         (s as any).result = Math.max(1, (40 - ((((s as any).temp_threshold ?? 0) / 5) * 5)) / 5 + 1);
       } else {
-        if (String((s as any).locArgs?.[1] ?? '') === 'tits') {
-          if ((((s as any).clothingworntype ?? 0) === 'nude'  &&  ((s as any).braworntype ?? 0) === 'none')  ||  ((s as any).PCloCoverTop ?? 0) >= 4) {
-            // TODO-QSP: jump 'flash_can_flash_end'
+        if (String((s as any).locArgs?.[1] ?? '') === 'panties') {
+          if (((s as any).clothingworntype ?? 0) === 'nude'  ||  ((s as any).pantyworntype ?? 0) === 'none'  ||  ((s as any).PCloCoverFront ?? 0) >= 4) {
+            break;
           }
-          (s as any).result = Math.max(1, (45 - ((((s as any).temp_threshold ?? 0) / 5) * 5)) / 5 + 1);
+          (s as any).result = Math.max(1, (40 - ((((s as any).temp_threshold ?? 0) / 5) * 5)) / 5 + 1);
         } else {
-          if (String((s as any).locArgs?.[1] ?? '') === 'butt'  ||  String((s as any).locArgs?.[1] ?? '') === 'butt_plug') {
-            if ((((s as any).clothingworntype ?? 0) === 'nude'  &&  ((s as any).pantyworntype ?? 0) === 'none')  ||  ((s as any).PCloCoverBack ?? 0) >= 4) {
-              // TODO-QSP: jump 'flash_can_flash_end'
+          if (String((s as any).locArgs?.[1] ?? '') === 'tits') {
+            if ((((s as any).clothingworntype ?? 0) === 'nude'  &&  ((s as any).braworntype ?? 0) === 'none')  ||  ((s as any).PCloCoverTop ?? 0) >= 4) {
+              break;
             }
-            (s as any).result = Math.max(1, (50 - ((((s as any).temp_threshold ?? 0) / 5) * 5)) / 5 + 1);
+            (s as any).result = Math.max(1, (45 - ((((s as any).temp_threshold ?? 0) / 5) * 5)) / 5 + 1);
           } else {
-            if (String((s as any).locArgs?.[1] ?? '') === 'pussy') {
-              if (((s as any).clothingworntype ?? 0) === 'nude'  ||  ((s as any).PCloCoverFront ?? 0) >= 4) {
-                // TODO-QSP: jump 'flash_can_flash_end'
+            if (String((s as any).locArgs?.[1] ?? '') === 'butt'  ||  String((s as any).locArgs?.[1] ?? '') === 'butt_plug') {
+              if ((((s as any).clothingworntype ?? 0) === 'nude'  &&  ((s as any).pantyworntype ?? 0) === 'none')  ||  ((s as any).PCloCoverBack ?? 0) >= 4) {
+                break;
               }
-              (s as any).result = Math.max(1, (55 - ((((s as any).temp_threshold ?? 0) / 5) * 5)) / 5 + 1);
+              (s as any).result = Math.max(1, (50 - ((((s as any).temp_threshold ?? 0) / 5) * 5)) / 5 + 1);
             } else {
-              if (String((s as any).locArgs?.[1] ?? '') === 'full') {
-                if (qspFunc(s, 'flash', 'can_flash', 'tits') === 0  ||  qspFunc(s, 'flash', 'can_flash', 'butt') === 0  ||  qspFunc(s, 'flash', 'can_flash', 'pussy') === 0) {
-                  // TODO-QSP: jump 'flash_can_flash_end'
+              if (String((s as any).locArgs?.[1] ?? '') === 'pussy') {
+                if (((s as any).clothingworntype ?? 0) === 'nude'  ||  ((s as any).PCloCoverFront ?? 0) >= 4) {
+                  break;
                 }
-                (s as any).result = Math.max(1, (65 - ((((s as any).temp_threshold ?? 0) / 5) * 5)) / 5 + 1);
+                (s as any).result = Math.max(1, (55 - ((((s as any).temp_threshold ?? 0) / 5) * 5)) / 5 + 1);
               } else {
-                if (String((s as any).locArgs?.[1] ?? '') === ''  ||  String((s as any).locArgs?.[1] ?? '') === 'any') {
-                  if (qspFunc(s, 'flash', 'can_flash', 'bra')  ||  qspFunc(s, 'flash', 'can_flash', 'tits')  ||  qspFunc(s, 'flash', 'can_flash', 'panties')  ||  qspFunc(s, 'flash', 'can_flash', 'pantyrear')  ||  qspFunc(s, 'flash', 'can_flash', 'butt')  ||  qspFunc(s, 'flash', 'can_flash', 'pussy')  ||  qspFunc(s, 'flash', 'can_flash', 'full')) {
-                    (s as any).result = 1;
+                if (String((s as any).locArgs?.[1] ?? '') === 'full') {
+                  if (qspFunc(s, 'flash', 'can_flash', 'tits') === 0  ||  qspFunc(s, 'flash', 'can_flash', 'butt') === 0  ||  qspFunc(s, 'flash', 'can_flash', 'pussy') === 0) {
+                    break;
+                  }
+                  (s as any).result = Math.max(1, (65 - ((((s as any).temp_threshold ?? 0) / 5) * 5)) / 5 + 1);
+                } else {
+                  if (String((s as any).locArgs?.[1] ?? '') === ''  ||  String((s as any).locArgs?.[1] ?? '') === 'any') {
+                    if (qspFunc(s, 'flash', 'can_flash', 'bra')  ||  qspFunc(s, 'flash', 'can_flash', 'tits')  ||  qspFunc(s, 'flash', 'can_flash', 'panties')  ||  qspFunc(s, 'flash', 'can_flash', 'pantyrear')  ||  qspFunc(s, 'flash', 'can_flash', 'butt')  ||  qspFunc(s, 'flash', 'can_flash', 'pussy')  ||  qspFunc(s, 'flash', 'can_flash', 'full')) {
+                      (s as any).result = 1;
+                    }
+                  } else {
+                    alert('Unknown flash type: ' + ((s as any).locArgs?.[1] ?? 0));
                   }
                 }
               }
@@ -66,13 +70,14 @@ function enterCanFlash(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
+    break;
   }
-  // TODO-QSP: :flash_can_flash_end
+  // LABEL: flash_can_flash_end
   if (((s as any).result ?? 0) > 4) {
     (s as any).result = 0;
   }
+  (s as any).temp_threshold = undefined;
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -120,32 +125,32 @@ function enterGetImage(s: GameState, scene: SceneBuilder): void {
   ((s as any).flashVars = (s as any).flashVars ?? {})['image'] = 'images/pc/activities/flashing/';
   (s as any).temp_id_text = '';
   if (((s as any).PCloSkirt ?? 0) > 0) {
-    // TODO-QSP: $temp_id_text += 'dress_'
+    (s as any).temp_id_text = ((s as any).temp_id_text ?? 0) + ('dress_');
     ((s as any).flashVars = (s as any).flashVars ?? {})['image'] = ((s as any).flashVars['image'] ?? 0) + ('dress/');
   } else {
-    // TODO-QSP: $temp_id_text += 'pants_'
+    (s as any).temp_id_text = ((s as any).temp_id_text ?? 0) + ('pants_');
     ((s as any).flashVars = (s as any).flashVars ?? {})['image'] = ((s as any).flashVars['image'] ?? 0) + ('pants/');
   }
   if (String((s as any).locArgs?.[2] ?? '') === 'inside'  ||  String((s as any).locArgs?.[2] ?? '') === 'indoors') {
-    // TODO-QSP: $temp_id_text += 'ind_'
+    (s as any).temp_id_text = ((s as any).temp_id_text ?? 0) + ('ind_');
     ((s as any).flashVars = (s as any).flashVars ?? {})['image'] = ((s as any).flashVars['image'] ?? 0) + ('inside/');
     if (String((s as any).locArgs?.[1] ?? '') === 'butt_plug') {
       ((s as any).ARGS = (s as any).ARGS ?? {})[1] = 'butt';
     }
   } else {
-    // TODO-QSP: $temp_id_text += 'out_'
+    (s as any).temp_id_text = ((s as any).temp_id_text ?? 0) + ('out_');
     ((s as any).flashVars = (s as any).flashVars ?? {})['image'] = ((s as any).flashVars['image'] ?? 0) + ('outside/');
   }
-  // TODO-QSP: $temp_id_text += $ARGS[1]
+  (s as any).temp_id_text = ((s as any).temp_id_text ?? 0) + (((s as any).locArgs?.[1] ?? 0));
   ((s as any).flashVars = (s as any).flashVars ?? {})['image'] = ((s as any).flashVars['image'] ?? 0) + (((s as any).locArgs?.[1] ?? 0));
   ((s as any).flashVars = (s as any).flashVars ?? {})['image'] = ((s as any).flashVars['image'] ?? 0) + ('/');
   if ((String((s as any).locArgs?.[1] ?? '') === 'pussy'  ||  String((s as any).locArgs?.[1] ?? '') === 'full')  &&  ((s as any).pcs_pubes ?? 0) > 20) {
-    // TODO-QSP: $temp_id_text += '_hairy'
+    (s as any).temp_id_text = ((s as any).temp_id_text ?? 0) + ('_hairy');
     ((s as any).flashVars = (s as any).flashVars ?? {})['image'] = ((s as any).flashVars['image'] ?? 0) + ('hairy');
   }
   ((s as any).flashVars = (s as any).flashVars ?? {})['rand'] = (Math.floor(Math.random() * ((((s as any).flashVars ?? 0)?.[String((s as any).temp_id_text ?? 0)] ?? 0) - 1 + 1)) + (1));
   ((s as any).flashVars = (s as any).flashVars ?? {})['image'] = ((s as any).flashVars['image'] ?? 0) + (String((((s as any).flashVars ?? 0)?.['rand'])) + '.jpg');
-  // TODO-QSP: end
+  (s as any).temp_id_text = undefined;
   scene.build();
 }
 
@@ -157,14 +162,13 @@ function enterDisplayImage(s: GameState, scene: SceneBuilder): void {
       scene.img(`${((s as any).flash_image ?? '')}`);
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterGenerateOutput(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[5] ?? '') < 1) {
-    // TODO-QSP: $flash_text[0] = $flashVars['text_before']
-    // TODO-QSP: $flash_text[1] = $flashVars['text_after']
+    ((s as any).flash_text = (s as any).flash_text ?? {})[0] = (((s as any).flashVars ?? 0)?.['text_before']);
+    ((s as any).flash_text = (s as any).flash_text ?? {})[1] = (((s as any).flashVars ?? 0)?.['text_after']);
   }
   if (String((s as any).locArgs?.[5] ?? '') !== 1) {
     if (((s as any).flash_image ?? 0) === '') {
@@ -173,7 +177,6 @@ function enterGenerateOutput(s: GameState, scene: SceneBuilder): void {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDisplayImage(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   if (((s as any).flash_text ?? 0)[0] !== '') {
-    // TODO-QSP: dynamic text: l $flash_text[0]
     scene.text('l $flash_text[0]');
   }
   qspCall(s, 'arousal', '$ARGS[3]', ((s as any).locArgs?.[4] ?? 0), 'exhibitionism', (((s as any).flash_arousal ?? 0)?.[0] ?? 0), (((s as any).flash_arousal ?? 0)?.[1] ?? 0), (((s as any).flash_arousal ?? 0)?.[2] ?? 0), (((s as any).flash_arousal ?? 0)?.[3] ?? 0), (((s as any).flash_arousal ?? 0)?.[4] ?? 0), (((s as any).flash_arousal ?? 0)?.[5] ?? 0));
@@ -181,12 +184,10 @@ function enterGenerateOutput(s: GameState, scene: SceneBuilder): void {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[4] ?? 0), ((s as any).locArgs?.[5] ?? 0)]; enterEvents(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   if (((s as any).flash_text ?? 0)[1] !== '') {
-    // TODO-QSP: dynamic text: l $flash_text[1]
     scene.text('l $flash_text[1]');
   }
   qspCall(s, 'arousal', 'end');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[5] ?? 0)]; enterCleanup(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -196,7 +197,6 @@ function enterBra(s: GameState, scene: SceneBuilder): void {
   ((s as any).flashVars = (s as any).flashVars ?? {})['text_after'] = 'You ' + ((((s as any).PCloSkirt ?? 0) > 0) ? ('lift your top back up') : ('pull your top back down')) + ', feeling the thrill of excitement running down your spine.';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'bra', ((s as any).locArgs?.[1] ?? 0)]; enterGetImage(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'bra', ((s as any).locArgs?.[1] ?? 0), 'flashlite', ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[3] ?? 0)]; enterGenerateOutput(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -206,7 +206,6 @@ function enterTits(s: GameState, scene: SceneBuilder): void {
   ((s as any).flashVars = (s as any).flashVars ?? {})['text_after'] = 'You ' + ((((s as any).PCloSkirt ?? 0) > 0) ? ('lift your top back up') : ('pull your top back down')) + ', feeling the thrill of excitement running down your spine.';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'tits', ((s as any).locArgs?.[1] ?? 0)]; enterGetImage(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'tits', ((s as any).locArgs?.[1] ?? 0), 'flash', ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[3] ?? 0)]; enterGenerateOutput(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -216,7 +215,6 @@ function enterPanties(s: GameState, scene: SceneBuilder): void {
   ((s as any).flashVars = (s as any).flashVars ?? {})['text_after'] = 'You ' + ((((s as any).PCloSkirt ?? 0) > 0) ? ('lower the skirt back in place') : ('pull your pants back up')) + ', feeling the thrill of excitement running down your spine.';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'panty', ((s as any).locArgs?.[1] ?? 0)]; enterGetImage(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'panty', ((s as any).locArgs?.[1] ?? 0), 'flash', ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[3] ?? 0)]; enterGenerateOutput(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -226,7 +224,6 @@ function enterPantyrear(s: GameState, scene: SceneBuilder): void {
   ((s as any).flashVars = (s as any).flashVars ?? {})['text_after'] = 'You ' + ((((s as any).PCloSkirt ?? 0) > 0) ? ('lower the skirt back in place') : ('pull your pants back up')) + ', feeling the thrill of excitement running down your spine.';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'pantyrear', ((s as any).locArgs?.[1] ?? 0)]; enterGetImage(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'pantyrear', ((s as any).locArgs?.[1] ?? 0), 'flash', ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[3] ?? 0)]; enterGenerateOutput(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -241,7 +238,6 @@ function enterButt(s: GameState, scene: SceneBuilder): void {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'butt', ((s as any).locArgs?.[1] ?? 0)]; enterGetImage(s, scene); (s as any).locArgs = __savedLocArgs; }
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'butt', ((s as any).locArgs?.[1] ?? 0), 'flash', ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[3] ?? 0)]; enterGenerateOutput(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -256,7 +252,6 @@ function enterButtPlug(s: GameState, scene: SceneBuilder): void {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'butt', ((s as any).locArgs?.[1] ?? 0)]; enterGetImage(s, scene); (s as any).locArgs = __savedLocArgs; }
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'butt', ((s as any).locArgs?.[1] ?? 0), 'flash', ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[3] ?? 0)]; enterGenerateOutput(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -266,7 +261,6 @@ function enterPussy(s: GameState, scene: SceneBuilder): void {
   ((s as any).flashVars = (s as any).flashVars ?? {})['text_after'] = 'You ' + ((((s as any).PCloSkirt ?? 0) > 0) ? ('lower the skirt back in place') : ('pull your pants back up')) + ', feeling the thrill of excitement running down your spine.';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'pussy', ((s as any).locArgs?.[1] ?? 0)]; enterGetImage(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'pussy', ((s as any).locArgs?.[1] ?? 0), 'flash', ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[3] ?? 0)]; enterGenerateOutput(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -276,7 +270,6 @@ function enterFull(s: GameState, scene: SceneBuilder): void {
   ((s as any).flashVars = (s as any).flashVars ?? {})['text_after'] = 'You quickly cover up again enjoying a buzz of excitement.';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'full', ((s as any).locArgs?.[1] ?? 0)]; enterGetImage(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'full', ((s as any).locArgs?.[1] ?? 0), 'flash', ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[3] ?? 0)]; enterGenerateOutput(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -388,22 +381,24 @@ function enterExhibitionism(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
+  (s as any).temp_rand = undefined;
   scene.build();
 }
 
 function enterCleanup(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') !== 1) {
-    // TODO-QSP: killvar 'flashVars'
+    (s as any).flashVars = undefined;
   }
-  // TODO-QSP: end
+  (s as any).flash_image = undefined;
+  (s as any).flash_video = undefined;
+  (s as any).flash_text = undefined;
+  (s as any).flash_arousal = undefined;
   scene.build();
 }
 
 function enterEvents(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'blackmailer', 'init_check', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0));
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -427,7 +422,6 @@ function enterParkGetActs(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -463,8 +457,8 @@ function enterParkGetSingleAct(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  (s as any).can_flash_res = undefined;
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -526,7 +520,6 @@ function enterParkDoFlash(s: GameState, scene: SceneBuilder): void {
     qspGoto(s, 'flash', 'quick_park_flash', String((s as any).locArgs?.[1] ?? ''));
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -545,8 +538,8 @@ function enterParkBadScenario(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  (s as any).temp_rand = undefined;
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -562,7 +555,6 @@ function enterPark(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -582,7 +574,6 @@ function enterParkFlashOptions(s: GameState, scene: SceneBuilder): void {
       { label: 'Flash your pussy and tits (0:05)', goto: ['flash', 'quick_park_flash', 'full'] },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go back', handler: (st: GameState) => {
     dynamicGoto(st, 'prevLoc', 'prevArg');
@@ -599,7 +590,6 @@ function enterQuickParkFlash(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'flash', '$ARGS[1]', 'outdoors', 5);
   qspCall(s, 'stat', '');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterParkFlashOptions(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.build();
 }
 

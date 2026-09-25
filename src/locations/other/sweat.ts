@@ -8,14 +8,13 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterAdd(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') <= 0) {
-    // TODO-QSP: exit
+    return;
   }
   if (((s as any).deodorant_on ?? 0) === 1) {
     (s as any).pcs_sweat = ((s as any).pcs_sweat ?? 0) + ((Math.floor(Math.random() * (2 * (((s as any).locArgs?.[1] ?? 0)+1) / 3 - ((s as any).locArgs?.[1] ?? 0) / 3 + 1)) + (((s as any).locArgs?.[1] ?? 0) / 3)));
   } else {
     (s as any).pcs_sweat = ((s as any).pcs_sweat ?? 0) + (((s as any).locArgs?.[1] ?? 0));
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -24,7 +23,6 @@ function enterShower(s: GameState, scene: SceneBuilder): void {
     (s as any).pcs_sweat = (Math.floor(Math.random() * 10) + 0);
   }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterRemoveDeo(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -34,12 +32,12 @@ function enterDeo(s: GameState, scene: SceneBuilder): void {
     (s as any).pcs_sweat = ((s as any).pcs_sweat ?? 0) - (2);
   }
   (s as any).deodorant_time = ((s as any).totminut ?? 0) + 24 * 60;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterRemoveDeo(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: end
+  (s as any).deodorant_on = undefined;
+  (s as any).deodorant_time = undefined;
   if (((s as any).pcs_sweat ?? 0) < 0) {
     (s as any).pcs_sweat = 0;
   }

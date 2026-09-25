@@ -57,7 +57,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'vaginal_dildo', (-5), 'dick_length', 'masturbation');
     qspCall(st, 'stat', '');
     if (((st as any).camGirl ?? 0)?.['MFC_donate_message'] !== '') {
-      // TODO-QSP: $camGirl['MFC_donate_message']
+      scene.text(String(qspFunc(s, 'camGirl', 'MFC_donate_message') || ''));
     }
     scene.actions([
       { label: 'Continue', goto: ['komp_cam_MFC_main', 'waitclients'] },
@@ -111,6 +111,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     if (((st as any).temp_camVars ?? 0)?.['anal_gigantic_available']) {
       qspCall(st, 'komp_cam_MFC_requests_anal', 'set_gigantic_act');
     }
+    (st as any).temp_camVars = undefined;
     scene.actions([
       { label: 'Can\'t find a suitable toy or you changed your mind', handler: (st: GameState) => {
     qspGoto(st, 'komp_cam_MFC_main', 'waitclients');
@@ -212,7 +213,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'anal_finger', (-5));
     qspCall(st, 'stat', '');
     if (((st as any).camGirl ?? 0)?.['MFC_donate_message'] !== '') {
-      // TODO-QSP: $camGirl['MFC_donate_message']
+      scene.text(String(qspFunc(s, 'camGirl', 'MFC_donate_message') || ''));
     }
     scene.actions([
       { label: 'Continue', goto: ['komp_cam_MFC_main', 'waitclients'] },
@@ -293,7 +294,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'anal_dildo', (-5), 'dick_length', 'masturbation');
     qspCall(st, 'stat', '');
     if (((st as any).camGirl ?? 0)?.['MFC_donate_message'] !== '') {
-      // TODO-QSP: $camGirl['MFC_donate_message']
+      scene.text(String(qspFunc(s, 'camGirl', 'MFC_donate_message') || ''));
     }
     scene.actions([
       { label: 'Continue', goto: ['komp_cam_MFC_main', 'waitclients'] },
@@ -360,7 +361,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     }
     qspCall(st, 'stat', '');
     if (((st as any).camGirl ?? 0)?.['MFC_donate_message'] !== '') {
-      // TODO-QSP: $camGirl['MFC_donate_message']
+      scene.text(String(qspFunc(s, 'camGirl', 'MFC_donate_message') || ''));
     }
     scene.actions([
       { label: 'Continue', goto: ['komp_cam_MFC_main', 'waitclients'] },
@@ -369,12 +370,11 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
-  // TODO-QSP: end
+  (s as any).temp_camVars = undefined;
   scene.build();
 }
 
 function enterSetVibrAnalAct(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: end
   scene.actions([
     { label: 'Use your vibrator', handler: (st: GameState) => {
     qspCall(st, 'komp_cam_functions', 'camming', 5, 'porn', 'request');
@@ -396,7 +396,7 @@ function enterSetVibrAnalAct(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'anal_vibe', (-5), 'dick_length', 'masturbation');
     qspCall(st, 'stat', '');
     if (((st as any).camGirl ?? 0)?.['MFC_donate_message'] !== '') {
-      // TODO-QSP: $camGirl['MFC_donate_message']
+      scene.text(String(qspFunc(s, 'camGirl', 'MFC_donate_message') || ''));
     }
     scene.actions([
       { label: 'Continue', goto: ['komp_cam_MFC_main', 'waitclients'] },
@@ -407,7 +407,6 @@ function enterSetVibrAnalAct(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSetSmallAnalAct(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: end
   scene.actions([
     { label: 'Use your small dildo', handler: (st: GameState) => {
     qspCall(st, 'komp_cam_functions', 'camming', 5, 'porn', 'request');
@@ -429,7 +428,7 @@ function enterSetSmallAnalAct(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'anal_dildo', (-5), 'dick_length', 'masturbation');
     qspCall(st, 'stat', '');
     if (((st as any).camGirl ?? 0)?.['MFC_donate_message'] !== '') {
-      // TODO-QSP: $camGirl['MFC_donate_message']
+      scene.text(String(qspFunc(s, 'camGirl', 'MFC_donate_message') || ''));
     }
     scene.actions([
       { label: 'Continue', goto: ['komp_cam_MFC_main', 'waitclients'] },
@@ -440,7 +439,6 @@ function enterSetSmallAnalAct(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSetNormalAnalAct(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: end
   scene.actions([
     { label: 'Use your medium dildo', handler: (st: GameState) => {
     qspCall(st, 'komp_cam_functions', 'camming', 5, 'porn', 'request');
@@ -462,7 +460,7 @@ function enterSetNormalAnalAct(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'anal_dildo', (-5), 'dick_length', 'masturbation');
     qspCall(st, 'stat', '');
     if (((st as any).camGirl ?? 0)?.['MFC_donate_message'] !== '') {
-      // TODO-QSP: $camGirl['MFC_donate_message']
+      scene.text(String(qspFunc(s, 'camGirl', 'MFC_donate_message') || ''));
     }
     scene.actions([
       { label: 'Further', goto: ['komp_cam_MFC_main', 'waitclients'] },
@@ -473,7 +471,6 @@ function enterSetNormalAnalAct(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSetBigAnalAct(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: end
   scene.actions([
     { label: 'Use your large dildo', handler: (st: GameState) => {
     qspCall(st, 'komp_cam_functions', 'camming', 5, 'porn', 'request');
@@ -495,7 +492,7 @@ function enterSetBigAnalAct(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'anal_dildo', (-5), 'dick_length', 'masturbation');
     qspCall(st, 'stat', '');
     if (((st as any).camGirl ?? 0)?.['MFC_donate_message'] !== '') {
-      // TODO-QSP: $camGirl['MFC_donate_message']
+      scene.text(String(qspFunc(s, 'camGirl', 'MFC_donate_message') || ''));
     }
     scene.actions([
       { label: 'Continue', goto: ['komp_cam_MFC_main', 'waitclients'] },
@@ -506,7 +503,6 @@ function enterSetBigAnalAct(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSetLargeAnalAct(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: end
   scene.actions([
     { label: 'Use your very large dildo', handler: (st: GameState) => {
     qspCall(st, 'komp_cam_functions', 'camming', 5, 'porn', 'request');
@@ -528,7 +524,7 @@ function enterSetLargeAnalAct(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'anal_dildo', (-5), 'dick_length', 'masturbation');
     qspCall(st, 'stat', '');
     if (((st as any).camGirl ?? 0)?.['MFC_donate_message'] !== '') {
-      // TODO-QSP: $camGirl['MFC_donate_message']
+      scene.text(String(qspFunc(s, 'camGirl', 'MFC_donate_message') || ''));
     }
     scene.actions([
       { label: 'Continue', goto: ['komp_cam_MFC_main', 'waitclients'] },
@@ -539,7 +535,6 @@ function enterSetLargeAnalAct(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSetHugeAnalAct(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: end
   scene.actions([
     { label: 'Use your 30cm dildo', handler: (st: GameState) => {
     qspCall(st, 'komp_cam_functions', 'camming', 5, 'porn', 'request');
@@ -561,7 +556,7 @@ function enterSetHugeAnalAct(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'anal_dildo', (-5), 'dick_length', 'masturbation');
     qspCall(st, 'stat', '');
     if (((st as any).camGirl ?? 0)?.['MFC_donate_message'] !== '') {
-      // TODO-QSP: $camGirl['MFC_donate_message']
+      scene.text(String(qspFunc(s, 'camGirl', 'MFC_donate_message') || ''));
     }
     scene.actions([
       { label: 'Continue', goto: ['komp_cam_MFC_main', 'waitclients'] },
@@ -572,7 +567,6 @@ function enterSetHugeAnalAct(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSetEnormousAnalAct(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: end
   scene.actions([
     { label: 'Use your enormous 35cm dildo', handler: (st: GameState) => {
     qspCall(st, 'komp_cam_functions', 'camming', 5, 'porn', 'request');
@@ -594,7 +588,7 @@ function enterSetEnormousAnalAct(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'anal_dildo', (-5), 'dick_length', 'masturbation');
     qspCall(st, 'stat', '');
     if (((st as any).camGirl ?? 0)?.['MFC_donate_message'] !== '') {
-      // TODO-QSP: $camGirl['MFC_donate_message']
+      scene.text(String(qspFunc(s, 'camGirl', 'MFC_donate_message') || ''));
     }
     scene.actions([
       { label: 'Continue', goto: ['komp_cam_MFC_main', 'waitclients'] },
@@ -605,7 +599,6 @@ function enterSetEnormousAnalAct(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSetGiganticAnalAct(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: end
   scene.actions([
     { label: 'Use your humongous 40cm dildo', handler: (st: GameState) => {
     qspCall(st, 'komp_cam_functions', 'camming', 5, 'porn', 'request');
@@ -629,7 +622,7 @@ function enterSetGiganticAnalAct(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'anal_dildo', (-5), 'dick_length', 'masturbation');
     qspCall(st, 'stat', '');
     if (((st as any).camGirl ?? 0)?.['MFC_donate_message'] !== '') {
-      // TODO-QSP: $camGirl['MFC_donate_message']
+      scene.text(String(qspFunc(s, 'camGirl', 'MFC_donate_message') || ''));
     }
     scene.actions([
       { label: 'Continue', goto: ['komp_cam_MFC_main', 'waitclients'] },
@@ -640,7 +633,6 @@ function enterSetGiganticAnalAct(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSetVibrVagAct(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: end
   scene.actions([
     { label: 'Use your vibrator', handler: (st: GameState) => {
     qspCall(st, 'komp_cam_functions', 'camming', 5, 'porn', 'request');
@@ -661,7 +653,7 @@ function enterSetVibrVagAct(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'vaginal_dildo', (-5), 'dick_length', 'masturbation');
     qspCall(st, 'stat', '');
     if (((st as any).camGirl ?? 0)?.['MFC_donate_message'] !== '') {
-      // TODO-QSP: $camGirl['MFC_donate_message']
+      scene.text(String(qspFunc(s, 'camGirl', 'MFC_donate_message') || ''));
     }
     scene.actions([
       { label: 'Continue', goto: ['komp_cam_MFC_main', 'waitclients'] },
@@ -672,7 +664,6 @@ function enterSetVibrVagAct(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSetSmallVagAct(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: end
   scene.actions([
     { label: 'Use your small dildo', handler: (st: GameState) => {
     qspCall(st, 'komp_cam_functions', 'camming', 5, 'porn', 'request');
@@ -693,7 +684,7 @@ function enterSetSmallVagAct(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'vaginal_dildo', (-5), 'dick_length', 'masturbation');
     qspCall(st, 'stat', '');
     if (((st as any).camGirl ?? 0)?.['MFC_donate_message'] !== '') {
-      // TODO-QSP: $camGirl['MFC_donate_message']
+      scene.text(String(qspFunc(s, 'camGirl', 'MFC_donate_message') || ''));
     }
     scene.actions([
       { label: 'Continue', goto: ['komp_cam_MFC_main', 'waitclients'] },
@@ -704,7 +695,6 @@ function enterSetSmallVagAct(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSetNormalVagAct(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: end
   scene.actions([
     { label: 'Use your medium dildo', handler: (st: GameState) => {
     qspCall(st, 'komp_cam_functions', 'camming', 5, 'porn', 'request');
@@ -725,7 +715,7 @@ function enterSetNormalVagAct(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'vaginal_dildo', (-5), 'dick_length', 'masturbation');
     qspCall(st, 'stat', '');
     if (((st as any).camGirl ?? 0)?.['MFC_donate_message'] !== '') {
-      // TODO-QSP: $camGirl['MFC_donate_message']
+      scene.text(String(qspFunc(s, 'camGirl', 'MFC_donate_message') || ''));
     }
     scene.actions([
       { label: 'Further', goto: ['komp_cam_MFC_main', 'waitclients'] },
@@ -736,7 +726,6 @@ function enterSetNormalVagAct(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSetBigVagAct(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: end
   scene.actions([
     { label: 'Use your large dildo', handler: (st: GameState) => {
     qspCall(st, 'komp_cam_functions', 'camming', 5, 'porn', 'request');
@@ -765,7 +754,7 @@ function enterSetBigVagAct(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'vaginal_dildo', (-5), 'dick_length', 'masturbation');
     qspCall(st, 'stat', '');
     if (((st as any).camGirl ?? 0)?.['MFC_donate_message'] !== '') {
-      // TODO-QSP: $camGirl['MFC_donate_message']
+      scene.text(String(qspFunc(s, 'camGirl', 'MFC_donate_message') || ''));
     }
     scene.actions([
       { label: 'Continue', goto: ['komp_cam_MFC_main', 'waitclients'] },
@@ -776,7 +765,6 @@ function enterSetBigVagAct(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSetLargeVagAct(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: end
   scene.actions([
     { label: 'Use your very large dildo', handler: (st: GameState) => {
     qspCall(st, 'komp_cam_functions', 'camming', 5, 'porn', 'request');
@@ -806,7 +794,7 @@ function enterSetLargeVagAct(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'vaginal_dildo', (-5), 'dick_length', 'masturbation');
     qspCall(st, 'stat', '');
     if (((st as any).camGirl ?? 0)?.['MFC_donate_message'] !== '') {
-      // TODO-QSP: $camGirl['MFC_donate_message']
+      scene.text(String(qspFunc(s, 'camGirl', 'MFC_donate_message') || ''));
     }
     scene.actions([
       { label: 'Continue', goto: ['komp_cam_MFC_main', 'waitclients'] },
@@ -817,7 +805,6 @@ function enterSetLargeVagAct(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSetHugeVagAct(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: end
   scene.actions([
     { label: 'Use your 30cm dildo', handler: (st: GameState) => {
     qspCall(st, 'komp_cam_functions', 'camming', 5, 'porn', 'request');
@@ -847,7 +834,7 @@ function enterSetHugeVagAct(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'vaginal_dildo', (-5), 'dick_length', 'masturbation');
     qspCall(st, 'stat', '');
     if (((st as any).camGirl ?? 0)?.['MFC_donate_message'] !== '') {
-      // TODO-QSP: $camGirl['MFC_donate_message']
+      scene.text(String(qspFunc(s, 'camGirl', 'MFC_donate_message') || ''));
     }
     scene.actions([
       { label: 'Continue', goto: ['komp_cam_MFC_main', 'waitclients'] },
@@ -858,7 +845,6 @@ function enterSetHugeVagAct(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSetEnormousVagAct(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: end
   scene.actions([
     { label: 'Use your enormous 35cm dildo', handler: (st: GameState) => {
     qspCall(st, 'komp_cam_functions', 'camming', 5, 'porn', 'request');
@@ -889,7 +875,7 @@ function enterSetEnormousVagAct(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'vaginal_dildo', (-5), 'dick_length', 'masturbation');
     qspCall(st, 'stat', '');
     if (((st as any).camGirl ?? 0)?.['MFC_donate_message'] !== '') {
-      // TODO-QSP: $camGirl['MFC_donate_message']
+      scene.text(String(qspFunc(s, 'camGirl', 'MFC_donate_message') || ''));
     }
     scene.actions([
       { label: 'Continue', goto: ['komp_cam_MFC_main', 'waitclients'] },
@@ -900,7 +886,6 @@ function enterSetEnormousVagAct(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSetGiganticVagAct(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: end
   scene.actions([
     { label: 'Use your humongous 40cm dildo', handler: (st: GameState) => {
     qspCall(st, 'komp_cam_functions', 'camming', 5, 'porn', 'request');
@@ -933,7 +918,7 @@ function enterSetGiganticVagAct(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'vaginal_dildo', (-5), 'dick_length', 'masturbation');
     qspCall(st, 'stat', '');
     if (((st as any).camGirl ?? 0)?.['MFC_donate_message'] !== '') {
-      // TODO-QSP: $camGirl['MFC_donate_message']
+      scene.text(String(qspFunc(s, 'camGirl', 'MFC_donate_message') || ''));
     }
     scene.actions([
       { label: 'Continue', goto: ['komp_cam_MFC_main', 'waitclients'] },

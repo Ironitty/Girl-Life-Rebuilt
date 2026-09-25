@@ -32,34 +32,33 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     (s as any).temp_TV_text = 'a great place for a TV, if you had one.';
   }
   if (((s as any).mc_inventory ?? 0)?.['tech_tv'] >= 1  &&  ((s as any).mc_inventory ?? 0)?.['plasma_tv'] === 0) {
-    (s as any).temp_TV_text = 'an old CRT <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027TV/u0027, /u0027start/u0027); return false;">television</a>';
+    (s as any).temp_TV_text = 'an old CRT <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027TV\u0027, \u0027start\u0027); return false;">television</a>';
   }
   if (((s as any).mc_inventory ?? 0)?.['plasma_tv'] >= 1) {
-    (s as any).temp_TV_text = 'a huge plasma <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027TV/u0027, /u0027start/u0027); return false;">TV</a>';
+    (s as any).temp_TV_text = 'a huge plasma <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027TV\u0027, \u0027start\u0027); return false;">TV</a>';
   }
   if ((!((s as any).divan_tier ?? 0))) {
-    (s as any).divan = '<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027divan/u0027, /u0027start/u0027); return false;">An old sofa</a>';
+    (s as any).divan = '<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027divan\u0027, \u0027start\u0027); return false;">An old sofa</a>';
   }
   if (((s as any).divan_tier ?? 0) === 1) {
-    (s as any).divan = '<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027divan/u0027, /u0027start/u0027); return false;">A luxurious leather sofa</a>';
+    (s as any).divan = '<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027divan\u0027, \u0027start\u0027); return false;">A luxurious leather sofa</a>';
   }
   if (((s as any).mc_inventory ?? 0)?.['tech_computer'] === 0) {
     (s as any).komp = '';
   }
   if (((s as any).mc_inventory ?? 0)?.['tech_computer'] === 1) {
     qspCall(s, 'internet_mobile', 'get_access');
-    (s as any).komp = 'A <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027komp/u0027, /u0027start/u0027); return false;">computer</a> sits on top of it.';
+    (s as any).komp = 'A <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027komp\u0027, \u0027start\u0027); return false;">computer</a> sits on top of it.';
   }
   if (((s as any).mc_inventory ?? 0)?.['desk'] === 0) {
-    (s as any).stol = 'an old wooden <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027stol/u0027, /u0027start/u0027); return false;">table</a>';
+    (s as any).stol = 'an old wooden <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027stol\u0027, \u0027start\u0027); return false;">table</a>';
   }
   if (((s as any).mc_inventory ?? 0)?.['desk'] === 1) {
-    (s as any).stol = 'a new <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027stol/u0027, /u0027start/u0027); return false;">table</a>';
+    (s as any).stol = 'a new <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027stol\u0027, \u0027start\u0027); return false;">table</a>';
   }
-  // TODO-QSP: dynamic text: <<$zal>>. <<$divan>> sits next to the <<$zal2>>. In front of the sofa is <<$temp...
   scene.text(`${((s as any).zal ?? '')}. ${((s as any).divan ?? '')} sits next to the ${((s as any).zal2 ?? '')}. In front of the sofa is ${((s as any).temp_TV_text ?? '')}, while ${((s as any).stol ?? '')} sits in front of the window. ${((s as any).komp ?? '')}`);
   if (((s as any).mishka ?? 0) > 0) {
-    // TODO-QSP: iif(mishka = 1, 'Your teddy bear is', 'Your <<mishka>> teddy bears are') + 'sitting on a shelf.'
+    scene.text(((((s as any).mishka ?? 0) === 1) ? ('Your teddy bear is') : ('Your ' + ((s as any).mishka ?? '') + ' teddy bears are')) + 'sitting on a shelf.');
   }
   if (((s as any).mc_inventory ?? 0)?.['hula_hoop'] > 0) {
     scene.text('<br>Your hula hoop stands in a corner of the room.');
@@ -85,7 +84,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       { label: 'Masturbate', goto: ['selfplay', 'start'] },
     ]);
   }
-  // TODO-QSP: end
+  (s as any).temp_TV_text = undefined;
   scene.actions([
     { label: 'Go to the corridor', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -116,7 +115,6 @@ function enterMasturbate(s: GameState, scene: SceneBuilder): void {
   (s as any).orgasm_or = 'custom';
   qspCall(s, 'arousal', 'vaginal_dildo', 10, 'masturbate', 'no_orgasm_msg');
   qspCall(s, 'arousal', 'end');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Breathe', goto: ['sitr', ''] },
   ]);

@@ -8,27 +8,27 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterPanties(s: GameState, scene: SceneBuilder): void {
   if (((s as any).PanType ?? 0) === 3  ||  ((s as any).PanType ?? 0) === 4) {
-    // TODO-QSP: $description += 'This'
+    (s as any).description = ((s as any).description ?? 0) + ('This');
   } else {
-    // TODO-QSP: $description += 'These'
+    (s as any).description = ((s as any).description ?? 0) + ('These');
   }
   if (((s as any).PanQuality ?? 0) === 1) {
-    // TODO-QSP: $description += ' very low quality'
+    (s as any).description = ((s as any).description ?? 0) + (' very low quality');
   } else {
     if (((s as any).PanQuality ?? 0) === 2) {
-      // TODO-QSP: $description += ' low quality'
+      (s as any).description = ((s as any).description ?? 0) + (' low quality');
     } else {
       if (((s as any).PanQuality ?? 0) === 3) {
-        // TODO-QSP: $description += ' average quality'
+        (s as any).description = ((s as any).description ?? 0) + (' average quality');
       } else {
         if (((s as any).PanQuality ?? 0) === 4) {
-          // TODO-QSP: $description += ' reasonable quality'
+          (s as any).description = ((s as any).description ?? 0) + (' reasonable quality');
         } else {
           if (((s as any).PanQuality ?? 0) === 5) {
-            // TODO-QSP: $description += ' good quality'
+            (s as any).description = ((s as any).description ?? 0) + (' good quality');
           } else {
             if (((s as any).PanQuality ?? 0) === 6) {
-              // TODO-QSP: $description += ' outstanding quality'
+              (s as any).description = ((s as any).description ?? 0) + (' outstanding quality');
             }
           }
         }
@@ -36,22 +36,22 @@ function enterPanties(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).PanMaterial ?? 0) === 1) {
-    // TODO-QSP: $description += ', leather'
+    (s as any).description = ((s as any).description ?? 0) + (', leather');
   } else {
     if (((s as any).PanMaterial ?? 0) === 2) {
-      // TODO-QSP: $description += ', rubber'
+      (s as any).description = ((s as any).description ?? 0) + (', rubber');
     } else {
       if (((s as any).PanMaterial ?? 0) === 3) {
-        // TODO-QSP: $description += ', mesh'
+        (s as any).description = ((s as any).description ?? 0) + (', mesh');
       } else {
         if (((s as any).PanMaterial ?? 0) === 4) {
-          // TODO-QSP: $description += ', fishnet'
+          (s as any).description = ((s as any).description ?? 0) + (', fishnet');
         } else {
           if (((s as any).PanMaterial ?? 0) === 5) {
-            // TODO-QSP: $description += ', vinyl'
+            (s as any).description = ((s as any).description ?? 0) + (', vinyl');
           } else {
             if (((s as any).PanMaterial ?? 0) === 6) {
-              // TODO-QSP: $description += ', lace'
+              (s as any).description = ((s as any).description ?? 0) + (', lace');
             }
           }
         }
@@ -59,46 +59,46 @@ function enterPanties(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).PanType ?? 0) === 1) {
-    // TODO-QSP: $description += ' panties'
+    (s as any).description = ((s as any).description ?? 0) + (' panties');
   } else {
     if (((s as any).PanType ?? 0) === 2) {
-      // TODO-QSP: $description += ' boy shorts'
+      (s as any).description = ((s as any).description ?? 0) + (' boy shorts');
     } else {
       if (((s as any).PanType ?? 0) === 3) {
-        // TODO-QSP: $description += ' G-string'
+        (s as any).description = ((s as any).description ?? 0) + (' G-string');
       } else {
         if (((s as any).PanType ?? 0) === 4) {
-          // TODO-QSP: $description += ' C-string'
+          (s as any).description = ((s as any).description ?? 0) + (' C-string');
         } else {
           if (((s as any).PanType ?? 0) === 5) {
-            // TODO-QSP: $description += ' French knickers'
+            (s as any).description = ((s as any).description ?? 0) + (' French knickers');
           }
         }
       }
     }
   }
   if (((s as any).PanType ?? 0) === 3  ||  ((s as any).PanType ?? 0) === 4) {
-    // TODO-QSP: $description += ' is '
+    (s as any).description = ((s as any).description ?? 0) + (' is ');
   } else {
-    // TODO-QSP: $description += ' are '
+    (s as any).description = ((s as any).description ?? 0) + (' are ');
   }
   if (((s as any).PanThinness ?? 0) === 6) {
-    // TODO-QSP: $description += 'transparent.'
+    (s as any).description = ((s as any).description ?? 0) + ('transparent.');
   } else {
     if (((s as any).PanThinness ?? 0) === 5) {
-      // TODO-QSP: $description += 'semi-transparent.'
+      (s as any).description = ((s as any).description ?? 0) + ('semi-transparent.');
     } else {
       if (((s as any).PanThinness ?? 0) === 4) {
-        // TODO-QSP: $description += 'slightly transparent.'
+        (s as any).description = ((s as any).description ?? 0) + ('slightly transparent.');
       } else {
         if (((s as any).PanThinness ?? 0) === 3) {
-          // TODO-QSP: $description += 'thin.'
+          (s as any).description = ((s as any).description ?? 0) + ('thin.');
         } else {
           if (((s as any).PanThinness ?? 0) === 2) {
-            // TODO-QSP: $description += 'not particularly thick or thin.'
+            (s as any).description = ((s as any).description ?? 0) + ('not particularly thick or thin.');
           } else {
             if (((s as any).PanThinness ?? 0) === 1) {
-              // TODO-QSP: $description += 'thick.'
+              (s as any).description = ((s as any).description ?? 0) + ('thick.');
             }
           }
         }
@@ -106,31 +106,31 @@ function enterPanties(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).PanCoverFront ?? 0) === 1) {
-    // TODO-QSP: $description += ' Your pussy can just about be seen in the right light.'
+    (s as any).description = ((s as any).description ?? 0) + (' Your pussy can just about be seen in the right light.');
   } else {
     if (((s as any).PanCoverFront ?? 0) === 2) {
-      // TODO-QSP: $description += ' Your pussy is partly visible.'
+      (s as any).description = ((s as any).description ?? 0) + (' Your pussy is partly visible.');
     } else {
       if (((s as any).PanCoverFront ?? 0) === 3) {
-        // TODO-QSP: $description += ' Your pussy is clearly visible.'
+        (s as any).description = ((s as any).description ?? 0) + (' Your pussy is clearly visible.');
       } else {
         if (((s as any).PanCoverFront ?? 0) === 4) {
-          // TODO-QSP: $description += ' Your pussy is not covered at all.'
+          (s as any).description = ((s as any).description ?? 0) + (' Your pussy is not covered at all.');
         }
       }
     }
   }
   if (((s as any).PanCoverBack ?? 0) === 1) {
-    // TODO-QSP: $description += ' Your butt can just about be seen in the right light.'
+    (s as any).description = ((s as any).description ?? 0) + (' Your butt can just about be seen in the right light.');
   } else {
     if (((s as any).PanCoverBack ?? 0) === 2) {
-      // TODO-QSP: $description += ' Your butt is partly visible.'
+      (s as any).description = ((s as any).description ?? 0) + (' Your butt is partly visible.');
     } else {
       if (((s as any).PanCoverBack ?? 0) === 3) {
-        // TODO-QSP: $description += ' Your butt is clearly visible.'
+        (s as any).description = ((s as any).description ?? 0) + (' Your butt is clearly visible.');
       } else {
         if (((s as any).PanCoverBack ?? 0) === 4) {
-          // TODO-QSP: $description += ' Your butt is not covered at all.'
+          (s as any).description = ((s as any).description ?? 0) + (' Your butt is not covered at all.');
         }
       }
     }
@@ -163,22 +163,22 @@ function enterBras(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).BraMaterial ?? 0) === 1) {
-    // TODO-QSP: $description += ', leather'
+    (s as any).description = ((s as any).description ?? 0) + (', leather');
   } else {
     if (((s as any).BraMaterial ?? 0) === 2) {
-      // TODO-QSP: $description += ', rubber'
+      (s as any).description = ((s as any).description ?? 0) + (', rubber');
     } else {
       if (((s as any).BraMaterial ?? 0) === 3) {
-        // TODO-QSP: $description += ', mesh'
+        (s as any).description = ((s as any).description ?? 0) + (', mesh');
       } else {
         if (((s as any).BraMaterial ?? 0) === 4) {
-          // TODO-QSP: $description += ', fishnet'
+          (s as any).description = ((s as any).description ?? 0) + (', fishnet');
         } else {
           if (((s as any).BraMaterial ?? 0) === 5) {
-            // TODO-QSP: $description += ', vinyl'
+            (s as any).description = ((s as any).description ?? 0) + (', vinyl');
           } else {
             if (((s as any).BraMaterial ?? 0) === 6) {
-              // TODO-QSP: $description += ', lace'
+              (s as any).description = ((s as any).description ?? 0) + (', lace');
             }
           }
         }
@@ -186,34 +186,34 @@ function enterBras(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).BraType ?? 0) === 1) {
-    // TODO-QSP: $description += ' balcony'
+    (s as any).description = ((s as any).description ?? 0) + (' balcony');
   } else {
     if (((s as any).BraType ?? 0) === 2) {
-      // TODO-QSP: $description += ' bandeau'
+      (s as any).description = ((s as any).description ?? 0) + (' bandeau');
     } else {
       if (((s as any).BraType ?? 0) === 3) {
-        // TODO-QSP: $description += ' corset'
+        (s as any).description = ((s as any).description ?? 0) + (' corset');
       } else {
         if (((s as any).BraType ?? 0) === 4) {
-          // TODO-QSP: $description += ' push up'
+          (s as any).description = ((s as any).description ?? 0) + (' push up');
         } else {
           if (((s as any).BraType ?? 0) === 5) {
-            // TODO-QSP: $description += ' bralette'
+            (s as any).description = ((s as any).description ?? 0) + (' bralette');
           } else {
             if (((s as any).BraType ?? 0) === 6) {
-              // TODO-QSP: $description += ' sports'
+              (s as any).description = ((s as any).description ?? 0) + (' sports');
             } else {
               if (((s as any).BraType ?? 0) === 7) {
-                // TODO-QSP: $description += ' shelf'
+                (s as any).description = ((s as any).description ?? 0) + (' shelf');
               } else {
                 if (((s as any).BraType ?? 0) === 8) {
-                  // TODO-QSP: $description += ' open'
+                  (s as any).description = ((s as any).description ?? 0) + (' open');
                 } else {
                   if (((s as any).BraType ?? 0) === 9) {
-                    // TODO-QSP: $description += ' under wire'
+                    (s as any).description = ((s as any).description ?? 0) + (' under wire');
                   } else {
                     if (((s as any).BraType ?? 0) === 10) {
-                      // TODO-QSP: $description += ' bikini'
+                      (s as any).description = ((s as any).description ?? 0) + (' bikini');
                     }
                   }
                 }
@@ -224,24 +224,24 @@ function enterBras(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: $description += ' bra is '
+  (s as any).description = ((s as any).description ?? 0) + (' bra is ');
   if (((s as any).BraThinness ?? 0) === 6) {
-    // TODO-QSP: $description += 'transparent.'
+    (s as any).description = ((s as any).description ?? 0) + ('transparent.');
   } else {
     if (((s as any).BraThinness ?? 0) === 5) {
-      // TODO-QSP: $description += 'semi-transparent.'
+      (s as any).description = ((s as any).description ?? 0) + ('semi-transparent.');
     } else {
       if (((s as any).BraThinness ?? 0) === 4) {
-        // TODO-QSP: $description += 'slightly transparent.'
+        (s as any).description = ((s as any).description ?? 0) + ('slightly transparent.');
       } else {
         if (((s as any).BraThinness ?? 0) === 3) {
-          // TODO-QSP: $description += 'thin.'
+          (s as any).description = ((s as any).description ?? 0) + ('thin.');
         } else {
           if (((s as any).BraThinness ?? 0) === 2) {
-            // TODO-QSP: $description += 'not particularly thick or thin.'
+            (s as any).description = ((s as any).description ?? 0) + ('not particularly thick or thin.');
           } else {
             if (((s as any).BraThinness ?? 0) === 1) {
-              // TODO-QSP: $description += 'thick.'
+              (s as any).description = ((s as any).description ?? 0) + ('thick.');
             }
           }
         }
@@ -249,16 +249,16 @@ function enterBras(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).BraCover ?? 0) === 1) {
-    // TODO-QSP: $description += ' Your breasts can just about be seen in the right light.'
+    (s as any).description = ((s as any).description ?? 0) + (' Your breasts can just about be seen in the right light.');
   } else {
     if (((s as any).BraCover ?? 0) === 2) {
-      // TODO-QSP: $description += ' Your breasts are partly visible.'
+      (s as any).description = ((s as any).description ?? 0) + (' Your breasts are partly visible.');
     } else {
       if (((s as any).BraCover ?? 0) === 3) {
-        // TODO-QSP: $description += ' Your breasts are easily visible.'
+        (s as any).description = ((s as any).description ?? 0) + (' Your breasts are easily visible.');
       } else {
         if (((s as any).BraCover ?? 0) === 4) {
-          // TODO-QSP: $description += ' Your breasts are not covered at all.'
+          (s as any).description = ((s as any).description ?? 0) + (' Your breasts are not covered at all.');
         }
       }
     }
@@ -291,22 +291,22 @@ function enterBodysuit(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).BraMaterial ?? 0) === 1) {
-    // TODO-QSP: $description += ', leather'
+    (s as any).description = ((s as any).description ?? 0) + (', leather');
   } else {
     if (((s as any).BraMaterial ?? 0) === 2) {
-      // TODO-QSP: $description += ', rubber'
+      (s as any).description = ((s as any).description ?? 0) + (', rubber');
     } else {
       if (((s as any).BraMaterial ?? 0) === 3) {
-        // TODO-QSP: $description += ', mesh'
+        (s as any).description = ((s as any).description ?? 0) + (', mesh');
       } else {
         if (((s as any).BraMaterial ?? 0) === 4) {
-          // TODO-QSP: $description += ', fishnet'
+          (s as any).description = ((s as any).description ?? 0) + (', fishnet');
         } else {
           if (((s as any).BraMaterial ?? 0) === 5) {
-            // TODO-QSP: $description += ', vinyl'
+            (s as any).description = ((s as any).description ?? 0) + (', vinyl');
           } else {
             if (((s as any).BraMaterial ?? 0) === 6) {
-              // TODO-QSP: $description += ', lace'
+              (s as any).description = ((s as any).description ?? 0) + (', lace');
             }
           }
         }
@@ -314,28 +314,28 @@ function enterBodysuit(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).BraType ?? 0) === 1) {
-    // TODO-QSP: $description += ' full'
+    (s as any).description = ((s as any).description ?? 0) + (' full');
   } else {
     if (((s as any).BraType ?? 0) === 2) {
-      // TODO-QSP: $description += ' long sleeve'
+      (s as any).description = ((s as any).description ?? 0) + (' long sleeve');
     } else {
       if (((s as any).BraType ?? 0) === 3) {
-        // TODO-QSP: $description += ' high neck'
+        (s as any).description = ((s as any).description ?? 0) + (' high neck');
       } else {
         if (((s as any).BraType ?? 0) === 4) {
-          // TODO-QSP: $description += ' backless'
+          (s as any).description = ((s as any).description ?? 0) + (' backless');
         } else {
           if (((s as any).BraType ?? 0) === 5) {
-            // TODO-QSP: $description += ' t-shirt'
+            (s as any).description = ((s as any).description ?? 0) + (' t-shirt');
           } else {
             if (((s as any).BraType ?? 0) === 6) {
-              // TODO-QSP: $description += ' vest'
+              (s as any).description = ((s as any).description ?? 0) + (' vest');
             } else {
               if (((s as any).BraType ?? 0) === 7) {
-                // TODO-QSP: $description += ' spaghetti strap'
+                (s as any).description = ((s as any).description ?? 0) + (' spaghetti strap');
               } else {
                 if (((s as any).BraType ?? 0) === 8) {
-                  // TODO-QSP: $description += ' romper'
+                  (s as any).description = ((s as any).description ?? 0) + (' romper');
                 }
               }
             }
@@ -344,102 +344,101 @@ function enterBodysuit(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: $description += ' bodysuit is '
+  (s as any).description = ((s as any).description ?? 0) + (' bodysuit is ');
   if (((s as any).BraThinness ?? 0) === 6) {
-    // TODO-QSP: $description += 'transparent'
+    (s as any).description = ((s as any).description ?? 0) + ('transparent');
   } else {
     if (((s as any).BraThinness ?? 0) === 5) {
-      // TODO-QSP: $description += 'semi-transparent'
+      (s as any).description = ((s as any).description ?? 0) + ('semi-transparent');
     } else {
       if (((s as any).BraThinness ?? 0) === 4) {
-        // TODO-QSP: $description += 'slightly transparent'
+        (s as any).description = ((s as any).description ?? 0) + ('slightly transparent');
       } else {
         if (((s as any).BraThinness ?? 0) === 3) {
-          // TODO-QSP: $description += 'thin'
+          (s as any).description = ((s as any).description ?? 0) + ('thin');
         } else {
           if (((s as any).BraThinness ?? 0) === 2) {
-            // TODO-QSP: $description += 'not particularly thick or thin'
+            (s as any).description = ((s as any).description ?? 0) + ('not particularly thick or thin');
           } else {
             if (((s as any).BraThinness ?? 0) === 1) {
-              // TODO-QSP: $description += 'thick'
+              (s as any).description = ((s as any).description ?? 0) + ('thick');
             }
           }
         }
       }
     }
   }
-  // TODO-QSP: $description += ' on top and '
+  (s as any).description = ((s as any).description ?? 0) + (' on top and ');
   if (((s as any).PanThinness ?? 0) === 6) {
-    // TODO-QSP: $description += ' transparent'
+    (s as any).description = ((s as any).description ?? 0) + (' transparent');
   } else {
     if (((s as any).PanThinness ?? 0) === 5) {
-      // TODO-QSP: $description += ' semi-transparent'
+      (s as any).description = ((s as any).description ?? 0) + (' semi-transparent');
     } else {
       if (((s as any).PanThinness ?? 0) === 4) {
-        // TODO-QSP: $description += ' slightly transparent'
+        (s as any).description = ((s as any).description ?? 0) + (' slightly transparent');
       } else {
         if (((s as any).PanThinness ?? 0) === 3) {
-          // TODO-QSP: $description += ' thin'
+          (s as any).description = ((s as any).description ?? 0) + (' thin');
         } else {
           if (((s as any).PanThinness ?? 0) === 2) {
-            // TODO-QSP: $description += ' not particularly thick or thin'
+            (s as any).description = ((s as any).description ?? 0) + (' not particularly thick or thin');
           } else {
             if (((s as any).PanThinness ?? 0) === 1) {
-              // TODO-QSP: $description += ' thick'
+              (s as any).description = ((s as any).description ?? 0) + (' thick');
             }
           }
         }
       }
     }
   }
-  // TODO-QSP: $description += ' on the bottom.'
+  (s as any).description = ((s as any).description ?? 0) + (' on the bottom.');
   if (((s as any).PanCoverFront ?? 0) === 1) {
-    // TODO-QSP: $description += ' Your pussy can just about be seen in the right light.'
+    (s as any).description = ((s as any).description ?? 0) + (' Your pussy can just about be seen in the right light.');
   } else {
     if (((s as any).PanCoverFront ?? 0) === 2) {
-      // TODO-QSP: $description += ' Your pussy is partly visible.'
+      (s as any).description = ((s as any).description ?? 0) + (' Your pussy is partly visible.');
     } else {
       if (((s as any).PanCoverFront ?? 0) === 3) {
-        // TODO-QSP: $description += ' Your pussy is clearly visible.'
+        (s as any).description = ((s as any).description ?? 0) + (' Your pussy is clearly visible.');
       } else {
         if (((s as any).PanCoverFront ?? 0) === 4) {
-          // TODO-QSP: $description += ' Your pussy is not covered at all.'
+          (s as any).description = ((s as any).description ?? 0) + (' Your pussy is not covered at all.');
         }
       }
     }
   }
   if (((s as any).PanCoverBack ?? 0) === 1) {
-    // TODO-QSP: $description += ' Your butt can just about be seen in the right light.'
+    (s as any).description = ((s as any).description ?? 0) + (' Your butt can just about be seen in the right light.');
   } else {
     if (((s as any).PanCoverBack ?? 0) === 2) {
-      // TODO-QSP: $description += ' Your butt is partly visible.'
+      (s as any).description = ((s as any).description ?? 0) + (' Your butt is partly visible.');
     } else {
       if (((s as any).PanCoverBack ?? 0) === 3) {
-        // TODO-QSP: $description += ' Your butt is clearly visible.'
+        (s as any).description = ((s as any).description ?? 0) + (' Your butt is clearly visible.');
       } else {
         if (((s as any).PanCoverBack ?? 0) === 4) {
-          // TODO-QSP: $description += ' Your butt is not covered at all.'
+          (s as any).description = ((s as any).description ?? 0) + (' Your butt is not covered at all.');
         }
       }
     }
   }
   if (((s as any).BraCover ?? 0) === 1) {
-    // TODO-QSP: $description += ' Your breasts can just about be seen in the right light.'
+    (s as any).description = ((s as any).description ?? 0) + (' Your breasts can just about be seen in the right light.');
   } else {
     if (((s as any).BraCover ?? 0) === 2) {
-      // TODO-QSP: $description += ' Your breasts are partly visible.'
+      (s as any).description = ((s as any).description ?? 0) + (' Your breasts are partly visible.');
     } else {
       if (((s as any).BraCover ?? 0) === 3) {
-        // TODO-QSP: $description += ' Your breasts are easily visible.'
+        (s as any).description = ((s as any).description ?? 0) + (' Your breasts are easily visible.');
       } else {
         if (((s as any).BraCover ?? 0) === 4) {
-          // TODO-QSP: $description += ' Your breasts are not covered at all.'
+          (s as any).description = ((s as any).description ?? 0) + (' Your breasts are not covered at all.');
         }
       }
     }
   }
-  // TODO-QSP: end
-  // TODO-QSP: $description
+  s.scene = { ...s.scene, mainText: String((s as any).description || ''), curActs: [] };
   scene.build();
 }
 

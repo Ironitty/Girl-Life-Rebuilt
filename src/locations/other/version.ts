@@ -8,7 +8,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   (s as any).li = '<li style=\'padding: 0px\'>';
   (s as any).liend = '</li>';
   // TODO-QSP: "
-  // TODO-QSP: $temp_text += "
+  (s as any).temp_text = ((s as any).temp_text ?? 0) + ('');
   // TODO-QSP: <center><h3>0.9</h3></center>
   // TODO-QSP: "
   scene.build();

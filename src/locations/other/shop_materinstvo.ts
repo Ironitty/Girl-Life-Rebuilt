@@ -7,13 +7,14 @@ import type { SceneBuilder } from '../../core/scene';
 function enterDefault(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'shop_materinstvo', 'start');
   (s as any).location_type = 'public_indoors';
+  (s as any).locclass = undefined;
+  (s as any).shoplocation = undefined;
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'indoors');
   qspCall(s, 'shop_materinstvo', 'config');
   scene.text('<center><b>Mommy Style</b></center>');
   scene.img('images/locations/city/citycenter/mall/mommy/shop.jpg');
   scene.text('This is a shop dedicated to all things pregnancy related. Here you can buy Pregnancy Clothing or items to aid the process of getting through the day.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the Shop', goto: ['city_mall', ''] },
     { label: 'View clothes', handler: (st: GameState) => {
@@ -26,13 +27,14 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'shop_materinstvo', 'start');
   (s as any).location_type = 'public_indoors';
+  (s as any).locclass = undefined;
+  (s as any).shoplocation = undefined;
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'indoors');
   qspCall(s, 'shop_materinstvo', 'config');
   scene.text('<center><b>Mommy Style</b></center>');
   scene.img('images/locations/city/citycenter/mall/mommy/shop.jpg');
   scene.text('This is a shop dedicated to all things pregnancy related. Here you can buy Pregnancy Clothing or items to aid the process of getting through the day.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the Shop', goto: ['city_mall', ''] },
     { label: 'View clothes', handler: (st: GameState) => {
@@ -52,7 +54,6 @@ function enterItems(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'themes', 'indoors');
   qspCall(s, 'item_cart', 'shopping_aisle', 'mothershop');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return', goto: ['shop_materinstvo', 'start'] },
   ]);
@@ -70,7 +71,6 @@ function enterClothes(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'shop_utils', 'init', 'end');
   }
   qspCall(s, 'shop_utils', 'display', 'grid_shop');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;

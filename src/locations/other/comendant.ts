@@ -14,7 +14,6 @@ function enterPos1(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Hostel owner</b></center>');
   scene.img('images/locations/pavlovsk/hostel/comendant.jpg');
   scene.text('You see a man standing at the counter doing some work. He\'s the owner and is very friendly.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Become acquainted', goto: ['comendant', 'pos2'] },
   ]);
@@ -29,12 +28,10 @@ function enterPos2(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/hostel/comendant.jpg');
   scene.text('"Good afternoon! I was just employeed by the school and they\'ve sent me over here until they find a place for me to live. They\'ve said to give you these documents…" you say.');
   scene.text('The man looks up not saying anything and glances over the documents, "Yes, everything seems to be in order. Welcome to my little hostel. My name is Peter, but you can call me Petya."');
-  // TODO-QSP: dynamic text: "<<$pcs_firstname>>." you reply.
   scene.text(`"${((s as any).pcs_firstname ?? '')}." you reply.`);
   scene.text('"A teacher, eh. Those kids sure are lucky to have such a good-looking teacher." he compliments you.');
   scene.text('You blush a little and politely thank him for the compliment.');
   scene.text('"Here are your keys, the room number is on the key fob. You can find the kitchen and bathroom at the end of the corridor, although I should warn you though the bathroom pipes are really bad. And if you have any problems, please come and see me." he says smiling.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go to your room', goto: ['dom_gor', ''] },
   ]);
@@ -54,7 +51,6 @@ function enterPos3(s: GameState, scene: SceneBuilder): void {
   scene.text('"I hope so too…" you answer.');
   scene.text('"I\'ll let him know that right away, thank you for telling me that and sorry for the inconvenience."');
   scene.text('As you\'re moving away from the counter, <i>What a strange guy…</i> you think to yourself.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return to the room', goto: ['dom_gor', ''] },
   ]);

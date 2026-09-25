@@ -41,8 +41,7 @@ function enterRandwin(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).billwin ?? 0) > 10  &&  (!((s as any).billvar ?? 0))) {
     qspCall(s, 'money', 'earn', 1000, 'cash');
-    // TODO-QSP: dynamic text: 'You won and received ' + $func('money', 'string_profit', 1000) + '.'
-    scene.text('You won and received \' + $func(\'money\', \'string_profit\', 1000) + \'.');
+    scene.text('You won and received ' + qspFunc(s, 'money', 'string_profit', 1000) + '.');
     scene.actions([
       { label: 'Leave', goto: ['billiard', ''] },
     ]);
@@ -69,16 +68,14 @@ function enterRandwin(s: GameState, scene: SceneBuilder): void {
       } else {
         if (((s as any).billwin ?? 0) > 10  &&  ((s as any).billvar ?? 0) === 3) {
           qspCall(s, 'money', 'earn', 250, 'cash');
-          // TODO-QSP: dynamic text: 'You won and received ' + $func('money', 'string_profit', 250) + '.'
-          scene.text('You won and received \' + $func(\'money\', \'string_profit\', 250) + \'.');
+          scene.text('You won and received ' + qspFunc(s, 'money', 'string_profit', 250) + '.');
           scene.actions([
             { label: 'Get_Away', goto: ['billiard', ''] },
           ]);
         } else {
           if (((s as any).billwin ?? 0) <= 10  &&  (!((s as any).billvar ?? 0))) {
             qspCall(s, 'money', 'pay', 1000, 'cash');
-            // TODO-QSP: dynamic text: 'You lost and paid ' + $func('money', 'string_price', 1000) + '.'
-            scene.text('You lost and paid 1000₽.');
+            scene.text('\'You lost and paid 1000₽.\'');
             scene.actions([
               { label: 'Leave', goto: ['billiard', ''] },
             ]);
@@ -87,13 +84,12 @@ function enterRandwin(s: GameState, scene: SceneBuilder): void {
               scene.text('You lose, open those legs.');
               (s as any).picrand = 16;
               scene.actions([
-                { label: 'Pay', handler: (st: GameState) => {
-    // TODO-QSP: xgt 'sex', 'var'
-  } },
+                { label: 'Pay', goto: ['sex', 'var'] },
               ]);
             } else {
               if (((s as any).billwin ?? 0) <= 10  &&  ((s as any).billvar ?? 0) === 2) {
                 scene.text('You lose, open those legs.');
+                (s as any).boy = undefined;
                 qspCall(s, 'npcgeneratec', '0', 'Billiard Player', (Math.floor(Math.random() * 23) + 18));
                 qspCall(s, 'boyStat', '$npclastgenerated');
                 qspCall(s, 'npcgeneratec', '0', 'Billiard Player', (Math.floor(Math.random() * 23) + 18));
@@ -107,15 +103,13 @@ function enterRandwin(s: GameState, scene: SceneBuilder): void {
               } else {
                 if (((s as any).billwin ?? 0) <= 10  &&  ((s as any).billvar ?? 0) === 3) {
                   qspCall(s, 'money', 'pay', 300, 'cash');
-                  // TODO-QSP: dynamic text: 'You lost and paid ' + $func('money', 'string_price', 300) + '.'
-                  scene.text('You lost and paid 300₽.');
+                  scene.text('\'You lost and paid 300₽.\'');
                   scene.actions([
                     { label: 'Leave', goto: ['billiard', ''] },
                   ]);
                 } else {
                   qspCall(s, 'money', 'pay', 300, 'cash');
-                  // TODO-QSP: dynamic text: 'You lost and paid ' + $func('money', 'string_price', 300) + '.'
-                  scene.text('You lost and paid 300₽.');
+                  scene.text('\'You lost and paid 300₽.\'');
                   scene.actions([
                     { label: 'Leave', goto: ['billiard', ''] },
                   ]);
@@ -127,7 +121,6 @@ function enterRandwin(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -136,7 +129,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   (s as any).menu_arg = 'start';
   scene.text('<center><b>Pool</b></center>');
   scene.img('images/locations/city/citycenter/mall/pool/bil.jpg');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['billiard', ''] },
   ]);

@@ -36,7 +36,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.text('You walk over to them and several turn towards you. "Hey guys, what are you doing?"');
     scene.text('"We\'re about to divide up into teams and play," Lazar replies. "You can watch if you want."');
     scene.text('"Could I maybe join you instead?" you ask meekly.');
-    // TODO-QSP: dynamic text: "Maybe some other time, <<$pcs_nickname>>…" he says and they start picking teams...
     scene.text(`"Maybe some other time, ${((st as any).pcs_nickname ?? '')}…" he says and they start picking teams, forcing you away.`);
     scene.actions([
       { label: 'Sit and watch them', handler: (st: GameState) => {
@@ -56,7 +55,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.text('When you enter the gym, you notice some of the jocks standing around the basket, shooting and talking. They seem to joke around as some do more poorly than the others.');
-    // TODO-QSP: dynamic text: "Over here, <<$pcs_nickname>>! We were just about to pick the teams!" Lazar yell...
     scene.text(`"Over here, ${((s as any).pcs_nickname ?? '')}! We were just about to pick the teams!" Lazar yells out.`);
     scene.text('You greet everyone as Lazar continues. "Okay, you know the rules by now, 3 vs 3, first to 21. Winners stay until they lose."');
     scene.text('Everyone nods and their eyes start scanning around as they search for a team.');
@@ -76,7 +74,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -87,11 +84,9 @@ function enterGirls(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/pregame.jpg');
-  // TODO-QSP: dynamic text: You line up with <<$rand_girl>> and <<$rand_girl1>> and get ready to enter the g...
   scene.text(`You line up with ${((s as any).rand_girl ?? '')} and ${((s as any).rand_girl1 ?? '')} and get ready to enter the game. You're all pumped up, ready to take on any of the other teams.`);
   scene.text('"You ready, girls?!" you confidently yell out and get a loud shout back.');
   scene.text('The three of you confidently step onto the court and get ready for the game.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Wait for opponent', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -99,7 +94,6 @@ function enterGirls(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/pregame.jpg');
     scene.text('You\'re up against the toughest possible opponent, the all boys team. They\'re a rowdy bunch and as they enter the court, they start mockingly laughing as they point towards you.');
     scene.text('"You won\'t be laughing after we beat you!" you yell out.');
-    // TODO-QSP: dynamic text: The boys break out in even bigger laughter and have a hard time holding back the...
     scene.text(`The boys break out in even bigger laughter and have a hard time holding back their tears. "Sure, sure. Whatever you say, ${((st as any).pcs_nickname ?? '')}…"`);
     scene.text('You\'re now even more determined to beat them.');
     scene.actions([
@@ -197,7 +191,6 @@ function enterGirls(s: GameState, scene: SceneBuilder): void {
       scene.text('Their defender is playing exceptionally well and you can barely keep control over the ball when you suddenly hear someone yell your name and look to see that your teammate is positioned for a pass.');
       scene.text('However, as you release the ball, the boy moves between you and your teammate, ready to intercept.');
       scene.text('Your teammate tries her best to get into position, but the boy is too strong and easily wrestles the ball from her grasp. He makes a perfect shot and dunks the ball into your basket.');
-      // TODO-QSP: dynamic text: "Don''t worry <<$pcs_nickname>>, you tried your best," one teammate says, trying...
       scene.text(`"Don't worry ${((st as any).pcs_nickname ?? '')}, you tried your best," one teammate says, trying to cheer you up while the boys loudly celebrate.`);
       scene.actions([
         { label: 'End the game', goto: ['bbgamein', 'end_game'] },
@@ -346,7 +339,6 @@ function enterGirls(s: GameState, scene: SceneBuilder): void {
       scene.text('Their defender is playing exceptionally well and you can barely keep control over the ball when you suddenly hear someone yell your name and look to see that your teammate is positioned for a pass.');
       scene.text('However, as you release the ball, the boy moves between you and your teammate, ready to intercept.');
       scene.text('Your teammate tries her best to get into position, but the boy is too strong and easily wrestles the ball from her grasp. He makes a perfect shot and dunks the ball into your basket.');
-      // TODO-QSP: dynamic text: "Don''t worry <<$pcs_nickname>>, you tried your best," one teammate says, trying...
       scene.text(`"Don't worry ${((st as any).pcs_nickname ?? '')}, you tried your best," one teammate says, trying to cheer you up while the boys loudly celebrate.`);
       scene.actions([
         { label: 'End the game', goto: ['bbgamein', 'end_game'] },
@@ -496,7 +488,6 @@ function enterGirls(s: GameState, scene: SceneBuilder): void {
       scene.text('Their defender is playing exceptionally well and you can barely keep control over the ball when you suddenly hear someone yell your name and look to see that your teammate is positioned for a pass.');
       scene.text('However, as you release the ball, the boy moves between you and your teammate, ready to intercept.');
       scene.text('Your teammate tries her best to get into position, but the boy is too strong and easily wrestles the ball from her grasp. He makes a perfect shot and dunks the ball into your basket.');
-      // TODO-QSP: dynamic text: "Don''t worry <<$pcs_nickname>>, you tried your best," one teammate says, trying...
       scene.text(`"Don't worry ${((st as any).pcs_nickname ?? '')}, you tried your best," one teammate says, trying to cheer you up while the boys loudly celebrate.`);
       scene.actions([
         { label: 'End the game', goto: ['bbgamein', 'end_game'] },
@@ -569,7 +560,6 @@ function enterMixed(s: GameState, scene: SceneBuilder): void {
   scene.text('You and your teammates huddle together and make up a game plan.');
   scene.text('All three of you are oozing with anticipation and are pumped up for the game.');
   scene.text('You encourage each other as you step out onto the court. "Come on, we\'ve got this!"');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Give it your best', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -585,7 +575,6 @@ function enterMixed(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/game.jpg');
     scene.text('You get an early lead against another mixed team, but as the match continues, the score is soon tied up.');
     scene.text('Everything is on the last attack as your teammate grabs the ball and nods at you.');
-    // TODO-QSP: dynamic text: As expected, your opponents double team your teammate and they pass the ball to ...
     scene.text(`As expected, your opponents double team your teammate and they pass the ball to you. "Finish it, ${((st as any).pcs_nickname ?? '')}!"`);
     qspCall(st, 'willpower', 'skill_base', 'bkbll', 'self', 'medium');
     if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
@@ -655,7 +644,6 @@ function enterMixed(s: GameState, scene: SceneBuilder): void {
       scene.text('Their defender is playing exceptionally well and you can barely keep control over the ball when you suddenly hear someone yell your name and look to see that your teammate is positioned for a pass.');
       scene.text('However, as you release the ball, the boy moves between you and your teammate, ready to intercept.');
       scene.text('Your teammate tries her best to get into position, but the boy is too strong and easily wrestles the ball from her grasp. He makes a perfect shot and dunks the ball into your basket.');
-      // TODO-QSP: dynamic text: "Don''t worry <<$pcs_nickname>>, you tried your best," one teammate says, trying...
       scene.text(`"Don't worry ${((st as any).pcs_nickname ?? '')}, you tried your best," one teammate says, trying to cheer you up while the other team loudly celebrate.`);
       scene.actions([
         { label: 'End the game', goto: ['bbgamein', 'end_game'] },
@@ -722,7 +710,6 @@ function enterMixed(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/game.jpg');
     scene.text('You get an early lead against another mixed team, but as the match continues, the score is soon tied up.');
     scene.text('Everything is on the last attack as your teammate grabs the ball and nods at you.');
-    // TODO-QSP: dynamic text: As expected, your opponents double team your teammate and they pass the ball to ...
     scene.text(`As expected, your opponents double team your teammate and they pass the ball to you. "Finish it, ${((st as any).pcs_nickname ?? '')}!"`);
     qspCall(st, 'willpower', 'skill_base', 'bkbll', 'self', 'medium');
     if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
@@ -792,7 +779,6 @@ function enterMixed(s: GameState, scene: SceneBuilder): void {
       scene.text('Their defender is playing exceptionally well and you can barely keep control over the ball when you suddenly hear someone yell your name and look to see that your teammate is positioned for a pass.');
       scene.text('However, as you release the ball, the boy moves between you and your teammate, ready to intercept.');
       scene.text('Your teammate tries her best to get into position, but the boy is too strong and easily wrestles the ball from her grasp. He makes a perfect shot and dunks the ball into your basket.');
-      // TODO-QSP: dynamic text: "Don''t worry <<$pcs_nickname>>, you tried your best," one teammate says, trying...
       scene.text(`"Don't worry ${((st as any).pcs_nickname ?? '')}, you tried your best," one teammate says, trying to cheer you up while the other team loudly celebrate.`);
       scene.actions([
         { label: 'End the game', goto: ['bbgamein', 'end_game'] },
@@ -859,7 +845,6 @@ function enterMixed(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/game.jpg');
     scene.text('You get an early lead against another mixed team, but as the match continues, the score is soon tied up.');
     scene.text('Everything is on the last attack as your teammate grabs the ball and nods at you.');
-    // TODO-QSP: dynamic text: As expected, your opponents double team your teammate and they pass the ball to ...
     scene.text(`As expected, your opponents double team your teammate and they pass the ball to you. "Finish it, ${((st as any).pcs_nickname ?? '')}!"`);
     qspCall(st, 'willpower', 'skill_base', 'bkbll', 'self', 'medium');
     if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
@@ -929,7 +914,6 @@ function enterMixed(s: GameState, scene: SceneBuilder): void {
       scene.text('Their defender is playing exceptionally well and you can barely keep control over the ball when you suddenly hear someone yell your name and look to see that your teammate is positioned for a pass.');
       scene.text('However, as you release the ball, the boy moves between you and your teammate, ready to intercept.');
       scene.text('Your teammate tries her best to get into position, but the boy is too strong and easily wrestles the ball from her grasp. He makes a perfect shot and dunks the ball into your basket.');
-      // TODO-QSP: dynamic text: "Don''t worry <<$pcs_nickname>>, you tried your best," one teammate says, trying...
       scene.text(`"Don't worry ${((st as any).pcs_nickname ?? '')}, you tried your best," one teammate says, trying to cheer you up while the other team loudly celebrate.`);
       scene.actions([
         { label: 'End the game', goto: ['bbgamein', 'end_game'] },
@@ -998,9 +982,7 @@ function enterBoys(s: GameState, scene: SceneBuilder): void {
   scene.text('Today\'s your lucky day. You end up on a team with two boys and you\'re playing against a mixed team with two girls.');
   scene.text('The boys confidently walk over to you, acting all cocky.');
   scene.text('"We\'ve got this!" the first one says.');
-  // TODO-QSP: dynamic text: "Yeah, let us show you how it''s done, <<$pcs_nickname>>," the other adds. "Just...
   scene.text(`"Yeah, let us show you how it's done, ${((s as any).pcs_nickname ?? '')}," the other adds. "Just pass us the ball and we'll be fine."`);
-  // TODO-QSP: end
   scene.actions([
     { label: 'Give it your best', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -1015,7 +997,6 @@ function enterBoys(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/boys1.jpg');
     scene.text('The physical difference between the teams means that you\'re crushing your opposition as the game comes close to the end.');
-    // TODO-QSP: dynamic text: You''re holding your distance from your teammates, letting them do all the work,...
     scene.text(`You're holding your distance from your teammates, letting them do all the work, when one of them grabs the ball and yells at you. "Get out the way, ${((st as any).pcs_nickname ?? '')}! Let me finish this!"`);
     scene.text('Annoyed at them not letting you play, you shout at him to pass the ball.');
     qspCall(st, 'willpower', 'skill_base', 'bkbll', 'self', 'medium');
@@ -1042,12 +1023,10 @@ function enterBoys(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     if ((Math.floor(Math.random() * 101) + 0) + ((st as any).pcs_bkbll ?? 0) >= 100) {
       scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/bbinside2.jpg');
-      // TODO-QSP: dynamic text: Your teammate nonchalantly passes the ball. "Okay then. Let''s see what you can ...
       scene.text(`Your teammate nonchalantly passes the ball. "Okay then. Let's see what you can do, ${((st as any).pcs_nickname ?? '')}."`);
       scene.text('Determined to show them up, you wait for your opponent to press tightly against your body before quickly jumping to one side. Just as she\'s about to stop you, you quickly dribble the ball between your legs and are free.');
       scene.text('Your teammates are rather easily keeping the others at bay so that they can\'t help out their teammate.');
       scene.text('Their defender can only stand in awe as you leave her behind. You quickly move towards the basket and slam the ball in, securing your victory.');
-      // TODO-QSP: dynamic text: Your teammates sarcastically clap. "<i>Great</i> job, <<$pcs_nickname>>! <i>Real...
       scene.text(`Your teammates sarcastically clap. "<i>Great</i> job, ${((st as any).pcs_nickname ?? '')}! <i>Really</i> impressive stuff there…"`);
       scene.actions([
         { label: 'End the game', goto: ['bbgamein', 'end_game'] },
@@ -1076,7 +1055,6 @@ function enterBoys(s: GameState, scene: SceneBuilder): void {
       scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/pass.jpg');
       scene.text('You\'re pressured, but are able to keep control of the ball. You can\'t move, but then you see one of your teammates lift their hand, calling for your attention.');
       scene.text('Seeing a gap where you can pass, you release the ball at the perfect time. It bounces into the hands of your teammate, who takes a shot and easily scores.');
-      // TODO-QSP: dynamic text: You walk over to your teammates, who rather surprisingly praise you. "Great pass...
       scene.text(`You walk over to your teammates, who rather surprisingly praise you. "Great pass, ${((st as any).pcs_nickname ?? '')}! We didn't think you had it in you."`);
       scene.actions([
         { label: 'End the game', goto: ['bbgamein', 'end_game'] },
@@ -1089,7 +1067,6 @@ function enterBoys(s: GameState, scene: SceneBuilder): void {
       scene.text('Their defender is playing exceptionally well and you can barely keep control over the ball when you suddenly hear someone yell your name and look to see that your teammate is positioned for a pass.');
       scene.text('However, as you release the ball, the girl moves between you and your teammate, ready to intercept.');
       scene.text('Your teammates try to gain control of the ball, but they\'re too slow and the girl makes a perfect shot and dunks the ball into your basket.');
-      // TODO-QSP: dynamic text: Your teammates throw their hands in the air before glaring at you in disappointm...
       scene.text(`Your teammates throw their hands in the air before glaring at you in disappointment. "What the hell was that, ${((st as any).pcs_nickname ?? '')}?!"`);
       scene.actions([
         { label: 'End the game', goto: ['bbgamein', 'end_game'] },
@@ -1136,7 +1113,6 @@ function enterBoys(s: GameState, scene: SceneBuilder): void {
     scene.text('Seeing the defender quickly closing in on you, you start doubting yourself. Everything goes black and you lose your focus as you hear your teammates yelling voices blur into white noise.');
     scene.text('Panicking, you choose the worst option possible. Without looking, you shriek and randomly toss the ball. When you come to your senses, you see that you\'ve thrown the ball to your opponent.');
     scene.text('Snickering, she takes the ball and easily scores as your teammates stare at you in disbelief.');
-    // TODO-QSP: dynamic text: "What the fuck are you doing, <<$pcs_nickname>>?! You''re lucky we have such a g...
     scene.text(`"What the fuck are you doing, ${((st as any).pcs_nickname ?? '')}?! You're lucky we have such a good lead, otherwise we would have told you to fuck off!"`);
     scene.actions([
       { label: 'End the game', goto: ['bbgamein', 'end_game'] },
@@ -1158,7 +1134,6 @@ function enterBoys(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/boys1.jpg');
     scene.text('The physical difference between the teams means that you\'re crushing your opposition as the game comes close to the end.');
-    // TODO-QSP: dynamic text: You''re holding your distance from your teammates, letting them do all the work,...
     scene.text(`You're holding your distance from your teammates, letting them do all the work, when one of them grabs the ball and yells at you. "Get out the way, ${((st as any).pcs_nickname ?? '')}! Let me finish this!"`);
     scene.text('Annoyed at them not letting you play, you shout at him to pass the ball.');
     qspCall(st, 'willpower', 'skill_base', 'bkbll', 'self', 'medium');
@@ -1185,12 +1160,10 @@ function enterBoys(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     if ((Math.floor(Math.random() * 101) + 0) + ((st as any).pcs_bkbll ?? 0) >= 100) {
       scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/bbinside2.jpg');
-      // TODO-QSP: dynamic text: Your teammate nonchalantly passes the ball. "Okay then. Let''s see what you can ...
       scene.text(`Your teammate nonchalantly passes the ball. "Okay then. Let's see what you can do, ${((st as any).pcs_nickname ?? '')}."`);
       scene.text('Determined to show them up, you wait for your opponent to press tightly against your body before quickly jumping to one side. Just as she\'s about to stop you, you quickly dribble the ball between your legs and are free.');
       scene.text('Your teammates are rather easily keeping the others at bay so that they can\'t help out their teammate.');
       scene.text('Their defender can only stand in awe as you leave her behind. You quickly move towards the basket and slam the ball in, securing your victory.');
-      // TODO-QSP: dynamic text: Your teammates sarcastically clap. "<i>Great</i> job, <<$pcs_nickname>>! <i>Real...
       scene.text(`Your teammates sarcastically clap. "<i>Great</i> job, ${((st as any).pcs_nickname ?? '')}! <i>Really</i> impressive stuff there…"`);
       scene.actions([
         { label: 'End the game', goto: ['bbgamein', 'end_game'] },
@@ -1219,7 +1192,6 @@ function enterBoys(s: GameState, scene: SceneBuilder): void {
       scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/pass.jpg');
       scene.text('You\'re pressured, but are able to keep control of the ball. You can\'t move, but then you see one of your teammates lift their hand, calling for your attention.');
       scene.text('Seeing a gap where you can pass, you release the ball at the perfect time. It bounces into the hands of your teammate, who takes a shot and easily scores.');
-      // TODO-QSP: dynamic text: You walk over to your teammates, who rather surprisingly praise you. "Great pass...
       scene.text(`You walk over to your teammates, who rather surprisingly praise you. "Great pass, ${((st as any).pcs_nickname ?? '')}! We didn't think you had it in you."`);
       scene.actions([
         { label: 'End the game', goto: ['bbgamein', 'end_game'] },
@@ -1231,7 +1203,6 @@ function enterBoys(s: GameState, scene: SceneBuilder): void {
       scene.text('Their defender is playing exceptionally well and you can barely keep control over the ball when you suddenly hear someone yell your name and look to see that your teammate is positioned for a pass.');
       scene.text('However, as you release the ball, the girl moves between you and your teammate, ready to intercept.');
       scene.text('Your teammates try to gain control of the ball, but they\'re too slow and the girl makes a perfect shot and dunks the ball into your basket.');
-      // TODO-QSP: dynamic text: Your teammates throw their hands in the air before glaring at you in disappointm...
       scene.text(`Your teammates throw their hands in the air before glaring at you in disappointment. "What the hell was that, ${((st as any).pcs_nickname ?? '')}?!"`);
       scene.actions([
         { label: 'End the game', goto: ['bbgamein', 'end_game'] },
@@ -1278,7 +1249,6 @@ function enterBoys(s: GameState, scene: SceneBuilder): void {
     scene.text('Seeing the defender quickly closing in on you, you start doubting yourself. Everything goes black and you lose your focus as you hear your teammates yelling voices blur into white noise.');
     scene.text('Panicking, you choose the worst option possible. Without looking, you shriek and randomly toss the ball. When you come to your senses, you see that you\'ve thrown the ball to your opponent.');
     scene.text('Snickering, she takes the ball and easily scores as your teammates stare at you in disbelief.');
-    // TODO-QSP: dynamic text: "What the fuck are you doing, <<$pcs_nickname>>?! You''re lucky we have such a g...
     scene.text(`"What the fuck are you doing, ${((st as any).pcs_nickname ?? '')}?! You're lucky we have such a good lead, otherwise we would have told you to fuck off!"`);
     scene.actions([
       { label: 'End the game', goto: ['bbgamein', 'end_game'] },
@@ -1300,7 +1270,6 @@ function enterBoys(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/boys1.jpg');
     scene.text('The physical difference between the teams means that you\'re crushing your opposition as the game comes close to the end.');
-    // TODO-QSP: dynamic text: You''re holding your distance from your teammates, letting them do all the work,...
     scene.text(`You're holding your distance from your teammates, letting them do all the work, when one of them grabs the ball and yells at you. "Get out the way, ${((st as any).pcs_nickname ?? '')}! Let me finish this!"`);
     scene.text('Annoyed at them not letting you play, you shout at him to pass the ball.');
     qspCall(st, 'willpower', 'skill_base', 'bkbll', 'self', 'medium');
@@ -1327,12 +1296,10 @@ function enterBoys(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     if ((Math.floor(Math.random() * 101) + 0) + ((st as any).pcs_bkbll ?? 0) >= 100) {
       scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/bbinside2.jpg');
-      // TODO-QSP: dynamic text: Your teammate nonchalantly passes the ball. "Okay then. Let''s see what you can ...
       scene.text(`Your teammate nonchalantly passes the ball. "Okay then. Let's see what you can do, ${((st as any).pcs_nickname ?? '')}."`);
       scene.text('Determined to show them up, you wait for your opponent to press tightly against your body before quickly jumping to one side. Just as she\'s about to stop you, you quickly dribble the ball between your legs and are free.');
       scene.text('Your teammates are rather easily keeping the others at bay so that they can\'t help out their teammate.');
       scene.text('Their defender can only stand in awe as you leave her behind. You quickly move towards the basket and slam the ball in, securing your victory.');
-      // TODO-QSP: dynamic text: Your teammates sarcastically clap. "<i>Great</i> job, <<$pcs_nickname>>! <i>Real...
       scene.text(`Your teammates sarcastically clap. "<i>Great</i> job, ${((st as any).pcs_nickname ?? '')}! <i>Really</i> impressive stuff there…"`);
       scene.actions([
         { label: 'End the game', goto: ['bbgamein', 'end_game'] },
@@ -1361,7 +1328,6 @@ function enterBoys(s: GameState, scene: SceneBuilder): void {
       scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/pass.jpg');
       scene.text('You\'re pressured, but are able to keep control of the ball. You can\'t move, but then you see one of your teammates lift their hand, calling for your attention.');
       scene.text('Seeing a gap where you can pass, you release the ball at the perfect time. It bounces into the hands of your teammate, who takes a shot and easily scores.');
-      // TODO-QSP: dynamic text: You walk over to your teammates, who rather surprisingly praise you. "Great pass...
       scene.text(`You walk over to your teammates, who rather surprisingly praise you. "Great pass, ${((st as any).pcs_nickname ?? '')}! We didn't think you had it in you."`);
       scene.actions([
         { label: 'End the game', goto: ['bbgamein', 'end_game'] },
@@ -1373,7 +1339,6 @@ function enterBoys(s: GameState, scene: SceneBuilder): void {
       scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/pass.jpg');
       scene.text('However, as you release the ball, the girl moves between you and your teammate, ready to intercept.');
       scene.text('Your teammates try to gain control of the ball, but they\'re too slow and the girl makes a perfect shot and dunks the ball into your basket.');
-      // TODO-QSP: dynamic text: Your teammates throw their hands in the air before glaring at you in disappointm...
       scene.text(`Your teammates throw their hands in the air before glaring at you in disappointment. "What the hell was that, ${((st as any).pcs_nickname ?? '')}?!"`);
       scene.actions([
         { label: 'End the game', goto: ['bbgamein', 'end_game'] },
@@ -1420,7 +1385,6 @@ function enterBoys(s: GameState, scene: SceneBuilder): void {
     scene.text('Seeing the defender quickly closing in on you, you start doubting yourself. Everything goes black and you lose your focus as you hear your teammates yelling voices blur into white noise.');
     scene.text('Panicking, you choose the worst option possible. Without looking, you shriek and randomly toss the ball. When you come to your senses, you see that you\'ve thrown the ball to your opponent.');
     scene.text('Snickering, she takes the ball and easily scores as your teammates stare at you in disbelief.');
-    // TODO-QSP: dynamic text: "What the fuck are you doing, <<$pcs_nickname>>?! You''re lucky we have such a g...
     scene.text(`"What the fuck are you doing, ${((st as any).pcs_nickname ?? '')}?! You're lucky we have such a good lead, otherwise we would have told you to fuck off!"`);
     scene.actions([
       { label: 'End the game', goto: ['bbgamein', 'end_game'] },
@@ -1440,7 +1404,6 @@ function enterEndGame(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/teampick.jpg');
   scene.text('Once the game is over, you\'re all tired and sweaty, but everyone had a great time. You all go over to the bleachers and find a seat to rest.');
   scene.text('You talk and joke with one another about the game, the winners bragging on their win while the losers promise revenge. Once rested, everyone starts to get up and drift away, saying their goodbyes.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['gdksport', 'start'] },
   ]);

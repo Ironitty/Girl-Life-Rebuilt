@@ -14,7 +14,6 @@ function enterLeave(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'outfit', 'remove_backup', 'lifeguard');
   qspGoto(s, 'pav_pool', 'entrance');
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -79,7 +78,6 @@ function enterTraining(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -94,16 +92,14 @@ function enterTraining1(s: GameState, scene: SceneBuilder): void {
   scene.text('The crowds then flood in and you leave the pool to practice CPR and other life saving techniques before learning how to supervise those in the pool and how to spot anyone in distress.');
   scene.text('After 4 hours, the chief lifeguard calls an end to your training session.');
   scene.text('"Good job… Oh, my apologies. I haven\'t even asked you what your name is!" she smiles.');
-  // TODO-QSP: dynamic text: You smile in return. "<<$pcs_firstname>>, but people just call me <<$pcs_nicknam...
   scene.text(`You smile in return. "${((s as any).pcs_firstname ?? '')}, but people just call me ${((s as any).pcs_nickname ?? '')}."`);
   scene.text('"You can call me Maria. You can go and shower now, but be back tomorrow at the same time to finish your training."');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return to the staff locker room', handler: (st: GameState) => {
     qspCall(st, 'din_van', 'showerdin');
     qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/school/gym/shower/watch.jpg');
-    // TODO-QSP: 'You enter the staff locker room and remove your swimsuit ' + iif(tits >= 5, ', breathing a sigh of ...
+    scene.text('You enter the staff locker room and remove your swimsuit ' + ((((st as any).tits ?? 0) >= 5) ? (', breathing a sigh of relief as your breasts are freed from the confines of the tight fabric.') : ('.')));
     scene.text('You then hit the showers, enjoying the warmth of the water pouring over you. Once you\'re finished, you step out and wrap yourself in one of the poor quality towels that have been provided for staff use.');
     scene.actions([
       { label: 'Get dressed', handler: (st: GameState) => {
@@ -113,8 +109,7 @@ function enterTraining1(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/community/swim/photoclothing.jpg');
     scene.text('As you change back into your clothes, you\'re startled when you think you hear a camera click, as if someone was taking photos, but you don\'t see anything. You tell yourself you\'re just being paranoid and continue getting dressed.');
-    // TODO-QSP: dynamic text: Once you''re finished, you spot a set of <a href="exec:minut += 1 & gt ''pav_poo...
-    scene.text('Once you\'re finished, you spot a set of <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(/u0027pav_pool_lifeguard/u0027, /u0027mirror/u0027); return false;">mirrors</a> where you can brush your hair or do your makeup.');
+    scene.text('Once you\'re finished, you spot a set of <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027pav_pool_lifeguard\u0027, \u0027mirror\u0027); return false;">mirrors</a> where you can brush your hair or do your makeup.');
     scene.actions([
       { label: 'Leave', goto: ['pav_pool_lifeguard', 'leave'] },
     ]);
@@ -133,7 +128,6 @@ function enterTraining2(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/community/swim/training.jpg');
   scene.text('You enter the empty pool with Maria, where you continue practicing what you\'ve already learned while also learning some more advanced techniques and the dangers around the pool that aren\'t related to the water itself.');
   scene.text('At the end of the session, Maria beckons you over.');
-  // TODO-QSP: dynamic text: "Excellent work, <<$pcs_nickname>>. You''ve done all the required training and I...
   scene.text(`"Excellent work, ${((s as any).pcs_nickname ?? '')}. You've done all the required training and I don't see any reasons why I shouldn't hire you. You can start next week. You can keep the uniform by the way. It's yours now."`);
   scene.text('You just give her nod before making your way to the locker room.');
   if (((s as any).pcs_hotcat ?? 0) >= 6) {
@@ -142,9 +136,7 @@ function enterTraining2(s: GameState, scene: SceneBuilder): void {
       scene.text('As you get closer, you notice him shamelessly glaring at your large breasts as they strain against the fabric of your skintight swimsuit.');
     }
     scene.text('"Hey there, I\'m Vadim," he says with a flirty smile. "You must be the new girl Maria hired, no?"');
-    // TODO-QSP: dynamic text: "That''s me," you reply. "I''m <<$pcs_nickname>>."
     scene.text(`"That's me," you reply. "I'm ${((s as any).pcs_nickname ?? '')}."`);
-    // TODO-QSP: dynamic text: "A beautiful name for a beautiful girl," he smiles. "I''ll be seeing you around,...
     scene.text(`"A beautiful name for a beautiful girl," he smiles. "I'll be seeing you around, ${((s as any).pcs_nickname ?? '')}."`);
     if (qspFunc(s, 'pcs_has_attr', ' || ', 'body_ass_big', 'body_ass_heart', 'body_ass_bubble')) {
       scene.text('As you walk away, you sense him checking out your ass.');
@@ -153,18 +145,16 @@ function enterTraining2(s: GameState, scene: SceneBuilder): void {
     scene.text('As you walk around the edge of the pool, you notice a cute, slightly muscular boy in red trunks heading your way.');
     scene.text('"Excuse me, are you Vadim by any chance?" you ask and he stops to look at you.');
     scene.text('"Yeah, that\'s me. Who\'s asking?" he replies before he notices your outfit. "Oh. You\'re that new girl Maria hired, aren\'t you?"');
-    // TODO-QSP: dynamic text: "That''s me," you smile. "I''m <<$pcs_nickname>>."
     scene.text(`"That's me," you smile. "I'm ${((s as any).pcs_nickname ?? '')}."`);
     scene.text('"Cool…" he says flatly. "I\'ll see you around I guess…"');
     scene.text('He brushes past you and starts flirting with some pretty girls in the pool, leaving you feeling a little insulted by how dismissive he was of you.');
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return to the staff locker room', handler: (st: GameState) => {
     qspCall(st, 'din_van', 'showerdin');
     qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/school/gym/shower/watch.jpg');
-    // TODO-QSP: 'You enter the staff locker room and remove your swimsuit '+iif(tits >= 5, ', breathing a sigh of re...
+    scene.text('You enter the staff locker room and remove your swimsuit ' + ((((st as any).tits ?? 0) >= 5) ? (', breathing a sigh of relief as your breasts are freed from the confines of the tight fabric.') : ('.')));
     scene.text('You then hit the showers, enjoying the warmth of the water pouring over you. Once you\'re finished, you step out and wrap yourself in one of the poor quality towels that have been provided for staff use.');
     scene.actions([
       { label: 'Get dressed', handler: (st: GameState) => {
@@ -174,8 +164,7 @@ function enterTraining2(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/community/swim/photoclothing.jpg');
     scene.text('As you change back into your clothes, you\'re startled when you think you hear a camera click, as if someone was taking photos, but you don\'t see anything. You tell yourself you\'re just being paranoid and continue getting dressed.');
-    // TODO-QSP: dynamic text: Once you''re finished, you spot a set of <a href="exec:minut += 1 & gt ''pav_poo...
-    scene.text('Once you\'re finished, you spot a set of <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(/u0027pav_pool_lifeguard/u0027, /u0027mirror/u0027); return false;">mirrors</a> where you can brush your hair or do your makeup.');
+    scene.text('Once you\'re finished, you spot a set of <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027pav_pool_lifeguard\u0027, \u0027mirror\u0027); return false;">mirrors</a> where you can brush your hair or do your makeup.');
     scene.actions([
       { label: 'Leave', goto: ['pav_pool_lifeguard', 'leave'] },
     ]);
@@ -191,18 +180,16 @@ function enterStaffLockerRoom(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/community/swim/lockers.jpg');
   scene.text('The staff locker room is just as run down and grimy as the rest of the building. The unisex design offers little privacy, but you rarely encounter any of your fellow staff members here.');
   scene.text('A row of dilapidated lockers line one wall, with a group of old benches provided as a seating area. The showers are towards the back of the room.');
-  // TODO-QSP: dynamic text: A set of <a href="exec:minut += 1 & gt ''pav_pool_lifeguard'', ''mirror''">mirro...
-  scene.text('A set of <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(/u0027pav_pool_lifeguard/u0027, /u0027mirror/u0027); return false;">mirrors</a> where you can brush your hair or do your makeup line the wall opposite the lockers, while an old water fountain provides hydration to anyone desperate enough to use it.');
-  // TODO-QSP: end
+  scene.text('A set of <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027pav_pool_lifeguard\u0027, \u0027mirror\u0027); return false;">mirrors</a> where you can brush your hair or do your makeup line the wall opposite the lockers, while an old water fountain provides hydration to anyone desperate enough to use it.');
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (st as any).temp_pay = qspFunc(s, 'jobs', 'paycheck', 'pav_pool_lifeguard', 'cash');
     if (((st as any).temp_pay ?? 0) > 0) {
-      // TODO-QSP: dynamic text: You collect your wages for the day (<<$func(''money'', ''string_profit'', temp_p...
       scene.text(`You collect your wages for the day (${qspFunc(s, 'money', 'string_profit', ((st as any).temp_pay ?? ''))}) before leaving.`);
     } else {
       scene.text('You head for the exit.');
     }
+    (st as any).temp_pay = undefined;
     scene.actions([
       { label: 'Continue', goto: ['pav_pool_lifeguard', 'leave'] },
     ]);
@@ -239,9 +226,7 @@ function enterMirror(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'pav_pool_lifeguard', 'mirror');
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/community/swim/mirrorsink.jpg');
-  // TODO-QSP: dynamic text: The <a href="exec:minut += 1 & gt ''mirror'', ''start''">mirrors</a> are is just...
-  scene.text('The <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027start/u0027); return false;">mirrors</a> are is just as murky as the rest of the changing room. It\'s almost like the owners don\'t care about the dilapidated appearance.');
-  // TODO-QSP: end
+  scene.text('The <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027start\u0027); return false;">mirrors</a> are is just as murky as the rest of the changing room. It\'s almost like the owners don\'t care about the dilapidated appearance.');
   scene.actions([
     { label: 'Go back to the changing room', goto: ['pav_pool_lifeguard', 'staff_locker_room'] },
   ]);
@@ -254,7 +239,6 @@ function enterStartShift(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/community/swim/lockers.jpg');
   scene.text('You enter the staff locker room and strip from your clothes, ready to put on your uniform.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Have a quick shower first', handler: (st: GameState) => {
     qspCall(st, 'din_van', 'showerdin');
@@ -291,7 +275,6 @@ function enterEndShift(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/community/swim/lockers.jpg');
   scene.text('You enter the staff locker room and prepare to strip out of your uniform.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Just get dressed', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 10;
@@ -513,7 +496,6 @@ function enterShiftPart1(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -521,7 +503,6 @@ function enterShiftPart11(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/community/swim/pool3.jpg');
   scene.text('From atop your raised vantage point, you look down into the pool at the crowds of people who are either swimming or playing games in the water.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     (st as any).temp_rand = (Math.floor(Math.random() * 13) + 0);
@@ -656,6 +637,7 @@ function enterShiftPart11(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
+    (st as any).temp_rand = undefined;
     scene.actions([
       { label: 'Go for your break', goto: ['pav_pool_lifeguard', 'break'] },
     ]);
@@ -668,7 +650,6 @@ function enterShiftPart2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/community/swim/pool3.jpg');
   scene.text('You return to the pool area, which is just as noisy and crowded as when you left it. You climb back up into the chair and take a seat to resume your duties.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue your shift', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
@@ -807,6 +788,7 @@ function enterShiftPart2(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
+    (st as any).temp_rand = undefined;
     scene.actions([
       { label: 'End your shift', goto: ['pav_pool_lifeguard', 'end_shift'] },
     ]);
@@ -823,7 +805,6 @@ function enterBreak(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/community/swim/cafeteria2.jpg');
   scene.text('The clock soon reaches 3 and you climb down from the chair to take your break, heading to the cafeteria to grab something to eat.');
   scene.text('When you arrive, your options are limited to the snacks on display, so you grab one and take a seat.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 10;
@@ -914,7 +895,6 @@ function enterVadimShowerSex(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/shared/sex/shower/grope1.mp4');
     scene.text('You and Vadim embrace each other under the shower and he starts eagerly groping at your breasts before you guide his hand down to your clit. He smiles and starts teasing you as you in turn reach down and start jerking his cock in your hand.');
-    // TODO-QSP: dynamic text: To your disappointment, it doesn''t grow that much bigger as he gets hard and yo...
     scene.text(`To your disappointment, it doesn't grow that much bigger as he gets hard and you glance down to see that he's sporting a rather average ${((s as any).dick ?? '')}cm ${((s as any).dick_girth ?? '')} cock.`);
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
@@ -1028,7 +1008,6 @@ function enterVadimShowerSex(s: GameState, scene: SceneBuilder): void {
     scene.text('"How about you fuck my ass instead?" you ask with a flirty smile.');
     scene.text('He looks surprised. "Oh. Uh… I\'ve never fucked a girl in the ass before."');
     scene.text('"There\'s a first time for everything," you reply as you space your legs apart and bend over before pushing your ass out and spreading your cheeks, exposing your asshole.');
-    // TODO-QSP: dynamic text: You feel him fumble around a little before he presses the tip of his <<dick>>cm ...
     scene.text(`You feel him fumble around a little before he presses the tip of his ${((st as any).dick ?? '')}cm ${((st as any).dick_girth ?? '')} cock against your asshole and slowly pushes forward.`);
     scene.text('You wince a little in pain as your asshole stretches, but his cock is small enough for you to comfortably take it without lube.');
     scene.text('He starts slowly fucking you, but gradually picks up the pace as time goes on.');
@@ -1054,9 +1033,7 @@ function enterVadimShowerSex(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'bj', 3);
     qspCall(s, 'stat', '');
     scene.img('images/shared/sex/shower/bj4.mp4');
-    // TODO-QSP: dynamic text: He doesn''t waste any time and immediately pushes you down onto your knees with ...
     scene.text(`He doesn't waste any time and immediately pushes you down onto your knees with his ${((s as any).dick ?? '')}cm ${((s as any).dick_girth ?? '')} cock in your face.`);
-    // TODO-QSP: dynamic text: You take it into your mouth and start sucking, occasionally popping it out of yo...
     scene.text(`You take it into your mouth and start sucking, occasionally popping it out of your mouth and licking the shaft. Vadim just groan loudly in pleasure as you suck on his ${((s as any).dick ?? '')}cm ${((s as any).dick_girth ?? '')} cock.`);
     scene.text('After a few minutes, he pulls his dick out of your mouth and pulls you to your feet.');
     scene.text('"So which hole will it be today?" he asks with a knowing grin.');
@@ -1078,7 +1055,6 @@ function enterVadimShowerSex(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/shared/sex/shower/doggy4.mp4');
     scene.text('"Hurry up and fuck my pussy!" you tell him, barely able to hide your frustration.');
-    // TODO-QSP: dynamic text: You spin around and bend over for him as he eagerly rubs the tip of his <<dick>>...
     scene.text(`You spin around and bend over for him as he eagerly rubs the tip of his ${((st as any).dick ?? '')}cm ${((st as any).dick_girth ?? '')} cock against your slit before sliding it inside you.`);
     scene.text('As he starts thrusting, you reach down and start rubbing your clit to feel some kind of pleasure, which Vadim notices.');
     scene.text('"That\'s right, slut! Tease your pussy as I fuck it!"');
@@ -1137,7 +1113,6 @@ function enterVadimShowerSex(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/shared/sex/anal/shower9.mp4');
     scene.text('"Hurry up and fuck my ass!" you tell him, barely able to hide your frustration.');
-    // TODO-QSP: dynamic text: You spin around and bend over for him as he eagerly rubs the tip of his <<dick>>...
     scene.text(`You spin around and bend over for him as he eagerly rubs the tip of his ${((st as any).dick ?? '')}cm ${((st as any).dick_girth ?? '')} cock against your asshole before sliding it inside you.`);
     scene.text('As he starts thrusting, you reach down and start rubbing your clit to feel some kind of pleasure, which Vadim notices.');
     scene.text('"That\'s right, slut! Tease your pussy as I fuck your slutty ass!"');
@@ -1162,7 +1137,6 @@ function enterVadimShowerSex(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Fuck my pussy', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'vaginal', 6);
@@ -1170,7 +1144,6 @@ function enterVadimShowerSex(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/shared/sex/shower/doggy4.mp4');
     scene.text('"Hurry up and fuck my pussy!" you tell him, barely able to hide your frustration.');
-    // TODO-QSP: dynamic text: You spin around and bend over for him as he eagerly rubs the tip of his <<dick>>...
     scene.text(`You spin around and bend over for him as he eagerly rubs the tip of his ${((st as any).dick ?? '')}cm ${((st as any).dick_girth ?? '')} cock against your slit before sliding it inside you.`);
     scene.text('As he starts thrusting, you reach down and start rubbing your clit to feel some kind of pleasure, which Vadim notices.');
     scene.text('"That\'s right, slut! Tease your pussy as I fuck it!"');
@@ -1229,7 +1202,6 @@ function enterVadimShowerSex(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/shared/sex/anal/shower9.mp4');
     scene.text('"Hurry up and fuck my ass!" you tell him, barely able to hide your frustration.');
-    // TODO-QSP: dynamic text: You spin around and bend over for him as he eagerly rubs the tip of his <<dick>>...
     scene.text(`You spin around and bend over for him as he eagerly rubs the tip of his ${((st as any).dick ?? '')}cm ${((st as any).dick_girth ?? '')} cock against your asshole before sliding it inside you.`);
     scene.text('As he starts thrusting, you reach down and start rubbing your clit to feel some kind of pleasure, which Vadim notices.');
     scene.text('"That\'s right, slut! Tease your pussy as I fuck your slutty ass!"');
@@ -1259,7 +1231,6 @@ function enterVadimShowerPostsex(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/shared/sex/shower/after2.mp4');
   scene.text('Vadim pants loudly as he runs his hands over your wet body. "That was pretty good, hot stuff. Fancy doing it again sometime?"');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Maybe', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 10;

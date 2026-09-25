@@ -31,8 +31,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       scene.text('The bathroom is in much better shape since you worked on it.');
     }
   }
-  // TODO-QSP: dynamic text: 'A <a href="exec:gt ''mirror'',''start''">mirror</a>, where you can ' + iif(pcs_...
-  scene.text('A <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027start/u0027); return false;">mirror</a>, where you can ' + ((((s as any).pcs_hairbsh ?? 0) < 1) ? ('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027brush/u0027); return false;">brush</a>') : ('brush')) + ' your hair hangs over the sink.');
+  scene.text('A <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027start\u0027); return false;">mirror</a>, where you can ' + ((((s as any).pcs_hairbsh ?? 0) < 1) ? ('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027brush\u0027); return false;">brush</a>') : ('brush')) + ' your hair hangs over the sink.');
   if (((s as any).rolanworker ?? 0) === 2  &&  (((s as any).RolanLoc ?? 0)?.[String((s as any).hour ?? 0)] === 9  ||  ((s as any).RolanLoc ?? 0)?.[String((s as any).hour ?? 0)] === 10)) {
     if ((!((s as any).workertool ?? 0))) {
       scene.actions([
@@ -56,11 +55,10 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'piercing_management', 'set_manage_string');
   if (((s as any).fillimplant ?? 0) === 1  &&  ((s as any).siliconeBag ?? 0) >= 1) {
-    // TODO-QSP: dynamic text: <a href="exec:cls & siliconeBag -= 1 & bodyVars[''bust_silicone''] += 10 & gt $l...
-    scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: cls */ s.siliconeBag -=s.1; (s.bodyVars ??= {})/u0027bust_silicone/u0027 +=s.10; return s; }); window.__gameStore.getState().doGoto(window.__gameStore.getState().prevLoc, window.__gameStore.getState().prevArg); return false;">Inject silicone into breast implants.</a>');
+    scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: cls */ s.siliconeBag -=s.1; (s.bodyVars ??= {})\u0027bust_silicone\u0027 +=s.10; return s; }); window.__gameStore.getState().doGoto(window.__gameStore.getState().prevLoc, window.__gameStore.getState().prevArg); return false;">Inject silicone into breast implants.</a>');
   }
   if (((s as any).fillimplant ?? 0) === 1  &&  ((s as any).bodyVars ?? 0)?.['bust_silicone'] >= 20) {
-    scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: cls */ (s.bodyVars ??= {})/u0027bust_silicone/u0027 -=s.10; return s; }); window.__gameStore.getState().doGoto(window.__gameStore.getState().prevLoc, window.__gameStore.getState().prevArg); return false;">Drain silicone from breast implants.</a>');
+    scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: cls */ (s.bodyVars ??= {})\u0027bust_silicone\u0027 -=s.10; return s; }); window.__gameStore.getState().doGoto(window.__gameStore.getState().prevLoc, window.__gameStore.getState().prevArg); return false;">Drain silicone from breast implants.</a>');
   }
   qspCall(s, 'din_van', 'bteeth');
   qspCall(s, 'din_van', 'tampon');
@@ -88,7 +86,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'din_van', 'prvt_pee');
   qspCall(s, 'din_van', 'toymanage');
   qspCall(s, 'din_van', 'enema');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return to the hallway', goto: ['rolanapt', 'hallway'] },
     { label: 'Take a shower (0:15)', handler: (st: GameState) => {
@@ -115,6 +112,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
         (st as any).weightwarn = 'gaining';
       }
       scene.text(`<center><b>You seem to be ${((st as any).weightwarn ?? '')} weight.</b></center>`);
+      (st as any).weightwarn = undefined;
     }
     if (((st as any).normbuffpick ?? 0) === 1) {
       scene.text('<b>You notice that your muscles are starting to show through your skin.</b>');
@@ -131,7 +129,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'Sing in the shower', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
-    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/resident/apartment/ap...
     scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/aptrolan/rolanbathsing` + (Math.floor(Math.random() * 2) + 0) + '.jpg"></center>');
     scene.text('The warm water feels amazing against you. You forget for a moment that Rolan could enter the bathroom at any moment. The shower is so relaxing that you begin to sing under the water, imagining that you\'re a famous rockstar performing for your thousands of fans.');
     qspCall(st, 'mood', 'raise', 'tiny');
@@ -192,7 +189,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
             scene.actions([
               { label: 'Uh…? Is someone there?', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
-    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/resident/apartment/ap...
     scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/aptrolan/rolanbathaware` + (Math.floor(Math.random() * 3) + 0) + '.jpg"></center>');
     scene.text('You think you hear a noise. "Rolan, is that you?"');
     scene.actions([
@@ -331,6 +327,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
         (st as any).weightwarn = 'gaining';
       }
       scene.text(`<center><b>You seem to be ${((st as any).weightwarn ?? '')} weight.</b></center>`);
+      (st as any).weightwarn = undefined;
     }
     if (((st as any).normbuffpick ?? 0) === 1) {
       scene.text('<b>You notice that your muscles are starting to show through your skin.</b>');
@@ -394,7 +391,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
             scene.actions([
               { label: 'Uh…? Is someone there?', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
-    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/resident/apartment/ap...
     scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/aptrolan/rolanbathaware` + (Math.floor(Math.random() * 3) + 3) + '.jpg"></center>');
     scene.text('You think you hear a noise. "Rolan, is that you?"');
     scene.actions([
@@ -496,7 +492,6 @@ function enterSexev(s: GameState, scene: SceneBuilder): void {
       { label: 'Leave him alone', goto: ['rolanapt', 'hallway'] },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -504,9 +499,7 @@ function enterEv(s: GameState, scene: SceneBuilder): void {
   if ((Math.floor(Math.random() * 101) + 0) <= 90) {
     (s as any).minut = ((s as any).minut ?? 0) + 2;
     qspCall(s, 'stat', '');
-    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/resident/apartment/ap...
     scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/aptrolan/rolanselfcare` + (Math.floor(Math.random() * 3) + 1) + '.jpg"></center>');
-    // TODO-QSP: dynamic text: "Miss <<$pcs_lastname>>, is there something you want to talk about?"
     scene.text(`"Miss ${((s as any).pcs_lastname ?? '')}, is there something you want to talk about?"`);
     scene.actions([
       { label: 'Chat with Rolan', goto: ['rolanbath', 'bazar'] },
@@ -515,7 +508,6 @@ function enterEv(s: GameState, scene: SceneBuilder): void {
   } else {
     (s as any).minut = ((s as any).minut ?? 0) + 2;
     qspCall(s, 'stat', '');
-    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/resident/apartment/ap...
     scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/aptrolan/rolanbusy` + (Math.floor(Math.random() * 3) + 0) + '.jpg"></center>');
     scene.text('When you go to the bathroom, you find Rolan already in there. "Hey!" he shouts indignantly. Oops, he\'s on the toilet!');
     scene.text('"Sorry, sorry!" you apologize, quickly leaving the bathroom.');
@@ -523,7 +515,6 @@ function enterEv(s: GameState, scene: SceneBuilder): void {
       { label: 'Return to the hallway', goto: ['rolanapt', 'hallway'] },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -533,7 +524,6 @@ function enterBazar(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).rolan_bazar_count ?? 0))) {
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/apartment/aptrolan/rolanselfcare0.jpg');
-    // TODO-QSP: dynamic text: "Sorry Miss <<$pcs_lastname>>, I have to go. Maybe we can chat some more later?"
     scene.text(`"Sorry Miss ${((s as any).pcs_lastname ?? '')}, I have to go. Maybe we can chat some more later?"`);
     scene.actions([
       { label: 'Return to the hallway', goto: ['rolanapt', 'hallway'] },
@@ -570,17 +560,13 @@ function enterBazar(s: GameState, scene: SceneBuilder): void {
     if (((s as any).temp_rand ?? 0) === 8) {
       (s as any).rolan_textb_kuh = 'Rolan tells you he saw Anushka and Alyona kissing on the playground, in the apartment courtyard. He thinks it is very unbecoming of them, they should be with men.';
     }
-    // TODO-QSP: dynamic text: <br><<$rolan_imgb_vanna>><br>
+    (s as any).temp_rand = undefined;
     scene.text(`<br>${((s as any).rolan_imgb_vanna ?? '')}<br>`);
-    // TODO-QSP: dynamic text: <br><<$rolan_textb_vanna>><br>
     scene.text(`<br>${((s as any).rolan_textb_vanna ?? '')}<br>`);
-    // TODO-QSP: dynamic text: "Sure Miss <<$pcs_lastname>>, tell me!"
     scene.text(`"Sure Miss ${((s as any).pcs_lastname ?? '')}, tell me!"`);
     if (((s as any).sh_rolan_bazar ?? 0) > 5  &&  ((s as any).mesec ?? 0) <=0) {
       qspCall(s, 'stat', '');
-      // TODO-QSP: dynamic text: <br><<$rolan_imgb_vanna>><br>
       scene.text(`<br>${((s as any).rolan_imgb_vanna ?? '')}<br>`);
-      // TODO-QSP: dynamic text: <br><<$rolan_textb_vanna>><br>
       scene.text(`<br>${((s as any).rolan_textb_vanna ?? '')}<br>`);
       scene.actions([
         { label: 'Chat some more', goto: ['rolanbath', 'bazar'] },
@@ -596,7 +582,6 @@ function enterBazar(s: GameState, scene: SceneBuilder): void {
       { label: 'Chat some more', goto: ['rolanbath', 'bazar'] },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return to the hallway', goto: ['rolanapt', 'hallway'] },
   ]);
@@ -606,9 +591,7 @@ function enterBazar(s: GameState, scene: SceneBuilder): void {
 function enterPervshower(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/resident/apartment/aptrolan/rolanselfcare0.jpg');
-  // TODO-QSP: dynamic text: "Sure Miss <<$pcs_lastname>>, tell me!"
   scene.text(`"Sure Miss ${((s as any).pcs_lastname ?? '')}, tell me!"`);
-  // TODO-QSP: end
   scene.actions([
     { label: 'Take a shower (0:15)', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 15;
@@ -637,6 +620,7 @@ function enterPervshower(s: GameState, scene: SceneBuilder): void {
         (st as any).weightwarn = 'gaining';
       }
       scene.text(`<center><b>You seem to be ${((st as any).weightwarn ?? '')} weight.</b></center>`);
+      (st as any).weightwarn = undefined;
     }
     if (((st as any).normbuffpick ?? 0) === 1) {
       scene.text('<b>You notice that your muscles are starting to show through your skin.</b>');
@@ -681,7 +665,6 @@ function enterPervshower(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'Sing in the shower', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
-    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/resident/apartment/ap...
     scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/aptrolan/rolanbathsing` + (Math.floor(Math.random() * 2) + 0) + '.jpg"></center>');
     scene.text('The warm water feels amazing against you. As you relax you begin to sing under the water completely forgetting that Rolan is there and can hear you. You imagine that you\'re a famous rockstar performing for your thousands of fans.');
     qspCall(st, 'mood', 'raise', 'tiny');
@@ -730,11 +713,9 @@ function enterBonershower(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/resident/apartment/aptrolan/rolanboner1.jpg');
   scene.text('"Rolan, I see you\'re getting ready to bathe. Do you mind if I join you?"');
-  // TODO-QSP: dynamic text: "Miss <<$pcs_lastname>>, w-w-what do you mean?"
   scene.text(`"Miss ${((s as any).pcs_lastname ?? '')}, w-w-what do you mean?"`);
   scene.text('"I mean, we could both save some time and water if we bathed together!"');
   scene.text('Rolan can only stutter and stammer.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Bra', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -758,7 +739,6 @@ function enterBonershower(s: GameState, scene: SceneBuilder): void {
     (st as any).pcs_makeup = 1;
     scene.img('images/locations/pavlovsk/resident/apartment/aptrolan/rolanhair0.jpg');
     scene.text('"Rolan, could you please wash my hair. It\'s so nice not having to do it myself!"');
-    // TODO-QSP: dynamic text: "O-o-of course, Miss <<$pcs_lastname>>…"
     scene.text(`"O-o-of course, Miss ${((st as any).pcs_lastname ?? '')}…"`);
     if (((st as any).deodorant_on ?? 0) === 1) {
       qspCall(st, 'sweat', 'remove_deo');
@@ -770,7 +750,6 @@ function enterBonershower(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/apartment/aptrolan/rolanboner3.jpg');
     scene.text('You stand up and help Rolan up too, you are ready to continue when you notice he has a hard-on…');
-    // TODO-QSP: dynamic text: "I''m sorry, Miss <<$pcs_lastname>>… I shouldn''t… I haven''t… it''s jus-" 
     scene.text(`"I'm sorry, Miss ${((st as any).pcs_lastname ?? '')}… I shouldn't… I haven't… it's jus-" `);
     scene.text('You cut him off, "It\'s alright, Rolan. It\'s perfectly normal for a healthy man to get an erection when around a <i>beautiful</i> woman."');
     scene.text('You continue to stare at his rock-hard cock, "And you certainly are <i>healthy</i>."');
@@ -810,7 +789,6 @@ function enterBonershower(s: GameState, scene: SceneBuilder): void {
 
 function enterDryOff(s: GameState, scene: SceneBuilder): void {
   if (((s as any).RolanLoc ?? 0)?.[String((s as any).hour ?? 0)] === 0) {
-    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/resident/apartment/ap...
     scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/aptrolan/rolanbathtowel` + (Math.floor(Math.random() * 2) + 0) + '.jpg"></center>');
     scene.text('You know Rolan isn\'t here.');
     scene.actions([
@@ -871,7 +849,6 @@ function enterDryOff(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       (st as any).minut = ((st as any).minut ?? 0) + 1;
-      // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/resident/apartment/ap...
       scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/aptrolan/rolanbathdry` + (Math.floor(Math.random() * 2) + 0) + '.jpg"></center>');
       scene.text('Better hurry and dry off. You never know…');
       scene.actions([
@@ -884,7 +861,6 @@ function enterDryOff(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -909,7 +885,6 @@ function enterTools(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -920,16 +895,13 @@ function enterSurprise(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Surprise</b></center>');
   scene.img('images/locations/pavlovsk/resident/apartment/aptrolan/rolanwelcome.jpg');
   scene.text('"Hi, Rolan! What do you think of your new bathroom?"');
-  // TODO-QSP: dynamic text: "Miss <<$pcs_lastname>>… I-I am speechless…"
   scene.text(`"Miss ${((s as any).pcs_lastname ?? '')}… I-I am speechless…"`);
   scene.text('"Which part do you like best?"');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
     scene.text('<center><b>Surprise</b></center>');
     scene.img('images/locations/pavlovsk/resident/apartment/aptrolan/bathroomnew.jpg');
-    // TODO-QSP: dynamic text: "Miss <<$pcs_lastname>>, the lighting is better, the mold and the smell are gone...
     scene.text(`"Miss ${((st as any).pcs_lastname ?? '')}, the lighting is better, the mold and the smell are gone. All I had done was buy some paint, how…"`);
     scene.text('"Yes, I did use some of the paint, but there\'s still left if you need to do any tounching up."');
     scene.text('"I really don\'t know what to say."');
@@ -938,7 +910,6 @@ function enterSurprise(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
     scene.text('<center><b>Surprise</b></center>');
     scene.img('images/locations/pavlovsk/resident/apartment/aptrolan/rolanheadbath0.jpg');
-    // TODO-QSP: dynamic text: "This must have cost you a lot of money, Miss <<$pcs_lastname>>. I don''t have m...
     scene.text(`"This must have cost you a lot of money, Miss ${((st as any).pcs_lastname ?? '')}. I don't have much but I have to repay y-"`);
     scene.text('You interrupt him, "No, Rolan, I didn\'t do this for the money. It didn\'t cost me anything, actually."');
     scene.text('"Did you do all this work by yourself?"');

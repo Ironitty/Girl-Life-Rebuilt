@@ -53,7 +53,7 @@ function enterRelationship(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
+  (s as any).temp_npc_rel = undefined;
   scene.build();
 }
 
@@ -104,7 +104,7 @@ function enterPast_Relationship(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
+  (s as any).temp_npc_rel = undefined;
   scene.build();
 }
 
@@ -175,7 +175,6 @@ function enterA55(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/55.jpg');
   scene.text('<center>Oluuosegun "Olu" Maina</center>');
   scene.text('You don\'t know much about your aunt\'s live-in boyfriend, only that he is from Africa and doesn\'t speak Russian very well. He\'s a very large and muscular man and you know many people in the area that find it disgraceful that your aunt lives with him.');
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -183,7 +182,6 @@ function enterA112(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/112.jpg');
   scene.text('<center>Sergey Shulgin</center>');
   scene.text('Sergey lives in the same building as you with his son, your childhood friend Vasily. He has gray hair and a small beer belly, but is still hearty looking. His wife, Vasily\'s mother, left when Vasily was young. He has been close friends with your stepfather and mother for as long as you can remember. Oddly enough, he never re-married after being abandoned by his ex-wife.');
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -244,7 +242,6 @@ function enterA173(s: GameState, scene: SceneBuilder): void {
 function enterA174(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/174.jpg');
   scene.text('<center>Sergei Kirillov</center>');
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -571,7 +568,6 @@ function enterA148(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -891,7 +887,6 @@ function enterA165(s: GameState, scene: SceneBuilder): void {
     }
   }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', (((s as any).npc_rel ?? 0)?.['A165']), 'm']; enterRelationship(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1122,7 +1117,6 @@ function enterA240(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1486,7 +1480,6 @@ function enterA189(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1524,7 +1517,6 @@ function enterA159(s: GameState, scene: SceneBuilder): void {
     }
   }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', (((s as any).npc_rel ?? 0)?.['A159']), 'm']; enterRelationship(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1625,7 +1617,6 @@ function enterA268(s: GameState, scene: SceneBuilder): void {
   scene.text('<center>Yuliana "Yana" Radimova</center>');
   scene.text('The younger of the identical twins studying nursing at the university. She and Mia are inseparable and are seen almost everywhere together. Like her older sister, she enjoys playing pranks on her professors and classmates and causing confusion about who is actually who. Her parents are divorced, but her father pays for her tuition. There is a rumor spreading across campus claiming that he is a porn star.');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', (((s as any).npc_rel ?? 0)?.['A268']), 'f']; enterRelationship(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1741,7 +1732,6 @@ function enterA136(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/136.jpg');
   scene.text('<center>Olga Aleksandrov</center>');
   scene.text('Olga Aleksandrov is the school\'s nurse, having transferred to your school at the start of the year. All the boys have fallen head over heels over this true beauty, describing her as slim and stacked; the ideal woman.');
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1778,7 +1768,6 @@ function enterA270(s: GameState, scene: SceneBuilder): void {
 function enterA271(s: GameState, scene: SceneBuilder): void {
   scene.text('<center>Nikita Borisov</center>');
   scene.text('Nikita is the professor who teaches the more mundane nursing subjects. An attractive, but shy and somewhat nerdy man, he makes no effort to make his boring lectures interesting and has a habit of speaking at length and in excessive detail. His students often take advantage of his meek personality to amuse themselves or get away with things.');
-  // TODO-QSP: end
   scene.build();
 }
 

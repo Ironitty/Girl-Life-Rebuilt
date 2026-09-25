@@ -11,11 +11,10 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterReset(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: $npc_preferences[$ARGS[1]] = ''
-  // TODO-QSP: end
+  ((s as any).npc_preferences = (s as any).npc_preferences ?? {})[((s as any).locArgs?.[1] ?? 0)] = '';
   if (!isNaN((String(((s as any).locArgs?.[0] ?? 0)).slice((2)-1))) && (String(((s as any).locArgs?.[0] ?? 0)).slice((2)-1)) !== '') {
     if (String((s as any).locArgs?.[1] ?? '') === '') {
-      // TODO-QSP: exit
+      return;
     }
     if (String((s as any).locArgs?.[2] ?? '') === '') {
       ((s as any).temp_nsprefVars = (s as any).temp_nsprefVars ?? {})['value'] = ((s as any).locArgs?.[2] ?? 0);
@@ -26,60 +25,65 @@ function enterReset(s: GameState, scene: SceneBuilder): void {
     if (((s as any).temp_nsprefVars ?? 0)?.['value'] !== 0) {
       if (Object.keys((s as any).npc_nsp_pref_traits ?? {}).length === 0) {
         ((s as any).temp_nsprefVars = (s as any).temp_nsprefVars ?? {})['pref_string'] = qspUntranslated(s, "\"killvar 'npc_pref_traits'", { location: "npc_set_preference" });
-        // TODO-QSP: $npc_pref_traits[] = '<<$ARGS[1]>>'
+        (s as any).npc_pref_values = undefined;
+        (s as any).npc_pref_traits = [...((s as any).npc_pref_traits ?? []), '' + ((s as any).locArgs?.[1] ?? 0) + ''];
         ((s as any).npc_pref_values = (s as any).npc_pref_values ?? {})[String(((s as any).locArgs?.[1] ?? 0))] = (((s as any).temp_nsprefVars ?? 0)?.['value']);
         // TODO-QSP: "
-        // TODO-QSP: $npc_preferences[$ARGS[0]] = $replace($temp_nsprefVars['pref_string'], '  ', '')
+        ((s as any).npc_preferences = (s as any).npc_preferences ?? {})[((s as any).locArgs?.[0] ?? 0)] = (String((((s as any).temp_nsprefVars ?? 0)?.['pref_string'])).split('  ').join(''));
       } else {
         if (((s as any).temp_nsprefVars ?? 0)?.['index'] >= 0) {
-          // TODO-QSP: npc_nsp_pref_values[$ARGS[1]] = temp_nsprefVars['value']
+          ((s as any).npc_nsp_pref_values = (s as any).npc_nsp_pref_values ?? {})[((s as any).locArgs?.[1] ?? 0)] = (((s as any).temp_nsprefVars ?? 0)?.['value']);
           { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[0] ?? 0)]; enterRebuildPreferences(s, scene); (s as any).locArgs = __savedLocArgs; }
         } else {
           // TODO-QSP: $temp_nsprefVars['pref_string'] = "$npc_pref_traits[] = '<<$ARGS[1]>>'
           ((s as any).npc_pref_values = (s as any).npc_pref_values ?? {})[String(((s as any).locArgs?.[1] ?? 0))] = (((s as any).temp_nsprefVars ?? 0)?.['value']);
           // TODO-QSP: "
-          // TODO-QSP: $npc_preferences[$ARGS[0]] += $replace($temp_nsprefVars['pref_string'], '  ', '')
+          ((s as any).npc_preferences = (s as any).npc_preferences ?? {})[((s as any).locArgs?.[0] ?? 0)] = ((s as any).npc_preferences[((s as any).locArgs?.[0] ?? 0)] ?? 0) + ((String((((s as any).temp_nsprefVars ?? 0)?.['pref_string'])).split('  ').join('')));
         }
       }
     } else {
       if (((s as any).temp_nsprefVars ?? 0)?.['index'] >= 0) {
+        (s as any).npc_nsp_pref_traits = undefined;
         qspCall(s, 'array', 'remove_element', 'npc_nsp_pref_values', ((s as any).locArgs?.[1] ?? 0));
         { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[0] ?? 0)]; enterRebuildPreferences(s, scene); (s as any).locArgs = __savedLocArgs; }
       }
     }
+    (s as any).npc_nsp_pref_traits = undefined;
+    (s as any).npc_nsp_pref_values = undefined;
+    (s as any).temp_nsprefVars = undefined;
   }
   scene.build();
 }
 
 function enterRebuildPreferences(s: GameState, scene: SceneBuilder): void {
   ((s as any).temp_nsprefVars = (s as any).temp_nsprefVars ?? {})['pref_string'] = qspUntranslated(s, "\"killvar 'npc_pref_traits'", { location: "npc_set_preference" });
+  (s as any).npc_pref_values = undefined;
   // TODO-QSP: "
   ((s as any).temp_nsprefVars = (s as any).temp_nsprefVars ?? {})['i'] = 0;
   ((s as any).temp_nsprefVars = (s as any).temp_nsprefVars ?? {})['max_i'] = 0;
-  // TODO-QSP: :rebuild_preferences_loop
-  ((s as any).temp_nsprefVars = (s as any).temp_nsprefVars ?? {})['trait'] = qspUntranslated(s, "npc_nsp_pref_traits[temp_nsprefVars['i']]", { location: "npc_set_preference" });
-  // TODO-QSP: $temp_nsprefVars['pref_string'] += "$npc_pref_traits[] = '<<$temp_nsprefVars['trait']>>'
-  // TODO-QSP: npc_pref_values['<<$temp_nsprefVars['trait']>>'] = <<npc_nsp_pref_values[temp_nsprefVars['i']]>>
-  // TODO-QSP: "
-  ((s as any).temp_nsprefVars = (s as any).temp_nsprefVars ?? {})['i'] = ((s as any).temp_nsprefVars['i'] ?? 0) + (1);
-  if (((s as any).temp_nsprefVars ?? 0)?.['i'] < ((s as any).temp_nsprefVars ?? 0)?.['max_i']) {
-    // TODO-QSP: jump 'rebuild_preferences_loop'
-  }
-  // TODO-QSP: $npc_preferences[$ARGS[1]] = $replace($temp_nsprefVars['pref_string'], '  ', '')
-  // TODO-QSP: end
+  do {
+    ((s as any).temp_nsprefVars = (s as any).temp_nsprefVars ?? {})['trait'] = qspUntranslated(s, "npc_nsp_pref_traits[temp_nsprefVars['i']]", { location: "npc_set_preference" });
+    // TODO-QSP: $temp_nsprefVars['pref_string'] += "$npc_pref_traits[] = '<<$temp_nsprefVars['trait']>>'
+    ((s as any).npc_pref_values = (s as any).npc_pref_values ?? {})[String((((s as any).temp_nsprefVars ?? 0)?.['trait']))] = qspUntranslated(s, "npc_nsp_pref_values[temp_nsprefVars['i']]", { location: "npc_set_preference" });
+    // TODO-QSP: "
+    ((s as any).temp_nsprefVars = (s as any).temp_nsprefVars ?? {})['i'] = ((s as any).temp_nsprefVars['i'] ?? 0) + (1);
+    ((s as any).npc_preferences = (s as any).npc_preferences ?? {})[((s as any).locArgs?.[1] ?? 0)] = (String((((s as any).temp_nsprefVars ?? 0)?.['pref_string'])).split('  ').join(''));
+    (s as any).temp_nsprefVars = undefined;
+  } while (((s as any).temp_nsprefVars ?? 0)?.['i'] < ((s as any).temp_nsprefVars ?? 0)?.['max_i']);
   scene.build();
 }
 
 function enterRemovePreference(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[2] ?? '') === '') {
-    // TODO-QSP: exit
+    return;
   }
   ((s as any).temp_nsprefVars = (s as any).temp_nsprefVars ?? {})['index'] = qspUntranslated(s, "arrpos('npc_nsp_pref_traits', ARGS[2])", { location: "npc_set_preference" });
   if (((s as any).temp_nsprefVars ?? 0)?.['index'] >= 0) {
+    (s as any).npc_nsp_pref_traits = undefined;
     qspCall(s, 'array', 'remove_element', 'npc_nsp_pref_values', ((s as any).locArgs?.[2] ?? 0));
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0)]; enterRebuildPreferences(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
-  // TODO-QSP: end
+  (s as any).temp_nsprefVars = undefined;
   scene.build();
 }
 
@@ -195,25 +199,29 @@ function enterGetValue(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
+  (s as any).temp_pref_values = undefined;
   scene.build();
 }
 
 function enterBackup(s: GameState, scene: SceneBuilder): void {
   if (Object.keys((s as any).npc_pref_traits ?? {}).length > 0) {
-    // TODO-QSP: copyarr('$npc_backup_traits', '$npc_pref_traits')
-    // TODO-QSP: copyarr('npc_backup_values', 'npc_pref_values')
+    (s as any).npc_backup_traits = undefined;
+    (s as any).npc_backup_values = undefined;
+    (s as any)[npc_pref_traits] ? (s as any)[npc_pref_traits] = { ...(s as any)[npc_backup_traits] } : (s as any)[npc_pref_traits] = { ...(s as any)[npc_backup_traits] };
+    (s as any)[npc_pref_values] ? (s as any)[npc_pref_values] = { ...(s as any)[npc_backup_values] } : (s as any)[npc_pref_values] = { ...(s as any)[npc_backup_values] };
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterRestore(s: GameState, scene: SceneBuilder): void {
   if (Object.keys((s as any).npc_backup_traits ?? {}).length > 0) {
-    // TODO-QSP: copyarr('$npc_pref_traits', '$npc_backup_traits')
-    // TODO-QSP: copyarr('npc_pref_values', 'npc_backup_values')
+    (s as any).npc_pref_traits = undefined;
+    (s as any).npc_pref_values = undefined;
+    (s as any)[npc_backup_traits] ? (s as any)[npc_backup_traits] = { ...(s as any)[npc_pref_traits] } : (s as any)[npc_backup_traits] = { ...(s as any)[npc_pref_traits] };
+    (s as any)[npc_backup_values] ? (s as any)[npc_backup_values] = { ...(s as any)[npc_pref_values] } : (s as any)[npc_backup_values] = { ...(s as any)[npc_pref_values] };
+    (s as any).npc_backup_traits = undefined;
+    (s as any).npc_backup_values = undefined;
   }
-  // TODO-QSP: end
   scene.build();
 }
 

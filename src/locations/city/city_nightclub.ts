@@ -18,8 +18,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Nightclub</b></center>');
   scene.img('images/locations/city/citycenter/nightclub/club.jpg');
   scene.text('The entrance area of the club is full of younger looking people. The entrance itself is watched over by a very large man wearing a shirt that says \'Security\'. He\'s checking everyone and ensuring that they pay to enter.');
-  // TODO-QSP: dynamic text: 'The entry fee is ' + $func('money', 'string_price', 250) + '.'
-  scene.text('The entry fee is 250₽.');
+  scene.text('\'The entry fee is 250₽.\'');
   if (((s as any).clubwork ?? 0) === 1) {
     scene.actions([
       { label: 'Meet Erik for work', handler: (st: GameState) => {
@@ -68,7 +67,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return to the city center', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -129,13 +127,14 @@ function enterInside(s: GameState, scene: SceneBuilder): void {
   (s as any).menu_loc = 'city_nightclub';
   (s as any).menu_arg = 'inside';
   (s as any).location_type = 'public_indoors';
+  (s as any).locclass = undefined;
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   (s as any).frost = 0;
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'indoors');
   scene.text('<center><b>Night club</b></center>');
   scene.img('images/locations/city/citycenter/nightclub/club9.jpg');
-  scene.text('The nightclub is huge. The first floor consists of the dance floor surrounding the main bar. Along the upper level walkway are some <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027city_nightclub/u0027, /u0027private_rooms/u0027); return false;">private booths</a> and some smaller bars.');
+  scene.text('The nightclub is huge. The first floor consists of the dance floor surrounding the main bar. Along the upper level walkway are some <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027city_nightclub\u0027, \u0027private_rooms\u0027); return false;">private booths</a> and some smaller bars.');
   scene.text('The music is loud and the bass is thumping. You see a laser show going on over at the stage, while on the poorly-lit dance floor, people are dancing like there\'s no tomorrow.');
   if (((s as any).hour ?? 0) >= 18  &&  ((s as any).pcs_hotcat ?? 0) >= 6  &&  ((s as any).clubwork ?? 0) === 0  &&  ((s as any).clubno ?? 0) === 0  &&  (!(Math.floor(Math.random() * 11) + 0))) {
     scene.img('images/locations/city/citycenter/nightclub/club11.jpg');
@@ -144,10 +143,8 @@ function enterInside(s: GameState, scene: SceneBuilder): void {
     scene.actions([
 { label: 'Hear him out', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/nightclub/club11.jpg');
-    // TODO-QSP: dynamic text: '"The club opens at '+func('time', 'get_time_string', 18, 0)+'. You can work for...
-    scene.text('"The club opens at 18:00. You can work for an hour at a time, up to 1:00. The jobs will vary, according to time and demand. It includes finding customers to bring to the club, promoting drinks, and some dancing."');
-    // TODO-QSP: dynamic text: '"Your pay will depend on results: get more people in and get them buying up the...
-    scene.text('"Your pay will depend on results: get more people in and get them buying up the promotional drinks, or if you dance well, and you\'ll get \' + $func(\'money\', \'string_profit\', 200) + \'. Do worse, you get less. Do very well, you get a bonus. When you finish, you can stay in the club, so you get free entry as well."');
+    scene.text('\'"The club opens at 18:00. You can work for an hour at a time, up to 1:00. The jobs will vary, according to time and demand. It includes finding customers to bring to the club, promoting drinks, and some dancing."\'');
+    scene.text('\'"Your pay will depend on results: get more people in and get them buying up the promotional drinks, or if you dance well, and you\'ll get \' + $func(\'money\', \'string_profit\', 200) + \'. Do worse, you get less. Do very well, you get a bonus. When you finish, you can stay in the club, so you get free entry as well."\'');
     scene.text('"So, are you interested?"');
     scene.actions([
       { label: 'No', handler: (st: GameState) => {
@@ -157,7 +154,6 @@ function enterInside(s: GameState, scene: SceneBuilder): void {
     (st as any).clubwork = 1;
     scene.img('images/locations/city/citycenter/nightclub/club11.jpg');
     scene.text('You tell him that you\'re interested and he takes your details.');
-    // TODO-QSP: dynamic text: "Great… <<$pcs_nickname>>. You can find me here, and I''ll place your details on...
     scene.text(`"Great… ${((st as any).pcs_nickname ?? '')}. You can find me here, and I'll place your details on the door so you can get in, but you still have to do your makeup and dress for clubbing."`);
     scene.actions([
       { label: 'Return', goto: ['city_nightclub', 'inside'] },
@@ -185,7 +181,6 @@ function enterInside(s: GameState, scene: SceneBuilder): void {
     (st as any).clubno = 0;
     scene.img('images/locations/city/citycenter/nightclub/club11.jpg');
     scene.text('You tell him that you\'re interested and he takes your details.');
-    // TODO-QSP: dynamic text: "Great… <<$pcs_nickname>>. You can find me here, and I''ll place your details on...
     scene.text(`"Great… ${((st as any).pcs_nickname ?? '')}. You can find me here, and I'll place your details on the door so you can get in, but you still have to do your makeup and dress for clubbing."`);
     scene.actions([
       { label: 'Return', goto: ['city_nightclub', 'inside'] },
@@ -218,7 +213,6 @@ function enterInside(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the club', handler: (st: GameState) => {
     (st as any).drunk = 0;
@@ -242,7 +236,6 @@ function enterDance(s: GameState, scene: SceneBuilder): void {
     scene.text('It\'s getting late and the music stops. It looks like it might be time to go home.');
     return;
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the dance floor', goto: ['city_nightclub', 'inside'] },
     { label: 'Dance (0:15)', handler: (st: GameState) => {
@@ -264,7 +257,6 @@ function enterDance(s: GameState, scene: SceneBuilder): void {
         qspCall(st, 'arousal', 'foreplay', 1);
         qspCall(st, 'npcgeneratec', '0');
         qspCall(st, 'npcStat', '$npclastgenerated');
-        // TODO-QSP: dynamic text: As you''re dancing, you feel someone groping your ass. You turn around and see <...
         scene.text(`As you're dancing, you feel someone groping your ass. You turn around and see ${((st as any).npcheight_pref ?? '')}, ${((st as any).npcbuild ?? '')} guy with ${((st as any).npchair ?? '')} hair. He's wearing ${((st as any).npcClo ?? '')}.`);
         scene.actions([
           { label: 'Stop dancing', goto: ['city_nightclub', 'inside'] },
@@ -289,9 +281,8 @@ function enterDance(s: GameState, scene: SceneBuilder): void {
             scene.actions([
               { label: '"Let\'s go to a private-room for some fun."', handler: (st: GameState) => {
     (st as any).picrand = (Math.floor(Math.random() * 5) + 13);
-    // TODO-QSP: $sexloc = 'city_nightclub'
-    // TODO-QSP: xgt 'lezbsex', 'var'
-  } },
+    (st as any).sexloc = 'city_nightclub';
+  }, goto: ['lezbsex', 'var'] },
             ]);
           }
           scene.actions([
@@ -300,6 +291,7 @@ function enterDance(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
+    (st as any).clrand = undefined;
     scene.actions([
       { label: 'Go away', goto: ['city_nightclub', 'dance'] },
     ]);
@@ -337,7 +329,6 @@ function enterDance(s: GameState, scene: SceneBuilder): void {
     (st as any).alexeyClubSex = ((st as any).alexeyClubSex ?? 0) + (1);
     qspCall(st, 'stat', '');
     scene.img(`images/shared/sex/blowjob/bj${(Math.floor(Math.random() * 13) + 29)}.jpg`);
-    // TODO-QSP: dynamic text: You kneel down and wrap your <<$pc_desc[''lips'']>> lips around his cock before ...
     scene.text(`You kneel down and wrap your ${(((st as any).pc_desc ?? 0)?.['lips'] ?? '')} lips around his cock before you start sucking on it. Alexei helps by moving his hips back and forth; you notice his movement is in sync to the beat of the music he's playing. After a few minutes, he groans. "You better swallow it all. I don't want anyone to clean up our mess."`);
     qspCall(st, 'arousal', 'bj', 10, 'sub');
     qspCall(st, 'stat', '');
@@ -349,7 +340,6 @@ function enterDance(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'cum_call', 'mouth_swallow', ((st as any).boy ?? 0), 1);
     qspCall(st, 'stat', '');
     scene.img(`images/shared/sex/cum/mouth/cum${(Math.floor(Math.random() * 14) + 34)}.jpg`);
-    // TODO-QSP: dynamic text: Streams of cum hit you in the mouth and start running down your <<$pc_desc[''lip...
     scene.text(`Streams of cum hit you in the mouth and start running down your ${(((st as any).pc_desc ?? 0)?.['lips'] ?? '')} lips. Alexei wipes his dick on your mouth before putting it back in his pants.`);
     scene.text('You begin greedily swallowing his cum and using your finger to collect the drips that escaped your mouth before licking your finger clean. Once you\'ve swallowed every last drop, you stand up and leave.');
     qspCall(st, 'arousal', 'end');
@@ -386,7 +376,6 @@ function enterDanceGuy(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Kiss', handler: (st: GameState) => {
     scene.text('You\'re passionately kissing the guy, while he\'s continuously groping you, always dedicating one of his hands to either your tits or your ass.');
@@ -397,9 +386,8 @@ function enterDanceGuy(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Go to a private room with the guy', handler: (st: GameState) => {
     (st as any).picrand = 38;
-    // TODO-QSP: $sexloc = 'city_nightclub'
-    // TODO-QSP: xgt 'sex', 'var'
-  } },
+    (st as any).sexloc = 'city_nightclub';
+  }, goto: ['sex', 'var'] },
       ]);
     } else {
       scene.text('"Let\'s go to the toilet," he says with a smile.');
@@ -441,7 +429,6 @@ function enterDanceCouple(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go to a private room with them', handler: (st: GameState) => {
     qspCall(st, 'dinSex', 'std_trigger_oral');
@@ -522,13 +509,14 @@ function enterBar(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_apprnc ?? 0) > 56) {
     (s as any).barsexrand = (Math.floor(Math.random() * 11) + 0);
     if (((s as any).barsexrand ?? 0) === 1) {
-      // TODO-QSP: killvar 'barsexrand'
+      (s as any).barsexrand = undefined;
       qspGoto(s, 'city_nightclub', 'bar0');
     }
     if (((s as any).barsexrand ?? 0) === 2) {
-      // TODO-QSP: killvar 'barsexrand'
+      (s as any).barsexrand = undefined;
       qspGoto(s, 'city_nightclub', 'bar1');
     }
+    (s as any).barsexrand = undefined;
   }
   if (((s as any).alko ?? 0) >= 7) {
     (s as any).temp = (Math.floor(Math.random() * 101) + 0);
@@ -772,9 +760,9 @@ function enterBar(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
+    (s as any).temp = undefined;
     return;
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Order from the menu', handler: (st: GameState) => {
     qspCall(st, 'food_menu', '');
@@ -795,7 +783,6 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
   scene.text('You head to the men\'s toilet, where he drags you into one of the empty stalls. He starts to caress your breasts before helping you undress.');
   qspCall(s, 'arousal', 'foreplay', 5);
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Give him a blowjob', handler: (st: GameState) => {
     (st as any).guy = ((st as any).guy ?? 0) + (1);
@@ -891,7 +878,6 @@ function enterBar0(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/citycenter/nightclub/sex/bar0.jpg');
   scene.text('As you sit at the bar, a woman walks up and starts chatting with you.');
   scene.text('During the conversation, you get the feeling that she\'s flirting with you, but before you can react, her hands start wandering over your body.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Move away from her', goto: ['city_nightclub', 'bar'] },
     { label: 'Kiss her', handler: (st: GameState) => {
@@ -912,7 +898,6 @@ function enterBar1(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Bar</b></center>');
   scene.img('images/locations/city/citycenter/nightclub/sex/bar7.jpg');
   scene.text('As you sit at the bar, a man comes over and grabs your ass. "Why don\'t we have some fun together?" he asks. You can tell from the slur in his voice that he\'s had more than a few drinks tonight.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Turn him down', goto: ['city_nightclub', 'bar'] },
     { label: 'Take him to the restroom', goto: ['city_nightclub', 'sex'] },
@@ -925,7 +910,6 @@ function enterLezbsort(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>WC</b></center>');
   scene.img('images/locations/city/citycenter/nightclub/sex/lezbsort.jpg');
   scene.text('She follows you into the women\'s restroom and you lure her into one of the empty stalls.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Lick her', goto: ['city_nightclub', 'lezbsort1'] },
     { label: 'Tell her to lick you', goto: ['city_nightclub', 'lezbsort2'] },
@@ -946,7 +930,6 @@ function enterLezbsort1(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   qspCall(s, 'arousal', 'end');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['city_nightclubToilet', 'clubtoilet_women'] },
   ]);
@@ -967,7 +950,6 @@ function enterLezbsort2(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   qspCall(s, 'arousal', 'end');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['city_nightclubToilet', 'clubtoilet_women'] },
   ]);
@@ -979,7 +961,6 @@ function enterPrivateRooms(s: GameState, scene: SceneBuilder): void {
   scene.text('Upstairs overlooking the dance floor is a walkway which has a number of private booths where thick curtains can be used for privacy.');
   scene.text('Security guards are on watch, making sure that people who have paid for them won\'t be disturbed.');
   scene.text('There\'s also some smaller bars, some with their own dance floors, located up here.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the private booths', goto: ['city_nightclub', 'inside'] },
   ]);
@@ -997,7 +978,6 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
     (s as any).clubr = 0;
   }
   if ((!((s as any).clubr ?? 0))) {
-    // TODO-QSP: dynamic text: "Okay <<$pcs_nickname>>, I want you to go around the city center and find some c...
     scene.text(`"Okay ${((s as any).pcs_nickname ?? '')}, I want you to go around the city center and find some customers. Bring them to the door and give the bouncer a nod so he knows they're yours. See you in an hour."`);
     scene.actions([
       { label: 'Look for customers', handler: (st: GameState) => {
@@ -1009,17 +989,14 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/citycenter/nightclub/club11.jpg');
     if (((st as any).pcs_apprnc ?? 0) > (Math.floor(Math.random() * 41) + 80)) {
       qspCall(st, 'money', 'earn', 300);
-      // TODO-QSP: dynamic text: 'You exceeded Erik''s expectations and found a lot of customers. He pays you ' +...
-      scene.text('You exceeded Erik\'s expectations and found a lot of customers. He pays you \' + $func(\'money\', \'string_profit\', 300) + \'.');
+      scene.text('\'You exceeded Erik\'s expectations and found a lot of customers. He pays you \' + $func(\'money\', \'string_profit\', 300) + \'.\'');
     } else {
       if ((!(Math.floor(Math.random() * 2) + 0))) {
         qspCall(st, 'money', 'earn', 200);
-        // TODO-QSP: dynamic text: 'Erik seems fairly happy and pays you ' + $func('money', 'string_profit', 200) +...
-        scene.text('Erik seems fairly happy and pays you \' + $func(\'money\', \'string_profit\', 200) + \'.');
+        scene.text('Erik seems fairly happy and pays you ' + qspFunc(s, 'money', 'string_profit', 200) + '.');
       } else {
         qspCall(st, 'money', 'earn', 100);
-        // TODO-QSP: dynamic text: 'You hardly found anyone. Erik doesn''t seem happy, but he pays you ' + $func('m...
-        scene.text('You hardly found anyone. Erik doesn\'t seem happy, but he pays you \' + $func(\'money\', \'string_profit\', 100) + \' for your efforts.');
+        scene.text('\'You hardly found anyone. Erik doesn\'t seem happy, but he pays you \' + $func(\'money\', \'string_profit\', 100) + \' for your efforts.\'');
       }
     }
     if (((st as any).hour ?? 0) < 1  ||  ((st as any).hour ?? 0) >= 18) {
@@ -1036,7 +1013,6 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     if (((s as any).clubr ?? 0) === 1) {
-      // TODO-QSP: dynamic text: "Okay <<$pcs_nickname>>, I want you to go around the club getting people to try ...
       scene.text(`"Okay ${((s as any).pcs_nickname ?? '')}, I want you to go around the club getting people to try and hopefully switch to these drinks. You can't go wrong here, just smile and give out free drinks."`);
       scene.text('"No need to hold back since the suppliers are paying. I\'ll see you back here in an hour."');
       scene.actions([
@@ -1050,8 +1026,7 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'money', 'earn', 200);
     qspCall(st, 'stat', '');
     scene.img('images/locations/city/citycenter/nightclub/club11.jpg');
-    // TODO-QSP: dynamic text: 'You hand Erik the empty bottles and he gives you ' + $func('money', 'string_pro...
-    scene.text('You hand Erik the empty bottles and he gives you \' + $func(\'money\', \'string_profit\', 200) + \'.');
+    scene.text('You hand Erik the empty bottles and he gives you ' + qspFunc(s, 'money', 'string_profit', 200) + '.');
     if (((st as any).hour ?? 0) < 1  ||  ((st as any).hour ?? 0) >= 18) {
       scene.actions([
         { label: 'Get another job from Erik', goto: ['city_nightclub', 'work'] },
@@ -1078,13 +1053,11 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
     if (((st as any).pcs_danc ?? 0) > (Math.floor(Math.random() * 71) + 30)) {
       qspCall(st, 'money', 'earn', 300);
       scene.text('You put on a great show, getting a lot of attention and drawing people up to dance.');
-      // TODO-QSP: dynamic text: 'Erik is very happy and pays you ' + $func('money', 'string_profit', 300) + '.'
-      scene.text('Erik is very happy and pays you \' + $func(\'money\', \'string_profit\', 300) + \'.');
+      scene.text('Erik is very happy and pays you ' + qspFunc(s, 'money', 'string_profit', 300) + '.');
     } else {
       qspCall(st, 'money', 'earn', 200);
       scene.text('You try hard, but you\'re mostly ignored by the customers.');
-      // TODO-QSP: dynamic text: 'Erik thanks you for helping and pays you ' + $func('money', 'string_profit', 20...
-      scene.text('Erik thanks you for helping and pays you \' + $func(\'money\', \'string_profit\', 200) + \', but doesn\'t mention your dancing.');
+      scene.text('Erik thanks you for helping and pays you ' + qspFunc(s, 'money', 'string_profit', 200) + ', but doesn\'t mention your dancing.');
     }
     qspCall(st, 'stat', '');
     if (((st as any).hour ?? 0) < 1  ||  ((st as any).hour ?? 0) >= 18) {
@@ -1100,7 +1073,7 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
+  (s as any).clubr = undefined;
   scene.build();
 }
 

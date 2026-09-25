@@ -125,7 +125,6 @@ function enterSchedule(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -149,29 +148,27 @@ function enterWeeklyGradeUpdate(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'grades', 'assign_grade_description', 'school');
     } else {
       (s as any).i = 0;
-      // TODO-QSP: :grade_loop
-      // TODO-QSP: dynamic 'class[''school_<<$class_list_name[i]>>_weekly_grade_gain''] = 0'
-      (s as any).i = ((s as any).i ?? 0) + (1);
-      if (Object.keys((s as any).class_list_institution ?? {}).length > ((s as any).i ?? 0)) {
-        // TODO-QSP: jump 'grade_loop'
-      }
+      do {
+        // TODO-QSP: dynamic 'class[''school_<<$class_list_name[i]>>_weekly_grade_gain''] = 0'
+        (s as any).i = ((s as any).i ?? 0) + (1);
+      } while (Object.keys((s as any).class_list_institution ?? {}).length > ((s as any).i ?? 0));
     }
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterComputeStatDisplay(s: GameState, scene: SceneBuilder): void {
   if (((s as any).start_type ?? 0)?.['loc'] === 'sg'  &&  ((s as any).gschoolVars ?? 0)?.['block'] === 0  &&  ((s as any).gschoolVars ?? 0)?.['school_diploma'] === 0  &&  ((s as any).daystart ?? 0) < 513) {
-    // TODO-QSP: $sd_sched[1] = 'Math, Russian, Literature, Art, Biology and P.E.'
-    // TODO-QSP: $sd_sched[2] = 'English, Geography, Science, Shop, Computer and Music.'
-    // TODO-QSP: $sd_sched[3] = 'Math, Russian, Biology, History, Computer and P.E.'
-    // TODO-QSP: $sd_sched[4] = 'English, Geography, Science, Shop, Computer and Music.'
-    // TODO-QSP: $sd_sched[5] = 'Math, Russian, Literature, Art, History and P.E.'
+    ((s as any).sd_sched = (s as any).sd_sched ?? {})[1] = 'Math, Russian, Literature, Art, Biology and P.E.';
+    ((s as any).sd_sched = (s as any).sd_sched ?? {})[2] = 'English, Geography, Science, Shop, Computer and Music.';
+    ((s as any).sd_sched = (s as any).sd_sched ?? {})[3] = 'Math, Russian, Biology, History, Computer and P.E.';
+    ((s as any).sd_sched = (s as any).sd_sched ?? {})[4] = 'English, Geography, Science, Shop, Computer and Music.';
+    ((s as any).sd_sched = (s as any).sd_sched ?? {})[5] = 'Math, Russian, Literature, Art, History and P.E.';
     if (((s as any).week ?? 0) >= 1  &&  ((s as any).week ?? 0) <= 5) {
       ((s as any).stat_texts = (s as any).stat_texts ?? {})['school_schedule'] = ' You have the following lessons today: ' + (((s as any).sd_sched ?? 0)?.[String((s as any).week ?? 0)] ?? 0) + '';
     }
+    (s as any).sd_sched = undefined;
     if (((s as any).kanikuli ?? 0) === 0  &&  ((s as any).week ?? 0) < 6) {
       if (((s as any).hour ?? 0) < 9) {
         ((s as any).stat_texts = (s as any).stat_texts ?? {})['school'] = 'You have to be at school before ' + qspFunc(s, 'time', 'get_time_string', 7, 55) + ' if you don\'t want to be late.';
@@ -245,7 +242,6 @@ function enterComputeStatDisplay(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 

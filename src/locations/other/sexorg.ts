@@ -14,7 +14,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   (s as any).picrand = (Math.floor(Math.random() * 2) + 0);
   qspCall(s, 'stat', '');
   qspGoto(s, 'sexorg', 'var');
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -71,7 +70,6 @@ function enterVar(s: GameState, scene: SceneBuilder): void {
       { label: 'Let the guys finish.', goto: ['sexorg', 'end'] },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue the orgy', goto: ['sexorg', 'var'] },
   ]);
@@ -79,6 +77,8 @@ function enterVar(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterEnd(s: GameState, scene: SceneBuilder): void {
+  (s as any).sexvar = undefined;
+  (s as any).sexorgrand = undefined;
   (s as any).spafinloc = 12;
   qspCall(s, 'cum_manage', '');
   if (((s as any).pcs_horny ?? 0) >= 80) {
@@ -87,7 +87,6 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
   scene.img(`images/locations/city/citycenter/mall/bowling/sex/cum${((s as any).picrand ?? '')}.jpg`);
   scene.text('The guys put you and the other two girls on your knees in front of them and furiously stroke their dicks into your expectant mouths. You barely even taste the sperm, even though you catch a full spurt of it on your tongue - to you, it marks the end of a thrilling adventure. It\'s not every day that you have an orgy in a bowling center.');
   qspCall(s, 'arousal', 'end');
-  // TODO-QSP: end
   scene.actions([
     { label: 'That should about cover your debt - Leave', handler: (st: GameState) => {
     dynamicGoto(st, 'sexloc', 'start');

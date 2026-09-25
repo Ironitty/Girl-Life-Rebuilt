@@ -109,7 +109,6 @@ function enterCalc(s: GameState, scene: SceneBuilder): void {
   (s as any).will_arousal_mod = Math.max((-25), Math.min((((s as any).pcs_horny ?? 0) - 50) / 2 + ((s as any).will_fetish_mod ?? 0), 25)) + ((s as any).will_fetish_mod_pref ?? 0);
   (s as any).will_succubus_mod = ((s as any).succublvl ?? 0)*25;
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -118,43 +117,48 @@ function enterFetishes(s: GameState, scene: SceneBuilder): void {
   (s as any).will_fetish_mod_pref = 0;
   (s as any).temp_fetish_list = (String(((s as any).locArgs?.[1] ?? 0)).trim());
   if (((s as any).temp_fetish_list ?? 0) === '') {
+    (s as any).temp_fetish_list = undefined;
     return;
   }
   (s as any).will_fetish_count = 0;
-  // TODO-QSP: :jump_fetish_list
-  (s as any).temp_fetish_pos = ((String(((s as any).temp_fetish_list ?? 0)).indexOf(String(';'))) + 1);
-  if (((s as any).temp_fetish_pos ?? 0) > 0) {
-    (s as any).temp_fetish = (String((String(((s as any).temp_fetish_list ?? 0)).slice((1)-1, ((1)-1)+(((s as any).temp_fetish_pos ?? 0) - 1)))).trim());
-    (s as any).temp_fetish_list = (String((String(((s as any).temp_fetish_list ?? 0)).slice((((s as any).temp_fetish_pos ?? 0) + 1)-1))).trim());
-    if (((s as any).temp_fetish ?? 0) === 'creampie'  ||  ((s as any).temp_fetish ?? 0) === 'pregnant') {
-      // TODO-QSP: jump 'jump_fetish_list'
-    }
-    if ((Array.isArray((s as any).fetish_name) ? ((s as any).fetish_name as any[]).indexOf(((s as any).temp_fetish ?? 0)) : -1) >= 0) {
-      (s as any).will_fetish_mod = ((s as any).will_fetish_mod ?? 0) + (Math.max(0, qspFunc(s, 'fetish', 'get_exp', ((s as any).temp_fetish ?? 0)) - 25));
-      (s as any).will_fetish_mod_pref = ((s as any).will_fetish_mod_pref ?? 0) + (Math.max(0, qspFunc(s, 'fetish', 'get_pref', ((s as any).temp_fetish ?? 0)) - 25));
-      (s as any).will_fetish_count = ((s as any).will_fetish_count ?? 0) + (1);
-    }
-    // TODO-QSP: jump 'jump_fetish_list'
-  } else {
-    if (((s as any).temp_fetish_list ?? 0) !== '') {
-      (s as any).temp_fetish = ((s as any).temp_fetish_list ?? 0);
-      (s as any).temp_fetish_list = '';
+  while (true) {
+    (s as any).temp_fetish_pos = ((String(((s as any).temp_fetish_list ?? 0)).indexOf(String(';'))) + 1);
+    if (((s as any).temp_fetish_pos ?? 0) > 0) {
+      (s as any).temp_fetish = (String((String(((s as any).temp_fetish_list ?? 0)).slice((1)-1, ((1)-1)+(((s as any).temp_fetish_pos ?? 0) - 1)))).trim());
+      (s as any).temp_fetish_list = (String((String(((s as any).temp_fetish_list ?? 0)).slice((((s as any).temp_fetish_pos ?? 0) + 1)-1))).trim());
       if (((s as any).temp_fetish ?? 0) === 'creampie'  ||  ((s as any).temp_fetish ?? 0) === 'pregnant') {
-        (s as any).temp_fetish = 'none';
+        break;
       }
       if ((Array.isArray((s as any).fetish_name) ? ((s as any).fetish_name as any[]).indexOf(((s as any).temp_fetish ?? 0)) : -1) >= 0) {
         (s as any).will_fetish_mod = ((s as any).will_fetish_mod ?? 0) + (Math.max(0, qspFunc(s, 'fetish', 'get_exp', ((s as any).temp_fetish ?? 0)) - 25));
         (s as any).will_fetish_mod_pref = ((s as any).will_fetish_mod_pref ?? 0) + (Math.max(0, qspFunc(s, 'fetish', 'get_pref', ((s as any).temp_fetish ?? 0)) - 25));
         (s as any).will_fetish_count = ((s as any).will_fetish_count ?? 0) + (1);
       }
+      break;
+    } else {
+      if (((s as any).temp_fetish_list ?? 0) !== '') {
+        (s as any).temp_fetish = ((s as any).temp_fetish_list ?? 0);
+        (s as any).temp_fetish_list = '';
+        if (((s as any).temp_fetish ?? 0) === 'creampie'  ||  ((s as any).temp_fetish ?? 0) === 'pregnant') {
+          (s as any).temp_fetish = 'none';
+        }
+        if ((Array.isArray((s as any).fetish_name) ? ((s as any).fetish_name as any[]).indexOf(((s as any).temp_fetish ?? 0)) : -1) >= 0) {
+          (s as any).will_fetish_mod = ((s as any).will_fetish_mod ?? 0) + (Math.max(0, qspFunc(s, 'fetish', 'get_exp', ((s as any).temp_fetish ?? 0)) - 25));
+          (s as any).will_fetish_mod_pref = ((s as any).will_fetish_mod_pref ?? 0) + (Math.max(0, qspFunc(s, 'fetish', 'get_pref', ((s as any).temp_fetish ?? 0)) - 25));
+          (s as any).will_fetish_count = ((s as any).will_fetish_count ?? 0) + (1);
+        }
+      }
     }
+    if (((s as any).will_fetish_count ?? 0) > 1) {
+      (s as any).will_fetish_mod = ((s as any).will_fetish_mod ?? 0) / ((s as any).will_fetish_count ?? 0);
+      (s as any).will_fetish_mod_pref = ((s as any).will_fetish_mod_pref ?? 0) / ((s as any).will_fetish_count ?? 0);
+    }
+    (s as any).temp_fetish = undefined;
+    (s as any).temp_fetish_pos = undefined;
+    (s as any).will_fetish_count = undefined;
+    (s as any).temp_fetish_list = undefined;
+    return;
   }
-  if (((s as any).will_fetish_count ?? 0) > 1) {
-    (s as any).will_fetish_mod = ((s as any).will_fetish_mod ?? 0) / ((s as any).will_fetish_count ?? 0);
-    (s as any).will_fetish_mod_pref = ((s as any).will_fetish_mod_pref ?? 0) / ((s as any).will_fetish_count ?? 0);
-  }
-  return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -194,7 +198,6 @@ function enterDifficulty(s: GameState, scene: SceneBuilder): void {
     (s as any).will_cost = qspFunc(s, '_difficulty', 'get_multiplied', (((s as any).cheatVars ?? 0)?.['wp_cost_opt']), ((s as any).will_cost ?? 0), (((s as any).cheatVars ?? 0)?.['wp_cost_mult']));
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -228,7 +231,6 @@ function enterPay(s: GameState, scene: SceneBuilder): void {
     (s as any).willpowermax = ((s as any).willpowermax ?? 0) + (1);
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -237,7 +239,7 @@ function enterGetWillcostString(s: GameState, scene: SceneBuilder): void {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).will_cost ?? 0);
   }
   if (String((s as any).locArgs?.[1] ?? '') <= 0) {
-    // TODO-QSP: exit
+    return;
   }
   if (Object.keys((s as any).ARGS ?? {}).length === 2) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((s as any).pcs_willpwr ?? 0);
@@ -260,7 +262,6 @@ function enterGetWillcostString(s: GameState, scene: SceneBuilder): void {
     (s as any).result = ' (' + ((s as any).result ?? 0) + ' Willpower)';
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 

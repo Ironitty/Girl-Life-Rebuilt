@@ -12,7 +12,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(s, '$attributes_' + ((s as any).locArgs?.[0] ?? 0) + '', '', ((s as any).locArgs?.[1] ?? 0));
   }
   if (((s as any).BraQuality ?? 0) === 0  &&  (!((s as any).PanQuality ?? 0))) {
-    // TODO-QSP: exit
+    return;
   }
   (s as any).PanMaxStrength = ((s as any).PanStrength ?? 0);
   (s as any).BraMaxStrength = ((s as any).BraStrength ?? 0);

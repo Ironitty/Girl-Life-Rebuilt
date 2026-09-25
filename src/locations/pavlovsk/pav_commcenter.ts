@@ -11,7 +11,6 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'family_schedule', '');
   qspCall(s, 'stat', '');
   scene.text('<center><b>Community Center</b></center>');
-  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/community/' + iif(Day...
   scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/community/` + ((((s as any).DayStage ?? 0) < 4) ? ('dk.jpg') : ('dk_night.jpg')) + '"></center>');
   if (((s as any).hour ?? 0) === 19  &&  ((s as any).minut ?? 0) >= 40  &&  ((s as any).week ?? 0) >= 5  &&  ((s as any).week ?? 0) < 7) {
     scene.actions([
@@ -29,8 +28,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).hour ?? 0) >= 20  &&  ((s as any).hour ?? 0) <= 23  &&  ((s as any).week ?? 0) >= 5  &&  ((s as any).week ?? 0) < 7) {
       scene.text('The entrance to the community center is full of young people. The guys are hanging around smoking and joking while the girls are in small groups, all dressed up and gossiping. You see the bushes moving - Pavlovsk\'s famous make out garden.');
-      // TODO-QSP: dynamic text: You hear people in the alley beside the club. <a href="exec:minut += 5 & gt ''pa...
-      scene.text('You hear people in the alley beside the club. <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(/u0027pav_commcenter/u0027, /u0027alley/u0027); return false;">Investigate</a>.');
+      scene.text('You hear people in the alley beside the club. <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(\u0027pav_commcenter\u0027, \u0027alley\u0027); return false;">Investigate</a>.');
       if (((s as any).gdkincum ?? 0) === ((s as any).daystart ?? 0)  &&  (((s as any).cumloc ?? 0)[6] === 0  &&  ((s as any).cumloc ?? 0)[7] === 0)  &&  ((s as any).cumloc ?? 0)[11] === 0) {
         (s as any).gdkincum = 0;
       }
@@ -48,8 +46,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   }, goto: ['pav_disco', ''] },
             ]);
           } else {
-            // TODO-QSP: dynamic text: 'The dance is on, but you don''t have the ' + $func('money', 'string_price', 25)...
-            scene.text('The dance is on, but you don\'t have the 25₽ needed to pay the entrance fee.');
+            scene.text('\'The dance is on, but you don\'t have the 25₽ needed to pay the entrance fee.\'');
           }
         }
       } else {
@@ -67,14 +64,10 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       }
     } else {
       scene.text('The community center has sports facilities and offers classes in the evening.');
-      // TODO-QSP: dynamic text: 'It houses a small library which is open from ' + func('time', 'get_time_string'...
-      scene.text('It houses a small library which is open from 8:00 until 18:00.');
-      // TODO-QSP: dynamic text: 'Upstairs, there are some hobby clubs available from ' + func('time', 'get_time_...
-      scene.text('Upstairs, there are some hobby clubs available from 12:00 until 20:00.');
-      // TODO-QSP: dynamic text: 'The sports section is open from ' + func('time', 'get_time_string', 14, 0) + ' ...
-      scene.text('The sports section is open from 14:00 until 20:00 during the week and from 9:00 until 20:00 during the weekend.');
-      // TODO-QSP: dynamic text: 'On Friday and Saturday evenings, from ' + func('time', 'get_time_string', 20, 0...
-      scene.text('On Friday and Saturday evenings, from 20:00 to midnight, the main hall is used as a club with popular music and dancing. Entry fee is 25₽.');
+      scene.text('\'It houses a small library which is open from 8:00 until 18:00.\'');
+      scene.text('\'Upstairs, there are some hobby clubs available from 12:00 until 20:00.\'');
+      scene.text('\'The sports section is open from 14:00 until 20:00 during the week and from 9:00 until 20:00 during the weekend.\'');
+      scene.text('\'On Friday and Saturday evenings, from 20:00 to midnight, the main hall is used as a club with popular music and dancing. Entry fee is 25₽.\'');
     }
   }
   if ((((s as any).daystart ?? 0) % 365) !== 1) {
@@ -128,10 +121,9 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'pushkin_ballet_res', 'check_start_evt');
   if (((s as any).locat ?? 0)?.['Anya'] === 10) {
-    scene.text('Your sister <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027sister/u0027, /u0027pav_commcenter/u0027); return false;">Anya</a> is sitting with a group of boys and girls, drinking beer.');
+    scene.text('Your sister <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027sister\u0027, \u0027pav_commcenter\u0027); return false;">Anya</a> is sitting with a group of boys and girls, drinking beer.');
   }
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 2;
@@ -150,7 +142,6 @@ function enterAlley(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/community/piss.jpg');
   scene.text('The alley is a quiet place that young people often use instead of the toilet.');
   scene.text('Some girls are currently using it for such a purpose.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['pav_commcenter', ''] },
   ]);

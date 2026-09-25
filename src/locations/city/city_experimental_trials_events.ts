@@ -10,16 +10,14 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterCheckForEvents(s: GameState, scene: SceneBuilder): void {
   if (((s as any).experimentQW ?? 0)?.['trial_active'] !== ''  &&  ((s as any).experimentQW ?? 0)?.['trial_duration'] > 0  &&  ((s as any).daystart ?? 0) > ((s as any).experimentQW ?? 0)?.['event_day']) {
-    // TODO-QSP: $sleep_events_priority[] = "gs 'city_experimental_trials_events', 'set_experimental_trials_event'"
+    (s as any).sleep_events_priority = [...((s as any).sleep_events_priority ?? []), 'gs \'city_experimental_trials_events\', \'set_experimental_trials_event\''];
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterSetExperimentalTrialsEvent(s: GameState, scene: SceneBuilder): void {
   qspGoto(s, 'city_experimental_trials_events', '');
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -35,7 +33,6 @@ function enterNewspaperAd(s: GameState, scene: SceneBuilder): void {
     ((s as any).experimentQW = (s as any).experimentQW ?? {})['discovered'] = 1;
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -51,9 +48,8 @@ function enterComputerAd(s: GameState, scene: SceneBuilder): void {
     ((s as any).experimentQW = (s as any).experimentQW ?? {})['discovered'] = 1;
   }
   return;
-  // TODO-QSP: end
   if (String((s as any).locArgs?.[0] ?? '') !== '') {
-    // TODO-QSP: exit
+    return;
   }
   if (((s as any).experimentQW ?? 0)?.['trial_active'] === 'pill_cyan') {
     if (((s as any).experimentQW ?? 0)?.['random_option'] === 0) {
@@ -95,6 +91,7 @@ function enterComputerAd(s: GameState, scene: SceneBuilder): void {
             }
           }
         }
+        (s as any).temp_rand = undefined;
       }
       if (((s as any).experimentQW ?? 0)?.['random_option'] === 1) {
         if (((s as any).stren_lvl ?? 0) > 11) {
@@ -171,6 +168,7 @@ function enterComputerAd(s: GameState, scene: SceneBuilder): void {
               }
             }
           }
+          (s as any).temp_rand = undefined;
         }
         if (((s as any).experimentQW ?? 0)?.['random_option'] === 1) {
           if (((s as any).intel_lvl ?? 0) > 11) {
@@ -246,6 +244,7 @@ function enterComputerAd(s: GameState, scene: SceneBuilder): void {
                 }
               }
             }
+            (s as any).temp_rand = undefined;
           }
           if (((s as any).experimentQW ?? 0)?.['random_option'] === 1) {
             (s as any).pcs_skin = ((s as any).pcs_skin ?? 0) - (50);
@@ -417,6 +416,7 @@ function enterComputerAd(s: GameState, scene: SceneBuilder): void {
                         (s as any).willpowermax = ((s as any).willpowermax ?? 0) - (((s as any).temp_will_loss ?? 0));
                         (s as any).pcs_willpwr = ((s as any).pcs_willpwr ?? 0) - (((s as any).temp_will_loss ?? 0));
                         (s as any).will_counter = 0;
+                        (s as any).temp_will_loss = undefined;
                         scene.text('You feel your mental energy drain and you permanently lose some willpower.');
                       }
                     } else {
@@ -429,6 +429,7 @@ function enterComputerAd(s: GameState, scene: SceneBuilder): void {
                           (s as any).willpowermax = ((s as any).willpowermax ?? 0) - (((s as any).temp_will_loss ?? 0));
                           (s as any).pcs_willpwr = ((s as any).pcs_willpwr ?? 0) - (((s as any).temp_will_loss ?? 0));
                           (s as any).will_counter = 0;
+                          (s as any).temp_will_loss = undefined;
                           scene.text('You feel your mental energy drain and you permanently lose some willpower.');
                         }
                       }
@@ -583,6 +584,7 @@ function enterComputerAd(s: GameState, scene: SceneBuilder): void {
   if (((s as any).experimentQW ?? 0)?.['trial_duration'] <= 0) {
     ((s as any).experimentQW = (s as any).experimentQW ?? {})['trial_duration'] = 0;
     ((s as any).experimentQW = (s as any).experimentQW ?? {})['random_option'] = 0;
+    alert('You should visit the clinical trial desk at the city clinic and report your experiences.');
   }
   qspCall(s, 'stat', '');
   scene.actions([

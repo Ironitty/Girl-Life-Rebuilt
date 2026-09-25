@@ -14,7 +14,6 @@ function enterPos2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/residential/bum.jpg');
   scene.text('You see a hungover homeless man. He looks at you and you give him an angry stare in return.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['city_residential', ''] },
   ]);
@@ -28,7 +27,6 @@ function enterPos3(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/residential/bum.jpg');
   scene.text('You\'re standing in front of a hungover homeless man.');
   scene.text('"Is that you, young lady? Don\'t be scared…" he says with a predatory smile.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Ask what he wants', goto: ['city_trashplaceevents', 'pos4'] },
     { label: 'Leave', goto: ['city_residential', ''] },
@@ -44,7 +42,6 @@ function enterPos4(s: GameState, scene: SceneBuilder): void {
   scene.text('"Nothing…" he mumbles at first before looking at you. "You know that today is a holiday right? It\'s traditional to help those less fortunate on holidays…"');
   scene.text('"In short, you want money," you reply while rolling your eyes.');
   scene.text('"Yeah."');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Give him money', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 20, 'cash') === 0) {
@@ -72,7 +69,6 @@ function enterPos5(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('"Oh, that\'s so touching! Nobody ever helps me! May I kiss your hand in thanks?"');
   scene.text('He looks at you with pleading eyes.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Yes', goto: ['city_trashplaceevents', 'pos7'] },
     { label: 'No', goto: ['city_residential', ''] },
@@ -87,7 +83,6 @@ function enterPos6(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/residential/bum.jpg');
   scene.text('"Wow, you\'re so generous! So much booze… Uh, I mean, now I can buy some food for myself…" he mumbles before quickly walking away.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['city_residential', ''] },
   ]);
@@ -99,7 +94,6 @@ function enterPos7(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/residential/bum_kiss.jpg');
   scene.text('The bum, gently and in disbelief, pulls your hand up to his lips and kisses it. He\'s quite charming and closes his eyes in pleasure.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Further', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
@@ -120,9 +114,7 @@ function enterPos8(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/residential/bum.jpg');
   scene.text('"How do I say this?" he asks. "I, uh, gathered some money and spent some of it on drink, but nothing on food. I\'ve been watching you and appreciate your beauty."');
   scene.text('"What are you getting at?" you interrupt.');
-  // TODO-QSP: dynamic text: "Nothing like that!" he stammers. "I just wanted to offer you money in exchange ...
   scene.text(`"Nothing like that!" he stammers. "I just wanted to offer you money in exchange for your beauty. You show me something, and I just look. I'll give you everything that I gathered during the week. As much as ${qspFunc(s, 'money', 'string_profit', 50)}!"`);
-  // TODO-QSP: end
   scene.actions([
     { label: 'Agree', handler: (st: GameState) => {
     (st as any).bomjqw = 1;
@@ -154,7 +146,6 @@ function enterPos9(s: GameState, scene: SceneBuilder): void {
   scene.text('The girl introduces herself as Olga and states that she works to help the homeless of the city.');
   scene.text('"I certainly never thought that I would actually do it!" she says.  "I was sent here by the court as a punishment for an offense, although I guess helping these bums helps my karma. If you\'re interested in helping out, then we could use people here."');
   scene.text('She hands you a business card that has "Mercy Clinic" written on it. The address indicates that it\'s located in the city\'s industrial region.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['city_residential', ''] },
   ]);
@@ -167,9 +158,7 @@ function enterPos10(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/residential/bum.jpg');
   scene.text('"How do I say this?" he asks. "I, uh, gathered some money and spent some of it on drink, but nothing on food. I\'ve been watching you and appreciate your beauty."');
   scene.text('"What are you getting at?" you interrupt.');
-  // TODO-QSP: dynamic text: "Nothing like that!" he stammers. "I just wanted to offer you money in exchange ...
   scene.text(`"Nothing like that!" he stammers. "I just wanted to offer you money in exchange for your beauty. You show me something, and I just look. I'll give you everything that I gathered during the week. As much as ${qspFunc(s, 'money', 'string_profit', 50)}!"`);
-  // TODO-QSP: end
   scene.actions([
     { label: 'Agree', handler: (st: GameState) => {
     qspCall(st, 'money', 'earn', 50);
@@ -184,7 +173,6 @@ function enterPos10(s: GameState, scene: SceneBuilder): void {
     if (((st as any).bomjqw ?? 0) > 0) {
       scene.text('"Thank you very much once again," he starts. "But if you agree to one more service?"');
       scene.text('"What?" you ask suspiciously.');
-      // TODO-QSP: dynamic text: "Could you help an old man with your lovely mouth? I''ll pay <<$func(''money'', ...
       scene.text(`"Could you help an old man with your lovely mouth? I'll pay ${qspFunc(s, 'money', 'string_profit', 150)}!"`);
       if (((st as any).pcs_horny ?? 0) < 50) {
         scene.actions([
@@ -206,7 +194,6 @@ function enterPos10(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'money', 'earn', 300);
     (st as any).bomjshet = ((st as any).bomjshet ?? 0) + (1);
     qspCall(st, 'cum_call', 'butt', 'hobo');
-    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/city/residential/street/sex/ol...
     scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/city/residential/street/sex/old1,` + (Math.floor(Math.random() * 3) + 0) + '.jpg"></center>');
     scene.text('This isn\'t your first time dealing with such people and you\'ve already learned to overcome any aversion, so you decide to give him something a little better than just a blowjob.');
     scene.text('You take off your panties and throw them at him. A smile appears on his face and after throwing off his pants, the old man moves towards you.');
@@ -224,7 +211,6 @@ function enterPos10(s: GameState, scene: SceneBuilder): void {
           { label: 'Get on your knees', handler: (st: GameState) => {
     (st as any).bomjshet = ((st as any).bomjshet ?? 0) + (1);
     qspCall(st, 'stat', '');
-    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/city/residential/street/sex/ol...
     scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/city/residential/street/sex/old0,` + (Math.floor(Math.random() * 4) + 0) + '.jpg"></center>');
     scene.text('"This is so disgusting…" you think to yourself, but you need the money.');
     scene.text('You get down on your knees in front of him. Amazed by his luck, he leisurely pulls out his filthy cock, which looks and smells like it hasn\'t been washed in months.');
@@ -239,7 +225,6 @@ function enterPos10(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
     qspCall(st, 'money', 'earn', 150);
     qspCall(st, 'cum_call', 'mouth_swallow', 'hobo');
-    // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/shared/sex/cum/mouth/cum...
     scene.text(`<center><video autoplay loop ${((st as any).set_imgh ?? '')} src="images/shared/sex/cum/mouth/cum1,` + (Math.floor(Math.random() * 11) + 0) + '.mp4"></video></center>');
     scene.text('A few seconds later, your mouth fills with nasty tasting cum that you force yourself to quickly swallow. You take your money and quickly leave before someone sees you.');
     qspCall(st, 'arousal', 'bj', 3, 'prostitution');
@@ -252,7 +237,6 @@ function enterPos10(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
     qspCall(st, 'money', 'earn', 150);
     qspCall(st, 'cum_call', 'face', 'hobo');
-    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/shared/sex/public/cum0,'+rand(0, 3)+'.jp...
     scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/shared/sex/public/cum0,` + (Math.floor(Math.random() * 4) + 0) + '.jpg"></center>');
     scene.text('A few seconds later, your face is covered in nasty smelling cum. You take your money and quickly leave before someone sees you.');
     qspCall(st, 'arousal', 'end');

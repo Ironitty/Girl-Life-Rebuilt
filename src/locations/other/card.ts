@@ -7,13 +7,18 @@ import type { SceneBuilder } from '../../core/scene';
 function enter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/pc/items/accessories/cards/porndeck.jpg');
-  // TODO-QSP: dynamic text: 'You pull your deck of cards out and spread them around ' + iif($card_loc = 'gad...
   scene.text('You pull your deck of cards out and spread them around ' + ((((s as any).card_loc ?? 0) === 'gad_gpbarn') ? ('an old desk in the barn') : ('your desk')) + ' to look at them.');
   if ((!((s as any).card_deck ?? 0))) {
     scene.actions([
       { label: 'Throw away your deck of vintage porn cards', handler: (st: GameState) => {
     ((st as any).mc_inventory = (st as any).mc_inventory ?? {})['vintage_card'] = 0;
     (st as any).vcard_trash = 1;
+    (st as any).card_loc = undefined;
+    (st as any).papkacard = undefined;
+    (st as any).papkarand = undefined;
+    (st as any).numcard = undefined;
+    (st as any).nomcard = undefined;
+    (st as any).card_deck = undefined;
     dynamicGoto(st, 'prevLoc');
   } },
     ]);
@@ -22,6 +27,12 @@ function enter(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Throw away your deck of new porn cards', handler: (st: GameState) => {
     ((st as any).mc_inventory = (st as any).mc_inventory ?? {})['card'] = 0;
+    (st as any).card_loc = undefined;
+    (st as any).papkacard = undefined;
+    (st as any).papkarand = undefined;
+    (st as any).numcard = undefined;
+    (st as any).nomcard = undefined;
+    (st as any).card_deck = undefined;
     dynamicGoto(st, 'prevLoc');
   } },
       ]);
@@ -29,6 +40,12 @@ function enter(s: GameState, scene: SceneBuilder): void {
   }
   scene.actions([
     { label: 'Put the cards away', handler: (st: GameState) => {
+    (st as any).card_loc = undefined;
+    (st as any).papkacard = undefined;
+    (st as any).papkarand = undefined;
+    (st as any).numcard = undefined;
+    (st as any).nomcard = undefined;
+    (st as any).card_deck = undefined;
     dynamicGoto(st, 'prevLoc');
   } },
     { label: 'Pull a card from the deck', handler: (st: GameState) => {
@@ -77,7 +94,6 @@ function enter(s: GameState, scene: SceneBuilder): void {
         scene.img(`images/pc/items/accessories/cards/card2/${((st as any).papkacard ?? '')}/${((st as any).papkacard ?? '')}${((st as any).numcard ?? '')}.jpg`);
       }
     }
-    // TODO-QSP: dynamic text: Denomination card <<nomcard>>
     scene.text(`Denomination card ${((st as any).nomcard ?? '')}`);
     scene.actions([
       { label: 'Put the card back into the deck', goto: ['card', ''] },

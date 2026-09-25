@@ -223,7 +223,6 @@ function enterNerdvanaSwimsuit(s: GameState, scene: SceneBuilder): void {
 
 function enterNerdvanaBikinis(s: GameState, scene: SceneBuilder): void {
   (s as any).RESULT = 'Nerdvana bikini number ' + ((s as any).locArgs?.[1] ?? 0) + '.';
-  // TODO-QSP: end
   scene.build();
 }
 

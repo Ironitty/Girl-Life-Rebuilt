@@ -25,7 +25,6 @@ function enterOs1(s: GameState, scene: SceneBuilder): void {
       { label: 'Agree', goto: ['dibodi', 'bodiart'] },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Decline', handler: (st: GameState) => {
     (st as any).bodimodel1 = 1;
@@ -49,7 +48,6 @@ function enterBodiart(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('Galina chats about a variety of things, using her hands to gesture often. However after a few minutes, she tells you, "Our place is in the Old Town. You can come visit anytime. It was nice meeting you, but I need to get back to work."');
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['ugol', ''] },
   ]);
@@ -78,7 +76,6 @@ function enterBodiart1(s: GameState, scene: SceneBuilder): void {
       { label: 'Agree', goto: ['ugol', ''] },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Refuse', handler: (st: GameState) => {
     (st as any).bodimodel1 = 1;
@@ -96,7 +93,6 @@ function enterSgtusa(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pushkin/photo.jpg');
   scene.text('You walk over to a group of girls and boys talking and introduce yourself.');
   scene.text('You are surprisingly well received.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['pushkin_sq', ''] },
   ]);
@@ -108,13 +104,11 @@ function enterSotusa(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pushkin/photo.jpg');
   if (((s as any).sttan ?? 0) === 0  &&  ((s as any).pantyworntype ?? 0) === 'none') {
     (s as any).sttan = 1;
-    // TODO-QSP: dynamic text: "Hey <<$pcs_nickname>>, what''s with the no panties?" The crowd laughs out loud,...
     scene.text(`"Hey ${((s as any).pcs_nickname ?? '')}, what's with the no panties?" The crowd laughs out loud, noticing your lack of underwear.`);
     scene.actions([
       { label: 'Continue', goto: ['pushkin_sq', ''] },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -124,7 +118,6 @@ function enterSptusa(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/pushkin/marinka/marinka.jpg');
   scene.text('You ask Marinka whether Masya\'s studio is around here. In response, Marinka nods her head, "Yes, it\'s in the courtyard at the other end of that passage over there."');
-  // TODO-QSP: end
   scene.actions([
     { label: 'You live around here?', handler: (st: GameState) => {
     scene.text('"Yes," Marinka says.');

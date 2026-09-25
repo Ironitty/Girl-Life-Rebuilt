@@ -14,7 +14,6 @@ function enterInitFightVars(s: GameState, scene: SceneBuilder): void {
   ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['round'] = 1;
   ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['time'] = 0;
   ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['max_rounds'] = 3;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -133,7 +132,6 @@ function enterGenerateOpponent(s: GameState, scene: SceneBuilder): void {
   ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_max_health'] = (((s as any).temp_kickboxVars ?? {})?.['npc_vital'] ?? 0) * 10 + (((s as any).temp_kickboxVars ?? {})?.['npc_stren'] ?? 0) * 5;
   ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_health'] = (((s as any).temp_kickboxVars ?? 0)?.['npc_max_health']);
   ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_stam'] = (30 * (2 * (((s as any).temp_kickboxVars ?? {})?.['npc_vital'] ?? 0) + (((s as any).temp_kickboxVars ?? {})?.['npc_agil'] ?? 0) + (((s as any).temp_kickboxVars ?? {})?.['npc_stren'] ?? 0)) + 1000) / 13;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -170,7 +168,6 @@ function enterSetInitiative(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -261,7 +258,6 @@ function enterAttack(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -310,12 +306,10 @@ function enterSashAdvancement(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterDisplayHeader(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: dynamic text: <b>= = = = = = = = = = = = = (ROUND <<temp_kickboxVars[''round'']>>) = = = = = =...
   scene.text(`<b>= = = = = = = = = = = = = (ROUND ${(((s as any).temp_kickboxVars ?? 0)?.['round'] ?? '')}) = = = = = = = = = = = = =</b>`);
   if (((s as any).temp_kickboxVars ?? 0)?.['time'] === 0) {
     scene.text('<b>Start of the round</b>');
@@ -342,20 +336,15 @@ function enterDisplayHeader(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: dynamic text: <b><<$boydesc>></b> health <b><font color="red"><<temp_kickboxVars[''npc_health'...
   scene.text(`<b>${((s as any).boydesc ?? '')}</b> health <b><font color="red">${(((s as any).temp_kickboxVars ?? 0)?.['npc_health'] ?? '')}</font></b>, Stamina <b><font color="green">${(((s as any).temp_kickboxVars ?? 0)?.['npc_stam'] ?? '')}</font></b>`);
-  // TODO-QSP: dynamic text: Your health <b><font color="red"><<pcs_health>></font></b>, stamina <b><font col...
   scene.text(`Your health <b><font color="red">${((s as any).pcs_health ?? '')}</font></b>, stamina <b><font color="green">${((s as any).pcs_stam ?? '')}</font></b>`);
   scene.text('<b>= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =</b>');
-  // TODO-QSP: dynamic text: Your points: <<temp_kickboxVars[''pcs_points'']>> Opponent''s points: <<temp_kic...
   scene.text(`Your points: ${(((s as any).temp_kickboxVars ?? 0)?.['pcs_points'] ?? '')} Opponent's points: ${(((s as any).temp_kickboxVars ?? 0)?.['npc_points'] ?? '')}`);
   scene.text('<b>= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =</b>');
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterDisplayHeader2(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: end
   scene.build();
 }
 

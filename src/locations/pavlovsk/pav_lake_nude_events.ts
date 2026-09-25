@@ -13,7 +13,6 @@ function enterPavLakeNudeSex(s: GameState, scene: SceneBuilder): void {
   scene.text('You tear your eyes from their beautiful legs and look around. You see that no one else is on the beach except you and the couple that\'s getting hot and heavy, but they\'re too into each other to pay attention to you. The girl slowly wraps her plump lips around the head of the man\'s cock as she pushes her ass into the air in a seductive pose.');
   qspCall(s, 'arousal', 'voyeur_sex', 1);
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue watching', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/lake/secluded_beach/voyeurism/voyeurism_start_event_1.jpg');
@@ -100,7 +99,6 @@ function enterPavLakeNudeSex2(s: GameState, scene: SceneBuilder): void {
   scene.text('Another wave crashes onto the beach and flows over them, but they pay it no mind, too enraptured by each other\'s bodies to care.');
   qspCall(s, 'arousal', 'voyeur_sex', 1);
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Further', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/lake/secluded_beach/voyeurism/voyeurism_start_event_11.jpg');
@@ -191,7 +189,6 @@ function enterPavLakeNudeNudist(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'arousal', 'voyeur', 10);
   qspCall(s, 'arousal', 'end');
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -239,12 +236,14 @@ function enterPavLakeNudeForestPiss(s: GameState, scene: SceneBuilder): void {
       }
     }
     qspCall(s, 'arousal', 'voyeur', 2);
-    // TODO-QSP: act iif(zz_stage < 1, 'Peep at her', 'Further'): zz_stage += 1 & gs 'pav_lake_nude_events', 'pav_lak...
-  } else {
-    qspCall(s, 'arousal', 'end');
-    qspGoto(s, 'pav_lake_nude', '');
+    scene.actions([
+      { label: '', labelFn: (s: GameState) => String(((((s as any).zz_stage ?? 0) < 1) ? ('Peep at her') : ('Further')) ?? ''), handler: (st: GameState) => {
+    (st as any).zz_stage = undefined;
+    qspCall(st, 'arousal', 'end');
+    qspGoto(st, 'pav_lake_nude', '');
+  } },
+    ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 

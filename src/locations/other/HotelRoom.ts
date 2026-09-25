@@ -17,11 +17,10 @@ function enterNormal(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'internet_mobile', 'get_access', 'free');
   qspCall(s, 'music_actions', 'clear_restrictions');
   scene.text('<center><b>Your normal hotel room</b></center>');
-  // TODO-QSP: dynamic text: <center>You have paid to stay for <<hotelRoomDays[$region] - daystart>> more nig...
   scene.text(`<center>You have paid to stay for ${(((s as any).hotelRoomDays ?? 0)?.[String((s as any).region ?? 0)] ?? 0) - ((s as any).daystart ?? '')} more nights.</center>`);
   scene.img('images/locations/pavlovsk/hotel/hotel.room.normal.jpg');
-  scene.text('Your hotel room is not very large, but it has everything you need and is quite stylish. The large <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027bed/u0027, /u0027/u0027); return false;">double bed</a> takes up most of the room. A modern <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027wardrobe/u0027, /u0027start/u0027); return false;">wardrobe</a> stands near the entrance of the room. Next to the door, you can find a <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027start/u0027); return false;">mirror</a>. The door to the <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027HotelRoom/u0027, /u0027shower1/u0027); return false;">bathroom</a> is to the right.');
-  // TODO-QSP: 'Your hotel room also has a <a href="exec:gt ''HotelRoom'',''tv''">TV</a>' + iif(mc_inventory['tech_...
+  scene.text('Your hotel room is not very large, but it has everything you need and is quite stylish. The large <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027bed\u0027, \u0027\u0027); return false;">double bed</a> takes up most of the room. A modern <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027wardrobe\u0027, \u0027start\u0027); return false;">wardrobe</a> stands near the entrance of the room. Next to the door, you can find a <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027start\u0027); return false;">mirror</a>. The door to the <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027HotelRoom\u0027, \u0027shower1\u0027); return false;">bathroom</a> is to the right.');
+  scene.text('Your hotel room also has a <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027HotelRoom\u0027, \u0027tv\u0027); return false;">TV</a>' + ((((s as any).mc_inventory ?? 0)?.['tech_computer'] === 1) ? (' and your <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027komp\u0027, \u0027start\u0027); return false;">computer</a> is on the desk. The hotel offers all guests free Wi-Fi.') : ('.')));
   if (((s as any).ml_guitar ?? 0)?.['location'] === ((s as any).loc ?? 0)) {
     scene.text('Your guitar rests on its stand next to your bed.');
   }
@@ -51,7 +50,6 @@ function enterNormal(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'wardrobe', 'default_clothing_options');
     qspCall(s, 'blackmailer', 'open_package_act');
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the hotel lobby', handler: (st: GameState) => {
     if (((st as any).clothingworntype ?? 0) !== 'nude') {
@@ -62,6 +60,7 @@ function enterNormal(s: GameState, scene: SceneBuilder): void {
         qspGoto(st, 'city_hotel', '');
       }
     } else {
+      alert('<b><font color = red>You need to get dressed before leaving your hotel room.</font></b>');
       qspGoto(st, 'HotelRoom', 'normal');
     }
   } },
@@ -78,11 +77,10 @@ function enterBetter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'internet_mobile', 'get_access', 'free');
   qspCall(s, 'music_actions', 'clear_restrictions');
   scene.text('<center><b>Your luxury room</b></center>');
-  // TODO-QSP: dynamic text: <center>You have paid to stay for <<hotelRoomDays[$region] - daystart>> more nig...
   scene.text(`<center>You have paid to stay for ${(((s as any).hotelRoomDays ?? 0)?.[String((s as any).region ?? 0)] ?? 0) - ((s as any).daystart ?? '')} more nights.</center>`);
   scene.img('images/locations/pavlovsk/hotel/hotel.room.better.jpg');
-  scene.text('Your hotel room is not very large, but it has everything you need and is quite stylish. The large <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027bed/u0027, /u0027/u0027); return false;">double bed</a> takes up most of the room. A modern <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027wardrobe/u0027, /u0027start/u0027); return false;">wardrobe</a> stands near the entrance of the room. Next to the door, you can find a <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027start/u0027); return false;">mirror</a>. The door to the <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027HotelRoom/u0027, /u0027shower1/u0027); return false;">bathroom</a> is to the right.');
-  // TODO-QSP: 'Your hotel room also has a small flat-screen <a href="exec:gt ''HotelRoom'',''tv''">TV</a>'+iif(mc_...
+  scene.text('Your hotel room is not very large, but it has everything you need and is quite stylish. The large <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027bed\u0027, \u0027\u0027); return false;">double bed</a> takes up most of the room. A modern <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027wardrobe\u0027, \u0027start\u0027); return false;">wardrobe</a> stands near the entrance of the room. Next to the door, you can find a <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027start\u0027); return false;">mirror</a>. The door to the <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027HotelRoom\u0027, \u0027shower1\u0027); return false;">bathroom</a> is to the right.');
+  scene.text('Your hotel room also has a small flat-screen <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027HotelRoom\u0027, \u0027tv\u0027); return false;">TV</a>' + ((((s as any).mc_inventory ?? 0)?.['tech_computer'] === 1) ? (' and your <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027komp\u0027, \u0027start\u0027); return false;">computer</a> is on the desk. The hotel offers all guests free Wi-Fi.') : ('.')));
   if (((s as any).ml_guitar ?? 0)?.['location'] === ((s as any).loc ?? 0)) {
     scene.text('Your guitar rests on its stand next to your bed.');
   }
@@ -116,7 +114,6 @@ function enterBetter(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the hotel lobby', handler: (st: GameState) => {
     if (((st as any).clothingworntype ?? 0) !== 'nude') {
@@ -127,6 +124,7 @@ function enterBetter(s: GameState, scene: SceneBuilder): void {
         qspGoto(st, 'city_hotel', '');
       }
     } else {
+      alert('<b><font color = red>You need to get dressed before leaving your hotel room.</font></b>');
       qspGoto(st, 'HotelRoom', 'better');
     }
   } },
@@ -143,11 +141,10 @@ function enterBest(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'internet_mobile', 'get_access', 'free');
   qspCall(s, 'music_actions', 'clear_restrictions');
   scene.text('<center><b>Your Royal Suite</b></center>');
-  // TODO-QSP: dynamic text: <center>You have paid to stay for <<hotelRoomDays[$region] - daystart>> more nig...
   scene.text(`<center>You have paid to stay for ${(((s as any).hotelRoomDays ?? 0)?.[String((s as any).region ?? 0)] ?? 0) - ((s as any).daystart ?? '')} more nights.</center>`);
   scene.img('images/locations/pavlovsk/hotel/hotel.room.best.jpg');
-  scene.text('Your hotel room is quite spacious, and is beautifully furnished; you wonder why a hotel in a town like Pavlovsk even has such a luxurious suite. The gorgeous <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027bed/u0027, /u0027/u0027); return false;">double bed</a> takes up most of the room. A modern <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027wardrobe/u0027, /u0027start/u0027); return false;">wardrobe</a> stands near the entrance of the room. Next to the door, you can find a <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027start/u0027); return false;">mirror</a>. The door to the <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027HotelRoom/u0027, /u0027shower1/u0027); return false;">bathroom</a> is to the right.');
-  // TODO-QSP: 'Your hotel room also has a huge flat-screen <a href="exec:gt ''HotelRoom'',''tv''">TV</a>'+iif(mc_i...
+  scene.text('Your hotel room is quite spacious, and is beautifully furnished; you wonder why a hotel in a town like Pavlovsk even has such a luxurious suite. The gorgeous <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027bed\u0027, \u0027\u0027); return false;">double bed</a> takes up most of the room. A modern <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027wardrobe\u0027, \u0027start\u0027); return false;">wardrobe</a> stands near the entrance of the room. Next to the door, you can find a <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027start\u0027); return false;">mirror</a>. The door to the <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027HotelRoom\u0027, \u0027shower1\u0027); return false;">bathroom</a> is to the right.');
+  scene.text('Your hotel room also has a huge flat-screen <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027HotelRoom\u0027, \u0027tv\u0027); return false;">TV</a>' + ((((s as any).mc_inventory ?? 0)?.['tech_computer'] === 1) ? (' and your <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027komp\u0027, \u0027start\u0027); return false;">computer</a> is on the desk. The hotel offers all guests free Wi-Fi.') : ('.')));
   if (((s as any).ml_guitar ?? 0)?.['location'] === ((s as any).loc ?? 0)) {
     scene.text('Your guitar rests on its stand next to your bed.');
   }
@@ -181,7 +178,6 @@ function enterBest(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the hotel lobby', handler: (st: GameState) => {
     if (((st as any).clothingworntype ?? 0) !== 'nude') {
@@ -192,6 +188,7 @@ function enterBest(s: GameState, scene: SceneBuilder): void {
         qspGoto(st, 'city_hotel', '');
       }
     } else {
+      alert('<b><font color = red>You need to get dressed before leaving your hotel room.</font></b>');
       qspGoto(st, 'HotelRoom', 'best');
     }
   } },
@@ -213,8 +210,8 @@ function enterTherapist(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'music_actions', 'clear_restrictions');
   scene.text('<center><b>Your husband\'s hotel room</b></center>');
   scene.img('images/characters/pavlovsk/resident/therapist/room.jpg');
-  scene.text('Your hotel room is not very large, but it has everything you need and is quite stylish. The large <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027bed/u0027, /u0027/u0027); return false;">double bed</a> takes up most of the room. A modern <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027therapist_home/u0027, /u0027wardrobe/u0027, /u0027start/u0027); return false;">wardrobe</a> stands near the entrance of the room. Next to the door, you can find a <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027start/u0027); return false;">mirror</a>. The door to the <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027HotelRoom/u0027, /u0027shower1/u0027); return false;">bathroom</a> is to the right.');
-  // TODO-QSP: 'Your hotel room also has a small flat-screen <a href="exec:gt ''HotelRoom'',''tv''">TV</a>'+iif(mc_...
+  scene.text('Your hotel room is not very large, but it has everything you need and is quite stylish. The large <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027bed\u0027, \u0027\u0027); return false;">double bed</a> takes up most of the room. A modern <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027therapist_home\u0027, \u0027wardrobe\u0027, \u0027start\u0027); return false;">wardrobe</a> stands near the entrance of the room. Next to the door, you can find a <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027start\u0027); return false;">mirror</a>. The door to the <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027HotelRoom\u0027, \u0027shower1\u0027); return false;">bathroom</a> is to the right.');
+  scene.text('Your hotel room also has a small flat-screen <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027HotelRoom\u0027, \u0027tv\u0027); return false;">TV</a>' + ((((s as any).mc_inventory ?? 0)?.['tech_computer'] === 1) ? (' and your <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027komp\u0027, \u0027start\u0027); return false;">computer</a> is on the desk. The hotel offers all guests free Wi-Fi.') : ('.')));
   if (((s as any).ml_guitar ?? 0)?.['location'] === ((s as any).loc ?? 0)) {
     scene.text('Your guitar rests on its stand next to your bed.');
   }
@@ -243,7 +240,6 @@ function enterTherapist(s: GameState, scene: SceneBuilder): void {
       { label: 'Take a shower (0:10)', goto: ['therapist_home', 'shower'] },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Put on your clothes and go to the hotel lobby', handler: (st: GameState) => {
     qspCall(st, 'outfit', 'wear_last_worn');
@@ -251,6 +247,7 @@ function enterTherapist(s: GameState, scene: SceneBuilder): void {
       (st as any).hotelWiFi = 0;
       qspGoto(st, 'pav_hotel', '');
     } else {
+      alert('<b><font color = red>You need to get dressed before leaving your hotel room.</font></b>');
       qspGoto(st, 'HotelRoom', 'therapist');
     }
   } },
@@ -318,7 +315,6 @@ function enterShower1(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'din_van', 'private', 'HotelRoom', ((((s as any).HotelRoom ?? 0)?.[String((s as any).region ?? 0)] === 1) ? ('') : ('bath')));
   qspCall(s, 'home_events', 'bathroom');
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -351,7 +347,6 @@ function enterTv(s: GameState, scene: SceneBuilder): void {
       { label: 'Watch TV (1:00)', goto: ['HotelRoom', 'watch_tv'] },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -359,7 +354,6 @@ function enterWatchTv(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 60;
   qspCall(s, 'mood', 'raise', (Math.floor(Math.random() * 11) + 10));
   qspCall(s, 'stat', '');
-  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/hotel/tv0,'+rand(0, 4...
   scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/hotel/tv0,` + (Math.floor(Math.random() * 5) + 0) + '.jpg"></center>');
   scene.text('You are watching the country\'s main television channel. None of their programs are really worth watching, but the distraction is welcome anyway.');
   if (((s as any).HotelRoom ?? 0)?.[String((s as any).region ?? 0)] === 0  &&  ((s as any).therapistQW ?? 0)?.['hotel_key'] !== 3) {
@@ -381,7 +375,6 @@ function enterWatchTv(s: GameState, scene: SceneBuilder): void {
       { label: 'Watch TV (1:00)', goto: ['HotelRoom', 'watch_tv'] },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 

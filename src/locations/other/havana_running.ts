@@ -32,7 +32,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
         ]);
       } else {
         scene.text('Igor eagerly watches your practice runs and times them as well. Despite his grim demeanour, he nods approvingly at your times and even gives you a hug when you set a personal best.');
-        // TODO-QSP: dynamic text: "You''re doing great, <<$pcs_nickname>>. I really can''t give you much more advi...
         scene.text(`"You're doing great, ${((st as any).pcs_nickname ?? '')}. I really can't give you much more advice except to tell you to keep pushing and making us proud."`);
         scene.actions([
           { label: 'Leave', goto: ['havana_running', 'start'] },
@@ -42,7 +41,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Do a few practice races', handler: (st: GameState) => {
     (st as any).abonement = ((st as any).abonement ?? 0) - (1);
@@ -87,10 +85,8 @@ function enterRaceStart(s: GameState, scene: SceneBuilder): void {
       } else {
         if (((s as any).runnerQW ?? 0)?.['prof_stage'] >= 3  &&  ((s as any).runnerQW ?? 0)?.['prof_stage'] < 14) {
           scene.text('As one of your club\'s best athletes, you can take part in a series of qualifying races in the professional circuit. Winning 9 out of 11 would qualify you for the St. Petersburg Track Championship.');
-          // TODO-QSP: nl
-          // TODO-QSP: dynamic text: Qualifying Races Attended: <<runnerQW[''prof_stage''] - 3>>
+          scene.text('');
           scene.text(`Qualifying Races Attended: ${(((s as any).runnerQW ?? {})?.['prof_stage'] ?? 0) - 3}`);
-          // TODO-QSP: dynamic text: Top 3 finishes in Qualifying Races: <<runnerQW[''qualifiers'']>>
           scene.text(`Top 3 finishes in Qualifying Races: ${(((s as any).runnerQW ?? 0)?.['qualifiers'] ?? '')}`);
           scene.actions([
             { label: 'Go to the stadium', goto: ['havana_running', 'kval'] },
@@ -109,7 +105,6 @@ function enterRaceStart(s: GameState, scene: SceneBuilder): void {
             if (((s as any).runnerQW ?? 0)?.['prof_stage'] === 14  &&  ((s as any).runnerQW ?? 0)?.['qualifiers'] >= 9) {
               ((s as any).runnerQW = (s as any).runnerQW ?? {})['qualifiers'] = 0;
               ((s as any).runnerQW = (s as any).runnerQW ?? {})['prof_stage'] = 3;
-              // TODO-QSP: dynamic text: You qualified for the <<year>> St. Petersburg Track Championship, taking place t...
               scene.text(`You qualified for the ${((s as any).year ?? '')} St. Petersburg Track Championship, taking place this season in the Petrovsky Stadium.`);
               scene.actions([
                 { label: 'Go to the stadium', goto: ['havana_running', 'evro'] },
@@ -120,7 +115,6 @@ function enterRaceStart(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -171,7 +165,6 @@ function enterBr(s: GameState, scene: SceneBuilder): void {
                 qspCall(s, 'fame', 'city', 'running', 14);
                 ((s as any).runnerQW = (s as any).runnerQW ?? {})['bronze_medals'] = ((s as any).runnerQW['bronze_medals'] ?? 0) + (1);
                 qspCall(s, 'money', 'earn', 150);
-                // TODO-QSP: dynamic text: You fight hard and manage to take 3rd place, earning a prize: You receive a bron...
                 scene.text(`You fight hard and manage to take 3rd place, earning a prize: You receive a bronze badge and a prize of ${qspFunc(s, 'money', 'string_profit', 150)}`);
               } else {
                 if (((s as any).runnerQW ?? 0)?.['result'] < 50) {
@@ -179,7 +172,6 @@ function enterBr(s: GameState, scene: SceneBuilder): void {
                   qspCall(s, 'fame', 'city', 'running', (Math.floor(Math.random() * 2) + 14));
                   ((s as any).runnerQW = (s as any).runnerQW ?? {})['silver_medals'] = ((s as any).runnerQW['silver_medals'] ?? 0) + (1);
                   qspCall(s, 'money', 'earn', 300);
-                  // TODO-QSP: dynamic text: You fight hard and manage to take 2nd place, earning a prize: You receive a silv...
                   scene.text(`You fight hard and manage to take 2nd place, earning a prize: You receive a silver badge and a prize of ${qspFunc(s, 'money', 'string_profit', 300)}`);
                 } else {
                   ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (5);
@@ -187,7 +179,6 @@ function enterBr(s: GameState, scene: SceneBuilder): void {
                   ((s as any).runnerQW = (s as any).runnerQW ?? {})['prof_stage'] = 1;
                   ((s as any).runnerQW = (s as any).runnerQW ?? {})['gold_medals'] = ((s as any).runnerQW['gold_medals'] ?? 0) + (1);
                   qspCall(s, 'money', 'earn', 600);
-                  // TODO-QSP: dynamic text: You fight hard and manage to take 1st place! You receive a gold badge, a prize o...
                   scene.text(`You fight hard and manage to take 1st place! You receive a gold badge, a prize of ${qspFunc(s, 'money', 'string_profit', 600)} and are now part of your club's junior squad, performing at the semi-professional level.`);
                 }
               }
@@ -197,7 +188,6 @@ function enterBr(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     dynamicGoto(st, 'prevLoc', 'prevArg');
@@ -257,7 +247,6 @@ function enterKms(s: GameState, scene: SceneBuilder): void {
                   qspCall(s, 'fame', 'city', 'running', (Math.floor(Math.random() * 2) + 14));
                   ((s as any).runnerQW = (s as any).runnerQW ?? {})['bronze_medals'] = ((s as any).runnerQW['bronze_medals'] ?? 0) + (1);
                   qspCall(s, 'money', 'earn', 300);
-                  // TODO-QSP: dynamic text: You fight hard and manage to take 3rd place, earning a prize: You get a bronze m...
                   scene.text(`You fight hard and manage to take 3rd place, earning a prize: You get a bronze medal and a prize of ${qspFunc(s, 'money', 'string_profit', 300)}`);
                 } else {
                   if (((s as any).runnerQW ?? 0)?.['result'] < 60) {
@@ -265,7 +254,6 @@ function enterKms(s: GameState, scene: SceneBuilder): void {
                     qspCall(s, 'fame', 'city', 'running', (Math.floor(Math.random() * 3) + 14));
                     ((s as any).runnerQW = (s as any).runnerQW ?? {})['silver_medals'] = ((s as any).runnerQW['silver_medals'] ?? 0) + (1);
                     qspCall(s, 'money', 'earn', 600);
-                    // TODO-QSP: dynamic text: You fight hard and manage to take 2nd place, earning a prize: You get a silver m...
                     scene.text(`You fight hard and manage to take 2nd place, earning a prize: You get a silver medal and a prize of ${qspFunc(s, 'money', 'string_profit', 600)}`);
                   } else {
                     ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (6);
@@ -273,7 +261,6 @@ function enterKms(s: GameState, scene: SceneBuilder): void {
                     ((s as any).runnerQW = (s as any).runnerQW ?? {})['prof_stage'] = 3;
                     ((s as any).runnerQW = (s as any).runnerQW ?? {})['gold_medals'] = ((s as any).runnerQW['gold_medals'] ?? 0) + (1);
                     qspCall(s, 'money', 'earn', 1000);
-                    // TODO-QSP: dynamic text: You fight hard and manage to take 1st place! You get a gold medal, a prize of <<...
                     scene.text(`You fight hard and manage to take 1st place! You get a gold medal, a prize of ${qspFunc(s, 'money', 'string_profit', 1000)} and are now part of your club's veteran squad, performing at the semi-professional level.`);
                   }
                 }
@@ -284,7 +271,6 @@ function enterKms(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     dynamicGoto(st, 'prevLoc', 'prevArg');
@@ -344,7 +330,6 @@ function enterRoss(s: GameState, scene: SceneBuilder): void {
                   qspCall(s, 'fame', 'city', 'running', (Math.floor(Math.random() * 3) + 14));
                   ((s as any).runnerQW = (s as any).runnerQW ?? {})['bronze_medals'] = ((s as any).runnerQW['bronze_medals'] ?? 0) + (1);
                   qspCall(s, 'money', 'earn', 600);
-                  // TODO-QSP: dynamic text: You fight hard and manage to take 3rd place, earning a prize: You get a bronze m...
                   scene.text(`You fight hard and manage to take 3rd place, earning a prize: You get a bronze medal and a prize of ${qspFunc(s, 'money', 'string_profit', 600)}`);
                 } else {
                   if (((s as any).runnerQW ?? 0)?.['result'] < 70) {
@@ -352,7 +337,6 @@ function enterRoss(s: GameState, scene: SceneBuilder): void {
                     qspCall(s, 'fame', 'city', 'running', (Math.floor(Math.random() * 4) + 14));
                     ((s as any).runnerQW = (s as any).runnerQW ?? {})['silver_medals'] = ((s as any).runnerQW['silver_medals'] ?? 0) + (1);
                     qspCall(s, 'money', 'earn', 1000);
-                    // TODO-QSP: dynamic text: You fight hard and manage to take 2nd place, earning a prize: You get a silver m...
                     scene.text(`You fight hard and manage to take 2nd place, earning a prize: You get a silver medal and a prize of ${qspFunc(s, 'money', 'string_profit', 1000)}`);
                   } else {
                     ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (7);
@@ -360,7 +344,6 @@ function enterRoss(s: GameState, scene: SceneBuilder): void {
                     ((s as any).runnerQW = (s as any).runnerQW ?? {})['prof_stage'] = 3;
                     ((s as any).runnerQW = (s as any).runnerQW ?? {})['gold_medals'] = ((s as any).runnerQW['gold_medals'] ?? 0) + (1);
                     qspCall(s, 'money', 'earn', 1500);
-                    // TODO-QSP: dynamic text: You fight hard and manage to take 1st place! You get a gold medal, a prize of <<...
                     scene.text(`You fight hard and manage to take 1st place! You get a gold medal, a prize of ${qspFunc(s, 'money', 'string_profit', 1500)} and gain entry to the professional circuit.`);
                   }
                 }
@@ -371,7 +354,6 @@ function enterRoss(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     dynamicGoto(st, 'prevLoc', 'prevArg');
@@ -438,7 +420,6 @@ function enterKval(s: GameState, scene: SceneBuilder): void {
                   ((s as any).runnerQW = (s as any).runnerQW ?? {})['qualifiers'] = ((s as any).runnerQW['qualifiers'] ?? 0) + (1);
                   ((s as any).runnerQW = (s as any).runnerQW ?? {})['bronze_medals'] = ((s as any).runnerQW['bronze_medals'] ?? 0) + (1);
                   qspCall(s, 'money', 'earn', 1000);
-                  // TODO-QSP: dynamic text: You fight hard and manage to take 3rd place, earning a prize. You get a bronze b...
                   scene.text(`You fight hard and manage to take 3rd place, earning a prize. You get a bronze badge and a prize of ${qspFunc(s, 'money', 'string_profit', 1000)}/ However, only a 1st place finish would qualify you for the Track Championship.`);
                 } else {
                   if (((s as any).runnerQW ?? 0)?.['result'] < 80) {
@@ -447,7 +428,6 @@ function enterKval(s: GameState, scene: SceneBuilder): void {
                     ((s as any).runnerQW = (s as any).runnerQW ?? {})['qualifiers'] = ((s as any).runnerQW['qualifiers'] ?? 0) + (1);
                     ((s as any).runnerQW = (s as any).runnerQW ?? {})['silver_medals'] = ((s as any).runnerQW['silver_medals'] ?? 0) + (1);
                     qspCall(s, 'money', 'earn', 1500);
-                    // TODO-QSP: dynamic text: You fight hard and manage to take 2nd place, earning a prize. You get a silver m...
                     scene.text(`You fight hard and manage to take 2nd place, earning a prize. You get a silver medal and a prize of ${qspFunc(s, 'money', 'string_profit', 1500)}. However, only a 1st place finish would qualify you for the Track Championship.`);
                   } else {
                     ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (8);
@@ -455,7 +435,6 @@ function enterKval(s: GameState, scene: SceneBuilder): void {
                     ((s as any).runnerQW = (s as any).runnerQW ?? {})['qualifiers'] = ((s as any).runnerQW['qualifiers'] ?? 0) + (1);
                     ((s as any).runnerQW = (s as any).runnerQW ?? {})['gold_medals'] = ((s as any).runnerQW['gold_medals'] ?? 0) + (1);
                     qspCall(s, 'money', 'earn', 2000);
-                    // TODO-QSP: dynamic text: You fight hard and manage to take 1st place! You get a gold medal, a prize of <<...
                     scene.text(`You fight hard and manage to take 1st place! You get a gold medal, a prize of ${qspFunc(s, 'money', 'string_profit', 2000)} and are one step closer to qualifying for the St. Petersburg Track Championship.`);
                   }
                 }
@@ -466,7 +445,6 @@ function enterKval(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     dynamicGoto(st, 'prevLoc', 'prevArg');
@@ -536,7 +514,6 @@ function enterEvro(s: GameState, scene: SceneBuilder): void {
                   qspCall(s, 'fame', 'city', 'running', 'BronzeMedal');
                   ((s as any).runnerQW = (s as any).runnerQW ?? {})['champ_bronze'] = ((s as any).runnerQW['champ_bronze'] ?? 0) + (1);
                   qspCall(s, 'money', 'earn', 10000);
-                  // TODO-QSP: dynamic text: You fight hard and manage to take 3rd place, earning a prize. You get a bronze m...
                   scene.text(`You fight hard and manage to take 3rd place, earning a prize. You get a bronze medal and a prize of ${qspFunc(s, 'money', 'string_profit', 10000)}`);
                 } else {
                   if (((s as any).runnerQW ?? 0)?.['result'] < 90) {
@@ -544,14 +521,12 @@ function enterEvro(s: GameState, scene: SceneBuilder): void {
                     qspCall(s, 'fame', 'city', 'running', 'SilverMedal');
                     ((s as any).runnerQW = (s as any).runnerQW ?? {})['champ_silver'] = ((s as any).runnerQW['champ_silver'] ?? 0) + (1);
                     qspCall(s, 'money', 'earn', 15000);
-                    // TODO-QSP: dynamic text: You fight hard and manage to take 2nd place, earning a prize. You get a silver m...
                     scene.text(`You fight hard and manage to take 2nd place, earning a prize. You get a silver medal and a prize of ${qspFunc(s, 'money', 'string_profit', 15000)}`);
                   } else {
                     ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (10);
                     qspCall(s, 'fame', 'city', 'running', 'GoldMedal');
                     ((s as any).runnerQW = (s as any).runnerQW ?? {})['champ_gold'] = ((s as any).runnerQW['champ_gold'] ?? 0) + (1);
                     qspCall(s, 'money', 'earn', 20000);
-                    // TODO-QSP: dynamic text: You fight hard and manage to take 1st place. You get a gold medal, a prize of <<...
                     scene.text(`You fight hard and manage to take 1st place. You get a gold medal, a prize of ${qspFunc(s, 'money', 'string_profit', 20000)} and are now the "St. Petersburg Track Champion"!`);
                     scene.actions([
 { label: 'Continue', goto: ['havana_running', 'Family extension'] },
@@ -566,7 +541,6 @@ function enterEvro(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     dynamicGoto(st, 'prevLoc', 'prevArg');
@@ -582,20 +556,15 @@ function enterFamilyExtension(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.text('As you receive congratulations from your coach and fellow competitors, you look towards the crowd to acknowledge their support. You\'re surprised to see your mother frantically waving at you and trying to make her way down to the track-side.');
     scene.text('Breaking out into a huge grin, you jog over to the barrier and reach over and hug each other.');
-    // TODO-QSP: dynamic text: "Well done <<$pcs_nickname>>, that was some race! Oh my! My little girl… The Sai...
     scene.text(`"Well done ${((s as any).pcs_nickname ?? '')}, that was some race! Oh my! My little girl… The Saint Petersburg Track champion! Where to next, National races? Anyway, I just had to come when I saw your name on the start list for the race in the local paper; I know you've been training hard, but I never expected that you'd be at this level! I'm so proud of you! Give me another hug!"`);
-    // TODO-QSP: dynamic text: You lean over and hug your mother. "Thanks for coming, <<$npc_nickname[''A29'']>...
     scene.text(`You lean over and hug your mother. "Thanks for coming, ${(((s as any).npc_nickname ?? 0)?.['A29'] ?? '')}. I didn't mention it as I wasn't sure how well I'd do and I didn't want to put any pressure on you to attend given we aren't exactly flush with money."`);
-    // TODO-QSP: dynamic text: Your mother hugs you close. "Oh <<$pcs_nickname>>, of course I''d come! Whatever...
     scene.text(`Your mother hugs you close. "Oh ${((s as any).pcs_nickname ?? '')}, of course I'd come! Whatever differences we've had, you're my daughter and I love you and want the best for you."`);
     if (((s as any).npc_rel ?? 0)?.['A33'] > 50) {
       scene.text('At this point, you feel a soft punch on your arm and look up to see Anya standing behind your mother, grinning at you. You both open your arms and include her in the hug.');
-      // TODO-QSP: dynamic text: "At last! I got stuck behind some folks. Anyway, well done <<$pcs_nickname>>! Th...
       scene.text(`"At last! I got stuck behind some folks. Anyway, well done ${((s as any).pcs_nickname ?? '')}! That was fast, not far off Olympic times!"`);
       scene.text('You take half a step back and look at them. "This calls for a family celebration! Let me get showered and changed and I\'ll meet you outside. I\'ve got an idea…"');
     } else {
       scene.text('After the hug, your mother looks around as if searching for someone.');
-      // TODO-QSP: dynamic text: "Are you okay, <<$npc_nickname[''A29'']>>? Have you lost someone?"
       scene.text(`"Are you okay, ${(((s as any).npc_nickname ?? 0)?.['A29'] ?? '')}? Have you lost someone?"`);
       scene.text('"Yes, Anya is with me. I asked her to come and see you and do a bit of shopping after, but I can\'t see her. She must have gotten stuck on the way down. Never mind, at least I got to hug my little girl. You get showered and changed and I\'ll wait for you and Anya in reception."');
       scene.text('"Okay, sounds like a plan. I\'ve got an idea as I think this calls for something special."');
@@ -616,7 +585,6 @@ function enterFamilyExtension(s: GameState, scene: SceneBuilder): void {
       { label: 'Go meet your family', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/gym/desk.jpg');
     scene.text('Meeting your mother and sister in the reception, you propose your idea. "How about a special treat if I can arrange it? How about the three of us head over to Babel and try to get in for a meal?"');
-    // TODO-QSP: dynamic text: Both your mother and Anya look at you as if you''ve gone mad before your mother ...
     scene.text(`Both your mother and Anya look at you as if you've gone mad before your mother answers. "${((st as any).pcs_nickname ?? '')}! We aren't dressed for that place, and even if we were, there's no way we could afford it!"`);
     scene.text('You grin. "Well that\'s why I said \'if I can arrange it\'. Let\'s try, and if it doesn\'t work, we can always head over to the diner."');
     scene.text('They both look at each other and back at you, but don\'t say anything. "Right, well I\'ll take that as a yes then."');
@@ -628,9 +596,7 @@ function enterFamilyExtension(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/citycenter/expensiverest/restoran.jpg');
     scene.text('You approach the maître d\'.');
     scene.text('As expected, he initially refuses your party entry to the restaurant. You briefly explain that you\'ve just become the Saint Petersburg track champion for the 400 meter event and show him your gold medal as proof, but he remains doubtful. "Okay young lady, can you please tell me your name?"');
-    // TODO-QSP: dynamic text: "<<$pcs_firstname>> <<$pcs_lastname>>," you reply.
     scene.text(`"${((st as any).pcs_firstname ?? '')} ${((st as any).pcs_lastname ?? '')}," you reply.`);
-    // TODO-QSP: dynamic text: "Okay Miss <<$pcs_lastname>>, one second please."
     scene.text(`"Okay Miss ${((st as any).pcs_lastname ?? '')}, one second please."`);
     scene.text('He turns around and approaches a table in the lobby with some national, international and local papers displayed and checks the local paper before returning to you.');
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -642,7 +608,6 @@ function enterFamilyExtension(s: GameState, scene: SceneBuilder): void {
     scene.text('He continues. "The manager has also asked me to let you know that you\'ll all eat free tonight with a complimentary bottle of champagne. There is one condition though…"');
     scene.text('You look at him a little warily. "Okay, thanks. And the condition?"');
     scene.text('He breaks into a grin. "Well now, that\'s very simple. We take a photo of you displaying your gold medal to include in our advertising to say that you ate here with your lovely sisters after winning the race."');
-    // TODO-QSP: dynamic text: At this point your mother blushes and goes bright red as you answer. "No problem...
     scene.text(`At this point your mother blushes and goes bright red as you answer. "No problem, it'll be our pleasure… That is once my ${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')} stops blushing and my sister stops giggling!"`);
     scene.text('"Your mother?" he enquires.');
     scene.text('"Yes," you reply. "Although I guess you can tell by how red she\'s gone that she clearly likes your compliment."');
@@ -658,7 +623,6 @@ function enterFamilyExtension(s: GameState, scene: SceneBuilder): void {
     scene.text('Outside, you all share another hug and you thank them both for coming before you part ways.');
     scene.text('Your sister winks at you and as she waves goodbye. "Thanks for that. I never thought I\'d get to eat there. Guess you\'ve already started getting used to having some fame!"');
     scene.text('Your mother adds her agreement. "Me neither. That was a special treat! Now don\'t let this go to your head too much. I still want you to work hard as a good education is important too!"');
-    // TODO-QSP: dynamic text: You smile as you answer. "Yes <<$npc_nickname[''A29'']>>, I know. See you both l...
     scene.text(`You smile as you answer. "Yes ${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')}, I know. See you both later."`);
     qspCall(st, 'drugs', 'alcohol', 'champagne', 2);
     (st as any).frost = 0;
@@ -739,7 +703,6 @@ function enterFamilyExtension(s: GameState, scene: SceneBuilder): void {
       { label: 'Another game', handler: (st: GameState) => {
     scene.img('images/locations/city/industrial/bar/sex/pool/pooll.jpg');
     scene.text('You spend a few minutes playing another game before taking your final shot and winning the game.');
-    // TODO-QSP: dynamic text: "Okay <<$pcs_nickname>>, that''s one game each. Let''s have one more beer, then ...
     scene.text(`"Okay ${((st as any).pcs_nickname ?? '')}, that's one game each. Let's have one more beer, then I've got to go."`);
     scene.text('"Sounds good, sis."');
     scene.text('After a final beer, you both leave the bar and Anya gives you a hug before hurrying off. "See you later, sis! And well done again!"');
@@ -761,7 +724,6 @@ function enterFamilyExtension(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 

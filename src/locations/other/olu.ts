@@ -17,7 +17,6 @@ function enterOlusex(s: GameState, scene: SceneBuilder): void {
   scene.text('As your thoughts drift, he sits on the bed next to you and gently pushes you off onto your knees before pulling you between his legs. You know what he wants, his hard cock right in front of your face leaving no doubt, so you open your mouth and struggle to take his massive dick in your mouth.');
   qspCall(s, 'arousal', 'bj', 5);
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Take him deeper', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/resident/olu/sex/firstbj2.jpg');
@@ -40,7 +39,6 @@ function enterOlusex(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'boyStat', 'A55');
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/olu/sex/firstvag2.jpg');
-    // TODO-QSP: dynamic text: He pulls out of your pussy and rolls you over. Before you can do anything, he li...
     scene.text(`He pulls out of your pussy and rolls you over. Before you can do anything, he lifts you up and place you on all fours before pulling you back towards the edge of the bed. Within seconds, you feel his huge cock slide back into your pussy, causing you to moan in pleasure. He slides his ${((st as any).dick ?? '')}cm ${((st as any).dick_girth ?? '')} cock all the way into you, his balls slapping against your clit as he fucks you.`);
     scene.text('You feel him applying some lube to your ass and start fingering it as he fucks your pussy. Just as it starts to really feel good, he leans forward and whispers in your ear. "I\'m going to fuck your ass now."');
     qspCall(st, 'arousal', 'vaginal', 5);
@@ -53,7 +51,6 @@ function enterOlusex(s: GameState, scene: SceneBuilder): void {
     }
     (st as any).agape = 3;
     scene.img('images/characters/pavlovsk/resident/olu/sex/firstanal1.jpg');
-    // TODO-QSP: dynamic text: He pulls his dick out of you and wraps one of his hands around your hips to hold...
     scene.text(`He pulls his dick out of you and wraps one of his hands around your hips to hold you in place. You then feel his thick cock pressing against your asshole. You're not sure it's going to fit and are about to say something when he suddenly shoves his ${((st as any).dick ?? '')}cm ${((st as any).dick_girth ?? '')} cock into your ass, the sudden sharp pain making you cry out. Your ass feels like it's on fire and you try to scoot away, but he grabs you by the hip and uses both of his powerful hands to firmly hold you in place.`);
     scene.text('As you cry out in pain, he starts gently fucking your ass. Your ass is stretched wide and feels like someone has shoved a bottle up it.');
     scene.text('You start rubbing your pussy, hoping it might distract from the pain. It somewhat works, but he seems to have never ending stamina. As you start to moan a little in pleasure from rubbing your clit, he seems to take that as a hint you\'re enjoying it and starts fucking you harder and deeper. He pushes a few more inches in and it feels like it\'s pressing against your stomach.');
@@ -104,7 +101,6 @@ function enterOlusex(s: GameState, scene: SceneBuilder): void {
     scene.text('You nod your head. "Yes, I\'m still a virgin," you admit to him.');
     scene.text('He nods and smiles. "Don\'t worry, I won\'t take your virginity. I\'ll leave that for you to give to a boy you love." He then lifts you up and places you on the bed on all fours before pulling you over to the edge.');
     scene.text('He walks over and grabs a bottle of lube sitting on the night stand before he walks back around behind you. You can feel him squirting some lube onto your asshole before using a finger to rub it around and work it up into your anus. As you look back over your shoulder, he squirts a generous amount of lube onto his cock, lubing it up really well. He then wraps one of his hands around your hips to hold you in place.');
-    // TODO-QSP: dynamic text: You then feel his thick cock pressing against your asshole. You''re not sure it'...
     scene.text(`You then feel his thick cock pressing against your asshole. You're not sure it's going to fit and are about to say something when he suddenly shoves his ${((st as any).dick ?? '')}cm ${((st as any).dick_girth ?? '')} cock into your ass, the sudden sharp pain making you cry out. Your ass feels like it's on fire and you try to scoot away, but he grabs you by the hip and uses both of his powerful hands to firmly hold you in place.`);
     scene.text('As you cry out in pain, he starts gently fucking your ass. Your ass is stretched wide and feels like someone has shoved a bottle up it.');
     qspCall(st, 'arousal', 'anal', 5);
@@ -158,7 +154,6 @@ function enterSeduction(s: GameState, scene: SceneBuilder): void {
   scene.text('He sits on the couch next to you and shows you his phone. "I love my new phone, the camera on it is very good. Look at pictures I have taken."');
   qspCall(s, 'arousal', 'erotic_nudity', 5);
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Tell him you have to go', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 3;
@@ -253,7 +248,6 @@ function enterSeductionStrip(s: GameState, scene: SceneBuilder): void {
   scene.text('"Down on knees now please," he grins.');
   qspCall(s, 'arousal', 'flash', 3);
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Tell him you have to go', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 3;
@@ -294,7 +288,6 @@ function enterSeductionStrip(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/resident/olu/sex/seduction11.jpg');
-    // TODO-QSP: dynamic text: He lifts you up suddenly until he pulls out of your twat and then rolls you over...
     scene.text(`He lifts you up suddenly until he pulls out of your twat and then rolls you over onto your back on the couch. He pushes your legs up and apart as he positions himself between your legs and then he slips his ${((st as any).dick ?? '')}cm ${((st as any).dick_girth ?? '')} cock all the way into you, until you can feel his balls slapping against your butt cheeks as he fucks you. Just as it starts to really feel good, he leans forward and whispers in your ear. "I'm going to fuck your ass now."`);
     qspCall(st, 'arousal', 'vaginal', 5);
     qspCall(st, 'stat', '');
@@ -303,11 +296,9 @@ function enterSeductionStrip(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/resident/olu/sex/seduction12.jpg');
     scene.text('True to his word, he pulls out of you, grabs your hands and places them on your ass cheeks, encouraging you to pull them apart.');
     if (((st as any).OluQW ?? 0)?.['anal'] === 0) {
-      // TODO-QSP: dynamic text: He pushes your legs up and apart before he guides his cock against your asshole....
       scene.text(`He pushes your legs up and apart before he guides his cock against your asshole. You're not sure it's going to fit and you're about to say something when he suddenly shoves his ${((st as any).dick ?? '')}cm ${((st as any).dick_girth ?? '')} cock up your ass, the sudden sharp pain causing you to cry out.`);
       scene.text('He starts slowly fucking your ass as you groan in pain.');
     } else {
-      // TODO-QSP: dynamic text: He pushes your legs up and apart before he guides his cock against your asshole....
       scene.text(`He pushes your legs up and apart before he guides his cock against your asshole. The pressure builds until he suddenly shoves his ${((st as any).dick ?? '')}cm ${((st as any).dick_girth ?? '')} cock up your ass, the sudden sharp pain causing you to cry out.`);
       scene.text('You\'re able to relax as he slowly starts fucking your ass.');
     }
@@ -367,11 +358,9 @@ function enterSeductionStrip(s: GameState, scene: SceneBuilder): void {
     scene.text('He opens the end table and grabs a bottle of lube from within. You can feel him squirting some lube onto your asshole before he uses a finger to rub it around and work it up into your anus.');
     scene.text('He then squirts a generous amount onto his cock, lubing it up really well.');
     if (((st as any).OluQW ?? 0)?.['anal'] === 0) {
-      // TODO-QSP: dynamic text: He grabs your hands and places them on your ass cheeks, encouraging you to pull ...
       scene.text(`He grabs your hands and places them on your ass cheeks, encouraging you to pull them apart. He then pushes your legs up and apart before he guides his cock against your asshole. You're not sure it's going to fit and are about to say something when he suddenly shoves his ${((st as any).dick ?? '')}cm ${((st as any).dick_girth ?? '')} cock up your ass, the sudden sharp pain causing you to cry out.`);
       scene.text('You try to relax as he slowly starts fucking your ass.');
     } else {
-      // TODO-QSP: dynamic text: He grabs your hands and places them on your ass cheeks, encouraging you to pull ...
       scene.text(`He grabs your hands and places them on your ass cheeks, encouraging you to pull them apart. He then pushes your legs up and apart before he guides his cock against your asshole. The pressure builds until he suddenly shoves his ${((st as any).dick ?? '')}cm ${((st as any).dick_girth ?? '')} cock in your ass, the sudden sharp pain causing you to cry out.`);
       scene.text('You\'re able to relax a little as he slowly starts fucking your ass.');
     }
@@ -433,7 +422,6 @@ function enterOlusex1(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/resident/olu/sex/sex1.jpg');
   scene.text('He walks over to the couch with you, but doesn\'t sit down, looking at you with hungry eyes instead.');
   scene.text('"Take off clothes please," he says as his eyes roam over your body.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Strip for him', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/resident/olu/sex/sex2.jpg');
@@ -477,7 +465,6 @@ function enterOlusex1(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'boyStat', 'A55');
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/olu/sex/sex7.jpg');
-    // TODO-QSP: dynamic text: He pushes his <<dick>>cm <<$dick_girth>> cock all the way into you. Just as it s...
     scene.text(`He pushes his ${((st as any).dick ?? '')}cm ${((st as any).dick_girth ?? '')} cock all the way into you. Just as it starts to really feel good, he leans forward and whispers in your ear. "I'm going to fuck your ass now."`);
     qspCall(st, 'arousal', 'vaginal', 5);
     qspCall(st, 'stat', '');
@@ -492,7 +479,6 @@ function enterOlusex1(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/resident/olu/sex/sex8.jpg');
     scene.text('You nod your head. "Okay."');
     scene.text('He grins and pulls out of you before opening the end table and grabbing a bottle of lube from within. You feel him squirting some onto your asshole before he uses a finger to rub it around and work it up into your anus. You glance back and watch as he then squirts a generous amount onto his cock, lubing it up really well.');
-    // TODO-QSP: dynamic text: He grabs one of your hands and places it on your ass cheek, encouraging you to s...
     scene.text(`He grabs one of your hands and places it on your ass cheek, encouraging you to spread your ass as he guides his cock against your asshole. The pressure builds until he suddenly shoves his ${((st as any).dick ?? '')}cm ${((st as any).dick_girth ?? '')} cock up your ass, the sudden sharp pain causing you to cry out.`);
     qspCall(st, 'arousal', 'anal', 5);
     qspCall(st, 'stat', '');
@@ -548,7 +534,6 @@ function enterOlusex1(s: GameState, scene: SceneBuilder): void {
     scene.text('You nod your head. "Okay, but just my ass."');
     scene.text('"Just ass okay with me," he grins before he lifts you up and places you on the couch on your hands and knees.');
     scene.text('He opens the end table and grabs a bottle of lube from within before you feel him squirting some lube onto your asshole and using a finger to rub it around and work it up into your anus. As look back over your shoulder, you watch as he squirts a generous amount onto his cock, lubing it up really well.');
-    // TODO-QSP: dynamic text: He grabs one of your hands and places it on your ass cheek, encouraging you to s...
     scene.text(`He grabs one of your hands and places it on your ass cheek, encouraging you to spread your ass as he guides his cock against your asshole. The pressure builds until he suddenly shoves his ${((st as any).dick ?? '')}cm ${((st as any).dick_girth ?? '')} cock up your ass, the sudden sharp pain causing you to cry out.`);
     qspCall(st, 'arousal', 'anal', 5);
     qspCall(st, 'stat', '');
@@ -607,7 +592,6 @@ function enterOluanya(s: GameState, scene: SceneBuilder): void {
   scene.text('He stands next to her as she sits on the couch, opens her mouth and starts eagerly sucking his massive cock as he grabs her hair.');
   qspCall(s, 'arousal', 'voyeur_sex', 3);
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Join in', goto: ['olu', 'anyaolusvet'] },
     { label: 'Watch Anya get fucked', handler: (st: GameState) => {
@@ -676,7 +660,6 @@ function enterAnyaolusvet(s: GameState, scene: SceneBuilder): void {
   scene.text('As you watch your sister suck Olu\'s supersized cock, you feel your mouth watering and want to join in, so you strip off your clothes and kneel down next to them. Olu takes the cue and sits down before leaning back as Anya glances at you with a smile and pulls away, allowing you to take his cock into your mouth and start sucking.');
   qspCall(s, 'arousal', 'bj', 5, ((s as any).npcID ?? 0), 'group');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Swap again', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/resident/olu/sex/anya/anyaolusvet2.jpg');
@@ -748,7 +731,6 @@ function enterOlunush(s: GameState, scene: SceneBuilder): void {
     scene.text('After a while, you hear a knock on the door and get up to answer it. You see Anushka standing there, staring at you with a questioning look on her face. "Well? Where\'s this huge massive cock you promised me?"');
     scene.text('You grin and shake your head before opening the door to let her in. "Olu, this is my friend, Nush."');
     scene.text('He smiles at her and stands up. "Hello. You are very pretty."');
-    // TODO-QSP: dynamic text: She walks over to him and starts stripping. "You''re not so bad yourself. <<$pcs...
     scene.text(`She walks over to him and starts stripping. "You're not so bad yourself. ${((s as any).pcs_nickname ?? '')} told me you have a big cock?" she practically purrs.`);
     scene.text('He smiles, almost proudly. "Yes, very big. How you say… massive, yes?"');
     scene.text('She stops next to him, having stripped down to just her underwear and grabs his crotch. "Massive might be an understatement," she grins. "I don\'t know if it will fit, but I want to try."');
@@ -764,7 +746,6 @@ function enterOlunush(s: GameState, scene: SceneBuilder): void {
   ((s as any).OluQW = (s as any).OluQW ?? {})['nush_count'] = ((s as any).OluQW['nush_count'] ?? 0) + (1);
   qspCall(s, 'arousal', 'voyeur_sex', 5);
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Join in', goto: ['olu', 'nusholusvet'] },
     { label: 'Watch the show', handler: (st: GameState) => {
@@ -881,7 +862,6 @@ function enterNusholusvet(s: GameState, scene: SceneBuilder): void {
   scene.text('He walks over to Anushka, who opens her mouth and lets him shove his cock inside. She tries to take him as deep as she can, but can barely take him halfway down her throat.');
   qspCall(s, 'arousal', 'voyeur_sex', 5, 'group');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Suck it', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/resident/olu/sex/anushka/nusholusvet2.jpg');
@@ -1038,7 +1018,6 @@ function enterOlunat(s: GameState, scene: SceneBuilder): void {
   scene.text('She drops down, opens her mouth and starts sucking on his huge dick without having to be told, sliding a hand inside her panties and rubbing herself as she does.');
   qspCall(s, 'arousal', 'voyeur_sex', 2);
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Join in', goto: ['olu', 'natolusvet'] },
     { label: 'Watch Natasha get fucked', handler: (st: GameState) => {
@@ -1111,7 +1090,6 @@ function enterNatolusvet(s: GameState, scene: SceneBuilder): void {
   scene.text('Natasha gets up on the couch beside you to watch.');
   qspCall(s, 'arousal', 'vaginal', 5, ((s as any).npcID ?? 0), 'group');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Spin around', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/resident/olu/sex/natasha/natolusvet2.jpg');

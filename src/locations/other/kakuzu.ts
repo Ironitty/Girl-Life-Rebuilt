@@ -17,7 +17,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Mansion Kakuzu</b></center>');
   scene.img('images/locations/city/industrial/mansion/mansion.jpg');
   scene.text('Old gloomy mansion, which even at the local gangs don\'t approach out of fear and sincerely believe that something evil lives there. No need to have some sort of skills that make your system, from the death blows.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Enter the mansion', goto: ['kakuzu', 'mansion'] },
     { label: 'Leave', goto: ['city_industrial', ''] },
@@ -32,7 +31,6 @@ function enterMansion(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Mansion Kakuzu</b></center>');
   scene.img('images/locations/city/industrial/mansion/mansion1.jpg');
   scene.text('The room sits Kakuzu not paying any attention to you');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Talk to Kakuzu', goto: ['kakuzu', 'mansion1'] },
     { label: 'Leave', goto: ['kakuzu', 'start'] },
@@ -47,12 +45,10 @@ function enterMansion1(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Kakuzu</b></center>');
   scene.img('images/characters/city/kakuzu/kakuzu.jpg');
   if (((s as any).tobiQW ?? 0) === 1) {
-    // TODO-QSP: dynamic text: 'I know who you are and what you need. Pay ' + $func('money', 'string_price', 10...
-    scene.text('I know who you are and what you need. Pay 100₽k and then I will teach you how to achieve affinity with the elements.');
+    scene.text('\'I know who you are and what you need. Pay 100₽k and then I will teach you how to achieve affinity with the elements.\'');
   }
   if (((s as any).tobiQW ?? 0) === 2) {
-    // TODO-QSP: dynamic text: 'You have <<srodpaper>> sheets of paper to determine the affinity of the element...
-    scene.text(`You have ${((s as any).srodpaper ?? '')} sheets of paper to determine the affinity of the elements. If you run out of paper, you have to buy more at Kakuzu 10000₽ a sheet.`);
+    scene.text(`'You have ${((s as any).srodpaper ?? '')} sheets of paper to determine the affinity of the elements. If you run out of paper, you have to buy more at Kakuzu 10000₽ a sheet.'`);
   }
   if (((s as any).tobiQW ?? 0) === 1) {
     scene.actions([
@@ -71,8 +67,7 @@ function enterMansion1(s: GameState, scene: SceneBuilder): void {
       scene.text('wind - weak damage, weak defense, but no fog or clones can save them from the wind and wind spells are almost impossible to dodge.');
       scene.text('earth - defensive school, but the attacks are very dangerous. If the enemy attack misses, they will get stuck in the ground and unable to move. Earth protection is the most powerful of all protection, protection of land and regenerate itself absolute defense to attack the enemy.');
       scene.text('Water - Damage of this school is weak, but all spells steal mana from the enemy, the same high level of water protection is very dangerous, it consumes mana from an enemy and regenerates, although it is weaker than earth protection.');
-      // TODO-QSP: dynamic text: 'Affinity with the elements means that you can learn this particular element. Yo...
-      scene.text('Affinity with the elements means that you can learn this particular element. You can not explore another element after selecting affinity until izuchish element completely. I\'ll give you 10 sheets of paper magic. Each sheet cost me 5000₽. Concentrate the energy on a piece of paper until you succeed, then you can either start over and hope for another element, or proceed with the element that appeared to you.');
+      scene.text('\'Affinity with the elements means that you can learn this particular element. You can not explore another element after selecting affinity until izuchish element completely. I\'ll give you 10 sheets of paper magic. Each sheet cost me 5000₽. Concentrate the energy on a piece of paper until you succeed, then you can either start over and hope for another element, or proceed with the element that appeared to you.\'');
       scene.actions([
         { label: 'Mark sheets', goto: ['kakuzu', 'mansion1'] },
       ]);
@@ -106,8 +101,7 @@ function enterMansion1(s: GameState, scene: SceneBuilder): void {
     scene.text('wind - weak damage, weak defense, but no fog or clones can save them from the wind and wind spells are almost impossible to dodge.');
     scene.text('earth - defensive school, but the attacks are very dangerous. If the enemy attack misses, they will get stuck in the ground and unable to move. Earth protection is the most powerful of all protection, protection of land and regenerate itself absolute defense to attack the enemy.');
     scene.text('Water - Damage of this school is weak, but all spells steal mana from the enemy, the same high level of water protection is very dangerous, it consumes mana from an enemy and regenerates, although it is weaker than earth protection.');
-    // TODO-QSP: dynamic text: 'Affinity with the elements means that you can learn this particular element. Yo...
-    scene.text('Affinity with the elements means that you can learn this particular element. You can not explore another element after selecting affinity until izuchish element completely. I\'ll give you 10 sheets of paper magic. Each sheet cost me 5000₽. Concentrate the energy on a piece of paper until you succeed, then you can either start over and hope for another element, or proceed with the element that appeared to you.');
+    scene.text('\'Affinity with the elements means that you can learn this particular element. You can not explore another element after selecting affinity until izuchish element completely. I\'ll give you 10 sheets of paper magic. Each sheet cost me 5000₽. Concentrate the energy on a piece of paper until you succeed, then you can either start over and hope for another element, or proceed with the element that appeared to you.\'');
     scene.actions([
       { label: 'Move away', goto: ['kakuzu', 'mansion1'] },
     ]);
@@ -194,7 +188,6 @@ function enterMansion1(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['kakuzu', 'mansion'] },
   ]);

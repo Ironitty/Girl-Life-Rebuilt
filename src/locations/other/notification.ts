@@ -13,18 +13,16 @@ function enterDisplay(s: GameState, scene: SceneBuilder): void {
   ((s as any)._n_counter = (s as any)._n_counter ?? {})['timer'] = (((s as any)._n_counter ?? 0)?.['duration']);
   ((s as any)._n_counter = (s as any)._n_counter ?? {})['shown'] = 1;
   ((s as any)._n_counter = (s as any)._n_counter ?? {})['lock'] = 0;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterAdd(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: $ARGS[1] = '<table><tr><td><<$ARGS[1]>></td></tr></table>'
+  ((s as any).ARGS = (s as any).ARGS ?? {})[1] = '<table><tr><td>' + ((s as any).locArgs?.[1] ?? 0) + '</td></tr></table>';
   if (Object.keys((s as any).ARGS ?? {}).length <= 2) {
     if (Object.keys((s as any).notification_log ?? {}).length > 30) {
-      // TODO-QSP: killvar 'notification_log', 0
+      (s as any).notification_log = undefined;
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 

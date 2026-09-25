@@ -24,7 +24,6 @@ function enterVar1(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Fix your bra', handler: (st: GameState) => {
     scene.text('"That\'s not the type of shoot I signed up for! What kind of girl do you think I am!?" you reply resolutely and adjust the bra. The photographer grumbles under his breath, but continues with the shoot as if nothing happened.');
-    // TODO-QSP: dynamic text: Once the shoot''s done, you get dressed and his assistant hands you an envelope ...
     scene.text(`Once the shoot's done, you get dressed and his assistant hands you an envelope with the ${qspFunc(s, 'money', 'string_profit', 2000)} as promised.`);
     scene.actions([
       { label: 'Leave', goto: ['city_center', ''] },
@@ -143,7 +142,6 @@ function enterVar1(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'money', 'earn', 2500);
     scene.img('images/locations/city/citycenter/photo/photoshoot/f4.jpg');
     scene.text('"It\'s only for abroad, right?" you check. When the photographer nods with a hopeful look in her eyes, you shrug.');
-    // TODO-QSP: dynamic text: "Please? I''ll throw in an extra <<$func(''money'', ''string_profit'', 500)>>! Y...
     scene.text(`"Please? I'll throw in an extra ${qspFunc(s, 'money', 'string_profit', 500)}! You're perfect for the shoot!" she offers.`);
     scene.text('When you agree, the photographer can barely hold herself back from hugging you. "Great, just hug and kiss each other a little! Do what feels right. I\'ll direct you as needed," she smiles and starts taking photos of you and the other girl as you make out. The other girl acts like she\'s done this many times before, and you follow her lead and try to copy her movements.');
     scene.text('"Slow down a little, girls!" the photographer laughs when you start getting into the shoot. Without even realizing it, you\'re on your knees, licking the other girl\'s pussy. Following the photographer\'s guidance, she takes several pictures as she tells you what to do and how to act.');
@@ -183,7 +181,6 @@ function enterVar1(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -214,7 +211,6 @@ function enterVar2(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'money', 'earn', 2500);
     scene.text('"I\'m sorry, but no. If the shoot is done, then I\'m done," you reply. She seems disappointed, but doesn\'t stop you when you go to the dressing room to change back into your regular clothes.');
     scene.text('When you\'re ready to leave, she stands ready by the door with an envelope in your hand. "Are you sure? I bet we could have some fun, you and I! Completely off-camera…" she asks as seductively as she can.');
-    // TODO-QSP: dynamic text: You smile apologetically, but decline and leave the studio. When you open the en...
     scene.text(`You smile apologetically, but decline and leave the studio. When you open the envelope you find ${qspFunc(s, 'money', 'string_profit', 2500)} in it, 500 more than you were promised! It seems she really did enjoy your presence.`);
     scene.actions([
       { label: 'Leave the studio', goto: ['city_center', ''] },
@@ -222,7 +218,6 @@ function enterVar2(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Have some fun with her', handler: (st: GameState) => {
     qspCall(st, 'money', 'earn', 2000);
@@ -339,7 +334,6 @@ function enterVar3(s: GameState, scene: SceneBuilder): void {
         scene.text('When you ring the doorbell, a man answers the door almost immediately and invites you in. He seems very confident with himself, and talks in a matter-of-fact tone when he explains what he wants from you. "I\'m working on some Roman style art pieces and need a girl dressed in a toga as reference."');
         scene.text('He leaves you alone for a minute to change before he motions for you to go stand on a table. "Actually… How about you hold this? I think it\'ll really bring the piece together!" he smiles and has you hold an ancient looking urn. It\'s fairly heavy, and your arms grow tired as you pose with it for nearly three hours.');
         if (((s as any).qjobpristrand ?? 0) !== 0) {
-          // TODO-QSP: dynamic text: Finally, the man is finished with his painting. He doesn''t even allow you to lo...
           scene.text(`Finally, the man is finished with his painting. He doesn't even allow you to look at it, but quickly ushers you to the hallway where he pays you the ${qspFunc(s, 'money', 'string_profit', 1000)} he promised.`);
           scene.actions([
             { label: 'Leave the estate', goto: ['city_center', ''] },
@@ -361,7 +355,6 @@ function enterVar3(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.text('"Could you please stop that?" you ask him intently.');
     scene.text('The man wordlessly pulls his hands away from your body and plucks the sheet a few times, pretending he was just adjusting it. He ignores your questioning smirk as he sits back down and continues working, as if nothing happened.');
-    // TODO-QSP: dynamic text: Finally, the man is finished with his painting. He doesn''t even allow you to lo...
     scene.text(`Finally, the man is finished with his painting. He doesn't even allow you to look at it, but quickly ushers you to the hallway where he pays you the ${qspFunc(s, 'money', 'string_profit', 1000)} he promised.`);
     scene.actions([
       { label: 'Leave', goto: ['city_center', ''] },
@@ -390,7 +383,6 @@ function enterVar3(s: GameState, scene: SceneBuilder): void {
           scene.text('You spend a few hours chatting with the girl. She\'s very friendly and chatty, and tells you about herself. She\'s been doing these modeling jobs for a while, and has lots of interesting stories to share. You almost completely forget about the artist still being in the room, working quietly in the background.');
           if (((s as any).qjobpristrand ?? 0) !== 0) {
             scene.text('After about three hours, the man comes from behind the canvas and smiles. "I have all I need from you. Thank you for your time!"');
-            // TODO-QSP: dynamic text: He tells the other girl to stay a while longer while he walks you out, giving yo...
             scene.text(`He tells the other girl to stay a while longer while he walks you out, giving you the ${qspFunc(s, 'money', 'string_profit', 1000)} you were promised.`);
             scene.actions([
               { label: 'Leave the apartment', goto: ['city_center', ''] },
@@ -437,7 +429,6 @@ function enterVar3(s: GameState, scene: SceneBuilder): void {
             scene.text('You stand near the man, who pulls your clothes aside and puts his hand on your bare ass. The two of you freeze while the girl makes some sketches and grabs some brushes. His hand is quite warm to the touch, and you can sometimes feel him squeezing it lightly.');
             if (((s as any).qjobpristrand ?? 0) !== 0) {
               qspCall(s, 'money', 'earn', 1000);
-              // TODO-QSP: dynamic text: A few hours later, the girl smiles at you. "Thank you, you were a pleasure to wo...
               scene.text(`A few hours later, the girl smiles at you. "Thank you, you were a pleasure to work with! I'll be sure to leave you a good review online," she says as the walks you to the door. She gives you the ${qspFunc(s, 'money', 'string_profit', 1000)} she owes you and you thank her on your way out.`);
               scene.actions([
                 { label: 'Leave the apartment', goto: ['city_center', ''] },
@@ -450,7 +441,6 @@ function enterVar3(s: GameState, scene: SceneBuilder): void {
                 { label: 'Slap his hand away', handler: (st: GameState) => {
     qspCall(st, 'money', 'earn', 1200);
     scene.text('"Stop it!" you say as you slap his hand away. The girl lets out a soft chuckle while her husband apologizes and rests his hand on your ass again.');
-    // TODO-QSP: dynamic text: A few hours later, the girl smiles at you. "Thank you, you were a pleasure to wo...
     scene.text(`A few hours later, the girl smiles at you. "Thank you, you were a pleasure to work with! I'll be sure to leave you a good review online," she says as the walks you to the door. She gives you the ${qspFunc(s, 'money', 'string_profit', 1000)} she owes you, adding ${qspFunc(s, 'money', 'string_profit', 200)} extra. "You'll have to excuse my husband. He can get a bit frisky at times. I better go take care of him now!" she winks before closing the door.`);
     qspCall(st, 'arousal', 'end');
     scene.actions([
@@ -501,7 +491,6 @@ function enterVar3(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 

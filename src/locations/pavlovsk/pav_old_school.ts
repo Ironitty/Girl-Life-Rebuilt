@@ -55,7 +55,6 @@ function enterOldSchool(s: GameState, scene: SceneBuilder): void {
   }, goto: ['gschool_grounds', 'main'] },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 

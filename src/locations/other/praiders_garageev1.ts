@@ -15,7 +15,6 @@ function enterRadsex(s: GameState, scene: SceneBuilder): void {
   scene.text('You dance around and start slowly stripping for him as he quickly pulls out his semi erect cock. "Come over here and wrap those beautiful lips around my dick."');
   qspCall(s, 'arousal', 'foreplay', 2);
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Blow him', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/boy/radomir/sex/garage/practice2.jpg');
@@ -33,7 +32,6 @@ function enterRadsex(s: GameState, scene: SceneBuilder): void {
         { label: 'Let him fuck you', handler: (st: GameState) => {
     qspCall(st, 'boyStat', 'A154');
     scene.img('images/characters/pavlovsk/school/boy/radomir/sex/garage/practice4.jpg');
-    // TODO-QSP: dynamic text: You just nod and he pulls you up and quickly strips you from the waist down. He ...
     scene.text(`You just nod and he pulls you up and quickly strips you from the waist down. He then turns you around and pulls you into his lap before you feel his ${((st as any).dick ?? '')}cm ${((st as any).dick_girth ?? '')} dick slide inside your wet pussy.`);
     qspCall(st, 'arousal', 'vaginal', 3);
     qspCall(st, 'stat', '');
@@ -100,7 +98,6 @@ function enterRadsex(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Get butt fucked', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/boy/radomir/sex/garage/practice7.jpg');
-    // TODO-QSP: dynamic text: He roughly fucks your ass hard and fast. "Fuck, you have a tight little ass, <<$...
     scene.text(`He roughly fucks your ass hard and fast. "Fuck, you have a tight little ass, ${((st as any).pcs_nickname ?? '')}!" Then he laughs. "Don't worry, we'll have it stretched out in no time."`);
     scene.text('He then pulls nearly all the way out and slams himself back in balls deep, hammering away at you.');
     qspCall(st, 'arousal', 'anal', 3);

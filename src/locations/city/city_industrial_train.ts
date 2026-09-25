@@ -27,12 +27,9 @@ function enterOutside(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (qspFunc(s, 'car_funcs', 'is_here')) {
-    // TODO-QSP: dynamic text: In the parking lot is <a href="exec:gs ''carF'', ''start''">your <<$car[''name''...
     scene.text(`In the parking lot is <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027carF/u0027, /u0027start/u0027); return false;">your ${(((s as any).car ?? 0)?.['name'] ?? '')}</a>.`);
   }
-  // TODO-QSP: dynamic text: There is a path leading off in to the distance, in the direction of the <a href=...
-  scene.text('There is a path leading off in to the distance, in the direction of the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.60; return s; }); window.__gameStore.getState().doGoto(/u0027city_lake/u0027, /u0027start/u0027); return false;">lake</a>.');
-  // TODO-QSP: end
+  scene.text('There is a path leading off in to the distance, in the direction of the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.60; return s; }); window.__gameStore.getState().doGoto(\u0027city_lake\u0027, \u0027start\u0027); return false;">lake</a>.');
   scene.actions([
     { label: 'Walk to the City Industrial Region', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 15;
@@ -62,7 +59,7 @@ function enterInside(s: GameState, scene: SceneBuilder): void {
       { label: 'Go to the ticket office', goto: ['city_industrial_train', 'ticket'] },
     ]);
   } else {
-    // TODO-QSP: $func('transport_functions', 'display_trainpass_time')
+    scene.text(qspFunc(s, 'transport_functions', 'display_trainpass_time'));
     scene.actions([
       { label: '', labelFn: (s: GameState) => 'Take a train to the city center (' + String(qspFunc(s, 'transport_functions', 'display_train_timecost', 'industrial', 'center') ?? '') + ')', goto: ['train', 'industrial_center'] },
       { label: '', labelFn: (s: GameState) => 'Take a train to the old platform by the communal village (' + String(qspFunc(s, 'transport_functions', 'display_train_timecost', 'industrial', 'communal') ?? '') + ')', goto: ['train', 'industrial_communal'] },
@@ -70,7 +67,6 @@ function enterInside(s: GameState, scene: SceneBuilder): void {
       { label: '', labelFn: (s: GameState) => 'Take a train to Pavlovsk (' + String(qspFunc(s, 'transport_functions', 'display_train_timecost', 'industrial', 'pavlovsk') ?? '') + ')', goto: ['train', 'industrial_pavlovsk'] },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the station (0:02)', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 2;
@@ -101,11 +97,10 @@ function enterTicket(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/trainstation/ticketoffice.jpg');
   scene.text('The ticket office at the industrial train station.');
   qspCall(s, 'transport_functions', 'set_train_wait_time', 'industrial');
-  // TODO-QSP: 'The next train in the direction of the city center ' + iif(transportVars['train_wait_center'] = 0, ...
-  // TODO-QSP: 'The next train in the direction of Pavlovsk ' + iif(transportVars['train_wait_pavlovsk'] = 0, 'is l...
+  scene.text('The next train in the direction of the city center ' + ((((s as any).transportVars ?? 0)?.['train_wait_center'] === 0) ? ('is leaving now!') : ('leaves in ' + (((s as any).transportVars ?? 0)?.['train_wait_center'] ?? '') + ' minutes.')));
+  scene.text('The next train in the direction of Pavlovsk ' + ((((s as any).transportVars ?? 0)?.['train_wait_pavlovsk'] === 0) ? ('is leaving now!') : ('leaves in ' + (((s as any).transportVars ?? 0)?.['train_wait_pavlovsk'] ?? '') + ' minutes.')));
   qspCall(s, 'transport_functions', 'buy_train_ticket', 'industrial');
   qspCall(s, 'transport_functions', 'buy_train_pass');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the ticket office (0:01)', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -138,7 +133,7 @@ function enterToilet(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'din_van', 'quickwash');
   qspCall(s, 'din_van', 'basin');
   qspCall(s, 'din_van', 'publicpan');
-  // TODO-QSP: end
+  (s as any).temp_transportVars = undefined;
   scene.actions([
     { label: 'Return to the station', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;

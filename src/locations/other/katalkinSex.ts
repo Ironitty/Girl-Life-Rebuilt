@@ -16,7 +16,6 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/resident/katalkin/sex/kat.jpg');
   scene.text('Since he doesn\'t notice any clear objections from you, captain Katalkin\'s groping grows bolder.');
-  // TODO-QSP: dynamic text: His hands now ravage your body as he roughly squeezes your <<$titsize>> breasts ...
   scene.text(`His hands now ravage your body as he roughly squeezes your ${((s as any).titsize ?? '')} breasts and pinches your nipples before he pulls you up and reaches behind you, pawing at your ass as he pulls your clothes to the side for better access.`);
   qspCall(s, 'willpower', 'sex', 'resist', 'hard');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
@@ -56,7 +55,6 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Kiss him', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/resident/katalkin/sex/kat.jpg');
@@ -76,7 +74,6 @@ function enterSexgo(s: GameState, scene: SceneBuilder): void {
   scene.text('You don\'t say anything, but simply smile as you put your hand on his groin and knead it softly with your fingers. This puts a lewd grin on his face. "I knew it! I knew you had a thing for men in uniform as soon as you walked through that door!"');
   scene.text('Within seconds, you can feel his penis grow more rigid, and before too long the outline of his erect cock is distinctly visible through his pants.');
   scene.text('He encourages you further. "You know… I could get my handcuffs and we could really have some fun… Nah, maybe next time. Keep going."');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Kneel before him', handler: (st: GameState) => {
     (st as any).katalkinSexOnce = 1;
@@ -142,7 +139,6 @@ function enterDKatanal(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'dinsex', 'boy_wants_anal');
   qspCall(s, 'dinsex', 'analsex');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/resident/katalkin/sex/after.jpg');
@@ -168,7 +164,6 @@ function enterDKatsub(s: GameState, scene: SceneBuilder): void {
   scene.text('After a while, he roughly turns you around and puts his hand on your back, forcing you to lean over.');
   qspCall(s, 'arousal', 'foreplay', 3, 'sub');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Lean against the wall', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/resident/katalkin/sex/grop.jpg');

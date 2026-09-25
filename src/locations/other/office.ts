@@ -108,7 +108,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -162,7 +161,6 @@ function enterWorkFloor(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -196,7 +194,6 @@ function enterSecretaryOffice(s: GameState, scene: SceneBuilder): void {
   }, goto: ['city_center', ''] },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -237,7 +234,6 @@ function enterBreakRoom(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the corridor', goto: ['office', 'work_floor'] },
   ]);
@@ -245,6 +241,7 @@ function enterBreakRoom(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterRestrooms(s: GameState, scene: SceneBuilder): void {
+  (s as any).boy = undefined;
   (s as any).office_ladies_entry = 0;
   (s as any).menu_loc = 'office';
   (s as any).menu_arg = 'restrooms';
@@ -268,7 +265,6 @@ function enterRestrooms(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the women\'s restroom', goto: ['office', 'womens_restrooms'] },
     { label: 'Go to the corridor', goto: ['office', 'work_floor'] },
@@ -293,7 +289,6 @@ function enterWomensRestrooms(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'din_van', 'quickwash');
   qspCall(s, 'din_van', 'basin');
   qspCall(s, 'din_van', 'publicpan', 'no_prost');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Look in the mirror', goto: ['mirror', 'start'] },
     { label: 'Go to the corridor', goto: ['office', 'work_floor'] },
@@ -379,11 +374,11 @@ function enterMensRestrooms(s: GameState, scene: SceneBuilder): void {
       { label: 'Go to the corridor', goto: ['office', 'work_floor'] },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterWork(s: GameState, scene: SceneBuilder): void {
+  (s as any).boy = undefined;
   (s as any).menu_loc = 'office';
   (s as any).menu_arg = 'work';
   if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0  &&  qspFunc(s, 'jobs', 'is_work_time', 'city_office_secretary') === 1) {
@@ -412,7 +407,6 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     (st as any).temp = (Math.floor(Math.random() * 27) + 1);
     if (((st as any).temp ?? 0) === 1) {
-      // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/city/citycenter/office/work/an...
       scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/city/citycenter/office/work/answeringphone` + (Math.floor(Math.random() * 3) + 1) + '.jpg"></center>');
       scene.text('You spend most of your work period on the phone, either talking to clients or managers about various things.');
       scene.actions([
@@ -420,7 +414,6 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       if (((st as any).temp ?? 0) === 2) {
-        // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/city/citycenter/office/work/ge...
         scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/city/citycenter/office/work/getbinders` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
         scene.text('You spend most of your work period collecting several binders on various projects and taking them from office to office while the managers look over them until they send you to someone else or to finally replace the binders.');
         scene.actions([
@@ -428,7 +421,6 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
         ]);
       } else {
         if (((st as any).temp ?? 0) === 3) {
-          // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/city/citycenter/office/work/ge...
           scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/city/citycenter/office/work/getcoffee` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
           scene.text('You spend most of your work period fetching coffee for the various managers. A few make some inappropriate comments, but you ignore them.');
           scene.actions([
@@ -436,7 +428,6 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
           ]);
         } else {
           if (((st as any).temp ?? 0) === 4) {
-            // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/city/citycenter/office/work/ge...
             scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/city/citycenter/office/work/getfiles` + (Math.floor(Math.random() * 5) + 1) + '.jpg"></center>');
             scene.text('You spend most of your work period collecting files and taking them to different managers in different offices, or getting files from them and filing them away.');
             scene.actions([
@@ -451,7 +442,6 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
               ]);
             } else {
               if (((st as any).temp ?? 0) === 6) {
-                // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/city/citycenter/office/work/ma...
                 scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/city/citycenter/office/work/makecopies` + (Math.floor(Math.random() * 4) + 1) + '.jpg"></center>');
                 scene.text('You spend most of your work period in the copy room making copies of documents and organizing them into binders before filing them away.');
                 scene.actions([
@@ -459,13 +449,11 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
                 ]);
               } else {
                 if (((st as any).temp ?? 0) === 7) {
-                  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/city/citycenter/office/work/ta...
                   scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/city/citycenter/office/work/takenotes` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
                   scene.text('You spend most of your work period in a manager\'s office taking notes as he brainstorms out loud his plans for a new project the company is about to start soon.');
                   qspGoto(st, 'office', 'secretary_office');
                 } else {
                   if (((st as any).temp ?? 0) === 8) {
-                    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/city/citycenter/office/work/wo...
                     scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/city/citycenter/office/work/workatdesk` + (Math.floor(Math.random() * 7) + 1) + '.jpg"></center>');
                     scene.text('You spend most of your work period at your desk working on your computer doing a variety of tasks.');
                     scene.actions([
@@ -662,7 +650,6 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
                                         ]);
                                       } else {
                                         if (((st as any).temp ?? 0) === 19) {
-                                          // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/city/citycenter/office/work/ge...
                                           scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/city/citycenter/office/work/getfiles` + (Math.floor(Math.random() * 5) + 1) + '.jpg"></center>');
                                           scene.text('You spend most of your work period getting files and taking them to different managers in different offices, or getting files from them and filing them away. After delivering a file to one of the senior managers, he stops you when you turn to leave. "Excuse miss, but can you retrieve my pen?" He doesn\'t sound like he\'s asking.');
                                           scene.text('You smile at him. "Of course, sir. Where did you last see it?"');
@@ -699,7 +686,6 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
                                           } else {
                                             if (((st as any).temp ?? 0) === 21) {
                                               qspCall(st, 'mood', 'raise', 'tiny');
-                                              // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/city/citycenter/office/events/...
                                               scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/city/citycenter/office/events/office_race` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
                                               scene.text('You spend most of your work period getting files and taking them to different managers in different offices, or getting files from them and filing them away. While delivering a file to one of the managers, you are nearly run over by some of your co-workers. Two of the managers are pushing office chairs with a couple of your fellow secretaries sitting on them down the hallway in some apparent race. You jump aside just in time as they rush past you and down the hall, all of them laughing as they go. Once they\'re clear, you go back to delivering files.');
                                               scene.actions([
@@ -707,7 +693,6 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
                                               ]);
                                             } else {
                                               if (((st as any).temp ?? 0) === 22) {
-                                                // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/city/citycenter/office/events/...
                                                 scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/city/citycenter/office/events/shoulder` + (Math.floor(Math.random() * 3) + 1) + '.jpg"></center>');
                                                 scene.text('You spend most of your work period at your desk working on your computer doing a variety of tasks. While you\'re working, one of the managers comes up behind you and places his hands on your shoulders. "My my, you feel tense," he says as he starts massaging your shoulders. He\'s pretty good at it and you feel yourself relaxing.');
                                                 qspCall(st, 'arousal', 'massage', 2);
@@ -763,7 +748,6 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
                                                 ]);
                                               } else {
                                                 if (((st as any).temp ?? 0) === 23) {
-                                                  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/city/citycenter/office/work/ma...
                                                   scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/city/citycenter/office/work/makecopies` + (Math.floor(Math.random() * 4) + 1) + '.jpg"></center>');
                                                   scene.text('You spend most of your work period in the copy room making copies of documents and organizing them into binders before filing them away. As you\'re standing at the printer, you hear someone walking up behind you and feel a hand groping and squeezing your ass.');
                                                   qspCall(st, 'arousal', 'foreplay', 2);
@@ -807,7 +791,6 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
                                                     ]);
                                                   } else {
                                                     if (((st as any).temp ?? 0) === 25) {
-                                                      // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/city/citycenter/office/events/...
                                                       scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/city/citycenter/office/events/shoulder` + (Math.floor(Math.random() * 3) + 1) + '.jpg"></center>');
                                                       scene.text('You spend most of your work period at your desk working on your computer doing a variety of tasks. As you\'re working, one of the managers comes up behind you and places his hands on your shoulders. "What are you working on?" he asks before he starts giving you some pointers, but as he does so he keeps leaning in closer until you feel his crotch pressed against your upper back.');
                                                       qspCall(st, 'arousal', 'massage', 2);
@@ -905,7 +888,6 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the corridor', goto: ['office', 'work_floor'] },
   ]);
@@ -917,7 +899,6 @@ function enterInterview(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/citycenter/office/waiting_interview.jpg');
   scene.text('You go to the elevators and follow the directions you were given. You pass by a break room and many offices, as well as a large open room with many work stations, most likely the secretary room. When you arrive at HR, you are asked to take a seat. As you sit and wait to be called in for your interview, you reflect on what you saw on your way here. A few things stood out to you. The office is very expensive looking, almost all of the managers are men ranging from their mid twenties to mid forties and almost all of the secretaries and personal assistants seem to be rather young and attractive women. Before you can ponder this more, you are called into the office for your interview.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Interview for a job', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/office/npc/torbica_office.jpg');
@@ -975,8 +956,7 @@ function enterInterview(s: GameState, scene: SceneBuilder): void {
     if (qspFunc(s, 'jobs', 'check_employment_possible', 'city_office_secretary') === 1) {
       qspCall(st, 'jobs', 'set_employed', 'city_office_secretary');
       scene.text('"Yes, I\'ll take the job. Thank you very much!" you tell her.');
-      // TODO-QSP: dynamic text: '"Excellent! Here''s your welcome packet. Make sure to come to work wearing the ...
-      scene.text('"Excellent! Here\'s your welcome packet. Make sure to come to work wearing the appropriate clothes. Work starts at 9:00, but it\'s okay to show up as early as 8:00. It\'s not okay to leave before 17:00, other than to get lunch. If you leave work early, then you won\'t be paid for the day." After a few more pleasantries, you gather your stuff and leave.');
+      scene.text('\'"Excellent! Here\'s your welcome packet. Make sure to come to work wearing the appropriate clothes. Work starts at 9:00, but it\'s okay to show up as early as 8:00. It\'s not okay to leave before 17:00, other than to get lunch. If you leave work early, then you won\'t be paid for the day." After a few more pleasantries, you gather your stuff and leave.\'');
     } else {
       scene.text('"Sorry, I\'m already committed to another job schedule," you say, glancing at your planner.');
       scene.text('"I understand," she replies politely. "If your schedule opens up, feel free to reapply."');
@@ -1000,7 +980,6 @@ function enterResign(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/citycenter/office/npc/torbica_office.jpg');
   scene.text('You walk into Mrs Torbica\'s office and tell her that you\'re resigning.');
   scene.text('"Are you sure?" she asks, obviously a little surprised you\'re quitting.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Yes', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 30;

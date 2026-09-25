@@ -54,10 +54,10 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     if (((st as any).masseuse ?? 0)?.['uniform'] === 1) {
+      alert('You should to change back into your clothes before you leave.');
     } else {
       qspGoto(st, 'city_mall', '');
     }
@@ -77,22 +77,18 @@ function enterReceptionist(s: GameState, scene: SceneBuilder): void {
     scene.text('You walk over to the front desk to speak to Xian.');
   }
   if (((s as any).hour ?? 0) >= 21) {
-    // TODO-QSP: dynamic text: "It''s after hours, <<$pcs_firstname>>. You should go home."
     scene.text(`"It's after hours, ${((s as any).pcs_firstname ?? '')}. You should go home."`);
   } else {
     if (((s as any).masseuse ?? 0)?.['salon_state'] === 'fired') {
       scene.text('"Hello, what can I help you with today?"');
     } else {
       if (((s as any).masseuse ?? 0)?.['salon_state'] === 'resigned') {
-        // TODO-QSP: dynamic text: "Hello again, <<$pcs_firstname>>. What can I help you with?"
         scene.text(`"Hello again, ${((s as any).pcs_firstname ?? '')}. What can I help you with?"`);
       } else {
         if (((s as any).week ?? 0) === 5  &&  ((s as any).job_bonus_pay ?? 0)?.['city_salon_masseuse'] > 0) {
-          // TODO-QSP: dynamic text: "Hello <<$pcs_firstname>>! Are you here to pick up your paycheck?"
           scene.text(`"Hello ${((s as any).pcs_firstname ?? '')}! Are you here to pick up your paycheck?"`);
         } else {
           if (((s as any).job_status ?? 0)?.['city_salon_masseuse'] === 'employed') {
-            // TODO-QSP: dynamic text: "Hello <<$pcs_firstname>>! Are you scheduled for a shift today? Or are you here ...
             scene.text(`"Hello ${((s as any).pcs_firstname ?? '')}! Are you scheduled for a shift today? Or are you here for some discount services?"`);
           }
         }
@@ -100,7 +96,6 @@ function enterReceptionist(s: GameState, scene: SceneBuilder): void {
     }
   }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterReceptionistTalkMenu(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -140,7 +135,6 @@ function enterReceptionistTalkMenu(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Move away', goto: ['salon', 'start'] },
   ]);
@@ -153,7 +147,6 @@ function enterDiscount(s: GameState, scene: SceneBuilder): void {
   } else {
     (s as any).salon_rate = ((s as any).locArgs?.[1] ?? 0);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -176,7 +169,9 @@ function enterServices(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: 'Skin care',  },
+      { label: 'Skin care', handler: (st: GameState) => {
+    alert('You need to wait a week since your last skin care treatment for a new one to have any effect.');
+  } },
     ]);
   }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 25000]; enterDiscount(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -196,7 +191,9 @@ function enterServices(s: GameState, scene: SceneBuilder): void {
       if (((s as any).pcs_pubes ?? 0) <= 2  ||  ((s as any).pcs_leghair ?? 0) <= 2) {
         { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 1000]; enterDiscount(s, scene); (s as any).locArgs = __savedLocArgs; }
         scene.actions([
-          { label: 'Body hair removal',  },
+          { label: 'Body hair removal', handler: (st: GameState) => {
+    alert('You don\'t have enough body hair for this procedure!');
+  } },
         ]);
       }
     }
@@ -215,7 +212,9 @@ function enterServices(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Dye your pubic hair',  },
+        { label: 'Dye your pubic hair', handler: (st: GameState) => {
+    alert('Your pubes are too short!');
+  } },
       ]);
     }
   }
@@ -225,7 +224,6 @@ function enterServices(s: GameState, scene: SceneBuilder): void {
       { label: 'Cosmetic tattoos service', goto: ['salon', 'cosmetic_tattoo_start'] },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Move away', handler: (st: GameState) => {
     qspCall(st, 'salon', '');
@@ -267,7 +265,6 @@ function enterJobInterview1(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/citycenter/mall/salon/xian.jpg');
   scene.text('"I actually wanted to know if you had any job openings available."');
   scene.text('"We have several openings for female masseuses. How do you feel about that?"');
-  // TODO-QSP: end
   scene.actions([
     { label: 'I\'m not interested', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/mall/salon/xian.jpg');
@@ -294,9 +291,7 @@ function enterJobInterview1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterJobOffer(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: dynamic text: "Shifts are four hours long and pay <<$func(''money'', ''string_profit'', 400)>>...
   scene.text(`"Shifts are four hours long and pay ${qspFunc(s, 'money', 'string_profit', 400)} per shift. We allow employees to schedule their own shifts rather than being assigned, but senior employees get priority over newer employees. We expect you to work 5 shifts if you're part time or 10 shifts if you're full time. We do not provide overtime compensation, so if you choose to work more shifts or are kept late with a customer, you will only be paid for your shift."`);
-  // TODO-QSP: end
   scene.actions([
     { label: 'That\'s not a lot of pay', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/mall/salon/xian.jpg');
@@ -349,12 +344,10 @@ function enterJobOffer(s: GameState, scene: SceneBuilder): void {
 function enterWhoreOffer(s: GameState, scene: SceneBuilder): void {
   ((s as any).masseuse = (s as any).masseuse ?? {})['brothel_know'] = 1;
   scene.text('"In addition to giving normal massages, some of our masseuses offer more... intimate services. Namely, performing the massages while naked, performing handjobs, performing blowjobs, or having sex with the customer. What I mean to say is that we function as a salon, a massage parlor, and a brothel. If you would like to be paid more, we offer specialty positions for sex work. Are you interested in that kind of work?"');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Ew, not interested', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/mall/salon/xian.jpg');
     scene.text('"Ew," you say, wrinkling your nose in disgust. "Yeah, no, I\'m not interested in that."');
-    // TODO-QSP: dynamic text: "Are you sure? We pay our whores up to <<$func(''money'', ''string_profit'', 100...
     scene.text(`"Are you sure? We pay our whores up to ${qspFunc(s, 'money', 'string_profit', 1000)} per shift. And you don't have to do anything you don't want to. There are plenty of girls who only do naked massages and no sexual acts or girls who give blowjobs but don't have sex. If you're really not interested, a normal masseuse position is all we have to offer."`);
     scene.actions([
       { label: 'Not interested at all', handler: (st: GameState) => {
@@ -404,11 +397,9 @@ function enterWhoreOffer(s: GameState, scene: SceneBuilder): void {
 
 function enterWhoreOffer2(s: GameState, scene: SceneBuilder): void {
   scene.text('"Let me explain. If you want the highest pay as a whore, you will be expected to do any of the work we have on the menu. That includes basic body massages, massages given while you are naked, handjobs, blowjobs, and of course, sex. But each customer pays for a different service, we don\'t have any all included packages. If you aren\'t comfortable with going so far, you can choose to perform only lesser services, but for less pay of course. You can just do oral and handjobs if you prefer with no fucking, or just performing normal massages while naked. It\'s no problem for us, we\'ll just pay you less."');
-  // TODO-QSP: dynamic text: "We pay <<$func(''money'', ''string_profit'', 1000)>> a shift for full whores, <...
   scene.text(`"We pay ${qspFunc(s, 'money', 'string_profit', 1000)} a shift for full whores, ${qspFunc(s, 'money', 'string_profit', 700)} for oral masseuses, ${qspFunc(s, 'money', 'string_profit', 600)} for happy end masseuses, ${qspFunc(s, 'money', 'string_profit', 500)} for naked masseuses, and of course, ${qspFunc(s, 'money', 'string_profit', 400)} for regular masseuses. All employees also enjoy a 50% discount of any other services the salon has to offer. Oh, but we don't pay for birth control. And company policy is that we never use condoms with customers. After that, everything else is the same. We let the whores pick and choose their own shifts. Four hour shifts at a time. Pay day is Friday."`);
   scene.text('She lays everything out for you as calmly and methodically as if she were trying to sell a body oil.');
   scene.text('"That about covers it. Still interested?"');
-  // TODO-QSP: end
   scene.actions([
     { label: 'On second thought, maybe not', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/mall/salon/xian.jpg');
@@ -573,7 +564,6 @@ function enterWhoreOffer2(s: GameState, scene: SceneBuilder): void {
 function enterPartTimeFullTime(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/citycenter/mall/salon/xian.jpg');
   scene.text('"And were you looking to be a full timer or a part timer? As a reminder, full timers are expected to work 10 shifts a week, part timers work 5. Full timers also get priority on available shifts."');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Part time', handler: (st: GameState) => {
     ((st as any).masseuse = (st as any).masseuse ?? {})['shifts_required'] = 5;
@@ -619,7 +609,6 @@ function enterMasseuseOrientation(s: GameState, scene: SceneBuilder): void {
   scene.text('You scribble out a signature and she takes the paper back from you.');
   scene.text('"Thank you very much! So for future reference, I\'m Xian, one of the managers here. All your clients will come to me and will be able to request you based on whether you are available or not. Now if you\'ll quickly follow me."');
   scene.text('She gets up from her chair and moves around the desk towards the back.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Follow her', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/mall/salon/work/lockers.jpg');
@@ -664,7 +653,6 @@ function enterWhoreOrientation(s: GameState, scene: SceneBuilder): void {
   scene.text('You scribble out a signature and she takes the paper back from you.');
   scene.text('"Thank you very much! So for future reference, I\'m Xian, one of the managers here. All your clients will come to me and will be able to request you based on whether you are available or not. Now if you\'ll quickly follow me."');
   scene.text('She gets up from her chair and moves around the desk towards the back.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Follow her', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/mall/salon/work/lockers.jpg');
@@ -745,7 +733,6 @@ function enterQuestions(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'No more questions', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/mall/salon/xian.jpg');
@@ -773,7 +760,7 @@ function enterLockers(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/citycenter/mall/salon/work/lockers.jpg');
   scene.text('The employee locker room where you can put your stuff while working. Empty except for you at the moment.');
-  scene.text('There\'s a <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027start/u0027); return false;">mirror</a> hanging on the wall as well.');
+  scene.text('There\'s a <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027start\u0027); return false;">mirror</a> hanging on the wall as well.');
   if (((s as any).masseuse ?? 0)?.['uniform'] === 1) {
     scene.actions([
       { label: 'Put your normal clothes back on', handler: (st: GameState) => {
@@ -818,7 +805,6 @@ function enterLockers(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['salon', 'start'] },
   ]);
@@ -828,7 +814,6 @@ function enterLockers(s: GameState, scene: SceneBuilder): void {
 function enterLeiWork(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/citycenter/mall/salon/salon.jpg');
   scene.text('You move towards the massage rooms, but right when you put your hand on the door, you remember you don\'t have a shift scheduled for right now. Right about the same time, you hear moans coming through the door.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Move away', goto: ['salon', 'start'] },
     { label: 'Take a peek', goto: ['salon', 'lei_work2'] },
@@ -878,7 +863,6 @@ function enterLeiWork2(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -901,7 +885,6 @@ function enterResignation(s: GameState, scene: SceneBuilder): void {
   ((s as any).masseuse = (s as any).masseuse ?? {})['last_rank'] = (((s as any).job_rank ?? 0)?.['city_salon_masseuse']);
   qspCall(s, 'jobs', 'set_terminated', 'city_salon_masseuse');
   ((s as any).masseuse = (s as any).masseuse ?? {})['salon_state'] = 'resigned';
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['salon', 'start'] },
   ]);
@@ -917,16 +900,13 @@ function enterPayday(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).job_shifts_this_period ?? 0)?.['city_salon_masseuse'] < ((s as any).masseuse ?? 0)?.['shifts_required']) {
       ((s as any).masseuse = (s as any).masseuse ?? {})['warning'] = ((s as any).masseuse['warning'] ?? 0) - (1);
-      // TODO-QSP: dynamic text: "Hey, you only worked <<job_shifts_this_period[''city_salon_masseuse'']>> this w...
       scene.text(`"Hey, you only worked ${(((s as any).job_shifts_this_period ?? 0)?.['city_salon_masseuse'] ?? '')} this week. You were supposed to work ${(((s as any).masseuse ?? 0)?.['shifts_required'] ?? '')}."`);
       scene.text('"Sorry," you say, reaching for the envelope. "Won\'t happen again."');
-      // TODO-QSP: dynamic text: "Better not." You try to pull the envelope away, but Xian holds on tight to it, ...
       scene.text(`"Better not." You try to pull the envelope away, but Xian holds on tight to it, not budging until you make eye contact. "${(((s as any).masseuse ?? 0)?.['warning'] ?? '')} more times and you're fired."`);
       scene.text('She lets go.');
     } else {
       if (((s as any).job_shifts_this_period ?? 0)?.['city_salon_masseuse'] >= ((s as any).masseuse ?? 0)?.['shifts_required']) {
         if (((s as any).job_shifts_this_period ?? 0)?.['city_salon_masseuse'] > ((s as any).masseuse ?? 0)?.['shifts_required']) {
-          // TODO-QSP: dynamic text: "By the way, thank you for covering those extra shifts this week, <<$pcs_firstna...
           scene.text(`"By the way, thank you for covering those extra shifts this week, ${((s as any).pcs_firstname ?? '')}. Really helpful for us."`);
           scene.text('"No problem, Xian," you say while taking the envelope. "I could use the extra cash."');
         }
@@ -934,7 +914,6 @@ function enterPayday(s: GameState, scene: SceneBuilder): void {
     }
   }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPaydayEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['salon', 'start'] },
   ]);
@@ -942,7 +921,6 @@ function enterPayday(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPaydayEnd(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: dynamic text: Looking inside, you see it''s stuffed with cash that counts out to <<$func(''mon...
   scene.text(`Looking inside, you see it's stuffed with cash that counts out to ${qspFunc(s, 'money', 'string_profit', (((s as any).masseuse ?? 0)?.['paycheck'] ?? ''))}.`);
   ((s as any).masseuse = (s as any).masseuse ?? {})['money_earned'] = ((s as any).masseuse['money_earned'] ?? 0) + ((((s as any).masseuse ?? 0)?.['paycheck']));
   if (((s as any).job_rank ?? 0)?.['city_salon_masseuse'] === 2) {
@@ -953,7 +931,6 @@ function enterPaydayEnd(s: GameState, scene: SceneBuilder): void {
     }
   }
   ((s as any).masseuse = (s as any).masseuse ?? {})['paycheck'] = 0;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -980,7 +957,7 @@ function enterEyelashes(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Eyelash growth treatment', handler: (st: GameState) => {
-    // TODO-QSP: msg 'You don''t need this service!'
+    alert('You don\'t need this service!');
   } },
     ]);
   }
@@ -1001,7 +978,7 @@ function enterEyelashes(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Simple false lashes', handler: (st: GameState) => {
-    // TODO-QSP: msg 'You don''t need this service!'
+    alert('You don\'t need this service!');
   } },
     ]);
   }
@@ -1022,7 +999,7 @@ function enterEyelashes(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Dramatic false lashes', handler: (st: GameState) => {
-    // TODO-QSP: msg 'You don''t need this service!'
+    alert('You don\'t need this service!');
   } },
     ]);
   }
@@ -1044,7 +1021,7 @@ function enterEyelashes(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: '2D volume eyelash extensions', handler: (st: GameState) => {
-    // TODO-QSP: msg 'You don''t need this service!'
+    alert('You don\'t need this service!');
   } },
     ]);
   }
@@ -1066,7 +1043,7 @@ function enterEyelashes(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: '4D volume eyelash extensions', handler: (st: GameState) => {
-    // TODO-QSP: msg 'You don''t need this service!'
+    alert('You don\'t need this service!');
   } },
     ]);
   }
@@ -1088,7 +1065,7 @@ function enterEyelashes(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: '6D volume eyelash extensions', handler: (st: GameState) => {
-    // TODO-QSP: msg 'You don''t need this service!'
+    alert('You don\'t need this service!');
   } },
     ]);
   }
@@ -1109,7 +1086,7 @@ function enterEyelashes(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Refill your 2D lash extension', handler: (st: GameState) => {
-    // TODO-QSP: msg 'You don''t need this service!'
+    alert('You don\'t need this service!');
   } },
     ]);
   }
@@ -1130,7 +1107,7 @@ function enterEyelashes(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Refill your 4D lash extension', handler: (st: GameState) => {
-    // TODO-QSP: msg 'You don''t need this service!'
+    alert('You don\'t need this service!');
   } },
     ]);
   }
@@ -1151,7 +1128,7 @@ function enterEyelashes(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Refill your 6D lash extension', handler: (st: GameState) => {
-    // TODO-QSP: msg 'You don''t need this service!'
+    alert('You don\'t need this service!');
   } },
     ]);
   }
@@ -1172,11 +1149,10 @@ function enterEyelashes(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Remove your eyelash extensions', handler: (st: GameState) => {
-    // TODO-QSP: msg 'You don''t need this service!'
+    alert('You don\'t need this service!');
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'back', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -1200,7 +1176,6 @@ function enterLashTreatment(s: GameState, scene: SceneBuilder): void {
   scene.text('The specialist collects your payment and moves you over to a chair with a headrest, which she has you tilt your head back up against.');
   scene.text('It scarcely takes any time at all -- she takes a cleansing wipe up to your eyes and dabs at them gently until she\'s convinced they\'re clean, then very carefully brushes an applicator not unlike a mascara wand up against the base of your lashes.');
   scene.text('She gently blots what little excess there is and sends you on your way, letting you know you should see results fairly soon.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['salon', 'start'] },
   ]);
@@ -1228,7 +1203,6 @@ function enterLashFalsies(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'AppearanceSystem', 'UpdateBaseAppearance');
   qspCall(s, 'stat', '');
   scene.text('"There you go! You\'re all set! Have fun with wherever you\'re going!"');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['salon', 'start'] },
   ]);
@@ -1313,11 +1287,13 @@ function enterLashExtension(s: GameState, scene: SceneBuilder): void {
       (s as any).pcs_naturallashes = ((s as any).pcs_naturallashes ?? 0) - (1);
     }
     (s as any).pcs_lashes = ((s as any).pcs_naturallashes ?? 0);
+    (s as any).lashextensionnew = undefined;
+    (s as any).lashextensionduration = undefined;
+    (s as any).lashextensionstyle = undefined;
   }
   qspCall(s, 'AppearanceSystem', 'UpdateBaseAppearance');
   qspCall(s, 'stat', '');
   scene.text('After what seems like forever, you\'re finally allowed to open your eyes and take a look.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['salon', 'start'] },
   ]);
@@ -1333,7 +1309,6 @@ function enterTanningBooth(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/citycenter/mall/salon/solarium.jpg');
   scene.text('You strip out of all your clothes and fold them neatly on the stool proved, then spend 15 minutes in the tanning booth bronzing your skin.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Re-dress and leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -1354,33 +1329,26 @@ function enterHairRemoval(s: GameState, scene: SceneBuilder): void {
   }
   scene.img('images/locations/city/citycenter/mall/salon/depilation.jpg');
   if (((s as any).pcs_leghair ?? 0) > 2  &&  qspFunc(s, 'money', 'can_afford', ((s as any).partialservice ?? 0))) {
-    // TODO-QSP: dynamic text: Get your legs waxed <a href="exec: gs ''money'', ''pay'', <<partialservice>> & g...
-    scene.text(`Get your legs waxed <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027money/u0027, /u0027pay/u0027); return false;">${qspFunc(s, 'money', 'string_price', ((s as any).partialservice ?? ''))}</a> `);
+    scene.text(`Get your legs waxed <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027money/u0027, /u0027pay/u0027, String((s as any).partialservice ?? /u0027/u0027) + /u0027 & gt //u0027salon//u0027/u0027); return false;">${qspFunc(s, 'money', 'string_price', ((s as any).partialservice ?? ''))}</a> `);
   } else {
     if (((s as any).pcs_leghair ?? 0) > 2) {
-      // TODO-QSP: dynamic text: 'Get your legs waxed (' + $func('wrap', 'neg', '<<$func(''money'', ''string_pric...
-      scene.text(`Get your legs waxed (' + $func('wrap', 'neg', '${qspFunc(s, 'money', 'string_price', ((s as any).partialservice ?? ''))}') + ') `);
+      scene.text('Get your legs waxed (' + qspFunc(s, 'wrap', 'neg', '' + qspFunc(s, 'money', 'string_price', ((s as any).partialservice ?? '')) + '') + ') ');
     }
   }
   if (((s as any).pcs_pubes ?? 0) > 2  &&  qspFunc(s, 'money', 'can_afford', ((s as any).partialservice ?? 0))) {
-    // TODO-QSP: dynamic text: Get your pubic area waxed <a href="exec: gs ''money'', ''pay'', <<partialservice...
-    scene.text(`Get your pubic area waxed <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027money/u0027, /u0027pay/u0027); return false;">${qspFunc(s, 'money', 'string_price', ((s as any).partialservice ?? ''))}</a> `);
+    scene.text(`Get your pubic area waxed <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027money/u0027, /u0027pay/u0027, String((s as any).partialservice ?? /u0027/u0027) + /u0027 & gt //u0027salon//u0027/u0027); return false;">${qspFunc(s, 'money', 'string_price', ((s as any).partialservice ?? ''))}</a> `);
   } else {
     if (((s as any).pcs_pubes ?? 0) > 2) {
-      // TODO-QSP: dynamic text: 'Get your pubic area waxed (' + $func('wrap', 'neg', '<<$func(''money'', ''strin...
-      scene.text(`Get your pubic area waxed (' + $func('wrap', 'neg', '${qspFunc(s, 'money', 'string_price', ((s as any).partialservice ?? ''))}') + ') `);
+      scene.text('Get your pubic area waxed (' + qspFunc(s, 'wrap', 'neg', '' + qspFunc(s, 'money', 'string_price', ((s as any).partialservice ?? '')) + '') + ') ');
     }
   }
   if (((s as any).pcs_pubes ?? 0) > 2  &&  ((s as any).pcs_leghair ?? 0) > 2  &&  qspFunc(s, 'money', 'can_afford', ((s as any).fullservice ?? 0))) {
-    // TODO-QSP: dynamic text: Get your body waxed <a href="exec: gs ''money'', ''pay'', <<fullservice>> & gt '...
-    scene.text(`Get your body waxed <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027money/u0027, /u0027pay/u0027); return false;">${qspFunc(s, 'money', 'string_price', ((s as any).fullservice ?? ''))}</a> `);
+    scene.text(`Get your body waxed <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027money/u0027, /u0027pay/u0027, String((s as any).fullservice ?? /u0027/u0027) + /u0027 & gt //u0027salon//u0027/u0027); return false;">${qspFunc(s, 'money', 'string_price', ((s as any).fullservice ?? ''))}</a> `);
   } else {
     if (((s as any).pcs_pubes ?? 0) > 2  &&  ((s as any).pcs_leghair ?? 0) > 2) {
-      // TODO-QSP: dynamic text: 'Get your body waxed (' + $func('wrap', 'neg', '<<$func(''money'', ''string_pric...
-      scene.text(`Get your body waxed (' + $func('wrap', 'neg', '${qspFunc(s, 'money', 'string_price', ((s as any).fullservice ?? ''))}') + ') `);
+      scene.text('Get your body waxed (' + qspFunc(s, 'wrap', 'neg', '' + qspFunc(s, 'money', 'string_price', ((s as any).fullservice ?? '')) + '') + ') ');
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     qspCall(st, 'salon', '');
@@ -1398,7 +1366,6 @@ function enterWaxlegs(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/citycenter/mall/salon/depilation.jpg');
   scene.text('You get your legs waxed, leaving them feeling silky smooth and completely hair free.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     qspCall(st, 'salon', '');
@@ -1415,7 +1382,6 @@ function enterWaxpubic(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/citycenter/mall/salon/depilation.jpg');
   scene.text('You get your pubic region waxed, leaving it feeling silky smooth and completely hair free.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     qspCall(st, 'salon', '');
@@ -1435,7 +1401,6 @@ function enterWaxbody(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/citycenter/mall/salon/depilation.jpg');
   scene.text('You get a full body hair removal treatment, giving you a smooth and completely hair free body.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     qspCall(st, 'salon', '');
@@ -1462,7 +1427,6 @@ function enterPubes(s: GameState, scene: SceneBuilder): void {
     ((st as any).pcs_pubecol = (st as any).pcs_pubecol ?? {})[2] = ((st as any).pcs_pubecol ?? 0);
     scene.img(`${qspFunc(s, '$body_image', '', 'pubes')}`);
     scene.text('45 minutes later, the dye has taken and dried in and the technician checks that everything is okay. "All done! You can get dressed."');
-    // TODO-QSP: dynamic text: You pull your clothes back up and pay her <<$func(''money'', ''string_price'', 5...
     scene.text(`You pull your clothes back up and pay her ${qspFunc(s, 'money', 'string_price', 500)}.`);
     scene.actions([
       { label: 'Move away', goto: ['salon', 'start'] },
@@ -1486,7 +1450,6 @@ function enterPubes(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img(`${qspFunc(s, '$body_image', '', 'pubes')}`);
     scene.text('45 minutes later, the dye has taken and dried in and the technician checks that everything is okay. "All done! You can get dressed."');
-    // TODO-QSP: dynamic text: You pull your clothes back up and pay her <<$func(''money'', ''string_price'', 5...
     scene.text(`You pull your clothes back up and pay her ${qspFunc(s, 'money', 'string_price', 500)}.`);
     scene.actions([
       { label: 'Move away', goto: ['salon', 'start'] },
@@ -1510,7 +1473,6 @@ function enterPubes(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img(`${qspFunc(s, '$body_image', '', 'pubes')}`);
     scene.text('45 minutes later, the dye has taken and dried in and the technician checks that everything is okay. "All done! You can get dressed."');
-    // TODO-QSP: dynamic text: You pull your clothes back up and pay her <<$func(''money'', ''string_price'', 5...
     scene.text(`You pull your clothes back up and pay her ${qspFunc(s, 'money', 'string_price', 500)}.`);
     scene.actions([
       { label: 'Move away', goto: ['salon', 'start'] },
@@ -1534,7 +1496,6 @@ function enterPubes(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img(`${qspFunc(s, '$body_image', '', 'pubes')}`);
     scene.text('45 minutes later, the dye has taken and dried in and the technician checks that everything is okay. "All done! You can get dressed."');
-    // TODO-QSP: dynamic text: You pull your clothes back up and pay her <<$func(''money'', ''string_price'', 5...
     scene.text(`You pull your clothes back up and pay her ${qspFunc(s, 'money', 'string_price', 500)}.`);
     scene.actions([
       { label: 'Move away', goto: ['salon', 'start'] },
@@ -1558,7 +1519,6 @@ function enterPubes(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img(`${qspFunc(s, '$body_image', '', 'pubes')}`);
     scene.text('45 minutes later, the dye has taken and dried in and the technician checks that everything is okay. "All done! You can get dressed."');
-    // TODO-QSP: dynamic text: You pull your clothes back up and pay her <<$func(''money'', ''string_price'', 5...
     scene.text(`You pull your clothes back up and pay her ${qspFunc(s, 'money', 'string_price', 500)}.`);
     scene.actions([
       { label: 'Move away', goto: ['salon', 'start'] },
@@ -1584,7 +1544,6 @@ function enterPubes(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img(`${qspFunc(s, '$body_image', '', 'pubes')}`);
     scene.text('45 minutes later, the dye has taken and dried in and the technician checks that everything is okay. "All done! You can get dressed."');
-    // TODO-QSP: dynamic text: You pull your clothes back up and pay her <<$func(''money'', ''string_price'', 5...
     scene.text(`You pull your clothes back up and pay her ${qspFunc(s, 'money', 'string_price', 500)}.`);
     scene.actions([
       { label: 'Move away', goto: ['salon', 'start'] },
@@ -1609,7 +1568,6 @@ function enterPubes(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img(`${qspFunc(s, '$body_image', '', 'pubes')}`);
     scene.text('45 minutes later, the dye has taken and dried in and the technician checks that everything is okay. "All done! You can get dressed."');
-    // TODO-QSP: dynamic text: You pull your clothes back up and pay her <<$func(''money'', ''string_price'', 5...
     scene.text(`You pull your clothes back up and pay her ${qspFunc(s, 'money', 'string_price', 500)}.`);
     scene.actions([
       { label: 'Move away', goto: ['salon', 'start'] },
@@ -1636,7 +1594,6 @@ function enterPubes(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img(`${qspFunc(s, '$body_image', '', 'pubes')}`);
     scene.text('45 minutes later, the dye has taken and dried in and the technician checks that everything is okay. "All done! You can get dressed."');
-    // TODO-QSP: dynamic text: You pull your clothes back up and pay her <<$func(''money'', ''string_price'', 5...
     scene.text(`You pull your clothes back up and pay her ${qspFunc(s, 'money', 'string_price', 500)}.`);
     scene.actions([
       { label: 'Move away', goto: ['salon', 'start'] },
@@ -1661,7 +1618,6 @@ function enterPubes(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img(`${qspFunc(s, '$body_image', '', 'pubes')}`);
     scene.text('45 minutes later, the dye has taken and dried in and the technician checks that everything is okay. "All done! You can get dressed."');
-    // TODO-QSP: dynamic text: You pull your clothes back up and pay her <<$func(''money'', ''string_price'', 5...
     scene.text(`You pull your clothes back up and pay her ${qspFunc(s, 'money', 'string_price', 500)}.`);
     scene.actions([
       { label: 'Move away', goto: ['salon', 'start'] },
@@ -1686,7 +1642,6 @@ function enterPubes(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img(`${qspFunc(s, '$body_image', '', 'pubes')}`);
     scene.text('45 minutes later, the dye has taken and dried in and the technician checks that everything is okay. "All done! You can get dressed."');
-    // TODO-QSP: dynamic text: You pull your clothes back up and pay her <<$func(''money'', ''string_price'', 5...
     scene.text(`You pull your clothes back up and pay her ${qspFunc(s, 'money', 'string_price', 500)}.`);
     scene.actions([
       { label: 'Move away', goto: ['salon', 'start'] },
@@ -1696,7 +1651,6 @@ function enterPubes(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1730,7 +1684,6 @@ function enterSkinCare(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/citycenter/mall/salon/facialmask.jpg');
   scene.text('You get a beauty mask treatment and your face feels silky smooth.');
   scene.text('You\'re told that you should wait a week before getting a new treatment.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['salon', 'start'] },
   ]);
@@ -1745,7 +1698,6 @@ function enterRejuvination(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/citycenter/mall/salon/bodyscrub.jpg');
   scene.text('You get a full body rejuvenation procedure and your skin feels soft and silky smooth.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['salon', 'start'] },
   ]);
@@ -1865,7 +1817,6 @@ function enterMassage(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } else {
-    // TODO-QSP: dynamic text: "Looking to receive instead of give today <<$pcs_firstname>>?"
     scene.text(`"Looking to receive instead of give today ${((s as any).pcs_firstname ?? '')}?"`);
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 1000]; enterDiscount(s, scene); (s as any).locArgs = __savedLocArgs; }
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 5000]; enterDiscount(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -1971,7 +1922,6 @@ function enterMassage(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Never mind', goto: ['salon', 'services'] },
   ]);
@@ -1986,15 +1936,15 @@ function enterMassageExplain(s: GameState, scene: SceneBuilder): void {
   scene.text('"We also have a <b>throat massage</b> for those who have a bit of an oral fixation. Helps to satisfy the need to suck on something. Comes with a complimentary cocktail or facial, whichever you choose."');
   scene.text('"We have the <b>hardcore massage</b> and the <b>double hardcore massage</b>. The hardcore massage is there to quite literally pound the stress from your body. Our massage therapists are extremely skilled when it comes to relieving stress in this manner. A double hardcore massage is simply adding one more person. Instead of a single massage therapist, two of them will simultaneously pound you for maximum stress relief."');
   scene.text('"Lastly, we have a <b>gentle massage</b>. Not everybody likes it hard, so we have a more gentle version as well that should fill your needs quite nicely if you are inclined."');
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterMassageEnd(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'outfit', 'dress');
   qspCall(s, 'arousal', 'end');
+  (s as any).salon_masseur_id = undefined;
+  (s as any).salon_masseur2_id = undefined;
   qspGoto(s, 'salon', 'start');
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -2011,7 +1961,6 @@ function enterNormalMassage(s: GameState, scene: SceneBuilder): void {
   scene.text('After undressing and laying on the table, you spend the next 30 minutes in bliss while a massage therapist kneads through the muscles in your back.');
   scene.text('Truth be told, his touch is almost... sensual, and you notice a growing heat between your legs. Fortunately, a towel covers your hips so he shouldn\'t be able to see your wetness.');
   scene.text('But soon enough, the massage is over and you\'re left to redress, a renewed energy coming with your relaxed body.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['salon', 'massage_end'] },
   ]);
@@ -2034,7 +1983,6 @@ function enterWellnessMassage(s: GameState, scene: SceneBuilder): void {
   scene.text('You undress and lay on the table before an attendant comes in. He begins kneading your back and rubbing a tingling oil all over your body. During your massage, you moan with pleasure as the guy really knows how to get your muscles to relax. It even makes you a little aroused...');
   scene.text('The massage continues and you feel your whole body starting to heat up. The oil is also still tingles and your breathing starts to increase as well. Your face is hot and your nipples feel very sensitive against the soft fabric of the table as you struggle not to squirm beneath the touch of your masseur, your legs very much wanting to grind together.');
   scene.text('And suddenly the massage is over. With a flushed face, you dress yourself after the masseur has left, wondering what the hell was in that oil.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['salon', 'massage_end'] },
   ]);
@@ -2051,24 +1999,20 @@ function enterMagicMassage(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/sex/massage/nipple_play1.mp4');
   scene.text('You undress and lay on the table before an attendant comes in. He begins by rubbing oil across your body and massaging your shoulders before reaching for your breasts. He massages those too, groping you in such a perfect way that your nipples are already stiff before he ever touches them. When he does, your breath hitches and you feel a growing wetness between your legs.');
   scene.text('After a few minutes of teasing you and building your arousal, he turns you over to lay on your stomach.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Turn over', handler: (st: GameState) => {
     scene.img('images/shared/sex/massage/finger_orgasm1.mp4');
     scene.text('The next part passes by in a blur of pleasure and orgasms. He starts by reaching for your ass and massaging that, but very quickly moves between you legs and starts showing you why they call it a "magic finger" massage. He digs into your pussy, leaving you writhing under his touch as he does something weird with his fingers, causing you gasp and immediately clench down on them. Holy shit, you just came! And then he makes you cum again. And again. And <i>again</i>... You start drooling into the table and lose track of what\'s happening altogether.');
     scene.text('This guy\'s hands know your pussy better than you do. They massage every spot that sets you off, playing with your clit in just the right ways and snaking fingers inside you to rub G-spots you didn\'t know existed. Your entire body becomes stuck in a repetitive cycle of tension while your orgasm builds, followed by mind-numbing release after your climax winds down before it starts building up again. Under his touch, the only thing you know how to do is drool from both sets of lips...');
     (st as any).i = 0;
-    // TODO-QSP: :salon_loop
-    (st as any).i = ((st as any).i ?? 0) + (1);
-    (st as any).orgasm_or = 'yes';
-    qspCall(st, 'arousal', 'vaginal_finger', 2, 'no_orgasm_msg');
-    if (((st as any).i ?? 0) <= 10) {
-      // TODO-QSP: jump 'salon_loop'
-    }
-    qspCall(st, 'stat', '');
-    scene.text('<i>Ohhhhhh myyyyy godddddd...</i>');
-    scene.actions([
-      { label: 'Next', handler: (st: GameState) => {
+    do {
+      (st as any).i = ((st as any).i ?? 0) + (1);
+      (st as any).orgasm_or = 'yes';
+      qspCall(st, 'arousal', 'vaginal_finger', 2, 'no_orgasm_msg');
+      qspCall(st, 'stat', '');
+      scene.text('<i>Ohhhhhh myyyyy godddddd...</i>');
+      scene.actions([
+        { label: 'Next', handler: (st: GameState) => {
     qspCall(st, 'mood', 'raise', 'medium');
     qspCall(st, 'arousal', 'end');
     qspCall(st, 'stat', '');
@@ -2082,7 +2026,8 @@ function enterMagicMassage(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } },
-    ]);
+      ]);
+    } while (((st as any).i ?? 0) <= 10);
   } },
   ]);
   scene.build();
@@ -2103,7 +2048,6 @@ function enterThroatMassage(s: GameState, scene: SceneBuilder): void {
   scene.text('You undress and lay on the table before an attendant comes in. He quickly removes his robe to reveal a big beautiful cock and gently hangs your head off the table with a pillow to cushion your neck. He then proceeds to carefully begin throat fucking you.');
   scene.text('You let your eyes roll back into your head as his hands roam your breasts and body while he plows his cock into your mouth, but you\'re eventually woken from your stupor by repeated taps on the shoulder.');
   scene.text('"Ma\'am. Where would you like your cum?"');
-  // TODO-QSP: end
   scene.actions([
     { label: '"Mmm mm mmrph" (in my mouth)', handler: (st: GameState) => {
     qspCall(st, 'cum_call', 'mouth_swallow', ((st as any).salon_masseur_id ?? 0));
@@ -2176,7 +2120,6 @@ function enterHardcoreMassage(s: GameState, scene: SceneBuilder): void {
   scene.text('The repetitive sensation of flesh being pounded into your pussy is all you can think about and it\'s driving you insane with pleasure.');
   scene.text('But all good things must come to an end. At the edge of your consciousness, you hear the grunts of the masseur.');
   scene.text('"Would you like a creampie or a facial ma\'am?"');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Moan incoherently', handler: (st: GameState) => {
     qspCall(st, 'cum_call', '', ((st as any).salon_masseur_id ?? 0));
@@ -2267,7 +2210,6 @@ function enterDoubleHardcoreMassage(s: GameState, scene: SceneBuilder): void {
   scene.text('You have no idea how long it\'s been since you started. Twenty minutes? Half an hour? The only thing you know is how much you\'ve been enjoying being pistoned back and forth between these two cocks. And the guys attached to them know <i>exactly</i> what they\'re doing. Every thrust fills you up just right, and the one you\'ve been sucking on has the perfect shape and flavor for a girl\'s enjoyment. You could stay between these cocks forever...');
   scene.text('But all good things must come to an end.');
   scene.text('"Time is almost up, ma\'am. Would you like us to cum inside you or give you a double facial?" one of them asks.');
-  // TODO-QSP: end
   scene.actions([
     { label: '"Mm-mm mmm" (inside please)', handler: (st: GameState) => {
     qspCall(st, 'cum_call', '', ((st as any).salon_masseur_id ?? 0));
@@ -2337,7 +2279,6 @@ function enterGentleMassage(s: GameState, scene: SceneBuilder): void {
   scene.text('After a short but incredibly sensual massage, you have spent the last half an hour being sexually pampered by this masseur\'s cock.');
   scene.text('Within minutes of starting, you were soaking wet and his cock slid inside you so smoothly. From then on, it\'s been almost torturously gentle, every thrust long and slow, filling you up and stretching your walls, before retreating again like an ocean wave. In a weird way, it feels like breathing if breathing could bring you to orgasm.');
   scene.text('Still thrusting slowly and gently, the masseur whispers in your ear. "Where would you like your cum, ma\'am? Inside or on your face?"');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Inside', handler: (st: GameState) => {
     qspCall(st, 'cum_call', '', ((st as any).salon_masseur_id ?? 0));
@@ -2398,7 +2339,6 @@ function enterMakeup(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/citycenter/photo/makeup.jpg');
   scene.text('When the makeover is finished, you look at yourself in the mirror.');
   scene.text('It looks as if you aren\'t even wearing makeup. You still look like yourself, but a more perfect version.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     qspCall(st, 'salon', '');
@@ -2409,7 +2349,6 @@ function enterMakeup(s: GameState, scene: SceneBuilder): void {
 
 function enterCosmeticTattooStart(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 2000]; enterDiscount(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: dynamic text: <br>We currently offer five levels of cosmetic tattoos: light, vibrant, sultry, ...
   scene.text(`<br>We currently offer five levels of cosmetic tattoos: light, vibrant, sultry, professional and celebrity.<br>Please keep in mind that these procedures are permanent.<br>Also, be aware that after procedure using regular cosmetics will be difficult.<br>Price is set at ${qspFunc(s, 'money', 'string_price', ((s as any).salon_rate ?? ''))}`);
   if (qspFunc(s, 'money', 'can_afford', ((s as any).salon_rate ?? 0))) {
     if (((s as any).cosmetic_tattoo ?? 0) === 5) {
@@ -2463,7 +2402,6 @@ function enterCosmeticTattooStart(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('<br>You can\'t afford this treatment.');
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['salon', 'start'] },
   ]);
@@ -2494,9 +2432,9 @@ function enterCosmeticTattooOperation(s: GameState, scene: SceneBuilder): void {
     }
   }
   (s as any).cosmetic_tattoo = ((s as any).temp_tattoo ?? 0);
+  (s as any).temp_tattoo = undefined;
   (s as any).minut = ((s as any).minut ?? 0) + 45;
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['salon', 'services'] },
   ]);
@@ -2506,21 +2444,16 @@ function enterCosmeticTattooOperation(s: GameState, scene: SceneBuilder): void {
 function enterMom(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/resident/mom/salon.jpg');
-  // TODO-QSP: dynamic text: The salon seems to be pretty busy today. As you enter, you see your <<$npc_nickn...
   scene.text(`The salon seems to be pretty busy today. As you enter, you see your ${(((s as any).npc_nickname ?? 0)?.['A29'] ?? '')} and Aunt Luda. They haven't seen you yet and seem to just be chatting as they wait for their turn.`);
-  // TODO-QSP: end
   scene.actions([
     { label: 'Ignore them and leave', goto: ['city_mall', ''] },
     { label: 'Go talk to them', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/mom/momsalon.jpg');
-    // TODO-QSP: dynamic text: You walk over to your <<$npc_nickname[''A29'']>> and Luda. "Hi <<$npc_nickname['...
     scene.text(`You walk over to your ${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')} and Luda. "Hi ${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')}, hi Aunt Luda! Are you guys getting your hair done?"`);
-    // TODO-QSP: dynamic text: Your <<$npc_nickname[''A29'']>> looks up at you and seems a little surprised to ...
     scene.text(`Your ${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')} looks up at you and seems a little surprised to see you. "Yes. We're going to get a manicure as well. You should join us. I'll pay."`);
     scene.text('Luda speaks up as well. "Yes dear, you should join us."');
-    // TODO-QSP: dynamic text: Your <<$npc_nickname[''A29'']>>''s name is called and she gets up and takes a se...
     scene.text(`Your ${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')}'s name is called and she gets up and takes a seat to get her hair styled. A free manicure would be nice, but that also means having to spend time with them and listening to them talk about boring stuff.`);
     scene.actions([
       { label: 'Tell her you\'re busy', handler: (st: GameState) => {
@@ -2529,7 +2462,6 @@ function enterMom(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/mom/salon.jpg');
     scene.text('You shakes your head. "Sorry, but I can\'t. I already have plans."');
-    // TODO-QSP: dynamic text: Your <<$npc_nickname[''A29'']>> sighs a little, clearly disappointed. "Well okay...
     scene.text(`Your ${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')} sighs a little, clearly disappointed. "Well okay then. Don't stay out too late."`);
     scene.text('You say goodbye to each other and they go back to talking again as you leave.');
     scene.actions([
@@ -2544,13 +2476,10 @@ function enterMom(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/mom/momsvetsalon.jpg');
     scene.text('You sit next to Luda, but only for a moment since her name is soon called and she gets up to get her hair done.');
-    // TODO-QSP: dynamic text: Once she''s done, they''re both taken to have a manicure done and you''re called...
     scene.text(`Once she's done, they're both taken to have a manicure done and you're called over to join them. The three of you sit near each other as you get manicures. Luda and your ${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')} talk about a variety of topics, mostly gossip about what's going on in Pavlovsk or the people they both know, or stories about what happened at their work.`);
     scene.text('You occasionally chime in, telling them about some stuff you\'ve been up to of late. It\'s surprisingly fun and you got a nice manicure out of it.');
-    // TODO-QSP: dynamic text: Once you''re finished, your <<$npc_nickname[''A29'']>> pays for both of you and ...
     scene.text(`Once you're finished, your ${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')} pays for both of you and Luda pays for herself and you all walk out together.`);
     scene.text('"That was fun, but I should get back and make dinner for me and Olu," Luda says.');
-    // TODO-QSP: dynamic text: Your <<$npc_nickname[''A29'']>> and Luda share a brief hug. "Same here. Vlad wou...
     scene.text(`Your ${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')} and Luda share a brief hug. "Same here. Vlad wouldn't know what to do and would likely starve if I don't get dinner started soon."`);
     scene.text('They both laugh at that and Luda says goodbye before she walks away. Your mother starts for home as well.');
     scene.text('"Dinner will be ready in about half a hour. You should come home and join us."');
@@ -2565,7 +2494,9 @@ function enterMom(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCleanvar(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: end
+  (s as any).partialservice = undefined;
+  (s as any).fullservice = undefined;
+  (s as any).salon_rate = undefined;
   scene.build();
 }
 

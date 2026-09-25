@@ -29,22 +29,17 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   if (((s as any).PSwim ?? 0) === 1  ||  ((s as any).clothingworntype ?? 0) === 'nude') {
     scene.text('You can see the winding path leading to the railway station in the industrial region. You should get dressed into your clothes if you want to go there.');
   } else {
-    // TODO-QSP: dynamic text: There is a winding path leading to the <a href="exec:minut += 60 & gt ''city_ind...
-    scene.text('There is a winding path leading to the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.60; return s; }); window.__gameStore.getState().doGoto(/u0027city_industrial_train/u0027, /u0027outside/u0027); return false;">railway station</a> in the city industrial region.');
+    scene.text('There is a winding path leading to the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.60; return s; }); window.__gameStore.getState().doGoto(\u0027city_industrial_train\u0027, \u0027outside\u0027); return false;">railway station</a> in the city industrial region.');
   }
   if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) < 18) {
-    // TODO-QSP: dynamic text: There is a branch of the swimwear chain <a href="exec: minut += 3 & gt ''shop_al...
-    scene.text('There is a branch of the swimwear chain <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.3; return s; }); window.__gameStore.getState().doGoto(/u0027shop_allure/u0027, /u0027start/u0027); return false;">Allure</a> here');
+    scene.text('There is a branch of the swimwear chain <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.3; return s; }); window.__gameStore.getState().doGoto(\u0027shop_allure\u0027, \u0027start\u0027); return false;">Allure</a> here');
   } else {
-    // TODO-QSP: dynamic text: 'There is a branch of the swimwear chain Allure here, but it is currently closed...
-    scene.text('There is a branch of the swimwear chain Allure here, but it is currently closed. It will reopen at 8:00.');
+    scene.text('\'There is a branch of the swimwear chain Allure here, but it is currently closed. It will reopen at 8:00.\'');
   }
   if (qspFunc(s, 'car_funcs', 'is_here')) {
     if ((!((s as any).PSwim ?? 0))) {
-      // TODO-QSP: dynamic text: <a href="exec:gs ''carF'', ''start''">Your <<$car[''name'']>></a> is parked near...
       scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027carF/u0027, /u0027start/u0027); return false;">Your ${(((s as any).car ?? 0)?.['name'] ?? '')}</a> is parked near the lake.`);
     } else {
-      // TODO-QSP: dynamic text: Your <<$car[''name'']>> is parked nearby. You should get dressed into your cloth...
       scene.text(`Your ${(((s as any).car ?? 0)?.['name'] ?? '')} is parked nearby. You should get dressed into your clothes if you want to drive away.`);
     }
   }
@@ -56,15 +51,12 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.text('You should buy some swimwear if you intend on spending time at the beach.');
   }
   if (((s as any).npc_QW ?? 0)?.['A192'] === 3  &&  ((s as any).temper ?? 0) >= 15  &&  (((s as any).PSwim ?? 0) === 1)  &&  ((s as any).hour ?? 0) >= 6  &&  ((s as any).hour ?? 0) <= 20) {
-    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nastja/u0027, /u0027pos14/u0027); return false;">Anastasia</a> is waving her hand at you.');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027nastja\u0027, \u0027pos14\u0027); return false;">Anastasia</a> is waving her hand at you.');
   }
   if (((s as any).hour ?? 0) >= 6  &&  ((s as any).hour ?? 0) <= 20) {
-    // TODO-QSP: dynamic text: 'There are various '+iif(PSwim = 1, '<a href="exec:minut += 5 & gt ''city_lake''...
-    scene.text('There are various ' + ((((s as any).PSwim ?? 0) === 1) ? ('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(/u0027city_lake/u0027, /u0027aquapark/u0027); return false;">water attractions</a>.') : ('water attractions, but you need to put on some swimwear before you go there.')) + '');
-    // TODO-QSP: dynamic text: You can go for a ride on a <a href="exec:minut += 1 & gt ''city_lake'', ''horse'...
-    scene.text('You can go for a ride on a <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(/u0027city_lake/u0027, /u0027horse/u0027); return false;">horse</a> along the beach.');
-    // TODO-QSP: dynamic text: 'There is also a '+iif(pcs_inhib >= 30 or (trait_vars['exhibitionist'] > 1 and p...
-    scene.text('There is also a ' + ((((s as any).pcs_inhib ?? 0) >= 30  ||  (((s as any).trait_vars ?? 0)?.['exhibitionist'] > 1  &&  ((s as any).pcs_horny ?? 0) > 60)) ? ('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027Nudelake/u0027, /u0027/u0027); return false;">nudist beach</a>') : ('nudist beach a short walk away, but you are\'t confident enough to go in that direction.')) + '');
+    scene.text('There are various ' + ((((s as any).PSwim ?? 0) === 1) ? ('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(\u0027city_lake\u0027, \u0027aquapark\u0027); return false;">water attractions</a>.') : ('water attractions, but you need to put on some swimwear before you go there.')) + '');
+    scene.text('You can go for a ride on a <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027city_lake\u0027, \u0027horse\u0027); return false;">horse</a> along the beach.');
+    scene.text('There is also a ' + ((((s as any).pcs_inhib ?? 0) >= 30  ||  (((s as any).trait_vars ?? 0)?.['exhibitionist'] > 1  &&  ((s as any).pcs_horny ?? 0) > 60)) ? ('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027Nudelake\u0027, \u0027\u0027); return false;">nudist beach</a>') : ('nudist beach a short walk away, but you are\'t confident enough to go in that direction.')) + '');
     if (((s as any).temper ?? 0) >= 15  &&  ((s as any).PSwim ?? 0) === 1) {
       scene.text('You can sunbathe or go for a swim.');
       if (((s as any).pcs_stam ?? 0) >= (20 * (10 - ((s as any).sport_clothes_exercise_bonus ?? 0))) / 2) {
@@ -204,7 +196,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Walk to the Residential Area (0:40)', handler: (st: GameState) => {
     if (((st as any).PSwim ?? 0) === 1  ||  ((st as any).clothingworntype ?? 0) === 'nude') {
@@ -237,11 +228,8 @@ function enterAquapark(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'public_outdoors';
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/residential/lake/aquapark.jpg');
-  // TODO-QSP: dynamic text: You go to the attractions. There is <a href="exec:minut += 1 & gt ''city_lake'',...
-  scene.text('You go to the attractions. There is <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(/u0027city_lake/u0027, /u0027gidro/u0027); return false;">jet skiing</a>, a <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(/u0027city_lake/u0027, /u0027banan/u0027); return false;">banana ride</a>, the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(/u0027city_lake/u0027, /u0027gorka/u0027); return false;">water slide</a>, and a <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(/u0027city_lake/u0027, /u0027tour_boat/u0027); return false;">tour boat</a>.');
-  // TODO-QSP: dynamic text: There is also a small <a href="exec:minut += 1 & gt ''city_lake'', ''hut''">hut<...
-  scene.text('There is also a small <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(/u0027city_lake/u0027, /u0027hut/u0027); return false;">hut</a> that rents out surf boards.');
-  // TODO-QSP: end
+  scene.text('You go to the attractions. There is <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027city_lake\u0027, \u0027gidro\u0027); return false;">jet skiing</a>, a <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027city_lake\u0027, \u0027banan\u0027); return false;">banana ride</a>, the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027city_lake\u0027, \u0027gorka\u0027); return false;">water slide</a>, and a <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027city_lake\u0027, \u0027tour_boat\u0027); return false;">tour boat</a>.');
+  scene.text('There is also a small <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027city_lake\u0027, \u0027hut\u0027); return false;">hut</a> that rents out surf boards.');
   scene.actions([
     { label: 'Leave', goto: ['city_lake', 'start'] },
   ]);
@@ -253,9 +241,7 @@ function enterGidro(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'event_outdoors';
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/residential/lake/aquapark.jpg');
-  // TODO-QSP: dynamic text: 'You go to the jet ski kiosk. It costs ' + $func('money', 'string_price', 100) +...
-  scene.text('You go to the jet ski kiosk. It costs 100₽ for 30 minutes.');
-  // TODO-QSP: end
+  scene.text('\'You go to the jet ski kiosk. It costs 100₽ for 30 minutes.\'');
   scene.actions([
     { label: 'Go for a ride', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 100) === 0) {
@@ -289,9 +275,7 @@ function enterBanan(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'event_outdoors';
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/residential/lake/aquapark.jpg');
-  // TODO-QSP: dynamic text: 'You go to the banana ride. It costs ' + $func('money', 'string_price', 100) + '...
-  scene.text('You go to the banana ride. It costs 100₽.');
-  // TODO-QSP: end
+  scene.text('\'You go to the banana ride. It costs 100₽.\'');
   scene.actions([
     { label: 'Go for a ride', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 100) === 0) {
@@ -330,9 +314,7 @@ function enterGorka(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'event_outdoors';
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/residential/lake/aquapark.jpg');
-  // TODO-QSP: dynamic text: 'You go to the water slide. It costs ' + $func('money', 'string_price', 50) + ' ...
-  scene.text('You go to the water slide. It costs 50₽ per go.');
-  // TODO-QSP: end
+  scene.text('\'You go to the water slide. It costs 50₽ per go.\'');
   scene.actions([
     { label: 'Use the slide', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 50) === 0) {
@@ -367,9 +349,7 @@ function enterHorse(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'event_outdoors';
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/residential/lake/horse0.jpg');
-  // TODO-QSP: dynamic text: 'You walk over to where the horses are gathered. It costs ' + $func('money', 'st...
-  scene.text('You walk over to where the horses are gathered. It costs 100₽ to ride one.');
-  // TODO-QSP: end
+  scene.text('\'You walk over to where the horses are gathered. It costs 100₽ to ride one.\'');
   scene.actions([
     { label: 'Go for a ride', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 100) === 0) {
@@ -404,9 +384,7 @@ function enterTourBoat(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'event_outdoors';
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/residential/lake/aquapark.jpg');
-  // TODO-QSP: dynamic text: 'You step up to the tour boat que and wait your turn the cost of a 2 hour tour i...
-  scene.text('You step up to the tour boat que and wait your turn the cost of a 2 hour tour is 100₽.');
-  // TODO-QSP: end
+  scene.text('\'You step up to the tour boat que and wait your turn the cost of a 2 hour tour is 100₽.\'');
   scene.actions([
     { label: 'Go for a ride', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 100) === 0) {
@@ -454,9 +432,7 @@ function enterHut(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'event_outdoors';
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/residential/lake/hut.jpg');
-  // TODO-QSP: dynamic text: There is a young man here renting surf bourds and wind surfing boards. He smiles...
   scene.text(`There is a young man here renting surf bourds and wind surfing boards. He smiles and talks you through using each and tells you it would cost ${qspFunc(s, 'money', 'string_profit', 100)} to rent either for 2 hours.`);
-  // TODO-QSP: end
   scene.actions([
     { label: 'Surf', goto: ['city_lake', 'surf'] },
     { label: 'WindSurf', goto: ['city_lake', 'windsurf'] },
@@ -475,7 +451,6 @@ function enterSurf(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/residential/lake/surf.jpg');
   scene.text('You spend 2 hours surfing and riding the smalls waves from the near by sea, several guys whistle and cheer as you ride the waves. At the end of the 2 hours you return the surfboard to the hut.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -492,7 +467,6 @@ function enterWindsurf(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/residential/lake/windsurf.jpg');
   scene.text('You spend 2 hours enjoying being on the water and windsurfing you are not confident enough to try any tricks and simply ride the small sea side waves to and fro. At the end of the 2 hours you return the windboard to the hut');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -564,7 +538,6 @@ function enterWalklake1(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     if (((s as any).ribakSex ?? 0) > 0) {
-      // TODO-QSP: dynamic text: You walk over to the man, who happily greets you. "Hey <<$ribakName>>, want more...
       scene.text(`You walk over to the man, who happily greets you. "Hey ${((s as any).ribakName ?? '')}, want more of my cock?"`);
       if (((s as any).ribakName ?? 0) === 'whore') {
         scene.actions([
@@ -689,13 +662,11 @@ function enterWalklake1(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterDinribak(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'boyStat', 'A177');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the idiot alone', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 2;
@@ -956,7 +927,6 @@ function enterWalklake2(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['city_lake', 'start'] },
   ]);
@@ -967,9 +937,7 @@ function enterStasValera(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/residential/lake/sex/stas/talk1.jpg');
-  // TODO-QSP: dynamic text: "My name is <<$pcs_nickname>>." you reply and Stasik smiles. "Nice to meet you, ...
   scene.text(`"My name is ${((s as any).pcs_nickname ?? '')}." you reply and Stasik smiles. "Nice to meet you, ${((s as any).pcs_nickname ?? '')}." Valera also comes over and greets you.`);
-  // TODO-QSP: end
   scene.actions([
     { label: 'Chat with them', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 2;
@@ -1011,7 +979,6 @@ function enterStasValera2a(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Remain silent', handler: (st: GameState) => {
     scene.img('images/locations/city/residential/lake/sex/stas/tits1.jpg');
@@ -1033,7 +1000,6 @@ function enterStasValera2b(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   qspCall(s, 'arousal', 'foreplay', (-5));
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Further', goto: ['city_lake', 'stasValera3'] },
   ]);
@@ -1090,7 +1056,6 @@ function enterStasValera3(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Be silent', handler: (st: GameState) => {
     scene.img('images/locations/city/residential/lake/sex/stas/tits3.jpg');
@@ -1117,7 +1082,6 @@ function enterStasValera4(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'bj', 2, ((s as any).npcID ?? 0));
   qspCall(s, 'arousal', 'bj', 3, ((s as any).npcID1 ?? 0));
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Get fucked', handler: (st: GameState) => {
     scene.img(`images/locations/city/residential/lake/sex/stas/sex${(Math.floor(Math.random() * 3) + 7)}.jpg`);
@@ -1143,7 +1107,6 @@ function enterStasValera4(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 2;
     qspCall(st, 'arousal', 'end');
     scene.img('images/locations/city/residential/lake/sex/stas/undress.jpg');
-    // TODO-QSP: dynamic text: Once the men recover, they start getting dressed before Stasik helps you to your...
     scene.text(`Once the men recover, they start getting dressed before Stasik helps you to your feet. "You're a cool girl ${((st as any).pcs_nickname ?? '')}, let us walk you home."`);
     if (((st as any).home ?? 0)?.['current'] === 'city_apartment') {
       scene.actions([
@@ -1236,7 +1199,6 @@ function enterVlake1(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Flirt with them', handler: (st: GameState) => {
     scene.img('images/locations/city/residential/lake/sex/vlake1/vlake2.jpg');
@@ -1331,7 +1293,6 @@ function enterVlake1cum(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/residential/lake/sex/vlake1/vlake5.jpg');
   scene.text('The men begin jerking their dicks and their cum is soon splattering across your face and into your mouth. Once they\'re all finished, you lick the cum off their dicks and swallow it. Satisfied, they dress and walk away, leaving you sitting in the sand covered in cum.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     qspCall(st, 'arousal', '');
@@ -1371,7 +1332,6 @@ function enterVlake2(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Wave at them', handler: (st: GameState) => {
     scene.img('images/locations/city/residential/lake/sex/vlake2/vlake2.jpg');
@@ -1479,7 +1439,6 @@ function enterAndrey1(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go with him', handler: (st: GameState) => {
     (st as any).anreiday = ((st as any).daystart ?? 0);
@@ -1564,7 +1523,6 @@ function enterKater1(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Spread your legs', handler: (st: GameState) => {
     qspCall(st, 'npcgeneratec', '0', 'a rescuer at the lake', (Math.floor(Math.random() * 28) + 18), (Math.floor(Math.random() * 2) + 3), 1);
@@ -1637,7 +1595,6 @@ function enterKater1cum(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'end');
   scene.img('images/locations/city/residential/lake/sex/kater1/kater9.jpg');
   scene.text('You suck his dick for a few seconds before a stream of warm cum starts pouring into your mouth. You begin swallowing, but there\'s so much that it spills out your mouth and drips down your chest and stomach.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Lick him clean', handler: (st: GameState) => {
     scene.img('images/locations/city/residential/lake/sex/kater1/kater10.jpg');
@@ -1679,7 +1636,6 @@ function enterKater2(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Approach them', handler: (st: GameState) => {
     (st as any).guy = ((st as any).guy ?? 0) + (2);
@@ -1774,7 +1730,6 @@ function enterKater3(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Spread your legs', handler: (st: GameState) => {
     (st as any).guy = ((st as any).guy ?? 0) + (2);
@@ -1851,7 +1806,6 @@ function enterHorse1(s: GameState, scene: SceneBuilder): void {
   }, goto: ['city_lake', 'start'] },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go with them', handler: (st: GameState) => {
     scene.img('images/locations/city/residential/lake/sex/horse1/horse2.jpg');
@@ -1978,7 +1932,6 @@ function enterHorse2(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go with them', handler: (st: GameState) => {
     scene.img('images/locations/city/residential/lake/sex/horse2/horse2.jpg');
@@ -2060,7 +2013,6 @@ function enterVolleyballIntroDay(s: GameState, scene: SceneBuilder): void {
   scene.text('You reach over, grab the ball, and heave it back with a sigh. "Be more careful please. I don\'t want a face full of volleyball, thanks." you say with some rancour as you pass him the ball awkwardly from your towel.');
   scene.text('He lunges forward and catches it then tosses back into the game.');
   scene.text('Turning back to you he offers a smile. "Kinda noticed you were all alone here. Wanna join us? We got plenty of food and could use one more for the game."');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Agree to join', goto: ['city_lake', 'volleyball_day'] },
     { label: 'Decline (polite)', handler: (st: GameState) => {
@@ -2102,7 +2054,6 @@ function enterVolleyballDay(s: GameState, scene: SceneBuilder): void {
   scene.text('You hangout and dance to the songs coming from the speaker nearby and join in the volleyball game.');
   scene.text('You are not great but have fun and everyone is laughing and having a good time.');
   scene.text('As the party winds down you say goodbye to the group and gather your things to begin making your way home.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['city_lake', 'start'] },
   ]);
@@ -2119,7 +2070,6 @@ function enterVolleyballNite(s: GameState, scene: SceneBuilder): void {
   scene.text('You hangout and dance to the songs coming from the speaker nearby and join in the volleyball game.');
   scene.text('You are not great but have fun and everyone is laughing and having a good time.');
   scene.text('As the party winds down, and the sun finishes setting, you say goodbye to the group, gather your things and begin making your way home.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['city_lake', 'start'] },
   ]);
@@ -2131,7 +2081,6 @@ function enterBonfire(s: GameState, scene: SceneBuilder): void {
   scene.text('As you are gathering your things to leave young guy in trunks runs up to you.');
   scene.text('"Hey, wanna join us?" He says waving to his friends around a bonfire, "we have plenty of food and drinks."');
   scene.text('You consider a moment then decide…"');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Join in', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 120;
@@ -2140,7 +2089,6 @@ function enterBonfire(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/locations/city/residential/lake/bonfire.jpg');
     scene.text('As you follow your new friend over to the fire pit, he asks, "Hey what\'s your name? Mine is Gregor"');
-    // TODO-QSP: dynamic text: "<<$pcs_firstname>>." you responded, as the two of you reach the party.
     scene.text(`"${((st as any).pcs_firstname ?? '')}." you responded, as the two of you reach the party.`);
     scene.text('You set down your things, and are handed a beer and a stick with a marshmallow on it.');
     scene.text('You enjoy the next couple of hours with Gregor and his friends, laughing, flirting and dancing.');
@@ -2169,7 +2117,6 @@ function enterAndreiIntro(s: GameState, scene: SceneBuilder): void {
   scene.text('Strong hands caress your body and you feel yourself get covered in goosebumps before a finger slides under your swimwear and starts to rub your pussy. You gasp when it finds your clit.');
   scene.text('Your body is thrown into a fever, sweat runs down your back, and you\'re growing wet. You grow aware that the pleasure comes from reality and not a dream, but are still unable to overcome the sleepy bliss and open your eyes.');
   scene.text('The pleasure you\'re feeling leads you into a trance and you moan loudly, wriggling under the hot sun. Just when you think something is about to happen, you\'re startled awake.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Open your eyes', handler: (st: GameState) => {
     scene.text('Opening your eyes, you see the shadowy figure of an unshaven man lustfully staring at you. You become uncomfortable - you\'re lying in front of a stranger, moaning in sexual bliss like a slut. There\'s no one else on the beach and you fear what he might do with you.');
@@ -2234,7 +2181,6 @@ function enterAndreiRape(s: GameState, scene: SceneBuilder): void {
   scene.text('You grit your teeth in pain as he starts fucking your ass. However, his fingers start rubbing your clit and you start moaning softly.');
   qspCall(s, 'arousal', 'anal', 10);
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'More', handler: (st: GameState) => {
     qspCall(st, 'cum_call', 'anus', ((st as any).npcID ?? 0));
@@ -2250,9 +2196,7 @@ function enterAndreiRape(s: GameState, scene: SceneBuilder): void {
       { label: 'Chat', handler: (st: GameState) => {
     scene.text('"Who… who are you?" you ask feebly as you sit in the sand next to him.');
     scene.text('"My name is Andrew." he grins. "And yours?"');
-    // TODO-QSP: dynamic text: "<<$pcs_firstname>>." you answer and he smiles.
     scene.text(`"${((st as any).pcs_firstname ?? '')}." you answer and he smiles.`);
-    // TODO-QSP: dynamic text: "So did you like our little game, <<$pcs_firstname>>? Want to catch an even bigg...
     scene.text(`"So did you like our little game, ${((st as any).pcs_firstname ?? '')}? Want to catch an even bigger thrill? Then come back tomorrow." he says suavely while pulling his shorts back on.`);
     scene.actions([
       { label: 'Leave the beach', goto: ['city_lake', 'start'] },

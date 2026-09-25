@@ -47,14 +47,12 @@ function enterInitBreasttissue(s: GameState, scene: SceneBuilder): void {
     ((s as any).lactation = (s as any).lactation ?? {})['alveoliexpandlvl_change'] = 0;
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterSetUseableCupsize(s: GameState, scene: SceneBuilder): void {
   ((s as any).lactation = (s as any).lactation ?? {})['useable_cupsize'] = (((s as any).pcs_mass ?? {})?.['bust'] ?? 0) + (((s as any).bodyVars ?? {})?.['bust_bonus'] ?? 0) + (((s as any).bodyVars ?? {})?.['bust_lact'] ?? 0) + (((s as any).bodyVars ?? {})?.['bust_magic'] ?? 0) + (((s as any).bodyVars ?? {})?.['bust_other'] ?? 0) - (((s as any).bodyVars ?? {})?.['vofat'] ?? 0);
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -129,7 +127,6 @@ function enterBsizetoccm(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -204,7 +201,6 @@ function enterBccmtosize(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -228,39 +224,24 @@ function enterLactationBreastGrowth(s: GameState, scene: SceneBuilder): void {
   }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterInitBreasttissue(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterShowBreastStat(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: dynamic text: lactation[''breastdensitytype''] = <<lactation[''breastdensitytype'']>>
   scene.text(`lactation['breastdensitytype'] = ${(((s as any).lactation ?? 0)?.['breastdensitytype'] ?? '')}`);
-  // TODO-QSP: dynamic text: lactation[''breastdensitypercent''] = <<lactation[''breastdensitypercent'']>>
   scene.text(`lactation['breastdensitypercent'] = ${(((s as any).lactation ?? 0)?.['breastdensitypercent'] ?? '')}`);
-  // TODO-QSP: dynamic text: lactation[''breastglandtissue'']] = <<lactation[''breastglandtissue'']>>
   scene.text(`lactation['breastglandtissue']] = ${(((s as any).lactation ?? 0)?.['breastglandtissue'] ?? '')}`);
-  // TODO-QSP: dynamic text: lactation[''maturebreast''] = <<lactation[''maturebreast'']>>
   scene.text(`lactation['maturebreast'] = ${(((s as any).lactation ?? 0)?.['maturebreast'] ?? '')}`);
-  // TODO-QSP: dynamic text: lactation[''alveolicount''] = <<lactation[''alveolicount'']>>
   scene.text(`lactation['alveolicount'] = ${(((s as any).lactation ?? 0)?.['alveolicount'] ?? '')}`);
-  // TODO-QSP: dynamic text: lactation[''prolactinlvl''] = <<lactation[''prolactinlvl'']>>
   scene.text(`lactation['prolactinlvl'] = ${(((s as any).lactation ?? 0)?.['prolactinlvl'] ?? '')}`);
-  // TODO-QSP: dynamic text: lactation[''dailyoverdemand''] = <<lactation[''dailyoverdemand'']>>
   scene.text(`lactation['dailyoverdemand'] = ${(((s as any).lactation ?? 0)?.['dailyoverdemand'] ?? '')}`);
-  // TODO-QSP: dynamic text: lactation[''alveoliexpandlvl''] = <<lactation[''alveoliexpandlvl'']>>
   scene.text(`lactation['alveoliexpandlvl'] = ${(((s as any).lactation ?? 0)?.['alveoliexpandlvl'] ?? '')}`);
-  // TODO-QSP: dynamic text: lactation[''alveoliexpandlvl_change''] = <<lactation[''alveoliexpandlvl_change''...
   scene.text(`lactation['alveoliexpandlvl_change'] = ${(((s as any).lactation ?? 0)?.['alveoliexpandlvl_change'] ?? '')}`);
-  // TODO-QSP: dynamic text: lactation[''active''] = <<lactation[''active'']>>
   scene.text(`lactation['active'] = ${(((s as any).lactation ?? 0)?.['active'] ?? '')}`);
-  // TODO-QSP: dynamic text: lactation[''lactaterate''] = <<lactation[''lactaterate'']>>
   scene.text(`lactation['lactaterate'] = ${(((s as any).lactation ?? 0)?.['lactaterate'] ?? '')}`);
-  // TODO-QSP: dynamic text: lactation[''breastmm''] = <<lactation[''breastmm'']>>
   scene.text(`lactation['breastmm'] = ${(((s as any).lactation ?? 0)?.['breastmm'] ?? '')}`);
-  // TODO-QSP: dynamic text: lactation[''breastmv''] = <<lactation[''breastmv'']>>
   scene.text(`lactation['breastmv'] = ${(((s as any).lactation ?? 0)?.['breastmv'] ?? '')}`);
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -370,7 +351,6 @@ function enterProdMilk(s: GameState, scene: SceneBuilder): void {
     (s as any).result = 0;
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -409,17 +389,17 @@ function enterBreastEngorment(s: GameState, scene: SceneBuilder): void {
     (s as any).tmp = Math.max(0, (Math.floor(Math.random() * (6 - (((s as any).lactation ?? {})?.['lactmess'] ?? 0) - 0 + 1)) + (0)));
     ((s as any).pain = (s as any).pain ?? {})['breasts'] = ((s as any).pain['breasts'] ?? 0) + (((s as any).tmp ?? 0));
     ((s as any).lactation = (s as any).lactation ?? {})['engorgement_pain'] = ((s as any).lactation['engorgement_pain'] ?? 0) + (((s as any).tmp ?? 0));
+    (s as any).tmp = undefined;
   } else {
     if (((s as any).lactation ?? 0)?.['engorgement'] === 0  &&  ((s as any).lactation ?? 0)?.['engorgement_pain'] > 0) {
       ((s as any).pain = (s as any).pain ?? {})['breasts'] = ((s as any).pain['breasts'] ?? 0) - ((((s as any).lactation ?? {})?.['engorgement_pain'] ?? 0) / 2);
-      // TODO-QSP: lactation['engorgement_pain'] /= 2
+      ((s as any).lactation = (s as any).lactation ?? {})['engorgement_pain'] = ((s as any).lactation['engorgement_pain'] ?? 0) / (2);
       if (((s as any).pain ?? 0)?.['breasts'] < 0) {
         ((s as any).pain = (s as any).pain ?? {})['breasts'] = 0;
       }
     }
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -430,7 +410,6 @@ function enterLactSwitch(s: GameState, scene: SceneBuilder): void {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterLactOff(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -456,7 +435,6 @@ function enterLactOn(s: GameState, scene: SceneBuilder): void {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBreastcycle(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -476,7 +454,6 @@ function enterLactOff(s: GameState, scene: SceneBuilder): void {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBreastcycle(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -585,6 +562,7 @@ function enterBreastcycle(s: GameState, scene: SceneBuilder): void {
               (s as any).tmp = Math.max(0, (Math.floor(Math.random() * ((((s as any).lactation ?? {})?.['breastmm'] ?? 0)/100000 - (-5) + 1)) + ((-5))));
               (s as any).pcs_nips = ((s as any).pcs_nips ?? 0) - (((s as any).tmp ?? 0));
               ((s as any).lactation = (s as any).lactation ?? {})['nipgrowth'] = ((s as any).lactation['nipgrowth'] ?? 0) - (((s as any).tmp ?? 0));
+              (s as any).tmp = undefined;
             }
           }
         }
@@ -622,6 +600,7 @@ function enterBreastcycle(s: GameState, scene: SceneBuilder): void {
         (s as any).tmp = Math.max(0, (Math.floor(Math.random() * ((((s as any).lactation ?? {})?.['breastmm'] ?? 0)/100000 - (-10) + 1)) + ((-10))));
         (s as any).pcs_nips = ((s as any).pcs_nips ?? 0) + (((s as any).tmp ?? 0));
         ((s as any).lactation = (s as any).lactation ?? {})['nipgrowth'] = ((s as any).lactation['nipgrowth'] ?? 0) + (((s as any).tmp ?? 0));
+        (s as any).tmp = undefined;
       }
     } else {
       if (((s as any).lactation ?? 0)?.['breastmv'] < ((s as any).lactation ?? 0)?.['breastmm']  &&  ((s as any).lactation ?? 0)?.['lactaterate'] >= 500  &&  ((s as any).lactation ?? 0)?.['milkprod_type'] === 0) {
@@ -640,7 +619,6 @@ function enterBreastcycle(s: GameState, scene: SceneBuilder): void {
     ((s as any).lactation = (s as any).lactation ?? {})['milkgrowday'] = ((s as any).daystart ?? 0);
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -657,7 +635,6 @@ function enterLactateOptout(s: GameState, scene: SceneBuilder): void {
   ((s as any).lactation = (s as any).lactation ?? {})['lactaterate'] = 0;
   ((s as any).lactation = (s as any).lactation ?? {})['dailyoverdemand'] = 0;
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -700,7 +677,6 @@ function enterGetSuckflowrate(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -720,7 +696,6 @@ function enterGetMaxnipflowrate(s: GameState, scene: SceneBuilder): void {
     (s as any).result = (8000 + (((s as any).lactation ?? {})?.['nip_flow_mod'] ?? 0));
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -751,7 +726,6 @@ function enterGetMoodmod(s: GameState, scene: SceneBuilder): void {
     (s as any).result = (((s as any).lactation ?? 0)?.['moodmod']);
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -787,7 +761,6 @@ function enterGetSorenessmod(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -853,7 +826,6 @@ function enter_getBreastmilkTime(s: GameState, scene: SceneBuilder): void {
     (s as any).result = 0;
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1000,7 +972,6 @@ function enter_getBreastmilk(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1061,7 +1032,6 @@ function enterComputeStatDisplay(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 

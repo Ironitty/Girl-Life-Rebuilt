@@ -13,12 +13,10 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
     qspGoto(s, 'gad_gpchores', 'active');
   }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterConvo(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterActive(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -52,7 +50,6 @@ function enterConvo(s: GameState, scene: SceneBuilder): void {
     ((s as any).gp_chores = (s as any).gp_chores ?? {})['completed'] = ((s as any).gp_chores['completed'] ?? 0) + (1);
     ((s as any).gp_chores = (s as any).gp_chores ?? {})['mood'] = ((s as any).gp_chores['mood'] ?? 0) + (1);
   }
-  // TODO-QSP: end
   scene.build();
 }
 

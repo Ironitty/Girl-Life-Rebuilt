@@ -1,4 +1,4 @@
-import type { QspLocation, QspNode, QspScene, QspIf, QspAct, QspText, QspImage, QspTitle, QspAssign, QspGoto, QspGsCall, QspTime, QspSetup, QspExit, QspComment, QspUnknown } from './ast';
+import type { QspLocation, QspNode, QspScene, QspIf, QspAct, QspText, QspImage, QspTitle, QspAssign, QspGoto, QspGsCall, QspTime, QspSetup, QspExit, QspJump, QspLabel, QspComment, QspUnknown } from './ast';
 
 function isCleanGsArg(a: string): boolean {
   if (/^-?\d+(?:\.\d+)?$/.test(a)) return true;
@@ -51,10 +51,26 @@ function splitTopLevelAmp(s: string): string[] {
 
 // QSP "&" statement separator in an assignment value:
 //   "1 & $word['key'] = 'val'"  ->  first="1", second="word['key'] = 'val'"
+// Finds the first & that is NOT inside a string literal.
 function splitAssignStmtSep(value: string): { first: string; secondVar: string; secondOp: string; secondValue: string } | null {
-  const m = value.match(/^(.*?)\s*&\s*(\$?[a-zA-Z_]\w*(?:\['[^']*'\]|\[\w+\])?)\s*(\+=|-=|=)\s*(.+)$/);
-  if (m) {
-    return { first: m[1].trim(), secondVar: m[2], secondOp: m[3], secondValue: m[4].trim() };
+  let inStr = false, strCh = '';
+  for (let i = 0; i < value.length; i++) {
+    const ch = value[i];
+    if (inStr) {
+      if (ch === strCh) {
+        if (strCh === "'" && value[i + 1] === "'") { i++; }
+        else inStr = false;
+      }
+    } else {
+      if (ch === "'" || ch === '"') { inStr = true; strCh = ch; }
+      else if (ch === '&') {
+        const rest = value.slice(i + 1);
+        const m = rest.match(/^\s*(\$?[a-zA-Z_]\w*(?:\['[^']*'\]|\[\w+\])?)\s*(\+=|-=|=)\s*(.+)$/);
+        if (m) {
+          return { first: value.slice(0, i).trim(), secondVar: m[1], secondOp: m[2], secondValue: m[3].trim() };
+        }
+      }
+    }
   }
   return null;
 }
@@ -70,6 +86,35 @@ function assignNodes(varName: string, op: string, value: string): QspAssign[] {
     result.push({ kind: 'assign', var: varName, op: op as '=' | '+=' | '-=', value: value });
   }
   return result;
+}
+
+// Extract the bracket key from "Word[key] = val" using bracket-aware scanning.
+// Returns { varName, key, op, value } or null.
+function extractBracketAssign(trimmed: string): { varName: string; key: string; op: string; value: string } | null {
+  const m = trimmed.match(/^(\$?\w+)\[/);
+  if (!m) return null;
+  const varName = m[1];
+  const bracketStart = m[0].length - 1;
+  let depth = 0, inStr = false, strCh = '', bracketEnd = -1;
+  for (let i = bracketStart; i < trimmed.length; i++) {
+    const ch = trimmed[i];
+    if (inStr) {
+      if (ch === strCh) {
+        if (strCh === "'" && trimmed[i + 1] === "'") { i++; }
+        else inStr = false;
+      }
+      continue;
+    }
+    if (ch === "'" || ch === '"') { inStr = true; strCh = ch; continue; }
+    if (ch === '[') depth++;
+    else if (ch === ']') { depth--; if (depth === 0) { bracketEnd = i; break; } }
+  }
+  if (bracketEnd === -1) return null;
+  const key = trimmed.slice(bracketStart + 1, bracketEnd);
+  const afterBracket = trimmed.slice(bracketEnd + 1).trimStart();
+  const opMatch = afterBracket.match(/^(\*=?|\/=?|\+=|-=|=)\s*(.+)$/);
+  if (!opMatch) return null;
+  return { varName, key, op: opMatch[1], value: opMatch[2].trim() };
 }
 
 function splitTopLevel(s: string): string[] {
@@ -213,6 +258,7 @@ interface ParseResult {
         if (!trimmed) { i++; continue; }
 
 
+
         // QSP block comment: !{ ... !} or !!{ ... end} or !!{ ... } (may span lines)
          if (inBlockComment) {
            if (trimmed.endsWith('!}') || trimmed.endsWith('!!}') || trimmed.endsWith('end}') || trimmed === '}') inBlockComment = false;
@@ -341,6 +387,67 @@ interface ParseResult {
       continue;
     }
 
+    const actFuncBlockMatch = trimmed.match(/^act\s+(\$?func\(.+?\))\s*:\s*$/i);
+    if (actFuncBlockMatch) {
+      const labelExpr = actFuncBlockMatch[1].trim();
+      const inner = parseBlock(lines, i + 1, unsupported);
+      const act: QspAct = { kind: 'act', label: labelExpr, body: inner.nodes, dynamicLabel: true };
+      nodes.push(act);
+      i = inner.endIdx;
+      continue;
+    }
+
+    // Act with iif() dynamic label: act iif(cond, 'a', 'b'): [rest]
+    if (/^act\s+iif\s*\(/i.test(trimmed)) {
+      const iifStart = trimmed.indexOf('iif(');
+      let depth = 0, iifEnd = -1, inStr = false, strCh = '';
+      for (let j = iifStart; j < trimmed.length; j++) {
+        const ch = trimmed[j];
+        if (inStr) {
+          if (ch === strCh) {
+            if (strCh === "'" && trimmed[j + 1] === "'") { j++; }
+            else inStr = false;
+          }
+          continue;
+        }
+        if (ch === "'" || ch === '"') { inStr = true; strCh = ch; continue; }
+        if (ch === '(') depth++;
+        else if (ch === ')') { depth--; if (depth === 0) { iifEnd = j; break; } }
+      }
+      if (iifEnd !== -1) {
+        const labelExpr = trimmed.slice(iifStart, iifEnd + 1);
+        const after = trimmed.slice(iifEnd + 1).trim();
+        // Find top-level ':' (not inside quotes or parens)
+        let colonIdx = -1, inStr2 = false, strCh2 = '', depth2 = 0;
+        for (let ci = 0; ci < after.length; ci++) {
+          const ch = after[ci];
+          if (inStr2) {
+            if (ch === strCh2) {
+              if (strCh2 === "'" && after[ci + 1] === "'") { ci++; }
+              else inStr2 = false;
+            }
+            continue;
+          }
+          if (ch === "'" || ch === '"') { inStr2 = true; strCh2 = ch; continue; }
+          if (ch === '(') depth2++;
+          else if (ch === ')') depth2--;
+          else if (ch === ':' && depth2 === 0) { colonIdx = ci; break; }
+        }
+        if (colonIdx !== -1) {
+          const rest = after.slice(colonIdx + 1).trim();
+          const inner = parseBlock(lines, i + 1, unsupported);
+          const act: QspAct = { kind: 'act', label: labelExpr, body: inner.nodes, dynamicLabel: true };
+          if (rest) {
+            const gtMatch = rest.match(/^gt\s+'([^']+)'\s*,\s*'([^']*)'\s*$/);
+            if (gtMatch) act.inlineGoto = { target: gtMatch[1], arg: gtMatch[2], arg2: undefined };
+          }
+          nodes.push(act);
+          i = inner.endIdx;
+          continue;
+        }
+      }
+    }
+
     // Act with dynamic label: act 'Label' + $func('mod', 'func'): rest
     const actDynMatch = trimmed.match(/^act\s+'((?:[^']|'')*)'\s*\+\s*(.+?)\s*:\s*(.*)$/i);
     if (actDynMatch) {
@@ -408,6 +515,20 @@ interface ParseResult {
       continue;
     }
 
+    // Act with $func('wrap', ...) handler: act 'label': $func('wrap', 'style', 'text')
+    const actFuncWrapMatch = trimmed.match(/^act\s+'((?:[^']|'')*)'\s*:\s*\$func\('wrap',\s*'([^']*)',\s*'((?:[^']|'')*)'\)\s*$/i);
+    if (actFuncWrapMatch) {
+      const label = unescapeQsp(actFuncWrapMatch[1]);
+      const style = actFuncWrapMatch[2];
+      const text = unescapeQsp(actFuncWrapMatch[3]);
+      const act: QspAct = { kind: 'act', label, body: [] };
+      act.inlineText = text;
+      act.inlineTextStyle = style;
+      nodes.push(act);
+      i++;
+      continue;
+    }
+
     // Act inline: act 'label': gt 'target', 'arg'
     const actInlineMatch = trimmed.match(/^act\s+'((?:[^']|'')*)'\s*:\s*(.+)$/i);
     if (actInlineMatch) {
@@ -415,23 +536,25 @@ interface ParseResult {
       const rest = actInlineMatch[2].trim();
       const act: QspAct = { kind: 'act', label, body: [] };
 
-      const gtDynTargetMatch = rest.match(/^gt\s+'([^']+)'\s*\+\s*(\$\w+)\s*(?:,\s*'([^']*)')?\s*(?:,\s*('[^']*'|\w+))?$/);
+      const isXgt = rest.startsWith('xgt ');
+      const gtCmd = isXgt ? 'xgt' : 'gt';
+      const gtDynTargetMatch = rest.match(new RegExp(`^${gtCmd}\\s+'([^']+)'\\s*\\+\\s*(\\$\\w+)\\s*(?:,\\s*'([^']*)')?\\s*(?:,\\s*('[^']*'|\\w+))?$`));
       if (gtDynTargetMatch) {
         act.inlineGoto = { target: gtDynTargetMatch[2], arg: gtDynTargetMatch[3] || '', arg2: gtDynTargetMatch[4] };
       } else {
-        const gtArithMatch = rest.match(/^gt\s+'([^']+)'\s*,\s*'([^']*)'\s*,\s*([\d+\-*/()\s\w.,]+)$/);
+        const gtArithMatch = rest.match(new RegExp(`^${gtCmd}\\s+'([^']+)'\\s*,\\s*'([^']*)'\\s*,\\s*([\\d+\\-*/()\\s\\w.,]+)$`));
         if (gtArithMatch) {
           act.inlineGoto = { target: gtArithMatch[1], arg: gtArithMatch[2], arg2: gtArithMatch[3].trim() };
         } else {
-        const gtMatch = rest.match(/^gt\s+'([^']+)'\s*(?:,\s*('[^']*'|\$\w+\['[^']*'\]|\$\w+|\w+))?\s*(?:,\s*('[^']*'|\$\w+\['[^']*'\]|\$\w+|\w+))?$/);
+        const gtMatch = rest.match(new RegExp(`^${gtCmd}\\s+'([^']+)'\\s*(?:,\\s*('[^']*'|\\$\\w+\\['[^']*'\\]|\\$\\w+|\\w+))?\\s*(?:,\\s*('[^']*'|\\$\\w+\\['[^']*'\\]|\\$\\w+|\\w+))?$`));
         if (gtMatch) {
           act.inlineGoto = { target: gtMatch[1], arg: (gtMatch[2] && gtMatch[2].startsWith("'") && gtMatch[2].endsWith("'") ? gtMatch[2].slice(1, -1) : gtMatch[2]) || '', arg2: (gtMatch[3] && gtMatch[3].startsWith("'") && gtMatch[3].endsWith("'") ? gtMatch[3].slice(1, -1) : gtMatch[3]) };
         } else {
-          const gtVarArgMatch = rest.match(/^gt\s+'([^']+)'\s*,\s*(\$\w+\['[^']*'\]|\$\w+|\w+)\s*$/);
+          const gtVarArgMatch = rest.match(new RegExp(`^${gtCmd}\\s+'([^']+)'\\s*,\\s*(\\$\\w+\\['[^']*'\\]|\\$\\w+|\\w+)\\s*$`));
           if (gtVarArgMatch) {
             act.inlineGoto = { target: gtVarArgMatch[1], arg: gtVarArgMatch[2].replace(/^\$/, ''), arg2: undefined };
           } else {
-            const gtIifMatch = rest.match(/^gt\s+'([^']+)'\s*,\s*iif\(/);
+            const gtIifMatch = rest.match(new RegExp(`^${gtCmd}\\s+'([^']+)'\\s*,\\s*iif\\(`));
             if (gtIifMatch) {
               const iifStart = rest.indexOf('iif(');
               let depth = 0, iifEnd = -1, inStr = false, strCh = '';
@@ -524,16 +647,49 @@ interface ParseResult {
           i = next - 1;
         }
       }
-      const stmts = splitTopLevelAmp(stmtStr);
+      // Split by 'else' keyword (top-level, not in strings)
+      let elseIdx = -1;
+      {
+        let inStr2 = false, strCh2 = '';
+        for (let ei = 0; ei < stmtStr.length - 4; ei++) {
+          if (inStr2) {
+            if (stmtStr[ei] === strCh2) {
+              if (stmtStr[ei + 1] === strCh2) { ei++; continue; }
+              inStr2 = false;
+            }
+            continue;
+          }
+          if (stmtStr[ei] === "'" || stmtStr[ei] === '"') { inStr2 = true; strCh2 = stmtStr[ei]; continue; }
+          if (stmtStr.slice(ei, ei + 5) === 'else ') { elseIdx = ei; break; }
+        }
+      }
+      const thenStr = elseIdx !== -1 ? stmtStr.slice(0, elseIdx).trim() : stmtStr;
+      const elseStr = elseIdx !== -1 ? stmtStr.slice(elseIdx + 5).trim() : '';
+      const thenStmts = splitTopLevelAmp(thenStr);
       const thenBody: QspNode[] = [];
-      for (const stmt of stmts) {
+      for (const stmt of thenStmts) {
         const parsed = parseInlineStatement(stmt, unsupported);
         thenBody.push(...parsed);
       }
-      nodes.push({ kind: 'if', condition, thenBody, elseBody: [] });
+      const elseBody: QspNode[] = [];
+      if (elseStr) {
+        const elseStmts = splitTopLevelAmp(elseStr);
+        for (const stmt of elseStmts) {
+          const parsed = parseInlineStatement(stmt, unsupported);
+          elseBody.push(...parsed);
+        }
+      }
+      nodes.push({ kind: 'if', condition, thenBody, elseBody });
       i++;
       continue;
       }
+    }
+
+    // Text line with dynamic expression: 'text' + $var[...]
+    if (trimmed.startsWith("'") && !trimmed.endsWith("'") && /'\s*\+|\+\s*'/.test(trimmed)) {
+      nodes.push({ kind: 'text', content: trimmed, dynamic: true });
+      i++;
+      continue;
     }
 
     // Text line: 'text'
@@ -705,10 +861,58 @@ interface ParseResult {
       continue;
     }
 
+    // close all — no-op (menu_off is set separately)
+    if (trimmed === 'close all') {
+      i++;
+      continue;
+    }
+
+    // copyarr — array copy
+    if (/^copyarr\s/.test(trimmed) || /^copyarr\(/.test(trimmed)) {
+      nodes.push({ kind: 'setup', raw: trimmed });
+      i++;
+      continue;
+    }
+
+    // nl — newline or HTML element
+    if (trimmed === 'nl' || trimmed === 'nl ') {
+      nodes.push({ kind: 'text', content: '', dynamic: false });
+      i++;
+      continue;
+    }
+    const nlMatch = trimmed.match(/^nl\s+'((?:[^']|'')*)'$/);
+    if (nlMatch) {
+      nodes.push({ kind: 'text', content: unescapeQsp(nlMatch[1]), dynamic: false });
+      i++;
+      continue;
+    }
+
     // Comment: !! text
     if (trimmed.startsWith('!!')) {
       nodes.push({ kind: 'comment', text: trimmed.slice(2).trim() });
       i++;
+      continue;
+    }
+
+    // Dynamic single-line: dynamic 'expr'
+    const dynSingleMatch = trimmed.match(/^dynamic\s+'((?:[^']|'')*)'\s*$/);
+    if (dynSingleMatch) {
+      nodes.push({ kind: 'setup', raw: trimmed });
+      i++;
+      continue;
+    }
+
+    // Dynamic block: dynamic " ... "
+    if (trimmed === 'dynamic "' || trimmed.startsWith('dynamic "')) {
+      const dynNodes: QspNode[] = [];
+      let j = i + 1;
+      while (j < lines.length && lines[j].trim() !== '"') {
+        const dynResult = parseSingleLine(lines[j].trim(), lines, j, unsupported);
+        dynNodes.push(...dynResult.nodes);
+        j = dynResult.nextIdx;
+      }
+      nodes.push({ kind: 'scene', arg: '__dynamic__', body: dynNodes });
+      i = j + 1;
       continue;
     }
 
@@ -734,7 +938,8 @@ interface ParseResult {
       trimmed.startsWith('killvar ') ||
       trimmed.startsWith('wait ') ||
       trimmed === '*pl' ||
-      trimmed.startsWith('msg ')
+      trimmed.startsWith('msg ') ||
+      trimmed.startsWith("msg'")
     ) {
       nodes.push({ kind: 'setup', raw: trimmed });
       i++;
@@ -763,8 +968,8 @@ interface ParseResult {
       continue;
     }
 
-    // Array-like assignment: Word[key] = val (unquoted key)
-    const arrAssignMatch2 = trimmed.match(/^(\w+)\[(\w+)\]\s*(\+=|-=|=)\s*(.+)$/);
+    // Array-like assignment: Word[key] = val (unquoted key, may include nested brackets like ARGS[1])
+    const arrAssignMatch2 = trimmed.match(/^(\w+)\[(\w+(?:\[\d+\])?)\]\s*(\+=|-=|=)\s*(.+)$/);
     if (arrAssignMatch2) {
       for (const n of assignNodes(`${arrAssignMatch2[1]}[${arrAssignMatch2[2]}]`, arrAssignMatch2[3], arrAssignMatch2[4].trim())) nodes.push(n);
       i++;
@@ -794,6 +999,12 @@ interface ParseResult {
       continue;
     }
 
+    // end (leaked through from nested blocks)
+    if (trimmed === 'end' || trimmed === 'end ') {
+      i++;
+      continue;
+    }
+
     // Block comment markers
     if (trimmed === '!{' || trimmed === '!!{' || trimmed === '!}' || trimmed === '!!}' || trimmed === '}') {
       i++;
@@ -807,10 +1018,58 @@ interface ParseResult {
       continue;
     }
 
+    // Dollar variable assignment: $var = val, $var += val, $var -= val
+    const dollarVarMatch = trimmed.match(/^\$(\w+)\s*(\+=|-=|=)\s*(.+)$/);
+    if (dollarVarMatch) {
+      nodes.push({ kind: 'assign', var: `$${dollarVarMatch[1]}`, op: dollarVarMatch[2] as '=' | '+=' | '-=', value: dollarVarMatch[3].trim() });
+      i++;
+      continue;
+    }
+
+    // Array append: Word[] = val or $Word[] = val
+    const arrAppendMatch = trimmed.match(/^(\$?\w+)\[\]\s*=\s*(.+)$/);
+    if (arrAppendMatch) {
+      nodes.push({ kind: 'assign', var: `${arrAppendMatch[1]}[]`, op: '=', value: arrAppendMatch[2].trim() });
+      i++;
+      continue;
+    }
+
     // Dollar array assignment: $Word['key'] = val
     const dollarArrMatch = trimmed.match(/^\$(\w+)\['([^']+)'\]\s*(\+=|-=|=)\s*(.+)$/);
     if (dollarArrMatch) {
-      nodes.push({ kind: 'assign', var: `$${dollarArrMatch[1]}['${dollarArrMatch[2]}']`, op: dollarArrMatch[3] as '=' | '+=' | '-=', value: dollarArrMatch[4].trim() });
+      for (const n of assignNodes(`$${dollarArrMatch[1]}['${dollarArrMatch[2]}']`, dollarArrMatch[3], dollarArrMatch[4].trim())) nodes.push(n);
+      i++;
+      continue;
+    }
+
+    // Dollar array function call: $Word['key'] (standalone, no assignment)
+    const dollarArrCallMatch = trimmed.match(/^\$(\w+)\['([^']+)'\]\s*$/);
+    if (dollarArrCallMatch) {
+      nodes.push({ kind: 'setup', raw: trimmed });
+      i++;
+      continue;
+    }
+
+    // Bare dollar array access with variable key: $var[$var2] (no assignment)
+    const dollarArrVarCallMatch = trimmed.match(/^\$(\w+)\[(\$?\w+(?:\[\d+\])?)\]\s*$/);
+    if (dollarArrVarCallMatch) {
+      nodes.push({ kind: 'setup', raw: trimmed });
+      i++;
+      continue;
+    }
+
+    // Bare dollar variable: $var (standalone print)
+    const bareDollarMatch = trimmed.match(/^\$(\w+)\s*$/);
+    if (bareDollarMatch) {
+      nodes.push({ kind: 'setup', raw: trimmed });
+      i++;
+      continue;
+    }
+
+    // Array assignment with numeric index: $Word[0] = val or Word[0] = val
+    const arrNumIdxMatch = trimmed.match(/^(\$?\w+)\[(\d+)\]\s*(\+=|-=|=)\s*(.+)$/);
+    if (arrNumIdxMatch) {
+      nodes.push({ kind: 'assign', var: `${arrNumIdxMatch[1]}[${arrNumIdxMatch[2]}]`, op: arrNumIdxMatch[3] as '=' | '+=' | '-=', value: arrNumIdxMatch[4].trim() });
       i++;
       continue;
     }
@@ -823,8 +1082,16 @@ interface ParseResult {
       continue;
     }
 
+    // Array assignment with complex key: $var[$key] = val, var[expr] = val
+    const bca = extractBracketAssign(trimmed);
+    if (bca) {
+      for (const n of assignNodes(`${bca.varName}[${bca.key}]`, bca.op, bca.value)) nodes.push(n);
+      i++;
+      continue;
+    }
+
     // *p print statement
-    const pMatch = trimmed.match(/^\*p\s+'((?:[^']|'')*)'$/);
+    const pMatch = trimmed.match(/^\*[pP]\s+'((?:[^']|'')*)'$/);
     if (pMatch) {
       const inner = unescapeQsp(pMatch[1]);
       const isImage = inner.includes('<img');
@@ -848,6 +1115,72 @@ interface ParseResult {
         i++;
         continue;
       }
+    }
+
+    // Label: :labelname
+    const labelMatch = trimmed.match(/^:([a-zA-Z_]\w*)$/);
+    if (labelMatch) {
+      nodes.push({ kind: 'label', name: labelMatch[1] });
+      i++;
+      continue;
+    }
+
+    // Jump: jump 'label'
+    const jumpMatch = trimmed.match(/^jump\s+'((?:[^']|'')*)'$/i);
+    if (jumpMatch) {
+      const label = unescapeQsp(jumpMatch[1]);
+      nodes.push({ kind: 'jump', label });
+      i++;
+      continue;
+    }
+
+    // Dynamic expression text: iif(...), $func(...), $var + 'text', $var[...] + ..., etc.
+    if (/^(iif|\$func)\s*\(/.test(trimmed) || /^'[^']*'\s*\+\s*/.test(trimmed) || (/^\$[a-zA-Z_]\w*(\[[^\]]*\])?\s*\+/.test(trimmed) && !/^\$[a-zA-Z_]\w*(\[[^\]]*\])?\s*\+=/.test(trimmed) && !/^\$[a-zA-Z_]\w*(\[[^\]]*\])?\s*=-/.test(trimmed) && !/^\$[a-zA-Z_]\w*(\[[^\]]*\])?\s*=$/.test(trimmed))) {
+      nodes.push({ kind: 'text', content: trimmed, dynamic: true });
+      i++;
+      continue;
+    }
+
+    // view $func(...) - standalone view command
+    const viewFuncMatch = trimmed.match(/^view\s+(\$?func\(.+\))$/);
+    if (viewFuncMatch) {
+      nodes.push({ kind: 'setup', raw: trimmed });
+      i++;
+      continue;
+    }
+
+    // view 'path' - set background image
+    const viewPathMatch = trimmed.match(/^view\s+'((?:[^']|'')*)'$/);
+    if (viewPathMatch) {
+      nodes.push({ kind: 'setup', raw: trimmed });
+      i++;
+      continue;
+    }
+
+    // addobj 'text' - add debug object (no-op)
+    if (/^addobj\s+'/.test(trimmed)) {
+      i++;
+      continue;
+    }
+
+    // delact - delete action (no-op in React context)
+    if (/^delact\s/.test(trimmed)) {
+      i++;
+      continue;
+    }
+
+    // Standalone func('module', 'function', ...) call
+    const standaloneFuncMatch = trimmed.match(/^func\((.+)\)\s*$/);
+    if (standaloneFuncMatch) {
+      nodes.push({ kind: 'setup', raw: trimmed });
+      i++;
+      continue;
+    }
+
+    // showstat - toggle status bar (no-op in React)
+    if (/^showstat\s/.test(trimmed)) {
+      i++;
+      continue;
     }
 
     // Fallback
@@ -966,6 +1299,64 @@ function parseSingleLine(trimmed: string, lines: string[], idx: number, unsuppor
     return { nodes, nextIdx: inner.endIdx };
   }
 
+  const actFuncBlockMatch = trimmed.match(/^act\s+(\$?func\(.+?\))\s*:\s*$/i);
+  if (actFuncBlockMatch) {
+    const labelExpr = actFuncBlockMatch[1].trim();
+    const inner = parseBlock(lines, idx + 1, unsupported);
+    nodes.push({ kind: 'act', label: labelExpr, body: inner.nodes, dynamicLabel: true });
+    return { nodes, nextIdx: inner.endIdx };
+  }
+
+  // Act with iif() dynamic label: act iif(cond, 'a', 'b'): [rest]
+  if (/^act\s+iif\s*\(/i.test(trimmed)) {
+    const iifStart = trimmed.indexOf('iif(');
+    let depth = 0, iifEnd = -1, inStr = false, strCh = '';
+    for (let j = iifStart; j < trimmed.length; j++) {
+      const ch = trimmed[j];
+      if (inStr) {
+        if (ch === strCh) {
+          if (strCh === "'" && trimmed[j + 1] === "'") { j++; }
+          else inStr = false;
+        }
+        continue;
+      }
+      if (ch === "'" || ch === '"') { inStr = true; strCh = ch; continue; }
+      if (ch === '(') depth++;
+      else if (ch === ')') { depth--; if (depth === 0) { iifEnd = j; break; } }
+    }
+    if (iifEnd !== -1) {
+      const labelExpr = trimmed.slice(iifStart, iifEnd + 1);
+      const after = trimmed.slice(iifEnd + 1).trim();
+      // Find top-level ':' (not inside quotes or parens)
+      let colonIdx = -1, inStr2 = false, strCh2 = '', depth2 = 0;
+      for (let ci = 0; ci < after.length; ci++) {
+        const ch = after[ci];
+        if (inStr2) {
+          if (ch === strCh2) {
+            if (strCh2 === "'" && after[ci + 1] === "'") { ci++; }
+            else inStr2 = false;
+          }
+          continue;
+        }
+        if (ch === "'" || ch === '"') { inStr2 = true; strCh2 = ch; continue; }
+        if (ch === '(') depth2++;
+        else if (ch === ')') depth2--;
+        else if (ch === ':' && depth2 === 0) { colonIdx = ci; break; }
+      }
+      if (colonIdx !== -1) {
+        const rest = after.slice(colonIdx + 1).trim();
+        const inner = parseBlock(lines, idx + 1, unsupported);
+        const act: QspAct = { kind: 'act', label: labelExpr, body: inner.nodes, dynamicLabel: true };
+        if (rest) {
+          const gtMatch = rest.match(/^gt\s+'([^']+)'\s*,\s*'([^']*)'\s*$/);
+          if (gtMatch) act.inlineGoto = { target: gtMatch[1], arg: gtMatch[2], arg2: undefined };
+        }
+        nodes.push(act);
+        return { nodes, nextIdx: inner.endIdx };
+      }
+    }
+  }
+
   // Act with dynamic label
   const actDynMatch = trimmed.match(/^act\s+'((?:[^']|'')*)'\s*\+\s*(.+?)\s*:\s*(.*)$/i);
   if (actDynMatch) {
@@ -1005,33 +1396,45 @@ function parseSingleLine(trimmed: string, lines: string[], idx: number, unsuppor
     return { nodes: [act], nextIdx: inner.endIdx };
   }
 
+  // Act with $func('wrap') inline
+  const actFuncWrapMatch = trimmed.match(/^act\s+'((?:[^']|'')*)'\s*:\s*\$func\('wrap',\s*'([^']*)',\s*'((?:[^']|'')*)'\)\s*$/i);
+  if (actFuncWrapMatch) {
+    const label = unescapeQsp(actFuncWrapMatch[1]);
+    const style = actFuncWrapMatch[2];
+    const text = unescapeQsp(actFuncWrapMatch[3]);
+    nodes.push({ kind: 'act', label, body: [], inlineText: text, inlineTextStyle: style });
+    return { nodes, nextIdx: idx + 1 };
+  }
+
   // Act inline
   const actInlineMatch = trimmed.match(/^act\s+'((?:[^']|'')*)'\s*:\s*(.+)$/i);
   if (actInlineMatch) {
     const label = unescapeQsp(actInlineMatch[1]);
     const rest = actInlineMatch[2].trim();
     const act: QspAct = { kind: 'act', label, body: [] };
-      const gtDynTargetMatch = rest.match(/^gt\s+'([^']+)'\s*\+\s*(\$\w+)\s*(?:,\s*'([^']*)')?\s*(?:,\s*('[^']*'|\w+))?$/);
+      const isXgt = rest.startsWith('xgt ');
+      const gtCmd = isXgt ? 'xgt' : 'gt';
+      const gtDynTargetMatch = rest.match(new RegExp(`^${gtCmd}\\s+'([^']+)'\\s*\\+\\s*(\\$\\w+)\\s*(?:,\\s*'([^']*)')?\\s*(?:,\\s*('[^']*'|\\w+))?$`));
       if (gtDynTargetMatch) {
         act.inlineGoto = { target: gtDynTargetMatch[2], arg: gtDynTargetMatch[3] || '', arg2: gtDynTargetMatch[4] };
       } else {
-        const gtArithMatch = rest.match(/^gt\s+'([^']+)'\s*,\s*'([^']*)'\s*,\s*([\d+\-*/()\s\w.,]+)$/);
+        const gtArithMatch = rest.match(new RegExp(`^${gtCmd}\\s+'([^']+)'\\s*,\\s*'([^']*)'\\s*,\\s*([\\d+\\-*/()\\s\\w.,]+)$`));
         if (gtArithMatch) {
           act.inlineGoto = { target: gtArithMatch[1], arg: gtArithMatch[2], arg2: gtArithMatch[3].trim() };
         } else {
-        const gt4Match = rest.match(/^gt\s+'([^']+)'\s*,\s*'([^']*)'\s*,\s*(\$\w+|\w+)\s*,\s*'([^']*)'\s*$/);
+        const gt4Match = rest.match(new RegExp(`^${gtCmd}\\s+'([^']+)'\\s*,\\s*'([^']*)'\\s*,\\s*(\\$\\w+|\\w+)\\s*,\\s*'([^']*)'\\s*$`));
         if (gt4Match) {
           act.inlineGoto = { target: gt4Match[1], arg: gt4Match[2], arg2: gt4Match[3].replace(/^\$/, ''), arg3: gt4Match[4] };
         } else {
-          const gtMatch = rest.match(/^gt\s+'([^']+)'\s*(?:,\s*('[^']*'|\$\w+\['[^']*'\]|\$\w+|\w+))?\s*(?:,\s*('[^']*'|\$\w+\['[^']*'\]|\$\w+|\w+))?$/);
+          const gtMatch = rest.match(new RegExp(`^${gtCmd}\\s+'([^']+)'\\s*(?:,\\s*('[^']*'|\\$\\w+\\['[^']*'\\]|\\$\\w+|\\w+))?\\s*(?:,\\s*('[^']*'|\\$\\w+\\['[^']*'\\]|\\$\\w+|\\w+))?$`));
           if (gtMatch) {
             act.inlineGoto = { target: gtMatch[1], arg: (gtMatch[2] && gtMatch[2].startsWith("'") && gtMatch[2].endsWith("'") ? gtMatch[2].slice(1, -1) : gtMatch[2]) || '', arg2: (gtMatch[3] && gtMatch[3].startsWith("'") && gtMatch[3].endsWith("'") ? gtMatch[3].slice(1, -1) : gtMatch[3]) };
           } else {
-            const gtVarArgMatch = rest.match(/^gt\s+'([^']+)'\s*,\s*(\$\w+\['[^']*'\]|\$\w+|\w+)\s*$/);
+            const gtVarArgMatch = rest.match(new RegExp(`^${gtCmd}\\s+'([^']+)'\\s*,\\s*(\\$\\w+\\['[^']*'\\]|\\$\\w+|\\w+)\\s*$`));
             if (gtVarArgMatch) {
               act.inlineGoto = { target: gtVarArgMatch[1], arg: gtVarArgMatch[2].replace(/^\$/, ''), arg2: undefined };
             } else {
-              const gtIifMatch = rest.match(/^gt\s+'([^']+)'\s*,\s*iif\(/);
+              const gtIifMatch = rest.match(new RegExp(`^${gtCmd}\\s+'([^']+)'\\s*,\\s*iif\\(`));
               if (gtIifMatch) {
                 const iifStart = rest.indexOf('iif(');
                 let depth = 0, iifEnd = -1, inStr = false, strCh = '';
@@ -1120,15 +1523,47 @@ function parseSingleLine(trimmed: string, lines: string[], idx: number, unsuppor
           }
         }
       }
-      const stmts = splitTopLevelAmp(stmtStr);
+      // Split by 'else' keyword (top-level, not in strings)
+      let elseIdx = -1;
+      {
+        let inStr2 = false, strCh2 = '';
+        for (let ei = 0; ei < stmtStr.length - 4; ei++) {
+          if (inStr2) {
+            if (stmtStr[ei] === strCh2) {
+              if (stmtStr[ei + 1] === strCh2) { ei++; continue; }
+              inStr2 = false;
+            }
+            continue;
+          }
+          if (stmtStr[ei] === "'" || stmtStr[ei] === '"') { inStr2 = true; strCh2 = stmtStr[ei]; continue; }
+          if (stmtStr.slice(ei, ei + 5) === 'else ') { elseIdx = ei; break; }
+        }
+      }
+      const thenStr = elseIdx !== -1 ? stmtStr.slice(0, elseIdx).trim() : stmtStr;
+      const elseStr = elseIdx !== -1 ? stmtStr.slice(elseIdx + 5).trim() : '';
+      const thenStmts = splitTopLevelAmp(thenStr);
       const thenBody: QspNode[] = [];
-      for (const stmt of stmts) {
+      for (const stmt of thenStmts) {
         const parsed = parseInlineStatement(stmt, unsupported);
         thenBody.push(...parsed);
       }
-      nodes.push({ kind: 'if', condition, thenBody, elseBody: [] });
+      const elseBody: QspNode[] = [];
+      if (elseStr) {
+        const elseStmts = splitTopLevelAmp(elseStr);
+        for (const stmt of elseStmts) {
+          const parsed = parseInlineStatement(stmt, unsupported);
+          elseBody.push(...parsed);
+        }
+      }
+      nodes.push({ kind: 'if', condition, thenBody, elseBody });
       return { nodes, nextIdx: idx + 1 + consumedLines };
     }
+  }
+
+  // Text line with dynamic expression: 'text' + $var[...] (starts with ', doesn't end with ')
+  if (trimmed.startsWith("'") && !trimmed.endsWith("'") && /'\s*\+|\+\s*'/.test(trimmed)) {
+    nodes.push({ kind: 'text', content: trimmed, dynamic: true });
+    return { nodes, nextIdx: idx + 1 };
   }
 
   // Text
@@ -1277,6 +1712,25 @@ function parseSingleLine(trimmed: string, lines: string[], idx: number, unsuppor
     return { nodes, nextIdx: idx + 1 };
   }
 
+  if (trimmed === 'close all') {
+    return { nodes, nextIdx: idx + 1 };
+  }
+
+  if (/^copyarr\s/.test(trimmed) || /^copyarr\(/.test(trimmed)) {
+    nodes.push({ kind: 'setup', raw: trimmed });
+    return { nodes, nextIdx: idx + 1 };
+  }
+
+  if (trimmed === 'nl' || trimmed === 'nl ') {
+    nodes.push({ kind: 'text', content: '', dynamic: false });
+    return { nodes, nextIdx: idx + 1 };
+  }
+  const nlMatch2 = trimmed.match(/^nl\s+'((?:[^']|'')*)'$/);
+  if (nlMatch2) {
+    nodes.push({ kind: 'text', content: unescapeQsp(nlMatch2[1]), dynamic: false });
+    return { nodes, nextIdx: idx + 1 };
+  }
+
   // Comment
   if (trimmed.startsWith('!!')) {
     nodes.push({ kind: 'comment', text: trimmed.slice(2).trim() });
@@ -1305,9 +1759,46 @@ function parseSingleLine(trimmed: string, lines: string[], idx: number, unsuppor
     trimmed.startsWith('killvar ') ||
     trimmed.startsWith('wait ') ||
     trimmed === '*pl' ||
-    trimmed.startsWith('msg ')
+    trimmed.startsWith('msg ') ||
+    trimmed.startsWith("msg'")
   ) {
     nodes.push({ kind: 'setup', raw: trimmed });
+    return { nodes, nextIdx: idx + 1 };
+  }
+
+  // view $func(...) — sets background image via function call
+  const viewFuncMatch = trimmed.match(/^view\s+(\$?func\(.+\))$/);
+  if (viewFuncMatch) {
+    nodes.push({ kind: 'setup', raw: trimmed });
+    return { nodes, nextIdx: idx + 1 };
+  }
+
+  // view 'path' - set background image
+  const viewPathMatch2 = trimmed.match(/^view\s+'((?:[^']|'')*)'$/);
+  if (viewPathMatch2) {
+    nodes.push({ kind: 'setup', raw: trimmed });
+    return { nodes, nextIdx: idx + 1 };
+  }
+
+  // addobj 'text' - add debug object (no-op)
+  if (/^addobj\s+'/.test(trimmed)) {
+    return { nodes, nextIdx: idx + 1 };
+  }
+
+  // delact - delete action (no-op in React context)
+  if (/^delact\s/.test(trimmed)) {
+    return { nodes, nextIdx: idx + 1 };
+  }
+
+  // Standalone func('module', 'function') call
+  const standaloneFuncMatch2 = trimmed.match(/^func\((.+)\)\s*$/);
+  if (standaloneFuncMatch2) {
+    nodes.push({ kind: 'setup', raw: trimmed });
+    return { nodes, nextIdx: idx + 1 };
+  }
+
+  // showstat - toggle status bar (no-op in React)
+  if (/^showstat\s/.test(trimmed)) {
     return { nodes, nextIdx: idx + 1 };
   }
 
@@ -1331,8 +1822,8 @@ function parseSingleLine(trimmed: string, lines: string[], idx: number, unsuppor
     return { nodes, nextIdx: idx + 1 };
   }
 
-  // Array-like assignment: Word[key] = val
-  const arrAssignMatch2 = trimmed.match(/^(\w+)\[(\w+)\]\s*(\+=|-=|=)\s*(.+)$/);
+  // Array-like assignment: Word[key] = val (may include nested brackets like ARGS[1])
+  const arrAssignMatch2 = trimmed.match(/^(\w+)\[(\w+(?:\[\d+\])?)\]\s*(\+=|-=|=)\s*(.+)$/);
   if (arrAssignMatch2) {
     for (const n of assignNodes(`${arrAssignMatch2[1]}[${arrAssignMatch2[2]}]`, arrAssignMatch2[3], arrAssignMatch2[4].trim())) nodes.push(n);
     return { nodes, nextIdx: idx + 1 };
@@ -1370,7 +1861,7 @@ function parseSingleLine(trimmed: string, lines: string[], idx: number, unsuppor
   }
 
   // *p print statement
-  const pMatch = trimmed.match(/^\*p\s+'((?:[^']|'')*)'$/);
+  const pMatch = trimmed.match(/^\*[pP]\s+'((?:[^']|'')*)'$/);
   if (pMatch) {
     const inner = unescapeQsp(pMatch[1]);
     const isImage = inner.includes('<img');
@@ -1394,17 +1885,120 @@ function parseSingleLine(trimmed: string, lines: string[], idx: number, unsuppor
     }
   }
 
+  // Array append: Word[] = val or $Word[] = val
+  const arrAppendMatch = trimmed.match(/^(\$?\w+)\[\]\s*=\s*(.+)$/);
+  if (arrAppendMatch) {
+    nodes.push({ kind: 'assign', var: `${arrAppendMatch[1]}[]`, op: '=', value: arrAppendMatch[2].trim() });
+    return { nodes, nextIdx: idx + 1 };
+  }
+
+  // Array assignment with numeric index: $Word[0] = val or Word[0] = val
+  const arrNumIdxMatch = trimmed.match(/^(\$?\w+)\[(\d+)\]\s*(\+=|-=|=)\s*(.+)$/);
+  if (arrNumIdxMatch) {
+    nodes.push({ kind: 'assign', var: `${arrNumIdxMatch[1]}[${arrNumIdxMatch[2]}]`, op: arrNumIdxMatch[3] as '=' | '+=' | '-=', value: arrNumIdxMatch[4].trim() });
+    return { nodes, nextIdx: idx + 1 };
+  }
+
   // Dollar array assignment: $Word['key'] = val
   const dollarArrMatch = trimmed.match(/^\$(\w+)\['([^']+)'\]\s*(\+=|-=|=)\s*(.+)$/);
   if (dollarArrMatch) {
-    nodes.push({ kind: 'assign', var: `$${dollarArrMatch[1]}['${dollarArrMatch[2]}']`, op: dollarArrMatch[3] as '=' | '+=' | '-=', value: dollarArrMatch[4].trim() });
+    for (const n of assignNodes(`$${dollarArrMatch[1]}['${dollarArrMatch[2]}']`, dollarArrMatch[3], dollarArrMatch[4].trim())) nodes.push(n);
+    return { nodes, nextIdx: idx + 1 };
+  }
+
+  // Dollar array assignment with unquoted key: $Word[key] = val
+  const dollarArrMatch2 = trimmed.match(/^\$(\w+)\[(\$?\w+(?:\[\d+\])?)\]\s*(\+=|-=|=)\s*(.+)$/);
+  if (dollarArrMatch2) {
+    for (const n of assignNodes(`$${dollarArrMatch2[1]}[${dollarArrMatch2[2]}]`, dollarArrMatch2[3], dollarArrMatch2[4].trim())) nodes.push(n);
     return { nodes, nextIdx: idx + 1 };
   }
 
   // Array assignment with variable key: Word[$var] = val or Word[var] = val
-  const arrVarKeyMatch = trimmed.match(/^(\w+)\[(\$?\w+)\]\s*(\+=|-=|=)\s*(.+)$/);
+  const arrVarKeyMatch = trimmed.match(/^(\w+)\[(\$?\w+(?:\[\d+\])?)\]\s*(\+=|-=|=)\s*(.+)$/);
   if (arrVarKeyMatch) {
-    nodes.push({ kind: 'assign', var: `${arrVarKeyMatch[1]}[${arrVarKeyMatch[2]}]`, op: arrVarKeyMatch[3] as '=' | '+=' | '-=', value: arrVarKeyMatch[4].trim() });
+    for (const n of assignNodes(`${arrVarKeyMatch[1]}[${arrVarKeyMatch[2]}]`, arrVarKeyMatch[3], arrVarKeyMatch[4].trim())) nodes.push(n);
+    return { nodes, nextIdx: idx + 1 };
+  }
+
+  const bca2 = extractBracketAssign(trimmed);
+  if (bca2) {
+    for (const n of assignNodes(`${bca2.varName}[${bca2.key}]`, bca2.op, bca2.value)) nodes.push(n);
+    return { nodes, nextIdx: idx + 1 };
+  }
+
+  // Label: :labelname
+  const labelMatch = trimmed.match(/^:([a-zA-Z_]\w*)$/);
+  if (labelMatch) {
+    nodes.push({ kind: 'label', name: labelMatch[1] });
+    return { nodes, nextIdx: idx + 1 };
+  }
+
+  // Jump: jump 'label'
+  const jumpMatch = trimmed.match(/^jump\s+'((?:[^']|'')*)'$/i);
+  if (jumpMatch) {
+    const label = unescapeQsp(jumpMatch[1]);
+    nodes.push({ kind: 'jump', label });
+    return { nodes, nextIdx: idx + 1 };
+  }
+
+  // Dollar variable assignment: $var = val, $var += val, $var -= val
+  const dollarVarMatch = trimmed.match(/^\$(\w+)\s*(\+=|-=|=)\s*(.+)$/);
+  if (dollarVarMatch) {
+    let val = dollarVarMatch[3].trim();
+    let nextIdx = idx + 1;
+    // Multi-line string: value starts with quote but the opening quote is not closed on the same line
+    const quote = val[0];
+    if ((quote === '"' || quote === "'") && val.length > 1) {
+      // Count quotes to determine if the opening quote is closed
+      let qCount = 0;
+      for (let qi = 0; qi < val.length; qi++) {
+        if (val[qi] === quote) {
+          if (quote === '"' && val[qi + 1] === '"') { qi++; continue; }
+          qCount++;
+        }
+      }
+      // Odd count means the opening quote is not closed
+      if (qCount % 2 === 1) {
+        const parts: string[] = [val];
+        while (nextIdx < lines.length) {
+          const line = lines[nextIdx].trim();
+          parts.push(line);
+          // Count quotes on this line to check if the string is closed
+          let lineQCount = 0;
+          for (let qi = 0; qi < line.length; qi++) {
+            if (line[qi] === quote) {
+              if (quote === '"' && line[qi + 1] === '"') { qi++; continue; }
+              lineQCount++;
+            }
+          }
+          qCount += lineQCount;
+          nextIdx++;
+          if (qCount % 2 === 0) break;
+        }
+        val = parts.join('\n');
+      }
+    }
+    nodes.push({ kind: 'assign', var: `$${dollarVarMatch[1]}`, op: dollarVarMatch[2] as '=' | '+=' | '-=', value: val });
+    return { nodes, nextIdx };
+  }
+
+  // Dynamic expression text: iif(...), $func(...), $var + 'text', $var[...] + ..., etc.
+  if (/^(iif|\$func)\s*\(/.test(trimmed) || /^'[^']*'\s*\+\s*/.test(trimmed) || (/^\$[a-zA-Z_]\w*(\[[^\]]*\])?\s*\+/.test(trimmed) && !/^\$[a-zA-Z_]\w*(\[[^\]]*\])?\s*\+=/.test(trimmed) && !/^\$[a-zA-Z_]\w*(\[[^\]]*\])?\s*=-/.test(trimmed) && !/^\$[a-zA-Z_]\w*(\[[^\]]*\])?\s*=$/.test(trimmed))) {
+    nodes.push({ kind: 'text', content: trimmed, dynamic: true });
+    return { nodes, nextIdx: idx + 1 };
+  }
+
+  // Dollar array function call: $Word['key'] (standalone, no assignment)
+  const dollarArrCallMatch = trimmed.match(/^\$(\w+)\['([^']+)'\]\s*$/);
+  if (dollarArrCallMatch) {
+    nodes.push({ kind: 'setup', raw: trimmed });
+    return { nodes, nextIdx: idx + 1 };
+  }
+
+  // Bare dollar array access with variable key: $var[$var2] (no assignment)
+  const dollarArrVarCallMatch2 = trimmed.match(/^\$(\w+)\[(\$?\w+(?:\[\d+\])?)\]\s*$/);
+  if (dollarArrVarCallMatch2) {
+    nodes.push({ kind: 'setup', raw: trimmed });
     return { nodes, nextIdx: idx + 1 };
   }
 
@@ -1428,8 +2022,38 @@ function parseInlineStatement(stmt: string, unsupported: string[]): QspNode[] {
     }
   }
 
-  if (trimmed.startsWith('PLAY ') || trimmed.startsWith('play ') || trimmed.startsWith('cla') || trimmed.startsWith('cls') || trimmed.startsWith('clr') || trimmed.startsWith('*clr') || trimmed.startsWith('*nl')) {
+  if (trimmed.startsWith('PLAY ') || trimmed.startsWith('play ') || trimmed.startsWith('cla') || trimmed.startsWith('cls') || trimmed.startsWith('clr') || trimmed.startsWith('*clr') || trimmed.startsWith('*nl') || trimmed.startsWith('killvar ') || trimmed.startsWith('msg ') || trimmed.startsWith("msg'")) {
     nodes.push({ kind: 'setup', raw: trimmed });
+    return nodes;
+  }
+
+  // Dynamic function call: dynamic($func, 'arg1', arg2)
+  const dynFuncMatch = trimmed.match(/^dynamic\((.+)\)$/);
+  if (dynFuncMatch) {
+    nodes.push({ kind: 'setup', raw: trimmed });
+    return nodes;
+  }
+
+  // Dynamic variable: dynamic $var
+  const dynVarMatch = trimmed.match(/^dynamic\s+\$(\w+)$/);
+  if (dynVarMatch) {
+    nodes.push({ kind: 'setup', raw: trimmed });
+    return nodes;
+  }
+
+  // Dynamic single-line: dynamic 'expr'
+  const dynSingleMatch = trimmed.match(/^dynamic\s+'((?:[^']|'')*)'\s*$/);
+  if (dynSingleMatch) {
+    nodes.push({ kind: 'setup', raw: trimmed });
+    return nodes;
+  }
+
+  const actFuncWrapMatch = trimmed.match(/^act\s+'((?:[^']|'')*)'\s*:\s*\$func\('wrap',\s*'([^']*)',\s*'((?:[^']|'')*)'\)\s*$/i);
+  if (actFuncWrapMatch) {
+    const label = unescapeQsp(actFuncWrapMatch[1]);
+    const style = actFuncWrapMatch[2];
+    const text = unescapeQsp(actFuncWrapMatch[3]);
+    nodes.push({ kind: 'act', label, body: [], inlineText: text, inlineTextStyle: style });
     return nodes;
   }
 
@@ -1519,6 +2143,24 @@ function parseInlineStatement(stmt: string, unsupported: string[]): QspNode[] {
     return nodes;
   }
 
+  const arrAppendMatch = trimmed.match(/^(\$?\w+)\[\]\s*=\s*(.+)$/);
+  if (arrAppendMatch) {
+    nodes.push({ kind: 'assign', var: `${arrAppendMatch[1]}[]`, op: '=', value: arrAppendMatch[2].trim() });
+    return nodes;
+  }
+
+  const arrNumIdxMatch = trimmed.match(/^(\$?\w+)\[(\d+)\]\s*(\+=|-=|=)\s*(.+)$/);
+  if (arrNumIdxMatch) {
+    nodes.push({ kind: 'assign', var: `${arrNumIdxMatch[1]}[${arrNumIdxMatch[2]}]`, op: arrNumIdxMatch[3] as '=' | '+=' | '-=', value: arrNumIdxMatch[4].trim() });
+    return nodes;
+  }
+
+  const bca3 = extractBracketAssign(trimmed);
+  if (bca3) {
+    for (const n of assignNodes(`${bca3.varName}[${bca3.key}]`, bca3.op, bca3.value)) nodes.push(n);
+    return nodes;
+  }
+
   const assignMatch = trimmed.match(/^(\w+)\s*(\+=|-=|=)\s*(.+)$/);
   if (assignMatch) {
     for (const n of assignNodes(assignMatch[1], assignMatch[2], assignMatch[3].trim())) nodes.push(n);
@@ -1531,7 +2173,7 @@ function parseInlineStatement(stmt: string, unsupported: string[]): QspNode[] {
     return nodes;
   }
 
-  const arrAssignMatch2 = trimmed.match(/^(\w+)\[(\$?\w+)\]\s*(\+=|-=|=)\s*(.+)$/);
+  const arrAssignMatch2 = trimmed.match(/^(\w+)\[(\$?\w+(?:\[\d+\])?)\]\s*(\+=|-=|=)\s*(.+)$/);
   if (arrAssignMatch2) {
     for (const n of assignNodes(`${arrAssignMatch2[1]}[${arrAssignMatch2[2]}]`, arrAssignMatch2[3], arrAssignMatch2[4].trim())) nodes.push(n);
     return nodes;
@@ -1543,13 +2185,63 @@ function parseInlineStatement(stmt: string, unsupported: string[]): QspNode[] {
     return nodes;
   }
 
-  const dollarArrMatch2 = trimmed.match(/^\$(\w+)\[(\$?\w+)\]\s*(\+=|-=|=)\s*(.+)$/);
-  if (dollarArrMatch2) {
-    nodes.push({ kind: 'assign', var: `$${dollarArrMatch2[1]}[${dollarArrMatch2[2]}]`, op: dollarArrMatch2[3] as '=' | '+=' | '-=', value: dollarArrMatch2[4].trim() });
+  // view $func(...) — sets background image via function call
+  const viewFuncMatch = trimmed.match(/^view\s+(\$?func\(.+\))$/);
+  if (viewFuncMatch) {
+    nodes.push({ kind: 'setup', raw: trimmed });
     return nodes;
   }
 
-  const dollarAssignMatch = trimmed.match(/^\$(\w+)\s*=\s*([\s\S]+)$/);
+  // view 'path' - set background image
+  const viewPathMatch3 = trimmed.match(/^view\s+'((?:[^']|'')*)'$/);
+  if (viewPathMatch3) {
+    nodes.push({ kind: 'setup', raw: trimmed });
+    return nodes;
+  }
+
+  // addobj 'text' - add debug object (no-op)
+  if (/^addobj\s+'/.test(trimmed)) {
+    return nodes;
+  }
+
+  // delact - delete action (no-op in React context)
+  if (/^delact\s/.test(trimmed)) {
+    return nodes;
+  }
+
+  // Standalone func('module', 'function') call
+  const standaloneFuncMatch3 = trimmed.match(/^func\((.+)\)\s*$/);
+  if (standaloneFuncMatch3) {
+    nodes.push({ kind: 'setup', raw: trimmed });
+    return nodes;
+  }
+
+  // showstat - toggle status bar (no-op in React)
+  if (/^showstat\s/.test(trimmed)) {
+    return nodes;
+  }
+
+  // Dollar array function call: $Word['key'] (standalone, no assignment)
+  const dollarArrCallMatch = trimmed.match(/^\$(\w+)\['([^']+)'\]\s*$/);
+  if (dollarArrCallMatch) {
+    nodes.push({ kind: 'setup', raw: trimmed });
+    return nodes;
+  }
+
+  // Bare dollar array access with variable key: $var[$var2] (no assignment)
+  const dollarArrVarCallMatch3 = trimmed.match(/^\$(\w+)\[(\$?\w+(?:\[\d+\])?)\]\s*$/);
+  if (dollarArrVarCallMatch3) {
+    nodes.push({ kind: 'setup', raw: trimmed });
+    return nodes;
+  }
+
+  const dollarArrMatch2 = trimmed.match(/^\$(\w+)\[(\$?\w+(?:\[\d+\])?)\]\s*(\+=|-=|=)\s*(.+)$/);
+  if (dollarArrMatch2) {
+    for (const n of assignNodes(`$${dollarArrMatch2[1]}[${dollarArrMatch2[2]}]`, dollarArrMatch2[3], dollarArrMatch2[4].trim())) nodes.push(n);
+    return nodes;
+  }
+
+  const dollarAssignMatch = trimmed.match(/^\$(\w+)\s*(\+=|-=|=)\s*([\s\S]+)$/);
   if (dollarAssignMatch) {
     nodes.push({ kind: 'setup', raw: trimmed });
     return nodes;
@@ -1558,6 +2250,12 @@ function parseInlineStatement(stmt: string, unsupported: string[]): QspNode[] {
   const timeMatch = trimmed.match(/^minut\s*\+=\s*(\d+)$/);
   if (timeMatch) {
     nodes.push({ kind: 'time', delta: parseInt(timeMatch[1], 10) });
+    return nodes;
+  }
+
+  // Bare string concatenation (starts with ', doesn't end with '): 'text' + iif(...), etc.
+  if (trimmed.startsWith("'") && !trimmed.endsWith("'") && /'\s*\+|\+\s*'/.test(trimmed)) {
+    nodes.push({ kind: 'text', content: trimmed, dynamic: true });
     return nodes;
   }
 
@@ -1608,12 +2306,54 @@ function parseInlineStatement(stmt: string, unsupported: string[]): QspNode[] {
     return nodes;
   }
 
-  if (trimmed.startsWith('*p')) {
+  if (trimmed.startsWith('*p') || trimmed.startsWith('*P')) {
     const pRest = trimmed.slice(2).trim();
     if (pRest) {
       nodes.push({ kind: 'text', content: pRest, dynamic: true });
       return nodes;
     }
+  }
+
+  const jumpMatch = trimmed.match(/^jump\s+'((?:[^']|'')*)'$/i);
+  if (jumpMatch) {
+    const label = unescapeQsp(jumpMatch[1]);
+    nodes.push({ kind: 'jump', label });
+    return nodes;
+  }
+
+  const labelMatch = trimmed.match(/^:([a-zA-Z_]\w*)$/);
+  if (labelMatch) {
+    nodes.push({ kind: 'label', name: labelMatch[1] });
+    return nodes;
+  }
+
+  if (trimmed === 'exit') {
+    nodes.push({ kind: 'exit' });
+    return nodes;
+  }
+
+  if (trimmed === 'close all') {
+    return nodes;
+  }
+
+  if (/^copyarr\s/.test(trimmed) || /^copyarr\(/.test(trimmed)) {
+    nodes.push({ kind: 'setup', raw: trimmed });
+    return nodes;
+  }
+
+  if (trimmed === 'nl' || trimmed === 'nl ') {
+    nodes.push({ kind: 'text', content: '', dynamic: false });
+    return nodes;
+  }
+  const nlMatch3 = trimmed.match(/^nl\s+'((?:[^']|'')*)'$/);
+  if (nlMatch3) {
+    nodes.push({ kind: 'text', content: unescapeQsp(nlMatch3[1]), dynamic: false });
+    return nodes;
+  }
+
+  if (/^(iif|\$func)\s*\(/.test(trimmed) || /^'[^']*'\s*\+\s*/.test(trimmed) || (/^\$[a-zA-Z_]\w*\s*\+/.test(trimmed) && !/^\$[a-zA-Z_]\w*\s*\+=/.test(trimmed))) {
+    nodes.push({ kind: 'text', content: trimmed, dynamic: true });
+    return nodes;
   }
 
   nodes.push({ kind: 'unknown', raw: trimmed });

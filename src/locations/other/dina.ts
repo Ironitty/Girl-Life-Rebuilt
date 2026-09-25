@@ -21,7 +21,6 @@ function enterBrodila(s: GameState, scene: SceneBuilder): void {
       qspGoto(s, 'city_residential', '');
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -35,7 +34,6 @@ function enterBrodilr(s: GameState, scene: SceneBuilder): void {
       qspGoto(s, 'city_residential', '');
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -49,7 +47,6 @@ function enterBrodilk(s: GameState, scene: SceneBuilder): void {
       qspGoto(s, 'city_residential', '');
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -67,19 +64,16 @@ function enterBrodils(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterDogpot(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'boyStat', 'A191');
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterRexpot(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'boyStat', 'A166');
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -126,7 +120,6 @@ function enterHypnoDaychange(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -144,7 +137,6 @@ function enterHypnoAddiction(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -164,7 +156,6 @@ function enterPrezik(s: GameState, scene: SceneBuilder): void {
       ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['equipped_condoms'] = 0;
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -174,7 +165,7 @@ function enterFerteggfather(s: GameState, scene: SceneBuilder): void {
       if (((s as any).cumarrkno ?? 0)?.[String((s as any).cumarrtemp ?? 0)] === 1) {
         if (((s as any).arrcomp ?? 0)('cumfthname', ((s as any).boy ?? 0)) === -1) {
           (s as any).i = 0;
-          // TODO-QSP: $cumfthname[i] = $boy
+          ((s as any).cumfthname = (s as any).cumfthname ?? {})[String((s as any).i ?? 0)] = ((s as any).boy ?? 0);
           ((s as any).cumtime = (s as any).cumtime ?? {})[String((s as any).i ?? 0)] = 1;
         } else {
           (s as any).i = qspUntranslated(s, "arrpos('cumfthname', boy)", { location: "dina" });
@@ -187,7 +178,6 @@ function enterFerteggfather(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 

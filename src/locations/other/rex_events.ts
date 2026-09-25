@@ -29,7 +29,6 @@ function enterRexRep(s: GameState, scene: SceneBuilder): void {
     }
   }
   scene.text('');
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -84,15 +83,12 @@ function enterRexGdkTalk(s: GameState, scene: SceneBuilder): void {
             } else {
               if (((s as any).rexSisTalk ?? 0) === 2) {
                 scene.text('You talk with Rex.');
-                // TODO-QSP: dynamic text: <<$pcs_nickname>>, remember how I told you that my folks gave me an awesome new ...
                 scene.text(`${((s as any).pcs_nickname ?? '')}, remember how I told you that my folks gave me an awesome new camera for my birthday? How about we go for a walk in the Park tomorrow? I want to take some photos there to show you how great its pictures are!`);
                 scene.actions([
 { label: 'Agree', handler: (st: GameState) => {
     qspCall(st, 'npc_relationship', 'modify', 'A57', 'love');
-    // TODO-QSP: dynamic text: 'That sounds like fun, let''s head out there at ' + func('time', 'get_time_strin...
-    scene.text('That sounds like fun, let\'s head out there at 16:00.');
-    // TODO-QSP: dynamic text: 'Cool, then tomorrow at ' + func('time', 'get_time_string', 16, 0) + ' it is!'
-    scene.text('Cool, then tomorrow at 16:00 it is!');
+    scene.text('\'That sounds like fun, let\'s head out there at 16:00.\'');
+    scene.text('\'Cool, then tomorrow at 16:00 it is!\'');
     (st as any).rexPark = 1;
     (st as any).rexParkDay = ((st as any).daystart ?? 0) + 1;
     scene.actions([
@@ -112,8 +108,7 @@ function enterRexGdkTalk(s: GameState, scene: SceneBuilder): void {
               } else {
                 if (((s as any).rexSisTalk ?? 0) === 3) {
                   scene.text('You talk with Rex.');
-                  // TODO-QSP: dynamic text: '<<$pcs_nickname>> remember, how I told you I''ve been stealing my father''s car...
-                  scene.text(`${((s as any).pcs_nickname ?? '')} remember, how I told you I've been stealing my father's car keys while he's not home? Tomorrow my folks are going to the city for their anniversary and it's likely they will stay for the night. My father is going to be leaving his keys at home. Maybe we could go for a little ride around 21:00?`);
+                  scene.text(`'${((s as any).pcs_nickname ?? '')} remember, how I told you I've been stealing my father's car keys while he's not home? Tomorrow my folks are going to the city for their anniversary and it's likely they will stay for the night. My father is going to be leaving his keys at home. Maybe we could go for a little ride around 21:00?'`);
                   scene.actions([
 { label: 'Bail', handler: (st: GameState) => {
     qspCall(st, 'npc_relationship', 'modify', 'A57', 'dislike');
@@ -126,8 +121,7 @@ function enterRexGdkTalk(s: GameState, scene: SceneBuilder): void {
 { label: 'Agree', handler: (st: GameState) => {
     qspCall(st, 'npc_relationship', 'modify', 'A57', 'love');
     scene.text('Sure! Why not?');
-    // TODO-QSP: dynamic text: 'Alright! Then tomorrow I''ll pick you up at your door around ' + func('time', '...
-    scene.text('Alright! Then tomorrow I\'ll pick you up at your door around 21:00.');
+    scene.text('\'Alright! Then tomorrow I\'ll pick you up at your door around 21:00.\'');
     (st as any).rexCar = 1;
     (st as any).rexCarDay = ((st as any).daystart ?? 0) + 1;
     scene.actions([
@@ -142,8 +136,7 @@ function enterRexGdkTalk(s: GameState, scene: SceneBuilder): void {
           }
         } else {
           if (((s as any).rexTalk ?? 0) < 5  &&  ((s as any).npc_rel ?? 0)?.['A57'] >= 80  &&  ((s as any).rexSisTalk ?? 0) >= 4  &&  ((s as any).rexCar ?? 0) !== 1) {
-            // TODO-QSP: dynamic text: 'Rex offers to take you for a drive around ' + func('time', 'get_time_string', 2...
-            scene.text('Rex offers to take you for a drive around 21:00 tonight.');
+            scene.text('\'Rex offers to take you for a drive around 21:00 tonight.\'');
             scene.actions([
 { label: 'Bail', handler: (st: GameState) => {
     qspCall(st, 'npc_relationship', 'modify', 'A57', 'dislike');
@@ -156,8 +149,7 @@ function enterRexGdkTalk(s: GameState, scene: SceneBuilder): void {
 { label: 'Agree', handler: (st: GameState) => {
     qspCall(st, 'npc_relationship', 'modify', 'A57', 'love');
     scene.text('Yeah, let\'s do it.');
-    // TODO-QSP: dynamic text: 'Great! I''ll be on your porch at ' + func('time', 'get_time_string', 21, 0) + '...
-    scene.text('Great! I\'ll be on your porch at 21:00 smiled Rex.');
+    scene.text('\'Great! I\'ll be on your porch at 21:00 smiled Rex.\'');
     (st as any).rexCar = 1;
     (st as any).rexCarDay = ((st as any).daystart ?? 0);
     scene.actions([
@@ -197,6 +189,7 @@ function enterRexGdkTalk(s: GameState, scene: SceneBuilder): void {
       }
       scene.actions([
         { label: 'Continue to drink beer', handler: (st: GameState) => {
+    (st as any).rexTalk = undefined;
     qspGoto(st, 'sister', 'scene2');
   } },
       ]);
@@ -228,12 +221,13 @@ function enterRexGdkTalk(s: GameState, scene: SceneBuilder): void {
       }
       scene.actions([
         { label: 'Continue to drink beer', handler: (st: GameState) => {
+    (st as any).rexTalk = undefined;
     qspGoto(st, 'sister', 'scene2');
   } },
       ]);
     }
   }
-  // TODO-QSP: end
+  (s as any).rexTalk = undefined;
   scene.build();
 }
 
@@ -247,7 +241,6 @@ function enterSkver(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterRexRep(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('Rex is standing at the bench with his hands behind his back. Just as you walk up to him you see him smiling and then he pulls out from behind his back a little, but very beautiful, bouquet of flowers and hands it to you.');
   scene.text('You don\'t know what to say – "Wow…" you take the bouquet, inhaling the aroma, and on the exhale, keeping the smile hidden from your face, say: "Thank you, Rex…!"');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Walk', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 30;
@@ -265,21 +258,19 @@ function enterSkver(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 30;
     qspCall(st, 'stat', '');
     (st as any).numrand = 137;
-    // TODO-QSP: :markbuycloreks
-    if (((st as any).fashionista_dress ?? 0)?.[String((st as any).numrand ?? 0)] !== 0) {
-      (st as any).numrand = (Math.floor(Math.random() * 183) + 16);
-      // TODO-QSP: jump 'markbuycloreks'
-    }
-    scene.img(`images/pc/items/fashionista/dress/${((st as any).numrand ?? '')}.jpg`);
-    // TODO-QSP: dynamic text: You have wandered all the way to the market. At one of the shops there you see a...
-    scene.text(`You have wandered all the way to the market. At one of the shops there you see a beautiful dress hanging beneath an "On sale" sign. The price is only ${qspFunc(s, 'money', 'string_price', 1500)}! Rex sees that this dress has caught your attention.`);
-    scene.actions([
-      { label: 'Look at Rex', handler: (st: GameState) => {
+    while (true) {
+      if (((st as any).fashionista_dress ?? 0)?.[String((st as any).numrand ?? 0)] !== 0) {
+        (st as any).numrand = (Math.floor(Math.random() * 183) + 16);
+        break;
+      }
+      scene.img(`images/pc/items/fashionista/dress/${((st as any).numrand ?? '')}.jpg`);
+      scene.text(`You have wandered all the way to the market. At one of the shops there you see a beautiful dress hanging beneath an "On sale" sign. The price is only ${qspFunc(s, 'money', 'string_price', 1500)}! Rex sees that this dress has caught your attention.`);
+      scene.actions([
+        { label: 'Look at Rex', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
     qspCall(st, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big57.jpg');
     scene.text('Rex looks into your eyes, smiling: ');
-    // TODO-QSP: dynamic text: <<$pcs_nickname>>, if you want, I can buy this dress. But only if I can take a f...
     scene.text(`${((st as any).pcs_nickname ?? '')}, if you want, I can buy this dress. But only if I can take a few shots of you wearing it. Deal?`);
     scene.actions([
       { label: 'Back out', handler: (st: GameState) => {
@@ -318,7 +309,6 @@ function enterSkver(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/reks/event/newclothes/fpr1.jpg');
     scene.text('You\'ve come to the square: ');
-    // TODO-QSP: dynamic text: <<$pcs_nickname>>, let''s take a photo of you with your bouquet.
     scene.text(`${((st as any).pcs_nickname ?? '')}, let's take a photo of you with your bouquet.`);
     scene.actions([
       { label: 'Further', handler: (st: GameState) => {
@@ -351,7 +341,6 @@ function enterSkver(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/reks/event/rekssister/fsr3.jpg');
-    // TODO-QSP: dynamic text: She loves all sorts of beautiful clothes. But I guess that''s true for all women...
     scene.text(`She loves all sorts of beautiful clothes. But I guess that's true for all women. No offense ${((st as any).pcs_nickname ?? '')}, he smiled.`);
     scene.actions([
       { label: 'View more', handler: (st: GameState) => {
@@ -424,7 +413,8 @@ function enterSkver(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } },
-    ]);
+      ]);
+    }
   } },
     ]);
   } },
@@ -463,7 +453,6 @@ function enterAvto(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Agree', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 15;
@@ -480,13 +469,10 @@ function enterAvto(s: GameState, scene: SceneBuilder): void {
 
 function enterRexStory(s: GameState, scene: SceneBuilder): void {
   scene.text('Rex is already pretty drunk.');
-  // TODO-QSP: dynamic text: <<$pcs_nickname>>, I would like to share something with you… It is very importan...
   scene.text(`${((s as any).pcs_nickname ?? '')}, I would like to share something with you… It is very important for me to tell you everything as it is. I hope you will listen to me until the end…`);
   scene.text('In general…, what you saw on my phone… Yeah… that\'s my sister… So it was…');
   scene.text('Forgive me for the bluntness. So we had a good time! Moreover, this has happened more than once. It actually happened several times. One day I asked her if I could take a picture while she was blowing me. Diana was a little surprised by my request but she eventually agreed and continued to suck This really turned me on. A few days later she asked me to remove the pictures. I told her I removed them all and she believed me.');
-  // TODO-QSP: dynamic text: You have to understand, <<$pcs_nickname>>… I have a weakness for women''s legs. ...
   scene.text(`You have to understand, ${((s as any).pcs_nickname ?? '')}… I have a weakness for women's legs. They…, they really turn me on! And she gets really turned on at the sight of the male penis. And we both adore oral sex! I guess it runs in the family… -it just happened, we understood each other. You shouldn't think I actually had sex with my sister! We only had oral sex!`);
-  // TODO-QSP: end
   scene.actions([
     { label: 'Further', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 10;
@@ -526,14 +512,12 @@ function enterRexStory(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/resident/reks/event/car/rudivl.jpg');
     scene.text('You sat there silently and listened to the words of Rex. You though about some small details you noticed before, now you realize why he seemed so strange. But he liked you terribly.');
     scene.text('Rex stared at you waiting for your words.');
-    // TODO-QSP: dynamic text: -<<$pcs_nickname>>, are you okay?
     scene.text(`-${((st as any).pcs_nickname ?? '')}, are you okay?`);
     scene.text('5 Seconds later you have gathered your thoughts. The first thing you say is: ');
     scene.text('– Woow…! I don\'t even know what to say… On your face you have a mixture of surprise and a smile.');
     scene.text('"At least answer me this : after this confession do you still want to talk with me or did I blow up our relation ?" Rex asked with a desperate voice');
     scene.text('Well do you take pictures like that of all the girls that blow you ? I… Well… I don\'t want to be part of your personal collection, for now… you said. Then an awkward silence followed. So you said : "just messing with you Egor", while giving him a little bump on the shoulder.');
     scene.text('Rex slightly relaxed, laughing at your ambiguous joke, he understood that all is not lost. Gradually the conversation turned in a different direction. You sat there while Rex finished his beer. Then he threw the empty bottle out the window and asked: ');
-    // TODO-QSP: dynamic text: Well, <<$pcs_nickname>>, can we go?
     scene.text(`Well, ${((st as any).pcs_nickname ?? '')}, can we go?`);
     scene.text('No, no, no… you are not driving drunk. Come walk with me, we don\'t have to walk very far…');
     scene.text('Rex turned on the car indicators and you moved towards the house. Rex was walking with you but staggering and he did not have the courage to take you by the hand. The only thing he could think about now was what you thought of him now.');
@@ -578,6 +562,7 @@ function enterAvto2(s: GameState, scene: SceneBuilder): void {
     if (((s as any).rexTalk ?? 0) === 4) {
       scene.text('You ride with Rex, and he shares his dream of one day opening up his own studio.');
     }
+    (s as any).rexTalk = undefined;
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterRexCarEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
     if (((s as any).rexCarCount ?? 0) > 3  &&  ((s as any).rexCarCount ?? 0) <= 6) {
@@ -711,7 +696,6 @@ function enterAvto2(s: GameState, scene: SceneBuilder): void {
     scene.text('You abruptly stick your hand between your legs, not giving him the opportunity to continue. Rex was already getting very excited and really had to force himself to remove his hand from your legs…');
     scene.text('You talked for a long time, Rex talked a lot about his sister. He misses her. He tells you that in the past she would often send him photos and she came home on the weekend. These things don\'t happen that often now…');
     scene.text('Rex says: ');
-    // TODO-QSP: dynamic text: <<$pcs_nickname>>, it''s a pity that you share a room with your sister, we could...
     scene.text(`${((st as any).pcs_nickname ?? '')}, it's a pity that you share a room with your sister, we could have talked on the phone at night.`);
     scene.text('"Sorry… Anya would hear us and she needs to sleep since she works in the shop. If I wake her up she goes crazy and I can\'t deal with her when she\'s like that… she does sleep quite deeply though. I could text you goodnight on my phone." You smile.');
     scene.text('Would be cool! said Rex while smiling back at you.');
@@ -727,14 +711,12 @@ function enterAvto2(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterRexCarEnd(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: nl
+  scene.text('');
   scene.text('You have to go. You had fun, but it is time to go home now.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Home', handler: (st: GameState) => {
     qspCall(st, 'arousal', '');
@@ -1018,7 +1000,6 @@ function enterSms(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1028,13 +1009,11 @@ function enterSmsEnd1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/resident/reks/event/phone/smartsist.jpg');
   scene.text('Looking through the contacts on the phone you found Rex\' phone number and you sent a message. You received the report that the message was delivered. A little later, just when you were about to put the phone back and go to sleep, you received an answer.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'See', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
     qspCall(st, 'stat', '');
     scene.text('');
-    // TODO-QSP: dynamic text: Thank you <<$pcs_firstname>>, you have no idea how pleased I am :*.
     scene.text(`Thank you ${((st as any).pcs_firstname ?? '')}, you have no idea how pleased I am :*.`);
     scene.actions([
       { label: 'Put the phone away', goto: ['bedrPar', ''] },
@@ -1045,7 +1024,6 @@ function enterSmsEnd1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSmsEnd2(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: end
   scene.actions([
     { label: 'Send', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;

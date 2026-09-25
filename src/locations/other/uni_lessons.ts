@@ -40,32 +40,33 @@ function enterCikl(s: GameState, scene: SceneBuilder): void {
                   (s as any).i = 0;
                   (s as any).passed_count = 0;
                   (s as any).class_count = 0;
-                  // TODO-QSP: :passed_exams_loop
-                  if (((s as any).class_list_institution ?? 0)?.[String((s as any).i ?? 0)] === 'uni_' + (((s as any).university ?? 0)?.['enrolled_in']) + '_semester_' + (((s as any).university ?? 0)?.['enrolled_in_semester'])) {
-                    (s as any).class_count = ((s as any).class_count ?? 0) + (1);
-                    if ((0 as any) > 40  &&  (0 as any) === 1) {
-                      (s as any).passed_count = ((s as any).passed_count ?? 0) + (1);
-                    } else {
-                      if ((!(0 as any))) {
-                        // TODO-QSP: dynamic 'class[''<<$class_list_institution[i]>>_<<$class_list_name[i]>>_grade''] = 0'
-                        ((s as any).university = (s as any).university ?? {})['expelled_for_missing_exam'] = 1;
+                  do {
+                    if (((s as any).class_list_institution ?? 0)?.[String((s as any).i ?? 0)] === 'uni_' + (((s as any).university ?? 0)?.['enrolled_in']) + '_semester_' + (((s as any).university ?? 0)?.['enrolled_in_semester'])) {
+                      (s as any).class_count = ((s as any).class_count ?? 0) + (1);
+                      if ((0 as any) > 40  &&  (0 as any) === 1) {
+                        (s as any).passed_count = ((s as any).passed_count ?? 0) + (1);
+                      } else {
+                        if ((!(0 as any))) {
+                          // TODO-QSP: dynamic 'class[''<<$class_list_institution[i]>>_<<$class_list_name[i]>>_grade''] = 0'
+                          ((s as any).university = (s as any).university ?? {})['expelled_for_missing_exam'] = 1;
+                        }
                       }
                     }
-                  }
-                  (s as any).i = ((s as any).i ?? 0) + (1);
-                  if (Object.keys((s as any).class_list_institution ?? {}).length >= ((s as any).i ?? 0)) {
-                    // TODO-QSP: jump 'passed_exams_loop'
-                  }
-                  if (((s as any).passed_count ?? 0) === ((s as any).class_count ?? 0)) {
-                    ((s as any).university = (s as any).university ?? {})['semester_passed'] = (((s as any).university ?? 0)?.['enrolled_in_semester']);
-                  } else {
-                    ((s as any).university = (s as any).university ?? {})['expelled'] = 1;
-                    ((s as any).university = (s as any).university ?? {})['student'] = 0;
-                  }
-                  if (((s as any).university ?? 0)?.['semester_passed'] === 8) {
-                    ((s as any).university = (s as any).university ?? {})['diploma'] = 1;
-                    ((s as any).university = (s as any).university ?? {})['student'] = 0;
-                  }
+                    (s as any).i = ((s as any).i ?? 0) + (1);
+                    (s as any).i = undefined;
+                    if (((s as any).passed_count ?? 0) === ((s as any).class_count ?? 0)) {
+                      ((s as any).university = (s as any).university ?? {})['semester_passed'] = (((s as any).university ?? 0)?.['enrolled_in_semester']);
+                    } else {
+                      ((s as any).university = (s as any).university ?? {})['expelled'] = 1;
+                      ((s as any).university = (s as any).university ?? {})['student'] = 0;
+                    }
+                    if (((s as any).university ?? 0)?.['semester_passed'] === 8) {
+                      ((s as any).university = (s as any).university ?? {})['diploma'] = 1;
+                      ((s as any).university = (s as any).university ?? {})['student'] = 0;
+                    }
+                    (s as any).class_count = undefined;
+                    (s as any).passed_count = undefined;
+                  } while (Object.keys((s as any).class_list_institution ?? {}).length >= ((s as any).i ?? 0));
                 }
               }
             }
@@ -80,7 +81,6 @@ function enterCikl(s: GameState, scene: SceneBuilder): void {
     ((s as any).university = (s as any).university ?? {})['break'] = 1;
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -123,7 +123,6 @@ function enterShortBreak(s: GameState, scene: SceneBuilder): void {
 { label: 'Go to the university plaza', goto: ['uni_grounds', ''] },
 ]);
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -141,7 +140,6 @@ function enterSchedule(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -151,7 +149,6 @@ function enterExamSchedule(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'uni_programs', 'set_exam_act');
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -236,7 +233,6 @@ function enterComputeStatDisplay(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 

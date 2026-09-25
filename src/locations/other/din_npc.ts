@@ -18,7 +18,6 @@ function enterGoHome(s: GameState, scene: SceneBuilder): void {
       dynamicGoto(s, (((s as any).home ?? {}))['location'], '');
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -32,7 +31,6 @@ function enterGoStraightHome(s: GameState, scene: SceneBuilder): void {
       dynamicGoto(s, (((s as any).home ?? {}))['entrance'], 'start');
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 

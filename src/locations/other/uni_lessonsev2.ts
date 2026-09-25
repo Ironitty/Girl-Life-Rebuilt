@@ -71,7 +71,6 @@ function enterGeneralEducation(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Wait for the end of the lesson', goto: ['uni_lessons', 'short_break'] },
   ]);
@@ -124,7 +123,6 @@ function enterAssessment(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Wait for the end of the lesson', goto: ['uni_lessons', 'short_break'] },
   ]);
@@ -162,7 +160,6 @@ function enterLearningTheories(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Wait for the end of the lesson', goto: ['uni_lessons', 'short_break'] },
   ]);
@@ -201,7 +198,6 @@ function enterPsychologyOfAStudent_201(s: GameState, scene: SceneBuilder): void 
       }
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Wait for the end of the lesson', goto: ['uni_lessons', 'short_break'] },
   ]);
@@ -241,7 +237,6 @@ function enterPatientCare(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Wait for the end of the lesson', goto: ['uni_lessons', 'short_break'] },
   ]);
@@ -280,7 +275,6 @@ function enterAnatomyAndPhysiology(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Wait for the end of the lesson', goto: ['uni_lessons', 'short_break'] },
   ]);
@@ -326,7 +320,6 @@ function enterDosagesAndPharmaceuticals(s: GameState, scene: SceneBuilder): void
       }
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Wait for the end of the lesson', goto: ['uni_lessons', 'short_break'] },
   ]);

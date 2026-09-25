@@ -11,14 +11,12 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).hunterVars ?? 0)?.['SergeiLove'] > 0  &&  ((s as any).pcs_horny ?? 0) <= 60  &&  ((s as any).hunterVars ?? 0)?.['Sergeisex'] === 0  &&  (!(Math.floor(Math.random() * 3) + 0))) {
       scene.img('images/locations/gadukino/hunters/hanterlove1.4.jpg');
       scene.text('You go to Sergei to spend time together, but instead, he kisses you and playfully bites your lip.');
-      // TODO-QSP: dynamic text: "<<$pcs_nickname>>, I want you," he whispers after the kiss.
       scene.text(`"${((s as any).pcs_nickname ?? '')}, I want you," he whispers after the kiss.`);
       ((s as any).hunterVars = (s as any).hunterVars ?? {})['Sergeisex'] = ((s as any).hunterVars['Sergeisex'] ?? 0) + ((Math.floor(Math.random() * 22) + 9));
       qspCall(s, 'arousal', 'foreplay', 5);
       qspCall(s, 'stat', '');
       scene.actions([
         { label: 'Agree', handler: (st: GameState) => {
-    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/hunters/hanterflirt2....
     scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/gadukino/hunters/hanterflirt2.` + (Math.floor(Math.random() * 3) + 4) + '.jpg"></center>');
     (st as any).minut = ((st as any).minut ?? 0) + 5;
     ((st as any).hunterVars = (st as any).hunterVars ?? {})['SergeiQw'] = ((st as any).hunterVars['SergeiQw'] ?? 0) + (1);
@@ -42,7 +40,6 @@ function enter(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('<center><b>Sergei</b></center>');
       scene.img('images/characters/shared/headshots_main/big174.jpg');
-      // TODO-QSP: dynamic text: Sergei is a friend of Andrei and Igor and a member of the hunters that frequente...
       scene.text(`Sergei is a friend of Andrei and Igor and a member of the hunters that frequented the woods and swamp by Gadukino. He's ${((s as any).boyage ?? '')} years old. He is married and lives in the City Center…`);
       if (((s as any).hunterVars ?? 0)?.['SergeiQw'] < 0) {
         scene.text('You and he have a bad relationship because you offended him in the past.');
@@ -63,7 +60,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
                   scene.text('You have a mutual crush on each other.');
                 } else {
                   if (((s as any).hunterVars ?? 0)?.['SergeiLove'] === 1) {
-                    scene.text('You two love each other.\' else \'You have an unrequited love for him.');
+                    scene.text('You two love each other.');
+                  } else {
+                    scene.text('You have an unrequited love for him.');
                   }
                 }
               }
@@ -76,7 +75,6 @@ function enter(s: GameState, scene: SceneBuilder): void {
         if (((s as any).hunterVars ?? 0)?.['SergeiLove'] === 0) {
           scene.actions([
             { label: 'Flirt', handler: (st: GameState) => {
-    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/hunters/hanterflirt1....
     scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/gadukino/hunters/hanterflirt1.` + (Math.floor(Math.random() * 3) + 1) + '.jpg"></center>');
     (st as any).minut = ((st as any).minut ?? 0) + 5;
     (st as any).pcs_horny = ((st as any).pcs_horny ?? 0) + (10);
@@ -156,7 +154,6 @@ function enter(s: GameState, scene: SceneBuilder): void {
           if (((s as any).pcs_horny ?? 0) >= 60) {
             scene.actions([
               { label: 'Have sex', handler: (st: GameState) => {
-    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/hunters/hanterflirt2....
     scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/gadukino/hunters/hanterflirt2.` + (Math.floor(Math.random() * 6) + 1) + '.jpg"></center>');
     ((st as any).hunterVars = (st as any).hunterVars ?? {})['SergeiQw'] = ((st as any).hunterVars['SergeiQw'] ?? 0) + (1);
     ((st as any).hunterVars = (st as any).hunterVars ?? {})['Sergeisex'] = ((st as any).hunterVars['Sergeisex'] ?? 0) + ((Math.floor(Math.random() * 22) + 9));
@@ -186,7 +183,6 @@ function enter(s: GameState, scene: SceneBuilder): void {
           }
           scene.actions([
             { label: 'Spend time together', handler: (st: GameState) => {
-    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/hunters/hanterlove1.'...
     scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/gadukino/hunters/hanterlove1.` + (Math.floor(Math.random() * 4) + 1) + '.jpg"></center>');
     (st as any).minut = ((st as any).minut ?? 0) + 120;
     (st as any).pcs_horny = ((st as any).pcs_horny ?? 0) + (10);
@@ -210,7 +206,6 @@ function enter(s: GameState, scene: SceneBuilder): void {
       }
       scene.actions([
         { label: 'Chat (0:30)', handler: (st: GameState) => {
-    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/hunters/talk1.'+rand(...
     scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/gadukino/hunters/talk1.` + (Math.floor(Math.random() * 3) + 1) + '.jpg"></center>');
     if (((st as any).hunterVars ?? 0)?.['SergeiQw'] >= 0) {
       scene.text('You spend some time chatting with Sergei, listening to exciting stories from his life and telling some stories of your own.');
@@ -238,13 +233,11 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/gadukino/hunters/brosil.jpg');
     if (((s as any).hunterVars ?? 0)?.['SergeiQw'] < 10) {
       scene.text('You want to talk to Sergei, but he beats you to it and starts speaking before you can get a word in.');
-      // TODO-QSP: dynamic text: "<<$pcs_nickname>>, I realized that our relationship has no future, and we need ...
       scene.text(`"${((s as any).pcs_nickname ?? '')}, I realized that our relationship has no future, and we need to stop seeing each other, " he says, trying not to look in your direction, and resolutely walks away.`);
       scene.text('"Well, maybe it\'s for the best," you think as you leave in the other direction.');
       ((s as any).hunterVars = (s as any).hunterVars ?? {})['SergeiQw'] = ((s as any).hunterVars['SergeiQw'] ?? 0) - (10);
     } else {
       scene.text('You want to talk to Sergei, but before you say anything, he speaks instead.');
-      // TODO-QSP: dynamic text: "<<$pcs_nickname>>, I realized that our relationship has no future. Your passion...
       scene.text(`"${((s as any).pcs_nickname ?? '')}, I realized that our relationship has no future. Your passion is unmatched, but I really love my family. I can't risk that for you," he says. He turns and walks away without saying another word or giving you time to say anything.`);
       scene.text('"Well, that\'s how you feel, is it?" you think as you stand there stunned. "Although, this is probably for the best since he is married," you conclude before walking away.');
       ((s as any).hunterVars = (s as any).hunterVars ?? {})['SergeiQw'] = ((s as any).hunterVars['SergeiQw'] ?? 0) - (50);

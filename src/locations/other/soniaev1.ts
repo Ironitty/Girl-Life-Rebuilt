@@ -16,7 +16,6 @@ function enterHomesex(s: GameState, scene: SceneBuilder): void {
   (s as any).orgasm_or = 'no';
   qspCall(s, 'arousal', 'foreplay', 2, 'lesbian');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Sit', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/sonia/sex/home/walkhome/walksex2.jpg');
@@ -178,7 +177,6 @@ function enterEatsonia(s: GameState, scene: SceneBuilder): void {
   scene.text('After you tease her for a while, you take hold of her wet panties and slowly slide them down her legs. Once they\'re free, you toss them aside.');
   qspCall(s, 'arousal', 'foreplay', 1, 'lesbian');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Lick her pussy', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
@@ -208,6 +206,7 @@ function enterEatsonia(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/sonia/sex/home/walkhome/walksex15.jpg');
     scene.text('Her moans start coming louder and longer before you\'re suddenly drenched in her wetness. You can feel her body shaking as she has an orgasm.');
+    (st as any).orgasm_or = undefined;
     (st as any).orgasm_txt = 'You soon feel your body start to spasm as well as your own orgasm rocks your body. It feels like an eternity before it fades.';
     qspCall(st, 'arousal', 'cuni', (-2), 'lesbian');
     qspCall(st, 'arousal', 'cuni_give', 2, 'lesbian');
@@ -225,7 +224,6 @@ function enterEatsonia(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('Once the orgasms have passed, she climbs off you and lies down next to you to cuddle. The two of you lie intertwined, basking together in the afterglow. As much as you\'d like to stay, you know you can\'t. You know you need to get home.');
       scene.text('You reluctantly disentangle yourself from her and she gives you a small smile.');
-      // TODO-QSP: dynamic text: "Sorry, I need to get going or my <<$npc_nickname[''A29'']>> will have a fit," y...
       scene.text(`"Sorry, I need to get going or my ${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')} will have a fit," you tell her.`);
     }
     scene.text('She nods. "I understand. It was fun, though."');
@@ -257,11 +255,11 @@ function enterStraponFucked(s: GameState, scene: SceneBuilder): void {
   scene.text('She then breaks the kiss and quickly gets undressed. You follow suit and undress as well. Once you\'re both naked, she gently pushes you back on the couch until you\'re lying on your back and she moves to straddle your face.');
   qspCall(s, 'arousal', 'foreplay', 2, 'lesbian');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Eat her out', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/sonia/sex/home/livingroom/strapon/strapon3.jpg');
     scene.text('Once she straddles your face and lowers herself down, you start eagerly licking her slit and clit. You can hear her moan as your tongue works her pussy, feeling it getting wet as her hand slides down your stomach to your crotch before you feel two of her fingers slide inside you and start finger banging you.');
+    (st as any).orgasm_or = undefined;
     qspCall(st, 'arousal', 'cuni_give', (-2), 'lesbian');
     qspCall(st, 'arousal', 'vaginal_finger', 2, 'lesbian');
     qspCall(st, 'stat', '');
@@ -284,7 +282,6 @@ function enterStraponFucked(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/girl/sonia/sex/home/livingroom/strapon/strapon6.jpg');
     scene.text('A few minutes pass until she seems content that you\'re wet enough. She turns and sits on the couch before pulling you towards her.');
     scene.text('"Come and ride my dick," she says with a giggle.');
-    // TODO-QSP: dynamic text: You straddle her lap and, with her help, slowly lower yourself down. The <<dick1...
     scene.text(`You straddle her lap and, with her help, slowly lower yourself down. The ${((st as any).dick1 ?? '')}cm ${((st as any).dick_girth1 ?? '')} dildo slides into your wet pussy, causing you to moan as it fills you up. You then start to slowly ride her, controlling the speed and depth of the dildo inside you as Sonia licks, kisses and suckles at your nipples.`);
     scene.text('The better it feels, the faster and deeper you start riding her.');
     qspCall(st, 'arousal', 'vaginal_strap', (-2), ((st as any).npcID1 ?? 0), 'lesbian');
@@ -311,7 +308,6 @@ function enterStraponFucked(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('Once you\'re both fully dressed, you both sit on the couch and giggle a little at almost getting caught having sex. Sonia leans forward and gives you a long, slow kiss on the lips.');
       scene.text('"Thanks for walking me home," she smiles. "I had fun, but if I don\'t go to bed soon, my mom is going to throw a fit!"');
-      // TODO-QSP: dynamic text: You laugh a little and nod. "I know the feeling. My <<$npc_nickname[''A29'']>> w...
       scene.text(`You laugh a little and nod. "I know the feeling. My ${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')} will likely give me hell for being out this late too."`);
     }
     scene.text('When she walks you to the door, she gives you a little wave before closing and locking the door. You turn and head to the street.');
@@ -342,7 +338,6 @@ function enterStraponFucking(s: GameState, scene: SceneBuilder): void {
   scene.text('"I\'m going to fuck you with my cock," you tell her.');
   scene.text('She bites her lower lip, turned on at the idea before taking you by the hand and leading you to her bedroom. You both get undressed before you pull the harness up over your hips and pull the straps tight until it fits snugly.');
   scene.text('Giving the dildo a few tugs to ensure it will stay in place, you climb up on her bed on your knees. "Suck my dick."');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Suck my dick', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/sonia/sex/home/bedroom/strapon/straponbj.jpg');
@@ -376,12 +371,10 @@ function enterStraponPussy(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcStat', 'A25');
   qspCall(s, 'npcStat', 'D4', 'a');
   scene.img('images/characters/pavlovsk/school/girl/sonia/sex/home/bedroom/strapon/straponvag1.jpg');
-  // TODO-QSP: dynamic text: She turns around, presenting herself to you as she pulls off the rest of her clo...
   scene.text(`She turns around, presenting herself to you as she pulls off the rest of her clothes. You scoot up behind her and rub the tip of the dildo against her slit, which appears to already be soaking wet. The ${((s as any).dick1 ?? '')}cm ${((s as any).dick_girth1 ?? '')} dildo easily slides into her pussy and she starts moaning.`);
   scene.text('She then looks back over her shoulder at you with a hungry, lust-filled look and you slide the dildo all the way inside her until you feel your hips pressing up against her ass.');
   qspCall(s, 'arousal', 'vaginal_strap_give', 2, ((s as any).npcID1 ?? 0), 'lesbian');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Fuck her pussy', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/sonia/sex/home/bedroom/strapon/straponvag2.jpg');
@@ -417,20 +410,16 @@ function enterStraponAnal(s: GameState, scene: SceneBuilder): void {
   (s as any).strapanal = 1;
   scene.img('images/characters/pavlovsk/school/girl/sonia/sex/home/bedroom/strapon/straponanal1.jpg');
   scene.text('"I\'m going to fuck your ass," you tell her.');
-  // TODO-QSP: dynamic text: She looks unsure. "Can''t you just fuck my pussy instead, <<$pcs_nickname>>?"
   scene.text(`She looks unsure. "Can't you just fuck my pussy instead, ${((s as any).pcs_nickname ?? '')}?"`);
   scene.text('After making sure the dildo and her ass are lubed up enough, your answer to her question is to press the head of the dildo against her asshole and push forward. You feel her start to pull away, but you quickly reach up and place a hand on her shoulder, pulling her back.');
-  // TODO-QSP: dynamic text: With her now held in place and the pressure mounting, you look down and watch as...
   scene.text(`With her now held in place and the pressure mounting, you look down and watch as the head of the dildo pops into her asshole. You hear her hiss in pain, but also moan in pleasure as you slowly work the ${((s as any).dick1 ?? '')}cm ${((s as any).dick_girth1 ?? '')} dildo deeper inside with each thrust until almost the full length is in her ass.`);
   qspCall(s, 'arousal', 'anal_strap_give', 2, ((s as any).npcID1 ?? 0), 'lesbian');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Pound her ass', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/sonia/sex/home/bedroom/strapon/straponanal2.jpg');
     scene.text('You finally work the full length up her ass until your hips are slapping against her ass cheeks. You then start fucking her ass with firm thrusts that bottom the dildo out inside her.');
     scene.text('She bites her lower lip, and you can tell it hurts, but you also know at least part of her is enjoying this.');
-    // TODO-QSP: dynamic text: "Not so hard, <<$pcs_nickname>>!" she cries out as you start to really pound her...
     scene.text(`"Not so hard, ${((st as any).pcs_nickname ?? '')}!" she cries out as you start to really pound her ass.`);
     qspCall(st, 'arousal', 'anal_strap_give', 2, ((st as any).npcID1 ?? 0), 'lesbian');
     qspCall(st, 'stat', '');
@@ -484,7 +473,6 @@ function enterStraponEaten(s: GameState, scene: SceneBuilder): void {
   scene.text('You take the harness off and toss it aside before you lie down on the bed and spread your legs. Without being told, Sonia crawls over and starts to lick at your pussy and suck on your clit. Several minutes go by as you feel your arousal mounting.');
   qspCall(s, 'arousal', 'cuni', 2, 'lesbian');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Just like that', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/sonia/sex/home/bedroom/strapon/eaten2.jpg');
@@ -505,6 +493,7 @@ function enterStraponEaten(s: GameState, scene: SceneBuilder): void {
     scene.text('You start to feel a little tired and roll off her. "I want to lick your pussy while you lick mine," you tell her.');
     scene.text('She climbs up and straddles your face before bending forward to go back to licking your pussy. You lick hers in return.');
     scene.text('Several minutes of this goes by until her body shudders and she has an orgasm, coating your face in her juices.');
+    (st as any).orgasm_or = undefined;
     (st as any).orgasm_txt = 'As she starts to orgasm, it\'s too much for you. You feel your own body shake and rock as an orgasm courses through it.';
     qspCall(st, 'arousal', 'cuni', (-2), 'lesbian');
     qspCall(st, 'arousal', 'cuni_give', 2, 'lesbian');
@@ -541,9 +530,9 @@ function enterStraponEaten(s: GameState, scene: SceneBuilder): void {
         scene.text('You give her a quick kiss. "I had fun too, but I should get going. It\'s late."');
       }
     }
-    // TODO-QSP: dynamic text: Once you''re both dressed and cleaned up, she walks you to her front door. "Good...
     scene.text(`Once you're both dressed and cleaned up, she walks you to her front door. "Goodnight, ${((st as any).pcs_nickname ?? '')}."`);
     scene.text('"Night," you reply before you walk out and she closes the door behind you. You hear it lock as you turn and walk to the street.');
+    (st as any).strapanal = undefined;
     scene.actions([
       { label: 'Leave', goto: ['pav_residential', ''] },
     ]);
@@ -562,13 +551,13 @@ function enterStraponEaten(s: GameState, scene: SceneBuilder): void {
 
 function enterShowerSex(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcStat', 'A25');
+  (s as any).showerSexTemp = undefined;
   qspCall(s, 'din_van', 'showerdin');
   scene.img('images/characters/pavlovsk/school/girl/sonia/sex/home/bathroom/shower/join1.jpg');
   scene.text('Sonia keeps showering as she watches you get undressed. Once you\'re fully nude, you step into the shower and join her as you take turns helping the other one lather up with the soap.');
   scene.text('Once you\'ve cleaned yourselves, Sonia\'s wet hands starts to slide across your wet body, slowly working their way from your breasts down to your pussy...');
   qspCall(s, 'arousal', 'foreplay', 5, 'lesbian');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Let her', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/sonia/sex/home/bathroom/shower/join2.jpg');
@@ -648,7 +637,6 @@ function enterShowerSexCuni(s: GameState, scene: SceneBuilder): void {
   scene.text('Sonia grins at your antics and gets down on all four between your legs before she leans forward to kiss you on the lips. She then leans back and lowers her head down between your legs, where she proceeds to kiss your other lips before slipping her tongue between them as she starts to eat you out.');
   qspCall(s, 'arousal', 'cuni', 2, 'lesbian');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Enjoy getting your pussy licked', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/sonia/sex/home/bathroom/shower/join10.jpg');
@@ -688,7 +676,6 @@ function enterShowerSexCuniGive(s: GameState, scene: SceneBuilder): void {
   scene.text('She moans softly and her hand reaches for the back of your head, her fingers entwined in your hair as you suckle her clit and lick her wet pussy lips.');
   qspCall(s, 'arousal', 'cuni_give', 2, 'lesbian');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Lick her pussy', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/sonia/sex/home/bathroom/shower/join13.jpg');
@@ -720,6 +707,7 @@ function enterShowerSexCuniGive(s: GameState, scene: SceneBuilder): void {
 function enterShowerSexAfterglow(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcStat', 'A25');
   (s as any).minut = ((s as any).minut ?? 0) + 5;
+  (s as any).showerSexTemp = undefined;
   scene.img('images/characters/pavlovsk/school/girl/sonia/sex/home/bathroom/shower/join15.jpg');
   scene.text('You\'re both breathing hard from your encounter as she pulls you towards her and you start to passionately kiss, giving you a taste of your juices on her tongue as they intermingle in your mouths.');
   scene.text('After a few minutes, you break the kiss, both grinning. "I guess we should get dressed," she says, sounding a little reluctant, like she might not mind going for another round. "Before my brother comes and forces the door open."');
@@ -727,7 +715,6 @@ function enterShowerSexAfterglow(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'kiss', 2, 'lesbian');
   qspCall(s, 'arousal', 'end');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go to Sonia\'s room', goto: ['soniahome', 'sonia_room'] },
   ]);
@@ -743,7 +730,6 @@ function enterStraponMagicBedroom(s: GameState, scene: SceneBuilder): void {
   scene.text('"I said suck my dick, not play with it!" you tell her and she looks up at you and giggles.');
   qspCall(s, 'arousal', 'magic_hj', 1, 'lesbian');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Suck my dick', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/sonia/sex/home/bedroom/penis_envy/anal/magic_bj1.jpg');
@@ -811,7 +797,6 @@ function enterStraponMagicBedroomPussy(s: GameState, scene: SceneBuilder): void 
   scene.text('You rub the tip of your dick against the slit of her pussy and can already feel how wet she is, so you gently slide your dick inside her, causing both of you to moan softly. You then start to slowly fuck her, pushing your dick deeper into her pussy with each thrust.');
   qspCall(s, 'arousal', 'magic_vaginal', 2, ((s as any).npcID1 ?? 0), 'lesbian');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Keep fucking her pussy', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/sonia/sex/home/bedroom/penis_envy/anal/magic_vag2.jpg');
@@ -847,20 +832,16 @@ function enterStraponMagicBedroomAnal(s: GameState, scene: SceneBuilder): void {
   (s as any).magicanal = 1;
   scene.img('images/characters/pavlovsk/school/girl/sonia/sex/home/bedroom/penis_envy/anal/magic_anal1.jpg');
   scene.text('"I\'m going to fuck your ass," you tell her.');
-  // TODO-QSP: dynamic text: She looks unsure as you reach over and grab some lube out of her nightstand. "Ca...
   scene.text(`She looks unsure as you reach over and grab some lube out of her nightstand. "Can't you just fuck my pussy instead, ${((s as any).pcs_nickname ?? '')}?"`);
   scene.text('After making sure your dick and her ass are lubed up enough, you press the head of your dick against her asshole and push forward, watching as the head of your cock pops into her asshole.');
-  // TODO-QSP: dynamic text: You hear her hiss in pain, but also moan in pleasure as you slowly work the <<di...
   scene.text(`You hear her hiss in pain, but also moan in pleasure as you slowly work the ${((s as any).dick1 ?? '')}cm ${((s as any).dick_girth1 ?? '')} dick deeper inside with each thrust until almost the full length is in her ass.`);
   qspCall(s, 'arousal', 'magic_anal', 2, ((s as any).npcID1 ?? 0), 'lesbian');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Pound her ass', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/sonia/sex/home/bedroom/penis_envy/anal/magic_anal2.jpg');
     scene.text('You finally work the full length of your cock up her ass and your hips slap against her ass cheeks as you start fucking her with firm thrusts.');
     scene.text('She bites her lower lip, but seems to be getting off on it a lot more than she\'s letting on.');
-    // TODO-QSP: dynamic text: "OH FUCK! Harder, <<$pcs_nickname>>! Fuck my ass harder!" she cries out as you s...
     scene.text(`"OH FUCK! Harder, ${((st as any).pcs_nickname ?? '')}! Fuck my ass harder!" she cries out as you start to really pound her ass.`);
     qspCall(st, 'arousal', 'magic_anal', 2, ((st as any).npcID1 ?? 0), 'lesbian');
     qspCall(st, 'stat', '');
@@ -893,7 +874,6 @@ function enterStraponMagicBedroomFace(s: GameState, scene: SceneBuilder): void {
   scene.text('"Oh. My. God! That was so amazing! It felt and looked so real!" she grins as she gets off her knees and stands up before she suddenly leans in and kisses you.');
   qspCall(s, 'arousal', 'magicd_hj', 1, 'masturbate');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Get kissed', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/sonia/sex/home/bedroom/penis_envy/anal/magic_cumkiss.jpg');
@@ -917,7 +897,6 @@ function enterStraponMagicBedroomFace1(s: GameState, scene: SceneBuilder): void 
   scene.text('"Oh. My. God! That was so amazing! It felt and looked so real!" she grins as she gets off her knees and stands up before she suddenly leans in and kisses you.');
   qspCall(s, 'arousal', 'magicd_hj', 1, 'masturbate');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Get kissed', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/sonia/sex/home/bedroom/penis_envy/anal/magic_cumkiss.jpg');
@@ -939,7 +918,6 @@ function enterStraponMagicBedroomMouth(s: GameState, scene: SceneBuilder): void 
   scene.text('You milk every last drop of cum out of your cock before you look down to see Sonia looking back up at you with an open mouth full of cum. She then reaches and pulls you down so you\'re kneeling in front of her as she grins at you.');
   qspCall(s, 'arousal', 'magicd_bj', 1);
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Open your mouth', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/sonia/sex/home/bedroom/penis_envy/anal/magic_cumswap.jpg');
@@ -964,7 +942,6 @@ function enterStraponMagicBedroomMouth1(s: GameState, scene: SceneBuilder): void
   scene.text('You milk every last drop of cum out of your cock before you look down to see Sonia looking back up at you with an open mouth full of cum. She then reaches and pulls you down so you\'re kneeling in front of her as she grins at you.');
   qspCall(s, 'arousal', 'magicd_bj', 1);
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Open your mouth', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/sonia/sex/home/bedroom/penis_envy/anal/magic_cumswap.jpg');
@@ -990,7 +967,6 @@ function enterStraponMagicBedroomMouth2(s: GameState, scene: SceneBuilder): void
   scene.text('You milk every last drop of cum out of your cock before you look down to see Sonia looking back up at you with an open mouth full of cum. She then reaches and pulls you down so you\'re kneeling in front of her as she grins at you.');
   qspCall(s, 'arousal', 'magicd_hj', 1, 'masturbate');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Get kissed', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/sonia/sex/home/bedroom/penis_envy/anal/magic_cumkiss.jpg');
@@ -1012,7 +988,6 @@ function enterStraponMagicBedroomTummy(s: GameState, scene: SceneBuilder): void 
   scene.text('She looks down and watches you cover her stomach in your cum. "Wow, that looks so real!" she says as she sits up.');
   qspCall(s, 'arousal', 'magicd_hj', 1, 'masturbate');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Take the harness off', goto: ['soniaev1', 'strapon_magic_bedroom_afterglow'] },
   ]);
@@ -1027,7 +1002,6 @@ function enterStraponMagicBedroomAnalCum(s: GameState, scene: SceneBuilder): voi
   scene.text('"Oh my God, that was so amazing! It felt so real," she says as she sits up.');
   qspCall(s, 'arousal', 'magic_anal', 1, ((s as any).npcID1 ?? 0), 'lesbian');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Take the harness off', goto: ['soniaev1', 'strapon_magic_bedroom_afterglow'] },
   ]);
@@ -1053,7 +1027,6 @@ function enterStraponMagicBedroomAfterglow(s: GameState, scene: SceneBuilder): v
       scene.text('She grins. "I feel amazing! That was great, I loved it." She blushes a little as she realizes how much she\'s gushing about how much she enjoyed it.');
       scene.text('You give her a quick kiss. "I had fun too, but I should get going. It\'s late."');
     }
-    // TODO-QSP: dynamic text: Once you''re both dressed, she walks you to her front door. "Goodnight, <<$pcs_n...
     scene.text(`Once you're both dressed, she walks you to her front door. "Goodnight, ${((s as any).pcs_nickname ?? '')}."`);
     scene.text('"Night," you reply before you walk out and she closes the door behind you. You hear it lock as you turn and walk to the street.');
   } else {
@@ -1066,11 +1039,10 @@ function enterStraponMagicBedroomAfterglow(s: GameState, scene: SceneBuilder): v
       scene.text('She grins. "I feel amazing! That was great, I loved it." She blushes a little as she realizes how much she\'s gushing about how much she enjoyed it.');
       scene.text('You give her a quick kiss. "I had fun too, but I should get going. It\'s late."');
     }
-    // TODO-QSP: dynamic text: Once you''re both dressed, she walks you to her front door. "Goodnight, <<$pcs_n...
     scene.text(`Once you're both dressed, she walks you to her front door. "Goodnight, ${((s as any).pcs_nickname ?? '')}."`);
     scene.text('"Night," you reply before you walk out and she closes the door behind you. You hear it lock as you turn and walk to the street.');
   }
-  // TODO-QSP: end
+  (s as any).magicanal = undefined;
   scene.actions([
     { label: 'Leave', goto: ['pav_residential', ''] },
   ]);

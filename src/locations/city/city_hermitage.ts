@@ -17,7 +17,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.text('The collections occupy a large complex of six historic buildings along Palace Embankment, including the Winter Palace, a former residence of Russian emperors.');
   scene.text('Of the six buildings in the main museum complex, five, being the Winter Palace, Small Hermitage, Old Hermitage, New Hermitage, and Hermitage Theatre are all open to the public.');
   scene.text('You approach the visitors entrance which is located in the Winter Palace.');
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -30,7 +29,6 @@ function enterReturn(s: GameState, scene: SceneBuilder): void {
   scene.text('The State Hermitage Museum is the second largest art museum in the world and was founded in 1764 by Empress Catherine the Great and has been open to the public since 1852.');
   scene.text('The collections occupy a large complex of six historic buildings along Palace Embankment, including the Winter Palace, a former residence of Russian emperors.');
   scene.text('Of the six buildings in the main museum complex, five, being the Winter Palace, Small Hermitage, Old Hermitage, New Hermitage, and Hermitage Theatre are open to the public.');
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -53,7 +51,6 @@ function enterStart2(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return city center', goto: ['city_center', ''] },
   ]);
@@ -79,7 +76,6 @@ function enterReturn2(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return city center', goto: ['city_center', ''] },
   ]);
@@ -95,7 +91,6 @@ function enterPeacock(s: GameState, scene: SceneBuilder): void {
   scene.text('You spend some time looking at the various collections which include Egyptian and classical antiquities and various art galleries dating back to prehistoric times.');
   scene.text('These collections include Catherine\'s collection which she used to start the museum.');
   scene.text('After a while you decide to view one of the highlights of the museum, The Golden Peacock Clock.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'The Golden Peacock Clock', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 30;
@@ -126,7 +121,6 @@ function enterArt(s: GameState, scene: SceneBuilder): void {
   scene.text('These collections include Catherine\'s collection which she used to start the museum.');
   scene.text('In her lifetime, Catherine acquired around 4,000 paintings from the old masters, 38,000 books, 10,000 engraved gems, 10,000 drawings, 16,000 coins and medals, and a natural history collection filling two galleries so viewing it all would take several days!');
   scene.text('After a while you decide to view the art collection which she started in 1764. After all, it was due to her acquiring this art collection from Johann Gotzkowsky that she commissioned the museum.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Catherine The Great\'s collection', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 30;
@@ -157,7 +151,6 @@ function enterHighlights(s: GameState, scene: SceneBuilder): void {
   scene.text('It\'s probably the most extravagant and grandiose place at the whole museum!');
   scene.text('There are many beautiful halls at the museum, but this stands out because it\'s a staircase and not a hall.');
   scene.text('As you stand in the baroque hall and look up at the staircase with a red velvet carpet and decorated with huge mirrors, ceiling paintings, sweeping balustrades of marble and gold for just a moment it makes you feel like you\'ve been invited to a pompous ball. Oh well… Maybe not this time!');
-  // TODO-QSP: end
   scene.actions([
     { label: 'The Pavilion Hall', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 30;
@@ -195,7 +188,6 @@ function enterRedRooms(s: GameState, scene: SceneBuilder): void {
   scene.text('Among the Hermitage Museum highlights are the red rooms which contain Italian art.');
   scene.text('This area has a majestic ambience from the beautiful St. George\'s hall and displays 17th and 18th century Italian paintings.');
   scene.text('It also includes the war gallery of 1812 celebrating the Russian victory at the gates of Moscow turning back Napoleon\'s invasion of Russia.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Enter the museum\'s skylight rooms', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 10;

@@ -14,30 +14,28 @@ function enterCalc(s: GameState, scene: SceneBuilder): void {
   ((s as any).temppain = (s as any).temppain ?? {})['total'] = 0;
   ((s as any).temppain = (s as any).temppain ?? {})['i'] = 0;
   ((s as any).temppain = (s as any).temppain ?? {})['maxi'] = 0;
-  // TODO-QSP: :pain_calc_loop
-  ((s as any).temppain = (s as any).temppain ?? {})['total'] = ((s as any).temppain['total'] ?? 0) + (((s as any).pain ?? 0)[((s as any).painParts ?? 0)[(((s as any).temppain ?? {})?.['i'] ?? 0)]] * ((s as any).pain ?? 0)[((s as any).painParts ?? 0)[(((s as any).temppain ?? {})?.['i'] ?? 0)]]);
-  ((s as any).temppain = (s as any).temppain ?? {})['i'] = ((s as any).temppain['i'] ?? 0) + (1);
-  if (((s as any).temppain ?? 0)?.['i'] < ((s as any).temppain ?? 0)?.['maxi']) {
-    // TODO-QSP: jump 'pain_calc_loop'
-  }
-  ((s as any).temppain = (s as any).temppain ?? {})['total'] = ((s as any).temppain['total'] ?? 0) + (4 * ((s as any).vgape ?? 0) * ((s as any).vgape ?? 0) + 16 * ((s as any).agape ?? 0) * ((s as any).agape ?? 0) + 576 * ((s as any).spanked ?? 0) * ((s as any).spanked ?? 0));
-  ((s as any).pain = (s as any).pain ?? {})['total'] = Math.min(qspFunc(s, 'math', 'int_sqrt', (((s as any).temppain ?? 0)?.['total'])), 100);
-  if (((s as any).pain ?? 0)?.['total'] < 0) {
-    ((s as any).pain = (s as any).pain ?? {})['total'] = 0;
-  }
-  ((s as any).pain = (s as any).pain ?? {})['damage'] = (((s as any).pain ?? 0)?.['total']);
-  if (((s as any).pain ?? 0)?.['total'] <= 0) {
-    // TODO-QSP: exit
-  }
-  qspCall(s, 'drugs', 'pain_relief');
-  if (((s as any).pain ?? 0)?.['relief'] > 0) {
-    ((s as any).pain = (s as any).pain ?? {})['total'] = (((s as any).pain ?? {})?.['total'] ?? 0) * (100 - (((s as any).pain ?? {})?.['relief'] ?? 0)) / 100;
+  do {
+    ((s as any).temppain = (s as any).temppain ?? {})['total'] = ((s as any).temppain['total'] ?? 0) + (((s as any).pain ?? 0)[((s as any).painParts ?? 0)[(((s as any).temppain ?? {})?.['i'] ?? 0)]] * ((s as any).pain ?? 0)[((s as any).painParts ?? 0)[(((s as any).temppain ?? {})?.['i'] ?? 0)]]);
+    ((s as any).temppain = (s as any).temppain ?? {})['i'] = ((s as any).temppain['i'] ?? 0) + (1);
+    ((s as any).temppain = (s as any).temppain ?? {})['total'] = ((s as any).temppain['total'] ?? 0) + (4 * ((s as any).vgape ?? 0) * ((s as any).vgape ?? 0) + 16 * ((s as any).agape ?? 0) * ((s as any).agape ?? 0) + 576 * ((s as any).spanked ?? 0) * ((s as any).spanked ?? 0));
+    ((s as any).pain = (s as any).pain ?? {})['total'] = Math.min(qspFunc(s, 'math', 'int_sqrt', (((s as any).temppain ?? 0)?.['total'])), 100);
     if (((s as any).pain ?? 0)?.['total'] < 0) {
       ((s as any).pain = (s as any).pain ?? {})['total'] = 0;
     }
-  }
-  return;
-  // TODO-QSP: end
+    ((s as any).pain = (s as any).pain ?? {})['damage'] = (((s as any).pain ?? 0)?.['total']);
+    (s as any).temppain = undefined;
+    if (((s as any).pain ?? 0)?.['total'] <= 0) {
+      return;
+    }
+    qspCall(s, 'drugs', 'pain_relief');
+    if (((s as any).pain ?? 0)?.['relief'] > 0) {
+      ((s as any).pain = (s as any).pain ?? {})['total'] = (((s as any).pain ?? {})?.['total'] ?? 0) * (100 - (((s as any).pain ?? {})?.['relief'] ?? 0)) / 100;
+      if (((s as any).pain ?? 0)?.['total'] < 0) {
+        ((s as any).pain = (s as any).pain ?? {})['total'] = 0;
+      }
+    }
+    return;
+  } while (((s as any).temppain ?? 0)?.['i'] < ((s as any).temppain ?? 0)?.['maxi']);
   scene.build();
 }
 
@@ -47,47 +45,43 @@ function enterManage(s: GameState, scene: SceneBuilder): void {
   }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCalc(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).totminut ?? 0) < ((s as any).pain ?? 0)?.['timer']) {
-    // TODO-QSP: exit
+    return;
   }
   if ((((s as any).pain ?? 0)?.['damage'] + ((s as any).pain ?? 0)?.['total']) <= 0) {
-    // TODO-QSP: exit
+    return;
   }
   ((s as any).temppain = (s as any).temppain ?? {})['tmp_0'] = 1 + (((s as any).totminut ?? 0) - (((s as any).pain ?? {})?.['timer'] ?? 0)) / 10;
   ((s as any).temppain = (s as any).temppain ?? {})['i'] = 0;
   ((s as any).temppain = (s as any).temppain ?? {})['maxi'] = 0;
-  // TODO-QSP: :pain_manage_loop
-  ((s as any).temppain = (s as any).temppain ?? {})['loc'] = qspUntranslated(s, "painParts[temppain['i']]", { location: "pain" });
-  if (((s as any).pain ?? 0)[((s as any).temppain ?? 0)?.['loc']] > 0) {
-    ((s as any).temppain = (s as any).temppain ?? {})['tmp_1'] = (Math.floor(Math.random() * ((((s as any).temppain ?? 0)?.['tmp_0']) - (((s as any).temppain ?? {})?.['tmp_0'] ?? 0) / 3 + 1)) + ((((s as any).temppain ?? {})?.['tmp_0'] ?? 0) / 3));
-    ((s as any).temppain = (s as any).temppain ?? {})['tmp_2'] = (Math.floor(Math.random() * ((((s as any).temppain ?? 0)?.['tmp_0']) - (((s as any).temppain ?? {})?.['tmp_0'] ?? 0) / 2 + 1)) + ((((s as any).temppain ?? {})?.['tmp_0'] ?? 0) / 2));
-    ((s as any).temppain = (s as any).temppain ?? {})['tmp_3'] = ((((s as any).inSleep ?? 0)) ? ((Math.floor(Math.random() * ((((s as any).pain ?? 0)?.[(((s as any).temppain ?? 0)?.['loc'])] ?? 0) - 0 + 1)) + (0))) : (0));
-    // TODO-QSP: pain[$temppain['loc']] -= max(temppain['tmp_1'], temppain['tmp_2'] + temppain['tmp_3'])
-  }
-  ((s as any).temppain = (s as any).temppain ?? {})['i'] = ((s as any).temppain['i'] ?? 0) + (1);
-  if (((s as any).temppain ?? 0)?.['i'] < ((s as any).temppain ?? 0)?.['maxi']) {
-    // TODO-QSP: jump 'pain_manage_loop'
-  }
-  ((s as any).temppain = (s as any).temppain ?? {})['i'] = 0;
-  ((s as any).temppain = (s as any).temppain ?? {})['maxi'] = 0;
-  // TODO-QSP: :statpainloop
-  if (((s as any).pain ?? 0)[((s as any).temppain ?? 0)?.['i']] < 0) {
-    // TODO-QSP: pain[temppain['i']] = 0
-  }
-  ((s as any).temppain = (s as any).temppain ?? {})['i'] = ((s as any).temppain['i'] ?? 0) + (1);
-  if (((s as any).temppain ?? 0)?.['i'] < ((s as any).temppain ?? 0)?.['maxi']) {
-    // TODO-QSP: jump 'statpainloop'
-  }
-  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCalc(s, scene); (s as any).locArgs = __savedLocArgs; }
-  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterStatChanges(s, scene); (s as any).locArgs = __savedLocArgs; }
-  ((s as any).pain = (s as any).pain ?? {})['timer'] = ((s as any).totminut ?? 0) + 10;
-  return;
-  // TODO-QSP: end
+  do {
+    ((s as any).temppain = (s as any).temppain ?? {})['loc'] = qspUntranslated(s, "painParts[temppain['i']]", { location: "pain" });
+    if (((s as any).pain ?? 0)[((s as any).temppain ?? 0)?.['loc']] > 0) {
+      ((s as any).temppain = (s as any).temppain ?? {})['tmp_1'] = (Math.floor(Math.random() * ((((s as any).temppain ?? 0)?.['tmp_0']) - (((s as any).temppain ?? {})?.['tmp_0'] ?? 0) / 3 + 1)) + ((((s as any).temppain ?? {})?.['tmp_0'] ?? 0) / 3));
+      ((s as any).temppain = (s as any).temppain ?? {})['tmp_2'] = (Math.floor(Math.random() * ((((s as any).temppain ?? 0)?.['tmp_0']) - (((s as any).temppain ?? {})?.['tmp_0'] ?? 0) / 2 + 1)) + ((((s as any).temppain ?? {})?.['tmp_0'] ?? 0) / 2));
+      ((s as any).temppain = (s as any).temppain ?? {})['tmp_3'] = ((((s as any).inSleep ?? 0)) ? ((Math.floor(Math.random() * ((((s as any).pain ?? 0)?.[(((s as any).temppain ?? 0)?.['loc'])] ?? 0) - 0 + 1)) + (0))) : (0));
+      ((s as any).pain = (s as any).pain ?? {})[(((s as any).temppain ?? 0)?.['loc'])] = ((s as any).pain[(((s as any).temppain ?? 0)?.['loc'])] ?? 0) - (Math.max((((s as any).temppain ?? 0)?.['tmp_1']), (((s as any).temppain ?? {})?.['tmp_2'] ?? 0) + (((s as any).temppain ?? {})?.['tmp_3'] ?? 0)));
+    }
+    ((s as any).temppain = (s as any).temppain ?? {})['i'] = ((s as any).temppain['i'] ?? 0) + (1);
+    ((s as any).temppain = (s as any).temppain ?? {})['i'] = 0;
+    ((s as any).temppain = (s as any).temppain ?? {})['maxi'] = 0;
+    do {
+      if (((s as any).pain ?? 0)[((s as any).temppain ?? 0)?.['i']] < 0) {
+        ((s as any).pain = (s as any).pain ?? {})[(((s as any).temppain ?? 0)?.['i'])] = 0;
+      }
+      ((s as any).temppain = (s as any).temppain ?? {})['i'] = ((s as any).temppain['i'] ?? 0) + (1);
+      (s as any).temppain = undefined;
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCalc(s, scene); (s as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterStatChanges(s, scene); (s as any).locArgs = __savedLocArgs; }
+      ((s as any).pain = (s as any).pain ?? {})['timer'] = ((s as any).totminut ?? 0) + 10;
+      return;
+    } while (((s as any).temppain ?? 0)?.['i'] < ((s as any).temppain ?? 0)?.['maxi']);
+  } while (((s as any).temppain ?? 0)?.['i'] < ((s as any).temppain ?? 0)?.['maxi']);
   scene.build();
 }
 
 function enterStatChanges(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pain ?? 0)?.['total'] <= 0) {
-    // TODO-QSP: exit
+    return;
   }
   if (((s as any).pain ?? 0)?.['total'] <= 20) {
     if ((((s as any).pcs_health ?? 0) * 10 / 9)  >= ((s as any).healthmax ?? 0)) {
@@ -159,14 +153,14 @@ function enterStatChanges(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'mood', 'lower', (((s as any).temppain ?? 0)?.['mood_loss']));
     }
   }
+  (s as any).temppain = undefined;
   return;
-  // TODO-QSP: end
   if (Object.keys((s as any).ARGS ?? {}).length < 3) {
-    // TODO-QSP: exit
+    return;
   }
   ((s as any).painCalc = (s as any).painCalc ?? {})[0] = Math.min(((s as any).locArgs?.[0] ?? 0) + ((s as any).locArgs?.[1] ?? 0) + ((s as any).locArgs?.[2] ?? 0) + ((s as any).locArgs?.[3] ?? 0), 9);
   if (((s as any).painCalc ?? 0)[0] <= 0) {
-    // TODO-QSP: exit
+    return;
   }
   ((s as any).painCalc = (s as any).painCalc ?? {})[1] = 0;
   if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('slap') : -1)      >= 0) {
@@ -236,6 +230,8 @@ function enterStatChanges(s: GameState, scene: SceneBuilder): void {
                                             if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('cramp') : -1)    >= 0) {
                                               ((s as any).painCalc = (s as any).painCalc ?? {})[1] = 10;
                                             } else {
+                                              (s as any).temppain = undefined;
+                                              (s as any).painCalc = undefined;
                                               return;
                                             }
                                           }
@@ -262,76 +258,81 @@ function enterStatChanges(s: GameState, scene: SceneBuilder): void {
   ((s as any).painCalc = (s as any).painCalc ?? {})[2] = 0;
   ((s as any).temppain = (s as any).temppain ?? {})['i'] = 0;
   ((s as any).temppain = (s as any).temppain ?? {})['maxi'] = 0;
-  // TODO-QSP: :pain_else_loop
-  if (((s as any).ARGS ?? 0)[((s as any).temppain ?? 0)?.['i']] !== ''  &&  (Array.isArray((s as any).painParts) ? ((s as any).painParts as any[]).indexOf(((s as any).ARGS ?? 0)[((s as any).temppain ?? 0)?.['i']]) : -1) >= 0) {
-    ((s as any).temppain = (s as any).temppain ?? {})['part'] = qspUntranslated(s, "ARGS[temppain['i']]", { location: "pain" });
-    ((s as any).painCalc = (s as any).painCalc ?? {})[2] = (((s as any).painMod ?? 0)?.[(((s as any).temppain ?? 0)?.['part'])] ?? 0);
-  } else {
-    ((s as any).temppain = (s as any).temppain ?? {})['i'] = ((s as any).temppain['i'] ?? 0) + (1);
-    if (((s as any).temppain ?? 0)?.['i'] < ((s as any).temppain ?? 0)?.['maxi']) {
-      // TODO-QSP: jump 'pain_else_loop'
+  while (true) {
+    if (((s as any).ARGS ?? 0)[((s as any).temppain ?? 0)?.['i']] !== ''  &&  (Array.isArray((s as any).painParts) ? ((s as any).painParts as any[]).indexOf(((s as any).ARGS ?? 0)[((s as any).temppain ?? 0)?.['i']]) : -1) >= 0) {
+      ((s as any).temppain = (s as any).temppain ?? {})['part'] = qspUntranslated(s, "ARGS[temppain['i']]", { location: "pain" });
+      ((s as any).painCalc = (s as any).painCalc ?? {})[2] = (((s as any).painMod ?? 0)?.[(((s as any).temppain ?? 0)?.['part'])] ?? 0);
+    } else {
+      ((s as any).temppain = (s as any).temppain ?? {})['i'] = ((s as any).temppain['i'] ?? 0) + (1);
+      if (((s as any).temppain ?? 0)?.['i'] < ((s as any).temppain ?? 0)?.['maxi']) {
+        break;
+      }
+      (s as any).temppain = undefined;
+      (s as any).painCalc = undefined;
+      return;
     }
-    return;
-  }
-  ((s as any).temppain = (s as any).temppain ?? {})['curpain'] = (((s as any).painCalc ?? 0)[0] * ((s as any).painCalc ?? 0)[1] * ((s as any).painCalc ?? 0)[2]) / 10;
-  ((s as any).temppain = (s as any).temppain ?? {})['prevpain'] = (((s as any).pain ?? 0)?.[(((s as any).temppain ?? 0)?.['part'])] ?? 0);
-  (s as any).lastpain = qspFunc(s, 'math', 'int_sqrt', (((s as any).temppain ?? {})?.['prevpain'] ?? 0) * (((s as any).temppain ?? {})?.['prevpain'] ?? 0) + (((s as any).temppain ?? {})?.['curpain'] ?? 0) * (((s as any).temppain ?? {})?.['curpain'] ?? 0));
-  if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('get') : -1) >= 0) {
-    (s as any).result = ((s as any).lastpain ?? 0);
-  } else {
-    (s as any).lastpainPart = (((s as any).temppain ?? 0)?.['part']);
-    // TODO-QSP: pain[$temppain['part']] = lastpain
-    if (((s as any).pain ?? 0)[((s as any).temppain ?? 0)?.['part']] > 100) {
-      // TODO-QSP: pain[$temppain['part']] = 100
+    ((s as any).temppain = (s as any).temppain ?? {})['curpain'] = (((s as any).painCalc ?? 0)[0] * ((s as any).painCalc ?? 0)[1] * ((s as any).painCalc ?? 0)[2]) / 10;
+    ((s as any).temppain = (s as any).temppain ?? {})['prevpain'] = (((s as any).pain ?? 0)?.[(((s as any).temppain ?? 0)?.['part'])] ?? 0);
+    (s as any).lastpain = qspFunc(s, 'math', 'int_sqrt', (((s as any).temppain ?? {})?.['prevpain'] ?? 0) * (((s as any).temppain ?? {})?.['prevpain'] ?? 0) + (((s as any).temppain ?? {})?.['curpain'] ?? 0) * (((s as any).temppain ?? {})?.['curpain'] ?? 0));
+    if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('get') : -1) >= 0) {
+      (s as any).result = ((s as any).lastpain ?? 0);
+    } else {
+      (s as any).lastpainPart = (((s as any).temppain ?? 0)?.['part']);
+      ((s as any).pain = (s as any).pain ?? {})[(((s as any).temppain ?? 0)?.['part'])] = ((s as any).lastpain ?? 0);
+      if (((s as any).pain ?? 0)[((s as any).temppain ?? 0)?.['part']] > 100) {
+        ((s as any).pain = (s as any).pain ?? {})[(((s as any).temppain ?? 0)?.['part'])] = 100;
+      }
+      ((s as any).pain = (s as any).pain ?? {})['timer'] = ((s as any).totminut ?? 0) + 30;
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCalc(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
-    ((s as any).pain = (s as any).pain ?? {})['timer'] = ((s as any).totminut ?? 0) + 30;
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCalc(s, scene); (s as any).locArgs = __savedLocArgs; }
+    (s as any).temppain = undefined;
+    (s as any).painCalc = undefined;
   }
   scene.build();
 }
 
 function enter(s: GameState, scene: SceneBuilder): void {
   if (Object.keys((s as any).painParts ?? {}).length < 40  ||  Object.keys((s as any).painMod ?? {}).length < 40) {
-    // TODO-QSP: $painParts[0]  = 'ankles'    & painMod['ankles']    = 2
-    // TODO-QSP: $painParts[1]  = 'armL'    & painMod['armL']    = 2
-    // TODO-QSP: $painParts[2]  = 'armR'    & painMod['armR']    = 2
-    // TODO-QSP: $painParts[3]  = 'asscheeks'  & painMod['asscheeks']  = 2
-    // TODO-QSP: $painParts[4]  = 'asshole'    & painMod['asshole']  = 9
-    // TODO-QSP: $painParts[5]  = 'back'    & painMod['back']    = 5
-    // TODO-QSP: $painParts[6]  = 'breasts'    & painMod['breasts']  = 8
-    // TODO-QSP: $painParts[7]  = 'cervix'    & painMod['cervix']    = 8
-    // TODO-QSP: $painParts[8]  = 'cheeks'    & painMod['cheeks']    = 3
-    // TODO-QSP: $painParts[9]  = 'chest'    & painMod['chest']    = 7
-    // TODO-QSP: $painParts[10]  = 'clitoris'  & painMod['clitoris']  = 10
-    // TODO-QSP: $painParts[11]  = 'ears'    & painMod['ears']    = 6
-    // TODO-QSP: $painParts[12]  = 'eyebrows'  & painMod['eyebrows']  = 6
-    // TODO-QSP: $painParts[13]  = 'eyes'    & painMod['eyes']    = 8
-    // TODO-QSP: $painParts[14]  = 'feet'    & painMod['feet']    = 2
-    // TODO-QSP: $painParts[15]  = 'fingers'    & painMod['fingers']  = 4
-    // TODO-QSP: $painParts[16]  = 'hair'    & painMod['hair']    = 1
-    // TODO-QSP: $painParts[17]  = 'hands'    & painMod['hands']    = 3
-    // TODO-QSP: $painParts[18]  = 'head'    & painMod['head']    = 6
-    // TODO-QSP: $painParts[19]  = 'hips'    & painMod['hips']    = 5
-    // TODO-QSP: $painParts[20]  = 'jaw'      & painMod['jaw']    = 4
-    // TODO-QSP: $painParts[21]  = 'labia'    & painMod['labia']    = 8
-    // TODO-QSP: $painParts[22]  = 'legL'    & painMod['legL']    = 3
-    // TODO-QSP: $painParts[23]  = 'legR'    & painMod['legR']    = 3
-    // TODO-QSP: $painParts[24]  = 'lips'    & painMod['lips']    = 6
-    // TODO-QSP: $painParts[25]  = 'mouth'    & painMod['mouth']    = 4
-    // TODO-QSP: $painParts[26]  = 'neck'    & painMod['neck']    = 7
-    // TODO-QSP: $painParts[27]  = 'nipples'    & painMod['nipples']  = 9
-    // TODO-QSP: $painParts[28]  = 'nose'    & painMod['nose']    = 5
-    // TODO-QSP: $painParts[29]  = 'pubic'    & painMod['pubic']    = 6
-    // TODO-QSP: $painParts[30]  = 'ribs'    & painMod['ribs']    = 5
-    // TODO-QSP: $painParts[31]  = 'shoulders'  & painMod['shoulders']  = 2
-    // TODO-QSP: $painParts[32]  = 'thighs'    & painMod['thighs']    = 4
-    // TODO-QSP: $painParts[33]  = 'throat'    & painMod['throat']    = 6
-    // TODO-QSP: $painParts[34]  = 'toes'    & painMod['toes']    = 4
-    // TODO-QSP: $painParts[35]  = 'tongue'    & painMod['tongue']    = 7
-    // TODO-QSP: $painParts[36]  = 'tummy'    & painMod['tummy']    = 6
-    // TODO-QSP: $painParts[37]  = 'urethra'    & painMod['urethra']  = 6
-    // TODO-QSP: $painParts[38]  = 'vaginal'    & painMod['vaginal']  = 8
-    // TODO-QSP: $painParts[39]  = 'wrists'    & painMod['wrists']    = 2
+    ((s as any).painParts = (s as any).painParts ?? {})[0] = qspUntranslated(s, "'ankles'    & painMod['ankles']    = 2", { location: "pain" });
+    ((s as any).painParts = (s as any).painParts ?? {})[1] = qspUntranslated(s, "'armL'    & painMod['armL']    = 2", { location: "pain" });
+    ((s as any).painParts = (s as any).painParts ?? {})[2] = qspUntranslated(s, "'armR'    & painMod['armR']    = 2", { location: "pain" });
+    ((s as any).painParts = (s as any).painParts ?? {})[3] = qspUntranslated(s, "'asscheeks'  & painMod['asscheeks']  = 2", { location: "pain" });
+    ((s as any).painParts = (s as any).painParts ?? {})[4] = qspUntranslated(s, "'asshole'    & painMod['asshole']  = 9", { location: "pain" });
+    ((s as any).painParts = (s as any).painParts ?? {})[5] = qspUntranslated(s, "'back'    & painMod['back']    = 5", { location: "pain" });
+    ((s as any).painParts = (s as any).painParts ?? {})[6] = qspUntranslated(s, "'breasts'    & painMod['breasts']  = 8", { location: "pain" });
+    ((s as any).painParts = (s as any).painParts ?? {})[7] = qspUntranslated(s, "'cervix'    & painMod['cervix']    = 8", { location: "pain" });
+    ((s as any).painParts = (s as any).painParts ?? {})[8] = qspUntranslated(s, "'cheeks'    & painMod['cheeks']    = 3", { location: "pain" });
+    ((s as any).painParts = (s as any).painParts ?? {})[9] = qspUntranslated(s, "'chest'    & painMod['chest']    = 7", { location: "pain" });
+    ((s as any).painParts = (s as any).painParts ?? {})[10] = qspUntranslated(s, "'clitoris'  & painMod['clitoris']  = 10", { location: "pain" });
+    ((s as any).painParts = (s as any).painParts ?? {})[11] = qspUntranslated(s, "'ears'    & painMod['ears']    = 6", { location: "pain" });
+    ((s as any).painParts = (s as any).painParts ?? {})[12] = qspUntranslated(s, "'eyebrows'  & painMod['eyebrows']  = 6", { location: "pain" });
+    ((s as any).painParts = (s as any).painParts ?? {})[13] = qspUntranslated(s, "'eyes'    & painMod['eyes']    = 8", { location: "pain" });
+    ((s as any).painParts = (s as any).painParts ?? {})[14] = qspUntranslated(s, "'feet'    & painMod['feet']    = 2", { location: "pain" });
+    ((s as any).painParts = (s as any).painParts ?? {})[15] = qspUntranslated(s, "'fingers'    & painMod['fingers']  = 4", { location: "pain" });
+    ((s as any).painParts = (s as any).painParts ?? {})[16] = qspUntranslated(s, "'hair'    & painMod['hair']    = 1", { location: "pain" });
+    ((s as any).painParts = (s as any).painParts ?? {})[17] = qspUntranslated(s, "'hands'    & painMod['hands']    = 3", { location: "pain" });
+    ((s as any).painParts = (s as any).painParts ?? {})[18] = qspUntranslated(s, "'head'    & painMod['head']    = 6", { location: "pain" });
+    ((s as any).painParts = (s as any).painParts ?? {})[19] = qspUntranslated(s, "'hips'    & painMod['hips']    = 5", { location: "pain" });
+    ((s as any).painParts = (s as any).painParts ?? {})[20] = qspUntranslated(s, "'jaw'      & painMod['jaw']    = 4", { location: "pain" });
+    ((s as any).painParts = (s as any).painParts ?? {})[21] = qspUntranslated(s, "'labia'    & painMod['labia']    = 8", { location: "pain" });
+    ((s as any).painParts = (s as any).painParts ?? {})[22] = qspUntranslated(s, "'legL'    & painMod['legL']    = 3", { location: "pain" });
+    ((s as any).painParts = (s as any).painParts ?? {})[23] = qspUntranslated(s, "'legR'    & painMod['legR']    = 3", { location: "pain" });
+    ((s as any).painParts = (s as any).painParts ?? {})[24] = qspUntranslated(s, "'lips'    & painMod['lips']    = 6", { location: "pain" });
+    ((s as any).painParts = (s as any).painParts ?? {})[25] = qspUntranslated(s, "'mouth'    & painMod['mouth']    = 4", { location: "pain" });
+    ((s as any).painParts = (s as any).painParts ?? {})[26] = qspUntranslated(s, "'neck'    & painMod['neck']    = 7", { location: "pain" });
+    ((s as any).painParts = (s as any).painParts ?? {})[27] = qspUntranslated(s, "'nipples'    & painMod['nipples']  = 9", { location: "pain" });
+    ((s as any).painParts = (s as any).painParts ?? {})[28] = qspUntranslated(s, "'nose'    & painMod['nose']    = 5", { location: "pain" });
+    ((s as any).painParts = (s as any).painParts ?? {})[29] = qspUntranslated(s, "'pubic'    & painMod['pubic']    = 6", { location: "pain" });
+    ((s as any).painParts = (s as any).painParts ?? {})[30] = qspUntranslated(s, "'ribs'    & painMod['ribs']    = 5", { location: "pain" });
+    ((s as any).painParts = (s as any).painParts ?? {})[31] = qspUntranslated(s, "'shoulders'  & painMod['shoulders']  = 2", { location: "pain" });
+    ((s as any).painParts = (s as any).painParts ?? {})[32] = qspUntranslated(s, "'thighs'    & painMod['thighs']    = 4", { location: "pain" });
+    ((s as any).painParts = (s as any).painParts ?? {})[33] = qspUntranslated(s, "'throat'    & painMod['throat']    = 6", { location: "pain" });
+    ((s as any).painParts = (s as any).painParts ?? {})[34] = qspUntranslated(s, "'toes'    & painMod['toes']    = 4", { location: "pain" });
+    ((s as any).painParts = (s as any).painParts ?? {})[35] = qspUntranslated(s, "'tongue'    & painMod['tongue']    = 7", { location: "pain" });
+    ((s as any).painParts = (s as any).painParts ?? {})[36] = qspUntranslated(s, "'tummy'    & painMod['tummy']    = 6", { location: "pain" });
+    ((s as any).painParts = (s as any).painParts ?? {})[37] = qspUntranslated(s, "'urethra'    & painMod['urethra']  = 6", { location: "pain" });
+    ((s as any).painParts = (s as any).painParts ?? {})[38] = qspUntranslated(s, "'vaginal'    & painMod['vaginal']  = 8", { location: "pain" });
+    ((s as any).painParts = (s as any).painParts ?? {})[39] = qspUntranslated(s, "'wrists'    & painMod['wrists']    = 2", { location: "pain" });
   }
   const arg = s.locArg;
   switch (arg) {

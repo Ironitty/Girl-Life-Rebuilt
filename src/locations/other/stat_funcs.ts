@@ -13,54 +13,48 @@ function enterGetXpprv(s: GameState, scene: SceneBuilder): void {
     (s as any).result = 1 + (146 * (((s as any).locArgs?.[1] ?? 0) - 1) * (((s as any).locArgs?.[1] ?? 0) - 1) / 91);
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterGetXpnxt(s: GameState, scene: SceneBuilder): void {
   (s as any).result = 1 + (146 * ((s as any).locArgs?.[1] ?? 0) * ((s as any).locArgs?.[1] ?? 0) / 91);
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterGetMaxDeg(s: GameState, scene: SceneBuilder): void {
   (s as any).result = Math.max(200, (102 - Math.min(((s as any).locArgs?.[1] ?? 0), 100) + ((s as any).locArgs?.[2] ?? 0)) * 100);
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterAddAttToList(s: GameState, scene: SceneBuilder): void {
   if ((Array.isArray((s as any).att_name) ? ((s as any).att_name as any[]).indexOf(String((s as any).locArgs?.[1] ?? '')) : -1) < 0) {
-    // TODO-QSP: $att_name[] = $ARGS[1]
+    (s as any).att_name = [...((s as any).att_name ?? []), ((s as any).locArgs?.[1] ?? 0)];
   }
   if (String((s as any).locArgs?.[2] ?? '') !== '') {
-    // TODO-QSP: $att_desc[$ARGS[1]] = $ARGS[2]
+    ((s as any).att_desc = (s as any).att_desc ?? {})[((s as any).locArgs?.[1] ?? 0)] = ((s as any).locArgs?.[2] ?? 0);
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterAddSklToList(s: GameState, scene: SceneBuilder): void {
   if ((Array.isArray((s as any).skl_name) ? ((s as any).skl_name as any[]).indexOf(String((s as any).locArgs?.[1] ?? '')) : -1) < 0) {
-    // TODO-QSP: $skl_name[] = $ARGS[1]
+    (s as any).skl_name = [...((s as any).skl_name ?? []), ((s as any).locArgs?.[1] ?? 0)];
   }
   if (String((s as any).locArgs?.[2] ?? '') !== '') {
-    // TODO-QSP: $skl_desc[$ARGS[1]] = $ARGS[2]
+    ((s as any).skl_desc = (s as any).skl_desc ?? {})[((s as any).locArgs?.[1] ?? 0)] = ((s as any).locArgs?.[2] ?? 0);
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterAddTraitToList(s: GameState, scene: SceneBuilder): void {
   if ((Array.isArray((s as any).traitattskl) ? ((s as any).traitattskl as any[]).indexOf(String((s as any).locArgs?.[1] ?? '')) : -1) < 0) {
-    // TODO-QSP: $traitattskl[] = $ARGS[1]
+    (s as any).traitattskl = [...((s as any).traitattskl ?? []), ((s as any).locArgs?.[1] ?? 0)];
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 

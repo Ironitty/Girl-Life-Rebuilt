@@ -129,7 +129,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       (s as any).result = 'Ever since Sonia inadvertently got way too drunk and gave five guys including Vitek and his buddies a simultaneous blowjob near the disco, her reputation has been in shambles. The girls in her class all give her the silent treatment, pretending she does not exist. Meanwhile all the guys treat her like a cheap whore and regularly ask (or sometimes even demand) sex from her, knowing she doesn\'t have the strength to say no.';
     } else {
       (s as any).result = 'Sonia Ivanko is an ordinary girl and doesn\'t stand out much. A pretty, smart, and sociable girl Sonia loves to party and is rarely in a bad mood. She lives with her mother in a small apartment after her father left some time ago. Her mother is a nervous, hysterical, and scandalous woman who, when not at work in the Garment Factory, is often out drinking and flirting with men.<b>';
-      // TODO-QSP: $result += 'Despite the gloomy atmosphere and constant scandals at home Sonia grew up to be a kind, ...
+      (s as any).result = ((s as any).result ?? 0) + ('Despite the gloomy atmosphere and constant scandals at home Sonia grew up to be a kind, cheerful, and sociable girl with good grades. Despite her lack of money or variety of clothing she has an amazing sense of style able to pull off many great looks earning her the envy of other girls at school. She often dreams of having a better life away from her mother leaving this poor one behind, and instead having a life filled with luxury and sophistication.');
     }
     return;
   }

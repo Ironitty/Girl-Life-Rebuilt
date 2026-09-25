@@ -14,8 +14,8 @@ mkdirSync(outDir, { recursive: true });
 const browser = await puppeteer.launch({
   browser: 'firefox',
   executablePath: '/usr/bin/firefox',
-  headless: false,
-  args: ['--no-remote', '-profile', profileDir],
+  headless: true,
+  args: ['-headless', '--no-remote', '-profile', profileDir],
 });
 
 const page = await browser.newPage();

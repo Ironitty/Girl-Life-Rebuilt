@@ -21,7 +21,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   if (((s as any).vladimirQW ?? 0)?.['day'] === ((s as any).daystart ?? 0)  &&  ((s as any).vladimirQW ?? 0)?.['stage'] === 21  &&  ((s as any).hour ?? 0) === 20) {
     qspGoto(s, 'vladimirQW_meet', '');
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the restaurant', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -46,7 +45,6 @@ function enterMaitred(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('<center><b>Babel</b></center>');
       scene.img('images/locations/city/citycenter/expensiverest/maitredvip.jpg');
-      // TODO-QSP: dynamic text: The maître d'' informs you that there will be a VIP charge of <<$func(''money'',...
       scene.text(`The maître d' informs you that there will be a VIP charge of ${qspFunc(s, 'money', 'string_price', 5000)}`);
       scene.actions([
         { label: 'Follow the maître d\' ', handler: (st: GameState) => {
@@ -76,7 +74,6 @@ function enterMaitred(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return to the foyer', goto: ['restoran', 'start'] },
   ]);
@@ -119,7 +116,6 @@ function enterZal(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Be seated at a table', goto: ['restoran', 'comtable'] },
     { label: 'Leave the Common Room', goto: ['restoran', 'start'] },
@@ -134,7 +130,6 @@ function enterVip(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Babel, VIP room</b></center>');
   scene.img('images/locations/city/citycenter/expensiverest/restoran3.jpg');
   scene.text('You are shown into the VIP room by the maître d\', and you can\'t help but smile. Soft lighting and empire style furniture provide a calm and friendly atmosphere. You hear soft music and finally feel safe enough to let your guard down a little.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Be seated at the VIP table', goto: ['restoran', 'viptable'] },
     { label: 'Leave the VIP Room', goto: ['restoran', 'start'] },
@@ -149,7 +144,6 @@ function enterComtable(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Babel, Common Room</b></center>');
   scene.img('images/locations/city/citycenter/expensiverest/maitredseat.jpg');
   scene.text('You are escorted to your seat by the maître d\'. You sit and prepare to order a wonderful meal in the busy restaurant.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Order from the menu (0:05)', handler: (st: GameState) => {
     qspCall(st, 'food_menu', '');
@@ -166,7 +160,6 @@ function enterViptable(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Babel, VIP room</b></center>');
   scene.img('images/locations/city/citycenter/expensiverest/chefrecommends.jpg');
   scene.text('You sit and prepare to order a wonderful meal, recommended by the chef. You\'ll be dining with pleasure in the peaceful and luxurious VIP Room.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Order from the menu (0:05)', handler: (st: GameState) => {
     qspCall(st, 'food_menu', '');

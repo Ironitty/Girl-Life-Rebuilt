@@ -14,7 +14,6 @@ function enterKlof2(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/city/jora/15 1.jpg');
   scene.text('"Well baby, come and see us if you want more entertainment, and if you behave, you can earn some cash"');
   scene.text('- "Okay, guys give her our address."');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Get dressed', goto: ['event', 'klof 3'] },
   ]);
@@ -30,7 +29,6 @@ function enterKlof3(s: GameState, scene: SceneBuilder): void {
   scene.text('"You guys can help me earn some money?"');
   scene.text('"Of course, Come visit us in the afternoons and we\'ll talk", the guy says and smirks at you.');
   scene.text('(It turns out, they live really close to you.)');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['city_park', 'start'] },
   ]);
@@ -42,7 +40,6 @@ function enterCityPark(s: GameState, scene: SceneBuilder): void {
   scene.text('You find a quiet, deserted bench off the main paths, you sit together and you start to kiss, but you want more.');
   qspCall(s, 'arousal', 'kiss', 5);
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Masturbate him', goto: ['event', 'hand'] },
     { label: 'Suck', goto: ['event', 'blow'] },
@@ -53,11 +50,9 @@ function enterCityPark(s: GameState, scene: SceneBuilder): void {
 
 function enterHand(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/centralpark/sex/event/event.jpg');
-  // TODO-QSP: dynamic text: Without breaking the kiss you deftly unbutton his pants <<$boydesc>> and start t...
   scene.text(`Without breaking the kiss you deftly unbutton his pants ${((s as any).boydesc ?? '')} and start to wank your ${(((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} cm friend. Unable to withstand such pressure he spills his seed on the ground.`);
   qspCall(s, 'arousal', 'hj', 5, 'dom');
   qspCall(s, 'arousal', 'end');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Finish walk', goto: ['city_park', 'start'] },
   ]);
@@ -66,16 +61,13 @@ function enterHand(s: GameState, scene: SceneBuilder): void {
 
 function enterBlow(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/centralpark/sex/event/event1.jpg');
-  // TODO-QSP: dynamic text: You get on your knees, unbutton his pants, and dramatically immerse yourself in ...
   scene.text(`You get on your knees, unbutton his pants, and dramatically immerse yourself in sucking his member, looking up as his face relaxs. After a few minutes the ${((s as any).boydesc ?? '')} tenses in anticipation of orgasm`);
   qspCall(s, 'arousal', 'bj', 5, 'sub');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue sucking.', handler: (st: GameState) => {
     qspCall(st, 'cum_call', 'mouth_swallow', ((st as any).boy ?? 0), 1);
     scene.img('images/shared/sex/cum/mouth/cum30.jpg');
-    // TODO-QSP: dynamic text: A jet of hot sperm hits you in the mouth. You begin to swallow cum, and <<$boyde...
     scene.text(`A jet of hot sperm hits you in the mouth. You begin to swallow cum, and ${((st as any).boydesc ?? '')} continues to cum in your mouth. Finally, the flow of hot pungent liquid stops.`);
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
@@ -87,27 +79,23 @@ function enterBlow(s: GameState, scene: SceneBuilder): void {
     { label: 'Remove from your mouth.', handler: (st: GameState) => {
     if (((st as any).npc_gentle ?? 0)?.[String((st as any).boy ?? 0)] === 1) {
       scene.img('images/shared/sex/handjob/hj.jpg');
-      // TODO-QSP: dynamic text: You take his cock out of your mouth and <<$boydesc>> finishes in your hand.
       scene.text(`You take his cock out of your mouth and ${((st as any).boydesc ?? '')} finishes in your hand.`);
     } else {
       if (((st as any).npc_rough ?? 0)?.[String((st as any).boy ?? 0)] === 0) {
         (st as any).tiprand = (Math.floor(Math.random() * 4) + 0);
         if ((Math.floor(Math.random() * 4) + 0) < 3) {
           scene.img('images/shared/sex/handjob/hj.jpg');
-          // TODO-QSP: dynamic text: You take his cock out of your mouth and <<$boydesc>> finishes in your hand.
           scene.text(`You take his cock out of your mouth and ${((st as any).boydesc ?? '')} finishes in your hand.`);
         } else {
           (st as any).spafinloc = 11;
           qspCall(st, 'cum_manage', '');
           scene.img('images/shared/sex/cum/facial/facial0,8.jpg');
-          // TODO-QSP: dynamic text: You took his cock out of your mouth and immediately <<$boydesc>> cums directly o...
           scene.text(`You took his cock out of your mouth and immediately ${((st as any).boydesc ?? '')} cums directly on your face, covering it with his warm and sticky seed.`);
         }
       } else {
         (st as any).spafinloc = 11;
         qspCall(st, 'cum_manage', '');
         scene.img('images/shared/sex/cum/facial/facial0,8.jpg');
-        // TODO-QSP: dynamic text: <<$boydesc>> holds your hair, pulls his dick out of your mouth and finishes on y...
         scene.text(`${((st as any).boydesc ?? '')} holds your hair, pulls his dick out of your mouth and finishes on your face. Covering it with warm and sticky cum.`);
       }
     }
@@ -126,11 +114,9 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/centralpark/sex/event/event2.jpg');
   (s as any).pose = 1;
   scene.img('images/shared/sex/vag/doggy/dog.jpg');
-  // TODO-QSP: dynamic text: You remove your heels, pull down your pants, and shake your ass invitingly. <<$b...
   scene.text(`You remove your heels, pull down your pants, and shake your ass invitingly. ${((s as any).boydesc ?? '')} pushes you onto all fours, and abruptly enters you`);
   qspCall(s, 'arousal', 'vaginal', 15, 'sub');
   qspCall(s, 'arousal', 'end');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Complete walk', goto: ['city_park', 'start'] },
   ]);
@@ -142,7 +128,6 @@ function enterDima(s: GameState, scene: SceneBuilder): void {
   scene.text('Seeing that you are interested, the man walks up to you.');
   scene.text('He stands in front of you and asks politely:');
   scene.text('"Hey girl. You look lonely there, maybe you can help me out."');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Not interested', goto: ['shop', 'start'] },
     { label: 'Help him?', handler: (st: GameState) => {
@@ -153,13 +138,10 @@ function enterDima(s: GameState, scene: SceneBuilder): void {
       { label: 'Yes', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 60;
     scene.text('"Thanks, My name is Dmitry".');
-    // TODO-QSP: dynamic text: You hold out your hand to him - "<<$pcs_nickname>>".
     scene.text(`You hold out your hand to him - "${((st as any).pcs_nickname ?? '')}".`);
     scene.text('He was a man in his forties, average height, a pretty strong constitution, short dark hair, nose slightly hooked. Off you go, speaking about the weather, and current affairs. Finally, Dima says that you had arrived at his home. The house is a two-story, pretty cute. In the living room there is a man holding a bottle of beer.');
     scene.text('"Hi Dima, and I was bored and didn\'t know what to do", he says and adds, "What a beautiful woman you have with you, this lovely girl will surely brighten up our evening.". His eyes look all over your body and stop on your breasts.');
-    // TODO-QSP: dynamic text: "<<$pcs_nickname>> meet Aleksei, my friend. My wife is not home yet, she went to...
     scene.text(`"${((st as any).pcs_nickname ?? '')} meet Aleksei, my friend. My wife is not home yet, she went to see her mother, the train must be running late. Luda should be here soon and then we will be at full strength" Dima said smiling.`);
-    // TODO-QSP: dynamic text: "Aleksei, but you can call me Alex" introduced his friend. He was slightly talle...
     scene.text(`"Aleksei, but you can call me Alex" introduced his friend. He was slightly taller than Dima and looked a little older. Dark-haired with blue eyes, a rather handsome man. You thought to yourself, "What am I doing here?" Probably, there is no wife, it's not too late to get out of here! But Dmitry puts his arm around your waist and leads you into the kitchen. "Alex, you have set the table without me, well done!" says Dmitry. "Here, have a seat in the middle ${((st as any).pcs_nickname ?? '')}, we will look after you" said Alex while helping you sit. On the table are plates of snacks and a bottle of vodka. Dima pours the vodka. You say:`);
     scene.text('"I don\'t usually drink vodka." Maybe this was a bad idea.');
     qspCall(st, 'willpower', 'drink', 'resist', 'medium');
@@ -203,7 +185,6 @@ function enterDima2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'vaginal_finger', 5, ((s as any).npcID ?? 0), 'sub', 'group');
   qspCall(s, 'arousal', 'foreplay', (-5), ((s as any).npcID1 ?? 0), 'sub', 'group');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Moan with pleasure', goto: ['event', 'dima3'] },
   ]);
@@ -215,7 +196,6 @@ function enterDima3(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('They take you to the bedroom. In an instant, your gallant gentlemen turn into animals, and you into a whore. This turns you on even more. In the bedroom stands a large bed, the men unzip their pants and take out their huge cocks.');
   scene.text('"Go on start sucking, I see that you want it" says Alex.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Kneel down', goto: ['event', 'dima4'] },
   ]);
@@ -237,7 +217,6 @@ function enterDima4(s: GameState, scene: SceneBuilder): void {
   (s as any).anal_slip = ((s as any).anal_slip ?? 0) + (4);
   qspCall(s, 'arousal', 'anal', (-10), ((s as any).npcID1 ?? 0), 'sub', 'group', 'rough');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Scream in pain', goto: ['event', 'dima5'] },
   ]);
@@ -266,7 +245,6 @@ function enterDima5(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'cum_call', 'mouth_swallow', ((s as any).npcID ?? 0), 1);
   qspCall(s, 'cum_call', 'anus', ((s as any).npcID1 ?? 0), 1);
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Lick', goto: ['event', 'dima6'] },
   ]);
@@ -285,7 +263,6 @@ function enterDima6(s: GameState, scene: SceneBuilder): void {
   scene.text('"Did you like how we fucked you?"');
   qspCall(s, 'arousal', 'bj', 10, ((s as any).npcID1 ?? 0), 'sub');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Very much', goto: ['event', 'dima7'] },
   ]);
@@ -312,7 +289,6 @@ function enterDima7(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'cum_call', 'vagina', ((s as any).npcID ?? 0), 1);
   qspCall(s, 'cum_call', 'anus', ((s as any).npcID1 ?? 0), 1);
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'No please… I\'ll do whatever you want!', goto: ['event', 'dima8'] },
   ]);
@@ -329,7 +305,6 @@ function enterDima8(s: GameState, scene: SceneBuilder): void {
   scene.text('He puts you doggy-style on the floor and starts beating your ass with the belt, you cry and beg him to stop. Ass burning with pain. Each hit getting more painful.');
   scene.text('"Get up bitch!" he ties your hands with the belt, "suck my dick before bedtime."');
   qspCall(s, 'pain', '2', 'asscheeks', 'spank');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Suck', goto: ['event', 'dima9'] },
   ]);
@@ -343,7 +318,6 @@ function enterDima9(s: GameState, scene: SceneBuilder): void {
   scene.text('Alex holds your head and starts to fuck your mouth, it does not last very long. His dick is big and goes deep into your throat, he holds your hair. When he has finished, he ties you to a radiator and collapses on the sofa bed.');
   qspCall(s, 'arousal', 'bj', 5, ((s as any).npcID1 ?? 0), 'sub', 'deepthroat', 'rough', 'bound');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Cry from the beating', goto: ['event', 'dima10'] },
   ]);
@@ -356,7 +330,6 @@ function enterDima10(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/city/dmitry/sex/dima6.jpg');
   scene.text('You are tied to the radiator weeping uncontrolably. Your ass is on fire after the whipping. The drunken men have gine to bed. Finally you hear them snoring loudly.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Struggle free and escape', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
@@ -376,7 +349,6 @@ function enterDima11(s: GameState, scene: SceneBuilder): void {
   scene.text('"I bet you\'re hungy", you recognize Dimas\' voice, "Breakfast must be earned!"');
   qspCall(s, 'arousal', 'bj', 10, ((s as any).npcID ?? 0), 'sub', 'deepthroat', 'rough', 'bound');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Suck', goto: ['event', 'dima12'] },
   ]);
@@ -391,7 +363,6 @@ function enterDima12(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'foreplay_give', (-10), ((s as any).npcID ?? 0), 'sub');
   qspCall(s, 'cum_call', 'mouth_swallow', ((s as any).npcID ?? 0), 1);
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Grudgingly comply', goto: ['event', 'dima13'] },
     { label: 'Enthusiastically lick his balls', goto: ['event', 'dima14'] },
@@ -407,7 +378,6 @@ function enterDima13(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/city/dmitry/sex/dima9.jpg');
   scene.text('You lick and suck his shaven balls, but he doesn\'t seem to like it. After a couple of minutes, he slaps you and says:');
   scene.text('"What the fuck? I\'m going to have to teach you some obedience!"');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Look down', goto: ['event', 'dima39'] },
   ]);
@@ -420,7 +390,6 @@ function enterDima14(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'bj', 10, ((s as any).npcID ?? 0), 'sub', 'group', 'deepthroat', 'rough', 'bound');
   qspCall(s, 'cum_call', 'mouth_swallow', 'A169', 1);
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Swallow', goto: ['event', 'dima15'] },
   ]);
@@ -433,7 +402,6 @@ function enterDima15(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/city/dmitry/sex/dima6.jpg');
   scene.text('Dima unties you from the radiator. He throws you a parcel and orders you to go the bathroom and freshen up, as he goes and talks to Alexsei.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Try to escape', handler: (st: GameState) => {
     if (((st as any).runrnd ?? 0) < 9) {
@@ -456,7 +424,6 @@ function enterDima16(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/city/dmitry/sex/dima6.jpg');
   scene.text('You convolse as you find a mesh bodysuit in the parcel. In the bathroom, you wash off the thick layer of sperm and shave as needed, then apply makeup.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Wear bodysuit', goto: ['event', 'dima19'] },
     { label: 'Don\'t wear bodysuit', goto: ['event', 'dima17'] },
@@ -469,7 +436,6 @@ function enterDima17(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/city/dmitry/sex/dima6.jpg');
   scene.text('You leave the bathroom in the buff, despite the instructions');
-  // TODO-QSP: end
   scene.actions([
     { label: 'See Alex in the hall', handler: (st: GameState) => {
     if (((st as any).runrnd ?? 0) < 9) {
@@ -487,7 +453,6 @@ function enterDima18(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/city/dmitry/sex/dima6.jpg');
   scene.text('"Oh, we have a defiant bitch! You think you can do what you want? Fuck! You\'re nobody here, and you will do what you are told! You like to go naked in public? Great! We\'ll help you!" With these words something is sprayed in your face, and you passed out.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Fall asleep', goto: ['event', 'dima49'] },
   ]);
@@ -497,7 +462,6 @@ function enterDima18(s: GameState, scene: SceneBuilder): void {
 function enterDima19(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('Subdued and in shock, you have lost any desire to stand up to these men');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go to them', goto: ['event', 'dima20'] },
   ]);
@@ -507,7 +471,6 @@ function enterDima19(s: GameState, scene: SceneBuilder): void {
 function enterDima20(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('"Well done, bitch. Now that you are well trained, time for your reward"');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Obey the men unreservedly', goto: ['event', 'dima21'] },
   ]);
@@ -527,7 +490,6 @@ function enterDima21(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'anal', (-20), ((s as any).npcID ?? 0), 'sub', 'group', 'rough');
   qspCall(s, 'arousal', 'anal', (-20), ((s as any).npcID1 ?? 0), 'sub', 'group', 'rough');
   qspCall(s, 'arousal', 'end');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['city_residential', ''] },
   ]);
@@ -539,7 +501,6 @@ function enterDima30(s: GameState, scene: SceneBuilder): void {
   (s as any).dimaQW = 2;
   qspCall(s, 'stat', '');
   scene.text('I confess, I am a sinner, a writer from me worthless, and all my dark little thoughts went to the recent arrival of women. If there are interesting ideas/scenarios to continue - fling in a personal, zabubenyu');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['city_residential', ''] },
   ]);
@@ -554,7 +515,6 @@ function enterDima31(s: GameState, scene: SceneBuilder): void {
   scene.text('You squeeze your teeth together, but Dimas quickly grabs your face and your jaw slackens.');
   scene.text('"Bitch, you think you can get away with that?!"');
   scene.text('You feel a strong blow to your face and lose consciousness.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Wake up', goto: ['event', 'dima32'] },
   ]);
@@ -587,7 +547,6 @@ function enterDima32(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Resist', goto: ['event', 'dima33'] },
   ]);
@@ -603,7 +562,6 @@ function enterDima33(s: GameState, scene: SceneBuilder): void {
   scene.text('"Oh, are you enjoying safe sex? Come on, don\'t stop!"');
   qspCall(s, 'arousal', 'bj', 10, ((s as any).npcID1 ?? 0), 'sub', 'deepthroat');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue to please', goto: ['event', 'dima38'] },
     { label: 'Stop tongue movement', goto: ['event', 'dima34'] },
@@ -619,7 +577,6 @@ function enterDima34(s: GameState, scene: SceneBuilder): void {
   scene.text('With these words, he removes his penis, you\'re picked up by the hair and down some steps and through a short passageway.');
   scene.text('You are trapped in an empty underground passage. Alex takes the gag out of your mouth, and you\'re finally able to close it.');
   scene.text('As you start to get some feeling back in your jaw, he blindfolds you, turns you around and bends you over.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'stand still', goto: ['event', 'dima35'] },
   ]);
@@ -641,7 +598,6 @@ function enterDima35(s: GameState, scene: SceneBuilder): void {
   (s as any).orgasm_or = 'yes';
   qspCall(s, 'arousal', 'vaginal', 30, ((s as any).npcID1 ?? 0), 'sub', 'rough', 'bound');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Recover', goto: ['event', 'dima36'] },
   ]);
@@ -654,7 +610,6 @@ function enterDima36(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/residential/street/sex/10028_tommypistoljacquelineblacklady_352.jpg');
   scene.text('After sitting in this position for a few minutes, you start to free your hands. Once they\'re loose, you tear off the blindfold, and wipe as much of the sperm of your face as is possible.');
   scene.text('Looking around, you find the box Alex had put your stuff it. You get dressed and find a passage that leads to the street above.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['city_residential', ''] },
   ]);
@@ -671,7 +626,6 @@ function enterDima37(s: GameState, scene: SceneBuilder): void {
   scene.text('After some time your hands are free, you remove the gag from your mouth, and finally you are able to close it. You jaw and teeth ache from running while wearing the ring-gag.');
   scene.text('Your dress is trampled and torn in places, but still able to cover your body. You are lost, but after a while find the supermarket, where you met Dima.');
   scene.text('Only then do you realize Alex took all your money.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Relax', goto: ['city_residential', ''] },
   ]);
@@ -692,7 +646,6 @@ function enterDima38(s: GameState, scene: SceneBuilder): void {
   scene.text('After Alex leaves, you free your hands, mouth, and find your stuff in the bushes.');
   qspCall(s, 'arousal', 'bj', 10, ((s as any).npcID1 ?? 0), 'sub', 'deepthroat', 'rough', 'bound');
   qspCall(s, 'arousal', 'end');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['city_residential', ''] },
   ]);
@@ -705,7 +658,6 @@ function enterDima39(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/residential/street/sex/13606_zenzaragginikisweet085.jpg');
   scene.text('Alex dresses you, sticks a gag in your mouth and binds your hands. Then he leads you from the apartment, and onto a bus going to the center. It is surprisingly empty.');
   scene.text('"I noticed you didn\'t try to escape last night, so I\'m thinking, maybe you simply didn\'t get enough sex? Don\'t worry I\'ll fix that mistake.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Smile seductively', goto: ['event', 'dima40'] },
     { label: 'Try to get away', goto: ['event', 'dima45'] },
@@ -721,7 +673,6 @@ function enterDima40(s: GameState, scene: SceneBuilder): void {
   scene.text('You begin to move rhythmically, but the bus keeps bouncing around, adding new sensations.');
   qspCall(s, 'arousal', 'vaginal', 10, ((s as any).npcID1 ?? 0), 'sub', 'exhibitionism');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Change position', goto: ['event', 'dima41'] },
   ]);
@@ -738,7 +689,6 @@ function enterDima41(s: GameState, scene: SceneBuilder): void {
   scene.text('The driver can see you\'re naked, and has probably been watching everything.');
   scene.text('Soon you find a small clearing in the park.');
   scene.text('"Time to show me that you can do even better than this morning!"');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Kneel down', goto: ['event', 'dima42'] },
   ]);
@@ -760,7 +710,6 @@ function enterDima42(s: GameState, scene: SceneBuilder): void {
   scene.text('"I\'ll be gone for a couple of hours, when I get back, I\'ll bring your stuff. You just sit here and show off your skills, like a good little girl!"');
   qspCall(s, 'arousal', 'bj', 10, ((s as any).npcID1 ?? 0), 'sub', 'deepthroat', 'bound');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Wait for his return', goto: ['event', 'dima43'] },
     { label: 'Leave', goto: ['event', 'dima44'] },
@@ -777,7 +726,6 @@ function enterDima43(s: GameState, scene: SceneBuilder): void {
   scene.text('Then an old lady lectures you about morality, and how this is unacceptable. There were other people too, but you are trying very hard to forget about them.');
   scene.text('When Alex returns, he unties you, and hands you your stuff. He says that he was sorry he has to leave and would be very happy for another "rendezvous" with you.');
   scene.text('You dress, Take your things and hurriedly leave him.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the yard', goto: ['city_residential', ''] },
   ]);
@@ -792,7 +740,6 @@ function enterDima44(s: GameState, scene: SceneBuilder): void {
   scene.text('You decide that sitting naked and covered with sperm on the road is too humiliating for you. As soon as Alex is out of view, finding your clothes nearby, and run into the park.');
   scene.text('Unfortunately he took your money. You find a sharpened stone, and when your hands are free, you carefully wipe the semen from your face.');
   scene.text('You are lost, but after a while manage to find yourself the supermarket where you met Dimitry.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Relax', goto: ['city_residential', ''] },
   ]);
@@ -807,7 +754,6 @@ function enterDima45(s: GameState, scene: SceneBuilder): void {
   scene.text('He was silent all the way, passed the center. Finaally, Alex drags you out of the bus and leads you to the sex shop.');
   scene.text('"Hello there", A girl greets you. She unceremoniously grabs you and takes to a back room. There she undresses you.');
   scene.text('"Follow me", the girl leads you to the stairs.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the basement', goto: ['event', 'dima46'] },
   ]);
@@ -830,7 +776,6 @@ function enterDima46(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'bj', 5, ((s as any).npcID2 ?? 0), 'sub', 'prostitution', 'unknown');
   qspCall(s, 'cum_call', 'mouth_swallow', ((s as any).npcID2 ?? 0));
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Agree to suck', goto: ['event', 'dima47'] },
     { label: 'Two of you would make it easier', goto: ['event', 'dima48'] },
@@ -841,70 +786,66 @@ function enterDima46(s: GameState, scene: SceneBuilder): void {
 function enterDima47(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal_funcs', 'stretch', 'oral', 5);
   (s as any).dimagh_counter = 0;
-  // TODO-QSP: :gloryhole1
-  qspCall(s, 'npcgeneratec', '0', 'stranger', (Math.floor(Math.random() * 27) + 19), (Math.floor(Math.random() * 2) + 3), 1);
-  qspCall(s, 'npcStat', '$npclastgenerated', 'b');
-  qspCall(s, 'arousal', 'bj', 6, ((s as any).npcID ?? 0), 'sub', 'prostitution', 'unknown');
-  qspCall(s, 'cum_call', 'mouth_swallow', ((s as any).npcID2 ?? 0));
-  ((s as any).stat = (s as any).stat ?? {})['gloryhole'] = ((s as any).stat['gloryhole'] ?? 0) + (1);
-  (s as any).dimagh_counter = ((s as any).dimagh_counter ?? 0) + (1);
-  if (((s as any).dimagh_counter ?? 0) < 9) {
-    // TODO-QSP: jump 'gloryhole1'
-  }
-  qspCall(s, 'arousal_funcs', 'stretch', 'vaginal');
-  qspCall(s, 'boyStat', 'A170');
-  qspCall(s, 'cum_manage', '');
-  qspCall(s, 'money', 'earn', 1000);
-  qspCall(s, 'stat', '');
-  scene.img('images/locations/city/residential/street/sex/15933_markdavisdonnaannika_494.jpg');
-  scene.text('"That\'s wonderful", she says, "I\'ll go tell your friend, give you some space so you\'re not distracted". With these words, she points to the hole, which already has a new member.');
-  scene.text('You dutifully bend down, and begin to service the next stranger. This carries on. Men erupt, leave and another appears.');
-  scene.text('Lost in your enthusiasm, you don\'t hear Alex enter the room.');
-  scene.text('The realization that you are not alone in the room hits you just as he forcefully rams his cock into your pussy.');
-  scene.text('You have decide to try not to be distracted, and continue to suck, despite the pounding you are receiving.');
-  scene.text('When the man you are serving finishes, you, as before, swallow and are ready to accept the next, but the hole remains empty. It seems you have work off the money Alex had gotten.');
-  scene.text('Alex efforts have not gone unnoticed, and soon you shake in orgasm. Almost immediately, he pulls out his penis, and turns your head so that it is jabbing you in the face.');
-  scene.text('It is now a reflex action for you to help him to finish. After you cleaned his cock, he leaves the booth.');
-  scene.text('After a few minutes the girl you met at the door comes in, removes your gag and takes you to the lavatory, where you wash your face and rinse your mouth.');
-  scene.text('When you are done, she hands you your things, and some cash, adding, "From your friend, for a job well done." You dress.');
-  (s as any).orgasm_or = 'yes';
-  qspCall(s, 'arousal', 'vaginal', (-10), ((s as any).npcID1 ?? 0), 'sub', 'rough');
-  qspCall(s, 'arousal', 'bj', (-5), ((s as any).npcID1 ?? 0), 'sub', 'rough');
-  qspCall(s, 'cum_call', 'vagina', ((s as any).npcID1 ?? 0), 1);
-  qspCall(s, 'arousal', 'end');
-  // TODO-QSP: end
-  scene.actions([
-    { label: 'Get Outside', goto: ['city_industrial', ''] },
-  ]);
+  do {
+    qspCall(s, 'npcgeneratec', '0', 'stranger', (Math.floor(Math.random() * 27) + 19), (Math.floor(Math.random() * 2) + 3), 1);
+    qspCall(s, 'npcStat', '$npclastgenerated', 'b');
+    qspCall(s, 'arousal', 'bj', 6, ((s as any).npcID ?? 0), 'sub', 'prostitution', 'unknown');
+    qspCall(s, 'cum_call', 'mouth_swallow', ((s as any).npcID2 ?? 0));
+    ((s as any).stat = (s as any).stat ?? {})['gloryhole'] = ((s as any).stat['gloryhole'] ?? 0) + (1);
+    (s as any).dimagh_counter = ((s as any).dimagh_counter ?? 0) + (1);
+    qspCall(s, 'arousal_funcs', 'stretch', 'vaginal');
+    qspCall(s, 'boyStat', 'A170');
+    qspCall(s, 'cum_manage', '');
+    qspCall(s, 'money', 'earn', 1000);
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/city/residential/street/sex/15933_markdavisdonnaannika_494.jpg');
+    scene.text('"That\'s wonderful", she says, "I\'ll go tell your friend, give you some space so you\'re not distracted". With these words, she points to the hole, which already has a new member.');
+    scene.text('You dutifully bend down, and begin to service the next stranger. This carries on. Men erupt, leave and another appears.');
+    scene.text('Lost in your enthusiasm, you don\'t hear Alex enter the room.');
+    scene.text('The realization that you are not alone in the room hits you just as he forcefully rams his cock into your pussy.');
+    scene.text('You have decide to try not to be distracted, and continue to suck, despite the pounding you are receiving.');
+    scene.text('When the man you are serving finishes, you, as before, swallow and are ready to accept the next, but the hole remains empty. It seems you have work off the money Alex had gotten.');
+    scene.text('Alex efforts have not gone unnoticed, and soon you shake in orgasm. Almost immediately, he pulls out his penis, and turns your head so that it is jabbing you in the face.');
+    scene.text('It is now a reflex action for you to help him to finish. After you cleaned his cock, he leaves the booth.');
+    scene.text('After a few minutes the girl you met at the door comes in, removes your gag and takes you to the lavatory, where you wash your face and rinse your mouth.');
+    scene.text('When you are done, she hands you your things, and some cash, adding, "From your friend, for a job well done." You dress.');
+    (s as any).orgasm_or = 'yes';
+    qspCall(s, 'arousal', 'vaginal', (-10), ((s as any).npcID1 ?? 0), 'sub', 'rough');
+    qspCall(s, 'arousal', 'bj', (-5), ((s as any).npcID1 ?? 0), 'sub', 'rough');
+    qspCall(s, 'cum_call', 'vagina', ((s as any).npcID1 ?? 0), 1);
+    qspCall(s, 'arousal', 'end');
+    (s as any).dimagh_counter = undefined;
+    scene.actions([
+      { label: 'Get Outside', goto: ['city_industrial', ''] },
+    ]);
+  } while (((s as any).dimagh_counter ?? 0) < 9);
   scene.build();
 }
 
 function enterDima48(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal_funcs', 'stretch', 'oral', 5);
   (s as any).dimagh_counter = 0;
-  // TODO-QSP: :gloryhole2
-  qspCall(s, 'npcgeneratec', '0', 'stranger', (Math.floor(Math.random() * 27) + 19), (Math.floor(Math.random() * 2) + 3), 1);
-  qspCall(s, 'npcStat', '$npclastgenerated', 'b');
-  qspCall(s, 'arousal', 'bj', 6, ((s as any).npcID2 ?? 0), 'sub', 'prostitution', 'rough', 'deepthroat');
-  qspCall(s, 'cum_call', 'mouth_swallow', ((s as any).npcID ?? 0));
-  ((s as any).stat = (s as any).stat ?? {})['gloryhole'] = ((s as any).stat['gloryhole'] ?? 0) + (1);
-  (s as any).dimagh_counter = ((s as any).dimagh_counter ?? 0) + (1);
-  if (((s as any).dimagh_counter ?? 0) < 9) {
-    // TODO-QSP: jump 'gloryhole2'
-  }
-  qspCall(s, 'stat', '');
-  scene.img('images/locations/city/residential/street/sex/15933_markdavisdonnaannika_481.jpg');
-  scene.text('It looks like you misunderstood the girl.');
-  scene.text('"You want to do this the hard way? Fine, I can do that."');
-  scene.text('With these words, she forces your head back to the hole.');
-  scene.text('Another cock appears from the hole, she puts it in your mouth, and begins to drive your head. It feels like she\'s fucking the stranger behind the wall with your head.');
-  scene.text('It takes more time, but he finishes in your mouth. She holds your head against the wall, not giving you room to spit anything out. This was repeated several times.');
-  scene.text('When the last "customer" disappeared from the hole, she lets go of your head, and leaves the room. Soon she comes back with your stuff. You dress, and she leads you out.');
-  qspCall(s, 'arousal', 'end');
-  // TODO-QSP: end
-  scene.actions([
-    { label: 'Get Outside', goto: ['city_industrial', ''] },
-  ]);
+  do {
+    qspCall(s, 'npcgeneratec', '0', 'stranger', (Math.floor(Math.random() * 27) + 19), (Math.floor(Math.random() * 2) + 3), 1);
+    qspCall(s, 'npcStat', '$npclastgenerated', 'b');
+    qspCall(s, 'arousal', 'bj', 6, ((s as any).npcID2 ?? 0), 'sub', 'prostitution', 'rough', 'deepthroat');
+    qspCall(s, 'cum_call', 'mouth_swallow', ((s as any).npcID ?? 0));
+    ((s as any).stat = (s as any).stat ?? {})['gloryhole'] = ((s as any).stat['gloryhole'] ?? 0) + (1);
+    (s as any).dimagh_counter = ((s as any).dimagh_counter ?? 0) + (1);
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/city/residential/street/sex/15933_markdavisdonnaannika_481.jpg');
+    scene.text('It looks like you misunderstood the girl.');
+    scene.text('"You want to do this the hard way? Fine, I can do that."');
+    scene.text('With these words, she forces your head back to the hole.');
+    scene.text('Another cock appears from the hole, she puts it in your mouth, and begins to drive your head. It feels like she\'s fucking the stranger behind the wall with your head.');
+    scene.text('It takes more time, but he finishes in your mouth. She holds your head against the wall, not giving you room to spit anything out. This was repeated several times.');
+    scene.text('When the last "customer" disappeared from the hole, she lets go of your head, and leaves the room. Soon she comes back with your stuff. You dress, and she leads you out.');
+    qspCall(s, 'arousal', 'end');
+    (s as any).dimagh_counter = undefined;
+    scene.actions([
+      { label: 'Get Outside', goto: ['city_industrial', ''] },
+    ]);
+  } while (((s as any).dimagh_counter ?? 0) < 9);
   scene.build();
 }
 
@@ -916,7 +857,6 @@ function enterDima49(s: GameState, scene: SceneBuilder): void {
   scene.text('You\'re not surprised, you wouldn\'t if you were them. So you wait about an hour, your legs are very tired, but your hands are tied tight enough that you can\'t sit down.');
   scene.text('Suddenly you notice, a man standing in front of you.');
   scene.text('"Do you need help?" He asks');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Nod', goto: ['event', 'dima50'] },
   ]);
@@ -940,7 +880,6 @@ function enterDima50(s: GameState, scene: SceneBuilder): void {
       { label: 'Dismiss', goto: ['event', 'dima53'] },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Suck', goto: ['event', 'dima51'] },
   ]);
@@ -958,7 +897,6 @@ function enterDima51(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'cum_call', 'mouth_swallow', ((s as any).npcID2 ?? 0));
   qspCall(s, 'cum_call', 'face', ((s as any).npcID2 ?? 0));
   qspCall(s, 'arousal', 'end');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Freshen up', goto: ['city_industrial', ''] },
   ]);
@@ -985,7 +923,6 @@ function enterDima52(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'cum_call', 'face', ((s as any).npcID3 ?? 0), 0, '', '', 20);
   qspCall(s, 'cum_call', 'mouth_swallow', ((s as any).npcID3 ?? 0), 0, '', '', 20);
   qspCall(s, 'arousal', 'end');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Relax', goto: ['city_residential', ''] },
   ]);
@@ -998,7 +935,6 @@ function enterDima53(s: GameState, scene: SceneBuilder): void {
   scene.img(`${qspFunc(s, '$clothing_image', ((s as any).clothingworntype ?? ''), ((s as any).clothingwornnumber ?? ''))}`);
   scene.text('Enraged by your refusal, man pushes you, but you stand firm. Realizing that you\'re not to be messed with, he runs away.');
   scene.text('You sort out you clothing and dress yourself in the outfit you were wearing when this all started.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Freshen up', goto: ['city_industrial', ''] },
   ]);
@@ -1010,7 +946,6 @@ function enterScoreslut1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/city/dmitry/sex/dima6.jpg');
   scene.text('You wake up, hands tied to the radiator. From the sofa Dima looks at you expectantly.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Frightened look', goto: ['event', 'scoreslut2'] },
     { label: 'Trying to escape', goto: ['event', 'scoreslut3'] },
@@ -1023,7 +958,6 @@ function enterScoreslut2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/city/dmitry/sex/dima6.jpg');
   scene.text('"You awake, bitch? Want to go home?"');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Frightened look', goto: ['event', 'dima30'] },
   ]);
@@ -1035,7 +969,6 @@ function enterScoreslut3(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/city/dmitry/sex/dima6.jpg');
   scene.text('"I don\'t think so, bitch"');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Frightened look', goto: ['event', 'dima30'] },
   ]);
@@ -1047,7 +980,6 @@ function enterLesbi(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/city/natalya/lesbi.jpg');
   scene.text('The woman stares at you, you catch her eye. She looks you up and down, smiles and licks her lips.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Turn away', goto: ['shop_moncheri', 'start'] },
     { label: 'Get acquainted', goto: ['event', 'lesbi1'] },
@@ -1061,7 +993,6 @@ function enterLesbi1(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/city/natalya/lesbi.jpg');
   scene.text('You go to the woman. She looks at you with a twinkle in her eye "I am Natalya Petrovna, here\'s my card, maybe you would let me take you somewhere interesting?"');
   scene.text('The woman is very confident and it makes it hard for you to think clearly.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Paris?', goto: ['event', 'lesbi2'] },
   ]);
@@ -1081,7 +1012,6 @@ function enterLesbi2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).stat ?? 0)?.['lesbian_count'] === 0) {
     scene.text('No… no, I haven\'t - You mumble. I\'ve never been with a girl to try such a thing…');
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Ask to learn', goto: ['event', 'lesbi3'] },
   ]);
@@ -1098,7 +1028,6 @@ function enterLesbi3(s: GameState, scene: SceneBuilder): void {
   scene.text('Having deciding you asked, "Can you teach me that?"');
   scene.text('"Teach?" She asked in surprise. "Teach… hmm… I think I might be able to help you!" The lady says with a grin. "Come visit me at my apartment."');
   scene.text('You read the card and see that see lives in the city residential area, looking up again, Natalya is walking out of the boutique with a graceful and confident gait.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['shop_moncheri', 'start'] },
   ]);

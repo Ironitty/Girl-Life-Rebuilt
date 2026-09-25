@@ -64,7 +64,6 @@ function enterHome(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -73,11 +72,11 @@ function enterKor(s: GameState, scene: SceneBuilder): void {
   (s as any).locM = 'kotovdom';
   (s as any).location_type = 'private';
   (s as any).menu_arg = ((s as any).locArgs?.[0] ?? 0);
+  (s as any).locclass = undefined;
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   qspCall(s, 'stat', '');
   scene.text('<center><b>Hallway</b></center>');
   scene.img('images/locations/pavlovsk/resident/apartment/home/korr.jpg');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go to Vitek\'s bedroom', goto: ['kotovdom', 'kotovkom'] },
     { label: 'Go to the bathroom', goto: ['kotovdom', 'vann'] },
@@ -100,7 +99,6 @@ function enterVann(s: GameState, scene: SceneBuilder): void {
   } else {
     qspCall(s, 'dinsex', 'after_anal', 'pc');
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Wash in the shower (0:15)', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 15;
@@ -136,7 +134,7 @@ function enterKotovkom(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Vitek\'s bedroom</b></center>');
   scene.img('images/locations/pavlovsk/resident/vitekhome/kotovkom.jpg');
   scene.text('His bedroom doesn\'t look like it has been cleaned in weeks or maybe ever; dirty clothes lie on the floor, cleaner looking clothes are scattered around. Several empty beer bottles and other alcohol bottles are scattered around, a full ashtray rests on a wooden box he is using as a night stand next to the bed. The only thing in decent shape in the whole room is a newer looking TV.');
-  scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027kotovdom/u0027, /u0027vitek_chat/u0027); return false;">Vitek</a> is lying on his bed, relaxing and watching TV.');
+  scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027kotovdom\u0027, \u0027vitek_chat\u0027); return false;">Vitek</a> is lying on his bed, relaxing and watching TV.');
   if (((s as any).clothingworntype ?? 0) === 'nude') {
     qspGoto(s, 'kotovdom', 'kotovkom');
     scene.actions([
@@ -145,7 +143,6 @@ function enterKotovkom(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the hallway', goto: ['kotovdom', 'kor'] },
   ]);
@@ -162,7 +159,6 @@ function enterKuh(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/resident/vitekhome/kuh.jpg');
   qspCall(s, 'kit_din', 'fill_bottle');
   qspCall(s, 'kit_din', 'driwater');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the hallway', goto: ['kotovdom', 'kor'] },
     { label: 'Look in the fridge', goto: ['kotovdom', 'fridge'] },
@@ -200,7 +196,6 @@ function enterFridge(s: GameState, scene: SceneBuilder): void {
     (s as any).kotov_sanw = '';
   }
   scene.img('images/shared/home/kitchen/fridge.jpg');
-  // TODO-QSP: dynamic text: You open the fridge and see:<<$artem_tea>><<$artem_water>><<$artem_sup>><<$artem...
   scene.text(`You open the fridge and see:${((s as any).artem_tea ?? '')}${((s as any).artem_water ?? '')}${((s as any).artem_sup ?? '')}${((s as any).artem_lefto ?? '')}${((s as any).artem_sanw ?? '')}`);
   if (((s as any).kotovlefto_count ?? 0) > 0) {
     scene.actions([
@@ -313,7 +308,6 @@ function enterFridge(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Close the refrigerator', goto: ['kotovdom', 'kuh'] },
   ]);
@@ -350,7 +344,6 @@ function enterVitekChat(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Stop talking', goto: ['kotovdom', 'kotovkom'] },
     { label: 'Make small talk', handler: (st: GameState) => {
@@ -400,7 +393,9 @@ function enterAfterSex(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Vitek\'s bedroom</b></center>');
   scene.img('images/locations/pavlovsk/resident/vitekhome/kotovkom.jpg');
   if (((s as any).pain ?? 0)?.['asshole'] + (((s as any).agape ?? 0) * 10) > 40) {
-    qspCall(s, 'dinsex', 'after_anal', 'no_plug\' else gs \'dinsex', 'after_anal', 'boy', ((s as any).boydesc ?? 0));
+    qspCall(s, 'dinsex', 'after_anal', 'no_plug');
+  } else {
+    qspCall(s, 'dinsex', 'after_anal', 'boy', ((s as any).boydesc ?? 0));
   }
   if (((s as any).clothingworntype ?? 0) === 'nude') {
     qspGoto(s, 'kotovdom', 'after_sex');
@@ -418,13 +413,11 @@ function enterAfterSex(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   if (((s as any).npc_rel ?? 0)?.[String((s as any).boy ?? 0)] <= 50  &&  ((s as any).clothingworntype ?? 0) !== 'nude') {
-    // TODO-QSP: dynamic text: "Thanks for the fuck, <<$pcs_nickname>>," he says with a satisfied grin while lo...
     scene.text(`"Thanks for the fuck, ${((s as any).pcs_nickname ?? '')}," he says with a satisfied grin while looking up at you from the bed. "Take care, you are more than welcome here."`);
     scene.actions([
       { label: 'Say goodbye and leave', goto: ['pav_residential', ''] },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -438,7 +431,6 @@ function enterWalk(s: GameState, scene: SceneBuilder): void {
   scene.text('When you climb to the second floor of your apartment building and reach the door, Vitek hugs you tightly in his powerful arms. He kisses you passionately, and his hands grope your butt roughly.');
   scene.text('For a moment you wonder if he\'s going to want to have sex with you right here in the stairwell, but as soon as you think that he lets you go. "I\'ll see you soon, kitten. Don\'t miss me too much!" he says with a grin before turning around and walking down the stairs.');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Say goodbye', goto: ['pod_ezd', 'etaj_2'] },
   ]);

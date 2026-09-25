@@ -85,6 +85,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     ((s as any).npc_usedname = (s as any).npc_usedname ?? {})['D' + String(((s as any).npctemp ?? 0))] = 'a horse sized';
   }
   (s as any).darraynumber = ((s as any).npctemp ?? 0);
+  (s as any).temp_do_all = undefined;
   scene.build();
 }
 

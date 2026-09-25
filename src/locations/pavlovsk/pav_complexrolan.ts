@@ -65,26 +65,19 @@ function enterSpy(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'arousal', 'voyeur', 5);
   qspCall(s, 'stat', '');
-  // TODO-QSP: dynamic text: <br><<$court_imga>><br>
   scene.text(`<br>${((s as any).court_imga ?? '')}<br>`);
-  // TODO-QSP: dynamic text: <br><<$court_texta>><br>
   scene.text(`<br>${((s as any).court_texta ?? '')}<br>`);
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'voyeur', 5);
     qspCall(st, 'stat', '');
-    // TODO-QSP: dynamic text: <br><<$court_imgb>><br>
     scene.text(`<br>${((st as any).court_imgb ?? '')}<br>`);
-    // TODO-QSP: dynamic text: <br><<$court_textb>><br>
     scene.text(`<br>${((st as any).court_textb ?? '')}<br>`);
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'voyeur', 5);
     qspCall(st, 'stat', '');
-    // TODO-QSP: dynamic text: <br><<$court_imgc>><br>
     scene.text(`<br>${((st as any).court_imgc ?? '')}<br>`);
-    // TODO-QSP: dynamic text: <br><<$court_textc>><br>
     scene.text(`<br>${((st as any).court_textc ?? '')}<br>`);
     scene.actions([
       { label: 'Move away', goto: ['pav_complex', 'start'] },
@@ -117,13 +110,10 @@ function enterFriends(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'panties', 'dispose');
     scene.img('images/locations/pavlovsk/resident/apartment/aptrolan/rolanapolgift.jpg');
     scene.text('"…Rolan, here… take this to dry your tears… I know you like them, and I don\'t have any wipes. You can have them, I\'ve got a bunch."');
-    // TODO-QSP: dynamic text: "Miss <<$pcs_lastname>>… I think it''s time for me to make my apologies. I was e...
     scene.text(`"Miss ${((st as any).pcs_lastname ?? '')}… I think it's time for me to make my apologies. I was extremely rude to kick you out of my house in that way…"`);
     scene.text('"Oh Rolan there\'s no need… I would have done the same if I were in your position"');
-    // TODO-QSP: dynamic text: "Miss <<$pcs_lastname>>… please, let me finish. It''s not for everybody to under...
     scene.text(`"Miss ${((st as any).pcs_lastname ?? '')}… please, let me finish. It's not for everybody to understand people's habits and to not judge them, but you can. That's the reason why my door will always be open for you. Please, would you be so kind as to accept my apologies?"`);
     scene.text('"Oh Rolan I\'m the one who has to apologise! I\'m very happy to spend some time with you like before. Just… take these. I can\'t give you Babushka back, however I try, but you can recruit some workers to restore the vessel."');
-    // TODO-QSP: dynamic text: "Miss <<$pcs_lastname>>…
     scene.text(`"Miss ${((st as any).pcs_lastname ?? '')}…`);
     scene.actions([
       { label: 'Say goodbye', handler: (st: GameState) => {
@@ -173,7 +163,6 @@ function enterFriends(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/apartment/aptrolan/rolanapol1.jpg');
     scene.text('You bend and give Rolan access to your bare ass.');
-    // TODO-QSP: dynamic text: It will hurt <<$pcs_lastname>>, clench your teeth.
     scene.text(`It will hurt ${((st as any).pcs_lastname ?? '')}, clench your teeth.`);
     scene.actions([
       { label: 'Ouch', handler: (st: GameState) => {
@@ -195,7 +184,6 @@ function enterFriends(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     (st as any).rolanblockhome = 0;
     scene.img('images/locations/pavlovsk/resident/apartment/aptrolan/rolanturncry.jpg');
-    // TODO-QSP: dynamic text: "I''m sorry too Miss <<$pcs_lastname>>. I wish this wasn''t necessary, but I''m ...
     scene.text(`"I'm sorry too Miss ${((st as any).pcs_lastname ?? '')}. I wish this wasn't necessary, but I'm sure you have learned your lesson.`);
     scene.actions([
       { label: 'Leave', goto: ['pav_complex', 'start'] },
@@ -250,7 +238,6 @@ function enterFriends(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/apartment/aptrolan/rolanapol1.jpg');
     scene.text('You bend and give Rolan access to your bare ass.');
-    // TODO-QSP: dynamic text: It will hurt <<$pcs_lastname>>, clench your teeth.
     scene.text(`It will hurt ${((st as any).pcs_lastname ?? '')}, clench your teeth.`);
     scene.actions([
       { label: 'ouch', handler: (st: GameState) => {
@@ -272,7 +259,6 @@ function enterFriends(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     (st as any).rolanblockhome = 0;
     scene.img('images/locations/pavlovsk/resident/apartment/aptrolan/rolanturncry.jpg');
-    // TODO-QSP: dynamic text: "I''m sorry too Miss <<$pcs_lastname>>. I wish this wasn''t necessary, but I''m ...
     scene.text(`"I'm sorry too Miss ${((st as any).pcs_lastname ?? '')}. I wish this wasn't necessary, but I'm sure you have learned your lesson.`);
     scene.actions([
       { label: 'Leave', goto: ['pav_complex', 'start'] },
@@ -317,11 +303,9 @@ function enterFriends(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/resident/apartment/aptrolan/rolanapol1.jpg');
     if (((st as any).pantyworntype ?? 0) !== 'none') {
       scene.text('You bend and Rolan lift your skirt, then he pull down your panties to have full access to your bare ass.');
-      // TODO-QSP: dynamic text: It will hurt <<$pcs_lastname>>, clench your teeth.
       scene.text(`It will hurt ${((st as any).pcs_lastname ?? '')}, clench your teeth.`);
     } else {
       scene.text('You bend and give Rolan access to your bare ass.');
-      // TODO-QSP: dynamic text: It will hurt <<$pcs_lastname>>, clench your teeth.
       scene.text(`It will hurt ${((st as any).pcs_lastname ?? '')}, clench your teeth.`);
     }
     scene.actions([
@@ -344,7 +328,6 @@ function enterFriends(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     (st as any).rolanblockhome = 0;
     scene.img('images/locations/pavlovsk/resident/apartment/aptrolan/rolanturncry.jpg');
-    // TODO-QSP: dynamic text: "I''m sorry too Miss <<$pcs_lastname>>. I wish this wasn''t necessary, but I''m ...
     scene.text(`"I'm sorry too Miss ${((st as any).pcs_lastname ?? '')}. I wish this wasn't necessary, but I'm sure you have learned your lesson.`);
     scene.actions([
       { label: 'Leave', goto: ['pav_complex', 'start'] },
@@ -369,7 +352,6 @@ function enterFriends(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 

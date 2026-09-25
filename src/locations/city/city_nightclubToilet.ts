@@ -15,6 +15,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   (s as any).menu_loc = 'city_nightclubToilet';
   (s as any).menu_arg = 'start';
   qspCall(s, 'themes', 'indoors');
+  (s as any).locclass = undefined;
   qspCall(s, 'stat', '');
   scene.text('<center><b>Nightclub - Restroom</b></center>');
   scene.img('images/locations/city/citycenter/nightclub/toiletwalkway.jpg');
@@ -35,7 +36,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Enter the women\'s restroom', goto: ['city_nightclubToilet', 'clubtoilet_women'] },
     { label: 'Return to the dance floor', goto: ['city_nightclub', 'inside'] },
@@ -55,13 +55,12 @@ function enterClubtoiletMen(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('<center><b>Nightclub - Men\'s Room</b></center>');
   scene.img('images/locations/city/citycenter/nightclub/mentoilet.jpg');
-  scene.text('You walk into the men\'s restroom, where you see some sinks and <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027start/u0027); return false;">mirrors</a>.');
+  scene.text('You walk into the men\'s restroom, where you see some sinks and <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027start\u0027); return false;">mirrors</a>.');
   qspCall(s, 'din_van', 'tampon');
   qspCall(s, 'din_van', 'quickwash');
   qspCall(s, 'din_van', 'basin');
   qspCall(s, 'din_van', 'publicpan');
   qspCall(s, 'din_van', 'palelady');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['city_nightclubToilet', 'start'] },
   ]);
@@ -80,13 +79,12 @@ function enterClubtoiletWomen(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('<center><b>Nightclub - Women\'s Room</b></center>');
   scene.img('images/locations/city/citycenter/nightclub/womentoilet.jpg');
-  scene.text('You walk in to the women\'s restroom. You see some sinks and <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027start/u0027); return false;">mirrors</a>. You notice the last stall has its door wide open.');
+  scene.text('You walk in to the women\'s restroom. You see some sinks and <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027start\u0027); return false;">mirrors</a>. You notice the last stall has its door wide open.');
   qspCall(s, 'din_van', 'tampon');
   qspCall(s, 'din_van', 'quickwash');
   qspCall(s, 'din_van', 'basin');
   qspCall(s, 'din_van', 'publicpan');
   qspCall(s, 'din_van', 'palelady');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['city_nightclubToilet', 'start'] },
     { label: 'Go to the last stall', goto: ['gloryhole', 'start'] },

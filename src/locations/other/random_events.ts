@@ -10,21 +10,26 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterRegister(s: GameState, scene: SceneBuilder): void {
   if (((s as any).rand_events_list_last ?? 0)[((s as any).rand_events_temp ?? 0)?.['loc'] + '_' + ((s as any).rand_events_temp ?? 0)?.['name']] + ((s as any).rand_events_temp ?? 0)?.['cooldown'] * 60 > ((s as any).totminut ?? 0)) {
-    // TODO-QSP: exit
+    return;
   }
   (s as any).temp_freq = Math.max(0, (((s as any).rand_events_temp ?? 0)?.['freq']));
   if ((!((s as any).temp_freq ?? 0))) {
-    // TODO-QSP: exit
+    return;
   }
   (s as any).rand_events_total_weight = ((s as any).rand_events_total_weight ?? 0) + (((s as any).temp_freq ?? 0));
-  // TODO-QSP: rand_events_cumweight[] = rand_events_total_weight
-  // TODO-QSP: $rand_events_list_locs[] = $rand_events_temp['loc']
-  // TODO-QSP: $rand_events_list_name[] = $rand_events_temp['name']
+  (s as any).rand_events_cumweight = [...((s as any).rand_events_cumweight ?? []), ((s as any).rand_events_total_weight ?? 0)];
+  (s as any).rand_events_list_locs = [...((s as any).rand_events_list_locs ?? []), (((s as any).rand_events_temp ?? 0)?.['loc'])];
+  (s as any).rand_events_list_name = [...((s as any).rand_events_list_name ?? []), (((s as any).rand_events_temp ?? 0)?.['name'])];
+  (s as any).temp_freq = undefined;
+  (s as any).rand_events_temp = undefined;
   return;
-  // TODO-QSP: end
   if (((s as any).update_report_last ?? 0) < ((s as any).update_report_new ?? 0)) {
     qspGoto(s, 'feature_updates', 'show', ((s as any).loc ?? ''));
   }
+  (s as any).rand_events_list_locs = undefined;
+  (s as any).rand_events_list_name = undefined;
+  (s as any).rand_events_cumweight = undefined;
+  (s as any).rand_events_total_weight = undefined;
   if (((s as any).loc ?? 0) === 'city_residential') {
     (s as any).streetev_title = '<center><b>Residential Area</b></center>';
     (s as any).rand_events_area = 'city';
@@ -109,16 +114,17 @@ function enterRegister(s: GameState, scene: SceneBuilder): void {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterRegister(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   if (((s as any).rand_events_must_happen ?? 0) === 0  &&  (((s as any).rand_events_last ?? 0) + 120 > ((s as any).totminut ?? 0)  ||  (Math.floor(Math.random() * 100) + 1) > 15)) {
-    // TODO-QSP: exit
+    return;
   }
+  (s as any).rand_events_must_happen = undefined;
   if (((s as any).cheatVars ?? 0)?.['random_rapists'] !== 1  &&  ((s as any).DayStage ?? 0) >= 4) {
     ((s as any).rand_events_temp = (s as any).rand_events_temp ?? {})['loc'] = 'street_events_general';
     ((s as any).rand_events_temp = (s as any).rand_events_temp ?? {})['name'] = 'random_rape';
     ((s as any).rand_events_temp = (s as any).rand_events_temp ?? {})['freq'] = 2;
     if (((s as any).clothingworntype ?? 0) === 'nude') {
-      // TODO-QSP: rand_events_temp['freq'] *= 12
+      ((s as any).rand_events_temp = (s as any).rand_events_temp ?? {})['freq'] = ((s as any).rand_events_temp['freq'] ?? 0) * (12);
     } else {
-      // TODO-QSP: rand_events_temp['freq'] *= max(1, ((PCloInhibit * 3) / 2) / 10)
+      ((s as any).rand_events_temp = (s as any).rand_events_temp ?? {})['freq'] = ((s as any).rand_events_temp['freq'] ?? 0) * (Math.max(1, ((((s as any).PCloInhibit ?? 0) * 3) / 2) / 10));
     }
     if (((s as any).PCloCoverFront ?? 0) >= 3  &&  ((s as any).PCloPanties ?? 0) === 0  &&  ((s as any).pantyworntype ?? 0) === 'none') {
       ((s as any).rand_events_temp = (s as any).rand_events_temp ?? {})['freq'] = ((((s as any).rand_events_temp ?? {})?.['freq'] ?? 0) * 3) / 2;
@@ -130,13 +136,13 @@ function enterRegister(s: GameState, scene: SceneBuilder): void {
       ((s as any).rand_events_temp = (s as any).rand_events_temp ?? {})['freq'] = ((((s as any).rand_events_temp ?? {})?.['freq'] ?? 0) * 3) / 2;
     }
     if (((s as any).loc ?? 0) === 'pav_residential'  ||  ((s as any).loc ?? 0) === 'pav_commercial') {
-      // TODO-QSP: rand_events_temp['freq'] /= 2
+      ((s as any).rand_events_temp = (s as any).rand_events_temp ?? {})['freq'] = ((s as any).rand_events_temp['freq'] ?? 0) / (2);
     }
     if (((s as any).alko ?? 0) >= 6) {
-      // TODO-QSP: rand_events_temp['freq'] *= 2
+      ((s as any).rand_events_temp = (s as any).rand_events_temp ?? {})['freq'] = ((s as any).rand_events_temp['freq'] ?? 0) * (2);
     }
     if (((s as any).DayStage ?? 0) === 5) {
-      // TODO-QSP: rand_events_temp['freq'] *= 2
+      ((s as any).rand_events_temp = (s as any).rand_events_temp ?? {})['freq'] = ((s as any).rand_events_temp['freq'] ?? 0) * (2);
     }
     if (((s as any).cheatVars ?? 0)?.['random_rapists'] === 2  &&  ((s as any).rand_events_temp ?? 0)?.['freq'] > 0) {
       ((s as any).rand_events_temp = (s as any).rand_events_temp ?? {})['freq'] = Math.max(1, (((s as any).rand_events_temp ?? {})?.['freq'] ?? 0) / 2);
@@ -169,7 +175,7 @@ function enterRegister(s: GameState, scene: SceneBuilder): void {
       }
     }
     if (((s as any).DayStage ?? 0) === 5) {
-      // TODO-QSP: rand_events_temp['freq'] *= 2
+      ((s as any).rand_events_temp = (s as any).rand_events_temp ?? {})['freq'] = ((s as any).rand_events_temp['freq'] ?? 0) * (2);
     }
     if (((s as any).currentpursetype ?? 0) === 'fashionista') {
       ((s as any).rand_events_temp = (s as any).rand_events_temp ?? {})['freq'] = (((((s as any).rand_events_temp ?? {})?.['freq'] ?? 0) + 1) * 3) / 2;
@@ -179,13 +185,13 @@ function enterRegister(s: GameState, scene: SceneBuilder): void {
       }
     }
     if (((s as any).PCloQuality ?? 0) === 1) {
-      // TODO-QSP: rand_events_temp['freq'] /= 2
+      ((s as any).rand_events_temp = (s as any).rand_events_temp ?? {})['freq'] = ((s as any).rand_events_temp['freq'] ?? 0) / (2);
     } else {
       if (((s as any).PCloQuality ?? 0) === 6) {
-        // TODO-QSP: rand_events_temp['freq'] *= 2
+        ((s as any).rand_events_temp = (s as any).rand_events_temp ?? {})['freq'] = ((s as any).rand_events_temp['freq'] ?? 0) * (2);
       } else {
         if (((s as any).PCloQuality ?? 0) === 7) {
-          // TODO-QSP: rand_events_temp['freq'] *= 3
+          ((s as any).rand_events_temp = (s as any).rand_events_temp ?? {})['freq'] = ((s as any).rand_events_temp['freq'] ?? 0) * (3);
         }
       }
     }
@@ -233,10 +239,10 @@ function enterRegister(s: GameState, scene: SceneBuilder): void {
       ((s as any).rand_events_temp = (s as any).rand_events_temp ?? {})['freq'] = ((((s as any).rand_events_temp ?? {})?.['freq'] ?? 0) * 3) / 2;
     } else {
       if (((s as any).PCloQuality ?? 0) === 6) {
-        // TODO-QSP: rand_events_temp['freq'] *= 2
+        ((s as any).rand_events_temp = (s as any).rand_events_temp ?? {})['freq'] = ((s as any).rand_events_temp['freq'] ?? 0) * (2);
       } else {
         if (((s as any).PCloQuality ?? 0) === 7) {
-          // TODO-QSP: rand_events_temp['freq'] *= 3
+          ((s as any).rand_events_temp = (s as any).rand_events_temp ?? {})['freq'] = ((s as any).rand_events_temp['freq'] ?? 0) * (3);
         }
       }
     }
@@ -285,35 +291,35 @@ function enterRegister(s: GameState, scene: SceneBuilder): void {
     ((s as any).rand_events_temp = (s as any).rand_events_temp ?? {})['name'] = 'random_lover';
     ((s as any).rand_events_temp = (s as any).rand_events_temp ?? {})['freq'] = 5;
     if (((s as any).loc ?? 0) === 'city_center'  ||  ((s as any).loc ?? 0) === 'pav_commercial'  ||  ((s as any).loc ?? 0) === 'city_island') {
-      // TODO-QSP: rand_events_temp['freq'] *= 3
+      ((s as any).rand_events_temp = (s as any).rand_events_temp ?? {})['freq'] = ((s as any).rand_events_temp['freq'] ?? 0) * (3);
     } else {
       if (((s as any).loc ?? 0) === 'city_industrial'  ||  ((s as any).loc ?? 0) === 'pav_industrial') {
-        // TODO-QSP: rand_events_temp['freq'] /= 3
+        ((s as any).rand_events_temp = (s as any).rand_events_temp ?? {})['freq'] = ((s as any).rand_events_temp['freq'] ?? 0) / (3);
       }
     }
     if (((s as any).pcs_hotcat ?? 0) >= 6) {
-      // TODO-QSP: rand_events_temp['freq'] *= (pcs_hotcat - 4)
+      ((s as any).rand_events_temp = (s as any).rand_events_temp ?? {})['freq'] = ((s as any).rand_events_temp['freq'] ?? 0) * ((((s as any).pcs_hotcat ?? 0) - 4));
     } else {
       if (((s as any).pcs_hotcat ?? 0) <= 3) {
-        // TODO-QSP: rand_events_temp['freq'] /= (5 - pcs_hotcat)
+        ((s as any).rand_events_temp = (s as any).rand_events_temp ?? {})['freq'] = ((s as any).rand_events_temp['freq'] ?? 0) / ((5 - ((s as any).pcs_hotcat ?? 0)));
       }
     }
     if (((s as any).PCloQuality ?? 0) <= 2) {
-      // TODO-QSP: rand_events_temp['freq'] /= 4 - PCloQuality
+      ((s as any).rand_events_temp = (s as any).rand_events_temp ?? {})['freq'] = ((s as any).rand_events_temp['freq'] ?? 0) / (4 - ((s as any).PCloQuality ?? 0));
     } else {
       if (((s as any).PCloQuality ?? 0) >= 6) {
-        // TODO-QSP: rand_events_temp['freq'] *= 2
+        ((s as any).rand_events_temp = (s as any).rand_events_temp ?? {})['freq'] = ((s as any).rand_events_temp['freq'] ?? 0) * (2);
       }
     }
-    // TODO-QSP: rand_events_temp['freq'] *= max(1, (PCloInhibit / 10) - 2)
+    ((s as any).rand_events_temp = (s as any).rand_events_temp ?? {})['freq'] = ((s as any).rand_events_temp['freq'] ?? 0) * (Math.max(1, (((s as any).PCloInhibit ?? 0) / 10) - 2));
     if (((s as any).cheatVars ?? 0)?.['random_lovers'] === 2  &&  ((s as any).rand_events_temp ?? 0)?.['freq'] > 0) {
       ((s as any).rand_events_temp = (s as any).rand_events_temp ?? {})['freq'] = Math.max(1, (((s as any).rand_events_temp ?? {})?.['freq'] ?? 0) / 2);
     } else {
       if (((s as any).cheatVars ?? 0)?.['random_lovers'] === 3) {
-        // TODO-QSP: rand_events_temp['freq'] *= 2
+        ((s as any).rand_events_temp = (s as any).rand_events_temp ?? {})['freq'] = ((s as any).rand_events_temp['freq'] ?? 0) * (2);
       } else {
         if (((s as any).cheatVars ?? 0)?.['random_lovers'] === 4) {
-          // TODO-QSP: rand_events_temp['freq'] *= 3
+          ((s as any).rand_events_temp = (s as any).rand_events_temp ?? {})['freq'] = ((s as any).rand_events_temp['freq'] ?? 0) * (3);
         }
       }
     }
@@ -509,20 +515,22 @@ function enterRegister(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (Object.keys((s as any).rand_events_list_name ?? {}).length === 0) {
-    // TODO-QSP: exit
+    return;
   }
   (s as any).temp = (Math.floor(Math.random() * (((s as any).rand_events_total_weight ?? 0) - 1 + 1)) + (1));
   (s as any).temp_i = 0;
-  // TODO-QSP: :rand_events_pick_loop
-  if (((s as any).temp ?? 0) > ((s as any).rand_events_cumweight ?? 0)?.[String((s as any).temp_i ?? 0)]) {
-    (s as any).temp_i = ((s as any).temp_i ?? 0) + (1);
-    // TODO-QSP: jump 'rand_events_pick_loop'
+  while (true) {
+    if (((s as any).temp ?? 0) > ((s as any).rand_events_cumweight ?? 0)?.[String((s as any).temp_i ?? 0)]) {
+      (s as any).temp_i = ((s as any).temp_i ?? 0) + (1);
+      break;
+    }
+    ((s as any).temp = (s as any).temp ?? {})[1] = (((s as any).rand_events_list_locs ?? 0)?.[String((s as any).temp_i ?? 0)] ?? 0);
+    ((s as any).temp = (s as any).temp ?? {})[2] = (((s as any).rand_events_list_name ?? 0)?.[String((s as any).temp_i ?? 0)] ?? 0);
+    (s as any).temp_i = undefined;
+    (s as any).rand_events_last = ((s as any).totminut ?? 0);
+    ((s as any).rand_events_list_last = (s as any).rand_events_list_last ?? {})[(((s as any).temp ?? 0)?.[1] ?? 0) + '_' + (((s as any).temp ?? 0)?.[2] ?? 0)] = ((s as any).totminut ?? 0);
+    dynamicGoto(s, 'temp[1]', 'temp[2]');
   }
-  // TODO-QSP: $temp[1] = $rand_events_list_locs[temp_i]
-  // TODO-QSP: $temp[2] = $rand_events_list_name[temp_i]
-  (s as any).rand_events_last = ((s as any).totminut ?? 0);
-  // TODO-QSP: rand_events_list_last[$temp[1] + '_' + $temp[2]] = totminut
-  dynamicGoto(s, 'temp[1]', 'temp[2]');
   scene.build();
 }
 

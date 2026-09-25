@@ -17,12 +17,10 @@ function enterSexTalkStart(s: GameState, scene: SceneBuilder): void {
     scene.text('You steer the conversation towards sex, a topic Albina is more than comfortable with and readily engages with you about it.');
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSexTalk2(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterSexTalk(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: end
   scene.actions([
     { label: 'Stop talking', goto: ['albina_chat', 'chat_exit'] },
     { label: 'Change the subject', goto: ['albina_chat', 'chat'] },
@@ -39,7 +37,6 @@ function enterSexTalk2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/girl/albina/albinatalk.jpg');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSexTalkTopics(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Let her lead', handler: (st: GameState) => {
     qspCall(st, 'albina_sex_chat', '');
@@ -49,7 +46,6 @@ function enterSexTalk2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSexTalkTopics(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: end
   scene.actions([
     { label: 'Lead the conversation', handler: (st: GameState) => {
     scene.actions([
@@ -93,7 +89,6 @@ function enterBlowjobTalk1(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/girl/albina/albinatalk.jpg');
   scene.text('"Do you like giving blowjobs?" you ask and Albina twists her lips thoughtfully, almost like she can\'t make up her mind.');
   scene.text('"I don\'t really mind giving head, but it\'s not my favorite," she says eventually. "It\'s just foreplay to get the guy hard or a way to get them to finish. Although... when a guy grabs my hair, takes charge, and shoves it down my throat... <i>Fuck me</i>... There\'s something so hot about that. It\'s actually made me cum once or twice before."');
-  // TODO-QSP: end
   scene.actions([
     { label: '"I don\'t like blowjobs"', handler: (st: GameState) => {
     scene.text('"Really? You\'ve gotten off on a blowjob before?" You wrinkle your nose. "I hate blowjobs. The taste is awful, they make my jaw ache, and they\'re just gross all around."');
@@ -123,7 +118,6 @@ function enterBlowjobTalk1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBlowjobTalk2(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: end
   scene.actions([
     { label: 'I hate it', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/albina/albinatalk.jpg');
@@ -186,7 +180,6 @@ function enter69Talk1(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/girl/albina/albinatalk.jpg');
   scene.text('"Do you like 69ing?" you ask.');
   scene.text('"With a guy or a girl?" she smirks back wickedly.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Guy', handler: (st: GameState) => {
     scene.text('"A guy," you smile back and she twists her lips in thought for a moment before taking a deep breath and letting out a big sigh.');
@@ -219,7 +212,6 @@ function enterMasturbationFrequency(s: GameState, scene: SceneBuilder): void {
     }
   }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSexTalk(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -230,7 +222,6 @@ function enterMasturbationMethod(s: GameState, scene: SceneBuilder): void {
   scene.text('"You have a favorite toy?"');
   scene.text('"Of course," she smiles. "I use different dildos to fuck my pussy, but I like to keep a special one aside just for fucking my ass. One that\'s nice and girthy enough to <i>really</i> stretch me out."');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSexTalk(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -239,7 +230,6 @@ function enterCumTaste1(s: GameState, scene: SceneBuilder): void {
   scene.text('"Do you like the taste of cum?" you ask and she immediately wrinkles her nose.');
   scene.text('"No! It\'s <i>vile</i>!" she replies as she makes a fake gagging sound. "I brush my teeth the first chance I get after I finish a guy with my mouth. Why? Do you like it?"');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCumTaste2(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -253,7 +243,6 @@ function enterCumTaste2(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'It\'s gross', handler: (st: GameState) => {
     scene.text('"No, I agree with you one hundred percent," you say, making a face of disgust yourself. "It\'s bitter, it\'s sour, it\'s slimy. I want to throw up as soon as I taste it. It\'s just... <i>ugh!</i>"');
@@ -284,7 +273,6 @@ function enterFacialTalk1(s: GameState, scene: SceneBuilder): void {
   scene.text('"Do you like it when guys cum on your face?" you ask.');
   scene.text('"Sometimes," she shrugs. "When a guy cums on my face, I feel <i>dirty</i>. Like a used cum rag. Which... I don\'t mind if I\'m in the mood for that kind of thing. Like when Lazar fucks me so hard that my makeup is fucked and my hair is frizzy and I\'m practically about to pass out. That\'s the perfect time for him to cum on my face. But that\'s situational. I\'d much rather he just blow his load in my ass. I\'m <i>always</i> in the mood for that..." she grins.');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSexTalk(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -295,12 +283,10 @@ function enterCockTalk1(s: GameState, scene: SceneBuilder): void {
   scene.text('"I\'ll take that as a yes then," you reply, causing you both to laugh.');
   scene.text('"What about you, slut?" she grins. "Do you like them hung like a horse?"');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCockTalk2(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterCockTalk2(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: end
   scene.actions([
     { label: 'I love them too', handler: (st: GameState) => {
     scene.text('You grin back. "I love them too..."');
@@ -360,7 +346,6 @@ function enterGuyTalk(s: GameState, scene: SceneBuilder): void {
     scene.text('"Let\'s not kid ourselves. He would <i>love</i> to fuck me, especially if I were to drop my panties and bend over for him," she replies, which causes you both to laugh.');
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSexTalk(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -375,7 +360,6 @@ function enterPussyTalk(s: GameState, scene: SceneBuilder): void {
     scene.text('"I was just curious," you shrug.');
   }
   scene.text('"I guess I like it," she shrugs back. "It\'s different than sucking a dick. And a lot better for my jaw! Do you like it?"');
-  // TODO-QSP: end
   scene.actions([
     { label: 'I like it too', handler: (st: GameState) => {
     scene.text('"I like it as well," you reply. "Girls taste a lot better than guys!"');
@@ -422,7 +406,6 @@ function enterPussyTalk(s: GameState, scene: SceneBuilder): void {
     scene.text('You shake your head. "No, it\'s not really my thing."');
     scene.text('"Then why did you ask?" she asks with a curious gaze.');
     scene.text('"I was just curious," you shrug.');
-    // TODO-QSP: dynamic text: "That''s called being in the closet, <<$pcs_nickname>>," she replies before chan...
     scene.text(`"That's called being in the closet, ${((st as any).pcs_nickname ?? '')}," she replies before changing the subject.`);
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSexTalk(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
@@ -455,7 +438,6 @@ function enterGirlTalk(s: GameState, scene: SceneBuilder): void {
     scene.text('You spend the next few minutes chatting about the twins and what they\'re like before the conversation moves on.');
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSexTalk(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -502,7 +484,6 @@ function enterSexTalkAlbinaLead(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -511,14 +492,12 @@ function enterAdmitPorno(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/girl/albina/albinatalk.jpg');
   scene.text('She blushes heavily while seemingly struggling to form a sentence.');
-  // TODO-QSP: dynamic text: "Since we''re talking about sex and all, I, uhhh... I have something I need to a...
   scene.text(`"Since we're talking about sex and all, I, uhhh... I have something I need to admit, ${((s as any).pcs_nickname ?? '')}..."`);
   scene.text('"It must be important if you\'re this uneasy about something to do with sex of all things," you reply.');
   scene.text('She avoids eye contact with you as she takes a deep breath. "Okay, here goes. I was paid to do porn..."');
   if (((s as any).AlbinaQW ?? 0)?.['porn_talk'] !== '') {
     scene.text('And before you say anything, yes I know I gave you shit for doing it, which just makes it worse!"');
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Question her', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
@@ -576,7 +555,6 @@ function enterAdmitPorno(s: GameState, scene: SceneBuilder): void {
         scene.text('"You\'re my friend, so I\'m not going to judge you for it, especially if you think it was a mistake," you smile. "Don\'t let it ruin what you\'re trying to acheive with your life here, though. You\'re better than that. I know you are."');
       }
     }
-    // TODO-QSP: dynamic text: A small smile appears on her lips as she wipes her eyes. "Thanks <<$pcs_nickname...
     scene.text(`A small smile appears on her lips as she wipes her eyes. "Thanks ${((st as any).pcs_nickname ?? '')}. That... Actually makes me feel a lot better."`);
     scene.text('She then suddenly springs forwards to give you a hug. "This was eating me up and I really needed to get it off my chest. Thanks for listening and... not judging me about it."');
     scene.text('"I\'m your friend, Albina," you reply as you return the hug. "You know you can talk to me about anything and I\'ll never judge you for it."');
@@ -592,7 +570,6 @@ function enterAdmitPorno(s: GameState, scene: SceneBuilder): void {
 
 function enterFavPosChat(s: GameState, scene: SceneBuilder): void {
   scene.text('"So what\'s your favourite position?" she asks.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Missionary', goto: ['albina_sex_chat', 'missionary'] },
     { label: 'Doggystyle', goto: ['albina_sex_chat', 'doggystyle'] },
@@ -607,7 +584,6 @@ function enterMissionary(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/girl/albina/albinatalk.jpg');
   scene.text('Missionary," you admit.');
   scene.text('"BO-RING!" she shouts.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'It\'s nice!', handler: (st: GameState) => {
     scene.text('"What\'s wrong with missionary?" you protest. "I think it\'s nice."');
@@ -638,7 +614,6 @@ function enterMissionary2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('You both agree to disagree, but find yourself a little turned on by her response. Judging by the way she\'s rubbing her thighs together, you think she is too.');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSexTalk(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Ask her about her anal fetish', goto: ['albina_sex_chat', 'anal'] },
   ]);
@@ -650,7 +625,6 @@ function enterDoggystyle(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/girl/albina/albinatalk.jpg');
   scene.text('"I like doggystyle."');
   scene.text('"That\'s my girl!" she cheers excitedly. "What\'s your favorite thing about it?"');
-  // TODO-QSP: end
   scene.actions([
     { label: 'It\'s more intense', handler: (st: GameState) => {
     scene.text('"There\'s something <i>intense</i> about it," you say. "Something primal. I can\'t explain it, but when I get fucked from behind, it drives me wild."');
@@ -676,7 +650,6 @@ function enterDoggystyle2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('You giggle at her answer, feeling warmth blossoming between your hips and wetness seeping from your pussy. With the "fuck me eyes" she\'s giving you, you think Albina\'s probably feeling something similar.');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSexTalk(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Ask her about her anal fetish', goto: ['albina_sex_chat', 'anal'] },
   ]);
@@ -697,7 +670,6 @@ function enterCowgirl(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'It feels better', handler: (st: GameState) => {
     scene.text('"It just feels better," you shrug. "I don\'t know how to explain it. The angle? Just the way it fits inside when I\'m on top? It feels good. What can I say?"');
@@ -726,7 +698,6 @@ function enterCowgirl2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('You both agree to disagree, but find yourself a little turned on by her response. Judging by the way she\'s rubbing her thighs together, you think she is too.');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSexTalk(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Ask her about her anal fetish', goto: ['albina_sex_chat', 'anal'] },
   ]);
@@ -756,7 +727,6 @@ function enterBjFav(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'I like being in control', handler: (st: GameState) => {
     scene.text('"It makes me feel like I\'m in charge," you grin, though Albina looks back at you confused.');
@@ -835,7 +805,6 @@ function enterBjFav(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSpitOrSwallow(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: end
   scene.actions([
     { label: 'I spit', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/albina/albinatalk.jpg');
@@ -900,7 +869,6 @@ function enterSpitOrSwallow(s: GameState, scene: SceneBuilder): void {
 
 function enterSwallowWhy(s: GameState, scene: SceneBuilder): void {
   scene.text('"What the fuck?" Albina stares at you like you just said you have a meter long cock. "You <i>never</i> spit! You <i>always</i> swallow!"');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Why would I do that?', handler: (st: GameState) => {
     scene.text('"Why would I do that?" you ask. "Why would I swallow if I don\'t want to?"');
@@ -1097,12 +1065,10 @@ function enterBirthControlTalk(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterBirthControlPillHassleCondomVer(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: end
   scene.actions([
     { label: 'Too much hassle', handler: (st: GameState) => {
     scene.text('"Too much hassle," you sigh. "I don\'t want to remember to take a pill every day. It\'s just easier to put a condom on the guy\'s cock before he fucks me. If the condom breaks, I can just get a morning after pill."');
@@ -1115,7 +1081,6 @@ function enterBirthControlPillHassleCondomVer(s: GameState, scene: SceneBuilder)
 }
 
 function enterBirthControlPillHassleNoCondoms(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: end
   scene.actions([
     { label: 'Too much hassle', handler: (st: GameState) => {
     scene.text('"Too much hassle," you sigh. "I don\'t want to remember to take a pill every day. It\'s just one more annoying thing to do. I just want to have sex and enjoy it. Besides, I can always get a morning after pill."');
@@ -1128,7 +1093,6 @@ function enterBirthControlPillHassleNoCondoms(s: GameState, scene: SceneBuilder)
 }
 
 function enterBirthControlHormones(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: end
   scene.actions([
     { label: 'No hormones', handler: (st: GameState) => {
     scene.text('"I don\'t want to mess with my body like that," you say while shaking your head. "Birth control hormones stop you from getting pregnant, but they do all other kinds of other stuff to you. I hear horror stories from changing your tastes to sudden weight gain to killing your sex drive, which sort of defeats the point of getting on the pill in the first place."');
@@ -1141,7 +1105,6 @@ function enterBirthControlHormones(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBirthControlPillProblem(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: end
   scene.actions([
     { label: 'Pill has the same problem', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/albina/albinatalk.jpg');
@@ -1174,7 +1137,6 @@ function enterCalendarMethodWorking(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1183,7 +1145,6 @@ function enterSexToys(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/girl/albina/talk/anal_dildo.jpg');
   scene.text('"Mama is always leaving condoms in my room trying to get me to be safe, but I hate using them," she says while rolling her eyes. "If I\'m gonna take a cock, I want to <i>feel</i> the cock, you know what I mean? I just use them on my dildos instead. It saves me a lot of clean up."');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSexTalk(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1192,16 +1153,14 @@ function enterRoughLove(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/sex/cum/cocksucker4.jpg');
   scene.text('"If my makeup isn\'t completely fucked up and running down my face by the time he cums, I barely even count it as sex," she grins.');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSexTalk(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterAssToPussy(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/shared/sex/anal/doggy/anal31.jpg');
-  // TODO-QSP: iif(AlbinaQW['knows_anal'] = 1, '"When you do anal, ', 'If you ever try anal, ') + 'make sure you ne...
+  scene.text(((((s as any).AlbinaQW ?? 0)?.['knows_anal'] === 1) ? ('"When you do anal, ') : ('If you ever try anal, ')) + 'make sure you never go ass to pussy. I try to keep my asshole as clean as possible, but nothing will ever make it squeaky clean. Ass to pussy is just asking for a UTI. I learned that lesson the hard way," Albina grimaces.');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSexTalk(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1239,7 +1198,6 @@ function enterLesbianTalk1(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'No', handler: (st: GameState) => {
     scene.text('You shake your head. "I can\'t say I have."');
@@ -1255,7 +1213,6 @@ function enterLesbianTalk1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterLesbianTalk2(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: end
   scene.actions([
     { label: 'I like your taste', handler: (st: GameState) => {
     scene.text('"I like the way your pussy tastes," you say, licking your lips.');
@@ -1272,7 +1229,6 @@ function enterLesbianTalk2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterLesbianTalk3(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1283,9 +1239,7 @@ function enterBiggestDickTalk1(s: GameState, scene: SceneBuilder): void {
     if (((s as any).stat ?? 0)?.['biggest_dildo'] >= 15) {
       scene.actions([
         { label: 'Big dildo', handler: (st: GameState) => {
-    // TODO-QSP: dynamic text: "Biggest dick I''ve ever had was only about <<stat[''biggest_cock'']>>cm," you s...
     scene.text(`"Biggest dick I've ever had was only about ${(((st as any).stat ?? 0)?.['biggest_cock'] ?? '')}cm," you say.`);
-    // TODO-QSP: dynamic text: Albina seems shocked, almost offended, but before she can respond, you continue....
     scene.text(`Albina seems shocked, almost offended, but before she can respond, you continue. "But the biggest dildo I've ever taken is ${(((st as any).stat ?? 0)?.['biggest_dildo'] ?? '')}cm."`);
     scene.text('You grin as her jaw drops before her expression recovers into her own sly grin.');
     if (((st as any).stat ?? 0)?.['biggest_dildo'] < 23) {
@@ -1299,7 +1253,6 @@ function enterBiggestDickTalk1(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Only a small one (you liked it)', handler: (st: GameState) => {
-    // TODO-QSP: dynamic text: "Hmm... Maybe... <<stat[''biggest_cock'']>>cm?" you tell her.
     scene.text(`"Hmm... Maybe... ${(((st as any).stat ?? 0)?.['biggest_cock'] ?? '')}cm?" you tell her.`);
     scene.text('Her jaw drops. "What?! That\'s practically just a finger!"');
     scene.text('"I didn\'t mind," you shrug. "I liked it."');
@@ -1310,7 +1263,6 @@ function enterBiggestDickTalk1(s: GameState, scene: SceneBuilder): void {
       { label: 'Only a small one (embarrassed)', handler: (st: GameState) => {
     scene.text('"Not very big..." you blush and Albina raises an eyebrow.');
     scene.text('"Exactly how small is \'not very big\'?" she asks.');
-    // TODO-QSP: dynamic text: "Maybe... <<stat[''biggest_cock'']>>cm?" you admit.
     scene.text(`"Maybe... ${(((st as any).stat ?? 0)?.['biggest_cock'] ?? '')}cm?" you admit.`);
     scene.text('Her jaw drops. "What?! That\'s practically just a finger!"');
     scene.text('"Not very impressive is it?" you say ruefully.');
@@ -1321,7 +1273,6 @@ function enterBiggestDickTalk1(s: GameState, scene: SceneBuilder): void {
       { label: 'Only a small one (annoyed)', handler: (st: GameState) => {
     scene.text('"Ugh! As if I could call it a dick!"');
     scene.text('Albina raises an eyebrow.');
-    // TODO-QSP: dynamic text: "The ''biggest''," you start, making air quotes with your fingers. "I''ve ever h...
     scene.text(`"The 'biggest'," you start, making air quotes with your fingers. "I've ever had was only about ${(((st as any).stat ?? 0)?.['biggest_cock'] ?? '')}cm!"`);
     scene.text('Her jaw drops. "What?! That\'s practically just a finger!"');
     scene.text('"I know, right?!" you moan loudly. "What\'s a girl got to do to get a real dick to fuck?!"');
@@ -1334,9 +1285,7 @@ function enterBiggestDickTalk1(s: GameState, scene: SceneBuilder): void {
       if (((s as any).stat ?? 0)?.['biggest_dildo'] >= 15) {
         scene.actions([
           { label: 'Big dildo', handler: (st: GameState) => {
-    // TODO-QSP: dynamic text: "Biggest dick I''ve ever had was only about <<stat[''biggest_cock'']>>cm," you s...
     scene.text(`"Biggest dick I've ever had was only about ${(((st as any).stat ?? 0)?.['biggest_cock'] ?? '')}cm," you say.`);
-    // TODO-QSP: dynamic text: Albina seems shocked, almost offended, but before she can respond, you continue....
     scene.text(`Albina seems shocked, almost offended, but before she can respond, you continue. "But the biggest dildo I've ever taken is ${(((st as any).stat ?? 0)?.['biggest_dildo'] ?? '')}cm."`);
     scene.text('You grin as her jaw drops before her expression recovers into her own sly grin.');
     if (((st as any).stat ?? 0)?.['biggest_dildo'] < 23) {
@@ -1350,7 +1299,6 @@ function enterBiggestDickTalk1(s: GameState, scene: SceneBuilder): void {
       }
       scene.actions([
         { label: 'Only an average one (you liked it)', handler: (st: GameState) => {
-    // TODO-QSP: dynamic text: "Hmm... Maybe... <<stat[''biggest_cock'']>>cm?" you tell her.
     scene.text(`"Hmm... Maybe... ${(((st as any).stat ?? 0)?.['biggest_cock'] ?? '')}cm?" you tell her.`);
     scene.text('"Seriously?" she asks, looking rather unimpressed. "Lazar is practically twice as big!"');
     scene.text('"I didn\'t mind," you shrug. "I liked it."');
@@ -1360,7 +1308,6 @@ function enterBiggestDickTalk1(s: GameState, scene: SceneBuilder): void {
         { label: 'Only an average one (embarrassed)', handler: (st: GameState) => {
     scene.text('"Not very big..." you blush.');
     scene.text('"Exactly how small is \'not very big\'?" she asks while raising an eyebrow.');
-    // TODO-QSP: dynamic text: "Maybe... <<stat[''biggest_cock'']>>cm?" you admit.
     scene.text(`"Maybe... ${(((st as any).stat ?? 0)?.['biggest_cock'] ?? '')}cm?" you admit.`);
     scene.text('"That\'s... Pretty average, yeah..." she replies.');
     scene.text('"Not very impressive is it?" you say ruefully.');
@@ -1371,7 +1318,6 @@ function enterBiggestDickTalk1(s: GameState, scene: SceneBuilder): void {
         { label: 'Only an average one (annoyed)', handler: (st: GameState) => {
     scene.text('"Pretty average, if you could even call it that!" you scoff.');
     scene.text('Albina raises an eyebrow. "Define \'average\'"');
-    // TODO-QSP: dynamic text: "About <<stat[''biggest_cock'']>>cm," you reply.
     scene.text(`"About ${(((st as any).stat ?? 0)?.['biggest_cock'] ?? '')}cm," you reply.`);
     scene.text('"That\'s... Pretty average, yeah..." she replies.');
     scene.text('You sigh loudly. "What\'s a girl got to do to get a real dick to fuck?"');
@@ -1383,7 +1329,6 @@ function enterBiggestDickTalk1(s: GameState, scene: SceneBuilder): void {
       if (((s as any).stat ?? 0)?.['biggest_cock'] < 20) {
         scene.actions([
           { label: 'An above average one (you liked it)', handler: (st: GameState) => {
-    // TODO-QSP: dynamic text: "Hmm... Maybe... <<stat[''biggest_cock'']>>cm?" you tell her.
     scene.text(`"Hmm... Maybe... ${(((st as any).stat ?? 0)?.['biggest_cock'] ?? '')}cm?" you tell her.`);
     scene.text('"Hhhmm..." she replies. "Lazar is still bigger than that."');
     scene.text('"I didn\'t mind," you shrug. "I liked it."');
@@ -1393,7 +1338,6 @@ function enterBiggestDickTalk1(s: GameState, scene: SceneBuilder): void {
           { label: 'Above average (embarrassed)', handler: (st: GameState) => {
     scene.text('"Above average..." you blush.');
     scene.text('"Exactly how big is \'above average\'?" she asks while raising an eyebrow.');
-    // TODO-QSP: dynamic text: "Maybe... <<stat[''biggest_cock'']>>cm?" you admit.
     scene.text(`"Maybe... ${(((st as any).stat ?? 0)?.['biggest_cock'] ?? '')}cm?" you admit.`);
     scene.text('"Yeah, that\'s above average for most guys..." she replies.');
     scene.text('"It\'s something, no?" you say ruefully.');
@@ -1404,7 +1348,6 @@ function enterBiggestDickTalk1(s: GameState, scene: SceneBuilder): void {
           { label: 'Above average (annoyed)', handler: (st: GameState) => {
     scene.text('"He was above average, but I want something bigger."');
     scene.text('"Exactly how big is \'above average\'?" she asks while raising an eyebrow.');
-    // TODO-QSP: dynamic text: "<<stat[''biggest_cock'']>>cm," you tell her.
     scene.text(`"${(((st as any).stat ?? 0)?.['biggest_cock'] ?? '')}cm," you tell her.`);
     scene.text('"Yeah, that\'s above average for most guys..." she replies.');
     scene.text('You sigh loudly. "What\'s a girl got to do to get a real dick to fuck?"');
@@ -1418,7 +1361,6 @@ function enterBiggestDickTalk1(s: GameState, scene: SceneBuilder): void {
             { label: 'A monstrous one (open)', handler: (st: GameState) => {
     scene.text('"I don\'t even think it\'s possible for a cock to be this big!" you laugh.');
     scene.text('She raises an eyebrow. "Try me."');
-    // TODO-QSP: dynamic text: "<<stat[''biggest_cock'']>>cm," you tell her with a smile.
     scene.text(`"${(((st as any).stat ?? 0)?.['biggest_cock'] ?? '')}cm," you tell her with a smile.`);
     if (((st as any).region ?? 0) === 'city') {
       scene.text('Her jaw drops. "Holy shit! And I thought my record of 28cm was impressive! Who is this guy and where can I fuck him?"');
@@ -1432,7 +1374,6 @@ function enterBiggestDickTalk1(s: GameState, scene: SceneBuilder): void {
             { label: 'A monstrous one (embarrassed)', handler: (st: GameState) => {
     scene.text('"I... I didn\'t even know it was possible for a guy to be this... big..." you blush.');
     scene.text('She raises an eyebrow. "Try me."');
-    // TODO-QSP: dynamic text: "<<stat[''biggest_cock'']>>cm..." you blush. "He had a <<stat[''biggest_cock'']>...
     scene.text(`"${(((st as any).stat ?? 0)?.['biggest_cock'] ?? '')}cm..." you blush. "He had a ${(((st as any).stat ?? 0)?.['biggest_cock'] ?? '')}cm cock...`);
     if (((st as any).region ?? 0) === 'city') {
       scene.text('Her jaw drops. "Holy shit! And I thought my record of 28cm was impressive! Who is this guy and where can I fuck him?"');
@@ -1448,7 +1389,6 @@ function enterBiggestDickTalk1(s: GameState, scene: SceneBuilder): void {
           if (((s as any).stat ?? 0)?.['biggest_cock'] < 23) {
             scene.actions([
               { label: 'A pretty big one (you liked it)', handler: (st: GameState) => {
-    // TODO-QSP: dynamic text: "Hmm... Maybe... <<stat[''biggest_cock'']>>cm?" you tell her.
     scene.text(`"Hmm... Maybe... ${(((st as any).stat ?? 0)?.['biggest_cock'] ?? '')}cm?" you tell her.`);
     scene.text('"Hhhmm..." she replies. "Lazar is still bigger than that."');
     scene.text('"I didn\'t mind," you shrug. "I liked it."');
@@ -1458,7 +1398,6 @@ function enterBiggestDickTalk1(s: GameState, scene: SceneBuilder): void {
               { label: 'A pretty big one (embarrassed)', handler: (st: GameState) => {
     scene.text('"A pretty big one..." you blush.');
     scene.text('"Exactly how big is \'pretty big\'?" she asks while raising an eyebrow.');
-    // TODO-QSP: dynamic text: "Maybe... <<stat[''biggest_cock'']>>cm?" you admit.
     scene.text(`"Maybe... ${(((st as any).stat ?? 0)?.['biggest_cock'] ?? '')}cm?" you admit.`);
     scene.text('"Yeah, that\'s pretty big," she replies.');
     scene.text('"Pretty impressive, no?" you say ruefully.');
@@ -1468,7 +1407,6 @@ function enterBiggestDickTalk1(s: GameState, scene: SceneBuilder): void {
               { label: 'A pretty big one (annoyed)', handler: (st: GameState) => {
     scene.text('"He was pretty big, but is it wrong that I wanted something bigger?"');
     scene.text('"Exactly how big is \'pretty big\'?" she asks while raising an eyebrow.');
-    // TODO-QSP: dynamic text: "<<stat[''biggest_cock'']>>cm," you tell her.
     scene.text(`"${(((st as any).stat ?? 0)?.['biggest_cock'] ?? '')}cm," you tell her.`);
     scene.text('"Not bad, but Lazar is still bigger," she replies. "Not by much, mind you."');
     scene.text('"I know!" you moan. "What does a girl have to do to get a guy who\'s hung like a horse?"');
@@ -1480,7 +1418,6 @@ function enterBiggestDickTalk1(s: GameState, scene: SceneBuilder): void {
             if (((s as any).stat ?? 0)?.['biggest_cock'] === 23) {
               scene.actions([
                 { label: 'A huge one (open)', handler: (st: GameState) => {
-    // TODO-QSP: dynamic text: "<<stat[''biggest_cock'']>>cm," you tell her with a smile.
     scene.text(`"${(((st as any).stat ?? 0)?.['biggest_cock'] ?? '')}cm," you tell her with a smile.`);
     scene.text('"Hhhmm..." she replies. "That\'s the same size as Lazar. Wait. Was it him?"');
     if (((st as any).AlbinaQW ?? 0)?.['Lazar_Threesome'] !== 0  &&  ((st as any).npc_had_sex ?? 0)?.['A149']) {
@@ -1510,7 +1447,6 @@ function enterBiggestDickTalk1(s: GameState, scene: SceneBuilder): void {
         scene.text('"You slut!" she grins. "I wonder what panties you gave him for his collection..."');
       } else {
         scene.text('"No, it was another guy," you reply. "It felt... nice."');
-        // TODO-QSP: dynamic text: "Don''t act all shy, <<$pcs_nickname>>!" she grins. "If he''s as big as you say,...
         scene.text(`"Don't act all shy, ${((st as any).pcs_nickname ?? '')}!" she grins. "If he's as big as you say, then I have no doubt that he had you moaning like a well fucked slut."`);
       }
     }
@@ -1520,10 +1456,8 @@ function enterBiggestDickTalk1(s: GameState, scene: SceneBuilder): void {
             } else {
               scene.actions([
                 { label: 'A massive one (open)', handler: (st: GameState) => {
-    // TODO-QSP: dynamic text: "<<stat[''biggest_cock'']>>cm," you tell her with a smile.
     scene.text(`"${(((st as any).stat ?? 0)?.['biggest_cock'] ?? '')}cm," you tell her with a smile.`);
     if (((st as any).region ?? 0) === 'city') {
-      // TODO-QSP: dynamic text: "Pretty impressive, <<$pcs_nickname>>," she replies with a grin. "My record is 2...
       scene.text(`"Pretty impressive, ${((st as any).pcs_nickname ?? '')}," she replies with a grin. "My record is 28cm."`);
     } else {
       scene.text('"Holy shit!" she exclaims and compares the length to her forearm. "How did something like <i>that</i> fit inside your pussy?!"');
@@ -1535,13 +1469,10 @@ function enterBiggestDickTalk1(s: GameState, scene: SceneBuilder): void {
                 { label: 'A massive one (embarrassed)', handler: (st: GameState) => {
     scene.text('"Is \'massive\' a term I could use?" you blush.');
     scene.text('"Exactly how big is \'massive\'?" she asks while raising an eyebrow.');
-    // TODO-QSP: dynamic text: "Maybe... <<stat[''biggest_cock'']>>cm?" you admit.
     scene.text(`"Maybe... ${(((st as any).stat ?? 0)?.['biggest_cock'] ?? '')}cm?" you admit.`);
     if (((st as any).region ?? 0) === 'city') {
-      // TODO-QSP: dynamic text: "Pretty impressive, <<$pcs_nickname>>," she replies with a grin. "My record is 2...
       scene.text(`"Pretty impressive, ${((st as any).pcs_nickname ?? '')}," she replies with a grin. "My record is 28cm."`);
     } else {
-      // TODO-QSP: dynamic text: Her jaw drops. "Holy shit! <<$pcs_nickname>>! Who is this guy and when can you g...
       scene.text(`Her jaw drops. "Holy shit! ${((st as any).pcs_nickname ?? '')}! Who is this guy and when can you get him in my bed?"`);
       scene.text('You continue blushing as Albina fawns over you, but feel a sense of pride within yourself.');
     }
@@ -1554,7 +1485,6 @@ function enterBiggestDickTalk1(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Keep your secrets', handler: (st: GameState) => {
     scene.text('"Hmmm... Why should I tell you?" you reply teasingly.');
@@ -1583,7 +1513,6 @@ function enterAlbAskBodyCount1(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Tell her your body count', handler: (st: GameState) => {
     qspCall(st, 'albina_sex_chat', '');
@@ -1595,45 +1524,45 @@ function enterAlbAskBodyCount1(s: GameState, scene: SceneBuilder): void {
 function enterAlbAskBodyCount2(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_body_count = (((s as any).stat ?? {})?.['male_sexual_partners'] ?? 0) + (((s as any).stat ?? {})?.['female_sexual_partners'] ?? 0) + (((s as any).stat ?? {})?.['herm_sexual_partners'] ?? 0);
   if (((s as any).temp_body_count ?? 0) <= 5) {
-    // TODO-QSP: iif(npc_had_sex['A23'], '"Well, including you..." you start teasingly. "Only <<temp_body_count>>."',...
+    scene.text(`iif(npc_had_sex['A23'], '"Well, including you..." you start teasingly. "Only ${((s as any).temp_body_count ?? '')}."', '"Only..." You hold up ${((s as any).temp_body_count ?? '')} fingers on your hand.')`);
     scene.text('"Really??" She seems rather surprised.');
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterAlbAskBodyCountFew(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
     if (((s as any).temp_body_count ?? 0) <= 10) {
-      // TODO-QSP: iif(npc_had_sex['A23'], '"Well, including you..." you start teasingly. "I''ve slept with <<temp_body...
+      scene.text(`iif(npc_had_sex['A23'], '"Well, including you..." you start teasingly. "I've slept with ${((s as any).temp_body_count ?? '')} people."', '"Only a few," you tell her. "I've slept with ${((s as any).temp_body_count ?? '')} people."')`);
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterAlbAskBodyCountFew(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       if (((s as any).temp_body_count ?? 0) <= 15) {
-        // TODO-QSP: iif(npc_had_sex['A23'], '"Well, including you..." you start teasingly. "I''ve probably fucked about ...
+        scene.text('iif(npc_had_sex[\'A23\'], \'"Well, including you..." you start teasingly. "I\'ve probably fucked about a dozen people."\', \'"I\'ve probably fucked about a dozen people," you admit freely.\')');
         scene.text('"Those are rookie numbers," she smirks. "You gotta up your game, girl."');
         { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterAlbAskBodyCountFew(s, scene); (s as any).locArgs = __savedLocArgs; }
       } else {
         if (((s as any).temp_body_count ?? 0) <= 20) {
-          // TODO-QSP: iif(npc_had_sex['A23'], '"Well, including you..." you start teasingly. "I''ve fucked more than a doz...
+          scene.text('iif(npc_had_sex[\'A23\'], \'"Well, including you..." you start teasingly. "I\'ve fucked more than a dozen people. Maybe high teens?"\', \'"I\'ve fucked more than a dozen people," you admit freely. "Maybe high teens?"\')');
           scene.text('"You\'re practically a prude!" she grins. ');
           { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterAlbAskBodyCountFew(s, scene); (s as any).locArgs = __savedLocArgs; }
         } else {
           if (((s as any).temp_body_count ?? 0) <= 25) {
-            // TODO-QSP: iif(npc_had_sex['A23'], '"Well, including you..." you start teasingly. "I''ve probably fucked about ...
+            scene.text('iif(npc_had_sex[\'A23\'], \'"Well, including you..." you start teasingly. "I\'ve probably fucked about a couple dozen."\', \'"I\'ve probably fucked about a couple dozen," you admit freely.\')');
             scene.text('"Not bad," she smirks, looking impressed.');
             { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterAlbAskBodyCountDozens(s, scene); (s as any).locArgs = __savedLocArgs; }
           } else {
             if (((s as any).temp_body_count ?? 0) <= 50) {
-              // TODO-QSP: iif(npc_had_sex['A23'], '"Well, including you..." you start teasingly. "I''ve fucked a few dozen. Ma...
+              scene.text('iif(npc_had_sex[\'A23\'], \'"Well, including you..." you start teasingly. "I\'ve fucked a few dozen. Maybe two or three."\', \'"I\'ve fucked a few dozen. Maybe two or three," you admit freely.\')');
               scene.text('"Not bad," she smirks, looking impressed.');
               { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterAlbAskBodyCountDozens(s, scene); (s as any).locArgs = __savedLocArgs; }
             } else {
               if (((s as any).temp_body_count ?? 0) <= 100) {
-                // TODO-QSP: iif(npc_had_sex['A23'], '"Well, including you..." you start teasingly. "I''ve fucked a few dozen peo...
+                scene.text('iif(npc_had_sex[\'A23\'], \'"Well, including you..." you start teasingly. "I\'ve fucked a few dozen people. At least fifty."\', \'"I\'ve fucked a few dozen people," you admit freely. "At least fifty."\')');
                 scene.text('"Fifty? Damn!" she smirks and looks you up and down, seemingly impressed. It\'s hard not to notice how her eyes linger briefly between your legs. "That\'s a hefty number."');
                 { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterAlbAskBodyCountDozens(s, scene); (s as any).locArgs = __savedLocArgs; }
               } else {
                 if (((s as any).temp_body_count ?? 0) <= 200) {
-                  // TODO-QSP: iif(npc_had_sex['A23'], '"Well, including you..." you start teasingly. "I''ve probably fucked about ...
+                  scene.text('iif(npc_had_sex[\'A23\'], \'"Well, including you..." you start teasingly. "I\'ve probably fucked about a hundred people."\', \'"I\'ve probably fucked about a hundred people," you admit freely.\')');
                   scene.text('Her jaw drops. "<i>A hundred</i>? I was getting pimped out for <i>years</i> and I haven\'t fucked that many people!"');
                   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterAlbAskBodyCountHundreds(s, scene); (s as any).locArgs = __savedLocArgs; }
                 } else {
-                  // TODO-QSP: iif(npc_had_sex['A23'], '"Well, including you..." you start teasingly. "I''ve fucked hundreds of peo...
+                  scene.text('iif(npc_had_sex[\'A23\'], \'"Well, including you..." you start teasingly. "I\'ve fucked hundreds of people."\', \'"I\'ve fucked hundreds of people," you admit freely.\')');
                   scene.text('Her jaw drops. "<i>Hundreds?</i>"');
                   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterAlbAskBodyCountHundreds(s, scene); (s as any).locArgs = __savedLocArgs; }
                 }
@@ -1644,12 +1573,11 @@ function enterAlbAskBodyCount2(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
+  (s as any).temp_body_count = undefined;
   scene.build();
 }
 
 function enterAlbAskBodyCountHundreds(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: end
   scene.actions([
     { label: 'Get embarrassed', handler: (st: GameState) => {
     scene.actions([
@@ -1666,7 +1594,6 @@ function enterAlbAskBodyCountHundreds(s: GameState, scene: SceneBuilder): void {
     scene.text('"People keep asking..." you mumble shyly. "It adds up quick..."');
     scene.text('She cocks an eyebrow. "You fuck anybody that asks?"');
     scene.text('"Pretty much," you confess.');
-    // TODO-QSP: dynamic text: She stares at you for a few seconds before a wicked smile slowly spreads across ...
     scene.text(`She stares at you for a few seconds before a wicked smile slowly spreads across her lips. "${((st as any).pcs_nickname ?? '')}... That's kinda slutty."`);
     scene.text('Her smile transforms into a full blown grin and another wave of heat flushes through your face.');
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSexTalk(st, scene); (st as any).locArgs = __savedLocArgs; }
@@ -1684,7 +1611,6 @@ function enterAlbAskBodyCountHundreds(s: GameState, scene: SceneBuilder): void {
     scene.text('"People keep asking," you shrug. "If they want to fuck me, they can fuck me."');
     scene.text('She cocks an eyebrow. "You fuck anybody that asks?"');
     scene.text('"Pretty much," you shrug again.');
-    // TODO-QSP: dynamic text: She stares at you for a few seconds before a wicked smile slowly spreads across ...
     scene.text(`She stares at you for a few seconds before a wicked smile slowly spreads across her lips. "${((st as any).pcs_nickname ?? '')}... That's kinda slutty."`);
     scene.text('Her smile then transforms into a full blown grin.');
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSexTalk(st, scene); (st as any).locArgs = __savedLocArgs; }
@@ -1696,7 +1622,6 @@ function enterAlbAskBodyCountHundreds(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAlbAskBodyCountDozens(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: end
   scene.actions([
     { label: 'Sex is fun', handler: (st: GameState) => {
     scene.text('"What can I say?" you smirk in return. "Sex is fun."');
@@ -1723,7 +1648,6 @@ function enterAlbAskBodyCountFew(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Trust issues', handler: (st: GameState) => {
     scene.text('"It\'s a trust thing," you say. "I don\'t want to let someone put it in me unless I trust them."');
@@ -1741,9 +1665,7 @@ function enterAlbAskBodyCountFew(s: GameState, scene: SceneBuilder): void {
 
 function enterSexualFantasies1(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/girl/albina/albinatalk.jpg');
-  // TODO-QSP: dynamic text: "<<$pcs_nickname>>," she says with a sly look. "Do you have any sexual fantasies...
   scene.text(`"${((s as any).pcs_nickname ?? '')}," she says with a sly look. "Do you have any sexual fantasies?"`);
-  // TODO-QSP: end
   scene.actions([
     { label: 'No', handler: (st: GameState) => {
     scene.actions([
@@ -1882,7 +1804,6 @@ function enterSexualFantasies1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAlbinasFantasy(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: end
   scene.actions([
     { label: 'Ask about her fantasies', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/albina/albinatalk.jpg');
@@ -1916,7 +1837,6 @@ function enterAlbinasFantasy(s: GameState, scene: SceneBuilder): void {
 function enterPenetrationCum1(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/girl/albina/albinatalk.jpg');
   scene.text('"Can you cum from getting fucked?" she asks. "Meaning <i>just</i> from getting fucked. No clit play or anything."');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Yes', handler: (st: GameState) => {
     scene.text('"I sure <i>do</i>," you grin back, putting an extra emphasis on the word that shows how you orgasm.');
@@ -1946,7 +1866,6 @@ function enterAnal(s: GameState, scene: SceneBuilder): void {
     scene.text('"Well..." you stammer. "I... I want to try it and..."');
     scene.text('She gives you a hard stare. "And you thought to ask the buttslut how to do it?"');
     scene.text('You stutter trying to form an answer, and she breaks into laughter.');
-    // TODO-QSP: dynamic text: "Relax <<$pcs_nickname>>, I''m just fucking with you. What do you want to know?"
     scene.text(`"Relax ${((st as any).pcs_nickname ?? '')}, I'm just fucking with you. What do you want to know?"`);
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterAnalQuestionsShy(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
@@ -1955,7 +1874,6 @@ function enterAnal(s: GameState, scene: SceneBuilder): void {
     scene.text('"Cause I want to try it," you say and she gives you a hard stare.');
     scene.text('"So you thought you should ask the buttslut about it?"');
     scene.text('"Yeah," you grin without flinching and she laughs heartily.');
-    // TODO-QSP: dynamic text: "Damn <<$pcs_nickname>>! I can''t even scare you for a second, can I? Well, you'...
     scene.text(`"Damn ${((st as any).pcs_nickname ?? '')}! I can't even scare you for a second, can I? Well, you're asking the right girl. What do you want to know?"`);
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterAnalQuestionsOpen(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
@@ -1967,7 +1885,6 @@ function enterAnal(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/girl/albina/albinatalk.jpg');
     scene.text('"Well... I- I\'ve tried it a few times..." you stammer. "But it\'s always been... painful... So I thought could ask-"');
     scene.text('"The buttslut about it?" she asks, giving you a hard stare. You sputter, trying to come up with an answer that will get you out of this before she breaks into laughter.');
-    // TODO-QSP: dynamic text: "Relax <<$pcs_nickname>>, I''m just fucking with you. What do you want to know?"
     scene.text(`"Relax ${((st as any).pcs_nickname ?? '')}, I'm just fucking with you. What do you want to know?"`);
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterAnalQuestionsShy(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
@@ -1982,7 +1899,6 @@ function enterAnal(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Because of the rumors', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/albina/albinatalk.jpg');
@@ -1994,7 +1910,7 @@ function enterAnal(s: GameState, scene: SceneBuilder): void {
   } },
     { label: 'Curiosity', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/albina/albinatalk.jpg');
-    // TODO-QSP: '"I''m just... really curious," you tell her. She raises an eyebrow. ' + iif(stat['anal'] = 0, '"I''...
+    scene.text('"I\'m just... really curious," you tell her. She raises an eyebrow. ' + ((((st as any).stat ?? 0)?.['anal'] === 0) ? ('"I\'ve never done anal myself, but you seem to like it a lot, so I was wondering what it is that turns you on about it?"') : ('"I\'ve taken it up the ass before, but I wanted to know what it is that you like about it. Compare, you know?"')));
     scene.text('She chews on her cheek for a second, seeming to be judging if you\'re serious or not before her lips split into a reluctant smile.');
     scene.text('"Well, if you <i>must</i> to know..." she says. "There\'s something I love about the my asshole getting <i>stretched out</i>. I can\'t even really describe it to myself. That feeling of a big cock spreading my cheeks, pummeling a hole it isn\'t supposed to go in... Fuck, it makes my insides gush. And when it\'s over and I\'m left exhausted and scuffed up with cum leaking from my asshole -<i>Fuck</i>- That\'s the best feeling in the world to me."');
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSexTalk(st, scene); (st as any).locArgs = __savedLocArgs; }
@@ -2013,7 +1929,6 @@ function enterAnalQuestionsShy(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'What position?', handler: (st: GameState) => {
     scene.text('"What... position should I have my first time in?" you ask shyly.');
-    // TODO-QSP: dynamic text: "You''re getting way too far ahead of yourself, <<$pcs_nickname>>. Here''s my ad...
     scene.text(`"You're getting way too far ahead of yourself, ${((st as any).pcs_nickname ?? '')}. Here's my advice: Start small," she replies.`);
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterAnalEnd1(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
@@ -2032,7 +1947,6 @@ function enterAnalQuestionsShy(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -2046,7 +1960,6 @@ function enterAnalQuestionsOpen(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'What\'s the best position?', handler: (st: GameState) => {
     scene.text('"What\'s the best position to try it in?" you ask excitedly. "Cowgirl seems hard, but doggy seems like it could be rough. I was won-"');
-    // TODO-QSP: dynamic text: She holds her hand up and interrupts you. "You''re getting way too far ahead of ...
     scene.text(`She holds her hand up and interrupts you. "You're getting way too far ahead of yourself, ${((st as any).pcs_nickname ?? '')}. Here's my advice: Start small."`);
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterAnalEnd1(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
@@ -2061,14 +1974,12 @@ function enterAnalQuestionsOpen(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterAnal2(s: GameState, scene: SceneBuilder): void {
   scene.text('"Try playing with your asshole while masturbating and get used to something touching you down there. If you\'re feeling brave, try a finger up to your knuckle right when you\'re about to cum. Then next time try one from the start. Or a small dildo with lots of lube. Or better yet, a butt plug. Then you can practice all day," she smirks. "Find out what works for you and <i>then</i> try it with a real dick, otherwise it\'ll be <i>very</i> painful and could put you off trying it again."');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterAnalEnd1(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -2076,7 +1987,6 @@ function enterAnalEnd1(s: GameState, scene: SceneBuilder): void {
   scene.text('You thank her for her helpful advice and she continues answering your questions and giving you all the advice she feels you need to know.');
   scene.text('"And, if you need some <i>hands on</i> teaching... you know you can always <i>come</i> here," she says, shamelessly eye fucking you.');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSexTalk(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -2084,7 +1994,6 @@ function enterAnalEnd2(s: GameState, scene: SceneBuilder): void {
   scene.text('"One word," she says, holding up her finger. "Practice. Your mistake was going straight for a real dick. That\'s a big no no. Practice with your fingers or a small dildo first to see what works for you. Some girls like it slow and gentle, others like it fast and rough. Just keep practicing and getting used to it. And relax. It\'ll always be a little painful, but it\'ll become more pleasurable the more you do it, especially when you get better at controlling the instinctive reflex to clench around what\'s inside you, whether that be a dildo or a fat cock."');
   scene.text('She grins at you. "If you ever want a <i>hands on</i> lesson, then I\'m willing to \'teach\' you some things..."');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSexTalk(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.build();
 }
 

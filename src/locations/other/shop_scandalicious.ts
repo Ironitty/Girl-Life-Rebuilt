@@ -7,13 +7,13 @@ import type { SceneBuilder } from '../../core/scene';
 function enterDefault(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'shop_scandalicious', 'start');
   (s as any).location_type = 'public_indoors';
+  (s as any).locclass = undefined;
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'indoors');
   scene.text('<center><b>Scandalicious</b></center>');
   scene.img('images/locations/city/citycenter/mall/scandalicious/shop.jpg');
   scene.text('This store is cheap and tacky. The clothing lives up to the name though and you assume they saved a lot of money on fabric.');
   scene.text('It\'s not somewhere you\'d go with your Mom or let her know you\'d even looked in the window, but if you want to show off your body there\'s nowhere better to shop. The staff aren\'t judging anyone, but there\'s still a mix between those hiding their embarrassment and those exuding confidence.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 3;
@@ -43,13 +43,13 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'shop_scandalicious', 'start');
   (s as any).location_type = 'public_indoors';
+  (s as any).locclass = undefined;
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'indoors');
   scene.text('<center><b>Scandalicious</b></center>');
   scene.img('images/locations/city/citycenter/mall/scandalicious/shop.jpg');
   scene.text('This store is cheap and tacky. The clothing lives up to the name though and you assume they saved a lot of money on fabric.');
   scene.text('It\'s not somewhere you\'d go with your Mom or let her know you\'d even looked in the window, but if you want to show off your body there\'s nowhere better to shop. The staff aren\'t judging anyone, but there\'s still a mix between those hiding their embarrassment and those exuding confidence.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 3;
@@ -87,7 +87,6 @@ function enterClothes(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'shop_utils', 'init', 'end');
   }
   qspCall(s, 'shop_utils', 'display', 'grid_shop');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -110,7 +109,6 @@ function enterDresses(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'shop_utils', 'init', 'end');
   }
   qspCall(s, 'shop_utils', 'display', 'grid_shop');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -132,7 +130,6 @@ function enterShoes(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'shop_utils', 'init', 'end');
   }
   qspCall(s, 'shop_utils', 'display', 'grid_shop');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -155,7 +152,6 @@ function enterSwim(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'shop_utils', 'init', 'end');
   }
   qspCall(s, 'shop_utils', 'display', 'grid_shop');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -178,7 +174,6 @@ function enterBikinis(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'shop_utils', 'init', 'end');
   }
   qspCall(s, 'shop_utils', 'display', 'grid_shop');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -200,7 +195,6 @@ function enterBodysuit(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'shop_utils', 'init', 'end');
   }
   qspCall(s, 'shop_utils', 'display', 'grid_shop');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;

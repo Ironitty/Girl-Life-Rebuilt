@@ -25,12 +25,10 @@ function enter(s: GameState, scene: SceneBuilder): void {
             scene.text('"I\'m glad I got my birth control shot!" you think to yourself.');
           } else {
             if (((s as any).tmp ?? 0) === -1) {
-              // TODO-QSP: dynamic text: '"Good thing '+iif(birth_control['implant_status'] > 1, 'I have a birth control ...
               scene.text('"Good thing ' + ((((s as any).birth_control ?? 0)?.['implant_status'] > 1) ? ('I have a birth control implant') : ('I\'m on the pill')) + '…" you think to yourself.');
             } else {
               if (((s as any).tmp ?? 0) === 1) {
                 if (((s as any).risk_boy ?? 0) !== '') {
-                  // TODO-QSP: dynamic text: You subconsciously put a hand on your belly as you realize you could become preg...
                   scene.text(`You subconsciously put a hand on your belly as you realize you could become pregnant with the child of ${((s as any).risk_boy ?? '')}.`);
                 } else {
                   scene.text('You subconsciously put a hand on your belly as you realize you could get pregnant if you do this too much.');
@@ -38,14 +36,12 @@ function enter(s: GameState, scene: SceneBuilder): void {
               } else {
                 if (((s as any).tmp ?? 0) === 2) {
                   if (((s as any).risk_boy ?? 0) !== '') {
-                    // TODO-QSP: dynamic text: You think about the load of sperm <<$risk_boy>> just pumped into your unprotecte...
                     scene.text(`You think about the load of sperm ${((s as any).risk_boy ?? '')} just pumped into your unprotected vagina… and right now he has no clue.`);
                   } else {
                     scene.text('You think about the load of sperm swimming in your unprotected vagina… and right now he has no clue.');
                   }
                 } else {
                   if (((s as any).risk_boy ?? 0) !== '') {
-                    // TODO-QSP: dynamic text: "Oh, God!" You realize with horror that you could become pregnant with the child...
                     scene.text(`"Oh, God!" You realize with horror that you could become pregnant with the child of ${((s as any).risk_boy ?? '')}.`);
                   } else {
                     scene.text('"Damn! I could get pregnant!" you think in horror.');
@@ -58,6 +54,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  (s as any).tmp = undefined;
+  (s as any).cuminside = undefined;
+  (s as any).risk_boy = undefined;
   scene.build();
 }
 

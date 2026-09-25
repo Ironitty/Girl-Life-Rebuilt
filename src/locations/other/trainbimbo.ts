@@ -68,7 +68,7 @@ function enterPos1(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
+  (s as any).bimbo_temp = undefined;
   scene.actions([
     { label: 'Wait for men', goto: ['trainbimbo', 'pos1'] },
     { label: 'Leave', goto: ['pav_train_hall', 'male'] },
@@ -82,7 +82,6 @@ function enterPos2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/trainstation/vokbimbo2.jpg');
   scene.text('An unfamiliar man blushes and goes into a stall.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Follow him into the stall', goto: ['trainbimbo', 'pos22'] },
     { label: 'Leave', goto: ['pav_train_hall', 'male'] },
@@ -95,11 +94,9 @@ function enterPos22(s: GameState, scene: SceneBuilder): void {
   if (((s as any).bimbo_rand1 ?? 0) < 40) {
     scene.img('images/locations/pavlovsk/trainstation/bimbo.boy0.jpg');
   } else {
-    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/shared/sex/blowjob/bimbo.knees'+rand(0, ...
     scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/shared/sex/blowjob/bimbo.knees` + (Math.floor(Math.random() * 7) + 0) + '.jpg"></center>');
   }
   scene.text('You burst into the stall without knocking. The man is standing there with his pants unbuttoned, dick hanging out, and looking at you with surprise. You get down on your knees and wrap your lips around his cock.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Suck', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'bj', 9);
@@ -110,10 +107,8 @@ function enterPos22(s: GameState, scene: SceneBuilder): void {
       scene.img('images/locations/pavlovsk/trainstation/sex/vokbimbo22.jpg');
     } else {
       if (((st as any).bimbo_rand1 ?? 0) < 40) {
-        // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/trainstation/sex/bimb...
         scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/trainstation/sex/bimbo.boy0,` + (Math.floor(Math.random() * 6) + 0) + '.jpg"></center>');
       } else {
-        // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/locations/pavlovsk/train...
         scene.text(`<center><video autoplay loop ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/trainstation/sex/bimbo0,` + (Math.floor(Math.random() * 14) + 0) + '.mp4"></video></center>');
       }
     }
@@ -125,7 +120,6 @@ function enterPos22(s: GameState, scene: SceneBuilder): void {
     (st as any).pcs_hydra = ((st as any).pcs_hydra ?? 0) + (5);
     (st as any).minut = ((st as any).minut ?? 0) + 1;
     qspCall(st, 'stat', '');
-    // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/shared/sex/cum/mouth/cum...
     scene.text(`<center><video autoplay loop ${((st as any).set_imgh ?? '')} src="images/shared/sex/cum/mouth/cum1,` + (Math.floor(Math.random() * 11) + 0) + '.mp4"></video></center>');
     scene.text('You keep sucking his dick, and you are rewarded with hot spurts of cum shooting into your mouth and filling it. There is so much sperm that some of it leaks from the corners of your lips.');
     scene.text('Once he finally stops spurting sperm in your mouth, you stand up, swallowing his cum. You wipe the cum off your lips and suck your fingers clean as you smile at him.');
@@ -138,7 +132,6 @@ function enterPos22(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'end');
     (st as any).minut = ((st as any).minut ?? 0) + 1;
     qspCall(st, 'stat', '');
-    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/shared/sex/cum/facial/facial0,'+rand(0, ...
     scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/shared/sex/cum/facial/facial0,` + (Math.floor(Math.random() * 9) + 0) + '.jpg"></center>');
     scene.text('You pull your mouth off his cock and sit back with your face tilted up. He gets the idea and starts jerking off.');
     scene.text('Soon, hot spurts of cum are splashing across your face and into your hair. You squeeze your eyes shut to keep the sperm out of your eyes as you feel another jet of hot cum land on your face.');
@@ -154,10 +147,8 @@ function enterPos22(s: GameState, scene: SceneBuilder): void {
     (st as any).pcs_horny = ((st as any).pcs_horny ?? 0) + (20);
     qspCall(st, 'fame', 'pav', 'sex', 'tiny', 'local');
     if (((st as any).bimbo_rand1 ?? 0) < 30) {
-      // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/trainstation/sex/bimb...
       scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/trainstation/sex/bimbo.boy1,` + (Math.floor(Math.random() * 6) + 0) + '.jpg"></center>');
     } else {
-      // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/locations/pavlovsk/train...
       scene.text(`<center><video autoplay loop ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/trainstation/sex/bimbo.boy1,` + (Math.floor(Math.random() * 9) + 0) + '.mp4"></video></center>');
     }
     qspCall(st, 'dinSex', 'wear_condom');
@@ -189,10 +180,8 @@ function enterPos3(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/trainstation/vokbimbo2.jpg');
   scene.text('The guy smiles to you and walks over to you, unbuttoning his pants. You make a rude gesture with your tongue.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Kneel down', handler: (st: GameState) => {
-    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/shared/sex/blowjob/bimbo.knees'+rand(0, ...
     scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/shared/sex/blowjob/bimbo.knees` + (Math.floor(Math.random() * 7) + 0) + '.jpg"></center>');
     scene.text('You get down on your knees and open your mouth to suck his cock.');
     scene.actions([
@@ -210,13 +199,11 @@ function enterPos33(s: GameState, scene: SceneBuilder): void {
   if (((s as any).bimbo_rand1 ?? 0) < 10) {
     scene.img('images/locations/pavlovsk/trainstation/sex/vokbimbo33.jpg');
   } else {
-    // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/locations/pavlovsk/train...
     scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/trainstation/sex/bimbo0,` + (Math.floor(Math.random() * 14) + 0) + '.mp4"></video></center>');
   }
   scene.text('As you open your mouth to start sucking the guy, he grabs you by your hair, and before you can react, he shoves his dick into your mouth and down your throat.');
   scene.text('You start gagging and struggling to breath. After a bit, he stops forcing himself so deep in your mouth, giving you time to recover.');
   scene.text('He repeats these actions several times, while you start taking off your clothes.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Pull your panties off and masturbate', goto: ['trainbimbo', 'pos333'] },
   ]);
@@ -229,7 +216,6 @@ function enterPos333(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'cum_call', 'mouth', ((s as any).npcID ?? 0), 0, 0, 1, 1);
   ((s as any).stat = (s as any).stat ?? {})['bj'] = ((s as any).stat['bj'] ?? 0) + (1);
   qspCall(s, 'stat', '');
-  // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/locations/pavlovsk/train...
   scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/trainstation/bimbo.strip` + (Math.floor(Math.random() * 7) + 0) + '.mp4"></video></center>');
   scene.text('You start rubbing your clit as the guy fucks your mouth and throat. After a bit, you are completely naked. He pulls you up and pushes you down on the floor where you sprawl before him, your clothes lying around you.');
   if ((!(Math.floor(Math.random() * 2) + 0))) {
@@ -243,13 +229,11 @@ function enterPos333(s: GameState, scene: SceneBuilder): void {
       { label: 'Next', goto: ['trainbimbo', 'pos3334'] },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterPos3333(s: GameState, scene: SceneBuilder): void {
   (s as any).horand = 0;
-  // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/locations/pavlovsk/train...
   scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/trainstation/sex/bimbo3,` + (Math.floor(Math.random() * 8) + 0) + '.mp4"></video></center>');
   scene.text('He turns your face to the wall and enters your ass from behind. You are not prepared for this. With no lubrication on your ass and only your saliva on his dick, the pain is sharp. You wince and tear up. You try to pull away, but strong hands hold you firm. As you struggle more, he pushes you tight up against the wall, leaving you nowhere to go.');
   scene.text('He pounds your ass furiously, balls deep with out mercy. The more you whimper the harder he pounds you. He seems to have supernatural stamina as he ravishes your ass. You completely lose track of time as tears start to stream down your face.');
@@ -258,7 +242,6 @@ function enterPos3333(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'anal', 10, 'lube');
   qspCall(s, 'cum_call', 'butt', ((s as any).npcID ?? 0));
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Next', goto: ['trainbimbo', 'pos33333'] },
   ]);
@@ -280,7 +263,6 @@ function enterPos3334(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'vaginal', 10);
   qspCall(s, 'cum_call', '', ((s as any).npcID ?? 0), 0, 0, 500*(Math.floor(Math.random() * 9) + 16), (Math.floor(Math.random() * 21) + 30));
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Next', goto: ['trainbimbo', 'pos33333'] },
   ]);
@@ -294,7 +276,6 @@ function enterPos33333(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/trainstation/sex/bimbo.cum.body0.mp4');
   scene.text('He pulls out a marker and writes on your chest Pussy Whore. "This way it will be clear to everyone what you really are, ha ha ha!" He pulls up his pants and leaves you there, lying on the floor covered in cum.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Dress', goto: ['trainbimbo', 'pos1'] },
   ]);
@@ -306,7 +287,6 @@ function enterPos4(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/trainstation/vokbimbo4.jpg');
   scene.text('You pretend not to notice anything. Maybe they will just think you are so stupid that you mixed up the women\'s room with the mens room.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Wait', goto: ['trainbimbo', 'pos1'] },
     { label: 'Leave', goto: ['pav_train_hall', 'male'] },
@@ -319,7 +299,6 @@ function enterPos5(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/trainstation/vokbimbo1.jpg');
   scene.text('You run into a toilet stall and close the door. You feel shame at the thought of anyone catching you in here. Your heart pounds in your chest.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the stall', goto: ['pav_train_hall', 'male'] },
   ]);
@@ -332,10 +311,8 @@ function enterPos6(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/trainstation/vokbimbo2.jpg');
   scene.text('"Come on, who is in here with us?" You hear a drunken guy shout.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Undress', handler: (st: GameState) => {
-    // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/locations/pavlovsk/train...
     scene.text(`<center><video autoplay loop ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/trainstation/bimbo.strip` + (Math.floor(Math.random() * 7) + 0) + '.mp4"></video></center>');
     scene.text('You strip out of your clothes.');
     scene.actions([
@@ -360,49 +337,15 @@ function enterPos66(s: GameState, scene: SceneBuilder): void {
   (s as any).randpeople = (Math.floor(Math.random() * 10) + 3);
   (s as any).fucker = 1;
   (s as any).iscumvag = 0;
-  // TODO-QSP: :currentgangbang
-  (s as any).guy = ((s as any).guy ?? 0) + (1);
-  qspCall(s, 'npcgeneratec', '0', 'drunk guy in the train station toilet', (Math.floor(Math.random() * 29) + 18));
-  qspCall(s, 'boyStat', '$npclastgenerated');
-  (s as any).svol = (Math.floor(Math.random() * 21) + 30);
-  (s as any).spot = 500*(Math.floor(Math.random() * 9) + 16);
-  (s as any).tiprand = (Math.floor(Math.random() * 3) + 0);
-  if ((!((s as any).tiprand ?? 0))) {
-    qspCall(s, 'arousal', 'vaginal', 4, 'gangbang', 'humiliation', 'rough');
-    (s as any).toiletrand = (Math.floor(Math.random() * 12) + 0);
-    if ((!((s as any).toiletrand ?? 0))) {
-      qspCall(s, 'arousal', 'facial', 1, 'gangbang', 'humiliation', 'rough');
-      qspCall(s, 'cum_call', 'hair', ((s as any).boy ?? 0), 0, 0, ((s as any).spot ?? 0), ((s as any).svol ?? 0));
-    }
-    if (((s as any).toiletrand ?? 0) === 1) {
-      qspCall(s, 'arousal', 'facial', 1, 'gangbang', 'humiliation', 'rough');
-      qspCall(s, 'cum_call', 'face', ((s as any).boy ?? 0), 0, 0, ((s as any).spot ?? 0), ((s as any).svol ?? 0));
-    }
-    if (((s as any).toiletrand ?? 0) === 2) {
-      qspCall(s, 'arousal', 'bj', 1, 'gangbang', 'humiliation', 'rough');
-      qspCall(s, 'cum_call', 'mouth', ((s as any).boy ?? 0), 0, 0, ((s as any).spot ?? 0), ((s as any).svol ?? 0));
-    }
-    if (((s as any).toiletrand ?? 0) === 3) {
-      qspCall(s, 'arousal', 'facial', 1, 'gangbang', 'humiliation', 'rough');
-      qspCall(s, 'cum_call', 'breasts', ((s as any).boy ?? 0), 0, 0, ((s as any).spot ?? 0), ((s as any).svol ?? 0));
-    }
-    if (((s as any).toiletrand ?? 0) === 4) {
-      qspCall(s, 'arousal', 'facial', 1, 'gangbang', 'humiliation', 'rough');
-      qspCall(s, 'cum_call', 'stomach', ((s as any).boy ?? 0), 0, 0, ((s as any).spot ?? 0), ((s as any).svol ?? 0));
-    }
-    if (((s as any).toiletrand ?? 0) === 5) {
-      qspCall(s, 'arousal', 'facial', 1, 'gangbang', 'humiliation', 'rough');
-      qspCall(s, 'cum_call', 'labia', ((s as any).boy ?? 0), 0, 0, ((s as any).spot ?? 0), ((s as any).svol ?? 0));
-    }
-    if (((s as any).toiletrand ?? 0) > 5) {
-      qspCall(s, 'arousal', 'vaginal', 1, 'gangbang', 'humiliation', 'rough');
-      qspCall(s, 'cum_call', '', ((s as any).boy ?? 0), 0, 0, ((s as any).spot ?? 0), ((s as any).svol ?? 0));
-      (s as any).iscumvag = ((s as any).iscumvag ?? 0) + (1);
-      (s as any).sck = ((s as any).sexcontra ?? 0);
-    }
-  } else {
-    if (((s as any).tiprand ?? 0) === 1) {
-      qspCall(s, 'arousal', 'anal', 4, 'gangbang', 'humiliation', 'rough');
+  do {
+    (s as any).guy = ((s as any).guy ?? 0) + (1);
+    qspCall(s, 'npcgeneratec', '0', 'drunk guy in the train station toilet', (Math.floor(Math.random() * 29) + 18));
+    qspCall(s, 'boyStat', '$npclastgenerated');
+    (s as any).svol = (Math.floor(Math.random() * 21) + 30);
+    (s as any).spot = 500*(Math.floor(Math.random() * 9) + 16);
+    (s as any).tiprand = (Math.floor(Math.random() * 3) + 0);
+    if ((!((s as any).tiprand ?? 0))) {
+      qspCall(s, 'arousal', 'vaginal', 4, 'gangbang', 'humiliation', 'rough');
       (s as any).toiletrand = (Math.floor(Math.random() * 12) + 0);
       if ((!((s as any).toiletrand ?? 0))) {
         qspCall(s, 'arousal', 'facial', 1, 'gangbang', 'humiliation', 'rough');
@@ -429,43 +372,74 @@ function enterPos66(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'cum_call', 'labia', ((s as any).boy ?? 0), 0, 0, ((s as any).spot ?? 0), ((s as any).svol ?? 0));
       }
       if (((s as any).toiletrand ?? 0) > 5) {
-        qspCall(s, 'arousal', 'anal', 1, 'gangbang', 'humiliation', 'rough');
-        qspCall(s, 'cum_call', 'anus', ((s as any).boy ?? 0), 0, 0, ((s as any).spot ?? 0), ((s as any).svol ?? 0));
+        qspCall(s, 'arousal', 'vaginal', 1, 'gangbang', 'humiliation', 'rough');
+        qspCall(s, 'cum_call', '', ((s as any).boy ?? 0), 0, 0, ((s as any).spot ?? 0), ((s as any).svol ?? 0));
+        (s as any).iscumvag = ((s as any).iscumvag ?? 0) + (1);
+        (s as any).sck = ((s as any).sexcontra ?? 0);
       }
     } else {
-      qspCall(s, 'arousal', 'bj', 4, 'gangbang', 'humiliation', 'rough');
-      (s as any).toiletrand = (Math.floor(Math.random() * 6) + 0);
-      if ((!((s as any).toiletrand ?? 0))) {
-        qspCall(s, 'arousal', 'facial', 1, 'gangbang', 'humiliation', 'rough');
-        qspCall(s, 'cum_call', 'hair', ((s as any).boy ?? 0), 0, 0, ((s as any).spot ?? 0), ((s as any).svol ?? 0));
-      }
-      if (((s as any).toiletrand ?? 0) === 1) {
-        qspCall(s, 'arousal', 'facial', 1, 'gangbang', 'humiliation', 'rough');
-        qspCall(s, 'cum_call', 'face', ((s as any).boy ?? 0), 0, 0, ((s as any).spot ?? 0), ((s as any).svol ?? 0));
-      }
-      if (((s as any).toiletrand ?? 0) === 2) {
-        qspCall(s, 'arousal', 'facial', 1, 'gangbang', 'humiliation', 'rough');
-        qspCall(s, 'cum_call', 'breasts', ((s as any).boy ?? 0), 0, 0, ((s as any).spot ?? 0), ((s as any).svol ?? 0));
-      }
-      if (((s as any).toiletrand ?? 0) > 3) {
-        qspCall(s, 'arousal', 'bj', 1, 'gangbang', 'humiliation', 'rough');
-        qspCall(s, 'cum_call', 'mouth', ((s as any).boy ?? 0), 0, 0, ((s as any).spot ?? 0), ((s as any).svol ?? 0));
+      if (((s as any).tiprand ?? 0) === 1) {
+        qspCall(s, 'arousal', 'anal', 4, 'gangbang', 'humiliation', 'rough');
+        (s as any).toiletrand = (Math.floor(Math.random() * 12) + 0);
+        if ((!((s as any).toiletrand ?? 0))) {
+          qspCall(s, 'arousal', 'facial', 1, 'gangbang', 'humiliation', 'rough');
+          qspCall(s, 'cum_call', 'hair', ((s as any).boy ?? 0), 0, 0, ((s as any).spot ?? 0), ((s as any).svol ?? 0));
+        }
+        if (((s as any).toiletrand ?? 0) === 1) {
+          qspCall(s, 'arousal', 'facial', 1, 'gangbang', 'humiliation', 'rough');
+          qspCall(s, 'cum_call', 'face', ((s as any).boy ?? 0), 0, 0, ((s as any).spot ?? 0), ((s as any).svol ?? 0));
+        }
+        if (((s as any).toiletrand ?? 0) === 2) {
+          qspCall(s, 'arousal', 'bj', 1, 'gangbang', 'humiliation', 'rough');
+          qspCall(s, 'cum_call', 'mouth', ((s as any).boy ?? 0), 0, 0, ((s as any).spot ?? 0), ((s as any).svol ?? 0));
+        }
+        if (((s as any).toiletrand ?? 0) === 3) {
+          qspCall(s, 'arousal', 'facial', 1, 'gangbang', 'humiliation', 'rough');
+          qspCall(s, 'cum_call', 'breasts', ((s as any).boy ?? 0), 0, 0, ((s as any).spot ?? 0), ((s as any).svol ?? 0));
+        }
+        if (((s as any).toiletrand ?? 0) === 4) {
+          qspCall(s, 'arousal', 'facial', 1, 'gangbang', 'humiliation', 'rough');
+          qspCall(s, 'cum_call', 'stomach', ((s as any).boy ?? 0), 0, 0, ((s as any).spot ?? 0), ((s as any).svol ?? 0));
+        }
+        if (((s as any).toiletrand ?? 0) === 5) {
+          qspCall(s, 'arousal', 'facial', 1, 'gangbang', 'humiliation', 'rough');
+          qspCall(s, 'cum_call', 'labia', ((s as any).boy ?? 0), 0, 0, ((s as any).spot ?? 0), ((s as any).svol ?? 0));
+        }
+        if (((s as any).toiletrand ?? 0) > 5) {
+          qspCall(s, 'arousal', 'anal', 1, 'gangbang', 'humiliation', 'rough');
+          qspCall(s, 'cum_call', 'anus', ((s as any).boy ?? 0), 0, 0, ((s as any).spot ?? 0), ((s as any).svol ?? 0));
+        }
+      } else {
+        qspCall(s, 'arousal', 'bj', 4, 'gangbang', 'humiliation', 'rough');
+        (s as any).toiletrand = (Math.floor(Math.random() * 6) + 0);
+        if ((!((s as any).toiletrand ?? 0))) {
+          qspCall(s, 'arousal', 'facial', 1, 'gangbang', 'humiliation', 'rough');
+          qspCall(s, 'cum_call', 'hair', ((s as any).boy ?? 0), 0, 0, ((s as any).spot ?? 0), ((s as any).svol ?? 0));
+        }
+        if (((s as any).toiletrand ?? 0) === 1) {
+          qspCall(s, 'arousal', 'facial', 1, 'gangbang', 'humiliation', 'rough');
+          qspCall(s, 'cum_call', 'face', ((s as any).boy ?? 0), 0, 0, ((s as any).spot ?? 0), ((s as any).svol ?? 0));
+        }
+        if (((s as any).toiletrand ?? 0) === 2) {
+          qspCall(s, 'arousal', 'facial', 1, 'gangbang', 'humiliation', 'rough');
+          qspCall(s, 'cum_call', 'breasts', ((s as any).boy ?? 0), 0, 0, ((s as any).spot ?? 0), ((s as any).svol ?? 0));
+        }
+        if (((s as any).toiletrand ?? 0) > 3) {
+          qspCall(s, 'arousal', 'bj', 1, 'gangbang', 'humiliation', 'rough');
+          qspCall(s, 'cum_call', 'mouth', ((s as any).boy ?? 0), 0, 0, ((s as any).spot ?? 0), ((s as any).svol ?? 0));
+        }
       }
     }
-  }
-  (s as any).fucker = ((s as any).fucker ?? 0) + (1);
-  if (((s as any).fucker ?? 0) <= ((s as any).randpeople ?? 0)) {
-    // TODO-QSP: jump 'currentgangbang'
-  }
-  qspCall(s, 'arousal', 'end');
-  if (((s as any).iscumvag ?? 0) > 0) {
-    qspCall(s, 'cuminsidereact', 'some drunk guy whom you likely won\'t even remember tomorrow', ((s as any).sck ?? 0));
-  }
-  scene.text('After taking a few breaths, you stand up with some difficulty and gather your scattered stuff from the bathroom floor.');
-  // TODO-QSP: end
-  scene.actions([
-    { label: 'dress', goto: ['trainbimbo', 'pos1'] },
-  ]);
+    (s as any).fucker = ((s as any).fucker ?? 0) + (1);
+    qspCall(s, 'arousal', 'end');
+    if (((s as any).iscumvag ?? 0) > 0) {
+      qspCall(s, 'cuminsidereact', 'some drunk guy whom you likely won\'t even remember tomorrow', ((s as any).sck ?? 0));
+    }
+    scene.text('After taking a few breaths, you stand up with some difficulty and gather your scattered stuff from the bathroom floor.');
+    scene.actions([
+      { label: 'dress', goto: ['trainbimbo', 'pos1'] },
+    ]);
+  } while (((s as any).fucker ?? 0) <= ((s as any).randpeople ?? 0));
   scene.build();
 }
 

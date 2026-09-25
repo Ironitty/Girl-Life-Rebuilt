@@ -19,8 +19,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/shared/gas/gazprom_day.jpg');
   }
   scene.text('The local gas station, the cheap pumps are limited in functionality and will always fill the tank up completely.');
-  // TODO-QSP: dynamic text: 'The petrol price is ' + $func('money', 'string_price', 30) + ' per liter.'
-  scene.text('The petrol price is 30₽ per liter.');
+  scene.text('\'The petrol price is 30₽ per liter.\'');
   scene.text('When the weather is nice, girls will sometimes offer a car washing service for some tips. There\'s no structure to it, so you could always try it.');
   if (((s as any).temper ?? 0) < 10) {
     scene.text('It\'s too cold to wash cars. You\'re more likely to get ill than make money. Maybe try again when the weather is warmer?');
@@ -55,7 +54,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       ]);
     }
     if (qspFunc(s, 'car_funcs', 'is_here')) {
-      // TODO-QSP: dynamic text: Your <a href="exec: gs ''carF'', ''start''"><<$car[''name'']>></a> is parked her...
       scene.text(`Your <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027carF/u0027, /u0027start/u0027); return false;">${(((s as any).car ?? 0)?.['name'] ?? '')}</a> is parked here.`);
       if (((s as any).car ?? 0)?.['fuel'] < ((s as any).car ?? 0)?.['tank']) {
         (s as any).zprbenz = ((((s as any).car ?? {})?.['tank'] ?? 0) - (((s as any).car ?? {})?.['fuel'] ?? 0));
@@ -70,8 +68,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       ((st as any).car = (st as any).car ?? {})['fuel'] = (((st as any).car ?? 0)?.['tank']);
       qspCall(st, 'money', 'pay', ((st as any).zprpay ?? 0));
       scene.img('images/locations/shared/gas/zapr1.jpg');
-      // TODO-QSP: dynamic text: 'You fill the tank and pay ' + $func('money', 'string_price', zprpay) + '.'
-      scene.text('You fill the tank and pay \' + $func(\'money\', \'string_price\', zprpay) + \'.');
+      scene.text('You fill the tank and pay ' + qspFunc(s, 'money', 'string_price', ((st as any).zprpay ?? '')) + '.');
       scene.actions([
         { label: 'Disengage from the pump', goto: ['fuelstation', 'start'] },
       ]);
@@ -81,7 +78,8 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
+  (s as any).zprbenz = undefined;
+  (s as any).zprpay = undefined;
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     if (((st as any).region ?? 0) === 'city') {
@@ -118,12 +116,12 @@ function enterToilet(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'din_van', 'basin');
   qspCall(s, 'din_van', 'publicpan');
   qspCall(s, 'din_van', 'pblc_pee');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the restroom', handler: (st: GameState) => {
     if (((st as any).clothingworntype ?? 0) !== 'nude') {
       qspGoto(st, 'fuelstation', 'start');
     } else {
+      alert('<b><font color = red>You need to get dressed.</font></b>');
       qspGoto(st, 'fuelstation', 'toilet');
     }
   } },

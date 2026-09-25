@@ -204,19 +204,12 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } else {
     ((s as any).FSpers = (s as any).FSpers ?? {})['text'] = '' + (((s as any).FSname ?? 0)?.['text']) + '. ' + (((s as any).FSfemin ?? 0)?.['text']) + ' ' + (((s as any).FSface ?? 0)?.['text']) + ' ' + (((s as any).FScolor ?? 0)?.['text']) + ' ' + (((s as any).FSfigur ?? 0)?.['text']) + ' ' + (((s as any).FStits ?? 0)?.['text']) + ' ' + (((s as any).FSskin ?? 0)?.['text']) + ' ' + (((s as any).FShvost ?? 0)?.['text']) + ' ' + (((s as any).FSdick ?? 0)?.['text']) + ' ' + (((s as any).FSvagina ?? 0)?.['text']) + '';
   }
-  // TODO-QSP: dynamic text: Level <<FSlvl>>, exp <<FSexp>>, need for next level <<FSneedExp>> exp
   scene.text(`Level ${((s as any).FSlvl ?? '')}, exp ${((s as any).FSexp ?? '')}, need for next level ${((s as any).FSneedExp ?? '')} exp`);
-  // TODO-QSP: dynamic text: Life <<FSHP>>
   scene.text(`Life ${((s as any).FSHP ?? '')}`);
-  // TODO-QSP: dynamic text: Strength <<FSstren>>
   scene.text(`Strength ${((s as any).FSstren ?? '')}`);
-  // TODO-QSP: dynamic text: Speed <<FSspeed>>
   scene.text(`Speed ${((s as any).FSspeed ?? '')}`);
-  // TODO-QSP: dynamic text: Agility <<FSagil>>
   scene.text(`Agility ${((s as any).FSagil ?? '')}`);
-  // TODO-QSP: dynamic text: Initiative <<FSreakt>>
   scene.text(`Initiative ${((s as any).FSreakt ?? '')}`);
-  // TODO-QSP: dynamic text: Endurance <<FSvital>>
   scene.text(`Endurance ${((s as any).FSvital ?? '')}`);
   if (((s as any).FShour ?? 0) >= 24) {
     (s as any).FShour = ((s as any).FShour ?? 0) - (24);
@@ -230,10 +223,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
   if (((s as any).FSHP ?? 0) > 100) {
     (s as any).FSHP = 100;
   }
-  scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027FSstart/u0027, /u0027/u0027); return false;">Get out of the game</a>');
-  // TODO-QSP: dynamic text: Day <<FSday>>, h <<FShour>>
+  scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027FSstart\u0027, \u0027\u0027); return false;">Get out of the game</a>');
   scene.text(`Day ${((s as any).FSday ?? '')}, h ${((s as any).FShour ?? '')}`);
-  // TODO-QSP: dynamic text: <<FSgem>> of coins. Food enough for <<FSsup>> days
   scene.text(`${((s as any).FSgem ?? '')} of coins. Food enough for ${((s as any).FSsup ?? '')} days`);
   scene.text('');
   (s as any).FSatk = qspUntranslated(s, "{", { location: "FSstat" });
@@ -271,7 +262,6 @@ function enter(s: GameState, scene: SceneBuilder): void {
         (s as any).KGHPntpow = 1;
       }
       (s as any).FSHP = ((s as any).FSHP ?? 0) - (((s as any).KGHPnpow ?? 0));
-      // TODO-QSP: dynamic text: <font color="brown">Contact with <<KGHPnpow>></font>
       scene.text(`<font color="brown">Contact with ${((s as any).KGHPnpow ?? '')}</font>`);
     }
   } else {

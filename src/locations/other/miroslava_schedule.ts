@@ -13,7 +13,6 @@ function enterIsHere(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).result = qspFunc(s, 'miroslava_schedule', 'here_core', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0), (((s as any).locat ?? 0)?.['A60_loc']), (((s as any).locat ?? 0)?.['A60_arg']));
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -26,7 +25,6 @@ function enterWasHere(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).result = qspFunc(s, 'miroslava_schedule', 'here_core', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0), (((s as any).locat ?? 0)?.['A60_loc_prev']), (((s as any).locat ?? 0)?.['A60_arg_prev']));
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -49,7 +47,6 @@ function enterHereCore(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -139,20 +136,18 @@ function enterGetLocatFromLoc(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterCikl(s: GameState, scene: SceneBuilder): void {
   ((s as any).locat = (s as any).locat ?? {})['A60_rand'] = (Math.floor(Math.random() * 6) + 0);
   ((s as any).locat = (s as any).locat ?? {})['A60_prost'] = ((Math.floor(Math.random() * 3) + 0) > 0);
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterForceChange(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locat ?? 0)?.['A60_loc'] === 'gad_miroslava_home') {
-    // TODO-QSP: exit
+    return;
   }
   (s as any).temp_start_loc = (((s as any).locat ?? 0)?.['A60_loc']);
   ((s as any).MiraVars = (s as any).MiraVars ?? {})['guest'] = 0;
@@ -160,16 +155,18 @@ function enterForceChange(s: GameState, scene: SceneBuilder): void {
   ((s as any).MiraVars = (s as any).MiraVars ?? {})['follower'] = 0;
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDefault(s, scene); (s as any).locArgs = __savedLocArgs; }
   (s as any).mss_i = 0;
-  // TODO-QSP: :mira_loop_start
-  if (((s as any).locat ?? 0)?.['A60_loc'] === ((s as any).temp_start_loc ?? 0)) {
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCikl(s, scene); (s as any).locArgs = __savedLocArgs; }
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterUpdateLocat(s, scene); (s as any).locArgs = __savedLocArgs; }
-    (s as any).mss_i = ((s as any).mss_i ?? 0) + (1);
-    if (((s as any).mss_i ?? 0) < 10) {
-      // TODO-QSP: jump 'mira_loop_start'
+  while (true) {
+    if (((s as any).locat ?? 0)?.['A60_loc'] === ((s as any).temp_start_loc ?? 0)) {
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCikl(s, scene); (s as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterUpdateLocat(s, scene); (s as any).locArgs = __savedLocArgs; }
+      (s as any).mss_i = ((s as any).mss_i ?? 0) + (1);
+      if (((s as any).mss_i ?? 0) < 10) {
+        break;
+      }
     }
+    (s as any).mss_i = undefined;
+    (s as any).temp_start_loc = undefined;
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -178,93 +175,95 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   ((s as any).locat = (s as any).locat ?? {})['A60_arg_prev'] = (((s as any).locat ?? 0)?.['A60_arg']);
   ((s as any).locat = (s as any).locat ?? {})['A60_arg1_prev'] = (((s as any).locat ?? 0)?.['A60_arg1']);
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterUpdateLocat(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterUpdateLocat(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).daystart ?? 0) < ((s as any).MiraVars ?? 0)?.['emb_day']) {
-    (s as any).MiraLoc = 10;
-    // TODO-QSP: jump 'set_locarg'
-  }
-  if (((s as any).MiraVars ?? 0)?.['guest'] === 1) {
-    if (((s as any).MiraVars ?? 0)?.['guestday'] <= ((s as any).daystart ?? 0)) {
-      ((s as any).MiraVars = (s as any).MiraVars ?? {})['guestday'] = ((s as any).daystart ?? 0) + 1;
+  while (true) {
+    if (((s as any).daystart ?? 0) < ((s as any).MiraVars ?? 0)?.['emb_day']) {
+      (s as any).MiraLoc = 10;
+      break;
     }
-    if ((String(((s as any).loc ?? 0)).slice((1)-1, ((1)-1)+(6))) === 'gad_gp'  ||  ((s as any).loc ?? 0) === 'gad_field') {
-      ((s as any).locat = (s as any).locat ?? {})['A60_loc'] = ((s as any).loc ?? 0);
-      ((s as any).locat = (s as any).locat ?? {})['A60_arg'] = ((s as any).loc_arg ?? 0);
-      ((s as any).locat = (s as any).locat ?? {})['A60_arg1'] = '';
-    } else {
-      ((s as any).MiraVars = (s as any).MiraVars ?? {})['guest'] = 0;
-      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterUpdateLocat(s, scene); (s as any).locArgs = __savedLocArgs; }
-    }
-    return;
-  }
-  if (((s as any).MiraVars ?? 0)?.['follower'] === 1) {
-    ((s as any).MiraVars = (s as any).MiraVars ?? {})['follower'] = 0;
-    (s as any).MiraLoc = qspFunc(s, 'miroslava_schedule', 'get_locat_from_loc');
-    // TODO-QSP: jump 'set_locarg'
-  } else {
-    if (((s as any).MiraVars ?? 0)?.['follow_time'] > 0) {
-      ((s as any).locat = (s as any).locat ?? {})['A60_loc'] = (((s as any).locat ?? 0)?.['A60_loc_prev']);
-      ((s as any).locat = (s as any).locat ?? {})['A60_arg'] = (((s as any).locat ?? 0)?.['A60_arg_prev']);
-      ((s as any).locat = (s as any).locat ?? {})['A60_arg1'] = (((s as any).locat ?? 0)?.['A60_arg1_prev']);
+    if (((s as any).MiraVars ?? 0)?.['guest'] === 1) {
+      if (((s as any).MiraVars ?? 0)?.['guestday'] <= ((s as any).daystart ?? 0)) {
+        ((s as any).MiraVars = (s as any).MiraVars ?? {})['guestday'] = ((s as any).daystart ?? 0) + 1;
+      }
+      if ((String(((s as any).loc ?? 0)).slice((1)-1, ((1)-1)+(6))) === 'gad_gp'  ||  ((s as any).loc ?? 0) === 'gad_field') {
+        ((s as any).locat = (s as any).locat ?? {})['A60_loc'] = ((s as any).loc ?? 0);
+        ((s as any).locat = (s as any).locat ?? {})['A60_arg'] = ((s as any).loc_arg ?? 0);
+        ((s as any).locat = (s as any).locat ?? {})['A60_arg1'] = '';
+      } else {
+        ((s as any).MiraVars = (s as any).MiraVars ?? {})['guest'] = 0;
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterUpdateLocat(s, scene); (s as any).locArgs = __savedLocArgs; }
+      }
       return;
     }
-  }
-  (s as any).MiraLoc = qspFunc(s, 'miroslava_schedule', 'get_base_schedule');
-  if (((s as any).hour ?? 0) <= 7) {
-    (s as any).MiraLoc = 11;
-    // TODO-QSP: jump 'set_locarg'
-    return;
-  }
-  if (((s as any).npc_known ?? 0)?.['A60'] === 0  &&  ((s as any).MiraLoc ?? 0) >= 20) {
-    (s as any).MiraLoc = 30;
-    // TODO-QSP: !! Sveta and Mira aren''t friends yet.
-  }
-  if ((!((s as any).sunWeather ?? 0))) {
-    if (((s as any).MiraLoc ?? 0) >= 30  &&  ((s as any).MiraLoc ?? 0) !== 42) {
-      if (((s as any).MiraVars ?? 0)?.['invite_day'] >= ((s as any).daystart ?? 0)  ||  ((s as any).npc_known ?? 0)?.['A60'] === 0  ||  ((s as any).locat ?? 0)?.['A60_loc'] === 'gad_miroslava_home'  ||  ((s as any).npc_rel ?? 0)?.['A60'] < 15  ||  (((s as any).npc_QW ?? 0)?.['A63'] >= 11  &&  ((s as any).MiraVars ?? 0)?.['QW'] < 11  &&  ((s as any).MiraVars ?? 0)?.['had_sex'] <= 1)) {
-        (s as any).MiraLoc = 10;
-      } else {
-        ((s as any).MiraVars = (s as any).MiraVars ?? {})['invite_rand'] = (Math.floor(Math.random() * 2) + 0);
-        ((s as any).MiraVars = (s as any).MiraVars ?? {})['invite_day'] = ((s as any).daystart ?? 0);
-        if (((s as any).MiraVars ?? 0)?.['invite_rand'] === 0) {
-          (s as any).MiraLoc = 20;
-          ((s as any).MiraVars = (s as any).MiraVars ?? {})['follow_time'] = 2;
-        } else {
-          (s as any).MiraLoc = 10;
-        }
+    if (((s as any).MiraVars ?? 0)?.['follower'] === 1) {
+      ((s as any).MiraVars = (s as any).MiraVars ?? {})['follower'] = 0;
+      (s as any).MiraLoc = qspFunc(s, 'miroslava_schedule', 'get_locat_from_loc');
+      break;
+    } else {
+      if (((s as any).MiraVars ?? 0)?.['follow_time'] > 0) {
+        ((s as any).locat = (s as any).locat ?? {})['A60_loc'] = (((s as any).locat ?? 0)?.['A60_loc_prev']);
+        ((s as any).locat = (s as any).locat ?? {})['A60_arg'] = (((s as any).locat ?? 0)?.['A60_arg_prev']);
+        ((s as any).locat = (s as any).locat ?? {})['A60_arg1'] = (((s as any).locat ?? 0)?.['A60_arg1_prev']);
+        return;
       }
     }
-  } else {
-    if (((s as any).MiraVars ?? 0)?.['QW'] > 15  &&  ((s as any).locat ?? 0)?.['A60_prost']  &&  ((s as any).hour ?? 0) >= 16  &&  ((s as any).hour ?? 0) < 20) {
-      (s as any).MiraLoc = 80;
-      // TODO-QSP: !! Prostitution
+    (s as any).MiraLoc = qspFunc(s, 'miroslava_schedule', 'get_base_schedule');
+    if (((s as any).hour ?? 0) <= 7) {
+      (s as any).MiraLoc = 11;
+      break;
+      return;
     }
-    if (((s as any).MiraLoc ?? 0) === 61  &&  (((s as any).MiraVars ?? 0)?.['meadow'] !== 2  &&  ((s as any).MiraVars ?? 0)?.['meadow'] !== 5)) {
-      (s as any).MiraLoc = 60;
-      // TODO-QSP: !! If meadow not unlocked -> Forest edge
+    if (((s as any).npc_known ?? 0)?.['A60'] === 0  &&  ((s as any).MiraLoc ?? 0) >= 20) {
+      (s as any).MiraLoc = 30;
+      // TODO-QSP: !! Sveta and Mira aren''t friends yet.
     }
-    if (((s as any).MiraLoc ?? 0) === 51  &&  (((s as any).sunWeather ?? 0) === 0  ||  ((s as any).temper ?? 0) < 15  ||  ((s as any).month ?? 0) < 5  ||  ((s as any).month ?? 0) > 9)) {
+    if ((!((s as any).sunWeather ?? 0))) {
+      if (((s as any).MiraLoc ?? 0) >= 30  &&  ((s as any).MiraLoc ?? 0) !== 42) {
+        if (((s as any).MiraVars ?? 0)?.['invite_day'] >= ((s as any).daystart ?? 0)  ||  ((s as any).npc_known ?? 0)?.['A60'] === 0  ||  ((s as any).locat ?? 0)?.['A60_loc'] === 'gad_miroslava_home'  ||  ((s as any).npc_rel ?? 0)?.['A60'] < 15  ||  (((s as any).npc_QW ?? 0)?.['A63'] >= 11  &&  ((s as any).MiraVars ?? 0)?.['QW'] < 11  &&  ((s as any).MiraVars ?? 0)?.['had_sex'] <= 1)) {
+          (s as any).MiraLoc = 10;
+        } else {
+          ((s as any).MiraVars = (s as any).MiraVars ?? {})['invite_rand'] = (Math.floor(Math.random() * 2) + 0);
+          ((s as any).MiraVars = (s as any).MiraVars ?? {})['invite_day'] = ((s as any).daystart ?? 0);
+          if (((s as any).MiraVars ?? 0)?.['invite_rand'] === 0) {
+            (s as any).MiraLoc = 20;
+            ((s as any).MiraVars = (s as any).MiraVars ?? {})['follow_time'] = 2;
+          } else {
+            (s as any).MiraLoc = 10;
+          }
+        }
+      }
+    } else {
+      if (((s as any).MiraVars ?? 0)?.['QW'] > 15  &&  ((s as any).locat ?? 0)?.['A60_prost']  &&  ((s as any).hour ?? 0) >= 16  &&  ((s as any).hour ?? 0) < 20) {
+        (s as any).MiraLoc = 80;
+        // TODO-QSP: !! Prostitution
+      }
+      if (((s as any).MiraLoc ?? 0) === 61  &&  (((s as any).MiraVars ?? 0)?.['meadow'] !== 2  &&  ((s as any).MiraVars ?? 0)?.['meadow'] !== 5)) {
+        (s as any).MiraLoc = 60;
+        // TODO-QSP: !! If meadow not unlocked -> Forest edge
+      }
+      if (((s as any).MiraLoc ?? 0) === 51  &&  (((s as any).sunWeather ?? 0) === 0  ||  ((s as any).temper ?? 0) < 15  ||  ((s as any).month ?? 0) < 5  ||  ((s as any).month ?? 0) > 9)) {
+        (s as any).MiraLoc = 10;
+        // TODO-QSP: !! Winter = No Beach
+      }
+      if (((s as any).MiraLoc ?? 0) === 42  &&  (((s as any).MiraVars ?? 0)?.['QW'] === 0  ||  ((s as any).npc_drunk ?? 0)?.['A60'] > 0)) {
+        (s as any).MiraLoc = 10;
+        // TODO-QSP: !! drunk or doesn''t know the guys
+      }
+      if ((((s as any).MiraLoc ?? 0) / 10) === 2  &&  ((s as any).grandpaQW ?? 0)?.['chore_herd_cattle'] === 1  &&  ((s as any).loc ?? 0) === 'gad_field'  &&  ((s as any).npc_rel ?? 0)?.['A60'] >= 15  &&  (((s as any).npc_QW ?? 0)?.['A63'] < 13  ||  ((s as any).MiraVars ?? 0)?.['QW'] >= 10  ||  ((s as any).MiraVars ?? 0)?.['had_sex'] > 1)) {
+        (s as any).MiraLoc = 70;
+      }
+    }
+    if (((s as any).MiraVars ?? 0)?.['guest'] === 0  &&  (((s as any).MiraLoc ?? 0) / 10 === 2)  &&  ((s as any).MiraVars ?? 0)?.['guestday'] > ((s as any).daystart ?? 0)) {
       (s as any).MiraLoc = 10;
-      // TODO-QSP: !! Winter = No Beach
     }
-    if (((s as any).MiraLoc ?? 0) === 42  &&  (((s as any).MiraVars ?? 0)?.['QW'] === 0  ||  ((s as any).npc_drunk ?? 0)?.['A60'] > 0)) {
-      (s as any).MiraLoc = 10;
-      // TODO-QSP: !! drunk or doesn''t know the guys
-    }
-    if ((((s as any).MiraLoc ?? 0) / 10) === 2  &&  ((s as any).grandpaQW ?? 0)?.['chore_herd_cattle'] === 1  &&  ((s as any).loc ?? 0) === 'gad_field'  &&  ((s as any).npc_rel ?? 0)?.['A60'] >= 15  &&  (((s as any).npc_QW ?? 0)?.['A63'] < 13  ||  ((s as any).MiraVars ?? 0)?.['QW'] >= 10  ||  ((s as any).MiraVars ?? 0)?.['had_sex'] > 1)) {
-      (s as any).MiraLoc = 70;
-    }
+    break;
   }
-  if (((s as any).MiraVars ?? 0)?.['guest'] === 0  &&  (((s as any).MiraLoc ?? 0) / 10 === 2)  &&  ((s as any).MiraVars ?? 0)?.['guestday'] > ((s as any).daystart ?? 0)) {
-    (s as any).MiraLoc = 10;
-  }
-  // TODO-QSP: :set_locarg
+  // LABEL: set_locarg
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).MiraLoc ?? 0)]; enterSetLocarg(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
+  (s as any).MiraLoc = undefined;
   scene.build();
 }
 
@@ -400,7 +399,6 @@ function enterSetLocarg(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -536,7 +534,6 @@ function enterGetBaseSchedule(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -619,7 +616,6 @@ function enterGetLocation(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 

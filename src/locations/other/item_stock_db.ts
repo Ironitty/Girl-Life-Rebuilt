@@ -154,7 +154,6 @@ function enterBeauty(s: GameState, scene: SceneBuilder): void {
   ((s as any).max_curr_aisle = (s as any).max_curr_aisle ?? {})[String(((s as any).item_idx ?? 0))] = 1;
   ((s as any).cost_curr_aisle = (s as any).cost_curr_aisle ?? {})[String(((s as any).item_idx ?? 0))] = 1150;
   ((s as any).img_curr_aisle = (s as any).img_curr_aisle ?? {})[String(((s as any).item_idx ?? 0))] = '';
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -208,7 +207,6 @@ function enterFood(s: GameState, scene: SceneBuilder): void {
   ((s as any).max_curr_aisle = (s as any).max_curr_aisle ?? {})[String(((s as any).item_idx ?? 0))] = 1;
   ((s as any).cost_curr_aisle = (s as any).cost_curr_aisle ?? {})[String(((s as any).item_idx ?? 0))] = 200;
   ((s as any).img_curr_aisle = (s as any).img_curr_aisle ?? {})[String(((s as any).item_idx ?? 0))] = '';
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -262,7 +260,6 @@ function enterHardware(s: GameState, scene: SceneBuilder): void {
   ((s as any).max_curr_aisle = (s as any).max_curr_aisle ?? {})[String(((s as any).item_idx ?? 0))] = 1;
   ((s as any).cost_curr_aisle = (s as any).cost_curr_aisle ?? {})[String(((s as any).item_idx ?? 0))] = 1000;
   ((s as any).img_curr_aisle = (s as any).img_curr_aisle ?? {})[String(((s as any).item_idx ?? 0))] = '';
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -458,7 +455,6 @@ function enterChemist(s: GameState, scene: SceneBuilder): void {
     ((s as any).cost_curr_aisle = (s as any).cost_curr_aisle ?? {})[String(((s as any).item_idx ?? 0))] = 600;
     ((s as any).img_curr_aisle = (s as any).img_curr_aisle ?? {})[String(((s as any).item_idx ?? 0))] = '';
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -528,7 +524,6 @@ function enterKiosk(s: GameState, scene: SceneBuilder): void {
   ((s as any).max_curr_aisle = (s as any).max_curr_aisle ?? {})[String(((s as any).item_idx ?? 0))] = 1;
   ((s as any).cost_curr_aisle = (s as any).cost_curr_aisle ?? {})[String(((s as any).item_idx ?? 0))] = 1000;
   ((s as any).img_curr_aisle = (s as any).img_curr_aisle ?? {})[String(((s as any).item_idx ?? 0))] = '';
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -638,7 +633,6 @@ function enterSexshop(s: GameState, scene: SceneBuilder): void {
   ((s as any).max_curr_aisle = (s as any).max_curr_aisle ?? {})[String(((s as any).item_idx ?? 0))] = 1;
   ((s as any).cost_curr_aisle = (s as any).cost_curr_aisle ?? {})[String(((s as any).item_idx ?? 0))] = 1200;
   ((s as any).img_curr_aisle = (s as any).img_curr_aisle ?? {})[String(((s as any).item_idx ?? 0))] = '';
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -716,7 +710,6 @@ function enterTech(s: GameState, scene: SceneBuilder): void {
   ((s as any).max_curr_aisle = (s as any).max_curr_aisle ?? {})[String(((s as any).item_idx ?? 0))] = 1;
   ((s as any).cost_curr_aisle = (s as any).cost_curr_aisle ?? {})[String(((s as any).item_idx ?? 0))] = 2000;
   ((s as any).img_curr_aisle = (s as any).img_curr_aisle ?? {})[String(((s as any).item_idx ?? 0))] = '';
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -770,7 +763,6 @@ function enterSports(s: GameState, scene: SceneBuilder): void {
   ((s as any).max_curr_aisle = (s as any).max_curr_aisle ?? {})[String(((s as any).item_idx ?? 0))] = 1;
   ((s as any).cost_curr_aisle = (s as any).cost_curr_aisle ?? {})[String(((s as any).item_idx ?? 0))] = 1000;
   ((s as any).img_curr_aisle = (s as any).img_curr_aisle ?? {})[String(((s as any).item_idx ?? 0))] = '';
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -872,7 +864,6 @@ function enterUni(s: GameState, scene: SceneBuilder): void {
   ((s as any).max_curr_aisle = (s as any).max_curr_aisle ?? {})[String(((s as any).item_idx ?? 0))] = 0;
   ((s as any).cost_curr_aisle = (s as any).cost_curr_aisle ?? {})[String(((s as any).item_idx ?? 0))] = 250;
   ((s as any).img_curr_aisle = (s as any).img_curr_aisle ?? {})[String(((s as any).item_idx ?? 0))] = '';
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -910,7 +901,6 @@ function enterMothershop(s: GameState, scene: SceneBuilder): void {
   ((s as any).max_curr_aisle = (s as any).max_curr_aisle ?? {})[String(((s as any).item_idx ?? 0))] = 1;
   ((s as any).cost_curr_aisle = (s as any).cost_curr_aisle ?? {})[String(((s as any).item_idx ?? 0))] = 2475;
   ((s as any).img_curr_aisle = (s as any).img_curr_aisle ?? {})[String(((s as any).item_idx ?? 0))] = '';
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -980,7 +970,6 @@ function enterMarket(s: GameState, scene: SceneBuilder): void {
   ((s as any).max_curr_aisle = (s as any).max_curr_aisle ?? {})[String(((s as any).item_idx ?? 0))] = 1;
   ((s as any).cost_curr_aisle = (s as any).cost_curr_aisle ?? {})[String(((s as any).item_idx ?? 0))] = 1000;
   ((s as any).img_curr_aisle = (s as any).img_curr_aisle ?? {})[String(((s as any).item_idx ?? 0))] = '';
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1106,7 +1095,6 @@ function enterGadStore(s: GameState, scene: SceneBuilder): void {
   ((s as any).max_curr_aisle = (s as any).max_curr_aisle ?? {})[String(((s as any).item_idx ?? 0))] = 0;
   ((s as any).cost_curr_aisle = (s as any).cost_curr_aisle ?? {})[String(((s as any).item_idx ?? 0))] = 160;
   ((s as any).img_curr_aisle = (s as any).img_curr_aisle ?? {})[String(((s as any).item_idx ?? 0))] = '';
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1140,7 +1128,6 @@ function enterGadMarketHunter(s: GameState, scene: SceneBuilder): void {
   ((s as any).max_curr_aisle = (s as any).max_curr_aisle ?? {})[String(((s as any).item_idx ?? 0))] = 0;
   ((s as any).cost_curr_aisle = (s as any).cost_curr_aisle ?? {})[String(((s as any).item_idx ?? 0))] = 500;
   ((s as any).img_curr_aisle = (s as any).img_curr_aisle ?? {})[String(((s as any).item_idx ?? 0))] = '';
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1228,7 +1215,6 @@ function enterProstShop(s: GameState, scene: SceneBuilder): void {
     ((s as any).cost_curr_aisle = (s as any).cost_curr_aisle ?? {})[String(((s as any).item_idx ?? 0))] = 1000;
     ((s as any).img_curr_aisle = (s as any).img_curr_aisle ?? {})[String(((s as any).item_idx ?? 0))] = '';
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1279,12 +1265,20 @@ function enterExperimentalTrials(s: GameState, scene: SceneBuilder): void {
     ((s as any).cost_curr_aisle = (s as any).cost_curr_aisle ?? {})[String(((s as any).item_idx ?? 0))] = 3000;
     ((s as any).img_curr_aisle = (s as any).img_curr_aisle ?? {})[String(((s as any).item_idx ?? 0))] = '';
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterCleanup(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: end
+  (s as any).item_idx = undefined;
+  (s as any).item_curr_aisle = undefined;
+  (s as any).var_curr_aisle = undefined;
+  (s as any).desc_curr_aisle = undefined;
+  (s as any).quantity_curr_aisle = undefined;
+  (s as any).max_curr_aisle = undefined;
+  (s as any).cost_curr_aisle = undefined;
+  (s as any).img_curr_aisle = undefined;
+  (s as any).event_curr_aisle = undefined;
+  (s as any).shop_title = undefined;
   scene.build();
 }
 

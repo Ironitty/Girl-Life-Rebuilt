@@ -60,7 +60,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -82,7 +81,6 @@ function enterTable(s: GameState, scene: SceneBuilder): void {
   scene.text('The Roadhouse is decorated with bright neon signs, pictures of flashy American muscle cars and pop art. There\'s even the body of an old pink Cadillac hanging from the ceiling, like something from an old American TV show.');
   scene.text('Although it looks small and cramped from the outside, the Roadhouse is surprisingly spacious inside, managing to fit a well-stocked bar and a moderately-sized dining area alongside several private booths tucked away in the corners.');
   scene.text('A large, flashy jukebox features popular hits from the 50s through to the 80s, mostly American and British, but with a sprinkling of songs from other European countries. They serve American style meals.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Get up from the table', goto: ['city_kafe', 'start'] },
     { label: 'Order from the menu (0:05)', handler: (st: GameState) => {
@@ -99,9 +97,7 @@ function enterFabi2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('<center><b>The Roadhouse</b></center>');
   scene.img('images/locations/city/residential/cafe/fabi/FAB-001.jpg');
-  // TODO-QSP: dynamic text: Fabi is filling in some government forms as you sit next to him. "Hey <<$pcs_nic...
   scene.text(`Fabi is filling in some government forms as you sit next to him. "Hey ${((s as any).pcs_nickname ?? '')}, what's up?"`);
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['city_kafe', 'start'] },
     { label: 'Quit your job', goto: ['city_kafe', 'quit'] },
@@ -120,7 +116,6 @@ function enterQuit(s: GameState, scene: SceneBuilder): void {
   scene.text('"I\'m going to need my work book back," you tell him. "I\'m afraid I\'m quitting."');
   scene.text('Fabi frowns, but nods. "Waitressing isn\'t the sort of job young girls tend to stay in long-term, so I understand. Wait here."');
   scene.text('He disappears into the office and comes back a few minutes later with your work book. "You\'re a good worker and we all like you here. If you change your mind, the position is likely to be open for a little while as I look for someone else," he says as he hands it to you.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the diner', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -138,11 +133,9 @@ function enterOldJob(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('<center><b>The Roadhouse</b></center>');
   scene.img('images/locations/city/residential/cafe/kafe.jpg');
-  // TODO-QSP: dynamic text: "Ah, <<$pcs_nickname>>! Good to see you again!" Fabi says with a smile. "What br...
   scene.text(`"Ah, ${((s as any).pcs_nickname ?? '')}! Good to see you again!" Fabi says with a smile. "What brings you back to the Roadhouse?"`);
   scene.text('"I was wondering if you needed any help?" you reply. "I\'d like to waitress for you again."');
   scene.text('His smile widens. "I loved having you here. We still need the help, so if you want to come back to work the same hours, then you\'re welcome to do so."');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the diner', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -160,22 +153,18 @@ function enterFabi(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>The Roadhouse</b></center>');
   scene.img('images/locations/city/residential/cafe/fabi/FAB-001.jpg');
   scene.text('As you approach the owner, he looks up from his papers and gives you a tired smile. "Hello. I\'m Fabiyan Pankratov, owner of the Roadhouse, but everyone just calls me Fabi. I don\'t think I\'ve seen you around here before. What can I do for you?"');
-  // TODO-QSP: dynamic text: "I''m <<$pcs_firstname>> <<$pcs_lastname>>," you tell him. "I was wondering if y...
   scene.text(`"I'm ${((s as any).pcs_firstname ?? '')} ${((s as any).pcs_lastname ?? '')}," you tell him. "I was wondering if you have any waitress jobs available?"`);
   scene.text('His smile broadens and he looks a little less tired. "Ah, so you want to work here? Well why wouldn\'t you? Rockabilly music, the greaser subculture, Cadillacs, motorcycles and hamburgers! I love this period of American culture, it\'s so vibrant and exciting! I\'ve put every ruble I have into making this place the perfect recreation of an American diner from 1958. Who doesn\'t love that?"');
   scene.text('A glance around the place shows you that the diner is barely half full, and most of those dining are eating Russian food rather than American. Fabi is still raving about America in the 1950s, talking about Elvis Presley, someone called Carl Perkins, and cheeseburgers and French fries. His enthusiasm is honest and infectious, but you came here for a reason, so you clear your throat. "Fabi? About the job?"');
-  // TODO-QSP: dynamic text: 'He grins sheepishly. "Sorry, I get carried away sometimes. Let me tell you abou...
-  scene.text(`He grins sheepishly. "Sorry, I get carried away sometimes. Let me tell you about the job. We're open every day except Monday from 12:00 to 20:00 and you'd be working five days a week, Tuesday through Saturday. You'll be expected to arrive between 11:00 and 12:00 to help get the place ready - if you're late then you won't work that day. You don't work, you don't get paid. Pay is ${qspFunc(s, 'money', 'string_profit', 600)} per shift plus whatever you get in tips, and you get paid on the 25th of each month."`);
+  scene.text(`'He grins sheepishly. "Sorry, I get carried away sometimes. Let me tell you about the job. We're open every day except Monday from 12:00 to 20:00 and you'd be working five days a week, Tuesday through Saturday. You'll be expected to arrive between 11:00 and 12:00 to help get the place ready - if you're late then you won't work that day. You don't work, you don't get paid. Pay is ${qspFunc(s, 'money', 'string_profit', 600)} per shift plus whatever you get in tips, and you get paid on the 25th of each month."'`);
   scene.text('"So… Are you interested?"');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Yes', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
     if (qspFunc(s, 'jobs', 'check_employment_possible', 'city_cafe_waitress') === 1) {
       qspCall(st, 'jobs', 'set_employed', 'city_cafe_waitress');
       qspCall(st, 'stat', '');
-      // TODO-QSP: dynamic text: '"Good! Now remember, you have to be here between '+func('time', 'get_time_strin...
-      scene.text('"Good! Now remember, you have to be here between 11:00 and noon, Tuesday through Saturday."');
+      scene.text('\'"Good! Now remember, you have to be here between 11:00 and noon, Tuesday through Saturday."\'');
     } else {
       qspCall(st, 'stat', '');
       scene.text('Unfortunately, the shift times conflict with your existing schedule.');
@@ -222,7 +211,6 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -236,7 +224,6 @@ function enterBeg1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/residential/cafe/BEG-001.jpg');
   scene.text('The lunch rush starts strong and stays strong, and you spend the first few hours running frantically just to keep up. It\'s not bad though – all your customers are in good moods and nobody has any major problems, and being busy like this makes the time go fast. If every day were like this, then you\'d have no complaints.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Lunch time', goto: ['city_kafe', 'lunch'] },
   ]);
@@ -253,7 +240,6 @@ function enterBeg2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/residential/cafe/BEG-002.jpg');
   scene.text('Today starts off slow, but within a few hours the place is almost as full as it ever gets during lunch. It\'s not bad at first, but there\'s always that one table that messes up your day. This time it\'s a group of young executive types who talk loudly amongst themselves and place very particular orders, each changing their minds several times as they tell you what they want. You double-check the orders before you leave the table and you\'re sure you have it right, but when you bring them their food, each of them complains that something is wrong. It\'s clear they\'re just doing it to screw with you.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Lunch time', goto: ['city_kafe', 'lunch'] },
   ]);
@@ -270,7 +256,6 @@ function enterBeg3(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/residential/cafe/BEG-003.jpg');
   scene.text('Some days are just fun, and today is one of them. The crowd for lunch isn\'t huge but it is happy, with some families and a bunch of regular customers who are happy to see you and engage you in good-natured banter and teasing. Aside from the normal issues that arise, the first part of the day flows smoothly and easily, and you make some decent tips.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Lunch time', goto: ['city_kafe', 'lunch'] },
   ]);
@@ -292,7 +277,6 @@ function enterBeg4(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/residential/cafe/BEG-004.jpg');
   scene.text('It\'s a slow lunch rush and you\'re able to take some time and chat with friendly customers and your coworkers. A large group tourists from another part of Russia then arrive, and they\'re fascinated by the décor and the theme. They take pictures of everything, including you. You cheerfully pose for them, and since it\'s a quiet day, you spend time at their table telling them about the diner and what it\'s like to work here. They vow to tell everyone back home to come to the Roadhouse whenever they visit the city.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Lunch time', goto: ['city_kafe', 'lunch'] },
   ]);
@@ -309,7 +293,6 @@ function enterBeg5(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/residential/cafe/BEG-005.jpg');
   scene.text('You get slammed as soon as the doors open, a flood of people filling every table and not slowing for hours. All you can do to keep your head above water is run from table to table taking orders, delivering food, checking on customers and resolving issues. It\'s stressful and challenging, but you don\'t screw up anything major and your customers leave satisfied, which is about the best you can expect from a day like today.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Lunch time', goto: ['city_kafe', 'lunch'] },
   ]);
@@ -326,7 +309,6 @@ function enterBeg6(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/residential/cafe/BEG-006.jpg');
   scene.text('Today is one of those days where you wish you\'d just stayed in bed. The customers are inexplicably grumpy and there are constant complaints, but it gets worse towards the end of the lunch rush when two groups of young men, all of them already very drunk in spite of the early hour, get into a shouting match that rapidly escalates. Fabi and Ashot hurry to push them out the doors and onto the street, where they continue to argue and shout at each other for some time. All of this frightens off customers, which means you have fewer people to wait on and you get fewer tips.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Lunch time', goto: ['city_kafe', 'lunch'] },
   ]);
@@ -351,7 +333,6 @@ function enterLunch(s: GameState, scene: SceneBuilder): void {
       { label: 'Talk to Nika', goto: ['city_kafe', 'lunch_nika'] },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return to work', goto: ['city_kafe', 'events'] },
   ]);
@@ -360,11 +341,8 @@ function enterLunch(s: GameState, scene: SceneBuilder): void {
 
 function enterLunchAlone(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterEatLunch(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/shared/food/food_'+rand(1, 4)+'.jpg"></c...
   scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/shared/food/food_` + (Math.floor(Math.random() * 4) + 1) + '.jpg"></center>');
-  // TODO-QSP: dynamic text: You take your time eating your meal and playing on your phone. It''s just a ligh...
   scene.text(`You take your time eating your meal and playing on your phone. It's just a light lunch, but it's quite tasty and${((s as any).mtxt ?? '')}`);
-  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', goto: ['city_kafe', 'lunch'] },
   ]);
@@ -384,7 +362,6 @@ function enterLunchFabi(s: GameState, scene: SceneBuilder): void {
       { label: 'Eat lunch', goto: ['city_kafe', 'lunch'] },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return to work', goto: ['city_kafe', 'events'] },
   ]);
@@ -405,7 +382,6 @@ function enterLunchAshot(s: GameState, scene: SceneBuilder): void {
       { label: 'Eat lunch', goto: ['city_kafe', 'lunch'] },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return to work', goto: ['city_kafe', 'events'] },
   ]);
@@ -426,7 +402,6 @@ function enterLunchMarisha(s: GameState, scene: SceneBuilder): void {
       { label: 'Eat lunch', goto: ['city_kafe', 'lunch'] },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return to work', goto: ['city_kafe', 'events'] },
   ]);
@@ -447,7 +422,6 @@ function enterLunchNika(s: GameState, scene: SceneBuilder): void {
       { label: 'Eat lunch', goto: ['city_kafe', 'lunch'] },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return to work', goto: ['city_kafe', 'events'] },
   ]);
@@ -471,7 +445,6 @@ function enterEatLunch(s: GameState, scene: SceneBuilder): void {
   (s as any).pcs_breath = 0;
   qspCall(s, 'food', 'aftermeal');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -496,7 +469,6 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -514,7 +486,6 @@ function enterEvents1(s: GameState, scene: SceneBuilder): void {
   scene.text('She laughs. "We aren\'t strippers, but I figure if I can bring home more at the end of the day by wearing a short skirt and showing some cleavage, then why not? I keep it professional – I don\'t show nearly as much here as I would at a club or at the beach. I just leave the top button or two undone and make sure they can see some leg. Customers get to look at something they like, and I walk home with their money in my purse."');
   scene.text('"I guess that doesn\'t sound too bad…" you admit.');
   scene.text('"And because of that, I can afford to pay my rent and buy the necessities of life," she says with a grin. "I couldn\'t otherwise. Give it some thought."');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return to work', goto: ['city_kafe', 'shift_end'] },
   ]);
@@ -536,7 +507,6 @@ function enterEvents2(s: GameState, scene: SceneBuilder): void {
   scene.text('"I\'ve thought about getting live music in here," he admits. "We could put a little stage right over there, just big enough for a trio or a quartet, but there\'s no decent rockabilly bands in St. Petersburg and I can\'t save enough money to do that with Rakov on my back."');
   scene.text('"Rakov?" you ask. "Who\'s Rakov?"');
   scene.text('Fabi suddenly becomes nervous, as though he just realized he said something he shouldn\'t have. He gathers together the papers he was working on and stands up. "Um, never mind. That\'s not something you need to worry about. I\'ll just finish these up back in the office."');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return to work', goto: ['city_kafe', 'shift_end'] },
   ]);
@@ -558,7 +528,6 @@ function enterEvents3(s: GameState, scene: SceneBuilder): void {
   scene.text('"Fabi mentioned someone called Rakov the other day. Is he a regular too?" you ask after a moment\'s silence.');
   scene.text('Nika frowns. "Not exactly. Mr. Rakov is an Avtoritet in the Grekov gang. He\'s a gangster, and very bad news. He comes in here sometimes with a couple of scary-looking guys. Fabi got into money trouble a few years back and borrowed from Rakov, thinking he could pay it back fast. But you know how that goes, you never really finish paying off guys like that. I don\'t know how much Fabi still owes, but it\'s a lot. Maybe even more than he originally borrowed."');
   scene.text('You don\'t know what to say to that, so you change the subject to the St. Petersburg nightlife, which is something Nika seems intimately familiar with, and spend the next few minutes talking with her about party spots until some customers walk in.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return to work', goto: ['city_kafe', 'shift_end'] },
   ]);
@@ -574,7 +543,6 @@ function enterEvents4(s: GameState, scene: SceneBuilder): void {
   scene.text('"Oh, my great-grandfather was a civil engineer," he tells you. "After the Great Patriotic War, Leningrad was trashed, so the state sent him up here to help rebuild, and we\'ve been here ever since. I\'ve never even been to Armenia. Nobody in my family goes there except to find a wife or husband, but then we come back. We\'re Russian now."');
   scene.text('"Do you have any siblings?" you ask.');
   scene.text('He laughs. "Yes. Everyone in my family for generations have been professionals of some kind, and my brother and sister are no exception. My brother is a lawyer in Moscow, and my sister is in residency as a cardiac surgeon here in the city."');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue talking', handler: (st: GameState) => {
     scene.text('"And you\'re a short-order cook in a diner…" you observe with a grin.');
@@ -621,7 +589,6 @@ function enterShiftEnd(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -632,7 +599,6 @@ function enterEnd_1(s: GameState, scene: SceneBuilder): void {
   scene.text('You\'re fortunate this evening to be able to wait on three regulars who are fully immersed in the vibe Fabi is trying to present. Each uses an English nickname – Lucky, Spike and Slim – and they pepper their conversation with 50s American slang.');
   scene.text('You follow most of it, though some is confusing: you have no idea what it means when they call you a “hepkitty”, for example, and their suggestions for your attire are confusing, but you laugh with them because they\'re fun guys who eat here all the time and always tip well.');
   scene.text('They\'re Fabi\'s favorite customers, so he always spends time at their table chatting with them whenever they come in.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Count your tips', goto: ['city_kafe', 'tips'] },
   ]);
@@ -646,7 +612,6 @@ function enterEnd_2(s: GameState, scene: SceneBuilder): void {
   scene.text('It\'s a bad evening. You\'re saddled with a continuous stream of demanding customers who are constantly calling for your attention, and by the time your shift ends you\'re so frazzled you barely know which end is up. You begin mixing up orders, forgetting drinks, dropping plates and generally having a lousy time of it.');
   scene.text('You\'re ready to pull out your hair when Marisha grins at you. "Look at it this way: in a hundred years, who\'s gonna care?"');
   scene.text('You can\'t help but feel like you heard that in a movie once, and it\'s not particularly comforting.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Count your tips', goto: ['city_kafe', 'tips'] },
   ]);
@@ -659,7 +624,6 @@ function enterEnd_3(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/residential/cafe/END-003.jpg');
   scene.text('It\'s a busy night and the time flies. You\'re constantly rushing back and forth between the kitchen and the dining area as fast as your feet can take you, and you find yourself in a good groove.');
   scene.text('You get all your orders right, you don\'t forget anything and you make enjoyable, light conversation with most of your customers. Your tips should be decent.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Count your tips', goto: ['city_kafe', 'tips'] },
   ]);
@@ -672,7 +636,6 @@ function enterEnd_4(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/residential/cafe/END-004.jpg');
   scene.text('Most of the time the customers at the Roadhouse are pretty cool, but sometimes, like tonight, they can be a real pain in the ass. An unusually high percentage of your tables tonight are guys with no women, and most of them seem to want to hit on you more than they want to eat. Some of it is playful, but a few of them get overly insistent and make it unpleasant just to walk past their table with their constant comments.');
   scene.text('One guy even gets a little too handsy and you \'accidentally\' dump his kvass into his lap; his suggestions for how you can clean it up are unwelcome. At least you made some decent tips.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Count your tips', goto: ['city_kafe', 'tips'] },
   ]);
@@ -685,7 +648,6 @@ function enterEnd_5(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/residential/cafe/END-005.jpg');
   scene.text('The evening starts pretty well, except for a couple of misbehaved kids whose parents are more interested in looking at their phones than monitoring them, but it all goes downhill with a single jerk: one customer seems determined to have a terrible time, which wouldn\'t be so bad if he wasn\'t also determined to do it loudly. No matter what you do, his complaints echo from one end of the room to the other.');
   scene.text('He shouts at you for being too slow and insists that you got his order wrong until his companion corrects him, much to his annoyance. He takes up way too much of your time and energy, and in the end stiffs you on the tip. Asshole.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Count your tips', goto: ['city_kafe', 'tips'] },
   ]);
@@ -702,7 +664,6 @@ function enterEnd_6(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/residential/cafe/END-006.jpg');
   scene.text('Almost nobody comes in today and you and the rest of the staff spend most of your time standing around talking. You give your few customers excellent service and they tip you well, but there aren\'t enough of them to make this a lucrative evening.');
   scene.text('However, you actually enjoy yourself more than you\'d expect, because you and your coworkers tell each other funny stories and jokes and talk about music and movies to pass the time. By the time the last customer leaves, you feel like you know all of them a little bit better.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Count your tips', goto: ['city_kafe', 'tips'] },
   ]);
@@ -732,7 +693,6 @@ function enterTips(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>The Roadhouse</b></center>');
   scene.img('images/locations/city/residential/cafe/kafe.jpg');
   scene.text('With your shift finally over, you sit at one of the tables and count out your tips for the day.');
-  // TODO-QSP: dynamic text: You made <<$func(''money'', ''string_profit'', workKafe[''tips_total''])>> in ti...
   scene.text(`You made ${qspFunc(s, 'money', 'string_profit', (((s as any).workKafe ?? 0)?.['tips_total'] ?? ''))} in tips.`);
   scene.text('Fabi switches the lights off in the kitchen and ushers you out with a smile so he can finish closing up.');
   if ((!(Math.floor(Math.random() * 4) + 0))) {
@@ -744,7 +704,6 @@ function enterTips(s: GameState, scene: SceneBuilder): void {
       { label: 'Leave', goto: ['city_residential', ''] },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 

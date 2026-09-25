@@ -17,8 +17,8 @@ function enterAnushroom(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('<center><b>Anushka\'s Room</b></center>');
   scene.img('images/locations/pavlovsk/resident/apartment/anushapt/anushroom.jpg');
-  scene.text('The room is surprisingly clean, more so than any other room in the apartment. The walls are covered with pictures and posters of <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027anush_bedroom/u0027, /u0027the_pretty_reckless/u0027); return false;">bands</a> or famous models, girls and guys, while the room is skillfully decorated with various strings of coloured lights. In the center of the room, beneath the window, is a <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027anush_bedroom/u0027, /u0027bed/u0027); return false;">bed</a> with a small <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027anush_bedroom/u0027, /u0027night_stand/u0027); return false;">nightstand</a> beside it.');
-  scene.text('Against the opposite wall are a small computer desk, a <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027anush_bedroom/u0027, /u0027computer/u0027); return false;">laptop</a> and a chair. Next to the desk is a <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027anush_bedroom/u0027, /u0027nushdresser/u0027); return false;">dresser</a> with a decent sized flatscreen TV sitting on top of it. On the other side of the desk is a bookshelf with a relatively large collection of books. Hanging on the wall next to the shelves is an <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027anush_bedroom/u0027, /u0027guitar/u0027); return false;">acoustic guitar</a> with an electric guitar right beside it. A skateboard is also leaning against one of the other walls next to the <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027anush_bedroom/u0027, /u0027nushcloset/u0027); return false;">closet door</a>, along with some rollerblades in the corner.');
+  scene.text('The room is surprisingly clean, more so than any other room in the apartment. The walls are covered with pictures and posters of <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027anush_bedroom\u0027, \u0027the_pretty_reckless\u0027); return false;">bands</a> or famous models, girls and guys, while the room is skillfully decorated with various strings of coloured lights. In the center of the room, beneath the window, is a <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027anush_bedroom\u0027, \u0027bed\u0027); return false;">bed</a> with a small <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027anush_bedroom\u0027, \u0027night_stand\u0027); return false;">nightstand</a> beside it.');
+  scene.text('Against the opposite wall are a small computer desk, a <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027anush_bedroom\u0027, \u0027computer\u0027); return false;">laptop</a> and a chair. Next to the desk is a <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027anush_bedroom\u0027, \u0027nushdresser\u0027); return false;">dresser</a> with a decent sized flatscreen TV sitting on top of it. On the other side of the desk is a bookshelf with a relatively large collection of books. Hanging on the wall next to the shelves is an <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027anush_bedroom\u0027, \u0027guitar\u0027); return false;">acoustic guitar</a> with an electric guitar right beside it. A skateboard is also leaning against one of the other walls next to the <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027anush_bedroom\u0027, \u0027nushcloset\u0027); return false;">closet door</a>, along with some rollerblades in the corner.');
   if (((s as any).AnushkaLoc ?? 0) === 2) {
     scene.text('<br>Anushka is lying on the bed, a mysterious smirk playing around her lips as she looks at you.');
     scene.actions([
@@ -30,7 +30,6 @@ function enterAnushroom(s: GameState, scene: SceneBuilder): void {
   }, goto: ['anushkachat', 'chat'] },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave Anushka\'s room', goto: ['anushapt', 'hallway'] },
   ]);
@@ -42,8 +41,7 @@ function enterThePrettyReckless(s: GameState, scene: SceneBuilder): void {
   (s as any).locclass = 'bedr';
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/resident/apartment/anushapt/anushroom/the_pretty_reckless_poster.jpg');
-  scene.text('You look over the bands\' posters; most posters are of bands with a few models, and the only band with more than one poster is The Pretty Reckless. The poster that seems to be most prominently displayed in her room is one of the lead singers for The Pretty Reckless, lying naked on a stone coffin. The poster right next to it is similar, but without the band name and <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027anush_bedroom/u0027, /u0027taylor_momsen/u0027); return false;">Taylor\'s</a> breasts on full display.');
-  // TODO-QSP: end
+  scene.text('You look over the bands\' posters; most posters are of bands with a few models, and the only band with more than one poster is The Pretty Reckless. The poster that seems to be most prominently displayed in her room is one of the lead singers for The Pretty Reckless, lying naked on a stone coffin. The poster right next to it is similar, but without the band name and <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027anush_bedroom\u0027, \u0027taylor_momsen\u0027); return false;">Taylor\'s</a> breasts on full display.');
   scene.actions([
     { label: 'Find something else to look at', goto: ['anush_bedroom', 'anushroom'] },
   ]);
@@ -56,7 +54,6 @@ function enterTaylorMomsen(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/resident/apartment/anushapt/anushroom/taylor_poster.jpg');
   scene.text('There\'s a crease in the middle of the poster like it came folded up inside something. It looks like Anushka made a lot of effort to get rid of the crease, but you can still see it. Perhaps she really loves the band or has a crush on the lead singer? Knowing Anushka, it\'s likely both.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Find something else to look at', goto: ['anush_bedroom', 'anushroom'] },
   ]);
@@ -80,7 +77,6 @@ function enterNushdresser(s: GameState, scene: SceneBuilder): void {
       { label: 'Find something else to look at', goto: ['anush_bedroom', 'anushroom'] },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -101,7 +97,6 @@ function enterNushcloset(s: GameState, scene: SceneBuilder): void {
       (st as any).minut = ((st as any).minut ?? 0) + 10;
       if (((st as any).pcs_bmi ?? 0) < 16) {
         scene.text('"Wow, you have so many outfits. Can I try some on?" you ask her.');
-        // TODO-QSP: dynamic text: Anushka smiles and nods. "Sure, let''s do it." She gets up to join you at the cl...
         scene.text(`Anushka smiles and nods. "Sure, let's do it." She gets up to join you at the closet and pulls out different outfits. She picks the ones that she apparently thinks will work best for you. Unfortunately, her clothes don't fit well at all. In fact, they hang off your body, Anushka is a petite girl, but you're so skinny that even her clothes just hang off you. "Jesus ${((st as any).pcs_nickname ?? '')}, you need to eat something! Do you have some sort of eating disorder or something?" she asks as you check yourself out in the mirror on the door.`);
         scene.text('You shake your head, but do you? You know Anushka is petite, some might say on the skinny side, yet her clothes are too big. Seeing your reflection in the mirror while standing side by side with her, your exceptionally skinny build really stands out. She has curves in all the right places while all you have are bones protruding from under your skin. You both quickly give up on trying on her clothes since they don\'t look good on you.');
         scene.actions([
@@ -119,7 +114,6 @@ function enterNushcloset(s: GameState, scene: SceneBuilder): void {
         } else {
           scene.text('"Wow, you have so many outfits. Can I try some on?" you ask her.');
           scene.text('Anushka smiles and nods. "Sure, let\'s do it." She gets up to join you at the closet and pulls out different outfits. She picks the ones that she apparently thinks will work best for you. Her clothes don\'t fit perfectly since you\'re taller than her, but other than that, they fit you pretty well and look good on you.');
-          // TODO-QSP: dynamic text: As you check yourself out in the mirror on the door, she steps up next to you, s...
           scene.text(`As you check yourself out in the mirror on the door, she steps up next to you, showing both of your reflections. "Looking good, ${((st as any).pcs_nickname ?? '')}."`);
           scene.actions([
             { label: 'Try on more clothes', goto: ['anush_bedroom', 'more_clothes'] },
@@ -137,7 +131,6 @@ function enterNushcloset(s: GameState, scene: SceneBuilder): void {
         scene.text('Anushka hesitates as she looks you over, then smiles faintly. "I\'m not sure I have anything that will fit you… I might have something you can squeeze into." You can tell by her tone of voice and body language she\'s trying to be kind, but the message is clear, despite her not saying it.');
         scene.text('She gets up and joins you at the closet. She starts pulling out different outfits, most of which she discards. Finally, she pulls out a couple of clothes, and you notice all of them are baggy style clothes you\'ve never seen her wearing. You take them and try to put them on, but unfortunately, even her most oversized clothes are too small for you. You can squeeze into some of them, but you struggle to zip them up, and you can see your skin rolling over the side of the clothes in spots that are just too tight for you.');
         scene.text('When you try on a pair of cargo shorts, one of the buttons pops off and bounces across the floor, causing you to blush heavily. "Sorry, I… I shouldn\'t have tried to wear these. I can buy you a new pair or get this button fixed."');
-        // TODO-QSP: dynamic text: She shakes her head and giggles slightly. "Don''t worry about it. I didn''t real...
         scene.text(`She shakes her head and giggles slightly. "Don't worry about it. I didn't really like those shorts anyways." You sigh at the fact you're just too big to wear her clothes and put your own clothes back on. She glances at you while grinning. "Maybe you should lay off the sweets, ${((st as any).pcs_nickname ?? '')}," she says teasingly while poking you in the side.`);
         scene.text('"Hey, just because I\'m not as skinny as a rail doesn\'t mean the boys don\'t come running. I got myself a nice bubble butt, unlike your flat ass!" you reply, teasing her back for being skinny. The two of you laugh and put her clothes back away as you talk about where she gets her clothes from.');
         scene.actions([
@@ -153,7 +146,6 @@ function enterNushcloset(s: GameState, scene: SceneBuilder): void {
         scene.text('Anushka looks like a deer in headlights. "Uhh…" You get the feeling she doesn\'t know what or how to say something, and she finally smiles slightly. "Sorry girl, but I don\'t think even my largest baggy clothes will fit your fat ass!" she says in a teasing tone, but her words still sting.');
         scene.text('She gets up and joins you at the closet. She starts pulling out different outfits, almost all of which she discards. Finally, she pulls out a summer dress you\'ve never seen her in, likely because it looks far too big for her. "Here, you can try this, but I don\'t think it\'ll fit. That thing hangs off me like a tent."');
         scene.text('You take the dress and change out of your clothes. You try and get the dress on, but it won\'t go over your breasts. After a bit of struggling, it\'s obvious the thing isn\'t going to fit, no matter how badly you want to try it on.');
-        // TODO-QSP: dynamic text: You sigh at the fact you''re just too big to wear her clothes and put your own c...
         scene.text(`You sigh at the fact you're just too big to wear her clothes and put your own clothes back on. She glances at you while grinning. "Maybe you should try eating some veggies now and again and lay off the sweets, ${((st as any).pcs_nickname ?? '')}. The veggies won't kill you, I promise," she says teasingly.`);
         scene.text('"Hey, just because I\'m not as skinny as a rail…" You trail off and force a smile; you know she\'s not trying to be mean, but her words still hurt. Instead of trying on her clothes, you end up talking about where she gets them.');
         scene.actions([
@@ -209,7 +201,6 @@ function enterNushcloset(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -220,7 +211,6 @@ function enterMoreClothes(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/resident/apartment/anushapt/anushroom/maksimspy2.jpg');
   scene.text('The two of you keep trying on different outfits and checking yourselves out in the mirror while giggling and commenting on each other\'s clothes.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'These jeans are tight', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 3;
@@ -284,12 +274,10 @@ function enterMoreClothes(s: GameState, scene: SceneBuilder): void {
       { label: 'Yes', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/apartment/anushapt/anushroom/maksimspy5.jpg');
     scene.text('You nod your head. "Yes, we were trying on clothes when we noticed him spying on us."');
-    // TODO-QSP: dynamic text: Eduard visibly shakes with what you think is anger and embarrassment. "I''m sorr...
     scene.text(`Eduard visibly shakes with what you think is anger and embarrassment. "I'm sorry, ${((st as any).pcs_nickname ?? '')}. I thought I taught these boys better than this."`);
     scene.text('Anushka chimes in. "See? I told you!"');
     scene.text('He turns towards her, seemingly having forgotten she was naked. "God dammit, Anushka! Go to your room and put some clothes on for crying out loud!"');
     scene.text('He turns back towards Maksim. "Come on boy, we\'re going for a walk… again." Maksim visibly swallows and looks scared. He doesn\'t move at first until his dad stops and glares at him. He quickly catches up, and they walk out of the apartment together.');
-    // TODO-QSP: dynamic text: Anushka just stands naked until they both walk out the door, and Eduard closes i...
     scene.text(`Anushka just stands naked until they both walk out the door, and Eduard closes it behind them. Then she turns and heads back to her room. "Fucking little pervert. I'm sorry that you had to deal with that, ${((st as any).pcs_nickname ?? '')}."`);
     scene.text('You follow her to her room, and you both get dressed again. "It\'s not your fault. Boys will be boys."');
     scene.actions([
@@ -318,7 +306,6 @@ function enterChaseNaked(s: GameState, scene: SceneBuilder): void {
   scene.text('Maksim runs into the living room with you and Anushka gaining on him; he runs past his dad, who turns towards Maksim. "What the hell is going on?" he asks Maksim, who is cowering in the corner.');
   scene.text('"She\'s trying to kill me!" a panicking Maksim replies.');
   scene.text('Eduard turns to the two of you. "Just what the hell…" He never finishes his sentence. Instead, he immediately turns his head away and puts his hand in front of his eyes. "God dammit! The two of you need to put some clothes on right now!" he bellows.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'The look', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 10;
@@ -332,12 +319,10 @@ function enterChaseNaked(s: GameState, scene: SceneBuilder): void {
       { label: 'Yes', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/apartment/anushapt/anushroom/maksimspy6.jpg');
     scene.text('"Yes, we were trying on clothes when we noticed him spying on us," you reply.');
-    // TODO-QSP: dynamic text: Eduard visibly shakes with what you think is anger and embarrassment. "I''m sorr...
     scene.text(`Eduard visibly shakes with what you think is anger and embarrassment. "I'm sorry, ${((st as any).pcs_firstname ?? '')}. I thought I taught these boys better than this."`);
     scene.text('Anushka chimes in. "See? I told you!"');
     scene.text('He turns towards her and instantly regrets it. "God dammit, both of you go and put some clothes on for crying out loud!" You notice his gaze lingers on you for a second, or maybe it was your imagination.');
     scene.text('He turns back towards Maksim. "Come on boy, we\'re going for a walk… again." Maksim visibly swallows and looks scared. He doesn\'t move at first until his dad stops and glares at him. He quickly catches up, and they walk out of the apartment together.');
-    // TODO-QSP: dynamic text: Anushka turns and heads back to her room. "Fucking little pervert. I''m sorry th...
     scene.text(`Anushka turns and heads back to her room. "Fucking little pervert. I'm sorry that you had to deal with that, ${((st as any).pcs_nickname ?? '')}."`);
     scene.text('You follow her to her room, and you both get dressed again. "It\'s not your fault. Boys will be boys."');
     scene.actions([
@@ -413,7 +398,6 @@ function enterNightStand(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -613,6 +597,7 @@ function enterComputer(s: GameState, scene: SceneBuilder): void {
         ]);
       }
     }
+    (st as any).temp = undefined;
   } },
     ]);
   } },
@@ -633,7 +618,6 @@ function enterComputer(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -671,7 +655,6 @@ function enterAgreeporn(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Just watch', handler: (st: GameState) => {
     scene.text('<center><b>Anushka\'s Room</b></center>');
@@ -792,7 +775,6 @@ function enterGuitar(s: GameState, scene: SceneBuilder): void {
         qspCall(st, 'mood', 'raise', 'tiny');
         (st as any).minut = ((st as any).minut ?? 0) + 20;
         scene.text('You gently brush your fingers over the strings and slowly pick at them before you start playing a song you recently started learning. Unfortunately, you still have a lot to learn - it takes you several minutes to hit the right notes and several more to play even a tiny bit of the song without making a mistake. Still, you\'re better than you used to be, and after about twenty minutes, you decide to stop.');
-        // TODO-QSP: dynamic text: <<$OpenInnerThought>>"Maybe Anushka will be willing to help me out and teach me ...
         scene.text(`${((st as any).OpenInnerThought ?? '')}"Maybe Anushka will be willing to help me out and teach me how to play?"${((st as any).CloseInnerThought ?? '')} you muse as you place the instrument back on its stand.`);
         scene.actions([
           { label: 'Put the guitar back', goto: ['anush_bedroom', 'anushroom'] },
@@ -803,7 +785,6 @@ function enterGuitar(s: GameState, scene: SceneBuilder): void {
           qspCall(st, 'mood', 'raise', 'tiny');
           (st as any).minut = ((st as any).minut ?? 0) + 20;
           scene.text('You gently brush your fingers over the strings and slowly pick at them before you start playing a song you recently started learning. You keep making small mistakes here and there, but you\'re slowly but steadily getting the piece down. After about twenty minutes, you decide you\'ve messed around with the guitar enough.');
-          // TODO-QSP: dynamic text: <<$OpenInnerThought>>"Maybe Anushka will be willing to help me out and teach me ...
           scene.text(`${((st as any).OpenInnerThought ?? '')}"Maybe Anushka will be willing to help me out and teach me how to play?"${((st as any).CloseInnerThought ?? '')} you muse as you place the instrument back on its stand.`);
           scene.actions([
             { label: 'Put the guitar back', goto: ['anush_bedroom', 'anushroom'] },
@@ -814,7 +795,6 @@ function enterGuitar(s: GameState, scene: SceneBuilder): void {
           (st as any).minut = ((st as any).minut ?? 0) + 20;
           scene.text('You pick up the guitar, run your hand along the neck and play a few chords, then flick your hair back and start playing the latest song you\'ve learned before switching to another piece. Your fingers dance gracefully over the strings, and you spend about twenty minutes just having fun playing songs.');
           if (((st as any).ml_guitar ?? 0)?.['hasguitar'] >= 1) {
-            // TODO-QSP: dynamic text: <<$OpenInnerThought>>"Maybe I should come over with my guitar someday and see if...
             scene.text(`${((st as any).OpenInnerThought ?? '')}"Maybe I should come over with my guitar someday and see if Nush wants to play together?"${((st as any).CloseInnerThought ?? '')} you muse as you place the instrument back on its stand.`);
           }
           scene.actions([
@@ -826,7 +806,6 @@ function enterGuitar(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -858,7 +837,6 @@ function enterBed(s: GameState, scene: SceneBuilder): void {
       { label: 'Get out of the bed', goto: ['anush_bedroom', 'anushroom'] },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1063,7 +1041,6 @@ function enterNushGuitar(s: GameState, scene: SceneBuilder): void {
       scene.text('Music is turned off.');
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1168,7 +1145,6 @@ function enterNushGuitarTeach(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1204,7 +1180,6 @@ function enterGuitarLesson(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1264,7 +1239,6 @@ function enterNushGuitarPlayTogether(s: GameState, scene: SceneBuilder): void {
         } else {
           (s as any).minut = ((s as any).minut ?? 0) + 60;
           qspCall(s, 'mood', 'raise', 'small');
-          // TODO-QSP: dynamic text: You don''t make any mistakes and don''t have any trouble keeping up with her. In...
           scene.text(`You don't make any mistakes and don't have any trouble keeping up with her. In fact, you feel confident that you outplayed her. You play together for about an hour before she stops. "Damn ${((s as any).pcs_nickname ?? '')}, I think you're better than I am!" she says with a smile.`);
           scene.text('You return her smile. "Thanks. I\'ve been working hard on trying to master it."');
           scene.text('"Well, it sounds like it was time well spent. I had fun and think we should totally do this again." The two of you talk about your different styles of practicing and any tips or tricks you learned along the way that might help each other.');
@@ -1276,11 +1250,11 @@ function enterNushGuitarPlayTogether(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enter(s: GameState, scene: SceneBuilder): void {
+  (s as any).returnLoc = undefined;
   const arg = s.locArg;
   switch (arg) {
     case 'anushroom':

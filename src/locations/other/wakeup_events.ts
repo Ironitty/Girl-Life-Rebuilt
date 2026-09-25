@@ -5,97 +5,98 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
+  (s as any).sleep_events = undefined;
+  (s as any).sleep_events_priority = undefined;
   if (((s as any).sleepVars ?? 0)?.['events_active'] === 1) {
     ((s as any).sleepVars = (s as any).sleepVars ?? {})['events_done'] = 0;
     if (((s as any).start_type ?? 0)?.['loc'] === 'sg'  &&  ((s as any).locat ?? 0)?.['Fam_inGad'] === 0  &&  ((s as any).motherQW ?? 0)?.['bathroom_dildos'] > 0  &&  ((s as any).MarishaQW ?? 0)?.['marisha_sleepover'] === 0) {
-      // TODO-QSP: $sleep_events[] = "gs 'wakeup_events', 'mother_sextalk'"
+      (s as any).sleep_events = [...((s as any).sleep_events ?? []), 'gs \'wakeup_events\', \'mother_sextalk\''];
     }
     qspCall(s, 'city_experimental_trials_events', 'check_for_events');
     if (((s as any).week ?? 0) === 1  &&  ((s as any).home_name ?? 0)?.[String((s as any).loc ?? 0)] === 'parents_home') {
-      // TODO-QSP: $sleep_events[] = "gs 'wakeup_events', 'mother_laundry'"
+      (s as any).sleep_events = [...((s as any).sleep_events ?? []), 'gs \'wakeup_events\', \'mother_laundry\''];
     }
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterVomitingCheck(s, scene); (s as any).locArgs = __savedLocArgs; }
     if (((s as any).MarishaQW ?? 0)?.['marisha_sleepover'] === 1) {
-      // TODO-QSP: $sleep_events_priority[] = 'gs ''wakeup_events'', ''marisha_ev_morning'' '
+      (s as any).sleep_events_priority = [...((s as any).sleep_events_priority ?? []), 'gs \'wakeup_events\', \'marisha_ev_morning\' '];
     }
     if (((s as any).start_type ?? 0)?.['magic'] === 'tg'  &&  ((s as any).daystart ?? 0) - ((s as any).daystart_start ?? 0) < 9) {
-      // TODO-QSP: $sleep_events_priority[] = "gs 'wakeup_events', 'trans_early_shocked'"
+      (s as any).sleep_events_priority = [...((s as any).sleep_events_priority ?? []), 'gs \'wakeup_events\', \'trans_early_shocked\''];
     } else {
       if (((s as any).start_type ?? 0)?.['magic'] === 'tg'  &&  ((s as any).daystart ?? 0) - ((s as any).daystart_start ?? 0) < 29) {
-        // TODO-QSP: $sleep_events_priority[] = "gs 'wakeup_events', 'trans_little_shocked'"
+        (s as any).sleep_events_priority = [...((s as any).sleep_events_priority ?? []), 'gs \'wakeup_events\', \'trans_little_shocked\''];
       }
     }
     if (((s as any).therapistQW ?? 0)?.['hotel_sleep_flag'] === 1) {
       ((s as any).therapistQW = (s as any).therapistQW ?? {})['hotel_sleep_flag'] = 0;
-      // TODO-QSP: $sleep_events_priority[] = "gs 'therapist_home', 'wakeup'"
+      (s as any).sleep_events_priority = [...((s as any).sleep_events_priority ?? []), 'gs \'therapist_home\', \'wakeup\''];
     }
     if (((s as any).NatbelQW ?? 0)?.['FriendLover'] >= 8  &&  ((s as any).loc ?? 0) === 'natbelapt'  &&  ((s as any).loc_arg ?? 0) === 'natroom') {
-      // TODO-QSP: $sleep_events_priority[] = "gs 'wakeup_events', 'nat_wakeup_sex'"
+      (s as any).sleep_events_priority = [...((s as any).sleep_events_priority ?? []), 'gs \'wakeup_events\', \'nat_wakeup_sex\''];
     }
     if (((s as any).start_type ?? 0)?.['loc'] === 'sg'  &&  ((s as any).sleepVars ?? 0)?.['slept_in'] === 1  &&  ((s as any).kanikuli ?? 0) === 0  &&  ((s as any).gschoolVars ?? 0)?.['school_diploma'] === 0  &&  ((s as any).gschoolVars ?? 0)?.['block'] === 0  &&  ((s as any).week ?? 0) < 6  &&  ((s as any).suspended ?? 0)?.['on'] !== 1) {
       if ((((s as any).hour ?? 0) === 7  ||  ((s as any).hour ?? 0) === 8)) {
-        // TODO-QSP: $sleep_events_priority[] = "gs 'wakeup_events', 'sg_go_school'"
+        (s as any).sleep_events_priority = [...((s as any).sleep_events_priority ?? []), 'gs \'wakeup_events\', \'sg_go_school\''];
       } else {
         if (((s as any).hour ?? 0) >= 9  &&  ((s as any).hour ?? 0) < 14) {
-          // TODO-QSP: $sleep_events_priority[] = "gs 'wakeup_events', 'sg_slept_in'"
+          (s as any).sleep_events_priority = [...((s as any).sleep_events_priority ?? []), 'gs \'wakeup_events\', \'sg_slept_in\''];
         }
       }
     }
     qspGoto(s, 'wakeup_events', 'mod_sleepevents');
   }
   qspGoto(s, 'wakeup_events', 'continue');
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
+  (s as any).sleep_events = undefined;
+  (s as any).sleep_events_priority = undefined;
   if (((s as any).sleepVars ?? 0)?.['events_active'] === 1) {
     ((s as any).sleepVars = (s as any).sleepVars ?? {})['events_done'] = 0;
     if (((s as any).start_type ?? 0)?.['loc'] === 'sg'  &&  ((s as any).locat ?? 0)?.['Fam_inGad'] === 0  &&  ((s as any).motherQW ?? 0)?.['bathroom_dildos'] > 0  &&  ((s as any).MarishaQW ?? 0)?.['marisha_sleepover'] === 0) {
-      // TODO-QSP: $sleep_events[] = "gs 'wakeup_events', 'mother_sextalk'"
+      (s as any).sleep_events = [...((s as any).sleep_events ?? []), 'gs \'wakeup_events\', \'mother_sextalk\''];
     }
     qspCall(s, 'city_experimental_trials_events', 'check_for_events');
     if (((s as any).week ?? 0) === 1  &&  ((s as any).home_name ?? 0)?.[String((s as any).loc ?? 0)] === 'parents_home') {
-      // TODO-QSP: $sleep_events[] = "gs 'wakeup_events', 'mother_laundry'"
+      (s as any).sleep_events = [...((s as any).sleep_events ?? []), 'gs \'wakeup_events\', \'mother_laundry\''];
     }
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterVomitingCheck(s, scene); (s as any).locArgs = __savedLocArgs; }
     if (((s as any).MarishaQW ?? 0)?.['marisha_sleepover'] === 1) {
-      // TODO-QSP: $sleep_events_priority[] = 'gs ''wakeup_events'', ''marisha_ev_morning'' '
+      (s as any).sleep_events_priority = [...((s as any).sleep_events_priority ?? []), 'gs \'wakeup_events\', \'marisha_ev_morning\' '];
     }
     if (((s as any).start_type ?? 0)?.['magic'] === 'tg'  &&  ((s as any).daystart ?? 0) - ((s as any).daystart_start ?? 0) < 9) {
-      // TODO-QSP: $sleep_events_priority[] = "gs 'wakeup_events', 'trans_early_shocked'"
+      (s as any).sleep_events_priority = [...((s as any).sleep_events_priority ?? []), 'gs \'wakeup_events\', \'trans_early_shocked\''];
     } else {
       if (((s as any).start_type ?? 0)?.['magic'] === 'tg'  &&  ((s as any).daystart ?? 0) - ((s as any).daystart_start ?? 0) < 29) {
-        // TODO-QSP: $sleep_events_priority[] = "gs 'wakeup_events', 'trans_little_shocked'"
+        (s as any).sleep_events_priority = [...((s as any).sleep_events_priority ?? []), 'gs \'wakeup_events\', \'trans_little_shocked\''];
       }
     }
     if (((s as any).therapistQW ?? 0)?.['hotel_sleep_flag'] === 1) {
       ((s as any).therapistQW = (s as any).therapistQW ?? {})['hotel_sleep_flag'] = 0;
-      // TODO-QSP: $sleep_events_priority[] = "gs 'therapist_home', 'wakeup'"
+      (s as any).sleep_events_priority = [...((s as any).sleep_events_priority ?? []), 'gs \'therapist_home\', \'wakeup\''];
     }
     if (((s as any).NatbelQW ?? 0)?.['FriendLover'] >= 8  &&  ((s as any).loc ?? 0) === 'natbelapt'  &&  ((s as any).loc_arg ?? 0) === 'natroom') {
-      // TODO-QSP: $sleep_events_priority[] = "gs 'wakeup_events', 'nat_wakeup_sex'"
+      (s as any).sleep_events_priority = [...((s as any).sleep_events_priority ?? []), 'gs \'wakeup_events\', \'nat_wakeup_sex\''];
     }
     if (((s as any).start_type ?? 0)?.['loc'] === 'sg'  &&  ((s as any).sleepVars ?? 0)?.['slept_in'] === 1  &&  ((s as any).kanikuli ?? 0) === 0  &&  ((s as any).gschoolVars ?? 0)?.['school_diploma'] === 0  &&  ((s as any).gschoolVars ?? 0)?.['block'] === 0  &&  ((s as any).week ?? 0) < 6  &&  ((s as any).suspended ?? 0)?.['on'] !== 1) {
       if ((((s as any).hour ?? 0) === 7  ||  ((s as any).hour ?? 0) === 8)) {
-        // TODO-QSP: $sleep_events_priority[] = "gs 'wakeup_events', 'sg_go_school'"
+        (s as any).sleep_events_priority = [...((s as any).sleep_events_priority ?? []), 'gs \'wakeup_events\', \'sg_go_school\''];
       } else {
         if (((s as any).hour ?? 0) >= 9  &&  ((s as any).hour ?? 0) < 14) {
-          // TODO-QSP: $sleep_events_priority[] = "gs 'wakeup_events', 'sg_slept_in'"
+          (s as any).sleep_events_priority = [...((s as any).sleep_events_priority ?? []), 'gs \'wakeup_events\', \'sg_slept_in\''];
         }
       }
     }
     qspGoto(s, 'wakeup_events', 'mod_sleepevents');
   }
   qspGoto(s, 'wakeup_events', 'continue');
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterModSleepevents(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'mod_system', 'sleep', 'wakeup_events', 'mod_sleepevents');
   qspGoto(s, 'wakeup_events', 'event_handler');
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -110,7 +111,6 @@ function enterEventHandler(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspGoto(s, 'wakeup_events', 'continue');
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -119,54 +119,62 @@ function enterEventHandler2(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === 'priority') {
     (s as any).temp_slev_id = (Math.floor(Math.random() * (0 - 0 + 1)) + (0));
     (s as any).temp_sleep_event_chosen = (((s as any).sleep_events_priority ?? 0)?.[String((s as any).temp_slev_id ?? 0)] ?? 0);
+    (s as any).sleep_events_priority = undefined;
   } else {
     (s as any).temp_slev_id = (Math.floor(Math.random() * (0 - 0 + 1)) + (0));
     (s as any).temp_sleep_event_chosen = (((s as any).sleep_events ?? 0)?.[String((s as any).temp_slev_id ?? 0)] ?? 0);
+    (s as any).sleep_events = undefined;
   }
+  (s as any).temp_slev_id = undefined;
+  qspFunc(s, 'temp_sleep_event_chosen');
   qspGoto(s, 'wakeup_events', 'event_end');
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterEventEnd(s: GameState, scene: SceneBuilder): void {
+  (s as any).temp_sleep_event_chosen = undefined;
   if (Object.keys((s as any).sleep_events_priority ?? {}).length > 0) {
     qspGoto(s, 'wakeup_events', 'event_handler2', 'priority');
   }
   qspGoto(s, 'wakeup_events', 'event_handler');
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterExit(s: GameState, scene: SceneBuilder): void {
   ((s as any).sleepVars = (s as any).sleepVars ?? {})['events_done'] = 0;
+  (s as any).sleep_loc = undefined;
+  (s as any).sleep_events = undefined;
+  (s as any).sleep_events_priority = undefined;
+  (s as any).temp_slev_id = undefined;
+  (s as any).temp_sleep_event_chosen = undefined;
   (s as any).inSleep = 0;
   qspCall(s, 'wakeup', 'wear_bed_clothes');
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterContinue(s: GameState, scene: SceneBuilder): void {
   ((s as any).sleepVars = (s as any).sleepVars ?? {})['events_done'] = 0;
+  (s as any).sleep_loc = undefined;
+  (s as any).sleep_events = undefined;
+  (s as any).sleep_events_priority = undefined;
+  (s as any).temp_slev_id = undefined;
+  (s as any).temp_sleep_event_chosen = undefined;
   qspGoto(s, 'wakeup', 'get_out');
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterMotherSextalk(s: GameState, scene: SceneBuilder): void {
   qspGoto(s, 'mother_sextalk', 'dildo_wakeup1');
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterMotherLaundry(s: GameState, scene: SceneBuilder): void {
   qspGoto(s, 'wakeup_events', 'mother_laundry2');
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterMotherLaundry2(s: GameState, scene: SceneBuilder): void {
   scene.text('You mother has done the laundry and you see a fresh pile of clothing in your wardrobe.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterEventEnd(st, scene); (st as any).locArgs = __savedLocArgs; }
@@ -178,14 +186,13 @@ function enterMotherLaundry2(s: GameState, scene: SceneBuilder): void {
 function enterVomitingCheck(s: GameState, scene: SceneBuilder): void {
   if (((s as any).vomit ?? 0)?.['hangover'] === 1  &&  (Math.floor(Math.random() * 76) + 50) > ((s as any).trait_vars ?? 0)?.['drinking_exp']  ||  ((s as any).vomit ?? 0)?.['unlucky'] === 1  ||  ((s as any).vomit ?? 0)?.['morning_sick'] === 1) {
     if (((s as any).loc ?? 0) === qspFunc(s, 'homes_properties_attr', 'get_property_attribute', '$bedroom')  &&  qspFunc(s, 'homes_properties', 'is_at_a_home')) {
-      // TODO-QSP: $sleep_events[] = 'gs ''wakeup_events'', ''vomiting_event'' '
+      (s as any).sleep_events = [...((s as any).sleep_events ?? []), 'gs \'wakeup_events\', \'vomiting_event\' '];
       return;
     }
   }
   ((s as any).vomit = (s as any).vomit ?? {})['morning_sick'] = 0;
   ((s as any).vomit = (s as any).vomit ?? {})['hangover'] = 0;
   ((s as any).vomit = (s as any).vomit ?? {})['unlucky'] = 0;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -193,19 +200,16 @@ function enterVomitingEvent(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterExit(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'home_activity', 'vomiting_images');
   qspGoto(s, 'home_activity', 'morning_vomit');
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterNatWakeupSex(s: GameState, scene: SceneBuilder): void {
   qspGoto(s, 'wakeup_events', 'nat_wakeup_sex1');
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterNatWakeupSex1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'natbel_kissinggames', 'wakeup_event_text');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Get out of bed', handler: (st: GameState) => {
     qspCall(st, 'wakeup_events', '');
@@ -220,33 +224,29 @@ function enterNatWakeupSex1(s: GameState, scene: SceneBuilder): void {
 
 function enterMarishaEvMorning(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/resident/marisha/marisha.jpg');
-  // TODO-QSP: dynamic text: You wake up feeling relaxed then look over to see Marisha already up. She gives ...
   scene.text(`You wake up feeling relaxed then look over to see Marisha already up. She gives you a smile and says, "Thanks for everything ${((s as any).pcs_firstname ?? '')}. See you later." She then leaves as you continue getting up.`);
   ((s as any).MarishaQW = (s as any).MarishaQW ?? {})['marisha_sleepover'] = 0;
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterEventEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterTransEarlyShocked(s: GameState, scene: SceneBuilder): void {
   scene.text('The first thing you think as you wake up is, "Damn! It\'s is not a dream, I really am a woman now."');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterEventEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterTransLittleShocked(s: GameState, scene: SceneBuilder): void {
   scene.text('Looking at your female body, you are still a little surprised it\'s actually you.');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterEventEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterSgGoSchool(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'mood', 'lower', 'small');
   qspCall(s, 'stat', '');
+  alert('<center>Damn it\'s <b>' + qspFunc(s, 'time', 'get_time_string', ((s as any).hour ?? 0), ((s as any).minut ?? 0), (((s as any).cheatVars ?? 0)?.['time_format'])) + '</b>, you\'ve slept too long! You need to hurry or you\'re going to be late for school!</center>');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterEventEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -254,22 +254,25 @@ function enterSgSleptIn(s: GameState, scene: SceneBuilder): void {
   if (((s as any).gschoolVars ?? 0)?.['absence_count'] <= 2) {
     qspCall(s, 'mood', 'lower', 'medium');
     qspCall(s, 'stat', '');
+    alert('<center>Damn it\'s <b>' + qspFunc(s, 'time', 'get_time_string', ((s as any).hour ?? 0), ((s as any).minut ?? 0), (((s as any).cheatVars ?? 0)?.['time_format'])) + '</b>. It\'s too late to go to school now!<br>' + (((s as any).npc_nickname ?? 0)?.['A29']) + ' will be very upset if I\'m not at school every day.</center>');
   } else {
     if (((s as any).gschoolVars ?? 0)?.['expell_stage'] === 0) {
       qspCall(s, 'mood', 'lower', 'large');
       qspCall(s, 'stat', '');
+      alert('<center>Damn it\'s <b>' + qspFunc(s, 'time', 'get_time_string', ((s as any).hour ?? 0), ((s as any).minut ?? 0), (((s as any).cheatVars ?? 0)?.['time_format'])) + '</b>. It\'s too late to go to school now!<br>' + (((s as any).npc_nickname ?? 0)?.['A29']) + ' will be angry to find out I missed a day of school.</center>');
     } else {
       if (((s as any).gschoolVars ?? 0)?.['expell_stage'] === 1) {
         qspCall(s, 'mood', 'lower', 'large');
         qspCall(s, 'stat', '');
+        alert('<center>Damn it\'s <b>' + qspFunc(s, 'time', 'get_time_string', ((s as any).hour ?? 0), ((s as any).minut ?? 0), (((s as any).cheatVars ?? 0)?.['time_format'])) + '</b>. It\'s too late to go to school now!<br>' + (((s as any).npc_nickname ?? 0)?.['A29']) + ' will be very angry if I miss another day of school.</center>');
       } else {
         qspCall(s, 'mood', 'lower', 'large');
         qspCall(s, 'stat', '');
+        alert('<center>Damn it\'s <b>' + qspFunc(s, 'time', 'get_time_string', ((s as any).hour ?? 0), ((s as any).minut ?? 0), (((s as any).cheatVars ?? 0)?.['time_format'])) + '</b>. It\'s too late to go to school now!<br>' + (((s as any).npc_nickname ?? 0)?.['A29']) + ' will be furious. I don\'t know what she might do…</center>');
       }
     }
   }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterEventEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.build();
 }
 

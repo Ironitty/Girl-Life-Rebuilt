@@ -34,15 +34,14 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     }
   }
   scene.img(`images/system/1_openings/${((s as any).temp_image ?? '')}`);
+  (s as any).temp_image = undefined;
   if (((s as any).start_type ?? 0)?.['loc'] === 'sg') {
     if (((s as any).start_type ?? 0)?.['magic'] === 'nomagic') {
       scene.text('Welcome to the Schoolgirl version! You will need to carry on with your school life, manage your relationships and deal with whatever else comes up along the way!');
     } else {
       if (((s as any).start_type ?? 0)?.['magic'] === 'magic') {
-        // TODO-QSP: dynamic text: Welcome to the Cursed Schoolgirl version! Guide <<$pcs_nickname>> through her sc...
         scene.text(`Welcome to the Cursed Schoolgirl version! Guide ${((s as any).pcs_nickname ?? '')} through her school life, relationships and myriad of other issues that might pop up, all with the added spice of magic to keep things interesting!`);
       } else {
-        // TODO-QSP: dynamic text: Welcome to the Transformation start! Although you''ve lost your masculinity and ...
         scene.text(`Welcome to the Transformation start! Although you've lost your masculinity and your old life, new possibilities are opening up before your eyes! Guide ${((s as any).pcs_nickname ?? '')} through her school life, relationships and the many other issues that might pop up.`);
       }
     }
@@ -57,14 +56,12 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
           scene.text('Welcome to the Transformation start! Although you\'ve lost your masculinity and your old life, new possibilities are opening up before your eyes, not least aided in your newfound knowledge of the magical nature of the world!');
         }
       }
-      // TODO-QSP: dynamic text: Guide <<$pcs_nickname>> through the many challenges of life at university. Manag...
       scene.text(`Guide ${((s as any).pcs_nickname ?? '')} through the many challenges of life at university. Manage coursework, a job, and relationships with the people you meet on your journey.`);
     } else {
       if (((s as any).start_type ?? 0)?.['magic'] === 'nomagic') {
         scene.text('Welcome to Girl Life. You are finally free of your parents and ready to face all the freedoms and challenges that entails. Your options are nearly unlimited and now it\'s time to go out and discover them all.');
       } else {
         if (((s as any).start_type ?? 0)?.['magic'] === 'magic') {
-          // TODO-QSP: dynamic text: Welcome to the magical girl version of Girl Life! You are finally free of your p...
           scene.text(`Welcome to the magical girl version of Girl Life! You are finally free of your parents and ready to face all the freedoms and challenges that entails. Guide ${((s as any).pcs_nickname ?? '')} through her life, relationships and myriad of other issues that might pop up, all with the added spice of magic to keep things interesting!`);
         } else {
           scene.text('Welcome to the Transformation start! Although you\'ve lost your masculinity and your old life, new possibilities are opening up before your eyes, not least aided in your newfound knowledge of the magical nature of the world!');
@@ -74,7 +71,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     }
   }
   // TODO-QSP: savegame 'autosave_newgame.sav'
-  // TODO-QSP: end
   scene.actions([
     { label: 'Start the game', handler: (st: GameState) => {
     (st as any).music_loop = 0;
@@ -109,7 +105,6 @@ function enterQuickStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'intro_initialization', 'init');
   (s as any).music_loop = 0;
   // TODO-QSP: savegame 'autosave_newgame.sav'
-  // TODO-QSP: end
   scene.actions([
     { label: 'Start the game', handler: (st: GameState) => {
     if (((st as any).start_type ?? 0)?.['loc'] === 'sg') {

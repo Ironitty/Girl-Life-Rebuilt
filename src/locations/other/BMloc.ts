@@ -12,7 +12,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     qspCall(st, 'boystat', '', (((st as any).bmNane ?? 0)?.[String((st as any).Tboynum ?? 0)] ?? 0));
     (st as any).hookupboy = (((st as any).bmNane ?? 0)?.[String((st as any).Tboynum ?? 0)] ?? 0);
-    // TODO-QSP: $npc_usedname[$npclastcalled] = $npc_nickname[$npclastcalled]
+    ((st as any).npc_usedname = (st as any).npc_usedname ?? {})[String((st as any).npclastcalled ?? 0)] = (((st as any).npc_nickname ?? 0)?.[String((st as any).npclastcalled ?? 0)] ?? 0);
     if (((st as any).bmFrend ?? 0)?.[String((st as any).Tboynum ?? 0)] === 0) {
       if (((st as any).bmHJ ?? 0)?.[String((st as any).Tboynum ?? 0)] > 0  ||  ((st as any).bmBJ ?? 0)?.[String((st as any).Tboynum ?? 0)] > 0  ||  ((st as any).bmSEX ?? 0)?.[String((st as any).Tboynum ?? 0)] > 0  ||  ((st as any).bmANAL ?? 0)?.[String((st as any).Tboynum ?? 0)] > 0  ||  ((st as any).bmGANG ?? 0)?.[String((st as any).Tboynum ?? 0)] > 0) {
         if (((st as any).bmHJ ?? 0)?.[String((st as any).Tboynum ?? 0)] > 0) {
@@ -30,28 +30,22 @@ function enter(s: GameState, scene: SceneBuilder): void {
         if (((st as any).bmGANG ?? 0)?.[String((st as any).Tboynum ?? 0)] > 0) {
           (st as any).text2 = 'you let me and my friend fuck you.';
         }
-        // TODO-QSP: dynamic text: <<$niknameboy>> tells you "Remember me, <<$text2>>. I''m <<$boydesc>>."
         scene.text(`${((st as any).niknameboy ?? '')} tells you "Remember me, ${((st as any).text2 ?? '')}. I'm ${((st as any).boydesc ?? '')}."`);
       } else {
         if (((st as any).bmKISS ?? 0)?.[String((st as any).Tboynum ?? 0)] > 0  ||  ((st as any).bmTITS ?? 0)?.[String((st as any).Tboynum ?? 0)] > 0) {
-          // TODO-QSP: dynamic text: <<$niknameboy>> tells you "Remember me, we hung out and drank together beer. I''...
           scene.text(`${((st as any).niknameboy ?? '')} tells you "Remember me, we hung out and drank together beer. I'm ${((st as any).boydesc ?? '')}."`);
         } else {
-          // TODO-QSP: dynamic text: <<$niknameboy>> tells you "Remember me, we danced together. I''m <<$boydesc>>."
           scene.text(`${((st as any).niknameboy ?? '')} tells you "Remember me, we danced together. I'm ${((st as any).boydesc ?? '')}."`);
         }
       }
     }
     if (((st as any).bmTip ?? 0)?.[String((st as any).Tboynum ?? 0)] === 0) {
-      // TODO-QSP: dynamic text: After the Dance <<$boydesc>> offers to go out and drink beer.
       scene.text(`After the Dance ${((st as any).boydesc ?? '')} offers to go out and drink beer.`);
     }
     if (((st as any).bmTip ?? 0)?.[String((st as any).Tboynum ?? 0)] === 1) {
-      // TODO-QSP: dynamic text: After the Dance <<$boydesc>> offers to go hang out.
       scene.text(`After the Dance ${((st as any).boydesc ?? '')} offers to go hang out.`);
     }
     if (((st as any).bmTip ?? 0)?.[String((st as any).Tboynum ?? 0)] === 2) {
-      // TODO-QSP: dynamic text: After the Dance <<$boydesc>> offers to go to his hotel.
       scene.text(`After the Dance ${((st as any).boydesc ?? '')} offers to go to his hotel.`);
     }
     qspCall(st, 'willpower', 'drink', 'resist');

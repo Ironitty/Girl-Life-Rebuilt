@@ -11,11 +11,11 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 function enterKendraRoomStart(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'event';
   (s as any).reccoldorm = 0;
+  (s as any).kendrano = undefined;
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/island/university/dorm/kendraroom/room.jpg');
   scene.text('There are two beds, one on each side of the window, along with various pictures and posters hanging on both sides of the room. A string of large lights hang from one of the walls and just down from the beds on each side are two desks, both decorated with slight differences. A small couch and two wardrobes are near the door.');
   scene.text('As you walk in the room, she follows behind you. "What should I do with you today, slave?" You know it\'s a rhetorical question and she really doesn\'t want you to answer. As you turn to look at her, you can tell she has something in mind that will likely either humiliate you or turn you into her submissive pet. "Maybe I\'ll have you do my nails, or maybe lick my ass? Perhaps I\'ll fuck you, or find someone to fuck you. So many choices…"');
-  // TODO-QSP: end
   scene.actions([
     { label: 'I should get going', handler: (st: GameState) => {
     qspCall(st, 'npc_relationship', 'modify', 'A84', 'loathe');
@@ -69,7 +69,6 @@ function enterKendraRoomRouting(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -80,7 +79,6 @@ function enterKendraRoom_0(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/city/university/girl/kendra/femdom/femdom1.jpg');
   scene.text('She sits on her bed and kicks off her shoes. "Come here and paint my toenails, slave." You walk over and sit on the bed as she hands you some polish. You start applying some, only to have her smack you. "No, not good enough! Start over!" You grab the polish remover and clean her nails before repeating the process several times until she\'s happy.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Finish her toenails', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 15;
@@ -102,7 +100,6 @@ function enterKendraRoom_1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcStat', 'A84');
   (s as any).location_type = 'event';
   ((s as any).kendraQW = (s as any).kendraQW ?? {})['dom'] = ((s as any).kendraQW['dom'] ?? 0) + (1);
-  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/city/university/girl/kendra/f...
   scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/characters/city/university/girl/kendra/femdom/femdom2_` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
   scene.text('She walks over and sits on the couch. "Come here and clean my boots, slave." You walk over and kneel next to the couch before grabbing some tissue to clean her boots, but she stops you. "No! Use your tongue."');
   scene.text('You nod. "Yes, mistress." You start licking her boots clean as she smacks you on the head and points out any spots you\'ve missed.');
@@ -110,7 +107,6 @@ function enterKendraRoom_1(s: GameState, scene: SceneBuilder): void {
   scene.text('"Yes, mistress." You stand and walk over to the door before leaving.');
   qspCall(s, 'arousal', 'foreplay', 30, 'sub', 'humiliation', 'feet');
   qspCall(s, 'arousal', 'end');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the eighth floor', goto: ['uni_dorm', 'eighth_floor'] },
   ]);
@@ -128,7 +124,6 @@ function enterKendraRoom_2(s: GameState, scene: SceneBuilder): void {
   scene.text('"Yes, mistress." You stand and walk over to the door before leaving.');
   qspCall(s, 'arousal', 'foreplay', 30, 'sub', 'humiliation', 'feet');
   qspCall(s, 'arousal', 'end');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the eighth floor', goto: ['uni_dorm', 'eighth_floor'] },
   ]);
@@ -146,7 +141,6 @@ function enterKendraRoom_3(s: GameState, scene: SceneBuilder): void {
   scene.text('"Yes, mistress." You stand and walk over to the door before leaving.');
   qspCall(s, 'arousal', 'foreplay', 30, 'sub', 'humiliation', 'feet');
   qspCall(s, 'arousal', 'end');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the eighth floor', goto: ['uni_dorm', 'eighth_floor'] },
   ]);
@@ -164,7 +158,6 @@ function enterKendraRoom_4(s: GameState, scene: SceneBuilder): void {
   scene.text('"Yes, mistress." You stand up and take off the collar and leash before walking over and putting them back in the drawer where they belong. You then walk over to the door and leave.');
   qspCall(s, 'arousal', 'foreplay', 30, 'sub', 'humiliation');
   qspCall(s, 'arousal', 'end');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the eighth floor', goto: ['uni_dorm', 'eighth_floor'] },
   ]);
@@ -185,7 +178,6 @@ function enterKendraRoom_5(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'foreplay', 30, 'sub', 'humiliation');
   qspCall(s, 'pain', '3', 'asscheeks', 'spank');
   qspCall(s, 'arousal', 'end');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the eighth floor', goto: ['uni_dorm', 'eighth_floor'] },
   ]);
@@ -206,7 +198,6 @@ function enterKendraRoom_6(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'foreplay', 30, 'sub', 'humiliation');
   qspCall(s, 'pain', '4', 'asscheeks', 'spank');
   qspCall(s, 'arousal', 'end');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the eighth floor', goto: ['uni_dorm', 'eighth_floor'] },
   ]);
@@ -226,7 +217,6 @@ function enterKendraRoom_7(s: GameState, scene: SceneBuilder): void {
   scene.text('"Yes, mistress." You stand and get dressed before walking over to the door and leaving.');
   qspCall(s, 'arousal', 'foreplay', 60, 'sub', 'humiliation', 'inhibition');
   qspCall(s, 'arousal', 'end');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the eighth floor', goto: ['uni_dorm', 'eighth_floor'] },
   ]);
@@ -244,7 +234,6 @@ function enterKendraRoom_8(s: GameState, scene: SceneBuilder): void {
   scene.text('"Yes, mistress." You stand up and walk over to the door before leaving.');
   qspCall(s, 'arousal', 'foreplay', 30, 'sub', 'humiliation', 'feet', 'inhibition');
   qspCall(s, 'arousal', 'end');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the eighth floor', goto: ['uni_dorm', 'eighth_floor'] },
   ]);
@@ -263,7 +252,6 @@ function enterKendraRoom_9(s: GameState, scene: SceneBuilder): void {
   scene.text('"Yes, mistress." You stand up and take off the collar and leash before walking over and putting them back in the drawer where they belong. You then walk over to the door and leave.');
   qspCall(s, 'arousal', 'foreplay', 30, 'sub', 'humiliation', 'inhibition');
   qspCall(s, 'arousal', 'end');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the eighth floor', goto: ['uni_dorm', 'eighth_floor'] },
   ]);
@@ -284,7 +272,6 @@ function enterKendraRoom_10(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'foreplay', 30, 'sub', 'humiliation', 'inhibition');
   qspCall(s, 'pain', '3', 'asscheeks', 'spank');
   qspCall(s, 'arousal', 'end');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the eighth floor', goto: ['uni_dorm', 'eighth_floor'] },
   ]);
@@ -302,7 +289,6 @@ function enterKendraRoom_11(s: GameState, scene: SceneBuilder): void {
   scene.text('Once you\'re naked, she pulls you over her lap and starts spanking your bare ass with a paddle. "I just train them to accept their natural place. Deep down, they all know where they belong and they crave for us to put them there." She turns her face to you. "Don\'t you, slave?"');
   qspCall(s, 'arousal', 'foreplay', 10, 'sub', 'humiliation', 'inhibition', 'group');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Yes mistress', handler: (st: GameState) => {
     scene.img('images/characters/city/university/girl/kendra/femdom/femdom7.jpg');
@@ -344,7 +330,6 @@ function enterKendraCouch(s: GameState, scene: SceneBuilder): void {
   scene.text('Without warning, she then suddenly pulls away and breaks the kiss. "Get on all fours."');
   qspCall(s, 'arousal', 'kiss', 3, 'lesbian', 'sub');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Get on all fours', handler: (st: GameState) => {
     scene.img('images/characters/city/university/girl/kendra/sex/lezdom/couch/lezdom2.jpg');
@@ -409,7 +394,6 @@ function enterKendraBed(s: GameState, scene: SceneBuilder): void {
   scene.text('She walks over and sits on the bed. "Come over here and give me a massage, slave." You walk over and sit on the bed behind her and start massaging her shoulders and upper back. Sometime later, you\'ve finished your massage. "My shoulder still hurts. I think I pulled something, kiss it and make it better." You do as you\'re told and start kissing her shoulder, her soft moans causing you to slowly work your way over to kissing her neck as well.');
   qspCall(s, 'arousal', 'massage_give', 20, 'lesbian', 'sub');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Get kissed', handler: (st: GameState) => {
     scene.img('images/characters/city/university/girl/kendra/sex/lezdom/bed/massage2.jpg');
@@ -479,7 +463,6 @@ function enterKendraCouchStrap(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/city/university/girl/kendra/sex/lezdom/couch/strapon/couch_strap1.jpg');
   scene.text('She walks over and sits on the couch, you follow her over. She motions to the spot next to her on the couch, so you obediently sit next to her as she starts texting on her phone while making small talk, mostly asking how your classes went before she starts asking if you\'ve been having sex lately or if anyone has taken your fancy. You talk like this for several minutes as if you\'re just two friends hanging out.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Keep talking', handler: (st: GameState) => {
     scene.img('images/characters/city/university/girl/kendra/sex/lezdom/couch/strapon/couch_strap2.jpg');
@@ -542,11 +525,9 @@ function enterKendraCouchStrapVag(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcStat', 'A84');
   qspCall(s, 'npcStat', 'D7', 'a');
   scene.img('images/characters/city/university/girl/kendra/sex/lezdom/couch/strapon/couch_strap7.jpg');
-  // TODO-QSP: dynamic text: She steps up behind you, placing one foot on the couch as she does. Her inner th...
   scene.text(`She steps up behind you, placing one foot on the couch as she does. Her inner thigh brushes against your hip as you feel her slide the tip of the ${((s as any).dick1 ?? '')}cm ${((s as any).dick_girth1 ?? '')} dildo against your wet slit before she pushes it into you, causing you to moan as she starts fucking you with it. You can hear the built in vibrator on her harness vibrating as she fucks you.`);
   qspCall(s, 'arousal', 'vaginal_strap', 5, ((s as any).npcID ?? 0), ((s as any).npcID1 ?? 0), 'lesbian', 'sub', 'rough');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Get pounded', handler: (st: GameState) => {
     scene.img('images/characters/city/university/girl/kendra/sex/lezdom/couch/strapon/couch_strap8.jpg');
@@ -566,11 +547,9 @@ function enterKendraCouchStrapAnal(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcStat', 'D7', 'a');
   scene.img('images/characters/city/university/girl/kendra/sex/lezdom/couch/strapon/couch_strap9.jpg');
   scene.text('You feel Kendra squirt some lube onto your ass before she starts rubbing the head of the dildo against your asshole. She then suddenly thrusts forward while using her hand to jerk you backwards.');
-  // TODO-QSP: dynamic text: You yelp and try to pull away as the <<dick1>>cm <<$dick_girth1>> dildo stretche...
   scene.text(`You yelp and try to pull away as the ${((s as any).dick1 ?? '')}cm ${((s as any).dick_girth1 ?? '')} dildo stretches your ass, but she quickly grabs onto you and holds you tightly. "Stop trying to pull away or we'll see just how long I can fuck your ass before I pass out." You stop resisting and she starts fucking your ass, the built in vibrator in her harness obviously making her really enjoy this.`);
   qspCall(s, 'arousal', 'anal_strap', 5, ((s as any).npcID ?? 0), ((s as any).npcID1 ?? 0), 'lesbian', 'sub', 'rough');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Rough anal', handler: (st: GameState) => {
     scene.img('images/characters/city/university/girl/kendra/sex/lezdom/couch/strapon/couch_strap10.jpg');
@@ -604,7 +583,6 @@ function enterKendraBedStrap(s: GameState, scene: SceneBuilder): void {
   scene.text('She sits on her bed. "Come over here, slave." You walk over and sit on the bed as she reaches up and caresses your cheek and your neck before leaning in and kissing you as you start removing each other\'s clothes. Once she\'s undressed, she leans back on the bed and spreads her legs pulling your head between them.');
   qspCall(s, 'arousal', 'kiss', 3, 'lesbian', 'sub');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Eat her pussy', handler: (st: GameState) => {
     scene.img('images/characters/city/university/girl/kendra/sex/lezdom/bed/strapon/bed_strap2.jpg');
@@ -659,11 +637,9 @@ function enterKendraBedStrapVag(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcStat', 'A84');
   qspCall(s, 'npcStat', 'D7', 'a');
   scene.img('images/characters/city/university/girl/kendra/sex/lezdom/bed/strapon/bed_strap6.jpg');
-  // TODO-QSP: dynamic text: She steps up behind you and you feel her slide the tip of the <<dick1>>cm <<$dic...
   scene.text(`She steps up behind you and you feel her slide the tip of the ${((s as any).dick1 ?? '')}cm ${((s as any).dick_girth1 ?? '')} dildo against your wet slit. She pushes it into you, causing you to moan as she starts fucking you with it. You can hear the built in vibrator on her harness vibrating as she fucks you.`);
   qspCall(s, 'arousal', 'vaginal_strap', 5, ((s as any).npcID ?? 0), ((s as any).npcID1 ?? 0), 'lesbian', 'sub', 'rough');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Get pounded', handler: (st: GameState) => {
     scene.img('images/characters/city/university/girl/kendra/sex/lezdom/bed/strapon/bed_strap7.jpg');
@@ -683,11 +659,9 @@ function enterKendraBedStrapAnal(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'boyStat', 'D7', 'a');
   scene.img('images/characters/city/university/girl/kendra/sex/lezdom/bed/strapon/bed_strap8.jpg');
   scene.text('You feel Kendra squirt some lube onto your ass before she starts rubbing the head of the dildo against your asshole. She then suddenly thrusts forward while using her hand to jerk you backwards.');
-  // TODO-QSP: dynamic text: You yelp and try to pull away as the <<dick1>>cm <<$dick_girth1>> dildo stretche...
   scene.text(`You yelp and try to pull away as the ${((s as any).dick1 ?? '')}cm ${((s as any).dick_girth1 ?? '')} dildo stretches your ass, but she quickly grabs onto you and holds you tightly. "Stop acting like you don't love this! You wouldn't keep coming back if you weren't a complete buttslut." You stop resisting and she starts fucking your ass, the built in vibrator in her harness obviously making her really enjoy this.`);
   qspCall(s, 'arousal', 'anal_strap', 5, ((s as any).npcID ?? 0), ((s as any).npcID1 ?? 0), 'lesbian', 'sub', 'rough');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Rough anal', handler: (st: GameState) => {
     scene.img('images/characters/city/university/girl/kendra/sex/lezdom/bed/strapon/bed_strap9.jpg');
@@ -718,7 +692,6 @@ function enterKendraGloryhole(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/city/university/girl/kendra/sex/gloryhole/first_glory1.jpg');
   scene.text('She smiles. "I know just the thing. Come on." She takes you by the hand, leads you out of her dorm room, and into the elevator. Once outside, she leads you across the quad, texting on her phone as she drags you into one of the campus toilets. She pushes you along to the last stall and you immediately notice the hole in the wall when you open the door.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Get choked', handler: (st: GameState) => {
     scene.img('images/characters/city/university/girl/kendra/sex/gloryhole/first_glory2.jpg');
@@ -764,7 +737,6 @@ function enterKendraGloryholeSuck1(s: GameState, scene: SceneBuilder): void {
   scene.text('You open your mouth and start sucking the stranger\'s dick. You can hear soft moans from the other side and feel Kendra\'s hands on the sides of your head pushing you to take the dick deeper.');
   qspCall(s, 'arousal', 'bj', 3, 'sub');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Deepthroat', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
@@ -795,6 +767,7 @@ function enterKendraGloryholeSuck1(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'arousal', 'bj', 3, 'sub');
       qspCall(st, 'cum_call', 'mouth_swallow', ((st as any).npcID ?? 0), 0);
       qspCall(st, 'arousal', 'end');
+      (st as any).temp_glory_fuck = undefined;
       scene.actions([
         { label: 'Leave', goto: ['uni_grounds', ''] },
       ]);
@@ -827,7 +800,6 @@ function enterKendraGloryholeSuck1a(s: GameState, scene: SceneBuilder): void {
   scene.text('You open your mouth and start sucking the next stranger\'s dick. You can hear soft moans from the other side and glance over to see that she still has her phone out filming you.');
   qspCall(s, 'arousal', 'bj', 5, 'sub');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
@@ -846,6 +818,7 @@ function enterKendraGloryholeSuck1a(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'arousal', 'bj', 3, 'sub');
       qspCall(st, 'cum_call', 'mouth_swallow', ((st as any).npcID ?? 0), 0);
       qspCall(st, 'arousal', 'end');
+      (st as any).temp_glory_fuck = undefined;
       scene.actions([
         { label: 'Leave', goto: ['uni_grounds', ''] },
       ]);
@@ -875,7 +848,6 @@ function enterKendraGloryholeSuck2(s: GameState, scene: SceneBuilder): void {
   scene.text('You know the drill at this point and get down on your knees to start sucking the stranger\'s dick right away. You can hear soft moans from the other side and feel Kendra\'s hands on the sides of your head pushing you to take the dick deeper.');
   qspCall(s, 'arousal', 'bj', 3, 'sub');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Deepthroat', handler: (st: GameState) => {
     scene.img('images/characters/city/university/girl/kendra/sex/gloryhole/first_glory6.jpg');
@@ -905,6 +877,7 @@ function enterKendraGloryholeSuck2(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'arousal', 'bj', 3, 'sub');
       qspCall(st, 'cum_call', 'mouth_swallow', 0);
       qspCall(st, 'arousal', 'end');
+      (st as any).temp_glory_fuck = undefined;
       scene.actions([
         { label: 'Leave', goto: ['uni_grounds', ''] },
       ]);
@@ -970,6 +943,7 @@ function enterKendraGloryholeSuck2a(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'arousal', 'vaginal', 3, 'sub');
       qspCall(st, 'cum_call', '', ((st as any).npcID ?? 0), 0);
       qspCall(st, 'arousal', 'end');
+      (st as any).temp_glory_fuck = undefined;
       scene.actions([
         { label: 'Leave', goto: ['uni_grounds', ''] },
       ]);
@@ -1037,7 +1011,6 @@ function enterKendraGloryholeSuck2a(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1049,7 +1022,6 @@ function enterKendraGloryholeFuck(s: GameState, scene: SceneBuilder): void {
   scene.text('You don\'t have to be told what to do. You reach back and grab the dick to help line it up as you push back. You feel the cock slowly slide inside you, causing you to moan softly as it does.');
   qspCall(s, 'arousal', 'vaginal', 3, 'sub');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Fuck the cock', handler: (st: GameState) => {
     scene.img('images/characters/city/university/girl/kendra/sex/gloryhole/first_glory11.jpg');
@@ -1072,6 +1044,7 @@ function enterKendraGloryholeFuck(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'arousal', 'vaginal', 3, 'sub');
       qspCall(st, 'cum_call', '', ((st as any).npcID ?? 0), 0);
       qspCall(st, 'arousal', 'end');
+      (st as any).temp_glory_fuck = undefined;
       scene.actions([
         { label: 'Leave', goto: ['uni_grounds', ''] },
       ]);
@@ -1106,7 +1079,6 @@ function enterKendraMaleSlave(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'arousal', 'voyeur_sex', 5);
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Keep watching', handler: (st: GameState) => {
     scene.img('images/characters/city/university/girl/kendra/sex/femdom/femdom_male2.jpg');
@@ -1124,7 +1096,6 @@ function enterKendraMaleSlave(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/city/university/girl/kendra/sex/femdom/femdom_male4.jpg');
     if (((st as any).kendra_male_slave ?? 0) === 1) {
       scene.text('She pulls his head away again before standing up. "Time to fuck your boy pussy," she tells him and he climbs on the couch. As he does, she turns him away from her and bends him over, presenting his ass to her. She gets up behind him and spits on his ass. "That\'s more than you deserve." She scoots forward a bit closer behind him before reaching down and doing something to the harness. You can hear the vibrating sound coming from it and a soft moan from her.');
-      // TODO-QSP: dynamic text: Taking hold of the dildo with one hand to line it up, she sticks it between his ...
       scene.text(`Taking hold of the dildo with one hand to line it up, she sticks it between his ass cheeks. He tenses up before she thrusts her hips forward, causing him to cry out in pain. "Shut up, bitch! We both know you love it, even ${((st as any).pcs_nickname ?? '')} knows you love getting your ass fucked by a big hard cock!" she says with a laugh before she grabs onto his hips and plunges herself all the way into him. She hangs onto his hips as she roughly hammers his ass with her fake cock. She starts moaning in pleasure as he grunts and hisses in pain. You can see his limp dick violently bouncing around with each savage thrust she takes.`);
     } else {
       scene.text('She pulls his head away again before standing up. "Get on the couch, slut!" she tells him and he climbs on the couch. As he does, she turns him away from her and pushes him forward until his ass is facing her. She spits on his ass. "Never say I\'m not a kind mistress." She then scoots forward a bit closer behind him before reaching down and doing something to the harness and you can hear the vibrating sound coming from it and a soft moan from her.');
@@ -1184,7 +1155,6 @@ function enterKendraPetka(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'arousal', 'voyeur', 1);
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Watch what happens next', handler: (st: GameState) => {
     scene.img('images/characters/city/university/girl/kendra/sex/petka/petka_kendra_peg2.jpg');
@@ -1253,7 +1223,6 @@ function enterKendraPetka1(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'arousal', 'voyeur_sex', 3);
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Watch Petka get fucked', handler: (st: GameState) => {
     scene.img('images/characters/city/university/girl/kendra/sex/petka/petka_kendra_peg6.jpg');

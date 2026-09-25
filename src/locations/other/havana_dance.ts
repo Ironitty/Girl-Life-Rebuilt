@@ -21,6 +21,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         scene.text('You\'re so thirsty that you can\'t even bring yourself to look at the activities available.');
       } else {
         if (((s as any).pcs_stren ?? 0) >= 40  ||  (!((s as any).needstrength ?? 0))) {
+          (s as any).needstrength = undefined;
           scene.actions([
             { label: 'Pole dance class (0:30)', handler: (st: GameState) => {
     qspCall(st, 'exercise', 'tier2', 15, 'agil', 'stren', 'dancpol');

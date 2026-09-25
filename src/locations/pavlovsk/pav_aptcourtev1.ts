@@ -16,7 +16,6 @@ function enterFollownush(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/girl/anushka/sex/complex/hey.jpg');
   scene.text('You follow her inside, but not seeing her, you stop and listen a moment.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['pav_complex', 'start'] },
     { label: 'Go look for her', handler: (st: GameState) => {
@@ -117,6 +116,7 @@ function enterFollownush(s: GameState, scene: SceneBuilder): void {
     scene.text('Several minutes pass before she encourages you to turn around as she keeps plunging the dildo into your increasingly wet pussy.');
     (st as any).orgasm_txt = 'You are overwhelmed by the wild excitement of the dildo plunging into your pussy, knowing that at any moment someone could catch the two of you having sex in the stairs. You can\'t take any more; waves of pleasure come crashing over you as you wither in ecstasy. She keeps dildoing you until your shuddering stop.';
     qspCall(st, 'arousal', 'vaginal_dildo', 5, 'lesbian', 'exhibitionism');
+    (st as any).orgasm_txt = undefined;
     scene.text('You\'re suddenly interrupted by the sound of an old woman\'s voice, who sounds like she is near the top of the stairs. "Oh my god, is someone being attacked? Are you alright dear? What\'s going on?"');
     scene.text('You and Anushka both stop and quickly get dressed. You\'re just pulling on the last of your clothes when an old woman comes round the landing looking at the two of you. She looks confused at first before she scoffs in disgust and heads back upstairs.');
     scene.text('You both burst out laughing before heading up yourself. Just as you reach the next landing, Anushka stops. "Look, I need to go do something. Talk later?" Without waiting for a reply, she takes the steps a couple at a time as she hurries up them, still giggling at what happened.');
@@ -282,12 +282,12 @@ function enterMagicCumMouth(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/girl/anushka/sex/cum_mouth.jpg');
   (s as any).orgasm_txt = 'You are overwhelmed by the sensation of having your dick sucked, you feel your dick twitching in her mouth as you start to empty your balls full of cum right into her mouth. She is surprised for a moment but doesn\'t stop sucking your dick.';
   qspCall(s, 'arousal', 'magicd_bj', 1);
+  (s as any).orgasm_txt = undefined;
   scene.text('As you fill her mouth with your cum, she pulls her mouth off your dick, but keeps stroking it. A couple of more spurts of cum land on her cheek. She sticks out her tongue to show you the cum coating it. "Now swallow it like a good little slut." You have heard that so many times in porno\'s and from girls at school, that guys love to say that.');
   scene.text('She swallows it down, opening her mouth to show you her now clean tongue, you stick your dick back in her mouth as your tell her. "Suck it clean." She does as she is told sucking it nice and clean, before you pull your dick out of her mouth, as you start to get dressed. "So how did it taste?" You ask her.');
   qspCall(s, 'arousal', 'magicd_bj', 1);
   qspCall(s, 'arousal', 'end');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 3;
@@ -314,11 +314,11 @@ function enterMagicCumFace(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/girl/anushka/sex/facial.jpg');
   (s as any).orgasm_txt = 'You are overwhelmed by the sensation of having your dick sucked, you feel you are about to cum. You quickly pull your dick out of her mouth, just as your dick starts twitching as you empty your balls full of cum right onto her face. She is surprised for a moment but doesn\'t move as you coat her face in your magical cum.';
   qspCall(s, 'arousal', 'magicd_bj', 1);
+  (s as any).orgasm_txt = undefined;
   scene.text('A couple of more spurts of cum land on her cheek. She sticks out her tongue to lick some of your cum off her lips. You stick your dick back in her open mouth as your tell her. "Suck it clean." She does as she is told sucking it nice and clean, before you pull your dick out of her mouth, as you start to get dressed. "So how did it taste?" You ask her.');
   qspCall(s, 'arousal', 'magicd_bj', 1);
   qspCall(s, 'arousal', 'end');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 3;
@@ -357,7 +357,6 @@ function enterSuck3stooges(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'hj', (-5), ((s as any).npcID1 ?? 0), 'group', 'exhibitionism');
   qspCall(s, 'arousal', 'hj', (-4), ((s as any).npcID ?? 0), 'group', 'exhibitionism');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Suck Vitek as well', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/apartment/events/sex/suck3s2.jpg');
@@ -371,7 +370,6 @@ function enterSuck3stooges(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Suck Vasily', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/apartment/events/sex/suck3s3.jpg');
-    // TODO-QSP: dynamic text: You start sucking Vasily''s dick next while you keep jerking Dan and Vitek off. ...
     scene.text(`You start sucking Vasily's dick next while you keep jerking Dan and Vitek off. "Oh yeah, that's it. Suck my cock, ${((st as any).pcs_nickname ?? '')}!" he says.`);
     qspCall(st, 'arousal', 'bj', 5, ((st as any).npcID2 ?? 0), 'group', 'exhibitionism');
     qspCall(st, 'arousal', 'hj', (-5), ((st as any).npcID1 ?? 0), 'group', 'exhibitionism');
@@ -416,7 +414,6 @@ function enterSuck3stooges(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'fame', 'pav', 'sex', 1);
     qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/apartment/events/sex/beercum.jpg');
-    // TODO-QSP: dynamic text: You take the beer and take a drink, keenly aware of the cum covering your face. ...
     scene.text(`You take the beer and take a drink, keenly aware of the cum covering your face. The boys mostly ignore it and talk about what they've been up to of late. Soon, it's almost like it never happened and as if you had just been sitting around drinking the whole time. Sometime later, the beers are gone and the boys get up and head off to find trouble. "See you around, ${((st as any).pcs_nickname ?? '')}," Vasily says as they walk away.`);
     scene.actions([
       { label: 'Leave', goto: ['pav_complex', 'start'] },

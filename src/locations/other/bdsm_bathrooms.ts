@@ -15,7 +15,6 @@ function enterBath(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/suburb/bdsm_club/bath1.jpg');
   scene.text('A luxrious bathroom, designed to indulge and relax.');
   qspCall(s, 'din_van', 'private');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return to landing', goto: ['bdsm_landing', ''] },
   ]);
@@ -29,7 +28,6 @@ function enterEnsuite(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/suburb/bdsm_club/ensuite1.jpg');
   scene.text('An ensuite bathroom');
   qspCall(s, 'din_van', 'private');
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -40,7 +38,6 @@ function enterRestroom(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/suburb/bdsm_club/rest.jpg');
   scene.text('A beautiful little room for taking care of the essentials and making yourself look good.');
   qspCall(s, 'din_van', 'private');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return to foyer', goto: ['bdsm_hallway', 'foyer'] },
   ]);

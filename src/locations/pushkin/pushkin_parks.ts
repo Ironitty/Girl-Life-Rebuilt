@@ -18,7 +18,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pushkin/park/parkus.jpg');
   scene.text('The gardens of the old palace have been sculpted over many years into a wonder landscape with a tranquil atmosphere.');
   scene.text('The Pushkin Park is a must-see for tourists and servers as the main attraction of Pushkin.');
-  scene.text('Wander deeper into the <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027pushkin_parks/u0027, /u0027lug/u0027); return false;">park</a>.');
+  scene.text('Wander deeper into the <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027pushkin_parks\u0027, \u0027lug\u0027); return false;">park</a>.');
   qspCall(s, 'park_walkevents', 'run');
   if (((s as any).hour ?? 0) >= 20  ||  ((s as any).hour ?? 0) < 6) {
     if (qspFunc(s, 'homes_properties', 'has_access', 'old_town_apartment') === 0) {
@@ -41,7 +41,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'flash', 'park');
   qspCall(s, 'blackmailer', 'set_park_act');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go to Okhlopkov Square (0:05)', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -80,15 +79,12 @@ function enterLug(s: GameState, scene: SceneBuilder): void {
     if ((Math.floor(Math.random() * 601) + 0) <= ((s as any).pcs_apprnc ?? 0)) {
       qspCall(s, 'npcgeneratec', '0', '', 'like');
       qspCall(s, 'npcStat', '$npclastgenerated');
-      // TODO-QSP: dynamic text: You notice <<$npcheight_pref>>, <<$npcbuild>>, <<$npchair>> haired guy coming to...
       scene.text(`You notice ${((s as any).npcheight_pref ?? '')}, ${((s as any).npcbuild ?? '')}, ${((s as any).npchair ?? '')} haired guy coming towards you. He is wearing wearing ${((s as any).npcClo ?? '')}.`);
-      // TODO-QSP: dynamic text: The guy introduces himself as <<$boydesc>> and asks for your telephone number.
       scene.text(`The guy introduces himself as ${((s as any).boydesc ?? '')} and asks for your telephone number.`);
       scene.actions([
         { label: 'Tell him your number', handler: (st: GameState) => {
     qspCall(st, 'lover', 'add_boyfriend', ((st as any).npcID ?? 0));
     (st as any).stopboy = 0;
-    // TODO-QSP: dynamic text: <<$boydesc>> thanks you and leaves.
     scene.text(`${((st as any).boydesc ?? '')} thanks you and leaves.`);
     scene.actions([
       { label: 'Complete outing', goto: ['pushkin_parks', 'lug'] },
@@ -101,7 +97,7 @@ function enterLug(s: GameState, scene: SceneBuilder): void {
     if ((Math.floor(Math.random() * 100) + 1) >= 90) {
       (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (20);
       qspCall(s, 'stat', '');
-      scene.text('On the path stands a <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027pushkin_parks/u0027, /u0027pavserjil/u0027); return false;">man</a> looking like he is waiting for someone.');
+      scene.text('On the path stands a <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027pushkin_parks\u0027, \u0027pavserjil\u0027); return false;">man</a> looking like he is waiting for someone.');
     }
   }
   qspCall(s, 'kseniyaQW', 'events');
@@ -135,7 +131,6 @@ function enterLug(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   qspCall(s, 'events', 'street_cum');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Visit the pond', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 10;
@@ -156,7 +151,6 @@ function enterPavserjil(s: GameState, scene: SceneBuilder): void {
   (s as any).pavserhom = 1;
   scene.img('images/characters/pushkin/pavser/pavserjil2.jpg');
   scene.text('It is not clear why you are drawn to him, but you can barely take your eyes off him.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['pushkin_parks', 'lug'] },
   ]);
@@ -170,7 +164,6 @@ function enterPrut(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Park Pond</b></center>');
   scene.img('images/locations/pushkin/park/prut.jpg');
   scene.text('A large and pretty pond near the end of the park, it continues off in to a wooded area.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Explore the wooded area', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 10;
@@ -211,9 +204,7 @@ function enterPrut2(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).fairyskip ?? 0) !== ((s as any).daystart ?? 0)) {
         scene.actions([
-          { label: 'Go to where the Fairy may be', handler: (st: GameState) => {
-    // TODO-QSP: xgt 'MagEncounterFairy'
-  } },
+          { label: 'Go to where the Fairy may be', goto: ['MagEncounterFairy', ''] },
         ]);
       }
     }
@@ -274,7 +265,6 @@ function enterPrut2(s: GameState, scene: SceneBuilder): void {
       scene.text('It would be a good place for skinny dipping but you\'re too worried about what people would think to do such a thing.');
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the field', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 15;
@@ -295,7 +285,6 @@ function enterLuzhayka(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pushkin/park/luzhayka.jpg');
   scene.text('A quiet hidden field that is well maintained but apart from the occasional grounds keeper you feel like it is all yours.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return to the woodland pond', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 15;

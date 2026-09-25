@@ -31,29 +31,27 @@ function enter(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (qspFunc(s, 'car_funcs', 'is_here')) {
-    // TODO-QSP: dynamic text: <a href="exec:gs ''carF'', ''start''">Your <<$car[''name'']>></a> is parked here...
     scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027carF/u0027, /u0027start/u0027); return false;">Your ${(((s as any).car ?? 0)?.['name'] ?? '')}</a> is parked here.`);
   }
   if (qspFunc(s, 'homes_properties', 'is_current_home')) {
     if (((s as any).vladimirQW ?? 0)?.['day'] === ((s as any).daystart ?? 0)  &&  ((s as any).vladimirQW ?? 0)?.['stage'] === 30  &&  ((s as any).hour ?? 0) >= 16  &&  ((s as any).week ?? 0) === 6) {
-      scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027vladimirQW_meet/u0027, /u00272/u0027); return false;">There\'s an Audi parked in front of your mansion, and standing beside it, you notice Vladimir</a>.');
+      scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027vladimirQW_meet\u0027, \u00272\u0027); return false;">There\'s an Audi parked in front of your mansion, and standing beside it, you notice Vladimir</a>.');
     }
     if (((s as any).vladimirQW ?? 0)?.['day'] === ((s as any).daystart ?? 0)  &&  ((s as any).vladimirQW ?? 0)?.['stage'] === 40  &&  ((s as any).hour ?? 0) >= 16  &&  ((s as any).week ?? 0) === 6) {
-      scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027vladimirQW_meet/u0027, /u00273/u0027); return false;">There\'s an Audi parked in front of your mansion, and standing beside it, you notice Vladimir</a>.');
+      scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027vladimirQW_meet\u0027, \u00273\u0027); return false;">There\'s an Audi parked in front of your mansion, and standing beside it, you notice Vladimir</a>.');
     }
     if (Object.keys((s as any).lover ?? {}).length > 0) {
       (s as any).temp_i = 0;
       (s as any).temp_max_i = 0;
-      // TODO-QSP: :lover_pickup_loop
-      (s as any).temp_npcid = (((s as any).lover ?? 0)?.[String((s as any).temp_i ?? 0)] ?? 0);
-      if (((s as any).npc_meetday ?? 0)?.[String((s as any).temp_npcid ?? 0)] === ((s as any).daystart ?? 0)  &&  ((s as any).npc_meethour ?? 0)?.[String((s as any).temp_npcid ?? 0)] === ((s as any).hour ?? 0)) {
-        // TODO-QSP: dynamic text: <b><a href="exec: gt ''lover_meet'', ''start'', ''<<$temp_npcid>>''"><<$npc_used...
-        scene.text(`<b><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027lover_meet/u0027, /u0027start/u0027, /u0027${((s as any).temp_npcid ?? '')}/u0027); return false;">${(((s as any).npc_usedname ?? 0)?.[String((s as any).temp_npcid ?? 0)] ?? '')}</a> is waiting at the entrance to your mansion.</b>`);
-      }
-      (s as any).temp_i = ((s as any).temp_i ?? 0) + (1);
-      if (((s as any).temp_i ?? 0) < ((s as any).temp_max_i ?? 0)) {
-        // TODO-QSP: jump 'lover_pickup_loop'
-      }
+      do {
+        (s as any).temp_npcid = (((s as any).lover ?? 0)?.[String((s as any).temp_i ?? 0)] ?? 0);
+        if (((s as any).npc_meetday ?? 0)?.[String((s as any).temp_npcid ?? 0)] === ((s as any).daystart ?? 0)  &&  ((s as any).npc_meethour ?? 0)?.[String((s as any).temp_npcid ?? 0)] === ((s as any).hour ?? 0)) {
+          scene.text(`<b><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027lover_meet/u0027, /u0027start/u0027, String((s as any).temp_npcid ?? /u0027/u0027)); return false;">${(((s as any).npc_usedname ?? 0)?.[String((s as any).temp_npcid ?? 0)] ?? '')}</a> is waiting at the entrance to your mansion.</b>`);
+        }
+        (s as any).temp_i = ((s as any).temp_i ?? 0) + (1);
+        (s as any).temp_i = undefined;
+        (s as any).temp_max_i = undefined;
+      } while (((s as any).temp_i ?? 0) < ((s as any).temp_max_i ?? 0));
     }
   }
   if (((s as any).property_owned ?? 0)) {
@@ -586,7 +584,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
+  (s as any).property_construction_status = undefined;
   scene.actions([
     { label: 'Go to the suburbs', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 10;

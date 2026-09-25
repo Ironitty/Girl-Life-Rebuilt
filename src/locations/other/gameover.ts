@@ -17,7 +17,6 @@ function enterCheck(s: GameState, scene: SceneBuilder): void {
 
 function enterForce(s: GameState, scene: SceneBuilder): void {
   qspGoto(s, 'gameover', 'screen', '' + ((s as any).locArgs?.[1] ?? 0) + '');
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -45,6 +44,7 @@ function enterScreen(s: GameState, scene: SceneBuilder): void {
         scene.text('You die of starvation. A stupid way to go, but apparently it\'s one of the symptoms of anorexia.');
       } else {
         if (((s as any).over ?? 0) === 4  ||  String((s as any).locArgs?.[1] ?? '') === '4') {
+          alert('<center><b>A horrible pain shoots through your body.</b></center>');
           scene.img('images/system/2_endings/birth.jpg');
           scene.text('You die from complications during childbirth.');
         } else {
@@ -123,13 +123,11 @@ function enterScreen(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: dynamic 'act ''End?'': gt ''gameover'', ''endscreen'', ''<<$ARGS[1]>>'' '
-  // TODO-QSP: end
+  scene.text('act \'End?\': gt \'gameover\', \'endscreen\', \'' + ((s as any).locArgs?.[1] ?? 0) + '\' ');
   scene.build();
 }
 
 function enterEndscreen(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: showstat 0
   // TODO-QSP: showobjs 0
   // TODO-QSP: showinput 0
   (s as any).fcolor = 0;
@@ -142,7 +140,6 @@ function enterEndscreen(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('<center><h1>End</h1></center>');
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return to main menu', goto: ['start', ''] },
     { label: 'Load a save', handler: (st: GameState) => {
@@ -163,7 +160,6 @@ function enterLoadAutosave(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: opengame 'autosave_sg_<<$weekName>>.sav'
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 

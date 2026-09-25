@@ -9,7 +9,6 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCity(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: end
   scene.actions([
     { label: 'Attempt to steal makeup', handler: (st: GameState) => {
     qspCall(st, 'item_cart', 'shopping_var_clear');
@@ -23,7 +22,6 @@ function enterCity(s: GameState, scene: SceneBuilder): void {
       { label: 'Leave the store', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
     scene.img('images/locations/city/shared/shoplift/leave.jpg');
-    // TODO-QSP: dynamic text: "Okay <<$pcs_nickname>>, just act normal…" you sigh quietly as you step towards ...
     scene.text(`"Okay ${((st as any).pcs_nickname ?? '')}, just act normal…" you sigh quietly as you step towards the exit, trying to not draw any attention towards yourself.`);
     scene.text('Don\'t panic…');
     scene.text('Walk casually…');
@@ -137,7 +135,6 @@ function enterSecurityroom(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Admit', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -171,7 +168,6 @@ function enterShow(s: GameState, scene: SceneBuilder): void {
   scene.text('The security guard stops, pondering about it for a moment… All of a sudden you can see him smirking, "And you\'ll follow my instructions to the latter?"');
   scene.text('You nod and slyly smile, giving into the fantasy that you\'re going to be entirely subdued by him…');
   scene.text('"Fine, let\'s begin then," he excitingly exclaims, "Stand up and let me take a look at you. I want you to tease yourself for a while, I love seeing girls getting off."');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Comply', handler: (st: GameState) => {
     (st as any).orgasm_or = 'no';
@@ -264,6 +260,7 @@ function enterShow(s: GameState, scene: SceneBuilder): void {
         { label: 'Head outside', goto: ['city_center', ''] },
       ]);
     }
+    (st as any).policeCalled = undefined;
   } },
     ]);
   } },
@@ -291,7 +288,6 @@ function enterBj(s: GameState, scene: SceneBuilder): void {
   scene.text('The security guard is taken aback a little by your suggestion, but it doesn\'t take long before you notice a smirk on his face. "How about this, if you perform well enough, I\'ll let you go, otherwise I\'ll be calling the cops."');
   scene.text('Not having lot of choice, you look him in the eyes and nod.');
   scene.text('"Good! But before we begin I want a memento to remember you by," he adds as he pulls out his cellphone.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Take picture', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 2;
@@ -412,7 +408,6 @@ function enterBribe(s: GameState, scene: SceneBuilder): void {
   scene.text('The security guard begins to chuckle, "You? Offer me money? Don\'t be silly girl, you can\'t possibly bribe me… Where would you have the money for that…"');
   scene.text('You pout a little as you listen to him, "Just tell me how much you want, and I\'ll pay you off…" As you finish, you give him a little wink.');
   scene.text('"If you can afford the stuff, why did you steal?" he remarks.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Explain', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -421,8 +416,7 @@ function enterBribe(s: GameState, scene: SceneBuilder): void {
     scene.text('"You want my honest answer?" you look at him, a serious expression on your face, "Simply put, because I can and the adrenaline kick is amazing!"');
     scene.text('The security guard smirks, "So you\'re only doing it for the fun of it?"');
     scene.text('Looking pleased, you give him a satisfied nod.');
-    // TODO-QSP: dynamic text: 'All of a sudden, he changes his posture, "I don''t usually do this, but if you ...
-    scene.text('All of a sudden, he changes his posture, "I don\'t usually do this, but if you give me 5000₽, then we\'re all good."');
+    scene.text('\'All of a sudden, he changes his posture, "I don\'t usually do this, but if you give me 5000₽, then we\'re all good."\'');
     scene.text('"And if I don\'t?" you curiously inquire.');
     scene.text('"You\'ll have to face the consequences then…" he shortly replies.');
     scene.actions([
@@ -473,7 +467,6 @@ function enterQuiet(s: GameState, scene: SceneBuilder): void {
   scene.text('"Well girl, don\'t test my patience, I don\'t have all the day. Tell me now what do you have to offer."');
   scene.text('You give him a look full of disgust. You\'re going to see this through, no matter the consequences.');
   scene.text('"Well? Why did you go all quiet all of a sudden?" he demands. Noticing that you won\'t reply, his face turns red and he stomps out of the room, slamming the door behind him…');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Wait', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 10;
@@ -498,10 +491,8 @@ function enterPunish(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/shared/shoplift/sex/revenge/revenge1.jpg');
   scene.text('The guard forcefully drags you into the room and shoves you towards the chair. "Well well, look who\'s back… if it isn\'t the little rat!" he heatedly comments.');
-  // TODO-QSP: dynamic text: <i>Fuck it''s the same guard, now you''ve done it, <<$pcs_nickname>>, get prepar...
   scene.text(`<i>Fuck it's the same guard, now you've done it, ${((s as any).pcs_nickname ?? '')}, get prepared for whatever awaits you… your fate is in his hands…</i>`);
   scene.text('"I hate you fucking rats. Do you know what I had to go through to get away from ending up in jail. Luckily one of the pigs didn\'t mind getting bribed so I got away," he grins, "And now for your punishment."');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Beg', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -585,7 +576,6 @@ function enterPunish(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPav(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: end
   scene.actions([
     { label: 'Attempt to steal makeup', handler: (st: GameState) => {
     qspCall(st, 'item_cart', 'shopping_var_clear');
@@ -600,7 +590,6 @@ function enterPav(s: GameState, scene: SceneBuilder): void {
       { label: 'Leave the store', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
     scene.img('images/locations/city/shared/shoplift/leave.jpg');
-    // TODO-QSP: dynamic text: "Okay <<$pcs_nickname>>, just act normal…" you sigh quietly as you step towards ...
     scene.text(`"Okay ${((st as any).pcs_nickname ?? '')}, just act normal…" you sigh quietly as you step towards the exit, trying to not draw any attention towards yourself.`);
     scene.text('Don\'t panic…');
     scene.text('Walk casually…');
@@ -741,7 +730,6 @@ function enterSecurityroomPav(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -761,7 +749,6 @@ function enterBjPav(s: GameState, scene: SceneBuilder): void {
     scene.text('"Good! But before we begin I want a memento to remember you by," he adds as he pulls out his cellphone.');
   }
   ((s as any).policeQW = (s as any).policeQW ?? {})['securitybj_pav'] = ((s as any).policeQW['securitybj_pav'] ?? 0) + (1);
-  // TODO-QSP: end
   scene.actions([
     { label: 'Take picture', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 2;
@@ -868,7 +855,6 @@ function enterBribePav(s: GameState, scene: SceneBuilder): void {
   scene.text('The security guard begins to chuckle, "You? Offer me money? Don\'t be silly girl, you can\'t possibly bribe me… Where would you have the money for that…"');
   scene.text('You pout a little as you listen to him, "Just tell me how much you want, and I\'ll pay you off…" As you finish, you give him a little wink.');
   scene.text('"If you can afford the stuff, why did you steal?" he remarks.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Explain', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -877,8 +863,7 @@ function enterBribePav(s: GameState, scene: SceneBuilder): void {
     scene.text('"You want my honest answer?" you look at him, a serious expression on your face, "Simply put, because I can and the adrenaline kick is amazing!"');
     scene.text('The security guard smirks, "So you\'re only doing it for the fun of it?"');
     scene.text('Looking pleased, you give him a satisfied nod.');
-    // TODO-QSP: dynamic text: 'All of a sudden, he changes his posture, "I don''t usually do this, but if you ...
-    scene.text('All of a sudden, he changes his posture, "I don\'t usually do this, but if you give me 5000₽, then we\'re all good."');
+    scene.text('\'All of a sudden, he changes his posture, "I don\'t usually do this, but if you give me 5000₽, then we\'re all good."\'');
     scene.text('"And if I don\'t?" you curiously inquire.');
     scene.text('"You\'ll have to face the consequences then…" he shortly replies.');
     scene.actions([
@@ -929,7 +914,6 @@ function enterQuietPav(s: GameState, scene: SceneBuilder): void {
   scene.text('"Well girl, don\'t test my patience, I don\'t have all the day. Tell me now what do you have to offer."');
   scene.text('You give him a look full of disgust. You\'re going to see this through, no matter the consequences.');
   scene.text('"Well? Why did you go all quiet all of a sudden?" he demands. Then he walks out of the room.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Offer him blowjob', goto: ['shoplifting', 'bj_pav'] },
     { label: 'Offer a bribe', handler: (st: GameState) => {

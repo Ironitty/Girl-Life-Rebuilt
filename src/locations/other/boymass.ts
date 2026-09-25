@@ -10,7 +10,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterA(s: GameState, scene: SceneBuilder): void {
   (s as any).boynum = ((s as any).boynum ?? 0) + (1);
-  // TODO-QSP: $bmNane[boynum] = $npclastcalled
+  ((s as any).bmNane = (s as any).bmNane ?? {})[String((s as any).boynum ?? 0)] = ((s as any).npclastcalled ?? 0);
   ((s as any).bmTip = (s as any).bmTip ?? {})[String((s as any).boynum ?? 0)] = ((s as any).bmtimeTipe ?? 0);
   ((s as any).bmHJ = (s as any).bmHJ ?? {})[String((s as any).boynum ?? 0)] = 0;
   ((s as any).bmBJ = (s as any).bmBJ ?? {})[String((s as any).boynum ?? 0)] = 0;
@@ -21,7 +21,6 @@ function enterA(s: GameState, scene: SceneBuilder): void {
   ((s as any).bmFrend = (s as any).bmFrend ?? {})[String((s as any).boynum ?? 0)] = 0;
   ((s as any).bmKISS = (s as any).bmKISS ?? {})[String((s as any).boynum ?? 0)] = 0;
   ((s as any).bmTITS = (s as any).bmTITS ?? {})[String((s as any).boynum ?? 0)] = 0;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -37,7 +36,6 @@ function enterB(s: GameState, scene: SceneBuilder): void {
     }
     qspCall(s, 'boystat', '', (((s as any).bmNane ?? 0)?.[String((s as any).Tboynum ?? 0)] ?? 0));
   }
-  // TODO-QSP: end
   scene.build();
 }
 

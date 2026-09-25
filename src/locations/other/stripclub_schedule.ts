@@ -19,7 +19,13 @@ function enterDoBook(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_sb_daystart = ((s as any).daystart ?? 0) + ((s as any).temp_sb_offset ?? 0);
   (s as any).temp_sb_slot = ((s as any).temp_sb_shift ?? 0) - 1;
   (s as any).temp_sb_result = qspFunc(s, 'jobs', 'book_slot', 'city_strip_stripper', ((s as any).temp_sb_daystart ?? 0), ((s as any).temp_sb_slot ?? 0), String(((s as any).temp_sb_shift ?? 0)));
-  // TODO-QSP: end
+  (s as any).temp_sb_weekday = undefined;
+  (s as any).temp_sb_shift = undefined;
+  (s as any).temp_sb_next = undefined;
+  (s as any).temp_sb_offset = undefined;
+  (s as any).temp_sb_daystart = undefined;
+  (s as any).temp_sb_slot = undefined;
+  (s as any).temp_sb_result = undefined;
   scene.build();
 }
 
@@ -34,7 +40,12 @@ function enterDoCancel(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_sc_daystart = ((s as any).daystart ?? 0) + ((s as any).temp_sc_offset ?? 0);
   (s as any).temp_sc_slot = ((s as any).temp_sc_shift ?? 0) - 1;
   qspCall(s, 'jobs', 'cancel_booking', 'city_strip_stripper', ((s as any).temp_sc_daystart ?? 0), ((s as any).temp_sc_slot ?? 0));
-  // TODO-QSP: end
+  (s as any).temp_sc_weekday = undefined;
+  (s as any).temp_sc_shift = undefined;
+  (s as any).temp_sc_next = undefined;
+  (s as any).temp_sc_offset = undefined;
+  (s as any).temp_sc_daystart = undefined;
+  (s as any).temp_sc_slot = undefined;
   scene.build();
 }
 
@@ -65,34 +76,42 @@ function enterDisplaySingleShift(s: GameState, scene: SceneBuilder): void {
   (s as any).scs_slot = ((s as any).locArgs?.[2] ?? 0) - 1;
   (s as any).scs_booking = qspFunc(s, 'jobs', 'get_booking_data', 'city_strip_stripper', ((s as any).scs_day ?? 0), ((s as any).scs_slot ?? 0));
   (s as any).scs_has_conflict = qspFunc(s, 'jobs', 'check_booking_conflict', 'city_strip_stripper', ((s as any).scs_day ?? 0), ((s as any).scs_slot ?? 0));
-  // TODO-QSP: $result +=  '<tr><td>'
+  (s as any).result = ((s as any).result ?? 0) + ('<tr><td>');
   if (((s as any).scs_booking ?? 0) === ''  &&  !(String((s as any).locArgs?.[3] ?? '') === 0  &&  ((s as any).week ?? 0) === String((s as any).locArgs?.[1] ?? '')  &&  ((s as any).hour ?? 0) >= ((s as any).scs_hour1 ?? 0)  &&  ((s as any).hour ?? 0) < ((s as any).scs_hour2 ?? 0))) {
     if (((s as any).scs_has_conflict ?? 0) === 1) {
-      // TODO-QSP: $result +=    '<font color="grey"><<$scs_time_string>> shift (busy)</font>'
+      (s as any).result = ((s as any).result ?? 0) + ('<font color="grey">' + ((s as any).scs_time_string ?? 0) + ' shift (busy)</font>');
     } else {
-      // TODO-QSP: $result +=    '<a href="exec:gs ''stripclub_schedule'', ''do_book'', <<ARGS[1]>>, <<ARGS[2]>>, <<ARG...
+      (s as any).result = ((s as any).result ?? 0) + ('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027stripclub_schedule\u0027, \u0027do_book\u0027, ((s as any).locArgs?.[1] ?? \u0027\u0027)); return false;">' + ((s as any).scs_time_string ?? 0) + ' shift</a>');
     }
   } else {
     if (String((s as any).locArgs?.[3] ?? '') === 0  &&  ((s as any).week ?? 0) === String((s as any).locArgs?.[1] ?? '')  &&  ((s as any).hour ?? 0) >= ((s as any).scs_hour1 ?? 0)  &&  ((s as any).hour ?? 0) < ((s as any).scs_hour2 ?? 0)) {
-      // TODO-QSP: $result +=    '<<$scs_time_string>> shift'
-      // TODO-QSP: $result +=  '</td></tr><tr><td>'
-      // TODO-QSP: $result +=    func('stripclub_schedule', 'random_stripper_name')
-      // TODO-QSP: $result +=  '</td></tr><tr><td>'
-      // TODO-QSP: $result +=    func('stripclub_schedule', 'random_stripper_name')
+      (s as any).result = ((s as any).result ?? 0) + ('' + ((s as any).scs_time_string ?? 0) + ' shift');
+      (s as any).result = ((s as any).result ?? 0) + ('</td></tr><tr><td>');
+      (s as any).result = ((s as any).result ?? 0) + (qspFunc(s, 'stripclub_schedule', 'random_stripper_name'));
+      (s as any).result = ((s as any).result ?? 0) + ('</td></tr><tr><td>');
+      (s as any).result = ((s as any).result ?? 0) + (qspFunc(s, 'stripclub_schedule', 'random_stripper_name'));
     } else {
       if (((s as any).scs_day ?? 0) < ((s as any).daystart ?? 0)) {
-        // TODO-QSP: $result +=    '<<$scs_time_string>> shift'
-        // TODO-QSP: $result +=  '</td></tr><tr><td>'
-        // TODO-QSP: $result +=    '<i>already worked</i>'
+        (s as any).result = ((s as any).result ?? 0) + ('' + ((s as any).scs_time_string ?? 0) + ' shift');
+        (s as any).result = ((s as any).result ?? 0) + ('</td></tr><tr><td>');
+        (s as any).result = ((s as any).result ?? 0) + ('<i>already worked</i>');
       } else {
-        // TODO-QSP: $result +=    '<<$scs_time_string>> shift'
-        // TODO-QSP: $result +=  '</td></tr><tr><td>'
-        // TODO-QSP: $result +=    '<a href="exec:gs ''stripclub_schedule'', ''do_cancel'', <<ARGS[1]>>, <<ARGS[2]>>, <<A...
+        (s as any).result = ((s as any).result ?? 0) + ('' + ((s as any).scs_time_string ?? 0) + ' shift');
+        (s as any).result = ((s as any).result ?? 0) + ('</td></tr><tr><td>');
+        (s as any).result = ((s as any).result ?? 0) + ('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027stripclub_schedule\u0027, \u0027do_cancel\u0027, ((s as any).locArgs?.[1] ?? \u0027\u0027)); return false;">Cancel Shift</a>');
       }
     }
   }
-  // TODO-QSP: $result +=  '</td></tr>'
-  // TODO-QSP: end
+  (s as any).result = ((s as any).result ?? 0) + ('</td></tr>');
+  (s as any).scs_return_arg = undefined;
+  (s as any).scs_time_string = undefined;
+  (s as any).scs_hour1 = undefined;
+  (s as any).scs_hour2 = undefined;
+  (s as any).scs_offset = undefined;
+  (s as any).scs_day = undefined;
+  (s as any).scs_slot = undefined;
+  (s as any).scs_booking = undefined;
+  (s as any).scs_has_conflict = undefined;
   scene.build();
 }
 
@@ -127,129 +146,126 @@ function enterRandomStripperName(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
+  (s as any).temp_rand = undefined;
   scene.build();
 }
 
 function enterSetScheduleBase(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   (s as any).temp_table = '<table border=1>';
-  // TODO-QSP: $temp_table +=    '<tr>'
-  // TODO-QSP: $temp_table +=      '<th></th>'
-  // TODO-QSP: $temp_table +=      '<th>Sunday</th>'
-  // TODO-QSP: $temp_table +=      '<th>Monday</th>'
-  // TODO-QSP: $temp_table +=      '<th>Tuesday</th>'
-  // TODO-QSP: $temp_table +=      '<th>Wednesday</th>'
-  // TODO-QSP: $temp_table +=      '<th>Thursday</th>'
-  // TODO-QSP: $temp_table +=      '<th>Friday</th>'
-  // TODO-QSP: $temp_table +=      '<th>Saturday</th>'
-  // TODO-QSP: $temp_table +=    '</tr>'
-  // TODO-QSP: $temp_table +=    '<tr>'
-  // TODO-QSP: $temp_table +=      '<th>First shift</th>'
-  // TODO-QSP: $temp_table +=      '<td>'
-  // TODO-QSP: $temp_table +=        '<table>'
-  // TODO-QSP: $temp_table +=          func('stripclub_schedule', 'display_single_shift', 7, 1, ARGS[1])
-  // TODO-QSP: $temp_table +=        '</table>'
-  // TODO-QSP: $temp_table +=      '</td>'
-  // TODO-QSP: $temp_table +=      '<td>'
-  // TODO-QSP: $temp_table +=        '<table>'
-  // TODO-QSP: $temp_table +=          func('stripclub_schedule', 'display_single_shift', 1, 1, ARGS[1])
-  // TODO-QSP: $temp_table +=        '</table>'
-  // TODO-QSP: $temp_table +=      '</td>'
-  // TODO-QSP: $temp_table +=      '<td>'
-  // TODO-QSP: $temp_table +=        '<table>'
-  // TODO-QSP: $temp_table +=          func('stripclub_schedule', 'display_single_shift', 2, 1, ARGS[1])
-  // TODO-QSP: $temp_table +=        '</table>'
-  // TODO-QSP: $temp_table +=      '</td>'
-  // TODO-QSP: $temp_table +=      '<td>'
-  // TODO-QSP: $temp_table +=        '<table>'
-  // TODO-QSP: $temp_table +=          func('stripclub_schedule', 'display_single_shift', 3, 1, ARGS[1])
-  // TODO-QSP: $temp_table +=        '</table>'
-  // TODO-QSP: $temp_table +=      '</td>'
-  // TODO-QSP: $temp_table +=      '<td>'
-  // TODO-QSP: $temp_table +=        '<table>'
-  // TODO-QSP: $temp_table +=          func('stripclub_schedule', 'display_single_shift', 4, 1, ARGS[1])
-  // TODO-QSP: $temp_table +=        '</table>'
-  // TODO-QSP: $temp_table +=      '</td>'
-  // TODO-QSP: $temp_table +=      '<td>'
-  // TODO-QSP: $temp_table +=        '<table>'
-  // TODO-QSP: $temp_table +=          func('stripclub_schedule', 'display_single_shift', 5, 1, ARGS[1])
-  // TODO-QSP: $temp_table +=        '</table>'
-  // TODO-QSP: $temp_table +=      '</td>'
-  // TODO-QSP: $temp_table +=      '<td>'
-  // TODO-QSP: $temp_table +=        '<table>'
-  // TODO-QSP: $temp_table +=          func('stripclub_schedule', 'display_single_shift', 6, 1, ARGS[1])
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<tr>');
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<th></th>');
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<th>Sunday</th>');
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<th>Monday</th>');
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<th>Tuesday</th>');
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<th>Wednesday</th>');
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<th>Thursday</th>');
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<th>Friday</th>');
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<th>Saturday</th>');
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + ('</tr>');
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<tr>');
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<th>First shift</th>');
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<td>');
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<table>');
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + (qspFunc(s, 'stripclub_schedule', 'display_single_shift', 7, 1, ((s as any).locArgs?.[1] ?? 0)));
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + ('</table>');
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + ('</td>');
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<td>');
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<table>');
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + (qspFunc(s, 'stripclub_schedule', 'display_single_shift', 1, 1, ((s as any).locArgs?.[1] ?? 0)));
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + ('</table>');
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + ('</td>');
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<td>');
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<table>');
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + (qspFunc(s, 'stripclub_schedule', 'display_single_shift', 2, 1, ((s as any).locArgs?.[1] ?? 0)));
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + ('</table>');
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + ('</td>');
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<td>');
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<table>');
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + (qspFunc(s, 'stripclub_schedule', 'display_single_shift', 3, 1, ((s as any).locArgs?.[1] ?? 0)));
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + ('</table>');
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + ('</td>');
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<td>');
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<table>');
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + (qspFunc(s, 'stripclub_schedule', 'display_single_shift', 4, 1, ((s as any).locArgs?.[1] ?? 0)));
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + ('</table>');
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + ('</td>');
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<td>');
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<table>');
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + (qspFunc(s, 'stripclub_schedule', 'display_single_shift', 5, 1, ((s as any).locArgs?.[1] ?? 0)));
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + ('</table>');
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + ('</td>');
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<td>');
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<table>');
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + (qspFunc(s, 'stripclub_schedule', 'display_single_shift', 6, 1, ((s as any).locArgs?.[1] ?? 0)));
   if (((s as any).AlbinaQW ?? 0)?.['working_stripclub'] === 1) {
-    // TODO-QSP: $temp_table +=        '<tr>'
-    // TODO-QSP: $temp_table +=          '<td>'
-    // TODO-QSP: $temp_table +=            '<i>Amber</i>'
-    // TODO-QSP: $temp_table +=          '</td>'
-    // TODO-QSP: $temp_table +=        '</tr>'
+    (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<tr>');
+    (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<td>');
+    (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<i>Amber</i>');
+    (s as any).temp_table = ((s as any).temp_table ?? 0) + ('</td>');
+    (s as any).temp_table = ((s as any).temp_table ?? 0) + ('</tr>');
   }
-  // TODO-QSP: $temp_table +=        '</table>'
-  // TODO-QSP: $temp_table +=      '</td>'
-  // TODO-QSP: $temp_table +=    '</tr>'
-  // TODO-QSP: $temp_table +=    '<tr>'
-  // TODO-QSP: $temp_table +=      '<th>Second shift</th>'
-  // TODO-QSP: $temp_table +=      '<td>'
-  // TODO-QSP: $temp_table +=        '<table>'
-  // TODO-QSP: $temp_table +=          func('stripclub_schedule', 'display_single_shift', 7, 2, ARGS[1])
-  // TODO-QSP: $temp_table +=        '</table>'
-  // TODO-QSP: $temp_table +=      '</td>'
-  // TODO-QSP: $temp_table +=      '<td>'
-  // TODO-QSP: $temp_table +=        '<table>'
-  // TODO-QSP: $temp_table +=          func('stripclub_schedule', 'display_single_shift', 1, 2, ARGS[1])
-  // TODO-QSP: $temp_table +=        '</table>'
-  // TODO-QSP: $temp_table +=      '</td>'
-  // TODO-QSP: $temp_table +=      '<td>'
-  // TODO-QSP: $temp_table +=        '<table>'
-  // TODO-QSP: $temp_table +=          func('stripclub_schedule', 'display_single_shift', 2, 2, ARGS[1])
-  // TODO-QSP: $temp_table +=        '</table>'
-  // TODO-QSP: $temp_table +=      '</td>'
-  // TODO-QSP: $temp_table +=      '<td>'
-  // TODO-QSP: $temp_table +=        '<table>'
-  // TODO-QSP: $temp_table +=          func('stripclub_schedule', 'display_single_shift', 3, 2, ARGS[1])
-  // TODO-QSP: $temp_table +=        '</table>'
-  // TODO-QSP: $temp_table +=      '</td>'
-  // TODO-QSP: $temp_table +=      '<td>'
-  // TODO-QSP: $temp_table +=        '<table>'
-  // TODO-QSP: $temp_table +=          func('stripclub_schedule', 'display_single_shift', 4, 2, ARGS[1])
-  // TODO-QSP: $temp_table +=        '</table>'
-  // TODO-QSP: $temp_table +=      '</td>'
-  // TODO-QSP: $temp_table +=      '<td>'
-  // TODO-QSP: $temp_table +=        '<table>'
-  // TODO-QSP: $temp_table +=          func('stripclub_schedule', 'display_single_shift', 5, 2, ARGS[1])
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + ('</table>');
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + ('</td>');
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + ('</tr>');
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<tr>');
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<th>Second shift</th>');
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<td>');
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<table>');
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + (qspFunc(s, 'stripclub_schedule', 'display_single_shift', 7, 2, ((s as any).locArgs?.[1] ?? 0)));
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + ('</table>');
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + ('</td>');
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<td>');
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<table>');
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + (qspFunc(s, 'stripclub_schedule', 'display_single_shift', 1, 2, ((s as any).locArgs?.[1] ?? 0)));
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + ('</table>');
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + ('</td>');
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<td>');
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<table>');
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + (qspFunc(s, 'stripclub_schedule', 'display_single_shift', 2, 2, ((s as any).locArgs?.[1] ?? 0)));
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + ('</table>');
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + ('</td>');
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<td>');
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<table>');
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + (qspFunc(s, 'stripclub_schedule', 'display_single_shift', 3, 2, ((s as any).locArgs?.[1] ?? 0)));
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + ('</table>');
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + ('</td>');
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<td>');
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<table>');
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + (qspFunc(s, 'stripclub_schedule', 'display_single_shift', 4, 2, ((s as any).locArgs?.[1] ?? 0)));
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + ('</table>');
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + ('</td>');
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<td>');
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<table>');
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + (qspFunc(s, 'stripclub_schedule', 'display_single_shift', 5, 2, ((s as any).locArgs?.[1] ?? 0)));
   if (((s as any).AlbinaQW ?? 0)?.['working_stripclub'] === 1) {
-    // TODO-QSP: $temp_table +=        '<tr>'
-    // TODO-QSP: $temp_table +=          '<td>'
-    // TODO-QSP: $temp_table +=            '<i>Amber</i>'
-    // TODO-QSP: $temp_table +=          '</td>'
-    // TODO-QSP: $temp_table +=        '</tr>'
+    (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<tr>');
+    (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<td>');
+    (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<i>Amber</i>');
+    (s as any).temp_table = ((s as any).temp_table ?? 0) + ('</td>');
+    (s as any).temp_table = ((s as any).temp_table ?? 0) + ('</tr>');
   }
-  // TODO-QSP: $temp_table +=        '</table>'
-  // TODO-QSP: $temp_table +=      '</td>'
-  // TODO-QSP: $temp_table +=      '<td>'
-  // TODO-QSP: $temp_table +=        '<table>'
-  // TODO-QSP: $temp_table +=          func('stripclub_schedule', 'display_single_shift', 6, 2, ARGS[1])
-  // TODO-QSP: $temp_table +=        '</table>'
-  // TODO-QSP: $temp_table +=      '</td>'
-  // TODO-QSP: $temp_table +=    '</tr>'
-  // TODO-QSP: $temp_table +=  '</table>'
-  // TODO-QSP: dynamic text: <<$temp_table>>
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + ('</table>');
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + ('</td>');
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<td>');
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<table>');
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + (qspFunc(s, 'stripclub_schedule', 'display_single_shift', 6, 2, ((s as any).locArgs?.[1] ?? 0)));
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + ('</table>');
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + ('</td>');
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + ('</tr>');
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + ('</table>');
   scene.text(`${((s as any).temp_table ?? '')}`);
-  // TODO-QSP: end
+  (s as any).temp_table = undefined;
   scene.build();
 }
 
 function enterSetSchedule(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 0]; enterSetScheduleBase(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterNextWeekSetSchedule(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 1]; enterSetScheduleBase(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.build();
 }
 

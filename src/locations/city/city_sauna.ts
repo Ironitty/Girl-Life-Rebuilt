@@ -40,7 +40,6 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       { label: 'Head to the sauna', goto: ['city_sauna', 'sauna2'] },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 10;
@@ -56,8 +55,7 @@ function enterSauna2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('<center><b>Sauna</b></center>');
   scene.img('images/locations/city/residential/sauna/sauna1.jpg');
-  // TODO-QSP: dynamic text: 'A one hour session costs ' + $func('money', 'string_price', 2000) + '.'
-  scene.text('A one hour session costs 2000₽.');
+  scene.text('\'A one hour session costs 2000₽.\'');
   if (((s as any).saunaday ?? 0) !== ((s as any).daystart ?? 0)) {
     scene.actions([
       { label: 'Stay', handler: (st: GameState) => {
@@ -93,7 +91,6 @@ function enterSauna2(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['city_sauna', ''] },
   ]);
@@ -111,21 +108,20 @@ function enterSaunaroom(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'kit_din', '');
   scene.text('<center><b>Room</b></center>');
   scene.img('images/locations/city/residential/sauna/saunaroom.jpg');
-  // TODO-QSP: dynamic text: <br>The room has a thread bare <a href="exec:minut += 1 & gt ''bed2''">bed</a> a...
-  scene.text('<br>The room has a thread bare <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(/u0027bed2/u0027, /u0027/u0027); return false;">bed</a> and a cheap <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027wardrobe/u0027, /u0027start/u0027); return false;">wardrobe</a> where you can choose outfits and organize your clothing.');
+  scene.text('<br>The room has a thread bare <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027bed2\u0027, \u0027\u0027); return false;">bed</a> and a cheap <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027wardrobe\u0027, \u0027start\u0027); return false;">wardrobe</a> where you can choose outfits and organize your clothing.');
   if (((s as any).pcs_energy ?? 0) >= 10) {
-    scene.text('<br>Hanging on the wall is a dirty <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027start/u0027); return false;">mirror</a>. The floor is littered with dozens of porn magazines and a selection of sex toys are scattered throughout the room. There\'s so much stuff lying around, there\'s barely enough space to do some basic <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027city_sauna/u0027, /u0027saunafitness/u0027); return false;">exercise</a>.');
+    scene.text('<br>Hanging on the wall is a dirty <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027start\u0027); return false;">mirror</a>. The floor is littered with dozens of porn magazines and a selection of sex toys are scattered throughout the room. There\'s so much stuff lying around, there\'s barely enough space to do some basic <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027city_sauna\u0027, \u0027saunafitness\u0027); return false;">exercise</a>.');
   } else {
-    scene.text('<br>Hanging on the wall is a dirty <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027start/u0027); return false;">mirror</a>. The floor is littered with dozens of porn magazines and a selection of sex toys are scattered throughout the room. There\'s so much stuff lying around, there\'s barely enough space for some basic exercises but you feel too hungry to any.');
+    scene.text('<br>Hanging on the wall is a dirty <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027start\u0027); return false;">mirror</a>. The floor is littered with dozens of porn magazines and a selection of sex toys are scattered throughout the room. There\'s so much stuff lying around, there\'s barely enough space for some basic exercises but you feel too hungry to any.');
   }
-  // TODO-QSP: $func('alarmclock', 'base_alarmclock_text')
+  scene.text(qspFunc(s, 'alarmclock', 'base_alarmclock_text'));
   scene.text('If you run out of personal hygiene or beauty products, you can ask for more at a cost.');
   if (((s as any).workDolg ?? 0) > 0) {
     qspCall(s, 'money', 'debt_pay', 'workDolg');
     if (((s as any).workDolg ?? 0) <= 0) {
       (s as any).abductionReturned = 1;
     }
-    // TODO-QSP: 'Your debt is ' + $func('money', 'string_debt', workDolg)
+    scene.text('Your debt is ' + qspFunc(s, 'money', 'string_debt', ((s as any).workDolg ?? '')));
   }
   if (((s as any).workDolg ?? 0) > 0) {
     if (((s as any).mc_inventory ?? 0)?.['cosmetics'] === 0) {
@@ -241,8 +237,8 @@ function enterSaunaroom(s: GameState, scene: SceneBuilder): void {
         ]);
       }
     }
+    (s as any).sleep_txt = undefined;
   }
-  // TODO-QSP: end
   scene.actions([
     { label: '<b>Exit to the sauna</b>', goto: ['city_saunawhore', 'saunawork'] },
   ]);
@@ -255,7 +251,6 @@ function enterSaunafitness(s: GameState, scene: SceneBuilder): void {
   scene.text('You do push-ups for 30 minutes, improving your strength.');
   qspCall(s, 'exercise', 'pushups_inner');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', handler: (st: GameState) => {
     dynamicGoto(st, 'prevLoc', 'prevArg');

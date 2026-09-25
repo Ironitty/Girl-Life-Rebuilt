@@ -8,13 +8,13 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
   if (qspFunc(s, 'npc', 'is_npcID', ((s as any).locArgs?.[0] ?? 0)) === 0) {
-    // TODO-QSP: exit
+    return;
   }
   if ((String(((s as any).locArgs?.[0] ?? 0)).slice((1)-1, ((1)-1)+(1))) !== 'C') {
-    // TODO-QSP: exit
+    return;
   }
   if (((s as any).npc_perstype ?? 0)[String((s as any).locArgs?.[0] ?? '')] === '') {
-    // TODO-QSP: exit
+    return;
   }
   (s as any).npctemp = ((s as any).locArgs?.[0] ?? 0);
   (s as any).npcgen_lastrun = 1;
@@ -23,22 +23,23 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).npclastsaved = ((s as any).npclastmodadded ?? 0);
     (s as any).npclastsavedn = ((s as any).npclastmodaddedn ?? 0);
   } else {
-    // TODO-QSP: :npcsavebsanityloop
-    (s as any).npclastsaved = 'B' + ((s as any).barraynumber ?? 0) + '';
-    (s as any).npctemparrb = 'B' + ((s as any).barraynumber ?? 0)-1 + '';
-    if (((s as any).npc_perstype ?? 0)?.[String((s as any).npctemparrb ?? 0)] === ''  &&  ((s as any).barraynumber ?? 0) > 0) {
-      (s as any).barraynumber = ((s as any).barraynumber ?? 0) - (1);
-      // TODO-QSP: jump 'npcsavebsanityloop'
-    } else {
-      if (((s as any).npc_perstype ?? 0)?.[String((s as any).npclastsaved ?? 0)] !== '') {
-        (s as any).barraynumber = ((s as any).barraynumber ?? 0) + (1);
-        // TODO-QSP: jump 'npcsavebsanityloop'
+    while (true) {
+      (s as any).npclastsaved = 'B' + ((s as any).barraynumber ?? 0) + '';
+      (s as any).npctemparrb = 'B' + ((s as any).barraynumber ?? 0)-1 + '';
+      if (((s as any).npc_perstype ?? 0)?.[String((s as any).npctemparrb ?? 0)] === ''  &&  ((s as any).barraynumber ?? 0) > 0) {
+        (s as any).barraynumber = ((s as any).barraynumber ?? 0) - (1);
+        break;
+      } else {
+        if (((s as any).npc_perstype ?? 0)?.[String((s as any).npclastsaved ?? 0)] !== '') {
+          (s as any).barraynumber = ((s as any).barraynumber ?? 0) + (1);
+          break;
+        }
       }
+      (s as any).npclastsavedn = ((s as any).barraynumber ?? 0);
+      (s as any).barraynumber = ((s as any).barraynumber ?? 0) + (1);
     }
-    (s as any).npclastsavedn = ((s as any).barraynumber ?? 0);
-    (s as any).barraynumber = ((s as any).barraynumber ?? 0) + (1);
   }
-  // TODO-QSP: $npc_index[$npclastsaved]        = $npclastsaved
+  ((s as any).npc_index = (s as any).npc_index ?? {})[String((s as any).npclastsaved ?? 0)] = ((s as any).npclastsaved ?? 0);
   ((s as any).npc_dob = (s as any).npc_dob ?? {})[String((s as any).npclastsaved ?? 0)] = (((s as any).npc_dob ?? 0)?.[String((s as any).npctemp ?? 0)] ?? 0);
   ((s as any).npc_age = (s as any).npc_age ?? {})[String((s as any).npclastsaved ?? 0)] = (((s as any).npc_age ?? 0)?.[String((s as any).npctemp ?? 0)] ?? 0);
   ((s as any).npc_stren = (s as any).npc_stren ?? {})[String((s as any).npclastsaved ?? 0)] = (((s as any).npc_stren ?? 0)?.[String((s as any).npctemp ?? 0)] ?? 0);
@@ -58,22 +59,22 @@ function enter(s: GameState, scene: SceneBuilder): void {
   ((s as any).npc_weight = (s as any).npc_weight ?? {})[String((s as any).npclastsaved ?? 0)] = (((s as any).npc_weight ?? 0)?.[String((s as any).npctemp ?? 0)] ?? 0);
   ((s as any).npc_dick = (s as any).npc_dick ?? {})[String((s as any).npclastsaved ?? 0)] = (((s as any).npc_dick ?? 0)?.[String((s as any).npctemp ?? 0)] ?? 0);
   ((s as any).npc_girth = (s as any).npc_girth ?? {})[String((s as any).npclastsaved ?? 0)] = (((s as any).npc_girth ?? 0)?.[String((s as any).npctemp ?? 0)] ?? 0);
-  // TODO-QSP: $npc_thdick[$npclastsaved]        = $npc_thdick[$npctemp]
-  // TODO-QSP: $npc_dick_class[$npclastsaved]      = $npc_dick_class[$npctemp]
-  // TODO-QSP: $npc_dick_desc[$npclastsaved]      = $npc_dick_desc[$npctemp]
-  // TODO-QSP: $npc_notes[$npclastsaved]        = $func('npc_notes', $npctemp)
+  ((s as any).npc_thdick = (s as any).npc_thdick ?? {})[String((s as any).npclastsaved ?? 0)] = (((s as any).npc_thdick ?? 0)?.[String((s as any).npctemp ?? 0)] ?? 0);
+  ((s as any).npc_dick_class = (s as any).npc_dick_class ?? {})[String((s as any).npclastsaved ?? 0)] = (((s as any).npc_dick_class ?? 0)?.[String((s as any).npctemp ?? 0)] ?? 0);
+  ((s as any).npc_dick_desc = (s as any).npc_dick_desc ?? {})[String((s as any).npclastsaved ?? 0)] = (((s as any).npc_dick_desc ?? 0)?.[String((s as any).npctemp ?? 0)] ?? 0);
+  ((s as any).npc_notes = (s as any).npc_notes ?? {})[String((s as any).npclastsaved ?? 0)] = qspFunc(s, 'npc_notes', ((s as any).npctemp ?? 0));
   ((s as any).npc_bust = (s as any).npc_bust ?? {})[String((s as any).npclastsaved ?? 0)] = (((s as any).npc_bust ?? 0)?.[String((s as any).npctemp ?? 0)] ?? 0);
-  // TODO-QSP: $npc_height_desc[$npclastsaved]      = $npc_height_desc[$npctemp]
-  // TODO-QSP: $npc_build_desc[$npclastsaved]      = $npc_build_desc[$npctemp]
+  ((s as any).npc_height_desc = (s as any).npc_height_desc ?? {})[String((s as any).npclastsaved ?? 0)] = (((s as any).npc_height_desc ?? 0)?.[String((s as any).npctemp ?? 0)] ?? 0);
+  ((s as any).npc_build_desc = (s as any).npc_build_desc ?? {})[String((s as any).npclastsaved ?? 0)] = (((s as any).npc_build_desc ?? 0)?.[String((s as any).npctemp ?? 0)] ?? 0);
   ((s as any).npc_haircol = (s as any).npc_haircol ?? {})[String((s as any).npclastsaved ?? 0)] = (((s as any).npc_haircol ?? 0)?.[String((s as any).npctemp ?? 0)] ?? 0);
   ((s as any).npc_eyecol = (s as any).npc_eyecol ?? {})[String((s as any).npclastsaved ?? 0)] = (((s as any).npc_eyecol ?? 0)?.[String((s as any).npctemp ?? 0)] ?? 0);
-  // TODO-QSP: $npc_icon[$npclastsaved]        = $npc_icon[$npctemp]
-  // TODO-QSP: $npc_pic[$npclastsaved]          = $npc_pic[$npctemp]
-  // TODO-QSP: $npc_firstname[$npclastsaved]      = $npc_firstname[$npctemp]
-  // TODO-QSP: $npc_nickname[$npclastsaved]      = $npc_nickname[$npctemp]
-  // TODO-QSP: $npc_lastname[$npclastsaved]      = $npc_lastname[$npctemp]
-  // TODO-QSP: $npc_usedname[$npclastsaved]      = $npc_usedname[$npctemp]
-  // TODO-QSP: $npc_residence[$npclastsaved]      = $npc_residence[$npctemp]
+  ((s as any).npc_icon = (s as any).npc_icon ?? {})[String((s as any).npclastsaved ?? 0)] = (((s as any).npc_icon ?? 0)?.[String((s as any).npctemp ?? 0)] ?? 0);
+  ((s as any).npc_pic = (s as any).npc_pic ?? {})[String((s as any).npclastsaved ?? 0)] = (((s as any).npc_pic ?? 0)?.[String((s as any).npctemp ?? 0)] ?? 0);
+  ((s as any).npc_firstname = (s as any).npc_firstname ?? {})[String((s as any).npclastsaved ?? 0)] = (((s as any).npc_firstname ?? 0)?.[String((s as any).npctemp ?? 0)] ?? 0);
+  ((s as any).npc_nickname = (s as any).npc_nickname ?? {})[String((s as any).npclastsaved ?? 0)] = (((s as any).npc_nickname ?? 0)?.[String((s as any).npctemp ?? 0)] ?? 0);
+  ((s as any).npc_lastname = (s as any).npc_lastname ?? {})[String((s as any).npclastsaved ?? 0)] = (((s as any).npc_lastname ?? 0)?.[String((s as any).npctemp ?? 0)] ?? 0);
+  ((s as any).npc_usedname = (s as any).npc_usedname ?? {})[String((s as any).npclastsaved ?? 0)] = (((s as any).npc_usedname ?? 0)?.[String((s as any).npctemp ?? 0)] ?? 0);
+  ((s as any).npc_residence = (s as any).npc_residence ?? {})[String((s as any).npclastsaved ?? 0)] = (((s as any).npc_residence ?? 0)?.[String((s as any).npctemp ?? 0)] ?? 0);
   ((s as any).npc_finance = (s as any).npc_finance ?? {})[String((s as any).npclastsaved ?? 0)] = (((s as any).npc_finance ?? 0)?.[String((s as any).npctemp ?? 0)] ?? 0);
   ((s as any).npc_start_free_time = (s as any).npc_start_free_time ?? {})[String((s as any).npclastsaved ?? 0)] = (((s as any).npc_start_free_time ?? 0)?.[String((s as any).npctemp ?? 0)] ?? 0);
   ((s as any).npc_end_free_time = (s as any).npc_end_free_time ?? {})[String((s as any).npclastsaved ?? 0)] = (((s as any).npc_end_free_time ?? 0)?.[String((s as any).npctemp ?? 0)] ?? 0);
@@ -83,30 +84,30 @@ function enter(s: GameState, scene: SceneBuilder): void {
   ((s as any).npc_day_off = (s as any).npc_day_off ?? {})[String((s as any).npclastsaved ?? 0)] = (((s as any).npc_day_off ?? 0)?.[String((s as any).npctemp ?? 0)] ?? 0);
   ((s as any).npc_car = (s as any).npc_car ?? {})[String((s as any).npclastsaved ?? 0)] = (((s as any).npc_car ?? 0)?.[String((s as any).npctemp ?? 0)] ?? 0);
   ((s as any).npc_style = (s as any).npc_style ?? {})[String((s as any).npclastsaved ?? 0)] = (((s as any).npc_style ?? 0)?.[String((s as any).npctemp ?? 0)] ?? 0);
-  // TODO-QSP: $npc_style_label[$npclastsaved]      = $npc_style_label[$npctemp]
-  // TODO-QSP: $npc_outfit[$npclastsaved]        = $npc_outfit[$npctemp]
+  ((s as any).npc_style_label = (s as any).npc_style_label ?? {})[String((s as any).npclastsaved ?? 0)] = (((s as any).npc_style_label ?? 0)?.[String((s as any).npctemp ?? 0)] ?? 0);
+  ((s as any).npc_outfit = (s as any).npc_outfit ?? {})[String((s as any).npclastsaved ?? 0)] = (((s as any).npc_outfit ?? 0)?.[String((s as any).npctemp ?? 0)] ?? 0);
   ((s as any).npc_apt_type = (s as any).npc_apt_type ?? {})[String((s as any).npclastsaved ?? 0)] = (((s as any).npc_apt_type ?? 0)?.[String((s as any).npctemp ?? 0)] ?? 0);
-  // TODO-QSP: $npc_apt_type_label[$npclastsaved]    = $npc_apt_type_label[$npctemp]
-  // TODO-QSP: $npc_apt_sparetype[$npclastsaved]    = $npc_apt_sparetype[$npctemp]
+  ((s as any).npc_apt_type_label = (s as any).npc_apt_type_label ?? {})[String((s as any).npclastsaved ?? 0)] = (((s as any).npc_apt_type_label ?? 0)?.[String((s as any).npctemp ?? 0)] ?? 0);
+  ((s as any).npc_apt_sparetype = (s as any).npc_apt_sparetype ?? {})[String((s as any).npclastsaved ?? 0)] = (((s as any).npc_apt_sparetype ?? 0)?.[String((s as any).npctemp ?? 0)] ?? 0);
   ((s as any).npc_apt_number = (s as any).npc_apt_number ?? {})[String((s as any).npclastsaved ?? 0)] = (((s as any).npc_apt_number ?? 0)?.[String((s as any).npctemp ?? 0)] ?? 0);
-  // TODO-QSP: $npc_apt_bedroom[$npclastsaved]      = $npc_apt_bedroom[$npctemp]
-  // TODO-QSP: $npc_apt_kitchen[$npclastsaved]      = $npc_apt_kitchen[$npctemp]
-  // TODO-QSP: $npc_apt_livingroom[$npclastsaved]    = $npc_apt_livingroom[$npctemp]
-  // TODO-QSP: $npc_apt_bathroom[$npclastsaved]    = $npc_apt_bathroom[$npctemp]
-  // TODO-QSP: $npc_apt_hall[$npclastsaved]      = $npc_apt_hall[$npctemp]
-  // TODO-QSP: $npc_apt_spare[$npclastsaved]      = $npc_apt_spare[$npctemp]
-  // TODO-QSP: $npc_occupation[$npclastsaved]      = $npc_occupation[$npctemp]
+  ((s as any).npc_apt_bedroom = (s as any).npc_apt_bedroom ?? {})[String((s as any).npclastsaved ?? 0)] = (((s as any).npc_apt_bedroom ?? 0)?.[String((s as any).npctemp ?? 0)] ?? 0);
+  ((s as any).npc_apt_kitchen = (s as any).npc_apt_kitchen ?? {})[String((s as any).npclastsaved ?? 0)] = (((s as any).npc_apt_kitchen ?? 0)?.[String((s as any).npctemp ?? 0)] ?? 0);
+  ((s as any).npc_apt_livingroom = (s as any).npc_apt_livingroom ?? {})[String((s as any).npclastsaved ?? 0)] = (((s as any).npc_apt_livingroom ?? 0)?.[String((s as any).npctemp ?? 0)] ?? 0);
+  ((s as any).npc_apt_bathroom = (s as any).npc_apt_bathroom ?? {})[String((s as any).npclastsaved ?? 0)] = (((s as any).npc_apt_bathroom ?? 0)?.[String((s as any).npctemp ?? 0)] ?? 0);
+  ((s as any).npc_apt_hall = (s as any).npc_apt_hall ?? {})[String((s as any).npclastsaved ?? 0)] = (((s as any).npc_apt_hall ?? 0)?.[String((s as any).npctemp ?? 0)] ?? 0);
+  ((s as any).npc_apt_spare = (s as any).npc_apt_spare ?? {})[String((s as any).npclastsaved ?? 0)] = (((s as any).npc_apt_spare ?? 0)?.[String((s as any).npctemp ?? 0)] ?? 0);
+  ((s as any).npc_occupation = (s as any).npc_occupation ?? {})[String((s as any).npclastsaved ?? 0)] = (((s as any).npc_occupation ?? 0)?.[String((s as any).npctemp ?? 0)] ?? 0);
   ((s as any).npc_criminal = (s as any).npc_criminal ?? {})[String((s as any).npclastsaved ?? 0)] = (((s as any).npc_criminal ?? 0)?.[String((s as any).npctemp ?? 0)] ?? 0);
   ((s as any).npc_criminal_open = (s as any).npc_criminal_open ?? {})[String((s as any).npclastsaved ?? 0)] = (((s as any).npc_criminal_open ?? 0)?.[String((s as any).npctemp ?? 0)] ?? 0);
-  // TODO-QSP: $npc_perstype[$npclastsaved]      = $npc_perstype[$npctemp]
-  // TODO-QSP: $npc_humor[$npclastsaved]        = $npc_humor[$npctemp]
+  ((s as any).npc_perstype = (s as any).npc_perstype ?? {})[String((s as any).npclastsaved ?? 0)] = (((s as any).npc_perstype ?? 0)?.[String((s as any).npctemp ?? 0)] ?? 0);
+  ((s as any).npc_humor = (s as any).npc_humor ?? {})[String((s as any).npclastsaved ?? 0)] = (((s as any).npc_humor ?? 0)?.[String((s as any).npctemp ?? 0)] ?? 0);
   ((s as any).npc_sexdrive = (s as any).npc_sexdrive ?? {})[String((s as any).npclastsaved ?? 0)] = (((s as any).npc_sexdrive ?? 0)?.[String((s as any).npctemp ?? 0)] ?? 0);
   ((s as any).npc_pervert = (s as any).npc_pervert ?? {})[String((s as any).npclastsaved ?? 0)] = (((s as any).npc_pervert ?? 0)?.[String((s as any).npctemp ?? 0)] ?? 0);
   ((s as any).npc_mj = (s as any).npc_mj ?? {})[String((s as any).npclastsaved ?? 0)] = (((s as any).npc_mj ?? 0)?.[String((s as any).npctemp ?? 0)] ?? 0);
   ((s as any).npc_addit = (s as any).npc_addit ?? {})[String((s as any).npclastsaved ?? 0)] = (((s as any).npc_addit ?? 0)?.[String((s as any).npctemp ?? 0)] ?? 0);
-  // TODO-QSP: $npc_door_pref[$npclastsaved]      = $npc_door_pref[$npctemp]
-  // TODO-QSP: $npc_rel_goal[$npclastsaved]      = $npc_rel_goal[$npctemp]
-  // TODO-QSP: $npc_fidelity_label[$npclastsaved]    = $npc_fidelity_label[$npctemp]
+  ((s as any).npc_door_pref = (s as any).npc_door_pref ?? {})[String((s as any).npclastsaved ?? 0)] = (((s as any).npc_door_pref ?? 0)?.[String((s as any).npctemp ?? 0)] ?? 0);
+  ((s as any).npc_rel_goal = (s as any).npc_rel_goal ?? {})[String((s as any).npclastsaved ?? 0)] = (((s as any).npc_rel_goal ?? 0)?.[String((s as any).npctemp ?? 0)] ?? 0);
+  ((s as any).npc_fidelity_label = (s as any).npc_fidelity_label ?? {})[String((s as any).npclastsaved ?? 0)] = (((s as any).npc_fidelity_label ?? 0)?.[String((s as any).npctemp ?? 0)] ?? 0);
   ((s as any).npc_fidelity = (s as any).npc_fidelity ?? {})[String((s as any).npclastsaved ?? 0)] = (((s as any).npc_fidelity ?? 0)?.[String((s as any).npctemp ?? 0)] ?? 0);
   ((s as any).npc_earlyriser = (s as any).npc_earlyriser ?? {})[String((s as any).npclastsaved ?? 0)] = (((s as any).npc_earlyriser ?? 0)?.[String((s as any).npctemp ?? 0)] ?? 0);
   ((s as any).npc_latesleeper = (s as any).npc_latesleeper ?? {})[String((s as any).npclastsaved ?? 0)] = (((s as any).npc_latesleeper ?? 0)?.[String((s as any).npctemp ?? 0)] ?? 0);
@@ -118,7 +119,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   ((s as any).npc_risktaker = (s as any).npc_risktaker ?? {})[String((s as any).npclastsaved ?? 0)] = (((s as any).npc_risktaker ?? 0)?.[String((s as any).npctemp ?? 0)] ?? 0);
   ((s as any).npc_messy = (s as any).npc_messy ?? {})[String((s as any).npclastsaved ?? 0)] = (((s as any).npc_messy ?? 0)?.[String((s as any).npctemp ?? 0)] ?? 0);
   ((s as any).npc_neat = (s as any).npc_neat ?? {})[String((s as any).npclastsaved ?? 0)] = (((s as any).npc_neat ?? 0)?.[String((s as any).npctemp ?? 0)] ?? 0);
-  // TODO-QSP: $npc_pubes[$npclastsaved]        = $npc_pubes[$npctemp]
+  ((s as any).npc_pubes = (s as any).npc_pubes ?? {})[String((s as any).npclastsaved ?? 0)] = (((s as any).npc_pubes ?? 0)?.[String((s as any).npctemp ?? 0)] ?? 0);
   ((s as any).npc_argumentative = (s as any).npc_argumentative ?? {})[String((s as any).npclastsaved ?? 0)] = (((s as any).npc_argumentative ?? 0)?.[String((s as any).npctemp ?? 0)] ?? 0);
   ((s as any).npc_assertive = (s as any).npc_assertive ?? {})[String((s as any).npclastsaved ?? 0)] = (((s as any).npc_assertive ?? 0)?.[String((s as any).npctemp ?? 0)] ?? 0);
   ((s as any).npc_shy = (s as any).npc_shy ?? {})[String((s as any).npclastsaved ?? 0)] = (((s as any).npc_shy ?? 0)?.[String((s as any).npctemp ?? 0)] ?? 0);
@@ -134,17 +135,17 @@ function enter(s: GameState, scene: SceneBuilder): void {
   ((s as any).npc_condom_conscious = (s as any).npc_condom_conscious ?? {})[String((s as any).npclastsaved ?? 0)] = (((s as any).npc_condom_conscious ?? 0)?.[String((s as any).npctemp ?? 0)] ?? 0);
   ((s as any).npc_no_condoms = (s as any).npc_no_condoms ?? {})[String((s as any).npclastsaved ?? 0)] = (((s as any).npc_no_condoms ?? 0)?.[String((s as any).npctemp ?? 0)] ?? 0);
   ((s as any).npc_latex_allergy = (s as any).npc_latex_allergy ?? {})[String((s as any).npclastsaved ?? 0)] = (((s as any).npc_latex_allergy ?? 0)?.[String((s as any).npctemp ?? 0)] ?? 0);
-  // TODO-QSP: $npc_fav_pos[$npclastsaved]        = $npc_fav_pos[$npctemp]
+  ((s as any).npc_fav_pos = (s as any).npc_fav_pos ?? {})[String((s as any).npclastsaved ?? 0)] = (((s as any).npc_fav_pos ?? 0)?.[String((s as any).npctemp ?? 0)] ?? 0);
   ((s as any).npc_sex_speed = (s as any).npc_sex_speed ?? {})[String((s as any).npclastsaved ?? 0)] = (((s as any).npc_sex_speed ?? 0)?.[String((s as any).npctemp ?? 0)] ?? 0);
   ((s as any).npc_sex_volume = (s as any).npc_sex_volume ?? {})[String((s as any).npclastsaved ?? 0)] = (((s as any).npc_sex_volume ?? 0)?.[String((s as any).npctemp ?? 0)] ?? 0);
   ((s as any).npc_gentle_lover = (s as any).npc_gentle_lover ?? {})[String((s as any).npclastsaved ?? 0)] = (((s as any).npc_gentle_lover ?? 0)?.[String((s as any).npctemp ?? 0)] ?? 0);
   ((s as any).npc_dirty_lover = (s as any).npc_dirty_lover ?? {})[String((s as any).npclastsaved ?? 0)] = (((s as any).npc_dirty_lover ?? 0)?.[String((s as any).npctemp ?? 0)] ?? 0);
   ((s as any).npc_sensual_lover = (s as any).npc_sensual_lover ?? {})[String((s as any).npclastsaved ?? 0)] = (((s as any).npc_sensual_lover ?? 0)?.[String((s as any).npctemp ?? 0)] ?? 0);
-  // TODO-QSP: $npc_cum_pref[$npclastsaved]      = $npc_cum_pref[$npctemp]
+  ((s as any).npc_cum_pref = (s as any).npc_cum_pref ?? {})[String((s as any).npclastsaved ?? 0)] = (((s as any).npc_cum_pref ?? 0)?.[String((s as any).npctemp ?? 0)] ?? 0);
   ((s as any).npc_bukakke_fetish = (s as any).npc_bukakke_fetish ?? {})[String((s as any).npclastsaved ?? 0)] = (((s as any).npc_bukakke_fetish ?? 0)?.[String((s as any).npctemp ?? 0)] ?? 0);
   ((s as any).npc_dislikes_facials = (s as any).npc_dislikes_facials ?? {})[String((s as any).npclastsaved ?? 0)] = (((s as any).npc_dislikes_facials ?? 0)?.[String((s as any).npctemp ?? 0)] ?? 0);
-  // TODO-QSP: $npc_preferences[$npclastsaved]      = $npc_preferences[$npctemp]
-  // TODO-QSP: $npc_fav_body_part[$npclastsaved]    = $npc_fav_body_part[$npctemp]
+  ((s as any).npc_preferences = (s as any).npc_preferences ?? {})[String((s as any).npclastsaved ?? 0)] = (((s as any).npc_preferences ?? 0)?.[String((s as any).npctemp ?? 0)] ?? 0);
+  ((s as any).npc_fav_body_part = (s as any).npc_fav_body_part ?? {})[String((s as any).npclastsaved ?? 0)] = (((s as any).npc_fav_body_part ?? 0)?.[String((s as any).npctemp ?? 0)] ?? 0);
   ((s as any).npc_sex_stamina = (s as any).npc_sex_stamina ?? {})[String((s as any).npclastsaved ?? 0)] = (((s as any).npc_sex_stamina ?? 0)?.[String((s as any).npctemp ?? 0)] ?? 0);
   ((s as any).npc_sex_spanker = (s as any).npc_sex_spanker ?? {})[String((s as any).npclastsaved ?? 0)] = (((s as any).npc_sex_spanker ?? 0)?.[String((s as any).npctemp ?? 0)] ?? 0);
   ((s as any).npc_childfree = (s as any).npc_childfree ?? {})[String((s as any).npclastsaved ?? 0)] = (((s as any).npc_childfree ?? 0)?.[String((s as any).npctemp ?? 0)] ?? 0);
@@ -153,11 +154,11 @@ function enter(s: GameState, scene: SceneBuilder): void {
   ((s as any).npc_cum_cannon = (s as any).npc_cum_cannon ?? {})[String((s as any).npclastsaved ?? 0)] = (((s as any).npc_cum_cannon ?? 0)?.[String((s as any).npctemp ?? 0)] ?? 0);
   ((s as any).npc_sex_filmer = (s as any).npc_sex_filmer ?? {})[String((s as any).npclastsaved ?? 0)] = (((s as any).npc_sex_filmer ?? 0)?.[String((s as any).npctemp ?? 0)] ?? 0);
   ((s as any).npc_two_pump = (s as any).npc_two_pump ?? {})[String((s as any).npclastsaved ?? 0)] = (((s as any).npc_two_pump ?? 0)?.[String((s as any).npctemp ?? 0)] ?? 0);
-  // TODO-QSP: $npc_fav_date[$npclastsaved]      = $npc_fav_date[$npctemp]
-  // TODO-QSP: $npc_fav_genre[$npclastsaved]      = $npc_fav_genre[$npctemp]
+  ((s as any).npc_fav_date = (s as any).npc_fav_date ?? {})[String((s as any).npclastsaved ?? 0)] = (((s as any).npc_fav_date ?? 0)?.[String((s as any).npctemp ?? 0)] ?? 0);
+  ((s as any).npc_fav_genre = (s as any).npc_fav_genre ?? {})[String((s as any).npclastsaved ?? 0)] = (((s as any).npc_fav_genre ?? 0)?.[String((s as any).npctemp ?? 0)] ?? 0);
   ((s as any).npc_indiscreet = (s as any).npc_indiscreet ?? {})[String((s as any).npclastsaved ?? 0)] = (((s as any).npc_indiscreet ?? 0)?.[String((s as any).npctemp ?? 0)] ?? 0);
   ((s as any).npc_womanizer = (s as any).npc_womanizer ?? {})[String((s as any).npclastsaved ?? 0)] = (((s as any).npc_womanizer ?? 0)?.[String((s as any).npctemp ?? 0)] ?? 0);
-  // TODO-QSP: $npc_hobbies[$npclastsaved]        = $npc_hobbies[$npctemp]
+  ((s as any).npc_hobbies = (s as any).npc_hobbies ?? {})[String((s as any).npclastsaved ?? 0)] = (((s as any).npc_hobbies ?? 0)?.[String((s as any).npctemp ?? 0)] ?? 0);
   ((s as any).npc_apprnc = (s as any).npc_apprnc ?? {})[String((s as any).npclastsaved ?? 0)] = (((s as any).npc_apprnc ?? 0)?.[String((s as any).npctemp ?? 0)] ?? 0);
   ((s as any).npc_hotcat = (s as any).npc_hotcat ?? {})[String((s as any).npclastsaved ?? 0)] = (((s as any).npc_hotcat ?? 0)?.[String((s as any).npctemp ?? 0)] ?? 0);
   ((s as any).npc_drunk = (s as any).npc_drunk ?? {})[String((s as any).npclastsaved ?? 0)] = (((s as any).npc_drunk ?? 0)?.[String((s as any).npctemp ?? 0)] ?? 0);
@@ -185,37 +186,44 @@ function enter(s: GameState, scene: SceneBuilder): void {
   ((s as any).npc_syth = (s as any).npc_syth ?? {})[String((s as any).npclastsaved ?? 0)] = (((s as any).npc_syth ?? 0)?.[String((s as any).npctemp ?? 0)] ?? 0);
   ((s as any).npc_gon = (s as any).npc_gon ?? {})[String((s as any).npclastsaved ?? 0)] = (((s as any).npc_gon ?? 0)?.[String((s as any).npctemp ?? 0)] ?? 0);
   ((s as any).npc_thrush = (s as any).npc_thrush ?? {})[String((s as any).npclastsaved ?? 0)] = (((s as any).npc_thrush ?? 0)?.[String((s as any).npctemp ?? 0)] ?? 0);
-  // TODO-QSP: :npctempmloop1
-  (s as any).npctemp2 = qspUntranslated(s, "arrpos('cumarrnam', npctemp)", { location: "npcpreservec" });
-  if (((s as any).npctemp2 ?? 0) >= 0) {
-    // TODO-QSP: $cumarrnam[npctemp2] = $npclastsaved
-    // TODO-QSP: jump 'npctempmloop1'
+  while (true) {
+    (s as any).npctemp2 = qspUntranslated(s, "arrpos('cumarrnam', npctemp)", { location: "npcpreservec" });
+    if (((s as any).npctemp2 ?? 0) >= 0) {
+      ((s as any).cumarrnam = (s as any).cumarrnam ?? {})[String((s as any).npctemp2 ?? 0)] = ((s as any).npclastsaved ?? 0);
+      break;
+    }
+    while (true) {
+      (s as any).npctemp2 = qspUntranslated(s, "arrpos('sparrnam', npctemp)", { location: "npcpreservec" });
+      if (((s as any).npctemp2 ?? 0) >= 0) {
+        ((s as any).sparrnam = (s as any).sparrnam ?? {})[String((s as any).npctemp2 ?? 0)] = ((s as any).npclastsaved ?? 0);
+        break;
+      }
+      while (true) {
+        (s as any).npctemp2 = qspUntranslated(s, "arrpos('wombName', npctemp)", { location: "npcpreservec" });
+        if (((s as any).npctemp2 ?? 0) >= 0) {
+          ((s as any).wombName = (s as any).wombName ?? {})[String((s as any).npctemp2 ?? 0)] = ((s as any).npclastsaved ?? 0);
+          break;
+        }
+        while (true) {
+          (s as any).npctemp2 = qspUntranslated(s, "arrpos('ChildFath', npctemp)", { location: "npcpreservec" });
+          if (((s as any).npctemp2 ?? 0) >= 0) {
+            ((s as any).ChildFath = (s as any).ChildFath ?? {})[String((s as any).npctemp2 ?? 0)] = ((s as any).npclastsaved ?? 0);
+            break;
+          }
+          if (((s as any).pcs_firstpart ?? 0) === ((s as any).npctemp ?? 0)) {
+            (s as any).pcs_firstpart = ((s as any).npclastsaved ?? 0);
+          }
+          if (((s as any).pcs_lastpart ?? 0) === ((s as any).npctemp ?? 0)) {
+            (s as any).pcs_lastpart = ((s as any).npclastsaved ?? 0);
+          }
+          qspCall(s, 'npccleanc', '$npctemp');
+          (s as any).npctemp2 = undefined;
+          (s as any).npctemp2 = undefined;
+          (s as any).npctemp = undefined;
+        }
+      }
+    }
   }
-  // TODO-QSP: :npctempmloop2
-  (s as any).npctemp2 = qspUntranslated(s, "arrpos('sparrnam', npctemp)", { location: "npcpreservec" });
-  if (((s as any).npctemp2 ?? 0) >= 0) {
-    // TODO-QSP: $sparrnam[npctemp2] = $npclastsaved
-    // TODO-QSP: jump 'npctempmloop2'
-  }
-  // TODO-QSP: :npctempmloop3
-  (s as any).npctemp2 = qspUntranslated(s, "arrpos('wombName', npctemp)", { location: "npcpreservec" });
-  if (((s as any).npctemp2 ?? 0) >= 0) {
-    // TODO-QSP: $wombName[npctemp2] = $npclastsaved
-    // TODO-QSP: jump 'npctempmloop3'
-  }
-  // TODO-QSP: :npctempmloop4
-  (s as any).npctemp2 = qspUntranslated(s, "arrpos('ChildFath', npctemp)", { location: "npcpreservec" });
-  if (((s as any).npctemp2 ?? 0) >= 0) {
-    // TODO-QSP: $ChildFath[npctemp2] = $npclastsaved
-    // TODO-QSP: jump 'npctempmloop4'
-  }
-  if (((s as any).pcs_firstpart ?? 0) === ((s as any).npctemp ?? 0)) {
-    (s as any).pcs_firstpart = ((s as any).npclastsaved ?? 0);
-  }
-  if (((s as any).pcs_lastpart ?? 0) === ((s as any).npctemp ?? 0)) {
-    (s as any).pcs_lastpart = ((s as any).npclastsaved ?? 0);
-  }
-  qspCall(s, 'npccleanc', '$npctemp');
   scene.build();
 }
 

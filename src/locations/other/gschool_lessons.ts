@@ -12,6 +12,7 @@ function enterMorning(s: GameState, scene: SceneBuilder): void {
   (s as any).menu_loc = 'gschool_lessons';
   (s as any).menu_arg = 'morning';
   (s as any).location_type = 'public_indoors';
+  (s as any).locclass = undefined;
   if (((s as any).gschoolVars ?? 0)?.['last_attendance'] !== ((s as any).daystart ?? 0)) {
     ((s as any).gschoolVars = (s as any).gschoolVars ?? {})['last_attendance'] = ((s as any).daystart ?? 0);
     ((s as any).gschoolVars = (s as any).gschoolVars ?? {})['absence_count'] = ((s as any).gschoolVars['absence_count'] ?? 0) - (1);
@@ -70,13 +71,13 @@ function enterMorning(s: GameState, scene: SceneBuilder): void {
     (st as any).school_period = 1;
   }, goto: ['gschool_lessons', 'skip'] },
               { label: 'Use water cooler', handler: (st: GameState) => {
-    // TODO-QSP: $breaktype = 'first'
+    (st as any).breaktype = 'first';
   }, goto: ['gschool_break', 'watercooler'] },
               { label: 'Go to the girls restroom', handler: (st: GameState) => {
-    // TODO-QSP: $breaktype = 'first'
+    (st as any).breaktype = 'first';
   }, goto: ['gschool_break', 'girls_restroom'] },
               { label: 'Go to the boys restroom', handler: (st: GameState) => {
-    // TODO-QSP: $breaktype = 'first'
+    (st as any).breaktype = 'first';
   }, goto: ['gschool_break', 'boys_restroom'] },
             ]);
           }
@@ -96,18 +97,18 @@ function enterMorning(s: GameState, scene: SceneBuilder): void {
   }, goto: ['gschool_lessons', 'skip'] },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterUniformCheck(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'clothing', 'school_check', 'apply', 'wearing');
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterShortBreak(s: GameState, scene: SceneBuilder): void {
+  (s as any).breaktype = undefined;
+  (s as any).locclass = undefined;
   qspCall(s, 'stat', '');
   if (((s as any).school_period ?? 0) === 1) {
     if (((s as any).hour ?? 0) === 6) {
@@ -255,7 +256,7 @@ function enterShortBreak(s: GameState, scene: SceneBuilder): void {
     if (String((s as any).locArgs?.[1] ?? '') !== 'nopict') {
       scene.text('<center><b>School Hallway</b></center>');
       scene.img(`images/locations/pavlovsk/school/building/gschool_hall0${(Math.floor(Math.random() * 3) + 0)}.jpg`);
-      // TODO-QSP: nl
+      scene.text('');
       qspCall(s, 'gschool', 'schedule');
     }
     scene.actions([
@@ -266,7 +267,7 @@ function enterShortBreak(s: GameState, scene: SceneBuilder): void {
       if (String((s as any).locArgs?.[1] ?? '') !== 'nopict') {
         scene.text('<center><b>School Hallway</b></center>');
         scene.img(`images/locations/pavlovsk/school/building/gschool_hall0${(Math.floor(Math.random() * 3) + 0)}.jpg`);
-        // TODO-QSP: nl
+        scene.text('');
         qspCall(s, 'gschool', 'schedule');
       }
       scene.actions([
@@ -278,7 +279,7 @@ function enterShortBreak(s: GameState, scene: SceneBuilder): void {
           scene.text('<center><b>School Hallway</b></center>');
           scene.img(`images/locations/pavlovsk/school/building/gschool_hall0${(Math.floor(Math.random() * 3) + 0)}.jpg`);
           qspCall(s, 'gschool_gossip', 'gossip');
-          // TODO-QSP: nl
+          scene.text('');
           qspCall(s, 'gschool', 'schedule');
         }
         if (((s as any).cheerleadingQW ?? 0)?.['skipped_ev'] + ((s as any).cheerleadingQW ?? 0)?.['skipped_g_ev'] > 0) {
@@ -312,7 +313,6 @@ function enterShortBreak(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -320,11 +320,11 @@ function enterSkip(s: GameState, scene: SceneBuilder): void {
   (s as any).menu_loc = 'gschool_lessons';
   (s as any).menu_arg = 'skip';
   (s as any).location_type = 'public_indoors';
+  (s as any).breaktype = undefined;
   qspCall(s, 'stat', '');
   scene.text('<center><b>School Hallway</b></center>');
   scene.img(`images/locations/pavlovsk/school/building/gschool_hall0${(Math.floor(Math.random() * 3) + 0)}.jpg`);
   scene.text('You don\'t feel like attending all of your classes this morning. Surely no one will miss you if you skip one of your three morning classes?');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the girl\'s bathroom', handler: (st: GameState) => {
     (st as any).missing_class = ((st as any).missing_class ?? 0) + (1);
@@ -337,6 +337,7 @@ function enterSkip(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSchedule(s: GameState, scene: SceneBuilder): void {
+  (s as any).breaktype = undefined;
   qspCall(s, 'stat', '');
   if ((!((s as any).school_period ?? 0))) {
     (s as any).school_period = 1;
@@ -503,7 +504,6 @@ function enterSchedule(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -521,33 +521,21 @@ function enterGradeCheck(s: GameState, scene: SceneBuilder): void {
   scene.text('Your grades are as follows:');
   (s as any).temp_grade_thr = '20,40,70,90';
   scene.text('<table cellpadding="2" cellspacing="0">');
-  // TODO-QSP: dynamic text: '<tr><td>Math:</td><td><<$class_grade_desc[''school_math_grade'']>></td><td>' + ...
-  scene.text(`<tr><td>Math:</td><td>${(((s as any).class_grade_desc ?? 0)?.['school_math_grade'] ?? '')}</td><td>' + $func('progressbar', 'positive', class['school_math_grade'], 0, 0, 0, ', 'none', $temp_grade_thr) + '</td><td>${(((s as any).class ?? 0)?.['school_math_grade'] ?? '')}</td></tr>`);
-  // TODO-QSP: dynamic text: '<tr><td>Russian:</td><td><<$class_grade_desc[''school_rus_grade'']>></td><td>' ...
-  scene.text(`<tr><td>Russian:</td><td>${(((s as any).class_grade_desc ?? 0)?.['school_rus_grade'] ?? '')}</td><td>' + $func('progressbar', 'positive', class['school_rus_grade'], 0, 0, 0, ', 'none', $temp_grade_thr) + '</td><td>${(((s as any).class ?? 0)?.['school_rus_grade'] ?? '')}</td></tr>`);
-  // TODO-QSP: dynamic text: '<tr><td>Literature:</td><td><<$class_grade_desc[''school_lit_grade'']>></td><td...
-  scene.text(`<tr><td>Literature:</td><td>${(((s as any).class_grade_desc ?? 0)?.['school_lit_grade'] ?? '')}</td><td>' + $func('progressbar', 'positive', class['school_lit_grade'], 0, 0, 0, ', 'none', $temp_grade_thr) + '</td><td>${(((s as any).class ?? 0)?.['school_lit_grade'] ?? '')}</td></tr>`);
-  // TODO-QSP: dynamic text: '<tr><td>Art:</td><td><<$class_grade_desc[''school_art_grade'']>></td><td>' + $f...
-  scene.text(`<tr><td>Art:</td><td>${(((s as any).class_grade_desc ?? 0)?.['school_art_grade'] ?? '')}</td><td>' + $func('progressbar', 'positive', class['school_art_grade'], 0, 0, 0, ', 'none', $temp_grade_thr) + '</td><td>${(((s as any).class ?? 0)?.['school_art_grade'] ?? '')}</td></tr>`);
-  // TODO-QSP: dynamic text: '<tr><td>Biology:</td><td><<$class_grade_desc[''school_bio_grade'']>></td><td>' ...
-  scene.text(`<tr><td>Biology:</td><td>${(((s as any).class_grade_desc ?? 0)?.['school_bio_grade'] ?? '')}</td><td>' + $func('progressbar', 'positive', class['school_bio_grade'], 0, 0, 0, ', 'none', $temp_grade_thr) + '</td><td>${(((s as any).class ?? 0)?.['school_bio_grade'] ?? '')}</td></tr>`);
-  // TODO-QSP: dynamic text: '<tr><td>English:</td><td><<$class_grade_desc[''school_eng_grade'']>></td><td>' ...
-  scene.text(`<tr><td>English:</td><td>${(((s as any).class_grade_desc ?? 0)?.['school_eng_grade'] ?? '')}</td><td>' + $func('progressbar', 'positive', class['school_eng_grade'], 0, 0, 0, ', 'none', $temp_grade_thr) + '</td><td>${(((s as any).class ?? 0)?.['school_eng_grade'] ?? '')}</td></tr>`);
-  // TODO-QSP: dynamic text: '<tr><td>Geography:</td><td><<$class_grade_desc[''school_geo_grade'']>></td><td>...
-  scene.text(`<tr><td>Geography:</td><td>${(((s as any).class_grade_desc ?? 0)?.['school_geo_grade'] ?? '')}</td><td>' + $func('progressbar', 'positive', class['school_geo_grade'], 0, 0, 0, ', 'none', $temp_grade_thr) + '</td><td>${(((s as any).class ?? 0)?.['school_geo_grade'] ?? '')}</td></tr>`);
-  // TODO-QSP: dynamic text: '<tr><td>Science:</td><td><<$class_grade_desc[''school_sci_grade'']>></td><td>' ...
-  scene.text(`<tr><td>Science:</td><td>${(((s as any).class_grade_desc ?? 0)?.['school_sci_grade'] ?? '')}</td><td>' + $func('progressbar', 'positive', class['school_sci_grade'], 0, 0, 0, ', 'none', $temp_grade_thr) + '</td><td>${(((s as any).class ?? 0)?.['school_sci_grade'] ?? '')}</td></tr>`);
-  // TODO-QSP: dynamic text: '<tr><td>History:</td><td><<$class_grade_desc[''school_his_grade'']>></td><td>' ...
-  scene.text(`<tr><td>History:</td><td>${(((s as any).class_grade_desc ?? 0)?.['school_his_grade'] ?? '')}</td><td>' + $func('progressbar', 'positive', class['school_his_grade'], 0, 0, 0, ', 'none', $temp_grade_thr) + '</td><td>${(((s as any).class ?? 0)?.['school_his_grade'] ?? '')}</td></tr>`);
-  // TODO-QSP: dynamic text: '<tr><td>Shop:</td><td><<$class_grade_desc[''school_shop_grade'']>></td><td>' + ...
-  scene.text(`<tr><td>Shop:</td><td>${(((s as any).class_grade_desc ?? 0)?.['school_shop_grade'] ?? '')}</td><td>' + $func('progressbar', 'positive', class['school_shop_grade'], 0, 0, 0, ', 'none', $temp_grade_thr) + '</td><td>${(((s as any).class ?? 0)?.['school_shop_grade'] ?? '')}</td></tr>`);
-  // TODO-QSP: dynamic text: '<tr><td>Computer:</td><td><<$class_grade_desc[''school_comp_grade'']>></td><td>...
-  scene.text(`<tr><td>Computer:</td><td>${(((s as any).class_grade_desc ?? 0)?.['school_comp_grade'] ?? '')}</td><td>' + $func('progressbar', 'positive', class['school_comp_grade'], 0, 0, 0, ', 'none', $temp_grade_thr) + '</td><td>${(((s as any).class ?? 0)?.['school_comp_grade'] ?? '')}</td></tr>`);
-  // TODO-QSP: dynamic text: '<tr><td>Music:</td><td><<$class_grade_desc[''school_mus_grade'']>></td><td>' + ...
-  scene.text(`<tr><td>Music:</td><td>${(((s as any).class_grade_desc ?? 0)?.['school_mus_grade'] ?? '')}</td><td>' + $func('progressbar', 'positive', class['school_mus_grade'], 0, 0, 0, ', 'none', $temp_grade_thr) + '</td><td>${(((s as any).class ?? 0)?.['school_mus_grade'] ?? '')}</td></tr>`);
-  // TODO-QSP: dynamic text: '<tr><td>P.E.:</td><td><<$class_grade_desc[''school_pe_grade'']>></td><td>' + $f...
-  scene.text(`<tr><td>P.E.:</td><td>${(((s as any).class_grade_desc ?? 0)?.['school_pe_grade'] ?? '')}</td><td>' + $func('progressbar', 'positive', class['school_pe_grade'], 0, 0, 0, ', 'none', $temp_grade_thr) + '</td><td>${(((s as any).class ?? 0)?.['school_pe_grade'] ?? '')}</td></tr>`);
+  scene.text(`'<tr><td>Math:</td><td>${(((s as any).class_grade_desc ?? 0)?.['school_math_grade'] ?? '')}</td><td>' + $func('progressbar', 'positive', class['school_math_grade'], 0, 0, 0, ', 'none', $temp_grade_thr) + '</td><td>${(((s as any).class ?? 0)?.['school_math_grade'] ?? '')}</td></tr>'`);
+  scene.text(`'<tr><td>Russian:</td><td>${(((s as any).class_grade_desc ?? 0)?.['school_rus_grade'] ?? '')}</td><td>' + $func('progressbar', 'positive', class['school_rus_grade'], 0, 0, 0, ', 'none', $temp_grade_thr) + '</td><td>${(((s as any).class ?? 0)?.['school_rus_grade'] ?? '')}</td></tr>'`);
+  scene.text(`'<tr><td>Literature:</td><td>${(((s as any).class_grade_desc ?? 0)?.['school_lit_grade'] ?? '')}</td><td>' + $func('progressbar', 'positive', class['school_lit_grade'], 0, 0, 0, ', 'none', $temp_grade_thr) + '</td><td>${(((s as any).class ?? 0)?.['school_lit_grade'] ?? '')}</td></tr>'`);
+  scene.text(`'<tr><td>Art:</td><td>${(((s as any).class_grade_desc ?? 0)?.['school_art_grade'] ?? '')}</td><td>' + $func('progressbar', 'positive', class['school_art_grade'], 0, 0, 0, ', 'none', $temp_grade_thr) + '</td><td>${(((s as any).class ?? 0)?.['school_art_grade'] ?? '')}</td></tr>'`);
+  scene.text(`'<tr><td>Biology:</td><td>${(((s as any).class_grade_desc ?? 0)?.['school_bio_grade'] ?? '')}</td><td>' + $func('progressbar', 'positive', class['school_bio_grade'], 0, 0, 0, ', 'none', $temp_grade_thr) + '</td><td>${(((s as any).class ?? 0)?.['school_bio_grade'] ?? '')}</td></tr>'`);
+  scene.text(`'<tr><td>English:</td><td>${(((s as any).class_grade_desc ?? 0)?.['school_eng_grade'] ?? '')}</td><td>' + $func('progressbar', 'positive', class['school_eng_grade'], 0, 0, 0, ', 'none', $temp_grade_thr) + '</td><td>${(((s as any).class ?? 0)?.['school_eng_grade'] ?? '')}</td></tr>'`);
+  scene.text(`'<tr><td>Geography:</td><td>${(((s as any).class_grade_desc ?? 0)?.['school_geo_grade'] ?? '')}</td><td>' + $func('progressbar', 'positive', class['school_geo_grade'], 0, 0, 0, ', 'none', $temp_grade_thr) + '</td><td>${(((s as any).class ?? 0)?.['school_geo_grade'] ?? '')}</td></tr>'`);
+  scene.text(`'<tr><td>Science:</td><td>${(((s as any).class_grade_desc ?? 0)?.['school_sci_grade'] ?? '')}</td><td>' + $func('progressbar', 'positive', class['school_sci_grade'], 0, 0, 0, ', 'none', $temp_grade_thr) + '</td><td>${(((s as any).class ?? 0)?.['school_sci_grade'] ?? '')}</td></tr>'`);
+  scene.text(`'<tr><td>History:</td><td>${(((s as any).class_grade_desc ?? 0)?.['school_his_grade'] ?? '')}</td><td>' + $func('progressbar', 'positive', class['school_his_grade'], 0, 0, 0, ', 'none', $temp_grade_thr) + '</td><td>${(((s as any).class ?? 0)?.['school_his_grade'] ?? '')}</td></tr>'`);
+  scene.text(`'<tr><td>Shop:</td><td>${(((s as any).class_grade_desc ?? 0)?.['school_shop_grade'] ?? '')}</td><td>' + $func('progressbar', 'positive', class['school_shop_grade'], 0, 0, 0, ', 'none', $temp_grade_thr) + '</td><td>${(((s as any).class ?? 0)?.['school_shop_grade'] ?? '')}</td></tr>'`);
+  scene.text(`'<tr><td>Computer:</td><td>${(((s as any).class_grade_desc ?? 0)?.['school_comp_grade'] ?? '')}</td><td>' + $func('progressbar', 'positive', class['school_comp_grade'], 0, 0, 0, ', 'none', $temp_grade_thr) + '</td><td>${(((s as any).class ?? 0)?.['school_comp_grade'] ?? '')}</td></tr>'`);
+  scene.text(`'<tr><td>Music:</td><td>${(((s as any).class_grade_desc ?? 0)?.['school_mus_grade'] ?? '')}</td><td>' + $func('progressbar', 'positive', class['school_mus_grade'], 0, 0, 0, ', 'none', $temp_grade_thr) + '</td><td>${(((s as any).class ?? 0)?.['school_mus_grade'] ?? '')}</td></tr>'`);
+  scene.text(`'<tr><td>P.E.:</td><td>${(((s as any).class_grade_desc ?? 0)?.['school_pe_grade'] ?? '')}</td><td>' + $func('progressbar', 'positive', class['school_pe_grade'], 0, 0, 0, ', 'none', $temp_grade_thr) + '</td><td>${(((s as any).class ?? 0)?.['school_pe_grade'] ?? '')}</td></tr>'`);
   scene.text('</table>');
+  (s as any).temp_grade_thr = undefined;
   scene.text('A grade of 1 means "Very Poor" and is generally only used for absence. 2 means "Unsatisfactory" and is also a failing grade. 3 means "Satisfactory" and is a passing grade. 4 means "Good". 5 means "Excellent" and is only given to the best students. The number shown on the progress bar (0–100) is the internal variable grade that changes with your in-class actions; the letter grade beside it is the official mark.');
   qspCall(s, 'grades', 'grade above', 'school', 90);
   qspCall(s, 'grades', 'grade above', 'school', 70);
@@ -634,7 +622,6 @@ function enterGradeCheck(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['gschool_lessons', 'morning'] },
   ]);

@@ -12,7 +12,6 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterEvents(s: GameState, scene: SceneBuilder): void {
   qspGoto(s, 'bus_incidental', qspUntranslated(s, "event(Math.floor(Math.random() * 1) + 1)", { location: "bus_incidental" }));
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -20,7 +19,6 @@ function enterEvent1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('This is a placeholder incidental event!!');
   scene.text('Cool stuff to be added here!');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     dynamicGoto(st, 'prevLoc', 'prevArg');
@@ -32,14 +30,12 @@ function enterEvent1(s: GameState, scene: SceneBuilder): void {
 function enterEnd(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   qspGoto(s, 'bus_incidental', qspUntranslated(s, "end(Math.floor(Math.random() * 1) + 1)", { location: "bus_incidental" }));
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterEnd1(s: GameState, scene: SceneBuilder): void {
   scene.text('This is a placeholder end incidental event!!');
   scene.text('Cool stuff to be added here!');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     dynamicGoto(st, 'prevLoc', 'prevArg');

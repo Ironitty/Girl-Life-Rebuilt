@@ -9,11 +9,12 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterStat(s: GameState, scene: SceneBuilder): void {
+  (s as any).npc_reaction_hourly = undefined;
   return;
-  // TODO-QSP: end
   if (String((s as any).locArgs?.[1] ?? '') === 'cikl') {
+    (s as any).npc_reaction_daily = undefined;
     if (((s as any).week ?? 0) === 1) {
-      // TODO-QSP: killvar 'npc_reaction_weekly'
+      (s as any).npc_reaction_weekly = undefined;
     }
     return;
   }
@@ -42,57 +43,57 @@ function enterGeneral(s: GameState, scene: SceneBuilder): void {
       } else {
         if (((s as any).npc_reaction_weekly ?? 0)[(String((s as any).locArgs?.[1] ?? '')) + '_fit'] === 0) {
           if (qspFunc(s, 'pcs_has_attr', 'body_fit')) {
-            // TODO-QSP: $npc_reaction_choice[] = 'fit'
+            (s as any).npc_reaction_choice = [...((s as any).npc_reaction_choice ?? []), 'fit'];
           }
         }
         if (((s as any).npc_reaction_weekly ?? 0)[(String((s as any).locArgs?.[1] ?? '')) + '_piercing'] === 0) {
           if (qspFunc(s, 'pcs_has_attr', 'cosmetics_piercing_visible')) {
-            // TODO-QSP: $npc_reaction_choice[] = 'piercing'
+            (s as any).npc_reaction_choice = [...((s as any).npc_reaction_choice ?? []), 'piercing'];
           }
         }
         if (((s as any).npc_reaction_weekly ?? 0)[(String((s as any).locArgs?.[1] ?? '')) + '_strong'] === 0) {
           if (qspFunc(s, 'pcs_has_attr', 'stats_strength_strong')) {
-            // TODO-QSP: $npc_reaction_choice[] = 'strong'
+            (s as any).npc_reaction_choice = [...((s as any).npc_reaction_choice ?? []), 'strong'];
           }
         }
         if (((s as any).npc_reaction_first_time ?? 0)[(String((s as any).locArgs?.[1] ?? '')) + '_tan'] === 0) {
           if (qspFunc(s, 'pcs_has_attr', 'body_tan')) {
-            // TODO-QSP: $npc_reaction_choice[] = 'tan'
+            (s as any).npc_reaction_choice = [...((s as any).npc_reaction_choice ?? []), 'tan'];
           }
         }
         if (((s as any).npc_reaction_first_time ?? 0)[(String((s as any).locArgs?.[1] ?? '')) + '_tattoo'] === 0) {
           if (qspFunc(s, 'pcs_has_attr', 'cosmetics_tattoo_visible')) {
-            // TODO-QSP: $npc_reaction_choice[] = 'tattoo'
+            (s as any).npc_reaction_choice = [...((s as any).npc_reaction_choice ?? []), 'tattoo'];
           }
         }
         if (((s as any).npc_reaction_weekly ?? 0)[(String((s as any).locArgs?.[1] ?? '')) + '_bimbo'] === 0) {
           if (qspFunc(s, 'pcs_has_attr', 'clothes_style_bimbo')) {
-            // TODO-QSP: $npc_reaction_choice[] = 'bimbo_look'
+            (s as any).npc_reaction_choice = [...((s as any).npc_reaction_choice ?? []), 'bimbo_look'];
           }
         }
         if (((s as any).npc_reaction_weekly ?? 0)[(String((s as any).locArgs?.[1] ?? '')) + '_goth'] === 0) {
           if (qspFunc(s, 'pcs_has_attr', 'clothes_style_goth')) {
-            // TODO-QSP: $npc_reaction_choice[] = 'goth_look'
+            (s as any).npc_reaction_choice = [...((s as any).npc_reaction_choice ?? []), 'goth_look'];
           }
         }
         if (((s as any).npc_reaction_weekly ?? 0)[(String((s as any).locArgs?.[1] ?? '')) + '_punk'] === 0) {
           if (qspFunc(s, 'pcs_has_attr', 'clothes_style_punk')) {
-            // TODO-QSP: $npc_reaction_choice[] = 'punk_look'
+            (s as any).npc_reaction_choice = [...((s as any).npc_reaction_choice ?? []), 'punk_look'];
           }
         }
         if (((s as any).npc_reaction_daily ?? 0)[(String((s as any).locArgs?.[1] ?? '')) + '_short_skirt'] === 0) {
           if (qspFunc(s, 'pcs_has_attr', 'clothes_skirt_short')) {
-            // TODO-QSP: $npc_reaction_choice[] = 'short_skirt'
+            (s as any).npc_reaction_choice = [...((s as any).npc_reaction_choice ?? []), 'short_skirt'];
           }
         }
         if (((s as any).npc_reaction_daily ?? 0)[(String((s as any).locArgs?.[1] ?? '')) + '_clothes_thinnes'] === 0) {
           if (qspFunc(s, 'pcs_has_attr', 'clothes_thin_high')) {
-            // TODO-QSP: $npc_reaction_choice[] = 'clothes_thinnes'
+            (s as any).npc_reaction_choice = [...((s as any).npc_reaction_choice ?? []), 'clothes_thinnes'];
           }
         }
         if (((s as any).npc_reaction_weekly ?? 0)[(String((s as any).locArgs?.[1] ?? '')) + '_makeup'] === 0) {
           if (qspFunc(s, 'pcs_has_attr', 'cosmetics_makeup_any')) {
-            // TODO-QSP: $npc_reaction_choice[] = 'makeup'
+            (s as any).npc_reaction_choice = [...((s as any).npc_reaction_choice ?? []), 'makeup'];
           }
         }
         (s as any).npc_reaction_chosen = (((s as any).npc_reaction_choice ?? 0)?.[(Math.floor(Math.random() * (0 - 0 + 1)) + (0))] ?? 0);
@@ -101,15 +102,17 @@ function enterGeneral(s: GameState, scene: SceneBuilder): void {
         } else {
           (s as any).result = qspFunc(s, 'npc_reactions', ((s as any).npc_reaction_chosen ?? 0), ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0));
         }
+        (s as any).npc_reactions_temp_preferences = undefined;
+        (s as any).npc_reaction_chosen = undefined;
+        (s as any).npc_reaction_choice = undefined;
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterBimboLook(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: npc_reaction_weekly[$ARGS[1] + '_bimbo'] = 1
+  ((s as any).npc_reaction_weekly = (s as any).npc_reaction_weekly ?? {})[((s as any).locArgs?.[1] ?? 0) + '_bimbo'] = 1;
   if (((s as any).npc_nr_pref_values ?? 0)?.['clothes_style_bimbo'] > 0  ||  ((s as any).npc_reactions_temp_preferences ?? 0)?.['bimbo'] === 1) {
     if (((s as any).npc_rel ?? 0)[String((s as any).locArgs?.[1] ?? '')] > 80  ||  String((s as any).locArgs?.[2] ?? '') === 'love') {
       (s as any).result = '"You\'re gorgeous! I adore your fashion sense!" ' + ((s as any).nr_temp_npc_name ?? 0) + ' says';
@@ -167,12 +170,11 @@ function enterBimboLook(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterGothLook(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: npc_reaction_weekly[$ARGS[1] + '_goth'] = 1
+  ((s as any).npc_reaction_weekly = (s as any).npc_reaction_weekly ?? {})[((s as any).locArgs?.[1] ?? 0) + '_goth'] = 1;
   if (((s as any).npc_nr_pref_values ?? 0)?.['clothes_style_goth'] > 0  ||  ((s as any).npc_reactions_temp_preferences ?? 0)?.['goth'] === 1) {
     if (((s as any).npc_rel ?? 0)[String((s as any).locArgs?.[1] ?? '')] > 80  ||  String((s as any).locArgs?.[2] ?? '') === 'love') {
       (s as any).result = '"Wow, ' + ((s as any).pcs_nickname ?? 0) + ', you really pull off the goth look well!" ' + ((s as any).nr_temp_npc_name ?? 0) + ' says while looking you up and down.';
@@ -230,12 +232,11 @@ function enterGothLook(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterPunkLook(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: npc_reaction_weekly[$ARGS[1] + '_punk'] = 1
+  ((s as any).npc_reaction_weekly = (s as any).npc_reaction_weekly ?? {})[((s as any).locArgs?.[1] ?? 0) + '_punk'] = 1;
   if (((s as any).npc_nr_pref_values ?? 0)?.['clothes_style_punk'] > 0  ||  ((s as any).npc_reactions_temp_preferences ?? 0)?.['punk'] === 1) {
     if (((s as any).npc_rel ?? 0)[String((s as any).locArgs?.[1] ?? '')] > 80  ||  String((s as any).locArgs?.[2] ?? '') === 'love') {
       (s as any).result = '"Wow, I love your style! You have such a cool edge to you, I admire it." ' + ((s as any).nr_temp_npc_name ?? 0) + ' says';
@@ -293,12 +294,11 @@ function enterPunkLook(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterClothesThinnes(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: npc_reaction_daily[$ARGS[1] + '_clothes_thinnes'] = 1
+  ((s as any).npc_reaction_daily = (s as any).npc_reaction_daily ?? {})[((s as any).locArgs?.[1] ?? 0) + '_clothes_thinnes'] = 1;
   if (((s as any).npc_nr_pref_values ?? 0)?.['clothes_thin'] > 0  ||  ((s as any).npc_reactions_temp_preferences ?? 0)?.['clothes_thinnes'] === 1) {
     if (((s as any).npc_rel ?? 0)[String((s as any).locArgs?.[1] ?? '')] > 80  ||  String((s as any).locArgs?.[2] ?? '') === 'love') {
       (s as any).result = '"Wow, you look amazing in that thin \'+iif(PCloDress = 1, \'dress\', \'outfit\')+\'! You always know how to dress to impress." ' + ((s as any).nr_temp_npc_name ?? 0) + ' says';
@@ -356,12 +356,11 @@ function enterClothesThinnes(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterShortSkirt(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: npc_reaction_daily[$ARGS[1] + '_short_skirt'] = 1
+  ((s as any).npc_reaction_daily = (s as any).npc_reaction_daily ?? {})[((s as any).locArgs?.[1] ?? 0) + '_short_skirt'] = 1;
   if (((s as any).npc_nr_pref_values ?? 0)?.['clothes_skirt_short'] > 0  ||  ((s as any).npc_reactions_temp_preferences ?? 0)?.['short_skirt'] === 1) {
     if (((s as any).npc_rel ?? 0)[String((s as any).locArgs?.[1] ?? '')] > 80  ||  String((s as any).locArgs?.[2] ?? '') === 'love') {
       (s as any).result = '"Such a lovely skirt for such lovely legs!" ' + ((s as any).nr_temp_npc_name ?? 0) + ' says';
@@ -419,12 +418,11 @@ function enterShortSkirt(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterPiercing(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: npc_reaction_weekly[$ARGS[1] + '_piercing'] = 1
+  ((s as any).npc_reaction_weekly = (s as any).npc_reaction_weekly ?? {})[((s as any).locArgs?.[1] ?? 0) + '_piercing'] = 1;
   if (((s as any).npc_nr_pref_values ?? 0)?.['cosmetics_piercing_visible'] > 0  ||  ((s as any).npc_reactions_temp_preferences ?? 0)?.['piercing'] === 1) {
     if (((s as any).npc_rel ?? 0)[String((s as any).locArgs?.[1] ?? '')] > 80  ||  String((s as any).locArgs?.[2] ?? '') === 'love') {
       (s as any).result = '"Wow, that\'s a cool piercing! It really suits you." ' + ((s as any).nr_temp_npc_name ?? 0) + ' says';
@@ -482,12 +480,11 @@ function enterPiercing(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterMakeup(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: npc_reaction_weekly[$ARGS[1] + '_makeup'] = 1
+  ((s as any).npc_reaction_weekly = (s as any).npc_reaction_weekly ?? {})[((s as any).locArgs?.[1] ?? 0) + '_makeup'] = 1;
   if (((s as any).npc_nr_pref_values ?? 0)?.['cosmetics_makeup_any'] > 0  ||  ((s as any).npc_reactions_temp_preferences ?? 0)?.['makeup'] === 1) {
     if (((s as any).npc_rel ?? 0)[String((s as any).locArgs?.[1] ?? '')] > 80  ||  String((s as any).locArgs?.[2] ?? '') === 'love') {
       (s as any).result = '"Wow! You\'re so beautiful! And with flawless makeup!" ' + ((s as any).nr_temp_npc_name ?? 0) + ' says';
@@ -545,12 +542,11 @@ function enterMakeup(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterTattoo(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: npc_reaction_first_time[$ARGS[1] + '_tattoo'] = 1
+  ((s as any).npc_reaction_first_time = (s as any).npc_reaction_first_time ?? {})[((s as any).locArgs?.[1] ?? 0) + '_tattoo'] = 1;
   if (((s as any).npc_nr_pref_values ?? 0)?.['cosmetics_tattoo_visible'] > 0  ||  ((s as any).npc_reactions_temp_preferences ?? 0)?.['tattoo'] === 1) {
     if (((s as any).npc_rel ?? 0)[String((s as any).locArgs?.[1] ?? '')] > 80  ||  String((s as any).locArgs?.[2] ?? '') === 'love') {
       (s as any).result = ' "I really like your ink! The only thing that could make it better would be to add my name on it" ' + ((s as any).nr_temp_npc_name ?? 0) + ' says';
@@ -608,12 +604,11 @@ function enterTattoo(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterCumOnFace(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: npc_reaction_hourly[$ARGS[1] + '_cum_on_face'] = 1
+  ((s as any).npc_reaction_hourly = (s as any).npc_reaction_hourly ?? {})[((s as any).locArgs?.[1] ?? 0) + '_cum_on_face'] = 1;
   if (((s as any).npc_nr_pref_values ?? 0)?.['cum_face'] > 0  ||  ((s as any).npc_reactions_temp_preferences ?? 0)?.['cum_on_face'] === 1) {
     if (((s as any).npc_rel ?? 0)[String((s as any).locArgs?.[1] ?? '')] > 80  ||  String((s as any).locArgs?.[2] ?? '') === 'love') {
       (s as any).result = '"You know you\'re a bad girl? Maybe next time I\'ll moisturize your face?" ' + ((s as any).nr_temp_npc_name ?? 0) + ' says';
@@ -671,12 +666,11 @@ function enterCumOnFace(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterCumOnClothes(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: npc_reaction_hourly[$ARGS[1] + '_cum_on_clothes'] = 1
+  ((s as any).npc_reaction_hourly = (s as any).npc_reaction_hourly ?? {})[((s as any).locArgs?.[1] ?? 0) + '_cum_on_clothes'] = 1;
   if (((s as any).npc_nr_pref_values ?? 0)?.['cum_clothes'] > 0  ||  ((s as any).npc_reactions_temp_preferences ?? 0)?.['cum_on_clothes'] === 1) {
     if (((s as any).npc_rel ?? 0)[String((s as any).locArgs?.[1] ?? '')] > 80  ||  String((s as any).locArgs?.[2] ?? '') === 'love') {
       (s as any).result = '"I believe someone had a good time! You should probably wash your clothes" ' + ((s as any).nr_temp_npc_name ?? 0) + ' says';
@@ -734,12 +728,11 @@ function enterCumOnClothes(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterPregnant(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: npc_reaction_pregnant[$ARGS[1]] = 1
+  ((s as any).npc_reaction_pregnant = (s as any).npc_reaction_pregnant ?? {})[((s as any).locArgs?.[1] ?? 0)] = 1;
   if (((s as any).npc_nr_pref_values ?? 0)?.['body_pregnant'] > 0  ||  ((s as any).npc_reactions_temp_preferences ?? 0)?.['pregnant'] === 1) {
     if (((s as any).npc_rel ?? 0)[String((s as any).locArgs?.[1] ?? '')] > 80  ||  String((s as any).locArgs?.[2] ?? '') === 'love') {
       (s as any).result = ' "How can you be pregnant and still look so beautiful?" ' + ((s as any).nr_temp_npc_name ?? 0) + ' says';
@@ -797,12 +790,11 @@ function enterPregnant(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterTan(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: npc_reaction_first_time[$ARGS[1] + '_tan'] = 1
+  ((s as any).npc_reaction_first_time = (s as any).npc_reaction_first_time ?? {})[((s as any).locArgs?.[1] ?? 0) + '_tan'] = 1;
   if (((s as any).npc_nr_pref_values ?? 0)?.['body_tan'] > 0  ||  ((s as any).npc_reactions_temp_preferences ?? 0)?.['tan'] === 1) {
     if (((s as any).npc_rel ?? 0)[String((s as any).locArgs?.[1] ?? '')] > 80  ||  String((s as any).locArgs?.[2] ?? '') === 'love') {
       (s as any).result = ' "Wow, that tan really suits you! It brings out the color in your eyes and gives you a healthy glow. Keep it up, it looks great on you" ' + ((s as any).nr_temp_npc_name ?? 0) + ' says';
@@ -860,12 +852,11 @@ function enterTan(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterStrong(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: npc_reaction_weekly[$ARGS[1] + '_strong'] = 1
+  ((s as any).npc_reaction_weekly = (s as any).npc_reaction_weekly ?? {})[((s as any).locArgs?.[1] ?? 0) + '_strong'] = 1;
   if (((s as any).npc_nr_pref_values ?? 0)?.['stats_strength_strong'] > 0  ||  ((s as any).npc_reactions_temp_preferences ?? 0)?.['strong'] === 1) {
     if (((s as any).npc_rel ?? 0)[String((s as any).locArgs?.[1] ?? '')] > 80  ||  String((s as any).locArgs?.[2] ?? '') === 'love') {
       (s as any).result = '"Wow, you\'re so strong! I love girls who take care of their bodies!" ' + ((s as any).nr_temp_npc_name ?? 0) + ' says';
@@ -923,12 +914,11 @@ function enterStrong(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterFit(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: npc_reaction_weekly[$ARGS[1] + '_fit'] = 1
+  ((s as any).npc_reaction_weekly = (s as any).npc_reaction_weekly ?? {})[((s as any).locArgs?.[1] ?? 0) + '_fit'] = 1;
   if (((s as any).npc_nr_pref_values ?? 0)?.['body_fit'] > 0  ||  ((s as any).npc_reactions_temp_preferences ?? 0)?.['fit'] === 1) {
     if (((s as any).npc_rel ?? 0)[String((s as any).locArgs?.[1] ?? '')] > 80  ||  String((s as any).locArgs?.[2] ?? '') === 'love') {
       (s as any).result = '"Wow, you\'re in great shape! I admire your dedication to fitness." ' + ((s as any).nr_temp_npc_name ?? 0) + ' says';
@@ -986,7 +976,9 @@ function enterFit(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
+  (s as any).npc_nr_pref_traits = undefined;
+  (s as any).npc_nr_pref_values = undefined;
+  (s as any).nr_temp_npc_name = undefined;
   scene.build();
 }
 

@@ -13,7 +13,6 @@ function enter(s: GameState, scene: SceneBuilder): void {
   if (((s as any).hunterVars ?? 0)?.['AndreiLove'] > 0  &&  ((s as any).hunterVars ?? 0)?.['AndreiQw'] < 10) {
     scene.img('images/locations/gadukino/hunters/brosil.jpg');
     scene.text('You want to talk to Andrei, but he cuts in before you can say anything.');
-    // TODO-QSP: dynamic text: "<<$pcs_nickname>>, It''s over between us," he says firmly and walks away.
     scene.text(`"${((s as any).pcs_nickname ?? '')}, It's over between us," he says firmly and walks away.`);
     scene.text('"Well, maybe it\'s for the best," you think as you leave in the other direction.');
     (s as any).minut = ((s as any).minut ?? 0) + 3;
@@ -57,7 +56,6 @@ function enter(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('<center><b>Andrei</b></center>');
       scene.img('images/characters/shared/headshots_main/big172.jpg');
-      // TODO-QSP: dynamic text: Andrei is the leader of the group of hunters that frequent the woods and swamp b...
       scene.text(`Andrei is the leader of the group of hunters that frequent the woods and swamp by Gadukino while living close by. He's ${((s as any).boyage ?? '')} years old and divorced.`);
       if (((s as any).hunterVars ?? 0)?.['AndreiQw'] < 0) {
         scene.text('You and him have a bad relationship, because you offended him in the past.');
@@ -72,7 +70,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
               scene.text('You\'re good friends.');
             } else {
               if (((s as any).hunterVars ?? 0)?.['AndreiLove'] === 1) {
-                scene.text('You love each other.\' else \'You love him.');
+                scene.text('You love each other.');
+              } else {
+                scene.text('You love him.');
               }
             }
           }
@@ -83,7 +83,6 @@ function enter(s: GameState, scene: SceneBuilder): void {
         if (((s as any).hunterVars ?? 0)?.['AndreiLove'] === 0) {
           scene.actions([
             { label: 'Flirt', handler: (st: GameState) => {
-    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/hunters/hanterflirt1....
     scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/gadukino/hunters/hanterflirt1.` + (Math.floor(Math.random() * 3) + 1) + '.jpg"></center>');
     if (((st as any).hunterVars ?? 0)?.['AndreiQw'] <= 35  &&  ((st as any).hunterVars ?? 0)?.['KnowSlut'] === 0) {
       ((st as any).hunterVars = (st as any).hunterVars ?? {})['AndreiQw'] = ((st as any).hunterVars['AndreiQw'] ?? 0) + (1);
@@ -164,7 +163,6 @@ function enter(s: GameState, scene: SceneBuilder): void {
           if (((s as any).pcs_horny ?? 0) >= 60) {
             scene.actions([
               { label: 'Have sex', handler: (st: GameState) => {
-    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/hunters/hanterflirt2....
     scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/gadukino/hunters/hanterflirt2.` + (Math.floor(Math.random() * 6) + 1) + '.jpg"></center>');
     ((st as any).hunterVars = (st as any).hunterVars ?? {})['AndreiQw'] = ((st as any).hunterVars['AndreiQw'] ?? 0) + (1);
     ((st as any).hunterVars = (st as any).hunterVars ?? {})['Andreisex'] = ((st as any).hunterVars['Andreisex'] ?? 0) + ((Math.floor(Math.random() * 19) + 6));
@@ -194,7 +192,6 @@ function enter(s: GameState, scene: SceneBuilder): void {
           }
           scene.actions([
             { label: 'Spend time together', handler: (st: GameState) => {
-    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/hunters/hanterlove1.'...
     scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/gadukino/hunters/hanterlove1.` + (Math.floor(Math.random() * 4) + 1) + '.jpg"></center>');
     (st as any).minut = ((st as any).minut ?? 0) + 60;
     (st as any).pcs_horny = ((st as any).pcs_horny ?? 0) + (10);
@@ -218,7 +215,6 @@ function enter(s: GameState, scene: SceneBuilder): void {
       }
       scene.actions([
         { label: 'Chat (0:30)', handler: (st: GameState) => {
-    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/hunters/talk1.'+rand(...
     scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/gadukino/hunters/talk1.` + (Math.floor(Math.random() * 3) + 1) + '.jpg"></center>');
     if (((st as any).hunterVars ?? 0)?.['AndreiQw'] >= 0) {
     }

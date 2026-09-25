@@ -19,29 +19,27 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
   } else {
     qspCall(s, '$loc_id', '$hot_link');
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterInitArray(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: $array_tab[1] = 'Home'
-  // TODO-QSP: $array_link[1] = 'beta_journal'
-  // TODO-QSP: $array_tab[2] = 'Housing'
-  // TODO-QSP: $array_link[2] = 'beta_journal_home'
-  // TODO-QSP: $array_tab[3] = 'Work'
-  // TODO-QSP: $array_link[3] = 'beta_journal_work'
-  // TODO-QSP: $array_tab[4] = 'Relations'
-  // TODO-QSP: $array_link[4] = 'beta_journal_relationships'
-  // TODO-QSP: $array_tab[5] = 'Quests'
-  // TODO-QSP: $array_link[5] = 'beta_journal_quests'
-  // TODO-QSP: $array_tab[6] = 'Magic'
-  // TODO-QSP: $array_link[6] = 'beta_journal_magic'
-  // TODO-QSP: $array_tab[7] = 'Notifications'
-  // TODO-QSP: $array_link[7] = 'beta_journal_notifications'
-  // TODO-QSP: $array_tab[8] = 'Glossary'
-  // TODO-QSP: $array_link[8] = 'beta_journal_glossary'
+  ((s as any).array_tab = (s as any).array_tab ?? {})[1] = 'Home';
+  ((s as any).array_link = (s as any).array_link ?? {})[1] = 'beta_journal';
+  ((s as any).array_tab = (s as any).array_tab ?? {})[2] = 'Housing';
+  ((s as any).array_link = (s as any).array_link ?? {})[2] = 'beta_journal_home';
+  ((s as any).array_tab = (s as any).array_tab ?? {})[3] = 'Work';
+  ((s as any).array_link = (s as any).array_link ?? {})[3] = 'beta_journal_work';
+  ((s as any).array_tab = (s as any).array_tab ?? {})[4] = 'Relations';
+  ((s as any).array_link = (s as any).array_link ?? {})[4] = 'beta_journal_relationships';
+  ((s as any).array_tab = (s as any).array_tab ?? {})[5] = 'Quests';
+  ((s as any).array_link = (s as any).array_link ?? {})[5] = 'beta_journal_quests';
+  ((s as any).array_tab = (s as any).array_tab ?? {})[6] = 'Magic';
+  ((s as any).array_link = (s as any).array_link ?? {})[6] = 'beta_journal_magic';
+  ((s as any).array_tab = (s as any).array_tab ?? {})[7] = 'Notifications';
+  ((s as any).array_link = (s as any).array_link ?? {})[7] = 'beta_journal_notifications';
+  ((s as any).array_tab = (s as any).array_tab ?? {})[8] = 'Glossary';
+  ((s as any).array_link = (s as any).array_link ?? {})[8] = 'beta_journal_glossary';
   (s as any).nav_banner = '' + ((s as any).pcs_nickname ?? 0) + '\'s Quests and Relationships';
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -52,7 +50,6 @@ function enterDefault2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, '$loc_id', 'game_events');
   qspCall(s, '$loc_id', 'gametips');
   scene.text('</center>');
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -60,37 +57,34 @@ function enterNavConstruct(s: GameState, scene: SceneBuilder): void {
   if (((s as any).nav_banner ?? 0) === '') {
     (s as any).nav_banner = '' + ((s as any).pcs_firstname ?? 0) + '\'s Quests and Relationships';
   }
+  (s as any).tablebody = undefined;
   (s as any).nav_i = 0;
   if (((s as any).start_type ?? 0)?.['magic'] === 'nomagic') {
     (s as any).nav_i = ((s as any).nav_i ?? 0) - (1);
   }
   (s as any).i = 0;
-  // TODO-QSP: :jmp_navigation_gen
-  if (((s as any).start_type ?? 0)?.['magic'] !== 'nomagic'  &&  ((s as any).array_tab ?? 0)?.[String((s as any).i ?? 0)] === 'Magic') {
-  } else {
-    if (((s as any).hot_link ?? 0) !== ((s as any).array_link ?? 0)?.[String((s as any).i ?? 0)]) {
-      // TODO-QSP: $tablebody += '<th><a href="exec:gs ''<<$array_link[i]>>'', ''init''"><<$array_tab[i]>></a></th>'
+  do {
+    if (((s as any).start_type ?? 0)?.['magic'] !== 'nomagic'  &&  ((s as any).array_tab ?? 0)?.[String((s as any).i ?? 0)] === 'Magic') {
     } else {
-      // TODO-QSP: $tablebody += '<th><<$array_tab[i]>></th>'
+      if (((s as any).hot_link ?? 0) !== ((s as any).array_link ?? 0)?.[String((s as any).i ?? 0)]) {
+        (s as any).tablebody = ((s as any).tablebody ?? 0) + ('<th><a href="#" onclick="window.__gameStore.getState().doGoto((((s as any).array_link ?? 0)?.[String((s as any).i ?? 0)] ?? \u0027\u0027), \u0027init\u0027); return false;">' + (((s as any).array_tab ?? 0)?.[String((s as any).i ?? 0)] ?? 0) + '</a></th>');
+      } else {
+        (s as any).tablebody = ((s as any).tablebody ?? 0) + ('<th>' + (((s as any).array_tab ?? 0)?.[String((s as any).i ?? 0)] ?? 0) + '</th>');
+      }
     }
-  }
-  (s as any).i = ((s as any).i ?? 0) + (1);
-  if (((s as any).i ?? 0) < ((s as any).nav_i ?? 0)) {
-    // TODO-QSP: jump 'jmp_navigation_gen'
-  }
-  // TODO-QSP: dynamic text: <center><h1><<$nav_banner>></h1>
-  scene.text(`<center><h1>${((s as any).nav_banner ?? '')}</h1>`);
-  // TODO-QSP: dynamic text: <table width="90%" align="center" width="90%" cellspacing="0" cellpadding="0" va...
-  scene.text(`<table width="90%" align="center" width="90%" cellspacing="0" cellpadding="0" valign="top"><tr>${((s as any).tablebody ?? '')}</tr></table></center>`);
-  qspCall(s, 'journal', 'leaveactions');
-  // TODO-QSP: end
+    (s as any).i = ((s as any).i ?? 0) + (1);
+    (s as any).i = undefined;
+    (s as any).nav_i = undefined;
+    scene.text(`<center><h1>${((s as any).nav_banner ?? '')}</h1>`);
+    scene.text(`<table width="90%" align="center" width="90%" cellspacing="0" cellpadding="0" valign="top"><tr>${((s as any).tablebody ?? '')}</tr></table></center>`);
+    qspCall(s, 'journal', 'leaveactions');
+  } while (((s as any).i ?? 0) < ((s as any).nav_i ?? 0));
   scene.build();
 }
 
 function enterGameEvents(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><h3>Upcoming Events</h3></center>');
   scene.text('WIP - No events configured or happening');
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -98,24 +92,24 @@ function enterGametips(s: GameState, scene: SceneBuilder): void {
   qspCall(s, '$loc_id', 'tips_init');
   (s as any).rnd_tip = (Math.floor(Math.random() * (0 - 0 + 1)) + (0));
   scene.text('<center><h3>Girl Life Random Tips</h3>');
-  // TODO-QSP: $tip_body[rnd_tip]
+  scene.text(String(((s as any).tip_body ?? {})[String((s as any).rnd_tip ?? '')] || ''));
   scene.text('</center>');
-  // TODO-QSP: end
+  (s as any).rnd_tip = undefined;
+  (s as any).tip_body = undefined;
   scene.build();
 }
 
 function enterTipsInit(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: $tip_body[0] = 'Be careful when drunk.'
-  // TODO-QSP: $tip_body[1] = 'If you have a modern dance skill of 50 or higher, and Albina likes you may get a cha...
-  // TODO-QSP: $tip_body[2] = 'Mon Cheri is the most prestigious clothing store in St. Petersburg. With a price tag...
-  // TODO-QSP: $tip_body[3] = 'There is some parts of the game restricted to over-18s such as doing driving lessons...
-  // TODO-QSP: $tip_body[4] = 'The city park is a dangerous place at night. Be prepared to defend yourself.'
-  // TODO-QSP: $tip_body[5] = 'Finding well paid jobs for pocket money is tough for a teenager unless you get creat...
-  // TODO-QSP: $tip_body[6] = 'The Pavlovsk community centre is not the only place you can learn dance or sports sk...
-  // TODO-QSP: $tip_body[7] = "Be wary of Fae gifts."
-  // TODO-QSP: $tip_body[8] = 'Exploration can lead to interesting events or surprises.'
-  // TODO-QSP: $tip_body[9] = 'Look after ourself as your admirers gauge your beauty is based social interests, you...
-  // TODO-QSP: end
+  ((s as any).tip_body = (s as any).tip_body ?? {})[0] = 'Be careful when drunk.';
+  ((s as any).tip_body = (s as any).tip_body ?? {})[1] = 'If you have a modern dance skill of 50 or higher, and Albina likes you may get a chance to join Starlets.';
+  ((s as any).tip_body = (s as any).tip_body ?? {})[2] = 'Mon Cheri is the most prestigious clothing store in St. Petersburg. With a price tag to match.';
+  ((s as any).tip_body = (s as any).tip_body ?? {})[3] = 'There is some parts of the game restricted to over-18s such as doing driving lessons, gambling at the casino and other areas. There is rumours that there is studios who are less fussy about sticking to the law.';
+  ((s as any).tip_body = (s as any).tip_body ?? {})[4] = 'The city park is a dangerous place at night. Be prepared to defend yourself.';
+  ((s as any).tip_body = (s as any).tip_body ?? {})[5] = 'Finding well paid jobs for pocket money is tough for a teenager unless you get creative.';
+  ((s as any).tip_body = (s as any).tip_body ?? {})[6] = 'The Pavlovsk community centre is not the only place you can learn dance or sports skills.';
+  ((s as any).tip_body = (s as any).tip_body ?? {})[7] = 'Be wary of Fae gifts.';
+  ((s as any).tip_body = (s as any).tip_body ?? {})[8] = 'Exploration can lead to interesting events or surprises.';
+  ((s as any).tip_body = (s as any).tip_body ?? {})[9] = 'Look after ourself as your admirers gauge your beauty is based social interests, your looks, how well you take care of yourself and what you wear.';
   scene.build();
 }
 
@@ -129,48 +123,46 @@ function enterTableGen(s: GameState, scene: SceneBuilder): void {
     (s as any).table_columns = ((s as any).locArgs?.[1] ?? 0);
   }
   (s as any).bjq_temp_table = '<center><table cellspacing="3" bgcolor="' + (((s as any).theme ?? 0)?.['table_bg_alt']) + '" width="80%" align="center">';
-  // TODO-QSP: :jmp_table_gen
-  // TODO-QSP: $bjq_temp_table +=  '<tr width="100px">'
-  // TODO-QSP: :jmp_table_gen2
-  // TODO-QSP: $bjq_temp_table +=    '<td align="left">'
-  // TODO-QSP: $bjq_temp_table +=      '<a href="exec: gt ''<<$loc_id>>'' ,''<<$loc_shortname[entry_counter_i]>>''"...
-  // TODO-QSP: $bjq_temp_table +=        '<img height="100" src="<<$loc_path[entry_counter_i]>>">'
-  // TODO-QSP: $bjq_temp_table +=      '</a>'
-  // TODO-QSP: $bjq_temp_table +=    '</td>'
-  (s as any).entry_counter_i = ((s as any).entry_counter_i ?? 0) + (1);
-  if (((s as any).entry_counter_i ?? 0) <= ((s as any).table_gen_max ?? 0)  &&  (((s as any).entry_counter_i ?? 0) % ((s as any).table_columns ?? 0)) !== 0) {
-    // TODO-QSP: jump 'jmp_table_gen2'
-  }
-  // TODO-QSP: $bjq_temp_table +=  '</tr>'
-  // TODO-QSP: $bjq_temp_table +=  '<tr width="100px">'
-  // TODO-QSP: :jmp_table_gen3
-  // TODO-QSP: $bjq_temp_table +=    '<td align="left">'
-  // TODO-QSP: $bjq_temp_table +=      $loc_name[entry_counter_j]
-  // TODO-QSP: $bjq_temp_table +=    '</td>'
-  (s as any).entry_counter_j = ((s as any).entry_counter_j ?? 0) + (1);
-  if (((s as any).entry_counter_j ?? 0) <= ((s as any).table_gen_max ?? 0)  &&  (((s as any).entry_counter_j ?? 0) % ((s as any).table_columns ?? 0)) !== 0) {
-    // TODO-QSP: jump 'jmp_table_gen3'
-  }
-  // TODO-QSP: $bjq_temp_table +=  '</tr>'
-  (s as any).table_counter = ((s as any).table_counter ?? 0) + (1);
-  if (((s as any).table_counter ?? 0) === 5) {
-    // TODO-QSP: $bjq_temp_table += '<tr></tr>'
-    (s as any).table_counter = 0;
-  }
-  if (((s as any).entry_counter_i ?? 0) < ((s as any).table_gen_max ?? 0)) {
-    // TODO-QSP: jump 'jmp_table_gen'
-  }
-  // TODO-QSP: $bjq_temp_table += '</table></center>'
-  // TODO-QSP: dynamic text: <<$bjq_temp_table>>
-  scene.text(`${((s as any).bjq_temp_table ?? '')}`);
-  // TODO-QSP: end
+  do {
+    (s as any).bjq_temp_table = ((s as any).bjq_temp_table ?? 0) + ('<tr width="100px">');
+    do {
+      (s as any).bjq_temp_table = ((s as any).bjq_temp_table ?? 0) + ('<td align="left">');
+      (s as any).bjq_temp_table = ((s as any).bjq_temp_table ?? 0) + ('<a href="exec: gt \'' + ((s as any).loc_id ?? 0) + '\' ,\'' + (((s as any).loc_shortname ?? 0)?.[String((s as any).entry_counter_i ?? 0)] ?? 0) + '\'">');
+      (s as any).bjq_temp_table = ((s as any).bjq_temp_table ?? 0) + ('<img height="100" src="' + (((s as any).loc_path ?? 0)?.[String((s as any).entry_counter_i ?? 0)] ?? 0) + '">');
+      (s as any).bjq_temp_table = ((s as any).bjq_temp_table ?? 0) + ('</a>');
+      (s as any).bjq_temp_table = ((s as any).bjq_temp_table ?? 0) + ('</td>');
+      (s as any).entry_counter_i = ((s as any).entry_counter_i ?? 0) + (1);
+      (s as any).bjq_temp_table = ((s as any).bjq_temp_table ?? 0) + ('</tr>');
+      (s as any).bjq_temp_table = ((s as any).bjq_temp_table ?? 0) + ('<tr width="100px">');
+      do {
+        (s as any).bjq_temp_table = ((s as any).bjq_temp_table ?? 0) + ('<td align="left">');
+        (s as any).bjq_temp_table = ((s as any).bjq_temp_table ?? 0) + ((((s as any).loc_name ?? 0)?.[String((s as any).entry_counter_j ?? 0)] ?? 0));
+        (s as any).bjq_temp_table = ((s as any).bjq_temp_table ?? 0) + ('</td>');
+        (s as any).entry_counter_j = ((s as any).entry_counter_j ?? 0) + (1);
+        (s as any).bjq_temp_table = ((s as any).bjq_temp_table ?? 0) + ('</tr>');
+        (s as any).table_counter = ((s as any).table_counter ?? 0) + (1);
+        if (((s as any).table_counter ?? 0) === 5) {
+          (s as any).bjq_temp_table = ((s as any).bjq_temp_table ?? 0) + ('<tr></tr>');
+          (s as any).table_counter = 0;
+        }
+        (s as any).bjq_temp_table = ((s as any).bjq_temp_table ?? 0) + ('</table></center>');
+        scene.text(`${((s as any).bjq_temp_table ?? '')}`);
+        (s as any).bjq_temp_table = undefined;
+        (s as any).entry_counter_i = undefined;
+        (s as any).entry_counter_j = undefined;
+        (s as any).table_columns = undefined;
+        (s as any).table_counter = undefined;
+        (s as any).table_gen_max = undefined;
+      } while (((s as any).entry_counter_j ?? 0) <= ((s as any).table_gen_max ?? 0)  &&  (((s as any).entry_counter_j ?? 0) % ((s as any).table_columns ?? 0)) !== 0);
+    } while (((s as any).entry_counter_i ?? 0) <= ((s as any).table_gen_max ?? 0)  &&  (((s as any).entry_counter_i ?? 0) % ((s as any).table_columns ?? 0)) !== 0);
+  } while (((s as any).entry_counter_i ?? 0) < ((s as any).table_gen_max ?? 0));
   scene.build();
 }
 
 function enterLeaveactions(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: end
   scene.actions([
     { label: 'Put your notebook down', handler: (st: GameState) => {
+    (st as any).jumploc = undefined;
     (st as any).jclose = 1;
     dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
@@ -194,8 +186,7 @@ function enterFailure(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: 'vcard failed to initialise: ' + $debug['journal']
-  // TODO-QSP: end
+  scene.text('vcard failed to initialise: ' + (((s as any).debug ?? 0)?.['journal'] ?? ''));
   scene.build();
 }
 

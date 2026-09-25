@@ -10,7 +10,6 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterFour(s: GameState, scene: SceneBuilder): void {
   qspGoto(s, 'intro_start', 'start');
-  // TODO-QSP: end
   scene.build();
 }
 

@@ -22,7 +22,6 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspGoto(s, 'metro_incidental', 'event' + (((s as any).temp_transportVars ?? 0)?.['rand']) + '');
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -102,7 +101,6 @@ function enterEvent3(s: GameState, scene: SceneBuilder): void {
       scene.text('Several passengers are shocked, noticing the cum smears on you.');
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     dynamicGoto(st, 'prevLoc', 'prevArg');
@@ -114,7 +112,6 @@ function enterEvent3(s: GameState, scene: SceneBuilder): void {
 function enterEnd(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   qspGoto(s, 'metro_incidental', qspUntranslated(s, "end(Math.floor(Math.random() * 1) + 1)", { location: "metro_incidental" }));
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -122,7 +119,6 @@ function enterEnd1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('This is a placeholder end incidental event!!');
   scene.text('Cool stuff to be added here!');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     dynamicGoto(st, 'prevLoc', 'prevArg');

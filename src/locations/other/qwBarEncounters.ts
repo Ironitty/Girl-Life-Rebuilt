@@ -27,7 +27,6 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.text('Jaska shakes his head and points his pool cue at them. "Yeah yeah, just fuck off already. Go blow your money on cheap whores and booze, like you always do."');
     scene.text('You watch in silence as the three of them exchange a few more insults before the two older guys gather their things and finally leave. Jaska grabs his glass and finishes off the last bit of alcohol before making his way over to you. He leans against the pool table and looks you up and down. He\'s close enough that you can smell a mixture of alcohol, cigarette and a hint of musk.');
     scene.text('"I don\'t think I\'ve seen you around here before," he says after a moment, "What\'s your name?"');
-    // TODO-QSP: dynamic text: "<<$pcs_nickname>>," you tell him.
     scene.text(`"${((st as any).pcs_nickname ?? '')}," you tell him.`);
     scene.text('"Right. Well, I\'m Jaska, if you didn\'t already know." He laughs ruefully, "So, you ever play pool?" You shake your head and Jaska\'s face lights up a bit. "Then how about I teach you," he suggests, not really asking as much as telling you.');
     if (((st as any).pcs_billiard ?? 0) < 10) {
@@ -114,7 +113,6 @@ function enter(s: GameState, scene: SceneBuilder): void {
     }
     (st as any).minut = ((st as any).minut ?? 0) + 15;
     (st as any).PBB_Met = 1;
-    // TODO-QSP: dynamic text: You smile at him and accept his offer. He buys you another <<$boozeVar>> and as ...
     scene.text(`You smile at him and accept his offer. He buys you another ${((st as any).boozeVar ?? '')} and as you nurse on it, the two of you chat some more about everything and nothing.`);
     scene.text('Eventually he asks you if you would like to go play pool with him.');
     scene.actions([
@@ -140,7 +138,6 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.text('"Well, it\'s not really worth much when you \'almost\' win the lottery or \'almost\' had an orgasm," you say with a grin.');
     scene.text('"True," he laughs. "How about you give me a chance to restore my honor? A rematch? And now that we know what we\'re up against, we could make it more interesting by playing for money."');
     scene.text('"How much were you thinking?", you ask.');
-    // TODO-QSP: dynamic text: "I don''t know… <<$func(''money'', ''string_price'', 2500)>>?"
     scene.text(`"I don't know… ${qspFunc(s, 'money', 'string_price', 2500)}?"`);
     if (qspFunc(s, 'money', 'can_afford', 2500) === 1) {
       scene.actions([
@@ -148,7 +145,6 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/industrial/bar/sex/pool/pool2.jpg');
     (st as any).billiard_ev_var = 1;
     scene.text('"Alright, let\'s play."');
-    // TODO-QSP: dynamic text: 'You ' + iif(bag > 0, 'open your purse', 'reach into your pocket') + ' and pull ...
     scene.text('You ' + ((((st as any).bag ?? 0) > 0) ? ('open your purse') : ('reach into your pocket')) + ' and pull out a few bills and lay them down on the table.');
     scene.text('Your acquaintance gives you a wolfish grin, racks up the balls and lets you break again as he lays his money down on top of yours.');
     qspCall(st, 'qwBarBilliard', 'billiard_engine');
@@ -197,7 +193,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       { label: 'You\'re on', handler: (st: GameState) => {
     scene.img('images/locations/city/industrial/bar/sex/pool/pool2.jpg');
     (st as any).billiard_ev_var = 2;
-    // TODO-QSP: $OpenInnerThought + 'I can take him,' + $CloseInnerThought + ' you think to yourself, ' + $OpenInner...
+    scene.text('$OpenInnerThought + \'I can take him,\' + $CloseInnerThought + \' you think to yourself, \' + $OpenInnerThought + \'and even if he beats me, it\'s just a blowjob.\' +$CloseInnerThought');
     scene.text('With that in mind, you nod your head and tell him he\'s got himself a deal.');
     qspCall(st, 'qwBarBilliard', 'billiard_engine');
     qspCall(st, 'qwBarBilliard', 'billiard_ev1');
@@ -282,7 +278,6 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/industrial/bar/sex/bar/bargrinds1.mp4');
     qspCall(st, 'npcStat', '$npclastgenerated');
     scene.text('Seeing as he got down on you right then and there, it seems only fair for you to do the same for him, so you get down on your knees, squatted down in front of him with your back against the counter, hidden from most views.');
-    // TODO-QSP: dynamic text: The strangers pulls out his cock and shoves it in your open mouth - you already ...
     scene.text(`The strangers pulls out his cock and shoves it in your open mouth - you already knew what to expect and at this point, you are eager to suck his cock. He leans in close and starts fucking your mouth, and you are reveling in it, masturbating as he shoves his ${((st as any).dick ?? '')}cm ${((st as any).dick_girth ?? '')} cock down your throat again and again. You don't know if anybody's watching and you are too drunk to feel anything but excitement at the prospect.`);
     qspCall(st, 'arousal', 'bj', 5, 'sub', 'exhibitionism', 'deepthroat', 'rough');
     qspCall(st, 'arousal', 'vaginal_finger', (-5), 'sub', 'exhibitionism', 'masturbate');
@@ -315,7 +310,6 @@ function enter(s: GameState, scene: SceneBuilder): void {
       { label: 'Let him guide you', handler: (st: GameState) => {
     scene.img('images/locations/city/industrial/bar/sex/bar/bargrinds1.mp4');
     scene.text('He works your clit with his fingers for a bit, clearly knowing what he\'s doing and getting you hot and bothered before he pulls his hand free. He turns you around so your back is against the bar and then pushes down on your shoulders until you are squatted down in front of him and hidden from most views.');
-    // TODO-QSP: dynamic text: The strangers pulls out his cock and shoves it in your open mouth - you already ...
     scene.text(`The strangers pulls out his cock and shoves it in your open mouth - you already knew what to expect and at this point, you are eager to suck his cock. He leans in close and starts fucking your mouth, and you are reveling in it, masturbating as he shoves his ${((st as any).dick ?? '')}cm ${((st as any).dick_girth ?? '')} cock down your throat again and again. You don't know if anybody's watching and you are too drunk to feel anything but excitement at the prospect.`);
     qspCall(st, 'arousal', 'bj', 5, 'sub', 'exhibitionism', 'deepthroat', 'rough');
     qspCall(st, 'arousal', 'clit_finger', (-5), 'sub', 'exhibitionism');
@@ -360,7 +354,6 @@ function enter(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 

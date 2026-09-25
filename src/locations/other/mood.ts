@@ -34,14 +34,12 @@ function enterClamp(s: GameState, scene: SceneBuilder): void {
     (s as any).pcs_health = ((s as any).pcs_health ?? 0) - (Math.max(5, Math.min(20, ((s as any).pcs_mood ?? 0) - (((s as any).moodVars ?? {})?.['min'] ?? 0))));
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterReset(s: GameState, scene: SceneBuilder): void {
   (s as any).pcs_mood = (((s as any).moodVars ?? 0)?.['disp']);
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -76,25 +74,24 @@ function enterInterpret(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterRaise(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_val = ((String((s as any).locArgs?.[1] ?? '') !== 0) ? (((s as any).locArgs?.[1] ?? 0)) : (qspFunc(s, 'mood', 'interpret', ((s as any).locArgs?.[1] ?? 0))));
   (s as any).pcs_mood = ((s as any).pcs_mood ?? 0) + (qspFunc(s, '_difficulty', 'get_multiplied', (((s as any).cheatVars ?? 0)?.['pos_mood_opt']), ((s as any).temp_val ?? 0), (((s as any).cheatVars ?? 0)?.['pos_mood_mult'])));
+  (s as any).temp_val = undefined;
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterClamp(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterLower(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_val = ((String((s as any).locArgs?.[1] ?? '') !== 0) ? (((s as any).locArgs?.[1] ?? 0)) : (qspFunc(s, 'mood', 'interpret', ((s as any).locArgs?.[1] ?? 0))));
   (s as any).pcs_mood = ((s as any).pcs_mood ?? 0) - (qspFunc(s, '_difficulty', 'get_multiplied', (((s as any).cheatVars ?? 0)?.['neg_mood_opt']), ((s as any).temp_val ?? 0), (((s as any).cheatVars ?? 0)?.['neg_mood_mult'])));
+  (s as any).temp_val = undefined;
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterClamp(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -104,8 +101,9 @@ function enterDoormat(s: GameState, scene: SceneBuilder): void {
     (s as any).temp_pipe = ((String(((s as any).temp_mood_str ?? 0)).indexOf(String('|'))) + 1);
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', (String(((s as any).temp_mood_str ?? 0)).slice((1)-1, ((1)-1)+(((s as any).temp_pipe ?? 0) - 1))), (String(((s as any).temp_mood_str ?? 0)).slice((((s as any).temp_pipe ?? 0) + 1)-1))]; enterDefault(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
+  (s as any).temp_pipe = undefined;
+  (s as any).temp_mood_str = undefined;
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -113,7 +111,6 @@ function enterRaiseTrauma(s: GameState, scene: SceneBuilder): void {
   (s as any).mood_trauma = ((s as any).mood_trauma ?? 0) + (((s as any).locArgs?.[1] ?? 0));
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterClamp(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -121,7 +118,6 @@ function enterLowerTrauma(s: GameState, scene: SceneBuilder): void {
   (s as any).mood_trauma = ((s as any).mood_trauma ?? 0) - (((s as any).locArgs?.[1] ?? 0));
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterClamp(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -132,9 +128,9 @@ function enterRaiseDisposition(s: GameState, scene: SceneBuilder): void {
     (s as any).temp_val = ((String((s as any).locArgs?.[1] ?? '') !== 0) ? (((s as any).locArgs?.[1] ?? 0)) : (qspFunc(s, 'mood', 'interpret', ((s as any).locArgs?.[1] ?? 0)) / 5));
   }
   ((s as any).moodVars = (s as any).moodVars ?? {})['disp_base'] = ((s as any).moodVars['disp_base'] ?? 0) + (qspFunc(s, '_difficulty', 'get_multiplied', (((s as any).cheatVars ?? 0)?.['pos_mood_opt']), ((s as any).temp_val ?? 0), (((s as any).cheatVars ?? 0)?.['pos_mood_mult'])));
+  (s as any).temp_val = undefined;
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterClamp(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -145,16 +141,15 @@ function enterLowerDisposition(s: GameState, scene: SceneBuilder): void {
     (s as any).temp_val = ((String((s as any).locArgs?.[1] ?? '') !== 0) ? (((s as any).locArgs?.[1] ?? 0)) : (qspFunc(s, 'mood', 'interpret', ((s as any).locArgs?.[1] ?? 0)) / 5));
   }
   ((s as any).moodVars = (s as any).moodVars ?? {})['disp_base'] = ((s as any).moodVars['disp_base'] ?? 0) - (qspFunc(s, '_difficulty', 'get_multiplied', (((s as any).cheatVars ?? 0)?.['neg_mood_opt']), ((s as any).temp_val ?? 0), (((s as any).cheatVars ?? 0)?.['neg_mood_mult'])));
+  (s as any).temp_val = undefined;
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterClamp(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterHold(s: GameState, scene: SceneBuilder): void {
   ((s as any).moodVars = (s as any).moodVars ?? {})['hold_minut'] = Math.max((((s as any).moodVars ?? 0)?.['hold_minut']), ((s as any).locArgs?.[1] ?? 0));
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -163,25 +158,24 @@ function enterStatusEffects(s: GameState, scene: SceneBuilder): void {
   ((s as any).moodSEValues = (s as any).moodSEValues ?? {})['sifilis'] = (-5);
   ((s as any).moodSEValues = (s as any).moodSEValues ?? {})['triper'] = (-5);
   if (String((s as any).locArgs?.[1] ?? '') === 'add') {
-    // TODO-QSP: moodSE[$ARGS[2]] += 1
+    ((s as any).moodSE = (s as any).moodSE ?? {})[((s as any).locArgs?.[2] ?? 0)] = ((s as any).moodSE[((s as any).locArgs?.[2] ?? 0)] ?? 0) + (1);
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', (((s as any).moodSEValues ?? 0)?.[((s as any).locArgs?.[2] ?? 0)] ?? 0)]; enterRaiseDisposition(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
     if (String((s as any).locArgs?.[1] ?? '') === 'pop') {
       if (((s as any).moodSE ?? 0)[String((s as any).locArgs?.[2] ?? '')] === 0) {
         // TODO-QSP: "removed nonexistent mood base status effect <<$ARGS[2]>>. This is a bug, please report it"
       } else {
-        // TODO-QSP: moodSE[$ARGS[2]] -= 1
+        ((s as any).moodSE = (s as any).moodSE ?? {})[((s as any).locArgs?.[2] ?? 0)] = ((s as any).moodSE[((s as any).locArgs?.[2] ?? 0)] ?? 0) - (1);
         { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', (((s as any).moodSEValues ?? 0)?.[((s as any).locArgs?.[2] ?? 0)] ?? 0)]; enterLowerDisposition(s, scene); (s as any).locArgs = __savedLocArgs; }
       }
     } else {
       if (String((s as any).locArgs?.[1] ?? '') === 'clear') {
         { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', (((s as any).moodSEValues ?? 0)[((s as any).locArgs?.[2] ?? 0)] * ((s as any).moodSE ?? 0)[((s as any).locArgs?.[2] ?? 0)])]; enterLowerDisposition(s, scene); (s as any).locArgs = __savedLocArgs; }
-        // TODO-QSP: moodSE[$ARGS[2]] = 0
+        ((s as any).moodSE = (s as any).moodSE ?? {})[((s as any).locArgs?.[2] ?? 0)] = 0;
       }
     }
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -214,7 +208,6 @@ function enterDecay(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -222,7 +215,6 @@ function enterUpdate(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDecay(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterClamp(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 

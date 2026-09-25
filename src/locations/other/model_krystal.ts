@@ -24,7 +24,6 @@ function enterKrystal1(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/citycenter/photo/foto.jpg');
   scene.text('Walking by one of the sets you hear the photographer exclaim, "Yeah, that\'s exactly what I was looking for. It\'s always a pleasure working with you Katherine. You always seem to outdo yourself with every shoot."');
   scene.text('By hearing that you\'re too excited and can\'t miss the opportunity to find out what the fuss is about.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/photo/portraits/krystal_b/meeting/1.jpg');
@@ -44,7 +43,6 @@ function enterKrystal1(s: GameState, scene: SceneBuilder): void {
       { label: '"That would be nice"', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/photo/portraits/krystal_b/meeting/4.jpg');
     scene.text('"Who are you by the way? I don\'t think I\'ve seen you here before." Katherine asks.');
-    // TODO-QSP: dynamic text: "Sorry, I''m <<$model[''firstname'']>>. I just got recruited by the agency so I'...
     scene.text(`"Sorry, I'm ${(((st as any).model ?? 0)?.['firstname'] ?? '')}. I just got recruited by the agency so I'm just walking around checking the place out."`);
     scene.text('"Wow I\'m impressed it might be the first time they\'ve ever recruited someone interesting… Oh I totally forgot to introduce myself, I\'m Krystal."');
     scene.actions([
@@ -87,7 +85,6 @@ function enterKrystal2(s: GameState, scene: SceneBuilder): void {
   scene.text('"Me? I\'m great!"');
   scene.text('Her happy mood intrigues you. "Oh! Did something good happen?"');
   scene.text('She smiles and says, "Yeah! I got absolutely fucking <i>railed</i> about an hour ago."');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Surprise', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/photo/portraits/krystal_b/meeting2/2.jpg');
@@ -231,7 +228,6 @@ function enterKrystal2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterKrystal2_2(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: end
   scene.actions([
     { label: '"What?!"', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/photo/portraits/krystal_b/meeting2/4.jpg');
@@ -311,12 +307,10 @@ function enterKrystal2_2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterKrystal2Nothanks(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: end
   scene.actions([
     { label: 'No thanks', handler: (st: GameState) => {
     scene.text('"Uhh, I appreciate the offer but no thanks. I\'m good."');
     scene.text('"Suit yourself," she shrugs. "Let me know if you ever change your mind."');
-    // TODO-QSP: dynamic text: A photographer comes on set, saying, "Alright Katherine, it''s time to start sho...
     scene.text(`A photographer comes on set, saying, "Alright Katherine, it's time to start shooting. ${(((st as any).model ?? 0)?.['firstname'] ?? '')} is going to have to clear out."`);
     scene.text('"Sorry, I don\'t want to get in the way," you say and quickly bow out..');
     scene.text('As you walk away, you hear Krystal say, "So… I got creampied by like, five guys about an hour ago. Some stuff might leak out randomly during the shoot. Just a head\'s up."');
@@ -329,14 +323,12 @@ function enterKrystal2Nothanks(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterKrystal2Sure1(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: end
   scene.actions([
     { label: 'Sure…?', handler: (st: GameState) => {
     ((st as any).krystal = (st as any).krystal ?? {})['porn_card_hour'] = ((st as any).hour ?? 0) + 2;
     ((st as any).krystal = (st as any).krystal ?? {})['porn_card_day'] = ((st as any).daystart ?? 0);
     scene.text('"Uhmm… sure…?"');
     scene.text('"Great! But my purse is in the locker room. I\'ll get you one after I\'m done here," she smiles. "Don\'t forget to stick around!"');
-    // TODO-QSP: dynamic text: A photographer comes on set, saying, "Alright Katherine, it''s time to start sho...
     scene.text(`A photographer comes on set, saying, "Alright Katherine, it's time to start shooting. ${(((st as any).model ?? 0)?.['firstname'] ?? '')} is going to have to clear out."`);
     scene.text('"Sorry, I don\'t want to get in the way," you say and quickly bow out..');
     scene.text('As you walk away, you hear Krystal say, "So… just a warning, I got creampied by like, five guys about an hour ago. Some stuff might leak out randomly during the shoot. Just a head\'s up."');
@@ -349,14 +341,12 @@ function enterKrystal2Sure1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterKrystal2Sure2(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: end
   scene.actions([
     { label: 'Sure!', handler: (st: GameState) => {
     ((st as any).krystal = (st as any).krystal ?? {})['porn_card_hour'] = ((st as any).hour ?? 0) + 2;
     ((st as any).krystal = (st as any).krystal ?? {})['porn_card_day'] = ((st as any).daystart ?? 0);
     scene.text('"Sure! What you described, it does sound pretty fun," you smile eagerly.');
     scene.text('"Great! But my purse is in the locker room. I\'ll get you one after I\'m done here," she smiles. "Don\'t forget to stick around!"');
-    // TODO-QSP: dynamic text: A photographer comes on set, saying, "Alright Katherine, it''s time to start sho...
     scene.text(`A photographer comes on set, saying, "Alright Katherine, it's time to start shooting. ${(((st as any).model ?? 0)?.['firstname'] ?? '')} is going to have to clear out."`);
     scene.text('"Sorry, I don\'t want to get in the way," you say and quickly bow out..');
     scene.text('As you walk away, you hear Krystal say, "So… just a warning, I got creampied by like, five guys about an hour ago. Some stuff might leak out randomly during the shoot. Just a head\'s up."');
@@ -370,10 +360,8 @@ function enterKrystal2Sure2(s: GameState, scene: SceneBuilder): void {
 
 function enterKrystalPornCard(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/citycenter/photo/foto.jpg');
-  // TODO-QSP: dynamic text: "Hey! <<$model[''nickname'']>>!" someone calls your name through the studio.
   scene.text(`"Hey! ${(((s as any).model ?? 0)?.['nickname'] ?? '')}!" someone calls your name through the studio.`);
   scene.text('Turning, you see Krystal padding her way towards you on bare feet, completely naked as opposed to the last time you saw her.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/photo/portraits/krystal_b/talking/face.jpg');
@@ -389,6 +377,7 @@ function enterKrystalPornCard(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
+    (st as any).krystal_porn = undefined;
     scene.text('<b>Spunk Bang Productions</b>');
     scene.text('The address on it says it\'s in the city limits.');
     scene.text('"There you go! One porn production company business card, as promised," Krystal smiles. "You can use your phone to look up the address, but it\'s pretty easy to find. Just head to the red light district and it\'ll be between the strip club and the toy shop. If you pass the copy shop with the guy who does fake passports, you\'ve gone too far. Anyways, I got shit to do. See you later! Either here or there."');
@@ -426,7 +415,6 @@ function enterKrystalPornCard2(s: GameState, scene: SceneBuilder): void {
   scene.text('"Do you think… I could have that card after all?"');
   scene.text('"Ugh! Finally! I was wondering when you were going to ask. Just gimme a sec, I have one in my purse."');
   scene.text('Krystal dashes off towards the locker rooms, practically skipping all the way there, leaving you alone on the empty set.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Wait', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -451,7 +439,6 @@ function enterKrystalPornCard2(s: GameState, scene: SceneBuilder): void {
       { label: 'Need money', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/photo/portraits/krystal_b/talking/10.jpg');
     scene.text('"To be honest, I just really need the money right now," you admit.');
-    // TODO-QSP: dynamic text: "Nothing wrong with that. Don''t let anybody tell you different <<$model[''nickn...
     scene.text(`"Nothing wrong with that. Don't let anybody tell you different ${(((st as any).model ?? 0)?.['nickname'] ?? '')}. Doing porn is just as valid a job as waiting tables or working at a gas station. Plus, they pay way better. I'm sure you'll get whatever you need in a few weeks there. Anyways, was that it? Anything else you wanted to talk about?"`);
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterKrystalPornCard2End(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.actions([
@@ -477,7 +464,6 @@ function enterKrystalPornCard2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterKrystalPornCard2End(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: end
   scene.actions([
     { label: 'No, that\'s all', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/photo/portraits/krystal_b/talking/face.jpg');
@@ -524,7 +510,6 @@ function enterKrystal3(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/citycenter/photo/portraits/krystal_b/meeting3/1.jpg');
   scene.text('You see Krystal standing by one of the sets with a man.');
   scene.text('<i>Must be a photographer.</i>');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Say hi', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/photo/portraits/krystal_b/meeting3/2.jpg');
@@ -534,7 +519,6 @@ function enterKrystal3(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/photo/portraits/krystal_b/meeting3/3.jpg');
     scene.text('As he pulls down her strap and bares one of her breasts, Krystal looks up and notices you.');
-    // TODO-QSP: dynamic text: "Hi <<$model[''nickname'']>>! Good to see you! Come meet my boyfriend!"
     scene.text(`"Hi ${(((st as any).model ?? 0)?.['nickname'] ?? '')}! Good to see you! Come meet my boyfriend!"`);
     scene.text('You timidly walk over to her.');
     scene.text('"This is my boyfriend, Ben," she says while he fondles her breast.');
@@ -577,7 +561,6 @@ function enterKrystal4(s: GameState, scene: SceneBuilder): void {
   scene.text('While walking around the studio, you hear someone call out to you. When you turn around, you see Krystal sitting on a sofa looking expectantly at you.');
   scene.text('"Oh, hey Krystal. I didn\'t see you there."');
   scene.text('"I know. Wanna hang?"');
-  // TODO-QSP: end
   scene.actions([
     { label: '"Sorry, I\'m busy"', handler: (st: GameState) => {
     scene.text('"Sorry Krystal, I just remembered I need to do something. Some other time okay?"');
@@ -602,7 +585,6 @@ function enterKrystal5(s: GameState, scene: SceneBuilder): void {
   scene.text('"Okay!" she calls back with a sly grin on her face. "You know, not that it\'s difficult for me to hold my legs like this, but you should probably hurry up if you want to get the shot off.');
   scene.text('This is reminding me of the last time I held my legs open for this long. I was getting fucking <i>pummelled</i> by my boyfriend and the memory is going to get me wet soon."');
   scene.text('Hearing that, the photographer rushes back to the set and you decide it\'s probably best if you come back later.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['foto', 'studio'] },
   ]);
@@ -642,7 +624,6 @@ function enterKrystalChat(s: GameState, scene: SceneBuilder): void {
       { label: 'Ask her for the porn business card', goto: ['model_krystal', 'krystal_porn_card2'] },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/photo/portraits/krystal_b/talking/1.jpg');
@@ -655,7 +636,6 @@ function enterKrystalChat(s: GameState, scene: SceneBuilder): void {
     { label: 'Discuss random topics', handler: (st: GameState) => {
     (st as any).krystal_convo = (Math.floor(Math.random() * 4) + 1);
     if (((st as any).krystal_convo ?? 0) === 1) {
-      // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/city/citycenter/photo/portrait...
       scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/city/citycenter/photo/portraits/krystal_b/talking/` + (Math.floor(Math.random() * 2) + 4) + '.jpg"></center>');
       scene.text('"So you\'re a porn star as well as a nude model?"');
       scene.text('"Mhmm. Pays the bills pretty well. Plus who can say no to getting fucked for money? Win win!"');
@@ -678,7 +658,6 @@ function enterKrystalChat(s: GameState, scene: SceneBuilder): void {
     if (((st as any).krystal_convo ?? 0) === 3) {
       scene.img('images/locations/city/citycenter/photo/portraits/krystal_b/talking/2.jpg');
       scene.text('"Hey Krystal, do you know any good places to eat in the city?"');
-      // TODO-QSP: dynamic text: "You could try the diner I used to work at before I became a porn star and model...
       scene.text(`"You could try the diner I used to work at before I became a porn star and modelling was only part time. It's American themed in the residential area. If you need another job, you could probably be a waitress there. And if you ever want better tips as a waitress, you need to use your head. No, seriously, give the customers blowjobs. There's always at least an extra ${qspFunc(s, 'money', 'string_profit', 50)} in it. And you get to swallow some cum!"`);
       scene.actions([
         { label: 'Keep chatting', goto: ['model_krystal', 'krystal_chat'] },
@@ -818,7 +797,6 @@ function enterKrystalChat(s: GameState, scene: SceneBuilder): void {
 function enterKrystalSextalk(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/citycenter/photo/portraits/krystal_b/talking/face.jpg');
   scene.text('"My fav subject. What about it babe?"');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/photo/portraits/krystal_b/talking/1.jpg');
@@ -912,7 +890,6 @@ function enterKrystalshower(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Dry off', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/resident/vladimir/sex/bath_voyer_3.jpg');
-    // TODO-QSP: dynamic text: You shyly towel off and start to go when you hear Krystal whisper, "Was it good ...
     scene.text(`You shyly towel off and start to go when you hear Krystal whisper, "Was it good for you too ${(((st as any).model ?? 0)?.['nickname'] ?? '')}?"`);
     scene.text('Blushing hard you put your towel in the bin and go back to the main floor of the studio.');
     scene.actions([
@@ -981,7 +958,6 @@ function enterKrystalshower(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('You\'ve run out of shampoo and will have to buy some more before you can wash yourself.');
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['foto', 'studio'] },
     { label: 'Go to your makeup station', goto: ['foto', 'makeup'] },

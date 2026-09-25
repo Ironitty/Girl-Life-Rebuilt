@@ -1,6 +1,6 @@
 import { qspUntranslated } from '../_shared/qspUntranslated';
 
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspFunc } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -9,10 +9,8 @@ import type { SceneBuilder } from '../../core/scene';
 function enter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'drugs', 'alcohol', 'vodka', 3);
   qspCall(s, 'stat', '');
-  // TODO-QSP: dynamic text: You exit the park with your friend, and follow <<$boydesc>> to an apartment near...
   scene.text(`You exit the park with your friend, and follow ${((s as any).boydesc ?? '')} to an apartment nearby. You all go inside, and continue to drink and have fun there.`);
   if (((s as any).placerParameter ?? 0)?.['number_of_man'] === 1) {
-    // TODO-QSP: dynamic text: You begin to hug and kiss <<$boydesc>>. Soon <<$ev_name>> joins in and you''re b...
     scene.text(`You begin to hug and kiss ${((s as any).boydesc ?? '')}. Soon ${((s as any).ev_name ?? '')} joins in and you're both kissing the guy, as well as each other.`);
     qspCall(s, 'arousal', 'foreplay', 4, 'group', 'lesbian');
     qspCall(s, 'stat', '');
@@ -20,7 +18,6 @@ function enter(s: GameState, scene: SceneBuilder): void {
       { label: 'Suck him off', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/park/event/katja/threesomebj.jpg');
-    // TODO-QSP: dynamic text: You and <<$ev_name>> both get down on your knees in front of <<$boydesc>> and sh...
     scene.text(`You and ${((st as any).ev_name ?? '')} both get down on your knees in front of ${((st as any).boydesc ?? '')} and share his cock, giving him a blowjob in turns. When you don't have his cock in your mouth, you spend the idle time by playing with his balls, licking and sucking on them while softly whispering words of encouragement to ${((st as any).ev_name ?? '')}, challenging her to take the cock deeper down her throat.`);
     qspCall(st, 'arousal', 'bj', 5, 'group');
     qspCall(st, 'stat', '');
@@ -40,7 +37,6 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (st as any).pose = 1;
     qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/park/event/katja/threesome.jpg');
-    // TODO-QSP: dynamic text: When you get down on your hands and knees for him, <<$boydesc>> wastes no time a...
     scene.text(`When you get down on your hands and knees for him, ${((st as any).boydesc ?? '')} wastes no time and immediately gets behind you, ready to fuck you. Just as he slams his cock in and begins to fuck you in earnest, ${((st as any).ev_name ?? '')} is very turned on by your horny mewling and scoots over in front of you with her legs spread wide. Without a second thought, you immediately begin to lap up her pussy juices from her soaked snatch.`);
     qspCall(st, 'arousal', 'vaginal', 15, 'group');
     qspCall(st, 'arousal', 'cuni_give', (-15), 'group', 'lesbian');
@@ -55,13 +51,11 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).placerParameter ?? 0)?.['number_of_man'] === 2) {
       (s as any).guy = ((s as any).guy ?? 0) + (1);
-      // TODO-QSP: dynamic text: The guys seem to each have picked their favorite girl, and <<$boydesc>> is all o...
       scene.text(`The guys seem to each have picked their favorite girl, and ${((s as any).boydesc ?? '')} is all over you. While he kisses and gropes you greedily, his friend is doing the same to ${((s as any).ev_name ?? '')}. She seems to be quite into him, and happily returns him kiss and lets him touch her wherever and however he wants. Within minutes, she lowered her body and is vigorously sucking her guy's cock. Meanwhile, ${((s as any).boydesc ?? '')} looks at you expectantly as he exposes his hard dick to you, expecting you to do the same.`);
       scene.actions([
         { label: 'Suck off your guy', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/park/event/katja/foursomebj.mp4');
-    // TODO-QSP: dynamic text: You''re not about to let her show you up! You quickly scoot down on the bed unti...
     scene.text(`You're not about to let her show you up! You quickly scoot down on the bed until your mouth is near his erection. The musky and manly smell of it is impossible to ignore, and actually arouses you a quite a bit. You eagerly take his cock in your mouth and suck on the head, trying to compete with ${((st as any).ev_name ?? '')}. However, she is one step ahead of you and already has her guy's cock all the way down her throat. The guy has his hand behind her head but realizes he doesn't need to do anything, ${((st as any).ev_name ?? '')} is giving him the blowjob of a lifetime! You try to smile with ${((st as any).boydesc ?? '')}'s cock still in your mouth… guess she wins this one. Then you decide to focus solely on making ${((st as any).boydesc ?? '')} feel good instead, and forget about ${((st as any).ev_name ?? '')} and the other guy.`);
     qspCall(st, 'arousal', 'bj', 4, 'group');
     qspCall(st, 'stat', '');
@@ -101,7 +95,6 @@ function enter(s: GameState, scene: SceneBuilder): void {
         (s as any).d_dozdat = qspUntranslated(s, "{", { location: "placer_house" });
         (s as any).d_girlfrend_end = qspUntranslated(s, "{", { location: "placer_house" });
         (s as any).d_girlfrend_end2 = qspUntranslated(s, "{", { location: "placer_house" });
-        // TODO-QSP: dynamic text: One of the guys suggests you and him could stay in this room, while <<$ev_name>>...
         scene.text(`One of the guys suggests you and him could stay in this room, while ${((s as any).ev_name ?? '')} goes to the other room with whom she likes.`);
         scene.actions([
           { label: 'Wait for your friend', handler: (st: GameState) => {
@@ -112,7 +105,6 @@ function enter(s: GameState, scene: SceneBuilder): void {
       scene.img('images/locations/pavlovsk/park/event/katja/katjacum.jpg');
       scene.text('Eventually, Katja comes out of the room. She has cum smeared all over her face, and looks exhausted… but happy. Very happy.');
     }
-    // TODO-QSP: dynamic text: You quickly brush up a little together with <<$ev_name>>, and get ready to leave...
     scene.text(`You quickly brush up a little together with ${((st as any).ev_name ?? '')}, and get ready to leave the apartment.`);
     scene.actions([
       { label: 'Leave', goto: ['placer_end', ''] },
@@ -140,6 +132,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     }
     qspCall(st, 'stat', '');
     scene.text('The boys leave to the bathroom to freshen up, leaving you by yourself.');
+    qspFunc(s, 'd_dozdat');
     scene.actions([
       { label: 'Peek at your friend', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
@@ -150,6 +143,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'arousal', 'end');
     }
     scene.text('You pull the door closed, realizing you shouldn\'t be peeking on your friend. Instead, you just sit back on the bed and patiently wait for your friend to be done.');
+    qspFunc(s, 'd_dozdat');
   } },
     ]);
   } },
@@ -178,6 +172,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     }
     qspCall(st, 'stat', '');
     scene.text('The guy crashes down next to you and almost immediately falls asleep. Within minutes his snoring fills the room, and you\'re not quite sure… should you feel flattered for exhausting him so effectively, or insulted that he\'s no longer paying any attention to you?');
+    qspFunc(s, 'd_dozdat');
     scene.actions([
       { label: 'Peek at your friend', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
@@ -188,13 +183,13 @@ function enter(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'arousal', 'end');
     }
     scene.text('You pull the door closed, realizing you shouldn\'t be peeking on your friend. Instead, you just sit back on the bed and patiently wait for your friend to be done.');
+    qspFunc(s, 'd_dozdat');
   } },
     ]);
   } },
           { label: 'Make out with the guy', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
     scene.img('images/shared/sex/kiss/kiss.jpg');
-    // TODO-QSP: dynamic text: You sheepishly smile at the guy as <<$ev_name>> takes the other two guys by the ...
     scene.text(`You sheepishly smile at the guy as ${((st as any).ev_name ?? '')} takes the other two guys by the hand and leaves the room. Then you move in and kiss him. The guy quickly answers your kiss, and roughly paws at your body hoping to get you naked.`);
     qspCall(st, 'arousal', 'kiss', 5);
     qspCall(st, 'stat', '');
@@ -218,10 +213,10 @@ function enter(s: GameState, scene: SceneBuilder): void {
       scene.text('You take his cock in your mouth, and start to pleasure him. It doesn\'t take long before his cum fills your throat.');
       qspCall(st, 'arousal', 'bj', 5, 'sub');
       qspCall(st, 'arousal', 'end');
+      qspFunc(s, 'd_girlfrend_end2');
     } else {
       if (((st as any).tipsexrand ?? 0) === 1) {
         scene.img('images/locations/pavlovsk/park/sex/bj.jpg');
-        // TODO-QSP: dynamic text: The guy whispers: "<<$pcs_nickname>>, I want you…"
         scene.text(`The guy whispers: "${((st as any).pcs_nickname ?? '')}, I want you…"`);
         scene.actions([
           { label: 'Redouble your efforts', handler: (st: GameState) => {
@@ -231,6 +226,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.text('You smile up at him with his cock still in your mouth, and redouble your efforts to give him the best blowjob you can come up with.');
     qspCall(st, 'arousal', 'bj', 5, 'sub');
     qspCall(st, 'arousal', 'end');
+    qspFunc(s, 'd_girlfrend_end2');
   } },
           { label: 'Lie on your back', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
@@ -238,6 +234,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.text('You lie down on your back and the guy quickly spreads your legs, and slams his cock inside your snatch before you can change your mind. While he fucks you vigorously, a second comes up out of nowhere and puts his cock in front of your mouth. Not giving it another thought, you open your mouth and close your lips around it.');
     qspCall(st, 'arousal', 'vaginal', 5, 'sub');
     qspCall(st, 'arousal', 'end');
+    qspFunc(s, 'd_girlfrend_end2');
   } },
           { label: 'Offer him your ass', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
@@ -248,6 +245,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'striptease', 5);
     qspCall(st, 'arousal', 'anal', 5, 'sub');
     qspCall(st, 'arousal', 'end');
+    qspFunc(s, 'd_girlfrend_end2');
   } },
         ]);
       }
@@ -260,7 +258,6 @@ function enter(s: GameState, scene: SceneBuilder): void {
           { label: 'Stay in the room', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/park/event/katja/swing.jpg');
-    // TODO-QSP: dynamic text: <<$ev_name>> comes up to you and whispers: "<<$boydesc>> said he had something r...
     scene.text(`${((st as any).ev_name ?? '')} comes up to you and whispers: "${((st as any).boydesc ?? '')} said he had something really cool to show me, in private… you'll be fine here by yourself for a while, right?", before leaving to the next room without waiting for an answer.`);
     scene.text('You sheepishly grin at the two guys, and mutter: "Looks like it\'s just us for a while, boys… what do you want to do to pass the time?"');
     scene.text('The boys have some ideas, and sit down next to you. One of them kisses you passionately, while the other plays with your boobs through your clothes.');
@@ -275,7 +272,6 @@ function enter(s: GameState, scene: SceneBuilder): void {
     ((st as any).stat = (st as any).stat ?? {})['gangbang_count'] = ((st as any).stat['gangbang_count'] ?? 0) + (1);
     qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/park/event/katja/doublebj.jpg');
-    // TODO-QSP: dynamic text: Well, you are feeling great right now, and these boys are kinda cute… might as w...
     scene.text(`Well, you are feeling great right now, and these boys are kinda cute… might as well have some fun while you wait for ${((st as any).ev_name ?? '')}!`);
     scene.text('You giggle drunkenly as the boys begin to undress you. Without really realizing what is happening, you find yourself with one hard dick inside your mouth, and another in your hand. You\'re idly massaging it, without even giving it any thought. You decide you might as well give the boys a good show while you wait for your friend, and begin to suck them in turns.');
     qspCall(st, 'arousal', 'bj', 5, 'sub', 'group');
@@ -284,7 +280,6 @@ function enter(s: GameState, scene: SceneBuilder): void {
       { label: 'Lie on your back', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
     scene.img('images/shared/sex/mmf/fbdtdouble.jpg');
-    // TODO-QSP: dynamic text: You pull away from the boys and lie back on the bed. One of them immediately not...
     scene.text(`You pull away from the boys and lie back on the bed. One of them immediately notices what you want and gets between your legs, slamming his cock inside you. You make a gesture for the other guy to move his cock back to your mouth, which he happily does. Soon you find yourself on some stranger's bed, getting roughly pounded while you're giving another a deepthroating blowjob… is this even about waiting for ${((st as any).ev_name ?? '')} any more, or do you just enjoy being here?`);
     (st as any).sexrand = (Math.floor(Math.random() * 2) + 0);
     if ((!((st as any).sexrand ?? 0))) {
@@ -301,6 +296,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'arousal', 'bj', 5, 'sub', 'group', 'deepthroat');
       qspCall(st, 'arousal', 'vaginal', (-5), 'sub', 'group');
       qspCall(st, 'stat', '');
+      qspFunc(s, 'd_girlfrend_end');
     } else {
       if (((st as any).sexrand ?? 0) === 1) {
         scene.text('Suddenly, the guys decide to change places.');
@@ -317,6 +313,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'bj', 5, 'sub', 'group', 'deepthroat');
     qspCall(st, 'arousal', 'vaginal', (-5), 'sub', 'group');
     qspCall(st, 'arousal', 'end');
+    qspFunc(s, 'd_girlfrend_end');
   } },
         ]);
       }
@@ -348,6 +345,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'arousal', 'bj', 5, 'sub', 'group', 'deepthroat');
       qspCall(st, 'arousal', 'anal', (-5), 'sub', 'group');
       qspCall(st, 'stat', '');
+      qspFunc(s, 'd_girlfrend_end');
     } else {
       if (((st as any).sexrand ?? 0) === 1) {
         scene.actions([
@@ -361,6 +359,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'bj', 5, 'sub', 'group', 'deepthroat');
     qspCall(st, 'arousal', 'anal', (-5), 'sub', 'group');
     qspCall(st, 'arousal', 'end');
+    qspFunc(s, 'd_girlfrend_end');
   } },
         ]);
       }
@@ -384,6 +383,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'bj', 5, 'sub', 'group', 'deepthroat');
     qspCall(st, 'arousal', 'vaginal', (-5), 'sub', 'group');
     qspCall(st, 'arousal', 'end');
+    qspFunc(s, 'd_girlfrend_end');
   } },
     ]);
   } },
@@ -395,7 +395,6 @@ function enter(s: GameState, scene: SceneBuilder): void {
       } else {
         if (((s as any).placerParameter ?? 0)?.['number_of_man'] >= 4) {
           (s as any).guy = ((s as any).guy ?? 0) + (2);
-          // TODO-QSP: dynamic text: The boys begin to embrace you and your girlfriend, feeling emboldened by the liq...
           scene.text(`The boys begin to embrace you and your girlfriend, feeling emboldened by the liquor they have been drinking. Their touches soon make you want more, and you and ${((s as any).ev_name ?? '')} make out with the boys while they impatiently tug at your clothes. Two of them seem to have taken a liking to you, while the two others are focusing their efforts on ${((s as any).ev_name ?? '')}.`);
           scene.actions([
             { label: 'Have sex with two of them', handler: (st: GameState) => {

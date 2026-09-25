@@ -45,7 +45,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -54,7 +53,6 @@ function enterQuickStart(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'intro_functions', 'set_default', 'name');
   }
   qspGoto(s, 'intro_character_creation', 'quick_start');
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -66,7 +64,6 @@ function enterUniShared(s: GameState, scene: SceneBuilder): void {
 { label: 'Continue', goto: ['intro_character_creation', 'start'] },
 ]);
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -78,7 +75,6 @@ function enterCityShared(s: GameState, scene: SceneBuilder): void {
 { label: 'Continue', goto: ['intro_character_creation', 'start'] },
 ]);
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -105,7 +101,6 @@ function enterSgShared(s: GameState, scene: SceneBuilder): void {
   } },
 ]);
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -278,7 +273,6 @@ function enterMagicShared(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -518,6 +512,7 @@ function enterTgAdultShared(s: GameState, scene: SceneBuilder): void {
         ]);
       } else {
         if (String((s as any).locArgs?.[1] ?? '') === 3) {
+          (s as any).no_exp_gain = undefined;
           { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterTgAdultSharedResetMikaelStats(s, scene); (s as any).locArgs = __savedLocArgs; }
           scene.img('images/system/1_openings/shared/npc_tatiana.jpg');
           scene.text('You wake up in an unfamiliar room. Standing near you is the same red-haired girl that entered your hotel room.');
@@ -601,7 +596,6 @@ function enterTgAdultShared(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -644,13 +638,26 @@ function enterTgAdultSharedSetMikaelStats(s: GameState, scene: SceneBuilder): vo
   (s as any).birthday = 1;
   (s as any).pcs_dob = 19830401;
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterTgAdultSharedResetMikaelStats(s: GameState, scene: SceneBuilder): void {
+  (s as any).pcs_firstname = undefined;
+  (s as any).age = undefined;
+  (s as any).year = undefined;
+  (s as any).week = undefined;
+  (s as any).pcs_hgt = undefined;
+  (s as any).pcs_energy = undefined;
+  (s as any).dick = undefined;
+  (s as any).pcs_stren = undefined;
+  (s as any).pcs_agil = undefined;
+  (s as any).pcs_vital = undefined;
+  (s as any).pcs_jab = undefined;
+  (s as any).healthmax = undefined;
+  (s as any).pcs_health = undefined;
+  (s as any).birthyear = undefined;
+  (s as any).pcs_dob = undefined;
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -708,9 +715,7 @@ function enterSgTg(s: GameState, scene: SceneBuilder): void {
         (s as any).pcs_nickname = ((s as any).temp ?? 0);
       }
       scene.img('images/system/1_openings/4_csb/17.jpg');
-      // TODO-QSP: dynamic text: Her name was <<$pcs_firstname>> <<$pcs_lastname>>, or <<$pcs_nickname>> for shor...
       scene.text(`Her name was ${((s as any).pcs_firstname ?? '')} ${((s as any).pcs_lastname ?? '')}, or ${((s as any).pcs_nickname ?? '')} for short. You don't know why, but she seemed to liked you. Maybe she was as lonely as you were. You couldn't believe your luck.`);
-      // TODO-QSP: dynamic text: You spent the next few weeks messaging back and forth. <<$pcs_nickname>> told yo...
       scene.text(`You spent the next few weeks messaging back and forth. ${((s as any).pcs_nickname ?? '')} told you all about her life, as well as her likes and dislikes.`);
       scene.actions([
         { label: 'Continue', goto: ['intro_start', 'sg_tg', '2'] },
@@ -722,16 +727,13 @@ function enterSgTg(s: GameState, scene: SceneBuilder): void {
         scene.text('You found out about her mother Natasha, and how her biological father left when she was a baby. Her mother remarried shortly afterwards to a man called Vladimir.');
         scene.text('She had a sister named Anya who was a few years older than her. Anya chose to live at home instead of going to college, working at the local grocery during the day and partying at night.');
         scene.text('She also had a half-brother Kolka, who was a year younger than her and really into football.');
-        // TODO-QSP: dynamic text: Her mother''s sister, Aunt Luda, lives on the top floor of the same building as ...
         scene.text(`Her mother's sister, Aunt Luda, lives on the top floor of the same building as her. Her stepfather's best friend is called Uncle Misha, who lives across the hall. Her mother's old friend Sergey Shulgin lives on the floor above them, and ${((s as any).pcs_nickname ?? '')}'s old childhood friend Vasily is his son.`);
         scene.text('Her great grandparents live in a nearby village, where she occasionally spent a weekend. Apparently, her mother\'s parents are both dead.');
         scene.text('You listened to her complaining about her extended family and about how she and Vasily drifted apart, comforting her as best you could. Yet you can\'t help but feel a little jealous at how many caring relatives she has, given that your only relation is a great uncle who is about to kick you onto the streets for the sake of his own reputation.');
-        // TODO-QSP: dynamic text: You did the best you could to repress any resentment towards <<$pcs_nickname>> a...
         scene.text(`You did the best you could to repress any resentment towards ${((s as any).pcs_nickname ?? '')} about how little she appreciated what she had.`);
         scene.actions([
           { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/system/1_openings/4_csb/6.jpg');
-    // TODO-QSP: dynamic text: A few months passed. You and <<$pcs_nickname>> continued to talk, and you learne...
     scene.text(`A few months passed. You and ${((st as any).pcs_nickname ?? '')} continued to talk, and you learned even more about her life. As summer break approaches, you bring up the idea of meeting up. ${((st as any).pcs_nickname ?? '')} was excited at the prospect and you agreed to meet at the café where her mother works.`);
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
@@ -742,15 +744,12 @@ function enterSgTg(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/system/1_openings/4_csb/8.jpg');
     scene.text('The morning you agreed to meet her, you pack condoms and some spare cash into a backpack before heading off to the train station in the hopes of getting a girlfriend, or at least getting laid.');
-    // TODO-QSP: dynamic text: On the train ride to Pavlovsk, you get a message from <<$pcs_nickname>>. Her par...
     scene.text(`On the train ride to Pavlovsk, you get a message from ${((st as any).pcs_nickname ?? '')}. Her parents have taken her to spend time with her grandparents in Gadukino. She was unable to get out of the trip, since her mother has been upset at how she has been spending so much time on her phone and not with her family.`);
     scene.text('With no other choice, you buy a second ticket to meet her at Gadukino.');
     scene.actions([
       { label: 'Travel to Gadukino', handler: (st: GameState) => {
     scene.img('images/locations/shared/train/gadplat.jpg');
-    // TODO-QSP: dynamic text: You get off the train next to a small road in the middle of nowhere. A dirt road...
     scene.text(`You get off the train next to a small road in the middle of nowhere. A dirt road leads to a small village made up of rickety wooden houses and even more ruined ones. Unsure which house belongs to ${((st as any).pcs_nickname ?? '')}'s family, you pull out your phone to text her.`);
-    // TODO-QSP: dynamic text: A few minutes later, an excited teenage girl comes rushing down one of the dirt ...
     scene.text(`A few minutes later, an excited teenage girl comes rushing down one of the dirt roads. You double-check a picture of ${((st as any).pcs_nickname ?? '')} on your phone, as this is the first time you've seen her with your own eyes.`);
     scene.actions([
       { label: 'Take a look at her picture (skip customization)', goto: ['intro_character_creation', 'start', 'appearance_hub'] },
@@ -768,7 +767,6 @@ function enterSgTg(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 

@@ -21,28 +21,26 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   }
   scene.text('<center><b>The yard in front of the hut</b></center>');
   if (((s as any).month ?? 0) >= 5  &&  ((s as any).month ?? 0) <= 9) {
-    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/hunters/'+iif(DayStag...
     scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/gadukino/hunters/` + ((((s as any).DayStage ?? 0) < 4) ? ('swamp_yard.jpg') : ('swamp_yard_night.jpg')) + '"></center>');
   } else {
-    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/hunters/'+iif(DayStag...
     scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/gadukino/hunters/` + ((((s as any).DayStage ?? 0) < 4) ? ('swamp_yard_winter.jpg') : ('swamp_yard_winter_night.jpg')) + '"></center>');
   }
-  scene.text('Behind the hut, there is a <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027gad_swampspring/u0027, /u0027/u0027); return false;">spring</a>. If you continue further down, there is a small <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027gad_backwater/u0027, /u0027/u0027); return false;">creek</a> with relatively clean water.');
+  scene.text('Behind the hut, there is a <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027gad_swampspring\u0027, \u0027\u0027); return false;">spring</a>. If you continue further down, there is a small <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027gad_backwater\u0027, \u0027\u0027); return false;">creek</a> with relatively clean water.');
   if (((s as any).hunterVars ?? 0)?.['available'] === 1) {
     if (((s as any).hunterVars ?? 0)?.['were_met'] === 0) {
       if (((s as any).hunterVars ?? 0)?.['outside'] === 1) {
-        scene.text('You spot some unfamiliar <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027hunters/u0027, /u0027start/u0027); return false;">people</a> standing in front of the hut.');
+        scene.text('You spot some unfamiliar <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027hunters\u0027, \u0027start\u0027); return false;">people</a> standing in front of the hut.');
       }
     } else {
       if (((s as any).hunterVars ?? 0)?.['outside'] === 1) {
         if (((s as any).hunterVars ?? 0)?.['evening'] === 1) {
-          scene.text('You hear some gunshots and see <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027gad_swamp_yard/u0027, /u0027shooting_practice/u0027); return false;">Andrei</a>, not too far in the distance, shooting some bottles.');
-          scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027hunters/u0027, /u0027start/u0027); return false;">Igor and Sergey</a> are standing in the front yard.');
+          scene.text('You hear some gunshots and see <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027gad_swamp_yard\u0027, \u0027shooting_practice\u0027); return false;">Andrei</a>, not too far in the distance, shooting some bottles.');
+          scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027hunters\u0027, \u0027start\u0027); return false;">Igor and Sergey</a> are standing in the front yard.');
         } else {
           if (((s as any).campfire ?? 0) === 1  &&  ((s as any).hunterVars ?? 0)?.['chattime'] === 0) {
-            scene.text('You see the hunters are sitting by the <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027gad_swamp_yard/u0027, /u0027campfire/u0027); return false;">campfire</a>');
+            scene.text('You see the hunters are sitting by the <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027gad_swamp_yard\u0027, \u0027campfire\u0027); return false;">campfire</a>');
           } else {
-            scene.text('You notice the <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027hunters/u0027, /u0027start/u0027); return false;">hunters</a> standing in the front yard.');
+            scene.text('You notice the <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027hunters\u0027, \u0027start\u0027); return false;">hunters</a> standing in the front yard.');
           }
         }
       } else {
@@ -64,7 +62,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   if (((s as any).hunterVars ?? 0)?.['outside'] === 1  &&  ((s as any).hunterVars ?? 0)?.['available'] === 1  &&  (Math.floor(Math.random() * 2) + 1) === 1) {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDaytimeFlavorEvents(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: '<b>Go to the swamp</b>', goto: ['gad_swamp_yard', 'swamp_escape'] },
     { label: 'Go into the house', goto: ['gad_swamphouse', 'start'] },
@@ -84,7 +81,6 @@ function enterCampfire(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'hunter_ambient', 'schedule');
   qspCall(s, 'stat', '');
   if (((s as any).campfire ?? 0) === 1) {
-    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/hunters/'+iif(DayStag...
     scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/gadukino/hunters/` + ((((s as any).DayStage ?? 0) === 2) ? ('campfire_day.jpg') : ('campfire_night.jpg')) + '"></center>');
     scene.text('A nice, warm campfire you can sit and relax by. You can use it for cooking something or heating up some water to bathe.');
     scene.text('You can also put it out with the bucket if there is enough water.');
@@ -194,7 +190,6 @@ function enterCampfire(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'food', 'meat_stew');
     (st as any).meat_stew = ((st as any).meat_stew ?? 0) - (1);
     if (((st as any).meat_stew ?? 0) > 0) {
-      // TODO-QSP: dynamic text: 'There''s <<meat_stew>> '+iif(meat_stew > 1, 'servings', 'serving')+' of stew le...
       scene.text(`There's ${((st as any).meat_stew ?? '')} ` + ((((st as any).meat_stew ?? 0) > 1) ? ('servings') : ('serving')) + ' of stew left in the pot');
     } else {
       scene.text('You have finished the last of the stew. The pot is empty.');
@@ -208,7 +203,6 @@ function enterCampfire(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'food', 'mush_soup');
     (st as any).mushroom_soup = ((st as any).mushroom_soup ?? 0) - (1);
     if (((st as any).mushroom_soup ?? 0) > 0) {
-      // TODO-QSP: dynamic text: 'There''s <<mushroom_soup>> '+iif(mushroom_soup > 1, 'servings', 'serving')+' of...
       scene.text(`There's ${((st as any).mushroom_soup ?? '')} ` + ((((st as any).mushroom_soup ?? 0) > 1) ? ('servings') : ('serving')) + ' of soup left in the pot');
     } else {
       scene.text('You have finished the last of the soup, and the pot is empty.');
@@ -228,13 +222,11 @@ function enterCampfire(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } else {
-    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/hunters/'+iif(DayStag...
     scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/gadukino/hunters/` + ((((s as any).DayStage ?? 0) === 2) ? ('campfire_out_day.jpg') : ('campfire_out_night.jpg')) + '"></center>');
     scene.text('You can use this firepit to light a fire if you have some firewood available.');
     if (((s as any).firewood ?? 0) >= 10  &&  (!((s as any).campfire ?? 0))) {
       scene.actions([
         { label: 'Light fire', handler: (st: GameState) => {
-    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/hunters/'+iif($clothi...
     scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/gadukino/hunters/` + ((((st as any).clothingworntype ?? 0) !== 'nude') ? ('campfire_light.jpg') : ('campfire_light_nude.jpg')) + '"></center>');
     scene.text('You use some chopped wood, dry branches and twigs to light a campfire in the firepit.');
     (st as any).firewood = ((st as any).firewood ?? 0) - (10);
@@ -251,7 +243,6 @@ function enterCampfire(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Move away', goto: ['gad_swamp_yard', 'start'] },
   ]);
@@ -272,7 +263,6 @@ function enterShootingPractice(s: GameState, scene: SceneBuilder): void {
       scene.text('"I guess it is," you respond, slightly blushing, thinking about what Andrei could ask you to do.');
       scene.actions([
         { label: 'Take the bet', handler: (st: GameState) => {
-    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/hunters/'+iif($clothi...
     scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/gadukino/hunters/` + ((((st as any).clothingworntype ?? 0) !== 'nude') ? ('shooting.jpg') : ('shooting_nude.jpg')) + '"></center>');
     ((st as any).hunterVars = (st as any).hunterVars ?? {})['collective_opinion'] = ((st as any).hunterVars['collective_opinion'] ?? 0) + (6);
     qspCall(st, 'stat', '');
@@ -309,7 +299,6 @@ function enterShootingPractice(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     if (String((s as any).locArgs?.[1] ?? '') === 'practice') {
-      // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/hunters/'+iif($clothi...
       scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/gadukino/hunters/` + ((((s as any).clothingworntype ?? 0) !== 'nude') ? ('shooting.jpg') : ('shooting_nude.jpg')) + '"></center>');
       (s as any).minut = ((s as any).minut ?? 0) + 60;
       qspCall(s, 'exp_gain', 'shoot', 2);
@@ -406,7 +395,6 @@ function enterShootingPractice(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -415,12 +403,13 @@ function enterSwampEscape(s: GameState, scene: SceneBuilder): void {
     if (((s as any).hour ?? 0) >= 6  &&  ((s as any).hour ?? 0) < 21) {
       (s as any).minut = ((s as any).minut ?? 0) + 5;
       if ((!(Math.floor(Math.random() * 10) + 0))) {
-        qspGoto(s, 'gad_swamp', 'start\' else gt \'gad_swamp', 'stuck');
+        qspGoto(s, 'gad_swamp', 'start');
+      } else {
+        qspGoto(s, 'gad_swamp', 'stuck');
       }
     } else {
       // TODO-QSP: '<center><img <<$set_imgh>> src="images/locations/gadukino/hunters/handshelp.jpg"></center>' & !! in...
       scene.text('As you start moving into the swamp, Igor calls after you.');
-      // TODO-QSP: dynamic text: "<<$pcs_nickname>>, where are you going? You will get stuck in there!
       scene.text(`"${((s as any).pcs_nickname ?? '')}, where are you going? You will get stuck in there!`);
       qspCall(s, 'stat', '');
       scene.actions([
@@ -428,7 +417,9 @@ function enterSwampEscape(s: GameState, scene: SceneBuilder): void {
         { label: 'Ignore him and keep going', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
     if ((!(Math.floor(Math.random() * 10) + 0))) {
-      qspGoto(st, 'gad_swamp', 'start\' else gt \'gad_swamp', 'stuck');
+      qspGoto(st, 'gad_swamp', 'start');
+    } else {
+      qspGoto(st, 'gad_swamp', 'stuck');
     }
   } },
       ]);
@@ -436,10 +427,11 @@ function enterSwampEscape(s: GameState, scene: SceneBuilder): void {
   } else {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     if ((((s as any).hour ?? 0) >= 6  &&  ((s as any).hour ?? 0) < 21)  ||  (Math.floor(Math.random() * 10) + 0) < 3) {
-      qspGoto(s, 'gad_swamp', 'start\' else gt \'gad_swamp', 'stuck');
+      qspGoto(s, 'gad_swamp', 'start');
+    } else {
+      qspGoto(s, 'gad_swamp', 'stuck');
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -464,7 +456,6 @@ function enterDaytimeFlavorEvents(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 

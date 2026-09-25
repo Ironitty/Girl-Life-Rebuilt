@@ -54,6 +54,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
   if (((String(((s as any).temp_wmods ?? 0)).indexOf(String(' h6 '))) + 1) > 0) {
     (s as any).result = '<h6>' + ((s as any).result ?? 0) + '</h6>';
   }
+  (s as any).temp_color = undefined;
+  (s as any).temp_wkey = undefined;
+  (s as any).temp_wmods = undefined;
   scene.build();
 }
 

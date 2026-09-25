@@ -13,8 +13,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/redlight/studio_porn/studia_0.jpg');
   if (((s as any).hour ?? 0) < 9  ||  ((s as any).hour ?? 0) > 22) {
-    // TODO-QSP: dynamic text: 'The porn studio is currently closed. It is open between '+func('time', 'get_tim...
-    scene.text('The porn studio is currently closed. It is open between 9:00 and 22:00.');
+    scene.text('\'The porn studio is currently closed. It is open between 9:00 and 22:00.\'');
     return;
   }
   scene.text('You enter the studio and are greeted by a busy scene of actors, actresses and other studio employees going about their business or chatting to each other. It looks like the manager is in his office.');
@@ -71,13 +70,11 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'jobs', 'set_fired', 'city_pornstudio_delivery');
       scene.text('Digging through your things, you start to panic. No envelope. You search again, but to your despair, you can\'t find it. You stand there, unable to speak.');
       scene.text('The manager grabs his phone and makes a call. You can\'t hear exactly what he\'s saying because your heart is beating so loud, but he soon hangs up.');
-      // TODO-QSP: dynamic text: '"You''re very lucky the boss is in a good mood. He''s given you one week to rec...
-      scene.text('"You\'re very lucky the boss is in a good mood. He\'s given you one week to recover his losses, so you have until next Friday evening to bring me \' + $func(\'money\', \'string_debt_addition\', 200000) + \'. Do this and we\'re done, you\'ll never work for us again. Fail, and bad things will happen to you…" he says with a stern look on his face.');
+      scene.text('\'"You\'re very lucky the boss is in a good mood. He\'s given you one week to recover his losses, so you have until next Friday evening to bring me \' + $func(\'money\', \'string_debt_addition\', 200000) + \'. Do this and we\'re done, you\'ll never work for us again. Fail, and bad things will happen to you…" he says with a stern look on his face.\'');
     } else {
       (st as any).konvert = 0;
       qspCall(st, 'money', 'earn', 5000, 'cash');
-      // TODO-QSP: dynamic text: 'You give the envelope to the manager and he gives you ' + $func('money', 'strin...
-      scene.text('You give the envelope to the manager and he gives you \' + $func(\'money\', \'string_profit\', 5000) + \'.');
+      scene.text('You give the envelope to the manager and he gives you ' + qspFunc(s, 'money', 'string_profit', 5000) + '.');
     }
     scene.actions([
       { label: 'Leave', goto: ['city_redlight', 'start'] },
@@ -119,7 +116,6 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['city_redlight', 'start'] },
     { label: 'Go to the manager', goto: ['pornstudio', 'manager'] },
@@ -135,8 +131,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/redlight/studio_porn/studia_0.jpg');
   if (((s as any).hour ?? 0) < 9  ||  ((s as any).hour ?? 0) > 22) {
-    // TODO-QSP: dynamic text: 'The porn studio is currently closed. It is open between '+func('time', 'get_tim...
-    scene.text('The porn studio is currently closed. It is open between 9:00 and 22:00.');
+    scene.text('\'The porn studio is currently closed. It is open between 9:00 and 22:00.\'');
     return;
   }
   scene.text('You enter the studio and are greeted by a busy scene of actors, actresses and other studio employees going about their business or chatting to each other. It looks like the manager is in his office.');
@@ -193,13 +188,11 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'jobs', 'set_fired', 'city_pornstudio_delivery');
       scene.text('Digging through your things, you start to panic. No envelope. You search again, but to your despair, you can\'t find it. You stand there, unable to speak.');
       scene.text('The manager grabs his phone and makes a call. You can\'t hear exactly what he\'s saying because your heart is beating so loud, but he soon hangs up.');
-      // TODO-QSP: dynamic text: '"You''re very lucky the boss is in a good mood. He''s given you one week to rec...
-      scene.text('"You\'re very lucky the boss is in a good mood. He\'s given you one week to recover his losses, so you have until next Friday evening to bring me \' + $func(\'money\', \'string_debt_addition\', 200000) + \'. Do this and we\'re done, you\'ll never work for us again. Fail, and bad things will happen to you…" he says with a stern look on his face.');
+      scene.text('\'"You\'re very lucky the boss is in a good mood. He\'s given you one week to recover his losses, so you have until next Friday evening to bring me \' + $func(\'money\', \'string_debt_addition\', 200000) + \'. Do this and we\'re done, you\'ll never work for us again. Fail, and bad things will happen to you…" he says with a stern look on his face.\'');
     } else {
       (st as any).konvert = 0;
       qspCall(st, 'money', 'earn', 5000, 'cash');
-      // TODO-QSP: dynamic text: 'You give the envelope to the manager and he gives you ' + $func('money', 'strin...
-      scene.text('You give the envelope to the manager and he gives you \' + $func(\'money\', \'string_profit\', 5000) + \'.');
+      scene.text('You give the envelope to the manager and he gives you ' + qspFunc(s, 'money', 'string_profit', 5000) + '.');
     }
     scene.actions([
       { label: 'Leave', goto: ['city_redlight', 'start'] },
@@ -241,7 +234,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['city_redlight', 'start'] },
     { label: 'Go to the manager', goto: ['pornstudio', 'manager'] },
@@ -284,7 +276,6 @@ function enterPa(s: GameState, scene: SceneBuilder): void {
         { label: 'What\'s the rating of my videos?', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
     qspCall(st, 'stat', '');
-    // TODO-QSP: dynamic text: "You''ve made <<film>> films."
     scene.text(`"You've made ${((st as any).film ?? '')} films."`);
     if (((st as any).porn_fame ?? 0) < 10) {
       scene.text('"Nobody knows your name. You\'re one of hundreds of amateur actresses whose fims are sold really cheap."');
@@ -341,24 +332,30 @@ function enterPa(s: GameState, scene: SceneBuilder): void {
       ((st as any).temp = (st as any).temp ?? {})['max0'] = Math.max('ftypecount');
       ((st as any).temp = (st as any).temp ?? {})['pos0'] = qspUntranslated(s, "arrpos('ftypecount', temp['max0'])", { location: "pornstudio" });
       ((st as any).temp = (st as any).temp ?? {})['type0'] = qspUntranslated(s, "ftypecount_text[temp['pos0']]", { location: "pornstudio" });
+      (st as any).ftypecount = undefined;
+      (st as any).ftypecount_text = undefined;
       ((st as any).temp = (st as any).temp ?? {})['max1'] = Math.max('ftypecount');
       ((st as any).temp = (st as any).temp ?? {})['pos1'] = qspUntranslated(s, "arrpos('ftypecount', temp['max1'])", { location: "pornstudio" });
       ((st as any).temp = (st as any).temp ?? {})['type1'] = qspUntranslated(s, "ftypecount_text[temp['pos1']]", { location: "pornstudio" });
+      (st as any).ftypecount = undefined;
+      (st as any).ftypecount_text = undefined;
       if (10 * ((st as any).temp ?? 0)?.['max1'] < 9 * ((st as any).temp ?? 0)?.['max0']) {
-        // TODO-QSP: dynamic text: You''re known for your <<$temp[''type0'']>> scenes.
         scene.text(`You're known for your ${(((st as any).temp ?? 0)?.['type0'] ?? '')} scenes.`);
       } else {
         ((st as any).temp = (st as any).temp ?? {})['max2'] = Math.max('ftypecount');
         ((st as any).temp = (st as any).temp ?? {})['pos2'] = qspUntranslated(s, "arrpos('ftypecount', temp['max2'])", { location: "pornstudio" });
         ((st as any).temp = (st as any).temp ?? {})['type2'] = qspUntranslated(s, "ftypecount_text[temp['pos2']]", { location: "pornstudio" });
+        (st as any).ftypecount = undefined;
+        (st as any).ftypecount_text = undefined;
         if (10 * ((st as any).temp ?? 0)?.['max2'] < 9 * ((st as any).temp ?? 0)?.['max0']) {
-          // TODO-QSP: dynamic text: You''re known for your <<$temp[''type0'']>> and <<$temp[''type1'']>> scenes.
           scene.text(`You're known for your ${(((st as any).temp ?? 0)?.['type0'] ?? '')} and ${(((st as any).temp ?? 0)?.['type1'] ?? '')} scenes.`);
         } else {
-          // TODO-QSP: dynamic text: You''re known for your <<$temp[''type0'']>>, <<$temp[''type1'']>> and <<$temp[''...
           scene.text(`You're known for your ${(((st as any).temp ?? 0)?.['type0'] ?? '')}, ${(((st as any).temp ?? 0)?.['type1'] ?? '')} and ${(((st as any).temp ?? 0)?.['type2'] ?? '')} scenes.`);
         }
       }
+      (st as any).temp = undefined;
+      (st as any).ftypecount = undefined;
+      (st as any).ftypecount_text = undefined;
     }
     if (((st as any).film ?? 0) < 10  &&  ((st as any).porn_fame ?? 0) < 10) {
       scene.text('"By the way, if you wanted, I could completely remove them from our systems - for the right price of course…" the guy whispers.');
@@ -367,8 +364,7 @@ function enterPa(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
     (st as any).films_stop_payment = ((st as any).film ?? 0) * 40000;
     qspCall(st, 'stat', '');
-    // TODO-QSP: dynamic text: '"Seeing as you''re not well known, it''s unlikely anyone would notice. However,...
-    scene.text('"Seeing as you\'re not well known, it\'s unlikely anyone would notice. However, to remove them you\'d have to cover the loss of the studio\'s profits- 40000₽ per film. That\'s a total of \' + $func(\'money\', \'string_price\', films_stop_payment) + \'."');
+    scene.text('\'"Seeing as you\'re not well known, it\'s unlikely anyone would notice. However, to remove them you\'d have to cover the loss of the studio\'s profits- 40000₽ per film. That\'s a total of \' + $func(\'money\', \'string_price\', films_stop_payment) + \'."\'');
     scene.text('"Also, it would piss off your co-stars and director, and likely end your porn career. You should also know that there\'s no guarantee there\'s no other copies out there, so think carefully."');
     scene.actions([
       { label: 'Remove them', handler: (st: GameState) => {
@@ -380,6 +376,9 @@ function enterPa(s: GameState, scene: SceneBuilder): void {
       (st as any).pfilmSTOP = 1;
       ((st as any).job_termination_reason = (st as any).job_termination_reason ?? {})['city_pornstudio_actress'] = 'retired';
       qspCall(st, 'jobs', 'set_terminated', 'city_pornstudio_actress');
+      (st as any).pfilmday = undefined;
+      (st as any).pornplan = undefined;
+      (st as any).porntaken = undefined;
       ((st as any).job_booking_debt = (st as any).job_booking_debt ?? {})['city_pornstudio_actress'] = 0;
       ((st as any).job_last_miss_cost = (st as any).job_last_miss_cost ?? {})['city_pornstudio_actress'] = 0;
       (st as any).film = 0;
@@ -406,7 +405,6 @@ function enterPa(s: GameState, scene: SceneBuilder): void {
       { label: 'Leave', goto: ['pornstudio', ''] },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['pornstudio', ''] },
   ]);
@@ -417,9 +415,7 @@ function enterDelivery(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 15;
   qspCall(s, 'stat', '');
   scene.text('"We made inquiries about you, and everything seems in order. In short, we give you a thumb drive and you deliver it to the sauna. They give you an envelope and you bring it to us. Immediately."');
-  // TODO-QSP: dynamic text: '"Upon delivery of the envolope, you get '+$func('money', 'string_profit', 5000)...
-  scene.text('"Upon delivery of the envolope, you get \'+$func(\'money\', \'string_profit\', 5000)+\'. Deliveries are available every Friday, after the studio has opened. If you agree, then visit any Friday, and choose a safe mode of transport."');
-  // TODO-QSP: end
+  scene.text('"Upon delivery of the envolope, you get ' + qspFunc(s, 'money', 'string_profit', 5000) + '. Deliveries are available every Friday, after the studio has opened. If you agree, then visit any Friday, and choose a safe mode of transport."');
   scene.actions([
     { label: 'Disagree', handler: (st: GameState) => {
     (st as any).bomzQW = (-1);
@@ -479,7 +475,7 @@ function enterShower(s: GameState, scene: SceneBuilder): void {
     ((st as any).mc_inventory = (st as any).mc_inventory ?? {})['deodorant'] = ((st as any).mc_inventory['deodorant'] ?? 0) - (1);
     qspCall(st, 'sweat', 'deo');
     qspCall(st, 'stat', '');
-    // TODO-QSP: iif(func('body_din', 'pregnancyVisibility') = 1, '<center><img <<$set_imgh>> src="images/shared/home...
+    scene.text(`iif(func('body_din', 'pregnancyVisibility') = 1, '<center><img ${((st as any).set_imgh ?? '')} src="images/shared/home/bathroom/deodorant_preg.jpg"></center>', '<center><img ${((st as any).set_imgh ?? '')} src="images/shared/home/bathroom/deodorant.jpg"></center>')`);
     scene.text('You apply deodorant to your armpits. It will keep you feeling fresh and clean for longer.');
     scene.actions([
       { label: 'Look in the mirror', goto: ['mirror', 'start'] },
@@ -488,7 +484,6 @@ function enterShower(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Look in the mirror', goto: ['mirror', 'start'] },
     { label: 'Go and see Dimitri', goto: ['pornstudio', 'postvideo'] },
@@ -501,7 +496,6 @@ function enterBathroom(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/citycenter/photo/shower.jpg');
   scene.text('You can freshen up in the mirror or go and see Dimitri about being paid.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Look in the mirror', goto: ['mirror', 'start'] },
     { label: 'Go and see Dimitri', goto: ['pornstudio', 'postvideo'] },
@@ -572,6 +566,9 @@ function enterManager(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'jobs', 'set_fired', 'city_pornstudio_actress');
     ((st as any).job_booking_debt = (st as any).job_booking_debt ?? {})['city_pornstudio_actress'] = 0;
     ((st as any).job_last_miss_cost = (st as any).job_last_miss_cost ?? {})['city_pornstudio_actress'] = 0;
+    (st as any).pfilmday = undefined;
+    (st as any).pornplan = undefined;
+    (st as any).porntaken = undefined;
     qspGoto(st, 'pornstudio', '');
   } },
             ]);
@@ -587,6 +584,9 @@ function enterManager(s: GameState, scene: SceneBuilder): void {
             qspCall(s, 'jobs', 'set_fired', 'city_pornstudio_actress');
             ((s as any).job_booking_debt = (s as any).job_booking_debt ?? {})['city_pornstudio_actress'] = 0;
             ((s as any).job_last_miss_cost = (s as any).job_last_miss_cost ?? {})['city_pornstudio_actress'] = 0;
+            (s as any).pfilmday = undefined;
+            (s as any).pornplan = undefined;
+            (s as any).porntaken = undefined;
             scene.text('"You didn\'t come to the shoot! You fucked me over once again when you already owed me a lot of money! You took the second chance I gave you and threw it back in my face! I don\'t want to work with you anymore, so get out! You\'re blacklisted!"');
           } else {
             if (qspFunc(s, 'jobs', 'is_arrival_time', 'city_pornstudio_actress') === 1) {
@@ -596,35 +596,31 @@ function enterManager(s: GameState, scene: SceneBuilder): void {
                 if (((s as any).minut ?? 0) <= 55) {
                   scene.text('"You\'re just in time for your inspection. Off you go now," he says with a smile.');
                 } else {
-                  // TODO-QSP: dynamic text: "You''re almost late, <<pfname>>! I suggest you be more careful in the future," ...
                   scene.text(`"You're almost late, ${((s as any).pfname ?? '')}! I suggest you be more careful in the future," he says with a stern look. "Now move along and get yourself checked up."`);
                 }
               }
               (s as any).minut = ((s as any).minut ?? 0) + (60 - ((s as any).minut ?? 0));
               (s as any).temp_mgr_pf_type = parseFloat(qspFunc(s, 'jobs', 'get_booking_data_for_day', 'city_pornstudio_actress', ((s as any).daystart ?? 0)));
               // TODO-QSP: dynamic 'act ''Go for medical check-up'': gt ''pornstudio'', ''medical'', <<temp_mgr_pf_type>>'
+              (s as any).temp_mgr_pf_type = undefined;
               return;
             } else {
               if (((s as any).film ?? 0) === 0  &&  ((s as any).job_bookings_active ?? 0)?.['city_pornstudio_actress'] === 0) {
                 if ((!((s as any).firstoffer ?? 0))) {
                   (s as any).firstoffer = 1;
                   if (((s as any).tits ?? 0) >= 4) {
-                    // TODO-QSP: dynamic text: '"So you''re the new girl, huh? As luck would have it, we''re looking for someon...
-                    scene.text('"So you\'re the new girl, huh? As luck would have it, we\'re looking for someone fresh for our next shoot. It\'s called \'Girls Jerk Guys #36\'. For \'+$func(\'money\', \'string_profit\', 500)+\', you would jerk a guy off and have him cum on your tits. However, in your case, you\'ll be using those puppies instead. Titfucking is a market we want to break into," he says while looking at your well endowed chest.');
+                    scene.text('\'"So you\'re the new girl, huh? As luck would have it, we\'re looking for someone fresh for our next shoot. It\'s called \'Girls Jerk Guys #36\'. For \'+$func(\'money\', \'string_profit\', 500)+\', you would jerk a guy off and have him cum on your tits. However, in your case, you\'ll be using those puppies instead. Titfucking is a market we want to break into," he says while looking at your well endowed chest.\'');
                     scene.text('"You should also know that this particular shoot is booked with Egor, one of our more… experienced actors. He\'s rather… proud of being in this line of work."');
                   } else {
-                    // TODO-QSP: dynamic text: '"So you''re the new girl, huh? As luck would have it, we''re looking for someon...
-                    scene.text('"So you\'re the new girl, huh? As luck would have it, we\'re looking for someone fresh for our next shoot. It\'s called \'Girls Jerk Guys #36\'. For \'+$func(\'money\', \'string_profit\', 500)+\', you jerk a guy off and have him cum on your tits."');
+                    scene.text('\'"So you\'re the new girl, huh? As luck would have it, we\'re looking for someone fresh for our next shoot. It\'s called \'Girls Jerk Guys #36\'. For \'+$func(\'money\', \'string_profit\', 500)+\', you jerk a guy off and have him cum on your tits."\'');
                     scene.text('"You should also know that this particular shoot is booked with Egor, one of our more… experienced actors. He\'s rather… proud of being in this line of work."');
                   }
                 } else {
                   if (((s as any).tits ?? 0) >= 4) {
-                    // TODO-QSP: dynamic text: '"Hello. Since you''re new, all I can offer you is an introductory movie called ...
-                    scene.text('"Hello. Since you\'re new, all I can offer you is an introductory movie called \'Girls Jerk Guys #36\'. For \'+$func(\'money\', \'string_profit\', 500)+\', you would jerk a guy off and have him cum on your tits. However, in your case, you\'ll be using those puppies instead. Titfucking is a market we want to break into," he says while looking at your well endowed chest.');
+                    scene.text('\'"Hello. Since you\'re new, all I can offer you is an introductory movie called \'Girls Jerk Guys #36\'. For \'+$func(\'money\', \'string_profit\', 500)+\', you would jerk a guy off and have him cum on your tits. However, in your case, you\'ll be using those puppies instead. Titfucking is a market we want to break into," he says while looking at your well endowed chest.\'');
                     scene.text('"You should also know that this particular shoot is booked with Egor, one of our more… experienced actors. He\'s rather… proud of being in this line of work."');
                   } else {
-                    // TODO-QSP: dynamic text: '"Hello. Since you''re new, all I can offer you is an introductory movie called ...
-                    scene.text('"Hello. Since you\'re new, all I can offer you is an introductory movie called \'Girls Jerk Guys #36\'. For \'+$func(\'money\', \'string_profit\', 500)+\', you jerk a guy off and have him cum on your tits."');
+                    scene.text('\'"Hello. Since you\'re new, all I can offer you is an introductory movie called \'Girls Jerk Guys #36\'. For \'+$func(\'money\', \'string_profit\', 500)+\', you jerk a guy off and have him cum on your tits."\'');
                     scene.text('"You should also know that this particular shoot is booked with Egor, one of our more… experienced actors. He\'s rather… proud of being in this line of work."');
                   }
                 }
@@ -641,8 +637,7 @@ function enterManager(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'willpower', 'pay', 'self');
     qspCall(st, 'jobs', 'book_slot', 'city_pornstudio_actress', ((st as any).daystart ?? 0) + 1, 0, '1');
     qspCall(st, 'stat', '');
-    // TODO-QSP: dynamic text: '"Cool. We shoot tomorrow, so be here between '+$func('time', 'get_time_string',...
-    scene.text('"Cool. We shoot tomorrow, so be here between 9:00 and 10:00. Please don\'t be late."');
+    scene.text('\'"Cool. We shoot tomorrow, so be here between 9:00 and 10:00. Please don\'t be late."\'');
     scene.actions([
       { label: 'Leave', goto: ['pornstudio', ''] },
     ]);
@@ -673,7 +668,6 @@ function enterManager(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['pornstudio', ''] },
   ]);
@@ -705,7 +699,7 @@ function enterOptions(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
+  qspFunc(s, 'displaytag');
   if (((s as any).job_bookings_active ?? 0)?.['city_pornstudio_actress'] > 1  ||  (((s as any).pfilmNOPAY ?? 0) === 0  &&  ((s as any).job_bookings_active ?? 0)?.['city_pornstudio_actress'] > 0)) {
     scene.actions([
       { label: 'Cancel a contract', handler: (st: GameState) => {
@@ -713,7 +707,6 @@ function enterOptions(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Filter by date', handler: (st: GameState) => {
     qspCall(st, 'pornschedule', '');
@@ -725,6 +718,28 @@ function enterOptions(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'pornschedule', '');
   } },
     { label: 'Leave', handler: (st: GameState) => {
+    (st as any).ppnum = undefined;
+    (st as any).displaynum = undefined;
+    (st as any).displaytext = undefined;
+    (st as any).displayimage = undefined;
+    (st as any).pp1 = undefined;
+    (st as any).pp2 = undefined;
+    (st as any).pp3 = undefined;
+    (st as any).pp4 = undefined;
+    (st as any).pp5 = undefined;
+    (st as any).displaytag = undefined;
+    (st as any).flag_tag = undefined;
+    (st as any).selection = undefined;
+    (st as any).datefilter = undefined;
+    (st as any).selected = undefined;
+    (st as any).option = undefined;
+    (st as any).tagfilter = undefined;
+    (st as any).contracting = undefined;
+    (st as any).pcount = undefined;
+    (st as any).weekdayfilter = undefined;
+    (st as any).weekendfilter = undefined;
+    (st as any).weekdayfilter_link = undefined;
+    (st as any).weekendfilter_link = undefined;
     qspGoto(st, 'pornstudio', '');
   } },
   ]);
@@ -757,7 +772,6 @@ function enterFirst(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['pornstudio', ''] },
   ]);
@@ -885,7 +899,6 @@ function enterYes(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'bj', (-2), 'deepthroat', 'exhibitionism');
     qspCall(st, 'arousal', 'end');
     scene.img('images/locations/city/redlight/studio_porn/casting/casting5.jpg');
-    // TODO-QSP: dynamic text: 'You continue taking his dick as deep into your throat as you can while trying t...
     scene.text('You continue taking his dick as deep into your throat as you can while trying to look as sexy as possible. Meanwhile, he fondles one of your breasts with his free hand. "These tits are something else!" ' + ((((st as any).age ?? 0) < 20) ? ('He pinches your nipple, causing you to moan onto his cock. "And on a cute little teen no less!"') : ('He pinches your nipple, causing you to moan onto his cock.')) + '');
     scene.text('After a few minutes, he pulls his dick out of your mouth and you quickly jerk him off, a thick load of cum soon covering your face. He takes a few more pictures of you before returning to his desk and offering you some wipes. You quickly clean yourself, get dressed and sit down.');
     scene.text('"You can call me Dimitri. You\'re going to need a stage name."');
@@ -965,7 +978,6 @@ function enterYes(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Make excuses and leave', goto: ['pornstudio', ''] },
   ]);
@@ -980,7 +992,6 @@ function enterMedical(s: GameState, scene: SceneBuilder): void {
   scene.text('You enter the office where the doctor is waiting. He quickly snaps on a pair of rubber gloves and tells you to undress.');
   scene.text('You remove your clothes and sit on the gynecological chair before the doctor starts the check up. After a thorough inspection, he takes a blood sample.');
   scene.text('"It will be about half an hour before the tests are finished. They will tell us if you have caught something."');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Wait', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + ((Math.floor(Math.random() * 11) + 25));
@@ -992,6 +1003,7 @@ function enterMedical(s: GameState, scene: SceneBuilder): void {
       (st as any).pfilmNoVenera = 1;
       qspCall(st, 'jobs', 'suspend_job', 'city_pornstudio_actress');
       ((st as any).job_last_miss_cost = (st as any).job_last_miss_cost ?? {})['city_pornstudio_actress'] = 0;
+      (st as any).pfilmday = undefined;
       scene.text('"Your analysis shows you have an STD," the doctor tells you as he calls Dimitri to the office.');
       scene.text('Once he arrives, Dimitri looks at the test results. "Sorry, but as long as you have an STD, you can\'t make films."');
       scene.actions([
@@ -1002,6 +1014,7 @@ function enterMedical(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Go to the dressing room', handler: (st: GameState) => {
     (st as any).pf = ((st as any).locArgs?.[1] ?? 0);
+    qspFunc(s, 'pornfilmdesc', ((st as any).pf ?? 0));
     qspCall(st, 'pornfilm', 'pornactor');
     qspCall(st, 'pornfilm', 'pornactress');
     scene.img('images/locations/city/redlight/studio_porn/makeup.jpg');
@@ -1038,20 +1051,25 @@ function enterMedical(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPostvideo(s: GameState, scene: SceneBuilder): void {
-  (s as any).minut = ((s as any).minut ?? 0) + ((Math.floor(Math.random() * 21) + 20));
-  (s as any).pf = parseFloat(qspFunc(s, 'jobs', 'get_booking_data_for_day', 'city_pornstudio_actress', ((s as any).daystart ?? 0)));
-  ((s as any).job_clocked_in = (s as any).job_clocked_in ?? {})['city_pornstudio_actress'] = 0;
-  (s as any).temp_pv_slot = 0;
-  // TODO-QSP: :pv_clear_slot_loop
-  if (((s as any).temp_pv_slot ?? 0) < 4) {
-    if (((s as any).job_booking ?? 0)['city_pornstudio_actress, ' + String(((s as any).daystart ?? 0)) + ', ' + String(((s as any).temp_pv_slot ?? 0))] !== '') {
-      qspCall(s, 'jobs', 'cancel_booking', 'city_pornstudio_actress', ((s as any).daystart ?? 0), ((s as any).temp_pv_slot ?? 0));
-      // TODO-QSP: jump 'pv_clear_done'
+  while (true) {
+    (s as any).minut = ((s as any).minut ?? 0) + ((Math.floor(Math.random() * 21) + 20));
+    (s as any).pf = parseFloat(qspFunc(s, 'jobs', 'get_booking_data_for_day', 'city_pornstudio_actress', ((s as any).daystart ?? 0)));
+    ((s as any).job_clocked_in = (s as any).job_clocked_in ?? {})['city_pornstudio_actress'] = 0;
+    (s as any).temp_pv_slot = 0;
+    while (true) {
+      if (((s as any).temp_pv_slot ?? 0) < 4) {
+        if (((s as any).job_booking ?? 0)['city_pornstudio_actress, ' + String(((s as any).daystart ?? 0)) + ', ' + String(((s as any).temp_pv_slot ?? 0))] !== '') {
+          qspCall(s, 'jobs', 'cancel_booking', 'city_pornstudio_actress', ((s as any).daystart ?? 0), ((s as any).temp_pv_slot ?? 0));
+          break;
+        }
+        (s as any).temp_pv_slot = ((s as any).temp_pv_slot ?? 0) + (1);
+        break;
+      }
     }
-    (s as any).temp_pv_slot = ((s as any).temp_pv_slot ?? 0) + (1);
-    // TODO-QSP: jump 'pv_clear_slot_loop'
+    break;
   }
-  // TODO-QSP: :pv_clear_done
+  // LABEL: pv_clear_done
+  (s as any).temp_pv_slot = undefined;
   if (((s as any).film ?? 0) < 5) {
     (s as any).fmulti = 25;
   } else {
@@ -1077,28 +1095,27 @@ function enterPostvideo(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).film = ((s as any).film ?? 0) + (1);
   if (((s as any).film ?? 0) === 1) {
-    // TODO-QSP: $porntitle[film] = 'Girls Jerk Guys #36 - <<$pfname>>'
+    ((s as any).porntitle = (s as any).porntitle ?? {})[String((s as any).film ?? 0)] = 'Girls Jerk Guys #36 - ' + ((s as any).pfname ?? 0) + '';
     if (((s as any).tits ?? 0) >= 4) {
-      // TODO-QSP: $pornfilmstory[film] = '<<$pfname>>''s debut into the world of porn. Watch as she gives silver fox E...
+      ((s as any).pornfilmstory = (s as any).pornfilmstory ?? {})[String((s as any).film ?? 0)] = '' + ((s as any).pfname ?? 0) + '\'s debut into the world of porn. Watch as she gives silver fox Egor Kluyev a titfuck and ends up with his cum all over her big \'+iif(age < 20, \'teen\', \')+\' tits.';
     } else {
-      // TODO-QSP: $pornfilmstory[film] = '<<$pfname>>''s debut into the world of porn. Watch as she jerks silver fox E...
+      ((s as any).pornfilmstory = (s as any).pornfilmstory ?? {})[String((s as any).film ?? 0)] = '' + ((s as any).pfname ?? 0) + '\'s debut into the world of porn. Watch as she jerks silver fox Egor Kluyev off and ends up with his cum all over her \'+iif(age < 20, \'teen\', \')+\' tits.';
     }
   } else {
     if (((s as any).pstory ?? 0) === ''  &&  ((s as any).cheatVars ?? 0)?.['rename_porn'] === 1) {
-      // TODO-QSP: $pornfilmstory[film] = input('You can enter the story for the film. This action can only be done onc...
+      ((s as any).pornfilmstory = (s as any).pornfilmstory ?? {})[String((s as any).film ?? 0)] = window.prompt("You can enter the story for the film. This action can only be done once, but you can choose to do it later! (Just hit Enter/Esc when blank)<br>Tags of the current movie: <font color=#541717 size=2>" + (((s as any).pfilmtags ?? 0)) + "</font>") ?? '';
     } else {
-      // TODO-QSP: $pornfilmstory[film] = $pstory
+      ((s as any).pornfilmstory = (s as any).pornfilmstory ?? {})[String((s as any).film ?? 0)] = ((s as any).pstory ?? 0);
     }
     if (((s as any).cheatVars ?? 0)?.['rename_porn'] === 1) {
-      // TODO-QSP: $porntitle[film] = input("Enter the name of the film. <i>This action can only be done once, but you ...
+      ((s as any).porntitle = (s as any).porntitle ?? {})[String((s as any).film ?? 0)] = window.prompt("Enter the name of the film. <i>This action can only be done once, but you can choose to do it later! (Just hit Enter/Esc when blank)</i>") ?? '';
     }
   }
   if ((!((s as any).pfilmNOPAY ?? 0))) {
     (s as any).pfcash = ((s as any).pcash ?? 0) * ((s as any).fmulti ?? 0);
     qspCall(s, 'jobs', 'bonus_pay', 'city_pornstudio_actress', ((s as any).pfcash ?? 0));
     (s as any).pfcash = qspFunc(s, 'jobs', 'paycheck', 'city_pornstudio_actress', 'cash');
-    // TODO-QSP: dynamic text: 'Dimitri counts ' + $func('money', 'string_profit', pfcash) + ' out for your fil...
-    scene.text('Dimitri counts \' + $func(\'money\', \'string_profit\', pfcash) + \' out for your film and wishes you good luck.');
+    scene.text('Dimitri counts ' + qspFunc(s, 'money', 'string_profit', ((s as any).pfcash ?? '')) + ' out for your film and wishes you good luck.');
   } else {
     (s as any).pfilmNOPAY = 0;
     (s as any).pfcash = 0;
@@ -1115,6 +1132,8 @@ function enterPostvideo(s: GameState, scene: SceneBuilder): void {
   ((s as any).pornfilmAppAge = (s as any).pornfilmAppAge ?? {})[String((s as any).film ?? 0)] = ((s as any).vidage ?? 0);
   ((s as any).pornfilmpregchem = (s as any).pornfilmpregchem ?? {})[String((s as any).film ?? 0)] = ((s as any).pregChem ?? 0);
   ((s as any).pornfilmacting = (s as any).pornfilmacting ?? {})[String((s as any).film ?? 0)] = ((s as any).cumulativeactbonus ?? 0) + ((s as any).orgasmbonus ?? 0) + ((s as any).pcs_intel ?? 0) / 10;
+  qspFunc(s, 'pornfilmdesc', ((s as any).pf ?? 0));
+  (s as any).orgasmbonus = undefined;
   if (((s as any).pornfilmacting ?? 0)?.[String((s as any).film ?? 0)] >= 90) {
     (s as any).porn_fame = ((s as any).porn_fame ?? 0) + (3);
   } else {
@@ -1147,7 +1166,6 @@ function enterPostvideo(s: GameState, scene: SceneBuilder): void {
       } else {
         (s as any).tmp = '"And they think I\'m doing this for free. If only they knew they were paying me in another way…"';
       }
-      // TODO-QSP: dynamic text: <<$tmp>> you think to yourself as you smirk in satisfaction.
       scene.text(`${((s as any).tmp ?? '')} you think to yourself as you smirk in satisfaction.`);
     } else {
       if (((s as any).knowpreg ?? 0) === 0  &&  ((s as any).thinkpreg ?? 0) === 0  &&  ((s as any).pillcon2 ?? 0) < 1000) {
@@ -1158,7 +1176,6 @@ function enterPostvideo(s: GameState, scene: SceneBuilder): void {
           } else {
             (s as any).tmp = 'You didn\'t even get paid to risk pregnancy! You\'ll likely never see the guy again.';
           }
-          // TODO-QSP: dynamic text: With a growing sense of horror, you realize that you aren''t on the shot and hav...
           scene.text(`With a growing sense of horror, you realize that you aren't on the shot and have no idea when you last took a birth control pill. ${((s as any).tmp ?? '')}`);
         } else {
           // TODO-QSP: !{If she has birth control and deliberately isn''t using it, obviously she wants to get pregnant or ...
@@ -1172,22 +1189,21 @@ function enterPostvideo(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
+    (s as any).tmp = undefined;
   }
   if (((s as any).pfactor ?? 0) === 50) {
-    // TODO-QSP: $pornfilmActor[film] = 'Fifty fans of'
+    ((s as any).pornfilmActor = (s as any).pornfilmActor ?? {})[String((s as any).film ?? 0)] = 'Fifty fans of';
   } else {
-    // TODO-QSP: $pornfilmActor[film] = ''
+    ((s as any).pornfilmActor = (s as any).pornfilmActor ?? {})[String((s as any).film ?? 0)] = '';
     (s as any).pact = ((s as any).pfactor ?? 0);
-    // TODO-QSP: :pornactortext
-    if (((s as any).pact ?? 0) > 1) {
-      // TODO-QSP: $pornfilmActor[film] += $pactor[pact]+', '
-    } else {
-      // TODO-QSP: $pornfilmActor[film] += $pactor[pact]
-    }
-    (s as any).pact = ((s as any).pact ?? 0) - (1);
-    if (((s as any).pact ?? 0) > 0) {
-      // TODO-QSP: jump 'pornactortext'
-    }
+    do {
+      if (((s as any).pact ?? 0) > 1) {
+        ((s as any).pornfilmActor = (s as any).pornfilmActor ?? {})[String((s as any).film ?? 0)] = ((s as any).pornfilmActor[String((s as any).film ?? 0)] ?? 0) + ((((s as any).pactor ?? 0)?.[String((s as any).pact ?? 0)] ?? 0) + ', ');
+      } else {
+        ((s as any).pornfilmActor = (s as any).pornfilmActor ?? {})[String((s as any).film ?? 0)] = ((s as any).pornfilmActor[String((s as any).film ?? 0)] ?? 0) + ((((s as any).pactor ?? 0)?.[String((s as any).pact ?? 0)] ?? 0));
+      }
+      (s as any).pact = ((s as any).pact ?? 0) - (1);
+    } while (((s as any).pact ?? 0) > 0);
   }
   if (((s as any).film ?? 0) < 10) {
     (s as any).filmkoef = 10;
@@ -1200,7 +1216,6 @@ function enterPostvideo(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).pfcash = 0;
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['pornstudio', ''] },
   ]);
@@ -1215,7 +1230,6 @@ function enter1(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/redlight/studio_porn/pierre_1.jpg');
   scene.text('You\'ve come to the studio, looking for someone, anything that you think can help you.');
   scene.text('You approach a man, who introduces himself as Dimitri.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'State the purpose of your visit', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 60;
@@ -1296,7 +1310,6 @@ function enter2(s: GameState, scene: SceneBuilder): void {
       scene.text('You get the role.');
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', goto: ['pornstudio', ''] },
   ]);
@@ -1307,14 +1320,12 @@ function enter3(s: GameState, scene: SceneBuilder): void {
   (s as any).actr = 0;
   qspCall(s, 'stat', '');
   qspGoto(s, 'BDSM', '');
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterPregreact(s: GameState, scene: SceneBuilder): void {
   scene.text('"Wow. I\'m surprised you still want to do the shoot considering how far along you are. The good news is, we\'ve been looking into appealing to people with different fetishes, so this is the perfect opportunity to start marketing to pregnancy fetishists. However, this is also going to change the shoots you can do."');
   scene.text('"You see, this is more of a niche thing and not something we can really use for wide appeal. You can still work, but only on specific pregnancy shoots, so you might not get the same amount of work you got before. Don\'t worry; if we can find a way to make money off of you, we definitely will," Dimitri says with a smile.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     (st as any).pregtalkpornstudio = 1;

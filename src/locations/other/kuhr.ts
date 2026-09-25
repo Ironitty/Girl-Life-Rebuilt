@@ -26,17 +26,14 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     qspGoto(s, 'kuhr', 'leak');
   }
   if (((s as any).mc_inventory ?? 0)?.['dish_plates'] > 0) {
-    // TODO-QSP: dynamic text: <b><<mc_inventory[''dish_plates'']>></b> clean plates are stored in the cupboard...
     scene.text(`<b>${(((s as any).mc_inventory ?? 0)?.['dish_plates'] ?? '')}</b> clean plates are stored in the cupboard.`);
   } else {
     scene.text('<center><b>You have no clean dishes left.</b></center>');
   }
   if (((s as any).dirttarelka ?? 0) > 0) {
-    // TODO-QSP: dynamic text: <b><<dirttarelka>></b> dirty dishes are lying in the sink. <a href="exec:gs ''ki...
     scene.text(`<b>${((s as any).dirttarelka ?? '')}</b> dirty dishes are lying in the sink. <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027kit_din/u0027, /u0027dirtarm/u0027); return false;">Wash the dishes</a>.`);
   }
   if (((s as any).mc_inventory ?? 0)?.['dish_soap'] > 0) {
-    // TODO-QSP: dynamic text: There is dishwashing liquid next to the sink, enough for <b><<mc_inventory[''dis...
     scene.text(`There is dishwashing liquid next to the sink, enough for <b>${(((s as any).mc_inventory ?? 0)?.['dish_soap'] ?? '')}</b> uses.`);
   } else {
     scene.text('<center><b>You need to buy dishwashing liquid before you can wash the dishes.</b></center>');
@@ -46,9 +43,8 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       (s as any).edagot = '';
     }
     if (((s as any).mc_inventory ?? 0)?.['dish_plates'] > 0  &&  (!((s as any).edahot ?? 0))) {
-      (s as any).edagot = '<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027kit_din/u0027, /u0027edagotd/u0027); return false;">Cook a meal</a>';
+      (s as any).edagot = '<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027kit_din\u0027, \u0027edagotd\u0027); return false;">Cook a meal</a>';
     }
-    // TODO-QSP: dynamic text: 'There''s enough food for <b><<mc_inventory[''food_basic'']>></b> ' + iif(mc_inv...
     scene.text(`There's enough food for <b>${(((s as any).mc_inventory ?? 0)?.['food_basic'] ?? '')}</b> ` + ((((s as any).mc_inventory ?? 0)?.['food_basic'] === 1) ? ('serving') : ('servings')) + `. ${((s as any).edagot ?? '')}`);
   } else {
     if (((s as any).mc_inventory ?? 0)?.['food_diet'] === 0  &&  ((s as any).mc_inventory ?? 0)?.['food_basic'] === 0) {
@@ -64,6 +60,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     if (((st as any).clothingworntype ?? 0) === 'nude') {
       scene.text('You can\'t go out to the trash cans naked!');
     } else {
+      (st as any).fullmorrout = undefined;
       (st as any).minut = ((st as any).minut ?? 0) + 3;
       qspGoto(st, 'city_trashplace', '');
     }
@@ -85,13 +82,14 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: '<font color = maroon><b>Leave the apartment and go outside</b></font>', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 2;
+    (st as any).fullmorrout = undefined;
     qspGoto(st, 'city_residential', '');
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return to the corridor', handler: (st: GameState) => {
+    (st as any).fullmorrout = undefined;
     (st as any).minut = ((st as any).minut ?? 0) + 1;
     qspGoto(st, 'korr', '');
   } },
@@ -110,10 +108,10 @@ function enterLeak(s: GameState, scene: SceneBuilder): void {
       { label: 'Call Grisha', goto: ['kit_din', 'santehnikgr'] },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
+    (st as any).fullmorrout = undefined;
     qspGoto(st, 'korr', '');
   } },
   ]);
@@ -143,7 +141,6 @@ function enterDildo(s: GameState, scene: SceneBuilder): void {
   (s as any).orgasm_or = 'custom';
   qspCall(s, 'arousal', 'vaginal_dildo', 10, 'masturbate', 'no_orgasm_msg');
   qspCall(s, 'arousal', 'end');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Breathe', goto: ['kuhr', ''] },
   ]);

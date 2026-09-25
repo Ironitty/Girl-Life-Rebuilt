@@ -152,7 +152,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
           qspCall(s, 'stat', '');
           if (((s as any).locat ?? 0)?.['A60_loc_prev'] === 'gad_miroslava_home') {
             { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMiraclothes(s, scene); (s as any).locArgs = __savedLocArgs; }
-            // TODO-QSP: dynamic text: "<<$pcs_nickname>>, you''re fun to be with, but my dad has chores for me to work...
             scene.text(`"${((s as any).pcs_nickname ?? '')}, you're fun to be with, but my dad has chores for me to work on," Mira tells you.`);
           } else {
             if (((s as any).locat ?? 0)?.['A60_loc'] === 'gad_beach') {
@@ -164,7 +163,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
             } else {
               { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMiraclothes(s, scene); (s as any).locArgs = __savedLocArgs; }
             }
-            // TODO-QSP: dynamic text: "<<$pcs_nickname>>, you''re fun to be with, but I gotta get home. My dad has cho...
             scene.text(`"${((s as any).pcs_nickname ?? '')}, you're fun to be with, but I gotta get home. My dad has chores for me to work on." Mira tells you.`);
           }
           { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterWearStrippedClothes(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -182,7 +180,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
             } else {
               { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMiraclothes(s, scene); (s as any).locArgs = __savedLocArgs; }
             }
-            // TODO-QSP: dynamic text: "<<$pcs_nickname>>, it''s so boring here," Mira pouts, "I know! Let''s go to you...
             scene.text(`"${((s as any).pcs_nickname ?? '')}, it's so boring here," Mira pouts, "I know! Let's go to your place." Mira suggests brightly.`);
             scene.actions([
               { label: 'Agree', handler: (st: GameState) => {
@@ -222,7 +219,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
               (s as any).minut = ((s as any).minut ?? 0) + 1;
               qspCall(s, 'stat', '');
               { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMiraclothes(s, scene); (s as any).locArgs = __savedLocArgs; }
-              // TODO-QSP: dynamic text: "<<$pcs_nickname>>, come watch TV with me. That''s boring -" Mira said.
               scene.text(`"${((s as any).pcs_nickname ?? '')}, come watch TV with me. That's boring -" Mira said.`);
               scene.actions([
                 { label: 'Agree', handler: (st: GameState) => {
@@ -232,7 +228,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     }
     qspCall(st, 'mood', 'raise', 'tiny');
     qspCall(st, 'stat', '');
-    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/gadukino/mira/mira_tv'+rand(1...
     scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/characters/gadukino/mira/mira_tv` + (Math.floor(Math.random() * 12) + 1) + '.jpg"></center>');
     scene.text('You watch TV with Mira for an hour.');
     scene.actions([
@@ -254,7 +249,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
                 (s as any).minut = ((s as any).minut ?? 0) + 1;
                 qspCall(s, 'stat', '');
                 { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMiraclothes(s, scene); (s as any).locArgs = __savedLocArgs; }
-                // TODO-QSP: dynamic text: "<<$pcs_nickname>>, can we go to the meadow?" Mira asked you. "Let''s take a wal...
                 scene.text(`"${((s as any).pcs_nickname ?? '')}, can we go to the meadow?" Mira asked you. "Let's take a walk and get some fresh air."`);
                 scene.actions([
                   { label: 'Agree', handler: (st: GameState) => {
@@ -288,7 +282,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
                   (s as any).minut = ((s as any).minut ?? 0) + 1;
                   qspCall(s, 'stat', '');
                   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMiraclothes(s, scene); (s as any).locArgs = __savedLocArgs; }
-                  // TODO-QSP: dynamic text: "<<$pcs_nickname>>, do you want to go to the river?" - Mira asks. "Let''s go swi...
                   scene.text(`"${((s as any).pcs_nickname ?? '')}, do you want to go to the river?" - Mira asks. "Let's go swim and sunbathe."`);
                   scene.actions([
                     { label: 'Agree', handler: (st: GameState) => {
@@ -324,7 +317,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
                     qspCall(s, 'stat', '');
                     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMiraclothes(s, scene); (s as any).locArgs = __savedLocArgs; }
                     scene.text('Mira wants to chat with you.');
-                    // TODO-QSP: dynamic text: "<<$pcs_nickname>>, do you want to just chat a little?" Mira asks.
                     scene.text(`"${((s as any).pcs_nickname ?? '')}, do you want to just chat a little?" Mira asks.`);
                     scene.actions([
                       { label: 'Chat', goto: ['miroslava', 'miratalk'] },
@@ -347,7 +339,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
                       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterWearStrippedClothes(s, scene); (s as any).locArgs = __savedLocArgs; }
                       qspCall(s, 'stat', '');
                       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMiraclothes(s, scene); (s as any).locArgs = __savedLocArgs; }
-                      // TODO-QSP: dynamic text: "<<$pcs_nickname>>, let''s hang out with those guys and drink a little?" Mira as...
                       scene.text(`"${((s as any).pcs_nickname ?? '')}, let's hang out with those guys and drink a little?" Mira asks you. "I'm bored and want to party."`);
                       scene.actions([
                         { label: 'Agree', handler: (st: GameState) => {
@@ -375,6 +366,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
               }
             }
           }
+          (s as any).temp_rand = undefined;
         }
         if (((s as any).MiraVars ?? 0)?.['QW'] === 20  &&  ((s as any).locat ?? 0)?.['A60_loc'] !== 'gad_forest'  &&  ((s as any).hour ?? 0) < 19  &&  ((s as any).month ?? 0) >= 5  &&  ((s as any).month ?? 0) <= 9) {
           scene.actions([
@@ -386,7 +378,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
           qspCall(s, 'stat', '');
           if (((s as any).locat ?? 0)?.['A60_loc'] === 'gad_miroslava_home') {
             { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMiraclothes(s, scene); (s as any).locArgs = __savedLocArgs; }
-            // TODO-QSP: dynamic text: "<<$pcs_nickname>>, you''re fun to be with, but it''s late. I gotta get to bed. ...
             scene.text(`"${((s as any).pcs_nickname ?? '')}, you're fun to be with, but it's late. I gotta get to bed. Dad has chores for me to work on tomorrow." Mira tells you.`);
           } else {
             if (((s as any).locat ?? 0)?.['A60_loc'] === 'gad_beach') {
@@ -398,7 +389,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
             } else {
               { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMiraclothes(s, scene); (s as any).locArgs = __savedLocArgs; }
             }
-            // TODO-QSP: dynamic text: "<<$pcs_nickname>>, you''re fun to be with, but I gotta get home and get to bed....
             scene.text(`"${((s as any).pcs_nickname ?? '')}, you're fun to be with, but I gotta get home and get to bed. My dad has chores for me to work on tomorrow." Mira tells you.`);
           }
           { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterWearStrippedClothes(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -413,7 +403,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -565,7 +554,6 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
           qspCall(s, 'stat', '');
           if (((s as any).locat ?? 0)?.['A60_loc_prev'] === 'gad_miroslava_home') {
             { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMiraclothes(s, scene); (s as any).locArgs = __savedLocArgs; }
-            // TODO-QSP: dynamic text: "<<$pcs_nickname>>, you''re fun to be with, but my dad has chores for me to work...
             scene.text(`"${((s as any).pcs_nickname ?? '')}, you're fun to be with, but my dad has chores for me to work on," Mira tells you.`);
           } else {
             if (((s as any).locat ?? 0)?.['A60_loc'] === 'gad_beach') {
@@ -577,7 +565,6 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
             } else {
               { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMiraclothes(s, scene); (s as any).locArgs = __savedLocArgs; }
             }
-            // TODO-QSP: dynamic text: "<<$pcs_nickname>>, you''re fun to be with, but I gotta get home. My dad has cho...
             scene.text(`"${((s as any).pcs_nickname ?? '')}, you're fun to be with, but I gotta get home. My dad has chores for me to work on." Mira tells you.`);
           }
           { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterWearStrippedClothes(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -595,7 +582,6 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
             } else {
               { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMiraclothes(s, scene); (s as any).locArgs = __savedLocArgs; }
             }
-            // TODO-QSP: dynamic text: "<<$pcs_nickname>>, it''s so boring here," Mira pouts, "I know! Let''s go to you...
             scene.text(`"${((s as any).pcs_nickname ?? '')}, it's so boring here," Mira pouts, "I know! Let's go to your place." Mira suggests brightly.`);
             scene.actions([
               { label: 'Agree', handler: (st: GameState) => {
@@ -635,7 +621,6 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
               (s as any).minut = ((s as any).minut ?? 0) + 1;
               qspCall(s, 'stat', '');
               { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMiraclothes(s, scene); (s as any).locArgs = __savedLocArgs; }
-              // TODO-QSP: dynamic text: "<<$pcs_nickname>>, come watch TV with me. That''s boring -" Mira said.
               scene.text(`"${((s as any).pcs_nickname ?? '')}, come watch TV with me. That's boring -" Mira said.`);
               scene.actions([
                 { label: 'Agree', handler: (st: GameState) => {
@@ -645,7 +630,6 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     }
     qspCall(st, 'mood', 'raise', 'tiny');
     qspCall(st, 'stat', '');
-    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/gadukino/mira/mira_tv'+rand(1...
     scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/characters/gadukino/mira/mira_tv` + (Math.floor(Math.random() * 12) + 1) + '.jpg"></center>');
     scene.text('You watch TV with Mira for an hour.');
     scene.actions([
@@ -667,7 +651,6 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
                 (s as any).minut = ((s as any).minut ?? 0) + 1;
                 qspCall(s, 'stat', '');
                 { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMiraclothes(s, scene); (s as any).locArgs = __savedLocArgs; }
-                // TODO-QSP: dynamic text: "<<$pcs_nickname>>, can we go to the meadow?" Mira asked you. "Let''s take a wal...
                 scene.text(`"${((s as any).pcs_nickname ?? '')}, can we go to the meadow?" Mira asked you. "Let's take a walk and get some fresh air."`);
                 scene.actions([
                   { label: 'Agree', handler: (st: GameState) => {
@@ -701,7 +684,6 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
                   (s as any).minut = ((s as any).minut ?? 0) + 1;
                   qspCall(s, 'stat', '');
                   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMiraclothes(s, scene); (s as any).locArgs = __savedLocArgs; }
-                  // TODO-QSP: dynamic text: "<<$pcs_nickname>>, do you want to go to the river?" - Mira asks. "Let''s go swi...
                   scene.text(`"${((s as any).pcs_nickname ?? '')}, do you want to go to the river?" - Mira asks. "Let's go swim and sunbathe."`);
                   scene.actions([
                     { label: 'Agree', handler: (st: GameState) => {
@@ -737,7 +719,6 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
                     qspCall(s, 'stat', '');
                     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMiraclothes(s, scene); (s as any).locArgs = __savedLocArgs; }
                     scene.text('Mira wants to chat with you.');
-                    // TODO-QSP: dynamic text: "<<$pcs_nickname>>, do you want to just chat a little?" Mira asks.
                     scene.text(`"${((s as any).pcs_nickname ?? '')}, do you want to just chat a little?" Mira asks.`);
                     scene.actions([
                       { label: 'Chat', goto: ['miroslava', 'miratalk'] },
@@ -760,7 +741,6 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
                       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterWearStrippedClothes(s, scene); (s as any).locArgs = __savedLocArgs; }
                       qspCall(s, 'stat', '');
                       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMiraclothes(s, scene); (s as any).locArgs = __savedLocArgs; }
-                      // TODO-QSP: dynamic text: "<<$pcs_nickname>>, let''s hang out with those guys and drink a little?" Mira as...
                       scene.text(`"${((s as any).pcs_nickname ?? '')}, let's hang out with those guys and drink a little?" Mira asks you. "I'm bored and want to party."`);
                       scene.actions([
                         { label: 'Agree', handler: (st: GameState) => {
@@ -788,6 +768,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
               }
             }
           }
+          (s as any).temp_rand = undefined;
         }
         if (((s as any).MiraVars ?? 0)?.['QW'] === 20  &&  ((s as any).locat ?? 0)?.['A60_loc'] !== 'gad_forest'  &&  ((s as any).hour ?? 0) < 19  &&  ((s as any).month ?? 0) >= 5  &&  ((s as any).month ?? 0) <= 9) {
           scene.actions([
@@ -799,7 +780,6 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
           qspCall(s, 'stat', '');
           if (((s as any).locat ?? 0)?.['A60_loc'] === 'gad_miroslava_home') {
             { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMiraclothes(s, scene); (s as any).locArgs = __savedLocArgs; }
-            // TODO-QSP: dynamic text: "<<$pcs_nickname>>, you''re fun to be with, but it''s late. I gotta get to bed. ...
             scene.text(`"${((s as any).pcs_nickname ?? '')}, you're fun to be with, but it's late. I gotta get to bed. Dad has chores for me to work on tomorrow." Mira tells you.`);
           } else {
             if (((s as any).locat ?? 0)?.['A60_loc'] === 'gad_beach') {
@@ -811,7 +791,6 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
             } else {
               { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMiraclothes(s, scene); (s as any).locArgs = __savedLocArgs; }
             }
-            // TODO-QSP: dynamic text: "<<$pcs_nickname>>, you''re fun to be with, but I gotta get home and get to bed....
             scene.text(`"${((s as any).pcs_nickname ?? '')}, you're fun to be with, but I gotta get home and get to bed. My dad has chores for me to work on tomorrow." Mira tells you.`);
           }
           { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterWearStrippedClothes(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -826,7 +805,6 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -919,7 +897,6 @@ function enterCattleChoreActs(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Talk to Mira', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 60;
@@ -983,7 +960,6 @@ function enterWalkTogether(s: GameState, scene: SceneBuilder): void {
       ((s as any).MiraVars = (s as any).MiraVars ?? {})['guest'] = 0;
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterWearStrippedClothes(s, scene); (s as any).locArgs = __savedLocArgs; }
       qspCall(s, 'stat', '');
-      // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/gadukino/mira/girls_walking'+...
       scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/characters/gadukino/mira/girls_walking` + (Math.floor(Math.random() * 3) + 1) + '.jpg"></center>');
       scene.text('You invite her to wander around the village, and she gladly accepts. Then you walk together around the small village, telling each other different stories from your lives.');
       if (((s as any).GadBoy ?? 0)?.['river_gang'] === 2  &&  ((s as any).MiraVars ?? 0)?.['QW'] > 15  &&  ((s as any).hour ?? 0) >= 7  &&  ((s as any).hour ?? 0) < 20) {
@@ -1031,13 +1007,13 @@ function enterWalkTogether(s: GameState, scene: SceneBuilder): void {
             }
           }
         }
+        (s as any).temp_rand = undefined;
       }
       scene.actions([
         { label: 'Finish your walk', goto: ['miroslava', 'start'] },
       ]);
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1076,7 +1052,6 @@ function enterOfferGoMeadow(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1115,7 +1090,6 @@ function enterOfferDrinkBoys(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1157,7 +1131,6 @@ function enterOfferSteamBath(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1199,7 +1172,6 @@ function enterOfferGoRiver(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1240,7 +1212,6 @@ function enterOfferGoForest(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1253,7 +1224,6 @@ function enterWearStrippedClothes(s: GameState, scene: SceneBuilder): void {
     }
   }
   ((s as any).MiraVars = (s as any).MiraVars ?? {})['strip_loc'] = '';
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1298,7 +1268,6 @@ function enterGuestActs(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'npc_relationship', 'modify', 'A60', (Math.floor(Math.random() * 2) + 1));
     }
     qspCall(st, 'stat', '');
-    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/gadukino/mira/mira_tv'+rand(1...
     scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/characters/gadukino/mira/mira_tv` + (Math.floor(Math.random() * 12) + 1) + '.jpg"></center>');
     scene.text('You ask your grandparents if Mira can sleep over. They tell you it\'s okay with them, so you invite Mira to sleep over.');
     scene.text('You and Mira head over to the vast wardrobe where your clothes are and spend an hour trying on different dresses and underwear.');
@@ -1311,7 +1280,7 @@ function enterGuestActs(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: 'You''re feeling tired. You and Mira head to your bed and cr...
   }, goto: ['bed2', ''] },
       { label: 'Finish', handler: (st: GameState) => {
-    // TODO-QSP: MiraVars['guest'] = 0
+    ((st as any).MiraVars = (st as any).MiraVars ?? {})['guest'] = 0;
   }, goto: ['miroslava', 'leave'] },
     ]);
   } },
@@ -1325,7 +1294,6 @@ function enterGuestActs(s: GameState, scene: SceneBuilder): void {
     }
     qspCall(st, 'mood', 'raise', 'tiny');
     qspCall(st, 'stat', '');
-    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/gadukino/mira/mira_tv'+rand(1...
     scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/characters/gadukino/mira/mira_tv` + (Math.floor(Math.random() * 12) + 1) + '.jpg"></center>');
     scene.text('You and Mira watch TV for an hour.');
     scene.actions([
@@ -1349,7 +1317,6 @@ function enterGuestActs(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1360,7 +1327,6 @@ function enterThirdWish(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMiraclothes(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('You remind Mira about the third wish, and she reluctantly nods and says she remembers it. But, then, you act mysterious and, with a sinister smile, command her to follow you…');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Make Mira walk through village naked', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 15;
@@ -1375,7 +1341,6 @@ function enterThirdWish(s: GameState, scene: SceneBuilder): void {
     scene.text('You lead her to the center of the village square, in front of the market. Here, you turn to her and demand disdainfully that she undress. You tell her that this is your final wish and you will forgive her betrayal after she completes this task. Mira\'s mouth slowly drops open, and she looks at you as if you\'re insane.');
     scene.text('"Come on, you\'re like a little girl," you snort, "we both know you\'re a big whore and can\'t live without having cock every day. And now this is the mother load, entirely for free."');
     scene.text('Mira, in silence, looks at you and then looks around at the village street on which people walk about their business.');
-    // TODO-QSP: dynamic text: "<<$pcs_nickname>>, please don''t make this your wish. I will die of embarrassme...
     scene.text(`"${((st as any).pcs_nickname ?? '')}, please don't make this your wish. I will die of embarrassment!" - Mira plaintively begs, hoping it will change your mind.`);
     scene.actions([
       { label: 'Confirm your wish', handler: (st: GameState) => {
@@ -1404,7 +1369,6 @@ function enterThirdWish(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/characters/gadukino/mira/mira_nude3.jpg');
     scene.text('Finally flushed crimson, Mira arrives in the fields just beyond the village. She then turns and rushes up to you.');
-    // TODO-QSP: dynamic text: "<<$pcs_nickname>>, we''re even!" Mira states and looks at you imploringly.
     scene.text(`"${((st as any).pcs_nickname ?? '')}, we're even!" Mira states and looks at you imploringly.`);
     scene.text('You nod your head while handing her clothes back. After watching a few more minutes as Mira dresses, several of the village men are hooting as she sprints to her house. Slowly the men settle down and go about their business.');
     ((st as any).MiraVars = (st as any).MiraVars ?? {})['guest'] = 0;
@@ -1427,7 +1391,6 @@ function enterThirdWish(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/gadukino/mira/mira_leaves.jpg');
     scene.text('"Well, Mira, fuck you. I had a good day planned," You pause. "You can consider yourself forgiven,"');
     scene.text('The girl is still for several moments, shifts uncomfortably from foot to foot, unable to believe her ears, then jumps up to you and kisses you on the cheek.');
-    // TODO-QSP: dynamic text: "Thank you, <<$pcs_nickname>>, I… I…, "- she stammers before running home.
     scene.text(`"Thank you, ${((st as any).pcs_nickname ?? '')}, I… I…, "- she stammers before running home.`);
     scene.actions([
       { label: 'Finish', goto: ['gadukino', ''] },
@@ -1569,7 +1532,6 @@ function enterMiratalk(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/gadukino/mira/mira3.jpg');
     scene.text('You say you want to see Mitka fuck her ass because she told him your secret. Mira jumps to her feet from the suggestion and just looks at you. Still, you don\'t give her time to recover and continue to emphasize further, Recalling that a deal is a deal, and if your word doesn\'t matter, our friendship will end. Mira blushes and hesitantly shifts from foot to foot. Finally, you decide to go for broke, turn around and start to leave…');
     scene.text(' - Wait, so it\'s screaming at you in the back of Mira, but you pretend to not notice and go on.');
-    // TODO-QSP: dynamic text:  - Well, <<$pcs_nickname>>, - after a couple of seconds until you hear a hysteri...
     scene.text(` - Well, ${((st as any).pcs_nickname ?? '')}, - after a couple of seconds until you hear a hysterical scream from Mira, I'll think of something!`);
     scene.actions([
       { label: 'Leave', goto: ['miroslava', 'leave'] },
@@ -1595,7 +1557,6 @@ function enterMiratalk(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/gadukino/mira/mira3.jpg');
     scene.text('You tell her that what you want to see is Mitka fucking her in the ass. Mira jumps to her feet in shock and looks at you with disbelief. But you don\'t give her time to recover and continue to speak, emphasizing the deal she made with you, and if she can\'t uphold her end, then your friendship is at an end. Miroslava deeply blushes and hesitantly shifts from foot to foot, watching you. Finally, after a few seconds of silence, you nod your head, turn around, and start to leave…');
     scene.text('Mira shouts at you to stop, but you pretend to not hear her and keep walking on.');
-    // TODO-QSP: dynamic text: "Fine, <<$pcs_nickname>>, you win," Mira states loud enough for you to hear. She...
     scene.text(`"Fine, ${((st as any).pcs_nickname ?? '')}, you win," Mira states loud enough for you to hear. She is on the verge of hysteria, eyes watering and nose running. Mira nearly screams, "I, I'll figure something out!"`);
     scene.actions([
       { label: 'Leave', goto: ['miroslava', 'leave'] },
@@ -1668,7 +1629,6 @@ function enterMiratalk(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1681,19 +1641,15 @@ function enterMiraclothes(s: GameState, scene: SceneBuilder): void {
       scene.img('images/characters/gadukino/mira/mira3.jpg');
     } else {
       if (((s as any).MiraVars ?? 0)?.['QW'] >= 4  &&  ((s as any).MiraVars ?? 0)?.['QW'] < 8) {
-        // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/gadukino/mira/mira0,'+rand(0,...
         scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/characters/gadukino/mira/mira0,` + (Math.floor(Math.random() * 6) + 0) + '.jpg"></center>');
       } else {
         if (((s as any).MiraVars ?? 0)?.['QW'] >= 8  &&  ((s as any).MiraVars ?? 0)?.['QW'] < 12) {
-          // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/gadukino/mira/mira1,'+rand(0,...
           scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/characters/gadukino/mira/mira1,` + (Math.floor(Math.random() * 3) + 0) + '.jpg"></center>');
         } else {
           if (((s as any).MiraVars ?? 0)?.['QW'] >= 12  &&  ((s as any).MiraVars ?? 0)?.['QW'] < 20) {
-            // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/gadukino/mira/mira2,'+rand(0,...
             scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/characters/gadukino/mira/mira2,` + (Math.floor(Math.random() * 6) + 0) + '.jpg"></center>');
           } else {
             if (((s as any).MiraVars ?? 0)?.['QW'] >= 20) {
-              // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/gadukino/mira/mira3,'+rand(0,...
               scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/characters/gadukino/mira/mira3,` + (Math.floor(Math.random() * 4) + 0) + '.jpg"></center>');
             }
           }
@@ -1701,30 +1657,24 @@ function enterMiraclothes(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterMiraRiver(s: GameState, scene: SceneBuilder): void {
   if ((((s as any).clothingworntype ?? 0) !== 'nude'  &&  ((s as any).PSwim ?? 0) === 0)) {
-    // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/characters/gadukino/mira/mirarivertalk.jp...
     scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/characters/gadukino/mira/mirarivertalk.jpg"></center>`);
   }
   if (((s as any).PSwim ?? 0) === 1) {
-    // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/characters/gadukino/mira/mirarivertalkbik...
     scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/characters/gadukino/mira/mirarivertalkbikini.jpg"></center>`);
   }
   if (((s as any).clothingworntype ?? 0) === 'nude') {
-    // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/characters/gadukino/mira/mirarivernudetal...
     scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/characters/gadukino/mira/mirarivernudetalk.jpg"></center>`);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterLeave(s: GameState, scene: SceneBuilder): void {
   dynamicGoto(s, 'prevLoc', 'prevArg');
-  // TODO-QSP: end
   scene.build();
 }
 

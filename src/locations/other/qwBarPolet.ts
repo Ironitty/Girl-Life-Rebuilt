@@ -28,6 +28,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).BillHourDay ?? 0) !== ((s as any).daystart ?? 0)) {
     (s as any).BillHourDay = ((s as any).daystart ?? 0);
+    (s as any).BillHour = undefined;
     (s as any).VicArt_BillDay = 0;
     (s as any).temp = (Math.floor(Math.random() * 3) + 1);
     if (((s as any).temp ?? 0) === 1) {
@@ -36,13 +37,12 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).knowMartin ?? 0) === 0  &&  (!((s as any).RabotnikFirst ?? 0))) {
     (s as any).RabotnikFirst = 1;
+    alert('The different types of alcohol you can choose from give different (tiny) benefits to character attributes but they are mostly there for roleplaying reasons.');
   }
   scene.text('<center><b>Bar "Rabotnik"</b></center>');
   scene.img('images/locations/city/industrial/bar/bar.jpg');
   scene.text('As you enter the bar, you see that about a dozen regular tables and stools take up most of the room. A bar counter, right in front of you, dominates the center of the establishment. At the far end of it, near a door leading to the toilet, a doorway with a curtain leads to the obligatory pool table that rounds off the furniture.');
-  // TODO-QSP: dynamic text: 'This place has a rowdy air about it: The smell of spilled beer, schnaps, and a ...
   scene.text('This place has a rowdy air about it: The smell of spilled beer, schnaps, and a hint of vomit and blood are hard to miss, and some of the stools and billiard cues look like they\'ve been used in fights before. It is obviously a worker pub and not trying to be anything fancier than that, but that gives it an odd charm and coziness of its own' + ((((s as any).hour ?? 0) >= 16) ? (', and despite the hints of shadiness, you can hear plenty of laughter and friendly conversation') : ('')) + '. You doubt you\'ll get a fancy cocktail in here, though.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Exit to the street', goto: ['city_industrial', ''] },
     { label: 'Approach the bar', goto: ['qwBarPolet', 'bar'] },
@@ -64,14 +64,9 @@ function enterBar(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/industrial/bar/bar.jpg');
   if (((s as any).BillHour ?? 0) !== ((s as any).hour ?? 0)) {
     (s as any).BillHour = ((s as any).hour ?? 0);
-    // TODO-QSP: :bill_loop
-    (s as any).bill_rand = (Math.floor(Math.random() * 6) + 1);
-    if (((s as any).bill_rand ?? 0) === 0  &&  ((s as any).VicArt_BillDay ?? 0) === 1) {
-      // TODO-QSP: jump 'bill_loop'
-    }
-    if (((s as any).bill_rand ?? 0) === 1  &&  ((s as any).PBB_BillDay ?? 0) === 1) {
-      // TODO-QSP: jump 'bill_loop'
-    }
+    do {
+      (s as any).bill_rand = (Math.floor(Math.random() * 6) + 1);
+    } while (((s as any).bill_rand ?? 0) === 0  &&  ((s as any).VicArt_BillDay ?? 0) === 1 || ((s as any).bill_rand ?? 0) === 1  &&  ((s as any).PBB_BillDay ?? 0) === 1);
   }
   scene.text('Your eyes wander towards the backroom with the billiard table.');
   if (((s as any).bill_rand ?? 0) === 0  &&  (!((s as any).Jaska_Ev ?? 0))) {
@@ -184,7 +179,6 @@ function enterBar(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Order from the bar (0:05)', goto: ['qwBarPolet', 'Ordering'] },
     { label: 'Leave the bar', goto: ['qwBarPolet', ''] },
@@ -205,11 +199,10 @@ function enterDrinkingBooze(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).knowMartin ?? 0) !== 1) {
       (s as any).knowMartin = 1;
+      (s as any).RabotnikFirst = undefined;
       qspCall(s, 'npc_relationship', 'set', 'A216', 10);
       scene.text('The bartender brings your drink and looks at you. "What\'s your name, girl?", he asks. You raise your eyebrow - didn\'t he just read it on your ID?');
-      // TODO-QSP: dynamic text: "<<$pcs_firstname>>", you reply truthfully, taking a small sip from your beverag...
       scene.text(`"${((s as any).pcs_firstname ?? '')}", you reply truthfully, taking a small sip from your beverage.`);
-      // TODO-QSP: dynamic text: "Okay, <<$pcs_firstname>>. My name is Martin. This is my bar, and I don''t want ...
       scene.text(`"Okay, ${((s as any).pcs_firstname ?? '')}. My name is Martin. This is my bar, and I don't want any trouble here." You notice a faint accent you cannot quite place - maybe Spanish? "I know most people who come here by name, and most of them are good, honest men and women, but we are a rowdy bunch and tend to act more stupid than usual when pretty young girls are around."`);
       scene.text('You consider his words and look around the room. He\'s right: Several men seem to be eying you.');
       scene.text('"So… you don\'t want me to come here again?", you ask carefully.');
@@ -249,7 +242,6 @@ function enterDrinkingBooze(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -284,9 +276,8 @@ function enterOrdering(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     if (((s as any).alko ?? 0) >= 6) {
-      // TODO-QSP: iif(knowMartin=1, 'Martin', 'The burly barman') + ' musters you. "I think you''ve had enough."'
+      scene.text(((((s as any).knowMartin ?? 0)===1) ? ('Martin') : ('The burly barman')) + ' musters you. "I think you\'ve had enough."');
       scene.text('"I\'m fine", you assure him with a hint of a slur, "Just gimme one."');
-      // TODO-QSP: dynamic text: '"You can barely stand-up straight, ' + iif(knowMartin=1, '<<$pcs_firstname>>', ...
       scene.text('"You can barely stand-up straight, ' + ((((s as any).knowMartin ?? 0)===1) ? ('' + ((s as any).pcs_firstname ?? '') + '') : ('girl')) + '. And I sure as hell don\'t want a young woman like yourself to pass out in my bar. Go home, or at least sober up a bit."');
       scene.actions([
         { label: 'Can I have some water?', handler: (st: GameState) => {
@@ -336,6 +327,7 @@ function enterOrdering(s: GameState, scene: SceneBuilder): void {
         } else {
           if (((s as any).knowMartin ?? 0) === 2  &&  ((s as any).age ?? 0) >= 18) {
             (s as any).knowMartin = 1;
+            (s as any).RabotnikFirst = undefined;
             qspCall(s, 'npc_relationship', 'modify', 'A216', 10);
             scene.text('"Here," you hand him your new, genuine ID.');
             scene.text('"Not a fake one again, I hope," he growls and examines it closely.');
@@ -371,7 +363,6 @@ function enterOrdering(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -400,7 +391,6 @@ function enterRandomDrinkEvents(s: GameState, scene: SceneBuilder): void {
       scene.text('Martin nods and prepares your beverage, then places it in front of you.');
       scene.text('"Thank you," you smile at him and earn a half-smile in return before he leaves you to yourself.');
       scene.text('With nobody to talk to, your eyes drift around the bar until they come to rest on a nearby table where the patrons are playing poker. That alone would be boring to watch from afar, but you are looking right into the hand of one of the players, and he seems to have four jacks.');
-      // TODO-QSP: dynamic text: Curious as to how this is going to turn out (or maybe just for lack of better en...
       scene.text(`Curious as to how this is going to turn out (or maybe just for lack of better entertainment), you watch as one of the other players folds while the remaining three raise each other until their pot contains some ${qspFunc(s, 'money', 'format', 1000)} - not a very impressive win to some, but enough for a couple of rounds of beer, or a decent bottle of vodka.`);
       scene.text('The other two look confident.');
       scene.text('One reveals three queens… and curses loudly when the second puts down a full house, a smug grin on his face.');
@@ -442,7 +432,7 @@ function enterRandomDrinkEvents(s: GameState, scene: SceneBuilder): void {
           scene.text('"Yeah, mine doesn\'t want to, either," the first one laughs, "but at least this way the sluts around town are making my way home more interesting."');
           scene.text('The third one raises his glass. "To sluts!" The other two join in, down their drinks and order another round while the first describes another public exposure he has witnessed.');
           scene.text('Only now that their storytime is over do you notice how enthralled you were by it, how you pictured that woman being molested in public… and that the thought aroused you a little.');
-          // TODO-QSP: $OpenInnerThought + 'Maybe I should ride the metro more often.' + $CloseInnerThought
+          scene.text('$OpenInnerThought + \'Maybe I should ride the metro more often.\' + $CloseInnerThought');
           scene.actions([
             { label: 'Finish your drink', goto: ['qwBarPolet', 'bar'] },
           ]);
@@ -488,7 +478,7 @@ function enterRandomDrinkEvents(s: GameState, scene: SceneBuilder): void {
                 scene.text('Instead, he starts telling you a tale of woe: His "bitch wife" finally left him last week, his "ungrateful kids" refuse to talk to him anymore and he just lost his job today "because of that fuckin\' asshole of a boss". He\'s slurring most of his story, but all the curses come out clearly articulated.');
                 scene.text('He talks about how the world has gone to shit and how a man can no longer be a man without someone stepping on him… then more or less starts over, apparently not remembering that he already told you about his "bitch wife".');
                 scene.text('You are feeling genuinely sympathetic towards him… but you are quite happy nonetheless when he finally falls unconscious right in the middle of the sentence and starts drooling on the counter.');
-                // TODO-QSP: $OpenInnerThought + 'They can take his job, but they can never take his dignity,' + $CloseInnerThoug...
+                scene.text('$OpenInnerThought + \'They can take his job, but they can never take his dignity,\' + $CloseInnerThought + \' you think to yourself with a smirk.\'');
                 scene.actions([
                   { label: 'Finish your drink', goto: ['qwBarPolet', 'bar'] },
                 ]);
@@ -530,7 +520,7 @@ function enterRandomDrinkEvents(s: GameState, scene: SceneBuilder): void {
                         (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + ((Math.floor(Math.random() * 3) + 1));
                       }
                       scene.img('images/locations/city/industrial/bar/event4.jpg');
-                      // TODO-QSP: '"Right away," Martin says. With practiced ease, he pours you a beverage and sets it in front of you...
+                      scene.text('"Right away," Martin says. With practiced ease, he pours you a beverage and sets it in front of you. You can say little more than a "thank you" before he has to move on to the next customer. ' + ((s as any).OpenInnerThought ?? '') + 'Busy night.' + ((s as any).CloseInnerThought ?? ''));
                       scene.text('As you sip on your drink, you let your mind and your eyes wander and- wait, what was that?');
                       scene.text('Your eyes focus on a woman, not too far from you. At first you thought you were seeing things but now you\'re sure: She is sitting there, her legs spread just enough to reveal that she has no panties on under her dress!');
                       scene.text('And she doesn\'t seem embarrassed about it, either - on the contrary: She is biting her finger lasciviously as she\'s looking around the bar, daring fate to make somebody notice her lack of underwear. It doesn\'t take much of a detective to realize that she enjoys the risk of public exposure.');
@@ -623,7 +613,6 @@ function enterRandomDrinkEvents(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 

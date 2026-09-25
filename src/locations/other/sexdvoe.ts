@@ -12,7 +12,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   (s as any).guy = ((s as any).guy ?? 0) + (2);
   (s as any).picrand = (Math.floor(Math.random() * 2) + 0);
   qspGoto(s, 'sexdvoe', 'var');
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -99,7 +98,6 @@ function enterMenu(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Let them choose', handler: (st: GameState) => {
     if (((st as any).BlowBan ?? 0) === 1  &&  ((st as any).DoubleBan ?? 0) !== 1) {
@@ -142,7 +140,6 @@ function enterVar(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/shared/sex/sexdvoe/kiss.jpg');
   scene.text('After some kissing, it is time to move on to the next stage.');
   qspGoto(s, 'sexdvoe', 'menu');
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -170,7 +167,6 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'cum_call', '', (((s as any).npcID ?? 0)?.[0] ?? 0));
       } else {
         if (((s as any).sexdvoeloc ?? 0) === 1) {
-          // TODO-QSP: dynamic text: Both of them fuck you, <<$boydesc[1]>> in your ass, <<$boydesc[0]>> in your puss...
           scene.text(`Both of them fuck you, ${(((s as any).boydesc ?? 0)?.[1] ?? '')} in your ass, ${(((s as any).boydesc ?? 0)?.[0] ?? '')} in your pussy. The double friction gives you great pleasure as they are pumping in and out of your body in tandem.`);
           qspCall(s, 'arousal', 'vaginal', 10, (((s as any).npcID ?? 0)?.[0] ?? 0), 'sub');
           qspCall(s, 'arousal', 'anal', (-10), (((s as any).npcID ?? 0)?.[1] ?? 0), 'sub');
@@ -182,7 +178,6 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
             qspCall(s, 'cum_call', '', (((s as any).npcID ?? 0)?.[0] ?? 0));
           }
         } else {
-          // TODO-QSP: dynamic text: Both of them fuck you, <<$npcdesc[0]>> in your ass, <<$npcdesc[1]>> in your puss...
           scene.text(`Both of them fuck you, ${(((s as any).npcdesc ?? 0)?.[0] ?? '')} in your ass, ${(((s as any).npcdesc ?? 0)?.[1] ?? '')} in your pussy. The double friction gives you great pleasure as they are pumping in and out of your body in tandem.`);
           qspCall(s, 'arousal', 'vaginal', 10, (((s as any).npcID ?? 0)?.[1] ?? 0), 'sub');
           qspCall(s, 'arousal', 'anal', (-10), (((s as any).npcID ?? 0)?.[0] ?? 0), 'sub');
@@ -207,7 +202,6 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
           qspCall(s, 'cum_call', '', (((s as any).npcID ?? 0)?.[0] ?? 0));
         } else {
           if (((s as any).sexdvoeloc ?? 0) === 3) {
-            // TODO-QSP: dynamic text: While <<$npcdesc[0]>> is fucking your pussy, you diligently suck off <<$npcdesc[...
             scene.text(`While ${(((s as any).npcdesc ?? 0)?.[0] ?? '')} is fucking your pussy, you diligently suck off ${(((s as any).npcdesc ?? 0)?.[1] ?? '')}.`);
             qspCall(s, 'arousal', 'vaginal', 10, (((s as any).npcID ?? 0)?.[0] ?? 0), 'sub');
             qspCall(s, 'arousal', 'bj', (-10), (((s as any).npcID ?? 0)?.[1] ?? 0), 'sub');
@@ -219,7 +213,6 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
               qspCall(s, 'cum_call', '', (((s as any).npcID ?? 0)?.[0] ?? 0));
             }
           } else {
-            // TODO-QSP: dynamic text: While <<$npcdesc[1]>> is fucking your pussy, you diligently suck off <<$npcdesc[...
             scene.text(`While ${(((s as any).npcdesc ?? 0)?.[1] ?? '')} is fucking your pussy, you diligently suck off ${(((s as any).npcdesc ?? 0)?.[0] ?? '')}.`);
             qspCall(s, 'arousal', 'vaginal', 10, (((s as any).npcID ?? 0)?.[1] ?? 0), 'sub');
             qspCall(s, 'arousal', 'bj', (-10), (((s as any).npcID ?? 0)?.[0] ?? 0), 'sub');
@@ -240,12 +233,10 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
           qspCall(s, 'arousal', 'bj', (-10), (((s as any).npcID ?? 0)?.[1] ?? 0), 'sub');
         } else {
           if (((s as any).sexdvoeloc ?? 0) === 3) {
-            // TODO-QSP: dynamic text: While <<$npcdesc[0]>> is fucking your ass, you diligently suck off <<$npcdesc[1]...
             scene.text(`While ${(((s as any).npcdesc ?? 0)?.[0] ?? '')} is fucking your ass, you diligently suck off ${(((s as any).npcdesc ?? 0)?.[1] ?? '')}.`);
             qspCall(s, 'arousal', 'anal', 10, (((s as any).npcID ?? 0)?.[0] ?? 0), 'sub');
             qspCall(s, 'arousal', 'bj', (-10), (((s as any).npcID ?? 0)?.[1] ?? 0), 'sub');
           } else {
-            // TODO-QSP: dynamic text: While <<$npcdesc[1]>> is fucking your ass, you diligently suck off <<$npcdesc[0]...
             scene.text(`While ${(((s as any).npcdesc ?? 0)?.[1] ?? '')} is fucking your ass, you diligently suck off ${(((s as any).npcdesc ?? 0)?.[0] ?? '')}.`);
             qspCall(s, 'arousal', 'anal', 10, (((s as any).npcID ?? 0)?.[1] ?? 0), 'sub');
             qspCall(s, 'arousal', 'bj', (-10), (((s as any).npcID ?? 0)?.[0] ?? 0), 'sub');
@@ -267,13 +258,15 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
   } else {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterEnd(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'sweat', 'add', 10);
   (s as any).minut = ((s as any).minut ?? 0) + 10;
+  (s as any).sexvar = undefined;
+  (s as any).sameboy = undefined;
+  (s as any).sexstart = undefined;
   if ((!((s as any).sexdvoeloc ?? 0))) {
     (s as any).temp = (Math.floor(Math.random() * 6) + 0);
     if ((!((s as any).temp ?? 0))) {
@@ -285,6 +278,7 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'cum_call', 'mouth', (((s as any).npcID ?? 0)?.[0] ?? 0), ((((s as any).knownboy ?? 0)[0] === 1) ? (1) : (0)));
       }
     }
+    (s as any).temp = undefined;
     (s as any).temp = (Math.floor(Math.random() * 6) + 0);
     if ((!((s as any).temp ?? 0))) {
       qspCall(s, 'cum_call', 'hair', (((s as any).npcID ?? 0)?.[1] ?? 0), ((((s as any).knownboy ?? 0)[1] === 1) ? (1) : (0)));
@@ -295,6 +289,7 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'cum_call', 'mouth', (((s as any).npcID ?? 0)?.[1] ?? 0), ((((s as any).knownboy ?? 0)[1] === 1) ? (1) : (0)));
       }
     }
+    (s as any).temp = undefined;
     scene.text('With a groan, they both cum, mostly in your mouth, but some may have gotten on your face too.');
   } else {
     if (((s as any).sexdvoeloc ?? 0) === 1) {
@@ -303,7 +298,6 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
       if (((s as any).sameboy ?? 0) === 1) {
         scene.text('They groan, and you feel the copious amount of their seed they both pump inside your body at the same time.');
       } else {
-        // TODO-QSP: dynamic text: They both groan, and you feel <<$npcdesc[0]>> pump your pussy full of his seed, ...
         scene.text(`They both groan, and you feel ${(((s as any).npcdesc ?? 0)?.[0] ?? '')} pump your pussy full of his seed, while ${(((s as any).npcdesc ?? 0)?.[1] ?? '')}'s semen is released in your ass.`);
       }
     } else {
@@ -313,7 +307,6 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
         if (((s as any).sameboy ?? 0) === 1) {
           scene.text('They groan, and you feel the copious amount of their seed they both pump inside your body at the same time.');
         } else {
-          // TODO-QSP: dynamic text: They both groan, and you feel <<$npcdesc[1]>> pump your pussy full of his seed, ...
           scene.text(`They both groan, and you feel ${(((s as any).npcdesc ?? 0)?.[1] ?? '')} pump your pussy full of his seed, while ${(((s as any).npcdesc ?? 0)?.[0] ?? '')}'s semen is released in your ass.`);
         }
       } else {
@@ -321,10 +314,8 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
           qspCall(s, 'cum_call', '', (((s as any).npcID ?? 0)?.[0] ?? 0), ((((s as any).knownboy ?? 0)[0] === 1) ? (1) : (0)));
           qspCall(s, 'cum_call', 'mouth', (((s as any).npcID ?? 0)?.[1] ?? 0), ((((s as any).knownboy ?? 0)[1] === 1) ? (1) : (0)));
           if (((s as any).sameboy ?? 0) === 1) {
-            // TODO-QSP: dynamic text: They groan, and you have to swallow one of the <<$npcdesc[0]>>''s seed while the...
             scene.text(`They groan, and you have to swallow one of the ${(((s as any).npcdesc ?? 0)?.[0] ?? '')}'s seed while the other pumps your pussy full of his own.`);
           } else {
-            // TODO-QSP: dynamic text: They both groan, and you have to swallow <<$npcdesc[1]>>''s seed while <<$npcdes...
             scene.text(`They both groan, and you have to swallow ${(((s as any).npcdesc ?? 0)?.[1] ?? '')}'s seed while ${(((s as any).npcdesc ?? 0)?.[0] ?? '')} pumps your pussy full of his own.`);
           }
         } else {
@@ -332,10 +323,8 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
             qspCall(s, 'cum_call', '', (((s as any).npcID ?? 0)?.[1] ?? 0), ((((s as any).knownboy ?? 0)[1] === 1) ? (1) : (0)));
             qspCall(s, 'cum_call', 'mouth', (((s as any).npcID ?? 0)?.[0] ?? 0), ((((s as any).knownboy ?? 0)[0] === 1) ? (1) : (0)));
             if (((s as any).sameboy ?? 0) === 1) {
-              // TODO-QSP: dynamic text: They groan, and you have to swallow one of the <<$npcdesc[0]>>''s seed while the...
               scene.text(`They groan, and you have to swallow one of the ${(((s as any).npcdesc ?? 0)?.[0] ?? '')}'s seed while the other pumps your pussy full of his own.`);
             } else {
-              // TODO-QSP: dynamic text: They both groan, and you have to swallow <<$npcdesc[0]>>''s seed while <<$npcdes...
               scene.text(`They both groan, and you have to swallow ${(((s as any).npcdesc ?? 0)?.[0] ?? '')}'s seed while ${(((s as any).npcdesc ?? 0)?.[1] ?? '')} pumps your pussy full of his own.`);
             }
           } else {
@@ -345,7 +334,6 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
               if (((s as any).sameboy ?? 0) === 1) {
                 scene.text('They groan at the same time, and you feel the taste of one of the guys as he cums inside your mouth, while the other one pumps your ass full of his own semen.');
               } else {
-                // TODO-QSP: dynamic text: They groan at the same time, and you feel the taste of <<$npcdesc[1]>>''s seed a...
                 scene.text(`They groan at the same time, and you feel the taste of ${(((s as any).npcdesc ?? 0)?.[1] ?? '')}'s seed as he cums inside your mouth, while ${(((s as any).npcdesc ?? 0)?.[0] ?? '')} pumps your ass full of his semen.`);
               }
             } else {
@@ -354,7 +342,6 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
               if (((s as any).sameboy ?? 0) === 1) {
                 scene.text('They groan at the same time, and you feel the taste of one of the guys as he cums inside your mouth, while the other one pumps your ass full of his own semen.');
               } else {
-                // TODO-QSP: dynamic text: They groan at the same time, and you feel the taste of <<$npcdesc[0]>>''s seed a...
                 scene.text(`They groan at the same time, and you feel the taste of ${(((s as any).npcdesc ?? 0)?.[0] ?? '')}'s seed as he cums inside your mouth, while ${(((s as any).npcdesc ?? 0)?.[1] ?? '')} pumps your ass full of his semen.`);
               }
             }
@@ -363,6 +350,7 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  (s as any).sexdvoeloc = undefined;
   qspCall(s, 'arousal', 'end');
   if (((s as any).pcs_horny ?? 0) >= 80) {
     (s as any).orgasm_or = 'yes';
@@ -371,10 +359,10 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
     scene.text('When it ends, boss says that you did well and today you are free and can go.');
   }
   if (((s as any).picrand ?? 0) === 39) {
-    // TODO-QSP: dynamic text: Then <<$npcdesc[0]>> throws you out of the apartment.
     scene.text(`Then ${(((s as any).npcdesc ?? 0)?.[0] ?? '')} throws you out of the apartment.`);
   }
-  // TODO-QSP: end
+  (s as any).knownboy = undefined;
+  (s as any).knwn = undefined;
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     if (((st as any).picrand ?? 0) >= 24  &&  ((st as any).picrand ?? 0) <= 26) {
@@ -408,12 +396,10 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
 function enter(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') > 0) {
     (s as any).knwn = ((s as any).locArgs?.[1] ?? 0);
-    // TODO-QSP: :knownloop
-    ((s as any).knownboy = (s as any).knownboy ?? {})[String((s as any).knwn ?? 0)] = 1;
-    (s as any).knwn = ((s as any).knwn ?? 0) - (1);
-    if (((s as any).knwn ?? 0) > 0) {
-      // TODO-QSP: jump 'knownloop'
-    }
+    do {
+      ((s as any).knownboy = (s as any).knownboy ?? {})[String((s as any).knwn ?? 0)] = 1;
+      (s as any).knwn = ((s as any).knwn ?? 0) - (1);
+    } while (((s as any).knwn ?? 0) > 0);
   }
   const arg = s.locArg;
   switch (arg) {

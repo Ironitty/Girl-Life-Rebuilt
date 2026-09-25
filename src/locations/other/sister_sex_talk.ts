@@ -197,7 +197,7 @@ function enterSexTalk1(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
+  (s as any).temp = undefined;
   scene.build();
 }
 
@@ -214,7 +214,6 @@ function enterSexTalkContinue(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Move away', handler: (st: GameState) => {
     dynamicGoto(st, 'prevLoc', 'prevArg');
@@ -227,7 +226,6 @@ function enterSexTalkContinue(s: GameState, scene: SceneBuilder): void {
 function enterVirginAsk(s: GameState, scene: SceneBuilder): void {
   ((s as any).sisterQW = (s as any).sisterQW ?? {})['ask_virgin'] = ((s as any).daystart ?? 0);
   scene.img('images/characters/pavlovsk/resident/anya/home/sister_chat.jpg');
-  // TODO-QSP: dynamic text: "What about you, <<$pcs_nickname>>? Have you popped your cherry yet?"
   scene.text(`"What about you, ${((s as any).pcs_nickname ?? '')}? Have you popped your cherry yet?"`);
   if (((s as any).virgin_stats ?? 0)?.['taker_ID'] === 'A16') {
     scene.actions([
@@ -248,7 +246,6 @@ function enterVirginAsk(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
     scene.img('images/characters/pavlovsk/resident/anya/home/sisboyqw_07.jpg');
-    // TODO-QSP: dynamic text: Anya clearly didn''t expect your outburst. "Sorry <<$pcs_nickname>>, but sex wit...
     scene.text(`Anya clearly didn't expect your outburst. "Sorry ${((st as any).pcs_nickname ?? '')}, but sex with a girl doesn't count. You'll meet the right guy one day…"`);
     scene.text('You\'ve heard enough at this point. "Really?! Maybe you should look in the mirror there! <i>I like girls</i> and I shared a special moment with my <i>girlfriend</i>, but you\'re clearly not interested, so I\'m not going to waste my breath!"');
     scene.text('Before Anya can say anything, you storm out of the room, slamming the door behind you to prevent any further discussion.');
@@ -289,7 +286,6 @@ function enterVirginAsk(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
     scene.img('images/characters/pavlovsk/resident/anya/home/sisboyqw_07.jpg');
-    // TODO-QSP: dynamic text: Anya clearly didn''t expect your outburst. "Sorry <<$pcs_nickname>>, but sex wit...
     scene.text(`Anya clearly didn't expect your outburst. "Sorry ${((st as any).pcs_nickname ?? '')}, but sex with a girl doesn't count. You'll meet the right guy one day…"`);
     scene.text('You\'ve heard enough at this point. "Well you\'re clearly not interested, so I\'m not going to waste my breath!"');
     scene.text('Before Anya can say anything, you storm out of the room, slamming the door behind you to prevent any further discussion.');
@@ -330,13 +326,11 @@ function enterVirginAsk(s: GameState, scene: SceneBuilder): void {
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSexTalkContinue(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
           { label: '', labelFn: (s: GameState) => 'I don\'t want to upset ' + String((((s as any).npc_nickname ?? 0)?.['A29'] ?? '') ?? ''), handler: (st: GameState) => {
-    // TODO-QSP: dynamic text: You shake your head. "Not yet. I don''t want to upset <<$npc_nickname[''A29'']>>...
     scene.text(`You shake your head. "Not yet. I don't want to upset ${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')}, so I'm holding off."`);
     scene.text('Your sister nods. "That\'s probably a good idea. Mom was <i>pissed</i> when she found out I lost my virginity, but not as pissed as when she went to spank me and saw my asshole…"');
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSexTalkContinue(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
           { label: '', labelFn: (s: GameState) => 'I don\'t want to deal with ' + String((((s as any).npc_nickname ?? 0)?.['A29'] ?? '') ?? ''), handler: (st: GameState) => {
-    // TODO-QSP: dynamic text: "Not yet," you say with a huff. "I want to, but with <<$npc_nickname[''A29'']>> ...
     scene.text(`"Not yet," you say with a huff. "I want to, but with ${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')} breathing down my neck, I don't want to deal with it when she finds out."`);
     scene.text('Your sister nods. "That\'s probably a good idea. Mom was <i>pissed</i> when she found out I lost my virginity, but not as pissed as when she went to spank me and saw my asshole…"');
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSexTalkContinue(st, scene); (st as any).locArgs = __savedLocArgs; }
@@ -367,7 +361,6 @@ function enterVirginAsk(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -378,7 +371,6 @@ function enterFirstTime(s: GameState, scene: SceneBuilder): void {
     scene.text('"It was…" You wince as the memory comes back to you. "It actually hurt a lot. Seriously, it was so painful, I thought I was going to die!"');
     scene.text('"I have a few girlfriends who said their first time was like that too," Anya says, nodding sagely. "My first time, there was a little prick of pain, but I only remember feeling good after that."');
     scene.text('"You were lucky then," you say, pouting as Anya laughs.');
-    // TODO-QSP: dynamic text: "Don''t worry <<$pcs_nickname>>. They all said that it gets a lot better after t...
     scene.text(`"Don't worry ${((st as any).pcs_nickname ?? '')}. They all said that it gets a lot better after the first time. You just need a little more pussy practice."`);
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSexTalkContinue(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
@@ -444,7 +436,6 @@ function enterFirstTime(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -489,7 +480,7 @@ function enterShaveTalk(s: GameState, scene: SceneBuilder): void {
         { label: 'I feel the same way', handler: (st: GameState) => {
     scene.text('"I know what you mean," you nod sympathetically. "I hate shaving too, but I know how much boys love it so I do it anyway."');
     if (((st as any).brotherQW ?? 0)?.['Sex'] >= 7) {
-      // TODO-QSP: $OpenInnerThought + 'One boy in particular…' + $CloseInnerThought + ' you add to yourself silently, ...
+      scene.text('$OpenInnerThought + \'One boy in particular…\' + $CloseInnerThought + \' you add to yourself silently, thinking of Kolka. It\'s not like you can tell your sister about that though…\'');
     }
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSexTalkContinue(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
@@ -529,7 +520,6 @@ function enterShaveTalk(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -551,7 +541,6 @@ function enterPenetrationCum(s: GameState, scene: SceneBuilder): void {
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSexTalkContinue(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -559,7 +548,6 @@ function enterAnalVirginity(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/sex/anal/doggy/anal23.jpg');
   scene.text('"Two of my best friends both got their cherry popped by a guy we all hang out with. He was about <i>this close</i> to talking me into giving up mine, but I changed my mind at the last second. I would\'ve let him, but I was still too scared of mom finding out, so I let him fuck my ass instead!" your sister giggles. "Turns out, that was his first ass fucking too. Made me feel special."');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSexTalkContinue(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -580,7 +568,6 @@ function enterBlackSex(s: GameState, scene: SceneBuilder): void {
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSexTalkContinue(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       if (((s as any).DjibrilQW ?? 0)?.['anya_count'] !== 0) {
-        // TODO-QSP: dynamic text: "Getting fucked by Djibril was a great way to satisfy my curiosity about black g...
         scene.text(`"Getting fucked by Djibril was a great way to satisfy my curiosity about black guys. Thanks for introducing me to him, ${((s as any).pcs_nickname ?? '')}."`);
         scene.text('"Anything for my big slut of a big sister," you reply with a grin.');
         scene.text('"Hey!" she giggles and you laugh before the two of you talk about what it was like and why it\'s taboo.');
@@ -677,7 +664,6 @@ function enterBlackSex(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -685,7 +671,6 @@ function enterStylePreference(s: GameState, scene: SceneBuilder): void {
   ((s as any).sisterQW = (s as any).sisterQW ?? {})['sexstyletalk'] = 1;
   scene.img('images/characters/pavlovsk/resident/anya/home/sister_chat.jpg');
   scene.text('"Do you prefer rough sex or gentle sex?" Anya asks.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Gentle', handler: (st: GameState) => {
     scene.text('"I like it gentle," you reply. "I don\'t like feeling like I\'m getting fucked to death. When it\'s slow and gentle, I can feel everything and concentrate on it."');
@@ -707,7 +692,6 @@ function enterSpitOrSwallow(s: GameState, scene: SceneBuilder): void {
   ((s as any).sisterQW = (s as any).sisterQW ?? {})['spitswallowtalk'] = 1;
   scene.img('images/characters/pavlovsk/resident/anya/home/sister_chat.jpg');
   scene.text('"When you blow a guy, do you spit or swallow?" Anya asks.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Spit', handler: (st: GameState) => {
     scene.actions([

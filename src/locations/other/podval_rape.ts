@@ -9,7 +9,6 @@ function enter(s: GameState, scene: SceneBuilder): void {
   (s as any).boydesc2 = ((s as any).boydesc ?? 0);
   if ((!((s as any).podvalrape ?? 0))) {
     scene.text('You try to focus your view, to see where you are. It looks like a basement… there are no windows anywhere, and the room is rather dark. The guys push you down onto a dirty mattress in the room. Other than a lot of empty bottles and the mattress you\'re on, the room is empty. You guess this is where they often take girls they meet in the park.');
-    // TODO-QSP: dynamic text: The <<$placerStringParameter[''text_someone'']>> are discussing among themselves...
     scene.text(`The ${(((s as any).placerStringParameter ?? 0)?.['text_someone'] ?? '')} are discussing among themselves: "Alright guys, we got the slut here. I'm surprised she came so readily. Anyway… who gets to go first this time?"`);
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
@@ -72,7 +71,6 @@ function enter(s: GameState, scene: SceneBuilder): void {
           scene.actions([
             { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/park/gop/sex/gop/podval_end.jpg');
-    // TODO-QSP: dynamic text: Finally the Gopniks are finished with you. They talk loudly about what a good fu...
     scene.text(`Finally the Gopniks are finished with you. They talk loudly about what a good fuck you were while they get dressed. When they realize you're too drunk to get dressed, they help you pull your clothes back on and sloppily button them up, before they drag you outside and put you down against the wall of the house. ${((st as any).boydesc2 ?? '')} slaps your face and tells you: "You should be able to find your own way home, we have places to be. You were a good fuck, ${((st as any).pcs_nickname ?? '')}. Come look us up in the park again if you want more where that came from."`);
     scene.text('You slump to a seated position holding your throbbing head in your hands. You can\'t clearly remember enough to be sure if you started things or if they raped you but you know what you need more than anything is to find your way home and to your own bed.');
     qspCall(st, 'arousal', 'end');

@@ -10,7 +10,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   ((s as any).sleepVars = (s as any).sleepVars ?? {})['no_sleep_loss'] = 1;
   qspGoto(s, 'wakeup', 'mod_sleeptriggers');
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -20,7 +19,6 @@ function enterWake(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   ((s as any).sleepVars = (s as any).sleepVars ?? {})['no_sleep_loss'] = 1;
   qspGoto(s, 'wakeup', 'mod_sleeptriggers');
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -30,14 +28,12 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   ((s as any).sleepVars = (s as any).sleepVars ?? {})['no_sleep_loss'] = 1;
   qspGoto(s, 'wakeup', 'mod_sleeptriggers');
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterModSleeptriggers(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'mod_system', 'sleep', 'wakeup', 'mod_sleeptriggers');
   qspGoto(s, 'wakeup_events', 'start');
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -45,27 +41,22 @@ function enterGetOut(s: GameState, scene: SceneBuilder): void {
   ((s as any).droutine = (s as any).droutine ?? {})['woke_at_min'] = ((s as any).totminut ?? 0);
   ((s as any).sleepVars = (s as any).sleepVars ?? {})['time_now'] = ((s as any).daystart ?? 0) * 1440 + ((s as any).hour ?? 0) * 60 + ((s as any).minut ?? 0);
   if (((s as any).sleepVars ?? 0)?.['slept_in'] === 1) {
-    // TODO-QSP: dynamic text: You wake up at <b><<func(''time'', ''get_time_string'', hour, minut, cheatVars['...
     scene.text(`You wake up at <b>${qspFunc(s, 'time', 'get_time_string', ((s as any).hour ?? ''), ((s as any).minut ?? ''), (((s as any).cheatVars ?? 0)?.['time_format'] ?? ''))}</b>, after sleeping-in a little longer than planned, but at least you've had plenty of sleep.`);
   } else {
     if (((s as any).pcs_sleep ?? 0) >= 100) {
       if (((s as any).alarmVars ?? 0)?.['alarmOn'] === 1) {
         if (((s as any).sleepVars ?? 0)?.['time_now'] < ((s as any).sleepVars ?? 0)?.['alarm_time'] - 15) {
-          // TODO-QSP: dynamic text: You wake up at <b><<func(''time'', ''get_time_string'', hour, minut, cheatVars['...
           scene.text(`You wake up at <b>${qspFunc(s, 'time', 'get_time_string', ((s as any).hour ?? ''), ((s as any).minut ?? ''), (((s as any).cheatVars ?? 0)?.['time_format'] ?? ''))}</b>, well before your alarm goes off. You've had plenty of sleep.`);
         } else {
-          // TODO-QSP: dynamic text: You wake up at <b><<func(''time'', ''get_time_string'', hour, minut, cheatVars['...
           scene.text(`You wake up at <b>${qspFunc(s, 'time', 'get_time_string', ((s as any).hour ?? ''), ((s as any).minut ?? ''), (((s as any).cheatVars ?? 0)?.['time_format'] ?? ''))}</b>, just before your alarm goes off. You've had plenty of sleep.`);
         }
       } else {
-        // TODO-QSP: dynamic text: You wake up at <b><<func(''time'', ''get_time_string'', hour, minut, cheatVars['...
         scene.text(`You wake up at <b>${qspFunc(s, 'time', 'get_time_string', ((s as any).hour ?? ''), ((s as any).minut ?? ''), (((s as any).cheatVars ?? 0)?.['time_format'] ?? ''))}</b> no longer tired and ready to start the day with plenty of sleep.`);
       }
     } else {
       if (((s as any).alarmVars ?? 0)?.['alarmOn'] === 1  &&  ((s as any).sleepVars ?? 0)?.['time_now'] === ((s as any).sleepVars ?? 0)?.['alarm_time']) {
         qspCall(s, 'mood', 'lower', 'tiny');
-        // TODO-QSP: dynamic text: 'Your alarm goes off at <b><<func(''time'', ''get_time_string'', hour, minut, ch...
-        scene.text('Your alarm goes off at <b>' + qspFunc(s, 'time', 'get_time_string', ((s as any).hour ?? ''), ((s as any).minut ?? ''), (((s as any).cheatVars ?? 0)?.['time_format'] ?? '')) + '</b>, \'+iif(pcs_sleep < 90, \'but you could do with some extra sleep.\', \'and you\'ve had plenty of sleep.\')+\'');
+        scene.text(`Your alarm goes off at <b>${qspFunc(s, 'time', 'get_time_string', ((s as any).hour ?? ''), ((s as any).minut ?? ''), (((s as any).cheatVars ?? 0)?.['time_format'] ?? ''))}</b>, ` + ((((s as any).pcs_sleep ?? 0) < 90) ? ('but you could do with some extra sleep.') : ('and you\'ve had plenty of sleep.')) + '');
         { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSnoozeAlarm(s, scene); (s as any).locArgs = __savedLocArgs; }
       } else {
         scene.text('');
@@ -93,6 +84,8 @@ function enterGetOut(s: GameState, scene: SceneBuilder): void {
   if (((s as any).alarmVars ?? 0)?.['alarmOn'] === 1  &&  ((s as any).sleepVars ?? 0)?.['time_now'] < ((s as any).sleepVars ?? 0)?.['alarm_time']) {
     (s as any).temp_hour = ((((s as any).sleepVars ?? {})?.['alarm_time'] ?? 0) - (((s as any).sleepVars ?? {})?.['time_now'] ?? 0)) / 60;
     (s as any).temp_minut = ((((s as any).sleepVars ?? {})?.['alarm_time'] ?? 0) - (((s as any).sleepVars ?? {})?.['time_now'] ?? 0)) % 60;
+    (s as any).temp_hour = undefined;
+    (s as any).temp_minut = undefined;
     scene.actions([
       { label: '', labelFn: (s: GameState) => 'Nap until your alarm rings (' + String(((s as any).temp_hour ?? '') ?? '') + ':' + String((String(100+((s as any).temp_minut ?? '')).slice((2)-1)) ?? '') + ')', handler: (st: GameState) => {
     scene.text('You turn around on your bed and close your eyes.');
@@ -101,7 +94,6 @@ function enterGetOut(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Get out of bed (0:05)', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -113,7 +105,6 @@ function enterGetOut(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSnoozeAlarm(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: end
   scene.actions([
     { label: '"Snooze" a few minutes more…', handler: (st: GameState) => {
     ((st as any).sleepVars = (st as any).sleepVars ?? {})['slept_in'] = 1;
@@ -126,7 +117,6 @@ function enterSnoozeAlarm(s: GameState, scene: SceneBuilder): void {
 
 function enterWearBedClothes(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'outfit', 'restore', 'bed');
-  // TODO-QSP: end
   scene.build();
 }
 

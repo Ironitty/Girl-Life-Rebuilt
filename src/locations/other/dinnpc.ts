@@ -9,7 +9,6 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDinPredlogDimaBj(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: end
   scene.actions([
     { label: 'Get down on your knees', handler: (st: GameState) => {
     (st as any).DimaRudeQW = ((st as any).DimaRudeQW ?? 0) + (1);
@@ -24,7 +23,6 @@ function enterDinPredlogDimaBj(s: GameState, scene: SceneBuilder): void {
     ((st as any).npc_had_sex = (st as any).npc_had_sex ?? {})['A1'] = 1;
     qspCall(st, 'stat', '');
     scene.img('images/shared/sex/blowjob/cocksucker2.jpg');
-    // TODO-QSP: dynamic text: You gently kiss the purple head of his member, hoping against hope that maybe yo...
     scene.text(`You gently kiss the purple head of his member, hoping against hope that maybe you can set the tone and pace for this. But Dimka is already impatient and grabs your hair, ignoring your pained yelp. "Stop wasting time and start sucking." Without a second thought, you take his dick into your mouth. You begin to move your ${(((st as any).pc_desc ?? 0)?.['lips'] ?? '')} lips up and down Dimka's hard cock, taking his rod deep into your mouth. You don't go slow and move your tongue around his head all the while, trying to please him, but Dimka groans and grabs your head firmly. "Take it deeper!"`);
     qspCall(st, 'arousal', 'bj', 5, 'sub', 'rough');
     qspCall(st, 'stat', '');
@@ -104,7 +102,6 @@ function enterDinDimaPredlog(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDinPredlogDimaBj(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.actions([
     { label: '… is he serious? Think about what he said for a moment', handler: (st: GameState) => {
     qspCall(st, 'stat', '');

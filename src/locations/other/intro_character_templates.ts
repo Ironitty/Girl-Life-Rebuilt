@@ -11,7 +11,6 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 function enterSetRandomTemplate(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', qspFunc(s, 'intro_character_templates', 'get_random_template')]; enterSetTemplate(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -106,8 +105,8 @@ function enterGetRandomTemplate(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  (s as any).temp_rand = undefined;
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -123,7 +122,6 @@ function enterSetTemplate(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0), 'fame']; enterDoSubgroup(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0), 'other']; enterDoSubgroup(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -143,6 +141,7 @@ function enterSetGroup(s: GameState, scene: SceneBuilder): void {
           if (((String(';friendless;uglyduckling;goodgirl;slut;goth;poor;').indexOf(String(';' + ((s as any).locArgs?.[1] ?? 0) + ';'))) + 1)) {
             ((s as any).start_type = (s as any).start_type ?? {})['group'] = 'outcast';
           } else {
+            alert('Unknown template: "' + ((s as any).locArgs?.[1] ?? 0) + '" in intro_character_templates. This is a bug, please report it.');
             return;
           }
         }
@@ -151,7 +150,6 @@ function enterSetGroup(s: GameState, scene: SceneBuilder): void {
   }
   ((s as any).start_type = (s as any).start_type ?? {})['cat'] = ((s as any).locArgs?.[1] ?? 0);
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -160,7 +158,6 @@ function enterDoSubgroup(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'intro_character_templates', '$start_type[\'group\']', ((s as any).locArgs?.[2] ?? 0));
   qspCall(s, 'intro_character_templates', '$ARGS[1]', ((s as any).locArgs?.[2] ?? 0));
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -186,7 +183,6 @@ function enterModOnlySetGroup(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'intro_character_templates', '$start_type[\'group\']', 'fame');
   qspCall(s, 'intro_character_templates', '$start_type[\'group\']', 'other');
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -256,7 +252,6 @@ function enterNerd(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'grades', 'grade_award', 'school', 'mus', 25);
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -320,7 +315,6 @@ function enterNerdqueen(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'grades', 'grade_award', 'school', 'pe', 5);
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -377,7 +371,6 @@ function enterGoodstudent(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'grades', 'grade_award', 'school', 'mus', 10);
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -429,7 +422,6 @@ function enterComputergeek(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'grades', 'grade_award', 'school', 'pe', 10);
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -468,7 +460,6 @@ function enterChessplayer(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'grades', 'grade_award', 'school', 'mus', (-5));
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -540,7 +531,6 @@ function enterJock(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'grades', 'grade_award', 'school', 'pe', 40);
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -568,7 +558,6 @@ function enterVolleyball(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'npc_relationship', 'modify_exact', 'A69', 10);
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -639,7 +628,6 @@ function enterDancer(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'grades', 'grade_award', 'school', 'mus', 25);
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -681,7 +669,6 @@ function enterRunner(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'grades', 'grade_award', 'school', 'bio', 20);
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -718,7 +705,6 @@ function enterFootball(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'npc_relationship', 'modify_exact', 'A149', 10);
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -767,7 +753,6 @@ function enterCool(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'npc_relationship', 'modify_exact', 'A129', (-20));
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -819,7 +804,6 @@ function enterSocialite(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'grades', 'grade_award', 'school', 'pe', 10);
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -887,7 +871,6 @@ function enterBeautiful(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'grades', 'grade_award', 'school', 'pe', 5);
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -933,7 +916,6 @@ function enterAnorexic(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'npc_relationship', 'modify_exact', 'A148', 30);
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1022,7 +1004,6 @@ function enterBimbo(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'grades', 'grade_award', 'school', 'pe', (-5));
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1126,7 +1107,6 @@ function enterGopnik(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'grades', 'grade_award', 'school', 'pe', 25);
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1177,7 +1157,6 @@ function enterGopnikstart(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'npc_relationship', 'modify_exact', 'A34', (-10));
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1229,7 +1208,6 @@ function enterTroublemaker(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'npc_relationship', 'modify_exact', 'A157', 10);
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1307,7 +1285,6 @@ function enterVitekgf(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'grades', 'grade_award', 'school', 'pe', (-25));
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1412,7 +1389,6 @@ function enterAlternative(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'grades', 'grade_award', 'school', 'mus', 30);
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1450,7 +1426,6 @@ function enterOutcast(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'npc_relationship', 'modify_exact', 'A133', 20);
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1491,7 +1466,6 @@ function enterFriendless(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'grades', 'grade_award', 'school', 'eng', (-30));
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1536,7 +1510,6 @@ function enterUglyduckling(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'grades', 'grade_award', 'school', 'pe', (-30));
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1600,7 +1573,6 @@ function enterGoodgirl(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'grades', 'grade_award', 'school', 'comp', 25);
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1733,7 +1705,6 @@ function enterSlut(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'npc_relationship', 'modify_exact', 'A144', 10);
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1811,7 +1782,6 @@ function enterGoth(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'grades', 'grade_award', 'school', 'pe', 15);
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1943,7 +1913,6 @@ function enterPoor(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'grades', 'grade_award', 'school', 'pe', 25);
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 

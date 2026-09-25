@@ -12,7 +12,6 @@ function enter1(s: GameState, scene: SceneBuilder): void {
   (s as any).result = qspFunc(s, 'progressbar', 'positive', ((s as any).locArgs?.[1] ?? 0));
   (s as any).ind = ((s as any).result ?? 0);
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -20,7 +19,6 @@ function enter2(s: GameState, scene: SceneBuilder): void {
   (s as any).result = qspFunc(s, 'progressbar', 'negative', ((s as any).locArgs?.[1] ?? 0), 0, ((s as any).locArgs?.[3] ?? 0));
   (s as any).ind = ((s as any).result ?? 0);
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -28,7 +26,6 @@ function enter3(s: GameState, scene: SceneBuilder): void {
   (s as any).result = qspFunc(s, 'progressbar', 'smooth_positive', ((s as any).locArgs?.[1] ?? 0));
   (s as any).ind = ((s as any).result ?? 0);
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -36,7 +33,6 @@ function enter4(s: GameState, scene: SceneBuilder): void {
   (s as any).result = qspFunc(s, 'progressbar', 'positive', ((s as any).locArgs?.[1] ?? 0));
   (s as any).ind = ((s as any).result ?? 0);
   return;
-  // TODO-QSP: end
   (s as any).result = qspFunc(s, 'progressbar', 'positive', ((s as any).locArgs?.[1] ?? 0));
   (s as any).ind = ((s as any).result ?? 0);
   return;
@@ -58,6 +54,10 @@ function enter4(s: GameState, scene: SceneBuilder): void {
     (s as any).indik_stop_looping = 0;
     (s as any).ind = '<font face="courier new" size = ' + ((s as any).indik_text_size ?? 0) + '> ';
     (s as any).result = ((s as any).ind ?? 0);
+    (s as any).indik_stop_looping = undefined;
+    (s as any).indik_counter = undefined;
+    (s as any).indik_damage = undefined;
+    (s as any).indik_text_size = undefined;
   }
   scene.build();
 }

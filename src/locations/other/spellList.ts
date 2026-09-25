@@ -13,12 +13,13 @@ function enterTeacherActions(s: GameState, scene: SceneBuilder): void {
   (s as any).ThisArraySize = 0;
   (s as any).MaxAvailable = (((s as any).spellListAvail ?? 0)?.[String((s as any).ThisArrayName ?? 0)] ?? 0);
   (s as any).i = 0;
-  // TODO-QSP: :LearnSpellLoop
-  (s as any).ThisSpellName = 0;
-  (s as any).spellDifficulty = Math.max((((s as any).spellDiff ?? 0)?.[String((s as any).ThisSpellName ?? 0)] ?? 0), 1);
-  if (((s as any).i ?? 0) < ((s as any).ThisArraySize ?? 0)  &&  ((s as any).i ?? 0) < ((s as any).MaxAvailable ?? 0)) {
-    if (((s as any).spellKnown ?? 0)?.[String((s as any).ThisSpellName ?? 0)] === 0  &&  (((s as any).spellReq ?? 0)?.[String((s as any).ThisSpellName ?? 0)] === ''  ||  (((s as any).spellKnown ?? 0)[((s as any).spellReq ?? 0)?.[String((s as any).ThisSpellName ?? 0)]] === 1))) {
-      if (((s as any).pcs_magik ?? 0) >= ((s as any).spellDifficulty ?? 0)) {
+  while (true) {
+    (s as any).ThisSpellName = 0;
+    (s as any).spellDifficulty = Math.max((((s as any).spellDiff ?? 0)?.[String((s as any).ThisSpellName ?? 0)] ?? 0), 1);
+    if (((s as any).i ?? 0) < ((s as any).ThisArraySize ?? 0)  &&  ((s as any).i ?? 0) < ((s as any).MaxAvailable ?? 0)) {
+      if (((s as any).spellKnown ?? 0)?.[String((s as any).ThisSpellName ?? 0)] === 0  &&  (((s as any).spellReq ?? 0)?.[String((s as any).ThisSpellName ?? 0)] === ''  ||  (((s as any).spellKnown ?? 0)[((s as any).spellReq ?? 0)?.[String((s as any).ThisSpellName ?? 0)]] === 1))) {
+        if (((s as any).pcs_magik ?? 0) >= ((s as any).spellDifficulty ?? 0)) {
+        }
       }
     }
   }
@@ -85,54 +86,57 @@ function enter(s: GameState, scene: SceneBuilder): void {
   ((s as any).spellTarget = (s as any).spellTarget ?? {})['makeup'] = 'self';
   ((s as any).spellOptDesc = (s as any).spellOptDesc ?? {})['makeup'] = '$MakeupSet';
   ((s as any).spellOptVal = (s as any).spellOptVal ?? {})['makeup'] = '$makeupSetVal';
-  // TODO-QSP: $MakeupSet[0] = 'No Makeup'
-  // TODO-QSP: $makeupSetVal[0] = '000'
+  (s as any).MakeupSet = undefined;
+  (s as any).makeupSetVal = undefined;
+  ((s as any).MakeupSet = (s as any).MakeupSet ?? {})[0] = 'No Makeup';
+  ((s as any).makeupSetVal = (s as any).makeupSetVal ?? {})[0] = '000';
   (s as any).i = 1;
   if (((s as any).makeup ?? 0)?.['routine_1'] !== '') {
-    // TODO-QSP: $MakeupSet[i] = $makeup['routine_1_name']
-    // TODO-QSP: $makeupSetVal[i] = $makeup['routine_1']
+    ((s as any).MakeupSet = (s as any).MakeupSet ?? {})[String((s as any).i ?? 0)] = (((s as any).makeup ?? 0)?.['routine_1_name']);
+    ((s as any).makeupSetVal = (s as any).makeupSetVal ?? {})[String((s as any).i ?? 0)] = (((s as any).makeup ?? 0)?.['routine_1']);
     (s as any).i = ((s as any).i ?? 0) + (1);
   }
   if (((s as any).makeup ?? 0)?.['routine_2'] !== '') {
-    // TODO-QSP: $MakeupSet[i] = $makeup['routine_2_name']
-    // TODO-QSP: $makeupSetVal[i] = $makeup['routine_2']
+    ((s as any).MakeupSet = (s as any).MakeupSet ?? {})[String((s as any).i ?? 0)] = (((s as any).makeup ?? 0)?.['routine_2_name']);
+    ((s as any).makeupSetVal = (s as any).makeupSetVal ?? {})[String((s as any).i ?? 0)] = (((s as any).makeup ?? 0)?.['routine_2']);
     (s as any).i = ((s as any).i ?? 0) + (1);
   }
   if (((s as any).makeup ?? 0)?.['routine_3'] !== '') {
-    // TODO-QSP: $MakeupSet[i] = $makeup['routine_3_name']
-    // TODO-QSP: $makeupSetVal[i] = $makeup['routine_3']
+    ((s as any).MakeupSet = (s as any).MakeupSet ?? {})[String((s as any).i ?? 0)] = (((s as any).makeup ?? 0)?.['routine_3_name']);
+    ((s as any).makeupSetVal = (s as any).makeupSetVal ?? {})[String((s as any).i ?? 0)] = (((s as any).makeup ?? 0)?.['routine_3']);
     (s as any).i = ((s as any).i ?? 0) + (1);
   }
   if (((s as any).makeup ?? 0)?.['routine_4'] !== '') {
-    // TODO-QSP: $MakeupSet[i] = $makeup['routine_4_name']
-    // TODO-QSP: $makeupSetVal[i] = $makeup['routine_4']
+    ((s as any).MakeupSet = (s as any).MakeupSet ?? {})[String((s as any).i ?? 0)] = (((s as any).makeup ?? 0)?.['routine_4_name']);
+    ((s as any).makeupSetVal = (s as any).makeupSetVal ?? {})[String((s as any).i ?? 0)] = (((s as any).makeup ?? 0)?.['routine_4']);
     (s as any).i = ((s as any).i ?? 0) + (1);
   }
   if (((s as any).i ?? 0) <= 1) {
-    // TODO-QSP: $MakeupSet[i] = 'Light Makeup'
-    // TODO-QSP: $makeupSetVal[i] = '110'
+    ((s as any).MakeupSet = (s as any).MakeupSet ?? {})[String((s as any).i ?? 0)] = 'Light Makeup';
+    ((s as any).makeupSetVal = (s as any).makeupSetVal ?? {})[String((s as any).i ?? 0)] = '110';
     (s as any).i = ((s as any).i ?? 0) + (1);
   }
   if (((s as any).i ?? 0) <= 2) {
-    // TODO-QSP: $MakeupSet[i] = 'Vibrant Makeup'
-    // TODO-QSP: $makeupSetVal[i] = '210'
+    ((s as any).MakeupSet = (s as any).MakeupSet ?? {})[String((s as any).i ?? 0)] = 'Vibrant Makeup';
+    ((s as any).makeupSetVal = (s as any).makeupSetVal ?? {})[String((s as any).i ?? 0)] = '210';
     (s as any).i = ((s as any).i ?? 0) + (1);
   }
   if (((s as any).i ?? 0) <= 3) {
-    // TODO-QSP: $MakeupSet[i] = 'Heavy Makeup'
-    // TODO-QSP: $makeupSetVal[i] = '310'
+    ((s as any).MakeupSet = (s as any).MakeupSet ?? {})[String((s as any).i ?? 0)] = 'Heavy Makeup';
+    ((s as any).makeupSetVal = (s as any).makeupSetVal ?? {})[String((s as any).i ?? 0)] = '310';
     (s as any).i = ((s as any).i ?? 0) + (1);
   }
   if (((s as any).i ?? 0) <= 5) {
-    // TODO-QSP: $MakeupSet[i] = 'Bimbo Makeup'
-    // TODO-QSP: $makeupSetVal[i] = '510'
+    ((s as any).MakeupSet = (s as any).MakeupSet ?? {})[String((s as any).i ?? 0)] = 'Bimbo Makeup';
+    ((s as any).makeupSetVal = (s as any).makeupSetVal ?? {})[String((s as any).i ?? 0)] = '510';
     (s as any).i = ((s as any).i ?? 0) + (1);
   }
   if (((s as any).i ?? 0) <= 5) {
-    // TODO-QSP: $MakeupSet[i] = 'Goth Makeup'
-    // TODO-QSP: $makeupSetVal[i] = '610'
+    ((s as any).MakeupSet = (s as any).MakeupSet ?? {})[String((s as any).i ?? 0)] = 'Goth Makeup';
+    ((s as any).makeupSetVal = (s as any).makeupSetVal ?? {})[String((s as any).i ?? 0)] = '610';
     (s as any).i = ((s as any).i ?? 0) + (1);
   }
+  (s as any).i = undefined;
   ((s as any).spellMana = (s as any).spellMana ?? {})['cosmetica'] = 1000;
   ((s as any).spellTime = (s as any).spellTime ?? {})['cosmetica'] = 5;
   ((s as any).spellDiff = (s as any).spellDiff ?? {})['cosmetica'] = 50;
@@ -377,118 +381,118 @@ function enter(s: GameState, scene: SceneBuilder): void {
   ((s as any).spellName = (s as any).spellName ?? {})['penisenvy'] = 'Penis Envy';
   ((s as any).spellDesc = (s as any).spellDesc ?? {})['penisenvy'] = 'Temporarily animate a strapon dildo, the casters experiences sexual sensations from the dildo, as if it was a real penis.';
   ((s as any).spellTarget = (s as any).spellTarget ?? {})['penisenvy'] = 'self';
-  // TODO-QSP: $combatSpells[0] = 'fog'
-  // TODO-QSP: $combatSpells[1] = 'clone'
-  // TODO-QSP: $combatSpells[2] = 'stun'
-  // TODO-QSP: $combatSpells[3] = 'weapon'
-  // TODO-QSP: $combatSpells[4] = 'wind'
-  // TODO-QSP: $combatSpells[5] = 'multiclone'
-  // TODO-QSP: $combatSpells[6] = 'energo'
-  // TODO-QSP: $combatSpells[7] = 'heal'
-  // TODO-QSP: $combatSpells[8] = 'hand'
-  // TODO-QSP: $combatSpells[9] = 'scaldingtouch'
-  // TODO-QSP: $combatSpells[10] = 'burninghands'
-  // TODO-QSP: $combatSpells[11] = 'firebarrier'
-  // TODO-QSP: $combatSpells[12] = 'firestorm'
-  // TODO-QSP: $combatSpells[13] = 'flameshield'
-  // TODO-QSP: $combatSpells[14] = 'shock'
-  // TODO-QSP: $combatSpells[15] = 'lightning'
-  // TODO-QSP: $combatSpells[16] = 'electricbarrier'
-  // TODO-QSP: $combatSpells[17] = '1000birds'
-  // TODO-QSP: $combatSpells[18] = 'dancingsphere'
-  // TODO-QSP: $combatSpells[19] = 'quicksand'
-  // TODO-QSP: $combatSpells[20] = 'earthshield'
-  // TODO-QSP: $combatSpells[21] = 'abyss'
-  // TODO-QSP: $combatSpells[22] = 'earthguardian'
-  // TODO-QSP: $combatSpells[23] = 'sando'
-  // TODO-QSP: $combatSpells[24] = 'windgust'
-  // TODO-QSP: $combatSpells[25] = 'pressure'
-  // TODO-QSP: $combatSpells[26] = 'vacuum'
-  // TODO-QSP: $combatSpells[27] = 'vacuumshells'
-  // TODO-QSP: $combatSpells[28] = 'devouringvacuum'
-  // TODO-QSP: $combatSpells[29] = 'leechmana'
-  // TODO-QSP: $combatSpells[30] = 'flood'
-  // TODO-QSP: $combatSpells[31] = 'blister'
-  // TODO-QSP: $combatSpells[32] = 'sharkrockets'
-  // TODO-QSP: $combatSpells[33] = 'greatflood'
-  // TODO-QSP: $storySpells[0] = 'haste'
-  // TODO-QSP: $basicSpells[0] = 'fog'
-  // TODO-QSP: $basicSpells[1] = 'clone'
-  // TODO-QSP: $basicSpells[2] = 'stun'
-  // TODO-QSP: $basicSpells[3] = 'wind'
-  // TODO-QSP: $basicSpells[4] = 'multiclone'
-  // TODO-QSP: $basicSpells[5] = 'energo'
-  // TODO-QSP: $basicSpells[6] = 'haste'
-  // TODO-QSP: $basicSpells[7] = 'berserk'
-  // TODO-QSP: $healSpells[0] = 'painblock'
-  // TODO-QSP: $healSpells[1] = 'curewounds'
-  // TODO-QSP: $healSpells[2] = 'curewounds2'
-  // TODO-QSP: $healSpells[3] = 'curedisease'
-  // TODO-QSP: $healSpells[4] = 'heal'
-  // TODO-QSP: $healSpells[5] = 'regenerate'
-  // TODO-QSP: $beautySpells[0] = 'shower'
-  // TODO-QSP: $beautySpells[1] = 'makeup'
-  // TODO-QSP: $beautySpells[2] = 'cosmetica'
-  // TODO-QSP: $librarySpells[0] = 'painblock'
-  // TODO-QSP: $librarySpells[1] = 'shower'
-  // TODO-QSP: $librarySpells[2] = 'makeup'
-  // TODO-QSP: $librarySpells[3] = 'cosmetica'
-  // TODO-QSP: $librarySpells[4] = 'glamour'
-  // TODO-QSP: $librarySpells[5] = 'penisenvy'
-  // TODO-QSP: $fireSpells[0] = 'scaldingtouch'
-  // TODO-QSP: $fireSpells[1] = 'burninghands'
-  // TODO-QSP: $fireSpells[2] = 'firebarrier'
-  // TODO-QSP: $fireSpells[3] = 'firestorm'
-  // TODO-QSP: $fireSpells[4] = 'flameshield'
-  // TODO-QSP: $electSpells[0] = 'shock'
-  // TODO-QSP: $electSpells[1] = 'lightning'
-  // TODO-QSP: $electSpells[2] = 'electricbarrier'
-  // TODO-QSP: $electSpells[3] = '1000birds'
-  // TODO-QSP: $electSpells[4] = 'dancingsphere'
-  // TODO-QSP: $earthSpells[0] = 'quicksand'
-  // TODO-QSP: $earthSpells[1] = 'earthshield'
-  // TODO-QSP: $earthSpells[2] = 'abyss'
-  // TODO-QSP: $earthSpells[3] = 'earthguardian'
-  // TODO-QSP: $earthSpells[4] = 'sando'
-  // TODO-QSP: $airSpells[0] = 'windgust'
-  // TODO-QSP: $airSpells[1] = 'pressure'
-  // TODO-QSP: $airSpells[2] = 'vacuum'
-  // TODO-QSP: $airSpells[3] = 'vacuumshells'
-  // TODO-QSP: $airSpells[4] = 'devouringvacuum'
-  // TODO-QSP: $waterSpells[0] = 'leechmana'
-  // TODO-QSP: $waterSpells[1] = 'flood'
-  // TODO-QSP: $waterSpells[2] = 'blister'
-  // TODO-QSP: $waterSpells[3] = 'sharkrockets'
-  // TODO-QSP: $waterSpells[4] = 'greatflood'
-  // TODO-QSP: $comHealSpells[0] = 'heal'
-  // TODO-QSP: $comShldSpells[0] = 'flameshield'
-  // TODO-QSP: $comShldSpells[1] = 'firebarrier'
-  // TODO-QSP: $comShldSpells[2] = 'dancingsphere'
-  // TODO-QSP: $comShldSpells[3] = 'electricbarrier'
-  // TODO-QSP: $comShldSpells[4] = 'earthguardian'
-  // TODO-QSP: $comShldSpells[5] = 'earthshield'
-  // TODO-QSP: $comShldSpells[6] = 'vacuum'
-  // TODO-QSP: $comShldSpells[7] = 'blister'
-  // TODO-QSP: $comShldSpells[8] = 'energo'
-  // TODO-QSP: $comAtkSpells[0] = 'firestorm'
-  // TODO-QSP: $comAtkSpells[1] = 'burninghands'
-  // TODO-QSP: $comAtkSpells[2] = 'scaldingtouch'
-  // TODO-QSP: $comAtkSpells[3] = '1000birds'
-  // TODO-QSP: $comAtkSpells[4] = 'lightning'
-  // TODO-QSP: $comAtkSpells[5] = 'shock'
-  // TODO-QSP: $comAtkSpells[6] = 'sando'
-  // TODO-QSP: $comAtkSpells[7] = 'abyss'
-  // TODO-QSP: $comAtkSpells[8] = 'devouringvacuum'
-  // TODO-QSP: $comAtkSpells[9] = 'vacuumshells'
-  // TODO-QSP: $comAtkSpells[10] = 'quicksand'
-  // TODO-QSP: $comAtkSpells[11] = 'pressure'
-  // TODO-QSP: $comAtkSpells[12] = 'windgust'
-  // TODO-QSP: $comAtkSpells[13] = 'greatflood'
-  // TODO-QSP: $comAtkSpells[14] = 'sharkrockets'
-  // TODO-QSP: $comAtkSpells[15] = 'flood'
-  // TODO-QSP: $comAtkSpells[16] = 'leechmana'
-  // TODO-QSP: $comAtkSpells[17] = 'stun'
-  // TODO-QSP: $comAtkSpells[18] = 'weapon'
+  ((s as any).combatSpells = (s as any).combatSpells ?? {})[0] = 'fog';
+  ((s as any).combatSpells = (s as any).combatSpells ?? {})[1] = 'clone';
+  ((s as any).combatSpells = (s as any).combatSpells ?? {})[2] = 'stun';
+  ((s as any).combatSpells = (s as any).combatSpells ?? {})[3] = 'weapon';
+  ((s as any).combatSpells = (s as any).combatSpells ?? {})[4] = 'wind';
+  ((s as any).combatSpells = (s as any).combatSpells ?? {})[5] = 'multiclone';
+  ((s as any).combatSpells = (s as any).combatSpells ?? {})[6] = 'energo';
+  ((s as any).combatSpells = (s as any).combatSpells ?? {})[7] = 'heal';
+  ((s as any).combatSpells = (s as any).combatSpells ?? {})[8] = 'hand';
+  ((s as any).combatSpells = (s as any).combatSpells ?? {})[9] = 'scaldingtouch';
+  ((s as any).combatSpells = (s as any).combatSpells ?? {})[10] = 'burninghands';
+  ((s as any).combatSpells = (s as any).combatSpells ?? {})[11] = 'firebarrier';
+  ((s as any).combatSpells = (s as any).combatSpells ?? {})[12] = 'firestorm';
+  ((s as any).combatSpells = (s as any).combatSpells ?? {})[13] = 'flameshield';
+  ((s as any).combatSpells = (s as any).combatSpells ?? {})[14] = 'shock';
+  ((s as any).combatSpells = (s as any).combatSpells ?? {})[15] = 'lightning';
+  ((s as any).combatSpells = (s as any).combatSpells ?? {})[16] = 'electricbarrier';
+  ((s as any).combatSpells = (s as any).combatSpells ?? {})[17] = '1000birds';
+  ((s as any).combatSpells = (s as any).combatSpells ?? {})[18] = 'dancingsphere';
+  ((s as any).combatSpells = (s as any).combatSpells ?? {})[19] = 'quicksand';
+  ((s as any).combatSpells = (s as any).combatSpells ?? {})[20] = 'earthshield';
+  ((s as any).combatSpells = (s as any).combatSpells ?? {})[21] = 'abyss';
+  ((s as any).combatSpells = (s as any).combatSpells ?? {})[22] = 'earthguardian';
+  ((s as any).combatSpells = (s as any).combatSpells ?? {})[23] = 'sando';
+  ((s as any).combatSpells = (s as any).combatSpells ?? {})[24] = 'windgust';
+  ((s as any).combatSpells = (s as any).combatSpells ?? {})[25] = 'pressure';
+  ((s as any).combatSpells = (s as any).combatSpells ?? {})[26] = 'vacuum';
+  ((s as any).combatSpells = (s as any).combatSpells ?? {})[27] = 'vacuumshells';
+  ((s as any).combatSpells = (s as any).combatSpells ?? {})[28] = 'devouringvacuum';
+  ((s as any).combatSpells = (s as any).combatSpells ?? {})[29] = 'leechmana';
+  ((s as any).combatSpells = (s as any).combatSpells ?? {})[30] = 'flood';
+  ((s as any).combatSpells = (s as any).combatSpells ?? {})[31] = 'blister';
+  ((s as any).combatSpells = (s as any).combatSpells ?? {})[32] = 'sharkrockets';
+  ((s as any).combatSpells = (s as any).combatSpells ?? {})[33] = 'greatflood';
+  ((s as any).storySpells = (s as any).storySpells ?? {})[0] = 'haste';
+  ((s as any).basicSpells = (s as any).basicSpells ?? {})[0] = 'fog';
+  ((s as any).basicSpells = (s as any).basicSpells ?? {})[1] = 'clone';
+  ((s as any).basicSpells = (s as any).basicSpells ?? {})[2] = 'stun';
+  ((s as any).basicSpells = (s as any).basicSpells ?? {})[3] = 'wind';
+  ((s as any).basicSpells = (s as any).basicSpells ?? {})[4] = 'multiclone';
+  ((s as any).basicSpells = (s as any).basicSpells ?? {})[5] = 'energo';
+  ((s as any).basicSpells = (s as any).basicSpells ?? {})[6] = 'haste';
+  ((s as any).basicSpells = (s as any).basicSpells ?? {})[7] = 'berserk';
+  ((s as any).healSpells = (s as any).healSpells ?? {})[0] = 'painblock';
+  ((s as any).healSpells = (s as any).healSpells ?? {})[1] = 'curewounds';
+  ((s as any).healSpells = (s as any).healSpells ?? {})[2] = 'curewounds2';
+  ((s as any).healSpells = (s as any).healSpells ?? {})[3] = 'curedisease';
+  ((s as any).healSpells = (s as any).healSpells ?? {})[4] = 'heal';
+  ((s as any).healSpells = (s as any).healSpells ?? {})[5] = 'regenerate';
+  ((s as any).beautySpells = (s as any).beautySpells ?? {})[0] = 'shower';
+  ((s as any).beautySpells = (s as any).beautySpells ?? {})[1] = 'makeup';
+  ((s as any).beautySpells = (s as any).beautySpells ?? {})[2] = 'cosmetica';
+  ((s as any).librarySpells = (s as any).librarySpells ?? {})[0] = 'painblock';
+  ((s as any).librarySpells = (s as any).librarySpells ?? {})[1] = 'shower';
+  ((s as any).librarySpells = (s as any).librarySpells ?? {})[2] = 'makeup';
+  ((s as any).librarySpells = (s as any).librarySpells ?? {})[3] = 'cosmetica';
+  ((s as any).librarySpells = (s as any).librarySpells ?? {})[4] = 'glamour';
+  ((s as any).librarySpells = (s as any).librarySpells ?? {})[5] = 'penisenvy';
+  ((s as any).fireSpells = (s as any).fireSpells ?? {})[0] = 'scaldingtouch';
+  ((s as any).fireSpells = (s as any).fireSpells ?? {})[1] = 'burninghands';
+  ((s as any).fireSpells = (s as any).fireSpells ?? {})[2] = 'firebarrier';
+  ((s as any).fireSpells = (s as any).fireSpells ?? {})[3] = 'firestorm';
+  ((s as any).fireSpells = (s as any).fireSpells ?? {})[4] = 'flameshield';
+  ((s as any).electSpells = (s as any).electSpells ?? {})[0] = 'shock';
+  ((s as any).electSpells = (s as any).electSpells ?? {})[1] = 'lightning';
+  ((s as any).electSpells = (s as any).electSpells ?? {})[2] = 'electricbarrier';
+  ((s as any).electSpells = (s as any).electSpells ?? {})[3] = '1000birds';
+  ((s as any).electSpells = (s as any).electSpells ?? {})[4] = 'dancingsphere';
+  ((s as any).earthSpells = (s as any).earthSpells ?? {})[0] = 'quicksand';
+  ((s as any).earthSpells = (s as any).earthSpells ?? {})[1] = 'earthshield';
+  ((s as any).earthSpells = (s as any).earthSpells ?? {})[2] = 'abyss';
+  ((s as any).earthSpells = (s as any).earthSpells ?? {})[3] = 'earthguardian';
+  ((s as any).earthSpells = (s as any).earthSpells ?? {})[4] = 'sando';
+  ((s as any).airSpells = (s as any).airSpells ?? {})[0] = 'windgust';
+  ((s as any).airSpells = (s as any).airSpells ?? {})[1] = 'pressure';
+  ((s as any).airSpells = (s as any).airSpells ?? {})[2] = 'vacuum';
+  ((s as any).airSpells = (s as any).airSpells ?? {})[3] = 'vacuumshells';
+  ((s as any).airSpells = (s as any).airSpells ?? {})[4] = 'devouringvacuum';
+  ((s as any).waterSpells = (s as any).waterSpells ?? {})[0] = 'leechmana';
+  ((s as any).waterSpells = (s as any).waterSpells ?? {})[1] = 'flood';
+  ((s as any).waterSpells = (s as any).waterSpells ?? {})[2] = 'blister';
+  ((s as any).waterSpells = (s as any).waterSpells ?? {})[3] = 'sharkrockets';
+  ((s as any).waterSpells = (s as any).waterSpells ?? {})[4] = 'greatflood';
+  ((s as any).comHealSpells = (s as any).comHealSpells ?? {})[0] = 'heal';
+  ((s as any).comShldSpells = (s as any).comShldSpells ?? {})[0] = 'flameshield';
+  ((s as any).comShldSpells = (s as any).comShldSpells ?? {})[1] = 'firebarrier';
+  ((s as any).comShldSpells = (s as any).comShldSpells ?? {})[2] = 'dancingsphere';
+  ((s as any).comShldSpells = (s as any).comShldSpells ?? {})[3] = 'electricbarrier';
+  ((s as any).comShldSpells = (s as any).comShldSpells ?? {})[4] = 'earthguardian';
+  ((s as any).comShldSpells = (s as any).comShldSpells ?? {})[5] = 'earthshield';
+  ((s as any).comShldSpells = (s as any).comShldSpells ?? {})[6] = 'vacuum';
+  ((s as any).comShldSpells = (s as any).comShldSpells ?? {})[7] = 'blister';
+  ((s as any).comShldSpells = (s as any).comShldSpells ?? {})[8] = 'energo';
+  ((s as any).comAtkSpells = (s as any).comAtkSpells ?? {})[0] = 'firestorm';
+  ((s as any).comAtkSpells = (s as any).comAtkSpells ?? {})[1] = 'burninghands';
+  ((s as any).comAtkSpells = (s as any).comAtkSpells ?? {})[2] = 'scaldingtouch';
+  ((s as any).comAtkSpells = (s as any).comAtkSpells ?? {})[3] = '1000birds';
+  ((s as any).comAtkSpells = (s as any).comAtkSpells ?? {})[4] = 'lightning';
+  ((s as any).comAtkSpells = (s as any).comAtkSpells ?? {})[5] = 'shock';
+  ((s as any).comAtkSpells = (s as any).comAtkSpells ?? {})[6] = 'sando';
+  ((s as any).comAtkSpells = (s as any).comAtkSpells ?? {})[7] = 'abyss';
+  ((s as any).comAtkSpells = (s as any).comAtkSpells ?? {})[8] = 'devouringvacuum';
+  ((s as any).comAtkSpells = (s as any).comAtkSpells ?? {})[9] = 'vacuumshells';
+  ((s as any).comAtkSpells = (s as any).comAtkSpells ?? {})[10] = 'quicksand';
+  ((s as any).comAtkSpells = (s as any).comAtkSpells ?? {})[11] = 'pressure';
+  ((s as any).comAtkSpells = (s as any).comAtkSpells ?? {})[12] = 'windgust';
+  ((s as any).comAtkSpells = (s as any).comAtkSpells ?? {})[13] = 'greatflood';
+  ((s as any).comAtkSpells = (s as any).comAtkSpells ?? {})[14] = 'sharkrockets';
+  ((s as any).comAtkSpells = (s as any).comAtkSpells ?? {})[15] = 'flood';
+  ((s as any).comAtkSpells = (s as any).comAtkSpells ?? {})[16] = 'leechmana';
+  ((s as any).comAtkSpells = (s as any).comAtkSpells ?? {})[17] = 'stun';
+  ((s as any).comAtkSpells = (s as any).comAtkSpells ?? {})[18] = 'weapon';
   const arg = s.locArg;
   switch (arg) {
     case 'teacherActions':

@@ -45,7 +45,6 @@ function enterFirstVisit(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go along with it', goto: ['ermias_events', 'first_time_sex'] },
   ]);
@@ -1232,7 +1231,6 @@ function enterFirstTimeSex(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1378,9 +1376,9 @@ function enterVisit(s: GameState, scene: SceneBuilder): void {
           ]);
         }
       }
+      (s as any).temp_rand = undefined;
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1469,7 +1467,6 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Missionary style', handler: (st: GameState) => {
     scene.img('images/shared/sex/vag/miss/africanmis1.mp4');
@@ -1931,7 +1928,6 @@ function enterBlowjob(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1947,7 +1943,6 @@ function enterThreesomeStart(s: GameState, scene: SceneBuilder): void {
     scene.text('"Lebogang?!" Ermias exclaims. "What are you doing back so early?"');
     scene.text('You pop Ermias\'s cock out of your mouth and look at the floor as you feel yourself starting to blush.');
     scene.text('"That doesn\'t matter," Lebogang replies. "Mind sharing your... latest conquest?"');
-    // TODO-QSP: dynamic text: Ermias looks down at you. "That is up to <<$pcs_nickname>>. Do you want another ...
     scene.text(`Ermias looks down at you. "That is up to ${((s as any).pcs_nickname ?? '')}. Do you want another big cock to suck on as I fuck your little white pussy?"`);
     qspCall(s, 'willpower', 'sex', 'resist', 'medium');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
@@ -2006,7 +2001,6 @@ function enterThreesomeStart(s: GameState, scene: SceneBuilder): void {
       { label: 'Agree', goto: ['ermias_events', 'threesome1'] },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -2025,7 +2019,6 @@ function enterThreesome(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'hj', ((s as any).npcID1 ?? 0), (-5));
   qspCall(s, 'arousal', 'hj', ((s as any).npcID ?? 0), (-5));
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Get fucked', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'vaginal', ((st as any).npcID ?? 0), 5);
@@ -2105,7 +2098,6 @@ function enterThreesome1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'hj', ((s as any).npcID1 ?? 0), (-5));
   qspCall(s, 'arousal', 'hj', ((s as any).npcID ?? 0), (-5));
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Get fucked', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'vaginal', ((st as any).npcID ?? 0), 5);
@@ -2217,7 +2209,6 @@ function enterFilmedStart(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -2251,7 +2242,6 @@ function enterFilmedBlowjob(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'bj', 2, 'sub');
   qspCall(s, 'arousal', 'hj', (-2), 'sub');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Keep sucking', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'bj', 5, 'sub');
@@ -2279,7 +2269,6 @@ function enterFilmedTitfuck(s: GameState, scene: SceneBuilder): void {
   scene.text('You\'re about to drop to your knees when he stops you. "There is... something I want to do first."');
   scene.text('"Oh?" you ask with a curious gaze. "And what\'s that?"');
   scene.text('"I have wanted to fuck your nice big tits ever since I laid my eyes on them. Now seems like a good time."');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Agree', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'titjob', 3);
@@ -2419,7 +2408,6 @@ function enterFilmedSex(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Let him fuck your pussy', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'vaginal', 5, 'lube', 'sub');
@@ -2574,7 +2562,6 @@ function enterThroatFuck(s: GameState, scene: SceneBuilder): void {
   }
   scene.text('You don\'t know how long this lasts before he pulls you off of his cock again.');
   scene.text('"Good girl," he says. "Now suck my balls like a good little slut."');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Suck his balls', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'hj', 3, 'sub');

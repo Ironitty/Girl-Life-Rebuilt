@@ -10,7 +10,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(s, '$attributes_' + ((s as any).locArgs?.[0] ?? 0) + '_coats', '', ((s as any).locArgs?.[1] ?? 0));
   }
   if ((!((s as any).CoatQuality ?? 0))) {
-    // TODO-QSP: exit
+    return;
   }
   (s as any).CoatMaxStrength = ((s as any).CoatStrength ?? 0);
   if (qspFunc(s, 'coats', 'is_owned', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0))) {

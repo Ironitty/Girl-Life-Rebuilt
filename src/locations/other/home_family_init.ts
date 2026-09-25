@@ -13,7 +13,6 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   qspCall(s, 'core_library', 'stage_title');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterTrackers(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -26,13 +25,11 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   qspCall(s, 'core_library', 'stage_title');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterTrackers(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterTrackers(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'family_schedule', '');
-  // TODO-QSP: end
   scene.build();
 }
 

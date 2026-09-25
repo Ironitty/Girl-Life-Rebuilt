@@ -49,7 +49,6 @@ function enterDimaRevengeEventCheck(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
-  // TODO-QSP: end
   qspCall(s, 'stat', '');
   if ((!((s as any).DimaRudeBlock ?? 0))) {
     (s as any).DimaRudeBlock = 1;
@@ -94,7 +93,6 @@ function enterDimaRevengeEventCheck(s: GameState, scene: SceneBuilder): void {
     scene.text('<center><b>Girls bathroom</b></center>');
     scene.img('images/locations/pavlovsk/school/bathroom/girlsbathroom.jpg');
     if (((st as any).grupTipe ?? 0) === 1) {
-      // TODO-QSP: dynamic text: "<<$pcs_firstname>> thinks she''s so great. What I wouldn''t give to watch her f...
       scene.text(`"${((st as any).pcs_firstname ?? '')} thinks she's so great. What I wouldn't give to watch her fall."`);
       scene.text('"You won\'t need to give anything. Word is she cheated on Dimka and now he\'s out to destroy her. You have to be a real idiot to cross him."');
       scene.text('"I didn\'t even know they were dating. Where did you hear this?"');
@@ -111,7 +109,6 @@ function enterDimaRevengeEventCheck(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Enlist Lizaveta', handler: (st: GameState) => {
     scene.img('images/characters/shared/headshots_main/big140.jpg');
-    // TODO-QSP: dynamic text: Lizaveta is the one to go to for all things gossip. You find her standing by a c...
     scene.text(`Lizaveta is the one to go to for all things gossip. You find her standing by a classroom door, looking inside. She is startled when you greet her. "Oh, you scared me, ${((st as any).pcs_nickname ?? '')}."`);
     scene.text('"What are you doing," you ask her, "what are you looking at in there?"');
     scene.text('"Nothing," she answers unconvincingly.');
@@ -136,11 +133,9 @@ function enterDimaRevengeEventCheck(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       if (((st as any).grupTipe ?? 0) === 2) {
-        // TODO-QSP: dynamic text: "I heard <<$pcs_firstname>> is on steroids."
         scene.text(`"I heard ${((st as any).pcs_firstname ?? '')} is on steroids."`);
         scene.text('"I heard she sucked off the coach for a spot on the team."');
         scene.text('At this point you can\'t help yourself and barge out of the stall to the surprise of the two girls.');
-        // TODO-QSP: dynamic text: "Oh, <<$pcs_nickname>>, I didn''t know you were in here," says one of the girls,...
         scene.text(`"Oh, ${((st as any).pcs_nickname ?? '')}, I didn't know you were in here," says one of the girls, nervously. "Don't want to hear it," you tell her. "Just get lost before I change my mind."`);
         scene.text('They hurriedly leave the restroom, giving you time to think. It seems Dimka wasn\'t full of shit after all. You need to find some way to shut him up.');
         scene.text('You consider just beating him up, but if you\'re caught it could keep you off any teams. Unfortunately you have to take an indirect approach.');
@@ -149,14 +144,12 @@ function enterDimaRevengeEventCheck(s: GameState, scene: SceneBuilder): void {
     (st as any).dimaRevChoice = 2;
     scene.img('images/locations/pavlovsk/school/building/locker.jpg');
     scene.text('Dimka needs to be taught a lesson. Who says you need to be the one to teach it? You know some of the strongest boys in the school who would jump at the chance to prove how macho they are. You head to the lockers where the other athletes hang out.');
-    // TODO-QSP: dynamic text: You see Ivan and Erast talking and decide to get them to take care of Dimka. You...
     scene.text(`You see Ivan and Erast talking and decide to get them to take care of Dimka. You make your saddest face and walk by. They immediately notice you and your gloomy expression. Ivan speaks up first. "Hey, ${((st as any).pcs_nickname ?? '')}, what's wrong?"`);
     scene.text('"It\'s Dimka," you answer. "He\'s been saying terrible things about me, and people are starting to believe him. I don\'t know what to do."');
     scene.text('He gives you a sympathetic look and says, "That guy is such an asshole. I\'ll straighten him out. You coming Erast?" Erast give a nod in response and the two of them head down the hall to where Dimka is talking to some other guys.');
     scene.actions([
       { label: 'Watch what happens', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/katja/punch.jpg');
-    // TODO-QSP: dynamic text: "<<$pcs_firstname>> is a hopeless cumslut," Dimka tells the other boys. "I was j...
     scene.text(`"${((st as any).pcs_firstname ?? '')} is a hopeless cumslut," Dimka tells the other boys. "I was just minding my own business at home and she starts knocking frantically on my door. When I answered, she got on her knees and begged for permission to blow me."`);
     scene.text('"What did you do," one of the boys asks.');
     scene.text('"She wasn\'t taking no for an answer, and pulled my dick out before I could object. I\'m telling you she is an addict to cum. If you ask her I\'m sure she\'ll take care of you guys too."');
@@ -187,7 +180,6 @@ function enterDimaRevengeEventCheck(s: GameState, scene: SceneBuilder): void {
         ]);
       } else {
         if (((st as any).grupTipe ?? 0) === 3) {
-          // TODO-QSP: dynamic text: "So, did you hear about that nerd girl, <<$pcs_firstname>>? They say she is secr...
           scene.text(`"So, did you hear about that nerd girl, ${((st as any).pcs_firstname ?? '')}? They say she is secretly a slut who gives it up to all the nerds."`);
           scene.text('"I heard she\'s actually an idiot and the nerds do her homework for her in exchange for blowjobs whenever they want."');
           scene.text('You cover your ears and try to ignore their comments. After they leave you go to the sink and splash water on your face and try to steel yourself.');
@@ -205,7 +197,6 @@ function enterDimaRevengeEventCheck(s: GameState, scene: SceneBuilder): void {
       { label: 'Talk to Gerasim', handler: (st: GameState) => {
     scene.text('<center><b>Classroom</b></center>');
     scene.img('images/characters/shared/headshots_main/big153.jpg');
-    // TODO-QSP: dynamic text: After class you sit next to Gerasim and try to convince him to hack Dimka''s com...
     scene.text(`After class you sit next to Gerasim and try to convince him to hack Dimka's computer. "I wish I could help, ${((st as any).pcs_nickname ?? '')}, but that isn't really something I know how to do. Have you tried asking Artem?"`);
     scene.text('"I really don\'t want to involve him in this," you reply.');
     scene.text('"Well he would be the one to go to for this kind of thing, but I guess you have a good reason for not telling him. I won\'t pry."');
@@ -232,7 +223,6 @@ function enterDimaRevengeEventCheck(s: GameState, scene: SceneBuilder): void {
     scene.text('<center><b>School Hallway</b></center>');
     scene.img('images/characters/shared/headshots_main/big142.jpg');
     scene.text('You catch up to Zinaida as she leaves the school building. She\'s glued to her phone as always. You tap her on the shoulder and say, "Hey, Zinaida. You\'re looking nice today."');
-    // TODO-QSP: dynamic text: Without looking away from her screen she says, "You''re lying, trying to be nice...
     scene.text(`Without looking away from her screen she says, "You're lying, trying to be nice to me, so you must want something out of me, so what do you want, ${((st as any).pcs_nickname ?? '')}?"`);
     scene.text('"Oh… well… uh I think you should go out with Feofan."');
     scene.text('"Why?"');
@@ -253,7 +243,6 @@ function enterDimaRevengeEventCheck(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Face the door', handler: (st: GameState) => {
     scene.img('images/characters/shared/headshots_main/big1.jpg');
-    // TODO-QSP: dynamic text: You turn to face the door and see Dimka staring at you. "What are you up to, <<$...
     scene.text(`You turn to face the door and see Dimka staring at you. "What are you up to, ${((st as any).pcs_nickname ?? '')}?" he asks you as he slowly walks towards you.`);
     scene.text('"None of your business," you tell him trying to sound tough.');
     scene.text('"Really because it looks like you were doing something back there. Something you shouldn\'t be doing." He\'s getting closer now and you start to back away from him as he continues talking.');
@@ -309,7 +298,6 @@ function enterDimaRevengeEventCheck(s: GameState, scene: SceneBuilder): void {
           ]);
         } else {
           if (((st as any).grupTipe ?? 0) === 4) {
-            // TODO-QSP: dynamic text: "You know that <<$pcs_firstname>> girl who is always hanging out with the gopnik...
             scene.text(`"You know that ${((st as any).pcs_firstname ?? '')} girl who is always hanging out with the gopniks. Well, I heard she has to suck them off everyday to be allowed to hang out with them."`);
             scene.text('"I believe it. She acts all tough, but if it weren\'t for her friends she would just be a scared little girl."');
             scene.text('No fucking way are you standing for this! You quickly exit the stall head towards them. The first girl sees you and bolts out of the restroom.');
@@ -327,7 +315,6 @@ function enterDimaRevengeEventCheck(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'npc_relationship', 'modify', 'A20', 5);
     qspCall(st, 'npc_relationship', 'modify', 'A21', 5);
     scene.text('Time to pay Dimka a visit. Just as you were getting ready to leave the restroom, in walks Lena and Lera. "Well if it isn\'t our little bunny," says Lena, "Were you waiting for us?"');
-    // TODO-QSP: dynamic text: "Of course she was," answers Lera. "<<$pcs_nickname>> loves it when we play with...
     scene.text(`"Of course she was," answers Lera. "${((st as any).pcs_nickname ?? '')} loves it when we play with her, don't you, ${((st as any).pcs_nickname ?? '')}?"`);
     scene.text('You don\'t have time for this. "Out of my way," you tell them.');
     scene.text('"What\'s the hurry," Lera says while blocking the door.');
@@ -346,10 +333,8 @@ function enterDimaRevengeEventCheck(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'money', 'earn', 10000);
       scene.img('images/characters/pavlovsk/school/boy/dimka/revenge/guyknockedout.jpg');
       scene.text('He hears you walking up and turns to meet you. Before he can say anything you punch him as hard as you can in the face.');
-      // TODO-QSP: dynamic text: He falls to the ground, unconscious. Lena and Lera look at you with surprised lo...
       scene.text(`He falls to the ground, unconscious. Lena and Lera look at you with surprised looks on their faces. "Damn, ${((st as any).pcs_nickname ?? '')}! You knocked him out! How are you so strong?"`);
       scene.text('That felt good. Really good. Lena and Lera enjoyed it too. You can see in their faces that they have new respect for you. "Check his pockets," says Lena, "I\'ll keep his watch."');
-      // TODO-QSP: dynamic text: You check his pockets and find <<$func(''money'', ''string_profit'', 10000)>> in...
       scene.text(`You check his pockets and find ${qspFunc(s, 'money', 'string_profit', 10000)} in his wallet. Fucking rich kid. This should teach him. "The teacher is coming," says Lera. "Let's get out of here."`);
       scene.actions([
         { label: 'Continue', goto: ['gschool_lessons', 'short_break'] },
@@ -384,7 +369,6 @@ function enterDimaRevengeEventCheck(s: GameState, scene: SceneBuilder): void {
             ]);
           } else {
             (st as any).dimaTrain = 0;
-            // TODO-QSP: dynamic text: "I heard that weird girl, <<$pcs_firstname>>, lets boys do what ever they want t...
             scene.text(`"I heard that weird girl, ${((st as any).pcs_firstname ?? '')}, lets boys do what ever they want to her no matter how degrading. She has no self respect."`);
             scene.text('"I heard she gets an abortion every other month because she doesn\'t know how to close her legs."');
             scene.text('You start to cry and desperately cover your ears, wishing for them to stop. After what seems like an hour, you take your hands off your ears.');
@@ -406,7 +390,6 @@ function enterDimaRevengeEventCheck(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Face the music', handler: (st: GameState) => {
     scene.img('images/characters/shared/headshots_main/big134.jpg');
-    // TODO-QSP: dynamic text: Miss. Volkov looks at you. "Hitting girls is not an appropriate behaviour miss <...
     scene.text(`Miss. Volkov looks at you. "Hitting girls is not an appropriate behaviour miss ${((st as any).pcs_lastname ?? '')} it's better you think on what you have done"`);
     (st as any).demerit = ((st as any).demerit ?? 0) + (20);
     scene.actions([
@@ -414,9 +397,7 @@ function enterDimaRevengeEventCheck(s: GameState, scene: SceneBuilder): void {
     scene.text('<center><b>School Hall</b></center>');
     scene.img('images/characters/shared/headshots_main/big159.jpg');
     scene.text('As you leave the principals office you are thinking what you might be able to do about your situation. You are distracted from your angry thoughts by an awful smell.');
-    // TODO-QSP: dynamic text: "Hey there, <<$pcs_nickname>>," he says while looking at your breasts, "You''re ...
     scene.text(`"Hey there, ${((st as any).pcs_nickname ?? '')}," he says while looking at your breasts, "You're looking nice today."`);
-    // TODO-QSP: dynamic text: Uggh. He just creeps you out so much. "It''s <<$pcs_firstname>>," you tell him, ...
     scene.text(`Uggh. He just creeps you out so much. "It's ${((st as any).pcs_firstname ?? '')}," you tell him, not even trying to hide the contempt in your voice, "or better yet, don't talk to me at all.`);
     scene.text('I\'m not in the mood to deal with you."');
     scene.text('As you walk off, Petia says, "Yeah, I heard what Dimka has been saying about you. What if you had something that could shut him up?"');
@@ -472,7 +453,6 @@ function enterDimaRevengeEventCheck(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/shared/headshots_main/big2.jpg');
     scene.text('You decide to talk to Artem. You have a few minutes left during your break and you really need someone to talk to right now. You talk to Artem about Dimka.');
     scene.text('"It might be my fault," he says with a hint of guilt after listening to you. "Thinking about that video made me so mad so I erased his whole hardrive instead of just releasing a virus and corrupting the video."');
-    // TODO-QSP: dynamic text: You are upset to hear this, but you remember how understanding he was when you w...
     scene.text(`You are upset to hear this, but you remember how understanding he was when you went to him for help before and can't be too mad at him now. Before you can say anything, he says, "I'll fix this, ${((st as any).pcs_nickname ?? '')}."`);
     scene.text('He leaves and heads into the hallway. You hope he knows what he\'s doing.');
     scene.actions([
@@ -497,7 +477,7 @@ function enterDimaRevengeEventCheck(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   if (String((s as any).locArgs?.[0] ?? '') < 4) {
-    // TODO-QSP: exit
+    return;
   }
   if ((!((s as any).dimaRevChoice ?? 0))) {
     if (String((s as any).locArgs?.[0] ?? '') === 4) {
@@ -589,7 +569,6 @@ function enterDimaRevengeEventCheck(s: GameState, scene: SceneBuilder): void {
       scene.img('images/characters/pavlovsk/school/boy/dimka/revenge/behindherback.jpg');
       scene.text('As you leave the school you hear some girls talking about Dimka. "I heard Dimka is a coke fiend. He has to do several lines everyday or else he can\'t function."');
       scene.text('"I heard he tries to get girls hooked too so they\'ll keep going out with him." You smile. Things are coming along. As you exit the school, though, you hear something that gives you pause.');
-      // TODO-QSP: dynamic text: "I heard <<$pcs_firstname>> gave Lesco a blowjob just because he told her she''s...
       scene.text(`"I heard ${((s as any).pcs_firstname ?? '')} gave Lesco a blowjob just because he told her she's pretty. She is so self conscious that she'll have sex with anyone if they tell her she's pretty." You turn red. None of that is true! Not a bit! So that's how it's going to be. You change your mind and go for Lizaveta.`);
       scene.actions([
         { label: 'Find Lizaveta', handler: (st: GameState) => {
@@ -607,7 +586,6 @@ function enterDimaRevengeEventCheck(s: GameState, scene: SceneBuilder): void {
       if (String((s as any).locArgs?.[1] ?? '') === 'before') {
         qspCall(s, 'fame', 'pav', 'sex', 60);
         scene.text('You enter the school and walk around listening to the other students. "I heard Dimka sucked some guy off for crack."');
-        // TODO-QSP: dynamic text: "I heard <<$pcs_firstname>> gets passed around by everyone in her apartment buil...
         scene.text(`"I heard ${((s as any).pcs_firstname ?? '')} gets passed around by everyone in her apartment building." The rumors only get worse. You head to class.`);
         scene.actions([
           { label: 'Continue', goto: ['gschool_lessons', 'short_break'] },
@@ -643,7 +621,6 @@ function enterDimaRevengeEventCheck(s: GameState, scene: SceneBuilder): void {
         (s as any).dimaRevenge = ((s as any).dimaRevenge ?? 0) + (1);
         scene.img('images/characters/pavlovsk/school/boy/dimka/revenge/boygirlarguing.jpg');
         scene.text('You go around the hallway spreading rumors about Dimka, but everyone looks at you like you are full of it. It seems Lizaveta was true to her word, after all. You see Dimka having the same trouble. It seems you\'ve both lost your credibility. At least your reputation is safe, since no one believes Dimka anymore. You are too stubborn to notice that though and keep trying to spread rumors while Dimka does the same.');
-        // TODO-QSP: dynamic text: Soon the two of you get into an argument, which turns into a screaming match. Yo...
         scene.text(`Soon the two of you get into an argument, which turns into a screaming match. You are both screaming at the top of your lungs when the principal comes to break things up. "Miss ${((s as any).pcs_lastname ?? '')}, Mr. Nosov, in my office now!"`);
         scene.actions([
           { label: 'Go to the principal\'s office', handler: (st: GameState) => {
@@ -658,7 +635,6 @@ function enterDimaRevengeEventCheck(s: GameState, scene: SceneBuilder): void {
     scene.text('"If you lay a finger on me, I\'ll call my dad and he\'ll sue you and this school into the ground." He seems to think he has won.');
     scene.text('Miss. Volkov is out of patience at this point. "Listen, you little shit," she says angrily, "I will not be talked to that way by some spoiled brat. I know your father better than you, and nothing would piss him off more than a weak son who hides behind his name. You have one chance to get in line or I\'ll be the one calling your father and making him come to school during his work hours to talk about his whiny son."');
     scene.text('"You can\'t talk to me that way," Dimka says nervously, "My father would…"');
-    // TODO-QSP: dynamic text: "That''s enough," she cuts Dimka off, "Miss <<$pcs_lastname>>, go to class and t...
     scene.text(`"That's enough," she cuts Dimka off, "Miss ${((st as any).pcs_lastname ?? '')}, go to class and tell your teacher that Mr. Nosov won't be attending for the rest of the day." As you leave the office, you try and listen at the door. But it is thick and you can't hear anything. You hear Mrs. Sokoloff clear her throat as she catches you. She is the teacher manning the office at this time. After that you quickly go to class.`);
     scene.actions([
       { label: 'Continue', goto: ['gschool_lessons', 'short_break'] },
@@ -723,25 +699,20 @@ function enterDimaRevengeEventCheck(s: GameState, scene: SceneBuilder): void {
     (st as any).win = 1;
     if ((!((st as any).win ?? 0))) {
       scene.text('Lera is unconscious on the ground as you hold Lena by the hair. "I didn\'t say shit about you," you tell her.');
-      // TODO-QSP: dynamic text: You let go of her and turn to head home, but then you see Vitek walking towards ...
       scene.text(`You let go of her and turn to head home, but then you see Vitek walking towards you. He looks pissed. He must have just seen you beat up his sister. You make to run but are tripped by Lena. You close your eyes, afraid of what he'll do to you, but nothing happens. You open your eyes to see Ivan${(((st as any).dimaRevenge ?? 0)?.['Fedor Involved'] ?? '')}holding Vitek back. Vitek is swearing at the top of his lungs. As you get up and dust yourself off, Dan, Vasily, Pauline and Katyusha come to investigate and see Vitek getting ganged up on. Things get crazy after that.`);
     } else {
       if (((st as any).win ?? 0) === 1) {
-        // TODO-QSP: dynamic text: The two of them are too strong for you and you get knocked to the ground. They s...
         scene.text(`The two of them are too strong for you and you get knocked to the ground. They start kicking you. You do your best to block their kicks while trying to get up, but they keep knocking you down. You are about to give up when Ivan${(((st as any).dimaRevenge ?? 0)?.['Fedor Involved'] ?? '')}show up. Fedor tosses Lera aside and Ivan grabs Lena by the shoulders and tries to calm her down. Suddenly you hear an angry yell, and you see Vitek charging towards Ivan.`);
         scene.text('You get up in time to see Dan, Vasily Pauline and Katyusha arrive, followed by Erast and Lazar. Things get crazy after that, with Roman showing up last.');
         scene.actions([
           { label: 'School brawl', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/boy/dimka/revenge/bigbrawl.jpg');
-    // TODO-QSP: dynamic text: Ivan and Vitek trade blows that would knock anyone else out. Roman, crazy little...
     scene.text(`Ivan and Vitek trade blows that would knock anyone else out. Roman, crazy little shit that he is, takes on Erast. Dan and Vasily double up on ${(((st as any).dimaRevenge ?? 0)?.['Fedor Involved 2'] ?? '')}, Katyusha decides she wants to fight Lazar who refuses to hit a girl. Katyusha scoffs at him and proceeds to kick his ass anyway. You lose track of Lena and Lera. As you look around you see a security camera looking straight at you. Before you can tell anyone about it, a brick hits you in the back causing a great deal of pain. You turn around and see Pauline. "Fucking bitch," you shout as you run at her. "I'll fucking kill you!"`);
     scene.actions([
       { label: 'Fight', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/boy/dimka/revenge/thepopo.jpg');
-    // TODO-QSP: dynamic text: You and Pauline go at for quite a while. Eventually you are both tired and catch...
     scene.text(`You and Pauline go at for quite a while. Eventually you are both tired and catch your breath before having another go. As you try to catch your breath, exhausted, you see how the others are doing. You see Ivan and Vitek still at it, neither one of them running out of energy, though it looks like Ivan's superior skill is starting to become the deciding factor. It seems Dan agree's, after he and Vasily have ${(((st as any).dimaRevenge ?? 0)?.['Fedor Involved 2'] ?? '')} down, he jumps in to help Vitek against Ivan, leaving Vasily to kick ${(((st as any).dimaRevenge ?? 0)?.['Fedor Involved 2'] ?? '')} while he is down.`);
     scene.text('You see battered and bloody Roman pull out a knife and charge at Erast, who seems to have taken his fair share of blow from Roman. As Roman charges him though, Erast side steps just in time and delivers and powerful blow, that sends Roman sprawling unconscious.');
-    // TODO-QSP: dynamic text: Erast looks around and then heads over to help <<$dimaRevenge[''Fedor Involved 2...
     scene.text(`Erast looks around and then heads over to help ${(((st as any).dimaRevenge ?? 0)?.['Fedor Involved 2'] ?? '')}. Lazar is trying to block Katyusha's attacks but his refusal to hit her back means she is beating him down. He goes down and once he does, it is all over. Just then you catch sight of Lena and Lera walking towards you. Apparently they were waiting for you to tire yourself out. Lera grabs you and hold you for Lena, but before she can do anything, you hear the sounds of sirens. Several officers show up and arrest everyone.`);
     scene.actions([
       { label: 'In custody', handler: (st: GameState) => {
@@ -750,7 +721,6 @@ function enterDimaRevengeEventCheck(s: GameState, scene: SceneBuilder): void {
     scene.text('You feel a little safer with Ivan sitting next to you, but what happens if he leaves before you? "You are going to pay for talking shit about me," Lena tells you. "You can\'t avoid me."');
     scene.text('"Why don\'t you just give it a rest already," Katyusha says. "She obviously wasn\'t talking about you."');
     scene.text('"How the hell do you know?"');
-    // TODO-QSP: dynamic text: "Because I''m not a fucking idiot. Dimka spread those rumors because <<$pcs_firs...
     scene.text(`"Because I'm not a fucking idiot. Dimka spread those rumors because ${((st as any).pcs_firstname ?? '')} here had him beat up for spreading shit about her." You sink in your seat. She is very perceptive.`);
     scene.text('"Then why the fuck didn\'t you say anything," Viteks says.');
     scene.text('"Because I really wanted to fight someone," Katyusha replies. "But I got stuck fighting this punching bag here." She points to Lazar who remains silent. Everyone is silent.');
@@ -805,7 +775,6 @@ function enterDimaRevengeEventCheck(s: GameState, scene: SceneBuilder): void {
       scene.text('"Thanks," you say. "What did you have me do, anyway?"');
       scene.text('"Don\'t worry. You\'re safe."');
       scene.text('"Safe from what?" Before you can get an answer she gets up and leaves. What a weird chick. Soon Feofan comes over and sits across from you.');
-      // TODO-QSP: dynamic text: "Hey <<$pcs_nickname>>. I don''t know how you did it but Zin agreed to go on a d...
       scene.text(`"Hey ${((s as any).pcs_nickname ?? '')}. I don't know how you did it but Zin agreed to go on a date with me."`);
       scene.text('"That\'s great," you say. "Where did you take her."');
       scene.text('"I took her to a barbecue place in the city. The owner has a soft spot for me and gives me a discount. I think she has a thing for me."');
@@ -867,7 +836,6 @@ function enterDimaRevengeEventCheck(s: GameState, scene: SceneBuilder): void {
     if (String((s as any).locArgs?.[0] ?? '') === 4) {
       (s as any).dimaRevenge = ((s as any).dimaRevenge ?? 0) + (1);
       scene.img('images/characters/pavlovsk/school/boy/dimka/revenge/behindherback.jpg');
-      // TODO-QSP: dynamic text: As you head to your locker you hear kids talking about you behind your back. "I ...
       scene.text(`As you head to your locker you hear kids talking about you behind your back. "I heard ${((s as any).pcs_firstname ?? '')} plays bitch to Lena and Lera."`);
       scene.text('"I heard they pimp her out to boys behind the old school building." Your blood boils. It seems Dimka hasn\'t learned his lesson. He will, though, no matter how many times it takes.');
       scene.actions([
@@ -878,7 +846,6 @@ function enterDimaRevengeEventCheck(s: GameState, scene: SceneBuilder): void {
       if (String((s as any).locArgs?.[1] ?? '') === 'before') {
         (s as any).dimaRevenge = ((s as any).dimaRevenge ?? 0) + (1);
         qspCall(s, 'fame', 'pav', 'sex', 60);
-        // TODO-QSP: dynamic text: You wait at the entrance to the school for Dimka to arrive, but he never shows u...
         scene.text(`You wait at the entrance to the school for Dimka to arrive, but he never shows up. Thinking he used a side entrance you head to the classroom to search for him. Looking into the classroom, you don't see any sign of him. You jump when a voice behind you says, "What are you looking for, ${((s as any).pcs_nickname ?? '')}?" You turn around and see Lavrenti grinning.`);
         scene.text('"Fuck! Don\'t sneak up on me like that," you say as you give him a hard punch in the shoulder.');
         scene.text('"I couldn\'t resist. What are you looking for anyway?"');
@@ -921,7 +888,6 @@ function enterDimaRevengeEventCheck(s: GameState, scene: SceneBuilder): void {
     scene.text('"I want you to see something, Dimka," you say as you pull out his stash of coke you took.');
     scene.text('"Give that back," he says.');
     scene.text('"No way am I doing that. Now watch."');
-    // TODO-QSP: dynamic text: You take out a baggie of coke and cut it open, then dump it on the floor. You do...
     scene.text(`You take out a baggie of coke and cut it open, then dump it on the floor. You do the same with the other baggies. Dimka's face has an expression of pure terror. You aim the shower at the pile of coke on the ground and let it wash down the drain as Dimka screams insults at you and Lavrenti. He screams insult after insult at the two of you as you laugh your asses off. After a while in sounds less like swearing and more like rabid howling. Finally you get sick of his screaming and grab him by the hair, then slam his face into the ground. As he lays there unconscious, you check his pocket. ${qspFunc(s, 'money', 'string_profit', 10000)}.`);
     scene.text('"Fucking rich kid," you say then you look at Lavrenti, "No offense."');
     scene.text('"None taken," he replies. "We should get out of here, though."');
@@ -942,7 +908,6 @@ function enterDimaRevengeEventCheck(s: GameState, scene: SceneBuilder): void {
         (s as any).dimaDisco = 0;
         scene.text('The two of you head home since you already skipped most of your classes today. Lavrenti flirts with you along the way. The bell rings just as you get to the front entrance, and you decide to wait for some of your friends.');
         scene.text('As you do, you hear some guys talking.');
-        // TODO-QSP: dynamic text: "I heard <<$pcs_firstname>> gave Lavrenti a blowjob in the boy''s locker room."
         scene.text(`"I heard ${((s as any).pcs_firstname ?? '')} gave Lavrenti a blowjob in the boy's locker room."`);
         scene.text('"I heard she was doing it for a fix. Some one saw them leaving the locker room together and when they went inside, they saw white powder disolving in the drain.');
         scene.text('She\'s a crack head. Maybe if you offer her some, she\'ll suck your dick t-"');
@@ -981,7 +946,6 @@ function enterDimaRevengeEventCheck(s: GameState, scene: SceneBuilder): void {
     scene.text('"What\'s up asshole," you say as you punch Dimka in the face. He runs for the exit right away. Straight into Alyona\'s fist which knocks him to the ground.');
     scene.text('"Fucking slut set me up," he yells just before Anushka kicks him repeatedly in the side.');
     scene.text('"Who the fuck are you calling a slut?!" Anushka says as she bends over and punches Dimka in the face a few times, followed by several more kicks to his ribs. Dimka curls up on the floor in pain as the three of you continue to rain blows down on him until he stops moving.');
-    // TODO-QSP: dynamic text: Alyona checks to make sure he''s breathing and, more importantly, to see what''s...
     scene.text(`Alyona checks to make sure he's breathing and, more importantly, to see what's in his pockets. ${qspFunc(s, 'money', 'string_profit', 10000)} again! Does he go home and beg his parents for more money every time he gets robbed?`);
     scene.text('"Fucking rich kid," you hear Alyona say under her breath. "How many bottles of Zhiguljovskoje can we buy with this do you think?"');
     scene.text('"Lets find out," you say. "But first I have an idea. Help me lift him."');
@@ -1011,7 +975,6 @@ function enterDimaRevengeEventCheck(s: GameState, scene: SceneBuilder): void {
         scene.text('The first thing you hear when you enter the school is how Dimka was caught jacking off in the girls restroom at the disco.');
         scene.text('Only three people know the truth, but they aren\'t going to tell anyone. You feel someone tap your shoulder and you turn around to see Anushka. "Forty," she says.');
         scene.text('"Uhh, Forty what?"');
-        // TODO-QSP: dynamic text: "Bottles of Zhiguljovskoje. <<$func(''money'', ''string_profit'', 10000)>> buys ...
         scene.text(`"Bottles of Zhiguljovskoje. ${qspFunc(s, 'money', 'string_profit', 10000)} buys forty bottles of Zhiguljovskoje! We're having a little party in the old building. Get your ass there."`);
         scene.text('She\'s in a good mood, today. You wanted to listen to gossip, but getting drunk sounds like way more fun. You head up there.');
         scene.actions([
@@ -1128,7 +1091,6 @@ function enterDimaRevengeEventCheck(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/boy/dimka/revenge/drugdeal.jpg');
     scene.text('You fast forward the video a bit to get to the conversation between Dimka and his dealer. "I\'m taking a big risk bringing this to a school. You should come to me my place in the city."');
     scene.text('"I can\'t. My dad is getting suspicious."');
-    // TODO-QSP: dynamic text: "Fine, but from now on it''s <<$func(''money'', ''string_profit'', 4000)>>. Non ...
     scene.text(`"Fine, but from now on it's ${qspFunc(s, 'money', 'string_profit', 4000)}. Non negotiable."`);
     scene.text('"That\'s double the normal price! My dad will notice if I keep taking that much from him."');
     scene.text('"Then find another way to get money or find another way to get your fix, I don\'t care."');
@@ -1141,7 +1103,6 @@ function enterDimaRevengeEventCheck(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'npc_relationship', 'modify', 'A159', (-20));
     scene.img('images/characters/pavlovsk/school/boy/dimka/revenge/checkphone.jpg');
     scene.text('You wonder how he got this video in the first place and about the other videos. You check them and find several with names of girls you know. Then you see one with your name. You open it and find a video with clips of you in the locker room and shower.');
-    // TODO-QSP: dynamic text: "You fucking pig!!" you scream as you punch and kick Petia until he can''t take ...
     scene.text(`"You fucking pig!!" you scream as you punch and kick Petia until he can't take anymore and passes out. You check his pockets and find a wallet with ${qspFunc(s, 'money', 'string_profit', 1000)}.`);
     scene.text('You pocket the money and throw his phone and wallet into a nearby pond, then head to the train station and finally home. You don\'t know how Petia is going to get back, and you don\'t care. Today was an ordeal and you just want to rest.');
     scene.actions([
@@ -1236,7 +1197,6 @@ function enterDimaRevengeEventCheck(s: GameState, scene: SceneBuilder): void {
       { label: 'In trouble', handler: (st: GameState) => {
     (st as any).demerit = ((st as any).demerit ?? 0) + (40);
     scene.img('images/characters/shared/headshots_main/big134.jpg');
-    // TODO-QSP: dynamic text: Miss. Volkov looks at you. "I don''t know what''s on your mind miss <<$pcs_lastn...
     scene.text(`Miss. Volkov looks at you. "I don't know what's on your mind miss ${((st as any).pcs_lastname ?? '')} but what have you done will have serious consequences… now go"`);
     scene.actions([
       { label: 'Back to class', handler: (st: GameState) => {
@@ -1265,7 +1225,6 @@ function enterDimaRevengeEventCheck(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'fame', 'pav', 'sex', 60);
       scene.text('<center><b>School Hallway</b></center>');
       scene.img(`images/locations/pavlovsk/school/building/gschool_hall0${(Math.floor(Math.random() * 3) + 0)}.jpg`);
-      // TODO-QSP: dynamic text: You see Artem in the hall talking with Ivan. When you greet him he says "Don''t ...
       scene.text(`You see Artem in the hall talking with Ivan. When you greet him he says "Don't worry, ${((s as any).pcs_nickname ?? '')}. I have a plan. I can't talk about it now, though." Saying that he rushes off. What is he up to?`);
       scene.actions([
         { label: 'Continue', goto: ['gschool_lessons', 'short_break'] },
@@ -1284,7 +1243,6 @@ function enterDimaRevengeEventCheck(s: GameState, scene: SceneBuilder): void {
     scene.text('<center><b>Girls bathroom</b></center>');
     scene.img('images/characters/pavlovsk/school/boy/dimka/revenge/crying.jpg');
     scene.text('As you hide in the stall, crying hysterically, all you can think about is how your life is over. All the girls are going to give you the cold shoulder. The boys are going to treat you like a whore and make you give them blowjobs alongside Sonia. Your mother will disown you. Your despair is interrupted by a banging on the restroom door.');
-    // TODO-QSP: dynamic text: "Come out, <<$pcs_nickname>>. You can''t stay in there forever." It''s Dimka, th...
     scene.text(`"Come out, ${((st as any).pcs_nickname ?? '')}. You can't stay in there forever." It's Dimka, that fucking asshole.`);
     scene.text('"Your public is waiting for you, slut. Come out and show us what a good cocksuc- Ow! Fuck! Get the hell off me Artem!"');
     scene.actions([
@@ -1316,9 +1274,7 @@ function enterDimaRevengeEventCheck(s: GameState, scene: SceneBuilder): void {
     scene.text('You sit in the classroom going over what just happened. You smile as you think about the beating Dimka just received. You also think how fortunate you are that it was Mr. Ivanov who came to investigate. The way Artem could lie to his face like that makes you wonder. It seems like everyone has stopped talking about you. Well, at least about your slutiness. Tired of being in your own head, you listen to the conversations in the classroom.');
     scene.text('"Did you see the fight between Dimka and Artem?"');
     scene.text('"Yeah, if you can call it that. Dimka got his ass kicked. What a weakling. And he\'s a snitch."');
-    // TODO-QSP: dynamic text: "I can''t believe Dimka said all those awful things about <<$pcs_firstname>> jus...
     scene.text(`"I can't believe Dimka said all those awful things about ${((st as any).pcs_firstname ?? '')} just because she broke up with him. What a creep. I can't believe everyone bought his lies."`);
-    // TODO-QSP: dynamic text: "I know, right. Their is something seriously wrong with that guy. Why else would...
     scene.text(`"I know, right. Their is something seriously wrong with that guy. Why else would ${((st as any).pcs_firstname ?? '')} leave the most popular boy in school for a geek like Artem."`);
     scene.text('"Well, he is kinda cute."');
     scene.text('Hmm. So that\'s what they\'re talking about. You wonder if this was Artem\'s plan all along.');
@@ -1370,7 +1326,6 @@ function enterDimaRevengeEventCheck(s: GameState, scene: SceneBuilder): void {
     scene.text('<center><b>Home</b></center>');
     scene.img('images/characters/pavlovsk/school/boy/dimka/revenge/reversecowgirl.mp4');
     scene.text('It\'s time for the main event. You pull your foot away from him and start to lower yourself over his cock. You get lower and lower until your vulva is kissing the tip of his dick. "You want me, don\'t you?" you ask him in your sexiest voice.');
-    // TODO-QSP: dynamic text: "Yes, please, <<$pcs_nickname>>. I can''t take it anymore. I need you." You can'...
     scene.text(`"Yes, please, ${((st as any).pcs_nickname ?? '')}. I can't take it anymore. I need you." You can't take it anymore either and you let your pussy engulf his penis and start riding him with reckless abandon. Apparently you were closer than him, because it isn't long before you orgasm, screaming at the top of your lungs. As you come down from your orgasmic high, you lean forward and give Artem a long, passionate kiss on the lips. You pull yourself off him, turn around and plunge back down to ride him in reverse cowgirl. You roll your hips and milk his cock urging him to let his cum out. You ride him like this for a few minute until you have another orgasm.`);
     scene.text('Your eyes roll back as you ride out the sensation, unaware of the rest of the world. You\'re in heaven. When you come back to earth you see that Artem came on your ass.');
     scene.text('"That was amazing!" You blush at that statement. Then, seeing the clock, you rush him out of your apartment before your parents get home. Before he leaves, you pull him into another long kiss and watch as he makes his way to the stairs. As you reenter your apartment, you think to yourself wistfully, "That was amazing."');

@@ -32,7 +32,6 @@ function enterDateRate(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -72,7 +71,6 @@ function enterDateMood(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -86,7 +84,6 @@ function enterBreakUp(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'lover', 'remove', ((s as any).npcID ?? 0));
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['date_ev', 'exit'] },
   ]);
@@ -96,7 +93,6 @@ function enterBreakUp(s: GameState, scene: SceneBuilder): void {
 function enterFuckbuddyAdd(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'lover', 'add_fuckbuddy', ((s as any).npcID ?? 0));
   ((s as any).npc_no_booty_call = (s as any).npc_no_booty_call ?? {})[String((s as any).npcID ?? 0)] = ((s as any).daystart ?? 0);
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -104,18 +100,16 @@ function enterSugarDaddyAdd(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'lover', 'add_sugar_daddy', ((s as any).npcID ?? 0));
   ((s as any).npc_sugar_daddy_price = (s as any).npc_sugar_daddy_price ?? {})[String((s as any).npcID ?? 0)] = (((s as any).date_ev ?? {})?.['sugar_daddy_offer'] ?? 0) * 100;
   if (((s as any).npc_rel_type ?? 0)?.[String((s as any).npcID ?? 0)] !== 'sugar_daddy') {
-    // TODO-QSP: $npc_rel_type[$npcID] = 'sugar_daddy'
+    ((s as any).npc_rel_type = (s as any).npc_rel_type ?? {})[String((s as any).npcID ?? 0)] = 'sugar_daddy';
     ((s as any).date_ev = (s as any).date_ev ?? {})['sugar_daddy_count'] = ((s as any).date_ev['sugar_daddy_count'] ?? 0) + (1);
   }
   ((s as any).date_ev = (s as any).date_ev ?? {})['sugar_daddy_paid'] = 1;
   ((s as any).date_ev = (s as any).date_ev ?? {})['prostitution_paid'] = 1;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterLoverAdd(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'lover', 'add_boyfriend', ((s as any).npcID ?? 0));
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -123,38 +117,33 @@ function enterFirstTime(s: GameState, scene: SceneBuilder): void {
   if (((String((((s as any).npc_date_locs ?? 0)?.[String((s as any).npcID ?? 0)] ?? 0)).indexOf(String(';' + ((s as any).locArgs?.[1] ?? 0) + ';'))) + 1) <= 0) {
     ((s as any).date_ev = (s as any).date_ev ?? {})['first_time'] = 1;
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterDateTracker(s: GameState, scene: SceneBuilder): void {
   if (((s as any).date_ev ?? 0)?.['tracker'] !== String((s as any).locArgs?.[1] ?? '')) {
     ((s as any).date_ev = (s as any).date_ev ?? {})['loc'] = ((s as any).locArgs?.[1] ?? 0);
-    // TODO-QSP: stat[$ARGS[1]] += 1
+    ((s as any).stat = (s as any).stat ?? {})[((s as any).locArgs?.[1] ?? 0)] = ((s as any).stat[((s as any).locArgs?.[1] ?? 0)] ?? 0) + (1);
     if (((String((((s as any).npc_date_locs ?? 0)?.[String((s as any).npcID ?? 0)] ?? 0)).indexOf(String(';' + ((s as any).locArgs?.[1] ?? 0) + ';'))) + 1) <= 0) {
-      // TODO-QSP: $npc_date_locs[$npcID] += $ARGS[1] + ";"
+      ((s as any).npc_date_locs = (s as any).npc_date_locs ?? {})[String((s as any).npcID ?? 0)] = ((s as any).npc_date_locs[String((s as any).npcID ?? 0)] ?? 0) + (((s as any).locArgs?.[1] ?? 0) + ';');
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterSetContinue(s: GameState, scene: SceneBuilder): void {
   ((s as any).date_ev = (s as any).date_ev ?? {})['cont_loc'] = ((s as any).locArgs?.[1] ?? 0);
   ((s as any).date_ev = (s as any).date_ev ?? {})['cont_arg'] = ((s as any).locArgs?.[2] ?? 0);
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterFlashStats(s: GameState, scene: SceneBuilder): void {
   ((s as any).npc_date_flash = (s as any).npc_date_flash ?? {})[String((s as any).npcID ?? 0)] = ((s as any).npc_date_flash[String((s as any).npcID ?? 0)] ?? 0) + (1);
   qspCall(s, 'arousal_oneline', 'flash', 1);
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterAlternatePlans(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: end
   scene.actions([
     { label: 'Hang out at his place?', handler: (st: GameState) => {
     scene.text('"Want to just go back to your place and hang?"');
@@ -174,7 +163,6 @@ function enterAlternatePlans(s: GameState, scene: SceneBuilder): void {
       scene.text('"I like that plan," he grins.');
       scene.text('"Great! Let\'s go!"');
     }
-    // TODO-QSP: dynamic text: You take <<$npcdesc>> by the arm and head off back to his place for sexy times.
     scene.text(`You take ${((st as any).npcdesc ?? '')} by the arm and head off back to his place for sexy times.`);
     scene.actions([
       { label: '', labelFn: (s: GameState) => 'Go to ' + String(((st as any).npcdesc ?? '') ?? '') + '\'s place', goto: ['sex_ev_start', 'date_npc_home_start'] },
@@ -189,7 +177,6 @@ function enterAlternatePlans(s: GameState, scene: SceneBuilder): void {
       scene.text('"I like that plan," he grins.');
       scene.text('"Great! Let\'s go!"');
     }
-    // TODO-QSP: dynamic text: You take <<$npcdesc>> by the arm and head off back to his place for sexy times.
     scene.text(`You take ${((st as any).npcdesc ?? '')} by the arm and head off back to his place for sexy times.`);
     scene.actions([
       { label: '', labelFn: (s: GameState) => 'Go to ' + String(((st as any).npcdesc ?? '') ?? '') + '\'s place', goto: ['sex_ev_start', 'date_npc_home_start'] },

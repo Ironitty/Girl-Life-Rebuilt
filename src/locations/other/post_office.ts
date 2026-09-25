@@ -16,7 +16,6 @@ function enterLeave(s: GameState, scene: SceneBuilder): void {
   } else {
     qspGoto(s, 'pav_commercial', '');
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -49,7 +48,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 3;
@@ -60,7 +58,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
 
 function enterSetSkiplineActs(s: GameState, scene: SceneBuilder): void {
   if (((s as any).trait_vars ?? 0)?.['exhibitionist'] <= 0  &&  ((s as any).pcs_inhib ?? 0) < 45) {
-    // TODO-QSP: exit
+    return;
   }
   qspCall(s, 'willpower', 'exhib', 'self', 'easy');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
@@ -200,7 +198,6 @@ function enterSetSkiplineActs(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -248,8 +245,7 @@ function enterCounter(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Pay your fine(s)', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
-    // TODO-QSP: dynamic text: 'You have an outstanding fine of ' + $func('money', 'string_debt', policeQW['leg...
-    scene.text('You have an outstanding fine of \' + $func(\'money\', \'string_debt\', policeQW[\'legal_fine\']) + \'.');
+    scene.text('You have an outstanding fine of ' + qspFunc(s, 'money', 'string_debt', (((st as any).policeQW ?? 0)?.['legal_fine'] ?? '')) + '.');
     (st as any).fineIN = window.prompt("How much do you want to pay off?") ?? '';
     if (((st as any).fineIN ?? 0) <= 0) {
       scene.text('Invalid operation.');
@@ -268,13 +264,14 @@ function enterCounter(s: GameState, scene: SceneBuilder): void {
       } else {
         if (qspFunc(s, 'money', 'can_afford_debt', ((st as any).fineIN ?? 0))) {
           (st as any).temp_paid = qspFunc(s, 'money', 'debt_pay', 'policeQW[\'legal_fine\']', ((st as any).fineIN ?? 0));
-          // TODO-QSP: dynamic text: '<br>You pay ' + $func('money', 'string_debt_reduction', temp_paid) + ' towards ...
-          scene.text('<br>You pay \' + $func(\'money\', \'string_debt_reduction\', temp_paid) + \' towards your legal fine(s). You have \' + $func(\'money\', \'string_debt\', policeQW[\'legal_fine\']) + \' still outstanding.');
+          scene.text('<br>You pay ' + qspFunc(s, 'money', 'string_debt_reduction', ((st as any).temp_paid ?? '')) + ' towards your legal fine(s). You have ' + qspFunc(s, 'money', 'string_debt', (((st as any).policeQW ?? 0)?.['legal_fine'] ?? '')) + ' still outstanding.');
         } else {
           scene.text('<br>You don\'t have enough money to pay that amount.');
         }
+        (st as any).temp_paid = undefined;
       }
     }
+    (st as any).fineIN = undefined;
   } },
     ]);
   }
@@ -283,6 +280,7 @@ function enterCounter(s: GameState, scene: SceneBuilder): void {
       { label: 'Send paternity test ( [20000₽]...]', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 20000) === 1) {
       qspCall(st, 'money', 'pay', 20000);
+      qspFunc(s, 'send_test');
       qspCall(st, 'stat', '');
       scene.text('You pay the fee for the testing, then mail your used paternity test to the lab in Saint Petersburg with the copy of your receipt of payment. You will get answer by SMS within a week.');
     } else {
@@ -294,7 +292,6 @@ function enterCounter(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 3;
@@ -325,27 +322,28 @@ function enterCounter(s: GameState, scene: SceneBuilder): void {
 function enterPickupMail(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/shared/postoffice/worker.jpg');
   (s as any).temp_mail_counter = 0;
-  // TODO-QSP: copyarr('$temp_mail_region',  '$mail_region')
-  // TODO-QSP: copyarr('$temp_mail_code',    '$mail_code')
-  // TODO-QSP: copyarr('temp_mail_time',    '$mail_time')
+  (s as any)[mail_region] ? (s as any)[mail_region] = { ...(s as any)[temp_mail_region] } : (s as any)[mail_region] = { ...(s as any)[temp_mail_region] };
+  (s as any)[mail_code] ? (s as any)[mail_code] = { ...(s as any)[temp_mail_code] } : (s as any)[mail_code] = { ...(s as any)[temp_mail_code] };
+  (s as any)[mail_time] ? (s as any)[mail_time] = { ...(s as any)[temp_mail_time] } : (s as any)[mail_time] = { ...(s as any)[temp_mail_time] };
   (s as any).po_i = 0;
-  // TODO-QSP: :mail_loop
-  if (((s as any).temp_mail_region ?? 0)?.[String((s as any).po_i ?? 0)] === ((s as any).region ?? 0)  ||  ((s as any).temp_mail_region ?? 0)?.[String((s as any).po_i ?? 0)] === 'all') {
-    if (((s as any).totminut ?? 0) >= ((s as any).temp_mail_time ?? 0)?.[String((s as any).po_i ?? 0)]) {
-      (s as any).temp_mail_counter = ((s as any).temp_mail_counter ?? 0) + (1);
+  do {
+    if (((s as any).temp_mail_region ?? 0)?.[String((s as any).po_i ?? 0)] === ((s as any).region ?? 0)  ||  ((s as any).temp_mail_region ?? 0)?.[String((s as any).po_i ?? 0)] === 'all') {
+      if (((s as any).totminut ?? 0) >= ((s as any).temp_mail_time ?? 0)?.[String((s as any).po_i ?? 0)]) {
+        (s as any).temp_mail_counter = ((s as any).temp_mail_counter ?? 0) + (1);
+      }
     }
-  }
-  (s as any).po_i = ((s as any).po_i ?? 0) + (1);
-  if (((s as any).po_i ?? 0) < Object.keys((s as any).temp_mail_region ?? {}).length) {
-    // TODO-QSP: jump 'mail_loop'
-  }
-  if (((s as any).temp_mail_counter ?? 0) > 0) {
-    // TODO-QSP: dynamic text: You have <<temp_mail_counter>> pieces of mail left to pickup.
-    scene.text(`You have ${((s as any).temp_mail_counter ?? '')} pieces of mail left to pickup.`);
-  } else {
-    scene.text('You have collected all your mail.');
-  }
-  // TODO-QSP: end
+    (s as any).po_i = ((s as any).po_i ?? 0) + (1);
+    if (((s as any).temp_mail_counter ?? 0) > 0) {
+      scene.text(`You have ${((s as any).temp_mail_counter ?? '')} pieces of mail left to pickup.`);
+    } else {
+      scene.text('You have collected all your mail.');
+    }
+    (s as any).po_i = undefined;
+    (s as any).temp_mail_counter = undefined;
+    (s as any).temp_mail_region = undefined;
+    (s as any).temp_mail_code = undefined;
+    (s as any).temp_mail_time = undefined;
+  } while (((s as any).po_i ?? 0) < Object.keys((s as any).temp_mail_region ?? {}).length);
   scene.actions([
     { label: 'Go back', goto: ['post_office', 'counter'] },
     { label: 'Leave', handler: (st: GameState) => {
@@ -359,18 +357,20 @@ function enterAddMail(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === '') {
     ((s as any).ARGS = (s as any).ARGS ?? {})[2] = 'all';
   }
-  // TODO-QSP: $mail_region[] = $ARGS[1]
-  // TODO-QSP: $mail_code[] = $ARGS[2]
-  // TODO-QSP: mail_time[] = ARGS[3]
-  // TODO-QSP: end
+  (s as any).mail_region = [...((s as any).mail_region ?? []), ((s as any).locArgs?.[1] ?? 0)];
+  (s as any).mail_code = [...((s as any).mail_code ?? []), ((s as any).locArgs?.[2] ?? 0)];
+  (s as any).mail_time = [...((s as any).mail_time ?? []), ((s as any).locArgs?.[3] ?? 0)];
   scene.build();
 }
 
 function enterRemoveMail(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_mail_index = qspUntranslated(s, "arrpos('mail_code', ARGS[1])", { location: "post_office" });
   if (((s as any).temp_mail_index ?? 0) >= 0) {
+    (s as any).mail_region = undefined;
+    (s as any).mail_code = undefined;
+    (s as any).mail_time = undefined;
   }
-  // TODO-QSP: end
+  (s as any).temp_mail_index = undefined;
   scene.build();
 }
 
@@ -412,7 +412,6 @@ function enterPostOff(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Exit office', goto: ['post_office', 'start'] },
   ]);

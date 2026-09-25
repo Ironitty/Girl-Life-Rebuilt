@@ -26,7 +26,6 @@ function enterRomanFight(s: GameState, scene: SceneBuilder): void {
   if (((s as any).gopnikbandQW ?? 0)?.['lavrenti_present'] === 1) {
     scene.text('Meanwhile, Lavrenti gets into a shoving match with another guy. Neither of them seem like they really want to throw down, but instead keep each other form joining the main fight.');
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Try and make your way out', handler: (st: GameState) => {
     qspCall(st, 'npc_relationship', 'modify', 'A156', 'dislike');
@@ -143,7 +142,6 @@ function enterRadnushLove(s: GameState, scene: SceneBuilder): void {
   scene.text('"Fuck, I thought we were past this!" Valentin says.');
   scene.text('Arkadi shakes his head. "Not this shit again."');
   scene.text('It seems everyone is paying attention to them and have a variety of reactions to it, mostly negative it seems as they move over to the corner of the stage so they\'re away from everyone else.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'See what happens next', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/apartment/garage/band/event/radnush1.jpg');
@@ -247,11 +245,9 @@ function enterNikoConfront(s: GameState, scene: SceneBuilder): void {
   scene.text('His sincerity seems to be genuine, so you lower your shoulders. "Alright, but please don\'t just flirt with girls like that. You know I really value our relationship, right?"');
   scene.text('He places his hands on your hands, bringing them to his face before giving them a soft kiss. "I\'ll always be true to my princess. I\'m your noble knight and guardian who will always keep you safe from all threats. You\'re the only one for me."');
   scene.text('He then leans forward before gently placing his lips on yours, sharing a soft and loving kiss, which seems to make the moments fade away as his lips rub against yours and his arms wrap around you, embracing you firmly but gently.');
-  // TODO-QSP: dynamic text: After a few more seconds of kissing, he slowly releases you. "You''re the perfec...
   scene.text(`After a few more seconds of kissing, he slowly releases you. "You're the perfect girl, ${((s as any).pcs_firstname ?? '')} and I'm so lucky to have such a precious treasure in my life. I should get going. I need to plan out some things for us to do later. I'll see you then." He slowly backs away before walking out of the garage.`);
   qspCall(s, 'arousal', 'kiss', 1);
   qspCall(s, 'arousal', 'end');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the garage', goto: ['pav_complex', 'garages'] },
   ]);
@@ -263,7 +259,6 @@ function enterAlyonaDad(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/resident/apartment/garage/band/hangout4.jpg');
   scene.text('Everyone is scattered around the garage, enjoying themselves as they drink and hang out. The atmosphere is relaxed and easy going, but people slowly start to head out as it gets late. Before long but Anushka, Valentin, Alyona and yourself have left. "Okay girls, let\'s pack it up for the night, unless…" Valentin says.');
   scene.text('He has a lewd smile on his face as Anushka snorts. "In your dreams." Alyona just rolls her eyes slightly before everyone heads outside and Valentin locks the garage up. The three of them start walking back to the apartments. You could go with them or call it a night and head home.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['pav_complex', 'garages'] },
     { label: 'Leave with them', handler: (st: GameState) => {
@@ -329,7 +324,6 @@ function enterEdwardGarage(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/resident/apartment/garage/ed/ed2.jpg');
   scene.text('You rush down to Edward\'s garage as you hear Alyona screaming "Dad! Leave him alone!" As you reach the garage, you jerk open the door and find Edward inside working on his bike. He looks up at you in surprise and opens his mouth to say something, but you beat him to it. "Alyona\'s dad hit her and when Val tried to stop him, he starting beating the shit out of Val!"');
   scene.text('Edwards eyes darken. "You okay?" When you nod, he gives you a quick look over before he rushes out.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Wait', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/apartment/garage/ed/ed6.jpg');
@@ -400,7 +394,6 @@ function enterEdwardArrives(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/resident/apartment/garage/band/event/ed_zuykov1.jpg');
   scene.text('As you watch the approaching figure, you realize that it\'s Edward, Anushka\'s dad. He must have heard the commotion from his garage and come out to investigate. When he arrives, he picks Alyona\'s dad off Valentin and tosses him to the ground, but the man quickly gets to his feet. "What the fuck? Ed? This isn\'t any of your business!"');
   scene.text('Edward responds by punching him in the face. "What the fuck is wrong with you, Zoykov? Beating on kids?"');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Watch them fight', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/apartment/garage/band/event/ed_zuykov2.jpg');
@@ -500,7 +493,6 @@ function enterLavBaddrugs(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Say nothing', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/apartment/garage/band/event/rfight1.jpg');
@@ -543,7 +535,6 @@ function enterLavBaddrugs(s: GameState, scene: SceneBuilder): void {
     scene.text('Niko nods before guiding you out of the garage. When outside, he gives you a kiss on the cheek. "Careful with that one. He may be all brawn and no brains, but a bull is always dangerous."');
     scene.text('Grateful for Niko standing up for you, you wrap your arms around his waist. "Thank you Niko. I always feel so safe with you."');
     scene.text('Niko gently rubs the side of his head against yours. "And you always will be, because you\'re my girl, and I\'ll always look out for you. Now get yourself something to drink. I need to head back home. Yurik needs a hand with something, and I promised to help out."');
-    // TODO-QSP: dynamic text: He hands you <<$func(''money'', ''string_profit'', 200)>>, then gently rubs your...
     scene.text(`He hands you ${qspFunc(s, 'money', 'string_profit', 200)}, then gently rubs your back before releasing you and walking away.`);
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
@@ -563,7 +554,6 @@ function enterLavBaddrugs(s: GameState, scene: SceneBuilder): void {
     scene.text('Niko nods before guiding you out of the garage. When outside, he gives you a kiss on the cheek. "Careful with that one. He may be all brawn and no brains, but a bull is always dangerous."');
     scene.text('Grateful for Niko standing up for you, you wrap your arms around his waist. "Thank you Niko. I always feel so safe with you."');
     scene.text('Niko gently rubs the side of his head against yours. "And you always will be, because you\'re my girl, and I\'ll always look out for you. Now get yourself something to drink. I need to head back home. Yurik needs a hand with something, and I promised to help out."');
-    // TODO-QSP: dynamic text: He hands you <<$func(''money'', ''string_profit'', 200)>>, then gently rubs your...
     scene.text(`He hands you ${qspFunc(s, 'money', 'string_profit', 200)}, then gently rubs your back before releasing you and walking away.`);
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
@@ -619,7 +609,6 @@ function enterLavBaddrugs(s: GameState, scene: SceneBuilder): void {
     scene.text('"Just give him some more, Lavrenti!" Radomir chimes in from his spot near the stage.');
     scene.text('Anushka shakes her head. "It\'s not worth pissing him off, dude."');
     scene.text('Suddenly being put on the spot, Lavrenti reluctantly gives in. "Fine, fuck it." He reaches into his pocket and pulls out a new bag. "I hope you overdose on it!"');
-    // TODO-QSP: dynamic text: With a smirk and a wave, Arkadi watches Lavrenti storm off. "Thanks <<$pcs_nickn...
     scene.text(`With a smirk and a wave, Arkadi watches Lavrenti storm off. "Thanks ${((st as any).pcs_nickname ?? '')}," he says as he lets you go, but not before giving your ass a light squeeze as you walk away.`);
     scene.actions([
       { label: 'Leave', goto: ['pav_complex', 'garages'] },

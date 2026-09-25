@@ -10,7 +10,6 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterDummy(s: GameState, scene: SceneBuilder): void {
   scene.text('It is a shortcut out - because this event is not finished, be patient !!!');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return to village', goto: ['gad_field', 'field'] },
   ]);
@@ -28,7 +27,6 @@ function enterMeet(s: GameState, scene: SceneBuilder): void {
   scene.text('Looking at him, you can\'t help but think he looks familiar, but you aren\'t quite able to place him.');
   scene.text('He\'s perhaps in his late thirties, early forties at most. His angular face is framed by his unruly brown hair, and as he draws closer you start to become aware of just how massive this man is.');
   scene.text('"Kotenok?" He calls when he gets close, the pet name surprising you.');
-  // TODO-QSP: end
   scene.actions([
     { label: '"Grigory?"', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 2;
@@ -152,7 +150,6 @@ function enterBarn(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave him be', goto: ['gad_gpbarn', ''] },
     { label: 'Say hi', handler: (st: GameState) => {
@@ -197,7 +194,6 @@ function enterBarnCloser(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Let him continue', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 2;
@@ -280,7 +276,6 @@ function enterBarnCloser(s: GameState, scene: SceneBuilder): void {
 function enterBarnStand(s: GameState, scene: SceneBuilder): void {
   scene.text('For several minutes the two of you talk, but eventually he stops and gives a disappointed little smile, "Well little lady, I really need to get back to work."');
   scene.text('You say your goodbyes and he exits the barn.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['gad_gpbarn', ''] },
   ]);
@@ -421,7 +416,6 @@ function enterGarden(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -430,7 +424,6 @@ function enterGardenComfort(s: GameState, scene: SceneBuilder): void {
   scene.text('He doesn\'t quite meet your eyes as he shifts his weight from foot to foot, "You\'re right Kotenok," He says softly.');
   scene.text('"I\'m your friend," A smile blossoms on your face, "If you want to talk to me, just talk to me."');
   scene.text('The two of you spend a few more minutes talking, the situation still feeling a little weird when you finally part ways. When he leaves, he gives a little smile and a wave.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['grigory', 'dummy'] },
   ]);
@@ -446,7 +439,6 @@ function enterGardenBrush(s: GameState, scene: SceneBuilder): void {
   scene.text('A wistful smile touches his lips, "I need to get back to work, see you later Kotenok."');
   scene.text('"See you later Grigory," You reply softly.');
   scene.text('A moment later, you\'re left with your work and your thoughts.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['grigory', 'dummy'] },
   ]);
@@ -458,7 +450,6 @@ function enterGardenTease(s: GameState, scene: SceneBuilder): void {
   scene.text('Grigory opens his mouth like he\'s going to say something, but then closes it again. With a sigh, you see the big man defalte a little, "Sorry Kotenok," He finally mumbles.');
   scene.text('Again, he looks like he\'s going to say something, but finally gives you a self conscious wave and leaves.');
   scene.text('Shrugging to yourself, you return to your work.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['grigory', 'dummy'] },
   ]);
@@ -472,7 +463,6 @@ function enterFlower1(s: GameState, scene: SceneBuilder): void {
   scene.text('Reaching out, you pick up one of the flowers, looking at it in wonder.');
   scene.text('You used to pick these things all the time when you were little.');
   scene.text('Wondering who could have put them there, you look out across the yard but see no sign of who might have left them there.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Well that\'s kind of creepy', handler: (st: GameState) => {
     if ((!((st as any).grigory_flower ?? 0))) {
@@ -549,7 +539,6 @@ function enterFlower2(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Probably not', handler: (st: GameState) => {
     scene.text('"I don\'t think so," You say, a little shocked at the proposition. Since it doesn\'t look like he was the one to leave the flowers, you turn and walk away.');
@@ -570,7 +559,6 @@ function enterFlower3(s: GameState, scene: SceneBuilder): void {
   scene.text('"But how do I find out who did it? Did you maybe see someone in the yard this morning?"');
   scene.text('Grandfather barks a little laugh, "Even if I knew, and I don\'t, I wouldn\'t tell you." He shakes his head, "Got to make the man work for it."');
   scene.text('Waving dismissively, you know grandfather is done talking about it.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     dynamicGoto(st, 'prevLoc', 'prevArg');
@@ -587,7 +575,6 @@ function enterFlower4(s: GameState, scene: SceneBuilder): void {
   scene.text('"But I don\'t know who it is," You say, feeling a little overwhelmed.');
   scene.text('"But that is the magic of it!" Grandmother says, clearly overjoyed by the situation. She leans forward, kissing your cheek, "Whoever this boy is, he will reveal himself if you just let him."');
   scene.text('Not feeling much better, you thank her.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     dynamicGoto(st, 'prevLoc', 'prevArg');
@@ -638,7 +625,6 @@ function enterFlower5(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -687,7 +673,6 @@ function enterFlower6(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -702,7 +687,6 @@ function enterFlower7(s: GameState, scene: SceneBuilder): void {
     scene.text('Kneeling beside the flowers, you pick up a single one. For a second, you look at it, wondering who left it there. Then on a sudden impulse you tuck the flower into your hair.');
     scene.text('Maybe whoever left these here for me will see it and finally say something?');
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['grigory', 'dummy'] },
   ]);
@@ -778,7 +762,6 @@ function enterFlower8(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -794,7 +777,6 @@ function enterReject(s: GameState, scene: SceneBuilder): void {
   scene.text('When you reach the door, you open it and turn to run. You\'ve neared the end of his driveway and are just stepping onto the dirt road leading to it when you finally look back.');
   scene.text('There on the porch of his house, Grigory is standing watching you, his flask in hand.');
   scene.text('Turning your attention back to the road, you continue towards the village.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['grigory', 'reject'] },
   ]);
@@ -805,7 +787,6 @@ function enterAccept(s: GameState, scene: SceneBuilder): void {
   scene.text('"Yes," You say even before you realize you\'ve made a decision.');
   scene.text('The smile the blossoms on Grigory\'s face is enough to make your heart race, and a nervous smile finds its way onto your own face in return.');
   scene.text('Suddenly, his lips are pressed against yours so hard it takes your breath away. The seconds that follow are a blur as he sweeps you off towards his bedroom, pieces of each of your blothing hitting the floor in your wake.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Virgin', handler: (st: GameState) => {
     scene.text('With almost exaggerated care, Grigory lays you on his bed, his big hands taking hold of your panties and sliding your last article of clothing slowly down your legs.');
@@ -852,7 +833,6 @@ function enterField1(s: GameState, scene: SceneBuilder): void {
     scene.text('When he does, you put both hands over your heart and smile back at him.');
     scene.text('Feeling unexpectedly happy, you give him a little wave then continue on your way.');
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['gad_field', 'field'] },
   ]);
@@ -862,7 +842,6 @@ function enterField1(s: GameState, scene: SceneBuilder): void {
 function enterField2(s: GameState, scene: SceneBuilder): void {
   scene.text('You can see Grigory standing beside his old truck while looking out at the field. Following his gaze, you notice that he\'s watching a bull mount one of the female cows part way across the pasture.');
   scene.text('Grigory shifts where he stands, one hand adjusting the tent in the front of his pants.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave before this gets weird', goto: ['grigory', 'field_weird'] },
     { label: 'Tease him a little about it', goto: ['grigory', 'field_tease'] },
@@ -873,7 +852,6 @@ function enterField2(s: GameState, scene: SceneBuilder): void {
 
 function enterFieldWeird(s: GameState, scene: SceneBuilder): void {
   scene.text('Quietly, you make your exit before Grigory can notice that you are there.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['gad_field', 'field'] },
   ]);
@@ -883,7 +861,6 @@ function enterFieldWeird(s: GameState, scene: SceneBuilder): void {
 function enterFieldTease(s: GameState, scene: SceneBuilder): void {
   scene.text('"So this is what passes for porn around here?" You tease unable to hide your smirk.');
   scene.text('Grigory sputters, half turning to hide his state of arousal, "I, uh," He stammers, unable to find anything to say, his face is crimson with embarrassment.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Tease him more', handler: (st: GameState) => {
     scene.text('"Somehow I don\'t think she\'s going to feel a thing after having that bull inside her," You say with a giggle.');
@@ -927,7 +904,6 @@ function enterFieldWatch(s: GameState, scene: SceneBuilder): void {
   scene.text('Staying quiet, you watch the animals mating in the field. You\'re a little surprised at just how quickly it\'s over. The bull mounts its mate, thrusting savagely for maybe half a minute before leaving its mate behind, massive amounts of cum dripping from her vagina.');
   scene.text('Turning your attention back to Grigory, you can see that his hand is now inside of his pants, moving rhythmically.');
   scene.text('You can feel your own arousal growing slightly at the sight.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Just watch', handler: (st: GameState) => {
     scene.text('Breathless at the sight of him stroking himself, you stand there and watch.');
@@ -1009,7 +985,6 @@ function enterField3(s: GameState, scene: SceneBuilder): void {
   scene.text('"I understand," You say, a little disappointed. ');
   scene.text('That disappointment is short lived however as he sweeps you up in his arms suddenly, pressing his lips against yours in a rough but affectionate kiss before sitting you back down.');
   scene.text('The two of you say your goodbyes and finally part ways. You can\'t help but think about how good it felt to be so close to him.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Be Friendly', handler: (st: GameState) => {
     scene.text('Grigory smiles when he sees your approach, raising a hand in greeting.');
@@ -1068,7 +1043,6 @@ function enterDrunk(s: GameState, scene: SceneBuilder): void {
   scene.text('Another soft laugh, "Wasn\'t asking you Kotenok," He gives you an affectionate squeeze. You close your eyes and just enjoy the warmth of the big man cradling you so close to his body.');
   scene.text('"Only other place I can think of is mine," A long pause, "Hope you don\'t take this the wrong way," He seems to say to himself.');
   scene.text('A second later you begin to feel the swaying of his footsteps again. Within seconds you drift to sleep.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     scene.text('With a groan of discomfort, you feel yourself being sat in a cold leather chair, the chill of the night making you shiver as the big warm thing you had snuggled against is gone.');
@@ -1128,8 +1102,6 @@ function enterRomanticEvent(s: GameState, scene: SceneBuilder): void {
   scene.text('You snuggle closer to him, your head against his chest as you enjoy the warmth of his body against your own.');
   scene.text('For a long time, the two of you sit along the shore, you can hear his heartbeat from where your head is pressed against his chest, the rhythmic beating putting you at ease.');
   scene.text('You start to drift off, almost falling to sleep when the rumble of his voice demands your attention, "Kotenok? You going to fall asleep on me? Maybe we should go."');
-  // TODO-QSP: end
-  // TODO-QSP: end
   scene.actions([
     { label: 'Decline', handler: (st: GameState) => {
     scene.text('You sigh softly, then stretch to kiss him lightly on the cheek, "Maybe another time."');
@@ -1316,7 +1288,6 @@ function enterDrunkLate(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1326,7 +1297,6 @@ function enterRape(s: GameState, scene: SceneBuilder): void {
   scene.text('"Hi Grigory," You say, feeling suddenly uncomfortable with the way he is looking at you.');
   scene.text('Grigory takes a sip from his flask, his eyes never leaving your body as he does so, "Good girls should be home in bed at this hour," He says, his voice husky, "But you\'re just a little tease aren\'t you? You like to toy with men\'s emotions."');
   scene.text('Your discomfort at the situation quickly edges towards fear.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave quickly', handler: (st: GameState) => {
     scene.text('"You\'re right, good girls should be in bed at this hour, and I should be heading home to bed right now." Scared to take your eyes off of him, you take a few steps in the direction of your grandparent\'s home.');

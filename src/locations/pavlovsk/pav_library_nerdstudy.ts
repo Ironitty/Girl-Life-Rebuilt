@@ -12,7 +12,6 @@ function enterNerdStudyNight(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   ((s as any).nerdstudynight = (s as any).nerdstudynight ?? {})['start_time'] = ((s as any).totminut ?? 0);
   ((s as any).nerdstudynight = (s as any).nerdstudynight ?? {})['day'] = ((s as any).daystart ?? 0);
-  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/community/library/ner...
   scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/community/library/nerdsstudy/nerds_study` + (Math.floor(Math.random() * 5) + 1) + '.jpg"></center>');
   if (((s as any).grupTipe ?? 0) === 3) {
     scene.text('You arrive at the library and see all of your fellow nerds have already gathered around one of the tables. Some are grabbing some books or looking up things on their laptop, while others are sitting and chatting before the study session begins. You sit down with your fellow students and start studying.');
@@ -35,7 +34,6 @@ function enterNerdStudyNight(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['pav_library', ''] },
     { label: 'Study', goto: ['pav_library_nerdstudy', 'nerd_study_night1'] },
@@ -75,10 +73,8 @@ function enterNerdStudyNight1(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + ((60 -((s as any).totminut ?? 0) + (((s as any).nerdstudynight ?? {})?.['start_time'] ?? 0)));
   }
   qspCall(s, 'stat', '');
-  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/community/library/ner...
   scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/community/library/nerdsstudy/nerds_study` + (Math.floor(Math.random() * 5) + 1) + '.jpg"></center>');
   scene.text('You help each other out, debate topics and discuss answers. You have a very enjoyable time and feel like you\'ve learned a fair bit about your subject.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Pack up', goto: ['pav_library_nerdstudy', 'nerd_study_night_over'] },
   ]);
@@ -95,7 +91,6 @@ function enterNerdStudyNight2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).totminut ?? 0) >= ((s as any).nerdstudynight ?? 0)?.['start_time'] +60) {
     qspGoto(s, 'pav_library_nerdstudy', 'nerd_study_night_over');
   }
-  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/community/library/ner...
   scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/community/library/nerdsstudy/nerds_study` + (Math.floor(Math.random() * 5) + 1) + '.jpg"></center>');
   scene.text('You can\'t help but be a little distracted. You\'re not sure why, but you\'re just not feeling the desire to study. Maybe one of your fellow nerds would like to chat instead?');
   if (((s as any).nerdstudynight ?? 0)?.['Feofan'] === 0) {
@@ -134,7 +129,6 @@ function enterNerdStudyNight2(s: GameState, scene: SceneBuilder): void {
       scene.text('Artem scoots his chair over closer to you. "I was worried you wouldn\'t show up today." he jokes, but you can tell there\'s a part of him that was being sincere. Artem isn\'t one for public affection, but he still can\'t go without some kind of physical contact with you, which leaves him sitting close enough to you that your legs bump and rub against each other under the table as you talk.');
     } else {
       if (((st as any).npc_rel ?? 0)?.['A2'] >= 60  &&  ((st as any).grupTipe ?? 0) === 3) {
-        // TODO-QSP: dynamic text: "There you are <<$pcs_nickname>>. How''s it going?" Artem greets you. "I figure ...
         scene.text(`"There you are ${((st as any).pcs_nickname ?? '')}. How's it going?" Artem greets you. "I figure we can get a head-start on Yenotin's lesson while we talk." he says, moving the textbook towards you so you can look at it. While you work, Artem keeps up a lively conversation, talking about a range of different topics.`);
       } else {
         if (((st as any).npc_rel ?? 0)?.['A2'] <= 20  ||  ((st as any).fame ?? 0)?.['pav_slut'] >= 250) {
@@ -184,7 +178,6 @@ function enterNerdStudyNight2(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big153.jpg');
     if (((st as any).npc_rel ?? 0)?.['A153'] >= 60  &&  ((st as any).grupTipe ?? 0) === 3) {
-      // TODO-QSP: dynamic text: You greet Gerasim with a smile and make a point to ask him how his day is going,...
       scene.text(`You greet Gerasim with a smile and make a point to ask him how his day is going, subtly hinting to the fact that you know other students like to make him do their school work. With a shy smile, Gerasim shrugs his shoulders. "I'm fine." he says, his smile growing. "Thanks for worrying about me though ${((st as any).pcs_nickname ?? '')}." You engage in some idle banter for a while.`);
     } else {
       if (((st as any).npc_rel ?? 0)?.['A153'] <= 20  ||  ((st as any).fame ?? 0)?.['pav_slut'] >= 250) {
@@ -233,7 +226,6 @@ function enterNerdStudyNight2(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big6.jpg');
     if (((st as any).npc_rel ?? 0)?.['A6'] >= 60  &&  ((st as any).grupTipe ?? 0) === 3) {
-      // TODO-QSP: dynamic text: "You really have to read this book <<$pcs_nickname>>! I''m pretty sure it''s one...
       scene.text(`"You really have to read this book ${((st as any).pcs_nickname ?? '')}! I'm pretty sure it's one you'd enjoy." Petka says excitedly. He starts to tell you about an interesting part he just read, but stops himself with a laugh. "Don't worry, I won't spoil it for you." The two of you chat about some recent books you have read.`);
     } else {
       if (((st as any).npc_rel ?? 0)?.['A6'] <= 20  ||  ((st as any).fame ?? 0)?.['pav_slut'] >= 250) {
@@ -259,10 +251,8 @@ function enterNerdStudyNight2(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/shared/headshots_main/big16.jpg');
     if (((st as any).npc_rel ?? 0)?.['A16'] >= 60  &&  ((st as any).grupTipe ?? 0) === 3) {
       if (((st as any).NatbelQW ?? 0)?.['chrispaid'] < 3) {
-        // TODO-QSP: dynamic text: "Hey <<$pcs_nickname>>! Have you seen this new makeup line coming out? It''s exp...
         scene.text(`"Hey ${((st as any).pcs_nickname ?? '')}! Have you seen this new makeup line coming out? It's expensive but I looove the colors!" Natasha says as she holds up the magazine ad for said makeup. She talks about how she can't afford nice things like this and this ends up bringing her down. You quickly change the subject and start complimenting her on her sense of style and grades and reminding her she's a top student in school, which brings a smile to her face.`);
       } else {
-        // TODO-QSP: dynamic text: "Hey <<$pcs_nickname>>! Have you seen this new makeup line coming out? It''s exp...
         scene.text(`"Hey ${((st as any).pcs_nickname ?? '')}! Have you seen this new makeup line coming out? It's expensive but I looove the colors!" Natasha says as she holds up the magazine ad for said makeup. She talks about how she still finds it difficult to afford nice things like this and this ends up bringing her down until you remind her that she's got rid of all her debts and now has some money and you're happy to help her out. She smiles at this but you know that she doesn't want to keep relying on you so you change the subject and start complimenting her on her sense of style and grades and reminding her she's a top student in school, which brings a smile to her face.`);
       }
     } else {
@@ -312,7 +302,6 @@ function enterNerdStudyNight2(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big240.jpg');
     if (((st as any).npc_rel ?? 0)?.['A240'] >= 60  &&  ((st as any).grupTipe ?? 0) === 3) {
-      // TODO-QSP: dynamic text: As you approach Natalia, she closes her notebook and waves at you. "Hey <<$pcs_n...
       scene.text(`As you approach Natalia, she closes her notebook and waves at you. "Hey ${((st as any).pcs_nickname ?? '')}, come and have a seat." You sit next to Natalia and discuss current events while occasionally gossiping about your classmates.`);
     } else {
       if (((st as any).npc_rel ?? 0)?.['A240'] <= 20  ||  ((st as any).fame ?? 0)?.['pav_slut'] >= 250) {
@@ -328,7 +317,6 @@ function enterNerdStudyNight2(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Study', goto: ['pav_library_nerdstudy', 'nerd_study_night1'] },
   ]);
@@ -346,10 +334,8 @@ function enterNerdStudyNightOver(s: GameState, scene: SceneBuilder): void {
   ((s as any).nerdstudynight = (s as any).nerdstudynight ?? {})['Evgeny'] = 0;
   ((s as any).nerdstudynight = (s as any).nerdstudynight ?? {})['Natalia'] = 0;
   qspCall(s, 'stat', '');
-  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/community/library/ner...
   scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/community/library/nerdsstudy/nerds_study` + (Math.floor(Math.random() * 5) + 1) + '.jpg"></center>');
   scene.text('After an hour, everyone starts packing up and talking about heading home. A few text their parents to let them know they\'re leaving the library. You gather up your stuff and leave with the group.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['pav_library', ''] },
   ]);

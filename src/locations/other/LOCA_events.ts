@@ -6,7 +6,7 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
   if (((s as any).menu_off ?? 0) === 1) {
-    // TODO-QSP: exit
+    return;
   }
   if (((s as any).hypnoSchedule ?? 0) === 1  &&  (!((s as any).workDolg ?? 0))) {
     if (((s as any).therapist_weekly_block ?? 0) === 0  &&  ((s as any).week ?? 0) === 4  &&  ((s as any).therapistday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).remindedtherapyday ?? 0) !== ((s as any).daystart ?? 0)) {

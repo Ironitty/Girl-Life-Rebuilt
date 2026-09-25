@@ -17,7 +17,6 @@ function enterFirstOrgyInvite(s: GameState, scene: SceneBuilder): void {
   scene.text('You turn around and see a pretty handsome young man with large tattoos on his forearms. "Ah, I got your attention! My friend Oleg just sold his start up for like one billion, so he bought one of the side bars for the evening."');
   scene.text('"Sounds great, but we\'ve been drinking for a couple of hours now and want to dance. Three guys is not the best setup for that, though, so I was wondering if you graceful creatures would honor us with a dance? Just your presence would lighten up our small party. And, as I said, we have our own bar where you can take anything you want," he explains to you and Katja.');
   if (qspFunc(s, 'katja_procedural', 'willing_to_be_naughty') >= 100) {
-    // TODO-QSP: dynamic text: "That sounds like a good idea, does it not, <<$pcs_nickname>>?" Katja quickly re...
     scene.text(`"That sounds like a good idea, does it not, ${((s as any).pcs_nickname ?? '')}?" Katja quickly replies, looking at you pleadingly with her big eyes.`);
     scene.actions([
       { label: 'Agree', goto: ['katja_nightclub_first_orgy', 'after_acceptance'] },
@@ -91,7 +90,6 @@ function enterFirstOrgyInvite(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     } else {
-      // TODO-QSP: dynamic text: "I don''t think that''s a good idea, <<$pcs_nickname>>. I would rather just cont...
       scene.text(`"I don't think that's a good idea, ${((s as any).pcs_nickname ?? '')}. I would rather just continue the evening with just the two of us," Katja says, clearly stating her opinion.`);
       scene.actions([
         { label: 'Try to convince her to change her mind', handler: (st: GameState) => {
@@ -153,7 +151,6 @@ function enterFirstOrgyInvite(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -187,19 +184,14 @@ function enterAfterAcceptance(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/girl/katja/uni/nightclub/orgy/first_orgy_pre_party_wait.jpg');
   scene.text('They guy leads you through the crowd of the club to the entrance to one of the side rooms where a broad shouldered bouncer keeps people out.');
   scene.text('A group of girls are standing waiting beside him, all of them young and hot. You think you recognize some of them from the university.');
-  // TODO-QSP: dynamic text: "Here we are. I''m <<$katja_first_orgy_temp[''first_orgy_name_tatoo_guy'']>> by ...
   scene.text(`"Here we are. I'm ${(((s as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_tatoo_guy'] ?? '')} by the way," the guy that picked you up says with a smile.`);
-  // TODO-QSP: dynamic text: "I''m Katja, and this is <<$pcs_nickname>>," Katja replies.
   scene.text(`"I'm Katja, and this is ${((s as any).pcs_nickname ?? '')}," Katja replies.`);
-  // TODO-QSP: dynamic text: "We just need to wait - oh here he comes! This is <<$katja_first_orgy_temp[''fir...
   scene.text(`"We just need to wait - oh here he comes! This is ${(((s as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_green_shirt_guy'] ?? '')}," ${(((s as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_tatoo_guy'] ?? '')} says, introducing a guy in a green shirt arriving with some more girls; among them is your former classmate, Anushka.`);
   scene.text('"I see I\'m not the only one looking for a good time and some free booze," Anushka grins.');
   scene.text('"Hello Anushka, nice seeing you," Katja replies.');
   scene.text('"Nush, everyone calls me Nush. Except my <i>mother</i>," Anushka replies, saying mother with such disdain that everyone that hears it takes note.');
   scene.text('"Okay, Nush, I\'ll remember that," Katja replies.');
-  // TODO-QSP: dynamic text: Before you can exchange more pleasantries, <<$katja_first_orgy_temp[''first_orgy...
   scene.text(`Before you can exchange more pleasantries, ${(((s as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_tatoo_guy'] ?? '')} gets everyone's attention. "Everybody needs to wear an armband to gain entry, so come up to me one at a time so we can get them on quickly."`);
-  // TODO-QSP: end
   scene.actions([
     { label: 'Get your armband', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -232,7 +224,6 @@ function enterAfterAcceptance(s: GameState, scene: SceneBuilder): void {
     }
     scene.text('"What do you mean?" Katja asks, clearly ignoring the barbs thrown her way.');
     scene.text('"Look at the girls they\'ve chosen," Anushka replies. "All young and super hot. And look."');
-    // TODO-QSP: dynamic text: She points at two black girls both wearing pink dresses. "That''s <<$katja_first...
     scene.text(`She points at two black girls both wearing pink dresses. "That's ${(((st as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_first_black_girl'] ?? '')} and ${(((st as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_second_black_girl'] ?? '')}, the biggest sluts from the eighth floor of your dorm building. I <i>guarantee</i> that they'll both be riding at least one of these guys before the night is over."`);
     if (((st as any).katjaQW ?? 0)?.['know_as_dorm_slut'] > 0) {
     } else {
@@ -256,32 +247,22 @@ function enterAfterAcceptance(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/nightclub/orgy/first_orgy_greetings.jpg');
-    // TODO-QSP: dynamic text: You follow <<$katja_first_orgy_temp[''first_orgy_name_tatoo_guy'']>> into the si...
     scene.text(`You follow ${(((st as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_tatoo_guy'] ?? '')} into the side room where you see a bar with no bartender, and a couple of leather couches situated around a small dance floor. Music is coming out of several speakers, but it's not as loud as in the club proper, so you can talk without shouting.`);
-    // TODO-QSP: dynamic text: You spot a bald guy, seemingly in his early thirties and wearing glasses, as he ...
     scene.text(`You spot a bald guy, seemingly in his early thirties and wearing glasses, as he gets up to greet ${(((st as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_tatoo_guy'] ?? '')}.`);
-    // TODO-QSP: dynamic text: "We brought some dance partners," <<$katja_first_orgy_temp[''first_orgy_name_tat...
     scene.text(`"We brought some dance partners," ${(((st as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_tatoo_guy'] ?? '')} says to him before he turns around to you. "This here is ${(((st as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_bald_guy'] ?? '')}. He just sold his start up for billions, which we're celebrating tonight. Come and say hello to him."`);
-    // TODO-QSP: dynamic text: Katja makes sure that you pay attention to the names of the other girls as you a...
     scene.text(`Katja makes sure that you pay attention to the names of the other girls as you all take turns introducing yourselves to ${(((st as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_bald_guy'] ?? '')}.`);
-    // TODO-QSP: dynamic text: You notice that several of the girls flirt quite heavily with him, <<$katja_firs...
     scene.text(`You notice that several of the girls flirt quite heavily with him, ${(((st as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_first_black_girl'] ?? '')} and ${(((st as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_second_black_girl'] ?? '')} in particular coming on pretty strong.`);
     scene.actions([
       { label: 'Your turn to greet', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/nightclub/orgy/first_orgy_group_picture.jpg');
-    // TODO-QSP: dynamic text: Katja is the last girl to greet <<$katja_first_orgy_temp[''first_orgy_name_bald_...
     scene.text(`Katja is the last girl to greet ${(((st as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_bald_guy'] ?? '')} as ${(((st as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_green_shirt_guy'] ?? '')} comes up and takes out his phone.`);
     scene.text('"Why don\'t we start with a picture to remember the evening?"');
-    // TODO-QSP: dynamic text: You all gather up for the picture, <<$katja_first_orgy_temp[''first_orgy_name_se...
     scene.text(`You all gather up for the picture, ${(((st as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_second_black_girl'] ?? '')} moving in between Katja and ${(((st as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_bald_guy'] ?? '')} to basically shove her ass into his crotch. Katja doesn't seem sure if she should move or not, but when ${(((st as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_third_black_girl'] ?? '')} plants her hands on her hips, she stays still.`);
-    // TODO-QSP: dynamic text: "Okay, ready? 3... 2... 1..." <<$katja_first_orgy_temp[''first_orgy_name_green_s...
     scene.text(`"Okay, ready? 3... 2... 1..." ${(((st as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_green_shirt_guy'] ?? '')} calls.`);
-    // TODO-QSP: dynamic text: As he does, <<$katja_first_orgy_temp[''first_orgy_name_bald_guy'']>> places his ...
     scene.text(`As he does, ${(((st as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_bald_guy'] ?? '')} places his hands on ${(((st as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_second_black_girl'] ?? '')}'s ass, who doesn't seem to mind and instead drags Katja closer and starts to make out with her. Katja, seemingly acting on instinct, reciprocates the kiss.`);
     scene.text('You also notice Anushka hike her skirt up enough so the bottom of her ass will be visible in the picture. You don\'t see any panties and wonder if she\'s even wearing any.');
-    // TODO-QSP: dynamic text: "That''s a wrap, thanks. Now enjoy the free drinks and let''s get partying!" <<$...
     scene.text(`"That's a wrap, thanks. Now enjoy the free drinks and let's get partying!" ${(((st as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_green_shirt_guy'] ?? '')} shouts, and the group breaks up to either start dancing or head for the bar.`);
     scene.actions([
       { label: 'Get a drink', goto: ['katja_nightclub_first_orgy', 'first_orgy_drink'] },
@@ -308,28 +289,22 @@ function enterFirstOrgyDance(s: GameState, scene: SceneBuilder): void {
       }
       scene.img('images/characters/pavlovsk/school/girl/katja/uni/nightclub/orgy/first_orgy_dance9.jpg');
       scene.text('While you and Katja are still decent, several of the other girls are now dancing with their dresses pulled down, exposing their breasts.');
-      // TODO-QSP: dynamic text: Even the timid <<$katja_first_orgy_temp[''first_orgy_name_white_dress'']>> has j...
       scene.text(`Even the timid ${(((s as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_white_dress'] ?? '')} has joined in, but seems a little uncomfortable with the situation.`);
     } else {
       if ((Math.floor(Math.random() * 2) + 0) === 1  &&  ((s as any).katja_first_orgy_temp ?? 0)?.['first_orgy_escalation'] > 6) {
         scene.img('images/characters/pavlovsk/school/girl/katja/uni/nightclub/orgy/first_orgy_dance8.jpg');
         scene.text('Both the girls and boys are getting more daring, with some of the girls pulling their dresses down and flashing their breasts before pulling them back up.');
-        // TODO-QSP: dynamic text: When <<$katja_first_orgy_temp[''first_orgy_name_curly'']>> does it and leaves he...
         scene.text(`When ${(((s as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_curly'] ?? '')} does it and leaves her breasts hanging out, ${(((s as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_green_shirt_guy'] ?? '')} moves behind her and starts to grope and squeeze them.`);
       } else {
         if ((Math.floor(Math.random() * 2) + 0) === 1  &&  ((s as any).katja_first_orgy_temp ?? 0)?.['first_orgy_escalation'] > 5) {
           scene.img('images/characters/pavlovsk/school/girl/katja/uni/nightclub/orgy/first_orgy_dance7.jpg');
-          // TODO-QSP: dynamic text: As you and Katja dance with some of the other girls, <<$katja_first_orgy_temp[''...
           scene.text(`As you and Katja dance with some of the other girls, ${(((s as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_short_blond_hair'] ?? '')} suddenly pulls down her top, exposing her perky breasts.`);
           scene.text('"Go girl!" one of the other girls says as they all start cheering her on.');
         } else {
           if ((Math.floor(Math.random() * 2) + 0) === 1  &&  ((s as any).katja_first_orgy_temp ?? 0)?.['first_orgy_escalation'] > 4) {
             scene.img('images/characters/pavlovsk/school/girl/katja/uni/nightclub/orgy/first_orgy_dance6.jpg');
-            // TODO-QSP: dynamic text: While you and Katja are still dancing with the girls, the boys are getting more ...
             scene.text(`While you and Katja are still dancing with the girls, the boys are getting more into it. ${(((s as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_bald_guy'] ?? '')} still hasn't moved from the couch, but ${(((s as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_second_black_girl'] ?? '')} has started dancing on top of him.`);
-            // TODO-QSP: dynamic text: Her panties are exposed, and <<$katja_first_orgy_temp[''first_orgy_name_green_sh...
             scene.text(`Her panties are exposed, and ${(((s as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_green_shirt_guy'] ?? '')} is pulling on the strings to make them go up her ass crack.`);
-            // TODO-QSP: dynamic text: On the couch next to them is Anushka, shaking her ass towards the dance floor wi...
             scene.text(`On the couch next to them is Anushka, shaking her ass towards the dance floor with ${(((s as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_bald_guy'] ?? '')}'s hand on her hip.`);
             if (((s as any).katja_first_orgy_temp ?? 0)?.['first_orgy_nush_no_panties_see'] === 0) {
               ((s as any).katja_first_orgy_temp = (s as any).katja_first_orgy_temp ?? {})['first_orgy_nush_no_panties_see'] = 1;
@@ -340,30 +315,23 @@ function enterFirstOrgyDance(s: GameState, scene: SceneBuilder): void {
           } else {
             if ((Math.floor(Math.random() * 2) + 0) === 1  &&  ((s as any).katja_first_orgy_temp ?? 0)?.['first_orgy_escalation'] > 3) {
               scene.img('images/characters/pavlovsk/school/girl/katja/uni/nightclub/orgy/first_orgy_dance5.jpg');
-              // TODO-QSP: dynamic text: The boys start getting into it a little more, <<$katja_first_orgy_temp[''first_o...
               scene.text(`The boys start getting into it a little more, ${(((s as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_green_shirt_guy'] ?? '')} dancing behind ${(((s as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_second_black_girl'] ?? '')} as she dances with Katja.`);
-              // TODO-QSP: dynamic text: He slowly pulls up <<$katja_first_orgy_temp[''first_orgy_name_second_black_girl'...
               scene.text(`He slowly pulls up ${(((s as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_second_black_girl'] ?? '')}'s skirt, exposing her tiny G-string for everybody to see as ${(((s as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_second_black_girl'] ?? '')} starts grinding on him.`);
             } else {
               if ((Math.floor(Math.random() * 2) + 0) === 1  &&  ((s as any).katja_first_orgy_temp ?? 0)?.['first_orgy_escalation'] > 2) {
                 scene.img('images/characters/pavlovsk/school/girl/katja/uni/nightclub/orgy/first_orgy_dance4.jpg');
-                // TODO-QSP: dynamic text: Katja is dancing next to you with <<$katja_first_orgy_temp[''first_orgy_name_whi...
                 scene.text(`Katja is dancing next to you with ${(((s as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_white_dress'] ?? '')}. She seems to be a pretty timed girl, but Katja is anything but that tonight.`);
-                // TODO-QSP: dynamic text: You watch as Katja dances in close and grabs <<$katja_first_orgy_temp[''first_or...
                 scene.text(`You watch as Katja dances in close and grabs ${(((s as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_white_dress'] ?? '')} by the neck before drawing her in for a kiss.`);
-                // TODO-QSP: dynamic text: <<$katja_first_orgy_temp[''first_orgy_name_white_dress'']>> reciprocates the kis...
                 scene.text(`${(((s as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_white_dress'] ?? '')} reciprocates the kiss and wraps her arms around Katja.`);
               } else {
                 if ((Math.floor(Math.random() * 2) + 0) === 1  &&  ((s as any).katja_first_orgy_temp ?? 0)?.['first_orgy_escalation'] > 1) {
                   scene.img('images/characters/pavlovsk/school/girl/katja/uni/nightclub/orgy/first_orgy_dance3.jpg');
-                  // TODO-QSP: dynamic text: <<$katja_first_orgy_temp[''first_orgy_name_tatoo_guy'']>> has started to get int...
                   scene.text(`${(((s as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_tatoo_guy'] ?? '')} has started to get into dancing with a few of the other girls, who are almost grinding him.`);
                   scene.text('The other two are still keeping back while you and the rest of the girls are dancing wildly.');
                 } else {
                   if ((Math.floor(Math.random() * 2) + 0) === 1  &&  ((s as any).katja_first_orgy_temp ?? 0)?.['first_orgy_escalation'] > 0) {
                     scene.img('images/characters/pavlovsk/school/girl/katja/uni/nightclub/orgy/first_orgy_dance2.jpg');
                     scene.text('You and the other girls are having fun on the dance floor, and some of them do some pretty daring moves.');
-                    // TODO-QSP: dynamic text: The boys are still dancing timidly, while <<$katja_first_orgy_temp[''first_orgy_...
                     scene.text(`The boys are still dancing timidly, while ${(((s as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_bald_guy'] ?? '')} just sits on a couch looking at the girls.`);
                   } else {
                     scene.img('images/characters/pavlovsk/school/girl/katja/uni/nightclub/orgy/first_orgy_dance1.jpg');
@@ -379,7 +347,6 @@ function enterFirstOrgyDance(s: GameState, scene: SceneBuilder): void {
     }
   }
   ((s as any).katja_first_orgy_temp = (s as any).katja_first_orgy_temp ?? {})['first_orgy_escalation'] = ((s as any).katja_first_orgy_temp['first_orgy_escalation'] ?? 0) + (1);
-  // TODO-QSP: end
   scene.actions([
     { label: 'Get a drink', goto: ['katja_nightclub_first_orgy', 'first_orgy_drink'] },
     { label: 'Continue to dance', goto: ['katja_nightclub_first_orgy', 'first_orgy_dance'] },
@@ -393,7 +360,6 @@ function enterFirstOrgyDrink(s: GameState, scene: SceneBuilder): void {
   (s as any).loc = 'katja_nightclub_first_orgy';
   (s as any).loc_arg = 'first_orgy_drink2';
   qspCall(s, 'food_menu', 'no_image');
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -406,7 +372,6 @@ function enterFirstOrgyDrink2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   ((s as any).katjaQW = (s as any).katjaQW ?? {})['drinks'] = ((s as any).katjaQW['drinks'] ?? 0) + ((Math.floor(Math.random() * 2) + 1));
   scene.img('images/characters/pavlovsk/school/girl/katja/uni/nightclub/orgy/first_orgy_drink.jpg');
-  // TODO-QSP: dynamic text: 'You mix your drink while Katja pours herself a glass of '+iif(rand(0,1), 'wine'...
   scene.text('You mix your drink while Katja pours herself a glass of ' + (((Math.floor(Math.random() * 2) + 0)) ? ('wine') : ('champagne')) + '.');
   scene.text('You then chat a little while you finish your drink.');
   if (((s as any).katja_first_orgy_temp ?? 0)?.['first_orgy_nush_no_panties_see'] === 0) {
@@ -415,7 +380,6 @@ function enterFirstOrgyDrink2(s: GameState, scene: SceneBuilder): void {
       { label: 'Approach Anushka', goto: ['katja_nightclub_first_orgy', 'first_orgy_check_nush'] },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Dance', goto: ['katja_nightclub_first_orgy', 'first_orgy_dance'] },
   ]);
@@ -431,7 +395,6 @@ function enterFirstOrgyCheckNush(s: GameState, scene: SceneBuilder): void {
   scene.text('The last part she says in a teasing tone, more towards Katja than you.');
   if (((s as any).anushkaQW ?? 0)?.['sex'] > 0) {
     scene.text('"I just wanted to check, but I\'m pretty sure that you aren\'t wearing panties tonight, slut," you grin.');
-    // TODO-QSP: dynamic text: 'Katja '+iif(katjaQW['slut'] < 100, 'is shocked by', 'laughs at')+' your comment...
     scene.text('Katja ' + ((((s as any).katjaQW ?? 0)?.['slut'] < 100) ? ('is shocked by') : ('laughs at')) + ' your comment.');
     scene.text('Anushka chuckles slightly and gives you a slight smirk. "If you want to see my pussy, then all you\'ve got to do is ask, bitch."');
     if (((s as any).katjaQW ?? 0)?.['slut'] < 100) {
@@ -448,10 +411,8 @@ function enterFirstOrgyCheckNush(s: GameState, scene: SceneBuilder): void {
     scene.text('She pulls her skirt back into place before she turns back around. "I don\'t need to ask you, since you\'re clearly showing it off for everyone to see."');
   } else {
     scene.text('She then turns around. "Okay, your turn."');
-    // TODO-QSP: dynamic text: 'You quickly look around, and when you''re sure nobody is looking, you pull your...
     scene.text('You quickly look around, and when you\'re sure nobody is looking, you pull your clothes aside and expose your ' + ((((s as any).pantyworntype ?? 0) === 'none') ? ('naked') : ('panty clad')) + ' pussy for a brief moment.');
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Katja\'s turn', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
@@ -480,7 +441,6 @@ function enterFirstOrgyCheckNush(s: GameState, scene: SceneBuilder): void {
 function enterFirstOrgyEscalation(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/girl/katja/uni/nightclub/orgy/first_orgy_escalation.jpg');
   scene.text('Things are escalating around you. Most of the girls you are dancing with now have their dresses pulled down, proudly displaying their breasts as they jiggle to the rhythm of the music.');
-  // TODO-QSP: dynamic text: This includes <<$katja_first_orgy_temp[''first_orgy_name_white_dress'']>>, who s...
   scene.text(`This includes ${(((s as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_white_dress'] ?? '')}, who seemed pretty timid earlier. You also notice ${(((s as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_bald_guy'] ?? '')} sitting on the couch behind the girls, his cock in the mouth of ${(((s as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_second_black_girl'] ?? '')}.`);
   qspCall(s, 'willpower', 'orgy', 'self');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
@@ -498,7 +458,6 @@ function enterFirstOrgyEscalation(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Find Katja and leave', goto: ['katja_nightclub_first_orgy', 'first_orgy_leaving'] },
     { label: 'Observe what is happening', goto: ['katja_nightclub_first_orgy_sex', 'first_orgy_observe1'] },
@@ -513,13 +472,11 @@ function enterFirstOrgyLeaving(s: GameState, scene: SceneBuilder): void {
   scene.text('You look around for Katja and find her standing in the middle of the dance floor, eyes wide open as she absorbs what\'s happening.');
   scene.text('You quickly walk over to her. "Seems Nush was right. This did turn much wilder that we expected, and I\'m not going to be part of it. Are you coming with me?"');
   if (qspFunc(s, 'katja_procedural', 'willing_to_be_naughty') >= 100  ||  ((s as any).katjaQW ?? 0)?.['simultanous_boys'] > 3  ||  ((s as any).katjaQW ?? 0)?.['park_sex'] >= 3) {
-    // TODO-QSP: dynamic text: '"'+iif(katjaQW['simultanous_boys'] > 3 or katjaQW['park_sex'] >= 3, 'Well... We...
     scene.text('"' + ((((s as any).katjaQW ?? 0)?.['simultanous_boys'] > 3  ||  ((s as any).katjaQW ?? 0)?.['park_sex'] >= 3) ? ('Well... We\'ve done some wild things ourselves, but this is still above anything that.') : ('This is definitely more than I expected, even when Nush suggested they were huge sluts. But sex so openly in public... That is new... ')) + ' So yeah.... Probably best if we leave..." she answers, but drags her answer out, as if she doesn\'t really want to leave.');
     scene.text('"You don\'t have to follow me. You can stay if you want," you tell her.');
     scene.text('She takes her time to answer. "Oh... No. If you\'re leaving, then I am too. I\'m not going to stay here like some slut getting fucked by complete strangers..."');
     scene.text('It seems like she might actually want to stay before she finally turns around. "Okay, let\'s get back to the club then."');
   } else {
-    // TODO-QSP: dynamic text: "<<$pcs_nickname>>, have you seen what''s going on? I don''t know what''s happen...
     scene.text(`"${((s as any).pcs_nickname ?? '')}, have you seen what's going on? I don't know what's happening," Katja says, looking very shocked.`);
     scene.text('"The sluts have started the orgy, just like Nush predicted," you answer. "Why are you surprised at that?"');
     scene.text('"I didn\'t believe her!" she replies, almost panicking. "We definitely shouldn\'t be here!"');
@@ -527,7 +484,6 @@ function enterFirstOrgyLeaving(s: GameState, scene: SceneBuilder): void {
     scene.text('"Of course. Let\'s head out," she answers, but doesn\'t move as fast as her words would have led you to believe, like she\'s not sure if she actually wants to leave.');
   }
   scene.text('You both leave the private bar and head back to the club, where Katja smiles and drags you out onto the dance floor.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Dance', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -544,7 +500,6 @@ function enterFirstOrgyCumshot(s: GameState, scene: SceneBuilder): void {
   scene.text('After maneuvering through the crowd of naked female bodies with your drink in hand, you arrive at an exciting sight.');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterFirstOrgyKatjaSixt2(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('You gulp down the last of your drink and find a place to put the empty glass down.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Back to see what is going on', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'erotic_nudity', 3, 'orgy');
@@ -557,12 +512,10 @@ function enterFirstOrgyCumshot(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'erotic_nudity', 3, 'orgy');
     qspCall(st, 'stat', '');
     ((st as any).katjaQW = (st as any).katjaQW ?? {})['horny'] = ((st as any).katjaQW['horny'] ?? 0) + ((Math.floor(Math.random() * 16) + 15));
-    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/pavlovsk/school/girl/katja/un...
     scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/characters/pavlovsk/school/girl/katja/uni/nightclub/orgy/first_orgy_katja28` + ((((st as any).katjaQW ?? 0)?.['horny']  >= 100) ? ('b') : ('a')) + '.jpg"></center>');
     scene.text('You chat a little with the girls, and get the feeling that the party will end soon since most of them expect the guys will leave after they cum.');
     scene.text('After a while, your focus turns back to the couch.');
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFirstOrgyKatjaSeventh2(st, scene); (st as any).locArgs = __savedLocArgs; }
-    // TODO-QSP: dynamic text: <<$katja_first_orgy_temp[''first_orgy_name_tatoo_guy'']>> then pulls out of Katj...
     scene.text(`${(((st as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_tatoo_guy'] ?? '')} then pulls out of Katja. "I'm going to cum! Get on the floor so I can paint your faces, girls."`);
     if (((st as any).katjaQW ?? 0)?.['first_orgy'] === 'joining_in'  ||  ((st as any).katjaQW ?? 0)?.['first_orgy'] === 'taking_initiative'  ||  ((st as any).katjaQW ?? 0)?.['first_orgy'] === 'observing+dick') {
       scene.actions([
@@ -570,16 +523,12 @@ function enterFirstOrgyCumshot(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'foreplay', 2);
     qspCall(st, 'arousal', 'bj', 1, ((st as any).dick1 ?? 0), 'orgy');
     qspCall(st, 'stat', '');
-    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/pavlovsk/school/girl/katja/un...
     scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/characters/pavlovsk/school/girl/katja/uni/nightclub/orgy/` + ((((st as any).katjaQW ?? 0)?.['first_orgy'] === 'joining_in') ? ('first_orgy_join15') : ('first_orgy_initiative21')) + '.jpg"></center>');
-    // TODO-QSP: dynamic text: 'Katja quickly gets down in front of him and you join her. <<$katja_first_orgy_t...
     scene.text(`Katja quickly gets down in front of him and you join her. ${(((st as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_first_black_girl'] ?? '')}, ` + ((((st as any).katjaQW ?? 0)?.['first_orgy'] === 'taking_initiative') ? ('' + (((st as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_boob_window'] ?? '') + '') : ('' + (((st as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_brown_dress'] ?? '') + '')) + ' and ' + ((((st as any).katjaQW ?? 0)?.['first_orgy'] === 'observing+dick') ? ('' + (((st as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_boob_window'] ?? '') + '') : ('' + (((st as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_wavey'] ?? '') + '')) + ' also get on their knees beside you.');
     if (((st as any).katjaQW ?? 0)?.['first_orgy'] === 'observing+dick') {
-      // TODO-QSP: dynamic text: '<<$katja_first_orgy_temp[''first_orgy_name_tatoo_guy'']>> then sticks his cock ...
       scene.text(`${(((st as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_tatoo_guy'] ?? '')} then sticks his cock in your face, and you ` + ((((st as any).katjaQW ?? 0)?.['first_orgy'] === 'taking_initiative') ? ('suck on it') : ('lick his balls while ' + (((st as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_first_black_girl'] ?? '') + ' sucks it')) + '.');
       scene.text('You and the other girls then take turns sucking his dick, trying to get him to cum.');
     } else {
-      // TODO-QSP: dynamic text: <<$katja_first_orgy_temp[''first_orgy_name_tatoo_guy'']>> then sticks his cock i...
       scene.text(`${(((st as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_tatoo_guy'] ?? '')} then sticks his cock in ${(((st as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_brown_dress'] ?? '')}'s face, who starts to suck on it.`);
       scene.text('You and the other girls then take turns sucking his dick, trying to get him to cum.');
     }
@@ -589,11 +538,9 @@ function enterFirstOrgyCumshot(s: GameState, scene: SceneBuilder): void {
     if (((st as any).katjaQW ?? 0)?.['first_orgy'] === 'taking_initiative') {
       qspCall(st, 'cum_call', 'face', ((st as any).npcID1 ?? 0), 1);
       qspCall(st, 'arousal', 'erotic_nudity', 1, 'orgy');
-      // TODO-QSP: dynamic text: You finally get him to cum and <<$katja_first_orgy_temp[''first_orgy_name_tatoo_...
       scene.text(`You finally get him to cum and ${(((st as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_tatoo_guy'] ?? '')} starts by shooting thick globs of cum on you and Katja's faces.`);
     } else {
       qspCall(st, 'arousal', 'erotic_nudity', 1, 'orgy');
-      // TODO-QSP: dynamic text: You finally get him to cum and <<$katja_first_orgy_temp[''first_orgy_name_tatoo_...
       scene.text(`You finally get him to cum and ${(((st as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_tatoo_guy'] ?? '')} starts by shooting thick globs of cum over Katja and ${(((st as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_brown_dress'] ?? '')}'s faces.`);
     }
     qspCall(st, 'stat', '');
@@ -603,14 +550,10 @@ function enterFirstOrgyCumshot(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/nightclub/orgy/first_orgy_initiative23.jpg');
     if (((st as any).katjaQW ?? 0)?.['first_orgy'] === 'joining_in') {
-      // TODO-QSP: dynamic text: He then changes his aim and you feel a powerful spurt of cum hitting you in the ...
       scene.text(`He then changes his aim and you feel a powerful spurt of cum hitting you in the face before he also covers ${(((st as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_first_black_girl'] ?? '')}.`);
-      // TODO-QSP: dynamic text: He then shoots his final spurts across <<$katja_first_orgy_temp[''first_orgy_nam...
       scene.text(`He then shoots his final spurts across ${(((st as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_wavey'] ?? '')}'s face, leaving all of you covered in his cum.`);
     } else {
-      // TODO-QSP: dynamic text: He then changes his aim and paints <<$katja_first_orgy_temp[''first_orgy_name_fi...
       scene.text(`He then changes his aim and paints ${(((st as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_first_black_girl'] ?? '')} and ${(((st as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_boob_window'] ?? '')}'s faces with his cum.`);
-      // TODO-QSP: dynamic text: 'He then aims his final spurts at you and '+iif($katjaQW['first_orgy'] = 'observ...
       scene.text('He then aims his final spurts at you and ' + ((((st as any).katjaQW ?? 0)?.['first_orgy'] === 'observing+dick') ? ('' + (((st as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_brown_dress'] ?? '') + '') : ('' + (((st as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_wavey'] ?? '') + '')) + ', leaving all of you covered in his cum.');
     }
     scene.actions([
@@ -618,7 +561,6 @@ function enterFirstOrgyCumshot(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'erotic_nudity', 1);
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/nightclub/orgy/first_orgy_initiative24.jpg');
-    // TODO-QSP: dynamic text: Once he''s finished, <<$katja_first_orgy_temp[''first_orgy_name_tatoo_guy'']>> l...
     scene.text(`Once he's finished, ${(((st as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_tatoo_guy'] ?? '')} looks down at you and you gaze back up at him.`);
     scene.text('"That was the best orgasm I\'ve ever had!" he grins. "The sight of your faces covered in my cum is the prettiest sight I\'ve ever seen. You all made this one of the best nights of my life, so thanks!"');
     if (((st as any).katjaQW ?? 0)?.['first_orgy'] === 'taking_initiative') {
@@ -627,7 +569,6 @@ function enterFirstOrgyCumshot(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'kiss', 2, ((st as any).npcID4 ?? 0), 'lesbian');
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/nightclub/orgy/first_orgy_initiative25.jpg');
-    // TODO-QSP: dynamic text: Katja turns her head towards you and the two of you start making out, sharing <<...
     scene.text(`Katja turns her head towards you and the two of you start making out, sharing ${(((st as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_tatoo_guy'] ?? '')}'s cum between you in the process.`);
     scene.text('After alternatively kissing and licking each other\'s faces for some time, you\'re both more or less clean of cum and get up from the floor.');
     scene.actions([
@@ -642,9 +583,7 @@ function enterFirstOrgyCumshot(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'erotic_nudity', 2, 'lesbian');
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/nightclub/orgy/first_orgy_initiative25.jpg');
-    // TODO-QSP: dynamic text: You turn to see how Katja reacts and watch as she turns her head towards <<$katj...
     scene.text(`You turn to see how Katja reacts and watch as she turns her head towards ${(((st as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_brown_dress'] ?? '')}, who promptly starts to kiss Katja.`);
-    // TODO-QSP: dynamic text: They make out for some time, sharing <<$katja_first_orgy_temp[''first_orgy_name_...
     scene.text(`They make out for some time, sharing ${(((st as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_tatoo_guy'] ?? '')}'s cum between them in the process.`);
     scene.text('You, meanwhile, get up from the floor and find something to clean the cum off your face.');
     scene.actions([
@@ -658,7 +597,6 @@ function enterFirstOrgyCumshot(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'kiss', 2, ((st as any).npcID6 ?? 0), 'lesbian');
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/nightclub/orgy/first_orgy_join16.jpg');
-    // TODO-QSP: dynamic text: You turn your head towards <<$katja_first_orgy_temp[''first_orgy_name_first_blac...
     scene.text(`You turn your head towards ${(((st as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_first_black_girl'] ?? '')} and the two of you start making out, sharing ${(((st as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_tatoo_guy'] ?? '')}'s cum between you in the process.`);
     scene.text('After alternatively kissing and licking each other\'s faces for some time, you\'re both more or less clean of cum and get up from the floor.');
     scene.actions([
@@ -682,11 +620,8 @@ function enterFirstOrgyCumshot(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'foreplay', 2);
     qspCall(st, 'arousal', 'bj', 1, ((st as any).dick1 ?? 0), 'orgy');
     qspCall(st, 'stat', '');
-    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/pavlovsk/school/girl/katja/un...
     scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/characters/pavlovsk/school/girl/katja/uni/nightclub/orgy/` + ((((st as any).katjaQW ?? 0)?.['first_orgy'] === 'observing+nush_lick') ? ('first_orgy_join15') : ('first_orgy_initiative21')) + '.jpg"></center>');
-    // TODO-QSP: dynamic text: 'Katja quickly gets down in front of him and is joined by <<$katja_first_orgy_te...
     scene.text(`Katja quickly gets down in front of him and is joined by ${(((st as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_first_black_girl'] ?? '')}, ${(((st as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_boob_window'] ?? '')}, ` + ((((st as any).katjaQW ?? 0)?.['first_orgy'] !== 'observing+nush_lick') ? ('' + (((st as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_wavey'] ?? '') + ' ') : (' ')) + ` and ${(((st as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_brown_dress'] ?? '')}.`);
-    // TODO-QSP: dynamic text: '<<$katja_first_orgy_temp[''first_orgy_name_tatoo_guy'']>> then sticks his cock ...
     scene.text(`${(((st as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_tatoo_guy'] ?? '')} then sticks his cock in ` + ((((st as any).katjaQW ?? 0)?.['first_orgy'] === 'observing+nush_lick') ? ('' + (((st as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_first_black_girl'] ?? '') + '\'s') : ('' + (((st as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_brown_dress'] ?? '') + '\'s')) + ', who starts sucking it.');
     scene.text('The girls then all take turns sucking his dick, trying to get him to cum.');
     scene.actions([
@@ -694,24 +629,19 @@ function enterFirstOrgyCumshot(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'erotic_nudity', 1, 'orgy');
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/nightclub/orgy/first_orgy_initiative22.jpg');
-    // TODO-QSP: dynamic text: They finally get him to cum and <<$katja_first_orgy_temp[''first_orgy_name_tatoo...
     scene.text(`They finally get him to cum and ${(((st as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_tatoo_guy'] ?? '')} starts by shooting thick globs of cum over Katja and ${(((st as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_brown_dress'] ?? '')}'s faces.`);
     scene.actions([
       { label: 'More cum', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'erotic_nudity', 1, 'orgy');
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/nightclub/orgy/first_orgy_initiative23.jpg');
-    // TODO-QSP: dynamic text: He then changes his aim and paints <<$katja_first_orgy_temp[''first_orgy_name_fi...
     scene.text(`He then changes his aim and paints ${(((st as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_first_black_girl'] ?? '')} and ${(((st as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_boob_window'] ?? '')}'s faces with his cum.`);
-    // TODO-QSP: dynamic text: 'He then shoots his final spurts at <<$katja_first_orgy_temp[''first_orgy_name_b...
     scene.text(`He then shoots his final spurts at ${(((st as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_brown_dress'] ?? '')} ` + ((((st as any).katjaQW ?? 0)?.['first_orgy'] === 'observing+nush_lick') ? ('face') : ('' + (((st as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_brown_dress'] ?? '') + ' and ' + (((st as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_wavey'] ?? '') + ' faces')) + ', leaving all of the girls covered in his cum.');
     scene.actions([
       { label: '', labelFn: (s: GameState) => String((((st as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_tatoo_guy'] ?? '') ?? '') + '\'s reaction', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'erotic_nudity', 1);
     qspCall(st, 'stat', '');
-    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/pavlovsk/school/girl/katja/un...
     scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/characters/pavlovsk/school/girl/katja/uni/nightclub/orgy/` + ((((st as any).katjaQW ?? 0)?.['first_orgy'] === 'observing+nush_lick') ? ('first_orgy_initiative24') : ('first_orgy_initiative23')) + '.jpg"></center>');
-    // TODO-QSP: dynamic text: Once he''s finished, <<$katja_first_orgy_temp[''first_orgy_name_tatoo_guy'']>> l...
     scene.text(`Once he's finished, ${(((st as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_tatoo_guy'] ?? '')} looks down on the girls, who all gaze back up at him.`);
     scene.text('"That was the best orgasm I\'ve ever had!" he grins. "The sight of your faces covered in my cum is the prettiest sight I\'ve ever seen. You all made this one of the best nights of my life, so thanks!"');
     scene.actions([
@@ -719,9 +649,7 @@ function enterFirstOrgyCumshot(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'erotic_nudity', 2, 'lesbian');
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/nightclub/orgy/first_orgy_initiative25.jpg');
-    // TODO-QSP: dynamic text: You turn to see how Katja reacts and find her kissing <<$katja_first_orgy_temp['...
     scene.text(`You turn to see how Katja reacts and find her kissing ${(((st as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_brown_dress'] ?? '')}.`);
-    // TODO-QSP: dynamic text: They make out for some time, sharing <<$katja_first_orgy_temp[''first_orgy_name_...
     scene.text(`They make out for some time, sharing ${(((st as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_tatoo_guy'] ?? '')}'s cum between them in the process.`);
     scene.actions([
       { label: 'See how the last guy is doing', goto: ['katja_nightclub_first_orgy', 'first_orgy_watching_last_guy_cum'] },
@@ -751,7 +679,6 @@ function enterFirstOrgyDrinkAlone(s: GameState, scene: SceneBuilder): void {
   (s as any).loc_arg = 'first_orgy_drink_alone2';
   (s as any).temp_loc_arg_1 = ((s as any).locArgs?.[1] ?? 0);
   qspCall(s, 'food_menu', 'no_image');
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -760,7 +687,8 @@ function enterFirstOrgyDrinkAlone2(s: GameState, scene: SceneBuilder): void {
   (s as any).loc_arg = 'bar';
   (s as any).menu_loc = 'city_nightclub';
   (s as any).menu_arg = 'bar';
-  // TODO-QSP: $ARGS[1] = $temp_loc_arg_1
+  ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).temp_loc_arg_1 ?? 0);
+  (s as any).temp_loc_arg_1 = undefined;
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
   scene.img('images/shared/drinks/bardrinks.jpg');
@@ -822,7 +750,6 @@ function enterFirstOrgyDrinkAlone2(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'See what Katja is doing', handler: (st: GameState) => {
     if (String((st as any).locArgs?.[1] ?? '') === 'first') {
@@ -932,7 +859,6 @@ function enterFirstOrgyDrinkAlone2(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'erotic_nudity', 3);
     qspCall(st, 'stat', '');
     ((st as any).katjaQW = (st as any).katjaQW ?? {})['horny'] = ((st as any).katjaQW['horny'] ?? 0) + ((Math.floor(Math.random() * 16) + 15));
-    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/pavlovsk/school/girl/katja/un...
     scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/characters/pavlovsk/school/girl/katja/uni/nightclub/orgy/first_orgy_katja20` + ((((st as any).katjaQW ?? 0)?.['horny'] >= 100) ? ('b') : ('a')) + '.jpg"></center>');
     scene.text('You continue to sip your drink while watching the sex show in front of you.');
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFirstOrgyKatjaForth2(st, scene); (st as any).locArgs = __savedLocArgs; }
@@ -1055,7 +981,6 @@ function enterFirstOrgyDrinkNush(s: GameState, scene: SceneBuilder): void {
   (s as any).loc = 'katja_nightclub_first_orgy';
   (s as any).loc_arg = 'first_orgy_drink_nush2';
   qspCall(s, 'food_menu', 'no_image');
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1127,7 +1052,6 @@ function enterFirstOrgyDrinkNush2(s: GameState, scene: SceneBuilder): void {
   scene.text('"Have you tried any cock, Nush?" you ask.');
   scene.text('"Nope," she replies. "I think I\'ll stay with pussy tonight. None of the guys are really doing it for me, but there are some fine looking bitches with some sexy pussies here."');
   scene.text('She moves her tongue around in her drink as if she was licking pussy.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Look around to see what Katja is doing', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -1167,12 +1091,10 @@ function enterFirstOrgyDrinkNush2(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'erotic_nudity', 3, 'orgy');
     qspCall(st, 'stat', '');
     ((st as any).katjaQW = (st as any).katjaQW ?? {})['horny'] = ((st as any).katjaQW['horny'] ?? 0) + (30);
-    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/pavlovsk/school/girl/katja/un...
     scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/characters/pavlovsk/school/girl/katja/uni/nightclub/orgy/first_orgy_katja10` + ((((st as any).katjaQW ?? 0)?.['horny'] >= 100) ? ('b') : ('a')) + '.jpg"></center>');
     scene.text('You and Anushka continue to sip your drinks while watching the redhead as if she was the star of a porn movie.');
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFirstOrgyKatjaSecond3(st, scene); (st as any).locArgs = __savedLocArgs; }
     if (((st as any).katjaQW ?? 0)?.['first_orgy'] === 'taking_initiative') {
-      // TODO-QSP: dynamic text: "That was quite a show, but my drink is empty and I''m in need of some action my...
       scene.text(`"That was quite a show, but my drink is empty and I'm in need of some action myself," Anushka says. "See you later, ${((st as any).pcs_nickname ?? '')}."`);
       scene.actions([
         { label: 'Get some more cock', goto: ['katja_nightclub_first_orgy_sex', 'first_orgy_initiative_continued4'] },
@@ -1201,7 +1123,6 @@ function enterFirstOrgyDrinkNush2(s: GameState, scene: SceneBuilder): void {
     scene.text('Katja seems fine, so you turn back to Nush "She\'s okay. I\'ll check on her later."');
     scene.text('You and Anushka continue to sip your drinks while watching what goes on around you.');
     if (((st as any).katjaQW ?? 0)?.['first_orgy'] === 'taking_initiative') {
-      // TODO-QSP: dynamic text: "That was quite a show, but my drink is empty and I''m in need of some action my...
       scene.text(`"That was quite a show, but my drink is empty and I'm in need of some action myself," Anushka says. "See you later, ${((st as any).pcs_nickname ?? '')}."`);
       scene.actions([
         { label: 'Get some more cock', goto: ['katja_nightclub_first_orgy_sex', 'first_orgy_initiative_continued4'] },
@@ -1230,50 +1151,37 @@ function enterFirstOrgyDrinkNush2(s: GameState, scene: SceneBuilder): void {
 
 function enterFirstOrgyKatjaBeforeFuck(s: GameState, scene: SceneBuilder): void {
   ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) + ((Math.floor(Math.random() * 6) + 5));
-  // TODO-QSP: dynamic text: You see Katja holding <<$katja_first_orgy_temp[''first_orgy_name_bald_guy'']>>''...
   scene.text(`You see Katja holding ${(((s as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_bald_guy'] ?? '')}'s hand as he fucks ${(((s as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_second_black_girl'] ?? '')} from behind on one of the couches.`);
-  // TODO-QSP: dynamic text: <<$katja_first_orgy_temp[''first_orgy_name_green_shirt_guy'']>> is holding her h...
   scene.text(`${(((s as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_green_shirt_guy'] ?? '')} is holding her hips with one hand while stroking his cock. It looks like he wants to put it in Katja, but you can't tell if she's ready for it or not.`);
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterFirstOrgyKatjaFirstPenetration(s: GameState, scene: SceneBuilder): void {
   ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) + ((Math.floor(Math.random() * 6) + 5));
-  // TODO-QSP: dynamic text: <<$katja_first_orgy_temp[''first_orgy_name_green_shirt_guy'']>> slowly aligns hi...
   scene.text(`${(((s as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_green_shirt_guy'] ?? '')} slowly aligns his cock with Katja's pussy before he carefully pushes inside.`);
   scene.text('You see her look up, her expression somewhat confused, like she\'s not really comprehending what\'s going on, but then she makes a face of satisfaction and doesn\'t make any protests.');
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterFirstOrgyKatjaFirst(s: GameState, scene: SceneBuilder): void {
   ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) + ((Math.floor(Math.random() * 11) + 10));
-  // TODO-QSP: dynamic text: You look to see what Katja is doing and see her getting fucked from behind by <<...
   scene.text(`You look to see what Katja is doing and see her getting fucked from behind by ${(((s as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_green_shirt_guy'] ?? '')} while making out with ${(((s as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_second_black_girl'] ?? '')}.`);
-  // TODO-QSP: dynamic text: She looks quite into it, fondling <<$katja_first_orgy_temp[''first_orgy_name_sec...
   scene.text(`She looks quite into it, fondling ${(((s as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_second_black_girl'] ?? '')}'s breast while the guys fuck them in sync.`);
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterFirstOrgyFirstChangeOfPosition(s: GameState, scene: SceneBuilder): void {
   ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) + ((Math.floor(Math.random() * 6) + 5));
-  // TODO-QSP: dynamic text: Katja is still fucking <<$katja_first_orgy_temp[''first_orgy_name_green_shirt_gu...
   scene.text(`Katja is still fucking ${(((s as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_green_shirt_guy'] ?? '')}, but they have moved and she's now riding him with a pretty satisfied look on her face.`);
-  // TODO-QSP: dynamic text: <<$katja_first_orgy_temp[''first_orgy_name_second_black_girl'']>> is fondling Ka...
   scene.text(`${(((s as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_second_black_girl'] ?? '')} is fondling Katja's ass while being fucked by ${(((s as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_bald_guy'] ?? '')}.`);
-  // TODO-QSP: end
   if (((s as any).locArgs ?? 0) === 'first_orgy_katja_getting_naked') {
     ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) + ((Math.floor(Math.random() * 6) + 5));
-    // TODO-QSP: dynamic text: <<$katja_first_orgy_temp[''first_orgy_name_second_black_girl'']>> has stopped fu...
     scene.text(`${(((s as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_second_black_girl'] ?? '')} has stopped fucking ${(((s as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_bald_guy'] ?? '')} to help Katja remove her dress as Katja continues to ride ${(((s as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_green_shirt_guy'] ?? '')}'s cock.`);
   }
   scene.build();
 }
 
 function enterFirstOrgyKatjaFirstPotentialOrgasm(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: dynamic text: You find her riding <<$katja_first_orgy_temp[''first_orgy_name_green_shirt_guy''...
   scene.text(`You find her riding ${(((s as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_green_shirt_guy'] ?? '')}'s cock.`);
   if (((s as any).katjaQW ?? 0)?.['horny'] >= 100) {
     scene.text('She suddenly makes a face that you recognize as the one she makes when she\'s cumming.');
@@ -1283,32 +1191,25 @@ function enterFirstOrgyKatjaFirstPotentialOrgasm(s: GameState, scene: SceneBuild
   } else {
     scene.text('She looks pretty satisfied, but still has a puzzled look on her face, like she\'s not completely comprehending what\'s happening.');
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterFirstOrgyKatjaSecond1(s: GameState, scene: SceneBuilder): void {
   ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) + ((Math.floor(Math.random() * 16) + 15));
-  // TODO-QSP: dynamic text: You scan the room and notice Katja is once again on all fours on one of the couc...
   scene.text(`You scan the room and notice Katja is once again on all fours on one of the couches as ${(((s as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_bald_guy'] ?? '')} lines his ${((s as any).dick_girth2 ?? '')} cock up with her wet slit.`);
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterFirstOrgyKatjaSecond2(s: GameState, scene: SceneBuilder): void {
   ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) + ((Math.floor(Math.random() * 16) + 15));
-  // TODO-QSP: dynamic text: <<$katja_first_orgy_temp[''first_orgy_name_bald_guy'']>> pushes his cock all the...
   scene.text(`${(((s as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_bald_guy'] ?? '')} pushes his cock all the way into Katja's pussy in one swift movement and starts to pound her.`);
   scene.text('Her expression is still confused, but she looks extremely aroused at the same time. She then starts making the kind of noises she usually does when she\'s enjoying sex.');
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterFirstOrgyKatjaSecondTalk1(s: GameState, scene: SceneBuilder): void {
   ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) + ((Math.floor(Math.random() * 11) + 20));
-  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/pavlovsk/school/girl/katja/un...
   scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/characters/pavlovsk/school/girl/katja/uni/nightclub/orgy/first_orgy_katja9` + ((((s as any).katjaQW ?? 0)?.['horny'] >= 30) ? ('a') : ('b')) + '.jpg"></center>');
-  // TODO-QSP: dynamic text: You decide to check on her, even though she''s in the middle of being pounded by...
   scene.text(`You decide to check on her, even though she's in the middle of being pounded by ${(((s as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_bald_guy'] ?? '')}.`);
   scene.text('"Are you feeling okay?" you shout over the sounds of the sex happening around you.');
   if (((s as any).katjaQW ?? 0)?.['horny'] >= 70) {
@@ -1318,16 +1219,13 @@ function enterFirstOrgyKatjaSecondTalk1(s: GameState, scene: SceneBuilder): void
   } else {
     scene.text('She turns her head to face you.');
     scene.text('"Okay... Yes... I\'m good," she pants. "Ohhh! He\'s so big! But I\'m... Fine... Ahh! Don\'t worry."');
-    // TODO-QSP: dynamic text: She then turns her attention back to <<$katja_first_orgy_temp[''first_orgy_name_...
     scene.text(`She then turns her attention back to ${(((s as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_bald_guy'] ?? '')} and the pounding she's receiving from him.`);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterFirstOrgyKatjaSecond3(s: GameState, scene: SceneBuilder): void {
   if (((s as any).katjaQW ?? 0)?.['horny'] >= 100) {
-    // TODO-QSP: dynamic text: Just as <<$katja_first_orgy_temp[''first_orgy_name_bald_guy'']>> pushes hard and...
     scene.text(`Just as ${(((s as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_bald_guy'] ?? '')} pushes hard and deep into Katja, she bends her back upwards and lets out a huge scream, which you know indicates that she just came very hard.`);
     ((s as any).katjaQW = (s as any).katjaQW ?? {})['orgsam_at_first_orgy_count'] = ((s as any).katjaQW['orgsam_at_first_orgy_count'] ?? 0) + (1);
     if (((s as any).KatjaQW ?? 0)?.['orgasm_day'] !== ((s as any).daystart ?? 0)) {
@@ -1335,18 +1233,14 @@ function enterFirstOrgyKatjaSecond3(s: GameState, scene: SceneBuilder): void {
     }
     ((s as any).ktajaQW = (s as any).ktajaQW ?? {})['horny'] = 0;
   } else {
-    // TODO-QSP: dynamic text: <<$katja_first_orgy_temp[''first_orgy_name_bald_guy'']>> is pushing his cock dee...
     scene.text(`${(((s as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_bald_guy'] ?? '')} is pushing his cock deep and hard into Katja's pussy in a steady rhythm, forcing her to bite her lip to stop herself from crying out.`);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterFirstOrgyKatjaSecond4(s: GameState, scene: SceneBuilder): void {
   ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) + ((Math.floor(Math.random() * 11) + 10));
-  // TODO-QSP: dynamic text: You look around and see Katja riding <<$katja_first_orgy_temp[''first_orgy_name_...
   scene.text(`You look around and see Katja riding ${(((s as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_bald_guy'] ?? '')} on a couch with a big smile on her face.`);
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1354,41 +1248,31 @@ function enterFirstOrgyKatjaSecondTalk2(s: GameState, scene: SceneBuilder): void
   ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) + ((Math.floor(Math.random() * 11) + 10));
   scene.text('"How are you doing, Katja?" you ask as you look over at your friend.');
   scene.text('"Great! Can\'t... Talk... Need to... Concentrate... Up down, up down..." she answers with a perplexed look on her face, like she\'s somewhere else and not really present in the moment with you.');
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterFirstOrgyKatjaCarry(s: GameState, scene: SceneBuilder): void {
   ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) + ((Math.floor(Math.random() * 6) + 5));
-  // TODO-QSP: dynamic text: You see her being carried by <<$katja_first_orgy_temp[''first_orgy_name_bald_guy...
   scene.text(`You see her being carried by ${(((s as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_bald_guy'] ?? '')} as he's still fucking her, but some other girls block your view before you can see where they're going.`);
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterFirstOrgyKatjaTwerking(s: GameState, scene: SceneBuilder): void {
   ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) + ((Math.floor(Math.random() * 6) + 0));
-  // TODO-QSP: dynamic text: You find her up on the couch next to <<$katja_first_orgy_temp[''first_orgy_name_...
   scene.text(`You find her up on the couch next to ${(((s as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_white_dress'] ?? '')}, both of them trying to twerk in sync with the rhythm of the music.`);
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterFirstOrgyKatjaKissingBlackGirl(s: GameState, scene: SceneBuilder): void {
   ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) + ((Math.floor(Math.random() * 6) + 5));
-  // TODO-QSP: dynamic text: You see Katja making out with <<$katja_first_orgy_temp[''first_orgy_name_second_...
   scene.text(`You see Katja making out with ${(((s as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_second_black_girl'] ?? '')}. She must be a pretty good kisser since Katja seems to be eagerly returning the kiss.`);
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterFirstOrgyKatjaThird1(s: GameState, scene: SceneBuilder): void {
   ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) + ((Math.floor(Math.random() * 11) + 10));
-  // TODO-QSP: dynamic text: She is once again on all fours on one of the couches, being pounded from behind ...
   scene.text(`She is once again on all fours on one of the couches, being pounded from behind by ${(((s as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_tatoo_guy'] ?? '')}.`);
-  // TODO-QSP: dynamic text: <<$katja_first_orgy_temp[''first_orgy_name_second_black_girl'']>> is on her back...
   scene.text(`${(((s as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_second_black_girl'] ?? '')} is on her back next to them, getting fucked by ${(((s as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_green_shirt_guy'] ?? '')}.`);
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1398,56 +1282,46 @@ function enterFirstOrgyKatjaThirdTalk1(s: GameState, scene: SceneBuilder): void 
   scene.text('"What? Oh... Yeah. It just... Happened..." she answers over her heavy panting, enough for you to know she\'s not really clear about how it happened.');
   scene.text('"So who is best?" you shouts back.');
   scene.text('"They are all... GREAAA-!!!" she shouts back, her sentence abruptly being cut off by an extremely loud moan.');
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterFirstOrgyKatjaThird2(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: dynamic text: She is on her back, her hand on <<$katja_first_orgy_temp[''first_orgy_name_tatoo...
   scene.text(`She is on her back, her hand on ${(((s as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_tatoo_guy'] ?? '')}'s chest as he pounds her pussy fast and deep.`);
   if (((s as any).katjaQW ?? 0)?.['horny'] >= 80) {
     scene.text('Her eyes are semi closed, like she\'s trying to not show them rolling around, and her lips are pressed together hard to prevent her announcing her coming orgasm.');
   } else {
     scene.text('Her eyes are closed and her breathing is not as fast as you would expect for a horny girl. It\'s almost as if she\'s exhausted from the fucking.');
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterFirstOrgyKatjaThird3(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: dynamic text: As <<$katja_first_orgy_temp[''first_orgy_name_tatoo_guy'']>> continues ramming h...
   scene.text(`As ${(((s as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_tatoo_guy'] ?? '')} continues ramming his cock in and out of her pussy, Katja can't suppresss her orgasm any longer and lets out an almost deafening scream, announcing to the entire room that she's cumming.`);
   ((s as any).katjaQW = (s as any).katjaQW ?? {})['orgsam_at_first_orgy_count'] = ((s as any).katjaQW['orgsam_at_first_orgy_count'] ?? 0) + (1);
   if (((s as any).KatjaQW ?? 0)?.['orgasm_day'] !== ((s as any).daystart ?? 0)) {
     ((s as any).KatjaQW = (s as any).KatjaQW ?? {})['orgasm_day'] = ((s as any).daystart ?? 0);
   }
   ((s as any).ktajaQW = (s as any).ktajaQW ?? {})['horny'] = 0;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterFirstOrgyKatjaForth1(s: GameState, scene: SceneBuilder): void {
   ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) + ((Math.floor(Math.random() * 16) + 15));
-  // TODO-QSP: dynamic text: Through a sea of naked bodies you see the three men gathered around the same cou...
   scene.text(`Through a sea of naked bodies you see the three men gathered around the same couch, their cocks deep in the pussies of the three biggest sluts at the party; ${(((s as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_first_black_girl'] ?? '')}, ${(((s as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_second_black_girl'] ?? '')} and Katja!`);
   if (((s as any).katjaQW ?? 0)?.['know_as_dorm_slut'] > 0  ||  ((s as any).katjaQW ?? 0)?.['simultanous_boys'] >= 3  ||  ((s as any).katjaQW ?? 0)?.['park_sex'] >= 3) {
     scene.text('While you knew that Katja is secretly a wild girl, it\'s still a little surprising to see her acting like a cock hungry slut.');
   } else {
     scene.text('While you knew Katja is not the shy prudish girl some think she is, seeing her act like a cock hungry slut among strangers is still not something you had expected.');
   }
-  // TODO-QSP: dynamic text: She looks like she''s enjoying herself, though, being pounded from behind by <<$...
   scene.text(`She looks like she's enjoying herself, though, being pounded from behind by ${(((s as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_bald_guy'] ?? '')} while making out with ${(((s as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_second_black_girl'] ?? '')}.`);
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterFirstOrgyKatjaForthTalk1(s: GameState, scene: SceneBuilder): void {
   ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) + ((Math.floor(Math.random() * 16) + 15));
-  // TODO-QSP: dynamic text: You make your way towards Katja, but it take you a little longer than expected s...
   scene.text(`You make your way towards Katja, but it take you a little longer than expected since ${(((s as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_tatoo_guy'] ?? '')} has decided to move ${(((s as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_first_black_girl'] ?? '')} and she is now on her back between Katja and ${(((s as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_second_black_girl'] ?? '')}.`);
   scene.text('When you close to Katja, you shout to get her attention. "Are you having fun, Katja?!"');
   scene.text('She turns her head towards you. "Hu? Oh, it\'s you.... Did you... Ask something?"');
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1455,13 +1329,11 @@ function enterFirstOrgyKatjaForthTalk2(s: GameState, scene: SceneBuilder): void 
   ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) + ((Math.floor(Math.random() * 16) + 15));
   scene.text('"I asked if you\'re having fun," you explain.');
   scene.text('"Yes... I\'m having... A lot of... fun," she replies, her huge smile indicating that she\'s very much being sincere.');
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterFirstOrgyKatjaForth2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).katjaQW ?? 0)?.['horny'] >= 100) {
-    // TODO-QSP: dynamic text: Katja''s moans are getting louder, indicating that she is close to orgasm. Seems...
     scene.text(`Katja's moans are getting louder, indicating that she is close to orgasm. Seems like ${(((s as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_bald_guy'] ?? '')} also know this, so he lifts up her right leg so he can push his ${((s as any).dick2 ?? '')} cm ${((s as any).dick_girth2 ?? '')} cock deep into her pussy.`);
     scene.text('This pushes Katja over the edge and she cums with a huge scream.');
     ((s as any).katjaQW = (s as any).katjaQW ?? {})['orgsam_at_first_orgy_count'] = ((s as any).katjaQW['orgsam_at_first_orgy_count'] ?? 0) + (1);
@@ -1470,34 +1342,26 @@ function enterFirstOrgyKatjaForth2(s: GameState, scene: SceneBuilder): void {
     }
     ((s as any).ktajaQW = (s as any).ktajaQW ?? {})['horny'] = 0;
   } else {
-    // TODO-QSP: dynamic text: Katja moans softly while looking almost intimately at <<$katja_first_orgy_temp['...
     scene.text(`Katja moans softly while looking almost intimately at ${(((s as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_bald_guy'] ?? '')} as he fucks her from behind.`);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterFirstOrgyKatjaFifth1(s: GameState, scene: SceneBuilder): void {
   ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) + ((Math.floor(Math.random() * 21) + 20));
-  // TODO-QSP: dynamic text: She''s back to fucking <<$katja_first_orgy_temp[''first_orgy_name_green_shirt_gu...
   scene.text(`She's back to fucking ${(((s as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_green_shirt_guy'] ?? '')}, who has her on the back on one of the couches in a particularly uncomfortable looking position.`);
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterFirstOrgyKatjaFifth2(s: GameState, scene: SceneBuilder): void {
   ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) + ((Math.floor(Math.random() * 21) + 20));
-  // TODO-QSP: dynamic text: <<$npc_usedname[''A144'']>> and <<$katja_first_orgy_temp[''first_orgy_name_white...
   scene.text(`${(((s as any).npc_usedname ?? 0)?.['A144'] ?? '')} and ${(((s as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_white_dress'] ?? '')} are sitting on the couch, kissing from time to time, but that doesn't prevent ${(((s as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_green_shirt_guy'] ?? '')} from moving Katja so that she's on top of ${(((s as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_white_dress'] ?? '')} as he fucks her doggystyle.`);
-  // TODO-QSP: dynamic text: The two girls don''t seem to mind, <<$katja_first_orgy_temp[''first_orgy_name_wh...
   scene.text(`The two girls don't seem to mind, ${(((s as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_white_dress'] ?? '')} even laughing about the situation. Katja, on the other hand, looks like she isn't really registering what's going on.`);
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterFirstOrgyKatjaFifth3(s: GameState, scene: SceneBuilder): void {
   if (((s as any).katjaQW ?? 0)?.['horny'] >= 100) {
-    // TODO-QSP: dynamic text: '<<$npc_usedname[''A144'']>> and <<$katja_first_orgy_temp[''first_orgy_name_whit...
     scene.text(`${(((s as any).npc_usedname ?? 0)?.['A144'] ?? '')} and ${(((s as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_white_dress'] ?? '')} are still making out when Katja lets out a screaming roar above them, indicating that she's had ` + ((((s as any).katjaQW ?? 0)?.['orgsam_at_first_orgy_count'] > 0) ? ('yet another') : ('an')) + ' orgasm.');
     ((s as any).katjaQW = (s as any).katjaQW ?? {})['orgsam_at_first_orgy_count'] = ((s as any).katjaQW['orgsam_at_first_orgy_count'] ?? 0) + (1);
     if (((s as any).KatjaQW ?? 0)?.['orgasm_day'] !== ((s as any).daystart ?? 0)) {
@@ -1505,19 +1369,15 @@ function enterFirstOrgyKatjaFifth3(s: GameState, scene: SceneBuilder): void {
     }
     ((s as any).ktajaQW = (s as any).ktajaQW ?? {})['horny'] = 0;
   } else {
-    // TODO-QSP: dynamic text: <<$npc_usedname[''A144'']>> and <<$katja_first_orgy_temp[''first_orgy_name_white...
     scene.text(`${(((s as any).npc_usedname ?? 0)?.['A144'] ?? '')} and ${(((s as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_white_dress'] ?? '')} are still making out as Katja leans on ${(((s as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_white_dress'] ?? '')} to steady herself from the pounding ${(((s as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_green_shirt_guy'] ?? '')} is giving her.`);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterFirstOrgyKatjaSixt1(s: GameState, scene: SceneBuilder): void {
   ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) + ((Math.floor(Math.random() * 11) + 10));
-  // TODO-QSP: dynamic text: You see her riding <<$katja_first_orgy_temp[''first_orgy_name_bald_guy'']>>''s <...
   scene.text(`You see her riding ${(((s as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_bald_guy'] ?? '')}'s ${((s as any).dick3 ?? '')} cm long ${((s as any).dick_girth3 ?? '')} cock reverse cowgirl.`);
   scene.text('The expression on her face looks happy, but somewhat tired. She still a little of the faraway look that she\'s had most of the evening.');
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1531,34 +1391,26 @@ function enterFirstOrgyKatjaSixtTalk1(s: GameState, scene: SceneBuilder): void {
     scene.text('The fucking she\'s getting right now clearly doesn\'t seem to really get to her.');
     scene.text('"Sure, I\'m also having fun," you reply with a smile.');
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterFirstOrgyKatjaSixt2(s: GameState, scene: SceneBuilder): void {
   ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) + ((Math.floor(Math.random() * 16) + 15));
-  // TODO-QSP: dynamic text: Katja is still getting fucked by <<$katja_first_orgy_temp[''first_orgy_name_bald...
   scene.text(`Katja is still getting fucked by ${(((s as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_bald_guy'] ?? '')}, who has her on her back on the arm of the couch.`);
   scene.text('Just as you spot them, he pulls out of her at the last second and cums over her pussy.');
-  // TODO-QSP: dynamic text: Before you can do anything, <<$katja_first_orgy_temp[''first_orgy_name_second_bl...
   scene.text(`Before you can do anything, ${(((s as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_second_black_girl'] ?? '')} is eagerly licking it up as if she were starving.`);
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterFirstOrgyKatjaSeventh1(s: GameState, scene: SceneBuilder): void {
   ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) + ((Math.floor(Math.random() * 16) + 15));
-  // TODO-QSP: dynamic text: <<$katja_first_orgy_temp[''first_orgy_name_bald_guy'']>> has sat down, looking v...
   scene.text(`${(((s as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_bald_guy'] ?? '')} has sat down, looking very satisfied as Katja and ${(((s as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_second_black_girl'] ?? '')} kneel at either side of him, taking turns to clean his cock.`);
-  // TODO-QSP: dynamic text: <<$katja_first_orgy_temp[''first_orgy_name_second_black_girl'']>> is getting ham...
   scene.text(`${(((s as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_second_black_girl'] ?? '')} is getting hammered from behind by ${(((s as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_green_shirt_guy'] ?? '')} and ${(((s as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_tatoo_guy'] ?? '')} has moved in to fuck Katja's pussy.`);
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterFirstOrgyKatjaSeventh2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).katjaQW ?? 0)?.['horny'] >= 100) {
-    // TODO-QSP: dynamic text: Katja pops <<$katja_first_orgy_temp[''first_orgy_name_bald_guy'']>>''s cock out ...
     scene.text(`Katja pops ${(((s as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_bald_guy'] ?? '')}'s cock out of her mouth as her screams announce another orgasm when ${(((s as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_tatoo_guy'] ?? '')} buries his cock deep in her pussy one last time.`);
     ((s as any).katjaQW = (s as any).katjaQW ?? {})['orgsam_at_first_orgy_count'] = ((s as any).katjaQW['orgsam_at_first_orgy_count'] ?? 0) + (1);
     if (((s as any).KatjaQW ?? 0)?.['orgasm_day'] !== ((s as any).daystart ?? 0)) {
@@ -1566,11 +1418,9 @@ function enterFirstOrgyKatjaSeventh2(s: GameState, scene: SceneBuilder): void {
     }
     ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = 0;
   } else {
-    // TODO-QSP: dynamic text: Katja is talking with <<$katja_first_orgy_temp[''first_orgy_name_bald_guy'']>> a...
     scene.text(`Katja is talking with ${(((s as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_bald_guy'] ?? '')} as ${(((s as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_second_black_girl'] ?? '')} cleans his cock. She's gotten to a state where she barely notices ${(((s as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_tatoo_guy'] ?? '')} pounding her.`);
     scene.text('He himself seems more focused on his own upcoming orgasm than on pleasing Katja.');
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1578,26 +1428,18 @@ function enterFirstOrgyWatchingLastGuyCum(s: GameState, scene: SceneBuilder): vo
   qspCall(s, 'arousal', 'erotic_nudity', 1);
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/girl/katja/uni/nightclub/orgy/first_orgy_last_guy_cumming1.jpg');
-  // TODO-QSP: dynamic text: You look around and see a group of girls gathered around a couch where <<$katja_...
   scene.text(`You look around and see a group of girls gathered around a couch where ${(((s as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_green_shirt_guy'] ?? '')} has ${(((s as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_second_black_girl'] ?? '')} on her back while ramming his cock into her pussy,`);
-  // TODO-QSP: dynamic text: You approach and see Anushka on the floor next to <<$katja_first_orgy_temp[''fir...
   scene.text(`You approach and see Anushka on the floor next to ${(((s as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_second_black_girl'] ?? '')}, playing with one of her breasts with one hand while supporting her with the other.`);
-  // TODO-QSP: dynamic text: Next to them are <<$katja_first_orgy_temp[''first_orgy_name_curly'']>>, <<$katja...
   scene.text(`Next to them are ${(((s as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_curly'] ?? '')}, ${(((s as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_white_dress'] ?? '')} and ${(((s as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_long_blond_hair'] ?? '')}, who are all watching the sex.`);
-  // TODO-QSP: dynamic text: Behind the back of the couch is <<$katja_first_orgy_temp[''first_orgy_name_short...
   scene.text(`Behind the back of the couch is ${(((s as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_short_blond_hair'] ?? '')} and ${(((s as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_third_black_girl'] ?? '')}, the latter groping ${(((s as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_second_black_girl'] ?? '')}'s other breast.`);
-  // TODO-QSP: end
   scene.actions([
     { label: 'Watch him cum', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'erotic_nudity', 1);
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/nightclub/orgy/first_orgy_last_guy_cumming2.jpg');
-    // TODO-QSP: dynamic text: <<$katja_first_orgy_temp[''first_orgy_name_green_shirt_guy'']>> suddenly pulls o...
     scene.text(`${(((st as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_green_shirt_guy'] ?? '')} suddenly pulls out of ${(((st as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_second_black_girl'] ?? '')}'s pussy and walks up to her face while stroking it.`);
     scene.text('She opens her mouth, closes her eyes and sticks out her tongue, ready to have him cum in her mouth and on her face.');
-    // TODO-QSP: dynamic text: After just a few strokes, <<$katja_first_orgy_temp[''first_orgy_name_green_shirt...
     scene.text(`After just a few strokes, ${(((st as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_green_shirt_guy'] ?? '')} cums with so much force that his cum overshoots ${(((st as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_second_black_girl'] ?? '')} and lands on the face of a very surprised ${(((st as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_white_dress'] ?? '')}.`);
-    // TODO-QSP: dynamic text: He still has some more spurts in him, but they''re not as powerful and end up la...
     scene.text(`He still has some more spurts in him, but they're not as powerful and end up landing on ${(((st as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_second_black_girl'] ?? '')}'s face or on the floor, only avoiding Anushka because she's quick enough to dodge the splatter.`);
     scene.actions([
       { label: 'See their reaction', handler: (st: GameState) => {
@@ -1605,13 +1447,9 @@ function enterFirstOrgyWatchingLastGuyCum(s: GameState, scene: SceneBuilder): vo
     qspCall(st, 'arousal', 'end');
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/nightclub/orgy/first_orgy_last_guy_cumming3.jpg');
-    // TODO-QSP: dynamic text: <<$katja_first_orgy_temp[''first_orgy_name_white_dress'']>> looks very shocked, ...
     scene.text(`${(((st as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_white_dress'] ?? '')} looks very shocked, clearly not used to getting cum on her face as several of the other girls laugh.`);
-    // TODO-QSP: dynamic text: "I''m sorry I couldn''t control it, but you girls have been so fantastic that I ...
     scene.text(`"I'm sorry I couldn't control it, but you girls have been so fantastic that I just couldn't hold it anymore!" ${(((st as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_green_shirt_guy'] ?? '')} says.`);
-    // TODO-QSP: dynamic text: <<$katja_first_orgy_temp[''first_orgy_name_second_black_girl'']>>  just looks at...
     scene.text(`${(((st as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_second_black_girl'] ?? '')}  just looks at him with a slutty expression, Anushka still playing with her breast.`);
-    // TODO-QSP: dynamic text: They then start to get up, one of the girls helping <<$katja_first_orgy_temp[''f...
     scene.text(`They then start to get up, one of the girls helping ${(((st as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_white_dress'] ?? '')} to clean the cum from her face as her shock turns into laughter.`);
     scene.actions([
       { label: 'Get dressed', goto: ['katja_nightclub_first_orgy', 'first_orgy_get_dressed'] },
@@ -1629,39 +1467,31 @@ function enterFirstOrgyGetDressed(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'cum_cleanup', '1');
   scene.img('images/characters/shared/headshots_main/big144.jpg');
   scene.text('With all the guys having cum, the party seems to be coming to an end. A couple of girls head to the bar to get some more drinks, but most start to get dressed.');
-  // TODO-QSP: dynamic text: You help Katja clean up and get dressed. It''s clear she''s still in a sort of d...
   scene.text(`You help Katja clean up and get dressed. It's clear she's still in a sort of dreamlike state; when ${(((s as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_tatoo_guy'] ?? '')} tries to strike up a conversation with her, it's clear that she's not listening to what he's saying.`);
   if (((s as any).katjaQW ?? 0)?.['first_orgy'] === 'joining_in'  ||  ((s as any).katjaQW ?? 0)?.['first_orgy'] === 'taking_initiative') {
-    // TODO-QSP: dynamic text: <<$katja_first_orgy_temp[''first_orgy_name_tatoo_guy'']>> notices this, so he ta...
     scene.text(`${(((s as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_tatoo_guy'] ?? '')} notices this, so he talks to you instead.`);
     scene.text('"You were great, and so was your friend. Tell her that when she\'s back on planet Earth. Thanks for making it a wonderful evening," he says before moving on.');
   } else {
     if (((s as any).katjaQW ?? 0)?.['first_orgy'] ===  'observing+nush_lick') {
-      // TODO-QSP: dynamic text: <<$katja_first_orgy_temp[''first_orgy_name_tatoo_guy'']>> notices this, so he ta...
       scene.text(`${(((s as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_tatoo_guy'] ?? '')} notices this, so he talks to you instead.`);
       scene.text('"Too bad you kept out of it until the last minute. I would have loved to give your pussy a try. At least I got to paint your face with my cum," he says before moving on.');
     }
   }
-  // TODO-QSP: dynamic text: <<$katja_first_orgy_temp[''first_orgy_name_bald_guy'']>> doesn''t approach Katja...
   scene.text(`${(((s as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_bald_guy'] ?? '')} doesn't approach Katja since ${(((s as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_first_black_girl'] ?? '')} and ${(((s as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_second_black_girl'] ?? '')} are still all over him.`);
   if (((s as any).katjaQW ?? 0)?.['first_orgy'] !== 'lesbian') {
     ((s as any).anushkaQW = (s as any).anushkaQW ?? {})['katja_slut'] = 1;
     scene.text('"Now the gold digging sluts will fight for his attention. Just wait for the claws to come out; it could be a fun cat fight to watch," you hear Anushka say from behind you.');
     if (((s as any).anushkaQW ?? 0)?.['sex'] > 0) {
       if (((s as any).katjaQW ?? 0)?.['first_orgy'] === 'observing') {
-        // TODO-QSP: dynamic text: "I''m surprised you didn''t join the fun <<$pcs_nickname>>, but not as surprised...
         scene.text(`"I'm surprised you didn't join the fun ${((s as any).pcs_nickname ?? '')}, but not as surprised as I was to see what a big slut Katja is!" she continues.`);
       } else {
-        // TODO-QSP: dynamic text: "I knew you were a huge slut <<$pcs_nickname>>, but Katja? Now there was a surpr...
         scene.text(`"I knew you were a huge slut ${((s as any).pcs_nickname ?? '')}, but Katja? Now there was a surprise!" she continues.`);
       }
     } else {
       if (((s as any).katjaQW ?? 0)?.['first_orgy'] === 'observing') {
-        // TODO-QSP: dynamic text: "Too bad you didn''t really join the fun, <<$pcs_nickname>>. At least you know h...
         scene.text(`"Too bad you didn't really join the fun, ${((s as any).pcs_nickname ?? '')}. At least you know how to have fun, Katja. It was quite a surprise to see what a big slut you are," she continues.`);
       } else {
         if (((s as any).fame ?? 0)?.['pav_slut'] >= 150  ||  ((s as any).fame ?? 0)?.['pav_sex'] >= 150  ||  ((s as any).fame ?? 0)?.['city_slut'] >= 150  ||  ((s as any).fame ?? 0)?.['city_sex'] >= 150) {
-          // TODO-QSP: dynamic text: "I''ve heard that you were a huge slut <<$pcs_nickname>>, but Katja? Now there w...
           scene.text(`"I've heard that you were a huge slut ${((s as any).pcs_nickname ?? '')}, but Katja? Now there was a surprise!" she continues.`);
         } else {
           scene.text('"It was a surprise to see what big sluts you both are, especially you Katja. I guess I can\'t call you little princess anymore, huh?" she continues with a smirk.');
@@ -1672,7 +1502,6 @@ function enterFirstOrgyGetDressed(s: GameState, scene: SceneBuilder): void {
     scene.text('"Well, it\'s been fun partying with you, girls. We should do this again, but I need to get going. Later, sluts!" she says and leaves before you have time to say anything.');
   }
   scene.text('You and Katja put on the last of your clothes. With the way she\'s acting, going home is probably the best choice right now.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go home', goto: ['katja_nightclub_first_orgy', 'first_orgy_walk_home'] },
   ]);
@@ -1686,10 +1515,8 @@ function enterFirstOrgyWalkHome(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/girl/katja/uni/city/walking_home_at_night.jpg');
   scene.text('You walk through the club and get your coats, Katja just following you looking like she\'s in another world.');
-  // TODO-QSP: dynamic text: 'As you start walking towards the metro, she still hasn''t said a word, but you ...
   scene.text('As you start walking towards the metro, she still hasn\'t said a word, but you notice that the ' + ((((s as any).temper ?? 0) < 15) ? ('cool air') : ('lack of noise')) + ' has changed her expression.');
   scene.text('She\'s still quiet, which is not like her usual self, but looks thoughtful, like she\'s complementing what happened.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Ask her how she is', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 2;
@@ -1733,7 +1560,6 @@ function enterFirstOrgyWalkHome(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/city/walking_home_at_night.jpg');
     scene.text('You feel that she has put her worries about her reputation aside, so you decide to ask her about what happened.');
     scene.text('"So, what got into you? I know we\'ve done some wild tings together, but I\'ve never seen you take initative like <i>that</i> before!" you grin.');
-    // TODO-QSP: dynamic text: '"I don''t know, and that''s what scares me a little," she answers. "I was just ...
     scene.text('"I don\'t know, and that\'s what scares me a little," she answers. "I was just watching ' + ((((st as any).katjaQW ?? 0)?.['first_orgy'] === 'taking_initiative') ? ('you and ') : (' ')) + `${(((st as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_second_black_girl'] ?? '')} fucking, which was making me horny when ${(((st as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_green_shirt_guy'] ?? '')} asked if he could fuck me, and I thought why not, at least for a little while? Maybe he would make me cum and I wouldn't be so horny for the rest of the party."`);
     scene.text('She sighs. "And then I just couldn\'t stop! It was like something else took over. Like pure instinct made me say yes whenever I was offered a new cock. <i>That\'s</i> what scares me; the feeling of not being in control."');
     scene.text('"So did somebody make you do something you didn\'t want to do? Are you afraid of getting abused?" you ask, a little nervous');
@@ -1769,6 +1595,7 @@ function enterFirstOrgyWalkHome(s: GameState, scene: SceneBuilder): void {
     if (((st as any).katjaQW ?? 0)?.['simultanous_boys'] < 3) {
       ((st as any).katjaQW = (st as any).katjaQW ?? {})['simultanous_boys'] = 3;
     }
+    (st as any).katja_first_orgy_temp = undefined;
     ((st as any).katjaQW = (st as any).katjaQW ?? {})['on_date'] = 1;
     if (((st as any).hour ?? 0) > 10) {
       ((st as any).locat = (st as any).locat ?? {})['katja_rand2'] = ((st as any).daystart ?? 0);

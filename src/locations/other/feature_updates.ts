@@ -41,15 +41,16 @@ function enterShow(s: GameState, scene: SceneBuilder): void {
     (s as any).temp_icon_green = '<span style="display:inline-block;background:' + (((s as any).theme_hex ?? 0)?.['v_pos']) + ';border-radius:12px;height:80px;padding:5%;box-sizing:border-box;"><img src="images/system/icons/jobs/city_cafe_waitress.png" style="width:100%;height:100%;display:block;"></span>';
     (s as any).temp_icon_red = '<span style="display:inline-block;background:' + (((s as any).theme_hex ?? 0)?.['v_neg']) + ';border-radius:12px;height:80px;padding:5%;box-sizing:border-box;"><img src="images/system/icons/jobs/city_cafe_waitress.png" style="width:100%;height:100%;display:block;"></span>';
     scene.text('<center><table cellpadding="10"><tr>');
-    // TODO-QSP: dynamic text: <td align="center"><b>Shift today</b><br><<$temp_icon_today>></td>
     scene.text(`<td align="center"><b>Shift today</b><br>${((s as any).temp_icon_today ?? '')}</td>`);
-    // TODO-QSP: dynamic text: <td align="center"><b>Arrive now</b><br><<$temp_icon_blue>></td>
     scene.text(`<td align="center"><b>Arrive now</b><br>${((s as any).temp_icon_blue ?? '')}</td>`);
-    // TODO-QSP: dynamic text: <td align="center"><b>Working</b><br><<$temp_icon_green>></td>
     scene.text(`<td align="center"><b>Working</b><br>${((s as any).temp_icon_green ?? '')}</td>`);
-    // TODO-QSP: dynamic text: <td align="center"><b>Missed</b><br><<$temp_icon_red>></td>
     scene.text(`<td align="center"><b>Missed</b><br>${((s as any).temp_icon_red ?? '')}</td>`);
     scene.text('</tr></table></center>');
+    (s as any).temp_icon_h = undefined;
+    (s as any).temp_icon_today = undefined;
+    (s as any).temp_icon_blue = undefined;
+    (s as any).temp_icon_green = undefined;
+    (s as any).temp_icon_red = undefined;
     scene.text('<center><b>Difficulty Settings</b></center>');
     scene.text('The difficulty settings have been greatly expanded, and moved into their own tab in the settings menu. You can now individually customize skill gain rate, skill degradation rate, income and expenditure multipliers, event mood multipliers, random event changes, and more.');
     scene.text('In addition, several difficulty presets have been added, which bundle together individual difficulty settings.');
@@ -91,7 +92,6 @@ function enterShow(s: GameState, scene: SceneBuilder): void {
     scene.text('<center><b>Traits</b></center>');
     scene.text('The traits system has been massively revamped, with the traits reorganized into a cohesive system, and many new traits added. Each trait can have its own way of being gained or lost and unique effects. Some traits remain hidden until discovered.');
     scene.text('Traits can have multiple levels, both positive and negative, often but not always linked to EXP points. For example, <i>Alcohol Tolerance</i> moves between Lightweight and Heavyweight depending on how much, and how often, you drink.');
-    // TODO-QSP: dynamic text: <<$func('traits', 'card', 'drinking', -1)>>
     scene.text(`${qspFunc(s, 'traits', 'card', 'drinking', (-1))}`);
     scene.text('All discovered traits can be found in the Traits tab of the character menu, along with descriptions of them. At the top right of most trait cards you can find a small tooltip. Hover over it with the mouse for a few seconds to reveal mechanical information about the trait: How to gain it, how to lose it, etc.');
     scene.text('Unfortunately, the diversity of traits means it\'s impossible to provide more useful information here that would apply to all traits.');
@@ -125,7 +125,6 @@ function enterShow(s: GameState, scene: SceneBuilder): void {
   } },
 ]);
   return;
-  // TODO-QSP: end
   scene.build();
 }
 

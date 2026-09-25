@@ -39,139 +39,123 @@ function enterClassmates(s: GameState, scene: SceneBuilder): void {
   (s as any).table_disco = '<center><table>';
   (s as any).i = 1;
   (s as any).i2 = 0;
-  // TODO-QSP: :discopop_loop
-  if ((((s as any).npc_grupTipe ?? 0)['A' + (((s as any).i ?? 0))] === 1  ||  ((s as any).npc_nickname ?? 0)['A' + (((s as any).i ?? 0))] === 'Natasha')  &&  ((s as any).discoenable ?? 0)['A' + (((s as any).i ?? 0))] === 1  &&  ((s as any).discobloc ?? 0)['A' + (((s as any).i ?? 0))] !== ((s as any).daystart ?? 0)) {
-    if ((!((s as any).i2 ?? 0))) {
-      // TODO-QSP: $table_disco += '<tr>'
-    }
-    (s as any).i2 = ((s as any).i2 ?? 0) + (1);
-    if (((s as any).theme ?? 0)?.['is_dark'] === 1) {
-      // TODO-QSP: $table_disco += '<td><table bgcolor=#404040>'
-    } else {
-      // TODO-QSP: $table_disco += '<td><table bgcolor=#FFF8DC>'
-    }
-    // TODO-QSP: $table_disco += '<tr><td align=center><a href="exec: i = <<i>> & gt ''pav_disco_classmates'', ''cool...
-    if (((s as any).i2 ?? 0) % 6 === 0) {
-      (s as any).i2 = 0;
-      // TODO-QSP: $table_disco += '</tr>'
-    }
-  }
-  (s as any).i = ((s as any).i ?? 0) + (1);
-  if (((s as any).i ?? 0) <= ((s as any).aarraynumber ?? 0)) {
-    // TODO-QSP: jump 'discopop_loop'
-  }
-  (s as any).i = 1;
-  // TODO-QSP: :discojock_loop
-  if (((s as any).npc_grupTipe ?? 0)['A' + (((s as any).i ?? 0))] === 2  &&  ((s as any).discoenable ?? 0)['A' + (((s as any).i ?? 0))] === 1  &&  ((s as any).discobloc ?? 0)['A' + (((s as any).i ?? 0))] !== ((s as any).daystart ?? 0)) {
-    if ((!((s as any).i2 ?? 0))) {
-      // TODO-QSP: $table_disco += '<tr>'
-    }
-    (s as any).i2 = ((s as any).i2 ?? 0) + (1);
-    if (((s as any).theme ?? 0)?.['is_dark'] === 1) {
-      // TODO-QSP: $table_disco += '<td><table bgcolor=#404040>'
-    } else {
-      // TODO-QSP: $table_disco += '<td><table bgcolor=#FFF8DC>'
-    }
-    // TODO-QSP: $table_disco += '<tr><td align=center><a href="exec: i = <<i>> & gt ''pav_disco_classmates'', ''jock...
-    if (((s as any).i2 ?? 0) % 6 === 0) {
-      (s as any).i2 = 0;
-      // TODO-QSP: $table_disco += '</tr>'
-    }
-  }
-  (s as any).i = ((s as any).i ?? 0) + (1);
-  if (((s as any).i ?? 0) <= ((s as any).aarraynumber ?? 0)) {
-    // TODO-QSP: jump 'discojock_loop'
-  }
-  if (((s as any).i2 ?? 0) % 6 !== 0) {
-    // TODO-QSP: :disco_loopi21
-    (s as any).i2 = ((s as any).i2 ?? 0) + (1);
-    // TODO-QSP: $table_disco += '<td></td>'
-    if (((s as any).i2 ?? 0) % 6 === 0) {
-      (s as any).i2 = 0;
-      // TODO-QSP: $table_disco += '</tr>'
-    } else {
-      // TODO-QSP: jump 'disco_loopi21'
-    }
-  }
-  // TODO-QSP: $table_disco += '</table></center>'
-  // TODO-QSP: $table_disco
-  if (((s as any).week ?? 0) === 6  &&  ((s as any).hour ?? 0) >= 20  &&  ((s as any).hour ?? 0) < 23  &&  ((s as any).day ?? 0) >= 15  &&  ((s as any).day ?? 0) <= 21  &&  (((s as any).kanikuli ?? 0) < 6  ||  ((s as any).gschoolVars ?? 0)?.['school_diploma'] !== 0)) {
-    if (((s as any).grupTipe ?? 0) === 4) {
-      scene.text('You check where the gopniks normally hang out and you don\'t see any of them. They must be at fight night tonight.');
-    } else {
-      scene.text('You check where the gopniks normally hang out and you don\'t see any of them. You wonder where they might be.');
-    }
-    (s as any).table_disco = '<center><table>';
-  } else {
-    scene.text('The gopniks are lounging in the darkest corner of the hall. They\'re mostly keeping to themselves, but a few of them are out dancing.');
-    (s as any).table_disco = '<center><table>';
-    (s as any).i = 1;
-    // TODO-QSP: :discogop_loop
-    if (((s as any).npc_grupTipe ?? 0)['A' + (((s as any).i ?? 0))] === 4  &&  ((s as any).discoenable ?? 0)['A' + (((s as any).i ?? 0))] === 1  &&  ((s as any).discobloc ?? 0)['A' + (((s as any).i ?? 0))] !== ((s as any).daystart ?? 0)) {
-      (s as any).loopname = (((s as any).npc_nickname ?? 0)?.['A' + String(((s as any).i ?? 0))]);
-      (s as any).loopname = (String(((s as any).loopname ?? 0)).toLowerCase());
+  do {
+    if ((((s as any).npc_grupTipe ?? 0)['A' + (((s as any).i ?? 0))] === 1  ||  ((s as any).npc_nickname ?? 0)['A' + (((s as any).i ?? 0))] === 'Natasha')  &&  ((s as any).discoenable ?? 0)['A' + (((s as any).i ?? 0))] === 1  &&  ((s as any).discobloc ?? 0)['A' + (((s as any).i ?? 0))] !== ((s as any).daystart ?? 0)) {
       if ((!((s as any).i2 ?? 0))) {
-        // TODO-QSP: $table_disco += '<tr>'
+        (s as any).table_disco = ((s as any).table_disco ?? '') + '<tr>';
       }
       (s as any).i2 = ((s as any).i2 ?? 0) + (1);
       if (((s as any).theme ?? 0)?.['is_dark'] === 1) {
-        // TODO-QSP: $table_disco += '<td><table bgcolor=#404040>'
+        (s as any).table_disco = ((s as any).table_disco ?? 0) + ('<td><table bgcolor=#404040>');
       } else {
-        // TODO-QSP: $table_disco += '<td><table bgcolor=#FFF8DC>'
+        (s as any).table_disco = ((s as any).table_disco ?? 0) + ('<td><table bgcolor=#FFF8DC>');
       }
-      // TODO-QSP: $table_disco += '<tr><td align=center><a href="exec: i = <<i>> & gt ''pav_disco_classmates'', ''gop_...
+      (s as any).table_disco = ((s as any).table_disco ?? 0) + ('<tr><td align=center><a href="#" onclick="window.__gameStore.setState((s) => { s.i = ' + ((s as any).i ?? 0) + '; return s; }); window.__gameStore.getState().doGoto(\u0027pav_disco_classmates\u0027, \u0027cool_list\u0027); return false;"><img height="100" src="images/characters/shared/headshots_main/' + ((s as any).i ?? 0) + '.jpg"></a></td></tr><tr><td align=center>' + (((s as any).npc_usedname ?? 0)?.['A' + String(((s as any).i ?? 0))]) + '</td></tr></table></td>');
       if (((s as any).i2 ?? 0) % 6 === 0) {
         (s as any).i2 = 0;
-        // TODO-QSP: $table_disco += '</tr>'
+        (s as any).table_disco = ((s as any).table_disco ?? '') + '</tr>';
       }
     }
     (s as any).i = ((s as any).i ?? 0) + (1);
-    if (((s as any).i ?? 0) <= ((s as any).aarraynumber ?? 0)) {
-      // TODO-QSP: jump 'discogop_loop'
-    }
-    if (((s as any).i2 ?? 0) % 6 !== 0) {
-      // TODO-QSP: :disco_loopi23
-      (s as any).i2 = ((s as any).i2 ?? 0) + (1);
-      // TODO-QSP: $table_disco += '<td></td>'
-      if (((s as any).i2 ?? 0) % 6 === 0) {
-        (s as any).i2 = 0;
-        // TODO-QSP: $table_disco += '</tr>'
-      } else {
-        // TODO-QSP: jump 'disco_loopi23'
+    (s as any).i = 1;
+    do {
+      if (((s as any).npc_grupTipe ?? 0)['A' + (((s as any).i ?? 0))] === 2  &&  ((s as any).discoenable ?? 0)['A' + (((s as any).i ?? 0))] === 1  &&  ((s as any).discobloc ?? 0)['A' + (((s as any).i ?? 0))] !== ((s as any).daystart ?? 0)) {
+        if ((!((s as any).i2 ?? 0))) {
+          (s as any).table_disco = ((s as any).table_disco ?? '') + '<tr>';
+        }
+        (s as any).i2 = ((s as any).i2 ?? 0) + (1);
+        if (((s as any).theme ?? 0)?.['is_dark'] === 1) {
+          (s as any).table_disco = ((s as any).table_disco ?? 0) + ('<td><table bgcolor=#404040>');
+        } else {
+          (s as any).table_disco = ((s as any).table_disco ?? 0) + ('<td><table bgcolor=#FFF8DC>');
+        }
+        (s as any).table_disco = ((s as any).table_disco ?? 0) + ('<tr><td align=center><a href="#" onclick="window.__gameStore.setState((s) => { s.i = ' + ((s as any).i ?? 0) + '; return s; }); window.__gameStore.getState().doGoto(\u0027pav_disco_classmates\u0027, \u0027jocks_list\u0027); return false;"><img height="100" src="images/characters/shared/headshots_main/' + ((s as any).i ?? 0) + '.jpg"></a></td></tr><tr><td align=center>' + (((s as any).npc_usedname ?? 0)?.['A' + String(((s as any).i ?? 0))]) + '</td></tr></table></td>');
+        if (((s as any).i2 ?? 0) % 6 === 0) {
+          (s as any).i2 = 0;
+          (s as any).table_disco = ((s as any).table_disco ?? '') + '</tr>';
+        }
       }
-    }
-  }
-  if (((s as any).soniaQW ?? 0)?.['slut'] > 0  &&  ((s as any).discoenable ?? 0)?.['A25'] === 1  &&  ((s as any).discobloc ?? 0)?.['A25'] !== ((s as any).daystart ?? 0)  &&  ((s as any).soniaQW ?? 0)?.['hate'] < 1  &&  (((s as any).soniaQW ?? 0)?.['fallenangel'] < 1  ||  ((s as any).daystart ?? 0) > ((s as any).soniaQW ?? 0)?.['fallday'] + 7)) {
-    if (((s as any).week ?? 0) === 6  &&  ((s as any).hour ?? 0) >= 20  &&  ((s as any).hour ?? 0) < 23  &&  ((s as any).day ?? 0) >= 15  &&  ((s as any).day ?? 0) <= 21  &&  (((s as any).kanikuli ?? 0) < 6  ||  ((s as any).gschoolVars ?? 0)?.['school_diploma'] !== 0)) {
-      (s as any).table_disco = '<center><table>';
-    }
-    if (((s as any).theme ?? 0)?.['is_dark'] === 1) {
-      // TODO-QSP: $table_disco += '<tr><td><table bgcolor=#404040>'
-    } else {
-      // TODO-QSP: $table_disco += '<tr><td><table bgcolor=#FFF8DC>'
-    }
-    // TODO-QSP: $table_disco += '<tr><td align=center><a href="exec:gt ''pav_disco_coolkids'', ''sonia_outcast'' "><...
-  }
-  // TODO-QSP: $table_disco += '</table></center>'
-  // TODO-QSP: $table_disco
-  if (((s as any).hour ?? 0) >= 21  &&  ((s as any).hour ?? 0) < 23  &&  ((s as any).week ?? 0)===5) {
-    scene.text('Coach Mikhail Nikolayevich stands at the entrance of the hall.');
-    (s as any).table_disco = '<center><table>';
-    if (((s as any).theme ?? 0)?.['is_dark'] === 1) {
-      // TODO-QSP: $table_disco += '<tr><td><table bgcolor=#404040>'
-    } else {
-      // TODO-QSP: $table_disco += '<tr><td><table bgcolor=#FFF8DC>'
-    }
-    // TODO-QSP: $table_disco += '<tr><td align=center><a href="exec: gt ''pav_disco_classmates'', ''coach''"><img he...
-    // TODO-QSP: $table_disco += '</table></center>'
-    // TODO-QSP: $table_disco
-  }
-  // TODO-QSP: end
-  scene.actions([
-    { label: 'Move away', handler: (st: GameState) => {
+      (s as any).i = ((s as any).i ?? 0) + (1);
+      if (((s as any).i2 ?? 0) % 6 !== 0) {
+        do {
+          (s as any).i2 = ((s as any).i2 ?? 0) + (1);
+          (s as any).table_disco = ((s as any).table_disco ?? 0) + ('<td></td>');
+        } while (!(((s as any).i2 ?? 0) % 6 === 0));
+      }
+      (s as any).table_disco = ((s as any).table_disco ?? 0) + ('</table></center>');
+      s.scene = { ...s.scene, mainText: String((s as any).table_disco || ''), curActs: [] };
+      if (((s as any).week ?? 0) === 6  &&  ((s as any).hour ?? 0) >= 20  &&  ((s as any).hour ?? 0) < 23  &&  ((s as any).day ?? 0) >= 15  &&  ((s as any).day ?? 0) <= 21  &&  (((s as any).kanikuli ?? 0) < 6  ||  ((s as any).gschoolVars ?? 0)?.['school_diploma'] !== 0)) {
+        if (((s as any).grupTipe ?? 0) === 4) {
+          scene.text('You check where the gopniks normally hang out and you don\'t see any of them. They must be at fight night tonight.');
+        } else {
+          scene.text('You check where the gopniks normally hang out and you don\'t see any of them. You wonder where they might be.');
+        }
+        (s as any).table_disco = '<center><table>';
+      } else {
+        scene.text('The gopniks are lounging in the darkest corner of the hall. They\'re mostly keeping to themselves, but a few of them are out dancing.');
+        (s as any).table_disco = '<center><table>';
+        (s as any).i = 1;
+        do {
+          if (((s as any).npc_grupTipe ?? 0)['A' + (((s as any).i ?? 0))] === 4  &&  ((s as any).discoenable ?? 0)['A' + (((s as any).i ?? 0))] === 1  &&  ((s as any).discobloc ?? 0)['A' + (((s as any).i ?? 0))] !== ((s as any).daystart ?? 0)) {
+            (s as any).loopname = (((s as any).npc_nickname ?? 0)?.['A' + String(((s as any).i ?? 0))]);
+            (s as any).loopname = (String(((s as any).loopname ?? 0)).toLowerCase());
+            if ((!((s as any).i2 ?? 0))) {
+              (s as any).table_disco = ((s as any).table_disco ?? '') + '<tr>';
+            }
+            (s as any).i2 = ((s as any).i2 ?? 0) + (1);
+            if (((s as any).theme ?? 0)?.['is_dark'] === 1) {
+              (s as any).table_disco = ((s as any).table_disco ?? 0) + ('<td><table bgcolor=#404040>');
+            } else {
+              (s as any).table_disco = ((s as any).table_disco ?? 0) + ('<td><table bgcolor=#FFF8DC>');
+            }
+            (s as any).table_disco = ((s as any).table_disco ?? 0) + ('<tr><td align=center><a href="#" onclick="window.__gameStore.setState((s) => { s.i = ' + ((s as any).i ?? 0) + '; return s; }); window.__gameStore.getState().doGoto(\u0027pav_disco_classmates\u0027, \u0027gop_list\u0027); return false;"><img height="100" src="images/characters/shared/headshots_main/' + ((s as any).i ?? 0) + '.jpg"></a></td></tr><tr><td align=center>' + (((s as any).npc_usedname ?? 0)?.['A' + String(((s as any).i ?? 0))]) + '</td></tr></table></td>');
+            if (((s as any).i2 ?? 0) % 6 === 0) {
+              (s as any).i2 = 0;
+              (s as any).table_disco = ((s as any).table_disco ?? '') + '</tr>';
+            }
+          }
+          (s as any).i = ((s as any).i ?? 0) + (1);
+          if (((s as any).i2 ?? 0) % 6 !== 0) {
+            do {
+              (s as any).i2 = ((s as any).i2 ?? 0) + (1);
+              (s as any).table_disco = ((s as any).table_disco ?? 0) + ('<td></td>');
+            } while (!(((s as any).i2 ?? 0) % 6 === 0));
+          }
+        } while (((s as any).i ?? 0) <= ((s as any).aarraynumber ?? 0));
+      }
+      if (((s as any).soniaQW ?? 0)?.['slut'] > 0  &&  ((s as any).discoenable ?? 0)?.['A25'] === 1  &&  ((s as any).discobloc ?? 0)?.['A25'] !== ((s as any).daystart ?? 0)  &&  ((s as any).soniaQW ?? 0)?.['hate'] < 1  &&  (((s as any).soniaQW ?? 0)?.['fallenangel'] < 1  ||  ((s as any).daystart ?? 0) > ((s as any).soniaQW ?? 0)?.['fallday'] + 7)) {
+        if (((s as any).week ?? 0) === 6  &&  ((s as any).hour ?? 0) >= 20  &&  ((s as any).hour ?? 0) < 23  &&  ((s as any).day ?? 0) >= 15  &&  ((s as any).day ?? 0) <= 21  &&  (((s as any).kanikuli ?? 0) < 6  ||  ((s as any).gschoolVars ?? 0)?.['school_diploma'] !== 0)) {
+          (s as any).table_disco = '<center><table>';
+        }
+        if (((s as any).theme ?? 0)?.['is_dark'] === 1) {
+          (s as any).table_disco = ((s as any).table_disco ?? 0) + ('<tr><td><table bgcolor=#404040>');
+        } else {
+          (s as any).table_disco = ((s as any).table_disco ?? 0) + ('<tr><td><table bgcolor=#FFF8DC>');
+        }
+        (s as any).table_disco = ((s as any).table_disco ?? 0) + ('<tr><td align=center><a href="#" onclick="window.__gameStore.getState().doGoto(\u0027pav_disco_coolkids\u0027, \u0027sonia_outcast\u0027); return false;"><img height="100" src="images/characters/shared/headshots_main/25.jpg"></a></td></tr><tr><td align=center>' + (((s as any).npc_usedname ?? 0)?.['A25']) + '</td></tr></table></td><td colspan=7></td></tr>');
+      }
+      (s as any).table_disco = ((s as any).table_disco ?? 0) + ('</table></center>');
+      s.scene = { ...s.scene, mainText: String((s as any).table_disco || ''), curActs: [] };
+      if (((s as any).hour ?? 0) >= 21  &&  ((s as any).hour ?? 0) < 23  &&  ((s as any).week ?? 0)===5) {
+        scene.text('Coach Mikhail Nikolayevich stands at the entrance of the hall.');
+        (s as any).table_disco = '<center><table>';
+        if (((s as any).theme ?? 0)?.['is_dark'] === 1) {
+          (s as any).table_disco = ((s as any).table_disco ?? 0) + ('<tr><td><table bgcolor=#404040>');
+        } else {
+          (s as any).table_disco = ((s as any).table_disco ?? 0) + ('<tr><td><table bgcolor=#FFF8DC>');
+        }
+        (s as any).table_disco = ((s as any).table_disco ?? 0) + ('<tr><td align=center><a href="#" onclick="window.__gameStore.getState().doGoto(\u0027pav_disco_classmates\u0027, \u0027coach\u0027); return false;"><img height="100" src="images/characters/shared/headshots_main/69.jpg"></a></td></tr><tr><td align=center>Coach</td></tr></table></td><td colspan=7></td></tr>');
+        (s as any).table_disco = ((s as any).table_disco ?? 0) + ('</table></center>');
+        // TODO-QSP: $table_disco
+      }
+      (s as any).table_disco = undefined;
+      scene.actions([
+        { label: 'Move away', handler: (st: GameState) => {
     dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
-  ]);
+      ]);
+    } while (((s as any).i ?? 0) <= ((s as any).aarraynumber ?? 0));
+  } while (((s as any).i ?? 0) <= ((s as any).aarraynumber ?? 0));
   scene.build();
 }
 
@@ -179,7 +163,6 @@ function enterJocksList(s: GameState, scene: SceneBuilder): void {
   (s as any).listname = (((s as any).npc_nickname ?? 0)?.['A' + String(((s as any).i ?? 0))]);
   (s as any).listname = (String(((s as any).listname ?? 0)).toLowerCase());
   qspGoto(s, 'pav_disco_jocks', ((s as any).listname ?? ''));
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -187,7 +170,6 @@ function enterCoolList(s: GameState, scene: SceneBuilder): void {
   (s as any).listname = (((s as any).npc_nickname ?? 0)?.['A' + String(((s as any).i ?? 0))]);
   (s as any).listname = (String(((s as any).listname ?? 0)).toLowerCase());
   qspGoto(s, 'pav_disco_coolkids', ((s as any).listname ?? ''));
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -195,7 +177,6 @@ function enterGopList(s: GameState, scene: SceneBuilder): void {
   (s as any).listname = (((s as any).npc_nickname ?? 0)?.['A' + String(((s as any).i ?? 0))]);
   (s as any).listname = (String(((s as any).listname ?? 0)).toLowerCase());
   qspGoto(s, 'pav_disco_gopniks', ((s as any).listname ?? ''));
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -319,7 +300,6 @@ function enterAtdisco(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 143]; enterAtdisco2(s, scene); (s as any).locArgs = __savedLocArgs; }
   ((s as any).discoenable = (s as any).discoenable ?? {})['A141'] = 0;
   ((s as any).discoenable = (s as any).discoenable ?? {})['A145'] = 0;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -330,7 +310,6 @@ function enterAtdisco2(s: GameState, scene: SceneBuilder): void {
   } else {
     ((s as any).discoenable = (s as any).discoenable ?? {})['A' + String(((s as any).i ?? 0))] = 0;
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -341,7 +320,6 @@ function enterAtdisco3i(s: GameState, scene: SceneBuilder): void {
   } else {
     ((s as any).discoenable = (s as any).discoenable ?? {})['A' + String(((s as any).i ?? 0))] = 0;
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -352,7 +330,6 @@ function enterAtdisco4(s: GameState, scene: SceneBuilder): void {
   } else {
     ((s as any).discoenable = (s as any).discoenable ?? {})['A' + String(((s as any).i ?? 0))] = 0;
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -363,7 +340,6 @@ function enterAtdisco4i(s: GameState, scene: SceneBuilder): void {
   } else {
     ((s as any).discoenable = (s as any).discoenable ?? {})['A' + String(((s as any).i ?? 0))] = 0;
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -374,7 +350,6 @@ function enterAtdisco5i(s: GameState, scene: SceneBuilder): void {
   } else {
     ((s as any).discoenable = (s as any).discoenable ?? {})['A' + String(((s as any).i ?? 0))] = 0;
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -385,7 +360,6 @@ function enterAtdisco10(s: GameState, scene: SceneBuilder): void {
   } else {
     ((s as any).discoenable = (s as any).discoenable ?? {})['A' + String(((s as any).i ?? 0))] = 0;
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -396,7 +370,6 @@ function enterAtdisco10i(s: GameState, scene: SceneBuilder): void {
   } else {
     ((s as any).discoenable = (s as any).discoenable ?? {})['A' + String(((s as any).i ?? 0))] = 0;
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -409,7 +382,6 @@ function enterCoach(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.img('images/characters/pavlovsk/school/teacher/mikhail/volleytrener2.jpg');
       scene.text('You go up to Mikhail Nikolayevich and politely say hello.');
-      // TODO-QSP: dynamic text: "<<$pcs_lastname>>, I was told you were here... Are you really that stupid? Ther...
       scene.text(`"${((s as any).pcs_lastname ?? '')}, I was told you were here... Are you really that stupid? There's a game tomorrow!"`);
       scene.text('"I... err... was... erm... dropping off a book for a friend," you mumble.');
       if (((s as any).alko ?? 0) > 1) {
@@ -438,17 +410,14 @@ function enterCoach(s: GameState, scene: SceneBuilder): void {
       scene.text('Mikhail turns and looks at you. "Uh... have we met?" He doesn\'t seem to recognize you. "Ah, I\'ve seen you at school. You\'re in pretty good shape — you should come to volleyball training."');
     } else {
       if (((s as any).pcs_vball ?? 0) < 35) {
-        // TODO-QSP: dynamic text: The coach looks at you with mild condescension. "<<$pcs_lastname>>, well done. Y...
         scene.text(`The coach looks at you with mild condescension. "${((s as any).pcs_lastname ?? '')}, well done. You're getting a hang of the basics. You don't really belong here though... although, what do I know?"`);
       } else {
         if (((s as any).pcs_vball ?? 0) < 60) {
-          // TODO-QSP: dynamic text: The coach looks at you disapprovingly. "<<$pcs_lastname>>, you were pretty good ...
           scene.text(`The coach looks at you disapprovingly. "${((s as any).pcs_lastname ?? '')}, you were pretty good in training, but places like this set back your development. You should go home."`);
         } else {
           if (((s as any).pcs_vball ?? 0) < 80) {
             scene.text('The coach looks at you with condemnation. "What are you doing here?"');
             scene.text('"What are you doing here?" You turn the question back onto him.');
-            // TODO-QSP: dynamic text: "<<$pcs_lastname>>, don''t piss me off. What I do is my business, and what you a...
             scene.text(`"${((s as any).pcs_lastname ?? '')}, don't piss me off. What I do is my business, and what you are doing here is also my business."`);
             if (((s as any).pcs_horny ?? 0) > 79) {
               ((s as any).vballVars = (s as any).vballVars ?? {})['coach_lust'] = ((s as any).vballVars['coach_lust'] ?? 0) + (1);
@@ -458,10 +427,8 @@ function enterCoach(s: GameState, scene: SceneBuilder): void {
               scene.text('"As your coach," he adds with a slight blush.');
             }
           } else {
-            // TODO-QSP: dynamic text: The coach looks at you with condemnation. "<<$pcs_lastname>>, you here again? Th...
             scene.text(`The coach looks at you with condemnation. "${((s as any).pcs_lastname ?? '')}, you here again? This is not the place for someone who wants to be on the team."`);
             scene.text('"Mr. Nikolayevich, you never said anything about not going out on a Friday."');
-            // TODO-QSP: dynamic text: "<<$pcs_lastname>>, are you thick? When does the team play?"
             scene.text(`"${((s as any).pcs_lastname ?? '')}, are you thick? When does the team play?"`);
             scene.text('"Saturday," you respond, sheepishly.');
             scene.text('"So on Friday I expect my candidates to be home getting some sleep, not hanging out here. Clear? You have some skill — sort out your attitude and you might yet make the team."');
@@ -473,15 +440,12 @@ function enterCoach(s: GameState, scene: SceneBuilder): void {
       { label: 'Move away', goto: ['pav_disco_classmates', 'classmates'] },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterCoachSex(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/teacher/mikhail/volleytrener4.jpg');
-  // TODO-QSP: dynamic text: "<<$pcs_lastname>>, let''s find somewhere a bit more private." You are about to ...
   scene.text(`"${((s as any).pcs_lastname ?? '')}, let's find somewhere a bit more private." You are about to say there is nowhere quiet when the coach smiles and says, "Follow me."`);
-  // TODO-QSP: end
   scene.actions([
     { label: 'Follow him', handler: (st: GameState) => {
     if ((!(Math.floor(Math.random() * 3) + 0))) {

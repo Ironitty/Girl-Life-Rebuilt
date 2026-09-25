@@ -15,17 +15,14 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
   } else {
     qspGoto(s, 'city_mariinsky_rehearsals', 'rehearsals');
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterFirstRehearsal(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterRehearsals(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: end
   scene.build();
 }
 

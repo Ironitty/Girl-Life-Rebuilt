@@ -29,23 +29,22 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     }
   }
   scene.text('A dirt road leading to the outskirts of Gadukino. You are surrounded by grainfields where the grains appear, reaching all the way to the heavens.');
-  // TODO-QSP: dynamic text: 'The forest ' + iif(gad_meadow_found = 1, 'and meadow ', '') + 'can be found fur...
   scene.text('The forest ' + ((((s as any).gad_meadow_found ?? 0) === 1) ? ('and meadow ') : ('')) + 'can be found further down the road, away from the village.');
   if ((Math.floor(Math.random() * 10) + 0) === 0  &&  ((s as any).GadBoy ?? 0)?.['first_drink'] > 0  &&  ((s as any).GadBoy ?? 0)?.['mitka_day'] !== ((s as any).daystart ?? 0)  &&  ((s as any).hour ?? 0) >= 17  &&  ((s as any).hour ?? 0) < 20  &&  (((s as any).npc_QW ?? 0)?.['A63'] < 11  ||  ((s as any).GadBoy ?? 0)?.['river_gang'] > 2)) {
-    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027mitka/u0027, /u0027/u0027); return false;">Mitka</a> is smoking near the road, he smiles at you as you walk by.');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027mitka\u0027, \u0027\u0027); return false;">Mitka</a> is smoking near the road, he smiles at you as you walk by.');
   } else {
     if (((s as any).GadBoy ?? 0)?.['first_drink'] > 0  &&  ((s as any).hour ?? 0) === 20  &&  ((s as any).alko ?? 0) < 10  &&  ((s as any).GadBoy ?? 0)?.['drinkday'] !== ((s as any).daystart ?? 0)) {
-      scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027gad_road/u0027, /u0027drinking_invite/u0027); return false;">Mitka, Kolyamba, and Vasyan</a> are walking down the road towards the woods, drinking moonshine and talking loudly.');
+      scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027gad_road\u0027, \u0027drinking_invite\u0027); return false;">Mitka, Kolyamba, and Vasyan</a> are walking down the road towards the woods, drinking moonshine and talking loudly.');
     } else {
       if (((s as any).GadBoy ?? 0)?.['first_drink'] === 2  &&  ((s as any).hour ?? 0) > 20  &&  ((s as any).alko ?? 0) < 10  &&  ((s as any).GadBoy ?? 0)?.['drinkday'] !== ((s as any).daystart ?? 0)) {
         if (((s as any).locat ?? 0)?.['A60_loc'] === 'mitkabuh_group') {
           if (((s as any).MiraVars ?? 0)?.['QW'] >= 16  &&  ((s as any).GadBoy ?? 0)?.['river_gang'] === 2) {
-            scene.text('You can go drink with Mira, Mitka, Kolyamba and Vasyan at their <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027mitkabuh_group/u0027, /u0027/u0027); return false;">trailer</a> hidden in the woods.');
+            scene.text('You can go drink with Mira, Mitka, Kolyamba and Vasyan at their <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027mitkabuh_group\u0027, \u0027\u0027); return false;">trailer</a> hidden in the woods.');
           } else {
-            scene.text('You can go drink with Mira, Mitka, Kolyamba and Vasyan at their <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027mitkabuh/u0027, /u0027/u0027); return false;">trailer</a> hidden in the woods.');
+            scene.text('You can go drink with Mira, Mitka, Kolyamba and Vasyan at their <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027mitkabuh\u0027, \u0027\u0027); return false;">trailer</a> hidden in the woods.');
           }
         } else {
-          scene.text('You can go drink with Mitka, Kolyamba and Vasyan at their <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027mitkabuh/u0027, /u0027/u0027); return false;">trailer</a> hidden in the woods.');
+          scene.text('You can go drink with Mitka, Kolyamba and Vasyan at their <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027mitkabuh\u0027, \u0027\u0027); return false;">trailer</a> hidden in the woods.');
         }
       }
     }
@@ -56,23 +55,17 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).pcs_stam ?? 0) < ((s as any).stammax ?? 0) / 5) {
         scene.actions([
-          { label: 'Go for a run (1:00)', handler: (st: GameState) => {
-    // TODO-QSP: $func('wrap', 'neg', '<br>You are too exhausted to do this. ...
-  } },
+          { label: 'Go for a run (1:00)', handler: (st: GameState) => { scene.text('<br>You are too exhausted to do this. Recover your stamina before trying to go for a run.'); } },
         ]);
       } else {
         if (((s as any).pcs_energy ?? 0) < 20) {
           scene.actions([
-            { label: 'Go for a run (1:00)', handler: (st: GameState) => {
-    // TODO-QSP: $func('wrap', 'neg', '<br>You are so hungry you cannot face ...
-  } },
+            { label: 'Go for a run (1:00)', handler: (st: GameState) => { scene.text('<br>You are so hungry you cannot face going for a run.'); } },
           ]);
         } else {
           if (((s as any).pcs_hydra ?? 0) < 20) {
             scene.actions([
-              { label: 'Go for a run (1:00)', handler: (st: GameState) => {
-    // TODO-QSP: $func('wrap', 'neg', '<br>You are so thirsty you cannot face...
-  } },
+              { label: 'Go for a run (1:00)', handler: (st: GameState) => { scene.text('<br>You are so thirsty you cannot face going for a run.'); } },
             ]);
           } else {
             scene.actions([
@@ -102,7 +95,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Walk to Gadukino (0:10)', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 10;
@@ -132,12 +124,10 @@ function enterDrinkingInvite(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/gadukino/village/drunk.jpg');
   scene.text('You quickly catch up to the boys who have already started drinking.');
   if (((s as any).GadBoy ?? 0)?.['first_drink'] === 1) {
-    // TODO-QSP: dynamic text: Mitka is the first to greet you, "Hey <<$pcs_nickname>>, glad you decided to joi...
     scene.text(`Mitka is the first to greet you, "Hey ${((s as any).pcs_nickname ?? '')}, glad you decided to join us today!"`);
     scene.text('Kolyamba and Vasyan nod in agreement as they look you over.');
     scene.text('"We know this great spot in the woods to hang out. No one ever bothers us there."');
   } else {
-    // TODO-QSP: dynamic text: Mitka is the first to greet you, "Hey <<$pcs_nickname>>, glad you decided to joi...
     scene.text(`Mitka is the first to greet you, "Hey ${((s as any).pcs_nickname ?? '')}, glad you decided to join us today!"`);
     scene.text('Kolyamba and Vasyan nod in agreement as they look you over.');
   }
@@ -163,7 +153,6 @@ function enterDrinkingInvite(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).locat ?? 0)?.['A60_loc'] === 'mitkabuh_group'  &&  ((s as any).locat ?? 0)?.['A60_loc_prev'] !== 'mitkabuh_group'  &&  ((s as any).MiraVars ?? 0)?.['follow_time'] === 0) {
     scene.text('Just as the words leave Mitka\'s mouth, Mira comes bounding around the corner.');
-    // TODO-QSP: dynamic text: "Hey guys, thanks for the invite! <<$pcs_nickname>> is here, too, awesome! Let''...
     scene.text(`"Hey guys, thanks for the invite! ${((s as any).pcs_nickname ?? '')} is here, too, awesome! Let's go!"`);
   }
   if (((s as any).locat ?? 0)?.['A60_loc'] === 'mitkabuh_group') {
@@ -187,7 +176,6 @@ function enterDrinkingInvite(s: GameState, scene: SceneBuilder): void {
   }, goto: ['mitkabuh', ''] },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 

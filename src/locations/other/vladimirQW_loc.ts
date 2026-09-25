@@ -31,7 +31,6 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       { label: 'Leave', goto: ['city_park', 'luna'] },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -64,7 +63,6 @@ function enterQwnamedy(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: '', labelFn: (s: GameState) => String(((s as any).pcs_nickname ?? '') ?? ''), handler: (st: GameState) => {
     ((st as any).vladimirQW = (st as any).vladimirQW ?? {})['stage'] = 10;
-    // TODO-QSP: dynamic text: "<<$pcs_nickname>>," you introduce yourself.
     scene.text(`"${((st as any).pcs_nickname ?? '')}," you introduce yourself.`);
     scene.text('Vladimir smiled. "A beautiful name that suits you perfectly. Unfortunately I have to go, but I would like to see you again. If you leave me your phone number, I could call you tomorrow. I could take you out to dinner at a restaurant."');
     scene.actions([
@@ -94,9 +92,7 @@ function enterQwnamedy(s: GameState, scene: SceneBuilder): void {
 
 function enter2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
-  // TODO-QSP: dynamic text: You answer the phone to hear a male voice speaking, "Hello <<$pcs_nickname>>, th...
   scene.text(`You answer the phone to hear a male voice speaking, "Hello ${((s as any).pcs_nickname ?? '')}, this is Vladimir. We met at the park, if you remember?"`);
-  // TODO-QSP: end
   scene.actions([
     { label: 'Hello, of course I remember', handler: (st: GameState) => {
     scene.text('"Hey, of course I remember. How could I forget?" You respond.');
@@ -107,8 +103,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
     ((st as any).vladimirQW = (st as any).vladimirQW ?? {})['day'] = ((st as any).daystart ?? 0);
     qspCall(st, 'telefon', 'SetInCallSchedule', 'A108', 'gs \'vladimirQW_loc\', \'telephone_call\'', 'vladimirQW[\'day\'] ! daystart and hour >= 15 and hour <= 17 and week = 6');
     scene.text('You explain that you simply can\'t today, as busy as you are.');
-    // TODO-QSP: dynamic text: '"Okay. Then I''ll call you tomorrow at '+func('time', 'get_time_string', 16, 0)...
-    scene.text('"Okay. Then I\'ll call you tomorrow at 16:00." Vladimir promises.');
+    scene.text('\'"Okay. Then I\'ll call you tomorrow at 16:00." Vladimir promises.\'');
     scene.actions([
       { label: 'Hang up', handler: (st: GameState) => {
     dynamicGoto(st, 'prevLoc', 'prevArg');
@@ -120,8 +115,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
     ((st as any).vladimirQW = (st as any).vladimirQW ?? {})['day'] = ((st as any).daystart ?? 0);
     qspCall(st, 'telefon', 'SetInCallSchedule', 'A108', 'gs \'vladimirQW_loc\', \'telephone_call\'', 'vladimirQW[\'day\'] ! daystart and hour >= 15 and hour <= 17 and week = 6');
     scene.text('"I would like that," you tell him.');
-    // TODO-QSP: dynamic text: '"Wonderful!" says Vladimir. "Then I''ll meet you at the restaurant in the city ...
-    scene.text('"Wonderful!" says Vladimir. "Then I\'ll meet you at the restaurant in the city center at 20:00."');
+    scene.text('\'"Wonderful!" says Vladimir. "Then I\'ll meet you at the restaurant in the city center at 20:00."\'');
     scene.text('"I\'ll see you then!"');
     scene.actions([
       { label: 'Hang up', handler: (st: GameState) => {
@@ -137,9 +131,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
 
 function enter3(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
-  // TODO-QSP: dynamic text: You answer the phone to hear a male voice on the other end, "Hello <<$pcs_nickna...
   scene.text(`You answer the phone to hear a male voice on the other end, "Hello ${((s as any).pcs_nickname ?? '')}, this is Vladimir. I happen to own a boat and wondered if you would like a ride on it?"`);
-  // TODO-QSP: end
   scene.actions([
     { label: 'Oh, I have a lot to do today, I\'m sorry', handler: (st: GameState) => {
     ((st as any).vladimirQW = (st as any).vladimirQW ?? {})['day'] = ((st as any).daystart ?? 0);
@@ -170,9 +162,7 @@ function enter3(s: GameState, scene: SceneBuilder): void {
 
 function enter4(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
-  // TODO-QSP: dynamic text: You pick up the phone to hear a male voice speaking, "Hello <<$pcs_nickname>>, i...
   scene.text(`You pick up the phone to hear a male voice speaking, "Hello ${((s as any).pcs_nickname ?? '')}, it's Vladimir. I was wondering if you have time to meet up?"`);
-  // TODO-QSP: end
   scene.actions([
     { label: 'Oh, I have a lot to do today, I\'m sorry', handler: (st: GameState) => {
     ((st as any).vladimirQW = (st as any).vladimirQW ?? {})['day'] = ((st as any).daystart ?? 0);
@@ -217,7 +207,6 @@ function enterTelephoneCall(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 

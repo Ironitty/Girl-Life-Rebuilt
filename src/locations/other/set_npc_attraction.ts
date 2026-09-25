@@ -9,34 +9,35 @@ import type { SceneBuilder } from '../../core/scene';
 function enter(s: GameState, scene: SceneBuilder): void {
   if (((s as any).npc_preferences ?? 0)[String((s as any).locArgs?.[0] ?? '')] === '') {
     if (! qspFunc(s, 'npc', 'is_npcID', ((s as any).locArgs?.[0] ?? 0))) {
-      // TODO-QSP: exit
+      return;
     }
-    // TODO-QSP: npc_attraction[$ARGS[0]] = pcs_apprnc
-    // TODO-QSP: npc_rel_hotcat[$ARGS[0]] = pcs_hotcat
+    ((s as any).npc_attraction = (s as any).npc_attraction ?? {})[((s as any).locArgs?.[0] ?? 0)] = ((s as any).pcs_apprnc ?? 0);
+    ((s as any).npc_rel_hotcat = (s as any).npc_rel_hotcat ?? {})[((s as any).locArgs?.[0] ?? 0)] = ((s as any).pcs_hotcat ?? 0);
     return;
   }
   if (Object.keys((s as any).ARGS ?? {}).length === 1) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = 2;
   }
-  // TODO-QSP: npc_attraction[$ARGS[0]] = pcs_apprnc
+  ((s as any).npc_attraction = (s as any).npc_attraction ?? {})[((s as any).locArgs?.[0] ?? 0)] = ((s as any).pcs_apprnc ?? 0);
   ((s as any).temp_snaVars = (s as any).temp_snaVars ?? {})['max_i'] = 0;
   if (((s as any).temp_snaVars ?? 0)?.['max_i'] > 0) {
     ((s as any).temp_snaVars = (s as any).temp_snaVars ?? {})['i'] = 0;
-    // TODO-QSP: :preferences_loop_start
-    (s as any).temp_trait = qspUntranslated(s, "npc_attr_pref_traits[temp_snaVars['i']]", { location: "set_npc_attraction" });
-    if (qspFunc(s, 'pcs_has_attr', ((s as any).temp_trait ?? 0))) {
-      // TODO-QSP: npc_attraction[$ARGS[0]] += npc_attr_pref_values[$temp_trait]
-    }
-    ((s as any).temp_snaVars = (s as any).temp_snaVars ?? {})['i'] = ((s as any).temp_snaVars['i'] ?? 0) + (1);
-    if (((s as any).temp_snaVars ?? 0)?.['i'] < ((s as any).temp_snaVars ?? 0)?.['max_i']) {
-      // TODO-QSP: jump 'preferences_loop_start'
-    }
+    do {
+      (s as any).temp_trait = qspUntranslated(s, "npc_attr_pref_traits[temp_snaVars['i']]", { location: "set_npc_attraction" });
+      if (qspFunc(s, 'pcs_has_attr', ((s as any).temp_trait ?? 0))) {
+        ((s as any).npc_attraction = (s as any).npc_attraction ?? {})[((s as any).locArgs?.[0] ?? 0)] = ((s as any).npc_attraction[((s as any).locArgs?.[0] ?? 0)] ?? 0) + ((((s as any).npc_attr_pref_values ?? 0)?.[String((s as any).temp_trait ?? 0)] ?? 0));
+      }
+      ((s as any).temp_snaVars = (s as any).temp_snaVars ?? {})['i'] = ((s as any).temp_snaVars['i'] ?? 0) + (1);
+    } while (((s as any).temp_snaVars ?? 0)?.['i'] < ((s as any).temp_snaVars ?? 0)?.['max_i']);
   }
-  // TODO-QSP: npc_attraction[$ARGS[0]] = min(max(0, npc_attraction[$ARGS[0]]), 200)
-  // TODO-QSP: npc_rel_hotcat[$ARGS[0]] = func('AppearanceSystem', 'ConvertToHotcat', npc_attraction[$ARGS[0]])
+  (s as any).temp_snaVars = undefined;
+  ((s as any).npc_attraction = (s as any).npc_attraction ?? {})[((s as any).locArgs?.[0] ?? 0)] = Math.min(Math.max(0, (((s as any).npc_attraction ?? 0)?.[((s as any).locArgs?.[0] ?? 0)] ?? 0)), 200);
+  ((s as any).npc_rel_hotcat = (s as any).npc_rel_hotcat ?? {})[((s as any).locArgs?.[0] ?? 0)] = qspFunc(s, 'AppearanceSystem', 'ConvertToHotcat', (((s as any).npc_attraction ?? 0)?.[((s as any).locArgs?.[0] ?? 0)] ?? 0));
   if (String((s as any).locArgs?.[1] ?? '') >= 0) {
-    // TODO-QSP: npc_rel_hotcat[$ARGS[0]] = min(max(pcs_hotcat - ARGS[1], npc_rel_hotcat[$ARGS[0]]), pcs_hotcat + ARG...
+    ((s as any).npc_rel_hotcat = (s as any).npc_rel_hotcat ?? {})[((s as any).locArgs?.[0] ?? 0)] = Math.min(Math.max(((s as any).pcs_hotcat ?? 0) - ((s as any).locArgs?.[1] ?? 0), (((s as any).npc_rel_hotcat ?? 0)?.[((s as any).locArgs?.[0] ?? 0)] ?? 0)), ((s as any).pcs_hotcat ?? 0) + ((s as any).locArgs?.[1] ?? 0));
   }
+  (s as any).npc_attr_pref_traits = undefined;
+  (s as any).npc_attr_pref_values = undefined;
   scene.build();
 }
 

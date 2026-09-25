@@ -26,7 +26,6 @@ function enterSub(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -40,7 +39,6 @@ function enterSub_1(s: GameState, scene: SceneBuilder): void {
   scene.text('"W-Hello," you just about manage.');
   scene.text('"Get undressed." Orders Mistress. "Now!"');
   scene.text('She brings the stick to your nose, and cracks it across your cheek.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Further', handler: (st: GameState) => {
     scene.img('images/locations/city/suburb/bdsm_club/r2_2.jpg');
@@ -203,7 +201,6 @@ function enterBDSMend(s: GameState, scene: SceneBuilder): void {
   scene.text('Mistress puts you on your knees in front of her and forces you to lick her pussy. The session had excited not only you, but Mistress too, and she cums from a few movements of your tongue. After, having licked up every drop from Mistress, you go.');
   qspCall(s, 'arousal', 'cuni_give', 10, 'sub', 'lesbian', 'maso', 'bound');
   qspCall(s, 'arousal', 'end');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['bdsm_mansion', 'start'] },
   ]);
@@ -223,7 +220,6 @@ function enterSub_2(s: GameState, scene: SceneBuilder): void {
   scene.text('"You should kiss the ground, I walk on, for the opportunity to join the Club!"');
   scene.text('"Yes, Mistress!"');
   scene.text('You hurriedly undress.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Further', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 10;
@@ -393,7 +389,6 @@ function enterSub_3(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/suburb/bdsm_club/r4_1.jpg');
   scene.text('You enter the training hall for your next training session. Mistress said this session is the last one before you will be admitted to the mansion. If you manage to fulfill all her instructions.');
   scene.text('"Did you dress up pretty for me?" Says Mistress as she checks you out in a predatory manner, "Well, ready then? Get undressed and get over here!');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Obey', handler: (st: GameState) => {
     scene.img('images/locations/city/suburb/bdsm_club/r4_2.jpg');
@@ -513,12 +508,10 @@ function enterDom(s: GameState, scene: SceneBuilder): void {
   scene.text('You enter the club, security checks your name off on their list and lets you in. You give an elderly bookkeeper money they direct you to a small outbuilding away from the mansion. As you enter, you see that almost the entire building is a large room for BDSM sessions.');
   scene.text('Hanging from the ceiling chains with hooks and ropes, on the walls – lashes, whips, handcuffs, gags. Submerged in the darkness of the far end of the hall you can just make out pads, tables, crosses and some odd device, you can only guess as to what it does. You are met by the lady from the front desk, her suit replaced by tight leather.');
   scene.text('She holds in her hands a long whip.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Greet her', handler: (st: GameState) => {
     scene.img('images/locations/city/suburb/bdsm_club/r2_2.jpg');
     scene.text('"Hello." you say to her, confidently.');
-    // TODO-QSP: dynamic text: "Hello <<$pcs_nickname>>." She replies. "We were not formally introduced, I am M...
     scene.text(`"Hello ${((st as any).pcs_nickname ?? '')}." She replies. "We were not formally introduced, I am Mistress Elektra, you may call me Elektra."`);
     scene.text('She raises the whip and cracks it against the floor dramatically.');
     scene.text('"This is a simple listing of rules and such, I always found it terribly boring, so I find it more useful to demonstrate."');

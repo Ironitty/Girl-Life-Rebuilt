@@ -23,7 +23,6 @@ function enterFirstVisit(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/city/nicholas/gentleclub/entry1.jpg');
     scene.text('The drive to the club takes about half an hour.');
     scene.text('Sitting next to you, Nicholas is wearing one of his finest suits.');
-    // TODO-QSP: dynamic text: "<<$pcs_nickname>>, I don''t happen what will happen next. The only thing necess...
     scene.text(`"${((s as any).pcs_nickname ?? '')}, I don't happen what will happen next. The only thing necessary is that you play with the customs of this place. Don't embarrass me. I don't have to tell you again how important it is for me to get into good graces with Mister Fetisov and his associates.`);
     scene.text('"Yes, Master Nicholas, of course."');
     scene.text('To your surprise, the journey ends in an underground parking garage under a recently constructed mall. The driver of Nicholas steps out and opens the door for his employer first, then he opens your door. Afterwards, he returns to his driver\'s seat. Apparently, he will wait there until you return.');
@@ -43,10 +42,8 @@ function enterFirstVisit(s: GameState, scene: SceneBuilder): void {
       scene.text('It is guarded by three security men. Two of them look like bodybuilders. They are very muscular and more than two meters tall. Both are wearing blazers and knives on their belts, and you can spot assault rifles on their backs.');
       scene.text('The third guard seems to be in charge. He wears an expensive suit and an earplug and doesn\'t seem to be armed.');
       scene.text('"Good evening," he says.');
-      // TODO-QSP: dynamic text: '"Good evening. My name is ' + $npc_firstname['A52']+' '+$npc_lastname['A52']+'....
-      scene.text(`'"Good evening. My name is ' + $npc_firstname['A52']+' '+$npc_lastname['A52']+'. And this is ${((s as any).pcs_firstname ?? '')} ${((s as any).pcs_lastname ?? '')}. We have been invited by Mister Fetisov." he hands over the business card Mister Fetisov gave him.'`);
-      // TODO-QSP: dynamic text: '"Very well. Just a few seconds, please, Mister '+$npc_lastname['A52']+'".'
-      scene.text('\'"Very well. Just a few seconds, please, Mister \'+$npc_lastname[\'A52\']+\'".\'');
+      scene.text('"Good evening. My name is ' + (((s as any).npc_firstname ?? 0)?.['A52'] ?? '') + ' ' + (((s as any).npc_lastname ?? 0)?.['A52'] ?? '') + `. And this is ${((s as any).pcs_firstname ?? '')} ${((s as any).pcs_lastname ?? '')}. We have been invited by Mister Fetisov." he hands over the business card Mister Fetisov gave him.`);
+      scene.text('"Very well. Just a few seconds, please, Mister ' + (((s as any).npc_lastname ?? 0)?.['A52'] ?? '') + '".');
       scene.actions([
         { label: 'Wait', handler: (st: GameState) => {
     (st as any).nichClubStage = 2;
@@ -57,11 +54,9 @@ function enterFirstVisit(s: GameState, scene: SceneBuilder): void {
       if (((s as any).nichClubStage ?? 0) === 2) {
         scene.img('images/characters/city/nicholas/gentleclub/security.jpg');
         scene.text('The security man starts speaking into a microphone.');
-        // TODO-QSP: dynamic text: '"Mister '+$npc_lastname['A52']+' is at the entry… yes… yes… no… one second." he...
-        scene.text('\'"Mister \'+$npc_lastname[\'A52\']+\' is at the entry… yes… yes… no… one second." he seems to get instructions through his ear plug.\'');
+        scene.text('"Mister ' + (((s as any).npc_lastname ?? 0)?.['A52'] ?? '') + ' is at the entry… yes… yes… no… one second." he seems to get instructions through his ear plug.');
         scene.text('He takes out what appears to be a flashlight. It emits a violet light, which he aims at the back of Nicholas\' business card. Apparently, there is a picture of a swan invisible in normal light.');
         scene.text('"Swan… yes… of course." he gives the card back to Nicholas.');
-        // TODO-QSP: dynamic text: '"Welcome to the Gentleman''s Club, Mister '+$npc_lastname['A52']+'! We are happ...
         scene.text('\'"Welcome to the Gentleman\'s Club, Mister \'+$npc_lastname[\'A52\']+\'! We are happy to welcome you. A guide will arrive shortly to show you around."\'');
         scene.actions([
           { label: 'Wait', handler: (st: GameState) => {
@@ -74,8 +69,7 @@ function enterFirstVisit(s: GameState, scene: SceneBuilder): void {
           scene.img('images/characters/city/nicholas/gentleclub/mistress.jpg');
           scene.text('After about a minute, the door behind the three guards opens. Only now do you realize that it is actually the door of an elevator.');
           scene.text('A man and a woman step outside. The man is about 40 years old and dressed like a butler.');
-          // TODO-QSP: dynamic text: '"Master '+$npc_lastname['A52']+', welcome! It is a pleasure to have you here. M...
-          scene.text('\'"Master \'+$npc_lastname[\'A52\']+\', welcome! It is a pleasure to have you here. My name is Olaf. May I introduce Mistress Malvina? She will help your accompaniment to find her place."\'');
+          scene.text('"Master ' + (((s as any).npc_lastname ?? 0)?.['A52'] ?? '') + ', welcome! It is a pleasure to have you here. My name is Olaf. May I introduce Mistress Malvina? She will help your accompaniment to find her place."');
           scene.text('The way he talks about you makes you uncomfortable. It sounds as if you were some kind of commodity.');
           scene.text('Nicholas says hello and shakes the hand of Mistress Malvina. She is wearing a latex mini dress and greets Nicholas with a smile but doesn\'t pay much attention to you.');
           scene.text('The four of you then step into the elevator. It drives down for at least four levels.');
@@ -210,7 +204,6 @@ function enterFirstVisit(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 

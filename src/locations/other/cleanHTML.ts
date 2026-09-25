@@ -14,6 +14,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     ((s as any).cleanHTML = (s as any).cleanHTML ?? {})['ReturnStr'] = (String((((s as any).cleanHTML ?? 0)?.['ReturnStr'])).split('<td></td>').join(''));
   }
   (s as any).result = (((s as any).cleanHTML ?? 0)?.['ReturnStr']);
+  (s as any).cleanHTML = undefined;
   scene.build();
 }
 

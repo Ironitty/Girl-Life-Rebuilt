@@ -11,7 +11,6 @@ function enter(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Hotel room</b></center>');
   scene.text('');
   if (((s as any).FSmedkit ?? 0) > 0) {
-    // TODO-QSP: dynamic text: First aid kits <<FSmedkit>> pieces
     scene.text(`First aid kits ${((s as any).FSmedkit ?? '')} pieces`);
     if (((s as any).FSHP ?? 0) < 100) {
       scene.actions([

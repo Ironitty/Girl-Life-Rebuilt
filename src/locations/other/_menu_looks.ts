@@ -8,29 +8,30 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enterMenuExit(s: GameState, scene: SceneBuilder): void {
   (s as any).settingmode = 0;
-  // TODO-QSP: end
+  (s as any).settings = undefined;
+  (s as any).menu_page = undefined;
   scene.build();
 }
 
 function enterLookstabs(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: $tabsname[0] = 'Looks'
-  // TODO-QSP: $tabsaction[0] = "menu_page = 0 & gt '$menu_looks'"
-  // TODO-QSP: $tabsname[1] = 'Body'
-  // TODO-QSP: $tabsaction[1] = "menu_page = 1 & gt '$menu_looks', 'body'"
-  // TODO-QSP: $tabsname[2] = 'Clothes'
-  // TODO-QSP: $tabsaction[2] = "menu_page = 2 & gt '$menu_looks', 'clothes'"
-  // TODO-QSP: $tabsname[3] = 'Tattoos'
-  // TODO-QSP: $tabsaction[3] = "menu_page = 3 & gt '$menu_looks', 'tattoos'"
-  // TODO-QSP: $tabsname[4] = 'Piercings'
-  // TODO-QSP: $tabsaction[4] = "menu_page = 4 & gt '$menu_looks', 'piercing'"
+  ((s as any).tabsname = (s as any).tabsname ?? {})[0] = 'Looks';
+  ((s as any).tabsaction = (s as any).tabsaction ?? {})[0] = 'menu_page = 0 & gt \'$menu_looks\'';
+  ((s as any).tabsname = (s as any).tabsname ?? {})[1] = 'Body';
+  ((s as any).tabsaction = (s as any).tabsaction ?? {})[1] = 'menu_page = 1 & gt \'$menu_looks\', \'body\'';
+  ((s as any).tabsname = (s as any).tabsname ?? {})[2] = 'Clothes';
+  ((s as any).tabsaction = (s as any).tabsaction ?? {})[2] = 'menu_page = 2 & gt \'$menu_looks\', \'clothes\'';
+  ((s as any).tabsname = (s as any).tabsname ?? {})[3] = 'Tattoos';
+  ((s as any).tabsaction = (s as any).tabsaction ?? {})[3] = 'menu_page = 3 & gt \'$menu_looks\', \'tattoos\'';
+  ((s as any).tabsname = (s as any).tabsname ?? {})[4] = 'Piercings';
+  ((s as any).tabsaction = (s as any).tabsaction ?? {})[4] = 'menu_page = 4 & gt \'$menu_looks\', \'piercing\'';
   if (String((s as any).locArgs?.[1] ?? '') !== '') {
     (s as any).temp_menu_page = qspUntranslated(s, "arrpos('tabsname', ARGS[1])", { location: "_menu_looks" });
     if (((s as any).temp_menu_page ?? 0) >= 0) {
       (s as any).menu_page = ((s as any).temp_menu_page ?? 0);
     }
+    (s as any).temp_menu_page = undefined;
   }
   qspCall(s, 'tabhead', 'menu_page');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Exit the menu', handler: (st: GameState) => {
     qspCall(st, '$menu_looks', '');
@@ -45,37 +46,28 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   (s as any).menu_page = 0;
   qspCall(s, '$menu_looks', 'lookstabs', 'Looks');
   scene.text('<center><h1>Looks</h1></center>');
-  // TODO-QSP: $settings['table_start']
+  scene.text(String(qspFunc(s, 'settings', 'table_start') || ''));
   (s as any).img_temp = qspFunc(s, '$face_image', '');
   scene.img(`${((s as any).img_temp ?? '')}`);
+  (s as any).img_temp = undefined;
   if (((s as any).face_style ?? 0)?.['avatar_hair'] !== '') {
-    // TODO-QSP: dynamic text: Your hair: <<$face_style[''avatar_hair'']>>.
     scene.text(`Your hair: ${(((s as any).face_style ?? 0)?.['avatar_hair'] ?? '')}.`);
   } else {
-    // TODO-QSP: dynamic text: <<$hair>>
     scene.text(`${((s as any).hair ?? '')}`);
   }
   if (((s as any).defcurly ?? 0) === 0  &&  ((s as any).curly ?? 0) > 0) {
-    // TODO-QSP: dynamic text: Your curls are good for another <<curly>> days.
     scene.text(`Your curls are good for another ${((s as any).curly ?? '')} days.`);
   }
   if (((s as any).defcurly ?? 0) === 1  &&  ((s as any).straight ?? 0) > 0) {
-    // TODO-QSP: dynamic text: Your hair should be straight for another <<straight>> days.
     scene.text(`Your hair should be straight for another ${((s as any).straight ?? '')} days.`);
   }
-  // TODO-QSP: dynamic text: <<$pc_descFull[''lip'']>>
   scene.text(`${(((s as any).pc_descFull ?? 0)?.['lip'] ?? '')}`);
-  // TODO-QSP: $pcs_teeth_txt
-  // TODO-QSP: dynamic text: <<$pc_descFull[''throat'']>>
+  s.scene = { ...s.scene, mainText: String((s as any).pcs_teeth_txt || ''), curActs: [] };
   scene.text(`${(((s as any).pc_descFull ?? 0)?.['throat'] ?? '')}`);
-  // TODO-QSP: dynamic text: <<$pc_descFull[''skin'']>>
   scene.text(`${(((s as any).pc_descFull ?? 0)?.['skin'] ?? '')}`);
-  // TODO-QSP: dynamic text: <<$pc_descFull[''eyes'']>>
   scene.text(`${(((s as any).pc_descFull ?? 0)?.['eyes'] ?? '')}`);
-  // TODO-QSP: dynamic text: <<$pc_descFull[''makeup'']>>.
   scene.text(`${(((s as any).pc_descFull ?? 0)?.['makeup'] ?? '')}.`);
-  // TODO-QSP: $settings['table_end']
-  // TODO-QSP: end
+  scene.text(String(qspFunc(s, 'settings', 'table_end') || ''));
   scene.build();
 }
 
@@ -84,44 +76,35 @@ function enterFace(s: GameState, scene: SceneBuilder): void {
   (s as any).menu_page = 0;
   qspCall(s, '$menu_looks', 'lookstabs', 'Looks');
   scene.text('<center><h1>Looks</h1></center>');
-  // TODO-QSP: $settings['table_start']
+  scene.text(String(qspFunc(s, 'settings', 'table_start') || ''));
   (s as any).img_temp = qspFunc(s, '$face_image', '');
   scene.img(`${((s as any).img_temp ?? '')}`);
+  (s as any).img_temp = undefined;
   if (((s as any).face_style ?? 0)?.['avatar_hair'] !== '') {
-    // TODO-QSP: dynamic text: Your hair: <<$face_style[''avatar_hair'']>>.
     scene.text(`Your hair: ${(((s as any).face_style ?? 0)?.['avatar_hair'] ?? '')}.`);
   } else {
-    // TODO-QSP: dynamic text: <<$hair>>
     scene.text(`${((s as any).hair ?? '')}`);
   }
   if (((s as any).defcurly ?? 0) === 0  &&  ((s as any).curly ?? 0) > 0) {
-    // TODO-QSP: dynamic text: Your curls are good for another <<curly>> days.
     scene.text(`Your curls are good for another ${((s as any).curly ?? '')} days.`);
   }
   if (((s as any).defcurly ?? 0) === 1  &&  ((s as any).straight ?? 0) > 0) {
-    // TODO-QSP: dynamic text: Your hair should be straight for another <<straight>> days.
     scene.text(`Your hair should be straight for another ${((s as any).straight ?? '')} days.`);
   }
-  // TODO-QSP: dynamic text: <<$pc_descFull[''lip'']>>
   scene.text(`${(((s as any).pc_descFull ?? 0)?.['lip'] ?? '')}`);
-  // TODO-QSP: $pcs_teeth_txt
-  // TODO-QSP: dynamic text: <<$pc_descFull[''throat'']>>
+  s.scene = { ...s.scene, mainText: String((s as any).pcs_teeth_txt || ''), curActs: [] };
   scene.text(`${(((s as any).pc_descFull ?? 0)?.['throat'] ?? '')}`);
-  // TODO-QSP: dynamic text: <<$pc_descFull[''skin'']>>
   scene.text(`${(((s as any).pc_descFull ?? 0)?.['skin'] ?? '')}`);
-  // TODO-QSP: dynamic text: <<$pc_descFull[''eyes'']>>
   scene.text(`${(((s as any).pc_descFull ?? 0)?.['eyes'] ?? '')}`);
-  // TODO-QSP: dynamic text: <<$pc_descFull[''makeup'']>>.
   scene.text(`${(((s as any).pc_descFull ?? 0)?.['makeup'] ?? '')}.`);
-  // TODO-QSP: $settings['table_end']
-  // TODO-QSP: end
+  scene.text(String(qspFunc(s, 'settings', 'table_end') || ''));
   scene.build();
 }
 
 function enterBody(s: GameState, scene: SceneBuilder): void {
   qspCall(s, '$menu_looks', 'lookstabs', 'Body');
   scene.text('<center><h1>Body</h1></center>');
-  // TODO-QSP: $settings['table_start']
+  scene.text(String(qspFunc(s, 'settings', 'table_start') || ''));
   if (((s as any).modApi_body_image ?? 0) !== '') {
     (s as any).img_temp = ((s as any).modApi_body_image ?? 0);
   } else {
@@ -130,8 +113,9 @@ function enterBody(s: GameState, scene: SceneBuilder): void {
   scene.img(`${((s as any).img_temp ?? '')}`);
   if (((s as any).modApi_body_image_msg ?? 0) === '') {
   }
-  // TODO-QSP: $settings['table_end']
-  // TODO-QSP: end
+  (s as any).img_temp = undefined;
+  (s as any).body_image_msg = undefined;
+  scene.text(String(qspFunc(s, 'settings', 'table_end') || ''));
   scene.build();
 }
 
@@ -142,32 +126,32 @@ function enterClothes(s: GameState, scene: SceneBuilder): void {
     (s as any).ward_img_hgt = 150;
   }
   (s as any).temp_table = '<center><table border=0 cellspacing=' + ((s as any).ward_img_hgt ?? 0)/25 + ' cellpadding=5>';
-  // TODO-QSP: $temp_table += '<tr>'
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<tr>');
   if (((s as any).underwear ?? 0)?.['type'] === 0) {
-    // TODO-QSP: $temp_table += '<th width="33%">Bra worn</th>'
+    (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<th width="33%">Bra worn</th>');
   } else {
-    // TODO-QSP: $temp_table += '<th width="33%">Bodysuit worn</th>'
+    (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<th width="33%">Bodysuit worn</th>');
   }
-  // TODO-QSP: $temp_table += '<th width="33%">Outfit worn</th>'
-  // TODO-QSP: $temp_table += '<th width="33%">Coat (only worn outside when cold)</th>'
-  // TODO-QSP: $temp_table += '</tr><tr>'
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<th width="33%">Outfit worn</th>');
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<th width="33%">Coat (only worn outside when cold)</th>');
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + ('</tr><tr>');
   if (((s as any).underwear ?? 0)?.['type'] === 0) {
-    // TODO-QSP: $temp_table += '<td><center><img Height = <<ward_img_hgt>> src="<<$func(''$body_image'',''bra'')>>">...
+    (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<td><center><img Height = ' + ((s as any).ward_img_hgt ?? 0) + ' src="' + qspFunc(s, '$body_image', '', 'bra') + '"></center></td>');
   } else {
-    // TODO-QSP: $temp_table += '<td rowspan=4><center><img Height = <<ward_img_hgt>>*2 src="<<$func(''$body_image'',...
+    (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<td rowspan=4><center><img Height = ' + ((s as any).ward_img_hgt ?? 0) + '*2 src="' + qspFunc(s, '$body_image', '', 'bodysuit') + '"></center></td>');
   }
-  // TODO-QSP: $temp_table += '<td><center><img Height = <<ward_img_hgt * 2>> src="<<$func(''$body_image'',''clothe...
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<td><center><img Height = ' + ((s as any).ward_img_hgt ?? 0) * 2 + ' src="' + qspFunc(s, '$body_image', '', 'clothes') + '"></center></td>');
   if (((s as any).coatworntype ?? 0) !== 'none') {
-    // TODO-QSP: $temp_table += '<td><center><img Height = <<ward_img_hgt * 2>> src="<<$func(''$body_image'', ''coat'...
+    (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<td><center><img Height = ' + ((s as any).ward_img_hgt ?? 0) * 2 + ' src="' + qspFunc(s, '$body_image', '', 'coat') + '"></center></td>');
   } else {
-    // TODO-QSP: $temp_table += '<td></td>'
+    (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<td></td>');
   }
-  // TODO-QSP: $temp_table += '</tr><tr>'
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + ('</tr><tr>');
   if (((s as any).underwear ?? 0)?.['type'] === 0) {
     if (((s as any).braworntype ?? 0) !== 'none') {
-      // TODO-QSP: $temp_table += '<td><center>You are wearing <<$braworntype>> bra no. <<brawornnumber>></center></td>...
+      (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<td><center>You are wearing ' + ((s as any).braworntype ?? 0) + ' bra no. ' + ((s as any).brawornnumber ?? 0) + '</center></td>');
     } else {
-      // TODO-QSP: $temp_table += '<td><center>You are not wearing a bra</center></td>'
+      (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<td><center>You are not wearing a bra</center></td>');
     }
   }
   qspCall(s, '$body_image', 'clothes');
@@ -175,420 +159,391 @@ function enterClothes(s: GameState, scene: SceneBuilder): void {
     (s as any).img_temp = ((s as any).modApi_clothes_image ?? 0);
   }
   if (((s as any).modApi_clothes_image_msg ?? 0) === '') {
-    // TODO-QSP: $temp_table += '<td><center><<$body_image_msg>></center></td>'
+    (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<td><center>' + ((s as any).body_image_msg ?? 0) + '</center></td>');
   } else {
-    // TODO-QSP: $temp_table += '<td><center><<$modApi_clothes_image_msg>></center></td>'
+    (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<td><center>' + ((s as any).modApi_clothes_image_msg ?? 0) + '</center></td>');
   }
   qspCall(s, '$body_image', 'coat');
   if (((s as any).modApi_coat_image_msg ?? 0) === '') {
-    // TODO-QSP: $temp_table += '<td><center><<$body_image_msg>></center></td>'
+    (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<td><center>' + ((s as any).body_image_msg ?? 0) + '</center></td>');
   } else {
-    // TODO-QSP: $temp_table += '<td><center><<$modApi_coat_image_msg>></center></td>'
+    (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<td><center>' + ((s as any).modApi_coat_image_msg ?? 0) + '</center></td>');
   }
-  // TODO-QSP: $temp_table += '</tr><tr>'
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + ('</tr><tr>');
   if (((s as any).underwear ?? 0)?.['type'] === 0) {
-    // TODO-QSP: $temp_table += '<th>Panties worn</th>'
+    (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<th>Panties worn</th>');
   }
-  // TODO-QSP: $temp_table += '<th>Shoes (Only worn outside)</th><th>Purse worn</th>'
-  // TODO-QSP: $temp_table += '</tr><tr>'
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<th>Shoes (Only worn outside)</th><th>Purse worn</th>');
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + ('</tr><tr>');
   if (((s as any).underwear ?? 0)?.['type'] === 0) {
-    // TODO-QSP: $temp_table += '<td><center><img Height = <<ward_img_hgt>> src="<<$func(''$body_image'',''panties'')...
+    (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<td><center><img Height = ' + ((s as any).ward_img_hgt ?? 0) + ' src="' + qspFunc(s, '$body_image', '', 'panties') + '"></center></td>');
   }
-  // TODO-QSP: $temp_table += '<td><center><img Height = <<ward_img_hgt>> src="<<$func(''$body_image'', ''shoes'')>...
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<td><center><img Height = ' + ((s as any).ward_img_hgt ?? 0) + ' src="' + qspFunc(s, '$body_image', '', 'shoes') + '"></center></td>');
   if (((s as any).bag ?? 0) === 1) {
-    // TODO-QSP: $temp_table += '<td><center><img Height = <<ward_img_hgt>> src="<<$func(''$purse_image'', $currentpu...
+    (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<td><center><img Height = ' + ((s as any).ward_img_hgt ?? 0) + ' src="' + qspFunc(s, '$purse_image', '', ((s as any).currentpursetype ?? 0), ((s as any).currentpursenumber ?? 0)) + '"></center></td>');
   } else {
-    // TODO-QSP: $temp_table += '<td></td>'
+    (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<td></td>');
   }
-  // TODO-QSP: $temp_table += '</tr><tr>'
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + ('</tr><tr>');
   if (((s as any).underwear ?? 0)?.['type'] === 0) {
     if (((s as any).pantyworntype ?? 0) !== 'none') {
-      // TODO-QSP: $temp_table += '<td><center>You are wearing <<$pantyworntype>> panties no. <<pantywornnumber>></cent...
+      (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<td><center>You are wearing ' + ((s as any).pantyworntype ?? 0) + ' panties no. ' + ((s as any).pantywornnumber ?? 0) + '</center></td>');
     } else {
-      // TODO-QSP: $temp_table += '<td><center>You are not wearing panties</center></td>'
+      (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<td><center>You are not wearing panties</center></td>');
     }
   } else {
-    // TODO-QSP: $temp_table += '<td><center>You are wearing <<$bodysuitworntype>> bodysuit no. <<bodysuitwornnumber>...
+    (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<td><center>You are wearing ' + ((s as any).bodysuitworntype ?? 0) + ' bodysuit no. ' + ((s as any).bodysuitwornnumber ?? 0) + '</center></td>');
   }
   if (((s as any).shoeworntype ?? 0) !== 'none') {
-    // TODO-QSP: $temp_table += '<td><center>You are wearing <<$shoeworntype>> shoes no. <<shoewornnumber>></center><...
+    (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<td><center>You are wearing ' + ((s as any).shoeworntype ?? 0) + ' shoes no. ' + ((s as any).shoewornnumber ?? 0) + '</center></td>');
   } else {
-    // TODO-QSP: $temp_table += '<td><center>You do not have any shoes selected</center></td>'
+    (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<td><center>You do not have any shoes selected</center></td>');
   }
   if (((s as any).bag ?? 0) === 1) {
-    // TODO-QSP: $temp_table += '<td><center>You are using <<$currentpursetype>> purse no. <<currentpursenumber>></ce...
+    (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<td><center>You are using ' + ((s as any).currentpursetype ?? 0) + ' purse no. ' + ((s as any).currentpursenumber ?? 0) + '</center></td>');
   } else {
-    // TODO-QSP: $temp_table += '<td><center>You do not have a purse equipped</center></td>'
+    (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<td><center>You do not have a purse equipped</center></td>');
   }
-  // TODO-QSP: $temp_table += '</tr></table></center>'
-  // TODO-QSP: end
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + ('</tr></table></center>');
+  (s as any).temp_table = undefined;
   scene.build();
 }
 
 function enterShoes(s: GameState, scene: SceneBuilder): void {
   qspCall(s, '$menu_looks', 'lookstabs', 'Clothes');
   scene.text('<center><h1>Shoes</h1></center>');
-  // TODO-QSP: $settings['table_start']
+  scene.text(String(qspFunc(s, 'settings', 'table_start') || ''));
   (s as any).img_temp = qspFunc(s, '$body_image', '', 'shoes');
   if (((s as any).modApi_shoes_image ?? 0) !== '') {
     (s as any).img_temp = ((s as any).modApi_shoes_image ?? 0);
   }
   scene.img(`${((s as any).img_temp ?? '')}`);
   if (((s as any).modApi_shoes_image_msg ?? 0) === '') {
-    // TODO-QSP: dynamic text: <<$body_image_msg>>
     scene.text(`${((s as any).body_image_msg ?? '')}`);
   } else {
-    // TODO-QSP: dynamic text: <<$modApi_shoes_image_msg>>
     scene.text(`${((s as any).modApi_shoes_image_msg ?? '')}`);
   }
-  // TODO-QSP: $settings['table_end']
-  // TODO-QSP: end
+  (s as any).img_temp = undefined;
+  (s as any).body_image_msg = undefined;
+  scene.text(String(qspFunc(s, 'settings', 'table_end') || ''));
   scene.build();
 }
 
 function enterTattoos(s: GameState, scene: SceneBuilder): void {
   qspCall(s, '$menu_looks', 'lookstabs', 'Tattoos');
   scene.text('<center><h1>Tattoos</h1></center>');
-  // TODO-QSP: $settings['table_start']
+  scene.text(String(qspFunc(s, 'settings', 'table_start') || ''));
   if (((s as any).pcs_tattoos ?? 0)?.['total'] === 0) {
     scene.text('You have a pristine body. Not in terms of debauchery, but in terms of tattoos.');
-    // TODO-QSP: $settings['table_end']
+    scene.text(String(qspFunc(s, 'settings', 'table_end') || ''));
     return;
   }
   if (((s as any).pcs_tattoos ?? 0)?.['face'] > 0) {
-    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027$menu_looks/u0027, /u0027tattooface/u0027); return false;">Face</a> | ');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027$menu_looks\u0027, \u0027tattooface\u0027); return false;">Face</a> | ');
   } else {
     scene.text('Face | ');
   }
   if (((s as any).pcs_tattoos ?? 0)?.['lip'] > 0) {
-    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027$menu_looks/u0027, /u0027tattoolip/u0027); return false;">Lip</a> | ');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027$menu_looks\u0027, \u0027tattoolip\u0027); return false;">Lip</a> | ');
   } else {
     scene.text('Lip | ');
   }
   if (((s as any).pcs_tattoos ?? 0)?.['neck'] > 0) {
-    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027$menu_looks/u0027, /u0027tattooneck/u0027); return false;">Neck</a> | ');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027$menu_looks\u0027, \u0027tattooneck\u0027); return false;">Neck</a> | ');
   } else {
     scene.text('Neck | ');
   }
   if (((s as any).pcs_tattoos ?? 0)?.['back'] > 0) {
-    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027$menu_looks/u0027, /u0027tattooback/u0027); return false;">Back</a> | ');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027$menu_looks\u0027, \u0027tattooback\u0027); return false;">Back</a> | ');
   } else {
     scene.text('Back | ');
   }
   if (((s as any).pcs_tattoos ?? 0)?.['shoulder'] > 0) {
-    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027$menu_looks/u0027, /u0027tattooshoulder/u0027); return false;">Shoulder</a> | ');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027$menu_looks\u0027, \u0027tattooshoulder\u0027); return false;">Shoulder</a> | ');
   } else {
     scene.text('Shoulder | ');
   }
   if (((s as any).pcs_tattoos ?? 0)?.['breast'] > 0) {
-    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027$menu_looks/u0027, /u0027tattoobreast/u0027); return false;">Breast</a> | ');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027$menu_looks\u0027, \u0027tattoobreast\u0027); return false;">Breast</a> | ');
   } else {
     scene.text('Breast | ');
   }
   if (((s as any).pcs_tattoos ?? 0)?.['under'] > 0) {
-    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027$menu_looks/u0027, /u0027tattoounder/u0027); return false;">Under Breast</a> | ');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027$menu_looks\u0027, \u0027tattoounder\u0027); return false;">Under Breast</a> | ');
   } else {
     scene.text('Under Breast | ');
   }
   if (((s as any).pcs_tattoos ?? 0)?.['chest'] > 0) {
-    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027$menu_looks/u0027, /u0027tattoochest/u0027); return false;">Chest</a> | ');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027$menu_looks\u0027, \u0027tattoochest\u0027); return false;">Chest</a> | ');
   } else {
     scene.text('Chest | ');
   }
   if (((s as any).pcs_tattoos ?? 0)?.['side'] > 0) {
-    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027$menu_looks/u0027, /u0027tattooside/u0027); return false;">Side</a> | ');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027$menu_looks\u0027, \u0027tattooside\u0027); return false;">Side</a> | ');
   } else {
     scene.text('Side | ');
   }
   if (((s as any).pcs_tattoos ?? 0)?.['belly'] > 0) {
-    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027$menu_looks/u0027, /u0027tattoobelly/u0027); return false;">Belly</a>');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027$menu_looks\u0027, \u0027tattoobelly\u0027); return false;">Belly</a>');
   } else {
     scene.text('Belly');
   }
   if (((s as any).pcs_tattoos ?? 0)?.['arm'] > 0) {
-    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027$menu_looks/u0027, /u0027tattooarm/u0027); return false;">Arm</a> | ');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027$menu_looks\u0027, \u0027tattooarm\u0027); return false;">Arm</a> | ');
   } else {
     scene.text('Arm | ');
   }
   if (((s as any).pcs_tattoos ?? 0)?.['wrist'] > 0) {
-    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027$menu_looks/u0027, /u0027tattoowrist/u0027); return false;">Wrist</a> | ');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027$menu_looks\u0027, \u0027tattoowrist\u0027); return false;">Wrist</a> | ');
   } else {
     scene.text('Wrist | ');
   }
   if (((s as any).pcs_tattoos ?? 0)?.['hand'] > 0) {
-    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027$menu_looks/u0027, /u0027tattoohand/u0027); return false;">Hand</a> | ');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027$menu_looks\u0027, \u0027tattoohand\u0027); return false;">Hand</a> | ');
   } else {
     scene.text('Hand | ');
   }
   if (((s as any).pcs_tattoos ?? 0)?.['leg'] > 0) {
-    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027$menu_looks/u0027, /u0027tattooleg/u0027); return false;">Leg</a> | ');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027$menu_looks\u0027, \u0027tattooleg\u0027); return false;">Leg</a> | ');
   } else {
     scene.text('Leg | ');
   }
   if (((s as any).pcs_tattoos ?? 0)?.['ankle'] > 0) {
-    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027$menu_looks/u0027, /u0027tattooankle/u0027); return false;">Ankle</a> | ');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027$menu_looks\u0027, \u0027tattooankle\u0027); return false;">Ankle</a> | ');
   } else {
     scene.text('Foot | ');
   }
   if (((s as any).pcs_tattoos ?? 0)?.['tramp'] > 0) {
-    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027$menu_looks/u0027, /u0027tattootramp/u0027); return false;">"Tramp Stamp"</a> | ');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027$menu_looks\u0027, \u0027tattootramp\u0027); return false;">"Tramp Stamp"</a> | ');
   } else {
     scene.text('Tramp Stamp | ');
   }
   if (((s as any).pcs_tattoos ?? 0)?.['ass'] > 0) {
-    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027$menu_looks/u0027, /u0027tattooass/u0027); return false;">Butt</a> | ');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027$menu_looks\u0027, \u0027tattooass\u0027); return false;">Butt</a> | ');
   } else {
     scene.text('Butt | ');
   }
   if (((s as any).pcs_tattoos ?? 0)?.['pussy'] > 0) {
-    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027$menu_looks/u0027, /u0027tattoovag/u0027); return false;">Groin</a>');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027$menu_looks\u0027, \u0027tattoovag\u0027); return false;">Groin</a>');
   } else {
     scene.text('Groin');
   }
-  // TODO-QSP: $settings['table_end']
-  // TODO-QSP: end
+  scene.text(String(qspFunc(s, 'settings', 'table_end') || ''));
   scene.build();
 }
 
 function enterTattooankle(s: GameState, scene: SceneBuilder): void {
   qspCall(s, '$menu_looks', 'tattoos');
   scene.img(`${qspFunc(s, 'tattoo_management', 'ankle_image')}`);
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterTattooarm(s: GameState, scene: SceneBuilder): void {
   qspCall(s, '$menu_looks', 'tattoos');
   scene.img(`${qspFunc(s, 'tattoo_management', 'arm_image')}`);
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterTattooass(s: GameState, scene: SceneBuilder): void {
   qspCall(s, '$menu_looks', 'tattoos');
   scene.img(`${qspFunc(s, 'tattoo_management', 'ass_image')}`);
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterTattooback(s: GameState, scene: SceneBuilder): void {
   qspCall(s, '$menu_looks', 'tattoos');
   scene.img(`${qspFunc(s, 'tattoo_management', 'back_image')}`);
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterTattoobelly(s: GameState, scene: SceneBuilder): void {
   qspCall(s, '$menu_looks', 'tattoos');
   scene.img(`${qspFunc(s, 'tattoo_management', 'belly_image')}`);
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterTattoobreast(s: GameState, scene: SceneBuilder): void {
   qspCall(s, '$menu_looks', 'tattoos');
   scene.img(`${qspFunc(s, 'tattoo_management', 'breast_image')}`);
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterTattoochest(s: GameState, scene: SceneBuilder): void {
   qspCall(s, '$menu_looks', 'tattoos');
   scene.img(`${qspFunc(s, 'tattoo_management', 'chest_image')}`);
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterTattooface(s: GameState, scene: SceneBuilder): void {
   qspCall(s, '$menu_looks', 'tattoos');
   scene.img(`${qspFunc(s, 'tattoo_management', 'face_image')}`);
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterTattoohand(s: GameState, scene: SceneBuilder): void {
   qspCall(s, '$menu_looks', 'tattoos');
   scene.img(`${qspFunc(s, 'tattoo_management', 'hand_image')}`);
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterTattooleg(s: GameState, scene: SceneBuilder): void {
   qspCall(s, '$menu_looks', 'tattoos');
   scene.img(`${qspFunc(s, 'tattoo_management', 'leg_image')}`);
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterTattoolip(s: GameState, scene: SceneBuilder): void {
   qspCall(s, '$menu_looks', 'tattoos');
   scene.img(`${qspFunc(s, 'tattoo_management', 'lip_image')}`);
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterTattooneck(s: GameState, scene: SceneBuilder): void {
   qspCall(s, '$menu_looks', 'tattoos');
   scene.img(`${qspFunc(s, 'tattoo_management', 'neck_image')}`);
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterTattoovag(s: GameState, scene: SceneBuilder): void {
   qspCall(s, '$menu_looks', 'tattoos');
   scene.img(`${qspFunc(s, 'tattoo_management', 'pussy_image')}`);
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterTattooshoulder(s: GameState, scene: SceneBuilder): void {
   qspCall(s, '$menu_looks', 'tattoos');
   scene.img(`${qspFunc(s, 'tattoo_management', 'shoulder_image')}`);
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterTattooside(s: GameState, scene: SceneBuilder): void {
   qspCall(s, '$menu_looks', 'tattoos');
   scene.img(`${qspFunc(s, 'tattoo_management', 'side_image')}`);
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterTattootramp(s: GameState, scene: SceneBuilder): void {
   qspCall(s, '$menu_looks', 'tattoos');
   scene.img(`${qspFunc(s, 'tattoo_management', 'tramp_image')}`);
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterTattoounder(s: GameState, scene: SceneBuilder): void {
   qspCall(s, '$menu_looks', 'tattoos');
   scene.img(`${qspFunc(s, 'tattoo_management', 'under_image')}`);
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterTattoowrist(s: GameState, scene: SceneBuilder): void {
   qspCall(s, '$menu_looks', 'tattoos');
   scene.img(`${qspFunc(s, 'tattoo_management', 'wrist_image')}`);
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterPiercing(s: GameState, scene: SceneBuilder): void {
   qspCall(s, '$menu_looks', 'lookstabs', 'Piercings');
   scene.text('<center><h1>Piercings</h1></center>');
-  // TODO-QSP: $settings['table_start']
+  scene.text(String(qspFunc(s, 'settings', 'table_start') || ''));
   if (((s as any).pcs_piercings ?? 0)?.['total'] === 0) {
     scene.text('You have no piercings.');
-    // TODO-QSP: $settings['table_end']
+    scene.text(String(qspFunc(s, 'settings', 'table_end') || ''));
     return;
   } else {
     if (((s as any).pcs_piercings ?? 0)?.['wearing'] === 0) {
       scene.text('You are not wearing any piercings');
-      // TODO-QSP: $settings['table_end']
+      scene.text(String(qspFunc(s, 'settings', 'table_end') || ''));
       return;
     }
   }
   if (((s as any).pcs_piercings ?? 0)?.['ears'] > 0) {
-    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027$menu_looks/u0027, /u0027piercing_ears/u0027); return false;">Ears</a> | ');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027$menu_looks\u0027, \u0027piercing_ears\u0027); return false;">Ears</a> | ');
   } else {
     scene.text('Ears | ');
   }
   if (((s as any).pcs_piercings ?? 0)?.['nose'] > 0) {
-    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027$menu_looks/u0027, /u0027piercing_nose/u0027); return false;">Nose</a> | ');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027$menu_looks\u0027, \u0027piercing_nose\u0027); return false;">Nose</a> | ');
   } else {
     scene.text('Nose | ');
   }
   if (((s as any).pcs_piercings ?? 0)?.['brow'] > 0) {
-    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027$menu_looks/u0027, /u0027piercing_brow/u0027); return false;">Eyebrows</a> | ');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027$menu_looks\u0027, \u0027piercing_brow\u0027); return false;">Eyebrows</a> | ');
   } else {
     scene.text('Eyebrows | ');
   }
   if (((s as any).pcs_piercings ?? 0)?.['lip'] > 0) {
-    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027$menu_looks/u0027, /u0027piercing_lip/u0027); return false;">Lips</a> | ');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027$menu_looks\u0027, \u0027piercing_lip\u0027); return false;">Lips</a> | ');
   } else {
     scene.text('lips | ');
   }
   if (((s as any).pcs_piercings ?? 0)?.['tongue'] > 0) {
-    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027$menu_looks/u0027, /u0027piercing_tongue/u0027); return false;">Tongue</a> | ');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027$menu_looks\u0027, \u0027piercing_tongue\u0027); return false;">Tongue</a> | ');
   } else {
     scene.text('Tongue | ');
   }
   if (((s as any).pcs_piercings ?? 0)?.['navel'] > 0) {
-    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027$menu_looks/u0027, /u0027piercing_navel/u0027); return false;">Navel</a> | ');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027$menu_looks\u0027, \u0027piercing_navel\u0027); return false;">Navel</a> | ');
   } else {
     scene.text('Navel | ');
   }
   if (((s as any).pcs_piercings ?? 0)?.['nipples'] > 0) {
-    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027$menu_looks/u0027, /u0027piercing_nipples/u0027); return false;">Nipples</a> | ');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027$menu_looks\u0027, \u0027piercing_nipples\u0027); return false;">Nipples</a> | ');
   } else {
     scene.text('Nipples | ');
   }
   if (((s as any).pcs_piercings ?? 0)?.['pussy'] > 0) {
-    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027$menu_looks/u0027, /u0027piercing_pussy/u0027); return false;">Pussy</a>');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027$menu_looks\u0027, \u0027piercing_pussy\u0027); return false;">Pussy</a>');
   } else {
     scene.text('Pussy');
   }
-  // TODO-QSP: $settings['table_end']
-  // TODO-QSP: end
+  scene.text(String(qspFunc(s, 'settings', 'table_end') || ''));
   scene.build();
 }
 
 function enterPiercingEars(s: GameState, scene: SceneBuilder): void {
   qspCall(s, '$menu_looks', 'piercing');
   scene.img(`images/pc/body/piercings/c${(((s as any).pcs_piercings ?? 0)?.['ears'] ?? '')}.jpg`);
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterPiercingNose(s: GameState, scene: SceneBuilder): void {
   qspCall(s, '$menu_looks', 'piercing');
   scene.img(`images/pc/body/piercings/d${(((s as any).pcs_piercings ?? 0)?.['nose'] ?? '')}.jpg`);
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterPiercingBrow(s: GameState, scene: SceneBuilder): void {
   qspCall(s, '$menu_looks', 'piercing');
   scene.img(`images/pc/body/piercings/e${(((s as any).pcs_piercings ?? 0)?.['brow'] ?? '')}.jpg`);
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterPiercingLip(s: GameState, scene: SceneBuilder): void {
   qspCall(s, '$menu_looks', 'piercing');
   scene.img(`images/pc/body/piercings/b${(((s as any).pcs_piercings ?? 0)?.['lip'] ?? '')}.jpg`);
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterPiercingTongue(s: GameState, scene: SceneBuilder): void {
   qspCall(s, '$menu_looks', 'piercing');
   scene.img(`images/pc/body/piercings/a${(((s as any).pcs_piercings ?? 0)?.['tongue'] ?? '')}.jpg`);
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterPiercingNavel(s: GameState, scene: SceneBuilder): void {
   qspCall(s, '$menu_looks', 'piercing');
   scene.img(`images/pc/body/piercings/n${(((s as any).pcs_piercings ?? 0)?.['navel'] ?? '')}.jpg`);
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterPiercingNipples(s: GameState, scene: SceneBuilder): void {
   qspCall(s, '$menu_looks', 'piercing');
   scene.img(`images/pc/body/piercings/f${(((s as any).pcs_piercings ?? 0)?.['nipples'] ?? '')}.jpg`);
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterPiercingPussy(s: GameState, scene: SceneBuilder): void {
   qspCall(s, '$menu_looks', 'piercing');
   scene.img(`images/pc/body/piercings/g${(((s as any).pcs_piercings ?? 0)?.['pussy'] ?? '')}.jpg`);
-  // TODO-QSP: end
   scene.build();
 }
 

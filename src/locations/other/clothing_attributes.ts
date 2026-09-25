@@ -10,7 +10,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(s, '$attributes_' + ((s as any).locArgs?.[0] ?? 0) + '', '', ((s as any).locArgs?.[1] ?? 0));
   }
   if ((!((s as any).CloQuality ?? 0))) {
-    // TODO-QSP: exit
+    return;
   }
   if (((s as any).CloTopCut ?? 0) === 2  &&  ((s as any).tits ?? 0) >= 6) {
     (s as any).CloTopCut = 3;

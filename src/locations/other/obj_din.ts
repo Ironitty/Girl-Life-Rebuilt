@@ -10,31 +10,29 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterChartabs(s: GameState, scene: SceneBuilder): void {
   qspCall(s, '$menu_character', 'charactertabs', ((s as any).locArgs?.[1] ?? 0));
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterBodytabs(s: GameState, scene: SceneBuilder): void {
   qspCall(s, '$menu_looks', 'lookstabs', ((s as any).locArgs?.[1] ?? 0));
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterSettingtabs(s: GameState, scene: SceneBuilder): void {
   qspCall(s, '$menu_settings', 'settingstabs', ((s as any).locArgs?.[1] ?? 0));
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterCheattabs(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'cheatmenu_din', 'cheattabs', ((s as any).locArgs?.[1] ?? 0));
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterMenuExit(s: GameState, scene: SceneBuilder): void {
   (s as any).settingmode = 0;
-  // TODO-QSP: end
+  (s as any).settings = undefined;
+  (s as any).cheatmenu = undefined;
+  (s as any).menu_page = undefined;
   scene.build();
 }
 
@@ -45,46 +43,43 @@ function enterMenuDisabled(s: GameState, scene: SceneBuilder): void {
 
 function enterShowTits(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_nips ?? 0) >= 40  &&  ((s as any).pcs_nips ?? 0) < 60  &&  ((s as any).tits ?? 0) === 2) {
-    // TODO-QSP: view 'images/pc/body/tits/t<<tits>>_p.jpg'
+    s.viewImage = 'images/pc/body/tits/t' + ((s as any).tits ?? 0) + '_p.jpg';
   } else {
-    // TODO-QSP: view 'images/pc/body/tits/t<<tits>>.jpg'
+    s.viewImage = 'images/pc/body/tits/t' + ((s as any).tits ?? 0) + '.jpg';
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterShowBody(s: GameState, scene: SceneBuilder): void {
   (s as any).img_temp = qspFunc(s, '$body_image', '', 'body');
-  // TODO-QSP: view '<<$img_temp>>'
-  // TODO-QSP: end
+  s.viewImage = (s as any).img_temp;
+  (s as any).img_temp = undefined;
   scene.build();
 }
 
 function enterShowTeeth(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_brace ?? 0) === 1) {
-    // TODO-QSP: view 'images/pc/body/teeth/brace.jpg'
+    s.viewImage = 'images/pc/body/teeth/brace.jpg';
   } else {
     if (((s as any).pcs_teeth ?? 0) === -1) {
-      // TODO-QSP: view 'images/pc/body/teeth/goodteeth.jpg'
+      s.viewImage = 'images/pc/body/teeth/goodteeth.jpg';
     } else {
       if (((s as any).pcs_teeth ?? 0) === 1) {
-        // TODO-QSP: view 'images/pc/body/teeth/badteeth1.jpg'
+        s.viewImage = 'images/pc/body/teeth/badteeth1.jpg';
       } else {
         if (((s as any).pcs_teeth ?? 0) === 2) {
-          // TODO-QSP: view 'images/pc/body/teeth/badteeth2.jpg'
+          s.viewImage = 'images/pc/body/teeth/badteeth2.jpg';
         } else {
-          // TODO-QSP: view 'images/pc/body/teeth/averageteeth.jpg'
+          s.viewImage = 'images/pc/body/teeth/averageteeth.jpg';
         }
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterShowMissingTeeth(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: view 'images/pc/body/teeth/missing.jpg'
-  // TODO-QSP: end
+  s.viewImage = 'images/pc/body/teeth/missing.jpg';
   scene.build();
 }
 
@@ -121,7 +116,6 @@ function enterEmergency(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go to Pavlovsk', handler: (st: GameState) => {
     (st as any).inSleep = 0;
@@ -137,7 +131,6 @@ function enter_1Hour(s: GameState, scene: SceneBuilder): void {
   (s as any).hour = ((s as any).hour ?? 0) - (1);
   qspCall(s, 'stat', '');
   dynamicGoto(s, 'prevLoc', 'prevArg');
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -145,75 +138,54 @@ function enter_1Hour2(s: GameState, scene: SceneBuilder): void {
   (s as any).hour = ((s as any).hour ?? 0) + (1);
   qspCall(s, 'stat', '');
   dynamicGoto(s, 'prevLoc', 'prevArg');
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterOld(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: killobj
   (s as any).oldobjmenu = 1;
-  // TODO-QSP: addobj '<center>Refresh</center>'
   if (((s as any).cheatVars ?? 0)?.['console'] === 0) {
-    // TODO-QSP: addobj '<center>Console</center>'
   }
-  // TODO-QSP: addobj '<center>Toggle Debug Variables</center>'
-  // TODO-QSP: addobj '<center>Add Debug Variable</center>'
-  // TODO-QSP: addobj '<center>Delete Debug Variable</center>'
-  // TODO-QSP: addobj '<center>Switch HTML</center>'
-  // TODO-QSP: addobj '<center>Toggle Call Trace</center>'
   if (((s as any).cheatVars ?? 0)?.['time'] === 1) {
-    // TODO-QSP: addobj '<center>-1 Hour</center>'
-    // TODO-QSP: addobj '<center>+1 Hour</center>'
   }
-  // TODO-QSP: addobj ''
-  // TODO-QSP: addobj '<center><font color = red>Emergency</font></center>'
-  // TODO-QSP: addobj ''
   if ((!((s as any).debug_warning_closed ?? 0))) {
-    // TODO-QSP: addobj '<center>This window is for debug only and can be safely closed.</center>'
-    // TODO-QSP: addobj '<center>Remove debug info</center>'
   }
   if (((s as any).objectWindowDebug ?? 0) === 1) {
-    // TODO-QSP: addobj '$curloc: <<$curloc>>'
-    // TODO-QSP: addobj '$loc: <<$loc>>'
-    // TODO-QSP: addobj '$loc_arg: <<$loc_arg>>'
-    // TODO-QSP: addobj '$location_type: <<$location_type>>'
-    // TODO-QSP: addobj 'week: <<week>>'
-    // TODO-QSP: addobj 'daystart: <<daystart>>'
     if (Object.keys((s as any).ObjDebugVars ?? {}).length > 0) {
       (s as any).i = 0;
-      // TODO-QSP: :AddDebugVarLoop
-      if (((s as any).i ?? 0) < Object.keys((s as any).ObjDebugVars ?? {}).length) {
-        if (((String((((s as any).ObjDebugVars ?? 0)?.[String((s as any).i ?? 0)] ?? 0)).indexOf(String('$'))) + 1) === 1) {
-          // TODO-QSP: dynamic '$tmp = <<$ObjDebugVars[i]>>'
-          // TODO-QSP: addobj '<<$ObjDebugVars[i]>>: <<$tmp>>'
-        } else {
-          // TODO-QSP: dynamic 'tmp = <<$ObjDebugVars[i]>>'
-          // TODO-QSP: addobj '<<$ObjDebugVars[i]>>: <<tmp>>'
+      while (true) {
+        if (((s as any).i ?? 0) < Object.keys((s as any).ObjDebugVars ?? {}).length) {
+          if (((String((((s as any).ObjDebugVars ?? 0)?.[String((s as any).i ?? 0)] ?? 0)).indexOf(String('$'))) + 1) === 1) {
+            // TODO-QSP: dynamic '$tmp = <<$ObjDebugVars[i]>>'
+          } else {
+            // TODO-QSP: dynamic 'tmp = <<$ObjDebugVars[i]>>'
+          }
+          (s as any).i = ((s as any).i ?? 0) + (1);
+          break;
         }
-        (s as any).i = ((s as any).i ?? 0) + (1);
-        // TODO-QSP: jump 'AddDebugVarLoop'
       }
     }
   }
-  // TODO-QSP: end
   if (String((s as any).locArgs?.[0] ?? '') === "((s as any).AddDebugVar ?? 0)") {
     if (String((s as any).locArgs?.[1] ?? '') !== '') {
       (s as any).i = 0;
-      // TODO-QSP: $ObjDebugVars[i] = '<<$ARGS[1]>>'
+      ((s as any).ObjDebugVars = (s as any).ObjDebugVars ?? {})[String((s as any).i ?? 0)] = '' + ((s as any).locArgs?.[1] ?? 0) + '';
     }
   }
   if (String((s as any).locArgs?.[0] ?? '') === "((s as any).DeleteDebugVar ?? 0)") {
     if (String((s as any).locArgs?.[1] ?? '') !== '') {
       if (Object.keys((s as any).ObjDebugVars ?? {}).length > 0) {
         (s as any).i = 0;
-        // TODO-QSP: :DeleteDebugVarLoop
-        if (((s as any).i ?? 0) < Object.keys((s as any).ObjDebugVars ?? {}).length) {
-          if (((s as any).ObjDebugVars ?? 0)?.[String((s as any).i ?? 0)] === String((s as any).locArgs?.[1] ?? '')) {
-            (s as any).i = 0;
-          } else {
-            (s as any).i = ((s as any).i ?? 0) + (1);
+        while (true) {
+          if (((s as any).i ?? 0) < Object.keys((s as any).ObjDebugVars ?? {}).length) {
+            if (((s as any).ObjDebugVars ?? 0)?.[String((s as any).i ?? 0)] === String((s as any).locArgs?.[1] ?? '')) {
+              (s as any).ObjDebugVars = undefined;
+              (s as any).i = 0;
+            } else {
+              (s as any).i = ((s as any).i ?? 0) + (1);
+            }
+            break;
           }
-          // TODO-QSP: jump 'DeleteDebugVarLoop'
         }
       }
     }
@@ -235,10 +207,13 @@ function enterWait(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).waiting ?? 0) > 0  &&  ((s as any).waiting ?? 0) <= 120) {
     (s as any).minut = ((s as any).minut ?? 0) + (((s as any).waiting ?? 0));
+  } else {
+    alert('Invalid time.');
   }
   qspCall(s, 'stat', '');
+  (s as any).waiting = undefined;
+  (s as any).waitStr = undefined;
   dynamicGoto(s, 'prevLoc', 'prevArg');
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -253,11 +228,13 @@ function enterRest(s: GameState, scene: SceneBuilder): void {
       if (((s as any).pcs_sleep ?? 0) < 90  &&  ((s as any).waiting ?? 0) >= 60) {
         (s as any).pcs_sleep = ((s as any).pcs_sleep ?? 0) + (10);
       }
+    } else {
+      alert('Invalid time.');
     }
   }
   qspCall(s, 'stat', '');
+  (s as any).waiting = undefined;
   dynamicGoto(s, 'prevLoc', 'prevArg');
-  // TODO-QSP: end
   scene.build();
 }
 

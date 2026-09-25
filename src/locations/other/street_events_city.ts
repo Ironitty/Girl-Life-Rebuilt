@@ -51,21 +51,19 @@ function enterFailedCelebBlackmail(s: GameState, scene: SceneBuilder): void {
   } },
 ]);
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterFameEvents(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'fame_events', 'select', 'city');
   dynamicGoto(s, 'prevLoc', 'prevArg');
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterMinorGirlBeggar_2(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
-  // TODO-QSP: $streetev_title
+  s.scene = { ...s.scene, mainText: String((s as any).streetev_title || ''), curActs: [] };
   scene.img('images/locations/shared/street/girlcat.jpg');
   scene.text('As you walk down the street, you pass a young girl sitting on the sidewalk with some bags next to her, a cat in her lap and a sign saying that she is homeless, pleading for help.');
   scene.actions([
@@ -174,14 +172,13 @@ function enterMinorGirlBeggar_2(s: GameState, scene: SceneBuilder): void {
   } },
 ]);
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterMinorHomelessMen(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
-  // TODO-QSP: $streetev_title
+  s.scene = { ...s.scene, mainText: String((s as any).streetev_title || ''), curActs: [] };
   scene.img('images/locations/shared/street/city/homeless.jpg');
   scene.text('As you walk down the street, you pass a couple of homeless men lying on a metro gate, using it for warmth in the freezing conditions.');
   scene.actions([
@@ -190,14 +187,13 @@ function enterMinorHomelessMen(s: GameState, scene: SceneBuilder): void {
   } },
 ]);
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterMinorGayCouple(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
-  // TODO-QSP: $streetev_title
+  s.scene = { ...s.scene, mainText: String((s as any).streetev_title || ''), curActs: [] };
   scene.img('images/locations/shared/street/city/gay.jpg');
   scene.text('As you walk down the street, you pass a couple of boys holding hands and occasionally kissing. Soon a few other guys come over and start harassing them, calling them all sorts of names.');
   scene.actions([
@@ -206,14 +202,13 @@ function enterMinorGayCouple(s: GameState, scene: SceneBuilder): void {
   } },
 ]);
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterMinorOldCouple(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
-  // TODO-QSP: $streetev_title
+  s.scene = { ...s.scene, mainText: String((s as any).streetev_title || ''), curActs: [] };
   scene.img('images/locations/shared/street/city/sell.jpg');
   scene.text('As you walk down the street, you pass an old couple all bundled up against the cold. They have several jars and other homemade food items, along with a couple of household items and jewelry they are trying to sell.');
   scene.actions([
@@ -222,7 +217,6 @@ function enterMinorOldCouple(s: GameState, scene: SceneBuilder): void {
   } },
 ]);
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -232,7 +226,7 @@ function enterMinorGirlBeggarSubEvent(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'money', 'pay', 5000, 'cash');
     qspCall(st, 'mood', 'raise', 'huge');
     qspCall(st, 'stat', '');
-    // TODO-QSP: $streetev_title
+    s.scene = { ...s.scene, mainText: String((st as any).streetev_title || ''), curActs: [] };
     scene.img('images/locations/shared/street/girlcat.jpg');
     scene.text('You open your purse up and pull out the money you can spare and hand it to her. She breaks down and cries when she sees how much money you gave her. She gets up and hugs you tightly with one arm while holding her cat with the other, thanking you over and over. She smells like she hasn\'t bathed for a while, but you don\'t mind. She finally lets go of you, and as you walk away, she hugs her cat, and you hear her tell him that tonight they will sleep indoors and eat.');
     scene.actions([
@@ -243,7 +237,6 @@ function enterMinorGirlBeggarSubEvent(s: GameState, scene: SceneBuilder): void {
   } },
 ]);
   return;
-  // TODO-QSP: end
   scene.build();
 }
 

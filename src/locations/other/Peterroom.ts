@@ -15,7 +15,6 @@ function enterStartDoor(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'themes', 'indoors');
   scene.text('<center><b>Peter\'s Apartment</b></center>');
   scene.img('images/characters/city/peter/peterdoor.jpg');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -139,7 +138,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -147,11 +145,9 @@ function enterKlap(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/city/peter/6.jpg');
   scene.text('Peter puts you on a leash and leads you into the bedroom. He pushes you onto the bed and ties your hands and feet to the headboard before fastening a ball gag into your mouth.');
-  // TODO-QSP: dynamic text: "I love it when you moan <<$pcs_nickname>>, but I think you''re better off gagge...
   scene.text(`"I love it when you moan ${((s as any).pcs_nickname ?? '')}, but I think you're better off gagged."`);
   qspCall(s, 'arousal', 'foreplay', 5, 'sub', 'bound');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Moan', handler: (st: GameState) => {
     scene.img('images/characters/city/peter/sex/7.jpg');
@@ -159,9 +155,10 @@ function enterKlap(s: GameState, scene: SceneBuilder): void {
     if (((st as any).analPlugIn ?? 0) === 1) {
       (st as any).analPlugIn = 0;
       (st as any).analPlugOut = 1;
-      // TODO-QSP: $temp += ', as he pulls out your butt plug '
+      (st as any).temp = ((st as any).temp ?? 0) + (', as he pulls out your butt plug ');
     }
-    // TODO-QSP: $temp
+    s.scene = { ...s.scene, mainText: String((st as any).temp || ''), curActs: [] };
+    (st as any).temp = undefined;
     scene.text('and starts pushing his dick against your asshole. After a few seconds, the tip pops into you and you moan into the gag. You can\'t wait for him to bury himself in your ass completely. Peter sees your reaction and starts fucking your ass, penetrating deeper with each thrust until his dick is completely buried inside you. He fucks you so hard that your knees start to shake and pussy juices trickle down your leg.');
     qspCall(st, 'arousal', 'anal', 10, 'sub');
     qspCall(st, 'stat', '');
@@ -197,14 +194,12 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/city/peter/vanroom.jpg');
   scene.text('"You were great," he says as he smacks your ass. He then picks you up and carries you to the bathroom, where you take a bath together.');
   scene.text('He greatly enjoys "washing" you, his hands paying special attention to your breasts and pussy as you lean back and make out with him.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (st as any).peter = ((st as any).peter ?? 0) + (1);
     (st as any).minut = ((st as any).minut ?? 0) + 20;
     scene.img('images/characters/city/peter/mash.jpg');
     scene.text('You relax in the bath together for a while until Peter states that he has business to attend to elsewhere. You climb out of the bath and dry off before getting dressed. Peter then grabs his keys and locks up before you walk outside together. When you reach his car, he leans in to kiss you.');
-    // TODO-QSP: dynamic text: "You''re a breath of fresh air, <<$pcs_nickname>>. You never fail to brighten my...
     scene.text(`"You're a breath of fresh air, ${((st as any).pcs_nickname ?? '')}. You never fail to brighten my day," he says while gently stroking your cheek. "I hope I can see you again soon."`);
     scene.text('He climbs into his car and starts the engine, but just as he\'s about to drive off, he suddenly calls out to you. "Do you need a lift?"');
     if (qspFunc(s, 'homes_properties', 'has_access', 'city_house')) {
@@ -212,7 +207,6 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
         { label: 'To your apartment', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
     scene.text('You nod and get into the car next to him, giving him directions to your apartment complex.');
-    // TODO-QSP: dynamic text: You spend the journey talking about the sex you just had and you eventually reac...
     scene.text(`You spend the journey talking about the sex you just had and you eventually reach your apartment building. Peter leans over and gives your ass a firm squeeze as you climb out of the car. "Until next time, ${((st as any).pcs_nickname ?? '')}." You smile at him and close the door before he drives off.`);
     qspGoto(st, 'city_residential', '');
   } },
@@ -222,7 +216,6 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
       { label: 'To the city center', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
     scene.text('You nod and get into the car next to him. "Just into the city center is fine, thanks."');
-    // TODO-QSP: dynamic text: You spend the journey talking about the sex you just had and you reach the city ...
     scene.text(`You spend the journey talking about the sex you just had and you reach the city center a few minutes later. Peter leans over and gives your ass a firm squeeze as you climb out of the car. "Until next time, ${((st as any).pcs_nickname ?? '')}." You smile at him and close the door before he drives off.`);
     qspGoto(st, 'city_center', '');
   } },
@@ -238,7 +231,6 @@ function enterD1(s: GameState, scene: SceneBuilder): void {
   }
   scene.img('images/characters/city/peter/d1-1.jpg');
   scene.text('Peter binds your torso and hands before he lifts you up and hangs you from a hook.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Suck his fingers', handler: (st: GameState) => {
     scene.img('images/characters/city/peter/sex/d1-2.jpg');
@@ -285,7 +277,6 @@ function enterD2(s: GameState, scene: SceneBuilder): void {
   scene.text('Peter forces you on your knees, then lifts your head and thrusts his cock into your mouth. The head of his cock goes down your throat, but he continues to thrust, forcing more of it inside.');
   qspCall(s, 'arousal', 'bj', 5, 'sub');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Suck', handler: (st: GameState) => {
     scene.img('images/characters/city/peter/sex/d2-2.jpg');

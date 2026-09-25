@@ -14,10 +14,8 @@ function enterTailor(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('There is a small wooden counter and a sign that says, "If you can\'t wear it, we\'ll adjust it."');
   scene.text('Behind the counter, an elderly man inspects some repaired clothes. He stops and smiles gently, greeting you.');
-  // TODO-QSP: dynamic text: "Hello there, young lady. Do you want to adjust some of your clothing? It''ll co...
   scene.text(`"Hello there, young lady. Do you want to adjust some of your clothing? It'll cost you ${qspFunc(s, 'money', 'string_price', 500)} per item."`);
   qspCall(s, 'tailor', 'set_tailor_acts');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['pav_industrial', ''] },
   ]);
@@ -41,22 +39,18 @@ function enterEnter(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/factory/pav_factory.jpg');
   scene.text('You\'re standing inside the building accommodating the biggest employer in Pavlovsk, the local textile factory.');
   scene.text('There is a work schedule hanging on the wall:');
-  // TODO-QSP: dynamic text: 'First shift - '+func('time', 'get_time_string', 8, 0)+' to '+func('time', 'get_...
-  scene.text('First shift - 8:00 to 16:00.');
-  // TODO-QSP: dynamic text: 'Second shift - '+func('time', 'get_time_string', 16, 0)+' to '+func('time', 'ge...
-  scene.text('Second shift - 16:00 to 20:00.');
+  scene.text('\'First shift - 8:00 to 16:00.\'');
+  scene.text('\'Second shift - 16:00 to 20:00.\'');
   if (((s as any).job_status ?? 0)?.['pav_factory'] === ''  &&  ((s as any).age ?? 0) < 18) {
     if (qspFunc(s, 'jobs', 'check_employment_possible', 'pav_factory', 0) === 1) {
-      // TODO-QSP: dynamic text: You can apply for a <a href="exec:minut += 15 & gt ''pav_factory'', ''job_start'...
-      scene.text('You can apply for a <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.15; return s; }); window.__gameStore.getState().doGoto(/u0027pav_factory/u0027, /u0027job_start/u0027); return false;">part-time job</a> here.');
+      scene.text('You can apply for a <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.15; return s; }); window.__gameStore.getState().doGoto(\u0027pav_factory\u0027, \u0027job_start\u0027); return false;">part-time job</a> here.');
     } else {
       scene.text('You see they\'re hiring, but the shift times conflict with your existing schedule.');
     }
   }
   if (((s as any).job_status ?? 0)?.['pav_factory'] === ''  &&  ((s as any).age ?? 0) >= 18) {
     if (qspFunc(s, 'jobs', 'check_employment_possible', 'pav_factory', 1) === 1) {
-      // TODO-QSP: dynamic text: You can apply for a <a href="exec:minut += 15 & gt ''pav_factory'', ''job_start'...
-      scene.text('You can apply for a <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.15; return s; }); window.__gameStore.getState().doGoto(/u0027pav_factory/u0027, /u0027job_start/u0027); return false;">full-time job</a> here.');
+      scene.text('You can apply for a <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.15; return s; }); window.__gameStore.getState().doGoto(\u0027pav_factory\u0027, \u0027job_start\u0027); return false;">full-time job</a> here.');
     } else {
       scene.text('You see they\'re hiring, but the shift times conflict with your existing schedule.');
     }
@@ -80,12 +74,12 @@ function enterEnter(s: GameState, scene: SceneBuilder): void {
     }
     qspCall(st, 'jobs', 'paycheck', 'pav_factory', 'bank');
     qspCall(st, 'jobs', 'set_terminated', 'pav_factory');
+    (st as any).temp_dock = undefined;
     (st as any).minut = ((st as any).minut ?? 0) + 5;
     qspGoto(st, 'pav_factory', 'enter');
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -102,18 +96,15 @@ function enterScolding(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/resident/stepan/nachalnik.jpg');
   if (((s as any).job_booking_debt ?? 0)?.['pav_factory'] === 1) {
     scene.text('As you walk in, the foreman, Stepan Sergeyevich, waves you over to his desk. He looks up from his paperwork with a slight frown.');
-    // TODO-QSP: dynamic text: "<<$pcs_lastname>>, I noticed you missed your shift. We all have our off days, b...
     scene.text(`"${((s as any).pcs_lastname ?? '')}, I noticed you missed your shift. We all have our off days, but this is a factory — the machines don't wait. Try not to let it happen again."`);
   } else {
     if (((s as any).job_booking_debt ?? 0)?.['pav_factory'] === 2) {
       scene.text('The foreman is waiting for you as you walk in. His expression is stern, and he doesn\'t bother with pleasantries.');
-      // TODO-QSP: dynamic text: "<<$pcs_lastname>>, this is the second time you''ve missed work. I warned you be...
       scene.text(`"${((s as any).pcs_lastname ?? '')}, this is the second time you've missed work. I warned you before. One more absence and I'll have no choice but to let you go. The factory can't run with unreliable workers."`);
       scene.text('He taps his pen on the desk, staring at you intently. "Do I make myself clear?"');
     }
   }
   ((s as any).job_miss_acknowledged = (s as any).job_miss_acknowledged ?? {})['pav_factory'] = (((s as any).job_missed_total ?? 0)?.['pav_factory']);
-  // TODO-QSP: end
   scene.actions([
     { label: 'Apologize', goto: ['pav_factory', 'enter'] },
   ]);
@@ -128,16 +119,13 @@ function enterFired(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/resident/stepan/nachalnik.jpg');
   if (((s as any).job_termination_reason ?? 0)?.['pav_factory'] === 'no_show') {
     scene.text('The foreman is standing behind his desk, arms crossed. He doesn\'t ask you to sit down.');
-    // TODO-QSP: dynamic text: "<<$pcs_lastname>>, I gave you fair warning — more than once. You''ve missed too...
     scene.text(`"${((s as any).pcs_lastname ?? '')}, I gave you fair warning — more than once. You've missed too many shifts, and I can't keep making excuses for you to the management."`);
     scene.text('He slides a form across the desk. "You\'re terminated, effective immediately. Your outstanding wages are forfeited, as per your contract. I\'m sorry it came to this."');
   } else {
     scene.text('The foreman calls you into his office. His tone is businesslike.');
-    // TODO-QSP: dynamic text: "<<$pcs_lastname>>, I''m afraid we have to let you go. It''s nothing personal — ...
     scene.text(`"${((s as any).pcs_lastname ?? '')}, I'm afraid we have to let you go. It's nothing personal — just the way things are."`);
   }
   qspCall(s, 'jobs', 'cleanup_job', 'pav_factory');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -153,10 +141,8 @@ function enterScheduleChange(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>FOREMAN\'S OFFICE</b></center>');
   scene.img('images/characters/pavlovsk/resident/stepan/nachalnik.jpg');
   scene.text('As you walk into the factory, the foreman, Stepan Sergeyevich, intercepts you near the entrance. He\'s holding a clipboard and has a satisfied look on his face.');
-  // TODO-QSP: dynamic text: "<<$pcs_lastname>>, just the person I wanted to see. Happy birthday — well, bela...
   scene.text(`"${((s as any).pcs_lastname ?? '')}, just the person I wanted to see. Happy birthday — well, belated or otherwise." He glances at his clipboard. "According to our records, you're now eighteen, which means we can finally move you to the main shift."`);
-  // TODO-QSP: dynamic text: 'He leads you to the schedule board and taps the first line. "Starting now, you'...
-  scene.text('He leads you to the schedule board and taps the first line. "Starting now, you\'ll be working the first shift — weekdays from 8:00 to 16:00. Full eight hours, full pay. The rate stays the same — <b>₽</b>150 per hour — but you\'ll be earning twice as much per day."');
+  scene.text('\'He leads you to the schedule board and taps the first line. "Starting now, you\'ll be working the first shift — weekdays from 8:00 to 16:00. Full eight hours, full pay. The rate stays the same — <b>₽</b>150 per hour — but you\'ll be earning twice as much per day."\'');
   scene.text('"Don\'t be late," he adds with a slight grin, before heading back to his office.');
   if (qspFunc(s, 'jobs', 'check_employment_possible', 'pav_factory', 1) === 0) {
     scene.text('You realize that the new shift times conflict with your existing schedule. You let the foreman know that you\'re not sure if you can make the new shift work with your other commitments. He looks at you for a moment, then nods understandingly.');
@@ -165,7 +151,6 @@ function enterScheduleChange(s: GameState, scene: SceneBuilder): void {
   } else {
     qspCall(s, 'jobs', 'change_schedule', 'pav_factory', 1);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['pav_factory', 'enter'] },
   ]);
@@ -180,16 +165,14 @@ function enterJobStart(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/resident/stepan/nachalnik.jpg');
   scene.text('You head into the factory foreman, Stepan Sergeyevich\'s office and ask him if there\'s an available job.');
   if (((s as any).age ?? 0) < 18) {
-    // TODO-QSP: dynamic text: '"Sure, have a seat," he says. "Now, the work is complex and meticulous but does...
-    scene.text(`"Sure, have a seat," he says. "Now, the work is complex and meticulous but doesn't require any special knowledge. You should catch on pretty quick. Since you are not an adult, you can only work part-time, and the pay is ${qspFunc(s, 'money', 'string_profit', 150)} per hour. Once you become an adult, we can transfer you to full-time. As this is a state-recognized company, we require all the appropriate documentation. The main shift is on weekdays from 8:00 to 16:00, but you will be working the second shift from 16:00 to 20:00.`);
+    scene.text(`'"Sure, have a seat," he says. "Now, the work is complex and meticulous but doesn't require any special knowledge. You should catch on pretty quick. Since you are not an adult, you can only work part-time, and the pay is ${qspFunc(s, 'money', 'string_profit', 150)} per hour. Once you become an adult, we can transfer you to full-time. As this is a state-recognized company, we require all the appropriate documentation. The main shift is on weekdays from 8:00 to 16:00, but you will be working the second shift from 16:00 to 20:00.'`);
     scene.text('But beware, you will be fired if you miss more than three days of work in a single month. You will be paid at the end of the month, and getting fired before then will forfeit any pay yet to be received. So, is that okay?"');
     if (qspFunc(s, 'jobs', 'check_employment_possible', 'pav_factory', 0) === 1) {
       scene.actions([
         { label: 'Accept the job', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 10;
     qspCall(st, 'jobs', 'set_employed', 'pav_factory');
-    // TODO-QSP: dynamic text: 'You hand him over your documents, which he takes, and then he reminds you to co...
-    scene.text('You hand him over your documents, which he takes, and then he reminds you to come in every weekday at 16:00.');
+    scene.text('\'You hand him over your documents, which he takes, and then he reminds you to come in every weekday at 16:00.\'');
     scene.actions([
       { label: 'Leave', goto: ['pav_factory', 'enter'] },
     ]);
@@ -199,8 +182,7 @@ function enterJobStart(s: GameState, scene: SceneBuilder): void {
       scene.text('Unfortunately, the shift times conflict with your existing schedule.');
     }
   } else {
-    // TODO-QSP: dynamic text: '"Sure, have a seat," he says, pointing to a wooden chair in front of his desk. ...
-    scene.text(`"Sure, have a seat," he says, pointing to a wooden chair in front of his desk. "Now, the work is complex and meticulous but doesn't require any special knowledge. You should catch on pretty quick. As this is a state-recognized company, we need all the appropriate documentation. The main shift is on weekdays from 8:00 to 16:00, and the pay is ${qspFunc(s, 'money', 'string_profit', 150)} per hour.`);
+    scene.text(`'"Sure, have a seat," he says, pointing to a wooden chair in front of his desk. "Now, the work is complex and meticulous but doesn't require any special knowledge. You should catch on pretty quick. As this is a state-recognized company, we need all the appropriate documentation. The main shift is on weekdays from 8:00 to 16:00, and the pay is ${qspFunc(s, 'money', 'string_profit', 150)} per hour.'`);
     scene.text('But beware, you will be fired if you miss more than three days of work in a single month. You will be paid at the end of the month, and getting fired before then will forfeit any pay not yet received. So, is that okay?"');
     if (qspFunc(s, 'jobs', 'check_employment_possible', 'pav_factory', 1) === 1) {
       scene.actions([
@@ -208,8 +190,7 @@ function enterJobStart(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 10;
     qspCall(st, 'jobs', 'set_employed', 'pav_factory');
     qspCall(st, 'jobs', 'change_schedule', 'pav_factory', 1);
-    // TODO-QSP: dynamic text: 'You hand him your documents, which he takes, and he then reminds you to come in...
-    scene.text('You hand him your documents, which he takes, and he then reminds you to come in every weekday at 8:00.');
+    scene.text('\'You hand him your documents, which he takes, and he then reminds you to come in every weekday at 8:00.\'');
     scene.actions([
       { label: 'Leave', goto: ['pav_factory', 'enter'] },
     ]);
@@ -219,7 +200,6 @@ function enterJobStart(s: GameState, scene: SceneBuilder): void {
       scene.text('Unfortunately, the shift times conflict with your existing schedule.');
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['pav_factory', 'enter'] },
   ]);
@@ -234,7 +214,6 @@ function enterJob(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>TEXTILE FACTORY, PARIS COMMUNE</b></center>');
   scene.img('images/locations/pavlovsk/factory/pav_factory.jpg');
   scene.text('You work hard throughout your shift at the factory. The foreman has you running all over the factory, performing all types of tasks. You barely even have time to rest during the shift.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;

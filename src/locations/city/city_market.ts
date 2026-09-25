@@ -27,12 +27,12 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'outdoors');
   scene.img('images/locations/city/residential/market/rinok.jpg');
-  scene.text('One of the stalls has a sign attached to it that reads "Cash paid for secondhand clothes". You can <a href="#" onclick="window.__gameStore.setState((s) => { s.cloc = s.2; return s; }); window.__gameStore.getState().doGoto(/u0027clothing_view/u0027, /u0027view_lists_list/u0027, /u0027sell/u0027); return false;">sell individual items</a> or <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027portnoi/u0027, /u0027/u0027); return false;">all of your unwanted clothes here</a>.');
+  scene.text('One of the stalls has a sign attached to it that reads "Cash paid for secondhand clothes". You can <a href="#" onclick="window.__gameStore.setState((s) => { s.cloc = s.2; return s; }); window.__gameStore.getState().doGoto(\u0027clothing_view\u0027, \u0027view_lists_list\u0027, \u0027sell\u0027); return false;">sell individual items</a> or <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027portnoi\u0027, \u0027\u0027); return false;">all of your unwanted clothes here</a>.');
   if (((s as any).analPlugIn ?? 0) === 1  &&  ((s as any).pantyworntype ?? 0) === 'none'  &&  ((s as any).PCloSkirt ?? 0) > 2) {
     (s as any).nurand = (Math.floor(Math.random() * 101) + 0);
     if (((s as any).nurand ?? 0) >= 80) {
       qspCall(s, 'mood', 'lower', 'tiny');
-      scene.text('You feel a hand gently pawing at <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027ETO_salon/u0027, /u0027market_grope/u0027); return false;">your ass</a>.');
+      scene.text('You feel a hand gently pawing at <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027ETO_salon\u0027, \u0027market_grope\u0027); return false;">your ass</a>.');
       qspCall(s, 'arousal', 'foreplay', 3);
       qspCall(s, 'stat', '');
     }
@@ -48,7 +48,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     (st as any).prodpayum = 1200;
     qspCall(st, 'stat', '');
     scene.text('Arthur unloads boxes from his truck and gives them to you. You start hanging the clothes inside around the stall.');
-    // TODO-QSP: dynamic text: Before leaving, Arthur gives you instructions. "Sell it all at whatever price yo...
     scene.text(`Before leaving, Arthur gives you instructions. "Sell it all at whatever price you want, but at the end of your shift, I'll charge you ${qspFunc(s, 'money', 'string_price', 1000)} for each item sold. You should be making me no less than ${qspFunc(s, 'money', 'string_profit', ((st as any).arturplan ?? ''))}."`);
     scene.actions([
       { label: 'Start working', goto: ['city_marketwork', 'start'] },
@@ -69,14 +68,13 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   if (((s as any).job_status ?? 0)?.['city_market_saleswoman'] !== 'employed') {
-    // TODO-QSP: nl
+    scene.text('');
     scene.text('A messily written ad hangs from one of the stalls. "Need female market stall staff. Paychecks big."');
     scene.actions([
       { label: 'Approach the owner of the ad', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
     scene.text('Hi, my name is Arthur. I own many stalls here and I need a saleswoman. Want the job?');
-    // TODO-QSP: dynamic text: 'Pay is a percentage of sales, paid at end of shift. Your shifts would be Tuesda...
-    scene.text('Pay is a percentage of sales, paid at end of shift. Your shifts would be Tuesdays, Thursdays and Saturdays from 8:00 to 14:00.');
+    scene.text('\'Pay is a percentage of sales, paid at end of shift. Your shifts would be Tuesdays, Thursdays and Saturdays from 8:00 to 14:00.\'');
     scene.text('Government insist I have your papers, so it would be your main job.');
     scene.actions([
       { label: 'Leave', goto: ['city_market', 'start'] },
@@ -92,7 +90,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -103,7 +100,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     { label: 'Go to the book tray', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 15;
     qspCall(st, 'stat', '');
-    // TODO-QSP: dynamic text: You walk up to the stall and inspect what''s on sale. You see a fantasy book, a ...
     scene.text(`You walk up to the stall and inspect what's on sale. You see a fantasy book, a science fiction book and various romance novels. They all cost ${qspFunc(s, 'money', 'string_price', 350)} each.`);
     qspCall(st, 'library_functions', 'set_book_buy_acts');
     scene.actions([
@@ -129,7 +125,6 @@ function enterClo(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Clothes.</b></center>');
   scene.text('You inspect the cheap clothing the stall has to offer.');
   qspCall(s, 'shop_utils', 'display', 'grid_shop');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -147,7 +142,6 @@ function enterWares(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'item_cart', 'shopping_aisle', 'market');
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/residential/market/rinok.jpg');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Stop looking at the wares', goto: ['city_market', 'start'] },
   ]);
@@ -159,8 +153,7 @@ function enterTailor(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/residential/market/tailor.jpg');
-  // TODO-QSP: dynamic text: 'A sign reads, "Jacob Solomonovich Schneersohn, tailor, '+func('time', 'get_time...
-  scene.text('A sign reads, "Jacob Solomonovich Schneersohn, tailor, 8:00-16:00 Monday - Friday"');
+  scene.text('\'A sign reads, "Jacob Solomonovich Schneersohn, tailor, 8:00-16:00 Monday - Friday"\'');
   scene.text('An elderly Jewish man is sitting at a table. He pulls his glasses down a little and looks over the top of them as he points at you.');
   if (((s as any).portnoyQW ?? 0) > 0) {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterTailorActs(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -169,9 +162,7 @@ function enterTailor(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Tell him your name', handler: (st: GameState) => {
     (st as any).portnoyQW = 1;
-    // TODO-QSP: dynamic text: "<<$pcs_nickname>>"
     scene.text(`"${((st as any).pcs_nickname ?? '')}"`);
-    // TODO-QSP: dynamic text: "<<$pcs_nickname>>…What a pretty name. Come, sit here on this chair. How can I h...
     scene.text(`"${((st as any).pcs_nickname ?? '')}…What a pretty name. Come, sit here on this chair. How can I help you?"`);
     scene.actions([
       { label: 'Ask him about your clothes', handler: (st: GameState) => {
@@ -180,7 +171,6 @@ function enterTailor(s: GameState, scene: SceneBuilder): void {
     scene.text('"Can you tailor my clothes to fit me better?"');
     scene.text('"Of course I can! Otherwise, what kind of tailor would I be? Here, let me see what you\'re wearing."');
     scene.text('He jumps up and nimbly removes the tape from his neck and begins to measure your chest, waist and hips.');
-    // TODO-QSP: dynamic text: "I can adjust any clothing that doesn''t fit you for <<$func(''money'', ''string...
     scene.text(`"I can adjust any clothing that doesn't fit you for ${qspFunc(s, 'money', 'string_price', 500)} per item."`);
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterTailorActs(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
@@ -188,15 +178,12 @@ function enterTailor(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterTailorActs(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: dynamic text: "So <<$pcs_nickname>>. Do you need any clothing adjusted?"
   scene.text(`"So ${((s as any).pcs_nickname ?? '')}. Do you need any clothing adjusted?"`);
   qspCall(s, 'tailor', 'set_tailor_acts');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 10;

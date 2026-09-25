@@ -4,6 +4,13 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
   (s as any).BanSexTypeCheck = 1;
+  (s as any).BlowArray = undefined;
+  (s as any).CooneyArray = undefined;
+  (s as any).MissionArray = undefined;
+  (s as any).CowgirlArray = undefined;
+  (s as any).DoggyArray = undefined;
+  (s as any).SidewaysArray = undefined;
+  (s as any).AnalArray = undefined;
   ((s as any).BlowArray = (s as any).BlowArray ?? {})[0] = (-1);
   ((s as any).CooneyArray = (s as any).CooneyArray ?? {})[0] = (-1);
   ((s as any).CooneyArray = (s as any).CooneyArray ?? {})[1] = 12;

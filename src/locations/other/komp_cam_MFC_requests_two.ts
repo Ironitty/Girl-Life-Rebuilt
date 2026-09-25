@@ -1,6 +1,6 @@
 import { qspUntranslated } from '../_shared/qspUntranslated';
 
-import { qspCall, qspGoto } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -48,7 +48,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     }
     qspCall(st, 'stat', '');
     if (((st as any).camGirl ?? 0)?.['MFC_donate_message'] !== '') {
-      // TODO-QSP: $camGirl['MFC_donate_message']
+      scene.text(String(qspFunc(s, 'camGirl', 'MFC_donate_message') || ''));
     }
     scene.actions([
       { label: 'Further', goto: ['komp_cam_MFC_main', 'waitclients'] },
@@ -77,7 +77,6 @@ function enter(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Do', handler: (st: GameState) => {
     qspCall(st, 'komp_cam_functions', 'camming', 5, 'porn', 'request');
-    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/pc/items/accessories/computer/camwhore82...
     scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/pc/items/accessories/computer/camwhore82,` + (Math.floor(Math.random() * 10) + 0) + '.jpg"></center>');
     scene.text('That request sounds simple enough! You dutifully turn your back to the computer and slip two fingers inside your well-used ass, carefully pulling your asshole open.');
     scene.text('"More! We want to see more!" the chat encourages you, and you smile obediently while you do as they ask, pulling your sphincter wide open. The promises of donations make you go through with it, even when you feel a cool breeze in your rectum.');
@@ -88,7 +87,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal_funcs', 'stretch', 'anal', 1);
     qspCall(st, 'stat', '');
     if (((st as any).camGirl ?? 0)?.['MFC_donate_message'] !== '') {
-      // TODO-QSP: $camGirl['MFC_donate_message']
+      scene.text(String(qspFunc(s, 'camGirl', 'MFC_donate_message') || ''));
     }
     scene.actions([
       { label: 'Continue', goto: ['komp_cam_MFC_main', 'waitclients'] },
@@ -126,7 +125,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     }
     qspCall(st, 'stat', '');
     if (((st as any).camGirl ?? 0)?.['MFC_donate_message'] !== '') {
-      // TODO-QSP: $camGirl['MFC_donate_message']
+      scene.text(String(qspFunc(s, 'camGirl', 'MFC_donate_message') || ''));
     }
     scene.actions([
       { label: 'Further', goto: ['komp_cam_MFC_main', 'waitclients'] },
@@ -172,7 +171,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'vaginal_dildo', (-5), 'dick_length', 'masturbation');
     qspCall(st, 'stat', '');
     if (((st as any).camGirl ?? 0)?.['MFC_donate_message'] !== '') {
-      // TODO-QSP: $camGirl['MFC_donate_message']
+      scene.text(String(qspFunc(s, 'camGirl', 'MFC_donate_message') || ''));
     }
     scene.actions([
       { label: 'Continue', goto: ['komp_cam_MFC_main', 'waitclients'] },
@@ -212,7 +211,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (st as any).pcs_horny = ((st as any).pcs_horny ?? 0) - ((Math.floor(Math.random() * 11) + 10));
     qspCall(st, 'stat', '');
     if (((st as any).camGirl ?? 0)?.['MFC_donate_message'] !== '') {
-      // TODO-QSP: $camGirl['MFC_donate_message']
+      scene.text(String(qspFunc(s, 'camGirl', 'MFC_donate_message') || ''));
     }
     scene.actions([
       { label: 'Continue', goto: ['komp_cam_MFC_main', 'waitclients'] },
@@ -221,7 +220,6 @@ function enter(s: GameState, scene: SceneBuilder): void {
             ]);
           } else {
             if (String((s as any).locArgs?.[0] ?? '') === 85) {
-              // TODO-QSP: dynamic text: One of the viewers, noticing how drunk you are, asks in chat: "Hey, <<$pcs_nickn...
               scene.text(`One of the viewers, noticing how drunk you are, asks in chat: "Hey, ${((s as any).pcs_nickname ?? '')}! Show us something unusual! Anything!"`);
               (s as any).temp = qspUntranslated(s, "arrpos('sparrloc', 0)", { location: "komp_cam_MFC_requests_two" });
               if (((s as any).sparrvol ?? 0)?.[String((s as any).temp ?? 0)] > 0  &&  ((s as any).temp ?? 0) >= 0) {
@@ -242,7 +240,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.text('"I erm… I have a little secret, guys", you whisper, and slowly let some sperm trickle out of your pussy.');
     scene.text('The chat goes wild, awarding you with numerous comments on how they wish that was their load, and are a tad surprised when you even receive a few donations.');
     if (((st as any).camGirl ?? 0)?.['MFC_donate_message'] !== '') {
-      // TODO-QSP: $camGirl['MFC_donate_message']
+      scene.text(String(qspFunc(s, 'camGirl', 'MFC_donate_message') || ''));
     }
     scene.actions([
       { label: 'Continue', goto: ['komp_cam_MFC_main', 'waitclients'] },
@@ -286,7 +284,6 @@ function enter(s: GameState, scene: SceneBuilder): void {
           }
         }
       }
-      // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/pc/items/accessories/computer/camwhore' ...
       scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/pc/items/accessories/computer/camwhore` + ((st as any).img_source ?? '') + '.jpg"></center>');
       scene.text('In your drunken stupor you find some rope and rubber bands and begin to bind your breasts, using the helpful advice of the chat to guide you.');
       scene.text('Your senses have been dulled by the excessive amount of alcohol you drank, but you\'re still conscious enough to make sure you don\'t bind your breasts too tightly.');
@@ -297,7 +294,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (st as any).pcs_horny = ((st as any).pcs_horny ?? 0) - ((Math.floor(Math.random() * 11) + 10));
     qspCall(st, 'stat', '');
     if (((st as any).camGirl ?? 0)?.['MFC_donate_message'] !== '') {
-      // TODO-QSP: $camGirl['MFC_donate_message']
+      scene.text(String(qspFunc(s, 'camGirl', 'MFC_donate_message') || ''));
     }
     scene.actions([
       { label: 'Continue', goto: ['komp_cam_MFC_main', 'waitclients'] },
@@ -338,7 +335,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (st as any).pcs_horny = ((st as any).pcs_horny ?? 0) - ((Math.floor(Math.random() * 11) + 10));
     qspCall(st, 'stat', '');
     if (((st as any).camGirl ?? 0)?.['MFC_donate_message'] !== '') {
-      // TODO-QSP: $camGirl['MFC_donate_message']
+      scene.text(String(qspFunc(s, 'camGirl', 'MFC_donate_message') || ''));
     }
     scene.actions([
       { label: 'Continue', goto: ['komp_cam_MFC_main', 'waitclients'] },
@@ -381,7 +378,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (st as any).pcs_horny = ((st as any).pcs_horny ?? 0) - ((Math.floor(Math.random() * 11) + 10));
     qspCall(st, 'stat', '');
     if (((st as any).camGirl ?? 0)?.['MFC_donate_message'] !== '') {
-      // TODO-QSP: $camGirl['MFC_donate_message']
+      scene.text(String(qspFunc(s, 'camGirl', 'MFC_donate_message') || ''));
     }
     scene.actions([
       { label: 'Continue', goto: ['komp_cam_MFC_main', 'waitclients'] },
@@ -389,6 +386,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
                 ]);
               }
+              (s as any).temp = undefined;
             } else {
               if (String((s as any).locArgs?.[0] ?? '') === 86) {
                 scene.text('One of the viewers, noticing how drunk you are, asks in chat: "How much would it take for you to shove a bottle in your vagina? That would be so hot…"');
@@ -405,7 +403,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (st as any).pcs_horny = ((st as any).pcs_horny ?? 0) - ((Math.floor(Math.random() * 11) + 10));
     qspCall(st, 'stat', '');
     if (((st as any).camGirl ?? 0)?.['MFC_donate_message'] !== '') {
-      // TODO-QSP: $camGirl['MFC_donate_message']
+      scene.text(String(qspFunc(s, 'camGirl', 'MFC_donate_message') || ''));
     }
     scene.actions([
       { label: 'Further', goto: ['komp_cam_MFC_main', 'waitclients'] },
@@ -443,7 +441,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (st as any).pcs_horny = ((st as any).pcs_horny ?? 0) + ((Math.floor(Math.random() * 6) + 5));
     qspCall(st, 'stat', '');
     if (((st as any).camGirl ?? 0)?.['MFC_donate_message'] !== '') {
-      // TODO-QSP: $camGirl['MFC_donate_message']
+      scene.text(String(qspFunc(s, 'camGirl', 'MFC_donate_message') || ''));
     }
     scene.actions([
       { label: 'Continue', goto: ['komp_cam_MFC_main', 'waitclients'] },
@@ -484,7 +482,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (st as any).pcs_horny = ((st as any).pcs_horny ?? 0) - ((Math.floor(Math.random() * 6) + 5));
     qspCall(st, 'stat', '');
     if (((st as any).camGirl ?? 0)?.['MFC_donate_message'] !== '') {
-      // TODO-QSP: $camGirl['MFC_donate_message']
+      scene.text(String(qspFunc(s, 'camGirl', 'MFC_donate_message') || ''));
     }
     scene.actions([
       { label: 'Continue', goto: ['komp_cam_MFC_main', 'waitclients'] },
@@ -526,7 +524,6 @@ function enter(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
-    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/pc/items/accessories/computer/camwhore' ...
     scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/pc/items/accessories/computer/camwhore` + ((st as any).img_source ?? '') + '.jpg"></center>');
     if (((st as any).analPlugIn ?? 0) === 1) {
       scene.text('You smile to yourself, he\'s going to love what you have in store for him!');
@@ -539,7 +536,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'flash', (-3));
     qspCall(st, 'stat', '');
     if (((st as any).camGirl ?? 0)?.['MFC_donate_message'] !== '') {
-      // TODO-QSP: $camGirl['MFC_donate_message']
+      scene.text(String(qspFunc(s, 'camGirl', 'MFC_donate_message') || ''));
     }
     scene.actions([
       { label: 'Continue', goto: ['komp_cam_MFC_main', 'waitclients'] },

@@ -82,6 +82,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       }
     }
     qspCall(s, 'stat', '');
+    (s as any).temp_randB = undefined;
     scene.text('<center><h2>Gadukino</h2></center>');
     if (((s as any).month ?? 0) >= 4  &&  ((s as any).month ?? 0) <= 10) {
       if (((s as any).hour ?? 0) >= 6  &&  ((s as any).hour ?? 0) < 22) {
@@ -98,36 +99,32 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     }
     scene.text('A small village with many old wooden houses and even more in various states of disrepair. It has certainly seen better times.');
     if (qspFunc(s, 'car_funcs', 'is_here')) {
-      // TODO-QSP: dynamic text: <a href="exec:gs ''carF'', ''start''">Your <<$car[''name'']>></a> is close by.
       scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027carF/u0027, /u0027start/u0027); return false;">Your ${(((s as any).car ?? 0)?.['name'] ?? '')}</a> is close by.`);
     }
-    // TODO-QSP: dynamic text: Several small farms are scattered around the outskirts of the village, one of wh...
-    scene.text('Several small farms are scattered around the outskirts of the village, one of which belongs to <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(/u0027gad_gpyard/u0027, /u0027start/u0027); return false;">your grandparents</a>.');
+    scene.text('Several small farms are scattered around the outskirts of the village, one of which belongs to <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(\u0027gad_gpyard\u0027, \u0027start\u0027); return false;">your grandparents</a>.');
     if (((s as any).home ?? 0)?.['current'] === 'hunters_lodge'  ||  ((s as any).home ?? 0)?.['current'] === 'grandparents_house') {
       if (((s as any).vladimirQW ?? 0)?.['day'] === ((s as any).daystart ?? 0)  &&  ((s as any).vladimirQW ?? 0)?.['stage'] === 30  &&  ((s as any).hour ?? 0) >= 16  &&  ((s as any).week ?? 0) === 6) {
-        scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027vladimirQW_meet/u0027, /u00272/u0027); return false;">There\'s an Audi parked in the street, and standing beside it, you notice Vladimir</a>.');
+        scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027vladimirQW_meet\u0027, \u00272\u0027); return false;">There\'s an Audi parked in the street, and standing beside it, you notice Vladimir</a>.');
       }
       if (((s as any).vladimirQW ?? 0)?.['day'] === ((s as any).daystart ?? 0)  &&  ((s as any).vladimirQW ?? 0)?.['stage'] === 40  &&  ((s as any).hour ?? 0) >= 16  &&  ((s as any).week ?? 0) === 6) {
-        scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027vladimirQW_meet/u0027, /u00273/u0027); return false;">There\'s an Audi parked in the street, and standing beside it, you notice Vladimir</a>.');
+        scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027vladimirQW_meet\u0027, \u00273\u0027); return false;">There\'s an Audi parked in the street, and standing beside it, you notice Vladimir</a>.');
       }
       if (Object.keys((s as any).lover ?? {}).length > 0) {
         (s as any).temp_i = 0;
         (s as any).temp_max_i = 0;
-        // TODO-QSP: :lover_pickup_loop
-        (s as any).temp_npcid = (((s as any).lover ?? 0)?.[String((s as any).temp_i ?? 0)] ?? 0);
-        if (((s as any).npc_meetday ?? 0)?.[String((s as any).temp_npcid ?? 0)] === ((s as any).daystart ?? 0)  &&  ((s as any).npc_meethour ?? 0)?.[String((s as any).temp_npcid ?? 0)] === ((s as any).hour ?? 0)) {
-          // TODO-QSP: dynamic text: <b><a href="exec: gt ''lover_meet'', ''start'', ''<<$temp_npcid>>''"><<$npc_used...
-          scene.text(`<b><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027lover_meet/u0027, /u0027start/u0027, /u0027${((s as any).temp_npcid ?? '')}/u0027); return false;">${(((s as any).npc_usedname ?? 0)?.[String((s as any).temp_npcid ?? 0)] ?? '')}</a> is waiting in the street.</b>`);
-        }
-        (s as any).temp_i = ((s as any).temp_i ?? 0) + (1);
-        if (((s as any).temp_i ?? 0) < ((s as any).temp_max_i ?? 0)) {
-          // TODO-QSP: jump 'lover_pickup_loop'
-        }
+        do {
+          (s as any).temp_npcid = (((s as any).lover ?? 0)?.[String((s as any).temp_i ?? 0)] ?? 0);
+          if (((s as any).npc_meetday ?? 0)?.[String((s as any).temp_npcid ?? 0)] === ((s as any).daystart ?? 0)  &&  ((s as any).npc_meethour ?? 0)?.[String((s as any).temp_npcid ?? 0)] === ((s as any).hour ?? 0)) {
+            scene.text(`<b><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027lover_meet/u0027, /u0027start/u0027, String((s as any).temp_npcid ?? /u0027/u0027)); return false;">${(((s as any).npc_usedname ?? 0)?.[String((s as any).temp_npcid ?? 0)] ?? '')}</a> is waiting in the street.</b>`);
+          }
+          (s as any).temp_i = ((s as any).temp_i ?? 0) + (1);
+          (s as any).temp_i = undefined;
+          (s as any).temp_max_i = undefined;
+        } while (((s as any).temp_i ?? 0) < ((s as any).temp_max_i ?? 0));
       }
     }
     if (((s as any).npc_rel ?? 0)?.['A60'] > 0  &&  ((s as any).npc_known ?? 0)?.['A60'] === 1) {
-      // TODO-QSP: dynamic text: Just down the road from your grandparents'' house is <a href="exec:minut += 5 & ...
-      scene.text('Just down the road from your grandparents\' house is <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(/u0027gad_miroslava_home/u0027, /u0027start/u0027); return false;">Mira\'s house</a>.');
+      scene.text('Just down the road from your grandparents\' house is <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(\u0027gad_miroslava_home\u0027, \u0027start\u0027); return false;">Mira\'s house</a>.');
       scene.actions([
         { label: 'Go to Mira\'s house', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -136,7 +133,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).month ?? 0) >= 6  &&  ((s as any).month ?? 0) <= 9) {
       if (((s as any).hour ?? 0) >= 6  &&  ((s as any).hour ?? 0) <= 16) {
-        scene.text('An old farm truck is parked halfway off one of the roads nearby. The farmer who owns it will buy <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027gadukino/u0027, /u0027collection_point/u0027); return false;">mushrooms and berries</a> from the locals to sell back in the city. He makes multiple trips from Gadukino to the city daily to ensure the freshest produce so he can be found from 6 am to 4 pm.');
+        scene.text('An old farm truck is parked halfway off one of the roads nearby. The farmer who owns it will buy <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027gadukino\u0027, \u0027collection_point\u0027); return false;">mushrooms and berries</a> from the locals to sell back in the city. He makes multiple trips from Gadukino to the city daily to ensure the freshest produce so he can be found from 6 am to 4 pm.');
       } else {
         scene.text('This time of year, a truck usually comes by multiple times a day between 6 am and 4 pm to purchase mushrooms and berries from the locals.');
       }
@@ -144,11 +141,9 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       scene.text('During the summer, a truck usually comes into town from the city to buy fresh mushrooms and berries from the locals. It\'s not the right season for it right now, though.');
     }
     scene.text('In the center of the village is a small grass-covered square where villagers gather to meet and discuss or argue about politics or village life.');
-    // TODO-QSP: dynamic text: Near the square sits the old <a href="exec: minut += 3 & gt ''gad_church'',''sta...
-    scene.text('Near the square sits the old <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.3; return s; }); window.__gameStore.getState().doGoto(/u0027gad_church/u0027, /u0027start/u0027); return false;">chapel</a>, it is not in the best shape, but it appears well-loved.');
+    scene.text('Near the square sits the old <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.3; return s; }); window.__gameStore.getState().doGoto(\u0027gad_church\u0027, \u0027start\u0027); return false;">chapel</a>, it is not in the best shape, but it appears well-loved.');
     if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) < 20) {
-      // TODO-QSP: dynamic text: One of the buildings facing the square has a sign saying, <a href="exec: minut +...
-      scene.text('One of the buildings facing the square has a sign saying, <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(/u0027gad_store/u0027, /u0027/u0027); return false;">General Store</a>. A sign on the door proclaims it "OPEN". It looks like the only place in the village to buy goods.');
+      scene.text('One of the buildings facing the square has a sign saying, <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(\u0027gad_store\u0027, \u0027\u0027); return false;">General Store</a>. A sign on the door proclaims it "OPEN". It looks like the only place in the village to buy goods.');
       scene.actions([
         { label: 'Go to the general store', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -200,7 +195,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   }, goto: ['road', '10'] },
     ]);
   }
-  // TODO-QSP: end
+  (s as any).temp_rand = undefined;
   scene.build();
 }
 
@@ -211,7 +206,6 @@ function enterCollectionPoint(s: GameState, scene: SceneBuilder): void {
   scene.text('Parked halfway off the road is an old, unmarked truck. The back doors are open, and inside is a farmer looking to buy either edible mushrooms or berries the locals find while out in the nearby woods.');
   scene.text('Some find it odd that they\'re operating out of a truck. Still, you imagine it\'s cheaper to maintain than a shop, and it lets them get around to other villages like this one to buy their mushrooms and berries, too.');
   scene.text('There is a small sign hanging off of one of the back doors which says:');
-  // TODO-QSP: dynamic text: "Buying: mushrooms <<$func(''money'', ''string_profit'', 25)>>/kg, berries <<$fu...
   scene.text(`"Buying: mushrooms ${qspFunc(s, 'money', 'string_profit', 25)}/kg, berries ${qspFunc(s, 'money', 'string_profit', 25)}/kg"`);
   if (((s as any).boletus ?? 0) > 0  &&  ((s as any).bilberry ?? 0) > 0) {
     scene.actions([
@@ -219,7 +213,6 @@ function enterCollectionPoint(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 10;
     qspCall(st, 'money', 'earn', ((st as any).boletus ?? 0)*25+((st as any).bilberry ?? 0)*25);
     scene.img('images/locations/gadukino/village/collection_point.jpg');
-    // TODO-QSP: dynamic text: You decide to sell your mushrooms and berries for <<$func(''money'', ''string_pr...
     scene.text(`You decide to sell your mushrooms and berries for ${qspFunc(s, 'money', 'string_profit', ((st as any).boletus ?? '')*25+((st as any).bilberry ?? '')*25)}.`);
     qspCall(st, 'stat', '');
     scene.actions([
@@ -237,7 +230,6 @@ function enterCollectionPoint(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 10;
     qspCall(st, 'money', 'earn', ((st as any).boletus ?? 0)*25);
     scene.img('images/locations/gadukino/village/collection_point.jpg');
-    // TODO-QSP: dynamic text: You decide to sell your mushrooms for <<$func(''money'', ''string_profit'', bole...
     scene.text(`You decide to sell your mushrooms for ${qspFunc(s, 'money', 'string_profit', ((st as any).boletus ?? '')*25)}.`);
     qspCall(st, 'stat', '');
     scene.actions([
@@ -254,7 +246,6 @@ function enterCollectionPoint(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 10;
     qspCall(st, 'money', 'earn', ((st as any).bilberry ?? 0)*25);
     scene.img('images/locations/gadukino/village/collection_point.jpg');
-    // TODO-QSP: dynamic text: You decide to sell your berries for <<$func(''money'', ''string_profit'', bilber...
     scene.text(`You decide to sell your berries for ${qspFunc(s, 'money', 'string_profit', ((st as any).bilberry ?? '')*25)}.`);
     qspCall(st, 'stat', '');
     scene.actions([
@@ -265,7 +256,6 @@ function enterCollectionPoint(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go back to the village center', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -287,7 +277,6 @@ function enterSuccubusHunt(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', goto: ['gadukino', ''] },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -297,7 +286,6 @@ function enterSuccubusHunt2(s: GameState, scene: SceneBuilder): void {
   scene.text('You head to the kitchen for a midnight snack, and as you tear through the fridge, eating whatever looks appetizing, you hear a man curse.');
   scene.text('"Shit, what the hell happened to my door?!"');
   scene.text('You freeze on the spot. You didn\'t think anybody would actually come home while you were still here, but now that they did, maybe you can still salvage this mess.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Strip', handler: (st: GameState) => {
     qspCall(st, 'outfit', 'strip_all');
@@ -319,41 +307,38 @@ function enterSuccubusHunt2(s: GameState, scene: SceneBuilder): void {
       (st as any).scxcum = 'multiple times';
     }
     (st as any).i = 0;
-    // TODO-QSP: :sucfeeding_loop
-    (st as any).i = ((st as any).i ?? 0) + (1);
-    (st as any).orgasm_or = 'yes';
-    qspCall(st, 'arousal', 'vaginal', (-5), 'dom', 'no_orgasm_msg');
-    if (((st as any).scfeed ?? 0) > ((st as any).i ?? 0)) {
-      // TODO-QSP: jump 'sucfeeding_loop'
-    }
-    qspCall(st, 'arousal', 'end');
-    (st as any).pcs_willpwr = ((st as any).pcs_willpwr ?? 0) + (((st as any).scfeed ?? 0));
-    (st as any).succubxp = ((st as any).succubxp ?? 0) + (6);
-    (st as any).sexnutrition = ((st as any).sexnutrition ?? 0) + (30 * ((st as any).scfeed ?? 0));
-    (st as any).sucabscum = 1;
-    (st as any).minut = ((st as any).minut ?? 0) + (15 + (20 * ((st as any).scfeed ?? 0)) / ((st as any).succublvl ?? 0));
-    scene.img('images/pc/body/succubusself.jpg');
-    scene.text('You ride him hard, desperate to get your hungry pussy the nourishment it requires.');
-    if (((st as any).scrand ?? 0) < ((st as any).succublvl ?? 0)) {
-      scene.text('Your seduction and succubus powers were strong enough to get your victim hard. Still, they weren\'t enough to make him forget about his situation: He is giving you hateful looks, clearly pissed about his door and food and, oh yeah, you are raping him, but you simply ignore that.');
-      scene.text('All you need is his sperm. You could care less about his happiness, and if he wants to complain about a woman like you fucking his brains out, that\'s his problem. Just as you\'re thinking, your powers surge and force him to come, unloading his jizz deep into your waiting cunt.');
-      // TODO-QSP: dynamic text: You don''t know how long you go at it with him exactly. Still, after coming insi...
-      scene.text(`You don't know how long you go at it with him exactly. Still, after coming inside you ${((st as any).scxcum ?? '')} and thus making you come too, he runs out of energy and falls unconscious. You lift yourself off your passed-out plaything and head for the kitchen to collect your clothes and one last snack, feeling wonderfully relaxed after getting your fix.`);
-      scene.text('Then you head out the back door, making sure to break the handle on the way out - you\'re nothing if not consistent.');
-    } else {
-      scene.text('He was resisting you initially, but after a while, your powers break any resistance he had in him. By the time his first orgasm hits and he shoots his sperm into your needy cunt, he would have betrayed his own mother, much less broken his front door and laid his fridge at your feet, just to be inside you a little longer.');
-      scene.text('However unsavoury the first few minutes of your meeting, this state of bliss you share with him pushes that memory into the far back of your mind and lets both of you enjoy the hard ride you\'re giving him.');
-      // TODO-QSP: dynamic text: You don''t know how long you go at it with him exactly. Still, after coming insi...
-      scene.text(`You don't know how long you go at it with him exactly. Still, after coming inside you ${((st as any).scxcum ?? '')} and thus making you come too, he runs out of energy and falls unconscious. You lift yourself off your passed-out plaything, patting his head affectionately, and head for the kitchen to collect your clothes and one last snack, feeling wonderfully relaxed after getting your fix. There's nothing better than sex with a willing subject.`);
-      scene.text('Then you head out the back door. For a split second, you consider breaking that door, too… but why add insult to injury when he has pleased you?');
-    }
-    qspCall(st, 'stat', '');
-    scene.actions([
-      { label: 'Leave', handler: (st: GameState) => {
+    do {
+      (st as any).i = ((st as any).i ?? 0) + (1);
+      (st as any).orgasm_or = 'yes';
+      qspCall(st, 'arousal', 'vaginal', (-5), 'dom', 'no_orgasm_msg');
+      qspCall(st, 'arousal', 'end');
+      (st as any).pcs_willpwr = ((st as any).pcs_willpwr ?? 0) + (((st as any).scfeed ?? 0));
+      (st as any).succubxp = ((st as any).succubxp ?? 0) + (6);
+      (st as any).sexnutrition = ((st as any).sexnutrition ?? 0) + (30 * ((st as any).scfeed ?? 0));
+      (st as any).sucabscum = 1;
+      (st as any).minut = ((st as any).minut ?? 0) + (15 + (20 * ((st as any).scfeed ?? 0)) / ((st as any).succublvl ?? 0));
+      scene.img('images/pc/body/succubusself.jpg');
+      scene.text('You ride him hard, desperate to get your hungry pussy the nourishment it requires.');
+      if (((st as any).scrand ?? 0) < ((st as any).succublvl ?? 0)) {
+        scene.text('Your seduction and succubus powers were strong enough to get your victim hard. Still, they weren\'t enough to make him forget about his situation: He is giving you hateful looks, clearly pissed about his door and food and, oh yeah, you are raping him, but you simply ignore that.');
+        scene.text('All you need is his sperm. You could care less about his happiness, and if he wants to complain about a woman like you fucking his brains out, that\'s his problem. Just as you\'re thinking, your powers surge and force him to come, unloading his jizz deep into your waiting cunt.');
+        scene.text(`You don't know how long you go at it with him exactly. Still, after coming inside you ${((st as any).scxcum ?? '')} and thus making you come too, he runs out of energy and falls unconscious. You lift yourself off your passed-out plaything and head for the kitchen to collect your clothes and one last snack, feeling wonderfully relaxed after getting your fix.`);
+        scene.text('Then you head out the back door, making sure to break the handle on the way out - you\'re nothing if not consistent.');
+      } else {
+        scene.text('He was resisting you initially, but after a while, your powers break any resistance he had in him. By the time his first orgasm hits and he shoots his sperm into your needy cunt, he would have betrayed his own mother, much less broken his front door and laid his fridge at your feet, just to be inside you a little longer.');
+        scene.text('However unsavoury the first few minutes of your meeting, this state of bliss you share with him pushes that memory into the far back of your mind and lets both of you enjoy the hard ride you\'re giving him.');
+        scene.text(`You don't know how long you go at it with him exactly. Still, after coming inside you ${((st as any).scxcum ?? '')} and thus making you come too, he runs out of energy and falls unconscious. You lift yourself off your passed-out plaything, patting his head affectionately, and head for the kitchen to collect your clothes and one last snack, feeling wonderfully relaxed after getting your fix. There's nothing better than sex with a willing subject.`);
+        scene.text('Then you head out the back door. For a split second, you consider breaking that door, too… but why add insult to injury when he has pleased you?');
+      }
+      (st as any).scfeed = undefined;
+      qspCall(st, 'stat', '');
+      scene.actions([
+        { label: 'Leave', handler: (st: GameState) => {
     qspCall(st, 'outfit', 'wear_last_worn');
     qspGoto(st, 'gadukino', '');
   } },
-    ]);
+      ]);
+    } while (((st as any).scfeed ?? 0) > ((st as any).i ?? 0));
   } },
     ]);
   } },
@@ -731,7 +716,6 @@ function enterMiraEvents(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -791,7 +775,6 @@ function enterOtherEvents(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 

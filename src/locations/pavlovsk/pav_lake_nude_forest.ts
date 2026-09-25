@@ -6,6 +6,7 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'pav_lake_nude_forest', '');
+  (s as any).locclass = undefined;
   qspCall(s, 'stat', '');
   scene.text('The woods near the secludeed beach');
   scene.img('images/locations/pavlovsk/lake/secluded_beach/voyeurism/voyeurism_start_event_4.jpg');

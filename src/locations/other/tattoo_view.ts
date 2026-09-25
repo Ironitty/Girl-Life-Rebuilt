@@ -70,7 +70,6 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
     return;
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -78,7 +77,7 @@ function enterSorted(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === 'add') {
     qspCall(s, 'tattoo_attributes', '$ARGS[2]', ((s as any).locArgs?.[3] ?? 0));
     if ((!((s as any).TatQuality ?? 0))) {
-      // TODO-QSP: exit
+      return;
     }
     qspCall(s, 'shop_utils', 'sorted', 'add_to_number', ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[3] ?? 0), ((s as any).locArgs?.[4] ?? 0));
     qspCall(s, 'shop_utils', 'sorted', 'add_to_quality', ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[3] ?? 0), ((s as any).TatQuality ?? 0));
@@ -86,7 +85,6 @@ function enterSorted(s: GameState, scene: SceneBuilder): void {
     return;
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -106,7 +104,6 @@ function enterDisplay(s: GameState, scene: SceneBuilder): void {
     return;
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -126,7 +123,6 @@ function enterViewItem(s: GameState, scene: SceneBuilder): void {
   } },
 ]);
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -139,9 +135,9 @@ function enterViewItemShop(s: GameState, scene: SceneBuilder): void {
     ((s as any).shop_utils_view = (s as any).shop_utils_view ?? {})['price_string'] = qspFunc(s, 'money', 'string_price', (((s as any).shop_utils_view ?? 0)?.['price']));
   } else {
     ((s as any).shop_utils_view = (s as any).shop_utils_view ?? {})['price_string'] = qspFunc(s, 'wrap', 'neg s', qspFunc(s, 'money', 'string_price', (((s as any).shop_utils_view ?? 0)?.['base_price']))) + ' <b>' + qspFunc(s, 'money', 'string_price', (((s as any).shop_utils_view ?? 0)?.['price'])) + '</b>';
-    // TODO-QSP: 'Now ' + shop_utils_view['discount_total'] + '% off' + iif(shop_utils_view['discount_total'] <= 10, ...
+    scene.text('Now ' + (((s as any).shop_utils_view ?? 0)?.['discount_total'] ?? '') + '% off' + ((((s as any).shop_utils_view ?? 0)?.['discount_total'] <= 10) ? ('') : ('!')));
   }
-  // TODO-QSP: 'Price: ' + $shop_utils_view['price_string']
+  scene.text('Price: ' + (((s as any).shop_utils_view ?? 0)?.['price_string'] ?? ''));
   if (qspFunc(s, 'money', 'can_afford', ((s as any).shop_utils_view ?? 0)?.['price']) === 0) {
     scene.text('You cannot afford this tattoo.');
     scene.actions([
@@ -151,7 +147,6 @@ function enterViewItemShop(s: GameState, scene: SceneBuilder): void {
 ]);
     return;
   }
-  // TODO-QSP: end
   scene.actions([
     { label: '', labelFn: (s: GameState) => 'Get this tattoo (' + String((((s as any).shop_utils_view ?? 0)?.['price_string'] ?? '') ?? '') + ')', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 60;

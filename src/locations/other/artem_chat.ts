@@ -99,14 +99,11 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
         if (((s as any).artemQW ?? 0)?.['slutlove'] === 0  &&  ((s as any).artemQW ?? 0)?.['sveslut'] === 0  &&  ((s as any).artemQW ?? 0)?.['artemlove'] === 1  &&  ((s as any).fame ?? 0)?.['pav_slut'] >= 250  &&  ((s as any).grupTipe ?? 0) === 5) {
           scene.img('images/characters/pavlovsk/school/boy/artem/talk1.jpg');
           scene.text('You quietly walk past Artem and enter his room, sitting on the couch without saying a word.');
-          // TODO-QSP: dynamic text: Artem looks at you questioningly. "<<$pcs_nickname>>…"
           scene.text(`Artem looks at you questioningly. "${((s as any).pcs_nickname ?? '')}…"`);
           scene.text('Tears roll down your cheeks, but you still don\'t know what to say and just sit there crying softly.');
           scene.text('Artem is clueless as to what he should do and just hugs you. You\'re fairly sure he knows about your reputation. Surely he must…');
           scene.text('"They all know… Everyone in Pavlovsk knows!" you sniffle.');
-          // TODO-QSP: dynamic text: Artem keeps hugging you. "<<$pcs_nickname>>, I…"
           scene.text(`Artem keeps hugging you. "${((s as any).pcs_nickname ?? '')}, I…"`);
-          // TODO-QSP: dynamic text: You break away from him and shout hysterically. "What do you mean, ''<<$pcs_nick...
           scene.text(`You break away from him and shout hysterically. "What do you mean, '${((s as any).pcs_nickname ?? '')}'?! No one calls me that anymore! It's just '${((s as any).gnikname ?? '')}' now…"`);
           scene.text('Artem wipes the tears from your face and hugs you tightly.');
           scene.text('"I still love you…" he whispers.');
@@ -117,7 +114,6 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
           } else {
             scene.text('You shake your head sadly. "I know you think that now, but it won\'t be the same. People will treat me like dirt, Artem! And they\'ll do the same to you for dating a whore!"');
           }
-          // TODO-QSP: dynamic text: You hear his voice crack when he tries to reassure you. "<<$pcs_nickname>>, plea...
           scene.text(`You hear his voice crack when he tries to reassure you. "${((s as any).pcs_nickname ?? '')}, please calm down! We'll figure something out! Just give it some time…"`);
           scene.text('You can tell it\'s been on his mind as well, and that he\'s having a difficult time with it too. Nevertheless, he\'s willing to support you.');
           (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -128,7 +124,6 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/boy/artem/talk2.jpg');
     scene.text('You lean towards Artem and kiss him amorously.');
     scene.text('"Thank you, Artem…" you mutter. "I don\'t know what to say, besides… I love you!"');
-    // TODO-QSP: dynamic text: "I love you too, <<$pcs_nickname>>," he replies.
     scene.text(`"I love you too, ${((st as any).pcs_nickname ?? '')}," he replies.`);
     scene.text('You press your lips against his again and kiss him. He embraces you and kisses you back.');
     scene.text('You just lay silent in each other\'s arms for a minute, just thinking about the implications of it all. After that, you realize you need to get on with your day and he probably does too. You give Artem a quick kiss on his cheek and thank him for his support as you get up and gather your things. At least you know you\'re not alone in this.');
@@ -144,14 +139,13 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
     ((st as any).artemQW = (st as any).artemQW ?? {})['sveslut'] = 1;
     scene.img('images/characters/pavlovsk/school/boy/artem/talk3.jpg');
     scene.text('You quietly get up and begin to gather your things.');
-    // TODO-QSP: dynamic text: Artem looks at you questioningly. "<<$pcs_nickname>>, what are you doing?"
     scene.text(`Artem looks at you questioningly. "${((st as any).pcs_nickname ?? '')}, what are you doing?"`);
     scene.text('You shake your head as you softly mutter through your tears. "I\'m sorry, Artem… I can\'t ask this from you. I can\'t ask this from anyone. I\'m really sorry, but I don\'t think we should see each other any more."');
     scene.text('After you gather your things, you leave his apartment while ignoring his pleas.');
     scene.actions([
       { label: 'Leave Artem\'s apartment', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
-    // TODO-QSP: artemQW['artemblok'] = 1
+    ((st as any).artemQW = (st as any).artemQW ?? {})['artemblok'] = 1;
   }, goto: ['pod_ezd', 'etaj_1'] },
     ]);
   } },
@@ -160,7 +154,6 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
           if (((s as any).artemQW ?? 0)?.['date'] === 0  &&  ((s as any).artemQW ?? 0)?.['artfall'] >= 10  &&  ((s as any).fame ?? 0)?.['pav_slut'] < 150  &&  ((s as any).artemQW ?? 0)?.['dateask'] !== ((s as any).daystart ?? 0)) {
             ((s as any).artemQW = (s as any).artemQW ?? {})['dateask'] = ((s as any).daystart ?? 0);
             scene.img('images/characters/shared/headshots_main/big2.jpg');
-            // TODO-QSP: dynamic text: Artem smiles at you. "<<$pcs_nickname>>, do you want to go for a walk in the par...
             scene.text(`Artem smiles at you. "${((s as any).pcs_nickname ?? '')}, do you want to go for a walk in the park?"`);
             scene.actions([
               { label: 'Stay here', handler: (st: GameState) => {
@@ -189,7 +182,6 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
             if (((s as any).artemQW ?? 0)?.['date'] > 0  &&  ((s as any).artemQW ?? 0)?.['date'] <= 3  &&  ((s as any).fame ?? 0)?.['pav_slut'] < 150  &&  ((s as any).artemQW ?? 0)?.['dateask'] !== ((s as any).daystart ?? 0)) {
               ((s as any).artemQW = (s as any).artemQW ?? {})['dateask'] = ((s as any).daystart ?? 0);
               scene.img('images/characters/shared/headshots_main/big2.jpg');
-              // TODO-QSP: dynamic text: Artem smiles at you. "<<$pcs_nickname>>, would you like to go out on a date?"
               scene.text(`Artem smiles at you. "${((s as any).pcs_nickname ?? '')}, would you like to go out on a date?"`);
               scene.actions([
                 { label: 'Stay here', handler: (st: GameState) => {
@@ -237,7 +229,6 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/boy/artem/makeout.jpg');
     scene.text('You smile at him. "Awww, they\'re beautiful! You shouldn\'t have!"');
     scene.text('He blushes. "Not as beautiful as you…"');
-    // TODO-QSP: dynamic text: He leans in and kisses you before you can pull away and gently caresses your <<$...
     scene.text(`He leans in and kisses you before you can pull away and gently caresses your ${((st as any).titsize ?? '')} breasts through your clothes.`);
     (st as any).minut = ((st as any).minut ?? 0) + 2;
     qspCall(st, 'stat', '');
@@ -321,7 +312,6 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
                   if (((s as any).artemQW ?? 0)?.['date'] >= 6  &&  ((s as any).artemQW ?? 0)?.['date'] <= 8  &&  ((s as any).fame ?? 0)?.['pav_slut'] < 200  &&  ((s as any).artemQW ?? 0)?.['dateask'] !== ((s as any).daystart ?? 0)) {
                     ((s as any).artemQW = (s as any).artemQW ?? {})['dateask'] = ((s as any).daystart ?? 0);
                     scene.img('images/characters/shared/headshots_main/big2.jpg');
-                    // TODO-QSP: dynamic text: Artem smiles at you as he walks over and hugs you. "<<$pcs_nickname>>, would you...
                     scene.text(`Artem smiles at you as he walks over and hugs you. "${((s as any).pcs_nickname ?? '')}, would you like to go out on another date?"`);
                     scene.actions([
                       { label: 'Stay here', handler: (st: GameState) => {
@@ -355,15 +345,12 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
                       scene.text('He smiles at you. "Well, we\'ve spent a lot of time dating, so I figured it would be nice to make it official."');
                       scene.text('You\'re still not sold on the idea and question him further. "Make what official? And where did you get that wine from?"');
                       if (((s as any).fame ?? 0)?.['pav_slut'] >= 200  ||  ((s as any).grupTipe ?? 0) === 4) {
-                        // TODO-QSP: dynamic text: Artem reassures you. "Relax, <<$pcs_nickname>>. My parents are leaving to see a ...
                         scene.text(`Artem reassures you. "Relax, ${((s as any).pcs_nickname ?? '')}. My parents are leaving to see a friend and I got the wine from my uncle. So please… Let's just sit down and chat?"`);
                       } else {
-                        // TODO-QSP: dynamic text: Artem reassures you. "Relax, <<$pcs_nickname>>. My parents are leaving to see a ...
                         scene.text(`Artem reassures you. "Relax, ${((s as any).pcs_nickname ?? '')}. My parents are leaving to see a friend to give us some privacy. And my mom gave me that wine, to share with you! My parents are very happy I met you, and my mother picked the wine. So please… Let's just sit down and chat?"`);
                       }
                       scene.text('You relax a little and nod at him. "Okay… I have to admit, that does sound nice."');
                       scene.text('You spend the next half hour talking about your plans after you finish school. The bottle of wine is empty before you know it, and you feel a bit tipsy.');
-                      // TODO-QSP: dynamic text: After you''ve drank most of the wine and talked for a while, Artem is silent for...
                       scene.text(`After you've drank most of the wine and talked for a while, Artem is silent for a few seconds before he nervously works up his courage. "${((s as any).pcs_nickname ?? '')}… Will you be my girlfriend?"`);
                       (s as any).minut = ((s as any).minut ?? 0) + 30;
                       if (((s as any).pcs_hydra ?? 0) >= 100) {
@@ -392,7 +379,6 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'npc_relationship', 'modify', 'A2', 'adore');
     scene.img('images/characters/pavlovsk/school/boy/artem/hugging.jpg');
     scene.text('A huge grin appears on his face as he gets up and rushes around the table, almost knocking it over in his haste to get to you. He pulls you up and into a tight fierce hug, nuzzling your neck as the two of you hug.');
-    // TODO-QSP: dynamic text: "You just made me the happiest guy in the world! I love you, <<$pcs_nickname>>!"
     scene.text(`"You just made me the happiest guy in the world! I love you, ${((st as any).pcs_nickname ?? '')}!"`);
     scene.actions([
       { label: 'Tell him you love him too', handler: (st: GameState) => {
@@ -416,7 +402,6 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
                       if (((s as any).artemQW ?? 0)?.['bf'] === 1  &&  (Math.floor(Math.random() * 4) + 0) === 0  &&  ((s as any).artemQW ?? 0)?.['dateask'] !== ((s as any).daystart ?? 0)) {
                         ((s as any).artemQW = (s as any).artemQW ?? {})['dateask'] = ((s as any).daystart ?? 0);
                         scene.img('images/characters/shared/headshots_main/big2.jpg');
-                        // TODO-QSP: dynamic text: Artem smiles at you as he walks over and hugs you. "<<$pcs_nickname>>, would you...
                         scene.text(`Artem smiles at you as he walks over and hugs you. "${((s as any).pcs_nickname ?? '')}, would you like to go out on another date?"`);
                         scene.actions([
                           { label: 'Stay here', handler: (st: GameState) => {
@@ -449,7 +434,6 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/artem/talk.jpg');
     scene.text('You quietly walk past Artem and enter his room, sitting on the couch without saying a word.');
-    // TODO-QSP: dynamic text: He looks at you questioningly. "<<$pcs_nickname>>…"
     scene.text(`He looks at you questioningly. "${((st as any).pcs_nickname ?? '')}…"`);
     scene.text('You frown as you look at him. "We need to talk."');
     scene.text('His eyes start to water up. "Okay… about what?" He\'s trying to put on a brave face and salvage this.');
@@ -526,7 +510,6 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/artem/artemcry.jpg');
     scene.text('You quietly walk past Artem and enter his room, sitting on the couch without saying a word.');
-    // TODO-QSP: dynamic text: He looks at you questioningly. "<<$pcs_nickname>>?"
     scene.text(`He looks at you questioningly. "${((st as any).pcs_nickname ?? '')}?"`);
     scene.text('You frown as you look at him. "We need to talk…"');
     scene.text('His eyes start to water up. "Okay… About what?" He\'s trying to put on a brave face.');
@@ -843,7 +826,6 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/artem/sex/strapon/first_strapon2.jpg');
     if (((st as any).strapNumber ?? 0) < 4) {
-      // TODO-QSP: dynamic text: You pull the strapon harness with its <<dick>>cm <<$dick_girth>> dildo attached ...
       scene.text(`You pull the strapon harness with its ${((st as any).dick ?? '')}cm ${((st as any).dick_girth ?? '')} dildo attached out of your purse and hold it up, showing it to him. "I thought we could use this."`);
       scene.text('His eyes bulge when he sees what you\'re holding. "Wait… You want to wear that and… you know…"');
       scene.text('You grin at his reaction. "Come on baby, I\'ll go easy on you. I let you fuck me in the ass, so it\'s only fair. You\'ll enjoy it, I promise."');
@@ -854,7 +836,6 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
         { label: 'Put on the harness', goto: ['artem_sex', 'strapon_first'] },
       ]);
     } else {
-      // TODO-QSP: dynamic text: You pull the strapon harness with its <<dick>>cm <<$dick_girth>> dildo out of yo...
       scene.text(`You pull the strapon harness with its ${((st as any).dick ?? '')}cm ${((st as any).dick_girth ?? '')} dildo out of your purse and hold it up, showing it to him. "I thought we could use this."`);
       scene.text('His eyes bulge when he sees how big it is and starts shaking his head. "Hell no! That thing is massive! There\'s no way you\'re sticking that in me!"');
       scene.text('You sigh. "Come on baby, I\'ll go easy on you! I let you fuck me in the ass, so it\'s only fair. You\'ll enjoy it, I promise."');
@@ -894,7 +875,6 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
     scene.text('You smile at him and talk softer. "I really loved doing that and I want to do it again."');
     scene.text('He seems speechless and unsure for a moment, then softly smiles. "Yeah, I guess, if it will make you happy, my love." As he talks, he starts taking off his pants.');
     if (((st as any).strapNumber ?? 0) < 4) {
-      // TODO-QSP: dynamic text: You pull the strapon harness with its <<dick>>cm <<$dick_girth>> dildo attached ...
       scene.text(`You pull the strapon harness with its ${((st as any).dick ?? '')}cm ${((st as any).dick_girth ?? '')} dildo attached out of your purse and hold it up, showing it to him. "Here it is."`);
       scene.text('He looks at the dildo. "Okay fine, but you still can\'t tell anyone we did this, okay?"');
       scene.text('You nod. "I swear I won\'t tell anyone unless you\'re okay with it." He frowns at how you worded it, but it seems good enough.');
@@ -912,7 +892,6 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     } else {
-      // TODO-QSP: dynamic text: You pull the strapon harness with its <<dick>>cm <<$dick_girth>> dildo out of yo...
       scene.text(`You pull the strapon harness with its ${((st as any).dick ?? '')}cm ${((st as any).dick_girth ?? '')} dildo out of your purse and hold it up, showing it to him. "I thought we could use this."`);
       scene.text('His eyes bulge when he sees how big it is and starts shaking his head. "Hell no! That thing is massive! There\'s no way you\'re sticking that in me!"');
       scene.text('You sigh. "Come on baby, I\'ll go easy on you! I let you fuck me in the ass, so it\'s only fair. You\'ll enjoy it, I promise."');
@@ -936,7 +915,6 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
     scene.text('You wonder if he might let you fuck him in the butt again. "Artem, I was thinking tonight I can fuck you again, what do you think?"');
     scene.text('He blushes bright red. "Okay, sure, sweetie, you can fuck me again." As he talks, he starts taking off his pants.');
     if (((st as any).strapNumber ?? 0) < 4) {
-      // TODO-QSP: dynamic text: You pull the strapon harness with its <<dick>>cm <<$dick_girth>> dildo attached ...
       scene.text(`You pull the strapon harness with its ${((st as any).dick ?? '')}cm ${((st as any).dick_girth ?? '')} dildo attached out of your purse and hold it up, showing it to him. "This will soon be up your ass and you'll be moaning like a slut." You say with a giggle.`);
       scene.text('He looks at the dildo and for a moment you think he actually looks eager, then he looks at you and smiles. "Okay fine, but you still can\'t tell anyone we are doing this, okay?"');
       scene.text('You nod. "I swear I won\'t tell anyone unless you\'re okay with it." He frowns at how you worded it, but it seems good enough.');
@@ -954,7 +932,6 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     } else {
-      // TODO-QSP: dynamic text: You pull the strapon harness with its <<dick>>cm <<$dick_girth>> dildo out of yo...
       scene.text(`You pull the strapon harness with its ${((st as any).dick ?? '')}cm ${((st as any).dick_girth ?? '')} dildo out of your purse and hold it up, showing it to him. "I thought we could use this."`);
       scene.text('His eyes bulge when he sees how big it is and starts shaking his head. "Hell no! That thing is massive! There\'s no way you\'re sticking that in me!"');
       scene.text('You sigh. "Come on baby, I\'ll go easy on you! I let you fuck me in the ass, so it\'s only fair. You\'ll enjoy it, I promise."');
@@ -1020,13 +997,10 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/artem/talk.jpg');
     if (((st as any).boyfriend_temp ?? 0) !== 'Julia') {
-      // TODO-QSP: dynamic text: You sigh in a way only those in love can sigh. "Hopefully <<$boyfriend_temp>> an...
       scene.text(`You sigh in a way only those in love can sigh. "Hopefully ${((st as any).boyfriend_temp ?? '')} and I can get married soon and get our own place."`);
       scene.text('He frowns and shrugs. "Well, I hope you guys are happy."');
     } else {
-      // TODO-QSP: dynamic text: You sigh in a way only those in love can sigh. "Hopefully <<$boyfriend_temp>> an...
       scene.text(`You sigh in a way only those in love can sigh. "Hopefully ${((st as any).boyfriend_temp ?? '')} and I can get a place of our own soon."`);
-      // TODO-QSP: dynamic text: "Wait, you''re dating <<$boyfriend_temp>>?"
       scene.text(`"Wait, you're dating ${((st as any).boyfriend_temp ?? '')}?"`);
       scene.text('"I… Please don\'t make a big deal out of it. And don\'t tell anyone. I haven\'t exactly been spreading the news about us. People wouldn\'t understand."');
       scene.text('He frowns and shrugs. "Sure, you know I can keep a secret."');
@@ -1070,13 +1044,11 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
     scene.text('"So, what have you been up to lately?" you ask.');
     scene.text('He gives you a slightly puzzled look. "Up to?"');
     scene.text('You smile at him. "You know, what have you been doing in your free time?"');
-    // TODO-QSP: dynamic text: The light dawns on him. "Oh…" He looks thoughtful for a moment. "I want to show ...
     scene.text(`The light dawns on him. "Oh…" He looks thoughtful for a moment. "I want to show you something, ${((st as any).pcs_nickname ?? '')}…"`);
     scene.text('To your surprise, he takes out a book and shows it to you. "It\'s one of my favorite books…"');
     scene.actions([
       { label: 'What\'s it about?', handler: (st: GameState) => {
     qspCall(st, 'npc_relationship', 'modify', 'A2', 'like');
-    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/pc/items/accessories/books/fantasy' + ra...
     scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/pc/items/accessories/books/fantasy` + (Math.floor(Math.random() * 9) + 1) + '.jpg"></center>');
     scene.text('Not really what you expected, but you decide to be nice and widen your eyes. "Oh, what\'s it about?"');
     scene.text('He shines up in the biggest smile. "Oh, it\'s about this hero that needs to fight for a kingdom and the bad guy has all sorts of weird creatures that he forces to attack him. He finds this hidden world in his own world, so the book takes a completely different path than the one you expect it to take."');
@@ -1112,7 +1084,6 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Stop talking', goto: ['artemhome', 'artemroom'] },
   ]);
@@ -1135,10 +1106,8 @@ function enterAskedstrip(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/boy/artem/talk.jpg');
     scene.text('You decline. "No, I wouldn\'t be comfortable doing that."');
     if (((st as any).artemQW ?? 0)?.['stripsee'] === 0) {
-      // TODO-QSP: dynamic text: You can tell he''s seriously let down by your refusal. "Please <<$pcs_nickname>>...
       scene.text(`You can tell he's seriously let down by your refusal. "Please ${((st as any).pcs_nickname ?? '')}, all the other guys have seen a naked girl before! Please?"`);
     } else {
-      // TODO-QSP: dynamic text: You can tell he''s seriously let down by your refusal. "Please <<$pcs_nickname>>...
       scene.text(`You can tell he's seriously let down by your refusal. "Please ${((st as any).pcs_nickname ?? '')}, I really enjoyed watching you naked last time. Please?"`);
     }
     qspCall(st, 'willpower', 'exhib', 'resist', 'easy');
@@ -1170,7 +1139,6 @@ function enterAskedstrip(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Agree to strip', goto: ['artem_chat', 'stripagree', '0'] },
   ]);
@@ -1190,7 +1158,6 @@ function enterStripagree(s: GameState, scene: SceneBuilder): void {
   scene.text('You see him visibly swallow as he blushes before nodding. "Yes, I do. I would really love it if you did."');
   scene.text('You think it over for a moment before nodding. "Okay fine. Sit back and enjoy the show."');
   scene.text('He grins widely as you start slowly stripping out of your clothes, teasing him as you do. You might as well have some fun with this.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Start stripping', goto: ['artem_events', 'striptease'] },
   ]);
@@ -1198,7 +1165,6 @@ function enterStripagree(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterArtemgirlfriend(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: end
   scene.actions([
     { label: 'Tell him to stop', handler: (st: GameState) => {
     scene.img('images/characters/shared/headshots_main/big2.jpg');

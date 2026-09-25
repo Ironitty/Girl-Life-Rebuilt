@@ -38,7 +38,6 @@ function enterMaksimBlackmail(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Show him your tits', handler: (st: GameState) => {
     ((st as any).maksimQW = (st as any).maksimQW ?? {})['blackmail'] = 1;
@@ -87,13 +86,13 @@ function enterMaksimBlackmail(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'exp_gain', 'inhib', (Math.floor(Math.random() * 3) + 1));
     ((st as any).maksimQW = (st as any).maksimQW ?? {})['blackmail_flash_friends'] = ((st as any).maksimQW['blackmail_flash_friends'] ?? 0) + (1);
     (st as any).flash_image = 'images/characters/pavlovsk/resident/maksim/flashtits1.jpg';
-    // TODO-QSP: $flash_text[0] = 'You sigh as you pull aside your clothes and flash your breasts at them.'
-    // TODO-QSP: $flash_text[0] += '<br>"Holy shit! She really did it!" They all look surprised, but Maksim just look...
-    // TODO-QSP: $flash_text[0] += '<br>"See? I told you guys." One of them reaches for your bare breasts and you sta...
-    // TODO-QSP: $flash_text[0] += '<br><br>"Why not?" his friend asks.'
-    // TODO-QSP: $flash_text[0] += '<br>"I''m still breaking her in and it will be when I say." He gives his friends ...
-    // TODO-QSP: $flash_text[1] = 'The boys start handing over money, way more than the cigarettes would cost. He mus...
-    // TODO-QSP: $flash_text[1] += '<br>You can''t help but roll your eyes as you rearrange your clothes back in plac...
+    ((st as any).flash_text = (st as any).flash_text ?? {})[0] = 'You sigh as you pull aside your clothes and flash your breasts at them.';
+    ((st as any).flash_text = (st as any).flash_text ?? {})[0] = ((st as any).flash_text[0] ?? 0) + ('<br>"Holy shit! She really did it!" They all look surprised, but Maksim just looks smug.');
+    ((st as any).flash_text = (st as any).flash_text ?? {})[0] = ((st as any).flash_text[0] ?? 0) + ('<br>"See? I told you guys." One of them reaches for your bare breasts and you start to back away, but Maksim grabs his hand and pushes it away. "Hey, no touching!" You\'re surprised and a little relieved.');
+    ((st as any).flash_text = (st as any).flash_text ?? {})[0] = ((st as any).flash_text[0] ?? 0) + ('<br><br>"Why not?" his friend asks.');
+    ((st as any).flash_text = (st as any).flash_text ?? {})[0] = ((st as any).flash_text[0] ?? 0) + ('<br>"I\'m still breaking her in and it will be when I say." He gives his friends a look to show that he\'s in charge here. "Now pay up!"');
+    ((st as any).flash_text = (st as any).flash_text ?? {})[1] = 'The boys start handing over money, way more than the cigarettes would cost. He must have bet them that you would show your breasts. You sigh again and can\'t believe you\'re more or less being pimped out by a young boy. They all stare at your breasts for a few more minutes before Maksim looks at you. "Okay, you can go. We\'ll talk later." He tries to make it sound like he\'s in charge and sexy at the same time. He failed, but his friends seem to have bought it.';
+    ((st as any).flash_text = (st as any).flash_text ?? {})[1] = ((st as any).flash_text[1] ?? 0) + ('<br>You can\'t help but roll your eyes as you rearrange your clothes back in place and walk away.');
     qspCall(st, 'flash', 'tits', 'outdoors', 5, 2);
     scene.actions([
       { label: 'Leave', goto: ['pav_complex', 'start'] },
@@ -128,13 +127,13 @@ function enterMaksimBlackmail(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'exp_gain', 'inhib', (Math.floor(Math.random() * 3) + 1));
     ((st as any).maksimQW = (st as any).maksimQW ?? {})['blackmail_flash_friends'] = ((st as any).maksimQW['blackmail_flash_friends'] ?? 0) + (1);
     (st as any).flash_image = 'images/characters/pavlovsk/resident/maksim/flashtits1.jpg';
-    // TODO-QSP: $flash_text[0] = 'You sigh as you pull aside your clothes and flash your breasts at them.'
-    // TODO-QSP: $flash_text[0] += '<br>"Holy shit! She really did it!" They all look surprised, but Maksim just look...
-    // TODO-QSP: $flash_text[0] += '<br>"See? I told you guys." One of them reaches for your bare breasts and you sta...
-    // TODO-QSP: $flash_text[0] += '<br><br>"Why not?" his friend asks.'
-    // TODO-QSP: $flash_text[0] += '<br>"I''m still breaking her in and it will be when I say." He gives his friends ...
-    // TODO-QSP: $flash_text[1] = 'The boys start handing over money, way more than the cigarettes would cost. He mus...
-    // TODO-QSP: $flash_text[1] += 'You can''t help but roll your eyes as you rearrange your clothes back in place an...
+    ((st as any).flash_text = (st as any).flash_text ?? {})[0] = 'You sigh as you pull aside your clothes and flash your breasts at them.';
+    ((st as any).flash_text = (st as any).flash_text ?? {})[0] = ((st as any).flash_text[0] ?? 0) + ('<br>"Holy shit! She really did it!" They all look surprised, but Maksim just looks smug.');
+    ((st as any).flash_text = (st as any).flash_text ?? {})[0] = ((st as any).flash_text[0] ?? 0) + ('<br>"See? I told you guys." One of them reaches for your bare breasts and you start to back away, but Maksim grabs his hand and pushes it away. "Hey, no touching!" You\'re surprised and a little relieved.');
+    ((st as any).flash_text = (st as any).flash_text ?? {})[0] = ((st as any).flash_text[0] ?? 0) + ('<br><br>"Why not?" his friend asks.');
+    ((st as any).flash_text = (st as any).flash_text ?? {})[0] = ((st as any).flash_text[0] ?? 0) + ('<br>"I\'m still breaking her in and it will be when I say." He gives his friends a look to show that he\'s in charge here. "Now pay up!"');
+    ((st as any).flash_text = (st as any).flash_text ?? {})[1] = 'The boys start handing over money, way more than the cigarettes would cost. He must have bet them that you would show your breasts. You sigh again and can\'t believe you\'re more or less being pimped out by a young boy. They all stare at your breasts for a few more minutes before Maksim looks at you. "Okay, you can go. We\'ll talk later." He tries to make it sound like he\'s in charge and sexy at the same time. He failed, but his friends seem to have bought it.';
+    ((st as any).flash_text = (st as any).flash_text ?? {})[1] = ((st as any).flash_text[1] ?? 0) + ('You can\'t help but roll your eyes as you rearrange your clothes back in place and walk away.');
     qspCall(st, 'flash', 'tits', 'outdoors', 5, 2);
     scene.actions([
       { label: 'Leave', goto: ['pav_complex', 'start'] },
@@ -164,7 +163,6 @@ function enterHallwayFlashTits(s: GameState, scene: SceneBuilder): void {
   scene.text('"Fine," he sneers before stepping out of your way. "Go on then."');
   qspCall(s, 'arousal', 'flashlite', 1, 'humiliation', 'sub');
   qspCall(s, 'arousal', 'end');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Enter', goto: ['anushapt', 'hallway'] },
   ]);
@@ -189,7 +187,6 @@ function enterHallwayFlashPussy(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'arousal', 'flashlite', 1, 'humiliation', 'sub');
   qspCall(s, 'arousal', 'end');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Enter', goto: ['anushapt', 'hallway'] },
   ]);
@@ -208,7 +205,6 @@ function enterMaksimRoomNaked(s: GameState, scene: SceneBuilder): void {
   scene.text('You quickly get dressed and leave his room.');
   qspCall(s, 'arousal', 'flash', 5, 'humiliation', 'sub');
   qspCall(s, 'arousal', 'end');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go back to the hall', goto: ['anushapt', 'hallway'] },
   ]);

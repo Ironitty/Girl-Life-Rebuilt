@@ -42,7 +42,6 @@ function enterYgym(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'wardrobe', 'default_clothing_options');
     qspCall(s, 'exercise', 'start');
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the room', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -103,7 +102,6 @@ function enterYpool(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go back inside', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -125,7 +123,6 @@ function enterYsauna(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'themes', 'indoors');
   scene.text('<center><b>Sauna</b></center>');
   scene.img('images/locations/city/suburb/mansion/y_sauna.jpg');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go back inside', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;

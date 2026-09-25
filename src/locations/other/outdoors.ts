@@ -95,7 +95,6 @@ function enterSetWeather_TempFall(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).weatherMeanTemp = ((s as any).weatherMeanTemp ?? 0) + (40);
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -127,7 +126,7 @@ function enterWeather(s: GameState, scene: SceneBuilder): void {
   (s as any).temper = ((s as any).weatherTemper ?? 0) + (((s as any).weatherTempDelta ?? 0) * ((s as any).temper ?? 0)) / 360;
   ((s as any).temper = (s as any).temper ?? {})[1] = ((s as any).temper ?? 0) % 10;
   if (((s as any).temper ?? 0)[1] < 0) {
-    // TODO-QSP: temper[1] *= -1
+    ((s as any).temper = (s as any).temper ?? {})[1] = ((s as any).temper[1] ?? 0) * ((-1));
   }
   ((s as any).temper = (s as any).temper ?? {})[0] = ((s as any).temper ?? 0) / 10;
   if (((s as any).temper ?? 0) < -5) {
@@ -247,7 +246,6 @@ function enterWeather(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -299,6 +297,7 @@ function enterGetTempString(s: GameState, scene: SceneBuilder): void {
                 }
               }
             }
+            (s as any).temp_sd_scale = undefined;
             return;
           } else {
             (s as any).result = '' + ((s as any).locArgs?.[1] ?? 0) + '.' + ((s as any).locArgs?.[2] ?? 0) + '°C';
@@ -324,41 +323,41 @@ function enterGetTempString(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  (s as any).temp_sd_scale = undefined;
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterMain(s: GameState, scene: SceneBuilder): void {
   (s as any).weatherImage = '<img height = ' + (((s as any).stat_cfg ?? 0)?.['weather_height']) + ' src="images/system/weather/wthr' + ((s as any).DayStage ?? 0) + '';
   if (((s as any).temper ?? 0) < -10) {
-    // TODO-QSP: $weatherImage += '1'
+    (s as any).weatherImage = ((s as any).weatherImage ?? 0) + ('1');
   } else {
     if (((s as any).temper ?? 0) <= 5) {
-      // TODO-QSP: $weatherImage += '2'
+      (s as any).weatherImage = ((s as any).weatherImage ?? 0) + ('2');
     } else {
       if (((s as any).temper ?? 0) <= 19) {
-        // TODO-QSP: $weatherImage += '3'
+        (s as any).weatherImage = ((s as any).weatherImage ?? 0) + ('3');
       } else {
-        // TODO-QSP: $weatherImage += '4'
+        (s as any).weatherImage = ((s as any).weatherImage ?? 0) + ('4');
       }
     }
   }
   if (((s as any).weatherFall ?? 0) < 30) {
-    // TODO-QSP: $weatherImage += '1'
+    (s as any).weatherImage = ((s as any).weatherImage ?? 0) + ('1');
   } else {
     if (((s as any).weatherFall ?? 0) < 60) {
-      // TODO-QSP: $weatherImage += '2'
+      (s as any).weatherImage = ((s as any).weatherImage ?? 0) + ('2');
     } else {
-      // TODO-QSP: $weatherImage += '3'
+      (s as any).weatherImage = ((s as any).weatherImage ?? 0) + ('3');
     }
   }
   if (((s as any).sunWeather ?? 0) === 1) {
-    // TODO-QSP: $weatherImage += '1'
+    (s as any).weatherImage = ((s as any).weatherImage ?? 0) + ('1');
   } else {
-    // TODO-QSP: $weatherImage += '2'
+    (s as any).weatherImage = ((s as any).weatherImage ?? 0) + ('2');
   }
-  // TODO-QSP: $weatherImage += '.jpg">'
+  (s as any).weatherImage = ((s as any).weatherImage ?? 0) + ('.jpg">');
   if (((s as any).location_type ?? 0) === 'public_outdoors'  ||  ((s as any).location_type ?? 0) === 'secluded'  ||  ((s as any).location_type ?? 0) === 'event_outdoors') {
     ((s as any).location_type = (s as any).location_type ?? {})['is_outdoors'] = 1;
     qspCall(s, 'themes', 'outdoors');
@@ -384,40 +383,21 @@ function enterMain(s: GameState, scene: SceneBuilder): void {
         if ((!((s as any).frost ?? 0))) {
           (s as any).Time15Minute = ((s as any).totminut ?? 0);
         }
-        // TODO-QSP: :Time15MinuteLoop
-        if (((s as any).coatworntype ?? 0) === 'none') {
-          (s as any).coatQualityBonus = 0;
-        } else {
-          (s as any).coatQualityBonus = ((s as any).PCoatQuality ?? 0) - 2;
-        }
-        if (((s as any).coatworntype ?? 0) === 'none') {
-          if (((s as any).temper ?? 0) < 0) {
-            (s as any).frost = ((s as any).frost ?? 0) + (1);
+        do {
+          if (((s as any).coatworntype ?? 0) === 'none') {
+            (s as any).coatQualityBonus = 0;
+          } else {
+            (s as any).coatQualityBonus = ((s as any).PCoatQuality ?? 0) - 2;
           }
-          if (((s as any).temper ?? 0) < -20) {
-            (s as any).frost = ((s as any).frost ?? 0) + (2);
-          }
-          if (((s as any).temper ?? 0) < -30) {
-            (s as any).frost = ((s as any).frost ?? 0) + (5);
-          }
-          if (((s as any).pcs_energy ?? 0) < 20) {
-            (s as any).frost = ((s as any).frost ?? 0) + (1);
-          }
-          if (((s as any).pcs_hydra ?? 0) < 20) {
-            (s as any).frost = ((s as any).frost ?? 0) + (1);
-          }
-          if (((s as any).pantyworntype ?? 0) === 'none') {
-            (s as any).frost = ((s as any).frost ?? 0) + (1);
-          }
-          if (((s as any).pcs_sweat ?? 0) > 20) {
-            (s as any).frost = ((s as any).frost ?? 0) + (1);
-          }
-        } else {
-          if (((s as any).temper ?? 0) < -10  &&  ((s as any).PCoatWarm ?? 0) === 1) {
-            if (((s as any).temper ?? 0) < -30) {
-              (s as any).frost = ((s as any).frost ?? 0) + (2);
-            } else {
+          if (((s as any).coatworntype ?? 0) === 'none') {
+            if (((s as any).temper ?? 0) < 0) {
               (s as any).frost = ((s as any).frost ?? 0) + (1);
+            }
+            if (((s as any).temper ?? 0) < -20) {
+              (s as any).frost = ((s as any).frost ?? 0) + (2);
+            }
+            if (((s as any).temper ?? 0) < -30) {
+              (s as any).frost = ((s as any).frost ?? 0) + (5);
             }
             if (((s as any).pcs_energy ?? 0) < 20) {
               (s as any).frost = ((s as any).frost ?? 0) + (1);
@@ -432,31 +412,48 @@ function enterMain(s: GameState, scene: SceneBuilder): void {
               (s as any).frost = ((s as any).frost ?? 0) + (1);
             }
           } else {
-            if (((s as any).temper ?? 0) < -20  &&  ((s as any).PCoatWarm ?? 0) === 2) {
-              (s as any).frost = ((s as any).frost ?? 0) + (1);
+            if (((s as any).temper ?? 0) < -10  &&  ((s as any).PCoatWarm ?? 0) === 1) {
+              if (((s as any).temper ?? 0) < -30) {
+                (s as any).frost = ((s as any).frost ?? 0) + (2);
+              } else {
+                (s as any).frost = ((s as any).frost ?? 0) + (1);
+              }
               if (((s as any).pcs_energy ?? 0) < 20) {
                 (s as any).frost = ((s as any).frost ?? 0) + (1);
               }
               if (((s as any).pcs_hydra ?? 0) < 20) {
                 (s as any).frost = ((s as any).frost ?? 0) + (1);
               }
+              if (((s as any).pantyworntype ?? 0) === 'none') {
+                (s as any).frost = ((s as any).frost ?? 0) + (1);
+              }
               if (((s as any).pcs_sweat ?? 0) > 20) {
                 (s as any).frost = ((s as any).frost ?? 0) + (1);
               }
             } else {
-              if (((s as any).temper ?? 0) < -30  &&  ((s as any).PCoatWarm ?? 0) === 3) {
+              if (((s as any).temper ?? 0) < -20  &&  ((s as any).PCoatWarm ?? 0) === 2) {
                 (s as any).frost = ((s as any).frost ?? 0) + (1);
+                if (((s as any).pcs_energy ?? 0) < 20) {
+                  (s as any).frost = ((s as any).frost ?? 0) + (1);
+                }
+                if (((s as any).pcs_hydra ?? 0) < 20) {
+                  (s as any).frost = ((s as any).frost ?? 0) + (1);
+                }
+                if (((s as any).pcs_sweat ?? 0) > 20) {
+                  (s as any).frost = ((s as any).frost ?? 0) + (1);
+                }
+              } else {
+                if (((s as any).temper ?? 0) < -30  &&  ((s as any).PCoatWarm ?? 0) === 3) {
+                  (s as any).frost = ((s as any).frost ?? 0) + (1);
+                }
               }
             }
           }
-        }
-        if (((s as any).frost ?? 0) >= 12) {
-          (s as any).sickstage = 1;
-        }
-        (s as any).Time15Minute = ((s as any).Time15Minute ?? 0) + (15);
-        if ((((s as any).totminut ?? 0) - ((s as any).Time15Minute ?? 0)) >= 15) {
-          // TODO-QSP: jump 'Time15MinuteLoop'
-        }
+          if (((s as any).frost ?? 0) >= 12) {
+            (s as any).sickstage = 1;
+          }
+          (s as any).Time15Minute = ((s as any).Time15Minute ?? 0) + (15);
+        } while ((((s as any).totminut ?? 0) - ((s as any).Time15Minute ?? 0)) >= 15);
       }
     }
     if (((s as any).outdoors_checks ?? 0) + 15 < ((s as any).totminut ?? 0)) {
@@ -503,7 +500,6 @@ function enterMain(s: GameState, scene: SceneBuilder): void {
     ((s as any).location_type = (s as any).location_type ?? {})['is_outdoors'] = 0;
     qspCall(s, 'themes', 'indoors');
   }
-  // TODO-QSP: end
   scene.build();
 }
 

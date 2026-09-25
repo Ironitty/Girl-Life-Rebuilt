@@ -16,7 +16,6 @@ function enterWatchSonia(s: GameState, scene: SceneBuilder): void {
   scene.text('You carefully walk through an opening between the trees and bushes, pushing some branches aside to see what\'s happening. There, you see Sonia on her haunches in front of Svyatoslav, sucking on the head of his dick while using one hand to stroke his shaft.');
   qspCall(s, 'arousal', 'voyeur_sex', 2);
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave them be', goto: ['pav_park', 'deeper_park'] },
     { label: 'Keep watching', handler: (st: GameState) => {
@@ -104,7 +103,6 @@ function enterOldmanHouse(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Start to strip', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/park/event/walk/day/deep/sex/strip1.mp4');
@@ -205,7 +203,6 @@ function enterOldmanCowgirl(s: GameState, scene: SceneBuilder): void {
   scene.text('You feel his cock slide into your slit, letting go of his dick as you lower yourself further and start riding him.');
   qspCall(s, 'arousal', 'vaginal', 3, 'inhibition');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Keep riding him', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/park/event/walk/day/deep/sex/old_man_camera5.jpg');
@@ -239,7 +236,6 @@ function enterOldmanDoggy(s: GameState, scene: SceneBuilder): void {
   scene.text('A moment later, he slides his dick into your pussy and slowly starts to fuck you. "Oh god, your pussy is so tight!"');
   qspCall(s, 'arousal', 'vaginal', 3, 'inhibition');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Stay on all fours', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/park/event/walk/day/deep/sex/old_man_camera8.jpg');
@@ -274,7 +270,6 @@ function enterOldmanFinish(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'hj', 1, 'inhibition');
   qspCall(s, 'cum_call', 'face', 'Old Man', 0);
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Don\'t move', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/park/event/walk/day/deep/sex/old_man_camera8.jpg');
@@ -313,7 +308,6 @@ function enterEatlera(s: GameState, scene: SceneBuilder): void {
     scene.text('She reaches out her hand and clasps the back of your head, pulling your face against her pussy as she grinds against you.');
     scene.text('"Look at that bitch go! She fucking loves eating pussy!" Lena says.');
     scene.text('Lera seems utterly unaware of what the other girls are saying as she starts moaning louder, gripping your hair tightly and forcing your face against her crotch as hard as she can as she grinds against you.');
-    // TODO-QSP: dynamic text: A few minutes later, she lets out a cry and shudders against you, then lets go o...
     scene.text(`A few minutes later, she lets out a cry and shudders against you, then lets go of your head and steps back. "Fuck, that was good. You're great at eating pussy, ${((st as any).pcs_nickname ?? '')}." As she puts her pants back on, she bites her lip and gives you a once over.`);
     scene.text('Lena grabs you by the hair and drags you over to her, where she turns around and bends over.');
     qspCall(st, 'arousal', 'cuni_give', 3, 'lesbian', 'exhibitionism', 'sub');
@@ -322,7 +316,6 @@ function enterEatlera(s: GameState, scene: SceneBuilder): void {
       { label: 'Start licking', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/park/event/gopnik/sex/girls/lena.jpg');
     scene.text('Lena leans back against your face as you start eating her out. It doesn\'t take long until she\'s soaking wet herself, and you begin to get into it. You can hear the other girls making catcalls and other comments, but you don\'t notice or pay attention to what they say. Instead, you just lose yourself in the moment until Lena starts shuddering and cums really hard on your face.');
-    // TODO-QSP: dynamic text: "Look at her. She never cared about the beer, she just loves pussy. She looks li...
     scene.text(`"Look at her. She never cared about the beer, she just loves pussy. She looks like she's about to cum herself," Alyona comments as she lays back with her pants pulled off and her panties pulled aside. "Come on over and give my kitty a tongue bath, ${((st as any).pcs_nickname ?? '')}."`);
     scene.text('"Fuck, this is so hot. I\'m already wet just watching," Anushka says as she bites her lower lip and watches you.');
     qspCall(st, 'arousal', 'cuni_give', 5, 'lesbian', 'exhibitionism', 'sub');
@@ -331,7 +324,6 @@ function enterEatlera(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/park/event/gopnik/sex/girls/alyona.jpg');
     scene.text('As you start licking her slit, Alyona grabs you by the hair and starts rubbing her clit against your face as you lick her. She rubs one out on your face while you lick her before she starts grinding harder against your face; you can hear the others still chatting away, but you don\'t pay attention to anything they say. You just focus on the pussy in front of you.');
     scene.text('Before long, Alyona cries out as she has an orgasm. "Fuck, that was nice. A girl could get used to this."');
-    // TODO-QSP: dynamic text: Lena glances over at Alyona. "Maybe we should make this a regular thing? <<$pcs_...
     scene.text(`Lena glances over at Alyona. "Maybe we should make this a regular thing? ${((st as any).pcs_nickname ?? '')} seems to love it." She then turns her head to look at you. "Well? come on, you've got one left."`);
     scene.text('You glance over and see Anuska with her panties off and her skirt hiked up already lying on her back on the picnic table with her legs spread for you, watching you with hungry eyes.');
     qspCall(st, 'arousal', 'cuni_give', 5, 'lesbian', 'exhibitionism', 'sub');
@@ -384,7 +376,6 @@ function enterEatlera(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/park/event/gopnik/sex/girls/lera.jpg');
     scene.text('Lera seems utterly unaware of what the other girls are saying as she starts moaning louder and grips your hair tightly, forcing your face against her crotch as hard as she can as she grinds against you.');
-    // TODO-QSP: dynamic text: A few minutes later, she lets out a cry and shudders against you, then lets go o...
     scene.text(`A few minutes later, she lets out a cry and shudders against you, then lets go of your head and steps back. "Fuck, that was good. You're great at eating pussy, ${((st as any).pcs_nickname ?? '')}" As she puts her pants back on, she bites her lip and gives you a once-over.`);
     qspCall(st, 'arousal', 'cuni_give', 3, 'lesbian', 'exhibitionism', 'sub');
     qspCall(st, 'arousal', 'end');
@@ -402,7 +393,6 @@ function enterEatlera(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -411,7 +401,6 @@ function enterPressuredForBra(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'public_outdoors';
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/park/event/gopnik/fall_strip1.jpg');
-  // TODO-QSP: dynamic text: You''re really starting to get wasted as Dan speaks up. "Hey, <<$pcs_nickname>>,...
   scene.text(`You're really starting to get wasted as Dan speaks up. "Hey, ${((s as any).pcs_nickname ?? '')}, what colour is your bra?"`);
   scene.text('You look at him, a little confused. "What?"');
   scene.text('"You were going to show us what colour your bra is," he says as if it were a fact.');
@@ -449,7 +438,6 @@ function enterPressuredForBra(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Expose your bra', handler: (st: GameState) => {
     qspCall(st, 'fame', 'pav', 'sex', 1);
@@ -476,13 +464,13 @@ function enterPressuredForBra(s: GameState, scene: SceneBuilder): void {
         (st as any).grp_msg = 'You know, being such a nerd, you\'re much less shy than I expected.';
       }
     }
-    // TODO-QSP: dynamic text: "<<$grp_msg>> Not to mention a hell of a lot more fun."
     scene.text(`"${((st as any).grp_msg ?? '')} Not to mention a hell of a lot more fun."`);
     scene.text('The rest all agree and you blush at the compliment as you put your top back on.');
     scene.text('Shortly after, the party is over and everyone starts to go their own way, but Vitek calls out to you as you walk away. "You should really come back and hang out with us again."');
     scene.text('Most of the others agree before they split up and head off.');
     qspCall(st, 'arousal', 'flashlite', 5, 'sub', 'inhibition', 'humiliation');
     qspCall(st, 'arousal', 'end');
+    (st as any).grp_msg = undefined;
     scene.actions([
       { label: 'Leave', goto: ['pav_park', 'deeper_park'] },
     ]);
@@ -496,7 +484,6 @@ function enterPressuredForPanties(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'public_outdoors';
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/park/event/gopnik/fall_strip1.jpg');
-  // TODO-QSP: dynamic text: You''re really starting to get wasted as Dan speaks up. "<<$pcs_nickname>>, what...
   scene.text(`You're really starting to get wasted as Dan speaks up. "${((s as any).pcs_nickname ?? '')}, what colour are your panties?"`);
   scene.text('You look at him, a little confused. "What?"');
   scene.text('"You were going to show us what colour your panties are," he says as if it were a fact.');
@@ -534,7 +521,6 @@ function enterPressuredForPanties(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Expose your panties', handler: (st: GameState) => {
     qspCall(st, 'fame', 'pav', 'sex', 2);
@@ -561,13 +547,13 @@ function enterPressuredForPanties(s: GameState, scene: SceneBuilder): void {
         (st as any).grp_msg = 'You know, being such a nerd, you\'re much less shy than I expected.';
       }
     }
-    // TODO-QSP: dynamic text: "<<$grp_msg>> Not to mention a hell of a lot more fun."
     scene.text(`"${((st as any).grp_msg ?? '')} Not to mention a hell of a lot more fun."`);
     scene.text('The rest all agree and you blush at the compliment as you put your bottoms back on.');
     scene.text('Shortly after, the party is over and everyone starts to go their own way, but Vitek calls out to you as you begin to walk away. "You should really come back and hang out with us again."');
     scene.text('Most of the others agree before they split up and head off.');
     qspCall(st, 'arousal', 'flashlite', 5, 'sub', 'inhibition', 'humiliation');
     qspCall(st, 'arousal', 'end');
+    (st as any).grp_msg = undefined;
     scene.actions([
       { label: 'Leave', goto: ['pav_park', 'deeper_park'] },
     ]);
@@ -581,7 +567,6 @@ function enterPressuredForTits(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'public_outdoors';
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/park/event/gopnik/fall_strip1.jpg');
-  // TODO-QSP: dynamic text: You''re really starting to get wasted now. As you do, Dan speaks up. "Hey, <<$pc...
   scene.text(`You're really starting to get wasted now. As you do, Dan speaks up. "Hey, ${((s as any).pcs_nickname ?? '')}, show us your tits."`);
   scene.text('You look at him, a little confused. "What?"');
   scene.text('"You were going to show us your tits," Dan says as if it were a fact.');
@@ -619,7 +604,6 @@ function enterPressuredForTits(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Expose your tits', handler: (st: GameState) => {
     qspCall(st, 'fame', 'pav', 'sex', 3);
@@ -646,13 +630,13 @@ function enterPressuredForTits(s: GameState, scene: SceneBuilder): void {
         (st as any).grp_msg = 'You have nice tits for one of the nerds. You should wear tighter clothes and show them off more.';
       }
     }
-    // TODO-QSP: dynamic text: "<<$grp_msg>> Not to mention a hell of a lot more fun."
     scene.text(`"${((st as any).grp_msg ?? '')} Not to mention a hell of a lot more fun."`);
     scene.text('The rest all agree and you blush at the compliment as you put your top back on.');
     scene.text('Shortly after, the party is over and everyone starts to go their own way, but Vitek calls out to you as you begin to walk away. "You should really come back and hang out with us again."');
     scene.text('Most of the others agree before they split up and head off.');
     qspCall(st, 'arousal', 'flash', 5, 'sub', 'inhibition', 'humiliation');
     qspCall(st, 'arousal', 'end');
+    (st as any).grp_msg = undefined;
     scene.actions([
       { label: 'Leave', goto: ['pav_park', 'deeper_park'] },
     ]);
@@ -666,7 +650,6 @@ function enterPressuredForPussy(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'public_outdoors';
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/park/event/gopnik/fall_strip1.jpg');
-  // TODO-QSP: dynamic text: You''re really starting to get wasted as Dan speaks up. "Hey, <<$pcs_nickname>>,...
   scene.text(`You're really starting to get wasted as Dan speaks up. "Hey, ${((s as any).pcs_nickname ?? '')}, show us your pussy."`);
   scene.text('You look at him, a little confused. "What?"');
   scene.text('"You were going to show us your pussy," he says as if it were a fact.');
@@ -704,7 +687,6 @@ function enterPressuredForPussy(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Expose your pussy', handler: (st: GameState) => {
     qspCall(st, 'fame', 'pav', 'sex', 4);
@@ -731,13 +713,13 @@ function enterPressuredForPussy(s: GameState, scene: SceneBuilder): void {
         (st as any).grp_msg = 'For one of the nerds, you\'re a lot cooler than I was expecting.';
       }
     }
-    // TODO-QSP: dynamic text: "You have a real fuckable looking pussy. <<$grp_msg>> Not to mention a hell of a...
     scene.text(`"You have a real fuckable looking pussy. ${((st as any).grp_msg ?? '')} Not to mention a hell of a lot more fun."`);
     scene.text('The rest all agree and you blush at the compliment as you put your top back on.');
     scene.text('Shortly after, the party is over and everyone starts to go their own way, but Vitek calls out to you as you begin to walk away. "You should really come back and hang out with us again."');
     scene.text('Most of the others agree before they split up and head off.');
     qspCall(st, 'arousal', 'flash', 5, 'sub', 'inhibition', 'humiliation');
     qspCall(st, 'arousal', 'end');
+    (st as any).grp_msg = undefined;
     scene.actions([
       { label: 'Leave', goto: ['pav_park', 'deeper_park'] },
     ]);
@@ -790,7 +772,6 @@ function enterPressuredForBlowjob(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Get down on your knees', handler: (st: GameState) => {
     qspCall(st, 'fame', 'pav', 'sex', 10);
@@ -892,7 +873,6 @@ function enterPressuredForOralGb(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Get down on your knees', handler: (st: GameState) => {
     qspCall(st, 'fame', 'pav', 'sex', 50);
@@ -1042,7 +1022,6 @@ function enterPressuredForGangbang(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Agree', handler: (st: GameState) => {
     qspCall(st, 'fame', 'pav', 'sex', 100);
@@ -1106,7 +1085,6 @@ function enterPressuredForGangbang(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Get fucked', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/park/event/gopnik/sex/sveta_fall/gangbang/gangbang4.jpg');
-    // TODO-QSP: dynamic text: You''re pushed down on all fours and Vitek shoves his dick back in your mouth be...
     scene.text(`You're pushed down on all fours and Vitek shoves his dick back in your mouth before you feel a ${(((st as any).dick_length ?? 0)?.[4] ?? '')}cm ${(((st as any).dick_girth ?? 0)?.[4] ?? '')} dick being shoved in your wet pussy.`);
     scene.text('"Damn, this bitch is sopping wet already," Arkadi states.');
     scene.text('Vitek speaks up next. "Alright, move. My turn with this slut."');
@@ -1117,7 +1095,6 @@ function enterPressuredForGangbang(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Keep getting fucked', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/park/event/gopnik/sex/sveta_fall/gangbang/gangbang5.jpg');
-    // TODO-QSP: dynamic text: You feel a dick being pulled out of you, only to have a <<dick_length[0]>>cm <<$...
     scene.text(`You feel a dick being pulled out of you, only to have a ${(((st as any).dick_length ?? 0)?.[0] ?? '')}cm ${(((st as any).dick_girth ?? 0)?.[0] ?? '')} cock shoved back in. You keep sucking dick as you're roughly getting fucked - the guys only treat you as a warm wet hole to fuck for their pleasure.`);
     qspCall(st, 'arousal', 'vaginal', 3, (((st as any).npcID ?? 0)?.[0] ?? 0), 'sub', 'inhibition', 'humiliation', 'group', 'gangbang');
     qspCall(st, 'arousal', 'bj', (-3), (((st as any).npcID ?? 0)?.[1] ?? 0), 'sub', 'inhibition', 'humiliation', 'group', 'gangbang');
@@ -1125,7 +1102,6 @@ function enterPressuredForGangbang(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Let them take their turns', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/park/event/gopnik/sex/sveta_fall/gangbang/gangbang6.jpg');
-    // TODO-QSP: dynamic text: Dan is the next one to take his turn fucking you with his <<dick_length[1]>>cm <...
     scene.text(`Dan is the next one to take his turn fucking you with his ${(((st as any).dick_length ?? 0)?.[1] ?? '')}cm ${(((st as any).dick_girth ?? 0)?.[1] ?? '')} dick while you suck off Lavrenti.`);
     scene.text('Shortly after, Lavrenti is taking his turn fucking you while you suck off Vasily before he switches places and starts to fuck you while you suck off Roman.');
     qspCall(st, 'arousal', 'vaginal', 10, (((st as any).npcID ?? 0)?.[1] ?? 0), 'sub', 'inhibition', 'humiliation', 'group', 'gangbang');
@@ -1135,7 +1111,6 @@ function enterPressuredForGangbang(s: GameState, scene: SceneBuilder): void {
       { label: 'Roman\'s turn', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/park/event/gopnik/sex/sveta_fall/gangbang/gangbang7.jpg');
     scene.text('"My turn," Roman says as he moves behind you and Vitek\'s dick takes his place in your mouth. "God damn, look at that pussy gaping. It looks like a wet-bitten-off burrito. Fuck that."');
-    // TODO-QSP: dynamic text: The next thing you feel is spit between your cheeks, and then the tip of a dick ...
     scene.text(`The next thing you feel is spit between your cheeks, and then the tip of a dick shoved against your asshole before Roman forces his ${(((st as any).dick_length ?? 0)?.[5] ?? '')}cm ${(((st as any).dick_girth ?? 0)?.[5] ?? '')} cock into your ass, making you groan loudly and try and pull away, but with Vitek in front of you, you have nowhere to go. You can hear several boys laughing as you try and pull away.`);
     scene.text('"Oh yeah, at least her ass is still tight!" Roman says as he forces his dick balls deep inside you before he starts hammering your ass as hard and fast as he can. Pauline walks over and you hear and feel her spit in the crack of your ass, somewhat lubing you up.');
     qspCall(st, 'arousal', 'anal', 3, (((st as any).npcID ?? 0)?.[5] ?? 0), 'sub', 'inhibition', 'humiliation', 'group', 'gangbang');
@@ -1146,7 +1121,6 @@ function enterPressuredForGangbang(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/park/event/gopnik/sex/sveta_fall/gangbang/gangbang8.jpg');
     scene.text('Vitek pulls his dick out of your mouth. "I want a piece of that ass."');
     scene.text('He gets up, moves around behind you, and plunges his dick into your sore and gaping ass. He then hammers away at it as the others line up to take a turn with your ass.');
-    // TODO-QSP: dynamic text: Next up is Vasily, who plunges his <<dick[2]>>cm <<$dick_girth[2]>> dick balls-d...
     scene.text(`Next up is Vasily, who plunges his ${(((st as any).dick ?? 0)?.[2] ?? '')}cm ${(((st as any).dick_girth ?? 0)?.[2] ?? '')} dick balls-deep into your ass and starts hammering away.`);
     qspCall(st, 'arousal', 'anal', 5, (((st as any).npcID ?? 0)?.[2] ?? 0), 'sub', 'inhibition', 'humiliation', 'group', 'gangbang');
     qspCall(st, 'stat', '');
@@ -1220,7 +1194,6 @@ function enterPressuredForGangbang(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Covered', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/park/event/gopnik/sex/sveta_fall/gangbang/gangbang13.jpg');
-    // TODO-QSP: dynamic text: Once they''re all finished, you hear Pauline speaking. "Give us a smile. This is...
     scene.text(`Once they're all finished, you hear Pauline speaking. "Give us a smile. This is going to make you famous. Just wait until all our classmates see the adventures of ${((st as any).pcs_nickname ?? '')} the slut."`);
     scene.text('You realize, with horror, that she\'s going to really do it. You beg her not to, but all she does is laugh and walk away. The boys join in laughing, all but Lavrenti, who looks like he regrets what happened, but doesn\'t say anything.');
     scene.text('You sit on your heels with your face covered in layers of cum as you watch everyone walk away, knowing you\'ve just ruined your life.');
@@ -1295,7 +1268,6 @@ function enterRadomirWalk(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Get down on your knees', handler: (st: GameState) => {
     qspCall(st, 'boyStat', 'A154');
@@ -1319,7 +1291,6 @@ function enterRadomirWalk(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Deepthroat', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/boy/radomir/sex/park/radomir3.jpg');
-    // TODO-QSP: dynamic text: You suddenly feel his hand on the back of your head and the next thing you know,...
     scene.text(`You suddenly feel his hand on the back of your head and the next thing you know, he forces your head down. His ${((st as any).dick ?? '')}cm ${((st as any).dick_girth ?? '')} dick slides down your throat, gagging you. From that moment on, he keeps his hand in place for the next few minutes, forcing your head all the way down. "Ah fuck yeah… Now that's how you suck cock!"`);
     scene.text('After a few minutes that feel much longer, he grabs you by the hair and pulls your head back far enough that his cock leaves your mouth.');
     scene.text('You feel drool from your mouth running down your chin as you gasp for breath. As you recover, he quickly and roughly strips you out of your clothes before he manhandles you onto all fours.');
@@ -1396,7 +1367,6 @@ function enterValNushWalk(s: GameState, scene: SceneBuilder): void {
   scene.text('His arms are wrapped around your shoulders as he sets off, guiding the two of you along. Anushka doesn\'t seem that curious. Maybe she already knows? Regardless, you walk and talk about various things before you come to a slight rise. As you get to the top, you find yourself looking over the lake.');
   scene.text('"Great, isn\'t it?" Valentin says as he lets go of the two of you, walks over to the edge, and takes a seat on a rock with a good view of the lake. Anushka follows suit and sits on his left, leaving you to sit on the right of Valentin.');
   scene.text('You take your seat and the three of you go back to talking for a while, Valentin talking about wanting to take a road trip across the country or maybe even across Europe or the US someday. Anushka agrees that she would also like to travel the world.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Time to go', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
@@ -1528,7 +1498,6 @@ function enterValNushWalk(s: GameState, scene: SceneBuilder): void {
       { label: 'Watch Anushka suck his dick', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/park/event/gopnik/sex/hangout/val_nush/val_nush8.jpg');
     scene.text('Valentin has one of the biggest dicks you\'ve ever seen, but she\'s able to take it deep into her throat. She gags a little, but otherwise smoothly deepthroats him, causing him to moan.');
-    // TODO-QSP: dynamic text: "OH… fuck Nush… Okay, I can''t wait anymore!" He points over at the rock he was ...
     scene.text(`"OH… fuck Nush… Okay, I can't wait anymore!" He points over at the rock he was sitting on. "Sit there, ${((st as any).pcs_nickname ?? '')}."`);
     qspCall(st, 'arousal', 'erotic_nudity', 1);
     qspCall(st, 'stat', '');
@@ -1568,7 +1537,6 @@ function enterNushFucked(s: GameState, scene: SceneBuilder): void {
   scene.text('You sit on the rock and he steps over and pushes your legs wide apart before shoving Anushka\'s face in your crotch. She starts licking your clit as Valentin gets her up on all fours and starts eating her out. She occasionally stops licking you to moan loudly; when she does, you rub your own clit while watching them.');
   qspCall(s, 'arousal', 'cuni', 2, ((s as any).npcID1 ?? 0), 'inhibition', 'lesbian', 'masturbate');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Enjoy it', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
@@ -1636,11 +1604,9 @@ function enterFuckedByVal(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'cuni', 2, ((s as any).npcID ?? 0), 'inhibition');
   qspCall(s, 'arousal', 'vaginal_finger_give', 2, ((s as any).npcID1 ?? 0), 'inhibition', 'lesbian');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Wait', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/park/event/gopnik/sex/hangout/val_nush/val_nush13.jpg');
-    // TODO-QSP: dynamic text: He stops licking you just when you''re about to tell him to fuck you and glance ...
     scene.text(`He stops licking you just when you're about to tell him to fuck you and glance back to see him getting in place behind you. Moments later, you feel his ${((st as any).dick ?? '')}cm ${((st as any).dick_girth ?? '')} dick sliding into your wet slit, filling you up as you moan loudly.`);
     scene.text('As Valentin fucks you, Anushka watches and furiously rubs her clit, biting her lower lip and moaning loudly.');
     qspCall(st, 'arousal', 'vaginal', 3, ((st as any).npcID ?? 0), 'inhibition');
@@ -1683,7 +1649,6 @@ function enterNushAnalFucked(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'erotic', 3);
   qspCall(s, 'arousal', 'vaginal_finger', (-3), ((s as any).npcID1 ?? 0), 'inhibition', 'lesbian');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Enjoy the finger banging', handler: (st: GameState) => {
     scene.text('As he starts fucking her ass harder, she starts finger-banging you faster and deeper, and both of you moan in pleasure. "OH… Fuck my ass… Tear my little ass up with your huge cock, Val!"');
@@ -1746,11 +1711,9 @@ function enterFuckedAnalByVal(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/park/event/gopnik/sex/hangout/val_nush/val_nush18.jpg');
   scene.text('You stay bent over as you feel Valentin squirting a healthy amount of lube against your asshole and working it in with his finger. Once you\'re lubed up, you feel the tip of his cock pressing against your asshole until the head pops in.');
-  // TODO-QSP: dynamic text: He stops for a moment to give you a chance to relax before he slowly starts slid...
   scene.text(`He stops for a moment to give you a chance to relax before he slowly starts sliding his ${((s as any).dick ?? '')}cm ${((s as any).dick_girth ?? '')} cock up your ass, filling you as it stretches you out.`);
   qspCall(s, 'arousal', 'anal', 2, ((s as any).npcID ?? 0), 'inhibition', 'group');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Get anally fucked', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
@@ -1784,7 +1747,6 @@ function enterNushValCum(s: GameState, scene: SceneBuilder): void {
   scene.text('Anushka sticks out her tongue and Valentin shoots his load into her mouth, stroking his dick until the last little drop comes out and drips onto her tongue. She closes her mouth, then turns to you, intending to kiss you.');
   qspCall(s, 'arousal', 'erotic_nudity', 2);
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Kiss her', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/park/event/gopnik/sex/hangout/val_nush/val_nush19.jpg');

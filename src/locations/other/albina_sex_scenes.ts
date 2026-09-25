@@ -15,7 +15,6 @@ function enterLeave(s: GameState, scene: SceneBuilder): void {
   } else {
     qspGoto(s, 'albinahome', 'bedroom');
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -48,7 +47,6 @@ function enterKissing1(s: GameState, scene: SceneBuilder): void {
       { label: 'Ask her to fuck you with a strapon', goto: ['albina_sex_scenes', 'virgin_take1'] },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -59,10 +57,8 @@ function enter69ing_1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'foreplay', (-5), 'no_orgasm_msg', 'lesbian');
   scene.img('images/shared/sex/lesbian/69_1.mp4');
   scene.text('Your kisses leave Albina\'s mouth and start roaming around her body. Your limbs become tangled and you somehow end up with your face between her legs and her face between yours. She dives right in, making filthy slurping sounds as she licks your pussy and sucks on your clit. As she comes up for air, you feel her breath on your pussy.');
-  // TODO-QSP: dynamic text: "<i>Fuck!</i>, you taste <i>so good</i>, <<$pcs_nickname>>!" she moans before di...
   scene.text(`"<i>Fuck!</i>, you taste <i>so good</i>, ${((s as any).pcs_nickname ?? '')}!" she moans before diving back in.`);
   scene.text('For your part, her pussy is slippery beneath your tongue. Not just soaking wet, but smooth as silk too, without a single hair to brush against your tongue.');
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -71,7 +67,6 @@ function enterVirginTake1(s: GameState, scene: SceneBuilder): void {
   (s as any).orgasm_or = 'no';
   scene.text('"Albina..." you murmur.');
   scene.text('"What is it?" she smiles up at you.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Ask shyly', handler: (st: GameState) => {
     scene.text('"W-will... Will you take my virginity?" you stammer shyly.');
@@ -102,10 +97,8 @@ function enterVirginTake1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterVirginTake1_1(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: dynamic text: You watch as Albina reaches into a drawer, grabs a harness and pulls it up her l...
   scene.text(`You watch as Albina reaches into a drawer, grabs a harness and pulls it up her legs, cinching it tight to her thighs. She then reaches back to pull out a dildo about ${((s as any).dick ?? '')}cm long.`);
   scene.text('"Just a little bit bigger than an average dick," she smiles softly at you. "But not too big. We don\'t want to go overboard for your first time."');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Nod', goto: ['albina_sex_scenes', 'virgin_take2.1'] },
     { label: 'Tell her you want a big one', goto: ['albina_sex_scenes', 'virgin_take2.2'] },
@@ -117,10 +110,8 @@ function enterVirginTake1_2(s: GameState, scene: SceneBuilder): void {
   scene.text('You take her advice, closing your eyes and snaking your hand between your legs. You touch yourself, taking deep breaths as you let the anticipation build. Heat spreads through your hips and your fingers begin to feel much wetter.');
   qspCall(s, 'arousal', 'clit_finger', 3, 'masturbation');
   qspCall(s, 'stat', '');
-  // TODO-QSP: dynamic text: A sound causes your eyes to open and you see a harness strapped around Albina''s...
   scene.text(`A sound causes your eyes to open and you see a harness strapped around Albina's legs as she pulls out a decently sized ${((s as any).dick ?? '')}cm dildo.`);
   scene.text('"Just a little bit bigger than an average dick," she smiles softly at you. "But not too big. We don\'t want to go overboard for your first time."');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Nod', goto: ['albina_sex_scenes', 'virgin_take2.1'] },
     { label: 'Tell her you want a big one', goto: ['albina_sex_scenes', 'virgin_take2.2'] },
@@ -130,7 +121,6 @@ function enterVirginTake1_2(s: GameState, scene: SceneBuilder): void {
 
 function enterVirginTake2_1(s: GameState, scene: SceneBuilder): void {
   scene.text('You nod nervously as she screws it onto a plate at the front of her harness.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['albina_sex_scenes', 'virgin_take3'] },
   ]);
@@ -140,7 +130,6 @@ function enterVirginTake2_1(s: GameState, scene: SceneBuilder): void {
 function enterVirginTake2_2(s: GameState, scene: SceneBuilder): void {
   scene.text('"I want a bigger one," you say and her smile fades.');
   scene.text('"No you don\'t," she says sternly before her expression softens again. "Trust me..."');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Insist', handler: (st: GameState) => {
     qspCall(st, 'npcStat', 'D5', 'a');
@@ -159,7 +148,6 @@ function enterVirginTake2_2(s: GameState, scene: SceneBuilder): void {
 function enterVirginTake3(s: GameState, scene: SceneBuilder): void {
   scene.text('Albina rejoins you on the bed and spreads your legs. You let out a soft groan as she pushes a single finger into your virgin pussy, stealing your juices to wipe on the tip of the strapon. She then pumps several spurts of lube from a bedside bottle all over it before finally lining it up with your pussy.');
   scene.text('"Okay, ready?" she asks and you nod. "Deep breath."');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Put it in', handler: (st: GameState) => {
     (st as any).ar_vag_lube = 1;
@@ -261,7 +249,6 @@ function enterVirginTake4_1(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Nod', handler: (st: GameState) => {
     scene.text('"Yeah," you nod, concentrating hard just to get that one syllable out.');
@@ -308,7 +295,6 @@ function enterVirginTake4_2(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Nod', handler: (st: GameState) => {
     scene.text('"Yeah," you gasp again, concentrating hard just to get that one syllable out as you pant for breath.');
@@ -333,9 +319,7 @@ function enterVirginTake4_3(s: GameState, scene: SceneBuilder): void {
       scene.text('Albina thrusts her hips and you feel something <i>rip</i> inside you. You shriek in pain as the rubber cock slides all the way to its base, filling you to the brim. Your walls squeeze against it tightly, ever so slightly stretched by its girth. Something hot drips from your pussy around the dildo.');
     }
   }
-  // TODO-QSP: dynamic text: "I''m so sorry <<$pcs_nickname>>," she says morosely. "I know it hurts, just bea...
   scene.text(`"I'm so sorry ${((s as any).pcs_nickname ?? '')}," she says morosely. "I know it hurts, just bear with it."`);
-  // TODO-QSP: end
   scene.actions([
     { label: 'Nod', handler: (st: GameState) => {
     scene.text('You nod, unable to speak lest you scream again as your pussy adjusts to having something inside it.');
@@ -387,7 +371,6 @@ function enterVirginTake5(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'vaginal_strap', 5, ((s as any).npcID ?? 0), ((s as any).npcID1 ?? 0), 'no_orgasm_msg', 'lesbian');
   qspCall(s, 'arousal', 'vaginal_strap', (-5), ((s as any).npcID ?? 0), ((s as any).npcID1 ?? 0), 'no_orgasm_msg', 'lesbian');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['albina_sex_scenes', 'virgin_take6'] },
   ]);
@@ -402,7 +385,6 @@ function enterVirginTake6(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'vaginal_strap', 5, ((s as any).npcID ?? 0), ((s as any).npcID1 ?? 0), 'no_orgasm_msg', 'lesbian');
   qspCall(s, 'arousal', 'vaginal_strap', (-5), ((s as any).npcID ?? 0), ((s as any).npcID1 ?? 0), 'no_orgasm_msg', 'lesbian');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Cum!', handler: (st: GameState) => {
     (st as any).orgasm_or = 'yes';
@@ -424,7 +406,6 @@ function enterVirginTakeAfter1(s: GameState, scene: SceneBuilder): void {
   scene.text('Just as your climax begins to wind down, Albina leans forward and presses her lips against yours. Your body reacts on its own and you instinctively kiss her back, still quivering as post-orgasm tremors quake inside you.');
   qspCall(s, 'arousal', 'kiss', 1, 'no_orgasm_msg', 'lesbian');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Speechless', handler: (st: GameState) => {
     scene.img('images/shared/sex/lesbian/strapon/miss/after1.jpg');
@@ -451,7 +432,6 @@ function enterVirginTakeAfter2(s: GameState, scene: SceneBuilder): void {
   scene.text('"\'Was it good?\'" you ask, incredulous as you look into her eyes from beneath her. "You just gave me a mind-blowing orgasm. Of course it was good!"');
   scene.text('"That\'s... That\'s good," she repeats, smiling back at you as tears well up in her eyes. "It was really important that I managed to make your first time good. I couldn\'t live with myself if it turned out... otherwise."');
   scene.text('She suddenly looks away and you get the feeling she\'s hiding something.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Hug her', handler: (st: GameState) => {
     scene.text('You pull her into a hug, startling yourself as you forget it also moves the dildo inside you, but you don\'t let it stop you from pulling her tight.');
@@ -483,10 +463,8 @@ function enterVirginTakeAfter2(s: GameState, scene: SceneBuilder): void {
 function enterVirginTakeAfter3(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/sex/lesbian/strapon/miss/after1.jpg');
   scene.text('As you both share the moment, you become aware of a sudden heat growing between you. You can see it in Albina\'s eyes that she feels it too.');
-  // TODO-QSP: dynamic text: "<<$pcs_nickname>>," she says in a husky voice. "Do you think you could...?"
   scene.text(`"${((s as any).pcs_nickname ?? '')}," she says in a husky voice. "Do you think you could...?"`);
   scene.text('You nod and without another word, both of you scramble to change places. Albina tears off the strapon and lays down, furiously rubbing her clit as you hurry to buckle it on to yourself. Finally, you manage to get it secured and without any additional foreplay, fill Albina\'s soaking wet pussy with a single thrust of the rubber cock, which is still slick with the juices of your first time.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Fuck Albina', goto: ['albina_sex_scenes', 'virgin_albina_turn1'] },
   ]);
@@ -499,7 +477,6 @@ function enterVirginAlbinaTurn1(s: GameState, scene: SceneBuilder): void {
   scene.text('You fuck her with an unexpected desperation and it\'s only minutes before she reaches her climax.');
   qspCall(s, 'arousal', 'vaginal_strap_give', 5, ((s as any).npcID ?? 0), ((s as any).npcID1 ?? 0), 'no_orgasm_msg', 'lesbian');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/shared/sex/lesbian/strapon/miss/orgasm1.mp4');
@@ -524,12 +501,10 @@ function enterVirginAlbinaPillowTalkStart(s: GameState, scene: SceneBuilder): vo
   }
   scene.text('Her naked skin is hot against yours and her body is soft and squishy.');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterVirginAlbinaPillowTalkMenu(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterVirginAlbinaPillowTalkMenu(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: end
   scene.actions([
     { label: 'You popped my cherry', handler: (st: GameState) => {
     if (((st as any).AlbinaQW ?? 0)?.['virgin_fuck_albina'] === 1) {
@@ -590,7 +565,6 @@ function enterVirginAlbinaPillowTalkMenu(s: GameState, scene: SceneBuilder): voi
 function enterSexEvent1(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/sex/lesbian/kiss2.mp4');
   scene.text('You find yourself on top of Albina, your hips between her legs and your breasts smooshed against hers as her hands hungrily grope your ass and your tongues tango with one another, swapping saliva.');
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -599,9 +573,7 @@ function enterWearStrapon(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/girl/albina/sex/game/spank.mp4');
   if (((s as any).spellKnown ?? 0)?.['penisenvy'] === 0  ||  ((s as any).mc_inventory ?? 0)?.['strapon'] === 0  ||  ((s as any).strapNumber ?? 0) <= 0) {
     qspCall(s, 'npcStat', 'D3', 'a');
-    // TODO-QSP: dynamic text: You slide the harness on and tighten it in place, but before you can begin, Albi...
     scene.text(`You slide the harness on and tighten it in place, but before you can begin, Albina smirks at you while wiggling her ass. "I need to be punished for losing first. Spank me, ${((s as any).pcs_nickname ?? '')}, and don't stop until my pussy is wet and my ass is red and stinging!"`);
-    // TODO-QSP: dynamic text: She pushes you down onto the bed and lays across your lap before looking up at y...
     scene.text(`She pushes you down onto the bed and lays across your lap before looking up at you. "Don't make me beg, ${((s as any).pcs_nickname ?? '')}."`);
     scene.text('You smile at her before raising your hand and giving her a firm smack on the ass. "Harder!" she blurts out, and you respond by delivering a hard smack that leaves both her ass and your hand red and stinging. "Oh FUCK, <i>yeeesss</i>! Do that again!" she moans in an almost orgasmic tone.');
     scene.text('You continue spanking her as hard as you can until the stinging in your hand becomes too much and you have to stop. She smiles up at you in satisfaction and you feel her juices trickling down your leg as she climbs off you. You stand to adjust the harness around your hips.');
@@ -616,9 +588,7 @@ function enterWearStrapon(s: GameState, scene: SceneBuilder): void {
     scene.text('"Do you mind if we use my dildo instead?" you ask, and seeing the curious look in her eye, you continue. "My dildo has fake cum and I think it would be fun to use it."');
     scene.text('"Fake cum?" she replies curiously. "Okay, that does sound fun."');
     scene.text('You nod as you grab your own strapon out of your purse, pleased that she bought it.');
-    // TODO-QSP: dynamic text: You slide your harness on and tighten it in place, but before you can begin, Alb...
     scene.text(`You slide your harness on and tighten it in place, but before you can begin, Albina smirks at you while wiggling her ass. "I need to be punished for losing first. Spank me, ${((s as any).pcs_nickname ?? '')}, and don't stop until my pussy is wet and my ass is red and stinging!"`);
-    // TODO-QSP: dynamic text: She pushes you down onto the bed and lays across your lap before looking up at y...
     scene.text(`She pushes you down onto the bed and lays across your lap before looking up at you. "Don't make me beg, ${((s as any).pcs_nickname ?? '')}."`);
     scene.text('You smile at her before raising your hand and giving her a firm smack on the ass. "Harder!" she blurts out, and you respond by delivering a hard smack that leaves both her ass and your hand red and stinging. "Oh FUCK, <i>yeeesss</i>! Do that again!" she moans in an almost orgasmic tone.');
     scene.text('You continue spanking her as hard as you can until the stinging in your hand becomes too much and you have to stop. She smiles up at you in satisfaction and you feel her juices trickling down your leg as she climbs off you. You stand to adjust the harness around your hips.');
@@ -638,7 +608,6 @@ function enterWearStrapon(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.text('You cast the spell, but it fails to take effect.');
-      // TODO-QSP: dynamic text: "You okay, <<$pcs_nickname>>?" Albina asks with a curious gaze.
       scene.text(`"You okay, ${((st as any).pcs_nickname ?? '')}?" Albina asks with a curious gaze.`);
       scene.text('"Yeah, I just realized that this is the wrong dildo," you reply.');
       scene.text('"That\'s okay. I just want you to fuck me silly, with or without cum."');
@@ -651,7 +620,6 @@ function enterWearStrapon(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -665,7 +633,6 @@ function enterFuckAlbina(s: GameState, scene: SceneBuilder): void {
   scene.text('She laughs before she takes the dildo into her mouth and starts sucking while stroking the shaft with one hand. You spend several minutes making her suck and gag on it, getting it wet with the drool that drips from her mouth.');
   qspCall(s, 'arousal', 'foreplay', 2, 'lesbian');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Fuck her pussy', handler: (st: GameState) => {
     qspCall(st, 'boyStat', 'D4');
@@ -702,7 +669,6 @@ function enterFuckAlbinaMagic(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/girl/albina/sex/game/bj.jpg');
   if (((s as any).dick_width1 ?? 0) >= 14) {
-    // TODO-QSP: dynamic text: Albina stares in bewilderment at the monstrous dildo hanging from your harness. ...
     scene.text(`Albina stares in bewilderment at the monstrous dildo hanging from your harness. "You're not being serious, ${((s as any).pcs_nickname ?? '')}."`);
     scene.text('"Why not?" you grin as you shake your hips, causing the dildo to swing between your legs.');
     scene.text('"Because that thing\'s as big as a fucking horse! It would never fit inside me!"');
@@ -735,7 +701,6 @@ function enterFuckAlbinaMagic(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'arousal', 'magicd_bj', 2);
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Fuck her pussy', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
@@ -758,7 +723,6 @@ function enterFuckAlbinaMagic(s: GameState, scene: SceneBuilder): void {
     if (((st as any).dick_width1 ?? 0) >= 11) {
       scene.text('Growing tired, Albina flops down onto the bed next to you, your shaft glistening with her juices.');
       scene.text('You waste no time and immediately scramble up onto your knees before spreading her legs and eagerly shoving your cock back inside her pussy.');
-      // TODO-QSP: dynamic text: "Yes, fuck my tight little pussy, <<$pcs_nickname>>!" she cries out as you feel ...
       scene.text(`"Yes, fuck my tight little pussy, ${((st as any).pcs_nickname ?? '')}!" she cries out as you feel her clenching around you.`);
       scene.text('You start thrusting and spend the next few minutes fucking her before you feel a tingling sensation in your stomach and a pressure building within your dick. You\'re about to cum!');
     } else {
@@ -832,12 +796,10 @@ function enterFuckAlbinaAss(s: GameState, scene: SceneBuilder): void {
   scene.text('You wonder what guys would do to be in your position as you continue fucking her ass. After a few minutes, you pull out of her and she looks back over her shoulder at you.');
   qspCall(s, 'arousal', 'anal_strap_give', 3, 'lesbian');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Keep fucking her ass', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/albina/sex/game/anal2.jpg');
-    // TODO-QSP: dynamic text: "Come on, <<$pcs_nickname>>. Put it back in and fuck me... hard," she says while...
     scene.text(`"Come on, ${((st as any).pcs_nickname ?? '')}. Put it back in and fuck me... hard," she says while wiggling her hips. You smile at her and slide the dildo back into her hole with ease, making her moan in pleasure. Next, you grab onto her hips and start fucking her balls deep, slamming almost the full length of the massive dildo up her ass as she reaches back and starts rubbing her clit.`);
     scene.text('After several minutes, you start feeling resistance as her ass tightens around your fake cock. Seconds later, she cries out and her body is rocked by an intense orgasm as juices squirt from her pussy, soaking the sheets beneath her. You keep fucking her throughout her orgasm, only pulling out once her shudders have passed.');
     scene.text('After you\'ve pulled out, she thrusts her fingers into her gaping hole as juices leak from her pussy. "That was fucking amazing!" she says as she pulls her fingers out of her ass and sucks on them.');
@@ -867,12 +829,10 @@ function enterFuckAlbinaAssMagic(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'arousal', 'magicd_anal', 3);
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Keep fucking her ass', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/albina/sex/game/anal2.jpg');
-    // TODO-QSP: dynamic text: "Come on, <<$pcs_nickname>>. Put it back in and fuck me," she says while wigglin...
     scene.text(`"Come on, ${((st as any).pcs_nickname ?? '')}. Put it back in and fuck me," she says while wiggling her hips, her slightly stretched asshole proving a rather teasing sight.`);
     scene.text('You smile at her and slide your dick back into her asshole, making her moan in pleasure as the sensation of penetrating her tight ass once again washes over you. You then grab onto her hips and start fucking her balls deep, filling her ass with your dick as she reaches back and starts rubbing her clit.');
     scene.text('After several minutes, you feel her ass tighten around your dick and she cries out as her body is rocked by an intense orgasm and juices squirt from her pussy, soaking the sheets beneath her. You keep fucking her throughout her orgasm, the added tightness of her asshole pushing you to your own orgasm.');
@@ -910,19 +870,14 @@ function enterReceiveStrapon(s: GameState, scene: SceneBuilder): void {
     ((s as any).stat = (s as any).stat ?? {})['bj'] = ((s as any).stat['bj'] ?? 0) + (1);
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/albina/sex/game/bj.jpg');
-    // TODO-QSP: dynamic text: Albina notices you staring at the dildo as she tightens the straps firmly around...
     scene.text(`Albina notices you staring at the dildo as she tightens the straps firmly around her hips. "You okay, ${((s as any).pcs_nickname ?? '')}?"`);
     scene.text('"Yeah, it\'s just..." you start to answer.');
     scene.text('"You\'ve never sucked dick before, have you?" she interrupts with a smile. "It\'s okay. I can show you what to do so you\'re ready for the real thing." She sits back on the bed and spreads her legs, motioning for you to crawl between them.');
     scene.text('"Okay, first thing\'s first. You\'ll want to start off with a handjob. It gets them in the mood and wanting more," she explains as she takes your hand and places it on the dildo. "Take a firm grip of the shaft, but not too tight, and start moving your hand up and down."');
-    // TODO-QSP: dynamic text: You follow her instructions and slowly run your hand up and down the dildo. "Tha...
     scene.text(`You follow her instructions and slowly run your hand up and down the dildo. "That's it, ${((s as any).pcs_nickname ?? '')}. Just keep doing that. If you feel like it, you can also lick the shaft or suck on their balls while jerking them off. They like it when you tease them like that."`);
-    // TODO-QSP: dynamic text: After a few minutes, Albina moves on with her lesson. "Okay <<$pcs_nickname>>, y...
     scene.text(`After a few minutes, Albina moves on with her lesson. "Okay ${((s as any).pcs_nickname ?? '')}, you ready?" she asks and you nod your head. "Okay. Start off with a little teasing. Run your tongue around the tip while jerking them off."`);
-    // TODO-QSP: dynamic text: You do as she says and she makes you look up at her. "Eye contact, <<$pcs_nickna...
     scene.text(`You do as she says and she makes you look up at her. "Eye contact, ${((s as any).pcs_nickname ?? '')}. They like that." You nod at her and look her in the eye as you continue jerking off her fake cock. "Good. Now some guys like taking control, but only let them do that if it's what you want. That's enough teasing anyway. Now I want you take as much of the shaft into your mouth as you can."`);
     scene.text('You obdiently take as much of the dildo into your mouth as you can without choking. "Good," Albina says. "Now start bobbing your head up and down; imagine that you\'re sucking on a popsicle while swirling your tongue around the head. And keep using your hand."');
-    // TODO-QSP: dynamic text: You spend the next few minutes practicing on the dildo until your arm and jaw st...
     scene.text(`You spend the next few minutes practicing on the dildo until your arm and jaw start to ache and you stop. You pop the dildo out of your mouth and look up at Albina, who smiles. "You're a natural, ${((s as any).pcs_nickname ?? '')}! If I had a dick, then my cum would be all over your face by now."`);
     scene.text('You smile at the compliment. "Time for me to fuck you now," Albina says with a grin.');
     qspCall(s, 'arousal', 'foreplay', 2, 'lesbian');
@@ -939,7 +894,6 @@ function enterReceiveStrapon(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.img('images/characters/pavlovsk/school/girl/albina/sex/game/bj.jpg');
     scene.text('You slide your panties off as she tightens the strapon firmly while standing next to the bed. You lie next to her, and she pulls your head down to the dildo. "Suck my dick, loser!" she says with a giggle.');
-    // TODO-QSP: dynamic text: You take the dildo into your mouth and start sucking on it while stroking the sh...
     scene.text(`You take the dildo into your mouth and start sucking on it while stroking the shaft with one hand. "Yeah, just like that, ${((s as any).pcs_nickname ?? '')}..." she moans as she reaches between the straps and gently rubs her pussy. You spend several minutes sucking on the dildo, getting it wet with your drool before she pulls it out of your mouth. "I'm so going to enjoy fucking you!"`);
     qspCall(s, 'arousal', 'foreplay', 2, 'lesbian');
     qspCall(s, 'stat', '');
@@ -953,7 +907,6 @@ function enterReceiveStrapon(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -967,7 +920,6 @@ function enterAlbinaFucksYou(s: GameState, scene: SceneBuilder): void {
   scene.text('You moan as she slowly starts fucking your pussy, going a little faster the louder you moan.');
   qspCall(s, 'arousal', 'vaginal_strap', 3, ((s as any).npcID ?? 0), ((s as any).npcID1 ?? 0), 'lesbian');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Keep getting your pussy fucked', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
@@ -1007,7 +959,6 @@ function enterAlbinaFucksYouVirgin(s: GameState, scene: SceneBuilder): void {
   scene.text('You blush deeply, and she looks at you. "Oh, right. You haven\'t done this before," she says, remembering that you\'re still pure.');
   scene.text('You blush even more. "Yes, I\'m... still a virgin..." you reply.');
   scene.text('"Well, I can just fuck your ass if you want?" She then gives you a small smile. "Unless you want me to pop your cherry?"');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Just fuck my ass', handler: (st: GameState) => {
     if (((st as any).stat ?? 0)?.['anal'] > 0  ||  ((st as any).stat ?? 0)?.['anal_strap'] > 0) {
@@ -1064,12 +1015,10 @@ function enterAlbinaAssFucksYou(s: GameState, scene: SceneBuilder): void {
   scene.text('As you get on all fours, you glance back and see her applying lube to the dildo. She squirts some on the dildo and strokes the shaft with it before she massages a generous amount into your asshole with her fingers. You and the dildo now lubed up, she moves behind you, and you feel the dildo pressing against your asshole, the pressure building until the tip pops into your ass, causing you to groan slightly in pain. Next, she slowly slips the dildo up your ass, steadily working it deeper.');
   qspCall(s, 'arousal', 'anal_strap', 2, ((s as any).npcID ?? 0), ((s as any).npcID1 ?? 0), 'lesbian');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Get your ass hammered', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/albina/sex/game/anal2.jpg');
     scene.text('Once you\'re comfortable with her in your ass, she stands up over you. "Get ready because now I\'m really going to fuck your ass!" she laughs before slamming the dildo in and out of your ass, causing you to grip the sheets tightly. Despite this, she isn\'t too rough, and you start enjoying the pleasurable sensation. Albina seemingly grows more aroused the more she fucks you.');
-    // TODO-QSP: dynamic text: Just as it''s starting to hurt, she lets out a loud, pleasured scream as you fee...
     scene.text(`Just as it's starting to hurt, she lets out a loud, pleasured scream as you feel her juices spraying across your legs. You then feel the dildo slide out of you and turn to see Albina sprawled out on the bed in orgasmic bliss, her juices slowly trickling out of her soaking wet pussy as a huge wet patch soaks into the sheets. "You were such a good little buttslut, ${((st as any).pcs_nickname ?? '')}..." she says softly.`);
     scene.text('After riding through her orgasm, she pulls the harness off and tosses it aside.');
     qspCall(st, 'arousal', 'anal_strap', 3, ((st as any).npcID ?? 0), ((st as any).npcID1 ?? 0), 'lesbian');
@@ -1086,13 +1035,10 @@ function enterAlbinaAssFucksYouAnalVirgin(s: GameState, scene: SceneBuilder): vo
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/resident/albinahome/albinaroom.jpg');
   scene.text('Thoughts race through your head as you look at the massive dildo, and Albina notices your hesitation.');
-  // TODO-QSP: dynamic text: "<<$pcs_nickname>>, have you ever been fucked in the ass before?"
   scene.text(`"${((s as any).pcs_nickname ?? '')}, have you ever been fucked in the ass before?"`);
   scene.text('You shake your head as you feel your cheeks burning bright red. "Uhh... No, I haven\'t..."');
   scene.text('She places a hand on your shoulder. "Hey, it\'s nothing to be embarrassed about. Plenty of girls don\'t do anal."');
-  // TODO-QSP: dynamic text: You stare at the dildo again before Albina snaps your attention back to her. "<<...
   scene.text(`You stare at the dildo again before Albina snaps your attention back to her. "${((s as any).pcs_nickname ?? '')}, be honest with me. Do you want me to fuck your ass? I'll be as gentle as you want."`);
-  // TODO-QSP: end
   scene.actions([
     { label: 'Yes', goto: ['albina_sex_scenes', 'first_anal'] },
     { label: 'No', goto: ['albina_sex_scenes', 'anal_refuse'] },
@@ -1104,13 +1050,10 @@ function enterAlbinaAssFucksYouOnlyDildo(s: GameState, scene: SceneBuilder): voi
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/resident/albinahome/albinaroom.jpg');
   scene.text('Thoughts race through your head as you look at the massive dildo, and Albina notices your hesitation.');
-  // TODO-QSP: dynamic text: "<<$pcs_nickname>>, have you ever been fucked in the ass before?"
   scene.text(`"${((s as any).pcs_nickname ?? '')}, have you ever been fucked in the ass before?"`);
   scene.text('You feel your cheeks burning bright red. "Well, I\'ve used a dildo..."');
   scene.text('"Oh, a buttslut in training!" she teases. "No, it\'s good that you\'re experimenting back there. It\'ll make your first proper butt fuck easier if you\'ve had some experience shoving something up there first."');
-  // TODO-QSP: dynamic text: She then places a hand on your shoulder. "<<$pcs_nickname>>, be honest with me. ...
   scene.text(`She then places a hand on your shoulder. "${((s as any).pcs_nickname ?? '')}, be honest with me. Do you want me to try the real thing? I'll be as gentle as you want."`);
-  // TODO-QSP: end
   scene.actions([
     { label: 'Yes', goto: ['albina_sex_scenes', 'first_anal1'] },
     { label: 'No', goto: ['albina_sex_scenes', 'anal_refuse'] },
@@ -1122,17 +1065,13 @@ function enterAlbinaAssFucksYouOnlyFist(s: GameState, scene: SceneBuilder): void
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/resident/albinahome/albinaroom.jpg');
   scene.text('Thoughts race through your head as you look at the huge dildo, and Albina notices your hesitation.');
-  // TODO-QSP: dynamic text: "<<$pcs_nickname>>, have you ever been fucked in the ass before?"
   scene.text(`"${((s as any).pcs_nickname ?? '')}, have you ever been fucked in the ass before?"`);
   scene.text('You feel your cheeks burning bright red. "Well, I\'ve managed to take a fist..."');
-  // TODO-QSP: dynamic text: Albina looks at you in what you can only describe as awe. "God damn <<$pcs_nickn...
   scene.text(`Albina looks at you in what you can only describe as awe. "God damn ${((s as any).pcs_nickname ?? '')}, even I've never taken a fist up my ass, and I'm the queen of butt stuff!"`);
   scene.text('"Is it weird to do that?" you ask with concern.');
   scene.text('"No, not at all! I\'ve always wanted to try it myself. Maybe I will now that I need to up my game..."');
   scene.text('She looks you over with lustful desire before continuing. "Practicing with a dildo makes your first butt fuck easier, but a whole fucking hand?! A cock or dildo would be a breeze for you!"');
-  // TODO-QSP: dynamic text: She then places a hand on your shoulder. "<<$pcs_nickname>>, be honest with me. ...
   scene.text(`She then places a hand on your shoulder. "${((s as any).pcs_nickname ?? '')}, be honest with me. Do you want me to fuck your ass? I'll be as gentle as you want."`);
-  // TODO-QSP: end
   scene.actions([
     { label: 'Yes', goto: ['albina_sex_scenes', 'first_anal1'] },
     { label: 'No', goto: ['albina_sex_scenes', 'anal_refuse'] },
@@ -1147,24 +1086,19 @@ function enterFirstAnal(s: GameState, scene: SceneBuilder): void {
   scene.text('"Y-yes, I would. Just promise you\'ll be gentle," you reply, and Albina smiles.');
   scene.text('"I will. Get on all fours and bring your ass up as high as possible."');
   scene.text('As you get on all fours, you glance back and see her squirting lube onto her fingers. You shiver when you feel the cold liquid being applied to your asshole. Albina starts massaging it in before you feel her slowly pushing a finger inside you. You moan softly at the sensation as you feel her finger curling up inside you.');
-  // TODO-QSP: dynamic text: After spending a few minutes fingering you, she pulls her finger out. "Are you s...
   scene.text(`After spending a few minutes fingering you, she pulls her finger out. "Are you sure you want to do this, ${((s as any).pcs_nickname ?? '')}? Just because I'm a buttslut doesn't mean you have to be one too."`);
   scene.text('You stare at the dildo hanging between her legs, but steel yourself and nod. "Yes. Just go slow, please?"');
   qspCall(s, 'arousal', 'anal_finger', 5, ((s as any).npcID ?? 0), ((s as any).npcID1 ?? 0), 'lesbian');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Get your ass fucked', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/albina/sex/game/anal1.jpg');
-    // TODO-QSP: dynamic text: Your heart races as you feel Albina moving in behind you. You instinctively tens...
     scene.text(`Your heart races as you feel Albina moving in behind you. You instinctively tense up when you feel the head of the dildo pressing against your asshole. "Okay, ${((st as any).pcs_nickname ?? '')}, this is going to feel strange and definitely hurt a little, but you're going to have to try and relax as best as you can for me," Albina tells you. You grip the sheets tightly as you do what she says.`);
-    // TODO-QSP: dynamic text: You feel her start slowly pushing, and the pressure builds until the tip of the ...
     scene.text(`You feel her start slowly pushing, and the pressure builds until the tip of the dildo suddenly pops into your ass, causing you to groan and grit your teeth while gripping the sheets even tighter. It's a painful sensation, and you instinctively feel the urge to free yourself. "You okay, ${((st as any).pcs_nickname ?? '')}? I can take it out if you want?" Albina asks as you feel a stinging pain shooting through you.`);
     scene.text('Remembering what she said, you fight the urge to pull away and try to relax. "No, I just need a second," you reply as you look back at her, and she nods.');
     scene.text('After taking a few seconds to adjust to the sensation, you nod at Albina, who squirts more lube onto the slick dildo before placing her hands on your hips. "Okay, just keep your ass relaxed and tell me if it gets too painful. I don\'t want you hurting yourself trying to impress me. Got it?"');
     scene.text('You nod and prepare yourself as you feel Albina slowly push the dildo deeper into your ass. You feel stretched out as she reaches a depth she feels you\'ll be comfortable with and starts gently thrusting.');
     scene.text('Despite the shallow depth and Albina being gentle, the pain becomes too much after a few minutes, and you ask her to pull out. You sit on your knees and clutch your ass cheeks in your hands as pain pulses through your stretched asshole.');
-    // TODO-QSP: dynamic text: "You lasted longer than I thought you would. Not bad for your first go, <<$pcs_n...
     scene.text(`"You lasted longer than I thought you would. Not bad for your first go, ${((st as any).pcs_nickname ?? '')}," Albina says as she hands you some wipes to clean yourself up. "Next time you lose, maybe we can go deeper and... harder," she adds with a teasing grin as she cleans the dildo and puts it away.`);
     scene.text('As the stinging pain continues to pulse through your ass, you slowly get dressed. Albina watches with an amused grin. "Don\'t worry. It gets less painful the more you do it."');
     scene.text('"You would know," you reply with a smirk, and she laughs.');
@@ -1185,21 +1119,17 @@ function enterFirstAnal1(s: GameState, scene: SceneBuilder): void {
   scene.text('"Yes, I would," you reply, and Albina smiles.');
   scene.text('"Okay, get on all fours and bring your ass up as high as possible."');
   scene.text('As you get on all fours, you glance back and see her squirting lube onto her fingers. You shiver when you feel the cold liquid being applied to your asshole. Albina starts massaging it before you feel her slowly pushing a finger inside you. You moan softly at the sensation as you feel her finger curling up inside you.');
-  // TODO-QSP: dynamic text: After spending a few minutes fingering you, she pulls her finger out. "Okay, tha...
   scene.text(`After spending a few minutes fingering you, she pulls her finger out. "Okay, that should be enough. Are you sure you want to do this, ${((s as any).pcs_nickname ?? '')}? Just because I'm a buttslut doesn't mean you have to be one too."`);
   scene.text('You stare at the dildo hanging between her legs but steel yourself and nod. "Yes, I want to do this."');
   qspCall(s, 'arousal', 'anal_finger', 5, ((s as any).npcID ?? 0), ((s as any).npcID1 ?? 0), 'lesbian');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Get your ass fucked', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/albina/sex/game/anal1.jpg');
-    // TODO-QSP: dynamic text: Your heart is racing even though you know what to expect. Albina presses the tip...
     scene.text(`Your heart is racing even though you know what to expect. Albina presses the tip of the dildo against your asshole, and you feel the familiar sensation of the pressure building as she pushes forward until the dildo suddenly pops into your ass, causing you to groan. "You okay, ${((st as any).pcs_nickname ?? '')}? I can take it out if you want?" Albina asks.`);
     scene.text('After a few seconds to adjust to the sensation, you nod at Albina. She squirts more lube onto the slick dildo before placing her hands on your hips. "Okay, just tell me if it gets too painful for you."');
     scene.text('You nod and prepare yourself as you feel Albina slowly push the dildo deeper into your ass and start thrusting.');
     scene.text('Having had your ass penetrated before, Albina goes faster and deeper than you think she usually would have. However, the sensation of being buttfucked is still new to you, and you soon ask her to stop when it becomes too much.');
-    // TODO-QSP: dynamic text: "Not bad for your first go, <<$pcs_nickname>>. I bet the prior ''practice'' help...
     scene.text(`"Not bad for your first go, ${((st as any).pcs_nickname ?? '')}. I bet the prior 'practice' helped," Albina says as she hands you some wipes to clean yourself up. "Next time you lose, maybe we can go deeper and... harder," she adds with a teasing grin as she cleans the dildo and puts it away.`);
     scene.text('You slowly get dressed as Albina watches with an amused grin. "It feels great, doesn\'t it? It gets better the more you do it."');
     scene.text('"You would know," you reply with a smirk and she laughs.');
@@ -1220,7 +1150,6 @@ function enterAnalRefuse(s: GameState, scene: SceneBuilder): void {
   scene.text('Albina smiles. "That\'s okay, but if you want to do it with me or want some advice, then just ask. It\'s best to get help from someone with... experience on the matter," she says with a grin.');
   scene.text('You grin back. "I\'ll be sure to ask the master buttslut for any of her wisdom."');
   scene.text('She punches you in the arm. "Damn right you will."');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Do something else', goto: ['albina_sex_scenes', 'leave'] },
   ]);
@@ -1233,7 +1162,6 @@ function enterStraponFinish(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/girl/albina/sex/game/aftermath.jpg');
   if ((!(Math.floor(Math.random() * 4) + 0))) {
-    // TODO-QSP: dynamic text: Albina pushes you down onto the bed and climbs on top of you. You spend the next...
     scene.text(`Albina pushes you down onto the bed and climbs on top of you. You spend the next few minutes passionately making out while fondling each other before she gives you a sly smile and moves into position to start scissoring you. Before she can, her phone buzzes, and she looks at it before frowning in disappointment. "Sorry, but I need to go, ${((s as any).pcs_nickname ?? '')}. I'll see you later?"`);
     scene.text('You nod in understanding. "Sure, not a problem. I had fun."');
     scene.text('You finally kiss each other before you both quickly get dressed. She wipes the dildo clean and shoves it back in the drawer before ushering you out of her room. She walks with you into town before leaving you to attend to her business.');
@@ -1242,7 +1170,6 @@ function enterStraponFinish(s: GameState, scene: SceneBuilder): void {
     scene.text('You get dressed, and when you finish, she smiles at you. "Okay, what do you want to do now?" she asks.');
   }
   qspCall(s, 'arousal', 'foreplay', 5, 'lesbian');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', goto: ['albina_sex_scenes', 'leave'] },
   ]);
@@ -1256,7 +1183,6 @@ function enterUseButtPlug(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/resident/apartment/anushapt/anushroom/buttplug.jpg');
   scene.text('You dig out the butt plug in her nightstand and hold it up. "I want to use this bad boy..." you say with a smile and she gives you an intrigued, almost aroused look.');
   scene.text('"And how do you plan on doing that?" she replies.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'I\'ll use it on you', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/anushka/bedroom/sex/strapon/buttplug1.jpg');
@@ -1351,7 +1277,6 @@ function enterAlbinaShower(s: GameState, scene: SceneBuilder): void {
   scene.text('You then grab one of the many bottles she has sitting in the shower and squeeze the contents into your hand before you reach around and start lathering up her breasts, a soft moan escaping her lips as you give them a soft squeeze and lightly pinch her nipples.');
   qspCall(s, 'arousal', 'foreplay_give', 3, 'lesbian');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/albina/sex/bathroom/5.jpg');
@@ -1364,7 +1289,6 @@ function enterAlbinaShower(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/sex/lesbian/shower_kiss1.mp4');
     scene.text('Before you can go any further, she suddenly turns around and pushes you up against the shower wall before moving in and locking lips with you.');
     scene.text('You passionately make out under the steamy water, fondling each other\'s wet bodies for a few seconds before she breaks the kiss and moves away from you.');
-    // TODO-QSP: dynamic text: "We don''t have much time left. How are you going to make me cum, <<$pcs_nicknam...
     scene.text(`"We don't have much time left. How are you going to make me cum, ${((st as any).pcs_nickname ?? '')}?"`);
     qspCall(st, 'arousal', 'kiss', 3, 'lesbian');
     qspCall(st, 'stat', '');
@@ -1383,7 +1307,6 @@ function enterAlbinaShowerPussy(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/sex/lesbian/shower_finger1.mp4');
   scene.text('You smile and move your hand back down between her legs. Being rather flexible, Albina lifts her leg straight up and places her foot against the shower wall, giving you better access to her pussy, which is dripping wet in anticipation.');
   scene.text('You slide two fingers inside her and start finger fucking her pussy as your thumb massages her clit. She moans loudly in pleasure as she leans against you to steady herself.');
-  // TODO-QSP: dynamic text: A few minutes of this is enough to bring her to the edge and she starts moaning ...
   scene.text(`A few minutes of this is enough to bring her to the edge and she starts moaning even louder. "Don't stop ${((s as any).pcs_nickname ?? '')}, I'm about to cum!"`);
   scene.text('You finger her even faster and she lets out a pleasured shriek as her pussy starts squirting her juices over your arm. She steadies herself against you as she rides through the pleasure of her orgasm.');
   scene.text('You then pull your fingers out of her and shove them in her mouth. She sucks on them before smiling at you.');
@@ -1392,7 +1315,6 @@ function enterAlbinaShowerPussy(s: GameState, scene: SceneBuilder): void {
   scene.text('As you dry off, you hear the water turn off and a naked Albina casually strolls into the room and pushes you down onto her bed. "My turn. I\'m going to eat your ass until you cum. And I won\'t take no for an answer!"');
   qspCall(s, 'arousal', 'vaginal_finger_give', 5, 'lesbian');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Get your ass eaten', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/albina/sex/bathroom/7.jpg');
@@ -1423,7 +1345,6 @@ function enterAlbinaShowerAss(s: GameState, scene: SceneBuilder): void {
   scene.text('"There aren\'t many people who would eat my ass like that, so I want to return the favor. I\'m going to eat your ass until you cum just as hard as I did."');
   qspCall(s, 'arousal', 'rimming_give', 5, 'lesbian', 'no_orgasm_msg');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Get your ass eaten', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/albina/sex/bathroom/7.jpg');
@@ -1452,7 +1373,6 @@ function enterPussyEatingContest(s: GameState, scene: SceneBuilder): void {
   scene.text('"Okay. You ready to lose?" you smirk.');
   scene.text('"Shut up and get your panties off! I\'m going first."');
   scene.text('You grin as you both undress and settle down on the bed. You spread your legs and smile down at Albina as she settles in front of your pussy.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Get your pussy eaten', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'cuni', 5, 'lesbian', 'no_orgasm_msg');
@@ -1478,7 +1398,6 @@ function enterPussyEatingContest(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/girl/albina/sex/pussy_contest1.jpg');
     scene.text('As much as you desire your release, you also want to win. Biting your lip, you manage to hold out under the teasing of her tongue for a few more minutes until the pleasure eventually proves too much and you orgasm <i>hard</i>.');
     scene.text('You cry out and your whole body shudders as waves of pleasure wash over you, Albina not stopping until you do. When you do, she pulls back and wipes her mouth before grinning at you.');
-    // TODO-QSP: dynamic text: "Not bad, <<$pcs_nickname>>. You lasted longer than I thought you would, but it'...
     scene.text(`"Not bad, ${((st as any).pcs_nickname ?? '')}. You lasted longer than I thought you would, but it's my turn now."`);
     scene.text('You give her a dazed smile as you switch positions, Albina flopping down on the bed and eagerly spreading her legs.');
     scene.actions([
@@ -1495,7 +1414,6 @@ function enterPussyEatingContest(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/girl/albina/sex/pussy_contest1.jpg');
     scene.text('You try your best to hold out, but Albina\'s expert teasing of your clit proves too much and you cry out in pleasure as you cum <i>hard</i>.');
     scene.text('Your whole body shudders as waves of pleasure wash over you, Albina not stopping until you do. When you do, she pulls back and wipes her mouth before grinning at you.');
-    // TODO-QSP: dynamic text: "Not bad <<$pcs_nickname>>, but it''s my turn now."
     scene.text(`"Not bad ${((st as any).pcs_nickname ?? '')}, but it's my turn now."`);
     scene.text('You give her a dazed smile as she climbs up onto the bed next to you and bites her lip.');
     scene.actions([
@@ -1518,7 +1436,6 @@ function enterPussyEatingContest1(s: GameState, scene: SceneBuilder): void {
   scene.text('To your surprise, she doesn\'t last as long as you were expecting and suddenly starts bucking her hips and grinding against your face before she cries out in pleasure and a stream of her juices squirts into your mouth and splashes over your face.');
   scene.text('It\'s a far larger and more violent stream than you remember her having and your face is drenched as you\'re forced to swallow the large amount of sweet tasting liquid in your mouth.');
   scene.text('Her legs give out as she spasms in pleasure and she flops down on the bed, her legs soaked with her juices as you gasp for air.');
-  // TODO-QSP: dynamic text: "Sorry about nearly drowing you there <<$pcs_nickname>>, but I''ve been holding ...
   scene.text(`"Sorry about nearly drowing you there ${((s as any).pcs_nickname ?? '')}, but I've been holding that one in for a while," she happily grins. "It felt good to finally let it out."`);
   if (((s as any).AlbinaQW ?? 0)?.['pussy_contest_win'] === 1) {
     ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['pussy_contest_win'] = 0;
@@ -1531,7 +1448,6 @@ function enterPussyEatingContest1(s: GameState, scene: SceneBuilder): void {
     scene.text('"I don\'t know," she grins back while panting heavily. "I think me having the bigger orgasm makes me the winner..."');
     scene.text('"Do you want a taste of your little victory then?" you grin as you lick your lips.');
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['albina_sex_scenes', 'pussy_contest_end'] },
   ]);
@@ -1548,7 +1464,6 @@ function enterPussyContestEnd(s: GameState, scene: SceneBuilder): void {
   scene.text('"That was fun. We should do it again sometime," you tell her.');
   scene.text('"It was," she replies with a giggle. "But we should clean up and get dressed."');
   scene.text('You give her one last kiss before disentangling yourself. She offers you some wipes to clean up before you both get dressed.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     scene.text('"I need to get going," you tell her. "I\'ll see you another time."');
@@ -1609,7 +1524,6 @@ function enterLazarStart(s: GameState, scene: SceneBuilder): void {
       { label: 'Peep on her', goto: ['albina_sex_scenes', 'lazar_peek1'] },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1637,7 +1551,6 @@ function enterLazarDoorFirst(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Give them some privacy', goto: ['albina_sex_scenes', 'lazar_give_privacy'] },
     { label: 'Peep on her', goto: ['albina_sex_scenes', 'lazar_peek1'] },
@@ -1648,7 +1561,6 @@ function enterLazarDoorFirst(s: GameState, scene: SceneBuilder): void {
 function enterLazarGivePrivacy(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/resident/albinahome/phone.jpg');
   scene.text('You decide to wait them out and walk down the hall to the bathroom. You walk in, lock the door and sit on the toilet before pulling out your phone and amusing yourself.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Keep using phone', goto: ['albina_sex_scenes', 'keep_using_phone'] },
     { label: 'Watch porn', goto: ['albina_sex_scenes', 'watch_porn'] },
@@ -1679,7 +1591,6 @@ function enterLazarPeek1(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Give them some privacy', goto: ['albina_sex_scenes', 'lazar_give_privacy'] },
     { label: 'Keep watching', goto: ['albina_sex_scenes', 'lazar_peek2'] },
@@ -1693,7 +1604,6 @@ function enterLazarPeek2(s: GameState, scene: SceneBuilder): void {
   scene.text('Her whole body twitches in one violent flinch and you hear a muffled moan as he fingers her.');
   scene.text('"You like it dirty, don\'t you, you little whore?"');
   scene.text('"Put it back in!" she begs. "Shove your cock in my pussy and <b>fuck</b> me!"');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/shared/sex/vag/doggy/kotovsex10.mp4');
@@ -1736,7 +1646,6 @@ function enterLazarPeek3(s: GameState, scene: SceneBuilder): void {
   scene.text('"Yours..." she whimpers before squealing as he slaps her ass again.');
   scene.text('"That\'s right, you dirty little buttslut!"');
   scene.text('"I\'m your dirty little buttslut!" she gasps as he ramps up. "I\'m your dirty little buttslut whore!"');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Keep watching', goto: ['albina_sex_scenes', 'lazar_peek_cum'] },
   ]);
@@ -1759,7 +1668,6 @@ function enterLazarPeekCum(s: GameState, scene: SceneBuilder): void {
       scene.text('You stare at Albina\'s cum-stained form for a few seconds before suddenly realizing that Lazar has almost finished dressing and is heading towards the door.');
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Wait outside the door', goto: ['albina_sex_scenes', 'lazar_peek_end_wait'] },
     { label: 'Run back down the stairs!', goto: ['albina_sex_scenes', 'lazar_peek_end_run'] },
@@ -1770,11 +1678,9 @@ function enterLazarPeekCum(s: GameState, scene: SceneBuilder): void {
 function enterLazarPeekEndWait(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/big149.jpg');
   scene.text('You step back just as the door opens, Lazar pulling on his shirt as he steps through the threshold.');
-  // TODO-QSP: dynamic text: "Oh shit! What are you doing here, <<$pcs_nickname>>?" he asks, seemingly startl...
   scene.text(`"Oh shit! What are you doing here, ${((s as any).pcs_nickname ?? '')}?" he asks, seemingly startled.`);
   scene.text('"I\'m here to see Albina," you smirk. "Seems like you were here for a similar reason."');
   scene.text('"If you\'re here to assfuck her brains out, then sure," he grins back. "But I gotta get going. Gotta hit the gym." He flexes his arm with a confident smirk as he passes you and heads downstairs. "See you around."');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go to her room', goto: ['albina_sex_scenes', 'lazar_after'] },
   ]);
@@ -1784,13 +1690,11 @@ function enterLazarPeekEndWait(s: GameState, scene: SceneBuilder): void {
 function enterLazarPeekEndRun(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/resident/albinahome/hallway.jpg');
   scene.text('You rush down the stairs, going as fast as you can without stomping and giving yourself away. Upon reaching the bottom, you inhale deeply, trying to calm your breathing when Lazar appears at the top.');
-  // TODO-QSP: dynamic text: "Oh. Hey <<$pcs_nickname>>," he says.
   scene.text(`"Oh. Hey ${((s as any).pcs_nickname ?? '')}," he says.`);
   scene.text('"Hey Lazar," you reply as casually as you can.');
   scene.text('"I didn\'t know Albina invited you over?" he asks.');
   scene.text('"Oh, you know, I just popped in to say hi..."');
   scene.text('"Well, she\'s in her room, but I gotta get going. Gotta hit the gym." He flexes his arm with a confident smirk as he passes you. "See you around."');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go to her room', goto: ['albina_sex_scenes', 'lazar_after'] },
   ]);
@@ -1801,10 +1705,8 @@ function enterLazarAfter(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/resident/albinahome/doors.jpg');
   scene.text('You walk up to and knock on Albina\'s door. A muffled groan sounds inside.');
   scene.text('"<i>Nnngh. Who is it...?</i>"');
-  // TODO-QSP: dynamic text: "It''s <<$pcs_nickname>>."
   scene.text(`"It's ${((s as any).pcs_nickname ?? '')}."`);
   scene.text('"<i>Oh... Come in...</i>"');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Open the door', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/albinahome/nudealbina.jpg');
@@ -1815,7 +1717,6 @@ function enterLazarAfter(s: GameState, scene: SceneBuilder): void {
         scene.text('You open the door to see a completely nude Albina sitting up on her rumpled bed, her thighs wet with pussy juice and her wild cum-smeared hair plastered across her face.');
       }
     }
-    // TODO-QSP: dynamic text: "Hey <<$pcs_nickname>>," she smiles tiredly at you. "Sorry about the mess. Lazar...
     scene.text(`"Hey ${((st as any).pcs_nickname ?? '')}," she smiles tiredly at you. "Sorry about the mess. Lazar just finished fucking my brains out."`);
     scene.text('If she\'s even at all embarrassed by her appearance, then she doesn\'t show it, sighing in what seems like deep satisfaction before unsteadily climbing to her feet and stumbling towards her en-suite bathroom.');
     scene.text('"Give me a sec to clean up?" she asks and disappears inside without waiting for a response. You hear the sounds of the shower splashing and a few minutes later a wet, but equally nude Albina reappears toweling her hair.');
@@ -1835,7 +1736,6 @@ function enterJoin(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/girl/anushka/sex/spy/join/walkin3.jpg');
   scene.text('You\'re not really sure what you\'re thinking as you reach for the handle and open the door, startling the two of them as you walk into the room.');
-  // TODO-QSP: dynamic text: "What the fuck? <<$pcs_nickname>>?!" Albina asks in a somewhat confused tone as ...
   scene.text(`"What the fuck? ${((s as any).pcs_nickname ?? '')}?!" Albina asks in a somewhat confused tone as Lazar just grins.`);
   if (((s as any).AlbinaQW ?? 0)?.['Lazar_Threesome'] === 1) {
     scene.text('"You guys sounded like you were having fun, so I thought we could make it another threesome?" you ask with a smile.');
@@ -1915,7 +1815,6 @@ function enterJoin(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1928,7 +1827,6 @@ function enterLazarThreesome(s: GameState, scene: SceneBuilder): void {
   scene.text('He smacks her ass a few times before he starts fucking her as she licks and sucks on your clit, her moans and tongue piercing adding to your pleasure.');
   qspCall(s, 'arousal', 'bj', 5, ((s as any).npcID ?? 0), 'group');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Get eaten out', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/albina/sex/lazar/laz3some2.jpg');
@@ -1958,7 +1856,6 @@ function enterLazarThreesome(s: GameState, scene: SceneBuilder): void {
     scene.text('All lubed up, she squats above him reverse cowgirl style and guides the tip of his dick to her asshole. She relaxes and slowly slides down, moaning softly as his dick penetrates her ass.');
     scene.text('She then starts riding him, her ass slapping off his hips as she picks up speed. Lazar then grabs her knees and pulls her legs back before he starts hammering her ass full nelson, causing her eyes to roll back in her head in pleasure.');
     scene.text('After a few minutes of this, he pulls out of her and drops her to one side, leaving her looking a little disappointed.');
-    // TODO-QSP: dynamic text: "Your turn, <<$pcs_nickname>>," he says as he reaches over and gives your ass a ...
     scene.text(`"Your turn, ${((st as any).pcs_nickname ?? '')}," he says as he reaches over and gives your ass a firm squeeze.`);
     qspCall(st, 'arousal', 'voyeur_sex', 5, 'group');
     qspCall(st, 'stat', '');
@@ -2087,11 +1984,9 @@ function enterBjContest(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: dynamic text: After a few minutes, Albina stops you. "My turn now, <<$pcs_nickname>>."
   scene.text(`After a few minutes, Albina stops you. "My turn now, ${((s as any).pcs_nickname ?? '')}."`);
   qspCall(s, 'arousal', 'bj', 3, ((s as any).npcID ?? 0));
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Albina\'s turn', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'voyeur_sex', 3);
@@ -2109,7 +2004,6 @@ function enterBjContest(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((st as any).pcs_throat ?? 0) <= 35) {
         if ((!(Math.floor(Math.random() * 3) + 0))) {
-          // TODO-QSP: dynamic text: "It was close, but..." he says before he smiles at you. "<<$pcs_nickname>> manag...
           scene.text(`"It was close, but..." he says before he smiles at you. "${((st as any).pcs_nickname ?? '')} managed to edge out the win on this one."`);
           scene.text('You smile as you scoot over and start jerking him off.');
           scene.actions([
@@ -2124,7 +2018,6 @@ function enterBjContest(s: GameState, scene: SceneBuilder): void {
         }
       } else {
         if ((!(Math.floor(Math.random() * 2) + 0))) {
-          // TODO-QSP: dynamic text: "Those were some amazing blowjobs, girls! It was <i>really</i> close, but..." he...
           scene.text(`"Those were some amazing blowjobs, girls! It was <i>really</i> close, but..." he says before he smiles at you. "${((st as any).pcs_nickname ?? '')} managed to edge out the win on this one."`);
           scene.text('You smile as you scoot over and start jerking him off.');
           scene.actions([
@@ -2154,7 +2047,6 @@ function enterBjContestAlbWin(s: GameState, scene: SceneBuilder): void {
   scene.text('"That was great, girls! We should do again sometime," he says and points at both of you with a smirk before he leaves.');
   qspCall(s, 'arousal', 'end');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['albina_sex_scenes', 'leave'] },
   ]);
@@ -2174,7 +2066,6 @@ function enterBjContestSvetaWin(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'cum_cleanup', '');
   qspCall(s, 'arousal', 'end');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['albina_sex_scenes', 'leave'] },
   ]);
@@ -2188,7 +2079,6 @@ function enterKeepUsingPhone(s: GameState, scene: SceneBuilder): void {
   scene.text('You keep using your phone, scrolling through social media and playing a few games to pass the time.');
   scene.text('When you finally get bored, you hear what sounds like muffled moaning and a few minutes later hear someone exiting Albina\'s bedroom and walking away down the hall.');
   scene.text('When you\'re sure they\'re gone, you stand up and leave the bathroom.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go to her room', goto: ['albina_sex_scenes', 'lazar_after'] },
   ]);
@@ -2201,7 +2091,6 @@ function enterWatchPorn(s: GameState, scene: SceneBuilder): void {
   scene.text('You find one you like the look of and start watching it, finding yourself getting wetter and wetter...');
   qspCall(s, 'arousal', 'porn', 5);
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Just keep watching', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;

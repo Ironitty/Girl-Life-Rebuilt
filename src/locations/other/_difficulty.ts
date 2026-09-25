@@ -189,14 +189,12 @@ function enterPreset(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterSetdifficultyInt(s: GameState, scene: SceneBuilder): void {
   ((s as any).cheatVars = (s as any).cheatVars ?? {})['skill_gain'] = Math.min(Math.max(1, ((s as any).locArgs?.[1] ?? 0)), 4);
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -215,7 +213,6 @@ function enterSetdifficulty(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -230,14 +227,12 @@ function enterGetdifficulty(s: GameState, scene: SceneBuilder): void {
   if (((s as any).cheatVars ?? 0)?.['skill_gain'] === 4) {
     (s as any).result = 'hardcore';
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterGetexpadj(s: GameState, scene: SceneBuilder): void {
   (s as any).result = 20 * (((s as any).cheatVars ?? {})?.['skill_gain'] ?? 0);
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -253,32 +248,30 @@ function enterGetExpGain(s: GameState, scene: SceneBuilder): void {
     (s as any).result = 50;
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterGetDegLoss(s: GameState, scene: SceneBuilder): void {
   (s as any).result = qspFunc(s, '_difficulty', 'get_multiplied', (((s as any).egVars ?? 0)?.['deg_loss_mult']), 100, (((s as any).cheatVars ?? 0)?.['deg_speed_custom']));
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterAddmoney(s: GameState, scene: SceneBuilder): void {
+  alert('_difficulty money functions are deprecated, please report this, together with the location you were in, and the mod you were (probably) using.');
   qspCall(s, 'money', 'earn', ((s as any).locArgs?.[1] ?? 0));
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterAddmoneystring(s: GameState, scene: SceneBuilder): void {
+  alert('_difficulty money functions are deprecated, please report this, together with the location you were in, and the mod you were (probably) using.');
   (s as any).result = qspFunc(s, 'money', 'string_profit', ((s as any).locArgs?.[1] ?? 0));
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterSpendmoney(s: GameState, scene: SceneBuilder): void {
+  alert('_difficulty money functions are deprecated, please report this, together with the location you were in, and the mod you were (probably) using.');
   qspCall(s, 'money', 'pay', ((s as any).locArgs?.[1] ?? 0));
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -327,13 +320,12 @@ function enterGetMultiplied(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterSpendmoneystring(s: GameState, scene: SceneBuilder): void {
+  alert('_difficulty money functions are deprecated, please report this, together with the location you were in, and the mod you were (probably) using.');
   (s as any).result = qspFunc(s, 'money', 'string_price', ((s as any).locArgs?.[1] ?? 0));
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -353,7 +345,6 @@ function enterGetmaxgrades(s: GameState, scene: SceneBuilder): void {
   if (((s as any).max_grades ?? 0) > 100) {
     (s as any).max_grades = 100;
   }
-  // TODO-QSP: end
   scene.build();
 }
 

@@ -20,7 +20,6 @@ function enterNpcUpdate(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'boy_updater', 'schedule_update');
   qspCall(s, 'boy_updater', 'trait_updates');
   qspCall(s, 'boy_updater', 'name_updates');
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -62,8 +61,8 @@ function enterStartingStats(s: GameState, scene: SceneBuilder): void {
     ((s as any).sex_ev = (s as any).sex_ev ?? {})['bc_take'] = 1;
   }
   if (((s as any).npc_lovername ?? 0)?.[String((s as any).npcID ?? 0)] === '') {
-    // TODO-QSP: $npc_lovername[$npcID] = 'babe'
-    // TODO-QSP: $npc_lovername2[$npcID] = 'baby'
+    ((s as any).npc_lovername = (s as any).npc_lovername ?? {})[String((s as any).npcID ?? 0)] = 'babe';
+    ((s as any).npc_lovername2 = (s as any).npc_lovername2 ?? {})[String((s as any).npcID ?? 0)] = 'baby';
   }
   if (((s as any).npc_creampie_permission ?? 0)?.[String((s as any).npcID ?? 0)] === 1  ||  ((s as any).npc_free_creampies ?? 0)?.[String((s as any).npcID ?? 0)] === 'at_will') {
     ((s as any).sex_ev = (s as any).sex_ev ?? {})['creampie_allowance'] = 1;
@@ -75,7 +74,6 @@ function enterStartingStats(s: GameState, scene: SceneBuilder): void {
       ((s as any).sex_ev = (s as any).sex_ev ?? {})['bc_type'] = ' pill';
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -83,7 +81,7 @@ function enterSexEndStats(s: GameState, scene: SceneBuilder): void {
   ((s as any).sex_ev = (s as any).sex_ev ?? {})['sex_over'] = 1;
   ((s as any).sex_ev = (s as any).sex_ev ?? {})['last_cum_time'] = ((s as any).totminut ?? 0);
   ((s as any).sex_ev = (s as any).sex_ev ?? {})['finish_time'] = ((s as any).totminut ?? 0);
-  // TODO-QSP: $npc_last_sex_enjoyment[$npcID] = $sex_ev['fuck_enjoyment']
+  ((s as any).npc_last_sex_enjoyment = (s as any).npc_last_sex_enjoyment ?? {})[String((s as any).npcID ?? 0)] = (((s as any).sex_ev ?? 0)?.['fuck_enjoyment']);
   ((s as any).npc_last_orgasm_count = (s as any).npc_last_orgasm_count ?? {})[String((s as any).npcID ?? 0)] = (((s as any).sex_ev ?? 0)?.['orgasm_count']);
   if (String((s as any).locArgs?.[1] ?? '') === 'unhappy') {
     ((s as any).npc_last_sex_score = (s as any).npc_last_sex_score ?? {})[String((s as any).npcID ?? 0)] = 0;
@@ -109,27 +107,26 @@ function enterSexEndStats(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).npc_last_sex_score ?? 0)?.[String((s as any).npcID ?? 0)] <= 0) {
-    // TODO-QSP: $npc_last_sex_quality[$npcID] = 'unhappy'
+    ((s as any).npc_last_sex_quality = (s as any).npc_last_sex_quality ?? {})[String((s as any).npcID ?? 0)] = 'unhappy';
   } else {
     if (((s as any).npc_last_sex_score ?? 0)?.[String((s as any).npcID ?? 0)] <= 1) {
-      // TODO-QSP: $npc_last_sex_quality[$npcID] = 'unsatisfied'
+      ((s as any).npc_last_sex_quality = (s as any).npc_last_sex_quality ?? {})[String((s as any).npcID ?? 0)] = 'unsatisfied';
     } else {
       if (((s as any).npc_last_sex_score ?? 0)?.[String((s as any).npcID ?? 0)] <= 2) {
-        // TODO-QSP: $npc_last_sex_quality[$npcID] = 'okay'
+        ((s as any).npc_last_sex_quality = (s as any).npc_last_sex_quality ?? {})[String((s as any).npcID ?? 0)] = 'okay';
       } else {
         if (((s as any).npc_last_sex_score ?? 0)?.[String((s as any).npcID ?? 0)] <= 3) {
-          // TODO-QSP: $npc_last_sex_quality[$npcID] = 'good'
+          ((s as any).npc_last_sex_quality = (s as any).npc_last_sex_quality ?? {})[String((s as any).npcID ?? 0)] = 'good';
         } else {
           if (((s as any).npc_last_sex_score ?? 0)?.[String((s as any).npcID ?? 0)] <= 4  &&  String((s as any).locArgs?.[1] ?? '') !== 'fucked_dry') {
-            // TODO-QSP: $npc_last_sex_quality[$npcID] = 'great'
+            ((s as any).npc_last_sex_quality = (s as any).npc_last_sex_quality ?? {})[String((s as any).npcID ?? 0)] = 'great';
           } else {
-            // TODO-QSP: $npc_last_sex_quality[$npcID] = 'fucked_dry'
+            ((s as any).npc_last_sex_quality = (s as any).npc_last_sex_quality ?? {})[String((s as any).npcID ?? 0)] = 'fucked_dry';
           }
         }
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -147,7 +144,6 @@ function enterStartingMood(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -155,13 +151,13 @@ function enterSaveStats(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sex_ev ?? 0)?.['loc'] === 'pc_home') {
     if (((s as any).sex_ev ?? 0)?.['bed_choice'] !== 'anya_bed') {
       ((s as any).stat = (s as any).stat ?? {})['bed_cum'] = ((s as any).totminut ?? 0);
-      // TODO-QSP: $cum_sheets[] = $npcID
+      (s as any).cum_sheets = [...((s as any).cum_sheets ?? []), ((s as any).npcID ?? 0)];
     } else {
       ((s as any).stat = (s as any).stat ?? {})['anya_bed_cum'] = ((s as any).daystart ?? 0);
     }
   }
   if ((Array.isArray((s as any).body_count) ? ((s as any).body_count as any[]).indexOf(((s as any).npcID ?? 0)) : -1) < 0) {
-    // TODO-QSP: $body_count[] = $npcID
+    (s as any).body_count = [...((s as any).body_count ?? []), ((s as any).npcID ?? 0)];
   }
   if (((s as any).sex_ev ?? 0)?.['sleep_fuck'] > 0) {
     ((s as any).npc_sleep_fuck = (s as any).npc_sleep_fuck ?? {})[String((s as any).npcID ?? 0)] = ((s as any).npc_sleep_fuck[String((s as any).npcID ?? 0)] ?? 0) + (1);
@@ -211,7 +207,6 @@ function enterSaveStats(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sex_ev ?? 0)?.['phone_film'] === 2  ||  (((s as any).sex_ev ?? 0)?.['phone_film'] === 1  &&  ((s as any).npc_abusive ?? 0)?.[String((s as any).npcID ?? 0)] > 0)) {
     ((s as any).npc_sex_video_count = (s as any).npc_sex_video_count ?? {})[String((s as any).npcID ?? 0)] = ((s as any).npc_sex_video_count[String((s as any).npcID ?? 0)] ?? 0) + (1);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -223,7 +218,6 @@ function enterBirthControlKnow(s: GameState, scene: SceneBuilder): void {
   if (((s as any).npc_pay_for_ma_pill ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
     ((s as any).npc_pay_for_ma_pill = (s as any).npc_pay_for_ma_pill ?? {})[String((s as any).npcID ?? 0)] = (-1);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -235,19 +229,16 @@ function enterNoBirthControlKnow(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[2] ?? '') === 'catholic') {
     // TODO-QSP: npc_know_catholic[$npcID]
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterBarebackRiskActive(s: GameState, scene: SceneBuilder): void {
   ((s as any).npc_bareback_risk = (s as any).npc_bareback_risk ?? {})[String((s as any).npcID ?? 0)] = 1;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterBarebackRiskDeactive(s: GameState, scene: SceneBuilder): void {
   ((s as any).npc_bareback_risk = (s as any).npc_bareback_risk ?? {})[String((s as any).npcID ?? 0)] = 0;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -255,7 +246,6 @@ function enterProstitutionInit(s: GameState, scene: SceneBuilder): void {
   ((s as any).sex_ev = (s as any).sex_ev ?? {})['prostitution_flag'] = 'prostitution';
   ((s as any).sex_ev = (s as any).sex_ev ?? {})['prostitution'] = 1;
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0)]; enterProstitutionPayCalc(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -271,7 +261,6 @@ function enterProstitutionPayCalc(s: GameState, scene: SceneBuilder): void {
     }
   }
   ((s as any).sex_ev = (s as any).sex_ev ?? {})['prostitution_owed'] = (((s as any).sex_ev ?? {})?.['prostitution_calc'] ?? 0) - (((s as any).sex_ev ?? {})?.['prostitution_paid'] ?? 0);
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -293,57 +282,48 @@ function enterProstitutionPayCode(s: GameState, scene: SceneBuilder): void {
   if (((s as any).npc_prostitution_tab ?? 0)?.[String((s as any).npcID ?? 0)] > 0) {
     ((s as any).npc_prostitution_tab = (s as any).npc_prostitution_tab ?? {})[String((s as any).npcID ?? 0)] = 0;
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterSingleKnow(s: GameState, scene: SceneBuilder): void {
   ((s as any).npc_know_have_boyfriend = (s as any).npc_know_have_boyfriend ?? {})[String((s as any).npcID ?? 0)] = 0;
   ((s as any).npc_know_have_girlfriend = (s as any).npc_know_have_girlfriend ?? {})[String((s as any).npcID ?? 0)] = 0;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterDatingBoyKnow(s: GameState, scene: SceneBuilder): void {
   ((s as any).npc_know_have_boyfriend = (s as any).npc_know_have_boyfriend ?? {})[String((s as any).npcID ?? 0)] = 1;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterDatingGirlKnow(s: GameState, scene: SceneBuilder): void {
   ((s as any).npc_know_have_girlfriend = (s as any).npc_know_have_girlfriend ?? {})[String((s as any).npcID ?? 0)] = 1;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterNpcIsSingle(s: GameState, scene: SceneBuilder): void {
   ((s as any).know_npc_girlfriend = (s as any).know_npc_girlfriend ?? {})[String((s as any).npcID ?? 0)] = 0;
   ((s as any).know_npc_single = (s as any).know_npc_single ?? {})[String((s as any).npcID ?? 0)] = 1;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterNpcIsDating(s: GameState, scene: SceneBuilder): void {
   ((s as any).know_npc_girlfriend = (s as any).know_npc_girlfriend ?? {})[String((s as any).npcID ?? 0)] = 1;
   ((s as any).know_npc_single = (s as any).know_npc_single ?? {})[String((s as any).npcID ?? 0)] = 0;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterNpcIsMarried(s: GameState, scene: SceneBuilder): void {
   ((s as any).know_npc_wife = (s as any).know_npc_wife ?? {})[String((s as any).npcID ?? 0)] = 1;
   ((s as any).know_npc_single = (s as any).know_npc_single ?? {})[String((s as any).npcID ?? 0)] = 0;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterSexAllNight(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterPregnancyRiskFunc(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -358,13 +338,14 @@ function enterPcCondomStats(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).mc_inventory ?? 0)?.['equipped_condoms'] > 0  &&  (!((s as any).preziktype ?? 0))) {
       ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['equipped_condoms'] = ((s as any).mc_inventory['equipped_condoms'] ?? 0) - (1);
+    } else {
+      alert('Error: player is spending condoms while mc_inventory[\'normal_condoms\'] = 0 and mc_inventory[\'equipped_condoms\'] = 0');
     }
   }
   qspCall(s, 'npcStat', '$npcID', 0, 'normal');
   if (((s as any).npc_no_condoms ?? 0)?.[String((s as any).npcID ?? 0)] > 0) {
     ((s as any).sex_ev = (s as any).sex_ev ?? {})['pc_insist_condom'] = 1;
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -377,14 +358,12 @@ function enterNpcCondomStats(s: GameState, scene: SceneBuilder): void {
   if (((s as any).npc_no_condoms ?? 0)?.[String((s as any).npcID ?? 0)] > 0) {
     ((s as any).sex_ev = (s as any).sex_ev ?? {})['pc_insist_condom'] = 1;
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterPcUseLubeVag(s: GameState, scene: SceneBuilder): void {
   (s as any).vaginal_slip = 8;
   (s as any).ar_vag_lube = 1;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -392,7 +371,6 @@ function enterRestrictFunc(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === 'creampie') {
     ((s as any).sex_ev = (s as any).sex_ev ?? {})['creampie_restrict'] = 1;
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -404,14 +382,12 @@ function enterPositionTracker(s: GameState, scene: SceneBuilder): void {
   ((s as any).sex_ev = (s as any).sex_ev ?? {})['speed'] = ((s as any).locArgs?.[2] ?? 0);
   ((s as any).sex_ev = (s as any).sex_ev ?? {})['pos_speed'] = '' + ((s as any).locArgs?.[1] ?? 0) + '' + ((s as any).locArgs?.[2] ?? 0) + '';
   ((s as any).sex_ev = (s as any).sex_ev ?? {})['kiss'] = ((String((s as any).locArgs?.[3] ?? '') === 'kiss') ? (1) : (0));
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterFuckbuddyAdd(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'lover', 'add_fuckbuddy', ((s as any).npcID ?? 0));
   ((s as any).npc_no_booty_call = (s as any).npc_no_booty_call ?? {})[String((s as any).npcID ?? 0)] = ((s as any).daystart ?? 0);
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -419,18 +395,16 @@ function enterSugarDaddyAdd(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'lover', 'add_sugar_daddy', ((s as any).npcID ?? 0));
   ((s as any).npc_sugar_daddy_price = (s as any).npc_sugar_daddy_price ?? {})[String((s as any).npcID ?? 0)] = (((s as any).sex_ev ?? {})?.['sugar_daddy_offer'] ?? 0) * 100;
   if (((s as any).npc_rel_type ?? 0)?.[String((s as any).npcID ?? 0)] !== 'sugar_daddy') {
-    // TODO-QSP: $npc_rel_type[$npcID] = 'sugar_daddy'
+    ((s as any).npc_rel_type = (s as any).npc_rel_type ?? {})[String((s as any).npcID ?? 0)] = 'sugar_daddy';
     ((s as any).sex_ev = (s as any).sex_ev ?? {})['sugar_daddy_count'] = ((s as any).sex_ev['sugar_daddy_count'] ?? 0) + (1);
   }
   ((s as any).sex_ev = (s as any).sex_ev ?? {})['sugar_daddy_paid'] = 1;
   ((s as any).sex_ev = (s as any).sex_ev ?? {})['prostitution_paid'] = 1;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterLoverAdd(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'lover', 'add_boyfriend', ((s as any).npcID ?? 0));
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -446,7 +420,6 @@ function enterCumFacial(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === 'pc_jerk') {
     ((s as any).sex_ev = (s as any).sex_ev ?? {})['pc_facial_jerk'] = ((s as any).sex_ev['pc_facial_jerk'] ?? 0) + (1);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -466,7 +439,6 @@ function enterCumMouth(s: GameState, scene: SceneBuilder): void {
       ((s as any).sex_ev = (s as any).sex_ev ?? {})['spit_count'] = ((s as any).sex_ev['spit_count'] ?? 0) + (1);
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -490,7 +462,6 @@ function enterCumMouthFacial(s: GameState, scene: SceneBuilder): void {
       ((s as any).sex_ev = (s as any).sex_ev ?? {})['spit_count'] = ((s as any).sex_ev['spit_count'] ?? 0) + (1);
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -508,7 +479,6 @@ function enterCumSwallow(s: GameState, scene: SceneBuilder): void {
     ((s as any).sex_ev = (s as any).sex_ev ?? {})['mouth_cum_gross'] = 1;
     ((s as any).sex_ev = (s as any).sex_ev ?? {})['gag'] = 1;
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -525,7 +495,6 @@ function enterCumTits(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'cum_call', 'hands', ((s as any).npcID ?? 0), 1);
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -556,7 +525,6 @@ function enterCreampieCode(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), 'like');
   }
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -571,7 +539,6 @@ function enterAnalCreampieCode(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), 'like');
   }
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -618,8 +585,8 @@ function enterSugarDaddyHaggleLimit(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sex_ev ?? 0)?.['haggle_limit'] > 50) {
     ((s as any).sex_ev = (s as any).sex_ev ?? {})['haggle_limit'] = 50;
   }
+  (s as any).ngpPrefResult = undefined;
   (s as any).result = (((s as any).sex_ev ?? 0)?.['haggle_limit']);
-  // TODO-QSP: end
   // TODO-QSP: --- sex_ev_stats ---------------------------------
   scene.build();
 }

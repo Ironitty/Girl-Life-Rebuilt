@@ -26,12 +26,12 @@ function enterHomeImgUpdate(s: GameState, scene: SceneBuilder): void {
     if (((s as any).npc_apt_type_label ?? 0)?.[String((s as any).npcID ?? 0)] === 'student_dorm') {
       ((s as any).temp = (s as any).temp ?? {})['update_folder'] = 'studio';
     }
-    // TODO-QSP: $npc_apt_bedroom[$npcID] = '<img <<$set_imgh>> src="images/shared/romance/lovers/homes/<<$temp[''upd...
-    // TODO-QSP: $npc_apt_guestroom[$npcID] = '<img <<$set_imgh>> src="images/shared/romance/lovers/homes/<<$temp[''u...
-    // TODO-QSP: $npc_apt_kitchen[$npcID] = '<img <<$set_imgh>> src="images/shared/romance/lovers/homes/<<$temp[''upd...
-    // TODO-QSP: $npc_apt_livingroom[$npcID]  = '<img <<$set_imgh>> src="images/shared/romance/lovers/homes/<<$temp['...
-    // TODO-QSP: $npc_apt_bathroom[$npcID] = '<img <<$set_imgh>> src="images/shared/romance/lovers/homes/<<$temp[''up...
-    // TODO-QSP: $npc_apt_hall[$npcID] = '<img <<$set_imgh>> src="images/shared/romance/lovers/homes/<<$temp[''update...
+    ((s as any).npc_apt_bedroom = (s as any).npc_apt_bedroom ?? {})[String((s as any).npcID ?? 0)] = '<img ' + ((s as any).set_imgh ?? 0) + ' src="images/shared/romance/lovers/homes/' + (((s as any).temp ?? 0)?.['update_folder']) + '/' + (((s as any).npc_apt_number ?? 0)?.[String((s as any).npcID ?? 0)] ?? 0) + '/bedroom.jpg">';
+    ((s as any).npc_apt_guestroom = (s as any).npc_apt_guestroom ?? {})[String((s as any).npcID ?? 0)] = '<img ' + ((s as any).set_imgh ?? 0) + ' src="images/shared/romance/lovers/homes/' + (((s as any).temp ?? 0)?.['update_folder']) + '/' + (((s as any).npc_apt_number ?? 0)?.[String((s as any).npcID ?? 0)] ?? 0) + '/guestroom.jpg">';
+    ((s as any).npc_apt_kitchen = (s as any).npc_apt_kitchen ?? {})[String((s as any).npcID ?? 0)] = '<img ' + ((s as any).set_imgh ?? 0) + ' src="images/shared/romance/lovers/homes/' + (((s as any).temp ?? 0)?.['update_folder']) + '/' + (((s as any).npc_apt_number ?? 0)?.[String((s as any).npcID ?? 0)] ?? 0) + '/kitchen.jpg">';
+    ((s as any).npc_apt_livingroom = (s as any).npc_apt_livingroom ?? {})[String((s as any).npcID ?? 0)] = '<img ' + ((s as any).set_imgh ?? 0) + ' src="images/shared/romance/lovers/homes/' + (((s as any).temp ?? 0)?.['update_folder']) + '/' + (((s as any).npc_apt_number ?? 0)?.[String((s as any).npcID ?? 0)] ?? 0) + '/living.jpg">';
+    ((s as any).npc_apt_bathroom = (s as any).npc_apt_bathroom ?? {})[String((s as any).npcID ?? 0)] = '<img ' + ((s as any).set_imgh ?? 0) + ' src="images/shared/romance/lovers/homes/' + (((s as any).temp ?? 0)?.['update_folder']) + '/' + (((s as any).npc_apt_number ?? 0)?.[String((s as any).npcID ?? 0)] ?? 0) + '/bath.jpg">';
+    ((s as any).npc_apt_hall = (s as any).npc_apt_hall ?? {})[String((s as any).npcID ?? 0)] = '<img ' + ((s as any).set_imgh ?? 0) + ' src="images/shared/romance/lovers/homes/' + (((s as any).temp ?? 0)?.['update_folder']) + '/' + (((s as any).npc_apt_number ?? 0)?.[String((s as any).npcID ?? 0)] ?? 0) + '/hall.jpg">';
     if (((s as any).npc_apt_guest_bathroom ?? 0)?.[String((s as any).npcID ?? 0)] !== '') {
       ((s as any).npc_apt_guest_bathroom = (s as any).npc_apt_guest_bathroom ?? {})[String((s as any).npcID ?? 0)] = '<img ' + ((s as any).set_imgh ?? 0) + ' src="images/shared/romance/lovers/homes/' + (((s as any).temp ?? 0)?.['update_folder']) + '/' + (((s as any).npc_apt_number ?? 0)?.[String((s as any).npcID ?? 0)] ?? 0) + '/bathg.jpg">';
     }
@@ -48,27 +48,25 @@ function enterHomeImgUpdate(s: GameState, scene: SceneBuilder): void {
       ((s as any).npc_apt_spare = (s as any).npc_apt_spare ?? {})[String((s as any).npcID ?? 0)] = '<center><img ' + ((s as any).set_imgh ?? 0) + ' src="' + (((s as any).npcgeneratecVars ?? 0)?.['home_path']) + '/' + (((s as any).temp ?? 0)?.['update_folder']) + '/' + (((s as any).npc_apt_number ?? 0)?.[((s as any).locArgs?.[1] ?? 0)] ?? 0) + '/' + (((s as any).npc_apt_sparetype ?? 0)?.[((s as any).locArgs?.[1] ?? 0)] ?? 0) + '.jpg"></center>';
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterFavBodyPart(s: GameState, scene: SceneBuilder): void {
   if (((s as any).npc_fav_body_part ?? 0)?.[String((s as any).npcID ?? 0)] === '') {
     if ((Math.floor(Math.random() * 4) + 1) === 1) {
-      // TODO-QSP: $npc_fav_body_part[$npcID] = 'pussy'
+      ((s as any).npc_fav_body_part = (s as any).npc_fav_body_part ?? {})[String((s as any).npcID ?? 0)] = 'pussy';
     } else {
       if ((Math.floor(Math.random() * 3) + 1) === 1) {
-        // TODO-QSP: $npc_fav_body_part[$npcID] = 'tits'
+        ((s as any).npc_fav_body_part = (s as any).npc_fav_body_part ?? {})[String((s as any).npcID ?? 0)] = 'tits';
       } else {
         if ((Math.floor(Math.random() * 2) + 1) === 2) {
-          // TODO-QSP: $npc_fav_body_part[$npcID] = 'ass'
+          ((s as any).npc_fav_body_part = (s as any).npc_fav_body_part ?? {})[String((s as any).npcID ?? 0)] = 'ass';
         } else {
-          // TODO-QSP: $npc_fav_body_part[$npcID] = 'thighs'
+          ((s as any).npc_fav_body_part = (s as any).npc_fav_body_part ?? {})[String((s as any).npcID ?? 0)] = 'thighs';
         }
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -76,51 +74,51 @@ function enterDickUpdate(s: GameState, scene: SceneBuilder): void {
   if (((s as any).npc_dick_noun ?? 0)?.[String((s as any).npcID ?? 0)] === '') {
     if (((s as any).npc_dick ?? 0)?.[String((s as any).npcID ?? 0)] < 10) {
       if (((s as any).npc_thdick ?? 0)?.[String((s as any).npcID ?? 0)] === 'skinny'  ||  ((s as any).npc_thdick ?? 0)?.[String((s as any).npcID ?? 0)] === 'slim') {
-        // TODO-QSP: $npc_dick_noun[$npcID] = 'micropenis'
+        ((s as any).npc_dick_noun = (s as any).npc_dick_noun ?? {})[String((s as any).npcID ?? 0)] = 'micropenis';
       } else {
         if (((s as any).npc_thdick ?? 0)?.[String((s as any).npcID ?? 0)] === 'well proportioned'  ||  ((s as any).npc_thdick ?? 0)?.[String((s as any).npcID ?? 0)] === 'thicker than average') {
-          // TODO-QSP: $npc_dick_noun[$npcID] = 'short cock'
+          ((s as any).npc_dick_noun = (s as any).npc_dick_noun ?? {})[String((s as any).npcID ?? 0)] = 'short cock';
         } else {
           if (((s as any).npc_thdick ?? 0)?.[String((s as any).npcID ?? 0)] === 'thick'  ||  ((s as any).npc_thdick ?? 0)?.[String((s as any).npcID ?? 0)] === 'massive'  ||  ((s as any).npc_thdick ?? 0)?.[String((s as any).npcID ?? 0)] === 'monstrous') {
-            // TODO-QSP: $npc_dick_noun[$npcID] = 'chode'
+            ((s as any).npc_dick_noun = (s as any).npc_dick_noun ?? {})[String((s as any).npcID ?? 0)] = 'chode';
           }
         }
       }
     } else {
       if (((s as any).npc_dick ?? 0)?.[String((s as any).npcID ?? 0)] < 16) {
         if (((s as any).npc_thdick ?? 0)?.[String((s as any).npcID ?? 0)] === 'skinny'  ||  ((s as any).npc_thdick ?? 0)?.[String((s as any).npcID ?? 0)] === 'slim') {
-          // TODO-QSP: $npc_dick_noun[$npcID] = 'pencil dick'
+          ((s as any).npc_dick_noun = (s as any).npc_dick_noun ?? {})[String((s as any).npcID ?? 0)] = 'pencil dick';
         } else {
           if (((s as any).npc_thdick ?? 0)?.[String((s as any).npcID ?? 0)] === 'well proportioned'  ||  ((s as any).npc_thdick ?? 0)?.[String((s as any).npcID ?? 0)] === 'thicker than average') {
-            // TODO-QSP: $npc_dick_noun[$npcID] = 'dick'
+            ((s as any).npc_dick_noun = (s as any).npc_dick_noun ?? {})[String((s as any).npcID ?? 0)] = 'dick';
           } else {
             if (((s as any).npc_thdick ?? 0)?.[String((s as any).npcID ?? 0)] === 'thick'  ||  ((s as any).npc_thdick ?? 0)?.[String((s as any).npcID ?? 0)] === 'massive'  ||  ((s as any).npc_thdick ?? 0)?.[String((s as any).npcID ?? 0)] === 'monstrous') {
-              // TODO-QSP: $npc_dick_noun[$npcID] = 'thick cock'
+              ((s as any).npc_dick_noun = (s as any).npc_dick_noun ?? {})[String((s as any).npcID ?? 0)] = 'thick cock';
             }
           }
         }
       } else {
         if (((s as any).npc_dick ?? 0)?.[String((s as any).npcID ?? 0)] < 20) {
           if (((s as any).npc_thdick ?? 0)?.[String((s as any).npcID ?? 0)] === 'skinny'  ||  ((s as any).npc_thdick ?? 0)?.[String((s as any).npcID ?? 0)] === 'slim') {
-            // TODO-QSP: $npc_dick_noun[$npcID] = 'long cock'
+            ((s as any).npc_dick_noun = (s as any).npc_dick_noun ?? {})[String((s as any).npcID ?? 0)] = 'long cock';
           } else {
             if (((s as any).npc_thdick ?? 0)?.[String((s as any).npcID ?? 0)] === 'well proportioned'  ||  ((s as any).npc_thdick ?? 0)?.[String((s as any).npcID ?? 0)] === 'thicker than average') {
-              // TODO-QSP: $npc_dick_noun[$npcID] = 'sizeable cock'
+              ((s as any).npc_dick_noun = (s as any).npc_dick_noun ?? {})[String((s as any).npcID ?? 0)] = 'sizeable cock';
             } else {
               if (((s as any).npc_thdick ?? 0)?.[String((s as any).npcID ?? 0)] === 'thick'  ||  ((s as any).npc_thdick ?? 0)?.[String((s as any).npcID ?? 0)] === 'massive'  ||  ((s as any).npc_thdick ?? 0)?.[String((s as any).npcID ?? 0)] === 'monstrous') {
-                // TODO-QSP: $npc_dick_noun[$npcID] = 'enormous cock'
+                ((s as any).npc_dick_noun = (s as any).npc_dick_noun ?? {})[String((s as any).npcID ?? 0)] = 'enormous cock';
               }
             }
           }
         } else {
           if (((s as any).npc_thdick ?? 0)?.[String((s as any).npcID ?? 0)] === 'skinny'  ||  ((s as any).npc_thdick ?? 0)?.[String((s as any).npcID ?? 0)] === 'slim') {
-            // TODO-QSP: $npc_dick_noun[$npcID] = 'lengthy dick'
+            ((s as any).npc_dick_noun = (s as any).npc_dick_noun ?? {})[String((s as any).npcID ?? 0)] = 'lengthy dick';
           } else {
             if (((s as any).npc_thdick ?? 0)?.[String((s as any).npcID ?? 0)] === 'well proportioned'  ||  ((s as any).npc_thdick ?? 0)?.[String((s as any).npcID ?? 0)] === 'thicker than average') {
-              // TODO-QSP: $npc_dick_noun[$npcID] = 'gigantic cock'
+              ((s as any).npc_dick_noun = (s as any).npc_dick_noun ?? {})[String((s as any).npcID ?? 0)] = 'gigantic cock';
             } else {
               if (((s as any).npc_thdick ?? 0)?.[String((s as any).npcID ?? 0)] === 'thick'  ||  ((s as any).npc_thdick ?? 0)?.[String((s as any).npcID ?? 0)] === 'massive'  ||  ((s as any).npc_thdick ?? 0)?.[String((s as any).npcID ?? 0)] === 'monstrous') {
-                // TODO-QSP: $npc_dick_noun[$npcID] = 'monster cock'
+                ((s as any).npc_dick_noun = (s as any).npc_dick_noun ?? {})[String((s as any).npcID ?? 0)] = 'monster cock';
               }
             }
           }
@@ -131,51 +129,51 @@ function enterDickUpdate(s: GameState, scene: SceneBuilder): void {
   if (((s as any).npc_dick_desc ?? 0)?.[String((s as any).npcID ?? 0)] === '') {
     if (((s as any).npc_dick ?? 0)?.[String((s as any).npcID ?? 0)] < 10) {
       if (((s as any).npc_thdick ?? 0)?.[String((s as any).npcID ?? 0)] === 'skinny'  ||  ((s as any).npc_thdick ?? 0)?.[String((s as any).npcID ?? 0)] === 'slim') {
-        // TODO-QSP: $npc_dick_desc[$npcID] = 'tiny'
+        ((s as any).npc_dick_desc = (s as any).npc_dick_desc ?? {})[String((s as any).npcID ?? 0)] = 'tiny';
       } else {
         if (((s as any).npc_thdick ?? 0)?.[String((s as any).npcID ?? 0)] === 'well proportioned'  ||  ((s as any).npc_thdick ?? 0)?.[String((s as any).npcID ?? 0)] === 'thicker than average') {
-          // TODO-QSP: $npc_dick_desc[$npcID] = 'short'
+          ((s as any).npc_dick_desc = (s as any).npc_dick_desc ?? {})[String((s as any).npcID ?? 0)] = 'short';
         } else {
           if (((s as any).npc_thdick ?? 0)?.[String((s as any).npcID ?? 0)] === 'thick'  ||  ((s as any).npc_thdick ?? 0)?.[String((s as any).npcID ?? 0)] === 'massive'  ||  ((s as any).npc_thdick ?? 0)?.[String((s as any).npcID ?? 0)] === 'monstrous') {
-            // TODO-QSP: $npc_dick_desc[$npcID] = 'chode'
+            ((s as any).npc_dick_desc = (s as any).npc_dick_desc ?? {})[String((s as any).npcID ?? 0)] = 'chode';
           }
         }
       }
     } else {
       if (((s as any).npc_dick ?? 0)?.[String((s as any).npcID ?? 0)] < 16) {
         if (((s as any).npc_thdick ?? 0)?.[String((s as any).npcID ?? 0)] === 'skinny'  ||  ((s as any).npc_thdick ?? 0)?.[String((s as any).npcID ?? 0)] === 'slim') {
-          // TODO-QSP: $npc_dick_desc[$npcID] = 'skinny'
+          ((s as any).npc_dick_desc = (s as any).npc_dick_desc ?? {})[String((s as any).npcID ?? 0)] = 'skinny';
         } else {
           if (((s as any).npc_thdick ?? 0)?.[String((s as any).npcID ?? 0)] === 'well proportioned'  ||  ((s as any).npc_thdick ?? 0)?.[String((s as any).npcID ?? 0)] === 'thicker than average') {
-            // TODO-QSP: $npc_dick_desc[$npcID] = 'normal'
+            ((s as any).npc_dick_desc = (s as any).npc_dick_desc ?? {})[String((s as any).npcID ?? 0)] = 'normal';
           } else {
             if (((s as any).npc_thdick ?? 0)?.[String((s as any).npcID ?? 0)] === 'thick'  ||  ((s as any).npc_thdick ?? 0)?.[String((s as any).npcID ?? 0)] === 'massive'  ||  ((s as any).npc_thdick ?? 0)?.[String((s as any).npcID ?? 0)] === 'monstrous') {
-              // TODO-QSP: $npc_dick_desc[$npcID] = 'thick'
+              ((s as any).npc_dick_desc = (s as any).npc_dick_desc ?? {})[String((s as any).npcID ?? 0)] = 'thick';
             }
           }
         }
       } else {
         if (((s as any).npc_dick ?? 0)?.[String((s as any).npcID ?? 0)] < 20) {
           if (((s as any).npc_thdick ?? 0)?.[String((s as any).npcID ?? 0)] === 'skinny'  ||  ((s as any).npc_thdick ?? 0)?.[String((s as any).npcID ?? 0)] === 'slim') {
-            // TODO-QSP: $npc_dick_desc[$npcID] = 'long'
+            ((s as any).npc_dick_desc = (s as any).npc_dick_desc ?? {})[String((s as any).npcID ?? 0)] = 'long';
           } else {
             if (((s as any).npc_thdick ?? 0)?.[String((s as any).npcID ?? 0)] === 'well proportioned'  ||  ((s as any).npc_thdick ?? 0)?.[String((s as any).npcID ?? 0)] === 'thicker than average') {
-              // TODO-QSP: $npc_dick_desc[$npcID] = 'huge'
+              ((s as any).npc_dick_desc = (s as any).npc_dick_desc ?? {})[String((s as any).npcID ?? 0)] = 'huge';
             } else {
               if (((s as any).npc_thdick ?? 0)?.[String((s as any).npcID ?? 0)] === 'thick'  ||  ((s as any).npc_thdick ?? 0)?.[String((s as any).npcID ?? 0)] === 'massive'  ||  ((s as any).npc_thdick ?? 0)?.[String((s as any).npcID ?? 0)] === 'monstrous') {
-                // TODO-QSP: $npc_dick_desc[$npcID] = 'enormous'
+                ((s as any).npc_dick_desc = (s as any).npc_dick_desc ?? {})[String((s as any).npcID ?? 0)] = 'enormous';
               }
             }
           }
         } else {
           if (((s as any).npc_thdick ?? 0)?.[String((s as any).npcID ?? 0)] === 'skinny'  ||  ((s as any).npc_thdick ?? 0)?.[String((s as any).npcID ?? 0)] === 'slim') {
-            // TODO-QSP: $npc_dick_desc[$npcID] = 'lengthy'
+            ((s as any).npc_dick_desc = (s as any).npc_dick_desc ?? {})[String((s as any).npcID ?? 0)] = 'lengthy';
           } else {
             if (((s as any).npc_thdick ?? 0)?.[String((s as any).npcID ?? 0)] === 'well proportioned'  ||  ((s as any).npc_thdick ?? 0)?.[String((s as any).npcID ?? 0)] === 'thicker than average') {
-              // TODO-QSP: $npc_dick_desc[$npcID] = 'gigantic'
+              ((s as any).npc_dick_desc = (s as any).npc_dick_desc ?? {})[String((s as any).npcID ?? 0)] = 'gigantic';
             } else {
               if (((s as any).npc_thdick ?? 0)?.[String((s as any).npcID ?? 0)] === 'thick'  ||  ((s as any).npc_thdick ?? 0)?.[String((s as any).npcID ?? 0)] === 'massive'  ||  ((s as any).npc_thdick ?? 0)?.[String((s as any).npcID ?? 0)] === 'monstrous') {
-                // TODO-QSP: $npc_dick_desc[$npcID] = 'monstrous'
+                ((s as any).npc_dick_desc = (s as any).npc_dick_desc ?? {})[String((s as any).npcID ?? 0)] = 'monstrous';
               }
             }
           }
@@ -183,23 +181,21 @@ function enterDickUpdate(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterCondomUpdate(s: GameState, scene: SceneBuilder): void {
   if (((s as any).npc_no_condoms ?? 0)?.[String((s as any).npcID ?? 0)] === 0) {
     if ((Math.floor(Math.random() * 3) + 1) === 1) {
-      // TODO-QSP: $npc_condom_type[$npcID] = 'normal'
+      ((s as any).npc_condom_type = (s as any).npc_condom_type ?? {})[String((s as any).npcID ?? 0)] = 'normal';
     } else {
       if ((Math.floor(Math.random() * 2) + 1) === 1) {
-        // TODO-QSP: $npc_condom_type[$npcID] = 'extra_thin'
+        ((s as any).npc_condom_type = (s as any).npc_condom_type ?? {})[String((s as any).npcID ?? 0)] = 'extra_thin';
       } else {
-        // TODO-QSP: $npc_condom_type[$npcID] = 'ribbed'
+        ((s as any).npc_condom_type = (s as any).npc_condom_type ?? {})[String((s as any).npcID ?? 0)] = 'ribbed';
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -207,7 +203,6 @@ function enterStaminaUpdate(s: GameState, scene: SceneBuilder): void {
   if (((s as any).npc_sex_stamina ?? 0)?.[String((s as any).npcID ?? 0)] === 0) {
     ((s as any).npc_sex_stamina = (s as any).npc_sex_stamina ?? {})[String((s as any).npcID ?? 0)] = (Math.floor(Math.random() * 10) + 1);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -263,40 +258,36 @@ function enterScheduleUpdate(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterTraitUpdates(s: GameState, scene: SceneBuilder): void {
   if (((s as any).npc_rel_goal ?? 0)?.[String((s as any).npcID ?? 0)] === '') {
     if (((s as any).npc_goal ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
-      // TODO-QSP: $npc_rel_goal[$npcID] = 'sex'
+      ((s as any).npc_rel_goal = (s as any).npc_rel_goal ?? {})[String((s as any).npcID ?? 0)] = 'sex';
     } else {
       if (((s as any).npc_goal ?? 0)?.[String((s as any).npcID ?? 0)] === 2) {
-        // TODO-QSP: $npc_rel_goal[$npcID] = 'casual'
+        ((s as any).npc_rel_goal = (s as any).npc_rel_goal ?? {})[String((s as any).npcID ?? 0)] = 'casual';
       } else {
         if (((s as any).npc_goal ?? 0)?.[String((s as any).npcID ?? 0)] === 3) {
-          // TODO-QSP: $npc_rel_goal[$npcID] = 'serious'
+          ((s as any).npc_rel_goal = (s as any).npc_rel_goal ?? {})[String((s as any).npcID ?? 0)] = 'serious';
         }
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterNameUpdates(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_usedname ?? 0)?.[String((s as any).npcID ?? 0)] === '') {
-    // TODO-QSP: $pcs_usedname[$npcID] = $pcs_nickname
+    ((s as any).pcs_usedname = (s as any).pcs_usedname ?? {})[String((s as any).npcID ?? 0)] = ((s as any).pcs_nickname ?? 0);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterUnique_NPCStatSeed(s: GameState, scene: SceneBuilder): void {
   if (((s as any).boy ?? 0) === 'A11') {
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -323,7 +314,6 @@ function enterKolkaSeed(s: GameState, scene: SceneBuilder): void {
     ((s as any).npc_sex_stamina = (s as any).npc_sex_stamina ?? {})['A134'] = 5;
     ((s as any).npc_sex_volume = (s as any).npc_sex_volume ?? {})['A134'] = 2;
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -352,7 +342,6 @@ function enterVasilySeed(s: GameState, scene: SceneBuilder): void {
     ((s as any).npc_sexdrive = (s as any).npc_sexdrive ?? {})['A11'] = 4;
     ((s as any).npc_sex_stamina = (s as any).npc_sex_stamina ?? {})['A11'] = 5;
   }
-  // TODO-QSP: end
   scene.build();
 }
 

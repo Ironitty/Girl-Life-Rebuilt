@@ -360,10 +360,9 @@ function enterInspect(s: GameState, scene: SceneBuilder): void {
   }
   scene.actions([
     { label: '', labelFn: (s: GameState) => String(((s as any).nichChoreActCaption ?? '') ?? ''), handler: (st: GameState) => {
-    // TODO-QSP: :nichChoreSkipInspect
+    // LABEL: nichChoreSkipInspect
     qspCall(st, 'stat', '');
     scene.img(`${((st as any).nichTempPic ?? '')}`);
-    // TODO-QSP: dynamic text: <<$nichChoreDesc>>
     scene.text(`${((st as any).nichChoreDesc ?? '')}`);
     if ((!((st as any).nichOutfitState ?? 0))) {
       scene.text('<b><font color = red>You have to change into an appropriate outfit before cleaning up.</font></b>');
@@ -410,7 +409,6 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
           if (((s as any).nichRand ?? 0) <= 30  ||  ((s as any).nichDebug ?? 0) === 1) {
             scene.img('images/characters/city/tanya/encounter/dom1.jpg');
             scene.text('When you start cleaning Tanya approaches you from behind and smacks you on your butt.');
-            // TODO-QSP: dynamic text: "Hey <<$pcs_nickname>>, don''t miss that edge over there." she points at a small...
             scene.text(`"Hey ${((s as any).pcs_nickname ?? '')}, don't miss that edge over there." she points at a small mess she obviously created on purpose.`);
             scene.actions([
 { label: 'Comply', handler: (st: GameState) => {
@@ -546,58 +544,60 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
     }
   }
   (s as any).nichRand = (Math.floor(Math.random() * 100) + 1);
+  (s as any).nichChoreResultCode = undefined;
+  (s as any).nichChoreResulChance = undefined;
   (s as any).nichTempPic = qspFunc(s, 'nichUtil', 'cleanPic', ((s as any).nichChoreType ?? 0), ((s as any).nichChoreLoc ?? 0));
   (s as any).nichChoreResult = 0;
   if ((!((s as any).nichChoreID ?? 0))) {
     if (String((s as any).locArgs?.[1] ?? '') === 1) {
       (s as any).nichChoreDesc = 'You decide to clean the hallway as quickly as possible, not wasting your time with harder to reach spots or visiting a place twice.';
-      // TODO-QSP: $nichChoreResultCode[arrsize('$nichChoreResultCode')] = "*pl 'Once you are finished you realize that...
-      // TODO-QSP: nichChoreResulChance[arrsize('nichChoreResulChance')] = 30
+      ((s as any).nichChoreResultCode = (s as any).nichChoreResultCode ?? {})[0] = '*pl \'Once you are finished you realize that you didn\'t improve the condition of the floor at all. It is still as dirty as before.\' & nichChoreResult = nichChoreState[nichChoreID]';
+      ((s as any).nichChoreResulChance = (s as any).nichChoreResulChance ?? {})[0] = 30;
       if (((s as any).nichChoreState ?? 0)?.[String((s as any).nichChoreID ?? 0)] > 10) {
-        // TODO-QSP: $nichChoreResultCode[arrsize('$nichChoreResultCode')] = "*pl 'Once you are finished you realize that...
-        // TODO-QSP: nichChoreResulChance[arrsize('nichChoreResulChance')] = 30
+        ((s as any).nichChoreResultCode = (s as any).nichChoreResultCode ?? {})[0] = '*pl \'Once you are finished you realize that the floor is now cleaner, but not perfectly clean.\' & nichChoreResult = nichChoreState[nichChoreID] - 10';
+        ((s as any).nichChoreResulChance = (s as any).nichChoreResulChance ?? {})[0] = 30;
       }
     } else {
       if (String((s as any).locArgs?.[1] ?? '') === 2) {
         (s as any).nichChoreDesc = 'You carefully clean the hallway, making sure you also remove the dirt in hard to reach corners.';
       } else {
         (s as any).nichChoreDesc = 'You carefully clean the hallway, making sure you also remove the dirt in hard to reach corners. Afterwards you apply a special polish to protect the wooden floor from visible aging.';
-        // TODO-QSP: $nichChoreResultCode[arrsize('$nichChoreResultCode')] = "*pl 'Much to your delight the polish visibl...
-        // TODO-QSP: nichChoreResulChance[arrsize('nichChoreResulChance')] = pcs_cleaning
-        // TODO-QSP: $nichChoreResultCode[arrsize('$nichChoreResultCode')] = "*pl 'The polish has no visible effect. The ...
-        // TODO-QSP: nichChoreResulChance[arrsize('nichChoreResulChance')] = 100
+        ((s as any).nichChoreResultCode = (s as any).nichChoreResultCode ?? {})[0] = '*pl \'Much to your delight the polish visibly enhances the appearance of the floor.\' & nichChoreResult = -1';
+        ((s as any).nichChoreResulChance = (s as any).nichChoreResulChance ?? {})[0] = ((s as any).pcs_cleaning ?? 0);
+        ((s as any).nichChoreResultCode = (s as any).nichChoreResultCode ?? {})[0] = '*pl \'The polish has no visible effect. The floor looks very clean nevertheless.\'';
+        ((s as any).nichChoreResulChance = (s as any).nichChoreResulChance ?? {})[0] = 100;
       }
     }
   } else {
     if (((s as any).nichChoreID ?? 0) === 1) {
       if (String((s as any).locArgs?.[1] ?? '') === 1) {
         (s as any).nichChoreDesc = 'You clean the room as quickly as possible, cleaning every spot only once and using as few different cleaning agents as possible.';
-        // TODO-QSP: $nichChoreResultCode[arrsize('$nichChoreResultCode')] = "*pl 'Once you are finished you realize that...
-        // TODO-QSP: nichChoreResulChance[arrsize('nichChoreResulChance')] = 30
+        ((s as any).nichChoreResultCode = (s as any).nichChoreResultCode ?? {})[0] = '*pl \'Once you are finished you realize that you didn\'t improve the condition of the room at all. It is still as dirty as before.\' & nichChoreResult = nichChoreState[nichChoreID]';
+        ((s as any).nichChoreResulChance = (s as any).nichChoreResulChance ?? {})[0] = 30;
         if (((s as any).nichChoreState ?? 0)?.[String((s as any).nichChoreID ?? 0)] > 10) {
-          // TODO-QSP: $nichChoreResultCode[arrsize('$nichChoreResultCode')] = "*pl 'Once you are finished you realize that...
-          // TODO-QSP: nichChoreResulChance[arrsize('nichChoreResulChance')] = 30
+          ((s as any).nichChoreResultCode = (s as any).nichChoreResultCode ?? {})[0] = '*pl \'Once you are finished you realize that the room is now cleaner, but not perfectly clean.\' & nichChoreResult = nichChoreState[nichChoreID] - 10';
+          ((s as any).nichChoreResulChance = (s as any).nichChoreResulChance ?? {})[0] = 30;
         }
       } else {
         if (String((s as any).locArgs?.[1] ?? '') === 2) {
           (s as any).nichChoreDesc = 'You carefully clean the room, using the recommended cleaning agents for the toilet, the sink and the floor. You also make sure that the towels are neatly folded.';
         } else {
           (s as any).nichChoreDesc = 'You carefully clean the room, using the recommended cleaning agents for the toilet, the sink and the floor. You also apply a special perfume to improve the smell and fold some of the towels into hearts and swans.';
-          // TODO-QSP: $nichChoreResultCode[arrsize('$nichChoreResultCode')] = "*pl 'You managed to create a perfect ambien...
-          // TODO-QSP: nichChoreResulChance[arrsize('nichChoreResulChance')] = pcs_cleaning
-          // TODO-QSP: $nichChoreResultCode[arrsize('$nichChoreResultCode')] = "*pl 'The effect is not as stunning as you h...
-          // TODO-QSP: nichChoreResulChance[arrsize('nichChoreResulChance')] = 100
+          ((s as any).nichChoreResultCode = (s as any).nichChoreResultCode ?? {})[0] = '*pl \'You managed to create a perfect ambiente for every guest who wants to use this room.\' & nichChoreResult = -1';
+          ((s as any).nichChoreResulChance = (s as any).nichChoreResulChance ?? {})[0] = ((s as any).pcs_cleaning ?? 0);
+          ((s as any).nichChoreResultCode = (s as any).nichChoreResultCode ?? {})[0] = '*pl \'The effect is not as stunning as you hoped it to be but the room is at least perfectly clean.\'';
+          ((s as any).nichChoreResulChance = (s as any).nichChoreResulChance ?? {})[0] = 100;
         }
       }
     } else {
       if (((s as any).nichChoreID ?? 0) === 2) {
         if (String((s as any).locArgs?.[1] ?? '') === 1) {
           (s as any).nichChoreDesc = 'You clean your room as quickly as possible.';
-          // TODO-QSP: $nichChoreResultCode[arrsize('$nichChoreResultCode')] = "*pl 'Once you are finished you realize that...
-          // TODO-QSP: nichChoreResulChance[arrsize('nichChoreResulChance')] = 30
+          ((s as any).nichChoreResultCode = (s as any).nichChoreResultCode ?? {})[0] = '*pl \'Once you are finished you realize that you didn\'t improve the condition of the room at all. It is still as dirty as before.\' & nichChoreResult = nichChoreState[nichChoreID]';
+          ((s as any).nichChoreResulChance = (s as any).nichChoreResulChance ?? {})[0] = 30;
           if (((s as any).nichChoreState ?? 0)?.[String((s as any).nichChoreID ?? 0)] > 10) {
-            // TODO-QSP: $nichChoreResultCode[arrsize('$nichChoreResultCode')] = "*pl 'Once you are finished you realize that...
-            // TODO-QSP: nichChoreResulChance[arrsize('nichChoreResulChance')] = 30
+            ((s as any).nichChoreResultCode = (s as any).nichChoreResultCode ?? {})[0] = '*pl \'Once you are finished you realize that the room is now cleaner, but not perfectly clean.\' & nichChoreResult = nichChoreState[nichChoreID] - 10';
+            ((s as any).nichChoreResulChance = (s as any).nichChoreResulChance ?? {})[0] = 30;
           }
         } else {
           if (String((s as any).locArgs?.[1] ?? '') === 2) {
@@ -608,11 +608,11 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
         if (((s as any).nichChoreID ?? 0) === 3) {
           if (String((s as any).locArgs?.[1] ?? '') === 1) {
             (s as any).nichChoreDesc = 'You clean the room as quickly as possible.';
-            // TODO-QSP: $nichChoreResultCode[arrsize('$nichChoreResultCode')] = "*pl 'Once you are finished you realize that...
-            // TODO-QSP: nichChoreResulChance[arrsize('nichChoreResulChance')] = 30
+            ((s as any).nichChoreResultCode = (s as any).nichChoreResultCode ?? {})[0] = '*pl \'Once you are finished you realize that you didn\'t improve the condition of the room at all. It is still as dirty as before.\' & nichChoreResult = nichChoreState[nichChoreID]';
+            ((s as any).nichChoreResulChance = (s as any).nichChoreResulChance ?? {})[0] = 30;
             if (((s as any).nichChoreState ?? 0)?.[String((s as any).nichChoreID ?? 0)] > 10) {
-              // TODO-QSP: $nichChoreResultCode[arrsize('$nichChoreResultCode')] = "*pl 'Once you are finished you realize that...
-              // TODO-QSP: nichChoreResulChance[arrsize('nichChoreResulChance')] = 30
+              ((s as any).nichChoreResultCode = (s as any).nichChoreResultCode ?? {})[0] = '*pl \'Once you are finished you realize that the room is now cleaner, but not perfectly clean.\' & nichChoreResult = nichChoreState[nichChoreID] - 10';
+              ((s as any).nichChoreResulChance = (s as any).nichChoreResulChance ?? {})[0] = 30;
             }
           } else {
             if (String((s as any).locArgs?.[1] ?? '') === 2) {
@@ -623,34 +623,34 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
           if (((s as any).nichChoreID ?? 0) === 4) {
             if (String((s as any).locArgs?.[1] ?? '') === 1) {
               (s as any).nichChoreDesc = 'You think about separating the clothes before you wash them, but then you decide to put them into the washing machine all at once. While the washing machine washes them you wash the delicates by hand by putting all of them into the sink at the same time. After the washing washine is done you place its load in the dryer. Afterwards you iron the clothes quickly.';
-              // TODO-QSP: $nichChoreResultCode[arrsize('$nichChoreResultCode')] = "*pl 'Once you are done you realize that one...
-              // TODO-QSP: nichChoreResulChance[arrsize('nichChoreResulChance')] = 10
-              // TODO-QSP: $nichChoreResultCode[arrsize('$nichChoreResultCode')] = "*pl 'Taking a look at the laundry you reali...
-              // TODO-QSP: nichChoreResulChance[arrsize('nichChoreResulChance')] = 40
-              // TODO-QSP: $nichChoreResultCode[arrsize('$nichChoreResultCode')] = "nichChoreResult = max (0, nichChoreState[ni...
-              // TODO-QSP: nichChoreResulChance[arrsize('nichChoreResulChance')] = 10000
+              ((s as any).nichChoreResultCode = (s as any).nichChoreResultCode ?? {})[0] = '*pl \'Once you are done you realize that one of the shirts of Nicholas has some visible spots of color on it. There is no way you could fix that. Some other clothes are also affected, but you might get them clean by washing them again.\' & nichChoreModLaundry1 += 1 & nichChoreResult = max (0, nichChoreState[nichChoreID] - 5)';
+              ((s as any).nichChoreResulChance = (s as any).nichChoreResulChance ?? {})[0] = 10;
+              ((s as any).nichChoreResultCode = (s as any).nichChoreResultCode ?? {})[0] = '*pl \'Taking a look at the laundry you realize that you didn\'t manage to clean it properly. You will have to do it all over again.\' & nichChoreResult = nichChoreState[nichChoreID]';
+              ((s as any).nichChoreResulChance = (s as any).nichChoreResulChance ?? {})[0] = 40;
+              ((s as any).nichChoreResultCode = (s as any).nichChoreResultCode ?? {})[0] = 'nichChoreResult = max (0, nichChoreState[nichChoreID] - 15)';
+              ((s as any).nichChoreResulChance = (s as any).nichChoreResulChance ?? {})[0] = 10000;
             } else {
               if (String((s as any).locArgs?.[1] ?? '') === 2) {
                 (s as any).nichChoreDesc = 'You start by separating the laundry by color. While the washing machine washes the dark and then the light clothes you wash the delicates by hand. Whenever the washing washine is done you place its load in the dryer. Everything that comes from the dryer you iron.';
-                // TODO-QSP: $nichChoreResultCode[arrsize('$nichChoreResultCode')] = "nichChoreResult = max (0, nichChoreState[ni...
-                // TODO-QSP: nichChoreResulChance[arrsize('nichChoreResulChance')] = 10000
+                ((s as any).nichChoreResultCode = (s as any).nichChoreResultCode ?? {})[0] = 'nichChoreResult = max (0, nichChoreState[nichChoreID] - 20)';
+                ((s as any).nichChoreResulChance = (s as any).nichChoreResulChance ?? {})[0] = 10000;
               } else {
                 (s as any).nichChoreDesc = 'You start by separating the laundry by color and fabric. One after one you have the washing machine wash the dark cotton, white cotton, dark cloth and light cloth. Meanwhile you wash the delicates by hand. Whenever the washing washine is done you place its load in the dryer. Everything that come from the dryer you iron, making sure you don\'t miss a single crease.';
-                // TODO-QSP: $nichChoreResultCode[arrsize('$nichChoreResultCode')] = "*pl 'In the end the clothes smell great and...
-                // TODO-QSP: nichChoreResulChance[arrsize('nichChoreResulChance')] = pcs_cleaning
-                // TODO-QSP: $nichChoreResultCode[arrsize('$nichChoreResultCode')] = "nichChoreResult = max (0, nichChoreState[ni...
-                // TODO-QSP: nichChoreResulChance[arrsize('nichChoreResulChance')] = 10000
+                ((s as any).nichChoreResultCode = (s as any).nichChoreResultCode ?? {})[0] = '*pl \'In the end the clothes smell great and are completely free of wrinkley. Nicholas surely will be pleased.\' & nichChoreModLaundry2 += 1 & nichChoreResult = max (0, nichChoreState[nichChoreID] - 30)';
+                ((s as any).nichChoreResulChance = (s as any).nichChoreResulChance ?? {})[0] = ((s as any).pcs_cleaning ?? 0);
+                ((s as any).nichChoreResultCode = (s as any).nichChoreResultCode ?? {})[0] = 'nichChoreResult = max (0, nichChoreState[nichChoreID] - 30)';
+                ((s as any).nichChoreResulChance = (s as any).nichChoreResulChance ?? {})[0] = 10000;
               }
             }
           } else {
             if (((s as any).nichChoreID ?? 0) === 5) {
               if (String((s as any).locArgs?.[1] ?? '') === 1) {
                 (s as any).nichChoreDesc = 'You clean the room as quickly as possible, cleaning every spot only once and using as few different cleaning agents as possible.';
-                // TODO-QSP: $nichChoreResultCode[arrsize('$nichChoreResultCode')] = "*pl 'Once you are finished you realize that...
-                // TODO-QSP: nichChoreResulChance[arrsize('nichChoreResulChance')] = 30
+                ((s as any).nichChoreResultCode = (s as any).nichChoreResultCode ?? {})[0] = '*pl \'Once you are finished you realize that you didn\'t improve the condition of the room at all. It is still as dirty as before.\' & nichChoreResult = nichChoreState[nichChoreID]';
+                ((s as any).nichChoreResulChance = (s as any).nichChoreResulChance ?? {})[0] = 30;
                 if (((s as any).nichChoreState ?? 0)?.[String((s as any).nichChoreID ?? 0)] > 10) {
-                  // TODO-QSP: $nichChoreResultCode[arrsize('$nichChoreResultCode')] = "*pl 'Once you are finished you realize that...
-                  // TODO-QSP: nichChoreResulChance[arrsize('nichChoreResulChance')] = 30
+                  ((s as any).nichChoreResultCode = (s as any).nichChoreResultCode ?? {})[0] = '*pl \'Once you are finished you realize that the room is now cleaner, but not perfectly clean.\' & nichChoreResult = nichChoreState[nichChoreID] - 10';
+                  ((s as any).nichChoreResulChance = (s as any).nichChoreResulChance ?? {})[0] = 30;
                 }
               } else {
                 if (String((s as any).locArgs?.[1] ?? '') === 2) {
@@ -661,32 +661,32 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
               if (((s as any).nichChoreID ?? 0) === 6) {
                 if (String((s as any).locArgs?.[1] ?? '') === 1) {
                   (s as any).nichChoreDesc = 'You clean the room as quickly as possible, cleaning every spot only once and using as few different cleaning agents as possible.';
-                  // TODO-QSP: $nichChoreResultCode[arrsize('$nichChoreResultCode')] = "*pl 'Once you are finished you realize that...
-                  // TODO-QSP: nichChoreResulChance[arrsize('nichChoreResulChance')] = 30
+                  ((s as any).nichChoreResultCode = (s as any).nichChoreResultCode ?? {})[0] = '*pl \'Once you are finished you realize that you didn\'t improve the condition of the room at all. It is still as dirty as before.\' & nichChoreResult = nichChoreState[nichChoreID]';
+                  ((s as any).nichChoreResulChance = (s as any).nichChoreResulChance ?? {})[0] = 30;
                   if (((s as any).nichChoreState ?? 0)?.[String((s as any).nichChoreID ?? 0)] > 10) {
-                    // TODO-QSP: $nichChoreResultCode[arrsize('$nichChoreResultCode')] = "*pl 'Once you are finished you realize that...
-                    // TODO-QSP: nichChoreResulChance[arrsize('nichChoreResulChance')] = 30
+                    ((s as any).nichChoreResultCode = (s as any).nichChoreResultCode ?? {})[0] = '*pl \'Once you are finished you realize that the room is now cleaner, but not perfectly clean.\' & nichChoreResult = nichChoreState[nichChoreID] - 10';
+                    ((s as any).nichChoreResulChance = (s as any).nichChoreResulChance ?? {})[0] = 30;
                   }
                 } else {
                   if (String((s as any).locArgs?.[1] ?? '') === 2) {
                     (s as any).nichChoreDesc = 'You carefully clean the room, using the recommended cleaning agents for the toilet, the sink and the floor. You also make sure that the towels are neatly folded.';
                   } else {
                     (s as any).nichChoreDesc = 'You carefully clean the room, using the recommended cleaning agents for the toilet, the bathtub, the shower, the sink and the floor. You also apply a special perfume to improve the smell and fold some of the towels into hearts and swans.';
-                    // TODO-QSP: $nichChoreResultCode[arrsize('$nichChoreResultCode')] = "*pl 'You managed to create a perfect ambien...
-                    // TODO-QSP: nichChoreResulChance[arrsize('nichChoreResulChance')] = pcs_cleaning
-                    // TODO-QSP: $nichChoreResultCode[arrsize('$nichChoreResultCode')] = "*pl 'The effect is not as stunning as you h...
-                    // TODO-QSP: nichChoreResulChance[arrsize('nichChoreResulChance')] = 100
+                    ((s as any).nichChoreResultCode = (s as any).nichChoreResultCode ?? {})[0] = '*pl \'You managed to create a perfect ambiente for every family member who wants to use this room.\' & nichChoreResult = -1';
+                    ((s as any).nichChoreResulChance = (s as any).nichChoreResulChance ?? {})[0] = ((s as any).pcs_cleaning ?? 0);
+                    ((s as any).nichChoreResultCode = (s as any).nichChoreResultCode ?? {})[0] = '*pl \'The effect is not as stunning as you hoped it to be but the room is at least perfectly clean.\'';
+                    ((s as any).nichChoreResulChance = (s as any).nichChoreResulChance ?? {})[0] = 100;
                   }
                 }
               } else {
                 if (((s as any).nichChoreID ?? 0) === 7) {
                   if (String((s as any).locArgs?.[1] ?? '') === 1) {
                     (s as any).nichChoreDesc = 'You clean the room as quickly as possible, cleaning every spot only once and using as few different cleaning agents as possible.';
-                    // TODO-QSP: $nichChoreResultCode[arrsize('$nichChoreResultCode')] = "*pl 'Once you are finished you realize that...
-                    // TODO-QSP: nichChoreResulChance[arrsize('nichChoreResulChance')] = 30
+                    ((s as any).nichChoreResultCode = (s as any).nichChoreResultCode ?? {})[0] = '*pl \'Once you are finished you realize that you didn\'t improve the condition of the room at all. It is still as dirty as before.\' & nichChoreResult = nichChoreState[nichChoreID]';
+                    ((s as any).nichChoreResulChance = (s as any).nichChoreResulChance ?? {})[0] = 30;
                     if (((s as any).nichChoreState ?? 0)?.[String((s as any).nichChoreID ?? 0)] > 10) {
-                      // TODO-QSP: $nichChoreResultCode[arrsize('$nichChoreResultCode')] = "*pl 'Once you are finished you realize that...
-                      // TODO-QSP: nichChoreResulChance[arrsize('nichChoreResulChance')] = 30
+                      ((s as any).nichChoreResultCode = (s as any).nichChoreResultCode ?? {})[0] = '*pl \'Once you are finished you realize that the room is now cleaner, but not perfectly clean.\' & nichChoreResult = nichChoreState[nichChoreID] - 10';
+                      ((s as any).nichChoreResulChance = (s as any).nichChoreResulChance ?? {})[0] = 30;
                     }
                   } else {
                     if (String((s as any).locArgs?.[1] ?? '') === 2) {
@@ -697,53 +697,53 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
                   if (((s as any).nichChoreID ?? 0) === 8) {
                     if (String((s as any).locArgs?.[1] ?? '') === 1) {
                       (s as any).nichChoreDesc = 'You clean the room as quickly as possible, cleaning every spot only once and using as few different cleaning agents as possible.';
-                      // TODO-QSP: $nichChoreResultCode[arrsize('$nichChoreResultCode')] = "*pl 'Once you are finished you realize that...
-                      // TODO-QSP: nichChoreResulChance[arrsize('nichChoreResulChance')] = 30
+                      ((s as any).nichChoreResultCode = (s as any).nichChoreResultCode ?? {})[0] = '*pl \'Once you are finished you realize that you didn\'t improve the condition of the room at all. It is still as dirty as before.\' & nichChoreResult = nichChoreState[nichChoreID]';
+                      ((s as any).nichChoreResulChance = (s as any).nichChoreResulChance ?? {})[0] = 30;
                       if (((s as any).nichChoreState ?? 0)?.[String((s as any).nichChoreID ?? 0)] > 10) {
-                        // TODO-QSP: $nichChoreResultCode[arrsize('$nichChoreResultCode')] = "*pl 'Once you are finished you realize that...
-                        // TODO-QSP: nichChoreResulChance[arrsize('nichChoreResulChance')] = 30
+                        ((s as any).nichChoreResultCode = (s as any).nichChoreResultCode ?? {})[0] = '*pl \'Once you are finished you realize that the room is now cleaner, but not perfectly clean.\' & nichChoreResult = nichChoreState[nichChoreID] - 10';
+                        ((s as any).nichChoreResulChance = (s as any).nichChoreResulChance ?? {})[0] = 30;
                       }
                     } else {
                       if (String((s as any).locArgs?.[1] ?? '') === 2) {
                         (s as any).nichChoreDesc = 'You carefully clean the room, making sure you catch every tiny bit of dust.';
                       } else {
                         (s as any).nichChoreDesc = 'You carefully clean the room, using the recommended cleaning agents for the floor and the various pieces of furniture.';
-                        // TODO-QSP: $nichChoreResultCode[arrsize('$nichChoreResultCode')] = "*pl 'You managed to create a perfect ambien...
-                        // TODO-QSP: nichChoreResulChance[arrsize('nichChoreResulChance')] = pcs_cleaning
-                        // TODO-QSP: $nichChoreResultCode[arrsize('$nichChoreResultCode')] = "*pl 'The effect is not as stunning as you h...
-                        // TODO-QSP: nichChoreResulChance[arrsize('nichChoreResulChance')] = 100
+                        ((s as any).nichChoreResultCode = (s as any).nichChoreResultCode ?? {})[0] = '*pl \'You managed to create a perfect ambience for every family member who wants to use this room.\' & nichChoreResult = -1';
+                        ((s as any).nichChoreResulChance = (s as any).nichChoreResulChance ?? {})[0] = ((s as any).pcs_cleaning ?? 0);
+                        ((s as any).nichChoreResultCode = (s as any).nichChoreResultCode ?? {})[0] = '*pl \'The effect is not as stunning as you hoped it to be but the room is at least perfectly clean.\'';
+                        ((s as any).nichChoreResulChance = (s as any).nichChoreResulChance ?? {})[0] = 100;
                       }
                     }
                   } else {
                     if (((s as any).nichChoreID ?? 0) === 9) {
                       if (String((s as any).locArgs?.[1] ?? '') === 1) {
                         (s as any).nichChoreDesc = 'You jam all dirty dishes in the dishwasher at once and hastily clean up the stove and the floor.';
-                        // TODO-QSP: $nichChoreResultCode[arrsize('$nichChoreResultCode')] = "*pl 'Once you are finished you realize that...
-                        // TODO-QSP: nichChoreResulChance[arrsize('nichChoreResulChance')] = 30
+                        ((s as any).nichChoreResultCode = (s as any).nichChoreResultCode ?? {})[0] = '*pl \'Once you are finished you realize that you didn\'t improve the condition of the room at all. It is still as dirty as before and the dishes didn\'t get clean either.\' & nichChoreResult = nichChoreState[nichChoreID]';
+                        ((s as any).nichChoreResulChance = (s as any).nichChoreResulChance ?? {})[0] = 30;
                         if (((s as any).nichChoreState ?? 0)?.[String((s as any).nichChoreID ?? 0)] > 10) {
-                          // TODO-QSP: $nichChoreResultCode[arrsize('$nichChoreResultCode')] = "*pl 'Once you are finished you realize that...
-                          // TODO-QSP: nichChoreResulChance[arrsize('nichChoreResulChance')] = 30
+                          ((s as any).nichChoreResultCode = (s as any).nichChoreResultCode ?? {})[0] = '*pl \'Once you are finished you realize that the room is now cleaner, but not perfectly clean.\' & nichChoreResult = nichChoreState[nichChoreID] - 10';
+                          ((s as any).nichChoreResulChance = (s as any).nichChoreResulChance ?? {})[0] = 30;
                         }
                       } else {
                         if (String((s as any).locArgs?.[1] ?? '') === 2) {
                           (s as any).nichChoreDesc = 'You carefully clean the room, making sure you clean the silverware by hand and using the recommended cleaning agents to clean the stove and the floor.';
                         } else {
                           (s as any).nichChoreDesc = 'You carefully clean the room. In order to get the silverware sparkling you use a special silver polish and you also clean the whine glasses by hand to remove every tiny spot of imperfection.';
-                          // TODO-QSP: $nichChoreResultCode[arrsize('$nichChoreResultCode')] = "*pl 'The effect is very convincing. Nichola...
-                          // TODO-QSP: nichChoreResulChance[arrsize('nichChoreResulChance')] = pcs_cleaning
-                          // TODO-QSP: $nichChoreResultCode[arrsize('$nichChoreResultCode')] = "*pl 'The effect is not as stunning as you h...
-                          // TODO-QSP: nichChoreResulChance[arrsize('nichChoreResulChance')] = 100
+                          ((s as any).nichChoreResultCode = (s as any).nichChoreResultCode ?? {})[0] = '*pl \'The effect is very convincing. Nicholas will be pleased you paid extra attention to detail.\' & nichChoreResult = -1';
+                          ((s as any).nichChoreResulChance = (s as any).nichChoreResulChance ?? {})[0] = ((s as any).pcs_cleaning ?? 0);
+                          ((s as any).nichChoreResultCode = (s as any).nichChoreResultCode ?? {})[0] = '*pl \'The effect is not as stunning as you hoped it to be but the room and the dishes are at least perfectly clean.\'';
+                          ((s as any).nichChoreResulChance = (s as any).nichChoreResulChance ?? {})[0] = 100;
                         }
                       }
                     } else {
                       if (((s as any).nichChoreID ?? 0) === 10) {
                         if (String((s as any).locArgs?.[1] ?? '') === 1) {
                           (s as any).nichChoreDesc = 'You clean the room as quickly as possible, cleaning every spot only once and using as few different cleaning agents as possible.';
-                          // TODO-QSP: $nichChoreResultCode[arrsize('$nichChoreResultCode')] = "*pl 'Once you are finished you realize that...
-                          // TODO-QSP: nichChoreResulChance[arrsize('nichChoreResulChance')] = 30
+                          ((s as any).nichChoreResultCode = (s as any).nichChoreResultCode ?? {})[0] = '*pl \'Once you are finished you realize that you didn\'t improve the condition of the room at all. It is still as dirty as before.\' & nichChoreResult = nichChoreState[nichChoreID]';
+                          ((s as any).nichChoreResulChance = (s as any).nichChoreResulChance ?? {})[0] = 30;
                           if (((s as any).nichChoreState ?? 0)?.[String((s as any).nichChoreID ?? 0)] > 10) {
-                            // TODO-QSP: $nichChoreResultCode[arrsize('$nichChoreResultCode')] = "*pl 'Once you are finished you realize that...
-                            // TODO-QSP: nichChoreResulChance[arrsize('nichChoreResulChance')] = 30
+                            ((s as any).nichChoreResultCode = (s as any).nichChoreResultCode ?? {})[0] = '*pl \'Once you are finished you realize that the room is now cleaner, but not perfectly clean.\' & nichChoreResult = nichChoreState[nichChoreID] - 10';
+                            ((s as any).nichChoreResulChance = (s as any).nichChoreResulChance ?? {})[0] = 30;
                           }
                         } else {
                           if (String((s as any).locArgs?.[1] ?? '') === 2) {
@@ -763,40 +763,45 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: $nichChoreResultCode[arrsize('$nichChoreResultCode')] = ''
-  // TODO-QSP: nichChoreResulChance[arrsize('nichChoreResulChance')] = 10000
+  ((s as any).nichChoreResultCode = (s as any).nichChoreResultCode ?? {})[0] = '';
+  ((s as any).nichChoreResulChance = (s as any).nichChoreResulChance ?? {})[0] = 10000;
   (s as any).nichI = 0;
-  // TODO-QSP: :nichChoreResultLoop
-  if (((s as any).nichRand ?? 0) <= ((s as any).nichChoreResulChance ?? 0)?.[String((s as any).nichI ?? 0)]) {
-    scene.img(`${((s as any).nichTempPic ?? '')}`);
-    // TODO-QSP: $nichChoreDesc
-  } else {
-    (s as any).nichRand = ((s as any).nichRand ?? 0) - ((((s as any).nichChoreResulChance ?? 0)?.[String((s as any).nichI ?? 0)] ?? 0));
-    (s as any).nichI = ((s as any).nichI ?? 0) + (1);
-    // TODO-QSP: jump 'nichChoreResultLoop'
-  }
-  if (String((s as any).locArgs?.[1] ?? '') === 1) {
-    (s as any).minut = ((s as any).minut ?? 0) + (((s as any).nichtTimeQuick ?? 0));
-    qspCall(s, 'exp_gain', 'cleaning', 0);
-  } else {
-    if (String((s as any).locArgs?.[1] ?? '') === 2) {
-      (s as any).minut = ((s as any).minut ?? 0) + (((s as any).nichTimeNormal ?? 0));
+  while (true) {
+    if (((s as any).nichRand ?? 0) <= ((s as any).nichChoreResulChance ?? 0)?.[String((s as any).nichI ?? 0)]) {
+      scene.img(`${((s as any).nichTempPic ?? '')}`);
+      // TODO-QSP: $nichChoreDesc
+    } else {
+      (s as any).nichRand = ((s as any).nichRand ?? 0) - ((((s as any).nichChoreResulChance ?? 0)?.[String((s as any).nichI ?? 0)] ?? 0));
+      (s as any).nichI = ((s as any).nichI ?? 0) + (1);
+      break;
+    }
+    if (String((s as any).locArgs?.[1] ?? '') === 1) {
+      (s as any).minut = ((s as any).minut ?? 0) + (((s as any).nichtTimeQuick ?? 0));
       qspCall(s, 'exp_gain', 'cleaning', 0);
     } else {
-      (s as any).minut = ((s as any).minut ?? 0) + (((s as any).nichTimeDiligent ?? 0));
-      qspCall(s, 'exp_gain', 'cleaning', 0);
+      if (String((s as any).locArgs?.[1] ?? '') === 2) {
+        (s as any).minut = ((s as any).minut ?? 0) + (((s as any).nichTimeNormal ?? 0));
+        qspCall(s, 'exp_gain', 'cleaning', 0);
+      } else {
+        (s as any).minut = ((s as any).minut ?? 0) + (((s as any).nichTimeDiligent ?? 0));
+        qspCall(s, 'exp_gain', 'cleaning', 0);
+      }
     }
-  }
-  ((s as any).nichChoreState = (s as any).nichChoreState ?? {})[String((s as any).nichChoreID ?? 0)] = ((s as any).nichChoreResult ?? 0);
-  qspCall(s, 'stat', '');
-  if ((!((s as any).nichChoreMode ?? 0))) {
-    scene.actions([
-      { label: 'Finish', handler: (st: GameState) => {
+    ((s as any).nichChoreState = (s as any).nichChoreState ?? {})[String((s as any).nichChoreID ?? 0)] = ((s as any).nichChoreResult ?? 0);
+    qspCall(s, 'stat', '');
+    (s as any).nichChoreResult = undefined;
+    (s as any).nichChoreDesc = undefined;
+    (s as any).nichChoreResultCode = undefined;
+    (s as any).nichChoreResulChance = undefined;
+    if ((!((s as any).nichChoreMode ?? 0))) {
+      scene.actions([
+        { label: 'Finish', handler: (st: GameState) => {
     dynamicGoto(st, 'prevLoc');
   } },
-    ]);
-  } else {
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 1]; enterCleanApartmentActions(s, scene); (s as any).locArgs = __savedLocArgs; }
+      ]);
+    } else {
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 1]; enterCleanApartmentActions(s, scene); (s as any).locArgs = __savedLocArgs; }
+    }
   }
   scene.build();
 }
@@ -810,6 +815,8 @@ function enterCleanApartment(s: GameState, scene: SceneBuilder): void {
     qspGoto(s, 'nichChore', 'inspect', ((s as any).nichChoreCurrent ?? ''), '1');
   } else {
     if (String((s as any).locArgs?.[1] ?? '') === 'end') {
+      (s as any).nichChoreMode = undefined;
+      (s as any).nichChoreCurrent = undefined;
       dynamicGoto(s, 'prevLoc');
     }
   }
@@ -928,7 +935,6 @@ function enterCleanApartmentActions(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 

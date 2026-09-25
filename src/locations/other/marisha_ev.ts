@@ -21,21 +21,19 @@ function enterMarishaEvent(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enter0(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: MarishaQW["Event"] = 1
+  ((s as any).MarishaQW = (s as any).MarishaQW ?? {})['Event'] = 1;
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/resident/marisha/marisha.jpg');
   scene.text('As you are walking away from the boys, you notice a girl peeking at one of Kolka\'s friends from behind the bleachers.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Approach her', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
-    // TODO-QSP: MarishaQW["Spotted"] += 1
+    ((st as any).MarishaQW = (st as any).MarishaQW ?? {})['Spotted'] = ((st as any).MarishaQW['Spotted'] ?? 0) + (1);
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/marisha/marisha.jpg');
     scene.text('She continues to watch the boys walk off as you approach but before you can get close, she notices you walking toward her and quickly darts away, obviously not wanting to talk.');
@@ -45,10 +43,10 @@ function enter0(s: GameState, scene: SceneBuilder): void {
   } },
     { label: 'Ignore her', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
-    // TODO-QSP: MarishaQW["Ignored"] += 1
+    ((st as any).MarishaQW = (st as any).MarishaQW ?? {})['Ignored'] = ((st as any).MarishaQW['Ignored'] ?? 0) + (1);
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/marisha/marisha.jpg');
-    // TODO-QSP: $OpenInnerThought + 'What is her problem? Oh well.' + $CloseInnerThought + ' You shrug your shoulder...
+    scene.text('$OpenInnerThought + \'What is her problem? Oh well.\' + $CloseInnerThought + \' You shrug your shoulders then walk away.\'');
     scene.actions([
       { label: 'Leave', goto: ['gschool_grounds', 'main'] },
     ]);
@@ -58,16 +56,15 @@ function enter0(s: GameState, scene: SceneBuilder): void {
 }
 
 function enter1(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: MarishaQW["Event"] = 2
+  ((s as any).MarishaQW = (s as any).MarishaQW ?? {})['Event'] = 2;
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/resident/marisha/marisha.jpg');
   scene.text('As you are walking away from the boys, you the same girl from last time, staring at one of Kolka\'s friends from behind the bleachers.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Approach her', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
-    // TODO-QSP: MarishaQW["Spotted"] += 1
+    ((st as any).MarishaQW = (st as any).MarishaQW ?? {})['Spotted'] = ((st as any).MarishaQW['Spotted'] ?? 0) + (1);
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/marisha/marisha.jpg');
     scene.text('She continues to watch the boys walk off as you approach but before you can get close, she notices you walking toward her and curiously looks at you before walking away. She is obviously not interested in talking.');
@@ -77,10 +74,10 @@ function enter1(s: GameState, scene: SceneBuilder): void {
   } },
     { label: 'Ignore her', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
-    // TODO-QSP: MarishaQW["Ignored"] += 1
+    ((st as any).MarishaQW = (st as any).MarishaQW ?? {})['Ignored'] = ((st as any).MarishaQW['Ignored'] ?? 0) + (1);
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/marisha/marisha.jpg');
-    // TODO-QSP: $OpenInnerThought + 'She is here again? What is she up too?' + $CloseInnerThought + ' You shrug your...
+    scene.text('$OpenInnerThought + \'She is here again? What is she up too?\' + $CloseInnerThought + \' You shrug your shoulders then walk away.\'');
     scene.actions([
       { label: 'Leave', goto: ['gschool_grounds', 'main'] },
     ]);
@@ -90,23 +87,22 @@ function enter1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enter2(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: MarishaQW["Event"] = 3
+  ((s as any).MarishaQW = (s as any).MarishaQW ?? {})['Event'] = 3;
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/resident/marisha/marisha.jpg');
-  // TODO-QSP: 'As you are walking away from the boys, you the girl again sneaking around the bleachers. ' + $OpenI...
-  // TODO-QSP: end
+  scene.text('As you are walking away from the boys, you the girl again sneaking around the bleachers. ' + ((s as any).OpenInnerThought ?? '') + 'If I approach her then she is going to run away again. Maybe I can sneak up on her.' + ((s as any).CloseInnerThought ?? ''));
   scene.actions([
     { label: 'Approach her', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
-    // TODO-QSP: MarishaQW["Spotted"] += 1
+    ((st as any).MarishaQW = (st as any).MarishaQW ?? {})['Spotted'] = ((st as any).MarishaQW['Spotted'] ?? 0) + (1);
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/marisha/marisha.jpg');
     scene.text('She continues to watch the boys walk off as you pretend to not notice her. You slowly walk away but watch her stare at the boys while you sneak up to her. As you get close, you ask, "What are you doing?" She jumps up, obviously startled by your sudden appearance before replying, "I was just… Looking for my lost earring. I know I dropped it here somewhere."');
     scene.text('"Really? Because I have been seeing you here for the past few days. Do you lose many earrings here?" She remains quiet for a few seconds before trying to walk off but you stand in front of her. "What\'s wrong? Why are you peeking at those boys? Do you like one of them?" She stares at the ground for a few seconds before saying, "I\'m sorry for bothering you. I won\'t do it again." She then tries to walk around you.');
     scene.actions([
       { label: 'Continue questioning her', handler: (st: GameState) => {
-    // TODO-QSP: MarishaQW["Main"] = 1
+    ((st as any).MarishaQW = (st as any).MarishaQW ?? {})['Main'] = 1;
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/marisha/marisha.jpg');
     scene.text('You gently grab onto her arm and say, "Come on. You can tell me. Maybe I can help." She looks at you for a few seconds before saying, "Well, I do kind of like one of them." You gently rub her arm as you respond, "Have you spoken to him yet?" She replies, "No, he seems too busy with his friends. I didn\'t want to disturb him." You say, "Well you will never know if he likes you, that way."');
@@ -115,7 +111,6 @@ function enter2(s: GameState, scene: SceneBuilder): void {
       { label: 'Ask her name', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/marisha/marisha.jpg');
-    // TODO-QSP: dynamic text: "So my name is <<$pcs_firstname>> but my friends call me <<$pcs_nickname>>. What...
     scene.text(`"So my name is ${((st as any).pcs_firstname ?? '')} but my friends call me ${((st as any).pcs_nickname ?? '')}. What is your name?" She replies, "My name is Marisha." You then say, "Let's start by heading to the mall. We need to get you a nicer outfit." She nods before walking with you to the mall`);
     scene.actions([
       { label: 'Head to the mall', goto: ['marisha_ev', 'Mall'] },
@@ -126,7 +121,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
       { label: 'Let her go', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/marisha/marisha.jpg');
-    // TODO-QSP: 'You let her walk off as you look at her while feeling puzzled. ' + $OpenInnerThought + 'I don''t kn...
+    scene.text('You let her walk off as you look at her while feeling puzzled. ' + ((st as any).OpenInnerThought ?? '') + 'I don\'t know what her problem is but hopefully I won\'t be seeing her again.' + ((st as any).CloseInnerThought ?? ''));
     scene.actions([
       { label: 'Leave', goto: ['gschool_grounds', 'main'] },
     ]);
@@ -135,10 +130,10 @@ function enter2(s: GameState, scene: SceneBuilder): void {
   } },
     { label: 'Ignore her', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
-    // TODO-QSP: MarishaQW["Ignored"] += 1
+    ((st as any).MarishaQW = (st as any).MarishaQW ?? {})['Ignored'] = ((st as any).MarishaQW['Ignored'] ?? 0) + (1);
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/marisha/marisha.jpg');
-    // TODO-QSP: $OpenInnerThought + 'I''m just going to ignore her from now on.' + $CloseInnerThought + ' You then s...
+    scene.text('$OpenInnerThought + \'I\'m just going to ignore her from now on.\' + $CloseInnerThought + \' You then shake your head before walking away.\'');
     scene.actions([
       { label: 'Leave', goto: ['gschool_grounds', 'main'] },
     ]);
@@ -152,7 +147,6 @@ function enterMall(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/resident/marisha/marisha.jpg');
   scene.text('You both arrive at the mall then you head to the clothing shop. You guide Marisha to the clothing store where you grab the sexiest outfit that you can find and say, "Let\'s try this one. You will look cute in it." She quickly shakes her head and instead, grabs a more conservative outfit then says, "I like this one." You shake your head and say, "Suit yourself." She then turns to you and says, "I like this outfit. I hope I can keep it clean though because my mother always gets upset with me for getting my clothes dirty. Even my clothes right now are dirty." You respond, "You can always use my shower to clean yourself up." She responds, "If you don\'t mind." You reply, "It\'s no trouble at all. Let\'s go."');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Take her home', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 60;
@@ -166,14 +160,13 @@ function enterMall(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 180;
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/marisha/marisha.jpg');
-    // TODO-QSP: dynamic text: You quickly gesture him to leave which he quickly does before you head back to y...
     scene.text(`You quickly gesture him to leave which he quickly does before you head back to your room and patiently wait for Marisha to finish showering. After a few minutes, Marisha comes back and sits on the bed next to you before saying, "Thank you for helping me out ${((st as any).pcs_firstname ?? '')}. I really appreciate it." You place your hand on her shoulder then say, "No need to thank me. You can stay the night if you want." She nods and says, "That sounds great." You both then spend the night chatting about various topics.`);
     scene.actions([
       { label: 'Go to sleep', handler: (st: GameState) => {
     qspCall(st, 'outfit', 'strip_all');
     (st as any).loc = (((st as any).home ?? 0)?.['bedroom']);
     (st as any).loc_arg = (((st as any).home ?? 0)?.['bedroom_arg']);
-    // TODO-QSP: MarishaQW["marisha_sleepover"] = 1
+    ((st as any).MarishaQW = (st as any).MarishaQW ?? {})['marisha_sleepover'] = 1;
     qspCall(st, 'stat', '');
     qspGoto(st, 'pre_sleep', 'prepare_sleep');
   } },
@@ -183,14 +176,13 @@ function enterMall(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 180;
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/marisha/marisha.jpg');
-    // TODO-QSP: dynamic text: You ignore him and he continues to spy on her as you wait patiently in your room...
     scene.text(`You ignore him and he continues to spy on her as you wait patiently in your room. After a few minutes, Marisha comes back and sits on the bed next to you before saying, "Thank you for helping me out ${((st as any).pcs_firstname ?? '')}. I really appreciate it." You place your hand on her shoulder then say, "No need to thank me. You can stay the night if you want." She nods and says, "That sounds great." You both then spend the night chatting about various topics.`);
     scene.actions([
       { label: 'Go to sleep', handler: (st: GameState) => {
     qspCall(st, 'outfit', 'strip_all');
     (st as any).loc = (((st as any).home ?? 0)?.['bedroom']);
     (st as any).loc_arg = (((st as any).home ?? 0)?.['bedroom_arg']);
-    // TODO-QSP: MarishaQW["marisha_sleepover"] = 1
+    ((st as any).MarishaQW = (st as any).MarishaQW ?? {})['marisha_sleepover'] = 1;
     qspCall(st, 'stat', '');
     qspGoto(st, 'pre_sleep', 'prepare_sleep');
   } },

@@ -43,7 +43,6 @@ function enterGm(s: GameState, scene: SceneBuilder): void {
 
 function enterDanilovich(s: GameState, scene: SceneBuilder): void {
   (s as any).RESULT = 'Training shoe number ' + ((s as any).locArgs?.[1] ?? 0) + '.';
-  // TODO-QSP: end
   scene.build();
 }
 

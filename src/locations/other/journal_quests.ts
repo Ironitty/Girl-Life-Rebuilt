@@ -25,9 +25,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
             }
           } else {
             if (((s as any).university ?? 0)?.['entrance_exam_passed'] === 0) {
-              // TODO-QSP: 'You''ve enrolled in the preparatory classes. You '+iif(month = 8, 'can attend them by going to the ...
+              scene.text('You\'ve enrolled in the preparatory classes. You ' + ((((s as any).month ?? 0) === 8) ? ('can attend them by going to the administration building at the university.') : ('have to wait for August to attend them.')));
               if (((s as any).pcs_intel ?? 0) + ((s as any).university ?? 0)?.['prep_counter'] >= 80  &&  ((s as any).month ?? 0) === 8  &&  ((s as any).university ?? 0)?.['entrance_exam_passed'] === 0) {
-                // TODO-QSP: dynamic text: 'You think you can pass the entrance exam, '+iif(pcs_intel + university['prep_co...
                 scene.text('You think you can pass the entrance exam, ' + ((((s as any).pcs_intel ?? 0) + ((s as any).university ?? 0)?.['prep_counter'] >= 100) ? ('and get a perfect score.') : ('but not get a perfect score.')) + ' This is also done in the administration building.');
               }
             } else {
@@ -40,8 +39,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
           }
         } else {
           if (((s as any).university ?? 0)?.['student'] === 1) {
-            // TODO-QSP: dynamic text: 'You are enrolled in the ' + $func('uni_programs', 'get_program_name') + ' progr...
-            scene.text('You are enrolled in the \' + $func(\'uni_programs\', \'get_program_name\') + \' program. To follow your study progress, use the dedicated page in the journal.');
+            scene.text('You are enrolled in the ' + qspFunc(s, 'uni_programs', 'get_program_name') + ' program. To follow your study progress, use the dedicated page in the journal.');
           } else {
             if (((s as any).university ?? 0)?.['expelled_for_missing_exam'] === 0  &&  ((s as any).university ?? 0)?.['expelled'] === 1) {
               scene.text('You\'ve been expelled from the university for failing your exams.');
@@ -277,7 +275,6 @@ function enter(s: GameState, scene: SceneBuilder): void {
       } else {
         if (((s as any).lesbiQW ?? 0) >= 13) {
           if (((s as any).mistressqwest ?? 0) >= 1) {
-            // TODO-QSP: dynamic text: Mistress won''t see me again until I''ve serviced twelve men through the gloryho...
             scene.text(`Mistress won't see me again until I've serviced twelve men through the gloryhole booth at the Erotomaniac sex shop. I've serviced ${((s as any).mistressqwest ?? '') - 1} so far.`);
           } else {
             scene.text('I belong to Natalya now. I should keep visiting her whenever I have the time.');
@@ -294,7 +291,6 @@ function enter(s: GameState, scene: SceneBuilder): void {
           } else {
             if (((s as any).lesbiQW ?? 0) === 11) {
               if (((s as any).mistressqwest ?? 0) >= 1) {
-                // TODO-QSP: dynamic text: Natalya won''t let me back into her apartment until I''ve serviced twenty men th...
                 scene.text(`Natalya won't let me back into her apartment until I've serviced twenty men through the gloryhole booth at the Erotomaniac sex shop. I've serviced ${((s as any).mistressqwest ?? '') - 1} so far.`);
               } else {
                 scene.text('I should go back and see Natalya again.');
@@ -404,8 +400,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                           scene.text('I need something to make the coach jealous of me. Ivan spends a lot of time at the sports center, maybe I can use him to my advantage? I should put some effort into getting to know him better.');
                         } else {
                           if ((!((s as any).kotovVSprohorov ?? 0))) {
-                            // TODO-QSP: dynamic text: 'I want to use Ivan to somehow make the coach jealous. I should start by chattin...
-                            scene.text('I want to use Ivan to somehow make the coach jealous. I should start by chatting with him in the sports section when he shows up, usually around 17:00.');
+                            scene.text('\'I want to use Ivan to somehow make the coach jealous. I should start by chatting with him in the sports section when he shows up, usually around 17:00.\'');
                           } else {
                             if (((s as any).kotovVSprohorov ?? 0) === 1) {
                               scene.text('I should take a shower at the sports center. If the rumors I heard about Ivan are true, he should try to join me.');
@@ -567,8 +562,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       scene.text('If I want to get to know Ivan better, I should spend some time chatting with him during school.');
     } else {
       if ((!((s as any).kotovVSprohorov ?? 0))) {
-        // TODO-QSP: dynamic text: 'I see Ivan at the sports center around '+func('time', 'get_time_string', 17, 0)...
-        scene.text('I see Ivan at the sports center around 17:00 a lot. I should try and chat with him then.');
+        scene.text('\'I see Ivan at the sports center around 17:00 a lot. I should try and chat with him then.\'');
       } else {
         if (((s as any).kotovVSprohorov ?? 0) === 1) {
           scene.text('I\'m feeling dirty. I should take a shower at the sports center.');
@@ -592,8 +586,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       }
     }
     if (((s as any).ivanQW ?? 0)?.['ivan_boxing_invite'] === 1) {
-      // TODO-QSP: dynamic text: 'Ivan agreed to teach me to box. I should look for him at the sports center arou...
-      scene.text('Ivan agreed to teach me to box. I should look for him at the sports center around 17:00 for training.');
+      scene.text('\'Ivan agreed to teach me to box. I should look for him at the sports center around 17:00 for training.\'');
     }
     qspCall(s, 'cards', 'section_close');
   }
@@ -868,7 +861,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   if (((s as any).gschoolVars ?? 0)?.['school_diploma'] === 0  &&  ((s as any).gschoolVars ?? 0)?.['block'] === 0) {
     qspCall(s, 'cards', 'section_open', 'Katja Meynold', 14);
     if (((s as any).katjaQW ?? 0)?.['QWstage'] === 0) {
-      // TODO-QSP: 'Katja is both cute, smart and popular. If I want to be her friend'+iif(npc_rel['A14'] < 60, ', I ne...
+      scene.text('Katja is both cute, smart and popular. If I want to be her friend' + ((((s as any).npc_rel ?? 0)?.['A14'] < 60) ? (', I need to get to know her better by talking with her at school or the disco') : ('')) + ((((s as any).pcs_makupskl ?? 0) < 40) ? (', I need to improve my make up skill since she is very into make up') : ('')) + ((((s as any).class ?? 0)?.['school_grade_average'] < 65) ? (', I need to improve my grades since being good at school is important to her') : ('')) + ((((s as any).fame ?? 0)?.['pav_slut'] >= 50) ? (', I need to be seen as less of a slut') : ('')) + ((((s as any).pcs_hotcat ?? 0) < 6) ? (', I need to improve my looks') : ('')) + ((((s as any).npc_rel ?? 0)?.['A14'] >= 60  &&  ((s as any).fame ?? 0)?.['pav_slut'] < 50  &&  ((s as any).class ?? 0)?.['school_grade_average'] >= 65  &&  ((s as any).pcs_makupskl ?? 0) >= 40  &&  ((s as any).pcs_hotcat ?? 0) >= 6) ? (', I should probably go to school and see if something happens.') : ('.')));
     } else {
       if (((s as any).katjaQW ?? 0)?.['QWstage'] === 1) {
         scene.text('Katja has agreed to hang out after school. I should do this more often to see where this leads.');
@@ -878,7 +871,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         } else {
           if (((s as any).katjaQW ?? 0)?.['QWstage'] > 2) {
             if (((s as any).npc_had_sex ?? 0)?.['A14'] === 0) {
-              // TODO-QSP: 'I''ve kissed Katja, but not gone any further.'+iif(katjaQW['slut'] < 20, ' Katja needs to loosen up...
+              scene.text('I\'ve kissed Katja, but not gone any further.' + ((((s as any).katjaQW ?? 0)?.['slut'] < 20) ? (' Katja needs to loosen up a little before she will go any further. Maybe I should try to push her a little when kissing or getting her to be naked at the beach?') : (' I think it\'s possible that she will go further if the opportunity comes up when hanging out at her home.')));
             } else {
               scene.text('While Katja is a shy girl, she is still quite strong-willed, and will not do anything sexual if not in the mood. Fortunately for me, it\'s pretty easy to determine if she is aroused by how red her face is.');
             }
@@ -890,7 +883,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
               }
             }
             if (((s as any).katjaQW ?? 0)?.['pantiesQWstage'] === 0) {
-              // TODO-QSP: 'It could be fun to see if I could get Katja to go to school without panties. To do this, I need to ...
+              scene.text('It could be fun to see if I could get Katja to go to school without panties. To do this, I need to speak with her at school when I\'m not wearing panties so she can see that I\'m not wearing any' + ((((s as any).katjaQW ?? 0)?.['slut'] >= 40  &&  ((s as any).katjaQW ?? 0)?.['school_sex'] === 0) ? (', I should probably accept her advances at school') : ('')) + ((((s as any).katjaQW ?? 0)?.['slut'] < 20) ? (', I need to loosen up Katja in other ways first. For example, by getting her to be naked at the beach.') : ('.')));
             } else {
               if (((s as any).katjaQW ?? 0)?.['pantiesQWstage'] < 4) {
                 scene.text('I think I\'m getting close to having Katja take off her panties at school. Just have to push her a little more…');
@@ -935,7 +928,6 @@ function enter(s: GameState, scene: SceneBuilder): void {
                   }
                 } else {
                   if (((s as any).katjaQW ?? 0)?.['strapon_vag'] + ((s as any).katjaQW ?? 0)?.['strapon_ass'] + ((s as any).katjaQW ?? 0)?.['strapon_bj'] < 3) {
-                    // TODO-QSP: dynamic text: 'You should' +iif(katjaQW['strapon_bj'] = 0, '; make Katja give your strap-on a ...
                     scene.text('You should' + ((((s as any).katjaQW ?? 0)?.['strapon_bj'] === 0) ? ('; make Katja give your strap-on a blowjob') : ('')) + ((((s as any).katjaQW ?? 0)?.['strapon_vag'] === 0) ? ('; fuck Katja\'s pussy with your strap-on') : ('')) + ((((s as any).katjaQW ?? 0)?.['strapon_ass'] === 0) ? ('; fuck Katja in the ass with your strap-on') : ('')) + '.');
                   }
                 }
@@ -984,7 +976,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                             scene.text('Katja had a threesome in the park with two random guys. We should go again and see where things end up.');
                           } else {
                             scene.text('You\'ve managed to turn Katja from an innocent virgin into a complete slut that will have orgies with random people you meet in the park.');
-                            // TODO-QSP: 'You have unlocked all the scenes with Katja that are in the game at this time' +iif(NatbelQW['QWsta...
+                            scene.text('You have unlocked all the scenes with Katja that are in the game at this time' + ((((s as any).NatbelQW ?? 0)?.['QWstage'] < 8) ? (', except a scene started by going to the market which requires you to advance Natasha\'s quest line.') : ('.')));
                           }
                         }
                       }
@@ -1016,25 +1008,23 @@ function enter(s: GameState, scene: SceneBuilder): void {
   if (((s as any).yearstart ?? 0) > 1  &&  ((s as any).university ?? 0)?.['enrolled_in_semester'] > ((s as any).university ?? 0)?.['semester_passed']) {
     qspCall(s, 'cards', 'section_open', 'Katja Meynold', 14);
     if (((s as any).katjaQW ?? 0)?.['QWstage'] < 2) {
-      // TODO-QSP: 'Katja is both cute, smart and popular. If I want to be her friend'+iif(npc_rel['A14'] < 70, ', I ne...
+      scene.text('Katja is both cute, smart and popular. If I want to be her friend' + ((((s as any).npc_rel ?? 0)?.['A14'] < 70) ? (', I need to get to know her better by talking with her at the uni plaza, library or at the Coffee Hole') : ('')) + ((((s as any).pcs_makupskl ?? 0) < 40) ? (', I need to improve my make up skill since she is very into makeup') : ('')) + ((((s as any).fame ?? 0)?.['city_slut'] >= 150  ||  ((s as any).fame ?? 0)?.['pav_slut'] >= 150) ? (', I need to be seen as less of a slut') : ('')) + ((((s as any).pcs_hotcat ?? 0) < 6) ? (', I need to improve my looks') : ('')) + ((((s as any).npc_rel ?? 0)?.['A14'] >= 60  &&  ((s as any).fame ?? 0)?.['city_slut'] < 150  &&  ((s as any).fame ?? 0)?.['pav_slut'] < 150  &&  ((s as any).pcs_makupskl ?? 0) >= 40  &&  ((s as any).pcs_hotcat ?? 0) >= 6) ? (', something might happen after one of my late university classes.') : ('.')));
     } else {
       if (((s as any).katjaQW ?? 0)?.['QWstage'] === 2) {
         scene.text('Katja and I saw two women making out at the stairs when she took me to her dorm room. Katja was interested in trying, but I told her no. She might try again later. I know her room and can come by when she is home.');
       } else {
         if (((s as any).katjaQW ?? 0)?.['QWstage'] > 2) {
           if (((s as any).npc_had_sex ?? 0)?.['A14'] === 0) {
-            // TODO-QSP: 'I''ve kissed Katja, but not gone any further, when she asked me to have sex.'+iif(katjaQW['slut'] <...
+            scene.text('I\'ve kissed Katja, but not gone any further, when she asked me to have sex.' + ((((s as any).katjaQW ?? 0)?.['slut'] < 20) ? (' Katja is too timid to try pushing me for sex right now, she need to loosen up more first.') : (' I think it\'s possible that she will try to get us to go further if the opportunity comes up again at her home.')));
           } else {
             scene.text('While Katja is a shy girl, she is still quite strong-willed, and will not do anything sexual if not in the mood. Fortunately for me, it\'s pretty easy to determine if she is aroused by how red her face is.');
           }
           if (((s as any).katjaQW ?? 0)?.['slut'] <75  &&  ((s as any).katjaQW ?? 0)?.['liberated'] === 0) {
             scene.text('Katja is a good girl who studies a lot, but sometimes on Thursday she will watch a movie in her dorm room at night instead of going to the library.');
-            // TODO-QSP: dynamic text: 'She also goes partying on Friday evening, where she will prepare in her dorm ro...
-            scene.text('She also goes partying on Friday evening, where she will prepare in her dorm room from 19:00 to 19:45. Saturday and Sunday she spends at her mother\'s house in Pavlovsk.');
+            scene.text('\'She also goes partying on Friday evening, where she will prepare in her dorm room from 19:00 to 19:45. Saturday and Sunday she spends at her mother\'s house in Pavlovsk.\'');
           } else {
             scene.text('Katja is a good girl who studies a lot but has started to loosen up. On Thursday she doesn\'t study at night but will watch a movie in her dorm or maybe go partying.');
-            // TODO-QSP: dynamic text: 'She also goes partying on Friday evening, where she will prepare in her dorm ro...
-            scene.text('She also goes partying on Friday evening, where she will prepare in her dorm room from 19:00 to 19:45. Saturday night is also spent partying and Sunday she spends at her mother\'s house in Pavlovsk.');
+            scene.text('\'She also goes partying on Friday evening, where she will prepare in her dorm room from 19:00 to 19:45. Saturday night is also spent partying and Sunday she spends at her mother\'s house in Pavlovsk.\'');
           }
           if (((s as any).trait_vars ?? 0)?.['panty_preference'] > 0) {
             if (((s as any).katjaQW ?? 0)?.['pantiesQWstage'] === 0) {
@@ -1092,13 +1082,11 @@ function enter(s: GameState, scene: SceneBuilder): void {
                 }
               } else {
                 if (((s as any).katjaQW ?? 0)?.['strapon_vag'] + ((s as any).katjaQW ?? 0)?.['strapon_ass'] + ((s as any).katjaQW ?? 0)?.['strapon_bj'] < 3) {
-                  // TODO-QSP: dynamic text: 'You should' +iif(katjaQW['strapon_bj'] = 0, '; make Katja give your strap-on a ...
                   scene.text('You should' + ((((s as any).katjaQW ?? 0)?.['strapon_bj'] === 0) ? ('; make Katja give your strap-on a blowjob') : ('')) + ((((s as any).katjaQW ?? 0)?.['strapon_vag'] === 0) ? ('; fuck Katja\'s pussy with your strap-on') : ('')) + ((((s as any).katjaQW ?? 0)?.['strapon_ass'] === 0) ? ('; fuck Katja in the ass with your strap-on') : ('')) + '.');
                 }
               }
             }
             if (((s as any).katjaQW ?? 0)?.['relationship_count_start'] + 350/(1+ ((s as any).katjaQW ?? 0)?.['boy_block']) < ((s as any).daystart ?? 0)  &&  ((s as any).katjaQW ?? 0)?.['relationship_talk'] === 0  &&  ((s as any).katjaQW ?? 0)?.['relationship_count_start'] > 0) {
-              // TODO-QSP: dynamic text: 'You should try to see a movie with Katja '+iif(university['semester_week'] + un...
               scene.text('You should try to see a movie with Katja ' + ((((s as any).university ?? 0)?.['semester_week'] + ((s as any).university ?? 0)?.['exam_week'] > 0) ? ('Thursday') : ('Tuesday to Thursday')) + ' night at her dorm room. She might see something that will advance your relationship.');
             } else {
               scene.text('You relationship needs time to progress');

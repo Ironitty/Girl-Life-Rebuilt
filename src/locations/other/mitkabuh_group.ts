@@ -29,7 +29,6 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -37,7 +36,6 @@ function enterPartywithMira(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'mitkabuh_group', ((s as any).partywithMira ?? 0));
   (s as any).location_type = 'public_indoors';
   scene.img('images/locations/gadukino/village/drunk.jpg');
-  // TODO-QSP: dynamic text: 'You, Mira, Mitka, Kolyamba and Vasyan are sitting on some '+iif(sunWeather=1, '...
   scene.text('You, Mira, Mitka, Kolyamba and Vasyan are sitting on some ' + ((((s as any).sunWeather ?? 0)===1) ? ('logs outside') : ('couches inside')) + ' the trailer. There is plenty of moonshine to go around but no snacks.');
   if (((s as any).GadBoy ?? 0)?.['drunk_event'] === 1  &&  ((s as any).alko ?? 0) < 10) {
     (s as any).alko = 10;
@@ -108,6 +106,7 @@ function enterPartywithMira(s: GameState, scene: SceneBuilder): void {
           }
         }
       }
+      (s as any).temp_rand = undefined;
     } else {
       qspCall(s, 'willpower', 'drink', 'resist');
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
@@ -151,17 +150,13 @@ function enterPartywithMira(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterGroupSex(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/gadukino/sex/mitka/mitka_group/drunk1.jpg');
-  // TODO-QSP: dynamic text: While drinking with Mira, <<$boydesc[0]>> comes up to you and starts removing yo...
   scene.text(`While drinking with Mira, ${(((s as any).boydesc ?? 0)?.[0] ?? '')} comes up to you and starts removing your clothes. At the same time ${(((s as any).boydesc ?? 0)?.[1] ?? '')} does the same to Mira. They tell you, "We want to share you both right now."`);
-  // TODO-QSP: dynamic text: <<$boydesc[2]>> looks on but doesn''t move or say anything. Mira doesn''t bother...
   scene.text(`${(((s as any).boydesc ?? 0)?.[2] ?? '')} looks on but doesn't move or say anything. Mira doesn't bother resisting and goes along with it.`);
-  // TODO-QSP: end
   scene.actions([
     { label: 'Let them continue', handler: (st: GameState) => {
     qspCall(st, 'npc_relationship', 'modify', (((st as any).boy ?? 0)?.[0] ?? 0), 1);
@@ -173,23 +168,18 @@ function enterGroupSex(s: GameState, scene: SceneBuilder): void {
     if (((st as any).MiraVars ?? 0)?.['QW'] < 15) {
       ((st as any).MiraVars = (st as any).MiraVars ?? {})['QW'] = ((st as any).MiraVars['QW'] ?? 0) + (1);
     }
-    // TODO-QSP: npc_had_sex[$boy[0]] = 1
-    // TODO-QSP: npc_had_sex[$boy[1]] = 1
+    ((st as any).npc_had_sex = (st as any).npc_had_sex ?? {})[(((st as any).boy ?? 0)?.[0] ?? 0)] = 1;
+    ((st as any).npc_had_sex = (st as any).npc_had_sex ?? {})[(((st as any).boy ?? 0)?.[1] ?? 0)] = 1;
     ((st as any).stat = (st as any).stat ?? {})['gangbang_count'] = ((st as any).stat['gangbang_count'] ?? 0) + (1);
     qspCall(st, 'arousal', 'vaginal', 10, 'sub', 'gangbang');
     qspCall(st, 'arousal', 'bj', 10, 'sub', 'gangbang');
     qspCall(st, 'stat', '');
     (st as any).mitkapicrand = (Math.floor(Math.random() * 5) + 1);
-    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/sex/mitka/mitka_group...
     scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/gadukino/sex/mitka/mitka_group/mitkabuhgroup1.` + ((st as any).mitkapicrand ?? '') + '.jpg"></center>');
-    // TODO-QSP: dynamic text: <<$boydesc[0]>> and <<$boydesc[1]>> waste no time as they quickly put you and Mi...
     scene.text(`${(((st as any).boydesc ?? 0)?.[0] ?? '')} and ${(((st as any).boydesc ?? 0)?.[1] ?? '')} waste no time as they quickly put you and Mira on your knees. They shove their cocks in your mouths and you give them sloppy blowjobs while trying to avoid gagging.`);
-    // TODO-QSP: dynamic text: <<$boydesc[0]>> turns you around and begins thrusting rapidly, as Mira moans bes...
     scene.text(`${(((st as any).boydesc ?? 0)?.[0] ?? '')} turns you around and begins thrusting rapidly, as Mira moans beside you from the fucking she is receiving from ${(((st as any).boydesc ?? 0)?.[1] ?? '')}.`);
     scene.text('The boys always seem to be constantly changing positions and trading you and Mira back and forth between them.');
-    // TODO-QSP: dynamic text: Out of the corner of your eye, you see <<$boydesc[2]>> stroking himself as he wa...
     scene.text(`Out of the corner of your eye, you see ${(((st as any).boydesc ?? 0)?.[2] ?? '')} stroking himself as he watches you and Mira. You were only distracted for a second, but in that time ${(((st as any).boydesc ?? 0)?.[0] ?? '')} and ${(((st as any).boydesc ?? 0)?.[1] ?? '')} started cumming onto you and Mira.`);
-    // TODO-QSP: dynamic text: <<$boydesc[2]>> walks up and says, "Ready for Round 2 girls?"
     scene.text(`${(((st as any).boydesc ?? 0)?.[2] ?? '')} walks up and says, "Ready for Round 2 girls?"`);
     qspCall(st, 'cum_call', '', (((st as any).boy ?? 0)?.[0] ?? 0), 1);
     qspCall(st, 'cum_call', '', (((st as any).boy ?? 0)?.[1] ?? 0), 1);
@@ -198,7 +188,7 @@ function enterGroupSex(s: GameState, scene: SceneBuilder): void {
       { label: '', labelFn: (s: GameState) => 'Pleasure ' + String((((st as any).boydesc ?? 0)?.[2] ?? '') ?? '') + ' with Mira', handler: (st: GameState) => {
     qspCall(st, 'npc_relationship', 'modify', (((st as any).boy ?? 0)?.[2] ?? 0), 1);
     qspCall(st, 'npc_relationship', 'modify', 'A60', 1);
-    // TODO-QSP: npc_had_sex[$boy[2]] = 1
+    ((st as any).npc_had_sex = (st as any).npc_had_sex ?? {})[(((st as any).boy ?? 0)?.[2] ?? 0)] = 1;
     ((st as any).stat = (st as any).stat ?? {})['gangbang_count'] = ((st as any).stat['gangbang_count'] ?? 0) + (1);
     qspCall(st, 'arousal', 'bj', 10, 'sub', 'gangbang');
     qspCall(st, 'stat', '');
@@ -218,17 +208,13 @@ function enterGroupSex(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
-    // TODO-QSP: dynamic text: Mira seems to be just as insatiable as the boys as she races you over to <<$boyd...
     scene.text(`Mira seems to be just as insatiable as the boys as she races you over to ${(((st as any).boydesc ?? 0)?.[2] ?? '')}'s cock. She is the first to wrap her lips around it as you are left to try and lick whatever Mira isn't currently shoving down her throat.`);
-    // TODO-QSP: dynamic text: You get your turn soon though when <<$boydesc[2]>> says, "Come on Mira, give <<$...
     scene.text(`You get your turn soon though when ${(((st as any).boydesc ?? 0)?.[2] ?? '')} says, "Come on Mira, give ${((st as any).pcs_nickname ?? '')} a chance, there is more than enough for both of you."`);
-    // TODO-QSP: dynamic text: As Mira removes <<$boydesc[2]>>''s cock from her mouth she gives you a little sm...
     scene.text(`As Mira removes ${(((st as any).boydesc ?? 0)?.[2] ?? '')}'s cock from her mouth she gives you a little smile and wink. You quickly begin to suck with even more enthusiasm, not wanting to be outdone by Mira.`);
     scene.actions([
       { label: '', labelFn: (s: GameState) => 'Make ' + String((((st as any).boydesc ?? 0)?.[2] ?? '') ?? '') + ' cum', handler: (st: GameState) => {
     (st as any).mitkapicrand = (Math.floor(Math.random() * 8) + 1);
     if (((st as any).mitkapicrand ?? 0) <= 5) {
-      // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/sex/mitka/mitka_group...
       scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/gadukino/sex/mitka/mitka_group/mitkabuhcum0.` + ((st as any).mitkapicrand ?? '') + '.jpg"></center>');
     } else {
       if (((st as any).mitkapicrand ?? 0) === 6) {
@@ -243,7 +229,6 @@ function enterGroupSex(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
-    // TODO-QSP: dynamic text: <<$boydesc[2]>> doesn''t last long under the combined talents of you and Mira. Y...
     scene.text(`${(((st as any).boydesc ?? 0)?.[2] ?? '')} doesn't last long under the combined talents of you and Mira. You don't even have time to get in position to share the cumshot with Mira, as he erupts a huge load onto your face.`);
     scene.text('Mira doesn\'t seem to mind as she once again starts to lap up the cum that ran down your face and pooled on your breasts and body.');
     qspCall(st, 'cum_call', 'breasts', (((st as any).boy ?? 0)?.[2] ?? 0), 1);
@@ -272,10 +257,8 @@ function enterGroupSex(s: GameState, scene: SceneBuilder): void {
 function enterGroupBj(s: GameState, scene: SceneBuilder): void {
   if ((!(Math.floor(Math.random() * 2) + 0))) {
     scene.img('images/locations/gadukino/sex/mitka/mitka_group/drunk1.jpg');
-    // TODO-QSP: dynamic text: While you are drinking with Mira, <<$boydesc[0]>> jokingly says that you both lo...
     scene.text(`While you are drinking with Mira, ${(((s as any).boydesc ?? 0)?.[0] ?? '')} jokingly says that you both look incredible, but would look even better with cocks in your mouths.`);
     scene.text('Mira giggles in response, "You mean like this?", as she gets on her knees in front of him. She quickly pulls his cock out of his pants and wraps her lips around it.');
-    // TODO-QSP: dynamic text: Seeing this <<$boydesc[1]>> immediately walks up to you and takes his cock out t...
     scene.text(`Seeing this ${(((s as any).boydesc ?? 0)?.[1] ?? '')} immediately walks up to you and takes his cock out too.`);
     scene.actions([
       { label: '', labelFn: (s: GameState) => 'Suck ' + String((((s as any).boydesc ?? 0)?.[1] ?? '') ?? '') + ' too', handler: (st: GameState) => {
@@ -288,8 +271,8 @@ function enterGroupBj(s: GameState, scene: SceneBuilder): void {
     if (((st as any).MiraVars ?? 0)?.['QW'] < 15) {
       ((st as any).MiraVars = (st as any).MiraVars ?? {})['QW'] = ((st as any).MiraVars['QW'] ?? 0) + (1);
     }
-    // TODO-QSP: npc_had_sex[$boy[0]] = 1
-    // TODO-QSP: npc_had_sex[$boy[1]] = 1
+    ((st as any).npc_had_sex = (st as any).npc_had_sex ?? {})[(((st as any).boy ?? 0)?.[0] ?? 0)] = 1;
+    ((st as any).npc_had_sex = (st as any).npc_had_sex ?? {})[(((st as any).boy ?? 0)?.[1] ?? 0)] = 1;
     ((st as any).stat = (st as any).stat ?? {})['gangbang_count'] = ((st as any).stat['gangbang_count'] ?? 0) + (1);
     qspCall(st, 'arousal', 'hj', 10, 'sub', 'gangbang');
     qspCall(st, 'arousal', 'bj', 10, 'sub', 'gangbang');
@@ -310,15 +293,12 @@ function enterGroupBj(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
-    // TODO-QSP: dynamic text: You follow Mira''s example and obediently drop to your knees and begin to blow <...
     scene.text(`You follow Mira's example and obediently drop to your knees and begin to blow ${(((st as any).boydesc ?? 0)?.[1] ?? '')} as well. Both of your heads bob in unison as the boys moan in pleasure.`);
     scene.text('Mira occasionally looks at you to see if you are keeping up, but you aren\'t having any trouble at all. You\'ve gotten used to these nighttime adventures and have come to even enjoy them as well.');
     scene.actions([
       { label: '', labelFn: (s: GameState) => 'Make ' + String((((st as any).boydesc ?? 0)?.[1] ?? '') ?? '') + ' cum', handler: (st: GameState) => {
     scene.img('images/locations/gadukino/sex/mitka/mitka_group/mitkabuhoralcum0.1.jpg');
-    // TODO-QSP: dynamic text: Out of the corner of your eye, you see <<$boydesc[2]>> stroking himself as he wa...
     scene.text(`Out of the corner of your eye, you see ${(((st as any).boydesc ?? 0)?.[2] ?? '')} stroking himself as he watches you and Mira. You were only distracted for a second, but in that time ${(((st as any).boydesc ?? 0)?.[0] ?? '')} and ${(((st as any).boydesc ?? 0)?.[1] ?? '')} started cumming onto you and Mira.`);
-    // TODO-QSP: dynamic text: You open your mouth in surprise and feel cum fly into your mouth. As you turn ba...
     scene.text(`You open your mouth in surprise and feel cum fly into your mouth. As you turn back to look at Mira again, her tongue greedily licks some of the cum off your face. You begin to return the favor as ${(((st as any).boydesc ?? 0)?.[2] ?? '')} walks up and says, "Ready for Round 2 girls?"`);
     qspCall(st, 'cum_call', 'breasts', (((st as any).boy ?? 0)?.[0] ?? 0), 1);
     qspCall(st, 'cum_call', 'stomach', (((st as any).boy ?? 0)?.[0] ?? 0), 1);
@@ -329,7 +309,7 @@ function enterGroupBj(s: GameState, scene: SceneBuilder): void {
       { label: '', labelFn: (s: GameState) => 'Pleasure ' + String((((st as any).boydesc ?? 0)?.[2] ?? '') ?? '') + ' with Mira', handler: (st: GameState) => {
     qspCall(st, 'npc_relationship', 'modify', (((st as any).boy ?? 0)?.[2] ?? 0), 1);
     qspCall(st, 'npc_relationship', 'modify', 'A60', 1);
-    // TODO-QSP: npc_had_sex[$boy[2]] = 1
+    ((st as any).npc_had_sex = (st as any).npc_had_sex ?? {})[(((st as any).boy ?? 0)?.[2] ?? 0)] = 1;
     ((st as any).stat = (st as any).stat ?? {})['gangbang_count'] = ((st as any).stat['gangbang_count'] ?? 0) + (1);
     qspCall(st, 'arousal', 'bj', 10, 'sub', 'gangbang');
     qspCall(st, 'stat', '');
@@ -349,17 +329,13 @@ function enterGroupBj(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
-    // TODO-QSP: dynamic text: Mira seems to be just as insatiable as the boys as she races you over to <<$boyd...
     scene.text(`Mira seems to be just as insatiable as the boys as she races you over to ${(((st as any).boydesc ?? 0)?.[2] ?? '')}'s cock. She is the first to wrap her lips around it as you are left to try and lick whatever Mira isn't currently shoving down her throat.`);
-    // TODO-QSP: dynamic text: You get your turn soon though when <<$boydesc[2]>> says, "Come on Mira, give <<$...
     scene.text(`You get your turn soon though when ${(((st as any).boydesc ?? 0)?.[2] ?? '')} says, "Come on Mira, give ${((st as any).pcs_nickname ?? '')} a chance, there is more than enough for both of you."`);
-    // TODO-QSP: dynamic text: As Mira removes <<$boydesc[2]>>''s cock from her mouth she gives you a little sm...
     scene.text(`As Mira removes ${(((st as any).boydesc ?? 0)?.[2] ?? '')}'s cock from her mouth she gives you a little smile and wink. You quickly begin to suck with even more enthusiasm, not wanting to be outdone by Mira.`);
     scene.actions([
       { label: '', labelFn: (s: GameState) => 'Make ' + String((((st as any).boydesc ?? 0)?.[2] ?? '') ?? '') + ' cum', handler: (st: GameState) => {
     (st as any).mitkapicrand = (Math.floor(Math.random() * 8) + 1);
     if (((st as any).mitkapicrand ?? 0) <= 5) {
-      // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/sex/mitka/mitka_group...
       scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/gadukino/sex/mitka/mitka_group/mitkabuhcum0.` + ((st as any).mitkapicrand ?? '') + '.jpg"></center>');
     } else {
       if (((st as any).mitkapicrand ?? 0) === 6) {
@@ -374,7 +350,6 @@ function enterGroupBj(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
-    // TODO-QSP: dynamic text: <<$boydesc[2]>> doesn''t last long under the combined talents of you and Mira. Y...
     scene.text(`${(((st as any).boydesc ?? 0)?.[2] ?? '')} doesn't last long under the combined talents of you and Mira. You don't even have time to get in position to share the cumshot with Mira, as he erupts a huge load onto your face.`);
     scene.text('Mira doesn\'t seem to mind as she once again starts to lap up the cum that ran down your face and pooled on your breasts and body.');
     qspCall(st, 'cum_call', 'breasts', (((st as any).boy ?? 0)?.[2] ?? 0), 1);
@@ -401,7 +376,6 @@ function enterGroupBj(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.img('images/locations/gadukino/sex/mitka/mitka_group/drunk1.jpg');
-    // TODO-QSP: dynamic text: While you are drinking with Mira, <<$boydesc[0]>> jokingly says that you both lo...
     scene.text(`While you are drinking with Mira, ${(((s as any).boydesc ?? 0)?.[0] ?? '')} jokingly says that you both look incredible, but would look even better with cocks in your mouths.`);
     scene.text('Mira giggles in response, "You mean like this?", as she gets on her knees in front of him. She quickly pulls his cock out of his pants and wraps her lips around it.');
     scene.actions([
@@ -410,7 +384,6 @@ function enterGroupBj(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     (st as any).mitkapicrand = (Math.floor(Math.random() * 5) + 1);
     if (((st as any).mitkapicrand ?? 0) <= 5) {
-      // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/sex/mitka/mitka_group...
       scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/gadukino/sex/mitka/mitka_group/mitkabuh1.` + ((st as any).mitkapicrand ?? '') + '.jpg"></center>');
     } else {
       if (((st as any).mitkapicrand ?? 0) === 6) {
@@ -429,9 +402,7 @@ function enterGroupBj(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
-    // TODO-QSP: dynamic text: You spend the next few minutes watching Mira. You can''t bring yourself to look ...
     scene.text(`You spend the next few minutes watching Mira. You can't bring yourself to look away as you watch her enjoy herself with ${(((st as any).boydesc ?? 0)?.[0] ?? '')}'s cock.`);
-    // TODO-QSP: dynamic text: <<$boydesc[1]>> and <<$boydesc[2]>> notice your interest and walk up to you. The...
     scene.text(`${(((st as any).boydesc ?? 0)?.[1] ?? '')} and ${(((st as any).boydesc ?? 0)?.[2] ?? '')} notice your interest and walk up to you. They say, "Don't wory we can have some fun with you too" as they take their cocks out for you.`);
     scene.actions([
       { label: 'Suck them both', handler: (st: GameState) => {
@@ -445,31 +416,25 @@ function enterGroupBj(s: GameState, scene: SceneBuilder): void {
     if (((st as any).MiraVars ?? 0)?.['QW'] < 15) {
       ((st as any).MiraVars = (st as any).MiraVars ?? {})['QW'] = ((st as any).MiraVars['QW'] ?? 0) + (1);
     }
-    // TODO-QSP: npc_had_sex[$boy[1]] = 1
-    // TODO-QSP: npc_had_sex[$boy[2]] = 1
+    ((st as any).npc_had_sex = (st as any).npc_had_sex ?? {})[(((st as any).boy ?? 0)?.[1] ?? 0)] = 1;
+    ((st as any).npc_had_sex = (st as any).npc_had_sex ?? {})[(((st as any).boy ?? 0)?.[2] ?? 0)] = 1;
     ((st as any).stat = (st as any).stat ?? {})['gangbang_count'] = ((st as any).stat['gangbang_count'] ?? 0) + (1);
     qspCall(st, 'arousal', 'hj', 10, 'sub', 'gangbang');
     qspCall(st, 'arousal', 'bj', 10, 'sub', 'gangbang');
     qspCall(st, 'stat', '');
     (st as any).mitkapicrand = (Math.floor(Math.random() * 3) + 2);
     if (((st as any).mitkapicrand ?? 0) <= 3) {
-      // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/sex/mitka/mitka_group...
       scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/gadukino/sex/mitka/mitka_group/mitkabuhoral0.` + ((st as any).mitkapicrand ?? '') + '.jpg"></center>');
     } else {
       scene.img('images/locations/gadukino/sex/mitka/mitka_group/mitkabuhoral0.8.jpg');
     }
-    // TODO-QSP: dynamic text: You kneel and position yourself between <<$boydesc[1]>> and <<$boydesc[2]>>. The...
     scene.text(`You kneel and position yourself between ${(((st as any).boydesc ?? 0)?.[1] ?? '')} and ${(((st as any).boydesc ?? 0)?.[2] ?? '')}. The boys never leave your mouth empty as they swap back and forth, each one taking turns using your mouth.`);
-    // TODO-QSP: dynamic text: You make sure to keep stroking both boys as you try to equally please both of th...
     scene.text(`You make sure to keep stroking both boys as you try to equally please both of them. It isn't enough for ${(((st as any).boydesc ?? 0)?.[1] ?? '')} as he puts his hand on the back of your head, shoving his cock deeper down your throat.`);
-    // TODO-QSP: dynamic text: As you begin to gag a little, <<$boydesc[2]>> slaps his dick against your face a...
     scene.text(`As you begin to gag a little, ${(((st as any).boydesc ?? 0)?.[2] ?? '')} slaps his dick against your face and laughs, "Perfect, right where you should be. You know it is tough, deciding whether you or Mira is the better fuck, but why choose when we can have both!"`);
     scene.actions([
       { label: 'Make them both cum', handler: (st: GameState) => {
     (st as any).mitkapicrand = (Math.floor(Math.random() * 2) + 2);
-    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/sex/mitka/mitka_group...
     scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/gadukino/sex/mitka/mitka_group/mitkabuhoralcum0.` + ((st as any).mitkapicrand ?? '') + '.jpg"></center>');
-    // TODO-QSP: dynamic text: You pick up the pace, moving your head faster and faster with each stroke. <<$bo...
     scene.text(`You pick up the pace, moving your head faster and faster with each stroke. ${(((st as any).boydesc ?? 0)?.[1] ?? '')} is the first to cum and ${(((st as any).boydesc ?? 0)?.[2] ?? '')} isn't far behind him.`);
     scene.text('They both pull back a little before shooting their loads onto you. There is a decent amount of cum that has gotten in your hair and dripped down your face onto your body.');
     qspCall(st, 'cum_call', 'breasts', (((st as any).boy ?? 0)?.[2] ?? 0), 1);
@@ -483,7 +448,6 @@ function enterGroupBj(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'end');
     (st as any).mitkapicrand = (Math.floor(Math.random() * 7) + 1);
     if (((st as any).mitkapicrand ?? 0) <= 5) {
-      // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/sex/mitka/mitka_group...
       scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/gadukino/sex/mitka/mitka_group/mitkabuhcum0.` + ((st as any).mitkapicrand ?? '') + '.jpg"></center>');
     } else {
       if (((st as any).mitkapicrand ?? 0) === 6) {
@@ -494,7 +458,6 @@ function enterGroupBj(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
-    // TODO-QSP: dynamic text: You take another look at Mira once the boys are done with you and are just in ti...
     scene.text(`You take another look at Mira once the boys are done with you and are just in time to watch ${(((st as any).boydesc ?? 0)?.[0] ?? '')} finish on her face.`);
     scene.text('Mira notices you watching and smiles while pointing to the cum on both of your faces.');
     if (((st as any).sunWeather ?? 0) === 1) {
@@ -515,18 +478,14 @@ function enterGroupBj(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterGroupShow(s: GameState, scene: SceneBuilder): void {
   if ((Math.floor(Math.random() * 2) + 0) === 0  &&  ((s as any).sunWeather ?? 0) === 1  &&  ((s as any).temper ?? 0) >= 10) {
     scene.img('images/locations/gadukino/sex/mitka/mitka_group/drunk1.jpg');
-    // TODO-QSP: dynamic text: While drinking with Mira, <<$boydesc[0]>> yells at you, "I''m bored!, get your a...
     scene.text(`While drinking with Mira, ${(((s as any).boydesc ?? 0)?.[0] ?? '')} yells at you, "I'm bored!, get your asses over here and dance for us!"`);
-    // TODO-QSP: dynamic text: <<$boydesc[1]>> and <<$boydesc[2]>> shout their approval of this idea as well. M...
     scene.text(`${(((s as any).boydesc ?? 0)?.[1] ?? '')} and ${(((s as any).boydesc ?? 0)?.[2] ?? '')} shout their approval of this idea as well. Mira slurs a response that you assume was a yes because she begins to undress.`);
-    // TODO-QSP: dynamic text: <<$boydesc[0]>>, looks over at you and says, "<<$pcs_nickname>>, why don''t you ...
     scene.text(`${(((s as any).boydesc ?? 0)?.[0] ?? '')}, looks over at you and says, "${((s as any).pcs_nickname ?? '')}, why don't you join her?". ${(((s as any).boydesc ?? 0)?.[1] ?? '')} and ${(((s as any).boydesc ?? 0)?.[2] ?? '')} start cheering you on as you decide what to do.`);
     scene.actions([
       { label: 'Join Mira', handler: (st: GameState) => {
@@ -542,12 +501,10 @@ function enterGroupShow(s: GameState, scene: SceneBuilder): void {
     }
     qspCall(st, 'stat', '');
     (st as any).mitkapicrand = (Math.floor(Math.random() * 4) + 0);
-    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/sex/mitka/mitka_group...
     scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/gadukino/sex/mitka/mitka_group/mitkabuhdance0.` + ((st as any).mitkapicrand ?? '') + '.jpg"></center>');
     scene.text('You follow Mira\'s lead and quickly undress. It doesn\'t take long for you both to be completely naked in front of the boys.');
     scene.text('You whirl and dance around the fire completely naked. You are having so much fun dancing with Mira that you barely notice the boys watching you.');
     scene.text('The boys take their cocks out at begin to stroke themselves as they watch you and Mira dance for them. The boys are having a blast as they race to see which one can cum first, just by looking at you and Mira.');
-    // TODO-QSP: dynamic text: The boys move closer and closer to you as they near climaxing. <<$boydesc[0]>> i...
     scene.text(`The boys move closer and closer to you as they near climaxing. ${(((st as any).boydesc ?? 0)?.[0] ?? '')} is the first to cum, quickly followed by ${(((st as any).boydesc ?? 0)?.[1] ?? '')} and ${(((st as any).boydesc ?? 0)?.[2] ?? '')}. The combination of the three boys cum lands all over you and Mira.`);
     qspCall(st, 'cum_call', 'butt', (((st as any).boy ?? 0)?.[0] ?? 0), 1);
     qspCall(st, 'cum_call', 'labia', (((st as any).boy ?? 0)?.[0] ?? 0), 1);
@@ -572,11 +529,8 @@ function enterGroupShow(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.img('images/locations/gadukino/sex/mitka/mitka_group/drunk1.jpg');
-    // TODO-QSP: dynamic text: While drinking with Mira, <<$boydesc[0]>> yells at you, "I''m bored!, get your a...
     scene.text(`While drinking with Mira, ${(((s as any).boydesc ?? 0)?.[0] ?? '')} yells at you, "I'm bored!, get your asses over here a give us a show to remember! Let's get a good look at all your holes!"`);
-    // TODO-QSP: dynamic text: <<$boydesc[1]>> and <<$boydesc[2]>> shout their approval of this idea as well. M...
     scene.text(`${(((s as any).boydesc ?? 0)?.[1] ?? '')} and ${(((s as any).boydesc ?? 0)?.[2] ?? '')} shout their approval of this idea as well. Mira slurs a response that you assume was a yes because she begins to undress.`);
-    // TODO-QSP: dynamic text: <<$boydesc[0]>>, looks over at you and says, "<<$pcs_nickname>>, why don''t you ...
     scene.text(`${(((s as any).boydesc ?? 0)?.[0] ?? '')}, looks over at you and says, "${((s as any).pcs_nickname ?? '')}, why don't you join her?". ${(((s as any).boydesc ?? 0)?.[1] ?? '')} and ${(((s as any).boydesc ?? 0)?.[2] ?? '')} start cheering you on as you decide what to do.`);
     scene.actions([
       { label: 'Join Mira', handler: (st: GameState) => {
@@ -607,7 +561,6 @@ function enterGroupShow(s: GameState, scene: SceneBuilder): void {
         scene.text('You follow Mira\'s lead and quickly undress. It doesn\'t take long for you both to be completely naked in front of the boys.');
         scene.text('You bend over for the boys, giving them a great view of your ass. The boys take their cocks out at begin to stroke themselves as they watch you and Mira pose for them.');
         scene.text('The boys are having a blast as they race to see which one can cum first, just by looking at you and Mira. The boys move closer and closer to you as they near climaxing.');
-        // TODO-QSP: dynamic text: <<$boydesc[0]>> is the first to cum, quickly followed by <<$boydesc[1]>> and <<$...
         scene.text(`${(((st as any).boydesc ?? 0)?.[0] ?? '')} is the first to cum, quickly followed by ${(((st as any).boydesc ?? 0)?.[1] ?? '')} and ${(((st as any).boydesc ?? 0)?.[2] ?? '')}. The combination of the three boys cum lands all over you and Mira. This is more than enough to finally bring yourself to an orgasm too.`);
       } else {
         if (((st as any).mitkapicrand ?? 0) <= 3) {
@@ -626,7 +579,6 @@ function enterGroupShow(s: GameState, scene: SceneBuilder): void {
           scene.text('You follow Mira\'s lead and quickly undress. It doesn\'t take long for you both to be completely naked in front of the boys.');
           scene.text('You sit down on the ground and begin to masturbate for the boys. At first, it is a bit uncomfortable since you are just trying to finger yourself on command, without any foreplay. But soon a feeling of excitement takes over as Mira moans next to you.');
           scene.text('The boys take their cocks out at begin to stroke themselves as they watch you and Mira masturbate for them. The boys are having a blast as they race to see which one can cum first, just by looking at you and Mira.');
-          // TODO-QSP: dynamic text: The boys move closer and closer to you as they near climaxing. <<$boydesc[0]>> i...
           scene.text(`The boys move closer and closer to you as they near climaxing. ${(((st as any).boydesc ?? 0)?.[0] ?? '')} is the first to cum, quickly followed by ${(((st as any).boydesc ?? 0)?.[1] ?? '')} and ${(((st as any).boydesc ?? 0)?.[2] ?? '')}. The combination of the three boys cum lands all over you and Mira. This is more than enough to finally bring yourself to an orgasm too.`);
         } else {
           if (((st as any).mitkapicrand ?? 0) === 3  &&  ((st as any).pcs_ass ?? 0) > 15) {
@@ -644,7 +596,6 @@ function enterGroupShow(s: GameState, scene: SceneBuilder): void {
             scene.text('You follow Mira\'s lead and quickly undress. It doesn\'t take long for you both to be completely naked in front of the boys.');
             scene.text('You kneel on the ground and begin to tease your fingers into your ass. As you get more and more excited, you eventually are able to thrust most of your hand into your ass. The boys are most amazed at the feat and move closer to watch.');
             scene.text('The boys take their cocks out at begin to stroke themselves as they watch you and Mira masturbate for them. The boys are having a blast as they race to see which one can cum first, just by looking at you and Mira.');
-            // TODO-QSP: dynamic text: The boys move closer and closer to you as they near climaxing. <<$boydesc[0]>> i...
             scene.text(`The boys move closer and closer to you as they near climaxing. ${(((st as any).boydesc ?? 0)?.[0] ?? '')} is the first to cum, quickly followed by ${(((st as any).boydesc ?? 0)?.[1] ?? '')} and ${(((st as any).boydesc ?? 0)?.[2] ?? '')}. The combination of the three boys cum lands all over you and Mira. This is more than enough to finally bring yourself to an orgasm too.`);
           }
         }
@@ -666,7 +617,6 @@ function enterGroupShow(s: GameState, scene: SceneBuilder): void {
         scene.text('You follow Mira\'s lead and quickly undress. It doesn\'t take long for you both to be completely naked in front of the boys.');
         scene.text('You spready your legs open for the boys, giving them a great view of your pussy. The boys take their cocks out at begin to stroke themselves as they watch you and Mira pose for them.');
         scene.text('The boys are having a blast as they race to see which one can cum first, just by looking at you and Mira. The boys move closer and closer to you as they near climaxing.');
-        // TODO-QSP: dynamic text: <<$boydesc[0]>> is the first to cum, quickly followed by <<$boydesc[1]>> and <<$...
         scene.text(`${(((st as any).boydesc ?? 0)?.[0] ?? '')} is the first to cum, quickly followed by ${(((st as any).boydesc ?? 0)?.[1] ?? '')} and ${(((st as any).boydesc ?? 0)?.[2] ?? '')}. The combination of the three boys cum lands all over you and Mira. This is more than enough to finally bring yourself to an orgasm too.`);
       } else {
         if (((st as any).mitkapicrand ?? 0) === 2) {
@@ -683,7 +633,6 @@ function enterGroupShow(s: GameState, scene: SceneBuilder): void {
           scene.text('You follow Mira\'s lead and quickly undress. It doesn\'t take long for you both to be completely naked in front of the boys.');
           scene.text('You kneel on all fours for the boys, giving them a great view of your ass. The boys take their cocks out at begin to stroke themselves as they watch you and Mira pose for them.');
           scene.text('The boys are having a blast as they race to see which one can cum first, just by looking at you and Mira. The boys move closer and closer to you as they near climaxing.');
-          // TODO-QSP: dynamic text: <<$boydesc[0]>> is the first to cum, quickly followed by <<$boydesc[1]>> and <<$...
           scene.text(`${(((st as any).boydesc ?? 0)?.[0] ?? '')} is the first to cum, quickly followed by ${(((st as any).boydesc ?? 0)?.[1] ?? '')} and ${(((st as any).boydesc ?? 0)?.[2] ?? '')}. The combination of the three boys cum lands all over you and Mira. This is more than enough to finally bring yourself to an orgasm too.`);
         }
       }
@@ -700,17 +649,13 @@ function enterGroupShow(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterGroupAnal(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/gadukino/sex/mitka/mitka_group/drunk1.jpg');
-  // TODO-QSP: dynamic text: While drinking with Mira, <<$boydesc[0]>> comes up to you and starts pulling off...
   scene.text(`While drinking with Mira, ${(((s as any).boydesc ?? 0)?.[0] ?? '')} comes up to you and starts pulling off your clothes. "I'm going to fuck that nice ass of yours right now" he says.`);
-  // TODO-QSP: dynamic text: <<$boydesc[1]>> and <<$boydesc[2]>> shout their approval of this idea and go ove...
   scene.text(`${(((s as any).boydesc ?? 0)?.[1] ?? '')} and ${(((s as any).boydesc ?? 0)?.[2] ?? '')} shout their approval of this idea and go over to do the same to Mira. She doesn't bother resisting and goes along with it.`);
-  // TODO-QSP: end
   scene.actions([
     { label: '', labelFn: (s: GameState) => 'Let ' + String((((s as any).boydesc ?? 0)?.[0] ?? '') ?? '') + ' fuck your ass', handler: (st: GameState) => {
     qspCall(st, 'npc_relationship', 'modify', (((st as any).boy ?? 0)?.[0] ?? 0), 1);
@@ -720,28 +665,21 @@ function enterGroupAnal(s: GameState, scene: SceneBuilder): void {
     if (((st as any).MiraVars ?? 0)?.['QW'] < 15) {
       ((st as any).MiraVars = (st as any).MiraVars ?? {})['QW'] = ((st as any).MiraVars['QW'] ?? 0) + (1);
     }
-    // TODO-QSP: npc_had_sex[$boy[0]] = 1
+    ((st as any).npc_had_sex = (st as any).npc_had_sex ?? {})[(((st as any).boy ?? 0)?.[0] ?? 0)] = 1;
     qspCall(st, 'cum_call', 'anus', (((st as any).boy ?? 0)?.[0] ?? 0), 1);
     qspCall(st, 'arousal', 'anal', 10, 'sub', 'rough', 'deepthroat');
     qspCall(st, 'arousal', 'end');
     qspCall(st, 'stat', '');
     (st as any).mitkapicrand = (Math.floor(Math.random() * 5) + 1);
-    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/sex/mitka/mitka_group...
     scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/gadukino/sex/mitka/mitka_group/mitkabuhanal0.` + ((st as any).mitkapicrand ?? '') + '.jpg"></center>');
-    // TODO-QSP: dynamic text: <<$boydesc[0]>> takes you inside the trailer and pushes you down on the bed face...
     scene.text(`${(((st as any).boydesc ?? 0)?.[0] ?? '')} takes you inside the trailer and pushes you down on the bed face first. As he penetrates you, he says something to himself about choosing the right girl, whatever that means.`);
-    // TODO-QSP: dynamic text: You wouldn''t call this particularly enjoyable tonight as <<$boydesc[0]>> roughl...
     scene.text(`You wouldn't call this particularly enjoyable tonight as ${(((st as any).boydesc ?? 0)?.[0] ?? '')} roughly thrusts into you without a care. With the pace he is keeping, he doesn't last long and he quickly cums in your ass.`);
-    // TODO-QSP: dynamic text: <<$boydesc[0]>> makes you lick his dick clean before taking you back to where th...
     scene.text(`${(((st as any).boydesc ?? 0)?.[0] ?? '')} makes you lick his dick clean before taking you back to where the other guys are already finished with Mira as well.`);
     scene.actions([
       { label: 'Go back with him', handler: (st: GameState) => {
     (st as any).mitkapicrand = (Math.floor(Math.random() * 5) + 1);
-    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/sex/mitka/mitka_group...
     scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/gadukino/sex/mitka/mitka_group/mitkabuhgroup0.` + ((st as any).mitkapicrand ?? '') + '.jpg"></center>');
-    // TODO-QSP: dynamic text: As you walk back to where you left Mira, <<$boydesc[1]>>, and <<$boydesc[2]>> yo...
     scene.text(`As you walk back to where you left Mira, ${(((st as any).boydesc ?? 0)?.[1] ?? '')}, and ${(((st as any).boydesc ?? 0)?.[2] ?? '')} you see they are just finishing up with Mira too.`);
-    // TODO-QSP: dynamic text: <<$boydesc[0]>> walks up to them and says, "I think I got the better deal here, ...
     scene.text(`${(((st as any).boydesc ?? 0)?.[0] ?? '')} walks up to them and says, "I think I got the better deal here, but maybe you'll get ${((st as any).pcs_nickname ?? '')} next time."`);
     if (((st as any).sunWeather ?? 0) === 1) {
       scene.actions([

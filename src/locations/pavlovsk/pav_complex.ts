@@ -70,10 +70,9 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     }
   }
   if ((((s as any).week ?? 0) <= 5  &&  ((s as any).cheerleaders_on ?? 0) === 0  &&  ((s as any).hour ?? 0) >= 14  &&  ((s as any).hour ?? 0) <= 18  &&  ((s as any).start_type ?? 0)?.['loc'] === 'sg')  &&  ((((s as any).LariskaQW ?? 0)?.['story'] === 0  ||  ((s as any).LariskaQW ?? 0)?.['story'] === 1)  &&  ((s as any).npc_rel ?? 0)?.['A13'] > 40  &&  ((s as any).lariska_ball ?? 0) !== ((s as any).daystart ?? 0))) {
-    scene.text('Walking along the apartment complex, you hear a bouncing sound. Turning the corner, you see <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027lariska_storyline/u0027, /u0027story_intro/u0027); return false;">Lariska</a> hitting a volleyball against a wall.');
+    scene.text('Walking along the apartment complex, you hear a bouncing sound. Turning the corner, you see <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027lariska_storyline\u0027, \u0027story_intro\u0027); return false;">Lariska</a> hitting a volleyball against a wall.');
   }
   if (qspFunc(s, 'car_funcs', 'is_here')) {
-    // TODO-QSP: dynamic text: Your <a href="exec:gs ''carF'', ''start''"><<$car[''name'']>></a> is parked in t...
     scene.text(`Your <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027carF/u0027, /u0027start/u0027); return false;">${(((s as any).car ?? 0)?.['name'] ?? '')}</a> is parked in the street.`);
   }
   if (((s as any).rexCar ?? 0) === 1  &&  ((s as any).rexCarDay ?? 0) === ((s as any).daystart ?? 0)  &&  ((s as any).hour ?? 0) >= 21  &&  ((s as any).hour ?? 0) < 23  &&  ((s as any).rexSisTalk ?? 0) === 3) {
@@ -89,54 +88,44 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
-  // TODO-QSP: 'Located in the old part of Pavlovsk, these Soviet era apartment blocks are the Five Eight Estate. Y...
+  scene.text('Located in the old part of Pavlovsk, these Soviet era apartment blocks are the Five Eight Estate. Your family\'s apartment is on the second floor of the nearest building' + ((qspFunc(s, 'homes_properties', 'has_access', 'parents_home')) ? ('.') : (', but you are no longer welcome there.')));
   scene.text('Opposite you is a meager courtyard, which has changed over the years to now include a kid\'s playground, a basketball court and a small grassy area that\'s mostly used to play football.');
   scene.text('A few benches and tables surround it, and there\'s a handful of small utility sheds tucked away in the corner for tenants to use if they\'re willing to pay for the extra space.');
-  // TODO-QSP: dynamic text: Behind the apartments is a row of <a href="exec:minut += 3 & gt ''pav_complex'',...
-  scene.text('Behind the apartments is a row of <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.3; return s; }); window.__gameStore.getState().doGoto(/u0027pav_complex/u0027, /u0027garages/u0027); return false;">garages</a> and storage space for tenants.');
+  scene.text('Behind the apartments is a row of <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.3; return s; }); window.__gameStore.getState().doGoto(\u0027pav_complex\u0027, \u0027garages\u0027); return false;">garages</a> and storage space for tenants.');
   if ((((s as any).mother ?? 0)?.['kickedout_timer'] !== 0  &&  ((s as any).mother ?? 0)?.['kickedout_timer'] + 3 <= ((s as any).daystart ?? 0))  &&  (((s as any).hour ?? 0) > 6  &&  ((s as any).hour ?? 0) <= 15  &&  ((s as any).cumloc ?? 0)[11] === 0)) {
     qspCall(s, 'mother_chats', 'reconciliation_talk');
     return;
   }
   if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) < 22) {
-    // TODO-QSP: dynamic text: <br>The <a href="exec:minut += 1 & gt ''pav_laundromat''">old laundromat</a> is ...
-    scene.text('<br>The <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(/u0027pav_laundromat/u0027, /u0027/u0027); return false;">old laundromat</a> is open. The advertisement says: "You can wash your clothes here."');
+    scene.text('<br>The <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027pav_laundromat\u0027, \u0027\u0027); return false;">old laundromat</a> is open. The advertisement says: "You can wash your clothes here."');
   } else {
-    // TODO-QSP: dynamic text: <br>The old laundromat is closed, it''ll open again at <<func(''time'', ''get_ti...
     scene.text(`<br>The old laundromat is closed, it'll open again at ${qspFunc(s, 'time', 'get_time_string', 8, 0)}. The advertisement says: "You can wash your clothes here."`);
   }
   if (((s as any).pavComplex_met_dealer ?? 0) >= 3  &&  ((s as any).hour ?? 0) > 20) {
-    // TODO-QSP: dynamic text: <br>You can see the <a href="exec:minut += 3 & gt ''pav_aptcourtev'', ''dealer''...
-    scene.text('<br>You can see the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.3; return s; }); window.__gameStore.getState().doGoto(/u0027pav_aptcourtev/u0027, /u0027dealer/u0027); return false;">boy</a> who sells weed in the courtyard.');
+    scene.text('<br>You can see the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.3; return s; }); window.__gameStore.getState().doGoto(\u0027pav_aptcourtev\u0027, \u0027dealer\u0027); return false;">boy</a> who sells weed in the courtyard.');
   }
   if (((s as any).cfg_vars ?? 0)?.['tablemap'] === 0) {
     if (((s as any).npc_rel ?? 0)?.['A112'] >= 70  ||  (((s as any).week ?? 0) < 6  &&  ((s as any).hour ?? 0) >= 14  &&  ((s as any).hour ?? 0) <= 23)  ||  (((s as any).week ?? 0) >= 6  &&  ((s as any).hour ?? 0) >= 10  &&  ((s as any).hour ?? 0) < 14)  ||  (((s as any).hour ?? 0) >= 0  &&  ((s as any).hour ?? 0) < 2)) {
-      // TODO-QSP: dynamic text: <a href="exec:minut += 15 & gt ''vasilyhome'', ''home''">The Shulgin family</a> ...
-      scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.15; return s; }); window.__gameStore.getState().doGoto(/u0027vasilyhome/u0027, /u0027home/u0027); return false;">The Shulgin family</a> live in the apartment above your parents.');
+      scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.15; return s; }); window.__gameStore.getState().doGoto(\u0027vasilyhome\u0027, \u0027home\u0027); return false;">The Shulgin family</a> live in the apartment above your parents.');
     }
     if (((s as any).ArtemBeInHome ?? 0) > 0  &&  ((s as any).artemQW ?? 0)?.['artemblok'] === 0) {
-      // TODO-QSP: dynamic text: <a href="exec:minut += 15 & gt ''artemhome'', ''home''">Artem Chebotarev</a>, on...
-      scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.15; return s; }); window.__gameStore.getState().doGoto(/u0027artemhome/u0027, /u0027home/u0027); return false;">Artem Chebotarev</a>, one of your classmates, lives in the same apartment building as your parents, on the first floor.');
+      scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.15; return s; }); window.__gameStore.getState().doGoto(\u0027artemhome\u0027, \u0027home\u0027); return false;">Artem Chebotarev</a>, one of your classmates, lives in the same apartment building as your parents, on the first floor.');
     }
     if (((s as any).juliaQW ?? 0)?.['home_unlocked'] === 1) {
       if ((((s as any).hour ?? 0) >= 15  &&  ((s as any).hour ?? 0) <= 20  &&  ((s as any).week ?? 0) < 6)  ||  (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) <= 20  &&  ((s as any).week ?? 0) >= 6)) {
-        // TODO-QSP: dynamic text: <a href="exec:minut += 15 & gt ''JuliaMilHome'', ''home''">Julia Milova</a>, one...
-        scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.15; return s; }); window.__gameStore.getState().doGoto(/u0027JuliaMilHome/u0027, /u0027home/u0027); return false;">Julia Milova</a>, one of your classmates, lives in the same apartment building as your parents, on the third floor.');
+        scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.15; return s; }); window.__gameStore.getState().doGoto(\u0027JuliaMilHome\u0027, \u0027home\u0027); return false;">Julia Milova</a>, one of your classmates, lives in the same apartment building as your parents, on the third floor.');
       } else {
         scene.text('Julia Milova, one of your classmates, lives in the same apartment building as your parents. She resides on the third floor.');
       }
     }
     if (((s as any).NatbelQW ?? 0)?.['VisitedHome'] === 1) {
-      // TODO-QSP: dynamic text: <a href="exec:minut += 15 & gt ''natbelapt'', ''home''">Natasha Belova</a>, one ...
-      scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.15; return s; }); window.__gameStore.getState().doGoto(/u0027natbelapt/u0027, /u0027home/u0027); return false;">Natasha Belova</a>, one of your classmates, lives in the same apartment building as your parents. She resides on the fourth floor.');
+      scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.15; return s; }); window.__gameStore.getState().doGoto(\u0027natbelapt\u0027, \u0027home\u0027); return false;">Natasha Belova</a>, one of your classmates, lives in the same apartment building as your parents. She resides on the fourth floor.');
     }
     if (((s as any).anushkaQW ?? 0)?.['first_visit'] !== 0) {
-      // TODO-QSP: dynamic text: <a href="exec:minut += 10 & gt ''anushapt'', ''home''">Anushka Konstantinov</a>,...
-      scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.10; return s; }); window.__gameStore.getState().doGoto(/u0027anushapt/u0027, /u0027home/u0027); return false;">Anushka Konstantinov</a>, a classmate, lives in one of the other apartment blocks here.');
+      scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.10; return s; }); window.__gameStore.getState().doGoto(\u0027anushapt\u0027, \u0027home\u0027); return false;">Anushka Konstantinov</a>, a classmate, lives in one of the other apartment blocks here.');
     }
     if (((s as any).radomirQW ?? 0)?.['first_visit'] !== 0) {
-      // TODO-QSP: dynamic text: <a href="exec:minut += 10 & gt ''radapt'', ''home''">Radomir Popov</a>, a classm...
-      scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.10; return s; }); window.__gameStore.getState().doGoto(/u0027radapt/u0027, /u0027home/u0027); return false;">Radomir Popov</a>, a classmate, lives in one of the other apartment blocks here.');
+      scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.10; return s; }); window.__gameStore.getState().doGoto(\u0027radapt\u0027, \u0027home\u0027); return false;">Radomir Popov</a>, a classmate, lives in one of the other apartment blocks here.');
     }
   } else {
     (s as any).st_count = 0;
@@ -163,17 +152,14 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'show_table', 'Messy home of <a href="exec:minut += 10 & gt \'anushapt\', \'home\'">Anushka Konstantinov</a>.', '3');
     }
     if (((s as any).st_count ?? 0) > 0) {
-      // TODO-QSP: dynamic text: <table BORDER=1><<$show_table>></tr></table>
       scene.text(`<table BORDER=1>${((s as any).show_table ?? '')}</tr></table>`);
     }
   }
   if (((s as any).shared_apt ?? 0)?.['seenAd'] === 1  &&  ((s as any).shared_apt ?? 0)?.['enabled'] === 0) {
-    // TODO-QSP: dynamic text: <br>Some guys in one of the <a href="exec:minut += 5 & gt ''pav_shared_apt'',''d...
-    scene.text('<br>Some guys in one of the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(/u0027pav_shared_apt/u0027, /u0027doorNo30/u0027); return false;">apartments</a> are looking for a roommate.');
+    scene.text('<br>Some guys in one of the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(\u0027pav_shared_apt\u0027, \u0027doorNo30\u0027); return false;">apartments</a> are looking for a roommate.');
   }
   if (((s as any).rolanmeet ?? 0) === 8  &&  ((s as any).rolanblockhome ?? 0) !== 1) {
-    // TODO-QSP: dynamic text: <br>Mr. Matveev''s is living in an <a href="exec:minut += 5 & gt ''rolanapt'',''...
-    scene.text('<br>Mr. Matveev\'s is living in an <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(/u0027rolanapt/u0027, /u0027home/u0027); return false;">apartment</a> in the Five Eight Estate.');
+    scene.text('<br>Mr. Matveev\'s is living in an <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(\u0027rolanapt\u0027, \u0027home\u0027); return false;">apartment</a> in the Five Eight Estate.');
   }
   if (qspFunc(s, 'homes_properties', 'has_access', 'parents_home')) {
     scene.actions([
@@ -209,7 +195,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'camera', 'check_location');
   qspCall(s, 'prostitution_functions', 'check_solicitation_event');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Walk to the Residential area (0:02)', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 2;
@@ -240,12 +225,10 @@ function enterGarages(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/resident/apartment/garage/garages.jpg');
   scene.text('Along the back street is a row of garages available for the residents of the apartments to rent. The weather in Pavlovsk can be brutal, especially in the winter, so people who own a car often have a garage to put it away safely. Between the garages and the courtyard is a series of smaller storage buildings that can be rented, as well as the complex\'s maintenance and laundry buildings. The layout of the buildings leaves a maze of walkways between them, which are a popular place for kids to play or for teenagers to hang out.');
   if (((s as any).start_type ?? 0)?.['loc'] === 'sg') {
-    // TODO-QSP: dynamic text: Your <a href="exec:minut += 5 & gt ''gargazel''">stepfather''s garage</a> is aro...
-    scene.text('Your <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(/u0027gargazel/u0027, /u0027/u0027); return false;">stepfather\'s garage</a> is around here somewhere.');
+    scene.text('Your <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(\u0027gargazel\u0027, \u0027\u0027); return false;">stepfather\'s garage</a> is around here somewhere.');
   }
   if (((s as any).gopnikbandQW ?? 0)?.['practice_invite'] === 1) {
-    // TODO-QSP: dynamic text: The converted <a href="exec:minut += 5 & gt ''praiders_garage'', ''band_garage''...
-    scene.text('The converted <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(/u0027praiders_garage/u0027, /u0027band_garage/u0027); return false;">garage</a> the band uses to practice in is around here.');
+    scene.text('The converted <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(\u0027praiders_garage\u0027, \u0027band_garage\u0027); return false;">garage</a> the band uses to practice in is around here.');
   }
   if (((s as any).gopnik_initiation ?? 0) === 1  &&  ((s as any).gopnik_initiation_day ?? 0) === ((s as any).daystart ?? 0)  &&  ((s as any).hour ?? 0) === 20) {
     scene.actions([
@@ -278,7 +261,6 @@ function enterGarages(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/resident/apartment/garage/ed/ed1.jpg');
     scene.text('You step into the garage and walk up behind him. "Hello Mr. Konstantinov."');
     scene.text('A little startled, he quickly turns towards you, gripping his wrench tight. Frightened by his actions, you instinctively take a step back, ready to quickly run away.');
-    // TODO-QSP: dynamic text: It feels like an eternity before Eduard finally relaxes, letting the wrench hang...
     scene.text(`It feels like an eternity before Eduard finally relaxes, letting the wrench hang loosely in his hand, and breaks out in a small smile. "You should be careful when approaching someone from behind ${((st as any).pcs_nickname ?? '')}."`);
     scene.text('You nod, still a little frightened, "I\'m really sorry! I didn\'t mean to frighten you."');
     scene.text('"Well you didn\'t frighten me, but you did startle me. You never know who it might be. My past could come back to haunt me…" he says, smiling.');
@@ -415,7 +397,6 @@ function enterGarages(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'boyStat', 'A158');
     qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/apartment/garage/val/val3.jpg');
-    // TODO-QSP: dynamic text: You pull his pants down and lean forward. Opening your mouth, you take his <<dic...
     scene.text(`You pull his pants down and lean forward. Opening your mouth, you take his ${((st as any).dick ?? '')}cm ${((st as any).dick_girth ?? '')} dick into your mouth and lock your lips around his shaft. Your tongue presses hard against the shaft of his cock as you start bobbing your head up and down, sucking his dick. Before long, he starts moaning and places a hand on top of your head, forcing you to take his dick deeper into your mouth.`);
     scene.text('He then pulls your head up and his dick pops out of your mouth. He turns you around, pushing your legs slightly apart, and you feel the head of his cock rubbing against your slit, making you even wetter.');
     qspCall(st, 'arousal', 'bj', 10, 'unknown');
@@ -426,7 +407,6 @@ function enterGarages(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'boyStat', 'A158');
     qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/apartment/garage/val/val4.jpg');
-    // TODO-QSP: dynamic text: Once he is sure you are good and wet, he slides his <<dick>>cm <<$dick_girth>> c...
     scene.text(`Once he is sure you are good and wet, he slides his ${((st as any).dick ?? '')}cm ${((st as any).dick_girth ?? '')} cock into your warm pussy, which elicits a moan from both of you. He goes slow and not too deep at first, but as he feels you getting wetter and moaning louder, he starts fucking you a little harder and slowly works himself balls deep into you.`);
     qspCall(st, 'arousal', 'vaginal', 10, 'unknown');
     scene.actions([
@@ -434,7 +414,6 @@ function enterGarages(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/apartment/garage/val/val5.jpg');
     scene.text('Once you\'re really into it, he pulls out of you and you feel the head of his dick pressing against your asshole. Once he is sure he has it lined up, he pushes forward and his dick pops into your ass, causing you gasp slightly in pain.');
-    // TODO-QSP: dynamic text: He slowly start pushing his <<dick>>cm <<$dick_girth>> dick into your ass, stopp...
     scene.text(`He slowly start pushing his ${((st as any).dick ?? '')}cm ${((st as any).dick_girth ?? '')} dick into your ass, stopping when you start to pull away. He slowly begins fucking your ass, and as your moans turn back to pleasure, he starts pushing a little deeper and going a little faster.`);
     qspCall(st, 'arousal', 'anal', 10, 'unknown');
     qspCall(st, 'stat', '');
@@ -443,7 +422,6 @@ function enterGarages(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/apartment/garage/val/val6.jpg');
     scene.text('He starts grunting as he fucks your ass and suddenly pulls out of you. He stands up and pulls you up to your knees, turning to face him. As you do, he is already jerking off and within seconds, warm cum starts spurting out of his dick and splattering across your tits. After a few more spurts, he moans a loud sigh of relief.');
-    // TODO-QSP: dynamic text: He looks down at your cum covered tits, grinning at his handiwork, before he cle...
     scene.text(`He looks down at your cum covered tits, grinning at his handiwork, before he cleans himself up and gets dressed as you do the same. Once you are both dressed, he turns to you. "Thanks ${((st as any).pcs_nickname ?? '')}. I needed that, but I should get back to work. Talk to you later." He turns and starts working on his bike again. You take one last look around to make sure you didn't forget anything and leave.`);
     qspCall(st, 'arousal', 'foreplay', 5, 'unknown');
     qspCall(st, 'cum_call', 'breasts', ((st as any).boy ?? 0), 1);
@@ -480,10 +458,8 @@ function enterGarages(s: GameState, scene: SceneBuilder): void {
                     { label: 'Say hi', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/apartment/garage/ed/ed6.jpg');
     scene.text('You step into the garage and walk up behind him. He turns as you walk in. "Hello Mr. Konstantinov."');
-    // TODO-QSP: dynamic text: He gives you a friendly smile. "Hello <<$pcs_nickname>>. Please, call me Ed."
     scene.text(`He gives you a friendly smile. "Hello ${((st as any).pcs_nickname ?? '')}. Please, call me Ed."`);
     scene.text('You nod and smile. "Okay. Hi Ed."');
-    // TODO-QSP: dynamic text: He chuckles slightly. "What can I do for you <<$pcs_nickname>>? Anushka isn''t h...
     scene.text(`He chuckles slightly. "What can I do for you ${((st as any).pcs_nickname ?? '')}? Anushka isn't here and I have no clue where she is, like most days." He adds with a bit of a frown.`);
     qspCall(st, 'stat', '');
     scene.actions([
@@ -535,7 +511,6 @@ function enterGarages(s: GameState, scene: SceneBuilder): void {
           scene.text('"Sorry if I scared you… I just want her to be safe you know. Keep an eye out for her, okay? I know she can be all over the place and gets in trouble a lot." Eduard tells you before going back to work on his bike.');
         } else {
           if (((st as any).edchat ?? 0) === 4) {
-            // TODO-QSP: dynamic text: "May I ask you a question, <<$pcs_nickname>>?" Eduard wipes his hands as he take...
             scene.text(`"May I ask you a question, ${((st as any).pcs_nickname ?? '')}?" Eduard wipes his hands as he takes a break from working on the bike.`);
             scene.text('You nod, a bit afraid of what he\'ll ask…');
             if (((st as any).grupTipe ?? 0) === 4) {
@@ -576,7 +551,6 @@ function enterGarages(s: GameState, scene: SceneBuilder): void {
                         scene.text('"That damn, fucking… Always on my ass. One day I\'ll fucking…" Eduard is muttering to himself…');
                         scene.text('"I-Is everything okay?" you quietly ask, afraid of his reaction.');
                         scene.text('He mutters on. "Is everything okay… Such a stupid question, everyone always want to know what\'s on Eduard\'s mind. Can\'t be alone for a fucking minute…"');
-                        // TODO-QSP: dynamic text: Noticing he''s deep inside his thoughts, you turn around and begin to leave befo...
                         scene.text(`Noticing he's deep inside his thoughts, you turn around and begin to leave before you hear "Oh sorry ${((st as any).pcs_nickname ?? '')}. I'm just having a bad day today."`);
                       } else {
                         if (((st as any).edchat ?? 0) === 11) {
@@ -602,7 +576,6 @@ function enterGarages(s: GameState, scene: SceneBuilder): void {
                             scene.text('"Ah yes, our finest." he says and spits on the ground out of spite. "They\'re always harassing people, looking for a bribe. I\'ve always hated this city\'s police force. Even when I was young, they were out to get me."');
                           } else {
                             if (((st as any).edchat ?? 0) === 13) {
-                              // TODO-QSP: dynamic text: "Tell me <<$pcs_nickname>>, is that place over by the old factory still there?" ...
                               scene.text(`"Tell me ${((st as any).pcs_nickname ?? '')}, is that place over by the old factory still there?" Eduard curiously asks.`);
                               scene.text('You ponder for a while. "I don\'t really know which one you mean, but no one really hangs out over there anymore. The only ones that remain are the drug dealers…"');
                               scene.text('"That\'s a shame, we used to use that as a meeting place. Lots of crazy stuff happened there. The fights, the women, the dru-…" he clears his throat, "Yeah, those were great times…" His mind travels away somewhere as a little smirk appears on his face.');
@@ -660,6 +633,7 @@ function enterGarages(s: GameState, scene: SceneBuilder): void {
               }
             }
           }
+          (s as any).garageedevent = undefined;
         }
       }
     }
@@ -680,7 +654,6 @@ function enterGarages(s: GameState, scene: SceneBuilder): void {
   }, goto: ['pav_complex', 'start'] },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 

@@ -27,13 +27,11 @@ function enter(s: GameState, scene: SceneBuilder): void {
   scene.text('This historic region, sometimes called Old Town was originally the village of Pushkin and that name is still used to this day.');
   scene.text('Later, the rich bought the land off the poor and knocked down the wooden shacks and farm houses to build large estates. The town began to grow rapidly, and it became a desirable suburb.');
   scene.text('Since then, even the old houses have been improved, extended, and modernized. The old buildings and beautiful park made it popular with tourists, and expansion has lead to the boarders between itself and Pavlovsk being merged.');
-  // TODO-QSP: dynamic text: Not far from here is the <a href="exec:minut += 5 & gt ''pushkin_sq''">Okhlopkov...
-  scene.text('Not far from here is the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(/u0027pushkin_sq/u0027, /u0027/u0027); return false;">Okhlopkov Square</a> with its boutique shops.');
-  scene.text('Close by is a narrow street leading to a <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027koncepod/u0027, /u0027start/u0027); return false;">vacant house</a>.');
-  scene.text('You can also see a <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027ugol/u0027, /u0027start/u0027); return false;">passage</a> between the houses leading to a courtyard.');
-  scene.text('Ahead you can see the road that leads to the Pushkin Ballet Theatre and it\'s <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027pushkin_ballet_center/u0027, /u0027start/u0027); return false;">residential accommodation</a>.');
+  scene.text('Not far from here is the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(\u0027pushkin_sq\u0027, \u0027\u0027); return false;">Okhlopkov Square</a> with its boutique shops.');
+  scene.text('Close by is a narrow street leading to a <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027koncepod\u0027, \u0027start\u0027); return false;">vacant house</a>.');
+  scene.text('You can also see a <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027ugol\u0027, \u0027start\u0027); return false;">passage</a> between the houses leading to a courtyard.');
+  scene.text('Ahead you can see the road that leads to the Pushkin Ballet Theatre and it\'s <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027pushkin_ballet_center\u0027, \u0027start\u0027); return false;">residential accommodation</a>.');
   if (qspFunc(s, 'car_funcs', 'is_here')) {
-    // TODO-QSP: dynamic text: <a href="exec:gs ''carF'',''start''">Your <<$car[''name'']>></a> is parked at th...
     scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027carF/u0027, /u0027start/u0027); return false;">Your ${(((s as any).car ?? 0)?.['name'] ?? '')}</a> is parked at the curb.`);
   }
   if (((s as any).hour ?? 0) >= 13  &&  ((s as any).hour ?? 0) <= 15  &&  ((s as any).bodimodel ?? 0) === 1  &&  ((s as any).arts ?? 0) === 0  &&  ((s as any).tusa ?? 0) === 1) {

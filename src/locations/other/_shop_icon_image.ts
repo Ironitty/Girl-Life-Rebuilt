@@ -77,6 +77,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                 } else {
                                                   if ((String(((s as any).locArgs?.[0] ?? 0)).slice((1)-1, ((1)-1)+(13))) === 'scandalicious') {
                                                     (s as any).result = 'images/locations/city/citycenter/mall/scandalicious.png';
+                                                  } else {
+                                                    alert('$shop_icon_image error: "' + ((s as any).locArgs?.[0] ?? 0) + '" is not a known shop.');
                                                   }
                                                 }
                                               }

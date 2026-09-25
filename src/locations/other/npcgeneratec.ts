@@ -20,36 +20,34 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).npclastgenerated ?? 0)]; enterSetApprnc(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).npclastgenerated ?? 0)]; enterSetOtherVars(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCleanup(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterAssignIndex(s: GameState, scene: SceneBuilder): void {
   if ((String((((s as any).cemptyarray ?? 0)?.[0] ?? 0)).slice((1)-1, ((1)-1)+(1))) === 'C') {
     (s as any).npclastgenerated = (((s as any).cemptyarray ?? 0)?.[0] ?? 0);
+    (s as any).cemptyarray = undefined;
   } else {
-    // TODO-QSP: :npcgencsanityloop
-    (s as any).ngc_scheck = 0;
-    (s as any).npclastgenerated = 'C\' + \'' + ((s as any).carraynumber ?? 0) + '';
-    ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['npcID'] = 'C\' + \'' + ((s as any).carraynumber ?? 0)-1 + '';
-    if (((s as any).npc_perstype ?? 0)[((s as any).npcgeneratecVars ?? 0)?.['npcID']] === ''  &&  ((s as any).carraynumber ?? 0) > 0) {
-      (s as any).carraynumber = ((s as any).carraynumber ?? 0) - (1);
-      (s as any).ngc_scheck = 1;
-    } else {
-      if (((s as any).npc_perstype ?? 0)?.[String((s as any).npclastgenerated ?? 0)] === '') {
-        (s as any).ngc_scheck = 0;
-      } else {
-        (s as any).carraynumber = ((s as any).carraynumber ?? 0) + (1);
+    do {
+      (s as any).ngc_scheck = 0;
+      (s as any).npclastgenerated = 'C\' + \'' + ((s as any).carraynumber ?? 0) + '';
+      ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['npcID'] = 'C\' + \'' + ((s as any).carraynumber ?? 0)-1 + '';
+      if (((s as any).npc_perstype ?? 0)[((s as any).npcgeneratecVars ?? 0)?.['npcID']] === ''  &&  ((s as any).carraynumber ?? 0) > 0) {
+        (s as any).carraynumber = ((s as any).carraynumber ?? 0) - (1);
         (s as any).ngc_scheck = 1;
+      } else {
+        if (((s as any).npc_perstype ?? 0)?.[String((s as any).npclastgenerated ?? 0)] === '') {
+          (s as any).ngc_scheck = 0;
+        } else {
+          (s as any).carraynumber = ((s as any).carraynumber ?? 0) + (1);
+          (s as any).ngc_scheck = 1;
+        }
       }
-    }
-    if (((s as any).ngc_scheck ?? 0) === 1) {
-      // TODO-QSP: jump 'npcgencsanityloop'
-    }
+      (s as any).ngc_scheck = undefined;
+    } while (((s as any).ngc_scheck ?? 0) === 1);
   }
   (s as any).carraynumber = ((s as any).carraynumber ?? 0) + (1);
-  // TODO-QSP: $npc_index[$npclastgenerated] = $npclastgenerated
-  // TODO-QSP: end
+  ((s as any).npc_index = (s as any).npc_index ?? {})[String((s as any).npclastgenerated ?? 0)] = ((s as any).npclastgenerated ?? 0);
   scene.build();
 }
 
@@ -58,10 +56,9 @@ function enterAssignDob(s: GameState, scene: SceneBuilder): void {
   ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['min_daystart'] = (((s as any).dateVars ?? {})?.['daystart'] ?? 0) + 1;
   ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['birth_daystart'] = (Math.floor(Math.random() * ((((s as any).npcgeneratecVars ?? {})?.['min_daystart'] ?? 0) + 364 - (((s as any).npcgeneratecVars ?? 0)?.['min_daystart']) + 1)) + ((((s as any).npcgeneratecVars ?? 0)?.['min_daystart'])));
   qspCall(s, 'time', 'to_date', (((s as any).npcgeneratecVars ?? 0)?.['birth_daystart']));
-  // TODO-QSP: npc_dob[$ARGS[1]] = dateVars['year'] * 10000
-  // TODO-QSP: npc_dob[$ARGS[1]] += dateVars['month'] * 100
-  // TODO-QSP: npc_dob[$ARGS[1]] += dateVars['day']
-  // TODO-QSP: end
+  ((s as any).npc_dob = (s as any).npc_dob ?? {})[((s as any).locArgs?.[1] ?? 0)] = (((s as any).dateVars ?? {})?.['year'] ?? 0) * 10000;
+  ((s as any).npc_dob = (s as any).npc_dob ?? {})[((s as any).locArgs?.[1] ?? 0)] = ((s as any).npc_dob[((s as any).locArgs?.[1] ?? 0)] ?? 0) + ((((s as any).dateVars ?? {})?.['month'] ?? 0) * 100);
+  ((s as any).npc_dob = (s as any).npc_dob ?? {})[((s as any).locArgs?.[1] ?? 0)] = ((s as any).npc_dob[((s as any).locArgs?.[1] ?? 0)] ?? 0) + ((((s as any).dateVars ?? 0)?.['day']));
   scene.build();
 }
 
@@ -94,21 +91,20 @@ function enterAssignStats(s: GameState, scene: SceneBuilder): void {
     }
   }
   (s as any).temp_statmin = Math.min((((s as any).npcgeneratecVars ?? {})?.['age'] ?? 0) / 2, 20);
-  // TODO-QSP: npc_stren[$ARGS[1]]    = rand(temp_statmin, npcgeneratecVars['body'])
-  // TODO-QSP: npc_agil[$ARGS[1]]    = rand(temp_statmin, npcgeneratecVars['body'])
-  // TODO-QSP: npc_vital[$ARGS[1]]    = rand(temp_statmin, npcgeneratecVars['body'])
-  // TODO-QSP: npc_intel[$ARGS[1]]    = rand(temp_statmin, npcgeneratecVars['mind'])
-  // TODO-QSP: npc_prcptn[$ARGS[1]]  = rand(temp_statmin, npcgeneratecVars['mind'])
-  // TODO-QSP: npc_react[$ARGS[1]]    = rand(temp_statmin, npcgeneratecVars['mind'])
-  // TODO-QSP: npc_chrsm[$ARGS[1]]    = rand(npcgeneratecVars['body'] / 2, npcgeneratecVars['mind'])
-  // TODO-QSP: npc_sprt[$ARGS[1]]    = rand(npcgeneratecVars['body'] / 2, npcgeneratecVars['mind'])
-  // TODO-QSP: npc_magik[$ARGS[1]]    = 0
+  ((s as any).npc_stren = (s as any).npc_stren ?? {})[((s as any).locArgs?.[1] ?? 0)] = (Math.floor(Math.random() * ((((s as any).npcgeneratecVars ?? 0)?.['body']) - ((s as any).temp_statmin ?? 0) + 1)) + (((s as any).temp_statmin ?? 0)));
+  ((s as any).npc_agil = (s as any).npc_agil ?? {})[((s as any).locArgs?.[1] ?? 0)] = (Math.floor(Math.random() * ((((s as any).npcgeneratecVars ?? 0)?.['body']) - ((s as any).temp_statmin ?? 0) + 1)) + (((s as any).temp_statmin ?? 0)));
+  ((s as any).npc_vital = (s as any).npc_vital ?? {})[((s as any).locArgs?.[1] ?? 0)] = (Math.floor(Math.random() * ((((s as any).npcgeneratecVars ?? 0)?.['body']) - ((s as any).temp_statmin ?? 0) + 1)) + (((s as any).temp_statmin ?? 0)));
+  ((s as any).npc_intel = (s as any).npc_intel ?? {})[((s as any).locArgs?.[1] ?? 0)] = (Math.floor(Math.random() * ((((s as any).npcgeneratecVars ?? 0)?.['mind']) - ((s as any).temp_statmin ?? 0) + 1)) + (((s as any).temp_statmin ?? 0)));
+  ((s as any).npc_prcptn = (s as any).npc_prcptn ?? {})[((s as any).locArgs?.[1] ?? 0)] = (Math.floor(Math.random() * ((((s as any).npcgeneratecVars ?? 0)?.['mind']) - ((s as any).temp_statmin ?? 0) + 1)) + (((s as any).temp_statmin ?? 0)));
+  ((s as any).npc_react = (s as any).npc_react ?? {})[((s as any).locArgs?.[1] ?? 0)] = (Math.floor(Math.random() * ((((s as any).npcgeneratecVars ?? 0)?.['mind']) - ((s as any).temp_statmin ?? 0) + 1)) + (((s as any).temp_statmin ?? 0)));
+  ((s as any).npc_chrsm = (s as any).npc_chrsm ?? {})[((s as any).locArgs?.[1] ?? 0)] = (Math.floor(Math.random() * ((((s as any).npcgeneratecVars ?? 0)?.['mind']) - (((s as any).npcgeneratecVars ?? {})?.['body'] ?? 0) / 2 + 1)) + ((((s as any).npcgeneratecVars ?? {})?.['body'] ?? 0) / 2));
+  ((s as any).npc_sprt = (s as any).npc_sprt ?? {})[((s as any).locArgs?.[1] ?? 0)] = (Math.floor(Math.random() * ((((s as any).npcgeneratecVars ?? 0)?.['mind']) - (((s as any).npcgeneratecVars ?? {})?.['body'] ?? 0) / 2 + 1)) + ((((s as any).npcgeneratecVars ?? {})?.['body'] ?? 0) / 2));
+  ((s as any).npc_magik = (s as any).npc_magik ?? {})[((s as any).locArgs?.[1] ?? 0)] = 0;
   if (((s as any).npcgeneratecVars ?? 0)?.['virgin'] < 20) {
-    // TODO-QSP: npc_sexskill[$ARGS[1]] = 0
+    ((s as any).npc_sexskill = (s as any).npc_sexskill ?? {})[((s as any).locArgs?.[1] ?? 0)] = 0;
   } else {
-    // TODO-QSP: npc_sexskill[$ARGS[1]] = rand(1, 100)
+    ((s as any).npc_sexskill = (s as any).npc_sexskill ?? {})[((s as any).locArgs?.[1] ?? 0)] = (Math.floor(Math.random() * 100) + 1);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -117,85 +113,84 @@ function enterSetDetails(s: GameState, scene: SceneBuilder): void {
     ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['firstname'] = qspFunc(s, 'npcrnamefile', 'rusMale');
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGenDick(s, scene); (s as any).locArgs = __savedLocArgs; }
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0)]; enterSetDick(s, scene); (s as any).locArgs = __savedLocArgs; }
-    // TODO-QSP: npc_gender[$ARGS[1]] = 0
+    ((s as any).npc_gender = (s as any).npc_gender ?? {})[((s as any).locArgs?.[1] ?? 0)] = 0;
     ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['av_height'] = 175;
-    // TODO-QSP: npc_height[$ARGS[1]] = npcgeneratecVars['av_height'] + rand(-10, 10) + rand(-8, 8) + rand(-5, 5)
+    ((s as any).npc_height = (s as any).npc_height ?? {})[((s as any).locArgs?.[1] ?? 0)] = (((s as any).npcgeneratecVars ?? {})?.['av_height'] ?? 0) + (Math.floor(Math.random() * (10 - (-10) + 1)) + ((-10))) + (Math.floor(Math.random() * (8 - (-8) + 1)) + ((-8))) + (Math.floor(Math.random() * (5 - (-5) + 1)) + ((-5)));
     ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['av_weight'] = 68;
-    // TODO-QSP: npc_weight[$ARGS[1]] = npcgeneratecVars['av_weight'] + rand(-23, 23)
-    // TODO-QSP: $npc_notes[$ARGS[1]] = 'A male.'
-    // TODO-QSP: npc_bust[$ARGS[1]] = 0
+    ((s as any).npc_weight = (s as any).npc_weight ?? {})[((s as any).locArgs?.[1] ?? 0)] = (((s as any).npcgeneratecVars ?? {})?.['av_weight'] ?? 0) + (Math.floor(Math.random() * (23 - (-23) + 1)) + ((-23)));
+    ((s as any).npc_notes = (s as any).npc_notes ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'A male.';
+    ((s as any).npc_bust = (s as any).npc_bust ?? {})[((s as any).locArgs?.[1] ?? 0)] = 0;
   } else {
     if (((s as any).npcgeneratecVars ?? 0)?.['gender'] === 1) {
       ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['firstname'] = qspFunc(s, 'npcrnamefile', 'rusFemale');
-      // TODO-QSP: npc_gender[$ARGS[1]] = 1
+      ((s as any).npc_gender = (s as any).npc_gender ?? {})[((s as any).locArgs?.[1] ?? 0)] = 1;
       ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['av_height'] = 165;
-      // TODO-QSP: npc_height[$ARGS[1]] = npcgeneratecVars['av_height'] + rand(-10, 10) + rand(-8, 8) + rand(-5, 5)
+      ((s as any).npc_height = (s as any).npc_height ?? {})[((s as any).locArgs?.[1] ?? 0)] = (((s as any).npcgeneratecVars ?? {})?.['av_height'] ?? 0) + (Math.floor(Math.random() * (10 - (-10) + 1)) + ((-10))) + (Math.floor(Math.random() * (8 - (-8) + 1)) + ((-8))) + (Math.floor(Math.random() * (5 - (-5) + 1)) + ((-5)));
       ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['av_weight'] = 60;
-      // TODO-QSP: npc_weight[$ARGS[1]] = npcgeneratecVars['av_weight'] + rand(-21, 21)
-      // TODO-QSP: npc_spermpot[$ARGS[1]] = -1
-      // TODO-QSP: npc_spermvol[$ARGS[1]] = -1
-      // TODO-QSP: $npc_thdick[$ARGS[1]] = 'clitoris'
-      // TODO-QSP: npc_dick[$ARGS[1]] = rand(0, 1)
-      // TODO-QSP: $npc_notes[$ARGS[1]] = 'A female.'
-      // TODO-QSP: npc_bust[$ARGS[1]] = rand(0, 15) + rand(0, 15) + rand(0, 15)
+      ((s as any).npc_weight = (s as any).npc_weight ?? {})[((s as any).locArgs?.[1] ?? 0)] = (((s as any).npcgeneratecVars ?? {})?.['av_weight'] ?? 0) + (Math.floor(Math.random() * (21 - (-21) + 1)) + ((-21)));
+      ((s as any).npc_spermpot = (s as any).npc_spermpot ?? {})[((s as any).locArgs?.[1] ?? 0)] = (-1);
+      ((s as any).npc_spermvol = (s as any).npc_spermvol ?? {})[((s as any).locArgs?.[1] ?? 0)] = (-1);
+      ((s as any).npc_thdick = (s as any).npc_thdick ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'clitoris';
+      ((s as any).npc_dick = (s as any).npc_dick ?? {})[((s as any).locArgs?.[1] ?? 0)] = (Math.floor(Math.random() * 2) + 0);
+      ((s as any).npc_notes = (s as any).npc_notes ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'A female.';
+      ((s as any).npc_bust = (s as any).npc_bust ?? {})[((s as any).locArgs?.[1] ?? 0)] = (Math.floor(Math.random() * (15 - 0 + 1)) + (0));
       if ((!(Math.floor(Math.random() * 10) + 0))) {
-        // TODO-QSP: npc_bust[$ARGS[1]] += rand(0, 15)
+        ((s as any).npc_bust = (s as any).npc_bust ?? {})[((s as any).locArgs?.[1] ?? 0)] = ((s as any).npc_bust[((s as any).locArgs?.[1] ?? 0)] ?? 0) + ((Math.floor(Math.random() * 16) + 0));
       }
     } else {
       if (((s as any).npcgeneratecVars ?? 0)?.['gender'] === 2) {
         ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['firstname'] = qspFunc(s, 'npcrnamefile', 'rusFemale');
         { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGenDick(s, scene); (s as any).locArgs = __savedLocArgs; }
         { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0)]; enterSetDick(s, scene); (s as any).locArgs = __savedLocArgs; }
-        // TODO-QSP: npc_gender[$ARGS[1]] = 1
+        ((s as any).npc_gender = (s as any).npc_gender ?? {})[((s as any).locArgs?.[1] ?? 0)] = 1;
         ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['av_height'] = 165;
-        // TODO-QSP: npc_height[$ARGS[1]] = npcgeneratecVars['av_height'] + rand(-15, 15)
+        ((s as any).npc_height = (s as any).npc_height ?? {})[((s as any).locArgs?.[1] ?? 0)] = (((s as any).npcgeneratecVars ?? {})?.['av_height'] ?? 0) + (Math.floor(Math.random() * (15 - (-15) + 1)) + ((-15)));
         ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['av_weight'] = 60;
-        // TODO-QSP: npc_weight[$ARGS[1]] = npcgeneratecVars['av_weight'] + rand(-21, 21)
-        // TODO-QSP: npc_spermpot[$ARGS[1]] = -1
-        // TODO-QSP: $npc_thdick[$ARGS[1]] = 'clitoris'
-        // TODO-QSP: $npc_notes[$ARGS[1]] = 'A female Hermaphrodite.'
-        // TODO-QSP: npc_bust[$ARGS[1]] = rand(0, 15) + rand(0, 15) + rand(0, 15)
+        ((s as any).npc_weight = (s as any).npc_weight ?? {})[((s as any).locArgs?.[1] ?? 0)] = (((s as any).npcgeneratecVars ?? {})?.['av_weight'] ?? 0) + (Math.floor(Math.random() * (21 - (-21) + 1)) + ((-21)));
+        ((s as any).npc_spermpot = (s as any).npc_spermpot ?? {})[((s as any).locArgs?.[1] ?? 0)] = (-1);
+        ((s as any).npc_thdick = (s as any).npc_thdick ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'clitoris';
+        ((s as any).npc_notes = (s as any).npc_notes ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'A female Hermaphrodite.';
+        ((s as any).npc_bust = (s as any).npc_bust ?? {})[((s as any).locArgs?.[1] ?? 0)] = (Math.floor(Math.random() * (15 - 0 + 1)) + (0));
       } else {
         ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['firstname'] = qspFunc(s, 'npcrnamefile', 'rusMale');
         { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGenDick(s, scene); (s as any).locArgs = __savedLocArgs; }
         { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0)]; enterSetDick(s, scene); (s as any).locArgs = __savedLocArgs; }
-        // TODO-QSP: npc_gender[$ARGS[1]] = 0
+        ((s as any).npc_gender = (s as any).npc_gender ?? {})[((s as any).locArgs?.[1] ?? 0)] = 0;
         ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['av_height'] = 175;
-        // TODO-QSP: npc_height[$ARGS[1]] = npcgeneratecVars['av_height'] + rand(-15, 15)
+        ((s as any).npc_height = (s as any).npc_height ?? {})[((s as any).locArgs?.[1] ?? 0)] = (((s as any).npcgeneratecVars ?? {})?.['av_height'] ?? 0) + (Math.floor(Math.random() * (15 - (-15) + 1)) + ((-15)));
         ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['av_weight'] = 68;
-        // TODO-QSP: npc_weight[$ARGS[1]] = npcgeneratecVars['av_height'] + rand(-15, 15)
-        // TODO-QSP: $npc_notes[$ARGS[1]] = 'A male Hermaphrodite.'
-        // TODO-QSP: npc_bust[$ARGS[1]] = rand(0, 10)
+        ((s as any).npc_weight = (s as any).npc_weight ?? {})[((s as any).locArgs?.[1] ?? 0)] = (((s as any).npcgeneratecVars ?? {})?.['av_height'] ?? 0) + (Math.floor(Math.random() * (15 - (-15) + 1)) + ((-15)));
+        ((s as any).npc_notes = (s as any).npc_notes ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'A male Hermaphrodite.';
+        ((s as any).npc_bust = (s as any).npc_bust ?? {})[((s as any).locArgs?.[1] ?? 0)] = (Math.floor(Math.random() * 11) + 0);
       }
     }
   }
   ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['nickname'] = qspFunc(s, 'npcrnamefile', 'get_nickname', (((s as any).npcgeneratecVars ?? 0)?.['firstname']));
   ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['lastname'] = qspFunc(s, 'npcrnamefile', 'rusSur');
-  // TODO-QSP: npc_haircol[$ARGS[1]] = rand(1, 4)
+  ((s as any).npc_haircol = (s as any).npc_haircol ?? {})[((s as any).locArgs?.[1] ?? 0)] = (Math.floor(Math.random() * 4) + 1);
   if (((s as any).npc_haircol ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 1) {
-    // TODO-QSP: $npc_hair_desc[$ARGS[1]] = 'black'
+    ((s as any).npc_hair_desc = (s as any).npc_hair_desc ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'black';
   } else {
     if (((s as any).npc_haircol ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 2) {
-      // TODO-QSP: $npc_hair_desc[$ARGS[1]] = 'blonde'
+      ((s as any).npc_hair_desc = (s as any).npc_hair_desc ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'blonde';
     } else {
       if (((s as any).npc_haircol ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 3) {
-        // TODO-QSP: $npc_hair_desc[$ARGS[1]] = 'brown'
+        ((s as any).npc_hair_desc = (s as any).npc_hair_desc ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'brown';
       } else {
         if (((s as any).npc_haircol ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 4) {
-          // TODO-QSP: $npc_hair_desc[$ARGS[1]] = 'red'
+          ((s as any).npc_hair_desc = (s as any).npc_hair_desc ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'red';
         }
       }
     }
   }
-  // TODO-QSP: $npc_firstname[$ARGS[1]] = $npcgeneratecVars['firstname']
-  // TODO-QSP: $npc_nickname[$ARGS[1]] = $npcgeneratecVars['nickname']
-  // TODO-QSP: $npc_lastname[$ARGS[1]] = $npcgeneratecVars['lastname']
+  ((s as any).npc_firstname = (s as any).npc_firstname ?? {})[((s as any).locArgs?.[1] ?? 0)] = (((s as any).npcgeneratecVars ?? 0)?.['firstname']);
+  ((s as any).npc_nickname = (s as any).npc_nickname ?? {})[((s as any).locArgs?.[1] ?? 0)] = (((s as any).npcgeneratecVars ?? 0)?.['nickname']);
+  ((s as any).npc_lastname = (s as any).npc_lastname ?? {})[((s as any).locArgs?.[1] ?? 0)] = (((s as any).npcgeneratecVars ?? 0)?.['lastname']);
   if (((s as any).npcgeneratecVars ?? 0)?.['anonymous'] === 0  ||  ((s as any).npcgeneratecVars ?? 0)?.['name'] === '') {
-    // TODO-QSP: $npc_usedname[$ARGS[1]] = $npcgeneratecVars['firstname']
+    ((s as any).npc_usedname = (s as any).npc_usedname ?? {})[((s as any).locArgs?.[1] ?? 0)] = (((s as any).npcgeneratecVars ?? 0)?.['firstname']);
   } else {
-    // TODO-QSP: $npc_usedname[$ARGS[1]] = $npcgeneratecVars['name']
+    ((s as any).npc_usedname = (s as any).npc_usedname ?? {})[((s as any).locArgs?.[1] ?? 0)] = (((s as any).npcgeneratecVars ?? 0)?.['name']);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -432,137 +427,135 @@ function enterGenDick(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterSetDick(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: npc_dick[$ARGS[1]] = npcgeneratecVars['dick_length']
-  // TODO-QSP: npc_girth[$ARGS[1]] = npcgeneratecVars['dick_girth']
-  // TODO-QSP: $npc_thdick[$ARGS[1]] = $npcgeneratecVars['thdick']
-  // TODO-QSP: $npc_dick_class[$ARGS[1]] = $npcgeneratecVars['dick_class']
-  // TODO-QSP: $npc_dick_desc[$ARGS[1]] = $npcgeneratecVars['dick_desc']
-  // TODO-QSP: $npc_dick_noun[$ARGS[1]] = $npcgeneratecVars['dick_noun']
-  // TODO-QSP: npc_spermpot[$ARGS[1]] = npcgeneratecVars['potency']
-  // TODO-QSP: npc_spermvol[$ARGS[1]] = npcgeneratecVars['volume']
-  // TODO-QSP: end
+  ((s as any).npc_dick = (s as any).npc_dick ?? {})[((s as any).locArgs?.[1] ?? 0)] = (((s as any).npcgeneratecVars ?? 0)?.['dick_length']);
+  ((s as any).npc_girth = (s as any).npc_girth ?? {})[((s as any).locArgs?.[1] ?? 0)] = (((s as any).npcgeneratecVars ?? 0)?.['dick_girth']);
+  ((s as any).npc_thdick = (s as any).npc_thdick ?? {})[((s as any).locArgs?.[1] ?? 0)] = (((s as any).npcgeneratecVars ?? 0)?.['thdick']);
+  ((s as any).npc_dick_class = (s as any).npc_dick_class ?? {})[((s as any).locArgs?.[1] ?? 0)] = (((s as any).npcgeneratecVars ?? 0)?.['dick_class']);
+  ((s as any).npc_dick_desc = (s as any).npc_dick_desc ?? {})[((s as any).locArgs?.[1] ?? 0)] = (((s as any).npcgeneratecVars ?? 0)?.['dick_desc']);
+  ((s as any).npc_dick_noun = (s as any).npc_dick_noun ?? {})[((s as any).locArgs?.[1] ?? 0)] = (((s as any).npcgeneratecVars ?? 0)?.['dick_noun']);
+  ((s as any).npc_spermpot = (s as any).npc_spermpot ?? {})[((s as any).locArgs?.[1] ?? 0)] = (((s as any).npcgeneratecVars ?? 0)?.['potency']);
+  ((s as any).npc_spermvol = (s as any).npc_spermvol ?? {})[((s as any).locArgs?.[1] ?? 0)] = (((s as any).npcgeneratecVars ?? 0)?.['volume']);
   scene.build();
 }
 
 function enterSetLifestyle(s: GameState, scene: SceneBuilder): void {
   if (((s as any).npcgeneratecVars ?? 0)?.['loc'] === 1) {
-    // TODO-QSP: $npc_residence[$ARGS[1]] = 'pav_residential'
-    // TODO-QSP: npc_finance[$ARGS[1]] = rand(0, 1)
+    ((s as any).npc_residence = (s as any).npc_residence ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'pav_residential';
+    ((s as any).npc_finance = (s as any).npc_finance ?? {})[((s as any).locArgs?.[1] ?? 0)] = (Math.floor(Math.random() * 2) + 0);
   } else {
     if (((s as any).npcgeneratecVars ?? 0)?.['loc'] === 2) {
-      // TODO-QSP: $npc_residence[$ARGS[1]] = 'uni_grounds'
-      // TODO-QSP: npc_finance[$ARGS[1]] = 0
+      ((s as any).npc_residence = (s as any).npc_residence ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'uni_grounds';
+      ((s as any).npc_finance = (s as any).npc_finance ?? {})[((s as any).locArgs?.[1] ?? 0)] = 0;
     } else {
       if (((s as any).npcgeneratecVars ?? 0)?.['loc'] === 3) {
-        // TODO-QSP: $npc_residence[$ARGS[1]] = 'city_residential'
-        // TODO-QSP: npc_finance[$ARGS[1]] = rand(1, 2)
+        ((s as any).npc_residence = (s as any).npc_residence ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'city_residential';
+        ((s as any).npc_finance = (s as any).npc_finance ?? {})[((s as any).locArgs?.[1] ?? 0)] = (Math.floor(Math.random() * 2) + 1);
       } else {
-        // TODO-QSP: $npc_residence[$ARGS[1]] = 'city_center'
-        // TODO-QSP: npc_finance[$ARGS[1]] = 2
+        ((s as any).npc_residence = (s as any).npc_residence ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'city_center';
+        ((s as any).npc_finance = (s as any).npc_finance ?? {})[((s as any).locArgs?.[1] ?? 0)] = 2;
       }
     }
   }
   if (((s as any).npc_finance ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 0) {
     ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['rand'] = (Math.floor(Math.random() * 3) + 0);
     if (((s as any).npcgeneratecVars ?? 0)?.['rand'] === 0) {
-      // TODO-QSP: npc_start_free_time[$ARGS[1]] = 8
-      // TODO-QSP: npc_end_free_time[$ARGS[1]] = 12
-      // TODO-QSP: npc_work_start[$ARGS[1]] = 13
-      // TODO-QSP: npc_work_end[$ARGS[1]] = 21
+      ((s as any).npc_start_free_time = (s as any).npc_start_free_time ?? {})[((s as any).locArgs?.[1] ?? 0)] = 8;
+      ((s as any).npc_end_free_time = (s as any).npc_end_free_time ?? {})[((s as any).locArgs?.[1] ?? 0)] = 12;
+      ((s as any).npc_work_start = (s as any).npc_work_start ?? {})[((s as any).locArgs?.[1] ?? 0)] = 13;
+      ((s as any).npc_work_end = (s as any).npc_work_end ?? {})[((s as any).locArgs?.[1] ?? 0)] = 21;
     } else {
       if (((s as any).npcgeneratecVars ?? 0)?.['rand'] === 1) {
-        // TODO-QSP: npc_start_free_time[$ARGS[1]] = 15
-        // TODO-QSP: npc_end_free_time[$ARGS[1]] = 20
-        // TODO-QSP: npc_work_start[$ARGS[1]] = 6
-        // TODO-QSP: npc_work_end[$ARGS[1]] = 14
+        ((s as any).npc_start_free_time = (s as any).npc_start_free_time ?? {})[((s as any).locArgs?.[1] ?? 0)] = 15;
+        ((s as any).npc_end_free_time = (s as any).npc_end_free_time ?? {})[((s as any).locArgs?.[1] ?? 0)] = 20;
+        ((s as any).npc_work_start = (s as any).npc_work_start ?? {})[((s as any).locArgs?.[1] ?? 0)] = 6;
+        ((s as any).npc_work_end = (s as any).npc_work_end ?? {})[((s as any).locArgs?.[1] ?? 0)] = 14;
       } else {
-        // TODO-QSP: npc_start_free_time[$ARGS[1]] = 18
-        // TODO-QSP: npc_end_free_time[$ARGS[1]] = 22
-        // TODO-QSP: npc_work_start[$ARGS[1]] = 9
-        // TODO-QSP: npc_work_end[$ARGS[1]] = 17
+        ((s as any).npc_start_free_time = (s as any).npc_start_free_time ?? {})[((s as any).locArgs?.[1] ?? 0)] = 18;
+        ((s as any).npc_end_free_time = (s as any).npc_end_free_time ?? {})[((s as any).locArgs?.[1] ?? 0)] = 22;
+        ((s as any).npc_work_start = (s as any).npc_work_start ?? {})[((s as any).locArgs?.[1] ?? 0)] = 9;
+        ((s as any).npc_work_end = (s as any).npc_work_end ?? {})[((s as any).locArgs?.[1] ?? 0)] = 17;
       }
     }
     if (((s as any).npc_residence ?? 0)[String((s as any).locArgs?.[1] ?? '')] !== 'pav_residential'  &&  ((s as any).npc_residence ?? 0)[String((s as any).locArgs?.[1] ?? '')] !== 'city_center'  &&  ((s as any).npcgeneratecVars ?? 0)?.['age'] < 28) {
-      // TODO-QSP: npc_student[$ARGS[1]] = rand(0, 1)
-      // TODO-QSP: npc_apt_type[$ARGS[1]] = rand(1, 4)
+      ((s as any).npc_student = (s as any).npc_student ?? {})[((s as any).locArgs?.[1] ?? 0)] = (Math.floor(Math.random() * 2) + 0);
+      ((s as any).npc_apt_type = (s as any).npc_apt_type ?? {})[((s as any).locArgs?.[1] ?? 0)] = (Math.floor(Math.random() * 4) + 1);
     } else {
       if (((s as any).npc_residence ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 'uni_grounds') {
-        // TODO-QSP: npc_student[$ARGS[1]] = 1
-        // TODO-QSP: npc_apt_type[$ARGS[1]] = 2
+        ((s as any).npc_student = (s as any).npc_student ?? {})[((s as any).locArgs?.[1] ?? 0)] = 1;
+        ((s as any).npc_apt_type = (s as any).npc_apt_type ?? {})[((s as any).locArgs?.[1] ?? 0)] = 2;
       } else {
-        // TODO-QSP: npc_apt_type[$ARGS[1]] = rand(2, 4)
+        ((s as any).npc_apt_type = (s as any).npc_apt_type ?? {})[((s as any).locArgs?.[1] ?? 0)] = (Math.floor(Math.random() * 3) + 2);
       }
     }
-    // TODO-QSP: npc_style[$ARGS[1]] = rand(1, 5)
+    ((s as any).npc_style = (s as any).npc_style ?? {})[((s as any).locArgs?.[1] ?? 0)] = (Math.floor(Math.random() * 5) + 1);
   } else {
     if (((s as any).npc_finance ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 1) {
       if ((!(Math.floor(Math.random() * 2) + 0))) {
-        // TODO-QSP: npc_start_free_time[$ARGS[1]] = 8
-        // TODO-QSP: npc_end_free_time[$ARGS[1]] = 12
-        // TODO-QSP: npc_work_start[$ARGS[1]] = 13
-        // TODO-QSP: npc_work_end[$ARGS[1]] = 21
+        ((s as any).npc_start_free_time = (s as any).npc_start_free_time ?? {})[((s as any).locArgs?.[1] ?? 0)] = 8;
+        ((s as any).npc_end_free_time = (s as any).npc_end_free_time ?? {})[((s as any).locArgs?.[1] ?? 0)] = 12;
+        ((s as any).npc_work_start = (s as any).npc_work_start ?? {})[((s as any).locArgs?.[1] ?? 0)] = 13;
+        ((s as any).npc_work_end = (s as any).npc_work_end ?? {})[((s as any).locArgs?.[1] ?? 0)] = 21;
       } else {
-        // TODO-QSP: npc_start_free_time[$ARGS[1]] = 18
-        // TODO-QSP: npc_end_free_time[$ARGS[1]] = 22
-        // TODO-QSP: npc_work_start[$ARGS[1]] = 9
-        // TODO-QSP: npc_work_end[$ARGS[1]] = 17
+        ((s as any).npc_start_free_time = (s as any).npc_start_free_time ?? {})[((s as any).locArgs?.[1] ?? 0)] = 18;
+        ((s as any).npc_end_free_time = (s as any).npc_end_free_time ?? {})[((s as any).locArgs?.[1] ?? 0)] = 22;
+        ((s as any).npc_work_start = (s as any).npc_work_start ?? {})[((s as any).locArgs?.[1] ?? 0)] = 9;
+        ((s as any).npc_work_end = (s as any).npc_work_end ?? {})[((s as any).locArgs?.[1] ?? 0)] = 17;
       }
-      // TODO-QSP: npc_apt_type[$ARGS[1]] = rand(2, 5)
-      // TODO-QSP: npc_car[$ARGS[1]] = rand(-3, 1)
-      // TODO-QSP: npc_style[$ARGS[1]] = rand(1, 5)
+      ((s as any).npc_apt_type = (s as any).npc_apt_type ?? {})[((s as any).locArgs?.[1] ?? 0)] = (Math.floor(Math.random() * 4) + 2);
+      ((s as any).npc_car = (s as any).npc_car ?? {})[((s as any).locArgs?.[1] ?? 0)] = (Math.floor(Math.random() * (1 - (-3) + 1)) + ((-3)));
+      ((s as any).npc_style = (s as any).npc_style ?? {})[((s as any).locArgs?.[1] ?? 0)] = (Math.floor(Math.random() * 5) + 1);
     } else {
       if (((s as any).npc_finance ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 2) {
         if ((!(Math.floor(Math.random() * 2) + 0))) {
-          // TODO-QSP: npc_start_free_time[$ARGS[1]] = 8
-          // TODO-QSP: npc_end_free_time[$ARGS[1]] = 12
-          // TODO-QSP: npc_work_start[$ARGS[1]] = 13
-          // TODO-QSP: npc_work_end[$ARGS[1]] = 21
+          ((s as any).npc_start_free_time = (s as any).npc_start_free_time ?? {})[((s as any).locArgs?.[1] ?? 0)] = 8;
+          ((s as any).npc_end_free_time = (s as any).npc_end_free_time ?? {})[((s as any).locArgs?.[1] ?? 0)] = 12;
+          ((s as any).npc_work_start = (s as any).npc_work_start ?? {})[((s as any).locArgs?.[1] ?? 0)] = 13;
+          ((s as any).npc_work_end = (s as any).npc_work_end ?? {})[((s as any).locArgs?.[1] ?? 0)] = 21;
         } else {
-          // TODO-QSP: npc_start_free_time[$ARGS[1]] = 18
-          // TODO-QSP: npc_end_free_time[$ARGS[1]] = 22
-          // TODO-QSP: npc_work_start[$ARGS[1]] = 9
-          // TODO-QSP: npc_work_end[$ARGS[1]] = 17
+          ((s as any).npc_start_free_time = (s as any).npc_start_free_time ?? {})[((s as any).locArgs?.[1] ?? 0)] = 18;
+          ((s as any).npc_end_free_time = (s as any).npc_end_free_time ?? {})[((s as any).locArgs?.[1] ?? 0)] = 22;
+          ((s as any).npc_work_start = (s as any).npc_work_start ?? {})[((s as any).locArgs?.[1] ?? 0)] = 9;
+          ((s as any).npc_work_end = (s as any).npc_work_end ?? {})[((s as any).locArgs?.[1] ?? 0)] = 17;
         }
-        // TODO-QSP: npc_apt_type[$ARGS[1]] = rand(5, 6)
-        // TODO-QSP: npc_car[$ARGS[1]] = rand(0, 1)
-        // TODO-QSP: npc_style[$ARGS[1]] = 1 + (rand(2, 6) mod 6)
+        ((s as any).npc_apt_type = (s as any).npc_apt_type ?? {})[((s as any).locArgs?.[1] ?? 0)] = (Math.floor(Math.random() * 2) + 5);
+        ((s as any).npc_car = (s as any).npc_car ?? {})[((s as any).locArgs?.[1] ?? 0)] = (Math.floor(Math.random() * 2) + 0);
+        ((s as any).npc_style = (s as any).npc_style ?? {})[((s as any).locArgs?.[1] ?? 0)] = 1 + ((Math.floor(Math.random() * 5) + 2) % 6);
       }
     }
   }
   if (((s as any).npc_apt_type ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 4) {
-    // TODO-QSP: npc_apt_type[$ARGS[1]] = 5
+    ((s as any).npc_apt_type = (s as any).npc_apt_type ?? {})[((s as any).locArgs?.[1] ?? 0)] = 5;
   }
   if (((s as any).npc_apt_type ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 6) {
-    // TODO-QSP: npc_apt_type[$ARGS[1]] = 5
+    ((s as any).npc_apt_type = (s as any).npc_apt_type ?? {})[((s as any).locArgs?.[1] ?? 0)] = 5;
   }
-  // TODO-QSP: npc_day_off[$ARGS[1]] = rand(1, 7)
+  ((s as any).npc_day_off = (s as any).npc_day_off ?? {})[((s as any).locArgs?.[1] ?? 0)] = (Math.floor(Math.random() * 7) + 1);
   if (((s as any).npc_style ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 1) {
-    // TODO-QSP: $npc_style_label[$ARGS[1]] = 'normal'
-    // TODO-QSP: $npc_outfit[$ARGS[1]] = 'jeans and a ' + iif(npc_gender[$ARGS[1]] = 0, 'sweater', 'blouse')
+    ((s as any).npc_style_label = (s as any).npc_style_label ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'normal';
+    ((s as any).npc_outfit = (s as any).npc_outfit ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'jeans and a ' + ((((s as any).npc_gender ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 0) ? ('sweater') : ('blouse'));
   } else {
     if (((s as any).npc_style ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 2) {
-      // TODO-QSP: $npc_style_label[$ARGS[1]] = 'gopnik'
-      // TODO-QSP: $npc_outfit[$ARGS[1]] = 'a tracksuit'
+      ((s as any).npc_style_label = (s as any).npc_style_label ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'gopnik';
+      ((s as any).npc_outfit = (s as any).npc_outfit ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'a tracksuit';
     } else {
       if (((s as any).npc_style ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 3) {
-        // TODO-QSP: $npc_style_label[$ARGS[1]] = 'nerdy'
-        // TODO-QSP: $npc_outfit[$ARGS[1]] = 'jeans and a ' + iif(rand(0, 1), 't.A.T.u ', 'Tetris ') + 'shirt'
+        ((s as any).npc_style_label = (s as any).npc_style_label ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'nerdy';
+        ((s as any).npc_outfit = (s as any).npc_outfit ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'jeans and a ' + (((Math.floor(Math.random() * 2) + 0)) ? ('t.A.T.u ') : ('Tetris ')) + 'shirt';
       } else {
         if (((s as any).npc_style ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 4) {
-          // TODO-QSP: $npc_style_label[$ARGS[1]] = 'sporty'
-          // TODO-QSP: $npc_outfit[$ARGS[1]] = iif(npc_gender[$ARGS[1]] = 0, 'jogging', 'hot') + ' pants and a tanktop'
+          ((s as any).npc_style_label = (s as any).npc_style_label ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'sporty';
+          ((s as any).npc_outfit = (s as any).npc_outfit ?? {})[((s as any).locArgs?.[1] ?? 0)] = ((((s as any).npc_gender ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 0) ? ('jogging') : ('hot')) + ' pants and a tanktop';
         } else {
           if (((s as any).npc_style ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 5) {
-            // TODO-QSP: $npc_style_label[$ARGS[1]] = 'fashionable'
-            // TODO-QSP: $npc_outfit[$ARGS[1]] = 'a fashionable ' + iif(npc_gender[$ARGS[1]] = 0, 'suit', 'dress')
+            ((s as any).npc_style_label = (s as any).npc_style_label ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'fashionable';
+            ((s as any).npc_outfit = (s as any).npc_outfit ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'a fashionable ' + ((((s as any).npc_gender ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 0) ? ('suit') : ('dress'));
           } else {
-            // TODO-QSP: $npc_style_label[$ARGS[1]] = 'businessman'
-            // TODO-QSP: $npc_outfit[$ARGS[1]] = 'an expensive ' + iif(npc_gender[$ARGS[1]] = 0, 'suit', 'dress')
+            ((s as any).npc_style_label = (s as any).npc_style_label ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'businessman';
+            ((s as any).npc_outfit = (s as any).npc_outfit ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'an expensive ' + ((((s as any).npc_gender ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 0) ? ('suit') : ('dress'));
           }
         }
       }
@@ -570,7 +563,7 @@ function enterSetLifestyle(s: GameState, scene: SceneBuilder): void {
   }
   ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['home_path'] = 'images/shared/romance/lovers/homes';
   if (((s as any).npc_apt_type ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 6) {
-    // TODO-QSP: $npc_apt_type_label[$ARGS[1]] = 'mansion'
+    ((s as any).npc_apt_type_label = (s as any).npc_apt_type_label ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'mansion';
     if (((s as any).npc_style ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 3) {
       ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['spare_room'] = 1;
     } else {
@@ -581,26 +574,26 @@ function enterSetLifestyle(s: GameState, scene: SceneBuilder): void {
       }
     }
     if (((s as any).npcgeneratecVars ?? 0)?.['spare_room'] === 1) {
-      // TODO-QSP: $npc_apt_sparetype[$ARGS[1]] = 'gaming'
+      ((s as any).npc_apt_sparetype = (s as any).npc_apt_sparetype ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'gaming';
     } else {
       if (((s as any).npcgeneratecVars ?? 0)?.['spare_room'] === 2) {
-        // TODO-QSP: $npc_apt_sparetype[$ARGS[1]] = 'gym'
+        ((s as any).npc_apt_sparetype = (s as any).npc_apt_sparetype ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'gym';
       }
     }
-    // TODO-QSP: npc_apt_number[$ARGS[1]] = rand(1, 2)
-    // TODO-QSP: $npc_apt_bedroom[$ARGS[1]]      = '<img <<$set_imgh>> src="<<$npcgeneratecVars[''home_path'']>>/mans...
-    // TODO-QSP: $npc_apt_guestroom[$ARGS[1]]    = '<img <<$set_imgh>> src="<<$npcgeneratecVars[''home_path'']>>/mans...
-    // TODO-QSP: $npc_apt_kitchen[$ARGS[1]]      = '<img <<$set_imgh>> src="<<$npcgeneratecVars[''home_path'']>>/mans...
-    // TODO-QSP: $npc_apt_livingroom[$ARGS[1]]    = '<img <<$set_imgh>> src="<<$npcgeneratecVars[''home_path'']>>/man...
-    // TODO-QSP: $npc_apt_bathroom[$ARGS[1]]      = '<img <<$set_imgh>> src="<<$npcgeneratecVars[''home_path'']>>/man...
-    // TODO-QSP: $npc_apt_guest_bathroom[$ARGS[1]]  = '<img <<$set_imgh>> src="<<$npcgeneratecVars[''home_path'']>>/m...
-    // TODO-QSP: $npc_apt_hall[$ARGS[1]]        = '<img <<$set_imgh>> src="<<$npcgeneratecVars[''home_path'']>>/mansi...
-    // TODO-QSP: $npc_apt_office[$ARGS[1]]      = '<img <<$set_imgh>> src="<<$npcgeneratecVars[''home_path'']>>/mansi...
-    // TODO-QSP: $npc_apt_pool[$ARGS[1]]        = '<img <<$set_imgh>> src="<<$npcgeneratecVars[''home_path'']>>/mansi...
-    // TODO-QSP: $npc_apt_sauna[$ARGS[1]]      = '<img <<$set_imgh>> src="<<$npcgeneratecVars[''home_path'']>>/mansio...
+    ((s as any).npc_apt_number = (s as any).npc_apt_number ?? {})[((s as any).locArgs?.[1] ?? 0)] = (Math.floor(Math.random() * 2) + 1);
+    ((s as any).npc_apt_bedroom = (s as any).npc_apt_bedroom ?? {})[((s as any).locArgs?.[1] ?? 0)] = '<img ' + ((s as any).set_imgh ?? 0) + ' src="' + (((s as any).npcgeneratecVars ?? 0)?.['home_path']) + '/mansion/' + (((s as any).npc_apt_number ?? 0)?.[((s as any).locArgs?.[1] ?? 0)] ?? 0) + '/bedroom.jpg">';
+    ((s as any).npc_apt_guestroom = (s as any).npc_apt_guestroom ?? {})[((s as any).locArgs?.[1] ?? 0)] = '<img ' + ((s as any).set_imgh ?? 0) + ' src="' + (((s as any).npcgeneratecVars ?? 0)?.['home_path']) + '/mansion/' + (((s as any).npc_apt_number ?? 0)?.[((s as any).locArgs?.[1] ?? 0)] ?? 0) + '/guestroom.jpg">';
+    ((s as any).npc_apt_kitchen = (s as any).npc_apt_kitchen ?? {})[((s as any).locArgs?.[1] ?? 0)] = '<img ' + ((s as any).set_imgh ?? 0) + ' src="' + (((s as any).npcgeneratecVars ?? 0)?.['home_path']) + '/mansion/' + (((s as any).npc_apt_number ?? 0)?.[((s as any).locArgs?.[1] ?? 0)] ?? 0) + '/kitchen.jpg">';
+    ((s as any).npc_apt_livingroom = (s as any).npc_apt_livingroom ?? {})[((s as any).locArgs?.[1] ?? 0)] = '<img ' + ((s as any).set_imgh ?? 0) + ' src="' + (((s as any).npcgeneratecVars ?? 0)?.['home_path']) + '/mansion/' + (((s as any).npc_apt_number ?? 0)?.[((s as any).locArgs?.[1] ?? 0)] ?? 0) + '/living.jpg">';
+    ((s as any).npc_apt_bathroom = (s as any).npc_apt_bathroom ?? {})[((s as any).locArgs?.[1] ?? 0)] = '<img ' + ((s as any).set_imgh ?? 0) + ' src="' + (((s as any).npcgeneratecVars ?? 0)?.['home_path']) + '/mansion/' + (((s as any).npc_apt_number ?? 0)?.[((s as any).locArgs?.[1] ?? 0)] ?? 0) + '/bath.jpg">';
+    ((s as any).npc_apt_guest_bathroom = (s as any).npc_apt_guest_bathroom ?? {})[((s as any).locArgs?.[1] ?? 0)] = '<img ' + ((s as any).set_imgh ?? 0) + ' src="' + (((s as any).npcgeneratecVars ?? 0)?.['home_path']) + '/mansion/' + (((s as any).npc_apt_number ?? 0)?.[((s as any).locArgs?.[1] ?? 0)] ?? 0) + '/bathg.jpg">';
+    ((s as any).npc_apt_hall = (s as any).npc_apt_hall ?? {})[((s as any).locArgs?.[1] ?? 0)] = '<img ' + ((s as any).set_imgh ?? 0) + ' src="' + (((s as any).npcgeneratecVars ?? 0)?.['home_path']) + '/mansion/' + (((s as any).npc_apt_number ?? 0)?.[((s as any).locArgs?.[1] ?? 0)] ?? 0) + '/hall.jpg">';
+    ((s as any).npc_apt_office = (s as any).npc_apt_office ?? {})[((s as any).locArgs?.[1] ?? 0)] = '<img ' + ((s as any).set_imgh ?? 0) + ' src="' + (((s as any).npcgeneratecVars ?? 0)?.['home_path']) + '/mansion/' + (((s as any).npc_apt_number ?? 0)?.[((s as any).locArgs?.[1] ?? 0)] ?? 0) + '/office.jpg">';
+    ((s as any).npc_apt_pool = (s as any).npc_apt_pool ?? {})[((s as any).locArgs?.[1] ?? 0)] = '<img ' + ((s as any).set_imgh ?? 0) + ' src="' + (((s as any).npcgeneratecVars ?? 0)?.['home_path']) + '/mansion/' + (((s as any).npc_apt_number ?? 0)?.[((s as any).locArgs?.[1] ?? 0)] ?? 0) + '/pool.jpg">';
+    ((s as any).npc_apt_sauna = (s as any).npc_apt_sauna ?? {})[((s as any).locArgs?.[1] ?? 0)] = '<img ' + ((s as any).set_imgh ?? 0) + ' src="' + (((s as any).npcgeneratecVars ?? 0)?.['home_path']) + '/mansion/' + (((s as any).npc_apt_number ?? 0)?.[((s as any).locArgs?.[1] ?? 0)] ?? 0) + '/sauna.jpg">';
   } else {
     if (((s as any).npc_apt_type ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 4  ||  ((s as any).npc_apt_type ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 5) {
-      // TODO-QSP: $npc_apt_type_label[$ARGS[1]] = 'multi_bedroom'
+      ((s as any).npc_apt_type_label = (s as any).npc_apt_type_label ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'multi_bedroom';
       if (((s as any).npc_style ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 3) {
         ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['spare_room'] = 1;
       } else {
@@ -611,52 +604,51 @@ function enterSetLifestyle(s: GameState, scene: SceneBuilder): void {
         }
       }
       if (((s as any).npcgeneratecVars ?? 0)?.['spare_room'] === 1) {
-        // TODO-QSP: $npc_apt_sparetype[$ARGS[1]] = 'gaming'
+        ((s as any).npc_apt_sparetype = (s as any).npc_apt_sparetype ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'gaming';
       } else {
         if (((s as any).npcgeneratecVars ?? 0)?.['spare_room'] === 2) {
-          // TODO-QSP: $npc_apt_sparetype[$ARGS[1]] = 'gym'
+          ((s as any).npc_apt_sparetype = (s as any).npc_apt_sparetype ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'gym';
         }
       }
-      // TODO-QSP: npc_apt_number[$ARGS[1]] = rand(1, 2)
-      // TODO-QSP: $npc_apt_bedroom[$ARGS[1]]    = '<img <<$set_imgh>> src="<<$npcgeneratecVars[''home_path'']>>/multib...
-      // TODO-QSP: $npc_apt_kitchen[$ARGS[1]]    = '<img <<$set_imgh>> src="<<$npcgeneratecVars[''home_path'']>>/multib...
-      // TODO-QSP: $npc_apt_livingroom[$ARGS[1]]  = '<img <<$set_imgh>> src="<<$npcgeneratecVars[''home_path'']>>/multi...
-      // TODO-QSP: $npc_apt_bathroom[$ARGS[1]]    = '<img <<$set_imgh>> src="<<$npcgeneratecVars[''home_path'']>>/multi...
-      // TODO-QSP: $npc_apt_hall[$ARGS[1]]      = '<img <<$set_imgh>> src="<<$npcgeneratecVars[''home_path'']>>/multibe...
-      // TODO-QSP: $npc_apt_spare[$ARGS[1]]    = '<img <<$set_imgh>> src="<<$npcgeneratecVars[''home_path'']>>/multibed...
+      ((s as any).npc_apt_number = (s as any).npc_apt_number ?? {})[((s as any).locArgs?.[1] ?? 0)] = (Math.floor(Math.random() * 2) + 1);
+      ((s as any).npc_apt_bedroom = (s as any).npc_apt_bedroom ?? {})[((s as any).locArgs?.[1] ?? 0)] = '<img ' + ((s as any).set_imgh ?? 0) + ' src="' + (((s as any).npcgeneratecVars ?? 0)?.['home_path']) + '/multibedroom/' + (((s as any).npc_apt_number ?? 0)?.[((s as any).locArgs?.[1] ?? 0)] ?? 0) + '/bedroom.jpg">';
+      ((s as any).npc_apt_kitchen = (s as any).npc_apt_kitchen ?? {})[((s as any).locArgs?.[1] ?? 0)] = '<img ' + ((s as any).set_imgh ?? 0) + ' src="' + (((s as any).npcgeneratecVars ?? 0)?.['home_path']) + '/multibedroom/' + (((s as any).npc_apt_number ?? 0)?.[((s as any).locArgs?.[1] ?? 0)] ?? 0) + '/kitchen.jpg">';
+      ((s as any).npc_apt_livingroom = (s as any).npc_apt_livingroom ?? {})[((s as any).locArgs?.[1] ?? 0)] = '<img ' + ((s as any).set_imgh ?? 0) + ' src="' + (((s as any).npcgeneratecVars ?? 0)?.['home_path']) + '/multibedroom/' + (((s as any).npc_apt_number ?? 0)?.[((s as any).locArgs?.[1] ?? 0)] ?? 0) + '/living.jpg">';
+      ((s as any).npc_apt_bathroom = (s as any).npc_apt_bathroom ?? {})[((s as any).locArgs?.[1] ?? 0)] = '<img ' + ((s as any).set_imgh ?? 0) + ' src="' + (((s as any).npcgeneratecVars ?? 0)?.['home_path']) + '/multibedroom/' + (((s as any).npc_apt_number ?? 0)?.[((s as any).locArgs?.[1] ?? 0)] ?? 0) + '/bath.jpg">';
+      ((s as any).npc_apt_hall = (s as any).npc_apt_hall ?? {})[((s as any).locArgs?.[1] ?? 0)] = '<img ' + ((s as any).set_imgh ?? 0) + ' src="' + (((s as any).npcgeneratecVars ?? 0)?.['home_path']) + '/multibedroom/' + (((s as any).npc_apt_number ?? 0)?.[((s as any).locArgs?.[1] ?? 0)] ?? 0) + '/living.jpg">';
+      ((s as any).npc_apt_spare = (s as any).npc_apt_spare ?? {})[((s as any).locArgs?.[1] ?? 0)] = '<img ' + ((s as any).set_imgh ?? 0) + ' src="' + (((s as any).npcgeneratecVars ?? 0)?.['home_path']) + '/multibedroom/' + (((s as any).npc_apt_number ?? 0)?.[((s as any).locArgs?.[1] ?? 0)] ?? 0) + '/' + (((s as any).npc_apt_sparetype ?? 0)?.[((s as any).locArgs?.[1] ?? 0)] ?? 0) + '.jpg">';
     } else {
       if (((s as any).npc_apt_type ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 3) {
-        // TODO-QSP: npc_apt_number[$ARGS[1]] = rand(1, 3)
-        // TODO-QSP: $npc_apt_type_label[$ARGS[1]] = 'one_bedroom'
-        // TODO-QSP: $npc_apt_bedroom[$ARGS[1]]    = '<img <<$set_imgh>> src="<<$npcgeneratecVars[''home_path'']>>/1bedro...
-        // TODO-QSP: $npc_apt_kitchen[$ARGS[1]]    = '<img <<$set_imgh>> src="<<$npcgeneratecVars[''home_path'']>>/1bedro...
-        // TODO-QSP: $npc_apt_livingroom[$ARGS[1]]  = '<img <<$set_imgh>> src="<<$npcgeneratecVars[''home_path'']>>/1bedr...
-        // TODO-QSP: $npc_apt_bathroom[$ARGS[1]]    = '<img <<$set_imgh>> src="<<$npcgeneratecVars[''home_path'']>>/1bedr...
-        // TODO-QSP: $npc_apt_hall[$ARGS[1]]      = '<img <<$set_imgh>> src="<<$npcgeneratecVars[''home_path'']>>/1bedroo...
+        ((s as any).npc_apt_number = (s as any).npc_apt_number ?? {})[((s as any).locArgs?.[1] ?? 0)] = (Math.floor(Math.random() * 3) + 1);
+        ((s as any).npc_apt_type_label = (s as any).npc_apt_type_label ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'one_bedroom';
+        ((s as any).npc_apt_bedroom = (s as any).npc_apt_bedroom ?? {})[((s as any).locArgs?.[1] ?? 0)] = '<img ' + ((s as any).set_imgh ?? 0) + ' src="' + (((s as any).npcgeneratecVars ?? 0)?.['home_path']) + '/1bedroom/' + (((s as any).npc_apt_number ?? 0)?.[((s as any).locArgs?.[1] ?? 0)] ?? 0) + '/bedroom.jpg">';
+        ((s as any).npc_apt_kitchen = (s as any).npc_apt_kitchen ?? {})[((s as any).locArgs?.[1] ?? 0)] = '<img ' + ((s as any).set_imgh ?? 0) + ' src="' + (((s as any).npcgeneratecVars ?? 0)?.['home_path']) + '/1bedroom/' + (((s as any).npc_apt_number ?? 0)?.[((s as any).locArgs?.[1] ?? 0)] ?? 0) + '/kitchen.jpg">';
+        ((s as any).npc_apt_livingroom = (s as any).npc_apt_livingroom ?? {})[((s as any).locArgs?.[1] ?? 0)] = '<img ' + ((s as any).set_imgh ?? 0) + ' src="' + (((s as any).npcgeneratecVars ?? 0)?.['home_path']) + '/1bedroom/' + (((s as any).npc_apt_number ?? 0)?.[((s as any).locArgs?.[1] ?? 0)] ?? 0) + '/living.jpg">';
+        ((s as any).npc_apt_bathroom = (s as any).npc_apt_bathroom ?? {})[((s as any).locArgs?.[1] ?? 0)] = '<img ' + ((s as any).set_imgh ?? 0) + ' src="' + (((s as any).npcgeneratecVars ?? 0)?.['home_path']) + '/1bedroom/' + (((s as any).npc_apt_number ?? 0)?.[((s as any).locArgs?.[1] ?? 0)] ?? 0) + '/bath.jpg">';
+        ((s as any).npc_apt_hall = (s as any).npc_apt_hall ?? {})[((s as any).locArgs?.[1] ?? 0)] = '<img ' + ((s as any).set_imgh ?? 0) + ' src="' + (((s as any).npcgeneratecVars ?? 0)?.['home_path']) + '/1bedroom/' + (((s as any).npc_apt_number ?? 0)?.[((s as any).locArgs?.[1] ?? 0)] ?? 0) + '/living.jpg">';
       } else {
         if (((s as any).npc_apt_type ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 2) {
-          // TODO-QSP: npc_apt_number[$ARGS[1]] = rand(1, 2)
-          // TODO-QSP: $npc_apt_type_label[$ARGS[1]] = 'studio'
-          // TODO-QSP: $npc_apt_bedroom[$ARGS[1]]    = '<img <<$set_imgh>> src="<<$npcgeneratecVars[''home_path'']>>/studio...
-          // TODO-QSP: $npc_apt_kitchen[$ARGS[1]]    = '<img <<$set_imgh>> src="<<$npcgeneratecVars[''home_path'']>>/studio...
-          // TODO-QSP: $npc_apt_livingroom[$ARGS[1]]  = '<img <<$set_imgh>> src="<<$npcgeneratecVars[''home_path'']>>/studi...
-          // TODO-QSP: $npc_apt_bathroom[$ARGS[1]]    = '<img <<$set_imgh>> src="<<$npcgeneratecVars[''home_path'']>>/studi...
-          // TODO-QSP: $npc_apt_hall[$ARGS[1]]      = '<img <<$set_imgh>> src="<<$npcgeneratecVars[''home_path'']>>/studio/...
+          ((s as any).npc_apt_number = (s as any).npc_apt_number ?? {})[((s as any).locArgs?.[1] ?? 0)] = (Math.floor(Math.random() * 2) + 1);
+          ((s as any).npc_apt_type_label = (s as any).npc_apt_type_label ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'studio';
+          ((s as any).npc_apt_bedroom = (s as any).npc_apt_bedroom ?? {})[((s as any).locArgs?.[1] ?? 0)] = '<img ' + ((s as any).set_imgh ?? 0) + ' src="' + (((s as any).npcgeneratecVars ?? 0)?.['home_path']) + '/studio/' + (((s as any).npc_apt_number ?? 0)?.[((s as any).locArgs?.[1] ?? 0)] ?? 0) + '/bedroom.jpg">';
+          ((s as any).npc_apt_kitchen = (s as any).npc_apt_kitchen ?? {})[((s as any).locArgs?.[1] ?? 0)] = '<img ' + ((s as any).set_imgh ?? 0) + ' src="' + (((s as any).npcgeneratecVars ?? 0)?.['home_path']) + '/studio/' + (((s as any).npc_apt_number ?? 0)?.[((s as any).locArgs?.[1] ?? 0)] ?? 0) + '/bedroom.jpg">';
+          ((s as any).npc_apt_livingroom = (s as any).npc_apt_livingroom ?? {})[((s as any).locArgs?.[1] ?? 0)] = '<img ' + ((s as any).set_imgh ?? 0) + ' src="' + (((s as any).npcgeneratecVars ?? 0)?.['home_path']) + '/studio/' + (((s as any).npc_apt_number ?? 0)?.[((s as any).locArgs?.[1] ?? 0)] ?? 0) + '/bedroom.jpg">';
+          ((s as any).npc_apt_bathroom = (s as any).npc_apt_bathroom ?? {})[((s as any).locArgs?.[1] ?? 0)] = '<img ' + ((s as any).set_imgh ?? 0) + ' src="' + (((s as any).npcgeneratecVars ?? 0)?.['home_path']) + '/studio/' + (((s as any).npc_apt_number ?? 0)?.[((s as any).locArgs?.[1] ?? 0)] ?? 0) + '/bath.jpg">';
+          ((s as any).npc_apt_hall = (s as any).npc_apt_hall ?? {})[((s as any).locArgs?.[1] ?? 0)] = '<img ' + ((s as any).set_imgh ?? 0) + ' src="' + (((s as any).npcgeneratecVars ?? 0)?.['home_path']) + '/studio/' + (((s as any).npc_apt_number ?? 0)?.[((s as any).locArgs?.[1] ?? 0)] ?? 0) + '/bedroom.jpg">';
         } else {
           if (((s as any).npc_apt_type ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 1) {
-            // TODO-QSP: npc_apt_number[$ARGS[1]] = rand(1, 3)
-            // TODO-QSP: $npc_apt_type_label[$ARGS[1]] = 'student_dorm'
-            // TODO-QSP: $npc_apt_bedroom[$ARGS[1]]    = '<img <<$set_imgh>> src="<<$npcgeneratecVars[''home_path'']>>/1bedro...
-            // TODO-QSP: $npc_apt_kitchen[$ARGS[1]]    = '<img <<$set_imgh>> src="<<$npcgeneratecVars[''home_path'']>>/1bedro...
-            // TODO-QSP: $npc_apt_livingroom[$ARGS[1]]  = '<img <<$set_imgh>> src="<<$npcgeneratecVars[''home_path'']>>/1bedr...
-            // TODO-QSP: $npc_apt_bathroom[$ARGS[1]]    = '<img <<$set_imgh>> src="<<$npcgeneratecVars[''home_path'']>>/1bedr...
-            // TODO-QSP: $npc_apt_hall[$ARGS[1]]      = '<img <<$set_imgh>> src="<<$npcgeneratecVars[''home_path'']>>/studio/...
+            ((s as any).npc_apt_number = (s as any).npc_apt_number ?? {})[((s as any).locArgs?.[1] ?? 0)] = (Math.floor(Math.random() * 3) + 1);
+            ((s as any).npc_apt_type_label = (s as any).npc_apt_type_label ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'student_dorm';
+            ((s as any).npc_apt_bedroom = (s as any).npc_apt_bedroom ?? {})[((s as any).locArgs?.[1] ?? 0)] = '<img ' + ((s as any).set_imgh ?? 0) + ' src="' + (((s as any).npcgeneratecVars ?? 0)?.['home_path']) + '/1bedroom/' + (((s as any).npc_apt_number ?? 0)?.[((s as any).locArgs?.[1] ?? 0)] ?? 0) + '/bedroom.jpg">';
+            ((s as any).npc_apt_kitchen = (s as any).npc_apt_kitchen ?? {})[((s as any).locArgs?.[1] ?? 0)] = '<img ' + ((s as any).set_imgh ?? 0) + ' src="' + (((s as any).npcgeneratecVars ?? 0)?.['home_path']) + '/1bedroom/' + (((s as any).npc_apt_number ?? 0)?.[((s as any).locArgs?.[1] ?? 0)] ?? 0) + '/kitchen.jpg">';
+            ((s as any).npc_apt_livingroom = (s as any).npc_apt_livingroom ?? {})[((s as any).locArgs?.[1] ?? 0)] = '<img ' + ((s as any).set_imgh ?? 0) + ' src="' + (((s as any).npcgeneratecVars ?? 0)?.['home_path']) + '/1bedroom/' + (((s as any).npc_apt_number ?? 0)?.[((s as any).locArgs?.[1] ?? 0)] ?? 0) + '/living.jpg">';
+            ((s as any).npc_apt_bathroom = (s as any).npc_apt_bathroom ?? {})[((s as any).locArgs?.[1] ?? 0)] = '<img ' + ((s as any).set_imgh ?? 0) + ' src="' + (((s as any).npcgeneratecVars ?? 0)?.['home_path']) + '/1bedroom/' + (((s as any).npc_apt_number ?? 0)?.[((s as any).locArgs?.[1] ?? 0)] ?? 0) + '/bath.jpg">';
+            ((s as any).npc_apt_hall = (s as any).npc_apt_hall ?? {})[((s as any).locArgs?.[1] ?? 0)] = '<img ' + ((s as any).set_imgh ?? 0) + ' src="' + (((s as any).npcgeneratecVars ?? 0)?.['home_path']) + '/studio/' + (((s as any).npc_apt_number ?? 0)?.[((s as any).locArgs?.[1] ?? 0)] ?? 0) + '/living.jpg">';
           }
         }
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -672,91 +664,90 @@ function enterSetOccupation(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterPoorJobs(s: GameState, scene: SceneBuilder): void {
   ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['rand'] = (Math.floor(Math.random() * 16) + 0);
   if (((s as any).npcgeneratecVars ?? 0)?.['rand'] === 0) {
-    // TODO-QSP: npc_criminal[$ARGS[1]] = 1
-    // TODO-QSP: npc_criminal_open[$ARGS[1]] = rand(0, 1)
+    ((s as any).npc_criminal = (s as any).npc_criminal ?? {})[((s as any).locArgs?.[1] ?? 0)] = 1;
+    ((s as any).npc_criminal_open = (s as any).npc_criminal_open ?? {})[((s as any).locArgs?.[1] ?? 0)] = (Math.floor(Math.random() * 2) + 0);
     ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['rand'] = (Math.floor(Math.random() * 4) + 0);
     if (((s as any).npcgeneratecVars ?? 0)?.['rand'] === 0) {
-      // TODO-QSP: $npc_occupation[$ARGS[1]] = 'pimp'
-      // TODO-QSP: npc_gun[$ARGS[1]] = rand(0, 1)
+      ((s as any).npc_occupation = (s as any).npc_occupation ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'pimp';
+      ((s as any).npc_gun = (s as any).npc_gun ?? {})[((s as any).locArgs?.[1] ?? 0)] = (Math.floor(Math.random() * 2) + 0);
     } else {
       if (((s as any).npcgeneratecVars ?? 0)?.['rand'] === 1) {
-        // TODO-QSP: $npc_occupation[$ARGS[1]] = 'drug_dealer'
-        // TODO-QSP: npc_gun[$ARGS[1]] = 1
+        ((s as any).npc_occupation = (s as any).npc_occupation ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'drug_dealer';
+        ((s as any).npc_gun = (s as any).npc_gun ?? {})[((s as any).locArgs?.[1] ?? 0)] = 1;
       } else {
         if (((s as any).npcgeneratecVars ?? 0)?.['rand'] === 2) {
-          // TODO-QSP: $npc_occupation[$ARGS[1]] = 'enforcer'
-          // TODO-QSP: npc_gun[$ARGS[1]] = 1
+          ((s as any).npc_occupation = (s as any).npc_occupation ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'enforcer';
+          ((s as any).npc_gun = (s as any).npc_gun ?? {})[((s as any).locArgs?.[1] ?? 0)] = 1;
         } else {
-          // TODO-QSP: $npc_occupation[$ARGS[1]] = 'thief'
+          ((s as any).npc_occupation = (s as any).npc_occupation ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'thief';
         }
       }
     }
   } else {
     if (((s as any).npcgeneratecVars ?? 0)?.['rand'] === 1) {
-      // TODO-QSP: $npc_police_type[$ARGS[1]] = 'undercover'
-      // TODO-QSP: npc_criminal[$ARGS[1]] = 1
-      // TODO-QSP: npc_gun[$ARGS[1]] = 1
-      // TODO-QSP: npc_criminal_open[$ARGS[1]] = rand(0, 1)
+      ((s as any).npc_police_type = (s as any).npc_police_type ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'undercover';
+      ((s as any).npc_criminal = (s as any).npc_criminal ?? {})[((s as any).locArgs?.[1] ?? 0)] = 1;
+      ((s as any).npc_gun = (s as any).npc_gun ?? {})[((s as any).locArgs?.[1] ?? 0)] = 1;
+      ((s as any).npc_criminal_open = (s as any).npc_criminal_open ?? {})[((s as any).locArgs?.[1] ?? 0)] = (Math.floor(Math.random() * 2) + 0);
       if (((s as any).npcgeneratecVars ?? 0)?.['rand'] === 2) {
-        // TODO-QSP: $npc_occupation[$ARGS[1]] = 'enforcer'
+        ((s as any).npc_occupation = (s as any).npc_occupation ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'enforcer';
       } else {
-        // TODO-QSP: $npc_occupation[$ARGS[1]] = 'thief'
+        ((s as any).npc_occupation = (s as any).npc_occupation ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'thief';
       }
     } else {
       if (((s as any).npcgeneratecVars ?? 0)?.['rand'] === 2) {
-        // TODO-QSP: $npc_occupation[$ARGS[1]] = 'police_officer'
-        // TODO-QSP: npc_gun[$ARGS[1]] = 1
+        ((s as any).npc_occupation = (s as any).npc_occupation ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'police_officer';
+        ((s as any).npc_gun = (s as any).npc_gun ?? {})[((s as any).locArgs?.[1] ?? 0)] = 1;
         if ((!(Math.floor(Math.random() * 3) + 0))) {
-          // TODO-QSP: $npc_police_type[$ARGS[1]] = 'honest'
+          ((s as any).npc_police_type = (s as any).npc_police_type ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'honest';
         } else {
-          // TODO-QSP: $npc_police_type[$ARGS[1]] = 'corrupt'
+          ((s as any).npc_police_type = (s as any).npc_police_type ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'corrupt';
         }
       } else {
         if (((s as any).npcgeneratecVars ?? 0)?.['rand'] === 3) {
-          // TODO-QSP: $npc_occupation[$ARGS[1]] = 'cashier_supermarket'
+          ((s as any).npc_occupation = (s as any).npc_occupation ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'cashier_supermarket';
         } else {
           if (((s as any).npcgeneratecVars ?? 0)?.['rand'] === 4) {
-            // TODO-QSP: $npc_occupation[$ARGS[1]] = 'cashier_liquor'
+            ((s as any).npc_occupation = (s as any).npc_occupation ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'cashier_liquor';
           } else {
             if (((s as any).npcgeneratecVars ?? 0)?.['rand'] === 5) {
-              // TODO-QSP: $npc_occupation[$ARGS[1]] = 'cashier_coffee'
+              ((s as any).npc_occupation = (s as any).npc_occupation ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'cashier_coffee';
             } else {
               if (((s as any).npcgeneratecVars ?? 0)?.['rand'] === 6) {
-                // TODO-QSP: $npc_occupation[$ARGS[1]] = 'barista'
+                ((s as any).npc_occupation = (s as any).npc_occupation ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'barista';
               } else {
                 if (((s as any).npcgeneratecVars ?? 0)?.['rand'] === 7) {
-                  // TODO-QSP: $npc_occupation[$ARGS[1]] = 'fast_food'
+                  ((s as any).npc_occupation = (s as any).npc_occupation ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'fast_food';
                 } else {
                   if (((s as any).npcgeneratecVars ?? 0)?.['rand'] === 8) {
-                    // TODO-QSP: $npc_occupation[$ARGS[1]] = 'taxi_driver'
-                    // TODO-QSP: npc_car[$ARGS[1]] = 1
+                    ((s as any).npc_occupation = (s as any).npc_occupation ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'taxi_driver';
+                    ((s as any).npc_car = (s as any).npc_car ?? {})[((s as any).locArgs?.[1] ?? 0)] = 1;
                   } else {
                     if (((s as any).npcgeneratecVars ?? 0)?.['rand'] === 9) {
-                      // TODO-QSP: $npc_occupation[$ARGS[1]] = 'masseuse'
+                      ((s as any).npc_occupation = (s as any).npc_occupation ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'masseuse';
                     } else {
                       if (((s as any).npcgeneratecVars ?? 0)?.['rand'] === 10) {
-                        // TODO-QSP: $npc_occupation[$ARGS[1]] = 'masseuse_sexual'
+                        ((s as any).npc_occupation = (s as any).npc_occupation ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'masseuse_sexual';
                       } else {
                         if (((s as any).npcgeneratecVars ?? 0)?.['rand'] === 11) {
-                          // TODO-QSP: $npc_occupation[$ARGS[1]] = 'factory'
+                          ((s as any).npc_occupation = (s as any).npc_occupation ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'factory';
                         } else {
                           if (((s as any).npcgeneratecVars ?? 0)?.['rand'] === 12) {
-                            // TODO-QSP: $npc_occupation[$ARGS[1]] = 'bartender'
+                            ((s as any).npc_occupation = (s as any).npc_occupation ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'bartender';
                           } else {
                             if (((s as any).npcgeneratecVars ?? 0)?.['rand'] === 13) {
-                              // TODO-QSP: $npc_occupation[$ARGS[1]] = 'mechanic'
+                              ((s as any).npc_occupation = (s as any).npc_occupation ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'mechanic';
                             } else {
                               if (((s as any).npcgeneratecVars ?? 0)?.['rand'] === 14) {
-                                // TODO-QSP: $npc_occupation[$ARGS[1]] = 'line_cook'
+                                ((s as any).npc_occupation = (s as any).npc_occupation ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'line_cook';
                               } else {
-                                // TODO-QSP: $npc_occupation[$ARGS[1]] = 'waiter'
+                                ((s as any).npc_occupation = (s as any).npc_occupation ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'waiter';
                               }
                             }
                           }
@@ -772,58 +763,57 @@ function enterPoorJobs(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterMiddleJobs(s: GameState, scene: SceneBuilder): void {
   ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['rand'] = (Math.floor(Math.random() * 11) + 0);
   if (((s as any).npcgeneratecVars ?? 0)?.['rand'] === 0) {
-    // TODO-QSP: $npc_occupation[$ARGS[1]] = 'masseuse'
+    ((s as any).npc_occupation = (s as any).npc_occupation ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'masseuse';
   } else {
     if (((s as any).npcgeneratecVars ?? 0)?.['rand'] === 1) {
-      // TODO-QSP: $npc_occupation[$ARGS[1]] = 'masseuse_sexual'
+      ((s as any).npc_occupation = (s as any).npc_occupation ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'masseuse_sexual';
     } else {
       if (((s as any).npcgeneratecVars ?? 0)?.['rand'] === 2) {
-        // TODO-QSP: $npc_occupation[$ARGS[1]] = 'factory'
+        ((s as any).npc_occupation = (s as any).npc_occupation ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'factory';
       } else {
         if (((s as any).npcgeneratecVars ?? 0)?.['rand'] === 3) {
-          // TODO-QSP: $npc_occupation[$ARGS[1]] = 'bartender'
+          ((s as any).npc_occupation = (s as any).npc_occupation ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'bartender';
         } else {
           if (((s as any).npcgeneratecVars ?? 0)?.['rand'] === 4) {
-            // TODO-QSP: $npc_occupation[$ARGS[1]] = 'mechanic'
+            ((s as any).npc_occupation = (s as any).npc_occupation ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'mechanic';
           } else {
             if (((s as any).npcgeneratecVars ?? 0)?.['rand'] === 5) {
-              // TODO-QSP: $npc_occupation[$ARGS[1]] = 'line_cook'
+              ((s as any).npc_occupation = (s as any).npc_occupation ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'line_cook';
             } else {
               if (((s as any).npcgeneratecVars ?? 0)?.['rand'] === 6) {
-                // TODO-QSP: $npc_occupation[$ARGS[1]] = 'waiter'
+                ((s as any).npc_occupation = (s as any).npc_occupation ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'waiter';
               } else {
                 if (((s as any).npcgeneratecVars ?? 0)?.['rand'] === 7) {
-                  // TODO-QSP: $npc_occupation[$ARGS[1]] = 'personal_trainer'
+                  ((s as any).npc_occupation = (s as any).npc_occupation ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'personal_trainer';
                 } else {
                   if (((s as any).npcgeneratecVars ?? 0)?.['rand'] === 8) {
-                    // TODO-QSP: $npc_occupation[$ARGS[1]] = 'programmer'
+                    ((s as any).npc_occupation = (s as any).npc_occupation ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'programmer';
                   } else {
                     if (((s as any).npcgeneratecVars ?? 0)?.['rand'] === 9) {
-                      // TODO-QSP: npc_criminal[$ARGS[1]] = 1
-                      // TODO-QSP: npc_criminal_open[$ARGS[1]] = rand(0, 1)
+                      ((s as any).npc_criminal = (s as any).npc_criminal ?? {})[((s as any).locArgs?.[1] ?? 0)] = 1;
+                      ((s as any).npc_criminal_open = (s as any).npc_criminal_open ?? {})[((s as any).locArgs?.[1] ?? 0)] = (Math.floor(Math.random() * 2) + 0);
                       ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['rand'] = (Math.floor(Math.random() * 4) + 0);
                       if (((s as any).npcgeneratecVars ?? 0)?.['rand'] === 0) {
-                        // TODO-QSP: $npc_occupation[$ARGS[1]] = 'pimp'
+                        ((s as any).npc_occupation = (s as any).npc_occupation ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'pimp';
                       } else {
                         if (((s as any).npcgeneratecVars ?? 0)?.['rand'] === 1) {
-                          // TODO-QSP: $npc_occupation[$ARGS[1]] = 'drug_dealer'
+                          ((s as any).npc_occupation = (s as any).npc_occupation ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'drug_dealer';
                         } else {
                           if (((s as any).npcgeneratecVars ?? 0)?.['rand'] === 2) {
-                            // TODO-QSP: $npc_occupation[$ARGS[1]] = 'enforcer'
+                            ((s as any).npc_occupation = (s as any).npc_occupation ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'enforcer';
                           } else {
-                            // TODO-QSP: $npc_occupation[$ARGS[1]] = 'thief'
+                            ((s as any).npc_occupation = (s as any).npc_occupation ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'thief';
                           }
                         }
                       }
                     } else {
-                      // TODO-QSP: $npc_occupation[$ARGS[1]] = 'businessman'
+                      ((s as any).npc_occupation = (s as any).npc_occupation ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'businessman';
                     }
                   }
                 }
@@ -834,80 +824,78 @@ function enterMiddleJobs(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterRichJobs(s: GameState, scene: SceneBuilder): void {
   ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['rand'] = (Math.floor(Math.random() * 7) + 0);
   if (((s as any).npcgeneratecVars ?? 0)?.['rand'] === 0) {
-    // TODO-QSP: $npc_occupation[$ARGS[1]] = 'personal_trainer'
+    ((s as any).npc_occupation = (s as any).npc_occupation ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'personal_trainer';
   } else {
     if (((s as any).npcgeneratecVars ?? 0)?.['rand'] === 1) {
-      // TODO-QSP: $npc_occupation[$ARGS[1]] = 'programmer'
+      ((s as any).npc_occupation = (s as any).npc_occupation ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'programmer';
     } else {
       if (((s as any).npcgeneratecVars ?? 0)?.['rand'] === 2) {
-        // TODO-QSP: npc_criminal[$ARGS[1]] = 1
-        // TODO-QSP: npc_criminal_open[$ARGS[1]] = rand(0, 1)
+        ((s as any).npc_criminal = (s as any).npc_criminal ?? {})[((s as any).locArgs?.[1] ?? 0)] = 1;
+        ((s as any).npc_criminal_open = (s as any).npc_criminal_open ?? {})[((s as any).locArgs?.[1] ?? 0)] = (Math.floor(Math.random() * 2) + 0);
         ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['rand'] = (Math.floor(Math.random() * 3) + 0);
         if (((s as any).npcgeneratecVars ?? 0)?.['rand'] === 0) {
-          // TODO-QSP: $npc_occupation[$ARGS[1]] = 'pimp'
+          ((s as any).npc_occupation = (s as any).npc_occupation ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'pimp';
         } else {
           if (((s as any).npcgeneratecVars ?? 0)?.['rand'] === 1) {
-            // TODO-QSP: $npc_occupation[$ARGS[1]] = 'drug_dealer'
+            ((s as any).npc_occupation = (s as any).npc_occupation ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'drug_dealer';
           } else {
-            // TODO-QSP: $npc_occupation[$ARGS[1]] = 'enforcer'
+            ((s as any).npc_occupation = (s as any).npc_occupation ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'enforcer';
           }
         }
       } else {
         if (((s as any).npcgeneratecVars ?? 0)?.['rand'] === 3) {
-          // TODO-QSP: $npc_police_type[$ARGS[1]] = 'undercover'
-          // TODO-QSP: npc_criminal[$ARGS[1]] = 1
-          // TODO-QSP: npc_criminal_open[$ARGS[1]] = rand(0, 1)
+          ((s as any).npc_police_type = (s as any).npc_police_type ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'undercover';
+          ((s as any).npc_criminal = (s as any).npc_criminal ?? {})[((s as any).locArgs?.[1] ?? 0)] = 1;
+          ((s as any).npc_criminal_open = (s as any).npc_criminal_open ?? {})[((s as any).locArgs?.[1] ?? 0)] = (Math.floor(Math.random() * 2) + 0);
           ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['rand'] = (Math.floor(Math.random() * 3) + 0);
           if (((s as any).npcgeneratecVars ?? 0)?.['rand'] === 0) {
-            // TODO-QSP: $npc_occupation[$ARGS[1]] = 'enforcer'
+            ((s as any).npc_occupation = (s as any).npc_occupation ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'enforcer';
           } else {
-            // TODO-QSP: $npc_occupation[$ARGS[1]] = 'thief'
+            ((s as any).npc_occupation = (s as any).npc_occupation ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'thief';
           }
         } else {
           if (((s as any).npcgeneratecVars ?? 0)?.['rand'] === 4) {
-            // TODO-QSP: $npc_occupation[$ARGS[1]] = 'businessman'
+            ((s as any).npc_occupation = (s as any).npc_occupation ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'businessman';
           } else {
             if (((s as any).npcgeneratecVars ?? 0)?.['rand'] === 5) {
-              // TODO-QSP: $npc_occupation[$ARGS[1]] = 'lawyer'
+              ((s as any).npc_occupation = (s as any).npc_occupation ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'lawyer';
             } else {
-              // TODO-QSP: $npc_occupation[$ARGS[1]] = 'investment_banker'
+              ((s as any).npc_occupation = (s as any).npc_occupation ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'investment_banker';
             }
           }
         }
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterSetPersonality(s: GameState, scene: SceneBuilder): void {
   if ((!(Math.floor(Math.random() * 2) + 0))) {
-    // TODO-QSP: $npc_perstype[$ARGS[1]] = 'E'
+    ((s as any).npc_perstype = (s as any).npc_perstype ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'E';
   } else {
-    // TODO-QSP: $npc_perstype[$ARGS[1]] = 'I'
+    ((s as any).npc_perstype = (s as any).npc_perstype ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'I';
   }
   if ((!(Math.floor(Math.random() * 2) + 0))) {
-    // TODO-QSP: $npc_perstype[$ARGS[1]] += 'S'
+    ((s as any).npc_perstype = (s as any).npc_perstype ?? {})[((s as any).locArgs?.[1] ?? 0)] = ((s as any).npc_perstype[((s as any).locArgs?.[1] ?? 0)] ?? 0) + ('S');
   } else {
-    // TODO-QSP: $npc_perstype[$ARGS[1]] += 'N'
+    ((s as any).npc_perstype = (s as any).npc_perstype ?? {})[((s as any).locArgs?.[1] ?? 0)] = ((s as any).npc_perstype[((s as any).locArgs?.[1] ?? 0)] ?? 0) + ('N');
   }
   if ((!(Math.floor(Math.random() * 2) + 0))) {
-    // TODO-QSP: $npc_perstype[$ARGS[1]] += 'T'
+    ((s as any).npc_perstype = (s as any).npc_perstype ?? {})[((s as any).locArgs?.[1] ?? 0)] = ((s as any).npc_perstype[((s as any).locArgs?.[1] ?? 0)] ?? 0) + ('T');
   } else {
-    // TODO-QSP: $npc_perstype[$ARGS[1]] += 'F'
+    ((s as any).npc_perstype = (s as any).npc_perstype ?? {})[((s as any).locArgs?.[1] ?? 0)] = ((s as any).npc_perstype[((s as any).locArgs?.[1] ?? 0)] ?? 0) + ('F');
   }
   if ((!(Math.floor(Math.random() * 2) + 0))) {
-    // TODO-QSP: $npc_perstype[$ARGS[1]] += 'J'
+    ((s as any).npc_perstype = (s as any).npc_perstype ?? {})[((s as any).locArgs?.[1] ?? 0)] = ((s as any).npc_perstype[((s as any).locArgs?.[1] ?? 0)] ?? 0) + ('J');
   } else {
-    // TODO-QSP: $npc_perstype[$ARGS[1]] += 'P'
+    ((s as any).npc_perstype = (s as any).npc_perstype ?? {})[((s as any).locArgs?.[1] ?? 0)] = ((s as any).npc_perstype[((s as any).locArgs?.[1] ?? 0)] ?? 0) + ('P');
   }
   if ((String((((s as any).npc_perstype ?? 0)?.[((s as any).locArgs?.[1] ?? 0)] ?? 0)).slice((3)-1, ((3)-1)+(1))) === 'T') {
     if ((String((((s as any).npc_perstype ?? 0)?.[((s as any).locArgs?.[1] ?? 0)] ?? 0)).slice((1)-1, ((1)-1)+(1))) === 'E') {
@@ -923,287 +911,287 @@ function enterSetPersonality(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).npcgeneratecVars ?? 0)?.['humor'] === 1) {
-    // TODO-QSP: $npc_humor[$ARGS[1]] = 'childish'
+    ((s as any).npc_humor = (s as any).npc_humor ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'childish';
   } else {
     if (((s as any).npcgeneratecVars ?? 0)?.['humor'] === 2) {
-      // TODO-QSP: $npc_humor[$ARGS[1]] = 'perverted'
+      ((s as any).npc_humor = (s as any).npc_humor ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'perverted';
     } else {
       if (((s as any).npcgeneratecVars ?? 0)?.['humor'] === 3) {
-        // TODO-QSP: $npc_humor[$ARGS[1]] = 'intellectual'
+        ((s as any).npc_humor = (s as any).npc_humor ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'intellectual';
       }
     }
   }
-  // TODO-QSP: npc_smoker[$ARGS[1]] = rand(0, 2)
+  ((s as any).npc_smoker = (s as any).npc_smoker ?? {})[((s as any).locArgs?.[1] ?? 0)] = (Math.floor(Math.random() * 3) + 0);
   ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['rand'] = (Math.floor(Math.random() * 50) + 0);
   if (((s as any).npcgeneratecVars ?? 0)?.['rand'] < 9) {
-    // TODO-QSP: npc_sexdrive[$ARGS[1]] = rand(1, 3)
+    ((s as any).npc_sexdrive = (s as any).npc_sexdrive ?? {})[((s as any).locArgs?.[1] ?? 0)] = (Math.floor(Math.random() * 3) + 1);
   } else {
     if (((s as any).npcgeneratecVars ?? 0)?.['rand'] < 29) {
-      // TODO-QSP: npc_sexdrive[$ARGS[1]] = rand(3, 5)
+      ((s as any).npc_sexdrive = (s as any).npc_sexdrive ?? {})[((s as any).locArgs?.[1] ?? 0)] = (Math.floor(Math.random() * 3) + 3);
     } else {
-      // TODO-QSP: npc_sexdrive[$ARGS[1]] = rand(1, 10)
+      ((s as any).npc_sexdrive = (s as any).npc_sexdrive ?? {})[((s as any).locArgs?.[1] ?? 0)] = (Math.floor(Math.random() * 10) + 1);
     }
   }
   if (((s as any).npc_sexdrive ?? 0)[String((s as any).locArgs?.[1] ?? '')] > 5) {
     ((s as any).npc_energetic = (s as any).npc_energetic ?? {})[String((s as any).npcID ?? 0)] = (Math.floor(Math.random() * 2) + 0);
   }
   if (((s as any).npc_humor ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 'perverted'  &&  ((s as any).npc_sexdrive ?? 0)[String((s as any).locArgs?.[1] ?? '')] > 3) {
-    // TODO-QSP: npc_pervert[$ARGS[1]] = 1
+    ((s as any).npc_pervert = (s as any).npc_pervert ?? {})[((s as any).locArgs?.[1] ?? 0)] = 1;
   } else {
-    // TODO-QSP: npc_pervert[$ARGS[1]] = 0
+    ((s as any).npc_pervert = (s as any).npc_pervert ?? {})[((s as any).locArgs?.[1] ?? 0)] = 0;
   }
   if ((!(Math.floor(Math.random() * 6) + 0))) {
-    // TODO-QSP: npc_mj[$ARGS[1]] = 1 + (rand(0, 3) / 3)
+    ((s as any).npc_mj = (s as any).npc_mj ?? {})[((s as any).locArgs?.[1] ?? 0)] = 1 + ((Math.floor(Math.random() * 4) + 0) / 3);
   }
   if ((String((((s as any).npc_perstype ?? 0)?.[((s as any).locArgs?.[1] ?? 0)] ?? 0)).slice((1)-1, ((1)-1)+(1))) === 'E') {
-    // TODO-QSP: $npc_door_pref[$ARGS[1]] = 'outdoor'
+    ((s as any).npc_door_pref = (s as any).npc_door_pref ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'outdoor';
   } else {
-    // TODO-QSP: $npc_door_pref[$ARGS[1]] = 'indoor'
+    ((s as any).npc_door_pref = (s as any).npc_door_pref ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'indoor';
   }
   ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['rand'] = (Math.floor(Math.random() * 3) + 1);
   if (((s as any).npcgeneratecVars ?? 0)?.['rand'] === 1) {
-    // TODO-QSP: $npc_rel_goal[$ARGS[1]] = 'sex'
+    ((s as any).npc_rel_goal = (s as any).npc_rel_goal ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'sex';
   } else {
     if (((s as any).npcgeneratecVars ?? 0)?.['rand'] === 2) {
-      // TODO-QSP: $npc_rel_goal[$ARGS[1]] = 'casual'
+      ((s as any).npc_rel_goal = (s as any).npc_rel_goal ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'casual';
     } else {
       if (((s as any).npcgeneratecVars ?? 0)?.['rand'] === 3) {
-        // TODO-QSP: $npc_rel_goal[$ARGS[1]] = 'serious'
+        ((s as any).npc_rel_goal = (s as any).npc_rel_goal ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'serious';
       }
     }
   }
-  // TODO-QSP: npc_fidelity[$ARGS[1]] = rand(1, 10)
+  ((s as any).npc_fidelity = (s as any).npc_fidelity ?? {})[((s as any).locArgs?.[1] ?? 0)] = (Math.floor(Math.random() * 10) + 1);
   if (((s as any).npc_fidelity ?? 0)[String((s as any).locArgs?.[1] ?? '')] <= 4) {
-    // TODO-QSP: $npc_fidelity_label[$ARGS[1]] = 'cheater'
+    ((s as any).npc_fidelity_label = (s as any).npc_fidelity_label ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'cheater';
   } else {
     if (((s as any).npc_fidelity ?? 0)[String((s as any).locArgs?.[1] ?? '')] <= 6) {
-      // TODO-QSP: $npc_fidelity_label[$ARGS[1]] = 'seduced'
+      ((s as any).npc_fidelity_label = (s as any).npc_fidelity_label ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'seduced';
     } else {
       if (((s as any).npc_fidelity ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 7) {
-        // TODO-QSP: $npc_fidelity_label[$ARGS[1]] = 'open'
+        ((s as any).npc_fidelity_label = (s as any).npc_fidelity_label ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'open';
       } else {
-        // TODO-QSP: $npc_fidelity_label[$ARGS[1]] = 'faithful'
+        ((s as any).npc_fidelity_label = (s as any).npc_fidelity_label ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'faithful';
       }
     }
   }
   if (((s as any).npc_fidelity ?? 0)[String((s as any).locArgs?.[1] ?? '')] <= 5) {
     if (((s as any).npcgeneratecVars ?? 0)?.['age'] >= 26  &&  (Math.floor(Math.random() * 2) + 1) === 1  &&  ((s as any).npc_finance ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 2) {
       if ((Math.floor(Math.random() * 3) + 1) === 1) {
-        // TODO-QSP: npc_wife[$ARGS[1]] = 1
+        ((s as any).npc_wife = (s as any).npc_wife ?? {})[((s as any).locArgs?.[1] ?? 0)] = 1;
         if (((s as any).npcgeneratecVars ?? 0)?.['age'] >= 38) {
-          // TODO-QSP: npc_wife_age[$ARGS[1]] = npcgeneratecVars['age'] - rand(-4,20)
+          ((s as any).npc_wife_age = (s as any).npc_wife_age ?? {})[((s as any).locArgs?.[1] ?? 0)] = (((s as any).npcgeneratecVars ?? {})?.['age'] ?? 0) - (Math.floor(Math.random() * (20 - (-4) + 1)) + ((-4)));
         } else {
-          // TODO-QSP: npc_wife_age[$ARGS[1]] = npcgeneratecVars['age'] + rand(-4,4) + rand(-4,4)
+          ((s as any).npc_wife_age = (s as any).npc_wife_age ?? {})[((s as any).locArgs?.[1] ?? 0)] = (((s as any).npcgeneratecVars ?? {})?.['age'] ?? 0) + (Math.floor(Math.random() * (4 - (-4) + 1)) + ((-4))) + (Math.floor(Math.random() * (4 - (-4) + 1)) + ((-4)));
         }
         if ((Math.floor(Math.random() * 4) + 1) === 1) {
-          // TODO-QSP: $npc_wife_feelings[$ARGS[1]] = 'estranged'
+          ((s as any).npc_wife_feelings = (s as any).npc_wife_feelings ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'estranged';
         } else {
           if ((Math.floor(Math.random() * 3) + 1) === 1) {
-            // TODO-QSP: $npc_wife_feelings[$ARGS[1]] = 'loveless'
+            ((s as any).npc_wife_feelings = (s as any).npc_wife_feelings ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'loveless';
           } else {
             if ((Math.floor(Math.random() * 2) + 1) === 1) {
-              // TODO-QSP: $npc_wife_feelings[$ARGS[1]] = 'transactional'
+              ((s as any).npc_wife_feelings = (s as any).npc_wife_feelings ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'transactional';
             } else {
-              // TODO-QSP: $npc_wife_feelings[$ARGS[1]] = 'love'
+              ((s as any).npc_wife_feelings = (s as any).npc_wife_feelings ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'love';
             }
           }
         }
       }
       if ((Math.floor(Math.random() * 3) + 1) === 1) {
-        // TODO-QSP: npc_ex_wife[$ARGS[1]] = 1
+        ((s as any).npc_ex_wife = (s as any).npc_ex_wife ?? {})[((s as any).locArgs?.[1] ?? 0)] = 1;
         if (((s as any).npcgeneratecVars ?? 0)?.['age'] >= 38) {
-          // TODO-QSP: npc_ex_age[$ARGS[1]] = npcgeneratecVars['age'] - rand(-4,20)
+          ((s as any).npc_ex_age = (s as any).npc_ex_age ?? {})[((s as any).locArgs?.[1] ?? 0)] = (((s as any).npcgeneratecVars ?? {})?.['age'] ?? 0) - (Math.floor(Math.random() * (20 - (-4) + 1)) + ((-4)));
         } else {
-          // TODO-QSP: npc_ex_age[$ARGS[1]] = npcgeneratecVars['age'] + rand(-4,4) + rand(-4,4)
+          ((s as any).npc_ex_age = (s as any).npc_ex_age ?? {})[((s as any).locArgs?.[1] ?? 0)] = (((s as any).npcgeneratecVars ?? {})?.['age'] ?? 0) + (Math.floor(Math.random() * (4 - (-4) + 1)) + ((-4))) + (Math.floor(Math.random() * (4 - (-4) + 1)) + ((-4)));
         }
-        // TODO-QSP: npc_divorced[$ARGS[1]] = rand(1,(npc_age[$ARGS[1]]/15))
+        ((s as any).npc_divorced = (s as any).npc_divorced ?? {})[((s as any).locArgs?.[1] ?? 0)] = (Math.floor(Math.random() * ((((s as any).npc_age ?? 0)[((s as any).locArgs?.[1] ?? 0)]/15) - 1 + 1)) + (1));
       }
     } else {
-      // TODO-QSP: npc_girlfriend[$ARGS[1]] = rand(0,1)
+      ((s as any).npc_girlfriend = (s as any).npc_girlfriend ?? {})[((s as any).locArgs?.[1] ?? 0)] = (Math.floor(Math.random() * 2) + 0);
       if (((s as any).npcgeneratecVars ?? 0)?.['age'] >= 38) {
-        // TODO-QSP: npc_gf_age[$ARGS[1]] = npcgeneratecVars['age'] - rand(-4,20)
+        ((s as any).npc_gf_age = (s as any).npc_gf_age ?? {})[((s as any).locArgs?.[1] ?? 0)] = (((s as any).npcgeneratecVars ?? {})?.['age'] ?? 0) - (Math.floor(Math.random() * (20 - (-4) + 1)) + ((-4)));
       } else {
-        // TODO-QSP: npc_gf_age[$ARGS[1]] = npcgeneratecVars['age'] + rand(-4,4) + rand(-4,4)
+        ((s as any).npc_gf_age = (s as any).npc_gf_age ?? {})[((s as any).locArgs?.[1] ?? 0)] = (((s as any).npcgeneratecVars ?? {})?.['age'] ?? 0) + (Math.floor(Math.random() * (4 - (-4) + 1)) + ((-4))) + (Math.floor(Math.random() * (4 - (-4) + 1)) + ((-4)));
       }
     }
   }
   ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['rand'] = (Math.floor(Math.random() * 3) + 0);
   if (((s as any).npcgeneratecVars ?? 0)?.['rand'] === 0) {
-    // TODO-QSP: npc_earlyriser[$ARGS[1]] = 1
-    // TODO-QSP: npc_latesleeper[$ARGS[1]] = 0
+    ((s as any).npc_earlyriser = (s as any).npc_earlyriser ?? {})[((s as any).locArgs?.[1] ?? 0)] = 1;
+    ((s as any).npc_latesleeper = (s as any).npc_latesleeper ?? {})[((s as any).locArgs?.[1] ?? 0)] = 0;
   } else {
     if (((s as any).npcgeneratecVars ?? 0)?.['rand'] === 1) {
-      // TODO-QSP: npc_earlyriser[$ARGS[1]] = 0
-      // TODO-QSP: npc_latesleeper[$ARGS[1]] = 1
+      ((s as any).npc_earlyriser = (s as any).npc_earlyriser ?? {})[((s as any).locArgs?.[1] ?? 0)] = 0;
+      ((s as any).npc_latesleeper = (s as any).npc_latesleeper ?? {})[((s as any).locArgs?.[1] ?? 0)] = 1;
     }
   }
   ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['rand'] = (Math.floor(Math.random() * 3) + 0);
   if (((s as any).npcgeneratecVars ?? 0)?.['rand'] === 0) {
-    // TODO-QSP: npc_generous[$ARGS[1]] = 1
-    // TODO-QSP: npc_selfish[$ARGS[1]] = 0
+    ((s as any).npc_generous = (s as any).npc_generous ?? {})[((s as any).locArgs?.[1] ?? 0)] = 1;
+    ((s as any).npc_selfish = (s as any).npc_selfish ?? {})[((s as any).locArgs?.[1] ?? 0)] = 0;
   } else {
     if (((s as any).npcgeneratecVars ?? 0)?.['rand'] === 1) {
-      // TODO-QSP: npc_generous[$ARGS[1]] = 0
-      // TODO-QSP: npc_selfish[$ARGS[1]] = 1
+      ((s as any).npc_generous = (s as any).npc_generous ?? {})[((s as any).locArgs?.[1] ?? 0)] = 0;
+      ((s as any).npc_selfish = (s as any).npc_selfish ?? {})[((s as any).locArgs?.[1] ?? 0)] = 1;
     }
   }
   ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['rand'] = (Math.floor(Math.random() * 3) + 0);
   if (((s as any).npcgeneratecVars ?? 0)?.['rand'] === 0) {
-    // TODO-QSP: npc_gentle[$ARGS[1]] = 1
-    // TODO-QSP: npc_rough[$ARGS[1]] = 0
+    ((s as any).npc_gentle = (s as any).npc_gentle ?? {})[((s as any).locArgs?.[1] ?? 0)] = 1;
+    ((s as any).npc_rough = (s as any).npc_rough ?? {})[((s as any).locArgs?.[1] ?? 0)] = 0;
   } else {
     if (((s as any).npcgeneratecVars ?? 0)?.['rand'] === 1) {
-      // TODO-QSP: npc_gentle[$ARGS[1]] = 0
-      // TODO-QSP: npc_rough[$ARGS[1]] = 1
+      ((s as any).npc_gentle = (s as any).npc_gentle ?? {})[((s as any).locArgs?.[1] ?? 0)] = 0;
+      ((s as any).npc_rough = (s as any).npc_rough ?? {})[((s as any).locArgs?.[1] ?? 0)] = 1;
     }
   }
   ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['rand'] = (Math.floor(Math.random() * 3) + 0);
   if (((s as any).npcgeneratecVars ?? 0)?.['rand'] === 0) {
-    // TODO-QSP: npc_diligent[$ARGS[1]] = 1
-    // TODO-QSP: npc_risktaker[$ARGS[1]] = 0
+    ((s as any).npc_diligent = (s as any).npc_diligent ?? {})[((s as any).locArgs?.[1] ?? 0)] = 1;
+    ((s as any).npc_risktaker = (s as any).npc_risktaker ?? {})[((s as any).locArgs?.[1] ?? 0)] = 0;
   } else {
     if (((s as any).npcgeneratecVars ?? 0)?.['rand'] === 1) {
-      // TODO-QSP: npc_diligent[$ARGS[1]] = 0
-      // TODO-QSP: npc_risktaker[$ARGS[1]] = 1
+      ((s as any).npc_diligent = (s as any).npc_diligent ?? {})[((s as any).locArgs?.[1] ?? 0)] = 0;
+      ((s as any).npc_risktaker = (s as any).npc_risktaker ?? {})[((s as any).locArgs?.[1] ?? 0)] = 1;
     }
   }
   ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['rand'] = (Math.floor(Math.random() * 9) + 0);
   if (((s as any).npcgeneratecVars ?? 0)?.['rand'] < 2 + 2 * ((s as any).npc_diligent ?? 0)[String((s as any).locArgs?.[1] ?? '')]) {
-    // TODO-QSP: npc_messy[$ARGS[1]] = 0
-    // TODO-QSP: npc_neat[$ARGS[1]] = 1
+    ((s as any).npc_messy = (s as any).npc_messy ?? {})[((s as any).locArgs?.[1] ?? 0)] = 0;
+    ((s as any).npc_neat = (s as any).npc_neat ?? {})[((s as any).locArgs?.[1] ?? 0)] = 1;
   } else {
     if (((s as any).npcgeneratecVars ?? 0)?.['rand'] < 6) {
-      // TODO-QSP: npc_messy[$ARGS[1]] = 1
-      // TODO-QSP: npc_neat[$ARGS[1]] = 0
+      ((s as any).npc_messy = (s as any).npc_messy ?? {})[((s as any).locArgs?.[1] ?? 0)] = 1;
+      ((s as any).npc_neat = (s as any).npc_neat ?? {})[((s as any).locArgs?.[1] ?? 0)] = 0;
     }
   }
   ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['rand'] = (Math.floor(Math.random() * (2 - 0 + 1)) + (0));
   if (((s as any).npcgeneratecVars ?? 0)?.['rand'] < 1) {
-    // TODO-QSP: $npc_pubes[$ARGS[1]] = 'shaved'
+    ((s as any).npc_pubes = (s as any).npc_pubes ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'shaved';
   } else {
     if (((s as any).npcgeneratecVars ?? 0)?.['rand'] === 1) {
-      // TODO-QSP: $npc_pubes[$ARGS[1]] = 'trimmed'
+      ((s as any).npc_pubes = (s as any).npc_pubes ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'trimmed';
     } else {
       if (((s as any).npcgeneratecVars ?? 0)?.['rand'] === 2) {
-        // TODO-QSP: $npc_pubes[$ARGS[1]] = 'bush'
+        ((s as any).npc_pubes = (s as any).npc_pubes ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'bush';
       }
     }
   }
-  // TODO-QSP: npc_argumentative[$ARGS[1]] = iif(rand(0, 2) = 0, 1, 0)
+  ((s as any).npc_argumentative = (s as any).npc_argumentative ?? {})[((s as any).locArgs?.[1] ?? 0)] = (((!(Math.floor(Math.random() * 3) + 0))) ? (1) : (0));
   ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['rand'] = (Math.floor(Math.random() * 9) + 0);
   if (((s as any).npcgeneratecVars ?? 0)?.['rand'] < 2 + 2 * ((s as any).npc_diligent ?? 0)[String((s as any).locArgs?.[1] ?? '')]) {
-    // TODO-QSP: npc_shy[$ARGS[1]] = 0
-    // TODO-QSP: npc_assertive[$ARGS[1]] = 1
+    ((s as any).npc_shy = (s as any).npc_shy ?? {})[((s as any).locArgs?.[1] ?? 0)] = 0;
+    ((s as any).npc_assertive = (s as any).npc_assertive ?? {})[((s as any).locArgs?.[1] ?? 0)] = 1;
   } else {
     if (((s as any).npcgeneratecVars ?? 0)?.['rand'] < 6) {
-      // TODO-QSP: npc_shy[$ARGS[1]] = 1
-      // TODO-QSP: npc_assertive[$ARGS[1]] = 0
+      ((s as any).npc_shy = (s as any).npc_shy ?? {})[((s as any).locArgs?.[1] ?? 0)] = 1;
+      ((s as any).npc_assertive = (s as any).npc_assertive ?? {})[((s as any).locArgs?.[1] ?? 0)] = 0;
     }
   }
-  // TODO-QSP: npc_willpwr[$ARGS[1]] = rand(1, 50)
-  // TODO-QSP: npc_willpwr[$ARGS[1]] += npc_argumentative[$ARGS[1]] * 10
+  ((s as any).npc_willpwr = (s as any).npc_willpwr ?? {})[((s as any).locArgs?.[1] ?? 0)] = (Math.floor(Math.random() * 50) + 1);
+  ((s as any).npc_willpwr = (s as any).npc_willpwr ?? {})[((s as any).locArgs?.[1] ?? 0)] = ((s as any).npc_willpwr[((s as any).locArgs?.[1] ?? 0)] ?? 0) + (((s as any).npc_argumentative ?? 0)[((s as any).locArgs?.[1] ?? 0)] * 10);
   if (((s as any).npc_shy ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 0) {
-    // TODO-QSP: npc_arrogant[$ARGS[1]] = iif(rand(0, 2) = 0, 1, 0)
+    ((s as any).npc_arrogant = (s as any).npc_arrogant ?? {})[((s as any).locArgs?.[1] ?? 0)] = (((!(Math.floor(Math.random() * 3) + 0))) ? (1) : (0));
   }
   if (((s as any).npc_shy ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 0) {
-    // TODO-QSP: npc_pushy[$ARGS[1]] = iif(rand(-3, 1) + 2 * npc_selfish[$ARGS[1]] > 0, 1, 0)
+    ((s as any).npc_pushy = (s as any).npc_pushy ?? {})[((s as any).locArgs?.[1] ?? 0)] = (((Math.floor(Math.random() * (1 - -3 + 1)) + (-3)) + 2 * ((s as any).npc_selfish ?? 0)[String((s as any).locArgs?.[1] ?? '')] > 0) ? (1) : (0));
   }
-  // TODO-QSP: npc_snob[$ARGS[1]] = iif(rand(-3, 1) + 2 * npc_arrogant[$ARGS[1]] > 0, 1, 0)
-  // TODO-QSP: npc_competitive[$ARGS[1]] = iif(rand(0, 2) = 0, 1, 0)
-  // TODO-QSP: npc_insecure[$ARGS[1]] = iif(rand(0, 2) = 0, 1, 0)
-  // TODO-QSP: npc_gymrat[$ARGS[1]] = iif(rand(0, 2) = 0, 1, 0)
-  // TODO-QSP: npc_foodie[$ARGS[1]] = iif(rand(0, 2) = 0, 1, 0)
-  // TODO-QSP: npc_jealous[$ARGS[1]] = iif(rand(0, 4) = 0, 1, 0)
-  // TODO-QSP: npc_romantic[$ARGS[1]] = iif(rand(0, 4) = 0, 1, 0)
-  // TODO-QSP: npc_wander_eyes[$ARGS[1]] = iif(rand(0, 4) = 0, 1, 0)
-  // TODO-QSP: npc_abusive[$ARGS[1]] = iif(rand(0, 4) = 0, 1, 0)
-  // TODO-QSP: npc_manipulative[$ARGS[1]] = iif(rand(0, 4) = 0, 1, 0)
+  ((s as any).npc_snob = (s as any).npc_snob ?? {})[((s as any).locArgs?.[1] ?? 0)] = (((Math.floor(Math.random() * (1 - -3 + 1)) + (-3)) + 2 * ((s as any).npc_arrogant ?? 0)[String((s as any).locArgs?.[1] ?? '')] > 0) ? (1) : (0));
+  ((s as any).npc_competitive = (s as any).npc_competitive ?? {})[((s as any).locArgs?.[1] ?? 0)] = (((!(Math.floor(Math.random() * 3) + 0))) ? (1) : (0));
+  ((s as any).npc_insecure = (s as any).npc_insecure ?? {})[((s as any).locArgs?.[1] ?? 0)] = (((!(Math.floor(Math.random() * 3) + 0))) ? (1) : (0));
+  ((s as any).npc_gymrat = (s as any).npc_gymrat ?? {})[((s as any).locArgs?.[1] ?? 0)] = (((!(Math.floor(Math.random() * 3) + 0))) ? (1) : (0));
+  ((s as any).npc_foodie = (s as any).npc_foodie ?? {})[((s as any).locArgs?.[1] ?? 0)] = (((!(Math.floor(Math.random() * 3) + 0))) ? (1) : (0));
+  ((s as any).npc_jealous = (s as any).npc_jealous ?? {})[((s as any).locArgs?.[1] ?? 0)] = (((!(Math.floor(Math.random() * 5) + 0))) ? (1) : (0));
+  ((s as any).npc_romantic = (s as any).npc_romantic ?? {})[((s as any).locArgs?.[1] ?? 0)] = (((!(Math.floor(Math.random() * 5) + 0))) ? (1) : (0));
+  ((s as any).npc_wander_eyes = (s as any).npc_wander_eyes ?? {})[((s as any).locArgs?.[1] ?? 0)] = (((!(Math.floor(Math.random() * 5) + 0))) ? (1) : (0));
+  ((s as any).npc_abusive = (s as any).npc_abusive ?? {})[((s as any).locArgs?.[1] ?? 0)] = (((!(Math.floor(Math.random() * 5) + 0))) ? (1) : (0));
+  ((s as any).npc_manipulative = (s as any).npc_manipulative ?? {})[((s as any).locArgs?.[1] ?? 0)] = (((!(Math.floor(Math.random() * 5) + 0))) ? (1) : (0));
   if (((s as any).npc_selfish ?? 0)[String((s as any).locArgs?.[1] ?? '')] !== 1) {
-    // TODO-QSP: npc_caretaker[$ARGS[1]] = iif(rand(0, 4) = 0, 1, 0)
+    ((s as any).npc_caretaker = (s as any).npc_caretaker ?? {})[((s as any).locArgs?.[1] ?? 0)] = (((!(Math.floor(Math.random() * 5) + 0))) ? (1) : (0));
   }
-  // TODO-QSP: npc_indiscreet[$ARGS[1]] = iif(rand(0, 4) = 0, 1, 0)
-  // TODO-QSP: npc_womanizer[$ARGS[1]] = iif(rand(0, 4) = 0, 1, 0)
-  // TODO-QSP: npc_misogynist[$ARGS[1]] = iif(rand(0, 4) = 0, 1, 0)
-  // TODO-QSP: npc_trust_issues[$ARGS[1]] = iif(rand(0, 4) = 0, 1, 0)
+  ((s as any).npc_indiscreet = (s as any).npc_indiscreet ?? {})[((s as any).locArgs?.[1] ?? 0)] = (((!(Math.floor(Math.random() * 5) + 0))) ? (1) : (0));
+  ((s as any).npc_womanizer = (s as any).npc_womanizer ?? {})[((s as any).locArgs?.[1] ?? 0)] = (((!(Math.floor(Math.random() * 5) + 0))) ? (1) : (0));
+  ((s as any).npc_misogynist = (s as any).npc_misogynist ?? {})[((s as any).locArgs?.[1] ?? 0)] = (((!(Math.floor(Math.random() * 5) + 0))) ? (1) : (0));
+  ((s as any).npc_trust_issues = (s as any).npc_trust_issues ?? {})[((s as any).locArgs?.[1] ?? 0)] = (((!(Math.floor(Math.random() * 5) + 0))) ? (1) : (0));
   if ((Math.floor(Math.random() * 3) + 1) === 1) {
-    // TODO-QSP: $npc_diet[$ARGS[1]] = 'vegetarian'
+    ((s as any).npc_diet = (s as any).npc_diet ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'vegetarian';
   } else {
     if ((Math.floor(Math.random() * 3) + 1) === 1) {
-      // TODO-QSP: $npc_diet[$ARGS[1]] = 'protein'
+      ((s as any).npc_diet = (s as any).npc_diet ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'protein';
     } else {
-      // TODO-QSP: $npc_diet[$ARGS[1]] = 'normal'
+      ((s as any).npc_diet = (s as any).npc_diet ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'normal';
     }
   }
   if (((s as any).npc_humor ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 'perverted') {
-    // TODO-QSP: npc_pineapple[$ARGS[1]] = iif(rand(0, 4) > 2, 1, 0)
+    ((s as any).npc_pineapple = (s as any).npc_pineapple ?? {})[((s as any).locArgs?.[1] ?? 0)] = (((Math.floor(Math.random() * 5) + 0) > 2) ? (1) : (0));
   } else {
-    // TODO-QSP: npc_pineapple[$ARGS[1]] = iif(rand(0, 4) = 0, 1, 0)
+    ((s as any).npc_pineapple = (s as any).npc_pineapple ?? {})[((s as any).locArgs?.[1] ?? 0)] = (((!(Math.floor(Math.random() * 5) + 0))) ? (1) : (0));
   }
   if (((s as any).npc_pineapple ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 1  ||  ((s as any).npc_diet ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 'vegetarian') {
-    // TODO-QSP: $npc_cum_flavor[$ARGS[1]] = 'sweet'
+    ((s as any).npc_cum_flavor = (s as any).npc_cum_flavor ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'sweet';
   } else {
     if (((s as any).npc_diet ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 'protein') {
-      // TODO-QSP: $npc_cum_flavor[$ARGS[1]] = 'bitter'
+      ((s as any).npc_cum_flavor = (s as any).npc_cum_flavor ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'bitter';
     } else {
       if ((Math.floor(Math.random() * 3) + 1) === 1) {
-        // TODO-QSP: $npc_cum_flavor[$ARGS[1]] = 'sweet'
+        ((s as any).npc_cum_flavor = (s as any).npc_cum_flavor ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'sweet';
       } else {
         if ((Math.floor(Math.random() * 2) + 1) === 1) {
-          // TODO-QSP: $npc_cum_flavor[$ARGS[1]] = 'bitter'
+          ((s as any).npc_cum_flavor = (s as any).npc_cum_flavor ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'bitter';
         } else {
-          // TODO-QSP: $npc_cum_flavor[$ARGS[1]] = 'normal'
+          ((s as any).npc_cum_flavor = (s as any).npc_cum_flavor ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'normal';
         }
       }
     }
   }
-  // TODO-QSP: npc_likes_cute[$ARGS[1]]    = iif(rand(0, 4) = 0, 1, 0)
-  // TODO-QSP: npc_likes_girly[$ARGS[1]]    = iif(rand(0, 4) = 0, 1, 0)
-  // TODO-QSP: npc_likes_gopnik[$ARGS[1]]    = iif(rand(0, 4) = 0, 1, 0)
-  // TODO-QSP: npc_likes_tomboyish[$ARGS[1]]  = iif(rand(0, 4) = 0, 1, 0)
-  // TODO-QSP: npc_likes_slutty[$ARGS[1]]    = iif(rand(0, 4) = 0, 1, 0)
+  ((s as any).npc_likes_cute = (s as any).npc_likes_cute ?? {})[((s as any).locArgs?.[1] ?? 0)] = (((!(Math.floor(Math.random() * 5) + 0))) ? (1) : (0));
+  ((s as any).npc_likes_girly = (s as any).npc_likes_girly ?? {})[((s as any).locArgs?.[1] ?? 0)] = (((!(Math.floor(Math.random() * 5) + 0))) ? (1) : (0));
+  ((s as any).npc_likes_gopnik = (s as any).npc_likes_gopnik ?? {})[((s as any).locArgs?.[1] ?? 0)] = (((!(Math.floor(Math.random() * 5) + 0))) ? (1) : (0));
+  ((s as any).npc_likes_tomboyish = (s as any).npc_likes_tomboyish ?? {})[((s as any).locArgs?.[1] ?? 0)] = (((!(Math.floor(Math.random() * 5) + 0))) ? (1) : (0));
+  ((s as any).npc_likes_slutty = (s as any).npc_likes_slutty ?? {})[((s as any).locArgs?.[1] ?? 0)] = (((!(Math.floor(Math.random() * 5) + 0))) ? (1) : (0));
   if ((Math.floor(Math.random() * 2) + 0) >= 1) {
     if (((s as any).npc_diligent ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 1) {
-      // TODO-QSP: npc_condom_conscious[$ARGS[1]] = max(0, rand(-1, 2))
+      ((s as any).npc_condom_conscious = (s as any).npc_condom_conscious ?? {})[((s as any).locArgs?.[1] ?? 0)] = Math.max(0, (Math.floor(Math.random() * (2 - (-1) + 1)) + ((-1))));
     } else {
-      // TODO-QSP: npc_condom_conscious[$ARGS[1]] = max(0, rand(-2, 2))
+      ((s as any).npc_condom_conscious = (s as any).npc_condom_conscious ?? {})[((s as any).locArgs?.[1] ?? 0)] = Math.max(0, (Math.floor(Math.random() * (2 - (-2) + 1)) + ((-2))));
     }
   } else {
     if (((s as any).npc_risktaker ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 1) {
-      // TODO-QSP: npc_no_condoms[$ARGS[1]] = max(0, rand(-1, 2))
+      ((s as any).npc_no_condoms = (s as any).npc_no_condoms ?? {})[((s as any).locArgs?.[1] ?? 0)] = Math.max(0, (Math.floor(Math.random() * (2 - (-1) + 1)) + ((-1))));
     } else {
-      // TODO-QSP: npc_no_condoms[$ARGS[1]] = max(0, rand(-2, 2))
+      ((s as any).npc_no_condoms = (s as any).npc_no_condoms ?? {})[((s as any).locArgs?.[1] ?? 0)] = Math.max(0, (Math.floor(Math.random() * (2 - (-2) + 1)) + ((-2))));
     }
   }
   if ((Math.floor(Math.random() * 100) + 1) <= 29) {
-    // TODO-QSP: npc_condom_conscious[$ARGS[1]] = rand(0,2)
+    ((s as any).npc_condom_conscious = (s as any).npc_condom_conscious ?? {})[((s as any).locArgs?.[1] ?? 0)] = (Math.floor(Math.random() * 3) + 0);
   } else {
-    // TODO-QSP: npc_no_condoms[$ARGS[1]] = rand(0,2)
+    ((s as any).npc_no_condoms = (s as any).npc_no_condoms ?? {})[((s as any).locArgs?.[1] ?? 0)] = (Math.floor(Math.random() * 3) + 0);
   }
   if (((s as any).npc_condom_conscious ?? 0)[String((s as any).locArgs?.[1] ?? '')] < 0) {
-    // TODO-QSP: npc_condom_conscious[$ARGS[1]] = 0
+    ((s as any).npc_condom_conscious = (s as any).npc_condom_conscious ?? {})[((s as any).locArgs?.[1] ?? 0)] = 0;
   }
   if (((s as any).npc_no_condoms ?? 0)[String((s as any).locArgs?.[1] ?? '')] < 0) {
-    // TODO-QSP: npc_no_condoms[$ARGS[1]] = 0
+    ((s as any).npc_no_condoms = (s as any).npc_no_condoms ?? {})[((s as any).locArgs?.[1] ?? 0)] = 0;
   }
   if ((!(Math.floor(Math.random() * 50) + 0))) {
-    // TODO-QSP: npc_latex_allergy[$ARGS[1]] = 1
-    // TODO-QSP: npc_no_condoms[$ARGS[1]] = 1
-    // TODO-QSP: npc_condom_conscious[$ARGS[1]] = 0
+    ((s as any).npc_latex_allergy = (s as any).npc_latex_allergy ?? {})[((s as any).locArgs?.[1] ?? 0)] = 1;
+    ((s as any).npc_no_condoms = (s as any).npc_no_condoms ?? {})[((s as any).locArgs?.[1] ?? 0)] = 1;
+    ((s as any).npc_condom_conscious = (s as any).npc_condom_conscious ?? {})[((s as any).locArgs?.[1] ?? 0)] = 0;
   }
   if (((s as any).npc_no_condoms ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 0) {
     if (((s as any).npc_risktaker ?? 0)[String((s as any).locArgs?.[1] ?? '')] > 0) {
-      // TODO-QSP: $npc_condom_type[$ARGS[1]] = 'extra thin'
+      ((s as any).npc_condom_type = (s as any).npc_condom_type ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'extra thin';
     } else {
       if (((s as any).npc_generous ?? 0)[String((s as any).locArgs?.[1] ?? '')] > 0) {
-        // TODO-QSP: $npc_condom_type[$ARGS[1]] = 'ribbed'
+        ((s as any).npc_condom_type = (s as any).npc_condom_type ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'ribbed';
       } else {
         if ((Math.floor(Math.random() * 3) + 1) === 1) {
-          // TODO-QSP: $npc_condom_type[$ARGS[1]] = 'normal'
+          ((s as any).npc_condom_type = (s as any).npc_condom_type ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'normal';
         } else {
           if ((Math.floor(Math.random() * 2) + 1) === 1) {
-            // TODO-QSP: $npc_condom_type[$ARGS[1]] = 'extra thin'
+            ((s as any).npc_condom_type = (s as any).npc_condom_type ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'extra thin';
           } else {
-            // TODO-QSP: $npc_condom_type[$ARGS[1]] = 'ribbed'
+            ((s as any).npc_condom_type = (s as any).npc_condom_type ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'ribbed';
           }
         }
       }
@@ -1211,24 +1199,24 @@ function enterSetPersonality(s: GameState, scene: SceneBuilder): void {
   }
   ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['rand'] = (Math.floor(Math.random() * 7) + 1);
   if (((s as any).npcgeneratecVars ?? 0)?.['rand'] === 1) {
-    // TODO-QSP: $npc_fav_pos[$ARGS[1]] = 'miss'
+    ((s as any).npc_fav_pos = (s as any).npc_fav_pos ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'miss';
   } else {
     if (((s as any).npcgeneratecVars ?? 0)?.['rand'] === 2) {
-      // TODO-QSP: $npc_fav_pos[$ARGS[1]] = 'doggy'
+      ((s as any).npc_fav_pos = (s as any).npc_fav_pos ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'doggy';
     } else {
       if (((s as any).npcgeneratecVars ?? 0)?.['rand'] === 3) {
-        // TODO-QSP: $npc_fav_pos[$ARGS[1]] = 'cowgirl'
+        ((s as any).npc_fav_pos = (s as any).npc_fav_pos ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'cowgirl';
       } else {
         if (((s as any).npcgeneratecVars ?? 0)?.['rand'] === 4) {
-          // TODO-QSP: $npc_fav_pos[$ARGS[1]] = 'blowjob'
+          ((s as any).npc_fav_pos = (s as any).npc_fav_pos ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'blowjob';
         } else {
           if (((s as any).npcgeneratecVars ?? 0)?.['rand'] === 5) {
-            // TODO-QSP: $npc_fav_pos[$ARGS[1]] = 'titjob'
+            ((s as any).npc_fav_pos = (s as any).npc_fav_pos ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'titjob';
           } else {
             if (((s as any).npcgeneratecVars ?? 0)?.['rand'] === 6) {
-              // TODO-QSP: $npc_fav_pos[$ARGS[1]] = '69'
+              ((s as any).npc_fav_pos = (s as any).npc_fav_pos ?? {})[((s as any).locArgs?.[1] ?? 0)] = '69';
             } else {
-              // TODO-QSP: $npc_fav_pos[$ARGS[1]] = 'anal'
+              ((s as any).npc_fav_pos = (s as any).npc_fav_pos ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'anal';
             }
           }
         }
@@ -1236,129 +1224,129 @@ function enterSetPersonality(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).npc_fav_pos ?? 0)[String((s as any).locArgs?.[1] ?? '')] !== 'anal') {
-    // TODO-QSP: npc_no_anal[$ARGS[1]] = iif(rand(0, 2) = 0, 1, 0)
+    ((s as any).npc_no_anal = (s as any).npc_no_anal ?? {})[((s as any).locArgs?.[1] ?? 0)] = (((!(Math.floor(Math.random() * 3) + 0))) ? (1) : (0));
   }
-  // TODO-QSP: npc_sex_speed[$ARGS[1]] = rand(1, 3)
-  // TODO-QSP: npc_sex_volume[$ARGS[1]] = rand(0, 3)
+  ((s as any).npc_sex_speed = (s as any).npc_sex_speed ?? {})[((s as any).locArgs?.[1] ?? 0)] = (Math.floor(Math.random() * 3) + 1);
+  ((s as any).npc_sex_volume = (s as any).npc_sex_volume ?? {})[((s as any).locArgs?.[1] ?? 0)] = (Math.floor(Math.random() * 4) + 0);
   if ((!(Math.floor(Math.random() * 3) + 0))) {
     ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['rand'] = (Math.floor(Math.random() * 4) + 0);
     if (((s as any).npcgeneratecVars ?? 0)?.['rand'] === 0  &&  ((s as any).npc_sex_speed ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 1) {
-      // TODO-QSP: npc_gentle_lover[$ARGS[1]] = 1
+      ((s as any).npc_gentle_lover = (s as any).npc_gentle_lover ?? {})[((s as any).locArgs?.[1] ?? 0)] = 1;
     } else {
       if (((s as any).npcgeneratecVars ?? 0)?.['rand'] === 1) {
-        // TODO-QSP: npc_dirty_lover[$ARGS[1]] = 1
+        ((s as any).npc_dirty_lover = (s as any).npc_dirty_lover ?? {})[((s as any).locArgs?.[1] ?? 0)] = 1;
       } else {
         if (((s as any).npcgeneratecVars ?? 0)?.['rand'] === 2) {
-          // TODO-QSP: npc_sensual_lover[$ARGS[1]] = 1
+          ((s as any).npc_sensual_lover = (s as any).npc_sensual_lover ?? {})[((s as any).locArgs?.[1] ?? 0)] = 1;
         }
       }
     }
   }
   ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['rand'] = (Math.floor(Math.random() * 6) + 0);
   if (((s as any).npcgeneratecVars ?? 0)?.['rand'] === 1) {
-    // TODO-QSP: $npc_cum_pref[$ARGS[1]] = 'creampie'
+    ((s as any).npc_cum_pref = (s as any).npc_cum_pref ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'creampie';
   } else {
     if (((s as any).npcgeneratecVars ?? 0)?.['rand'] === 2) {
-      // TODO-QSP: $npc_cum_pref[$ARGS[1]] = 'mouth'
+      ((s as any).npc_cum_pref = (s as any).npc_cum_pref ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'mouth';
     } else {
       if (((s as any).npcgeneratecVars ?? 0)?.['rand'] === 3) {
-        // TODO-QSP: $npc_cum_pref[$ARGS[1]] = 'facial'
+        ((s as any).npc_cum_pref = (s as any).npc_cum_pref ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'facial';
       } else {
         if (((s as any).npcgeneratecVars ?? 0)?.['rand'] === 4) {
-          // TODO-QSP: $npc_cum_pref[$ARGS[1]] = 'tits'
+          ((s as any).npc_cum_pref = (s as any).npc_cum_pref ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'tits';
         } else {
           if (((s as any).npcgeneratecVars ?? 0)?.['rand'] === 5) {
-            // TODO-QSP: $npc_cum_pref[$ARGS[1]] = 'pullout'
+            ((s as any).npc_cum_pref = (s as any).npc_cum_pref ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'pullout';
           }
         }
       }
     }
   }
   if ((Math.floor(Math.random() * 5) + 0) === 0  ||  ((Math.floor(Math.random() * 5) + 0) === 0  &&  ((s as any).npc_cum_pref ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 'facial')) {
-    // TODO-QSP: npc_bukakke_fetish[$ARGS[1]] = 1
+    ((s as any).npc_bukakke_fetish = (s as any).npc_bukakke_fetish ?? {})[((s as any).locArgs?.[1] ?? 0)] = 1;
   } else {
     if ((Math.floor(Math.random() * 3) + 0) === 0  &&  ((s as any).npc_cum_pref ?? 0)[String((s as any).locArgs?.[1] ?? '')] !== 'facial') {
-      // TODO-QSP: npc_dislikes_facials[$ARGS[1]] = 1
+      ((s as any).npc_dislikes_facials = (s as any).npc_dislikes_facials ?? {})[((s as any).locArgs?.[1] ?? 0)] = 1;
     }
   }
   ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['rand'] = (Math.floor(Math.random() * 4) + 0);
   if (((s as any).npcgeneratecVars ?? 0)?.['rand'] === 0) {
-    // TODO-QSP: $npc_fav_body_part[$ARGS[1]] = 'pussy'
+    ((s as any).npc_fav_body_part = (s as any).npc_fav_body_part ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'pussy';
   } else {
     if (((s as any).npcgeneratecVars ?? 0)?.['rand'] === 1) {
-      // TODO-QSP: $npc_fav_body_part[$ARGS[1]] = 'tits'
+      ((s as any).npc_fav_body_part = (s as any).npc_fav_body_part ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'tits';
     } else {
       if (((s as any).npcgeneratecVars ?? 0)?.['rand'] === 2) {
-        // TODO-QSP: $npc_fav_body_part[$ARGS[1]] = 'ass'
+        ((s as any).npc_fav_body_part = (s as any).npc_fav_body_part ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'ass';
       } else {
-        // TODO-QSP: $npc_fav_body_part[$ARGS[1]] = 'thighs'
+        ((s as any).npc_fav_body_part = (s as any).npc_fav_body_part ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'thighs';
       }
     }
   }
-  // TODO-QSP: npc_sex_stamina[$ARGS[1]] = rand(1, 10)
-  // TODO-QSP: npc_sex_spanker[$ARGS[1]] = iif(rand(0, 2) = 0, 1, 0)
-  // TODO-QSP: npc_childfree[$ARGS[1]] = iif(rand(0, 4) = 0, 1, 0)
-  // TODO-QSP: npc_pussyeater[$ARGS[1]] = iif(rand(0, 2) = 0, 1, 0)
-  // TODO-QSP: npc_cuddler[$ARGS[1]] = iif(rand(0, 2) = 0, 1, 0)
-  // TODO-QSP: npc_cum_cannon[$ARGS[1]] = iif(rand(0, 4) = 0, 1, 0)
-  // TODO-QSP: npc_sex_filmer[$ARGS[1]] = iif(rand(0, 4) = 0, 1, 0)
-  // TODO-QSP: npc_two_pump[$ARGS[1]] = iif(rand(0, 5) = 0, 1, 0)
+  ((s as any).npc_sex_stamina = (s as any).npc_sex_stamina ?? {})[((s as any).locArgs?.[1] ?? 0)] = (Math.floor(Math.random() * 10) + 1);
+  ((s as any).npc_sex_spanker = (s as any).npc_sex_spanker ?? {})[((s as any).locArgs?.[1] ?? 0)] = (((!(Math.floor(Math.random() * 3) + 0))) ? (1) : (0));
+  ((s as any).npc_childfree = (s as any).npc_childfree ?? {})[((s as any).locArgs?.[1] ?? 0)] = (((!(Math.floor(Math.random() * 5) + 0))) ? (1) : (0));
+  ((s as any).npc_pussyeater = (s as any).npc_pussyeater ?? {})[((s as any).locArgs?.[1] ?? 0)] = (((!(Math.floor(Math.random() * 3) + 0))) ? (1) : (0));
+  ((s as any).npc_cuddler = (s as any).npc_cuddler ?? {})[((s as any).locArgs?.[1] ?? 0)] = (((!(Math.floor(Math.random() * 3) + 0))) ? (1) : (0));
+  ((s as any).npc_cum_cannon = (s as any).npc_cum_cannon ?? {})[((s as any).locArgs?.[1] ?? 0)] = (((!(Math.floor(Math.random() * 5) + 0))) ? (1) : (0));
+  ((s as any).npc_sex_filmer = (s as any).npc_sex_filmer ?? {})[((s as any).locArgs?.[1] ?? 0)] = (((!(Math.floor(Math.random() * 5) + 0))) ? (1) : (0));
+  ((s as any).npc_two_pump = (s as any).npc_two_pump ?? {})[((s as any).locArgs?.[1] ?? 0)] = (((!(Math.floor(Math.random() * 6) + 0))) ? (1) : (0));
   if (((s as any).npc_door_pref ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 'indoor') {
     if (((s as any).npc_apt_sparetype ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 'gaming') {
-      // TODO-QSP: $npc_hobbies[$ARGS[1]] += ';video_games;'
+      ((s as any).npc_hobbies = (s as any).npc_hobbies ?? {})[((s as any).locArgs?.[1] ?? 0)] = ((s as any).npc_hobbies[((s as any).locArgs?.[1] ?? 0)] ?? 0) + (';video_games;');
     } else {
       if ((!(Math.floor(Math.random() * 5) + 0))) {
-        // TODO-QSP: $npc_hobbies[$ARGS[1]] += ';video_games;'
+        ((s as any).npc_hobbies = (s as any).npc_hobbies ?? {})[((s as any).locArgs?.[1] ?? 0)] = ((s as any).npc_hobbies[((s as any).locArgs?.[1] ?? 0)] ?? 0) + (';video_games;');
       }
     }
     if ((!(Math.floor(Math.random() * 5) + 0))) {
-      // TODO-QSP: $npc_hobbies[$ARGS[1]] += ';reading_books;'
+      ((s as any).npc_hobbies = (s as any).npc_hobbies ?? {})[((s as any).locArgs?.[1] ?? 0)] = ((s as any).npc_hobbies[((s as any).locArgs?.[1] ?? 0)] ?? 0) + (';reading_books;');
     }
     if ((!(Math.floor(Math.random() * 5) + 0))) {
-      // TODO-QSP: $npc_hobbies[$ARGS[1]] += ';film_and_tv;'
+      ((s as any).npc_hobbies = (s as any).npc_hobbies ?? {})[((s as any).locArgs?.[1] ?? 0)] = ((s as any).npc_hobbies[((s as any).locArgs?.[1] ?? 0)] ?? 0) + (';film_and_tv;');
     }
   } else {
     if (((s as any).npc_door_pref ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 'outdoor') {
       if ((!(Math.floor(Math.random() * 5) + 0))) {
-        // TODO-QSP: $npc_hobbies[$ARGS[1]] += ';going_out;'
+        ((s as any).npc_hobbies = (s as any).npc_hobbies ?? {})[((s as any).locArgs?.[1] ?? 0)] = ((s as any).npc_hobbies[((s as any).locArgs?.[1] ?? 0)] ?? 0) + (';going_out;');
       }
     }
   }
   if (((s as any).npc_foodie ?? 0)[String((s as any).locArgs?.[1] ?? '')] > 0) {
-    // TODO-QSP: $npc_hobbies[$ARGS[1]] += ';dining_out;'
+    ((s as any).npc_hobbies = (s as any).npc_hobbies ?? {})[((s as any).locArgs?.[1] ?? 0)] = ((s as any).npc_hobbies[((s as any).locArgs?.[1] ?? 0)] ?? 0) + (';dining_out;');
   } else {
     if ((!(Math.floor(Math.random() * 5) + 0))) {
-      // TODO-QSP: $npc_hobbies[$ARGS[1]] += ';dining_out;'
+      ((s as any).npc_hobbies = (s as any).npc_hobbies ?? {})[((s as any).locArgs?.[1] ?? 0)] = ((s as any).npc_hobbies[((s as any).locArgs?.[1] ?? 0)] ?? 0) + (';dining_out;');
     }
   }
   if ((!(Math.floor(Math.random() * 5) + 0))) {
-    // TODO-QSP: $npc_hobbies[$ARGS[1]] += ';cooking;'
+    ((s as any).npc_hobbies = (s as any).npc_hobbies ?? {})[((s as any).locArgs?.[1] ?? 0)] = ((s as any).npc_hobbies[((s as any).locArgs?.[1] ?? 0)] ?? 0) + (';cooking;');
   }
   if ((!(Math.floor(Math.random() * 5) + 0))) {
-    // TODO-QSP: $npc_hobbies[$ARGS[1]] += ';sports;'
+    ((s as any).npc_hobbies = (s as any).npc_hobbies ?? {})[((s as any).locArgs?.[1] ?? 0)] = ((s as any).npc_hobbies[((s as any).locArgs?.[1] ?? 0)] ?? 0) + (';sports;');
   }
   if (((s as any).npc_gymrat ?? 0)[String((s as any).locArgs?.[1] ?? '')] > 0) {
-    // TODO-QSP: $npc_hobbies[$ARGS[1]] += ';exercising;'
+    ((s as any).npc_hobbies = (s as any).npc_hobbies ?? {})[((s as any).locArgs?.[1] ?? 0)] = ((s as any).npc_hobbies[((s as any).locArgs?.[1] ?? 0)] ?? 0) + (';exercising;');
   } else {
     if ((!(Math.floor(Math.random() * 5) + 0))) {
-      // TODO-QSP: $npc_hobbies[$ARGS[1]] += ';exercising;'
+      ((s as any).npc_hobbies = (s as any).npc_hobbies ?? {})[((s as any).locArgs?.[1] ?? 0)] = ((s as any).npc_hobbies[((s as any).locArgs?.[1] ?? 0)] ?? 0) + (';exercising;');
     }
   }
   if ((((s as any).npc_door_pref ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 'indoor'  &&  (Math.floor(Math.random() * 3) + 0) !== 0)  ||  (((s as any).npc_door_pref ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 'outdoor'  &&  (Math.floor(Math.random() * 3) + 0) === 0)) {
     ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['rand'] = (Math.floor(Math.random() * 5) + 0);
     if (((s as any).npcgeneratecVars ?? 0)?.['rand'] === 0) {
-      // TODO-QSP: $npc_fav_date[$ARGS[1]] = 'casual_meal'
+      ((s as any).npc_fav_date = (s as any).npc_fav_date ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'casual_meal';
     } else {
       if (((s as any).npcgeneratecVars ?? 0)?.['rand'] === 1) {
-        // TODO-QSP: $npc_fav_date[$ARGS[1]] = 'coffee_date'
+        ((s as any).npc_fav_date = (s as any).npc_fav_date ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'coffee_date';
       } else {
         if (((s as any).npcgeneratecVars ?? 0)?.['rand'] === 2) {
-          // TODO-QSP: $npc_fav_date[$ARGS[1]] = 'takeout_date'
+          ((s as any).npc_fav_date = (s as any).npc_fav_date ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'takeout_date';
         } else {
           if (((s as any).npcgeneratecVars ?? 0)?.['rand'] === 3) {
-            // TODO-QSP: $npc_fav_date[$ARGS[1]] = 'netflix_chill'
+            ((s as any).npc_fav_date = (s as any).npc_fav_date ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'netflix_chill';
           } else {
-            // TODO-QSP: $npc_fav_date[$ARGS[1]] = 'movie_date'
+            ((s as any).npc_fav_date = (s as any).npc_fav_date ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'movie_date';
           }
         }
       }
@@ -1366,21 +1354,21 @@ function enterSetPersonality(s: GameState, scene: SceneBuilder): void {
   } else {
     ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['rand'] = (Math.floor(Math.random() * 6) + 0);
     if (((s as any).npcgeneratecVars ?? 0)?.['rand'] === 0) {
-      // TODO-QSP: $npc_fav_date[$ARGS[1]] = 'casual_meal'
+      ((s as any).npc_fav_date = (s as any).npc_fav_date ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'casual_meal';
     } else {
       if (((s as any).npcgeneratecVars ?? 0)?.['rand'] === 1) {
-        // TODO-QSP: $npc_fav_date[$ARGS[1]] = 'picnic_date'
+        ((s as any).npc_fav_date = (s as any).npc_fav_date ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'picnic_date';
       } else {
         if (((s as any).npcgeneratecVars ?? 0)?.['rand'] === 2) {
-          // TODO-QSP: $npc_fav_date[$ARGS[1]] = 'beach_date'
+          ((s as any).npc_fav_date = (s as any).npc_fav_date ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'beach_date';
         } else {
           if (((s as any).npcgeneratecVars ?? 0)?.['rand'] === 3) {
-            // TODO-QSP: $npc_fav_date[$ARGS[1]] = 'fancy_meal'
+            ((s as any).npc_fav_date = (s as any).npc_fav_date ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'fancy_meal';
           } else {
             if (((s as any).npcgeneratecVars ?? 0)?.['rand'] === 4) {
-              // TODO-QSP: $npc_fav_date[$ARGS[1]] = 'amusement_park'
+              ((s as any).npc_fav_date = (s as any).npc_fav_date ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'amusement_park';
             } else {
-              // TODO-QSP: $npc_fav_date[$ARGS[1]] = 'shopping_date'
+              ((s as any).npc_fav_date = (s as any).npc_fav_date ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'shopping_date';
             }
           }
         }
@@ -1389,31 +1377,31 @@ function enterSetPersonality(s: GameState, scene: SceneBuilder): void {
   }
   ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['rand'] = (Math.floor(Math.random() * 50) + 0);
   if (((s as any).npcgeneratecVars ?? 0)?.['rand'] < 15) {
-    // TODO-QSP: $npc_fav_genre[$ARGS[1]] = 'action'
+    ((s as any).npc_fav_genre = (s as any).npc_fav_genre ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'action';
   } else {
     if (((s as any).npcgeneratecVars ?? 0)?.['rand'] < 30) {
-      // TODO-QSP: $npc_fav_genre[$ARGS[1]] = 'horror'
+      ((s as any).npc_fav_genre = (s as any).npc_fav_genre ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'horror';
     } else {
       if (((s as any).npcgeneratecVars ?? 0)?.['rand'] < 42) {
         if ((Math.floor(Math.random() * 10) + 1) < ((s as any).npc_sexdrive ?? 0)[String((s as any).locArgs?.[1] ?? '')]) {
-          // TODO-QSP: $npc_fav_genre[$ARGS[1]] = 'raunchy_comedy'
+          ((s as any).npc_fav_genre = (s as any).npc_fav_genre ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'raunchy_comedy';
         } else {
-          // TODO-QSP: $npc_fav_genre[$ARGS[1]] = 'comedy'
+          ((s as any).npc_fav_genre = (s as any).npc_fav_genre ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'comedy';
         }
       } else {
         if (((s as any).npcgeneratecVars ?? 0)?.['rand'] < 46) {
-          // TODO-QSP: $npc_fav_genre[$ARGS[1]] = 'drama'
+          ((s as any).npc_fav_genre = (s as any).npc_fav_genre ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'drama';
         } else {
-          // TODO-QSP: $npc_fav_genre[$ARGS[1]] = 'romance'
+          ((s as any).npc_fav_genre = (s as any).npc_fav_genre ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'romance';
         }
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterSetPreferences(s: GameState, scene: SceneBuilder): void {
+  (s as any).pref_ids = undefined;
   (s as any).prefdin = 'gs \'npc_set_preference\', \'' + ((s as any).locArgs?.[1] ?? 0) + '\', $ARGS[1],  iif($ARGS[2] <> \', $ARGS[2], $dyneval($ARGS[0], ARGS[2]-pref_ids[$ARGS[1]], ARGS[3], ARGS[4]))';
   (s as any).prefdin2 = '$result = iif(ARGS[0] >= -ARGS[1] and ARGS[0] <= ARGS[1], \'like\', iif(ARGS[0] >= -(1 + ARGS[1]+ARGS[2]) and ARGS[0] <= 1 + ARGS[1] + ARGS[2], \'neutral\', \'dislike\'))';
   (s as any).prefdin3 = '$result = iif(ARGS[0] >= -ARGS[1] and ARGS[0] <= ARGS[1], \'dislike\', iif(ARGS[0] >= -(1 + ARGS[1]+ARGS[2]) and ARGS[0] <= 1 + ARGS[1] + ARGS[2], \'neutral\', \'like\'))';
@@ -1435,6 +1423,10 @@ function enterSetPreferences(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).npcgeneratecVars ?? 0)?.['rand'] > 0) {
+    qspFunc(s, 'prefdin', (((s as any).npcgeneratecVars ?? 0)?.['preftype']), 'body_tits_small', (((s as any).npcgeneratecVars ?? 0)?.['rand']));
+    qspFunc(s, 'prefdin', (((s as any).npcgeneratecVars ?? 0)?.['preftype']), 'body_tits_average', (((s as any).npcgeneratecVars ?? 0)?.['rand']));
+    qspFunc(s, 'prefdin', (((s as any).npcgeneratecVars ?? 0)?.['preftype']), 'body_tits_big', (((s as any).npcgeneratecVars ?? 0)?.['rand']));
+    qspFunc(s, 'prefdin', (((s as any).npcgeneratecVars ?? 0)?.['preftype']), 'body_tits_huge', (((s as any).npcgeneratecVars ?? 0)?.['rand']));
   }
   ((s as any).pref_ids = (s as any).pref_ids ?? {})['hair_pubes_shaven'] = 1;
   ((s as any).pref_ids = (s as any).pref_ids ?? {})['hair_pubes_stubble'] = 2;
@@ -1456,6 +1448,12 @@ function enterSetPreferences(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).npcgeneratecVars ?? 0)?.['rand'] > 0) {
+    qspFunc(s, 'prefdin', (((s as any).npcgeneratecVars ?? 0)?.['preftype']), 'hair_pubes_shaven', (((s as any).npcgeneratecVars ?? 0)?.['rand']));
+    qspFunc(s, 'prefdin', (((s as any).npcgeneratecVars ?? 0)?.['preftype']), 'hair_pubes_stubble', (((s as any).npcgeneratecVars ?? 0)?.['rand']));
+    qspFunc(s, 'prefdin', (((s as any).npcgeneratecVars ?? 0)?.['preftype']), 'hair_pubes_patch', (((s as any).npcgeneratecVars ?? 0)?.['rand']));
+    qspFunc(s, 'prefdin', (((s as any).npcgeneratecVars ?? 0)?.['preftype']), 'hair_pubes_trimmed', (((s as any).npcgeneratecVars ?? 0)?.['rand']));
+    qspFunc(s, 'prefdin', (((s as any).npcgeneratecVars ?? 0)?.['preftype']), 'hair_pubes_bush', (((s as any).npcgeneratecVars ?? 0)?.['rand']));
+    qspFunc(s, 'prefdin', (((s as any).npcgeneratecVars ?? 0)?.['preftype']), 'hair_pubes_untrimmed', (((s as any).npcgeneratecVars ?? 0)?.['rand']));
   }
   ((s as any).pref_ids = (s as any).pref_ids ?? {})['body_bmi_starving'] = 1;
   ((s as any).pref_ids = (s as any).pref_ids ?? {})['body_bmi_underweight'] = 1;
@@ -1476,6 +1474,11 @@ function enterSetPreferences(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).npcgeneratecVars ?? 0)?.['rand'] > 0) {
+    qspFunc(s, 'prefdin', (((s as any).npcgeneratecVars ?? 0)?.['preftype']), 'body_bmi_starving', (((s as any).npcgeneratecVars ?? 0)?.['rand']));
+    qspFunc(s, 'prefdin', (((s as any).npcgeneratecVars ?? 0)?.['preftype']), 'body_bmi_underweight', (((s as any).npcgeneratecVars ?? 0)?.['rand']));
+    qspFunc(s, 'prefdin', (((s as any).npcgeneratecVars ?? 0)?.['preftype']), 'body_bmi_normal', (((s as any).npcgeneratecVars ?? 0)?.['rand']));
+    qspFunc(s, 'prefdin', (((s as any).npcgeneratecVars ?? 0)?.['preftype']), 'body_bmi_overweight', (((s as any).npcgeneratecVars ?? 0)?.['rand']));
+    qspFunc(s, 'prefdin', (((s as any).npcgeneratecVars ?? 0)?.['preftype']), 'body_bmi_obese', (((s as any).npcgeneratecVars ?? 0)?.['rand']));
   }
   if ((Math.floor(Math.random() * 10) + 0) < 3) {
     if (((s as any).npc_pervert ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 1  &&  (!(Math.floor(Math.random() * (1 + (((s as any).npc_finance ?? 0)[String((s as any).locArgs?.[1] ?? '')] % 2 - 0 + 1)) + (0))))) {
@@ -1540,6 +1543,9 @@ function enterSetPreferences(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).npcgeneratecVars ?? 0)?.['CloQualPref'] > 0) {
+    qspFunc(s, 'prefdin', (((s as any).npcgeneratecVars ?? 0)?.['preftype']), 'clothes_quality_low', (((s as any).npcgeneratecVars ?? 0)?.['CloQualPref']));
+    qspFunc(s, 'prefdin', (((s as any).npcgeneratecVars ?? 0)?.['preftype']), 'clothes_quality_medium', (((s as any).npcgeneratecVars ?? 0)?.['CloQualPref']));
+    qspFunc(s, 'prefdin', (((s as any).npcgeneratecVars ?? 0)?.['preftype']), 'clothes_quality_high', (((s as any).npcgeneratecVars ?? 0)?.['CloQualPref']));
   }
   if (((s as any).npc_pervert ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 1  &&  (!(Math.floor(Math.random() * (1 + ((s as any).npc_gender ?? 0)[String((s as any).locArgs?.[1] ?? '')] - 0 + 1)) + (0)))) {
     ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['slutconstant'] = 1;
@@ -1578,6 +1584,10 @@ function enterSetPreferences(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).npcgeneratecVars ?? 0)?.['CloTopPref'] > 0) {
+    qspFunc(s, 'prefdin', (((s as any).npcgeneratecVars ?? 0)?.['preftype']), 'clothes_cleavage_none', (((s as any).npcgeneratecVars ?? 0)?.['CloTopPref']));
+    qspFunc(s, 'prefdin', (((s as any).npcgeneratecVars ?? 0)?.['preftype']), 'clothes_cleavage_small', (((s as any).npcgeneratecVars ?? 0)?.['CloTopPref']));
+    qspFunc(s, 'prefdin', (((s as any).npcgeneratecVars ?? 0)?.['preftype']), 'clothes_cleavage_medium', (((s as any).npcgeneratecVars ?? 0)?.['CloTopPref']));
+    qspFunc(s, 'prefdin', (((s as any).npcgeneratecVars ?? 0)?.['preftype']), 'clothes_cleavage_large', (((s as any).npcgeneratecVars ?? 0)?.['CloTopPref']));
   }
   ((s as any).pref_ids = (s as any).pref_ids ?? {})['clothes_pants_long'] = 1;
   ((s as any).pref_ids = (s as any).pref_ids ?? {})['clothes_skirt_long'] = 1;
@@ -1619,6 +1629,12 @@ function enterSetPreferences(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).npcgeneratecVars ?? 0)?.['PanShorPref'] > 0) {
+    qspFunc(s, 'prefdin', (((s as any).npcgeneratecVars ?? 0)?.['preftype']), 'clothes_pants_long', (((s as any).npcgeneratecVars ?? 0)?.['PanShorPref']));
+    qspFunc(s, 'prefdin', (((s as any).npcgeneratecVars ?? 0)?.['preftype']), 'clothes_skirt_long', (((s as any).npcgeneratecVars ?? 0)?.['PanShorPref']));
+    qspFunc(s, 'prefdin', (((s as any).npcgeneratecVars ?? 0)?.['preftype']), 'clothes_pants_normal', (((s as any).npcgeneratecVars ?? 0)?.['PanShorPref']));
+    qspFunc(s, 'prefdin', (((s as any).npcgeneratecVars ?? 0)?.['preftype']), 'clothes_skirt_normal', (((s as any).npcgeneratecVars ?? 0)?.['PanShorPref']));
+    qspFunc(s, 'prefdin', (((s as any).npcgeneratecVars ?? 0)?.['preftype']), 'clothes_pants_short', (((s as any).npcgeneratecVars ?? 0)?.['PanShorPref']));
+    qspFunc(s, 'prefdin', (((s as any).npcgeneratecVars ?? 0)?.['preftype']), 'clothes_skirt_short', (((s as any).npcgeneratecVars ?? 0)?.['PanShorPref']));
   }
   ((s as any).pref_ids = (s as any).pref_ids ?? {})['clothes_thin_low'] = 1;
   ((s as any).pref_ids = (s as any).pref_ids ?? {})['clothes_thin_medium'] = 2;
@@ -1650,6 +1666,9 @@ function enterSetPreferences(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).npcgeneratecVars ?? 0)?.['CloThinPref'] > 0) {
+    qspFunc(s, 'prefdin', (((s as any).npcgeneratecVars ?? 0)?.['preftype']), 'clothes_thin_low', (((s as any).npcgeneratecVars ?? 0)?.['CloThinPref']));
+    qspFunc(s, 'prefdin', (((s as any).npcgeneratecVars ?? 0)?.['preftype']), 'clothes_thin_medium', (((s as any).npcgeneratecVars ?? 0)?.['CloThinPref']));
+    qspFunc(s, 'prefdin', (((s as any).npcgeneratecVars ?? 0)?.['preftype']), 'clothes_thin_high', (((s as any).npcgeneratecVars ?? 0)?.['CloThinPref']));
   }
   ((s as any).pref_ids = (s as any).pref_ids ?? {})['shoes_heels_flat'] = 1;
   ((s as any).pref_ids = (s as any).pref_ids ?? {})['shoes_heels_low'] = 1;
@@ -1688,6 +1707,12 @@ function enterSetPreferences(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).npcgeneratecVars ?? 0)?.['ShoHeelPref'] > 0) {
+    qspFunc(s, 'prefdin', (((s as any).npcgeneratecVars ?? 0)?.['preftype']), 'shoes_heels_flat', (((s as any).npcgeneratecVars ?? 0)?.['ShoHeelPref']));
+    qspFunc(s, 'prefdin', (((s as any).npcgeneratecVars ?? 0)?.['preftype']), 'shoes_heels_low', (((s as any).npcgeneratecVars ?? 0)?.['ShoHeelPref']));
+    qspFunc(s, 'prefdin', (((s as any).npcgeneratecVars ?? 0)?.['preftype']), 'shoes_heels_medium', (((s as any).npcgeneratecVars ?? 0)?.['ShoHeelPref']));
+    qspFunc(s, 'prefdin', (((s as any).npcgeneratecVars ?? 0)?.['preftype']), 'shoes_heels_high', (((s as any).npcgeneratecVars ?? 0)?.['ShoHeelPref']));
+    qspFunc(s, 'prefdin', (((s as any).npcgeneratecVars ?? 0)?.['preftype']), 'shoes_heels_ultra', (((s as any).npcgeneratecVars ?? 0)?.['ShoHeelPref']));
+    qspFunc(s, 'prefdin', (((s as any).npcgeneratecVars ?? 0)?.['preftype']), 'shoes_heels_fetish', (((s as any).npcgeneratecVars ?? 0)?.['ShoHeelPref']));
   }
   if ((Math.floor(Math.random() * (2 + 8 * ((s as any).npc_gender ?? 0)[String((s as any).locArgs?.[1] ?? '')] - 0 + 1)) + (0)) === 0  &&  ((s as any).npcgeneratecVars ?? 0)?.['CloTypePref'] !== 3) {
     qspCall(s, 'npc_set_preference', '$ARGS[1]', 'clothes_style_bimbo', 'like');
@@ -1713,6 +1738,10 @@ function enterSetPreferences(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).npcgeneratecVars ?? 0)?.['pierPref'] > 0) {
+    qspFunc(s, 'prefdin', (((s as any).npcgeneratecVars ?? 0)?.['preftype']), 'cosmetics_piercings_none', (((s as any).npcgeneratecVars ?? 0)?.['pierPref']));
+    qspFunc(s, 'prefdin', (((s as any).npcgeneratecVars ?? 0)?.['preftype']), 'cosmetics_piercings_few', (((s as any).npcgeneratecVars ?? 0)?.['pierPref']));
+    qspFunc(s, 'prefdin', (((s as any).npcgeneratecVars ?? 0)?.['preftype']), 'cosmetics_piercings_multiple', (((s as any).npcgeneratecVars ?? 0)?.['pierPref']));
+    qspFunc(s, 'prefdin', (((s as any).npcgeneratecVars ?? 0)?.['preftype']), 'cosmetics_piercings_lot', (((s as any).npcgeneratecVars ?? 0)?.['pierPref']));
   }
   ((s as any).pref_ids = (s as any).pref_ids ?? {})['cosmetics_tattoos_none'] = 1;
   ((s as any).pref_ids = (s as any).pref_ids ?? {})['cosmetics_tattoos_few'] = 1;
@@ -1745,6 +1774,10 @@ function enterSetPreferences(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).npcgeneratecVars ?? 0)?.['tatPref'] > 0) {
+    qspFunc(s, 'prefdin', (((s as any).npcgeneratecVars ?? 0)?.['preftype']), 'cosmetics_tattoos_none', (((s as any).npcgeneratecVars ?? 0)?.['tatPref']));
+    qspFunc(s, 'prefdin', (((s as any).npcgeneratecVars ?? 0)?.['preftype']), 'cosmetics_tattoos_few', (((s as any).npcgeneratecVars ?? 0)?.['tatPref']));
+    qspFunc(s, 'prefdin', (((s as any).npcgeneratecVars ?? 0)?.['preftype']), 'cosmetics_tattoos_multiple', (((s as any).npcgeneratecVars ?? 0)?.['tatPref']));
+    qspFunc(s, 'prefdin', (((s as any).npcgeneratecVars ?? 0)?.['preftype']), 'cosmetics_tattoos_lot', (((s as any).npcgeneratecVars ?? 0)?.['tatPref']));
   }
   ((s as any).pref_ids = (s as any).pref_ids ?? {})['body_lips_normal'] = 1;
   ((s as any).pref_ids = (s as any).pref_ids ?? {})['body_lips_plump'] = 1;
@@ -1773,6 +1806,10 @@ function enterSetPreferences(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).npcgeneratecVars ?? 0)?.['lipPref'] > 0) {
+    qspFunc(s, 'prefdin', (((s as any).npcgeneratecVars ?? 0)?.['preftype']), 'body_lips_normal', (((s as any).npcgeneratecVars ?? 0)?.['lipPref']));
+    qspFunc(s, 'prefdin', (((s as any).npcgeneratecVars ?? 0)?.['preftype']), 'body_lips_plump', (((s as any).npcgeneratecVars ?? 0)?.['lipPref']));
+    qspFunc(s, 'prefdin', (((s as any).npcgeneratecVars ?? 0)?.['preftype']), 'body_lips_big', (((s as any).npcgeneratecVars ?? 0)?.['lipPref']));
+    qspFunc(s, 'prefdin', (((s as any).npcgeneratecVars ?? 0)?.['preftype']), 'body_lips_pillowy', (((s as any).npcgeneratecVars ?? 0)?.['lipPref']));
   }
   ((s as any).pref_ids = (s as any).pref_ids ?? {})['cosmetics_makeup_light'] = 1;
   ((s as any).pref_ids = (s as any).pref_ids ?? {})['cosmetics_makeup_moderate'] = 2;
@@ -1807,6 +1844,9 @@ function enterSetPreferences(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).npcgeneratecVars ?? 0)?.['makeupPref'] > 0) {
+    qspFunc(s, 'prefdin', (((s as any).npcgeneratecVars ?? 0)?.['preftype']), 'cosmetics_makeup_light', (((s as any).npcgeneratecVars ?? 0)?.['makeupPref']));
+    qspFunc(s, 'prefdin', (((s as any).npcgeneratecVars ?? 0)?.['preftype']), 'cosmetics_makeup_moderate', (((s as any).npcgeneratecVars ?? 0)?.['makeupPref']));
+    qspFunc(s, 'prefdin', (((s as any).npcgeneratecVars ?? 0)?.['preftype']), 'cosmetics_makeup_heavy', (((s as any).npcgeneratecVars ?? 0)?.['makeupPref']));
   }
   ((s as any).pref_ids = (s as any).pref_ids ?? {})['hair_color_black'] = 1;
   ((s as any).pref_ids = (s as any).pref_ids ?? {})['hair_color_brown'] = 1;
@@ -1814,6 +1854,11 @@ function enterSetPreferences(s: GameState, scene: SceneBuilder): void {
   ((s as any).pref_ids = (s as any).pref_ids ?? {})['hair_color_blonde'] = 1;
   ((s as any).pref_ids = (s as any).pref_ids ?? {})['hair_color_dyed'] = 1;
   ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['preftype'] = ((s as any).prefdin2 ?? 0);
+  qspFunc(s, 'prefdin', (((s as any).npcgeneratecVars ?? 0)?.['preftype']), 'hair_color_black', (Math.floor(Math.random() * 4) + 0));
+  qspFunc(s, 'prefdin', (((s as any).npcgeneratecVars ?? 0)?.['preftype']), 'hair_color_brown', (Math.floor(Math.random() * 4) + 0));
+  qspFunc(s, 'prefdin', (((s as any).npcgeneratecVars ?? 0)?.['preftype']), 'hair_color_red', (Math.floor(Math.random() * 4) + 0));
+  qspFunc(s, 'prefdin', (((s as any).npcgeneratecVars ?? 0)?.['preftype']), 'hair_color_blonde', (Math.floor(Math.random() * 4) + 0));
+  qspFunc(s, 'prefdin', (((s as any).npcgeneratecVars ?? 0)?.['preftype']), 'hair_color_dyed', (Math.floor(Math.random() * 4) + 0));
   if (((s as any).npcgeneratecVars ?? 0)?.['attracted'] !== '') {
     if ((Math.floor(Math.random() * 10) + 0) < 3) {
       ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['pref_attr'] = qspFunc(s, 'pcs_get_attr', 'hair_color');
@@ -1845,6 +1890,9 @@ function enterSetPreferences(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).npcgeneratecVars ?? 0)?.['IQPref'] > 0) {
+    qspFunc(s, 'prefdin', (((s as any).npcgeneratecVars ?? 0)?.['preftype']), 'stats_intel_dumb', (((s as any).npcgeneratecVars ?? 0)?.['IQPref']));
+    qspFunc(s, 'prefdin', (((s as any).npcgeneratecVars ?? 0)?.['preftype']), 'stats_intel_normal', (((s as any).npcgeneratecVars ?? 0)?.['IQPref']));
+    qspFunc(s, 'prefdin', (((s as any).npcgeneratecVars ?? 0)?.['preftype']), 'stats_intel_smart', (((s as any).npcgeneratecVars ?? 0)?.['IQPref']));
   }
   ((s as any).pref_ids = (s as any).pref_ids ?? {})['stats_strength_weak'] = 1;
   ((s as any).pref_ids = (s as any).pref_ids ?? {})['stats_strength_normal'] = 2;
@@ -1871,8 +1919,15 @@ function enterSetPreferences(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).npcgeneratecVars ?? 0)?.['MusclePref'] > 0) {
+    qspFunc(s, 'prefdin', (((s as any).npcgeneratecVars ?? 0)?.['preftype']), 'stats_strength_weak', (((s as any).npcgeneratecVars ?? 0)?.['MusclePref']));
+    qspFunc(s, 'prefdin', (((s as any).npcgeneratecVars ?? 0)?.['preftype']), 'stats_strength_normal', (((s as any).npcgeneratecVars ?? 0)?.['MusclePref']));
+    qspFunc(s, 'prefdin', (((s as any).npcgeneratecVars ?? 0)?.['preftype']), 'stats_strength_athletic', (((s as any).npcgeneratecVars ?? 0)?.['MusclePref']));
+    qspFunc(s, 'prefdin', (((s as any).npcgeneratecVars ?? 0)?.['preftype']), 'stats_strength_strong', (((s as any).npcgeneratecVars ?? 0)?.['MusclePref']));
+    qspFunc(s, 'prefdin', (((s as any).npcgeneratecVars ?? 0)?.['preftype']), 'stats_strength_manly', (((s as any).npcgeneratecVars ?? 0)?.['MusclePref']));
   }
-  // TODO-QSP: end
+  (s as any).pref_ids = undefined;
+  (s as any).prefdin = undefined;
+  (s as any).prefdin = undefined;
   scene.build();
 }
 
@@ -1897,99 +1952,99 @@ function enterSetApprnc(s: GameState, scene: SceneBuilder): void {
       ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['apprnc'] = ((s as any).npcgeneratecVars['apprnc'] ?? 0) + ((Math.floor(Math.random() * (10 - (-10) + 1)) + ((-10))));
     }
   }
-  // TODO-QSP: npc_apprnc[$ARGS[1]] = npcgeneratecVars['apprnc']
-  // TODO-QSP: npc_hotcat[$ARGS[1]] = func('AppearanceSystem', 'ConvertToHotcat', npcgeneratecVars['apprnc'])
+  ((s as any).npc_apprnc = (s as any).npc_apprnc ?? {})[((s as any).locArgs?.[1] ?? 0)] = (((s as any).npcgeneratecVars ?? 0)?.['apprnc']);
+  ((s as any).npc_hotcat = (s as any).npc_hotcat ?? {})[((s as any).locArgs?.[1] ?? 0)] = qspFunc(s, 'AppearanceSystem', 'ConvertToHotcat', (((s as any).npcgeneratecVars ?? 0)?.['apprnc']));
   if (((s as any).npc_height ?? 0)[String((s as any).locArgs?.[1] ?? '')] < ((s as any).npcgeneratecVars ?? 0)?.['av_height'] - 5) {
     ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['body_type'] = 1;
-    // TODO-QSP: $npc_height_desc[$ARGS[1]] = 'short'
+    ((s as any).npc_height_desc = (s as any).npc_height_desc ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'short';
   } else {
     if (((s as any).npc_height ?? 0)[String((s as any).locArgs?.[1] ?? '')] <= ((s as any).npcgeneratecVars ?? 0)?.['av_height'] + 5) {
       ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['body_type'] = 2;
-      // TODO-QSP: $npc_height_desc[$ARGS[1]] = 'average'
+      ((s as any).npc_height_desc = (s as any).npc_height_desc ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'average';
     } else {
       ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['body_type'] = 3;
-      // TODO-QSP: $npc_height_desc[$ARGS[1]] = 'tall'
+      ((s as any).npc_height_desc = (s as any).npc_height_desc ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'tall';
     }
   }
   ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['bmi'] = 100000 * ((s as any).npc_weight ?? 0)[((s as any).locArgs?.[1] ?? 0)] / (((s as any).npc_height ?? 0)[((s as any).locArgs?.[1] ?? 0)] * ((s as any).npc_height ?? 0)[((s as any).locArgs?.[1] ?? 0)]);
   if (((s as any).npcgeneratecVars ?? 0)?.['gender'] === 0) {
     if (((s as any).npcgeneratecVars ?? 0)?.['bmi'] < 190) {
-      // TODO-QSP: $npc_build_desc[$ARGS[1]] = 'thin'
+      ((s as any).npc_build_desc = (s as any).npc_build_desc ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'thin';
     } else {
       if (((s as any).npcgeneratecVars ?? 0)?.['bmi'] < 225) {
-        // TODO-QSP: $npc_build_desc[$ARGS[1]] = 'athletic'
+        ((s as any).npc_build_desc = (s as any).npc_build_desc ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'athletic';
       } else {
         if (((s as any).npcgeneratecVars ?? 0)?.['bmi'] < 250) {
-          // TODO-QSP: $npc_build_desc[$ARGS[1]] = 'chunky'
+          ((s as any).npc_build_desc = (s as any).npc_build_desc ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'chunky';
         } else {
-          // TODO-QSP: $npc_build_desc[$ARGS[1]] = 'fat'
+          ((s as any).npc_build_desc = (s as any).npc_build_desc ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'fat';
         }
       }
     }
   } else {
     if (((s as any).npcgeneratecVars ?? 0)?.['bmi'] < 190) {
       if (((s as any).npcgeneratecVars ?? 0)?.['body_type'] === 1) {
-        // TODO-QSP: $npc_build_desc[$ARGS[1]] = 'petite'
+        ((s as any).npc_build_desc = (s as any).npc_build_desc ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'petite';
       } else {
-        // TODO-QSP: $npc_build_desc[$ARGS[1]] = 'slender'
+        ((s as any).npc_build_desc = (s as any).npc_build_desc ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'slender';
       }
     } else {
       if (((s as any).npcgeneratecVars ?? 0)?.['bmi'] < 225) {
-        // TODO-QSP: $npc_build_desc[$ARGS[1]] = 'toned'
+        ((s as any).npc_build_desc = (s as any).npc_build_desc ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'toned';
       } else {
         if (((s as any).npcgeneratecVars ?? 0)?.['bmi'] < 250) {
-          // TODO-QSP: $npc_build_desc[$ARGS[1]] = 'average'
+          ((s as any).npc_build_desc = (s as any).npc_build_desc ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'average';
         } else {
-          // TODO-QSP: $npc_build_desc[$ARGS[1]] = 'chubby'
+          ((s as any).npc_build_desc = (s as any).npc_build_desc ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'chubby';
         }
       }
     }
   }
   if (((s as any).npc_gender ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 1) {
     ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['rand'] = (Math.floor(Math.random() * 30) + 31);
-    // TODO-QSP: $npc_icon[$ARGS[1]] = 'images/system/phone/icons/icon_bf<<npcgeneratecVars[''rand'']>>.png'
-    // TODO-QSP: $npc_pic[$ARGS[1]] = 'images/characters/shared/headshots_generic/<<npcgeneratecVars[''rand'']>>.jpg'
+    ((s as any).npc_icon = (s as any).npc_icon ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'images/system/phone/icons/icon_bf' + (((s as any).npcgeneratecVars ?? 0)?.['rand']) + '.png';
+    ((s as any).npc_pic = (s as any).npc_pic ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'images/characters/shared/headshots_generic/' + (((s as any).npcgeneratecVars ?? 0)?.['rand']) + '.jpg';
   } else {
     ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['rand'] = (Math.floor(Math.random() * 30) + 1);
-    // TODO-QSP: $npc_icon[$ARGS[1]] = 'images/system/phone/icons/icon_bf<<npcgeneratecVars[''rand'']>>.png'
-    // TODO-QSP: $npc_pic[$ARGS[1]] = 'images/characters/shared/headshots_generic/<<npcgeneratecVars[''rand'']>>.jpg'
+    ((s as any).npc_icon = (s as any).npc_icon ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'images/system/phone/icons/icon_bf' + (((s as any).npcgeneratecVars ?? 0)?.['rand']) + '.png';
+    ((s as any).npc_pic = (s as any).npc_pic ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'images/characters/shared/headshots_generic/' + (((s as any).npcgeneratecVars ?? 0)?.['rand']) + '.jpg';
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterSetOtherVars(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: npc_drunk[$ARGS[1]] = 0
-  // TODO-QSP: npc_horny[$ARGS[1]] = rand(2 * pcs_hotcat, 8 * pcs_hotcat)
+  ((s as any).npc_drunk = (s as any).npc_drunk ?? {})[((s as any).locArgs?.[1] ?? 0)] = 0;
+  ((s as any).npc_horny = (s as any).npc_horny ?? {})[((s as any).locArgs?.[1] ?? 0)] = (Math.floor(Math.random() * (8 * ((s as any).pcs_hotcat ?? 0) - 2 * ((s as any).pcs_hotcat ?? 0) + 1)) + (2 * ((s as any).pcs_hotcat ?? 0)));
   if (((s as any).npcgeneratecVars ?? 0)?.['gender'] === 1  ||  ((s as any).npcgeneratecVars ?? 0)?.['gender'] === 2) {
-    // TODO-QSP: npc_horny[$ARGS[1]] = max(0, npc_horny[$ARGS[1]] - 20)
+    ((s as any).npc_horny = (s as any).npc_horny ?? {})[((s as any).locArgs?.[1] ?? 0)] = Math.max(0, ((s as any).npc_horny ?? 0)[((s as any).locArgs?.[1] ?? 0)] - 20);
   }
-  // TODO-QSP: npc_lover_days[$ARGS[1]] = 0
-  // TODO-QSP: npc_daygenerated[$ARGS[1]] = daystart
-  // TODO-QSP: npc_eventday[$ARGS[1]] = 0
-  // TODO-QSP: npc_meetday[$ARGS[1]] = 0
-  // TODO-QSP: npc_meethour[$ARGS[1]] = 0
-  // TODO-QSP: npc_dates[$ARGS[1]] = 0
-  // TODO-QSP: npc_compliance[$ARGS[1]] = 0
-  // TODO-QSP: npc_lover_keys[$ARGS[1]] = 0
-  // TODO-QSP: npc_QW[$ARGS[1]] = 0
-  // TODO-QSP: npc_rel[$ARGS[1]] = 40
-  // TODO-QSP: npc_love[$ARGS[1]] = 0
-  // TODO-QSP: npc_had_sex[$ARGS[1]] = 0
-  // TODO-QSP: npc_perv[$ARGS[1]] = 0
-  // TODO-QSP: npc_herpes[$ARGS[1]] = 0
-  // TODO-QSP: npc_syth[$ARGS[1]] = 0
-  // TODO-QSP: npc_gon[$ARGS[1]] = 0
-  // TODO-QSP: npc_thrush[$ARGS[1]] = 0
-  // TODO-QSP: copyarr('$ngp_pref', '$npc_pref_traits')
+  ((s as any).npc_lover_days = (s as any).npc_lover_days ?? {})[((s as any).locArgs?.[1] ?? 0)] = 0;
+  ((s as any).npc_daygenerated = (s as any).npc_daygenerated ?? {})[((s as any).locArgs?.[1] ?? 0)] = ((s as any).daystart ?? 0);
+  ((s as any).npc_eventday = (s as any).npc_eventday ?? {})[((s as any).locArgs?.[1] ?? 0)] = 0;
+  ((s as any).npc_meetday = (s as any).npc_meetday ?? {})[((s as any).locArgs?.[1] ?? 0)] = 0;
+  ((s as any).npc_meethour = (s as any).npc_meethour ?? {})[((s as any).locArgs?.[1] ?? 0)] = 0;
+  ((s as any).npc_dates = (s as any).npc_dates ?? {})[((s as any).locArgs?.[1] ?? 0)] = 0;
+  ((s as any).npc_compliance = (s as any).npc_compliance ?? {})[((s as any).locArgs?.[1] ?? 0)] = 0;
+  ((s as any).npc_lover_keys = (s as any).npc_lover_keys ?? {})[((s as any).locArgs?.[1] ?? 0)] = 0;
+  ((s as any).npc_QW = (s as any).npc_QW ?? {})[((s as any).locArgs?.[1] ?? 0)] = 0;
+  ((s as any).npc_rel = (s as any).npc_rel ?? {})[((s as any).locArgs?.[1] ?? 0)] = 40;
+  ((s as any).npc_love = (s as any).npc_love ?? {})[((s as any).locArgs?.[1] ?? 0)] = 0;
+  ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})[((s as any).locArgs?.[1] ?? 0)] = 0;
+  ((s as any).npc_perv = (s as any).npc_perv ?? {})[((s as any).locArgs?.[1] ?? 0)] = 0;
+  ((s as any).npc_herpes = (s as any).npc_herpes ?? {})[((s as any).locArgs?.[1] ?? 0)] = 0;
+  ((s as any).npc_syth = (s as any).npc_syth ?? {})[((s as any).locArgs?.[1] ?? 0)] = 0;
+  ((s as any).npc_gon = (s as any).npc_gon ?? {})[((s as any).locArgs?.[1] ?? 0)] = 0;
+  ((s as any).npc_thrush = (s as any).npc_thrush ?? {})[((s as any).locArgs?.[1] ?? 0)] = 0;
+  (s as any).ngp_pref = undefined;
+  (s as any)[npc_pref_traits] ? (s as any)[npc_pref_traits] = { ...(s as any)[ngp_pref] } : (s as any)[npc_pref_traits] = { ...(s as any)[ngp_pref] };
   qspCall(s, 'npc_get_preference', '$ARGS[1]', 'randomPosIndNeg', 'no_clear');
-  // TODO-QSP: $npc_origin_attract[$ARGS[1]] = $ngpPrefResult['HasPos']
-  // TODO-QSP: end
+  ((s as any).npc_origin_attract = (s as any).npc_origin_attract ?? {})[((s as any).locArgs?.[1] ?? 0)] = (((s as any).ngpPrefResult ?? 0)?.['HasPos']);
   scene.build();
 }
 
 function enterCleanup(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: end
+  (s as any).npcgeneratecVars = undefined;
+  (s as any).npcgeneratecVars = undefined;
   scene.build();
 }
 

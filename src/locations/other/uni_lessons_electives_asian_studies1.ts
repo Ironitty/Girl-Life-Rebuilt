@@ -9,7 +9,6 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAsianStudies_101(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: close all
   qspCall(s, 'exp_gain', 'intel', (Math.floor(Math.random() * 2) + 0), 'no_bonus');
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/island/university/classroom/electives/asian_studies/classroom.jpg');
@@ -47,7 +46,6 @@ function enterAsianStudies_101(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Don\'t pay attention in class', goto: ['uni_lessons_electives_asian_studies1', 'asian_studies_101_no_attention'] },
     { label: 'Talk to a classmate', goto: ['uni_lessons_electives_asian_studies1', 'asian_studies_101_talk'] },
@@ -65,7 +63,6 @@ function enterAsianStudies_101Listen(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img(`images/locations/city/island/university/classroom/attentive${(Math.floor(Math.random() * 4) + 1)}.jpg`);
   scene.text('You listen attentively to Professor Da for the duration of the class. She manages to make today\'s lesson interesting and informative, and you feel like you\'ve learned something from actively taking part in the discussion.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Ask a question about the lesson', handler: (st: GameState) => {
     qspCall(st, 'exp_gain', 'intel', (Math.floor(Math.random() * 2) + 1), 'no_bonus');
@@ -85,7 +82,6 @@ function enterAsianStudies_101Listen(s: GameState, scene: SceneBuilder): void {
 function enterAsianStudies_101NoAttention(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/island/university/classroom/bored.jpg');
   scene.text('Professor Da\'s lecture is very dry and boring, and you\'re having a hard time paying attention.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Wait for the end of the lesson', goto: ['uni_lessons_electives_asian_studies1', 'asian_studies_101_events'] },
   ]);
@@ -95,7 +91,6 @@ function enterAsianStudies_101NoAttention(s: GameState, scene: SceneBuilder): vo
 function enterAsianStudies_101Talk(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/island/university/classroom/talk.jpg');
   scene.text('As you arrive in class, you look around and decide to sit next to...');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Dimka', goto: ['uni_lessons_electives_asian_studies1', 'asian_studies_101_talk_dimka'] },
     { label: 'Igor', goto: ['uni_lessons_electives_asian_studies1', 'asian_studies_101_talk_igor'] },
@@ -105,7 +100,6 @@ function enterAsianStudies_101Talk(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAsianStudies_102(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: close all
   qspCall(s, 'exp_gain', 'intel', (Math.floor(Math.random() * 2) + 0), 'no_bonus');
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/island/university/classroom/electives/asian_studies/classroom.jpg');
@@ -143,7 +137,6 @@ function enterAsianStudies_102(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Don\'t pay attention in class', goto: ['uni_lessons_electives_asian_studies1', 'asian_studies_102_no_attention'] },
     { label: 'Talk to a classmate', goto: ['uni_lessons_electives_asian_studies1', 'asian_studies_102_talks'] },
@@ -157,7 +150,6 @@ function enterAsianStudies_102Listen(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img(`images/locations/city/island/university/classroom/attentive${(Math.floor(Math.random() * 4) + 1)}.jpg`);
   scene.text('You listen attentively to Professor Da for the duration of the class. She manages to make today\'s lesson interesting and informative, and you feel like you\'ve learned something from actively taking part in the discussion.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Ask a question about the lesson', handler: (st: GameState) => {
     qspCall(st, 'exp_gain', 'intel', (Math.floor(Math.random() * 2) + 1), 'no_bonus');
@@ -177,7 +169,6 @@ function enterAsianStudies_102Listen(s: GameState, scene: SceneBuilder): void {
 function enterAsianStudies_102NoAttention(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/island/university/classroom/bored.jpg');
   scene.text('Professor Da\'s lecture is very dry and boring, and you\'re having a hard time paying attention.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Wait for the end of the lesson', goto: ['uni_lessons_electives_asian_studies1', 'asian_studies_101_events'] },
   ]);
@@ -187,7 +178,6 @@ function enterAsianStudies_102NoAttention(s: GameState, scene: SceneBuilder): vo
 function enterAsianStudies_102Talk(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/island/university/classroom/talk.jpg');
   scene.text('As you arrive in class, you look around and decide to sit next to...');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Dimka', goto: ['uni_lessons_electives_asian_studies1', 'asian_studies_102_talk_dimka'] },
     { label: 'Igor', goto: ['uni_lessons_electives_asian_studies1', 'asian_studies_102_talk_igor'] },
@@ -219,7 +209,6 @@ function enterAsianStudies_101TalkDimka(s: GameState, scene: SceneBuilder): void
       scene.text('You sit next to Dimka, but other than making a few crude remarks about your sexual exploits, he just ignores you and a fellow student asks you to be quiet.');
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Wait for the end of the lesson', goto: ['uni_lessons_electives_asian_studies1', 'asian_studies_101_events'] },
   ]);
@@ -249,7 +238,6 @@ function enterAsianStudies_102TalkDimka(s: GameState, scene: SceneBuilder): void
       scene.text('You sit next to Dimka, but other than making a few crude remarks about your sexual exploits, he just ignores you and a fellow student asks you to be quiet.');
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Wait for the end of the lesson', goto: ['uni_lessons_electives_asian_studies1', 'asian_studies_101_events'] },
   ]);
@@ -282,7 +270,6 @@ function enterAsianStudies_101TalkIgor(s: GameState, scene: SceneBuilder): void 
       }
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Wait for the end of the lesson', goto: ['uni_lessons_electives_asian_studies1', 'asian_studies_101_events'] },
   ]);
@@ -315,7 +302,6 @@ function enterAsianStudies_102TalkIgor(s: GameState, scene: SceneBuilder): void 
       }
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Wait for the end of the lesson', goto: ['uni_lessons_electives_asian_studies1', 'asian_studies_101_events'] },
   ]);
@@ -340,7 +326,6 @@ function enterAsianStudies_101TalkKatja(s: GameState, scene: SceneBuilder): void
       }
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Wait for the end of the lesson', goto: ['uni_lessons_electives_asian_studies1', 'asian_studies_101_events'] },
   ]);
@@ -365,7 +350,6 @@ function enterAsianStudies_102TalkKatja(s: GameState, scene: SceneBuilder): void
       }
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Wait for the end of the lesson', goto: ['uni_lessons_electives_asian_studies1', 'asian_studies_101_events'] },
   ]);
@@ -398,7 +382,6 @@ function enterAsianStudies_101TalkLariska(s: GameState, scene: SceneBuilder): vo
       }
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Wait for the end of the lesson', goto: ['uni_lessons_electives_asian_studies1', 'asian_studies_101_events'] },
   ]);
@@ -431,7 +414,6 @@ function enterAsianStudies_102TalkLariska(s: GameState, scene: SceneBuilder): vo
       }
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Wait for the end of the lesson', goto: ['uni_lessons_electives_asian_studies1', 'asian_studies_101_events'] },
   ]);
@@ -439,7 +421,6 @@ function enterAsianStudies_102TalkLariska(s: GameState, scene: SceneBuilder): vo
 }
 
 function enterAsianStudies_101Events(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: close all
   (s as any).uni_event_hour = 1;
   (s as any).temp = (Math.floor(Math.random() * 37) + 0);
   if (((s as any).temp ?? 0) < 2) {
@@ -549,7 +530,6 @@ function enterAsianStudies_101Events(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Wait for the end of the lesson', goto: ['uni_lessons', 'short_break'] },
   ]);

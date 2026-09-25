@@ -9,6 +9,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
+  (s as any).account_used = undefined;
   qspCall(s, 'stat', '');
   scene.img('images/pc/items/accessories/computer/komp.jpg');
   scene.text('Your computer boots up and you\'re soon looking at your operating system\'s main screen.');
@@ -39,7 +40,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('You don\'t have internet access here, and you don\'t even have mobile internet.');
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Shut your computer down', goto: ['komp', 'fin'] },
     { label: 'Play Solitaire (0:20)', goto: ['komp', 'pasians'] },
@@ -61,7 +61,7 @@ function enterBrowse(s: GameState, scene: SceneBuilder): void {
   if (((s as any).subscription ?? 0)?.[String((s as any).subs ?? 0)] < 1) {
     scene.text('<center><b>Browser</b></center>');
     scene.img('images/pc/items/accessories/computer/eror.jpg');
-    // TODO-QSP: 'You have no internet access. '+iif(access['metered'], ' You have to buy more minutes.', ' Maybe you...
+    scene.text('You have no internet access. ' + ((((s as any).access ?? 0)?.['metered']) ? (' You have to buy more minutes.') : (' Maybe you forgot to pay the internet bill?')));
     if (((s as any).camGirl ?? 0)?.['MFC_account'] === 1  &&  ((s as any).access ?? 0)?.['nocamshow'] === ''  &&  ((s as any).mc_inventory ?? 0)?.['tech_webcam'] === 1) {
       scene.text('Since MyFreeCams will cover the cost, you can still log on to do a cam show.');
       scene.actions([
@@ -71,11 +71,10 @@ function enterBrowse(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.img('images/pc/items/accessories/computer/komp.jpg');
     if (((s as any).access ?? 0)?.['general'] !== '') {
-      // TODO-QSP: dynamic text: <center><h4 style="color: red;"><b><<$access[''general'']>></b></h4></center>
       scene.text(`<center><h4 style="color: red;"><b>${(((s as any).access ?? 0)?.['general'] ?? '')}</b></h4></center>`);
     }
     scene.text('You head to your favourite start page while you decide what you want to do.');
-    scene.text('A blinking banner for a <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027komp/u0027, /u0027agent/u0027); return false;">Kirsanova Real Estate Agency</a> keeps popping up in the corner.');
+    scene.text('A blinking banner for a <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027komp\u0027, \u0027agent\u0027); return false;">Kirsanova Real Estate Agency</a> keeps popping up in the corner.');
     if (qspFunc(s, 'homes_properties', 'is_property_of_status', 'owned', 'city_apartment')  &&  ((s as any).husID ?? 0) === ''  &&  ((s as any).wifID ?? 0) === '') {
       scene.actions([
         { label: 'Rent your apartment out', goto: ['komp', 'sale'] },
@@ -106,7 +105,7 @@ function enterBrowse(s: GameState, scene: SceneBuilder): void {
       qspGoto(s, 'komp_HF_or_not', 'fuckornot');
       scene.actions([
         { label: 'Visit \'Fuckable or not\' site', handler: (st: GameState) => {
-    // TODO-QSP: $view_location = 'komp'
+    (st as any).view_location = 'komp';
   } },
       ]);
     }
@@ -114,7 +113,7 @@ function enterBrowse(s: GameState, scene: SceneBuilder): void {
       qspGoto(s, 'komp_HF_or_not', 'hotornot');
       scene.actions([
         { label: 'Visit \'Hot or not\' site', handler: (st: GameState) => {
-    // TODO-QSP: $view_location = 'komp'
+    (st as any).view_location = 'komp';
   } },
       ]);
     }
@@ -122,7 +121,7 @@ function enterBrowse(s: GameState, scene: SceneBuilder): void {
       qspGoto(s, 'komp_HF_or_not', 'fuckornot_uni');
       scene.actions([
         { label: 'Visit \'Fuckable or not\' University site', handler: (st: GameState) => {
-    // TODO-QSP: $view_location = 'komp'
+    (st as any).view_location = 'komp';
   } },
       ]);
     }
@@ -130,7 +129,7 @@ function enterBrowse(s: GameState, scene: SceneBuilder): void {
       qspGoto(s, 'komp_HF_or_not', 'hotornot_uni');
       scene.actions([
         { label: 'Visit \'Hot or not\' University site', handler: (st: GameState) => {
-    // TODO-QSP: $view_location = 'komp'
+    (st as any).view_location = 'komp';
   } },
       ]);
     }
@@ -165,7 +164,6 @@ function enterBrowse(s: GameState, scene: SceneBuilder): void {
       { label: 'Check social media on Assbook', goto: ['komp_assbook', 'main'] },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Close the browser', goto: ['komp', 'start'] },
   ]);
@@ -174,7 +172,6 @@ function enterBrowse(s: GameState, scene: SceneBuilder): void {
 
 function enterSale(s: GameState, scene: SceneBuilder): void {
   if (((s as any).access ?? 0)?.['metered']  &&  ((s as any).subscription ?? 0)?.[String((s as any).subs ?? 0)] < 15) {
-    // TODO-QSP: dynamic text: You check the website, but realize that <<subscription[$subs]>> minutes won''t b...
     scene.text(`You check the website, but realize that ${(((s as any).subscription ?? 0)?.[String((s as any).subs ?? 0)] ?? '')} minutes won't be enough to fill out all the forms.`);
   } else {
     (s as any).minut = ((s as any).minut ?? 0) + 30;
@@ -201,8 +198,8 @@ function enterSale(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((st as any).obkvsdam ?? 0) > 1) {
         (st as any).predsum = 14000 + (((st as any).obkvsdam ?? 0)*1000);
-        // TODO-QSP: dynamic text: Someone wants to stay in your apartment for a month! They''re offering you <<fun...
         scene.text(`Someone wants to stay in your apartment for a month! They're offering you ${qspFunc(s, 'money', 'string_profit', ((st as any).predsum ?? ''))} in cash.`);
+        (st as any).predsum = undefined;
         scene.actions([
           { label: 'Accept the offer', handler: (st: GameState) => {
     qspCall(st, 'homes_properties', 'tenants_move_in', 'city_apartment', ((((st as any).month ?? 0) + 1 > 12) ? (1) : (((st as any).month ?? 0) + 1)), Math.min(((st as any).day ?? 0), (((st as any).monthsEnd ?? 0)?.[String((st as any).tenant_endmonth ?? 0)] ?? 0)));
@@ -220,7 +217,6 @@ function enterSale(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave this website', goto: ['komp', 'browse'] },
   ]);
@@ -232,14 +228,13 @@ function enterPorno(s: GameState, scene: SceneBuilder): void {
   if (((s as any).subscription ?? 0)?.[String((s as any).subs ?? 0)] < 1) {
     scene.text('<center><b>Browser</b></center>');
     scene.img('images/pc/items/accessories/computer/eror.jpg');
-    // TODO-QSP: 'You have no internet access. '+iif(access['metered'], ' You have to buy more minutes.', ' Maybe you...
+    scene.text('You have no internet access. ' + ((((s as any).access ?? 0)?.['metered']) ? (' You have to buy more minutes.') : (' Maybe you forgot to pay the internet bill?')));
     scene.actions([
       { label: 'Close the browser', goto: ['komp', 'start'] },
     ]);
   } else {
     if (((s as any).access ?? 0)?.['noporn'] !== '') {
       scene.img('images/pc/items/accessories/computer/komp.jpg');
-      // TODO-QSP: dynamic text: $access['noporn']
       scene.text('$access[\'noporn\']');
       scene.actions([
         { label: 'Leave this website', goto: ['komp', 'browse'] },
@@ -389,13 +384,12 @@ function enterPorno(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterMasturbate(s: GameState, scene: SceneBuilder): void {
   if (((s as any).subscription ?? 0)?.[String((s as any).subs ?? 0)] < 1) {
-    // TODO-QSP: 'You have no internet access. '+iif(access['metered'], ' You have to buy more minutes.', ' Maybe you...
+    scene.text('You have no internet access. ' + ((((s as any).access ?? 0)?.['metered']) ? (' You have to buy more minutes.') : (' Maybe you forgot to pay the internet bill?')));
   } else {
     qspCall(s, 'sweat', 'add', 10);
     if ((!((s as any).divanmastr ?? 0))) {
@@ -428,7 +422,6 @@ function enterMasturbate(s: GameState, scene: SceneBuilder): void {
   }, goto: ['komp', 'porno'] },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -439,7 +432,6 @@ function enterPasians(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/pc/items/accessories/computer/komp.jpg');
   scene.text('You entertain yourself by playing a game of Solitaire.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Play for another 20 minutes', goto: ['komp', 'pasians'] },
     { label: 'Return to desktop', goto: ['komp', 'start'] },
@@ -479,7 +471,6 @@ function enterZnak(s: GameState, scene: SceneBuilder): void {
     ((st as any).npc_gentle = (st as any).npc_gentle ?? {})[String((st as any).npcID ?? 0)] = 1;
     ((st as any).npc_rough = (st as any).npc_rough ?? {})[String((st as any).npcID ?? 0)] = 0;
     qspCall(st, 'lover', 'add_boyfriend', ((st as any).npcID ?? 0));
-    // TODO-QSP: dynamic text: You find a guy named <<$npcdesc>> and send him your number after checking out hi...
     scene.text(`You find a guy named ${((st as any).npcdesc ?? '')} and send him your number after checking out his profile. You hope he'll call you!`);
     scene.actions([
       { label: 'Leave this website', goto: ['komp', 'browse'] },
@@ -491,7 +482,6 @@ function enterZnak(s: GameState, scene: SceneBuilder): void {
     ((st as any).npc_gentle = (st as any).npc_gentle ?? {})[String((st as any).npcID ?? 0)] = 0;
     ((st as any).npc_rough = (st as any).npc_rough ?? {})[String((st as any).npcID ?? 0)] = 0;
     qspCall(st, 'lover', 'add_boyfriend', ((st as any).npcID ?? 0));
-    // TODO-QSP: dynamic text: You find a guy named <<$npcdesc>> and send him your number after checking out hi...
     scene.text(`You find a guy named ${((st as any).npcdesc ?? '')} and send him your number after checking out his profile. You hope he'll call you!`);
     scene.actions([
       { label: 'Leave this website', goto: ['komp', 'browse'] },
@@ -503,7 +493,6 @@ function enterZnak(s: GameState, scene: SceneBuilder): void {
     ((st as any).npc_gentle = (st as any).npc_gentle ?? {})[String((st as any).npcID ?? 0)] = 0;
     ((st as any).npc_rough = (st as any).npc_rough ?? {})[String((st as any).npcID ?? 0)] = 1;
     qspCall(st, 'lover', 'add_boyfriend', ((st as any).npcID ?? 0));
-    // TODO-QSP: dynamic text: You find a guy named <<$npcdesc>> and send him your number after checking out hi...
     scene.text(`You find a guy named ${((st as any).npcdesc ?? '')} and send him your number after checking out his profile. You hope he'll call you!`);
     scene.actions([
       { label: 'Leave this website', goto: ['komp', 'browse'] },
@@ -512,7 +501,6 @@ function enterZnak(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave this website', goto: ['komp', 'browse'] },
   ]);
@@ -525,7 +513,6 @@ function enterKabtv(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'internet_mobile', 'use_internet', ((s as any).subs ?? 0), 5);
   qspCall(s, 'stat', '');
   scene.img('images/pc/items/accessories/computer/komp.jpg');
-  // TODO-QSP: dynamic text: You check out the website of the local cable TV provider. A subscription for cab...
   scene.text(`You check out the website of the local cable TV provider. A subscription for cable TV costs ${qspFunc(s, 'money', 'string_price', 300)} per month, payable on the 25th.`);
   scene.text('');
   if (((s as any).kabel ?? 0) === 1) {
@@ -534,6 +521,7 @@ function enterKabtv(s: GameState, scene: SceneBuilder): void {
       { label: '', labelFn: (s: GameState) => 'Cancel your cable subscription (' + String(qspFunc(s, 'money', 'string_price', 300) ?? '') + ')', handler: (st: GameState) => {
     (st as any).kabel = 0;
     qspCall(st, 'money', 'pay', 300, 'bank');
+    alert('Your subscription has been cancelled and you can no longer watch the extra channels. The cable firm charges a one-time fee of ' + qspFunc(s, 'money', 'string_price', 300) + ' for disconnecting you.');
     qspGoto(st, 'komp', 'browse');
   } },
     ]);
@@ -542,6 +530,7 @@ function enterKabtv(s: GameState, scene: SceneBuilder): void {
       scene.text('You currently do not have a cable subscription for your TV.');
       scene.actions([
         { label: 'Get cable services for your TV', handler: (st: GameState) => {
+    alert('Your TV is too old for cable. You\'ll have to upgrade to a better one first.');
     qspGoto(st, 'komp', 'browse');
   } },
       ]);
@@ -554,6 +543,7 @@ function enterKabtv(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 10;
     qspCall(st, 'internet_mobile', 'use_internet', ((st as any).subs ?? 0), 10);
     qspCall(st, 'stat', '');
+    alert('Soon after you fill out the form, you get a confirmation message that your sign-up was successful. You should have the extra channels on your TV now.');
     qspGoto(st, 'komp', 'browse');
   } },
         ]);
@@ -565,7 +555,6 @@ function enterKabtv(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave this website', goto: ['komp', 'browse'] },
   ]);
@@ -577,7 +566,7 @@ function enterFoto(s: GameState, scene: SceneBuilder): void {
   if (((s as any).subscription ?? 0)?.[String((s as any).subs ?? 0)] < 1) {
     scene.text('<center><b>Browser</b></center>');
     scene.img('images/pc/items/accessories/computer/eror.jpg');
-    // TODO-QSP: 'You have no internet access. '+iif(access['metered'], ' You have to buy more minutes.', ' Maybe you...
+    scene.text('You have no internet access. ' + ((((s as any).access ?? 0)?.['metered']) ? (' You have to buy more minutes.') : (' Maybe you forgot to pay the internet bill?')));
     scene.actions([
       { label: 'Close the browser', goto: ['komp', 'start'] },
     ]);
@@ -613,7 +602,6 @@ function enterFoto(s: GameState, scene: SceneBuilder): void {
         (st as any).shantsr = ((st as any).shantsr ?? 0) + (1);
         scene.text('As you click through her profile, you find that the outfits she\'s wearing in her photos look stylish, so she definitely has money.');
         scene.text('"Why not spend some of it on me?" you laugh to yourself.');
-        // TODO-QSP: dynamic text: You send a copy of the photo with a message telling her she has 48 hours to tran...
         scene.text(`You send a copy of the photo with a message telling her she has 48 hours to transfer ${qspFunc(s, 'money', 'string_profit', 5000)} into your bank account, otherwise you'll send the photo to her entire friends list.`);
         scene.actions([
           { label: 'Go back to the "Assbook" main page', goto: ['komp', 'foto'] },
@@ -622,7 +610,6 @@ function enterFoto(s: GameState, scene: SceneBuilder): void {
       if (((st as any).gerofotorand ?? 0) < 5) {
         (st as any).shantbog = ((st as any).shantbog ?? 0) + (1);
         scene.text('You can hardly believe it when you check out her profile. This girl is a celebrity! It would be a major scandal if this photo got published!');
-        // TODO-QSP: dynamic text: You send a copy of the photo with a message telling her she has 48 hours to tran...
         scene.text(`You send a copy of the photo with a message telling her she has 48 hours to transfer ${qspFunc(s, 'money', 'string_profit', 30000)} into your bank account, otherwise you'll leak the photo to the press.`);
         scene.actions([
           { label: 'Go back to the "Assbook" main page', goto: ['komp', 'foto'] },
@@ -636,7 +623,6 @@ function enterFoto(s: GameState, scene: SceneBuilder): void {
       { label: 'Leave this website', goto: ['komp', 'browse'] },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -644,7 +630,7 @@ function enterRabota(s: GameState, scene: SceneBuilder): void {
   if (((s as any).subscription ?? 0)?.[String((s as any).subs ?? 0)] < 1) {
     scene.text('<center><b>Browser</b></center>');
     scene.img('images/pc/items/accessories/computer/eror.jpg');
-    // TODO-QSP: 'You have no internet access. '+iif(access['metered'], ' You have to buy more minutes.', ' Maybe you...
+    scene.text('You have no internet access. ' + ((((s as any).access ?? 0)?.['metered']) ? (' You have to buy more minutes.') : (' Maybe you forgot to pay the internet bill?')));
     scene.actions([
       { label: 'Close the browser', goto: ['komp', 'start'] },
     ]);
@@ -659,7 +645,6 @@ function enterRabota(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/pc/items/accessories/computer/komp.jpg');
     if (((s as any).komprabota ?? 0) === 0  &&  (!((s as any).gorodokkomp ?? 0))) {
-      // TODO-QSP: dynamic text: You find a job vacancy on a legit-looking website. It reads: "Wanted <b>URGENTLY...
       scene.text(`You find a job vacancy on a legit-looking website. It reads: "Wanted <b>URGENTLY</b>! Female underwear model for a photoshoot. Pay: ${qspFunc(s, 'money', 'string_profit', 2000)} cash."`);
       scene.text('The description explains that they need someone today. If you decide to take this job, then you\'ll need to go there right away.');
       if (((s as any).pcs_apprnc ?? 0) < 120) {
@@ -671,7 +656,6 @@ function enterRabota(s: GameState, scene: SceneBuilder): void {
       }
     } else {
       if (((s as any).komprabota ?? 0) === 1  &&  (!((s as any).gorodokkomp ?? 0))) {
-        // TODO-QSP: dynamic text: You find a job vacancy on a legit-looking website. It reads: "Wanted <b>URGENTLY...
         scene.text(`You find a job vacancy on a legit-looking website. It reads: "Wanted <b>URGENTLY</b>! Female underwear model for a photoshoot. Pay: ${qspFunc(s, 'money', 'string_profit', 2000)} cash."`);
         scene.text('The description explains that they need someone today. If you decide to take this job, then you\'ll need to go there right away.');
         if (((s as any).pcs_apprnc ?? 0) < 120) {
@@ -683,7 +667,6 @@ function enterRabota(s: GameState, scene: SceneBuilder): void {
         }
       } else {
         if (((s as any).komprabota ?? 0) >= 2  &&  ((s as any).komprabota ?? 0) < 5  &&  (!((s as any).gorodokkomp ?? 0))) {
-          // TODO-QSP: dynamic text: You find a job vacancy on a legit-looking website. It reads: "Wanted <b>URGENTLY...
           scene.text(`You find a job vacancy on a legit-looking website. It reads: "Wanted <b>URGENTLY</b>! Good-looking female model, posing for artwork. Must be able to stand still in one pose for a long time. Pay: ${qspFunc(s, 'money', 'string_profit', 1000)} cash."`);
           scene.text('The description explains that they need someone today. If you decide to take this job, then you\'ll need to go there right away.');
           if (((s as any).pcs_apprnc ?? 0) < 60) {
@@ -800,11 +783,11 @@ function enterRabota(s: GameState, scene: SceneBuilder): void {
         { label: 'Search for more jobs', goto: ['komp', 'rabota'] },
       ]);
     }
+    (s as any).komprabota = undefined;
     scene.actions([
       { label: 'Leave this website', goto: ['komp', 'browse'] },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -817,7 +800,6 @@ function enterStudy(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>The Institute for Education Measurement</b></center>');
   scene.img('images/pc/items/accessories/computer/study.jpg');
   scene.text('You spend half an hour on the IEM website, reading news articles and educational blogs. You already feel a bit smarter.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave this website', goto: ['komp', 'browse'] },
   ]);
@@ -838,7 +820,6 @@ function enterAgent(s: GameState, scene: SceneBuilder): void {
   scene.text('<b>Property listing</b>:');
   if (qspFunc(s, 'homes_properties', 'is_property_of_status', 'rented', 'city_apartment')) {
     if (qspFunc(s, 'homes_properties', 'get_rent_days', 'city_apartment') > 0) {
-      // TODO-QSP: dynamic text: You have <b><<func(''homes_properties'', ''get_rent_days'', ''city_apartment'')>...
       scene.text(`You have <b>${qspFunc(s, 'homes_properties', 'get_rent_days', 'city_apartment')} days</b> remaining on the rental of your St. Petersburg apartment.`);
     }
     scene.actions([
@@ -847,7 +828,6 @@ function enterAgent(s: GameState, scene: SceneBuilder): void {
       s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
       qspCall(st, 'homes_properties', 'pay_rent', 'city_apartment', 'bank');
-      // TODO-QSP: dynamic text: After a very simple procedure, you can now call an apartment in the city residen...
       scene.text(`After a very simple procedure, you can now call an apartment in the city residential district home for another month. You have <b>${qspFunc(s, 'homes_properties', 'get_rent_days', 'city_apartment')} days</b> remaining on the rental of your apartment.`);
       scene.actions([
         { label: 'Leave this website', goto: ['komp', 'browse'] },
@@ -858,18 +838,15 @@ function enterAgent(s: GameState, scene: SceneBuilder): void {
   } else {
     if (qspFunc(s, 'homes_properties', 'has_access', 'city_apartment') === 0) {
       scene.text('There is an apartment in St. Petersburg residential area available, for rent or purchase.');
-      // TODO-QSP: dynamic text: Rent is: <<$func(''money'', ''string_price'', func(''homes_properties'', ''get_r...
       scene.text(`Rent is: ${qspFunc(s, 'money', 'string_price', qspFunc(s, 'homes_properties', 'get_rent_amount', 'city_apartment'))} per month. Current sale price is listed at: ${qspFunc(s, 'money', 'string_price', qspFunc(s, 'homes_properties', 'get_property_sales_price', 'city_apartment'))}.`);
     }
   }
   if (qspFunc(s, 'homes_properties', 'has_access', 'village_cottage') === 0) {
     scene.text('There is a holiday cottage with an adjacent allotment in the communal village for sale.');
-    // TODO-QSP: dynamic text: Current sale price is listed at: <<$func(''money'', ''string_price'', func(''hom...
     scene.text(`Current sale price is listed at: ${qspFunc(s, 'money', 'string_price', qspFunc(s, 'homes_properties', 'get_property_sales_price', 'village_cottage'))}.`);
   }
   if (qspFunc(s, 'homes_properties', 'is_property_of_status', 'rented', 'old_town_apartment')) {
     if (qspFunc(s, 'homes_properties', 'get_rent_days', 'old_town_apartment') >= 0) {
-      // TODO-QSP: dynamic text: You have <b><<func(''homes_properties'', ''get_rent_days'', ''old_town_apartment...
       scene.text(`You have <b>${qspFunc(s, 'homes_properties', 'get_rent_days', 'old_town_apartment')} days</b> remaining on the rental of your Pushkin apartment.`);
     }
     scene.actions([
@@ -878,7 +855,6 @@ function enterAgent(s: GameState, scene: SceneBuilder): void {
       s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
       qspCall(st, 'homes_properties', 'pay_rent', 'old_town_apartment', 'bank');
-      // TODO-QSP: dynamic text: After a very simple procedure, you can now call an apartment in Pushkin home for...
       scene.text(`After a very simple procedure, you can now call an apartment in Pushkin home for another month. You have <b>${qspFunc(s, 'homes_properties', 'get_rent_days', 'old_town_apartment')} days</b> remaining on the rental of your apartment.`);
       scene.actions([
         { label: 'Leave this website', goto: ['komp', 'browse'] },
@@ -889,16 +865,13 @@ function enterAgent(s: GameState, scene: SceneBuilder): void {
   } else {
     if (qspFunc(s, 'homes_properties', 'has_access', 'old_town_apartment') === 0) {
       scene.text('There is an apartment in Pushkin area (Old Town) available to rent.');
-      // TODO-QSP: dynamic text: Rent is: <<$func(''money'', ''string_price'', func(''homes_properties'', ''get_r...
       scene.text(`Rent is: ${qspFunc(s, 'money', 'string_price', qspFunc(s, 'homes_properties', 'get_rent_amount', 'old_town_apartment'))} per month.`);
     }
   }
   if (qspFunc(s, 'homes_properties', 'has_access', 'matryona_mansion') === 0) {
     scene.text('There is a plot in the suburbs available for purchase, with planning permission for a mansion.');
-    // TODO-QSP: dynamic text: Current sale price is listed at: <<$func(''money'', ''string_price'', func(''hom...
     scene.text(`Current sale price is listed at: ${qspFunc(s, 'money', 'string_price', qspFunc(s, 'homes_properties', 'get_property_sales_price', 'matryona_mansion'))}.`);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave this website', goto: ['komp', 'browse'] },
   ]);
@@ -907,17 +880,14 @@ function enterAgent(s: GameState, scene: SceneBuilder): void {
 
 function enterBank(s: GameState, scene: SceneBuilder): void {
   scene.img('images/pc/items/accessories/computer/online_bank.jpg');
-  // TODO-QSP: dynamic text: You can buy prepaid internet access online through your bank account. 1 hour of ...
   scene.text(`You can buy prepaid internet access online through your bank account. 1 hour of internet only costs ${qspFunc(s, 'money', 'string_price', 10)}! *`);
   if (((s as any).karta ?? 0) >= ((s as any).bankDebtLimit ?? 0)) {
-    // TODO-QSP: dynamic text: You have <<$func(''money'', ''format_balance'', ''bank'')>> in your account.
     scene.text(`You have ${qspFunc(s, 'money', 'format_balance', 'bank')} in your account.`);
-    // TODO-QSP: 'You have an overdraft limit of ' + $func('wrap', 'accent','<<$func(''money'', ''format'', bankDebtL...
+    scene.text('You have an overdraft limit of ' + qspFunc(s, 'wrap', 'accent', '' + qspFunc(s, 'money', 'format', ((s as any).bankDebtLimit ?? '')) + '!'));
   } else {
-    // TODO-QSP: 'You are overdrawn by ' + $func('wrap', 'neg', '<<$func(''money'', ''format'', bankDebtLimit - karta...
-    // TODO-QSP: 'You have a remaining credit limit of ' + $func('wrap', 'accent','<<$func(''money'', ''format'', kar...
+    scene.text('You are overdrawn by ' + qspFunc(s, 'wrap', 'neg', '' + qspFunc(s, 'money', ((s as any).format ?? ''), ((s as any).bankDebtLimit ?? '') - ((s as any).karta ?? '')) + ' <b>₽</b>.'));
+    scene.text('You have a remaining credit limit of ' + qspFunc(s, 'wrap', 'accent', '' + qspFunc(s, 'money', 'format', ((s as any).karta ?? '')) + '!'));
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Buy internet time', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 10, 'bank') === 0) {
@@ -929,9 +899,7 @@ function enterBank(s: GameState, scene: SceneBuilder): void {
       } else {
         qspCall(st, 'money', 'pay', ((st as any).intinp ?? 0) * 10, 'bank');
         (st as any).internet = ((st as any).internet ?? 0) + (((st as any).intinp ?? 0));
-        // TODO-QSP: dynamic text: You pay for <<intinp>> hours of prepaid internet access. You have a total of <<i...
         scene.text(`You pay for ${((st as any).intinp ?? '')} hours of prepaid internet access. You have a total of ${((st as any).internet ?? '')} hours of internet access remaining.`);
-        // TODO-QSP: dynamic text: <<$func(''money'', ''string_price'', intinp * 10)>> was removed from your accoun...
         scene.text(`${qspFunc(s, 'money', 'string_price', ((st as any).intinp ?? '') * 10)} was removed from your account to pay for it.`);
       }
       scene.actions([
@@ -945,8 +913,9 @@ function enterBank(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterFin(s: GameState, scene: SceneBuilder): void {
+  (s as any).subs = undefined;
+  (s as any).access = undefined;
   dynamicGoto(s, 'prevLoc', 'prevArg');
-  // TODO-QSP: end
   scene.build();
 }
 

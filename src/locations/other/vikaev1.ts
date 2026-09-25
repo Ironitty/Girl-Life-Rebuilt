@@ -20,7 +20,6 @@ function enterBVikaPresentStart(s: GameState, scene: SceneBuilder): void {
   scene.text('"If this is a surprise party, then I\'m not really dressed for it," you whisper.');
   scene.text('"Don\'t worry, we\'re here. Just wait here," Vika says as she lets go of your hand and you hear her whisper something before she closes the door.');
   scene.text('You hear some footsteps before someone suddenly squeezes your ass and paws at your breasts.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Remove the blindfold', goto: ['vikaev1', 'b_vika_present_1'] },
   ]);
@@ -47,7 +46,6 @@ function enterBVikaPresent_1(s: GameState, scene: SceneBuilder): void {
       { label: 'Tell them all to stay', goto: ['vikaev1', 'b_vika_present_3'] },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Yell at Vika and leave', goto: ['vikaev1', 'b_vika_present_out'] },
   ]);
@@ -63,7 +61,6 @@ function enterBVikaPresentOut(s: GameState, scene: SceneBuilder): void {
   scene.text('"I… I thought you\'d like it…" she mumbles, trying to justify her actions.');
   scene.text('"You really thought I\'d appreciate being gangbanged like a simple whore?!"');
   scene.text('You quickly pull the bathrobe back on before returning to your room.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['uni_dorm', 'dorm_room'] },
   ]);
@@ -79,7 +76,6 @@ function enterBVikaPresent_2(s: GameState, scene: SceneBuilder): void {
   scene.text('She leaves the room and locks it from the outside. Once she\'s gone, the men relax a little and start stroking their cocks through their pants.');
   qspCall(s, 'arousal', 'foreplay', 10, 'gangbang');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Get down on your knees', goto: ['vikaev1', 'b_vika_present_blow'] },
   ]);
@@ -95,7 +91,6 @@ function enterBVikaPresent_3(s: GameState, scene: SceneBuilder): void {
   scene.text('She leaves the room and locks it from the outside. Once she\'s gone, the men relax a little and start stroking their cocks through their pants.');
   qspCall(s, 'arousal', 'foreplay', 10, 'gangbang');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Get down on your knees', goto: ['vikaev1', 'b_vika_present_blow'] },
   ]);
@@ -111,7 +106,6 @@ function enterBVikaPresentBlow(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'bj', 10, 'gangbang');
   qspCall(s, 'arousal', 'hj', (-10), 'gangbang');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Keep on sucking', goto: ['vikaev1', 'b_vika_present_blow1'] },
   ]);
@@ -125,7 +119,6 @@ function enterBVikaPresentBlow1(s: GameState, scene: SceneBuilder): void {
   scene.text('The rest, seeing that you\'re not resisting, join in. Before you know it, your mouth is being fucked by all of them in turn.');
   qspCall(s, 'arousal', 'bj', 10, 'gangbang', 'deepthroat', 'rough');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Keep on sucking', goto: ['vikaev1', 'b_vika_present_blow1'] },
     { label: 'Let them fuck you', goto: ['vikaev1', 'b_vika_present_sex1'] },
@@ -170,7 +163,6 @@ function enterBVikaPresentSex1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('As the excitement takes over, you unwrap your lips from the cock you\'ve been sucking.');
   scene.text('"I want to get fucked in both my holes at the same time!" you cry out.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Take me all at once', goto: ['vikaev1', 'b_vika_present_sex2'] },
   ]);
@@ -236,7 +228,6 @@ function enterBVikaPresentSex2(s: GameState, scene: SceneBuilder): void {
       { label: 'Tell them to cum on your face', goto: ['vikaev1', 'b_vika_present_cum'] },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Further', goto: ['vikaev1', 'b_vika_present_sex2'] },
   ]);
@@ -257,7 +248,6 @@ function enterBVikaPresentCum(s: GameState, scene: SceneBuilder): void {
   scene.text('No one says a word as they energetically jerk off while you keep touching your clit.');
   scene.text('It doesn\'t take long before they start grunting and groaning as your face is covered by their warm cum.');
   scene.text('You sit with a satisfied grin on your face, cum slowly trickling from your holes as you use your fingers to scoop up the cum on your face before sucking on them.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['uni_dorm', 'dorm_room'] },
   ]);

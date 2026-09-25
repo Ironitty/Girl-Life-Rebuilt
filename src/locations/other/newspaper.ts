@@ -1,4 +1,4 @@
-import { qspCall, dynamicGoto } from '../_shared/qspBridge';
+import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -12,22 +12,22 @@ function enterCikl(s: GameState, scene: SceneBuilder): void {
   ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['newspaper'] = 0;
   qspCall(s, 'newspaper_pages', 'init');
   (s as any).i = 0;
-  // TODO-QSP: :newspaper_frontpage_loop
-  (s as any).idx = (Math.floor(Math.random() * (0 - 0 + 1)) + (0));
-  ((s as any).newspaperVars = (s as any).newspaperVars ?? {})['page_' + String(((s as any).i ?? 0))] = (((s as any).np_front_pages ?? 0)?.[String((s as any).idx ?? 0)] ?? 0);
-  (s as any).i = ((s as any).i ?? 0) + (1);
-  if (Object.keys((s as any).np_front_pages ?? {}).length > 0) {
-    // TODO-QSP: jump 'newspaper_frontpage_loop'
-  }
-  // TODO-QSP: :newspaper_shuffle_loop
-  (s as any).idx = (Math.floor(Math.random() * (0 - 0 + 1)) + (0));
-  ((s as any).newspaperVars = (s as any).newspaperVars ?? {})['page_' + String(((s as any).i ?? 0))] = (((s as any).np_pages ?? 0)?.[String((s as any).idx ?? 0)] ?? 0);
-  (s as any).i = ((s as any).i ?? 0) + (1);
-  if (Object.keys((s as any).np_pages ?? {}).length > 0) {
-    // TODO-QSP: jump 'newspaper_shuffle_loop'
-  }
-  ((s as any).newspaperVars = (s as any).newspaperVars ?? {})['max_page_num'] = ((s as any).i ?? 0) - 1;
-  // TODO-QSP: end
+  do {
+    (s as any).idx = (Math.floor(Math.random() * (0 - 0 + 1)) + (0));
+    ((s as any).newspaperVars = (s as any).newspaperVars ?? {})['page_' + String(((s as any).i ?? 0))] = (((s as any).np_front_pages ?? 0)?.[String((s as any).idx ?? 0)] ?? 0);
+    (s as any).np_front_pages = undefined;
+    (s as any).i = ((s as any).i ?? 0) + (1);
+    (s as any).np_front_pages = undefined;
+    do {
+      (s as any).idx = (Math.floor(Math.random() * (0 - 0 + 1)) + (0));
+      ((s as any).newspaperVars = (s as any).newspaperVars ?? {})['page_' + String(((s as any).i ?? 0))] = (((s as any).np_pages ?? 0)?.[String((s as any).idx ?? 0)] ?? 0);
+      (s as any).np_pages = undefined;
+      (s as any).i = ((s as any).i ?? 0) + (1);
+      (s as any).np_pages = undefined;
+      ((s as any).newspaperVars = (s as any).newspaperVars ?? {})['max_page_num'] = ((s as any).i ?? 0) - 1;
+      (s as any).i = undefined;
+    } while (Object.keys((s as any).np_pages ?? {}).length > 0);
+  } while (Object.keys((s as any).np_front_pages ?? {}).length > 0);
   scene.build();
 }
 
@@ -35,7 +35,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_np_page = 0;
   qspCall(s, 'stat', '');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterView(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -57,9 +56,10 @@ function enterView(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
+  qspFunc(s, 'newspaperVars[\'page_' + ((s as any).temp_np_page ?? 0) + '\']');
   scene.actions([
     { label: 'Put the newspaper away', handler: (st: GameState) => {
+    (st as any).temp_np_page = undefined;
     if (((st as any).newspaperVars ?? 0)?.['dbag'] === 0) {
       dynamicGoto(st, 'menu_loc', 'menu_arg');
     } else {

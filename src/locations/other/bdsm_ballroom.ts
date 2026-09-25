@@ -14,7 +14,6 @@ function enterBallroom(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/suburb/bdsm_club/ballroom.jpg');
   scene.text('Ballroom');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the Foyer', goto: ['bdsm_hallway', 'foyer'] },
     { label: 'Go to the Atrium', goto: ['bdsm_ballroom', 'atrium'] },
@@ -28,7 +27,6 @@ function enterAtrium(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/suburb/bdsm_club/atrium.jpg');
   scene.text('Atrium');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the Ballroom', goto: ['bdsm_ballroom', 'ballroom'] },
   ]);

@@ -8,6 +8,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'shop_erotomaniac', 'start');
   (s as any).location_type = 'public_indoors';
   (s as any).sexloc = 'shop_erotomaniac';
+  (s as any).locclass = undefined;
   (s as any).ghnow = 0;
   qspCall(s, 'schedule', 'A84');
   qspCall(s, 'schedule', 'A23');
@@ -16,8 +17,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     qspGoto(s, 'shop_erotomaniac', 'kendra');
   }
   if (((s as any).locat ?? 0)?.['A23'] === 33  &&  ((s as any).AlbinaQW ?? 0)?.['sex_shop'] < ((s as any).daystart ?? 0)) {
-    // TODO-QSP: dynamic text: 'You see '+iif(AlbinaQW['know_albina_uni'] = 0 and ($start_type['loc'] ! 'sg' an...
-    scene.text('You see ' + ((((s as any).AlbinaQW ?? 0)?.['know_albina_uni'] === 0  &&  (((s as any).start_type ?? 0)?.['loc'] !== 'sg'  &&  ((s as any).start_type ?? 0)?.['magic'] === 'tg')) ? ('an attractive looking brunette') : ('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027shop_erotomaniac/u0027, /u0027albina/u0027); return false;">Albina</a>')) + ' browsing through the underwear that the store has to offer.');
+    scene.text('You see ' + ((((s as any).AlbinaQW ?? 0)?.['know_albina_uni'] === 0  &&  (((s as any).start_type ?? 0)?.['loc'] !== 'sg'  &&  ((s as any).start_type ?? 0)?.['magic'] === 'tg')) ? ('an attractive looking brunette') : ('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027shop_erotomaniac\u0027, \u0027albina\u0027); return false;">Albina</a>')) + ' browsing through the underwear that the store has to offer.');
   }
   if (((s as any).pantyworntype ?? 0) === 'none'  &&  (Math.floor(Math.random() * 10) + 1) === 10) {
     qspGoto(s, 'shop_erotomaniac', 'shprod');
@@ -26,17 +26,11 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>The Erotomaniac</b></center>');
   scene.img('images/locations/city/redlight/erotomaniac/sexshop.jpg');
   scene.text('The main counter displays various sex toys and other related items:');
-  // TODO-QSP: dynamic text: Lubricant - <<$func(''money'', ''string_price'', 145)>>
   scene.text(`Lubricant - ${qspFunc(s, 'money', 'string_price', 145)}`);
-  // TODO-QSP: dynamic text: Vibrator - <<$func(''money'', ''string_price'', 800)>>
   scene.text(`Vibrator - ${qspFunc(s, 'money', 'string_price', 800)}`);
-  // TODO-QSP: dynamic text: Butt plug - <<$func(''money'', ''string_price'', 800)>>
   scene.text(`Butt plug - ${qspFunc(s, 'money', 'string_price', 800)}`);
-  // TODO-QSP: dynamic text: Strap-on harness - <<$func(''money'', ''string_price'', 500)>>
   scene.text(`Strap-on harness - ${qspFunc(s, 'money', 'string_price', 500)}`);
-  // TODO-QSP: dynamic text: Dildos - starting at <<$func(''money'', ''string_price'', 800)>>
   scene.text(`Dildos - starting at ${qspFunc(s, 'money', 'string_price', 800)}`);
-  // TODO-QSP: dynamic text: Private booths are available in the basement for viewing porn. (<<$func(''money'...
   scene.text(`Private booths are available in the basement for viewing porn. (${qspFunc(s, 'money', 'string_price', 50)} for 15 minutes)`);
   if (((s as any).mc_inventory ?? 0)?.['buttplug'] === 1  &&  ((s as any).mc_inventory ?? 0)?.['dildo_small'] + ((s as any).mc_inventory ?? 0)?.['dildo_normal'] + ((s as any).mc_inventory ?? 0)?.['dildo_big'] + ((s as any).mc_inventory ?? 0)?.['dildo_large'] + ((s as any).mc_inventory ?? 0)?.['dildo_huge'] + ((s as any).mc_inventory ?? 0)?.['dildo_enormous'] + ((s as any).mc_inventory ?? 0)?.['dildo_gigantic'] > 1  &&  ((s as any).pcs_hotcat ?? 0) >= 5  &&  (!((s as any).Peter ?? 0))) {
     if ((Math.floor(Math.random() * 2) + 0) === 1) {
@@ -44,7 +38,6 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Introduce yourself', handler: (st: GameState) => {
     scene.img('images/characters/city/peter/peter.jpg');
-    // TODO-QSP: dynamic text: You approach the counter and introduce yourself. "Hey there, I''m <<$pcs_nicknam...
     scene.text(`You approach the counter and introduce yourself. "Hey there, I'm ${((st as any).pcs_nickname ?? '')}."`);
     scene.text('"I\'m Peter," he replies. "I\'ve been watching you for a while and I find you rather… interesting. Do you want to come back to my place for some \'fun\'?"');
     scene.actions([
@@ -108,7 +101,6 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -143,6 +135,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'shop_erotomaniac', 'start');
   (s as any).location_type = 'public_indoors';
   (s as any).sexloc = 'shop_erotomaniac';
+  (s as any).locclass = undefined;
   (s as any).ghnow = 0;
   qspCall(s, 'schedule', 'A84');
   qspCall(s, 'schedule', 'A23');
@@ -151,8 +144,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     qspGoto(s, 'shop_erotomaniac', 'kendra');
   }
   if (((s as any).locat ?? 0)?.['A23'] === 33  &&  ((s as any).AlbinaQW ?? 0)?.['sex_shop'] < ((s as any).daystart ?? 0)) {
-    // TODO-QSP: dynamic text: 'You see '+iif(AlbinaQW['know_albina_uni'] = 0 and ($start_type['loc'] ! 'sg' an...
-    scene.text('You see ' + ((((s as any).AlbinaQW ?? 0)?.['know_albina_uni'] === 0  &&  (((s as any).start_type ?? 0)?.['loc'] !== 'sg'  &&  ((s as any).start_type ?? 0)?.['magic'] === 'tg')) ? ('an attractive looking brunette') : ('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027shop_erotomaniac/u0027, /u0027albina/u0027); return false;">Albina</a>')) + ' browsing through the underwear that the store has to offer.');
+    scene.text('You see ' + ((((s as any).AlbinaQW ?? 0)?.['know_albina_uni'] === 0  &&  (((s as any).start_type ?? 0)?.['loc'] !== 'sg'  &&  ((s as any).start_type ?? 0)?.['magic'] === 'tg')) ? ('an attractive looking brunette') : ('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027shop_erotomaniac\u0027, \u0027albina\u0027); return false;">Albina</a>')) + ' browsing through the underwear that the store has to offer.');
   }
   if (((s as any).pantyworntype ?? 0) === 'none'  &&  (Math.floor(Math.random() * 10) + 1) === 10) {
     qspGoto(s, 'shop_erotomaniac', 'shprod');
@@ -161,17 +153,11 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>The Erotomaniac</b></center>');
   scene.img('images/locations/city/redlight/erotomaniac/sexshop.jpg');
   scene.text('The main counter displays various sex toys and other related items:');
-  // TODO-QSP: dynamic text: Lubricant - <<$func(''money'', ''string_price'', 145)>>
   scene.text(`Lubricant - ${qspFunc(s, 'money', 'string_price', 145)}`);
-  // TODO-QSP: dynamic text: Vibrator - <<$func(''money'', ''string_price'', 800)>>
   scene.text(`Vibrator - ${qspFunc(s, 'money', 'string_price', 800)}`);
-  // TODO-QSP: dynamic text: Butt plug - <<$func(''money'', ''string_price'', 800)>>
   scene.text(`Butt plug - ${qspFunc(s, 'money', 'string_price', 800)}`);
-  // TODO-QSP: dynamic text: Strap-on harness - <<$func(''money'', ''string_price'', 500)>>
   scene.text(`Strap-on harness - ${qspFunc(s, 'money', 'string_price', 500)}`);
-  // TODO-QSP: dynamic text: Dildos - starting at <<$func(''money'', ''string_price'', 800)>>
   scene.text(`Dildos - starting at ${qspFunc(s, 'money', 'string_price', 800)}`);
-  // TODO-QSP: dynamic text: Private booths are available in the basement for viewing porn. (<<$func(''money'...
   scene.text(`Private booths are available in the basement for viewing porn. (${qspFunc(s, 'money', 'string_price', 50)} for 15 minutes)`);
   if (((s as any).mc_inventory ?? 0)?.['buttplug'] === 1  &&  ((s as any).mc_inventory ?? 0)?.['dildo_small'] + ((s as any).mc_inventory ?? 0)?.['dildo_normal'] + ((s as any).mc_inventory ?? 0)?.['dildo_big'] + ((s as any).mc_inventory ?? 0)?.['dildo_large'] + ((s as any).mc_inventory ?? 0)?.['dildo_huge'] + ((s as any).mc_inventory ?? 0)?.['dildo_enormous'] + ((s as any).mc_inventory ?? 0)?.['dildo_gigantic'] > 1  &&  ((s as any).pcs_hotcat ?? 0) >= 5  &&  (!((s as any).Peter ?? 0))) {
     if ((Math.floor(Math.random() * 2) + 0) === 1) {
@@ -179,7 +165,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Introduce yourself', handler: (st: GameState) => {
     scene.img('images/characters/city/peter/peter.jpg');
-    // TODO-QSP: dynamic text: You approach the counter and introduce yourself. "Hey there, I''m <<$pcs_nicknam...
     scene.text(`You approach the counter and introduce yourself. "Hey there, I'm ${((st as any).pcs_nickname ?? '')}."`);
     scene.text('"I\'m Peter," he replies. "I\'ve been watching you for a while and I find you rather… interesting. Do you want to come back to my place for some \'fun\'?"');
     scene.actions([
@@ -243,7 +228,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -290,7 +274,6 @@ function enterSexshopMenu(s: GameState, scene: SceneBuilder): void {
       { label: 'Stop browsing', goto: ['shop_erotomaniac', 'start'] },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -310,7 +293,6 @@ function enterDefault2(s: GameState, scene: SceneBuilder): void {
       { label: 'Stop browsing', goto: ['shop_erotomaniac', 'start'] },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -326,7 +308,6 @@ function enterDress(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'shop_utils', 'init', 'end');
   }
   qspCall(s, 'shop_utils', 'display', 'grid_shop');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -349,7 +330,6 @@ function enterOutfits(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'shop_utils', 'init', 'end');
   }
   qspCall(s, 'shop_utils', 'display', 'grid_shop');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -371,7 +351,6 @@ function enterStrip(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'shop_utils', 'init', 'end');
   }
   qspCall(s, 'shop_utils', 'display', 'grid_shop');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -393,7 +372,6 @@ function enterShoes(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'shop_utils', 'init', 'end');
   }
   qspCall(s, 'shop_utils', 'display', 'grid_shop');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -415,7 +393,6 @@ function enterPanties(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'shop_utils', 'init', 'end');
   }
   qspCall(s, 'shop_utils', 'display', 'grid_shop');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -437,7 +414,6 @@ function enterBras(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'shop_utils', 'init', 'end');
   }
   qspCall(s, 'shop_utils', 'display', 'grid_shop');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -470,7 +446,6 @@ function enterBasement(s: GameState, scene: SceneBuilder): void {
       { label: 'Go to Masha', goto: ['masharoom', 'start'] },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the basement', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -496,7 +471,6 @@ function enterToilet(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'din_van', 'quickwash');
   qspCall(s, 'din_van', 'basin');
   qspCall(s, 'din_van', 'publicpan');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['shop_erotomaniac', 'basement'] },
     { label: 'Look in the mirror', goto: ['mirror', 'start'] },
@@ -521,7 +495,6 @@ function enterPeepbooth(s: GameState, scene: SceneBuilder): void {
     (s as any).ghnowcheck = ((s as any).ghnow ?? 0) * 2;
   }
   if (((s as any).ghnow ?? 0) > 0) {
-    // TODO-QSP: dynamic text: You served <<ghnow>> cocks on this visit.
     scene.text(`You served ${((s as any).ghnow ?? '')} cocks on this visit.`);
   }
   if (((s as any).hour ?? 0) >= 11  ||  ((s as any).hour ?? 0) < 3) {
@@ -533,8 +506,7 @@ function enterPeepbooth(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'money', 'pay', 50, 'cash');
       (st as any).minut = ((st as any).minut ?? 0) + 10;
       qspCall(st, 'stat', '');
-      // TODO-QSP: dynamic text: 'You insert ' + $func('money', 'string_price', 50) + ' into the terminal and the...
-      scene.text('You insert 50₽ into the terminal and the TV on the wall starts showing a pornographic film.');
+      scene.text('\'You insert 50₽ into the terminal and the TV on the wall starts showing a pornographic film.\'');
       scene.text('You sit in the chair and watch the film, feeling yourself becoming a little excited.');
       if (((st as any).GHchance ?? 0) >= 10 - ((st as any).ghnowcheck ?? 0)) {
         scene.text('You hear the TV in the next stall turn on.');
@@ -549,7 +521,6 @@ function enterPeepbooth(s: GameState, scene: SceneBuilder): void {
     }
     scene.img(`images/shared/sex/gloryhole/ghfinger${(Math.floor(Math.random() * 5) + 1)}.jpg`);
     scene.text('You poke your finger in the hole, letting whoever\'s on the other side know that you\'re ready to serve him.');
-    // TODO-QSP: dynamic text: 'The stranger slips ' + iif(ghnow < 5, $func('money', 'string_price', 300), $fun...
     scene.text('The stranger slips ' + ((((st as any).ghnow ?? 0) < 5) ? (qspFunc(s, 'money', 'string_price', 300)) : (qspFunc(s, 'money', 'string_price', 150))) + ' into the hole, followed by his erect cock.');
     scene.actions([
       { label: 'Suck his dick', handler: (st: GameState) => {
@@ -565,7 +536,6 @@ function enterPeepbooth(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'end');
     if (((st as any).mistressqwest ?? 0) > 0) {
       (st as any).mistressqwest = ((st as any).mistressqwest ?? 0) + (1);
-      // TODO-QSP: dynamic text: You have sucked <<mistressqwest - 1>> cocks for Mistress.
       scene.text(`You have sucked ${((st as any).mistressqwest ?? '') - 1} cocks for Mistress.`);
     }
     scene.actions([
@@ -593,7 +563,6 @@ function enterPeepbooth(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the booth', goto: ['shop_erotomaniac', 'basement'] },
   ]);
@@ -706,9 +675,7 @@ function enterKendra(s: GameState, scene: SceneBuilder): void {
         scene.img('images/locations/city/redlight/erotomaniac/sex/shkend0.jpg');
         scene.text('As you browse the store, you see a very attractive young black woman trying on latex clothes. She smiles when she notices you looking at her.');
         scene.text('After a few minutes, she walks over and boldly caresses your hair. "You\'re a pretty little thing, what\'s your name?"');
-        // TODO-QSP: dynamic text: "<<$pcs_firstname>>, but most people call me <<$pcs_nickname>>. What''s your nam...
         scene.text(`"${((s as any).pcs_firstname ?? '')}, but most people call me ${((s as any).pcs_nickname ?? '')}. What's your name?" you reply.`);
-        // TODO-QSP: dynamic text: She smiles. "<<$pcs_nickname>>, what a pretty name. I''m Kendra, but you can cal...
         scene.text(`She smiles. "${((s as any).pcs_nickname ?? '')}, what a pretty name. I'm Kendra, but you can call me Mistress Kendra," she says with confidence.`);
         scene.text('"Oh…" you reply. She\'s one of those people.');
         scene.actions([
@@ -722,12 +689,10 @@ function enterKendra(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/redlight/erotomaniac/sex/shkend01.jpg');
     if (((st as any).start_type ?? 0)?.['loc'] === 'sg'  &&  ((st as any).gschoolVars ?? 0)?.['school_diploma'] === 0) {
       scene.text('You ask her about her clothes and start talking with her. You tell her that you live in Pavlovsk and are in your final year of school and she replies by saying that she\'s a student from the Republic of Congo and is attending the local university on a student visa.');
-      // TODO-QSP: dynamic text: You talk about a wide range of subjects for a while before she smiles at you. "Y...
       scene.text(`You talk about a wide range of subjects for a while before she smiles at you. "You're very pretty. I love making pretty little Russian bitches my slaves. Call me Mistress Kendra, ${((st as any).pcs_nickname ?? '')}, and become mine."`);
       scene.text('You have no doubt where this will lead…');
     } else {
       scene.text('You ask her about her clothes and start talking with her. You tell her a bit about yourself and she replies by saying that she\'s a student from the Republic of Congo and is attending the local university on a student visa.');
-      // TODO-QSP: dynamic text: You talk about a wide range of subjects for a while before she smiles at you. "Y...
       scene.text(`You talk about a wide range of subjects for a while before she smiles at you. "You're very pretty. I love making pretty little Russian bitches my slaves. Call me Mistress Kendra, ${((st as any).pcs_nickname ?? '')}, and become mine."`);
       scene.text('You have no doubt where this will lead…');
     }
@@ -789,7 +754,6 @@ function enterKendra(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -801,7 +765,6 @@ function enterKendra1(s: GameState, scene: SceneBuilder): void {
   scene.text('You take the dildo from Kendra and insert it into her pussy. You use one hand to fuck her with the dildo while the other caresses her clit, Kendra moaning and writhing in pleasure as she leans back on the table.');
   qspCall(s, 'arousal', 'vaginal_dildo_give', 5, 'lesbian', 'sub');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/locations/city/redlight/erotomaniac/sex/shkend3.jpg');
@@ -848,7 +811,6 @@ function enterKendra2(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('"I see you\'re already wet, slave. Eager for my cock, are you? Don\'t worry, you\'ll feel it soon enough. Now get on your knees and suck it first!"');
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Suck her strap-on', handler: (st: GameState) => {
     scene.img('images/locations/city/redlight/erotomaniac/sex/shkend7.jpg');
@@ -885,7 +847,6 @@ function enterKendravag(s: GameState, scene: SceneBuilder): void {
   scene.text('You start riding the strap-on as Kendra drives it up from under you, trying to shove it as deep into your pussy as possible. Several minutes pass, and each thrust increases your arousal.');
   qspCall(s, 'arousal', 'vaginal_strap', 5, 'lesbian', 'sub');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Rub clit', handler: (st: GameState) => {
     scene.img('images/locations/city/redlight/erotomaniac/sex/shkend12.jpg');
@@ -1028,7 +989,6 @@ function enterKendraanal(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Submit', handler: (st: GameState) => {
     scene.img('images/locations/city/redlight/erotomaniac/sex/shkend13.jpg');
@@ -1062,7 +1022,6 @@ function enterKendrafinish(s: GameState, scene: SceneBuilder): void {
   scene.text('"Yes, Mistress Kendra…" you submissively reply before you both leave the basement and head back up to the store.');
   qspCall(s, 'arousal', 'foreplay', 5, 'lesbian', 'sub');
   qspCall(s, 'arousal', 'end');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return to the store', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -1083,7 +1042,6 @@ function enterAlbina(s: GameState, scene: SceneBuilder): void {
       scene.text('You blush at her jest and she smiles. "Don\'t worry, I won\'t tell anyone. Just stay safe, okay?"');
       scene.text('You just nod and allow her to go back to browsing.');
     } else {
-      // TODO-QSP: dynamic text: She smiles when she sees you. "<<$pcs_nickname>>? I didn''t expect to ever see y...
       scene.text(`She smiles when she sees you. "${((s as any).pcs_nickname ?? '')}? I didn't expect to ever see you in here."`);
       scene.text('"I was just browsing," you reply.');
       scene.text('"Same," she says. "I need some new cheap underwear that I don\'t mind losing, but I might see if they have any new toys in stock while I\'m here."');
@@ -1108,7 +1066,6 @@ function enterAlbina(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return to the store', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -1122,7 +1079,6 @@ function enterShprod(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   scene.img('images/locations/city/redlight/erotomaniac/shprod.jpg');
   scene.text('The cashier stands in front of you, holding a miniskirt and offering to help you. "Girl, this is very you. Will you try it on?"');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Refuse', goto: ['shop_erotomaniac', 'start'] },
     { label: 'Try it on', handler: (st: GameState) => {

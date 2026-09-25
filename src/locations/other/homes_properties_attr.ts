@@ -9,6 +9,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGetPropertyAttr(s: GameState, scene: SceneBuilder): void {
+  (s as any).property = undefined;
   if (String((s as any).locArgs?.[1] ?? '') === 'city_apartment') {
     ((s as any).property = (s as any).property ?? {})['id'] = 1;
     ((s as any).property = (s as any).property ?? {})['code'] = ((s as any).locArgs?.[1] ?? 0);
@@ -344,10 +345,11 @@ function enterGetPropertyAttr(s: GameState, scene: SceneBuilder): void {
                                     } else {
                                       if (Object.keys((s as any).home_property_attr_calls ?? {}).length > 0) {
                                         (s as any).i = 0;
-                                        // TODO-QSP: :mod_get_property_attr_calls_loop
-                                        (s as any).temp_app_loc = ((String((String((((s as any).home_property_attr_calls ?? 0)?.[String((s as any).i ?? 0)] ?? 0)).slice((3)-1))).indexOf(String('\''))) + 1);
-                                        (s as any).temp_loc_name = (String((((s as any).home_property_attr_calls ?? 0)?.[String((s as any).i ?? 0)] ?? 0)).slice((2)-1, ((2)-1)+(((s as any).temp_app_loc ?? 0))));
-                                        if (hasLocation(((s as any).temp_loc_name ?? 0))) {
+                                        while (true) {
+                                          (s as any).temp_app_loc = ((String((String((((s as any).home_property_attr_calls ?? 0)?.[String((s as any).i ?? 0)] ?? 0)).slice((3)-1))).indexOf(String('\''))) + 1);
+                                          (s as any).temp_loc_name = (String((((s as any).home_property_attr_calls ?? 0)?.[String((s as any).i ?? 0)] ?? 0)).slice((2)-1, ((2)-1)+(((s as any).temp_app_loc ?? 0))));
+                                          if (hasLocation(((s as any).temp_loc_name ?? 0))) {
+                                          }
                                         }
                                       }
                                     }
@@ -382,24 +384,25 @@ function enter(s: GameState, scene: SceneBuilder): void {
     ((s as any).train_station = (s as any).train_station ?? {})['dachi'] = 'gt \'train\', \'communal\'';
   }
   if (Object.keys((s as any).homes ?? {}).length < 18) {
-    // TODO-QSP: $homes[] = 'city_apartment'
-    // TODO-QSP: $homes[] = 'parents_home'
-    // TODO-QSP: $homes[] = 'village_cottage'
-    // TODO-QSP: $homes[] = 'old_town_apartment'
-    // TODO-QSP: $homes[] = 'matryona_mansion'
-    // TODO-QSP: $homes[] = 'pavlovsk_hotel'
-    // TODO-QSP: $homes[] = 'maid_bedroom'
-    // TODO-QSP: $homes[] = 'niko_apartment'
-    // TODO-QSP: $homes[] = 'vasilyhome'
-    // TODO-QSP: $homes[] = 'lyceum_dorm'
-    // TODO-QSP: $homes[] = 'university_dorm'
-    // TODO-QSP: $homes[] = 'hunters_lodge'
-    // TODO-QSP: $homes[] = 'shared_apartment'
-    // TODO-QSP: $homes[] = 'grandparents_house'
-    // TODO-QSP: $homes[] = 'city_house'
-    // TODO-QSP: $homes[] = 'meynold_household'
-    // TODO-QSP: $homes[] = 'hotel_therapist'
-    // TODO-QSP: $homes[] = 'pushkin_ballet_dorm'
+    (s as any).homes = undefined;
+    (s as any).homes = [...((s as any).homes ?? []), 'city_apartment'];
+    (s as any).homes = [...((s as any).homes ?? []), 'parents_home'];
+    (s as any).homes = [...((s as any).homes ?? []), 'village_cottage'];
+    (s as any).homes = [...((s as any).homes ?? []), 'old_town_apartment'];
+    (s as any).homes = [...((s as any).homes ?? []), 'matryona_mansion'];
+    (s as any).homes = [...((s as any).homes ?? []), 'pavlovsk_hotel'];
+    (s as any).homes = [...((s as any).homes ?? []), 'maid_bedroom'];
+    (s as any).homes = [...((s as any).homes ?? []), 'niko_apartment'];
+    (s as any).homes = [...((s as any).homes ?? []), 'vasilyhome'];
+    (s as any).homes = [...((s as any).homes ?? []), 'lyceum_dorm'];
+    (s as any).homes = [...((s as any).homes ?? []), 'university_dorm'];
+    (s as any).homes = [...((s as any).homes ?? []), 'hunters_lodge'];
+    (s as any).homes = [...((s as any).homes ?? []), 'shared_apartment'];
+    (s as any).homes = [...((s as any).homes ?? []), 'grandparents_house'];
+    (s as any).homes = [...((s as any).homes ?? []), 'city_house'];
+    (s as any).homes = [...((s as any).homes ?? []), 'meynold_household'];
+    (s as any).homes = [...((s as any).homes ?? []), 'hotel_therapist'];
+    (s as any).homes = [...((s as any).homes ?? []), 'pushkin_ballet_dorm'];
   }
   if (Object.keys((s as any).home_name ?? {}).length < 4) {
     ((s as any).home_name = (s as any).home_name ?? {})['city_apartment'] = 'city_apartment';

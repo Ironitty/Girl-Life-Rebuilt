@@ -87,13 +87,13 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
         ]);
       }
       if (((s as any).clothingworntype ?? 0) === 'nude') {
-        scene.text('Here you can <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027Nudelake/u0027, /u0027zagarat/u0027); return false;">sunbathe</a> and <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027Nudelake/u0027, /u0027swim/u0027); return false;">swim</a>');
+        scene.text('Here you can <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027Nudelake\u0027, \u0027zagarat\u0027); return false;">sunbathe</a> and <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027Nudelake\u0027, \u0027swim\u0027); return false;">swim</a>');
         if (((s as any).pcs_stam ?? 0) >= (20 * (10 - ((s as any).sport_clothes_exercise_bonus ?? 0))) / 2) {
           scene.actions([
             { label: 'Go swimming', goto: ['Nudelake', 'swim'] },
           ]);
         }
-        scene.text('You can play <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027Nudelake/u0027, /u0027voleybol/u0027); return false;">beach volleyball</a>.');
+        scene.text('You can play <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027Nudelake\u0027, \u0027voleybol\u0027); return false;">beach volleyball</a>.');
         scene.actions([
           { label: 'Sunbathe', goto: ['Nudelake', 'zagarat'] },
         ]);
@@ -118,7 +118,6 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       { label: 'Return to the main beach', goto: ['city_lake', 'start'] },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -129,7 +128,6 @@ function enterVoleybol(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   scene.img('images/locations/city/residential/lake/volleyball.jpg');
   scene.text('You go to the volleyball court.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Watch', goto: ['Nudelake', 'smotr'] },
     { label: 'Leave', goto: ['Nudelake', ''] },
@@ -188,7 +186,6 @@ function enterZagarat(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', goto: ['Nudelake', ''] },
   ]);
@@ -216,7 +213,6 @@ function enterSwim(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'sweat', 'remove_deo');
     scene.text('<br>Your deodorant gets washed away in the water.');
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', goto: ['Nudelake', ''] },
   ]);
@@ -229,7 +225,6 @@ function enterSmotr(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/residential/lake/volleyball.jpg');
   scene.text('You watch the others play.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['Nudelake', ''] },
   ]);

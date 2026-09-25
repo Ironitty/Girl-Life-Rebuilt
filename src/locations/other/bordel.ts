@@ -28,7 +28,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -56,7 +55,6 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -66,7 +64,7 @@ function enterBrothel(s: GameState, scene: SceneBuilder): void {
   (s as any).sexloc = 'bordel';
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/residential/sauna/borroom.jpg');
-  scene.text('This is your room in the brothel. In the middle is a huge bed sits in the middle and there\'s a small side door to the <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027bordel/u0027, /u0027dysh/u0027); return false;">bathroom</a>, but not much else.');
+  scene.text('This is your room in the brothel. In the middle is a huge bed sits in the middle and there\'s a small side door to the <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027bordel\u0027, \u0027dysh\u0027); return false;">bathroom</a>, but not much else.');
   scene.text('There is a lot of competition at the brothel. In order to avoid any fights, they introduced a rule - no more than two clients per day.');
   if (qspFunc(s, 'bordel', 'is_open') === 0) {
     scene.text('The brothel is closed for the night. You won\'t be able to work now.');
@@ -96,7 +94,6 @@ function enterBrothel(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     if (((st as any).clothingworntype ?? 0) !== 'nude') {
@@ -120,7 +117,6 @@ function enterDysh(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/residential/sauna/bordysh.jpg');
   scene.text('The bathroom is well fitted and clean since customers can access it and hygiene is very important in a brothel.');
   scene.text('Your room is so dedicated to its purpose that your clothes are stored in here.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return to your room', goto: ['bordel', 'brothel'] },
     { label: 'Bathroom functions', goto: ['vann', 'start'] },
@@ -139,7 +135,6 @@ function enterVar(s: GameState, scene: SceneBuilder): void {
   (s as any).borrand = (Math.floor(Math.random() * 11) + 0);
   if ((!((s as any).borrand ?? 0))) {
     (s as any).bordelpay = ((s as any).bordelpay ?? 0) + ((Math.floor(Math.random() * (30 - 10 + 1)) + (10)));
-    // TODO-QSP: dynamic text: A customer orders you (<<$func(''money'', ''string_profit'', bordelpay)>>).
     scene.text(`A customer orders you (${qspFunc(s, 'money', 'string_profit', ((s as any).bordelpay ?? ''))}).`);
     qspCall(s, 'willpower', 'sex', 'resist');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
@@ -176,7 +171,6 @@ function enterVar(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).borrand ?? 0) === 1) {
       (s as any).bordelpay = ((s as any).bordelpay ?? 0) + ((Math.floor(Math.random() * (30 - 10 + 1)) + (10)));
-      // TODO-QSP: dynamic text: A customer orders you and another girl (<<$func(''money'', ''string_profit'', bo...
       scene.text(`A customer orders you and another girl (${qspFunc(s, 'money', 'string_profit', ((s as any).bordelpay ?? ''))}).`);
       qspCall(s, 'willpower', 'sex', 'resist', 'hard');
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
@@ -212,7 +206,6 @@ function enterVar(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).borrand ?? 0) === 2) {
         (s as any).bordelpay = ((s as any).bordelpay ?? 0) + ((Math.floor(Math.random() * (45 - 15 + 1)) + (15)));
-        // TODO-QSP: dynamic text: Two clients book you (<<$func(''money'', ''string_profit'', bordelpay)>>).
         scene.text(`Two clients book you (${qspFunc(s, 'money', 'string_profit', ((s as any).bordelpay ?? ''))}).`);
         qspCall(s, 'willpower', 'sex', 'resist', 'hard');
         if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
@@ -250,7 +243,6 @@ function enterVar(s: GameState, scene: SceneBuilder): void {
       } else {
         if (((s as any).borrand ?? 0) === 3) {
           (s as any).bordelpay = ((s as any).bordelpay ?? 0) + ((Math.floor(Math.random() * (45 - 15 + 1)) + (15)));
-          // TODO-QSP: dynamic text: Two clients book you and another girl (<<$func(''money'', ''string_profit'', bor...
           scene.text(`Two clients book you and another girl (${qspFunc(s, 'money', 'string_profit', ((s as any).bordelpay ?? ''))}).`);
           qspCall(s, 'willpower', 'sex', 'resist');
           if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
@@ -288,7 +280,6 @@ function enterVar(s: GameState, scene: SceneBuilder): void {
         } else {
           if (((s as any).borrand ?? 0) === 4) {
             (s as any).bordelpay = ((s as any).bordelpay ?? 0) + ((Math.floor(Math.random() * (60 - 20 + 1)) + (20)));
-            // TODO-QSP: dynamic text: A group of customers order you (<<$func(''money'', ''string_profit'', bordelpay)...
             scene.text(`A group of customers order you (${qspFunc(s, 'money', 'string_profit', ((s as any).bordelpay ?? ''))}).`);
             qspCall(s, 'willpower', 'sex', 'resist', 'hard');
             if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
@@ -319,6 +310,7 @@ function enterVar(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'dinSex', 'std_trigger');
     }
     (st as any).guy = ((st as any).guy ?? 0) + (3);
+    (st as any).boy = undefined;
     qspCall(st, 'npcgeneratec', '0', 'Bordel Client', (Math.floor(Math.random() * 23) + 18));
     qspCall(st, 'boyStat', '$npclastgenerated');
     qspCall(st, 'npcgeneratec', '0', 'Bordel Client', (Math.floor(Math.random() * 23) + 18));
@@ -348,25 +340,24 @@ function enterVar(s: GameState, scene: SceneBuilder): void {
   if (((s as any).borrand ?? 0) <= 4  &&  qspFunc(s, 'bordel', 'is_open') === 0) {
     scene.text('The brothel is closing now, so this is your last chance to work today.');
   }
-  // TODO-QSP: end
+  (s as any).bordelpay = undefined;
+  (s as any).borrand = undefined;
+  (s as any).zpprand = undefined;
   scene.build();
 }
 
 function enterIsOpen(s: GameState, scene: SceneBuilder): void {
   (s as any).RESULT = ((s as any).hour ?? 0) >= qspFunc(s, 'bordel', 'open_hour')  ||  ((s as any).hour ?? 0) <= qspFunc(s, 'bordel', 'close_hour');
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterOpenHour(s: GameState, scene: SceneBuilder): void {
   (s as any).RESULT = 20;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterCloseHour(s: GameState, scene: SceneBuilder): void {
   (s as any).RESULT = 3;
-  // TODO-QSP: end
   scene.build();
 }
 

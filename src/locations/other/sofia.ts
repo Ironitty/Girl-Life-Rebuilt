@@ -14,7 +14,6 @@ function enterNotSpying(s: GameState, scene: SceneBuilder): void {
   ((s as any).sofiaQW = (s as any).sofiaQW ?? {})['spying_day'] = ((s as any).daystart ?? 0);
   scene.img('images/locations/city/island/university/dorm/dorm_hall.jpg');
   scene.text('As you\'re about to open the door, the noises get louder and leave no question in your mind that somebody is having sex in the room.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Take a peek', goto: ['sofia', 'spying'] },
     { label: 'Leave', goto: ['uni_dorm', 'second_floor'] },
@@ -35,7 +34,6 @@ function enterSpying(s: GameState, scene: SceneBuilder): void {
   }
   ((s as any).sofiaQW = (s as any).sofiaQW ?? {})['spying_times'] = ((s as any).sofiaQW['spying_times'] ?? 0) + (1);
   qspGoto(s, 'sofia', qspUntranslated(s, "spying_sex(Math.floor(Math.random() * 6) + 1)", { location: "sofia" }));
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -49,7 +47,6 @@ function enterSpyingSexIntrodesc(s: GameState, scene: SceneBuilder): void {
       scene.text('You open the door carefully as quietly as you can, just far enough for you to see Sofia and Maxim on her bed.');
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -60,17 +57,19 @@ function enterSpyingSex1(s: GameState, scene: SceneBuilder): void {
     (s as any).spyscenefirst = 1;
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSpyingSexIntrodesc(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
-  // TODO-QSP: dynamic text: 'Sofia is on all fours giving <<$sexpartner>> a loud and sloppy blowjob. His coc...
   scene.text(`Sofia is on all fours giving ${((s as any).sexpartner ?? '')} a loud and sloppy blowjob. His cock is ` + ((((s as any).npc_dick ?? 0)?.['A261'] < ((s as any).pcs_vag ?? 0)) ? ('not that impressive.') : ('average-sized.')) + '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave before you get caught', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
+    (st as any).spyscenefirst = undefined;
+    (st as any).sexpartner = undefined;
     qspGoto(st, 'uni_dorm', 'second_floor');
   } },
     { label: 'Continue to watch', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 4) + 0)=== 0) {
       qspCall(st, 'arousal', 'end');
+      (st as any).spyscenefirst = undefined;
+      (st as any).sexpartner = undefined;
       scene.text('Sofia suddenly stops and pops his cock out of her mouth. "Did you hear that?" she asks.');
       scene.text('You quickly close the door and head for the elevator before you\'re seen.');
       scene.actions([
@@ -91,18 +90,19 @@ function enterSpyingSex2(s: GameState, scene: SceneBuilder): void {
     (s as any).spyscenefirst = 1;
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSpyingSexIntrodesc(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
-  // TODO-QSP: dynamic text: Sofia sits with her back to the headrest, moaning loudly as <<$sexpartner>> goes...
   scene.text(`Sofia sits with her back to the headrest, moaning loudly as ${((s as any).sexpartner ?? '')} goes down on her.`);
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave before you get caught', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
+    (st as any).spyscenefirst = undefined;
+    (st as any).sexpartner = undefined;
     qspGoto(st, 'uni_dorm', 'second_floor');
   } },
     { label: 'Continue to watch', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 4) + 0)=== 0) {
       qspCall(st, 'arousal', 'end');
-      // TODO-QSP: dynamic text: <<$sexpartner>> suddenly stops. "Did you hear that?" he asks.
+      (st as any).spyscenefirst = undefined;
+      (st as any).sexpartner = undefined;
       scene.text(`${((st as any).sexpartner ?? '')} suddenly stops. "Did you hear that?" he asks.`);
       scene.text('You quickly close the door and head for the elevator before you\'re seen.');
       scene.actions([
@@ -123,17 +123,18 @@ function enterSpyingSex3(s: GameState, scene: SceneBuilder): void {
     (s as any).spyscenefirst = 1;
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSpyingSexIntrodesc(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
-  // TODO-QSP: dynamic text: 'Sofia gets on her back and props herself up with her arms, biting her lip as <<...
   scene.text(`Sofia gets on her back and props herself up with her arms, biting her lip as ${((s as any).sexpartner ?? '')} moves in between her legs. He gropes her perky breasts as he slides his ` + ((((s as any).npc_dick ?? 0)?.['A261'] < ((s as any).pcs_vag ?? 0)) ? ('not so impressive') : ('average')) + ' cock into her pussy and starts fucking her hard.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave before you get caught', handler: (st: GameState) => {
+    (st as any).spyscenefirst = undefined;
+    (st as any).sexpartner = undefined;
     qspGoto(st, 'uni_dorm', 'second_floor');
   } },
     { label: 'Continue to watch', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 4) + 0)=== 0) {
       qspCall(st, 'arousal', 'end');
-      // TODO-QSP: dynamic text: <<$sexpartner>> suddenly stops. "Did you hear that?" he asks.
+      (st as any).spyscenefirst = undefined;
+      (st as any).sexpartner = undefined;
       scene.text(`${((st as any).sexpartner ?? '')} suddenly stops. "Did you hear that?" he asks.`);
       scene.text('You quickly close the door and head for the elevator before you\'re seen.');
       scene.actions([
@@ -154,18 +155,19 @@ function enterSpyingSex4(s: GameState, scene: SceneBuilder): void {
     (s as any).spyscenefirst = 1;
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSpyingSexIntrodesc(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
-  // TODO-QSP: dynamic text: 'Sofia is on all fours moaning loudly as <<$sexpartner>> pounds her hard doggyst...
   scene.text(`Sofia is on all fours moaning loudly as ${((s as any).sexpartner ?? '')} pounds her hard doggystyle with his ` + ((((s as any).npc_dick ?? 0)?.['A261'] < ((s as any).pcs_vag ?? 0)) ? ('not so impressive') : ('average')) + ' cock.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave before you get caught', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
+    (st as any).spyscenefirst = undefined;
+    (st as any).sexpartner = undefined;
     qspGoto(st, 'uni_dorm', 'second_floor');
   } },
     { label: 'Continue to watch', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 4) + 0)=== 0) {
       qspCall(st, 'arousal', 'end');
-      // TODO-QSP: dynamic text: <<$sexpartner>> suddenly stops. "Did you hear that?" he asks.
+      (st as any).spyscenefirst = undefined;
+      (st as any).sexpartner = undefined;
       scene.text(`${((st as any).sexpartner ?? '')} suddenly stops. "Did you hear that?" he asks.`);
       scene.text('You quickly close the door and head for the elevator before you\'re seen.');
       scene.actions([
@@ -186,17 +188,19 @@ function enterSpyingSex5(s: GameState, scene: SceneBuilder): void {
     (s as any).spyscenefirst = 1;
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSpyingSexIntrodesc(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
-  // TODO-QSP: dynamic text: 'Sofia is bouncing up and down on <<$sexpartner>>''s '+iif( npc_dick['A261'] < p...
   scene.text(`Sofia is bouncing up and down on ${((s as any).sexpartner ?? '')}'s ` + ((((s as any).npc_dick ?? 0)?.['A261'] < ((s as any).pcs_vag ?? 0)) ? ('not so impressive') : ('average')) + ' cock, riding him hard cowgirl style while moaning loudly.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave before you get caught', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
+    (st as any).spyscenefirst = undefined;
+    (st as any).sexpartner = undefined;
     qspGoto(st, 'uni_dorm', 'second_floor');
   } },
     { label: 'Continue to watch', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 4) + 0)=== 0) {
       qspCall(st, 'arousal', 'end');
+      (st as any).spyscenefirst = undefined;
+      (st as any).sexpartner = undefined;
       scene.text('Sofia suddenly stops. "Did you hear that?" she asks.');
       scene.text('You quickly close the door and head for the elevator before you\'re seen.');
       scene.actions([
@@ -217,14 +221,14 @@ function enterSpyingSex6(s: GameState, scene: SceneBuilder): void {
     (s as any).spyscenefirst = 1;
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSpyingSexIntrodesc(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
-  // TODO-QSP: dynamic text: 'Sofia sits on all fours on the bed, presenting her big round ass to <<$sexpartn...
   scene.text(`Sofia sits on all fours on the bed, presenting her big round ass to ${((s as any).sexpartner ?? '')}, who jerks his ` + ((((s as any).npc_dick ?? 0)?.['A261'] < ((s as any).pcs_vag ?? 0)) ? ('not so impressive') : ('average')) + ' cock over it.');
   scene.text('He finally squirts a small amount of cum over her ass while yelling very loudly, as if he was letting loose a fire hose of it.');
   scene.text('Sofia does cheer him on, so you\'re not sure if she\'s aware of how little cum he actually delivered.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave before you get caught', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
+    (st as any).spyscenefirst = undefined;
+    (st as any).sexpartner = undefined;
     qspGoto(st, 'uni_dorm', 'second_floor');
   } },
   ]);

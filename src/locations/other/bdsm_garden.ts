@@ -14,7 +14,6 @@ function enterGarden(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/suburb/bdsm_club/garden.jpg');
   scene.text('Extensive garden, meticulously designed and maintained. Split into different areas each with its own theme and inspiration.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the conservatory', goto: ['bdsm_conservatory', ''] },
     { label: 'Go to the garage', goto: ['bdsm_garden', 'garage'] },
@@ -49,7 +48,7 @@ function enterCheckGardenEvents(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
+  (s as any).temp_rand = undefined;
   scene.build();
 }
 
@@ -58,7 +57,6 @@ function enterGardenEvent_2(s: GameState, scene: SceneBuilder): void {
   scene.text('The gardener is fucking a sub, gagged and tied to a tree.');
   qspCall(s, 'arousal', 'voyeur_sex', 5);
   qspCall(s, 'arousal', 'end');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return', goto: ['bdsm_garden', 'garden'] },
   ]);
@@ -70,7 +68,6 @@ function enterGardenEvent_3(s: GameState, scene: SceneBuilder): void {
   scene.text('A strapping young dom is checking a sub is adhering to the dress code. Looks like she forgot her panties.');
   qspCall(s, 'arousal', 'voyeur', 5);
   qspCall(s, 'arousal', 'end');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return', goto: ['bdsm_garden', 'garden'] },
   ]);
@@ -82,7 +79,6 @@ function enterGardenEvent_4(s: GameState, scene: SceneBuilder): void {
   scene.text('A dominant woman is forcing a naked man to drink from the fountain.');
   qspCall(s, 'arousal', 'voyeur', 5);
   qspCall(s, 'arousal', 'end');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return', goto: ['bdsm_garden', 'garden'] },
   ]);
@@ -94,7 +90,6 @@ function enterGardenEvent_5(s: GameState, scene: SceneBuilder): void {
   scene.text('A cluster of people are gathered around five women bent over in a row masturbating, you quickly realize everyone is betting on who will orgasm first. You briefly wonder if there is a prize for winning.');
   qspCall(s, 'arousal', 'voyeur_sex', 5);
   qspCall(s, 'arousal', 'end');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return', goto: ['bdsm_garden', 'garden'] },
   ]);
@@ -119,7 +114,6 @@ function enterGEV1(s: GameState, scene: SceneBuilder): void {
       { label: 'Go and meet the older men', goto: ['bdsm_garden', 'gEV2'] },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Don\'t go and see the older men', goto: ['bdsm_garden', 'garden'] },
   ]);
@@ -130,7 +124,6 @@ function enterGEV2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/suburb/bdsm_club/sex/grup1.mp4');
   scene.text('You walk over to the older men, they can\'t take their eyes of your beautiful naked body.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['bdsm_garden', 'gEV3'] },
   ]);
@@ -150,7 +143,6 @@ function enterGEV3(s: GameState, scene: SceneBuilder): void {
   scene.text('You crawl on top of him and already aroused in anticipation, you quickly take him inside and start to grind.');
   qspCall(s, 'arousal', 'foreplay', 10, 'sub', 'group');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['bdsm_garden', 'gEV4'] },
   ]);
@@ -165,7 +157,6 @@ function enterGEV4(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'hj', (-10), 'sub', 'group');
   qspCall(s, 'arousal', 'vaginal_finger', 10, 'sub', 'group');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['bdsm_garden', 'gEV5'] },
   ]);
@@ -177,7 +168,6 @@ function enterGEV5(s: GameState, scene: SceneBuilder): void {
   scene.text('"Fuck me." You moan to no particular man. The invite is soon accepted and as you continue to suck one of the men\'s cocks another pushes itself into your pussy.');
   qspCall(s, 'arousal', 'vaginal', 10, 'sub', 'group');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['bdsm_garden', 'gEV6'] },
   ]);
@@ -189,7 +179,6 @@ function enterGEV6(s: GameState, scene: SceneBuilder): void {
   scene.text('Not wanting this to turn into a creampie party, you get yourself onto all fours and spend some time sucking on the cocks that you have otherwise been neglecting.');
   qspCall(s, 'arousal', 'bj', 10, 'sub', 'group');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['bdsm_garden', 'gEV7'] },
   ]);
@@ -202,7 +191,6 @@ function enterGEV7(s: GameState, scene: SceneBuilder): void {
   scene.text('Almost immediately the right side of your face receives a warm, sticky treat.');
   qspCall(s, 'cum_call', 'face', 'Old Man');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['bdsm_garden', 'gEV8'] },
   ]);
@@ -213,7 +201,6 @@ function enterGEV8(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/suburb/bdsm_club/sex/grup7.mp4');
   scene.text('You remain in position lending a helping hand where needed and take another 6 cumshots to your face.');
   scene.text('As you reveal in your successful work, you realize for the first time that there were 7 men there.');
-  // TODO-QSP: dynamic text: You get up, still naked and your face covered in cum. The men have had their fun...
   scene.text(`You get up, still naked and your face covered in cum. The men have had their fun and are leaving. You find ${qspFunc(s, 'money', 'string_profit', 2000)} on the table.`);
   qspCall(s, 'npcgeneratec', '0', 'Old Man', (Math.floor(Math.random() * 21) + 55));
   qspCall(s, 'boyStat', '$npclastgenerated');
@@ -241,7 +228,6 @@ function enterGEV8(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'cum_call', 'face', 'Old Man');
   qspCall(s, 'money', 'earn', 2000);
   qspCall(s, 'arousal', 'end');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['bdsm_garden', 'garden'] },
   ]);
@@ -253,7 +239,6 @@ function enterGarage(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/suburb/bdsm_club/garage.jpg');
   scene.text('The garage has many different expensive cars, the doors are shut and it is surprisingly warm.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go to reception', goto: ['bdsm_mansion', 'reception'] },
     { label: 'Go to the garden', goto: ['bdsm_garden', 'garden'] },

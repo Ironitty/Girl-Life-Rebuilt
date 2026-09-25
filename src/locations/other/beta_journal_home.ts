@@ -17,7 +17,6 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
     scene.text('You share an apartment with three others in Pavlovsk. Your bills are paid by the other tenants in exchange for your house services.');
   }
   if (((s as any).accessible_property ?? 0)?.['city_apartment'] === 1) {
-    // TODO-QSP: dynamic text: You rent a two bedroom apartment in the city residential area. Your rent for the...
     scene.text(`You rent a two bedroom apartment in the city residential area. Your rent for the apartment is subtracted automatically in sum of ${qspFunc(s, 'money', 'string_price', qspFunc(s, 'homes_properties', 'get_rent_amount', 'city_apartment'))} us electric bill on 25th of each month. You are currently paid up for <b>${qspFunc(s, 'homes_properties', 'get_rent_days', 'city_apartment')}</b> days.`);
   }
   if (((s as any).accessible_property ?? 0)?.['city_apartment'] === 2) {
@@ -36,17 +35,16 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
     scene.text('You own a small holiday cottage with an adjacent allotment in the communal village.');
   }
   if (((s as any).accessible_property ?? 0)?.['old_town_apartment'] === 1) {
-    // TODO-QSP: dynamic text: You rent a two bedroom apartment in Pushkin. Your rent for the apartment is subt...
     scene.text(`You rent a two bedroom apartment in Pushkin. Your rent for the apartment is subtracted automatically in the sum of ${qspFunc(s, 'money', 'string_price', qspFunc(s, 'homes_properties', 'get_rent_amount', 'old_town_apartment'))} us electric bill on the 25th of each month. You are currently paid up for <b>${qspFunc(s, 'homes_properties', 'get_rent_days', 'old_town_apartment')}</b> days.`);
   }
   if (((s as any).accessible_property ?? 0)?.['matryona_mansion'] === 2  &&  (!((s as any).constructionstatus ?? 0))) {
     scene.text('You own a vacant block in the city suburbs.');
   }
   if (((s as any).accessible_property ?? 0)?.['matryona_mansion'] === 2  &&  ((s as any).constructionstatus ?? 0) === 1) {
-    // TODO-QSP: 'You own a plot of land in the city suburbs upon which you are building a house.' + iif(banaMansion ...
+    scene.text('You own a plot of land in the city suburbs upon which you are building a house.' + ((((s as any).banaMansion ?? 0) === 1) ? ('Your utility bills are due on the 25th of each month.') : ('')));
   }
   if (((s as any).accessible_property ?? 0)?.['matryona_mansion'] === 2  &&  ((s as any).constructionstatus ?? 0) === 2) {
-    // TODO-QSP: 'You own an impressive mansion in the city suburbs. ' + iif(banaMansion = 1, 'Your utility bills are...
+    scene.text('You own an impressive mansion in the city suburbs. ' + ((((s as any).banaMansion ?? 0) === 1) ? ('Your utility bills are due on the 25th of each month.') : ('')));
   }
   if (((s as any).accessible_property ?? 0)?.['city_house'] === 2) {
     scene.text('You own a nice house on the edge of the city residential district. Your utility bills are due on the 25th of each month.');
@@ -161,7 +159,6 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 

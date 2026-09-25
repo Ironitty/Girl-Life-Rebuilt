@@ -47,7 +47,6 @@ function enterLectureHallEvents(s: GameState, scene: SceneBuilder): void {
           scene.actions([
             { label: 'Go to the university plaza', goto: ['uni_grounds', ''] },
             { label: 'Peek', handler: (st: GameState) => {
-    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/city/island/university/lecture...
     scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/city/island/university/lecture_hall/sex/spy/female_pro_sex` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
     scene.text('You crack the door slightly and peek inside. You see one of the female professors on her desk getting railed by one of the male students. She is fairly pretty for her age. After a few seconds, you close the door and move away, afraid of getting caught.');
     qspCall(st, 'arousal', 'voyeur_sex', 2);
@@ -70,7 +69,6 @@ function enterLectureHallEvents(s: GameState, scene: SceneBuilder): void {
             ]);
           } else {
             if (((s as any).temp ?? 0) === 6) {
-              // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/city/island/university/lecture...
               scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/city/island/university/lecture_hall/events/nakedrun` + (Math.floor(Math.random() * 7) + 1) + '.jpg"></center>');
               scene.text('Your walk through the lecture hall is interrupted when you hear laughing and amused yelling. Moments later, a group come running down the hall, all of them completely naked. You stand against the wall to let them all past before continuing on your way.');
               qspCall(s, 'arousal', 'voyeur', 2);
@@ -96,7 +94,6 @@ function enterLectureHallEvents(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Go to the university plaza', goto: ['uni_grounds', ''] },
       { label: 'Peek', handler: (st: GameState) => {
-    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/city/island/university/lecture...
     scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/city/island/university/lecture_hall/sex/spy/female_pro_sex` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
     scene.text('You peek inside and see one of the female professors on her desk getting railed by one of the male students. She\'s fairly pretty for her age. After a few seconds, you step away and notice the guy staring at you with a lustful look in his eyes. You roll your eyes and walk away while shaking your head.');
     qspCall(st, 'arousal', 'voyeur_sex', 2);
@@ -147,7 +144,6 @@ function enterLectureHallEvents(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Go to the university plaza', goto: ['uni_grounds', ''] },
       { label: 'Peek', handler: (st: GameState) => {
-    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/city/island/university/lecture...
     scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/city/island/university/lecture_hall/sex/spy/female_pro_sex` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
     scene.text('You peek inside and see one of the female professors on her desk getting railed by one of the male students. She\'s fairly pretty for her age. After a few seconds, you step away and notice the guy staring at you with a lustful look in his eyes. You roll your eyes and walk away while shaking your head.');
     qspCall(st, 'arousal', 'voyeur_sex', 2);
@@ -170,7 +166,6 @@ function enterLectureHallEvents(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 

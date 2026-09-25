@@ -42,6 +42,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       (st as any).minut = ((st as any).minut ?? 0) + 1;
       qspGoto(st, 'rasputin_room_staff', '');
     } else {
+      alert('You don\'t work here and have no reason to enter.');
       (st as any).minut = ((st as any).minut ?? 0) + 1;
       qspGoto(st, 'rasputin_entrance', '');
     }

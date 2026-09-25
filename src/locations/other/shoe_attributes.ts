@@ -10,7 +10,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(s, '$attributes_' + ((s as any).locArgs?.[0] ?? 0) + '_shoes', '', ((s as any).locArgs?.[1] ?? 0));
   }
   if ((!((s as any).ShoQuality ?? 0))) {
-    // TODO-QSP: exit
+    return;
   }
   if (((s as any).ShoHeels ?? 0) < 2) {
     (s as any).ShoSkill = 0;

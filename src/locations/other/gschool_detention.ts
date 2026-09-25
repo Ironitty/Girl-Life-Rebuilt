@@ -14,11 +14,11 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   (s as any).detention_set = 0;
   (s as any).i = (Math.floor(Math.random() * 100) + 1);
   if (((((s as any).grupTipe ?? 0) === 3  &&  ((s as any).i ?? 0) <= 20)  ||  (((s as any).grupTipe ?? 0) === 5  &&  ((s as any).i ?? 0) <= 30)  ||  ((s as any).i ?? 0) <= 10)  &&  ((s as any).pantyworntype ?? 0) !== 'none') {
-    // TODO-QSP: killvar 'i'
+    (s as any).i = undefined;
     qspGoto(s, 'gschool_detention', 'wedgie');
   } else {
     if (((s as any).i ?? 0) <= 20  &&  ((s as any).npc_rel ?? 0)?.['A144'] > 50  &&  ((s as any).pantyworntype ?? 0) !== 'none') {
-      // TODO-QSP: killvar 'i'
+      (s as any).i = undefined;
       qspGoto(s, 'gschool_detention', 'anushka_wedgie');
     } else {
       (s as any).demerit = ((s as any).demerit ?? 0) - (20);
@@ -81,52 +81,50 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterWedgie(s: GameState, scene: SceneBuilder): void {
   (s as any).wedgie_counter = 0;
-  // TODO-QSP: :wedgie_girl
-  qspCall(s, 'gschool_events', 'rand_girl_arg', 1, 1, 0, 1, 1, 0);
-  if (((s as any).grupTipe ?? 0) === 4  &&  ((s as any).wedgie_counter ?? 0) < 1000) {
-    if (((s as any).rand_girl ?? 0) !== 'Pauline'  &&  ((s as any).rand_girl ?? 0) !== 'Lena'  &&  ((s as any).rand_girl ?? 0) !== 'Lera'  &&  ((s as any).rand_girl ?? 0) !== 'Alyona') {
-      (s as any).wedgie_counter = ((s as any).wedgie_counter ?? 0) + (1);
-      // TODO-QSP: jump 'wedgie_girl'
-    }
-  } else {
-    if (((s as any).grupTipe ?? 0) === 2  &&  ((s as any).wedgie_counter ?? 0) < 1000) {
-      if (((s as any).rand_girl ?? 0) !== 'Pauline'  &&  ((s as any).rand_girl ?? 0) !== 'Lena'  &&  ((s as any).rand_girl ?? 0) !== 'Lera'  &&  ((s as any).rand_girl ?? 0) !== 'Alyona'  &&  ((s as any).rand_girl ?? 0) !== 'Christina') {
+  while (true) {
+    qspCall(s, 'gschool_events', 'rand_girl_arg', 1, 1, 0, 1, 1, 0);
+    if (((s as any).grupTipe ?? 0) === 4  &&  ((s as any).wedgie_counter ?? 0) < 1000) {
+      if (((s as any).rand_girl ?? 0) !== 'Pauline'  &&  ((s as any).rand_girl ?? 0) !== 'Lena'  &&  ((s as any).rand_girl ?? 0) !== 'Lera'  &&  ((s as any).rand_girl ?? 0) !== 'Alyona') {
         (s as any).wedgie_counter = ((s as any).wedgie_counter ?? 0) + (1);
-        // TODO-QSP: jump 'wedgie_girl'
+        break;
       }
     } else {
-      if (((s as any).wedgie_counter ?? 0) < 1000) {
-        if (((s as any).rand_girl ?? 0) !== 'Pauline'  &&  ((s as any).rand_girl ?? 0) !== 'Lena'  &&  ((s as any).rand_girl ?? 0) !== 'Lera'  &&  ((s as any).rand_girl ?? 0) !== 'Alyona'  &&  ((s as any).rand_girl ?? 0) !== 'Christina'  &&  ((s as any).rand_girl ?? 0) !== 'Lina'  &&  ((s as any).rand_girl ?? 0) !== 'Lariska'  &&  ((s as any).rand_girl ?? 0) !== 'Stasya') {
+      if (((s as any).grupTipe ?? 0) === 2  &&  ((s as any).wedgie_counter ?? 0) < 1000) {
+        if (((s as any).rand_girl ?? 0) !== 'Pauline'  &&  ((s as any).rand_girl ?? 0) !== 'Lena'  &&  ((s as any).rand_girl ?? 0) !== 'Lera'  &&  ((s as any).rand_girl ?? 0) !== 'Alyona'  &&  ((s as any).rand_girl ?? 0) !== 'Christina') {
           (s as any).wedgie_counter = ((s as any).wedgie_counter ?? 0) + (1);
-          // TODO-QSP: jump 'wedgie_girl'
+          break;
+        }
+      } else {
+        if (((s as any).wedgie_counter ?? 0) < 1000) {
+          if (((s as any).rand_girl ?? 0) !== 'Pauline'  &&  ((s as any).rand_girl ?? 0) !== 'Lena'  &&  ((s as any).rand_girl ?? 0) !== 'Lera'  &&  ((s as any).rand_girl ?? 0) !== 'Alyona'  &&  ((s as any).rand_girl ?? 0) !== 'Christina'  &&  ((s as any).rand_girl ?? 0) !== 'Lina'  &&  ((s as any).rand_girl ?? 0) !== 'Lariska'  &&  ((s as any).rand_girl ?? 0) !== 'Stasya') {
+            (s as any).wedgie_counter = ((s as any).wedgie_counter ?? 0) + (1);
+            break;
+          }
         }
       }
     }
-  }
-  scene.img('images/locations/pavlovsk/school/detention/wedgie.jpg');
-  scene.text('You arrive back at school on a Saturday - it sucks. Considering you spent all week here already, what could be worse than wasting part of a Saturday in school too?');
-  scene.text('You head to the library where a few of the other students have already arrived. As you make your way over to one of the tables, you suddenly feel a hand grab the top of your panties.');
-  scene.text('Before you can react or even object, the person yanks up on them hard. They jerk them up hard enough that they almost lift you off your feet, leaving you with a massive wedgie.');
-  // TODO-QSP: dynamic text: Once they let go, you spin around as you hear the rest of the students laughing ...
-  scene.text(`Once they let go, you spin around as you hear the rest of the students laughing at you and see ${((s as any).rand_girl ?? '')} standing there, amused by her handiwork.`);
-  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBackDown(s, scene); (s as any).locArgs = __savedLocArgs; }
-  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'random']; enterReturnFavor(s, scene); (s as any).locArgs = __savedLocArgs; }
-  qspCall(s, 'willpower', 'misc', 'self', 'medium');
-  if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
-    scene.actions([
-      { label: 'Smack her', handler: (st: GameState) => {
+    scene.img('images/locations/pavlovsk/school/detention/wedgie.jpg');
+    scene.text('You arrive back at school on a Saturday - it sucks. Considering you spent all week here already, what could be worse than wasting part of a Saturday in school too?');
+    scene.text('You head to the library where a few of the other students have already arrived. As you make your way over to one of the tables, you suddenly feel a hand grab the top of your panties.');
+    scene.text('Before you can react or even object, the person yanks up on them hard. They jerk them up hard enough that they almost lift you off your feet, leaving you with a massive wedgie.');
+    scene.text(`Once they let go, you spin around as you hear the rest of the students laughing at you and see ${((s as any).rand_girl ?? '')} standing there, amused by her handiwork.`);
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBackDown(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'random']; enterReturnFavor(s, scene); (s as any).locArgs = __savedLocArgs; }
+    qspCall(s, 'willpower', 'misc', 'self', 'medium');
+    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+      scene.actions([
+        { label: 'Smack her', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
-    ]);
-  } else {
-    scene.actions([
-      { label: 'Smack her', handler: (st: GameState) => {
+      ]);
+    } else {
+      scene.actions([
+        { label: 'Smack her', handler: (st: GameState) => {
     qspCall(st, 'willpower', 'pay', 'self');
     qspCall(st, 'stat', '');
     ((st as any).grupvalue = (st as any).grupvalue ?? {})[4] = ((st as any).grupvalue[4] ?? 0) + (1);
@@ -141,18 +139,18 @@ function enterWedgie(s: GameState, scene: SceneBuilder): void {
       { label: 'Take the offer', goto: ['gschool_detention', 'offer'] },
     ]);
   } },
-    ]);
-  }
-  // TODO-QSP: end
-  scene.actions([
-    { label: 'Promise revenge', handler: (st: GameState) => {
+      ]);
+    }
+    scene.actions([
+      { label: 'Promise revenge', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/detention/detention.jpg');
     scene.text('You glare at her. "Just you wait… You\'ll pay for this!"');
     scene.text('She snorts at your threat. "I\'m right here, bitch! Do it now, you fucking pussy!"');
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBackDown(st, scene); (st as any).locArgs = __savedLocArgs; }
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'random']; enterReturnFavor(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
-  ]);
+    ]);
+  }
   scene.build();
 }
 
@@ -164,7 +162,6 @@ function enterAnushkaWedgie(s: GameState, scene: SceneBuilder): void {
   scene.text('Once they let go, you spin around as you hear the rest of the students laughing at you and see Anushka standing there, amused by her handiwork.');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBackDown(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'anushka']; enterReturnFavor(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Promise revenge', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/detention/detention.jpg');
@@ -178,7 +175,6 @@ function enterAnushkaWedgie(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBackDown(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: end
   scene.actions([
     { label: 'Back down', handler: (st: GameState) => {
     ((st as any).grupvalue = (st as any).grupvalue ?? {})[4] = ((st as any).grupvalue[4] ?? 0) - (2);
@@ -246,7 +242,6 @@ function enterReturnFavor(s: GameState, scene: SceneBuilder): void {
     scene.text('When you let go and put your hands up, she yanks you forward and trips you. Once you\'re on the ground, she holds onto your panties and starts dragging you across the floor. You struggle to get up as she keeps pulling you along before you can get your balance.');
     scene.text('Fortunately for you, the teacher walks in. "What\'s the meaning of this, Miss Konstantinov?! Let go of her at <i>once/i>!"');
     scene.text('Anushka lets go, but not without a final yank that causes you to squeal a little.');
-    // TODO-QSP: dynamic text: The teacher speaks again. "Miss <<$pcs_lastname>>, please take your seat. That g...
     scene.text(`The teacher speaks again. "Miss ${((st as any).pcs_lastname ?? '')}, please take your seat. That goes for all of you. Except for you, Miss Konstantinov. You're coming with me."`);
     scene.text('He grabs Anushka roughly by the arm and drags her out of the library as you take your seat and try to pluck your underwear out of your ass crack. It\'s all stretched out of shape and might even be ruined.');
     scene.text('About fifteen minutes later, the teacher returns alone and takes a seat. He keeps a watchful eye on everyone for the rest of detention.');
@@ -257,7 +252,6 @@ function enterReturnFavor(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -266,12 +260,10 @@ function enterSitting(s: GameState, scene: SceneBuilder): void {
   scene.text('Once the teacher is busy ignoring you, you look around, but don\'t see anything interesting going on. It looks like you\'ll have to entertain yourself.');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterIncidentalEvents(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSittingEvents(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterSittingEvents(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: end
   scene.actions([
     { label: 'Study', handler: (st: GameState) => {
     qspCall(st, 'grades', 'homework', 'school', Math.min(((st as any).lernHome ?? 0), 3), 0, 0, 0);
@@ -362,28 +354,25 @@ function enterIncidentalEvents(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterUpskirt1(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 60;
-  // TODO-QSP: :newupskirtgirl1
-  qspCall(s, 'gschool_events', 'rand_girl_arg', 1, 1, 0, 1, 1, 0);
-  if ((((s as any).rand_girl ?? 0) === 'Veronika'  ||  ((s as any).rand_girl ?? 0) === 'Katyusha'  ||  ((s as any).rand_girl ?? 0) === 'Anushka')  &&  ((s as any).jump_counter ?? 0) < 1000) {
-    (s as any).jump_counter = ((s as any).jump_counter ?? 0) + (1);
-    // TODO-QSP: jump 'newupskirtgirl1'
-  }
-  (s as any).jump_counter = 0;
-  scene.img('images/locations/pavlovsk/school/detention/spreadg.jpg');
-  // TODO-QSP: dynamic text: You''re sitting at a table, bored out of your mind and waiting for detention to ...
-  scene.text(`You're sitting at a table, bored out of your mind and waiting for detention to end when you notice ${((s as any).rand_girl ?? '')} sitting at a table across from you.`);
-  scene.text('She leans back in her chair and relaxes, spreading her legs slightly as she does. The movement draws your eyes and you\'re given an eyeful. She seems to have forgotten her panties today, her pussy on full display for anyone to see.');
-  qspCall(s, 'arousal', 'erotic', 5);
-  qspCall(s, 'arousal', 'end');
-  // TODO-QSP: end
-  scene.actions([
-    { label: 'Ignore it', handler: (st: GameState) => {
+  while (true) {
+    qspCall(s, 'gschool_events', 'rand_girl_arg', 1, 1, 0, 1, 1, 0);
+    if ((((s as any).rand_girl ?? 0) === 'Veronika'  ||  ((s as any).rand_girl ?? 0) === 'Katyusha'  ||  ((s as any).rand_girl ?? 0) === 'Anushka')  &&  ((s as any).jump_counter ?? 0) < 1000) {
+      (s as any).jump_counter = ((s as any).jump_counter ?? 0) + (1);
+      break;
+    }
+    (s as any).jump_counter = 0;
+    scene.img('images/locations/pavlovsk/school/detention/spreadg.jpg');
+    scene.text(`You're sitting at a table, bored out of your mind and waiting for detention to end when you notice ${((s as any).rand_girl ?? '')} sitting at a table across from you.`);
+    scene.text('She leans back in her chair and relaxes, spreading her legs slightly as she does. The movement draws your eyes and you\'re given an eyeful. She seems to have forgotten her panties today, her pussy on full display for anyone to see.');
+    qspCall(s, 'arousal', 'erotic', 5);
+    qspCall(s, 'arousal', 'end');
+    scene.actions([
+      { label: 'Ignore it', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/detention/spreadg.jpg');
     scene.text('You decide that it\'s none of your business and do your best to ignore it. After a few minutes, one of the boys takes notice and walks over to the table before holding his phone under it.');
     scene.text('She quickly realizes what\'s going on and closes her legs together and blushes. The two of them are soon in a heated whisper argument, which draws the teacher\'s attention. When both feign ignorance and go back to their seats, the teacher keeps an eye on them for a few seconds before losing interest.');
@@ -392,7 +381,7 @@ function enterUpskirt1(s: GameState, scene: SceneBuilder): void {
       { label: 'Go home', goto: ['gschool_detention', 'end'] },
     ]);
   } },
-    { label: 'Get her attention and let her know', handler: (st: GameState) => {
+      { label: 'Get her attention and let her know', handler: (st: GameState) => {
     qspCall(st, 'npc_relationship', 'modify', 'A' + ((st as any).r ?? 0) + '', 1);
     scene.img('images/locations/pavlovsk/school/detention/spreadg.jpg');
     scene.text('You have to let her know. It takes a few seconds before you finally get her attention and mimic closing your hands together as if they were legs.');
@@ -402,154 +391,147 @@ function enterUpskirt1(s: GameState, scene: SceneBuilder): void {
       { label: 'Go home', goto: ['gschool_detention', 'end'] },
     ]);
   } },
-  ]);
+    ]);
+  }
   scene.build();
 }
 
 function enterUpskirt2(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 60;
-  // TODO-QSP: :newupskirtgirl2
-  qspCall(s, 'gschool_events', 'rand_girl_arg', 1, 1, 0, 1, 1, 0);
-  if ((((s as any).rand_girl ?? 0) === 'Veronika'  ||  ((s as any).rand_girl ?? 0) === 'Anushka')  &&  ((s as any).jump_counter ?? 0) < 1000) {
-    (s as any).jump_counter = ((s as any).jump_counter ?? 0) + (1);
-    // TODO-QSP: jump 'newupskirtgirl2'
+  while (true) {
+    qspCall(s, 'gschool_events', 'rand_girl_arg', 1, 1, 0, 1, 1, 0);
+    if ((((s as any).rand_girl ?? 0) === 'Veronika'  ||  ((s as any).rand_girl ?? 0) === 'Anushka')  &&  ((s as any).jump_counter ?? 0) < 1000) {
+      (s as any).jump_counter = ((s as any).jump_counter ?? 0) + (1);
+      break;
+    }
+    (s as any).jump_counter = 0;
+    scene.img('images/locations/pavlovsk/school/detention/upskirt.jpg');
+    scene.text(`You're sitting at a table, bored out of your mind waiting for detention to end when you notice ${((s as any).rand_girl ?? '')} climbing up the small ladder used to get to the top shelves of books.`);
+    scene.text('As you watch her climb, you quickly realize she\'s not wearing any panties and is giving everyone watching a clear view of her pussy.');
+    scene.text('Before you can say anything, someone whistles, which causes the teacher to start asking who did it. During the distraction, she quickly climbs back down and returns to her seat, blushing slightly, but also smiling.');
+    qspCall(s, 'arousal', 'voyeur', 5);
+    qspCall(s, 'arousal', 'end');
+    scene.actions([
+      { label: 'Go home', goto: ['gschool_detention', 'end'] },
+    ]);
   }
-  (s as any).jump_counter = 0;
-  scene.img('images/locations/pavlovsk/school/detention/upskirt.jpg');
-  // TODO-QSP: dynamic text: You''re sitting at a table, bored out of your mind waiting for detention to end ...
-  scene.text(`You're sitting at a table, bored out of your mind waiting for detention to end when you notice ${((s as any).rand_girl ?? '')} climbing up the small ladder used to get to the top shelves of books.`);
-  scene.text('As you watch her climb, you quickly realize she\'s not wearing any panties and is giving everyone watching a clear view of her pussy.');
-  scene.text('Before you can say anything, someone whistles, which causes the teacher to start asking who did it. During the distraction, she quickly climbs back down and returns to her seat, blushing slightly, but also smiling.');
-  qspCall(s, 'arousal', 'voyeur', 5);
-  qspCall(s, 'arousal', 'end');
-  // TODO-QSP: end
-  scene.actions([
-    { label: 'Go home', goto: ['gschool_detention', 'end'] },
-  ]);
   scene.build();
 }
 
 function enterFlashingGirl(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 60;
-  // TODO-QSP: :newflashinggirl
-  qspCall(s, 'gschool_events', 'rand_girl_arg', 1, 1, 0, 1, 1, 0);
-  if ((((s as any).rand_girl ?? 0) === 'Veronika'  ||  ((s as any).rand_girl ?? 0) === 'Katyusha')  &&  ((s as any).jump_counter ?? 0) < 1000) {
-    (s as any).jump_counter = ((s as any).jump_counter ?? 0) + (1);
-    // TODO-QSP: jump 'newflashinggirl'
+  while (true) {
+    qspCall(s, 'gschool_events', 'rand_girl_arg', 1, 1, 0, 1, 1, 0);
+    if ((((s as any).rand_girl ?? 0) === 'Veronika'  ||  ((s as any).rand_girl ?? 0) === 'Katyusha')  &&  ((s as any).jump_counter ?? 0) < 1000) {
+      (s as any).jump_counter = ((s as any).jump_counter ?? 0) + (1);
+      break;
+    }
+    (s as any).jump_counter = 0;
+    scene.img('images/locations/pavlovsk/school/detention/detflash1.mp4');
+    scene.text(`You're sitting at a table, bored out of your mind waiting for detention to end when you notice ${((s as any).rand_girl ?? '')} sitting in a spot that blocks almost everybody's view of her. She has her phone held in front of her, seemingly having a video conversation with someone.`);
+    scene.text('To your surprise, she lifts her shirt and flashes whoever it is on the phone. She laughs at their reaction, which grabs the teacher\'s attention and he clears his throat. She quickly ends the call and spends the rest of the time playing on her phone.');
+    scene.text('After watching her a for a few more seconds, you realize she\'s not going to do anything more, so you just play on your phone as well. At least there was a little excitement today.');
+    qspCall(s, 'arousal', 'voyeur', 5);
+    qspCall(s, 'arousal', 'end');
+    scene.actions([
+      { label: 'Go home', goto: ['gschool_detention', 'end'] },
+    ]);
   }
-  (s as any).jump_counter = 0;
-  scene.img('images/locations/pavlovsk/school/detention/detflash1.mp4');
-  // TODO-QSP: dynamic text: You''re sitting at a table, bored out of your mind waiting for detention to end ...
-  scene.text(`You're sitting at a table, bored out of your mind waiting for detention to end when you notice ${((s as any).rand_girl ?? '')} sitting in a spot that blocks almost everybody's view of her. She has her phone held in front of her, seemingly having a video conversation with someone.`);
-  scene.text('To your surprise, she lifts her shirt and flashes whoever it is on the phone. She laughs at their reaction, which grabs the teacher\'s attention and he clears his throat. She quickly ends the call and spends the rest of the time playing on her phone.');
-  scene.text('After watching her a for a few more seconds, you realize she\'s not going to do anything more, so you just play on your phone as well. At least there was a little excitement today.');
-  qspCall(s, 'arousal', 'voyeur', 5);
-  qspCall(s, 'arousal', 'end');
-  // TODO-QSP: end
-  scene.actions([
-    { label: 'Go home', goto: ['gschool_detention', 'end'] },
-  ]);
   scene.build();
 }
 
 function enterTeasingGirl(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 60;
-  // TODO-QSP: :newteasinggirl
-  qspCall(s, 'gschool_events', 'rand_girl_arg', 1, 1, 0, 1, 1, 0);
-  if ((((s as any).rand_girl ?? 0) === 'Veronika'  ||  ((s as any).rand_girl ?? 0) === 'Katyusha')  &&  ((s as any).jump_counter ?? 0) < 1000) {
-    (s as any).jump_counter = ((s as any).jump_counter ?? 0) + (1);
-    // TODO-QSP: jump 'newteasinggirl'
+  while (true) {
+    qspCall(s, 'gschool_events', 'rand_girl_arg', 1, 1, 0, 1, 1, 0);
+    if ((((s as any).rand_girl ?? 0) === 'Veronika'  ||  ((s as any).rand_girl ?? 0) === 'Katyusha')  &&  ((s as any).jump_counter ?? 0) < 1000) {
+      (s as any).jump_counter = ((s as any).jump_counter ?? 0) + (1);
+      break;
+    }
+    (s as any).jump_counter = 0;
+    scene.img('images/locations/pavlovsk/school/detention/tease.jpg');
+    scene.text(`You're sitting at a table, bored out of your mind waiting for detention to end when you notice ${((s as any).rand_girl ?? '')} has snuck off into the book stacks with some boys.`);
+    scene.text('She pulls down her pants and is about to pull down her panties, but stops just before she shows anything and grins as she pulls her clothes back up. After doing this a few times, the boys hopeful that she will show them something, she gets bored teasing them and wanders off.');
+    scene.text('The show over, you start playing on your phone again. At least there was a little excitement today.');
+    qspCall(s, 'arousal', 'voyeur', 5);
+    qspCall(s, 'arousal', 'end');
+    scene.actions([
+      { label: 'Go home', goto: ['gschool_detention', 'end'] },
+    ]);
   }
-  (s as any).jump_counter = 0;
-  scene.img('images/locations/pavlovsk/school/detention/tease.jpg');
-  // TODO-QSP: dynamic text: You''re sitting at a table, bored out of your mind waiting for detention to end ...
-  scene.text(`You're sitting at a table, bored out of your mind waiting for detention to end when you notice ${((s as any).rand_girl ?? '')} has snuck off into the book stacks with some boys.`);
-  scene.text('She pulls down her pants and is about to pull down her panties, but stops just before she shows anything and grins as she pulls her clothes back up. After doing this a few times, the boys hopeful that she will show them something, she gets bored teasing them and wanders off.');
-  scene.text('The show over, you start playing on your phone again. At least there was a little excitement today.');
-  qspCall(s, 'arousal', 'voyeur', 5);
-  qspCall(s, 'arousal', 'end');
-  // TODO-QSP: end
-  scene.actions([
-    { label: 'Go home', goto: ['gschool_detention', 'end'] },
-  ]);
   scene.build();
 }
 
 function enterHandjob(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 60;
-  // TODO-QSP: :boy_jump
-  if ((!(Math.floor(Math.random() * 2) + 0))) {
-    qspCall(s, 'gschool_events', 'rand_boy_arg', 0, 0, 0, 1, 0, 0);
-    if (((s as any).rand_boy ?? 0) === 'Niko'  &&  ((s as any).jump_counter ?? 0) < 1000) {
-      (s as any).jump_counter = ((s as any).jump_counter ?? 0) + (1);
-      // TODO-QSP: jump 'boy_jump'
+  while (true) {
+    if ((!(Math.floor(Math.random() * 2) + 0))) {
+      qspCall(s, 'gschool_events', 'rand_boy_arg', 0, 0, 0, 1, 0, 0);
+      if (((s as any).rand_boy ?? 0) === 'Niko'  &&  ((s as any).jump_counter ?? 0) < 1000) {
+        (s as any).jump_counter = ((s as any).jump_counter ?? 0) + (1);
+        break;
+      }
+    } else {
+      qspCall(s, 'gschool_events', 'rand_boy_arg', 1, 1, 0, 0, 0, 0);
+      if (((s as any).rand_boy ?? 0) !== 'Dimka'  &&  ((s as any).rand_boy ?? 0) !== 'Andrey'  &&  ((s as any).rand_boy ?? 0) !== 'Ivan'  &&  ((s as any).rand_boy ?? 0) !== 'Lazar'  &&  ((s as any).rand_boy ?? 0) !== 'Svyatoslav'  &&  ((s as any).jump_counter ?? 0) < 1000) {
+        (s as any).jump_counter = ((s as any).jump_counter ?? 0) + (1);
+        break;
+      }
     }
-  } else {
-    qspCall(s, 'gschool_events', 'rand_boy_arg', 1, 1, 0, 0, 0, 0);
-    if (((s as any).rand_boy ?? 0) !== 'Dimka'  &&  ((s as any).rand_boy ?? 0) !== 'Andrey'  &&  ((s as any).rand_boy ?? 0) !== 'Ivan'  &&  ((s as any).rand_boy ?? 0) !== 'Lazar'  &&  ((s as any).rand_boy ?? 0) !== 'Svyatoslav'  &&  ((s as any).jump_counter ?? 0) < 1000) {
-      (s as any).jump_counter = ((s as any).jump_counter ?? 0) + (1);
-      // TODO-QSP: jump 'boy_jump'
-    }
+    (s as any).jump_counter = 0;
+    scene.img('images/locations/pavlovsk/school/detention/sex/handjob.jpg');
+    scene.text(`You're sitting at a table, bored out of your mind waiting for detention to end when you notice a girl from another class. You can't recall her name, but she's sitting next to ${((s as any).rand_boy ?? '')}, who has his shorts pulled down.`);
+    scene.text('She\'s jerking him off under the desk, both of them do a fairly good job of acting like nothing\'s going on, but from your seat, you have a perfect view of the action.');
+    scene.text('Sometime later, she switches hands, but he finally leans back and closes his eyes. Sensing he\'s close, she tilts his dick down as she keeps jerking him off and cups her other hand under the head of his dick.');
+    scene.text('Moments later, he shoots his load into her hand. Once he finishes, she brings her hands up to her face and licks his cum up as he tucks his dick away. Not long after, they sit side by side playing on their phones, pretending nothing happened.');
+    qspCall(s, 'arousal', 'voyeur_sex', 10);
+    qspCall(s, 'arousal', 'end');
+    scene.actions([
+      { label: 'Go home', goto: ['gschool_detention', 'end'] },
+    ]);
   }
-  (s as any).jump_counter = 0;
-  scene.img('images/locations/pavlovsk/school/detention/sex/handjob.jpg');
-  // TODO-QSP: dynamic text: You''re sitting at a table, bored out of your mind waiting for detention to end ...
-  scene.text(`You're sitting at a table, bored out of your mind waiting for detention to end when you notice a girl from another class. You can't recall her name, but she's sitting next to ${((s as any).rand_boy ?? '')}, who has his shorts pulled down.`);
-  scene.text('She\'s jerking him off under the desk, both of them do a fairly good job of acting like nothing\'s going on, but from your seat, you have a perfect view of the action.');
-  scene.text('Sometime later, she switches hands, but he finally leans back and closes his eyes. Sensing he\'s close, she tilts his dick down as she keeps jerking him off and cups her other hand under the head of his dick.');
-  scene.text('Moments later, he shoots his load into her hand. Once he finishes, she brings her hands up to her face and licks his cum up as he tucks his dick away. Not long after, they sit side by side playing on their phones, pretending nothing happened.');
-  qspCall(s, 'arousal', 'voyeur_sex', 10);
-  qspCall(s, 'arousal', 'end');
-  // TODO-QSP: end
-  scene.actions([
-    { label: 'Go home', goto: ['gschool_detention', 'end'] },
-  ]);
   scene.build();
 }
 
 function enterChatWith___randGirl__(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: :rand_girlrel_jump
-  qspCall(s, 'gschool_events', 'rand_girl_arg', 1, 1, 1, 1, 1, 0);
-  if (((s as any).npc_rel ?? 0)['A' + (((s as any).r ?? 0))] < 50  &&  ((s as any).counter_girl ?? 0) < 1000) {
-    (s as any).counter_girl = ((s as any).counter_girl ?? 0) + (1);
-    // TODO-QSP: jump 'rand_girlrel_jump'
+  while (true) {
+    qspCall(s, 'gschool_events', 'rand_girl_arg', 1, 1, 1, 1, 1, 0);
+    if (((s as any).npc_rel ?? 0)['A' + (((s as any).r ?? 0))] < 50  &&  ((s as any).counter_girl ?? 0) < 1000) {
+      (s as any).counter_girl = ((s as any).counter_girl ?? 0) + (1);
+      break;
+    }
+    (s as any).counter_girl = 0;
+    qspCall(s, 'npc_relationship', 'modify', 'A' + ((s as any).r ?? 0) + '', 3);
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/pavlovsk/school/detention/detgchat.jpg');
+    scene.text(`You decide to move to an empty seat next to ${((s as any).rand_girl ?? '')}. The teacher watches you to see what you're up to, but soon loses interest and returns his attention to his laptop, following the example of half the students in the room.`);
+    scene.text(`You turn to ${((s as any).rand_girl ?? '')} and the two of you start chatting away about school, boys, clothes, makeup and anything else that strikes your fancy. Occasionally, the two of you get a little noisy and have a fit of giggles, causing the teacher to look up and clear his throat until you quieten back down, but he always returns his attention to his laptop after a few seconds and you begin your chatter once again.`);
+    scene.text('Before you know it, the class bell rings. You both stop in surprise, but quickly gather your things before parting with a smile and heading home.');
+    scene.actions([
+      { label: 'Go home', goto: ['gschool_detention', 'end'] },
+    ]);
   }
-  (s as any).counter_girl = 0;
-  qspCall(s, 'npc_relationship', 'modify', 'A' + ((s as any).r ?? 0) + '', 3);
-  qspCall(s, 'stat', '');
-  scene.img('images/locations/pavlovsk/school/detention/detgchat.jpg');
-  // TODO-QSP: dynamic text: You decide to move to an empty seat next to <<$rand_girl>>. The teacher watches ...
-  scene.text(`You decide to move to an empty seat next to ${((s as any).rand_girl ?? '')}. The teacher watches you to see what you're up to, but soon loses interest and returns his attention to his laptop, following the example of half the students in the room.`);
-  // TODO-QSP: dynamic text: You turn to <<$rand_girl>> and the two of you start chatting away about school, ...
-  scene.text(`You turn to ${((s as any).rand_girl ?? '')} and the two of you start chatting away about school, boys, clothes, makeup and anything else that strikes your fancy. Occasionally, the two of you get a little noisy and have a fit of giggles, causing the teacher to look up and clear his throat until you quieten back down, but he always returns his attention to his laptop after a few seconds and you begin your chatter once again.`);
-  scene.text('Before you know it, the class bell rings. You both stop in surprise, but quickly gather your things before parting with a smile and heading home.');
-  // TODO-QSP: end
-  scene.actions([
-    { label: 'Go home', goto: ['gschool_detention', 'end'] },
-  ]);
   scene.build();
 }
 
 function enterChatWith___randBoy__(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: :rand_boyrel_jump
-  qspCall(s, 'gschool_events', 'rand_boy_arg', 1, 1, 1, 1, 1, 0);
-  if (((s as any).npc_rel ?? 0)['A' + (((s as any).r ?? 0))] < 50  &&  ((s as any).counter_boy ?? 0) < 1000) {
-    (s as any).counter_boy = ((s as any).counter_boy ?? 0) + (1);
-    // TODO-QSP: jump 'rand_boyrel_jump'
+  while (true) {
+    qspCall(s, 'gschool_events', 'rand_boy_arg', 1, 1, 1, 1, 1, 0);
+    if (((s as any).npc_rel ?? 0)['A' + (((s as any).r ?? 0))] < 50  &&  ((s as any).counter_boy ?? 0) < 1000) {
+      (s as any).counter_boy = ((s as any).counter_boy ?? 0) + (1);
+      break;
+    }
+    (s as any).counter_boy = 0;
+    qspCall(s, 'npc_relationship', 'modify', 'A' + ((s as any).r ?? 0) + '', 3);
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/pavlovsk/school/detention/detbchat.jpg');
+    scene.text(`You decide to move to an empty seat next to ${((s as any).rand_boy ?? '')}. The teacher watches you to see what you're up to, but soon loses interest in you and starts playing something on his phone, following the example of half the students in the room.`);
+    scene.text(`You turn to ${((s as any).rand_boy ?? '')} and the two of you start chatting away about school, teachers, girls he likes, boys you like and anything else that strikes your fancy. Occasionally, the two of you get a little noisy and raise your voices a little too much in excitement, causing the teacher to look up and clear his throat until you quieten back down, but he always returns his attention to his phone after a few seconds and you begin your chatter once again.`);
+    scene.text('Before you know it, the class bell rings. You both stop in surprise, but quickly gather your things before parting with a smile and heading home.');
+    scene.actions([
+      { label: 'Go home', goto: ['gschool_detention', 'end'] },
+    ]);
   }
-  (s as any).counter_boy = 0;
-  qspCall(s, 'npc_relationship', 'modify', 'A' + ((s as any).r ?? 0) + '', 3);
-  qspCall(s, 'stat', '');
-  scene.img('images/locations/pavlovsk/school/detention/detbchat.jpg');
-  // TODO-QSP: dynamic text: You decide to move to an empty seat next to <<$rand_boy>>. The teacher watches y...
-  scene.text(`You decide to move to an empty seat next to ${((s as any).rand_boy ?? '')}. The teacher watches you to see what you're up to, but soon loses interest in you and starts playing something on his phone, following the example of half the students in the room.`);
-  // TODO-QSP: dynamic text: You turn to <<$rand_boy>> and the two of you start chatting away about school, t...
-  scene.text(`You turn to ${((s as any).rand_boy ?? '')} and the two of you start chatting away about school, teachers, girls he likes, boys you like and anything else that strikes your fancy. Occasionally, the two of you get a little noisy and raise your voices a little too much in excitement, causing the teacher to look up and clear his throat until you quieten back down, but he always returns his attention to his phone after a few seconds and you begin your chatter once again.`);
-  scene.text('Before you know it, the class bell rings. You both stop in surprise, but quickly gather your things before parting with a smile and heading home.');
-  // TODO-QSP: end
-  scene.actions([
-    { label: 'Go home', goto: ['gschool_detention', 'end'] },
-  ]);
   scene.build();
 }
 
@@ -557,13 +539,9 @@ function enterHelpFriendsInNeed(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'gschool_randperson', 'couple_generator');
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/school/detention/detflirt.jpg');
-  // TODO-QSP: dynamic text: You share a table with <<$rand_girl>> and <<$rand_boy>>. Before long, he''s flir...
   scene.text(`You share a table with ${((s as any).rand_girl ?? '')} and ${((s as any).rand_boy ?? '')}. Before long, he's flirting for all he's worth with her and going by her giggles, he's striking the right tone.`);
-  // TODO-QSP: dynamic text: The teacher shushes them a few times, but doesn''t really make much of an effort...
   scene.text(`The teacher shushes them a few times, but doesn't really make much of an effort to silence them. ${((s as any).rand_boy ?? '')} leans in and whisper something to her that earns him a half hearted smack on the shoulder and you overhear her calling him "bad" - her smile and the way she plays with her hair suggests that she likes "bad."`);
-  // TODO-QSP: dynamic text: They have a whispered argument or discussion - you''re not sure which - but when...
   scene.text(`They have a whispered argument or discussion - you're not sure which - but when they're done, they both look around and you can tell they're up to something as ${((s as any).rand_girl ?? '')} leans over.`);
-  // TODO-QSP: dynamic text: "Can you distract Mr <<$rand_teacher>> for us so we can slip away?" she whispers...
   scene.text(`"Can you distract Mr ${((s as any).rand_teacher ?? '')} for us so we can slip away?" she whispers and both of them give you pleading looks.`);
   qspCall(s, 'willpower', 'misc', 'resist', 'medium');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
@@ -587,7 +565,6 @@ function enterHelpFriendsInNeed(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Agree', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/detention/detflirt.jpg');
@@ -608,7 +585,6 @@ function enterStrange(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/boy/feofan/sex/school/det.jpg');
   scene.text('You take out your phone and amuse yourself for a while. When you look up, you rather bizarrely notice Feofan sitting at the same table as you, hunched over his folder with his arms surrounding it, clearly trying to hide something.');
   scene.text('You think it\'s odd, yet amusing that one of the nerds is in detention, but he seems to be very engrossed in what he\'s doing and is acting weird. Maybe you should take a peek at what he\'s doing? Then again, not minding your own business is part of the reason why you\'re here in the first place…');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Ignore him', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/boy/feofan/sex/school/det.jpg');
@@ -707,7 +683,6 @@ function enterStrange(s: GameState, scene: SceneBuilder): void {
     scene.text('You pull his head away from your crotch and slide off the table, then squat down in front of him. He immediately start to unbutton his pants, but you slap his hands away.');
     scene.text('"I\'m in charge, so just relax and do as I say. Got it?" you tell him.');
     scene.text('He pauses for a moment, but then, unsurprisingly, nods his head - not that you actually expected him to turn down a blowjob. You finish unbuttoning his pants and pull them and his underwear down to his knees, revealing his erect dick.');
-    // TODO-QSP: dynamic text: Under his expectant gaze, you take the tip of his <<dick>>cm <<$dick_girth>> coc...
     scene.text(`Under his expectant gaze, you take the tip of his ${((st as any).dick ?? '')}cm ${((st as any).dick_girth ?? '')} cock into your mouth and start sucking, slowly and teasingly.`);
     scene.text('He starts to move his hips to fuck your mouth, or at least go a little deeper, but a quick slap gets him standing still as you reach down and masturbate while taking more of his cock into your mouth at your own leisure.');
     scene.text('He rests one of his hands on your head, but doesn\'t try to force you to deepthroat him, so you let it happen.');
@@ -738,7 +713,6 @@ function enterPussyFuck(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/boy/feofan/sex/school/detvag.jpg');
   scene.text('Your pussy is soaking wet at this point and you\'re aching to have something inside it.');
   scene.text('"Come here and fuck me," you command.');
-  // TODO-QSP: dynamic text: He moves over and slides his <<dick>>cm <<$dick_girth>> dick into your pussy in ...
   scene.text(`He moves over and slides his ${((s as any).dick ?? '')}cm ${((s as any).dick_girth ?? '')} dick into your pussy in one thrust, a soft groan escaping both of your mouths as he does.`);
   scene.text('You stop and remind him with a gesture of your finger that you have to keep it down. When he nods in acknowledgment, you lean back and he starts fucking you, deep and hard.');
   scene.text('You place your hand against his chest and he slows down a little and stops going as deep, causing a soft smile to curl your lips - having a willing boytoy following your every whim is intoxicating!');
@@ -749,7 +723,6 @@ function enterPussyFuck(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'vaginal', 15, 'dom');
   qspCall(s, 'stat', '');
   scene.text('Still in your dream-like state, you pull him out. You haven\'t quite decided what you want to do with his dick yet, but you know you don\'t want him to cum inside you.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Make him cum', goto: ['gschool_detention', 'strange_cum'] },
     { label: 'Tell him to fuck your ass', goto: ['gschool_detention', 'ass_fuck'] },
@@ -773,7 +746,6 @@ function enterAssFuck(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'anal', (-10), 'dom');
   qspCall(s, 'stat', '');
   scene.text('Once the sensation passes, you pull away causing his dick to slide out of your ass. Sliding off the table, you pull him with you before grabbing his underwear and wiping his dick with them.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Make him cum', goto: ['gschool_detention', 'strange_cum'] },
   ]);
@@ -794,11 +766,9 @@ function enterStrangeCum(s: GameState, scene: SceneBuilder): void {
   scene.text('Once you\'re both dressed and presentable once more, you start heading back, but after taking one or two steps, he grabs your arm and suddenly kisses you on the lips. "Thanks for not telling and well… everything. I won\'t tell anyone about this, I promise. You\'re a cool chick."');
   scene.text('He gives you a look of longing, lust and admiration, then nods his head and heads back out. You follow him a few minutes later, taking your seat opposite him again and waiting for detention to end. If detention is always like this, maybe you need to get in trouble more often!');
   scene.text('You spend the rest of the time playing on your phone and occasionally giving Feofan a conspiratorial grin, which he returns in kind.');
-  // TODO-QSP: dynamic text: Once detention ends and you start to head out, Feofan catches up to you. "Hey <<...
   scene.text(`Once detention ends and you start to head out, Feofan catches up to you. "Hey ${((s as any).pcs_nickname ?? '')}, do you think maybe sometime you might want to go out or maybe you want to come over to my place and we can study together or something?" he asks with a hopeful look in his eyes.`);
   scene.text('You stop and actually consider it for a moment. "Let me think about it."');
   scene.text('He looks a little crestfallen, but still hopeful. "Okay. Talk to you on Monday then."');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go home', goto: ['gschool_detention', 'end'] },
   ]);
@@ -821,7 +791,6 @@ function enterCompany(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/shared/headshots_main/big146.jpg');
   if ((!((s as any).Marcus_sextype ?? 0))) {
-    // TODO-QSP: dynamic text: Shortly after the teacher stops paying attention to everyone, Marcus walks over ...
     scene.text(`Shortly after the teacher stops paying attention to everyone, Marcus walks over and sits next to you. "Hey ${((s as any).pcs_nickname ?? '')}. What's up?"`);
     scene.text('You give him a friendly smile. "Doing time for my crime. At least I won\'t have to do it alone now."');
     scene.text('He laughs a little. "Is that an invitation for me to stick around and talk?"');
@@ -830,7 +799,6 @@ function enterCompany(s: GameState, scene: SceneBuilder): void {
     scene.text('He mostly asks you about yourself; what you like, what you do, your favorite movies, books and other bits of information like that.');
     scene.text('Detention definitely isn\'t fun, but Marcus certainly makes the time fly. Before you know it, the bell rings and you pack your things before leaving.');
   } else {
-    // TODO-QSP: dynamic text: Shortly after the teacher stops paying attention to everyone, Marcus walks over ...
     scene.text(`Shortly after the teacher stops paying attention to everyone, Marcus walks over and sits next to you. "Hey ${((s as any).pcs_nickname ?? '')}. What's up?"`);
     scene.text('You give him a friendly smile. "Doing time for my crime. At least I won\'t have to do it alone."');
     scene.text('He laughs a little. "Yeah, I\'ve seen your name on the detention sheet, so I knew you had been a bad girl."');
@@ -843,14 +811,11 @@ function enterCompany(s: GameState, scene: SceneBuilder): void {
     scene.text('He mostly asks you about you; What you like, what you do, your favorite movies, books and other bits of information like that.');
     scene.text('Detention definitely isn\'t fun, but Marcus certainly makes the time fly. Before you know it, the bell rings and you pack your things before leaving.');
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'After detention', handler: (st: GameState) => {
     scene.img('images/characters/shared/headshots_main/big146.jpg');
-    // TODO-QSP: dynamic text: As you leave the school building, Marcus jogs to catch up to you. "Hey <<$pcs_ni...
     scene.text(`As you leave the school building, Marcus jogs to catch up to you. "Hey ${((st as any).pcs_nickname ?? '')}, wait up!"`);
     scene.text('You stop and turn around. He looks down at you as he blushes.');
-    // TODO-QSP: dynamic text: "I like you, <<$pcs_nickname>>… And… I''d like to walk you home, if that''s okay...
     scene.text(`"I like you, ${((st as any).pcs_nickname ?? '')}… And… I'd like to walk you home, if that's okay?"`);
     scene.actions([
       { label: 'Refuse', handler: (st: GameState) => {
@@ -876,6 +841,7 @@ function enterCompany(s: GameState, scene: SceneBuilder): void {
     scene.text('"Ye- no! I mean, I would like that." you reply, still a little dazed from the kiss, and give him your number.');
     scene.text('He grins, both at your reaction and the fact he got your phone number. "Okay. I\'ll call you then. Talk to you later."');
     scene.text('He waits until you head inside before he leaves.');
+    alert('!!Marcus BF content is WIP. More will added in the future!!');
     scene.actions([
       { label: 'Go home', handler: (st: GameState) => {
     if (((st as any).hour ?? 0) === 8) {
@@ -898,7 +864,6 @@ function enterCompany(s: GameState, scene: SceneBuilder): void {
 
 function enterCompany2(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/big146.jpg');
-  // TODO-QSP: dynamic text: Shortly after the teacher stops paying attention to everyone, Marcus walks over ...
   scene.text(`Shortly after the teacher stops paying attention to everyone, Marcus walks over and sits next to you. "Hey ${((s as any).pcs_nickname ?? '')}. What's up?"`);
   scene.text('You give him a friendly smile. "Doing time for my crime. At least I won\'t have to do it alone."');
   scene.text('He laughs a little. "Yeah, I\'ve seen your name on the detention sheet, so I knew you had been a bad girl."');
@@ -930,7 +895,6 @@ function enterCompany2(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Agree', handler: (st: GameState) => {
     ((st as any).npc_had_sex = (st as any).npc_had_sex ?? {})['A146'] = 1;
@@ -951,7 +915,6 @@ function enterCompany2(s: GameState, scene: SceneBuilder): void {
     scene.text('He grins. "You said you would do anything I want, right? So, if I tell you to do something, you will?"');
     scene.text('You roll your eyes slightly, but also smile at the little game before nodding.');
     scene.text('He grins and pulls his dick out of his pants. "Alright. I want you to suck my dick."');
-    // TODO-QSP: dynamic text: You squat down in front of him without delay, take his <<dick>>cm <<$dick_girth>...
     scene.text(`You squat down in front of him without delay, take his ${((st as any).dick ?? '')}cm ${((st as any).dick_girth ?? '')} cock into your mouth and start sucking it, your tongue swirling around the tip as you bob your head up and down.`);
     scene.text('He cedes complete control of the action to you, content with having his cock in your mouth.');
     (st as any).orgasm_or = 'no';
@@ -963,7 +926,6 @@ function enterCompany2(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/boy/marcus/sex/school/detmanal.jpg');
     scene.text('You strip from your clothes and bend over the desk. You look back and see him pull a small bottle of lube out of his pocket and lubing his dick up really well, then spreading some of it on your anus as well.');
     scene.text('"Reach back and spread your ass cheeks. Don\'t worry, I used lots of lube and I\'ll be gentle."');
-    // TODO-QSP: dynamic text: You follow his command and reach back to spread your cheeks. You feel him rub th...
     scene.text(`You follow his command and reach back to spread your cheeks. You feel him rub the head of his dick against your asshole for a moment before easing the tip inside. He stops almost at once, giving you a moment to adjust, but thanks to the lube, his ${((st as any).dick ?? '')}cm ${((st as any).dick_girth ?? '')} cock slides surprisingly easily into your ass.`);
     scene.text('Marcus gently starts fucking your ass, carefully working his way deeper into you and giving you plenty of time to get used to the size of his cock.');
     scene.text('Before long, you find yourself moaning in pleasure and feel that familiar sensation building in your groin.');
@@ -989,7 +951,6 @@ function enterCompany2(s: GameState, scene: SceneBuilder): void {
     scene.text('When you regain your senses, you feel your ass gaping wide as cum dribbles out of it and drips down on the desk underneath you. Marcus then pulls you up and gives you a long, passionate kiss.');
     scene.text('He breaks the kiss and steps away to give you room, but when you try to get off the desk, he has to hold you for a moment - your legs feel like jelly after this orgasm and you giggle into his chest until you feel strong enough to stand on your own.');
     scene.text('He gets dressed and helps you gather your own clothes, waiting patiently until you get yourself cleaned up and dressed as well before he leads you out of the school.');
-    // TODO-QSP: dynamic text: Once outside, he stops and turns to you. "I like you, <<$pcs_nickname>>. Can I w...
     scene.text(`Once outside, he stops and turns to you. "I like you, ${((st as any).pcs_nickname ?? '')}. Can I walk you home?"`);
     scene.actions([
       { label: 'Refuse', handler: (st: GameState) => {
@@ -1015,6 +976,7 @@ function enterCompany2(s: GameState, scene: SceneBuilder): void {
     scene.text('"Ye- no! I mean, I would like that." you reply, still a little dazed from the kiss, and give him your number.');
     scene.text('He grins, both at your reaction and the fact he got your phone number. "Okay. I\'ll call you then. Talk to you later."');
     scene.text('He waits until you head inside before he leaves.');
+    alert('!!Marcus BF content is WIP. More will be added in the future!!');
     scene.actions([
       { label: 'Go home', handler: (st: GameState) => {
     if (((st as any).hour ?? 0) === 8) {
@@ -1045,7 +1007,6 @@ function enterCompany2(s: GameState, scene: SceneBuilder): void {
 
 function enterIvanov(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/teacher/serafim/sex/school/teacher.jpg');
-  // TODO-QSP: dynamic text: Thirty minutes or so into detention, Mr. Ivanov calls your name. "Miss <<$pcs_la...
   scene.text(`Thirty minutes or so into detention, Mr. Ivanov calls your name. "Miss ${((s as any).pcs_lastname ?? '')}, please come with me. I need your help with something."`);
   scene.text('He stands up and waits for you to walk up to him, then leads you out of the library and down the hall to the teachers\' lounge.');
   scene.text('"Please take a seat over there," he says once you\'re inside.');
@@ -1100,7 +1061,6 @@ function enterIvanov(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Suck his dick', goto: ['gschool_detention', 'Ivanov_suck'] },
   ]);
@@ -1115,7 +1075,6 @@ function enterIvanovSuck(s: GameState, scene: SceneBuilder): void {
   scene.text('Instead of the premature ejaculation you were hoping for, he merely pulls his dick out of your mouth and pulls you to your feet. "Alright, enough of that, girl. Bend over the table."');
   qspCall(s, 'arousal', 'bj', 5);
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Bend over', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/teacher/serafim/sex/school/teacherlick.jpg');
@@ -1128,7 +1087,6 @@ function enterIvanovSuck(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Take his dick up the ass', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/teacher/serafim/sex/school/teacheranal.jpg');
-    // TODO-QSP: dynamic text: You were bracing for the push and the feeling of him entering. What you didn''t ...
     scene.text(`You were bracing for the push and the feeling of him entering. What you didn't prepare for was his hard spank on your ass just before he shoves his ${((st as any).dick ?? '')}cm ${((st as any).dick_girth ?? '')} cock into you, causing you to tense up in surprise.`);
     scene.text('He doesn\'t let up, though; he grabs hold of your hips and drives himself balls deep inside you.');
     scene.text('All you can do is cry out in pain, but that\'s nothing compared to the agony that comes next as he starts hammering into your ass in violent thrusts, your thighs banging hard against the edge of the table. Any residual doubt that he does this deliberately to hurt you are eliminated by his words.');
@@ -1175,30 +1133,30 @@ function enterIvanovSuck(s: GameState, scene: SceneBuilder): void {
 function enterRoamAround(s: GameState, scene: SceneBuilder): void {
   (s as any).i = (Math.floor(Math.random() * 100) + 1);
   if (((s as any).i ?? 0) <= 10) {
-    // TODO-QSP: killvar 'i'
+    (s as any).i = undefined;
     qspGoto(s, 'gschool_detention', 'eatout');
   } else {
     if (((s as any).i ?? 0) <= 20) {
-      // TODO-QSP: killvar 'i'
+      (s as any).i = undefined;
       qspGoto(s, 'gschool_detention', 'finger');
     } else {
       if (((s as any).i ?? 0) <= 30) {
-        // TODO-QSP: killvar 'i'
+        (s as any).i = undefined;
         qspGoto(s, 'gschool_detention', 'doggy');
       } else {
         if (((s as any).i ?? 0) <= 40) {
-          // TODO-QSP: killvar 'i'
+          (s as any).i = undefined;
           qspGoto(s, 'gschool_detention', 'couple');
         } else {
           if (((s as any).i ?? 0) <= 50) {
-            // TODO-QSP: killvar 'i'
+            (s as any).i = undefined;
             qspGoto(s, 'gschool_detention', 'lesbian');
           } else {
             if (((s as any).i ?? 0) <= 60) {
-              // TODO-QSP: killvar 'i'
+              (s as any).i = undefined;
               qspGoto(s, 'gschool_detention', 'anal');
             } else {
-              // TODO-QSP: killvar 'i'
+              (s as any).i = undefined;
               qspGoto(s, 'gschool_detention', 'nothing');
             }
           }
@@ -1206,7 +1164,6 @@ function enterRoamAround(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1217,7 +1174,6 @@ function enterNothing(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/school/detention/shelves.jpg');
   scene.text('As you walk around, you look at several books, but find nothing of interest and quickly get bored.');
   scene.text('You debate between going back to the front of the library or maybe doing something naughty.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go back to the front', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/detention/detention.jpg');
@@ -1250,7 +1206,6 @@ function enterEatout(s: GameState, scene: SceneBuilder): void {
   scene.text('You bite your lip as you watch, feeling your own arousal mounting.');
   qspCall(s, 'arousal', 'voyeur_sex', 20);
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Keep watching', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/detention/sex/eatout.mp4');
@@ -1300,7 +1255,6 @@ function enterFinger(s: GameState, scene: SceneBuilder): void {
   scene.text('You bite your lip as you watch, feeling your own arousal mounting. You smirk in amusement at the idea of the queen of rumors fucking her best friend\'s boyfriend. She would be terrified if anyone found out.');
   qspCall(s, 'arousal', 'voyeur_sex', 20);
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Keep watching', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/detention/sex/blowjob.mp4');
@@ -1346,17 +1300,14 @@ function enterDoggy(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + (60 - ((s as any).minut ?? 0));
   qspCall(s, 'stat', '');
   qspCall(s, 'gschool_events', 'rand_teacher_arg');
-  // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/locations/pavlovsk/schoo...
   scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/school/detention/sex/doggy` + (Math.floor(Math.random() * 2) + 1) + '.mp4"></video></center>');
   scene.text('As you walk around, you hear some soft moaning coming from further back and quietly move forward to peek around one of the bookshelves.');
   scene.text('In the middle of a pair of shelves is Lena, down on all fours with Lavrenti kneeling behind her, pounding her hard. By the look on her face, she seems to be enjoying every second of it and you briefly wonder if Vitek knows Lavrenti is screwing his sister.');
   scene.text('You bite your lip as you watch, feeling your own arousal mounting.');
   qspCall(s, 'arousal', 'voyeur_sex', 20);
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Keep watching', handler: (st: GameState) => {
-    // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/locations/pavlovsk/schoo...
     scene.text(`<center><video autoplay loop ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/school/detention/sex/doggy` + (Math.floor(Math.random() * 2) + 1) + '.mp4"></video></center>');
     scene.text('You watch them as they go at it for some time. She\'s fighting to stop herself from screaming out as she starts to spasm.');
     scene.text('He keeps it up through her whole orgasm and hammers away at her for a few more minutes before pulling out and shooting his load all over her ass.');
@@ -1404,7 +1355,6 @@ function enterCouple(s: GameState, scene: SceneBuilder): void {
   scene.text('You bite your lip as you watch, feeling your own arousal mounting.');
   qspCall(s, 'arousal', 'voyeur_sex', 20);
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Keep watching', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/detention/sex/couple.mp4');
@@ -1453,7 +1403,6 @@ function enterLesbian(s: GameState, scene: SceneBuilder): void {
   scene.text('You bite your lip as you watch, feeling your own arousal mounting.');
   qspCall(s, 'arousal', 'voyeur_sex', 20);
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Keep watching', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/detention/sex/udesklick.mp4');
@@ -1504,7 +1453,6 @@ function enterAnal(s: GameState, scene: SceneBuilder): void {
   scene.text('You bite your lip as you watch, feeling your own arousal mounting.');
   qspCall(s, 'arousal', 'voyeur_sex', 20);
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Keep watching', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/detention/sex/anal.mp4');
@@ -1554,7 +1502,6 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'stat', '');
   qspGoto(s, 'gschool_grounds', 'main');
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1565,16 +1512,13 @@ function enterInappropriateClothes(s: GameState, scene: SceneBuilder): void {
   scene.text('You arrive back at school on a Saturday - it sucks. Considering you spent all week here already, what could be worse than wasting part of a Saturday in school too? You head to the library and take a seat at one of the tables. A few of the other students are there and by the time the bell rings, a couple more have trickled in.');
   scene.text('The teacher is the last to come. He sits behind his desk and, one by one, calls out the names on his list to make sure everyone who is supposed to be here is present.');
   scene.text('You confirm your presence when he calls your name, cursing the fact that you\'re stuck here.');
-  // TODO-QSP: dynamic text: "Miss <<$pcs_lastname>>, just what do you think you are wearing?" he asks in a s...
   scene.text(`"Miss ${((s as any).pcs_lastname ?? '')}, just what do you think you are wearing?" he asks in a stern, disapproving voice.`);
-  // TODO-QSP: end
   scene.actions([
     { label: 'Is something wrong?', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/bathroom/angryteacher.jpg');
     scene.text('You look down at your clothes before you gaze back up at him. "Is something wrong?"');
     scene.text('He seems flabbergasted that you would even ask that. "Is there something… Yes there <i>is</i> something wrong! Those clothes are completely inappropriate for school and you know it! Don\'t pretend you don\'t."');
     scene.text('You think you can talk your way out of this before you get more detention. "I didn\'t…"');
-    // TODO-QSP: dynamic text: Before you can say more, he cuts you off and gets up. "I don''t want to hear it,...
     scene.text(`Before you can say more, he cuts you off and gets up. "I don't want to hear it, Miss ${((st as any).pcs_lastname ?? '')}!" He pauses a moment before continuing. "You can come up here and accept your punishment from me or we can go and see the principal. Your choice."`);
     scene.actions([
       { label: 'Go to the principal', goto: ['gschool_office', 'detPunishment'] },
@@ -1603,7 +1547,6 @@ function enterOffer(s: GameState, scene: SceneBuilder): void {
   scene.text('You do as you\'re told and the first swat stings more than you expected. He puts a lot of force into his swings, each one hurting more than the last. ou\'re on the verge of crying before he finally stops.');
   scene.text('"Return to your seat and behave yourself. That goes for the rest of you too!" he says while pointing the paddle at the rest of the students.');
   scene.text('You gingerly return to your seat and slowly sit down. It hurts to sit, but you have no choice. The rest of detention passes very quietly with everyone unusually well behaved.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go home', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 15;

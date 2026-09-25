@@ -1,4 +1,4 @@
-import { qspCall, dynamicGoto, qspGoto } from '../_shared/qspBridge';
+import { qspCall, qspFunc, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -35,7 +35,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       { label: 'Enter the house', goto: ['koncepod', 'krr2x'] },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go to town center', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -71,7 +70,6 @@ function enterEnter(s: GameState, scene: SceneBuilder): void {
       { label: 'Go upstairs', goto: ['koncepod', 'krr2x1'] },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['koncepod', 'start'] },
   ]);
@@ -81,7 +79,6 @@ function enterEnter(s: GameState, scene: SceneBuilder): void {
 function enterPrs(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pushkin/vacanthouse/koncepod.jpg');
   scene.text('"Please go away and stop bothering me."');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['koncepod', 'start'] },
   ]);
@@ -101,7 +98,6 @@ function enterKrr2x1(s: GameState, scene: SceneBuilder): void {
       { label: 'Quickly go inside', goto: ['koncepod', 'krr2x'] },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Outside', handler: (st: GameState) => {
     (st as any).pavserhom = 3;
@@ -112,6 +108,7 @@ function enterKrr2x1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterKrr2x(s: GameState, scene: SceneBuilder): void {
+  (s as any).locclass = undefined;
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   (s as any).pavserpsiday = ((s as any).daystart ?? 0);
   qspCall(s, 'stat', '');
@@ -154,7 +151,6 @@ function enterKrr2x(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the living room', goto: ['koncepod', 'str2x'] },
     { label: 'Go to the kitchen', goto: ['koncepod', 'khr2x'] },
@@ -189,16 +185,14 @@ function enterStr2x(s: GameState, scene: SceneBuilder): void {
       { label: 'Who are you?', handler: (st: GameState) => {
     (st as any).pcs_mana = ((st as any).pcs_mana ?? 0) - (30);
     qspCall(st, 'stat', '');
-    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="'+func('$face_image')+'"></center>'
-    scene.text('<center><img ' + ((st as any).set_imgh ?? '') + ' src="\'+func(\'$face_image\')+\'"></center>');
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="` + qspFunc(s, '$face_image', '') + '"></center>');
     scene.img('images/characters/pushkin/pavser/pavserjil.jpg');
     scene.text('You exhale slowly, retreating toward the door and trying to pull yourself together. "You scared me," you continue, trying to stop your voice from shaking. "I recognize you—you\'re the man from the park. How did you get in here?"');
     scene.text('"Through the door," he replies, his voice deep and resonant. You stop at the doorway. You could just leave, but something makes you hesitate.');
     scene.actions([
       { label: 'I feel foolish…', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
-    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="'+func('$face_image')+'"></center>'
-    scene.text('<center><img ' + ((st as any).set_imgh ?? '') + ' src="\'+func(\'$face_image\')+\'"></center>');
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="` + qspFunc(s, '$face_image', '') + '"></center>');
     scene.img('images/characters/pushkin/pavser/pavserjil.jpg');
     scene.text('"I left the door open. But I didn\'t hear you come in."');
     scene.text('"I was here before you," his voice scrapes slightly.');
@@ -209,8 +203,7 @@ function enterStr2x(s: GameState, scene: SceneBuilder): void {
       { label: 'I\'m looking at old houses', handler: (st: GameState) => {
     (st as any).arnksg = 1;
     qspCall(st, 'stat', '');
-    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="'+func('$face_image')+'"></center>'
-    scene.text('<center><img ' + ((st as any).set_imgh ?? '') + ' src="\'+func(\'$face_image\')+\'"></center>');
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="` + qspFunc(s, '$face_image', '') + '"></center>');
     scene.img('images/characters/pushkin/pavser/pavserjil.jpg');
     scene.text('"I\'m considering renting an apartment in this building," he says.');
     scene.text('"Are you planning to rent here?" you ask.');
@@ -220,8 +213,7 @@ function enterStr2x(s: GameState, scene: SceneBuilder): void {
     (st as any).pcs_hairbsh = 1;
     (st as any).psihb = 0;
     qspCall(st, 'stat', '');
-    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="'+func('$face_image')+'"></center>'
-    scene.text('<center><img ' + ((st as any).set_imgh ?? '') + ' src="\'+func(\'$face_image\')+\'"></center>');
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="` + qspFunc(s, '$face_image', '') + '"></center>');
     scene.img('images/characters/pushkin/pavser/pavserjil.jpg');
     scene.text('You automatically smooth your hair, using the glass door as a mirror.');
     scene.text('A fleeting thought crosses your mind—I\'m being foolish—but it quickly vanishes.');
@@ -253,7 +245,6 @@ function enterStr2x(s: GameState, scene: SceneBuilder): void {
       { label: 'Go to the hall', goto: ['koncepod', 'krr2x'] },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -299,7 +290,6 @@ function enterKhr2x(s: GameState, scene: SceneBuilder): void {
     scene.text('Neither of you particularly desires or aims for this, yet neither wants to deviate from this unfolding script.');
     scene.text('It\'s as if someone has choreographed all your movements, and you feel reluctant to break the spell or destroy the atmosphere of inevitability that permeates the house.');
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the living room', goto: ['koncepod', 'str2x'] },
     { label: 'Go to the hall', goto: ['koncepod', 'krr2x'] },
@@ -316,7 +306,7 @@ function enterVnr2x(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('<center><b>Bathroom</b></center>');
   scene.img('images/locations/pushkin/vacanthouse/bathroom.jpg');
-  scene.text('Above the washbasin hangs an <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027start/u0027); return false;">oval mirror</a>.');
+  scene.text('Above the washbasin hangs an <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027start\u0027); return false;">oval mirror</a>.');
   if (((s as any).psiho ?? 0) === 2  &&  ((s as any).psihb ?? 0) === 1  &&  ((s as any).psihc ?? 0) === 0  &&  (!((s as any).psi1day ?? 0))) {
     (s as any).pcs_mana = ((s as any).pcs_mana ?? 0) + 60;
     (s as any).piss = ((s as any).piss ?? 0) + 1;
@@ -363,7 +353,6 @@ function enterVnr2x(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'din_van', 'quickwash');
   qspCall(s, 'din_van', 'basin');
   qspCall(s, 'din_van', 'publicpan');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the hall', goto: ['koncepod', 'krr2x'] },
   ]);
@@ -384,8 +373,7 @@ function enterBdr2x(s: GameState, scene: SceneBuilder): void {
     (st as any).pcs_mana = ((st as any).pcs_mana ?? 0) - (50);
     (st as any).pcs_horny = ((st as any).pcs_horny ?? 0) + (20);
     qspCall(st, 'stat', '');
-    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="'+func('$face_image')+'"></center>'
-    scene.text('<center><img ' + ((st as any).set_imgh ?? '') + ' src="\'+func(\'$face_image\')+\'"></center>');
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="` + qspFunc(s, '$face_image', '') + '"></center>');
     scene.img('images/characters/pushkin/pavser/pavserjil.jpg');
     scene.text('"No," he replies, "the ottoman will stay where it is."');
     scene.text('It sounds like an order. Rude, firm, and clear.');
@@ -409,7 +397,6 @@ function enterBdr2x(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the hall', goto: ['koncepod', 'krr2x'] },
   ]);
@@ -418,7 +405,6 @@ function enterBdr2x(s: GameState, scene: SceneBuilder): void {
 
 function enterPavser7(s: GameState, scene: SceneBuilder): void {
   scene.text('Suddenly, a phone rings inappropriately.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Answer', handler: (st: GameState) => {
     (st as any).pcs_horny = ((st as any).pcs_horny ?? 0) + (10);
@@ -438,8 +424,7 @@ function enterPavser7(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPavser8(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="'+func('$face_image')+'"></center>'
-  scene.text('<center><img ' + ((s as any).set_imgh ?? '') + ' src="\'+func(\'$face_image\')+\'"></center>');
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="` + qspFunc(s, '$face_image', '') + '"></center>');
   (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
   (s as any).pcs_mana = ((s as any).pcs_mana ?? 0) - 50;
   qspCall(s, 'stat', '');
@@ -454,14 +439,12 @@ function enterPavser8(s: GameState, scene: SceneBuilder): void {
   scene.text('He leaves, slamming the door.');
   scene.text('You stand there pondering what just happened: he could do whatever he wants with you now, and you couldn\'t resist. But why?');
   scene.text('What if he\'s a maniac and plans to hurt you, and you\'re under some kind of hypnosis, looking at him as if he\'s your benefactor?');
-  // TODO-QSP: end
   scene.actions([
     { label: 'The Hall', handler: (st: GameState) => {
     (st as any).pcs_mana = ((st as any).manamax ?? 0);
     (st as any).pcs_horny = ((st as any).pcs_horny ?? 0) + (20);
     qspCall(st, 'stat', '');
-    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="'+func('$face_image')+'"></center>'
-    scene.text('<center><img ' + ((st as any).set_imgh ?? '') + ' src="\'+func(\'$face_image\')+\'"></center>');
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="` + qspFunc(s, '$face_image', '') + '"></center>');
     scene.img('images/characters/pushkin/pavser/pavserjil.jpg');
     scene.text('"I thought you\'d left."');
     scene.text('"I locked the door."');
@@ -490,7 +473,6 @@ function enterPavser9(s: GameState, scene: SceneBuilder): void {
   scene.text('He has a slightly sour smell—sweat and something else you can\'t identify—a distinctly male scent unlike any of your previous boyfriends, and it strongly excites you.');
   qspCall(s, 'arousal', 'kiss', 5, 'sub');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
@@ -627,7 +609,6 @@ function enterPavser10(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pushkin/vacanthouse/13.jpg');
   scene.text('You roll away and lie still for some time, watching as he silently dresses and leaves.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Get up and get dressed', handler: (st: GameState) => {
     if (((st as any).clothingworntype ?? 0) === 'nude') {
@@ -642,7 +623,6 @@ function enterPavser10(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterReadNoticeBoard(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: end
   scene.actions([
     { label: 'Read the notice on the door', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -658,7 +638,6 @@ function enterReadNoticeBoard(s: GameState, scene: SceneBuilder): void {
     scene.text('"You want to rent it"?');
     scene.text('"I want to look at it first. If it\'s too much hassle to do your job, I can leave."');
     scene.text('"OK then you can go look at the apartment. It\'s upstairs, room 17. I will not go with you, my legs ache."');
-    // TODO-QSP: dynamic text: What an unpleasant man. He has you sign a registrar and then says, "Follow me <<...
     scene.text(`What an unpleasant man. He has you sign a registrar and then says, "Follow me ${((st as any).pcs_firstname ?? '')}."`);
     scene.text('You follow him through the dimly lit lobby and down a corridor. You can hear barely discernible sounds from various apartments, merging into ghostly mutterings that set the hair on the back of your neck on end. You hear one that almost sounds like it\'s whispering, "Run."');
     scene.text('Stopping by an old dresser, the old man rummages through a drawer, "Looks like you are in luck my dear…"');
@@ -679,7 +658,6 @@ function enterReadNoticeBoard(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterReadNoticeBoardLeave(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: end
   scene.actions([
     { label: 'Read the notice on the door', handler: (st: GameState) => {
     qspCall(st, 'stat', '');

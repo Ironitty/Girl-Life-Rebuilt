@@ -37,7 +37,6 @@ function enterPavParkImage(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -161,39 +160,32 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).hour ?? 0) > 8  &&  ((s as any).hour ?? 0) < 19) {
-    // TODO-QSP: dynamic text: There''s a small <a href="exec:minut += 5 & gt ''pav_cinema''">movie theatre</a>...
-    scene.text('There\'s a small <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(/u0027pav_cinema/u0027, /u0027/u0027); return false;">movie theatre</a> in the park.');
+    scene.text('There\'s a small <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(\u0027pav_cinema\u0027, \u0027\u0027); return false;">movie theatre</a> in the park.');
   }
-  // TODO-QSP: dynamic text: The newly opened cafe <a href="exec:gt''cafe_parco'',''start''">"Del Parco"</a>,...
-  scene.text('The newly opened cafe <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027cafe_parco/u0027, /u0027start/u0027); return false;">"Del Parco"</a>, with an eye-catching facade, lots of tables and a summer terrace. Two paths lead out of the park. One brings you to the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(/u0027pav_commercial/u0027, /u0027/u0027); return false;">commercial</a> area, the other to the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(/u0027pav_residential/u0027, /u0027/u0027); return false;">residential</a> area.');
+  scene.text('The newly opened cafe <a href="exec:gt\'cafe_parco\',\'start\'">"Del Parco"</a>, with an eye-catching facade, lots of tables and a summer terrace. Two paths lead out of the park. One brings you to the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(\u0027pav_commercial\u0027, \u0027\u0027); return false;">commercial</a> area, the other to the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(\u0027pav_residential\u0027, \u0027\u0027); return false;">residential</a> area.');
   if (((((s as any).month ?? 0) === 8  &&  ((s as any).day ?? 0) > 20)  ||  (((s as any).month ?? 0) === 9  &&  ((s as any).day ?? 0) < 16))  &&  ((s as any).week ?? 0) > 5  &&  ((s as any).hour ?? 0) > 8  &&  ((s as any).hour ?? 0) < 20  &&  ((s as any).AlbinaQW ?? 0)?.['ParkRally'] === 0) {
-    // TODO-QSP: dynamic text: <br>You overhear someone speaking in front of a crowd. The crowd is quite rowdy,...
-    scene.text('<br>You overhear someone speaking in front of a crowd. The crowd is quite rowdy, yelling and clapping throughout the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.2; return s; }); window.__gameStore.getState().doGoto(/u0027pav_park/u0027, /u0027alb_father_meeting_1/u0027); return false;">meeting</a>.');
+    scene.text('<br>You overhear someone speaking in front of a crowd. The crowd is quite rowdy, yelling and clapping throughout the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.2; return s; }); window.__gameStore.getState().doGoto(\u0027pav_park\u0027, \u0027alb_father_meeting_1\u0027); return false;">meeting</a>.');
   } else {
     if (((((s as any).month ?? 0) === 9  &&  ((s as any).day ?? 0) > 20)  ||  (((s as any).month ?? 0) === 10  &&  ((s as any).day ?? 0) < 16))  &&  ((s as any).week ?? 0) > 5  &&  ((s as any).hour ?? 0) > 8  &&  ((s as any).hour ?? 0) < 20  &&  ((s as any).AlbinaQW ?? 0)?.['ParkRally'] === 1  &&  ((s as any).AlbinaQW ?? 0)?.['StarletsShutDown'] === 0) {
-      // TODO-QSP: dynamic text: Once again, a large crowd has gathered in the town center. You can hear Albina''...
-      scene.text('Once again, a large crowd has gathered in the town center. You can hear Albina\'s father holding a public <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.2; return s; }); window.__gameStore.getState().doGoto(/u0027pav_park/u0027, /u0027alb_father_meeting_2/u0027); return false;">meeting</a>.');
+      scene.text('Once again, a large crowd has gathered in the town center. You can hear Albina\'s father holding a public <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.2; return s; }); window.__gameStore.getState().doGoto(\u0027pav_park\u0027, \u0027alb_father_meeting_2\u0027); return false;">meeting</a>.');
     } else {
       if (((((s as any).month ?? 0) === 10  &&  ((s as any).day ?? 0) > 20)  ||  (((s as any).month ?? 0) === 11  &&  ((s as any).day ?? 0) < 16))  &&  ((s as any).week ?? 0) > 5  &&  ((s as any).hour ?? 0) > 8  &&  ((s as any).hour ?? 0) < 20  &&  ((s as any).AlbinaQW ?? 0)?.['ParkRally'] === 2  &&  ((s as any).AlbinaQW ?? 0)?.['StarletsShutDown'] === 0  &&  ((s as any).AlbinaQW ?? 0)?.['StarletsJoined'] === 0) {
-        // TODO-QSP: dynamic text: By this time, you''re well aware that Albina''s father is holding a <a href="exe...
-        scene.text('By this time, you\'re well aware that Albina\'s father is holding a <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.2; return s; }); window.__gameStore.getState().doGoto(/u0027pav_park/u0027, /u0027alb_father_meeting_3/u0027); return false;">meeting</a>, though they have erected a big stage.');
+        scene.text('By this time, you\'re well aware that Albina\'s father is holding a <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.2; return s; }); window.__gameStore.getState().doGoto(\u0027pav_park\u0027, \u0027alb_father_meeting_3\u0027); return false;">meeting</a>, though they have erected a big stage.');
       }
     }
   }
   if (((s as any).PCloInhibit ?? 0) >= 40) {
     qspCall(s, 'mood', 'lower', 'medium');
-    // TODO-QSP: dynamic text: You notice passers-by in the park pointing at you as you walk and overhear one o...
     scene.text(`You notice passers-by in the park pointing at you as you walk and overhear one older lady telling her friend: "There's that ${((s as any).pcs_lastname ?? '')} girl. Youth these days, they have no shame at all!"`);
   }
   if (((s as any).GvstreBoy ?? 0) === 1) {
-    // TODO-QSP: dynamic text: You see <a href="exec:numnpc = SkverBoy & gt ''Gnpc''"><<$nameBoyfrend[SkverBoy]...
     scene.text(`You see <a href="#" onclick="window.__gameStore.setState((s) => { s.numnpc = s.SkverBoy; return s; }); window.__gameStore.getState().doGoto(/u0027Gnpc/u0027, /u0027/u0027); return false;">${(((s as any).nameBoyfrend ?? 0)?.[String((s as any).SkverBoy ?? 0)] ?? '')}</a> walking across the main square of the park. He doesn't look like he's going anywhere in particular, and seems to just be enjoying his walk.`);
   }
   if (((s as any).week ?? 0) <= 5  &&  ((s as any).hour ?? 0) >= 16  &&  ((s as any).hour ?? 0) < 20  &&  ((s as any).strelaQW ?? 0) === -2  &&  ((s as any).fedorKozlovQW ?? 0) <= -10  &&  (!((s as any).FedorOutcast ?? 0))) {
-    scene.text('You can see the <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027FedorMisc/u0027, /u0027Outcast Intro/u0027); return false;">train tracks</a> from here.');
+    scene.text('You can see the <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027FedorMisc\u0027, \u0027Outcast Intro\u0027); return false;">train tracks</a> from here.');
   } else {
     if (((s as any).week ?? 0) <= 5  &&  ((s as any).hour ?? 0) >= 16  &&  ((s as any).hour ?? 0) < 20  &&  ((s as any).strelaQW ?? 0) === -2  &&  ((s as any).fedorKozlovQW ?? 0) <= -10  &&  ((s as any).FedorOutcast ?? 0) === 1) {
-      scene.text('You can see the train tracks where <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027FedorMisc/u0027, /u0027Outcast/u0027); return false;">Fedor</a> spends his time.');
+      scene.text('You can see the train tracks where <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027FedorMisc\u0027, \u0027Outcast\u0027); return false;">Fedor</a> spends his time.');
     }
   }
   if (((s as any).rexPark ?? 0) === 1  &&  ((s as any).rexParkDay ?? 0) === ((s as any).daystart ?? 0)  &&  ((s as any).hour ?? 0) >= 16  &&  ((s as any).hour ?? 0) < 18) {
@@ -203,13 +195,13 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   if (((s as any).week ?? 0) >= 6  &&  ((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) <= 9  &&  ((s as any).start_type ?? 0)?.['loc'] === 'sg'  &&  ((s as any).socialchg ?? 0)?.['tVanya_day'] !== ((s as any).daystart ?? 0)) {
-    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027gschool_socialchg1/u0027, /u0027tVanya/u0027); return false;">Vanya</a> is out on a light jog and is slowly approaching you.');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027gschool_socialchg1\u0027, \u0027tVanya\u0027); return false;">Vanya</a> is out on a light jog and is slowly approaching you.');
   }
   if (((s as any).start_type ?? 0)?.['loc'] === 'sg'  &&  ((s as any).locat ?? 0)?.['Christina'] === 9  &&  ((s as any).socialchg ?? 0)?.['tChris_Lina_jog'] !== ((s as any).daystart ?? 0)) {
-    scene.text('You spot <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027Zvereva_events/u0027, /u0027Chris_Lina_park/u0027); return false;">Christina</a> and Lina jogging around the park.');
+    scene.text('You spot <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027Zvereva_events\u0027, \u0027Chris_Lina_park\u0027); return false;">Christina</a> and Lina jogging around the park.');
   }
   if (((s as any).start_type ?? 0)?.['loc'] === 'sg'  &&  ((s as any).locat ?? 0)?.['A23'] === 8  &&  ((s as any).socialchg ?? 0)?.['tAlbina_jog'] !== ((s as any).daystart ?? 0)) {
-    scene.text('You spot <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027albina_events/u0027, /u0027albina_jogging_pav/u0027); return false;">Albina</a> out on a jog, attracting a small amount of attention from both men and boys. She stops just ahead of you to fix her shoelace.');
+    scene.text('You spot <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027albina_events\u0027, \u0027albina_jogging_pav\u0027); return false;">Albina</a> out on a jog, attracting a small amount of attention from both men and boys. She stops just ahead of you to fix her shoelace.');
   }
   qspCall(s, 'treeCircEntry', 'PavlovskPark');
   if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) < 22) {
@@ -221,7 +213,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.text('<center><h2>Pavlovsk Park</h2></center>');
     scene.img('images/locations/shared/park/job_flyer.jpg');
-    // TODO-QSP: dynamic text: You spend an hour handing out advertising flyers to park visitors and receive <<...
     scene.text(`You spend an hour handing out advertising flyers to park visitors and receive ${qspFunc(s, 'money', 'string_profit', 50)} for your efforts.`);
     scene.actions([
       { label: 'Continue', goto: ['pav_park', 'start'] },
@@ -280,7 +271,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'prostitution_functions', 'check_solicitation_event');
   qspCall(s, 'camera', 'check_location');
   qspCall(s, 'blackmailer', 'set_park_act');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Walk to the Residential area (0:05)', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -431,39 +421,32 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).hour ?? 0) > 8  &&  ((s as any).hour ?? 0) < 19) {
-    // TODO-QSP: dynamic text: There''s a small <a href="exec:minut += 5 & gt ''pav_cinema''">movie theatre</a>...
-    scene.text('There\'s a small <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(/u0027pav_cinema/u0027, /u0027/u0027); return false;">movie theatre</a> in the park.');
+    scene.text('There\'s a small <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(\u0027pav_cinema\u0027, \u0027\u0027); return false;">movie theatre</a> in the park.');
   }
-  // TODO-QSP: dynamic text: The newly opened cafe <a href="exec:gt''cafe_parco'',''start''">"Del Parco"</a>,...
-  scene.text('The newly opened cafe <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027cafe_parco/u0027, /u0027start/u0027); return false;">"Del Parco"</a>, with an eye-catching facade, lots of tables and a summer terrace. Two paths lead out of the park. One brings you to the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(/u0027pav_commercial/u0027, /u0027/u0027); return false;">commercial</a> area, the other to the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(/u0027pav_residential/u0027, /u0027/u0027); return false;">residential</a> area.');
+  scene.text('The newly opened cafe <a href="exec:gt\'cafe_parco\',\'start\'">"Del Parco"</a>, with an eye-catching facade, lots of tables and a summer terrace. Two paths lead out of the park. One brings you to the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(\u0027pav_commercial\u0027, \u0027\u0027); return false;">commercial</a> area, the other to the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(\u0027pav_residential\u0027, \u0027\u0027); return false;">residential</a> area.');
   if (((((s as any).month ?? 0) === 8  &&  ((s as any).day ?? 0) > 20)  ||  (((s as any).month ?? 0) === 9  &&  ((s as any).day ?? 0) < 16))  &&  ((s as any).week ?? 0) > 5  &&  ((s as any).hour ?? 0) > 8  &&  ((s as any).hour ?? 0) < 20  &&  ((s as any).AlbinaQW ?? 0)?.['ParkRally'] === 0) {
-    // TODO-QSP: dynamic text: <br>You overhear someone speaking in front of a crowd. The crowd is quite rowdy,...
-    scene.text('<br>You overhear someone speaking in front of a crowd. The crowd is quite rowdy, yelling and clapping throughout the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.2; return s; }); window.__gameStore.getState().doGoto(/u0027pav_park/u0027, /u0027alb_father_meeting_1/u0027); return false;">meeting</a>.');
+    scene.text('<br>You overhear someone speaking in front of a crowd. The crowd is quite rowdy, yelling and clapping throughout the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.2; return s; }); window.__gameStore.getState().doGoto(\u0027pav_park\u0027, \u0027alb_father_meeting_1\u0027); return false;">meeting</a>.');
   } else {
     if (((((s as any).month ?? 0) === 9  &&  ((s as any).day ?? 0) > 20)  ||  (((s as any).month ?? 0) === 10  &&  ((s as any).day ?? 0) < 16))  &&  ((s as any).week ?? 0) > 5  &&  ((s as any).hour ?? 0) > 8  &&  ((s as any).hour ?? 0) < 20  &&  ((s as any).AlbinaQW ?? 0)?.['ParkRally'] === 1  &&  ((s as any).AlbinaQW ?? 0)?.['StarletsShutDown'] === 0) {
-      // TODO-QSP: dynamic text: Once again, a large crowd has gathered in the town center. You can hear Albina''...
-      scene.text('Once again, a large crowd has gathered in the town center. You can hear Albina\'s father holding a public <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.2; return s; }); window.__gameStore.getState().doGoto(/u0027pav_park/u0027, /u0027alb_father_meeting_2/u0027); return false;">meeting</a>.');
+      scene.text('Once again, a large crowd has gathered in the town center. You can hear Albina\'s father holding a public <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.2; return s; }); window.__gameStore.getState().doGoto(\u0027pav_park\u0027, \u0027alb_father_meeting_2\u0027); return false;">meeting</a>.');
     } else {
       if (((((s as any).month ?? 0) === 10  &&  ((s as any).day ?? 0) > 20)  ||  (((s as any).month ?? 0) === 11  &&  ((s as any).day ?? 0) < 16))  &&  ((s as any).week ?? 0) > 5  &&  ((s as any).hour ?? 0) > 8  &&  ((s as any).hour ?? 0) < 20  &&  ((s as any).AlbinaQW ?? 0)?.['ParkRally'] === 2  &&  ((s as any).AlbinaQW ?? 0)?.['StarletsShutDown'] === 0  &&  ((s as any).AlbinaQW ?? 0)?.['StarletsJoined'] === 0) {
-        // TODO-QSP: dynamic text: By this time, you''re well aware that Albina''s father is holding a <a href="exe...
-        scene.text('By this time, you\'re well aware that Albina\'s father is holding a <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.2; return s; }); window.__gameStore.getState().doGoto(/u0027pav_park/u0027, /u0027alb_father_meeting_3/u0027); return false;">meeting</a>, though they have erected a big stage.');
+        scene.text('By this time, you\'re well aware that Albina\'s father is holding a <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.2; return s; }); window.__gameStore.getState().doGoto(\u0027pav_park\u0027, \u0027alb_father_meeting_3\u0027); return false;">meeting</a>, though they have erected a big stage.');
       }
     }
   }
   if (((s as any).PCloInhibit ?? 0) >= 40) {
     qspCall(s, 'mood', 'lower', 'medium');
-    // TODO-QSP: dynamic text: You notice passers-by in the park pointing at you as you walk and overhear one o...
     scene.text(`You notice passers-by in the park pointing at you as you walk and overhear one older lady telling her friend: "There's that ${((s as any).pcs_lastname ?? '')} girl. Youth these days, they have no shame at all!"`);
   }
   if (((s as any).GvstreBoy ?? 0) === 1) {
-    // TODO-QSP: dynamic text: You see <a href="exec:numnpc = SkverBoy & gt ''Gnpc''"><<$nameBoyfrend[SkverBoy]...
     scene.text(`You see <a href="#" onclick="window.__gameStore.setState((s) => { s.numnpc = s.SkverBoy; return s; }); window.__gameStore.getState().doGoto(/u0027Gnpc/u0027, /u0027/u0027); return false;">${(((s as any).nameBoyfrend ?? 0)?.[String((s as any).SkverBoy ?? 0)] ?? '')}</a> walking across the main square of the park. He doesn't look like he's going anywhere in particular, and seems to just be enjoying his walk.`);
   }
   if (((s as any).week ?? 0) <= 5  &&  ((s as any).hour ?? 0) >= 16  &&  ((s as any).hour ?? 0) < 20  &&  ((s as any).strelaQW ?? 0) === -2  &&  ((s as any).fedorKozlovQW ?? 0) <= -10  &&  (!((s as any).FedorOutcast ?? 0))) {
-    scene.text('You can see the <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027FedorMisc/u0027, /u0027Outcast Intro/u0027); return false;">train tracks</a> from here.');
+    scene.text('You can see the <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027FedorMisc\u0027, \u0027Outcast Intro\u0027); return false;">train tracks</a> from here.');
   } else {
     if (((s as any).week ?? 0) <= 5  &&  ((s as any).hour ?? 0) >= 16  &&  ((s as any).hour ?? 0) < 20  &&  ((s as any).strelaQW ?? 0) === -2  &&  ((s as any).fedorKozlovQW ?? 0) <= -10  &&  ((s as any).FedorOutcast ?? 0) === 1) {
-      scene.text('You can see the train tracks where <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027FedorMisc/u0027, /u0027Outcast/u0027); return false;">Fedor</a> spends his time.');
+      scene.text('You can see the train tracks where <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027FedorMisc\u0027, \u0027Outcast\u0027); return false;">Fedor</a> spends his time.');
     }
   }
   if (((s as any).rexPark ?? 0) === 1  &&  ((s as any).rexParkDay ?? 0) === ((s as any).daystart ?? 0)  &&  ((s as any).hour ?? 0) >= 16  &&  ((s as any).hour ?? 0) < 18) {
@@ -473,13 +456,13 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   if (((s as any).week ?? 0) >= 6  &&  ((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) <= 9  &&  ((s as any).start_type ?? 0)?.['loc'] === 'sg'  &&  ((s as any).socialchg ?? 0)?.['tVanya_day'] !== ((s as any).daystart ?? 0)) {
-    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027gschool_socialchg1/u0027, /u0027tVanya/u0027); return false;">Vanya</a> is out on a light jog and is slowly approaching you.');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027gschool_socialchg1\u0027, \u0027tVanya\u0027); return false;">Vanya</a> is out on a light jog and is slowly approaching you.');
   }
   if (((s as any).start_type ?? 0)?.['loc'] === 'sg'  &&  ((s as any).locat ?? 0)?.['Christina'] === 9  &&  ((s as any).socialchg ?? 0)?.['tChris_Lina_jog'] !== ((s as any).daystart ?? 0)) {
-    scene.text('You spot <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027Zvereva_events/u0027, /u0027Chris_Lina_park/u0027); return false;">Christina</a> and Lina jogging around the park.');
+    scene.text('You spot <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027Zvereva_events\u0027, \u0027Chris_Lina_park\u0027); return false;">Christina</a> and Lina jogging around the park.');
   }
   if (((s as any).start_type ?? 0)?.['loc'] === 'sg'  &&  ((s as any).locat ?? 0)?.['A23'] === 8  &&  ((s as any).socialchg ?? 0)?.['tAlbina_jog'] !== ((s as any).daystart ?? 0)) {
-    scene.text('You spot <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027albina_events/u0027, /u0027albina_jogging_pav/u0027); return false;">Albina</a> out on a jog, attracting a small amount of attention from both men and boys. She stops just ahead of you to fix her shoelace.');
+    scene.text('You spot <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027albina_events\u0027, \u0027albina_jogging_pav\u0027); return false;">Albina</a> out on a jog, attracting a small amount of attention from both men and boys. She stops just ahead of you to fix her shoelace.');
   }
   qspCall(s, 'treeCircEntry', 'PavlovskPark');
   if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) < 22) {
@@ -491,7 +474,6 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.text('<center><h2>Pavlovsk Park</h2></center>');
     scene.img('images/locations/shared/park/job_flyer.jpg');
-    // TODO-QSP: dynamic text: You spend an hour handing out advertising flyers to park visitors and receive <<...
     scene.text(`You spend an hour handing out advertising flyers to park visitors and receive ${qspFunc(s, 'money', 'string_profit', 50)} for your efforts.`);
     scene.actions([
       { label: 'Continue', goto: ['pav_park', 'start'] },
@@ -550,7 +532,6 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'prostitution_functions', 'check_solicitation_event');
   qspCall(s, 'camera', 'check_location');
   qspCall(s, 'blackmailer', 'set_park_act');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Walk to the Residential area (0:05)', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -590,7 +571,6 @@ function enterAlbFatherMeeting_1(s: GameState, scene: SceneBuilder): void {
   scene.text('"We need to take care of the corruption in our police force! How many of our daughters must be raped because our petty excuses for officers allow crime to run rampant in our streets for a handful of rubles from the very criminals they\'re supposed to fight?"');
   scene.text('You take a closer look and see that it\'s Albina\'s father speaking. He\'s going hard on the authorities while the crowd gets rowdier.');
   scene.text('"Calm down, everyone! Don\'t take out your anger now! Instead, show them at the ballots how upset you truly are!" Albina\'s father finishes to cheers from the crowd.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go on with your day', goto: ['pav_park', 'start'] },
   ]);
@@ -606,7 +586,6 @@ function enterAlbFatherMeeting_2(s: GameState, scene: SceneBuilder): void {
   scene.text('The crowd keeps calm, except for his most die-hard supporters, who yell profanities and accusations against the current administration as Albina\'s father continues.');
   scene.text('"My opponents are desperate, desperate because I\'m about to unravel their web of lies, corruption and bribes that let them laugh at you from up in their ivory towers while you fight for scraps down in the dirt!"');
   scene.text('He slams the podium again.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go on with your day', goto: ['pav_park', 'start'] },
   ]);
@@ -622,7 +601,6 @@ function enterAlbFatherMeeting_3(s: GameState, scene: SceneBuilder): void {
   scene.text('He clears his throat a few times. "And now for some entertainment from my daughter and her dance group. If you look to the right, there are some refreshments available."');
   scene.text('He awkwardly steps away from the podium as the music starts, and the girls reluctantly step out. They\'re all wearing skintight, skimpy leotards that leave nothing to the imagination. Some men whistle and holler while others and most of the women look on in disgust, whispering that they can\'t believe that young girls would wear such revealing outfits.');
   scene.text('You stay and watch the performance. The girls are clearly uncomfortable with the situation, and you see Albina glare at her father a few times. Finally, the girls finish their performance and quickly run from the stage as Albina\'s father desperately tries to appease his diminishing crowd as everyone leaves, yourself included.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['pav_park', 'start'] },
   ]);
@@ -765,20 +743,16 @@ function enterDeeperPark(s: GameState, scene: SceneBuilder): void {
       ((s as any).gopniksev = (s as any).gopniksev ?? {})['rand'] = (Math.floor(Math.random() * 4) + 1);
     }
     if (((s as any).gopniksev ?? 0)?.['rand'] === 1  &&  ((s as any).gopniksev ?? 0)?.['gopgirls'] !== ((s as any).daystart ?? 0)  &&  ((s as any).locat ?? 0)?.['A144'] === 23  &&  ((((s as any).week ?? 0) >= 6  &&  ((s as any).hour ?? 0) >= 12  &&  ((s as any).hour ?? 0) < 18)  ||  (((s as any).week ?? 0) < 6  &&  ((s as any).hour ?? 0) >= 16  &&  ((s as any).hour ?? 0) < 18))) {
-      // TODO-QSP: dynamic text: You see your classmates <a href="exec:minut += 3 & gt ''pav_parkev'', ''gopgirls...
-      scene.text('You see your classmates <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.3; return s; }); window.__gameStore.getState().doGoto(/u0027pav_parkev/u0027, /u0027gopgirls/u0027); return false;">Lena, Lera, Anushka and Alyona</a> sitting at a picnic table, drinking beer and hanging out.');
+      scene.text('You see your classmates <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.3; return s; }); window.__gameStore.getState().doGoto(\u0027pav_parkev\u0027, \u0027gopgirls\u0027); return false;">Lena, Lera, Anushka and Alyona</a> sitting at a picnic table, drinking beer and hanging out.');
     } else {
       if (((s as any).gopniksev ?? 0)?.['rand'] === 2  &&  ((s as any).gopniksev ?? 0)?.['gopboys'] !== ((s as any).daystart ?? 0)  &&  ((s as any).locat ?? 0)?.['A156'] === 23  &&  ((((s as any).week ?? 0) >= 6  &&  ((s as any).hour ?? 0) >= 12  &&  ((s as any).hour ?? 0) < 18)  ||  (((s as any).week ?? 0) < 6  &&  ((s as any).hour ?? 0) >= 16  &&  ((s as any).hour ?? 0) < 18))) {
-        // TODO-QSP: dynamic text: You see your classmates <a href="exec:minut += 3 & gt ''pav_parkev'', ''gopboys'...
-        scene.text('You see your classmates <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.3; return s; }); window.__gameStore.getState().doGoto(/u0027pav_parkev/u0027, /u0027gopboys/u0027); return false;">Vitek, Dan, Lavrenti, Roman, Arkadi, Vasily and Pauline</a> sitting at a picnic table, drinking beer and hanging out.');
+        scene.text('You see your classmates <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.3; return s; }); window.__gameStore.getState().doGoto(\u0027pav_parkev\u0027, \u0027gopboys\u0027); return false;">Vitek, Dan, Lavrenti, Roman, Arkadi, Vasily and Pauline</a> sitting at a picnic table, drinking beer and hanging out.');
       } else {
         if (((s as any).gopniksev ?? 0)?.['rand'] === 3  &&  ((s as any).gopniksev ?? 0)?.['gopniks'] !== ((s as any).daystart ?? 0)  &&  ((s as any).locat ?? 0)?.['A144'] === 23  &&  ((s as any).locat ?? 0)?.['A154'] === 23  &&  ((s as any).locat ?? 0)?.['A156'] === 23  &&  ((s as any).locat ?? 0)?.['A158'] === 23  &&  ((((s as any).week ?? 0) >= 6  &&  ((s as any).hour ?? 0) >= 12  &&  ((s as any).hour ?? 0) < 18)  ||  (((s as any).week ?? 0) < 6  &&  ((s as any).hour ?? 0) >= 16  &&  ((s as any).hour ?? 0) < 18))) {
-          // TODO-QSP: dynamic text: You see your classmates <a href="exec:minut += 3 & gt ''pav_parkev'', ''gopniks'...
-          scene.text('You see your classmates <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.3; return s; }); window.__gameStore.getState().doGoto(/u0027pav_parkev/u0027, /u0027gopniks/u0027); return false;">Vitek, Dan, Lavrenti, Roman, Arkadi, Valentin, Radomir, Vasily, Pauline, Lena, Lera, Anushka and Alyona</a> sitting at a picnic table, drinking beer and hanging out.');
+          scene.text('You see your classmates <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.3; return s; }); window.__gameStore.getState().doGoto(\u0027pav_parkev\u0027, \u0027gopniks\u0027); return false;">Vitek, Dan, Lavrenti, Roman, Arkadi, Valentin, Radomir, Vasily, Pauline, Lena, Lera, Anushka and Alyona</a> sitting at a picnic table, drinking beer and hanging out.');
         } else {
           if (((s as any).gopniksev ?? 0)?.['rand'] === 4  &&  ((s as any).gopniksev ?? 0)?.['gopskver'] !== ((s as any).daystart ?? 0)  &&  ((((s as any).week ?? 0) >= 6  &&  ((((s as any).hour ?? 0) >= 9  &&  ((s as any).hour ?? 0) < 12)  ||  (((s as any).hour ?? 0) >= 16  &&  ((s as any).hour ?? 0) < 20)))  ||  (((s as any).week ?? 0) < 6  &&  (((s as any).hour ?? 0) >= 18  &&  ((s as any).hour ?? 0) < 20)))) {
-            // TODO-QSP: dynamic text: You see your classmates <a href="exec:minut += 3 & gt ''gopskver''">Vitek, Dan a...
-            scene.text('You see your classmates <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.3; return s; }); window.__gameStore.getState().doGoto(/u0027gopskver/u0027, /u0027/u0027); return false;">Vitek, Dan and Vasily</a> sitting on a park bench, drinking beer.');
+            scene.text('You see your classmates <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.3; return s; }); window.__gameStore.getState().doGoto(\u0027gopskver\u0027, \u0027\u0027); return false;">Vitek, Dan and Vasily</a> sitting on a park bench, drinking beer.');
           } else {
             ((s as any).gopniksev = (s as any).gopniksev ?? {})['rand'] = (Math.floor(Math.random() * 4) + 1);
             scene.text('You don\'t see any of the gopniks hanging out in the park.');
@@ -802,7 +776,6 @@ function enterDeeperPark(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   qspCall(s, 'camera', 'check_location');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Walk to the Residential area (0:05)', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -839,23 +812,17 @@ function enterSetRunAct(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).pcs_stam ?? 0) < ((s as any).stammax ?? 0) / 5) {
         scene.actions([
-          { label: 'Jog through the park (1:00)', handler: (st: GameState) => {
-    // TODO-QSP: $func('wrap', 'neg', '<br>You are too exhausted to do this. ...
-  } },
+          { label: 'Jog through the park (1:00)', handler: (st: GameState) => { scene.text('<br>You are too exhausted to do this. Recover your stamina before trying to go for a run.'); } },
         ]);
       } else {
         if (((s as any).pcs_energy ?? 0) < 10) {
           scene.actions([
-            { label: 'Jog through the park (1:00)', handler: (st: GameState) => {
-    // TODO-QSP: $func('wrap', 'neg', '<br>You feel too hungry to do this.')
-  } },
+            { label: 'Jog through the park (1:00)', handler: (st: GameState) => { scene.text('<br>You feel too hungry to do this.'); } },
           ]);
         } else {
           if (((s as any).pcs_hydra ?? 0) < 10) {
             scene.actions([
-              { label: 'Jog through the park (1:00)', handler: (st: GameState) => {
-    // TODO-QSP: $func('wrap', 'neg', '<br>You feel too thirsty to do this.')
-  } },
+              { label: 'Jog through the park (1:00)', handler: (st: GameState) => { scene.text('<br>You feel too thirsty to do this.'); } },
             ]);
           } else {
             scene.actions([
@@ -866,7 +833,6 @@ function enterSetRunAct(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -883,10 +849,8 @@ function enterRun(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'flash', 5);
     qspCall(st, 'arousal', 'end');
     if ((!(Math.floor(Math.random() * 2) + 0))) {
-      // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/shared/park/flash'+rand(3, 4)+...
       scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/shared/park/flash` + (Math.floor(Math.random() * 2) + 3) + '.jpg"></center>');
     } else {
-      // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/locations/shared/park/fl...
       scene.text(`<center><video autoplay loop ${((st as any).set_imgh ?? '')} src="images/locations/shared/park/flash` + (Math.floor(Math.random() * 2) + 1) + '.mp4"></video></center>');
     }
     scene.text('Halfway through your run, you pull up your top and expose your breasts. The cool air against your warm skin causes you to shiver.');
@@ -895,7 +859,6 @@ function enterRun(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Finish your run', handler: (st: GameState) => {
     scene.text('You feel great after your jogging session. You\'re a bit sweaty, but you\'ve also improved your stamina. You even feel a bit slimmer.');
@@ -933,7 +896,6 @@ function enterRunReactions(s: GameState, scene: SceneBuilder): void {
     }
   }
   scene.text('You feel great after your jogging session. Of course, you\'re a bit sweaty, but you\'ve also improved your stamina. You even feel a bit slimmer.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Finish your run', handler: (st: GameState) => {
     dynamicGoto(st, 'prevLoc', 'prevArg');
@@ -965,11 +927,11 @@ function enterSetSleepAct(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
+    (s as any).pavlovsk_home = undefined;
     scene.actions([
       { label: 'Sleep on a bench', goto: ['pav_park', 'sleeping_park_bench'] },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -999,7 +961,6 @@ function enterSleepingParkBench(s: GameState, scene: SceneBuilder): void {
   if (((s as any).alko ?? 0) >= 7  &&  ((s as any).pcs_hotcat ?? 0) >= 6) {
     qspGoto(s, 'placer_sex', 'sleeping_park_alco_rape');
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Wake up', handler: (st: GameState) => {
     if (((st as any).pantyworntype ?? 0) === 'none'  &&  ((st as any).PCloSkirt ?? 0) > 0) {

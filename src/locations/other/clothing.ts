@@ -169,21 +169,18 @@ function enterGetTotal(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterTotals(s: GameState, scene: SceneBuilder): void {
   (s as any).total = qspFunc(s, 'clothing', 'get_total', ((s as any).locArgs?.[1] ?? 0));
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterGetSwimwearCount(s: GameState, scene: SceneBuilder): void {
   (s as any).result = qspFunc(s, 'clothing', 'get_bikini_count') + qspFunc(s, 'clothing', 'get_swimsuit_count');
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -192,7 +189,6 @@ function enterGetBikiniCount(s: GameState, scene: SceneBuilder): void {
   (s as any).result = ((s as any).result ?? 0) + (0);
   (s as any).result = ((s as any).result ?? 0) + (0);
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -202,7 +198,6 @@ function enterGetSwimsuitCount(s: GameState, scene: SceneBuilder): void {
   (s as any).result = ((s as any).result ?? 0) + (0);
   (s as any).result = ((s as any).result ?? 0) + (0);
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -213,7 +208,6 @@ function enterGetPrice(s: GameState, scene: SceneBuilder): void {
   (s as any).result = (((s as any).CloPrice ?? 0) * ((5 * ((s as any).CloQuality ?? 0)) + 100) / 100) * 1000 / (1250 - ((s as any).Clothingstock ?? 0)[((s as any).locArgs?.[2] ?? 0)]) * 3 / 2;
   (s as any).result = ((s as any).result ?? 0) / 50 * 50;
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -229,7 +223,7 @@ function enterNotWearReason(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).result = '';
   if (qspFunc(s, 'clothing', 'is_immutable', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0))) {
-    // TODO-QSP: exit
+    return;
   }
   if (qspFunc(s, 'clothing', 'is_owned', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0)) === 0) {
     (s as any).result = 'not_owned';
@@ -266,7 +260,6 @@ function enterNotWearReason(s: GameState, scene: SceneBuilder): void {
     return;
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -282,7 +275,6 @@ function enterCanWear(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).result = (qspFunc(s, 'clothing', 'not_wear_reason', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0), 'attributes_set') === '');
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -295,7 +287,6 @@ function enterIsOwned(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).result = 0;
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -311,7 +302,6 @@ function enterIsLost(s: GameState, scene: SceneBuilder): void {
     (s as any).result = ((Array.isArray((s as any).CloLosTyp) ? ((s as any).CloLosTyp as any[]).indexOf(String((s as any).locArgs?.[1] ?? '')) : -1) >= 0  &&  (Array.isArray((s as any).CloLosNum) ? ((s as any).CloLosNum as any[]).indexOf(String((s as any).locArgs?.[2] ?? '')) : -1) >= 0);
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -327,7 +317,6 @@ function enterIsStrengthLow(s: GameState, scene: SceneBuilder): void {
     (s as any).result = 0;
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -343,7 +332,6 @@ function enterInWardrobe(s: GameState, scene: SceneBuilder): void {
     (s as any).result = 0;
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -359,7 +347,6 @@ function enterInStorage(s: GameState, scene: SceneBuilder): void {
     (s as any).result = 0;
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -375,7 +362,6 @@ function enterInUnwanted(s: GameState, scene: SceneBuilder): void {
     (s as any).result = 0;
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -388,7 +374,6 @@ function enterDoesFit(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).result = ((! qspFunc(s, 'clothing', 'is_too_small', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0)))  &&  (! qspFunc(s, 'clothing', 'is_too_large', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0))));
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -401,7 +386,6 @@ function enterIsTooSmall(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).result = 0;
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -414,7 +398,6 @@ function enterIsTooLarge(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).result = 0;
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -430,40 +413,37 @@ function enterIsHypnoApproved(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).result = 1;
   if (((s as any).hypnoClothes ?? 0) <= 0) {
-    // TODO-QSP: exit
+    return;
   }
   if (String((s as any).locArgs?.[1] ?? '') === 'salacious_outfits'  ||  String((s as any).locArgs?.[1] ?? '') === 'salacious_dress') {
-    // TODO-QSP: exit
+    return;
   }
   if (((s as any).CloThinness ?? 0) >= 6) {
-    // TODO-QSP: exit
+    return;
   }
   if ((((s as any).CloStyle2 ?? 0) === 6  ||  ((s as any).CloSport ?? 0) === 1)  &&  ((s as any).CloThinness ?? 0) >= 5) {
-    // TODO-QSP: exit
+    return;
   }
   if ((String((s as any).locArgs?.[1] ?? '') === 'eroto_outfits'  ||  String((s as any).locArgs?.[1] ?? '') === 'eroto_dress'  ||  String((s as any).locArgs?.[1] ?? '') === 'eroto_strip')  &&  ((s as any).CloThinness ?? 0) >= 3) {
-    // TODO-QSP: exit
+    return;
   }
   if (((s as any).CloStyle2 ?? 0) === 4  &&  ((s as any).CloThinness ?? 0) >= 4) {
-    // TODO-QSP: exit
+    return;
   }
   (s as any).result = 0;
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterIsWearingAny(s: GameState, scene: SceneBuilder): void {
   (s as any).result = (((s as any).clothingworntype ?? 0) !== ''  &&  ((s as any).clothingworntype ?? 0) !== 'nude');
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterIsWearing(s: GameState, scene: SceneBuilder): void {
   (s as any).result = (((s as any).clothingworntype ?? 0) === String((s as any).locArgs?.[1] ?? '')  &&  ((s as any).clothingwornnumber ?? 0) === String((s as any).locArgs?.[2] ?? ''));
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -476,19 +456,18 @@ function enterIsImmutable(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).result = (String((s as any).locArgs?.[1] ?? '') === 'gm_outfits'  &&  String((s as any).locArgs?.[2] ?? '') === 3);
   if (((s as any).result ?? 0)) {
-    // TODO-QSP: exit
+    return;
   }
   if (((s as any).start_type ?? 0)?.['loc'] === 'sg'  &&  ((s as any).gschoolVars ?? 0)?.['school_diploma'] === 0  &&  ((s as any).gschoolVars ?? 0)?.['block'] === 0) {
     (s as any).result = (String((s as any).locArgs?.[1] ?? '') === 'gm_school'  &&  String((s as any).locArgs?.[2] ?? '') === 6);
     if (((s as any).result ?? 0)) {
-      // TODO-QSP: exit
+      return;
     }
   }
   if (((s as any).misc_outfits ?? 0)[1]) {
     (s as any).result = (String((s as any).locArgs?.[1] ?? '') === 'misc_outfits'  &&  String((s as any).locArgs?.[2] ?? '') === 1);
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -501,7 +480,6 @@ function enterIsCloStrengthLow(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).result = qspFunc(s, 'clothing', 'is_strength_low', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0));
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -514,7 +492,6 @@ function enterClothingOwned(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).result = qspFunc(s, 'clothing', 'is_owned', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0));
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -527,7 +504,6 @@ function enterIsClothesTooSmall(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).result = qspFunc(s, 'clothing', 'is_too_small', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0));
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -540,7 +516,6 @@ function enterIsClothesTooLarge(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).result = qspFunc(s, 'clothing', 'is_too_large', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0));
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -553,30 +528,21 @@ function enterDoClothesFit(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).result = qspFunc(s, 'clothing', 'does_fit', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0));
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterAddItem(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === '') {
-    // TODO-QSP: exit
+    return;
   }
   if (String((s as any).locArgs?.[2] ?? '') === 0) {
-    // TODO-QSP: exit
+    return;
   }
   qspCall(s, 'clothing_attributes', '$ARGS[1]', ((s as any).locArgs?.[2] ?? 0));
   if ((!((s as any).CloQuality ?? 0))) {
-    // TODO-QSP: exit
+    return;
   }
-  // TODO-QSP: dynamic "
-  // TODO-QSP: <<$ARGS[1]>>[<<ARGS[2]>>] = 1
-  // TODO-QSP: <<$ARGS[1]>>_b[<<ARGS[2]>>] = pcs_hips
-  // TODO-QSP: <<$ARGS[1]>>_s[<<ARGS[2]>>] = 0
-  // TODO-QSP: <<$ARGS[1]>>_dirt[<<ARGS[2]>>] = 0
-  // TODO-QSP: <<$ARGS[1]>>_h[<<ARGS[2]>>] = CloMaxStrength
-  // TODO-QSP: "
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -588,22 +554,14 @@ function enterRemoveItem(s: GameState, scene: SceneBuilder): void {
     ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((s as any).clothingwornnumber ?? 0);
   }
   if (String((s as any).locArgs?.[1] ?? '') === ''  ||  String((s as any).locArgs?.[1] ?? '') === 'nude') {
-    // TODO-QSP: exit
+    return;
   }
-  // TODO-QSP: dynamic "
-  // TODO-QSP: <<$ARGS[1]>>[<<ARGS[2]>>] = 0
-  // TODO-QSP: <<$ARGS[1]>>_b[<<ARGS[2]>>] = 0
-  // TODO-QSP: <<$ARGS[1]>>_s[<<ARGS[2]>>] = 0
-  // TODO-QSP: <<$ARGS[1]>>_dirt[<<ARGS[2]>>] = 0
-  // TODO-QSP: <<$ARGS[1]>>_h[<<ARGS[2]>>] = 0
-  // TODO-QSP: "
   if (String((s as any).locArgs?.[1] ?? '') === ((s as any).clothingworntype ?? 0)  &&  String((s as any).locArgs?.[2] ?? '') === ((s as any).clothingwornnumber ?? 0)) {
     qspCall(s, 'clothing', 'strip_code');
     (s as any).lastwornclothingtype = 'nude';
     (s as any).lastwornclothingnumber = 0;
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -626,14 +584,12 @@ function enterResetImmutables(s: GameState, scene: SceneBuilder): void {
     ((s as any).misc_outfits_dirt = (s as any).misc_outfits_dirt ?? {})[1] = 2400;
     ((s as any).misc_outfits_h = (s as any).misc_outfits_h ?? {})[1] = 10000;
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterDispose(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).clothingworntype ?? 0), ((s as any).clothingwornnumber ?? 0)]; enterRemoveItem(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 

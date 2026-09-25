@@ -14,13 +14,11 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
   } else {
     dynamicGoto(s, 'loc_id');
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
   dynamicGoto(s, 'loc_id');
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -64,13 +62,11 @@ function enterQuestBody(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterDebug(s: GameState, scene: SceneBuilder): void {
   scene.text('Event init failed, $ARGS not set.');
-  // TODO-QSP: end
   scene.build();
 }
 

@@ -24,7 +24,6 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (st as any).arturblowday = ((st as any).daystart ?? 0);
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/arthur/sex/cocksuckercum.jpg');
-    // TODO-QSP: dynamic text: After a few minutes Arthur''s breathing grows rapid and he begins to cum in your...
     scene.text(`After a few minutes Arthur's breathing grows rapid and he begins to cum in your mouth. You immediately begin swallowing sperm while continuing to slide your mouth up and down his cock. After Arthur has finished, he pulls his cock from your greedy mouth with a wet "pop" sound. He grins at you as he tucks his spent penis back in his trousers and says. "You always know how to make my day. Here, from Uncle Arturik, Buy something nice." He hands to you ${qspFunc(s, 'money', 'string_profit', 500)} before striding out of the container, back towards the kiosk.`);
     qspCall(st, 'arousal', 'bj', 10, 'sub');
     qspCall(st, 'arousal', 'end');

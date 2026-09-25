@@ -31,7 +31,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   if (((String('uni_dorm;Palatka;bordel').indexOf(String(((s as any).locM ?? 0)))) + 1) > 0) {
     qspCall(s, 'din_van', 'private');
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the room', goto: ['vann', 'fin'] },
   ]);
@@ -40,7 +39,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
 
 function enterFin(s: GameState, scene: SceneBuilder): void {
   dynamicGoto(s, 'locM', 'locM_arg');
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -67,7 +65,6 @@ function enterBrit1(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Let him stay', handler: (st: GameState) => {
     (st as any).pcs_horny = ((st as any).pcs_horny ?? 0) + (10);
@@ -167,7 +164,6 @@ function enterV1(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Agree', handler: (st: GameState) => {
     (st as any).picrand = 21;
@@ -222,7 +218,6 @@ function enterV2(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Let him go', goto: ['vann', 'start'] },
   ]);
@@ -254,7 +249,6 @@ function enterV3(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Suck', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'bj', 3, 'deepthroat', 'rough');
@@ -325,7 +319,6 @@ function enterV4(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Cover up', handler: (st: GameState) => {
     scene.img('images/locations/city/island/university/dorm/sex/bathroom/v10.jpg');

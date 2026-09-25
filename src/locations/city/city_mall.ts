@@ -21,28 +21,28 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     qspGoto(s, 'city_mall', 'ksenya_mall_event');
   }
   (s as any).temp_table = '<center><table cellspacing=5 style="min-width:1000px; max-width:100%">';
-  // TODO-QSP: $temp_table +=  '<tr>'
-  // TODO-QSP: $temp_table +=    '<td align="center" width="33%"><a href="exec: minut += 3 & gt ''shop_pussycats'',...
-  // TODO-QSP: $temp_table +=    '<td align="center" width="33%"><a href="exec:torg = 1 & minut += 3 & gt ''shop_gm...
-  // TODO-QSP: $temp_table +=    '<td align="center" width="33%"><a href="exec: minut += 3 & gt ''shop_danilovich''...
-  // TODO-QSP: $temp_table +=  '</tr><tr>'
-  // TODO-QSP: $temp_table +=    '<td align="center"><a href="exec: minut += 3 & gt ''shop_fashionista'',''start''"...
-  // TODO-QSP: $temp_table +=    '<td align="center"><a href="exec: minut += 3 & gt ''shop_moncheri'', ''start''"><...
-  // TODO-QSP: $temp_table +=    '<td align="center"><a href="exec: minut += 3 & gt ''shop_lusso'', ''start''"><img...
-  // TODO-QSP: $temp_table +=  '</tr><tr>'
-  // TODO-QSP: $temp_table +=    '<td align="center"><a href="exec: minut += 3 & gt ''shop_materinstvo'',''start''"...
-  // TODO-QSP: $temp_table +=    '<td align="center"><a href="exec: minut += 3 & gt ''shop_scandalicious'',''start'...
-  // TODO-QSP: $temp_table +=    '<td align="center"><a href="exec: minut += 3 & gt ''shopdacha''"><img style="max-...
-  // TODO-QSP: $temp_table +=  '</tr><tr>'
-  // TODO-QSP: $temp_table +=    '<td align="center"><a href="exec: minut += 3 & gt ''hairsalon'', ''start''"><img ...
-  // TODO-QSP: $temp_table +=    '<td align="center"><a href="exec: minut += 3 & gt ''salon'', ''start''"><img styl...
-  // TODO-QSP: $temp_table +=    '<td align="center"><a href="exec: minut += 3 & gt ''zoomagazine'',''start''"><img...
-  // TODO-QSP: $temp_table +=  '</tr><tr>'
-  // TODO-QSP: $temp_table +=    '<td align="center"><a href="exec: ml_boughtamp = 0 & ml_boughtguitar = 0 & minut ...
-  // TODO-QSP: $temp_table +=    '<td align="center"><a href="exec: minut += 3 & gt ''shop_photography'',''start''"...
-  // TODO-QSP: $temp_table += '</tr></table></center>'
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<tr>');
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<td align="center" width="33%"><a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.3; return s; }); window.__gameStore.getState().doGoto(\u0027shop_pussycats\u0027, \u0027start\u0027); return false;"><img style="max-width:100%" src="images/locations/city/citycenter/mall/pussycat.png"></a></td>');
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<td align="center" width="33%"><a href="#" onclick="window.__gameStore.setState((s) => { s.torg = s.1; s.minut +=s.3; return s; }); window.__gameStore.getState().doGoto(\u0027shop_gm\u0027, \u0027start\u0027); return false;"><img style="max-width:100%" src="images/locations/city/citycenter/mall/gm.png"></a></td>');
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<td align="center" width="33%"><a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.3; return s; }); window.__gameStore.getState().doGoto(\u0027shop_danilovich\u0027, \u0027start\u0027); return false;"><img style="max-width:100%" src="images/locations/city/citycenter/mall/sports.png"></a></td>');
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + ('</tr><tr>');
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<td align="center"><a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.3; return s; }); window.__gameStore.getState().doGoto(\u0027shop_fashionista\u0027, \u0027start\u0027); return false;"><img style="max-width:100%" src="images/locations/city/citycenter/mall/fashionista.png"></a></td>');
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<td align="center"><a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.3; return s; }); window.__gameStore.getState().doGoto(\u0027shop_moncheri\u0027, \u0027start\u0027); return false;"><img style="max-width:100%" src="images/locations/city/citycenter/mall/moncheri.png"></a></td>');
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<td align="center"><a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.3; return s; }); window.__gameStore.getState().doGoto(\u0027shop_lusso\u0027, \u0027start\u0027); return false;"><img style="max-width:100%" src="images/locations/city/citycenter/mall/Lusso.png"></a></td>');
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + ('</tr><tr>');
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<td align="center"><a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.3; return s; }); window.__gameStore.getState().doGoto(\u0027shop_materinstvo\u0027, \u0027start\u0027); return false;"><img style="max-width:100%" src="images/locations/city/citycenter/mall/mommy.png"></a></td>');
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<td align="center"><a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.3; return s; }); window.__gameStore.getState().doGoto(\u0027shop_scandalicious\u0027, \u0027start\u0027); return false;"><img style="max-width:100%" src="images/locations/city/citycenter/mall/scandalicious.png"></a></td>');
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<td align="center"><a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.3; return s; }); window.__gameStore.getState().doGoto(\u0027shopdacha\u0027, \u0027\u0027); return false;"><img style="max-width:100%" src="images/locations/city/citycenter/mall/constructiont.png"></a></td>');
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + ('</tr><tr>');
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<td align="center"><a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.3; return s; }); window.__gameStore.getState().doGoto(\u0027hairsalon\u0027, \u0027start\u0027); return false;"><img style="max-width:100%" src="images/locations/city/citycenter/mall/goldencurl.png"></a></td>');
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<td align="center"><a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.3; return s; }); window.__gameStore.getState().doGoto(\u0027salon\u0027, \u0027start\u0027); return false;"><img style="max-width:100%" src="images/locations/city/citycenter/mall/beautybart.png"></a></td>');
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<td align="center"><a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.3; return s; }); window.__gameStore.getState().doGoto(\u0027zoomagazine\u0027, \u0027start\u0027); return false;"><img style="max-width:100%" src="images/locations/city/citycenter/mall/petstore.png"></a></td>');
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + ('</tr><tr>');
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<td align="center"><a href="#" onclick="window.__gameStore.setState((s) => { s.ml_boughtamp = s.0; s.ml_boughtguitar = s.0; s.minut +=s.3; return s; }); window.__gameStore.getState().doGoto(\u0027city_musicstore\u0027, \u0027\u0027); return false;"><img style="max-width:100%" src="images/locations/city/citycenter/mall/musicstore.png"></a></td>');
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<td align="center"><a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.3; return s; }); window.__gameStore.getState().doGoto(\u0027shop_photography\u0027, \u0027start\u0027); return false;"><img style="max-width:100%" src="images/locations/city/citycenter/mall/photoshop.png"></a></td>');
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + ('</tr></table></center>');
+  (s as any).temp_table = undefined;
   qspCall(s, 'lover', 'lover_events');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -59,12 +59,10 @@ function enterKsenyaMallEvent(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pushkin/ksenya/mall1.jpg');
   scene.text('As you approach the mall, you see a beautiful, hot pink Ferrari before you. It\'s top is down and it\'s doors are wide open. Inside you see a familiar face. "Hello Ksenya" You say walking up to her.');
   scene.text('She looks up at you with a smile and steps out of the car. You can see she isn\'t wearing her normal exhibition clothes today but with slight movement, you can get a look at her panties as her dress is rather tight and short.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Talk to Ksenya', handler: (st: GameState) => {
     (st as any).KsenyaQW = 1;
     scene.img('images/characters/pushkin/ksenya/mall5.jpg');
-    // TODO-QSP: dynamic text: "Hello <<$pcs_nickname>>, What brings you to the city?" she asks leaning on the ...
     scene.text(`"Hello ${((st as any).pcs_nickname ?? '')}, What brings you to the city?" she asks leaning on the windshield.`);
     scene.text('"Oh you know, shopping" you reply. "What about you?"');
     scene.text('"My mother is getting her hair done and I\'m waiting for her to finish," she admits. "Stick around long enough and you can meet her if you want" she offers.');
@@ -83,12 +81,10 @@ function enterKsenyaMallEvent(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pushkin/ksenya/mall3.jpg');
     scene.text('You and Ksenya wait around talking about your shared passion when a woman in a white dress walks up to the car. For a moment you could swear this was her sister but when Ksenya walked up to her and hugged her, you understood that this was her mother. "You look good, mom" She says to the other woman.');
     scene.text('"Who\'s your friend?" she asks leaning on the hood of the car.');
-    // TODO-QSP: dynamic text: "Mom, This is <<$pcs_firstname>>. She is a friend that I share an interest with ...
     scene.text(`"Mom, This is ${((st as any).pcs_firstname ?? '')}. She is a friend that I share an interest with and she is also a customer of mine" Ksenya says. "${((st as any).pcs_nickname ?? '')}, This is my mother, Makoto." she says and her mother hugs you. "Any friend of my daughters is a friend of mine."`);
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/characters/pushkin/ksenya/mall2.jpg');
-    // TODO-QSP: dynamic text: Makoto gets into the driver seat and starts up the car. "Come on Ksenya, we need...
     scene.text(`Makoto gets into the driver seat and starts up the car. "Come on Ksenya, we need to make a stop at the bank before we head back" she says and looks at you as Ksenya goes to the other side of the car. "Nice to have met you, ${((st as any).pcs_firstname ?? '')}. I hope to see you around" she says and they drive off, leaving you alone in the parking lot.`);
     scene.actions([
       { label: 'Enter the mall', goto: ['city_mall', ''] },

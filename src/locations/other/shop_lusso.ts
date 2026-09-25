@@ -7,13 +7,13 @@ import type { SceneBuilder } from '../../core/scene';
 function enterDefault(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'shop_lusso', 'start');
   (s as any).location_type = 'public_indoors';
+  (s as any).locclass = undefined;
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'indoors');
   scene.text('<center><b>Lusso Intimo</b></center>');
   scene.img('images/locations/city/citycenter/mall/lusso/lusso.jpg');
   scene.text('The décor is bright and modern, the flowers are real and the dressers are made with expensive woods.');
   scene.text('This is clearly a high end underwear shop. Just knowing you\'re wearing these will boost your confidence to the point that you\'ll never want to go back to wearing cheap, ill fitting underwear again. That is of course assuming you can afford the prices here.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['city_mall', ''] },
     { label: 'View panties', handler: (st: GameState) => {
@@ -32,13 +32,13 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'shop_lusso', 'start');
   (s as any).location_type = 'public_indoors';
+  (s as any).locclass = undefined;
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'indoors');
   scene.text('<center><b>Lusso Intimo</b></center>');
   scene.img('images/locations/city/citycenter/mall/lusso/lusso.jpg');
   scene.text('The décor is bright and modern, the flowers are real and the dressers are made with expensive woods.');
   scene.text('This is clearly a high end underwear shop. Just knowing you\'re wearing these will boost your confidence to the point that you\'ll never want to go back to wearing cheap, ill fitting underwear again. That is of course assuming you can afford the prices here.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['city_mall', ''] },
     { label: 'View panties', handler: (st: GameState) => {
@@ -65,7 +65,6 @@ function enterPanties(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'shop_utils', 'init', 'end');
   }
   qspCall(s, 'shop_utils', 'display', 'grid_shop');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -87,7 +86,6 @@ function enterBras(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'shop_utils', 'init', 'end');
   }
   qspCall(s, 'shop_utils', 'display', 'grid_shop');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -109,7 +107,6 @@ function enterBodysuit(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'shop_utils', 'init', 'end');
   }
   qspCall(s, 'shop_utils', 'display', 'grid_shop');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;

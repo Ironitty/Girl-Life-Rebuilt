@@ -12,7 +12,6 @@ function enterDormFloor(s: GameState, scene: SceneBuilder): void {
   (s as any).temp = (Math.floor(Math.random() * 100) + 0);
   ((s as any).uni_dorm = (s as any).uni_dorm ?? {})['event_minut'] = ((s as any).totminut ?? 0) + 60;
   if ((!((s as any).temp ?? 0))) {
-    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/city/island/university/dorm/ha...
     scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/city/island/university/dorm/hallway/events/floor/2girl_hump` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
     scene.text('As you walk down the hall, you see two girls grinding and dancing provocatively against each other while another takes photos with her phone. Some boys are also watching them.');
     scene.text('As you pass by, you wonder if they\'re just doing it to get the boys attention or if they\'re actually into it.');
@@ -24,7 +23,6 @@ function enterDormFloor(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     if (((s as any).temp ?? 0) === 1) {
-      // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/city/island/university/dorm/ha...
       scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/city/island/university/dorm/hallway/events/floor/3naked_girls` + (Math.floor(Math.random() * 3) + 1) + '.jpg"></center>');
       scene.text('As you walk down the hall, you\'re greeted by three tipsy, giggling, completely naked girls. The dark haired one looks familiar and you\'re sure you\'ve seen her around campus before; she doesn\'t seem to mind as her friend gropes at her breasts.');
       scene.text('They push by you and continue into the stairwell, leaving you to imagine where they\'re off to next.');
@@ -54,7 +52,6 @@ function enterDormFloor(s: GameState, scene: SceneBuilder): void {
           ]);
         } else {
           if (((s as any).temp ?? 0) === 4) {
-            // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/city/island/university/dorm/ha...
             scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/city/island/university/dorm/hallway/events/floor/naked_girl` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
             scene.text('As you walk down the hallway, one of the dorm room doors suddenly opens and a naked girl steps into view and casually walks down the hall to the communal showers.');
             qspCall(s, 'arousal', 'voyeur', 1);
@@ -65,7 +62,6 @@ function enterDormFloor(s: GameState, scene: SceneBuilder): void {
             ]);
           } else {
             if (((s as any).temp ?? 0) === 5) {
-              // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/city/island/university/dorm/ha...
               scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/city/island/university/dorm/hallway/events/floor/naked_girls_group` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
               scene.text('There\'s loud, booming music coming from an open door at the end of the hallway as a group of semi and completely nude girls come running in and out with drinks in hand.');
               scene.text('Seeing how much fun they\'re having, you almost consider joining them before you decide to just keep walking.');
@@ -111,7 +107,6 @@ function enterDormFloor(s: GameState, scene: SceneBuilder): void {
                     ]);
                   } else {
                     if (((s as any).temp ?? 0) === 9) {
-                      // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/city/island/university/dorm/ha...
                       scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/city/island/university/dorm/hallway/events/floor/topless_girl` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
                       scene.text('You pass several people walking around in their underwear or, in the case of one girl, completely naked. No one seems to take much notice as they get on with their daily routine.');
                       qspCall(s, 'arousal', 'voyeur', 1);
@@ -323,7 +318,6 @@ function enterDormFloor(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -672,7 +666,6 @@ function enterDormFloorSex(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -708,7 +701,6 @@ function enterDormFloor8(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       if (((s as any).temp ?? 0) === 2) {
-        // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/city/island/university/dorm/ha...
         scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/city/island/university/dorm/hallway/events/floor8/ir_kiss` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
         scene.text('As you walk down the hallway, you spot a white girl with a black guy. They stop in front of one of the doors and make out for a few seconds before the guy unlocks the door and leads the girl into his room.');
         qspCall(s, 'arousal', 'voyeur', 1);
@@ -1062,7 +1054,6 @@ function enterDormFloor8(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1559,7 +1550,6 @@ function enterDormFloorEightSex(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 

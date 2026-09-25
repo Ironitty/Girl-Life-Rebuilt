@@ -1,4 +1,4 @@
-import { qspCall, dynamicGoto, qspGoto } from '../_shared/qspBridge';
+import { qspCall, qspFunc, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -35,7 +35,6 @@ function enterDoorBell(s: GameState, scene: SceneBuilder): void {
       } else {
         if (((s as any).locat ?? 0)?.['zoya'] === 8  ||  ((s as any).locat ?? 0)?.['zoya'] === 9) {
           scene.text('You hear the latch unlocking before the door is opened by the maid.');
-          // TODO-QSP: dynamic text: "Hello Miss <<$pcs_firstname>>," she smiles. "Miss Albina isn''t home right now,...
           scene.text(`"Hello Miss ${((s as any).pcs_firstname ?? '')}," she smiles. "Miss Albina isn't home right now, but should return by 5pm. Ms. Zoya said that you're free to come in and wait for her if you wish."`);
           scene.actions([
             { label: 'Leave', handler: (st: GameState) => {
@@ -51,7 +50,6 @@ function enterDoorBell(s: GameState, scene: SceneBuilder): void {
             { label: 'Wait for Albina inside', handler: (st: GameState) => {
     scene.text('"I\'ll come in and wait then, if that\'s okay?" you reply.');
     scene.text('The maid smiles and stands aside to let you enter.');
-    // TODO-QSP: dynamic text: "Please follow me, Miss <<$pcs_firstname>>."
     scene.text(`"Please follow me, Miss ${((st as any).pcs_firstname ?? '')}."`);
     if (((st as any).locat ?? 0)?.['zoya'] === 8) {
       qspGoto(st, 'albina_mother_events', 'zoya_sunbathing_solo1');
@@ -68,7 +66,6 @@ function enterDoorBell(s: GameState, scene: SceneBuilder): void {
               qspGoto(s, 'albina_mother_events', 'zoya_yoga_albina');
             } else {
               scene.text('A few seconds later, you hear the click of the latch unlocking before the door opens to reveal the maid.');
-              // TODO-QSP: dynamic text: "Hello Miss <<$pcs_firstname>>," she says with a polite smile.
               scene.text(`"Hello Miss ${((s as any).pcs_firstname ?? '')}," she says with a polite smile.`);
               scene.text('"Hi. Is Albina home?" you politely ask.');
               if (((s as any).locat ?? 0)?.['A23'] !== 1) {
@@ -106,7 +103,6 @@ function enterDoorBell(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -117,17 +113,19 @@ function enterMaidGreet(s: GameState, scene: SceneBuilder): void {
   ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['visiting'] = ((s as any).daystart ?? 0);
   (s as any).temp_rand = (Math.floor(Math.random() * 5) + 0);
   if ((!((s as any).temp_rand ?? 0))) {
+    (s as any).temp_rand = undefined;
     qspGoto(s, 'albina_house_events', 'alb_yoga_start');
   } else {
     if (((s as any).temp_rand ?? 0) === 1  &&  ((s as any).daystart ?? 0) > ((s as any).AlbinaQW ?? 0)?.['daily_event']) {
       ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['daily_event'] = ((s as any).daystart ?? 0);
+      (s as any).temp_rand = undefined;
       qspGoto(s, 'albina_sex_scenes', 'lazar_start');
     } else {
       if (((s as any).temp_rand ?? 0) === 2  &&  ((s as any).temper ?? 0) >= 15  &&  ((s as any).sunWeather ?? 0) === 1) {
+        (s as any).temp_rand = undefined;
         qspGoto(s, 'albina_house_events', 'albina_sunbathe_solo');
       } else {
         scene.img('images/locations/pavlovsk/resident/albinahome/maid.jpg');
-        // TODO-QSP: dynamic text: "Please make yourself at home, Miss <<$pcs_firstname>>. I will let Miss Albina k...
         scene.text(`"Please make yourself at home, Miss ${((s as any).pcs_firstname ?? '')}. I will let Miss Albina know that you have arrived," she says before excusing herself.`);
         scene.actions([
           { label: 'Continue', goto: ['albinahome', 'hallway'] },
@@ -135,7 +133,7 @@ function enterMaidGreet(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
+  (s as any).temp_rand = undefined;
   scene.build();
 }
 
@@ -149,7 +147,6 @@ function enterHallway(s: GameState, scene: SceneBuilder): void {
   scene.text('The foyer is well-appointed with hardwood flooring, numerous arches and tasteful decor. Lighting is sunk into the exquisite staircase with wraparound balconies on either side.');
   scene.text('You have been asked not to wander around the house alone, so you\'re limited in where you can go.');
   if (((s as any).hour ?? 0) >= 21) {
-    // TODO-QSP: dynamic text: The maid approaches with a polite smile. "My apologies Miss <<$pcs_firstname>>, ...
     scene.text(`The maid approaches with a polite smile. "My apologies Miss ${((s as any).pcs_firstname ?? '')}, but it is time for you to leave. You may visit again tomorrow."`);
     scene.text('You nod and gather your belongings before the maid shows you to the door.');
     scene.actions([
@@ -171,7 +168,6 @@ function enterHallway(s: GameState, scene: SceneBuilder): void {
       { label: 'Go to the pool', goto: ['albinahome', 'pool_side'] },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -183,28 +179,28 @@ function enterDownstairsBathroom(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'themes', 'indoors');
   scene.img('images/locations/pavlovsk/resident/albinahome/bathroom.jpg');
   scene.text('The bathroom is just as well appointed as the rest of the house, with polished marble used throughout its furnishings.');
-  // TODO-QSP: dynamic text: 'There is a shower, toilet, sink, <a href="exec:gt ''mirror'', ''start''">mirror...
-  scene.text('There is a shower, toilet, sink, <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027start/u0027); return false;">mirror</a>, where you can ' + ((((s as any).pcs_hairbsh ?? 0) < 1) ? ('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027brush/u0027); return false;">brush</a>') : ('brush')) + ' your hair, and even a separate bathtub.');
+  scene.text('There is a shower, toilet, sink, <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027start\u0027); return false;">mirror</a>, where you can ' + ((((s as any).pcs_hairbsh ?? 0) < 1) ? ('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027brush\u0027); return false;">brush</a>') : ('brush')) + ' your hair, and even a separate bathtub.');
   qspCall(s, 'din_van', 'tampon');
   qspCall(s, 'din_van', 'quickwash');
   qspCall(s, 'din_van', 'basin');
   if (((s as any).mc_inventory ?? 0)?.['painkillers'] > 0) {
     if (((s as any).pain ?? 0)?.['total'] > 0) {
-      // TODO-QSP: act $func('drugs', 'painkiller_act_str'):
-      qspCall(s, 'drugs', 'painkiller');
-      (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) + (20);
-      qspCall(s, 'stat', '');
-      scene.text('You take a painkiller and gulp it down with a glass of water.');
       scene.actions([
-        { label: 'Finish', handler: (st: GameState) => {
+        { label: '', labelFn: (s: GameState) => String(qspFunc(s, 'drugs', 'painkiller_act_str') ?? ''), handler: (st: GameState) => {
+    qspCall(st, 'drugs', 'painkiller');
+    (st as any).pcs_hydra = ((st as any).pcs_hydra ?? 0) + (20);
+    qspCall(st, 'stat', '');
+    scene.text('You take a painkiller and gulp it down with a glass of water.');
+    scene.actions([
+      { label: 'Finish', handler: (st: GameState) => {
     dynamicGoto(st, 'prevLoc', 'prevArg');
+  } },
+    ]);
   } },
       ]);
     }
   }
-  // TODO-QSP: end
   qspCall(s, 'din_van', 'prvt_pee');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return to the hallway', goto: ['albinahome', 'hallway'] },
   ]);
@@ -214,21 +210,27 @@ function enterDownstairsBathroom(s: GameState, scene: SceneBuilder): void {
 function enterBedroomEventRandom(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_rand = (Math.floor(Math.random() * 7) + 0);
   if ((!((s as any).temp_rand ?? 0))) {
+    (s as any).temp_rand = undefined;
     qspGoto(s, 'albina_sex_scenes', 'lazar_start');
   } else {
     if (((s as any).temp_rand ?? 0) === 1) {
+      (s as any).temp_rand = undefined;
       qspGoto(s, 'albina_house_events', 'hot_tub1');
     } else {
       if (((s as any).temp_rand ?? 0) === 2  &&  ((s as any).temper ?? 0) < 10) {
+        (s as any).temp_rand = undefined;
         qspGoto(s, 'albina_house_events', 'swim_winter1');
       } else {
         if (((s as any).temp_rand ?? 0) === 3  &&  ((s as any).AlbinaQW ?? 0)?.['studylock'] === 0  &&  ((s as any).AlbinaQW ?? 0)?.['flashdrive'] === 0) {
+          (s as any).temp_rand = undefined;
           qspGoto(s, 'albina_events', 'study_door');
         } else {
           if (((s as any).temp_rand ?? 0) === 4) {
+            (s as any).temp_rand = undefined;
             qspGoto(s, 'albina_house_events', 'alb_bedroom_shower');
           } else {
             if (((s as any).temp_rand ?? 0) === 5) {
+              (s as any).temp_rand = undefined;
               qspGoto(s, 'albinahome', 'dancing');
             }
           }
@@ -236,7 +238,7 @@ function enterBedroomEventRandom(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
+  (s as any).temp_rand = undefined;
   scene.build();
 }
 
@@ -256,6 +258,7 @@ function enterBedroom(s: GameState, scene: SceneBuilder): void {
           qspCall(s, 'albina_house_events', 'ass_too_big');
         }
       }
+      (s as any).temp_rand = undefined;
     }
   }
   (s as any).minut = ((s as any).minut ?? 0) + 1;
@@ -273,7 +276,6 @@ function enterBedroom(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.img('images/locations/pavlovsk/resident/albinahome/albinaroom.jpg');
     if (((s as any).hour ?? 0) >= 21) {
-      // TODO-QSP: dynamic text: "It''s getting pretty late, <<$pcs_nickname>>," Albina says. "You should probabl...
       scene.text(`"It's getting pretty late, ${((s as any).pcs_nickname ?? '')}," Albina says. "You should probably get going."`);
       scene.text('You check the time on your phone and sigh. "Yeah, I probably should…"');
       scene.text('You give Albina a hug goodbye before leaving.');
@@ -309,8 +311,8 @@ function enterBedroom(s: GameState, scene: SceneBuilder): void {
   } },
         ]);
       } else {
-        scene.text('Albina\'s bedroom is, in a word, <i>extravagant</i>. The centrepiece is a large double bed covered in soft pillows and a door at the back of the room leads to her en-suite <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027albinahome/u0027, /u0027albina_bathroom/u0027); return false;">bathroom</a>. There\'s even a sliding door leading to a balcony that overlooks the pool. A closet full of expensive-looking clothes is built into one of the walls.');
-        scene.text('Her <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027albina_house_events/u0027, /u0027computer/u0027); return false;">laptop</a> is sitting on the nearby desk.');
+        scene.text('Albina\'s bedroom is, in a word, <i>extravagant</i>. The centrepiece is a large double bed covered in soft pillows and a door at the back of the room leads to her en-suite <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027albinahome\u0027, \u0027albina_bathroom\u0027); return false;">bathroom</a>. There\'s even a sliding door leading to a balcony that overlooks the pool. A closet full of expensive-looking clothes is built into one of the walls.');
+        scene.text('Her <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027albina_house_events\u0027, \u0027computer\u0027); return false;">laptop</a> is sitting on the nearby desk.');
         if (((s as any).temper ?? 0) >= 15  &&  ((s as any).sunWeather ?? 0) === 1  &&  ((s as any).hour ?? 0) < 19) {
           scene.actions([
             { label: 'Ask if she wants to swim in the pool', goto: ['albina_house_events', 'naked_swim'] },
@@ -339,7 +341,6 @@ function enterBedroom(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -351,8 +352,7 @@ function enterAlbinaBathroom(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'themes', 'indoors');
   scene.img('images/locations/pavlovsk/resident/albinahome/bathroom.jpg');
   scene.text('Much like the other bathrooms in the house, Albina\'s en-suite is extravagantly decorated with polished marble and glossy tiles.');
-  // TODO-QSP: dynamic text: 'There is a large shower, toilet, sink, <a href="exec:gt ''mirror'', ''start''">...
-  scene.text('There is a large shower, toilet, sink, <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027start/u0027); return false;">mirror</a>, where you can ' + ((((s as any).pcs_hairbsh ?? 0) < 1) ? ('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027brush/u0027); return false;">brush</a>') : ('brush')) + ' your hair, and a huge marble bathtub that looks big enough to fit two people.');
+  scene.text('There is a large shower, toilet, sink, <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027start\u0027); return false;">mirror</a>, where you can ' + ((((s as any).pcs_hairbsh ?? 0) < 1) ? ('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027brush\u0027); return false;">brush</a>') : ('brush')) + ' your hair, and a huge marble bathtub that looks big enough to fit two people.');
   if ((!(Math.floor(Math.random() * 3) + 0))) {
     scene.text('As you glance around the room, you notice the large suction dildo stuck to the edge of the bathtub. Albina could have absent-mindedly left it here by mistake, but knowing your friend, it\'s also likely that she done it deliberately.');
     scene.actions([
@@ -364,21 +364,22 @@ function enterAlbinaBathroom(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'din_van', 'basin');
   if (((s as any).mc_inventory ?? 0)?.['painkillers'] > 0) {
     if (((s as any).pain ?? 0)?.['total'] > 0) {
-      // TODO-QSP: act $func('drugs', 'painkiller_act_str'):
-      qspCall(s, 'drugs', 'painkiller');
-      (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) + (20);
-      qspCall(s, 'stat', '');
-      scene.text('You take a painkiller and gulp it down with a glass of water.');
       scene.actions([
-        { label: 'Finish', handler: (st: GameState) => {
+        { label: '', labelFn: (s: GameState) => String(qspFunc(s, 'drugs', 'painkiller_act_str') ?? ''), handler: (st: GameState) => {
+    qspCall(st, 'drugs', 'painkiller');
+    (st as any).pcs_hydra = ((st as any).pcs_hydra ?? 0) + (20);
+    qspCall(st, 'stat', '');
+    scene.text('You take a painkiller and gulp it down with a glass of water.');
+    scene.actions([
+      { label: 'Finish', handler: (st: GameState) => {
     dynamicGoto(st, 'prevLoc', 'prevArg');
+  } },
+    ]);
   } },
       ]);
     }
   }
-  // TODO-QSP: end
   qspCall(s, 'din_van', 'prvt_pee');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return to Albina\'s room', goto: ['albinahome', 'bedroom'] },
   ]);
@@ -395,8 +396,7 @@ function enterLivingRoom(s: GameState, scene: SceneBuilder): void {
   scene.text('The living room is very well appointed, with polished wood flooring and expensive looking furniture used throughout the room.');
   scene.text('Your attention is drawn to some sort of decortative fixture made of glass and metal that\'s probably worth more than your entire apartment.');
   if (((s as any).locat ?? 0)?.['zoya'] === 5) {
-    // TODO-QSP: dynamic text: <a href="exec:minut += 1 & gt ''zoya_chat'', ''lounge_chat''">Zoya</a> is here, ...
-    scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(/u0027zoya_chat/u0027, /u0027lounge_chat/u0027); return false;">Zoya</a> is here, relaxing on the sofa with a glass of wine while looking over what appears to be various work related papers.');
+    scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027zoya_chat\u0027, \u0027lounge_chat\u0027); return false;">Zoya</a> is here, relaxing on the sofa with a glass of wine while looking over what appears to be various work related papers.');
     scene.text('You could sit and chat with her.');
   } else {
     if ((Math.floor(Math.random() * 3) + 0) === 0  &&  ((s as any).hour ?? 0) < 17) {
@@ -405,7 +405,6 @@ function enterLivingRoom(s: GameState, scene: SceneBuilder): void {
       scene.text('There\'s currently nobody here.');
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the hallway', goto: ['albinahome', 'hallway'] },
     { label: 'Go to Albina\'s bedroom', goto: ['albinahome', 'bedroom'] },
@@ -427,7 +426,6 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/resident/albinahome/kitchen.jpg');
   scene.text('The well equipped kitchen is just as well appointed as the rest of the house, with shiny varnished wood used throughout its furnishings.');
   if (((s as any).hour ?? 0) >= 21) {
-    // TODO-QSP: dynamic text: The maid approaches with a polite smile. "My apologies Miss <<$pcs_firstname>>, ...
     scene.text(`The maid approaches with a polite smile. "My apologies Miss ${((s as any).pcs_firstname ?? '')}, but it is time for you to leave. You may visit again tomorrow."`);
     scene.text('You nod and gather your belongings before the maid shows you to the door.');
     scene.actions([
@@ -438,8 +436,7 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).locat ?? 0)?.['zoya'] === 3) {
       if (((s as any).hour ?? 0) < 7) {
-        // TODO-QSP: dynamic text: <a href="exec:minut += 1 & gt ''zoya_chat'', ''breakfast_chat''">Zoya</a> is her...
-        scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(/u0027zoya_chat/u0027, /u0027breakfast_chat/u0027); return false;">Zoya</a> is here, eating her breakfast at the table.');
+        scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027zoya_chat\u0027, \u0027breakfast_chat\u0027); return false;">Zoya</a> is here, eating her breakfast at the table.');
         scene.text('You could sit and chat with her.');
       } else {
         scene.text('Zoya is here, eating her dinner at the table while looking over what appears to be various work related papers. You probably shouldn\'t disturb her.');
@@ -451,7 +448,6 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'kit_din', '');
   qspCall(s, 'kit_din', 'fill_bottle');
   qspCall(s, 'kit_din', 'driwater');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the hallway', goto: ['albinahome', 'hallway'] },
     { label: 'Go to Albina\'s bedroom', goto: ['albinahome', 'bedroom'] },
@@ -481,12 +477,10 @@ function enterPoolSide(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).locat ?? 0)?.['zoya'] === 8) {
-    // TODO-QSP: dynamic text: <a href="exec:minut += 1 & gt ''albina_mother_events'', ''zoya_sunbathing_solo2'...
-    scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(/u0027albina_mother_events/u0027, /u0027zoya_sunbathing_solo2/u0027); return false;">Zoya</a> is sunbathing topless on a floatie in the middle of the pool.');
+    scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027albina_mother_events\u0027, \u0027zoya_sunbathing_solo2\u0027); return false;">Zoya</a> is sunbathing topless on a floatie in the middle of the pool.');
     scene.text('You wonder if you should disturb her. She looks rather relaxed right now and might not be looking for company.');
   } else {
     if (((s as any).hour ?? 0) >= 21) {
-      // TODO-QSP: dynamic text: The maid approaches with a polite smile. "My apologies Miss <<$pcs_firstname>>, ...
       scene.text(`The maid approaches with a polite smile. "My apologies Miss ${((s as any).pcs_firstname ?? '')}, but it is time for you to leave. You may visit again tomorrow."`);
       scene.text('You nod and gather your belongings before the maid shows you to the door.');
       scene.actions([
@@ -498,7 +492,6 @@ function enterPoolSide(s: GameState, scene: SceneBuilder): void {
       scene.text('There\'s nobody out here right now.');
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the hallway', goto: ['albinahome', 'hallway'] },
     { label: 'Go to Albina\'s bedroom', goto: ['albinahome', 'bedroom'] },
@@ -540,7 +533,6 @@ function enterZoyaRoom(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -550,7 +542,6 @@ function enterDancing(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/resident/albinahome/train.mp4');
     scene.text('Albina is training in her room, doing some stretching exercises.');
     scene.text('She\'s wearing skin-tight yoga pants that show off her toned body quite well.');
-    // TODO-QSP: dynamic text: Oh hey <<$pcs_nickname>>!" she says with a smile when she sees you.
     scene.text(`Oh hey ${((s as any).pcs_nickname ?? '')}!" she says with a smile when she sees you.`);
     scene.actions([
       { label: 'Ask why she doesn\'t train at a gym', handler: (st: GameState) => {
@@ -578,7 +569,6 @@ function enterDancing(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.img('images/locations/pavlovsk/resident/albinahome/train.mp4');
     scene.text('You enter the room to find Albina doing some stretching exercises in her yoga pants.');
-    // TODO-QSP: dynamic text: She smiles at you. "Hey <<$pcs_nickname>>! I was just about to head down to the ...
     scene.text(`She smiles at you. "Hey ${((s as any).pcs_nickname ?? '')}! I was just about to head down to the gym to do my dancing exercises. Want me to teach you some things?"`);
     scene.actions([
       { label: 'No thanks', handler: (st: GameState) => {
@@ -595,7 +585,6 @@ function enterDancing(s: GameState, scene: SceneBuilder): void {
       { label: 'Teach me poledancing', goto: ['albinahome', 'poledancing'] },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -604,7 +593,6 @@ function enterDancing1(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/resident/albinahome/albinaroom.jpg');
   scene.text('"Can we practice dancing together?" you ask.');
   scene.text('She smiles and nods. "Sure! Did you want to do stripping or poledancing?"');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Teach me stripping', goto: ['albinahome', 'stripping'] },
     { label: 'Teach me poledancing', goto: ['albinahome', 'poledancing'] },
@@ -633,7 +621,6 @@ function enterStripping(s: GameState, scene: SceneBuilder): void {
     scene.text('A striptease is too complex for you. You\'re not able to dance and strip at the same time. Albina recommends that you start with learning to dance first.');
   }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPostWorkoutShower(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Rest', goto: ['albinahome', 'bedroom'] },
   ]);
@@ -661,7 +648,6 @@ function enterPoledancing(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).pcs_stren ?? 0) < 40  &&  ((s as any).pcs_dancero ?? 0) >= 40) {
       scene.text('You try your best to follow Albina\'s instructions, but end up smacking your head on the pole instead and falling to the floor.');
-      // TODO-QSP: dynamic text: You''re flat on your back and see Albina kneeling over you. "Are you okay, <<$pc...
       scene.text(`You're flat on your back and see Albina kneeling over you. "Are you okay, ${((s as any).pcs_nickname ?? '')}? It looks like you're still too weak for pole dancing, so we need to develop your strength instead."`);
       scene.text('You nod at her, and she pulls you to your feet before checking your head. "It might bruise, but otherwise, you look fine."');
       scene.actions([
@@ -702,22 +688,18 @@ function enterPoledancing(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterPostWorkoutShower(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: dynamic text: "You''re looking a little sweaty there, <<$pcs_nickname>>. You should go and hav...
   scene.text(`"You're looking a little sweaty there, ${((s as any).pcs_nickname ?? '')}. You should go and have a shower. Mama wouldn't like it if you got sweat marks all over the furniture. Meet me in my bedroom when you're done."`);
   qspCall(s, 'din_van', 'shower');
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterDressing(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/resident/albinahome/albinaroom.jpg');
   scene.text('You talk about the clothes you have and how to combine them for the community center dance before Albina invites you to try some of her clothes.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Try on some clothes', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 60;
@@ -850,7 +832,6 @@ function enterZoyaSchedule(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 

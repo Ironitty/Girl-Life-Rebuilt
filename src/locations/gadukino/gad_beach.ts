@@ -34,16 +34,16 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   }
   scene.text('A small country beach, where you can sunbathe and swim.');
   if ((! qspFunc(s, 'miroslava_schedule', 'is_here'))  &&  ((s as any).npc_QW ?? 0)?.['A63'] >= 13  &&  (Math.floor(Math.random() * 11) + 0) === 0  &&  ((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) < 20  &&  ((s as any).month ?? 0) >= 5  &&  ((s as any).month ?? 0) <= 9  &&  ((s as any).temper ?? 0) >= 15  &&  ((s as any).sunWeather ?? 0) === 1) {
-    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027gad_beach/u0027, /u0027GuysBeach/u0027); return false;">Kolyamba and Vasyan</a> are resting on the riverbank.');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027gad_beach\u0027, \u0027GuysBeach\u0027); return false;">Kolyamba and Vasyan</a> are resting on the riverbank.');
   }
   if (qspFunc(s, 'miroslava_schedule', 'is_here')) {
     if ((Math.floor(Math.random() * 11) + 0) < 5) {
-      scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027gad_beach/u0027, /u0027Mira/u0027, String(window.__gameStore.getState().1 ?? /u0027/u0027)); return false;">Mira</a> is lying on the beach sunbathing.');
+      scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027gad_beach\u0027, \u0027Mira\u0027, String(window.__gameStore.getState().1 ?? \u0027\u0027)); return false;">Mira</a> is lying on the beach sunbathing.');
       if (((s as any).npc_rel ?? 0)?.['A60'] < 15) {
         qspCall(s, 'npc_relationship', 'modify', 'A60', 1);
       }
     } else {
-      scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027gad_beach/u0027, /u0027Mira/u0027, String(window.__gameStore.getState().0 ?? /u0027/u0027)); return false;">Mira</a> is in the river splashing water around and having fun.');
+      scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027gad_beach\u0027, \u0027Mira\u0027, String(window.__gameStore.getState().0 ?? \u0027\u0027)); return false;">Mira</a> is in the river splashing water around and having fun.');
       if (((s as any).npc_rel ?? 0)?.['A60'] < 15) {
         qspCall(s, 'npc_relationship', 'modify', 'A60', 1);
       }
@@ -93,7 +93,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       qspGoto(s, 'gad_beach', 'arrive_Mira_already_there');
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Walk to the river (0:05)', handler: (st: GameState) => {
     if (((st as any).PSwim ?? 0) === 1) {
@@ -198,6 +197,7 @@ function enterSetSwimmingAct(s: GameState, scene: SceneBuilder): void {
     } else {
       qspGoto(st, 'gad_beach', 'start', '1');
     }
+    (st as any).temp_rand = undefined;
   } },
     ]);
   } },
@@ -222,7 +222,6 @@ function enterSetSwimmingAct(s: GameState, scene: SceneBuilder): void {
       if ((Math.floor(Math.random() * 16) + 0) >= 10  &&  qspFunc(s, 'miroslava_schedule', 'is_here')) {
         (st as any).pcs_horny = ((st as any).pcs_horny ?? 0) + ((Math.floor(Math.random() * 11) + 5));
         qspCall(st, 'stat', '');
-        // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/gadukino/mira/rivertwogirlsnu...
         scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/characters/gadukino/mira/rivertwogirlsnude` + (Math.floor(Math.random() * 6) + 0) + '.jpg"></center>');
         scene.text('You step into the river with Mira and have a good old-fashioned water fight, splashing each other until one of you finally surrenders.');
       } else {
@@ -270,7 +269,6 @@ function enterSetSwimmingAct(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -406,6 +404,7 @@ function enterSetSunbathAct(s: GameState, scene: SceneBuilder): void {
         qspGoto(st, 'gad_beach', 'start', '1');
       }
     }
+    (st as any).temp_rand = undefined;
   } },
         ]);
       }
@@ -414,7 +413,6 @@ function enterSetSunbathAct(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -426,9 +424,7 @@ function enterMiraLeaves(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.img('images/characters/gadukino/mira/mira_go_home.jpg');
   }
-  // TODO-QSP: dynamic text: "<<$pcs_nickname>>, I have to go home, " Mira said and began gathering her stuff...
   scene.text(`"${((s as any).pcs_nickname ?? '')}, I have to go home, " Mira said and began gathering her stuff.`);
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['gad_beach', 'start', '1'] },
   ]);
@@ -441,14 +437,12 @@ function enterArrive_MiraAlreadyThere(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   ((s as any).MiraVars = (s as any).MiraVars ?? {})['follow_time'] = 1;
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     if (((st as any).MiraVars ?? 0)?.['swimday'] === ((st as any).daystart ?? 0)) {
       qspGoto(st, 'gad_beach', 'start', '1');
     } else {
       scene.img('images/characters/gadukino/mira/mirariver.jpg');
-      // TODO-QSP: dynamic text: "<<$pcs_nickname>>, why are you moping about on the shore? Get in the water and ...
       scene.text(`"${((st as any).pcs_nickname ?? '')}, why are you moping about on the shore? Get in the water and swim with me?" - Mira called out to you as she waded into the river.`);
       (st as any).minut = ((st as any).minut ?? 0) + 1;
       ((st as any).MiraVars = (st as any).MiraVars ?? {})['swimday'] = ((st as any).daystart ?? 0);
@@ -475,7 +469,6 @@ function enterArrive_MiraAlreadyThere(s: GameState, scene: SceneBuilder): void {
     scene.text('Without hesitation, you take off all your clothes and neatly fold them before putting them down in a pile. Without your clothes holding you back, you can go for a nice swim in the river or lie down in the sand and sunbathe.');
     scene.actions([
       { label: 'Swim', handler: (st: GameState) => {
-    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/gadukino/mira/rivertwogirlsnu...
     scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/characters/gadukino/mira/rivertwogirlsnude` + (Math.floor(Math.random() * 6) + 0) + '.jpg"></center>');
     scene.text('You wade into the river and have fun with Mira spraying each other with water.');
     if (((st as any).deodorant_on ?? 0) === 1) {
@@ -544,7 +537,6 @@ function enterGetChanged(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -559,7 +551,6 @@ function enterSecondThoughts(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   qspCall(s, 'npc_relationship', 'modify', 'A60', (-1));
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['gad_beach', 'start', '1'] },
   ]);
@@ -568,6 +559,7 @@ function enterSecondThoughts(s: GameState, scene: SceneBuilder): void {
 
 function enterMira(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 2;
+  (s as any).locclass = undefined;
   qspCall(s, 'stat', '');
   if (String((s as any).locArgs?.[1] ?? '') === 1) {
     if (((s as any).MiraVars ?? 0)?.['QW'] < 12) {
@@ -582,10 +574,8 @@ function enterMira(s: GameState, scene: SceneBuilder): void {
       scene.img('images/characters/gadukino/mira/mirarivernude.jpg');
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Chat', handler: (st: GameState) => {
-    // TODO-QSP: delact $selact
     (st as any).minut = ((st as any).minut ?? 0) + 10;
     qspCall(st, 'mood', 'raise', 'tiny');
     qspCall(st, 'stat', '');
@@ -636,7 +626,6 @@ function enterGuysBeach(s: GameState, scene: SceneBuilder): void {
   (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
   qspCall(s, 'stat', '');
   scene.img('images/locations/gadukino/river/mitkaguysriver.jpg');
-  // TODO-QSP: dynamic text: "Oh, hi, <<$pcs_nickname>>. So it''s just you today?" Kolyamba grinned.
   scene.text(`"Oh, hi, ${((s as any).pcs_nickname ?? '')}. So it's just you today?" Kolyamba grinned.`);
   (s as any).temp_randA = (Math.floor(Math.random() * 11) + 0);
   if (((s as any).temp_randA ?? 0) <= 4) {
@@ -682,6 +671,7 @@ function enterGuysBeach(s: GameState, scene: SceneBuilder): void {
       }
     }
     qspCall(st, 'arousal', 'end');
+    (st as any).temp_randB = undefined;
     scene.actions([
       { label: 'Leave', goto: ['gad_beach', 'start', '1'] },
     ]);
@@ -726,6 +716,7 @@ function enterGuysBeach(s: GameState, scene: SceneBuilder): void {
       }
     }
     qspCall(st, 'arousal', 'end');
+    (st as any).temp_randC = undefined;
     scene.actions([
       { label: 'Leave', goto: ['gad_beach', 'start', '1'] },
     ]);
@@ -775,6 +766,7 @@ function enterGuysBeach(s: GameState, scene: SceneBuilder): void {
       }
     }
     qspCall(st, 'arousal', 'end');
+    (st as any).temp_randD = undefined;
     scene.actions([
       { label: 'Leave', goto: ['gad_beach', 'start', '1'] },
     ]);
@@ -784,7 +776,7 @@ function enterGuysBeach(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
-  // TODO-QSP: end
+  (s as any).temp_randA = undefined;
   scene.actions([
     { label: 'Leave', goto: ['gad_beach', 'start', '1'] },
   ]);

@@ -148,9 +148,10 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'array', 'remove_element', 'npc_gon', ((s as any).tempcclean ?? 0));
     qspCall(s, 'array', 'remove_element', 'npc_thrush', ((s as any).tempcclean ?? 0));
     if ((Array.isArray((s as any).cemptyarray) ? ((s as any).cemptyarray as any[]).indexOf(((s as any).tempcclean ?? 0)) : -1) < 0) {
-      // TODO-QSP: $cemptyarray[] = $tempcclean
+      (s as any).cemptyarray = [...((s as any).cemptyarray ?? []), ((s as any).tempcclean ?? 0)];
     }
   }
+  (s as any).tempcclean = undefined;
   scene.build();
 }
 

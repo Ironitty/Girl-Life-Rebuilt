@@ -11,7 +11,6 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 function enterInit(s: GameState, scene: SceneBuilder): void {
   (s as any).loc_history = ((s as any).loc ?? 0);
   (s as any).loc_args_history = ((s as any).loc_arg ?? 0);
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -38,12 +37,14 @@ function enterSetup(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'core_library', 'stage_title');
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterExit(s: GameState, scene: SceneBuilder): void {
+  (s as any).loc_history = undefined;
+  (s as any).loc_args_history = undefined;
   if (String((s as any).locArgs?.[1] ?? '') === 'arts') {
+    alert('not implemented');
     scene.actions([
       { label: 'Return', handler: (st: GameState) => {
     dynamicGoto(st, 'prevLoc', 'prevArg');
@@ -64,7 +65,6 @@ function enterExit(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -146,7 +146,6 @@ function enterContent(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -228,12 +227,10 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterTickets(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: end
   scene.actions([
     { label: 'Pay the boatman', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 100) === 0) {
@@ -241,8 +238,7 @@ function enterTickets(s: GameState, scene: SceneBuilder): void {
     } else {
       qspCall(st, 'money', 'pay', 100);
       (st as any).canals_ticket = ((st as any).daystart ?? 0);
-      // TODO-QSP: dynamic text: 'You pay the boatman ' + $func('money', 'string_price', 100) + ' for your ticket...
-      scene.text('You pay the boatman 100₽ for your ticket.');
+      scene.text('\'You pay the boatman 100₽ for your ticket.\'');
       qspGoto(st, 'city_canals', 'start');
     }
   } },
@@ -251,8 +247,8 @@ function enterTickets(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDates(s: GameState, scene: SceneBuilder): void {
+  alert('not implemented');
   dynamicGoto(s, 'prevLoc', 'prevArg');
-  // TODO-QSP: end
   scene.build();
 }
 

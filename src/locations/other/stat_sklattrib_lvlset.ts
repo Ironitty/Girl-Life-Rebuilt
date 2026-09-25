@@ -46,136 +46,136 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).pcs_butt_tr = 0;
   }
   (s as any).pcs_jab = (((s as any).jab_lvl ?? 0) + (((s as any).pcs_agil ?? 0) * 2 + ((s as any).pcs_stren ?? 0)) / 3) / 2 + (((s as any).arch_effects ?? {})?.['combat_effect'] ?? 0);
-  // TODO-QSP: $jab[0] = 'stren'
-  // TODO-QSP: $jab[1] = 'agil'
+  ((s as any).jab = (s as any).jab ?? {})[0] = 'stren';
+  ((s as any).jab = (s as any).jab ?? {})[1] = 'agil';
   (s as any).pcs_punch = (((s as any).punch_lvl ?? 0) + (((s as any).pcs_stren ?? 0) * 2 + ((s as any).pcs_agil ?? 0)) / 3) / 2 + (((s as any).arch_effects ?? {})?.['combat_effect'] ?? 0);
-  // TODO-QSP: $punch[0] = 'stren'
-  // TODO-QSP: $punch[1] = 'agil'
+  ((s as any).punch = (s as any).punch ?? {})[0] = 'stren';
+  ((s as any).punch = (s as any).punch ?? {})[1] = 'agil';
   (s as any).pcs_kick = (((s as any).kick_lvl ?? 0) + (((s as any).pcs_stren ?? 0) * 3 + ((s as any).pcs_agil ?? 0)) / 4) / 2 + (((s as any).arch_effects ?? {})?.['combat_effect'] ?? 0);
-  // TODO-QSP: $kick[0] = 'stren'
-  // TODO-QSP: $kick[1] = 'agil'
+  ((s as any).kick = (s as any).kick ?? {})[0] = 'stren';
+  ((s as any).kick = (s as any).kick ?? {})[1] = 'agil';
   (s as any).pcs_def = (((s as any).def_lvl ?? 0) + (((s as any).pcs_agil ?? 0) + ((s as any).pcs_stren ?? 0) + ((s as any).pcs_react ?? 0)) / 3) / 2 + (((s as any).arch_effects ?? {})?.['combat_effect'] ?? 0);
-  // TODO-QSP: $def[0] = 'stren'
-  // TODO-QSP: $def[1] = 'agil'
-  // TODO-QSP: $def[2] = 'react'
+  ((s as any).def = (s as any).def ?? {})[0] = 'stren';
+  ((s as any).def = (s as any).def ?? {})[1] = 'agil';
+  ((s as any).def = (s as any).def ?? {})[2] = 'react';
   (s as any).pcs_shoot = (((s as any).shoot_lvl ?? 0) + (((s as any).pcs_agil ?? 0) + ((s as any).pcs_react ?? 0)) / 2) / 2 + (((s as any).arch_effects ?? {})?.['combat_effect'] ?? 0);
-  // TODO-QSP: $shoot[0] = 'agil'
-  // TODO-QSP: $shoot[1] = 'react'
+  ((s as any).shoot = (s as any).shoot ?? {})[0] = 'agil';
+  ((s as any).shoot = (s as any).shoot ?? {})[1] = 'react';
   (s as any).pcs_bushcraft = (((s as any).bushcraft_lvl ?? 0) + (((s as any).pcs_stren ?? 0) + ((s as any).pcs_agil ?? 0) + ((s as any).pcs_intel ?? 0)) / 3) / 2;
-  // TODO-QSP: $bushcraft[0] = 'stren'
-  // TODO-QSP: $bushcraft[1] = 'agil'
-  // TODO-QSP: $bushcraft[2] = 'intel'
+  ((s as any).bushcraft = (s as any).bushcraft ?? {})[0] = 'stren';
+  ((s as any).bushcraft = (s as any).bushcraft ?? {})[1] = 'agil';
+  ((s as any).bushcraft = (s as any).bushcraft ?? {})[2] = 'intel';
   (s as any).pcs_vokal = (((s as any).vokal_lvl ?? 0) + (((s as any).pcs_intel ?? 0) + ((s as any).pcs_chrsm ?? 0)) / 2) / 2 + (((s as any).arch_effects ?? {})?.['music_effect'] ?? 0);
-  // TODO-QSP: $vokal[0] = 'intel'
-  // TODO-QSP: $vokal[1] = 'chrsm'
+  ((s as any).vokal = (s as any).vokal ?? {})[0] = 'intel';
+  ((s as any).vokal = (s as any).vokal ?? {})[1] = 'chrsm';
   (s as any).pcs_sewng = (((s as any).sewng_lvl ?? 0) + (((s as any).pcs_agil ?? 0) + ((s as any).pcs_intel ?? 0)) / 2) / 2 + (((s as any).arch_effects ?? {})?.['sewing_effect'] ?? 0);
-  // TODO-QSP: $sewng[0] = 'agil'
-  // TODO-QSP: $sewng[1] = 'intel'
+  ((s as any).sewng = (s as any).sewng ?? {})[0] = 'agil';
+  ((s as any).sewng = (s as any).sewng ?? {})[1] = 'intel';
   (s as any).pcs_instrmusic = (((s as any).instrmusic_lvl ?? 0) + (2 * ((s as any).pcs_agil ?? 0) + ((s as any).pcs_intel ?? 0)) / 3) / 2 + (((s as any).arch_effects ?? {})?.['music_effect'] ?? 0);
-  // TODO-QSP: $instrmusic[0] = 'agil'
-  // TODO-QSP: $instrmusic[1] = 'intel'
+  ((s as any).instrmusic = (s as any).instrmusic ?? {})[0] = 'agil';
+  ((s as any).instrmusic = (s as any).instrmusic ?? {})[1] = 'intel';
   (s as any).pcs_photoskl = (((s as any).photoskl_lvl ?? 0) + (2 * ((s as any).pcs_intel ?? 0) + ((s as any).pcs_react ?? 0)) / 3) / 2;
-  // TODO-QSP: $photoskl[0] = 'intel'
-  // TODO-QSP: $photoskl[1] = 'react'
+  ((s as any).photoskl = (s as any).photoskl ?? {})[0] = 'intel';
+  ((s as any).photoskl = (s as any).photoskl ?? {})[1] = 'react';
   (s as any).pcs_artskls = (((s as any).artskls_lvl ?? 0) + (((s as any).pcs_agil ?? 0) + ((s as any).pcs_intel ?? 0) + ((s as any).pcs_react ?? 0)) / 3) / 2 + (((s as any).arch_effects ?? {})?.['artistic_effect'] ?? 0);
-  // TODO-QSP: $artskls[0] = 'agil'
-  // TODO-QSP: $artskls[1] = 'intel'
-  // TODO-QSP: $artskls[2] = 'react'
+  ((s as any).artskls = (s as any).artskls ?? {})[0] = 'agil';
+  ((s as any).artskls = (s as any).artskls ?? {})[1] = 'intel';
+  ((s as any).artskls = (s as any).artskls ?? {})[2] = 'react';
   (s as any).pcs_danc = (((s as any).danc_lvl ?? 0) + (((s as any).pcs_agil ?? 0) + ((s as any).pcs_vital ?? 0) + ((s as any).pcs_react ?? 0)) / 3) / 2 + (((s as any).arch_effects ?? {})?.['dancing_effect'] ?? 0);
-  // TODO-QSP: $danc[0] = 'agil'
-  // TODO-QSP: $danc[1] = 'vital'
-  // TODO-QSP: $danc[2] = 'react'
+  ((s as any).danc = (s as any).danc ?? {})[0] = 'agil';
+  ((s as any).danc = (s as any).danc ?? {})[1] = 'vital';
+  ((s as any).danc = (s as any).danc ?? {})[2] = 'react';
   (s as any).pcs_dancero = (((s as any).dancero_lvl ?? 0) + (((s as any).pcs_agil ?? 0) + ((s as any).pcs_vital ?? 0) + ((s as any).pcs_chrsm ?? 0)) / 3) / 2 + (((s as any).arch_effects ?? {})?.['erotic_dance_effect'] ?? 0);
-  // TODO-QSP: $dancero[0] = 'agil'
-  // TODO-QSP: $dancero[1] = 'vital'
-  // TODO-QSP: $dancero[2] = 'chrsm'
+  ((s as any).dancero = (s as any).dancero ?? {})[0] = 'agil';
+  ((s as any).dancero = (s as any).dancero ?? {})[1] = 'vital';
+  ((s as any).dancero = (s as any).dancero ?? {})[2] = 'chrsm';
   (s as any).pcs_dancpol = (((s as any).dancpol_lvl ?? 0) + (((s as any).pcs_stren ?? 0) + ((s as any).pcs_agil ?? 0) + ((s as any).pcs_chrsm ?? 0)) / 3) / 2 + (((s as any).arch_effects ?? {})?.['pole_dance_effect'] ?? 0);
-  // TODO-QSP: $dancpol[0] = 'stren'
-  // TODO-QSP: $dancpol[1] = 'agil'
-  // TODO-QSP: $dancpol[2] = 'chrsm'
+  ((s as any).dancpol = (s as any).dancpol ?? {})[0] = 'stren';
+  ((s as any).dancpol = (s as any).dancpol ?? {})[1] = 'agil';
+  ((s as any).dancpol = (s as any).dancpol ?? {})[2] = 'chrsm';
   (s as any).pcs_chess = (((s as any).chess_lvl ?? 0) + ((s as any).pcs_intel ?? 0)) / 2 + (5 * ((s as any).logictrt ?? 0)) + (((s as any).arch_effects ?? {})?.['chess_effect'] ?? 0);
-  // TODO-QSP: $chess[0] = 'intel'
+  ((s as any).chess = (s as any).chess ?? {})[0] = 'intel';
   (s as any).pcs_gaming = (((s as any).gaming_lvl ?? 0) + (2 * ((s as any).pcs_intel ?? 0) + ((s as any).pcs_react ?? 0)) / 3) / 2;
-  // TODO-QSP: $gaming[0] = 'intel'
-  // TODO-QSP: $gaming[1] = 'react'
+  ((s as any).gaming = (s as any).gaming ?? {})[0] = 'intel';
+  ((s as any).gaming = (s as any).gaming ?? {})[1] = 'react';
   (s as any).pcs_humint = (((s as any).humint_lvl ?? 0) + (((s as any).pcs_react ?? 0) + ((s as any).pcs_chrsm ?? 0) + ((s as any).pcs_prcptn ?? 0)) / 3) / 2 + (((s as any).arch_effects ?? {})?.['people_skills_effect'] ?? 0);
-  // TODO-QSP: $humint[0] = 'react'
-  // TODO-QSP: $humint[1] = 'chrsm'
-  // TODO-QSP: $humint[2] = 'prcptn'
+  ((s as any).humint = (s as any).humint ?? {})[0] = 'react';
+  ((s as any).humint = (s as any).humint ?? {})[1] = 'chrsm';
+  ((s as any).humint = (s as any).humint ?? {})[2] = 'prcptn';
   (s as any).pcs_persuas = (((s as any).persuas_lvl ?? 0) + (((s as any).pcs_chrsm ?? 0) + ((s as any).pcs_prcptn ?? 0)) / 2) / 2 + (((s as any).arch_effects ?? {})?.['people_skills_effect'] ?? 0) + (((s as any).arch_effects ?? {})?.['persuasion_effect'] ?? 0);
-  // TODO-QSP: $persuas[0] = 'chrsm'
-  // TODO-QSP: $persuas[1] = 'prcptn'
+  ((s as any).persuas = (s as any).persuas ?? {})[0] = 'chrsm';
+  ((s as any).persuas = (s as any).persuas ?? {})[1] = 'prcptn';
   (s as any).pcs_run = (((s as any).run_lvl ?? 0) + (2 * (((s as any).pcs_stren ?? 0) + ((s as any).pcs_agil ?? 0)) + ((s as any).pcs_vital ?? 0)) / 5) / 2 + (((s as any).arch_effects ?? {})?.['sports_effect'] ?? 0);
-  // TODO-QSP: $run[0] = 'stren'
-  // TODO-QSP: $run[1] = 'agil'
-  // TODO-QSP: $run[2] = 'vital'
+  ((s as any).run = (s as any).run ?? {})[0] = 'stren';
+  ((s as any).run = (s as any).run ?? {})[1] = 'agil';
+  ((s as any).run = (s as any).run ?? {})[2] = 'vital';
   (s as any).pcs_vball_block = (((s as any).vball_lvl ?? 0) + (((s as any).pcs_vital ?? 0) + ((s as any).pcs_react ?? 0)) / 2) / 2 + (((s as any).pcs_hgt ?? 0) - 170) + (((s as any).arch_effects ?? {})?.['revealing_sports_effect'] ?? 0);
-  // TODO-QSP: $vball_block[0] = 'vital'
-  // TODO-QSP: $vball_block[1] = 'react'
+  ((s as any).vball_block = (s as any).vball_block ?? {})[0] = 'vital';
+  ((s as any).vball_block = (s as any).vball_block ?? {})[1] = 'react';
   (s as any).pcs_vball_rec = (((s as any).vball_lvl ?? 0) + (((s as any).pcs_agil ?? 0) + ((s as any).pcs_react ?? 0)) / 2) / 2 + (((s as any).arch_effects ?? {})?.['revealing_sports_effect'] ?? 0);
-  // TODO-QSP: $vball_rec[0] = 'agil'
-  // TODO-QSP: $vball_rec[1] = 'react'
+  ((s as any).vball_rec = (s as any).vball_rec ?? {})[0] = 'agil';
+  ((s as any).vball_rec = (s as any).vball_rec ?? {})[1] = 'react';
   (s as any).pcs_vball_serve = (((s as any).vball_lvl ?? 0) + (((s as any).pcs_stren ?? 0) + ((s as any).pcs_prcptn ?? 0)) / 2) / 2 + (((s as any).arch_effects ?? {})?.['revealing_sports_effect'] ?? 0);
-  // TODO-QSP: $vball_serve[0] = 'stren'
-  // TODO-QSP: $vball_serve[1] = 'prcptn'
+  ((s as any).vball_serve = (s as any).vball_serve ?? {})[0] = 'stren';
+  ((s as any).vball_serve = (s as any).vball_serve ?? {})[1] = 'prcptn';
   (s as any).pcs_vball_set = (((s as any).vball_lvl ?? 0) + (((s as any).pcs_agil ?? 0) + ((s as any).pcs_prcptn ?? 0)) / 2) / 2 + (((s as any).arch_effects ?? {})?.['revealing_sports_effect'] ?? 0);
-  // TODO-QSP: $vball_set[0] = 'agil'
-  // TODO-QSP: $vball_set[1] = 'prcptn'
+  ((s as any).vball_set = (s as any).vball_set ?? {})[0] = 'agil';
+  ((s as any).vball_set = (s as any).vball_set ?? {})[1] = 'prcptn';
   (s as any).pcs_vball_spike = (((s as any).vball_lvl ?? 0) + (((s as any).pcs_stren ?? 0) + ((s as any).pcs_vital ?? 0)) / 2) / 2 + (((s as any).arch_effects ?? {})?.['revealing_sports_effect'] ?? 0);
-  // TODO-QSP: $vball_spike[0] = 'stren'
-  // TODO-QSP: $vball_spike[1] = 'vital'
+  ((s as any).vball_spike = (s as any).vball_spike ?? {})[0] = 'stren';
+  ((s as any).vball_spike = (s as any).vball_spike ?? {})[1] = 'vital';
   (s as any).pcs_vball = (((s as any).pcs_vball_block ?? 0) + ((s as any).pcs_vball_rec ?? 0) + ((s as any).pcs_vball_serve ?? 0) + ((s as any).pcs_vball_set ?? 0) + ((s as any).pcs_vball_spike ?? 0)) / 5;
-  // TODO-QSP: $vball[0] = 'stren'
-  // TODO-QSP: $vball[1] = 'agil'
-  // TODO-QSP: $vball[2] = 'vital'
-  // TODO-QSP: $vball[3] = 'react'
-  // TODO-QSP: $vball[4] = 'prcptn'
+  ((s as any).vball = (s as any).vball ?? {})[0] = 'stren';
+  ((s as any).vball = (s as any).vball ?? {})[1] = 'agil';
+  ((s as any).vball = (s as any).vball ?? {})[2] = 'vital';
+  ((s as any).vball = (s as any).vball ?? {})[3] = 'react';
+  ((s as any).vball = (s as any).vball ?? {})[4] = 'prcptn';
   (s as any).pcs_icesktng = (((s as any).icesktng_lvl ?? 0) + (((s as any).pcs_stren ?? 0) + 2 * ((s as any).pcs_agil ?? 0)) / 3) / 2 + (((s as any).arch_effects ?? {})?.['revealing_sports_effect'] ?? 0);
-  // TODO-QSP: $icesktng[0] = 'stren'
-  // TODO-QSP: $icesktng[1] = 'agil'
+  ((s as any).icesktng = (s as any).icesktng ?? {})[0] = 'stren';
+  ((s as any).icesktng = (s as any).icesktng ?? {})[1] = 'agil';
   (s as any).pcs_wrstlng = (((s as any).wrstlng_lvl ?? 0) + (2 * ((s as any).pcs_stren ?? 0) + ((s as any).pcs_agil ?? 0) + ((s as any).pcs_vital ?? 0)) / 4) / 2 + (((s as any).arch_effects ?? {})?.['combat_effect'] ?? 0);
-  // TODO-QSP: $wrstlng[0] = 'stren'
-  // TODO-QSP: $wrstlng[1] = 'agil'
-  // TODO-QSP: $wrstlng[2] = 'vital'
+  ((s as any).wrstlng = (s as any).wrstlng ?? {})[0] = 'stren';
+  ((s as any).wrstlng = (s as any).wrstlng ?? {})[1] = 'agil';
+  ((s as any).wrstlng = (s as any).wrstlng ?? {})[2] = 'vital';
   (s as any).pcs_ftbll = (((s as any).ftbll_lvl ?? 0) + (((s as any).pcs_stren ?? 0) + ((s as any).pcs_agil ?? 0) + ((s as any).pcs_vital ?? 0)) / 3) / 2 + (((s as any).arch_effects ?? {})?.['sports_effect'] ?? 0);
-  // TODO-QSP: $ftbll[0] = 'stren'
-  // TODO-QSP: $ftbll[1] = 'agil'
-  // TODO-QSP: $ftbll[2] = 'vital'
+  ((s as any).ftbll = (s as any).ftbll ?? {})[0] = 'stren';
+  ((s as any).ftbll = (s as any).ftbll ?? {})[1] = 'agil';
+  ((s as any).ftbll = (s as any).ftbll ?? {})[2] = 'vital';
   (s as any).pcs_bkbll = (((s as any).bkbll_lvl ?? 0) + (((s as any).pcs_vital ?? 0) + ((s as any).pcs_agil ?? 0) + ((s as any).pcs_react ?? 0)) / 3) / 2 + (((s as any).arch_effects ?? {})?.['sports_effect'] ?? 0);
-  // TODO-QSP: $bkbll[0] = 'agil'
-  // TODO-QSP: $bkbll[1] = 'pcs_vital'
-  // TODO-QSP: $bkbll[2] = 'react'
+  ((s as any).bkbll = (s as any).bkbll ?? {})[0] = 'agil';
+  ((s as any).bkbll = (s as any).bkbll ?? {})[1] = 'pcs_vital';
+  ((s as any).bkbll = (s as any).bkbll ?? {})[2] = 'react';
   (s as any).pcs_splcstng = (((s as any).splcstng_lvl ?? 0) + (((s as any).pcs_intel ?? 0) + ((s as any).pcs_react ?? 0)) / 2) / 2;
-  // TODO-QSP: $splcstng[0] = 'intel'
-  // TODO-QSP: $splcstng[1] = 'react'
+  ((s as any).splcstng = (s as any).splcstng ?? {})[0] = 'intel';
+  ((s as any).splcstng = (s as any).splcstng ?? {})[1] = 'react';
   (s as any).pcs_observ = (((s as any).observ_lvl ?? 0) + (((s as any).pcs_intel ?? 0) + ((s as any).pcs_react ?? 0) + ((s as any).pcs_prcptn ?? 0)) / 3) / 2;
-  // TODO-QSP: $observ[0] = 'intel'
-  // TODO-QSP: $observ[1] = 'react'
-  // TODO-QSP: $observ[2] = 'prcptn'
+  ((s as any).observ = (s as any).observ ?? {})[0] = 'intel';
+  ((s as any).observ = (s as any).observ ?? {})[1] = 'react';
+  ((s as any).observ = (s as any).observ ?? {})[2] = 'prcptn';
   (s as any).pcs_makupskl = (((s as any).makupskl_lvl ?? 0) + (((s as any).pcs_agil ?? 0) + ((s as any).pcs_intel ?? 0)) / 2) / 2 + (((s as any).arch_effects ?? {})?.['makeup_effect'] ?? 0);
-  // TODO-QSP: $makupskl[0] = 'agil'
-  // TODO-QSP: $makupskl[1] = 'intel'
+  ((s as any).makupskl = (s as any).makupskl ?? {})[0] = 'agil';
+  ((s as any).makupskl = (s as any).makupskl ?? {})[1] = 'intel';
   (s as any).pcs_compskl = (((s as any).compskl_lvl ?? 0) + ((s as any).pcs_intel ?? 0)) / 2 + (((s as any).arch_effects ?? {})?.['computer_effect'] ?? 0);
-  // TODO-QSP: $compskl[0] = 'intel'
+  ((s as any).compskl = (s as any).compskl ?? {})[0] = 'intel';
   (s as any).pcs_comphckng = (((s as any).comphckng_lvl ?? 0) + (((s as any).pcs_intel ?? 0) + ((s as any).pcs_react ?? 0)) / 2) / 2 + (((s as any).arch_effects ?? {})?.['computer_effect'] ?? 0);
-  // TODO-QSP: $comphckng[0] = 'intel'
-  // TODO-QSP: $comphckng[1] = 'react'
+  ((s as any).comphckng = (s as any).comphckng ?? {})[0] = 'intel';
+  ((s as any).comphckng = (s as any).comphckng ?? {})[1] = 'react';
   (s as any).pcs_hndiwrk = (((s as any).hndiwrk_lvl ?? 0) + (2 * ((s as any).pcs_agil ?? 0) + ((s as any).pcs_intel ?? 0)) / 3) / 2;
-  // TODO-QSP: $hndiwrk[0] = 'agil'
-  // TODO-QSP: $hndiwrk[1] = 'intel'
+  ((s as any).hndiwrk = (s as any).hndiwrk ?? {})[0] = 'agil';
+  ((s as any).hndiwrk = (s as any).hndiwrk ?? {})[1] = 'intel';
   (s as any).pcs_servng = (((s as any).servng_lvl ?? 0) + (((s as any).pcs_vital ?? 0) + ((s as any).pcs_intel ?? 0)) / 2) / 2 + (((s as any).arch_effects ?? {})?.['service_effect'] ?? 0);
-  // TODO-QSP: $servng[0] = 'vital'
-  // TODO-QSP: $servng[1] = 'intel'
+  ((s as any).servng = (s as any).servng ?? {})[0] = 'vital';
+  ((s as any).servng = (s as any).servng ?? {})[1] = 'intel';
   (s as any).pcs_cleaning = (((s as any).cleaning_lvl ?? 0) + (((s as any).pcs_vital ?? 0) + ((s as any).pcs_intel ?? 0)) / 2) / 2 + (((s as any).arch_effects ?? {})?.['cleaning_effect'] ?? 0);
-  // TODO-QSP: $cleaning[0] = 'vital'
-  // TODO-QSP: $cleaning[1] = 'intel'
+  ((s as any).cleaning = (s as any).cleaning ?? {})[0] = 'vital';
+  ((s as any).cleaning = (s as any).cleaning ?? {})[1] = 'intel';
   (s as any).pcs_mdlng = ((((s as any).mdlng_lvl ?? 0) * 3 / 2) + (((s as any).pcs_agil ?? 0) + ((s as any).pcs_vital ?? 0)) / 4) / 2 + (((s as any).arch_effects ?? {})?.['modeling_effect'] ?? 0);
-  // TODO-QSP: $mdlng[0] = 'agil'
-  // TODO-QSP: $mdlng[1] = 'vital'
+  ((s as any).mdlng = (s as any).mdlng ?? {})[0] = 'agil';
+  ((s as any).mdlng = (s as any).mdlng ?? {})[1] = 'vital';
   (s as any).pcs_medcn = (((s as any).medcn_lvl ?? 0) + (((s as any).pcs_intel ?? 0) + ((s as any).pcs_react ?? 0) + ((s as any).pcs_prcptn ?? 0)) / 3) / 2;
-  // TODO-QSP: $medcn[0] = 'intel'
-  // TODO-QSP: $medcn[1] = 'react'
-  // TODO-QSP: $medcn[2] = 'prcptn'
+  ((s as any).medcn = (s as any).medcn ?? {})[0] = 'intel';
+  ((s as any).medcn = (s as any).medcn ?? {})[1] = 'react';
+  ((s as any).medcn = (s as any).medcn ?? {})[2] = 'prcptn';
   (s as any).pcs_heels = (((s as any).heels_lvl ?? 0) + (((s as any).pcs_agil ?? 0) + ((s as any).pcs_react ?? 0)) / 2) / 2 + (((s as any).arch_effects ?? {})?.['heels_effect'] ?? 0) + ((((s as any).trait_vars ?? 0)?.['heel_preference'] > 0) ? ((((s as any).trait_vars ?? {})?.['heel_preference'] ?? 0) * 5) : (0));
   if (((s as any).trait_vars ?? 0)?.['heel_preference'] < 0) {
     (s as any).pcs_heels = ((s as any).pcs_heels ?? 0) + ((((s as any).trait_vars ?? {})?.['heel_preference_exp'] ?? 0) / 625);
@@ -183,27 +183,27 @@ function enter(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_heels ?? 0) < 0) {
     (s as any).pcs_heels = 0;
   }
-  // TODO-QSP: $heels[0] = 'agil'
-  // TODO-QSP: $heels[1] = 'react'
+  ((s as any).heels = (s as any).heels ?? {})[0] = 'agil';
+  ((s as any).heels = (s as any).heels ?? {})[1] = 'react';
   (s as any).pcs_pool = ((((s as any).pool_lvl ?? 0) * 3) + ((s as any).pcs_intel ?? 0)) / 4;
-  // TODO-QSP: $pool[0] = 'intel'
+  ((s as any).pool = (s as any).pool ?? {})[0] = 'intel';
   (s as any).pcs_inhib = ((s as any).inhib_lvl ?? 0) + (((s as any).alko ?? 0) * 3) + (((s as any).arch_effects ?? {})?.['inhib_effect'] ?? 0);
   (s as any).pcs_inhib = qspFunc(s, 'math', 'int_clamp', ((s as any).pcs_inhib ?? 0), 0, 100);
-  // TODO-QSP: $inhib[0] = 'chrsm'
+  ((s as any).inhib = (s as any).inhib ?? {})[0] = 'chrsm';
   (s as any).pcs_perform = (((s as any).perform_lvl ?? 0) + (((s as any).pcs_chrsm ?? 0) + ((s as any).pcs_prcptn ?? 0)) / 2) / 2 + (((s as any).arch_effects ?? {})?.['performance_effect'] ?? 0);
-  // TODO-QSP: $perform[0] = 'chrsm'
-  // TODO-QSP: $perform[1] = 'prcptn'
+  ((s as any).perform = (s as any).perform ?? {})[0] = 'chrsm';
+  ((s as any).perform = (s as any).perform ?? {})[1] = 'prcptn';
   (s as any).pcs_cheer = (((s as any).cheer_lvl ?? 0) + (((s as any).pcs_agil ?? 0) + ((s as any).pcs_vital ?? 0) + ((s as any).pcs_react ?? 0)) / 3) / 2 + (((s as any).arch_effects ?? {})?.['cheerleading_effect'] ?? 0);
-  // TODO-QSP: $cheer[0] = 'agil'
-  // TODO-QSP: $cheer[1] = 'vital'
-  // TODO-QSP: $cheer[2] = 'react'
+  ((s as any).cheer = (s as any).cheer ?? {})[0] = 'agil';
+  ((s as any).cheer = (s as any).cheer ?? {})[1] = 'vital';
+  ((s as any).cheer = (s as any).cheer ?? {})[2] = 'react';
   (s as any).pcs_musicprod = (((s as any).musicprod_lvl ?? 0) + (((s as any).pcs_intel ?? 0) + ((s as any).pcs_sprt ?? 0) + ((s as any).pcs_prcptn ?? 0)) / 3) / 2 + (((s as any).arch_effects ?? {})?.['music_effect'] ?? 0);
-  // TODO-QSP: $musicprod[0] = 'intel'
-  // TODO-QSP: $musicprod[1] = 'sprt'
-  // TODO-QSP: $musicprod[2] = 'prcptn'
+  ((s as any).musicprod = (s as any).musicprod ?? {})[0] = 'intel';
+  ((s as any).musicprod = (s as any).musicprod ?? {})[1] = 'sprt';
+  ((s as any).musicprod = (s as any).musicprod ?? {})[2] = 'prcptn';
   (s as any).pcs_songwrit = (((s as any).songwrit_lvl ?? 0) + (((s as any).pcs_intel ?? 0) + ((s as any).pcs_sprt ?? 0)) / 2) / 2 + (((s as any).arch_effects ?? {})?.['songwriting_effect'] ?? 0);
-  // TODO-QSP: $songwrit[0] = 'intel'
-  // TODO-QSP: $songwrit[1] = 'sprt'
+  ((s as any).songwrit = (s as any).songwrit ?? {})[0] = 'intel';
+  ((s as any).songwrit = (s as any).songwrit ?? {})[1] = 'sprt';
   scene.build();
 }
 

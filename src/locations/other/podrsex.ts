@@ -15,14 +15,12 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   ((s as any).stat = (s as any).stat ?? {})['lesbian_count'] = ((s as any).stat['lesbian_count'] ?? 0) + (1);
   (s as any).picrand = (Math.floor(Math.random() * 2) + 0);
   qspGoto(s, 'podrsex', 'var');
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterVar(s: GameState, scene: SceneBuilder): void {
   (s as any).randhorny = (Math.floor(Math.random() * 51) + 50);
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Suck his dick', goto: ['podrsex', 'suck'] },
     { label: 'Let him fuck your pussy', goto: ['podrsex', 'pussy'] },
@@ -62,7 +60,6 @@ function enterSuck(s: GameState, scene: SceneBuilder): void {
   } else {
     qspGoto(s, 'podrsex', 'end');
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -95,7 +92,6 @@ function enterPussy(s: GameState, scene: SceneBuilder): void {
   } else {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -131,7 +127,6 @@ function enterAss(s: GameState, scene: SceneBuilder): void {
   } else {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -169,7 +164,6 @@ function enterVoy(s: GameState, scene: SceneBuilder): void {
   } else {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -228,7 +222,6 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).pos = 0;
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     if (((st as any).picrand ?? 0) === 26  ||  ((st as any).picrand ?? 0) === 27  ||  ((st as any).picrand ?? 0) === 29) {

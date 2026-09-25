@@ -13,7 +13,6 @@ function enterVicArt_Ev1_Cash(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'exp_gain', 'pool', (Math.floor(Math.random() * 3) + 2));
   scene.img('images/locations/city/industrial/bar/sex/pool/pool4.mp4');
   scene.text('"Why not."');
-  // TODO-QSP: dynamic text: You try to ignore the voice in the back of your head that insists <<$func(''mone...
   scene.text(`You try to ignore the voice in the back of your head that insists ${qspFunc(s, 'money', 'string_price', 1000)} are nothing to sneeze at as you pull out the bills and put them on the table.`);
   scene.text('Victor and Artyom smile and put their own cash on top of yours before setting up a new game.');
   qspCall(s, 'qwBarBilliard', 'billiard_engine');
@@ -24,7 +23,6 @@ function enterVicArt_Ev1_Cash(s: GameState, scene: SceneBuilder): void {
     scene.text('Artyom seems miffed by the fact that they lost and even Victor looks somewhat surprised at how well you are playing this time, but he congratulates you on your success and hands you your winnings.');
     scene.text('"How about another round?" You ask teasingly.');
     scene.text('Victor laughs. "No thanks, I think you\'ve proven that luck is on your side tonight. We\'ll play more next time we\'re here."');
-    // TODO-QSP: dynamic text: You grin. "Sure thing." Cheerfully waving the handful of bills around, you bid t...
     scene.text(`You grin. "Sure thing." Cheerfully waving the handful of bills around, you bid them farewell and return to the main room, ${qspFunc(s, 'money', 'string_profit', 2000)} richer for it.`);
     scene.actions([
       { label: 'Return to the bar', goto: ['qwBarPolet', 'bar'] },
@@ -39,7 +37,6 @@ function enterVicArt_Ev1_Cash(s: GameState, scene: SceneBuilder): void {
       { label: 'No thanks', handler: (st: GameState) => {
     scene.text('"No, I think I\'ve lost enough for one day," you decline.');
     scene.text('"Well, you know where to find us," Artyom says with an uncharacteristic smile.');
-    // TODO-QSP: dynamic text: "Take care, <<$pcs_firstname>>," Victor bids you farewell and you return to the ...
     scene.text(`"Take care, ${((st as any).pcs_firstname ?? '')}," Victor bids you farewell and you return to the main room.`);
     scene.actions([
       { label: 'Return to the bar', goto: ['qwBarPolet', 'bar'] },
@@ -55,7 +52,6 @@ function enterVicArt_Ev1_Cash(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -63,7 +59,6 @@ function enterVicArt_Ev1_Broke(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/industrial/bar/sex/pool/poolvicart.jpg');
   if (((s as any).Jaska_Friend_Bill ?? 0) === 1) {
     scene.text('"I\'d like to but I don\'t think I can afford to play for that much," you admit.');
-    // TODO-QSP: dynamic text: "That''s a pity." Victor gives you a long, pensive look. "You know… You are a ve...
     scene.text(`"That's a pity." Victor gives you a long, pensive look. "You know… You are a very pretty girl, ${((s as any).pcs_firstname ?? '')}. Isn't she, Artyom?"`);
     scene.text('"Very," he agrees.');
     scene.text('"You know, I usually wouldn\'t entertain a thought like that but, now that we know you a little better… why don\'t you just bet something other than money? I mean, we\'re all friends here and we\'d be fine with pretty much anything you wanna bet, wouldn\'t we, Artyom?"');
@@ -84,7 +79,6 @@ function enterVicArt_Ev1_Broke(s: GameState, scene: SceneBuilder): void {
     scene.text('So, are you willing to take that bet? Would you be willing to strip naked for two guys you barely know in the backroom of a bar, only one thin curtain away from dozens of patrons?');
   } else {
     scene.text('"I\'d like to but I don\'t think I can afford to play for that much," you admit.');
-    // TODO-QSP: dynamic text: '"Well, our offer still stands," Artyom reminds you. "You could bet doing a stri...
     scene.text('"Well, our offer still stands," Artyom reminds you. "You could bet doing a striptease instead.' + ((((s as any).Jaska_Friend_Bill ?? 0) >= 2) ? ('… maybe even more than that."') : ('')) + '"');
     scene.text('"Right," you say pensively. "That. And I would have to do it…"');
     scene.text('"Here," Victor confirms. "Only if you lose, of course."');
@@ -112,7 +106,6 @@ function enterVicArt_Ev1_Broke(s: GameState, scene: SceneBuilder): void {
       scene.text('Artyom seems miffed by the fact that you\'ve won and even Victor looks somewhat surprised at how well you are playing this time, but he congratulates you on your success and hands you your winnings.');
       scene.text('"How about another round?" You ask teasingly.');
       scene.text('Victor laughs. "No thanks, I think you\'ve proven that luck is on your side tonight. We\'ll play more next time we\'re here."');
-      // TODO-QSP: dynamic text: You grin. "Sure thing." Cheerfully waving the handful of bills around, you bid t...
       scene.text(`You grin. "Sure thing." Cheerfully waving the handful of bills around, you bid them farewell and return to the main room, ${qspFunc(s, 'money', 'string_profit', 2000)} richer for it - not a bad turnout for a bet like yours.`);
       scene.actions([
         { label: 'Return to the bar', goto: ['qwBarPolet', 'bar'] },
@@ -171,20 +164,17 @@ function enterVicArt_Ev1_Broke(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', handler: (st: GameState) => {
     scene.text('"What the hell is going on here?!"');
     scene.text('The voice of Martin breaks your erotic reverie like a bucket of ice water. He\'s standing in the door frame, having quickly closed the curtain behind himself to bar other people from looking inside.');
-    // TODO-QSP: dynamic text: "Just having fun with our little <<$pcs_firstname>>."
     scene.text(`"Just having fun with our little ${((st as any).pcs_firstname ?? '')}."`);
     scene.text('Martin didn\'t seem to recognize you or believe it was really you until now but the look he meets you with is anything but friendly. His voice, low as it is, is cold and threatening. "Get out, all of you."');
     scene.text('Artyom laughs. "Throw us out? Are you insane, old man?"');
     scene.text('Victor silences his friend with a wave of his hand and walks up to the Colombian bartender. "Now now, Martin, you wouldn\'t want to antagonize two of your best patrons, would you?"');
     scene.text('"You have no right to do things like this here," Martin insists.');
-    // TODO-QSP: dynamic text: "And we usually wouldn''t," Victor agrees, "but <<$pcs_firstname>> is such wonde...
     scene.text(`"And we usually wouldn't," Victor agrees, "but ${((st as any).pcs_firstname ?? '')} is such wonderful company that we just couldn't help ourselves."`);
     scene.text('"This ain\'t no brothel where you can just fuck whatever slut you please!" The bartender booms.');
     scene.text('"No, but we will fuck <i>this</i> slut as we please." Victor had kept a somewhat friendly tone up until now but his voice is now no less threatening than Martin\'s.');
     scene.text('"This is not what we agreed on."');
     scene.text('"Agreements change. And you wouldn\'t want to insult our bosses over something as trivial as this, would you?"');
     scene.text('Martin seems to be bristling with rage but he keeps himself in check… barely. "What do you want?"');
-    // TODO-QSP: dynamic text: Victor smiles triumphantly. "Oh, I thought that maybe Artyom and I will occasion...
     scene.text(`Victor smiles triumphantly. "Oh, I thought that maybe Artyom and I will occasionally play a little billiards with ${((st as any).pcs_firstname ?? '')} or other girls in here and allow them to make up for their losses with… services." Artyom chuckles at that.`);
     scene.text('Martin, however, remains silent. All he does is stare at you in anger. You cannot help but wonder if he would even be in this situation if it wasn\'t for you.');
     scene.text('"Of course, as a sign of our goodwill, we will compensate you," Victor continues. "5 percent of what the girls bet in here is yours. At least when they\'re betting money. That\'s fair, isn\'t it?"');
@@ -192,7 +182,6 @@ function enterVicArt_Ev1_Broke(s: GameState, scene: SceneBuilder): void {
     scene.text('But he doesn\'t. He slowly turns towards the exit again. "10 percent. And you keep quiet in here and don\'t make a mess."');
     scene.text('Artyom grin disappears and it looks like he wants to tell Martin where he can stick his demands, but Victor says "Deal" as Martin steps outside.');
     scene.text('"Why did you agree to that?" Artyom asks his friend. "He\'s got nothing on us."');
-    // TODO-QSP: dynamic text: "Because that''s how you keep your partners happy. He didn''t demand anything we...
     scene.text(`"Because that's how you keep your partners happy. He didn't demand anything we weren't going to give him anyway and 10 percent of a blowjob isn't anything, really, is it, ${((st as any).pcs_firstname ?? '')}?"`);
     scene.text('You remain silent, your face and stomach burning with… Could it be shame?');
     scene.text('"Now, where were we?" Victor muses and slaps his cock against your face.');
@@ -212,7 +201,6 @@ function enterVicArt_Ev1_Broke(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'No way', handler: (st: GameState) => {
     scene.text('After a few seconds, you have made your decision: "I… don\'t think I wanna take the risk."');

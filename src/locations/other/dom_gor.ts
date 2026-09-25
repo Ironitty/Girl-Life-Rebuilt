@@ -14,7 +14,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'themes', 'indoors');
   scene.text('<center><b>Your room</b></center>');
   scene.img('images/locations/pavlovsk/resident/vitekhome/kotovkom.jpg');
-  scene.text('Your room in a hostel. The room is small, leaving only the bare minimum. 2 <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027bed/u0027, /u0027start/u0027); return false;">beds</a>, a <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027start/u0027); return false;">mirror</a>, a <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027wardrobe/u0027, /u0027start/u0027); return false;">wardrobe</a>, and a <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027TV/u0027, /u0027start/u0027); return false;">TV</a>.');
+  scene.text('Your room in a hostel. The room is small, leaving only the bare minimum. 2 <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027bed\u0027, \u0027start\u0027); return false;">beds</a>, a <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027start\u0027); return false;">mirror</a>, a <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027wardrobe\u0027, \u0027start\u0027); return false;">wardrobe</a>, and a <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027TV\u0027, \u0027start\u0027); return false;">TV</a>.');
   if (((s as any).teacher ?? 0)?.['level'] > 20  &&  ((s as any).parkrunday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).hour ?? 0) < 21  &&  ((s as any).hour ?? 0) > 6) {
     if (((s as any).clothing ?? 0)?.['sports'] === 0) {
       scene.text('You could go for a jog around the park if you were wearing sports clothing and shoes.');
@@ -37,7 +37,6 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (st as any).beguch = ((st as any).beguch ?? 0) + (1);
     scene.img('images/locations/pavlovsk/hostel/stop.jpg');
     scene.text('You and your pupil fall into an easy rhythm, chatting between breaths as you make your way around the park path.');
-    // TODO-QSP: dynamic text: "Miss <<$pcs_lastname>>, you are so beautiful, and we are all very fond of you!"...
     scene.text(`"Miss ${((st as any).pcs_lastname ?? '')}, you are so beautiful, and we are all very fond of you!" the student says earnestly.`);
     scene.text('You smile at the compliment. "Thank you! That\'s nice to hear."');
     scene.actions([
@@ -69,7 +68,6 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (st as any).pcs_horny = ((st as any).pcs_horny ?? 0) + (3);
     scene.img('images/locations/pavlovsk/hostel/stop3.jpg');
     scene.text('You run together at a comfortable pace, stopping occasionally to catch your breath and chat.');
-    // TODO-QSP: dynamic text: During one of your breaks, your pupil looks at you hesitantly. "<<$pcs_nickname>...
     scene.text(`During one of your breaks, your pupil looks at you hesitantly. "${((st as any).pcs_nickname ?? '')}, would it be okay if I took a picture of you?"`);
     scene.text('"What are you planning to do with my photo?" you ask, raising an eyebrow.');
     scene.text('The pupil blushes furiously. "I would never use it to… you know… masturbate or anything!"');
@@ -100,14 +98,12 @@ function enter(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   if (((s as any).mc_inventory ?? 0)?.['food_basic'] > 0) {
-    // TODO-QSP: dynamic text: In the refrigerator food is stored that''s good for <b><<mc_inventory[''food_bas...
     scene.text(`In the refrigerator food is stored that's good for <b>${(((s as any).mc_inventory ?? 0)?.['food_basic'] ?? '')}</b> servings.`);
   }
   if (((s as any).mc_inventory ?? 0)?.['food_diet'] === 0  &&  ((s as any).mc_inventory ?? 0)?.['food_basic'] === 0) {
-    // TODO-QSP: $func('wrap', 'v_neg b', 'The fridge is empty, nothing to eat in sight.')
+    scene.text(qspFunc(s, 'wrap', 'v_neg b', 'The fridge is empty, nothing to eat in sight.'));
   }
   if (((s as any).mc_inventory ?? 0)?.['food_diet'] > 0) {
-    // TODO-QSP: dynamic text: The refrigerator contains healthy meals that are good for <b><<mc_inventory[''fo...
     scene.text(`The refrigerator contains healthy meals that are good for <b>${(((s as any).mc_inventory ?? 0)?.['food_diet'] ?? '')}</b> servings.`);
   }
   qspCall(s, 'kit_din', 'kitchen_acts');

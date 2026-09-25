@@ -10,6 +10,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[0] ?? '') !== '%') {
     (s as any).food_loc = 1;
     (s as any).food_loc_last = ((s as any).loc ?? 0);
+    (s as any)._drink = undefined;
+    (s as any)._eat = undefined;
     if (String((s as any).locArgs?.[0] ?? '') !== 'no_image') {
     }
   }
@@ -663,48 +665,53 @@ function enter(s: GameState, scene: SceneBuilder): void {
   }
   (s as any)._str = '<center><table border="0" width="800" cellpadding="0" cellspacing="1">';
   (s as any).food_loop = 0;
-  // TODO-QSP: :loop_diner_drinks
-  (s as any).temp_bcolor = qspFunc(s, 'themes', 'alt_color', ((s as any).temp_bcolor ?? 0));
-  // TODO-QSP: $_str += '<tr>'
-  if (((s as any)._eat ?? 0)[(((s as any).food_loop ?? 0)) + ',name'] === '') {
-    // TODO-QSP: $_str += '<td bgcolor='+$temp_bcolor+' height="30" width="40%" align="center"></td>'
-    // TODO-QSP: $_str += '<td bgcolor='+$temp_bcolor+' height="30" width="10%" align="right"></td>'
-  } else {
-    // TODO-QSP: $_str += '<td bgcolor='+$temp_bcolor+' height="30" width="40%" align="center">' + $_eat['<<food_loop...
-    // TODO-QSP: $_str += '<td bgcolor='+$temp_bcolor+' height="30" width="10%" align="center">'
-    if (qspFunc(s, 'money', 'can_afford', qspUntranslated(s, "_eat[\u00000\u0000]", { location: "food_menu" })) === 1) {
-      // TODO-QSP: $_str += '<a href="exec:pcs_ate += 1 & gt ''food'', $_eat[''<<food_loop>>,type''], <<food_loop>>">' ...
+  do {
+    (s as any).temp_bcolor = qspFunc(s, 'themes', 'alt_color', ((s as any).temp_bcolor ?? 0));
+    (s as any)._str = ((s as any)._str ?? 0) + ('<tr>');
+    if (((s as any)._eat ?? 0)[(((s as any).food_loop ?? 0)) + ',name'] === '') {
+      (s as any)._str = ((s as any)._str ?? 0) + ('<td bgcolor=' + ((s as any).temp_bcolor ?? 0) + ' height="30" width="40%" align="center"></td>');
+      (s as any)._str = ((s as any)._str ?? 0) + ('<td bgcolor=' + ((s as any).temp_bcolor ?? 0) + ' height="30" width="10%" align="right"></td>');
     } else {
-      // TODO-QSP: $_str += $func('money', 'string_price', _eat['<<food_loop>>,price'])
+      (s as any)._str = ((s as any)._str ?? 0) + ('<td bgcolor=\'+$temp_bcolor+\' height="30" width="40%" align="center">\' + $_eat[\'' + ((s as any).food_loop ?? 0) + ',name\'] + \'</td>');
+      (s as any)._str = ((s as any)._str ?? 0) + ('<td bgcolor=' + ((s as any).temp_bcolor ?? 0) + ' height="30" width="10%" align="center">');
+      if (qspFunc(s, 'money', 'can_afford', qspUntranslated(s, "_eat[\u00000\u0000]", { location: "food_menu" })) === 1) {
+        (s as any)._str = ((s as any)._str ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { s.pcs_ate +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027food\u0027, \u0027$_eat[/\u0027\u0027 + String((s as any).food_loop ?? \u0027\u0027), \u0027type\u0027]\u0027); return false;">\' + $func(\'money\', \'string_price\', _eat[\'' + ((s as any).food_loop ?? 0) + ',price\']) + \'</a>');
+      } else {
+        (s as any)._str = ((s as any)._str ?? 0) + (qspFunc(s, 'money', 'string_price', (((s as any)._eat ?? 0)?.[String(((s as any).food_loop ?? 0)) + ',price'])));
+      }
+      (s as any)._str = ((s as any)._str ?? 0) + ('</td>');
     }
-    // TODO-QSP: $_str += '</td>'
-  }
-  // TODO-QSP: $_str += '<td bgcolor=<<$func("shortgs", "rgb_to_hex", bcolor)>> border="0" width="50" cellpadding="...
-  if (((s as any)._drink ?? 0)[(((s as any).food_loop ?? 0)) + ',name'] === '') {
-    // TODO-QSP: $_str += '<td bgcolor='+$temp_bcolor+' height="30" width="40%" align="center"></td>'
-    // TODO-QSP: $_str += '<td bgcolor='+$temp_bcolor+' height="30" width="10%" align="right"></td>'
-  } else {
-    // TODO-QSP: $_str += '<td bgcolor='+$temp_bcolor+' height="30" width="40%" align="center">' + $_drink['<<food_lo...
-    // TODO-QSP: $_str += '<td bgcolor='+$temp_bcolor+' height="30" width="10%" align="center">'
-    if (qspFunc(s, 'money', 'can_afford', qspUntranslated(s, "_drink[\u00000\u0000]", { location: "food_menu" })) === 1) {
-      // TODO-QSP: $_str += '<a href="exec:pcs_drank += 1 & gt ''beverage'', $_drink[''<<food_loop>>,type''], <<food_lo...
+    (s as any)._str = ((s as any)._str ?? 0) + ('<td bgcolor=' + qspFunc(s, 'shortgs', 'rgb_to_hex', ((s as any).bcolor ?? 0)) + ' border="0" width="50" cellpadding="0" cellspacing="0"></td>');
+    if (((s as any)._drink ?? 0)[(((s as any).food_loop ?? 0)) + ',name'] === '') {
+      (s as any)._str = ((s as any)._str ?? 0) + ('<td bgcolor=' + ((s as any).temp_bcolor ?? 0) + ' height="30" width="40%" align="center"></td>');
+      (s as any)._str = ((s as any)._str ?? 0) + ('<td bgcolor=' + ((s as any).temp_bcolor ?? 0) + ' height="30" width="10%" align="right"></td>');
     } else {
-      // TODO-QSP: $_str += $func('money', 'string_price', _drink['<<food_loop>>,price'])
+      (s as any)._str = ((s as any)._str ?? 0) + ('<td bgcolor=\'+$temp_bcolor+\' height="30" width="40%" align="center">\' + $_drink[\'' + ((s as any).food_loop ?? 0) + ',name\'] + \'</td>');
+      (s as any)._str = ((s as any)._str ?? 0) + ('<td bgcolor=' + ((s as any).temp_bcolor ?? 0) + ' height="30" width="10%" align="center">');
+      if (qspFunc(s, 'money', 'can_afford', qspUntranslated(s, "_drink[\u00000\u0000]", { location: "food_menu" })) === 1) {
+        (s as any)._str = ((s as any)._str ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { s.pcs_drank +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027beverage\u0027, \u0027$_drink[/\u0027\u0027 + String((s as any).food_loop ?? \u0027\u0027), \u0027type\u0027]\u0027); return false;">\' + $func(\'money\', \'string_price\', _drink[\'' + ((s as any).food_loop ?? 0) + ',price\']) + \'</a>');
+      } else {
+        (s as any)._str = ((s as any)._str ?? 0) + (qspFunc(s, 'money', 'string_price', (((s as any)._drink ?? 0)?.[String(((s as any).food_loop ?? 0)) + ',price'])));
+      }
+      (s as any)._str = ((s as any)._str ?? 0) + ('</td>');
     }
-    // TODO-QSP: $_str += '</td>'
-  }
-  // TODO-QSP: $_str += '</tr>'
-  (s as any).food_loop = ((s as any).food_loop ?? 0) + (1);
-  if (((s as any).food_loop ?? 0) < Object.keys((s as any)._drink ?? {}).length/3) {
-    // TODO-QSP: jump 'loop_diner_drinks'
-  }
-  // TODO-QSP: $_str += '</table></center>'
-  if (String((s as any).locArgs?.[0] ?? '') !== 'no_image') {
-    scene.text('<center>Please place your order</center><br><br>');
-  }
-  // TODO-QSP: +$_str
+    (s as any)._str = ((s as any)._str ?? 0) + ('</tr>');
+    (s as any).food_loop = ((s as any).food_loop ?? 0) + (1);
+    (s as any)._str = ((s as any)._str ?? 0) + ('</table></center>');
+    if (String((s as any).locArgs?.[0] ?? '') !== 'no_image') {
+      scene.text('<center>Please place your order</center><br><br>');
+    }
+    // TODO-QSP: +$_str
+    (s as any)._str = undefined;
+    (s as any).food_loop = undefined;
+    (s as any).temp_bcolor = undefined;
+  } while (((s as any).food_loop ?? 0) < Object.keys((s as any)._drink ?? {}).length/3);
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
+    (st as any)._drink = undefined;
+    (st as any)._eat = undefined;
+    (st as any).food_loc = undefined;
+    (st as any).food_loc_last = undefined;
     (st as any).minut = ((st as any).minut ?? 0) + 5;
     dynamicGoto(st, 'prevLoc', 'prevArg');
   } },

@@ -8,12 +8,10 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: killall
   (s as any).usehtml = 1;
   (s as any).debug = 1;
-  // TODO-QSP: showstat 0
   // TODO-QSP: showobjs 0
   // TODO-QSP: showinput 0
   if (((s as any).qspver ?? 0) > '9.9.9') {
     // TODO-QSP: showacts 0
-    // TODO-QSP: dynamic text: <center><font size="+3" color="red"><b>RUNTIME VERSION MISMATCH</b></font><br>
     scene.text('<center><font size="+3" color="red"><b>RUNTIME VERSION MISMATCH</b></font><br>');
     scene.text('The player you are using is incompatible with <b>Girl Life</b><br>');
     scene.text('Please use one of the recommended players: https://tfgames.site/index.php?module=viewgame&id=597</center>');
@@ -35,17 +33,14 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'saveg', '');
   qspCall(s, 'addbuilddate', '');
   qspGoto(s, 'start', 'start');
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
   (s as any).version = '<b>' + ((s as any).version_major ?? 0) + '.' + ((s as any).version_minor ?? 0) + '.' + ((s as any).version_revision ?? 0) + '.' + ((s as any).version_patch ?? 0) + ((((s as any).git_hash ?? 0) !== "") ? ('<br>' + ((s as any).git_hash ?? 0) + ' (dev build)') : ('')) + '</b><br>built on <b>' + ((s as any).builddate ?? 0) + '</b>';
   (s as any).opPRE = 1;
-  // TODO-QSP: dynamic text: <center>Version <<$version>></center>
   scene.text(`<center>Version ${((s as any).version ?? '')}</center>`);
   scene.text('<center><font color="red"><b>Children under 18 years are strictly forbidden to play</b></font>');
-  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/system/1_openings/splashes/splash' + ran...
   scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/system/1_openings/splashes/splash` + (Math.floor(Math.random() * 30) + 1) + '.jpg" ></center>');
   scene.text('<center>Based on the Russian game ЭТО by DeGross.</center>');
   scene.text('This game is about the simulated life of a woman containing elements of RPG, strategy, porn and magical combat.');
@@ -53,7 +48,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.text('There are many choices to make in this game, from chaste nun to slutty porn star. Will you be a saint or a sinner?');
   scene.text('All characters in this game are fictional and any similarities to any persons living or dead are purely coincidental.');
   scene.text('All explicit images are performed by consenting adults aged 18 or older. Images are for illustrative purposes only.');
-  scene.text('<b><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027start/u0027, /u0027version/u0027); return false;">Change log</a> and <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027history/u0027, /u0027/u0027); return false;">Game history</a></b>');
+  scene.text('<b><a href="#" onclick="window.__gameStore.getState().doGoto(\u0027start\u0027, \u0027version\u0027); return false;">Change log</a> and <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027history\u0027, \u0027\u0027); return false;">Game history</a></b>');
   scene.text('<b>* Wiki hosted by Google sites available <a href="https://sites.google.com/view/girllifewiki/home">here</a> (External link) *</center></b>');
   scene.text('<center>Feel free to contribute.</center>');
   qspCall(s, 'themes', 'indoors');
@@ -76,7 +71,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   (s as any).ImageNeededPlacholder = '<center><img src="images/system/image_needed.png"></center>';
-  // TODO-QSP: end
   scene.actions([
     { label: '<center><b>Start</b></center>', handler: (st: GameState) => {
     if (((st as any).sound_settings ?? 0)?.['music_off'] === 0) {
@@ -110,7 +104,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
 
 function enterVersion(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'version', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return', goto: ['start', 'start'] },
   ]);

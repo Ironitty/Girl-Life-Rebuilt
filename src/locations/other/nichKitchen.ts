@@ -12,9 +12,9 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   (s as any).nichCookPresent = qspFunc(s, 'nichUtil', 'isPresent', 'cook', 'kitchen');
   if (((s as any).nichCookPresent ?? 0) === 1) {
     if (((s as any).nichKnowsCook ?? 0) === 1) {
-      scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichCook/u0027, /u0027desc/u0027); return false;">Jegor</a>, the cook of the family, is preparing some meals.');
+      scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027nichCook\u0027, \u0027desc\u0027); return false;">Jegor</a>, the cook of the family, is preparing some meals.');
     } else {
-      scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichCook/u0027, /u0027desc/u0027); return false;">The cook of the family</a> is preparing some meals.');
+      scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027nichCook\u0027, \u0027desc\u0027); return false;">The cook of the family</a> is preparing some meals.');
     }
   }
   if (((s as any).nichWork ?? 0) === 2) {
@@ -29,7 +29,6 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'kit_din', 'edahota');
   qspCall(s, 'core_library', 'kitchen', 'full');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the living room', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -47,9 +46,9 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   (s as any).nichCookPresent = qspFunc(s, 'nichUtil', 'isPresent', 'cook', 'kitchen');
   if (((s as any).nichCookPresent ?? 0) === 1) {
     if (((s as any).nichKnowsCook ?? 0) === 1) {
-      scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichCook/u0027, /u0027desc/u0027); return false;">Jegor</a>, the cook of the family, is preparing some meals.');
+      scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027nichCook\u0027, \u0027desc\u0027); return false;">Jegor</a>, the cook of the family, is preparing some meals.');
     } else {
-      scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichCook/u0027, /u0027desc/u0027); return false;">The cook of the family</a> is preparing some meals.');
+      scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027nichCook\u0027, \u0027desc\u0027); return false;">The cook of the family</a> is preparing some meals.');
     }
   }
   if (((s as any).nichWork ?? 0) === 2) {
@@ -64,7 +63,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'kit_din', 'edahota');
   qspCall(s, 'core_library', 'kitchen', 'full');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the living room', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -82,9 +80,9 @@ function enterReturn(s: GameState, scene: SceneBuilder): void {
   (s as any).nichCookPresent = qspFunc(s, 'nichUtil', 'isPresent', 'cook', 'kitchen');
   if (((s as any).nichCookPresent ?? 0) === 1) {
     if (((s as any).nichKnowsCook ?? 0) === 1) {
-      scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichCook/u0027, /u0027desc/u0027); return false;">Jegor</a>, the cook of the family, is preparing some meals.');
+      scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027nichCook\u0027, \u0027desc\u0027); return false;">Jegor</a>, the cook of the family, is preparing some meals.');
     } else {
-      scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichCook/u0027, /u0027desc/u0027); return false;">The cook of the family</a> is preparing some meals.');
+      scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027nichCook\u0027, \u0027desc\u0027); return false;">The cook of the family</a> is preparing some meals.');
     }
   }
   if (((s as any).nichWork ?? 0) === 2) {
@@ -99,7 +97,6 @@ function enterReturn(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'kit_din', 'edahota');
   qspCall(s, 'core_library', 'kitchen', 'full');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the living room', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;

@@ -36,7 +36,6 @@ function enterTamara(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Depart', handler: (st: GameState) => {
     dynamicGoto(st, 'prevLoc', 'prevArg');
@@ -52,7 +51,6 @@ function enterFirstMeet(s: GameState, scene: SceneBuilder): void {
   scene.text('The first thing you notice is "Mom\'s" fiery mane. The twins definitely got their red locks from her. Taking in the rest of her, you realize she is a very attractive woman in her 40\'s; busty and tastefully dressed, even at home.');
   scene.text('Their mother eagerly welcomes you inside:');
   if (((s as any).katjaQW ?? 0)?.['QWstage'] >= 2) {
-    // TODO-QSP: dynamic text: "Hello guys, Vanya! Oh, and hello <<$pcs_nickname>>, nice to see you again."
     scene.text(`"Hello guys, Vanya! Oh, and hello ${((s as any).pcs_nickname ?? '')}, nice to see you again."`);
     scene.text('"Come in, come in, don\'t be shy! I did not know you were friends with Vicky as well, what a wonderful surprise! I will be in the kitchen having some tea, if anyone would care to join me."');
   } else {
@@ -62,7 +60,6 @@ function enterFirstMeet(s: GameState, scene: SceneBuilder): void {
   }
   scene.text('Vicky looks at you and nods, "I need to tidy my room a bit before we get to our \'homework\' anyways, it shouldn\'t take long." She leaves you with Tamara and grabs Vanya\'s hand before heading down the hall and disappears into a side room.');
   scene.text('Tamara smiles at you and leads you into the kitchen.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'In the kitchen (1:00)', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 60;
@@ -90,7 +87,6 @@ function enterFirstMeet(s: GameState, scene: SceneBuilder): void {
         scene.text('You shake your head and lower it slightly, "I\'m passing my classes, but only just barely. I still have a ways to go if I hope to go to college."');
         scene.text('"It is good that you are at least passing, but yes, you will have to do better if you want to get into college. Vicky had some issues keeping her grades up as well, but lately she has been catching up.');
         scene.text('She recently decided she wanted to get into a medical career. And even though she has not yet decided on any particular field of study, it was enough to motivate her to work harder at school. Maybe if you think hard on what your own goals are, that could help motivate you as well." Tamara beams you a motherly smile as she talks.');
-        // TODO-QSP: dynamic text: Your own <<$npc_nickname[''A29'']>> could take some parenting lessons from this ...
         scene.text(`Your own ${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')} could take some parenting lessons from this lady. All she ever did was yell and complain about how Anya isn't doing anything worthwhile; holding her up as a poster child of failure, in an attempt to 'scare' you into doing better.`);
         scene.text('"Thanks Ms. Meynold, that\'s very good advice." you reply, while nodding thoughtfully…');
         scene.text('What are your goals? Who are you? Who do you want to be? … You can\'t help but think it over as you finish the last bit of your tea.');
@@ -101,10 +97,8 @@ function enterFirstMeet(s: GameState, scene: SceneBuilder): void {
         scene.text('"I\'m trying my best Ms. Meynold! I\'m not about to let anything stand in the way of my future!" You say with conviction.');
       }
     }
-    // TODO-QSP: dynamic text: Tamara smiles and shakes her head, "You don''t need to be so formal, <<$pcs_nick...
     scene.text(`Tamara smiles and shakes her head, "You don't need to be so formal, ${((st as any).pcs_nickname ?? '')}. We're not at work here, so you can just call me Tamara."`);
     scene.text('As if on cue, Vicky walks back into the kitchen, "Room is all tidied, if you two are done talking."');
-    // TODO-QSP: dynamic text: "Vicky, your girlfriend is wonderful! You should invite <<$pcs_nickname>> over m...
     scene.text(`"Vicky, your girlfriend is wonderful! You should invite ${((st as any).pcs_nickname ?? '')} over more often!"`);
     scene.text('"But Mom, you always talk so much, it scares all my friends off."');
     scene.text('Tamara pretend sighs and says: "So that is what I get for all that time I spent raising you?! Fine, do not worry about your lonely mother; just go play with your friend!"');
@@ -133,10 +127,8 @@ function enterNextMeet(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     if (((s as any).zz_stage ?? 0) < 8) {
-      // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/resident/meynolds/tam...
       scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/meynolds/tamara_tea` + ((s as any).zz_stage ?? '') + '.jpg"></center>');
       if (((s as any).zz_stage ?? 0) === 1) {
-        // TODO-QSP: dynamic text: "Oh hi, <<$pcs_nickname>>! I''m so glad to see you! Come in, come in, make yours...
         scene.text(`"Oh hi, ${((s as any).pcs_nickname ?? '')}! I'm so glad to see you! Come in, come in, make yourself at home! I'll put on a kettle right away!"`);
         scene.text('"My little carrots are somewhere in the house, while I\'m here all alone…"');
         scene.text('You shyly walk past her, passing through a spacious hall from which a staircase leads to the second floor to the kitchen. The kitchen is large, bright and spacious, tastefully furnished. From the kitchen there is access to the veranda. You sit down at the oval dining table and Tamara, wearing an apron, quickly moves over to the fridge, pulling out all sorts of jars with jam, fruit and cheese and placing them on the table.');
@@ -158,7 +150,6 @@ function enterNextMeet(s: GameState, scene: SceneBuilder): void {
               if (((s as any).zz_stage ?? 0) === 5) {
                 scene.text('You can see both Katja\'s and Vicky\'s small quirks in Aunt Tamara. She has preserved the beauty of Katja, sophisticated but not as youthfully naïve as Katja. She is calmer and more sensible than Vicky, even being more sociable and open than the cautious Katja.');
                 scene.text('Tamara gets a bottle of wine from the wine cooler and one glass:');
-                // TODO-QSP: dynamic text: "<<$pcs_nickname>>, you won''t mind if Aunt Tamara has a glass of wine while we ...
                 scene.text(`"${((s as any).pcs_nickname ?? '')}, you won't mind if Aunt Tamara has a glass of wine while we have this wonderful conversation?"`);
                 scene.text('"I have been living a reclusive life instead of just running wild. So that\'s made me very distrusting. At work, I\'m not dear Tamara, but the big bad "boss", or the strict "businesswoman", I know that the "friendly female staff" are bad mouthing me, they probably think I slept my way up to the top."');
               } else {
@@ -195,16 +186,15 @@ function enterNextMeet(s: GameState, scene: SceneBuilder): void {
       (s as any).minut = ((s as any).minut ?? 0) + (Math.max(0, 60 * (22 - ((s as any).hour ?? 0)) - ((s as any).minut ?? 0)) + (Math.floor(Math.random() * 60) + 0));
       qspCall(s, 'stat', '');
       scene.text('"I\'m sorry, Aunt Tamara, I must go home or else I\'ll get some stern scolding…"');
-      // TODO-QSP: dynamic text: "Well, I can''t say I''m not disappointed <<$pcs_nickname>>. Don''t stop anywher...
       scene.text(`"Well, I can't say I'm not disappointed ${((s as any).pcs_nickname ?? '')}. Don't stop anywhere on your way home." said a disappointed Aunt Tamara.`);
       scene.text('"Remember this, if you change your mind and want to hang out, come visit us anytime again! You\'re always welcome here!"');
+      (s as any).zz_stage = undefined;
       scene.actions([
         { label: 'Go home', goto: ['pav_residential', ''] },
         { label: 'Stay the night', goto: ['mey_home', 'start'] },
       ]);
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -215,18 +205,15 @@ function enterLearning0(s: GameState, scene: SceneBuilder): void {
   scene.text('"So you\'ve finally decided to go through with it. Come in." says Tamara.');
   scene.text('The two of you make your way to the kitchen, Tamara puts on the familiar nickel plated kettle, and she begins taking out the jars of jam of the closet.');
   scene.text('While doing her kitchen chores, Tamara is silent and not looking at you. You have a troubling feeling in the stomach, but you do not dare to start a conversation, you\'re still too shy to talk with her.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Join her for tea', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/vicky/event/learning11.jpg');
     scene.text('You drink tea and talk casually with each other. You\'re sitting on needles filled with anticipation waiting for Tamara to speak up.');
     scene.text('Having finished the tea, Tamara casually says:');
-    // TODO-QSP: dynamic text: "Stand up, <<$pcs_nickname>>. I want to take a look at you."
     scene.text(`"Stand up, ${((st as any).pcs_nickname ?? '')}. I want to take a look at you."`);
     scene.text('You stand up. She carefully examines you like a bug under a microscope.');
     scene.text('"Turn around, darling."');
     scene.text('You turn, letting her to check you out from all sides.');
-    // TODO-QSP: dynamic text: "Not bad, <<$pcs_nickname>>. I can work with this." said Tamara nodding. "But ri...
     scene.text(`"Not bad, ${((st as any).pcs_nickname ?? '')}. I can work with this." said Tamara nodding. "But right now you're just raw clay, which can be formed as a sculptural masterpiece or a simple brick. And who knows it may turn out to be just a dried up worthless piece of clay. Everything depends on you."`);
     scene.text('She continues looking at you somewhat skeptical. It feels like she\'s in a store checking the quality of the item. Under her careful scrutiny, you begin to shrink, like a violet.');
     scene.text('"Walk around a little."');
@@ -246,7 +233,6 @@ function enterLearning0(s: GameState, scene: SceneBuilder): void {
       if (((st as any).pcs_dancero ?? 0) < 50) {
         scene.text('"You did okay…" nods Tamara. "But you still need to improve."');
       } else {
-        // TODO-QSP: dynamic text: "Very nice, <<$pcs_nickname>>!" nods Tamara approvingly. "One less thing you nee...
         scene.text(`"Very nice, ${((st as any).pcs_nickname ?? '')}!" nods Tamara approvingly. "One less thing you need to learn."`);
       }
     }
@@ -284,41 +270,42 @@ function enterLearning1(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 30;
   qspCall(s, 'stat', '');
   scene.text('You hop into the car and the two of you drive to the city center. Tamara leads you to the shopping mall.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go shopping', handler: (st: GameState) => {
     scene.text('Under the watchful eye of your mentor, she says you can buy two outfits, one from Pussy-Cats and the other one from the expensive boutique.');
     (st as any).newdress_count = 0;
     (st as any).newdress_loop = 0;
     scene.text('<center><table><tr><td>');
-    // TODO-QSP: :markbuyclotamaraaverage
-    (st as any).newdress_id = (Math.floor(Math.random() * 110) + 1);
-    if (qspFunc(s, 'clothing', 'is_owned', 'cats_dress', ((st as any).newdress_id ?? 0)) === 0) {
-      qspCall(st, 'clothing', 'add_item', 'cats_dress', ((st as any).newdress_id ?? 0));
-      // TODO-QSP: *P '<center><img height = 400 src="images/pc/items/cats/dress/<<newdress_id>>.jpg"></center>'
-    } else {
-      (st as any).newdress_loop = ((st as any).newdress_loop ?? 0) + (1);
-      if (((st as any).newdress_loop ?? 0) > 1000) {
+    while (true) {
+      (st as any).newdress_id = (Math.floor(Math.random() * 110) + 1);
+      if (qspFunc(s, 'clothing', 'is_owned', 'cats_dress', ((st as any).newdress_id ?? 0)) === 0) {
+        qspCall(st, 'clothing', 'add_item', 'cats_dress', ((st as any).newdress_id ?? 0));
+        scene.img(`images/pc/items/cats/dress/${((st as any).newdress_id ?? '')}.jpg`);
       } else {
-        // TODO-QSP: jump 'markbuyclotamaraaverage'
+        (st as any).newdress_loop = ((st as any).newdress_loop ?? 0) + (1);
+        if (((st as any).newdress_loop ?? 0) > 1000) {
+          alert('ERROR: average cloth loop > 1000');
+        } else {
+          break;
+        }
       }
-    }
-    scene.text('</td><td>');
-    // TODO-QSP: :markbuyclotamaraformal
-    (st as any).newdress_id = (Math.floor(Math.random() * 80) + 1);
-    if (qspFunc(s, 'clothing', 'is_owned', 'moncheri_dress', ((st as any).newdress_id ?? 0)) === 0) {
-      qspCall(st, 'clothing', 'add_item', 'moncheri_dress', ((st as any).newdress_id ?? 0));
-      // TODO-QSP: *P '<center><img height = 400 src="images/pc/items/moncheri/dress/<<newdress_id>>.jpg"></center>'
-    } else {
-      (st as any).newdress_loop = ((st as any).newdress_loop ?? 0) + (1);
-      if (((st as any).newdress_loop ?? 0) > 1000) {
-      } else {
-        // TODO-QSP: jump 'markbuyclotamaraformal'
-      }
-    }
-    // TODO-QSP: *P '</td></tr></table></center>'
-    scene.actions([
-      { label: 'Buy the clothes', handler: (st: GameState) => {
+      scene.text('</td><td>');
+      while (true) {
+        (st as any).newdress_id = (Math.floor(Math.random() * 80) + 1);
+        if (qspFunc(s, 'clothing', 'is_owned', 'moncheri_dress', ((st as any).newdress_id ?? 0)) === 0) {
+          qspCall(st, 'clothing', 'add_item', 'moncheri_dress', ((st as any).newdress_id ?? 0));
+          scene.img(`images/pc/items/moncheri/dress/${((st as any).newdress_id ?? '')}.jpg`);
+        } else {
+          (st as any).newdress_loop = ((st as any).newdress_loop ?? 0) + (1);
+          if (((st as any).newdress_loop ?? 0) > 1000) {
+            alert('ERROR: formal cloth loop > 1000');
+          } else {
+            break;
+          }
+        }
+        scene.text('</td></tr></table></center>');
+        scene.actions([
+          { label: 'Buy the clothes', handler: (st: GameState) => {
     scene.text('"This will do, it\'s the first time after all." she says, approaching the counter, pulling out her purse.');
     scene.text('"But it\'s so expensive! I can\'t…" you are taken aback by such generosity.');
     scene.text('"My dear! Don\'t see it as a gift but as an investment in a long-term project."<br>');
@@ -340,89 +327,93 @@ function enterLearning1(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Go further', handler: (st: GameState) => {
-    // TODO-QSP: dynamic text: "<<$pcs_nickname>>, what do you wear to school?" she asks you as you''re walking...
     scene.text(`"${((st as any).pcs_nickname ?? '')}, what do you wear to school?" she asks you as you're walking out from the beauty salon.`);
     scene.text('"Well, we have to wear a compulsory school uniform."<br>');
     (st as any).newdress_loop = 0;
-    // TODO-QSP: :looptamaraschool
-    (st as any).newdress_id = (Math.floor(Math.random() * 60) + 1);
-    (st as any).newdress_loop = ((st as any).newdress_loop ?? 0) + (1);
-    if (((st as any).newdress_loop ?? 0) > 1000) {
-    } else {
-      if (((st as any).newdress_id ?? 0) === 6) {
-        // TODO-QSP: jump 'looptamaraschool'
-      }
-      if (qspFunc(s, 'clothing', 'is_owned', 'gm_school', ((st as any).newdress_id ?? 0)) === 0) {
-        qspCall(st, 'clothing_attributes', 'gm_school', ((st as any).newdress_id ?? 0));
-        if (((st as any).CloInhibit ?? 0) < 30) {
+    do {
+      (st as any).newdress_id = (Math.floor(Math.random() * 60) + 1);
+      (st as any).newdress_loop = ((st as any).newdress_loop ?? 0) + (1);
+      if (((st as any).newdress_loop ?? 0) > 1000) {
+        alert('ERROR: formal cloth loop > 1000');
+      } else {
+        if (((st as any).newdress_id ?? 0) === 6) {
           // TODO-QSP: jump 'looptamaraschool'
         }
-        qspCall(st, 'clothing', 'add_item', 'gm_school', ((st as any).newdress_id ?? 0));
-        // TODO-QSP: *P '<center><img height = 400 src="images/pc/items/gm/school/<<newdress_id>>.jpg"></center>'
-      }
-    }
-    if (((st as any).newdress_id ?? 0) === 0  &&  ((st as any).newdress_loop ?? 0) <= 60) {
-      // TODO-QSP: jump 'looptamaraschool'
-    }
-    if (((st as any).newdress_id ?? 0) > 0) {
-      scene.text('"I picked a real sexy outfit, it\'s so sexy that the boys will spontaneously be cumming in their pants." you said smiling.');
-      // TODO-QSP: dynamic text: '"Good! Now remember it''s only to be used in school. Now lets start training yo...
-      scene.text(`"Good! Now remember it's only to be used in school. Now lets start training you how to walk elegantly. You can start by getting out of my car and take a walk around the city for a couple hours" Tamara hands you ${qspFunc(s, 'money', 'string_profit', 2000)}. "It's important that you take care of your health so take the money and head over to the clinic and get a health exam, within the next couple weeks. I'll be waiting for you by the Babel restaurant at 21:00, don't be late."`);
-      ((st as any).mey_vika = (st as any).mey_vika ?? {})['mey_vika_qw'] = 36;
-      qspCall(st, 'money', 'earn', 2000);
-      qspCall(st, 'stat', '');
-      scene.actions([
-        { label: 'Stay in the city', goto: ['city_center', ''] },
-      ]);
-    } else {
-      (st as any).minut = ((st as any).minut ?? 0) + 20;
-      qspCall(st, 'stat', '');
-      // TODO-QSP: dynamic text: Tamara reaches into her purse and hands you <<$func(''money'', ''string_profit''...
-      scene.text(`Tamara reaches into her purse and hands you ${qspFunc(s, 'money', 'string_profit', 2000)}.`);
-      scene.text('"You need to buy yourself a decent looking school uniform. And it\'s only intended to be worn in school. I don\'t want to see you wearying it somewhere else."');
-      scene.text('"Where should I buy it?" you ask her.');
-      scene.text('Tamara nods towards a sign. Looking up you see the luminous sign showing "Sex Shop".');
-      scene.text('"I\'ll wait for you in the car."');
-      scene.text('You quickly hide the money in your pocket and overcoming the shame, you walk into the sex shop. 20 minutes later you return with a brand new school uniform.<br>');
-      (st as any).newdress_loop = 0;
-      // TODO-QSP: :markbuyclotamaraschool
-      (st as any).newdress_id = (Math.floor(Math.random() * 36) + 1);
-      if (qspFunc(s, 'clothing', 'is_owned', 'gm_school', ((st as any).newdress_id ?? 0)) === 0) {
-        qspCall(st, 'clothing', 'add_item', 'gm_school', ((st as any).newdress_id ?? 0));
-        scene.img(`images/pc/items/gm/school/${((st as any).newdress_id ?? '')}.jpg`);
-      } else {
-        (st as any).newdress_loop = ((st as any).newdress_loop ?? 0) + (1);
-        if (((st as any).newdress_loop ?? 0) > 1000) {
-        } else {
-          // TODO-QSP: jump 'markbuyclotamaraschool'
+        if (qspFunc(s, 'clothing', 'is_owned', 'gm_school', ((st as any).newdress_id ?? 0)) === 0) {
+          qspCall(st, 'clothing_attributes', 'gm_school', ((st as any).newdress_id ?? 0));
+          if (((st as any).CloInhibit ?? 0) < 30) {
+            // TODO-QSP: jump 'looptamaraschool'
+          }
+          qspCall(st, 'clothing', 'add_item', 'gm_school', ((st as any).newdress_id ?? 0));
+          scene.img(`images/pc/items/gm/school/${((st as any).newdress_id ?? '')}.jpg`);
         }
       }
-      scene.actions([
-        { label: 'Return to the Meynolds residence', handler: (st: GameState) => {
-    // TODO-QSP: mey_vika['mey_vika_qw'] = 40
+      if (((st as any).newdress_id ?? 0) > 0) {
+        scene.text('"I picked a real sexy outfit, it\'s so sexy that the boys will spontaneously be cumming in their pants." you said smiling.');
+        scene.text(`'"Good! Now remember it's only to be used in school. Now lets start training you how to walk elegantly. You can start by getting out of my car and take a walk around the city for a couple hours" Tamara hands you ${qspFunc(s, 'money', 'string_profit', 2000)}. "It's important that you take care of your health so take the money and head over to the clinic and get a health exam, within the next couple weeks. I'll be waiting for you by the Babel restaurant at 21:00, don't be late."'`);
+        (st as any).newdress_id = undefined;
+        (st as any).newdress_count = undefined;
+        (st as any).newdress_loop = undefined;
+        ((st as any).mey_vika = (st as any).mey_vika ?? {})['mey_vika_qw'] = 36;
+        qspCall(st, 'money', 'earn', 2000);
+        qspCall(st, 'stat', '');
+        scene.actions([
+          { label: 'Stay in the city', goto: ['city_center', ''] },
+        ]);
+      } else {
+        (st as any).minut = ((st as any).minut ?? 0) + 20;
+        qspCall(st, 'stat', '');
+        scene.text(`Tamara reaches into her purse and hands you ${qspFunc(s, 'money', 'string_profit', 2000)}.`);
+        scene.text('"You need to buy yourself a decent looking school uniform. And it\'s only intended to be worn in school. I don\'t want to see you wearying it somewhere else."');
+        scene.text('"Where should I buy it?" you ask her.');
+        scene.text('Tamara nods towards a sign. Looking up you see the luminous sign showing "Sex Shop".');
+        scene.text('"I\'ll wait for you in the car."');
+        scene.text('You quickly hide the money in your pocket and overcoming the shame, you walk into the sex shop. 20 minutes later you return with a brand new school uniform.<br>');
+        (st as any).newdress_loop = 0;
+        while (true) {
+          (st as any).newdress_id = (Math.floor(Math.random() * 36) + 1);
+          if (qspFunc(s, 'clothing', 'is_owned', 'gm_school', ((st as any).newdress_id ?? 0)) === 0) {
+            qspCall(st, 'clothing', 'add_item', 'gm_school', ((st as any).newdress_id ?? 0));
+            scene.img(`images/pc/items/gm/school/${((st as any).newdress_id ?? '')}.jpg`);
+          } else {
+            (st as any).newdress_loop = ((st as any).newdress_loop ?? 0) + (1);
+            if (((st as any).newdress_loop ?? 0) > 1000) {
+              alert('ERROR: school cloth loop > 1000');
+            } else {
+              break;
+            }
+          }
+          (st as any).newdress_id = undefined;
+          (st as any).newdress_loop = undefined;
+          scene.actions([
+            { label: 'Return to the Meynolds residence', handler: (st: GameState) => {
+    ((st as any).mey_vika = (st as any).mey_vika ?? {})['mey_vika_qw'] = 40;
     (st as any).minut = ((st as any).minut ?? 0) + 30;
   }, goto: ['mey_home', 'start'] },
-        { label: 'Stay in the city', handler: (st: GameState) => {
-    // TODO-QSP: dynamic text: '"No, dear. I need you to stay near here if you want I can drive you home to me ...
-    scene.text('"No, dear. I need you to stay near here if you want I can drive you home to me or if you want to walk around the city. Either way you will need to kill a couple of hours. I\'m feeling hungry so I\'ll go and get something to eat." She says. "Whatever you decide, I expect you to be by the restaurant by 21:00, I\'ll be waiting for you there."<br>');
+            { label: 'Stay in the city', handler: (st: GameState) => {
+    scene.text('\'"No, dear. I need you to stay near here if you want I can drive you home to me or if you want to walk around the city. Either way you will need to kill a couple of hours. I\'m feeling hungry so I\'ll go and get something to eat." She says. "Whatever you decide, I expect you to be by the restaurant by 21:00, I\'ll be waiting for you there."<br>\'');
     scene.actions([
       { label: 'I insist staying here in the city', handler: (st: GameState) => {
-    // TODO-QSP: mey_vika['mey_vika_qw'] = 36
+    ((st as any).mey_vika = (st as any).mey_vika ?? {})['mey_vika_qw'] = 36;
   }, goto: ['city_center', ''] },
       { label: 'Return to the Meynolds residence', handler: (st: GameState) => {
-    // TODO-QSP: mey_vika['mey_vika_qw'] = 40
+    ((st as any).mey_vika = (st as any).mey_vika ?? {})['mey_vika_qw'] = 40;
     (st as any).minut = ((st as any).minut ?? 0) + 30;
   }, goto: ['mey_home', 'start'] },
     ]);
   } },
-      ]);
+          ]);
+        }
+      }
+    } while (((st as any).newdress_id ?? 0) === 0  &&  ((st as any).newdress_loop ?? 0) <= 60);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+        ]);
+      }
     }
-  } },
-    ]);
-  } },
-    ]);
-  } },
-    ]);
   } },
   ]);
   scene.build();
@@ -431,10 +422,9 @@ function enterLearning1(s: GameState, scene: SceneBuilder): void {
 function enterWaitQw(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/citycenter/expensiverest/restoran.jpg');
   scene.text('Near the entrance, glancing at the clock, Tamara waits for you.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return to the Meynolds residence', handler: (st: GameState) => {
-    // TODO-QSP: mey_vika['mey_vika_qw'] = 40
+    ((st as any).mey_vika = (st as any).mey_vika ?? {})['mey_vika_qw'] = 40;
     (st as any).minut = ((st as any).minut ?? 0) + 30;
   }, goto: ['mey_home', 'start'] },
   ]);
@@ -444,7 +434,6 @@ function enterWaitQw(s: GameState, scene: SceneBuilder): void {
 function enterRebuke(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/resident/meynolds/tamara_tea0.jpg');
   scene.text('You stand outside the Meynold residence. You can hear footsteps behind the door, but when you ring the bell, no one opens.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Ring the doorbell', handler: (st: GameState) => {
     scene.text('You ring the bell again… Once again you hear the sound of heels, but the door stays shut. You\'re starting to get anxious.');
@@ -522,7 +511,6 @@ function enterRebuke(s: GameState, scene: SceneBuilder): void {
 function enterParty0(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/girl/vicky/event/party0.jpg');
   scene.text('"My dear, my company is having an office party tonight, would you like to accompany me? I would like to introduce you to some people. If you do decide to tag along, you need to make yourself presentable. As soon as we enter I want the whole room to look at you in awe."');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Refuse', handler: (st: GameState) => {
     ((st as any).mey_vika = (st as any).mey_vika ?? {})['mey_vika_qw'] = 50;
@@ -536,8 +524,7 @@ function enterParty0(s: GameState, scene: SceneBuilder): void {
     ((st as any).mey_vika = (st as any).mey_vika ?? {})['mey_vika_qw'] = 41;
     scene.text('"I would love to accompany you to the party, Aunt Tamara! I\'ll go and get ready right away."');
     scene.text('Tamara looks mischievously at you, but strictly instructs you to…');
-    // TODO-QSP: dynamic text: '"Wear your formal dress and put on normal makeup," she smiles. "Don''t overdo t...
-    scene.text('"Wear your formal dress and put on normal makeup," she smiles. "Don\'t overdo the makeup. You should look normal. Not too little, but don\'t put on a ton of makeup either. You\'re not a soldier, putting on war paint before battle! Be ready by 18:00. I can\'t be bothered waiting for you. I\'ll leave without you if you\'re not on time and there might be some consequences…"');
+    scene.text('\'"Wear your formal dress and put on normal makeup," she smiles. "Don\'t overdo the makeup. You should look normal. Not too little, but don\'t put on a ton of makeup either. You\'re not a soldier, putting on war paint before battle! Be ready by 18:00. I can\'t be bothered waiting for you. I\'ll leave without you if you\'re not on time and there might be some consequences…"\'');
     scene.actions([
       { label: 'Move away', goto: ['mey_home', 'start'] },
     ]);
@@ -571,7 +558,6 @@ function enterCheckLook(s: GameState, scene: SceneBuilder): void {
       { label: 'Depart', goto: ['mey_home', 'start'] },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -579,10 +565,8 @@ function enterParty1(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 30;
   scene.img('images/locations/city/citycenter/expensiverest/restoran.jpg');
   scene.text('Tamara stops the car in front of the restaurant.');
-  // TODO-QSP: dynamic text: "Listen closely now, <<$pcs_nickname>>. It''s a very formal party with some big ...
   scene.text(`"Listen closely now, ${((s as any).pcs_nickname ?? '')}. It's a very formal party with some big shots from the city so try not to embarrass me. You should act like Cinderella at the ball, be charming and entrance them with your beauty. Don't get drunk and begin dancing naked on the table or accompany different men to the toilet, you're not a prostitute. I really hope you follow my advice. Unlike the time I let Vicky tag along…`);
   scene.text('You wisely decide not to ask Aunt Tamara what happened that time she brought Vicky with her, you\'ll ask her at the party instead.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go inside the restaurant', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/vicky/event/party6.jpg');
@@ -640,7 +624,6 @@ function enterParty2(s: GameState, scene: SceneBuilder): void {
 ]);
     return;
   }
-  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/pavlovsk/school/girl/vicky/ev...
   scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/characters/pavlovsk/school/girl/vicky/event/party` + (Math.floor(Math.random() * 3) + 8) + '.jpg"></center>');
   scene.text('"You must try the food, it\'s what the oligarchs usually eat…" someone points you in the direction of a luxurious table filled with appetizers.');
   if (((s as any).hour ?? 0) === 23  ||  ((s as any).hour ?? 0) < 2) {
@@ -651,7 +634,6 @@ function enterParty2(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Try the food', handler: (st: GameState) => {
     if (((st as any).alko ?? 0) > 0) {
@@ -720,9 +702,9 @@ function enterParty3(s: GameState, scene: SceneBuilder): void {
   ((s as any).mey_tamara = (s as any).mey_tamara ?? {})['qw_end'] = 1;
   (s as any).minut = ((s as any).minut ?? 0) + (Math.max(180, (23-((s as any).hour ?? 0))*60 + 55-((s as any).minut ?? 0)));
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Fall asleep', handler: (st: GameState) => {
+    alert('End of current story');
     qspGoto(st, 'mey_home', 'guest_bedroom');
   } },
   ]);
@@ -734,7 +716,6 @@ function enterParty4(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).zz_stage ?? 0))) {
     (s as any).zz_stage = 16;
   }
-  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/pavlovsk/school/girl/vicky/ev...
   scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/characters/pavlovsk/school/girl/vicky/event/party` + ((((s as any).zz_stage ?? 0) === 18) ? (17) : (((s as any).zz_stage ?? ''))) + '.jpg"></center>');
   if (((s as any).zz_stage ?? 0) === 16) {
     (s as any).zz_stage = ((s as any).zz_stage ?? 0) + (1);
@@ -762,7 +743,6 @@ function enterParty4(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -771,7 +751,6 @@ function enterParty4a(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/girl/vicky/event/party18.jpg');
   scene.text('The two of you get out of the Banquet hall. As you walk he feels your butt and you start getting more excited. You stop at a door, with a bronze sign showing "Employees only". He tells you that this is the first stop and opens the door. Further inside he opens another door leading you in.');
   scene.text('As soon as the door closes the two of you start kissing passionately. Riled up, you push the man on the table and seat yourself next to him, grab his tie and pull him towards you.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
@@ -820,6 +799,7 @@ function enterParty4a(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'cum_call', 'mouth_swallow', 'businessman at party', 0);
     (st as any).minut = ((st as any).minut ?? 0) + 20;
     qspCall(st, 'stat', '');
+    (st as any).zz_stage = undefined;
     scene.actions([
       { label: 'Sleep it off', handler: (st: GameState) => {
     ((st as any).mey_vika = (st as any).mey_vika ?? {})['mey_vika_qw'] = 50;
@@ -836,6 +816,7 @@ function enterParty4a(s: GameState, scene: SceneBuilder): void {
     scene.text('"Go to your room! We\'ll talk about this tomorrow."');
     scene.actions([
       { label: 'Go to your room', handler: (st: GameState) => {
+    alert('End of current story');
     qspGoto(st, 'mey_home', 'guest_bedroom');
   } },
     ]);
@@ -864,7 +845,6 @@ function enterParty5(s: GameState, scene: SceneBuilder): void {
   scene.text('You turn facing the direction the voice is coming from. You spot a short, bald man dressed in an expensive suit. The outfit fits him badly, mostly because of his enormous belly. You judge his looks to be those of the classic sugar-daddy.');
   scene.text('"How can it be possible that such a delicate flower is by herself, don\'t you know it\'s not good for you to be alone?" he smiles. "A delicate flower like yourself must be carefully nurtured and groomed properly, preferably by an experienced gardener. Let me buy you some champagne. I promise it\'ll taste just as heavenly as you."');
   scene.text('He extends his hand and you notice his thick hairy fingers are decorated with multiple rings. The sugar-daddy grabs another glass from a tray and brings it to you. He speaks up again…');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Mingle', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/vicky/event/party26.jpg');
@@ -893,7 +873,6 @@ function enterParty5(s: GameState, scene: SceneBuilder): void {
 function enterParty6(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/girl/vicky/event/party28.jpg');
   scene.text('You notice a middle-aged, short, but awe-inspiring man with a square face. He\'s rough and ugly, but there\'s something attractive about him, some sort of charisma, just like Charles Bronson. He looks in your direction very often as he assesses you. He\'s standing with an older, once very beautiful woman. She manages to keep up her good looks by paying a lot of money to maintain her appearance, but you can\'t win the battle against time…');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Observe the man', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/vicky/event/party29.jpg');
@@ -905,19 +884,15 @@ function enterParty6(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 15;
     scene.text('Grabbing you by the elbow, she leads you to the very couple that had awoken your interest, "Bronson" and his lady friend.');
     scene.text('She greets the man like an old friend, kissing him on the cheek, but indifferently greets the woman by his side. "Something complicated happened between these two…" you think to yourself.');
-    // TODO-QSP: dynamic text: "Let me introduce my pupil, <<$pcs_nickname>>."
     scene.text(`"Let me introduce my pupil, ${((st as any).pcs_nickname ?? '')}."`);
     scene.text('"Bronson" smiles, making you back off a bit seeing his face up close. It looks quite rough like someone has slashed his face with a razor. His missing teeth makes his smile seem off and crooked. But despite the roughly slashed face and crooked smile, he seems very sincere.');
-    // TODO-QSP: dynamic text: "It''s so nice meeting someone young here! The only other people here are old go...
     scene.text(`"It's so nice meeting someone young here! The only other people here are old goblins and hags… But not you. With your youth and beauty, you're like a ray of sunshine! You have to forgive an old man for the bad compliments, ${((st as any).pcs_firstname ?? '')}."`);
     scene.text('"My dear Tamara! You always had a great eye for talent!"');
     scene.text('"I still remember your scent, it\'s the same one when you helped me many years ago… When I had to get away from my husband…" Sighs Tamara with concealed sadness, briefly glancing at him. "There\'s definitely something going on here." You think to yourself.');
     scene.text('"Well, let\'s not dwell on the past. Let bygones be bygones! "Bronson" smiles, answering without any malice or mockery. His friend, feeling clearly undesirable in this conversation, places her half empty glass of champagne on the table, grabbing a new one from a passing waiter, silently walked away towards the musicians. She moves away without having said one word.');
     scene.text('You keep up the small talk. "Bronson" gradually looks at you like he\'s trying to read you. With some help from Tamara you don\'t get embarrassed by this prying eyes. The way the two of them behave it\'s quite obvious that they’re old friends. Though, you believe that they\'re more than friends.');
-    // TODO-QSP: dynamic text: "<<$pcs_firstname>>, will you make an old man happy and dine with him?" He asks ...
     scene.text(`"${((st as any).pcs_firstname ?? '')}, will you make an old man happy and dine with him?" He asks you confidently. The way he conducts himself in a conversation, despite the sloppy appearance, makes him somehow, likable and not frightening.`);
     scene.text('"I would be honoured."');
-    // TODO-QSP: dynamic text: "Well, then it''s settled, <<$pcs_firstname>>!" "Bronson" smiles and moves away ...
     scene.text(`"Well, then it's settled, ${((st as any).pcs_firstname ?? '')}!" "Bronson" smiles and moves away from you and Aunt Tamara. You suddenly realize that he didn't ask you for your number. Now that you think about it, he never properly introduced himself, even though you talked for a good hour!`);
     scene.actions([
       { label: 'Mingle', goto: ['mey_tamara_events', 'party2'] },
@@ -932,7 +907,6 @@ function enterParty6(s: GameState, scene: SceneBuilder): void {
 function enterReputation(s: GameState, scene: SceneBuilder): void {
   (s as any).zz_stage = (((s as any).args ?? 0)?.[1] ?? 0);
   if (((s as any).zz_stage ?? 0)!==3) {
-    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/pavlovsk/school/girl/vicky/ev...
     scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/characters/pavlovsk/school/girl/vicky/event/reputation` + ((s as any).zz_stage ?? '') + '.jpg"></center>');
   }
   if ((!((s as any).zz_stage ?? 0))) {
@@ -975,7 +949,6 @@ function enterReputation(s: GameState, scene: SceneBuilder): void {
           } else {
             if (((s as any).zz_stage ?? 0) === 5) {
               scene.text('Suddenly the caresses stop abruptly. You turn your head wondering why it stopped. Sitting on the bed next to you, you notice a completely nude Tamara, awkwardly cross legged, looking away from you…');
-              // TODO-QSP: dynamic text: "I''m sorry, <<$pcs_nickname>>, I think I got a little carried away again… you''...
               scene.text(`"I'm sorry, ${((s as any).pcs_nickname ?? '')}, I think I got a little carried away again… you've never seen me naked…"`);
             } else {
               if (((s as any).zz_stage ?? 0) === 6) {
@@ -997,7 +970,6 @@ function enterReputation(s: GameState, scene: SceneBuilder): void {
                       } else {
                         if (((s as any).zz_stage ?? 0) === 11) {
                           scene.text('Catching your breath, you thank your mentor. But there is no time for that. You slide a finger inside her feeling her pulsating pussy. Tamara pants harder and harder, you edge her several times. While sucking and nibbling on her pussy when you feel she can\'t handle it anymore. She bends her knees, screams, and cums hard. You lick her clean after she orgasms. It looks like you\'re a quick learner! She lays back after a few seconds, panting, with sweat coating her body. Tamara, satisfied, finally turns to face you saying…');
-                          // TODO-QSP: dynamic text: "Thanks <<$pcs_nickname>>! You have a real talent! Promise me you won''t waste i...
                           scene.text(`"Thanks ${((s as any).pcs_nickname ?? '')}! You have a real talent! Promise me you won't waste it on those primates hanging out in the Park… They don't deserve you…"`);
                         }
                       }
@@ -1017,6 +989,7 @@ function enterReputation(s: GameState, scene: SceneBuilder): void {
 ]);
     return;
   } else {
+    (s as any).zz_stage = undefined;
     scene.actions([
       { label: 'Go inside', handler: (st: GameState) => {
     ((st as any).mey_tamara = (st as any).mey_tamara ?? {})['reputation_qw'] = 1;
@@ -1027,7 +1000,6 @@ function enterReputation(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 

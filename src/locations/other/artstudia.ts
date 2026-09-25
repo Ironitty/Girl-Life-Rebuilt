@@ -21,7 +21,6 @@ function enterBodimod1(s: GameState, scene: SceneBuilder): void {
   }, goto: ['artstudia', 'bodimod2'] },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['ugol', ''] },
   ]);
@@ -48,7 +47,6 @@ function enterBodimod2(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['artstudia', 'bodimod1'] },
   ]);
@@ -62,7 +60,6 @@ function enterBodimod3(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pushkin/artstudio/downud.jpg');
   scene.text('After agreeing to join one of the projects, you strip naked and have most of your body painted along with several other students. Once all of you are painted, you are sent to one of the busier streets in the Old Town to model the art.');
   scene.text('After several hours and more than a bit of harassment from some of the men, the project is over, and you all head back to the studio.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['artstudia', 'bodimod2'] },
   ]);
@@ -76,7 +73,6 @@ function enterBodimod4(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pushkin/artstudio/downud.jpg');
   scene.text('After agreeing to join one of the projects, you strip naked and have most of your body painted along with several other students. Once all of you are painted, you are sent to one of the busier streets in the city center to model the art.');
   scene.text('After several hours and more than a bit of harassment from some of the men, the project is over, and you all head back to the studio.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['artstudia', 'bodimod2'] },
   ]);

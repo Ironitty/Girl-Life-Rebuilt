@@ -17,9 +17,8 @@ function enterCommunityAlleys(s: GameState, scene: SceneBuilder): void {
     scene.text('You don\'t know anybody here, and the locals haven\'t formed any opinion about you yet.');
   }
   if (((s as any).exhib ?? 0)?.['status'] === 10) {
-    scene.text('You can start at the <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027ETO_village/u0027, /u0027saw_noise/u0027); return false;">clanging saws</a>.');
+    scene.text('You can start at the <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027ETO_village\u0027, \u0027saw_noise\u0027); return false;">clanging saws</a>.');
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the forest', goto: ['ETO_village', 'forest_area'] },
     { label: 'Go down to the lake', goto: ['ETO_village', 'lake_area'] },
@@ -50,7 +49,6 @@ function enterForestArea(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['dachi', ''] },
   ]);
@@ -61,7 +59,6 @@ function enterMushroomPicker(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
   scene.text('You wave at the mushroom picker, and he stops to look at you.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Show your pussy', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -84,7 +81,6 @@ function enterForestNude(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'end');
   scene.img('images/locations/suburban/3fores.jpg');
   scene.text('You strip down completely and go for a walk in the woods. Your heart pounds in your chest. Fresh air and a gentle warm breeze caress your skin. The sun warms you thoroughly. You thought you would feel cold quickly, but the hot summer sun proves you wrong. You leave your clothes on the ground and hope no one finds them! In this area, there are only mushroom pickers, but what if you meet one? You\'d be so embarrassed! You find a nice clearing where the wind has died down.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Next', handler: (st: GameState) => {
     scene.img('images/locations/suburban/4fores.jpg');
@@ -103,7 +99,6 @@ function enterSpringWater(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/suburban/rodnik.jpg');
   scene.text('Spring water.');
   qspCall(s, 'treeCircEntry', 'Village');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Drink from the spring', handler: (st: GameState) => {
     if (((st as any).pcs_hydra ?? 0) >= 90) {
@@ -131,7 +126,6 @@ function enterInfoColumn(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/suburban/stolbik.jpg');
   scene.text('The writing on the column has some useful information.');
-  // TODO-QSP: dynamic text: Nina in the 3rd alley sells goat milk at <<$func(''money'', ''string_price'', 30...
   scene.text(`Nina in the 3rd alley sells goat milk at ${qspFunc(s, 'money', 'string_price', 300)} per liter`);
   if (((s as any).pcs_energy ?? 0) < 70) {
     scene.actions([
@@ -158,7 +152,6 @@ function enterInfoColumn(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('You feel too full to drink such thick and creamy milk at the moment.');
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['dachi', ''] },
   ]);
@@ -177,7 +170,6 @@ function enterNeighborCottage(s: GameState, scene: SceneBuilder): void {
     ((st as any).exhib = (st as any).exhib ?? {})['status'] = 10;
     qspCall(st, 'stat', '');
     scene.img('images/locations/suburban/kuzmich.jpg');
-    // TODO-QSP: dynamic text: You: "Hello! My name is <<$pcs_nickname>>, I''m your new neighbor. We haven''t m...
     scene.text(`You: "Hello! My name is ${((st as any).pcs_nickname ?? '')}, I'm your new neighbor. We haven't met yet."`);
     scene.text('Neighbor: "Hi. I\'m Kuzmich. So you\'re the new neighbor."');
     scene.text('<font color="magenta">You: "Yes. Can you help me? My entire garden is overgrown with weeds, and I\'d like to clean it up."</font>');
@@ -189,7 +181,6 @@ function enterNeighborCottage(s: GameState, scene: SceneBuilder): void {
       { label: 'Leave', goto: ['dachi', ''] },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['dachi', ''] },
   ]);
@@ -201,14 +192,12 @@ function enterSawNoise(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/suburban/dachastroy.jpg');
   scene.text('You see a country house under construction. Workers are hauling some boards.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Ask workers to clear your garden', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 15;
     qspCall(st, 'stat', '');
     scene.img('images/locations/suburban/dachastroy.jpg');
     scene.text('You: "Hello! I need to clean up my garden. Could you help? And how much will it cost?"');
-    // TODO-QSP: dynamic text: Worker: "For some shoveling work, <<$func(''money'', ''string_profit'', 3000)>>....
     scene.text(`Worker: "For some shoveling work, ${qspFunc(s, 'money', 'string_profit', 3000)}."`);
     scene.actions([
       { label: 'Agree', handler: (st: GameState) => {
@@ -238,7 +227,6 @@ function enterGardenCheck(s: GameState, scene: SceneBuilder): void {
   scene.text('You go out into the garden and ask:');
   scene.text('"Well, boys? How\'s it going?"');
   scene.text('"It\'s going well, young lady. We\'re working as effectively as we can."');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['dachamy', ''] },
   ]);
@@ -253,7 +241,6 @@ function enterHangingClothes(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/suburban/dachaex.jpg');
   scene.text('You pretend to hang clothes to dry. Through the fence, you can see that your neighbor Kuzmich is stealing glances at you. Your loosely tied robe barely conceals your appetizing figure. But you don\'t try to hide—instead, you give your neighbor quite a show.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go home', goto: ['dachamy', ''] },
   ]);
@@ -271,7 +258,6 @@ function enterWorkerConversation(s: GameState, scene: SceneBuilder): void {
   scene.text('"Yeah, right. You\'re dreaming. You can\'t handle that city girl!"');
   scene.text('"I\'m telling you, she needs a good fuck, and that\'s what I want to give her!"');
   scene.text('"Okay, good luck with that."');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Approach the workers', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 15;
@@ -314,7 +300,6 @@ function enterGardenStrip(s: GameState, scene: SceneBuilder): void {
   scene.text('You stand in the middle of the vegetable garden and begin to undress.');
   scene.text('The guys\' eyes widen in surprise, and you can see them getting excited.');
   scene.text('<font color="magenta">"Boys, you did a good job and deserve a reward!"</font>');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Undress completely', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
@@ -369,7 +354,6 @@ function enterWorkerAssault(s: GameState, scene: SceneBuilder): void {
   scene.text('The drunk workers have surrounded you.');
   scene.text('"Look, here is our princess! You\'re just in time for some fun. Come on guys, our hostess needs some love!"');
   scene.text('You: "<font color="magenta">What are you doing?</font>"');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Next', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
@@ -465,7 +449,6 @@ function enterLakeArea(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return to the alley', goto: ['ETO_village', 'community_alleys'] },
   ]);

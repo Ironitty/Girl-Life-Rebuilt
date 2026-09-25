@@ -9,9 +9,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'indoors');
   scene.img('images/locations/pavlovsk/park/theater/kinoteatr.jpg');
-  // TODO-QSP: dynamic text: 'Small cinema in which there is just one small screen. A movie ticket costs ' + ...
-  scene.text('Small cinema in which there is just one small screen. A movie ticket costs 100₽.');
-  // TODO-QSP: end
+  scene.text('\'Small cinema in which there is just one small screen. A movie ticket costs 100₽.\'');
   scene.actions([
     { label: 'Leave the cinema', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -64,7 +62,6 @@ function enterWatchFilm(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the cinema', goto: ['pav_park', 'start'] },
   ]);

@@ -22,8 +22,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   if (((s as any).palrand ?? 0) === 1) {
     qspGoto(s, 'Palatka', 'pal1');
   }
-  scene.text('To your surprise, the tent is a quite spacious. It has a bed, a <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027start/u0027); return false;">mirror</a>, and even has an improvised <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027vann/u0027, /u0027start/u0027); return false;">shower</a>.');
-  // TODO-QSP: end
+  scene.text('To your surprise, the tent is a quite spacious. It has a bed, a <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027start\u0027); return false;">mirror</a>, and even has an improvised <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027vann\u0027, \u0027start\u0027); return false;">shower</a>.');
   scene.actions([
     { label: 'Leave', goto: ['Military', 'start'] },
     { label: 'Sleep', handler: (st: GameState) => {
@@ -55,14 +54,13 @@ function enterPal0(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Post', handler: (st: GameState) => {
     qspCall(st, 'npcgeneratec', '0', 'Soldier', (Math.floor(Math.random() * 17) + 18));
     qspCall(st, 'boyStat', '$npclastgenerated');
-    // TODO-QSP: $boy[0] = $boy
+    ((st as any).boy = (st as any).boy ?? {})[0] = ((st as any).boy ?? 0);
     qspCall(st, 'npcgeneratec', '0', 'Soldier', (Math.floor(Math.random() * 17) + 18));
-    // TODO-QSP: $boy[1] = $npclastgenerated
+    ((st as any).boy = (st as any).boy ?? {})[1] = ((st as any).npclastgenerated ?? 0);
     (st as any).guy = ((st as any).guy ?? 0) + (2);
     (st as any).picrand = 22;
     qspGoto(st, 'sexdvoe', 'var');
@@ -92,7 +90,6 @@ function enterPal1(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Repay in full', handler: (st: GameState) => {
     (st as any).sexpartkno = 1;

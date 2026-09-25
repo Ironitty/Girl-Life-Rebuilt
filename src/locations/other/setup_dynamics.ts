@@ -72,14 +72,14 @@ function enter(s: GameState, scene: SceneBuilder): void {
   (s as any).hypnoAddiction = 'gs \'dina\', \'hypnoAddiction\'';
   (s as any).prezik = 'gs \'dina\', \'prezik\'';
   (s as any).ferteggfather = 'gs \'dina\', \'ferteggfather\'';
-  // TODO-QSP: $d_mother[1] = "gs 'dinmother', 'd_mother[1]'"
-  // TODO-QSP: $d_mother[2] = "gs 'dinmother', 'd_mother[2]'"
-  // TODO-QSP: $d_mother[3] = "gs 'dinmother', 'd_mother[3]'"
-  // TODO-QSP: $d_mother[4] = "gs 'dinmother', 'd_mother[4]'"
-  // TODO-QSP: $d_mother[5] = "gs 'dinmother', 'd_mother[5]'"
-  // TODO-QSP: $d_mother[6] = "gs 'dinmother', 'd_mother[6]'"
-  // TODO-QSP: $d_mother[7] = "gs 'dinmother', 'd_mother[7]'"
-  // TODO-QSP: $d_mother[8] = "gs 'dinmother', 'd_mother[8]'"
+  ((s as any).d_mother = (s as any).d_mother ?? {})[1] = 'gs \'dinmother\', \'d_mother[1]\'';
+  ((s as any).d_mother = (s as any).d_mother ?? {})[2] = 'gs \'dinmother\', \'d_mother[2]\'';
+  ((s as any).d_mother = (s as any).d_mother ?? {})[3] = 'gs \'dinmother\', \'d_mother[3]\'';
+  ((s as any).d_mother = (s as any).d_mother ?? {})[4] = 'gs \'dinmother\', \'d_mother[4]\'';
+  ((s as any).d_mother = (s as any).d_mother ?? {})[5] = 'gs \'dinmother\', \'d_mother[5]\'';
+  ((s as any).d_mother = (s as any).d_mother ?? {})[6] = 'gs \'dinmother\', \'d_mother[6]\'';
+  ((s as any).d_mother = (s as any).d_mother ?? {})[7] = 'gs \'dinmother\', \'d_mother[7]\'';
+  ((s as any).d_mother = (s as any).d_mother ?? {})[8] = 'gs \'dinmother\', \'d_mother[8]\'';
   (s as any).din_predlog_dima_bj = 'gs \'dinnpc\', \'din_predlog_dima_bj\'';
   (s as any).din_dima_predlog = 'gs \'dinnpc\', \'din_dima_predlog\'';
   (s as any).d_park_placer_bj = 'gs \'skverdin\', \'d_park_placer_bj\'';

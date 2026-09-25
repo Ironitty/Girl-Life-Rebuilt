@@ -39,8 +39,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
               if (((s as any).university ?? 0)?.['prep_enrolled'] === 1) {
                 scene.text('You\'ve enrolled in the preparatory classes. They will start in August.');
               } else {
-                // TODO-QSP: dynamic text: 'You can take preparatory classes at the university on weekdays for ' + $func('m...
-                scene.text('You can take preparatory classes at the university on weekdays for 15000₽.');
+                scene.text('\'You can take preparatory classes at the university on weekdays for 15000₽.\'');
               }
             }
             scene.text('Admission exams for the university are held in August.');
@@ -72,7 +71,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   if (((s as any).university ?? 0)?.['entrance_information'] === 1  &&  ((s as any).university ?? 0)?.['prep_enrolled'] === 0  &&  ((s as any).university ?? 0)?.['student'] === 0  &&  ((s as any).month ?? 0) < 9) {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPrepPay(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 2;
@@ -88,7 +86,6 @@ function enterEnrollment(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/island/university/admin/enrollment1.jpg');
   scene.text('You enter the enrollment office, where there are several desks with women working behind them and a fair number of people around your age waiting in a side room. You inform them that you wish to enroll at the university and they take your name down before asking you to take a seat in the waiting room until your name is called. You walk into the other room and nod at the other prospective students before taking a seat.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Wait your turn', handler: (st: GameState) => {
     scene.img('images/locations/city/island/university/admin/enrollment2.jpg');
@@ -150,8 +147,7 @@ function enterEnrollment(s: GameState, scene: SceneBuilder): void {
       ((st as any).university = (st as any).university ?? {})['entrance_information'] = 1;
       (st as any).minut = ((st as any).minut ?? 0) + 5;
       scene.text('She looks over the information and fills in some data. Several minutes later, she turns to you and frowns, telling you that you\'re not eligible to enroll at the university since your grades from secondary school weren\'t good enough. She informs you that with so many students applying, they can only take those with better grades, but you can still get in if you take the preparatory classes and pass them with a high enough grade.');
-      // TODO-QSP: dynamic text: 'The classes cost ' + $func('money', 'string_price', 15000) + '.'
-      scene.text('The classes cost 15000₽.');
+      scene.text('\'The classes cost 15000₽.\'');
       if (qspFunc(s, 'money', 'can_afford', 15000) === 0) {
         scene.actions([
           { label: 'You don\'t have enough money', handler: (st: GameState) => {
@@ -184,15 +180,13 @@ function enterEnrollmentSemester(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/island/university/admin/enrollment1.jpg');
   scene.text('You enter the enrollment office, where there are several desks with women working behind them and a fair number of people around your age waiting in a side room. You inform them that you wish to register for your next semester.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Wait your turn', handler: (st: GameState) => {
     scene.img('images/locations/city/island/university/admin/enrollment2.jpg');
     scene.text('You wait until until your name is called by one of the women, who leads you down a side hall to one of the offices. You take a seat and introduce yourself, and after a brief discussion the woman takes your information and enters it into the computer.');
     if (((st as any).university ?? 0)?.['enrolled_in'] === 'teaching_studies') {
       (st as any).minut = ((st as any).minut ?? 0) + 15;
-      // TODO-QSP: dynamic text: 'She looks over your information and fills in some data. Several minutes later s...
-      scene.text('She looks over your information and fills in some data. Several minutes later she turns to you and smiles, telling you that you since you passed your last semester you can register for the \' + $func(\'string\', \'parse_number\', university[\'enrolled_in_semester\'], \'ordinal\') + \' of the Teaching Studies Program. She gives you the paperwork and you spend some time filling it all out.');
+      scene.text('She looks over your information and fills in some data. Several minutes later she turns to you and smiles, telling you that you since you passed your last semester you can register for the ' + qspFunc(s, 'string', 'parse_number', (((st as any).university ?? 0)?.['enrolled_in_semester'] ?? ''), 'ordinal') + ' of the Teaching Studies Program. She gives you the paperwork and you spend some time filling it all out.');
       scene.actions([
         { label: 'Enroll', handler: (st: GameState) => {
     ((st as any).university = (st as any).university ?? {})['enrolled_in_semester'] = ((st as any).university['enrolled_in_semester'] ?? 0) + (1);
@@ -216,8 +210,7 @@ function enterEnrollmentSemester(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((st as any).university ?? 0)?.['enrolled_in'] === 'nursing') {
         (st as any).minut = ((st as any).minut ?? 0) + 15;
-        // TODO-QSP: dynamic text: 'She looks over your information and fills in some data. Several minutes later s...
-        scene.text('She looks over your information and fills in some data. Several minutes later she turns to you and smiles, telling you that you since you passed your last semester you can register for the \' + $func(\'string\', \'parse_number\', university[\'enrolled_in_semester\'], \'ordinal\') + \' of the Nursing Program. She gives you the paperwork and you spend some time filling it all out.');
+        scene.text('She looks over your information and fills in some data. Several minutes later she turns to you and smiles, telling you that you since you passed your last semester you can register for the ' + qspFunc(s, 'string', 'parse_number', (((st as any).university ?? 0)?.['enrolled_in_semester'] ?? ''), 'ordinal') + ' of the Nursing Program. She gives you the paperwork and you spend some time filling it all out.');
         scene.actions([
           { label: 'Enroll', handler: (st: GameState) => {
     ((st as any).university = (st as any).university ?? {})['enrolled_in_semester'] = ((st as any).university['enrolled_in_semester'] ?? 0) + (1);
@@ -348,7 +341,6 @@ function enterSelectElectives(s: GameState, scene: SceneBuilder): void {
       { label: 'Don\'t enroll in any more elective classes', goto: ['uni_admin', 'start'] },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Don\'t enroll in any more elective classes', goto: ['uni_admin', 'start'] },
   ]);
@@ -356,7 +348,6 @@ function enterSelectElectives(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPrepPay(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: end
   scene.actions([
     { label: 'Pay for the preparatory classes', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 15000) === 0) {
@@ -368,8 +359,7 @@ function enterPrepPay(s: GameState, scene: SceneBuilder): void {
       ((st as any).university = (st as any).university ?? {})['prep_enrolled'] = 1;
       scene.text('<center><b>Enrollment Office</b></center>');
       scene.img('images/locations/city/island/university/admin/payment.jpg');
-      // TODO-QSP: dynamic text: 'You pay ' + $func('money', 'string_price', 15000) + ' for the preparatory class...
-      scene.text('You pay 15000₽ for the preparatory classes. They are held every weekday until <b>21:00</b>.');
+      scene.text('\'You pay 15000₽ for the preparatory classes. They are held every weekday until <b>21:00</b>.\'');
       scene.actions([
         { label: 'Leave', goto: ['uni_admin', 'start'] },
       ]);
@@ -388,7 +378,6 @@ function enterTakePrep(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Preparatory Class</b></center>');
   scene.img('images/locations/city/island/university/admin/prepcourse1.jpg');
   scene.text('You attend the preparatory class for an hour. You pay close attention to what is being said and take notes for the entrance examination later on.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave class', goto: ['uni_admin', 'start'] },
   ]);
@@ -415,7 +404,6 @@ function enterTakeTest(s: GameState, scene: SceneBuilder): void {
       scene.text('You completed the entrance exam, but failed to pass.');
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the exam room', goto: ['uni_admin', 'start'] },
   ]);
@@ -542,24 +530,21 @@ function enterCourses(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === 'has_been_enrolled_in') {
     (s as any).result = 0;
     ((s as any).temp_uni_funcs = (s as any).temp_uni_funcs ?? {})['i'] = 1;
-    // TODO-QSP: :is_enrolled_outer_loop
-    ((s as any).temp_uni_funcs = (s as any).temp_uni_funcs ?? {})['j'] = 1;
-    // TODO-QSP: :is_enrolled_inner_loop
-    if (((s as any).university ?? 0)['elective_semester_' + (((s as any).temp_uni_funcs ?? 0)?.['i']) + '_' + (((s as any).temp_uni_funcs ?? 0)?.['j'])] === String((s as any).locArgs?.[2] ?? '')) {
-      (s as any).result = 1;
-      return;
-    }
-    ((s as any).temp_uni_funcs = (s as any).temp_uni_funcs ?? {})['j'] = ((s as any).temp_uni_funcs['j'] ?? 0) + (1);
-    if (((s as any).temp_uni_funcs ?? 0)?.['j'] < 4) {
-      // TODO-QSP: jump 'is_enrolled_inner_loop'
-    }
-    ((s as any).temp_uni_funcs = (s as any).temp_uni_funcs ?? {})['i'] = ((s as any).temp_uni_funcs['i'] ?? 0) + (1);
-    if (((s as any).temp_uni_funcs ?? 0)?.['i'] < 5) {
-      // TODO-QSP: jump 'is_enrolled_outer_loop'
-    }
+    do {
+      ((s as any).temp_uni_funcs = (s as any).temp_uni_funcs ?? {})['j'] = 1;
+      do {
+        if (((s as any).university ?? 0)['elective_semester_' + (((s as any).temp_uni_funcs ?? 0)?.['i']) + '_' + (((s as any).temp_uni_funcs ?? 0)?.['j'])] === String((s as any).locArgs?.[2] ?? '')) {
+          (s as any).result = 1;
+          (s as any).temp_uni_funcs = undefined;
+          return;
+        }
+        ((s as any).temp_uni_funcs = (s as any).temp_uni_funcs ?? {})['j'] = ((s as any).temp_uni_funcs['j'] ?? 0) + (1);
+        ((s as any).temp_uni_funcs = (s as any).temp_uni_funcs ?? {})['i'] = ((s as any).temp_uni_funcs['i'] ?? 0) + (1);
+        (s as any).temp_uni_funcs = undefined;
+      } while (((s as any).temp_uni_funcs ?? 0)?.['j'] < 4);
+    } while (((s as any).temp_uni_funcs ?? 0)?.['i'] < 5);
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 

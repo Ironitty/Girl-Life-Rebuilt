@@ -14,7 +14,6 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
   (s as any).locclass = 'kitr';
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/suburb/bdsm_club/kitchen.jpg');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the Foyer', goto: ['bdsm_hallway', 'foyer'] },
     { label: 'Go to the laundry room', goto: ['bdsm_kitchen', 'laundry'] },
@@ -30,7 +29,6 @@ function enterLaundry(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/suburb/bdsm_club/laundry.jpg');
   scene.text('The laundry');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return to the Kitchen', goto: ['bdsm_kitchen', 'kitchen'] },
   ]);
@@ -43,7 +41,6 @@ function enterPantry(s: GameState, scene: SceneBuilder): void {
   (s as any).locclass = 'kitr';
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/suburb/bdsm_club/pantry.jpg');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return to the kitchen', goto: ['bdsm_kitchen', 'kitchen'] },
   ]);

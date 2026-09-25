@@ -27,7 +27,6 @@ function enter1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'dinsex', 'sexcum');
   scene.text('The man ties a knot in the condom and tosses it out of the window carelessly, very satisfied with your performance.');
   qspCall(s, 'arousal', 'end');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Get out of his car', handler: (st: GameState) => {
     dynamicGoto(st, 'locSex', 'metkaSex');
@@ -63,7 +62,6 @@ function enter2(s: GameState, scene: SceneBuilder): void {
   (s as any).orgasm_txt = '';
   qspCall(s, 'arousal', 'vaginal', 15, 'sub', 'unknown', 'prostitution');
   qspCall(s, 'arousal', 'end');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     dynamicGoto(st, 'locSex', 'metkaSex');

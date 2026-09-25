@@ -25,7 +25,6 @@ function enterStreetCum(s: GameState, scene: SceneBuilder): void {
       scene.text('Surrounding look at you with surprise, grin or a slight contempt. Someone just point the finger and laughs. Someone photographed phone. Hair obviously can not hide "art" on your face.');
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -45,9 +44,7 @@ function enterSnkayf(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   (s as any).snkz = (Math.floor(Math.random() * 6) + 1);
   scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/drunk_ev/pohmel4.jpg');
-  // TODO-QSP: dynamic text: 'As you wake up, it feels like you''ve been hit by a hammer. You realise '+iif(s...
   scene.text('As you wake up, it feels like you\'ve been hit by a hammer. You realise ' + ((((s as any).snkz ?? 0) === 6) ? ('that you are naked.') : ('that your underwear is missing.')) + ' Unsure of where you are and what has happened, you try to get your bearings.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Look around', handler: (st: GameState) => {
     if (((st as any).snkz ?? 0) === 1) {
@@ -82,7 +79,6 @@ function enterAskPavDrugDropoff(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/residential/den/narkopriton.jpg');
   scene.text('You decide to ask, and whether there are any dealers in Pavlovsk. To which the man replied, "Go to the train station platform, it will cost you though…"');
   scene.text('And then he looks at you menacingly "And if I hear that you\'ve caused any trouble, well death will seem like a good escape."');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Agree', handler: (st: GameState) => {
     ((st as any).drugVars = (st as any).drugVars ?? {})['pav_dropoff'] = 1;
@@ -106,10 +102,10 @@ function enterPavDrugDropoff(s: GameState, scene: SceneBuilder): void {
   scene.text('You walk to the end of the platform and see a man hiding undercover smoking a cigarette');
   scene.text('Walking up to him you ask him if he has anything');
   scene.text('He turns and looks you up and down, "That depends on what you want little lady?"');
-  // TODO-QSP: 'Heroin: ' + $func('money', 'string_price', 560)
-  // TODO-QSP: 'Cocaine: ' + $func('money', 'string_price', 2100)
-  // TODO-QSP: 'Amphetamine: ' + $func('money', 'string_price', 600)
-  // TODO-QSP: 'Weed: ' + $func('money', 'string_price', 300)
+  scene.text('Heroin: ' + qspFunc(s, 'money', 'string_price', 560));
+  scene.text('Cocaine: ' + qspFunc(s, 'money', 'string_price', 2100));
+  scene.text('Amphetamine: ' + qspFunc(s, 'money', 'string_price', 600));
+  scene.text('Weed: ' + qspFunc(s, 'money', 'string_price', 300));
   if (qspFunc(s, 'money', 'can_afford', 560, 'cash') === 1) {
     scene.actions([
       { label: 'Buy and use heroin ( [560₽])...]', handler: (st: GameState) => {
@@ -180,7 +176,6 @@ function enterPavDrugDropoff(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('You don\'t have enough cash to buy weed.');
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['pav_train_hall', ''] },
   ]);
@@ -194,7 +189,6 @@ function enterSnkayf1(s: GameState, scene: SceneBuilder): void {
   (s as any).snkz = (Math.floor(Math.random() * 6) + 1);
   scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/drunk_ev/pohmel4.jpg');
   scene.text('As you wake up, it feels like you\'ve been hit by a hammer. You realise that your underwear is missing. Unsure of where you are and what has happened, you try to get your bearings.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Look around', handler: (st: GameState) => {
     if (((st as any).snkz ?? 0) === 1) {

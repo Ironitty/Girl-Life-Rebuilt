@@ -1,3 +1,5 @@
+import { qspFunc } from '../_shared/qspBridge';
+
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
@@ -59,27 +61,26 @@ function enterRent(s: GameState, scene: SceneBuilder): void {
     }
   }
   ((s as any).home_rent = (s as any).home_rent ?? {})[1] = 15000;
-  // TODO-QSP: $home_rent_txt[1] = $func('money', 'string_price', 15000)
+  ((s as any).home_rent_txt = (s as any).home_rent_txt ?? {})[1] = qspFunc(s, 'money', 'string_price', 15000);
   ((s as any).home_rent = (s as any).home_rent ?? {})[4] = 10000;
-  // TODO-QSP: $home_rent_txt[4] = $func('money', 'string_price', 10000)
-  // TODO-QSP: end
+  ((s as any).home_rent_txt = (s as any).home_rent_txt ?? {})[4] = qspFunc(s, 'money', 'string_price', 10000);
   scene.build();
 }
 
 function enterSale(s: GameState, scene: SceneBuilder): void {
   ((s as any).home_value = (s as any).home_value ?? {})[1] = 800000;
-  // TODO-QSP: $home_value_txt[1] = $func('money', 'string_price', 800000)
+  ((s as any).home_value_txt = (s as any).home_value_txt ?? {})[1] = qspFunc(s, 'money', 'string_price', 800000);
   ((s as any).home_value = (s as any).home_value ?? {})[3] = 150000;
-  // TODO-QSP: $home_value_txt[3] = $func('money', 'string_price', 150000)
+  ((s as any).home_value_txt = (s as any).home_value_txt ?? {})[3] = qspFunc(s, 'money', 'string_price', 150000);
   ((s as any).home_value = (s as any).home_value ?? {})[5] = 1500000;
-  // TODO-QSP: $home_value_txt[5] = $func('money', 'string_price', 1500000)
+  ((s as any).home_value_txt = (s as any).home_value_txt ?? {})[5] = qspFunc(s, 'money', 'string_price', 1500000);
   ((s as any).home_value = (s as any).home_value ?? {})[15] = 800000;
-  // TODO-QSP: $home_value_txt[15] = $func('money', 'string_price', 800000)
-  // TODO-QSP: end
+  ((s as any).home_value_txt = (s as any).home_value_txt ?? {})[15] = qspFunc(s, 'money', 'string_price', 800000);
   scene.build();
 }
 
 function enterUtil(s: GameState, scene: SceneBuilder): void {
+  (s as any).hcount_util = undefined;
   if (((s as any).accessible_property ?? 0)?.['city_apartment'] === 1) {
     (s as any).hcount_util = ((s as any).hcount_util ?? 0) + (1);
   }
@@ -95,7 +96,6 @@ function enterUtil(s: GameState, scene: SceneBuilder): void {
   if (((s as any).accessible_property ?? 0)?.['city_house'] === 1) {
     (s as any).hcount_util = ((s as any).hcount_util ?? 0) + (1);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -112,7 +112,6 @@ function enterCable(s: GameState, scene: SceneBuilder): void {
   if (((s as any).accessible_property ?? 0)?.['city_house'] === 1) {
     (s as any).hcount_cable = ((s as any).hcount_cable ?? 0) + (1);
   }
-  // TODO-QSP: end
   scene.build();
 }
 

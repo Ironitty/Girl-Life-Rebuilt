@@ -1,4 +1,4 @@
-import { qspCall, dynamicGoto, qspGoto } from '../_shared/qspBridge';
+import { qspCall, qspFunc, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -14,7 +14,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     ((s as any).ml_activities = (s as any).ml_activities ?? {})['enabled'] = 1;
   }
   if (((s as any).ml_activities ?? 0)?.['enabled'] === 0  ||  ((s as any).ml_no_music ?? 0) !== 0) {
-    // TODO-QSP: exit
+    return;
   }
   if (((s as any).alko ?? 0) > 5) {
     scene.text('You are too drunk to stream or record music without messing up or throwing up into your guitar.');
@@ -52,7 +52,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -79,6 +78,7 @@ function enterAvailableActions(s: GameState, scene: SceneBuilder): void {
   (s as any).ml_time_left = (((s as any).ml_performance ?? {})?.['max_perform_minutes'] ?? 0)-(((s as any).ml_performance ?? {})?.['performed_minutes'] ?? 0);
   if (((s as any).location_type ?? 0) === 'public_outdoors') {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterNotAlone(s, scene); (s as any).locArgs = __savedLocArgs; }
+    (s as any).access = undefined;
   }
   if (((s as any).access ?? 0) === '') {
     qspCall(s, 'internet_mobile', 'get_access');
@@ -95,7 +95,6 @@ function enterAvailableActions(s: GameState, scene: SceneBuilder): void {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetUpAccount(s, scene); (s as any).locArgs = __savedLocArgs; }
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDeleteMusic(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', handler: (st: GameState) => {
     qspCall(st, 'music_actions', '');
@@ -124,7 +123,6 @@ function enterPutDownPickUp(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -217,7 +215,6 @@ function enterPlaySomething(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -226,7 +223,7 @@ function enterPracticeGuitar(s: GameState, scene: SceneBuilder): void {
     if (((s as any).ml_time_left ?? 0) < 15) {
       scene.actions([
         { label: 'Practice guitar  [+$func(\'wrap\', \'v_neg\', \'(You are too tir...]', handler: (st: GameState) => {
-    // TODO-QSP: $func('wrap', 'v_neg', '<br>You have played so much today th...
+    st.scene = { ...st.scene, mainText: String(qspFunc(st, 'wrap', 'v_neg', '<br>You have played so much today that your brain and hands are too tired to practice any more.') || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -254,7 +251,6 @@ function enterPracticeGuitar(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -263,14 +259,14 @@ function enterBusking(s: GameState, scene: SceneBuilder): void {
   if (((s as any).ml_performance ?? 0)?.['max_perform_minutes'] < 60) {
     scene.actions([
       { label: 'Start busking  [+$func(\'wrap\', \'v_neg\', \'(You are not abl...]', handler: (st: GameState) => {
-    // TODO-QSP: $func('wrap', 'neg', '<br>You don''t have the endurance yet ...
+    st.scene = { ...st.scene, mainText: String(qspFunc(st, 'wrap', 'neg', '<br>You don\'t have the endurance yet to play for an hour.') || ''), curActs: [] };
   } },
     ]);
   } else {
     if (((s as any).ml_time_left ?? 0) < 60) {
       scene.actions([
         { label: 'Start busking  [+$func(\'wrap\', \'v_neg\', \'(You are too tir...]', handler: (st: GameState) => {
-    // TODO-QSP: $func('wrap', 'v_neg', '<br>You have played so much today, t...
+    st.scene = { ...st.scene, mainText: String(qspFunc(st, 'wrap', 'v_neg', '<br>You have played so much today, that your brain and hands are too tired to play a whole stream.') || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -284,7 +280,7 @@ function enterBusking(s: GameState, scene: SceneBuilder): void {
         if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
           scene.actions([
             { label: 'Start busking', handler: (st: GameState) => {
-    // TODO-QSP: $func('wrap', 'neg', '<br>You don''t feel comfortable enough...
+    st.scene = { ...st.scene, mainText: String(qspFunc(st, 'wrap', 'neg', '<br>You don\'t feel comfortable enough to play in front of people right now.') || ''), curActs: [] };
   } },
           ]);
         } else {
@@ -300,7 +296,6 @@ function enterBusking(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -308,42 +303,42 @@ function enterStreamMusic(s: GameState, scene: SceneBuilder): void {
   if (((s as any).ml_online ?? 0)?.['account'] === 0) {
     scene.actions([
       { label: 'Live stream  [+$func(\'wrap\', \'v_neg\', \'(No online accou...]', handler: (st: GameState) => {
-    // TODO-QSP: $func('wrap', 'neg', '<br>You will have to set up an online ...
+    st.scene = { ...st.scene, mainText: String(qspFunc(st, 'wrap', 'neg', '<br>You will have to set up an online account first to stream.') || ''), curActs: [] };
   } },
     ]);
   } else {
     if (((s as any).access ?? 0) === 'denied') {
       scene.actions([
         { label: 'Live stream  [+$func(\'wrap\', \'v_neg\', \'(No internet acc...]', handler: (st: GameState) => {
-    // TODO-QSP: $func('wrap', 'v_neg', '<br>You have no internet access.')
+    st.scene = { ...st.scene, mainText: String(qspFunc(st, 'wrap', 'v_neg', '<br>You have no internet access.') || ''), curActs: [] };
   } },
       ]);
     } else {
       if (((s as any).ml_streaming ?? 0)?.['lastday'] === ((s as any).daystart ?? 0)) {
         scene.actions([
           { label: 'Live stream  [+$func(\'wrap\', \'neg\', \'(Already streamed ...]', handler: (st: GameState) => {
-    // TODO-QSP: $func('wrap', 'neg', '<br>You already streamed today.')
+    st.scene = { ...st.scene, mainText: String(qspFunc(st, 'wrap', 'neg', '<br>You already streamed today.') || ''), curActs: [] };
   } },
         ]);
       } else {
         if (((s as any).ml_not_alone ?? 0) === 1  &&  ((s as any).location_type ?? 0) === 'private') {
           scene.actions([
             { label: 'Live stream  [+$func(\'wrap\', \'neg\', \'(You are not alone...]', handler: (st: GameState) => {
-    // TODO-QSP: $func('wrap', 'neg', '<br>You are not alone in the room, whi...
+    st.scene = { ...st.scene, mainText: String(qspFunc(st, 'wrap', 'neg', '<br>You are not alone in the room, which makes starting a stream impossible until they leave.') || ''), curActs: [] };
   } },
           ]);
         } else {
           if (((s as any).ml_performance ?? 0)?.['max_perform_minutes'] < 60) {
             scene.actions([
               { label: 'Live stream  [+$func(\'wrap\', \'v_neg\', \'(You are not abl...]', handler: (st: GameState) => {
-    // TODO-QSP: $func('wrap', 'neg', '<br>You don''t have the endurance yet ...
+    st.scene = { ...st.scene, mainText: String(qspFunc(st, 'wrap', 'neg', '<br>You don\'t have the endurance yet to play for an hour.') || ''), curActs: [] };
   } },
             ]);
           } else {
             if (((s as any).ml_time_left ?? 0) < 60) {
               scene.actions([
                 { label: 'Live stream  [+$func(\'wrap\', \'v_neg\', \'(You are too tir...]', handler: (st: GameState) => {
-    // TODO-QSP: $func('wrap', 'v_neg', '<br>You have played so much today, t...
+    st.scene = { ...st.scene, mainText: String(qspFunc(st, 'wrap', 'v_neg', '<br>You have played so much today, that your brain and hands are too tired to play a whole stream.') || ''), curActs: [] };
   } },
               ]);
             } else {
@@ -376,7 +371,6 @@ function enterStreamMusic(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -384,14 +378,14 @@ function enterRecordMusic(s: GameState, scene: SceneBuilder): void {
   if (((s as any).ml_performance ?? 0)?.['max_perform_minutes'] < 30) {
     scene.actions([
       { label: 'Record a song  [+$func(\'wrap\', \'v_neg\', \'(You are not abl...]', handler: (st: GameState) => {
-    // TODO-QSP: $func('wrap', 'neg', '<br>You don''t have the endurance yet ...
+    st.scene = { ...st.scene, mainText: String(qspFunc(st, 'wrap', 'neg', '<br>You don\'t have the endurance yet to play for half an hour continuously.') || ''), curActs: [] };
   } },
     ]);
   } else {
     if (((s as any).ml_time_left ?? 0) < 30) {
       scene.actions([
         { label: 'Record a song  [+$func(\'wrap\', \'v_neg\', \'(You are too tir...]', handler: (st: GameState) => {
-    // TODO-QSP: $func('wrap', 'v_neg', '<br>You have played so much today, t...
+    st.scene = { ...st.scene, mainText: String(qspFunc(st, 'wrap', 'v_neg', '<br>You have played so much today, that your brain and hands are too tired to record anything right now.') || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -420,7 +414,6 @@ function enterRecordMusic(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -435,7 +428,6 @@ function enterEditRecording(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -444,14 +436,14 @@ function enterRehearseSets(s: GameState, scene: SceneBuilder): void {
     if (((s as any).ml_performance ?? 0)?.['max_perform_minutes'] < 30) {
       scene.actions([
         { label: 'Rehearse your set (guitar and vocals)  [+$func(\'wrap\', \'v_neg\', \'(You don\'t have...]', handler: (st: GameState) => {
-    // TODO-QSP: $func('wrap', 'neg', '<br>You don''t know enough songs well ...
+    st.scene = { ...st.scene, mainText: String(qspFunc(st, 'wrap', 'neg', '<br>You don\'t know enough songs well enough yet to call it a set worth rehearsing.') || ''), curActs: [] };
   } },
       ]);
     } else {
       if (((s as any).ml_time_left ?? 0) < 30) {
         scene.actions([
           { label: 'Rehearse your set (guitar and vocals)  [+$func(\'wrap\', \'v_neg\', \'(You are too tir...]', handler: (st: GameState) => {
-    // TODO-QSP: $func('wrap', 'v_neg', '<br>You have played so much today th...
+    st.scene = { ...st.scene, mainText: String(qspFunc(st, 'wrap', 'v_neg', '<br>You have played so much today that your brain and hands are too tired to rehearse any more.') || ''), curActs: [] };
   } },
         ]);
       } else {
@@ -480,7 +472,6 @@ function enterRehearseSets(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -490,7 +481,6 @@ function enterSetUpAccount(s: GameState, scene: SceneBuilder): void {
       { label: 'Set up an online music account (0:30)', goto: ['music_onlinemusic', 'set_up_account'] },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -514,7 +504,6 @@ function enterUploadMusic(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -524,24 +513,22 @@ function enterDeleteMusic(s: GameState, scene: SceneBuilder): void {
       { label: 'Delete old recordings', goto: ['music_onlinemusic', 'deleteoldmusic'] },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterNotAlone(s: GameState, scene: SceneBuilder): void {
   (s as any).ml_not_alone = 1;
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterWillpowerCost(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterNoMusic(s: GameState, scene: SceneBuilder): void {
   (s as any).ml_no_music = 1;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterWillpowerCost(s: GameState, scene: SceneBuilder): void {
+  (s as any).will_cost = undefined;
   if (((s as any).pcs_inhib ?? 0) < 10) {
     qspCall(s, 'willpower', 'skill', 'perform', 'self', 'hard');
   } else {
@@ -553,18 +540,22 @@ function enterWillpowerCost(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterClearRestrictions(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: end
+  (s as any).will_cost = undefined;
+  (s as any).ml_not_alone = undefined;
+  (s as any).ml_no_music = undefined;
   scene.build();
 }
 
 function enterFinish(s: GameState, scene: SceneBuilder): void {
+  (s as any).will_cost = undefined;
+  (s as any).ml_not_alone = undefined;
+  (s as any).ml_no_music = undefined;
+  (s as any).ml_time_left = undefined;
   dynamicGoto(s, 'prevLoc', 'prevArg');
-  // TODO-QSP: end
   scene.build();
 }
 

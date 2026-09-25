@@ -31,57 +31,48 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/redlight/redlight.jpg');
   scene.text('This small area inside the Industrial District is home to strip clubs, adult stores and other seedy businesses.');
   if (((s as any).hour ?? 0) >= 18  ||  ((s as any).hour ?? 0) < 3) {
-    scene.text('The bright lights and booming music of the <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027stripclub/u0027, /u0027start/u0027); return false;">Golden Girls</a> strip club attract men from all over the city.');
+    scene.text('The bright lights and booming music of the <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027stripclub\u0027, \u0027start\u0027); return false;">Golden Girls</a> strip club attract men from all over the city.');
   } else {
     if ((((s as any).job_status ?? 0)?.['city_strip_stripper'] === 'employed'  &&  qspFunc(s, 'jobs', 'is_arrival_time', 'city_strip_stripper') === 1)  ||  (((s as any).job_status ?? 0)?.['city_strip_bargirl'] === 'employed'  &&  qspFunc(s, 'jobs', 'is_arrival_time', 'city_strip_bargirl') === 1)) {
-      scene.text('The <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027stripclub/u0027, /u0027start/u0027); return false;">Golden Girls</a> strip club is still closed, but you can get in through the staff entrance.');
+      scene.text('The <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027stripclub\u0027, \u0027start\u0027); return false;">Golden Girls</a> strip club is still closed, but you can get in through the staff entrance.');
     } else {
-      // TODO-QSP: dynamic text: 'The strip club is closed for the day and will reopen at ' + func('time', 'get_t...
-      scene.text('The strip club is closed for the day and will reopen at 18:00.');
+      scene.text('\'The strip club is closed for the day and will reopen at 18:00.\'');
     }
   }
   if (((s as any).pornstudio ?? 0) > 0) {
     if (((s as any).hour ?? 0) >= 9  &&  ((s as any).hour ?? 0) <= 22) {
-      scene.text('The <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027pornstudio/u0027, /u0027/u0027); return false;">porn studio</a> is housed within one of the few warehouses that hasn\'t been abandoned.');
+      scene.text('The <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027pornstudio\u0027, \u0027\u0027); return false;">porn studio</a> is housed within one of the few warehouses that hasn\'t been abandoned.');
     } else {
-      // TODO-QSP: dynamic text: 'The porn studio is closed and will reopen at ' + func('time', 'get_time_string'...
-      scene.text('The porn studio is closed and will reopen at 9:00.');
+      scene.text('\'The porn studio is closed and will reopen at 9:00.\'');
     }
   }
   if (((s as any).hour ?? 0) < 3  ||  ((s as any).hour ?? 0) >= 11) {
-    // TODO-QSP: dynamic text: A <a href="exec:minut += 1 & gt ''shop_erotomaniac'', ''start''">seedy looking s...
-    scene.text('A <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(/u0027shop_erotomaniac/u0027, /u0027start/u0027); return false;">seedy looking shop</a> that sells sex toys and other erotic merchandise is open for perverts from all around the city to browse its stock.');
+    scene.text('A <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027shop_erotomaniac\u0027, \u0027start\u0027); return false;">seedy looking shop</a> that sells sex toys and other erotic merchandise is open for perverts from all around the city to browse its stock.');
   } else {
-    // TODO-QSP: dynamic text: 'A seedy looking shop that sells sex toys and other erotic merchandise. It is cu...
-    scene.text('A seedy looking shop that sells sex toys and other erotic merchandise. It is currently closed and will reopen at 11:00.');
+    scene.text('\'A seedy looking shop that sells sex toys and other erotic merchandise. It is currently closed and will reopen at 11:00.\'');
   }
   if (((s as any).bordel ?? 0) > 0  &&  qspFunc(s, 'bordel', 'is_open')) {
-    scene.text('Hidden inside a courtyard is the entrance to the <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027bordel/u0027, /u0027/u0027); return false;">brothel</a>.');
+    scene.text('Hidden inside a courtyard is the entrance to the <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027bordel\u0027, \u0027\u0027); return false;">brothel</a>.');
   }
   if (((s as any).hour ?? 0) >= 10) {
-    scene.text('A small <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027city_redlight/u0027, /u0027city_copy_shop/u0027); return false;">printing shop</a> is tucked away between two larger buildings.');
+    scene.text('A small <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027city_redlight\u0027, \u0027city_copy_shop\u0027); return false;">printing shop</a> is tucked away between two larger buildings.');
   } else {
-    // TODO-QSP: dynamic text: 'A small printing shop is tucked away between two larger buildings. It is curren...
-    scene.text('A small printing shop is tucked away between two larger buildings. It is currently closed and will reopen at 10:00.');
+    scene.text('\'A small printing shop is tucked away between two larger buildings. It is currently closed and will reopen at 10:00.\'');
   }
   if (((s as any).hour ?? 0) >= 19  ||  ((s as any).hour ?? 0) < 2) {
-    scene.text('A <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027hookahlounge/u0027, /u0027start/u0027); return false;">Hookah Lounge</a> sits on a corner, with Indian music and the scent of exotic spices streaming from an open door.');
+    scene.text('A <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027hookahlounge\u0027, \u0027start\u0027); return false;">Hookah Lounge</a> sits on a corner, with Indian music and the scent of exotic spices streaming from an open door.');
   } else {
-    // TODO-QSP: dynamic text: 'The Hookah Lounge is currently closed and will reopen at ' + func('time', 'get_...
-    scene.text('The Hookah Lounge is currently closed and will reopen at 19:00.');
+    scene.text('\'The Hookah Lounge is currently closed and will reopen at 19:00.\'');
   }
   qspCall(s, 'taxi', '');
   if (qspFunc(s, 'car_funcs', 'is_here', 'fuelstation', 'start')) {
-    // TODO-QSP: dynamic text: Your <a href="exec:minut += 5 & gs ''carF'', ''start''"><<$car[''name'']>></a> i...
     scene.text(`Your <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(/u0027carF/u0027, /u0027start/u0027); return false;">${(((s as any).car ?? 0)?.['name'] ?? '')}</a> is parked near the gas station.`);
   } else {
     if (qspFunc(s, 'car_funcs', 'is_here', 'city_redlight', 'start')) {
-      // TODO-QSP: dynamic text: Your <a href="exec:gs ''carF'', ''start''"><<$car[''name'']>></a> sits in the pa...
       scene.text(`Your <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027carF/u0027, /u0027start/u0027); return false;">${(((s as any).car ?? 0)?.['name'] ?? '')}</a> sits in the parking lot.`);
     } else {
       if (qspFunc(s, 'car_funcs', 'is_here', 'autoservisF', 'start')) {
         if (qspFunc(s, 'autoservisF', 'is_open')) {
-          // TODO-QSP: dynamic text: Your <a href="exec:minut += 5 & gs ''carF'', ''start''"><<$car[''name'']>></a> i...
           scene.text(`Your <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(/u0027carF/u0027, /u0027start/u0027); return false;">${(((s as any).car ?? 0)?.['name'] ?? '')}</a> is parked at the car service center.`);
         } else {
           scene.text('It looks like the repair shop moved your car outside before they closed.');
@@ -91,7 +82,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       } else {
         if (qspFunc(s, 'car_funcs', 'is_here', 'autotraidF', 'start')) {
           if (qspFunc(s, 'autotraidF', 'is_open')) {
-            // TODO-QSP: dynamic text: Your <a href="exec:minut += 5 & gs ''carF'', ''start''"><<$car[''name'']>></a> i...
             scene.text(`Your <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(/u0027carF/u0027, /u0027start/u0027); return false;">${(((s as any).car ?? 0)?.['name'] ?? '')}</a> is parked at the car dealership.`);
           } else {
             scene.text('It looks like the car dealership moved your car outside before they closed.');
@@ -103,7 +93,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (qspFunc(s, 'car_funcs', 'is_here', 'city_industrial', '')) {
-    // TODO-QSP: dynamic text: Your <a href="exec:minut += 5 & gs ''carF'', ''start''"><<$car[''name'']>></a> s...
     scene.text(`Your <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(/u0027carF/u0027, /u0027start/u0027); return false;">${(((s as any).car ?? 0)?.['name'] ?? '')}</a> stands nearby in a parking lot at the redlight district.`);
   }
   if (((s as any).hour ?? 0) >= 20  ||  ((s as any).hour ?? 0) <= 4) {
@@ -122,7 +111,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Walk to the Industrial Region (0:05)', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -138,13 +126,11 @@ function enterCityCopyShop(s: GameState, scene: SceneBuilder): void {
   scene.text('You enter the run-down looking copy shop and look around. Scattered across the room are small tables with various dusty looking copy machines that don\'t strike you as being very reliable. Watching you from behind a counter is a bored looking man with greasy hair and a sleazy look.');
   if (((s as any).fakepassport ?? 0) === 2) {
     (s as any).fakepassport = 0;
-    // TODO-QSP: dynamic text: 'He gives you a hard stare. "A fake passport will cost you ' + $func('money', 's...
-    scene.text('He gives you a hard stare. "A fake passport will cost you 30000₽," he says quietly.');
+    scene.text('\'He gives you a hard stare. "A fake passport will cost you 30000₽," he says quietly.\'');
   }
   if (((s as any).university ?? 0)?.['fakediplom'] === 2) {
     ((s as any).university = (s as any).university ?? {})['fakediplom'] = 0;
-    // TODO-QSP: dynamic text: '"A diploma for a bachelor''s degree will cost you ' + $func('money', 'string_pr...
-    scene.text('"A diploma for a bachelor\'s degree will cost you 100000₽," he says quietly.');
+    scene.text('\'"A diploma for a bachelor\'s degree will cost you 100000₽," he says quietly.\'');
   }
   if (((s as any).age ?? 0) < 18  &&  ((s as any).fakepassport ?? 0) !== 1) {
     scene.actions([
@@ -182,7 +168,6 @@ function enterCityCopyShop(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['city_redlight', 'start'] },
   ]);

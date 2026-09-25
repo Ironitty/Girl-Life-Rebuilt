@@ -19,25 +19,23 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/island/university/library/library.jpg');
   scene.text('One of the medium sized buildings is the university\'s library. It is three stories tall and filled with books, sections with tables scattered around to study or relax at and computer stations to help students with their studying.');
   if (((s as any).locat ?? 0)?.['katja'] === 29) {
-    // TODO-QSP: dynamic text: 'You see '+iif(katjaQW['know_katja_uni'] = 0 and ($start_type['loc'] ! 'sg' and ...
-    scene.text('You see ' + ((((s as any).katjaQW ?? 0)?.['know_katja_uni'] === 0  &&  (((s as any).start_type ?? 0)?.['loc'] !== 'sg'  &&  ((s as any).start_type ?? 0)?.['magic'] === 'tg')) ? ('a cute redheaded girl') : ('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027katja_uni/u0027, /u0027library/u0027); return false;">Katja</a>')) + ' sitting at one of the desks with a laptop and a pile of books.');
+    scene.text('You see ' + ((((s as any).katjaQW ?? 0)?.['know_katja_uni'] === 0  &&  (((s as any).start_type ?? 0)?.['loc'] !== 'sg'  &&  ((s as any).start_type ?? 0)?.['magic'] === 'tg')) ? ('a cute redheaded girl') : ('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027katja_uni\u0027, \u0027library\u0027); return false;">Katja</a>')) + ' sitting at one of the desks with a laptop and a pile of books.');
   }
   if (((s as any).locat ?? 0)?.['A144'] === 12) {
-    scene.text('You see your former classmate <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027uni_library/u0027, /u0027anushka/u0027); return false;">Anushka</a> sitting at one of the tables studying some books.');
+    scene.text('You see your former classmate <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027uni_library\u0027, \u0027anushka\u0027); return false;">Anushka</a> sitting at one of the tables studying some books.');
   }
   if (((s as any).locat ?? 0)?.['A23'] === 15) {
-    // TODO-QSP: dynamic text: 'You see '+iif(AlbinaQW['know_albina_uni'] = 0 and ($start_type['loc'] ! 'sg' an...
-    scene.text('You see ' + ((((s as any).AlbinaQW ?? 0)?.['know_albina_uni'] === 0  &&  (((s as any).start_type ?? 0)?.['loc'] !== 'sg'  &&  ((s as any).start_type ?? 0)?.['magic'] === 'tg')) ? ('an attractive looking brunette') : ('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027uni_library/u0027, /u0027albina/u0027); return false;">Albina</a>')) + ' searching the shelves for books.');
+    scene.text('You see ' + ((((s as any).AlbinaQW ?? 0)?.['know_albina_uni'] === 0  &&  (((s as any).start_type ?? 0)?.['loc'] !== 'sg'  &&  ((s as any).start_type ?? 0)?.['magic'] === 'tg')) ? ('an attractive looking brunette') : ('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027uni_library\u0027, \u0027albina\u0027); return false;">Albina</a>')) + ' searching the shelves for books.');
   }
   if (((s as any).week ?? 0) <= 4  &&  ((s as any).hour ?? 0) >= 15  &&  ((s as any).hour ?? 0) < 17) {
     if (((s as any).meet_kendra ?? 0) === 1) {
-      scene.text('You see <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027uni_library/u0027, /u0027kendra/u0027); return false;">Kendra</a> sitting at one of the tables studying some books.');
+      scene.text('You see <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027uni_library\u0027, \u0027kendra\u0027); return false;">Kendra</a> sitting at one of the tables studying some books.');
     } else {
-      scene.text('You see a pretty ebony <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027uni_library/u0027, /u0027kendra/u0027); return false;">girl</a> sitting at one of the tables studying some books.');
+      scene.text('You see a pretty ebony <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027uni_library\u0027, \u0027kendra\u0027); return false;">girl</a> sitting at one of the tables studying some books.');
     }
   }
   if (((s as any).yearstart ?? 0) > 1  &&  ((s as any).week ?? 0) <= 5  &&  ((s as any).hour ?? 0) >= 15  &&  ((s as any).hour ?? 0) < 17) {
-    scene.text('You see your former classmate <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027uni_library/u0027, /u0027artem/u0027); return false;">Artem</a> sitting at one of the tables studying some books.');
+    scene.text('You see your former classmate <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027uni_library\u0027, \u0027artem\u0027); return false;">Artem</a> sitting at one of the tables studying some books.');
   }
   if (((s as any).start_type ?? 0)?.['loc'] === 'sg'  &&  ((s as any).yearstart ?? 0) > 1  &&  ((s as any).week ?? 0) > 5  &&  ((s as any).hour ?? 0) >= 12  &&  ((s as any).hour ?? 0) < 14) {
     if (((s as any).nataliaQW ?? 0)?.['library_day_check'] !== ((s as any).daystart ?? 0)) {
@@ -47,7 +45,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       }
     }
     if (((s as any).nataliaQW ?? 0)?.['library_day'] === ((s as any).daystart ?? 0)) {
-      scene.text('You see your former classmate <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027natalia_pavlova/u0027, /u0027library/u0027); return false;">Natalia Pavlova</a>.');
+      scene.text('You see your former classmate <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027natalia_pavlova\u0027, \u0027library\u0027); return false;">Natalia Pavlova</a>.');
     }
   }
   if ((((s as any).week ?? 0) >= 6  &&  ((s as any).hour ?? 0) === 23)  ||  ((s as any).hour ?? 0) < 8) {
@@ -64,7 +62,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       { label: 'Study', goto: ['uni_library', 'study'] },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Read a book', goto: ['uni_library', 'read'] },
     { label: 'Borrow a book', goto: ['uni_library', 'loan'] },
@@ -89,25 +86,23 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/island/university/library/library.jpg');
   scene.text('One of the medium sized buildings is the university\'s library. It is three stories tall and filled with books, sections with tables scattered around to study or relax at and computer stations to help students with their studying.');
   if (((s as any).locat ?? 0)?.['katja'] === 29) {
-    // TODO-QSP: dynamic text: 'You see '+iif(katjaQW['know_katja_uni'] = 0 and ($start_type['loc'] ! 'sg' and ...
-    scene.text('You see ' + ((((s as any).katjaQW ?? 0)?.['know_katja_uni'] === 0  &&  (((s as any).start_type ?? 0)?.['loc'] !== 'sg'  &&  ((s as any).start_type ?? 0)?.['magic'] === 'tg')) ? ('a cute redheaded girl') : ('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027katja_uni/u0027, /u0027library/u0027); return false;">Katja</a>')) + ' sitting at one of the desks with a laptop and a pile of books.');
+    scene.text('You see ' + ((((s as any).katjaQW ?? 0)?.['know_katja_uni'] === 0  &&  (((s as any).start_type ?? 0)?.['loc'] !== 'sg'  &&  ((s as any).start_type ?? 0)?.['magic'] === 'tg')) ? ('a cute redheaded girl') : ('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027katja_uni\u0027, \u0027library\u0027); return false;">Katja</a>')) + ' sitting at one of the desks with a laptop and a pile of books.');
   }
   if (((s as any).locat ?? 0)?.['A144'] === 12) {
-    scene.text('You see your former classmate <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027uni_library/u0027, /u0027anushka/u0027); return false;">Anushka</a> sitting at one of the tables studying some books.');
+    scene.text('You see your former classmate <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027uni_library\u0027, \u0027anushka\u0027); return false;">Anushka</a> sitting at one of the tables studying some books.');
   }
   if (((s as any).locat ?? 0)?.['A23'] === 15) {
-    // TODO-QSP: dynamic text: 'You see '+iif(AlbinaQW['know_albina_uni'] = 0 and ($start_type['loc'] ! 'sg' an...
-    scene.text('You see ' + ((((s as any).AlbinaQW ?? 0)?.['know_albina_uni'] === 0  &&  (((s as any).start_type ?? 0)?.['loc'] !== 'sg'  &&  ((s as any).start_type ?? 0)?.['magic'] === 'tg')) ? ('an attractive looking brunette') : ('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027uni_library/u0027, /u0027albina/u0027); return false;">Albina</a>')) + ' searching the shelves for books.');
+    scene.text('You see ' + ((((s as any).AlbinaQW ?? 0)?.['know_albina_uni'] === 0  &&  (((s as any).start_type ?? 0)?.['loc'] !== 'sg'  &&  ((s as any).start_type ?? 0)?.['magic'] === 'tg')) ? ('an attractive looking brunette') : ('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027uni_library\u0027, \u0027albina\u0027); return false;">Albina</a>')) + ' searching the shelves for books.');
   }
   if (((s as any).week ?? 0) <= 4  &&  ((s as any).hour ?? 0) >= 15  &&  ((s as any).hour ?? 0) < 17) {
     if (((s as any).meet_kendra ?? 0) === 1) {
-      scene.text('You see <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027uni_library/u0027, /u0027kendra/u0027); return false;">Kendra</a> sitting at one of the tables studying some books.');
+      scene.text('You see <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027uni_library\u0027, \u0027kendra\u0027); return false;">Kendra</a> sitting at one of the tables studying some books.');
     } else {
-      scene.text('You see a pretty ebony <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027uni_library/u0027, /u0027kendra/u0027); return false;">girl</a> sitting at one of the tables studying some books.');
+      scene.text('You see a pretty ebony <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027uni_library\u0027, \u0027kendra\u0027); return false;">girl</a> sitting at one of the tables studying some books.');
     }
   }
   if (((s as any).yearstart ?? 0) > 1  &&  ((s as any).week ?? 0) <= 5  &&  ((s as any).hour ?? 0) >= 15  &&  ((s as any).hour ?? 0) < 17) {
-    scene.text('You see your former classmate <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027uni_library/u0027, /u0027artem/u0027); return false;">Artem</a> sitting at one of the tables studying some books.');
+    scene.text('You see your former classmate <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027uni_library\u0027, \u0027artem\u0027); return false;">Artem</a> sitting at one of the tables studying some books.');
   }
   if (((s as any).start_type ?? 0)?.['loc'] === 'sg'  &&  ((s as any).yearstart ?? 0) > 1  &&  ((s as any).week ?? 0) > 5  &&  ((s as any).hour ?? 0) >= 12  &&  ((s as any).hour ?? 0) < 14) {
     if (((s as any).nataliaQW ?? 0)?.['library_day_check'] !== ((s as any).daystart ?? 0)) {
@@ -117,7 +112,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       }
     }
     if (((s as any).nataliaQW ?? 0)?.['library_day'] === ((s as any).daystart ?? 0)) {
-      scene.text('You see your former classmate <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027natalia_pavlova/u0027, /u0027library/u0027); return false;">Natalia Pavlova</a>.');
+      scene.text('You see your former classmate <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027natalia_pavlova\u0027, \u0027library\u0027); return false;">Natalia Pavlova</a>.');
     }
   }
   if ((((s as any).week ?? 0) >= 6  &&  ((s as any).hour ?? 0) === 23)  ||  ((s as any).hour ?? 0) < 8) {
@@ -134,7 +129,6 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       { label: 'Study', goto: ['uni_library', 'study'] },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Read a book', goto: ['uni_library', 'read'] },
     { label: 'Borrow a book', goto: ['uni_library', 'loan'] },
@@ -151,37 +145,33 @@ function enterStudy(s: GameState, scene: SceneBuilder): void {
   (s as any).sexloc = 'uni_library';
   qspCall(s, 'stat', '');
   scene.text('<center><b>The University Library</b></center>');
-  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/city/island/university/library...
   scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/city/island/university/library/study` + (Math.floor(Math.random() * 7) + 1) + '.jpg"></center>');
   scene.text('You spend some time collecting some books on your subjects and grab one of the library\'s laptops before finding a quiet place to sit.');
   if (((s as any).university ?? 0)?.['semester_week'] > 0) {
     (s as any).i = 0;
-    // TODO-QSP: :study_loop
-    if (((s as any).class_list_institution ?? 0)?.[String((s as any).i ?? 0)] === 'uni_' + (((s as any).university ?? 0)?.['enrolled_in']) + '_semester_' + (((s as any).university ?? 0)?.['enrolled_in_semester'])) {
-      if (((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).i ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).i ?? 0)]) + '_optional_weekly_grade_gain'] < ((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).i ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).i ?? 0)]) + '_optional_weekly_max']) {
-        // TODO-QSP: dynamic '  act ''Study for your <<$class_list_name[i]>> class (30 minutes)'': gt ''uni_library'', ''...
-      } else {
-        // TODO-QSP: dynamic text: You don''t need to study any more this week for your <<$class_list_name[i]>> cla...
-        scene.text(`You don't need to study any more this week for your ${(((s as any).class_list_name ?? 0)?.[String((s as any).i ?? 0)] ?? '')} class.`);
-      }
-    }
-    (s as any).i = ((s as any).i ?? 0) + (1);
-    if (((s as any).i ?? 0) < Object.keys((s as any).class_list_institution ?? {}).length) {
-      // TODO-QSP: jump 'study_loop'
-    }
-  } else {
-    if (((s as any).university ?? 0)?.['exam_week'] > 0) {
-      (s as any).i = 0;
-      // TODO-QSP: :exam_loop
+    do {
       if (((s as any).class_list_institution ?? 0)?.[String((s as any).i ?? 0)] === 'uni_' + (((s as any).university ?? 0)?.['enrolled_in']) + '_semester_' + (((s as any).university ?? 0)?.['enrolled_in_semester'])) {
-        if (qspFunc(s, 'uni_programs', 'exam', 'is_over', (((s as any).class_list_name ?? 0)?.[String((s as any).i ?? 0)] ?? 0)) === 0) {
-          // TODO-QSP: dynamic '  act ''Study intensely for your <<$class_list_name[i]>> exam (30 minutes)'': gt ''uni_libr...
+        if (((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).i ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).i ?? 0)]) + '_optional_weekly_grade_gain'] < ((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).i ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).i ?? 0)]) + '_optional_weekly_max']) {
+          // TODO-QSP: dynamic '  act ''Study for your <<$class_list_name[i]>> class (30 minutes)'': gt ''uni_library'', ''...
+        } else {
+          scene.text(`You don't need to study any more this week for your ${(((s as any).class_list_name ?? 0)?.[String((s as any).i ?? 0)] ?? '')} class.`);
         }
       }
       (s as any).i = ((s as any).i ?? 0) + (1);
-      if (((s as any).i ?? 0) < Object.keys((s as any).class_list_institution ?? {}).length) {
-        // TODO-QSP: jump 'exam_loop'
-      }
+      (s as any).i = undefined;
+    } while (((s as any).i ?? 0) < Object.keys((s as any).class_list_institution ?? {}).length);
+  } else {
+    if (((s as any).university ?? 0)?.['exam_week'] > 0) {
+      (s as any).i = 0;
+      do {
+        if (((s as any).class_list_institution ?? 0)?.[String((s as any).i ?? 0)] === 'uni_' + (((s as any).university ?? 0)?.['enrolled_in']) + '_semester_' + (((s as any).university ?? 0)?.['enrolled_in_semester'])) {
+          if (qspFunc(s, 'uni_programs', 'exam', 'is_over', (((s as any).class_list_name ?? 0)?.[String((s as any).i ?? 0)] ?? 0)) === 0) {
+            // TODO-QSP: dynamic '  act ''Study intensely for your <<$class_list_name[i]>> exam (30 minutes)'': gt ''uni_libr...
+          }
+        }
+        (s as any).i = ((s as any).i ?? 0) + (1);
+        (s as any).i = undefined;
+      } while (((s as any).i ?? 0) < Object.keys((s as any).class_list_institution ?? {}).length);
     }
   }
   if ((((s as any).week ?? 0) >= 6  &&  ((s as any).hour ?? 0) === 23)  ||  ((s as any).hour ?? 0) < 8) {
@@ -193,7 +183,6 @@ function enterStudy(s: GameState, scene: SceneBuilder): void {
 ]);
     return;
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Wander around', goto: ['uni_library', 'wander'] },
     { label: 'Return to the entrance', handler: (st: GameState) => {
@@ -211,9 +200,7 @@ function enterStudying(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'grades', 'optional_activity_attribute', '' + ((s as any).locArgs?.[1] ?? 0) + '', '' + ((s as any).locArgs?.[2] ?? 0) + '', 'yes', Math.min(((s as any).pcs_intel ?? 0)+10, 100));
   qspCall(s, 'stat', '');
   scene.text('<center><b>The University Library</b></center>');
-  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/city/island/university/library...
   scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/city/island/university/library/study` + (Math.floor(Math.random() * 7) + 1) + '.jpg"></center>');
-  // TODO-QSP: dynamic text: You open the books and start studying for your <<$ARGS[2]>> class. The library i...
   scene.text(`You open the books and start studying for your ${((s as any).locArgs?.[2] ?? '')} class. The library is mostly quiet, but you hear occasional noises, some of them hard to make out and some of them fairly suspicious. Despite this, it is a good environment to study in and you can see a number of other students studying as well.`);
   if ((0 as any) < (0 as any)) {
     scene.text('You study for half an hour and can tell that you will need to study more if you want to completely understand this week\'s material.');
@@ -229,7 +216,6 @@ function enterStudying(s: GameState, scene: SceneBuilder): void {
 ]);
     return;
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Keep studying', goto: ['uni_library', 'study'] },
     { label: 'Wander around', goto: ['uni_library', 'wander'] },
@@ -245,12 +231,10 @@ function enterStudying(s: GameState, scene: SceneBuilder): void {
 
 function enterStudyingExam(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>The University Library</b></center>');
-  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/city/island/university/library...
   scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/city/island/university/library/study` + (Math.floor(Math.random() * 7) + 1) + '.jpg"></center>');
   qspCall(s, 'exp_gain', 'intel', (Math.floor(Math.random() * 2) + 0));
   qspCall(s, 'mood', 'raise', ((((s as any).trait_vars ?? {})?.['academic'] ?? 0)*5 -10));
   (s as any).minut = ((s as any).minut ?? 0) + 30;
-  // TODO-QSP: dynamic text: You open the books and start studying for your <<$ARGS[2]>> exam. The library is...
   scene.text(`You open the books and start studying for your ${((s as any).locArgs?.[2] ?? '')} exam. The library is mostly quiet, but you hear occasional noises, some of them hard to make out and some of them fairly suspicious. Despite this, it's a good environment to study in and you can see a number of other students studying as well.`);
   if (((s as any).pcs_sleep ?? 0) < 5) {
     (s as any).no_study = 1;
@@ -281,7 +265,6 @@ function enterStudyingExam(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: If pcs_mood < 50:
   (s as any).study_mod = ((s as any).study_mod ?? 0) - (20);
   scene.text('You\'re in a bad mood and it clearly affects your studying.');
-  // TODO-QSP: end
   if (((s as any).drugVars ?? 0)?.['heroin_high'] > 0  ||  ((s as any).drugVars ?? 0)?.['weed_high'] > 0) {
     (s as any).study_mod = ((s as any).study_mod ?? 0) - (40);
     scene.text('You\'re stoned, which makes it hard to concentrate on studying.');
@@ -341,11 +324,12 @@ function enterStudyingExam(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'grades', 'grade_award', '' + ((s as any).locArgs?.[1] ?? 0) + '', '' + ((s as any).locArgs?.[2] ?? 0) + '', ((s as any).study_mod ?? 0));
   }
   qspCall(s, 'stat', '');
+  (s as any).study_mod = undefined;
+  (s as any).nod_study = undefined;
   if ((((s as any).week ?? 0) >= 6  &&  ((s as any).hour ?? 0) === 23)  ||  ((s as any).hour ?? 0) < 8) {
     scene.text('The library is closing for the night.');
     return;
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -444,7 +428,6 @@ function enterWander(s: GameState, scene: SceneBuilder): void {
     scene.text('The library is closing for the night.');
     return;
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -466,7 +449,6 @@ function enterRead(s: GameState, scene: SceneBuilder): void {
     return;
   }
   qspCall(s, 'library_functions', 'set_library_read_acts');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -485,7 +467,6 @@ function enterLoan(s: GameState, scene: SceneBuilder): void {
     return;
   }
   qspCall(s, 'library_functions', 'set_loan_acts');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -542,7 +523,6 @@ function enterKendra(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).pcs_hotcat ?? 0) >= 5) {
       (s as any).meet_kendra = 1;
-      // TODO-QSP: dynamic text: There''s something about this ebony girl that intrigues you, so you decide to si...
       scene.text(`There's something about this ebony girl that intrigues you, so you decide to sit next to her. "Hi, I'm ${((s as any).pcs_nickname ?? '')}."`);
       scene.text('She eyes you like a pair of shoes she might buy. "I\'m Kendra, but you can call me Mistress," she replies in an exotic accent. "If you like, I can train you to become one of my slaves."');
       scene.text('You\'re taken aback by her comment. "Slaves?"');
@@ -554,7 +534,6 @@ function enterKendra(s: GameState, scene: SceneBuilder): void {
   }, goto: ['uni_library', 'start'] },
       ]);
     } else {
-      // TODO-QSP: dynamic text: There''s something about this ebony girl that intrigues you, so you decide to si...
       scene.text(`There's something about this ebony girl that intrigues you, so you decide to sit next to her. "Hi, I'm ${((s as any).pcs_nickname ?? '')}."`);
       scene.text('"No. Not interested. Maybe if you do something about all of… \'this\', you can try again." Her hand indicates your entire person with languid disinterest.');
       scene.text('You\'re taken aback by her comment. "What?"');
@@ -567,7 +546,6 @@ function enterKendra(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -595,7 +573,6 @@ function enterArtem(s: GameState, scene: SceneBuilder): void {
       scene.text('You sigh and get up and move away.');
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave him be', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 2;
@@ -630,7 +607,6 @@ function enterAnushka(s: GameState, scene: SceneBuilder): void {
       scene.text('You sigh and get up and move away.');
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave her be', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 2;
@@ -647,14 +623,12 @@ function enterAlbina(s: GameState, scene: SceneBuilder): void {
   scene.text('You approach her as she continues searching the shelves.');
   if ((((s as any).start_type ?? 0) === 'city_tg'  ||  ((s as any).start_type ?? 0) === 'uni_tg')  &&  ((s as any).npc_rel ?? 0)?.['A23'] < 60) {
     scene.text('You can\'t help but stare at her ass as she reaches for a book, showing off her well toned physique.');
-    // TODO-QSP: dynamic text: "You always were an awkward loser back in school, but you''re being extra weird ...
     scene.text(`"You always were an awkward loser back in school, but you're being extra weird right now, ${((s as any).pcs_nickname ?? '')}…"`);
     scene.text('"Uhh.. What?" you mumble as you\'re brought back to your senses.');
     scene.text('Albina rolls her eyes. "Put your tongue back in and stop drooling at my ass like some pervy loser!"');
     scene.text('You just mumble an apology as she barges past you and heads round the corner out of view.');
   } else {
     if (((s as any).npc_rel ?? 0)?.['A23'] >= 60  ||  ((s as any).AlbinaQW ?? 0)?.['Friends'] === 2) {
-      // TODO-QSP: dynamic text: "Hey <<$pcs_nickname>>," she says with a smile when she sees you.
       scene.text(`"Hey ${((s as any).pcs_nickname ?? '')}," she says with a smile when she sees you.`);
       scene.text('"What\'s up?" you ask.');
       scene.text('"Just grabbing some books to take back to my room," she replies.');
@@ -686,6 +660,8 @@ function enterAlbina(s: GameState, scene: SceneBuilder): void {
           scene.text('She pulls her phone out. "Here\'s my number so we can text each other."');
           scene.text('You add each other\'s numbers to your phones before you say goodbye and she walks away.');
         }
+        (s as any).temp_index = undefined;
+        (s as any).temp_showtext = undefined;
       }
     } else {
       if (((s as any).fame ?? 0)?.['city_slut'] > 250  ||  ((s as any).fame ?? 0)?.['pav_slut'] > 250) {
@@ -703,7 +679,6 @@ function enterAlbina(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['uni_library', 'start'] },
   ]);

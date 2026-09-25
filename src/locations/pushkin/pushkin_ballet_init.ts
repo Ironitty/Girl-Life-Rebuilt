@@ -14,14 +14,13 @@ function enterCheckForInit(s: GameState, scene: SceneBuilder): void {
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterStart(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterInit(s: GameState, scene: SceneBuilder): void {
   if (((s as any).start_type ?? 0)?.['cat'] === 'dancer') {
     if (((s as any).loc ?? 0) === 'pushkin_sq') {
-      scene.text('Just off Okhlopkov Square you see the road that leads to the ballet schools <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027pushkin_ballet_center/u0027, /u0027start/u0027); return false;">residential block</a>.');
+      scene.text('Just off Okhlopkov Square you see the road that leads to the ballet schools <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027pushkin_ballet_center\u0027, \u0027start\u0027); return false;">residential block</a>.');
       scene.actions([
         { label: 'Walk to the residential block', goto: ['pushkin_ballet_center', 'start'] },
       ]);
@@ -39,9 +38,9 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
     if (((s as any).daystart ?? 0) > 188  &&  ((s as any).loc ?? 0) === 'bedrPar'  &&  ((s as any).balletqw ?? 0)?.['letter'] === 1) {
       qspCall(s, 'array', 'remove_element', 'balletqw', 'blocker');
       qspCall(s, 'array', 'remove_element', 'balletqw', 'letter');
+      alert('You\'ve missed your ballet school start date, maybe there will be other opportunities in future.');
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -58,7 +57,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -83,7 +81,6 @@ function enterOutsideEvents(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -95,14 +92,12 @@ function enterExercisePain(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'pain', '', (Math.floor(Math.random() * 3) + 1), 'armR', 'stretch');
   qspCall(s, 'pain', '', (Math.floor(Math.random() * 3) + 1), 'back', 'stretch');
   qspCall(s, 'pain', '', (Math.floor(Math.random() * 3) + 1), 'chest', 'stretch');
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterReputation(s: GameState, scene: SceneBuilder): void {
   if (((s as any).fame ?? 0)?.['pav_modelling'] >= 10  ||  ((s as any).fame ?? 0)?.['pav_slut'] > 9  ||  ((s as any).fame ?? 0)?.['city_prostitute'] > 0  ||  ((s as any).fame ?? 0)?.['ciy_sexind'] > 0  ||  ((s as any).fame ?? 0)?.['city_modelling'] >= 10  ||  ((s as any).fame ?? 0)?.['city_slut'] > 30  ||  ((s as any).fame ?? 0)?.['city_prostitute'] > 19  ||  ((s as any).fame ?? 0)?.['city_sexind'] > 19  ||  ((s as any).fame ?? 0)?.['pushkin_modelling'] >= 10  ||  ((s as any).fame ?? 0)?.['pushkin_slut'] > 0  ||  ((s as any).fame ?? 0)?.['pushkin_sex'] > 0  ||  ((s as any).fame ?? 0)?.['pushkin_prostitute'] > 0  ||  ((s as any).fame ?? 0)?.['pushkin_sexind'] > 0) {
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -228,13 +223,11 @@ function enterDailyAssessment(s: GameState, scene: SceneBuilder): void {
     qspCall(s, '$loc', 'cleanup_var');
     ((s as any).balletqw = (s as any).balletqw ?? {})['letter'] = 1;
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterFamemodifier(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'fame', 'pushkin', 'ballet', 'small', 'local');
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -248,8 +241,26 @@ function enterCleanupVar(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'array', 'remove_element', 'balletqw', 'performances');
     qspCall(s, 'array', 'remove_element', 'balletqw', 'rank');
   }
+  (s as any).ballet_awol = undefined;
+  (s as any).school_running_tally = undefined;
+  (s as any).sharedmeal = undefined;
+  (s as any).study_tally = undefined;
+  (s as any).school_prep = undefined;
+  (s as any).ballet_day = undefined;
+  (s as any).ballet_first_bedroom = undefined;
+  (s as any).feet_track = undefined;
+  (s as any).homework_active = undefined;
+  (s as any).debug_day = undefined;
+  (s as any).total_daily = undefined;
+  (s as any).ballet_grade_attendance = undefined;
+  (s as any).ballet_grade_mua = undefined;
+  (s as any).ballet_grade_braids = undefined;
+  (s as any).ballet_grade_shave = undefined;
+  (s as any).ballet_grade_uniform = undefined;
+  (s as any).ballet_grade_health = undefined;
+  (s as any).ballet_class_debug = undefined;
+  (s as any).letter_delay = undefined;
   qspCall(s, 'array', 'remove_element', 'balletqw', 'daystart');
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -265,6 +276,7 @@ function enterDebugMenu(s: GameState, scene: SceneBuilder): void {
       { label: 'Clear logs', handler: (st: GameState) => {
     scene.actions([
       { label: '<font color = "red">Are you sure?</font>', handler: (st: GameState) => {
+    (st as any).ballet_log = undefined;
     scene.text('<font color = "green">---- Log Cleared ---- </font>');
     scene.actions([
       { label: 'Back', handler: (st: GameState) => {
@@ -278,7 +290,7 @@ function enterDebugMenu(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Close Debug Menu', handler: (st: GameState) => {
-    // TODO-QSP: $debug_menu = ''
+    (st as any).debug_menu = '';
     dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
@@ -290,70 +302,68 @@ function enterDebugMenu(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterScoreDebug(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: $ballet_log[] = '<h3>School Grading</h3>'
+  (s as any).ballet_log = [...((s as any).ballet_log ?? []), '<h3>School Grading</h3>'];
   (s as any).debug_day = 1;
-  // TODO-QSP: :jmp_debug_score
-  (s as any).total_daily = (((s as any).ballet_daily_score ?? 0)?.[String((s as any).debug_day ?? 0)] ?? 0) + (((s as any).ballet_homework ?? 0)?.[String((s as any).debug_day ?? 0)] ?? 0);
-  // TODO-QSP: $ballet_log[] = '<b>Day: <<debug_day>></b>'
-  // TODO-QSP: $ballet_log[] = 'Make-up Score: <<ballet_grade_mua[debug_day]>>'
-  // TODO-QSP: $ballet_log[] = 'Appearance - hair: <<ballet_grade_braids[debug_day]>>'
-  // TODO-QSP: $ballet_log[] = 'Appearance - shave: <<ballet_grade_shave[debug_day]>>'
-  // TODO-QSP: $ballet_log[] = 'Appearance - uniform: <<ballet_grade_uniform[debug_day]>>'
-  // TODO-QSP: $ballet_log[] = 'Rules and Discipline: <<ballet_grade_discipline[debug_day]>>'
-  // TODO-QSP: $ballet_log[] = 'Health: <<ballet_grade_discipline[''feetcare'']>>'
-  // TODO-QSP: $ballet_log[] = 'Homework: <<ballet_homework[debug_day]>>'
-  // TODO-QSP: $ballet_log[] = 'Attendance: <<ballet_grade_attendance[debug_day]>>'
-  // TODO-QSP: $ballet_log[] = 'Total Day Score: <<total_daily>>'
-  // TODO-QSP: $ballet_log[] = '<b>- - - Day <<debug_day>> End - - -</b>'
-  (s as any).debug_day = ((s as any).debug_day ?? 0) + (1);
-  if (((s as any).debug_day ?? 0) <= 5) {
-    // TODO-QSP: jump 'jmp_debug_score'
-  }
-  // TODO-QSP: $ballet_log[] = 'Cumulative daily score: <<ballet_grade_score[''class'']>>'
-  // TODO-QSP: $ballet_log[] = 'Cumulative homework score: <<ballet_grade_score[''homework'']>>'
-  // TODO-QSP: $ballet_log[] = 'Passmark: ' + 100 * (ballet_grade_score['class'] + ballet_grade_score['homework']) ...
-  // TODO-QSP: end
+  do {
+    (s as any).total_daily = (((s as any).ballet_daily_score ?? 0)?.[String((s as any).debug_day ?? 0)] ?? 0) + (((s as any).ballet_homework ?? 0)?.[String((s as any).debug_day ?? 0)] ?? 0);
+    (s as any).ballet_log = [...((s as any).ballet_log ?? []), '<b>Day: ' + ((s as any).debug_day ?? 0) + '</b>'];
+    (s as any).ballet_log = [...((s as any).ballet_log ?? []), 'Make-up Score: ' + (((s as any).ballet_grade_mua ?? 0)?.[String((s as any).debug_day ?? 0)] ?? 0) + ''];
+    (s as any).ballet_log = [...((s as any).ballet_log ?? []), 'Appearance - hair: ' + (((s as any).ballet_grade_braids ?? 0)?.[String((s as any).debug_day ?? 0)] ?? 0) + ''];
+    (s as any).ballet_log = [...((s as any).ballet_log ?? []), 'Appearance - shave: ' + (((s as any).ballet_grade_shave ?? 0)?.[String((s as any).debug_day ?? 0)] ?? 0) + ''];
+    (s as any).ballet_log = [...((s as any).ballet_log ?? []), 'Appearance - uniform: ' + (((s as any).ballet_grade_uniform ?? 0)?.[String((s as any).debug_day ?? 0)] ?? 0) + ''];
+    (s as any).ballet_log = [...((s as any).ballet_log ?? []), 'Rules and Discipline: ' + (((s as any).ballet_grade_discipline ?? 0)?.[String((s as any).debug_day ?? 0)] ?? 0) + ''];
+    (s as any).ballet_log = [...((s as any).ballet_log ?? []), 'Health: ' + (((s as any).ballet_grade_discipline ?? 0)?.['feetcare']) + ''];
+    (s as any).ballet_log = [...((s as any).ballet_log ?? []), 'Homework: ' + (((s as any).ballet_homework ?? 0)?.[String((s as any).debug_day ?? 0)] ?? 0) + ''];
+    (s as any).ballet_log = [...((s as any).ballet_log ?? []), 'Attendance: ' + (((s as any).ballet_grade_attendance ?? 0)?.[String((s as any).debug_day ?? 0)] ?? 0) + ''];
+    (s as any).ballet_log = [...((s as any).ballet_log ?? []), 'Total Day Score: ' + ((s as any).total_daily ?? 0) + ''];
+    (s as any).ballet_log = [...((s as any).ballet_log ?? []), '<b>- - - Day ' + ((s as any).debug_day ?? 0) + ' End - - -</b>'];
+    (s as any).debug_day = ((s as any).debug_day ?? 0) + (1);
+    (s as any).ballet_log = [...((s as any).ballet_log ?? []), 'Cumulative daily score: ' + (((s as any).ballet_grade_score ?? 0)?.['class']) + ''];
+    (s as any).ballet_log = [...((s as any).ballet_log ?? []), 'Cumulative homework score: ' + (((s as any).ballet_grade_score ?? 0)?.['homework']) + ''];
+    (s as any).ballet_log = [...((s as any).ballet_log ?? []), 'Passmark: ' + 100 * ((((s as any).ballet_grade_score ?? {})?.['class'] ?? 0) + (((s as any).ballet_grade_score ?? {})?.['homework'] ?? 0)) / 210];
+    (s as any).debug_day = undefined;
+    (s as any).total_daily = undefined;
+  } while (((s as any).debug_day ?? 0) <= 5);
   scene.build();
 }
 
 function enterDebugVars(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: $ballet_log[] = '<center><h2>Ballet - Variables</h2></center>'
-  // TODO-QSP: $ballet_log[] = '<h3>General</h3>'
-  // TODO-QSP: $ballet_log[] = 'balletqw[blocker]: ' + balletqw['blocker']
-  // TODO-QSP: $ballet_log[] = 'balletqw[letter]: ' + balletqw['letter']
-  // TODO-QSP: $ballet_log[] = 'Starlets Status: ' + AlbinaQW['StarletsJoined']
-  // TODO-QSP: $ballet_log[] = 'ballet[hypno]: ' + ballet['hypno']
-  // TODO-QSP: $ballet_log[] = 'ballet_day tracker: ' + ballet_day
-  // TODO-QSP: $ballet_log[] = 'birthday_party[events]: ' + birthday_party['events']
-  // TODO-QSP: $ballet_log[] = '<h3>Relationships</h3>'
-  // TODO-QSP: $ballet_log[] = '<h4><<$npc_firstname[''A274'']>> <<$npc_lastname[''A274'']>> - A274</h4>'
-  // TODO-QSP: $ballet_log[] = 'Relationship: ' + npc_rel['A274']
-  // TODO-QSP: $ballet_log[] = 'mayaqw[trust]: ' + mayaqw['trust']
-  // TODO-QSP: $ballet_log[] = 'mayaqw[grave]: ' + mayaqw['grave']
-  // TODO-QSP: $ballet_log[] = 'mayaqw[piano]: ' + mayaqw['piano']
-  // TODO-QSP: $ballet_log[] = 'mayaqw[path]: ' + mayaqw['path']
-  // TODO-QSP: $ballet_log[] = '<h4><<$npc_firstname[''A280'']>> <<$npc_lastname[''A280'']>> - A280</h4>'
-  // TODO-QSP: $ballet_log[] = 'Relationship: ' + npc_rel['A280']
-  // TODO-QSP: $ballet_log[] = 'gashaqw[trust]: ' + gashaqw['trust']
-  // TODO-QSP: $ballet_log[] = '<h4><<$npc_firstname[''A283'']>> <<$npc_lastname[''A283'']>> - A283</h4>'
-  // TODO-QSP: $ballet_log[] = 'Relationship: ' + npc_rel['A283']
-  // TODO-QSP: $ballet_log[] = 'rudolphqw[trust]: ' + rudolphqw['trust']
-  // TODO-QSP: $ballet_log[] = 'rudolphqw[stage]: ' + rudolphqw['stage']
-  // TODO-QSP: $ballet_log[] = 'rudolphqw[corruption]: ' + rudolphqw['corruption']
-  // TODO-QSP: $ballet_log[] = 'rudolphqw[stage]: ' + rudolphqw['stage']
-  // TODO-QSP: $ballet_log[] = '<h3>School</h3>'
-  // TODO-QSP: $ballet_log[] = 'balletqw[school]: ' + balletqw['school']
-  // TODO-QSP: $ballet_log[] = 'balletqw[rank]: ' + balletqw['rank']
-  // TODO-QSP: $ballet_log[] = 'balletqw[performances]: ' + balletqw['performances']
+  (s as any).ballet_log = [...((s as any).ballet_log ?? []), '<center><h2>Ballet - Variables</h2></center>'];
+  (s as any).ballet_log = [...((s as any).ballet_log ?? []), '<h3>General</h3>'];
+  (s as any).ballet_log = [...((s as any).ballet_log ?? []), 'balletqw[blocker]: ' + (((s as any).balletqw ?? 0)?.['blocker'])];
+  (s as any).ballet_log = [...((s as any).ballet_log ?? []), 'balletqw[letter]: ' + (((s as any).balletqw ?? 0)?.['letter'])];
+  (s as any).ballet_log = [...((s as any).ballet_log ?? []), 'Starlets Status: ' + (((s as any).AlbinaQW ?? 0)?.['StarletsJoined'])];
+  (s as any).ballet_log = [...((s as any).ballet_log ?? []), 'ballet[hypno]: ' + (((s as any).ballet ?? 0)?.['hypno'])];
+  (s as any).ballet_log = [...((s as any).ballet_log ?? []), 'ballet_day tracker: ' + ((s as any).ballet_day ?? 0)];
+  (s as any).ballet_log = [...((s as any).ballet_log ?? []), 'birthday_party[events]: ' + (((s as any).birthday_party ?? 0)?.['events'])];
+  (s as any).ballet_log = [...((s as any).ballet_log ?? []), '<h3>Relationships</h3>'];
+  (s as any).ballet_log = [...((s as any).ballet_log ?? []), '<h4>' + (((s as any).npc_firstname ?? 0)?.['A274']) + ' ' + (((s as any).npc_lastname ?? 0)?.['A274']) + ' - A274</h4>'];
+  (s as any).ballet_log = [...((s as any).ballet_log ?? []), 'Relationship: ' + (((s as any).npc_rel ?? 0)?.['A274'])];
+  (s as any).ballet_log = [...((s as any).ballet_log ?? []), 'mayaqw[trust]: ' + (((s as any).mayaqw ?? 0)?.['trust'])];
+  (s as any).ballet_log = [...((s as any).ballet_log ?? []), 'mayaqw[grave]: ' + (((s as any).mayaqw ?? 0)?.['grave'])];
+  (s as any).ballet_log = [...((s as any).ballet_log ?? []), 'mayaqw[piano]: ' + (((s as any).mayaqw ?? 0)?.['piano'])];
+  (s as any).ballet_log = [...((s as any).ballet_log ?? []), 'mayaqw[path]: ' + (((s as any).mayaqw ?? 0)?.['path'])];
+  (s as any).ballet_log = [...((s as any).ballet_log ?? []), '<h4>' + (((s as any).npc_firstname ?? 0)?.['A280']) + ' ' + (((s as any).npc_lastname ?? 0)?.['A280']) + ' - A280</h4>'];
+  (s as any).ballet_log = [...((s as any).ballet_log ?? []), 'Relationship: ' + (((s as any).npc_rel ?? 0)?.['A280'])];
+  (s as any).ballet_log = [...((s as any).ballet_log ?? []), 'gashaqw[trust]: ' + (((s as any).gashaqw ?? 0)?.['trust'])];
+  (s as any).ballet_log = [...((s as any).ballet_log ?? []), '<h4>' + (((s as any).npc_firstname ?? 0)?.['A283']) + ' ' + (((s as any).npc_lastname ?? 0)?.['A283']) + ' - A283</h4>'];
+  (s as any).ballet_log = [...((s as any).ballet_log ?? []), 'Relationship: ' + (((s as any).npc_rel ?? 0)?.['A283'])];
+  (s as any).ballet_log = [...((s as any).ballet_log ?? []), 'rudolphqw[trust]: ' + (((s as any).rudolphqw ?? 0)?.['trust'])];
+  (s as any).ballet_log = [...((s as any).ballet_log ?? []), 'rudolphqw[stage]: ' + (((s as any).rudolphqw ?? 0)?.['stage'])];
+  (s as any).ballet_log = [...((s as any).ballet_log ?? []), 'rudolphqw[corruption]: ' + (((s as any).rudolphqw ?? 0)?.['corruption'])];
+  (s as any).ballet_log = [...((s as any).ballet_log ?? []), 'rudolphqw[stage]: ' + (((s as any).rudolphqw ?? 0)?.['stage'])];
+  (s as any).ballet_log = [...((s as any).ballet_log ?? []), '<h3>School</h3>'];
+  (s as any).ballet_log = [...((s as any).ballet_log ?? []), 'balletqw[school]: ' + (((s as any).balletqw ?? 0)?.['school'])];
+  (s as any).ballet_log = [...((s as any).ballet_log ?? []), 'balletqw[rank]: ' + (((s as any).balletqw ?? 0)?.['rank'])];
+  (s as any).ballet_log = [...((s as any).ballet_log ?? []), 'balletqw[performances]: ' + (((s as any).balletqw ?? 0)?.['performances'])];
   if (((s as any).ballet_day ?? 0) > 0  &&  ((s as any).balletqw ?? 0)?.['school'] === 0) {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterScoreDebug(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
-  // TODO-QSP: end
+  alert('---- Variables dumped to log ----');
   scene.build();
 }
 
@@ -361,21 +371,17 @@ function enterBalletDebug(s: GameState, scene: SceneBuilder): void {
   if (Object.keys((s as any).ballet_log ?? {}).length > 0) {
     (s as any).i = 0;
     scene.text('---- Ballet Debug Log ----');
-    // TODO-QSP: dynamic text: Date: <<daystart>> - <<year>>, <<month>>, <<day>>
     scene.text(`Date: ${((s as any).daystart ?? '')} - ${((s as any).year ?? '')}, ${((s as any).month ?? '')}, ${((s as any).day ?? '')}`);
-    // TODO-QSP: dynamic text: Girl Life version: <<version_major+"."+version_minor+"."+version_revision+"."+ve...
     scene.text(`Girl Life version: ${((s as any).version_major ?? '') + '.' + ((s as any).version_minor ?? '') + '.' + ((s as any).version_revision ?? '') + '.' + ((s as any).version_patch ?? '') + ((((s as any).git_hash ?? 0) !== "") ? ('<br>' + ((s as any).git_hash ?? '') + ' (dev build)') : (''))}`);
-    // TODO-QSP: :debug_ballet_loop
-    // TODO-QSP: 'Entry <<i>>: ' + $ballet_log[i]
-    (s as any).i = ((s as any).i ?? 0) + (1);
-    if (((s as any).i ?? 0) < Object.keys((s as any).ballet_log ?? {}).length) {
-      // TODO-QSP: jump 'debug_ballet_loop'
-    }
+    do {
+      scene.text(`Entry ${((s as any).i ?? '')}: ` + (((s as any).ballet_log ?? 0)?.[String((s as any).i ?? 0)] ?? ''));
+      (s as any).i = ((s as any).i ?? 0) + (1);
+    } while (((s as any).i ?? 0) < Object.keys((s as any).ballet_log ?? {}).length);
   } else {
     scene.text('No debug messages');
   }
   scene.text('<b><center>---- End of Log ----</center></b>');
-  // TODO-QSP: end
+  (s as any).i = undefined;
   scene.actions([
     { label: 'Back', handler: (st: GameState) => {
     dynamicGoto(st, 'prevLoc', 'prevArg');

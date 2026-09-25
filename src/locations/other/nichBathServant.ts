@@ -11,7 +11,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'themes', 'indoors');
   scene.text('<center><b>Servant Bathroom</b></center>');
   scene.img('images/locations/city/citycenter/nichApartment/bathroomServant.jpg');
-  scene.text('This is the servants bathroom. It includes a shower, a toilet and a sink with a <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027start/u0027); return false;">mirror</a>. There is a washing machine standing in one corner of the room.');
+  scene.text('This is the servants bathroom. It includes a shower, a toilet and a sink with a <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027start\u0027); return false;">mirror</a>. There is a washing machine standing in one corner of the room.');
   if (((s as any).nichWork ?? 0) === 2) {
     if (((s as any).mc_inventory ?? 0)?.['shampoo'] === 0) {
       scene.text('Since you are allowed to use some of the families shampoo for yourself you open up a new bottle and place it inside your shower.');
@@ -29,7 +29,6 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'din_van', 'private');
   qspCall(s, 'home_events', 'bathroom');
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -40,7 +39,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'themes', 'indoors');
   scene.text('<center><b>Servant Bathroom</b></center>');
   scene.img('images/locations/city/citycenter/nichApartment/bathroomServant.jpg');
-  scene.text('This is the servants bathroom. It includes a shower, a toilet and a sink with a <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027start/u0027); return false;">mirror</a>. There is a washing machine standing in one corner of the room.');
+  scene.text('This is the servants bathroom. It includes a shower, a toilet and a sink with a <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027start\u0027); return false;">mirror</a>. There is a washing machine standing in one corner of the room.');
   if (((s as any).nichWork ?? 0) === 2) {
     if (((s as any).mc_inventory ?? 0)?.['shampoo'] === 0) {
       scene.text('Since you are allowed to use some of the families shampoo for yourself you open up a new bottle and place it inside your shower.');
@@ -58,7 +57,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'din_van', 'private');
   qspCall(s, 'home_events', 'bathroom');
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -69,7 +67,7 @@ function enterReturn(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'themes', 'indoors');
   scene.text('<center><b>Servant Bathroom</b></center>');
   scene.img('images/locations/city/citycenter/nichApartment/bathroomServant.jpg');
-  scene.text('This is the servants bathroom. It includes a shower, a toilet and a sink with a <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027start/u0027); return false;">mirror</a>. There is a washing machine standing in one corner of the room.');
+  scene.text('This is the servants bathroom. It includes a shower, a toilet and a sink with a <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027start\u0027); return false;">mirror</a>. There is a washing machine standing in one corner of the room.');
   if (((s as any).nichWork ?? 0) === 2) {
     if (((s as any).mc_inventory ?? 0)?.['shampoo'] === 0) {
       scene.text('Since you are allowed to use some of the families shampoo for yourself you open up a new bottle and place it inside your shower.');
@@ -87,7 +85,6 @@ function enterReturn(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'din_van', 'private');
   qspCall(s, 'home_events', 'bathroom');
-  // TODO-QSP: end
   scene.build();
 }
 

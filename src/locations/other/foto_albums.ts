@@ -9,32 +9,30 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterModelPortraits(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: $temp_base_ranking_name[1] = 'Anastasia P.'    &  $temp_base_ranking_link[1] = 'anastasia'
-  // TODO-QSP: $temp_base_ranking_name[2] = 'Katherine A.'    &  $temp_base_ranking_link[2] = 'katherine'
-  // TODO-QSP: $temp_base_ranking_name[3] = 'Emily R.'      &  $temp_base_ranking_link[3] = 'emily'
-  // TODO-QSP: $temp_base_ranking_name[4] = 'Jeff M.'      &  $temp_base_ranking_link[4] = 'jeff'
-  // TODO-QSP: $temp_base_ranking_name[5] = 'Miranda K.'    &  $temp_base_ranking_link[5] = 'miranda'
-  // TODO-QSP: $temp_base_ranking_name[6] = 'Lily I.'      &  $temp_base_ranking_link[6] = 'lily'
-  // TODO-QSP: $temp_base_ranking_name[7] = 'Mila A.'      &  $temp_base_ranking_link[7] = 'mila'
-  // TODO-QSP: $temp_base_ranking_name[8] = 'Mari E.'      &  $temp_base_ranking_link[8] = 'mari'
-  // TODO-QSP: $temp_base_ranking_name[9] = 'Anushka K.'    &  $temp_base_ranking_link[9] = 'anushka'
-  // TODO-QSP: $temp_base_ranking_name[10] = 'Olga K.'      &  $temp_base_ranking_link[10] = 'olga'
+  ((s as any).temp_base_ranking_name = (s as any).temp_base_ranking_name ?? {})[1] = 'Anastasia P.\'    &  $temp_base_ranking_link[1] = \'anastasia';
+  ((s as any).temp_base_ranking_name = (s as any).temp_base_ranking_name ?? {})[2] = 'Katherine A.\'    &  $temp_base_ranking_link[2] = \'katherine';
+  ((s as any).temp_base_ranking_name = (s as any).temp_base_ranking_name ?? {})[3] = 'Emily R.\'      &  $temp_base_ranking_link[3] = \'emily';
+  ((s as any).temp_base_ranking_name = (s as any).temp_base_ranking_name ?? {})[4] = 'Jeff M.\'      &  $temp_base_ranking_link[4] = \'jeff';
+  ((s as any).temp_base_ranking_name = (s as any).temp_base_ranking_name ?? {})[5] = 'Miranda K.\'    &  $temp_base_ranking_link[5] = \'miranda';
+  ((s as any).temp_base_ranking_name = (s as any).temp_base_ranking_name ?? {})[6] = 'Lily I.\'      &  $temp_base_ranking_link[6] = \'lily';
+  ((s as any).temp_base_ranking_name = (s as any).temp_base_ranking_name ?? {})[7] = 'Mila A.\'      &  $temp_base_ranking_link[7] = \'mila';
+  ((s as any).temp_base_ranking_name = (s as any).temp_base_ranking_name ?? {})[8] = 'Mari E.\'      &  $temp_base_ranking_link[8] = \'mari';
+  ((s as any).temp_base_ranking_name = (s as any).temp_base_ranking_name ?? {})[9] = 'Anushka K.\'    &  $temp_base_ranking_link[9] = \'anushka';
+  ((s as any).temp_base_ranking_name = (s as any).temp_base_ranking_name ?? {})[10] = 'Olga K.\'      &  $temp_base_ranking_link[10] = \'olga';
   qspCall(s, 'stat', '');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', (((s as any).model ?? 0)?.['rank'])]; enterSetAlbumText(s, scene); (s as any).locArgs = __savedLocArgs; }
   (s as any).model_i = 1;
-  // TODO-QSP: :model_loop
-  if (((s as any).model ?? 0)?.['rank'] === (11 - ((s as any).model_i ?? 0))) {
-    // TODO-QSP: dynamic text: <a href="exec:gt ''foto_albums'', ''sveta''"><<model_i>>. <<$model[''firstname''...
-    scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027foto_albums/u0027, /u0027sveta/u0027); return false;">${((s as any).model_i ?? '')}. ${(((s as any).model ?? 0)?.['firstname'] ?? '')} ${(String((((s as any).model ?? 0)?.['lastname'] ?? '')).slice((1)-1, ((1)-1)+(1)))}.</a>`);
-  } else {
-    // TODO-QSP: dynamic text: <a href="exec:gt ''foto_albums'', ''<<$temp_base_ranking_link[model_i]>>''"><<mo...
-    scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027foto_albums/u0027, /u0027${(((s as any).temp_base_ranking_link ?? 0)?.[String((s as any).model_i ?? 0)] ?? '')}/u0027); return false;">${((s as any).model_i ?? '')}. ${(((s as any).temp_base_ranking_name ?? 0)?.[String((s as any).model_i ?? 0)] ?? '')}</a>`);
-  }
-  (s as any).model_i = ((s as any).model_i ?? 0) + (1);
-  if (((s as any).model_i ?? 0) < 11) {
-    // TODO-QSP: jump 'model_loop'
-  }
-  // TODO-QSP: end
+  do {
+    if (((s as any).model ?? 0)?.['rank'] === (11 - ((s as any).model_i ?? 0))) {
+      scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027foto_albums/u0027, /u0027sveta/u0027); return false;">${((s as any).model_i ?? '')}. ${(((s as any).model ?? 0)?.['firstname'] ?? '')} ${(String((((s as any).model ?? 0)?.['lastname'] ?? '')).slice((1)-1, ((1)-1)+(1)))}.</a>`);
+    } else {
+      scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027foto_albums/u0027, (((s as any).temp_base_ranking_link ?? 0)?.[String((s as any).model_i ?? 0)] ?? /u0027/u0027)); return false;">${((s as any).model_i ?? '')}. ${(((s as any).temp_base_ranking_name ?? 0)?.[String((s as any).model_i ?? 0)] ?? '')}</a>`);
+    }
+    (s as any).model_i = ((s as any).model_i ?? 0) + (1);
+    (s as any).temp_base_ranking_name = undefined;
+    (s as any).temp_base_ranking_link = undefined;
+    (s as any).model_i = undefined;
+  } while (((s as any).model_i ?? 0) < 11);
   scene.actions([
     { label: 'Move away', goto: ['foto', 'studio'] },
   ]);
@@ -49,7 +47,6 @@ function enterSetAlbumText(s: GameState, scene: SceneBuilder): void {
     if (String((s as any).locArgs?.[1] ?? '') === 1) {
       scene.img('images/locations/city/citycenter/photo/portraits/albums.jpg');
       scene.text('Here is the shelf that has the albums of the top 10 models. You saw it before when you first joined the studio, but something has changed. You read the names from left to right and your heart stops when you see the final name.');
-      // TODO-QSP: dynamic text: "<<$model[''firstname'']>> <<$mid($model[''lastname''], 1, 1)>>."
       scene.text(`"${(((s as any).model ?? 0)?.['firstname'] ?? '')} ${(String((((s as any).model ?? 0)?.['lastname'] ?? '')).slice((1)-1, ((1)-1)+(1)))}."`);
       scene.text('That\'s your name! You\'re one of the top 10 models of the studio!');
     } else {
@@ -97,14 +94,12 @@ function enterSetAlbumText(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterSveta(s: GameState, scene: SceneBuilder): void {
   scene.text('You open up the first album and browse through some of the pictures placed inside.');
   scene.text('"These are pictures of me!');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go back', goto: ['foto_albums', 'model_portraits'] },
     { label: '', labelFn: (s: GameState) => 'Presenting: ' + String((((s as any).model ?? 0)?.['firstname'] ?? '') ?? '') + ' ' + String((String((((s as any).model ?? 0)?.['lastname'] ?? '')).slice((1)-1, ((1)-1)+(1))) ?? ''), handler: (st: GameState) => {
@@ -200,7 +195,6 @@ function enterSveta(s: GameState, scene: SceneBuilder): void {
 function enterAnastasia(s: GameState, scene: SceneBuilder): void {
   scene.text('You open up the first album and browse through some of the pictures placed inside.');
   scene.text('They seem to be single pictures taken from past photo shoots.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go back', goto: ['foto_albums', 'model_portraits'] },
     { label: 'Presenting: Anastasia P', handler: (st: GameState) => {
@@ -233,7 +227,6 @@ function enterAnastasia(s: GameState, scene: SceneBuilder): void {
 function enterKatherine(s: GameState, scene: SceneBuilder): void {
   scene.text('You open up the second album and browse through some of the pictures placed inside.');
   scene.text('They seem to be single pictures taken from past photo shoots.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go back', goto: ['foto_albums', 'model_portraits'] },
     { label: 'Presenting: Katherine A', handler: (st: GameState) => {
@@ -267,7 +260,6 @@ function enterKatherine(s: GameState, scene: SceneBuilder): void {
 function enterEmily(s: GameState, scene: SceneBuilder): void {
   scene.text('You open up the third album and browse through some of the pictures placed inside.');
   scene.text('They seem to be single pictures taken from past photo shoots.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go back', goto: ['foto_albums', 'model_portraits'] },
     { label: 'Presenting: Emily R', handler: (st: GameState) => {
@@ -300,7 +292,6 @@ function enterEmily(s: GameState, scene: SceneBuilder): void {
 function enterJeff(s: GameState, scene: SceneBuilder): void {
   scene.text('You open up the fourth album and browse through some of the pictures placed inside.');
   scene.text('They seem to be single pictures taken from past photo shoots.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go back', goto: ['foto_albums', 'model_portraits'] },
     { label: 'Presenting: Jeff M', handler: (st: GameState) => {
@@ -333,7 +324,6 @@ function enterJeff(s: GameState, scene: SceneBuilder): void {
 function enterMiranda(s: GameState, scene: SceneBuilder): void {
   scene.text('You open up the fifth album and browse through some of the pictures placed inside.');
   scene.text('They seem to be single pictures taken from past photo shoots.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go back', goto: ['foto_albums', 'model_portraits'] },
     { label: 'Presenting: Miranda K', handler: (st: GameState) => {
@@ -366,7 +356,6 @@ function enterMiranda(s: GameState, scene: SceneBuilder): void {
 function enterLily(s: GameState, scene: SceneBuilder): void {
   scene.text('You open up the sixth album and browse through some of the pictures placed inside.');
   scene.text('They seem to be single pictures taken from past photo shoots.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go back', goto: ['foto_albums', 'model_portraits'] },
     { label: 'Presenting: Lily I', handler: (st: GameState) => {
@@ -399,7 +388,6 @@ function enterLily(s: GameState, scene: SceneBuilder): void {
 function enterMila(s: GameState, scene: SceneBuilder): void {
   scene.text('You open up the seventh album and browse through some of the pictures placed inside.');
   scene.text('They seem to be single pictures taken from past photo shoots.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go back', goto: ['foto_albums', 'model_portraits'] },
     { label: 'Presenting: Mila A', handler: (st: GameState) => {
@@ -432,7 +420,6 @@ function enterMila(s: GameState, scene: SceneBuilder): void {
 function enterMari(s: GameState, scene: SceneBuilder): void {
   scene.text('You open up the eighth album and browse through some of the pictures placed inside.');
   scene.text('They seem to be single pictures taken from past photo shoots.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go back', goto: ['foto_albums', 'model_portraits'] },
     { label: 'Presenting: Mari E', handler: (st: GameState) => {
@@ -476,7 +463,6 @@ function enterAnushka(s: GameState, scene: SceneBuilder): void {
       scene.text('They seem to be single pictures taken from past photo shoots.');
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go back', goto: ['foto_albums', 'model_portraits'] },
     { label: 'Presenting: Anushka K', handler: (st: GameState) => {
@@ -509,7 +495,6 @@ function enterAnushka(s: GameState, scene: SceneBuilder): void {
 function enterOlga(s: GameState, scene: SceneBuilder): void {
   scene.text('You open up the tenth album and browse through some of the pictures placed inside.');
   scene.text('They seem to be single pictures taken from past photo shoots.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go back', goto: ['foto_albums', 'model_portraits'] },
     { label: 'Presenting: Olga K', handler: (st: GameState) => {

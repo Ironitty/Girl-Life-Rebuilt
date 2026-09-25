@@ -1,6 +1,4 @@
-import { qspUntranslated } from '../_shared/qspUntranslated';
-
-import { qspCall, dynamicGoto } from '../_shared/qspBridge';
+import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -10,9 +8,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'dinnpc', '');
   qspCall(s, 'stat', '');
   (s as any).static_num = 'A' + ((s as any).numnpc ?? 0) + '';
-  scene.text(`<center><b>${qspUntranslated(s, "npc_firstname['A<<numnpc", { location: "Snpc" })}']>> ${qspUntranslated(s, "npc_lastname['A<<numnpc", { location: "Snpc" })}']>></b></center>`);
+  scene.text(`<center><b>${(((s as any).npc_firstname ?? 0)?.['A' + String(((s as any).numnpc ?? 0))] ?? '')} ${(((s as any).npc_lastname ?? 0)?.['A' + String(((s as any).numnpc ?? 0))] ?? '')}</b></center>`);
   scene.img(`images/characters/shared/headshots_main/big${((s as any).numnpc ?? '')}.jpg`);
-  // TODO-QSP: $func('npc_notes', numnpc)
+  scene.text(qspFunc(s, 'npc_notes', ((s as any).numnpc ?? '')));
   if (((s as any).npc_rel ?? 0)['A' + (((s as any).numnpc ?? 0))] < 20) {
     scene.text('They really don\'t like you.');
   }
@@ -46,11 +44,10 @@ function enter(s: GameState, scene: SceneBuilder): void {
       (st as any).minut = ((st as any).minut ?? 0) + (5);
     }
     qspCall(st, 'stat', '');
-    scene.text(`<center><b>${qspUntranslated(s, "npc_firstname['A<<numnpc", { location: "Snpc" })}']>> ${qspUntranslated(s, "npc_lastname['A<<numnpc", { location: "Snpc" })}']>></b></center>`);
+    scene.text(`<center><b>${(((st as any).npc_firstname ?? 0)?.['A' + String(((st as any).numnpc ?? 0))] ?? '')} ${(((st as any).npc_lastname ?? 0)?.['A' + String(((st as any).numnpc ?? 0))] ?? '')}</b></center>`);
     scene.img(`images/characters/shared/headshots_main/big${((st as any).numnpc ?? '')}.jpg`);
     if (((st as any).loc ?? 0) !== 'pav_disco') {
-      // TODO-QSP: dynamic text: You chat a bit with <<$npc_firstname[''A<<numnpc>>'']>> <<$npc_lastname[''A<<num...
-      scene.text(`You chat a bit with ${qspUntranslated(s, "npc_firstname['A<<numnpc", { location: "Snpc" })}']>> ${qspUntranslated(s, "npc_lastname['A<<numnpc", { location: "Snpc" })}']>>`);
+      scene.text(`You chat a bit with ${(((st as any).npc_firstname ?? 0)?.['A' + String(((st as any).numnpc ?? 0))] ?? '')} ${(((st as any).npc_lastname ?? 0)?.['A' + String(((st as any).numnpc ?? 0))] ?? '')}`);
       if (((st as any).npc_rel ?? 0)['A' + (((st as any).numnpc ?? 0))] < 20) {
         scene.text('"I have to go now, goodbye."');
       } else {

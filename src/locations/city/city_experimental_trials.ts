@@ -23,8 +23,8 @@ function enterFrontDesk(s: GameState, scene: SceneBuilder): void {
       scene.text('An elderly nurse is sitting behind a desk.');
     }
   }
+  (s as any).temp_rand = undefined;
   if (((s as any).experimentQW ?? 0)?.['signed'] !== 0) {
-    // TODO-QSP: dynamic text: She looks up as you walk in and warmly welcomes you inside. "Hello Miss <<$pcs_l...
     scene.text(`She looks up as you walk in and warmly welcomes you inside. "Hello Miss ${((s as any).pcs_lastname ?? '')}, how can I help you today?"`);
     if (((s as any).experimentQW ?? 0)?.['trial_active'] === '') {
       scene.actions([
@@ -44,9 +44,9 @@ function enterFrontDesk(s: GameState, scene: SceneBuilder): void {
       scene.text('"Thank you so much for your help! You\'ve helped us advance our research greatly!"');
       if ((!(Math.floor(Math.random() * 3) + 0))) {
         (st as any).temp_tip = 10 * (((st as any).pcs_intel ?? 0) * (Math.floor(Math.random() * 3) + 1) / 10);
-        // TODO-QSP: dynamic text: "I think your dedication should be rewarded," she adds and hands you various not...
         scene.text(`"I think your dedication should be rewarded," she adds and hands you various notes adding up to ${qspFunc(s, 'money', 'string_profit', ((st as any).temp_tip ?? ''))}.`);
         qspCall(st, 'money', 'earn', ((st as any).temp_tip ?? 0));
+        (st as any).temp_tip = undefined;
       }
     }
     ((st as any).experimentQW = (st as any).experimentQW ?? {})['trial_active'] = '';
@@ -96,7 +96,6 @@ function enterFrontDesk(s: GameState, scene: SceneBuilder): void {
     ((st as any).experimentQW = (st as any).experimentQW ?? {})['signed'] = 1;
     scene.img('images/locations/city/residential/clinic/experiments/desk1.jpg');
     scene.text('You hand the signed document back to the woman.');
-    // TODO-QSP: dynamic text: "Thank you Miss… <<$pcs_lastname>>," she says as she looks it over. "We''ll add ...
     scene.text(`"Thank you Miss… ${((st as any).pcs_lastname ?? '')}," she says as she looks it over. "We'll add you to our database and you can enter our various trials. The contract you signed is legally binding, so you're not allowed to discuss your experiences with anybody outside of this clinic."`);
     scene.text('"It\'s to protect our proprietary technology," she adds, seemingly having noticed the look on your face. "If you talk about what happens here, then you can leak our discoveries. Everything will be fine so long as you keep this to yourself."');
     scene.actions([
@@ -106,7 +105,8 @@ function enterFrontDesk(s: GameState, scene: SceneBuilder): void {
       { label: 'Put the contract down and leave', goto: ['city_clinic', 'start'] },
     ]);
   }
-  // TODO-QSP: end
+  (s as any).doc1 = undefined;
+  (s as any).doc2 = undefined;
   scene.build();
 }
 
@@ -129,8 +129,8 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       scene.text('An elderly nurse is sitting behind a desk.');
     }
   }
+  (s as any).temp_rand = undefined;
   if (((s as any).experimentQW ?? 0)?.['signed'] !== 0) {
-    // TODO-QSP: dynamic text: She looks up as you walk in and warmly welcomes you inside. "Hello Miss <<$pcs_l...
     scene.text(`She looks up as you walk in and warmly welcomes you inside. "Hello Miss ${((s as any).pcs_lastname ?? '')}, how can I help you today?"`);
     if (((s as any).experimentQW ?? 0)?.['trial_active'] === '') {
       scene.actions([
@@ -150,9 +150,9 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       scene.text('"Thank you so much for your help! You\'ve helped us advance our research greatly!"');
       if ((!(Math.floor(Math.random() * 3) + 0))) {
         (st as any).temp_tip = 10 * (((st as any).pcs_intel ?? 0) * (Math.floor(Math.random() * 3) + 1) / 10);
-        // TODO-QSP: dynamic text: "I think your dedication should be rewarded," she adds and hands you various not...
         scene.text(`"I think your dedication should be rewarded," she adds and hands you various notes adding up to ${qspFunc(s, 'money', 'string_profit', ((st as any).temp_tip ?? ''))}.`);
         qspCall(st, 'money', 'earn', ((st as any).temp_tip ?? 0));
+        (st as any).temp_tip = undefined;
       }
     }
     ((st as any).experimentQW = (st as any).experimentQW ?? {})['trial_active'] = '';
@@ -202,7 +202,6 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     ((st as any).experimentQW = (st as any).experimentQW ?? {})['signed'] = 1;
     scene.img('images/locations/city/residential/clinic/experiments/desk1.jpg');
     scene.text('You hand the signed document back to the woman.');
-    // TODO-QSP: dynamic text: "Thank you Miss… <<$pcs_lastname>>," she says as she looks it over. "We''ll add ...
     scene.text(`"Thank you Miss… ${((st as any).pcs_lastname ?? '')}," she says as she looks it over. "We'll add you to our database and you can enter our various trials. The contract you signed is legally binding, so you're not allowed to discuss your experiences with anybody outside of this clinic."`);
     scene.text('"It\'s to protect our proprietary technology," she adds, seemingly having noticed the look on your face. "If you talk about what happens here, then you can leak our discoveries. Everything will be fine so long as you keep this to yourself."');
     scene.actions([
@@ -212,7 +211,8 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       { label: 'Put the contract down and leave', goto: ['city_clinic', 'start'] },
     ]);
   }
-  // TODO-QSP: end
+  (s as any).doc1 = undefined;
+  (s as any).doc2 = undefined;
   scene.build();
 }
 

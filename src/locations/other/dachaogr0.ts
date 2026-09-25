@@ -48,8 +48,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'money', 'pay', 3000, 'cash');
       ((st as any).exhib = (st as any).exhib ?? {})['status'] = 16;
       qspCall(st, 'stat', '');
-      // TODO-QSP: dynamic text: 'You paid the workers ' + $func('money', 'string_price', 3000) + '.'
-      scene.text('You paid the workers 3000₽.');
+      scene.text('\'You paid the workers 3000₽.\'');
       scene.actions([
         { label: 'To lodge', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 15;

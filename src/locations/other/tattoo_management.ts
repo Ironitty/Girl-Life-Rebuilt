@@ -82,40 +82,36 @@ function enterGetTotal(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterTotals(s: GameState, scene: SceneBuilder): void {
   (s as any).total = qspFunc(s, 'tattoo_management', 'get_total', ((s as any).locArgs?.[1] ?? 0));
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterIsOwned(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === '') {
-    // TODO-QSP: exit
+    return;
   }
   if (String((s as any).locArgs?.[2] ?? '') === 0) {
-    // TODO-QSP: exit
+    return;
   }
   (s as any).result = (((s as any).pcs_tattoos ?? 0)[String((s as any).locArgs?.[1] ?? '')] === String((s as any).locArgs?.[2] ?? ''));
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterIsWearing(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === '') {
-    // TODO-QSP: exit
+    return;
   }
   if (String((s as any).locArgs?.[2] ?? '') === 0) {
-    // TODO-QSP: exit
+    return;
   }
   (s as any).result = (((s as any).pcs_tattoos ?? 0)[String((s as any).locArgs?.[1] ?? '')] === String((s as any).locArgs?.[2] ?? ''));
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -126,55 +122,51 @@ function enterIsWearingAny(s: GameState, scene: SceneBuilder): void {
     (s as any).result = (((s as any).pcs_tattoos ?? 0)[String((s as any).locArgs?.[1] ?? '')] > 0);
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterImage(s: GameState, scene: SceneBuilder): void {
   (s as any).result = qspFunc(s, 'tattoo_management', ((s as any).locArgs?.[1] ?? 0) + '_image', ((s as any).locArgs?.[2] ?? 0));
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterAdd(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[2] ?? '') <= 0) {
-    // TODO-QSP: exit
+    return;
   }
   if (qspFunc(s, 'tattoo_management', 'get_total', ((s as any).locArgs?.[1] ?? 0)) < String((s as any).locArgs?.[2] ?? '')) {
-    // TODO-QSP: exit
+    return;
   }
   if (((s as any).pcs_tattoos ?? 0)[String((s as any).locArgs?.[1] ?? '')] <= 0) {
     ((s as any).pcs_tattoos = (s as any).pcs_tattoos ?? {})['total'] = ((s as any).pcs_tattoos['total'] ?? 0) + (1);
   }
   ((s as any).pcs_tattoos = (s as any).pcs_tattoos ?? {})['any'] = 1;
-  // TODO-QSP: pcs_tattoos[$ARGS[1]] = ARGS[2]
+  ((s as any).pcs_tattoos = (s as any).pcs_tattoos ?? {})[((s as any).locArgs?.[1] ?? 0)] = ((s as any).locArgs?.[2] ?? 0);
   if (String((s as any).locArgs?.[1] ?? '') === 'face'  ||  String((s as any).locArgs?.[1] ?? '') === 'lip'  ||  String((s as any).locArgs?.[1] ?? '') === 'neck'  ||  String((s as any).locArgs?.[1] ?? '') === 'back'  ||  String((s as any).locArgs?.[1] ?? '') === 'shoulder'  ||  String((s as any).locArgs?.[1] ?? '') === 'chest'  ||  String((s as any).locArgs?.[1] ?? '') === 'side'  ||  String((s as any).locArgs?.[1] ?? '') === 'belly'  ||  String((s as any).locArgs?.[1] ?? '') === 'arm'  ||  String((s as any).locArgs?.[1] ?? '') === 'wrist'  ||  String((s as any).locArgs?.[1] ?? '') === 'hand'  ||  String((s as any).locArgs?.[1] ?? '') === 'leg'  ||  String((s as any).locArgs?.[1] ?? '') === 'ankle') {
     qspCall(s, 'archetypes', 'gain', 'punk', 'tiny', 'Got a visible tattoo');
     qspCall(s, 'archetypes', 'gain', 'goth', 'tiny', 'Got a visible tattoo');
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterRemove(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_tattoos ?? 0)[String((s as any).locArgs?.[1] ?? '')] <= 0) {
-    // TODO-QSP: exit
+    return;
   }
   ((s as any).pcs_tattoos = (s as any).pcs_tattoos ?? {})['total'] = ((s as any).pcs_tattoos['total'] ?? 0) - (1);
-  // TODO-QSP: pcs_tattoos[$ARGS[1]] = -pcs_tattoos[$ARGS[1]]
+  ((s as any).pcs_tattoos = (s as any).pcs_tattoos ?? {})[((s as any).locArgs?.[1] ?? 0)] = -((s as any).pcs_tattoos ?? 0)[((s as any).locArgs?.[1] ?? 0)];
   if (((s as any).pcs_tattoos ?? 0)?.['total'] <= 0) {
     ((s as any).pcs_tattoos = (s as any).pcs_tattoos ?? {})['total'] = 0;
     ((s as any).pcs_tattoos = (s as any).pcs_tattoos ?? {})['any'] = 0;
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterFullReset(s: GameState, scene: SceneBuilder): void {
+  (s as any).pcs_tattoos = undefined;
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -239,22 +231,20 @@ function enterCount(s: GameState, scene: SceneBuilder): void {
     ((s as any).pcs_tattoos = (s as any).pcs_tattoos ?? {})['any'] = 1;
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterSetShopDisplayExceptions(s: GameState, scene: SceneBuilder): void {
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterBuy(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[2] ?? '') === '') {
-    // TODO-QSP: exit
+    return;
   }
   if (String((s as any).locArgs?.[3] ?? '') === 0) {
-    // TODO-QSP: exit
+    return;
   }
   if (Object.keys((s as any).ARGS ?? {}).length <= 4) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[4] = ((s as any).price ?? 0);
@@ -264,7 +254,6 @@ function enterBuy(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCount(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'stat', '');
   dynamicGoto(s, 'prevLoc', 'prevArg');
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -277,7 +266,6 @@ function enterAnkleImage(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).result = 'images/pc/body/tattoos/foot/tatankle' + ((s as any).locArgs?.[1] ?? 0) + '.jpg';
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -290,7 +278,6 @@ function enterArmImage(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).result = 'images/pc/body/tattoos/arms/tatarm' + ((s as any).locArgs?.[1] ?? 0) + '.jpg';
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -303,7 +290,6 @@ function enterAssImage(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).result = 'images/pc/body/tattoos/ass/tatass' + ((s as any).locArgs?.[1] ?? 0) + '.jpg';
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -316,7 +302,6 @@ function enterBackImage(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).result = 'images/pc/body/tattoos/back/tatback' + ((s as any).locArgs?.[1] ?? 0) + '.jpg';
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -329,7 +314,6 @@ function enterBellyImage(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).result = 'images/pc/body/tattoos/belly/tatblly' + ((s as any).locArgs?.[1] ?? 0) + '.jpg';
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -342,7 +326,6 @@ function enterBreastImage(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).result = 'images/pc/body/tattoos/breasts/tatbrst' + ((s as any).locArgs?.[1] ?? 0) + '.jpg';
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -355,7 +338,6 @@ function enterChestImage(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).result = 'images/pc/body/tattoos/chest/tatchst' + ((s as any).locArgs?.[1] ?? 0) + '.jpg';
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -368,7 +350,6 @@ function enterFaceImage(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).result = 'images/pc/body/tattoos/face/tatfce' + ((s as any).locArgs?.[1] ?? 0) + '.jpg';
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -381,7 +362,6 @@ function enterHandImage(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).result = 'images/pc/body/tattoos/hand/tathnd' + ((s as any).locArgs?.[1] ?? 0) + '.jpg';
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -394,7 +374,6 @@ function enterLegImage(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).result = 'images/pc/body/tattoos/legs/tatleg' + ((s as any).locArgs?.[1] ?? 0) + '.jpg';
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -407,7 +386,6 @@ function enterLipImage(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).result = 'images/pc/body/tattoos/lip/tatlip' + ((s as any).locArgs?.[1] ?? 0) + '.jpg';
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -420,7 +398,6 @@ function enterNeckImage(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).result = 'images/pc/body/tattoos/neck/tatnck' + ((s as any).locArgs?.[1] ?? 0) + '.jpg';
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -433,7 +410,6 @@ function enterPussyImage(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).result = 'images/pc/body/tattoos/pubic/tatvag' + ((s as any).locArgs?.[1] ?? 0) + '.jpg';
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -446,7 +422,6 @@ function enterShoulderImage(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).result = 'images/pc/body/tattoos/shoulder/tatshldr' + ((s as any).locArgs?.[1] ?? 0) + '.jpg';
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -459,7 +434,6 @@ function enterSideImage(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).result = 'images/pc/body/tattoos/side/tatside' + ((s as any).locArgs?.[1] ?? 0) + '.jpg';
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -472,7 +446,6 @@ function enterTrampImage(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).result = 'images/pc/body/tattoos/trampStamp/tatlowbck' + ((s as any).locArgs?.[1] ?? 0) + '.jpg';
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -485,7 +458,6 @@ function enterUnderImage(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).result = 'images/pc/body/tattoos/underBreast/tatundbreast' + ((s as any).locArgs?.[1] ?? 0) + '.jpg';
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -498,21 +470,18 @@ function enterWristImage(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).result = 'images/pc/body/tattoos/wrists/tatwrst' + ((s as any).locArgs?.[1] ?? 0) + '.jpg';
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterDisplayGridShop(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'shop_utils', 'display', 'grid_shop');
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterViewItem(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'tattoo_view', 'view_item', 'shop', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[3] ?? 0), ((s as any).locArgs?.[4] ?? 0));
   return;
-  // TODO-QSP: end
   scene.build();
 }
 

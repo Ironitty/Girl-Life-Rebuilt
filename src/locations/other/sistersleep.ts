@@ -51,7 +51,6 @@ function enterSisterSleep(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -91,7 +90,6 @@ function enterSisterSleep_1(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'arousal', 'foreplay', 3, 'incest', 'lesbian');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Move away', handler: (st: GameState) => {
     qspCall(st, 'arousal', '');
@@ -105,7 +103,6 @@ function enterSisterSleep_2(s: GameState, scene: SceneBuilder): void {
   scene.text('You continue to explore your sister\'s hot body when your fingers accidentally slip between her legs. Her panties are wet. You gently pull them, exposing her wet pussy. Sensations of heat and moisture overwhelm you. Is she having a sexual dream, or is this her response to your touch?');
   scene.text('You\'re caught up in a fantasy and start lowering your face down to her pussy with your tongue out when she suddenly stirs…');
   scene.text('She sleepily rolls over and looks up at you as you hastily remove your hand and hide it behind your back.');
-  // TODO-QSP: dynamic text: "What… What''s going on? <<$pcs_nickname>>? What are you doing?" she asks as she...
   scene.text(`"What… What's going on? ${((s as any).pcs_nickname ?? '')}? What are you doing?" she asks as she sleepily sits up.`);
   scene.text('You sit in front of your sister on her bed, caught off guard and not knowing what to do.');
   qspCall(s, 'arousal', 'foreplay', 3, 'incest', 'lesbian');
@@ -130,7 +127,6 @@ function enterSisterSleep_2(s: GameState, scene: SceneBuilder): void {
       { label: 'Kiss her', goto: ['sistersleep', 'sister_sleep_2_kiss'] },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Act innocent', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -202,7 +198,6 @@ function enterSisterSleep_2Kiss(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Finger her', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/resident/anya/sex/les3.jpg');
@@ -245,7 +240,6 @@ function enterSisterSleep_3(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'arousal', 'foreplay', 5, 'incest', 'lesbian');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Finger her', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/resident/anya/sex/les3.jpg');
@@ -359,7 +353,6 @@ function enterSisterSex(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -369,7 +362,6 @@ function enterSisterLesbian(s: GameState, scene: SceneBuilder): void {
   scene.text('The two of you start kissing and fondling each other as you slowly undress each other. Anya lies back on the bed as you do and your hands roam each other\'s bodies as you undress each other and passionately keep kissing.');
   qspCall(s, 'arousal', 'foreplay', 3, 'incest', 'lesbian');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Spread her legs ', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/resident/anya/sex/les2.jpg');
@@ -408,7 +400,6 @@ function enterSisterLesbianCuni(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'cuni_give', 5, 'lesbian', 'incest');
   qspCall(s, 'arousal', 'vaginal_finger_give', (-5), 'incest', 'lesbian');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Have her return the favor', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/resident/anya/sex/les6.jpg');
@@ -458,7 +449,6 @@ function enterSisterStrapon(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'arousal', 'foreplay', 3, 'incest', 'lesbian');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Refuse', handler: (st: GameState) => {
     qspCall(st, 'npc_relationship', 'modify', 'A33', 'dislike');
@@ -483,7 +473,6 @@ function enterSisterStrapon(s: GameState, scene: SceneBuilder): void {
       ((st as any).sisterQW = (st as any).sisterQW ?? {})['strapon'] = 1;
       scene.text('Anya monitors your actions and talks you through how to suck a cock. You lick the shaft from the base upwards and then suck the head. It isn\'t too big, maybe a bit above average size. Anya then grabs you by the hair and abruptly shoves the dildo down your throat, causing you to choke and thrash your arms in panic. She quickly pulls it out of you, ropes of your drool sticking to the shaft from your mouth as your eyes water.');
       scene.text('You cough and splutter. "What… What are you doing? You could have… killed me!"');
-      // TODO-QSP: dynamic text: "Don''t be so dramatic, <<$pcs_nickname>>! I would never hurt you. You see guys ...
       scene.text(`"Don't be so dramatic, ${((st as any).pcs_nickname ?? '')}! I would never hurt you. You see guys like this. It's called 'deepthroating.' I'm just helping you train your mouth and throat so you know how to give boys proper blowjobs."`);
       scene.text('Without another word, she shoves the dildo back in your mouth and teaches you the finer arts of how to suck a cock, not to mention what to expect from the boys.');
     } else {
@@ -538,7 +527,6 @@ function enterSisterStraponVaginal(s: GameState, scene: SceneBuilder): void {
   scene.text('As it starts feeling better, you start riding the dildo faster and faster. Just as it really starts to feel good, Anya slaps your ass. "Get up and face the wall. I want to be in control now."');
   qspCall(s, 'arousal', 'vaginal_strap', 5, 'lesbian', 'incest');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Stand up', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/resident/anya/sex/strap5.jpg');
@@ -579,7 +567,6 @@ function enterSisterStraponAnal(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'arousal', 'anal_strap', 5, 'lesbian', 'incest');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Pleasure yourself', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/resident/anya/sex/strap7.jpg');
@@ -615,7 +602,6 @@ function enterDrunkAfterParty(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('<i>I wonder if that\'s Roma\'s cum or someone else\'s…</i>');
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Move away', goto: ['bedrPar', ''] },
   ]);

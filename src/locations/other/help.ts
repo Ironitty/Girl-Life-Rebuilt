@@ -1,4 +1,4 @@
-import { qspCall, qspGoto } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -14,63 +14,72 @@ function enterOpen(s: GameState, scene: SceneBuilder): void {
   (s as any).help_from_loc_arg = ((s as any).loc_arg ?? 0);
   (s as any).help_from_location_type = ((s as any).location_type ?? 0);
   qspGoto(s, 'help', ((String((s as any).locArgs?.[1] ?? '') !== '') ? (((s as any).locArgs?.[1] ?? 0)) : ('show')));
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterShow(s: GameState, scene: SceneBuilder): void {
   qspGoto(s, 'help', 'generic');
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterBack(s: GameState, scene: SceneBuilder): void {
+  (s as any).help_from_curloc = undefined;
+  (s as any).help_from_loc_arg = undefined;
+  (s as any).help_from_location_type = undefined;
+  (s as any).help_page_title = undefined;
+  (s as any).help_page_key = undefined;
+  (s as any).help_page_loc = undefined;
+  (s as any).help_page_content = undefined;
+  (s as any).help_gen_c = undefined;
+  (s as any).help_gen_cs = undefined;
   qspCall(s, 'state', 'pop');
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterDefSection(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: $help_toc_sections[] = $ARGS[1]
-  // TODO-QSP: $help_toc_label[$ARGS[1]] = $ARGS[3]
-  // TODO-QSP: $help_toc_page[$ARGS[1]] = $ARGS[2]
-  // TODO-QSP: $help_toc_loc[$ARGS[1]] = iif($ARGS[4] <> '', $ARGS[4], 'help')
-  // TODO-QSP: end
+  (s as any).help_toc_sections = [...((s as any).help_toc_sections ?? []), ((s as any).locArgs?.[1] ?? 0)];
+  ((s as any).help_toc_label = (s as any).help_toc_label ?? {})[((s as any).locArgs?.[1] ?? 0)] = ((s as any).locArgs?.[3] ?? 0);
+  ((s as any).help_toc_page = (s as any).help_toc_page ?? {})[((s as any).locArgs?.[1] ?? 0)] = ((s as any).locArgs?.[2] ?? 0);
+  ((s as any).help_toc_loc = (s as any).help_toc_loc ?? {})[((s as any).locArgs?.[1] ?? 0)] = ((String((s as any).locArgs?.[4] ?? '') !== '') ? (((s as any).locArgs?.[4] ?? 0)) : ('help'));
   scene.build();
 }
 
 function enterDefGroup(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: $help_toc_label[$ARGS[2]] = $ARGS[3]
-  // TODO-QSP: $help_toc_page[$ARGS[2]] = ''
-  // TODO-QSP: $help_toc_loc[$ARGS[2]] = 'help'
-  // TODO-QSP: help_toc_is_group[$ARGS[2]] = 1
+  ((s as any).help_toc_label = (s as any).help_toc_label ?? {})[((s as any).locArgs?.[2] ?? 0)] = ((s as any).locArgs?.[3] ?? 0);
+  ((s as any).help_toc_page = (s as any).help_toc_page ?? {})[((s as any).locArgs?.[2] ?? 0)] = '';
+  ((s as any).help_toc_loc = (s as any).help_toc_loc ?? {})[((s as any).locArgs?.[2] ?? 0)] = 'help';
+  ((s as any).help_toc_is_group = (s as any).help_toc_is_group ?? {})[((s as any).locArgs?.[2] ?? 0)] = 1;
   if (String((s as any).locArgs?.[1] ?? '') === '') {
-    // TODO-QSP: $help_toc_sections[] = $ARGS[2]
+    (s as any).help_toc_sections = [...((s as any).help_toc_sections ?? []), ((s as any).locArgs?.[2] ?? 0)];
   } else {
     if (((s as any).help_toc_children ?? 0)[String((s as any).locArgs?.[1] ?? '')] === '') {
-      // TODO-QSP: $help_toc_children[$ARGS[1]] = $ARGS[2]
+      ((s as any).help_toc_children = (s as any).help_toc_children ?? {})[((s as any).locArgs?.[1] ?? 0)] = ((s as any).locArgs?.[2] ?? 0);
     } else {
-      // TODO-QSP: $help_toc_children[$ARGS[1]] += ' ' + $ARGS[2]
+      ((s as any).help_toc_children = (s as any).help_toc_children ?? {})[((s as any).locArgs?.[1] ?? 0)] = ((s as any).help_toc_children[((s as any).locArgs?.[1] ?? 0)] ?? 0) + (' ' + ((s as any).locArgs?.[2] ?? 0));
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterDefChild(s: GameState, scene: SceneBuilder): void {
   if (((s as any).help_toc_children ?? 0)[String((s as any).locArgs?.[1] ?? '')] === '') {
-    // TODO-QSP: $help_toc_children[$ARGS[1]]  = $ARGS[2]
+    ((s as any).help_toc_children = (s as any).help_toc_children ?? {})[((s as any).locArgs?.[1] ?? 0)] = ((s as any).locArgs?.[2] ?? 0);
   } else {
-    // TODO-QSP: $help_toc_children[$ARGS[1]] += ' ' + $ARGS[2]
+    ((s as any).help_toc_children = (s as any).help_toc_children ?? {})[((s as any).locArgs?.[1] ?? 0)] = ((s as any).help_toc_children[((s as any).locArgs?.[1] ?? 0)] ?? 0) + (' ' + ((s as any).locArgs?.[2] ?? 0));
   }
-  // TODO-QSP: $help_toc_label[$ARGS[2]] = $ARGS[3]
-  // TODO-QSP: $help_toc_page[$ARGS[2]] = $ARGS[2]
-  // TODO-QSP: $help_toc_loc[$ARGS[2]] = iif($ARGS[4] <> '', $ARGS[4], 'help')
-  // TODO-QSP: end
+  ((s as any).help_toc_label = (s as any).help_toc_label ?? {})[((s as any).locArgs?.[2] ?? 0)] = ((s as any).locArgs?.[3] ?? 0);
+  ((s as any).help_toc_page = (s as any).help_toc_page ?? {})[((s as any).locArgs?.[2] ?? 0)] = ((s as any).locArgs?.[2] ?? 0);
+  ((s as any).help_toc_loc = (s as any).help_toc_loc ?? {})[((s as any).locArgs?.[2] ?? 0)] = ((String((s as any).locArgs?.[4] ?? '') !== '') ? (((s as any).locArgs?.[4] ?? 0)) : ('help'));
   scene.build();
 }
 
 function enterTocInit(s: GameState, scene: SceneBuilder): void {
+  (s as any).help_toc_sections = undefined;
+  (s as any).help_toc_label = undefined;
+  (s as any).help_toc_page = undefined;
+  (s as any).help_toc_children = undefined;
+  (s as any).help_toc_loc = undefined;
+  (s as any).help_toc_is_group = undefined;
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'ui', 'ui_overview', 'User Interface']; enterDefSection(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'ui', 'ui_statbar', 'Stat Bar']; enterDefChild(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'ui', 'ui_menu', 'Navigation Menu']; enterDefChild(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -216,154 +225,161 @@ function enterTocInit(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'locs', 'locs_home', 'Home']; enterDefChild(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'locs', 'locs_school', 'School']; enterDefChild(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'locs', 'locs_town', 'Town']; enterDefChild(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterRenderBanner(s: GameState, scene: SceneBuilder): void {
   (s as any).result = '<div style="position:relative;padding:2px 0 8px 0;border-bottom:1px solid;margin-bottom:10px;text-align:center">';
-  // TODO-QSP: $result += '<span style="position:absolute;left:0;top:2px"><a style="text-decoration:none;font-size:...
-  // TODO-QSP: $result += '<b style="font-size:1.1em">' + $help_page_title + '</b>'
+  (s as any).result = ((s as any).result ?? 0) + ('<span style="position:absolute;left:0;top:2px"><a href="#" onclick="window.__gameStore.getState().doGoto(\u0027help\u0027, \u0027back\u0027); return false;">&#8592; Back</a></span>');
+  (s as any).result = ((s as any).result ?? 0) + ('<b style="font-size:1.1em">' + ((s as any).help_page_title ?? 0) + '</b>');
   if (((s as any).help_from_location_type ?? 0) !== '') {
-    // TODO-QSP: $result += ' <small style="opacity:0.4"> [' + $help_from_location_type + ']</small>'
+    (s as any).result = ((s as any).result ?? 0) + (' <small style="opacity:0.4"> [' + ((s as any).help_from_location_type ?? 0) + ']</small>');
   }
-  // TODO-QSP: $result += '</div>'
-  // TODO-QSP: end
+  (s as any).result = ((s as any).result ?? 0) + ('</div>');
   scene.build();
 }
 
 function enterRenderToc(s: GameState, scene: SceneBuilder): void {
   (s as any).rt_ao_i = 0;
-  // TODO-QSP: :rt_ao_loop
-  if (((s as any).rt_ao_i ?? 0) < Object.keys((s as any).help_toc_sections ?? {}).length) {
-    (s as any).rt_ao_key = (((s as any).help_toc_sections ?? 0)?.[String((s as any).rt_ao_i ?? 0)] ?? 0);
-    if (((s as any).help_toc_page ?? 0)?.[String((s as any).rt_ao_key ?? 0)] === ((s as any).help_page_key ?? 0)) {
-      ((s as any).help_toc_open = (s as any).help_toc_open ?? {})[String((s as any).rt_ao_key ?? 0)] = 1;
-    } else {
-      if (((String(' ' + (((s as any).help_toc_children ?? 0)?.[String((s as any).rt_ao_key ?? 0)] ?? 0) + ' ').indexOf(String(' ' + ((s as any).help_page_key ?? 0) + ' '))) + 1) > 0) {
+  while (true) {
+    if (((s as any).rt_ao_i ?? 0) < Object.keys((s as any).help_toc_sections ?? {}).length) {
+      (s as any).rt_ao_key = (((s as any).help_toc_sections ?? 0)?.[String((s as any).rt_ao_i ?? 0)] ?? 0);
+      if (((s as any).help_toc_page ?? 0)?.[String((s as any).rt_ao_key ?? 0)] === ((s as any).help_page_key ?? 0)) {
         ((s as any).help_toc_open = (s as any).help_toc_open ?? {})[String((s as any).rt_ao_key ?? 0)] = 1;
       } else {
-        (s as any).rt_ao_grem = (((s as any).help_toc_children ?? 0)?.[String((s as any).rt_ao_key ?? 0)] ?? 0);
-        // TODO-QSP: :rt_ao_gloop
-        if (((s as any).rt_ao_grem ?? 0) !== '') {
-          (s as any).rt_ao_gsp = ((String(((s as any).rt_ao_grem ?? 0)).indexOf(String(' '))) + 1);
-          if (((s as any).rt_ao_gsp ?? 0) > 0) {
-            (s as any).rt_ao_gk = (String(((s as any).rt_ao_grem ?? 0)).slice((1)-1, ((1)-1)+(((s as any).rt_ao_gsp ?? 0) - 1)));
-            (s as any).rt_ao_grem = (String(((s as any).rt_ao_grem ?? 0)).slice((((s as any).rt_ao_gsp ?? 0) + 1)-1));
-          } else {
-            (s as any).rt_ao_gk = ((s as any).rt_ao_grem ?? 0);
-            (s as any).rt_ao_grem = '';
-          }
-          if (((s as any).help_toc_is_group ?? 0)?.[String((s as any).rt_ao_gk ?? 0)]) {
-            if (((String(' ' + (((s as any).help_toc_children ?? 0)?.[String((s as any).rt_ao_gk ?? 0)] ?? 0) + ' ').indexOf(String(' ' + ((s as any).help_page_key ?? 0) + ' '))) + 1) > 0) {
-              ((s as any).help_toc_open = (s as any).help_toc_open ?? {})[String((s as any).rt_ao_key ?? 0)] = 1;
-              ((s as any).help_toc_open = (s as any).help_toc_open ?? {})[String((s as any).rt_ao_gk ?? 0)] = 1;
+        if (((String(' ' + (((s as any).help_toc_children ?? 0)?.[String((s as any).rt_ao_key ?? 0)] ?? 0) + ' ').indexOf(String(' ' + ((s as any).help_page_key ?? 0) + ' '))) + 1) > 0) {
+          ((s as any).help_toc_open = (s as any).help_toc_open ?? {})[String((s as any).rt_ao_key ?? 0)] = 1;
+        } else {
+          (s as any).rt_ao_grem = (((s as any).help_toc_children ?? 0)?.[String((s as any).rt_ao_key ?? 0)] ?? 0);
+          while (true) {
+            if (((s as any).rt_ao_grem ?? 0) !== '') {
+              (s as any).rt_ao_gsp = ((String(((s as any).rt_ao_grem ?? 0)).indexOf(String(' '))) + 1);
+              if (((s as any).rt_ao_gsp ?? 0) > 0) {
+                (s as any).rt_ao_gk = (String(((s as any).rt_ao_grem ?? 0)).slice((1)-1, ((1)-1)+(((s as any).rt_ao_gsp ?? 0) - 1)));
+                (s as any).rt_ao_grem = (String(((s as any).rt_ao_grem ?? 0)).slice((((s as any).rt_ao_gsp ?? 0) + 1)-1));
+              } else {
+                (s as any).rt_ao_gk = ((s as any).rt_ao_grem ?? 0);
+                (s as any).rt_ao_grem = '';
+              }
+              if (((s as any).help_toc_is_group ?? 0)?.[String((s as any).rt_ao_gk ?? 0)]) {
+                if (((String(' ' + (((s as any).help_toc_children ?? 0)?.[String((s as any).rt_ao_gk ?? 0)] ?? 0) + ' ').indexOf(String(' ' + ((s as any).help_page_key ?? 0) + ' '))) + 1) > 0) {
+                  ((s as any).help_toc_open = (s as any).help_toc_open ?? {})[String((s as any).rt_ao_key ?? 0)] = 1;
+                  ((s as any).help_toc_open = (s as any).help_toc_open ?? {})[String((s as any).rt_ao_gk ?? 0)] = 1;
+                }
+              }
+              break;
             }
           }
-          // TODO-QSP: jump 'rt_ao_gloop'
         }
       }
+      (s as any).rt_ao_i = ((s as any).rt_ao_i ?? 0) + (1);
+      break;
     }
-    (s as any).rt_ao_i = ((s as any).rt_ao_i ?? 0) + (1);
-    // TODO-QSP: jump 'rt_ao_loop'
-  }
-  (s as any).rt_html = '<div style="font-weight:bold;font-size:0.95em;padding:0 0 6px 0;border-bottom:2px solid;margin-bottom:8px">Contents</div>';
-  if (Object.keys((s as any).help_toc_sections ?? {}).length === 0) {
-    // TODO-QSP: $rt_html += '<small><i>No topics yet.</i></small>'
-  } else {
-    (s as any).rt_i = 0;
-    // TODO-QSP: :rt_sec_loop
-    if (((s as any).rt_i ?? 0) < Object.keys((s as any).help_toc_sections ?? {}).length) {
-      (s as any).rt_key = (((s as any).help_toc_sections ?? 0)?.[String((s as any).rt_i ?? 0)] ?? 0);
-      (s as any).rt_label = (((s as any).help_toc_label ?? 0)?.[String((s as any).rt_key ?? 0)] ?? 0);
-      (s as any).rt_page = (((s as any).help_toc_page ?? 0)?.[String((s as any).rt_key ?? 0)] ?? 0);
-      (s as any).rt_loc = (((s as any).help_toc_loc ?? 0)?.[String((s as any).rt_key ?? 0)] ?? 0);
-      (s as any).rt_kids = (((s as any).help_toc_children ?? 0)?.[String((s as any).rt_key ?? 0)] ?? 0);
-      (s as any).rt_open = (((s as any).help_toc_open ?? 0)?.[String((s as any).rt_key ?? 0)] ?? 0);
-      (s as any).rt_has_kids = ((((s as any).rt_kids ?? 0) !== '') ? (1) : (0));
-      if (((s as any).rt_has_kids ?? 0)) {
-        (s as any).rt_tri = ((((s as any).rt_open ?? 0)) ? ('&#9660;') : ('&#9654;'));
-        (s as any).rt_toggle = '<a href="#" onclick="window.__gameStore.setState((s) => { (s.help_toc_open ??= {})/u0027' + ((s as any).rt_key ?? 0) + '/u0027 = 1 - help_toc_open[/u0027' + ((s as any).rt_key ?? 0) + '/u0027]; return s; }); window.__gameStore.getState().doGoto(/u0027' + ((s as any).help_page_loc ?? 0) + '/u0027, /u0027' + ((s as any).help_page_key ?? 0) + '/u0027); return false;">\' + $rt_tri + \'</a> ';
-      } else {
-        (s as any).rt_toggle = '&nbsp;&nbsp; ';
-      }
-      if (((s as any).rt_page ?? 0) !== '') {
-        if (((s as any).rt_page ?? 0) === ((s as any).help_page_key ?? 0)) {
-          (s as any).rt_active = ' style="font-weight:bold;border-left:3px solid;padding-left:4px;margin-left:-7px;display:inline-block"';
-        } else {
-          (s as any).rt_active = '';
-        }
-        (s as any).rt_lnk = '<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027' + ((s as any).rt_loc ?? 0) + '/u0027, /u0027' + ((s as any).rt_page ?? 0) + '/u0027); return false;">\' + $rt_label + \'</a>';
-      } else {
-        if (((s as any).help_toc_is_group ?? 0)?.[String((s as any).rt_key ?? 0)]) {
-          (s as any).rt_lnk = '<a href="#" onclick="window.__gameStore.setState((s) => { (s.help_toc_open ??= {})/u0027' + ((s as any).rt_key ?? 0) + '/u0027 = 1 - help_toc_open[/u0027' + ((s as any).rt_key ?? 0) + '/u0027]; return s; }); window.__gameStore.getState().doGoto(/u0027' + ((s as any).help_page_loc ?? 0) + '/u0027, /u0027' + ((s as any).help_page_key ?? 0) + '/u0027); return false;">\' + $rt_label + \'</a>';
-        } else {
-          (s as any).rt_lnk = ((s as any).rt_label ?? 0);
-        }
-      }
-      // TODO-QSP: $rt_html += '<div style="margin:4px 0;font-weight:bold;font-size:0.95em">' + $rt_toggle + $rt_lnk + ...
-      if (((s as any).rt_open ?? 0)  &&  ((s as any).rt_kids ?? 0) !== '') {
-        (s as any).rt_remaining = ((s as any).rt_kids ?? 0);
-        // TODO-QSP: :rt_child_loop
-        if (((s as any).rt_remaining ?? 0) !== '') {
-          (s as any).rt_sp = ((String(((s as any).rt_remaining ?? 0)).indexOf(String(' '))) + 1);
-          if (((s as any).rt_sp ?? 0) > 0) {
-            (s as any).rt_ck = (String(((s as any).rt_remaining ?? 0)).slice((1)-1, ((1)-1)+(((s as any).rt_sp ?? 0) - 1)));
-            (s as any).rt_remaining = (String(((s as any).rt_remaining ?? 0)).slice((((s as any).rt_sp ?? 0) + 1)-1));
+    (s as any).rt_ao_i = undefined;
+    (s as any).rt_ao_key = undefined;
+    (s as any).rt_ao_grem = undefined;
+    (s as any).rt_ao_gsp = undefined;
+    (s as any).rt_ao_gk = undefined;
+    (s as any).rt_html = '<div style="font-weight:bold;font-size:0.95em;padding:0 0 6px 0;border-bottom:2px solid;margin-bottom:8px">Contents</div>';
+    if (Object.keys((s as any).help_toc_sections ?? {}).length === 0) {
+      (s as any).rt_html = ((s as any).rt_html ?? 0) + ('<small><i>No topics yet.</i></small>');
+    } else {
+      (s as any).rt_i = 0;
+      while (true) {
+        if (((s as any).rt_i ?? 0) < Object.keys((s as any).help_toc_sections ?? {}).length) {
+          (s as any).rt_key = (((s as any).help_toc_sections ?? 0)?.[String((s as any).rt_i ?? 0)] ?? 0);
+          (s as any).rt_label = (((s as any).help_toc_label ?? 0)?.[String((s as any).rt_key ?? 0)] ?? 0);
+          (s as any).rt_page = (((s as any).help_toc_page ?? 0)?.[String((s as any).rt_key ?? 0)] ?? 0);
+          (s as any).rt_loc = (((s as any).help_toc_loc ?? 0)?.[String((s as any).rt_key ?? 0)] ?? 0);
+          (s as any).rt_kids = (((s as any).help_toc_children ?? 0)?.[String((s as any).rt_key ?? 0)] ?? 0);
+          (s as any).rt_open = (((s as any).help_toc_open ?? 0)?.[String((s as any).rt_key ?? 0)] ?? 0);
+          (s as any).rt_has_kids = ((((s as any).rt_kids ?? 0) !== '') ? (1) : (0));
+          if (((s as any).rt_has_kids ?? 0)) {
+            (s as any).rt_tri = ((((s as any).rt_open ?? 0)) ? ('&#9660;') : ('&#9654;'));
+            (s as any).rt_toggle = '<a href="#" onclick="window.__gameStore.setState((s) => { (s.help_toc_open ??= {})\u0027' + ((s as any).rt_key ?? 0) + '\u0027 = 1 - help_toc_open[\u0027' + ((s as any).rt_key ?? 0) + '\u0027]; return s; }); window.__gameStore.getState().doGoto(String((s as any).help_page_loc ?? \u0027\u0027), String((s as any).help_page_key ?? \u0027\u0027)); return false;">\' + $rt_tri + \'</a> ';
           } else {
-            (s as any).rt_ck = ((s as any).rt_remaining ?? 0);
-            (s as any).rt_remaining = '';
+            (s as any).rt_toggle = '&nbsp;&nbsp; ';
           }
-          if (((s as any).help_toc_is_group ?? 0)?.[String((s as any).rt_ck ?? 0)]) {
-            (s as any).rt_cg_open = (((s as any).help_toc_open ?? 0)?.[String((s as any).rt_ck ?? 0)] ?? 0);
-            (s as any).rt_cg_tri = ((((s as any).rt_cg_open ?? 0)) ? ('&#9660;') : ('&#9654;'));
-            (s as any).rt_cg_toggle = '<a href="#" onclick="window.__gameStore.setState((s) => { (s.help_toc_open ??= {})/u0027' + ((s as any).rt_ck ?? 0) + '/u0027 = 1 - help_toc_open[/u0027' + ((s as any).rt_ck ?? 0) + '/u0027]; return s; }); window.__gameStore.getState().doGoto(/u0027' + ((s as any).help_page_loc ?? 0) + '/u0027, /u0027' + ((s as any).help_page_key ?? 0) + '/u0027); return false;">\' + $rt_cg_tri + \'</a> ';
-            (s as any).rt_cg_lnk = '<a href="#" onclick="window.__gameStore.setState((s) => { (s.help_toc_open ??= {})/u0027' + ((s as any).rt_ck ?? 0) + '/u0027 = 1 - help_toc_open[/u0027' + ((s as any).rt_ck ?? 0) + '/u0027]; return s; }); window.__gameStore.getState().doGoto(/u0027' + ((s as any).help_page_loc ?? 0) + '/u0027, /u0027' + ((s as any).help_page_key ?? 0) + '/u0027); return false;">\' + $help_toc_label[$rt_ck] + \'</a>';
-            // TODO-QSP: $rt_html += '<div style="margin:3px 0 1px 0;padding-left:14px;font-style:italic;font-size:0.88em;opa...
-            if (((s as any).rt_cg_open ?? 0)  &&  ((s as any).help_toc_children ?? 0)?.[String((s as any).rt_ck ?? 0)] !== '') {
-              (s as any).rt_gc_rem = (((s as any).help_toc_children ?? 0)?.[String((s as any).rt_ck ?? 0)] ?? 0);
-              // TODO-QSP: :rt_gc_loop
-              if (((s as any).rt_gc_rem ?? 0) !== '') {
-                (s as any).rt_gc_sp = ((String(((s as any).rt_gc_rem ?? 0)).indexOf(String(' '))) + 1);
-                if (((s as any).rt_gc_sp ?? 0) > 0) {
-                  (s as any).rt_gc_k = (String(((s as any).rt_gc_rem ?? 0)).slice((1)-1, ((1)-1)+(((s as any).rt_gc_sp ?? 0) - 1)));
-                  (s as any).rt_gc_rem = (String(((s as any).rt_gc_rem ?? 0)).slice((((s as any).rt_gc_sp ?? 0) + 1)-1));
+          if (((s as any).rt_page ?? 0) !== '') {
+            if (((s as any).rt_page ?? 0) === ((s as any).help_page_key ?? 0)) {
+              (s as any).rt_active = ' style="font-weight:bold;border-left:3px solid;padding-left:4px;margin-left:-7px;display:inline-block"';
+            } else {
+              (s as any).rt_active = '';
+            }
+            (s as any).rt_lnk = '<a href="#" onclick="window.__gameStore.getState().doGoto(String((s as any).rt_loc ?? \u0027\u0027), String((s as any).rt_page ?? \u0027\u0027)); return false;">' + ((s as any).rt_label ?? 0) + '</a>';
+          } else {
+            if (((s as any).help_toc_is_group ?? 0)?.[String((s as any).rt_key ?? 0)]) {
+              (s as any).rt_lnk = '<a href="#" onclick="window.__gameStore.setState((s) => { (s.help_toc_open ??= {})\u0027' + ((s as any).rt_key ?? 0) + '\u0027 = 1 - help_toc_open[\u0027' + ((s as any).rt_key ?? 0) + '\u0027]; return s; }); window.__gameStore.getState().doGoto(String((s as any).help_page_loc ?? \u0027\u0027), String((s as any).help_page_key ?? \u0027\u0027)); return false;">\' + $rt_label + \'</a>';
+            } else {
+              (s as any).rt_lnk = ((s as any).rt_label ?? 0);
+            }
+          }
+          (s as any).rt_html = ((s as any).rt_html ?? 0) + ('<div style="margin:4px 0;font-weight:bold;font-size:0.95em">' + ((s as any).rt_toggle ?? 0) + ((s as any).rt_lnk ?? 0) + '</div>');
+          if (((s as any).rt_open ?? 0)  &&  ((s as any).rt_kids ?? 0) !== '') {
+            (s as any).rt_remaining = ((s as any).rt_kids ?? 0);
+            while (true) {
+              if (((s as any).rt_remaining ?? 0) !== '') {
+                (s as any).rt_sp = ((String(((s as any).rt_remaining ?? 0)).indexOf(String(' '))) + 1);
+                if (((s as any).rt_sp ?? 0) > 0) {
+                  (s as any).rt_ck = (String(((s as any).rt_remaining ?? 0)).slice((1)-1, ((1)-1)+(((s as any).rt_sp ?? 0) - 1)));
+                  (s as any).rt_remaining = (String(((s as any).rt_remaining ?? 0)).slice((((s as any).rt_sp ?? 0) + 1)-1));
                 } else {
-                  (s as any).rt_gc_k = ((s as any).rt_gc_rem ?? 0);
-                  (s as any).rt_gc_rem = '';
+                  (s as any).rt_ck = ((s as any).rt_remaining ?? 0);
+                  (s as any).rt_remaining = '';
                 }
-                (s as any).rt_gc_l = (((s as any).help_toc_label ?? 0)?.[String((s as any).rt_gc_k ?? 0)] ?? 0);
-                (s as any).rt_gc_p = (((s as any).help_toc_page ?? 0)?.[String((s as any).rt_gc_k ?? 0)] ?? 0);
-                (s as any).rt_gc_loc = (((s as any).help_toc_loc ?? 0)?.[String((s as any).rt_gc_k ?? 0)] ?? 0);
-                if (((s as any).rt_gc_p ?? 0) === ((s as any).help_page_key ?? 0)) {
-                  (s as any).rt_gc_act = ' style="font-weight:bold;border-left:3px solid;padding-left:3px;margin-left:-6px;display:inline-block"';
+                if (((s as any).help_toc_is_group ?? 0)?.[String((s as any).rt_ck ?? 0)]) {
+                  (s as any).rt_cg_open = (((s as any).help_toc_open ?? 0)?.[String((s as any).rt_ck ?? 0)] ?? 0);
+                  (s as any).rt_cg_tri = ((((s as any).rt_cg_open ?? 0)) ? ('&#9660;') : ('&#9654;'));
+                  (s as any).rt_cg_toggle = '<a href="#" onclick="window.__gameStore.setState((s) => { (s.help_toc_open ??= {})\u0027' + ((s as any).rt_ck ?? 0) + '\u0027 = 1 - help_toc_open[\u0027' + ((s as any).rt_ck ?? 0) + '\u0027]; return s; }); window.__gameStore.getState().doGoto(String((s as any).help_page_loc ?? \u0027\u0027), String((s as any).help_page_key ?? \u0027\u0027)); return false;">\' + $rt_cg_tri + \'</a> ';
+                  (s as any).rt_cg_lnk = '<a href="#" onclick="window.__gameStore.setState((s) => { (s.help_toc_open ??= {})\u0027' + ((s as any).rt_ck ?? 0) + '\u0027 = 1 - help_toc_open[\u0027' + ((s as any).rt_ck ?? 0) + '\u0027]; return s; }); window.__gameStore.getState().doGoto(String((s as any).help_page_loc ?? \u0027\u0027), String((s as any).help_page_key ?? \u0027\u0027)); return false;">\' + $help_toc_label[$rt_ck] + \'</a>';
+                  (s as any).rt_html = ((s as any).rt_html ?? 0) + ('<div style="margin:3px 0 1px 0;padding-left:14px;font-style:italic;font-size:0.88em;opacity:0.75">' + ((s as any).rt_cg_toggle ?? 0) + ((s as any).rt_cg_lnk ?? 0) + '</div>');
+                  if (((s as any).rt_cg_open ?? 0)  &&  ((s as any).help_toc_children ?? 0)?.[String((s as any).rt_ck ?? 0)] !== '') {
+                    (s as any).rt_gc_rem = (((s as any).help_toc_children ?? 0)?.[String((s as any).rt_ck ?? 0)] ?? 0);
+                    while (true) {
+                      if (((s as any).rt_gc_rem ?? 0) !== '') {
+                        (s as any).rt_gc_sp = ((String(((s as any).rt_gc_rem ?? 0)).indexOf(String(' '))) + 1);
+                        if (((s as any).rt_gc_sp ?? 0) > 0) {
+                          (s as any).rt_gc_k = (String(((s as any).rt_gc_rem ?? 0)).slice((1)-1, ((1)-1)+(((s as any).rt_gc_sp ?? 0) - 1)));
+                          (s as any).rt_gc_rem = (String(((s as any).rt_gc_rem ?? 0)).slice((((s as any).rt_gc_sp ?? 0) + 1)-1));
+                        } else {
+                          (s as any).rt_gc_k = ((s as any).rt_gc_rem ?? 0);
+                          (s as any).rt_gc_rem = '';
+                        }
+                        (s as any).rt_gc_l = (((s as any).help_toc_label ?? 0)?.[String((s as any).rt_gc_k ?? 0)] ?? 0);
+                        (s as any).rt_gc_p = (((s as any).help_toc_page ?? 0)?.[String((s as any).rt_gc_k ?? 0)] ?? 0);
+                        (s as any).rt_gc_loc = (((s as any).help_toc_loc ?? 0)?.[String((s as any).rt_gc_k ?? 0)] ?? 0);
+                        if (((s as any).rt_gc_p ?? 0) === ((s as any).help_page_key ?? 0)) {
+                          (s as any).rt_gc_act = ' style="font-weight:bold;border-left:3px solid;padding-left:3px;margin-left:-6px;display:inline-block"';
+                        } else {
+                          (s as any).rt_gc_act = '';
+                        }
+                        (s as any).rt_html = ((s as any).rt_html ?? 0) + ('<div style="margin:1px 0;padding-left:28px;font-size:0.88em"><a href="#" onclick="window.__gameStore.getState().doGoto(String((s as any).rt_gc_loc ?? \u0027\u0027), String((s as any).rt_gc_p ?? \u0027\u0027)); return false;">' + ((s as any).rt_gc_l ?? 0) + '</a></div>');
+                        break;
+                      }
+                    }
+                  }
                 } else {
-                  (s as any).rt_gc_act = '';
+                  (s as any).rt_cl = (((s as any).help_toc_label ?? 0)?.[String((s as any).rt_ck ?? 0)] ?? 0);
+                  (s as any).rt_cp = (((s as any).help_toc_page ?? 0)?.[String((s as any).rt_ck ?? 0)] ?? 0);
+                  (s as any).rt_cloc = (((s as any).help_toc_loc ?? 0)?.[String((s as any).rt_ck ?? 0)] ?? 0);
+                  if (((s as any).rt_cp ?? 0) === ((s as any).help_page_key ?? 0)) {
+                    (s as any).rt_cactive = ' style="font-weight:bold;border-left:3px solid;padding-left:4px;margin-left:-7px;display:inline-block"';
+                  } else {
+                    (s as any).rt_cactive = '';
+                  }
+                  (s as any).rt_html = ((s as any).rt_html ?? 0) + ('<div style="margin:2px 0;padding-left:14px"><a href="#" onclick="window.__gameStore.getState().doGoto(String((s as any).rt_cloc ?? \u0027\u0027), String((s as any).rt_cp ?? \u0027\u0027)); return false;">' + ((s as any).rt_cl ?? 0) + '</a></div>');
                 }
-                // TODO-QSP: $rt_html += '<div style="margin:1px 0;padding-left:28px;font-size:0.88em"><a href="exec: gs ''<<$rt_...
-                // TODO-QSP: jump 'rt_gc_loop'
+                break;
               }
             }
-          } else {
-            (s as any).rt_cl = (((s as any).help_toc_label ?? 0)?.[String((s as any).rt_ck ?? 0)] ?? 0);
-            (s as any).rt_cp = (((s as any).help_toc_page ?? 0)?.[String((s as any).rt_ck ?? 0)] ?? 0);
-            (s as any).rt_cloc = (((s as any).help_toc_loc ?? 0)?.[String((s as any).rt_ck ?? 0)] ?? 0);
-            if (((s as any).rt_cp ?? 0) === ((s as any).help_page_key ?? 0)) {
-              (s as any).rt_cactive = ' style="font-weight:bold;border-left:3px solid;padding-left:4px;margin-left:-7px;display:inline-block"';
-            } else {
-              (s as any).rt_cactive = '';
-            }
-            // TODO-QSP: $rt_html += '<div style="margin:2px 0;padding-left:14px"><a href="exec: gs ''<<$rt_cloc>>'', ''<<$rt...
           }
-          // TODO-QSP: jump 'rt_child_loop'
+          (s as any).rt_i = ((s as any).rt_i ?? 0) + (1);
+          break;
         }
       }
-      (s as any).rt_i = ((s as any).rt_i ?? 0) + (1);
-      // TODO-QSP: jump 'rt_sec_loop'
     }
+    (s as any).result = ((s as any).rt_html ?? 0);
   }
-  (s as any).result = ((s as any).rt_html ?? 0);
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -375,17 +391,15 @@ function enterRender(s: GameState, scene: SceneBuilder): void {
     (s as any).help_page_title = (((s as any).help_toc_label ?? 0)?.[String((s as any).help_page_key ?? 0)] ?? 0);
   }
   (s as any).help_layout = '<table width="100%" cellspacing="0" cellpadding="0"><tr>';
-  // TODO-QSP: $help_layout +=    '<td width="20%" valign="top" style="border-right:1px solid;padding:8px 12px 8px ...
-  // TODO-QSP: $help_layout +=      $func('help', 'render_toc')
-  // TODO-QSP: $help_layout +=    '</td>'
-  // TODO-QSP: $help_layout +=    '<td valign="top" style="padding:0 0 8px 16px">'
-  // TODO-QSP: $help_layout +=      $func('help', 'render_banner')
-  // TODO-QSP: $help_layout +=      $help_page_content
-  // TODO-QSP: $help_layout +=    '</td>'
-  // TODO-QSP: $help_layout += '</tr></table>'
-  // TODO-QSP: dynamic text: $help_layout
+  (s as any).help_layout = ((s as any).help_layout ?? 0) + ('<td width="20%" valign="top" style="border-right:1px solid;padding:8px 12px 8px 0">');
+  (s as any).help_layout = ((s as any).help_layout ?? 0) + (qspFunc(s, 'help', 'render_toc'));
+  (s as any).help_layout = ((s as any).help_layout ?? 0) + ('</td>');
+  (s as any).help_layout = ((s as any).help_layout ?? 0) + ('<td valign="top" style="padding:0 0 8px 16px">');
+  (s as any).help_layout = ((s as any).help_layout ?? 0) + (qspFunc(s, 'help', 'render_banner'));
+  (s as any).help_layout = ((s as any).help_layout ?? 0) + (((s as any).help_page_content ?? 0));
+  (s as any).help_layout = ((s as any).help_layout ?? 0) + ('</td>');
+  (s as any).help_layout = ((s as any).help_layout ?? 0) + ('</tr></table>');
   scene.text(String((s as any).help_layout ?? ''));
-  // TODO-QSP: end
   scene.actions([
     { label: 'Back', handler: (st: GameState) => {
     qspCall(st, 'help', '');
@@ -398,212 +412,198 @@ function enterGeneric(s: GameState, scene: SceneBuilder): void {
   (s as any).help_page_title = 'Help & Glossary';
   (s as any).help_gen_cs = 'border:1px solid;border-radius:4px;padding:10px 14px;vertical-align:top;width:50%';
   (s as any).help_page_content = '<p style="font-size:0.9em;margin-bottom:12px">Select a topic below or use the Contents panel on the left.</p>';
-  // TODO-QSP: $help_page_content += '<table width="100%" cellspacing="6" cellpadding="0"><tr>'
-  (s as any).help_gen_c = '<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027help/u0027, /u0027ui_overview/u0027); return false;">User Interface</a><br>';
-  // TODO-QSP: $help_gen_c += '<small>'
-  // TODO-QSP: $help_gen_c += '<a href="exec: gs ''help'', ''ui_statbar''">Stat Bar</a><br>'
-  // TODO-QSP: $help_gen_c += '<a href="exec: gs ''help'', ''ui_menu''">Navigation Menu</a><br>'
-  // TODO-QSP: $help_gen_c += '<a href="exec: gs ''help'', ''ui_actions''">Action Buttons</a>'
-  // TODO-QSP: $help_gen_c += '</small>'
-  // TODO-QSP: $help_page_content += '<td style="' + $help_gen_cs + '">' + $help_gen_c + '</td>'
-  (s as any).help_gen_c = '<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027help/u0027, /u0027mech_overview/u0027); return false;">Game Mechanics</a><br>';
-  // TODO-QSP: $help_gen_c += '<small>'
-  // TODO-QSP: $help_gen_c += '<a href="exec: gs ''help'', ''mech_time''">Time &amp; Schedule</a><br>'
-  // TODO-QSP: $help_gen_c += '<a href="exec: gs ''help'', ''mech_stats''">Stats &amp; Attributes</a><br>'
-  // TODO-QSP: $help_gen_c += '<a href="exec: gs ''help'', ''mech_money''">Money &amp; Finances</a>'
-  // TODO-QSP: $help_gen_c += '</small>'
-  // TODO-QSP: $help_page_content += '<td style="' + $help_gen_cs + '">' + $help_gen_c + '</td>'
-  // TODO-QSP: $help_page_content += '</tr><tr>'
-  (s as any).help_gen_c = '<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027help/u0027, /u0027chars_overview/u0027); return false;">Characters</a><br>';
-  // TODO-QSP: $help_gen_c += '<small>'
-  // TODO-QSP: $help_gen_c += '<a href="exec: gs ''help_characters'', ''chars_pc''">Your Character</a><br>'
-  // TODO-QSP: $help_gen_c += '<a href="exec: gs ''help'', ''chars_overview''">Family &amp; School</a>'
-  // TODO-QSP: $help_gen_c += '</small>'
-  // TODO-QSP: $help_page_content += '<td style="' + $help_gen_cs + '">' + $help_gen_c + '</td>'
-  (s as any).help_gen_c = '<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027help/u0027, /u0027locs_overview/u0027); return false;">Locations</a><br>';
-  // TODO-QSP: $help_gen_c += '<small>'
-  // TODO-QSP: $help_gen_c += '<a href="exec: gs ''help'', ''locs_home''">Home</a><br>'
-  // TODO-QSP: $help_gen_c += '<a href="exec: gs ''help'', ''locs_school''">School</a><br>'
-  // TODO-QSP: $help_gen_c += '<a href="exec: gs ''help'', ''locs_town''">Town</a>'
-  // TODO-QSP: $help_gen_c += '</small>'
-  // TODO-QSP: $help_page_content += '<td style="' + $help_gen_cs + '">' + $help_gen_c + '</td>'
-  // TODO-QSP: $help_page_content += '</tr></table>'
+  (s as any).help_page_content = ((s as any).help_page_content ?? 0) + ('<table width="100%" cellspacing="6" cellpadding="0"><tr>');
+  (s as any).help_gen_c = '<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027help\u0027, \u0027ui_overview\u0027); return false;">User Interface</a><br>';
+  (s as any).help_gen_c = ((s as any).help_gen_c ?? 0) + ('<small>');
+  (s as any).help_gen_c = ((s as any).help_gen_c ?? 0) + ('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027help\u0027, \u0027ui_statbar\u0027); return false;">Stat Bar</a><br>');
+  (s as any).help_gen_c = ((s as any).help_gen_c ?? 0) + ('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027help\u0027, \u0027ui_menu\u0027); return false;">Navigation Menu</a><br>');
+  (s as any).help_gen_c = ((s as any).help_gen_c ?? 0) + ('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027help\u0027, \u0027ui_actions\u0027); return false;">Action Buttons</a>');
+  (s as any).help_gen_c = ((s as any).help_gen_c ?? 0) + ('</small>');
+  (s as any).help_page_content = ((s as any).help_page_content ?? 0) + ('<td style="' + ((s as any).help_gen_cs ?? 0) + '">' + ((s as any).help_gen_c ?? 0) + '</td>');
+  (s as any).help_gen_c = '<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027help\u0027, \u0027mech_overview\u0027); return false;">Game Mechanics</a><br>';
+  (s as any).help_gen_c = ((s as any).help_gen_c ?? 0) + ('<small>');
+  (s as any).help_gen_c = ((s as any).help_gen_c ?? 0) + ('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027help\u0027, \u0027mech_time\u0027); return false;">Time &amp; Schedule</a><br>');
+  (s as any).help_gen_c = ((s as any).help_gen_c ?? 0) + ('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027help\u0027, \u0027mech_stats\u0027); return false;">Stats &amp; Attributes</a><br>');
+  (s as any).help_gen_c = ((s as any).help_gen_c ?? 0) + ('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027help\u0027, \u0027mech_money\u0027); return false;">Money &amp; Finances</a>');
+  (s as any).help_gen_c = ((s as any).help_gen_c ?? 0) + ('</small>');
+  (s as any).help_page_content = ((s as any).help_page_content ?? 0) + ('<td style="' + ((s as any).help_gen_cs ?? 0) + '">' + ((s as any).help_gen_c ?? 0) + '</td>');
+  (s as any).help_page_content = ((s as any).help_page_content ?? 0) + ('</tr><tr>');
+  (s as any).help_gen_c = '<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027help\u0027, \u0027chars_overview\u0027); return false;">Characters</a><br>';
+  (s as any).help_gen_c = ((s as any).help_gen_c ?? 0) + ('<small>');
+  (s as any).help_gen_c = ((s as any).help_gen_c ?? 0) + ('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027help_characters\u0027, \u0027chars_pc\u0027); return false;">Your Character</a><br>');
+  (s as any).help_gen_c = ((s as any).help_gen_c ?? 0) + ('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027help\u0027, \u0027chars_overview\u0027); return false;">Family &amp; School</a>');
+  (s as any).help_gen_c = ((s as any).help_gen_c ?? 0) + ('</small>');
+  (s as any).help_page_content = ((s as any).help_page_content ?? 0) + ('<td style="' + ((s as any).help_gen_cs ?? 0) + '">' + ((s as any).help_gen_c ?? 0) + '</td>');
+  (s as any).help_gen_c = '<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027help\u0027, \u0027locs_overview\u0027); return false;">Locations</a><br>';
+  (s as any).help_gen_c = ((s as any).help_gen_c ?? 0) + ('<small>');
+  (s as any).help_gen_c = ((s as any).help_gen_c ?? 0) + ('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027help\u0027, \u0027locs_home\u0027); return false;">Home</a><br>');
+  (s as any).help_gen_c = ((s as any).help_gen_c ?? 0) + ('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027help\u0027, \u0027locs_school\u0027); return false;">School</a><br>');
+  (s as any).help_gen_c = ((s as any).help_gen_c ?? 0) + ('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027help\u0027, \u0027locs_town\u0027); return false;">Town</a>');
+  (s as any).help_gen_c = ((s as any).help_gen_c ?? 0) + ('</small>');
+  (s as any).help_page_content = ((s as any).help_page_content ?? 0) + ('<td style="' + ((s as any).help_gen_cs ?? 0) + '">' + ((s as any).help_gen_c ?? 0) + '</td>');
+  (s as any).help_page_content = ((s as any).help_page_content ?? 0) + ('</tr></table>');
+  (s as any).help_gen_c = undefined;
+  (s as any).help_gen_cs = undefined;
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[0] ?? 0)]; enterRender(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterUiOverview(s: GameState, scene: SceneBuilder): void {
   (s as any).help_page_title = 'User Interface';
   (s as any).help_page_content = '<b>User Interface</b><br><br>';
-  // TODO-QSP: $help_page_content  += 'The game screen is divided into two main areas: the <b>main window</b> on th...
-  // TODO-QSP: $help_page_content  += 'shows the current scene and your action choices, while the <b>stat panel</b>...
-  // TODO-QSP: $help_page_content  += 'right shows your character information and navigation icons.<br><br>'
-  // TODO-QSP: $help_page_content  += 'Select a subtopic on the left for more detail.'
+  (s as any).help_page_content = ((s as any).help_page_content ?? 0) + ('The game screen is divided into two main areas: the <b>main window</b> on the left ');
+  (s as any).help_page_content = ((s as any).help_page_content ?? 0) + ('shows the current scene and your action choices, while the <b>stat panel</b> on the ');
+  (s as any).help_page_content = ((s as any).help_page_content ?? 0) + ('right shows your character information and navigation icons.<br><br>');
+  (s as any).help_page_content = ((s as any).help_page_content ?? 0) + ('Select a subtopic on the left for more detail.');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[0] ?? 0)]; enterRender(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterUiStatbar(s: GameState, scene: SceneBuilder): void {
   (s as any).help_page_title = 'Stat Bar';
   (s as any).help_page_content = '<b>Stat Bar</b><br><br>';
-  // TODO-QSP: $help_page_content  += 'The stat panel on the right side of the screen displays your key stats at a ...
-  // TODO-QSP: $help_page_content  += 'money, energy, mood, and appearance among others.<br><br>'
-  // TODO-QSP: $help_page_content  += '<i>(Placeholder — fill in with real stat descriptions.)</i>'
+  (s as any).help_page_content = ((s as any).help_page_content ?? 0) + ('The stat panel on the right side of the screen displays your key stats at a glance: ');
+  (s as any).help_page_content = ((s as any).help_page_content ?? 0) + ('money, energy, mood, and appearance among others.<br><br>');
+  (s as any).help_page_content = ((s as any).help_page_content ?? 0) + ('<i>(Placeholder — fill in with real stat descriptions.)</i>');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[0] ?? 0)]; enterRender(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterUiMenu(s: GameState, scene: SceneBuilder): void {
   (s as any).help_page_title = 'Navigation Menu';
   (s as any).help_page_content = '<b>Navigation Menu</b><br><br>';
-  // TODO-QSP: $help_page_content  += 'The row of icons at the bottom of the stat panel lets you jump to key screen...
-  // TODO-QSP: $help_page_content  += 'your inventory, phone, map, calendar, and this help system.<br><br>'
-  // TODO-QSP: $help_page_content  += '<i>(Placeholder — fill in with icon-by-icon descriptions.)</i>'
+  (s as any).help_page_content = ((s as any).help_page_content ?? 0) + ('The row of icons at the bottom of the stat panel lets you jump to key screens: ');
+  (s as any).help_page_content = ((s as any).help_page_content ?? 0) + ('your inventory, phone, map, calendar, and this help system.<br><br>');
+  (s as any).help_page_content = ((s as any).help_page_content ?? 0) + ('<i>(Placeholder — fill in with icon-by-icon descriptions.)</i>');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[0] ?? 0)]; enterRender(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterUiActions(s: GameState, scene: SceneBuilder): void {
   (s as any).help_page_title = 'Action Buttons';
   (s as any).help_page_content = '<b>Action Buttons</b><br><br>';
-  // TODO-QSP: $help_page_content  += 'The list of clickable links in the main window represents the actions availa...
-  // TODO-QSP: $help_page_content  += 'to you in the current scene. Actions can move you to a new location, trigger...
-  // TODO-QSP: $help_page_content  += 'events, or change your stats.<br><br>'
-  // TODO-QSP: $help_page_content  += '<i>(Placeholder — fill in with further detail.)</i>'
+  (s as any).help_page_content = ((s as any).help_page_content ?? 0) + ('The list of clickable links in the main window represents the actions available ');
+  (s as any).help_page_content = ((s as any).help_page_content ?? 0) + ('to you in the current scene. Actions can move you to a new location, trigger ');
+  (s as any).help_page_content = ((s as any).help_page_content ?? 0) + ('events, or change your stats.<br><br>');
+  (s as any).help_page_content = ((s as any).help_page_content ?? 0) + ('<i>(Placeholder — fill in with further detail.)</i>');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[0] ?? 0)]; enterRender(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterMechOverview(s: GameState, scene: SceneBuilder): void {
   (s as any).help_page_title = 'Game Mechanics';
   (s as any).help_page_content = '<b>Game Mechanics</b><br><br>';
-  // TODO-QSP: $help_page_content  += 'Girl Life simulates day-to-day life. Time passes as you take actions; '
-  // TODO-QSP: $help_page_content  += 'your stats rise and fall based on your choices, and money must be managed '
-  // TODO-QSP: $help_page_content  += 'to cover living expenses.<br><br>'
-  // TODO-QSP: $help_page_content  += 'Select a subtopic on the left for more detail.'
+  (s as any).help_page_content = ((s as any).help_page_content ?? 0) + ('Girl Life simulates day-to-day life. Time passes as you take actions; ');
+  (s as any).help_page_content = ((s as any).help_page_content ?? 0) + ('your stats rise and fall based on your choices, and money must be managed ');
+  (s as any).help_page_content = ((s as any).help_page_content ?? 0) + ('to cover living expenses.<br><br>');
+  (s as any).help_page_content = ((s as any).help_page_content ?? 0) + ('Select a subtopic on the left for more detail.');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[0] ?? 0)]; enterRender(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterMechTime(s: GameState, scene: SceneBuilder): void {
   (s as any).help_page_title = 'Time & Schedule';
   (s as any).help_page_content = '<b>Time & Schedule</b><br><br>';
-  // TODO-QSP: $help_page_content  += 'The game runs on a clock divided into periods (morning, afternoon, evening, ...
-  // TODO-QSP: $help_page_content  += 'Most actions consume one or more time periods. The week follows a school/wor...
-  // TODO-QSP: $help_page_content  += 'schedule, and certain events only occur on specific days.<br><br>'
-  // TODO-QSP: $help_page_content  += '<i>(Placeholder — fill in with real time system details.)</i>'
+  (s as any).help_page_content = ((s as any).help_page_content ?? 0) + ('The game runs on a clock divided into periods (morning, afternoon, evening, night). ');
+  (s as any).help_page_content = ((s as any).help_page_content ?? 0) + ('Most actions consume one or more time periods. The week follows a school/work ');
+  (s as any).help_page_content = ((s as any).help_page_content ?? 0) + ('schedule, and certain events only occur on specific days.<br><br>');
+  (s as any).help_page_content = ((s as any).help_page_content ?? 0) + ('<i>(Placeholder — fill in with real time system details.)</i>');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[0] ?? 0)]; enterRender(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterMechStats(s: GameState, scene: SceneBuilder): void {
   (s as any).help_page_title = 'Stats & Attributes';
   (s as any).help_page_content = '<b>Stats & Attributes</b><br><br>';
-  // TODO-QSP: $help_page_content  += 'Your character has a range of numeric stats — beauty, fitness, intelligence,...
-  // TODO-QSP: $help_page_content  += 'confidence, and more. Stats have upper and lower bounds and change through '
-  // TODO-QSP: $help_page_content  += 'activities, sleep, eating, and events.<br><br>'
-  // TODO-QSP: $help_page_content  += '<i>(Placeholder — fill in with stat list and ranges.)</i>'
+  (s as any).help_page_content = ((s as any).help_page_content ?? 0) + ('Your character has a range of numeric stats — beauty, fitness, intelligence, ');
+  (s as any).help_page_content = ((s as any).help_page_content ?? 0) + ('confidence, and more. Stats have upper and lower bounds and change through ');
+  (s as any).help_page_content = ((s as any).help_page_content ?? 0) + ('activities, sleep, eating, and events.<br><br>');
+  (s as any).help_page_content = ((s as any).help_page_content ?? 0) + ('<i>(Placeholder — fill in with stat list and ranges.)</i>');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[0] ?? 0)]; enterRender(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterMechMoney(s: GameState, scene: SceneBuilder): void {
   (s as any).help_page_title = 'Money & Finances';
   (s as any).help_page_content = '<b>Money & Finances</b><br><br>';
-  // TODO-QSP: $help_page_content  += 'Money is spent on food, clothing, rent, and social activities. '
-  // TODO-QSP: $help_page_content  += 'Income comes from jobs, allowances, and other sources depending on '
-  // TODO-QSP: $help_page_content  += 'your current living situation.<br><br>'
-  // TODO-QSP: $help_page_content  += '<i>(Placeholder — fill in with income/expense breakdown.)</i>'
+  (s as any).help_page_content = ((s as any).help_page_content ?? 0) + ('Money is spent on food, clothing, rent, and social activities. ');
+  (s as any).help_page_content = ((s as any).help_page_content ?? 0) + ('Income comes from jobs, allowances, and other sources depending on ');
+  (s as any).help_page_content = ((s as any).help_page_content ?? 0) + ('your current living situation.<br><br>');
+  (s as any).help_page_content = ((s as any).help_page_content ?? 0) + ('<i>(Placeholder — fill in with income/expense breakdown.)</i>');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[0] ?? 0)]; enterRender(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterCharsOverview(s: GameState, scene: SceneBuilder): void {
   (s as any).help_page_title = 'Characters';
   (s as any).help_page_content = '<b>Characters</b><br><br>';
-  // TODO-QSP: $help_page_content  += 'The game world is populated by recurring NPCs who each have their own '
-  // TODO-QSP: $help_page_content  += 'relationship score with your character. How they treat you depends on '
-  // TODO-QSP: $help_page_content  += 'that score and your stats.<br><br>'
-  // TODO-QSP: $help_page_content  += 'Select a subtopic on the left for more detail.'
+  (s as any).help_page_content = ((s as any).help_page_content ?? 0) + ('The game world is populated by recurring NPCs who each have their own ');
+  (s as any).help_page_content = ((s as any).help_page_content ?? 0) + ('relationship score with your character. How they treat you depends on ');
+  (s as any).help_page_content = ((s as any).help_page_content ?? 0) + ('that score and your stats.<br><br>');
+  (s as any).help_page_content = ((s as any).help_page_content ?? 0) + ('Select a subtopic on the left for more detail.');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[0] ?? 0)]; enterRender(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterCharsFamily(s: GameState, scene: SceneBuilder): void {
   (s as any).help_page_title = 'Family';
   (s as any).help_page_content = '<b>Family</b><br><br>';
-  // TODO-QSP: $help_page_content  += 'Your family members affect your starting home situation, available allowance...
-  // TODO-QSP: $help_page_content  += 'and certain story paths. Relationships with them can be improved or damaged ...
-  // TODO-QSP: $help_page_content  += 'over time.<br><br>'
-  // TODO-QSP: $help_page_content  += '<i>(Placeholder — fill in with family member profiles.)</i>'
+  (s as any).help_page_content = ((s as any).help_page_content ?? 0) + ('Your family members affect your starting home situation, available allowance, ');
+  (s as any).help_page_content = ((s as any).help_page_content ?? 0) + ('and certain story paths. Relationships with them can be improved or damaged ');
+  (s as any).help_page_content = ((s as any).help_page_content ?? 0) + ('over time.<br><br>');
+  (s as any).help_page_content = ((s as any).help_page_content ?? 0) + ('<i>(Placeholder — fill in with family member profiles.)</i>');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[0] ?? 0)]; enterRender(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterCharsNpc(s: GameState, scene: SceneBuilder): void {
   (s as any).help_page_title = 'Other People';
   (s as any).help_page_content = '<b>Other People</b><br><br>';
-  // TODO-QSP: $help_page_content  += 'Classmates, teachers, shopkeepers, and others populate the game world. '
-  // TODO-QSP: $help_page_content  += 'Building relationships with them unlocks new events and options.<br><br>'
-  // TODO-QSP: $help_page_content  += '<i>(Placeholder — fill in with NPC roster.)</i>'
+  (s as any).help_page_content = ((s as any).help_page_content ?? 0) + ('Classmates, teachers, shopkeepers, and others populate the game world. ');
+  (s as any).help_page_content = ((s as any).help_page_content ?? 0) + ('Building relationships with them unlocks new events and options.<br><br>');
+  (s as any).help_page_content = ((s as any).help_page_content ?? 0) + ('<i>(Placeholder — fill in with NPC roster.)</i>');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[0] ?? 0)]; enterRender(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterLocsOverview(s: GameState, scene: SceneBuilder): void {
   (s as any).help_page_title = 'Locations';
   (s as any).help_page_content = '<b>Locations</b><br><br>';
-  // TODO-QSP: $help_page_content  += 'The game world contains many distinct locations, each with their own '
-  // TODO-QSP: $help_page_content  += 'available actions and time costs to reach. You can travel between them '
-  // TODO-QSP: $help_page_content  += 'using the map or direct action links.<br><br>'
-  // TODO-QSP: $help_page_content  += 'Select a subtopic on the left for more detail.'
+  (s as any).help_page_content = ((s as any).help_page_content ?? 0) + ('The game world contains many distinct locations, each with their own ');
+  (s as any).help_page_content = ((s as any).help_page_content ?? 0) + ('available actions and time costs to reach. You can travel between them ');
+  (s as any).help_page_content = ((s as any).help_page_content ?? 0) + ('using the map or direct action links.<br><br>');
+  (s as any).help_page_content = ((s as any).help_page_content ?? 0) + ('Select a subtopic on the left for more detail.');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[0] ?? 0)]; enterRender(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterLocsHome(s: GameState, scene: SceneBuilder): void {
   (s as any).help_page_title = 'Home';
   (s as any).help_page_content = '<b>Home</b><br><br>';
-  // TODO-QSP: $help_page_content  += 'Home is your base of operations. Here you can sleep, eat, change clothes, '
-  // TODO-QSP: $help_page_content  += 'study, and spend time with family members who live with you.<br><br>'
-  // TODO-QSP: $help_page_content  += '<i>(Placeholder — fill in with room-by-room breakdown.)</i>'
+  (s as any).help_page_content = ((s as any).help_page_content ?? 0) + ('Home is your base of operations. Here you can sleep, eat, change clothes, ');
+  (s as any).help_page_content = ((s as any).help_page_content ?? 0) + ('study, and spend time with family members who live with you.<br><br>');
+  (s as any).help_page_content = ((s as any).help_page_content ?? 0) + ('<i>(Placeholder — fill in with room-by-room breakdown.)</i>');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[0] ?? 0)]; enterRender(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterLocsSchool(s: GameState, scene: SceneBuilder): void {
   (s as any).help_page_title = 'School';
   (s as any).help_page_content = '<b>School</b><br><br>';
-  // TODO-QSP: $help_page_content  += 'School runs on weekdays. Attending classes raises your grades and intelligen...
-  // TODO-QSP: $help_page_content  += 'Between lessons you can socialise, join clubs, or sneak off campus.<br><br>'
-  // TODO-QSP: $help_page_content  += '<i>(Placeholder — fill in with school map and schedule.)</i>'
+  (s as any).help_page_content = ((s as any).help_page_content ?? 0) + ('School runs on weekdays. Attending classes raises your grades and intelligence. ');
+  (s as any).help_page_content = ((s as any).help_page_content ?? 0) + ('Between lessons you can socialise, join clubs, or sneak off campus.<br><br>');
+  (s as any).help_page_content = ((s as any).help_page_content ?? 0) + ('<i>(Placeholder — fill in with school map and schedule.)</i>');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[0] ?? 0)]; enterRender(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterLocsTown(s: GameState, scene: SceneBuilder): void {
   (s as any).help_page_title = 'Town';
   (s as any).help_page_content = '<b>Town</b><br><br>';
-  // TODO-QSP: $help_page_content  += 'The town centre has shops, a park, cafes, and various venues to visit. '
-  // TODO-QSP: $help_page_content  += 'Most town locations are accessible in the afternoon and evening.<br><br>'
-  // TODO-QSP: $help_page_content  += '<i>(Placeholder — fill in with venue list and opening hours.)</i>'
+  (s as any).help_page_content = ((s as any).help_page_content ?? 0) + ('The town centre has shops, a park, cafes, and various venues to visit. ');
+  (s as any).help_page_content = ((s as any).help_page_content ?? 0) + ('Most town locations are accessible in the afternoon and evening.<br><br>');
+  (s as any).help_page_content = ((s as any).help_page_content ?? 0) + ('<i>(Placeholder — fill in with venue list and opening hours.)</i>');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[0] ?? 0)]; enterRender(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.build();
 }
 

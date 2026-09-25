@@ -45,7 +45,6 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
         ]);
       } else {
-        // TODO-QSP: dynamic text: Captain Katalkin eyes you up with an uninterested look. "You have to pay a fine ...
         scene.text(`Captain Katalkin eyes you up with an uninterested look. "You have to pay a fine of ${qspFunc(s, 'money', 'string_price', ((s as any).schtraf ?? ''))}, miss. Once you pay, you can go."`);
         if (qspFunc(s, 'money', 'can_afford', ((s as any).schtraf ?? 0), 'cash')) {
           scene.actions([
@@ -145,7 +144,6 @@ function enter(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).katalkinSexDay ?? 0) < ((s as any).daystart ?? 0)) {
         if ((!((s as any).schtraf ?? 0))) {
-          // TODO-QSP: dynamic text: Captain Katalkin looks at you with some interest before he gives you a smile. "H...
           scene.text(`Captain Katalkin looks at you with some interest before he gives you a smile. "Hi there ${((s as any).pcs_nickname ?? '')}, I was just about to have a break. Would you like to join me for a cup of tea?"`);
           scene.text('From your previous experience with him, you know he\'s probably not just talking about tea.');
           scene.actions([
@@ -156,7 +154,6 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/resident/katalkin/katalkin.jpg');
     scene.text('You agree and sit at a table near his desk as he pours two cups of tea. He places them on the table and sits down next to you.');
     scene.text('As you chat about Pavlovsk, you can tell he\'s practically undressing you with his eyes before he moves closer and cups your breasts through your clothing.');
-    // TODO-QSP: dynamic text: "Let''s cut the crap, <<$pcs_nickname>>…" he whispers. "Did you come here just s...
     scene.text(`"Let's cut the crap, ${((st as any).pcs_nickname ?? '')}…" he whispers. "Did you come here just so you could have some fun with me again?"`);
     scene.actions([
       { label: 'Put your hand on his groin', goto: ['katalkinSex', 'sexgo'] },
@@ -166,7 +163,6 @@ function enter(s: GameState, scene: SceneBuilder): void {
           ]);
         } else {
           if (((s as any).schtraf ?? 0) > 0) {
-            // TODO-QSP: dynamic text: Captain Katalkin has a greedy smile on his face. "Well <<$pcs_nickname>>, I see ...
             scene.text(`Captain Katalkin has a greedy smile on his face. "Well ${((s as any).pcs_nickname ?? '')}, I see you have to pay a fine. Do you have the money or are you going to entertain me to make it go away?"`);
             if (qspFunc(s, 'money', 'can_afford', ((s as any).schtraf ?? 0), 'cash')) {
               qspCall(s, 'willpower', 'sex', 'resist', 'hard');
@@ -185,7 +181,6 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/katalkin/katalkin.jpg');
     scene.text('You see a tinge of disappointment in his face when you give him the money.');
-    // TODO-QSP: dynamic text: "Oh. Very well then, miss <<$pcs_lastname>>. You''re free to go."
     scene.text(`"Oh. Very well then, miss ${((st as any).pcs_lastname ?? '')}. You're free to go."`);
     scene.actions([
       { label: 'Leave the police station', handler: (st: GameState) => {
@@ -223,7 +218,6 @@ function enter(s: GameState, scene: SceneBuilder): void {
           scene.text('Captain Katalkin is sitting in his chair, working on some documents. He gives you a friendly nod but keeps working, indicating that he doesn\'t want to be disturbed right now.');
         } else {
           if (((s as any).schtraf ?? 0) > 0) {
-            // TODO-QSP: dynamic text: Captain Katalkin pretends he''s looking through some files before he rips up a p...
             scene.text(`Captain Katalkin pretends he's looking through some files before he rips up a piece of paper and grins at you. "Good news! It seems like your fine has been paid in full, miss ${((s as any).pcs_lastname ?? '')}."`);
             scene.actions([
               { label: 'Say goodbye', handler: (st: GameState) => {
@@ -248,7 +242,6 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.text('Captain Katalkin is sitting at a table with two of his colleagues. The table has a nice assortment of snacks and vodka. They look like they\'ve been drinking…');
     if (((s as any).katalkinSexOnce ?? 0) === 1) {
       if ((!((s as any).katGangMeet ?? 0))) {
-        // TODO-QSP: dynamic text: When Katalkin sees you walk by, he drunkenly waves you over. "<<$pcs_nickname>>!...
         scene.text(`When Katalkin sees you walk by, he drunkenly waves you over. "${((s as any).pcs_nickname ?? '')}! Come here, let me fuckin' introduce you to my boys!"`);
         scene.actions([
           { label: 'Sit down with them', handler: (st: GameState) => {
@@ -269,7 +262,6 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
         ]);
       } else {
-        // TODO-QSP: dynamic text: When Katalkin sees you walk by, he drunkenly waves you over. <<$pcs_nickname>>! ...
         scene.text(`When Katalkin sees you walk by, he drunkenly waves you over. ${((s as any).pcs_nickname ?? '')}! Come over here and have a drink with me and my boys!"`);
         scene.actions([
           { label: 'Sit down with them', handler: (st: GameState) => {
@@ -291,7 +283,6 @@ function enter(s: GameState, scene: SceneBuilder): void {
     } else {
       if ((!((s as any).katalkinSexOnce ?? 0))) {
         if ((!((s as any).schtraf ?? 0))) {
-          // TODO-QSP: dynamic text: When Katalkin sees you walk by, he drunkenly waves you over. <<$pcs_nickname>>! ...
           scene.text(`When Katalkin sees you walk by, he drunkenly waves you over. ${((s as any).pcs_nickname ?? '')}! Come over here and join me for a drink!"`);
           scene.actions([
             { label: 'Sit down with him', handler: (st: GameState) => {
@@ -325,7 +316,6 @@ function enter(s: GameState, scene: SceneBuilder): void {
           ]);
         } else {
           if (((s as any).schtraf ?? 0) > 0) {
-            // TODO-QSP: dynamic text: Captain Katalkin looks at you with an uninterested look in his eyes. Even though...
             scene.text(`Captain Katalkin looks at you with an uninterested look in his eyes. Even though he's drunk, he won't let you off the hook. "You have to pay a fine of ${qspFunc(s, 'money', 'string_price', ((s as any).schtraf ?? ''))}. Once you pay, you can go."`);
             scene.text('He checks to make sure the room is empty before he turns to face you. His eyes are exploring your body as he puts his sweaty hand on your knee. "If you don\'t have the money, well, we might be able to arrange something…"');
             if (qspFunc(s, 'money', 'can_afford', ((s as any).schtraf ?? 0), 'cash')) {

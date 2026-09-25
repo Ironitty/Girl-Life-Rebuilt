@@ -102,7 +102,6 @@ function enterPrecum(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   qspCall(s, 'cum_manage', '');
   if (((s as any).cumnpc ?? 0) !== '') {
     qspCall(s, 'npcStat', '$cumnpc', 0, ((s as any).cumCon ?? 0));
@@ -111,6 +110,10 @@ function enterPrecum(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'npcStat', '$cumboy', 0, ((s as any).cumCon ?? 0));
     }
   }
+  (s as any).cumboy = undefined;
+  (s as any).cumnpc = undefined;
+  (s as any).cumCon = undefined;
+  (s as any).sexcontra = undefined;
   scene.build();
 }
 
@@ -121,16 +124,17 @@ function enter(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === ''  ||  !isNaN((String(((s as any).locArgs?.[1] ?? 0)).slice((2)-1))) && (String(((s as any).locArgs?.[1] ?? 0)).slice((2)-1)) !== '' === 0) {
     if (String((s as any).locArgs?.[2] ?? '') !== 1) {
       qspCall(s, 'npcgeneratec', '0', ((s as any).locArgs?.[1] ?? 0), (Math.floor(Math.random() * 43) + 18), 0, 1);
-      // TODO-QSP: $ARGS[1] = $npclastgenerated
+      ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).npclastgenerated ?? 0);
     } else {
       (s as any).tempnpcid = qspUntranslated(s, "arrpos('npc_usedname', ARGS[1])", { location: "cum_call" });
       if (((s as any).tempnpcid ?? 0) > 0) {
-        // TODO-QSP: $ARGS[1] = 'A<<tempnpcid>>'
-        // TODO-QSP: dynamic text: <br><b><font color="teal">DEVELOPER WARNING: Legacy name cum_call needs upgrade ...
+        ((s as any).ARGS = (s as any).ARGS ?? {})[1] = 'A' + ((s as any).tempnpcid ?? 0) + '';
         scene.text(`<br><b><font color="teal">DEVELOPER WARNING: Legacy name cum_call needs upgrade from ${((s as any).locArgs?.[1] ?? '')} to A${((s as any).tempnpcid ?? '')}</font></b>`);
       } else {
-        // TODO-QSP: $ARGS[1] = 'D1'
+        alert('There has been an error in the cum_call code. Please contact a developer with what you were doing prior to receiving this message so the error may be fixed. Error type: Improper value for cum_call. Name ' + ((s as any).locArgs?.[1] ?? 0) + '');
+        ((s as any).ARGS = (s as any).ARGS ?? {})[1] = 'D1';
       }
+      (s as any).tempnpcid = undefined;
     }
   }
   qspCall(s, 'npcStat', '$ARGS[1]', 0, ((s as any).locArgs?.[3] ?? 0));

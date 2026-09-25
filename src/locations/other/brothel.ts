@@ -15,10 +15,9 @@ function enterLobby(s: GameState, scene: SceneBuilder): void {
   scene.text('<h3>Hotel Lobby</h3>');
   scene.img('images/locations/shared/brothel/hotellobby.jpg');
   scene.text('You are in a lobby of a middle-class Hotel.');
-  scene.text('There is a large restaurant hall, and a long <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027brothel/u0027, /u0027bar/u0027); return false;">wooden bar</a> with many high chairs.');
-  scene.text('Next to the bar are doors leading to a <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027brothel/u0027, /u0027toilet/u0027); return false;">toilet</a>.');
+  scene.text('There is a large restaurant hall, and a long <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027brothel\u0027, \u0027bar\u0027); return false;">wooden bar</a> with many high chairs.');
+  scene.text('Next to the bar are doors leading to a <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027brothel\u0027, \u0027toilet\u0027); return false;">toilet</a>.');
   scene.text('Alongside the windows are tables, each for about four to six people.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the hotel', goto: ['road', '20'] },
     { label: 'Visit the hotel bar', goto: ['brothel', 'bar'] },
@@ -42,7 +41,6 @@ function enterToilet(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'din_van', 'quickwash');
   qspCall(s, 'din_van', 'basin');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return to the lobby', goto: ['brothel', 'lobby'] },
     { label: 'Look into the mirror', goto: ['mirror', 'start'] },
@@ -69,7 +67,6 @@ function enterBar(s: GameState, scene: SceneBuilder): void {
       scene.text('You are wasted, lying with your head on the bar, barely keeping awake. The barman starts to be nervous, probably afraid of scaring away the regular guests.');
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the bar', goto: ['brothel', 'lobby'] },
     { label: 'Order something', goto: ['brothel', 'order'] },
@@ -95,7 +92,6 @@ function enterSit(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', goto: ['brothel', 'bar'] },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -133,7 +129,6 @@ function enterOrder(s: GameState, scene: SceneBuilder): void {
       { label: 'Order The Blue-Blooded Russian (0:05)', goto: ['brothel', 'password'] },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -141,7 +136,6 @@ function enterAbductionStart(s: GameState, scene: SceneBuilder): void {
   scene.text('The barman was obviously waiting for this moment.');
   scene.text('He walks out of the bar, taking you in his arms and carrying you away.');
   scene.text('On the way, you briefly regain consciousness from time to time, realizing that you are carried somewhere upstairs to what seems to be one of the hotel rooms.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['brothel', 'abducted'] },
   ]);
@@ -160,7 +154,6 @@ function enterAbducted(s: GameState, scene: SceneBuilder): void {
   scene.text('The barman dropped you on the bed face down, stripped you and tied your hands and feet to the corners of the bed.');
   scene.text('You are barely able to resist, giving minimal resistance to your aggressor.');
   scene.text('"Hah, slut! Now you will get another drink from me, the freshest one!"');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['brothel', 'abducted1'] },
   ]);
@@ -172,6 +165,7 @@ function enterAbducted1(s: GameState, scene: SceneBuilder): void {
   (s as any).orgasm_or = 'no';
   qspCall(s, 'arousal', 'vaginal_finger', 5, 'bound', 'rape');
   qspCall(s, 'arousal', 'anal_finger', 5, 'bound', 'rape');
+  (s as any).orgasm_or = undefined;
   scene.img('images/locations/shared/brothel/pinchandfingertiedtobed.jpg');
   scene.text('He jumps on to you, grabbing your ass and pinching your cheeks.');
   scene.text('<center><b>"Ouch! It… hurts… Ouch!"</b></center>');
@@ -179,7 +173,6 @@ function enterAbducted1(s: GameState, scene: SceneBuilder): void {
   scene.text('"What a whore! She\'s already wet!"');
   scene.text('He uses the juiced fingers and thrusts them into your anus, once again forcing you back to the living world.');
   scene.text('<center><b>"Auuuuuuu!"</b></center>');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['brothel', 'abducted2'] },
   ]);
@@ -195,7 +188,6 @@ function enterAbducted2(s: GameState, scene: SceneBuilder): void {
   scene.text('All you can hear in that moment is a popping sound as the bottle plug shoots out… The barman covers the neck of the bottle with his thumb and shakes it to build up pressure…');
   scene.text('…and then forces it into your anus as far as it goes, while the sparkling wine gushes out deep into your intestines.');
   scene.text('<center><b>"Ayyyieeee!"</b></center>');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['brothel', 'abducted3'] },
   ]);
@@ -208,33 +200,31 @@ function enterAbducted3(s: GameState, scene: SceneBuilder): void {
   (s as any).guy = ((s as any).guy ?? 0) + (4);
   (s as any).temp = 4;
   (s as any).sexpartkno = 0;
-  // TODO-QSP: :abdrapeloop
-  qspCall(s, 'npcgeneratec', '0', 'Rapist', (Math.floor(Math.random() * 16) + 35));
-  qspCall(s, 'boyStat', '$npclastgenerated');
-  qspCall(s, 'arousal', 'vaginal', 5, 'bound', 'rape');
-  qspCall(s, 'arousal', 'anal', 10, 'bound', 'rape');
-  (s as any).cumarrcon = 0;
-  qspCall(s, 'cum_call', 'anus', 'Rapist', 2);
-  (s as any).temp = ((s as any).temp ?? 0) - (1);
-  if (((s as any).temp ?? 0) > 0) {
-    // TODO-QSP: jump 'abdrapeloop'
-  }
-  qspCall(s, 'arousal', 'end');
-  ((s as any).stat = (s as any).stat ?? {})['rape_count'] = ((s as any).stat['rape_count'] ?? 0) + (1);
-  ((s as any).stat = (s as any).stat ?? {})['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
-  qspCall(s, 'stat', '');
-  scene.img('images/locations/shared/brothel/tiedtobedfuck.mp4');
-  scene.text('The champagne bottle is still inside your anus like a giant buttplug, but the flow has stopped.');
-  scene.text('He takes it and pulls it out. The wine slowly leaks out of your wrecked anus…');
-  scene.text('"Well, now that the drink is taken care of, we have also got you an expensive enema, so now we can finally get to business!"');
-  scene.text('He cleans your ass from the remains of whatever little was inside.');
-  scene.text('His dick is not the biggest one, but it is quite thick.');
-  scene.text('Your pussy is the first victim of his phallus, and after a short while he moves to your anus.');
-  scene.text('Another jolt of pain runs through your bottom, but this time you fade away for sure…');
-  // TODO-QSP: end
-  scene.actions([
-    { label: 'Continue', goto: ['brothel', 'abducted4'] },
-  ]);
+  do {
+    qspCall(s, 'npcgeneratec', '0', 'Rapist', (Math.floor(Math.random() * 16) + 35));
+    qspCall(s, 'boyStat', '$npclastgenerated');
+    qspCall(s, 'arousal', 'vaginal', 5, 'bound', 'rape');
+    qspCall(s, 'arousal', 'anal', 10, 'bound', 'rape');
+    (s as any).cumarrcon = 0;
+    qspCall(s, 'cum_call', 'anus', 'Rapist', 2);
+    (s as any).temp = ((s as any).temp ?? 0) - (1);
+    qspCall(s, 'arousal', 'end');
+    ((s as any).stat = (s as any).stat ?? {})['rape_count'] = ((s as any).stat['rape_count'] ?? 0) + (1);
+    ((s as any).stat = (s as any).stat ?? {})['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
+    (s as any).orgasm_or = undefined;
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/shared/brothel/tiedtobedfuck.mp4');
+    scene.text('The champagne bottle is still inside your anus like a giant buttplug, but the flow has stopped.');
+    scene.text('He takes it and pulls it out. The wine slowly leaks out of your wrecked anus…');
+    scene.text('"Well, now that the drink is taken care of, we have also got you an expensive enema, so now we can finally get to business!"');
+    scene.text('He cleans your ass from the remains of whatever little was inside.');
+    scene.text('His dick is not the biggest one, but it is quite thick.');
+    scene.text('Your pussy is the first victim of his phallus, and after a short while he moves to your anus.');
+    scene.text('Another jolt of pain runs through your bottom, but this time you fade away for sure…');
+    scene.actions([
+      { label: 'Continue', goto: ['brothel', 'abducted4'] },
+    ]);
+  } while (((s as any).temp ?? 0) > 0);
   scene.build();
 }
 
@@ -257,7 +247,6 @@ function enterAbducted4(s: GameState, scene: SceneBuilder): void {
   scene.text('You feel a strange fullness in your abdomen and your pussy and anus itch.');
   scene.text('As you try to struggle out of the bounds you realize what has happened… and what is left as a reminder…');
   scene.text('You desperately try to push the plug out of your ass, but its rim is too wide and it rests well inside you.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Desperately wait', goto: ['brothel', 'abducted5'] },
   ]);
@@ -274,7 +263,6 @@ function enterAbducted5(s: GameState, scene: SceneBuilder): void {
   scene.text('"Well, you mostly covered it all. But you still didn\'t tell me how, you liked it."');
   scene.text('<center><b>"Please just untie me! Everything hurts like hell! Please!"</b></center>');
   scene.text('"OK, but then you will answer me. And first we need to get rid of the plug, don\'t we?"');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['brothel', 'abducted6'] },
   ]);
@@ -292,7 +280,6 @@ function enterAbducted6(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>"What?! No, don\'t touch it!"</b></center>');
   scene.text('"Haha, they say do it swift, it hurts less! Let\'s try it!"');
   scene.text('With those words he pulls the plug out, leaving your anus as a huge gaping hole…');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Sob from pain', goto: ['brothel', 'abducted7'] },
   ]);
@@ -320,7 +307,6 @@ function enterAbducted7(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Yell at him that it was horrible', goto: ['brothel', 'abducted_hate'] },
   ]);
@@ -351,7 +337,6 @@ function enterAbductedLike(s: GameState, scene: SceneBuilder): void {
   scene.text('He looks at you as if he\'s trying to read you:');
   scene.text('"Oh I think you will come soon enough. When you do so, go to whoever is behind the bar and tell him that you want a special drink. The Blue Blooded Russian. Everything else will be taken care of."');
   scene.text('He seems to be finished talking to you. On his way back to the door he tosses a pile of your clothes your way. Without a word he shuts the door and is gone.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['brothel', 'lobby'] },
   ]);
@@ -367,7 +352,6 @@ function enterAbductedHate(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>"You moron! Rapist! Idiot!"</b></center>');
   scene.text('"Fuck off you slut. Take your clothes and begone!"');
   scene.text('You furiously take your clothes, put them on and run away through the door back to the lobby.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['brothel', 'lobby'] },
   ]);
@@ -382,7 +366,6 @@ function enterPassword(s: GameState, scene: SceneBuilder): void {
   scene.text('"Oh I see. Come with me please." he leads you to the lobby, looking for the Errand Boy. He finds him leaning on a wall near the elevator.');
   scene.text('"This young miss is here for the special drink. The Blue Blooded Russian."');
   scene.text('The boy just nods and, saying not a word, leads you to the elevator. "Please look the other way, I now have to enter the combination."');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Turn around and don\'t look', goto: ['brothel', 'elevator'] },
   ]);
@@ -395,7 +378,6 @@ function enterElevator(s: GameState, scene: SceneBuilder): void {
   scene.text('You arrive to a level which you can just guess is underground, beneath the Hotel. Looking at the surroundings it probably was an underground shelter during the Cold War.');
   scene.text('"Go through the hall to the reception, they will give you instructions." the boy says.');
   scene.text('Leaving the elevator you faintly hear him murmuring "Have fun, slut". But maybe it\'s just your imagination…');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go to reception', goto: ['brothel', 'reception'] },
   ]);
@@ -431,7 +413,6 @@ function enterReception(s: GameState, scene: SceneBuilder): void {
       { label: 'Ask him to let you out', goto: ['brothel', 'leave'] },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'First section', goto: ['brothel', 'section1_lobby'] },
   ]);
@@ -444,8 +425,9 @@ function enterLeave(s: GameState, scene: SceneBuilder): void {
   scene.text('<h3>Brothel Reception</h3>');
   scene.img('images/locations/shared/brothel/receptionist.jpg');
   if (((s as any).clothingworntype ?? 0) === 'nude') {
-    // TODO-QSP: 'The Receptionist looks up from his desk and gazes upon you: ' + $func('wrap', 'pos', '"Didn''t you ...
-    // TODO-QSP: 'It takes you few seconds to realize that you are naked! ' + $func('wrap', 'bimbo', '"Oops… let me g...
+    // TODO-QSP: dynamic text: 'The Receptionist looks up from his desk and gazes upon you: ' + $func('wrap', '...
+    scene.text('The Receptionist looks up from his desk and gazes upon you: ' + 0);
+    scene.text('It takes you few seconds to realize that you are naked! ' + qspFunc(s, 'wrap', 'bimbo', '"Oops… let me get my clothes first, I guess…"'));
     if (((s as any).pantyworntype ?? 0) !== 'none') {
       scene.img('images/pc/body/nude.jpg');
     } else {
@@ -465,7 +447,6 @@ function enterLeave(s: GameState, scene: SceneBuilder): void {
       { label: 'Go to the elevator', goto: ['brothel', 'lobby'] },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -475,9 +456,10 @@ function enterGetPaid(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('<h3>Brothel Reception</h3>');
   scene.text('The Receptionist checks something in his book. Probably counting the time you spent working.');
-  // TODO-QSP: 'He looks up, smiles at you and says ' + $func('wrap', 'pos', '"So, <<$pcs_firstname>>, you have who...
+  scene.text('He looks up, smiles at you and says ' + qspFunc(s, 'wrap', 'pos', '"So, ' + ((s as any).pcs_firstname ?? '') + ', you have whored for ' + ((s as any).temp_minutes ?? '') + ' minutes, that makes ' + qspFunc(s, 'money', 'string_profit', ((s as any).temp_pay ?? '')) + ', including whatever bonuses you may have earned."'));
   scene.text('He hands you the money.');
-  // TODO-QSP: end
+  (s as any).temp_pay = undefined;
+  (s as any).temp_minutes = undefined;
   scene.actions([
     { label: 'Thank him and leave', goto: ['brothel', 'reception'] },
   ]);
@@ -492,36 +474,37 @@ function enterSection1Lobby(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/shared/brothel/lobby.jpg');
   scene.text('The section 1 lobby. A spacy hall-like room, leading to several smaller rooms.');
   scene.text('A comfortable couch is in the middle of the lobby. Next to it are several cages sized just for a smaller person.');
-  scene.text('One of the doors also leads to a <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027brothel/u0027, /u0027brothel_dressingroom/u0027); return false;">room</a> made for the girls. ');
+  scene.text('One of the doors also leads to a <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027brothel\u0027, \u0027brothel_dressingroom\u0027); return false;">room</a> made for the girls. ');
+  (s as any).temp_text = undefined;
   if (((s as any).pcs_sweat ?? 0) >= 40) {
-    // TODO-QSP: $temp_text[] = '- have a shower.'
+    (s as any).temp_text = [...((s as any).temp_text ?? []), '- have a shower.'];
   }
   if (((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).cheatVars ?? 0)?.['enema'] === 1) {
-    // TODO-QSP: $temp_text[] = '- get an enema.'
+    (s as any).temp_text = [...((s as any).temp_text ?? []), '- get an enema.'];
   }
   if ((((s as any).cumloc ?? 0)[1] > 0  ||  ((s as any).cumloc ?? 0)[4] > 0  ||  ((s as any).cumloc ?? 0)[8] > 0  ||  ((s as any).cumloc ?? 0)[9] > 0  ||  ((s as any).cumloc ?? 0)[10] > 0  ||  ((s as any).cumloc ?? 0)[15] > 0  ||  ((s as any).cumloc ?? 0)[16] > 0  ||  ((s as any).cumloc ?? 0)[17] > 0)) {
-    // TODO-QSP: $temp_text[] = '- wash yourself.'
+    (s as any).temp_text = [...((s as any).temp_text ?? []), '- wash yourself.'];
   }
   if (((s as any).cumloc ?? 0)[11] > 0) {
-    // TODO-QSP: $temp_text[] = '- wash your face'
+    (s as any).temp_text = [...((s as any).temp_text ?? []), '- wash your face'];
   }
   if ((((s as any).pcs_leghair ?? 0) > 3  ||  ((s as any).pcs_pubes ?? 0) > 3)) {
-    // TODO-QSP: $temp_text[] = '- shave your pubes and legs.'
+    (s as any).temp_text = [...((s as any).temp_text ?? []), '- shave your pubes and legs.'];
   }
   if (((s as any).pcs_hairbsh ?? 0) !== 1) {
-    // TODO-QSP: $temp_text[] = '- brush your hair.'
+    (s as any).temp_text = [...((s as any).temp_text ?? []), '- brush your hair.'];
   }
   if (((s as any).pcs_makeup ?? 0) < 3) {
-    // TODO-QSP: $temp_text[] = '- put on some makeup.'
+    (s as any).temp_text = [...((s as any).temp_text ?? []), '- put on some makeup.'];
   }
   if (((s as any).pcs_lipbalm ?? 0) < 1) {
-    // TODO-QSP: $temp_text[] = '- apply some lipbalm.'
+    (s as any).temp_text = [...((s as any).temp_text ?? []), '- apply some lipbalm.'];
   }
   if (((s as any).clothingworntype ?? 0) !== 'nude') {
-    // TODO-QSP: $temp_text[] = '- strip off your clothes.'
+    (s as any).temp_text = [...((s as any).temp_text ?? []), '- strip off your clothes.'];
   }
   if (((s as any).pantyworntype ?? 0) !== 'none') {
-    // TODO-QSP: $temp_text[] = '- remove your panties.'
+    (s as any).temp_text = [...((s as any).temp_text ?? []), '- remove your panties.'];
   }
   if (Object.keys((s as any).temp_text ?? {}).length === 0) {
     scene.actions([
@@ -530,13 +513,12 @@ function enterSection1Lobby(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('To be able to get working, you need to:');
     (s as any).temp_i = 0;
-    // TODO-QSP: :lobby1_loop
-    (s as any).temp_i = ((s as any).temp_i ?? 0) + (1);
-    if (((s as any).temp_i ?? 0) < Object.keys((s as any).temp_text ?? {}).length) {
-      // TODO-QSP: jump 'lobby1_loop'
-    }
+    do {
+      (s as any).temp_i = ((s as any).temp_i ?? 0) + (1);
+      (s as any).temp_i = undefined;
+      (s as any).temp_text = undefined;
+    } while (((s as any).temp_i ?? 0) < Object.keys((s as any).temp_text ?? {}).length);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the girl\'s room', goto: ['brothel', 'brothel_dressingroom'] },
     { label: 'Go to the reception', goto: ['brothel', 'reception'] },
@@ -551,29 +533,19 @@ function enterBrothelDressingroom(s: GameState, scene: SceneBuilder): void {
   scene.text('<h3>Girl room</h3>');
   scene.img('images/locations/shared/brothel/brothelroom.jpg');
   scene.text('A room made for the working girls, like yourself.');
-  scene.text('It is equipped with a shower, almost on every wall hangs a large <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027start/u0027); return false;">mirror</a>. There is a water cooler beside the door, and some light snacks on the table, in case the girls get hungry or thirsty between sessions.');
+  scene.text('It is equipped with a shower, almost on every wall hangs a large <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027start\u0027); return false;">mirror</a>. There is a water cooler beside the door, and some light snacks on the table, in case the girls get hungry or thirsty between sessions.');
   scene.text('From a box beneath a table you can take some ');
-  // TODO-QSP: dynamic text: iif(mc_inventory['cosmetics'] < 2, '<a href="exec: mc_inventory[''cosmetics''] +...
-  scene.text('iif(mc_inventory[\'cosmetics\'] < 2, \'<a href="#" onclick="window.__gameStore.setState((s) => { (s.mc_inventory ??= {})/u0027cosmetics/u0027 +=s.5; return s; }); window.__gameStore.getState().doGoto(/u0027brothel/u0027, window.__gameStore.getState().prevArg); return false;">cosmetics</a>\', \'cosmetics\')');
-  // TODO-QSP: dynamic text: ' (you have '+mc_inventory['cosmetics']+'), '
+  scene.text('iif(mc_inventory[\'cosmetics\'] < 2, \'<a href="#" onclick="window.__gameStore.setState((s) => { (s.mc_inventory ??= {})\u0027cosmetics\u0027 +=s.5; return s; }); window.__gameStore.getState().doGoto(\u0027brothel\u0027, window.__gameStore.getState().prevArg); return false;">cosmetics</a>\', \'cosmetics\')');
   scene.text(' (you have ' + (((s as any).mc_inventory ?? 0)?.['cosmetics'] ?? '') + '), ');
-  // TODO-QSP: dynamic text: iif(mc_inventory['shampoo'] < 1, '<a href="exec: mc_inventory[''shampoo''] += 5 ...
-  scene.text('iif(mc_inventory[\'shampoo\'] < 1, \'<a href="#" onclick="window.__gameStore.setState((s) => { (s.mc_inventory ??= {})/u0027shampoo/u0027 +=s.5; return s; }); window.__gameStore.getState().doGoto(/u0027brothel/u0027, window.__gameStore.getState().prevArg); return false;">shampoo</a>\', \'shampoo\')');
-  // TODO-QSP: dynamic text: ' (you have '+mc_inventory['shampoo']+'), '
+  scene.text('iif(mc_inventory[\'shampoo\'] < 1, \'<a href="#" onclick="window.__gameStore.setState((s) => { (s.mc_inventory ??= {})\u0027shampoo\u0027 +=s.5; return s; }); window.__gameStore.getState().doGoto(\u0027brothel\u0027, window.__gameStore.getState().prevArg); return false;">shampoo</a>\', \'shampoo\')');
   scene.text(' (you have ' + (((s as any).mc_inventory ?? 0)?.['shampoo'] ?? '') + '), ');
-  // TODO-QSP: dynamic text: iif(mc_inventory['lipbalm'] < 1, '<a href="exec: mc_inventory[''lipbalm''] += 5 ...
-  scene.text('iif(mc_inventory[\'lipbalm\'] < 1, \'<a href="#" onclick="window.__gameStore.setState((s) => { (s.mc_inventory ??= {})/u0027lipbalm/u0027 +=s.5; return s; }); window.__gameStore.getState().doGoto(/u0027brothel/u0027, window.__gameStore.getState().prevArg); return false;">lip balm</a>\', \'lip balm\')');
-  // TODO-QSP: dynamic text: ' (you have '+mc_inventory['lipbalm'] + '), or '
+  scene.text('iif(mc_inventory[\'lipbalm\'] < 1, \'<a href="#" onclick="window.__gameStore.setState((s) => { (s.mc_inventory ??= {})\u0027lipbalm\u0027 +=s.5; return s; }); window.__gameStore.getState().doGoto(\u0027brothel\u0027, window.__gameStore.getState().prevArg); return false;">lip balm</a>\', \'lip balm\')');
   scene.text(' (you have ' + (((s as any).mc_inventory ?? 0)?.['lipbalm'] ?? '') + '), or ');
-  // TODO-QSP: dynamic text: iif(mc_inventory['razor'] < 3, '<a href="exec: mc_inventory[''razor''] += 5 & gt...
-  scene.text('iif(mc_inventory[\'razor\'] < 3, \'<a href="#" onclick="window.__gameStore.setState((s) => { (s.mc_inventory ??= {})/u0027razor/u0027 +=s.5; return s; }); window.__gameStore.getState().doGoto(/u0027brothel/u0027, window.__gameStore.getState().prevArg); return false;">shaving</a>\', \'shaving\')');
+  scene.text('iif(mc_inventory[\'razor\'] < 3, \'<a href="#" onclick="window.__gameStore.setState((s) => { (s.mc_inventory ??= {})\u0027razor\u0027 +=s.5; return s; }); window.__gameStore.getState().doGoto(\u0027brothel\u0027, window.__gameStore.getState().prevArg); return false;">shaving</a>\', \'shaving\')');
   scene.text('For obvious reasons there is also a box with an ');
-  // TODO-QSP: dynamic text: iif(mc_inventory['enema_kit'] < 1, '<a href="exec: mc_inventory[''enema_kit''] +...
-  scene.text('iif(mc_inventory[\'enema_kit\'] < 1, \'<a href="#" onclick="window.__gameStore.setState((s) => { (s.mc_inventory ??= {})/u0027enema_kit/u0027 +=s.1; return s; }); window.__gameStore.getState().doGoto(/u0027brothel/u0027, window.__gameStore.getState().prevArg); return false;">enema kit</a>\', \'enema kit\')');
+  scene.text('iif(mc_inventory[\'enema_kit\'] < 1, \'<a href="#" onclick="window.__gameStore.setState((s) => { (s.mc_inventory ??= {})\u0027enema_kit\u0027 +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027brothel\u0027, window.__gameStore.getState().prevArg); return false;">enema kit</a>\', \'enema kit\')');
   scene.text('. A box with some ');
-  // TODO-QSP: dynamic text: iif(mc_inventory['painkillers'] < 1 and brothel_vars['painkillers_day'] < daysta...
-  scene.text('iif(mc_inventory[\'painkillers\'] < 1 and brothel_vars[\'painkillers_day\'] < daystart, \'<a href="#" onclick="window.__gameStore.setState((s) => { (s.mc_inventory ??= {})/u0027painkillers/u0027 +=s.2; (s.brothel_vars ??= {})/u0027painkillers_day/u0027 = s.daystart; return s; }); window.__gameStore.getState().doGoto(/u0027brothel/u0027, window.__gameStore.getState().prevArg); return false;">painkillers</a>\', \'painkillers\')');
-  // TODO-QSP: dynamic text: ' (you have '+mc_inventory['painkillers']+') is there, in case someone needs pai...
+  scene.text('iif(mc_inventory[\'painkillers\'] < 1 and brothel_vars[\'painkillers_day\'] < daystart, \'<a href="#" onclick="window.__gameStore.setState((s) => { (s.mc_inventory ??= {})\u0027painkillers\u0027 +=s.2; (s.brothel_vars ??= {})\u0027painkillers_day\u0027 = s.daystart; return s; }); window.__gameStore.getState().doGoto(\u0027brothel\u0027, window.__gameStore.getState().prevArg); return false;">painkillers</a>\', \'painkillers\')');
   scene.text(' (you have ' + (((s as any).mc_inventory ?? 0)?.['painkillers'] ?? '') + ') is there, in case someone needs pain relief.');
   scene.text('-------------------------------------------------------------------------------------');
   scene.text(' 1) You are the Slave.');
@@ -581,7 +553,6 @@ function enterBrothelDressingroom(s: GameState, scene: SceneBuilder): void {
   scene.text(' 3) The Slave will not be injured in such way that requires hospitalisation or leaves a lasting injury, unless the Slave agrees to such a practice voluntarily.');
   scene.text(' 4) Each session is for safety purposes recorded by a camera. The record is ownership of the Organization.');
   scene.text(' 5) The Master can hide his/her identity by wearing a mask.');
-  // TODO-QSP: dynamic text:  6) The Slave earns a pay of <<$func(''money'', ''string_profit'', job_pay_rate_...
   scene.text(` 6) The Slave earns a pay of ${qspFunc(s, 'money', 'string_profit', (((s as any).job_pay_rate_def ?? 0)?.['highway_brothel_prostitute'] ?? ''))} for every hour of a session.`);
   scene.text('To begin your work, clean yourself, put on at least vibrant makeup, lip balm, brush your hair and strip of all clothes, then go to the lobby and lock yourself in a cage.');
   scene.text('-------------------------------------------------------------------------------------');
@@ -619,15 +590,18 @@ function enterBrothelDressingroom(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'din_van', 'brit');
   }
   if (((s as any).mc_inventory ?? 0)?.['painkillers'] > 0  &&  ((s as any).pain ?? 0)?.['total'] > 0) {
-    // TODO-QSP: act $func('drugs', 'painkiller_act_str'):
-    qspCall(s, 'drugs', 'painkiller');
-    (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) + (20);
-    qspGoto(s, 'brothel', 'brothel_dressingroom');
+    scene.actions([
+      { label: '', labelFn: (s: GameState) => String(qspFunc(s, 'drugs', 'painkiller_act_str') ?? ''), handler: (st: GameState) => {
+    qspCall(st, 'drugs', 'painkiller');
+    (st as any).pcs_hydra = ((st as any).pcs_hydra ?? 0) + (20);
+    qspGoto(st, 'brothel', 'brothel_dressingroom');
+  } },
+    ]);
   }
-  // TODO-QSP: end
   if (((s as any).sect ?? 0) === 'section2') {
     scene.actions([
       { label: 'Go back to lobby', handler: (st: GameState) => {
+    (st as any).temp_brothelsecion = undefined;
     qspGoto(st, 'brothel', 'section2_lobby');
   } },
     ]);
@@ -635,18 +609,19 @@ function enterBrothelDressingroom(s: GameState, scene: SceneBuilder): void {
     if (((s as any).sect ?? 0) === 'reception') {
       scene.actions([
         { label: 'Go back to the reception', handler: (st: GameState) => {
+    (st as any).temp_brothelsecion = undefined;
     qspGoto(st, 'brothel', 'reception');
   } },
       ]);
     } else {
       scene.actions([
         { label: 'Go back to lobby', handler: (st: GameState) => {
+    (st as any).temp_brothelsecion = undefined;
     qspGoto(st, 'brothel', 'section1_lobby');
   } },
       ]);
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Have a snack (0:15)', handler: (st: GameState) => {
     qspCall(st, 'food', '');
@@ -663,11 +638,11 @@ function enterBrothelDressingroom(s: GameState, scene: SceneBuilder): void {
 function enterSection2Warning(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/shared/brothel/receptionist.jpg');
   (s as any).section_warn = 1;
-  // TODO-QSP: 'As you walk toward the second Section, the receptionist suddenly speaks up: ' + $func('wrap', 'pos'...
-  // TODO-QSP: 'You stop, looking at him and shake your head. ' + $func('wrap', 'bimbo', '"No, so far not. Anything...
+  // TODO-QSP: dynamic text: 'As you walk toward the second Section, the receptionist suddenly speaks up: ' +...
+  scene.text('As you walk toward the second Section, the receptionist suddenly speaks up: ' + 0);
+  scene.text('You stop, looking at him and shake your head. ' + qspFunc(s, 'wrap', 'bimbo', '"No, so far not. Anything I should know?"'));
   scene.text('"Yes, clients in there are usually very rich and have their own ideas of fun. So, if you want to get paid well, do what they order you to do. That also means you are on your own if anything… problematic happens to you. We have our rules, but with those clients, management is much more accommodating."');
   scene.text('Slowly nodding to yourself, you give him a quick thanks, and resume your way towards the Section.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Proceed to the second section', goto: ['brothel', 'section2_lobby'] },
   ]);
@@ -682,55 +657,55 @@ function enterSection2Lobby(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/shared/brothel/lobby.jpg');
   scene.text('The section 2 lobby. This lobby is quite small, offering only enough room for a couch and a small table.');
   scene.text('Only a single room is attached to the lobby by a wide door.Judging by the state of the floor, a lot of heavy equipment is regularly dragged in and out.');
-  scene.text('One of the doors also leads to a <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027brothel/u0027, /u0027brothel_dressingroom/u0027); return false;">room</a> made for the girls. ');
+  scene.text('One of the doors also leads to a <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027brothel\u0027, \u0027brothel_dressingroom\u0027); return false;">room</a> made for the girls. ');
+  (s as any).temp_text = undefined;
   if (((s as any).pcs_sweat ?? 0) >= 40) {
-    // TODO-QSP: $temp_text[] = '- have a shower.'
+    (s as any).temp_text = [...((s as any).temp_text ?? []), '- have a shower.'];
   }
   if (((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).cheatVars ?? 0)?.['enema'] === 1) {
-    // TODO-QSP: $temp_text[] = '- get an enema.'
+    (s as any).temp_text = [...((s as any).temp_text ?? []), '- get an enema.'];
   }
   if ((((s as any).cumloc ?? 0)[1] > 0  ||  ((s as any).cumloc ?? 0)[4] > 0  ||  ((s as any).cumloc ?? 0)[8] > 0  ||  ((s as any).cumloc ?? 0)[9] > 0  ||  ((s as any).cumloc ?? 0)[10] > 0  ||  ((s as any).cumloc ?? 0)[15] > 0  ||  ((s as any).cumloc ?? 0)[16] > 0  ||  ((s as any).cumloc ?? 0)[17] > 0)) {
-    // TODO-QSP: $temp_text[] = '- wash yourself.'
+    (s as any).temp_text = [...((s as any).temp_text ?? []), '- wash yourself.'];
   }
   if (((s as any).cumloc ?? 0)[11] > 0) {
-    // TODO-QSP: $temp_text[] = '- wash your face'
+    (s as any).temp_text = [...((s as any).temp_text ?? []), '- wash your face'];
   }
   if ((((s as any).pcs_leghair ?? 0) > 3  ||  ((s as any).pcs_pubes ?? 0) > 3)) {
-    // TODO-QSP: $temp_text[] = '- shave your pubes and legs.'
+    (s as any).temp_text = [...((s as any).temp_text ?? []), '- shave your pubes and legs.'];
   }
   if (((s as any).pcs_hairbsh ?? 0) !== 1) {
-    // TODO-QSP: $temp_text[] = '- brush your hair.'
+    (s as any).temp_text = [...((s as any).temp_text ?? []), '- brush your hair.'];
   }
   if (((s as any).pcs_makeup ?? 0) < 3) {
-    // TODO-QSP: $temp_text[] = '- put on some makeup.'
+    (s as any).temp_text = [...((s as any).temp_text ?? []), '- put on some makeup.'];
   }
   if (((s as any).pcs_lipbalm ?? 0) < 1) {
-    // TODO-QSP: $temp_text[] = '- apply some lipbalm.'
+    (s as any).temp_text = [...((s as any).temp_text ?? []), '- apply some lipbalm.'];
   }
   if (((s as any).pantyworntype ?? 0) !== 'none') {
-    // TODO-QSP: $temp_text[] = '- remove your panties.'
+    (s as any).temp_text = [...((s as any).temp_text ?? []), '- remove your panties.'];
   }
   if (((s as any).clothingworntype ?? 0) !== 'nude') {
-    // TODO-QSP: $temp_text[] = '- strip off your clothes.'
+    (s as any).temp_text = [...((s as any).temp_text ?? []), '- strip off your clothes.'];
   }
   if (((s as any).alko ?? 0) > 3) {
-    // TODO-QSP: $temp_text[] = '- be not drunk'
+    (s as any).temp_text = [...((s as any).temp_text ?? []), '- be not drunk'];
   }
   if (((s as any).drugVars ?? 0)?.['heroin_high'] > 0  ||  ((s as any).drugVars ?? 0)?.['weed_high'] > 0) {
-    // TODO-QSP: $temp_text[] = '- be sober'
+    (s as any).temp_text = [...((s as any).temp_text ?? []), '- be sober'];
   }
   if (Object.keys((s as any).temp_text ?? {}).length === 0) {
     scene.text('Nothing seems to be going on here (unfinished content)');
   } else {
     scene.text('To be able to get working, you need to:');
     (s as any).temp_i = 0;
-    // TODO-QSP: :lobby2_loop
-    (s as any).temp_i = ((s as any).temp_i ?? 0) + (1);
-    if (((s as any).temp_i ?? 0) < Object.keys((s as any).temp_text ?? {}).length) {
-      // TODO-QSP: jump 'lobby2_loop'
-    }
+    do {
+      (s as any).temp_i = ((s as any).temp_i ?? 0) + (1);
+      (s as any).temp_i = undefined;
+      (s as any).temp_text = undefined;
+    } while (((s as any).temp_i ?? 0) < Object.keys((s as any).temp_text ?? {}).length);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the girl\'s room', goto: ['brothel', 'brothel_dressingroom'] },
     { label: 'Go to the reception', goto: ['brothel', 'reception'] },
@@ -742,13 +717,13 @@ function enter(s: GameState, scene: SceneBuilder): void {
   (s as any).loc = 'brothel';
   (s as any).dbg = 0;
   if (((s as any).dbg ?? 0) === 1) {
-    // TODO-QSP: 'loc: ' + $loc
-    // TODO-QSP: 'args: ' + $ARGS[0]
-    // TODO-QSP: 'session: ' + $sessionB
-    // TODO-QSP: 'stage: ' + stage
-    // TODO-QSP: 'pain: ' + pain['total']
-    // TODO-QSP: 'step: ' + brothel['step']
-    // TODO-QSP: 'caneFeetCount: ' + caneFeetCount
+    scene.text('loc: ' + ((s as any).loc ?? ''));
+    scene.text('args: ' + ((s as any).locArgs?.[0] ?? ''));
+    scene.text('session: ' + ((s as any).sessionB ?? ''));
+    scene.text('stage: ' + ((s as any).stage ?? ''));
+    scene.text('pain: ' + (((s as any).pain ?? 0)?.['total'] ?? ''));
+    scene.text('step: ' + (((s as any).brothel ?? 0)?.['step'] ?? ''));
+    scene.text('caneFeetCount: ' + ((s as any).caneFeetCount ?? ''));
   }
   const arg = s.locArg;
   switch (arg) {

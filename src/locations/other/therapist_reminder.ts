@@ -10,8 +10,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/pc/reactions/forget.jpg');
   scene.text('');
-  // TODO-QSP: dynamic text: 'You remember that you have an appointment with your therapist today at '+func('...
-  scene.text(`You remember that you have an appointment with your therapist today at 18:00. It's already <b>${(String(100+((s as any).hour ?? '')).slice((2)-1, ((2)-1)+(2)))}:${(String(100+((s as any).minut ?? '')).slice((2)-1, ((2)-1)+(2)))}</b>. You should go now.`);
+  scene.text(`'You remember that you have an appointment with your therapist today at 18:00. It's already <b>${(String(100+((s as any).hour ?? '')).slice((2)-1, ((2)-1)+(2)))}:${(String(100+((s as any).minut ?? '')).slice((2)-1, ((2)-1)+(2)))}</b>. You should go now.'`);
   if (((s as any).region ?? 0) === 'pav') {
     if (((s as any).reminderFreebee ?? 0) < 4) {
       qspCall(s, 'willpower', 'misc', 'resist', 'easy');
@@ -87,7 +86,6 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -119,7 +117,7 @@ function enterIgnoreCost(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'therapist', 'restTherapyVariables');
     }
   }
-  // TODO-QSP: end
+  (s as any).tempReminderVars = undefined;
   scene.build();
 }
 
@@ -141,19 +139,16 @@ function enterMoveToTherapist(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'outfit', 'wear_last_worn');
     qspCall(s, 'shoes', 'wear', 'last_worn');
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterReturn(s: GameState, scene: SceneBuilder): void {
   dynamicGoto(s, 'menu_loc', 'menu_arg');
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterTherapist(s: GameState, scene: SceneBuilder): void {
   qspGoto(s, 'therapist', 'start');
-  // TODO-QSP: end
   scene.build();
 }
 

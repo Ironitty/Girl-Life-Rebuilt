@@ -19,7 +19,6 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'awake']; enterActions(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -33,7 +32,6 @@ function enterText(s: GameState, scene: SceneBuilder): void {
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[2] ?? 0)]; enterAwakeText(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -46,7 +44,6 @@ function enterActions(s: GameState, scene: SceneBuilder): void {
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[2] ?? 0)]; enterAwakeActions(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -59,12 +56,10 @@ function enterAsleepText(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/city/university/girl/vika/vika_sleep.jpg');
     scene.text('Vika is sleeping in her bed after a night of adventures. You wonder what she got up to tonight.');
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterAsleepActions(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: end
   scene.actions([
     { label: 'Move away', handler: (st: GameState) => {
     dynamicGoto(st, 'prevLoc', 'prevArg');
@@ -79,7 +74,6 @@ function enterAwakeText(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.img('images/characters/shared/headshots_main/big220.jpg');
   }
-  // TODO-QSP: dynamic text: Your roommate is Vika Kirilova, who is <<age + 1>> years old. She comes from a t...
   scene.text(`Your roommate is Vika Kirilova, who is ${((s as any).age ?? '') + 1} years old. She comes from a town much further away than yours and, like you, comes from a poor family.`);
   if (((s as any).vikaslut ?? 0) === 1) {
     scene.text('You know she works as a whore in a brothel in the red light district.');
@@ -117,7 +111,6 @@ function enterAwakeText(s: GameState, scene: SceneBuilder): void {
     scene.text('She throws you a bathrobe and grabs you by the arm before dragging you out of the room as you struggle to get the robe on in time.');
   }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterLeaveForNight(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -182,7 +175,6 @@ function enterAwakeActions(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -197,7 +189,6 @@ function enterTalk(s: GameState, scene: SceneBuilder): void {
   }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'awake', ((s as any).locArgs?.[1] ?? 0)]; enterActions(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterLeaveForNight(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -253,7 +244,6 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -262,16 +252,14 @@ function enterStudy(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'exp_gain', 'intel', 1);
   qspCall(s, 'npc_relationship', 'modify', 'A220', 'like');
   qspCall(s, 'stat', '');
-  // TODO-QSP: iif($ARGS[1] = 'continue', 'You and Vika continue studying together.', 'You get out your textbooks a...
-  // TODO-QSP: end
+  scene.text(((String((s as any).locArgs?.[1] ?? '') === 'continue') ? ('You and Vika continue studying together.') : ('You get out your textbooks and notes before you and Vika sit down together on the bed to study.')) + ' You help each other with your classwork, making it much easier and more fun.');
   scene.build();
 }
 
 function enterLeaveForNight(s: GameState, scene: SceneBuilder): void {
   if (qspFunc(s, 'bordel', 'is_open')) {
-    // TODO-QSP: 'Vika tells you she needs to ' + iif(vikaslut = 1, 'leave for work at the brothel.', 'get going.')
+    scene.text('Vika tells you she needs to ' + ((((s as any).vikaslut ?? 0) === 1) ? ('leave for work at the brothel.') : ('get going.')));
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -300,12 +288,10 @@ function enterBrothelQuestions(s: GameState, scene: SceneBuilder): void {
         if ((!((s as any).bordel ?? 0))) {
           scene.actions([
             { label: 'Ask if she can get you a job at the brothel', handler: (st: GameState) => {
-    // TODO-QSP: delact $selact
     qspCall(st, 'npc_relationship', 'modify', 'A220', 'adore');
     (st as any).bordel = 1;
     (st as any).odkomp = 0;
     scene.text('"Do you think you could get me a job at the brothel?" you ask.');
-    // TODO-QSP: dynamic text: '"I can ask the manager, but I can''t guarantee anything. Come by' + iif(hour < ...
     scene.text('"I can ask the manager, but I can\'t guarantee anything. Come by' + ((((st as any).hour ?? 0) < 20) ? (' after 20:00') : ('')) + ', and I\'ll see what I can do."');
   } },
           ]);
@@ -313,7 +299,6 @@ function enterBrothelQuestions(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 

@@ -8,7 +8,6 @@ function enterCount(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'tattoo_management', 'count');
   qspCall(s, 'piercing_management', 'count');
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -26,7 +25,6 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     return;
   }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterShopMenu(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -51,7 +49,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     return;
   }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterShopMenu(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -77,169 +74,134 @@ function enterShopMenu(s: GameState, scene: SceneBuilder): void {
   scene.text('</tr>');
   scene.text('<tr>');
   scene.text('<td>');
-  // TODO-QSP: dynamic text: <a href="exec: gt 'pirsingsalon', 'tattoo_hand'">Hand - <<$func('money', 'string...
   scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027pirsingsalon/u0027, /u0027tattoo_hand/u0027); return false;">Hand - ${qspFunc(s, 'money', 'string_price', 7000)}</a>`);
   scene.text('</td>');
   scene.text('<td>');
-  // TODO-QSP: dynamic text: <a href="exec: gt 'pirsingsalon', 'tattoo_lip'">Lip - <<$func('money', 'string_p...
   scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027pirsingsalon/u0027, /u0027tattoo_lip/u0027); return false;">Lip - ${qspFunc(s, 'money', 'string_price', 5000)}</a>`);
   scene.text('</td>');
   scene.text('<td>');
   if (((s as any).pcs_piercings ?? 0)?.['ears'] === 0) {
-    // TODO-QSP: dynamic text: <a href="exec: salon_temp_state = 0 & gt 'pirsingsalon', 'piercing_ears'">Ear - ...
     scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.salon_temp_state = s.0; return s; }); window.__gameStore.getState().doGoto(/u0027pirsingsalon/u0027, /u0027piercing_ears/u0027); return false;">Ear - ${qspFunc(s, 'money', 'string_price', 3000)}</a>`);
   } else {
-    // TODO-QSP: dynamic text: <a href="exec: salon_temp_state = 1 & gt 'pirsingsalon', 'piercing_ears'">Ear - ...
     scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.salon_temp_state = s.1; return s; }); window.__gameStore.getState().doGoto(/u0027pirsingsalon/u0027, /u0027piercing_ears/u0027); return false;">Ear - ${qspFunc(s, 'money', 'string_price', 1000)}</a>`);
   }
   scene.text('</td>');
   scene.text('</tr>');
   scene.text('<tr>');
   scene.text('<td>');
-  // TODO-QSP: dynamic text: <a href="exec: gt 'pirsingsalon', 'tattoo_wrist'">Wrist - <<$func('money', 'stri...
   scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027pirsingsalon/u0027, /u0027tattoo_wrist/u0027); return false;">Wrist - ${qspFunc(s, 'money', 'string_price', 7000)}</a>`);
   scene.text('</td>');
   scene.text('<td>');
-  // TODO-QSP: dynamic text: <a href="exec: gt 'pirsingsalon', 'tattoo_belly'">Belly - <<$func('money', 'stri...
   scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027pirsingsalon/u0027, /u0027tattoo_belly/u0027); return false;">Belly - ${qspFunc(s, 'money', 'string_price', 10000)}</a>`);
   scene.text('</td>');
   scene.text('<td>');
   if (((s as any).pcs_piercings ?? 0)?.['nose'] === 0) {
-    // TODO-QSP: dynamic text: <a href="exec: salon_temp_state = 0 & gt 'pirsingsalon', 'piercing_nose'">Nose -...
     scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.salon_temp_state = s.0; return s; }); window.__gameStore.getState().doGoto(/u0027pirsingsalon/u0027, /u0027piercing_nose/u0027); return false;">Nose - ${qspFunc(s, 'money', 'string_price', 5000)}</a>`);
   } else {
-    // TODO-QSP: dynamic text: <a href="exec: salon_temp_state = 1 & gt 'pirsingsalon', 'piercing_nose'">Nose -...
     scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.salon_temp_state = s.1; return s; }); window.__gameStore.getState().doGoto(/u0027pirsingsalon/u0027, /u0027piercing_nose/u0027); return false;">Nose - ${qspFunc(s, 'money', 'string_price', 2000)}</a>`);
   }
   scene.text('</td>');
   scene.text('</tr>');
   scene.text('<tr>');
   scene.text('<td>');
-  // TODO-QSP: dynamic text: <a href="exec: gt 'pirsingsalon', 'tattoo_ankle'">Ankle - <<$func('money', 'stri...
   scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027pirsingsalon/u0027, /u0027tattoo_ankle/u0027); return false;">Ankle - ${qspFunc(s, 'money', 'string_price', 8000)}</a>`);
   scene.text('</td>');
   scene.text('<td>');
-  // TODO-QSP: dynamic text: <a href="exec: gt 'pirsingsalon', 'tattoo_ass'">Ass - <<$func('money', 'string_p...
   scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027pirsingsalon/u0027, /u0027tattoo_ass/u0027); return false;">Ass - ${qspFunc(s, 'money', 'string_price', 10000)}</a>`);
   scene.text('</td>');
   scene.text('<td>');
   if (((s as any).pcs_piercings ?? 0)?.['brow'] === 0) {
-    // TODO-QSP: dynamic text: <a href="exec: salon_temp_state = 0 & gt 'pirsingsalon', 'piercing_brow'">Eyebro...
     scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.salon_temp_state = s.0; return s; }); window.__gameStore.getState().doGoto(/u0027pirsingsalon/u0027, /u0027piercing_brow/u0027); return false;">Eyebrow - ${qspFunc(s, 'money', 'string_price', 5000)}</a>`);
   } else {
-    // TODO-QSP: dynamic text: <a href="exec: salon_temp_state = 1 & gt 'pirsingsalon', 'piercing_brow'">Eyebro...
     scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.salon_temp_state = s.1; return s; }); window.__gameStore.getState().doGoto(/u0027pirsingsalon/u0027, /u0027piercing_brow/u0027); return false;">Eyebrow - ${qspFunc(s, 'money', 'string_price', 2000)}</a>`);
   }
   scene.text('</td>');
   scene.text('</tr>');
   scene.text('<tr>');
   scene.text('<td>');
-  // TODO-QSP: dynamic text: <a href="exec: gt 'pirsingsalon', 'tattoo_arm'">Arm - <<$func('money', 'string_p...
   scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027pirsingsalon/u0027, /u0027tattoo_arm/u0027); return false;">Arm - ${qspFunc(s, 'money', 'string_price', 8000)}</a>`);
   scene.text('</td>');
   scene.text('<td>');
-  // TODO-QSP: dynamic text: <a href="exec: gt 'pirsingsalon', 'tattoo_face'">Face - <<$func('money', 'string...
   scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027pirsingsalon/u0027, /u0027tattoo_face/u0027); return false;">Face - ${qspFunc(s, 'money', 'string_price', 10000)}</a>`);
   scene.text('</td>');
   scene.text('<td>');
   if (((s as any).pcs_piercings ?? 0)?.['lip'] === 0) {
-    // TODO-QSP: dynamic text: <a href="exec: salon_temp_state = 0 & gt 'pirsingsalon', 'piercing_lip'">Lip - <...
     scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.salon_temp_state = s.0; return s; }); window.__gameStore.getState().doGoto(/u0027pirsingsalon/u0027, /u0027piercing_lip/u0027); return false;">Lip - ${qspFunc(s, 'money', 'string_price', 6000)}</a>`);
   } else {
-    // TODO-QSP: dynamic text: <a href="exec: salon_temp_state = 1 & gt 'pirsingsalon', 'piercing_lip'">Lip - <...
     scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.salon_temp_state = s.1; return s; }); window.__gameStore.getState().doGoto(/u0027pirsingsalon/u0027, /u0027piercing_lip/u0027); return false;">Lip - ${qspFunc(s, 'money', 'string_price', 3000)}</a>`);
   }
   scene.text('</td>');
   scene.text('</tr>');
   scene.text('<tr>');
   scene.text('<td>');
-  // TODO-QSP: dynamic text: <a href="exec: gt 'pirsingsalon', 'tattoo_shoulder'">Shoulder - <<$func('money',...
   scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027pirsingsalon/u0027, /u0027tattoo_shoulder/u0027); return false;">Shoulder - ${qspFunc(s, 'money', 'string_price', 8000)}</a>`);
   scene.text('</td>');
   scene.text('<td>');
-  // TODO-QSP: dynamic text: <a href="exec: gt 'pirsingsalon', 'tattoo_chest'">Chest - <<$func('money', 'stri...
   scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027pirsingsalon/u0027, /u0027tattoo_chest/u0027); return false;">Chest - ${qspFunc(s, 'money', 'string_price', 12000)}</a>`);
   scene.text('</td>');
   scene.text('<td>');
   if (((s as any).pcs_piercings ?? 0)?.['tongue'] === 0) {
-    // TODO-QSP: dynamic text: <a href="exec: salon_temp_state = 0 & gt 'pirsingsalon', 'piercing_tongue'">Tong...
     scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.salon_temp_state = s.0; return s; }); window.__gameStore.getState().doGoto(/u0027pirsingsalon/u0027, /u0027piercing_tongue/u0027); return false;">Tongue - ${qspFunc(s, 'money', 'string_price', 7000)}</a>`);
   } else {
-    // TODO-QSP: dynamic text: <a href="exec: salon_temp_state = 1 & gt 'pirsingsalon', 'piercing_tongue'">Tong...
     scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.salon_temp_state = s.1; return s; }); window.__gameStore.getState().doGoto(/u0027pirsingsalon/u0027, /u0027piercing_tongue/u0027); return false;">Tongue - ${qspFunc(s, 'money', 'string_price', 4000)}</a>`);
   }
   scene.text('</td>');
   scene.text('</tr>');
   scene.text('<tr>');
   scene.text('<td>');
-  // TODO-QSP: dynamic text: <a href="exec: gt 'pirsingsalon', 'tattoo_neck'">Neck - <<$func('money', 'string...
   scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027pirsingsalon/u0027, /u0027tattoo_neck/u0027); return false;">Neck - ${qspFunc(s, 'money', 'string_price', 8000)}</a>`);
   scene.text('</td>');
   scene.text('<td>');
-  // TODO-QSP: dynamic text: <a href="exec: gt 'pirsingsalon', 'tattoo_tramp'">Tramp stamp - <<$func('money',...
   scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027pirsingsalon/u0027, /u0027tattoo_tramp/u0027); return false;">Tramp stamp - ${qspFunc(s, 'money', 'string_price', 12000)}</a>`);
   scene.text('</td>');
   scene.text('<td>');
   if (((s as any).pcs_piercings ?? 0)?.['navel'] === 0) {
-    // TODO-QSP: dynamic text: <a href="exec: salon_temp_state = 0 & gt 'pirsingsalon', 'piercing_navel'">Navel...
     scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.salon_temp_state = s.0; return s; }); window.__gameStore.getState().doGoto(/u0027pirsingsalon/u0027, /u0027piercing_navel/u0027); return false;">Navel - ${qspFunc(s, 'money', 'string_price', 8000)}</a>`);
   } else {
-    // TODO-QSP: dynamic text: <a href="exec: salon_temp_state = 1 & gt 'pirsingsalon', 'piercing_navel'">Navel...
     scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.salon_temp_state = s.1; return s; }); window.__gameStore.getState().doGoto(/u0027pirsingsalon/u0027, /u0027piercing_navel/u0027); return false;">Navel - ${qspFunc(s, 'money', 'string_price', 5000)}</a>`);
   }
   scene.text('</td>');
   scene.text('</tr>');
   scene.text('<tr>');
   scene.text('<td>');
-  // TODO-QSP: dynamic text: <a href="exec: gt 'pirsingsalon', 'tattoo_back'">Back - <<$func('money', 'string...
   scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027pirsingsalon/u0027, /u0027tattoo_back/u0027); return false;">Back - ${qspFunc(s, 'money', 'string_price', 10000)}</a>`);
   scene.text('</td>');
   scene.text('<td>');
-  // TODO-QSP: dynamic text: <a href="exec: gt 'pirsingsalon', 'tattoo_under'">Under breast - <<$func('money'...
   scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027pirsingsalon/u0027, /u0027tattoo_under/u0027); return false;">Under breast - ${qspFunc(s, 'money', 'string_price', 12000)}</a>`);
   scene.text('</td>');
   scene.text('<td>');
   if (((s as any).pcs_piercings ?? 0)?.['nipples'] === 0) {
-    // TODO-QSP: dynamic text: <a href="exec: salon_temp_state = 0 & gt 'pirsingsalon', 'piercing_nipples'">Nip...
     scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.salon_temp_state = s.0; return s; }); window.__gameStore.getState().doGoto(/u0027pirsingsalon/u0027, /u0027piercing_nipples/u0027); return false;">Nipple - ${qspFunc(s, 'money', 'string_price', 10000)}</a>`);
   } else {
-    // TODO-QSP: dynamic text: <a href="exec: salon_temp_state = 1 & gt 'pirsingsalon', 'piercing_nipples'">Nip...
     scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.salon_temp_state = s.1; return s; }); window.__gameStore.getState().doGoto(/u0027pirsingsalon/u0027, /u0027piercing_nipples/u0027); return false;">Nipple - ${qspFunc(s, 'money', 'string_price', 6000)}</a>`);
   }
   scene.text('</td>');
   scene.text('</tr>');
   scene.text('<tr>');
   scene.text('<td>');
-  // TODO-QSP: dynamic text: <a href="exec: gt 'pirsingsalon', 'tattoo_leg'">Legs - <<$func('money', 'string_...
   scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027pirsingsalon/u0027, /u0027tattoo_leg/u0027); return false;">Legs - ${qspFunc(s, 'money', 'string_price', 10000)}</a>`);
   scene.text('</td>');
   scene.text('<td>');
-  // TODO-QSP: dynamic text: <a href="exec: gt 'pirsingsalon', 'tattoo_breast'">Breasts - <<$func('money', 's...
   scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027pirsingsalon/u0027, /u0027tattoo_breast/u0027); return false;">Breasts - ${qspFunc(s, 'money', 'string_price', 15000)}</a>`);
   scene.text('</td>');
   scene.text('<td>');
   if (((s as any).pcs_piercings ?? 0)?.['pussy'] === 0) {
-    // TODO-QSP: dynamic text: <a href="exec: salon_temp_state = 0 & gt 'pirsingsalon', 'piercing_pussy'">Pussy...
     scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.salon_temp_state = s.0; return s; }); window.__gameStore.getState().doGoto(/u0027pirsingsalon/u0027, /u0027piercing_pussy/u0027); return false;">Pussy - ${qspFunc(s, 'money', 'string_price', 25000)}</a>`);
   } else {
-    // TODO-QSP: dynamic text: <a href="exec: salon_temp_state = 1 & gt 'pirsingsalon', 'piercing_pussy'">Pussy...
     scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.salon_temp_state = s.1; return s; }); window.__gameStore.getState().doGoto(/u0027pirsingsalon/u0027, /u0027piercing_pussy/u0027); return false;">Pussy - ${qspFunc(s, 'money', 'string_price', 10000)}</a>`);
   }
   scene.text('</td>');
   scene.text('</tr>');
   scene.text('<tr>');
   scene.text('<td>');
-  // TODO-QSP: dynamic text: <a href="exec: gt 'pirsingsalon', 'tattoo_side'">Side - <<$func('money', 'string...
   scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027pirsingsalon/u0027, /u0027tattoo_side/u0027); return false;">Side - ${qspFunc(s, 'money', 'string_price', 12000)}</a>`);
   scene.text('</td>');
   scene.text('<td>');
-  // TODO-QSP: dynamic text: <a href="exec: gt 'pirsingsalon', 'tattoo_pussy'">Pubic - <<$func('money', 'stri...
   scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027pirsingsalon/u0027, /u0027tattoo_pussy/u0027); return false;">Pubic - ${qspFunc(s, 'money', 'string_price', 20000)}</a>`);
   scene.text('</td>');
   scene.text('<td>');
   scene.text('</td>');
   scene.text('</tr>');
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -257,9 +219,9 @@ function enterPiercingEars(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'shop_utils', 'init', 'end');
   }
   qspCall(s, 'shop_utils', 'display', 'grid_shop');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
+    (st as any).salon_temp_state = undefined;
     qspCall(st, 'shop_utils', 'cleanup');
     qspGoto(st, 'pirsingsalon', 'start');
   } },
@@ -281,9 +243,9 @@ function enterPiercingNose(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'shop_utils', 'init', 'end');
   }
   qspCall(s, 'shop_utils', 'display', 'grid_shop');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
+    (st as any).salon_temp_state = undefined;
     qspCall(st, 'shop_utils', 'cleanup');
     qspGoto(st, 'pirsingsalon', 'start');
   } },
@@ -305,9 +267,9 @@ function enterPiercingBrow(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'shop_utils', 'init', 'end');
   }
   qspCall(s, 'shop_utils', 'display', 'grid_shop');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
+    (st as any).salon_temp_state = undefined;
     qspCall(st, 'shop_utils', 'cleanup');
     qspGoto(st, 'pirsingsalon', 'start');
   } },
@@ -329,9 +291,9 @@ function enterPiercingLip(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'shop_utils', 'init', 'end');
   }
   qspCall(s, 'shop_utils', 'display', 'grid_shop');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
+    (st as any).salon_temp_state = undefined;
     qspCall(st, 'shop_utils', 'cleanup');
     qspGoto(st, 'pirsingsalon', 'start');
   } },
@@ -353,9 +315,9 @@ function enterPiercingTongue(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'shop_utils', 'init', 'end');
   }
   qspCall(s, 'shop_utils', 'display', 'grid_shop');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
+    (st as any).salon_temp_state = undefined;
     qspCall(st, 'shop_utils', 'cleanup');
     qspGoto(st, 'pirsingsalon', 'start');
   } },
@@ -377,9 +339,9 @@ function enterPiercingNavel(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'shop_utils', 'init', 'end');
   }
   qspCall(s, 'shop_utils', 'display', 'grid_shop');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
+    (st as any).salon_temp_state = undefined;
     qspCall(st, 'shop_utils', 'cleanup');
     qspGoto(st, 'pirsingsalon', 'start');
   } },
@@ -401,9 +363,9 @@ function enterPiercingNipples(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'shop_utils', 'init', 'end');
   }
   qspCall(s, 'shop_utils', 'display', 'grid_shop');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
+    (st as any).salon_temp_state = undefined;
     qspCall(st, 'shop_utils', 'cleanup');
     qspGoto(st, 'pirsingsalon', 'start');
   } },
@@ -425,9 +387,9 @@ function enterPiercingPussy(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'shop_utils', 'init', 'end');
   }
   qspCall(s, 'shop_utils', 'display', 'grid_shop');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
+    (st as any).salon_temp_state = undefined;
     qspCall(st, 'shop_utils', 'cleanup');
     qspGoto(st, 'pirsingsalon', 'start');
   } },
@@ -449,7 +411,6 @@ function enterTattooAnkle(s: GameState, scene: SceneBuilder): void {
     }
     qspCall(s, 'shop_utils', 'display', 'grid_shop');
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     qspCall(st, 'shop_utils', '');
@@ -472,7 +433,6 @@ function enterTattooArm(s: GameState, scene: SceneBuilder): void {
     }
     qspCall(s, 'shop_utils', 'display', 'grid_shop');
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     qspCall(st, 'shop_utils', '');
@@ -495,7 +455,6 @@ function enterTattooAss(s: GameState, scene: SceneBuilder): void {
     }
     qspCall(s, 'shop_utils', 'display', 'grid_shop');
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     qspCall(st, 'shop_utils', '');
@@ -518,7 +477,6 @@ function enterTattooBack(s: GameState, scene: SceneBuilder): void {
     }
     qspCall(s, 'shop_utils', 'display', 'grid_shop');
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     qspCall(st, 'shop_utils', '');
@@ -541,7 +499,6 @@ function enterTattooBelly(s: GameState, scene: SceneBuilder): void {
     }
     qspCall(s, 'shop_utils', 'display', 'grid_shop');
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     qspCall(st, 'shop_utils', '');
@@ -564,7 +521,6 @@ function enterTattooBreast(s: GameState, scene: SceneBuilder): void {
     }
     qspCall(s, 'shop_utils', 'display', 'grid_shop');
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     qspCall(st, 'shop_utils', '');
@@ -587,7 +543,6 @@ function enterTattooChest(s: GameState, scene: SceneBuilder): void {
     }
     qspCall(s, 'shop_utils', 'display', 'grid_shop');
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     qspCall(st, 'shop_utils', '');
@@ -610,7 +565,6 @@ function enterTattooFace(s: GameState, scene: SceneBuilder): void {
     }
     qspCall(s, 'shop_utils', 'display', 'grid_shop');
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     qspCall(st, 'shop_utils', '');
@@ -633,7 +587,6 @@ function enterTattooHand(s: GameState, scene: SceneBuilder): void {
     }
     qspCall(s, 'shop_utils', 'display', 'grid_shop');
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     qspCall(st, 'shop_utils', '');
@@ -656,7 +609,6 @@ function enterTattooLeg(s: GameState, scene: SceneBuilder): void {
     }
     qspCall(s, 'shop_utils', 'display', 'grid_shop');
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     qspCall(st, 'shop_utils', '');
@@ -679,7 +631,6 @@ function enterTattooLip(s: GameState, scene: SceneBuilder): void {
     }
     qspCall(s, 'shop_utils', 'display', 'grid_shop');
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     qspCall(st, 'shop_utils', '');
@@ -702,7 +653,6 @@ function enterTattooNeck(s: GameState, scene: SceneBuilder): void {
     }
     qspCall(s, 'shop_utils', 'display', 'grid_shop');
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     qspCall(st, 'shop_utils', '');
@@ -725,7 +675,6 @@ function enterTattooPussy(s: GameState, scene: SceneBuilder): void {
     }
     qspCall(s, 'shop_utils', 'display', 'grid_shop');
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     qspCall(st, 'shop_utils', '');
@@ -748,7 +697,6 @@ function enterTattooShoulder(s: GameState, scene: SceneBuilder): void {
     }
     qspCall(s, 'shop_utils', 'display', 'grid_shop');
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     qspCall(st, 'shop_utils', '');
@@ -771,7 +719,6 @@ function enterTattooSide(s: GameState, scene: SceneBuilder): void {
     }
     qspCall(s, 'shop_utils', 'display', 'grid_shop');
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     qspCall(st, 'shop_utils', '');
@@ -794,7 +741,6 @@ function enterTattooTramp(s: GameState, scene: SceneBuilder): void {
     }
     qspCall(s, 'shop_utils', 'display', 'grid_shop');
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     qspCall(st, 'shop_utils', '');
@@ -817,7 +763,6 @@ function enterTattooUnder(s: GameState, scene: SceneBuilder): void {
     }
     qspCall(s, 'shop_utils', 'display', 'grid_shop');
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     qspCall(st, 'shop_utils', '');
@@ -840,7 +785,6 @@ function enterTattooWrist(s: GameState, scene: SceneBuilder): void {
     }
     qspCall(s, 'shop_utils', 'display', 'grid_shop');
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     qspCall(st, 'shop_utils', '');

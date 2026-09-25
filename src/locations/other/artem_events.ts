@@ -26,11 +26,9 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   if (((s as any).kotovLoveQW ?? 0) > 0  &&  (!((s as any).artemVitokQW ?? 0))) {
     scene.text('You walk across the school courtyard to meet up with Artem. He gives you a friendly nod as you approach. "You ready to go?"');
     scene.text('Just as you\'re about to leave the courtyard with Artem, you run into Vitek, who doesn\'t look pleased.');
-    // TODO-QSP: dynamic text: Vitek looks at Artem disdainfully. "Where are you going with this four-eyed lose...
     scene.text(`Vitek looks at Artem disdainfully. "Where are you going with this four-eyed loser, ${((s as any).pcs_nickname ?? '')}?" he sneers.`);
     scene.text('You smile at him. "Relax Vitek, Artem is just tutoring me after class. My school performance needs a boost and he kindly offered to help me out," you reassure him.');
     scene.text('Vitek frowns. "He \'kindly offered\'? Right… I don\'t trust this freak! Just look at him, he\'s eyeing you up and down constantly!"');
-    // TODO-QSP: dynamic text: Artem is getting quite nervous, and tries to appease Vitek. "Vitek, come on man!...
     scene.text(`Artem is getting quite nervous, and tries to appease Vitek. "Vitek, come on man! You know I would never do that! I'm only helping ${((s as any).pcs_nickname ?? '')} out with her studies, I swear!"`);
     scene.text('You can see Vitek\'s body tense up. He\'s not buying Artem\'s story at all, and looks at him with distrust.');
     qspCall(s, 'willpower', 'skill_base', 'chrsm', 'force', 'medium');
@@ -50,7 +48,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.text('You decide that you should step up for Artem, but also reassure Vitek you\'re still with him. You need to be delicate about it though.');
     scene.text('You know Vitek well enough to know that he\'s seething right now, so you try to placate him. "Come on baby, don\'t you trust me? You know I\'m your girl… Artem is only helping me get better grades, that\'s all. We can still hang out later?"');
     scene.text('This seems to calm him a little, and you can see his body relax, but he still drives his point home by punching Artem in the shoulder.');
-    // TODO-QSP: dynamic text: "You''re lucky, four-eyes. If I even suspect that you''ve laid a finger on <<$pc...
     scene.text(`"You're lucky, four-eyes. If I even suspect that you've laid a finger on ${((st as any).pcs_nickname ?? '')}, I'll put you in a wheelchair and have you pissing blood for the rest of your life! Got that?"`);
     scene.text('Artem is terrified, and quickly nods while he rubbing his shoulder. "Yes, yes! I understand!"');
     scene.text('Vitek leaves you be and you leave with Artem. You can see Artem\'s body still trembling as you walk down the streets.');
@@ -68,7 +65,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     (st as any).artemVitokQW = 2;
     scene.text('You silently watch the two of them, and wonder if you should help Artem when suddenly Vitek punches him in the chest, knocking the wind out of him.');
     scene.text('Artem curls up into a ball and squeals like a girl. "Vitek, please! Don\'t hit me again, please!"');
-    // TODO-QSP: dynamic text: Vitek leans over Artem''s prone body and scoffs. "Walk away, now. If I ever see ...
     scene.text(`Vitek leans over Artem's prone body and scoffs. "Walk away, now. If I ever see you near ${((st as any).pcs_nickname ?? '')} again, I'm knocking your teeth out! Got that?"`);
     scene.text('Artem, still curled up on the ground, wails "Okay, okay! I\'ll leave her alone! Just please, let me go!"');
     scene.text('Vitek gives him one more kick in the ass as he gets up. "Now get the fuck out of here before I change my mind, freak!"');
@@ -84,12 +80,9 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).fedorKozlovQW ?? 0) >= 10  &&  (!((s as any).FedorArtemTalk ?? 0))) {
       (s as any).FedorArtemTalk = 1;
-      // TODO-QSP: dynamic text: As you leave the school courtyard with Artem, Fedor stops you. He looks question...
       scene.text(`As you leave the school courtyard with Artem, Fedor stops you. He looks questioningly at Artem. "Artem, what's going on? Are you taking ${((s as any).pcs_nickname ?? '')} somewhere? She's with me, you know…"`);
-      // TODO-QSP: dynamic text: Artem blushes. "I know she is, Fedor. We''re just going to do our homework toget...
       scene.text(`Artem blushes. "I know she is, Fedor. We're just going to do our homework together. I'm tutoring ${((s as any).pcs_nickname ?? '')} to help her school performance a little. She asked me to help her, by the way!"`);
       scene.text('You smile at Fedor. "I did ask him, Fedor. I really need the help for school, and Artem was friendly enough to help me out. We\'re just studying together, nothing more."');
-      // TODO-QSP: dynamic text: Fedor sighs, but concedes. "Well… alright, <<$pcs_nickname>>. I don''t like you ...
       scene.text(`Fedor sighs, but concedes. "Well… alright, ${((s as any).pcs_nickname ?? '')}. I don't like you going with <i>him</i>, but I trust you."`);
       scene.text('After that he walks away, and you and Artem leave the schoolyard.');
       qspCall(s, 'stat', '');
@@ -128,7 +121,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -146,7 +138,6 @@ function enterLearn(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if (((s as any).fame ?? 0)?.['pav_slut'] > 200) {
     scene.img('images/characters/pavlovsk/school/boy/artem/talk.jpg');
-    // TODO-QSP: dynamic text: After you finish your homework, Artem has a serious look on his face. "<<$pcs_ni...
     scene.text(`After you finish your homework, Artem has a serious look on his face. "${((s as any).pcs_nickname ?? '')}, everyone in the school is talking about how much of a slut you are. With how much I've been helping you… I think it's only fair you give me a little something in return…"`);
     scene.text('You frown at him. "What did you have in mind?"');
     scene.actions([
@@ -172,7 +163,6 @@ function enterLearn(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/artem/sex/bj1.jpg');
     scene.text('You decline. "I\'m not a whore that earns her way with sex!"');
-    // TODO-QSP: dynamic text: "Look <<$pcs_nickname>>, I spent a lot of time and effort helping you out. Meanw...
     scene.text(`"Look ${((st as any).pcs_nickname ?? '')}, I spent a lot of time and effort helping you out. Meanwhile, you… you suck off or fuck pretty much everyone who asks! But you won't touch me when I need it? That's so not fair! We're done… Find someone else to help you. Good luck with that attitude."`);
     scene.text('You can tell Artem is seriously offended by your refusal, and won\'t help you any further. Hopefully someone else can help you with your homework.');
     scene.actions([
@@ -204,7 +194,6 @@ function enterLearn(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/artem/sex/bj1.jpg');
     scene.text('You decline. "I\'m not a whore that earns her way with sex!"');
-    // TODO-QSP: dynamic text: "Look <<$pcs_nickname>>, I spent a lot of time and effort helping you out. Meanw...
     scene.text(`"Look ${((st as any).pcs_nickname ?? '')}, I spent a lot of time and effort helping you out. Meanwhile, you… you suck off or fuck pretty much everyone who asks! But you won't touch me when I need it? That's so not fair! We're done… Find someone else to help you. Good luck with that attitude."`);
     scene.text('You can tell Artem is seriously offended by your refusal, and won\'t help you any further. Hopefully someone else can help you with your homework.');
     scene.actions([
@@ -235,7 +224,6 @@ function enterLearn(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/artem/sex/bj1.jpg');
     scene.text('You decline. "I\'m not a whore that earns her way with sex!"');
-    // TODO-QSP: dynamic text: "Look <<$pcs_nickname>>, I spent a lot of time and effort helping you out. Meanw...
     scene.text(`"Look ${((st as any).pcs_nickname ?? '')}, I spent a lot of time and effort helping you out. Meanwhile, you… you suck off or fuck pretty much everyone who asks! But you won't touch me when I need it? That's so not fair! We're done… Find someone else to help you. Good luck with that attitude."`);
     scene.text('You can tell Artem is seriously offended by your refusal, and won\'t help you any further. Hopefully someone else can help you with your homework.');
     scene.actions([
@@ -269,7 +257,6 @@ function enterLearn(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'npc_relationship', 'modify', 'A2', (-25));
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/artem/sex/bj1.jpg');
-    // TODO-QSP: dynamic text: You decline, and he''s very offended by that. "Look <<$pcs_nickname>>, you''ve a...
     scene.text(`You decline, and he's very offended by that. "Look ${((st as any).pcs_nickname ?? '')}, you've already let me fuck you. Meanwhile, you… fuck pretty much everyone who asks! But now I can't fuck your ass and you turn into a prude? That's so not fair! We're done… Find someone else to help you. Good luck with that attitude."`);
     scene.text('You can tell Artem is seriously offended by your refusal, and won\'t help you any further. Hopefully someone else can help you with your homework.');
     scene.actions([
@@ -305,7 +292,6 @@ function enterLearn(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'npc_relationship', 'modify', 'A2', (-25));
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/artem/sex/bj1.jpg');
-    // TODO-QSP: dynamic text: You decline, and he''s very offended by that: "Look <<$pcs_nickname>>, you''ve a...
     scene.text(`You decline, and he's very offended by that: "Look ${((st as any).pcs_nickname ?? '')}, you've already sucked my dick. Meanwhile, you… fuck pretty much everyone who asks! But now I can't fuck you? That's so not fair! We're done… Find someone else to help you. Good luck with that attitude."`);
     scene.text('You can tell Artem is seriously offended by your refusal, and won\'t help you any further. Hopefully someone else can help you with your homework.');
     scene.actions([
@@ -333,7 +319,6 @@ function enterLearn(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'npc_relationship', 'modify', 'A2', (-25));
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/artem/sex/bj1.jpg');
-    // TODO-QSP: dynamic text: You decline, and he''s very offended by that: "Look <<$pcs_nickname>>, you''ve a...
     scene.text(`You decline, and he's very offended by that: "Look ${((st as any).pcs_nickname ?? '')}, you've already sucked my dick. Meanwhile, you… fuck pretty much everyone who asks! But now I can't fuck you? That's so not fair! We're done… Find someone else to help you. Good luck with that attitude."`);
     scene.text('You can tell Artem is seriously offended by your refusal, and won\'t help you any further. Hopefully someone else can help you with your homework.');
     scene.actions([
@@ -368,7 +353,6 @@ function enterLearn(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'npc_relationship', 'modify', 'A2', (-25));
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/artem/talk.jpg');
-    // TODO-QSP: dynamic text: You decline, and he''s very offended by that: "Look <<$pcs_nickname>>, I spent a...
     scene.text(`You decline, and he's very offended by that: "Look ${((st as any).pcs_nickname ?? '')}, I spent a lot of time and effort helping you out. Meanwhile, you… you suck off or fuck pretty much everyone who asks! But you won't touch me? That's so not fair! We're done… Find someone else to help you. Good luck with that attitude."`);
     scene.text('You can tell Artem is seriously offended by your refusal, and won\'t help you any further. Hopefully someone else can help you with your homework.');
     scene.actions([
@@ -424,7 +408,6 @@ function enterLearn(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'npc_relationship', 'modify', 'A2', (-25));
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/artem/sex/bj1.jpg');
-    // TODO-QSP: dynamic text: You decline, and he''s very offended by that. "Look <<$pcs_nickname>>, I spent a...
     scene.text(`You decline, and he's very offended by that. "Look ${((st as any).pcs_nickname ?? '')}, I spent a lot of time and effort helping you out. Meanwhile, you… you suck off or fuck pretty much everyone who asks! But you won't touch me? That's so not fair! We're done… Find someone else to help you. Good luck with that attitude."`);
     scene.text('You can tell Artem is seriously offended by your refusal, and won\'t help you any further. Hopefully someone else can help you with your homework.');
     scene.actions([
@@ -451,7 +434,6 @@ function enterLearn(s: GameState, scene: SceneBuilder): void {
       { label: 'Explore his room', goto: ['artemhome', 'artemroom'] },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -461,7 +443,6 @@ function enterFinalrefuse(s: GameState, scene: SceneBuilder): void {
   scene.text('You shake your head. "Fine, if that\'s the way you want it to be."');
   scene.text('You get up and grab your stuff before heading for the door. "I never want to see you again!" he says as you head out.');
   scene.text('You walk out of his room and down the hall to the front door.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['pod_ezd', 'etaj_1'] },
   ]);
@@ -473,7 +454,6 @@ function enterStriptease(s: GameState, scene: SceneBuilder): void {
   scene.text('You do a little dance on your knees as you slowly undress, teasing him without showing him anything but the hint of your panties. You then slowly remove your bottoms, leaving you with only your top and panties on.');
   qspCall(s, 'arousal', 'striptease', 2);
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Remove your top', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/boy/artem/strip3.jpg');
@@ -512,11 +492,9 @@ function enterArtemdryhump(s: GameState, scene: SceneBuilder): void {
   scene.text('You turn so he has a nice view of your ass. He carefully runs his hands over your ass cheeks, and you can feel him hesitating for a second before he starts squeezing your ass and rubbing it with his hands. After a few minutes of this, he places one of his hands on your shoulder and pushes you forward, bending you over. He then grabs onto you and you feel something hard pressing between your ass cheeks. When you glance back over your shoulder, you see him rubbing his erect cock against your clothes.');
   qspCall(s, 'arousal', 'foreplay', 3);
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/boy/artem/sex/buttcumc.jpg');
-    // TODO-QSP: dynamic text: Mere moments later, you see him cum over your ass, on your clothes! Once he fini...
     scene.text(`Mere moments later, you see him cum over your ass, on your clothes! Once he finishes, you can tell he's embarrassed. "I'm sorry ${((st as any).pcs_nickname ?? '')}, I didn't mean to soil your clothes. It felt so good, I just couldn't stop!" He blushes so hard that he turns red.`);
     scene.text('You then hear his mother\'s voice out in the hall, just outside his door. "Artem, I need you to run an errand into town for me."');
     scene.text('Artem freaks out and starts to panic. "Um yes mom, I will!" He looks at you with a panicked stare, his mother having almost caught him dry humping a girl in his room. "I should really go do what my mom wants. See you tomorrow?"');
@@ -538,11 +516,9 @@ function enterArtemdryhump1(s: GameState, scene: SceneBuilder): void {
   scene.text('You turn so he has a nice view of your ass. He carefully runs his hands over your ass cheeks while pulling your clothes off until you\'re wearing only your panties from the waist down. You bend over for him and feel his hard cock pressed against your ass. When you glance back over your shoulder, you see him rubbing his erect cock against your panties.');
   qspCall(s, 'arousal', 'foreplay', 3);
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/boy/artem/sex/buttcump.jpg');
-    // TODO-QSP: dynamic text: Mere moments later, you see him cum over your panties; you can feel the sticky w...
     scene.text(`Mere moments later, you see him cum over your panties; you can feel the sticky wetness through them as his cum soaks into them. He seems pleased once he finishes. "That was great ${((st as any).pcs_nickname ?? '')}, it felt so good!"`);
     scene.text('You then hear his mother\'s voice out in the hall, just outside his door. "Artem, I need you to run an errand into town for me."');
     scene.text('Artem freaks out and starts to panic. "Um yes mom, I will!" He looks at you with a panicked stare, his mother having almost caught him dry humping a girl in his room. "I should really go do what my mom wants. See you tomorrow?"');
@@ -564,11 +540,9 @@ function enterArtemdryhump2(s: GameState, scene: SceneBuilder): void {
   scene.text('You turn so he has a nice view of your ass. He carefully runs his hands over your ass cheeks while pulling your clothes off until you\'re naked from the waist down. You bend over for him and feel his hard cock pressed between your ass cheeks. When you glance back over your shoulder, you see him rubbing his erect cock between your ass cheeks as he pushes them together.');
   qspCall(s, 'arousal', 'foreplay', 3);
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/boy/artem/sex/buttcumn.jpg');
-    // TODO-QSP: dynamic text: Mere moments later, you see him cum over your naked ass and lower back. He seems...
     scene.text(`Mere moments later, you see him cum over your naked ass and lower back. He seems pleased once he finishes. "That was great ${((st as any).pcs_nickname ?? '')}, it felt so good!"`);
     scene.text('You then hear his mother\'s voice out in the hall, just outside his door. "Artem, I need you to run an errand into town for me."');
     scene.text('Artem freaks out and starts to panic. "Um yes mom, I will!" He looks at you with a panicked stare, his mother having almost caught him dry humping a half naked girl in his room. "I should really go do what my mom wants. See you tomorrow?"');

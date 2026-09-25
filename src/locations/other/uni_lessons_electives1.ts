@@ -15,7 +15,6 @@ function enterAfricanStudies101(s: GameState, scene: SceneBuilder): void {
 
 function enterAfricanStudies102(s: GameState, scene: SceneBuilder): void {
   qspGoto(s, 'uni_lessons_electives', 'African Studies 102');
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -51,7 +50,6 @@ function enterArt_101ModelNatasha(s: GameState, scene: SceneBuilder): void {
 
 function enterArt_101ModelErmias(s: GameState, scene: SceneBuilder): void {
   qspGoto(s, 'uni_lessons_electives_art1', 'art_101_model_ermias');
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -62,7 +60,6 @@ function enterAsianStudies101(s: GameState, scene: SceneBuilder): void {
 
 function enterAsianStudies102(s: GameState, scene: SceneBuilder): void {
   qspGoto(s, 'uni_lessons_electives', 'Asian Studies 102');
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -73,7 +70,6 @@ function enterComputers101(s: GameState, scene: SceneBuilder): void {
 
 function enterComputers102(s: GameState, scene: SceneBuilder): void {
   qspGoto(s, 'uni_lessons_electives', 'Computers 102');
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -84,13 +80,11 @@ function enterPsychology101(s: GameState, scene: SceneBuilder): void {
 
 function enterPsychology102(s: GameState, scene: SceneBuilder): void {
   qspGoto(s, 'uni_lessons_electives', 'Psychology 102');
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterStudyWithFriends(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'uni_lessons_electives', 'study_with_friends');
-  // TODO-QSP: end
   scene.build();
 }
 

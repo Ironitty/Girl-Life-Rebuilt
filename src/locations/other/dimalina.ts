@@ -40,7 +40,6 @@ function enterDimkalina0(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -56,7 +55,6 @@ function enterDimkalina1(s: GameState, scene: SceneBuilder): void {
   scene.text('"Now look at this, whore," He says as he opens the closet door.');
   qspCall(s, 'pain', '2', 'jaw', 'bind');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Look inside the closet', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/dimkahome/linased/D2.jpg');
@@ -127,7 +125,6 @@ function enterListen(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/resident/dimkahome/linased/D4.jpg');
   scene.text('"Hey, can I show you something?" Before Lina can reply, he jumps off the bed and goes to his desk. After some rummaging, he returns with an HD digital camera. "Pretty cool, isn\'t it? Come on, let me show you what it can do!" He points the camera at Lina with the expectation that she start modeling for him.');
   scene.text('Lina bites her lips and look around the room. It\'s evident that she doesn\'t want to at first, but eventually she begins to pose in playfully and innocent ways, following Dimka\'s suggestions. As you watch, the drug in your blood kicks into high gear and you begin to get aroused and your mind drifts to inappropriate thoughts.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Keep watching', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/dimkahome/linased/D5.jpg');
@@ -234,7 +231,6 @@ function enterHelp(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'pain', '2', 'wrists', 'bind');
   qspCall(s, 'pain', '2', 'mouth', 'bind');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Watch helplessly', goto: ['dimalina', 'watch'] },
   ]);
@@ -250,7 +246,6 @@ function enterWatch(s: GameState, scene: SceneBuilder): void {
   scene.text('Lina starts stroking faster and he can only cry in satisfaction.');
   qspCall(s, 'arousal', 'voyeur_sex', 5, 'bound');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'This should be over soon…', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
@@ -324,7 +319,6 @@ function enterDimkalina2(s: GameState, scene: SceneBuilder): void {
   scene.text('You don\'t respond, which makes him chuckle. "Don\'t worry, I know what you want and I have it right here!" He pulls out the ball bag in one hand and… those pink pills in his other hand. You stare at them for a moment as he holds them out to you.');
   scene.text('"Will… Avelina be here today?" You ask quietly.');
   scene.text('He raises a brow, "Worried you\'ll be replaced, whore?" he laughs, "She\'s my girlfriend now, so get used to it. You\'ll be seeing a lot more of her."');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Ignore him and undress', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/dimkahome/linased/D2.jpg');
@@ -446,7 +440,6 @@ function enterDistraction(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'mood', 'lower', 'small');
   }
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Watch her jerk him off', goto: ['dimalina', 'cums1'] },
   ]);
@@ -460,7 +453,6 @@ function enterWatch2(s: GameState, scene: SceneBuilder): void {
   scene.text('"Fuck… that\'s much better!" Dimka then caresses the back of Lina\'s head as his face twists with pleasure.');
   qspCall(s, 'arousal', 'voyeur_sex', 5, 'bound');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Watch her jerk him off', goto: ['dimalina', 'cums1'] },
   ]);
@@ -473,7 +465,6 @@ function enterCums1(s: GameState, scene: SceneBuilder): void {
   scene.text('Lina looks at him only for a moment, and with a quickness that shows she just wants this over and done with, she takes his dick into her mouth and starts to suck him. He grunts in obvious pleasure, as Lina begins a slow-paced blowjob.');
   scene.text('"Yes… You… Hmf…"');
   scene.text('She moves faster, making Dimka breath quicken. Your altered mental state can only raise your arousal, as the scene, more proper on a porn video play before you. He is reaching his climax and quickly pushes her head away so she can stroke him until he\'s finally shooting his load all over her face. You groan in frustration as your own release is negated by the chains on your hands and legs.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Watch her leave', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/dimkahome/linased/D13.jpg');
@@ -533,7 +524,6 @@ function enterDimkalina3(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Take the pills', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
@@ -556,7 +546,6 @@ function enterWatch3(s: GameState, scene: SceneBuilder): void {
   scene.text('"I\'m sorry Dimka, it\'s just that… I like someone else and this can\'t work."');
   scene.text('"Right… well we can still be friends, can\'t we? Stay for a bit, have a drink and hang out."');
   scene.text('After that, he leads Lina into his room and leaves her for a while before returning with two sodas. The two of them seem on edge as they sit in silence sipping on their drinks. You notice Lina begins to rub her legs together as her breathing gets a bit heavier. You quickly recognize her actions as ones you\'ve done before… there is no mistake: Lina was slipped those same pink pills, no doubt put in her drink. Groaning she begins to stand.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'She is drugged…', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
@@ -612,7 +601,6 @@ function enterLinadefiled(s: GameState, scene: SceneBuilder): void {
   scene.text('"Come on help a little… Move your ass!" He demands. She follows his commands but in a desynchronized form. Her mind trapped between the induced lust and the need to escape.');
   scene.text('"That\'s better!"');
   scene.text('Dimka is near the end and you expect him to cum inside her but instead he suddenly pushes her away and begins stroking fast and hard in front of Lina\'s face.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'He cums all over her…', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/dimkahome/linased/D16.jpg');
@@ -651,7 +639,6 @@ function enterDimkalina4(s: GameState, scene: SceneBuilder): void {
   scene.text('"You know, I think that we must talk about our relationship. I mean, you are the Slut and you met the future Miss Nosov… Hm… Well we will think about something."');
   scene.text('"Now for your present." He walks to you and shows you a roll of sticky tape. "Like I said, you have been good, so… I won\'t chain you today."');
   scene.text('He then proceeds to tie your hands and feet, leaving you delicately on the floor of the closet. You are a bit daunted by Dimka\'s sudden friendly demeanor and sit there in silence. He then closes the door and begins to prepare himself. Shortly after, Lina storms into the room.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'What\'s happening?', handler: (st: GameState) => {
     scene.img('images/characters/shared/headshots_main/big19.jpg');
@@ -693,14 +680,11 @@ function enterDimkalina5(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/resident/dimkahome/linased/D1.jpg');
   scene.text('During your undressing, you see that Dimka seems distracted. He constantly looks around the room, edgy, as if something bothers him. It even takes him some moments to realize that you are naked. On the floor near the closet, you see a new set of bondage gear. Leather and chrome, and your heart skips a beat when you realize it can\'t be for you.');
   scene.text('"Aright, into the closet," he simply orders.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Get chained up', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/dimkahome/linased/D3.jpg');
     scene.text('Silently he begins to "help" you to put on the chains and ball gag, making sure that it hurts and does not let you rest. When he\'s finally done, you expect him to close the closet door but instead, he leaves it open. As he sits at his desk, you see him rubbing his hands. He seems strangely nervous as the minutes pass by and the two of you wait for… Lina to arrive.');
-    // TODO-QSP: dynamic text: "Hm? <<$pcs_firstname>>!?" Lina can''t look away from you as she''s caught compl...
     scene.text(`"Hm? ${((st as any).pcs_firstname ?? '')}!?" Lina can't look away from you as she's caught completely off guard. Dimka smiles and that's when you understand that this was his plan.`);
-    // TODO-QSP: dynamic text: "<<$pcs_firstname>>? No, her name is Slut, and like you, she is my bitch, and yo...
     scene.text(`"${((st as any).pcs_firstname ?? '')}? No, her name is Slut, and like you, she is my bitch, and you know why is that, Little Slut? Remember that little DVD that arrived at your home? Hm? What message accompanied it?"`);
     scene.text('Lina winces at his words and avoids Dimka\'s gaze, reddens and look out of the corner of her eye towards you');
     scene.text('"I don\'t fucking hear you Little Slut!"');
@@ -722,9 +706,7 @@ function enterDimkalina6(s: GameState, scene: SceneBuilder): void {
   }
   scene.img('images/locations/pavlovsk/resident/dimkahome/dimkaroom.jpg');
   scene.text('The room is surprisingly clean and organized for a boys room. It is fairly tastefully decorated. Along one wall next to the bed is a wardrobe with mirrored doors, a small zebra pattern love seat sits along a wall near the bed. Next to the loveseat is a mini fridge and just above that on a shelf is a stereo system. There is also a desk with a desktop computer setup on it and a laptop laying nearby as well. All in the room seems pretty expensive. There are some drinks and chips on a low table. Sitting at the desk is Dimka, he apparently heard you open the door as he turns to face you as you walk in.');
-  // TODO-QSP: dynamic text: As he sees you, an evil smile spreads across his face. "So good of you to join m...
   scene.text(`As he sees you, an evil smile spreads across his face. "So good of you to join me, ${((s as any).pcs_nickname ?? '')}."`);
-  // TODO-QSP: end
   scene.actions([
     { label: 'What the fuck', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/dimkahome/linased/D24.jpg');
@@ -783,7 +765,6 @@ function enterDimkalina6(s: GameState, scene: SceneBuilder): void {
     scene.text('"Dimka gives you his patented shit-eating smile and hops up from the couch, startling you."');
     scene.text('"Oh… Really! You think she\'ll make a good Little Slut?"');
     scene.text('You look at him with a blank expression. Why is he so excited?');
-    // TODO-QSP: dynamic text: "Well <<$pcs_nickname>>, time is running short and I must do something. You may ...
     scene.text(`"Well ${((st as any).pcs_nickname ?? '')}, time is running short and I must do something. You may go now."`);
     scene.text('Not wanting to miss your chance, you proceed to leave his room. With one last glance back at him, you see he stands in the middle of the room smiling and looking to the closet. As you close the door of his room, you swear that you hear the noise of chains.');
     scene.actions([
@@ -807,7 +788,6 @@ function enterDimkalina7(s: GameState, scene: SceneBuilder): void {
   scene.text('"Into the closet, Slut." He practically throws you in, and immediately starts to bind you with the chains. They\'re painfully tight… so tight that you feel parts of you go numb as you sit there.');
   scene.text('"Ohh… does it hurt, Slut?" he asks mockingly as you wince in pain. "Let\'s play a game. Little Slut is coming and we are going to see how much she likes you. I don\'t want any interruptions from you, understand?"');
   scene.text('You nod weakly and he closes the door. You are barely capable of sitting up and the next minutes seem to drag on for an eternity as you struggle helplessly against the chains. Meanwhile, Dimka puts out a series of "toys" on his desk, just beside the chip and drinks he has out for Lina and him. When he\'s satisfied with how everything looks, he sits down and waits for her. Minutes past until finally Lina meekly enters the room.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Listen to them chit-chat', handler: (st: GameState) => {
     scene.img('images/characters/shared/headshots_main/big1.jpg');
@@ -876,7 +856,6 @@ function enterDimkalina7(s: GameState, scene: SceneBuilder): void {
       { label: 'He won\'t like that…', handler: (st: GameState) => {
     scene.img('images/characters/shared/headshots_main/big1.jpg');
     scene.text('Dimka gives her a cruel smile as he laughs at her. "I knew that you would say that. You really are a sweet girl… that\'s why you\'re my girlfriend!"');
-    // TODO-QSP: dynamic text: He stands and gives Lina a warm smile, but something feels off about it as he ci...
     scene.text(`He stands and gives Lina a warm smile, but something feels off about it as he circles around her. He walks over to you and removes the gag and then your chains, leaving you there on the floor to recover. "But you need to know that there's always going to be consequences to your actions… especially when you're wrong. You think ${((st as any).pcs_nickname ?? '')} is a nice girl, but I know better, and I want you to know better. Hopefully after this, you'll see just what kind of girl she is," he says, stopping in front of a shaking and terrified looking Lina.`);
     qspCall(st, 'willpower', 'misc', 'self', 'medium');
     if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
@@ -926,9 +905,7 @@ function enterDimkalina8(s: GameState, scene: SceneBuilder): void {
   scene.text('He gives you a condescending smile and sits smugly in his chair.');
   scene.text('"Yeah… So… You show up just when she is about to arrive? No way that this is a coincidence!"');
   scene.text('Just at that moment, Lina arrive at the room.');
-  // TODO-QSP: dynamic text: "Ehm… Dimka I''m here! Hm?! Ehm… Hello <<$pcs_firstname>>"
   scene.text(`"Ehm… Dimka I'm here! Hm?! Ehm… Hello ${((s as any).pcs_firstname ?? '')}"`);
-  // TODO-QSP: end
   scene.actions([
     { label: 'He wants to play', handler: (st: GameState) => {
     scene.img('images/characters/shared/headshots_main/big1.jpg');
@@ -1005,7 +982,6 @@ function enterEndure(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'stat', '');
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Get fucked', goto: ['dimalina', 'hooksex'] },
   ]);
@@ -1015,7 +991,6 @@ function enterEndure(s: GameState, scene: SceneBuilder): void {
 function enterHooksex(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcStat', 'A1');
   scene.img('images/locations/pavlovsk/resident/dimkahome/linased/D17.jpg');
-  // TODO-QSP: dynamic text: You feel the shaft of his <<dick>>cm <<$dick_girth>> cock pushing your vaginal l...
   scene.text(`You feel the shaft of his ${((s as any).dick ?? '')}cm ${((s as any).dick_girth ?? '')} cock pushing your vaginal lips slightly apart.`);
   if (((s as any).pcs_vag ?? 0) < 10) {
     scene.text('You howl in pain, without foreplay you are dry and Dimka is too mad to really care. Enduring his trusts you bite your lips and wait for him to cum.');
@@ -1055,7 +1030,6 @@ function enterHooksex(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).minut = ((s as any).minut ?? 0) + ((Math.floor(Math.random() * 11) + 20));
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['pav_residential', ''] },
   ]);
@@ -1073,7 +1047,6 @@ function enterHelplina(s: GameState, scene: SceneBuilder): void {
   scene.text('"Shh… Follow my lead, ok?" You manage to whisper to Lina as you wrestle her out of her clothes. Trusting you, Lina stops and lets you quickly undress her. Grabbing her by the hair, you force her mouth against your bust. Intuitively, she understands and begins to lick your tits. You let out a breathy moan, enjoying how talented she is with her tongue. "O-oh!" You gasp.');
   qspCall(s, 'arousal', 'foreplay', 3, ((s as any).npcID1 ?? 0), 'lesbian');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Dimka joins in', handler: (st: GameState) => {
     qspCall(st, 'boyStat', 'A1');
@@ -1082,7 +1055,6 @@ function enterHelplina(s: GameState, scene: SceneBuilder): void {
     scene.text('"Playtime is over for you two sluts!"');
     scene.text('Lina looks embarrassed, suggesting that she was really into it. Dimka meanwhile is looking smug as he lays back on the bed, his erection on full display.');
     scene.text('"What the hell are you waiting for, an invitation? Suck!"');
-    // TODO-QSP: dynamic text: You grab the <<dick>>cm <<$dick_girth>> cock and prepare to suck him when a part...
     scene.text(`You grab the ${((st as any).dick ?? '')}cm ${((st as any).dick_girth ?? '')} cock and prepare to suck him when a particularly forward Lina pushes you away and takes it to the back of her throat. To your surprise, she begins to give a demonstration in deepthroating.`);
     scene.text('"Oh yeah! That…" he grunts, "is skill!"');
     scene.text('Lina looks at you with a somewhat embarrassed expression as she slides his cock free from her mouth. Without hesitation, you grab it and start sucking.');
@@ -1093,7 +1065,6 @@ function enterHelplina(s: GameState, scene: SceneBuilder): void {
       { label: 'Keep sucking', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/dimkahome/linased/D27.jpg');
     scene.text('Without realizing it, it turns into a cock sucking competition as you and Lina take turns blowing Dimka. "Ok Sluts, time for the main dish!"');
-    // TODO-QSP: dynamic text: Before Dimka has time to say anything else, you straddle him and push his <<dick...
     scene.text(`Before Dimka has time to say anything else, you straddle him and push his ${((st as any).dick ?? '')}cm ${((st as any).dick_girth ?? '')} cock inside of you. Thanks to the copious amount of spit and the fact that you are in control, you manage to push it in without problems, this time.`);
     scene.text('"Oh? What? You want to be the "Numero Uno" girl? Lets see… Hm… What are you waiting for Little Slut? Are you going to let her do that?"');
     scene.text('You were hoping that maybe this way Dimka will let Lina go, but it is clear that that is not that easy. You begin to rock your hips when something wet and cold touch your buttocks. Bend behind you, Lina is proceeding to lick Dimka\'s balls.');
@@ -1111,7 +1082,6 @@ function enterHelplina(s: GameState, scene: SceneBuilder): void {
     scene.text('"You want to help her? Ok, Little Slut. Make yourself useful!" He then grabs Lina by her hair and she responds by meekly kissing him. Dimka can\'t fuck and grab the two of you, so the pressure around your throat lessens as his grip weakens. This continues for some more minutes, until he cums.');
     scene.text('Dimka slumps back, out of breath and exhausted as he tries to collect himself. "Alright… you\'ve done your job, now get out!"');
     scene.text('Dimka then leaves for the restroom. As you and Lina redress, she embraces you.');
-    // TODO-QSP: dynamic text: "Thanks <<$pcs_firstname>>"
     scene.text(`"Thanks ${((st as any).pcs_firstname ?? '')}"`);
     qspCall(st, 'pain', '3', 'throat', 'choke');
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'vaginal']; enterSexpain(st, scene); (st as any).locArgs = __savedLocArgs; }
@@ -1140,13 +1110,11 @@ function enterWalklina(s: GameState, scene: SceneBuilder): void {
   scene.text('You two stand in the street. Lina looks at the ground and seems lost in her thoughts. Finally, she sighs and begins to walk.');
   scene.text('"I\'m going home."');
   scene.text('She says, more to herself than to you. "What could you do to help?"');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     scene.img('images/characters/shared/headshots_main/big19.jpg');
     scene.text('"Hm… Lina, I\'ve got to do something and have to leave."');
     scene.text('She looks at you a moment, and shrugs.');
-    // TODO-QSP: dynamic text: "Do whatever you want, <<$pcs_firstname>>.
     scene.text(`"Do whatever you want, ${((st as any).pcs_firstname ?? '')}.`);
     scene.text('Then she begins to walk towards her home.');
     scene.actions([
@@ -1200,7 +1168,6 @@ function enterWalklina(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/shared/headshots_main/big19.jpg');
     scene.text('"Ok, this is my stop."');
     scene.text('Lina leaves your side and looks at you with a half smile.');
-    // TODO-QSP: dynamic text: "Thanks, <<$pcs_nickname>>… I… Well I needed that."
     scene.text(`"Thanks, ${((st as any).pcs_nickname ?? '')}… I… Well I needed that."`);
     scene.actions([
       { label: 'Leave', goto: ['pav_residential', ''] },
@@ -1225,7 +1192,6 @@ function enterBindpain(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'pain', '2', 'ankles', 'bind');
   qspCall(s, 'pain', '2', 'breasts', 'bind');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1253,7 +1219,6 @@ function enterSexpain(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1278,7 +1243,6 @@ function enterEscape(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npc_relationship', 'modify', 'A1', (-40));
   (s as any).minut = ((s as any).minut ?? 0) + ((Math.floor(Math.random() * 21) + 10));
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['pav_residential', ''] },
   ]);
@@ -1294,7 +1258,6 @@ function enterSuccubusdimka(s: GameState, scene: SceneBuilder): void {
   scene.text('Your eager responses surprise Dimka and quickly the rage he was feeling earlier is replaced by arousal. You watch with a smile as he easily gives in to you. He is yours now.');
   qspCall(s, 'arousal', 'BDSM', 2, ((s as any).npcID ?? 0), 'bound', 'rough');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Awaken your true self', handler: (st: GameState) => {
     scene.img('images/pc/body/succubusself.jpg');
@@ -1309,7 +1272,6 @@ function enterSuccubusdimka(s: GameState, scene: SceneBuilder): void {
     scene.text('You stand over his member and slowly lower yourself down onto it in a reverse cowgirl position.');
     scene.text('He lets out a drawn out groan, his face twisted in pleasure and confusion. "Oh… what are you doing?"');
     scene.text('"Master, let me help you," You purr. With inhuman grace, you begin to ride him, the rage and madness soon forgotten. His hand caresses your hips and you smile, accelerating your ride and putting him on edge. There is nothing like the touch of a succubus…');
-    // TODO-QSP: dynamic text: "Oh…<<$pcs_nickname>>" He cums and fills you with energy. Smiling you rise and l...
     scene.text(`"Oh…${((st as any).pcs_nickname ?? '')}" He cums and fills you with energy. Smiling you rise and look at him, he is wasted and exhausted.`);
     scene.text('"I think… you can go?" he mumbles tiredly. With a smile, you leave him trying to catch his breath. After taking a quick shower in the restroom, you redress and leave.');
     qspCall(st, 'arousal', 'vaginal', 10, ((st as any).npcID ?? 0), 'dom');
@@ -1339,14 +1301,12 @@ function enterSuccubuslina(s: GameState, scene: SceneBuilder): void {
   scene.text('You call your true self up from its resting place.');
   scene.text('It fills you completely, suffusing your being with power…');
   scene.text('and hunger.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Dominate them', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/dimkahome/linased/D29.jpg');
     scene.text('There is a sudden change in the room as you begin to channel your power. The human occupants feel it in their bones. Without waiting for their reaction, you grab Lina\'s hand and walk to the bed. You lie there and smile to her. Tendrils of lust infused with mana cross unseen through the room and tangle around Dimka and Lina');
     scene.text('"I think… That our master needs a little demonstration of what a pair of sluts can do."');
     scene.text('Dimka seems confused, and Lina… well… Lina doesn\'t seem to actually like your idea… But that is going to change. You caress, grope and kiss her, slowly taking away your clothes. She is a little reluctant at first, but soon her skin turns red as you take control of her arousal.');
-    // TODO-QSP: dynamic text: "<<$pcs_firstname>>… I…"
     scene.text(`"${((st as any).pcs_firstname ?? '')}… I…"`);
     scene.text('"Shh… just follow my lead."');
     scene.text('She gives you a timid smile that soon grows as your lesbian show turns hotter. Horny as hell, she practically rips apart those clothes she\'s still wearing. Looking at Dimka, you see that he paces nervously from feet to feet. You can\' wait to drain the little shit. So… What next?');
@@ -1359,7 +1319,6 @@ function enterSuccubuslina(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/resident/dimkahome/linased/D30.jpg');
     scene.text('Dimka jumps on the bed and crawls towards Lina. He probably thinks that he is in control of her. Hehehe. Poor stupid kid. She lays on her back, observing him with a mix of lust and hate. They are slaves to their desires and you are the one who whispers the lust in their ears.');
     scene.text('"Master… Take your Little Slut. I have her ready for you."');
-    // TODO-QSP: dynamic text: Grabbing his <<dick>>cm <<$dick_girth>> cock, you carefully push it against Lina...
     scene.text(`Grabbing his ${((st as any).dick ?? '')}cm ${((st as any).dick_girth ?? '')} cock, you carefully push it against Lina's smooth pubic zone. She is whimpering. You push Dimka's back, who is finally smiling, to penetrate the reluctant girl. As your magic crosses between you three, Lina forgets her reluctance and cries in lust.`);
     scene.text('"Yes! Master! Fuck me!"');
     scene.text('Taking control of the rhythm, you manage to push the pair slowly to their limits. Lina can\'t stop looking at you, as is evident who is really fucking her. Dimka is lost in the enhanced arousal that your touch has unchained. They are loving it… That is so unjust. You must do something');
@@ -1381,7 +1340,6 @@ function enterSuccubuslina(s: GameState, scene: SceneBuilder): void {
       { label: 'They are yours', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/dimkahome/linased/D32.jpg');
     scene.text('During the next hour, you fuck them. Changing from one to another, making Dimka serve Lina and you, bathing her body in his semen. You don\'t let Dimka catch any breath. Finally exhausted, without force or cum, he leaves weary for the restroom.');
-    // TODO-QSP: dynamic text: "<<$pcs_firstname>>?"
     scene.text(`"${((st as any).pcs_firstname ?? '')}?"`);
     scene.text('Lina looks at you with embarrassed, tired and confused eyes. She doesn\'t know exactly what happened, but is aware that you were the catalyst.');
     scene.text('"What just happened?"');
@@ -1434,7 +1392,6 @@ function enterLinaundress(s: GameState, scene: SceneBuilder): void {
   scene.text('Slap!!');
   scene.text('The minutes pass while Lina\'s skin gets redder.');
   scene.text('Slap… Slap… Slap!!');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Helplessly watch her be abused', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/dimkahome/linased/D21.jpg');

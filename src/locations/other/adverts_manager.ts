@@ -1,5 +1,3 @@
-import { qspUntranslated } from '../_shared/qspUntranslated';
-
 import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
@@ -13,7 +11,6 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'saveposition', '');
   qspGoto(s, 'adverts_manager', 'show');
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -21,7 +18,6 @@ function enterCikl(s: GameState, scene: SceneBuilder): void {
   if (((s as any).month ?? 0) > 8) {
     ((s as any).adv_chance = (s as any).adv_chance ?? {})['guitar'] = 50;
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -73,7 +69,6 @@ function enterCheckLocation(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -92,25 +87,25 @@ function enterShow(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Noticeboard</b></center>');
   (s as any).adv_Text = '<center>You look at the noticeboard to see if any advert will peak your interest.<br>';
   if (((s as any).adv_unknownCount ?? 0) === 0  &&  (!((s as any).adv_knownCount ?? 0))) {
-    // TODO-QSP: $adv_Text += 'There is no advert today. Maybe I should come back next week?<br>'
+    (s as any).adv_Text = ((s as any).adv_Text ?? 0) + ('There is no advert today. Maybe I should come back next week?<br>');
   } else {
     if (((s as any).adv_unknownCount ?? 0) > 0  &&  ((s as any).adv_knownCount ?? 0) > 0) {
-      // TODO-QSP: $adv_Text += 'You see <<adv_unknownCount>> new and <<adv_knownCount>> known ' + iif((adv_knownCount ...
+      (s as any).adv_Text = ((s as any).adv_Text ?? 0) + ('You see ' + ((s as any).adv_unknownCount ?? 0) + ' new and ' + ((s as any).adv_knownCount ?? 0) + ' known \' + iif((adv_knownCount + adv_unknownCount) = 1, \'advert\', \'adverts\') + \'.<br>');
     } else {
       if (((s as any).adv_unknownCount ?? 0) > 0) {
-        // TODO-QSP: $adv_Text += 'You see <<adv_unknownCount>> new ' + iif(adv_unknownCount = 1, 'advert', 'adverts') + ...
+        (s as any).adv_Text = ((s as any).adv_Text ?? 0) + ('You see ' + ((s as any).adv_unknownCount ?? 0) + ' new \' + iif(adv_unknownCount = 1, \'advert\', \'adverts\') + \'.<br>');
       } else {
         if (((s as any).adv_knownCount ?? 0) > 0) {
-          // TODO-QSP: $adv_Text += 'You see <<adv_knownCount>> known ' + iif(adv_knownCount = 1, 'advert', 'adverts') + '....
+          (s as any).adv_Text = ((s as any).adv_Text ?? 0) + ('You see ' + ((s as any).adv_knownCount ?? 0) + ' known \' + iif(adv_knownCount = 1, \'advert\', \'adverts\') + \'.<br>');
         }
       }
     }
     if (((s as any).adv_unknownCount ?? 0) > 0) {
-      // TODO-QSP: $adv_Text += 'It might be a good idea to look at new ' + iif(adv_unknownCount = 1, 'advert', 'advert...
+      (s as any).adv_Text = ((s as any).adv_Text ?? '') + 'It might be a good idea to look at new ' + ((((s as any).adv_unknownCount ?? 0) === 1) ? ('advert') : ('adverts')) + '. Perhaps there is an opportunity that I could miss?<br>';
     }
   }
-  // TODO-QSP: $adv_Text += '</center>'
-  // TODO-QSP: $adv_Text
+  (s as any).adv_Text = ((s as any).adv_Text ?? 0) + ('</center>');
+  s.scene = { ...s.scene, mainText: String((s as any).adv_Text || ''), curActs: [] };
   if (((s as any).adv_unknownCount ?? 0) > 0) {
     scene.text('<center><b>New Adverts</b></center>');
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 0]; enterShowAdverts(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -119,7 +114,11 @@ function enterShow(s: GameState, scene: SceneBuilder): void {
     scene.text('<center><b>Known Adverts</b></center>');
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 1]; enterShowAdverts(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
-  // TODO-QSP: end
+  (s as any).adv_location_result = undefined;
+  (s as any).adv_locationImg = undefined;
+  (s as any).adv_knownCount = undefined;
+  (s as any).adv_unknownCount = undefined;
+  (s as any).adv_Text = undefined;
   scene.actions([
     { label: 'Leave the board', goto: ['restoreposition', ''] },
   ]);
@@ -130,20 +129,17 @@ function enterSumAdverts(s: GameState, scene: SceneBuilder): void {
   (s as any).adv_knownCount = 0;
   (s as any).adv_unknownCount = 0;
   (s as any).i = 1;
-  // TODO-QSP: :sum_visible_loop
-  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCheckLocation(s, scene); (s as any).locArgs = __savedLocArgs; }
-  if (((s as any).adv_location_result ?? 0) > 0  &&  ((s as any).adv_appearance ?? 0)?.[String((s as any).i ?? 0)] === 1) {
-    if (((s as any).adv_known ?? 0)?.[String((s as any).i ?? 0)] === 1) {
-      (s as any).adv_knownCount = ((s as any).adv_knownCount ?? 0) + (1);
-    } else {
-      (s as any).adv_unknownCount = ((s as any).adv_unknownCount ?? 0) + (1);
+  do {
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCheckLocation(s, scene); (s as any).locArgs = __savedLocArgs; }
+    if (((s as any).adv_location_result ?? 0) > 0  &&  ((s as any).adv_appearance ?? 0)?.[String((s as any).i ?? 0)] === 1) {
+      if (((s as any).adv_known ?? 0)?.[String((s as any).i ?? 0)] === 1) {
+        (s as any).adv_knownCount = ((s as any).adv_knownCount ?? 0) + (1);
+      } else {
+        (s as any).adv_unknownCount = ((s as any).adv_unknownCount ?? 0) + (1);
+      }
     }
-  }
-  (s as any).i = ((s as any).i ?? 0) + (1);
-  if (((s as any).i ?? 0) <= ((s as any).adv_listSize ?? 0)) {
-    // TODO-QSP: jump 'sum_visible_loop'
-  }
-  // TODO-QSP: end
+    (s as any).i = ((s as any).i ?? 0) + (1);
+  } while (((s as any).i ?? 0) <= ((s as any).adv_listSize ?? 0));
   scene.build();
 }
 
@@ -151,75 +147,64 @@ function enterAppearanceChance(s: GameState, scene: SceneBuilder): void {
   if (((s as any).adv_lastAppearanceChance ?? 0) !== ((s as any).daystart ?? 0)) {
     (s as any).adv_lastAppearanceChance = ((s as any).daystart ?? 0);
     (s as any).i = 1;
-    // TODO-QSP: :appearance_loop
-    if (((s as any).adv_chance ?? 0)[(((s as any).adv_list ?? 0)?.[String((s as any).i ?? 0)])] > (Math.floor(Math.random() * 100) + 0)) {
-      ((s as any).adv_appearance = (s as any).adv_appearance ?? {})[String((s as any).i ?? 0)] = 1;
-    } else {
-      ((s as any).adv_appearance = (s as any).adv_appearance ?? {})[String((s as any).i ?? 0)] = 0;
-    }
-    (s as any).i = ((s as any).i ?? 0) + (1);
-    if (((s as any).i ?? 0) <= ((s as any).adv_listSize ?? 0)) {
-      // TODO-QSP: jump 'appearance_loop'
-    }
+    do {
+      if (((s as any).adv_chance ?? 0)[(((s as any).adv_list ?? 0)?.[String((s as any).i ?? 0)])] > (Math.floor(Math.random() * 100) + 0)) {
+        ((s as any).adv_appearance = (s as any).adv_appearance ?? {})[String((s as any).i ?? 0)] = 1;
+      } else {
+        ((s as any).adv_appearance = (s as any).adv_appearance ?? {})[String((s as any).i ?? 0)] = 0;
+      }
+      (s as any).i = ((s as any).i ?? 0) + (1);
+    } while (((s as any).i ?? 0) <= ((s as any).adv_listSize ?? 0));
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterShowAdverts(s: GameState, scene: SceneBuilder): void {
   (s as any).adv_table_adverts = '<center><table>';
   (s as any).i = 1;
-  // TODO-QSP: :show_adverts_loop
-  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCheckLocation(s, scene); (s as any).locArgs = __savedLocArgs; }
-  if (((s as any).adv_location_result ?? 0) > 0  &&  ((s as any).adv_known ?? 0)?.[String((s as any).i ?? 0)] === ((s as any).args ?? 0)[1]  &&  ((s as any).adv_appearance ?? 0)?.[String((s as any).i ?? 0)] === 1) {
-    if ((!((s as any).i2 ?? 0))) {
-      // TODO-QSP: $adv_table_adverts += '<tr>'
+  do {
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCheckLocation(s, scene); (s as any).locArgs = __savedLocArgs; }
+    if (((s as any).adv_location_result ?? 0) > 0  &&  ((s as any).adv_known ?? 0)?.[String((s as any).i ?? 0)] === ((s as any).args ?? 0)[1]  &&  ((s as any).adv_appearance ?? 0)?.[String((s as any).i ?? 0)] === 1) {
+      if ((!((s as any).i2 ?? 0))) {
+        (s as any).adv_table_adverts = ((s as any).adv_table_adverts ?? '') + '<tr>';
+      }
+      (s as any).i2 = ((s as any).i2 ?? 0) + (1);
+      if (((s as any).theme ?? 0)?.['is_dark'] === 1) {
+        (s as any).adv_table_adverts = ((s as any).adv_table_adverts ?? 0) + ('<td><table bgcolor=#404040>');
+      } else {
+        (s as any).adv_table_adverts = ((s as any).adv_table_adverts ?? 0) + ('<td><table bgcolor=#FFF8DC>');
+      }
+      if (((s as any).adv_known ?? 0)?.[String((s as any).i ?? 0)] === 1) {
+        (s as any).adv_table_adverts = ((s as any).adv_table_adverts ?? 0) + ('<tr><td align=center><a href="#" onclick="window.__gameStore.getState().doGoto(\u0027adverts_manager\u0027, \u0027view_advert\u0027, (((s as any).adv_list ?? 0)?.[String((s as any).i ?? 0)] ?? \u0027\u0027)); return false;"><img height="150" src="' + (((s as any).adv_imgPath ?? 0)?.[String((((s as any).adv_list ?? 0)?.[String((s as any).i ?? 0)] ?? 0))]) + '"></a></td></tr><tr><td align=center>' + (((s as any).adv_name ?? 0)?.[String((((s as any).adv_list ?? 0)?.[String((s as any).i ?? 0)] ?? 0))]) + '</td></tr></table></td>');
+      } else {
+        (s as any).adv_table_adverts = ((s as any).adv_table_adverts ?? 0) + ('<tr><td align=center><a href="#" onclick="window.__gameStore.getState().doGoto(\u0027adverts_manager\u0027, \u0027view_advert\u0027, (((s as any).adv_list ?? 0)?.[String((s as any).i ?? 0)] ?? \u0027\u0027)); return false;"><img height="150" src="' + ((s as any).adv_locationImg ?? 0) + '"></a></td></tr><tr><td align=center>' + (((s as any).adv_nameHidden ?? 0)?.[String((((s as any).adv_list ?? 0)?.[String((s as any).i ?? 0)] ?? 0))]) + '</td></tr></table></td>');
+      }
+      if (((s as any).i2 ?? 0) % 6 === 0) {
+        (s as any).i2 = 0;
+        (s as any).adv_table_adverts = ((s as any).adv_table_adverts ?? '') + '</tr>';
+      }
     }
-    (s as any).i2 = ((s as any).i2 ?? 0) + (1);
-    if (((s as any).theme ?? 0)?.['is_dark'] === 1) {
-      // TODO-QSP: $adv_table_adverts += '<td><table bgcolor=#404040>'
-    } else {
-      // TODO-QSP: $adv_table_adverts += '<td><table bgcolor=#FFF8DC>'
+    (s as any).i = ((s as any).i ?? 0) + (1);
+    if (((s as any).i2 ?? 0) % 6 !== 0) {
+      do {
+        (s as any).i2 = ((s as any).i2 ?? 0) + (1);
+        (s as any).adv_table_adverts = ((s as any).adv_table_adverts ?? 0) + ('<td></td>');
+      } while (!(((s as any).i2 ?? 0) % 6 === 0));
     }
-    if (((s as any).adv_known ?? 0)?.[String((s as any).i ?? 0)] === 1) {
-      // TODO-QSP: $adv_table_adverts += '<tr><td align=center><a href="exec: gt ''adverts_manager'', ''view_advert'', ...
-    } else {
-      // TODO-QSP: $adv_table_adverts += '<tr><td align=center><a href="exec: gt ''adverts_manager'', ''view_advert'', ...
-    }
-    if (((s as any).i2 ?? 0) % 6 === 0) {
-      (s as any).i2 = 0;
-      // TODO-QSP: $adv_table_adverts += '</tr>'
-    }
-  }
-  (s as any).i = ((s as any).i ?? 0) + (1);
-  if (((s as any).i ?? 0) <= ((s as any).adv_listSize ?? 0)) {
-    // TODO-QSP: jump 'show_adverts_loop'
-  }
-  if (((s as any).i2 ?? 0) % 6 !== 0) {
-    // TODO-QSP: :show_advert_loop_close
-    (s as any).i2 = ((s as any).i2 ?? 0) + (1);
-    // TODO-QSP: $adv_table_adverts += '<td></td>'
-    if (((s as any).i2 ?? 0) % 6 === 0) {
-      (s as any).i2 = 0;
-      // TODO-QSP: $adv_table_adverts += '</tr>'
-    } else {
-      // TODO-QSP: jump 'show_advert_loop_close'
-    }
-  }
-  // TODO-QSP: $adv_table_adverts += '</table></center>'
-  // TODO-QSP: $adv_table_adverts
-  // TODO-QSP: end
+    (s as any).adv_table_adverts = ((s as any).adv_table_adverts ?? 0) + ('</table></center>');
+    s.scene = { ...s.scene, mainText: String((s as any).adv_table_adverts || ''), curActs: [] };
+    (s as any).adv_table_adverts = undefined;
+  } while (((s as any).i ?? 0) <= ((s as any).adv_listSize ?? 0));
   scene.build();
 }
 
 function enterViewAdvert(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Advert</b></center>');
-  scene.img(`${qspUntranslated(s, "adv_imgPath['<<args[1]", { location: "adverts_manager" })}']>>`);
-  // TODO-QSP: adv_known[args[2]] = 1
+  scene.img(`${(((s as any).adv_imgPath ?? 0)?.[String((((s as any).args ?? 0)?.[1] ?? 0))] ?? '')}`);
+  ((s as any).adv_known = (s as any).adv_known ?? {})[(((s as any).args ?? 0)?.[2] ?? 0)] = 1;
   qspCall(s, 'adverts_view', '$args[1]');
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go back', goto: ['adverts_manager', 'show'] },
   ]);

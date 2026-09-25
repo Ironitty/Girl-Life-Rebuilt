@@ -28,9 +28,7 @@ function enter1(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
   }
   scene.img('images/shared/sex/anal/doggy/anal30.jpg');
-  // TODO-QSP: dynamic text: You immediately feel the man''s hands on your ass cheeks when you get on your ha...
   scene.text(`You immediately feel the man's hands on your ass cheeks when you get on your hands and knees in the back seat. The man confidently guides his condom-covered cock to your sphincter and slowly thrusts all of his ${((s as any).dick ?? '')} centimeters inside you.`);
-  // TODO-QSP: dynamic text: <<$analsex>>
   scene.text(`${((s as any).analsex ?? '')}`);
   scene.text('After a few minutes of fucking your ass, the man groans, and you feel his hips spasming against your ass. He pulls out of you then takes the filled condom off his slowly shrinking cock.');
   scene.text('The man ties a knot at the open end of the condom and carelessly tosses it out of the window.');
@@ -39,7 +37,6 @@ function enter1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'end');
   qspCall(s, 'cum_manage', '');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     dynamicGoto(st, 'locSex', 'metkaSex');
@@ -112,8 +109,8 @@ function enter2(s: GameState, scene: SceneBuilder): void {
     }
     qspCall(s, 'arousal', 'anal', 10, 'sub', 'unknown', 'prostitution');
     qspCall(s, 'arousal', 'end');
+    (s as any).cumanalRand = undefined;
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -128,7 +125,6 @@ function enter3(s: GameState, scene: SceneBuilder): void {
       { label: 'Apologize and make amends', goto: ['AnalPR', '5'] },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave quietly', handler: (st: GameState) => {
     dynamicGoto(st, 'locSex', 'metkaSex');
@@ -157,7 +153,6 @@ function enter4(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'end');
   qspCall(s, 'cum_manage', '');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     dynamicGoto(st, 'locSex', 'metkaSex');
@@ -176,7 +171,6 @@ function enter5(s: GameState, scene: SceneBuilder): void {
   scene.text('He then says, "Good enough. Lie down in the grass."');
   qspCall(s, 'arousal', 'bj', 5, 'sub', 'humiliation', 'unknown', 'prostitution');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Let him fuck you', goto: ['AnalPR', '6'] },
   ]);
@@ -196,7 +190,6 @@ function enter6(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'end');
   qspCall(s, 'cum_manage', '');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     dynamicGoto(st, 'locSex', 'metkaSex');

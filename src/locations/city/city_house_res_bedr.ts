@@ -25,18 +25,17 @@ function enterBedro(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   qspCall(s, 'music_actions', 'start');
-  scene.text('It\'s a bright and beautiful room, with a large <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027bed/u0027, /u0027start/u0027); return false;">continental bed</a>.');
-  scene.text('There\'s a table and a <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027start/u0027); return false;">mirror</a> placed in one of the corners.');
+  scene.text('It\'s a bright and beautiful room, with a large <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027bed\u0027, \u0027start\u0027); return false;">continental bed</a>.');
+  scene.text('There\'s a table and a <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027start\u0027); return false;">mirror</a> placed in one of the corners.');
   if (((s as any).mc_inventory ?? 0)?.['mag_porn'] > 0) {
     scene.text('You have hidden your porn magazine in your nightstand.');
   }
-  scene.text('On one side of the room is the entrance to a walk-in <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027wardrobe/u0027, /u0027start/u0027); return false;">wardrobe</a>.');
+  scene.text('On one side of the room is the entrance to a walk-in <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027wardrobe\u0027, \u0027start\u0027); return false;">wardrobe</a>.');
   if (((s as any).ml_guitar ?? 0)?.['location'] === ((s as any).loc ?? 0)) {
     scene.text('Your guitar rests on its stand next to your bed.');
   }
   qspCall(s, 'prostitution_functions', 'prostitute_outfit_at_home');
   qspCall(s, 'blackmailer', 'open_package_act');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the room', goto: ['city_house_res_misc', 'hallw'] },
     { label: 'Relax on your bed', goto: ['bed', 'start'] },

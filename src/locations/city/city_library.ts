@@ -17,7 +17,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.text('The library is closed.');
     return;
   }
-  scene.text('There is a large IT section with <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027internet_mobile/u0027, /u0027get_access/u0027, /u0027free/u0027); return false;">computers</a> available for public use.');
+  scene.text('There is a large IT section with <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027internet_mobile\u0027, \u0027get_access\u0027, \u0027free\u0027); return false;">computers</a> available for public use.');
   if (((s as any).MagicLibrary ?? 0) === 1) {
     qspCall(s, 'spellList', 'teacherActions', '$librarySpells', 'city_library', '');
     scene.actions([
@@ -27,6 +27,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.text('<center><b>Grimoire Magicka</b></center>');
     (st as any).imageid = (Math.floor(Math.random() * 2) + 1);
     scene.img(`images/locations/city/citycenter/library/mage_learning_${((st as any).imageid ?? '')}.jpg`);
+    (st as any).imageid = undefined;
     scene.text('You pick out one of the magic books you can actually read and sit down with it.');
     scene.text('You discover that not only is the subject matter complex and mostly a mystery to you, but the descriptions and explanations are unnecessarily wordy, as if the writer had something to prove.');
     scene.text('After about an hour, you decide to take a break from it and instead test your memory. You don\'t remember much, but you understand magic a little better than before.');
@@ -47,7 +48,6 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   qspCall(s, 'camera', 'check_location');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -65,7 +65,6 @@ function enterRead(s: GameState, scene: SceneBuilder): void {
     return;
   }
   qspCall(s, 'library_functions', 'set_library_read_acts');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -82,7 +81,6 @@ function enterLoan(s: GameState, scene: SceneBuilder): void {
     return;
   }
   qspCall(s, 'library_functions', 'set_loan_acts');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;

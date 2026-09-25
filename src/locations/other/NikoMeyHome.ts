@@ -33,15 +33,11 @@ function enterAftermath(s: GameState, scene: SceneBuilder): void {
   (s as any).NikoAftermath = 1;
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/boy/niko/nikomisc/meynold/vicky/vickysmile1.jpg');
-  // TODO-QSP: dynamic text: You slowly open your eyes and see <<$VK_VikName>> playfully shaking your shoulde...
   scene.text(`You slowly open your eyes and see ${((s as any).VK_VikName ?? '')} playfully shaking your shoulder. "Hey there, sleepy head! Did you sleep well?"`);
-  // TODO-QSP: dynamic text: You give <<$VK_VikName>> a warm smile. "I guess but… Where am I?"
   scene.text(`You give ${((s as any).VK_VikName ?? '')} a warm smile. "I guess but… Where am I?"`);
   scene.text('"After what happened at school, we couldn\'t just leave you there, so we brought you back to our place."');
   scene.text('You scratch your head. "We?"');
-  // TODO-QSP: dynamic text: <<$VK_VikName>> smiles and turns to her left.
   scene.text(`${((s as any).VK_VikName ?? '')} smiles and turns to her left.`);
-  // TODO-QSP: end
   scene.actions([
     { label: 'Look', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -49,14 +45,10 @@ function enterAftermath(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/boy/niko/nikomisc/meynold/bedroom/Katja2.jpg');
     scene.text('You turn to see Katja and Natalia sitting next to the bed. "I\'m so glad that you\'re okay! I was worried when you didn\'t wake up!" Katja says in a concerned voice.');
     scene.text('Natalia nods in agreement. "I cleaned your hair for you. It was… messy."');
-    // TODO-QSP: dynamic text: You look around the room, then back at <<$VK_VikName>>. "Thank you all for helpi...
     scene.text(`You look around the room, then back at ${((st as any).VK_VikName ?? '')}. "Thank you all for helping me. I can't believe what happened in school wasn't a dream! I want it to be a dream, so bad…"`);
     scene.text('You can feel tears forming under your eyes as Katja hugs you. "I don\'t know what caused it, but we\'ll find a way to make things better. You didn\'t deserve what they did to you."');
-    // TODO-QSP: dynamic text: <<$VK_VikName>> places her hand on your shoulder. "There there, you''ll be alrig...
     scene.text(`${((st as any).VK_VikName ?? '')} places her hand on your shoulder. "There there, you'll be alright."`);
-    // TODO-QSP: dynamic text: Natalia gives you a very supportive smile as she lightly squeezes your hand as K...
     scene.text(`Natalia gives you a very supportive smile as she lightly squeezes your hand as Katja sighs. "What's going at school these days? First Sonia and now ${((st as any).pcs_nickname ?? '')}. These boys are animals."`);
-    // TODO-QSP: dynamic text: "What exactly happened, <<$pcs_nickname>>?" Natalia asks as she places her hand ...
     scene.text(`"What exactly happened, ${((st as any).pcs_nickname ?? '')}?" Natalia asks as she places her hand on your leg.`);
     scene.actions([
       { label: 'Tell them your story', handler: (st: GameState) => {
@@ -71,7 +63,6 @@ function enterAftermath(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/niko/nikomisc/meynold/bedroom/Natalia.jpg');
     scene.text('You look up, surprised by their opinions of Niko. "But he treats me with such love and compassion. He always calls me his princess!"');
-    // TODO-QSP: dynamic text: Katja places her arms around your neck. "Listen <<$pcs_nickname>>, you can go ou...
     scene.text(`Katja places her arms around your neck. "Listen ${((st as any).pcs_nickname ?? '')}, you can go out with whoever you want. I'm just concerned that he'll use you."`);
     scene.text('You lay back as you consider your options. "So how did you end up… naked at school?" Natalia asks.');
     scene.actions([
@@ -80,7 +71,6 @@ function enterAftermath(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/niko/nikomisc/meynold/bedroom/katja.jpg');
     scene.text('"Niko is always teaching me how to be more confident and daring. He tells me to do things that are very scary at first, but end up being very exciting. I don\'t know why it excites me so much, but I feel so alive when I\'m with Niko. He always makes me feel safe and he tells me…"');
-    // TODO-QSP: dynamic text: Katja cuts you off again. "Makes you feel safe? Like how he kept you safe today?...
     scene.text(`Katja cuts you off again. "Makes you feel safe? Like how he kept you safe today?" You lower your head and remain silent for a few seconds before Katja continues. "I'm sorry ${((st as any).pcs_nickname ?? '')}, I just get so angry when I see good people getting used by assholes like him. Continue your story, please."`);
     scene.actions([
       { label: 'Continue your story', handler: (st: GameState) => {
@@ -88,18 +78,14 @@ function enterAftermath(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/niko/nikomisc/meynold/bedroom/vicky.jpg');
     scene.text('You take a second before continuing. "He helps me find my confidence and break out of my safety bubble. I\'m always trying something new and facing my fears. I… I just don\'t know what to do without him. Niko always guides me in bettering myself and feeling so alive."');
-    // TODO-QSP: dynamic text: <<$VK_VikName>> places her hand on your shoulder. "If you really care for him, t...
     scene.text(`${((st as any).VK_VikName ?? '')} places her hand on your shoulder. "If you really care for him, then maybe you can work things out with him…"`);
-    // TODO-QSP: dynamic text: Katja immediately cuts <<$VK_VikName>> off. "No! You need to dump that freak! Do...
     scene.text(`Katja immediately cuts ${((st as any).VK_VikName ?? '')} off. "No! You need to dump that freak! Do you really want to stay with a boy who stripped you down and let those gopnik punks… RAPE YOU!!!?"`);
-    // TODO-QSP: dynamic text: Natalia tries to calm her. "We might not like him, but it''s <<$pcs_nickname>>''...
     scene.text(`Natalia tries to calm her. "We might not like him, but it's ${((st as any).pcs_nickname ?? '')}'s decision and we can't control her. We can only give her our advice and hope that she makes the right decision… on her own."`);
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/niko/nikomisc/meynold/vicky/vickysmile1.jpg');
     scene.text('You lightly grip your hair as you respond. "I just… need to think about this for a while."');
-    // TODO-QSP: dynamic text: <<$VK_VikName>> stands up. "Well, you take all the time you need. If you need an...
     scene.text(`${((st as any).VK_VikName ?? '')} stands up. "Well, you take all the time you need. If you need anything, then don't be afraid to holler," she says in a cheerful tone before walking toward the door and motioning for the other girls to follow.`);
     scene.actions([
       { label: '', labelFn: (s: GameState) => 'Watch ' + String(((st as any).VK_VikName ?? '') ?? '') + ' leave', handler: (st: GameState) => {
@@ -134,7 +120,6 @@ function enterAftermath2(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 60;
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/boy/niko/nikomisc/meynold/bedroom/katja.jpg');
-  // TODO-QSP: dynamic text: You quickly jump up and see Katja with a concerned look on her face. "It''s okay...
   scene.text(`You quickly jump up and see Katja with a concerned look on her face. "It's okay ${((s as any).pcs_nickname ?? '')}. You were just having a bad dream."`);
   scene.text('You look around the room, trying to get your bearings before turning to Katja. "Thank you Katja, I hope these nightmare don\'t become a habit."');
   scene.text('Katja rubs your forehead. "Everything will be alright. You don\'t need to worry about anything right now. You\'re among friends. Remember that." You give her a smile and an approving nod and she returns the smile. "Now that\'s what I like to see, a fresh smile."');
@@ -146,7 +131,6 @@ function enterAftermath2(s: GameState, scene: SceneBuilder): void {
     scene.text('I\'m sure Natalia will be pleased to see that you\'re okay too. She seemed very worried about you. She obviously has a kind heart."');
     scene.text('You nod. "I\'ll go see them. Thank you for your help." Katja smiles. "Don\'t mention it. I couldn\'t just leave you there." You give Katja an approving nod as you climb out of bed.');
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Get up', goto: ['NikoMeyHome', 'hallway'] },
   ]);
@@ -158,13 +142,13 @@ function enterHallway(s: GameState, scene: SceneBuilder): void {
   (s as any).loc = 'NikoMeyHome';
   (s as any).menu_loc = 'NikoMeyHome';
   (s as any).menu_arg = 'hallway';
+  (s as any).locclass = undefined;
   qspCall(s, 'stat', '');
   scene.text('<center><b>Hallway</b></center>');
   scene.img('images/locations/pavlovsk/resident/meynolds/corridor.jpg');
   scene.text('Large and bright, this \'hallway\' stretches for quite a bit. You\'ve never seen anything like this before! There\'s a mirror covering half of one of the walls and you see the kitchen not too far away.');
   scene.text('There are stairs leading to the second floor. You can also see two doors with the signs \'Toilet\' and \'Bathroom\' attached to them.');
   if (((s as any).VKAftermathEvent ?? 0) === 2) {
-    // TODO-QSP: dynamic text: You see <a href="exec:gt ''NikoMeyHome'', ''vickychat3''"><<$VK_VikName>></a> le...
     scene.text(`You see <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027NikoMeyHome/u0027, /u0027vickychat3/u0027); return false;">${((s as any).VK_VikName ?? '')}</a> leaning against the wall, playing a game on her phone.`);
   }
   if (((s as any).VKAftermathEvent ?? 0) === 2  &&  ((s as any).VKKatjaChat ?? 0) < 2  ||  ((s as any).VKAftermathEvent ?? 0) === 2  &&  ((s as any).VKNatChat ?? 0) < 2) {
@@ -224,7 +208,6 @@ function enterHallway(s: GameState, scene: SceneBuilder): void {
       (s as any).music_loop = 1;
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Katja\'s room', goto: ['NikoMeyHome', 'katja_room'] },
     { label: 'Vicky\'s room', goto: ['NikoMeyHome', 'vicky_room'] },
@@ -250,10 +233,8 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/resident/meynolds/kitchen.jpg');
   scene.text('The sparkling clean kitchen is huge and luxurious, decorated in a minimalist high-tech style. An oval dining room table stands in the middle of the room while the appliances are all hidden.');
   if (((s as any).VKAftermathEvent ?? 0) < 2  &&  ((s as any).NikoAftermath ?? 0) === 1) {
-    // TODO-QSP: dynamic text: <a href="exec:gt ''NikoMeyHome'', ''vickychat''"><<$VK_VikName>></a> is standing...
     scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027NikoMeyHome/u0027, /u0027vickychat/u0027); return false;">${((s as any).VK_VikName ?? '')}</a> is standing by the stove playing on her phone.`);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return to the hallway', goto: ['NikoMeyHome', 'hallway'] },
   ]);
@@ -277,28 +258,28 @@ function enterLounge(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/resident/meynolds/hall.jpg');
   scene.text('A spacious room with a sofa and armchairs. A large TV hangs on the wall next to the bookcase and on the opposite side is a fireplace. There is access to a bright garden, overgrown with grapes.');
   if ((!((s as any).VKNatChat ?? 0))) {
-    scene.text('You see <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027NikoMeyHome/u0027, /u0027nataliachat/u0027); return false;">Natalia</a> leaning against the fireplace. She appears lost in thought.');
+    scene.text('You see <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027NikoMeyHome\u0027, \u0027nataliachat\u0027); return false;">Natalia</a> leaning against the fireplace. She appears lost in thought.');
   } else {
     if (((s as any).VKNatChat ?? 0) === 1  &&  (!((s as any).VKAftermathEvent ?? 0))) {
-      scene.text('You see <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027NikoMeyHome/u0027, /u0027nataliachat/u0027); return false;">Natalia</a> leaning against the fireplace. She appears lost in thought.');
+      scene.text('You see <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027NikoMeyHome\u0027, \u0027nataliachat\u0027); return false;">Natalia</a> leaning against the fireplace. She appears lost in thought.');
     } else {
       if (((s as any).VKAftermathEvent ?? 0) === 2  &&  ((s as any).VKNatChat ?? 0) === 1  ||  ((s as any).VKAftermathEvent ?? 0) === 3  &&  ((s as any).VKNatChat ?? 0) === 1) {
-        scene.text('You see <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027NikoMeyHome/u0027, /u0027nataliachat2/u0027); return false;">Natalia</a> sitting on a chair near the window, staring out at the garden.');
+        scene.text('You see <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027NikoMeyHome\u0027, \u0027nataliachat2\u0027); return false;">Natalia</a> sitting on a chair near the window, staring out at the garden.');
       } else {
         if (((s as any).VKAftermathEvent ?? 0) === 3  &&  ((s as any).VKNatChat ?? 0) < 3  &&  ((s as any).NikoAftermath ?? 0) === 1  &&  ((s as any).VKKatjaChat ?? 0) === 3) {
-          scene.text('You see <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027NikoMeyHome/u0027, /u0027Katja and Natalia/u0027); return false;">Katja and Natalia</a> sitting on the couch chatting with each other.');
+          scene.text('You see <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027NikoMeyHome\u0027, \u0027Katja and Natalia\u0027); return false;">Katja and Natalia</a> sitting on the couch chatting with each other.');
         } else {
           if (((s as any).VKAftermathEvent ?? 0) === 3  &&  ((s as any).VKNatChat ?? 0) === 4  &&  ((s as any).NikoAftermath ?? 0) === 1  &&  ((s as any).VKKatjaChat ?? 0) === 3) {
-            scene.text('You see <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027NikoMeyHome/u0027, /u0027Katja and Natalia 2/u0027); return false;">Katja and Natalia</a> sitting on the couch chatting with each other.');
+            scene.text('You see <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027NikoMeyHome\u0027, \u0027Katja and Natalia 2\u0027); return false;">Katja and Natalia</a> sitting on the couch chatting with each other.');
           } else {
             if (((s as any).VKAftermathEvent ?? 0) === 3  &&  ((s as any).VKNatChat ?? 0) < 3  &&  ((s as any).NikoAftermath ?? 0) === 1) {
-              scene.text('You see <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027NikoMeyHome/u0027, /u0027nataliachat3/u0027); return false;">Natalia</a> leaning against the fireplace as she runs her fingers through her hair.');
+              scene.text('You see <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027NikoMeyHome\u0027, \u0027nataliachat3\u0027); return false;">Natalia</a> leaning against the fireplace as she runs her fingers through her hair.');
             } else {
               if (((s as any).VKNatChat ?? 0) === 4  &&  ((s as any).NikoAftermath ?? 0) === 1  &&  ((s as any).VKKatjaChat ?? 0) < 3) {
-                scene.text('You see <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027NikoMeyHome/u0027, /u0027nataliachat4/u0027); return false;">Natalia</a> leaning against the fireplace. She looks at you with a warm smile.');
+                scene.text('You see <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027NikoMeyHome\u0027, \u0027nataliachat4\u0027); return false;">Natalia</a> leaning against the fireplace. She looks at you with a warm smile.');
               } else {
                 if (((s as any).VKNatChat ?? 0) === 3  &&  ((s as any).NikoAftermath ?? 0) === 1  &&  ((s as any).VKKatjaChat ?? 0) === 3) {
-                  scene.text('You see <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027NikoMeyHome/u0027, /u0027katjachat4/u0027); return false;">Katja</a> sitting on the couch watching TV.');
+                  scene.text('You see <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027NikoMeyHome\u0027, \u0027katjachat4\u0027); return false;">Katja</a> sitting on the couch watching TV.');
                 }
               }
             }
@@ -307,7 +288,6 @@ function enterLounge(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return to the hallway', goto: ['NikoMeyHome', 'hallway'] },
   ]);
@@ -333,21 +313,20 @@ function enterKatjaRoom(s: GameState, scene: SceneBuilder): void {
   scene.text('There are numerous flowers in pots on the windowsill, there are pots hanging on the walls and there are even plants in pots on the floor, giving the room a greenhouse feeling.');
   scene.text('There is a computer desk in one of the corners, opposite the bed. In another corner is a hidden wardrobe. A well hidden bookshelf can be seen, but it is hard to spot because of the wildly overgrown plants.');
   if (((s as any).VKKatjaChat ?? 0) === 0  &&  ((s as any).NikoAftermath ?? 0) === 1) {
-    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027NikoMeyHome/u0027, /u0027katjachat/u0027); return false;">Katja</a> is standing in front of a mirror, checking herself out from different angles.');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027NikoMeyHome\u0027, \u0027katjachat\u0027); return false;">Katja</a> is standing in front of a mirror, checking herself out from different angles.');
   } else {
     if (((s as any).VKAftermathEvent ?? 0) < 2  &&  ((s as any).VKKatjaChat ?? 0) === 1  &&  ((s as any).NikoAftermath ?? 0) === 1) {
-      scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027NikoMeyHome/u0027, /u0027katjachat/u0027); return false;">Katja</a> is standing in front of a mirror, tweezing her eyebrows while humming a soothing tune.');
+      scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027NikoMeyHome\u0027, \u0027katjachat\u0027); return false;">Katja</a> is standing in front of a mirror, tweezing her eyebrows while humming a soothing tune.');
     } else {
       if (((s as any).VKAftermathEvent ?? 0) === 2  &&  ((s as any).VKKatjaChat ?? 0) === 1  &&  ((s as any).NikoAftermath ?? 0) === 1) {
-        scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027NikoMeyHome/u0027, /u0027katjachat2/u0027); return false;">Katja</a> is cleaning up her shoe closet.');
+        scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027NikoMeyHome\u0027, \u0027katjachat2\u0027); return false;">Katja</a> is cleaning up her shoe closet.');
       } else {
         if (((s as any).VKAftermathEvent ?? 0) === 3  &&  ((s as any).VKKatjaChat ?? 0) === 2  &&  ((s as any).NikoAftermath ?? 0) === 1) {
-          scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027NikoMeyHome/u0027, /u0027katjachat3/u0027); return false;">Katja</a> is lying in bed humming a sweet melody.');
+          scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027NikoMeyHome\u0027, \u0027katjachat3\u0027); return false;">Katja</a> is lying in bed humming a sweet melody.');
         }
       }
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return to the hallway', goto: ['NikoMeyHome', 'hallway'] },
   ]);
@@ -373,19 +352,15 @@ function enterVickyRoom(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('<center><b>Vicky\'s Room</b></center>');
   scene.img('images/locations/pavlovsk/resident/meynolds/vika_room.jpg');
-  // TODO-QSP: dynamic text: <<$VK_VikName>>''s room is always a mess. It''s clean, but everything is scatter...
   scene.text(`${((s as any).VK_VikName ?? '')}'s room is always a mess. It's clean, but everything is scattered all over the place. There are soft toys laying around in enormous quantities and all the walls are plastered with posters of pop stars and film actors.`);
   scene.text('There\'s a laptop on the table by the window, which accidentally brings a sense of orderliness. The room\'s centerpiece is the enormous bed, while a wardrobe sits next to it and there\'s a lone chair somewhere in the corner hidden under all the stuff.');
   if (((s as any).VKAftermathEvent ?? 0) === 3  &&  ((s as any).NikoAftermath ?? 0) === 1  &&  ((s as any).VKVickyChat ?? 0) === 3) {
-    // TODO-QSP: dynamic text: <a href="exec:gt ''NikoMeyHome'', ''vickychat4''"><<$VK_VikName>></a> is dancing...
     scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027NikoMeyHome/u0027, /u0027vickychat4/u0027); return false;">${((s as any).VK_VikName ?? '')}</a> is dancing to some music playing on her radio.`);
   } else {
     if (((s as any).VKAftermathEvent ?? 0) === 3  &&  ((s as any).NikoAftermath ?? 0) === 1  &&  ((s as any).VKVickyChat ?? 0) === 4) {
-      // TODO-QSP: dynamic text: <a href="exec:gt ''NikoMeyHome'', ''vickychat5''"><<$VK_VikName>></a> is lying f...
       scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027NikoMeyHome/u0027, /u0027vickychat5/u0027); return false;">${((s as any).VK_VikName ?? '')}</a> is lying face down in bed. She appears to be asleep.`);
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return to the hallway', goto: ['NikoMeyHome', 'hallway'] },
   ]);
@@ -396,8 +371,7 @@ function enterBathroomLocked(s: GameState, scene: SceneBuilder): void {
   (s as any).VKMeyLock = 1;
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/boy/niko/nikomisc/meynold/bathroom/door.jpg');
-  // TODO-QSP: 'You try to enter the bathroom, but the door is locked. ' + $OpenInnerThought + 'Hmm it''s locked. K...
-  // TODO-QSP: end
+  scene.text('You try to enter the bathroom, but the door is locked. ' + ((s as any).OpenInnerThought ?? '') + `Hmm it's locked. Katja or ${((s as any).VK_VikName ?? '')} must have the key. I should speak with them.` + ((s as any).CloseInnerThought ?? ''));
   scene.actions([
     { label: 'Walk away', goto: ['NikoMeyHome', 'hallway'] },
   ]);
@@ -408,9 +382,7 @@ function enterBathroomHornet(s: GameState, scene: SceneBuilder): void {
   (s as any).VKHornet = 1;
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/boy/niko/nikomisc/meynold/bathroom/Wasp.jpg');
-  // TODO-QSP: dynamic text: As soon as you open the door, a huge wasp darts past you and flies into the kitc...
   scene.text(`As soon as you open the door, a huge wasp darts past you and flies into the kitchen. A few seconds later, you hear ${((s as any).VK_VikName ?? '')} screaming. "Ahh a hornet. DIE HORNET!!!" She then comes sprinting out of the kitchen with a rolling pin and starts swatting at the fleeing hornet. You can't help but giggle as you watch the whole ordeal. You shake your head before walking into the bathroom.`);
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['NikoMeyHome', 'bathroom'] },
   ]);
@@ -438,29 +410,21 @@ function enterMealTime(s: GameState, scene: SceneBuilder): void {
   (s as any).cumspclnt = 2;
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/boy/niko/nikomisc/meynold/vicky/vickysmile1.jpg');
-  // TODO-QSP: dynamic text: You walk into the kitchen as Katja and Natalia enter. You all take a seat at the...
   scene.text(`You walk into the kitchen as Katja and Natalia enter. You all take a seat at the table just as ${((s as any).VK_VikName ?? '')} approaches with a big chocolate cake. "Wow… that's a big cake. Are you sure we can even eat all that?" Katja comments.`);
-  // TODO-QSP: dynamic text: <<$VK_VikName>> smiles. "Well whatever we don''t eat, we can always pop in the f...
   scene.text(`${((s as any).VK_VikName ?? '')} smiles. "Well whatever we don't eat, we can always pop in the fridge for later." She grabs a knife and starts cutting the cake into slices, placing them on plates and handing them out to each of you.`);
   scene.text('Natalia takes a big bite. "Thank you Vicky. This cake is so yummy!"');
-  // TODO-QSP: dynamic text: <<$VK_VikName>> nods with a warm smile on her face. "I''m glad that you like the...
   scene.text(`${((s as any).VK_VikName ?? '')} nods with a warm smile on her face. "I'm glad that you like them. It took me freaking ages to get the batter right. Why is everyone else just staring? Eat up!" She flutters her arms and you and the girls laugh as you all spend the next few minutes eating cake and chatting about various topics.`);
-  // TODO-QSP: end
   scene.actions([
     { label: 'Finish eating', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/niko/nikomisc/meynold/bedroom/katja.jpg');
-    // TODO-QSP: dynamic text: After you all finish eating as much cake as you can, Katja stands up. "This was ...
     scene.text(`After you all finish eating as much cake as you can, Katja stands up. "This was great, wasn't it? I know that I had a great time, but we should probably get ${((st as any).pcs_nickname ?? '')} and Nat back home before their parents start worrying. I need to quickly visit the ladies room. I won't be long." She walks out of the room as she waves at everyone.`);
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/natalia/love/smile1.jpg');
-    // TODO-QSP: dynamic text: Natalia gets up next. "We should get going, <<$pcs_nickname>>. Their mom should ...
     scene.text(`Natalia gets up next. "We should get going, ${((st as any).pcs_nickname ?? '')}. Their mom should be coming home soon and we'd only disturb her."`);
-    // TODO-QSP: dynamic text: <<$VK_VikName>> nods as she responds. "I''ll be waiting by the front door when y...
     scene.text(`${((st as any).VK_VikName ?? '')} nods as she responds. "I'll be waiting by the front door when you're ready to go. Before you go, can you do me a favor and make sure that Katja doesn't use all my hair care products. I told her she can use some, but she just can't keep her hands off my things!"`);
-    // TODO-QSP: dynamic text: "When you have a moment, please see me in the lounge. I have something I would l...
     scene.text(`"When you have a moment, please see me in the lounge. I have something I would like to ask you." Natalia adds and you nod at Natalia as she and ${((st as any).VK_VikName ?? '')} walk out of the kitchen.`);
     scene.actions([
       { label: 'Stand up', goto: ['NikoMeyHome', 'kitchen'] },
@@ -476,46 +440,33 @@ function enterVickychat(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/boy/niko/nikomisc/meynold/vicky/vickysmile1.jpg');
   if (((s as any).VKVickyChat ?? 0) === 0  &&  (!((s as any).VKMeyLock ?? 0))) {
-    // TODO-QSP: dynamic text: As you approach <<$VK_VikName>>, she looks up from her phone and flashes you a w...
     scene.text(`As you approach ${((s as any).VK_VikName ?? '')}, she looks up from her phone and flashes you a warm smile. "Hey ${((s as any).pcs_nickname ?? '')}, you're up! How have you been holding up? Everything has been so grim lately."`);
-    // TODO-QSP: dynamic text: "Thank you <<$VK_VikName>>. I''m still really sore and kind of worried about my ...
     scene.text(`"Thank you ${((s as any).VK_VikName ?? '')}. I'm still really sore and kind of worried about my future. Do you think that there's any chance that I could undo what happened yesterday?"`);
-    // TODO-QSP: dynamic text: <<$VK_VikName>> lightly places her hand on your arm. "Don''t worry about that. K...
     scene.text(`${((s as any).VK_VikName ?? '')} lightly places her hand on your arm. "Don't worry about that. Kat and I are looking into it. Don't worry." She then playfully shakes you side to side while smiling.`);
     scene.text('You nod. "You\'re right, I should try to relax. I just don\'t know why Niko just… Left me… He must have gotten held up with something important and couldn\'t return in time to protect me. He might be looking for me right now."');
-    // TODO-QSP: dynamic text: <<$VK_VikName>> firmly grabs onto your shoulders. "Listen <<$pcs_nickname>>. I k...
     scene.text(`${((s as any).VK_VikName ?? '')} firmly grabs onto your shoulders. "Listen ${((s as any).pcs_nickname ?? '')}. I know that you must be feeling really frazzled after your ordeal, but you need to try and relax," she says in a cute, but stern voice.`);
     scene.text('You take a deep breath. "I just… Need help… I need Niko to save me, like he always does…" You can feel tears streaming down your cheeks.');
     scene.text('"Do you really care for Niko? Even after what happened?" she asks. You downcast your eyes as you silently nod.');
     scene.text('"Then maybe you and him could work things out. There is always hope."');
     scene.text('You look up at her. "So do you think that I should stay with Niko? Kat didn\'t seem to believe that."');
-    // TODO-QSP: dynamic text: <<$VK_VikName>> smiles. "There''s nowhere to go but up from here, so if you feel...
     scene.text(`${((s as any).VK_VikName ?? '')} smiles. "There's nowhere to go but up from here, so if you feel happy with Niko then stay with Niko. Seems simple enough."`);
     scene.text('You nod. "Well, I have a lot of thinking to do."');
-    // TODO-QSP: dynamic text: <<$VK_VikName>> gives you a playful smile. "Don''t spend all day thinking or you...
     scene.text(`${((s as any).VK_VikName ?? '')} gives you a playful smile. "Don't spend all day thinking or you'll have no time to start doing… And don't be so damn formal. You can call me Vicky!" She then returns to playing on her phone.`);
   } else {
     if ((!((s as any).VKVickyChat ?? 0))) {
-      // TODO-QSP: dynamic text: As you approach <<$VK_VikName>>, she looks up from her phone and flashes you a w...
       scene.text(`As you approach ${((s as any).VK_VikName ?? '')}, she looks up from her phone and flashes you a warm smile. "Hey ${((s as any).pcs_nickname ?? '')}, you're up! How have you been holding up? Everything has been so grim lately."`);
-      // TODO-QSP: dynamic text: "Thank you <<$VK_VikName>>. I''m still really sore and kind of worried about my ...
       scene.text(`"Thank you ${((s as any).VK_VikName ?? '')}. I'm still really sore and kind of worried about my future. Do you think that there's any chance that I could undo what happened yesterday?"`);
-      // TODO-QSP: dynamic text: <<$VK_VikName>> lightly places her hand on your arm. "Don''t worry about that. K...
       scene.text(`${((s as any).VK_VikName ?? '')} lightly places her hand on your arm. "Don't worry about that. Kat and I will handle that. Don't worry." She then playfully shakes you side to side while smiling.`);
       scene.text('You nod. "You\'re right, I should try to relax. I just don\'t know why Niko just… Left me… He must have gotten held up with something important and couldn\'t return in time to protect me. He might be looking for me right now."');
-      // TODO-QSP: dynamic text: <<$VK_VikName>> firmly grabs onto your shoulders. "Listen <<$pcs_nickname>>, I k...
       scene.text(`${((s as any).VK_VikName ?? '')} firmly grabs onto your shoulders. "Listen ${((s as any).pcs_nickname ?? '')}, I know that you must be feeling really frazzled after your ordeal, but you need to try and relax," she says in a cute, but stern voice.`);
       scene.text('You take a deep breath. "I just… Need help… I need Niko to save me, like he always does…" You can feel tears streaming down your cheeks.');
       scene.text('"Do you really care for Niko? Even after what happened?" she asks. You downcast your eyes as you nod.');
       scene.text('"Then maybe you and him could work things out. There\'s always hope."');
       scene.text('You look up to her as you reply. "So do you think that I should stay with Niko? Kat didn\'t seem to believe that."');
-      // TODO-QSP: dynamic text: <<$VK_VikName>> smiles. "There''s nowhere to go but up from here, so if you feel...
       scene.text(`${((s as any).VK_VikName ?? '')} smiles. "There's nowhere to go but up from here, so if you feel happy with Niko then stay with Niko. Seems simple enough."`);
       scene.text('You nod. "Well, I have a lot of thinking to do."');
-      // TODO-QSP: dynamic text: <<$VK_VikName>> gives you a playful smile. "Don''t spend all day thinking or you...
       scene.text(`${((s as any).VK_VikName ?? '')} gives you a playful smile. "Don't spend all day thinking or you'll have no time to start doing." She then returns to playing on her phone.`);
     } else {
-      // TODO-QSP: dynamic text: You walk up to <<$VK_VikName>> and she looks up to you. "Hey <<$pcs_nickname>>, ...
       scene.text(`You walk up to ${((s as any).VK_VikName ?? '')} and she looks up to you. "Hey ${((s as any).pcs_nickname ?? '')}, what's up? Have you checked on the other girls yet? They might have things to say and you can also jump into the bathroom for a quick bath before we all eat."`);
     }
   }
@@ -528,9 +479,7 @@ function enterVickychat(s: GameState, scene: SceneBuilder): void {
     (st as any).VKMeyLock = 2;
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/niko/nikomisc/meynold/vicky/vickysurprised.jpg');
-    // TODO-QSP: dynamic text: "Hey <<$VK_VikName>>, the bathroom''s locked. Do you have the key for it?"
     scene.text(`"Hey ${((st as any).VK_VikName ?? '')}, the bathroom's locked. Do you have the key for it?"`);
-    // TODO-QSP: dynamic text: <<$VK_VikName>> gives you a surprised look. "Who the hell locked it? Kaaaaattt… ...
     scene.text(`${((st as any).VK_VikName ?? '')} gives you a surprised look. "Who the hell locked it? Kaaaaattt… Where the hell is that spare key?" She turns to the nearby desk and recklessly fumbles through it, causing things to fall out as she continues searching. "It's gotta be around here somew… Wait!" She turns to the refrigerator and quickly grabs a vase on top of it. "There you are, you sneaky little snake." She tosses you the keys. "There you go. Have fun!" She then goes back to playing games on her phone.`);
     scene.actions([
       { label: 'Walk away', goto: ['NikoMeyHome', 'kitchen'] },
@@ -558,7 +507,6 @@ function enterVickychat(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -566,37 +514,25 @@ function enterVickychat2(s: GameState, scene: SceneBuilder): void {
   (s as any).VKAftermathEvent = 2;
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/boy/niko/nikomisc/meynold/vicky/vickySmile2.jpg');
-  // TODO-QSP: dynamic text: As you leave the bathroom, <<$VK_VikName>> walks out of the kitchen and flashes ...
   scene.text(`As you leave the bathroom, ${((s as any).VK_VikName ?? '')} walks out of the kitchen and flashes you a playful smile. "Hey ${((s as any).pcs_nickname ?? '')}! You look all cleaned up. I bet you're feeling right as rain now! I just finished baking us all something fun and sweet. You can get something to eat right now or help me fetch the girls. Your choice!"`);
   if (((s as any).VKKatjaBath ?? 0) === 1) {
-    // TODO-QSP: dynamic text: <<$VK_VikName>> suddenly tilts her head and looks over your shoulder. "Kat, is t...
     scene.text(`${((s as any).VK_VikName ?? '')} suddenly tilts her head and looks over your shoulder. "Kat, is that you coming out of the bathroom that our good friend ${((s as any).pcs_nickname ?? '')} was just bathing herself in?"`);
     scene.text('Katja looks surprised and embarrassed. "Uhh, no… I wasn\'t doing anything…"');
-    // TODO-QSP: dynamic text: <<$VK_VikName>> playfully laughs. "Not doing anything, huh? Then why were you tw...
     scene.text(`${((s as any).VK_VikName ?? '')} playfully laughs. "Not doing anything, huh? Then why were you two alone in there?"`);
-    // TODO-QSP: dynamic text: Katja starts walking toward her room as <<$VK_VikName>> follows her. "Were you b...
     scene.text(`Katja starts walking toward her room as ${((s as any).VK_VikName ?? '')} follows her. "Were you both doing what I think you were? If so, then you've been a naughty girl Kat!"`);
-    // TODO-QSP: dynamic text: Katja puts her hand in front of <<$VK_VikName>>''s face as <<$VK_VikName>> follo...
     scene.text(`Katja puts her hand in front of ${((s as any).VK_VikName ?? '')}'s face as ${((s as any).VK_VikName ?? '')} follows her to her room before Katja slams the door in her face. ${((s as any).VK_VikName ?? '')} giggles and leans against the wall while giving you an approving wink.`);
   } else {
     if (((s as any).VKKatBath ?? 0) === 1) {
-      // TODO-QSP: dynamic text: <<$VK_VikName>> suddenly tilts her head and looks over your shoulder. "Kat, is t...
       scene.text(`${((s as any).VK_VikName ?? '')} suddenly tilts her head and looks over your shoulder. "Kat, is that you coming out of the bathroom that our good friend ${((s as any).pcs_nickname ?? '')} was just bathing herself in?"`);
       scene.text('Katja looks surprised and embarrassed. "Uhh, no… I was just, just checking on her is all!"');
-      // TODO-QSP: dynamic text: <<$VK_VikName>> playfully laughs. "Checking on her, huh? What were you checking ...
       scene.text(`${((s as any).VK_VikName ?? '')} playfully laughs. "Checking on her, huh? What were you checking exactly?"`);
-      // TODO-QSP: dynamic text: Katja starts walking toward her room as <<$VK_VikName>> follows her. "Were you b...
       scene.text(`Katja starts walking toward her room as ${((s as any).VK_VikName ?? '')} follows her. "Were you both doing what I think you were? If so, then you've been a naughty girl Kat!"`);
-      // TODO-QSP: dynamic text: Katja ignores her as <<$VK_VikName>> follows her to her room before Katja slams ...
       scene.text(`Katja ignores her as ${((s as any).VK_VikName ?? '')} follows her to her room before Katja slams the door in her face. ${((s as any).VK_VikName ?? '')} giggles and leans against the wall while giving you an approving wink.`);
     } else {
-      // TODO-QSP: dynamic text: <<$VK_VikName>> looks around. "Where on earth is that sister of mine? She better...
       scene.text(`${((s as any).VK_VikName ?? '')} looks around. "Where on earth is that sister of mine? She better not be touching my hair products again!" She walks towards Katja's room when Katja suddenly appears with one of her hair sprays. "Aha, caught you in the act!"`);
-      // TODO-QSP: dynamic text: Katja quickly darts into her room as <<$VK_VikName>> follows, but Katja slams th...
       scene.text(`Katja quickly darts into her room as ${((s as any).VK_VikName ?? '')} follows, but Katja slams the door shut before ${((s as any).VK_VikName ?? '')} can reach it. ${((s as any).VK_VikName ?? '')} leans against wall and giggles. "Sisters… What can you do?"`);
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Walk away', handler: (st: GameState) => {
     if (((st as any).VKVickyChat ?? 0) === 1) {
@@ -612,9 +548,7 @@ function enterVickychat3(s: GameState, scene: SceneBuilder): void {
   (s as any).VKVickyChat = 3;
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/boy/niko/nikomisc/meynold/bedroom/vicky.jpg');
-  // TODO-QSP: dynamic text: You walk up to <<$VK_VikName>> and she looks up at you before putting her phone ...
   scene.text(`You walk up to ${((s as any).VK_VikName ?? '')} and she looks up at you before putting her phone away. "Hey ${((s as any).pcs_nickname ?? '')}. The cake is just about ready. Can you fetch the girls for me? Nat is in the lounge and Kat is in her room. Hmm, I just noticed that they have very similar nicknames, isn't that weird? Anyway go and get them and we can munch on some yum yums."`);
-  // TODO-QSP: end
   scene.actions([
     { label: 'Fetch Natalia and Katja', goto: ['NikoMeyHome', 'hallway'] },
   ]);
@@ -624,13 +558,9 @@ function enterVickychat3(s: GameState, scene: SceneBuilder): void {
 function enterVickychat4(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/boy/niko/nikomisc/meynold/vicky/vickysmile1.jpg');
-  // TODO-QSP: dynamic text: You approach <<$VK_VikName>> as she''s dancing. She turns and grabs you by the h...
   scene.text(`You approach ${((s as any).VK_VikName ?? '')} as she's dancing. She turns and grabs you by the hand. "Don't just stand there! Join in and have some fun!" You start moving to the beat of the music, trying your best to stay in sync as ${((s as any).VK_VikName ?? '')} dances fast and loose, moving to her own beat. You continue dancing when ${((s as any).VK_VikName ?? '')} smiles at you.`);
-  // TODO-QSP: dynamic text: "Life can be damn fun when you stop thinking about what everyone else wants and ...
   scene.text(`"Life can be damn fun when you stop thinking about what everyone else wants and focus on what you do. Everyone always wants to be normal, but being normal just leads to boring routines where you spend all of your time doing what you think others want you to do. Not enough people say "fuck that" and do what they want. Try not to be one of those people ${((s as any).pcs_nickname ?? '')}. Be what you want to be. Nothing else matters. Only you and whoever you decide to let in. Just be happy with what you want and who you are, okay?"`);
-  // TODO-QSP: dynamic text: You nod your head and continue dancing as you ponder what <<$VK_VikName>> said. ...
   scene.text(`You nod your head and continue dancing as you ponder what ${((s as any).VK_VikName ?? '')} said. After a few more minutes of dancing, ${((s as any).VK_VikName ?? '')} starts breathing heavy as she grows tired. She then spins a few times before falling face first into her bed and not getting up. You walk over to her radio and turn it off so that she can get some sleep.`);
-  // TODO-QSP: end
   scene.actions([
     { label: 'Walk away', handler: (st: GameState) => {
     (st as any).VKVickyChat = 4;
@@ -643,7 +573,6 @@ function enterVickychat5(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/boy/niko/nikomisc/meynold/vicky/vickysmile1.jpg');
   scene.text('You approach Vicky, but she seems to be fast asleep. Not wanting to disturb her, you carefully walk out of the room.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['NikoMeyHome', 'hallway'] },
   ]);
@@ -653,10 +582,8 @@ function enterVickychat5(s: GameState, scene: SceneBuilder): void {
 function enterVickyReminder(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/boy/niko/nikomisc/meynold/bedroom/vicky.jpg');
-  // TODO-QSP: dynamic text: As you approach the bathroom door, <<$VK_VikName>> turns to you. "Have you spoke...
   scene.text(`As you approach the bathroom door, ${((s as any).VK_VikName ?? '')} turns to you. "Have you spoken to Natalia and Kat yet? They were both worried about you and would love to see you up and about."`);
   scene.text('"Not yet, but I\'ll speak to them right now. I wouldn\'t want them to worry about me." You turn around and walk away.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Walk away', goto: ['NikoMeyHome', 'hallway'] },
   ]);
@@ -666,8 +593,7 @@ function enterVickyReminder(s: GameState, scene: SceneBuilder): void {
 function enterLeaving(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('' + qspFunc(s, '$face_image', '') + '');
-  // TODO-QSP: 'You approach the door. ' + $OpenInnerThought + 'I haven''t spoken to all the girls yet. Should I le...
-  // TODO-QSP: end
+  scene.text('You approach the door. ' + ((s as any).OpenInnerThought ?? '') + 'I haven\'t spoken to all the girls yet. Should I leave without saying goodbye?' + ((s as any).CloseInnerThought ?? ''));
   scene.actions([
     { label: 'Return to the hallway', goto: ['NikoMeyHome', 'hallway'] },
     { label: 'Leave Meynold home', handler: (st: GameState) => {
@@ -684,10 +610,8 @@ function enterVickyGoodbye(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/boy/niko/nikomisc/meynold/vicky/vicky2.jpg');
-  // TODO-QSP: dynamic text: You open the front door and walk out as <<$VK_VikName>> quickly comes running up...
   scene.text(`You open the front door and walk out as ${((s as any).VK_VikName ?? '')} quickly comes running up to you. "I hope you had a great time here. Remember that you always have friends here, okay? You don't need to be alone."`);
   scene.text('You give her an approving nod. "Thank you for everything. I owe you all so much."');
-  // TODO-QSP: dynamic text: "Bah, you don''t owe us anything." She then playfully whispers in your ear. "But...
   scene.text(`"Bah, you don't owe us anything." She then playfully whispers in your ear. "But I won't argue if you wanted to get me a new phone." She then sticks out her tongue, making a goofy face. You giggle as ${((s as any).VK_VikName ?? '')} waves goodbye while closing the door.`);
   if (((s as any).VKNatChat ?? 0) === 4) {
     scene.actions([
@@ -702,7 +626,6 @@ function enterVickyGoodbye(s: GameState, scene: SceneBuilder): void {
   }, goto: ['pav_residential', ''] },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -766,7 +689,6 @@ function enterKatjachat(s: GameState, scene: SceneBuilder): void {
       { label: 'Walk away', goto: ['NikoMeyHome', 'katja_room'] },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -788,7 +710,6 @@ function enterKatjachat2(s: GameState, scene: SceneBuilder): void {
       scene.text('Katja nods. "Sounds good. I have the munchies right now. See you there and don\'t worry if you are running late. I\'ll be sure to save you a plate." She then leaves the room.');
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Walk away', handler: (st: GameState) => {
     (st as any).VKKatjaChat = 2;
@@ -802,10 +723,8 @@ function enterKatjachat3(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/boy/niko/nikomisc/meynold/bedroom/katja.jpg');
   scene.text('You sit next to Katja and she turns to you. "I know that I said that I wouldn\'t lecture you, but that boy Niko is not what he seems. He doesn\'t care about you, he\'s just trying to use you. I\'m only telling you this because I care about you. Don\'t let this punk corrupt you."');
-  // TODO-QSP: dynamic text: You look at your feet while you consider what she said and Katja pats your shoul...
   scene.text(`You look at your feet while you consider what she said and Katja pats your shoulder. "You can do better than him and don't let him trick you into believing otherwise. I just needed to tell you that before I left. Please stay safe ${((s as any).pcs_nickname ?? '')}. You're too good a girl to be used like that."`);
   scene.text('She gets up and waves goodbye as she walks out of the bedroom.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Walk away', goto: ['NikoMeyHome', 'katja_room'] },
   ]);
@@ -816,9 +735,7 @@ function enterKatjachat4(s: GameState, scene: SceneBuilder): void {
   (s as any).VKKatjaChat = 3;
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/boy/niko/nikomisc/meynold/bedroom/Katja2.jpg');
-  // TODO-QSP: dynamic text: You sit next to Katja and she turns to you. "Hey <<$pcs_nickname>>, it was great...
   scene.text(`You sit next to Katja and she turns to you. "Hey ${((s as any).pcs_nickname ?? '')}, it was great having you here. Feel free to pay us another visit sometime." She winks at you before turning back to the TV screen.`);
-  // TODO-QSP: end
   scene.actions([
     { label: 'Walk away', goto: ['NikoMeyHome', 'lounge'] },
   ]);
@@ -828,17 +745,14 @@ function enterKatjachat4(s: GameState, scene: SceneBuilder): void {
 function enterKatjaAndNatalia(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/boy/niko/nikomisc/meynold/lounge/natalia4.jpg');
-  // TODO-QSP: dynamic text: You sit next to Katja and Natalia and they both turn to you. "Hello again, <<$pc...
   scene.text(`You sit next to Katja and Natalia and they both turn to you. "Hello again, ${((s as any).pcs_nickname ?? '')}. Are you ready to go?" Katja asks.`);
   scene.text('"We can go whenever you want, but I just want to know if you would… Like to walk home with me?" Natalia adds.');
   scene.text('Katja giggles. "Awww. Are you gonna say no to that cute face?" Natalia lowers her head to hide the embarrassed smile and the light flushing of her cheeks.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'I would love to', handler: (st: GameState) => {
     (st as any).VKNatChat = 4;
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/niko/nikomisc/meynold/lounge/natalia3.jpg');
-    // TODO-QSP: dynamic text: Natalia''s eyes light up. "Great! Are you ready to head out now or would you lik...
     scene.text(`Natalia's eyes light up. "Great! Are you ready to head out now or would you like to speak to ${((st as any).VK_VikName ?? '')} or Katja first?"`);
     scene.actions([
       { label: '', labelFn: (s: GameState) => 'Stay to chat with ' + String(((st as any).VK_VikName ?? '') ?? '') + ' and Katja', goto: ['NikoMeyHome', 'lounge'] },
@@ -852,12 +766,9 @@ function enterKatjaAndNatalia(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/niko/nikomisc/meynold/lounge/natalia2.jpg');
     scene.text('"I would love to, but I have other places I need to be today. Maybe next time."');
-    // TODO-QSP: dynamic text: Natalia lowers her head. "Okay, I guess… Just stay safe <<$pcs_nickname>>. I… I'...
     scene.text(`Natalia lowers her head. "Okay, I guess… Just stay safe ${((st as any).pcs_nickname ?? '')}. I… I'm concerned for you."`);
     scene.text('You smile. "That\'s really sweet Natalia, but I\'m fine."');
-    // TODO-QSP: dynamic text: Natalia smiles back. "I''m glad to hear that. Goodbye <<$pcs_nickname>>."
     scene.text(`Natalia smiles back. "I'm glad to hear that. Goodbye ${((st as any).pcs_nickname ?? '')}."`);
-    // TODO-QSP: dynamic text: She walks out of the house while giving both you and <<$VK_VikName>> a friendly ...
     scene.text(`She walks out of the house while giving both you and ${((st as any).VK_VikName ?? '')} a friendly smile.`);
     scene.actions([
       { label: 'Wave goodbye', goto: ['NikoMeyHome', 'lounge'] },
@@ -872,7 +783,6 @@ function enterKatjaAndNatalia2(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/boy/niko/nikomisc/meynold/lounge/natalia4.jpg');
   if (((s as any).VKNatChat ?? 0) === 4) {
     scene.text('You approach Katja and Natalia and they both turn to you. "I hope you two aren\'t planning on living here because my sister is already as much as I can take on a daily basis," Katja says jokingly.');
-    // TODO-QSP: dynamic text: Natalia giggles. "Are you ready to go, <<$pcs_nickname>>?
     scene.text(`Natalia giggles. "Are you ready to go, ${((s as any).pcs_nickname ?? '')}?`);
   } else {
     scene.text('You approach Katja and Natalia and they both turn to you. "I hope you two aren\'t planning on living here because my sister is already as much as I can take on a daily basis," Katja says jokingly.');
@@ -893,7 +803,6 @@ function enterKatjaAndNatalia2(s: GameState, scene: SceneBuilder): void {
   }, goto: ['NikoMeyHome', 'lounge'] },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -901,7 +810,6 @@ function enterNataliachat(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if ((!((s as any).VKNatChat ?? 0))) {
     scene.img('images/characters/pavlovsk/school/boy/niko/nikomisc/meynold/lounge/natalia3.jpg');
-    // TODO-QSP: dynamic text: As soon as you approach, Natalia turns to you before flashing you a smile. "<<$p...
     scene.text(`As soon as you approach, Natalia turns to you before flashing you a smile. "${((s as any).pcs_nickname ?? '')}, you're up! How are you feeling?"`);
     scene.text('You return the smile. "I\'m feeling much better now, thanks. I hope I didn\'t worry you."');
     scene.text('Natalia giggles before replying. "I\'m just glad you\'re okay. I\'ve never seen anyone go through as much as you did today, but I\'m sure everything will work out in the end."');
@@ -910,7 +818,6 @@ function enterNataliachat(s: GameState, scene: SceneBuilder): void {
     scene.text('You smile. "Don\'t worry, I won\'t."');
     scene.text('"Good, I\'ll always be around if you want to talk."');
     scene.text('"Thanks for everything you all have done for me. I shudder to think of what would have happened to me if you weren\'t around."');
-    // TODO-QSP: dynamic text: Natalia gives you a warm smile. "You''re very welcome. Now you should take a rel...
     scene.text(`Natalia gives you a warm smile. "You're very welcome. Now you should take a relaxing bath before ${((s as any).VK_VikName ?? '')} is finished cooking."`);
     scene.actions([
       { label: 'Walk away', handler: (st: GameState) => {
@@ -927,7 +834,6 @@ function enterNataliachat(s: GameState, scene: SceneBuilder): void {
       { label: 'Walk away', goto: ['NikoMeyHome', 'hallway'] },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -935,14 +841,11 @@ function enterNataliachat2(s: GameState, scene: SceneBuilder): void {
   (s as any).VKNatChat = 2;
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/boy/niko/nikomisc/meynold/lounge/natalia2.jpg');
-  // TODO-QSP: dynamic text: Natalia''s eyes light up as you approach. "<<$pcs_nickname>>, you look great! En...
   scene.text(`Natalia's eyes light up as you approach. "${((s as any).pcs_nickname ?? '')}, you look great! Enjoy the bath?"`);
   scene.text('"I did, thanks. You look good yourself," you reply.');
-  // TODO-QSP: dynamic text: Natalia lightly brushes her hair with her hand. "Umm… Thank you <<$pcs_nickname>...
   scene.text(`Natalia lightly brushes her hair with her hand. "Umm… Thank you ${((s as any).pcs_nickname ?? '')}. I… was wondering. Have you been having a good time so far?"`);
   scene.text('You smile. "I\'ve been having a wonderful time. Speaking of which, Vicky just finished making something for us to eat and we wouldn\'t want to start eating without you."');
   scene.text('Natalia happily nods. "Don\'t worry, I\'ll be right there. I\'m sure whatever Vicky made is going to be yummy!" She then walks out of the room.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Wave goodbye', goto: ['NikoMeyHome', 'lounge'] },
   ]);
@@ -953,16 +856,13 @@ function enterNataliachat3(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/boy/niko/nikomisc/meynold/lounge/natalia2.jpg');
   scene.text('Natalia smiles as you approach. "How did you like the cupcakes? I found them very tasty."');
-  // TODO-QSP: dynamic text: "They were super yummy! <<$VK_VikName>> could win a cooking contest. If we had t...
   scene.text(`"They were super yummy! ${((s as any).VK_VikName ?? '')} could win a cooking contest. If we had those, that is," you reply and Natalia giggles.`);
   scene.text('"We\'re leaving in a bit and I wanted to ask… Would you like to walk home with me?"');
-  // TODO-QSP: end
   scene.actions([
     { label: 'I would love to', handler: (st: GameState) => {
     (st as any).VKNatChat = 4;
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/niko/nikomisc/meynold/lounge/natalia3.jpg');
-    // TODO-QSP: dynamic text: Natalia''s eyes light up. "Great! Are you ready to head out now or would you lik...
     scene.text(`Natalia's eyes light up. "Great! Are you ready to head out now or would you like to speak to ${((st as any).VK_VikName ?? '')} or Katja first?"`);
     scene.actions([
       { label: '', labelFn: (s: GameState) => 'Stay and chat with ' + String(((st as any).VK_VikName ?? '') ?? '') + ' and Katja', goto: ['NikoMeyHome', 'lounge'] },
@@ -974,10 +874,8 @@ function enterNataliachat3(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/niko/nikomisc/meynold/lounge/natalia2.jpg');
     scene.text('"I would love to, but I have other places I need to be today. Maybe next time."');
-    // TODO-QSP: dynamic text: Natalia lowers her head. "Okay, I guess… Just stay safe <<$pcs_nickname>>. I… I'...
     scene.text(`Natalia lowers her head. "Okay, I guess… Just stay safe ${((st as any).pcs_nickname ?? '')}. I… I'm concerned for you."`);
     scene.text('You smile. "That\'s really sweet Natalia, but I\'m fine."');
-    // TODO-QSP: dynamic text: Natalia smiles back. "I''m glad to hear that. Goodbye <<$pcs_nickname>>." She th...
     scene.text(`Natalia smiles back. "I'm glad to hear that. Goodbye ${((st as any).pcs_nickname ?? '')}." She then walks out of the house while giving both you and ${((st as any).VK_VikName ?? '')} a friendly smile.`);
     scene.actions([
       { label: 'Wave goodbye', goto: ['NikoMeyHome', 'lounge'] },
@@ -991,7 +889,6 @@ function enterNataliaChat4(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/boy/niko/nikomisc/meynold/lounge/natalia2.jpg');
   scene.text('You walk up to Natalia and she smiles. "Would you like to leave now?"');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave with Natalia', goto: ['NikoMeyHome', 'natalia_walk'] },
     { label: 'Not yet', goto: ['NikoMeyHome', 'lounge'] },
@@ -1006,11 +903,8 @@ function enterNataliaWalk(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/boy/niko/nikomisc/meynold/vicky/vicky2.jpg');
   scene.text('You and Natalia start walking towards the front door.');
-  // TODO-QSP: dynamic text: "Are you two ready to head out?" <<$VK_VikName>> asks and you both nod.
   scene.text(`"Are you two ready to head out?" ${((s as any).VK_VikName ?? '')} asks and you both nod.`);
-  // TODO-QSP: dynamic text: <<$VK_VikName>> holds the door open for you and she leans forwards and whispers ...
   scene.text(`${((s as any).VK_VikName ?? '')} holds the door open for you and she leans forwards and whispers in your ear as you pass. "Don't forget what I said earlier. Whatever makes you happier is the path you should follow. What's the point of living a boring life?" She then gives you a wink as you and Natalia head into town.`);
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue walking', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
@@ -1024,7 +918,6 @@ function enterNataliaWalk(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/girl/natalia/love/sad1.jpg');
     scene.text('You shake your head. "No, it\'s getting late and I just want to go home."');
     scene.text('Natalia lowers her head. "Oh, okay then."');
-    // TODO-QSP: dynamic text: You both walk home in silence and when you reach your door, Natalia gives you a ...
     scene.text(`You both walk home in silence and when you reach your door, Natalia gives you a hug. "Stay safe ${((st as any).pcs_nickname ?? '')}. And remember to do whatever you feel is right. Goodbye."`);
     scene.text('You wave goodbye to Natalia as she walks away.');
     scene.actions([
@@ -1061,7 +954,6 @@ function enterNataliaPark(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue talking', goto: ['NikoMeyHome', 'natalia_park2'] },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1070,10 +962,8 @@ function enterNataliaPark2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/shared/headshots_main/big240.jpg');
   scene.text('You and Natalia continue chatting for a few minutes before she looks at her phone. "Wow, I can\'t believe it gotten so late! We should really get home."');
-  // TODO-QSP: dynamic text: You both walk home and when you reach your door, Natalia gives you a hug. "Stay ...
   scene.text(`You both walk home and when you reach your door, Natalia gives you a hug. "Stay safe ${((s as any).pcs_nickname ?? '')}. And remember to follow your heart. Have a good night."`);
   scene.text('You wave goodbye to Natalia as she walks away.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Enter your apartment', goto: ['korrPar', ''] },
   ]);
@@ -1087,7 +977,6 @@ function enterNataliaKiss(s: GameState, scene: SceneBuilder): void {
   scene.text('You place your hand on Natalia\'s cheek and gently pull her face to yours. You both share a passionate kiss for what feels like eternity. After you finish, you both stare into each other\'s eyes as you whisper at her. "Thank you for saving me Natalia. I\'ll never forget what you done for me."');
   scene.text('Natalia\'s face is very red. "I\'d do anything for you. You only need to ask."');
   scene.text('"You\'re so sweet, Natalia. I\'m so lucky to have you." Natalia gives you a trembling smile before she quickly darts forward, giving you another passionate kiss.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Finish kissing', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'kiss', 10, 'lesbian');
@@ -1095,7 +984,6 @@ function enterNataliaKiss(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/girl/natalia/love/park/natalia1.jpg');
     scene.text('After a long passionate kiss, Natalia begins giggling playfully and checks her phone. "It\'s getting late. We should start heading home."');
     scene.text('You smile. "Sure, let\'s go."');
-    // TODO-QSP: dynamic text: As you''re walking home, Natalia wraps her fingers around yours and gives you an...
     scene.text(`As you're walking home, Natalia wraps her fingers around yours and gives you an innocent smile before you arrive at your apartment. "Please stay safe ${((st as any).pcs_nickname ?? '')}, I care for you so much… Just remember to follow your heart and I'm sure that everything will work out for you. Have a good night."`);
     scene.text('She gives you a soft kiss before walking away while looking back at you with an innocent smile.');
     scene.actions([
@@ -1131,7 +1019,7 @@ function enterBathroom(s: GameState, scene: SceneBuilder): void {
   if (((s as any).VKAftermathEvent ?? 0) === 0  &&  ((s as any).VKKatjaChat ?? 0) === 1  &&  ((((s as any).katjaQW ?? 0)?.['dom'] > 30  &&  ((s as any).npc_had_sex ?? 0)?.['A14'])  ||  ((s as any).NataliaPavlovaQW ?? 0) >= 10)) {
     scene.text('Above the beautiful vanity and sink is a huge mirror. You can feel a hand on your shoulder.');
   } else {
-    scene.text('Above the beautiful vanity and sink is a huge <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027start/u0027); return false;">mirror</a>.');
+    scene.text('Above the beautiful vanity and sink is a huge <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027start\u0027); return false;">mirror</a>.');
   }
   if (((s as any).VKAftermathEvent ?? 0) === 0  &&  ((s as any).katjaQW ?? 0)?.['dom'] > 30  &&  ((s as any).npc_had_sex ?? 0)?.['A14']  &&  ((s as any).VKKatjaChat ?? 0) === 1) {
     scene.actions([
@@ -1166,7 +1054,6 @@ function enterBathroom(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1176,7 +1063,6 @@ function enterBath(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'din_van', 'showerdin');
   scene.img('images/shared/home/bathroom/wash4.jpg');
   scene.text('You turn the water on and watch as the bathtub slowly fills. You look around the room, feeling rather lonely but nevertheless you wait for the tub to fill before carefully climbing into it and relaxing as the warm water soothes your aching body. After a few minutes, you begin slowly scrubbing yourself until you finally feel clean. You then rest for a few more seconds before you get up, dry yourself off and get dressed.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['NikoMeyHome', 'bathroom'] },
   ]);
@@ -1187,9 +1073,7 @@ function enterKatBath(s: GameState, scene: SceneBuilder): void {
   (s as any).VKKatBath = 1;
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/boy/niko/nikomisc/meynold/bedroom/Katja2.jpg');
-  // TODO-QSP: dynamic text: You turn around and see Katja staring at you. You freeze in place as she walks u...
   scene.text(`You turn around and see Katja staring at you. You freeze in place as she walks up to you and looks into your eyes. "Let's get you cleaned up, ${((s as any).pcs_nickname ?? '')}."`);
-  // TODO-QSP: end
   scene.actions([
     { label: 'Meekly nod', handler: (st: GameState) => {
     qspCall(st, 'outfit', 'strip_all');
@@ -1228,13 +1112,11 @@ function enterKatBath(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/natalia/love/bathroom/receiving/6.mp4');
-    // TODO-QSP: dynamic text: Katja rides through her orgasm and lays still for a few seconds, catching her br...
     scene.text(`Katja rides through her orgasm and lays still for a few seconds, catching her breath before looking into your eyes. "You did good ${((st as any).pcs_nickname ?? '')}… Really good." She then leans forward and places her hand on your cheek. "You're such a good girl, aren't you?" She then shares a soft passionate kiss with you for what feels like an eternity, an eternity that you welcome.`);
     scene.actions([
       { label: 'Finish the kiss', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/niko/nikomisc/meynold/bedroom/Katja2.jpg');
-    // TODO-QSP: dynamic text: After the long passionate kiss, Katja smiles. "Well… you should probably go see ...
     scene.text(`After the long passionate kiss, Katja smiles. "Well… you should probably go see Vicky. She'll see you out… and ${((st as any).pcs_nickname ?? '')}. Don't forget about what I told you. Niko is no good for you and please… take care of yourself. You are very important to me." You give Katja an approving nod as she climbs out of the tub and you both get dried and dressed.`);
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
@@ -1264,7 +1146,6 @@ function enterNataliaBath(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/girl/natalia/love/bedroom/hold.jpg');
   scene.text('');
-  // TODO-QSP: end
   scene.actions([
     { label: '', handler: (st: GameState) => {
     qspCall(st, 'outfit', 'strip_all');
@@ -1312,7 +1193,6 @@ function enterKatjaBath(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/boy/niko/nikomisc/meynold/bedroom/katja.jpg');
   scene.text('You turn around and see Katja staring at you. She reaches out for you, but hesitates as you turn to her. You look into your eyes. "The water is ready. Jump in." You motion her to come closer.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'See what she does', handler: (st: GameState) => {
     qspCall(st, 'outfit', 'strip_all');
@@ -1358,7 +1238,6 @@ function enterKatjaBath(s: GameState, scene: SceneBuilder): void {
       { label: 'Meekly nod', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/niko/nikomisc/meynold/bedroom/katja.jpg');
-    // TODO-QSP: dynamic text: After the long passionate kiss, Katja smiles. "Well… You should probably go see ...
     scene.text(`After the long passionate kiss, Katja smiles. "Well… You should probably go see Vicky. She'll see you out… And ${((st as any).pcs_nickname ?? '')}. Don't forget about what I told you. Niko is no good for you and please… take care of yourself. You're important to me." You give Katja an approving nod as she climbs out of the tub and you both get dried and dressed.`);
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {

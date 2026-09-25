@@ -8,7 +8,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterRstd(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === ''  &&  String((s as any).locArgs?.[1] ?? '') <= 0) {
-    // TODO-QSP: exit
+    return;
   }
   if (String((s as any).locArgs?.[1] ?? '') === '') {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = 'A' + ((s as any).locArgs?.[1] ?? 0) + '';
@@ -34,7 +34,8 @@ function enterRstd(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
+  (s as any).tempvenerial = undefined;
+  (s as any).tempvan1 = undefined;
   scene.build();
 }
 

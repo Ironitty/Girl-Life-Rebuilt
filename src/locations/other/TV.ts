@@ -40,7 +40,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   if (((s as any).daystart ?? 0) - ((s as any).daystart_start ?? 0) < 9  &&  ((s as any).start_type ?? 0)?.['magic'] === 'tg') {
     scene.text('Sometimes while watching TV, you catch glimpses of your reflection in the screen during darker scenes. Each time you notice your feminine legs or chest, a wave of shock passes through you. The reality that your body is now that of a woman still feels surreal.');
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Turn off the TV and get up', handler: (st: GameState) => {
     dynamicGoto(st, 'prevLoc', 'prevArg');
@@ -58,7 +57,6 @@ function enterNokable(s: GameState, scene: SceneBuilder): void {
   if (((s as any).daystart ?? 0) - ((s as any).daystart_start ?? 0) < 9  &&  ((s as any).start_type ?? 0)?.['magic'] === 'tg') {
     scene.text('Sometimes while watching TV, you catch glimpses of your reflection in the screen during darker scenes. Each time you notice your feminine legs or chest, a wave of shock passes through you. The reality that your body is now that of a woman still feels surreal.');
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue watching (1:00)', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 60;
@@ -79,7 +77,6 @@ function enterKable(s: GameState, scene: SceneBuilder): void {
   if (((s as any).daystart ?? 0) - ((s as any).daystart_start ?? 0) < 9  &&  ((s as any).start_type ?? 0)?.['magic'] === 'tg') {
     scene.text('Sometimes while watching TV, you catch glimpses of your reflection in the screen during darker scenes. Each time you notice your feminine legs or chest, a wave of shock passes through you. The reality that your body is now that of a woman still feels surreal.');
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue watching (1:00)', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 60;
@@ -101,7 +98,7 @@ function enterPav(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).locat ?? 0)?.['Kolka'] === 1  &&  ((s as any).loc ?? 0) === 'sitrPar') {
         scene.img('images/locations/gadukino/grandparents/tv/oldtvon.mp4');
-        scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027brother/u0027, /u0027start/u0027); return false;">Kolka</a> is sleeping soundly on the sofa. You can\'t watch TV without disturbing him.');
+        scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027brother\u0027, \u0027start\u0027); return false;">Kolka</a> is sleeping soundly on the sofa. You can\'t watch TV without disturbing him.');
         scene.actions([
           { label: 'Do something else', handler: (st: GameState) => {
     dynamicGoto(st, 'prevLoc', 'prevArg');
@@ -125,7 +122,7 @@ function enterPav(s: GameState, scene: SceneBuilder): void {
         if (((s as any).locat ?? 0)?.['Kolka'] === 1  &&  ((s as any).loc ?? 0) === 'sitrPar') {
           (s as any).tvtime = 0;
           scene.img('images/locations/gadukino/grandparents/tv/tv_turn_off_effect.mp4');
-          scene.text('You notice <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027brother/u0027, /u0027start/u0027); return false;">Kolka</a> sleeping on the sofa. You can\'t continue watching TV without disturbing him.');
+          scene.text('You notice <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027brother\u0027, \u0027start\u0027); return false;">Kolka</a> sleeping on the sofa. You can\'t continue watching TV without disturbing him.');
           scene.text('With a sigh, you turn off the TV. The image collapses into a bright horizontal line that shrinks into a tiny white dot before slowly fading away. The speakers emit a high-pitched squawk as the power cuts off.');
           scene.actions([
             { label: 'Continue', handler: (st: GameState) => {
@@ -154,7 +151,6 @@ function enterPav(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -172,7 +168,6 @@ function enterGad(s: GameState, scene: SceneBuilder): void {
     if (((s as any).tvtime ?? 0) === 1) {
       qspCall(s, 'mood', 'raise', 'tiny');
       qspCall(s, 'stat', '');
-      // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/locations/gadukino/grand...
       scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/locations/gadukino/grandparents/tv/tv` + (Math.floor(Math.random() * 5) + 1) + '.mp4"></video></center>');
       scene.text('You browse through the three available channels that reach this rural area. The selection is limited and the reception occasionally fuzzy, but even these modest programs provide a welcome distraction from country life. You watch with mild interest as the black and white images flicker across the screen.');
       scene.actions([
@@ -192,7 +187,6 @@ function enterGad(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -230,7 +224,6 @@ function enterMeyhome(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 

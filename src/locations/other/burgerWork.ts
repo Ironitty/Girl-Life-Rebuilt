@@ -54,7 +54,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     (st as any).pay = qspFunc(s, 'jobs', 'paycheck', 'city_diner_secretary');
     qspCall(st, 'jobs', 'set_fired', 'city_diner_secretary');
     qspCall(st, 'stat', '');
-    // TODO-QSP: dynamic text: You write a statement of resignation and quickly get it signed by your boss. He ...
     scene.text(`You write a statement of resignation and quickly get it signed by your boss. He writes out a paycheck of ${qspFunc(s, 'money', 'string_profit', ((st as any).pay ?? ''))} to you says, "It's over ${((st as any).pcs_nickname ?? '')}, get out of here."`);
     scene.actions([
       { label: 'Leave', goto: ['city_center', ''] },
@@ -67,13 +66,11 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterWork(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'food', 'fast_food');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Get back to work', goto: ['burgerWork', 'work3'] },
   ]);
@@ -157,7 +154,6 @@ function enterWork2(s: GameState, scene: SceneBuilder): void {
     ((st as any).BurgerQW = (st as any).BurgerQW ?? {})['IlyQWBlackmail'] = ((st as any).BurgerQW['IlyQWBlackmail'] ?? 0) + (1);
     qspCall(st, 'stat', '');
     scene.img('images/characters/city/ilyushkin/sex/ilybjcar.jpg');
-    // TODO-QSP: dynamic text: Ilyushkin takes you to his car standing in the alley. He gets behind the wheel a...
     scene.text(`Ilyushkin takes you to his car standing in the alley. He gets behind the wheel and you sit next to him. Ilyushkin gets his dick out of his pants and grabs you by the hair pulling your face to his groin until his cock is buried in your ${(((st as any).pc_desc ?? 0)?.['lips'] ?? '')} lips. You open your mouth and allow the member to enter between your lips. You are trying to suck hard, using your ${(((st as any).pc_desc ?? 0)?.['lips'] ?? '')} lips on the penis so Ilyushkin would be finished quickly. Ilyushkin's body finally jerks and he finishes in your mouth. You continue to suck his dick swallowing the sperm without spilling a drop. Ilyushkin tucks his dick back in his pants and says, "Okay cocksucker, get out."`);
     qspCall(st, 'arousal', 'bj', 5, 'sub');
     qspCall(st, 'arousal', 'end');
@@ -214,7 +210,6 @@ function enterWork2(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'bj', 5, 'sub');
     qspCall(st, 'stat', '');
     scene.img('images/characters/city/ilyushkin/sex/ilybjfilm.jpg');
-    // TODO-QSP: dynamic text: You get down on your knees in front of Ilyushkin and clasp his member with your ...
     scene.text(`You get down on your knees in front of Ilyushkin and clasp his member with your ${(((st as any).pc_desc ?? 0)?.['lips'] ?? '')} lips. Ilyushkin films you using his camera to get a closeup of you sucking his cock. After a while he lies you down on his couch and sits on your chest to make sure his cock is right in front of your face.`);
     scene.actions([
       { label: 'Suck', handler: (st: GameState) => {
@@ -230,7 +225,6 @@ function enterWork2(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'cum_call', 'face', 'A76', 1);
     qspCall(st, 'stat', '');
     scene.img('images/characters/city/ilyushkin/sex/ilybjfilm3.jpg');
-    // TODO-QSP: dynamic text: Ilyushkin begins to finish on your <<$pc_desc[''lips'']>> lips. Cum drips from y...
     scene.text(`Ilyushkin begins to finish on your ${(((st as any).pc_desc ?? 0)?.['lips'] ?? '')} lips. Cum drips from your lips on your chin and chest. Ilyushkin finally turns the camera off and puts it away in a drawer. "Not bad. You did what you were required. Wash up and then get out."`);
     qspCall(st, 'arousal', 'end');
     scene.actions([
@@ -253,7 +247,6 @@ function enterWork2(s: GameState, scene: SceneBuilder): void {
     return;
   }
   qspGoto(s, 'burger', 'start');
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -265,7 +258,6 @@ function enterWork3(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/citycenter/diner/work.jpg');
   scene.text('You sit down and start preparing the contract on the computer.');
   qspCall(s, 'BurgerTip', 'work');
-  // TODO-QSP: end
   scene.build();
 }
 

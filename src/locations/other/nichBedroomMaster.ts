@@ -219,7 +219,6 @@ function enterReturn(s: GameState, scene: SceneBuilder): void {
 
 function enterEvtGalaMast1(s: GameState, scene: SceneBuilder): void {
   scene.text('Just before you enter the master bedroom you hear a moan. It sounds like Gala is having fun.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     qspGoto(st, 'nichApartment', '');

@@ -24,7 +24,6 @@ function enterJeff_1(s: GameState, scene: SceneBuilder): void {
   scene.text('Walking around the studio, you suddenly stop when you see a naked girl staring at you.');
   scene.text('<i>Is she a model here? Why is she staring at me like that…?</i>');
   scene.text('Seeing you notice her, she waves you over.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Walk over', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/photo/portraits/jeff_m/talking/1.jpg');
@@ -42,7 +41,6 @@ function enterJeff_1(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Introduce yourself', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/photo/portraits/jeff_m/talking/3.jpg');
-    // TODO-QSP: dynamic text: "I''m <<$model[''firstname'']>>."
     scene.text(`"I'm ${(((st as any).model ?? 0)?.['firstname'] ?? '')}."`);
     scene.text('"What a cute name!"');
     scene.text('<i>She\'s got quite a bubbly personality doesn\'t she?</i> you think to yourself before you realize she\'s still standing in silence, continuing to smile at you.');
@@ -78,7 +76,6 @@ function enterJeff_2(s: GameState, scene: SceneBuilder): void {
   ((s as any).jeff = (s as any).jeff ?? {})['status'] = 3;
   scene.text('As you walk past a set, you hear someone yell out from an armchair. "Hey there, cutie!"');
   scene.text('Looking over, you see Jeff smiling at you, sitting with her legs up and her neat little pussy on peeking out from between them. She must\'ve just finished a shoot.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Hey!', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/photo/portraits/jeff_m/talking/5.jpg');
@@ -111,7 +108,6 @@ function enterJeff_2(s: GameState, scene: SceneBuilder): void {
         { label: '"I-,"', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/photo/portraits/jeff_m/talking/8.jpg');
     scene.text('"I-," you try to respond before Jeff suddenly jumps up.');
-    // TODO-QSP: dynamic text: "Anyways, gotta run! Got dirty pics to take and money to get paid! Bye <<$model[...
     scene.text(`"Anyways, gotta run! Got dirty pics to take and money to get paid! Bye ${(((st as any).model ?? 0)?.['nickname'] ?? '')}!" she says and then runs off.`);
     scene.actions([
       { label: 'Leave', goto: ['foto', 'studio'] },
@@ -126,7 +122,6 @@ function enterJeff_2(s: GameState, scene: SceneBuilder): void {
           { label: '"I-,"', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/photo/portraits/jeff_m/talking/8.jpg');
     scene.text('"I-," you try to respond before Jeff suddenly jumps up.');
-    // TODO-QSP: dynamic text: "Anyways, gotta run! Got dirty pics to take and money to get paid! Bye <<$model[...
     scene.text(`"Anyways, gotta run! Got dirty pics to take and money to get paid! Bye ${(((st as any).model ?? 0)?.['nickname'] ?? '')}!" she says and then runs off.`);
     scene.actions([
       { label: 'Leave', goto: ['foto', 'studio'] },
@@ -146,7 +141,6 @@ function enterJeff_2(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/citycenter/photo/portraits/jeff_m/talking/8.jpg');
     scene.text('"Thanks for the advice Jeff!"');
     scene.text('"Nooooo problem!" she says before jumping out of her seat.');
-    // TODO-QSP: dynamic text: "Anyways, gotta run! Got dirty pics to take and money to get for it! Bye <<$mode...
     scene.text(`"Anyways, gotta run! Got dirty pics to take and money to get for it! Bye ${(((st as any).model ?? 0)?.['nickname'] ?? '')}!" she says and then runs off.`);
     scene.actions([
       { label: 'Leave', goto: ['foto', 'studio'] },
@@ -176,7 +170,6 @@ function enterJeff_2(s: GameState, scene: SceneBuilder): void {
     scene.text('"What is it you said you were studying in university?"');
     scene.text('"Economy and management!" she says proudly.');
     scene.text('<i>This airhead? Economy and management?!</i>');
-    // TODO-QSP: dynamic text: "Well, I guess I should go now. Gotta get paid! Bye <<$model[''nickname'']>>!" s...
     scene.text(`"Well, I guess I should go now. Gotta get paid! Bye ${(((st as any).model ?? 0)?.['nickname'] ?? '')}!" she says and runs off.`);
     scene.actions([
       { label: 'Leave', goto: ['foto', 'studio'] },
@@ -197,7 +190,6 @@ function enterJeff_2(s: GameState, scene: SceneBuilder): void {
     scene.text('"What is it you said you were studying in university?"');
     scene.text('"Economy and management!" she says proudly.');
     scene.text('<i>This airhead? Economy and management?!</i>');
-    // TODO-QSP: dynamic text: "Well, I guess I should go now. Gotta get paid! Bye <<$model[''nickname'']>>!" s...
     scene.text(`"Well, I guess I should go now. Gotta get paid! Bye ${(((st as any).model ?? 0)?.['nickname'] ?? '')}!" she says and runs off.`);
     scene.actions([
       { label: 'Leave', goto: ['foto', 'studio'] },
@@ -220,12 +212,10 @@ function enterJeff_3(s: GameState, scene: SceneBuilder): void {
   scene.text('While walking through the studio, you suddenly feel someone\'s arms wrap around your waist and two soft breasts press into your back.');
   scene.text('Before you can say anything you jump in surprise as you feel the person\'s hands fly up your body and slap against your breasts to give them a firm squeeze.');
   scene.text('"Hiiiii cutie!" you hear a voice squeak out.');
-  // TODO-QSP: end
   scene.actions([
     { label: '"Oh-! Hi!!"', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/photo/portraits/jeff_m/talking/face.jpg');
     scene.text('A bit startled, you turn around to see Jeff\'s cheerful face.');
-    // TODO-QSP: dynamic text: "<<$model[''nickname'']>>! Hang out with me!"
     scene.text(`"${(((st as any).model ?? 0)?.['nickname'] ?? '')}! Hang out with me!"`);
     scene.actions([
       { label: '"Busy right now"', handler: (st: GameState) => {
@@ -292,7 +282,6 @@ function enterJeffChat(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     scene.text('"Hey Jeff, I gotta get going I\'ll see you later okay?"');
@@ -366,7 +355,6 @@ function enterJeffChat(s: GameState, scene: SceneBuilder): void {
 function enterJeffSexTalk(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/citycenter/photo/portraits/jeff_m/talking/1.jpg');
   scene.text('"Oooooh! A bit of girl talk? Sure thing! Whatcha wanna talk about?"');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     scene.text('"Hey Jeff, I gotta get going I\'ll see you later okay?"');
@@ -435,7 +423,6 @@ function enterJeffSexTalk(s: GameState, scene: SceneBuilder): void {
 function enterJeffSexAdvice(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/citycenter/photo/portraits/jeff_m/talking/22.jpg');
   scene.text('"Oh ho ho, looking to impress somebody?" Well, what do you need help with?"');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     scene.text('"Hey Jeff, I gotta get going I\'ll see you later okay?"');
@@ -484,7 +471,6 @@ function enterJeffModelling(s: GameState, scene: SceneBuilder): void {
   scene.text('You\'re looking for Jeff when you hear her voice coming from one of the sets.');
   ((s as any).jeff = (s as any).jeff ?? {})['status'] = (Math.floor(Math.random() * 3) + 3);
   ((s as any).jeff = (s as any).jeff ?? {})['model'] = (Math.floor(Math.random() * 3) + 1);
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     if (((st as any).jeff ?? 0)?.['model'] === 1) {

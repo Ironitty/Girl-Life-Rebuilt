@@ -11,7 +11,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(s, '$attributes_tattoo_' + ((s as any).locArgs?.[0] ?? 0) + '', '', ((s as any).locArgs?.[1] ?? 0));
   }
   if ((!((s as any).TatQuality ?? 0))) {
-    // TODO-QSP: exit
+    return;
   }
   scene.build();
 }

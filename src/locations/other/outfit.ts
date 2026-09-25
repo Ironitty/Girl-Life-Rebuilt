@@ -38,7 +38,6 @@ function enterClearAll(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'coats', 'reset_PCoatVars');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetDerivedVars(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -60,7 +59,6 @@ function enterResetDerivedVars(s: GameState, scene: SceneBuilder): void {
   (s as any).PCoverFront = 0;
   (s as any).PCoverBack = 0;
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -119,7 +117,6 @@ function enterSetDerivedVars(s: GameState, scene: SceneBuilder): void {
   (s as any).CoverBack = ((s as any).PCoverBack ?? 0);
   (s as any).CoverFront = ((s as any).PCoverFront ?? 0);
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -130,7 +127,6 @@ function enterUndress(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0)]; enterBackup(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterStripAll(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -144,7 +140,6 @@ function enterDress(s: GameState, scene: SceneBuilder): void {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterRestore(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -166,24 +161,23 @@ function enterNudeBackup(s: GameState, scene: SceneBuilder): void {
     (s as any).lastworncoattype = 'none';
     (s as any).lastworncoatnumber = 0;
   } else {
-    // TODO-QSP: $lastwornclothingtype[$ARGS[1]]    = 'nude'
-    // TODO-QSP: lastwornclothingnumber[$ARGS[1]]  = 0
-    // TODO-QSP: lastwornunderwear[$ARGS[1]]      = 0
-    // TODO-QSP: $lastwornbodysuittype[$ARGS[1]]    = 'none'
-    // TODO-QSP: lastwornbodysuitnumber[$ARGS[1]]  = 0
-    // TODO-QSP: $lastwornpantytype[$ARGS[1]]    = 'none'
-    // TODO-QSP: lastwornpantynumber[$ARGS[1]]    = 0
-    // TODO-QSP: $lastwornbratype[$ARGS[1]]      = 'none'
-    // TODO-QSP: lastwornbranumber[$ARGS[1]]      = 0
-    // TODO-QSP: $lastwornshoetype[$ARGS[1]]      = 'none'
-    // TODO-QSP: lastwornshoenumber[$ARGS[1]]    = 0
-    // TODO-QSP: $lastwornpursetype[$ARGS[1]]    = 'none'
-    // TODO-QSP: lastwornpursenumber[$ARGS[1]]    = 0
-    // TODO-QSP: $lastworncoattype[$ARGS[1]]      = 'none'
-    // TODO-QSP: lastworncoatnumber[$ARGS[1]]    = 0
+    ((s as any).lastwornclothingtype = (s as any).lastwornclothingtype ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'nude';
+    ((s as any).lastwornclothingnumber = (s as any).lastwornclothingnumber ?? {})[((s as any).locArgs?.[1] ?? 0)] = 0;
+    ((s as any).lastwornunderwear = (s as any).lastwornunderwear ?? {})[((s as any).locArgs?.[1] ?? 0)] = 0;
+    ((s as any).lastwornbodysuittype = (s as any).lastwornbodysuittype ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'none';
+    ((s as any).lastwornbodysuitnumber = (s as any).lastwornbodysuitnumber ?? {})[((s as any).locArgs?.[1] ?? 0)] = 0;
+    ((s as any).lastwornpantytype = (s as any).lastwornpantytype ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'none';
+    ((s as any).lastwornpantynumber = (s as any).lastwornpantynumber ?? {})[((s as any).locArgs?.[1] ?? 0)] = 0;
+    ((s as any).lastwornbratype = (s as any).lastwornbratype ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'none';
+    ((s as any).lastwornbranumber = (s as any).lastwornbranumber ?? {})[((s as any).locArgs?.[1] ?? 0)] = 0;
+    ((s as any).lastwornshoetype = (s as any).lastwornshoetype ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'none';
+    ((s as any).lastwornshoenumber = (s as any).lastwornshoenumber ?? {})[((s as any).locArgs?.[1] ?? 0)] = 0;
+    ((s as any).lastwornpursetype = (s as any).lastwornpursetype ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'none';
+    ((s as any).lastwornpursenumber = (s as any).lastwornpursenumber ?? {})[((s as any).locArgs?.[1] ?? 0)] = 0;
+    ((s as any).lastworncoattype = (s as any).lastworncoattype ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'none';
+    ((s as any).lastworncoatnumber = (s as any).lastworncoatnumber ?? {})[((s as any).locArgs?.[1] ?? 0)] = 0;
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -205,24 +199,23 @@ function enterBackup(s: GameState, scene: SceneBuilder): void {
     (s as any).lastworncoattype = ((s as any).coatworntype ?? 0);
     (s as any).lastworncoatnumber = ((s as any).coatwornnumber ?? 0);
   } else {
-    // TODO-QSP: $lastwornclothingtype[$ARGS[1]]    = $clothingworntype
-    // TODO-QSP: lastwornclothingnumber[$ARGS[1]]  = clothingwornnumber
-    // TODO-QSP: lastwornunderwear[$ARGS[1]]      = underwear['type']
-    // TODO-QSP: $lastwornbodysuittype[$ARGS[1]]    = $bodysuitworntype
-    // TODO-QSP: lastwornbodysuitnumber[$ARGS[1]]  = bodysuitwornnumber
-    // TODO-QSP: $lastwornpantytype[$ARGS[1]]    = $pantyworntype
-    // TODO-QSP: lastwornpantynumber[$ARGS[1]]    = pantywornnumber
-    // TODO-QSP: $lastwornbratype[$ARGS[1]]      = $braworntype
-    // TODO-QSP: lastwornbranumber[$ARGS[1]]      = brawornnumber
-    // TODO-QSP: $lastwornshoetype[$ARGS[1]]      = $shoeworntype
-    // TODO-QSP: lastwornshoenumber[$ARGS[1]]    = shoewornnumber
-    // TODO-QSP: $lastwornpursetype[$ARGS[1]]    = $currentpursetype
-    // TODO-QSP: lastwornpursenumber[$ARGS[1]]    = currentpursenumber
-    // TODO-QSP: $lastworncoattype[$ARGS[1]]      = $coatworntype
-    // TODO-QSP: lastworncoatnumber[$ARGS[1]]    = coatwornnumber
+    ((s as any).lastwornclothingtype = (s as any).lastwornclothingtype ?? {})[((s as any).locArgs?.[1] ?? 0)] = ((s as any).clothingworntype ?? 0);
+    ((s as any).lastwornclothingnumber = (s as any).lastwornclothingnumber ?? {})[((s as any).locArgs?.[1] ?? 0)] = ((s as any).clothingwornnumber ?? 0);
+    ((s as any).lastwornunderwear = (s as any).lastwornunderwear ?? {})[((s as any).locArgs?.[1] ?? 0)] = (((s as any).underwear ?? 0)?.['type']);
+    ((s as any).lastwornbodysuittype = (s as any).lastwornbodysuittype ?? {})[((s as any).locArgs?.[1] ?? 0)] = ((s as any).bodysuitworntype ?? 0);
+    ((s as any).lastwornbodysuitnumber = (s as any).lastwornbodysuitnumber ?? {})[((s as any).locArgs?.[1] ?? 0)] = ((s as any).bodysuitwornnumber ?? 0);
+    ((s as any).lastwornpantytype = (s as any).lastwornpantytype ?? {})[((s as any).locArgs?.[1] ?? 0)] = ((s as any).pantyworntype ?? 0);
+    ((s as any).lastwornpantynumber = (s as any).lastwornpantynumber ?? {})[((s as any).locArgs?.[1] ?? 0)] = ((s as any).pantywornnumber ?? 0);
+    ((s as any).lastwornbratype = (s as any).lastwornbratype ?? {})[((s as any).locArgs?.[1] ?? 0)] = ((s as any).braworntype ?? 0);
+    ((s as any).lastwornbranumber = (s as any).lastwornbranumber ?? {})[((s as any).locArgs?.[1] ?? 0)] = ((s as any).brawornnumber ?? 0);
+    ((s as any).lastwornshoetype = (s as any).lastwornshoetype ?? {})[((s as any).locArgs?.[1] ?? 0)] = ((s as any).shoeworntype ?? 0);
+    ((s as any).lastwornshoenumber = (s as any).lastwornshoenumber ?? {})[((s as any).locArgs?.[1] ?? 0)] = ((s as any).shoewornnumber ?? 0);
+    ((s as any).lastwornpursetype = (s as any).lastwornpursetype ?? {})[((s as any).locArgs?.[1] ?? 0)] = ((s as any).currentpursetype ?? 0);
+    ((s as any).lastwornpursenumber = (s as any).lastwornpursenumber ?? {})[((s as any).locArgs?.[1] ?? 0)] = ((s as any).currentpursenumber ?? 0);
+    ((s as any).lastworncoattype = (s as any).lastworncoattype ?? {})[((s as any).locArgs?.[1] ?? 0)] = ((s as any).coatworntype ?? 0);
+    ((s as any).lastworncoatnumber = (s as any).lastworncoatnumber ?? {})[((s as any).locArgs?.[1] ?? 0)] = ((s as any).coatwornnumber ?? 0);
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -261,97 +254,94 @@ function enterSafeBackup(s: GameState, scene: SceneBuilder): void {
     }
   } else {
     if (qspFunc(s, 'clothing', 'is_wearing_any')) {
-      // TODO-QSP: $lastwornclothingtype[$ARGS[1]]    = $clothingworntype
-      // TODO-QSP: lastwornclothingnumber[$ARGS[1]]  = clothingwornnumber
+      ((s as any).lastwornclothingtype = (s as any).lastwornclothingtype ?? {})[((s as any).locArgs?.[1] ?? 0)] = ((s as any).clothingworntype ?? 0);
+      ((s as any).lastwornclothingnumber = (s as any).lastwornclothingnumber ?? {})[((s as any).locArgs?.[1] ?? 0)] = ((s as any).clothingwornnumber ?? 0);
     }
     if (qspFunc(s, 'underwear_bodysuits', 'is_wearing_any')) {
-      // TODO-QSP: lastwornunderwear[$ARGS[1]]      = underwear['type']
-      // TODO-QSP: $lastwornbodysuittype[$ARGS[1]]    = $bodysuitworntype
-      // TODO-QSP: lastwornbodysuitnumber[$ARGS[1]]  = bodysuitwornnumber
+      ((s as any).lastwornunderwear = (s as any).lastwornunderwear ?? {})[((s as any).locArgs?.[1] ?? 0)] = (((s as any).underwear ?? 0)?.['type']);
+      ((s as any).lastwornbodysuittype = (s as any).lastwornbodysuittype ?? {})[((s as any).locArgs?.[1] ?? 0)] = ((s as any).bodysuitworntype ?? 0);
+      ((s as any).lastwornbodysuitnumber = (s as any).lastwornbodysuitnumber ?? {})[((s as any).locArgs?.[1] ?? 0)] = ((s as any).bodysuitwornnumber ?? 0);
     }
     if (qspFunc(s, 'panties', 'is_wearing_any')) {
-      // TODO-QSP: lastwornunderwear[$ARGS[1]]      = underwear['type']
-      // TODO-QSP: $lastwornpantytype[$ARGS[1]]    = $pantyworntype
-      // TODO-QSP: lastwornpantynumber[$ARGS[1]]    = pantywornnumber
+      ((s as any).lastwornunderwear = (s as any).lastwornunderwear ?? {})[((s as any).locArgs?.[1] ?? 0)] = (((s as any).underwear ?? 0)?.['type']);
+      ((s as any).lastwornpantytype = (s as any).lastwornpantytype ?? {})[((s as any).locArgs?.[1] ?? 0)] = ((s as any).pantyworntype ?? 0);
+      ((s as any).lastwornpantynumber = (s as any).lastwornpantynumber ?? {})[((s as any).locArgs?.[1] ?? 0)] = ((s as any).pantywornnumber ?? 0);
     }
     if (qspFunc(s, 'bras', 'is_wearing_any')) {
-      // TODO-QSP: lastwornunderwear[$ARGS[1]]      = underwear['type']
-      // TODO-QSP: $lastwornbratype[$ARGS[1]]      = $braworntype
-      // TODO-QSP: lastwornbranumber[$ARGS[1]]      = brawornnumber
+      ((s as any).lastwornunderwear = (s as any).lastwornunderwear ?? {})[((s as any).locArgs?.[1] ?? 0)] = (((s as any).underwear ?? 0)?.['type']);
+      ((s as any).lastwornbratype = (s as any).lastwornbratype ?? {})[((s as any).locArgs?.[1] ?? 0)] = ((s as any).braworntype ?? 0);
+      ((s as any).lastwornbranumber = (s as any).lastwornbranumber ?? {})[((s as any).locArgs?.[1] ?? 0)] = ((s as any).brawornnumber ?? 0);
     }
     if (qspFunc(s, 'shoes', 'is_wearing_any')) {
-      // TODO-QSP: $lastwornshoetype[$ARGS[1]]      = $shoeworntype
-      // TODO-QSP: lastwornshoenumber[$ARGS[1]]    = shoewornnumber
+      ((s as any).lastwornshoetype = (s as any).lastwornshoetype ?? {})[((s as any).locArgs?.[1] ?? 0)] = ((s as any).shoeworntype ?? 0);
+      ((s as any).lastwornshoenumber = (s as any).lastwornshoenumber ?? {})[((s as any).locArgs?.[1] ?? 0)] = ((s as any).shoewornnumber ?? 0);
     }
     if (qspFunc(s, 'purses', 'is_wearing_any')) {
-      // TODO-QSP: $lastwornpursetype[$ARGS[1]]    = $currentpursetype
-      // TODO-QSP: lastwornpursenumber[$ARGS[1]]    = currentpursenumber
+      ((s as any).lastwornpursetype = (s as any).lastwornpursetype ?? {})[((s as any).locArgs?.[1] ?? 0)] = ((s as any).currentpursetype ?? 0);
+      ((s as any).lastwornpursenumber = (s as any).lastwornpursenumber ?? {})[((s as any).locArgs?.[1] ?? 0)] = ((s as any).currentpursenumber ?? 0);
     }
     if (qspFunc(s, 'coats', 'is_wearing_any')) {
-      // TODO-QSP: $lastworncoattype[$ARGS[1]]      = $coatworntype
-      // TODO-QSP: lastworncoatnumber[$ARGS[1]]    = coatwornnumber
+      ((s as any).lastworncoattype = (s as any).lastworncoattype ?? {})[((s as any).locArgs?.[1] ?? 0)] = ((s as any).coatworntype ?? 0);
+      ((s as any).lastworncoatnumber = (s as any).lastworncoatnumber ?? {})[((s as any).locArgs?.[1] ?? 0)] = ((s as any).coatwornnumber ?? 0);
     }
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterTransferBackup(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: $lastwornclothingtype[iif($ARGS[2]  = '', ARGS[2], $ARGS[2])]  = $lastwornclothingtype[iif($ARGS[1] ...
-  // TODO-QSP: lastwornclothingnumber[iif($ARGS[2]  = '', ARGS[2], $ARGS[2])]  = lastwornclothingnumber[iif($ARGS[1...
-  // TODO-QSP: lastwornunderwear[iif($ARGS[2]    = '', ARGS[2], $ARGS[2])]  = lastwornunderwear[iif($ARGS[1]    = '...
-  // TODO-QSP: $lastwornbodysuittype[iif($ARGS[2]  = '', ARGS[2], $ARGS[2])]  = $lastwornbodysuittype[iif($ARGS[1] ...
-  // TODO-QSP: lastwornbodysuitnumber[iif($ARGS[2]  = '', ARGS[2], $ARGS[2])]  = lastwornbodysuitnumber[iif($ARGS[1...
-  // TODO-QSP: $lastwornpantytype[iif($ARGS[2]    = '', ARGS[2], $ARGS[2])]  = $lastwornpantytype[iif($ARGS[1]    =...
-  // TODO-QSP: lastwornpantynumber[iif($ARGS[2]  = '', ARGS[2], $ARGS[2])]  = lastwornpantynumber[iif($ARGS[1]    =...
-  // TODO-QSP: $lastwornbratype[iif($ARGS[2]    = '', ARGS[2], $ARGS[2])]  = $lastwornbratype[iif($ARGS[1]      = '...
-  // TODO-QSP: lastwornbranumber[iif($ARGS[2]    = '', ARGS[2], $ARGS[2])]  = lastwornbranumber[iif($ARGS[1]    = '...
-  // TODO-QSP: $lastwornshoetype[iif($ARGS[2]    = '', ARGS[2], $ARGS[2])]  = $lastwornshoetype[iif($ARGS[1]    = '...
-  // TODO-QSP: lastwornshoenumber[iif($ARGS[2]    = '', ARGS[2], $ARGS[2])]  = lastwornshoenumber[iif($ARGS[1]    =...
-  // TODO-QSP: $lastwornpursetype[iif($ARGS[2]    = '', ARGS[2], $ARGS[2])]  = $lastwornpursetype[iif($ARGS[1]    =...
-  // TODO-QSP: lastwornpursenumber[iif($ARGS[2]  = '', ARGS[2], $ARGS[2])]  = lastwornpursenumber[iif($ARGS[1]    =...
-  // TODO-QSP: $lastworncoattype[iif($ARGS[2]    = '', ARGS[2], $ARGS[2])]  = $lastworncoattype[iif($ARGS[1]    = '...
-  // TODO-QSP: lastworncoatnumber[iif($ARGS[2]    = '', ARGS[2], $ARGS[2])]  = lastworncoatnumber[iif($ARGS[1]    =...
+  ((s as any).lastwornclothingtype = (s as any).lastwornclothingtype ?? {})[((String((s as any).locArgs?.[2] ?? '')  === '') ? (((s as any).locArgs?.[2] ?? 0)) : (((s as any).locArgs?.[2] ?? 0)))] = (((s as any).lastwornclothingtype ?? 0)?.[((String((s as any).locArgs?.[1] ?? '')  === '') ? (((s as any).locArgs?.[1] ?? 0)) : (((s as any).locArgs?.[1] ?? 0)))] ?? 0);
+  ((s as any).lastwornclothingnumber = (s as any).lastwornclothingnumber ?? {})[((String((s as any).locArgs?.[2] ?? '')  === '') ? (((s as any).locArgs?.[2] ?? 0)) : (((s as any).locArgs?.[2] ?? 0)))] = (((s as any).lastwornclothingnumber ?? 0)?.[((String((s as any).locArgs?.[1] ?? '')  === '') ? (((s as any).locArgs?.[1] ?? 0)) : (((s as any).locArgs?.[1] ?? 0)))] ?? 0);
+  ((s as any).lastwornunderwear = (s as any).lastwornunderwear ?? {})[((String((s as any).locArgs?.[2] ?? '')    === '') ? (((s as any).locArgs?.[2] ?? 0)) : (((s as any).locArgs?.[2] ?? 0)))] = (((s as any).lastwornunderwear ?? 0)?.[((String((s as any).locArgs?.[1] ?? '')    === '') ? (((s as any).locArgs?.[1] ?? 0)) : (((s as any).locArgs?.[1] ?? 0)))] ?? 0);
+  ((s as any).lastwornbodysuittype = (s as any).lastwornbodysuittype ?? {})[((String((s as any).locArgs?.[2] ?? '')  === '') ? (((s as any).locArgs?.[2] ?? 0)) : (((s as any).locArgs?.[2] ?? 0)))] = (((s as any).lastwornbodysuittype ?? 0)?.[((String((s as any).locArgs?.[1] ?? '')  === '') ? (((s as any).locArgs?.[1] ?? 0)) : (((s as any).locArgs?.[1] ?? 0)))] ?? 0);
+  ((s as any).lastwornbodysuitnumber = (s as any).lastwornbodysuitnumber ?? {})[((String((s as any).locArgs?.[2] ?? '')  === '') ? (((s as any).locArgs?.[2] ?? 0)) : (((s as any).locArgs?.[2] ?? 0)))] = (((s as any).lastwornbodysuitnumber ?? 0)?.[((String((s as any).locArgs?.[1] ?? '')  === '') ? (((s as any).locArgs?.[1] ?? 0)) : (((s as any).locArgs?.[1] ?? 0)))] ?? 0);
+  ((s as any).lastwornpantytype = (s as any).lastwornpantytype ?? {})[((String((s as any).locArgs?.[2] ?? '')    === '') ? (((s as any).locArgs?.[2] ?? 0)) : (((s as any).locArgs?.[2] ?? 0)))] = (((s as any).lastwornpantytype ?? 0)?.[((String((s as any).locArgs?.[1] ?? '')    === '') ? (((s as any).locArgs?.[1] ?? 0)) : (((s as any).locArgs?.[1] ?? 0)))] ?? 0);
+  ((s as any).lastwornpantynumber = (s as any).lastwornpantynumber ?? {})[((String((s as any).locArgs?.[2] ?? '')  === '') ? (((s as any).locArgs?.[2] ?? 0)) : (((s as any).locArgs?.[2] ?? 0)))] = (((s as any).lastwornpantynumber ?? 0)?.[((String((s as any).locArgs?.[1] ?? '')    === '') ? (((s as any).locArgs?.[1] ?? 0)) : (((s as any).locArgs?.[1] ?? 0)))] ?? 0);
+  ((s as any).lastwornbratype = (s as any).lastwornbratype ?? {})[((String((s as any).locArgs?.[2] ?? '')    === '') ? (((s as any).locArgs?.[2] ?? 0)) : (((s as any).locArgs?.[2] ?? 0)))] = (((s as any).lastwornbratype ?? 0)?.[((String((s as any).locArgs?.[1] ?? '')      === '') ? (((s as any).locArgs?.[1] ?? 0)) : (((s as any).locArgs?.[1] ?? 0)))] ?? 0);
+  ((s as any).lastwornbranumber = (s as any).lastwornbranumber ?? {})[((String((s as any).locArgs?.[2] ?? '')    === '') ? (((s as any).locArgs?.[2] ?? 0)) : (((s as any).locArgs?.[2] ?? 0)))] = (((s as any).lastwornbranumber ?? 0)?.[((String((s as any).locArgs?.[1] ?? '')    === '') ? (((s as any).locArgs?.[1] ?? 0)) : (((s as any).locArgs?.[1] ?? 0)))] ?? 0);
+  ((s as any).lastwornshoetype = (s as any).lastwornshoetype ?? {})[((String((s as any).locArgs?.[2] ?? '')    === '') ? (((s as any).locArgs?.[2] ?? 0)) : (((s as any).locArgs?.[2] ?? 0)))] = (((s as any).lastwornshoetype ?? 0)?.[((String((s as any).locArgs?.[1] ?? '')    === '') ? (((s as any).locArgs?.[1] ?? 0)) : (((s as any).locArgs?.[1] ?? 0)))] ?? 0);
+  ((s as any).lastwornshoenumber = (s as any).lastwornshoenumber ?? {})[((String((s as any).locArgs?.[2] ?? '')    === '') ? (((s as any).locArgs?.[2] ?? 0)) : (((s as any).locArgs?.[2] ?? 0)))] = (((s as any).lastwornshoenumber ?? 0)?.[((String((s as any).locArgs?.[1] ?? '')    === '') ? (((s as any).locArgs?.[1] ?? 0)) : (((s as any).locArgs?.[1] ?? 0)))] ?? 0);
+  ((s as any).lastwornpursetype = (s as any).lastwornpursetype ?? {})[((String((s as any).locArgs?.[2] ?? '')    === '') ? (((s as any).locArgs?.[2] ?? 0)) : (((s as any).locArgs?.[2] ?? 0)))] = (((s as any).lastwornpursetype ?? 0)?.[((String((s as any).locArgs?.[1] ?? '')    === '') ? (((s as any).locArgs?.[1] ?? 0)) : (((s as any).locArgs?.[1] ?? 0)))] ?? 0);
+  ((s as any).lastwornpursenumber = (s as any).lastwornpursenumber ?? {})[((String((s as any).locArgs?.[2] ?? '')  === '') ? (((s as any).locArgs?.[2] ?? 0)) : (((s as any).locArgs?.[2] ?? 0)))] = (((s as any).lastwornpursenumber ?? 0)?.[((String((s as any).locArgs?.[1] ?? '')    === '') ? (((s as any).locArgs?.[1] ?? 0)) : (((s as any).locArgs?.[1] ?? 0)))] ?? 0);
+  ((s as any).lastworncoattype = (s as any).lastworncoattype ?? {})[((String((s as any).locArgs?.[2] ?? '')    === '') ? (((s as any).locArgs?.[2] ?? 0)) : (((s as any).locArgs?.[2] ?? 0)))] = (((s as any).lastworncoattype ?? 0)?.[((String((s as any).locArgs?.[1] ?? '')    === '') ? (((s as any).locArgs?.[1] ?? 0)) : (((s as any).locArgs?.[1] ?? 0)))] ?? 0);
+  ((s as any).lastworncoatnumber = (s as any).lastworncoatnumber ?? {})[((String((s as any).locArgs?.[2] ?? '')    === '') ? (((s as any).locArgs?.[2] ?? 0)) : (((s as any).locArgs?.[2] ?? 0)))] = (((s as any).lastworncoatnumber ?? 0)?.[((String((s as any).locArgs?.[1] ?? '')    === '') ? (((s as any).locArgs?.[1] ?? 0)) : (((s as any).locArgs?.[1] ?? 0)))] ?? 0);
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterSafeTransferBackup(s: GameState, scene: SceneBuilder): void {
   if (((s as any).lastwornclothingtype ?? 0)[((s as any).iif ?? 0)(String((s as any).locArgs?.[1] ?? '')  === '', String((s as any).locArgs?.[1] ?? ''), String((s as any).locArgs?.[1] ?? ''))] !== ''  &&  ((s as any).lastwornclothingtype ?? 0)[((s as any).iif ?? 0)(String((s as any).locArgs?.[1] ?? '')  === '', String((s as any).locArgs?.[1] ?? ''), String((s as any).locArgs?.[1] ?? ''))] !== 'nude') {
-    // TODO-QSP: $lastwornclothingtype[iif($ARGS[2]  = '', ARGS[2], $ARGS[2])]  = $lastwornclothingtype[iif($ARGS[1] ...
-    // TODO-QSP: lastwornclothingnumber[iif($ARGS[2]  = '', ARGS[2], $ARGS[2])]  = lastwornclothingnumber[iif($ARGS[1...
+    ((s as any).lastwornclothingtype = (s as any).lastwornclothingtype ?? {})[((String((s as any).locArgs?.[2] ?? '')  === '') ? (((s as any).locArgs?.[2] ?? 0)) : (((s as any).locArgs?.[2] ?? 0)))] = (((s as any).lastwornclothingtype ?? 0)?.[((String((s as any).locArgs?.[1] ?? '')    === '') ? (((s as any).locArgs?.[1] ?? 0)) : (((s as any).locArgs?.[1] ?? 0)))] ?? 0);
+    ((s as any).lastwornclothingnumber = (s as any).lastwornclothingnumber ?? {})[((String((s as any).locArgs?.[2] ?? '')  === '') ? (((s as any).locArgs?.[2] ?? 0)) : (((s as any).locArgs?.[2] ?? 0)))] = (((s as any).lastwornclothingnumber ?? 0)?.[((String((s as any).locArgs?.[1] ?? '')    === '') ? (((s as any).locArgs?.[1] ?? 0)) : (((s as any).locArgs?.[1] ?? 0)))] ?? 0);
   }
   if (((s as any).lastwornbodysuittype ?? 0)[((s as any).iif ?? 0)(String((s as any).locArgs?.[1] ?? '')  === '', String((s as any).locArgs?.[1] ?? ''), String((s as any).locArgs?.[1] ?? ''))] !== ''  &&  ((s as any).lastwornbodysuittype ?? 0)[((s as any).iif ?? 0)(String((s as any).locArgs?.[1] ?? '')  === '', String((s as any).locArgs?.[1] ?? ''), String((s as any).locArgs?.[1] ?? ''))] !== 'none') {
-    // TODO-QSP: lastwornunderwear[iif($ARGS[2]    = '', ARGS[2], $ARGS[2])]  = lastwornunderwear[iif($ARGS[1]      =...
-    // TODO-QSP: $lastwornbodysuittype[iif($ARGS[2]  = '', ARGS[2], $ARGS[2])]  = $lastwornbodysuittype[iif($ARGS[1] ...
-    // TODO-QSP: lastwornbodysuitnumber[iif($ARGS[2]  = '', ARGS[2], $ARGS[2])]  = lastwornbodysuitnumber[iif($ARGS[1...
+    ((s as any).lastwornunderwear = (s as any).lastwornunderwear ?? {})[((String((s as any).locArgs?.[2] ?? '')    === '') ? (((s as any).locArgs?.[2] ?? 0)) : (((s as any).locArgs?.[2] ?? 0)))] = (((s as any).lastwornunderwear ?? 0)?.[((String((s as any).locArgs?.[1] ?? '')      === '') ? (((s as any).locArgs?.[1] ?? 0)) : (((s as any).locArgs?.[1] ?? 0)))] ?? 0);
+    ((s as any).lastwornbodysuittype = (s as any).lastwornbodysuittype ?? {})[((String((s as any).locArgs?.[2] ?? '')  === '') ? (((s as any).locArgs?.[2] ?? 0)) : (((s as any).locArgs?.[2] ?? 0)))] = (((s as any).lastwornbodysuittype ?? 0)?.[((String((s as any).locArgs?.[1] ?? '')    === '') ? (((s as any).locArgs?.[1] ?? 0)) : (((s as any).locArgs?.[1] ?? 0)))] ?? 0);
+    ((s as any).lastwornbodysuitnumber = (s as any).lastwornbodysuitnumber ?? {})[((String((s as any).locArgs?.[2] ?? '')  === '') ? (((s as any).locArgs?.[2] ?? 0)) : (((s as any).locArgs?.[2] ?? 0)))] = (((s as any).lastwornbodysuitnumber ?? 0)?.[((String((s as any).locArgs?.[1] ?? '')    === '') ? (((s as any).locArgs?.[1] ?? 0)) : (((s as any).locArgs?.[1] ?? 0)))] ?? 0);
   }
   if (((s as any).lastwornpantytype ?? 0)[((s as any).iif ?? 0)(String((s as any).locArgs?.[1] ?? '')    === '', String((s as any).locArgs?.[1] ?? ''), String((s as any).locArgs?.[1] ?? ''))] !== ''  &&  ((s as any).lastwornpantytype ?? 0)[((s as any).iif ?? 0)(String((s as any).locArgs?.[1] ?? '')    === '', String((s as any).locArgs?.[1] ?? ''), String((s as any).locArgs?.[1] ?? ''))] !== 'none') {
-    // TODO-QSP: lastwornunderwear[iif($ARGS[2]    = '', ARGS[2], $ARGS[2])]  = lastwornunderwear[iif($ARGS[1]      =...
-    // TODO-QSP: $lastwornpantytype[iif($ARGS[2]    = '', ARGS[2], $ARGS[2])]  = $lastwornpantytype[iif($ARGS[1]     ...
-    // TODO-QSP: lastwornpantynumber[iif($ARGS[2]  = '', ARGS[2], $ARGS[2])]  = lastwornpantynumber[iif($ARGS[1]     ...
+    ((s as any).lastwornunderwear = (s as any).lastwornunderwear ?? {})[((String((s as any).locArgs?.[2] ?? '')    === '') ? (((s as any).locArgs?.[2] ?? 0)) : (((s as any).locArgs?.[2] ?? 0)))] = (((s as any).lastwornunderwear ?? 0)?.[((String((s as any).locArgs?.[1] ?? '')      === '') ? (((s as any).locArgs?.[1] ?? 0)) : (((s as any).locArgs?.[1] ?? 0)))] ?? 0);
+    ((s as any).lastwornpantytype = (s as any).lastwornpantytype ?? {})[((String((s as any).locArgs?.[2] ?? '')    === '') ? (((s as any).locArgs?.[2] ?? 0)) : (((s as any).locArgs?.[2] ?? 0)))] = (((s as any).lastwornpantytype ?? 0)?.[((String((s as any).locArgs?.[1] ?? '')      === '') ? (((s as any).locArgs?.[1] ?? 0)) : (((s as any).locArgs?.[1] ?? 0)))] ?? 0);
+    ((s as any).lastwornpantynumber = (s as any).lastwornpantynumber ?? {})[((String((s as any).locArgs?.[2] ?? '')  === '') ? (((s as any).locArgs?.[2] ?? 0)) : (((s as any).locArgs?.[2] ?? 0)))] = (((s as any).lastwornpantynumber ?? 0)?.[((String((s as any).locArgs?.[1] ?? '')      === '') ? (((s as any).locArgs?.[1] ?? 0)) : (((s as any).locArgs?.[1] ?? 0)))] ?? 0);
   }
   if (((s as any).lastwornbratype ?? 0)[((s as any).iif ?? 0)(String((s as any).locArgs?.[1] ?? '')    === '', String((s as any).locArgs?.[1] ?? ''), String((s as any).locArgs?.[1] ?? ''))] !== ''  &&  ((s as any).lastwornbratype ?? 0)[((s as any).iif ?? 0)(String((s as any).locArgs?.[1] ?? '')    === '', String((s as any).locArgs?.[1] ?? ''), String((s as any).locArgs?.[1] ?? ''))] !== 'none') {
-    // TODO-QSP: lastwornunderwear[iif($ARGS[2]    = '', ARGS[2], $ARGS[2])]  = lastwornunderwear[iif($ARGS[1]      =...
-    // TODO-QSP: $lastwornbratype[iif($ARGS[2]    = '', ARGS[2], $ARGS[2])]  = $lastwornbratype[iif($ARGS[1]        =...
-    // TODO-QSP: lastwornbranumber[iif($ARGS[2]    = '', ARGS[2], $ARGS[2])]  = lastwornbranumber[iif($ARGS[1]      =...
+    ((s as any).lastwornunderwear = (s as any).lastwornunderwear ?? {})[((String((s as any).locArgs?.[2] ?? '')    === '') ? (((s as any).locArgs?.[2] ?? 0)) : (((s as any).locArgs?.[2] ?? 0)))] = (((s as any).lastwornunderwear ?? 0)?.[((String((s as any).locArgs?.[1] ?? '')      === '') ? (((s as any).locArgs?.[1] ?? 0)) : (((s as any).locArgs?.[1] ?? 0)))] ?? 0);
+    ((s as any).lastwornbratype = (s as any).lastwornbratype ?? {})[((String((s as any).locArgs?.[2] ?? '')    === '') ? (((s as any).locArgs?.[2] ?? 0)) : (((s as any).locArgs?.[2] ?? 0)))] = (((s as any).lastwornbratype ?? 0)?.[((String((s as any).locArgs?.[1] ?? '')        === '') ? (((s as any).locArgs?.[1] ?? 0)) : (((s as any).locArgs?.[1] ?? 0)))] ?? 0);
+    ((s as any).lastwornbranumber = (s as any).lastwornbranumber ?? {})[((String((s as any).locArgs?.[2] ?? '')    === '') ? (((s as any).locArgs?.[2] ?? 0)) : (((s as any).locArgs?.[2] ?? 0)))] = (((s as any).lastwornbranumber ?? 0)?.[((String((s as any).locArgs?.[1] ?? '')      === '') ? (((s as any).locArgs?.[1] ?? 0)) : (((s as any).locArgs?.[1] ?? 0)))] ?? 0);
   }
   if (((s as any).lastwornshoetype ?? 0)[((s as any).iif ?? 0)(String((s as any).locArgs?.[1] ?? '')    === '', String((s as any).locArgs?.[1] ?? ''), String((s as any).locArgs?.[1] ?? ''))] !== ''  &&  ((s as any).lastwornshoetype ?? 0)[((s as any).iif ?? 0)(String((s as any).locArgs?.[1] ?? '')    === '', String((s as any).locArgs?.[1] ?? ''), String((s as any).locArgs?.[1] ?? ''))] !== 'none') {
-    // TODO-QSP: $lastwornshoetype[iif($ARGS[2]    = '', ARGS[2], $ARGS[2])]  = $lastwornshoetype[iif($ARGS[1]      =...
-    // TODO-QSP: lastwornshoenumber[iif($ARGS[2]    = '', ARGS[2], $ARGS[2])]  = lastwornshoenumber[iif($ARGS[1]     ...
+    ((s as any).lastwornshoetype = (s as any).lastwornshoetype ?? {})[((String((s as any).locArgs?.[2] ?? '')    === '') ? (((s as any).locArgs?.[2] ?? 0)) : (((s as any).locArgs?.[2] ?? 0)))] = (((s as any).lastwornshoetype ?? 0)?.[((String((s as any).locArgs?.[1] ?? '')      === '') ? (((s as any).locArgs?.[1] ?? 0)) : (((s as any).locArgs?.[1] ?? 0)))] ?? 0);
+    ((s as any).lastwornshoenumber = (s as any).lastwornshoenumber ?? {})[((String((s as any).locArgs?.[2] ?? '')    === '') ? (((s as any).locArgs?.[2] ?? 0)) : (((s as any).locArgs?.[2] ?? 0)))] = (((s as any).lastwornshoenumber ?? 0)?.[((String((s as any).locArgs?.[1] ?? '')      === '') ? (((s as any).locArgs?.[1] ?? 0)) : (((s as any).locArgs?.[1] ?? 0)))] ?? 0);
   }
   if (((s as any).lastwornpursetype ?? 0)[((s as any).iif ?? 0)(String((s as any).locArgs?.[1] ?? '')    === '', String((s as any).locArgs?.[1] ?? ''), String((s as any).locArgs?.[1] ?? ''))] !== ''  &&  ((s as any).lastwornpursetype ?? 0)[((s as any).iif ?? 0)(String((s as any).locArgs?.[1] ?? '')    === '', String((s as any).locArgs?.[1] ?? ''), String((s as any).locArgs?.[1] ?? ''))] !== 'none') {
-    // TODO-QSP: $lastwornpursetype[iif($ARGS[2]    = '', ARGS[2], $ARGS[2])]  = $lastwornpursetype[iif($ARGS[1]    =...
-    // TODO-QSP: lastwornpursenumber[iif($ARGS[2]  = '', ARGS[2], $ARGS[2])]  = lastwornpursenumber[iif($ARGS[1]    =...
+    ((s as any).lastwornpursetype = (s as any).lastwornpursetype ?? {})[((String((s as any).locArgs?.[2] ?? '')    === '') ? (((s as any).locArgs?.[2] ?? 0)) : (((s as any).locArgs?.[2] ?? 0)))] = (((s as any).lastwornpursetype ?? 0)?.[((String((s as any).locArgs?.[1] ?? '')    === '') ? (((s as any).locArgs?.[1] ?? 0)) : (((s as any).locArgs?.[1] ?? 0)))] ?? 0);
+    ((s as any).lastwornpursenumber = (s as any).lastwornpursenumber ?? {})[((String((s as any).locArgs?.[2] ?? '')  === '') ? (((s as any).locArgs?.[2] ?? 0)) : (((s as any).locArgs?.[2] ?? 0)))] = (((s as any).lastwornpursenumber ?? 0)?.[((String((s as any).locArgs?.[1] ?? '')    === '') ? (((s as any).locArgs?.[1] ?? 0)) : (((s as any).locArgs?.[1] ?? 0)))] ?? 0);
   }
   if (((s as any).lastworncoattype ?? 0)[((s as any).iif ?? 0)(String((s as any).locArgs?.[1] ?? '')    === '', String((s as any).locArgs?.[1] ?? ''), String((s as any).locArgs?.[1] ?? ''))] !== ''  &&  ((s as any).lastworncoattype ?? 0)[((s as any).iif ?? 0)(String((s as any).locArgs?.[1] ?? '')    === '', String((s as any).locArgs?.[1] ?? ''), String((s as any).locArgs?.[1] ?? ''))] !== 'none') {
-    // TODO-QSP: $lastworncoattype[iif($ARGS[2]    = '', ARGS[2], $ARGS[2])]  = $lastworncoattype[iif($ARGS[1]    = '...
-    // TODO-QSP: lastworncoatnumber[iif($ARGS[2]    = '', ARGS[2], $ARGS[2])]  = lastworncoatnumber[iif($ARGS[1]    =...
+    ((s as any).lastworncoattype = (s as any).lastworncoattype ?? {})[((String((s as any).locArgs?.[2] ?? '')    === '') ? (((s as any).locArgs?.[2] ?? 0)) : (((s as any).locArgs?.[2] ?? 0)))] = (((s as any).lastworncoattype ?? 0)?.[((String((s as any).locArgs?.[1] ?? '')    === '') ? (((s as any).locArgs?.[1] ?? 0)) : (((s as any).locArgs?.[1] ?? 0)))] ?? 0);
+    ((s as any).lastworncoatnumber = (s as any).lastworncoatnumber ?? {})[((String((s as any).locArgs?.[2] ?? '')    === '') ? (((s as any).locArgs?.[2] ?? 0)) : (((s as any).locArgs?.[2] ?? 0)))] = (((s as any).lastworncoatnumber ?? 0)?.[((String((s as any).locArgs?.[1] ?? '')    === '') ? (((s as any).locArgs?.[1] ?? 0)) : (((s as any).locArgs?.[1] ?? 0)))] ?? 0);
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -376,7 +366,6 @@ function enterRemoveBackup(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'array', 'remove_element', 'lastworncoatnumber', ((s as any).locArgs?.[1] ?? 0));
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -405,7 +394,6 @@ function enterRestore(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'coats', 'wear', (((s as any).lastworncoattype ?? 0)?.[((s as any).locArgs?.[1] ?? 0)] ?? 0), (((s as any).lastworncoatnumber ?? 0)?.[((s as any).locArgs?.[1] ?? 0)] ?? 0));
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -417,7 +405,6 @@ function enterStripAll(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'coats', 'strip');
   qspCall(s, 'purses', 'strip');
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -428,7 +415,6 @@ function enterWearLastWorn(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'coats', 'wear', 'last_worn');
   qspCall(s, 'purses', 'wear', 'last_worn');
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -438,7 +424,6 @@ function enterRecoverLostOutfit(s: GameState, scene: SceneBuilder): void {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0)]; enterRestore(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -449,6 +434,7 @@ function enterGetHourlyMoodBonus(s: GameState, scene: SceneBuilder): void {
   } else {
     (s as any).tempDirt = (((s as any).PCloDirt ?? 0) + ((s as any).PBraDirt ?? 0) + ((s as any).PPanDirt ?? 0)) / 3;
     (s as any).result = ((s as any).result ?? 0) + (Math.min(Math.max((-5), 5 * (1440 - ((s as any).tempDirt ?? 0)) / 960), 5));
+    (s as any).tempDirt = undefined;
   }
   if (((s as any).pcs_mood ?? 0) < 60  &&  ((s as any).pantyworntype ?? 0) === 'cats') {
     (s as any).result = ((s as any).result ?? 0) + (2);
@@ -457,7 +443,6 @@ function enterGetHourlyMoodBonus(s: GameState, scene: SceneBuilder): void {
     (s as any).result = ((s as any).result ?? 0) + (2);
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -486,8 +471,10 @@ function enterCalcClothingBonus(s: GameState, scene: SceneBuilder): void {
     (s as any).tempDirt = Math.min(Math.max(-((s as any).CleanBonus ?? 0), ((s as any).CleanBonus ?? 0) * (1440 - ((s as any).PCloDirt ?? 0)) / 960), ((s as any).CleanBonus ?? 0));
   }
   (s as any).result = ((s as any).PCloQuality ?? 0) * ((s as any).tempRevealing ?? 0) / 76 + ((s as any).tempDirt ?? 0);
+  (s as any).tempRevealing = undefined;
+  (s as any).tempDirt = undefined;
+  (s as any).CleanBonus = undefined;
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -520,8 +507,9 @@ function enterCalcAccessoriesBonus(s: GameState, scene: SceneBuilder): void {
     }
   }
   (s as any).result = ((s as any).coatQualityBonus ?? 0) + ((s as any).PShoQuality ?? 0) + ((s as any).pantyBonus ?? 0) + ((s as any).braBonus ?? 0);
+  (s as any).pantyBonus = undefined;
+  (s as any).braBonus = undefined;
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -531,7 +519,6 @@ function enterStat(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0)]; enterIncreaseOutfitWear(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0)]; enterHeelStatSkillPain(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -544,13 +531,12 @@ function enterResetImmutables(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'purses', 'reset_immutables');
   qspCall(s, 'coats', 'reset_immutables');
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterIncreaseOutfitDirt(s: GameState, scene: SceneBuilder): void {
   if (((s as any).cheatVars ?? 0)?.['clothes_dirt']) {
-    // TODO-QSP: exit
+    return;
   }
   ((s as any).temp_outfitVars = (s as any).temp_outfitVars ?? {})['time_diff'] = ((s as any).locArgs?.[1] ?? 0);
   if (((s as any).clothingworntype ?? 0) === 'nude'  ||  ((s as any).clothingworntype ?? 0) === '') {
@@ -582,7 +568,7 @@ function enterIncreaseOutfitDirt(s: GameState, scene: SceneBuilder): void {
               ((s as any).temp_outfitVars = (s as any).temp_outfitVars ?? {})['cum_penal'] = ((s as any).temp_outfitVars['cum_penal'] ?? 0) + (((s as any).sparrvol ?? 0)[8] + ((s as any).sparrvol ?? 0)[14]);
             }
             ((s as any).temp_outfitVars = (s as any).temp_outfitVars ?? {})['cum_penal'] = ((s as any).temp_outfitVars['cum_penal'] ?? 0) + (Math.max(0, 6 - Math.max(((s as any).PCloSkirt ?? 0), ((s as any).PCloPants ?? 0))) * ((s as any).sparrvol ?? 0)[9] / 6);
-            // TODO-QSP: temp_outfitVars['cum_penal'] /= 2
+            ((s as any).temp_outfitVars = (s as any).temp_outfitVars ?? {})['cum_penal'] = ((s as any).temp_outfitVars['cum_penal'] ?? 0) / (2);
             ((s as any).temp_outfitVars = (s as any).temp_outfitVars ?? {})['dirty'] = (((s as any).temp_outfitVars ?? {})?.['time_diff'] ?? 0) * Math.min((((s as any).temp_outfitVars ?? {})?.['sweat_penal'] ?? 0) + (((s as any).temp_outfitVars ?? {})?.['cum_penal'] ?? 0), 200) / 100;
             ((s as any).temp_outfitVars = (s as any).temp_outfitVars ?? {})['dirty2'] = (Math.floor(Math.random() * ((((s as any).temp_outfitVars ?? 0)?.['dirty']) - 0 + 1)) + (0));
             if ((!((s as any).PCloBorrowed ?? 0))) {
@@ -691,17 +677,17 @@ function enterIncreaseOutfitDirt(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  (s as any).temp_outfitVars = undefined;
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterIncreaseOutfitWear(s: GameState, scene: SceneBuilder): void {
   if (((s as any).cheatVars ?? 0)?.['clothes_strength']) {
-    // TODO-QSP: exit
+    return;
   }
   if (((s as any).inSleep ?? 0)) {
-    // TODO-QSP: exit
+    return;
   }
   ((s as any).temp_outfitVars = (s as any).temp_outfitVars ?? {})['time_diff'] = ((s as any).locArgs?.[1] ?? 0);
   if (((s as any).shoeworntype ?? 0) === 'none'  ||  ((s as any).shoeworntype ?? 0) === '') {
@@ -716,7 +702,7 @@ function enterIncreaseOutfitWear(s: GameState, scene: SceneBuilder): void {
         if (((s as any).temp_outfitVars ?? 0)?.['time_diff'] > 0) {
           ((s as any).temp_outfitVars = (s as any).temp_outfitVars ?? {})['strength_cost'] = (((s as any).temp_outfitVars ?? 0)?.['time_diff']);
           if (((String(((s as any).location_type ?? 0)).indexOf(String('outdoors'))) + 1)  &&  (!((s as any).SunWearther ?? 0))) {
-            // TODO-QSP: temp_outfitVars['strength_cost'] *= 2
+            ((s as any).temp_outfitVars = (s as any).temp_outfitVars ?? {})['strength_cost'] = ((s as any).temp_outfitVars['strength_cost'] ?? 0) * (2);
           }
           if ((!((s as any).PShoBorrowed ?? 0))) {
             qspCall(s, 'shoes', 'decrease_cur_strength', (((s as any).temp_outfitVars ?? 0)?.['strength_cost']));
@@ -776,9 +762,9 @@ function enterIncreaseOutfitWear(s: GameState, scene: SceneBuilder): void {
             ((s as any).temp_outfitVars = (s as any).temp_outfitVars ?? {})['strength_cost'] = (((s as any).temp_outfitVars ?? 0)?.['time_diff']);
             if (((s as any).temp_outfitVars ?? 0)?.['outer_layer_done'] === 0) {
               ((s as any).temp_outfitVars = (s as any).temp_outfitVars ?? {})['outer_layer_done'] = 1;
-              // TODO-QSP: temp_outfitVars['strength_cost'] *= 2
+              ((s as any).temp_outfitVars = (s as any).temp_outfitVars ?? {})['strength_cost'] = ((s as any).temp_outfitVars['strength_cost'] ?? 0) * (2);
               if (((String(((s as any).location_type ?? 0)).indexOf(String('outdoors'))) + 1)  &&  (!((s as any).SunWearther ?? 0))) {
-                // TODO-QSP: temp_outfitVars['strength_cost'] *= 3
+                ((s as any).temp_outfitVars = (s as any).temp_outfitVars ?? {})['strength_cost'] = ((s as any).temp_outfitVars['strength_cost'] ?? 0) * (3);
               }
             }
             if ((!((s as any).PCloBorrowed ?? 0))) {
@@ -810,9 +796,9 @@ function enterIncreaseOutfitWear(s: GameState, scene: SceneBuilder): void {
           if (((s as any).temp_outfitVars ?? 0)?.['time_diff'] > 0) {
             ((s as any).temp_outfitVars = (s as any).temp_outfitVars ?? {})['strength_cost'] = (((s as any).temp_outfitVars ?? 0)?.['time_diff']);
             if (((s as any).temp_outfitVars ?? 0)?.['outer_layer_done'] === 0) {
-              // TODO-QSP: temp_outfitVars['strength_cost'] *= 3
+              ((s as any).temp_outfitVars = (s as any).temp_outfitVars ?? {})['strength_cost'] = ((s as any).temp_outfitVars['strength_cost'] ?? 0) * (3);
               if (((String(((s as any).location_type ?? 0)).indexOf(String('outdoors'))) + 1)  &&  (!((s as any).SunWearther ?? 0))) {
-                // TODO-QSP: temp_outfitVars['strength_cost'] *= 4
+                ((s as any).temp_outfitVars = (s as any).temp_outfitVars ?? {})['strength_cost'] = ((s as any).temp_outfitVars['strength_cost'] ?? 0) * (4);
               }
             }
             if ((!((s as any).PBraBorrowed ?? 0))) {
@@ -842,9 +828,9 @@ function enterIncreaseOutfitWear(s: GameState, scene: SceneBuilder): void {
           if (((s as any).temp_outfitVars ?? 0)?.['time_diff'] > 0) {
             ((s as any).temp_outfitVars = (s as any).temp_outfitVars ?? {})['strength_cost'] = (((s as any).temp_outfitVars ?? 0)?.['time_diff']);
             if (((s as any).temp_outfitVars ?? 0)?.['outer_layer_done'] === 0) {
-              // TODO-QSP: temp_outfitVars['strength_cost'] *= 3
+              ((s as any).temp_outfitVars = (s as any).temp_outfitVars ?? {})['strength_cost'] = ((s as any).temp_outfitVars['strength_cost'] ?? 0) * (3);
               if (((String(((s as any).location_type ?? 0)).indexOf(String('outdoors'))) + 1)  &&  (!((s as any).SunWearther ?? 0))) {
-                // TODO-QSP: temp_outfitVars['strength_cost'] *= 4
+                ((s as any).temp_outfitVars = (s as any).temp_outfitVars ?? {})['strength_cost'] = ((s as any).temp_outfitVars['strength_cost'] ?? 0) * (4);
               }
             }
             if ((!((s as any).PBraBorrowed ?? 0))) {
@@ -871,9 +857,9 @@ function enterIncreaseOutfitWear(s: GameState, scene: SceneBuilder): void {
           if (((s as any).temp_outfitVars ?? 0)?.['time_diff'] > 0) {
             ((s as any).temp_outfitVars = (s as any).temp_outfitVars ?? {})['strength_cost'] = (((s as any).temp_outfitVars ?? 0)?.['time_diff']);
             if (((s as any).temp_outfitVars ?? 0)?.['outer_layer_done'] === 0) {
-              // TODO-QSP: temp_outfitVars['strength_cost'] *= 3
+              ((s as any).temp_outfitVars = (s as any).temp_outfitVars ?? {})['strength_cost'] = ((s as any).temp_outfitVars['strength_cost'] ?? 0) * (3);
               if (((String(((s as any).location_type ?? 0)).indexOf(String('outdoors'))) + 1)  &&  (!((s as any).SunWearther ?? 0))) {
-                // TODO-QSP: temp_outfitVars['strength_cost'] *= 4
+                ((s as any).temp_outfitVars = (s as any).temp_outfitVars ?? {})['strength_cost'] = ((s as any).temp_outfitVars['strength_cost'] ?? 0) * (4);
               }
             }
             if ((!((s as any).PPanBorrowed ?? 0))) {
@@ -890,7 +876,6 @@ function enterIncreaseOutfitWear(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -899,12 +884,12 @@ function enterHeelStatSkillPain(s: GameState, scene: SceneBuilder): void {
     (s as any).heelsminut = ((s as any).totminut ?? 0);
   }
   if (((s as any).totminut ?? 0) < ((s as any).heelsminut ?? 0) + 30) {
-    // TODO-QSP: exit
+    return;
   }
   ((s as any).temp_outfitVars = (s as any).temp_outfitVars ?? {})['heels_time'] = ((s as any).totminut ?? 0) - ((s as any).heelsminut ?? 0);
   (s as any).heelsminut = ((s as any).totminut ?? 0);
   if (((s as any).inSleep ?? 0) !== 0) {
-    // TODO-QSP: exit
+    return;
   }
   if (((s as any).PShoHeels ?? 0) <= 1) {
     qspCall(s, 'exp_deg', 'heels', (Math.floor(Math.random() * ((((s as any).temp_outfitVars ?? {})?.['heels_time'] ?? 0) / 15 - (((s as any).temp_outfitVars ?? {})?.['heels_time'] ?? 0) / 30 + 1)) + ((((s as any).temp_outfitVars ?? {})?.['heels_time'] ?? 0) / 30)));
@@ -958,8 +943,11 @@ function enterHeelStatSkillPain(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).PShoHeels ?? 0) <= 1  ||  ((s as any).temp_dep_pain ?? 0) === 1) {
+    (s as any).temp_dep_pain = undefined;
+    (s as any).temp_outfitVars = undefined;
     return;
   }
+  (s as any).temp_dep_pain = undefined;
   if (((s as any).trait_vars ?? 0)?.['heel_preference'] < 0  &&  ((s as any).trait_vars ?? 0)?.['heel_preference_daily_limit'] > 0) {
     (s as any).temp_time = Math.min((((s as any).temp_outfitVars ?? 0)?.['heels_time']), (((s as any).trait_vars ?? 0)?.['heel_preference_daily_limit']));
     if (((s as any).pcs_heels ?? 0) < ((s as any).PShoPain ?? 0)?.['severe']) {
@@ -978,6 +966,7 @@ function enterHeelStatSkillPain(s: GameState, scene: SceneBuilder): void {
       }
     }
     ((s as any).trait_vars = (s as any).trait_vars ?? {})['heel_preference_daily_limit'] = Math.max(0, (((s as any).trait_vars ?? {})?.['heel_preference_daily_limit'] ?? 0) - ((s as any).temp_time ?? 0));
+    (s as any).temp_time = undefined;
   }
   if (((s as any).pcs_heels ?? 0) < ((s as any).PShoPain ?? 0)?.['severe']) {
     ((s as any).temp_outfitVars = (s as any).temp_outfitVars ?? {})['heels_time'] = Math.min(Math.max(5, (Math.floor(Math.random() * ((((s as any).temp_outfitVars ?? {})?.['heels_time'] ?? 0) / 10 - (((s as any).temp_outfitVars ?? {})?.['heels_time'] ?? 0) / 20 + 1)) + ((((s as any).temp_outfitVars ?? {})?.['heels_time'] ?? 0) / 20))), 10);
@@ -1016,8 +1005,9 @@ function enterHeelStatSkillPain(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'exp_gain', 'heels', (((s as any).temp_outfitVars ?? 0)?.['heels_time']));
     }
   }
+  (s as any).tmp = undefined;
+  (s as any).heelstime = undefined;
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -2041,17 +2031,17 @@ function enterComputeStatDisplay(s: GameState, scene: SceneBuilder): void {
   if (((s as any).stat_cfg ?? 0)?.['msg_display_mode'] !== 2) {
     ((s as any).temp_outfitVars = (s as any).temp_outfitVars ?? {})['clo_paired'] = '';
     if (((s as any).temp_outfitVars ?? 0)?.['clean_icon'] !== '') {
-      ((s as any).temp_outfitVars = (s as any).temp_outfitVars ?? {})['clo_paired'] = ((s as any).temp_outfitVars['clo_paired'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: msg $stat_texts[/u0027outfit_clean/u0027] */ return s; }); return false;"><img src="images/system/icons/status/clothing/\' + $temp_outfitVars[\'clean_icon\'] + \'.png" title="' + (((s as any).stat_texts ?? 0)?.['outfit_clean']) + '" height="' + (((s as any).stat_cfg ?? 0)?.['menu_icon_height']) + '"></a>');
+      ((s as any).temp_outfitVars = (s as any).temp_outfitVars ?? {})['clo_paired'] = ((s as any).temp_outfitVars['clo_paired'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { alert($stat_texts[\u0027outfit_clean\u0027]); return s; }); return false;"><img src="images/system/icons/status/clothing/\' + $temp_outfitVars[\'clean_icon\'] + \'.png" title="' + (((s as any).stat_texts ?? 0)?.['outfit_clean']) + '" height="' + (((s as any).stat_cfg ?? 0)?.['menu_icon_height']) + '"></a>');
     }
     if (((s as any).temp_outfitVars ?? 0)?.['repair_icon'] !== '') {
-      ((s as any).temp_outfitVars = (s as any).temp_outfitVars ?? {})['clo_paired'] = ((s as any).temp_outfitVars['clo_paired'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: msg $stat_texts[/u0027outfit_repair/u0027] */ return s; }); return false;"><img src="images/system/icons/status/clothing/\' + $temp_outfitVars[\'repair_icon\'] + \'.png" title="' + (((s as any).stat_texts ?? 0)?.['outfit_repair']) + '" height="' + (((s as any).stat_cfg ?? 0)?.['menu_icon_height']) + '"></a>');
+      ((s as any).temp_outfitVars = (s as any).temp_outfitVars ?? {})['clo_paired'] = ((s as any).temp_outfitVars['clo_paired'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { alert($stat_texts[\u0027outfit_repair\u0027]); return s; }); return false;"><img src="images/system/icons/status/clothing/\' + $temp_outfitVars[\'repair_icon\'] + \'.png" title="' + (((s as any).stat_texts ?? 0)?.['outfit_repair']) + '" height="' + (((s as any).stat_cfg ?? 0)?.['menu_icon_height']) + '"></a>');
     }
     if (((s as any).temp_outfitVars ?? 0)?.['clo_paired'] !== '') {
-      // TODO-QSP: $sd_icons_4[] = '<div style="min-width:<<stat_cfg[''menu_icon_height'']>>px;text-align:center;">' + ...
+      (s as any).sd_icons_4 = [...((s as any).sd_icons_4 ?? []), '<div style="min-width:' + (((s as any).stat_cfg ?? 0)?.['menu_icon_height']) + 'px;text-align:center;">\' + $temp_outfitVars[\'clo_paired\'] + \'</div>'];
     }
   }
+  (s as any).temp_outfitVars = undefined;
   return;
-  // TODO-QSP: end
   scene.build();
 }
 

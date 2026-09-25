@@ -16,7 +16,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'themes', 'indoors');
   scene.text('<center><b>Yuri\'s Flat</b></center>');
   scene.img('images/characters/city/peter/peterdoor.jpg');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -24,7 +23,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   } },
     { label: 'Ring the doorbell', handler: (st: GameState) => {
     if (((st as any).hour ?? 0) > 16) {
-      // TODO-QSP: dynamic text: You ring the doorbell, and it doesn''t take long for Yuri to open the door as he...
       scene.text(`You ring the doorbell, and it doesn't take long for Yuri to open the door as he was expecting you, "Come in ${((st as any).pcs_firstname ?? '')} no need to be standing outside."`);
       scene.actions([
 { label: 'Enter apartment', handler: (st: GameState) => {
@@ -68,7 +66,6 @@ function enterQuest(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('You and Yuri walk together to the metro. You get in the car and sit in silence for the length of the trip to the industrial part of the city. Exiting the subway station, Yuri grabs hold of your hand and leads you in the direction of some newly erected buildings. Yuri looks tense as he doesn\'t say one word while you\'re walking either.');
   scene.text('Finally you come to a new nine-story building. Yuri opens the entrance door, and you walk inside. Yuri moves over to the elevator and calls it. It doesn\'t take long before you arrive at his pad.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Enter the apartment', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 30;
@@ -102,7 +99,6 @@ function enterQuest(s: GameState, scene: SceneBuilder): void {
     (st as any).jourySex = 1;
     qspCall(st, 'stat', '');
     scene.img('images/characters/city/yuri/sex/bjdance.jpg');
-    // TODO-QSP: dynamic text: You tease Yuri''s cock a little further with your hands before squatting in fron...
     scene.text(`You tease Yuri's cock a little further with your hands before squatting in front of him, grabbing it by the base and licking it. After a moment, you cup his purple head with your ${(((st as any).pc_desc ?? 0)?.['lips'] ?? '')} lips and start sucking his cock. Your lips slide up and down his rock-hard cock.`);
     scene.text('It doesn\'t take long before Yuri is groaning loudly, looking down at you while you do your best to please him. All of a sudden, he grabs hold of your head and says, "Let\'s move to the bedroom."');
     qspCall(st, 'arousal', 'bj', 5, 'sub');

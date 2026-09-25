@@ -159,7 +159,6 @@ function enterGetClass(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -287,7 +286,6 @@ function enterBodyImgTotals(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -427,7 +425,6 @@ function enterBodyImgTransform(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -452,7 +449,6 @@ function enterDefaultSetClassTransform(s: GameState, scene: SceneBuilder): void 
     (s as any).result = ((((s as any).cheatVars ?? {})?.['fix_bi_set'] ?? 0) / 10 % 10) * 100 + ((s as any).result ?? 0) % 100;
   }
   (s as any).result = ((s as any).result ?? 0) + (((s as any).base_result ?? 0));
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -470,48 +466,49 @@ function enterBodyImg(s: GameState, scene: SceneBuilder): void {
   if (((s as any).cheatVars ?? 0)?.['fix_bodyimg'] === 1) {
     if (((s as any).cheatVars ?? 0)?.['fix_bi_set'] < 10) {
       (s as any).result = qspFunc(s, 'body_structure', 'custom_body_img', ((s as any).bs_temp_bs_class ?? 0));
+      (s as any).bs_temp_bs_class = undefined;
       return;
     } else {
       (s as any).bs_temp_bs_class = qspFunc(s, 'body_structure', 'default_set_class_transform', ((s as any).bs_temp_bs_class ?? 0));
     }
   }
   (s as any).result = qspFunc(s, 'body_structure', 'body_img_from_class', ((s as any).bs_temp_bs_class ?? 0));
-  // TODO-QSP: end
+  (s as any).bs_temp_bs_class = undefined;
   scene.build();
 }
 
 function enterBodyImgFromClass(s: GameState, scene: SceneBuilder): void {
   ((s as any).ARGS = (s as any).ARGS ?? {})[1] = qspFunc(s, 'body_structure', 'Body_img_transform', ((s as any).locArgs?.[1] ?? 0));
   (s as any).result = qspFunc(s, 'body_structure', 'body_img_path_from_class', ((s as any).locArgs?.[1] ?? 0));
-  // TODO-QSP: $result += '/'
+  (s as any).result = ((s as any).result ?? 0) + ('/');
   if (String((s as any).locArgs?.[1] ?? '') >= 1000) {
-    // TODO-QSP: $result += '0/'
+    (s as any).result = ((s as any).result ?? 0) + ('0/');
     if (String((s as any).locArgs?.[1] ?? '') === 1000) {
-      // TODO-QSP: $result += '0'
+      (s as any).result = ((s as any).result ?? 0) + ('0');
     } else {
       if (String((s as any).locArgs?.[1] ?? '') === 2000) {
-        // TODO-QSP: $result += '1'
+        (s as any).result = ((s as any).result ?? 0) + ('1');
       } else {
         if (String((s as any).locArgs?.[1] ?? '') === 3000) {
-          // TODO-QSP: $result += '2'
+          (s as any).result = ((s as any).result ?? 0) + ('2');
         } else {
           if (String((s as any).locArgs?.[1] ?? '') === 4000) {
-            // TODO-QSP: $result += '3'
+            (s as any).result = ((s as any).result ?? 0) + ('3');
           } else {
             if (String((s as any).locArgs?.[1] ?? '') === 5000) {
-              // TODO-QSP: $result += '4'
+              (s as any).result = ((s as any).result ?? 0) + ('4');
             } else {
               if (String((s as any).locArgs?.[1] ?? '') === 6000) {
-                // TODO-QSP: $result += '5'
+                (s as any).result = ((s as any).result ?? 0) + ('5');
               } else {
                 if (String((s as any).locArgs?.[1] ?? '') === 7000) {
-                  // TODO-QSP: $result += '6'
+                  (s as any).result = ((s as any).result ?? 0) + ('6');
                 } else {
                   if (String((s as any).locArgs?.[1] ?? '') === 8000) {
-                    // TODO-QSP: $result += '7'
+                    (s as any).result = ((s as any).result ?? 0) + ('7');
                   } else {
                     if (String((s as any).locArgs?.[1] ?? '') === 9000) {
-                      // TODO-QSP: $result += '8'
+                      (s as any).result = ((s as any).result ?? 0) + ('8');
                     }
                   }
                 }
@@ -521,62 +518,62 @@ function enterBodyImgFromClass(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
-    // TODO-QSP: $result += '.jpg'
+    (s as any).result = ((s as any).result ?? 0) + ('.jpg');
     return;
   }
   ((s as any).ARGS = (s as any).ARGS ?? {})[2] = (((s as any).locArgs?.[1] ?? 0) % 100);
   if (String((s as any).locArgs?.[2] ?? '') === 0) {
-    // TODO-QSP: $result += '0_low_'
+    (s as any).result = ((s as any).result ?? 0) + ('0_low_');
   } else {
     if (String((s as any).locArgs?.[2] ?? '') === 1) {
-      // TODO-QSP: $result += '1_???_'
+      (s as any).result = ((s as any).result ?? 0) + ('1_???_');
     } else {
       if (String((s as any).locArgs?.[2] ?? '') === 2) {
-        // TODO-QSP: $result += '2_???_'
+        (s as any).result = ((s as any).result ?? 0) + ('2_???_');
       } else {
         if (String((s as any).locArgs?.[2] ?? '') === 3) {
-          // TODO-QSP: $result += '3_???_'
+          (s as any).result = ((s as any).result ?? 0) + ('3_???_');
         } else {
           if (String((s as any).locArgs?.[2] ?? '') === 4) {
-            // TODO-QSP: $result += '4_???_'
+            (s as any).result = ((s as any).result ?? 0) + ('4_???_');
           } else {
             if (String((s as any).locArgs?.[2] ?? '') === 5) {
-              // TODO-QSP: $result += '5_???_'
+              (s as any).result = ((s as any).result ?? 0) + ('5_???_');
             } else {
               if (String((s as any).locArgs?.[2] ?? '') === 6) {
-                // TODO-QSP: $result += '6_mid_'
+                (s as any).result = ((s as any).result ?? 0) + ('6_mid_');
               } else {
                 if (String((s as any).locArgs?.[2] ?? '') === 7) {
-                  // TODO-QSP: $result += '7_high_'
+                  (s as any).result = ((s as any).result ?? 0) + ('7_high_');
                 } else {
                   if (String((s as any).locArgs?.[2] ?? '') === 8) {
-                    // TODO-QSP: $result += '8_strong_'
+                    (s as any).result = ((s as any).result ?? 0) + ('8_strong_');
                   } else {
                     if (String((s as any).locArgs?.[2] ?? '') === 9) {
-                      // TODO-QSP: $result += '9_???_'
+                      (s as any).result = ((s as any).result ?? 0) + ('9_???_');
                     } else {
                       if (String((s as any).locArgs?.[2] ?? '') === 10) {
-                        // TODO-QSP: $result += '10_vstrong_'
+                        (s as any).result = ((s as any).result ?? 0) + ('10_vstrong_');
                       } else {
                         if (String((s as any).locArgs?.[2] ?? '') === 11) {
-                          // TODO-QSP: $result += '11_???_'
+                          (s as any).result = ((s as any).result ?? 0) + ('11_???_');
                         } else {
                           if (String((s as any).locArgs?.[2] ?? '') === 12) {
-                            // TODO-QSP: $result += '12_???_'
+                            (s as any).result = ((s as any).result ?? 0) + ('12_???_');
                           } else {
                             if (String((s as any).locArgs?.[2] ?? '') === 13) {
-                              // TODO-QSP: $result += '13_bbuilder_'
+                              (s as any).result = ((s as any).result ?? 0) + ('13_bbuilder_');
                             } else {
                               if (String((s as any).locArgs?.[2] ?? '') === 14) {
-                                // TODO-QSP: $result += '14_???_'
+                                (s as any).result = ((s as any).result ?? 0) + ('14_???_');
                               } else {
                                 if (String((s as any).locArgs?.[2] ?? '') === 15) {
-                                  // TODO-QSP: $result += '15_hulk_'
+                                  (s as any).result = ((s as any).result ?? 0) + ('15_hulk_');
                                 } else {
                                   if (String((s as any).locArgs?.[2] ?? '') === 16) {
-                                    // TODO-QSP: $result += '16_???_'
+                                    (s as any).result = ((s as any).result ?? 0) + ('16_???_');
                                   } else {
-                                    // TODO-QSP: $result += '17_???_'
+                                    (s as any).result = ((s as any).result ?? 0) + ('17_???_');
                                   }
                                 }
                               }
@@ -608,41 +605,41 @@ function enterBodyImgFromClass(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: $result += '<<temp_img_chosen>>.jpg'
-  // TODO-QSP: end
+  (s as any).result = ((s as any).result ?? 0) + ('' + ((s as any).temp_img_chosen ?? 0) + '.jpg');
+  (s as any).temp_img_totals = undefined;
   scene.build();
 }
 
 function enterBodyImgPathFromClass(s: GameState, scene: SceneBuilder): void {
   (s as any).result = ((s as any).DEFAULT_PATH ?? 0) + '/';
   if (String((s as any).locArgs?.[1] ?? '') < 100) {
-    // TODO-QSP: $result += '0_starving'
+    (s as any).result = ((s as any).result ?? 0) + ('0_starving');
   } else {
     if (String((s as any).locArgs?.[1] ?? '') < 200) {
-      // TODO-QSP: $result += '1_underweight'
+      (s as any).result = ((s as any).result ?? 0) + ('1_underweight');
     } else {
       if (String((s as any).locArgs?.[1] ?? '') < 300) {
-        // TODO-QSP: $result += '2_slender'
+        (s as any).result = ((s as any).result ?? 0) + ('2_slender');
       } else {
         if (String((s as any).locArgs?.[1] ?? '') < 400) {
-          // TODO-QSP: $result += '3_healthy'
+          (s as any).result = ((s as any).result ?? 0) + ('3_healthy');
         } else {
           if (String((s as any).locArgs?.[1] ?? '') < 500) {
-            // TODO-QSP: $result += '4_overweight'
+            (s as any).result = ((s as any).result ?? 0) + ('4_overweight');
           } else {
             if (String((s as any).locArgs?.[1] ?? '') < 600) {
-              // TODO-QSP: $result += '5_modobese'
+              (s as any).result = ((s as any).result ?? 0) + ('5_modobese');
             } else {
               if (String((s as any).locArgs?.[1] ?? '') < 700) {
-                // TODO-QSP: $result += '6_sevobese'
+                (s as any).result = ((s as any).result ?? 0) + ('6_sevobese');
               } else {
                 if (String((s as any).locArgs?.[1] ?? '') < 800) {
-                  // TODO-QSP: $result += '7_vsevobese'
+                  (s as any).result = ((s as any).result ?? 0) + ('7_vsevobese');
                 } else {
                   if (String((s as any).locArgs?.[1] ?? '') < 1000) {
-                    // TODO-QSP: $result += '8_morobese'
+                    (s as any).result = ((s as any).result ?? 0) + ('8_morobese');
                   } else {
-                    // TODO-QSP: $result += 'preg'
+                    (s as any).result = ((s as any).result ?? 0) + ('preg');
                   }
                 }
               }
@@ -652,7 +649,6 @@ function enterBodyImgPathFromClass(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -670,21 +666,24 @@ function enterCustomBodyImg(s: GameState, scene: SceneBuilder): void {
     (s as any).cbi_class = (String(10000+((s as any).locArgs?.[1] ?? 0)).slice((2)-1));
     // TODO-QSP: bs_imgnum = rand(0, cheatVars['fix_biset_<<cheatVars[''fix_bi_set'']>>_imgnums_<<$cbi_class>>']-1)
     (s as any).temp_img_name = (((s as any).cheatVars ?? 0)?.['fix_biset_' + (((s as any).cheatVars ?? 0)?.['fix_bi_set']) + '_img_' + ((s as any).cbi_class ?? 0) + '_' + ((s as any).bs_imgnum ?? 0) + ''] ?? 0);
+    (s as any).bs_imgnum = undefined;
     (s as any).temp_base_folder = qspUntranslated(s, "cheatVars['fix_biset_<<cheatVars['fix_bi_set']>>_path']", { location: "body_structure" });
     if (((s as any).temp_base_folder ?? 0) === '') {
       (s as any).temp_base_folder = ((s as any).DEFAULT_PATH ?? 0);
     }
     // TODO-QSP: $temp_base_folder += '/' + $cheatVars['fix_biset_<<cheatVars[''fix_bi_set'']>>_folder']
     if (((s as any).cheatVars ?? 0)['fix_biset_' + (((s as any).cheatVars ?? 0)?.['fix_bi_set']) + '_path_' + (((s as any).cbi_class ?? 0))] !== '') {
-      // TODO-QSP: $temp_base_folder += '/' + $cheatVars['fix_biset_<<cheatVars[''fix_bi_set'']>>_path_<<$cbi_class>>']
+      (s as any).temp_base_folder = ((s as any).temp_base_folder ?? 0) + ('/' + (((s as any).cheatVars ?? 0)?.['fix_biset_' + (((s as any).cheatVars ?? 0)?.['fix_bi_set']) + '_path_' + ((s as any).cbi_class ?? 0) + ''] ?? 0));
     }
+    (s as any).cbi_class = undefined;
   }
   if (((s as any).temp_img_name ?? 0) === '') {
     (s as any).result = qspFunc(s, 'body_structure', 'cs_get_default_img', ((s as any).locArgs?.[1] ?? 0));
   } else {
     (s as any).result = '' + ((s as any).temp_base_folder ?? 0) + '/' + ((s as any).temp_img_name ?? 0) + '.jpg';
   }
-  // TODO-QSP: end
+  (s as any).temp_base_folder = undefined;
+  (s as any).temp_img_name = undefined;
   scene.build();
 }
 
@@ -702,13 +701,14 @@ function enterBodyDesc(s: GameState, scene: SceneBuilder): void {
   if (((s as any).cheatVars ?? 0)?.['fix_bodyimg'] === 1) {
     if (((s as any).cheatVars ?? 0)?.['fix_bi_set'] < 10) {
       (s as any).result = qspFunc(s, 'body_structure', 'custom_body_desc', ((s as any).bs_temp_bs_class ?? 0));
+      (s as any).bs_temp_bs_class = undefined;
       return;
     } else {
       (s as any).bs_temp_bs_class = qspFunc(s, 'body_structure', 'default_set_class_transform', ((s as any).bs_temp_bs_class ?? 0));
     }
   }
   (s as any).result = qspFunc(s, 'body_structure', 'body_desc_from_class', ((s as any).bs_temp_bs_class ?? 0));
-  // TODO-QSP: end
+  (s as any).bs_temp_bs_class = undefined;
   scene.build();
 }
 
@@ -814,7 +814,6 @@ function enterBodyDescFromClass(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -833,7 +832,7 @@ function enterCustomBodyDesc(s: GameState, scene: SceneBuilder): void {
     (s as any).temp_bs_body_desc = qspFunc(s, 'body_structure', 'cs_get_default_desc', ((s as any).locArgs?.[1] ?? 0));
   }
   (s as any).result = ((s as any).temp_bs_body_desc ?? 0);
-  // TODO-QSP: end
+  (s as any).temp_bs_body_desc = undefined;
   scene.build();
 }
 
@@ -843,7 +842,7 @@ function enterBmiDesc(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).bs_temp_bs_class = qspFunc(s, 'body_structure', 'get_class', ((s as any).locArgs?.[1] ?? 0), 30, 0);
   (s as any).result = qspFunc(s, 'body_structure', 'bmi_desc_from_class', ((s as any).bs_temp_bs_class ?? 0));
-  // TODO-QSP: end
+  (s as any).bs_temp_bs_class = undefined;
   scene.build();
 }
 
@@ -881,7 +880,6 @@ function enterBmiDescFromClass(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -894,7 +892,7 @@ function enterAppearanceBonus(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).bs_temp_bs_class = qspFunc(s, 'body_structure', 'get_class', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0), 0);
   (s as any).result = qspFunc(s, 'body_structure', 'appearance_bonus_from_class', ((s as any).bs_temp_bs_class ?? 0));
-  // TODO-QSP: end
+  (s as any).bs_temp_bs_class = undefined;
   scene.build();
 }
 
@@ -1003,25 +1001,23 @@ function enterAppearanceBonusFromClass(s: GameState, scene: SceneBuilder): void 
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterCsGetDefaultImg(s: GameState, scene: SceneBuilder): void {
   if (((s as any).cheatVars ?? 0)['fix_biset_' + (((s as any).cheatVars ?? 0)?.['fix_bi_set']) + '_advanced'] === 0) {
-    // TODO-QSP: ARGS[1] *= 100
+    ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).ARGS[1] ?? 0) * (100);
   }
   (s as any).result = qspFunc(s, 'body_structure', 'body_img_from_class', ((s as any).locArgs?.[1] ?? 0));
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterCsGetDefaultDesc(s: GameState, scene: SceneBuilder): void {
   if (((s as any).cheatVars ?? 0)['fix_biset_' + (((s as any).cheatVars ?? 0)?.['fix_bi_set']) + '_advanced'] === 0) {
-    // TODO-QSP: ARGS[1] *= 100
+    ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).ARGS[1] ?? 0) * (100);
   }
   (s as any).result = qspFunc(s, 'body_structure', 'body_desc_from_class', ((s as any).locArgs?.[1] ?? 0));
-  // TODO-QSP: end
+  (s as any).DEFAULT_PATH = undefined;
   scene.build();
 }
 

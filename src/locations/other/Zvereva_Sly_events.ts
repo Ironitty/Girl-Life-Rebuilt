@@ -14,7 +14,6 @@ function enterSlyHouseIntro_1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/shared/headshots_main/big248.jpg');
   scene.text('Wandering through Christina\'s house, you hear the TV going in the living room. Knowing Christina isn\'t in there, you realize it must be the infamous Sly.');
-  // TODO-QSP: dynamic text: 'You walk into the room, see a fairly cute boy sitting on the couch watching TV,...
   scene.text('You walk into the room, see a fairly cute boy sitting on the couch watching TV, and decide to make an impression. ' + ((((s as any).christinaQW ?? 0)?.['fight'] === -1) ? ('You walk to a point in between him and the TV, with your hands on your hips, and stare him down.') : ('You walk over to him with your head bowed, making sure not to block the TV, and wait for him to address you.')) + '');
   if (((s as any).christinaQW ?? 0)?.['fight'] === -1) {
     scene.text('He stares at you for a moment, before starting to laugh. "You\'re a fiesty one! My sister must not have broken you yet. That\'s ok, more for me to do. Follow. Now."');
@@ -27,7 +26,6 @@ function enterSlyHouseIntro_1(s: GameState, scene: SceneBuilder): void {
       { label: 'Follow him', goto: ['Zvereva_Sly_events', 'Sly_house_intro_2'] },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -47,7 +45,6 @@ function enterSlyHouseIntro_2(s: GameState, scene: SceneBuilder): void {
       { label: 'Refuse', goto: ['Zvereva_Sly_events', 'first_refuse'] },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Submit', goto: ['Zvereva_Sly_events', 'submit'] },
   ]);
@@ -74,7 +71,6 @@ function enterVirgin(s: GameState, scene: SceneBuilder): void {
     scene.text('"I\'m a virgin, <i>Master</i>."');
     scene.text('"Good, that means you\'re unspoiled. Before today is done, you won\'t be able to say that anymore."');
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Insist', handler: (st: GameState) => {
     ((st as any).slyQW = (st as any).slyQW ?? {})['virgin'] = 2;
@@ -114,7 +110,6 @@ function enterFirstRefuse(s: GameState, scene: SceneBuilder): void {
   scene.text('He simply raises his hand again, making you flinch back. "If you have at least half a brain between those slappable cheeks, I would kneel. Now."');
   qspCall(s, 'pain', '3', 'cheeks', 'slap');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Refuse again', goto: ['Zvereva_Sly_events', 'second_refuse'] },
     { label: 'Sullenly kneel', goto: ['Zvereva_Sly_events', 'submit'] },
@@ -130,7 +125,6 @@ function enterSecondRefuse(s: GameState, scene: SceneBuilder): void {
   scene.text('"That one will leave a mark. Not off to a good start, are you? The next one will be a fist, in a place that won\'t bruise."');
   qspCall(s, 'pain', '9', 'cheeks', 'slap');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Sullenly kneel', goto: ['Zvereva_Sly_events', 'submit'] },
   ]);
@@ -140,7 +134,6 @@ function enterSecondRefuse(s: GameState, scene: SceneBuilder): void {
 function enterSubmit(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/big248.jpg');
   scene.text('On your knees, looking up at him, you see a frown cross his face. "Why are you dressed? Take your clothes off."');
-  // TODO-QSP: dynamic text: 'Standing back up, you '+iif(christinaQW['fight'] = -1, 'angrily', 'slowly and s...
   scene.text('Standing back up, you ' + ((((s as any).christinaQW ?? 0)?.['fight'] === -1) ? ('angrily') : ('slowly and seductively')) + ' remove your clothes before returning to a kneeling position in front of him.');
   scene.text('He pulls of his shirt and drops his pants, revealing his thick 15cm cock. "Let\'s start small. Stroke it, gently."');
   (s as any).pursepantytype = ((s as any).pantyworntype ?? 0);
@@ -164,7 +157,6 @@ function enterSubmit(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -183,7 +175,6 @@ function enterSlyHouseChat(s: GameState, scene: SceneBuilder): void {
           { label: 'Offer virginity', handler: (st: GameState) => {
     ((st as any).slyQW = (st as any).slyQW ?? {})['Sly_sex_daystart'] = ((st as any).daystart ?? 0);
     ((st as any).slyQW = (st as any).slyQW ?? {})['virgin'] = 3;
-    // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/shared/sex/undress/kotov...
     scene.text(`<center><video autoplay loop ${((st as any).set_imgh ?? '')} src="images/shared/sex/undress/kotovpre` + (Math.floor(Math.random() * 4) + 11) + '.mp4"></video></center>');
     if (((st as any).christinaQW ?? 0)?.['fight'] === -1) {
       scene.text('You start stripping your clothes off in front of him. The bored look on his face is quickly replaced by a hungry look.');
@@ -200,7 +191,6 @@ function enterSlyHouseChat(s: GameState, scene: SceneBuilder): void {
           { label: 'Offer virginity (Lie)', handler: (st: GameState) => {
     ((st as any).slyQW = (st as any).slyQW ?? {})['Sly_sex_daystart'] = ((st as any).daystart ?? 0);
     ((st as any).slyQW = (st as any).slyQW ?? {})['virgin'] = 3;
-    // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/shared/sex/undress/kotov...
     scene.text(`<center><video autoplay loop ${((st as any).set_imgh ?? '')} src="images/shared/sex/undress/kotovpre` + (Math.floor(Math.random() * 4) + 11) + '.mp4"></video></center>');
     if (((st as any).christinaQW ?? 0)?.['fight'] === -1) {
       scene.text('You start stripping your clothes off in front of him. The bored look on his face is quickly replaced by a hungry look.');
@@ -217,7 +207,6 @@ function enterSlyHouseChat(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Offer yourself', handler: (st: GameState) => {
     ((st as any).slyQW = (st as any).slyQW ?? {})['Sly_sex_daystart'] = ((st as any).daystart ?? 0);
-    // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/shared/sex/undress/kotov...
     scene.text(`<center><video autoplay loop ${((st as any).set_imgh ?? '')} src="images/shared/sex/undress/kotovpre` + (Math.floor(Math.random() * 4) + 11) + '.mp4"></video></center>');
     if (((st as any).christinaQW ?? 0)?.['fight'] === -1) {
       scene.text('You start stripping your clothes off in front of him. The bored look on his face is quickly replaced by a hungry look.');
@@ -229,7 +218,6 @@ function enterSlyHouseChat(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the room', goto: ['Zvereva_house', 'hallw'] },
   ]);

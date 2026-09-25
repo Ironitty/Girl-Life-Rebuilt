@@ -20,12 +20,11 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/city/katja/bedroom.jpg');
   scene.text('Katja\'s apartment. It\'s mostly just one large room, with a huge bed in it. There\'s a small couch to the side.');
   if (((s as any).hour ?? 0) >= 18  &&  ((s as any).hour ?? 0) < 23) {
-    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027katspalnya/u0027, /u0027kat/u0027); return false;">Kat</a> is sitting on the couch. She\'s watching TV.');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027katspalnya\u0027, \u0027kat\u0027); return false;">Kat</a> is sitting on the couch. She\'s watching TV.');
   }
   if (((s as any).hour ?? 0) >= 23  ||  ((s as any).hour ?? 0) < 6) {
-    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027katspalnya/u0027, /u0027katslip/u0027); return false;">Kat</a> is sound asleep in her huge bed.');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027katspalnya\u0027, \u0027katslip\u0027); return false;">Kat</a> is sound asleep in her huge bed.');
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave Kat\'s apartment', goto: ['city_residential', ''] },
   ]);
@@ -38,14 +37,12 @@ function enterKatslip(s: GameState, scene: SceneBuilder): void {
     qspGoto(s, 'katspalnya', 'katjobs');
   }
   scene.img('images/characters/city/katja/kat.jpg');
-  // TODO-QSP: dynamic text: When you awaken Kat, she rubs her eyes tiredly: "Hey, <<$pcs_nickname>>… what''s...
   scene.text(`When you awaken Kat, she rubs her eyes tiredly: "Hey, ${((s as any).pcs_nickname ?? '')}… what's up?"`);
   if (((s as any).npc_rel ?? 0)?.['A219'] > 50) {
     scene.actions([
       { label: 'Seduce her', goto: ['lezbsex', 'start'] },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Chat with her for a while', goto: ['katspalnya', 'start'] },
   ]);
@@ -58,14 +55,12 @@ function enterKat(s: GameState, scene: SceneBuilder): void {
     qspGoto(s, 'katspalnya', 'katjobs');
   }
   scene.img('images/characters/city/katja/kat.jpg');
-  // TODO-QSP: dynamic text: Kat smiles when she sees you approach and says cheerfully: "<<$pcs_nickname>>, h...
   scene.text(`Kat smiles when she sees you approach and says cheerfully: "${((s as any).pcs_nickname ?? '')}, hi! How's it going? Come, sit with me!"`);
   if (((s as any).npc_rel ?? 0)?.['A219'] > 50) {
     scene.actions([
       { label: 'Seduce her', goto: ['lezbsex', 'start'] },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Make up an excuse and leave', goto: ['katspalnya', 'start'] },
     { label: 'Chat with Kat', handler: (st: GameState) => {
@@ -90,7 +85,6 @@ function enterKatjobs(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 30;
   scene.img('images/characters/city/katja/kat.jpg');
   scene.text('Kat talks about her job for a while, and then suggests: "By the way… if you want, I can put in a good word for you! Maybe you could work at the clinic as well!"');
-  // TODO-QSP: end
   scene.actions([
     { label: '"But I\'m not qualified to work as a nurse!"', handler: (st: GameState) => {
     scene.text('You shrug off the idea at first, saying: "But I\'m not a nurse! I wouldn\'t know what to do!"');

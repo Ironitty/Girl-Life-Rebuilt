@@ -9,11 +9,9 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if (((s as any).KFOnLineReaga ?? 0) > 0) {
     scene.text('Welcome to Vertep World!');
-    // TODO-QSP: dynamic text: 'You can play for <<KFOnLineReaga>> more days, but can extend the duration of yo...
-    scene.text(`You can play for ${((s as any).KFOnLineReaga ?? '')} more days, but can extend the duration of your playtime at any time via online banking (1000₽ for 30 days)`);
+    scene.text(`'You can play for ${((s as any).KFOnLineReaga ?? '')} more days, but can extend the duration of your playtime at any time via online banking (1000₽ for 30 days)'`);
     if (((s as any).KGOLpers ?? 0) > 0) {
       scene.text('You can enter the game with your current character, or delete them.');
-      // TODO-QSP: dynamic text: <<$KGOLname>> - <<KGOLlvl>> <<$KGOLrace>> <<$KGOLklass>>
       scene.text(`${((s as any).KGOLname ?? '')} - ${((s as any).KGOLlvl ?? '')} ${((s as any).KGOLrace ?? '')} ${((s as any).KGOLklass ?? '')}`);
       scene.actions([
         { label: 'Play', goto: ['KGOLgame', ''] },
@@ -27,21 +25,20 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
         { label: 'Create a character', handler: (st: GameState) => {
     (st as any).KGOLname = window.prompt("Enter your character name") ?? '';
     if (((st as any).KGOLname ?? 0) === '') {
-      // TODO-QSP: msg 'Please enter a valid name!'
+      alert('Please enter a valid name!');
       qspGoto(st, 'KGstart', '');
     }
-    // TODO-QSP: dynamic text: Your character''s name is: <<$KGOLname>>
     scene.text(`Your character's name is: ${((st as any).KGOLname ?? '')}`);
     scene.text('Please select a player race:');
     scene.actions([
       { label: 'Human', handler: (st: GameState) => {
-    // TODO-QSP: $KGOLrace = 'Human'
+    (st as any).KGOLrace = 'Human';
   }, goto: ['KGstart', 'KGOLklassvibor'] },
       { label: 'Elf', handler: (st: GameState) => {
-    // TODO-QSP: $KGOLrace = 'Elf'
+    (st as any).KGOLrace = 'Elf';
   }, goto: ['KGstart', 'KGOLklassvibor'] },
       { label: 'Zveroid', handler: (st: GameState) => {
-    // TODO-QSP: $KGOLrace = 'Zveroid'
+    (st as any).KGOLrace = 'Zveroid';
   }, goto: ['KGstart', 'KGOLklassvibor'] },
     ]);
   } },
@@ -63,9 +60,11 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     } else {
       (st as any).KGOLdonat = window.prompt("How many coins do you wish to purchase?") ?? '';
       if (((st as any).KGOLdonat ?? 0) <= 0  ||  qspFunc(s, 'money', 'can_afford', ((st as any).KGOLdonat ?? 0), 'bank') === 0) {
+        alert('Please enter a valid amount!');
       } else {
         qspCall(st, 'money', 'pay', ((st as any).KGOLdonat ?? 0), 'bank');
         (st as any).KGOLmoney = ((st as any).KGOLmoney ?? 0) + (((st as any).KGOLdonat ?? 0));
+        alert('Thank you! ' + ((st as any).KGOLdonat ?? 0) + ' coins have been added to your account.');
       }
       qspGoto(st, 'KGstart', '');
     }
@@ -73,8 +72,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.text('Welcome to Vertep World!');
-    // TODO-QSP: dynamic text: 'To access this game, you must have a valid subscription paid via online banking...
-    scene.text('To access this game, you must have a valid subscription paid via online banking (1000₽ for 30 days)');
+    scene.text('\'To access this game, you must have a valid subscription paid via online banking (1000₽ for 30 days)\'');
     scene.actions([
       { label: 'Pay for access', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 1000, 'bank') === 0) {
@@ -87,7 +85,6 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['komp', 'start'] },
   ]);
@@ -100,13 +97,13 @@ function enterKGOLklassvibor(s: GameState, scene: SceneBuilder): void {
     scene.text('Available Human classes: Warrior, Rogue, Mage');
     scene.actions([
       { label: 'Warrior', handler: (st: GameState) => {
-    // TODO-QSP: $KGOLklass = 'Warrior'
+    (st as any).KGOLklass = 'Warrior';
   }, goto: ['KGstart', 'KGOLklassvibor2'] },
       { label: 'Rogue', handler: (st: GameState) => {
-    // TODO-QSP: $KGOLklass = 'Rogue'
+    (st as any).KGOLklass = 'Rogue';
   }, goto: ['KGstart', 'KGOLklassvibor2'] },
       { label: 'Mage', handler: (st: GameState) => {
-    // TODO-QSP: $KGOLklass = 'Mage'
+    (st as any).KGOLklass = 'Mage';
   }, goto: ['KGstart', 'KGOLklassvibor2'] },
     ]);
   } else {
@@ -114,10 +111,10 @@ function enterKGOLklassvibor(s: GameState, scene: SceneBuilder): void {
       scene.text('Available Elf classes: Priest, Archer');
       scene.actions([
         { label: 'Priest', handler: (st: GameState) => {
-    // TODO-QSP: $KGOLklass = 'Priest'
+    (st as any).KGOLklass = 'Priest';
   }, goto: ['KGstart', 'KGOLklassvibor2'] },
         { label: 'Archer', handler: (st: GameState) => {
-    // TODO-QSP: $KGOLklass = 'Archer'
+    (st as any).KGOLklass = 'Archer';
   }, goto: ['KGstart', 'KGOLklassvibor2'] },
       ]);
     } else {
@@ -125,13 +122,12 @@ function enterKGOLklassvibor(s: GameState, scene: SceneBuilder): void {
         scene.text('Available Zveroid classes: Barbarian');
         scene.actions([
           { label: 'Barbarian', handler: (st: GameState) => {
-    // TODO-QSP: $KGOLklass = 'Barbarian'
+    (st as any).KGOLklass = 'Barbarian';
   }, goto: ['KGstart', 'KGOLklassvibor2'] },
         ]);
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -140,7 +136,6 @@ function enterKGOLklassvibor2(s: GameState, scene: SceneBuilder): void {
   (s as any).KGOLlvl = 1;
   (s as any).KGOLbrona = 0;
   (s as any).KGOLwpower = 0;
-  // TODO-QSP: dynamic text: <<$KGOLname>> <<$KGOLrace>> <<$KGOLklass>> <<KGOLlvl>> level
   scene.text(`${((s as any).KGOLname ?? '')} ${((s as any).KGOLrace ?? '')} ${((s as any).KGOLklass ?? '')} ${((s as any).KGOLlvl ?? '')} level`);
   if (((s as any).KGOLklass ?? 0) === 'Warrior') {
     (s as any).KGOLstren = 30;
@@ -185,7 +180,6 @@ function enterKGOLklassvibor2(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).KGHP = ((s as any).KGOLvital ?? 0) * 10;
   (s as any).KGMana = ((s as any).KGOLintel ?? 0) * 10;
-  // TODO-QSP: end
   scene.actions([
     { label: 'Play', handler: (st: GameState) => {
     (st as any).KGOLpers = 1;

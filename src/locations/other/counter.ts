@@ -15,6 +15,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         (s as any).stat_msg = (String(((s as any).stat_msg ?? 0)).split((((s as any).notification_message ?? 0)?.[0] ?? 0)).join(undefined));
         ((s as any)._n_counter = (s as any)._n_counter ?? {})['shown'] = 0;
       }
+      (s as any).notification_message = undefined;
     }
     ((s as any)._n_counter = (s as any)._n_counter ?? {})['lock'] = 0;
   }

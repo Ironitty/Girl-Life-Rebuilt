@@ -9,7 +9,6 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterRide(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go with the massive man', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 15;
@@ -17,7 +16,6 @@ function enterRide(s: GameState, scene: SceneBuilder): void {
     scene.text('You quickly get dressed and follow the fat man to his car. He guides you to an old Mitsubishi Pajero, and takes place behind the wheel while he invites you to relax in the passenger seat. Once you get in the car, he puts his hand on your knee as he starts the engine.');
     if (((st as any).npc_QW ?? 0)?.['A113'] === 0  &&  (!((st as any).belgangday ?? 0))) {
       scene.text('"My name is Vadim Bely… you can call me Mr. Bely. What\'s your name, girl?"');
-      // TODO-QSP: dynamic text: You''re still a bit intimidated by his presence, and just say your name: "<<$pcs...
       scene.text(`You're still a bit intimidated by his presence, and just say your name: "${((st as any).pcs_nickname ?? '')}."`);
     }
     scene.text('Vadim slides his hand up your leg a little, and gently kneads your thigh as you drive through town, the engine roaring. Within minutes, you approach a five-storey apartment. Vadim parks the car in front of it and says: "Get out and follow me", not waiting for a response.');
@@ -37,7 +35,6 @@ function enterRide(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGo(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: end
   scene.actions([
     { label: 'Try to get away', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -143,7 +140,6 @@ function enterSlap(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Tell him to let go', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -158,7 +154,6 @@ function enterSlap(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev/Strela/vadimbely.jpg');
     scene.text('His hand has your wrist gripped like it\'s in a vice, and you involuntarily shriek in pain: "Ow! Please let me go, you\'re hurting me!"');
     scene.text('Instead of letting go, he twists your arm behind your back, which hurts even more. The fat man doesn\'t look like he pities you at all: "You didn\'t answer my question, whore. Do you think you\'re better than me?"');
-    // TODO-QSP: dynamic text: You''re wincing in pain now, and are at a loss for words. Yes, you do think you'...
     scene.text(`You're wincing in pain now, and are at a loss for words. Yes, you do think you're better than him, but obviously you can't say that. Meanwhile, he digs through your personal items and finds your passport: "${((st as any).pcs_nickname ?? '')} ${((st as any).pcs_lastname ?? '')}, living in Pavlovsk… interesting." He pockets your passport. Then he turns back to you and says in a menacing voice: "You know what, ${((st as any).pcs_nickname ?? '')}… you remind me of this girl I met the other day. Right here, on this same beach. She was being rude to me, not even as much as you are now. I think I broke her hand by accident."`);
     scene.actions([
       { label: 'Try to placate him', handler: (st: GameState) => {
@@ -186,11 +181,8 @@ function enterSlap(s: GameState, scene: SceneBuilder): void {
     }
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev/Strela/vadimbely.jpg');
     scene.text('You\'ve given up trying to be tough a while ago, and by now you are crying your eyes out. Thick tears roll down your cheeks as you beg him: "Please sir, I\'m begging you! I can give you money… please just let me go! Please!"');
-    // TODO-QSP: dynamic text: Still that menacing voice: "Really, <<$pcs_nickname>>? I like money. Let''s see ...
     scene.text(`Still that menacing voice: "Really, ${((st as any).pcs_nickname ?? '')}? I like money. Let's see what you have to offer". He takes your wallet and counts your money, and then nods at the other guy. He pushes your wrist further behind your back, hurting you even more while the fat man pretends to be insulted: "Are you fucking kidding me? Are you seriously offering me this petty change?"`);
-    // TODO-QSP: dynamic text: You don''t know what to say, and just sit there sobbing quietly. He continues: "...
     scene.text(`You don't know what to say, and just sit there sobbing quietly. He continues: "This won't do at all. Your debt to me will be ${qspFunc(s, 'money', 'string_debt', ((st as any).belgangPay ?? ''))}.`);
-    // TODO-QSP: dynamic text: He slaps you in the face, while his friend still has your arm twisted behind you...
     scene.text(`He slaps you in the face, while his friend still has your arm twisted behind your back. "Did you hear me, girl? I said ${qspFunc(s, 'money', 'string_debt', ((st as any).belgangPay ?? ''))}."`);
     scene.actions([
       { label: 'Agree to pay him', handler: (st: GameState) => {
@@ -202,7 +194,6 @@ function enterSlap(s: GameState, scene: SceneBuilder): void {
     (st as any).belgangPayextension = 0;
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev/Strela/vadimbely.jpg');
     scene.text('By now you would do anything just so he would let you go, and you readily agree to his terms. The younger guy lets you go, and you rub your wrist to try and ease the pain in it. The bald man grins, and you notices several golden teeth in his mouth.');
-    // TODO-QSP: dynamic text: "Excellent. I''ll have you know, <<$pcs_nickname>>: if you do not pay me <<$func...
     scene.text(`"Excellent. I'll have you know, ${((st as any).pcs_nickname ?? '')}: if you do not pay me ${qspFunc(s, 'money', 'string_debt_addition', ((st as any).belgangPayWeekAmount ?? ''))} each week until you paid of your debts, you're going to earn them for me one way or the other. I know just the place. For your sake: make sure you bring the money."`);
     if (((st as any).belfirstweek ?? 0) === 1) {
       scene.text('"I expect the first payment by the end of next week. By the way, you can call me Mr. Bely."');
@@ -223,15 +214,11 @@ function enterSlap(s: GameState, scene: SceneBuilder): void {
     }
     qspCall(st, 'belgang', 'update_debt_calendar');
     scene.text(' ');
-    // TODO-QSP: dynamic text: You owe him: <<$func(''money'', ''string_debt'', belgangPay)>>
     scene.text(`You owe him: ${qspFunc(s, 'money', 'string_debt', ((st as any).belgangPay ?? ''))}`);
     if (((st as any).belgangPayWeek ?? 0) >= 0) {
-      // TODO-QSP: dynamic text: This week you need to pay him: <<$func(''money'', ''string_debt'', belgangPayWee...
       scene.text(`This week you need to pay him: ${qspFunc(s, 'money', 'string_debt', ((st as any).belgangPayWeek ?? ''))}`);
     } else {
-      // TODO-QSP: dynamic text: This week you need to pay him: <<$func(''money'', ''format'', 100)>>
       scene.text(`This week you need to pay him: ${qspFunc(s, 'money', 'format', 100)}`);
-      // TODO-QSP: dynamic text: You have reduced your next weeks payment by: <<$func(''money'', ''string_debt_re...
       scene.text(`You have reduced your next weeks payment by: ${qspFunc(s, 'money', 'string_debt_reduction', -1*((st as any).belgangPayWeek ?? ''))}`);
     }
     scene.actions([
@@ -246,7 +233,6 @@ function enterSlap(s: GameState, scene: SceneBuilder): void {
     (st as any).belgangPayextension = 0;
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev/Strela/vadimbely.jpg');
     scene.text('You sob and cry, begging the criminals for mercy: "Please sir, I\'m just a schoolgirl! I can\'t raise that kind of money each week!"');
-    // TODO-QSP: dynamic text: The bald guy looks at you indifferently and yawns: "That''s really not my proble...
     scene.text(`The bald guy looks at you indifferently and yawns: "That's really not my problem, ${((st as any).pcs_nickname ?? '')}. But you know what, I'm a nice guy," he says with a fake smile. "I will reduce it to ${qspFunc(s, 'money', 'string_debt_addition', ((st as any).belgangPayWeekAmount ?? ''))} each week and I'll get you started."`);
     scene.text('He pulls down his trunks, revealing his flaccid cock. His associate grabs you by the hair and pushes your head down towards the fat man\'s groin: "You want some money, bitch? Go ahead… !"');
     scene.actions([
@@ -263,7 +249,6 @@ function enterSlap(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev/Strela/vadimbely.jpg');
     scene.text('You sob and cry, begging the criminals for mercy: "Please sir, I\'m just a schoolgirl! I can\'t raise that kind of money!"');
-    // TODO-QSP: dynamic text: The bald guy looks at you indifferently and yawns: "That''s really not my proble...
     scene.text(`The bald guy looks at you indifferently and yawns: "That's really not my problem, ${((st as any).pcs_nickname ?? '')}. But you know what, I'll get you started."`);
     scene.text('He pulls down his trunks, revealing his flaccid cock. His associate grabs you by the hair and pushes your head down towards the fat man\'s groin: "You want some money, bitch? Go ahead… !"');
     scene.actions([
@@ -293,7 +278,6 @@ function enterSucksasha(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/vadim/sex/beachblow.jpg');
   scene.text('You take his flacid cock in your mouth and begin to suck, slowly feeling it harden inside your mouth. Once you\'ve warmed him up properly, he takes control of you and begins to fuck your throat, while you do your best to suppress your gag reflex. A few minutes later, he shoots his thick ropes of cum deep down your throat, pulling his cock out only to drop the last few gobs onto your tongue. It tastes quite bitter, and you have to force yourself to hide the disgust on your face. When you look over at his accomplice, you see he shot a video of you performing a deepthroating blowjob on your phone. He sends the video to a different number, and then deletes the file from your phone.');
-  // TODO-QSP: dynamic text: The fat man casually pushes you on your back while he gets up. He looks down at ...
   scene.text(`The fat man casually pushes you on your back while he gets up. He looks down at you and indifferently says: "Not bad, whore. You still have a lot to learn but we will work on that. Now listen, that blowjob just took ${qspFunc(s, 'money', 'string_debt_reduction', 100)} off your debt. If you don't pay me ${qspFunc(s, 'money', 'string_debt_addition', ((s as any).belgangPayWeekAmount ?? ''))} each week until you paid of your debts, you're going to earn them for me one way or the other. I know just the place. For your sake: make sure you bring the money."`);
   if (((s as any).belfirstweek ?? 0) === 1) {
     scene.text('"I expect the first payment by the end of next week. By the way, you can call me Mr. Bely."');
@@ -310,20 +294,15 @@ function enterSucksasha(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'money', 'debt_pay', 'belgangPayWeek', 100, 'none');
   qspCall(s, 'belgang', 'update_debt_calendar');
   scene.text(' ');
-  // TODO-QSP: dynamic text: You owe him: <<$func(''money'', ''string_debt'', belgangPay)>>
   scene.text(`You owe him: ${qspFunc(s, 'money', 'string_debt', ((s as any).belgangPay ?? ''))}`);
   if (((s as any).belgangPayWeek ?? 0) >= 0) {
-    // TODO-QSP: dynamic text: This week you need to pay him: <<$func(''money'', ''string_debt'', belgangPayWee...
     scene.text(`This week you need to pay him: ${qspFunc(s, 'money', 'string_debt', ((s as any).belgangPayWeek ?? ''))}`);
   } else {
-    // TODO-QSP: dynamic text: This week you need to pay him: <<$func(''money'', ''format'', 100)>>
     scene.text(`This week you need to pay him: ${qspFunc(s, 'money', 'format', 100)}`);
-    // TODO-QSP: dynamic text: You have reduced your next weeks payment by: <<$func(''money'', ''string_debt_re...
     scene.text(`You have reduced your next weeks payment by: ${qspFunc(s, 'money', 'string_debt_reduction', -1*((s as any).belgangPayWeek ?? ''))}`);
   }
   qspCall(s, 'arousal', 'bj', 15, 'sub', 'deepthroat');
   qspCall(s, 'arousal', 'end');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Move away from them', goto: ['pav_lake', ''] },
   ]);

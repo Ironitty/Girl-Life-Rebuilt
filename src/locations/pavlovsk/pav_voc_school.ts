@@ -11,8 +11,7 @@ function enterCommunityCenter(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Community Center</b></center>');
   if (((s as any).hour ?? 0) >= 9  &&  ((s as any).hour ?? 0) < 20) {
     scene.img('images/locations/pavlovsk/community/dk.jpg');
-    // TODO-QSP: dynamic text: 'From ' + $func('time', 'get_time_string', 20, 0) + ' to ' + $func('time', 'get_...
-    scene.text('From 20:00 to 23:00, the community center hosts a dance. The entrance fee is 25₽.');
+    scene.text('\'From 20:00 to 23:00, the community center hosts a dance. The entrance fee is 25₽.\'');
   } else {
     if (((s as any).hour ?? 0) >= 20  &&  ((s as any).hour ?? 0) <= 23) {
       scene.img('images/locations/pavlovsk/community/dk_night.jpg');
@@ -30,7 +29,6 @@ function enterCommunityCenter(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go back to the train station', goto: ['pav_commercial', ''] },
   ]);
@@ -85,11 +83,9 @@ function enterDisco(s: GameState, scene: SceneBuilder): void {
       if (((st as any).player ?? 0)?.['alcohol'] < 3  &&  ((st as any).pcs_apprnc ?? 0) >= 120) {
         (st as any).temp = (Math.floor(Math.random() * 2) + 1);
         if (((st as any).temp ?? 0) === 1) {
-          // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/locations/pavlovsk/community/disco/dance....
           scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/community/disco/dance.jpg"></center>`);
         }
         if (((st as any).temp ?? 0) === 2) {
-          // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/locations/pavlovsk/community/disco/dance....
           scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/community/disco/dance.jpg"></center>`);
         }
         scene.text('You pose for the amateur photographer, trying to look as attractive as possible.');
@@ -134,7 +130,6 @@ function enterDisco(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('The club is closing. The lights go off, the music fades, and everyone begins to leave.');
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go outside', goto: ['pav_voc_school', 'community_center'] },
   ]);
@@ -156,7 +151,6 @@ function enterReception(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.text('<center><b>Principal\'s Office</b></center>');
     scene.img('images/locations/pavlovsk/altschool/ptu_angdir.jpg');
-    // TODO-QSP: dynamic text: "What a shame, <<$pcs_nickname>>! You are a disgrace to the honorable profession...
     scene.text(`"What a shame, ${((s as any).pcs_nickname ?? '')}! You are a disgrace to the honorable profession of teaching! You have no place in our ranks! Take your documents and leave—you are fired!"`);
     scene.actions([
 { label: 'Next', goto: ['pav_voc_school', 'outside'] },
@@ -218,8 +212,7 @@ function enterReception(s: GameState, scene: SceneBuilder): void {
         qspCall(st, 'stat', '');
         scene.text('<center><b>Personnel Department</b></center>');
         scene.img('images/locations/pavlovsk/altschool/ptu_cadr.jpg');
-        // TODO-QSP: dynamic text: '"Hello!" The Human Resources employee welcomes you. She tells you that they nee...
-        scene.text('"Hello!" The Human Resources employee welcomes you. She tells you that they need a certified teacher. Working days are Monday to Saturday from 14:00 to 16:00. The pay is \'+$func(\'money\', \'string_profit\', 300)+\' per day, plus a room in a hostel. The contract terms state that, since they pay a full salary, there are currently no free meals. There is a strict dress code: business attire is required. Also, it is not recommended for women to wear bright makeup or strong perfume.');
+        scene.text('"Hello!" The Human Resources employee welcomes you. She tells you that they need a certified teacher. Working days are Monday to Saturday from 14:00 to 16:00. The pay is ' + qspFunc(s, 'money', 'string_profit', 300) + ' per day, plus a room in a hostel. The contract terms state that, since they pay a full salary, there are currently no free meals. There is a strict dress code: business attire is required. Also, it is not recommended for women to wear bright makeup or strong perfume.');
         if (((st as any).university ?? 0)?.['diploma'] === 1  ||  ((st as any).university ?? 0)?.['fakediplom'] === 1) {
           scene.actions([
             { label: 'Pass an interview for the job', handler: (st: GameState) => {
@@ -227,7 +220,6 @@ function enterReception(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.text('<center><b>Human Resources Department</b></center>');
     scene.img('images/locations/pavlovsk/altschool/ptu_cadr.jpg');
-    // TODO-QSP: dynamic text: 'After passing the oral interview, you leave a copy of your '+iif(university['di...
     scene.text('After passing the oral interview, you leave a copy of your ' + ((((st as any).university ?? 0)?.['diploma'] > 0) ? ('') : ('forged ')) + 'diploma and other documents with the personnel department, who tell you that you can start working.');
     scene.actions([
       { label: 'Become a teacher', handler: (st: GameState) => {
@@ -255,7 +247,6 @@ function enterReception(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go outside', goto: ['pav_voc_school', 'outside'] },
   ]);
@@ -277,7 +268,6 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.text('<center><b>Principal\'s Office</b></center>');
     scene.img('images/locations/pavlovsk/altschool/ptu_angdir.jpg');
-    // TODO-QSP: dynamic text: "What a shame, <<$pcs_nickname>>! You are a disgrace to the honorable profession...
     scene.text(`"What a shame, ${((s as any).pcs_nickname ?? '')}! You are a disgrace to the honorable profession of teaching! You have no place in our ranks! Take your documents and leave—you are fired!"`);
     scene.actions([
 { label: 'Next', goto: ['pav_voc_school', 'outside'] },
@@ -339,8 +329,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
         qspCall(st, 'stat', '');
         scene.text('<center><b>Personnel Department</b></center>');
         scene.img('images/locations/pavlovsk/altschool/ptu_cadr.jpg');
-        // TODO-QSP: dynamic text: '"Hello!" The Human Resources employee welcomes you. She tells you that they nee...
-        scene.text('"Hello!" The Human Resources employee welcomes you. She tells you that they need a certified teacher. Working days are Monday to Saturday from 14:00 to 16:00. The pay is \'+$func(\'money\', \'string_profit\', 300)+\' per day, plus a room in a hostel. The contract terms state that, since they pay a full salary, there are currently no free meals. There is a strict dress code: business attire is required. Also, it is not recommended for women to wear bright makeup or strong perfume.');
+        scene.text('"Hello!" The Human Resources employee welcomes you. She tells you that they need a certified teacher. Working days are Monday to Saturday from 14:00 to 16:00. The pay is ' + qspFunc(s, 'money', 'string_profit', 300) + ' per day, plus a room in a hostel. The contract terms state that, since they pay a full salary, there are currently no free meals. There is a strict dress code: business attire is required. Also, it is not recommended for women to wear bright makeup or strong perfume.');
         if (((st as any).university ?? 0)?.['diploma'] === 1  ||  ((st as any).university ?? 0)?.['fakediplom'] === 1) {
           scene.actions([
             { label: 'Pass an interview for the job', handler: (st: GameState) => {
@@ -348,7 +337,6 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.text('<center><b>Human Resources Department</b></center>');
     scene.img('images/locations/pavlovsk/altschool/ptu_cadr.jpg');
-    // TODO-QSP: dynamic text: 'After passing the oral interview, you leave a copy of your '+iif(university['di...
     scene.text('After passing the oral interview, you leave a copy of your ' + ((((st as any).university ?? 0)?.['diploma'] > 0) ? ('') : ('forged ')) + 'diploma and other documents with the personnel department, who tell you that you can start working.');
     scene.actions([
       { label: 'Become a teacher', handler: (st: GameState) => {
@@ -376,7 +364,6 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go outside', goto: ['pav_voc_school', 'outside'] },
   ]);
@@ -391,12 +378,11 @@ function enterOutside(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/altschool/lizey.jpg');
   scene.text('On the door hangs a poster: "The Vocational School has been teaching for 11 years in the fields of: (a comprehensive list). We are devoted to the training of future employees of large enterprises. The college creates optimal conditions for personal and professional development of students under a modern curriculum."');
   if (((s as any).job_status ?? 0)?.['pav_voc_school_teacher'] === 'employed') {
-    scene.text('There\'s a <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027pav_voc_school/u0027, /u0027sports_area/u0027); return false;">sports area</a>.');
+    scene.text('There\'s a <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027pav_voc_school\u0027, \u0027sports_area\u0027); return false;">sports area</a>.');
   }
   if (((s as any).job_status ?? 0)?.['pav_voc_school_teacher'] === 'employed'  &&  ((s as any).teacher ?? 0)?.['level'] > 0  &&  ((s as any).teacher ?? 0)?.['level'] < 10) {
     ((s as any).teacher = (s as any).teacher ?? {})['on_notice'] = 1;
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 15;
@@ -429,7 +415,6 @@ function enterSportsArea(s: GameState, scene: SceneBuilder): void {
       { label: 'Disregard', goto: ['pav_voc_school', 'sports_area'] },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Back', goto: ['pav_voc_school', 'outside'] },
   ]);
@@ -452,7 +437,6 @@ function enterFirstFloor(s: GameState, scene: SceneBuilder): void {
       { label: 'Next', goto: ['pav_voc_school', 'first_floor'] },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the hall', goto: ['pav_voc_school', 'reception'] },
     { label: 'Go to the gym', goto: ['pav_voc_school', 'gymnasium'] },
@@ -478,7 +462,6 @@ function enterSecondFloor(s: GameState, scene: SceneBuilder): void {
       { label: 'Next', goto: ['pav_voc_school', 'second_floor'] },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Principal\'s Office', goto: ['pav_voc_school', 'principals_office'] },
     { label: 'Go to the library', goto: ['pav_voc_school', 'library'] },
@@ -515,7 +498,6 @@ function enterThirdFloor(s: GameState, scene: SceneBuilder): void {
       { label: 'Staff room', goto: ['pav_voc_school', 'staff_room'] },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the hall', goto: ['pav_voc_school', 'reception'] },
   ]);
@@ -534,7 +516,7 @@ function enterStaffRoom(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Teachers\' Room</b></center>');
   scene.img('images/locations/pavlovsk/altschool/ptu_tk.jpg');
   scene.text('A place for teachers to relax.');
-  scene.text('On the wall near the front door hangs a <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027start/u0027); return false;">mirror</a>.');
+  scene.text('On the wall near the front door hangs a <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027start\u0027); return false;">mirror</a>.');
   scene.text('In one corner, there is a small old sofa.');
   if (((s as any).hour ?? 0) >= 14  &&  ((s as any).hour ?? 0) <= 15) {
     (s as any).temp = (Math.floor(Math.random() * 100) + 1);
@@ -543,7 +525,6 @@ function enterStaffRoom(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'mood', 'lower', 'small');
       qspCall(s, 'stat', '');
       scene.img('images/locations/pavlovsk/altschool/ptu_angdir.jpg');
-      // TODO-QSP: dynamic text: "<<$pcs_nickname>>, where were you? Do you know what''s happening in your class ...
       scene.text(`"${((s as any).pcs_nickname ?? '')}, where were you? Do you know what's happening in your class right now? I can tell you: there's confusion, students wandering around, and there's even an—pardon the expression—orgy. Go immediately to class, calm everyone down, and teach your lesson through the remaining time as expected of you."`);
       if (((s as any).teacher ?? 0)?.['apology'] === 0) {
         scene.actions([
@@ -569,7 +550,7 @@ function enterStaffRoom(s: GameState, scene: SceneBuilder): void {
     scene.text('You acknowledge your error and promise that it won\'t happen again in the future.');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    // TODO-QSP: teacher['level'] -= 3
+    ((st as any).teacher = (st as any).teacher ?? {})['level'] = (((st as any).teacher = (st as any).teacher ?? {})['level'] ?? 0) - (3);
   }, goto: ['pav_voc_school', 'third_floor'] },
     ]);
   } },
@@ -590,7 +571,6 @@ function enterStaffRoom(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Lie down on the couch (1:00)', handler: (st: GameState) => {
     qspCall(st, 'sleep_simple', '');
@@ -611,7 +591,6 @@ function enterClassroom(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/altschool/ptu_starosta.jpg');
     scene.text('You spot Inna Robski in the classroom—one of the top students in the school. Her eyes light up when she sees you.');
-    // TODO-QSP: dynamic text: "Hello, <<$pcs_nickname>>!" she greets you warmly. "You look absolutely chic tod...
     scene.text(`"Hello, ${((s as any).pcs_nickname ?? '')}!" she greets you warmly. "You look absolutely chic today!"`);
     scene.text('You smile at her enthusiasm. "Thank you, Ina. That\'s very kind of you to say."');
     scene.actions([
@@ -625,7 +604,6 @@ function enterClassroom(s: GameState, scene: SceneBuilder): void {
       scene.img('images/locations/pavlovsk/altschool/cera_nerd2.jpg');
       scene.text('You spot Eugene Isenberg, the Botany and Chemistry teacher, in the hallway. Someone has scribbled something on his nose—likely another prank by the students.');
       scene.text('"Hello, Zhenya!" you call out.');
-      // TODO-QSP: dynamic text: Eugene glances up, his face brightening when he sees you. "Hello, <<$pcs_nicknam...
       scene.text(`Eugene glances up, his face brightening when he sees you. "Hello, ${((s as any).pcs_nickname ?? '')}!" A slight blush spreads across his cheeks as he quickly drops his gaze to the floor.`);
       scene.text('"Zhenya," you say gently, "there\'s something written on your nose." You gesture toward the nearby mirror.');
       scene.text('He looks at his reflection and his face instantly flushes a deep crimson. "This is what happens when I try to joke around with the students," he mumbles, furiously rubbing at his nose. "Thank you for telling me…"');
@@ -646,7 +624,6 @@ function enterClassroom(s: GameState, scene: SceneBuilder): void {
       { label: 'Read the school magazine', goto: ['pav_voc_school', 'school_magazine'] },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go back to the corridor', goto: ['pav_voc_school', 'third_floor'] },
   ]);
@@ -674,12 +651,11 @@ function enterTeachingStart(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Restore order', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
-    // TODO-QSP: teacher['class_state'] = 0
+    ((st as any).teacher = (st as any).teacher ?? {})['class_state'] = 0;
   }, goto: ['pav_voc_school', 'teaching'] },
       ]);
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -706,7 +682,6 @@ function enterTeaching(s: GameState, scene: SceneBuilder): void {
       if (((st as any).temp ?? 0) >= 90) {
         qspCall(st, 'mood', 'lower', 'tiny');
         ((st as any).teacher = (st as any).teacher ?? {})['level'] = ((st as any).teacher['level'] ?? 0) - (2);
-        // TODO-QSP: dynamic text: You hear a barely audible whisper: "Look at that! <<$pcs_nickname>> doesn''t hav...
         scene.text(`You hear a barely audible whisper: "Look at that! ${((st as any).pcs_nickname ?? '')} doesn't have any panties on, and we can see her pussy!"`);
         scene.text('You feel your face begin to burn with shame after what you heard.');
         scene.text('You struggle through the rest of the lesson, your conscience tugging at you, while you try to convey the material to your students.');
@@ -752,7 +727,6 @@ function enterTeaching(s: GameState, scene: SceneBuilder): void {
       if (((st as any).temp ?? 0) >= 90) {
         qspCall(st, 'mood', 'lower', 'tiny');
         ((st as any).teacher = (st as any).teacher ?? {})['level'] = ((st as any).teacher['level'] ?? 0) - (2);
-        // TODO-QSP: dynamic text: You hear a barely audible whisper: "Look at that! <<$pcs_nickname>> doesn''t hav...
         scene.text(`You hear a barely audible whisper: "Look at that! ${((st as any).pcs_nickname ?? '')} doesn't have any panties on, and we can see her pussy!"`);
         scene.text('You feel your face begin to burn with shame after what you heard.');
         scene.text('You struggle through the rest of the lesson, your conscience tugging at you, while you try to convey the material to your students.');
@@ -841,7 +815,6 @@ function enterTeaching(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the classroom', goto: ['pav_voc_school', 'third_floor'] },
   ]);
@@ -853,15 +826,12 @@ function enterPrincipalsOffice(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Principal\'s Office</b></center>');
   scene.img('images/locations/pavlovsk/altschool/ptu_dir.jpg');
   if (((s as any).teacher ?? 0)?.['apology'] === 0) {
-    // TODO-QSP: dynamic text: "Welcome, <<$pcs_nickname>>! I hope you''re enjoying working with us. If you hav...
     scene.text(`"Welcome, ${((s as any).pcs_nickname ?? '')}! I hope you're enjoying working with us. If you have any questions for me, I'm listening."`);
   } else {
     if (((s as any).teacher ?? 0)?.['apology'] === 1) {
-      // TODO-QSP: dynamic text: "Hello again, <<$pcs_nickname>>."
       scene.text(`"Hello again, ${((s as any).pcs_nickname ?? '')}."`);
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the office', goto: ['pav_voc_school', 'second_floor'] },
   ]);
@@ -875,7 +845,6 @@ function enterGymnasium(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Gym</b></center>');
   scene.img('images/locations/pavlovsk/altschool/sportzal.jpg');
   scene.text('Gym for team sports.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the hall', goto: ['pav_voc_school', 'reception'] },
     { label: 'Women\'s Shower', goto: ['pav_voc_school', 'womens_shower'] },
@@ -899,7 +868,6 @@ function enterWomensShower(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.text('<center><b>Women\'s Shower</b></center>');
     scene.img('images/locations/pavlovsk/altschool/ptu_dush.jpg');
-    // TODO-QSP: dynamic text: "Oh! <<$pcs_nickname>>, please leave! We''re not dressed!" Two girls scream whil...
     scene.text(`"Oh! ${((s as any).pcs_nickname ?? '')}, please leave! We're not dressed!" Two girls scream while taking a shower.`);
     scene.actions([
       { label: 'Next', goto: ['pav_voc_school', 'gymnasium'] },
@@ -912,7 +880,6 @@ function enterWomensShower(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('You\'ve run out of shampoo and will have to buy more before you can wash yourself.');
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the gym', goto: ['pav_voc_school', 'gymnasium'] },
   ]);
@@ -926,7 +893,6 @@ function enterMensShower(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Men\'s Shower</b></center>');
   scene.img('images/locations/pavlovsk/altschool/ptu_muz.jpg');
   scene.text('Shower for boys. You shouldn\'t be here. This will negatively affect your reputation.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the gym', goto: ['pav_voc_school', 'gymnasium'] },
   ]);
@@ -953,7 +919,6 @@ function enterMedicalOffice(s: GameState, scene: SceneBuilder): void {
       { label: 'Next', goto: ['pav_voc_school', 'medical_office'] },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'To the corridor (1st Floor)', goto: ['pav_voc_school', 'first_floor'] },
   ]);
@@ -982,7 +947,6 @@ function enterDiningRoom(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Buy lunch', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 100) === 0) {
@@ -1030,7 +994,6 @@ function enterLibrary(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the corridor', goto: ['pav_voc_school', 'second_floor'] },
   ]);
@@ -1080,7 +1043,6 @@ function enterTeachersToilet(s: GameState, scene: SceneBuilder): void {
       { label: 'Next', goto: ['pav_voc_school', 'teachers_toilet'] },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the corridor', goto: ['pav_voc_school', 'second_floor'] },
   ]);
@@ -1099,7 +1061,6 @@ function enterSchoolMagazine(s: GameState, scene: SceneBuilder): void {
     ((st as any).hostel = (st as any).hostel ?? {})['status'] = 7;
     scene.img('images/locations/pavlovsk/altschool/ptu_tech.jpg');
     scene.text('In front of you is Eugene A., the school\'s chemistry teacher.');
-    // TODO-QSP: dynamic text: "<<$pcs_nickname>>, you are always so attractive. You must be very popular with ...
     scene.text(`"${((st as any).pcs_nickname ?? '')}, you are always so attractive. You must be very popular with men."`);
     scene.text('"I think I understand what you\'re asking. You want me to introduce you to someone."');
     scene.text('"Don\'t get me wrong, I\'ll soon be 30 and still unmarried. I can\'t seem to meet anyone. Most men in our backwater town aren\'t interesting."');
@@ -1113,7 +1074,6 @@ function enterSchoolMagazine(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     qspGoto(st, 'pav_voc_school', 'third_floor');
@@ -1127,9 +1087,7 @@ function enterDatingProfile(s: GameState, scene: SceneBuilder): void {
   ((s as any).hostel = (s as any).hostel ?? {})['status'] = 8;
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/altschool/ptu_tech.jpg');
-  // TODO-QSP: dynamic text: "Good afternoon, <<$pcs_nickname>>! As you requested, I tried to take a picture ...
   scene.text(`"Good afternoon, ${((s as any).pcs_nickname ?? '')}! As you requested, I tried to take a picture as erotic as possible. I hope I didn't overdo it. Or maybe I didn't do it right—the photo doesn't seem quite erotic. So please, email me if anything else is needed."`);
-  // TODO-QSP: end
   scene.actions([
     { label: 'See next photo', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;

@@ -23,7 +23,6 @@ function enterSalacious(s: GameState, scene: SceneBuilder): void {
 
 function enterLusso(s: GameState, scene: SceneBuilder): void {
   (s as any).RESULT = 'images/pc/items/lusso/bodysuits/' + ((s as any).locArgs?.[1] ?? 0) + '.jpg';
-  // TODO-QSP: end
   scene.build();
 }
 

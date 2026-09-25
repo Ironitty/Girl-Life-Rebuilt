@@ -7,6 +7,7 @@ import type { SceneBuilder } from '../../core/scene';
 function enter(s: GameState, scene: SceneBuilder): void {
   (s as any).tab_tmp = Math.max(1, parseFloat(((s as any).locArgs?.[1] ?? 0)), ((s as any).locArgs?.[1] ?? 0));
   (s as any).result = qspFunc(s, 'shortgs', 'show_table', ((s as any).locArgs?.[0] ?? 0), ((s as any).tab_tmp ?? 0));
+  (s as any).tab_tmp = undefined;
   scene.build();
 }
 

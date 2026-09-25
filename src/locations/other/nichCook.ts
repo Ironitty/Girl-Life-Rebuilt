@@ -22,13 +22,10 @@ function enterDesc(s: GameState, scene: SceneBuilder): void {
       { label: 'Introduce yourself', handler: (st: GameState) => {
     (st as any).nichKnowsCook = 1;
     if (((st as any).pcs_firstname ?? 0) === ((st as any).pcs_nickname ?? 0)) {
-      // TODO-QSP: dynamic text: "Nice to meet you, Jegor. My name is <<$pcs_nickname>>."
       scene.text(`"Nice to meet you, Jegor. My name is ${((st as any).pcs_nickname ?? '')}."`);
     } else {
-      // TODO-QSP: dynamic text: "Nice to meet you, Jegor. My name is <<$pcs_firstname>>. But you can call me <<$...
       scene.text(`"Nice to meet you, Jegor. My name is ${((st as any).pcs_firstname ?? '')}. But you can call me ${((st as any).pcs_nickname ?? '')}."`);
     }
-    // TODO-QSP: dynamic text: "My pleasure, <<$pcs_nickname>>. I''m glad there is a new maid around here. It g...
     scene.text(`"My pleasure, ${((st as any).pcs_nickname ?? '')}. I'm glad there is a new maid around here. It got a bit boring ever since Katinka left."`);
     scene.text('He turns back to his work. "She was a nice girl. But I guess she and Mistress Gala didn\'t get along too well."');
     scene.text('"But I don\'t think you came here to chat with an old fool, did you? Are you hungry?" He points at the freezer. "You can eat any of the frozen meals. You just have to put it in the microwave or the oven."');
@@ -43,7 +40,6 @@ function enterDesc(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     if ((!((s as any).nichOutfitState ?? 0))) {
-      // TODO-QSP: dynamic text: Jegor is busy preparing some meals. When he notices you he smiles at you. "Nice ...
       scene.text(`Jegor is busy preparing some meals. When he notices you he smiles at you. "Nice to see you, ${((s as any).pcs_nickname ?? '')}. Did you get fired? Or did you just forget to put your uniform on?" He winks at you before continuing his work.`);
     } else {
       scene.text('Jegor is busy preparing some meals. When he notices you he smiles at you before continuing his work.');
@@ -51,7 +47,6 @@ function enterDesc(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Talk', handler: (st: GameState) => {
     scene.text('"Hello Jegor"');
-    // TODO-QSP: dynamic text: "Hey <<$pcs_nickname>>."
     scene.text(`"Hey ${((st as any).pcs_nickname ?? '')}."`);
     scene.actions([
       { label: 'Talk: Nicholas', handler: (st: GameState) => {
@@ -107,7 +102,6 @@ function enterDesc(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 

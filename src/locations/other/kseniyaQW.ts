@@ -24,7 +24,6 @@ function enterEvent1(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('While searching for a place to expose yourself, you catch sight of a woman between some tall stalks of grass in the corner of your eye. Although it is difficult to see her face, you can see her large chest, and she appears to be a pretty looking woman of some kind of Asian descent. When you finally decide to meet her, you discover that she has already disappeared.');
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Finish walk', handler: (st: GameState) => {
     dynamicGoto(st, 'prevLoc', 'prevArg');
@@ -69,7 +68,6 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -87,10 +85,8 @@ function enterEvent2(s: GameState, scene: SceneBuilder): void {
   scene.text('While looking for the flashing woman, you find her kneeling near some tall grass. Without thinking, you walk up to her.');
   scene.text('"Hello" you say.');
   scene.text('This causes her to jump a tad. "Oh, Hi" she says covering her nipples with her hands. "I\'m Ksenya." She stands up and offers a hand. "I\'ve seen you before" she replies. "Flashing people around the park here. It\'s really nice to come across someone who likes to flaunt what they got" she jokes. "Hey, um, I was wondering if you could help me with some pictures…, um." Since she didn\'t ask your name, she is confused.');
-  // TODO-QSP: dynamic text: You realize her mistake and say, "I''m <<$pcs_firstname>>"
   scene.text(`You realize her mistake and say, "I'm ${((s as any).pcs_firstname ?? '')}"`);
   scene.text('"Right, can I ask if you could help me with some pictures?" You see, I want to be a model, and I need some pictures. Can you help?" she asks."');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Sure, why not?', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -146,9 +142,7 @@ function enterEvent3(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>ksenya</b></center>');
   scene.img('images/locations/shared/park/ksenya/ksenya6.jpg');
   scene.text('As you did before you find Ksenya near the edge of the park, exposing herself. She gives you that same look, you just can\'t seem to place.');
-  // TODO-QSP: dynamic text: "Hi, <<$pcs_firstname>>. It''s your turn, are you up for this?"
   scene.text(`"Hi, ${((s as any).pcs_firstname ?? '')}. It's your turn, are you up for this?"`);
-  // TODO-QSP: end
   scene.actions([
     { label: 'No, sorry', handler: (st: GameState) => {
     scene.text('You tell her that you don\'t want to do it now.');
@@ -194,7 +188,6 @@ function enterEvent3_1(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/shared/park/ksenya/strip3.jpg');
   scene.text('You stand up completely naked, with everything but your shoes in the bag.');
   scene.text('"Oh crap, I packed my phone. I meant to give it to you, how are you going to take pictures of me now?" you tell her.');
-  // TODO-QSP: dynamic text: "It''s OK <<$pcs_firstname>>, I can take the pictures on my phone and message th...
   scene.text(`"It's OK ${((s as any).pcs_firstname ?? '')}, I can take the pictures on my phone and message them to you. What's your number?"`);
   scene.text('You give her your phone number and she quickly types the number into her phone, "Cool, firstly that bag is not going to look good in the shot."');
   scene.text('She looks around quickly. "There\'s nowhere safe to stash them, but it\'s OK, I can carry them."');
@@ -202,7 +195,6 @@ function enterEvent3_1(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'arousal', 'flash', (-10));
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Get started', handler: (st: GameState) => {
     qspCall(st, 'exp_gain', 'mdlng', (Math.floor(Math.random() * 3) + 0));
@@ -265,8 +257,7 @@ function enterEvent3_1(s: GameState, scene: SceneBuilder): void {
     scene.text('Ksenya hands you back your clothes and gives you a business card, it\'s for a shop in Old Town. How odd.');
     scene.text('"I know I tricked you there but I find special customers for a very private shop. The address is on the card."');
     scene.text('""You have a lovely body by the way." Ksenya blows you a kiss and leaves. By the time you are dressed she is long gone.');
-    // TODO-QSP: dynamic text: 'You look at the card again, "Simply Salacious" just off Pushkin Okhlopkov Squar...
-    scene.text('You look at the card again, "Simply Salacious" just off Pushkin Okhlopkov Square. Open Mon-Sat, 8:00 - 18:00');
+    scene.text('\'You look at the card again, "Simply Salacious" just off Pushkin Okhlopkov Square. Open Mon-Sat, 8:00 - 18:00\'');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
     dynamicGoto(st, 'prevLoc', 'prevArg');

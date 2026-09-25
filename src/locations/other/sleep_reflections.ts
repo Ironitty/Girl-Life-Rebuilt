@@ -10,26 +10,24 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterEventCheck(s: GameState, scene: SceneBuilder): void {
   if (((s as any).test_var ?? 0) === 1) {
-    // TODO-QSP: $sleep_events_priority[] = 'gs ''sleep_reflections'', ''test_reflection'' '
+    (s as any).sleep_events_priority = [...((s as any).sleep_events_priority ?? []), 'gs \'sleep_reflections\', \'test_reflection\' '];
   }
   if (((s as any).daystart ?? 0) >= ((s as any).anushkaQW ?? 0)?.['sleep_reflection_day'] + 7) {
     if (((s as any).anushkaQW ?? 0)?.['sveta_love'] === 10) {
-      // TODO-QSP: $sleep_events_priority[] = 'gs ''sleep_reflections'', ''anushka_love'' '
+      (s as any).sleep_events_priority = [...((s as any).sleep_events_priority ?? []), 'gs \'sleep_reflections\', \'anushka_love\' '];
     }
   }
   if (((s as any).daystart ?? 0) >= ((s as any).artemQW ?? 0)?.['sleep_reflection_day'] + 7) {
     if (((s as any).artemQW ?? 0)?.['bf'] >= 1  &&  ((s as any).artemQW ?? 0)?.['love'] <= 0) {
-      // TODO-QSP: $sleep_events_priority[] = 'gs ''sleep_reflections'', ''artem_love'' '
+      (s as any).sleep_events_priority = [...((s as any).sleep_events_priority ?? []), 'gs \'sleep_reflections\', \'artem_love\' '];
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterEnd(s: GameState, scene: SceneBuilder): void {
   ((s as any).sleepVars = (s as any).sleepVars ?? {})['sleep_reflection_day'] = ((s as any).daystart ?? 0);
   qspCall(s, 'pre_sleep_events', 'event_end');
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -38,17 +36,15 @@ function enterTestReflection(s: GameState, scene: SceneBuilder): void {
     qspGoto(s, 'sleep_reflections', String((s as any).locArgs?.[0] ?? ''), '1');
   }
   scene.text('This is a test reflection!');
-  // TODO-QSP: dynamic text: <<$pcs_nickname>> is thinking deeply about "TEST_PERSON".
   scene.text(`${((s as any).pcs_nickname ?? '')} is thinking deeply about "TEST_PERSON".`);
   scene.text('Wow, what interesting thoughts!');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Positive', handler: (st: GameState) => {
     (st as any).test_var = 2;
     scene.text('You think positive things about "TEST_PERSON".');
     scene.actions([
       { label: 'Go to sleep', handler: (st: GameState) => {
-    // TODO-QSP: killvar 'test_var'
+    (st as any).test_var = undefined;
     qspCall(st, 'sleep_reflections', '');
   } },
     ]);
@@ -58,13 +54,13 @@ function enterTestReflection(s: GameState, scene: SceneBuilder): void {
     scene.text('You think negative things about "TEST_PERSON".');
     scene.actions([
       { label: 'Go to sleep', handler: (st: GameState) => {
-    // TODO-QSP: killvar 'test_var'
+    (st as any).test_var = undefined;
     qspCall(st, 'sleep_reflections', '');
   } },
     ]);
   } },
     { label: 'Ignore', handler: (st: GameState) => {
-    // TODO-QSP: killvar 'test_var'
+    (st as any).test_var = undefined;
     qspCall(st, 'sleep_reflections', '');
   } },
   ]);
@@ -78,7 +74,6 @@ function enterAnushkaLove(s: GameState, scene: SceneBuilder): void {
   ((s as any).anushkaQW = (s as any).anushkaQW ?? {})['sleep_reflection_day'] = ((s as any).daystart ?? 0);
   scene.img('images/characters/pavlovsk/school/girl/anushka/nush_model/sveta_photographer/set1/pose4.jpg');
   scene.text('As you drift off to sleep, you start thinking about the time you\'ve been spending with Anushka and how you feel around her. She\'s one of your best friends, but something tugs at you that it might be something more… Perhaps you\'re falling in love with her?');
-  // TODO-QSP: end
   scene.actions([
     { label: 'You love her', handler: (st: GameState) => {
     ((st as any).anushkaQW = (st as any).anushkaQW ?? {})['sveta_love'] = ((st as any).anushkaQW['sveta_love'] ?? 0) + (1);
@@ -118,7 +113,6 @@ function enterArtemLove(s: GameState, scene: SceneBuilder): void {
   ((s as any).artemQW = (s as any).artemQW ?? {})['sleep_reflection_day'] = ((s as any).daystart ?? 0);
   scene.img('images/characters/shared/headshots_main/big2.jpg');
   scene.text('As you drift off to sleep, you start thinking about the time you\'ve been spending with Artem and how you agreed to be his girlfriend. You have no doubt that he\'s in love with you, but you\'re not sure how you feel about him. You like and care about him, but do you love him?');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Yes', handler: (st: GameState) => {
     ((st as any).artemQW = (st as any).artemQW ?? {})['love'] = 1;

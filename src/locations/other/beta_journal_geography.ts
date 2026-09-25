@@ -9,7 +9,6 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 function enterInit(s: GameState, scene: SceneBuilder): void {
   (s as any).loc_id = 'beta_journal_geography';
   (s as any).hot_link = ((s as any).loc_id ?? 0);
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -31,27 +30,22 @@ function enterGeoPavlovsk(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterGeoCity(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterGeoPushkin(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterGeoGad(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterGeoVillage(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: end
   scene.build();
 }
 

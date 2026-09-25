@@ -20,10 +20,8 @@ function enterSextalk(s: GameState, scene: SceneBuilder): void {
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBjTalk1(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       if (((s as any).katjaQW ?? 0)?.['knows_BJ'] > 0) {
-        // TODO-QSP: dynamic text: "<<$pcs_nickname>>, tell me, how are you at sucking dick?"
         scene.text(`"${((s as any).pcs_nickname ?? '')}, tell me, how are you at sucking dick?"`);
       } else {
-        // TODO-QSP: dynamic text: "<<$pcs_nickname>>, have you ever given a guy a blowjob?"
         scene.text(`"${((s as any).pcs_nickname ?? '')}, have you ever given a guy a blowjob?"`);
       }
       scene.actions([
@@ -56,10 +54,8 @@ function enterSextalk(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).kattalkrand ?? 0) === 1) {
       if (((s as any).katjaQW ?? 0)?.['knows_sex'] > 0) {
-        // TODO-QSP: dynamic text: "Tell me, <<$pcs_nickname>>. About some of the times you have had sex with a guy...
         scene.text(`"Tell me, ${((s as any).pcs_nickname ?? '')}. About some of the times you have had sex with a guy,"`);
       } else {
-        // TODO-QSP: dynamic text: "<<$pcs_nickname>>, have you ever had sex with a guy?"
         scene.text(`"${((s as any).pcs_nickname ?? '')}, have you ever had sex with a guy?"`);
       }
       if (((s as any).stat ?? 0)?.['vaginal'] > 0) {
@@ -132,10 +128,8 @@ function enterSextalk(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).kattalkrand ?? 0) === 2) {
         if (((s as any).katjaQW ?? 0)?.['knows_anal'] > 0) {
-          // TODO-QSP: dynamic text: "<<$pcs_nickname>>, what''s anal sex like?"
           scene.text(`"${((s as any).pcs_nickname ?? '')}, what's anal sex like?"`);
         } else {
-          // TODO-QSP: dynamic text: "<<$pcs_nickname>>, have you ever had a guy stick it in your ass?"
           scene.text(`"${((s as any).pcs_nickname ?? '')}, have you ever had a guy stick it in your ass?"`);
         }
         if (((s as any).stat ?? 0)?.['anal'] > 0) {
@@ -207,10 +201,8 @@ function enterSextalk(s: GameState, scene: SceneBuilder): void {
       } else {
         if (((s as any).kattalkrand ?? 0) === 3) {
           if (((s as any).katjaQW ?? 0)?.['knows_cuni'] > 0  ||  ((s as any).npc_had_sex ?? 0)?.['A14']) {
-            // TODO-QSP: dynamic text: "<<$pcs_nickname>>, tell me how you lick pussy."
             scene.text(`"${((s as any).pcs_nickname ?? '')}, tell me how you lick pussy."`);
           } else {
-            // TODO-QSP: dynamic text: "<<$pcs_nickname>>, have you gone down on a girl?"
             scene.text(`"${((s as any).pcs_nickname ?? '')}, have you gone down on a girl?"`);
           }
           if (((s as any).stat ?? 0)?.['cuni_give'] > 0) {
@@ -233,12 +225,10 @@ function enterSextalk(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'npcStat', 'A14');
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/katja/sex/school/kuni2.jpg');
-    // TODO-QSP: dynamic text: You''re a little confused at first before you notice her pulling her panties off...
     scene.text(`You're a little confused at first before you notice her pulling her panties off. Once she has them off, she opens her legs wide. "Go on, ${((st as any).pcs_nickname ?? '')}. Show me how you do it, please."`);
     scene.text('You pause, more in surprise than anything, but her glistening wet pussy is enough to convince you. You lean forward place your face between her legs and start licking.');
     scene.text('You suck on her clit and slip your tongue inside her, working her pussy for all you\'re worth. She begins to moan loudly and buck her hips, grinding your face into her crotch. As she gets close to orgasm, she grabs your hair and holds your face against her pussy, rubbing herself against you as much as you\'re licking her, leaving your face coated in her juices.');
     scene.text('Her orgasm hits her hard, leaving her unable to talk as her body spasms. Once her orgasm passes, you lick her clean of all her pussy juices, making sure not to miss a single spot. When you look up at Katja, she has a confident smile on her face. "Well aren\'t you just a good little girl?" She then kisses you deeply before you start to lean back and spread your legs, but she\'s already shaking her head.');
-    // TODO-QSP: dynamic text: "Sorry <<$pcs_nickname>>, maybe next time. We need to finish our homework," she ...
     scene.text(`"Sorry ${((st as any).pcs_nickname ?? '')}, maybe next time. We need to finish our homework," she says sweetly. You pause before nodding in understanding. You watch the new confident look intensify on her face as she smiles and the two of you finish your homework.`);
     qspCall(st, 'arousal', 'cuni_give', 15, 'sub', 'lesbian');
     qspCall(st, 'arousal', 'end');
@@ -350,7 +340,6 @@ function enterSextalk(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'npc_relationship', 'modify', 'A14', 'dislike');
     qspCall(st, 'stat', '');
     scene.text('"I\'m not into girls," you reply.');
-    // TODO-QSP: dynamic text: '"Really?" Katja says in surprise. "Too bad. You''re really missing out on somet...
     scene.text('"Really?" Katja says in surprise. "Too bad. You\'re really missing out on something. Making love to girls is really something. They\'re ' + ((((st as any).katjaQW ?? 0)?.['knows_sex'] +((st as any).katjaQW ?? 0)?.['knows_BJ'] + ((st as any).katjaQW ?? 0)?.['knows_anal'] > 0) ? ('much more tender than boys') : ('so tender')) + '."');
     scene.text('"I really think that you should give it a thought," she continues, seemingly a little disappointed in your response. She then changes the subject.');
     scene.actions([
@@ -392,10 +381,8 @@ function enterSextalk(s: GameState, scene: SceneBuilder): void {
         } else {
           if (((s as any).kattalkrand ?? 0) === 4) {
             if (((s as any).katjaQW ?? 0)?.['knows_masturbation'] > 0) {
-              // TODO-QSP: dynamic text: "Tell me how you masturbate, <<$pcs_nickname>>."
               scene.text(`"Tell me how you masturbate, ${((s as any).pcs_nickname ?? '')}."`);
             } else {
-              // TODO-QSP: dynamic text: "Do you masturbate, <<$pcs_nickname>>?"
               scene.text(`"Do you masturbate, ${((s as any).pcs_nickname ?? '')}?"`);
             }
             if (((s as any).stat ?? 0)?.['mast'] > 0) {
@@ -406,9 +393,7 @@ function enterSextalk(s: GameState, scene: SceneBuilder): void {
     ((st as any).katjaQW = (st as any).katjaQW ?? {})['horny'] = ((st as any).katjaQW['horny'] ?? 0) + (10);
     qspCall(st, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big14.jpg');
-    // TODO-QSP: dynamic text: 'You tell Katja how you '+iif(stat['self_fisting'] = 1, 'once', 'sometimes')+' p...
     scene.text('You tell Katja how you ' + ((((st as any).stat ?? 0)?.['self_fisting'] === 1) ? ('once') : ('sometimes')) + ' put your whole fist into your pussy, and how it felt doing it.');
-    // TODO-QSP: dynamic text: 'Katja looks '+iif(katjaQW['knows_self_fisting'] = 0, 'completely shocked, but',...
     scene.text('Katja looks ' + ((((st as any).katjaQW ?? 0)?.['knows_self_fisting'] === 0) ? ('completely shocked, but') : ('excited, and')) + ' her face turns even redder as she bites her lip.');
     if (((st as any).katjaQW ?? 0)?.['knows_self_fisting'] === 0) {
       ((st as any).katjaQW = (st as any).katjaQW ?? {})['knows_self_fisting'] = 1;
@@ -547,12 +532,10 @@ function enterSextalk(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Refuse to talk about such topics', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
     qspCall(st, 'stat', '');
-    // TODO-QSP: dynamic text: You refuse to talk about such topics with her and she looks down in confusion an...
     scene.text(`You refuse to talk about such topics with her and she looks down in confusion and mumbles. "Sorry, ${((st as any).pcs_nickname ?? '')}. I didn't mean to pry."`);
     scene.actions([
       { label: 'Continue talking', handler: (st: GameState) => {
@@ -576,11 +559,9 @@ function enterSextalk(s: GameState, scene: SceneBuilder): void {
 function enterBjTalk1(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 3;
   if (((s as any).katjaQW ?? 0)?.['knows_BJ'] > 0) {
-    // TODO-QSP: dynamic text: "<<$pcs_nickname>>!" she says, a sparkle in her eye. "Tell me what it''s like to...
     scene.text(`"${((s as any).pcs_nickname ?? '')}!" she says, a sparkle in her eye. "Tell me what it's like to suck dick again."`);
   } else {
     if (((s as any).katjaQW ?? 0)?.['knows_BJ']=== 0) {
-      // TODO-QSP: dynamic text: "<<$pcs_nickname>>, have you ever given a guy a blowjob?"
       scene.text(`"${((s as any).pcs_nickname ?? '')}, have you ever given a guy a blowjob?"`);
     }
   }
@@ -651,12 +632,10 @@ function enterBjTalk1(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterBjTalk2(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: end
   scene.actions([
     { label: 'It tastes funny', handler: (st: GameState) => {
     scene.text('You wrinkle your nose. "It tastes funny. It\'s like, kinda salty? But also sort of… musty? I don\'t think I mind the act itself that much, but dick has a weird flavor."');

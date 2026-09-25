@@ -16,11 +16,9 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   if (((s as any).start_type ?? 0)?.['magic'] === 'tg') {
     scene.text('"Hi Mikhail, how\'s it going?"');
   } else {
-    // TODO-QSP: dynamic text: "Hi <<$pcs_nickname>>, how''s it going?"
     scene.text(`"Hi ${((s as any).pcs_nickname ?? '')}, how's it going?"`);
   }
   scene.text('You are just dumbfounded by surprise. In your bedroom is Reinhold, and he obviously knows who you are.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'How did you find me?', goto: ['tobiQW', '1'] },
   ]);
@@ -31,7 +29,6 @@ function enter1(s: GameState, scene: SceneBuilder): void {
   scene.img('images/system/1_openings/shared/npc_reinhold.jpg');
   scene.text('"How did you find me?"');
   scene.text('"You have absorbed the power of the amulet and are now potentially the most powerful entity in existence. Tatiana couldn\'t hide something that big, and when I spoke to her, she told me your address."');
-  // TODO-QSP: end
   scene.actions([
     { label: 'What now?', goto: ['tobiQW', '2'] },
   ]);
@@ -42,7 +39,6 @@ function enter2(s: GameState, scene: SceneBuilder): void {
   scene.img('images/system/1_openings/shared/npc_reinhold.jpg');
   scene.text('Reinhold looks at you, sighs and asks you, "Have you ever been teleported?"');
   scene.text('You aren\'t able to process this quickly and just shake your head.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Poof!', goto: ['tobiQW', '3'] },
   ]);
@@ -53,7 +49,6 @@ function enter3(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Tatianas\' Laboratory</b></center>');
   scene.img('images/locations/city/citycenter/lab/lab.jpg');
   scene.text('"Just let yourself in. It\'s not like this is a laboratory with sensitive equipment in it," Tatiana sarcastically lambastes Reinhold.');
-  // TODO-QSP: dynamic text: "Well maybe if you hadn''t been playing games, we would have both talked to <<$p...
   scene.text(`"Well maybe if you hadn't been playing games, we would have both talked to ${((s as any).pcs_firstname ?? '')} and sorted this out already."`);
   scene.text('Gustav puts his arm around you and makes sure you\'re OK while Tatiana and Reinhold bicker like an old married couple.');
   scene.text('Eventually, they stop long enough to see you and remember what they are here for.');
@@ -61,7 +56,6 @@ function enter3(s: GameState, scene: SceneBuilder): void {
   scene.text('You start telling him what Tatiana told you about the Sidhe and the Succubae. Tatiana starts giggling like a schoolgirl.');
   scene.text('"I\'ll stop you there. All magicians train in one main school of magic and one main personality type. Tatiana, as well as being a specialist in body magics, is also a prankster in training. I specialize in space/time magic and tutoring."');
   scene.text('"The council of the elders has representatives from all of the Fae touched races. The identities of members are kept secret to protect them from external influence or corruption. I\'m an officer of the council and help address the day to day problems and act on their behalf."');
-  // TODO-QSP: end
   scene.actions([
     { label: 'And the Succubae and the Sidhe stuff?', goto: ['tobiQW', '4'] },
   ]);
@@ -81,7 +75,6 @@ function enter4(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('"This is all very interesting, but why are we here?"');
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['tobiQW', '5'] },
   ]);
@@ -97,7 +90,6 @@ function enter5(s: GameState, scene: SceneBuilder): void {
   scene.text('"Exactly, but I will not be able to protect you due to my commitments, so you\'ll need this."');
   scene.text('He takes out a gun and places it on the table in front of you.');
   scene.text('Tatiana quickly slides it back to Reinhold.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'They\'re off again', goto: ['tobiQW', '6'] },
   ]);
@@ -113,7 +105,6 @@ function enter6(s: GameState, scene: SceneBuilder): void {
   scene.text('"Fuck you! I\'m training her, and she is a very quick learner."');
   scene.text('"I meant relatively, you\'re just a kid yourself. What if a powerful demon attacks her? You\'d be too busy running away to help."');
   scene.text('"Once. I run away once, and you never shut up about it."');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Sometime later', goto: ['tobiQW', '7'] },
   ]);
@@ -127,7 +118,6 @@ function enter7(s: GameState, scene: SceneBuilder): void {
   scene.text('"I am training her in kickboxing. I was a brown sash before the incident, and I have continued training my skills since."');
   scene.text('Reinhold holds up his hands, "Fine she can train to fight with you, and there\'s a gym across the street. Some physical training is good for discipline and training the mind."');
   scene.text('He picks up the gun and puts it in a hidden holster.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'What now?', goto: ['tobiQW', '8'] },
   ]);
@@ -139,7 +129,6 @@ function enter8(s: GameState, scene: SceneBuilder): void {
   scene.text('"If anyone asks, you are my apprentice, and I am helping you with your magic studies."');
   scene.text('"You should carry on learning from Tatiana and Gustav, and occasionally, I may need you to carry out tasks or accompany me on missions."');
   scene.text('"Tatiana is something of a magical detective and private eye, so she can help you develop by getting you to help her."');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['tobiQW', '9'] },
   ]);
@@ -150,7 +139,6 @@ function enter9(s: GameState, scene: SceneBuilder): void {
   scene.img('images/system/1_openings/shared/npc_tatiana.jpg');
   scene.text('"I can even pay you a bit of cash for the help. It\'ll depend on your skill as to what I can get you to do, but if it gives me more time to study, I\'ll see it as a favor."');
   scene.text('"You should go now. Reinhold is pausing time, and I can feel it starting to strain his reserve."');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Poof', goto: ['tobiQW', '10'] },
   ]);
@@ -161,7 +149,6 @@ function enter10(s: GameState, scene: SceneBuilder): void {
   scene.img('images/system/1_openings/shared/npc_reinhold.jpg');
   scene.text('"OK, I have to go. Look after yourself, and don\'t do anything to attract too much attention."');
   scene.text('After these words, Reinhold creates a vortex into which he is pulled, and everything is back to normal.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Get out of bed', handler: (st: GameState) => {
     dynamicGoto(st, 'prevLoc', 'prevArg');

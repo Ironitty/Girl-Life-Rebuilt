@@ -177,7 +177,6 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Stop talking', goto: ['radapt', 'radroom'] },
     { label: 'Make small talk', handler: (st: GameState) => {
@@ -393,14 +392,16 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
         ]);
       }
       (st as any).i = 0;
-      // TODO-QSP: :marrid_looop
-      if (((st as any).i ?? 0) < Object.keys((st as any).lover ?? {}).length) {
-        (st as any).temp_npcid = (((st as any).lover ?? 0)?.[String((st as any).i ?? 0)] ?? 0);
-        if (((st as any).npc_rel_type ?? 0)?.[String((st as any).temp_npcid ?? 0)] === 'boyfriend') {
-          // TODO-QSP: dynamic 'act ''Get married to <<npc_usedname["<<$temp_npcid>>"]>>'': gt ''radchat'', ''telling_marri...
+      while (true) {
+        if (((st as any).i ?? 0) < Object.keys((st as any).lover ?? {}).length) {
+          (st as any).temp_npcid = (((st as any).lover ?? 0)?.[String((st as any).i ?? 0)] ?? 0);
+          if (((st as any).npc_rel_type ?? 0)?.[String((st as any).temp_npcid ?? 0)] === 'boyfriend') {
+            // TODO-QSP: dynamic 'act ''Get married to <<npc_usedname["<<$temp_npcid>>"]>>'': gt ''radchat'', ''telling_marri...
+          }
+          (st as any).i = ((st as any).i ?? 0) + (1);
+          break;
         }
-        (st as any).i = ((st as any).i ?? 0) + (1);
-        // TODO-QSP: jump 'marrid_looop'
+        (st as any).i = undefined;
       }
     } else {
       scene.actions([
@@ -660,16 +661,18 @@ function enterBoyfriendChat(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   (s as any).i = 0;
-  // TODO-QSP: :lover_looop
-  if (((s as any).i ?? 0) < Object.keys((s as any).lover ?? {}).length) {
-    (s as any).temp_npcid = (((s as any).lover ?? 0)?.[String((s as any).i ?? 0)] ?? 0);
-    if (((s as any).npc_rel_type ?? 0)?.[String((s as any).temp_npcid ?? 0)] === 'boyfriend') {
-      // TODO-QSP: dynamic 'act ''<<$npc_usedname["<<$temp_npcid>>"]>>'': gt ''radchat'', ''tell_about_generic_boyfrien...
+  while (true) {
+    if (((s as any).i ?? 0) < Object.keys((s as any).lover ?? {}).length) {
+      (s as any).temp_npcid = (((s as any).lover ?? 0)?.[String((s as any).i ?? 0)] ?? 0);
+      if (((s as any).npc_rel_type ?? 0)?.[String((s as any).temp_npcid ?? 0)] === 'boyfriend') {
+        // TODO-QSP: dynamic 'act ''<<$npc_usedname["<<$temp_npcid>>"]>>'': gt ''radchat'', ''tell_about_generic_boyfrien...
+      }
+      (s as any).temp_npcid = undefined;
+      (s as any).i = ((s as any).i ?? 0) + (1);
+      break;
     }
-    (s as any).i = ((s as any).i ?? 0) + (1);
-    // TODO-QSP: jump 'lover_looop'
+    (s as any).i = undefined;
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -677,13 +680,11 @@ function enterTellAboutGenericBoyfriend(s: GameState, scene: SceneBuilder): void
   scene.img('images/locations/pavlovsk/resident/apartment/radapt/rads_room/rad_chat1.jpg');
   scene.text('"I have a boyfriend you know," you tell him.');
   scene.text('"Right. Who are you dating again?" he asks.');
-  // TODO-QSP: dynamic text: "<<$ARGS[1]>>," you tell him.
   scene.text(`"${((s as any).locArgs?.[1] ?? '')}," you tell him.`);
   scene.text('"Who?" he asks.');
   scene.text('You shake your head slightly. "You\'ve never met him. I just met him."');
   scene.text('"Just some guy you met, huh?" he smirks.');
   scene.text('You laugh and tell him about your boyfriend, but he quickly gets bored and changes the subject.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Stop talking', goto: ['radapt', 'radroom'] },
     { label: 'Keep talking', goto: ['radchat', 'chat'] },
@@ -695,12 +696,10 @@ function enterTellingMarrigeDreams(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   scene.text('<center><b>Radomir\'s Room</b></center>');
   scene.img('images/locations/pavlovsk/resident/apartment/radapt/rads_room/rad_chat1.jpg');
-  // TODO-QSP: dynamic text: You sigh in a way only those in love can sigh. "Hopefully <<$ARGS[1]>> and I can...
   scene.text(`You sigh in a way only those in love can sigh. "Hopefully ${((s as any).locArgs?.[1] ?? '')} and I can get married soon."`);
   scene.text('He rolls his eyes. "So predictable."');
   scene.text('You briefly discuss why and he points out that that is what society expects of people, but they should live a little first.');
   scene.text('You\'re not sure what more to say on the topic, so change the subject.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Stop talking', goto: ['radapt', 'radroom'] },
     { label: 'Keep talking', goto: ['radchat', 'chat'] },

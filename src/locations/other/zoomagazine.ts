@@ -18,7 +18,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Pet Emporium</b></center>');
   scene.img('images/locations/city/citycenter/mall/pet shop/shop.jpg');
   if ((!((s as any).krolik ?? 0))) {
-    // TODO-QSP: 'Rabbit - ' + $func('money', 'string_price', 2000)
+    scene.text('Rabbit - ' + qspFunc(s, 'money', 'string_price', 2000));
     scene.actions([
       { label: 'Buy a rabbit', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 2000) === 0) {
@@ -45,7 +45,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   if (((s as any).rex ?? 0)?.['owned'] === 0  &&  ((s as any).home ?? 0)?.['current'] !== 'parents_home') {
-    // TODO-QSP: 'Dog - ' + $func('money', 'string_price', 3000)
+    scene.text('Dog - ' + qspFunc(s, 'money', 'string_price', 3000));
     scene.actions([
       { label: 'Buy a dog', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 3000) === 0) {
@@ -72,7 +72,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   if (((s as any).ParrotQW ?? 0)?.['Owned1'] === 0  &&  ((s as any).home ?? 0)?.['current'] !== 'parents_home') {
-    // TODO-QSP: 'Parrot - ' + $func('money', 'string_price', 3000)
+    scene.text('Parrot - ' + qspFunc(s, 'money', 'string_price', 3000));
     scene.actions([
       { label: 'Buy a parrot', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 3000) === 0) {
@@ -99,7 +99,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   if (((s as any).ParrotQW ?? 0)?.['Owned2'] === 0  &&  ((s as any).home ?? 0)?.['current'] === 'parents_home') {
-    // TODO-QSP: 'Parrot - ' + $func('money', 'string_price', 3000)
+    scene.text('Parrot - ' + qspFunc(s, 'money', 'string_price', 3000));
     scene.actions([
       { label: 'Buy a parrot for your parent\'s apartment', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 3000) === 0) {
@@ -123,7 +123,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 3;
@@ -145,7 +144,6 @@ function enterEvent_1(s: GameState, scene: SceneBuilder): void {
   scene.text('You take your chances and ask the owner if you could talk to him in private.');
   scene.img('images/locations/city/citycenter/mall/pet shop/pet8.jpg');
   scene.text('He wraps up his conversation with the other men and takes you to the back office.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -170,7 +168,6 @@ function enterEvent_1(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'npcStat', '$npclastgenerated');
     qspCall(st, 'stat', '');
     scene.img('images/locations/city/citycenter/mall/pet shop/pet1.jpg');
-    // TODO-QSP: dynamic text: You slide up your top and show off your <a href="exec:gs ''obj_din'', ''show_tit...
     scene.text(`You slide up your top and show off your <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027obj_din/u0027, /u0027show_tits/u0027); return false;">${((st as any).titsize ?? '')}</a> breasts.`);
     scene.text('The owner licks his lips, "Hmm, he was definitely not lying about your top half. Ok, show me the rest."');
     scene.img('images/locations/city/citycenter/mall/pet shop/pet9.jpg');
@@ -193,7 +190,6 @@ function enterEvent_1(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/mall/pet shop/pet5.jpg');
-    // TODO-QSP: dynamic text: The man unbuttons his pants and takes out his erect <<dick>> cm penis, "Now, I n...
     scene.text(`The man unbuttons his pants and takes out his erect ${((st as any).dick ?? '')} cm penis, "Now, I need you to sit on your knees and suck this cock if you want to get to the last ingredient."`);
     scene.text('You are almost certain you are being conned now, but the pussy licking you received just moments ago made you so horny that you couldn\'t stop now, even if you wanted.');
     scene.text('You do as you are told and take the dick in your mouth');

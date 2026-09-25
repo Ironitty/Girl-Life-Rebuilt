@@ -52,7 +52,6 @@ function enterBilliardEngine(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -64,6 +63,7 @@ function enterBilliardEv1(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/industrial/bar/sex/pool/poolw.jpg');
     qspCall(st, 'exp_gain', 'pool', (Math.floor(Math.random() * 4) + 2));
     qspCall(st, 'money', 'earn', 2500, 'cash');
+    (st as any).billiard_ev_var = undefined;
     (st as any).minut = ((st as any).minut ?? 0) + 30;
     qspCall(st, 'stat', '');
     scene.text('He comes out strong and plays really well, but you play just a tiny bit better and manage to win the round by a hair.');
@@ -81,6 +81,7 @@ function enterBilliardEv1(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/industrial/bar/sex/pool/pooll.jpg');
     qspCall(st, 'exp_gain', 'pool', (Math.floor(Math.random() * 4) + 2));
     qspCall(st, 'money', 'pay', 2500, 'cash');
+    (st as any).billiard_ev_var = undefined;
     (st as any).minut = ((st as any).minut ?? 0) + 30;
     qspCall(st, 'stat', '');
     scene.text('He had a strong start, but you caught back up to him, matching him ball for a ball for a while. Towards the end, however, he ran the table with precise shots, not only pocketing his balls but also setting them up in ways that blocked yours. You lost, utterly and completely.');
@@ -93,7 +94,6 @@ function enterBilliardEv1(s: GameState, scene: SceneBuilder): void {
     } else {
       (st as any).billiard_ev_var = 1;
       scene.text('"Alright, let\'s play."');
-      // TODO-QSP: dynamic text: 'You ' + iif(bag > 0, 'open your purse', 'reach into your pocket') + ' and pull ...
       scene.text('You ' + ((((st as any).bag ?? 0) > 0) ? ('open your purse') : ('reach into your pocket')) + ' and pull out enough money to lay it down on the table. He grins, racks up the balls and lets you break again as he lays his money down on top of yours.');
       { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBilliardEngine(st, scene); (st as any).locArgs = __savedLocArgs; }
       { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBilliardEv1(st, scene); (st as any).locArgs = __savedLocArgs; }
@@ -169,6 +169,7 @@ function enterBilliardEv1(s: GameState, scene: SceneBuilder): void {
           { label: 'Win', handler: (st: GameState) => {
     qspCall(st, 'exp_gain', 'pool', (Math.floor(Math.random() * 4) + 2));
     qspCall(st, 'money', 'earn', 2500, 'cash');
+    (st as any).billiard_ev_var = undefined;
     (st as any).minut = ((st as any).minut ?? 0) + 30;
     qspCall(st, 'stat', '');
     scene.img('images/locations/city/industrial/bar/sex/pool/poolw.jpg');
@@ -185,6 +186,7 @@ function enterBilliardEv1(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'Lose', handler: (st: GameState) => {
     qspCall(st, 'exp_gain', 'pool', (Math.floor(Math.random() * 4) + 2));
+    (st as any).billiard_ev_var = undefined;
     (st as any).minut = ((st as any).minut ?? 0) + 30;
     qspCall(st, 'stat', '');
     scene.img('images/locations/city/industrial/bar/sex/pool/pooll.jpg');
@@ -211,7 +213,6 @@ function enterBilliardEv1(s: GameState, scene: SceneBuilder): void {
       scene.text('You look up and see Martin\'s eyes rest on you. "Leave, now."');
       scene.text('"But-"');
       scene.text('"What about my payout?" The guy protests, but Martin doesn\'t turn to him. That doesn\'t diminish his threat, though:');
-      // TODO-QSP: dynamic text: "You shut your mouth or I swear I will stuff it with those pool balls! <<$pcs_fi...
       scene.text(`"You shut your mouth or I swear I will stuff it with those pool balls! ${((st as any).pcs_firstname ?? '')}, go."`);
       scene.text('Not wanting to make him say it once more, you quickly turn and walk towards the exit. Something about the disappointment you saw in Martin\'s eyes doesn\'t sit well with you, though. You got out of giving that blowjob, but you\'re half-wondering if it hadn\'t been better to give so you didn\'t have to admit to Martin that you had taken that bet.');
       if (((st as any).MartinLie ?? 0) === 1) {
@@ -230,7 +231,6 @@ function enterBilliardEv1(s: GameState, scene: SceneBuilder): void {
       scene.text('The guy seems to want to retort, but Martin cuts him off: "So unless you want to find another place to hang out, I suggest you get lost. Now."');
       scene.text('He glares at Martin, then at you, but then angrily grabs his money from the pool table and walks out.');
       scene.text('"Thank you, Mart-"');
-      // TODO-QSP: dynamic text: "<<$pcs_firstname>>," he cuts you off, "why the fuck would you offer a blowjob a...
       scene.text(`"${((st as any).pcs_firstname ?? '')}," he cuts you off, "why the fuck would you offer a blowjob as a wager?"`);
       scene.text('"I didn\'t! He… suggested it."');
       scene.text('"And you went for it. You took him up on his offer, for what? For some money?"');
@@ -246,7 +246,6 @@ function enterBilliardEv1(s: GameState, scene: SceneBuilder): void {
       } else {
         qspCall(st, 'npc_relationship', 'modify', 'A216', (-1));
         scene.text('"You don\'t have to offer me money for that," you say and put your hand on his crotch.');
-        // TODO-QSP: dynamic text: "I know that. But," he seems to be having trouble focusing on what he wants to s...
         scene.text(`"I know that. But," he seems to be having trouble focusing on what he wants to say, "${((st as any).pcs_firstname ?? '')}, not here, not now."`);
         scene.text('For a moment, you wonder how far he would go. Reluctant as he is, you doubt that he\'d go as far as screwing you over the billiard table while there are people in the bar. He seems to be on the verge of agreeing to a blowjob, though, if you are bold or horny enough to push him…');
         (st as any).martinpos = 'I\'ll do it if you want me to';
@@ -271,14 +270,13 @@ function enterBilliardEv1(s: GameState, scene: SceneBuilder): void {
       scene.text('The truth is that, as much as you want to push him, you want him to give you that tiny little nudge you need to overcome your own reluctance. And he gives it:');
     }
     scene.text('"Then do it. Suck my dick."');
-    // TODO-QSP: dynamic text: 'Smiling, you get down on your knees, pulling his pants down as you go. You know...
     scene.text('Smiling, you get down on your knees, pulling his pants down as you go. You know full well that there\'s a room\'s worth of potential audience waiting on the other side of the curtain, so you don\'t waste any time: After a single teasing lick around the tip of his cock, you ' + ((((st as any).pcs_hairlng ?? 0)>81) ? ('brush a particularly annoying strand of your ' + (((st as any).pc_descWordy ?? 0)?.['hair length'] ?? '') + ' out of your face') : ('fish a rogue hair out of your mouth')) + ` and take his ${((st as any).dick ?? '')}cm ${((st as any).dick_girth ?? '')} dick into your mouth.`);
-    // TODO-QSP: dynamic text: 'You bob your head '+ iif(stat['bj']>20, 'confidently', 'reluctantly, still tryi...
     scene.text('You bob your head ' + ((((st as any).stat ?? 0)?.['bj']>20) ? ('confidently') : ('reluctantly, still trying to figure blowjobs out')) + ((((st as any).stat ?? 0)?.['bj']>40) ? (' and with wild abandon') : ('')) + ` and run your ${(((st as any).pc_desc ?? 0)?.['tongue'] ?? '')} tongue around it to stimulate him as much as you can.`);
     scene.text('You\'re not sure if the prospect of getting caught here with a cock in your mouth terrifies or excites you more, but you don\'t really feel the need to find out which it is.');
     (st as any).orgasm_txt = 'But you do anyway: It\'s the latter. As you unconsciously knead your ' + (((st as any).pc_desc ?? 0)?.['breast']) + ' breasts through your top, the heat between your legs grows and spreads to your belly. You moan around Martin\'s cock as the orgasm overcomes you. You don\'t have to look up to see the self-satisfied expression on Martin\'s face when he realizes that you came from sucking his cock…';
     qspCall(st, 'arousal', 'bj', 5, 'exhibitionism');
     qspCall(st, 'stat', '');
+    (st as any).martinpos = undefined;
     scene.actions([
       { label: 'Make Martin come', handler: (st: GameState) => {
     scene.img('images/locations/city/industrial/bar/sex/pool/poolm2.jpg');
@@ -289,7 +287,6 @@ function enterBilliardEv1(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'bj', 2, 'exhibitionism');
     qspCall(st, 'stat', '');
     qspCall(st, 'cum_call', 'mouth', ((st as any).boy ?? 0), 1);
-    // TODO-QSP: dynamic text: 'When his orgasm subsides, you audibly swallow Martin''s ' + iif(trait_vars['cum...
     scene.text('When his orgasm subsides, you audibly swallow Martin\'s ' + ((((st as any).trait_vars ?? 0)?.['cumeater']===1) ? ('delicious ') : ('')) + 'load and show him your clean tongue. The barkeeper smiles at how ' + ((((st as any).pcs_dom ?? 0)>=30) ? ('bold') : ('shy')) + ' you are about this gesture.');
     scene.text('After that, you quickly return to reality when the sound of breaking glass reminds you of the bar behind the curtain. Martin zips his pants back up and you barely have time to get up on your feet when two guys pull the veil aside, looking to play a game of billiards.');
     scene.text('They seem just as surprised as you to see each other, but they just give Martin a friendly "hello" before the two of you leave. As Martin strides towards the source of the noise you heard, you stay back long enough to hear the guys at the pool table break into wild speculations.');
@@ -309,7 +306,7 @@ function enterBilliardEv1(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'npc_relationship', 'modify', 'A216', 1);
     scene.text('You not and remove your hand from his swelling cock.');
     scene.text('"Okay, if that\'s what you want."');
-    // TODO-QSP: iif(pcs_inhib<30, 'You are secretly relieved that he didn''t agree, cause you''re not sure you could...
+    scene.text(((((st as any).pcs_inhib ?? 0)<30) ? ('You are secretly relieved that he didn\'t agree, cause you\'re not sure you could have actually gone through with blowing him in public like this, without a lost bet to force your hand.') : ('')) + 'He seems ' + ((((st as any).pcs_inhib ?? 0)<30) ? ('just as ') : ('')) + 'relieved that you backed off - judging by how quickly he got hard, he probably wouldn\'t have said no a second time.');
     scene.text('"It\'s better this way. But maybe we could continue after closing time?"');
     scene.text('"I\'ll see what I can do," you say noncommittally, give him a smile and leave him to calm down.');
     scene.actions([
@@ -324,7 +321,6 @@ function enterBilliardEv1(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/industrial/bar/sex/pool/poold1.jpg');
     qspCall(st, 'npcgeneratec', '0', 'stranger', (Math.floor(Math.random() * 18) + 18));
     qspCall(st, 'boyStat', '$npclastgenerated');
-    // TODO-QSP: dynamic text: 'Well, a bet is a bet. If you weren''t willing to do it, you shouldn''t have mad...
     scene.text('Well, a bet is a bet. If you weren\'t willing to do it, you shouldn\'t have made the bet. At least that\'s what\'s going through your head as you get down on your knees in front of him. Even being in a separate room and hidden from sight, the fact that everything that\'s between you and a whole bar full of people is a fluttering curtain ' + ((((st as any).trait_vars ?? 0)?.['exhibitionist'] < 1) ? ('terrifies') : ('excites')) + ' you.');
     scene.text('He has his pants unbuttoned in about two seconds and out comes his cock, standing at attention already and revealing his eagerness and anticipation.');
     scene.text('You quickly take it into your mouth and start sucking it for all you are worth, looking to get this over with as quickly as you can. You use your hands to caress his shaft and fondle his balls as you suck his dick, and while could imagine yourself doing more pleasant things, the fact that you are blowing a stranger in public does have a slight effect on you.');
@@ -355,7 +351,6 @@ function enterBilliardEv1(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -385,7 +380,6 @@ function enterBilliardEv2(s: GameState, scene: SceneBuilder): void {
     scene.text('"I do what I can", you humblebrag as you lean the billiard cue against the table. "It\'s been fun though."');
     scene.text('"Yeah," Artyom agrees. After the briefest of pauses and quick exchange of glances between the two, he continues: "How about we make it even more fun?"');
     scene.text('The grin they have on their faces reminds you of how they looked at Jaska. "What are you thinking?"');
-    // TODO-QSP: dynamic text: "How about a little wager?" Victor suggests, tellingly aware of what his friend ...
     scene.text(`"How about a little wager?" Victor suggests, tellingly aware of what his friend had in mind. "Nothing too insane… ${qspFunc(s, 'money', 'string_price', 500)} each, winner takes all?"`);
     if (qspFunc(s, 'money', 'can_afford', 500, 'cash') === 1) {
       scene.actions([
@@ -396,7 +390,6 @@ function enterBilliardEv2(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'money', 'earn', 1000, 'cash');
     qspCall(st, 'stat', '');
     scene.img('images/locations/city/industrial/bar/sex/pool/pool4.mp4');
-    // TODO-QSP: dynamic text: '"Sure, I''m game if you are." You rummage through your ' + iif(bag>0, 'purse', ...
     scene.text('"Sure, I\'m game if you are." You rummage through your ' + ((((st as any).bag ?? 0)>0) ? ('purse') : ('pocket')) + ' and put a couple of bills on the table. Your two opponents quickly follow suit and set up the game.');
     scene.text('The following game is close and it\'s clear that Artyom and Victor are very skilled players, but Victor fumbles a shot or two towards the end of the game, which greatly upsets Artyom, and his mistakes are enough to bring you victory.');
     scene.text('"You won, fair and square," Victor admits and hands you your winnings.');
@@ -463,7 +456,6 @@ function enterBilliardEv2(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       if (((s as any).Jaska_Friend_Bill ?? 0) === 1) {
-        // TODO-QSP: dynamic text: "Well, look what the cat dragged in. Good to see you, <<$pcs_firstname>>," Victo...
         scene.text(`"Well, look what the cat dragged in. Good to see you, ${((s as any).pcs_firstname ?? '')}," Victor greets you.`);
         scene.text('"You too. Are you guys busy?"');
         scene.text('"Nah, this game was pretty boring," Artyom declares.');
@@ -473,7 +465,6 @@ function enterBilliardEv2(s: GameState, scene: SceneBuilder): void {
         scene.text('"Sure, let\'s do it."');
         scene.text('"Hold on," Artyom interjects. "Are we playing for money? Cause Victor and I were and you interrupted our game."');
         scene.text('You don\'t see any cash on the table, but that doesn\'t have to mean anything. "How much were you playing for?"');
-        // TODO-QSP: dynamic text: "<<$func(''money'', ''string_profit'', 1000)>> each."
         scene.text(`"${qspFunc(s, 'money', 'string_profit', 1000)} each."`);
         if (qspFunc(s, 'money', 'can_afford', 1000, 'cash') === 1) {
           scene.actions([
@@ -516,7 +507,6 @@ function enterBilliardEv2(s: GameState, scene: SceneBuilder): void {
     if (qspFunc(s, 'money', 'can_afford', 250, 'cash') === 0) {
       s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
-      // TODO-QSP: dynamic text: "How about we make this more interesting?" You suggest. "We could play for money...
       scene.text(`"How about we make this more interesting?" You suggest. "We could play for money. Maybe like ${qspFunc(s, 'money', 'string_price', 250)} each?"`);
       if (((st as any).bill_rand ?? 0) > 3) {
         if (((st as any).pcs_pool ?? 0) >= 60) {
@@ -570,7 +560,6 @@ function enterBilliardEv2(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -595,7 +584,6 @@ function enterBilliardFriendly(s: GameState, scene: SceneBuilder): void {
   }
   scene.text('Either way, it was great fun and you quite enjoyed playing.');
   scene.text('Another small group of people enters the backroom just as you and your newfound acquaintances finish up. With a few friendly words, you return to the main room and part ways.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return to the bar', goto: ['qwBarPolet', 'bar'] },
   ]);
@@ -611,22 +599,17 @@ function enterBilliardMoney(s: GameState, scene: SceneBuilder): void {
   if (((s as any).billwin ?? 0) >= 8) {
     qspCall(s, 'money', 'earn', 500, 'cash');
     qspCall(s, 'mood', 'raise', (Math.floor(Math.random() * 16) + 5));
-    // TODO-QSP: dynamic text: 'Lady Luck seems to be smiling on you tonight - you end up ' + iif(pcs_pool>50, ...
     scene.text('Lady Luck seems to be smiling on you tonight - you end up ' + ((((s as any).pcs_pool ?? 0)>50) ? ('comfortably') : ('closely')) + ' winning the game.');
     scene.text('Your opponents look disappointed but remain friendly as they hand over your winnings.');
-    // TODO-QSP: dynamic text: Understandably, they don''t feel like playing another round, so you all return t...
     scene.text(`Understandably, they don't feel like playing another round, so you all return to the main room together. Still, ${qspFunc(s, 'money', 'string_profit', 500)} isn't a bad turnout for half an hour's work.`);
   } else {
     qspCall(s, 'money', 'pay', 250, 'cash');
     qspCall(s, 'mood', 'lower', (Math.floor(Math.random() * 16) + 5));
-    // TODO-QSP: dynamic text: 'Luck really wasn''t on your side this time: You ' + iif(pcs_pool>50, 'give them...
     scene.text('Luck really wasn\'t on your side this time: You ' + ((((s as any).pcs_pool ?? 0)>50) ? ('give them a run for their money but end up fumbling several critical shots') : ('are getting absolutely destroyed by them')) + ' and have to admit defeat.');
     scene.text('You commend them for their skill as you hand over the cash, since you don\'t wanna be a sore loser, but you don\'t really feel like playing another round with them.');
-    // TODO-QSP: dynamic text: Since they also have to leave, you return to the main room with them where you p...
     scene.text(`Since they also have to leave, you return to the main room with them where you part ways, ${qspFunc(s, 'money', 'string_price', 250)} poorer than half an hour ago.`);
   }
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return to the bar', goto: ['qwBarPolet', 'bar'] },
   ]);

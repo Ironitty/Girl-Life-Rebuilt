@@ -1,4 +1,4 @@
-import { qspCall, qspGoto } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -69,7 +69,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       { label: 'Ask Tatiana what she wants', goto: ['tatiana_lab', 'missions'] },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -106,22 +105,13 @@ function enterGustav(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).gustavday ?? 0) !== ((s as any).daystart ?? 0)) {
       scene.actions([
-        { label: 'Develop strength (1:00)', handler: (st: GameState) => {
-    // TODO-QSP: $func('wrap', 'neg', '<br>You feel too hungry to do this.')
-  } },
-        { label: 'Develop agility (1:00)', handler: (st: GameState) => {
-    // TODO-QSP: $func('wrap', 'neg', '<br>You feel too hungry to do this.')
-  } },
-        { label: 'Develop reactions (1:00)', handler: (st: GameState) => {
-    // TODO-QSP: $func('wrap', 'neg', '<br>You feel too hungry to do this.')
-  } },
-        { label: 'Develop endurance (1:00)', handler: (st: GameState) => {
-    // TODO-QSP: $func('wrap', 'neg', '<br>You feel too hungry to do this.')
-  } },
+        { label: 'Develop strength (1:00)', handler: (st: GameState) => { scene.text('<br>You feel too hungry to do this.'); } },
+        { label: 'Develop agility (1:00)', handler: (st: GameState) => { scene.text('<br>You feel too hungry to do this.'); } },
+        { label: 'Develop reactions (1:00)', handler: (st: GameState) => { scene.text('<br>You feel too hungry to do this.'); } },
+        { label: 'Develop endurance (1:00)', handler: (st: GameState) => { scene.text('<br>You feel too hungry to do this.'); } },
       ]);
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['tatiana_lab', 'start'] },
   ]);
@@ -133,7 +123,6 @@ function enterGustavDevelop(s: GameState, scene: SceneBuilder): void {
   (s as any).gustavday = ((s as any).daystart ?? 0);
   qspCall(s, 'stat', '');
   scene.text('You do exercises under the guidance of Gustav.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['tatiana_lab', 'Gustav'] },
   ]);
@@ -150,6 +139,7 @@ function enterBodyModActuate(s: GameState, scene: SceneBuilder): void {
   (s as any).bodyModPain = ((s as any).locArgs?.[7] ?? 0);
   (s as any).bodyModExtra = ((s as any).locArgs?.[8] ?? 0);
   if (((s as any).pcs_mana ?? 0) >= ((s as any).bodyModMana ?? 0)) {
+    qspFunc(s, 'bodyModExtra');
   }
   scene.build();
 }

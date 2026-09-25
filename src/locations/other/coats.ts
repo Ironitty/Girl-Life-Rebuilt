@@ -33,14 +33,12 @@ function enterGetTotal(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterTotals(s: GameState, scene: SceneBuilder): void {
   (s as any).total = qspFunc(s, 'coats', 'get_total', ((s as any).locArgs?.[1] ?? 0));
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -56,7 +54,7 @@ function enterNotWearReason(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).result = '';
   if (qspFunc(s, 'coats', 'is_immutable', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0))) {
-    // TODO-QSP: exit
+    return;
   }
   if (qspFunc(s, 'coats', 'is_owned', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0)) === 0) {
     (s as any).result = 'not_owned';
@@ -71,7 +69,6 @@ function enterNotWearReason(s: GameState, scene: SceneBuilder): void {
     return;
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -87,7 +84,6 @@ function enterCanWear(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).result = (qspFunc(s, 'coats', 'not_wear_reason', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0), 'attributes_set') === '');
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -100,7 +96,6 @@ function enterIsOwned(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).result = 0;
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -116,7 +111,6 @@ function enterInWardrobe(s: GameState, scene: SceneBuilder): void {
     (s as any).result = 0;
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -132,7 +126,6 @@ function enterInStorage(s: GameState, scene: SceneBuilder): void {
     (s as any).result = 0;
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -148,7 +141,6 @@ function enterInUnwanted(s: GameState, scene: SceneBuilder): void {
     (s as any).result = 0;
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -161,50 +153,39 @@ function enterIsStrengthLow(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).result = 0;
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterIsWearingAny(s: GameState, scene: SceneBuilder): void {
   (s as any).result = (((s as any).coatworntype ?? 0) !== ''  &&  ((s as any).coatworntype ?? 0) !== 'none');
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterIsWearing(s: GameState, scene: SceneBuilder): void {
   (s as any).result = (((s as any).coatworntype ?? 0) === String((s as any).locArgs?.[1] ?? '')  &&  ((s as any).coatwornnumber ?? 0) === String((s as any).locArgs?.[2] ?? ''));
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterIsImmutable(s: GameState, scene: SceneBuilder): void {
   (s as any).result = 0;
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterAddItem(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === '') {
-    // TODO-QSP: exit
+    return;
   }
   if (String((s as any).locArgs?.[2] ?? '') === 0) {
-    // TODO-QSP: exit
+    return;
   }
   qspCall(s, 'coat_attributes', '$ARGS[1]', ((s as any).locArgs?.[2] ?? 0));
   if ((!((s as any).CoatQuality ?? 0))) {
-    // TODO-QSP: exit
+    return;
   }
-  // TODO-QSP: dynamic "
-  // TODO-QSP: <<$ARGS[1]>>_coats[<<ARGS[2]>>] = 1
-  // TODO-QSP: <<$ARGS[1]>>_coats_s[<<ARGS[2]>>] = 0
-  // TODO-QSP: <<$ARGS[1]>>_coats_w[<<ARGS[2]>>] = 0
-  // TODO-QSP: <<$ARGS[1]>>_coats_h[<<ARGS[2]>>] = CoatStrength
-  // TODO-QSP: "
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -216,34 +197,25 @@ function enterRemoveItem(s: GameState, scene: SceneBuilder): void {
     ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((s as any).coatwornnumber ?? 0);
   }
   if (String((s as any).locArgs?.[1] ?? '') === ''  ||  String((s as any).locArgs?.[1] ?? '') === 'none') {
-    // TODO-QSP: exit
+    return;
   }
-  // TODO-QSP: dynamic "
-  // TODO-QSP: <<$ARGS[1]>>_coats[<<ARGS[2]>>] = 0
-  // TODO-QSP: <<$ARGS[1]>>_coats_s[<<ARGS[2]>>] = 0
-  // TODO-QSP: <<$ARGS[1]>>_coats_w[<<ARGS[2]>>] = 0
-  // TODO-QSP: <<$ARGS[1]>>_coats_h[<<ARGS[2]>>] = 0
-  // TODO-QSP: "
   if (String((s as any).locArgs?.[1] ?? '') === ((s as any).coatworntype ?? 0)  &&  String((s as any).locArgs?.[2] ?? '') === ((s as any).coatwornnumber ?? 0)) {
     qspCall(s, 'coats', 'strip_code');
     (s as any).lastworncoattype = 'none';
     (s as any).lastworncoatnumber = 0;
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterResetImmutables(s: GameState, scene: SceneBuilder): void {
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterDispose(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).coatworntype ?? 0), ((s as any).coatwornnumber ?? 0)]; enterRemoveItem(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 

@@ -1,4 +1,4 @@
-import { qspCall, qspGoto } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -26,7 +26,6 @@ function enterFuckornot(s: GameState, scene: SceneBuilder): void {
   scene.text('3: Unattractive - Doable if I get myself drunk first. Good match for Petia.');
   scene.text('2: Fugly - Has potential compared to a trash bin. Even Lesco could do better.');
   scene.text('1: Hideous - Wouldn\'t touch it with a stick.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the site', handler: (st: GameState) => {
     if (((st as any).view_location ?? 0) === 'school') {
@@ -61,10 +60,10 @@ function enterHotornot(s: GameState, scene: SceneBuilder): void {
   scene.text('3: Unattractive - Not even Zinaida would be seen with him.');
   scene.text('2: Fugly - Horribly ugly. Just being seen with him would lose you social standing.');
   scene.text('1: Hideous - Wouldn\'t touch it with a stick. Not even a whore would take his money.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the site', handler: (st: GameState) => {
     if (((st as any).view_location ?? 0) === 'school') {
+      (st as any).access = undefined;
       qspGoto(st, 'gschool_lessons', 'short_break');
     } else {
       if (((st as any).view_location ?? 0) === 'school_lesson') {
@@ -82,37 +81,37 @@ function enterFuckornotList(s: GameState, scene: SceneBuilder): void {
   (s as any).fu_count = 0;
   (s as any).fu_text = '<center><table cellspacing="3">';
   (s as any).j = 10;
-  // TODO-QSP: :fu_loop_2
-  (s as any).i = 1;
-  // TODO-QSP: :fu_loop
-  if (((s as any).pcs_hotcat ?? 0) === ((s as any).j ?? 0)  &&  (!((s as any).hotcat_rating_set ?? 0))) {
-    (s as any).hotcat_rating_set = 1;
-    // TODO-QSP: $fu_text += '<td bgcolor=<<$theme[''table_bg_alt'']>> align="center"><img height="100" src="<<func('...
-    // TODO-QSP: $fu_text += '<<$pcs_nickname>>, <<pcs_hotcat>>/10' + '</td>'
-    (s as any).fu_count = ((s as any).fu_count ?? 0) + (1);
-    if (((s as any).fu_count ?? 0) === 6) {
-      // TODO-QSP: $fu_text += '</tr><tr>'
-      (s as any).fu_count = 0;
-    }
-  } else {
-    if (((s as any).npc_gender ?? 0)['A' + (((s as any).i ?? 0))] === 1  &&  ((s as any).npc_hotcat ?? 0)['A' + (((s as any).i ?? 0))] === ((s as any).j ?? 0)  &&  (((s as any).npc_grupTipe ?? 0)['A' + (((s as any).i ?? 0))] > 0  &&  ((s as any).npc_grupTipe ?? 0)['A' + (((s as any).i ?? 0))] < 6)) {
-      // TODO-QSP: $fu_text += '' + '<td bgcolor=<<$theme[''table_bg_alt'']>> align="center"><img height="100" src="ima...
-      (s as any).fu_count = ((s as any).fu_count ?? 0) + (1);
-      if (((s as any).fu_count ?? 0) === 6) {
-        // TODO-QSP: $fu_text += '</tr><tr>'
-        (s as any).fu_count = 0;
+  do {
+    (s as any).i = 1;
+    do {
+      if (((s as any).pcs_hotcat ?? 0) === ((s as any).j ?? 0)  &&  (!((s as any).hotcat_rating_set ?? 0))) {
+        (s as any).hotcat_rating_set = 1;
+        (s as any).fu_text = ((s as any).fu_text ?? 0) + ('<td bgcolor=' + (((s as any).theme ?? 0)?.['table_bg_alt']) + ' align="center"><img height="100" src="' + qspFunc(s, '$face_image', '') + '"><br>');
+        (s as any).fu_text = ((s as any).fu_text ?? 0) + ('' + ((s as any).pcs_nickname ?? 0) + ', ' + ((s as any).pcs_hotcat ?? 0) + '/10\' + \'</td>');
+        (s as any).fu_count = ((s as any).fu_count ?? 0) + (1);
+        if (((s as any).fu_count ?? 0) === 6) {
+          (s as any).fu_text = ((s as any).fu_text ?? 0) + ('</tr><tr>');
+          (s as any).fu_count = 0;
+        }
+      } else {
+        if (((s as any).npc_gender ?? 0)['A' + (((s as any).i ?? 0))] === 1  &&  ((s as any).npc_hotcat ?? 0)['A' + (((s as any).i ?? 0))] === ((s as any).j ?? 0)  &&  (((s as any).npc_grupTipe ?? 0)['A' + (((s as any).i ?? 0))] > 0  &&  ((s as any).npc_grupTipe ?? 0)['A' + (((s as any).i ?? 0))] < 6)) {
+          (s as any).fu_text = ((s as any).fu_text ?? 0) + ('\' + \'<td bgcolor=' + (((s as any).theme ?? 0)?.['table_bg_alt']) + ' align="center"><img height="100" src="images/characters/shared/headshots_main/' + ((s as any).i ?? 0) + '.jpg"><br>\' + \'' + (((s as any).npc_usedname ?? 0)?.['A' + String(((s as any).i ?? 0))]) + ', ' + (((s as any).npc_hotcat ?? 0)?.['A' + String(((s as any).i ?? 0))]) + '/10\' + \'</td>');
+          (s as any).fu_count = ((s as any).fu_count ?? 0) + (1);
+          if (((s as any).fu_count ?? 0) === 6) {
+            (s as any).fu_text = ((s as any).fu_text ?? 0) + ('</tr><tr>');
+            (s as any).fu_count = 0;
+          }
+        }
       }
-    }
-  }
-  (s as any).i = ((s as any).i ?? 0) + (1);
-  if (((s as any).i ?? 0) <= ((s as any).aarraynumber ?? 0)) {
-    // TODO-QSP: jump 'fu_loop'
-  }
-  (s as any).j = ((s as any).j ?? 0) - (1);
-  if (((s as any).j ?? 0) > 0) {
-    // TODO-QSP: jump 'fu_loop_2'
-  }
-  // TODO-QSP: end
+      (s as any).i = ((s as any).i ?? 0) + (1);
+      (s as any).j = ((s as any).j ?? 0) - (1);
+      (s as any).hotcat_rating_set = undefined;
+      (s as any).i = undefined;
+      (s as any).j = undefined;
+      (s as any).fu_count = undefined;
+      (s as any).fu_text = undefined;
+    } while (((s as any).i ?? 0) <= ((s as any).aarraynumber ?? 0));
+  } while (((s as any).j ?? 0) > 0);
   scene.build();
 }
 
@@ -120,26 +119,25 @@ function enterHotornotList(s: GameState, scene: SceneBuilder): void {
   (s as any).ho_count = 0;
   (s as any).ho_text = '<center><table cellspacing="3">';
   (s as any).j = 10;
-  // TODO-QSP: :ho_loop_2
-  (s as any).i = 1;
-  // TODO-QSP: :ho_loop
-  if (((s as any).npc_gender ?? 0)['A' + (((s as any).i ?? 0))] === 0  &&  ((s as any).npc_hotcat ?? 0)['A' + (((s as any).i ?? 0))] === ((s as any).j ?? 0)  &&  (((s as any).npc_grupTipe ?? 0)['A' + (((s as any).i ?? 0))] > 0  &&  ((s as any).npc_grupTipe ?? 0)['A' + (((s as any).i ?? 0))] < 6)) {
-    // TODO-QSP: $ho_text += '<td bgcolor=<<$theme[''table_bg_alt'']>> align="center"><img height="100" src="images/c...
-    (s as any).ho_count = ((s as any).ho_count ?? 0) + (1);
-    if (((s as any).ho_count ?? 0) === 6) {
-      // TODO-QSP: $ho_text += '</tr><tr>'
-      (s as any).ho_count = 0;
-    }
-  }
-  (s as any).i = ((s as any).i ?? 0) + (1);
-  if (((s as any).i ?? 0) <= ((s as any).aarraynumber ?? 0)) {
-    // TODO-QSP: jump 'ho_loop'
-  }
-  (s as any).j = ((s as any).j ?? 0) - (1);
-  if (((s as any).j ?? 0) > 0) {
-    // TODO-QSP: jump 'ho_loop_2'
-  }
-  // TODO-QSP: end
+  do {
+    (s as any).i = 1;
+    do {
+      if (((s as any).npc_gender ?? 0)['A' + (((s as any).i ?? 0))] === 0  &&  ((s as any).npc_hotcat ?? 0)['A' + (((s as any).i ?? 0))] === ((s as any).j ?? 0)  &&  (((s as any).npc_grupTipe ?? 0)['A' + (((s as any).i ?? 0))] > 0  &&  ((s as any).npc_grupTipe ?? 0)['A' + (((s as any).i ?? 0))] < 6)) {
+        (s as any).ho_text = ((s as any).ho_text ?? 0) + ('<td bgcolor=' + (((s as any).theme ?? 0)?.['table_bg_alt']) + ' align="center"><img height="100" src="images/characters/shared/headshots_main/' + ((s as any).i ?? 0) + '.jpg"><br>\' + \'' + (((s as any).npc_usedname ?? 0)?.['A' + String(((s as any).i ?? 0))]) + ', ' + (((s as any).npc_hotcat ?? 0)?.['A' + String(((s as any).i ?? 0))]) + '/10\' + \'</td>');
+        (s as any).ho_count = ((s as any).ho_count ?? 0) + (1);
+        if (((s as any).ho_count ?? 0) === 6) {
+          (s as any).ho_text = ((s as any).ho_text ?? 0) + ('</tr><tr>');
+          (s as any).ho_count = 0;
+        }
+      }
+      (s as any).i = ((s as any).i ?? 0) + (1);
+      (s as any).j = ((s as any).j ?? 0) - (1);
+      (s as any).i = undefined;
+      (s as any).j = undefined;
+      (s as any).ho_count = undefined;
+      (s as any).ho_text = undefined;
+    } while (((s as any).i ?? 0) <= ((s as any).aarraynumber ?? 0));
+  } while (((s as any).j ?? 0) > 0);
   scene.build();
 }
 
@@ -158,7 +156,6 @@ function enterFuckornotUni(s: GameState, scene: SceneBuilder): void {
   scene.text('3: Unattractive - Maybe if I was really horny and really drunk.');
   scene.text('2: Fugly - I would passout before I got drunk enough to hit that.');
   scene.text('1: Hideous - Are you sure it is even a girl?');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the site', goto: ['komp', 'browse'] },
   ]);
@@ -180,7 +177,6 @@ function enterHotornotUni(s: GameState, scene: SceneBuilder): void {
   scene.text('3: Unattractive - Almost certainly still a virgin, what girl would want to ride that?');
   scene.text('2: Fugly - Horribly ugly. Wouldn\'t even be seen with him in public.');
   scene.text('1: Hideous - Wouldn\'t touch it with a stick. Not even a whore would take his money.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the site', goto: ['komp', 'browse'] },
   ]);
@@ -191,36 +187,36 @@ function enterFuckornotUniList(s: GameState, scene: SceneBuilder): void {
   (s as any).fu_count = 0;
   (s as any).fu_text = '<center><table cellspacing="3">';
   (s as any).j = 10;
-  // TODO-QSP: :fu_loop_2_uni
-  (s as any).i = 1;
-  // TODO-QSP: :fu_loop_uni
-  if (((s as any).pcs_hotcat ?? 0) === ((s as any).j ?? 0)  &&  (!((s as any).hotcat_rating_set ?? 0))) {
-    (s as any).fu_count = ((s as any).fu_count ?? 0) + (1);
-    (s as any).hotcat_rating_set = 1;
-    // TODO-QSP: $fu_text += '<td bgcolor=<<$theme[''table_bg_alt'']>> align="center"><img height="100" src="<<$func(...
-    // TODO-QSP: $fu_text += '<<$pcs_nickname>>, <<pcs_hotcat>>/10' + '</td>'
-    if (((s as any).fu_count ?? 0) === 6) {
-      // TODO-QSP: $fu_text += '</tr><tr>'
-      (s as any).fu_count = 0;
-    }
-  }
-  if (((s as any).npc_gender ?? 0)['A' + (((s as any).i ?? 0))] === 1  &&  ((s as any).npc_hotcat ?? 0)['A' + (((s as any).i ?? 0))] === ((s as any).j ?? 0)  &&  ((s as any).npc_uni_active ?? 0)['A' + (((s as any).i ?? 0))] === 1  &&  ((s as any).npc_uni_eduType ?? 0)['A' + (((s as any).i ?? 0))] !== 'professor') {
-    (s as any).fu_count = ((s as any).fu_count ?? 0) + (1);
-    // TODO-QSP: $fu_text += '<td bgcolor=<<$theme[''table_bg_alt'']>> align="center"><img height="100" src="images/c...
-    if (((s as any).fu_count ?? 0) === 6) {
-      // TODO-QSP: $fu_text += '</tr><tr>'
-      (s as any).fu_count = 0;
-    }
-  }
-  (s as any).i = ((s as any).i ?? 0) + (1);
-  if (((s as any).i ?? 0) <= ((s as any).aarraynumber ?? 0)) {
-    // TODO-QSP: jump 'fu_loop_uni'
-  }
-  (s as any).j = ((s as any).j ?? 0) - (1);
-  if (((s as any).j ?? 0) > 0) {
-    // TODO-QSP: jump 'fu_loop_2_uni'
-  }
-  // TODO-QSP: end
+  do {
+    (s as any).i = 1;
+    do {
+      if (((s as any).pcs_hotcat ?? 0) === ((s as any).j ?? 0)  &&  (!((s as any).hotcat_rating_set ?? 0))) {
+        (s as any).fu_count = ((s as any).fu_count ?? 0) + (1);
+        (s as any).hotcat_rating_set = 1;
+        (s as any).fu_text = ((s as any).fu_text ?? 0) + ('<td bgcolor=' + (((s as any).theme ?? 0)?.['table_bg_alt']) + ' align="center"><img height="100" src="' + qspFunc(s, '$face_image', '') + '"><br>');
+        (s as any).fu_text = ((s as any).fu_text ?? 0) + ('' + ((s as any).pcs_nickname ?? 0) + ', ' + ((s as any).pcs_hotcat ?? 0) + '/10\' + \'</td>');
+        if (((s as any).fu_count ?? 0) === 6) {
+          (s as any).fu_text = ((s as any).fu_text ?? 0) + ('</tr><tr>');
+          (s as any).fu_count = 0;
+        }
+      }
+      if (((s as any).npc_gender ?? 0)['A' + (((s as any).i ?? 0))] === 1  &&  ((s as any).npc_hotcat ?? 0)['A' + (((s as any).i ?? 0))] === ((s as any).j ?? 0)  &&  ((s as any).npc_uni_active ?? 0)['A' + (((s as any).i ?? 0))] === 1  &&  ((s as any).npc_uni_eduType ?? 0)['A' + (((s as any).i ?? 0))] !== 'professor') {
+        (s as any).fu_count = ((s as any).fu_count ?? 0) + (1);
+        (s as any).fu_text = ((s as any).fu_text ?? 0) + ('<td bgcolor=' + (((s as any).theme ?? 0)?.['table_bg_alt']) + ' align="center"><img height="100" src="images/characters/shared/headshots_main/' + ((s as any).i ?? 0) + '.jpg"><br>\' + \'' + (((s as any).npc_usedname ?? 0)?.['A' + String(((s as any).i ?? 0))]) + ', ' + (((s as any).npc_hotcat ?? 0)?.['A' + String(((s as any).i ?? 0))]) + '/10\' + \'</td>');
+        if (((s as any).fu_count ?? 0) === 6) {
+          (s as any).fu_text = ((s as any).fu_text ?? 0) + ('</tr><tr>');
+          (s as any).fu_count = 0;
+        }
+      }
+      (s as any).i = ((s as any).i ?? 0) + (1);
+      (s as any).j = ((s as any).j ?? 0) - (1);
+      (s as any).hotcat_rating_set = undefined;
+      (s as any).i = undefined;
+      (s as any).j = undefined;
+      (s as any).fu_count = undefined;
+      (s as any).fu_text = undefined;
+    } while (((s as any).i ?? 0) <= ((s as any).aarraynumber ?? 0));
+  } while (((s as any).j ?? 0) > 0);
   scene.build();
 }
 
@@ -228,26 +224,25 @@ function enterHotornotUniList(s: GameState, scene: SceneBuilder): void {
   (s as any).ho_count = 0;
   (s as any).ho_text = '<center><table cellspacing="3">';
   (s as any).j = 10;
-  // TODO-QSP: :ho_loop_2_uni
-  (s as any).i = 1;
-  // TODO-QSP: :ho_loop_uni
-  if (((s as any).npc_gender ?? 0)['A' + (((s as any).i ?? 0))] === 0  &&  ((s as any).npc_hotcat ?? 0)['A' + (((s as any).i ?? 0))] === ((s as any).j ?? 0)  &&  ((s as any).npc_uni_active ?? 0)['A' + (((s as any).i ?? 0))] === 1  &&  ((s as any).npc_uni_eduType ?? 0)['A' + (((s as any).i ?? 0))] !== 'professor') {
-    (s as any).ho_count = ((s as any).ho_count ?? 0) + (1);
-    // TODO-QSP: $ho_text += '<td bgcolor=<<$theme[''table_bg_alt'']>> align="center"><img height="100" src="images/c...
-    if (((s as any).ho_count ?? 0) === 6) {
-      // TODO-QSP: $ho_text += '</tr><tr>'
-      (s as any).ho_count = 0;
-    }
-  }
-  (s as any).i = ((s as any).i ?? 0) + (1);
-  if (((s as any).i ?? 0) <= ((s as any).aarraynumber ?? 0)) {
-    // TODO-QSP: jump 'ho_loop_uni'
-  }
-  (s as any).j = ((s as any).j ?? 0) - (1);
-  if (((s as any).j ?? 0) > 0) {
-    // TODO-QSP: jump 'ho_loop_2_uni'
-  }
-  // TODO-QSP: end
+  do {
+    (s as any).i = 1;
+    do {
+      if (((s as any).npc_gender ?? 0)['A' + (((s as any).i ?? 0))] === 0  &&  ((s as any).npc_hotcat ?? 0)['A' + (((s as any).i ?? 0))] === ((s as any).j ?? 0)  &&  ((s as any).npc_uni_active ?? 0)['A' + (((s as any).i ?? 0))] === 1  &&  ((s as any).npc_uni_eduType ?? 0)['A' + (((s as any).i ?? 0))] !== 'professor') {
+        (s as any).ho_count = ((s as any).ho_count ?? 0) + (1);
+        (s as any).ho_text = ((s as any).ho_text ?? 0) + ('<td bgcolor=' + (((s as any).theme ?? 0)?.['table_bg_alt']) + ' align="center"><img height="100" src="images/characters/shared/headshots_main/' + ((s as any).i ?? 0) + '.jpg"><br>\' + \'' + (((s as any).npc_usedname ?? 0)?.['A' + String(((s as any).i ?? 0))]) + ', ' + (((s as any).npc_hotcat ?? 0)?.['A' + String(((s as any).i ?? 0))]) + '/10\' + \'</td>');
+        if (((s as any).ho_count ?? 0) === 6) {
+          (s as any).ho_text = ((s as any).ho_text ?? 0) + ('</tr><tr>');
+          (s as any).ho_count = 0;
+        }
+      }
+      (s as any).i = ((s as any).i ?? 0) + (1);
+      (s as any).j = ((s as any).j ?? 0) - (1);
+      (s as any).i = undefined;
+      (s as any).j = undefined;
+      (s as any).ho_count = undefined;
+      (s as any).ho_text = undefined;
+    } while (((s as any).i ?? 0) <= ((s as any).aarraynumber ?? 0));
+  } while (((s as any).j ?? 0) > 0);
   scene.build();
 }
 

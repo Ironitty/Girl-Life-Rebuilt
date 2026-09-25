@@ -12,7 +12,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><h4>Meadow</h4></center>');
   scene.img(`images/locations/gadukino/meadow/meadow1_${(Math.floor(Math.random() * 6) + 0)}.jpg`);
   scene.text('A quiet and deserted open field of grass and wildflowers in the forest, well hidden from civilization.');
-  scene.text('There are <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027gad_meadow/u0027, /u0027ruins/u0027); return false;">ruins</a> of a long-abandoned house and some <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027gad_meadow/u0027, /u0027fruit_trees/u0027); return false;">fruit trees</a> hinting at the area\'s original purpose.');
+  scene.text('There are <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027gad_meadow\u0027, \u0027ruins\u0027); return false;">ruins</a> of a long-abandoned house and some <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027gad_meadow\u0027, \u0027fruit_trees\u0027); return false;">fruit trees</a> hinting at the area\'s original purpose.');
   if (qspFunc(s, 'miroslava_schedule', 'is_here')) {
     if ((((s as any).MiraVars ?? 0)?.['meadow'] === 2  ||  ((s as any).MiraVars ?? 0)?.['meadow'] === 5)  &&  ((s as any).MiraVars ?? 0)?.['QW'] === 2  &&  ((s as any).temper ?? 0) >= 12  &&  ((s as any).sunWeather ?? 0) === 1) {
       qspGoto(s, 'gad_meadow', 'mira_mitka');
@@ -37,34 +37,34 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     } else {
       (s as any).temp_md = (Math.floor(Math.random() * 21) + 0);
       if (((s as any).MiraVars ?? 0)?.['Mitka_fucks'] < 15  &&  ((s as any).temper ?? 0) >= 12  &&  (!((s as any).temp_md ?? 0))) {
-        scene.text('In the clearing you notice <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027gad_meadow/u0027, /u00270/u0027); return false;">Mira</a>.');
+        scene.text('In the clearing you notice <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027gad_meadow\u0027, \u00270\u0027); return false;">Mira</a>.');
       } else {
         if (((s as any).MiraVars ?? 0)?.['QW'] >= 2  &&  ((s as any).temper ?? 0) >= 15  &&  ((s as any).temp_md ?? 0) === 1) {
-          scene.text('In the clearing you notice <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027gad_meadow/u0027, /u00271/u0027); return false;">Mira with Mitka</a>.');
+          scene.text('In the clearing you notice <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027gad_meadow\u0027, \u00271\u0027); return false;">Mira with Mitka</a>.');
         } else {
           if (((s as any).MiraVars ?? 0)?.['QW'] >= 8  &&  ((s as any).temper ?? 0) >= 15  &&  ((s as any).temp_md ?? 0) === 2) {
-            scene.text('In the clearing you notice <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027gad_meadow/u0027, /u00272/u0027); return false;">Mira with Mitka</a>.');
+            scene.text('In the clearing you notice <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027gad_meadow\u0027, \u00272\u0027); return false;">Mira with Mitka</a>.');
           } else {
             if (((s as any).MiraVars ?? 0)?.['QW'] >= 11  &&  ((s as any).temper ?? 0) >= 10  &&  ((s as any).temp_md ?? 0) === 3) {
-              scene.text('In the clearing you notice <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027gad_meadow/u0027, /u00273/u0027); return false;">Mira with Kolyamba</a>.');
+              scene.text('In the clearing you notice <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027gad_meadow\u0027, \u00273\u0027); return false;">Mira with Kolyamba</a>.');
             } else {
               if (((s as any).MiraVars ?? 0)?.['QW'] >= 11  &&  ((s as any).temper ?? 0) >= 10  &&  ((s as any).temp_md ?? 0) === 4) {
-                scene.text('In the clearing you notice <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027gad_meadow/u0027, /u00274/u0027); return false;">Mira with Vasyan</a>.');
+                scene.text('In the clearing you notice <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027gad_meadow\u0027, \u00274\u0027); return false;">Mira with Vasyan</a>.');
               } else {
                 if (((s as any).MiraVars ?? 0)?.['QW'] >= 11  &&  ((s as any).temper ?? 0) >= 25  &&  ((s as any).temp_md ?? 0) === 5) {
-                  scene.text('In the clearing you notice <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027gad_meadow/u0027, /u00275/u0027); return false;">Mira with Vasyan</a>.');
+                  scene.text('In the clearing you notice <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027gad_meadow\u0027, \u00275\u0027); return false;">Mira with Vasyan</a>.');
                 } else {
                   if (((s as any).MiraVars ?? 0)?.['QW'] >= 11  &&  ((s as any).temper ?? 0) >= 12  &&  ((s as any).temp_md ?? 0) === 6) {
-                    scene.text('In the clearing you notice <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027gad_meadow/u0027, /u00276/u0027); return false;">Mira with Mitka, Vasyan and Kolyamba</a>.');
+                    scene.text('In the clearing you notice <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027gad_meadow\u0027, \u00276\u0027); return false;">Mira with Mitka, Vasyan and Kolyamba</a>.');
                   } else {
                     if (((s as any).MiraVars ?? 0)?.['QW'] >= 21  &&  ((s as any).temper ?? 0) >= 12  &&  ((s as any).temp_md ?? 0) === 7) {
-                      scene.text('In the clearing you notice <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027gad_meadow/u0027, /u00277/u0027); return false;">Mira with Vasyan and Kolyamba</a>.');
+                      scene.text('In the clearing you notice <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027gad_meadow\u0027, \u00277\u0027); return false;">Mira with Vasyan and Kolyamba</a>.');
                     } else {
                       if (((s as any).MiraVars ?? 0)?.['QW'] >= 30  &&  ((s as any).temper ?? 0) >= 20  &&  ((s as any).temp_md ?? 0) === 8) {
-                        scene.text('In the clearing you notice <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027gad_meadow/u0027, /u00278/u0027); return false;">A bunch of half-naked hillbilly men</a>.');
+                        scene.text('In the clearing you notice <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027gad_meadow\u0027, \u00278\u0027); return false;">A bunch of half-naked hillbilly men</a>.');
                       } else {
                         if (((s as any).MiraVars ?? 0)?.['QW'] >= 20  &&  ((s as any).temper ?? 0) >= 25  &&  ((s as any).temp_md ?? 0) === 9) {
-                          scene.text('In a clearing you see <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027gad_meadow/u0027, /u00279/u0027); return false;">Mira</a>.');
+                          scene.text('In a clearing you see <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027gad_meadow\u0027, \u00279\u0027); return false;">Mira</a>.');
                         } else {
                           { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMiraFreeAndHere(s, scene); (s as any).locArgs = __savedLocArgs; }
                         }
@@ -127,7 +127,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -139,7 +138,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><h4>Meadow</h4></center>');
   scene.img(`images/locations/gadukino/meadow/meadow1_${(Math.floor(Math.random() * 6) + 0)}.jpg`);
   scene.text('A quiet and deserted open field of grass and wildflowers in the forest, well hidden from civilization.');
-  scene.text('There are <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027gad_meadow/u0027, /u0027ruins/u0027); return false;">ruins</a> of a long-abandoned house and some <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027gad_meadow/u0027, /u0027fruit_trees/u0027); return false;">fruit trees</a> hinting at the area\'s original purpose.');
+  scene.text('There are <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027gad_meadow\u0027, \u0027ruins\u0027); return false;">ruins</a> of a long-abandoned house and some <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027gad_meadow\u0027, \u0027fruit_trees\u0027); return false;">fruit trees</a> hinting at the area\'s original purpose.');
   if (qspFunc(s, 'miroslava_schedule', 'is_here')) {
     if ((((s as any).MiraVars ?? 0)?.['meadow'] === 2  ||  ((s as any).MiraVars ?? 0)?.['meadow'] === 5)  &&  ((s as any).MiraVars ?? 0)?.['QW'] === 2  &&  ((s as any).temper ?? 0) >= 12  &&  ((s as any).sunWeather ?? 0) === 1) {
       qspGoto(s, 'gad_meadow', 'mira_mitka');
@@ -164,34 +163,34 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     } else {
       (s as any).temp_md = (Math.floor(Math.random() * 21) + 0);
       if (((s as any).MiraVars ?? 0)?.['Mitka_fucks'] < 15  &&  ((s as any).temper ?? 0) >= 12  &&  (!((s as any).temp_md ?? 0))) {
-        scene.text('In the clearing you notice <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027gad_meadow/u0027, /u00270/u0027); return false;">Mira</a>.');
+        scene.text('In the clearing you notice <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027gad_meadow\u0027, \u00270\u0027); return false;">Mira</a>.');
       } else {
         if (((s as any).MiraVars ?? 0)?.['QW'] >= 2  &&  ((s as any).temper ?? 0) >= 15  &&  ((s as any).temp_md ?? 0) === 1) {
-          scene.text('In the clearing you notice <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027gad_meadow/u0027, /u00271/u0027); return false;">Mira with Mitka</a>.');
+          scene.text('In the clearing you notice <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027gad_meadow\u0027, \u00271\u0027); return false;">Mira with Mitka</a>.');
         } else {
           if (((s as any).MiraVars ?? 0)?.['QW'] >= 8  &&  ((s as any).temper ?? 0) >= 15  &&  ((s as any).temp_md ?? 0) === 2) {
-            scene.text('In the clearing you notice <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027gad_meadow/u0027, /u00272/u0027); return false;">Mira with Mitka</a>.');
+            scene.text('In the clearing you notice <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027gad_meadow\u0027, \u00272\u0027); return false;">Mira with Mitka</a>.');
           } else {
             if (((s as any).MiraVars ?? 0)?.['QW'] >= 11  &&  ((s as any).temper ?? 0) >= 10  &&  ((s as any).temp_md ?? 0) === 3) {
-              scene.text('In the clearing you notice <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027gad_meadow/u0027, /u00273/u0027); return false;">Mira with Kolyamba</a>.');
+              scene.text('In the clearing you notice <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027gad_meadow\u0027, \u00273\u0027); return false;">Mira with Kolyamba</a>.');
             } else {
               if (((s as any).MiraVars ?? 0)?.['QW'] >= 11  &&  ((s as any).temper ?? 0) >= 10  &&  ((s as any).temp_md ?? 0) === 4) {
-                scene.text('In the clearing you notice <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027gad_meadow/u0027, /u00274/u0027); return false;">Mira with Vasyan</a>.');
+                scene.text('In the clearing you notice <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027gad_meadow\u0027, \u00274\u0027); return false;">Mira with Vasyan</a>.');
               } else {
                 if (((s as any).MiraVars ?? 0)?.['QW'] >= 11  &&  ((s as any).temper ?? 0) >= 25  &&  ((s as any).temp_md ?? 0) === 5) {
-                  scene.text('In the clearing you notice <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027gad_meadow/u0027, /u00275/u0027); return false;">Mira with Vasyan</a>.');
+                  scene.text('In the clearing you notice <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027gad_meadow\u0027, \u00275\u0027); return false;">Mira with Vasyan</a>.');
                 } else {
                   if (((s as any).MiraVars ?? 0)?.['QW'] >= 11  &&  ((s as any).temper ?? 0) >= 12  &&  ((s as any).temp_md ?? 0) === 6) {
-                    scene.text('In the clearing you notice <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027gad_meadow/u0027, /u00276/u0027); return false;">Mira with Mitka, Vasyan and Kolyamba</a>.');
+                    scene.text('In the clearing you notice <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027gad_meadow\u0027, \u00276\u0027); return false;">Mira with Mitka, Vasyan and Kolyamba</a>.');
                   } else {
                     if (((s as any).MiraVars ?? 0)?.['QW'] >= 21  &&  ((s as any).temper ?? 0) >= 12  &&  ((s as any).temp_md ?? 0) === 7) {
-                      scene.text('In the clearing you notice <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027gad_meadow/u0027, /u00277/u0027); return false;">Mira with Vasyan and Kolyamba</a>.');
+                      scene.text('In the clearing you notice <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027gad_meadow\u0027, \u00277\u0027); return false;">Mira with Vasyan and Kolyamba</a>.');
                     } else {
                       if (((s as any).MiraVars ?? 0)?.['QW'] >= 30  &&  ((s as any).temper ?? 0) >= 20  &&  ((s as any).temp_md ?? 0) === 8) {
-                        scene.text('In the clearing you notice <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027gad_meadow/u0027, /u00278/u0027); return false;">A bunch of half-naked hillbilly men</a>.');
+                        scene.text('In the clearing you notice <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027gad_meadow\u0027, \u00278\u0027); return false;">A bunch of half-naked hillbilly men</a>.');
                       } else {
                         if (((s as any).MiraVars ?? 0)?.['QW'] >= 20  &&  ((s as any).temper ?? 0) >= 25  &&  ((s as any).temp_md ?? 0) === 9) {
-                          scene.text('In a clearing you see <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027gad_meadow/u0027, /u00279/u0027); return false;">Mira</a>.');
+                          scene.text('In a clearing you see <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027gad_meadow\u0027, \u00279\u0027); return false;">Mira</a>.');
                         } else {
                           { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMiraFreeAndHere(s, scene); (s as any).locArgs = __savedLocArgs; }
                         }
@@ -254,7 +253,6 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -281,14 +279,12 @@ function enterWorkout(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', goto: ['exercise', 'workout'] },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterFruitTrees(s: GameState, scene: SceneBuilder): void {
   scene.img(`images/locations/gadukino/meadow/meadow_fruit_${(Math.floor(Math.random() * 2) + 0)}.jpg`);
   scene.text('These fruit trees are flourishing in the undisturbed beauty of the meadow. But, unfortunately, all the fruit is out of your reach.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['gad_meadow', 'start'] },
   ]);
@@ -298,7 +294,6 @@ function enterFruitTrees(s: GameState, scene: SceneBuilder): void {
 function enterRuins(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/gadukino/meadow/meadow_nearby_ruins.jpg');
   scene.text('The ruins of this old house look intriguing. But, you wonder how long it has been here.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['gad_meadow', 'start'] },
   ]);
@@ -306,8 +301,7 @@ function enterRuins(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterMiraFreeAndHere(s: GameState, scene: SceneBuilder): void {
-  scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027gad_meadow/u0027, /u0027Mira/u0027); return false;">Mira</a> is in the meadow, spinning with a delightful smile and laughing.');
-  // TODO-QSP: end
+  scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027gad_meadow\u0027, \u0027Mira\u0027); return false;">Mira</a> is in the meadow, spinning with a delightful smile and laughing.');
   scene.actions([
     { label: 'Talk to Mira', goto: ['gad_meadow', 'Mira'] },
   ]);
@@ -466,7 +460,6 @@ function enterMira(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -615,7 +608,6 @@ function enter0(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -625,7 +617,6 @@ function enter1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/gadukino/mira/mirameadowsex.jpg');
   scene.text('You see Mira and Mitka talking to each other. You can\'t hear what they say from this far away, but they begin to undress in your meadow.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Watch', handler: (st: GameState) => {
     scene.img('images/characters/gadukino/mira/mirameadowsex1.jpg');
@@ -665,7 +656,6 @@ function enter2(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'voyeur_sex', 2);
     qspCall(s, 'stat', '');
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Watch', handler: (st: GameState) => {
     scene.img('images/characters/gadukino/mira/sex/mirameadowanal2.jpg');
@@ -713,7 +703,6 @@ function enter3(s: GameState, scene: SceneBuilder): void {
   }, goto: ['gad_meadow', 'start'] },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -763,7 +752,6 @@ function enter4(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -813,7 +801,6 @@ function enter5(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -828,7 +815,6 @@ function enter6(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'voyeur_sex', 5);
   }
   qspCall(s, 'arousal', 'end');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Hide until they leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 10;
@@ -855,7 +841,6 @@ function enter7(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'arousal', 'end');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Hide until they leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 10;
@@ -870,7 +855,6 @@ function enter8(s: GameState, scene: SceneBuilder): void {
   scene.text('Mira is almost invisible with all the bodies around her. You can only see her naked ass and feet swaying in the air. You spend half an hour watching as the men take turns fucking Mira until they are all tired.');
   qspCall(s, 'arousal', 'voyeur_sex', 30);
   qspCall(s, 'arousal', 'end');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Hide until they leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 10;
@@ -884,7 +868,6 @@ function enter9(s: GameState, scene: SceneBuilder): void {
   scene.text('You see Mira on all fours with her back to you. She is shoving an ear of corn in her ass which looks painful, but she is still moaning. Eventually, Mira finishes and tosses the cum covered ear of corn off into the bushes, almost hitting you!');
   qspCall(s, 'arousal', 'voyeur_sex', 30);
   qspCall(s, 'arousal', 'end');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Hide until she leaves', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 10;
@@ -899,7 +882,6 @@ function enterMiraMitka(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/gadukino/mira/mirameadowsex.jpg');
   scene.text('You see Mira and Mitka talking to each other. You can\'t hear what they say from this far away, but they begin to undress in your meadow.');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Watch', handler: (st: GameState) => {
     scene.img('images/characters/gadukino/mira/mirameadowsex1.jpg');
@@ -935,7 +917,6 @@ function enterMiraGang(s: GameState, scene: SceneBuilder): void {
   scene.text('Mira is almost invisible with all the bodies around her. You can only see her naked ass and feet swaying in the air. You spend half an hour watching as the men take turns fucking Mira until they are all tired.');
   qspCall(s, 'arousal', 'voyeur_sex', 30);
   qspCall(s, 'arousal', 'end');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Hide until they leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 10;
@@ -955,7 +936,6 @@ function enterMiraperversion11(s: GameState, scene: SceneBuilder): void {
   scene.text('But you were also drunk and did not do what she did. Her face sinks with shame, and she looks at the ground.');
   scene.text('You speak with her awhile and somehow manage to soothe her and tell her that she should just bite the bullet and move on.');
   scene.text('Mira sincerely thanks you for your support, but her eyes still look down…');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     dynamicGoto(st, 'prevLoc', 'prevArg');
@@ -983,7 +963,6 @@ function enterLesbMira(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', goto: ['mirasex', 'foreplay'] },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -993,7 +972,6 @@ function enterMiraLesb(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcStat', 'A64');
   scene.img('images/characters/gadukino/mira/mirakiss4.jpg');
   scene.text('In the meadow, Mira walks up to you, smiling mischievously.');
-  // TODO-QSP: dynamic text: "<<$pcs_nickname>>, let me see your pussy", she whispered in your ear while pinn...
   scene.text(`"${((s as any).pcs_nickname ?? '')}, let me see your pussy", she whispered in your ear while pinning you to the tree and kissing your lips.`);
   qspCall(s, 'arousal', 'kiss', 5, 'lesbian');
   qspCall(s, 'stat', '');
@@ -1026,7 +1004,6 @@ function enterMiraLesb(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1044,9 +1021,7 @@ function enterLesbTalkMira1(s: GameState, scene: SceneBuilder): void {
   scene.text('She may not be a lesbian, but you can tell by her flushed cheeks and shaky voice that she finds the idea very arousing.');
   scene.text('"Don\'t worry, I won\'t be mean or rough like Mitka", you continue to push her. "We can lick each other, or I can leave, and you can go back to the village boys instead and forget about me."');
   scene.text('Mira thought for a second, but it was an easy choice. She didn\'t want to lose your friendship.');
-  // TODO-QSP: dynamic text: "Well, <<$pcs_nickname>>, I''ll do it, " she said, falling to her knees.
   scene.text(`"Well, ${((s as any).pcs_nickname ?? '')}, I'll do it, " she said, falling to her knees.`);
-  // TODO-QSP: end
   scene.actions([
     { label: 'Let Mira lick you', goto: ['mirasex', 'miralick_first'] },
   ]);
@@ -1068,7 +1043,6 @@ function enterLesbTalkMira2(s: GameState, scene: SceneBuilder): void {
   scene.text('"What?" Mira asked, blushing terribly, although she already guessed where this was going.');
   scene.text('"It\'s time to return the favor", you replied triumphantly while leaning on a tree and beckoning her with your finger. "You can start."');
   scene.text('Mira hesitated a couple of moments as if pondering something and then sat down in front of you on her knees.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Let Mira lick you', goto: ['mirasex', 'miralick_first'] },
   ]);
@@ -1083,7 +1057,6 @@ function enterLesbTalkMira3(s: GameState, scene: SceneBuilder): void {
   scene.text('You leaned on the tree and beckoned Mira the finger.');
   scene.text('"Get over her, Mira. You know what to do."');
   scene.text('She already knew what to do and got down on her knees in front of you.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Let Mira lick you', goto: ['mirasex', 'miralick_first'] },
   ]);
@@ -1101,7 +1074,6 @@ function enterMiraLesbTalk1(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('In the clearing, you met Mira. Seeing you, she immediately came up with a sly smile on her lips.');
   }
-  // TODO-QSP: dynamic text: "<<$pcs_nickname>>, you fucked all the boys in the village now.
   scene.text(`"${((s as any).pcs_nickname ?? '')}, you fucked all the boys in the village now.`);
   scene.text('You tried to keep silent, but Mira wouldn\'t let it go.');
   scene.text('"So did they or didn\'t they?" - she insisted on your answer.');
@@ -1112,7 +1084,6 @@ function enterMiraLesbTalk1(s: GameState, scene: SceneBuilder): void {
     scene.text('"Everyone knows girls know the best ways to pleasure girls," she answered.');
   } else {
     scene.text('You already guessed where she was going with this but still hesitated.');
-    // TODO-QSP: dynamic text: "Come on, don''t sulk, <<$pcs_nickname>>, it doesn''t suit you," she continued t...
     scene.text(`"Come on, don't sulk, ${((s as any).pcs_nickname ?? '')}, it doesn't suit you," she continued to get comfortable on the nearest stone.`);
     scene.text('"Well, Mira, I\'ll do it, " you said, falling on your knees.');
     scene.text('"In the end, why not please your friend?" you thought.');
@@ -1133,7 +1104,6 @@ function enterMiraLesbTalk1(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/characters/gadukino/mira/mira_lesb_talk3.jpg');
     scene.text('You still hoped that you could change Mira\'s mind.');
-    // TODO-QSP: dynamic text: "Come on, don''t be a prude now, <<$pcs_nickname>>," said Mira, taking you by th...
     scene.text(`"Come on, don't be a prude now, ${((st as any).pcs_nickname ?? '')}," said Mira, taking you by the shirt and pulling you to the nearest stone. "Sluts should always pleasure their friends first."`);
     scene.text('Sitting on the stone, she looked eagerly at you.');
     scene.text('"Well, what are you waiting for? I\'m ready."');
@@ -1150,7 +1120,6 @@ function enterMiraLesbTalk1(s: GameState, scene: SceneBuilder): void {
       { label: 'Lick Mira', goto: ['mirasex', 'lickmira_first'] },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1162,7 +1131,6 @@ function enterMiraLesbTalk2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/gadukino/mira/mira_lesb_talk2.jpg');
   scene.text('Mira walks up to you with a malicious smile on her face.');
-  // TODO-QSP: dynamic text: "Well, <<$pcs_nickname>>," congratulations, she said. "You are now the same whor...
   scene.text(`"Well, ${((s as any).pcs_nickname ?? '')}," congratulations, she said. "You are now the same whore as me. All the boys fucked you too."`);
   scene.text('You tried to keep silent, but she was not satisfied.');
   scene.text('"So, did they or didn\'t they?" she insists on an answer.');
@@ -1171,7 +1139,6 @@ function enterMiraLesbTalk2(s: GameState, scene: SceneBuilder): void {
   scene.text('"What?" you ask, blushing terribly, although you already guessed where this is going.');
   scene.text('"It\'s time to return the favor, " she said triumphantly, leaning on a tree, beckoning you with her finger. "You can start."');
   scene.text('You hesitated for a couple of moments as if pondering something, and then you knelt down on your knees in front of her.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Lick Mira', goto: ['mirasex', 'lickmira_first'] },
   ]);
@@ -1187,15 +1154,12 @@ function enterMiraLesbTalk3(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/gadukino/mira/mira_lesb_talk3.jpg');
   if (qspFunc(s, 'miroslava_schedule', 'is_here')) {
     scene.text('When you came into the clearing, Mira immediately turned to you with an excited face.');
-    // TODO-QSP: dynamic text: "Come help me out, <<$pcs_nickname>>," she said and started to get comfortable.
     scene.text(`"Come help me out, ${((s as any).pcs_nickname ?? '')}," she said and started to get comfortable.`);
   } else {
     scene.text('In the clearing, you meet Mira. Seeing you, she immediately approached you with an excited face.');
-    // TODO-QSP: dynamic text: "Where were you, <<$pcs_nickname>>? I was looking for you," she said. So get ove...
     scene.text(`"Where were you, ${((s as any).pcs_nickname ?? '')}? I was looking for you," she said. So get over here and help me out.`);
   }
   scene.text('You are already familiar with this and get on your knees before her.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Lick Mira', goto: ['mirasex', 'lickmira_first'] },
   ]);
@@ -1210,14 +1174,11 @@ function enterMiraLesbTalk4(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   qspCall(s, 'miroslava', 'miraclothes');
   scene.text('Walking through the village, you meet Mira. Seeing you, she immediately approaches you with an excited face.');
-  // TODO-QSP: dynamic text: "Where were you, <<$pcs_nickname>>? I was looking for you," she said. "Let''s go...
   scene.text(`"Where were you, ${((s as any).pcs_nickname ?? '')}? I was looking for you," she said. "Let's go take a walk in our meadow."`);
   scene.text('She grabs you by the hand and literally drags you behind her. You can hear Mira\'s excited breath and know fully why she is taking you to the meadow.');
   scene.text('When you came into the clearing, Mira immediately turned to you with an excited face.');
-  // TODO-QSP: dynamic text: "Come help me out, <<$pcs_nickname>>," she said and started to get comfortable.
   scene.text(`"Come help me out, ${((s as any).pcs_nickname ?? '')}," she said and started to get comfortable.`);
   scene.text('You are already familiar with this and get on your knees before her.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Lick Mira', goto: ['mirasex', 'lickmira_first'] },
   ]);
@@ -1594,7 +1555,6 @@ function enterMirameadow(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 

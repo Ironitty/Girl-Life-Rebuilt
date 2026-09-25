@@ -24,7 +24,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       { label: 'Sit Down', goto: ['hookahlounge', 'Smoke_Hookah'] },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the Lounge', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -39,15 +38,13 @@ function enterHookah_Aliyyah(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/city/aliyyah/Hookah_Aliyyah.jpg');
   scene.text('At the counter, you see a young Muslim woman. She appears quite timid. Nonetheless, she greets you with a smile as you walk up. She squeaks "What do you need, ma\'am?"');
   scene.text('I\'d like to buy a seat at a hookah, please.');
-  // TODO-QSP: dynamic text: 'Okay, that will be ' + $func('money', 'string_price', 100) + ' please.'
-  scene.text('Okay, that will be 100₽ please.');
+  scene.text('\'Okay, that will be 100₽ please.\'');
   if ((!((s as any).smoketab ?? 0))) {
     scene.actions([
       { label: 'Pay for an hour and leave the counter', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 100, 'cash') === 0) {
       s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
-      // TODO-QSP: dynamic text: You glance at her name badge, before looking back at her. Smiling, you hand over...
       scene.text(`You glance at her name badge, before looking back at her. Smiling, you hand over the required amount and say "Here you go, ${(((st as any).npc_firstname ?? 0)?.['A262'] ?? '')}!"`);
       qspCall(st, 'money', 'pay', 100, 'cash');
       (st as any).smoketab = 1;
@@ -60,14 +57,12 @@ function enterHookah_Aliyyah(s: GameState, scene: SceneBuilder): void {
       { label: 'Leave the counter', goto: ['hookahlounge', 'start'] },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterSmoke_Hookah(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/redlight/hookahlounge/HookahSit.jpg');
   scene.text('You sit down at a booth');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Smoke using hookah', handler: (st: GameState) => {
     (st as any).smoketab = 0;

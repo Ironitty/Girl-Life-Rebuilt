@@ -81,7 +81,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
           scene.actions([
             { label: '', labelFn: (s: GameState) => 'Give him ' + String(qspFunc(s, 'money', 'string_price', 1000) ?? ''), handler: (st: GameState) => {
     qspCall(st, 'money', 'pay', 1000, 'cash');
-    // TODO-QSP: dynamic text: You give the man <<$func(''money'', ''string_price'', 1000)>>, which he pockets ...
     scene.text(`You give the man ${qspFunc(s, 'money', 'string_price', 1000)}, which he pockets right away. Then he drives off, without saying another word.`);
     scene.actions([
       { label: 'Continue', goto: ['prostitute', 'start'] },
@@ -189,6 +188,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
           ]);
         }
       }
+      (st as any).proseventrand = undefined;
     }
   } },
             ]);
@@ -197,7 +197,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go back to the park', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -210,7 +209,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
 function enterWork1(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'event_outdoors';
   scene.img('images/locations/city/centralpark/park2.jpg');
-  // TODO-QSP: dynamic text: You pretend to think it over for a moment, then look at the man again and smile:...
   scene.text(`You pretend to think it over for a moment, then look at the man again and smile: "For you, babe? Only ${qspFunc(s, 'money', 'string_profit', ((s as any).ProsMoney ?? '') * 100, 1)}."`);
   if (((s as any).vidage ?? 0) < 18) {
     (s as any).vnpr = 15;
@@ -322,19 +320,21 @@ function enterWork1(s: GameState, scene: SceneBuilder): void {
         (s as any).KlientMON = (Math.floor(Math.random() * 36) + 5);
       }
       if (((s as any).KlientMON ?? 0) >= ((s as any).ProsMoney ?? 0)) {
+        (s as any).KlientMON = undefined;
         qspGoto(s, 'prostitute', 'work2', String((s as any).locArgs?.[1] ?? ''));
       }
       if ((Math.floor(Math.random() * 2) + 0) === 1) {
-        // TODO-QSP: dynamic text: The client smiles and offers: "I only have <<KlientMON * 100>>… what do you say?...
         scene.text(`The client smiles and offers: "I only have ${((s as any).KlientMON ?? '') * 100}… what do you say?"`);
         scene.actions([
           { label: 'Agree', handler: (st: GameState) => {
     (st as any).ProsMoney = ((st as any).KlientMON ?? 0);
+    (st as any).KlientMON = undefined;
     qspGoto(st, 'prostitute', 'work2', '' + ((st as any).locArgs?.[1] ?? 0) + '');
   } },
         ]);
         scene.actions([
 { label: 'Refuse', handler: (st: GameState) => {
+    (st as any).KlientMON = undefined;
     qspGoto(st, 'prostitute', 'start');
   } },
 ]);
@@ -344,7 +344,6 @@ function enterWork1(s: GameState, scene: SceneBuilder): void {
   }
   scene.text('The client examines you hesitantly, a bit startled by the amount you asked for. He shakes his head as he starts his car: "Too much."');
   scene.text('Then he drives away before you can get another word in. Doesn\'t he understand how bartering works!?');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['prostitute', 'start'] },
   ]);
@@ -354,7 +353,6 @@ function enterWork1(s: GameState, scene: SceneBuilder): void {
 function enterWork2(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'event_outdoors';
   scene.text('The client grins and gives you a nod: "Get in."');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Get into his car', handler: (st: GameState) => {
     qspCall(st, 'npcgeneratec', '0', '"John"', (Math.floor(Math.random() * 28) + 18));
@@ -380,6 +378,7 @@ function enterWork2(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.img(`images/shared/sex/blowjob/bjp${((st as any).picrand ?? '')}.jpg`);
     }
+    (st as any).picrand = undefined;
     scene.text('You put a condom between your lips and slowly guide your mouth to his penis, you gently roll it down using only your lips. You can tell the guy is really impressed with your skills.');
     if (String((st as any).locArgs?.[1] ?? '') === 'blow job') {
       qspCall(st, 'money', 'earn', ((st as any).ProsMoney ?? 0) * 100, 'cash');
@@ -440,7 +439,6 @@ function enterWork2(s: GameState, scene: SceneBuilder): void {
     }
     qspCall(st, 'arousal_funcs', 'stretch', 'anal', ((st as any).dickK ?? 0));
     scene.img('images/shared/sex/anal/doggy/anal30.jpg');
-    // TODO-QSP: dynamic text: You immediately feel the man''s hands on your ass cheeks when you get on your ha...
     scene.text(`You immediately feel the man's hands on your ass cheeks when you get on your hands and knees in the back seat. The man confidently guides his condom-covered cock to your sphincter, and slowly thrusts all of his ${((st as any).dick ?? '')} centimeter inside you.`);
     qspCall(st, 'arousal', 'anal', 10, 'prostitution', 'unknown');
     qspCall(st, 'stat', '');
@@ -552,13 +550,13 @@ function enterWork2(s: GameState, scene: SceneBuilder): void {
             scene.img('images/shared/sex/cum/chest/bjt.jpg');
             scene.text('Your trained tongue slides up and down his shaft expertly, and you pull out all of your tricks to make him feel good. You even use some techniques you learned to stall his orgasm for a while.');
             scene.text('While you\'re sucking him off, the man tries to pull your clothes aside to expose your breasts. Understanding what he wants, you expose your boobs readily. His cock erupts almost immediately at the sight of them, and he removes his cock from your mouth so he can spray his sperm over your tits too.');
-            // TODO-QSP: dynamic text: The man grins happily when he looks at his work of art across your boobs, and gi...
             scene.text(`The man grins happily when he looks at his work of art across your boobs, and gives you an extra ${qspFunc(s, 'money', 'string_profit', 500)} as a tip on top of the money he owed you. You really made his day!`);
             qspCall(st, 'arousal', 'bj', 10, 'prostitution', 'unknown');
             qspCall(st, 'stat', '');
           }
         }
       }
+      (st as any).bjrand = undefined;
       qspCall(st, 'arousal', 'end');
       scene.actions([
         { label: 'Get out of his car', goto: ['prostitute', 'start'] },
@@ -595,6 +593,7 @@ function enterWork2(s: GameState, scene: SceneBuilder): void {
         qspCall(st, 'stat', '');
       }
     }
+    (st as any).prostRand = undefined;
     scene.text('He exerted himself a great deal while he was fucking you, and is slowly catching his breath while you straighten your clothes.');
     scene.text('With a satisfied smile on his face, he gives you the money he owes you and drives off.');
     qspCall(st, 'arousal', 'end');
@@ -620,7 +619,6 @@ function enterWork2(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'foreplay', 1, 'prostitution', 'unknown');
     qspCall(st, 'stat', '');
     if (((st as any).pcs_ass ?? 0) < ((st as any).dick ?? 0)) {
-      // TODO-QSP: dynamic text: You feel a sharp pain and wince when the man pushes the tip of his <<dick>> cent...
       scene.text(`You feel a sharp pain and wince when the man pushes the tip of his ${((st as any).dick ?? '')} centimeter member past your sphincter, and continues to work most of his length inside you. Fortunately, he listens when you beg him to go slow.`);
       scene.text('The guy holds still for a moment so your ass can get used to how far it\'s being stretched out. After a little while you don\'t think it\'s going to get any better, and you tell the man he can start to fucking you now with a forced, fake smile on your face.');
       scene.text('He\'s still careful at first, but soon forgets about your suffering and accelerates more and more. The man groans loudly while he hammers his cock inside your ass, ignoring your crying and mewling underneath him.');
@@ -727,6 +725,7 @@ function enterWork2(s: GameState, scene: SceneBuilder): void {
           scene.text('He admires his work for a moment, before giving the money he owes you with a satisfied smile on his face.');
         }
       }
+      (st as any).cumanalRand = undefined;
       qspCall(st, 'arousal', 'end');
       scene.actions([
         { label: 'Take his money and straighten your clothes', goto: ['prostitute', 'start'] },

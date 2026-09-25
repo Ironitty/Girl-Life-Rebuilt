@@ -7,12 +7,12 @@ import type { SceneBuilder } from '../../core/scene';
 function enterDefault(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'shop_gm', 'start');
   (s as any).location_type = 'event';
+  (s as any).locclass = undefined;
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'indoors');
   scene.text('<center><b>Welcome to G & M - Clothes for all your needs</b></center>');
   scene.img('images/locations/city/citycenter/mall/gandm/shop.jpg');
   scene.text('G&M is certainly not high fashion, but it\'s affordable and has specific work and school wear.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the store', handler: (st: GameState) => {
     (st as any).shoplocation = '';
@@ -46,12 +46,12 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'shop_gm', 'start');
   (s as any).location_type = 'event';
+  (s as any).locclass = undefined;
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'indoors');
   scene.text('<center><b>Welcome to G & M - Clothes for all your needs</b></center>');
   scene.img('images/locations/city/citycenter/mall/gandm/shop.jpg');
   scene.text('G&M is certainly not high fashion, but it\'s affordable and has specific work and school wear.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the store', handler: (st: GameState) => {
     (st as any).shoplocation = '';
@@ -85,12 +85,12 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
 function enterClothingDepartment(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'shop_gm', 'clothing_department');
   (s as any).location_type = 'event';
+  (s as any).locclass = undefined;
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'indoors');
   scene.text('<center><b>Welcome to G & M - Clothes for all your needs</b></center>');
   scene.img('images/locations/city/citycenter/mall/gandm/shop.jpg');
   scene.text('G&M is certainly not high fashion, but it\'s affordable and has specific work and school wear.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return', goto: ['shop_gm', 'start'] },
     { label: 'View clothing', handler: (st: GameState) => {
@@ -127,7 +127,6 @@ function enterClothes(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'shop_utils', 'init', 'end');
   }
   qspCall(s, 'shop_utils', 'display', 'grid_shop');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -150,7 +149,6 @@ function enterDresses(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'shop_utils', 'init', 'end');
   }
   qspCall(s, 'shop_utils', 'display', 'grid_shop');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -172,7 +170,6 @@ function enterOffice(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'shop_utils', 'init', 'end');
   }
   qspCall(s, 'shop_utils', 'display', 'grid_shop');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -195,7 +192,6 @@ function enterGmMaid(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'shop_utils', 'init', 'end');
   }
   qspCall(s, 'shop_utils', 'display', 'grid_shop');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -218,7 +214,6 @@ function enterGmServer(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'shop_utils', 'init', 'end');
   }
   qspCall(s, 'shop_utils', 'display', 'grid_shop');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -242,7 +237,6 @@ function enterSchool(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'shop_utils', 'init', 'end');
   }
   qspCall(s, 'shop_utils', 'display', 'grid_shop');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -264,7 +258,6 @@ function enterShoes(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'shop_utils', 'init', 'end');
   }
   qspCall(s, 'shop_utils', 'display', 'grid_shop');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -286,7 +279,6 @@ function enterCoats(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'shop_utils', 'init', 'end');
   }
   qspCall(s, 'shop_utils', 'display', 'grid_shop');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -308,7 +300,6 @@ function enterPurses(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'shop_utils', 'init', 'end');
   }
   qspCall(s, 'shop_utils', 'display', 'grid_shop');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -331,7 +322,6 @@ function enterPanties(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'shop_utils', 'init', 'end');
   }
   qspCall(s, 'shop_utils', 'display', 'grid_shop');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -354,7 +344,6 @@ function enterBras(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'shop_utils', 'init', 'end');
   }
   qspCall(s, 'shop_utils', 'display', 'grid_shop');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;

@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspFunc } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -16,15 +16,17 @@ function enterShow(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'calendar_schedule', 'build_week_schedule', ((s as any).calendar_ui_week_start ?? 0));
   (s as any).result = '<center><div class="calendar-controls" style="margin: 10px 0;">';
-  // TODO-QSP: $result += '<a href="exec: gs ''calendar'', ''navigate'', ''prev''">« Previous Week</a> | '
-  // TODO-QSP: $result += '<a href="exec: gs ''calendar'', ''navigate'', ''today''">Today</a> | '
-  // TODO-QSP: $result += '<a href="exec: gs ''calendar'', ''navigate'', ''next''">Next Week »</a>'
-  // TODO-QSP: $result += '</div></center>'
-  // TODO-QSP: $result +=  $func('calendar_render', 'render_calendar')
+  (s as any).result = ((s as any).result ?? 0) + ('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027calendar\u0027, \u0027navigate\u0027, \u0027prev\u0027); return false;">« Previous Week</a> | ');
+  (s as any).result = ((s as any).result ?? 0) + ('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027calendar\u0027, \u0027navigate\u0027, \u0027today\u0027); return false;">Today</a> | ');
+  (s as any).result = ((s as any).result ?? 0) + ('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027calendar\u0027, \u0027navigate\u0027, \u0027next\u0027); return false;">Next Week »</a>');
+  (s as any).result = ((s as any).result ?? 0) + ('</div></center>');
+  (s as any).result = ((s as any).result ?? 0) + (qspFunc(s, 'calendar_render', 'render_calendar'));
   qspCall(s, 'journal', 'journalmenu');
-  // TODO-QSP: $result
+  s.scene = { ...s.scene, mainText: String((s as any).result || ''), curActs: [] };
+  (s as any).calendar_html = undefined;
+  (s as any).controls_html = undefined;
+  (s as any).week_schedule = undefined;
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -42,8 +44,8 @@ function enterNavigate(s: GameState, scene: SceneBuilder): void {
     }
   }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).calendar_ui_week_start ?? 0)]; enterShow(s, scene); (s as any).locArgs = __savedLocArgs; }
+  (s as any).temp_nav_direction = undefined;
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -53,14 +55,13 @@ function enterAdd(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'calendar_list', 'assign_color');
   qspCall(s, 'calendar_events', 'new_event', (((s as any).event_vars ?? 0)?.['id']));
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterRemove(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'calendar_events', 'remove_event', ((s as any).locArgs?.[1] ?? 0));
+  (s as any).event_vars = undefined;
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -142,18 +143,17 @@ function enterPack(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterCycleRebuild(s: GameState, scene: SceneBuilder): void {
   if (((s as any).calCycleOpts ?? 0)?.['rebuild_day'] === ((s as any).daystart ?? 0)  &&  String((s as any).locArgs?.[1] ?? '') !== 1) {
-    // TODO-QSP: exit
+    return;
   }
   ((s as any).calCycleOpts = (s as any).calCycleOpts ?? {})['rebuild_day'] = ((s as any).daystart ?? 0);
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'remove', 'cycle_phases']; enterPack(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).succubusflag ?? 0) === 1  ||  ((s as any).cycle ?? 0) >= 4  ||  ((s as any).calCycleOpts ?? 0)['phase_start_' + ((s as any).cycle ?? 0)] === 0  ||  ((s as any).calCycleOpts ?? 0)?.['show_0'] + ((s as any).calCycleOpts ?? 0)?.['show_1'] + ((s as any).calCycleOpts ?? 0)?.['show_2'] + ((s as any).calCycleOpts ?? 0)?.['show_3'] === 0) {
-    // TODO-QSP: exit
+    return;
   }
   ((s as any).cal_cycle = (s as any).cal_cycle ?? {})['dur_0'] = 5;
   ((s as any).cal_cycle = (s as any).cal_cycle ?? {})['dur_1'] = 9;
@@ -161,23 +161,21 @@ function enterCycleRebuild(s: GameState, scene: SceneBuilder): void {
   ((s as any).cal_cycle = (s as any).cal_cycle ?? {})['dur_3'] = 12;
   (s as any).chain_end = (((s as any).calCycleOpts ?? {})?.['phase_start_'] ?? 0) - 1;
   (s as any).ph_n = 0;
-  // TODO-QSP: :phase_loop
-  (s as any).ph_idx = (((s as any).cycle ?? 0) + ((s as any).ph_n ?? 0)) % 4;
-  qspCall(s, 'calendar_list', 'init_event_vars');
-  qspCall(s, 'calendar_list', '', 'cycle_phase_' + ((s as any).ph_idx ?? 0));
-  ((s as any).event_vars = (s as any).event_vars ?? {})['daystart'] = ((s as any).chain_end ?? 0) + 1;
-  ((s as any).event_vars = (s as any).event_vars ?? {})['recur_end'] = Math.max(((s as any).chain_end ?? 0) + (((s as any).cal_cycle ?? {})?.['dur_'] ?? 0), ((s as any).daystart ?? 0));
-  if (((s as any).calCycleOpts ?? 0)['show_' + ((s as any).ph_idx ?? 0)] === 1) {
-    qspCall(s, 'calendar_events', 'new_event', (((s as any).event_vars ?? 0)?.['id']));
-  }
-  (s as any).chain_end = (((s as any).event_vars ?? 0)?.['recur_end']);
-  (s as any).ph_n = ((s as any).ph_n ?? 0) + (1);
-  if (((s as any).ph_n ?? 0) < 4) {
-    // TODO-QSP: jump 'phase_loop'
-  }
-  (s as any).cal_upcoming_dirty = 1;
-  return;
-  // TODO-QSP: end
+  do {
+    (s as any).ph_idx = (((s as any).cycle ?? 0) + ((s as any).ph_n ?? 0)) % 4;
+    qspCall(s, 'calendar_list', 'init_event_vars');
+    qspCall(s, 'calendar_list', '', 'cycle_phase_' + ((s as any).ph_idx ?? 0));
+    ((s as any).event_vars = (s as any).event_vars ?? {})['daystart'] = ((s as any).chain_end ?? 0) + 1;
+    ((s as any).event_vars = (s as any).event_vars ?? {})['recur_end'] = Math.max(((s as any).chain_end ?? 0) + (((s as any).cal_cycle ?? {})?.['dur_'] ?? 0), ((s as any).daystart ?? 0));
+    if (((s as any).calCycleOpts ?? 0)['show_' + ((s as any).ph_idx ?? 0)] === 1) {
+      qspCall(s, 'calendar_events', 'new_event', (((s as any).event_vars ?? 0)?.['id']));
+    }
+    (s as any).chain_end = (((s as any).event_vars ?? 0)?.['recur_end']);
+    (s as any).ph_n = ((s as any).ph_n ?? 0) + (1);
+    (s as any).cal_upcoming_dirty = 1;
+    (s as any).cal_cycle = undefined;
+    return;
+  } while (((s as any).ph_n ?? 0) < 4);
   scene.build();
 }
 

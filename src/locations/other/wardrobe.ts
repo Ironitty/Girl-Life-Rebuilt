@@ -20,12 +20,11 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.img('images/system/icons/clothing/default.png');
   scene.img('images/system/icons/clothing/organize.png');
   if (((s as any).pursepantytype ?? 0) !== ''  ||  ((s as any).pursebratype ?? 0) !== '') {
-    // TODO-QSP: dynamic text: '<center><b>You put the '+iif($pursepantytype ! '', 'panties', '')+iif($pursepan...
     scene.text('<center><b>You put the ' + ((((s as any).pursepantytype ?? 0) !== '') ? ('panties') : ('')) + ((((s as any).pursepantytype ?? 0) !== ''  &&  ((s as any).pursebratype ?? 0) !== '') ? (' and ') : ('')) + ((((s as any).pursebratype ?? 0) !== '') ? ('bra') : ('')) + ' from your purse back in the wardrobe.</b></center><br>');
-    // TODO-QSP: killvar 'pursepantytype'
-    // TODO-QSP: killvar 'pursepantynumber'
-    // TODO-QSP: killvar 'pursebratype'
-    // TODO-QSP: killvar 'pursebranumber'
+    (s as any).pursepantytype = undefined;
+    (s as any).pursepantynumber = undefined;
+    (s as any).pursebratype = undefined;
+    (s as any).pursebranumber = undefined;
   }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterWardrobeEnterSaveOutfit(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).wardrobeDefaultPagePref ?? 0) === 'currentOutfit') {
@@ -39,7 +38,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWardrobeExitCheckOutfit(st, scene); (st as any).locArgs = __savedLocArgs; }
@@ -76,7 +74,6 @@ function enterWardrobeEnterSaveOutfit(s: GameState, scene: SceneBuilder): void {
   (s as any).entercurrentpursenumber = ((s as any).currentpursenumber ?? 0);
   (s as any).entercoatworntype = ((s as any).coatworntype ?? 0);
   (s as any).entercoatwornnumber = ((s as any).coatwornnumber ?? 0);
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -110,7 +107,21 @@ function enterWardrobeExitCheckOutfit(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
   }
-  // TODO-QSP: end
+  (s as any).wardrobe_outfit_changed = undefined;
+  (s as any).enterclothingworntype = undefined;
+  (s as any).enterbodysuitworntype = undefined;
+  (s as any).enterpantyworntype = undefined;
+  (s as any).enterbraworntype = undefined;
+  (s as any).entershoeworntype = undefined;
+  (s as any).entercurrentpursetype = undefined;
+  (s as any).entercoatworntype = undefined;
+  (s as any).enterclothingwornnumber = undefined;
+  (s as any).enterbodysuitwornnumber = undefined;
+  (s as any).enterpantywornnumber = undefined;
+  (s as any).enterbrawornnumber = undefined;
+  (s as any).entershoewornnumber = undefined;
+  (s as any).entercurrentpursenumber = undefined;
+  (s as any).entercoatwornnumber = undefined;
   scene.build();
 }
 
@@ -137,38 +148,36 @@ function enterMain(s: GameState, scene: SceneBuilder): void {
   }
   scene.img('images/system/icons/clothing/default.png');
   if (((s as any).wardrobeDefaultPagePref ?? 0) === 'currentOutfit') {
-    (s as any).wardrobeSetDefault = '<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: killvar /u0027$wardrobeDefaultPagePref/u0027 */ return s; }); window.__gameStore.getState().doGoto(/u0027wardrobe/u0027, /u0027main/u0027); return false;">Remove saved default wardrobe page</a>';
+    (s as any).wardrobeSetDefault = '<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: killvar \u0027$wardrobeDefaultPagePref\u0027 */ return s; }); window.__gameStore.getState().doGoto(\u0027wardrobe\u0027, \u0027main\u0027); return false;">Remove saved default wardrobe page</a>';
   } else {
-    (s as any).wardrobeSetDefault = '<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: $wardrobeDefaultPagePref = /u0027currentOutfit/u0027 */ return s; }); window.__gameStore.getState().doGoto(/u0027wardrobe/u0027, /u0027main/u0027); return false;">Set here as default wardrobe page</a>';
+    (s as any).wardrobeSetDefault = '<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: $wardrobeDefaultPagePref = \u0027currentOutfit\u0027 */ return s; }); window.__gameStore.getState().doGoto(\u0027wardrobe\u0027, \u0027main\u0027); return false;">Set here as default wardrobe page</a>';
   }
-  // TODO-QSP: dynamic text: <center><<$wardrobeSetDefault>></center>
   scene.text(`<center>${((s as any).wardrobeSetDefault ?? '')}</center>`);
+  (s as any).wardrobeSetDefault = undefined;
   if (((s as any).pursepantytype ?? 0) !== ''  ||  ((s as any).pursebratype ?? 0) !== '') {
-    // TODO-QSP: dynamic text: '<center>You put the '+iif($pursepantytype ! '', 'panties', '')+iif($pursepantyt...
     scene.text('<center>You put the ' + ((((s as any).pursepantytype ?? 0) !== '') ? ('panties') : ('')) + ((((s as any).pursepantytype ?? 0) !== ''  &&  ((s as any).pursebratype ?? 0) !== '') ? (' and ') : ('')) + ((((s as any).pursebratype ?? 0) !== '') ? ('bra') : ('')) + ' from your purse back in the wardrobe.</center><br>');
-    // TODO-QSP: killvar 'pursepantytype'
-    // TODO-QSP: killvar 'pursepantynumber'
-    // TODO-QSP: killvar 'pursebratype'
-    // TODO-QSP: killvar 'pursebranumber'
+    (s as any).pursepantytype = undefined;
+    (s as any).pursepantynumber = undefined;
+    (s as any).pursebratype = undefined;
+    (s as any).pursebranumber = undefined;
   }
-  // TODO-QSP: dynamic text: <center><font color="maroon">These are the clothes you are currently wearing - C...
   scene.text(`<center><font color="maroon">These are the clothes you are currently wearing - Click on an item to change it</font></center><center><table border=0 cellspacing=${((s as any).ward_img_hgt ?? '')/25} cellpadding=5>`);
   if (((s as any).underwear ?? 0)?.['type'] === 0) {
     scene.text('<th>Bra worn</th><th>Outfit worn</th><th>Coat (only worn outside when cold)</th>');
-    // TODO-QSP: *P '<tr><td><center><a href="exec:gt ''wardrobe'', ''underwear_options'', ''bra''"><img Height = <<w...
+    scene.img(`${qspFunc(s, '$body_image', 'bra')}`);
   } else {
     scene.text('<th>Bodysuit worn</th><th>Outfit worn</th><th>Coat (only worn outside when cold)</th>');
-    // TODO-QSP: *P '<tr><td ROWSPAN=4><center><a href="exec:gt ''wardrobe'', ''underwear_options'', ''full''"><img H...
+    scene.img(`${qspFunc(s, '$body_image', 'bodysuit')}`);
   }
   if (((s as any).coatworntype ?? 0) === 'none') {
-    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027coat_view/u0027, /u0027view_grid/u0027, /u0027wardrobe/u0027); return false;">Search the wardrobe</a>');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027coat_view\u0027, \u0027view_grid\u0027, \u0027wardrobe\u0027); return false;">Search the wardrobe</a>');
   } else {
     scene.img(`${qspFunc(s, '$body_image', 'coat')}`);
   }
   if (((s as any).underwear ?? 0)?.['type'] === 0) {
     scene.text('</center></td><tr><td><center>');
     if (((s as any).braworntype ?? 0) !== 'none') {
-      scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027bras/u0027, /u0027remove/u0027); return false;">Remove</a>');
+      scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027bras\u0027, \u0027remove\u0027 & gt \u0027wardrobe\u0027, \u0027main\u0027); return false;">Remove</a>');
     } else {
       scene.text('Remove');
     }
@@ -177,62 +186,61 @@ function enterMain(s: GameState, scene: SceneBuilder): void {
     scene.text('</center></td><tr><td><center>');
   }
   if (((s as any).clothingworntype ?? 0) !== 'nude') {
-    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027clothing/u0027, /u0027strip/u0027); return false;">Remove</a>');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027clothing\u0027, \u0027strip\u0027 & gt \u0027wardrobe\u0027, \u0027main\u0027); return false;">Remove</a>');
   } else {
     scene.text('Remove');
   }
   scene.text('</center></td><td><center>');
   if (((s as any).coatworntype ?? 0) !== 'none') {
-    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027coats/u0027, /u0027remove/u0027); return false;">Remove</a>');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027coats\u0027, \u0027remove\u0027 & gt \u0027wardrobe\u0027, \u0027main\u0027); return false;">Remove</a>');
   } else {
     scene.text('Remove');
   }
   scene.text('</center></td>');
   if (((s as any).underwear ?? 0)?.['type'] === 0) {
     scene.text('<tr><th>Panties worn</th><th>Shoes (Only worn outside)</th><th>Purse worn</th>');
-    // TODO-QSP: *P '<tr><td><center><a href="exec:gt ''wardrobe'', ''underwear_options'', ''panties''"><img Height =...
+    scene.img(`${qspFunc(s, '$body_image', 'panties')}`);
   } else {
     scene.text('<tr><th>Shoes (Only worn outside)</th><th>Purse worn</th>');
-    // TODO-QSP: *P '<tr><td><center><a href="exec:gt ''shoe_view'', ''view_list'', ''wardrobe''"><img Height = <<war...
+    scene.img(`${qspFunc(s, '$body_image', 'shoes')}`);
   }
   if (((s as any).bag ?? 0) === 1) {
     scene.img(`${qspFunc(s, '$purse_image', ((s as any).currentpursetype ?? ''), ((s as any).currentpursenumber ?? ''))}`);
   } else {
-    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027purse_view/u0027, /u0027view_grid/u0027, /u0027wardrobe/u0027); return false;">Search the wardrobe</a>');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027purse_view\u0027, \u0027view_grid\u0027, \u0027wardrobe\u0027); return false;">Search the wardrobe</a>');
   }
   if (((s as any).underwear ?? 0)?.['type'] === 0) {
     scene.text('</center></td><tr><td><center>');
     if (((s as any).pantyworntype ?? 0) !== 'none') {
-      scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027panties/u0027, /u0027remove/u0027); return false;">Remove</a>');
+      scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027panties\u0027, \u0027remove\u0027 & gt \u0027wardrobe\u0027, \u0027main\u0027); return false;">Remove</a>');
     } else {
       scene.text('Remove');
     }
     scene.text('</center></td><td><center>');
   } else {
     scene.text('</center></td><tr><td><center>');
-    scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { (s.underwear ??= {})/u0027type/u0027 = s.0; return s; }); window.__gameStore.getState().doGoto(/u0027underwear_bodysuits/u0027, /u0027remove/u0027); return false;">Remove</a>');
+    scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { (s.underwear ??= {})\u0027type\u0027 = s.0; return s; }); window.__gameStore.getState().doGoto(\u0027underwear_bodysuits\u0027, \u0027remove\u0027 & underwear[\u0027type\u0027] = 0 & gt \u0027wardrobe\u0027, \u0027main\u0027); return false;">Remove</a>');
     scene.text('</center></td><td><center>');
   }
   if (((s as any).shoeworntype ?? 0) !== 'none') {
-    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027shoes/u0027, /u0027strip/u0027); return false;">Remove</a>');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027shoes\u0027, \u0027strip\u0027 & gt \u0027wardrobe\u0027, \u0027main\u0027); return false;">Remove</a>');
   } else {
     scene.text('Remove');
   }
   scene.text('</center></td><td><center>');
   if (((s as any).bag ?? 0) === 1) {
-    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027purses/u0027, /u0027remove/u0027); return false;">Remove</a>');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027purses\u0027, \u0027remove\u0027 & gt \u0027wardrobe\u0027, \u0027main\u0027); return false;">Remove</a>');
   } else {
     scene.text('Remove');
   }
   scene.text('</center></td><tr><td><td><center>');
   if ((((s as any).clothingworntype ?? 0) !== 'nude'  &&  (((s as any).coatworntype ?? 0) !== 'none'  ||  ((s as any).bag ?? 0) > 0))  ||  (((s as any).coatworntype ?? 0) !== 'none'  &&  ((s as any).bag ?? 0) > 0)) {
-    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027wardrobe/u0027, /u0027removeall/u0027); return false;">Remove all items</a>');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027wardrobe\u0027, \u0027removeall\u0027 & gt \u0027wardrobe\u0027, \u0027main\u0027); return false;">Remove all items</a>');
   } else {
     scene.text('Remove all items');
   }
   scene.text('<center><font color="grey">Save/load outfits with "Managed saved clothing sets".</font></center>');
   scene.text('<td></center></td></table></center>');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Close wardrobe', handler: (st: GameState) => {
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWardrobeExitCheckOutfit(st, scene); (st as any).locArgs = __savedLocArgs; }
@@ -269,7 +277,6 @@ function enterUnderwearOptions(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === 'panties'  ||  String((s as any).locArgs?.[1] ?? '') === 'full') {
     scene.img('images/system/icons/clothing/panties.png');
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return', goto: ['wardrobe', 'main'] },
   ]);
@@ -283,7 +290,6 @@ function enterRemoveall(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'shoes', 'strip');
   qspCall(s, 'purses', 'remove');
   qspCall(s, 'coats', 'remove');
-  // TODO-QSP: end
   (s as any).default_clothing_suma = qspUntranslated(s, "{", { location: "wardrobe" });
   (s as any).result = ((s as any).defclothingnumber ?? 0)[((s as any).locArgs?.[0] ?? 0)]+ ((s as any).defbranumber ?? 0)[((s as any).locArgs?.[0] ?? 0)] + ((s as any).defpantynumber ?? 0)[((s as any).locArgs?.[0] ?? 0)] + ((s as any).defshoenumber ?? 0)[((s as any).locArgs?.[0] ?? 0)] + ((s as any).defpursenumber ?? 0)[((s as any).locArgs?.[0] ?? 0)] + ((s as any).defcoatnumber ?? 0)[((s as any).locArgs?.[0] ?? 0)];
   scene.build();
@@ -292,80 +298,79 @@ function enterRemoveall(s: GameState, scene: SceneBuilder): void {
 function enterDefaultClothingLine(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'themes', 'clothing');
   (s as any).result = '<TR bgcolor=' + ((s as any).temp_bcolor ?? 0) + '>';
-  // TODO-QSP: $result += '<TD><b><<$def_clothing_name[default_entry]>></b></TD>'
+  (s as any).result = ((s as any).result ?? 0) + ('<TD><b>' + (((s as any).def_clothing_name ?? 0)?.[String((s as any).default_entry ?? 0)] ?? 0) + '</b></TD>');
   if (((s as any).defclothingnumber ?? 0)?.[String((s as any).default_entry ?? 0)] === 0) {
-    // TODO-QSP: $result += '<TD><img width="100" src="images/pc/items/blank.jpg"></TD>'
+    (s as any).result = ((s as any).result ?? 0) + ('<TD><img width="100" src="images/pc/items/blank.jpg"></TD>');
   } else {
     qspCall(s, 'clothing_attributes', '', (((s as any).defclothingtype ?? 0)?.[String((s as any).default_entry ?? 0)] ?? 0), (((s as any).defclothingnumber ?? 0)?.[String((s as any).default_entry ?? 0)] ?? 0));
-    // TODO-QSP: $result += '<TD><img width="100" src="<<FUNC(''$clothing_image'', $defclothingtype[default_entry], d...
+    (s as any).result = ((s as any).result ?? 0) + ('<TD><img width="100" src="' + qspFunc(s, '$clothing_image', (((s as any).defclothingtype ?? 0)?.[String((s as any).default_entry ?? 0)] ?? 0), (((s as any).defclothingnumber ?? 0)?.[String((s as any).default_entry ?? 0)] ?? 0)) + '"></TD>');
   }
   if (((s as any).defunderwear ?? 0)?.[String((s as any).default_entry ?? 0)] === 2) {
     if (((s as any).defbodysuitnumber ?? 0)?.[String((s as any).default_entry ?? 0)] === 0) {
-      // TODO-QSP: $result += '<TD><img width="100" src="images/pc/items/blank.jpg"></TD>'
+      (s as any).result = ((s as any).result ?? 0) + ('<TD><img width="100" src="images/pc/items/blank.jpg"></TD>');
     } else {
       qspCall(s, 'underwear_attributes', '', (((s as any).defbodysuittype ?? 0)?.[String((s as any).default_entry ?? 0)] ?? 0) + '_bodysuits', (((s as any).defbodysuitnumber ?? 0)?.[String((s as any).default_entry ?? 0)] ?? 0));
-      // TODO-QSP: $result += '<TD><img width="100" src="<<FUNC(''$pcs_outfit_image'', $defbodysuittype[default_entry]+...
+      (s as any).result = ((s as any).result ?? 0) + ('<TD><img width="100" src="' + qspFunc(s, '$pcs_outfit_image', (((s as any).defbodysuittype ?? 0)?.[String((s as any).default_entry ?? 0)] ?? 0) + '_bodysuits', (((s as any).defbodysuitnumber ?? 0)?.[String((s as any).default_entry ?? 0)] ?? 0)) + '"></TD>');
     }
-    // TODO-QSP: $result += '<TD><img width="100" src="images/pc/items/blank.jpg"></TD>'
+    (s as any).result = ((s as any).result ?? 0) + ('<TD><img width="100" src="images/pc/items/blank.jpg"></TD>');
   } else {
     if (((s as any).defbranumber ?? 0)?.[String((s as any).default_entry ?? 0)] === 0) {
-      // TODO-QSP: $result += '<TD><img width="100" src="images/pc/items/blank.jpg"></TD>'
+      (s as any).result = ((s as any).result ?? 0) + ('<TD><img width="100" src="images/pc/items/blank.jpg"></TD>');
     } else {
       qspCall(s, 'underwear_attributes', '', (((s as any).defbratype ?? 0)?.[String((s as any).default_entry ?? 0)] ?? 0) + '_bras', (((s as any).defbranumber ?? 0)?.[String((s as any).default_entry ?? 0)] ?? 0));
-      // TODO-QSP: $result += '<TD><img width="100" src="<<FUNC(''$bra_image'', $defbratype[default_entry], defbranumbe...
+      (s as any).result = ((s as any).result ?? 0) + ('<TD><img width="100" src="' + qspFunc(s, '$bra_image', (((s as any).defbratype ?? 0)?.[String((s as any).default_entry ?? 0)] ?? 0), (((s as any).defbranumber ?? 0)?.[String((s as any).default_entry ?? 0)] ?? 0)) + '"></TD>');
     }
     if (((s as any).defpantynumber ?? 0)?.[String((s as any).default_entry ?? 0)] === 0) {
-      // TODO-QSP: $result += '<TD><img width="100" src="images/pc/items/blank.jpg"></TD>'
+      (s as any).result = ((s as any).result ?? 0) + ('<TD><img width="100" src="images/pc/items/blank.jpg"></TD>');
     } else {
       qspCall(s, 'underwear_attributes', '', (((s as any).defpantytype ?? 0)?.[String((s as any).default_entry ?? 0)] ?? 0) + '_panties', (((s as any).defpantynumber ?? 0)?.[String((s as any).default_entry ?? 0)] ?? 0));
-      // TODO-QSP: $result += '<TD><img width="100" src="<<FUNC(''$panty_image'', $defpantytype[default_entry], defpant...
+      (s as any).result = ((s as any).result ?? 0) + ('<TD><img width="100" src="' + qspFunc(s, '$panty_image', (((s as any).defpantytype ?? 0)?.[String((s as any).default_entry ?? 0)] ?? 0), (((s as any).defpantynumber ?? 0)?.[String((s as any).default_entry ?? 0)] ?? 0)) + '"></TD>');
     }
   }
   if (((s as any).defshoenumber ?? 0)?.[String((s as any).default_entry ?? 0)] === 0) {
-    // TODO-QSP: $result += '<TD><img width="100" src="images/pc/items/blank.jpg"></TD>'
+    (s as any).result = ((s as any).result ?? 0) + ('<TD><img width="100" src="images/pc/items/blank.jpg"></TD>');
   } else {
     qspCall(s, 'shoe_attributes', '', (((s as any).defshoetype ?? 0)?.[String((s as any).default_entry ?? 0)] ?? 0), (((s as any).defshoenumber ?? 0)?.[String((s as any).default_entry ?? 0)] ?? 0));
-    // TODO-QSP: $result += '<TD><img width="100" src="<<FUNC(''$shoe_image'', $defshoetype[default_entry], defshoenu...
+    (s as any).result = ((s as any).result ?? 0) + ('<TD><img width="100" src="' + qspFunc(s, '$shoe_image', (((s as any).defshoetype ?? 0)?.[String((s as any).default_entry ?? 0)] ?? 0), (((s as any).defshoenumber ?? 0)?.[String((s as any).default_entry ?? 0)] ?? 0)) + '"></TD>');
   }
   if (((s as any).defcoatnumber ?? 0)?.[String((s as any).default_entry ?? 0)] === 0) {
-    // TODO-QSP: $result += '<TD><img width="100" src="images/pc/items/blank.jpg"></TD>'
+    (s as any).result = ((s as any).result ?? 0) + ('<TD><img width="100" src="images/pc/items/blank.jpg"></TD>');
   } else {
     qspCall(s, 'coat_attributes', '', (((s as any).defcoattype ?? 0)?.[String((s as any).default_entry ?? 0)] ?? 0), (((s as any).defcoatnumber ?? 0)?.[String((s as any).default_entry ?? 0)] ?? 0));
-    // TODO-QSP: $result += '<TD><img width="100" src="<<FUNC(''$coat_image'', $defcoattype[default_entry], defcoatnu...
+    (s as any).result = ((s as any).result ?? 0) + ('<TD><img width="100" src="' + qspFunc(s, '$coat_image', (((s as any).defcoattype ?? 0)?.[String((s as any).default_entry ?? 0)] ?? 0), (((s as any).defcoatnumber ?? 0)?.[String((s as any).default_entry ?? 0)] ?? 0)) + '"></TD>');
   }
   if (((s as any).defpursenumber ?? 0)?.[String((s as any).default_entry ?? 0)] === 0) {
-    // TODO-QSP: $result += '<TD><img width="100" src="images/pc/items/blank.jpg"></TD>'
+    (s as any).result = ((s as any).result ?? 0) + ('<TD><img width="100" src="images/pc/items/blank.jpg"></TD>');
   } else {
     qspCall(s, 'purse_attributes', '', (((s as any).defpursetype ?? 0)?.[String((s as any).default_entry ?? 0)] ?? 0), (((s as any).defpursenumber ?? 0)?.[String((s as any).default_entry ?? 0)] ?? 0));
-    // TODO-QSP: $result += '<TD><img width="100" src="<<FUNC(''$purse_image'', $defpursetype[default_entry], defpurs...
+    (s as any).result = ((s as any).result ?? 0) + ('<TD><img width="100" src="' + qspFunc(s, '$purse_image', (((s as any).defpursetype ?? 0)?.[String((s as any).default_entry ?? 0)] ?? 0), (((s as any).defpursenumber ?? 0)?.[String((s as any).default_entry ?? 0)] ?? 0)) + '"></TD>');
   }
-  // TODO-QSP: $result += '<TD><a href="exec:gs ''wardrobe'', ''default_entry_wear'', <<default_entry>>"><img src="...
-  // TODO-QSP: $result += '<TD><a href="exec:gs ''wardrobe'', ''default_entry_set'', <<default_entry>>"><img src="i...
-  // TODO-QSP: $result += '<TD><a href="exec:gs ''wardrobe'', ''default_entry_rename'', <<default_entry>>"><img src...
-  // TODO-QSP: $result += '<TD><a href="exec:gs ''wardrobe'', ''default_entry_delete'', <<default_entry>>"><img src...
+  (s as any).result = ((s as any).result ?? 0) + ('<TD><a href="#" onclick="window.__gameStore.getState().doGoto(\u0027wardrobe\u0027, \u0027default_entry_wear\u0027, String((s as any).default_entry ?? \u0027\u0027)); return false;"><img src="images/system/icons/clothing/wear.png"></a></TD>');
+  (s as any).result = ((s as any).result ?? 0) + ('<TD><a href="#" onclick="window.__gameStore.getState().doGoto(\u0027wardrobe\u0027, \u0027default_entry_set\u0027, String((s as any).default_entry ?? \u0027\u0027)); return false;"><img src="images/system/icons/clothing/overwrite.png"></a></TD>');
+  (s as any).result = ((s as any).result ?? 0) + ('<TD><a href="#" onclick="window.__gameStore.getState().doGoto(\u0027wardrobe\u0027, \u0027default_entry_rename\u0027, String((s as any).default_entry ?? \u0027\u0027)); return false;"><img src="images/system/icons/clothing/rename.png"></a></TD>');
+  (s as any).result = ((s as any).result ?? 0) + ('<TD><a href="#" onclick="window.__gameStore.getState().doGoto(\u0027wardrobe\u0027, \u0027default_entry_delete\u0027, String((s as any).default_entry ?? \u0027\u0027)); return false;"><img src="images/system/icons/clothing/delete_on.png"></a></TD>');
   if (((s as any).defclothingnumber ?? 0)?.[String((s as any).default_entry ?? 0)] === 0  ||  ((s as any).defshoenumber ?? 0)?.[String((s as any).default_entry ?? 0)] === 0) {
-    // TODO-QSP: $result += '<TD></TD><TR>'
+    (s as any).result = ((s as any).result ?? 0) + ('<TD></TD><TR>');
   } else {
     if ((((s as any).ShoStyle2 ?? 0) === 2  ||  ((s as any).ShoSport ?? 0) === 1)  &&  (((s as any).CloStyle2 ?? 0) === 6  ||  ((s as any).CloSport ?? 0) === 1)) {
       if (((s as any).default_sport_number ?? 0) !== ((s as any).default_entry ?? 0)) {
-        // TODO-QSP: $result += '<TD><a href="exec:gs ''wardrobe'', ''default_sport_set'', <<default_entry>>"><img src="i...
+        (s as any).result = ((s as any).result ?? 0) + ('<TD><a href="#" onclick="window.__gameStore.getState().doGoto(\u0027wardrobe\u0027, \u0027default_sport_set\u0027, String((s as any).default_entry ?? \u0027\u0027)); return false;"><img src="images/system/icons/clothing/sport_off.png"></a></TD><TR>');
       } else {
-        // TODO-QSP: $result += '<TD><img src="images/system/icons/clothing/sport.png"></TD><TR>'
+        (s as any).result = ((s as any).result ?? 0) + ('<TD><img src="images/system/icons/clothing/sport.png"></TD><TR>');
       }
     } else {
       if (((s as any).gschoolVars ?? 0)?.['school_diploma'] === 0  &&  (((s as any).CloStyle2 ?? 0) === 4  ||  ((s as any).CloSchool ?? 0) === 1)) {
         if (((s as any).default_school_number ?? 0) !== ((s as any).default_entry ?? 0)) {
-          // TODO-QSP: $result += '<TD><a href="exec:gs ''wardrobe'', ''default_school_set'', <<default_entry>>"><img src="...
+          (s as any).result = ((s as any).result ?? 0) + ('<TD><a href="#" onclick="window.__gameStore.getState().doGoto(\u0027wardrobe\u0027, \u0027default_school_set\u0027, String((s as any).default_entry ?? \u0027\u0027)); return false;"><img src="images/system/icons/clothing/school_off.png"></a></TD><TR>');
         } else {
-          // TODO-QSP: $result += '<TD><img src="images/system/icons/clothing/school.png"></TD><TR>'
+          (s as any).result = ((s as any).result ?? 0) + ('<TD><img src="images/system/icons/clothing/school.png"></TD><TR>');
         }
       } else {
-        // TODO-QSP: $result += '<TD></TD><TR>'
+        (s as any).result = ((s as any).result ?? 0) + ('<TD></TD><TR>');
       }
     }
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -400,7 +405,6 @@ function enterDefaultNameInitialise(s: GameState, scene: SceneBuilder): void {
   if (((s as any).clothing_default_page ?? 0)[10] === '') {
     ((s as any).clothing_default_page = (s as any).clothing_default_page ?? {})[10] = 'Set 10';
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -410,47 +414,39 @@ function enterDefaultTemplate(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/system/icons/clothing/clothes.png');
   if (((s as any).wardrobeDefaultPagePref ?? 0) === ((s as any).wloc ?? 0)) {
-    (s as any).wardrobeSetDefault = '<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: killvar /u0027$wardrobeDefaultPagePref/u0027 */ return s; }); window.__gameStore.getState().doGoto(/u0027wardrobe/u0027, /u0027' + ((s as any).wloc ?? 0) + '/u0027); return false;">Remove saved default wardrobe page</a>';
+    (s as any).wardrobeSetDefault = '<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: killvar \u0027$wardrobeDefaultPagePref\u0027 */ return s; }); window.__gameStore.getState().doGoto(\u0027wardrobe\u0027, String((s as any).wloc ?? \u0027\u0027)); return false;">Remove saved default wardrobe page</a>';
   } else {
-    (s as any).wardrobeSetDefault = '<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: $wardrobeDefaultPagePref = $wloc */ return s; }); window.__gameStore.getState().doGoto(/u0027wardrobe/u0027, /u0027' + ((s as any).wloc ?? 0) + '/u0027); return false;">Set here as default wardrobe page</a>';
+    (s as any).wardrobeSetDefault = '<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: $wardrobeDefaultPagePref = $wloc */ return s; }); window.__gameStore.getState().doGoto(\u0027wardrobe\u0027, String((s as any).wloc ?? \u0027\u0027)); return false;">Set here as default wardrobe page</a>';
   }
-  // TODO-QSP: dynamic text: <center><<$wardrobeSetDefault>></center>
   scene.text(`<center>${((s as any).wardrobeSetDefault ?? '')}</center>`);
+  (s as any).wardrobeSetDefault = undefined;
   scene.text('<center><table><th>Name</th><th>Outfit</th><th>Bra/Bodysuit</th><th>Panties</th><th>Shoes</th><th>Coat</th><th>Purse</th><th></th><th></th><th></th><th></th><th></th><tr>');
   (s as any).temp = ((s as any).default_entry ?? 0);
-  // TODO-QSP: :loopdefault_entry_set
-  if ((0 as any) !== 0) {
-    // TODO-QSP: dynamic text: $func('wardrobe', 'default_clothing_line')
-    scene.text(qspFunc(s, 'wardrobe', 'default_clothing_line'));
-  }
-  (s as any).default_entry = ((s as any).default_entry ?? 0) + (1);
-  if (((s as any).default_entry ?? 0) <= ((s as any).default_entry ?? 0)[1]) {
-    // TODO-QSP: jump 'loopdefault_entry_set'
-  }
-  (s as any).default_entry = ((s as any).temp ?? 0);
-  // TODO-QSP: :loopdefault_entry_empty
-  if ((!(0 as any))) {
-    // TODO-QSP: dynamic text: $func('wardrobe', 'default_clothing_line')
-    scene.text(qspFunc(s, 'wardrobe', 'default_clothing_line'));
-  }
-  (s as any).default_entry = ((s as any).default_entry ?? 0) + (1);
-  if (((s as any).default_entry ?? 0) <= ((s as any).default_entry ?? 0)[1]) {
-    // TODO-QSP: jump 'loopdefault_entry_empty'
-  }
-  scene.text('</table></center>');
-  // TODO-QSP: end
+  do {
+    if ((0 as any) !== 0) {
+      scene.text(qspFunc(s, 'wardrobe', 'default_clothing_line'));
+    }
+    (s as any).default_entry = ((s as any).default_entry ?? 0) + (1);
+    (s as any).default_entry = ((s as any).temp ?? 0);
+    do {
+      if ((!(0 as any))) {
+        scene.text(qspFunc(s, 'wardrobe', 'default_clothing_line'));
+      }
+      (s as any).default_entry = ((s as any).default_entry ?? 0) + (1);
+      scene.text('</table></center>');
+      (s as any).temp_bcolor = undefined;
+    } while (((s as any).default_entry ?? 0) <= ((s as any).default_entry ?? 0)[1]);
+  } while (((s as any).default_entry ?? 0) <= ((s as any).default_entry ?? 0)[1]);
   scene.build();
 }
 
 function enterDefaultSetName(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: $clothing_default_page[clothing_default_page] = input('Enter new name for this set')
+  ((s as any).clothing_default_page = (s as any).clothing_default_page ?? {})[String((s as any).clothing_default_page ?? 0)] = window.prompt("Enter new name for this set") ?? '';
   qspGoto(s, 'wardrobe', 'default' + ((s as any).clothing_default_page ?? 0) + '');
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterDefaultActions(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWardrobeExitCheckOutfit(st, scene); (st as any).locArgs = __savedLocArgs; }
@@ -526,22 +522,21 @@ function enterDefaultActionsPage(s: GameState, scene: SceneBuilder): void {
       { label: '', labelFn: (s: GameState) => 'See ' + String((((s as any).clothing_default_page ?? 0)?.[10] ?? '') ?? '') + ' set', goto: ['wardrobe', 'default10'] },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterDefaultActionsWear(s: GameState, scene: SceneBuilder): void {
   (s as any).default_entry = ((s as any).default_entry ?? 0) - (10);
   (s as any).i = ((s as any).default_entry ?? 0);
-  // TODO-QSP: :loop_default_actions_wear
-  if ((0 as any) !== 0) {
-    (s as any).var_default_actions_wear = 0;
-  }
-  (s as any).i = ((s as any).i ?? 0) + (1);
-  if (((s as any).i ?? 0) <= ((s as any).default_entry ?? 0)[1]) {
-    // TODO-QSP: jump 'loop_default_actions_wear'
-  }
-  // TODO-QSP: end
+  do {
+    if ((0 as any) !== 0) {
+      (s as any).var_default_actions_wear = 0;
+      qspFunc(s, 'var_default_actions_wear');
+    }
+    (s as any).i = ((s as any).i ?? 0) + (1);
+    (s as any).i = undefined;
+    (s as any).var_default_actions_wear = undefined;
+  } while (((s as any).i ?? 0) <= ((s as any).default_entry ?? 0)[1]);
   scene.build();
 }
 
@@ -549,10 +544,9 @@ function enterDefault1(s: GameState, scene: SceneBuilder): void {
   (s as any).wloc = 'default1';
   (s as any).default_entry = 1;
   ((s as any).default_entry = (s as any).default_entry ?? {})[1] = 10;
-  // TODO-QSP: $default_entry[2] = $clothing_default_page[1]
+  ((s as any).default_entry = (s as any).default_entry ?? {})[2] = (((s as any).clothing_default_page ?? 0)?.[1] ?? 0);
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 1]; enterDefaultActions(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 1]; enterDefaultTemplate(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -560,10 +554,9 @@ function enterDefault2(s: GameState, scene: SceneBuilder): void {
   (s as any).wloc = 'default2';
   (s as any).default_entry = 11;
   ((s as any).default_entry = (s as any).default_entry ?? {})[1] = 20;
-  // TODO-QSP: $default_entry[2] = $clothing_default_page[2]
+  ((s as any).default_entry = (s as any).default_entry ?? {})[2] = (((s as any).clothing_default_page ?? 0)?.[2] ?? 0);
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 2]; enterDefaultActions(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 2]; enterDefaultTemplate(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -571,10 +564,9 @@ function enterDefault3(s: GameState, scene: SceneBuilder): void {
   (s as any).wloc = 'default3';
   (s as any).default_entry = 21;
   ((s as any).default_entry = (s as any).default_entry ?? {})[1] = 30;
-  // TODO-QSP: $default_entry[2] = $clothing_default_page[3]
+  ((s as any).default_entry = (s as any).default_entry ?? {})[2] = (((s as any).clothing_default_page ?? 0)?.[3] ?? 0);
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 3]; enterDefaultActions(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 3]; enterDefaultTemplate(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -582,10 +574,9 @@ function enterDefault4(s: GameState, scene: SceneBuilder): void {
   (s as any).wloc = 'default4';
   (s as any).default_entry = 31;
   ((s as any).default_entry = (s as any).default_entry ?? {})[1] = 40;
-  // TODO-QSP: $default_entry[2] = $clothing_default_page[4]
+  ((s as any).default_entry = (s as any).default_entry ?? {})[2] = (((s as any).clothing_default_page ?? 0)?.[4] ?? 0);
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 4]; enterDefaultActions(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 4]; enterDefaultTemplate(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -593,10 +584,9 @@ function enterDefault5(s: GameState, scene: SceneBuilder): void {
   (s as any).wloc = 'default5';
   (s as any).default_entry = 41;
   ((s as any).default_entry = (s as any).default_entry ?? {})[1] = 50;
-  // TODO-QSP: $default_entry[2] = $clothing_default_page[5]
+  ((s as any).default_entry = (s as any).default_entry ?? {})[2] = (((s as any).clothing_default_page ?? 0)?.[5] ?? 0);
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 5]; enterDefaultActions(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 5]; enterDefaultTemplate(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -604,10 +594,9 @@ function enterDefault6(s: GameState, scene: SceneBuilder): void {
   (s as any).wloc = 'default6';
   (s as any).default_entry = 51;
   ((s as any).default_entry = (s as any).default_entry ?? {})[1] = 60;
-  // TODO-QSP: $default_entry[2] = $clothing_default_page[6]
+  ((s as any).default_entry = (s as any).default_entry ?? {})[2] = (((s as any).clothing_default_page ?? 0)?.[6] ?? 0);
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 6]; enterDefaultActions(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 6]; enterDefaultTemplate(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -615,10 +604,9 @@ function enterDefault7(s: GameState, scene: SceneBuilder): void {
   (s as any).wloc = 'default7';
   (s as any).default_entry = 61;
   ((s as any).default_entry = (s as any).default_entry ?? {})[1] = 70;
-  // TODO-QSP: $default_entry[2] = $clothing_default_page[7]
+  ((s as any).default_entry = (s as any).default_entry ?? {})[2] = (((s as any).clothing_default_page ?? 0)?.[7] ?? 0);
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 7]; enterDefaultActions(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 7]; enterDefaultTemplate(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -626,10 +614,9 @@ function enterDefault8(s: GameState, scene: SceneBuilder): void {
   (s as any).wloc = 'default8';
   (s as any).default_entry = 71;
   ((s as any).default_entry = (s as any).default_entry ?? {})[1] = 80;
-  // TODO-QSP: $default_entry[2] = $clothing_default_page[8]
+  ((s as any).default_entry = (s as any).default_entry ?? {})[2] = (((s as any).clothing_default_page ?? 0)?.[8] ?? 0);
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 8]; enterDefaultActions(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 8]; enterDefaultTemplate(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -637,10 +624,9 @@ function enterDefault9(s: GameState, scene: SceneBuilder): void {
   (s as any).wloc = 'default9';
   (s as any).default_entry = 81;
   ((s as any).default_entry = (s as any).default_entry ?? {})[1] = 90;
-  // TODO-QSP: $default_entry[2] = $clothing_default_page[9]
+  ((s as any).default_entry = (s as any).default_entry ?? {})[2] = (((s as any).clothing_default_page ?? 0)?.[9] ?? 0);
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 9]; enterDefaultActions(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 9]; enterDefaultTemplate(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -648,10 +634,9 @@ function enterDefault10(s: GameState, scene: SceneBuilder): void {
   (s as any).wloc = 'default10';
   (s as any).default_entry = 91;
   ((s as any).default_entry = (s as any).default_entry ?? {})[1] = 100;
-  // TODO-QSP: $default_entry[2] = $clothing_default_page[10]
+  ((s as any).default_entry = (s as any).default_entry ?? {})[2] = (((s as any).clothing_default_page ?? 0)?.[10] ?? 0);
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 10]; enterDefaultActions(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 10]; enterDefaultTemplate(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -751,7 +736,7 @@ function enterDefaultEntryWear(s: GameState, scene: SceneBuilder): void {
         } else {
           if (((s as any).temp_bodysuit_not_wear_reason ?? 0) === 'hypno') {
             if ((Math.floor(Math.random() * 21) + 0) < ((s as any).hypnoStrength ?? 0)) {
-              // TODO-QSP: $defbodysuittype[default_entry] = 'none'
+              ((s as any).defbodysuittype = (s as any).defbodysuittype ?? {})[String((s as any).default_entry ?? 0)] = 'none';
               ((s as any).defbodysuitnumber = (s as any).defbodysuitnumber ?? {})[String((s as any).default_entry ?? 0)] = 0;
               ((s as any).defunderwear = (s as any).defunderwear ?? {})[String((s as any).default_entry ?? 0)] = 0;
               scene.text('<center>You feel like something about this set has changed but you cannot workout what it is.</center>');
@@ -761,7 +746,6 @@ function enterDefaultEntryWear(s: GameState, scene: SceneBuilder): void {
           } else {
             if (((s as any).temp_bodysuit_not_wear_reason ?? 0) !== '') {
               scene.text('ERROR! This should not be reached.');
-              // TODO-QSP: dynamic text: You can''t wear this bodysuit because <<$temp_bodysuit_not_wear_reason>>, but th...
               scene.text(`You can't wear this bodysuit because ${((s as any).temp_bodysuit_not_wear_reason ?? '')}, but the text for this has not be written.`);
               scene.text('Please contact a developer');
             }
@@ -781,7 +765,6 @@ function enterDefaultEntryWear(s: GameState, scene: SceneBuilder): void {
         } else {
           if (((s as any).temp_bra_not_wear_reason ?? 0) !== ''  &&  ((s as any).temp_bra_not_wear_reason ?? 0) !== 'hypno') {
             scene.text('ERROR! This should not be reached.');
-            // TODO-QSP: dynamic text: You can''t wear this bra because <<$temp_bra_not_wear_reason>>, but the text for...
             scene.text(`You can't wear this bra because ${((s as any).temp_bra_not_wear_reason ?? '')}, but the text for this has not be written.`);
             scene.text('Please contact a developer');
           }
@@ -799,7 +782,6 @@ function enterDefaultEntryWear(s: GameState, scene: SceneBuilder): void {
         } else {
           if (((s as any).temp_panties_not_wear_reason ?? 0) !== ''  &&  ((s as any).temp_panties_not_wear_reason ?? 0) !== 'hypno') {
             scene.text('ERROR! This should not be reached.');
-            // TODO-QSP: dynamic text: You can''t wear these panties because <<$temp_panties_not_wear_reason>>, but the...
             scene.text(`You can't wear these panties because ${((s as any).temp_panties_not_wear_reason ?? '')}, but the text for this has not be written.`);
             scene.text('Please contact a developer');
           }
@@ -808,7 +790,6 @@ function enterDefaultEntryWear(s: GameState, scene: SceneBuilder): void {
     }
     if ((((s as any).temp_panties_not_wear_reason ?? 0) === 'hypno'  ||  ((s as any).temp_bra_not_wear_reason ?? 0) === 'hypno')) {
       (s as any).temp_hypno_items = ((((s as any).temp_bra_not_wear_reason ?? 0) === 'hypno'  &&  ((s as any).temp_panties_not_wear_reason ?? 0) === 'hypno') ? ('bra and panties') : (((((s as any).temp_bra_not_wear_reason ?? 0) === 'hypno') ? ('bra') : ('panties'))));
-      // TODO-QSP: dynamic text: You reach for your <<$temp_hypno_items>> but something holds you back. You hate ...
       scene.text(`You reach for your ${((s as any).temp_hypno_items ?? '')} but something holds you back. You hate wearing ${((s as any).temp_hypno_items ?? '')}, so why put them on?`);
       qspCall(s, 'willpower', 'misc', 'resist', 'easy');
       if (((s as any).cheatVars ?? 0)?.['willpower'] === 0) {
@@ -834,15 +815,16 @@ function enterDefaultEntryWear(s: GameState, scene: SceneBuilder): void {
   } },
         ]);
       }
+      (s as any).temp_hypno_items = undefined;
       scene.actions([
         { label: 'Leave them off', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 21) + 0) < ((st as any).hypnoStrength ?? 0)) {
       if (((st as any).braworntype ?? 0) !== ((st as any).defbratype ?? 0)?.[String((st as any).default_entry ?? 0)]) {
-        // TODO-QSP: $defbratype[default_entry] = 'none'
+        ((st as any).defbratype = (st as any).defbratype ?? {})[String((st as any).default_entry ?? 0)] = 'none';
         ((st as any).defbranumber = (st as any).defbranumber ?? {})[String((st as any).default_entry ?? 0)] = 0;
       }
       if (((st as any).pantyworntype ?? 0) !== ((st as any).defpantytype ?? 0)?.[String((st as any).default_entry ?? 0)]) {
-        // TODO-QSP: $defpantytype[default_entry] = 'none'
+        ((st as any).defpantytype = (st as any).defpantytype ?? {})[String((st as any).default_entry ?? 0)] = 'none';
         ((st as any).defpantynumber = (st as any).defpantynumber ?? {})[String((st as any).default_entry ?? 0)] = 0;
       }
       scene.text('<center>You feel like something about this set has changed but you cannot work out what it is.</center>');
@@ -862,12 +844,10 @@ function enterDefaultEntryWear(s: GameState, scene: SceneBuilder): void {
         scene.text('As you go to put on your shoes, you notice that the soles have worn out. Guess you will have to find something else to wear.');
       } else {
         if (((s as any).temp_sho_not_wear_reason ?? 0) === 'low_heels_skill') {
-          // TODO-QSP: dynamic text: You try to take a step in these killer heels and almost break your neck. You can...
           scene.text(`You try to take a step in these killer heels and almost break your neck. You can't walk in your ${(((s as any).def_clothing_name ?? 0)?.[String((s as any).default_entry ?? 0)] ?? '')} outfit. Guess you will have to find something else to wear.`);
         } else {
           if (((s as any).temp_sho_not_wear_reason ?? 0) !== '') {
             scene.text('ERROR! This should not be reached.');
-            // TODO-QSP: dynamic text: You can''t wear these shoes because <<$temp_sho_not_wear_reason>>, but the text ...
             scene.text(`You can't wear these shoes because ${((s as any).temp_sho_not_wear_reason ?? '')}, but the text for this has not be written.`);
             scene.text('Please contact a developer');
           }
@@ -883,7 +863,6 @@ function enterDefaultEntryWear(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).temp_purse_not_wear_reason ?? 0) !== '') {
         scene.text('ERROR! This should not be reached.');
-        // TODO-QSP: dynamic text: You can''t wear this purse because <<$temp_purse_not_wear_reason>>, but the text...
         scene.text(`You can't wear this purse because ${((s as any).temp_purse_not_wear_reason ?? '')}, but the text for this has not be written.`);
         scene.text('Please contact a developer');
       }
@@ -900,7 +879,6 @@ function enterDefaultEntryWear(s: GameState, scene: SceneBuilder): void {
       } else {
         if (((s as any).temp_coat_not_wear_reason ?? 0) !== '') {
           scene.text('ERROR! This should not be reached.');
-          // TODO-QSP: dynamic text: You can''t wear this coat because <<$temp_coat_not_wear_reason>>, but the text f...
           scene.text(`You can't wear this coat because ${((s as any).temp_coat_not_wear_reason ?? '')}, but the text for this has not be written.`);
           scene.text('Please contact a developer');
         }
@@ -909,7 +887,6 @@ function enterDefaultEntryWear(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).temp_clo_not_wear_reason ?? 0) === 'not_owned') {
     scene.img('images/characters/pavlovsk/school/boy/niko/nikoev/school/strip/strip2.jpg');
-    // TODO-QSP: dynamic text: As you go to pull your <<$def_clothing_name[default_entry]>> outfit out of your ...
     scene.text(`As you go to pull your ${(((s as any).def_clothing_name ?? 0)?.[String((s as any).default_entry ?? 0)] ?? '')} outfit out of your wardrobe you remember you don't own that piece of clothing anymore. Maybe you should buy it again? Guess you will have to find something else to wear.`);
     scene.actions([
       { label: 'Return', handler: (st: GameState) => { qspGoto(st, 'wardrobe', ((st as any).wloc ?? '')); } },
@@ -917,7 +894,6 @@ function enterDefaultEntryWear(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).temp_clo_not_wear_reason ?? 0) === 'is_lost') {
       scene.img('images/characters/pavlovsk/school/boy/niko/nikoev/school/strip/strip2.jpg');
-      // TODO-QSP: dynamic text: As you go to pull your <<$def_clothing_name[default_entry]>> outfit out of your ...
       scene.text(`As you go to pull your ${(((s as any).def_clothing_name ?? 0)?.[String((s as any).default_entry ?? 0)] ?? '')} outfit out of your wardrobe you remember that you lost that piece of clothing. Maybe you can find the missing clothes somewhere? Guess you will have to find something else to wear.`);
       scene.actions([
         { label: 'Return', handler: (st: GameState) => { qspGoto(st, 'wardrobe', ((st as any).wloc ?? '')); } },
@@ -925,7 +901,6 @@ function enterDefaultEntryWear(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).temp_clo_not_wear_reason ?? 0) === 'not_in_wardrobe') {
         scene.img('images/characters/pavlovsk/school/boy/niko/nikoev/school/strip/strip2.jpg');
-        // TODO-QSP: dynamic text: As you go to pull your <<$def_clothing_name[default_entry]>> outfit out of your ...
         scene.text(`As you go to pull your ${(((s as any).def_clothing_name ?? 0)?.[String((s as any).default_entry ?? 0)] ?? '')} outfit out of your wardrobe you notice that it's not there. You should move it back into your wardrobe from your storage or unwanted pile.`);
         scene.actions([
           { label: 'Return', handler: (st: GameState) => { qspGoto(st, 'wardrobe', ((st as any).wloc ?? '')); } },
@@ -933,7 +908,6 @@ function enterDefaultEntryWear(s: GameState, scene: SceneBuilder): void {
       } else {
         if (((s as any).temp_clo_not_wear_reason ?? 0) === 'low_strength') {
           scene.img('images/characters/pavlovsk/school/girl/vicky/event/vika_game_strip16.mp4');
-          // TODO-QSP: dynamic text: Your <<$def_clothing_name[default_entry]>> outfit has worn out and can''t be use...
           scene.text(`Your ${(((s as any).def_clothing_name ?? 0)?.[String((s as any).default_entry ?? 0)] ?? '')} outfit has worn out and can't be used anymore. Guess you will have to find something else to wear.`);
           scene.actions([
             { label: 'Strip out of worn out clothing', handler: (st: GameState) => {
@@ -945,7 +919,6 @@ function enterDefaultEntryWear(s: GameState, scene: SceneBuilder): void {
         } else {
           if (((s as any).temp_clo_not_wear_reason ?? 0) === 'low_inhib') {
             scene.img('images/locations/pavlovsk/trainstation/bimbo.strip6.mp4');
-            // TODO-QSP: dynamic text: You don''t feel daring enough to wear your <<$def_clothing_name[default_entry]>>...
             scene.text(`You don't feel daring enough to wear your ${(((s as any).def_clothing_name ?? 0)?.[String((s as any).default_entry ?? 0)] ?? '')} outfit. Maybe you will be confident enough in the future? Guess you will have to find something else to wear.`);
             scene.actions([
               { label: 'Strip out of revealing clothing', handler: (st: GameState) => {
@@ -960,8 +933,8 @@ function enterDefaultEntryWear(s: GameState, scene: SceneBuilder): void {
               } else {
                 scene.img(`images/locations/pavlovsk/clinic/therapist/stripping${(Math.floor(Math.random() * 4) + 1)}.mp4`);
               }
-              // TODO-QSP: dynamic text: 'As you put on your <<$def_clothing_name[default_entry]>> outfit you notice it d...
               scene.text(`As you put on your ${(((s as any).def_clothing_name ?? 0)?.[String((s as any).default_entry ?? 0)] ?? '')} outfit you notice it doesn't fit correctly anymore. It's ` + ((((s as any).temp_clo_not_wear_reason ?? 0) === 'too_small') ? ('unbearably tight and uncomfortable to wear.') : ('extremely loose and won\'t stay in place no matter how hard you try.')) + ' You must have ' + ((((s as any).temp_clo_not_wear_reason ?? 0) === 'too_small') ? ('gained') : ('lost')) + ' some weight since this was purchased or last tailored. You will have to get this clothing resized before you can wear it again.');
+              (s as any).temp4 = undefined;
               scene.actions([
                 { label: 'Strip out of ill-fitting clothing', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
@@ -1000,7 +973,6 @@ function enterDefaultEntryWear(s: GameState, scene: SceneBuilder): void {
               } else {
                 if (((s as any).temp_clo_not_wear_reason ?? 0) !== '') {
                   scene.text('ERROR! This should not be reached.');
-                  // TODO-QSP: dynamic text: You can''t wear this outfit because <<$temp_clo_not_wear_reason>>, but the text ...
                   scene.text(`You can't wear this outfit because ${((s as any).temp_clo_not_wear_reason ?? '')}, but the text for this has not be written.`);
                   scene.text('Please contact a developer');
                   scene.actions([
@@ -1009,10 +981,8 @@ function enterDefaultEntryWear(s: GameState, scene: SceneBuilder): void {
                 } else {
                   scene.img('images/pc/activities/misc/dress_1.mp4');
                   if (((s as any).temp_panties_not_wear_reason ?? 0) === 'hypno'  ||  ((s as any).temp_bra_not_wear_reason ?? 0) === 'hypno') {
-                    // TODO-QSP: dynamic text: 'You put on your <<$def_clothing_name[default_entry]>> outfit, but couldn''t bri...
                     scene.text(`You put on your ${(((s as any).def_clothing_name ?? 0)?.[String((s as any).default_entry ?? 0)] ?? '')} outfit, but couldn't bring yourself to put on your ` + ((((s as any).temp_bra_not_wear_reason ?? 0) === 'hypno'  &&  ((s as any).temp_panties_not_wear_reason ?? 0) === 'hypno') ? ('bra or panties') : (((((s as any).temp_bra_not_wear_reason ?? 0) === 'hypno') ? ('bra') : ('panties')))) + '.');
                   } else {
-                    // TODO-QSP: dynamic text: Your put on your <<$def_clothing_name[default_entry]>> outfit without any proble...
                     scene.text(`Your put on your ${(((s as any).def_clothing_name ?? 0)?.[String((s as any).default_entry ?? 0)] ?? '')} outfit without any problems.`);
                   }
                   scene.actions([
@@ -1026,63 +996,71 @@ function enterDefaultEntryWear(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
+  (s as any).temp_clo_not_wear_reason = undefined;
+  (s as any).temp_bra_not_wear_reason = undefined;
+  (s as any).temp_panties_not_wear_reason = undefined;
+  (s as any).temp_bodysuit_not_wear_reason = undefined;
+  (s as any).temp_sho_not_wear_reason = undefined;
+  (s as any).temp_purse_not_wear_reason = undefined;
+  (s as any).temp_coat_not_wear_reason = undefined;
   scene.build();
 }
 
 function enterDefaultEntrySet(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   (s as any).temp_set_index = ((s as any).locArgs?.[1] ?? 0);
-  // TODO-QSP: $defclothingtype[temp_set_index] = $clothingworntype
+  ((s as any).defclothingtype = (s as any).defclothingtype ?? {})[String((s as any).temp_set_index ?? 0)] = ((s as any).clothingworntype ?? 0);
   ((s as any).defclothingnumber = (s as any).defclothingnumber ?? {})[String((s as any).temp_set_index ?? 0)] = ((s as any).clothingwornnumber ?? 0);
   ((s as any).defunderwear = (s as any).defunderwear ?? {})[String((s as any).temp_set_index ?? 0)] = (((s as any).underwear ?? 0)?.['type']);
-  // TODO-QSP: $defbodysuittype[temp_set_index] = $bodysuitworntype
+  ((s as any).defbodysuittype = (s as any).defbodysuittype ?? {})[String((s as any).temp_set_index ?? 0)] = ((s as any).bodysuitworntype ?? 0);
   ((s as any).defbodysuitnumber = (s as any).defbodysuitnumber ?? {})[String((s as any).temp_set_index ?? 0)] = ((s as any).bodysuitwornnumber ?? 0);
-  // TODO-QSP: $defbratype[temp_set_index] = $braworntype
+  ((s as any).defbratype = (s as any).defbratype ?? {})[String((s as any).temp_set_index ?? 0)] = ((s as any).braworntype ?? 0);
   ((s as any).defbranumber = (s as any).defbranumber ?? {})[String((s as any).temp_set_index ?? 0)] = ((s as any).brawornnumber ?? 0);
-  // TODO-QSP: $defpantytype[temp_set_index] = $pantyworntype
+  ((s as any).defpantytype = (s as any).defpantytype ?? {})[String((s as any).temp_set_index ?? 0)] = ((s as any).pantyworntype ?? 0);
   ((s as any).defpantynumber = (s as any).defpantynumber ?? {})[String((s as any).temp_set_index ?? 0)] = ((s as any).pantywornnumber ?? 0);
-  // TODO-QSP: $defshoetype[temp_set_index] = $shoeworntype
+  ((s as any).defshoetype = (s as any).defshoetype ?? {})[String((s as any).temp_set_index ?? 0)] = ((s as any).shoeworntype ?? 0);
   ((s as any).defshoenumber = (s as any).defshoenumber ?? {})[String((s as any).temp_set_index ?? 0)] = ((s as any).shoewornnumber ?? 0);
-  // TODO-QSP: $defpursetype[temp_set_index] = $currentpursetype
+  ((s as any).defpursetype = (s as any).defpursetype ?? {})[String((s as any).temp_set_index ?? 0)] = ((s as any).currentpursetype ?? 0);
   ((s as any).defpursenumber = (s as any).defpursenumber ?? {})[String((s as any).temp_set_index ?? 0)] = ((s as any).currentpursenumber ?? 0);
-  // TODO-QSP: $defcoattype[temp_set_index] = $coatworntype
+  ((s as any).defcoattype = (s as any).defcoattype ?? {})[String((s as any).temp_set_index ?? 0)] = ((s as any).coatworntype ?? 0);
   ((s as any).defcoatnumber = (s as any).defcoatnumber ?? {})[String((s as any).temp_set_index ?? 0)] = ((s as any).coatwornnumber ?? 0);
   if ((!((s as any).bag ?? 0))) {
-    // TODO-QSP: $defpursetype[temp_set_index] = 'none'
+    ((s as any).defpursetype = (s as any).defpursetype ?? {})[String((s as any).temp_set_index ?? 0)] = 'none';
     ((s as any).defpursenumber = (s as any).defpursenumber ?? {})[String((s as any).temp_set_index ?? 0)] = 0;
   }
   if ((Math.floor(Math.random() * 21) + 0) < ((s as any).hypnoStrength ?? 0)) {
     (s as any).temp_wardrobe_msg = 0;
     if (((s as any).hypnoPanty ?? 0) === 1  &&  ((s as any).hypnoBra ?? 0) === 1) {
-      // TODO-QSP: $defbodysuittype[temp_set_index] = 'none'
+      ((s as any).defbodysuittype = (s as any).defbodysuittype ?? {})[String((s as any).temp_set_index ?? 0)] = 'none';
       ((s as any).defbodysuitnumber = (s as any).defbodysuitnumber ?? {})[String((s as any).temp_set_index ?? 0)] = 0;
       (s as any).temp_wardrobe_msg = 1;
     }
     if (((s as any).hypnoPanty ?? 0) === 1) {
-      // TODO-QSP: $defpantytype[temp_set_index] = 'none'
+      ((s as any).defpantytype = (s as any).defpantytype ?? {})[String((s as any).temp_set_index ?? 0)] = 'none';
       ((s as any).defpantynumber = (s as any).defpantynumber ?? {})[String((s as any).temp_set_index ?? 0)] = 0;
       (s as any).temp_wardrobe_msg = 1;
     }
     if (((s as any).hypnoBra ?? 0) === 1) {
-      // TODO-QSP: $defbratype[temp_set_index] = 'none'
+      ((s as any).defbratype = (s as any).defbratype ?? {})[String((s as any).temp_set_index ?? 0)] = 'none';
       ((s as any).defbranumber = (s as any).defbranumber ?? {})[String((s as any).temp_set_index ?? 0)] = 0;
       (s as any).temp_wardrobe_msg = 1;
     }
     if (((s as any).temp_wardrobe_msg ?? 0)) {
-      // TODO-QSP: msg '<center>You feel like something about this set has changed but you cannot workout what it is.</...
+      alert('<center>You feel like something about this set has changed but you cannot workout what it is.</center>');
     }
+    (s as any).temp_wardrobe_msg = undefined;
   }
   (s as any).def_clothing_temp = window.prompt("<center>Enter a name for this outfit set<br><font color=\"grey\">Leaving blank will reuse current name.</font></center>") ?? '';
   if (((s as any).def_clothing_temp ?? 0) !== '') {
-    // TODO-QSP: $def_clothing_name[temp_set_index] = $def_clothing_temp
+    ((s as any).def_clothing_name = (s as any).def_clothing_name ?? {})[String((s as any).temp_set_index ?? 0)] = ((s as any).def_clothing_temp ?? 0);
   } else {
     if (((s as any).def_clothing_name ?? 0)?.[String((s as any).temp_set_index ?? 0)] === '') {
-      // TODO-QSP: $def_clothing_name[temp_set_index] = 'Custom <<temp_set_index>>'
+      ((s as any).def_clothing_name = (s as any).def_clothing_name ?? {})[String((s as any).temp_set_index ?? 0)] = 'Custom ' + ((s as any).temp_set_index ?? 0) + '';
     }
   }
+  (s as any).def_clothing_temp = undefined;
+  (s as any).temp_set_index = undefined;
   qspGoto(s, 'wardrobe', ((s as any).wloc ?? ''));
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1091,14 +1069,15 @@ function enterDefaultEntryRename(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_set_index = ((s as any).locArgs?.[1] ?? 0);
   (s as any).def_clothing_temp = window.prompt("<center>Enter a name for this outfit set<br><font color=\"grey\">Leaving blank will reuse current name.</font></center>") ?? '';
   if (((s as any).def_clothing_temp ?? 0) !== '') {
-    // TODO-QSP: $def_clothing_name[temp_set_index] = $def_clothing_temp
+    ((s as any).def_clothing_name = (s as any).def_clothing_name ?? {})[String((s as any).temp_set_index ?? 0)] = ((s as any).def_clothing_temp ?? 0);
   } else {
     if (((s as any).def_clothing_name ?? 0)?.[String((s as any).temp_set_index ?? 0)] === '') {
-      // TODO-QSP: $def_clothing_name[temp_set_index] = 'Custom <<temp_set_index>>'
+      ((s as any).def_clothing_name = (s as any).def_clothing_name ?? {})[String((s as any).temp_set_index ?? 0)] = 'Custom ' + ((s as any).temp_set_index ?? 0) + '';
     }
   }
+  (s as any).def_clothing_temp = undefined;
+  (s as any).temp_set_index = undefined;
   qspGoto(s, 'wardrobe', ((s as any).wloc ?? ''));
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1111,7 +1090,6 @@ function enterDefaultEntryUp(s: GameState, scene: SceneBuilder): void {
   }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterEntryShiftCore(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspGoto(s, 'wardrobe', ((s as any).wloc ?? ''));
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1121,7 +1099,6 @@ function enterDefaultEntryDown(s: GameState, scene: SceneBuilder): void {
   ((s as any).temp_wardrobeVars = (s as any).temp_wardrobeVars ?? {})['j'] = ((((s as any).temp_wardrobeVars ?? {})?.['i'] ?? 0) + 1) % ((s as any).arrsize ?? 0)('defclothingnumber');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterEntryShiftCore(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspGoto(s, 'wardrobe', ((s as any).wloc ?? ''));
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1142,42 +1119,42 @@ function enterEntryShiftCore(s: GameState, scene: SceneBuilder): void {
   ((s as any).temp_wardrobeVars = (s as any).temp_wardrobeVars ?? {})['coattype'] = qspUntranslated(s, "defcoattype[temp_wardrobeVars['i']]", { location: "wardrobe" });
   ((s as any).temp_wardrobeVars = (s as any).temp_wardrobeVars ?? {})['coatnumber'] = qspUntranslated(s, "defcoatnumber[temp_wardrobeVars['i']]", { location: "wardrobe" });
   ((s as any).temp_wardrobeVars = (s as any).temp_wardrobeVars ?? {})['name'] = qspUntranslated(s, "def_clothing_name[temp_wardrobeVars['i']]", { location: "wardrobe" });
-  // TODO-QSP: $defclothingtype[temp_wardrobeVars['i']]  = $defclothingtype[temp_wardrobeVars['j']]
-  // TODO-QSP: defclothingnumber[temp_wardrobeVars['i']]  = defclothingnumber[temp_wardrobeVars['j']]
-  // TODO-QSP: defunderwear[temp_wardrobeVars['i']]    = defunderwear[temp_wardrobeVars['j']]
-  // TODO-QSP: $defbodysuittype[temp_wardrobeVars['i']]  = $defbodysuittype[temp_wardrobeVars['j']]
-  // TODO-QSP: defbodysuitnumber[temp_wardrobeVars['i']]  = defbodysuitnumber[temp_wardrobeVars['j']]
-  // TODO-QSP: $defbratype[temp_wardrobeVars['i']]      = $defbratype[temp_wardrobeVars['j']]
-  // TODO-QSP: defbranumber[temp_wardrobeVars['i']]    = defbranumber[temp_wardrobeVars['j']]
-  // TODO-QSP: $defpantytype[temp_wardrobeVars['i']]    = $defpantytype[temp_wardrobeVars['j']]
-  // TODO-QSP: defpantynumber[temp_wardrobeVars['i']]    = defpantynumber[temp_wardrobeVars['j']]
-  // TODO-QSP: $defbratype[temp_wardrobeVars['i']]      = $defbratype[temp_wardrobeVars['j']]
-  // TODO-QSP: defbranumber[temp_wardrobeVars['i']]    = defbranumber[temp_wardrobeVars['j']]
-  // TODO-QSP: $defpantytype[temp_wardrobeVars['i']]    = $defpantytype[temp_wardrobeVars['j']]
-  // TODO-QSP: defpantynumber[temp_wardrobeVars['i']]    = defpantynumber[temp_wardrobeVars['j']]
-  // TODO-QSP: $defshoetype[temp_wardrobeVars['i']]    = $defshoetype[temp_wardrobeVars['j']]
-  // TODO-QSP: defshoenumber[temp_wardrobeVars['i']]    = defshoenumber[temp_wardrobeVars['j']]
-  // TODO-QSP: $defpursetype[temp_wardrobeVars['i']]    = $defpursetype[temp_wardrobeVars['j']]
-  // TODO-QSP: defpursenumber[temp_wardrobeVars['i']]    = defpursenumber[temp_wardrobeVars['j']]
-  // TODO-QSP: $defcoattype[temp_wardrobeVars['i']]    = $defcoattype[temp_wardrobeVars['j']]
-  // TODO-QSP: defcoatnumber[temp_wardrobeVars['i']]    = defcoatnumber[temp_wardrobeVars['j']]
-  // TODO-QSP: $def_clothing_name[temp_wardrobeVars['i']]  = $def_clothing_name[temp_wardrobeVars['j']]
-  // TODO-QSP: $defclothingtype[temp_wardrobeVars['j']]  = $temp_wardrobeVars['clothingtype']
-  // TODO-QSP: defclothingnumber[temp_wardrobeVars['j']]  = temp_wardrobeVars['clothingnumber']
-  // TODO-QSP: defunderwear[temp_wardrobeVars['j']]    = temp_wardrobeVars['underwear']
-  // TODO-QSP: $defbodysuittype[temp_wardrobeVars['j']]  = $temp_wardrobeVars['bodystuittype']
-  // TODO-QSP: defbodysuitnumber[temp_wardrobeVars['j']]  = temp_wardrobeVars['bodystuitnumber']
-  // TODO-QSP: $defbratype[temp_wardrobeVars['j']]      = $temp_wardrobeVars['bratype']
-  // TODO-QSP: defbranumber[temp_wardrobeVars['j']]    = temp_wardrobeVars['branumber']
-  // TODO-QSP: $defpantytype[temp_wardrobeVars['j']]    = $temp_wardrobeVars['pantytype']
-  // TODO-QSP: defpantynumber[temp_wardrobeVars['j']]    = temp_wardrobeVars['pantynumber']
-  // TODO-QSP: $defshoetype[temp_wardrobeVars['j']]    = $temp_wardrobeVars['shoetype']
-  // TODO-QSP: defshoenumber[temp_wardrobeVars['j']]    = temp_wardrobeVars['shoenumber']
-  // TODO-QSP: $defpursetype[temp_wardrobeVars['j']]    = $temp_wardrobeVars['pursetype']
-  // TODO-QSP: defpursenumber[temp_wardrobeVars['j']]    = temp_wardrobeVars['pursenumber']
-  // TODO-QSP: $defcoattype[temp_wardrobeVars['j']]    = $temp_wardrobeVars['coattype']
-  // TODO-QSP: defcoatnumber[temp_wardrobeVars['j']]    = temp_wardrobeVars['coatnumber']
-  // TODO-QSP: $def_clothing_name[temp_wardrobeVars['j']]  = $temp_wardrobeVars['name']
+  ((s as any).defclothingtype = (s as any).defclothingtype ?? {})[(((s as any).temp_wardrobeVars ?? 0)?.['i'])] = qspUntranslated(s, "defclothingtype[temp_wardrobeVars['j']]", { location: "wardrobe" });
+  ((s as any).defclothingnumber = (s as any).defclothingnumber ?? {})[(((s as any).temp_wardrobeVars ?? 0)?.['i'])] = qspUntranslated(s, "defclothingnumber[temp_wardrobeVars['j']]", { location: "wardrobe" });
+  ((s as any).defunderwear = (s as any).defunderwear ?? {})[(((s as any).temp_wardrobeVars ?? 0)?.['i'])] = qspUntranslated(s, "defunderwear[temp_wardrobeVars['j']]", { location: "wardrobe" });
+  ((s as any).defbodysuittype = (s as any).defbodysuittype ?? {})[(((s as any).temp_wardrobeVars ?? 0)?.['i'])] = qspUntranslated(s, "defbodysuittype[temp_wardrobeVars['j']]", { location: "wardrobe" });
+  ((s as any).defbodysuitnumber = (s as any).defbodysuitnumber ?? {})[(((s as any).temp_wardrobeVars ?? 0)?.['i'])] = qspUntranslated(s, "defbodysuitnumber[temp_wardrobeVars['j']]", { location: "wardrobe" });
+  ((s as any).defbratype = (s as any).defbratype ?? {})[(((s as any).temp_wardrobeVars ?? 0)?.['i'])] = qspUntranslated(s, "defbratype[temp_wardrobeVars['j']]", { location: "wardrobe" });
+  ((s as any).defbranumber = (s as any).defbranumber ?? {})[(((s as any).temp_wardrobeVars ?? 0)?.['i'])] = qspUntranslated(s, "defbranumber[temp_wardrobeVars['j']]", { location: "wardrobe" });
+  ((s as any).defpantytype = (s as any).defpantytype ?? {})[(((s as any).temp_wardrobeVars ?? 0)?.['i'])] = qspUntranslated(s, "defpantytype[temp_wardrobeVars['j']]", { location: "wardrobe" });
+  ((s as any).defpantynumber = (s as any).defpantynumber ?? {})[(((s as any).temp_wardrobeVars ?? 0)?.['i'])] = qspUntranslated(s, "defpantynumber[temp_wardrobeVars['j']]", { location: "wardrobe" });
+  ((s as any).defbratype = (s as any).defbratype ?? {})[(((s as any).temp_wardrobeVars ?? 0)?.['i'])] = qspUntranslated(s, "defbratype[temp_wardrobeVars['j']]", { location: "wardrobe" });
+  ((s as any).defbranumber = (s as any).defbranumber ?? {})[(((s as any).temp_wardrobeVars ?? 0)?.['i'])] = qspUntranslated(s, "defbranumber[temp_wardrobeVars['j']]", { location: "wardrobe" });
+  ((s as any).defpantytype = (s as any).defpantytype ?? {})[(((s as any).temp_wardrobeVars ?? 0)?.['i'])] = qspUntranslated(s, "defpantytype[temp_wardrobeVars['j']]", { location: "wardrobe" });
+  ((s as any).defpantynumber = (s as any).defpantynumber ?? {})[(((s as any).temp_wardrobeVars ?? 0)?.['i'])] = qspUntranslated(s, "defpantynumber[temp_wardrobeVars['j']]", { location: "wardrobe" });
+  ((s as any).defshoetype = (s as any).defshoetype ?? {})[(((s as any).temp_wardrobeVars ?? 0)?.['i'])] = qspUntranslated(s, "defshoetype[temp_wardrobeVars['j']]", { location: "wardrobe" });
+  ((s as any).defshoenumber = (s as any).defshoenumber ?? {})[(((s as any).temp_wardrobeVars ?? 0)?.['i'])] = qspUntranslated(s, "defshoenumber[temp_wardrobeVars['j']]", { location: "wardrobe" });
+  ((s as any).defpursetype = (s as any).defpursetype ?? {})[(((s as any).temp_wardrobeVars ?? 0)?.['i'])] = qspUntranslated(s, "defpursetype[temp_wardrobeVars['j']]", { location: "wardrobe" });
+  ((s as any).defpursenumber = (s as any).defpursenumber ?? {})[(((s as any).temp_wardrobeVars ?? 0)?.['i'])] = qspUntranslated(s, "defpursenumber[temp_wardrobeVars['j']]", { location: "wardrobe" });
+  ((s as any).defcoattype = (s as any).defcoattype ?? {})[(((s as any).temp_wardrobeVars ?? 0)?.['i'])] = qspUntranslated(s, "defcoattype[temp_wardrobeVars['j']]", { location: "wardrobe" });
+  ((s as any).defcoatnumber = (s as any).defcoatnumber ?? {})[(((s as any).temp_wardrobeVars ?? 0)?.['i'])] = qspUntranslated(s, "defcoatnumber[temp_wardrobeVars['j']]", { location: "wardrobe" });
+  ((s as any).def_clothing_name = (s as any).def_clothing_name ?? {})[(((s as any).temp_wardrobeVars ?? 0)?.['i'])] = qspUntranslated(s, "def_clothing_name[temp_wardrobeVars['j']]", { location: "wardrobe" });
+  ((s as any).defclothingtype = (s as any).defclothingtype ?? {})[(((s as any).temp_wardrobeVars ?? 0)?.['j'])] = (((s as any).temp_wardrobeVars ?? 0)?.['clothingtype']);
+  ((s as any).defclothingnumber = (s as any).defclothingnumber ?? {})[(((s as any).temp_wardrobeVars ?? 0)?.['j'])] = (((s as any).temp_wardrobeVars ?? 0)?.['clothingnumber']);
+  ((s as any).defunderwear = (s as any).defunderwear ?? {})[(((s as any).temp_wardrobeVars ?? 0)?.['j'])] = (((s as any).temp_wardrobeVars ?? 0)?.['underwear']);
+  ((s as any).defbodysuittype = (s as any).defbodysuittype ?? {})[(((s as any).temp_wardrobeVars ?? 0)?.['j'])] = (((s as any).temp_wardrobeVars ?? 0)?.['bodystuittype']);
+  ((s as any).defbodysuitnumber = (s as any).defbodysuitnumber ?? {})[(((s as any).temp_wardrobeVars ?? 0)?.['j'])] = (((s as any).temp_wardrobeVars ?? 0)?.['bodystuitnumber']);
+  ((s as any).defbratype = (s as any).defbratype ?? {})[(((s as any).temp_wardrobeVars ?? 0)?.['j'])] = (((s as any).temp_wardrobeVars ?? 0)?.['bratype']);
+  ((s as any).defbranumber = (s as any).defbranumber ?? {})[(((s as any).temp_wardrobeVars ?? 0)?.['j'])] = (((s as any).temp_wardrobeVars ?? 0)?.['branumber']);
+  ((s as any).defpantytype = (s as any).defpantytype ?? {})[(((s as any).temp_wardrobeVars ?? 0)?.['j'])] = (((s as any).temp_wardrobeVars ?? 0)?.['pantytype']);
+  ((s as any).defpantynumber = (s as any).defpantynumber ?? {})[(((s as any).temp_wardrobeVars ?? 0)?.['j'])] = (((s as any).temp_wardrobeVars ?? 0)?.['pantynumber']);
+  ((s as any).defshoetype = (s as any).defshoetype ?? {})[(((s as any).temp_wardrobeVars ?? 0)?.['j'])] = (((s as any).temp_wardrobeVars ?? 0)?.['shoetype']);
+  ((s as any).defshoenumber = (s as any).defshoenumber ?? {})[(((s as any).temp_wardrobeVars ?? 0)?.['j'])] = (((s as any).temp_wardrobeVars ?? 0)?.['shoenumber']);
+  ((s as any).defpursetype = (s as any).defpursetype ?? {})[(((s as any).temp_wardrobeVars ?? 0)?.['j'])] = (((s as any).temp_wardrobeVars ?? 0)?.['pursetype']);
+  ((s as any).defpursenumber = (s as any).defpursenumber ?? {})[(((s as any).temp_wardrobeVars ?? 0)?.['j'])] = (((s as any).temp_wardrobeVars ?? 0)?.['pursenumber']);
+  ((s as any).defcoattype = (s as any).defcoattype ?? {})[(((s as any).temp_wardrobeVars ?? 0)?.['j'])] = (((s as any).temp_wardrobeVars ?? 0)?.['coattype']);
+  ((s as any).defcoatnumber = (s as any).defcoatnumber ?? {})[(((s as any).temp_wardrobeVars ?? 0)?.['j'])] = (((s as any).temp_wardrobeVars ?? 0)?.['coatnumber']);
+  ((s as any).def_clothing_name = (s as any).def_clothing_name ?? {})[(((s as any).temp_wardrobeVars ?? 0)?.['j'])] = (((s as any).temp_wardrobeVars ?? 0)?.['name']);
   if (((s as any).default_sport_number ?? 0) === ((s as any).temp_wardrobeVars ?? 0)?.['i']) {
     (s as any).default_sport_number = (((s as any).temp_wardrobeVars ?? 0)?.['j']);
   } else {
@@ -1192,29 +1169,29 @@ function enterEntryShiftCore(s: GameState, scene: SceneBuilder): void {
       (s as any).default_school_number = (((s as any).temp_wardrobeVars ?? 0)?.['i']);
     }
   }
-  // TODO-QSP: end
+  (s as any).temp_wardrobeVars = undefined;
   scene.build();
 }
 
 function enterDefaultEntryDelete(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   (s as any).temp_del_index = ((s as any).locArgs?.[1] ?? 0);
-  // TODO-QSP: $defclothingtype[temp_del_index] = ''
+  ((s as any).defclothingtype = (s as any).defclothingtype ?? {})[String((s as any).temp_del_index ?? 0)] = '';
   ((s as any).defclothingnumber = (s as any).defclothingnumber ?? {})[String((s as any).temp_del_index ?? 0)] = 0;
   ((s as any).defunderwear = (s as any).defunderwear ?? {})[String((s as any).temp_del_index ?? 0)] = 0;
-  // TODO-QSP: $defbodysuittype[temp_del_index] = ''
+  ((s as any).defbodysuittype = (s as any).defbodysuittype ?? {})[String((s as any).temp_del_index ?? 0)] = '';
   ((s as any).defbodysuitnumber = (s as any).defbodysuitnumber ?? {})[String((s as any).temp_del_index ?? 0)] = 0;
-  // TODO-QSP: $defbratype[temp_del_index] = ''
+  ((s as any).defbratype = (s as any).defbratype ?? {})[String((s as any).temp_del_index ?? 0)] = '';
   ((s as any).defbranumber = (s as any).defbranumber ?? {})[String((s as any).temp_del_index ?? 0)] = 0;
-  // TODO-QSP: $defpantytype[temp_del_index] = ''
+  ((s as any).defpantytype = (s as any).defpantytype ?? {})[String((s as any).temp_del_index ?? 0)] = '';
   ((s as any).defpantynumber = (s as any).defpantynumber ?? {})[String((s as any).temp_del_index ?? 0)] = 0;
-  // TODO-QSP: $defshoetype[temp_del_index] = ''
+  ((s as any).defshoetype = (s as any).defshoetype ?? {})[String((s as any).temp_del_index ?? 0)] = '';
   ((s as any).defshoenumber = (s as any).defshoenumber ?? {})[String((s as any).temp_del_index ?? 0)] = 0;
-  // TODO-QSP: $defpursetype[temp_del_index] = ''
+  ((s as any).defpursetype = (s as any).defpursetype ?? {})[String((s as any).temp_del_index ?? 0)] = '';
   ((s as any).defpursenumber = (s as any).defpursenumber ?? {})[String((s as any).temp_del_index ?? 0)] = 0;
-  // TODO-QSP: $defcoattype[temp_del_index] = ''
+  ((s as any).defcoattype = (s as any).defcoattype ?? {})[String((s as any).temp_del_index ?? 0)] = '';
   ((s as any).defcoatnumber = (s as any).defcoatnumber ?? {})[String((s as any).temp_del_index ?? 0)] = 0;
-  // TODO-QSP: $def_clothing_name[temp_del_index] = ''
+  ((s as any).def_clothing_name = (s as any).def_clothing_name ?? {})[String((s as any).temp_del_index ?? 0)] = '';
   if (((s as any).default_sport_number ?? 0)    === ((s as any).temp_del_index ?? 0)) {
     (s as any).default_sport_number = 0;
   }
@@ -1222,16 +1199,16 @@ function enterDefaultEntryDelete(s: GameState, scene: SceneBuilder): void {
     (s as any).default_school_number = 0;
   }
   (s as any).temp_i = ((s as any).temp_del_index ?? 0);
-  // TODO-QSP: :bubble_shift_loop
-  if (((s as any).def_clothing_name ?? 0)[((s as any).temp_i ?? 0) + 1] !== ''  &&  ((s as any).temp_i ?? 0) % 10 > 0) {
-    ((s as any).temp_wardrobeVars = (s as any).temp_wardrobeVars ?? {})['i'] = ((s as any).temp_i ?? 0);
-    ((s as any).temp_wardrobeVars = (s as any).temp_wardrobeVars ?? {})['j'] = ((s as any).temp_i ?? 0) + 1;
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterEntryShiftCore(s, scene); (s as any).locArgs = __savedLocArgs; }
-    (s as any).temp_i = ((s as any).temp_i ?? 0) + (1);
-    // TODO-QSP: jump 'bubble_shift_loop'
+  while (true) {
+    if (((s as any).def_clothing_name ?? 0)[((s as any).temp_i ?? 0) + 1] !== ''  &&  ((s as any).temp_i ?? 0) % 10 > 0) {
+      ((s as any).temp_wardrobeVars = (s as any).temp_wardrobeVars ?? {})['i'] = ((s as any).temp_i ?? 0);
+      ((s as any).temp_wardrobeVars = (s as any).temp_wardrobeVars ?? {})['j'] = ((s as any).temp_i ?? 0) + 1;
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterEntryShiftCore(s, scene); (s as any).locArgs = __savedLocArgs; }
+      (s as any).temp_i = ((s as any).temp_i ?? 0) + (1);
+      break;
+    }
+    qspGoto(s, 'wardrobe', ((s as any).wloc ?? ''));
   }
-  qspGoto(s, 'wardrobe', ((s as any).wloc ?? ''));
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1239,7 +1216,6 @@ function enterDefaultSportSet(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   (s as any).default_sport_number = ((s as any).locArgs?.[1] ?? 0);
   qspGoto(s, 'wardrobe', ((s as any).wloc ?? ''));
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1247,7 +1223,6 @@ function enterDefaultSchoolSet(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   (s as any).default_school_number = ((s as any).locArgs?.[1] ?? 0);
   qspGoto(s, 'wardrobe', ((s as any).wloc ?? ''));
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1258,7 +1233,6 @@ function enterSchoolOutfit(s: GameState, scene: SceneBuilder): void {
   } else {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).default_school_number ?? 0)]; enterDefaultEntryWear(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1299,7 +1273,6 @@ function enterDefaultClothingOptions(s: GameState, scene: SceneBuilder): void {
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDefaultSchoolWearAct(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1317,21 +1290,21 @@ function enterDefaultSchoolWearAct(s: GameState, scene: SceneBuilder): void {
     if (((s as any).temp_clo_not_wear_reason ?? 0) === 'too_small'  ||  ((s as any).temp_clo_not_wear_reason ?? 0) === 'too_large') {
       scene.actions([
         { label: 'Put on your school uniform', handler: (st: GameState) => {
-    // TODO-QSP: msg $func('wrap', 'neg', 'Unavailable as your outfit doesn''...
+    alert(0);
   } },
       ]);
     } else {
       if (((s as any).temp_clo_not_wear_reason ?? 0) === 'low_strength') {
         scene.actions([
           { label: 'Put on your school uniform', handler: (st: GameState) => {
-    // TODO-QSP: msg $func('wrap', 'neg', 'Unavailable as outfit is worn out!...
+    alert(qspFunc(st, 'wrap', 'neg', 'Unavailable as outfit is worn out!'));
   } },
         ]);
       } else {
         if (((s as any).temp_clo_not_wear_reason ?? 0) === 'not_owned') {
           scene.actions([
             { label: 'Put on your school uniform', handler: (st: GameState) => {
-    // TODO-QSP: msg $func('wrap', 'neg', 'Unavailable as you don''t own that...
+    alert(0);
   } },
           ]);
         } else {
@@ -1345,8 +1318,8 @@ function enterDefaultSchoolWearAct(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
+    (s as any).temp_clo_not_wear_reason = undefined;
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1363,7 +1336,6 @@ function enterDefaultSchoolWear(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).default_school_number ?? 0)]; enterDefaultEntryWear(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterWardrobeExitCheckOutfit(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'daily_routine', 'finish_step', ((s as any).loc ?? 0), ((s as any).loc_arg ?? 0));
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1372,14 +1344,14 @@ function enterDefaultSportWearAct(s: GameState, scene: SceneBuilder): void {
     if ((0 as any) <= 0) {
       scene.actions([
         { label: 'Put on your sports clothes', handler: (st: GameState) => {
-    // TODO-QSP: msg $func('wrap', 'neg', 'Unavailable as outfit is worn out!...
+    alert(qspFunc(st, 'wrap', 'neg', 'Unavailable as outfit is worn out!'));
   } },
       ]);
     } else {
       if ((0 as any) <= 0) {
         scene.actions([
           { label: 'Put on your sports clothes', handler: (st: GameState) => {
-    // TODO-QSP: msg $func('wrap', 'neg', 'Unavailable as you don''t own that...
+    alert(0);
   } },
         ]);
       } else {
@@ -1393,7 +1365,6 @@ function enterDefaultSportWearAct(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1410,7 +1381,6 @@ function enterDefaultSportWear(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).default_sport_number ?? 0)]; enterDefaultEntryWear(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterWardrobeExitCheckOutfit(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'daily_routine', 'finish_step', ((s as any).loc ?? 0), ((s as any).loc_arg ?? 0));
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1422,7 +1392,6 @@ function enterDefaultWardrobeWear(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0)]; enterDefaultEntryWear(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterWardrobeExitCheckOutfit(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'daily_routine', 'finish_step', ((s as any).loc ?? 0), ((s as any).loc_arg ?? 0));
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1449,7 +1418,6 @@ function enterIsSport(s: GameState, scene: SceneBuilder): void {
   if (((s as any).coatworntype ?? 0) === ((s as any).defcoattype ?? 0)?.[String((s as any).default_sport_number ?? 0)]  &&  ((s as any).coatwornnumber ?? 0) === ((s as any).defcoatnumber ?? 0)?.[String((s as any).default_sport_number ?? 0)]) {
     ((s as any).default_sport_number = (s as any).default_sport_number ?? {})[2] = ((s as any).default_sport_number[2] ?? 0) + (1);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1476,7 +1444,6 @@ function enterIsSchool(s: GameState, scene: SceneBuilder): void {
   if (((s as any).coatworntype ?? 0) === ((s as any).defcoattype ?? 0)?.[String((s as any).default_school_number ?? 0)]  &&  ((s as any).coatwornnumber ?? 0) === ((s as any).defcoatnumber ?? 0)?.[String((s as any).default_school_number ?? 0)]) {
     ((s as any).default_school_number = (s as any).default_school_number ?? {})[2] = ((s as any).default_school_number[2] ?? 0) + (1);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1533,7 +1500,6 @@ function enterBackToRegularClothes(s: GameState, scene: SceneBuilder): void {
     }
   }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterWardrobeExitCheckOutfit(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.build();
 }
 

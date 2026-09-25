@@ -208,7 +208,6 @@ function enterNerdvanaBikinis(s: GameState, scene: SceneBuilder): void {
 
 function enterNerdvanaSwimsuit(s: GameState, scene: SceneBuilder): void {
   (s as any).RESULT = 'images/pc/items/nerdvana/swim/one/' + ((s as any).locArgs?.[1] ?? 0) + '.jpg';
-  // TODO-QSP: end
   scene.build();
 }
 

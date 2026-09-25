@@ -13,7 +13,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/industrial/terminal/terminal0.jpg');
   scene.text('A large shipping center with many on and off load truck ports.');
   if (((s as any).trfatherQW ?? 0) === 4  &&  ((s as any).trfatherQW ?? 0)?.['day'] !== ((s as any).daystart ?? 0)  &&  ((s as any).week ?? 0) >= 6  &&  ((s as any).hour ?? 0) >= 12  &&  ((s as any).hour ?? 0) < 14) {
-    scene.text('Near one of the dirty trucks is your <a href="#" onclick="window.__gameStore.setState((s) => { (s.trfatherQW ??= {})/u0027day/u0027 = s.daystart; return s; }); window.__gameStore.getState().doGoto(/u0027trFatherMisha/u0027, /u0027/u0027); return false;">father</a>.');
+    scene.text('Near one of the dirty trucks is your <a href="#" onclick="window.__gameStore.setState((s) => { (s.trfatherQW ??= {})\u0027day\u0027 = s.daystart; return s; }); window.__gameStore.getState().doGoto(\u0027trFatherMisha\u0027, \u0027\u0027); return false;">father</a>.');
   }
   if (((s as any).trfatherQW ?? 0) === 2) {
     scene.actions([
@@ -21,12 +21,13 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     if ((((s as any).trfatherQW ?? 0) >= 3  ||  ((s as any).trfatherQW ?? 0) < 0)  &&  ((s as any).week ?? 0) === 6  &&  ((s as any).hour ?? 0) === 12) {
-      // TODO-QSP: act iif(trfatherQW = 3, 'Search for father', 'Approach the men'):
-      qspGoto(s, 'Terminal', 'search_approach_men');
+      scene.actions([
+        { label: '', labelFn: (s: GameState) => String(((((s as any).trfatherQW ?? 0) === 3) ? ('Search for father') : ('Approach the men')) ?? ''), handler: (st: GameState) => {
+    qspGoto(st, 'Terminal', 'search_approach_men');
+  } },
+      ]);
     }
   }
-  // TODO-QSP: end
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -51,7 +52,6 @@ function enterAskfather(s: GameState, scene: SceneBuilder): void {
   scene.text('"I want to ask you, Do you know where can I find a trucker named Mikhail Kuznetsov?"');
   scene.text('"Of course we know him girl, great guy by the way, he is right there around the corner".');
   scene.text('"Thank you very much." you went to meet your father.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go to your father', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -72,9 +72,7 @@ function enterAskfather(s: GameState, scene: SceneBuilder): void {
       scene.img('images/characters/city/mikhail/terminal/trfatherqw_14.jpg');
       scene.text('"Hello, are you Mikhail Kuznetsov?"');
       scene.text('"Yes, that\'s me. Are you from the control room? Did something happen? Did someone call about my driving? I am careful on the roads."');
-      // TODO-QSP: dynamic text: "No no, I am <<$pcs_nickname>> <<$pcs_lastname>>, your daughter.
       scene.text(`"No no, I am ${((st as any).pcs_nickname ?? '')} ${((st as any).pcs_lastname ?? '')}, your daughter.`);
-      // TODO-QSP: dynamic text: "<<$pcs_nickname>>? Hell, my daughter? Is it really you?"
       scene.text(`"${((st as any).pcs_nickname ?? '')}? Hell, my daughter? Is it really you?"`);
       scene.text('Your father breaks down in tears, looking into your eyes, and recognizing his facial features in you, he quickly grabs you and pulls you into a hug, with his oily hands wrapped around you, both of you cry happily.');
       scene.actions([
@@ -118,7 +116,6 @@ function enterAskfather(s: GameState, scene: SceneBuilder): void {
     scene.text('Sitting at the table, you order food and drinks, and dad starts asking you about everything.');
     scene.text('You reply to his questions with enthusiasm and talk about yourself, what you do, where go to school. Talk about Anya, that she did not go to the university, and works as a salesgirl in the supermarket.');
     scene.text('You tell him about your mother, she remarried, and you now have a stepfather and half brother Kolka…');
-    // TODO-QSP: dynamic text: After talking for a while your father says. "<<$pcs_nickname>> I have to go, I h...
     scene.text(`After talking for a while your father says. "${((st as any).pcs_nickname ?? '')} I have to go, I have a schedule to keep. I am here on weekends 12 00 to 14 00, I would be happy if you would visit me sometimes." With that he gets up, pays for lunch and kisses you on the cheek goodbye.`);
     (st as any).trfatherQW = 4;
     scene.actions([
@@ -141,7 +138,6 @@ function enterSearchfather(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/industrial/terminal/trfatherqw_2.jpg');
   scene.text('You are inside the large trucking warehouse, you find it hard to find your way around but finally spy the managers office and a couple of men standing by a truck.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Ask the Manager', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -150,8 +146,7 @@ function enterSearchfather(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/industrial/terminal/trfatherqw_3.jpg');
     scene.text('You go up to the managers office. "Good afternoon! What I can help you?" he says.');
     scene.text('"Hello, I wanted to know, if you know a Mikhail Kuznetsov or if he works here?"');
-    // TODO-QSP: dynamic text: 'He turns to his computer and pulls something up. "I''ll check in our database, ...
-    scene.text('He turns to his computer and pulls something up. "I\'ll check in our database, yes, we have a driver by that name. He is on the road right now and only comes in on Saturday at 12:00."');
+    scene.text('\'He turns to his computer and pulls something up. "I\'ll check in our database, yes, we have a driver by that name. He is on the road right now and only comes in on Saturday at 12:00."\'');
     scene.text('"Thank you very much, you helped me a lot." With that you leaved but now you know when and where to find him.');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
@@ -227,8 +222,7 @@ function enterSearchfather(s: GameState, scene: SceneBuilder): void {
     scene.text('You got out of the truck with sperm all over your face.');
     scene.text('"So, What did you want to know?" The first man asked.');
     scene.text('"I wanted you to know, whether you know a Mikhail Kuznetsov?"');
-    // TODO-QSP: dynamic text: '"Aaa, Micah, Sure, great guy, he is out on a run. He will be back Saturday at '...
-    scene.text('"Aaa, Micah, Sure, great guy, he is out on a run. He will be back Saturday at 12:00."');
+    scene.text('\'"Aaa, Micah, Sure, great guy, he is out on a run. He will be back Saturday at 12:00."\'');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -272,7 +266,6 @@ function enterSearchApproachMen(s: GameState, scene: SceneBuilder): void {
   }, goto: ['Terminal', ''] },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Drink', handler: (st: GameState) => {
     qspCall(st, 'drugs', 'alcohol', 'beer');

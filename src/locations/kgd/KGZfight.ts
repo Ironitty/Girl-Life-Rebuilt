@@ -28,23 +28,17 @@ function enter(s: GameState, scene: SceneBuilder): void {
   if (((s as any).KGZVars ?? 0)?.['dist'] < 0) {
     ((s as any).KGZVars = (s as any).KGZVars ?? {})['dist'] = 0;
   }
-  // TODO-QSP: dynamic text: Health <<KGZVars[''HP'']>>. Day <<KGZVars[''day'']>>, h <<KGZVars[''hour'']>>.
   scene.text(`Health ${(((s as any).KGZVars ?? 0)?.['HP'] ?? '')}. Day ${(((s as any).KGZVars ?? 0)?.['day'] ?? '')}, h ${(((s as any).KGZVars ?? 0)?.['hour'] ?? '')}.`);
-  // TODO-QSP: dynamic text: Edged weapons:<<$KGZVars[''weapon_text'']>>
   scene.text(`Edged weapons:${(((s as any).KGZVars ?? 0)?.['weapon_text'] ?? '')}`);
   if (((s as any).KGZVars ?? 0)?.['gun_text'] !== '') {
-    // TODO-QSP: dynamic text: l $KGZVars['gun_text']
     scene.text('l $KGZVars[\'gun_text\']');
   }
   if (((s as any).KGZVars ?? 0)?.['gun2_text'] !== '') {
-    // TODO-QSP: dynamic text: l $KGZVars['gun2_text']
     scene.text('l $KGZVars[\'gun2_text\']');
   }
   if (((s as any).KGZVars ?? 0)?.['gun3_text'] !== '') {
-    // TODO-QSP: dynamic text: l $KGZVars['gun3_text']
     scene.text('l $KGZVars[\'gun3_text\']');
   }
-  // TODO-QSP: dynamic text: <<KGZVars[''dead'']>> zombies are making their way towards you. They are <<KGZVa...
   scene.text(`${(((s as any).KGZVars ?? 0)?.['dead'] ?? '')} zombies are making their way towards you. They are ${(((s as any).KGZVars ?? 0)?.['dist'] ?? '')} meters away.`);
   if (((s as any).KGZVars ?? 0)?.['dost'] === 1) {
     ((s as any).KGZVars = (s as any).KGZVars ?? {})['dead'] = ((s as any).KGZVars['dead'] ?? 0) - (1);

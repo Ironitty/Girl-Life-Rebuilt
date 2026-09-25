@@ -16,13 +16,11 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'themes', 'indoors');
   scene.text('<center><b>Apartment businessman Yaroslav</b></center>');
   scene.img('images/characters/city/yaroslav/entrance.jpg');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Ring the doorbell', handler: (st: GameState) => {
     if (((st as any).hour ?? 0) >= 16  &&  ((st as any).hour ?? 0) <= 17  &&  ((st as any).yaq ?? 0) === 1) {
       scene.img('images/characters/city/yaroslav/sex/rabotu_1.jpg');
       scene.text('Yaroslav opens the door.');
-      // TODO-QSP: dynamic text: "<<$pcs_nickname>>! Hi! Come on in."
       scene.text(`"${((st as any).pcs_nickname ?? '')}! Hi! Come on in."`);
       scene.actions([
         { label: 'Enter the apartment', goto: ['yarik', 'yaqw'] },
@@ -42,7 +40,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
 function enterYaqw(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/city/yaroslav/sex/rabotu_2.jpg');
   scene.text('I need you to tidy up, dust, and wash some clothes.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Agree', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 120;
@@ -51,7 +48,6 @@ function enterYaqw(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.text('You clean Yaroslav\'s apartment, as he sits sorting through some papers and reading them.');
     if ((Math.floor(Math.random() * 3) + 0) !== 0) {
-      // TODO-QSP: dynamic text: Suddenly he turns to you. "<<$pcs_nickname>>, can you also clean the floor in th...
       scene.text(`Suddenly he turns to you. "${((st as any).pcs_nickname ?? '')}, can you also clean the floor in the bathroom?"`);
       if (((st as any).yarikwork ?? 0) > 0) {
         scene.actions([
@@ -68,7 +64,6 @@ function enterYaqw(s: GameState, scene: SceneBuilder): void {
         { label: 'Decline', handler: (st: GameState) => {
     qspCall(st, 'money', 'earn', 1500);
     (st as any).uborkayar = ((st as any).uborkayar ?? 0) + (1);
-    // TODO-QSP: dynamic text: "It''s OK I don''t want to make you late. Here is <<$func(''money'', ''string_pr...
     scene.text(`"It's OK I don't want to make you late. Here is ${qspFunc(s, 'money', 'string_profit', 1500)} for a job well done. Come again at the same time any evening if you want the work."`);
     scene.actions([
       { label: 'Leave', goto: ['city_center', ''] },
@@ -78,7 +73,6 @@ function enterYaqw(s: GameState, scene: SceneBuilder): void {
     } else {
       qspCall(st, 'money', 'earn', 1500);
       (st as any).uborkayar = ((st as any).uborkayar ?? 0) + (1);
-      // TODO-QSP: dynamic text: After you have finished, he pays you <<$func(''money'', ''string_profit'', 1500)...
       scene.text(`After you have finished, he pays you ${qspFunc(s, 'money', 'string_profit', 1500)} and tells you to come back at the same time any evening for more work.`);
       scene.actions([
         { label: 'Leave', goto: ['city_center', ''] },
@@ -95,7 +89,6 @@ function enter1(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 10;
   scene.img('images/characters/city/yaroslav/sex/rabotu_3.jpg');
   scene.text('As you get started with the floor, you sit down and start to think about the things you have sunk to doing, your clothes wet, armpits starting to smell. Well at least you will earn some money for your efforts.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Scrub the floor', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -111,7 +104,6 @@ function enter1(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 15;
     qspCall(st, 'money', 'earn', 2000);
     scene.img('images/characters/city/yaroslav/sex/rabotu_6.jpg');
-    // TODO-QSP: dynamic text: You finish the floor and polish the shower screen. Yaroslav seems happy with you...
     scene.text(`You finish the floor and polish the shower screen. Yaroslav seems happy with your work and pays you ${qspFunc(s, 'money', 'string_profit', 2000)}.`);
     scene.actions([
       { label: 'Leave', goto: ['city_center', ''] },
@@ -126,7 +118,6 @@ function enter1(s: GameState, scene: SceneBuilder): void {
 function enter2(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/city/yaroslav/sex/rabotu_5.jpg');
   scene.text('"Hey!" You spin around "Are you looking at my ass?" You cried indignantly, but instead of trying to prevent him, you make sure he gets a good look at it.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Stand', handler: (st: GameState) => {
     scene.img('images/characters/city/yaroslav/sex/rabotu_6.jpg');
@@ -136,13 +127,11 @@ function enter2(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 15;
     scene.img('images/characters/city/yaroslav/sex/rabotu_7.jpg');
     scene.text('Yaroslav says nothing, so you decide to give him a bit of a show so that he can see exactly what you are suggesting.');
-    // TODO-QSP: dynamic text: "I can''t say the thought didn''t cross my mind <<$pcs_nickname>>. I''ll tell yo...
     scene.text(`"I can't say the thought didn't cross my mind ${((st as any).pcs_nickname ?? '')}. I'll tell you what, if I'm feeling horny I will ask you to clean the bathroom. If you want to mess around I'll give you a nice bonus."`);
     scene.actions([
       { label: 'Agree', handler: (st: GameState) => {
     (st as any).yarikwork = 1;
     qspCall(st, 'money', 'earn', 3000);
-    // TODO-QSP: dynamic text: You accept his terms. He tells you he can''t right now as he has a project to co...
     scene.text(`You accept his terms. He tells you he can't right now as he has a project to complete for the morning, but pays you ${qspFunc(s, 'money', 'string_profit', 3000)} and encourages you to come back at the same time any evening.`);
     scene.actions([
       { label: 'Leave', goto: ['city_center', ''] },
@@ -173,7 +162,6 @@ function enter3(s: GameState, scene: SceneBuilder): void {
   scene.text('You give the floor a quick wash as you wait for Yaroslav to appear in the doorway.');
   scene.text('"Are you looking at my ass?" You ask, giving him a good look at it.');
   scene.text('He smiles and says, "Very much so, now let\'s talk business."');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Stand up and remove top', handler: (st: GameState) => {
     scene.img('images/characters/city/yaroslav/sex/rabotu_9.jpg');
@@ -210,7 +198,6 @@ function enter4(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/city/yaroslav/sex/rabotu_8.jpg');
   scene.text('You squeeze out your sponge over your breasts and start to rub them seductively, "Oh dear, I\'m so wet…"');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Show him', handler: (st: GameState) => {
     scene.img('images/characters/city/yaroslav/sex/rabotu_14.jpg');
@@ -247,7 +234,6 @@ function enter5(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/city/yaroslav/sex/rabotu_10.jpg');
   scene.text('Looking down, you see that his cock is, wow, that\'s a really delicious looking cock. You lick your lips in anticipation.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Approach', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -261,7 +247,6 @@ function enter5(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Suck it', handler: (st: GameState) => {
     scene.img('images/characters/city/yaroslav/sex/rabotu_11.jpg');
-    // TODO-QSP: dynamic text: He starts to move his hips, trying to get more, you hold him back for a few seco...
     scene.text(`He starts to move his hips, trying to get more, you hold him back for a few seconds, then wrap your ${(((st as any).pc_desc ?? 0)?.['lips'] ?? '')} lips around the pulsating member shift your focus to maximising his pleasure.`);
     qspCall(st, 'boyStat', 'A86');
     qspCall(st, 'arousal', 'bj', 10);
@@ -301,7 +286,6 @@ function enter6(s: GameState, scene: SceneBuilder): void {
   scene.text('"Let\'s fuck then." You strip off the rest of your clothes and sit on a unit, lifting you legs to show Yaroslav everything.');
   qspCall(s, 'arousal', 'foreplay', 5);
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Wait', handler: (st: GameState) => {
     scene.img('images/characters/city/yaroslav/sex/rabotu_16.jpg');
@@ -378,7 +362,6 @@ function enter7(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/city/yaroslav/sex/rabotu_22.jpg');
   scene.text('"Let\'s do this then." You strip off the rest of your clothes and sit on a unit, you twist to the side and lift your butt check to expose your ass.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Wait', handler: (st: GameState) => {
     qspCall(st, 'boyStat', 'A86');
@@ -441,7 +424,6 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/city/yaroslav/sex/rabotu_28.jpg');
   scene.text('Yaroslav leaves you to shower and gives you your wage and the bonus as per your agreement. He tells you he will be around every evening at the same time.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Get dressed and leave', handler: (st: GameState) => {
     (st as any).yarikwork = ((st as any).yarikwork ?? 0) + (1);

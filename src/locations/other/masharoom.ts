@@ -18,7 +18,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/city/masha/r1.jpg');
   scene.text('This is Masha\'s room. It is a huge room with many kinds of sex toys and accessories.');
   scene.text('Masha is not here at the moment, but she left the door slightly ajar.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Wait an hour', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 60;
@@ -87,7 +86,6 @@ function enterMasha(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Play with a candle', handler: (st: GameState) => {
     scene.img('images/characters/city/masha/sex/r34.jpg');
@@ -333,7 +331,6 @@ function enter1(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Tease', handler: (st: GameState) => {
     scene.img('images/characters/city/masha/sex/r4.jpg');
@@ -466,7 +463,6 @@ function enter2(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/city/masha/sex/r20.jpg');
   scene.text('Trying another outfit with leather hand cuffs you click them into place and together and you hear them click. You thought they just snapped and unsnapped together but as you try and pull the fasteners apart they won\'t unclick. You frantically began trying to break free so you didn\'t notice the man walking in as you were trying to undo the cuffs, only when he clipped the leash on the collar you were wearing. At first you were happy, thinking Masha had returned, but as you turn around you see he has a hard look in his eye and holding a wooden paddle in his hand. "I see you got all dressed up and ready for me, now let\'s play." He says in a menacing tone.');
   scene.text('"Please help me take this off." showing him your cuffed hands as you beg him to take them off. "Shut up bitch, a slave should not speak without permission of the owner, get on your knees and open your mouth, quickly." he shouted.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'You keep asking for release.', handler: (st: GameState) => {
     (st as any).pcs_makeup = 0;

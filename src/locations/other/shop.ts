@@ -1,3 +1,5 @@
+import { qspUntranslated } from '../_shared/qspUntranslated';
+
 import { qspCall, qspFunc, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
@@ -6,10 +8,10 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
   if (((s as any).shoplocation ?? 0) !== '') {
-    // TODO-QSP: $ARGS[0] = $shoplocation
+    ((s as any).ARGS = (s as any).ARGS ?? {})[0] = ((s as any).shoplocation ?? 0);
+    (s as any).shoplocation = undefined;
     qspGoto(s, 'shop', String((s as any).locArgs?.[0] ?? ''));
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -24,7 +26,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
   }
   qspGoto(s, 'shop', 'main');
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -39,7 +40,6 @@ function enterDefault2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
   }
   qspGoto(s, 'shop', 'main');
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -65,6 +65,7 @@ function enterMain(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
 { label: 'Leave the store', handler: (st: GameState) => {
+    (st as any).shoplocation = undefined;
     (st as any).minut = ((st as any).minut ?? 0) + 3;
     qspCall(st, 'item_cart', 'shopping_var_clear');
     dynamicGoto(st, 'loc_bak');
@@ -72,21 +73,16 @@ function enterMain(s: GameState, scene: SceneBuilder): void {
 ]);
     return;
   }
-  // TODO-QSP: dynamic text: An <a href="exec: minut += 1 & gt ''shop'', ''ATM''">ATM</a>, from which you can...
-  scene.text('An <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(/u0027shop/u0027, /u0027ATM/u0027); return false;">ATM</a>, from which you can withdraw money from your bank account, stands against a wall.');
-  // TODO-QSP: dynamic text: There is a branch of the communications giant <a href="exec: minut += 1 & gt ''s...
-  scene.text('There is a branch of the communications giant <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(/u0027shop/u0027, /u0027megafon/u0027); return false;">MegaFon</a>.');
-  scene.text('A <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027adverts_manager/u0027, /u0027start/u0027); return false;">Public notice board</a>, where you can check various private and official advertisements, is sitting on a nearby wall.');
-  // TODO-QSP: dynamic text: <br>Most of the space in the supermarket is taken up by the <a href="exec: minut...
-  scene.text('<br>Most of the space in the supermarket is taken up by the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(/u0027shop/u0027, /u0027grocery/u0027); return false;">grocery department</a>, but the store has many smaller departments as well.');
-  // TODO-QSP: dynamic text: These include <a href="exec: minut += 1 & gt ''shop'', ''cosmetics''">cosmetics<...
-  scene.text('These include <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(/u0027shop/u0027, /u0027cosmetics/u0027); return false;">cosmetics</a>, <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(/u0027shop/u0027, /u0027hardware/u0027); return false;">hardware</a>, <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(/u0027shop/u0027, /u0027clothing/u0027); return false;">clothing</a> and <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(/u0027shop/u0027, /u0027tech/u0027); return false;">household appliances</a>. Not far from the entrance is a <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(/u0027shop/u0027, /u0027icecream/u0027); return false;">counter selling ice cream</a>.');
+  scene.text('An <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027shop\u0027, \u0027ATM\u0027); return false;">ATM</a>, from which you can withdraw money from your bank account, stands against a wall.');
+  scene.text('There is a branch of the communications giant <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027shop\u0027, \u0027megafon\u0027); return false;">MegaFon</a>.');
+  scene.text('A <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027adverts_manager\u0027, \u0027start\u0027); return false;">Public notice board</a>, where you can check various private and official advertisements, is sitting on a nearby wall.');
+  scene.text('<br>Most of the space in the supermarket is taken up by the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027shop\u0027, \u0027grocery\u0027); return false;">grocery department</a>, but the store has many smaller departments as well.');
+  scene.text('These include <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027shop\u0027, \u0027cosmetics\u0027); return false;">cosmetics</a>, <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027shop\u0027, \u0027hardware\u0027); return false;">hardware</a>, <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027shop\u0027, \u0027clothing\u0027); return false;">clothing</a> and <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027shop\u0027, \u0027tech\u0027); return false;">household appliances</a>. Not far from the entrance is a <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027shop\u0027, \u0027icecream\u0027); return false;">counter selling ice cream</a>.');
   qspCall(s, 'stat', '');
   qspCall(s, 'family_schedule', '');
   if (((s as any).loc_bak ?? 0) === 'pav_commercial') {
     if (((s as any).locat ?? 0)?.['Anya'] === 7) {
-      // TODO-QSP: dynamic text: Your sister <a href="exec: minut += 1 & gt ''shop'', ''Anya''">Anya</a> is sitti...
-      scene.text('Your sister <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(/u0027shop/u0027, /u0027Anya/u0027); return false;">Anya</a> is sitting at the cash register.');
+      scene.text('Your sister <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027shop\u0027, \u0027Anya\u0027); return false;">Anya</a> is sitting at the cash register.');
     }
   }
   if (((s as any).loc_bak ?? 0) === 'city_residential') {
@@ -190,13 +186,13 @@ function enterMain(s: GameState, scene: SceneBuilder): void {
   }
   scene.actions([
 { label: 'Leave the store', handler: (st: GameState) => {
+    (st as any).shoplocation = undefined;
     (st as any).minut = ((st as any).minut ?? 0) + 3;
     qspCall(st, 'item_cart', 'shopping_var_clear');
     dynamicGoto(st, 'loc_bak');
   } },
 ]);
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -210,14 +206,13 @@ function enterATM(s: GameState, scene: SceneBuilder): void {
     scene.text('You don\'t have a bank account yet!');
   } else {
     if (((s as any).karta ?? 0) >= ((s as any).bankDebtLimit ?? 0)) {
-      // TODO-QSP: dynamic text: 'You have ' + $func('money', 'format', karta - bankDebtLimit) + ' in your accoun...
-      scene.text('You have \' + $func(\'money\', \'format\', karta - bankDebtLimit) + \' in your account.');
-      // TODO-QSP: 'You have an overdraft limit of ' + $func('wrap', 'accent',$func('money', 'format', bankDebtLimit) +...
+      scene.text('You have ' + qspFunc(s, 'money', 'format', ((s as any).karta ?? '') - ((s as any).bankDebtLimit ?? '')) + ' in your account.');
+      scene.text('You have an overdraft limit of ' + qspFunc(s, 'wrap', 'accent', qspFunc(s, 'money', 'format', ((s as any).bankDebtLimit ?? '')) + '!'));
     } else {
-      // TODO-QSP: 'You are overdrawn by ' + $func('wrap', 'neg',$func('money', 'format', bankDebtLimit - karta) + '.')
-      // TODO-QSP: 'You have a remaining credit limit of ' + $func('wrap', 'accent',$func('money', 'format', karta) + '...
+      scene.text('You are overdrawn by ' + qspFunc(s, 'wrap', 'neg', qspFunc(s, 'money', 'format', ((s as any).bankDebtLimit ?? '') - ((s as any).karta ?? '')) + '.'));
+      scene.text('You have a remaining credit limit of ' + qspFunc(s, 'wrap', 'accent', qspFunc(s, 'money', 'format', ((s as any).karta ?? '')) + '!'));
     }
-    // TODO-QSP: '<br>ATM Deposit Fee: ' + $func('money', 'string_price', 100)
+    scene.text('<br>ATM Deposit Fee: ' + qspFunc(s, 'money', 'string_price', 100));
     if (((s as any).money ?? 0) > 0) {
       scene.actions([
         { label: 'Deposit money into your bank account', handler: (st: GameState) => {
@@ -267,7 +262,6 @@ function enterATM(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Move away', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -301,7 +295,6 @@ function enterGrocery(s: GameState, scene: SceneBuilder): void {
   if (((s as any).loc_bak ?? 0) === 'pav_commercial') {
     qspCall(s, 'shoplifting', 'pav');
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the grocery department', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -327,8 +320,7 @@ function enterDogItems(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
     qspCall(st, 'stat', '');
     scene.img('images/characters/shared/rex/dog_food.jpg');
-    // TODO-QSP: dynamic text: 'The store sells dog food for ' + $func('money', 'string_price', 600) + '. Insid...
-    scene.text(`The store sells dog food for 600₽. Inside each pack is enough food for 20 meals. You have ${(((st as any).objects ?? 0)?.['dog_food'] ?? '')}.`);
+    scene.text(`'The store sells dog food for 600₽. Inside each pack is enough food for 20 meals. You have ${(((st as any).objects ?? 0)?.['dog_food'] ?? '')}.'`);
     scene.actions([
       { label: 'Buy enough for 20 meals', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 600) === 0) {
@@ -367,8 +359,7 @@ function enterDogItems(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
     qspCall(st, 'stat', '');
     scene.img('images/characters/shared/rex/balls.jpg');
-    // TODO-QSP: dynamic text: 'The store sells rubber balls for ' + $func('money', 'string_price', 900) + ' th...
-    scene.text('The store sells rubber balls for 900₽ that you can use to play fetch with your dog.');
+    scene.text('\'The store sells rubber balls for 900₽ that you can use to play fetch with your dog.\'');
     scene.actions([
       { label: 'Go back', goto: ['shop', 'dog_items'] },
       { label: 'Buy them', handler: (st: GameState) => {
@@ -384,7 +375,6 @@ function enterDogItems(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -392,10 +382,8 @@ function enterDogItems(s: GameState, scene: SceneBuilder): void {
     { label: 'Buy some dog treats', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
     qspCall(st, 'stat', '');
-    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/shared/rex/treat_'+rand(0, 2)...
     scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/characters/shared/rex/treat_` + (Math.floor(Math.random() * 3) + 0) + '.jpg"></center>');
-    // TODO-QSP: dynamic text: 'The store sells dog treats for ' + $func('money', 'string_price', 300) + '. Ins...
-    scene.text(`The store sells dog treats for 300₽. Inside each pack are 20 treats. You have ${(((st as any).objects ?? 0)?.['treats'] ?? '')}.`);
+    scene.text(`'The store sells dog treats for 300₽. Inside each pack are 20 treats. You have ${(((st as any).objects ?? 0)?.['treats'] ?? '')}.'`);
     scene.actions([
       { label: 'Go back', goto: ['shop', 'dog_items'] },
       { label: 'Buy a pack', handler: (st: GameState) => {
@@ -413,8 +401,7 @@ function enterDogItems(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
     qspCall(st, 'stat', '');
     scene.img('images/characters/shared/rex/chew.jpg');
-    // TODO-QSP: dynamic text: 'The store sells a chew toy for ' + $func('money', 'string_price', 800) + '.'
-    scene.text('The store sells a chew toy for 800₽.');
+    scene.text('\'The store sells a chew toy for 800₽.\'');
     scene.actions([
       { label: 'Go back', goto: ['shop', 'dog_items'] },
       { label: 'Buy one', handler: (st: GameState) => {
@@ -457,7 +444,6 @@ function enterCosmetics(s: GameState, scene: SceneBuilder): void {
   if (((s as any).loc_bak ?? 0) === 'pav_commercial') {
     qspCall(s, 'shoplifting', 'pav');
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the cosmetics department', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -498,7 +484,6 @@ function enterHardware(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the hardware department', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -524,12 +509,10 @@ function enterClothing(s: GameState, scene: SceneBuilder): void {
 ]);
     return;
   }
-  // TODO-QSP: dynamic text: 'Women''s panties and bras ' + $func('money', 'string_price', 300) + ' each'
-  scene.text('Women\'s panties and bras 300₽ each');
+  scene.text('\'Women\'s panties and bras 300₽ each\'');
   qspCall(s, 'stat', '');
   if (((s as any).mc_inventory ?? 0)?.['ice_skates'] !== 1) {
-    // TODO-QSP: dynamic text: 'A pair of ice-skates are available for ' + $func('money', 'string_price', 3000)...
-    scene.text('A pair of ice-skates are available for 3000₽.');
+    scene.text('\'A pair of ice-skates are available for 3000₽.\'');
     scene.actions([
       { label: 'Buy ice skates', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 3000) === 0) {
@@ -547,8 +530,7 @@ function enterClothing(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   if (((s as any).mc_inventory ?? 0)?.['ski'] !== 1) {
-    // TODO-QSP: dynamic text: 'A pair of skis and poles are available for ' + $func('money', 'string_price', 4...
-    scene.text('A pair of skis and poles are available for 4000₽.');
+    scene.text('\'A pair of skis and poles are available for 4000₽.\'');
     scene.actions([
       { label: 'Buy skis', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 4000) === 0) {
@@ -565,7 +547,6 @@ function enterClothing(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the women\'s clothing department', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -584,33 +565,32 @@ function enterUnderwear(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('<center><b>Click on an item to view details</b></center>');
   if (qspFunc(s, 'panties', 'is_owned', 'gm', 7) === 0) {
-    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027panty_view/u0027, /u0027view_item/u0027, /u0027shop/u0027); return false;"><img height="150" src="images/pc/items/gm/panties/7.jpg"/></a>');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027panty_view\u0027, \u0027view_item\u0027, \u0027shop\u0027); return false;"><img height="150" src="images/pc/items/gm/panties/7.jpg"/></a>');
   }
   if (qspFunc(s, 'panties', 'is_owned', 'gm', 9) === 0) {
-    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027panty_view/u0027, /u0027view_item/u0027, /u0027shop/u0027); return false;"><img height="150" src="images/pc/items/gm/panties/9.jpg"/></a>');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027panty_view\u0027, \u0027view_item\u0027, \u0027shop\u0027); return false;"><img height="150" src="images/pc/items/gm/panties/9.jpg"/></a>');
   }
   if (qspFunc(s, 'panties', 'is_owned', 'gm', 12) === 0) {
-    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027panty_view/u0027, /u0027view_item/u0027, /u0027shop/u0027); return false;"><img height="150" src="images/pc/items/gm/panties/12.jpg"/></a>');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027panty_view\u0027, \u0027view_item\u0027, \u0027shop\u0027); return false;"><img height="150" src="images/pc/items/gm/panties/12.jpg"/></a>');
   }
   if (qspFunc(s, 'panties', 'is_owned', 'gm', 21) === 0) {
-    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027panty_view/u0027, /u0027view_item/u0027, /u0027shop/u0027); return false;"><img height="150" src="images/pc/items/gm/panties/21.jpg"/></a>');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027panty_view\u0027, \u0027view_item\u0027, \u0027shop\u0027); return false;"><img height="150" src="images/pc/items/gm/panties/21.jpg"/></a>');
   }
   if (qspFunc(s, 'panties', 'is_owned', 'gm', 37) === 0) {
-    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027panty_view/u0027, /u0027view_item/u0027, /u0027shop/u0027); return false;"><img height="150" src="images/pc/items/gm/panties/37.jpg"/></a>');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027panty_view\u0027, \u0027view_item\u0027, \u0027shop\u0027); return false;"><img height="150" src="images/pc/items/gm/panties/37.jpg"/></a>');
   }
   if (qspFunc(s, 'bras', 'is_owned', 'gm', 11) === 0) {
-    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027bra_view/u0027, /u0027view_item/u0027, /u0027shop/u0027); return false;"><img height="150" src="images/pc/items/gm/bras/11.jpg"/></a>');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027bra_view\u0027, \u0027view_item\u0027, \u0027shop\u0027); return false;"><img height="150" src="images/pc/items/gm/bras/11.jpg"/></a>');
   }
   if (qspFunc(s, 'bras', 'is_owned', 'gm', 12) === 0) {
-    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027bra_view/u0027, /u0027view_item/u0027, /u0027shop/u0027); return false;"><img height="150" src="images/pc/items/gm/bras/12.jpg"/></a>');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027bra_view\u0027, \u0027view_item\u0027, \u0027shop\u0027); return false;"><img height="150" src="images/pc/items/gm/bras/12.jpg"/></a>');
   }
   if (qspFunc(s, 'bras', 'is_owned', 'gm', 16) === 0) {
-    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027bra_view/u0027, /u0027view_item/u0027, /u0027shop/u0027); return false;"><img height="150" src="images/pc/items/gm/bras/16.jpg"/></a>');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027bra_view\u0027, \u0027view_item\u0027, \u0027shop\u0027); return false;"><img height="150" src="images/pc/items/gm/bras/16.jpg"/></a>');
   }
   if (qspFunc(s, 'bras', 'is_owned', 'gm', 18) === 0) {
-    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027bra_view/u0027, /u0027view_item/u0027, /u0027shop/u0027); return false;"><img height="150" src="images/pc/items/gm/bras/18.jpg"/></a>');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027bra_view\u0027, \u0027view_item\u0027, \u0027shop\u0027); return false;"><img height="150" src="images/pc/items/gm/bras/18.jpg"/></a>');
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return', goto: ['shop', 'clothing'] },
   ]);
@@ -636,7 +616,6 @@ function enterTech(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'item_cart', 'shopping_aisle', 'tech');
   qspCall(s, 'stat', '');
   scene.img('images/locations/shared/store/shop5.jpg');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the appliance department', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -653,9 +632,7 @@ function enterIcecream(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'shop', 'icecream');
   qspCall(s, 'stat', '');
   scene.img('images/shared/store/icecreamcounter.jpg');
-  // TODO-QSP: dynamic text: 'Ice cream is available for ' + $func('money', 'string_price', 50) + '.'
-  scene.text('Ice cream is available for 50₽.');
-  // TODO-QSP: end
+  scene.text('\'Ice cream is available for 50₽.\'');
   scene.actions([
     { label: 'Move away from the counter', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -712,62 +689,62 @@ function enterMegafon(s: GameState, scene: SceneBuilder): void {
       if (((s as any).subscription ?? 0)[((s as any).home ?? 0)?.['current']] === 1) {
         (s as any).temp_home = '' + (((s as any).home ?? 0)?.['current']) + '-date';
         (s as any).line = '<tr><td align="center">You have an active internet subscription at ' + (((s as any).home ?? 0)?.['display']) + ' that will renew next month on day ' + (((s as any).subscription ?? 0)?.[String((s as any).temp_home ?? 0)] ?? 0) + ' for \' + $func(\'money\', \'string_price\', price) + \'</td></tr>';
+        (s as any).temp_home = undefined;
       } else {
         (s as any).line = '<tr><td style="padding-left: 10px; padding-right: 10px; align: left; ">Monthly internet subscription for \' + $func(\'money\', \'string_price\', price) + \' at your ' + (((s as any).home ?? 0)?.['display']) + '. Automatically renews every month</td>';
         if ((!((s as any).bankAccount ?? 0))) {
-          // TODO-QSP: $line += '<td style="padding-left: 10px; padding-right: 10px;">No bank account</td></tr>'
+          (s as any).line = ((s as any).line ?? 0) + ('<td style="padding-left: 10px; padding-right: 10px;">No bank account</td></tr>');
         } else {
           if (qspFunc(s, 'money', 'can_afford', ((s as any).price ?? 0), 'bank') === 0) {
-            // TODO-QSP: $line += '<td style="padding-left: 10px; padding-right: 10px;">Insufficient balance</td></tr>'
+            (s as any).line = ((s as any).line ?? 0) + ('<td style="padding-left: 10px; padding-right: 10px;">Insufficient balance</td></tr>');
           } else {
-            // TODO-QSP: $line += '<td style="padding-left: 10px; padding-right: 10px;"><a href="exec: gs ''internet_mobile''...
+            (s as any).line = ((s as any).line ?? 0) + ('<td style="padding-left: 10px; padding-right: 10px;"><a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.30; return s; }); window.__gameStore.getState().doGoto(\u0027internet_mobile\u0027, \u0027buy_subscription\u0027, (((s as any).home ?? 0)?.[\u0027current\u0027] ?? \u0027\u0027)); return false;">Pay with Card</a></td></tr>');
           }
         }
       }
     }
   }
-  // TODO-QSP: dynamic text: <<$title>><<$tables>><<$line>><<$tablec>>
   scene.text(`${((s as any).title ?? '')}${((s as any).tables ?? '')}${((s as any).line ?? '')}${((s as any).tablec ?? '')}`);
+  (s as any).line = undefined;
+  (s as any).title = undefined;
   qspCall(s, 'homes_properties', 'get_internet_enabled_properties', 'home', 'hasaccess');
   (s as any).count = 0;
   if (((s as any).count ?? 0) > 0) {
-    // TODO-QSP: :propertyloop
-    if (((s as any).property__is_current_home ?? 0)?.[String((s as any).i ?? 0)] === 0) {
-      (s as any).title = '<center><h4>Internet Subscription for your other properties</h4></center>';
-      if (((s as any).property_status_label ?? 0)?.[String((s as any).i ?? 0)] === 'tenants') {
-        // TODO-QSP: $line += '<tr><td align="center">You have rented out the <<LCASE($property_name[i])>> and you don''t...
-      } else {
-        if (((s as any).subscription ?? 0)[((s as any).property_code ?? 0)?.[String((s as any).i ?? 0)]] === 0) {
-          // TODO-QSP: $line += '<tr><td style="padding-left: 10px; padding-right: 10px; align: left; ">Monthly internet su...
-          if ((!((s as any).bankAccount ?? 0))) {
-            // TODO-QSP: $line += '<td style="padding-left: 10px; padding-right: 10px;">No bank account</td></tr>'
-          } else {
-            if (qspFunc(s, 'money', 'can_afford', ((s as any).price ?? 0), 'bank') === 0) {
-              // TODO-QSP: $line += '<td style="padding-left: 10px; padding-right: 10px;">Insufficient balance</td></tr>'
-            } else {
-              // TODO-QSP: $line += '<td style="padding-left: 10px; padding-right: 10px;"><a href="exec: gs ''internet_mobile''...
-            }
-          }
+    do {
+      if (((s as any).property__is_current_home ?? 0)?.[String((s as any).i ?? 0)] === 0) {
+        (s as any).title = '<center><h4>Internet Subscription for your other properties</h4></center>';
+        if (((s as any).property_status_label ?? 0)?.[String((s as any).i ?? 0)] === 'tenants') {
+          (s as any).line = ((s as any).line ?? 0) + ('<tr><td align="center">You have rented out the ' + qspUntranslated(s, "LCASE(property_name[i])", { location: "shop" }) + ' and you don\'t have to buy internet for our tenants.</td></tr>');
         } else {
-          if (((s as any).subscription ?? 0)[((s as any).property_code ?? 0)?.[String((s as any).i ?? 0)]] > 0) {
-            // TODO-QSP: $line += '<tr><td align="center">You have an active internet subscription for the <<LCASE($property_...
+          if (((s as any).subscription ?? 0)[((s as any).property_code ?? 0)?.[String((s as any).i ?? 0)]] === 0) {
+            (s as any).line = ((s as any).line ?? 0) + ('<tr><td style="padding-left: 10px; padding-right: 10px; align: left; ">Monthly internet subscription for \' + $func(\'money\', \'string_price\', price) + \' at ' + qspUntranslated(s, "LCASE(property_name[i])", { location: "shop" }) + '. Automatically renews every month</td>');
+            if ((!((s as any).bankAccount ?? 0))) {
+              (s as any).line = ((s as any).line ?? 0) + ('<td style="padding-left: 10px; padding-right: 10px;">No bank account</td></tr>');
+            } else {
+              if (qspFunc(s, 'money', 'can_afford', ((s as any).price ?? 0), 'bank') === 0) {
+                (s as any).line = ((s as any).line ?? 0) + ('<td style="padding-left: 10px; padding-right: 10px;">Insufficient balance</td></tr>');
+              } else {
+                (s as any).line = ((s as any).line ?? 0) + ('<td style="padding-left: 10px; padding-right: 10px;"><a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.30; return s; }); window.__gameStore.getState().doGoto(\u0027internet_mobile\u0027, \u0027buy_subscription\u0027, (((s as any).property_code ?? 0)?.[String((s as any).i ?? 0)] ?? \u0027\u0027)); return false;">Pay with card</a></td></tr>');
+              }
+            }
+          } else {
+            if (((s as any).subscription ?? 0)[((s as any).property_code ?? 0)?.[String((s as any).i ?? 0)]] > 0) {
+              (s as any).line = ((s as any).line ?? 0) + ('<tr><td align="center">You have an active internet subscription for the ' + qspUntranslated(s, "LCASE(property_name[i])", { location: "shop" }) + ' that will renew next month on day ' + (((s as any).subscription ?? 0)?.[String((((s as any).property_code ?? 0)?.[String((s as any).i ?? 0)] ?? 0)) + '-date']) + ' for \' + $func(\'money\', \'string_price\', price) + \'</td></tr>');
+            }
           }
         }
       }
-    }
-    (s as any).i = ((s as any).i ?? 0) + (1);
-    if (((s as any).i ?? 0) < ((s as any).count ?? 0)) {
-      // TODO-QSP: jump 'propertyloop'
-    }
-    qspCall(s, 'homes_properties', 'clean_up_property_data');
-    // TODO-QSP: killvar 'i'
-    // TODO-QSP: killvar 'count'
-    if (((s as any).title ?? 0) !== '') {
-      // TODO-QSP: dynamic text: <<$title>><<$tables>><<$line>><<$tablec>>
-      scene.text(`${((s as any).title ?? '')}${((s as any).tables ?? '')}${((s as any).line ?? '')}${((s as any).tablec ?? '')}`);
-    }
-    // TODO-QSP: killvar 'line'
-    // TODO-QSP: killvar 'title'
+      (s as any).property = undefined;
+      (s as any).i = ((s as any).i ?? 0) + (1);
+      qspCall(s, 'homes_properties', 'clean_up_property_data');
+      (s as any).i = undefined;
+      (s as any).count = undefined;
+      if (((s as any).title ?? 0) !== '') {
+        scene.text(`${((s as any).title ?? '')}${((s as any).tables ?? '')}${((s as any).line ?? '')}${((s as any).tablec ?? '')}`);
+      }
+      (s as any).line = undefined;
+      (s as any).title = undefined;
+    } while (((s as any).i ?? 0) < ((s as any).count ?? 0));
   }
   (s as any).title = '<center><h4>Mobile Internet Subscription</h4></center>';
   (s as any).price = 1200;
@@ -779,113 +756,117 @@ function enterMegafon(s: GameState, scene: SceneBuilder): void {
       (s as any).discount_left = Math.max(((s as any).price ?? 0) - ((s as any).discount ?? 0), 0);
       (s as any).line = '<tr><td align="center">You still a have a ' + qspFunc(s, 'money', 'string_price', (((s as any).subscription ?? 0)?.['metered_mobile'])) + '  balance for your metered mobile internet which gives you a ' + qspFunc(s, 'money', 'string_price', ((s as any).discount ?? 0)) + ' discount</td></tr>';
     }
-    // TODO-QSP: $line += '<tr><td style="padding-left: 10px; padding-right: 10px; align: left; ">Monthly mobile inte...
+    (s as any).line = ((s as any).line ?? 0) + ('<tr><td style="padding-left: 10px; padding-right: 10px; align: left; ">Monthly mobile internet subscription for ' + ((((s as any).discount ?? 0) > 0) ? ('<s>' + qspFunc(s, 'money', 'string_price', ((s as any).price ?? 0)) + '</s>' + qspFunc(s, 'money', 'string_price', ((s as any).discount_left ?? 0))) : (qspFunc(s, 'money', 'string_price', ((s as any).price ?? 0)))) + '. Automatically renews every month</td>');
     if ((!((s as any).bankAccount ?? 0))) {
-      // TODO-QSP: $line += '<td style="padding-left: 10px; padding-right: 10px;">No bank account</td></tr>'
+      (s as any).line = ((s as any).line ?? 0) + ('<td style="padding-left: 10px; padding-right: 10px;">No bank account</td></tr>');
     } else {
       if (qspFunc(s, 'money', 'can_afford', ((s as any).discount_left ?? 0), 'bank') === 0) {
-        // TODO-QSP: $line += '<td style="padding-left: 10px; padding-right: 10px;">Insufficient funds</td></tr>'
+        (s as any).line = ((s as any).line ?? 0) + ('<td style="padding-left: 10px; padding-right: 10px;">Insufficient funds</td></tr>');
       } else {
-        // TODO-QSP: $line += '<td style="padding-left: 10px; padding-right: 10px;"><a href="exec: gs ''internet_mobile''...
+        (s as any).line = ((s as any).line ?? 0) + ('<td style="padding-left: 10px; padding-right: 10px;"><a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.30; return s; }); window.__gameStore.getState().doGoto(\u0027internet_mobile\u0027, \u0027buy_subscription\u0027, \u0027mobile\u0027); return false;">Pay with card</a></td></tr>');
       }
     }
   }
-  // TODO-QSP: dynamic text: <<$title>><<$tables>><<$line>><<$tablec>>
   scene.text(`${((s as any).title ?? '')}${((s as any).tables ?? '')}${((s as any).line ?? '')}${((s as any).tablec ?? '')}`);
+  (s as any).line = undefined;
+  (s as any).title = undefined;
   (s as any).title = '<center><h4>Metered Internet</h4></center>';
   if (((s as any).subscription ?? 0)?.['mobile'] === 1) {
     (s as any).line = '<tr><td align="center">You have an active mobile internet subscription for unlimited use, you can\'t buy extra minutes </td></tr>';
-    // TODO-QSP: $line += '<tr><td align="left"><b>300 minutes</b> (5 hours) of mobile internet for ' + $func('money'...
-    // TODO-QSP: $line += '<tr><td align="left"><b>600 minutes</b> (10 hours) of mobile internet for ' + $func('money...
-    // TODO-QSP: $line += '<tr><td align="left"><b>1200 minutes</b> (20 hours) of mobile internet for ' + $func('mone...
-    // TODO-QSP: $line += '<tr><td align="left"><b>3000 minutes</b> (50 hours) of mobile internet for ' + $func('mone...
+    (s as any).line = ((s as any).line ?? 0) + ('<tr><td align="left"><b>300 minutes</b> (5 hours) of mobile internet for ' + qspFunc(s, 'money', 'string_price', 80) + '</td></tr>');
+    (s as any).line = ((s as any).line ?? 0) + ('<tr><td align="left"><b>600 minutes</b> (10 hours) of mobile internet for ' + qspFunc(s, 'money', 'string_price', 155) + '</td></tr>');
+    (s as any).line = ((s as any).line ?? 0) + ('<tr><td align="left"><b>1200 minutes</b> (20 hours) of mobile internet for ' + qspFunc(s, 'money', 'string_price', 295) + '</td></tr>');
+    (s as any).line = ((s as any).line ?? 0) + ('<tr><td align="left"><b>3000 minutes</b> (50 hours) of mobile internet for ' + qspFunc(s, 'money', 'string_price', 695) + '</td></tr>');
   } else {
     (s as any).line = '<tr><td style="padding-left: 10px; padding-right: 10px; align: left; "><b>300 minutes</b> (5 hours) of mobile internet for ' + qspFunc(s, 'money', 'string_price', 80) + '</td>';
     if (qspFunc(s, 'money', 'can_afford', 80) === 0) {
-      // TODO-QSP: $line += '<td style="padding-left: 10px; padding-right: 10px;" colspan="2">You can''t afford this</t...
+      (s as any).line = ((s as any).line ?? 0) + ('<td style="padding-left: 10px; padding-right: 10px;" colspan="2">You can\'t afford this</td></tr>');
     } else {
-      // TODO-QSP: $line += '<td style="padding-left: 10px; padding-right: 10px;" colspan="2"><a href="exec: gs ''inter...
+      (s as any).line = ((s as any).line ?? 0) + ('<td style="padding-left: 10px; padding-right: 10px;" colspan="2"><a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.10; return s; }); window.__gameStore.getState().doGoto(\u0027internet_mobile\u0027, \u0027top_up_metered\u0027, \u0027metered_mobile\u0027); return false;">Buy</a></td></tr>');
     }
-    // TODO-QSP: $line += '<tr><td style="padding-left: 10px; padding-right: 10px; align: left; "><b>600 minutes</b> ...
+    (s as any).line = ((s as any).line ?? 0) + ('<tr><td style="padding-left: 10px; padding-right: 10px; align: left; "><b>600 minutes</b> (10 hours) of mobile internet for ' + qspFunc(s, 'money', 'string_price', 155) + '</td>');
     if (qspFunc(s, 'money', 'can_afford', 155) === 0) {
-      // TODO-QSP: $line += '<td style="padding-left: 10px; padding-right: 10px;" colspan="2">You can''t afford this</t...
+      (s as any).line = ((s as any).line ?? 0) + ('<td style="padding-left: 10px; padding-right: 10px;" colspan="2">You can\'t afford this</td></tr>');
     } else {
-      // TODO-QSP: $line += '<td style="padding-left: 10px; padding-right: 10px;" colspan="2"><a href="exec: gs ''inter...
+      (s as any).line = ((s as any).line ?? 0) + ('<td style="padding-left: 10px; padding-right: 10px;" colspan="2"><a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.10; return s; }); window.__gameStore.getState().doGoto(\u0027internet_mobile\u0027, \u0027top_up_metered\u0027, \u0027metered_mobile\u0027); return false;">Buy</a></td></tr>');
     }
-    // TODO-QSP: $line += '<tr><td style="padding-left: 10px; padding-right: 10px; align: left; "><b>1200 minutes</b>...
+    (s as any).line = ((s as any).line ?? 0) + ('<tr><td style="padding-left: 10px; padding-right: 10px; align: left; "><b>1200 minutes</b> (20 hours) of mobile internet for ' + qspFunc(s, 'money', 'string_price', 295) + '</td>');
     if (qspFunc(s, 'money', 'can_afford', 295) === 0) {
-      // TODO-QSP: $line += '<td style="padding-left: 10px; padding-right: 10px;" colspan="2">You can''t afford this</t...
+      (s as any).line = ((s as any).line ?? 0) + ('<td style="padding-left: 10px; padding-right: 10px;" colspan="2">You can\'t afford this</td></tr>');
     } else {
-      // TODO-QSP: $line += '<td style="padding-left: 10px; padding-right: 10px;" colspan="2"><a href="exec: gs ''inter...
+      (s as any).line = ((s as any).line ?? 0) + ('<td style="padding-left: 10px; padding-right: 10px;" colspan="2"><a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.10; return s; }); window.__gameStore.getState().doGoto(\u0027internet_mobile\u0027, \u0027top_up_metered\u0027, \u0027metered_mobile\u0027); return false;">Buy</a></td></tr>');
     }
-    // TODO-QSP: $line += '<tr><td style="padding-left: 10px; padding-right: 10px; align: left; "><b>3000 minutes</b>...
+    (s as any).line = ((s as any).line ?? 0) + ('<tr><td style="padding-left: 10px; padding-right: 10px; align: left; "><b>3000 minutes</b> (50 hours) of mobile internet for ' + qspFunc(s, 'money', 'string_price', 695) + '</td>');
     if (qspFunc(s, 'money', 'can_afford', 695) === 0) {
-      // TODO-QSP: $line += '<td style="padding-left: 10px; padding-right: 10px;" colspan="2">You can''t afford this</t...
+      (s as any).line = ((s as any).line ?? 0) + ('<td style="padding-left: 10px; padding-right: 10px;" colspan="2">You can\'t afford this</td></tr>');
     } else {
-      // TODO-QSP: $line += '<td style="padding-left: 10px; padding-right: 10px;" colspan="2"><a href="exec: gs ''inter...
+      (s as any).line = ((s as any).line ?? 0) + ('<td style="padding-left: 10px; padding-right: 10px;" colspan="2"><a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.10; return s; }); window.__gameStore.getState().doGoto(\u0027internet_mobile\u0027, \u0027top_up_metered\u0027, \u0027metered_mobile\u0027); return false;">Buy</a></td></tr>');
     }
   }
-  // TODO-QSP: dynamic text: <<$title>><<$tables>><<$line>><<$tablec>>
   scene.text(`${((s as any).title ?? '')}${((s as any).tables ?? '')}${((s as any).line ?? '')}${((s as any).tablec ?? '')}`);
-  // TODO-QSP: dynamic text: <center>You have <b><<subscription[''metered_mobile'']>></b> minutes for mobile ...
+  (s as any).line = undefined;
+  (s as any).title = undefined;
   scene.text(`<center>You have <b>${(((s as any).subscription ?? 0)?.['metered_mobile'] ?? '')}</b> minutes for mobile internet use</center>`);
   (s as any).title = '<center><h4>Mobile Calls and Texts</h4></center>';
   (s as any).price = 800;
   if (((s as any).subscription ?? 0)?.['monthly_calls'] === 1) {
-    // TODO-QSP: $line += '<tr><td align="center">You have an active mobile subscription that will renew next month o...
+    (s as any).line = ((s as any).line ?? 0) + ('<tr><td align="center">You have an active mobile subscription that will renew next month on day ' + (((s as any).subscription ?? 0)?.['monthly_calls-date']) + ' for \' + $func(\'money\', \'string_price\', price) + \'</td></tr>');
   } else {
     if (((s as any).subscription ?? 0)?.['metered_calls'] > 0) {
       (s as any).discount = (((s as any).subscription ?? {})?.['metered_calls'] ?? 0) / 2;
       (s as any).discount_left = Math.max(((s as any).price ?? 0) - ((s as any).discount ?? 0), 0);
-      // TODO-QSP: $line += '<tr><td align="center">You have ' + $func('money', 'string_price', subscription['metered_c...
+      (s as any).line = ((s as any).line ?? 0) + ('<tr><td align="center">You have ' + qspFunc(s, 'money', 'string_price', (((s as any).subscription ?? 0)?.['metered_calls'])) + ' for mobile calls and text messages which gives you a ' + qspFunc(s, 'money', 'string_price', ((s as any).discount ?? 0)) + ' discount</td></tr>');
     }
-    // TODO-QSP: $line += '<tr><td style="padding-left: 10px; padding-right: 10px; align: left;">Monthly mobile subsc...
+    (s as any).line = ((s as any).line ?? 0) + ('<tr><td style="padding-left: 10px; padding-right: 10px; align: left;">Monthly mobile subscription that allows you to make calls and send text messages for ' + ((((s as any).discount ?? 0) > 0) ? ('<b><s>' + qspFunc(s, 'money', 'string_price', ((s as any).price ?? 0)) + '</s></b> <span color="red"><b>' + qspFunc(s, 'money', 'string_price', ((s as any).discount_left ?? 0)) + '</b></span>') : ('<b>' + qspFunc(s, 'money', 'string_price', ((s as any).price ?? 0)) + '</b>')) + ' Automatically renews every month</td>');
     if ((!((s as any).bankAccount ?? 0))) {
-      // TODO-QSP: $line += '<td style="padding-left: 10px; padding-right: 10px;">No bank account</td></tr>'
+      (s as any).line = ((s as any).line ?? 0) + ('<td style="padding-left: 10px; padding-right: 10px;">No bank account</td></tr>');
     } else {
       if (qspFunc(s, 'money', 'can_afford', ((s as any).discount_left ?? 0), 'bank') === 0) {
-        // TODO-QSP: $line += '<td style="padding-left: 10px; padding-right: 10px;">Insufficient funds</td></tr>'
+        (s as any).line = ((s as any).line ?? 0) + ('<td style="padding-left: 10px; padding-right: 10px;">Insufficient funds</td></tr>');
       } else {
-        // TODO-QSP: $line += '<td style="padding-left: 10px; padding-right: 10px;"><a href="exec: gs ''internet_mobile''...
+        (s as any).line = ((s as any).line ?? 0) + ('<td style="padding-left: 10px; padding-right: 10px;"><a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.30; return s; }); window.__gameStore.getState().doGoto(\u0027internet_mobile\u0027, \u0027buy_subscription\u0027, \u0027monthly_calls\u0027); return false;">Pay with card</a></td></tr>');
       }
     }
   }
-  // TODO-QSP: dynamic text: <<$title>><<$tables>><<$line>><<$tablec>>
   scene.text(`${((s as any).title ?? '')}${((s as any).tables ?? '')}${((s as any).line ?? '')}${((s as any).tablec ?? '')}`);
+  (s as any).title = undefined;
+  (s as any).line = undefined;
   (s as any).title = '<center><h4>Metered Calls and Texts</h4></center>';
   if (((s as any).subscription ?? 0)?.['monthly_calls'] === 1) {
-    // TODO-QSP: $line += '<tr><td>You have an active mobile subscription with unlimited minutes and texts, you can''...
+    (s as any).line = ((s as any).line ?? 0) + ('<tr><td>You have an active mobile subscription with unlimited minutes and texts, you can\'t buy extra minutes</td></tr>');
   } else {
-    // TODO-QSP: $line += '<tr><td style="padding-left: 10px; padding-right: 10px; align: left;">' + $func('money', '...
+    (s as any).line = ((s as any).line ?? 0) + ('<tr><td style="padding-left: 10px; padding-right: 10px; align: left;">' + qspFunc(s, 'money', 'string_price', 60) + ' call pack for your mobile phone that gives you 60 minutes of calltime and 120 text messages</td>');
     if (qspFunc(s, 'money', 'can_afford', 60) === 0) {
-      // TODO-QSP: $line += '<td style="padding-left: 10px; padding-right: 10px;" colspan="2">You can''t afford this</t...
+      (s as any).line = ((s as any).line ?? 0) + ('<td style="padding-left: 10px; padding-right: 10px;" colspan="2">You can\'t afford this</td></tr>');
     } else {
-      // TODO-QSP: $line += '<td style="padding-left: 10px; padding-right: 10px;" colspan="2"><a href="exec: gs ''inter...
+      (s as any).line = ((s as any).line ?? 0) + ('<td style="padding-left: 10px; padding-right: 10px;" colspan="2"><a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.10; return s; }); window.__gameStore.getState().doGoto(\u0027internet_mobile\u0027, \u0027top_up_metered\u0027, \u0027metered_calls\u0027); return false;">Buy</a></td></tr>');
     }
-    // TODO-QSP: $line += '<tr><td style="padding-left: 10px; padding-right: 10px; align: left;">' + $func('money', '...
+    (s as any).line = ((s as any).line ?? 0) + ('<tr><td style="padding-left: 10px; padding-right: 10px; align: left;">' + qspFunc(s, 'money', 'string_price', 115) + ' call pack for your mobile phone that gives you 120 minutes of calltime and 240 text messages</td>');
     if (qspFunc(s, 'money', 'can_afford', 115) === 0) {
-      // TODO-QSP: $line += '<td style="padding-left: 10px; padding-right: 10px;" colspan="2">You can''t afford this</t...
+      (s as any).line = ((s as any).line ?? 0) + ('<td style="padding-left: 10px; padding-right: 10px;" colspan="2">You can\'t afford this</td></tr>');
     } else {
-      // TODO-QSP: $line += '<td style="padding-left: 10px; padding-right: 10px;" colspan="2"><a href="exec: gs ''inter...
+      (s as any).line = ((s as any).line ?? 0) + ('<td style="padding-left: 10px; padding-right: 10px;" colspan="2"><a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.10; return s; }); window.__gameStore.getState().doGoto(\u0027internet_mobile\u0027, \u0027top_up_metered\u0027, \u0027metered_calls\u0027); return false;">Buy</a></td></tr>');
     }
-    // TODO-QSP: $line += '<tr><td style="padding-left: 10px; padding-right: 10px; align: left;">' + $func('money', '...
+    (s as any).line = ((s as any).line ?? 0) + ('<tr><td style="padding-left: 10px; padding-right: 10px; align: left;">' + qspFunc(s, 'money', 'string_price', 170) + ' call pack for your mobile phone that gives you 180 minutes of calltime and 360 text messages</td>');
     if (qspFunc(s, 'money', 'can_afford', 170) === 0) {
-      // TODO-QSP: $line += '<td style="padding-left: 10px; padding-right: 10px;" colspan="2">You can''t afford this</t...
+      (s as any).line = ((s as any).line ?? 0) + ('<td style="padding-left: 10px; padding-right: 10px;" colspan="2">You can\'t afford this</td></tr>');
     } else {
-      // TODO-QSP: $line += '<td style="padding-left: 10px; padding-right: 10px;" colspan="2"><a href="exec: gs ''inter...
+      (s as any).line = ((s as any).line ?? 0) + ('<td style="padding-left: 10px; padding-right: 10px;" colspan="2"><a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.10; return s; }); window.__gameStore.getState().doGoto(\u0027internet_mobile\u0027, \u0027top_up_metered\u0027, \u0027metered_calls\u0027); return false;">Buy</a></td></tr>');
     }
-    // TODO-QSP: $line += '<tr><td style="padding-left: 10px; padding-right: 10px; align: left;">' + $func('money', '...
+    (s as any).line = ((s as any).line ?? 0) + ('<tr><td style="padding-left: 10px; padding-right: 10px; align: left;">' + qspFunc(s, 'money', 'string_price', 225) + ' call pack for your mobile phone that gives you 240 minutes of calltime and 480 text messages</td>');
     if (qspFunc(s, 'money', 'can_afford', 225) === 0) {
-      // TODO-QSP: $line += '<td style="padding-left: 10px; padding-right: 10px;" colspan="2">You can''t afford this</t...
+      (s as any).line = ((s as any).line ?? 0) + ('<td style="padding-left: 10px; padding-right: 10px;" colspan="2">You can\'t afford this</td></tr>');
     } else {
-      // TODO-QSP: $line += '<td style="padding-left: 10px; padding-right: 10px;" colspan="2"><a href="exec: gs ''inter...
+      (s as any).line = ((s as any).line ?? 0) + ('<td style="padding-left: 10px; padding-right: 10px;" colspan="2"><a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.10; return s; }); window.__gameStore.getState().doGoto(\u0027internet_mobile\u0027, \u0027top_up_metered\u0027, \u0027metered_calls\u0027); return false;">Buy</a></td></tr>');
     }
   }
-  // TODO-QSP: dynamic text: <<$title>><<$tables>><<$line>><<$tablec>>
   scene.text(`${((s as any).title ?? '')}${((s as any).tables ?? '')}${((s as any).line ?? '')}${((s as any).tablec ?? '')}`);
-  // TODO-QSP: dynamic text: <center>You have <b><<subscription[''metered_calls'']>> minutes</b> for mobile c...
   scene.text(`<center>You have <b>${(((s as any).subscription ?? 0)?.['metered_calls'] ?? '')} minutes</b> for mobile calls and <b>${(((s as any).subscription ?? 0)?.['metered_calls-sms_limit'] ?? '')} text messages</b></center>`);
-  // TODO-QSP: end
+  (s as any).title = undefined;
+  (s as any).line = undefined;
+  (s as any).discount = undefined;
+  (s as any).discount_left = undefined;
+  (s as any).price = undefined;
   scene.actions([
     { label: 'Return to the supermarket', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -900,9 +881,7 @@ function enterAnya(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/resident/anya/anyabusywork.jpg');
   qspCall(s, 'sister_chat', 'checks');
-  // TODO-QSP: dynamic text: "Don''t disturb me at work, <<$pcs_nickname>>! Can''t you see that I have custom...
   scene.text(`"Don't disturb me at work, ${((s as any).pcs_nickname ?? '')}! Can't you see that I have customers?"`);
-  // TODO-QSP: end
   scene.actions([
     { label: 'Move away', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;

@@ -44,7 +44,6 @@ function enterMain(s: GameState, scene: SceneBuilder): void {
       { label: 'Look in the mirror', goto: ['mirror', 'start'] },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 

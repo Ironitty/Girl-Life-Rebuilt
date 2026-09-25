@@ -4,39 +4,39 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[0] ?? '') === 0  ||  String((s as any).locArgs?.[0] ?? '') === 3) {
-    // TODO-QSP: $pronounTmp[0] = 'he'
-    // TODO-QSP: $pronounTmp[1] = 'He'
-    // TODO-QSP: $pronounTmp[2] = 'him'
-    // TODO-QSP: $pronounTmp[3] = 'Him'
-    // TODO-QSP: $pronounTmp[4] = 'his'
-    // TODO-QSP: $pronounTmp[5] = 'His'
-    // TODO-QSP: $pronounTmp[6] = 'his'
-    // TODO-QSP: $pronounTmp[7] = 'His'
-    // TODO-QSP: $pronounTmp[8] = 'himself'
-    // TODO-QSP: $pronounTmp[9] = 'Himself'
+    ((s as any).pronounTmp = (s as any).pronounTmp ?? {})[0] = 'he';
+    ((s as any).pronounTmp = (s as any).pronounTmp ?? {})[1] = 'He';
+    ((s as any).pronounTmp = (s as any).pronounTmp ?? {})[2] = 'him';
+    ((s as any).pronounTmp = (s as any).pronounTmp ?? {})[3] = 'Him';
+    ((s as any).pronounTmp = (s as any).pronounTmp ?? {})[4] = 'his';
+    ((s as any).pronounTmp = (s as any).pronounTmp ?? {})[5] = 'His';
+    ((s as any).pronounTmp = (s as any).pronounTmp ?? {})[6] = 'his';
+    ((s as any).pronounTmp = (s as any).pronounTmp ?? {})[7] = 'His';
+    ((s as any).pronounTmp = (s as any).pronounTmp ?? {})[8] = 'himself';
+    ((s as any).pronounTmp = (s as any).pronounTmp ?? {})[9] = 'Himself';
   } else {
     if (String((s as any).locArgs?.[0] ?? '') === 1  ||  String((s as any).locArgs?.[0] ?? '') === 2) {
-      // TODO-QSP: $pronounTmp[0] = 'she'
-      // TODO-QSP: $pronounTmp[1] = 'She'
-      // TODO-QSP: $pronounTmp[2] = 'her'
-      // TODO-QSP: $pronounTmp[3] = 'Her'
-      // TODO-QSP: $pronounTmp[4] = 'her'
-      // TODO-QSP: $pronounTmp[5] = 'Her'
-      // TODO-QSP: $pronounTmp[6] = 'hers'
-      // TODO-QSP: $pronounTmp[7] = 'Hers'
-      // TODO-QSP: $pronounTmp[8] = 'herself'
-      // TODO-QSP: $pronounTmp[9] = 'Herself'
+      ((s as any).pronounTmp = (s as any).pronounTmp ?? {})[0] = 'she';
+      ((s as any).pronounTmp = (s as any).pronounTmp ?? {})[1] = 'She';
+      ((s as any).pronounTmp = (s as any).pronounTmp ?? {})[2] = 'her';
+      ((s as any).pronounTmp = (s as any).pronounTmp ?? {})[3] = 'Her';
+      ((s as any).pronounTmp = (s as any).pronounTmp ?? {})[4] = 'her';
+      ((s as any).pronounTmp = (s as any).pronounTmp ?? {})[5] = 'Her';
+      ((s as any).pronounTmp = (s as any).pronounTmp ?? {})[6] = 'hers';
+      ((s as any).pronounTmp = (s as any).pronounTmp ?? {})[7] = 'Hers';
+      ((s as any).pronounTmp = (s as any).pronounTmp ?? {})[8] = 'herself';
+      ((s as any).pronounTmp = (s as any).pronounTmp ?? {})[9] = 'Herself';
     } else {
-      // TODO-QSP: $pronounTmp[0] = 'xe'
-      // TODO-QSP: $pronounTmp[1] = 'Xe'
-      // TODO-QSP: $pronounTmp[2] = 'xem'
-      // TODO-QSP: $pronounTmp[3] = 'Xem'
-      // TODO-QSP: $pronounTmp[4] = 'xyr'
-      // TODO-QSP: $pronounTmp[5] = 'Xyr'
-      // TODO-QSP: $pronounTmp[6] = 'xyrs'
-      // TODO-QSP: $pronounTmp[7] = 'Xyrs'
-      // TODO-QSP: $pronounTmp[8] = 'xemself'
-      // TODO-QSP: $pronounTmp[9] = 'Xemself'
+      ((s as any).pronounTmp = (s as any).pronounTmp ?? {})[0] = 'xe';
+      ((s as any).pronounTmp = (s as any).pronounTmp ?? {})[1] = 'Xe';
+      ((s as any).pronounTmp = (s as any).pronounTmp ?? {})[2] = 'xem';
+      ((s as any).pronounTmp = (s as any).pronounTmp ?? {})[3] = 'Xem';
+      ((s as any).pronounTmp = (s as any).pronounTmp ?? {})[4] = 'xyr';
+      ((s as any).pronounTmp = (s as any).pronounTmp ?? {})[5] = 'Xyr';
+      ((s as any).pronounTmp = (s as any).pronounTmp ?? {})[6] = 'xyrs';
+      ((s as any).pronounTmp = (s as any).pronounTmp ?? {})[7] = 'Xyrs';
+      ((s as any).pronounTmp = (s as any).pronounTmp ?? {})[8] = 'xemself';
+      ((s as any).pronounTmp = (s as any).pronounTmp ?? {})[9] = 'Xemself';
     }
   }
   if (String((s as any).locArgs?.[1] ?? '') === 'a') {
@@ -88,20 +88,22 @@ function enter(s: GameState, scene: SceneBuilder): void {
           (s as any).xemselfc4 = (((s as any).pronounTmp ?? 0)?.[9] ?? 0);
         } else {
           (s as any).iterat = ((s as any).locArgs?.[1] ?? 0);
-          // TODO-QSP: $xe[iterat] = $pronounTmp[0]
-          // TODO-QSP: $xec[iterat] = $pronounTmp[1]
-          // TODO-QSP: $xem[iterat] = $pronounTmp[2]
-          // TODO-QSP: $xemc[iterat] = $pronounTmp[3]
-          // TODO-QSP: $xyr[iterat] = $pronounTmp[4]
-          // TODO-QSP: $xyrc[iterat] = $pronounTmp[5]
-          // TODO-QSP: $xyrs[iterat] = $pronounTmp[6]
-          // TODO-QSP: $xyrsc[iterat] = $pronounTmp[7]
-          // TODO-QSP: $xemself[iterat] = $pronounTmp[8]
-          // TODO-QSP: $xemselfc[iterat] = $pronounTmp[9]
+          ((s as any).xe = (s as any).xe ?? {})[String((s as any).iterat ?? 0)] = (((s as any).pronounTmp ?? 0)?.[0] ?? 0);
+          ((s as any).xec = (s as any).xec ?? {})[String((s as any).iterat ?? 0)] = (((s as any).pronounTmp ?? 0)?.[1] ?? 0);
+          ((s as any).xem = (s as any).xem ?? {})[String((s as any).iterat ?? 0)] = (((s as any).pronounTmp ?? 0)?.[2] ?? 0);
+          ((s as any).xemc = (s as any).xemc ?? {})[String((s as any).iterat ?? 0)] = (((s as any).pronounTmp ?? 0)?.[3] ?? 0);
+          ((s as any).xyr = (s as any).xyr ?? {})[String((s as any).iterat ?? 0)] = (((s as any).pronounTmp ?? 0)?.[4] ?? 0);
+          ((s as any).xyrc = (s as any).xyrc ?? {})[String((s as any).iterat ?? 0)] = (((s as any).pronounTmp ?? 0)?.[5] ?? 0);
+          ((s as any).xyrs = (s as any).xyrs ?? {})[String((s as any).iterat ?? 0)] = (((s as any).pronounTmp ?? 0)?.[6] ?? 0);
+          ((s as any).xyrsc = (s as any).xyrsc ?? {})[String((s as any).iterat ?? 0)] = (((s as any).pronounTmp ?? 0)?.[7] ?? 0);
+          ((s as any).xemself = (s as any).xemself ?? {})[String((s as any).iterat ?? 0)] = (((s as any).pronounTmp ?? 0)?.[8] ?? 0);
+          ((s as any).xemselfc = (s as any).xemselfc ?? {})[String((s as any).iterat ?? 0)] = (((s as any).pronounTmp ?? 0)?.[9] ?? 0);
         }
       }
     }
   }
+  (s as any).pronounTmp = undefined;
+  (s as any).iterat = undefined;
   scene.build();
 }
 

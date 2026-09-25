@@ -7,26 +7,31 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPush(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: $main_stack[]       = $maintxt
-  // TODO-QSP: $stat_stack[]       = $stattxt
-  // TODO-QSP: $action_stack[]     = $curacts
-  // TODO-QSP: $object_stack[]     = $curobjs
-  // TODO-QSP: $background_stack[] = $backimage
-  // TODO-QSP: $loc_stack[]        = $loc
-  // TODO-QSP: $loc_arg_stack[]    = $loc_arg
-  // TODO-QSP: end
+  (s as any).main_stack = [...((s as any).main_stack ?? []), ((s as any).maintxt ?? 0)];
+  (s as any).stat_stack = [...((s as any).stat_stack ?? []), ((s as any).stattxt ?? 0)];
+  (s as any).action_stack = [...((s as any).action_stack ?? []), ((s as any).curacts ?? 0)];
+  (s as any).object_stack = [...((s as any).object_stack ?? []), ((s as any).curobjs ?? 0)];
+  (s as any).background_stack = [...((s as any).background_stack ?? []), ((s as any).backimage ?? 0)];
+  (s as any).loc_stack = [...((s as any).loc_stack ?? []), ((s as any).loc ?? 0)];
+  (s as any).loc_arg_stack = [...((s as any).loc_arg_stack ?? []), ((s as any).loc_arg ?? 0)];
   scene.build();
 }
 
 function enterPop(s: GameState, scene: SceneBuilder): void {
   (s as any).loc = (((s as any).loc_stack ?? 0)?.[0] ?? 0);
   (s as any).loc_arg = (((s as any).loc_arg_stack ?? 0)?.[0] ?? 0);
+  (s as any).loc_stack = undefined;
+  (s as any).loc_arg_stack = undefined;
   (s as any).BACKIMAGE = (((s as any).background_stack ?? 0)?.[0] ?? 0);
+  (s as any).background_stack = undefined;
   // TODO-QSP: killobj
+  (s as any).object_stack = undefined;
+  (s as any).action_stack = undefined;
   // TODO-QSP: p $stat_stack[arrsize('$stat_stack')-1]
-  // TODO-QSP: dynamic text: $main_stack[arrsize('$main_stack')-1]
+  (s as any).stat_stack = undefined;
   scene.text('$main_stack[arrsize(\'$main_stack\')-1]');
-  // TODO-QSP: end
+  (s as any).main_stack = undefined;
+  (s as any).menu_off_stack = undefined;
   scene.build();
 }
 

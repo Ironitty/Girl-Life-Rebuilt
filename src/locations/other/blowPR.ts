@@ -33,7 +33,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       { label: 'Get him hard with your mouth', goto: ['blowPR', '2'] },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -53,6 +52,7 @@ function enter1(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.img(`images/shared/sex/blowjob/bjp${((s as any).tmppicrand ?? '')}.jpg`);
   }
+  (s as any).tmppicrand = undefined;
   scene.text('You put a condom between your lips and slowly guide your mouth to his penis, gently rolling the condom down using only your lips. You can tell the guy is impressed with your skills.');
   if ((!((s as any).prosti ?? 0))) {
     scene.text('You proceed to give him a blowjob, licking and sucking his condom-clad penis. The taste of the rubber is a bit unpleasant, but you do a good job and in no time the guy groans loudly.');
@@ -79,7 +79,6 @@ function enter1(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -90,10 +89,8 @@ function enter2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'dinSex', 'std_trigger_oral');
   qspCall(s, 'arousal', 'bj', 5, 'unknown', 'prostitution');
   qspCall(s, 'stat', '');
-  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/shared/sex/blowjob/bjp'+rand(8, 13)+'.jp...
   scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/shared/sex/blowjob/bjp` + (Math.floor(Math.random() * 6) + 8) + '.jpg"></center>');
   scene.text('You close your lips around his member and flick your tongue over the tip of his cock teasingly. It stands at full erection in no time.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Suck on his cock', goto: ['blowPR', '12'] },
   ]);
@@ -184,7 +181,6 @@ function enter12(s: GameState, scene: SceneBuilder): void {
             scene.img('images/shared/sex/cum/chest/bjt.jpg');
             scene.text('Your trained tongue slides up and down his shaft, and you pull out all of your tricks to make him feel good. You even use some techniques you learned to stall his orgasm for a while.');
             scene.text('While you\'re sucking him off, the man tries to pull your clothes aside to expose your breasts. Understanding what he wants, you expose your boobs readily. His cock erupts almost immediately at the sight of them, and he removes his cock from your mouth so he can spray his sperm over your tits.');
-            // TODO-QSP: dynamic text: The man grins happily when he looks at his work of art across your boobs, and gi...
             scene.text(`The man grins happily when he looks at his work of art across your boobs, and gives you an extra ${qspFunc(s, 'money', 'string_profit', 500)} as a tip. You really made his day!`);
             (s as any).spafinloc = 15;
             qspCall(s, 'cum_manage', '');
@@ -213,7 +209,6 @@ function enter12(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 

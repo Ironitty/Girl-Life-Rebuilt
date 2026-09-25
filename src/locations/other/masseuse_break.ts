@@ -19,13 +19,12 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'stat', '');
   scene.text('You\'re taking a break.');
-  // TODO-QSP: dynamic text: 'There''s a vending machine in the corner you can buy '+iif(func('money', 'can_a...
-  scene.text('There\'s a vending machine in the corner you can buy ' + ((qspFunc(s, 'money', 'can_afford', 100, 'cash')) ? ('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027money/u0027, /u0027pay/u0027, String(window.__gameStore.getState().100 ?? /u0027/u0027)); return false;">snacks</a>') : ('snacks' + qspFunc(s, 'money', 'get_cost_string', 100, 'cash'))) + ' from and a fridge stocked with <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027beverage/u0027, /u0027water/u0027); return false;">bottled water</a> and <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027beverage/u0027, /u0027juice/u0027); return false;">juice</a> for masseuses to enjoy, as well as a <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027beverage/u0027, /u0027coffee/u0027); return false;">coffee machine</a>.');
+  scene.text('There\'s a vending machine in the corner you can buy ' + ((qspFunc(s, 'money', 'can_afford', 100, 'cash')) ? ('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027money\u0027, \u0027pay\u0027, String(window.__gameStore.getState().100 ?? \u0027\u0027)); return false;">snacks</a>') : ('snacks' + qspFunc(s, 'money', 'get_cost_string', 100, 'cash'))) + ' from and a fridge stocked with <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027beverage\u0027, \u0027water\u0027); return false;">bottled water</a> and <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027beverage\u0027, \u0027juice\u0027); return false;">juice</a> for masseuses to enjoy, as well as a <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027beverage\u0027, \u0027coffee\u0027); return false;">coffee machine</a>.');
   if ((Math.floor(Math.random() * 2) + 0) === 1) {
     if (((s as any).masseuse ?? 0)?.['meet_lei'] === 0) {
-      scene.text('The only other person in here right now is <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027masseuse_break/u0027, /u0027lei_talk/u0027); return false;">a small asian girl</a> taking duck face selfies on her phone.');
+      scene.text('The only other person in here right now is <a href="exec:gt\'masseuse_break\',\'lei_talk\'">a small asian girl</a> taking duck face selfies on her phone.');
     } else {
-      scene.text('Looks like <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027masseuse_break/u0027, /u0027lei_talk/u0027); return false;">Lei</a> is also taking a break right now, taking duck face selfies on her phone again.');
+      scene.text('Looks like <a href="exec:gt\'masseuse_break\',\'lei_talk\'">Lei</a> is also taking a break right now, taking duck face selfies on her phone again.');
     }
   } else {
     scene.text('No one else is here with you.');
@@ -39,7 +38,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       { label: 'Go back to work', goto: ['masseuse_break', 'break_over'] },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -48,7 +46,6 @@ function enterBreakOver(s: GameState, scene: SceneBuilder): void {
   scene.text('You head back to your room and buzz Xian.');
   scene.text('"Hey, I\'m done taking my break."');
   scene.text('"Okay, I\'ll tell you when the next client has requested you."');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Wait for a client', goto: ['masseuse_work', 'begin'] },
   ]);
@@ -62,11 +59,9 @@ function enterLeiTalk(s: GameState, scene: SceneBuilder): void {
   ((s as any).masseuse = (s as any).masseuse ?? {})['meet_lei'] = 1;
   scene.img('images/locations/city/citycenter/mall/salon/work/lei/face.jpg');
   scene.text('You slide around the table to talk to the girl.');
-  // TODO-QSP: dynamic text: "Hey, I don''t think we''ve met before," you say. "I''m <<$pcs_firstname>>."
   scene.text(`"Hey, I don't think we've met before," you say. "I'm ${((s as any).pcs_firstname ?? '')}."`);
   scene.text('She puts down her phone to look at you.');
   scene.text('"I\'m Lei." Despite her looks, she speaks Russian flawlessly without even hint of an accent.');
-  // TODO-QSP: end
   scene.actions([
     { label: '"Do you like working here?"', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/mall/salon/work/lei/face.jpg');
@@ -106,13 +101,11 @@ function enterLeiTalk(s: GameState, scene: SceneBuilder): void {
 function enterLeiTalk2(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/citycenter/mall/salon/work/lei/face.jpg');
   scene.text('"Hey Lei, how\'s it going."');
-  // TODO-QSP: dynamic text: "Hey <<$pcs_nickname>>."
   scene.text(`"Hey ${((s as any).pcs_nickname ?? '')}."`);
   scene.text('"Wanna hang?"');
   scene.text('"Sure."');
   scene.text('You start talking about stuff with her.');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterLeiTalk3(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -124,7 +117,6 @@ function enterLeiTalk3(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Finish your break', goto: ['masseuse_break', 'lei_talk_end'] },
     { label: 'Make small talk', handler: (st: GameState) => {
@@ -142,108 +134,51 @@ function enterLeiTalk3(s: GameState, scene: SceneBuilder): void {
 
 function enterLeiSmallTalk(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/citycenter/mall/salon/work/lei/face.jpg');
-  // TODO-QSP: :lei_talk_loop1
-  ((s as any).masseuse = (s as any).masseuse ?? {})['lei_talk'] = (Math.floor(Math.random() * 6) + 1);
-  if (((s as any).masseuse ?? 0)?.['lei_talk'] === 1) {
-    if (((s as any).masseuse ?? 0)?.['lei_sisters'] < 1) {
-      // TODO-QSP: jump 'lei_talk_loop1'
-    }
-    scene.text('"So you said you\'re a student at the university?"');
-    scene.text('"Mhmm."');
-    scene.text('"What are you studying?"');
-    scene.text('"I\'m in the medical programme. I\'m gonna be a doctor."');
-    scene.text('"Wow! That\'s ambitious."');
-    scene.text('"Yeah, stereotypical too. Chinese girl studying to be a doctor. Classic right? Funniest part is that unlike the stereotype my mom isn\'t forcing me. I think she wouldn\'t mind if I worked as a whore for the rest of my life. She\'s seen firsthand how good the money is."');
-  } else {
-    if (((s as any).masseuse ?? 0)?.['lei_talk'] === 2) {
-      if (((s as any).masseuse ?? 0)?.['lei_sisters'] >= 2) {
-        if (((s as any).masseuse ?? 0)?.['lei_sisters'] < 3) {
-          ((s as any).masseuse = (s as any).masseuse ?? {})['lei_sisters'] = 3;
-        }
-        scene.text('"You said your mom was an immigrant right?"');
-        scene.text('"Yeah."');
-        scene.text('"I have to say, your Russian is actually really good."');
-        scene.text('"It\'s the only language I speak," Lei shrugs. "I\'m a natural born citizen."');
-        scene.text('You hesitate. "Wait, you mean…"');
-        scene.text('"Yup. I\'m half Russian, half Chinese. The product of a prostitute who failed to use birth control. My next four oldest sisters --well, half sisters I guess-- were conceived that way too. The rest were all born in China and came here with mom. That\'s why Xian has an accent and I don\'t."');
-        scene.text('If Lei is bothered by the fact that she\'s a bastard daughter of a whore, she doesn\'t show it. She talks about her conception and half sisters very casually.');
-      } else {
-        // TODO-QSP: jump 'lei_talk_loop1'
+  while (true) {
+    ((s as any).masseuse = (s as any).masseuse ?? {})['lei_talk'] = (Math.floor(Math.random() * 6) + 1);
+    if (((s as any).masseuse ?? 0)?.['lei_talk'] === 1) {
+      if (((s as any).masseuse ?? 0)?.['lei_sisters'] < 1) {
+        break;
       }
+      scene.text('"So you said you\'re a student at the university?"');
+      scene.text('"Mhmm."');
+      scene.text('"What are you studying?"');
+      scene.text('"I\'m in the medical programme. I\'m gonna be a doctor."');
+      scene.text('"Wow! That\'s ambitious."');
+      scene.text('"Yeah, stereotypical too. Chinese girl studying to be a doctor. Classic right? Funniest part is that unlike the stereotype my mom isn\'t forcing me. I think she wouldn\'t mind if I worked as a whore for the rest of my life. She\'s seen firsthand how good the money is."');
     } else {
-      if (((s as any).masseuse ?? 0)?.['lei_talk'] === 3) {
-        if (((s as any).masseuse ?? 0)?.['lei_peek'] === 1) {
-          scene.text('"By the way, I couldn\'t help but notice, you\'re very… loud when you\'re with customers. Do you really enjoy it that much?"');
-          scene.text('"Nah, not really. Only the guys who work here are good enough to send me into a frenzy like that for reals. But mom makes us pay for them too. No freebies. Anyways, I just do it because I figure the clients love it. Men are shallow creatures. And having a little girl like me screaming how big their average-sized cock is really boosts their ego. Makes them more likely to leave a tip, or at least come back again later."');
-        } else {
-          // TODO-QSP: jump 'lei_talk_loop1'
-        }
-      } else {
-        if (((s as any).masseuse ?? 0)?.['lei_talk'] === 4) {
-          scene.text('"Do you prefer lace or cotton underwear?" Lei asks you. "I can never decide. Lace is a lot sexier but cotton is just way more comfortable."');
-        } else {
-          if (((s as any).masseuse ?? 0)?.['lei_talk'] === 5) {
-            scene.text('"The policy here is to always clean up after servicing a customer, but honestly you don\'t need to do it if they cum inside. Vaginas are weird, after you wipe you\'re still full of spunk anyways. God knows, sometimes I\'ll be in class hours after a shift and just feel something <i>gush</i> out into my panties. And it\'s definitely not the normal discharge."');
-          } else {
-            if (((s as any).masseuse ?? 0)?.['lei_talk'] === 6) {
-              scene.text('"I just wish mom would let us keep water bottles in the rooms. I get so dehydrated waiting for the one break, but if I drink too much then I have to pee in the middle of a session. Some guys are into that but I sure as fuck am not."');
-            }
+      if (((s as any).masseuse ?? 0)?.['lei_talk'] === 2) {
+        if (((s as any).masseuse ?? 0)?.['lei_sisters'] >= 2) {
+          if (((s as any).masseuse ?? 0)?.['lei_sisters'] < 3) {
+            ((s as any).masseuse = (s as any).masseuse ?? {})['lei_sisters'] = 3;
           }
-        }
-      }
-    }
-  }
-  // TODO-QSP: end
-  scene.build();
-}
-
-function enterLeiFunTalk(s: GameState, scene: SceneBuilder): void {
-  scene.img('images/locations/city/citycenter/mall/salon/work/lei/face.jpg');
-  scene.text('"Do anything fun lately?" you ask conversationally.');
-  // TODO-QSP: :lei_talk_loop2
-  ((s as any).masseuse = (s as any).masseuse ?? {})['lei_fun'] = ((s as any).daystart ?? 0);
-  ((s as any).masseuse = (s as any).masseuse ?? {})['lei_talk'] = (Math.floor(Math.random() * 7) + 1);
-  if (((s as any).masseuse ?? 0)?.['lei_talk'] === 1) {
-    scene.text('"I went to that fair in the park with some friends the other day."');
-    scene.text('"That sounds nice. How was it?"');
-    if (((s as any).month ?? 0) <= 2  ||  ((s as any).month ?? 0) >= 11) {
-      scene.text('"It\'s alright. They got a few games and lemonade and stuff. Still, too damn cold for that shit right now. Probably better in the summer."');
-    } else {
-      scene.text('"It\'s alright. They got a few games and lemonade and stuff."');
-    }
-  } else {
-    if (((s as any).masseuse ?? 0)?.['lei_talk'] === 2) {
-      scene.text('Lei looks up at the ceiling, tapping her phone against her chin while she thinks.');
-      scene.text('"Well, there was that one guy…" she mutters. "Tch, but he turned into the clingy type afterward so that really wasn\'t great."');
-      scene.text('"Eh, not really I guess," she shrugs before turning back to her phone and scrolling through her feed.');
-    } else {
-      if (((s as any).masseuse ?? 0)?.['lei_talk'] === 3) {
-        scene.text('"Went to a party last weekend, that was pretty cool."');
-        scene.text('"Oh yeah?"');
-        scene.text('"Yeah. Someone brought some blow so it was hype as fuck. Well, I thought it was." She stops to think for a moment. "Actually… I\'m just realizing now that I don\'t remember much of it. I remember having a lot of sex… and… waking up in my socks…? Damn." She shakes her head as if waking up.');
-        scene.text('"They\'re right, cocaine <i>is</i> one helluva drug. I gotta stop doing that."');
-      } else {
-        if (((s as any).masseuse ?? 0)?.['lei_talk'] === 4) {
-          scene.text('"Do anything fun lately?"');
-          scene.text('"Nah, I\'ve been studying all week. Got a big test coming up."');
+          scene.text('"You said your mom was an immigrant right?"');
+          scene.text('"Yeah."');
+          scene.text('"I have to say, your Russian is actually really good."');
+          scene.text('"It\'s the only language I speak," Lei shrugs. "I\'m a natural born citizen."');
+          scene.text('You hesitate. "Wait, you mean…"');
+          scene.text('"Yup. I\'m half Russian, half Chinese. The product of a prostitute who failed to use birth control. My next four oldest sisters --well, half sisters I guess-- were conceived that way too. The rest were all born in China and came here with mom. That\'s why Xian has an accent and I don\'t."');
+          scene.text('If Lei is bothered by the fact that she\'s a bastard daughter of a whore, she doesn\'t show it. She talks about her conception and half sisters very casually.');
         } else {
-          if (((s as any).masseuse ?? 0)?.['lei_talk'] === 5) {
-            if (((s as any).month ?? 0) >= 10  ||  ((s as any).month ?? 0) <= 3) {
-              // TODO-QSP: jump 'lei_talk_loop2'
-            }
-            scene.text('"Went to the beach with some friends last weekend. That was pretty cool."');
-            scene.text('"Wow! Where\'d you go? Out of town?"');
-            scene.text('"There\'s a lake about a 40 minute walk from the residential area. Can be hard to find if you don\'t know where you\'re going.');
-            scene.text('"Oh! I had no idea."');
-            scene.text('"Yeah, like I said, hard to find. There\'s a cordoned off section for a nudist beach too. My friends dared me to strip down on it. I got naked and dared them right back! The guys looked pretty uncomfortable with their dongs hanging out," she smirks. "But it turned into a good time for everybody. Played a pickup game of beach volleyball afterwards."');
+          break;
+        }
+      } else {
+        if (((s as any).masseuse ?? 0)?.['lei_talk'] === 3) {
+          if (((s as any).masseuse ?? 0)?.['lei_peek'] === 1) {
+            scene.text('"By the way, I couldn\'t help but notice, you\'re very… loud when you\'re with customers. Do you really enjoy it that much?"');
+            scene.text('"Nah, not really. Only the guys who work here are good enough to send me into a frenzy like that for reals. But mom makes us pay for them too. No freebies. Anyways, I just do it because I figure the clients love it. Men are shallow creatures. And having a little girl like me screaming how big their average-sized cock is really boosts their ego. Makes them more likely to leave a tip, or at least come back again later."');
           } else {
-            if (((s as any).masseuse ?? 0)?.['lei_talk'] === 6) {
-              scene.text('"Splurged on a bit of shopping the other day. Found a cute outfit for myself. That reminds me, I heard about this place called Coco Carmen the other day. It\'s outside the city in some small town Pavlov or something like that. Supposed to have some pretty nice stuff."');
+            break;
+          }
+        } else {
+          if (((s as any).masseuse ?? 0)?.['lei_talk'] === 4) {
+            scene.text('"Do you prefer lace or cotton underwear?" Lei asks you. "I can never decide. Lace is a lot sexier but cotton is just way more comfortable."');
+          } else {
+            if (((s as any).masseuse ?? 0)?.['lei_talk'] === 5) {
+              scene.text('"The policy here is to always clean up after servicing a customer, but honestly you don\'t need to do it if they cum inside. Vaginas are weird, after you wipe you\'re still full of spunk anyways. God knows, sometimes I\'ll be in class hours after a shift and just feel something <i>gush</i> out into my panties. And it\'s definitely not the normal discharge."');
             } else {
-              if (((s as any).masseuse ?? 0)?.['lei_talk'] === 7) {
-                scene.text('"Yeah. Last night."');
-                scene.text('"And…?"');
-                scene.text('"Shhh. I\'m still hungover."');
+              if (((s as any).masseuse ?? 0)?.['lei_talk'] === 6) {
+                scene.text('"I just wish mom would let us keep water bottles in the rooms. I get so dehydrated waiting for the one break, but if I drink too much then I have to pee in the middle of a session. Some guys are into that but I sure as fuck am not."');
               }
             }
           }
@@ -251,8 +186,65 @@ function enterLeiFunTalk(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterLeiTalk3(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
+  scene.build();
+}
+
+function enterLeiFunTalk(s: GameState, scene: SceneBuilder): void {
+  scene.img('images/locations/city/citycenter/mall/salon/work/lei/face.jpg');
+  scene.text('"Do anything fun lately?" you ask conversationally.');
+  while (true) {
+    ((s as any).masseuse = (s as any).masseuse ?? {})['lei_fun'] = ((s as any).daystart ?? 0);
+    ((s as any).masseuse = (s as any).masseuse ?? {})['lei_talk'] = (Math.floor(Math.random() * 7) + 1);
+    if (((s as any).masseuse ?? 0)?.['lei_talk'] === 1) {
+      scene.text('"I went to that fair in the park with some friends the other day."');
+      scene.text('"That sounds nice. How was it?"');
+      if (((s as any).month ?? 0) <= 2  ||  ((s as any).month ?? 0) >= 11) {
+        scene.text('"It\'s alright. They got a few games and lemonade and stuff. Still, too damn cold for that shit right now. Probably better in the summer."');
+      } else {
+        scene.text('"It\'s alright. They got a few games and lemonade and stuff."');
+      }
+    } else {
+      if (((s as any).masseuse ?? 0)?.['lei_talk'] === 2) {
+        scene.text('Lei looks up at the ceiling, tapping her phone against her chin while she thinks.');
+        scene.text('"Well, there was that one guy…" she mutters. "Tch, but he turned into the clingy type afterward so that really wasn\'t great."');
+        scene.text('"Eh, not really I guess," she shrugs before turning back to her phone and scrolling through her feed.');
+      } else {
+        if (((s as any).masseuse ?? 0)?.['lei_talk'] === 3) {
+          scene.text('"Went to a party last weekend, that was pretty cool."');
+          scene.text('"Oh yeah?"');
+          scene.text('"Yeah. Someone brought some blow so it was hype as fuck. Well, I thought it was." She stops to think for a moment. "Actually… I\'m just realizing now that I don\'t remember much of it. I remember having a lot of sex… and… waking up in my socks…? Damn." She shakes her head as if waking up.');
+          scene.text('"They\'re right, cocaine <i>is</i> one helluva drug. I gotta stop doing that."');
+        } else {
+          if (((s as any).masseuse ?? 0)?.['lei_talk'] === 4) {
+            scene.text('"Do anything fun lately?"');
+            scene.text('"Nah, I\'ve been studying all week. Got a big test coming up."');
+          } else {
+            if (((s as any).masseuse ?? 0)?.['lei_talk'] === 5) {
+              if (((s as any).month ?? 0) >= 10  ||  ((s as any).month ?? 0) <= 3) {
+                break;
+              }
+              scene.text('"Went to the beach with some friends last weekend. That was pretty cool."');
+              scene.text('"Wow! Where\'d you go? Out of town?"');
+              scene.text('"There\'s a lake about a 40 minute walk from the residential area. Can be hard to find if you don\'t know where you\'re going.');
+              scene.text('"Oh! I had no idea."');
+              scene.text('"Yeah, like I said, hard to find. There\'s a cordoned off section for a nudist beach too. My friends dared me to strip down on it. I got naked and dared them right back! The guys looked pretty uncomfortable with their dongs hanging out," she smirks. "But it turned into a good time for everybody. Played a pickup game of beach volleyball afterwards."');
+            } else {
+              if (((s as any).masseuse ?? 0)?.['lei_talk'] === 6) {
+                scene.text('"Splurged on a bit of shopping the other day. Found a cute outfit for myself. That reminds me, I heard about this place called Coco Carmen the other day. It\'s outside the city in some small town Pavlov or something like that. Supposed to have some pretty nice stuff."');
+              } else {
+                if (((s as any).masseuse ?? 0)?.['lei_talk'] === 7) {
+                  scene.text('"Yeah. Last night."');
+                  scene.text('"And…?"');
+                  scene.text('"Shhh. I\'m still hungover."');
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterLeiTalk3(s, scene); (s as any).locArgs = __savedLocArgs; }
+  }
   scene.build();
 }
 
@@ -267,7 +259,6 @@ function enterLeiTalkSelf(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Talk about something else', handler: (st: GameState) => {
     qspCall(st, 'masseuse_break', '');
@@ -337,7 +328,6 @@ function enterLeiTalkFamily(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Talk about something else', handler: (st: GameState) => {
     qspCall(st, 'masseuse_break', '');
@@ -359,7 +349,6 @@ function enterLeiTalkEnd(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/citycenter/mall/salon/work/lei/face.jpg');
   scene.text('"Welp," you say, standing up. "It\'s probably about time I got back to work now."');
   scene.text('"Yeah, me too," she says, joining you. "See you around sometime."');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go back to work', goto: ['masseuse_break', 'break_over'] },
   ]);

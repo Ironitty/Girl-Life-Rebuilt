@@ -1,3 +1,5 @@
+import { qspUntranslated } from '../_shared/qspUntranslated';
+
 import { qspCall, qspFunc, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
@@ -16,7 +18,6 @@ function enterBuildBp(s: GameState, scene: SceneBuilder): void {
   ((s as any).bpbID1_arr = (s as any).bpbID1_arr ?? {})[String((s as any).bp_i ?? 0)] = (-1);
   ((s as any).bpbID2_arr = (s as any).bpbID2_arr ?? {})[String((s as any).bp_i ?? 0)] = (-1);
   (s as any).result = ((s as any).bp_i ?? 0);
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -26,35 +27,34 @@ function enterViewMilkBottles(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_var = ((((s as any).mc_inventory ?? {})?.['bottle_m'] ?? 0) + (((s as any).mc_inventory ?? {})?.['bottle_s'] ?? 0)) - 1;
   (s as any).vmb_i = 0;
   (s as any).milkedvolume = 0;
-  // TODO-QSP: :vmbloop
-  if (((s as any).vmb_i ?? 0) <= ((s as any).temp_var ?? 0)) {
-    if (((s as any).mbarrloca ?? 0)?.[String((s as any).vmb_i ?? 0)] === String((s as any).locArgs?.[1] ?? '')) {
-      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).vmb_i ?? 0)]; enterUpdateMbottle(s, scene); (s as any).locArgs = __savedLocArgs; }
-      if (((s as any).mbarrfill ?? 0)?.[String((s as any).vmb_i ?? 0)] <=0) {
-        ((s as any).mbarrfill = (s as any).mbarrfill ?? {})[String((s as any).vmb_i ?? 0)] = 0;
-        // TODO-QSP: dynamic text: <br><<vmb_i + 1>>. - An empty <<mbarrtype[vmb_i]/10>>ml bottle. You can use it t...
-        scene.text(`<br>${((s as any).vmb_i ?? '') + 1}. - An empty ${(((s as any).mbarrtype ?? 0)?.[String((s as any).vmb_i ?? 0)] ?? 0)/10}ml bottle. You can use it to store your breast milk.`);
-      } else {
-        // TODO-QSP: '<br><<vmb_i + 1>>. - A <<mbarrtype[vmb_i]/10>>ml bottle. There is <<mbarrfill[vmb_i]/10>>ml of milk...
-        (s as any).milkedvolume = ((s as any).milkedvolume ?? 0) + ((((s as any).mbarrfill ?? 0)?.[String((s as any).vmb_i ?? 0)] ?? 0));
+  while (true) {
+    if (((s as any).vmb_i ?? 0) <= ((s as any).temp_var ?? 0)) {
+      if (((s as any).mbarrloca ?? 0)?.[String((s as any).vmb_i ?? 0)] === String((s as any).locArgs?.[1] ?? '')) {
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).vmb_i ?? 0)]; enterUpdateMbottle(s, scene); (s as any).locArgs = __savedLocArgs; }
+        if (((s as any).mbarrfill ?? 0)?.[String((s as any).vmb_i ?? 0)] <=0) {
+          ((s as any).mbarrfill = (s as any).mbarrfill ?? {})[String((s as any).vmb_i ?? 0)] = 0;
+          scene.text(`<br>${((s as any).vmb_i ?? '') + 1}. - An empty ${(((s as any).mbarrtype ?? 0)?.[String((s as any).vmb_i ?? 0)] ?? 0)/10}ml bottle. You can use it to store your breast milk.`);
+        } else {
+          scene.text(`<br>${((s as any).vmb_i ?? '') + 1}. - A ${(((s as any).mbarrtype ?? 0)?.[String((s as any).vmb_i ?? 0)] ?? 0)/10}ml bottle. There is ${(((s as any).mbarrfill ?? 0)?.[String((s as any).vmb_i ?? 0)] ?? 0)/10}ml of milk in the bottle. <a href="#" onclick="window.__gameStore.setState((s) => { alert(/u0027<center>You open the bottle and check the milk inside.<br>You can feel the milk is ${(((s as any).mbarrtemp ?? 0)?.[String((s as any).vmb_i ?? 0)] ?? '')} and it smells ${(((s as any).mbarrstat ?? 0)?.[String((s as any).vmb_i ?? 0)] ?? '')}.</center>/u0027); return s; }); return false;">Check the content</a>` + ' ' + ((((s as any).pcs_hydra ?? 0) < 100  &&  (((s as any).mbarrtemp ?? 0)?.[String((s as any).vmb_i ?? 0)] === 'warm'  ||  ((s as any).mbarrtemp ?? 0)?.[String((s as any).vmb_i ?? 0)] === 'normal temparture'  ||  ((s as any).mbarrtemp ?? 0)?.[String((s as any).vmb_i ?? 0)] === 'cold'  ||  ((s as any).mbarrtemp ?? 0)?.[String((s as any).vmb_i ?? 0)] === 'hot')  &&  (((s as any).mbarrstat ?? 0)?.[String((s as any).vmb_i ?? 0)] === 'fresh'  ||  ((s as any).mbarrstat ?? 0)?.[String((s as any).vmb_i ?? 0)] === 'normal')) ? ('<a href="exec:gt\'lact_bp\',\'drink_milk_bottles\', ' + ((s as any).vmb_i ?? '') + '"> Drink it</a>') : ('')));
+          (s as any).milkedvolume = ((s as any).milkedvolume ?? 0) + ((((s as any).mbarrfill ?? 0)?.[String((s as any).vmb_i ?? 0)] ?? 0));
+        }
       }
+      (s as any).vmb_i = ((s as any).vmb_i ?? 0) + (1);
+      break;
     }
-    (s as any).vmb_i = ((s as any).vmb_i ?? 0) + (1);
-    // TODO-QSP: jump 'vmbloop'
+    if (((s as any).milkedvolume ?? 0) > 0) {
+      scene.text('<br><a href="exec:gt\'lact_bp\',\'empty_all_milk_bottles\'">Pour the milk into the sink</a>');
+    }
+    scene.actions([
+      { label: 'Back', goto: ['lact_bp', 'bp_milking'] },
+    ]);
   }
-  if (((s as any).milkedvolume ?? 0) > 0) {
-    scene.text('<br><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027lact_bp/u0027, /u0027empty_all_milk_bottles/u0027); return false;">Pour the milk into the sink</a>');
-  }
-  // TODO-QSP: end
-  scene.actions([
-    { label: 'Back', goto: ['lact_bp', 'bp_milking'] },
-  ]);
   scene.build();
 }
 
 function enterDrinkMilkBottles(s: GameState, scene: SceneBuilder): void {
   if (((s as any).mbarrfill ?? 0)[String((s as any).locArgs?.[1] ?? '')] <= 0) {
-    // TODO-QSP: exit
+    return;
   }
   scene.img('images/pc/body/tits/milk_drink.jpg');
   scene.text('<center>You drink your own breast milk and clean up the bottle.</center>');
@@ -65,7 +65,6 @@ function enterDrinkMilkBottles(s: GameState, scene: SceneBuilder): void {
   (s as any).pcs_energy = ((s as any).pcs_energy ?? 0) + (((s as any).mbarrfill ?? 0)[((s as any).locArgs?.[1] ?? 0)]/500);
   (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) + (((s as any).mbarrfill ?? 0)[((s as any).locArgs?.[1] ?? 0)] / ((((s as any).pcs_hydra ?? 0)>=100) ? (200) : (100)));
   (s as any).minut = ((s as any).minut ?? 0) + (Math.max(1, (((s as any).mbarrfill ?? 0)[((s as any).locArgs?.[1] ?? 0)]/1000) + 3));
-  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', handler: (st: GameState) => {
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ((st as any).locArgs?.[1] ?? 0)]; enterEmptyMilkBottle(st, scene); (st as any).locArgs = __savedLocArgs; }
@@ -77,12 +76,11 @@ function enterDrinkMilkBottles(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterEmptyMilkBottle(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: mbarrfill[ARGS[1]] = 0
-  // TODO-QSP: mbarrmage[ARGS[1]] = 0
-  // TODO-QSP: mbarrcool[ARGS[1]] = 0
-  // TODO-QSP: $mbarrstat[ARGS[1]] = 'none'
-  // TODO-QSP: $mbarrtemp[ARGS[1]] = 'none'
-  // TODO-QSP: end
+  ((s as any).mbarrfill = (s as any).mbarrfill ?? {})[((s as any).locArgs?.[1] ?? 0)] = 0;
+  ((s as any).mbarrmage = (s as any).mbarrmage ?? {})[((s as any).locArgs?.[1] ?? 0)] = 0;
+  ((s as any).mbarrcool = (s as any).mbarrcool ?? {})[((s as any).locArgs?.[1] ?? 0)] = 0;
+  ((s as any).mbarrstat = (s as any).mbarrstat ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'none';
+  ((s as any).mbarrtemp = (s as any).mbarrtemp ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'none';
   scene.build();
 }
 
@@ -92,22 +90,22 @@ function enterEmptyAllMilkBottles(s: GameState, scene: SceneBuilder): void {
     (s as any).temp_var = (-1);
   }
   (s as any).emb_i = 0;
-  // TODO-QSP: :emb_loop
-  if (((s as any).emb_i ?? 0) <= ((s as any).temp_var ?? 0)) {
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).emb_i ?? 0)]; enterEmptyMilkBottle(s, scene); (s as any).locArgs = __savedLocArgs; }
-    (s as any).emb_i = ((s as any).emb_i ?? 0) + (1);
-    // TODO-QSP: jump 'emb_loop'
-  }
-  scene.img('images/pc/body/tits/milk_sink.jpg');
-  scene.text('<center>You pour all of your collected breast milk into the sink and clean up the bottles.</center>');
-  (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_var ?? 0));
-  // TODO-QSP: end
-  scene.actions([
-    { label: 'Finish', handler: (st: GameState) => {
+  while (true) {
+    if (((s as any).emb_i ?? 0) <= ((s as any).temp_var ?? 0)) {
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).emb_i ?? 0)]; enterEmptyMilkBottle(s, scene); (s as any).locArgs = __savedLocArgs; }
+      (s as any).emb_i = ((s as any).emb_i ?? 0) + (1);
+      break;
+    }
+    scene.img('images/pc/body/tits/milk_sink.jpg');
+    scene.text('<center>You pour all of your collected breast milk into the sink and clean up the bottles.</center>');
+    (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_var ?? 0));
+    scene.actions([
+      { label: 'Finish', handler: (st: GameState) => {
     (st as any).menu_off = 0;
     dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
-  ]);
+    ]);
+  }
   scene.build();
 }
 
@@ -115,13 +113,12 @@ function enterFillMilkBottle(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[2] ?? '') > ((s as any).mbarrtype ?? 0)[String((s as any).locArgs?.[1] ?? '')]) {
     scene.text('ERROR - More milk going into bottle than the bottle can hold.');
   } else {
-    // TODO-QSP: mbarrfill[ARGS[1]] = ARGS[2]
-    // TODO-QSP: mbarrmage[ARGS[1]] = func('lact_bp', 'time_stamp')
-    // TODO-QSP: mbarrcool[ARGS[1]] = 0
-    // TODO-QSP: $mbarrstat[ARGS[1]] = 'fresh'
-    // TODO-QSP: $mbarrtemp[ARGS[1]] = 'warm'
+    ((s as any).mbarrfill = (s as any).mbarrfill ?? {})[((s as any).locArgs?.[1] ?? 0)] = ((s as any).locArgs?.[2] ?? 0);
+    ((s as any).mbarrmage = (s as any).mbarrmage ?? {})[((s as any).locArgs?.[1] ?? 0)] = qspFunc(s, 'lact_bp', 'time_stamp');
+    ((s as any).mbarrcool = (s as any).mbarrcool ?? {})[((s as any).locArgs?.[1] ?? 0)] = 0;
+    ((s as any).mbarrstat = (s as any).mbarrstat ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'fresh';
+    ((s as any).mbarrtemp = (s as any).mbarrtemp ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'warm';
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -130,31 +127,31 @@ function enterTimeStamp(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_timestamp = ((s as any).temp_timestamp ?? 0) + (((s as any).year ?? 0) * 365 * 24 * 60);
   (s as any).ts_i = 1;
   if (((s as any).month ?? 0) > 1) {
-    // TODO-QSP: :ts_loop
-    if ((((s as any).month ?? 0) - 1) >= ((s as any).ts_i ?? 0)) {
-      if (((s as any).ts_i ?? 0) === 1  ||  ((s as any).ts_i ?? 0) === 3  ||  ((s as any).ts_i ?? 0) === 5  ||  ((s as any).ts_i ?? 0) === 7  ||  ((s as any).ts_i ?? 0) === 8  ||  ((s as any).ts_i ?? 0) === 10  ||  ((s as any).ts_i ?? 0) === 12) {
-        (s as any).temp_timestamp = ((s as any).temp_timestamp ?? 0) + (44640);
-      } else {
-        if (((s as any).ts_i ?? 0) === 4  ||  ((s as any).ts_i ?? 0) === 6  ||  ((s as any).ts_i ?? 0) === 9  ||  ((s as any).ts_i ?? 0) === 11) {
-          (s as any).temp_timestamp = ((s as any).temp_timestamp ?? 0) + (43200);
+    while (true) {
+      if ((((s as any).month ?? 0) - 1) >= ((s as any).ts_i ?? 0)) {
+        if (((s as any).ts_i ?? 0) === 1  ||  ((s as any).ts_i ?? 0) === 3  ||  ((s as any).ts_i ?? 0) === 5  ||  ((s as any).ts_i ?? 0) === 7  ||  ((s as any).ts_i ?? 0) === 8  ||  ((s as any).ts_i ?? 0) === 10  ||  ((s as any).ts_i ?? 0) === 12) {
+          (s as any).temp_timestamp = ((s as any).temp_timestamp ?? 0) + (44640);
         } else {
-          if (((s as any).ts_i ?? 0) === 2) {
-            (s as any).temp_timestamp = ((s as any).temp_timestamp ?? 0) + (40320);
-            if ((((s as any).year ?? 0) % 4) === 0  &&  (((s as any).year ?? 0) % 100) !== 0  ||  (!(((s as any).year ?? 0) % 400))) {
-              (s as any).temp_timestamp = ((s as any).temp_timestamp ?? 0) + (1440);
+          if (((s as any).ts_i ?? 0) === 4  ||  ((s as any).ts_i ?? 0) === 6  ||  ((s as any).ts_i ?? 0) === 9  ||  ((s as any).ts_i ?? 0) === 11) {
+            (s as any).temp_timestamp = ((s as any).temp_timestamp ?? 0) + (43200);
+          } else {
+            if (((s as any).ts_i ?? 0) === 2) {
+              (s as any).temp_timestamp = ((s as any).temp_timestamp ?? 0) + (40320);
+              if ((((s as any).year ?? 0) % 4) === 0  &&  (((s as any).year ?? 0) % 100) !== 0  ||  (!(((s as any).year ?? 0) % 400))) {
+                (s as any).temp_timestamp = ((s as any).temp_timestamp ?? 0) + (1440);
+              }
             }
           }
         }
+        (s as any).ts_i = ((s as any).ts_i ?? 0) + (1);
+        break;
       }
-      (s as any).ts_i = ((s as any).ts_i ?? 0) + (1);
-      // TODO-QSP: jump 'ts_loop'
     }
   }
   (s as any).temp_timestamp = ((s as any).temp_timestamp ?? 0) + ((((s as any).day ?? 0) - 1) * 24 * 60);
   (s as any).temp_timestamp = ((s as any).temp_timestamp ?? 0) + (((s as any).hour ?? 0) * 60);
   (s as any).temp_timestamp = ((s as any).temp_timestamp ?? 0) + (((s as any).minut ?? 0));
   (s as any).result = ((s as any).temp_timestamp ?? 0);
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -163,75 +160,75 @@ function enterUpdateMbottle(s: GameState, scene: SceneBuilder): void {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0)]; enterEmptyMilkBottle(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
     if (((s as any).mbarrfill ?? 0)[String((s as any).locArgs?.[1] ?? '')] > ((s as any).mbarrtype ?? 0)[String((s as any).locArgs?.[1] ?? '')]) {
-      // TODO-QSP: mbarrfill[ARGS[1]] = mbarrtype[ARGS[1]]
+      ((s as any).mbarrfill = (s as any).mbarrfill ?? {})[((s as any).locArgs?.[1] ?? 0)] = qspUntranslated(s, "mbarrtype[ARGS[1]]", { location: "lact_bp" });
     }
     if (((s as any).mbarrmage ?? 0)[String((s as any).locArgs?.[1] ?? '')] <= 0) {
-      // TODO-QSP: mbarrmage[ARGS[1]] = func('lact_bp', 'time_stamp')
+      ((s as any).mbarrmage = (s as any).mbarrmage ?? {})[((s as any).locArgs?.[1] ?? 0)] = qspFunc(s, 'lact_bp', 'time_stamp');
     }
     if (((s as any).mbarrcool ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 0) {
       if ((((s as any).mbarrmage ?? 0)[String((s as any).locArgs?.[1] ?? '')] + 60) >= qspFunc(s, 'lact_bp', 'time_stamp')) {
-        // TODO-QSP: $mbarrtemp[ARGS[1]] = 'warm'
-        // TODO-QSP: $mbarrstat[ARGS[1]] = 'fresh'
+        ((s as any).mbarrtemp = (s as any).mbarrtemp ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'warm';
+        ((s as any).mbarrstat = (s as any).mbarrstat ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'fresh';
       } else {
         if ((((s as any).mbarrmage ?? 0)[String((s as any).locArgs?.[1] ?? '')] + 60) < qspFunc(s, 'lact_bp', 'time_stamp')  &&  (((s as any).mbarrmage ?? 0)[String((s as any).locArgs?.[1] ?? '')] + 360) >= qspFunc(s, 'lact_bp', 'time_stamp')) {
-          // TODO-QSP: $mbarrtemp[ARGS[1]] = 'lukewarm'
-          // TODO-QSP: $mbarrstat[ARGS[1]] = 'normal'
+          ((s as any).mbarrtemp = (s as any).mbarrtemp ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'lukewarm';
+          ((s as any).mbarrstat = (s as any).mbarrstat ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'normal';
         } else {
           if ((((s as any).mbarrmage ?? 0)[String((s as any).locArgs?.[1] ?? '')] + 360) < qspFunc(s, 'lact_bp', 'time_stamp')  &&  (((s as any).mbarrmage ?? 0)[String((s as any).locArgs?.[1] ?? '')] + 1440) >= qspFunc(s, 'lact_bp', 'time_stamp')) {
-            // TODO-QSP: $mbarrtemp[ARGS[1]] = 'lukewarm'
-            // TODO-QSP: $mbarrstat[ARGS[1]] = 'old'
+            ((s as any).mbarrtemp = (s as any).mbarrtemp ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'lukewarm';
+            ((s as any).mbarrstat = (s as any).mbarrstat ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'old';
           } else {
-            // TODO-QSP: $mbarrtemp[ARGS[1]] = 'lukewarm'
-            // TODO-QSP: $mbarrstat[ARGS[1]] = 'rancid'
+            ((s as any).mbarrtemp = (s as any).mbarrtemp ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'lukewarm';
+            ((s as any).mbarrstat = (s as any).mbarrstat ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'rancid';
           }
         }
       }
     } else {
       if (((s as any).mbarrcool ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 1) {
         if ((((s as any).mbarrmage ?? 0)[String((s as any).locArgs?.[1] ?? '')] + 1440) >= qspFunc(s, 'lact_bp', 'time_stamp')) {
-          // TODO-QSP: $mbarrtemp[ARGS[1]] = 'cold'
-          // TODO-QSP: $mbarrstat[ARGS[1]] = 'fresh'
+          ((s as any).mbarrtemp = (s as any).mbarrtemp ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'cold';
+          ((s as any).mbarrstat = (s as any).mbarrstat ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'fresh';
         } else {
           if ((((s as any).mbarrmage ?? 0)[String((s as any).locArgs?.[1] ?? '')] + 1440) < qspFunc(s, 'lact_bp', 'time_stamp')  &&  (((s as any).mbarrmage ?? 0)[String((s as any).locArgs?.[1] ?? '')] + 4320) >= qspFunc(s, 'lact_bp', 'time_stamp')) {
-            // TODO-QSP: $mbarrtemp[ARGS[1]] = 'cold'
-            // TODO-QSP: $mbarrstat[ARGS[1]] = 'normal'
+            ((s as any).mbarrtemp = (s as any).mbarrtemp ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'cold';
+            ((s as any).mbarrstat = (s as any).mbarrstat ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'normal';
           } else {
             if ((((s as any).mbarrmage ?? 0)[String((s as any).locArgs?.[1] ?? '')] + 4320) < qspFunc(s, 'lact_bp', 'time_stamp')  &&  (((s as any).mbarrmage ?? 0)[String((s as any).locArgs?.[1] ?? '')] + 7200) >= qspFunc(s, 'lact_bp', 'time_stamp')) {
-              // TODO-QSP: $mbarrtemp[ARGS[1]] = 'cold'
-              // TODO-QSP: $mbarrstat[ARGS[1]] = 'old'
+              ((s as any).mbarrtemp = (s as any).mbarrtemp ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'cold';
+              ((s as any).mbarrstat = (s as any).mbarrstat ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'old';
             } else {
-              // TODO-QSP: $mbarrtemp[ARGS[1]] = 'cold'
-              // TODO-QSP: $mbarrstat[ARGS[1]] = 'rancid'
+              ((s as any).mbarrtemp = (s as any).mbarrtemp ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'cold';
+              ((s as any).mbarrstat = (s as any).mbarrstat ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'rancid';
             }
           }
         }
       } else {
         if (((s as any).mbarrcool ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 2) {
           if ((((s as any).mbarrmage ?? 0)[String((s as any).locArgs?.[1] ?? '')] + 10080) >= qspFunc(s, 'lact_bp', 'time_stamp')) {
-            // TODO-QSP: $mbarrtemp[ARGS[1]] = 'frozen'
-            // TODO-QSP: $mbarrstat[ARGS[1]] = 'fresh'
+            ((s as any).mbarrtemp = (s as any).mbarrtemp ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'frozen';
+            ((s as any).mbarrstat = (s as any).mbarrstat ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'fresh';
           } else {
             if ((((s as any).mbarrmage ?? 0)[String((s as any).locArgs?.[1] ?? '')] + 10080) < qspFunc(s, 'lact_bp', 'time_stamp')  &&  (((s as any).mbarrmage ?? 0)[String((s as any).locArgs?.[1] ?? '')] + 262080) >= qspFunc(s, 'lact_bp', 'time_stamp')) {
-              // TODO-QSP: $mbarrtemp[ARGS[1]] = 'frozen'
-              // TODO-QSP: $mbarrstat[ARGS[1]] = 'normal'
+              ((s as any).mbarrtemp = (s as any).mbarrtemp ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'frozen';
+              ((s as any).mbarrstat = (s as any).mbarrstat ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'normal';
             } else {
               if ((((s as any).mbarrmage ?? 0)[String((s as any).locArgs?.[1] ?? '')] + 262080) < qspFunc(s, 'lact_bp', 'time_stamp')  &&  (((s as any).mbarrmage ?? 0)[String((s as any).locArgs?.[1] ?? '')] + 525600) >= qspFunc(s, 'lact_bp', 'time_stamp')) {
-                // TODO-QSP: $mbarrtemp[ARGS[1]] = 'frozen'
-                // TODO-QSP: $mbarrstat[ARGS[1]] = 'old'
+                ((s as any).mbarrtemp = (s as any).mbarrtemp ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'frozen';
+                ((s as any).mbarrstat = (s as any).mbarrstat ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'old';
               } else {
-                // TODO-QSP: $mbarrtemp[ARGS[1]] = 'frozen'
-                // TODO-QSP: $mbarrstat[ARGS[1]] = 'rancid'
+                ((s as any).mbarrtemp = (s as any).mbarrtemp ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'frozen';
+                ((s as any).mbarrstat = (s as any).mbarrstat ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'rancid';
               }
             }
           }
         } else {
-          // TODO-QSP: $mbarrtemp[ARGS[1]] = 'warm'
-          // TODO-QSP: $mbarrstat[ARGS[1]] = 'fresh'
+          ((s as any).mbarrtemp = (s as any).mbarrtemp ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'warm';
+          ((s as any).mbarrstat = (s as any).mbarrstat ?? {})[((s as any).locArgs?.[1] ?? 0)] = 'fresh';
         }
       }
     }
   }
-  // TODO-QSP: end
+  (s as any).pump_start_timestamp = undefined;
   scene.build();
 }
 
@@ -239,17 +236,17 @@ function enterUseableSbottleCount(s: GameState, scene: SceneBuilder): void {
   (s as any).usbc_i = 0;
   (s as any).bottlecounter = 0;
   if (((s as any).reg_bottles_count ?? 0) > 0) {
-    // TODO-QSP: :usbc_loop
-    if (((s as any).usbc_i ?? 0) <= (((s as any).reg_bottlem_count ?? 0) + ((s as any).reg_bottles_count ?? 0))) {
-      if (((s as any).mbarrtype ?? 0)?.[String((s as any).usbc_i ?? 0)] === 1500  &&  ((s as any).mbarrfill ?? 0)?.[String((s as any).usbc_i ?? 0)] === 0) {
-        (s as any).bottlecounter = ((s as any).bottlecounter ?? 0) + (1);
+    while (true) {
+      if (((s as any).usbc_i ?? 0) <= (((s as any).reg_bottlem_count ?? 0) + ((s as any).reg_bottles_count ?? 0))) {
+        if (((s as any).mbarrtype ?? 0)?.[String((s as any).usbc_i ?? 0)] === 1500  &&  ((s as any).mbarrfill ?? 0)?.[String((s as any).usbc_i ?? 0)] === 0) {
+          (s as any).bottlecounter = ((s as any).bottlecounter ?? 0) + (1);
+        }
+        (s as any).usbc_i = ((s as any).usbc_i ?? 0) + (1);
+        break;
       }
-      (s as any).usbc_i = ((s as any).usbc_i ?? 0) + (1);
-      // TODO-QSP: jump 'usbc_loop'
     }
   }
   (s as any).result = ((s as any).bottlecounter ?? 0);
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -257,17 +254,17 @@ function enterUseableMbottleCount(s: GameState, scene: SceneBuilder): void {
   (s as any).umbc_i = 0;
   (s as any).bottlecounter = 0;
   if (((s as any).reg_bottlem_count ?? 0) > 0) {
-    // TODO-QSP: :umbc_loop
-    if (((s as any).umbc_i ?? 0) <= (((s as any).reg_bottlem_count ?? 0) + ((s as any).reg_bottles_count ?? 0))) {
-      if (((s as any).mbarrtype ?? 0)?.[String((s as any).umbc_i ?? 0)] === 2500  &&  ((s as any).mbarrfill ?? 0)?.[String((s as any).umbc_i ?? 0)] === 0) {
-        (s as any).bottlecounter = ((s as any).bottlecounter ?? 0) + (1);
+    while (true) {
+      if (((s as any).umbc_i ?? 0) <= (((s as any).reg_bottlem_count ?? 0) + ((s as any).reg_bottles_count ?? 0))) {
+        if (((s as any).mbarrtype ?? 0)?.[String((s as any).umbc_i ?? 0)] === 2500  &&  ((s as any).mbarrfill ?? 0)?.[String((s as any).umbc_i ?? 0)] === 0) {
+          (s as any).bottlecounter = ((s as any).bottlecounter ?? 0) + (1);
+        }
+        (s as any).umbc_i = ((s as any).umbc_i ?? 0) + (1);
+        break;
       }
-      (s as any).umbc_i = ((s as any).umbc_i ?? 0) + (1);
-      // TODO-QSP: jump 'umbc_loop'
     }
   }
   (s as any).result = ((s as any).bottlecounter ?? 0);
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -313,19 +310,18 @@ function enterBpMilking(s: GameState, scene: SceneBuilder): void {
               scene.text('You currently use a 150ml bottle on your breast pump.');
             } else {
               if (((s as any).pump_bottletype ?? 0) === 1500) {
-                scene.text('Current bottle size in use: &gt;150ml | <a href="#" onclick="window.__gameStore.setState((s) => { s.pump_bottletype = s.2500; return s; }); window.__gameStore.getState().doGoto(/u0027lact_bp/u0027, /u0027bp_milking/u0027); return false;">250ml</a>');
+                scene.text('Current bottle size in use: &gt;150ml | <a href="#" onclick="window.__gameStore.setState((s) => { s.pump_bottletype = s.2500; return s; }); window.__gameStore.getState().doGoto(\u0027lact_bp\u0027, \u0027bp_milking\u0027); return false;">250ml</a>');
               } else {
                 (s as any).pump_bottletype = 2500;
-                scene.text('Current bottle size in use <a href="#" onclick="window.__gameStore.setState((s) => { s.pump_bottletype = s.1500; return s; }); window.__gameStore.getState().doGoto(/u0027lact_bp/u0027, /u0027bp_milking/u0027); return false;">150ml</a> | &gt;250ml');
+                scene.text('Current bottle size in use <a href="#" onclick="window.__gameStore.setState((s) => { s.pump_bottletype = s.1500; return s; }); window.__gameStore.getState().doGoto(\u0027lact_bp\u0027, \u0027bp_milking\u0027); return false;">150ml</a> | &gt;250ml');
               }
             }
           }
         }
         if ((((s as any).mc_inventory ?? 0)?.['bottle_m'] + ((s as any).mc_inventory ?? 0)?.['bottle_s']) === 1) {
-          scene.text('You have one bottle. You can check it <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027lact_bp/u0027, /u0027view_milk_bottles/u0027, String(window.__gameStore.getState().1 ?? /u0027/u0027)); return false;">here</a>');
+          scene.text('You have one bottle. You can check it <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027lact_bp\u0027, \u0027view_milk_bottles\u0027, String(window.__gameStore.getState().1 ?? \u0027\u0027)); return false;">here</a>');
         } else {
           if ((((s as any).mc_inventory ?? 0)?.['bottle_m'] + ((s as any).mc_inventory ?? 0)?.['bottle_s']) > 1) {
-            // TODO-QSP: dynamic text: You have <<mc_inventory[''bottle_m''] + mc_inventory[''bottle_s'']>> bottles. Yo...
             scene.text(`You have ${(((s as any).mc_inventory ?? {})?.['bottle_m'] ?? 0) + (((s as any).mc_inventory ?? {})?.['bottle_s'] ?? 0)} bottles. You can check them <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027lact_bp/u0027, /u0027view_milk_bottles/u0027, String(window.__gameStore.getState().1 ?? /u0027/u0027)); return false;">here</a>`);
           }
         }
@@ -358,7 +354,6 @@ function enterBpMilking(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
     qspCall(st, 'stat', '');
     scene.text('As you prepare for pumping you weight your breasts in your hands. You feel that your breasts carry a large amount of milk and pumping will probably take a long time.');
-    // TODO-QSP: dynamic text: Getting relieve for your breasts with the manual breast pump will probably take ...
     scene.text(`Getting relieve for your breasts with the manual breast pump will probably take at least ${((st as any).pumptime ?? '')} minutes.`);
     if (((st as any).pcs_know_mward ?? 0) <= 0) {
       scene.text('You consider visiting a hospital to get help or buying a better breast pump.');
@@ -425,29 +420,28 @@ function enterBpMilking(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterMassage(s: GameState, scene: SceneBuilder): void {
   if (((s as any).cheatVars ?? 0)?.['no_lactation'] === 1) {
-    // TODO-QSP: exit
+    return;
   }
   if (((s as any).lactation ?? 0)?.['active'] === 0  &&  ((s as any).pcs_horny ?? 0) < 10) {
-    // TODO-QSP: exit
+    return;
   }
   if (((s as any).location_type ?? 0) === 'bathroom') {
     if (((s as any).mc_inventory ?? 0)?.['breast_pump'] === 1) {
-      // TODO-QSP: exit
+      return;
     }
   } else {
     if (((s as any).location_type ?? 0) === 'restroom') {
       if (((s as any).pcs_inhib ?? 0) < 30) {
-        // TODO-QSP: exit
+        return;
       }
     } else {
       if (((s as any).pcs_inhib ?? 0) < 20) {
-        // TODO-QSP: exit
+        return;
       }
     }
   }
@@ -460,7 +454,6 @@ function enterMassage(s: GameState, scene: SceneBuilder): void {
       { label: 'Massage your breasts', goto: ['lact_bp', 'man_milking'] },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -479,7 +472,6 @@ function enterManMilking(s: GameState, scene: SceneBuilder): void {
         { label: 'Express until breasts are empty', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 2;
     scene.text('You prepare yourself and weight your breasts in your hands. You feel that your breasts carry a large amount of milk and manually expressing it will probably take a long time.');
-    // TODO-QSP: dynamic text: Getting relieve for your breasts with manual expression will probably take at le...
     scene.text(`Getting relieve for your breasts with manual expression will probably take at least ${((st as any).pumptime ?? '')} minutes.`);
     if (((st as any).mc_inventory ?? 0)?.['breast_pump'] <= 0  &&  ((st as any).bp_unbox ?? 0) <= 1) {
       scene.text('You should consider buying a breast pump');
@@ -540,7 +532,6 @@ function enterManMilking(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: '5 Minutes', handler: (st: GameState) => {
     (st as any).pumptime = 5;
@@ -650,7 +641,6 @@ function enterBpUnboxEvent(s: GameState, scene: SceneBuilder): void {
           if (((st as any).milkedvolume ?? 0) <= 1500) {
             scene.text('You start to squeeze the bulb. Your nipple is sucked into the cone, getting elongated a bit. It feels weird at first and you release the lever, the suction on your nipple goes away and the nipple retracts.');
             scene.text('With your hand you squeeze down again, your nipple sucked in again. You go on, and start to rhythmically squeeze it. The pump starts to draw milk from your breast.');
-            // TODO-QSP: dynamic text: You go on for a minute and then detach the pump. You collected <<milkedvolume/10...
             scene.text(`You go on for a minute and then detach the pump. You collected ${((st as any).milkedvolume ?? '')/10}ml of your breast milk.`);
             scene.img('images/pc/body/tits/pump_half.jpg');
           } else {
@@ -776,7 +766,6 @@ function enterBpUnboxEvent(s: GameState, scene: SceneBuilder): void {
               if (((s as any).milkedvolume ?? 0) <= 1500) {
                 scene.text('You start to squeeze the bulb. Your nipple is sucked into the cone, getting elongated a bit. It feels weird at first and you release the lever, the suction on your nipple goes away and the nipple retracts.');
                 scene.text('With your hand you squeeze down again, your nipple sucked in again. You go on, and start to rhythmically squeeze it. The pump starts to draw milk from your breast.');
-                // TODO-QSP: dynamic text: You go on for a minute and then detach the pump. You collected <<milkedvolume/10...
                 scene.text(`You go on for a minute and then detach the pump. You collected ${((s as any).milkedvolume ?? '')/10}ml of your breast milk.`);
                 scene.img('images/pc/body/tits/pump_half.jpg');
               } else {
@@ -827,7 +816,6 @@ function enterBpUnboxEvent(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -839,26 +827,26 @@ function enterRegBottleCount(s: GameState, scene: SceneBuilder): void {
     (s as any).reg_bottlem_count = 0;
   }
   if ((((s as any).reg_bottlem_count ?? 0) + ((s as any).reg_bottles_count ?? 0)) < (((s as any).mc_inventory ?? 0)?.['bottle_m'] + ((s as any).mc_inventory ?? 0)?.['bottle_s'])) {
-    // TODO-QSP: :rbc_loop
-    (s as any).rbc_index = (((s as any).reg_bottlem_count ?? 0) + ((s as any).reg_bottles_count ?? 0)) - 1;
-    if ((((s as any).mc_inventory ?? 0)?.['bottle_s'] - ((s as any).reg_bottles_count ?? 0)) > 0) {
-      (s as any).reg_bottles_count = ((s as any).reg_bottles_count ?? 0) + (1);
+    while (true) {
       (s as any).rbc_index = (((s as any).reg_bottlem_count ?? 0) + ((s as any).reg_bottles_count ?? 0)) - 1;
-      ((s as any).mbarrtype = (s as any).mbarrtype ?? {})[String((s as any).rbc_index ?? 0)] = 1500;
-      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).rbc_index ?? 0)]; enterEmptyMilkBottle(s, scene); (s as any).locArgs = __savedLocArgs; }
-      ((s as any).mbarrloca = (s as any).mbarrloca ?? {})[String((s as any).rbc_index ?? 0)] = 1;
-      // TODO-QSP: jump 'rbc_loop'
-    }
-    if ((((s as any).mc_inventory ?? 0)?.['bottle_m'] - ((s as any).reg_bottlem_count ?? 0)) > 0) {
-      (s as any).reg_bottlem_count = ((s as any).reg_bottlem_count ?? 0) + (1);
-      (s as any).rbc_index = (((s as any).reg_bottlem_count ?? 0) + ((s as any).reg_bottles_count ?? 0)) - 1;
-      ((s as any).mbarrtype = (s as any).mbarrtype ?? {})[String((s as any).rbc_index ?? 0)] = 2500;
-      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).rbc_index ?? 0)]; enterEmptyMilkBottle(s, scene); (s as any).locArgs = __savedLocArgs; }
-      ((s as any).mbarrloca = (s as any).mbarrloca ?? {})[String((s as any).rbc_index ?? 0)] = 1;
-      // TODO-QSP: jump 'rbc_loop'
+      if ((((s as any).mc_inventory ?? 0)?.['bottle_s'] - ((s as any).reg_bottles_count ?? 0)) > 0) {
+        (s as any).reg_bottles_count = ((s as any).reg_bottles_count ?? 0) + (1);
+        (s as any).rbc_index = (((s as any).reg_bottlem_count ?? 0) + ((s as any).reg_bottles_count ?? 0)) - 1;
+        ((s as any).mbarrtype = (s as any).mbarrtype ?? {})[String((s as any).rbc_index ?? 0)] = 1500;
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).rbc_index ?? 0)]; enterEmptyMilkBottle(s, scene); (s as any).locArgs = __savedLocArgs; }
+        ((s as any).mbarrloca = (s as any).mbarrloca ?? {})[String((s as any).rbc_index ?? 0)] = 1;
+        break;
+      }
+      if ((((s as any).mc_inventory ?? 0)?.['bottle_m'] - ((s as any).reg_bottlem_count ?? 0)) > 0) {
+        (s as any).reg_bottlem_count = ((s as any).reg_bottlem_count ?? 0) + (1);
+        (s as any).rbc_index = (((s as any).reg_bottlem_count ?? 0) + ((s as any).reg_bottles_count ?? 0)) - 1;
+        ((s as any).mbarrtype = (s as any).mbarrtype ?? {})[String((s as any).rbc_index ?? 0)] = 2500;
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).rbc_index ?? 0)]; enterEmptyMilkBottle(s, scene); (s as any).locArgs = __savedLocArgs; }
+        ((s as any).mbarrloca = (s as any).mbarrloca ?? {})[String((s as any).rbc_index ?? 0)] = 1;
+        break;
+      }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -887,7 +875,6 @@ function enterMilking(s: GameState, scene: SceneBuilder): void {
         scene.text('A few droplets of liquid come out of your nipples but it is not milk.');
       }
       if (((s as any).pump_stop_brake ?? 0) === 1) {
-        // TODO-QSP: dynamic text: During pumping your nipples start to hurt extremely. You have to stop after <<pu...
         scene.text(`During pumping your nipples start to hurt extremely. You have to stop after ${((s as any).pumptime ?? '')} minutes, because you couldn't go on.`);
       }
       if (((s as any).lactation ?? 0)?.['prolactinlvl'] > 100) {
@@ -936,272 +923,250 @@ function enterMilking(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'stat', '');
         scene.img('images/pc/body/tits/pump_lactating.jpg');
         if (((s as any).pumptime ?? 0) > 1) {
-          // TODO-QSP: dynamic text: You attach the pump to your breast and start rhythmically squeezing the bulb for...
           scene.text(`You attach the pump to your breast and start rhythmically squeezing the bulb for ${((s as any).pumptime ?? '')} minutes.`);
         } else {
           scene.text('You attach the pump to your breast and start rhythmically squeezing the bulb for one minute.');
         }
         if (((s as any).milkedvolume ?? 0) > ((s as any).pump_bottletype ?? 0)  &&  (((s as any).bp_useable_sbottle ?? 0)*1500 + ((s as any).bp_useable_mbottle ?? 0)*2500) === ((s as any).pump_bottletype ?? 0)) {
           scene.text('During pumping you have to empty the collecting bottle as it filled up with your milk.');
-          // TODO-QSP: dynamic text: You give it a few more pumps and detach the pump.<br>You filled the bottle with ...
           scene.text(`You give it a few more pumps and detach the pump.<br>You filled the bottle with ${((s as any).pump_bottletype ?? '')/10}ml of your milk.`);
           scene.text('To collect all your pumped milk you should probably check if the pharmacy has additional bottles for your breast pump.');
           if ((((s as any).bp_useable_sbottle ?? 0) - ((s as any).bp_used_sbottle ?? 0)) > 0) {
             (s as any).bottlecounter = 0;
-            // TODO-QSP: :sbottle_loneloop
-            if (((s as any).bottlecounter ?? 0) < (((s as any).mc_inventory ?? 0)?.['bottle_m'] + ((s as any).mc_inventory ?? 0)?.['bottle_s'])  &&  ((s as any).milkedvolume ?? 0) > 1500) {
-              if (((s as any).mbarrtype ?? 0)?.[String((s as any).bottlecounter ?? 0)] !== 1500  ||  ((s as any).mbarrfill ?? 0)?.[String((s as any).bottlecounter ?? 0)] !== 0) {
-                (s as any).bottlecounter = ((s as any).bottlecounter ?? 0) + (1);
-                // TODO-QSP: jump 'sbottle_loneloop'
+            while (true) {
+              if (((s as any).bottlecounter ?? 0) < (((s as any).mc_inventory ?? 0)?.['bottle_m'] + ((s as any).mc_inventory ?? 0)?.['bottle_s'])  &&  ((s as any).milkedvolume ?? 0) > 1500) {
+                if (((s as any).mbarrtype ?? 0)?.[String((s as any).bottlecounter ?? 0)] !== 1500  ||  ((s as any).mbarrfill ?? 0)?.[String((s as any).bottlecounter ?? 0)] !== 0) {
+                  (s as any).bottlecounter = ((s as any).bottlecounter ?? 0) + (1);
+                  break;
+                }
+                { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).bottlecounter ?? 0), 1500]; enterFillMilkBottle(s, scene); (s as any).locArgs = __savedLocArgs; }
               }
-              { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).bottlecounter ?? 0), 1500]; enterFillMilkBottle(s, scene); (s as any).locArgs = __savedLocArgs; }
             }
           } else {
             if ((((s as any).bp_useable_mbottle ?? 0) - ((s as any).bp_used_mbottle ?? 0)) > 0  &&  ((s as any).milkedvolume ?? 0) > 2500) {
               (s as any).bottlecounter = 0;
-              // TODO-QSP: :mbottle_loneloop
-              if (((s as any).bottlecounter ?? 0) < (((s as any).mc_inventory ?? 0)?.['bottle_m'] + ((s as any).mc_inventory ?? 0)?.['bottle_s'])) {
-                if (((s as any).mbarrtype ?? 0)?.[String((s as any).bottlecounter ?? 0)] !== 2500  ||  ((s as any).mbarrfill ?? 0)?.[String((s as any).bottlecounter ?? 0)] !== 0) {
-                  (s as any).bottlecounter = ((s as any).bottlecounter ?? 0) + (1);
-                  // TODO-QSP: jump 'mbottle_loneloop'
+              while (true) {
+                if (((s as any).bottlecounter ?? 0) < (((s as any).mc_inventory ?? 0)?.['bottle_m'] + ((s as any).mc_inventory ?? 0)?.['bottle_s'])) {
+                  if (((s as any).mbarrtype ?? 0)?.[String((s as any).bottlecounter ?? 0)] !== 2500  ||  ((s as any).mbarrfill ?? 0)?.[String((s as any).bottlecounter ?? 0)] !== 0) {
+                    (s as any).bottlecounter = ((s as any).bottlecounter ?? 0) + (1);
+                    break;
+                  }
+                  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).bottlecounter ?? 0), 2500]; enterFillMilkBottle(s, scene); (s as any).locArgs = __savedLocArgs; }
                 }
-                { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).bottlecounter ?? 0), 2500]; enterFillMilkBottle(s, scene); (s as any).locArgs = __savedLocArgs; }
               }
             } else {
               scene.text('unhandled case - you shouldn\'t end up here. Please report this in the bug section of Girl Life in the tfg-forums.');
               scene.text('first fork case');
-              // TODO-QSP: dynamic text: bp_used_mbottle: <<bp_used_mbottle>>
               scene.text(`bp_used_mbottle: ${((s as any).bp_used_mbottle ?? '')}`);
-              // TODO-QSP: dynamic text: bp_used_sbottle: <<bp_used_sbottle>>
               scene.text(`bp_used_sbottle: ${((s as any).bp_used_sbottle ?? '')}`);
-              // TODO-QSP: dynamic text: milkedvolume: <<milkedvolume>>
               scene.text(`milkedvolume: ${((s as any).milkedvolume ?? '')}`);
-              // TODO-QSP: dynamic text: pump_bottletype: <<pump_bottletype>>
               scene.text(`pump_bottletype: ${((s as any).pump_bottletype ?? '')}`);
-              // TODO-QSP: dynamic text: bp_useable_sbottle: <<bp_useable_sbottle>>
               scene.text(`bp_useable_sbottle: ${((s as any).bp_useable_sbottle ?? '')}`);
-              // TODO-QSP: dynamic text: bp_useable_mbottle: <<bp_useable_mbottle>>
               scene.text(`bp_useable_mbottle: ${((s as any).bp_useable_mbottle ?? '')}`);
             }
           }
         } else {
           if (((s as any).milkedvolume ?? 0) > ((s as any).pump_bottletype ?? 0)  &&  (((s as any).bp_useable_sbottle ?? 0)*1500 + ((s as any).bp_useable_mbottle ?? 0)*2500) > ((s as any).pump_bottletype ?? 0)) {
-            // TODO-QSP: :sbottleloop
-            if (((s as any).pump_bottletype ?? 0) < 2500  &&  ((s as any).milkedvolume ?? 0) >= 1500  &&  ((s as any).bp_used_sbottle ?? 0) < ((s as any).bp_useable_sbottle ?? 0)) {
-              (s as any).bp_used_sbottle = ((s as any).bp_used_sbottle ?? 0) + (1);
-              (s as any).milkedvolume = ((s as any).milkedvolume ?? 0) - (1500);
-              (s as any).bottlecounter = 0;
-              // TODO-QSP: :sbottle_searchloop
-              if (((s as any).bottlecounter ?? 0) < (((s as any).mc_inventory ?? 0)?.['bottle_m'] + ((s as any).mc_inventory ?? 0)?.['bottle_s'])) {
-                if (((s as any).mbarrtype ?? 0)?.[String((s as any).bottlecounter ?? 0)] !== 1500  ||  ((s as any).mbarrfill ?? 0)?.[String((s as any).bottlecounter ?? 0)] !== 0) {
-                  (s as any).bottlecounter = ((s as any).bottlecounter ?? 0) + (1);
-                  // TODO-QSP: jump 'sbottle_searchloop'
-                }
-                { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).bottlecounter ?? 0), 1500]; enterFillMilkBottle(s, scene); (s as any).locArgs = __savedLocArgs; }
-              }
-              // TODO-QSP: jump 'sbottleloop'
-            }
-            // TODO-QSP: :mbottleloop
-            if (((s as any).pump_bottletype ?? 0) >= 2500  &&  ((s as any).milkedvolume ?? 0) >= 2500  &&  ((s as any).bp_used_mbottle ?? 0) < ((s as any).bp_useable_mbottle ?? 0)) {
-              (s as any).bp_used_mbottle = ((s as any).bp_used_mbottle ?? 0) + (1);
-              (s as any).milkedvolume = ((s as any).milkedvolume ?? 0) - (2500);
-              (s as any).bottlecounter = 0;
-              // TODO-QSP: :mbottle_searchloop
-              if (((s as any).bottlecounter ?? 0) < (((s as any).mc_inventory ?? 0)?.['bottle_m'] + ((s as any).mc_inventory ?? 0)?.['bottle_s'])) {
-                if (((s as any).mbarrtype ?? 0)?.[String((s as any).bottlecounter ?? 0)] !== 2500  ||  ((s as any).mbarrfill ?? 0)?.[String((s as any).bottlecounter ?? 0)] !== 0) {
-                  (s as any).bottlecounter = ((s as any).bottlecounter ?? 0) + (1);
-                  // TODO-QSP: jump 'mbottle_searchloop'
-                }
-                { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).bottlecounter ?? 0), 2500]; enterFillMilkBottle(s, scene); (s as any).locArgs = __savedLocArgs; }
-              }
-              // TODO-QSP: jump 'mbottleloop'
-            }
-            if (((s as any).milkedvolume ?? 0) > 0  &&  (((((s as any).bp_useable_mbottle ?? 0) - ((s as any).bp_used_mbottle ?? 0)) > 0)  ||  ((((s as any).bp_useable_sbottle ?? 0) - ((s as any).bp_used_sbottle ?? 0)) > 0))) {
-              // TODO-QSP: :altfill01
-              if (((s as any).pump_bottletype ?? 0) < 2500  &&  ((s as any).milkedvolume ?? 0) >= 2500  &&  ((s as any).bp_used_mbottle ?? 0) < ((s as any).bp_useable_mbottle ?? 0)) {
-                (s as any).bp_used_mbottle = ((s as any).bp_used_mbottle ?? 0) + (1);
-                (s as any).milkedvolume = ((s as any).milkedvolume ?? 0) - (2500);
-                (s as any).bottlecounter = 0;
-                // TODO-QSP: :sbottle_altsearchloop
-                if (((s as any).bottlecounter ?? 0) < (((s as any).mc_inventory ?? 0)?.['bottle_m'] + ((s as any).mc_inventory ?? 0)?.['bottle_s'])) {
-                  if (((s as any).mbarrtype ?? 0)?.[String((s as any).bottlecounter ?? 0)] !== 2500  ||  ((s as any).mbarrfill ?? 0)?.[String((s as any).bottlecounter ?? 0)] !== 0) {
-                    (s as any).bottlecounter = ((s as any).bottlecounter ?? 0) + (1);
-                    // TODO-QSP: jump 'sbottle_altsearchloop'
-                  }
-                  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).bottlecounter ?? 0), 2500]; enterFillMilkBottle(s, scene); (s as any).locArgs = __savedLocArgs; }
-                }
-                // TODO-QSP: jump 'altfill01'
-              }
-              // TODO-QSP: :altfill02
-              if (((s as any).pump_bottletype ?? 0) >= 2500  &&  ((s as any).milkedvolume ?? 0) >= 1500  &&  ((s as any).bp_used_sbottle ?? 0) < ((s as any).bp_useable_sbottle ?? 0)) {
+            while (true) {
+              if (((s as any).pump_bottletype ?? 0) < 2500  &&  ((s as any).milkedvolume ?? 0) >= 1500  &&  ((s as any).bp_used_sbottle ?? 0) < ((s as any).bp_useable_sbottle ?? 0)) {
                 (s as any).bp_used_sbottle = ((s as any).bp_used_sbottle ?? 0) + (1);
                 (s as any).milkedvolume = ((s as any).milkedvolume ?? 0) - (1500);
                 (s as any).bottlecounter = 0;
-                // TODO-QSP: :mbottle_altsearchloop
-                if (((s as any).bottlecounter ?? 0) < (((s as any).mc_inventory ?? 0)?.['bottle_m'] + ((s as any).mc_inventory ?? 0)?.['bottle_s'])) {
-                  if (((s as any).mbarrtype ?? 0)?.[String((s as any).bottlecounter ?? 0)] !== 1500  ||  ((s as any).mbarrfill ?? 0)?.[String((s as any).bottlecounter ?? 0)] !== 0) {
-                    (s as any).bottlecounter = ((s as any).bottlecounter ?? 0) + (1);
-                    // TODO-QSP: jump 'mbottle_altsearchloop'
-                  }
-                  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).bottlecounter ?? 0), 1500]; enterFillMilkBottle(s, scene); (s as any).locArgs = __savedLocArgs; }
-                }
-                // TODO-QSP: jump 'altfill02'
-              }
-            }
-            if (((s as any).milkedvolume ?? 0) > 0  &&  ((s as any).bp_useable_mbottle ?? 0) === ((s as any).bp_used_mbottle ?? 0)  &&  ((s as any).bp_useable_sbottle ?? 0) === ((s as any).bp_used_sbottle ?? 0)) {
-              scene.text('During pumping you have to switch the collecting bottle as it filled up with your milk. Unfortunately you don\'t have enough bottles to collect all your milk.');
-              // TODO-QSP: dynamic text: You had to pour <<milkedvolume/10>>ml of your breast milk into the sink.
-              scene.text(`You had to pour ${((s as any).milkedvolume ?? '')/10}ml of your breast milk into the sink.`);
-              (s as any).milkedvolume = ((((s as any).bp_used_mbottle ?? 0)*2500) + (((s as any).bp_used_sbottle ?? 0)*1500));
-            } else {
-              if (((s as any).milkedvolume ?? 0) > 0  &&  ((s as any).milkedvolume ?? 0) < 1500  &&  (((s as any).bp_useable_sbottle ?? 0) - ((s as any).bp_used_sbottle ?? 0)) > 0) {
-                scene.text('During pumping you have to switch the collecting bottle as it filled up with your milk.');
-              } else {
-                if (((s as any).milkedvolume ?? 0) > 0  &&  ((s as any).milkedvolume ?? 0) < 2500  &&  ((s as any).milkedvolume ?? 0) > 1500  &&  (((s as any).bp_useable_mbottle ?? 0) - ((s as any).bp_used_mbottle ?? 0)) > 0) {
-                  scene.text('During pumping you have to switch the collecting bottle as it filled up with your milk.');
-                } else {
-                  scene.text('During pumping you have to switch the collecting bottle as it filled up with your milk.');
-                }
-              }
-            }
-            if (((s as any).bp_used_mbottle ?? 0) >= 1  ||  ((s as any).bp_used_sbottle ?? 0) >= 1) {
-              scene.img('images/pc/body/tits/bottles_full.jpg');
-              if (((s as any).milkedvolume ?? 0) === ((((s as any).bp_used_mbottle ?? 0)*2500) + (((s as any).bp_used_sbottle ?? 0)*1500))) {
-                // TODO-QSP: dynamic text: You pumped <<milkedvolume/10>>ml of milk from your breasts, collecting it in:
-                scene.text(`You pumped ${((s as any).milkedvolume ?? '')/10}ml of milk from your breasts, collecting it in:`);
-                if (((s as any).bp_useable_sbottle ?? 0) === 1) {
-                  scene.text('One 150ml bottle');
-                } else {
-                  if (((s as any).bp_used_sbottle ?? 0) > 1) {
-                    // TODO-QSP: dynamic text: <<bp_used_sbottle>> x 150ml bottles
-                    scene.text(`${((s as any).bp_used_sbottle ?? '')} x 150ml bottles`);
-                  }
-                }
-                if (((s as any).bp_used_mbottle ?? 0) === 1) {
-                  scene.text('One 250ml bottle');
-                } else {
-                  if (((s as any).bp_used_mbottle ?? 0) > 1) {
-                    // TODO-QSP: dynamic text: <<bp_used_mbottle>> x 250ml bottles
-                    scene.text(`${((s as any).bp_used_mbottle ?? '')} x 250ml bottles`);
-                  }
-                }
-              } else {
-                // TODO-QSP: dynamic text: You pumped <<((bp_used_mbottle*2500)+(bp_used_sbottle*1500)+milkedvolume)/10>>ml...
-                scene.text(`You pumped ${((((s as any).bp_used_mbottle ?? '')*2500)+(((s as any).bp_used_sbottle ?? '')*1500)+((s as any).milkedvolume ?? ''))/10}ml of milk from your breasts collecting it in:`);
-                if (((s as any).bp_used_sbottle ?? 0) === 1) {
-                  scene.text('One 150ml bottle');
-                } else {
-                  if (((s as any).bp_used_sbottle ?? 0) > 1) {
-                    // TODO-QSP: dynamic text: <<bp_used_sbottle>> x 150ml bottles
-                    scene.text(`${((s as any).bp_used_sbottle ?? '')} x 150ml bottles`);
-                  }
-                }
-                if (((s as any).bp_used_mbottle ?? 0) === 1) {
-                  scene.text('One 250ml bottle');
-                } else {
-                  if (((s as any).bp_used_mbottle ?? 0) > 1) {
-                    // TODO-QSP: dynamic text: <<bp_used_mbottle>> x 250ml bottles
-                    scene.text(`${((s as any).bp_used_mbottle ?? '')} x 250ml bottles`);
-                  }
-                }
-                if ((((s as any).bp_useable_sbottle ?? 0) - ((s as any).bp_used_sbottle ?? 0)) > 0  &&  ((s as any).milkedvolume ?? 0) <= 1500) {
-                  (s as any).bottlecounter = 0;
-                  // TODO-QSP: :sbottle_restsearchloop
+                while (true) {
                   if (((s as any).bottlecounter ?? 0) < (((s as any).mc_inventory ?? 0)?.['bottle_m'] + ((s as any).mc_inventory ?? 0)?.['bottle_s'])) {
                     if (((s as any).mbarrtype ?? 0)?.[String((s as any).bottlecounter ?? 0)] !== 1500  ||  ((s as any).mbarrfill ?? 0)?.[String((s as any).bottlecounter ?? 0)] !== 0) {
                       (s as any).bottlecounter = ((s as any).bottlecounter ?? 0) + (1);
-                      // TODO-QSP: jump 'sbottle_restsearchloop'
+                      break;
                     }
-                    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).bottlecounter ?? 0), ((s as any).milkedvolume ?? 0)]; enterFillMilkBottle(s, scene); (s as any).locArgs = __savedLocArgs; }
+                    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).bottlecounter ?? 0), 1500]; enterFillMilkBottle(s, scene); (s as any).locArgs = __savedLocArgs; }
                   }
-                  // TODO-QSP: dynamic text: You also stored <<milkedvolume/10>>ml of breast milk in a 150ml bottle.
-                  scene.text(`You also stored ${((s as any).milkedvolume ?? '')/10}ml of breast milk in a 150ml bottle.`);
-                } else {
-                  if ((((s as any).bp_useable_mbottle ?? 0) - ((s as any).bp_used_mbottle ?? 0)) > 0  &&  ((s as any).milkedvolume ?? 0) <= 2500) {
-                    (s as any).bottlecounter = 0;
-                    // TODO-QSP: :mbottle_restsearchloop
+                  break;
+                }
+              }
+              while (true) {
+                if (((s as any).pump_bottletype ?? 0) >= 2500  &&  ((s as any).milkedvolume ?? 0) >= 2500  &&  ((s as any).bp_used_mbottle ?? 0) < ((s as any).bp_useable_mbottle ?? 0)) {
+                  (s as any).bp_used_mbottle = ((s as any).bp_used_mbottle ?? 0) + (1);
+                  (s as any).milkedvolume = ((s as any).milkedvolume ?? 0) - (2500);
+                  (s as any).bottlecounter = 0;
+                  while (true) {
                     if (((s as any).bottlecounter ?? 0) < (((s as any).mc_inventory ?? 0)?.['bottle_m'] + ((s as any).mc_inventory ?? 0)?.['bottle_s'])) {
                       if (((s as any).mbarrtype ?? 0)?.[String((s as any).bottlecounter ?? 0)] !== 2500  ||  ((s as any).mbarrfill ?? 0)?.[String((s as any).bottlecounter ?? 0)] !== 0) {
                         (s as any).bottlecounter = ((s as any).bottlecounter ?? 0) + (1);
-                        // TODO-QSP: jump 'mbottle_restsearchloop'
+                        break;
                       }
-                      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).bottlecounter ?? 0), ((s as any).milkedvolume ?? 0)]; enterFillMilkBottle(s, scene); (s as any).locArgs = __savedLocArgs; }
+                      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).bottlecounter ?? 0), 2500]; enterFillMilkBottle(s, scene); (s as any).locArgs = __savedLocArgs; }
                     }
-                    // TODO-QSP: dynamic text: You also stored <<milkedvolume/10>>ml of breast milk in a 250ml bottle.
-                    scene.text(`You also stored ${((s as any).milkedvolume ?? '')/10}ml of breast milk in a 250ml bottle.`);
-                  } else {
-                    scene.text('unhandled case - you shouldn\'t end up here. Please report this in the bug section of Girl Life in the tfg-forums.');
-                    scene.text('second fork case');
-                    // TODO-QSP: dynamic text: bp_used_mbottle: <<bp_used_mbottle>>
-                    scene.text(`bp_used_mbottle: ${((s as any).bp_used_mbottle ?? '')}`);
-                    // TODO-QSP: dynamic text: bp_used_sbottle: <<bp_used_sbottle>>
-                    scene.text(`bp_used_sbottle: ${((s as any).bp_used_sbottle ?? '')}`);
-                    // TODO-QSP: dynamic text: milkedvolume: <<milkedvolume>>
-                    scene.text(`milkedvolume: ${((s as any).milkedvolume ?? '')}`);
-                    // TODO-QSP: dynamic text: pump_bottletype: <<pump_bottletype>>
-                    scene.text(`pump_bottletype: ${((s as any).pump_bottletype ?? '')}`);
-                    // TODO-QSP: dynamic text: bp_useable_sbottle: <<bp_useable_sbottle>>
-                    scene.text(`bp_useable_sbottle: ${((s as any).bp_useable_sbottle ?? '')}`);
-                    // TODO-QSP: dynamic text: bp_useable_mbottle: <<bp_useable_mbottle>>
-                    scene.text(`bp_useable_mbottle: ${((s as any).bp_useable_mbottle ?? '')}`);
+                    break;
                   }
                 }
-                (s as any).milkedvolume = ((s as any).milkedvolume ?? 0) + (((s as any).bp_used_mbottle ?? 0)*2500 + ((s as any).bp_used_sbottle ?? 0)*1500);
+                if (((s as any).milkedvolume ?? 0) > 0  &&  (((((s as any).bp_useable_mbottle ?? 0) - ((s as any).bp_used_mbottle ?? 0)) > 0)  ||  ((((s as any).bp_useable_sbottle ?? 0) - ((s as any).bp_used_sbottle ?? 0)) > 0))) {
+                  while (true) {
+                    if (((s as any).pump_bottletype ?? 0) < 2500  &&  ((s as any).milkedvolume ?? 0) >= 2500  &&  ((s as any).bp_used_mbottle ?? 0) < ((s as any).bp_useable_mbottle ?? 0)) {
+                      (s as any).bp_used_mbottle = ((s as any).bp_used_mbottle ?? 0) + (1);
+                      (s as any).milkedvolume = ((s as any).milkedvolume ?? 0) - (2500);
+                      (s as any).bottlecounter = 0;
+                      while (true) {
+                        if (((s as any).bottlecounter ?? 0) < (((s as any).mc_inventory ?? 0)?.['bottle_m'] + ((s as any).mc_inventory ?? 0)?.['bottle_s'])) {
+                          if (((s as any).mbarrtype ?? 0)?.[String((s as any).bottlecounter ?? 0)] !== 2500  ||  ((s as any).mbarrfill ?? 0)?.[String((s as any).bottlecounter ?? 0)] !== 0) {
+                            (s as any).bottlecounter = ((s as any).bottlecounter ?? 0) + (1);
+                            break;
+                          }
+                          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).bottlecounter ?? 0), 2500]; enterFillMilkBottle(s, scene); (s as any).locArgs = __savedLocArgs; }
+                        }
+                        break;
+                      }
+                    }
+                    while (true) {
+                      if (((s as any).pump_bottletype ?? 0) >= 2500  &&  ((s as any).milkedvolume ?? 0) >= 1500  &&  ((s as any).bp_used_sbottle ?? 0) < ((s as any).bp_useable_sbottle ?? 0)) {
+                        (s as any).bp_used_sbottle = ((s as any).bp_used_sbottle ?? 0) + (1);
+                        (s as any).milkedvolume = ((s as any).milkedvolume ?? 0) - (1500);
+                        (s as any).bottlecounter = 0;
+                        while (true) {
+                          if (((s as any).bottlecounter ?? 0) < (((s as any).mc_inventory ?? 0)?.['bottle_m'] + ((s as any).mc_inventory ?? 0)?.['bottle_s'])) {
+                            if (((s as any).mbarrtype ?? 0)?.[String((s as any).bottlecounter ?? 0)] !== 1500  ||  ((s as any).mbarrfill ?? 0)?.[String((s as any).bottlecounter ?? 0)] !== 0) {
+                              (s as any).bottlecounter = ((s as any).bottlecounter ?? 0) + (1);
+                              break;
+                            }
+                            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).bottlecounter ?? 0), 1500]; enterFillMilkBottle(s, scene); (s as any).locArgs = __savedLocArgs; }
+                          }
+                          break;
+                        }
+                      }
+                    }
+                  }
+                }
+                if (((s as any).milkedvolume ?? 0) > 0  &&  ((s as any).bp_useable_mbottle ?? 0) === ((s as any).bp_used_mbottle ?? 0)  &&  ((s as any).bp_useable_sbottle ?? 0) === ((s as any).bp_used_sbottle ?? 0)) {
+                  scene.text('During pumping you have to switch the collecting bottle as it filled up with your milk. Unfortunately you don\'t have enough bottles to collect all your milk.');
+                  scene.text(`You had to pour ${((s as any).milkedvolume ?? '')/10}ml of your breast milk into the sink.`);
+                  (s as any).milkedvolume = ((((s as any).bp_used_mbottle ?? 0)*2500) + (((s as any).bp_used_sbottle ?? 0)*1500));
+                } else {
+                  if (((s as any).milkedvolume ?? 0) > 0  &&  ((s as any).milkedvolume ?? 0) < 1500  &&  (((s as any).bp_useable_sbottle ?? 0) - ((s as any).bp_used_sbottle ?? 0)) > 0) {
+                    scene.text('During pumping you have to switch the collecting bottle as it filled up with your milk.');
+                  } else {
+                    if (((s as any).milkedvolume ?? 0) > 0  &&  ((s as any).milkedvolume ?? 0) < 2500  &&  ((s as any).milkedvolume ?? 0) > 1500  &&  (((s as any).bp_useable_mbottle ?? 0) - ((s as any).bp_used_mbottle ?? 0)) > 0) {
+                      scene.text('During pumping you have to switch the collecting bottle as it filled up with your milk.');
+                    } else {
+                      scene.text('During pumping you have to switch the collecting bottle as it filled up with your milk.');
+                    }
+                  }
+                }
+                if (((s as any).bp_used_mbottle ?? 0) >= 1  ||  ((s as any).bp_used_sbottle ?? 0) >= 1) {
+                  scene.img('images/pc/body/tits/bottles_full.jpg');
+                  if (((s as any).milkedvolume ?? 0) === ((((s as any).bp_used_mbottle ?? 0)*2500) + (((s as any).bp_used_sbottle ?? 0)*1500))) {
+                    scene.text(`You pumped ${((s as any).milkedvolume ?? '')/10}ml of milk from your breasts, collecting it in:`);
+                    if (((s as any).bp_useable_sbottle ?? 0) === 1) {
+                      scene.text('One 150ml bottle');
+                    } else {
+                      if (((s as any).bp_used_sbottle ?? 0) > 1) {
+                        scene.text(`${((s as any).bp_used_sbottle ?? '')} x 150ml bottles`);
+                      }
+                    }
+                    if (((s as any).bp_used_mbottle ?? 0) === 1) {
+                      scene.text('One 250ml bottle');
+                    } else {
+                      if (((s as any).bp_used_mbottle ?? 0) > 1) {
+                        scene.text(`${((s as any).bp_used_mbottle ?? '')} x 250ml bottles`);
+                      }
+                    }
+                  } else {
+                    scene.text(`You pumped ${((((s as any).bp_used_mbottle ?? '')*2500)+(((s as any).bp_used_sbottle ?? '')*1500)+((s as any).milkedvolume ?? ''))/10}ml of milk from your breasts collecting it in:`);
+                    if (((s as any).bp_used_sbottle ?? 0) === 1) {
+                      scene.text('One 150ml bottle');
+                    } else {
+                      if (((s as any).bp_used_sbottle ?? 0) > 1) {
+                        scene.text(`${((s as any).bp_used_sbottle ?? '')} x 150ml bottles`);
+                      }
+                    }
+                    if (((s as any).bp_used_mbottle ?? 0) === 1) {
+                      scene.text('One 250ml bottle');
+                    } else {
+                      if (((s as any).bp_used_mbottle ?? 0) > 1) {
+                        scene.text(`${((s as any).bp_used_mbottle ?? '')} x 250ml bottles`);
+                      }
+                    }
+                    if ((((s as any).bp_useable_sbottle ?? 0) - ((s as any).bp_used_sbottle ?? 0)) > 0  &&  ((s as any).milkedvolume ?? 0) <= 1500) {
+                      (s as any).bottlecounter = 0;
+                      while (true) {
+                        if (((s as any).bottlecounter ?? 0) < (((s as any).mc_inventory ?? 0)?.['bottle_m'] + ((s as any).mc_inventory ?? 0)?.['bottle_s'])) {
+                          if (((s as any).mbarrtype ?? 0)?.[String((s as any).bottlecounter ?? 0)] !== 1500  ||  ((s as any).mbarrfill ?? 0)?.[String((s as any).bottlecounter ?? 0)] !== 0) {
+                            (s as any).bottlecounter = ((s as any).bottlecounter ?? 0) + (1);
+                            break;
+                          }
+                          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).bottlecounter ?? 0), ((s as any).milkedvolume ?? 0)]; enterFillMilkBottle(s, scene); (s as any).locArgs = __savedLocArgs; }
+                        }
+                        scene.text(`You also stored ${((s as any).milkedvolume ?? '')/10}ml of breast milk in a 150ml bottle.`);
+                      }
+                    } else {
+                      if ((((s as any).bp_useable_mbottle ?? 0) - ((s as any).bp_used_mbottle ?? 0)) > 0  &&  ((s as any).milkedvolume ?? 0) <= 2500) {
+                        (s as any).bottlecounter = 0;
+                        while (true) {
+                          if (((s as any).bottlecounter ?? 0) < (((s as any).mc_inventory ?? 0)?.['bottle_m'] + ((s as any).mc_inventory ?? 0)?.['bottle_s'])) {
+                            if (((s as any).mbarrtype ?? 0)?.[String((s as any).bottlecounter ?? 0)] !== 2500  ||  ((s as any).mbarrfill ?? 0)?.[String((s as any).bottlecounter ?? 0)] !== 0) {
+                              (s as any).bottlecounter = ((s as any).bottlecounter ?? 0) + (1);
+                              break;
+                            }
+                            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).bottlecounter ?? 0), ((s as any).milkedvolume ?? 0)]; enterFillMilkBottle(s, scene); (s as any).locArgs = __savedLocArgs; }
+                          }
+                          scene.text(`You also stored ${((s as any).milkedvolume ?? '')/10}ml of breast milk in a 250ml bottle.`);
+                        }
+                      } else {
+                        scene.text('unhandled case - you shouldn\'t end up here. Please report this in the bug section of Girl Life in the tfg-forums.');
+                        scene.text('second fork case');
+                        scene.text(`bp_used_mbottle: ${((s as any).bp_used_mbottle ?? '')}`);
+                        scene.text(`bp_used_sbottle: ${((s as any).bp_used_sbottle ?? '')}`);
+                        scene.text(`milkedvolume: ${((s as any).milkedvolume ?? '')}`);
+                        scene.text(`pump_bottletype: ${((s as any).pump_bottletype ?? '')}`);
+                        scene.text(`bp_useable_sbottle: ${((s as any).bp_useable_sbottle ?? '')}`);
+                        scene.text(`bp_useable_mbottle: ${((s as any).bp_useable_mbottle ?? '')}`);
+                      }
+                    }
+                    (s as any).milkedvolume = ((s as any).milkedvolume ?? 0) + (((s as any).bp_used_mbottle ?? 0)*2500 + ((s as any).bp_used_sbottle ?? 0)*1500);
+                  }
+                } else {
+                  scene.text('unhandled case - you shouldn\'t end up here. Please report this in the bug section of Girl Life in the tfg-forums.');
+                  scene.text('third fork case');
+                  scene.text(`bp_used_mbottle: ${((s as any).bp_used_mbottle ?? '')}`);
+                  scene.text(`bp_used_sbottle: ${((s as any).bp_used_sbottle ?? '')}`);
+                  scene.text(`milkedvolume: ${((s as any).milkedvolume ?? '')}`);
+                  scene.text(`pump_bottletype: ${((s as any).pump_bottletype ?? '')}`);
+                  scene.text(`bpbottles: ${(((s as any).mc_inventory ?? 0)?.['bottle_s'] ?? '')}`);
+                  scene.text(`bpbottlem: ${(((s as any).mc_inventory ?? 0)?.['bottle_m'] ?? '')}`);
+                }
               }
-            } else {
-              scene.text('unhandled case - you shouldn\'t end up here. Please report this in the bug section of Girl Life in the tfg-forums.');
-              scene.text('third fork case');
-              // TODO-QSP: dynamic text: bp_used_mbottle: <<bp_used_mbottle>>
-              scene.text(`bp_used_mbottle: ${((s as any).bp_used_mbottle ?? '')}`);
-              // TODO-QSP: dynamic text: bp_used_sbottle: <<bp_used_sbottle>>
-              scene.text(`bp_used_sbottle: ${((s as any).bp_used_sbottle ?? '')}`);
-              // TODO-QSP: dynamic text: milkedvolume: <<milkedvolume>>
-              scene.text(`milkedvolume: ${((s as any).milkedvolume ?? '')}`);
-              // TODO-QSP: dynamic text: pump_bottletype: <<pump_bottletype>>
-              scene.text(`pump_bottletype: ${((s as any).pump_bottletype ?? '')}`);
-              // TODO-QSP: dynamic text: bpbottles: <<mc_inventory[''bottle_s'']>>
-              scene.text(`bpbottles: ${(((s as any).mc_inventory ?? 0)?.['bottle_s'] ?? '')}`);
-              // TODO-QSP: dynamic text: bpbottlem: <<mc_inventory[''bottle_m'']>>
-              scene.text(`bpbottlem: ${(((s as any).mc_inventory ?? 0)?.['bottle_m'] ?? '')}`);
             }
           } else {
-            // TODO-QSP: dynamic text: You give it a few more pumps and detach the pump.<br>You filled the bottle with ...
             scene.text(`You give it a few more pumps and detach the pump.<br>You filled the bottle with ${((s as any).milkedvolume ?? '')/10}ml of your milk.`);
             if ((((s as any).bp_useable_sbottle ?? 0) - ((s as any).bp_used_sbottle ?? 0)) > 0  &&  ((s as any).milkedvolume ?? 0) <= 1500) {
               (s as any).bottlecounter = 0;
-              // TODO-QSP: :single_sbottle_searchloop
-              if (((s as any).bottlecounter ?? 0) < (((s as any).mc_inventory ?? 0)?.['bottle_m'] + ((s as any).mc_inventory ?? 0)?.['bottle_s'])) {
-                if (((s as any).mbarrtype ?? 0)?.[String((s as any).bottlecounter ?? 0)] !== 1500  ||  ((s as any).mbarrfill ?? 0)?.[String((s as any).bottlecounter ?? 0)] !== 0) {
-                  (s as any).bottlecounter = ((s as any).bottlecounter ?? 0) + (1);
-                  // TODO-QSP: jump 'single_sbottle_searchloop'
+              while (true) {
+                if (((s as any).bottlecounter ?? 0) < (((s as any).mc_inventory ?? 0)?.['bottle_m'] + ((s as any).mc_inventory ?? 0)?.['bottle_s'])) {
+                  if (((s as any).mbarrtype ?? 0)?.[String((s as any).bottlecounter ?? 0)] !== 1500  ||  ((s as any).mbarrfill ?? 0)?.[String((s as any).bottlecounter ?? 0)] !== 0) {
+                    (s as any).bottlecounter = ((s as any).bottlecounter ?? 0) + (1);
+                    break;
+                  }
+                  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).bottlecounter ?? 0), ((s as any).milkedvolume ?? 0)]; enterFillMilkBottle(s, scene); (s as any).locArgs = __savedLocArgs; }
                 }
-                { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).bottlecounter ?? 0), ((s as any).milkedvolume ?? 0)]; enterFillMilkBottle(s, scene); (s as any).locArgs = __savedLocArgs; }
               }
             } else {
               if ((((s as any).bp_useable_mbottle ?? 0) - ((s as any).bp_used_mbottle ?? 0)) > 0  &&  ((s as any).milkedvolume ?? 0) <= 2500) {
                 (s as any).bottlecounter = 0;
-                // TODO-QSP: :single_mbottle_searchloop
-                if (((s as any).bottlecounter ?? 0) < (((s as any).mc_inventory ?? 0)?.['bottle_m'] + ((s as any).mc_inventory ?? 0)?.['bottle_s'])) {
-                  if (((s as any).mbarrtype ?? 0)?.[String((s as any).bottlecounter ?? 0)] !== 2500  ||  ((s as any).mbarrfill ?? 0)?.[String((s as any).bottlecounter ?? 0)] !== 0) {
-                    (s as any).bottlecounter = ((s as any).bottlecounter ?? 0) + (1);
-                    // TODO-QSP: jump 'single_mbottle_searchloop'
+                while (true) {
+                  if (((s as any).bottlecounter ?? 0) < (((s as any).mc_inventory ?? 0)?.['bottle_m'] + ((s as any).mc_inventory ?? 0)?.['bottle_s'])) {
+                    if (((s as any).mbarrtype ?? 0)?.[String((s as any).bottlecounter ?? 0)] !== 2500  ||  ((s as any).mbarrfill ?? 0)?.[String((s as any).bottlecounter ?? 0)] !== 0) {
+                      (s as any).bottlecounter = ((s as any).bottlecounter ?? 0) + (1);
+                      break;
+                    }
+                    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).bottlecounter ?? 0), ((s as any).milkedvolume ?? 0)]; enterFillMilkBottle(s, scene); (s as any).locArgs = __savedLocArgs; }
                   }
-                  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).bottlecounter ?? 0), ((s as any).milkedvolume ?? 0)]; enterFillMilkBottle(s, scene); (s as any).locArgs = __savedLocArgs; }
                 }
               } else {
                 scene.text('unhandled case - you shouldn\'t end up here. Please report this in the bug section of Girl Life in the tfg-forums.');
                 scene.text('second fork case');
-                // TODO-QSP: dynamic text: bp_used_mbottle: <<bp_used_mbottle>>
                 scene.text(`bp_used_mbottle: ${((s as any).bp_used_mbottle ?? '')}`);
-                // TODO-QSP: dynamic text: bp_used_sbottle: <<bp_used_sbottle>>
                 scene.text(`bp_used_sbottle: ${((s as any).bp_used_sbottle ?? '')}`);
-                // TODO-QSP: dynamic text: milkedvolume: <<milkedvolume>>
                 scene.text(`milkedvolume: ${((s as any).milkedvolume ?? '')}`);
-                // TODO-QSP: dynamic text: pump_bottletype: <<pump_bottletype>>
                 scene.text(`pump_bottletype: ${((s as any).pump_bottletype ?? '')}`);
-                // TODO-QSP: dynamic text: bp_useable_sbottle: <<bp_useable_sbottle>>
                 scene.text(`bp_useable_sbottle: ${((s as any).bp_useable_sbottle ?? '')}`);
-                // TODO-QSP: dynamic text: bp_useable_mbottle: <<bp_useable_mbottle>>
                 scene.text(`bp_useable_mbottle: ${((s as any).bp_useable_mbottle ?? '')}`);
               }
             }
@@ -1248,20 +1213,21 @@ function enterMilking(s: GameState, scene: SceneBuilder): void {
     scene.text('<center>You drink your own breast milk and clean up your breast pump.</center>');
     scene.text('<center>The milk is still warm from your breasts.</center>');
     (st as any).di_i = 0;
-    // TODO-QSP: :di_emptyloop
-    if (((st as any).di_i ?? 0) < (((st as any).mc_inventory ?? 0)?.['bottle_m'] + ((st as any).mc_inventory ?? 0)?.['bottle_s'])) {
-      if (((st as any).mbarrmage ?? 0)?.[String((st as any).di_i ?? 0)] >= ((st as any).pump_start_timestamp ?? 0)  &&  ((st as any).mbarrmage ?? 0)?.[String((st as any).di_i ?? 0)] <= ((st as any).pump_timestamp ?? 0)) {
-        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ((st as any).di_i ?? 0)]; enterEmptyMilkBottle(st, scene); (st as any).locArgs = __savedLocArgs; }
+    while (true) {
+      if (((st as any).di_i ?? 0) < (((st as any).mc_inventory ?? 0)?.['bottle_m'] + ((st as any).mc_inventory ?? 0)?.['bottle_s'])) {
+        if (((st as any).mbarrmage ?? 0)?.[String((st as any).di_i ?? 0)] >= ((st as any).pump_start_timestamp ?? 0)  &&  ((st as any).mbarrmage ?? 0)?.[String((st as any).di_i ?? 0)] <= ((st as any).pump_timestamp ?? 0)) {
+          { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ((st as any).di_i ?? 0)]; enterEmptyMilkBottle(st, scene); (st as any).locArgs = __savedLocArgs; }
+        }
+        (st as any).di_i = ((st as any).di_i ?? 0) + (1);
+        break;
       }
-      (st as any).di_i = ((st as any).di_i ?? 0) + (1);
-      // TODO-QSP: jump 'di_emptyloop'
-    }
-    scene.actions([
-      { label: 'Finish', handler: (st: GameState) => {
+      scene.actions([
+        { label: 'Finish', handler: (st: GameState) => {
     (st as any).milkedvolume = 0;
     dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
-    ]);
+      ]);
+    }
   } },
       ]);
     }
@@ -1270,28 +1236,28 @@ function enterMilking(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + (3 + ((st as any).milkedvolume ?? 0) / 1500);
     qspCall(st, 'stat', '');
     (st as any).piits_i = 0;
-    // TODO-QSP: :piits_emptyloop
-    if (((st as any).piits_i ?? 0) < (((st as any).mc_inventory ?? 0)?.['bottle_m'] + ((st as any).mc_inventory ?? 0)?.['bottle_s'])) {
-      if (((st as any).mbarrmage ?? 0)?.[String((st as any).piits_i ?? 0)] >= ((st as any).pump_start_timestamp ?? 0)  &&  ((st as any).mbarrmage ?? 0)?.[String((st as any).piits_i ?? 0)] <= ((st as any).pump_timestamp ?? 0)) {
-        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ((st as any).piits_i ?? 0)]; enterEmptyMilkBottle(st, scene); (st as any).locArgs = __savedLocArgs; }
+    while (true) {
+      if (((st as any).piits_i ?? 0) < (((st as any).mc_inventory ?? 0)?.['bottle_m'] + ((st as any).mc_inventory ?? 0)?.['bottle_s'])) {
+        if (((st as any).mbarrmage ?? 0)?.[String((st as any).piits_i ?? 0)] >= ((st as any).pump_start_timestamp ?? 0)  &&  ((st as any).mbarrmage ?? 0)?.[String((st as any).piits_i ?? 0)] <= ((st as any).pump_timestamp ?? 0)) {
+          { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ((st as any).piits_i ?? 0)]; enterEmptyMilkBottle(st, scene); (st as any).locArgs = __savedLocArgs; }
+        }
+        (st as any).piits_i = ((st as any).piits_i ?? 0) + (1);
+        break;
       }
-      (st as any).piits_i = ((st as any).piits_i ?? 0) + (1);
-      // TODO-QSP: jump 'piits_emptyloop'
-    }
-    if (((st as any).milkedvolume ?? 0) > 1500  &&  ((st as any).mc_inventory ?? 0)?.['bottle_s'] <= 1) {
-      scene.img('images/pc/body/tits/milk_sink.jpg');
-      scene.text('<center>You pour 150ml of your breast milk into the sink and clean up your breast pump.</center>');
-    } else {
-      scene.img('images/pc/body/tits/milk_sink.jpg');
-      // TODO-QSP: dynamic text: <center>You pour <<milkedvolume/10>>ml of your breast milk into the sink and cle...
-      scene.text(`<center>You pour ${((st as any).milkedvolume ?? '')/10}ml of your breast milk into the sink and clean up your breast pump.</center>`);
-    }
-    scene.actions([
-      { label: 'Finish', handler: (st: GameState) => {
+      if (((st as any).milkedvolume ?? 0) > 1500  &&  ((st as any).mc_inventory ?? 0)?.['bottle_s'] <= 1) {
+        scene.img('images/pc/body/tits/milk_sink.jpg');
+        scene.text('<center>You pour 150ml of your breast milk into the sink and clean up your breast pump.</center>');
+      } else {
+        scene.img('images/pc/body/tits/milk_sink.jpg');
+        scene.text(`<center>You pour ${((st as any).milkedvolume ?? '')/10}ml of your breast milk into the sink and clean up your breast pump.</center>`);
+      }
+      scene.actions([
+        { label: 'Finish', handler: (st: GameState) => {
     (st as any).milkedvolume = 0;
     dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
-    ]);
+      ]);
+    }
   } },
       { label: 'Leave it here', handler: (st: GameState) => {
     scene.text('You screw the cap onto the bottle and put it away.');
@@ -1304,7 +1270,6 @@ function enterMilking(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1325,7 +1290,6 @@ function enterHandMilking(s: GameState, scene: SceneBuilder): void {
         (s as any).milkedvolume = qspFunc(s, 'lact_lib', '$get_breastmilk', 5, ((s as any).pumptime ?? 0))/1000;
         scene.text('You start to massage your breasts, your fingers gliding down your breasts skin, over the areolas. Your fingers pressing down into the areola, stretching it forwards to your nipple.');
         scene.text('Several small streams of your milk start to jet out of your nipples.');
-        // TODO-QSP: dynamic text: You go on for <<pumptime>> minutes until you stop. You clean yourself up and eve...
         scene.text(`You go on for ${((s as any).pumptime ?? '')} minutes until you stop. You clean yourself up and everything else that got wet from your milk.<br>`);
         scene.img('images/pc/body/tits/bathroom_milking.mp4');
       } else {
@@ -1359,7 +1323,6 @@ function enterHandMilking(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', handler: (st: GameState) => {
     (st as any).menu_off = 0;

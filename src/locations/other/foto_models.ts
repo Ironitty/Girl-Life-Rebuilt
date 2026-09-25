@@ -124,7 +124,6 @@ function enterModelChatter(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['foto', 'bathroom'] },
   ]);

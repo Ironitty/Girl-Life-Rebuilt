@@ -10,136 +10,137 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterCheckIfOnlyLocal(s: GameState, scene: SceneBuilder): void {
   (s as any).result = (String((s as any).locArgs?.[1] ?? '') === 'sex'  ||  String((s as any).locArgs?.[1] ?? '') === 'prostitute'  ||  String((s as any).locArgs?.[1] ?? '') === 'flash');
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterDeg(s: GameState, scene: SceneBuilder): void {
   (s as any).fameregion = 'pav';
-  // TODO-QSP: :famedegloop
-  if (((s as any).fame ?? 0)[(((s as any).fameregion ?? 0)) + '_sex']        > 2) {
-    ((s as any).fame = (s as any).fame ?? {})[String(((s as any).fameregion ?? 0)) + '_sex'] = ((s as any).fame[String(((s as any).fameregion ?? 0)) + '_sex'] ?? 0) - ((Math.floor(Math.random() * (3 - (-1) + 1)) + ((-1))));
-  }
-  if (((s as any).fame ?? 0)[(((s as any).fameregion ?? 0)) + '_prostitute']    > 2) {
-    ((s as any).fame = (s as any).fame ?? {})[String(((s as any).fameregion ?? 0)) + '_prostitute'] = ((s as any).fame[String(((s as any).fameregion ?? 0)) + '_prostitute'] ?? 0) - ((Math.floor(Math.random() * (3 - (-1) + 1)) + ((-1))));
-  }
-  if (((s as any).fame ?? 0)[(((s as any).fameregion ?? 0)) + '_flash']      > 2) {
-    ((s as any).fame = (s as any).fame ?? {})[String(((s as any).fameregion ?? 0)) + '_flash'] = ((s as any).fame[String(((s as any).fameregion ?? 0)) + '_flash'] ?? 0) - ((Math.floor(Math.random() * (3 - (-1) + 1)) + ((-1))));
-  }
-  if (((s as any).fame ?? 0)[(((s as any).fameregion ?? 0)) + '_acting_core']    > 2) {
-    ((s as any).fame = (s as any).fame ?? {})[String(((s as any).fameregion ?? 0)) + '_acting_core'] = ((s as any).fame[String(((s as any).fameregion ?? 0)) + '_acting_core'] ?? 0) - ((Math.floor(Math.random() * (3 - (-1) + 1)) + ((-1))));
-  }
-  if (((s as any).fame ?? 0)[(((s as any).fameregion ?? 0)) + '_dance_core']    > 2) {
-    ((s as any).fame = (s as any).fame ?? {})[String(((s as any).fameregion ?? 0)) + '_dance_core'] = ((s as any).fame[String(((s as any).fameregion ?? 0)) + '_dance_core'] ?? 0) - ((Math.floor(Math.random() * (3 - (-1) + 1)) + ((-1))));
-  }
-  if (((s as any).fame ?? 0)[(((s as any).fameregion ?? 0)) + '_painting_core']  > 2) {
-    ((s as any).fame = (s as any).fame ?? {})[String(((s as any).fameregion ?? 0)) + '_painting_core'] = ((s as any).fame[String(((s as any).fameregion ?? 0)) + '_painting_core'] ?? 0) - ((Math.floor(Math.random() * (3 - (-1) + 1)) + ((-1))));
-  }
-  if (((s as any).fame ?? 0)[(((s as any).fameregion ?? 0)) + '_music_core']    > 2) {
-    ((s as any).fame = (s as any).fame ?? {})[String(((s as any).fameregion ?? 0)) + '_music_core'] = ((s as any).fame[String(((s as any).fameregion ?? 0)) + '_music_core'] ?? 0) - ((Math.floor(Math.random() * (3 - (-1) + 1)) + ((-1))));
-  }
-  if (((s as any).fame ?? 0)[(((s as any).fameregion ?? 0)) + '_ballet_core']    > 2) {
-    ((s as any).fame = (s as any).fame ?? {})[String(((s as any).fameregion ?? 0)) + '_ballet_core'] = ((s as any).fame[String(((s as any).fameregion ?? 0)) + '_ballet_core'] ?? 0) - ((Math.floor(Math.random() * (3 - (-1) + 1)) + ((-1))));
-  }
-  if (((s as any).fame ?? 0)[(((s as any).fameregion ?? 0)) + '_modelling_core']  > 2) {
-    ((s as any).fame = (s as any).fame ?? {})[String(((s as any).fameregion ?? 0)) + '_modelling_core'] = ((s as any).fame[String(((s as any).fameregion ?? 0)) + '_modelling_core'] ?? 0) - ((Math.floor(Math.random() * (3 - (-1) + 1)) + ((-1))));
-  }
-  if (((s as any).fame ?? 0)[(((s as any).fameregion ?? 0)) + '_porn_core']    > 2) {
-    ((s as any).fame = (s as any).fame ?? {})[String(((s as any).fameregion ?? 0)) + '_porn_core'] = ((s as any).fame[String(((s as any).fameregion ?? 0)) + '_porn_core'] ?? 0) - ((Math.floor(Math.random() * (3 - (-1) + 1)) + ((-1))));
-  }
-  if (((s as any).fame ?? 0)[(((s as any).fameregion ?? 0)) + '_stripping_core']  > 2) {
-    ((s as any).fame = (s as any).fame ?? {})[String(((s as any).fameregion ?? 0)) + '_stripping_core'] = ((s as any).fame[String(((s as any).fameregion ?? 0)) + '_stripping_core'] ?? 0) - ((Math.floor(Math.random() * (3 - (-1) + 1)) + ((-1))));
-  }
-  if (((s as any).fame ?? 0)[(((s as any).fameregion ?? 0)) + '_kickboxing_core']  > 2) {
-    ((s as any).fame = (s as any).fame ?? {})[String(((s as any).fameregion ?? 0)) + '_kickboxing_core'] = ((s as any).fame[String(((s as any).fameregion ?? 0)) + '_kickboxing_core'] ?? 0) - ((Math.floor(Math.random() * (3 - (-1) + 1)) + ((-1))));
-  }
-  if (((s as any).fame ?? 0)[(((s as any).fameregion ?? 0)) + '_running_core']    > 2) {
-    ((s as any).fame = (s as any).fame ?? {})[String(((s as any).fameregion ?? 0)) + '_running_core'] = ((s as any).fame[String(((s as any).fameregion ?? 0)) + '_running_core'] ?? 0) - ((Math.floor(Math.random() * (3 - (-1) + 1)) + ((-1))));
-  }
-  if (((s as any).fame ?? 0)[(((s as any).fameregion ?? 0)) + '_volleyball_core']  > 2) {
-    ((s as any).fame = (s as any).fame ?? {})[String(((s as any).fameregion ?? 0)) + '_volleyball_core'] = ((s as any).fame[String(((s as any).fameregion ?? 0)) + '_volleyball_core'] ?? 0) - ((Math.floor(Math.random() * (3 - (-1) + 1)) + ((-1))));
-  }
-  if (((s as any).fame ?? 0)[(((s as any).fameregion ?? 0)) + '_chess_core']    > 2) {
-    ((s as any).fame = (s as any).fame ?? {})[String(((s as any).fameregion ?? 0)) + '_chess_core'] = ((s as any).fame[String(((s as any).fameregion ?? 0)) + '_chess_core'] ?? 0) - ((Math.floor(Math.random() * (3 - (-1) + 1)) + ((-1))));
-  }
-  if (((s as any).fame ?? 0)[(((s as any).fameregion ?? 0)) + '_teaching_core']  > 2) {
-    ((s as any).fame = (s as any).fame ?? {})[String(((s as any).fameregion ?? 0)) + '_teaching_core'] = ((s as any).fame[String(((s as any).fameregion ?? 0)) + '_teaching_core'] ?? 0) - ((Math.floor(Math.random() * (3 - (-1) + 1)) + ((-1))));
-  }
-  if (((s as any).fame ?? 0)[(((s as any).fameregion ?? 0)) + '_media_core']    > 2) {
-    ((s as any).fame = (s as any).fame ?? {})[String(((s as any).fameregion ?? 0)) + '_media_core'] = ((s as any).fame[String(((s as any).fameregion ?? 0)) + '_media_core'] ?? 0) - ((Math.floor(Math.random() * (3 - (-1) + 1)) + ((-1))));
-  }
-  if (((s as any).fame ?? 0)[(((s as any).fameregion ?? 0)) + '_acting_local']    > 2) {
-    ((s as any).fame = (s as any).fame ?? {})[String(((s as any).fameregion ?? 0)) + '_acting_local'] = ((s as any).fame[String(((s as any).fameregion ?? 0)) + '_acting_local'] ?? 0) - ((Math.floor(Math.random() * (3 - (-1) + 1)) + ((-1))));
-  }
-  if (((s as any).fame ?? 0)[(((s as any).fameregion ?? 0)) + '_dance_local']    > 2) {
-    ((s as any).fame = (s as any).fame ?? {})[String(((s as any).fameregion ?? 0)) + '_dance_local'] = ((s as any).fame[String(((s as any).fameregion ?? 0)) + '_dance_local'] ?? 0) - ((Math.floor(Math.random() * (3 - (-1) + 1)) + ((-1))));
-  }
-  if (((s as any).fame ?? 0)[(((s as any).fameregion ?? 0)) + '_painting_local']  > 2) {
-    ((s as any).fame = (s as any).fame ?? {})[String(((s as any).fameregion ?? 0)) + '_painting_local'] = ((s as any).fame[String(((s as any).fameregion ?? 0)) + '_painting_local'] ?? 0) - ((Math.floor(Math.random() * (3 - (-1) + 1)) + ((-1))));
-  }
-  if (((s as any).fame ?? 0)[(((s as any).fameregion ?? 0)) + '_music_local']    > 2) {
-    ((s as any).fame = (s as any).fame ?? {})[String(((s as any).fameregion ?? 0)) + '_music_local'] = ((s as any).fame[String(((s as any).fameregion ?? 0)) + '_music_local'] ?? 0) - ((Math.floor(Math.random() * (3 - (-1) + 1)) + ((-1))));
-  }
-  if (((s as any).fame ?? 0)[(((s as any).fameregion ?? 0)) + '_ballet_local']    > 2) {
-    ((s as any).fame = (s as any).fame ?? {})[String(((s as any).fameregion ?? 0)) + '_ballet_local'] = ((s as any).fame[String(((s as any).fameregion ?? 0)) + '_ballet_local'] ?? 0) - ((Math.floor(Math.random() * (3 - (-1) + 1)) + ((-1))));
-  }
-  if (((s as any).fame ?? 0)[(((s as any).fameregion ?? 0)) + '_modelling_local']  > 2) {
-    ((s as any).fame = (s as any).fame ?? {})[String(((s as any).fameregion ?? 0)) + '_modelling_local'] = ((s as any).fame[String(((s as any).fameregion ?? 0)) + '_modelling_local'] ?? 0) - ((Math.floor(Math.random() * (3 - (-1) + 1)) + ((-1))));
-  }
-  if (((s as any).fame ?? 0)[(((s as any).fameregion ?? 0)) + '_porn_local']    > 2) {
-    ((s as any).fame = (s as any).fame ?? {})[String(((s as any).fameregion ?? 0)) + '_porn_local'] = ((s as any).fame[String(((s as any).fameregion ?? 0)) + '_porn_local'] ?? 0) - ((Math.floor(Math.random() * (3 - (-1) + 1)) + ((-1))));
-  }
-  if (((s as any).fame ?? 0)[(((s as any).fameregion ?? 0)) + '_stripping_local']  > 2) {
-    ((s as any).fame = (s as any).fame ?? {})[String(((s as any).fameregion ?? 0)) + '_stripping_local'] = ((s as any).fame[String(((s as any).fameregion ?? 0)) + '_stripping_local'] ?? 0) - ((Math.floor(Math.random() * (3 - (-1) + 1)) + ((-1))));
-  }
-  if (((s as any).fame ?? 0)[(((s as any).fameregion ?? 0)) + '_kickboxing_local']  > 2) {
-    ((s as any).fame = (s as any).fame ?? {})[String(((s as any).fameregion ?? 0)) + '_kickboxing_local'] = ((s as any).fame[String(((s as any).fameregion ?? 0)) + '_kickboxing_local'] ?? 0) - ((Math.floor(Math.random() * (3 - (-1) + 1)) + ((-1))));
-  }
-  if (((s as any).fame ?? 0)[(((s as any).fameregion ?? 0)) + '_running_local']  > 2) {
-    ((s as any).fame = (s as any).fame ?? {})[String(((s as any).fameregion ?? 0)) + '_running_local'] = ((s as any).fame[String(((s as any).fameregion ?? 0)) + '_running_local'] ?? 0) - ((Math.floor(Math.random() * (3 - (-1) + 1)) + ((-1))));
-  }
-  if (((s as any).fame ?? 0)[(((s as any).fameregion ?? 0)) + '_volleyball_local']  > 2) {
-    ((s as any).fame = (s as any).fame ?? {})[String(((s as any).fameregion ?? 0)) + '_volleyball_local'] = ((s as any).fame[String(((s as any).fameregion ?? 0)) + '_volleyball_local'] ?? 0) - ((Math.floor(Math.random() * (3 - (-1) + 1)) + ((-1))));
-  }
-  if (((s as any).fame ?? 0)[(((s as any).fameregion ?? 0)) + '_chess_local']    > 2) {
-    ((s as any).fame = (s as any).fame ?? {})[String(((s as any).fameregion ?? 0)) + '_chess_local'] = ((s as any).fame[String(((s as any).fameregion ?? 0)) + '_chess_local'] ?? 0) - ((Math.floor(Math.random() * (3 - (-1) + 1)) + ((-1))));
-  }
-  if (((s as any).fame ?? 0)[(((s as any).fameregion ?? 0)) + '_teaching_local']  > 2) {
-    ((s as any).fame = (s as any).fame ?? {})[String(((s as any).fameregion ?? 0)) + '_teaching_local'] = ((s as any).fame[String(((s as any).fameregion ?? 0)) + '_teaching_local'] ?? 0) - ((Math.floor(Math.random() * (3 - (-1) + 1)) + ((-1))));
-  }
-  if (((s as any).fame ?? 0)[(((s as any).fameregion ?? 0)) + '_media_local']    > 2) {
-    ((s as any).fame = (s as any).fame ?? {})[String(((s as any).fameregion ?? 0)) + '_media_local'] = ((s as any).fame[String(((s as any).fameregion ?? 0)) + '_media_local'] ?? 0) - ((Math.floor(Math.random() * (3 - (-1) + 1)) + ((-1))));
-  }
-  if (((s as any).fameregion ?? 0) === 'pav') {
-    (s as any).fameregion = 'city';
-    // TODO-QSP: jump 'famedegloop'
-  } else {
-    if (((s as any).fameregion ?? 0) === 'city') {
-      (s as any).fameregion = 'village';
-      // TODO-QSP: jump 'famedegloop'
+  while (true) {
+    if (((s as any).fame ?? 0)[(((s as any).fameregion ?? 0)) + '_sex']        > 2) {
+      ((s as any).fame = (s as any).fame ?? {})[String(((s as any).fameregion ?? 0)) + '_sex'] = ((s as any).fame[String(((s as any).fameregion ?? 0)) + '_sex'] ?? 0) - ((Math.floor(Math.random() * (3 - (-1) + 1)) + ((-1))));
+    }
+    if (((s as any).fame ?? 0)[(((s as any).fameregion ?? 0)) + '_prostitute']    > 2) {
+      ((s as any).fame = (s as any).fame ?? {})[String(((s as any).fameregion ?? 0)) + '_prostitute'] = ((s as any).fame[String(((s as any).fameregion ?? 0)) + '_prostitute'] ?? 0) - ((Math.floor(Math.random() * (3 - (-1) + 1)) + ((-1))));
+    }
+    if (((s as any).fame ?? 0)[(((s as any).fameregion ?? 0)) + '_flash']      > 2) {
+      ((s as any).fame = (s as any).fame ?? {})[String(((s as any).fameregion ?? 0)) + '_flash'] = ((s as any).fame[String(((s as any).fameregion ?? 0)) + '_flash'] ?? 0) - ((Math.floor(Math.random() * (3 - (-1) + 1)) + ((-1))));
+    }
+    if (((s as any).fame ?? 0)[(((s as any).fameregion ?? 0)) + '_acting_core']    > 2) {
+      ((s as any).fame = (s as any).fame ?? {})[String(((s as any).fameregion ?? 0)) + '_acting_core'] = ((s as any).fame[String(((s as any).fameregion ?? 0)) + '_acting_core'] ?? 0) - ((Math.floor(Math.random() * (3 - (-1) + 1)) + ((-1))));
+    }
+    if (((s as any).fame ?? 0)[(((s as any).fameregion ?? 0)) + '_dance_core']    > 2) {
+      ((s as any).fame = (s as any).fame ?? {})[String(((s as any).fameregion ?? 0)) + '_dance_core'] = ((s as any).fame[String(((s as any).fameregion ?? 0)) + '_dance_core'] ?? 0) - ((Math.floor(Math.random() * (3 - (-1) + 1)) + ((-1))));
+    }
+    if (((s as any).fame ?? 0)[(((s as any).fameregion ?? 0)) + '_painting_core']  > 2) {
+      ((s as any).fame = (s as any).fame ?? {})[String(((s as any).fameregion ?? 0)) + '_painting_core'] = ((s as any).fame[String(((s as any).fameregion ?? 0)) + '_painting_core'] ?? 0) - ((Math.floor(Math.random() * (3 - (-1) + 1)) + ((-1))));
+    }
+    if (((s as any).fame ?? 0)[(((s as any).fameregion ?? 0)) + '_music_core']    > 2) {
+      ((s as any).fame = (s as any).fame ?? {})[String(((s as any).fameregion ?? 0)) + '_music_core'] = ((s as any).fame[String(((s as any).fameregion ?? 0)) + '_music_core'] ?? 0) - ((Math.floor(Math.random() * (3 - (-1) + 1)) + ((-1))));
+    }
+    if (((s as any).fame ?? 0)[(((s as any).fameregion ?? 0)) + '_ballet_core']    > 2) {
+      ((s as any).fame = (s as any).fame ?? {})[String(((s as any).fameregion ?? 0)) + '_ballet_core'] = ((s as any).fame[String(((s as any).fameregion ?? 0)) + '_ballet_core'] ?? 0) - ((Math.floor(Math.random() * (3 - (-1) + 1)) + ((-1))));
+    }
+    if (((s as any).fame ?? 0)[(((s as any).fameregion ?? 0)) + '_modelling_core']  > 2) {
+      ((s as any).fame = (s as any).fame ?? {})[String(((s as any).fameregion ?? 0)) + '_modelling_core'] = ((s as any).fame[String(((s as any).fameregion ?? 0)) + '_modelling_core'] ?? 0) - ((Math.floor(Math.random() * (3 - (-1) + 1)) + ((-1))));
+    }
+    if (((s as any).fame ?? 0)[(((s as any).fameregion ?? 0)) + '_porn_core']    > 2) {
+      ((s as any).fame = (s as any).fame ?? {})[String(((s as any).fameregion ?? 0)) + '_porn_core'] = ((s as any).fame[String(((s as any).fameregion ?? 0)) + '_porn_core'] ?? 0) - ((Math.floor(Math.random() * (3 - (-1) + 1)) + ((-1))));
+    }
+    if (((s as any).fame ?? 0)[(((s as any).fameregion ?? 0)) + '_stripping_core']  > 2) {
+      ((s as any).fame = (s as any).fame ?? {})[String(((s as any).fameregion ?? 0)) + '_stripping_core'] = ((s as any).fame[String(((s as any).fameregion ?? 0)) + '_stripping_core'] ?? 0) - ((Math.floor(Math.random() * (3 - (-1) + 1)) + ((-1))));
+    }
+    if (((s as any).fame ?? 0)[(((s as any).fameregion ?? 0)) + '_kickboxing_core']  > 2) {
+      ((s as any).fame = (s as any).fame ?? {})[String(((s as any).fameregion ?? 0)) + '_kickboxing_core'] = ((s as any).fame[String(((s as any).fameregion ?? 0)) + '_kickboxing_core'] ?? 0) - ((Math.floor(Math.random() * (3 - (-1) + 1)) + ((-1))));
+    }
+    if (((s as any).fame ?? 0)[(((s as any).fameregion ?? 0)) + '_running_core']    > 2) {
+      ((s as any).fame = (s as any).fame ?? {})[String(((s as any).fameregion ?? 0)) + '_running_core'] = ((s as any).fame[String(((s as any).fameregion ?? 0)) + '_running_core'] ?? 0) - ((Math.floor(Math.random() * (3 - (-1) + 1)) + ((-1))));
+    }
+    if (((s as any).fame ?? 0)[(((s as any).fameregion ?? 0)) + '_volleyball_core']  > 2) {
+      ((s as any).fame = (s as any).fame ?? {})[String(((s as any).fameregion ?? 0)) + '_volleyball_core'] = ((s as any).fame[String(((s as any).fameregion ?? 0)) + '_volleyball_core'] ?? 0) - ((Math.floor(Math.random() * (3 - (-1) + 1)) + ((-1))));
+    }
+    if (((s as any).fame ?? 0)[(((s as any).fameregion ?? 0)) + '_chess_core']    > 2) {
+      ((s as any).fame = (s as any).fame ?? {})[String(((s as any).fameregion ?? 0)) + '_chess_core'] = ((s as any).fame[String(((s as any).fameregion ?? 0)) + '_chess_core'] ?? 0) - ((Math.floor(Math.random() * (3 - (-1) + 1)) + ((-1))));
+    }
+    if (((s as any).fame ?? 0)[(((s as any).fameregion ?? 0)) + '_teaching_core']  > 2) {
+      ((s as any).fame = (s as any).fame ?? {})[String(((s as any).fameregion ?? 0)) + '_teaching_core'] = ((s as any).fame[String(((s as any).fameregion ?? 0)) + '_teaching_core'] ?? 0) - ((Math.floor(Math.random() * (3 - (-1) + 1)) + ((-1))));
+    }
+    if (((s as any).fame ?? 0)[(((s as any).fameregion ?? 0)) + '_media_core']    > 2) {
+      ((s as any).fame = (s as any).fame ?? {})[String(((s as any).fameregion ?? 0)) + '_media_core'] = ((s as any).fame[String(((s as any).fameregion ?? 0)) + '_media_core'] ?? 0) - ((Math.floor(Math.random() * (3 - (-1) + 1)) + ((-1))));
+    }
+    if (((s as any).fame ?? 0)[(((s as any).fameregion ?? 0)) + '_acting_local']    > 2) {
+      ((s as any).fame = (s as any).fame ?? {})[String(((s as any).fameregion ?? 0)) + '_acting_local'] = ((s as any).fame[String(((s as any).fameregion ?? 0)) + '_acting_local'] ?? 0) - ((Math.floor(Math.random() * (3 - (-1) + 1)) + ((-1))));
+    }
+    if (((s as any).fame ?? 0)[(((s as any).fameregion ?? 0)) + '_dance_local']    > 2) {
+      ((s as any).fame = (s as any).fame ?? {})[String(((s as any).fameregion ?? 0)) + '_dance_local'] = ((s as any).fame[String(((s as any).fameregion ?? 0)) + '_dance_local'] ?? 0) - ((Math.floor(Math.random() * (3 - (-1) + 1)) + ((-1))));
+    }
+    if (((s as any).fame ?? 0)[(((s as any).fameregion ?? 0)) + '_painting_local']  > 2) {
+      ((s as any).fame = (s as any).fame ?? {})[String(((s as any).fameregion ?? 0)) + '_painting_local'] = ((s as any).fame[String(((s as any).fameregion ?? 0)) + '_painting_local'] ?? 0) - ((Math.floor(Math.random() * (3 - (-1) + 1)) + ((-1))));
+    }
+    if (((s as any).fame ?? 0)[(((s as any).fameregion ?? 0)) + '_music_local']    > 2) {
+      ((s as any).fame = (s as any).fame ?? {})[String(((s as any).fameregion ?? 0)) + '_music_local'] = ((s as any).fame[String(((s as any).fameregion ?? 0)) + '_music_local'] ?? 0) - ((Math.floor(Math.random() * (3 - (-1) + 1)) + ((-1))));
+    }
+    if (((s as any).fame ?? 0)[(((s as any).fameregion ?? 0)) + '_ballet_local']    > 2) {
+      ((s as any).fame = (s as any).fame ?? {})[String(((s as any).fameregion ?? 0)) + '_ballet_local'] = ((s as any).fame[String(((s as any).fameregion ?? 0)) + '_ballet_local'] ?? 0) - ((Math.floor(Math.random() * (3 - (-1) + 1)) + ((-1))));
+    }
+    if (((s as any).fame ?? 0)[(((s as any).fameregion ?? 0)) + '_modelling_local']  > 2) {
+      ((s as any).fame = (s as any).fame ?? {})[String(((s as any).fameregion ?? 0)) + '_modelling_local'] = ((s as any).fame[String(((s as any).fameregion ?? 0)) + '_modelling_local'] ?? 0) - ((Math.floor(Math.random() * (3 - (-1) + 1)) + ((-1))));
+    }
+    if (((s as any).fame ?? 0)[(((s as any).fameregion ?? 0)) + '_porn_local']    > 2) {
+      ((s as any).fame = (s as any).fame ?? {})[String(((s as any).fameregion ?? 0)) + '_porn_local'] = ((s as any).fame[String(((s as any).fameregion ?? 0)) + '_porn_local'] ?? 0) - ((Math.floor(Math.random() * (3 - (-1) + 1)) + ((-1))));
+    }
+    if (((s as any).fame ?? 0)[(((s as any).fameregion ?? 0)) + '_stripping_local']  > 2) {
+      ((s as any).fame = (s as any).fame ?? {})[String(((s as any).fameregion ?? 0)) + '_stripping_local'] = ((s as any).fame[String(((s as any).fameregion ?? 0)) + '_stripping_local'] ?? 0) - ((Math.floor(Math.random() * (3 - (-1) + 1)) + ((-1))));
+    }
+    if (((s as any).fame ?? 0)[(((s as any).fameregion ?? 0)) + '_kickboxing_local']  > 2) {
+      ((s as any).fame = (s as any).fame ?? {})[String(((s as any).fameregion ?? 0)) + '_kickboxing_local'] = ((s as any).fame[String(((s as any).fameregion ?? 0)) + '_kickboxing_local'] ?? 0) - ((Math.floor(Math.random() * (3 - (-1) + 1)) + ((-1))));
+    }
+    if (((s as any).fame ?? 0)[(((s as any).fameregion ?? 0)) + '_running_local']  > 2) {
+      ((s as any).fame = (s as any).fame ?? {})[String(((s as any).fameregion ?? 0)) + '_running_local'] = ((s as any).fame[String(((s as any).fameregion ?? 0)) + '_running_local'] ?? 0) - ((Math.floor(Math.random() * (3 - (-1) + 1)) + ((-1))));
+    }
+    if (((s as any).fame ?? 0)[(((s as any).fameregion ?? 0)) + '_volleyball_local']  > 2) {
+      ((s as any).fame = (s as any).fame ?? {})[String(((s as any).fameregion ?? 0)) + '_volleyball_local'] = ((s as any).fame[String(((s as any).fameregion ?? 0)) + '_volleyball_local'] ?? 0) - ((Math.floor(Math.random() * (3 - (-1) + 1)) + ((-1))));
+    }
+    if (((s as any).fame ?? 0)[(((s as any).fameregion ?? 0)) + '_chess_local']    > 2) {
+      ((s as any).fame = (s as any).fame ?? {})[String(((s as any).fameregion ?? 0)) + '_chess_local'] = ((s as any).fame[String(((s as any).fameregion ?? 0)) + '_chess_local'] ?? 0) - ((Math.floor(Math.random() * (3 - (-1) + 1)) + ((-1))));
+    }
+    if (((s as any).fame ?? 0)[(((s as any).fameregion ?? 0)) + '_teaching_local']  > 2) {
+      ((s as any).fame = (s as any).fame ?? {})[String(((s as any).fameregion ?? 0)) + '_teaching_local'] = ((s as any).fame[String(((s as any).fameregion ?? 0)) + '_teaching_local'] ?? 0) - ((Math.floor(Math.random() * (3 - (-1) + 1)) + ((-1))));
+    }
+    if (((s as any).fame ?? 0)[(((s as any).fameregion ?? 0)) + '_media_local']    > 2) {
+      ((s as any).fame = (s as any).fame ?? {})[String(((s as any).fameregion ?? 0)) + '_media_local'] = ((s as any).fame[String(((s as any).fameregion ?? 0)) + '_media_local'] ?? 0) - ((Math.floor(Math.random() * (3 - (-1) + 1)) + ((-1))));
+    }
+    if (((s as any).fameregion ?? 0) === 'pav') {
+      (s as any).fameregion = 'city';
+      break;
     } else {
-      if (((s as any).fameregion ?? 0) === 'village') {
-        (s as any).fameregion = 'pushkin';
-        // TODO-QSP: jump 'famedegloop'
+      if (((s as any).fameregion ?? 0) === 'city') {
+        (s as any).fameregion = 'village';
+        break;
+      } else {
+        if (((s as any).fameregion ?? 0) === 'village') {
+          (s as any).fameregion = 'pushkin';
+          break;
+        } else {
+          (s as any).fameregion = undefined;
+        }
       }
     }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'acting']; enterCalculate(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'dance']; enterCalculate(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'painting']; enterCalculate(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'music']; enterCalculate(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'ballet']; enterCalculate(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'modelling']; enterCalculate(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'porn']; enterCalculate(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'stripping']; enterCalculate(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'kickboxing']; enterCalculate(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'running']; enterCalculate(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'volleyball']; enterCalculate(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'chess']; enterCalculate(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'teaching']; enterCalculate(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'media']; enterCalculate(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCalculateGroups(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
-  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'acting']; enterCalculate(s, scene); (s as any).locArgs = __savedLocArgs; }
-  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'dance']; enterCalculate(s, scene); (s as any).locArgs = __savedLocArgs; }
-  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'painting']; enterCalculate(s, scene); (s as any).locArgs = __savedLocArgs; }
-  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'music']; enterCalculate(s, scene); (s as any).locArgs = __savedLocArgs; }
-  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'ballet']; enterCalculate(s, scene); (s as any).locArgs = __savedLocArgs; }
-  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'modelling']; enterCalculate(s, scene); (s as any).locArgs = __savedLocArgs; }
-  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'porn']; enterCalculate(s, scene); (s as any).locArgs = __savedLocArgs; }
-  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'stripping']; enterCalculate(s, scene); (s as any).locArgs = __savedLocArgs; }
-  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'kickboxing']; enterCalculate(s, scene); (s as any).locArgs = __savedLocArgs; }
-  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'running']; enterCalculate(s, scene); (s as any).locArgs = __savedLocArgs; }
-  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'volleyball']; enterCalculate(s, scene); (s as any).locArgs = __savedLocArgs; }
-  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'chess']; enterCalculate(s, scene); (s as any).locArgs = __savedLocArgs; }
-  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'teaching']; enterCalculate(s, scene); (s as any).locArgs = __savedLocArgs; }
-  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'media']; enterCalculate(s, scene); (s as any).locArgs = __savedLocArgs; }
-  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCalculateGroups(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -149,7 +150,7 @@ function enterCity(s: GameState, scene: SceneBuilder): void {
     if (String((s as any).locArgs?.[3] ?? '') !== 'local') {
       ((s as any).ARGS = (s as any).ARGS ?? {})[3] = 'core';
     }
-    // TODO-QSP: $temp_fame_arg += '_' + $ARGS[3]
+    (s as any).temp_fame_arg = ((s as any).temp_fame_arg ?? 0) + ('_' + ((s as any).locArgs?.[3] ?? 0));
   }
   if (((s as any).fame ?? 0)?.[String((s as any).temp_fame_arg ?? 0)] > 1000) {
     if (String((s as any).locArgs?.[2] ?? '') === 'tiny') {
@@ -316,6 +317,7 @@ function enterCity(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  (s as any).temp_fame_arg = undefined;
   if (! qspFunc(s, 'fame', 'check_if_only_local', ((s as any).locArgs?.[1] ?? 0))) {
     if (((s as any).fame ?? 0)[(String((s as any).locArgs?.[0] ?? '')) + '_' + (String((s as any).locArgs?.[1] ?? '')) + '_core'] < 0) {
       ((s as any).fame = (s as any).fame ?? {})[String(((s as any).locArgs?.[0] ?? 0)) + '_' + String(((s as any).locArgs?.[1] ?? 0)) + '_core'] = 0;
@@ -323,7 +325,6 @@ function enterCity(s: GameState, scene: SceneBuilder): void {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0)]; enterCalculate(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCalculateGroups(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -333,7 +334,7 @@ function enterPav(s: GameState, scene: SceneBuilder): void {
     if (String((s as any).locArgs?.[3] ?? '') !== 'local') {
       ((s as any).ARGS = (s as any).ARGS ?? {})[3] = 'core';
     }
-    // TODO-QSP: $temp_fame_arg += '_' + $ARGS[3]
+    (s as any).temp_fame_arg = ((s as any).temp_fame_arg ?? 0) + ('_' + ((s as any).locArgs?.[3] ?? 0));
   }
   if (((s as any).fame ?? 0)?.[String((s as any).temp_fame_arg ?? 0)] > 1000) {
     if (String((s as any).locArgs?.[2] ?? '') === 'tiny') {
@@ -500,6 +501,7 @@ function enterPav(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  (s as any).temp_fame_arg = undefined;
   if (! qspFunc(s, 'fame', 'check_if_only_local', ((s as any).locArgs?.[1] ?? 0))) {
     if (((s as any).fame ?? 0)[(String((s as any).locArgs?.[0] ?? '')) + '_' + (String((s as any).locArgs?.[1] ?? '')) + '_core'] < 0) {
       ((s as any).fame = (s as any).fame ?? {})[String(((s as any).locArgs?.[0] ?? 0)) + '_' + String(((s as any).locArgs?.[1] ?? 0)) + '_core'] = 0;
@@ -507,7 +509,6 @@ function enterPav(s: GameState, scene: SceneBuilder): void {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0)]; enterCalculate(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCalculateGroups(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -517,7 +518,7 @@ function enterPushkin(s: GameState, scene: SceneBuilder): void {
     if (String((s as any).locArgs?.[3] ?? '') !== 'local') {
       ((s as any).ARGS = (s as any).ARGS ?? {})[3] = 'core';
     }
-    // TODO-QSP: $temp_fame_arg += '_' + $ARGS[3]
+    (s as any).temp_fame_arg = ((s as any).temp_fame_arg ?? 0) + ('_' + ((s as any).locArgs?.[3] ?? 0));
   }
   if (((s as any).fame ?? 0)?.[String((s as any).temp_fame_arg ?? 0)] > 1000) {
     if (String((s as any).locArgs?.[2] ?? '') === 'tiny') {
@@ -684,6 +685,7 @@ function enterPushkin(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  (s as any).temp_fame_arg = undefined;
   if (! qspFunc(s, 'fame', 'check_if_only_local', ((s as any).locArgs?.[1] ?? 0))) {
     if (((s as any).fame ?? 0)[(String((s as any).locArgs?.[0] ?? '')) + '_' + (String((s as any).locArgs?.[1] ?? '')) + '_core'] < 0) {
       ((s as any).fame = (s as any).fame ?? {})[String(((s as any).locArgs?.[0] ?? 0)) + '_' + String(((s as any).locArgs?.[1] ?? 0)) + '_core'] = 0;
@@ -691,7 +693,6 @@ function enterPushkin(s: GameState, scene: SceneBuilder): void {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0)]; enterCalculate(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCalculateGroups(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -701,7 +702,7 @@ function enterVillage(s: GameState, scene: SceneBuilder): void {
     if (String((s as any).locArgs?.[3] ?? '') !== 'local') {
       ((s as any).ARGS = (s as any).ARGS ?? {})[3] = 'core';
     }
-    // TODO-QSP: $temp_fame_arg += '_' + $ARGS[3]
+    (s as any).temp_fame_arg = ((s as any).temp_fame_arg ?? 0) + ('_' + ((s as any).locArgs?.[3] ?? 0));
   }
   if (((s as any).fame ?? 0)?.[String((s as any).temp_fame_arg ?? 0)] > 1000) {
     if (String((s as any).locArgs?.[2] ?? '') === 'tiny') {
@@ -868,6 +869,7 @@ function enterVillage(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  (s as any).temp_fame_arg = undefined;
   if (! qspFunc(s, 'fame', 'check_if_only_local', ((s as any).locArgs?.[1] ?? 0))) {
     if (((s as any).fame ?? 0)[(String((s as any).locArgs?.[0] ?? '')) + '_' + (String((s as any).locArgs?.[1] ?? '')) + '_core'] < 0) {
       ((s as any).fame = (s as any).fame ?? {})[String(((s as any).locArgs?.[0] ?? 0)) + '_' + String(((s as any).locArgs?.[1] ?? 0)) + '_core'] = 0;
@@ -875,7 +877,6 @@ function enterVillage(s: GameState, scene: SceneBuilder): void {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0)]; enterCalculate(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCalculateGroups(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -941,7 +942,6 @@ function enterSetContributions(s: GameState, scene: SceneBuilder): void {
     }
   }
   ((s as any).fame = (s as any).fame ?? {})['village_' + String(((s as any).locArgs?.[1] ?? 0)) + '_contribution'] = ((s as any).fame ?? 0)['village_' + ((s as any).locArgs?.[1] ?? 0) + '_core'] / 100;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1030,121 +1030,123 @@ function enterCalculate(s: GameState, scene: SceneBuilder): void {
   if (((s as any).fame ?? 0)['village_' + (String((s as any).locArgs?.[1] ?? ''))] > 1200) {
     ((s as any).fame = (s as any).fame ?? {})['village_' + String(((s as any).locArgs?.[1] ?? 0))] = 1200;
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterCalculateGroups(s: GameState, scene: SceneBuilder): void {
   (s as any).fameregion = 'pav';
-  // TODO-QSP: :fameregionloop
-  ((s as any).fame = (s as any).fame ?? {})[String(((s as any).fameregion ?? 0)) + '_performer'] = 0;
-  if (((s as any).fame ?? 0)[(((s as any).fameregion ?? 0)) + '_acting']    > 30) {
-    ((s as any).fame = (s as any).fame ?? {})[String(((s as any).fameregion ?? 0)) + '_performer'] = ((s as any).fame[String(((s as any).fameregion ?? 0)) + '_performer'] ?? 0) + ((((s as any).fame ?? 0)['' + ((s as any).fameregion ?? 0) + '_acting'] - 30) / 3);
-  }
-  if (((s as any).fame ?? 0)[(((s as any).fameregion ?? 0)) + '_dance']    > 30) {
-    ((s as any).fame = (s as any).fame ?? {})[String(((s as any).fameregion ?? 0)) + '_performer'] = ((s as any).fame[String(((s as any).fameregion ?? 0)) + '_performer'] ?? 0) + ((((s as any).fame ?? 0)['' + ((s as any).fameregion ?? 0) + '_dance'] - 30) / 3);
-  }
-  if (((s as any).fame ?? 0)[(((s as any).fameregion ?? 0)) + '_painting']    > 30) {
-    ((s as any).fame = (s as any).fame ?? {})[String(((s as any).fameregion ?? 0)) + '_performer'] = ((s as any).fame[String(((s as any).fameregion ?? 0)) + '_performer'] ?? 0) + ((((s as any).fame ?? 0)['' + ((s as any).fameregion ?? 0) + '_painting'] - 30) / 3);
-  }
-  if (((s as any).fame ?? 0)[(((s as any).fameregion ?? 0)) + '_music']    > 30) {
-    ((s as any).fame = (s as any).fame ?? {})[String(((s as any).fameregion ?? 0)) + '_performer'] = ((s as any).fame[String(((s as any).fameregion ?? 0)) + '_performer'] ?? 0) + ((((s as any).fame ?? 0)['' + ((s as any).fameregion ?? 0) + '_music'] - 30) / 3);
-  }
-  if (((s as any).fame ?? 0)[(((s as any).fameregion ?? 0)) + '_ballet']    > 30) {
-    ((s as any).fame = (s as any).fame ?? {})[String(((s as any).fameregion ?? 0)) + '_performer'] = ((s as any).fame[String(((s as any).fameregion ?? 0)) + '_performer'] ?? 0) + ((((s as any).fame ?? 0)['' + ((s as any).fameregion ?? 0) + '_ballet'] - 30) / 3);
-  }
-  if (((s as any).fame ?? 0)[(((s as any).fameregion ?? 0)) + '_modelling']  > 30) {
-    ((s as any).fame = (s as any).fame ?? {})[String(((s as any).fameregion ?? 0)) + '_performer'] = ((s as any).fame[String(((s as any).fameregion ?? 0)) + '_performer'] ?? 0) + ((((s as any).fame ?? 0)['' + ((s as any).fameregion ?? 0) + '_modelling'] - 30) / 3);
-  }
-  ((s as any).fame = (s as any).fame ?? {})[String(((s as any).fameregion ?? 0)) + '_sexind'] = 0;
-  if (((s as any).fame ?? 0)[(((s as any).fameregion ?? 0)) + '_porn']      > 30) {
-    ((s as any).fame = (s as any).fame ?? {})[String(((s as any).fameregion ?? 0)) + '_sexind'] = ((s as any).fame[String(((s as any).fameregion ?? 0)) + '_sexind'] ?? 0) + ((((s as any).fame ?? 0)['' + ((s as any).fameregion ?? 0) + '_porn'] - 30) / 2);
-  }
-  if (((s as any).fame ?? 0)[(((s as any).fameregion ?? 0)) + '_stripping']  > 30) {
-    ((s as any).fame = (s as any).fame ?? {})[String(((s as any).fameregion ?? 0)) + '_sexind'] = ((s as any).fame[String(((s as any).fameregion ?? 0)) + '_sexind'] ?? 0) + ((((s as any).fame ?? 0)['' + ((s as any).fameregion ?? 0) + '_stripping'] - 30) / 2);
-  }
-  ((s as any).fame = (s as any).fame ?? {})[String(((s as any).fameregion ?? 0)) + '_slut'] = 0;
-  if (((s as any).fame ?? 0)[(((s as any).fameregion ?? 0)) + '_sex']      > 30) {
-    ((s as any).fame = (s as any).fame ?? {})[String(((s as any).fameregion ?? 0)) + '_slut'] = ((s as any).fame[String(((s as any).fameregion ?? 0)) + '_slut'] ?? 0) + ((((s as any).fame ?? 0)['' + ((s as any).fameregion ?? 0) + '_sex'] - 30) / 2);
-  }
-  if (((s as any).fame ?? 0)[(((s as any).fameregion ?? 0)) + '_prostitute']  > 30) {
-    ((s as any).fame = (s as any).fame ?? {})[String(((s as any).fameregion ?? 0)) + '_slut'] = ((s as any).fame[String(((s as any).fameregion ?? 0)) + '_slut'] ?? 0) + ((((s as any).fame ?? 0)['' + ((s as any).fameregion ?? 0) + '_prostitute'] - 30) / 2);
-  }
-  if (((s as any).fame ?? 0)[(((s as any).fameregion ?? 0)) + '_flash']    > 30) {
-    ((s as any).fame = (s as any).fame ?? {})[String(((s as any).fameregion ?? 0)) + '_slut'] = ((s as any).fame[String(((s as any).fameregion ?? 0)) + '_slut'] ?? 0) + (Math.min(((s as any).fame ?? 0)['' + ((s as any).fameregion ?? 0) + '_flash'] - 30, 100) / 4);
-  }
-  ((s as any).fame = (s as any).fame ?? {})[String(((s as any).fameregion ?? 0)) + '_sport'] = 0;
-  if (((s as any).fame ?? 0)[(((s as any).fameregion ?? 0)) + '_kickboxing']  > 30) {
-    ((s as any).fame = (s as any).fame ?? {})[String(((s as any).fameregion ?? 0)) + '_sport'] = ((s as any).fame[String(((s as any).fameregion ?? 0)) + '_sport'] ?? 0) + ((((s as any).fame ?? 0)['' + ((s as any).fameregion ?? 0) + '_kickboxing'] - 30) / 3);
-  }
-  if (((s as any).fame ?? 0)[(((s as any).fameregion ?? 0)) + '_running']    > 30) {
-    ((s as any).fame = (s as any).fame ?? {})[String(((s as any).fameregion ?? 0)) + '_sport'] = ((s as any).fame[String(((s as any).fameregion ?? 0)) + '_sport'] ?? 0) + ((((s as any).fame ?? 0)['' + ((s as any).fameregion ?? 0) + '_running'] - 30) / 3);
-  }
-  if (((s as any).fame ?? 0)[(((s as any).fameregion ?? 0)) + '_volleyball']  > 30) {
-    ((s as any).fame = (s as any).fame ?? {})[String(((s as any).fameregion ?? 0)) + '_sport'] = ((s as any).fame[String(((s as any).fameregion ?? 0)) + '_sport'] ?? 0) + ((((s as any).fame ?? 0)['' + ((s as any).fameregion ?? 0) + '_volleyball'] - 30) / 3);
-  }
-  ((s as any).fame = (s as any).fame ?? {})[String(((s as any).fameregion ?? 0)) + '_int'] = 0;
-  if (((s as any).fame ?? 0)[(((s as any).fameregion ?? 0)) + '_chess']    > 30) {
-    ((s as any).fame = (s as any).fame ?? {})[String(((s as any).fameregion ?? 0)) + '_int'] = ((s as any).fame[String(((s as any).fameregion ?? 0)) + '_int'] ?? 0) + ((((s as any).fame ?? 0)['' + ((s as any).fameregion ?? 0) + '_chess'] - 30) / 2);
-  }
-  if (((s as any).fame ?? 0)[(((s as any).fameregion ?? 0)) + '_teaching']    > 30) {
-    ((s as any).fame = (s as any).fame ?? {})[String(((s as any).fameregion ?? 0)) + '_int'] = ((s as any).fame[String(((s as any).fameregion ?? 0)) + '_int'] ?? 0) + ((((s as any).fame ?? 0)['' + ((s as any).fameregion ?? 0) + '_teaching'] - 30) / 3);
-  }
-  ((s as any).fame = (s as any).fame ?? {})[String(((s as any).fameregion ?? 0)) + '_social'] = 0;
-  if (((s as any).fame ?? 0)[(((s as any).fameregion ?? 0)) + '_media']    > 30) {
-    ((s as any).fame = (s as any).fame ?? {})[String(((s as any).fameregion ?? 0)) + '_social'] = ((s as any).fame[String(((s as any).fameregion ?? 0)) + '_social'] ?? 0) + ((((s as any).fame ?? 0)['' + ((s as any).fameregion ?? 0) + '_media'] - 30) / 2);
-  }
-  if (((s as any).fameregion ?? 0) === 'pav') {
-    (s as any).fameregion = 'city';
-    // TODO-QSP: jump 'fameregionloop'
-  } else {
-    if (((s as any).fameregion ?? 0) === 'city') {
-      (s as any).fameregion = 'village';
-      // TODO-QSP: jump 'fameregionloop'
+  while (true) {
+    ((s as any).fame = (s as any).fame ?? {})[String(((s as any).fameregion ?? 0)) + '_performer'] = 0;
+    if (((s as any).fame ?? 0)[(((s as any).fameregion ?? 0)) + '_acting']    > 30) {
+      ((s as any).fame = (s as any).fame ?? {})[String(((s as any).fameregion ?? 0)) + '_performer'] = ((s as any).fame[String(((s as any).fameregion ?? 0)) + '_performer'] ?? 0) + ((((s as any).fame ?? 0)['' + ((s as any).fameregion ?? 0) + '_acting'] - 30) / 3);
+    }
+    if (((s as any).fame ?? 0)[(((s as any).fameregion ?? 0)) + '_dance']    > 30) {
+      ((s as any).fame = (s as any).fame ?? {})[String(((s as any).fameregion ?? 0)) + '_performer'] = ((s as any).fame[String(((s as any).fameregion ?? 0)) + '_performer'] ?? 0) + ((((s as any).fame ?? 0)['' + ((s as any).fameregion ?? 0) + '_dance'] - 30) / 3);
+    }
+    if (((s as any).fame ?? 0)[(((s as any).fameregion ?? 0)) + '_painting']    > 30) {
+      ((s as any).fame = (s as any).fame ?? {})[String(((s as any).fameregion ?? 0)) + '_performer'] = ((s as any).fame[String(((s as any).fameregion ?? 0)) + '_performer'] ?? 0) + ((((s as any).fame ?? 0)['' + ((s as any).fameregion ?? 0) + '_painting'] - 30) / 3);
+    }
+    if (((s as any).fame ?? 0)[(((s as any).fameregion ?? 0)) + '_music']    > 30) {
+      ((s as any).fame = (s as any).fame ?? {})[String(((s as any).fameregion ?? 0)) + '_performer'] = ((s as any).fame[String(((s as any).fameregion ?? 0)) + '_performer'] ?? 0) + ((((s as any).fame ?? 0)['' + ((s as any).fameregion ?? 0) + '_music'] - 30) / 3);
+    }
+    if (((s as any).fame ?? 0)[(((s as any).fameregion ?? 0)) + '_ballet']    > 30) {
+      ((s as any).fame = (s as any).fame ?? {})[String(((s as any).fameregion ?? 0)) + '_performer'] = ((s as any).fame[String(((s as any).fameregion ?? 0)) + '_performer'] ?? 0) + ((((s as any).fame ?? 0)['' + ((s as any).fameregion ?? 0) + '_ballet'] - 30) / 3);
+    }
+    if (((s as any).fame ?? 0)[(((s as any).fameregion ?? 0)) + '_modelling']  > 30) {
+      ((s as any).fame = (s as any).fame ?? {})[String(((s as any).fameregion ?? 0)) + '_performer'] = ((s as any).fame[String(((s as any).fameregion ?? 0)) + '_performer'] ?? 0) + ((((s as any).fame ?? 0)['' + ((s as any).fameregion ?? 0) + '_modelling'] - 30) / 3);
+    }
+    ((s as any).fame = (s as any).fame ?? {})[String(((s as any).fameregion ?? 0)) + '_sexind'] = 0;
+    if (((s as any).fame ?? 0)[(((s as any).fameregion ?? 0)) + '_porn']      > 30) {
+      ((s as any).fame = (s as any).fame ?? {})[String(((s as any).fameregion ?? 0)) + '_sexind'] = ((s as any).fame[String(((s as any).fameregion ?? 0)) + '_sexind'] ?? 0) + ((((s as any).fame ?? 0)['' + ((s as any).fameregion ?? 0) + '_porn'] - 30) / 2);
+    }
+    if (((s as any).fame ?? 0)[(((s as any).fameregion ?? 0)) + '_stripping']  > 30) {
+      ((s as any).fame = (s as any).fame ?? {})[String(((s as any).fameregion ?? 0)) + '_sexind'] = ((s as any).fame[String(((s as any).fameregion ?? 0)) + '_sexind'] ?? 0) + ((((s as any).fame ?? 0)['' + ((s as any).fameregion ?? 0) + '_stripping'] - 30) / 2);
+    }
+    ((s as any).fame = (s as any).fame ?? {})[String(((s as any).fameregion ?? 0)) + '_slut'] = 0;
+    if (((s as any).fame ?? 0)[(((s as any).fameregion ?? 0)) + '_sex']      > 30) {
+      ((s as any).fame = (s as any).fame ?? {})[String(((s as any).fameregion ?? 0)) + '_slut'] = ((s as any).fame[String(((s as any).fameregion ?? 0)) + '_slut'] ?? 0) + ((((s as any).fame ?? 0)['' + ((s as any).fameregion ?? 0) + '_sex'] - 30) / 2);
+    }
+    if (((s as any).fame ?? 0)[(((s as any).fameregion ?? 0)) + '_prostitute']  > 30) {
+      ((s as any).fame = (s as any).fame ?? {})[String(((s as any).fameregion ?? 0)) + '_slut'] = ((s as any).fame[String(((s as any).fameregion ?? 0)) + '_slut'] ?? 0) + ((((s as any).fame ?? 0)['' + ((s as any).fameregion ?? 0) + '_prostitute'] - 30) / 2);
+    }
+    if (((s as any).fame ?? 0)[(((s as any).fameregion ?? 0)) + '_flash']    > 30) {
+      ((s as any).fame = (s as any).fame ?? {})[String(((s as any).fameregion ?? 0)) + '_slut'] = ((s as any).fame[String(((s as any).fameregion ?? 0)) + '_slut'] ?? 0) + (Math.min(((s as any).fame ?? 0)['' + ((s as any).fameregion ?? 0) + '_flash'] - 30, 100) / 4);
+    }
+    ((s as any).fame = (s as any).fame ?? {})[String(((s as any).fameregion ?? 0)) + '_sport'] = 0;
+    if (((s as any).fame ?? 0)[(((s as any).fameregion ?? 0)) + '_kickboxing']  > 30) {
+      ((s as any).fame = (s as any).fame ?? {})[String(((s as any).fameregion ?? 0)) + '_sport'] = ((s as any).fame[String(((s as any).fameregion ?? 0)) + '_sport'] ?? 0) + ((((s as any).fame ?? 0)['' + ((s as any).fameregion ?? 0) + '_kickboxing'] - 30) / 3);
+    }
+    if (((s as any).fame ?? 0)[(((s as any).fameregion ?? 0)) + '_running']    > 30) {
+      ((s as any).fame = (s as any).fame ?? {})[String(((s as any).fameregion ?? 0)) + '_sport'] = ((s as any).fame[String(((s as any).fameregion ?? 0)) + '_sport'] ?? 0) + ((((s as any).fame ?? 0)['' + ((s as any).fameregion ?? 0) + '_running'] - 30) / 3);
+    }
+    if (((s as any).fame ?? 0)[(((s as any).fameregion ?? 0)) + '_volleyball']  > 30) {
+      ((s as any).fame = (s as any).fame ?? {})[String(((s as any).fameregion ?? 0)) + '_sport'] = ((s as any).fame[String(((s as any).fameregion ?? 0)) + '_sport'] ?? 0) + ((((s as any).fame ?? 0)['' + ((s as any).fameregion ?? 0) + '_volleyball'] - 30) / 3);
+    }
+    ((s as any).fame = (s as any).fame ?? {})[String(((s as any).fameregion ?? 0)) + '_int'] = 0;
+    if (((s as any).fame ?? 0)[(((s as any).fameregion ?? 0)) + '_chess']    > 30) {
+      ((s as any).fame = (s as any).fame ?? {})[String(((s as any).fameregion ?? 0)) + '_int'] = ((s as any).fame[String(((s as any).fameregion ?? 0)) + '_int'] ?? 0) + ((((s as any).fame ?? 0)['' + ((s as any).fameregion ?? 0) + '_chess'] - 30) / 2);
+    }
+    if (((s as any).fame ?? 0)[(((s as any).fameregion ?? 0)) + '_teaching']    > 30) {
+      ((s as any).fame = (s as any).fame ?? {})[String(((s as any).fameregion ?? 0)) + '_int'] = ((s as any).fame[String(((s as any).fameregion ?? 0)) + '_int'] ?? 0) + ((((s as any).fame ?? 0)['' + ((s as any).fameregion ?? 0) + '_teaching'] - 30) / 3);
+    }
+    ((s as any).fame = (s as any).fame ?? {})[String(((s as any).fameregion ?? 0)) + '_social'] = 0;
+    if (((s as any).fame ?? 0)[(((s as any).fameregion ?? 0)) + '_media']    > 30) {
+      ((s as any).fame = (s as any).fame ?? {})[String(((s as any).fameregion ?? 0)) + '_social'] = ((s as any).fame[String(((s as any).fameregion ?? 0)) + '_social'] ?? 0) + ((((s as any).fame ?? 0)['' + ((s as any).fameregion ?? 0) + '_media'] - 30) / 2);
+    }
+    if (((s as any).fameregion ?? 0) === 'pav') {
+      (s as any).fameregion = 'city';
+      break;
     } else {
-      if (((s as any).fameregion ?? 0) === 'village') {
-        (s as any).fameregion = 'pushkin';
-        // TODO-QSP: jump 'fameregionloop'
+      if (((s as any).fameregion ?? 0) === 'city') {
+        (s as any).fameregion = 'village';
+        break;
+      } else {
+        if (((s as any).fameregion ?? 0) === 'village') {
+          (s as any).fameregion = 'pushkin';
+          break;
+        } else {
+          (s as any).fameregion = undefined;
+        }
       }
     }
-  }
-  if (((s as any).fame ?? 0)?.['pav_slut'] < 25) {
-    (s as any).gnikname = '';
-  } else {
-    if (((s as any).fame ?? 0)?.['pav_slut'] < 50) {
-      (s as any).gnikname = 'flirt';
+    if (((s as any).fame ?? 0)?.['pav_slut'] < 25) {
+      (s as any).gnikname = '';
     } else {
-      if (((s as any).fame ?? 0)?.['pav_slut'] < 75) {
-        (s as any).gnikname = 'tease';
+      if (((s as any).fame ?? 0)?.['pav_slut'] < 50) {
+        (s as any).gnikname = 'flirt';
       } else {
-        if (((s as any).fame ?? 0)?.['pav_slut'] < 100) {
-          (s as any).gnikname = 'minx';
+        if (((s as any).fame ?? 0)?.['pav_slut'] < 75) {
+          (s as any).gnikname = 'tease';
         } else {
-          if (((s as any).fame ?? 0)?.['pav_slut'] < 125) {
-            (s as any).gnikname = 'vixen';
+          if (((s as any).fame ?? 0)?.['pav_slut'] < 100) {
+            (s as any).gnikname = 'minx';
           } else {
-            if (((s as any).fame ?? 0)?.['pav_slut'] < 150) {
-              (s as any).gnikname = 'temptress';
+            if (((s as any).fame ?? 0)?.['pav_slut'] < 125) {
+              (s as any).gnikname = 'vixen';
             } else {
-              if (((s as any).fame ?? 0)?.['pav_slut'] < 175) {
-                (s as any).gnikname = 'cocklover';
+              if (((s as any).fame ?? 0)?.['pav_slut'] < 150) {
+                (s as any).gnikname = 'temptress';
               } else {
-                if (((s as any).fame ?? 0)?.['pav_slut'] < 200) {
-                  (s as any).gnikname = 'boytoy';
+                if (((s as any).fame ?? 0)?.['pav_slut'] < 175) {
+                  (s as any).gnikname = 'cocklover';
                 } else {
-                  if (((s as any).fame ?? 0)?.['pav_slut'] < 225) {
-                    (s as any).gnikname = 'slut';
+                  if (((s as any).fame ?? 0)?.['pav_slut'] < 200) {
+                    (s as any).gnikname = 'boytoy';
                   } else {
-                    if (((s as any).fame ?? 0)?.['pav_slut'] < 250) {
-                      (s as any).gnikname = 'nympho';
+                    if (((s as any).fame ?? 0)?.['pav_slut'] < 225) {
+                      (s as any).gnikname = 'slut';
                     } else {
-                      if (((s as any).fame ?? 0)?.['pav_slut'] < 275) {
-                        (s as any).gnikname = 'whore';
+                      if (((s as any).fame ?? 0)?.['pav_slut'] < 250) {
+                        (s as any).gnikname = 'nympho';
                       } else {
-                        if (((s as any).fame ?? 0)?.['pav_slut'] < 300) {
-                          (s as any).gnikname = 'town bicycle';
+                        if (((s as any).fame ?? 0)?.['pav_slut'] < 275) {
+                          (s as any).gnikname = 'whore';
                         } else {
-                          (s as any).gnikname = 'cum dumpster';
+                          if (((s as any).fame ?? 0)?.['pav_slut'] < 300) {
+                            (s as any).gnikname = 'town bicycle';
+                          } else {
+                            (s as any).gnikname = 'cum dumpster';
+                          }
                         }
                       }
                     }
@@ -1157,13 +1159,11 @@ function enterCalculateGroups(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterCalculateSlut(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCalculateGroups(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1181,7 +1181,6 @@ function enterChurchReduction(s: GameState, scene: SceneBuilder): void {
     ((s as any).fame = (s as any).fame ?? {})[String(((s as any).locArgs?.[1] ?? 0)) + '_flash'] = 0;
   }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCalculateGroups(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.build();
 }
 

@@ -38,7 +38,6 @@ function enterHourly(s: GameState, scene: SceneBuilder): void {
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 0, 2]; enterSexSet(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -227,7 +226,6 @@ function enterCikl(s: GameState, scene: SceneBuilder): void {
   if (((s as any).katjaQW ?? 0)?.['coke_point'] < 0) {
     ((s as any).katjaQW = (s as any).katjaQW ?? {})['coke_point'] = 0;
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -277,16 +275,13 @@ function enterFaceColor(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterMakeup(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: dynamic text: Katja looks at you with a smile. "<<$pcs_nickname>>, I bet you would look great ...
   scene.text(`Katja looks at you with a smile. "${((s as any).pcs_nickname ?? '')}, I bet you would look great with a little make-up on you! What do you say?"`);
   (s as any).temp_loc = ((s as any).locArgs?.[1] ?? 0);
   (s as any).temp_loc_arg = ((s as any).locArgs?.[2] ?? 0);
-  // TODO-QSP: end
   scene.actions([
     { label: 'Let her put makeup on you', handler: (st: GameState) => {
     (st as any).pcs_hairbsh = 1;
@@ -351,7 +346,6 @@ function enterWillingToBeNaughty(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).temp = ((s as any).temp ?? 0) + (5*Math.max((((s as any).katjaQW ?? 0)?.['drinks']), 8)/2);
   (s as any).RESULT = ((s as any).temp ?? 0);
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -406,7 +400,6 @@ function enterTakeCocaine(s: GameState, scene: SceneBuilder): void {
   }
   ((s as any).katjaQW = (s as any).katjaQW ?? {})['coke_day'] = ((s as any).daystart ?? 0) - ((s as any).locArgs?.[2] ?? 0);
   ((s as any).katjaQW = (s as any).katjaQW ?? {})['coke_day_lapse'] = 1;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -588,7 +581,6 @@ function enterSexSet(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 

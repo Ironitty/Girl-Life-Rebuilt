@@ -62,7 +62,6 @@ function enterAnushka_3some1(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -71,7 +70,6 @@ function enterAnushka_3some1Oral1(s: GameState, scene: SceneBuilder): void {
   scene.text('Artem buries his face in Anushka\'s pussy from behind and starts eating her out, which causes her to moan loudly as you watch the action. After a few minutes, he pulls away from her. "You\'re wet enough, but I\'m not ready to fuck you yet," he says as he takes off the rest of his clothes, indicating for you to get naked as well before he lays down on the couch and motions you over. "I want you to suck my dick."');
   qspCall(s, 'arousal', 'voyeur_sex', 2, 'dom');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Give Artem a blowjob', goto: ['artem_nush_sex_uni', 'anushka_3some1_bj'] },
   ]);
@@ -84,7 +82,6 @@ function enterAnushka_3some1Oral2(s: GameState, scene: SceneBuilder): void {
   scene.text('You eat her out for a few minutes with no idea what Artem is doing before you pull away and see him kneeling next to you. He quickly leans in to take your place.');
   qspCall(s, 'arousal', 'cuni_give', 2, ((s as any).npcID1 ?? 0), 'lesbian');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Watch Artem eat her out', goto: ['artem_nush_sex_uni', 'anushka_3some1_oral1'] },
   ]);
@@ -97,7 +94,6 @@ function enterAnushka_3some1DomBj(s: GameState, scene: SceneBuilder): void {
   scene.text('He finally pulls his dick out of her mouth and she gasps for air as he pulls her up from where she was kneeling. He turns her around and pushes her onto the couch where she kneels as he reaches over to grab you and pull your head over to her pussy.');
   qspCall(s, 'arousal', 'voyeur_sex', 2, 'dom');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Eat her out', goto: ['artem_nush_sex_uni', 'anushka_3some1_oral2'] },
   ]);
@@ -114,7 +110,6 @@ function enterAnushka_3some1Bj(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'bj', 2);
   qspCall(s, 'arousal', 'cuni', (-2), ((s as any).npcID1 ?? 0), 'lesbian');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Tell Anushka to suck his dick', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/apartment/artemhome/artemroom/sex/nush3some5.jpg');
@@ -131,9 +126,7 @@ function enterAnushka_3some1Bj(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Mount him', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/apartment/artemhome/artemroom/sex/nush3some6.jpg');
-    // TODO-QSP: dynamic text: He grabs hold of Anushka''s head and pulls her off as he looks at you. "I need t...
     scene.text(`He grabs hold of Anushka's head and pulls her off as he looks at you. "I need to fuck you, ${((st as any).pcs_nickname ?? '')}."`);
-    // TODO-QSP: dynamic text: You lift yourself up and straddle him before lining his dick up with your pussy ...
     scene.text(`You lift yourself up and straddle him before lining his dick up with your pussy and slowly lowering yourself down on it, taking his ${((st as any).dick ?? '')}cm ${((st as any).dick_girth ?? '')} dick inside you. As you start riding him, Anushka moves up to his head, straddles his face and lowers herself down, grinding her crotch into his face as you ride him. You both moan from the pleasure of the act and watching your friend be pleasured by your boyfriend.`);
     scene.text('A few minutes later, he lifts her off and then smacks your ass. "Bring that sweet pussy up here."');
     qspCall(st, 'arousal', 'vaginal', 3);
@@ -197,7 +190,6 @@ function enterAnushka_3some1Rough1(s: GameState, scene: SceneBuilder): void {
   scene.text('Anushka looks up at him while biting her lower lip, but doesn\'t say anything. He looks at you when you speak up, then looks at her, and his gaze hardens before he starts ramming his cock harder in her ass. Anushka responds by moaning louder, enjoying the hard fucking Artem is giving her ass.');
   qspCall(s, 'arousal', 'voyeur_sex', 2, 'dom');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Ask him to butt fuck you', goto: ['artem_nush_sex_uni', 'anushka_3some1_anal'] },
     { label: 'Let him keep going', goto: ['artem_nush_sex_uni', 'anushka_3some1_doggy'] },
@@ -212,7 +204,6 @@ function enterAnushka_3some1Anal(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'anal', 2, 'lube');
   qspCall(s, 'arousal', 'cuni', (-2), ((s as any).npcID1 ?? 0), 'lesbian');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Eat her out', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/apartment/artemhome/artemroom/sex/nush3some13.jpg');
@@ -240,7 +231,6 @@ function enterAnushka_3some1Doggy(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'arousal', 'cuni_give', 2, ((s as any).npcID1 ?? 0), 'lesbian');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Keep eating her out', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/apartment/artemhome/artemroom/sex/nush3some15.jpg');
@@ -281,7 +271,6 @@ function enterAnushka_3some1DomFacial(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/resident/apartment/artemhome/artemroom/sex/nush3some_mouthful.jpg');
   scene.text('"Stick out your tongue," he orders once he has Anushka kneeling on the floor in front of him. You watch as she sticks out her tongue and he puts the tip of his dick just above it. He groans loudly as he shoots his cum into her mouth; most of it ends up in her mouth, but some lands on the side of her face and on her breasts. Once he squeezes the last drop of cum out of his dick, he lets out a loud satisfied sigh and sits on the couch.');
   qspCall(s, 'arousal', 'end');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Clean up', goto: ['artem_nush_sex_uni', 'anushka_3some1_cleanup'] },
     { label: 'Lick the cum from her face', handler: (st: GameState) => {
@@ -326,17 +315,13 @@ function enterAnushka_3some1Cleanup(s: GameState, scene: SceneBuilder): void {
   scene.text('You bite your lip, half expecting Anushka to go off on him now for admitting it was just an act, but to your surprise she walks over and pats him on the cheek. "You did great and I loved it. Word of advice, though. Next time, don\'t ruin it like that. Own the attitude, okay?"');
   scene.text('He giggles softly as he nods. "Got it." Then it seems to hit him. "Next time?"');
   scene.text('She shrugs as she starts getting dressed. "Sure, if you guys want. I had fun, so why not?"');
-  // TODO-QSP: dynamic text: He grins ear from ear, apparently never expecting to hear all the praise he''s g...
   scene.text(`He grins ear from ear, apparently never expecting to hear all the praise he's getting. "Yeah, sure." Then he glances at you. "I mean if ${((s as any).pcs_nickname ?? '')} is okay with it."`);
   scene.text('You smile at him. "We can talk about it later." You had fun, but do you wantyour boyfriend fucking one of your best friends to be a regular thing?');
   if (((s as any).grupTipe ?? 0) === 3) {
-    // TODO-QSP: dynamic text: Once you''re all dressed, Anushka touches up her makeup using her compact mirror...
     scene.text(`Once you're all dressed, Anushka touches up her makeup using her compact mirror. Once she's done, she stands up. "Okay, I need to get going, but I guess I'll see you at the Coffee Hole for your nerd night," she says to Artem before she turns to you. "I'll see you around, ${((s as any).pcs_nickname ?? '')}. Later nerds."`);
   } else {
-    // TODO-QSP: dynamic text: Once you''re all dressed, Anushka touches up her makeup using her compact mirror...
     scene.text(`Once you're all dressed, Anushka touches up her makeup using her compact mirror. Once she's done, she stands up. "Okay, I need to get going, but I guess I'll see you at the Coffee Hole for your nerd night," she says to Artem before she turns to you. "I'll see you around, ${((s as any).pcs_nickname ?? '')}. Later losers."`);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Ask how he feels', goto: ['artem_nush_sex_uni', 'nush3some1_how_he_feels'] },
     { label: 'You need to leave too', handler: (st: GameState) => {
@@ -400,7 +385,6 @@ function enterNush3some1HowHeFeels(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -412,7 +396,6 @@ function enterAnushka_3some2(s: GameState, scene: SceneBuilder): void {
   scene.text('She gives you an amused, yet slightly aroused grin as she walks over to the couch and Artem starts undressing her. Once she\'s naked, he pushes her down firmly by the shoulders and she drops down onto her knees in front of him. "Open your mouth, slut," he says as he unbuttons his pants.');
   qspCall(s, 'arousal', 'voyeur', 2, 'dom');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Watch', goto: ['artem_nush_sex_uni', 'anushka_3some2_dom_bj'] },
   ]);
@@ -425,11 +408,9 @@ function enterAnushka_3some2DomBj(s: GameState, scene: SceneBuilder): void {
   scene.text('He finally pulls his dick out of her mouth and she gasps for air as he pulls her up from where she was kneeling. He turns her around and pushes her onto the couch where she kneels as he reaches over to grab you and pull your head over to her pussy.');
   qspCall(s, 'arousal', 'voyeur_sex', 2, 'dom');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Eat her out', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/apartment/artemhome/artemroom/sex/nush3some3.jpg');
-    // TODO-QSP: dynamic text: Artem buries your face in Anushka''s pussy and you start licking. She''s already...
     scene.text(`Artem buries your face in Anushka's pussy and you start licking. She's already wet and moans loudly as you feel Artem let go of you. "That's it. Get her nice and wet for me, ${((st as any).pcs_nickname ?? '')}."`);
     scene.text('As you eat her out, you notice Artem undressing out of the corner of your eye. Once he\'s naked, he kneels down next to you. "Take off your clothes," he orders as you move aside, letting him lean in and take your place.');
     qspCall(st, 'arousal', 'cuni_give', 2, ((st as any).npcID1 ?? 0), 'lesbian');
@@ -444,7 +425,6 @@ function enterAnushka_3some2DomBj(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Watch Artem fuck her', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/apartment/artemhome/artemroom/sex/nush3some_dom_fuck1.jpg');
-    // TODO-QSP: dynamic text: Artem stands up and smacks his dick against Anushka''s ass cheeks a few times be...
     scene.text(`Artem stands up and smacks his dick against Anushka's ass cheeks a few times before he rubs the tip against her soaking wet pussy, causing her to moan. You watch as he slides his dick into her, her pussy easily swallowing up ${((st as any).dick ?? '')}cm ${((st as any).dick_girth ?? '')} cock as he starts fucking her. Listening to her moaning with each thrust is arousing you, so you slide your hand down to your own wet pussy and start rubbing your clit, masturbating as you watch them fuck.`);
     qspCall(st, 'arousal', 'voyeur_sex', 2);
     qspCall(st, 'arousal', 'clit_finger', (-2), 'masturbate');
@@ -513,10 +493,8 @@ function enterAnushka_3some2DomBj(s: GameState, scene: SceneBuilder): void {
     scene.text('You smirk. "No, I just wanted to watch your ass get owned by some nerd dick. You\'re really starting to become a submissive little slut to him."');
     scene.text('Anushka rolls her eyes and shakes her head. "Whatever gets you off." Once she finishes cleaning the cum off herself, she starts getting dressed, as do you and Artem. Anushka then grabs her purse and compact and starts touching up her makeup.');
     if (((st as any).grupTipe ?? 0) === 3) {
-      // TODO-QSP: dynamic text: Once you''re all dressed, Anushka finishes her makeup and gets up. "Okay, I need...
       scene.text(`Once you're all dressed, Anushka finishes her makeup and gets up. "Okay, I need to get going, but I guess I'll see you at the Coffee Hole for your nerd night," she says to Artem before she turns to you. "I'll see you around, ${((st as any).pcs_nickname ?? '')}. Later nerds."`);
     } else {
-      // TODO-QSP: dynamic text: Once you''re all dressed, Anushka finishes her makeup before she gets up. "Okay,...
       scene.text(`Once you're all dressed, Anushka finishes her makeup before she gets up. "Okay, I need to get going, but I guess I'll see you at the Coffee Hole for your nerd night," she says to Artem before she turns to you. "I'll see you around, ${((st as any).pcs_nickname ?? '')}. Later losers."`);
     }
     scene.actions([
@@ -557,7 +535,6 @@ function enterAnushka_3some2Bj(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'bj', 2);
   qspCall(s, 'arousal', 'cuni', (-2), ((s as any).npcID1 ?? 0), 'lesbian');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Tell Anushka to suck his dick', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/apartment/artemhome/artemroom/sex/nush3some5.jpg');
@@ -569,9 +546,7 @@ function enterAnushka_3some2Bj(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Mount him', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/apartment/artemhome/artemroom/sex/nush3some6.jpg');
-    // TODO-QSP: dynamic text: He grabs hold of Anushka''s head and pulls her off before he looks at you. "I ne...
     scene.text(`He grabs hold of Anushka's head and pulls her off before he looks at you. "I need to fuck you, ${((st as any).pcs_nickname ?? '')}."`);
-    // TODO-QSP: dynamic text: You straddle him and line his dick up with your pussy before slowly lowering you...
     scene.text(`You straddle him and line his dick up with your pussy before slowly lowering yourself down onto it, taking his ${((st as any).dick ?? '')}cm ${((st as any).dick_girth ?? '')} dick inside you. As you start riding him, Anushka moves up to his head, straddles his face and lowers herself down, grinding her crotch into his face as you ride him. You both moan from the pleasure of the act.`);
     scene.text('A few minutes later, he lifts her off and smacks your ass. "Bring that sweet pussy up here."');
     qspCall(st, 'arousal', 'vaginal', 3);
@@ -628,7 +603,6 @@ function enterAnushka_3some2Rough1(s: GameState, scene: SceneBuilder): void {
   scene.text('Anushka responds by moaning louder as he looks at you and grins. "Yeah she does! By the time we\'re done with her, she\'ll be begging every nerd at the university to fuck her ass!" He then looks down at Anushka. "Wouldn\'t you, slut?" He doesn\'t wait for her to respond. "Oh how the mighty have fallen. I remember when you were a badass bitch and now you\'re our little submissive fuck slut."');
   qspCall(s, 'arousal', 'voyeur_sex', 2, 'dom');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Ask him to butt fuck you', goto: ['artem_nush_sex_uni', 'anushka_3some1_anal'] },
     { label: 'Let him keep going', goto: ['artem_nush_sex_uni', 'anushka_3some1_doggy'] },
@@ -643,7 +617,6 @@ function enterAnushka_3some2Anal(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'anal', 2, 'lube');
   qspCall(s, 'arousal', 'cuni', (-2), ((s as any).npcID1 ?? 0), 'lesbian');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Eat her out', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/apartment/artemhome/artemroom/sex/nush3some13.jpg');
@@ -666,7 +639,6 @@ function enterAnushka_3some2Doggy(s: GameState, scene: SceneBuilder): void {
   scene.text('"Oh fuck… Yes… I love big nerd dick… In my ass…" she moans breathlessly as he fucks her ass and you eat her out.');
   qspCall(s, 'arousal', 'cuni_give', 2, ((s as any).npcID1 ?? 0), 'lesbian');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Keep eating her out', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/apartment/artemhome/artemroom/sex/nush3some15.jpg');
@@ -697,7 +669,6 @@ function enterAnushka_3some2DomFacial(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/resident/apartment/artemhome/artemroom/sex/nush3some_mouthful.jpg');
   scene.text('"Stick out your tongue," he orders once he has Anushka kneeling on the floor in front of him. You watch as she sticks out her tongue and he puts the tip of his dick just above it. He groans loudly as he shoots his cum into her mouth; most of it ends up in her mouth, but some lands on the side of her face and on her breasts. Once he squeezes the last drop of cum out of his dick, he lets out a loud satisfied sigh and sits on the couch.');
   qspCall(s, 'arousal', 'end');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Lick the cum from her face', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/apartment/artemhome/artemroom/sex/nush3some17.jpg');
@@ -732,13 +703,10 @@ function enterAnushka_3some2Cleanup(s: GameState, scene: SceneBuilder): void {
   scene.text('He swells with pride again. "Next time you\'ll have <i>three</i> orgasms!" he proclaims.');
   scene.text('"Promises, promises…" she grins before looking at you. "He\'s all yours to deal with."');
   if (((s as any).grupTipe ?? 0) === 3) {
-    // TODO-QSP: dynamic text: Once you''re all dressed, Anushka touches up her makeup using her compact mirror...
     scene.text(`Once you're all dressed, Anushka touches up her makeup using her compact mirror. Once she's done, she gets up. "Okay, I need to get going, but I guess I'll see you at the Coffee Hole for your nerd night," she says to Artem before she turns to you. "I'll see you around, ${((s as any).pcs_nickname ?? '')}. Later nerds."`);
   } else {
-    // TODO-QSP: dynamic text: Once you''re all dressed, Anushka touches up her makeup using her compact mirror...
     scene.text(`Once you're all dressed, Anushka touches up her makeup using her compact mirror. Once she's done, she gets up. "Okay, I need to get going, but I guess I'll see you at the Coffee Hole for your nerd night," she says to Artem before she turns to you. "I'll see you around, ${((s as any).pcs_nickname ?? '')}. Later losers."`);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'You need to leave too', handler: (st: GameState) => {
     scene.img('images/characters/shared/headshots_main/big2.jpg');
@@ -756,11 +724,9 @@ function enterAnushka_3some2DomStrapon(s: GameState, scene: SceneBuilder): void 
   qspCall(s, 'boyStat', 'D' + ((s as any).strapNumber ?? 0) + '');
   scene.img('images/locations/pavlovsk/resident/apartment/artemhome/artemroom/sex/nush3some_dom_strap1.jpg');
   scene.text('While Artem fucks Anushka doggy style, you grab your purse and pull out your strapon harness. You slip into it and buckle it in place before taking the dildo out and attaching it to the harness. Artem glances over at you once you have the strapon firmly attached and pulls out of Anushka before standing aside. You walk up and give her ass a hard slap. "Roll over. I want you to watch me while I fuck you with my big dick!"');
-  // TODO-QSP: dynamic text: Anushka rolls over onto her back and spreads her legs before you scoot up on you...
   scene.text(`Anushka rolls over onto her back and spreads her legs before you scoot up on your knees and slide the dildo into her. Your ${((s as any).dick ?? '')}cm ${((s as any).dick_girth ?? '')} dildo slides easily into her wet pussy, making her moan loudly as you start fucking her.`);
   qspCall(s, 'arousal', 'vaginal_strap_give', 2, 'lesbian');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Keep fucking Anushka', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/apartment/artemhome/artemroom/sex/nush3some_dom_fuck2.jpg');
@@ -816,10 +782,8 @@ function enterAnushka_3some2DomStrapon(s: GameState, scene: SceneBuilder): void 
     scene.text('You laugh. "No, I just wanted to watch your ass get owned by some nerd dick. You\'re starting to really become a submissive slut to him."');
     scene.text('Anushka rolls her eyes and shakes her head. "Whatever gets you off." Once she finishes cleaning herself, she starts getting dressed, as do you and Artem. Anushka then grabs her purse and compact and starts to touch up her makeup.');
     if (((st as any).grupTipe ?? 0) === 3) {
-      // TODO-QSP: dynamic text: Once you''re all dressed and Anushka is done touching up her makeup, she gets up...
       scene.text(`Once you're all dressed and Anushka is done touching up her makeup, she gets up. "Okay, I need to get going, but I guess I'll see you at the Coffee Hole for your nerd night," she says to Artem before she turns to you. "I'll see you around, ${((st as any).pcs_nickname ?? '')}. Later nerds."`);
     } else {
-      // TODO-QSP: dynamic text: Once you''re all dressed and Anushka is done touching up her makeup, she gets up...
       scene.text(`Once you're all dressed and Anushka is done touching up her makeup, she gets up. "Okay, I need to get going, but I guess I'll see you at the Coffee Hole for your nerd night," she says to Artem before she turns to you. "I'll see you around, ${((st as any).pcs_nickname ?? '')}. Later losers."`);
     }
     scene.actions([
@@ -853,11 +817,9 @@ function enterAnushka_3some2DomStraponAnal(s: GameState, scene: SceneBuilder): v
   scene.img('images/locations/pavlovsk/resident/apartment/artemhome/artemroom/sex/nush3some_dom_strap_anal1.jpg');
   scene.text('You stand next to him and watch as he fucks her ass. "Babe, I want to fuck her too," you tell him.');
   scene.text('He looks over at you and grins, then pulls out of her asshole, leaving it gaping and waiting for you. You grab her ass cheeks with your hands and spread them wide, making her hole gape a bit wider as you position yourself and line the tip of the dildo up with her hole before you push it in.');
-  // TODO-QSP: dynamic text: She moans loudly as the <<dick>>cm <<$dick_girth>> dildo easily slides into her ...
   scene.text(`She moans loudly as the ${((s as any).dick ?? '')}cm ${((s as any).dick_girth ?? '')} dildo easily slides into her lubed asshole and you fuck her for a few minutes before Artem starts crowding against you, wanting another go himself.`);
   qspCall(s, 'arousal', 'anal_strap_give', 2, 'lesbian');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Let Artem have a turn', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/apartment/artemhome/artemroom/sex/nush3some_dom_anal2.jpg');
@@ -903,10 +865,8 @@ function enterAnushka_3some2DomStraponAnal(s: GameState, scene: SceneBuilder): v
     scene.text('You laugh. "You\'re becoming a real submissive butt slut for this nerd, aren\'t you?"');
     scene.text('Anushka rolls her eyes and shakes her head. "Whatever. I just like getting fucked." Once she finishes cleaning herself, she starts getting dressed, as do you and Artem. Anushka then grabs her purse and compact and starts to touch up her makeup.');
     if (((st as any).grupTipe ?? 0) === 3) {
-      // TODO-QSP: dynamic text: Once you''re all dressed and Anushka is done touching up her makeup, she gets up...
       scene.text(`Once you're all dressed and Anushka is done touching up her makeup, she gets up. ""Okay, I need to get going, but I guess I'll see you at the Coffee Hole for your nerd night," she says to Artem before she turns to you. "I'll see you around, ${((st as any).pcs_nickname ?? '')}. Later nerds."`);
     } else {
-      // TODO-QSP: dynamic text: Once you''re all dressed and Anushka is done touching up her makeup, she gets up...
       scene.text(`Once you're all dressed and Anushka is done touching up her makeup, she gets up. ""Okay, I need to get going, but I guess I'll see you at the Coffee Hole for your nerd night," she says to Artem before she turns to you. "I'll see you around, ${((st as any).pcs_nickname ?? '')}. Later losers."`);
     }
     scene.actions([
@@ -945,7 +905,6 @@ function enterNerdGameNightWalk(s: GameState, scene: SceneBuilder): void {
     scene.text('You and Artem hold hands and Anushka walks on the other side of him as the three of you talk about a variety of subjects, but they mostly chat about the university and what they think of their professors and fellow students in each of their classes. Artem then talks about the D&D game, but quickly drops it when Anushka seems like she\'s getting bored.');
     scene.text('You then walk past the garages out back of the apartment complex Anushka lives in, and she points out which one the band is renting. Artem suddenly stops and takes his jacket off before spreading it wide on the ground. "Hey, why don\'t we sit down and talk for a bit here?" If you want Anushka to have sex with Artem, then you should sit with her between you and him. If you want to have sex with him, then you should sit between them.');
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Sit between Artem and Anushka', goto: ['artem_nush_sex_uni', 'artem_sveta'] },
     { label: 'Sit down on the other side of Anushka', goto: ['artem_nush_sex_uni', 'artem_nush'] },
@@ -958,7 +917,6 @@ function enterArtemNush(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/boy/artem/sex/city/coffee_hole/sveta/walk1.jpg');
   scene.text('Anushka sits and leaves room for you between her and Artem, but you motion for her to scoot over next to Artem and you sit next to her, sandwiching her between the two of you. Artem gives you a questioning look, but you just smile and nod at him.');
   scene.text('He grins and leans back in a half-reclining position as you engage Anushka in a conversation about her latest sexual partner. You can see the bulge growing in his pants, and Anushka soon does as well. "Guess someone likes my story, huh?" she asks in a bemused tone.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Tell her to peek', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/boy/artem/sex/city/coffee_hole/sveta/walk2.jpg');
@@ -967,7 +925,6 @@ function enterArtemNush(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Tell her to take it out', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/boy/artem/sex/city/coffee_hole/sveta/walk_bj1.jpg');
-    // TODO-QSP: dynamic text: She reaches into his underwear and pulls out his <<dick>>cm <<$dick_girth>> dick...
     scene.text(`She reaches into his underwear and pulls out his ${((st as any).dick ?? '')}cm ${((st as any).dick_girth ?? '')} dick. Once it's free, he reaches over and pulls her head down into his lap. "You made it hard, so now you got to suck it," you say with a smirk.`);
     scene.text('She starts stroking his dick with one hand before taking it into her mouth and sucking on it as Artem moans in pleasure.');
     scene.text('"This is the best use for that mouth of her\'s," he says as you grin at him.');
@@ -1028,7 +985,6 @@ function enterArtemNushStrip(s: GameState, scene: SceneBuilder): void {
   scene.text('You pull her head up and both you and Artem start unbuttoning her jeans. Once you have them off, Artem tosses them aside as Anushka continues jerking him off. He then starts to tug at her panties.');
   qspCall(s, 'arousal', 'voyeur', 1);
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Watch Artem take off her panties', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/boy/artem/sex/city/coffee_hole/anushka/walk_strip2.jpg');
@@ -1039,7 +995,6 @@ function enterArtemNushStrip(s: GameState, scene: SceneBuilder): void {
       { label: 'Help her onto all fours', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/boy/artem/sex/city/coffee_hole/anushka/walk_vaginal1.jpg');
     scene.text('You help Anushka get up on all fours so her ass is facing Artem. Once she\'s in place, Artem kneels down behind her. "Damn, you\'re soaking wet! Look babe, her juices are already running down her thigh!"');
-    // TODO-QSP: dynamic text: He moves forward and she suddenly moans loudly as he shoves his <<dick>>cm <<$di...
     scene.text(`He moves forward and she suddenly moans loudly as he shoves his ${((st as any).dick ?? '')}cm ${((st as any).dick_girth ?? '')} cock inside her pussy and starts fucking her as you lean in and start kissing her.`);
     qspCall(st, 'arousal', 'kiss', 2, 'lesbian');
     qspCall(st, 'stat', '');
@@ -1086,10 +1041,8 @@ function enterArtemNushStrip(s: GameState, scene: SceneBuilder): void {
     scene.text('He just laughs at her response. "Yet you just came from it, so you obviously love it."');
     scene.text('Anushka rolls her eyes and shakes her head as she starts putting her jeans back on and Artem starts to get dressed as well.');
     if (((st as any).grupTipe ?? 0) === 3) {
-      // TODO-QSP: dynamic text: Once they''re both dressed, Anushka gets ready to leave. ""Okay, I need to get g...
       scene.text(`Once they're both dressed, Anushka gets ready to leave. ""Okay, I need to get going, but I guess I'll see you at the Coffee Hole for your nerd night," she says to Artem before she turns to you. "I'll see you around, ${((st as any).pcs_nickname ?? '')}. Later nerds."`);
     } else {
-      // TODO-QSP: dynamic text: Once they''re both dressed, Anushka gets ready to leave. ""Okay, I need to get g...
       scene.text(`Once they're both dressed, Anushka gets ready to leave. ""Okay, I need to get going, but I guess I'll see you at the Coffee Hole for your nerd night," she says to Artem before she turns to you. "I'll see you around, ${((st as any).pcs_nickname ?? '')}. Later losers."`);
     }
     scene.actions([
@@ -1133,7 +1086,6 @@ function enterArtemSveta(s: GameState, scene: SceneBuilder): void {
   scene.text('Artem and Anushka take a seat, with Anushka leaving room for you to sit between her and Artem. You sit between them and lean against Artem as the three of you talk a bit more.');
   scene.text('Artem leans back in a half reclining position and you can see his bulge growing in his pants. After a while, Anushka notices as well. "Looks like someone is getting a little worked up, huh?" she asks is a bemused tone.');
   scene.text('Artem smiles at you. "Sorry babe, but I can\'t help it. You\'re just so beautiful."');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Take a peek', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/boy/artem/sex/city/coffee_hole/sveta/walk2.jpg');
@@ -1142,7 +1094,6 @@ function enterArtemSveta(s: GameState, scene: SceneBuilder): void {
       { label: 'Pull his dick out', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/boy/artem/sex/city/coffee_hole/sveta/walk_bj1.jpg');
     scene.text('You pull his dick out and he looks at you with pleading eyes. "Please suck it, babe."');
-    // TODO-QSP: dynamic text: You lean forward and take his dick into your mouth and start sucking it while st...
     scene.text(`You lean forward and take his dick into your mouth and start sucking it while stroking his shaft. "Damn ${((st as any).pcs_nickname ?? '')}, you're getting good at that!" Anushka says.`);
     scene.text('You\'re unable to answer, so Artem replies for you. "She\'s the best!"');
     scene.text('Anushka snorts a bit of a giggle, Artem likely not getting why she found it funny.');
@@ -1178,10 +1129,8 @@ function enterArtemSveta(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'cum_call', 'face', 'A2', 1);
     qspCall(st, 'arousal', 'end');
     if (((st as any).grupTipe ?? 0) === 3) {
-      // TODO-QSP: dynamic text: "Thanks for the show guys, but I need to get going," Anushka says. "I guess I''l...
       scene.text(`"Thanks for the show guys, but I need to get going," Anushka says. "I guess I'll see you at the Coffee Hole for your nerd night," she says to Artem before she turns to you. "I'll see you around, ${((st as any).pcs_nickname ?? '')}. Later nerds."`);
     } else {
-      // TODO-QSP: dynamic text: "Thanks for the show guys, but I need to get going," Anushka says. "I guess I''l...
       scene.text(`"Thanks for the show guys, but I need to get going," Anushka says. "I guess I'll see you at the Coffee Hole for your nerd night," she says to Artem before she turns to you. "I'll see you around, ${((st as any).pcs_nickname ?? '')}. Later losers."`);
     }
     scene.actions([
@@ -1221,11 +1170,9 @@ function enterArtemSveta(s: GameState, scene: SceneBuilder): void {
 function enterArtemSvetaVag(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/boy/artem/sex/city/coffee_hole/sveta/walk_vaginal1.jpg');
   scene.text('You slide his dick out of your mouth and turn to look at him. "I want you to fuck me, right here, right now."');
-  // TODO-QSP: dynamic text: He just grins and gets up as Anushka helps you get naked from the waist down whi...
   scene.text(`He just grins and gets up as Anushka helps you get naked from the waist down while he strips out of his pants and underwear. Once you're both ready, you lay on your back and spread your legs wide before he lays down between your legs and slides his ${((s as any).dick ?? '')}cm ${((s as any).dick_girth ?? '')} cock into your already wet pussy.`);
   qspCall(s, 'arousal', 'vaginal', 2);
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Watch Anushka', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/boy/artem/sex/city/coffee_hole/sveta/walk_vaginal2.jpg');
@@ -1238,7 +1185,6 @@ function enterArtemSvetaVag(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/boy/artem/sex/city/coffee_hole/sveta/walk_vaginal3.jpg');
     scene.text('Anushka is soon moaning almost as loud as you are, enough to attract even Artem\'s attention. "What a little slut you are, rubbing one off while you watch me fuck your friend," he grins. "Admit it. You wish you were being fucked by some nerd cock right now, don\'t you?"');
     scene.text('Anushka bites her lower lip and redoubles her effort as she keeps rubbing one off. "YES! Oh fuck yes, I wish you were fucking me with your big nerd cock right now!"');
-    // TODO-QSP: dynamic text: Artem looks at you and smiles before looking back at her as he keeps fucking you...
     scene.text(`Artem looks at you and smiles before looking back at her as he keeps fucking you. "Maybe next time I'll ask Petka or Feofan to come along and they can fuck you while you watch me fuck ${((st as any).pcs_nickname ?? '')}. You'd like that, wouldn't you? I can tell by your expression that the meer thought of some other nerd using you turns you on."`);
     qspCall(st, 'arousal', 'vaginal', 2);
     qspCall(st, 'stat', '');
@@ -1263,10 +1209,8 @@ function enterArtemSvetaVag(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'cum_call', 'face', 'A2', 1);
     qspCall(st, 'arousal', 'end');
     if (((st as any).grupTipe ?? 0) === 3) {
-      // TODO-QSP: dynamic text: "Thanks for the show guys, but I need to get going," Anushka says. "I guess I''l...
       scene.text(`"Thanks for the show guys, but I need to get going," Anushka says. "I guess I'll see you at the Coffee Hole for your nerd night," she says to Artem before she turns to you. "I'll see you around, ${((st as any).pcs_nickname ?? '')}. Later nerds."`);
     } else {
-      // TODO-QSP: dynamic text: "Thanks for the show guys, but I need to get going," Anushka says. "I guess I''l...
       scene.text(`"Thanks for the show guys, but I need to get going," Anushka says. "I guess I'll see you at the Coffee Hole for your nerd night," she says to Artem before she turns to you. "I'll see you around, ${((st as any).pcs_nickname ?? '')}. Later losers."`);
     }
     scene.actions([
@@ -1308,7 +1252,6 @@ function enterArtemSvetaAnal(s: GameState, scene: SceneBuilder): void {
   scene.text('You get on all fours while Anushka keeps rubbing one out. Artem uses your pussy juices and some spit to lube your asshole up before he gently slides it in. Once his dick is inside you, he starts to slowly fuck your ass.');
   qspCall(s, 'arousal', 'anal', 2, 'lube');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Take an anal pounding', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/boy/artem/sex/city/coffee_hole/sveta/walk_anal2.jpg');
@@ -1330,10 +1273,8 @@ function enterArtemSvetaAnal(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'cum_call', 'face', 'A2', 1);
     qspCall(st, 'arousal', 'end');
     if (((st as any).grupTipe ?? 0) === 3) {
-      // TODO-QSP: dynamic text: "Thanks for the show guys, but I need to get going," Anushka says. "I guess I''l...
       scene.text(`"Thanks for the show guys, but I need to get going," Anushka says. "I guess I'll see you at the Coffee Hole for your nerd night," she says to Artem before she turns to you. "I'll see you around, ${((st as any).pcs_nickname ?? '')}. Later nerds."`);
     } else {
-      // TODO-QSP: dynamic text: "Thanks for the show guys, but I need to get going," Anushka says. "I guess I''l...
       scene.text(`"Thanks for the show guys, but I need to get going," Anushka says. "I guess I'll see you at the Coffee Hole for your nerd night," she says to Artem before she turns to you. "I'll see you around, ${((st as any).pcs_nickname ?? '')}. Later losers."`);
     }
     scene.actions([
@@ -1376,7 +1317,6 @@ function enterCoffeeHole1(s: GameState, scene: SceneBuilder): void {
     scene.text('Once Artem stops pulling her along, she pulls her arm free and looks at him as she snorts a laugh. "Bitch, huh? Just how…"');
     scene.text('You don\'t get to hear her finish whatever it was she was going to say since Artem interrupts her.');
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Watch what happens', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/anushka/coffee_hole/sex/artem_nush_payback1.jpg');
@@ -1404,7 +1344,6 @@ function enterCoffeeHole1(s: GameState, scene: SceneBuilder): void {
     ((st as any).anushkaQW = (st as any).anushkaQW ?? {})['artem_dom'] = ((st as any).anushkaQW['artem_dom'] ?? 0) + (1);
     scene.img('images/characters/pavlovsk/school/girl/anushka/coffee_hole/sex/artem_nush_payback2.jpg');
     scene.text('Artem moans as he looks down at her. "Oh yeah, that\'s it… Now stick my cock in your mouth and suck it!"');
-    // TODO-QSP: dynamic text: While stroking his <<dick>>cm <<$dick_girth>> dick with one hand, she starts to ...
     scene.text(`While stroking his ${((st as any).dick ?? '')}cm ${((st as any).dick_girth ?? '')} dick with one hand, she starts to suck on the head with her mouth. As she does, she turns her head slightly and gives you a side glance. Likely making sure you're okay with this, you give her a very slight nod and a smile.`);
     scene.text('Artem seems oblivious to the little exchange between the two of you as he moans softly. "Yeah, that\'s it… Suck my big dick. You like sucking on nerd cock, don\'t you?"');
     scene.text('She takes her mouth off the tip of his dick while her hand continues to stroke the shaft of his cock. "I love sucking on your big fat nerd dick! I love the way it tastes in my mouth…"');
@@ -1414,7 +1353,6 @@ function enterCoffeeHole1(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Watch Anushka suck your BF\'s dick', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/anushka/coffee_hole/sex/artem_nush_payback3.jpg');
-    // TODO-QSP: dynamic text: You watch as Anushka takes his <<dick>>cm <<$dick_girth>> cock about half way in...
     scene.text(`You watch as Anushka takes his ${((st as any).dick ?? '')}cm ${((st as any).dick_girth ?? '')} cock about half way into her mouth, which causes Artem to moan louder. "Oh fuck Nush, you're so good at this!"`);
     scene.text('She keeps sucking his dick while looking at you, making you wonder if she\'s getting off on you watching her suck your boyfriend\'s cock in front of you.');
     scene.text('Artem isn\'t really paying attention to the two of you and moans louder before he looks back down at her.');
@@ -1491,7 +1429,6 @@ function enterCoffeeHole1(s: GameState, scene: SceneBuilder): void {
     ((st as any).artemQW = (st as any).artemQW ?? {})['artem_dom'] = ((st as any).artemQW['artem_dom'] ?? 0) + (1);
     ((st as any).anushkaQW = (st as any).anushkaQW ?? {})['artem_dom'] = ((st as any).anushkaQW['artem_dom'] ?? 0) + (1);
     scene.img('images/characters/pavlovsk/school/girl/anushka/coffee_hole/sex/artem_nush_payback21.jpg');
-    // TODO-QSP: dynamic text: Artem roughly grabs her by the hair and forces his dick into her mouth. She''s o...
     scene.text(`Artem roughly grabs her by the hair and forces his dick into her mouth. She's only too happy to oblige him and you watch as he forces her head to bob back and forth as she sucks his ${((st as any).dick ?? '')}cm ${((st as any).dick_girth ?? '')} dick, his hand firmly gripping her by the hair and guiding her head.`);
     scene.text('You watch as your friend sucks your boyfriend\'s cock in front of you, neither one paying any attention to you at the moment. Artem then glances over at you with a huge grin on his face, obviously loving how he\'s making Anushka suck his cock before he turns back to her. "Yeah, that\'s it! Suck my big dick! You love sucking a nerd cock, don\'t you?"');
     scene.text('He roughly pulls her head far enough back that his cock pops out of her mouth. With her mouth no longer filled with cock, she looks up to him and grins. "I love sucking your big fat nerd cock! I love the way it tastes in my mouth…"');
@@ -1501,7 +1438,6 @@ function enterCoffeeHole1(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Keep watching', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/anushka/coffee_hole/sex/artem_nush_payback22.jpg');
-    // TODO-QSP: dynamic text: Artem pulls her head forward by her hair while forcing his <<dick>>cm <<$dick_gi...
     scene.text(`Artem pulls her head forward by her hair while forcing his ${((st as any).dick ?? '')}cm ${((st as any).dick_girth ?? '')} cock balls deep down her throat, which causes him to moan louder. "Oh fuck Nush, you're so good at this!"`);
     scene.text('Once she starts to struggle, he finally pulls her head back so his dick pops out of her mouth. She gasps for air once his dick is free, her eyes slightly watering as drool drips from her open mouth.');
     scene.text('Once she\'s mostly caught her breath, he shoves his cock back down her throat. After a few minutes of this, he pulls his dick out of her mouth one more time.');
@@ -1688,7 +1624,6 @@ function enterNerdGameOrcBj(s: GameState, scene: SceneBuilder): void {
   scene.text('Artem keeps looking around at the last customer still here as the three of you talk about a variety of things. Once the last other customer leaves he smiles and then walks around the counter back where she is. She looks at him and raises a slender brow. "Can I help you?"');
   scene.text('He grins at her. "Yeah you can." Then he suddenly reaches out and grabs her by the hair, forcing her down, until she gets down on her knees in front of him. "Now take my dick out and suck it like the good little slut you are."');
   scene.text('When she doesn\'t do what he says at once, he smacks her face with his hand. Not to hard, but just enough she felt it and it makes a slight pop sound. She looks very surprised but also very turned on by that.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Watch what happens', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/anushka/coffee_hole/sex/artem_nush_payback1.jpg');
@@ -1703,7 +1638,6 @@ function enterNerdGameOrcBj(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Just watch', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/anushka/coffee_hole/sex/artem_nush_payback2.jpg');
-    // TODO-QSP: dynamic text: While stroking his <<dick>>cm <<$dick_girth>> dick with one hand, she starts to ...
     scene.text(`While stroking his ${((st as any).dick ?? '')}cm ${((st as any).dick_girth ?? '')} dick with one hand, she starts to suck on the head with her mouth. As she does, she turns her head slightly and gives you a side glance. Likely making sure you're okay with this, you give her a very slight nod and a smile.`);
     scene.text('Artem seems oblivious to the little exchange between the two of you as he moans softly. "Yeah, that\'s it… Suck my big dick. You like sucking on nerd cock, don\'t you?"');
     scene.text('She takes her mouth off the tip of his dick while her hand continues to stroke the shaft of his cock. "I love sucking on your big fat nerd dick! I love the way it tastes in my mouth…"');
@@ -1713,7 +1647,6 @@ function enterNerdGameOrcBj(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Watch Anushka suck your BF\'s dick', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/anushka/coffee_hole/sex/artem_nush_payback3.jpg');
-    // TODO-QSP: dynamic text: You watch as Anushka takes his <<dick>>cm <<$dick_girth>> cock about half way in...
     scene.text(`You watch as Anushka takes his ${((st as any).dick ?? '')}cm ${((st as any).dick_girth ?? '')} cock about half way into her mouth, which causes Artem to moan louder. "Oh fuck Nush, you're so good at this!"`);
     scene.text('She keeps sucking his dick while looking at you, making you wonder if she\'s getting off on you watching her suck your boyfriend\'s cock in front of you.');
     scene.text('Artem isn\'t really paying attention to the two of you and moans louder before he looks back down at her.');

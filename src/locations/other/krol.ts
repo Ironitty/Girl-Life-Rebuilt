@@ -13,9 +13,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'indoors');
   scene.img('images/pc/items/pet_emporium/rabbit_home.jpg');
-  // TODO-QSP: dynamic text: <center><<$namekrol>> rests.</center>
   scene.text(`<center>${((s as any).namekrol ?? '')} rests.</center>`);
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['dina', 'brodila'] },
     { label: 'Make a delicious rabbit pie and sell it to the local cafe', handler: (st: GameState) => {

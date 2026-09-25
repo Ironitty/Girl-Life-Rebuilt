@@ -80,6 +80,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         { label: 'Continue', goto: ['arturdin', 'facefuck'] },
       ]);
     }
+    (st as any).temp = undefined;
   } },
   ]);
   scene.build();

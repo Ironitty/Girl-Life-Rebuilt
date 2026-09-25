@@ -8,14 +8,12 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   if (((s as any).npc_love ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
     if (((s as any).pcs_makeup ?? 0) > 1  &&  (((s as any).clothingworntype ?? 0) === 'fashionista_dress'  ||  ((s as any).clothingworntype ?? 0) === 'moncheri_gown'  ||  ((s as any).clothingworntype ?? 0) === 'moncheri_dress')  &&  ((s as any).curly ?? 0) > 0) {
       if (((s as any).npc_gentle ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
-        // TODO-QSP: dynamic text: <<$npcdesc>> looks very excited. <<$Xec>> decides that you are now ready to meet...
         scene.text(`${((s as any).npcdesc ?? '')} looks very excited. ${((s as any).Xec ?? '')} decides that you are now ready to meet ${((s as any).xyr ?? '')} mother.`);
         scene.actions([
           { label: 'Meet the parents', goto: ['love', 'mother'] },
         ]);
       } else {
         if (((s as any).npc_rough ?? 0)?.[String((s as any).npcID ?? 0)] === 0  &&  ((s as any).pantyworntype ?? 0) !== 'none') {
-          // TODO-QSP: dynamic text: <<$npcdesc>> examins you and decides that you are ready to meet <<$xyr>> friends...
           scene.text(`${((s as any).npcdesc ?? '')} examins you and decides that you are ready to meet ${((s as any).xyr ?? '')} friends.`);
           scene.actions([
             { label: '', labelFn: (s: GameState) => 'Meet ' + String(((s as any).xyr ?? '') ?? '') + ' friends', goto: ['love', 'frends'] },
@@ -25,9 +23,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     }
   } else {
     if (((s as any).npc_love ?? 0)?.[String((s as any).npcID ?? 0)] === 2) {
-      // TODO-QSP: dynamic text: <<$npcdesc>> looks very excited and suddenly pulls a ring out of a box.
       scene.text(`${((s as any).npcdesc ?? '')} looks very excited and suddenly pulls a ring out of a box.`);
-      // TODO-QSP: dynamic text: <<$npcdesc>> says "<<$pcs_nickname>>. I offer you my hand and heart. Would you m...
       scene.text(`${((s as any).npcdesc ?? '')} says "${((s as any).pcs_nickname ?? '')}. I offer you my hand and heart. Would you marry me?"`);
       scene.actions([
         { label: '', labelFn: (s: GameState) => 'No (turn ' + String(((s as any).xem ?? '') ?? '') + ' down)', handler: (st: GameState) => {
@@ -37,23 +33,17 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     qspGoto(st, 'homes_properties', 'go_home');
   } },
         { label: 'Yes', handler: (st: GameState) => {
-    // TODO-QSP: dynamic text: You agree and put the ring on your finger. <<$npcdesc>> rejoices and happily hug...
     scene.text(`You agree and put the ring on your finger. ${((st as any).npcdesc ?? '')} rejoices and happily hugs and kisses you.`);
-    // TODO-QSP: dynamic text: <<$npcdesc>> says "Now you need to find a wedding dress."
     scene.text(`${((st as any).npcdesc ?? '')} says "Now you need to find a wedding dress."`);
     scene.actions([
       { label: 'Go looking for the dress', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 60;
     ((st as any).npc_love = (st as any).npc_love ?? {})[String((st as any).npcID ?? 0)] = 3;
     if ((!((st as any).npcGender ?? 0))) {
-      // TODO-QSP: dynamic text: You get into a taxi with your soon to be husband and go to the store to choose a...
       scene.text(`You get into a taxi with your soon to be husband and go to the store to choose a dress. You choose an expensive and luxurious dress. ${((st as any).npcdesc ?? '')} pays for the purchase.`);
-      // TODO-QSP: dynamic text: After a long day you feel tired and ask <<$npcdesc>> to drive you home, warning ...
       scene.text(`After a long day you feel tired and ask ${((st as any).npcdesc ?? '')} to drive you home, warning him that the next time you'll meet you will get married.`);
     } else {
-      // TODO-QSP: dynamic text: You get into a taxi with your soon to be wife and go to the store to choose a dr...
       scene.text(`You get into a taxi with your soon to be wife and go to the store to choose a dress. You choose an expensive and luxurious dress. ${((st as any).npcdesc ?? '')} pays for the purchase.`);
-      // TODO-QSP: dynamic text: After a long day you feel tired and ask <<$npcdesc>> to drive you home, warning ...
       scene.text(`After a long day you feel tired and ask ${((st as any).npcdesc ?? '')} to drive you home, warning her that the next time you'll meet you will get married.`);
     }
     scene.actions([
@@ -65,11 +55,9 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       if (((s as any).npc_love ?? 0)?.[String((s as any).npcID ?? 0)] === 3) {
-        // TODO-QSP: dynamic text: <<$npcdesc>> has hired a wedding limousine and it''s outside waiting for you. Th...
         scene.text(`${((s as any).npcdesc ?? '')} has hired a wedding limousine and it's outside waiting for you. This is it, you are getting married today.`);
         scene.actions([
           { label: 'Sit in the limousine', handler: (st: GameState) => {
-    // TODO-QSP: dynamic text: You get into the limo, and it drives off. Soon you arrive at the wedding, <<$npc...
     scene.text(`You get into the limo, and it drives off. Soon you arrive at the wedding, ${((st as any).npcdesc ?? '')} is waiting for you as you walk down the aisle.`);
     if ((!((st as any).npcGender ?? 0))) {
       scene.actions([
@@ -99,12 +87,12 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterMarry(s: GameState, scene: SceneBuilder): void {
   if (((s as any).husID ?? 0) !== ''  ||  ((s as any).wifID ?? 0) !== '') {
+    alert('You are already married, this should not trigger!');
   } else {
     if (((s as any).npc_gender ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 0  ||  ((s as any).npc_gender ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 3) {
       qspCall(s, 'lover', 'add_husband', ((s as any).locArgs?.[1] ?? 0));
@@ -124,7 +112,6 @@ function enterMarry(s: GameState, scene: SceneBuilder): void {
     (s as any).PRinStyle = 1;
     (s as any).PRinStyle2 = 1;
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -143,7 +130,6 @@ function enterDivorce(s: GameState, scene: SceneBuilder): void {
     (s as any).PRinStyle = 0;
     (s as any).PRinStyle2 = 0;
   }
-  // TODO-QSP: end
   scene.build();
 }
 

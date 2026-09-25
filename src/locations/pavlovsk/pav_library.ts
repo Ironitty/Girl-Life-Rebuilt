@@ -43,12 +43,12 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
           }
         }
         if (((s as any).nataliaQW ?? 0)?.['library_day'] === ((s as any).daystart ?? 0)) {
-          scene.text('You see your classmate <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027natalia_pavlova/u0027, /u0027library/u0027); return false;">Natalia Pavlova</a> sitting alone at one of the tables.');
+          scene.text('You see your classmate <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027natalia_pavlova\u0027, \u0027library\u0027); return false;">Natalia Pavlova</a> sitting alone at one of the tables.');
         }
       }
     }
   }
-  scene.text('Between the bookshelves are some tables which can be used for studying. Some of them have <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027internet_mobile/u0027, /u0027get_access/u0027, /u0027free/u0027); return false;">computers</a> for public use.');
+  scene.text('Between the bookshelves are some tables which can be used for studying. Some of them have <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027internet_mobile\u0027, \u0027get_access\u0027, \u0027free\u0027); return false;">computers</a> for public use.');
   if (((s as any).lernHome ?? 0) > 0) {
     scene.text('You could do your homework with the help of one of the computers.');
   }
@@ -80,7 +80,6 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'grades', 'homework', 'school', 'yes', 1, 0, 0);
     scene.img('images/locations/pavlovsk/community/library/homework.jpg');
     scene.text('You sit down at one of the tables with a computer and use it to help you do your homework.');
-    // TODO-QSP: dynamic text: 'After an hour, you''ve ' + iif(lernHome = 0, 'completed', 'done a part of') + '...
     scene.text('After an hour, you\'ve ' + (((!((st as any).lernHome ?? 0))) ? ('completed') : ('done a part of')) + ' your homework.');
     scene.actions([
       { label: 'Get up from the table', goto: ['pav_library', ''] },
@@ -94,7 +93,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       { label: 'Join the nerd\'s study group', goto: ['pav_library_nerdstudy', 'nerd_study_night'] },
     ]);
   }
-  // TODO-QSP: end
+  (s as any).temp_nerds_here = undefined;
   scene.actions([
     { label: 'Leave', goto: ['pav_commcenter', ''] },
     { label: 'Go to the toilets', goto: ['gdktoilet', 'start'] },
@@ -114,7 +113,6 @@ function enterRead(s: GameState, scene: SceneBuilder): void {
     return;
   }
   qspCall(s, 'library_functions', 'set_library_read_acts');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['pav_commcenter', ''] },
     { label: 'Go back', goto: ['pav_library', ''] },
@@ -132,7 +130,6 @@ function enterLoan(s: GameState, scene: SceneBuilder): void {
     return;
   }
   qspCall(s, 'library_functions', 'set_loan_acts');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['pav_commcenter', ''] },
     { label: 'Go back', goto: ['pav_library', ''] },

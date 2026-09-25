@@ -23,12 +23,10 @@ function enterStripShowStart(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Stage</b></center>');
   scene.img('images/locations/city/redlight/stripclub/stripclub_stage.jpg');
   scene.text('The music starts blaring as the DJ announces you to the crowd.');
-  // TODO-QSP: dynamic text: "Give it up for... <<$pcs_strippername>>!!!"
   scene.text(`"Give it up for... ${((s as any).pcs_strippername ?? '')}!!!"`);
   scene.text('It\'s now or never. You take a deep breath and strut out onto the stage.');
   qspCall(s, 'jobs', 'clock', 'city_strip_stripper');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 1]; enterStripHub2(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -43,7 +41,6 @@ function enterStripShowEnd(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'clothing', 'wear', (((s as any).strip_club ?? 0)?.['clothing_type']), (((s as any).strip_club ?? 0)?.['clothing_number']));
   }
   qspGoto(s, 'stwork', 'start');
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -80,10 +77,9 @@ function enterStripHub(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: dynamic text: There are men sitting in front of the stage <<$pubhot>>
   scene.text(`There are men sitting in front of the stage ${((s as any).pubhot ?? '')}`);
+  (s as any).pubhot = undefined;
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterStripHub2(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -188,7 +184,6 @@ function enterStripHub2(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the stage', goto: ['stwork2', 'strip_show_end'] },
   ]);
@@ -239,7 +234,6 @@ function enterSetCustomerMood(s: GameState, scene: SceneBuilder): void {
       scene.text('"Show us some more flesh!" one of them yells out.');
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -266,7 +260,6 @@ function enterSetCustomerMoodPole(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -281,7 +274,6 @@ function enterDanceClothed(s: GameState, scene: SceneBuilder): void {
   scene.text('You dance seductively around the pole at the center of the stage.');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetCustomerMood(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('The men are starting to call for you to strip, so you\'d better give them what they want.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Strip out of your outfit', goto: ['stwork2', 'strip_clothes'] },
   ]);
@@ -300,7 +292,6 @@ function enterStripClothes(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/redlight/stripclub/sveta_clothed1.jpg');
   scene.text('You start moving seductively around the pole at the center of the stage.');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetCustomerMood(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Take off your top', handler: (st: GameState) => {
     scene.img('images/locations/city/redlight/stripclub/sveta_clothed2.jpg');
@@ -313,10 +304,10 @@ function enterStripClothes(s: GameState, scene: SceneBuilder): void {
     }
     if (((st as any).PCloSkirt ?? 0) > 0) {
       (st as any).temp_bottom_desc = 'skirt';
-      // TODO-QSP: $temp_bottom_desc[1] = 'it'
+      ((st as any).temp_bottom_desc = (st as any).temp_bottom_desc ?? {})[1] = 'it';
     } else {
       (st as any).temp_bottom_desc = 'pants';
-      // TODO-QSP: $temp_bottom_desc[1] = 'them'
+      ((st as any).temp_bottom_desc = (st as any).temp_bottom_desc ?? {})[1] = 'them';
     }
     scene.actions([
       { label: '', labelFn: (s: GameState) => 'Take off your ' + String(((st as any).temp_bottom_desc ?? '') ?? ''), handler: (st: GameState) => {
@@ -324,13 +315,12 @@ function enterStripClothes(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/redlight/stripclub/sveta_clothed3.jpg');
     if (((st as any).strip_club ?? 0)?.['cust_angry'] === 0) {
       qspCall(st, 'mood', 'raise', 'tiny');
-      // TODO-QSP: dynamic text: The positive responses make you smile as you unzip your <<$temp_bottom_desc>> an...
       scene.text(`The positive responses make you smile as you unzip your ${((st as any).temp_bottom_desc ?? '')} and let ${(((st as any).temp_bottom_desc ?? 0)?.[1] ?? '')} drop to your ankles before kicking ${(((st as any).temp_bottom_desc ?? 0)?.[1] ?? '')} off and looking several customers straight in the eye as you roll around on the stage in your underwear. Some of them throw some bills your way, so you make sure to some extra attention to them.`);
     } else {
       qspCall(st, 'mood', 'lower', 'tiny');
-      // TODO-QSP: dynamic text: The negative comments make you feel a bit uncomfortable as you unzip your <<$tem...
       scene.text(`The negative comments make you feel a bit uncomfortable as you unzip your ${((st as any).temp_bottom_desc ?? '')} and let ${(((st as any).temp_bottom_desc ?? 0)?.[1] ?? '')} drop to your ankles before kicking ${(((st as any).temp_bottom_desc ?? 0)?.[1] ?? '')} off, looking several customers straight in the eye as you roll around on the stage in your underwear.`);
     }
+    (st as any).temp_bottom_desc = undefined;
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Continue', goto: ['stwork2', 'strip_hub'] },
@@ -354,7 +344,6 @@ function enterStripBra(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/redlight/stripclub/sveta_show1.jpg');
   scene.text('You start moving seductively around the pole in the center of the stage wearing just your underwear.');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetCustomerMood(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Take off your bra', handler: (st: GameState) => {
     qspCall(st, 'bras', 'remove');
@@ -390,7 +379,6 @@ function enterStripPanties(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/redlight/stripclub/sveta_show3.jpg');
   scene.text('You dance seductively in just your panties, teasing the crowd.');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetCustomerMood(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Strip out of your panties', handler: (st: GameState) => {
     qspCall(st, 'panties', 'remove');
@@ -453,7 +441,6 @@ function enterDanceNude(s: GameState, scene: SceneBuilder): void {
       { label: 'Leave the stage', goto: ['stwork2', 'strip_show_end'] },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -471,7 +458,6 @@ function enterPoleUnderwear(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/redlight/stripclub/pole_panties.jpg');
   scene.text('You grab hold of the pole and acrobatically slide around it in your underwear.');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetCustomerMoodPole(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['stwork2', 'strip_hub'] },
   ]);
@@ -492,7 +478,6 @@ function enterPolePanties(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/redlight/stripclub/pole_topless.jpg');
   scene.text('You grab hold of the pole and acrobatically slide around it in your panties.');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetCustomerMoodPole(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['stwork2', 'strip_hub'] },
   ]);
@@ -506,7 +491,6 @@ function enterManagerBonus(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/redlight/stripclub/manager_office.jpg');
   scene.text('The security guard ushers you into Sasha\'s office before closing the door behind you. Sasha smiles at you as he sits behind his desk.');
   if (((s as any).strip_club ?? 0)?.['manager_bonus'] === 0) {
-    // TODO-QSP: dynamic text: "I heard that you''ve had a pretty good night, <<$pcs_strippername>>. How about ...
     scene.text(`"I heard that you've had a pretty good night, ${((s as any).pcs_strippername ?? '')}. How about a little bonus to top it off?" he asks.`);
     scene.text('"What kind of bonus?" you ask while raising an eyebrow.');
     scene.text('He grins. "Here\'s the deal. Every week, I choose a girl who earns a bonus. Emphasis on <i>earns</i>..."');
@@ -517,9 +501,7 @@ function enterManagerBonus(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'bj', 2);
     scene.img('images/shared/sex/blowjob/bimbo.knees5.jpg');
     scene.text('"Okay, I\'ll do it. How much is this bonus?" you ask.');
-    // TODO-QSP: dynamic text: "<<$func(''money'', ''string_profit'', 1000)>>," he replies while motioning you ...
     scene.text(`"${qspFunc(s, 'money', 'string_profit', 1000)}," he replies while motioning you over to him.`);
-    // TODO-QSP: dynamic text: You nod before you walk over and kneel in front of him as he unzips his pants an...
     scene.text(`You nod before you walk over and kneel in front of him as he unzips his pants and pulls his ${((st as any).dick ?? '')}cm ${((st as any).dick_girth ?? '')} cock out.`);
     scene.text('"Get to work," he orders while snapping his fingers.');
     scene.text('You obediently take his fat, veiny cock into your mouth, feeling it grow hard as you take it into your throat and work it with your tongue. "That\'s it, keep going..." he says softly.');
@@ -531,10 +513,8 @@ function enterManagerBonus(s: GameState, scene: SceneBuilder): void {
     if (((st as any).tits ?? 0) >= 4) {
       scene.img('images/locations/city/redlight/studio_porn/sex/titfuck.mp4');
       scene.text('A few seconds later, he roughly pulls you off his cock and scowls down at you. "Put those nice tits to good use."');
-      // TODO-QSP: dynamic text: You nod and undress your top half, exposing your <<$pc_descWordy[''breast'']>> t...
       scene.text(`You nod and undress your top half, exposing your ${(((st as any).pc_descWordy ?? 0)?.['breast'] ?? '')} to a grinning Sasha. You then obediently wrap your breasts around his warm, twitching cock and start titfucking him while continuing to suck on the head.`);
       scene.text('A few minutes later, he finally reaches climax and grunts loudly as cum spurts out of his dick and splatters over your breasts. You release your grip on his dick and sit back on your knees as Sasha looks down at you.');
-      // TODO-QSP: dynamic text: "Good job <<$pcs_nickname>>, you more than earned this," he says as he counts ou...
       scene.text(`"Good job ${((st as any).pcs_nickname ?? '')}, you more than earned this," he says as he counts out a wad of cash and hands it to you. "Keep up the good work and there will be more bonuses in the future."`);
       scene.text('You just smile at him and get up to clean yourself up before taking the money. After counting it, Sasha sends you on your way with a slap on the ass. Heading out into the hallway, the security guard flashes you a knowing smile as you hurry to the dressing room.');
       qspCall(st, 'arousal', 'bj', (-2));
@@ -547,7 +527,6 @@ function enterManagerBonus(s: GameState, scene: SceneBuilder): void {
       scene.img('images/shared/sex/cum/mouth/cum13.jpg');
       scene.text('You spend the next few minutes sucking his dick, listening to him moan before he suddenly grabs your head and holds you down on his cock as his cum starts shooting into your mouth. You\'re forced to swallow it to stop yourself from choking as he groans loudly.');
       scene.text('When he finally finishes and releases his grip on your head, allowing you pull yourself off of his cock, you gasp for air and wipe the saliva from your mouth before looking up to see him grinning down at you as you slowly jerk his slowly softening cock in your hand.');
-      // TODO-QSP: dynamic text: "Good job <<$pcs_strippername>>, you more than earned this," he says as he count...
       scene.text(`"Good job ${((st as any).pcs_strippername ?? '')}, you more than earned this," he says as he counts out a wad of cash and hands it to you. "Keep up the good work and there will be more bonuses in the future."`);
       scene.text('You just smile at him before getting up and taking the money. After counting it, Sasha sends you on your way with a slap on the ass. Heading out into the hallway, the security guard flashes you a knowing smile as you hurry to the dressing room.');
       qspCall(st, 'arousal', 'bj', (-2));
@@ -573,7 +552,6 @@ function enterManagerBonus(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.img('images/shared/sex/blowjob/bimbo.knees5.jpg');
     scene.text('"Interested in a little bonus, are we?" he asks rhetorically with a grin before snapping his fingers and pointing to his crotch.');
-    // TODO-QSP: dynamic text: You obediently walk over and kneel in front of him before unzipping his pants an...
     scene.text(`You obediently walk over and kneel in front of him before unzipping his pants and taking his already rock hard ${((s as any).dick ?? '')}cm ${((s as any).dick_girth ?? '')} cock into your mouth.`);
     scene.text('"Eager today, aren\'t we?" he laughs as you start sucking.');
     if ((!(Math.floor(Math.random() * 3) + 0))) {
@@ -590,7 +568,6 @@ function enterManagerBonus(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/shared/sex/cum/mouth/cum13.jpg');
     scene.text('He finally finishes and releases his grip on your head, allowing you pull yourself off of his cock. You gasp for air and wipe the saliva from your mouth before looking up to see him grinning down at you as he counts your money.');
-    // TODO-QSP: dynamic text: "Nice work, <<$pcs_strippername>>. Good to see you aren''t afraid of performing ...
     scene.text(`"Nice work, ${((st as any).pcs_strippername ?? '')}. Good to see you aren't afraid of performing in front of an audience. Maybe a career in porn is in your future?"`);
     scene.text('You just smile at him before getting up and taking the money. Heading out into the hallway, the security guard flashes you a knowing smile as you hurry back to the dressing room.');
     scene.actions([
@@ -610,7 +587,6 @@ function enterManagerBonus(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/shared/sex/cum/mouth/cum13.jpg');
     scene.text('He finally finishes and releases his grip on your head, allowing you pull yourself off of his cock. You gasp for air and wipe the saliva from your mouth before looking up to see him grinning down at you as he counts your money.');
-    // TODO-QSP: dynamic text: "Nice work, <<$pcs_strippername>>. It''s nice to see young girls with a good wor...
     scene.text(`"Nice work, ${((st as any).pcs_strippername ?? '')}. It's nice to see young girls with a good work ethic," he laughs.`);
     scene.text('You just smile at him before getting up and taking the money. Heading out into the hallway, the security guard flashes you a knowing smile as you hurry back to the dressing room.');
     scene.actions([
@@ -620,7 +596,6 @@ function enterManagerBonus(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -667,7 +642,6 @@ function enterPrivatdance(s: GameState, scene: SceneBuilder): void {
   scene.text('You then spend half an hour showing off your lap dancing skills while slowly peeling off your clothing. Every time you grind against him, you feel his rock hard cock straining against his pants.');
   scene.text('When you finish your dance, your customer looks just as flustered as he does happy.');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPrivatdanceEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -677,7 +651,6 @@ function enterPr1(s: GameState, scene: SceneBuilder): void {
   scene.text('The men cheer when they see you and start crowding around you while offering you wads of cash. "Hey Sergey, your stripper is here!"');
   scene.text('The groom to be looks at you with a drunken smile. "Show us what you\'ve got, girl!"');
   scene.text('Music starts playing as the lights dim and you seductively walk over to the pole in the room.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Dance on the pole', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -710,7 +683,6 @@ function enterPr1(s: GameState, scene: SceneBuilder): void {
       { label: 'Time to leave', handler: (st: GameState) => {
     scene.img('images/locations/city/redlight/stripclub/private_room.jpg');
     scene.text('One of the men looks at his watch and tells the others that their time is up. As you climb off your client\'s lap and gather your clothes, the man approaches you.');
-    // TODO-QSP: dynamic text: "Great show, girl. So great in fact, that you left our friend rather ''tensed up...
     scene.text(`"Great show, girl. So great in fact, that you left our friend rather 'tensed up'. If we pay you an extra ${qspFunc(s, 'money', 'string_profit', 2000)}, would you give him a 'happy ending' to his night?" he asks loud enough for everyone to hear. The groom gives you a drunk smile.`);
     scene.actions([
       { label: 'Agree', handler: (st: GameState) => {
@@ -751,7 +723,6 @@ function enterPr1(s: GameState, scene: SceneBuilder): void {
 
 function enterPr2(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/redlight/stripclub/private_grind.mp4');
-  // TODO-QSP: dynamic text: The man you''re dancing for is mesmerized by you and you feel his rock hard cock...
   scene.text(`The man you're dancing for is mesmerized by you and you feel his rock hard cock straining in his pants as you grind against him. After a while, he asks if he can cum on your face for ${qspFunc(s, 'money', 'string_profit', 1000)}.`);
   (s as any).minut = ((s as any).minut ?? 0) + 10;
   qspCall(s, 'willpower', 'sex', 'resist', 'hard');
@@ -771,7 +742,6 @@ function enterPr2(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Agree', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 2;
@@ -791,7 +761,6 @@ function enterPr2(s: GameState, scene: SceneBuilder): void {
 function enterPr3(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 10;
   scene.img('images/locations/city/redlight/stripclub/private_dance3.jpg');
-  // TODO-QSP: dynamic text: It''s a bit different dancing for a woman. It''s not often you have the pleasure...
   scene.text(`It's a bit different dancing for a woman. It's not often you have the pleasure of doing it, so you're feeling a bit more frisky than usual. As you finish the dance, she gives you a kiss, and you start making out. She then stops and offers you ${qspFunc(s, 'money', 'string_profit', 1000)} to eat her out.`);
   qspCall(s, 'willpower', 'sex', 'resist', 'hard');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
@@ -810,7 +779,6 @@ function enterPr3(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Agree', handler: (st: GameState) => {
     (st as any).girl = ((st as any).girl ?? 0) + (1);
@@ -843,7 +811,6 @@ function enterPr4(s: GameState, scene: SceneBuilder): void {
   scene.text('As the dance ends, you climb off him and stand before him, noticing the huge wet spot on the front of his pants.');
   scene.text('He gives you every last bill from his wallet and thanks you profusely, telling you multiple times that he\'ll never forget you.');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPrivatdanceEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -867,7 +834,6 @@ function enterPr5(s: GameState, scene: SceneBuilder): void {
       scene.text('"Really? I wonder why...?" you reply, but she\'s too dimwitted to pick up on your sarcasm.');
     } else {
       scene.text('"Hey Jade!" you say with a smile and she bounces up to you, causing her fake breasts to jiggle.');
-      // TODO-QSP: dynamic text: "Hi <<$pcs_strippername>>! I''m <i>soooo</i> happy that we get to dance together...
       scene.text(`"Hi ${((s as any).pcs_strippername ?? '')}! I'm <i>soooo</i> happy that we get to dance together! This man is <i>sooo nice</i>! He gives me <i>ssoooo</i> much money just for being <i>me</i>!"`);
       scene.text('"Really? I wonder why...?" you reply, knowing she\'s too dimwitted to pick up on your sarcasm.');
     }
@@ -879,7 +845,6 @@ function enterPr5(s: GameState, scene: SceneBuilder): void {
     scene.text('This job is really gross sometimes...');
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPrivatdanceEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -892,7 +857,6 @@ function enterPr6(s: GameState, scene: SceneBuilder): void {
   scene.text('After he closes the door behind him and you gather your things, a security guard cracks open the door and hands you a wad of cash. "This is from your client. You must have made a good impression since he wouldn\'t shut up about you. Nice work."');
   scene.text('Despite working in such a dark and sometimes depraved place, you walk back to the dressing room with your head up a little higher than before, feeling good about a job well done.');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPrivatdanceEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -902,7 +866,6 @@ function enterPr7(s: GameState, scene: SceneBuilder): void {
   scene.text('You meet your patron in one of the private rooms with a more lush setting than many of the others. Red velvet curtains and mirrors line the walls, and multiple poles surround the outskirts of the room, allowing for many girls to serve many customers at once. Tonight though, it\'s just you and one other man.');
   scene.text('You feel relatively safe knowing there\'s a security guard right outside the door, but the way the man\'s eyes pierce your own makes your heart race. There\'s definitely more than meets the eye with him.');
   scene.text('Still, you\'re here to do a job, and you start dancing for him as seductively as possible. After a few minutes, he tosses a handful of bills at you. "Let\'s see some skin, girl!" he exclaims.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Show him some skin', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -929,7 +892,6 @@ function enterPr7(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/locations/city/redlight/stripclub/private_bj.mp4');
     scene.text('You look at the customer. He\'s a bit older, but seems decent enough. And he smells washed, unlike some of the guys who roll through the club.');
-    // TODO-QSP: dynamic text: "<<$func(''money'', ''string_profit'', 2000)>>," you reply and bite your lip sed...
     scene.text(`"${qspFunc(s, 'money', 'string_profit', 2000)}," you reply and bite your lip seductively.`);
     scene.text('"This better be one hell of a blowjob!" he says before tossing the money at you. He quickly stands and tugs his pants down, his thick, veiny cock springing free in the process. He\'s already rock hard from your striptease, and per your agreement, it\'s inside your mouth within seconds.');
     scene.text('His fat cock fills every inch of space between your lips, and just taking it inside causes the swollen tip to press into the entrance of your throat as you start sucking and bobbing your head up and down.');
@@ -949,7 +911,6 @@ function enterPr8(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/redlight/stripclub/private_grind.mp4');
   if (((s as any).film ?? 0) > 0) {
     scene.text('You meet your patron in one of the private rooms and are surprised to see that it\'s a co-worker... of sorts. You recognise him as one of the talent scouts from the porn studio who you\'ve seen a few times while at the studio.');
-    // TODO-QSP: dynamic text: "Oh. Hello <<$pfname>>," he smiles. "Or do you prefer <<$pcs_strippername>> when...
     scene.text(`"Oh. Hello ${((s as any).pfname ?? '')}," he smiles. "Or do you prefer ${((s as any).pcs_strippername ?? '')} when working here?"`);
     scene.text('You give him a flirty smile as you seductively walk over to him. "Any special requests?"');
     scene.text('He grins. "A few, but I\'m not allowed to film you."');
@@ -989,7 +950,6 @@ function enterPr8(s: GameState, scene: SceneBuilder): void {
         scene.text('"Another great show, girl," he says before he smiles at you. "I don\'t know if you took me up on my earlier offer, but I have another one for you if you\'re interested?"');
         scene.text('You cock your head and he grins. "I\'m a... hands on talent scout. I like to give prospective models a personal... "test run" to see how well they take to being filmed."');
         scene.text('"So you\'re saying you want me to film a porno with you, even if I have no interest in being a porn star?" you ask.');
-        // TODO-QSP: dynamic text: He frowns. "I know you might be reluctant to do it, and for good reason, but I''...
         scene.text(`He frowns. "I know you might be reluctant to do it, and for good reason, but I'll pay you, let's call it 'hazard pay.'. How does ${qspFunc(s, 'money', 'string_profit', 6000)} sound? That's over 10 times what you just made for shaking your ass for me."`);
         qspCall(s, 'willpower', 'sex', 'resist', 'medium');
         if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
@@ -1039,7 +999,6 @@ function enterPr8(s: GameState, scene: SceneBuilder): void {
     }
   }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPrivatdanceEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1054,7 +1013,6 @@ function enterPrivatdanceEnd(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'exp_gain', 'dancero', (Math.floor(Math.random() * 3) + 2));
   ((s as any).strip_club = (s as any).strip_club ?? {})['total_stripshows'] = ((s as any).strip_club['total_stripshows'] ?? 0) + (1);
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return to the dressing room', goto: ['stwork2', 'strip_show_end'] },
   ]);

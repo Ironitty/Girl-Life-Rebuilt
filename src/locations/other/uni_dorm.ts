@@ -75,6 +75,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       scene.text('Surprised, you turn and quickly leave.');
       scene.actions([
         { label: 'Head outside', handler: (st: GameState) => {
+    (st as any).uni_dorm = undefined;
     (st as any).minut = ((st as any).minut ?? 0) + 1;
     qspGoto(st, 'uni_grounds', '');
   } },
@@ -159,10 +160,9 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
-  // TODO-QSP: end
-  // TODO-QSP: end
   scene.actions([
     { label: 'Head outside', handler: (st: GameState) => {
+    (st as any).uni_dorm = undefined;
     (st as any).minut = ((st as any).minut ?? 0) + 1;
     qspGoto(st, 'uni_grounds', '');
   } },
@@ -241,6 +241,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       scene.text('Surprised, you turn and quickly leave.');
       scene.actions([
         { label: 'Head outside', handler: (st: GameState) => {
+    (st as any).uni_dorm = undefined;
     (st as any).minut = ((st as any).minut ?? 0) + 1;
     qspGoto(st, 'uni_grounds', '');
   } },
@@ -325,10 +326,9 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
-  // TODO-QSP: end
-  // TODO-QSP: end
   scene.actions([
     { label: 'Head outside', handler: (st: GameState) => {
+    (st as any).uni_dorm = undefined;
     (st as any).minut = ((st as any).minut ?? 0) + 1;
     qspGoto(st, 'uni_grounds', '');
   } },
@@ -350,9 +350,9 @@ function enterElevator(s: GameState, scene: SceneBuilder): void {
   if (qspFunc(s, 'homes_properties', 'has_access', 'university_dorm')) {
     scene.text('There is a laundromat on the first floor.');
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Head outside', handler: (st: GameState) => {
+    (st as any).uni_dorm = undefined;
     (st as any).minut = ((st as any).minut ?? 0) + 1;
     qspGoto(st, 'uni_grounds', '');
   } },
@@ -391,9 +391,9 @@ function enterFirstFloor(s: GameState, scene: SceneBuilder): void {
       { label: 'Walk to the laundry machines', goto: ['uni_dorm', 'laundry'] },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Head outside', handler: (st: GameState) => {
+    (st as any).uni_dorm = undefined;
     (st as any).minut = ((st as any).minut ?? 0) + 1;
     qspGoto(st, 'uni_grounds', '');
   } },
@@ -419,7 +419,6 @@ function enterLaundry(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + (((st as any).wash_time ?? 0));
     qspCall(st, 'washer', 'wash_all');
     qspCall(st, 'stat', '');
-    // TODO-QSP: dynamic text: <center><img " + $set_imgh + " src=""images/system/image_needed.png""></center>
     scene.text('<center><img " + $set_imgh + " src=""images/system/image_needed.png""></center>');
     scene.text('You wash all your clothes.');
     scene.actions([
@@ -429,8 +428,9 @@ function enterLaundry(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     ]);
+    (s as any).wash_time = undefined;
   }
-  // TODO-QSP: end
+  (s as any).washer_total_wash_count = undefined;
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -513,7 +513,6 @@ function enterSecondFloor(s: GameState, scene: SceneBuilder): void {
       { label: 'Katja\'s room', handler: (st: GameState) => {
     if (((st as any).locat ?? 0)?.['katja'] === 24  ||  ((st as any).locat ?? 0)?.['katja'] === 31  ||  ((st as any).locat ?? 0)?.['katja'] === 35  ||  ((st as any).locat ?? 0)?.['katja'] === 51  ||  ((st as any).locat ?? 0)?.['katja'] === 52) {
       scene.img('images/characters/shared/headshots_main/big14.jpg');
-      // TODO-QSP: dynamic text: Katja opens the door. "Hey <<$pcs_nickname>>, come on in!" She stands aside to l...
       scene.text(`Katja opens the door. "Hey ${((st as any).pcs_nickname ?? '')}, come on in!" She stands aside to let you enter before closing the door behind you.`);
       scene.actions([
         { label: 'Enter', handler: (st: GameState) => {
@@ -538,7 +537,6 @@ function enterSecondFloor(s: GameState, scene: SceneBuilder): void {
           }
         } else {
           scene.img('images/characters/shared/headshots_main/big260.jpg');
-          // TODO-QSP: dynamic text: Sofia opens the door. "Hey, <<$pcs_nickname>>! Katja is at the library right now...
           scene.text(`Sofia opens the door. "Hey, ${((st as any).pcs_nickname ?? '')}! Katja is at the library right now and I have Maxim over, so I don't really have time to talk. See you later!" she says before closing the door.`);
         }
       } else {
@@ -576,7 +574,6 @@ function enterSecondFloor(s: GameState, scene: SceneBuilder): void {
         ]);
       } else {
         scene.text('You stand outside the dorm room, knocking on the door, hoping Artem will answer.');
-        // TODO-QSP: dynamic text: He soon opens the door with a smile. "Oh hey <<$pcs_nickname>>. I was just study...
         scene.text(`He soon opens the door with a smile. "Oh hey ${((st as any).pcs_nickname ?? '')}. I was just studying, but I can take a break."`);
         scene.text('Once you\'re inside, he closes the door and heads to the couch to take a seat.');
         scene.actions([
@@ -597,7 +594,6 @@ function enterSecondFloor(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Use the elevator', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 2;
@@ -681,7 +677,6 @@ function enterSixthFloor(s: GameState, scene: SceneBuilder): void {
       { label: 'Gosha\'s room', handler: (st: GameState) => {
     if ((((st as any).week ?? 0) <= 4  &&  ((st as any).hour ?? 0) >= 16  &&  ((st as any).hour ?? 0) < 23  &&  (Math.floor(Math.random() * 2) + 1) === 2)  ||  (((st as any).week ?? 0) === 6  &&  ((st as any).hour ?? 0) >= 9  &&  ((st as any).hour ?? 0) < 23  &&  (Math.floor(Math.random() * 2) + 1) === 2)  ||  (((st as any).week ?? 0) === 7  &&  ((st as any).hour ?? 0) >= 9  &&  ((st as any).hour ?? 0) < 23  &&  (Math.floor(Math.random() * 3) + 1) >= 2)) {
       scene.img('images/characters/shared/headshots_main/big83.jpg');
-      // TODO-QSP: dynamic text: Gosha opens the door. "Hey <<$pcs_nickname>>, why don''t you come in?"
       scene.text(`Gosha opens the door. "Hey ${((st as any).pcs_nickname ?? '')}, why don't you come in?"`);
       scene.text('He stands aside to let you enter before closing the door behind you.');
       scene.actions([
@@ -699,7 +694,6 @@ function enterSixthFloor(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Use the elevator', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 2;
@@ -785,7 +779,6 @@ function enterSeventhFloor(s: GameState, scene: SceneBuilder): void {
     if (((st as any).locat ?? 0)?.['A23'] === 19) {
       scene.img('images/characters/shared/headshots_main/big23.jpg');
       if (((st as any).AlbinaQW ?? 0)?.['first_dorm_visit'] === 0) {
-        // TODO-QSP: dynamic text: You knock on the door, and after a few seconds, Albina opens it. "<<$pcs_nicknam...
         scene.text(`You knock on the door, and after a few seconds, Albina opens it. "${((st as any).pcs_nickname ?? '')}! You came! Come in, come in."`);
         scene.text('She stands aside to let you enter before closing the door behind you.');
         scene.actions([
@@ -794,7 +787,6 @@ function enterSeventhFloor(s: GameState, scene: SceneBuilder): void {
   }, goto: ['albina_dorm', 'first_room_visit'] },
         ]);
       } else {
-        // TODO-QSP: dynamic text: You knock on the door, and after a few seconds, Albina opens it. "<<$pcs_nicknam...
         scene.text(`You knock on the door, and after a few seconds, Albina opens it. "${((st as any).pcs_nickname ?? '')}! Come in, come in."`);
         scene.text('She stands aside to let you enter before closing the door behind you.');
         scene.actions([
@@ -818,7 +810,6 @@ function enterSeventhFloor(s: GameState, scene: SceneBuilder): void {
       } else {
         if (((st as any).locat ?? 0)?.['A23'] === 18  &&  ((st as any).AlbinaQW ?? 0)?.['first_dorm_visit'] === 1) {
           scene.img('images/characters/shared/headshots_main/big23.jpg');
-          // TODO-QSP: dynamic text: You knock on the door, and after a few seconds, Albina peeks her head through th...
           scene.text(`You knock on the door, and after a few seconds, Albina peeks her head through the gap. "Oh hey ${((st as any).pcs_nickname ?? '')}."`);
           scene.text('"Hey. Are you okay?" you ask.');
           scene.text('"Yes, yes. You just caught me in the middle of a yoga session. Want to come in?"');
@@ -841,7 +832,6 @@ function enterSeventhFloor(s: GameState, scene: SceneBuilder): void {
             if (((st as any).AlbinaQW ?? 0)?.['seen_strip'] === 1  ||  ((st as any).AlbinaQW ?? 0)?.['working_stripclub'] === 1) {
               scene.img('images/characters/shared/headshots_main/big23.jpg');
               scene.text('Just as you\'re about to knock on the door, it flies open and Albina walks out with a large bag slung over her shoulder. She\'s in such a hurry that she almost collides with you.');
-              // TODO-QSP: dynamic text: "Oh. Sorry, <<$pcs_nickname>>. I didn''t see you there."
               scene.text(`"Oh. Sorry, ${((st as any).pcs_nickname ?? '')}. I didn't see you there."`);
               scene.text('"Clearly," you reply as you look at her bag. "Off to work?" you whisper and she nods.');
               scene.text('"Yes, and I\'m going to be late if I don\'t get a move on. I\'l talk to you later, yeah?"');
@@ -854,10 +844,8 @@ function enterSeventhFloor(s: GameState, scene: SceneBuilder): void {
             } else {
               scene.img('images/characters/shared/headshots_main/big23.jpg');
               scene.text('Just as you\'re about to knock on the door, it flies open and Albina walks out with a large bag slung over her shoulder. She\'s in such a hurry that she almost collides with you.');
-              // TODO-QSP: dynamic text: "Oh. Sorry, <<$pcs_nickname>>. I didn''t see you there."
               scene.text(`"Oh. Sorry, ${((st as any).pcs_nickname ?? '')}. I didn't see you there."`);
               scene.text('"Clearly," you reply as you look at her bag. "Why are you in such a rush?" you ask, but she brushes you aside.');
-              // TODO-QSP: dynamic text: "I have somewhere I need to be and need to go now before I''m late. I''ll talk t...
               scene.text(`"I have somewhere I need to be and need to go now before I'm late. I'll talk to you some other time, ${((st as any).pcs_nickname ?? '')}."`);
               scene.text('She hurries off without another word, leaving you alone and confused in the hallway.');
               scene.actions([
@@ -911,7 +899,6 @@ function enterSeventhFloor(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Use the elevator', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 2;
@@ -1401,7 +1388,6 @@ function enterEighthFloor(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Use the elevator', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 2;
@@ -1422,7 +1408,6 @@ function enterNinthFloor(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Dormitory — Ninth Floor</b></center>');
   scene.img('images/locations/city/island/university/dorm/dorm_hall.jpg');
   scene.text('Before you is the usual dorm hallway with the dilapidated walls of the ninth floor. The corridor is quiet; most of the rooms here seem to belong to students who keep to themselves.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Use the elevator', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 2;
@@ -1506,9 +1491,9 @@ function enterTenthFloor(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go outside', handler: (st: GameState) => {
+    (st as any).uni_dorm = undefined;
     (st as any).minut = ((st as any).minut ?? 0) + 6;
     qspGoto(st, 'uni_grounds', '');
   } },
@@ -1530,7 +1515,7 @@ function enterDormLounge(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/island/university/dorm/dorm_lounge.jpg');
   scene.text('This is the large shared lounge for this floor. Couches and chairs clustered around a TV on the wall create a square for groups of people to sit at, with just enough space between them to allow people to enter or leave.');
   scene.text('A vending machine charges a flat fee of 80 <b>₽</b> per item for snacks and energy drinks, likely for those cramming a late night study session.');
-  scene.text('A free <a href="#" onclick="window.__gameStore.setState((s) => { (s.newspaperVars ??= {})/u0027dbag/u0027 = s.0; return s; }); window.__gameStore.getState().doGoto(/u0027newspaper/u0027, /u0027start/u0027); return false;">newspaper</a> is available.');
+  scene.text('A free <a href="#" onclick="window.__gameStore.setState((s) => { (s.newspaperVars ??= {})\u0027dbag\u0027 = s.0; return s; }); window.__gameStore.getState().doGoto(\u0027newspaper\u0027, \u0027start\u0027); return false;">newspaper</a> is available.');
   if (((s as any).money ?? 0) < 80) {
     scene.text('You don\'t have enough money to buy anything from the vending machine.');
   } else {
@@ -1568,7 +1553,6 @@ function enterDormLounge(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return to the corridor', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -1588,7 +1572,6 @@ function enterDormLoungeWatchTv(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Dorm Lounge TV</b></center>');
   scene.img('images/locations/city/island/university/dorm/dorm_lounge.jpg');
   scene.text('You take a seat on one of the couches to watch something on the TV. There\'s not much on, but it kills a little time.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return to the corridor', handler: (st: GameState) => { qspGoto(st, 'uni_dorm', ((st as any).uni_dorm['floor'] ?? '')); } },
     { label: 'Keep watching', goto: ['uni_dorm', 'dorm_lounge_watch_tv'] },
@@ -1605,7 +1588,6 @@ function enterDormLoungeRelax(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Dorm Lounge Relax</b></center>');
   scene.img('images/locations/city/island/university/dorm/dorm_lounge.jpg');
   scene.text('You take a seat on one of the couches and just chill out for few minutes.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return to the corridor', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -1628,13 +1610,11 @@ function enterDormKitchen(s: GameState, scene: SceneBuilder): void {
   scene.text('The large shared kitchen for this floor. It\'s fairly tidy, with a lot of cabinets along two of the walls, two ovens and two refrigerators, and several tables with chairs around them scattered about the room.');
   if ((((s as any).locat ?? 0)?.['katja'] === 32  ||  ((s as any).locat ?? 0)?.['katja'] === 33)  &&  ((s as any).uni_dorm ?? 0)?.['floor'] === 'second_floor') {
     if (((s as any).katjaQW ?? 0)?.['kitchen_day'] !== ((s as any).daystart ?? 0)) {
-      // TODO-QSP: 'You see '+iif(katjaQW['know_katja_uni'] = 0 and ($start_type['loc'] ! 'sg' and $start_type['magic']...
+      scene.text('You see ' + ((((s as any).katjaQW ?? 0)?.['know_katja_uni'] === 0  &&  (((s as any).start_type ?? 0)?.['loc'] !== 'sg'  &&  ((s as any).start_type ?? 0)?.['magic'] === 'tg')) ? ('a cute redheaded girl') : ('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027katja_pantyquest\u0027, \u0027kitchen\u0027); return false;">Katja</a>')) + (((((s as any).katjaQW ?? 0)?.['pantiesQWstage'] < 3  ||  (((s as any).katjaQW ?? 0)?.['pantiesQWstage'] === 3  &&  ((s as any).katjaQW ?? 0)?.['slut'] < 65)  ||  ((s as any).katjaQW ?? 0)?.['pantiesQWstage'] === 4)  &&  ((s as any).katjaQW ?? 0)?.['take_of_panties_day'] !== ((s as any).daystart ?? 0)) ? ('sitting in a chair.') : ('standing at the kitchen table.')));
     } else {
       if (((s as any).locat ?? 0)?.['katja'] === 32) {
-        // TODO-QSP: dynamic text: 'You see '+iif(katjaQW['know_katja_uni'] = 0 and ($start_type['loc'] ! 'sg' and ...
         scene.text('You see ' + ((((s as any).katjaQW ?? 0)?.['know_katja_uni'] === 0  &&  (((s as any).start_type ?? 0)?.['loc'] !== 'sg'  &&  ((s as any).start_type ?? 0)?.['magic'] === 'tg')) ? ('a cute redheaded girl') : ('Katja')) + ' cooking.');
       } else {
-        // TODO-QSP: dynamic text: 'You see '+iif(katjaQW['know_katja_uni'] = 0 and ($start_type['loc'] ! 'sg' and ...
         scene.text('You see ' + ((((s as any).katjaQW ?? 0)?.['know_katja_uni'] === 0  &&  (((s as any).start_type ?? 0)?.['loc'] !== 'sg'  &&  ((s as any).start_type ?? 0)?.['magic'] === 'tg')) ? ('a cute redheaded girl') : ('Katja')) + ' at the table eating her dinner.');
       }
     }
@@ -1644,11 +1624,10 @@ function enterDormKitchen(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).mc_inventory ?? 0)?.['food_basic'] > 0) {
       if ((!((s as any).edahot ?? 0))) {
-        (s as any).edagot = '<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027kit_din/u0027, /u0027edagotd/u0027); return false;">Cook a meal</a>';
+        (s as any).edagot = '<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027kit_din\u0027, \u0027edagotd\u0027); return false;">Cook a meal</a>';
       } else {
         (s as any).edagot = '';
       }
-      // TODO-QSP: dynamic text: 'Your shelf in the refrigerator holds enough food for <b><<mc_inventory[''food_b...
       scene.text(`Your shelf in the refrigerator holds enough food for <b>${(((s as any).mc_inventory ?? 0)?.['food_basic'] ?? '')}</b> ` + ((((s as any).mc_inventory ?? 0)?.['food_basic'] === 1) ? ('serving') : ('servings')) + `. ${((s as any).edagot ?? '')}`);
     } else {
       scene.text('<center><b>Your shelf in the refrigerator is bare. There is nothing left for you to eat.</b></center>');
@@ -1656,7 +1635,6 @@ function enterDormKitchen(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'kit_din', 'edahota');
     qspCall(s, 'core_library', 'kitchen', 'communal');
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return to the corridor', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -1672,11 +1650,10 @@ function enterMensRestroom(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('<center><b>Dormitory - Men\'s Restroom</b></center>');
   scene.img('images/locations/city/island/university/dorm/restrooms/bathroom_mens.jpg');
-  scene.text('You peek around the corner. Stalls line the right side of the room, with urinals on the far wall and rows of sinks and <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027start/u0027); return false;">mirrors</a> to the left. The room smells strongly of disinfectant and stale piss.');
+  scene.text('You peek around the corner. Stalls line the right side of the room, with urinals on the far wall and rows of sinks and <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027start\u0027); return false;">mirrors</a> to the left. The room smells strongly of disinfectant and stale piss.');
   qspCall(s, 'din_van', 'tampon');
   qspCall(s, 'din_van', 'quickwash');
   qspCall(s, 'din_van', 'basin');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -1692,11 +1669,10 @@ function enterWomensRestroom(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('<center><b>Dormitory - Women\'s Restroom</b></center>');
   scene.img('images/locations/city/island/university/dorm/restrooms/bathroom_womens.jpg');
-  scene.text('You enter the room and walk around the corner. Stalls line the right side of the room, with rows of sinks with <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027start/u0027); return false;">mirrors</a> to the left. The room smells strongly of disinfectant.');
+  scene.text('You enter the room and walk around the corner. Stalls line the right side of the room, with rows of sinks with <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027start\u0027); return false;">mirrors</a> to the left. The room smells strongly of disinfectant.');
   qspCall(s, 'din_van', 'tampon');
   qspCall(s, 'din_van', 'quickwash');
   qspCall(s, 'din_van', 'basin');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -1745,7 +1721,7 @@ function enterDormShowerMen(s: GameState, scene: SceneBuilder): void {
   } },
             ]);
           } else {
-            scene.text('You open the door and walk down to the end of the L shaped hall to peek around the corner. In the nearest corner is a small alcove with lockers, a few benches, two rows of sinks and some <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027start/u0027); return false;">mirrors</a>. On the other side of the room is a walkway that leads off to the communal <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027uni_dorm/u0027, /u0027mens_shower/u0027); return false;">showers</a>.');
+            scene.text('You open the door and walk down to the end of the L shaped hall to peek around the corner. In the nearest corner is a small alcove with lockers, a few benches, two rows of sinks and some <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027start\u0027); return false;">mirrors</a>. On the other side of the room is a walkway that leads off to the communal <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027uni_dorm\u0027, \u0027mens_shower\u0027); return false;">showers</a>.');
           }
         }
       }
@@ -1781,7 +1757,7 @@ function enterDormShowerMen(s: GameState, scene: SceneBuilder): void {
   } },
           ]);
         } else {
-          scene.text('You open the door and walk down to the end of the L shaped hall to peek around the corner. In the nearest corner is a small alcove with lockers, a few benches, two rows of sinks and some <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027start/u0027); return false;">mirrors</a>. On the other side of the room is a walkway that leads off to the communal <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027uni_dorm/u0027, /u0027mens_shower/u0027); return false;">showers</a>.');
+          scene.text('You open the door and walk down to the end of the L shaped hall to peek around the corner. In the nearest corner is a small alcove with lockers, a few benches, two rows of sinks and some <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027start\u0027); return false;">mirrors</a>. On the other side of the room is a walkway that leads off to the communal <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027uni_dorm\u0027, \u0027mens_shower\u0027); return false;">showers</a>.');
         }
       }
     }
@@ -1789,7 +1765,6 @@ function enterDormShowerMen(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'din_van', 'tampon');
   qspCall(s, 'din_van', 'quickwash');
   qspCall(s, 'din_van', 'basin');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -1805,14 +1780,13 @@ function enterDormShowerWomen(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('<center><b>Dormitory - Women\'s Communal Showers</b></center>');
   scene.img('images/locations/city/island/university/dorm/showers/entry.jpg');
-  scene.text('You open the door and walk down to the end of the L shaped hall, which takes you to the main area of the communal shower room. In the nearest corner is a small alcove with lockers, a few benches, two rows of sinks and some <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027start/u0027); return false;">mirrors</a>. On the other side of the room is a walkway that leads off to the communal <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027uni_dorm/u0027, /u0027womens_shower/u0027); return false;">showers</a>.');
+  scene.text('You open the door and walk down to the end of the L shaped hall, which takes you to the main area of the communal shower room. In the nearest corner is a small alcove with lockers, a few benches, two rows of sinks and some <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027start\u0027); return false;">mirrors</a>. On the other side of the room is a walkway that leads off to the communal <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027uni_dorm\u0027, \u0027womens_shower\u0027); return false;">showers</a>.');
   if (((s as any).uni_dorm ?? 0)?.['floor'] !== 'tenth_floor') {
     scene.text('The dorm has a rule against using the showers that aren\'t on your floor, but you\'ve never seen anybody care enough to actually enforce it.');
   }
   qspCall(s, 'din_van', 'tampon');
   qspCall(s, 'din_van', 'quickwash');
   qspCall(s, 'din_van', 'basin');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -1830,7 +1804,6 @@ function enterMensShower(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/island/university/dorm/showers/empty_showers.jpg');
   scene.text('The room is currently empty, but you can see a line of showers with small baskets on the wall just under the shower heads to store shampoo and other products.');
   qspCall(s, 'din_van', 'private');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -1877,7 +1850,6 @@ function enterWomensShower(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'din_van', 'private');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -1897,7 +1869,7 @@ function enterDormRoom(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Your dorm room</b></center>');
   scene.img('images/locations/city/island/university/dorm/dorm_room/room.jpg');
   scene.text('This is the dorm room you share with Vika.');
-  scene.text('Your <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027bed/u0027, /u0027start/u0027); return false;">bed</a> is positioned in one of the corners of the room, with your <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027stol/u0027, /u0027start/u0027); return false;">desk</a> sitting at the foot of it.');
+  scene.text('Your <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027bed\u0027, \u0027start\u0027); return false;">bed</a> is positioned in one of the corners of the room, with your <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027stol\u0027, \u0027start\u0027); return false;">desk</a> sitting at the foot of it.');
   if (((s as any).ml_guitar ?? 0)?.['location'] === ((s as any).loc ?? 0)) {
     scene.text('Your guitar rests on its stand next to your bed.');
   }
@@ -1910,9 +1882,9 @@ function enterDormRoom(s: GameState, scene: SceneBuilder): void {
     (s as any).vika_inroom = 1;
     (s as any).vika_sleep = 0;
     if (((s as any).npc_rel ?? 0)?.['A220'] >= 60  &&  ((s as any).birthday ?? 0) === ((s as any).day ?? 0)  &&  ((s as any).birthmonth ?? 0) === ((s as any).month ?? 0)  &&  ((s as any).vikaslut ?? 0) === 1  &&  ((s as any).b_vika_present_Day ?? 0) !== ((s as any).daystart ?? 0)) {
-      (s as any).vikatext = '<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027Vika/u0027, /u0027/u0027); return false;">Vika</a> seems excited when she notices you. She\'s trying to hide a box behind her back.';
+      (s as any).vikatext = '<a href="exec:gt\'Vika\'">Vika</a> seems excited when she notices you. She\'s trying to hide a box behind her back.';
     } else {
-      (s as any).vikatext = '<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027Vika/u0027, /u0027/u0027); return false;">Vika</a> is lying on her bed.';
+      (s as any).vikatext = '<a href="exec:gt\'Vika\'">Vika</a> is lying on her bed.';
     }
     qspCall(s, 'music_actions', 'not_alone');
   } else {
@@ -1920,9 +1892,9 @@ function enterDormRoom(s: GameState, scene: SceneBuilder): void {
       (s as any).vika_inroom = 1;
       (s as any).vika_sleep = 1;
       if (((s as any).vikaslut ?? 0)) {
-        (s as any).vikatext = '<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027Vika/u0027, /u0027/u0027); return false;">Vika</a> is sleeping in her bed after working in the brothel all night.';
+        (s as any).vikatext = '<a href="exec:gt\'Vika\'">Vika</a> is sleeping in her bed after working in the brothel all night.';
       } else {
-        (s as any).vikatext = '<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027Vika/u0027, /u0027/u0027); return false;">Vika</a> is sleeping in her bed after being out the whole night.';
+        (s as any).vikatext = '<a href="exec:gt\'Vika\'">Vika</a> is sleeping in her bed after being out the whole night.';
       }
       qspCall(s, 'music_actions', 'no_music');
     }
@@ -1933,22 +1905,23 @@ function enterDormRoom(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'internet_mobile', 'add_limitation', 'noporn', 'You shouldn\'t watch porn with Vika in the room!');
       qspCall(s, 'internet_mobile', 'add_limitation', 'nocamshow', 'You can\'t do any webcam shows with Vika in the room!');
     }
-    scene.text('Your <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027komp/u0027, /u0027start/u0027); return false;">computer</a> sits on your desk.');
+    scene.text('Your <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027komp\u0027, \u0027start\u0027); return false;">computer</a> sits on your desk.');
   }
-  scene.text('To the left of the entrance is an old <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027wardrobe/u0027, /u0027start/u0027); return false;">wardrobe</a>.');
-  scene.text('There\'s a <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027start/u0027); return false;">mirror</a> hanging on the wall.');
+  scene.text('To the left of the entrance is an old <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027wardrobe\u0027, \u0027start\u0027); return false;">wardrobe</a>.');
+  scene.text('There\'s a <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027start\u0027); return false;">mirror</a> hanging on the wall.');
   if (((s as any).mc_inventory ?? 0)?.['contraceptive_pill'] > 0  &&  ((s as any).mc_inventory ?? 0)?.['equipped_condoms'] + ((s as any).mc_inventory ?? 0)?.['normal_condoms'] + ((s as any).mc_inventory ?? 0)?.['sabotaged_condoms'] > 0) {
-    scene.text('Your <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027stol/u0027, /u0027bc/u0027); return false;">birth control</a> is hidden in one of your desk drawers, as are your <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027stol/u0027, /u0027bc/u0027); return false;">condoms</a>.');
+    scene.text('Your <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027stol\u0027, \u0027bc\u0027); return false;">birth control</a> is hidden in one of your desk drawers, as are your <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027stol\u0027, \u0027bc\u0027); return false;">condoms</a>.');
   } else {
     if (((s as any).mc_inventory ?? 0)?.['contraceptive_pill'] > 0) {
-      scene.text('Your <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027stol/u0027, /u0027bc/u0027); return false;">birth control</a> is hidden in one of your desk drawers.');
+      scene.text('Your <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027stol\u0027, \u0027bc\u0027); return false;">birth control</a> is hidden in one of your desk drawers.');
     } else {
       if (((s as any).mc_inventory ?? 0)?.['equipped_condoms'] + ((s as any).mc_inventory ?? 0)?.['normal_condoms'] + ((s as any).mc_inventory ?? 0)?.['sabotaged_condoms'] > 0) {
-        scene.text('Your <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027stol/u0027, /u0027bc/u0027); return false;">condoms</a> are hidden in one of your desk drawers.');
+        scene.text('Your <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027stol\u0027, \u0027bc\u0027); return false;">condoms</a> are hidden in one of your desk drawers.');
       }
     }
   }
   qspCall(s, 'exercise', 'start');
+  (s as any).vikatext = undefined;
   if (((s as any).daystart ?? 0) >= 760) {
     qspCall(s, 'natbel_uni_dates_2', 'set_act');
   }
@@ -1966,10 +1939,10 @@ function enterDormRoom(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   qspCall(s, 'music_actions', 'start');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Walk out to the corridor', handler: (st: GameState) => {
     if (((st as any).clothingworntype ?? 0) === 'nude') {
+      alert('<b><font color = red>You need to get dressed first.</font></b>');
       qspGoto(st, 'uni_dorm', 'dorm_room');
     } else {
       (st as any).odkomp = 0;
@@ -1979,6 +1952,7 @@ function enterDormRoom(s: GameState, scene: SceneBuilder): void {
   } },
     { label: 'Leave the campus', handler: (st: GameState) => {
     if (((st as any).clothingworntype ?? 0) === 'nude') {
+      alert('<b><font color = red>You need to get dressed first.</font></b>');
       qspGoto(st, 'uni_dorm', 'dorm_room');
     } else {
       (st as any).minut = ((st as any).minut ?? 0) + 15;

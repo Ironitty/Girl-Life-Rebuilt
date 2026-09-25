@@ -8,17 +8,17 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterInit(s: GameState, scene: SceneBuilder): void {
   (s as any).adv_init = 1;
-  // TODO-QSP: $adv_list[1] = 'model'
-  // TODO-QSP: $adv_list[2] = 'guitar'
-  // TODO-QSP: $adv_list[3] = 'sing'
-  // TODO-QSP: $adv_list[4] = 'burlesque'
-  // TODO-QSP: $adv_list[5] = 'secretary'
-  // TODO-QSP: $adv_list[6] = 'dinner'
-  // TODO-QSP: $adv_list[7] = 'fitness'
-  // TODO-QSP: $adv_list[8] = 'pushkin'
-  // TODO-QSP: $adv_list[9] = 'starlets'
-  // TODO-QSP: $adv_list[10] = 'therapy'
-  // TODO-QSP: $adv_list[11] = 'hotelmaid'
+  ((s as any).adv_list = (s as any).adv_list ?? {})[1] = 'model';
+  ((s as any).adv_list = (s as any).adv_list ?? {})[2] = 'guitar';
+  ((s as any).adv_list = (s as any).adv_list ?? {})[3] = 'sing';
+  ((s as any).adv_list = (s as any).adv_list ?? {})[4] = 'burlesque';
+  ((s as any).adv_list = (s as any).adv_list ?? {})[5] = 'secretary';
+  ((s as any).adv_list = (s as any).adv_list ?? {})[6] = 'dinner';
+  ((s as any).adv_list = (s as any).adv_list ?? {})[7] = 'fitness';
+  ((s as any).adv_list = (s as any).adv_list ?? {})[8] = 'pushkin';
+  ((s as any).adv_list = (s as any).adv_list ?? {})[9] = 'starlets';
+  ((s as any).adv_list = (s as any).adv_list ?? {})[10] = 'therapy';
+  ((s as any).adv_list = (s as any).adv_list ?? {})[11] = 'hotelmaid';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterModel(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGuitar(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSing(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -31,7 +31,6 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterTherapy(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterHotelmaid(s, scene); (s as any).locArgs = __savedLocArgs; }
   (s as any).adv_listSize = 0;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -45,7 +44,6 @@ function enterModel(s: GameState, scene: SceneBuilder): void {
   ((s as any).adv_city_industrial = (s as any).adv_city_industrial ?? {})['model'] = 1;
   ((s as any).adv_city_residential = (s as any).adv_city_residential ?? {})['model'] = 1;
   ((s as any).adv_city_center = (s as any).adv_city_center ?? {})['model'] = 1;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -56,7 +54,6 @@ function enterGuitar(s: GameState, scene: SceneBuilder): void {
   ((s as any).adv_chance = (s as any).adv_chance ?? {})['guitar'] = 0;
   ((s as any).adv_pav_commercial = (s as any).adv_pav_commercial ?? {})['guitar'] = 1;
   ((s as any).adv_pav_commcenter = (s as any).adv_pav_commcenter ?? {})['guitar'] = 1;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -68,7 +65,6 @@ function enterSing(s: GameState, scene: SceneBuilder): void {
   ((s as any).adv_city_industrial = (s as any).adv_city_industrial ?? {})['sing'] = 1;
   ((s as any).adv_city_residential = (s as any).adv_city_residential ?? {})['sing'] = 1;
   ((s as any).adv_city_center = (s as any).adv_city_center ?? {})['sing'] = 1;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -82,7 +78,6 @@ function enterBurlesque(s: GameState, scene: SceneBuilder): void {
   ((s as any).adv_city_industrial = (s as any).adv_city_industrial ?? {})['burlesque'] = 1;
   ((s as any).adv_city_residential = (s as any).adv_city_residential ?? {})['burlesque'] = 1;
   ((s as any).adv_city_center = (s as any).adv_city_center ?? {})['burlesque'] = 1;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -93,7 +88,6 @@ function enterSecretary(s: GameState, scene: SceneBuilder): void {
   ((s as any).adv_chance = (s as any).adv_chance ?? {})['secretary'] = 50;
   ((s as any).adv_pav_commercial = (s as any).adv_pav_commercial ?? {})['secretary'] = 1;
   ((s as any).adv_pav_commcenter = (s as any).adv_pav_commcenter ?? {})['secretary'] = 1;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -105,7 +99,6 @@ function enterDiner(s: GameState, scene: SceneBuilder): void {
   ((s as any).adv_city_industrial = (s as any).adv_city_industrial ?? {})['diner'] = 1;
   ((s as any).adv_city_residential = (s as any).adv_city_residential ?? {})['diner'] = 1;
   ((s as any).adv_city_center = (s as any).adv_city_center ?? {})['diner'] = 1;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -117,7 +110,6 @@ function enterFitness(s: GameState, scene: SceneBuilder): void {
   ((s as any).adv_city_industrial = (s as any).adv_city_industrial ?? {})['fitness'] = 1;
   ((s as any).adv_city_residential = (s as any).adv_city_residential ?? {})['fitness'] = 1;
   ((s as any).adv_city_center = (s as any).adv_city_center ?? {})['fitness'] = 1;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -128,7 +120,6 @@ function enterPushkin(s: GameState, scene: SceneBuilder): void {
   ((s as any).adv_chance = (s as any).adv_chance ?? {})['pushkin'] = 50;
   ((s as any).adv_pav_commercial = (s as any).adv_pav_commercial ?? {})['pushkin'] = 1;
   ((s as any).adv_pav_commcenter = (s as any).adv_pav_commcenter ?? {})['pushkin'] = 1;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -139,7 +130,6 @@ function enterStarlets(s: GameState, scene: SceneBuilder): void {
   ((s as any).adv_chance = (s as any).adv_chance ?? {})['starlets'] = 50;
   ((s as any).adv_pav_commercial = (s as any).adv_pav_commercial ?? {})['starlets'] = 1;
   ((s as any).adv_pav_commcenter = (s as any).adv_pav_commcenter ?? {})['starlets'] = 1;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -150,7 +140,6 @@ function enterTherapy(s: GameState, scene: SceneBuilder): void {
   ((s as any).adv_chance = (s as any).adv_chance ?? {})['therapy'] = 50;
   ((s as any).adv_pav_commercial = (s as any).adv_pav_commercial ?? {})['therapy'] = 1;
   ((s as any).adv_pav_commcenter = (s as any).adv_pav_commcenter ?? {})['therapy'] = 1;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -161,7 +150,6 @@ function enterHotelmaid(s: GameState, scene: SceneBuilder): void {
   ((s as any).adv_chance = (s as any).adv_chance ?? {})['hotelmaid'] = 50;
   ((s as any).adv_pav_commercial = (s as any).adv_pav_commercial ?? {})['hotelmaid'] = 1;
   ((s as any).adv_pav_commcenter = (s as any).adv_pav_commcenter ?? {})['hotelmaid'] = 1;
-  // TODO-QSP: end
   scene.build();
 }
 

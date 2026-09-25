@@ -9,14 +9,12 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Cafe "Coffee Hole"</b></center>');
   scene.img('images/locations/city/island/coffee_hole/street_sign.jpg');
   scene.text('Along the street is a sign advertising a cafe called the "Coffee Hole". Following the direction of the sign, you find the door to the cafe in a little nook between two buildings. It would have been hard to see from the street without the sign.');
-  // TODO-QSP: dynamic text: 'Opening hours are ' + $func('time', 'get_time_string', 7, 0) + ' to ' + $func('...
-  scene.text('Opening hours are 7:00 to 23:00.');
+  scene.text('\'Opening hours are 7:00 to 23:00.\'');
   if (((s as any).hour ?? 0) >= 7  &&  ((s as any).hour ?? 0) < 22) {
     scene.actions([
       { label: 'Enter the cafe', goto: ['city_coffee_hole', 'inner'] },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return to the city', goto: ['city_island', ''] },
   ]);
@@ -28,14 +26,12 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Cafe "Coffee Hole"</b></center>');
   scene.img('images/locations/city/island/coffee_hole/street_sign.jpg');
   scene.text('Along the street is a sign advertising a cafe called the "Coffee Hole". Following the direction of the sign, you find the door to the cafe in a little nook between two buildings. It would have been hard to see from the street without the sign.');
-  // TODO-QSP: dynamic text: 'Opening hours are ' + $func('time', 'get_time_string', 7, 0) + ' to ' + $func('...
-  scene.text('Opening hours are 7:00 to 23:00.');
+  scene.text('\'Opening hours are 7:00 to 23:00.\'');
   if (((s as any).hour ?? 0) >= 7  &&  ((s as any).hour ?? 0) < 22) {
     scene.actions([
       { label: 'Enter the cafe', goto: ['city_coffee_hole', 'inner'] },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return to the city', goto: ['city_island', ''] },
   ]);
@@ -53,27 +49,26 @@ function enterInner(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_familiar_here = 0;
   if (((s as any).locat ?? 0)?.['A144'] === 9) {
     (s as any).temp_familiar_here = 1;
-    scene.text('You see a familiar face working behind the counter, your former classmate <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027city_coffee_hole/u0027, /u0027anushka_work/u0027); return false;">Anushka.</a>');
+    scene.text('You see a familiar face working behind the counter, your former classmate <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027city_coffee_hole\u0027, \u0027anushka_work\u0027); return false;">Anushka.</a>');
   }
   if (((s as any).locat ?? 0)?.['katja'] === 30  &&  (((s as any).katjaQW ?? 0)?.['know_katja_uni'] === 1  ||  ((s as any).start_type ?? 0)?.['loc'] === 'sg')) {
     (s as any).temp_familiar_here = 1;
-    // TODO-QSP: dynamic text: 'You see your'+iif( $university['enrolled_in'] = 'teaching_studies' and katjaQW[...
-    scene.text('You see your' + ((((s as any).university ?? 0)?.['enrolled_in'] === 'teaching_studies'  &&  ((s as any).katjaQW ?? 0)?.['know_katja_uni'] === 1) ? (' ') : (' former ')) + 'classmate <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027katja_chat/u0027, /u0027coffee_hole/u0027); return false;">Katja</a> sitting at a table with a pile of books, a cup of coffee and a plate of food.');
+    scene.text('You see your' + ((((s as any).university ?? 0)?.['enrolled_in'] === 'teaching_studies'  &&  ((s as any).katjaQW ?? 0)?.['know_katja_uni'] === 1) ? (' ') : (' former ')) + 'classmate <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027katja_chat\u0027, \u0027coffee_hole\u0027); return false;">Katja</a> sitting at a table with a pile of books, a cup of coffee and a plate of food.');
   }
   if ((((s as any).AlbinaQW ?? 0)?.['know_albina_uni'] === 1  ||  ((s as any).start_type ?? 0)?.['loc'] === 'sg')  &&  ((s as any).AlbinaQW ?? 0)?.['coffee_meet'] !== ((s as any).daystart ?? 0)) {
     if (((s as any).locat ?? 0)?.['A23'] === 24) {
       (s as any).temp_familiar_here = 1;
-      scene.text('You see <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027albina_events/u0027, /u0027coffee_hole1/u0027); return false;">Albina</a> sitting at a table with a woman who has her back turned to you.');
+      scene.text('You see <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027albina_events\u0027, \u0027coffee_hole1\u0027); return false;">Albina</a> sitting at a table with a woman who has her back turned to you.');
     } else {
       if (((s as any).locat ?? 0)?.['A23'] === 29) {
         (s as any).temp_familiar_here = 1;
-        scene.text('You see <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027albina_events/u0027, /u0027coffee_hole2/u0027); return false;">Albina</a> sitting at a table, looking at her phone while drinking a cup of coffee.');
+        scene.text('You see <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027albina_events\u0027, \u0027coffee_hole2\u0027); return false;">Albina</a> sitting at a table, looking at her phone while drinking a cup of coffee.');
       }
     }
   }
   if (((s as any).start_type ?? 0)?.['loc'] === 'sg'  &&  ((s as any).yearstart ?? 0) >= 2  &&  ((s as any).week ?? 0) === 2  &&  ((s as any).nerd_game ?? 0)?.['fixed_uni_day'] === 0  &&  ((s as any).hour ?? 0) >= 18) {
     (s as any).temp_familiar_here = 1;
-    scene.text('You see some familiar faces sitting in one of the corners. Some of the <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nerd_game_night/u0027, /u0027crash_gamenight_uni/u0027); return false;">nerds</a> you went to school with back in Pavlovsk are gathered around a table. It looks like they\'re playing some sort of game.');
+    scene.text('You see some familiar faces sitting in one of the corners. Some of the <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027nerd_game_night\u0027, \u0027crash_gamenight_uni\u0027); return false;">nerds</a> you went to school with back in Pavlovsk are gathered around a table. It looks like they\'re playing some sort of game.');
   }
   qspCall(s, 'natbel_uni_chat', 'set_coffee_hole_chats');
   if (((s as any).nerd_game ?? 0)?.['game_day'] === ((s as any).daystart ?? 0)  &&  ((s as any).hour ?? 0) === 18) {
@@ -85,26 +80,26 @@ function enterInner(s: GameState, scene: SceneBuilder): void {
     (s as any).temprand = (Math.floor(Math.random() * 10) + 1);
     if (((s as any).start_type ?? 0)?.['loc'] === 'sg'  &&  ((s as any).yearstart ?? 0) === 2) {
       if (((s as any).temprand ?? 0) === 1) {
-        scene.text('You see a familiar face sitting at one of the tables, your former classmate <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027city_coffee_hole/u0027, /u0027lazar/u0027); return false;">Lazar.</a>');
+        scene.text('You see a familiar face sitting at one of the tables, your former classmate <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027city_coffee_hole\u0027, \u0027lazar\u0027); return false;">Lazar.</a>');
       } else {
         if (((s as any).temprand ?? 0) === 2) {
-          scene.text('You see a familiar face sitting at one of the tables, your former classmate <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027city_coffee_hole/u0027, /u0027dimka/u0027); return false;">Dimka.</a>');
+          scene.text('You see a familiar face sitting at one of the tables, your former classmate <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027city_coffee_hole\u0027, \u0027dimka\u0027); return false;">Dimka.</a>');
         } else {
           if (((s as any).temprand ?? 0) === 3) {
-            scene.text('You see a familiar face sitting at one of the tables, your former classmate <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027city_coffee_hole/u0027, /u0027marcus/u0027); return false;">Marcus.</a>');
+            scene.text('You see a familiar face sitting at one of the tables, your former classmate <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027city_coffee_hole\u0027, \u0027marcus\u0027); return false;">Marcus.</a>');
           }
         }
       }
     }
     if (((s as any).temprand ?? 0) === 4) {
       if (((s as any).meet_kendra ?? 0) === 1) {
-        scene.text('You see a familiar face sitting at one of the tables, <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027city_coffee_hole/u0027, /u0027kendra/u0027); return false;">Kendra.</a>');
+        scene.text('You see a familiar face sitting at one of the tables, <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027city_coffee_hole\u0027, \u0027kendra\u0027); return false;">Kendra.</a>');
       } else {
         if (((s as any).kendraslave ?? 0) >= 1) {
-          scene.text('You see a familiar face sitting at one of the tables, your mistress <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027city_coffee_hole/u0027, /u0027kendra/u0027); return false;">Kendra.</a>');
+          scene.text('You see a familiar face sitting at one of the tables, your mistress <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027city_coffee_hole\u0027, \u0027kendra\u0027); return false;">Kendra.</a>');
         } else {
           if (((s as any).pcs_hotcat ?? 0) >= 5) {
-            scene.text('As you look around, you see a beautiful young <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027city_coffee_hole/u0027, /u0027kendra/u0027); return false;">black woman</a> sitting at one of the tables.');
+            scene.text('As you look around, you see a beautiful young <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027city_coffee_hole\u0027, \u0027kendra\u0027); return false;">black woman</a> sitting at one of the tables.');
             scene.text('She notices you and gives you a quick once-over before smiling and leaning back. She seems to be watching you with an inviting smile to join her.');
           } else {
             scene.text('As you look around, you see a beautiful young black woman sitting at one of the tables. She notices you and gives you a quick once-over before returning to what she was doing.');
@@ -115,11 +110,11 @@ function enterInner(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).temprand ?? 0) === 5) {
         if (((s as any).DjibrilQW ?? 0)?.['meet'] === 1) {
-          scene.text('You see a familiar face sitting at one of the tables, Olu\'s nephew <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027city_coffee_hole/u0027, /u0027blacks/u0027); return false;">Djibril</a>, sitting with a few other young African men at another table. They see you and start talking amongst themselves.');
+          scene.text('You see a familiar face sitting at one of the tables, Olu\'s nephew <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027city_coffee_hole\u0027, \u0027blacks\u0027); return false;">Djibril</a>, sitting with a few other young African men at another table. They see you and start talking amongst themselves.');
           scene.text('By their constant glances, you\'re sure that they\'re talking about you.');
         } else {
           if (((s as any).pcs_hotcat ?? 0) >= 5) {
-            scene.text('As you look around, you see a group of young <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027city_coffee_hole/u0027, /u0027blacks/u0027); return false;">black African men</a> sitting at one of the tables. When they see you, they start talking amongst themselves.');
+            scene.text('As you look around, you see a group of young <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027city_coffee_hole\u0027, \u0027blacks\u0027); return false;">black African men</a> sitting at one of the tables. When they see you, they start talking amongst themselves.');
             scene.text('By their constant glances, you\'re sure that they\'re talking about you.');
           } else {
             scene.text('As you look around, you see a group of young black African men sitting at one of the tables. They notice you and give you a quick once-over before returning to what they were doing.');
@@ -129,10 +124,10 @@ function enterInner(s: GameState, scene: SceneBuilder): void {
       } else {
         if (((s as any).temprand ?? 0) === 6) {
           if (((s as any).DjibrilQW ?? 0)?.['meet'] === 1) {
-            scene.text('You see a familiar face sitting at one of the tables, Olu\'s nephew <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027city_coffee_hole/u0027, /u0027djibril/u0027); return false;">Djibril</a>.');
+            scene.text('You see a familiar face sitting at one of the tables, Olu\'s nephew <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027city_coffee_hole\u0027, \u0027djibril\u0027); return false;">Djibril</a>.');
           } else {
             if (((s as any).pcs_hotcat ?? 0) >= 5) {
-              scene.text('As you look around, you see an attractive young <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027city_coffee_hole/u0027, /u0027djibril/u0027); return false;">black man</a> sitting at one of the tables. When he notices you looking at him, he gives you a friendly smile and a wave.');
+              scene.text('As you look around, you see an attractive young <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027city_coffee_hole\u0027, \u0027djibril\u0027); return false;">black man</a> sitting at one of the tables. When he notices you looking at him, he gives you a friendly smile and a wave.');
               scene.text('It seems he\'s the friendly sort and appears to be interested in you.');
             } else {
               scene.text('As you look around, you see an attractive young black man sitting at one of the tables. He notices you and gives you a quick once-over before returning to what he was doing.');
@@ -147,13 +142,13 @@ function enterInner(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  (s as any).temp_familiar_here = undefined;
   if (((s as any).hour ?? 0) >= 7  &&  ((s as any).hour ?? 0) < 23) {
     scene.actions([
       { label: 'Go up to the counter to order', goto: ['city_coffee_hole', 'counter'] },
       { label: 'Go to restroom', goto: ['city_coffee_hole', 'toilet'] },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Exit the cafe', goto: ['city_island', ''] },
   ]);
@@ -184,7 +179,6 @@ function enterEat(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Exit the cafe', goto: ['city_island', ''] },
     { label: 'Get up from the table', goto: ['city_coffee_hole', 'inner'] },
@@ -197,7 +191,6 @@ function enterPostKomp(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/shared/date/cafequiet.jpg');
   scene.text('You\'re sitting at a table in the coffee shop. You could use your laptop if you wanted, but should buy something to eat or drink first.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Get up from the table', goto: ['city_coffee_hole', 'inner'] },
   ]);
@@ -213,7 +206,6 @@ function enterToilet(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'din_van', 'quickwash');
   qspCall(s, 'din_van', 'basin');
   qspCall(s, 'din_van', 'publicpan');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Exit restroom', goto: ['city_coffee_hole', 'inner'] },
   ]);
@@ -256,7 +248,6 @@ function enterCounter(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -339,7 +330,6 @@ function enterAnushkaWork(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Exit the cafe', goto: ['city_island', ''] },
     { label: 'Leave counter', goto: ['city_coffee_hole', 'inner'] },
@@ -358,7 +348,6 @@ function enterPhotoShoot(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/girl/anushka/nush_model/sveta_photographer/coffee_hole/pose1.jpg');
   scene.text('Once the last of the customers are gone, Anushka locks the doors before you pull your camera out and have her stand in front of the counter. You start snapping photos of her standing in different poses as you direct her, asking her to hold various items for you as you snap pictures.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Spice this up', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -484,7 +473,6 @@ function enterLazar(s: GameState, scene: SceneBuilder): void {
       if (((s as any).pcs_hotcat ?? 0) >= 6) {
         scene.text('You notice Lazar sitting at a table. "What\'s up, hottie? You enjoying the city?" he asks as you approach. You sit and talk to him for a few minutes before his phone buzzes. He looks at it and then finishes his drink. "Sorry, but I need to go. Marcus, Andrey and I are renting a place together. You should really come by sometime. We would love to have you over." He tells you where they live before he heads outside and walks away.');
       } else {
-        // TODO-QSP: dynamic text: You notice Lazar sitting at a table. "Hey <<$pcs_nickname>>, how have you been?"...
         scene.text(`You notice Lazar sitting at a table. "Hey ${((s as any).pcs_nickname ?? '')}, how have you been?" he asks as you approach. You sit and talk to him for a few minutes before his phone buzzes. He looks at it and then finishes his drink. "Sorry, but I need to go. Marcus, Andrey and I are renting a place together. You should really come by sometime and hang out." He tells you where they live before he heads outside and walks away.`);
       }
     } else {
@@ -498,7 +486,6 @@ function enterLazar(s: GameState, scene: SceneBuilder): void {
           scene.text('You sit and talk to him for a few minutes before his phone buzzes. He looks at it and then finishes his drink. "I need to get going. Give me your number, and I\'ll give you a call sometime. We can go out and have some fun or something sometime."');
           scene.text('You exchange phone numbers with him before he heads outside and walks away.');
         } else {
-          // TODO-QSP: dynamic text: You notice Lazar sitting at a table. "Hey <<$pcs_nickname>>, how have you been?"...
           scene.text(`You notice Lazar sitting at a table. "Hey ${((s as any).pcs_nickname ?? '')}, how have you been?" he asks as you approach.`);
           scene.text('You sit and talk to him for a few minutes before his phone buzzes. He looks at it and then finishes his drink.');
           scene.text('"I need to get going, but it was nice catching up. Maybe I\'ll see you around sometime?" he says before heading outside and walking away.');
@@ -506,7 +493,6 @@ function enterLazar(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Exit the cafe', goto: ['city_island', ''] },
     { label: 'Leave him be', goto: ['city_coffee_hole', 'inner'] },
@@ -560,7 +546,6 @@ function enterDimka(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Exit the cafe', goto: ['city_island', ''] },
     { label: 'Leave him be', goto: ['city_coffee_hole', 'inner'] },
@@ -587,7 +572,6 @@ function enterMarcus(s: GameState, scene: SceneBuilder): void {
     if (((s as any).npc_rel ?? 0)?.['A146'] >= 50) {
       ((s as any).marcusQW = (s as any).marcusQW ?? {})['city_invite'] = 1;
       scene.text('You notice Marcus sitting at a table, who smiles as you approach.');
-      // TODO-QSP: dynamic text: "Hey <<$pcs_nickname>>, how have you been?"
       scene.text(`"Hey ${((s as any).pcs_nickname ?? '')}, how have you been?"`);
       scene.text('You sit and talk to him for a few minutes before his phone buzzes. He looks at it and finishes his drink.');
       scene.text('"Sorry, but I need to go. Lazar, Andrey and I are renting a place together. You should really come by sometime and hang out." He tells you where they live before he heads outside and walks away.');
@@ -599,14 +583,12 @@ function enterMarcus(s: GameState, scene: SceneBuilder): void {
         scene.text('"Sorry, but I need to go," he says as he he gets up and walks away.');
       } else {
         scene.text('You notice Marcus sitting at a table.');
-        // TODO-QSP: dynamic text: "Hey <<$pcs_nickname>>, how have you been?" he asks as you approach.
         scene.text(`"Hey ${((s as any).pcs_nickname ?? '')}, how have you been?" he asks as you approach.`);
         scene.text('You sit and talk to him for a few minutes before his phone buzzes. He looks at it and finishes his drink.');
         scene.text('"Sorry, but I need to go. It was nice catching up. Maybe I\'ll see you around?" he asks before he heads outside and walks away.');
       }
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Exit the cafe', goto: ['city_island', ''] },
     { label: 'Leave him be', goto: ['city_coffee_hole', 'inner'] },
@@ -661,9 +643,7 @@ function enterKendra(s: GameState, scene: SceneBuilder): void {
       if (((s as any).pcs_hotcat ?? 0) >= 5) {
         scene.text('As you walk over to her, she invites you to sit down and you take a seat opposite her.');
         scene.text('"You\'re a pretty little thing. What\'s your name?" she asks.');
-        // TODO-QSP: dynamic text: "<<$pcs_firstname>>, but most people call me <<$pcs_nickname>>. What''s your nam...
         scene.text(`"${((s as any).pcs_firstname ?? '')}, but most people call me ${((s as any).pcs_nickname ?? '')}. What's your name?" you reply.`);
-        // TODO-QSP: dynamic text: She smiles. "<<$pcs_nickname>>, what a pretty name. I''m Kendra, but you can cal...
         scene.text(`She smiles. "${((s as any).pcs_nickname ?? '')}, what a pretty name. I'm Kendra, but you can call me Mistress Kendra," she says confidently.`);
         scene.text('"Oh…" you reply. She\'s one of those people.');
         scene.actions([
@@ -675,12 +655,10 @@ function enterKendra(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/shared/headshots_main/big84.jpg');
     if (((st as any).start_type ?? 0)?.['loc'] === 'sg'  &&  ((st as any).gschoolVars ?? 0)?.['school_diploma'] === 0) {
       scene.text('You start talking with her, telling her that you live in Pavlovsk and are in your final year of school. She replies by saying she\'s a student from the Republic of Congo who attends the local university on a student visa.');
-      // TODO-QSP: dynamic text: You talk about a wide range of subjects for a while before she smiles at you. "Y...
       scene.text(`You talk about a wide range of subjects for a while before she smiles at you. "You're beautiful. I love making pretty little Russian bitches my slaves. Call me Mistress Kendra, ${((st as any).pcs_nickname ?? '')}, and become mine."`);
       scene.text('You have no doubt where this will lead…');
     } else {
       scene.text('You start talking with her and tell her a bit about yourself, and she replies by saying that she\'s a student from the Republic of Congo attending the local university on a student visa.');
-      // TODO-QSP: dynamic text: You talk about a wide range of subjects for a while before she smiles at you. "Y...
       scene.text(`You talk about a wide range of subjects for a while before she smiles at you. "You're beautiful. I love making pretty little Russian bitches my slaves. Call me Mistress Kendra, ${((st as any).pcs_nickname ?? '')}, and become mine."`);
       scene.text('You have no doubt where this will lead…');
     }
@@ -724,7 +702,6 @@ function enterKendra(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Exit the cafe', goto: ['city_island', ''] },
     { label: 'Leave her be', goto: ['city_coffee_hole', 'inner'] },
@@ -743,14 +720,12 @@ function enterDjibril(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Cafe "Coffee Hole"</b></center>');
   scene.img('images/characters/shared/headshots_main/big82.jpg');
   if (((s as any).DjibrilQW ?? 0)?.['invite'] === 1) {
-    // TODO-QSP: dynamic text: You notice Djibril sitting at a table. He smiles as you approach. "Hello again, ...
     scene.text(`You notice Djibril sitting at a table. He smiles as you approach. "Hello again, ${((s as any).pcs_nickname ?? '')}. I didn't expect to see you here."`);
     scene.text('You sit and talk to him for a few minutes before his phone buzzes. He looks at it and then finishes his drink. "Sorry, but I need to go. You should really stop by my dorm room. We could hang out and have some fun."');
     scene.text('He reminds you which dorm room is his before he heads outside and walks away.');
   } else {
     if (((s as any).DjibrilQW ?? 0)?.['meet'] === 1  &&  ((s as any).DjibrilQW ?? 0)?.['invite'] === 0) {
       scene.img('images/locations/city/centralpark/cafe/djibril_talk.jpg');
-      // TODO-QSP: dynamic text: You notice Djibril sitting at a table. He smiles as you approach. "Hello again, ...
       scene.text(`You notice Djibril sitting at a table. He smiles as you approach. "Hello again, ${((s as any).pcs_nickname ?? '')}. I didn't expect to see you here."`);
       scene.text('You sit and talk to him for a few minutes before his phone buzzes. He looks at it and then finishes his drink. "Sorry, but I need to go. If you like, you should stop by my dorm room sometime, and we can hang out and talk more."');
       scene.text('He tells you which building it is and which room is his before he heads outside and walks away.');
@@ -758,7 +733,6 @@ function enterDjibril(s: GameState, scene: SceneBuilder): void {
       if (((s as any).pcs_hotcat ?? 0) >= 5) {
         ((s as any).DjibrilQW = (s as any).DjibrilQW ?? {})['meet'] = 1;
         scene.text('As you approach him, the young African man sitting at the table introduces himself. "I am Djibril Maina. What\'s your name?"');
-        // TODO-QSP: dynamic text: You smile at him. "<<$pcs_firstname>> <<$pcs_lastname>>, but most people just ca...
         scene.text(`You smile at him. "${((s as any).pcs_firstname ?? '')} ${((s as any).pcs_lastname ?? '')}, but most people just call me ${((s as any).pcs_nickname ?? '')}."`);
         scene.text('He looks surprised for a second. "Are you from Pavlovsk?" When you nod your head, he looks even more surprised. "Do you have an Aunt Luda dating a man named Olu?"');
         scene.text('Now it\'s your turn to look surprised. "Yes, how did you know that?"');
@@ -769,7 +743,6 @@ function enterDjibril(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Exit the cafe', goto: ['city_island', ''] },
     { label: 'Leave him be', goto: ['city_coffee_hole', 'inner'] },
@@ -792,7 +765,6 @@ function enterBlacks(s: GameState, scene: SceneBuilder): void {
       scene.text('A few young African men sitting at another table see you and start to talk among themselves. From the constant glances you receive, you\'re sure they\'re talking about you.');
       scene.text('Eventually, they get up and come over to your table before one of them introduces himself. "I am Djibril."');
       scene.text('As he speaks, he gestures to each of the others as he says their names; some smile, or wave, while others look at you with that hungry sexual look. "This is my dorm roommate, Farai, and the rest are friends of mine that live in the dorms as well. This is Lebogang, Ermias, Haruna and Arendse. What\'s your name?"');
-      // TODO-QSP: dynamic text: You smile at him. "<<$pcs_firstname>> <<$pcs_lastname>>, but most people call me...
       scene.text(`You smile at him. "${((s as any).pcs_firstname ?? '')} ${((s as any).pcs_lastname ?? '')}, but most people call me ${((s as any).pcs_nickname ?? '')}."`);
       scene.text('He looks surprised for a moment. "Are you from Pavlovsk?" When you nod your head, he looks even more surprised. "Do you have an Aunt Luda, dating Olu?"');
       scene.text('Now it\'s your turn to look surprised. "Yes. How did you know that?"');
@@ -861,7 +833,6 @@ function enterBlacks(s: GameState, scene: SceneBuilder): void {
       if (((s as any).pcs_hotcat ?? 0) < 5) {
         scene.img('images/locations/city/centralpark/cafe/djibril_talk.jpg');
         scene.text('You notice Djibril sitting with a few other young African men at another table. They see you and start to talk amongst themselves.');
-        // TODO-QSP: dynamic text: After a few minutes, they get up and Djibril heads over to your table as his fri...
         scene.text(`After a few minutes, they get up and Djibril heads over to your table as his friends head outside. "Hello again ${((s as any).pcs_nickname ?? '')}, I didn't expect to see you."`);
         scene.text('You talk to him for a few minutes before one of his friends peeks their head back inside. "Come on, Djibril! Let\'s go!"');
         scene.text('He glances over at them, then looks back at you. "Sorry, I have to go, but it was nice meeting you again. Have a nice day."');
@@ -874,7 +845,6 @@ function enterBlacks(s: GameState, scene: SceneBuilder): void {
         scene.img('images/locations/city/centralpark/cafe/djibril_talk.jpg');
         scene.text('Djibril gives you a huge grin and waves you over. You don\'t want to be rude, so you get up to walk over to their table.');
         scene.text('As you approach their table, Djibril speaks and gestures to each of the others as he says their names; some smile, or wave, while others look at you with that hungry sexual look.');
-        // TODO-QSP: dynamic text: "Hello again, <<$pcs_nickname>>. This is my dorm roommate, Farai. The rest are f...
         scene.text(`"Hello again, ${((s as any).pcs_nickname ?? '')}. This is my dorm roommate, Farai. The rest are friends of mine that live in the dorms as well This is Lebogang, Ermias, Haruna and Arendse."`);
         scene.text('You talk to them for a while. They\'re very flirty with you before Ermias looks at his phone. "Come on, Djibril. We need to go."');
         scene.text('Djibril glances over at him as the rest of them all get up. "Sorry, I have to go, but it was nice meeting you again. Have a nice day."');
@@ -940,7 +910,6 @@ function enterBlacks(s: GameState, scene: SceneBuilder): void {
         scene.img('images/locations/city/centralpark/cafe/djibril1.jpg');
         scene.text('Djibril gives you a huge grin and waves you over. You don\'t want to be rude, so you get up to walk over to their table.');
         scene.text('As you approach their table, Djibril speaks and gestures to each of the others as he says their names; some smile, or wave, while others look at you with that hungry sexual look.');
-        // TODO-QSP: dynamic text: "Hello again, <<$pcs_nickname>>. This is my dorm roommate, Farai. The rest are f...
         scene.text(`"Hello again, ${((s as any).pcs_nickname ?? '')}. This is my dorm roommate, Farai. The rest are friends of mine that live in the dorms as well. This is Lebogang, Ermias, Haruna and Arendse."`);
         scene.text('After the introductions, Djibril attempts to pull you into his lap.');
         scene.actions([
@@ -1021,7 +990,6 @@ function enterBlacks(s: GameState, scene: SceneBuilder): void {
       } else {
         scene.img('images/locations/city/centralpark/cafe/africantable1.jpg');
         scene.text('You notice Djibril sitting with a few other young African men at another table. He gives you a huge grin and waves you over. You, not wanting to be rude, get up to walk over to their table.');
-        // TODO-QSP: dynamic text: "Hello again, <<$pcs_nickname>>! We are about to head back to our dorm and were ...
         scene.text(`"Hello again, ${((s as any).pcs_nickname ?? '')}! We are about to head back to our dorm and were wondering if you would like to come with us and fuck again? I promise that it will be a lot of fun, just like last time. Are you interested?"`);
         scene.actions([
           { label: 'Accept', handler: (st: GameState) => {
@@ -1083,7 +1051,6 @@ function enterBlacks(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 

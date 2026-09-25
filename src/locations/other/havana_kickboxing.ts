@@ -9,6 +9,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
+  (s as any).locclass = undefined;
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
   qspCall(s, 'kickboxing_funcs', 'sash_advancement');
@@ -112,7 +113,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the changing room', goto: ['havana_kickboxing', 'leave'] },
   ]);
@@ -125,13 +125,11 @@ function enterMatch(s: GameState, scene: SceneBuilder): void {
     qspGoto(s, 'havana_kickboxing', 'end', 'lossKO');
   } else {
     if (((s as any).temp_kickboxVars ?? 0)?.['npc_health'] <= 0) {
-      // TODO-QSP: dynamic text: <b><font color = green><<$boydesc>> lost by TKO</font></b>
       scene.text(`<b><font color = green>${((s as any).boydesc ?? '')} lost by TKO</font></b>`);
       qspGoto(s, 'havana_kickboxing', 'end', 'winKO');
     }
   }
   if (((s as any).temp_kickboxVars ?? 0)?.['round'] >= 1) {
-    // TODO-QSP: dynamic text: <center><b>Round <<temp_kickboxVars[''round'']>></b></center>
     scene.text(`<center><b>Round ${(((s as any).temp_kickboxVars ?? 0)?.['round'] ?? '')}</b></center>`);
     if (((s as any).temp_kickboxVars ?? 0)?.['fight_type'] === 0) {
       scene.img('images/locations/city/citycenter/gym/kickboxing/kik1.jpg');
@@ -210,7 +208,6 @@ function enterMatch(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -218,7 +215,6 @@ function enterSta(s: GameState, scene: SceneBuilder): void {
   ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['set_init'] = 0;
   if (((s as any).temp_kickboxVars ?? 0)?.['time'] === 6) {
     ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['time'] = 0;
-    // TODO-QSP: dynamic text: The bell rings, indicating the end of round <<temp_kickboxVars[''round'']>>.
     scene.text(`The bell rings, indicating the end of round ${(((s as any).temp_kickboxVars ?? 0)?.['round'] ?? '')}.`);
     ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['round'] = ((s as any).temp_kickboxVars['round'] ?? 0) + (1);
     if (((s as any).temp_kickboxVars ?? 0)?.['round'] <= ((s as any).temp_kickboxVars ?? 0)?.['max_rounds']) {
@@ -265,7 +261,6 @@ function enterSta(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Further', goto: ['havana_kickboxing', 'match'] },
   ]);
@@ -343,7 +338,6 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
       ((st as any).kickbox = (st as any).kickbox ?? {})['advancement'] = ((st as any).kickbox['advancement'] ?? 0) + (1);
       qspCall(st, 'money', 'earn', 500 + (((st as any).kickbox ?? {})?.['money'] ?? 0));
       (st as any).rikudo = ((st as any).rikudo ?? 0) + (5);
-      // TODO-QSP: dynamic text: You''re awarded a cash prize of <<$func(''money'', ''string_profit'', 500 + kick...
       scene.text(`You're awarded a cash prize of ${qspFunc(s, 'money', 'string_profit', 500 + (((st as any).kickbox ?? {})?.['money'] ?? 0))}.`);
       qspCall(st, 'kickboxing_funcs', 'sash_advancement');
     } else {
@@ -377,7 +371,6 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
         ((st as any).kickbox = (st as any).kickbox ?? {})['advancement'] = ((st as any).kickbox['advancement'] ?? 0) + (1);
         qspCall(st, 'money', 'earn', 500 + (((st as any).kickbox ?? {})?.['money'] ?? 0));
         (st as any).rikudo = ((st as any).rikudo ?? 0) + (10);
-        // TODO-QSP: dynamic text: You''re awarded a cash prize of <<$func(''money'', ''string_profit'', 500 + kick...
         scene.text(`You're awarded a cash prize of ${qspFunc(s, 'money', 'string_profit', 500 + (((st as any).kickbox ?? {})?.['money'] ?? 0))}.`);
         qspCall(st, 'kickboxing_funcs', 'sash_advancement');
       } else {
@@ -453,13 +446,12 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterLeave(s: GameState, scene: SceneBuilder): void {
+  (s as any).temp_kickboxVars = undefined;
   dynamicGoto(s, 'prevLoc', 'prevArg');
-  // TODO-QSP: end
   scene.build();
 }
 

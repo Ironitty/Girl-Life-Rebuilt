@@ -101,14 +101,13 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterEnd(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'erotic_nudity', 5);
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
+  (s as any).kafe_rand = undefined;
   scene.actions([
     { label: 'Leave', goto: ['city_residential', ''] },
   ]);
@@ -118,7 +117,7 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
 function enterEndSex(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'voyeur_sex', 5);
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
+  (s as any).kafe_rand = undefined;
   scene.actions([
     { label: 'Leave', goto: ['city_residential', ''] },
   ]);

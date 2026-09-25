@@ -14,7 +14,6 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 100) {
     qspGoto(s, 'bus_events', 'placeholder');
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -22,7 +21,6 @@ function enterPlaceholder(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('This is a placeholder event!!');
   scene.text('Cool stuff to be added here!');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     dynamicGoto(st, 'prevLoc', 'prevArg');

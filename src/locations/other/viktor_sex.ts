@@ -20,7 +20,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'bj', 5);
     qspCall(st, 'stat', '');
     scene.img('images/shared/sex/blowjob/carbj2.mp4');
-    // TODO-QSP: dynamic text: You can''t wait until you reach his place. You feel an overwhelming need to suck...
     scene.text(`You can't wait until you reach his place. You feel an overwhelming need to suck his dick, so you unbuckle your seatbelt and get on your knees before leaning over to unzip his pants and pull out his ${((st as any).dick ?? '')}cm ${((st as any).dick_girth ?? '')} cock.`);
     scene.text('He doesn\'t say anything and just continues silently driving as you take it into your mouth and start sucking, but you soon reach his apartment and he pulls your head up and tucks his dick away.');
     scene.text('He just grins as you wipe the saliva from your chin and eagerly follow him inside.');
@@ -42,13 +41,11 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     ((s as any).strip_club = (s as any).strip_club ?? {})['guard_sex'] = 1;
     scene.text('He soon pulls up to a red light and glances over at you. "Fuck it. I\'m not waiting any longer."');
     scene.text('As soon as the light turns green, he quickly turns down a side street and parks up behind one of the many abandoned factories in the area. He switches off the engine and looks over at you. "Well?"');
-    // TODO-QSP: dynamic text: You smile at him as you unbuckle your seatbelt and shift into position. You bite...
     scene.text(`You smile at him as you unbuckle your seatbelt and shift into position. You bite your lip as you unzip his pants and pull out his ${((s as any).dick ?? '')}cm ${((s as any).dick_girth ?? '')} cock. It's already rock hard and throbbing in your hand.`);
     scene.actions([
       { label: 'Suck it', goto: ['viktor_sex', 'first_time'] },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -61,7 +58,6 @@ function enterFirstTime(s: GameState, scene: SceneBuilder): void {
   scene.text('After a few seconds, he suddenly wraps your hair around his fingers and forces you down on his cock, causing you to choke and gag as he thrusts it in and out of your throat. When he eventually pulls you up for air, tears run down your cheeks and drool dribbles from your mouth, but you smile at him.');
   scene.text('"Get over here. Time to pound that slutty little pussy."');
   scene.text('You awkwardly undress your lower half within the confines of the car before climbing over and straddling Viktor, the tip of his cock pressing against your slit.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'vaginal', 8, 'rough');
@@ -106,7 +102,6 @@ function enterFirstCreampie(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'No thanks', handler: (st: GameState) => {
     qspCall(st, 'cum_cleanup', '3');
@@ -144,7 +139,6 @@ function enterFirstSwallow(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'No thanks', handler: (st: GameState) => {
     qspCall(st, 'cum_cleanup', '2');
@@ -182,7 +176,6 @@ function enterFirstPullout(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'No thanks', handler: (st: GameState) => {
     qspCall(st, 'cum_cleanup', '1');
@@ -216,7 +209,6 @@ function enterSetHomeActs(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'The residential area', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 10;
@@ -248,11 +240,9 @@ function enterViktorSex1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'pain', '2', 'hair', 'pull');
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/smroom/event/oral5.mp4');
-  // TODO-QSP: dynamic text: Viktor wastes no time and immediately drags you into the bedroom, where he pulls...
   scene.text(`Viktor wastes no time and immediately drags you into the bedroom, where he pulls your clothes off and throws you onto the bed. He then undresses himself and you spread your legs as he stands next to the bed, his rock hard ${((s as any).dick ?? '')}cm ${((s as any).dick_girth ?? '')} cock awaiting your attention.`);
   scene.text('You obediently take it into your mouth and start passionately sucking on it as you reach down and start teasing your clit. A few seconds later, Viktor wraps your hair in his hand and roughly pulls on it as he rams his cock into your mouth, causing you to choke and splutter as it slides in and out of your throat.');
   scene.text('He just moans loudly in pleasure as he roughly facefucks you.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Missionary', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'vaginal', 3, 'rough');
@@ -376,7 +366,6 @@ function enterViktorCreampie(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'No thanks', handler: (st: GameState) => {
     qspCall(st, 'cum_cleanup', '1');
@@ -436,7 +425,6 @@ function enterViktorPullout(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'No thanks', handler: (st: GameState) => {
     qspCall(st, 'cum_cleanup', '3');
@@ -497,7 +485,6 @@ function enterViktorFacial(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'No thanks', handler: (st: GameState) => {
     qspCall(st, 'cum_cleanup', '1');
@@ -535,7 +522,6 @@ function enterViktorPostsex(s: GameState, scene: SceneBuilder): void {
       qspGoto(s, 'viktor_sex', 'wakeup');
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -616,13 +602,10 @@ function enterWakeup(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).strip_club ?? 0)?.['viktor_present'] === 1) {
     scene.actions([
-      { label: 'Wake Viktor up', handler: (st: GameState) => {
-    // TODO-QSP: xgt 'viktor_sex', 'wakeup_viktor'
-  } },
+      { label: 'Wake Viktor up', goto: ['viktor_sex', 'wakeup_viktor'] },
       { label: 'Wake Viktor up with a blowjob', goto: ['viktor_sex', 'wakeup_viktor_bj'] },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Get up', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 2;
@@ -650,7 +633,6 @@ function enterWakeupAlarm(s: GameState, scene: SceneBuilder): void {
   scene.text('Looking at your surroundings, you realize that you fell asleep in Viktor\'s bed. You look over to see him still snoozing away, having slept right through your blaring alarm.');
   scene.text('Checking your phone, the time reads:');
   scene.text('You lazily roll over and spend a few minutes just relaxing in the comfort of Viktor\'s bed before you force yourself to get up.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go for a shower', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 2;
@@ -677,7 +659,6 @@ function enterWakeupUni(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/romance/lovers/homes/multibedroom/1/bedroom.jpg');
   scene.text('You awaken feeling groggy as you slowly open your eyes. Looking at your surroundings, you realize that you fell asleep in Viktor\'s bed, and have snuggled into him during the night. You look up to see him still snoozing away before checking your phone.');
   scene.text('It reads:');
-  // TODO-QSP: end
   scene.actions([
     { label: 'University!', handler: (st: GameState) => {
     scene.img('images/pc/activities/misc/dress_1.mp4');
@@ -765,7 +746,6 @@ function enterWakeupCleanup(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/home/bathroom/dush.mp4');
   scene.text('You spend a few seconds just letting the warm water rain down on your head before you give yourself a thorough wash, spending a few more minutes in the shower\'s warm embrace before turning the water off and stepping out.');
   scene.text('Grabbing a towel, you dry yourself off before wrapping it around your body and stepping out into the hallway.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Get dressed', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -810,7 +790,6 @@ function enterWakeupCleanupAlone(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/home/bathroom/dush.mp4');
   scene.text('You spend a few seconds just letting the warm water rain down on your head before you give yourself a thorough wash, spending a few more minutes in the shower\'s warm embrace before turning the water off and stepping out.');
   scene.text('Grabbing a towel, you dry yourself off before wrapping it around your body and stepping out into the hallway.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Get dressed', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -855,7 +834,6 @@ function enterWakeupSetDropoffActs(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'The residential area', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 10;
@@ -875,7 +853,6 @@ function enterWakeupSetDropoffActs(s: GameState, scene: SceneBuilder): void {
 function enterWakeupViktor(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/romance/lovers/homes/multibedroom/1/bedroom.jpg');
   scene.text('You kiss Viktor softly on the lips, which causes him to stir slightly and open his eyes. "Mmmhm, five more minutes, baby girl. Go take a shower if you want."');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Get up', handler: (st: GameState) => {
     scene.img('images/shared/romance/misc/nude_walk1.mp4');
@@ -932,7 +909,6 @@ function enterWakeupViktor(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'end');
     scene.img('images//locations/pavlovsk/resident/apartment/shulginhome/smroom/event/rought/oral1.mp4');
     scene.text('You continue letting his hands roam over your body. "Surely you have enough time for me to suck your dick?" you ask teasingly as you continue jerking his now rock hard cock.');
-    // TODO-QSP: dynamic text: He doesn''t need to be asked twice and pushes you down onto your knees in front ...
     scene.text(`He doesn't need to be asked twice and pushes you down onto your knees in front of him. You immediately take his ${((st as any).dick ?? '')}cm ${((st as any).dick_girth ?? '')} cock into your mouth, swallowing as much of his shaft as you can before you start sucking and bobbing your head up and down.`);
     scene.text('You spend the next few minutes passionately sucking him off before he suddenly wraps your hair around his hand and slams you down on his cock. You choke and gag as he roughly slides you up and down his shaft before he pushes you down and holds you firmly in place.');
     scene.text('You close your eyes and soon feel spurts of warm cum splattering into your throat as Viktor grunts loudly. You quickly start gulping it down to stop yourself from choking.');
@@ -1002,13 +978,11 @@ function enterWakeupViktorBj(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/shared/sex/handjob/hj2.mp4');
   scene.text('The memory of last night is still fresh in your mind and you\'re feeling a little naughty, so you pull the covers back and grope Viktor\'s bulge through his shorts. He moans softly as you pull his shorts down and start jerking his dick in your hand before you slide down and start sucking on his balls.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Keep going', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'bj', 2);
     qspCall(st, 'stat', '');
     scene.img('images/shared/sex/blowjob/bj0.mp4');
-    // TODO-QSP: dynamic text: You continue sucking on Viktor''s balls and jerking his cock as he moans softly ...
     scene.text(`You continue sucking on Viktor's balls and jerking his cock as he moans softly in his sleep. After a few minutes of this, you take his now rock hard ${((st as any).dick ?? '')}cm ${((st as any).dick_girth ?? '')} cock into your mouth and start sucking while taking as much of it into your throat as you can.`);
     scene.text('Viktor groans loudly and you look up to see him grinning down at you.');
     scene.text('"Best alarm clock ever..."');

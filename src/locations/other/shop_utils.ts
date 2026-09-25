@@ -1,6 +1,6 @@
 import { qspUntranslated } from '../_shared/qspUntranslated';
 
-import { qspCall, qspFunc, dynamicGoto, hasLocation } from '../_shared/qspBridge';
+import { qspCall, qspFunc, hasLocation } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -13,12 +13,17 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 function enterIsInit(s: GameState, scene: SceneBuilder): void {
   (s as any).result = (((s as any).shop_display ?? 0)?.['init'] !== 0);
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterInit(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === 'start') {
+    (s as any).outfitfilter = undefined;
+    (s as any).shop_display = undefined;
+    (s as any).shop_display_exceptions = undefined;
+    (s as any).shop_utils_view = undefined;
+    (s as any).shop_display_sorted = undefined;
+    (s as any).shop_display_sorted_titles = undefined;
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'set_defaults']; enterInit(s, scene); (s as any).locArgs = __savedLocArgs; }
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'set_outfit_file', ((s as any).locArgs?.[2] ?? 0)]; enterInit(s, scene); (s as any).locArgs = __savedLocArgs; }
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'set_link', ((s as any).locArgs?.[3] ?? 0)]; enterInit(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -41,18 +46,19 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
   }
   if (String((s as any).locArgs?.[1] ?? '') === 'add_type') {
     if ((Array.isArray((s as any).shop_display_types) ? ((s as any).shop_display_types as any[]).indexOf(String((s as any).locArgs?.[2] ?? '')) : -1) < 0) {
-      // TODO-QSP: $shop_display_types[] = $ARGS[2]
+      (s as any).shop_display_types = [...((s as any).shop_display_types ?? []), ((s as any).locArgs?.[2] ?? 0)];
     }
     return;
   }
   if (String((s as any).locArgs?.[1] ?? '') === 'add_item') {
     if ((Array.isArray((s as any).shop_display_items) ? ((s as any).shop_display_items as any[]).indexOf(String((s as any).locArgs?.[2] ?? '') + '-' + String((s as any).locArgs?.[3] ?? '')) : -1) < 0) {
-      // TODO-QSP: $shop_display_items[] = $ARGS[2] + '-' + ARGS[3]
+      (s as any).shop_display_items = [...((s as any).shop_display_items ?? []), ((s as any).locArgs?.[2] ?? 0) + '-' + ((s as any).locArgs?.[3] ?? 0)];
     }
     return;
   }
   if (String((s as any).locArgs?.[1] ?? '') === 'add_all_types') {
     if (! hasLocation(((s as any).shop_display ?? 0)?.['view_file'])) {
+      alert('shop_utils ERROR: shop_utils, init, add_all_types called with non-existing view_file: "' + (((s as any).shop_display ?? 0)?.['view_file']) + '"');
       return;
     }
     qspCall(s, '$shop_display[\'view_file\']', 'init', 'add_types', 'all');
@@ -208,7 +214,7 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
     return;
   }
   if (String((s as any).locArgs?.[1] ?? '') === 'add_exception') {
-    // TODO-QSP: shop_display_exceptions[$ARGS[2] + $shop_display['type_suffix'] + '-' + ARGS[3]] = 1
+    ((s as any).shop_display_exceptions = (s as any).shop_display_exceptions ?? {})[((s as any).locArgs?.[2] ?? 0) + (((s as any).shop_display ?? 0)?.['type_suffix']) + '-' + ((s as any).locArgs?.[3] ?? 0)] = 1;
     return;
   }
   if (String((s as any).locArgs?.[1] ?? '') === 'end') {
@@ -218,33 +224,71 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
     return;
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterSorted(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === 'main') {
     if (! hasLocation(((s as any).shop_display ?? 0)?.['func_file'])) {
+      alert('shop_utils ERROR: shop_utils, sorted, main called with non-existing func_file: "' + (((s as any).shop_display ?? 0)?.['func_file']) + '"');
       return;
     }
     if (! hasLocation(((s as any).shop_display ?? 0)?.['view_file'])) {
+      alert('shop_utils ERROR: shop_utils, sorted, main called with non-existing view_file: "' + (((s as any).shop_display ?? 0)?.['view_file']) + '"');
       return;
     }
+    (s as any).shop_display_sorted_titles = undefined;
     ((s as any).shop_display = (s as any).shop_display ?? {})['type_i'] = 0;
-    // TODO-QSP: :type_loop_sorted
-    if (((s as any).shop_display ?? 0)?.['type_i'] < Object.keys((s as any).shop_display_types ?? {}).length) {
-      ((s as any).shop_display = (s as any).shop_display ?? {})['type'] = qspUntranslated(s, "shop_display_types[shop_display['type_i']]", { location: "shop_utils" });
-      qspCall(s, '$shop_display[\'func_file\']', 'totals', (((s as any).shop_display ?? 0)?.['type']));
-      ((s as any).shop_display = (s as any).shop_display ?? {})['number'] = 1 + (((s as any).shop_display ?? {})?.['offset'] ?? 0);
-      // TODO-QSP: :main_loop_sorted
-      if (((s as any).shop_display ?? 0)?.['number'] <= ((s as any).total ?? 0)) {
-        if (((s as any).shop_display_exceptions ?? 0)[((s as any).shop_display ?? 0)?.['type'] + ((s as any).shop_display ?? 0)?.['type_suffix'] + '-' + ((s as any).shop_display ?? 0)?.['number']] === 0) {
+    while (true) {
+      if (((s as any).shop_display ?? 0)?.['type_i'] < Object.keys((s as any).shop_display_types ?? {}).length) {
+        ((s as any).shop_display = (s as any).shop_display ?? {})['type'] = qspUntranslated(s, "shop_display_types[shop_display['type_i']]", { location: "shop_utils" });
+        qspCall(s, '$shop_display[\'func_file\']', 'totals', (((s as any).shop_display ?? 0)?.['type']));
+        ((s as any).shop_display = (s as any).shop_display ?? {})['number'] = 1 + (((s as any).shop_display ?? {})?.['offset'] ?? 0);
+        while (true) {
+          if (((s as any).shop_display ?? 0)?.['number'] <= ((s as any).total ?? 0)) {
+            if (((s as any).shop_display_exceptions ?? 0)[((s as any).shop_display ?? 0)?.['type'] + ((s as any).shop_display ?? 0)?.['type_suffix'] + '-' + ((s as any).shop_display ?? 0)?.['number']] === 0) {
+              if ((0 as any)) {
+                ((s as any).shop_display = (s as any).shop_display ?? {})['shop'] = (String((((s as any).shop_display ?? 0)?.['type'])).slice((1)-1, ((1)-1)+(((String((((s as any).shop_display ?? 0)?.['type']) + '_').indexOf(String('_'))) + 1) - 1)));
+                if (((s as any).shop_display ?? 0)?.['shop'] !== '') {
+                  if ((Array.isArray((s as any).shop_display_sorted_titles) ? ((s as any).shop_display_sorted_titles as any[]).indexOf(((s as any).shop_display ?? 0)?.['shop']) : -1) < 0) {
+                    (s as any).shop_display_sorted_titles = [...((s as any).shop_display_sorted_titles ?? []), (((s as any).shop_display ?? 0)?.['shop'])];
+                    ((s as any).shop_display_sorted = (s as any).shop_display_sorted ?? {})['number_' + shop_display['type_i'] + '_title'] = (((s as any).shop_display ?? 0)?.['shop']);
+                  }
+                }
+                if (((s as any).shop_display ?? 0)?.['do_sorted']) {
+                  qspCall(s, '$shop_display[\'view_file\']', 'sorted', 'add', (((s as any).shop_display ?? 0)?.['type']), (((s as any).shop_display ?? 0)?.['number']), (((s as any).shop_display ?? 0)?.['type_i']));
+                } else {
+                  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'add_to_number', (((s as any).shop_display ?? 0)?.['type']), (((s as any).shop_display ?? 0)?.['number']), (((s as any).shop_display ?? 0)?.['type_i'])]; enterSorted(s, scene); (s as any).locArgs = __savedLocArgs; }
+                }
+              }
+            }
+            ((s as any).shop_display = (s as any).shop_display ?? {})['number'] = ((s as any).shop_display['number'] ?? 0) + ((((s as any).shop_display ?? 0)?.['step']));
+            break;
+          }
+          ((s as any).shop_display = (s as any).shop_display ?? {})['type_i'] = ((s as any).shop_display['type_i'] ?? 0) + (1);
+          break;
+        }
+      }
+      ((s as any).shop_display = (s as any).shop_display ?? {})['unused_type_i'] = (((s as any).shop_display ?? 0)?.['type_i']);
+      ((s as any).shop_display = (s as any).shop_display ?? {})['item_i'] = 0;
+      while (true) {
+        if (((s as any).shop_display ?? 0)?.['item_i'] < Object.keys((s as any).shop_display_items ?? {}).length) {
+          ((s as any).shop_display = (s as any).shop_display ?? {})['item_entry'] = qspUntranslated(s, "shop_display_items[shop_display['item_i']]", { location: "shop_utils" });
+          ((s as any).shop_display = (s as any).shop_display ?? {})['sep_index'] = ((String((((s as any).shop_display ?? 0)?.['item_entry'])).indexOf(String('-'))) + 1);
+          ((s as any).shop_display = (s as any).shop_display ?? {})['type'] = (String((((s as any).shop_display ?? 0)?.['item_entry'])).slice((1)-1, ((1)-1)+((((s as any).shop_display ?? {})?.['sep_index'] ?? 0) - 1)));
+          ((s as any).shop_display = (s as any).shop_display ?? {})['number'] = parseFloat((String((((s as any).shop_display ?? 0)?.['item_entry'])).slice(((((s as any).shop_display ?? {})?.['sep_index'] ?? 0) + 1)-1)));
           if ((0 as any)) {
-            ((s as any).shop_display = (s as any).shop_display ?? {})['shop'] = (String((((s as any).shop_display ?? 0)?.['type'])).slice((1)-1, ((1)-1)+(((String((((s as any).shop_display ?? 0)?.['type']) + '_').indexOf(String('_'))) + 1) - 1)));
-            if (((s as any).shop_display ?? 0)?.['shop'] !== '') {
-              if ((Array.isArray((s as any).shop_display_sorted_titles) ? ((s as any).shop_display_sorted_titles as any[]).indexOf(((s as any).shop_display ?? 0)?.['shop']) : -1) < 0) {
-                // TODO-QSP: $shop_display_sorted_titles[] = $shop_display['shop']
-                // TODO-QSP: $shop_display_sorted['number_' + shop_display['type_i'] + '_title'] = $shop_display['shop']
+            ((s as any).shop_display = (s as any).shop_display ?? {})['shop'] = (String((((s as any).shop_display ?? 0)?.['type']) + '_').slice((1)-1, ((1)-1)+(((String((((s as any).shop_display ?? 0)?.['type'])).indexOf(String('_'))) + 1) - 1)));
+            if ((Array.isArray((s as any).shop_display_sorted_titles) ? ((s as any).shop_display_sorted_titles as any[]).indexOf(((s as any).shop_display ?? 0)?.['shop']) : -1) < 0) {
+              (s as any).shop_display_sorted_titles = [...((s as any).shop_display_sorted_titles ?? []), (((s as any).shop_display ?? 0)?.['shop'])];
+              ((s as any).shop_display_sorted = (s as any).shop_display_sorted ?? {})['number_' + shop_display['unused_type_i'] + '_title'] = (((s as any).shop_display ?? 0)?.['shop']);
+              ((s as any).shop_display = (s as any).shop_display ?? {})['type_i'] = (((s as any).shop_display ?? 0)?.['unused_type_i']);
+              ((s as any).shop_display = (s as any).shop_display ?? {})['unused_type_i'] = ((s as any).shop_display['unused_type_i'] ?? 0) + (1);
+            } else {
+              ((s as any).shop_display = (s as any).shop_display ?? {})['type_i'] = qspUntranslated(s, "arrpos('shop_display_types', shop_display['type'])", { location: "shop_utils" });
+              if (((s as any).shop_display ?? 0)?.['type_i'] < 0) {
+                ((s as any).shop_display = (s as any).shop_display ?? {})['type_i'] = 0;
+                (s as any).shop_display_types = [...((s as any).shop_display_types ?? []), (((s as any).shop_display ?? 0)?.['type'])];
               }
             }
             if (((s as any).shop_display ?? 0)?.['do_sorted']) {
@@ -253,71 +297,39 @@ function enterSorted(s: GameState, scene: SceneBuilder): void {
               { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'add_to_number', (((s as any).shop_display ?? 0)?.['type']), (((s as any).shop_display ?? 0)?.['number']), (((s as any).shop_display ?? 0)?.['type_i'])]; enterSorted(s, scene); (s as any).locArgs = __savedLocArgs; }
             }
           }
+          ((s as any).shop_display = (s as any).shop_display ?? {})['item_i'] = ((s as any).shop_display['item_i'] ?? 0) + (1);
+          break;
         }
-        ((s as any).shop_display = (s as any).shop_display ?? {})['number'] = ((s as any).shop_display['number'] ?? 0) + ((((s as any).shop_display ?? 0)?.['step']));
-        // TODO-QSP: jump 'main_loop_sorted'
+        (s as any).shop_display_sorted_titles = undefined;
+        return;
       }
-      ((s as any).shop_display = (s as any).shop_display ?? {})['type_i'] = ((s as any).shop_display['type_i'] ?? 0) + (1);
-      // TODO-QSP: jump 'type_loop_sorted'
     }
-    ((s as any).shop_display = (s as any).shop_display ?? {})['unused_type_i'] = (((s as any).shop_display ?? 0)?.['type_i']);
-    ((s as any).shop_display = (s as any).shop_display ?? {})['item_i'] = 0;
-    // TODO-QSP: :item_loop_sorted
-    if (((s as any).shop_display ?? 0)?.['item_i'] < Object.keys((s as any).shop_display_items ?? {}).length) {
-      ((s as any).shop_display = (s as any).shop_display ?? {})['item_entry'] = qspUntranslated(s, "shop_display_items[shop_display['item_i']]", { location: "shop_utils" });
-      ((s as any).shop_display = (s as any).shop_display ?? {})['sep_index'] = ((String((((s as any).shop_display ?? 0)?.['item_entry'])).indexOf(String('-'))) + 1);
-      ((s as any).shop_display = (s as any).shop_display ?? {})['type'] = (String((((s as any).shop_display ?? 0)?.['item_entry'])).slice((1)-1, ((1)-1)+((((s as any).shop_display ?? {})?.['sep_index'] ?? 0) - 1)));
-      ((s as any).shop_display = (s as any).shop_display ?? {})['number'] = parseFloat((String((((s as any).shop_display ?? 0)?.['item_entry'])).slice(((((s as any).shop_display ?? {})?.['sep_index'] ?? 0) + 1)-1)));
-      if ((0 as any)) {
-        ((s as any).shop_display = (s as any).shop_display ?? {})['shop'] = (String((((s as any).shop_display ?? 0)?.['type']) + '_').slice((1)-1, ((1)-1)+(((String((((s as any).shop_display ?? 0)?.['type'])).indexOf(String('_'))) + 1) - 1)));
-        if ((Array.isArray((s as any).shop_display_sorted_titles) ? ((s as any).shop_display_sorted_titles as any[]).indexOf(((s as any).shop_display ?? 0)?.['shop']) : -1) < 0) {
-          // TODO-QSP: $shop_display_sorted_titles[] = $shop_display['shop']
-          // TODO-QSP: $shop_display_sorted['number_' + shop_display['unused_type_i'] + '_title'] = $shop_display['shop']
-          ((s as any).shop_display = (s as any).shop_display ?? {})['type_i'] = (((s as any).shop_display ?? 0)?.['unused_type_i']);
-          ((s as any).shop_display = (s as any).shop_display ?? {})['unused_type_i'] = ((s as any).shop_display['unused_type_i'] ?? 0) + (1);
-        } else {
-          ((s as any).shop_display = (s as any).shop_display ?? {})['type_i'] = qspUntranslated(s, "arrpos('shop_display_types', shop_display['type'])", { location: "shop_utils" });
-          if (((s as any).shop_display ?? 0)?.['type_i'] < 0) {
-            ((s as any).shop_display = (s as any).shop_display ?? {})['type_i'] = 0;
-            // TODO-QSP: $shop_display_types[] = $shop_display['type']
-          }
-        }
-        if (((s as any).shop_display ?? 0)?.['do_sorted']) {
-          qspCall(s, '$shop_display[\'view_file\']', 'sorted', 'add', (((s as any).shop_display ?? 0)?.['type']), (((s as any).shop_display ?? 0)?.['number']), (((s as any).shop_display ?? 0)?.['type_i']));
-        } else {
-          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'add_to_number', (((s as any).shop_display ?? 0)?.['type']), (((s as any).shop_display ?? 0)?.['number']), (((s as any).shop_display ?? 0)?.['type_i'])]; enterSorted(s, scene); (s as any).locArgs = __savedLocArgs; }
-        }
-      }
-      ((s as any).shop_display = (s as any).shop_display ?? {})['item_i'] = ((s as any).shop_display['item_i'] ?? 0) + (1);
-      // TODO-QSP: jump 'item_loop_sorted'
-    }
-    return;
   }
   if (String((s as any).locArgs?.[1] ?? '') === 'add_to_number') {
-    // TODO-QSP: $shop_display_sorted['number_<<ARGS[4]>>_type_' + shop_display_sorted['number_<<ARGS[4]>>_index']] =...
-    // TODO-QSP: shop_display_sorted['number_<<ARGS[4]>>_number_' + shop_display_sorted['number_<<ARGS[4]>>_index']] ...
+    ((s as any).shop_display_sorted = (s as any).shop_display_sorted ?? {})['number_' + ((s as any).locArgs?.[4] ?? 0) + '_type_' + (((s as any).shop_display_sorted ?? 0)?.['number_' + String(((s as any).locArgs?.[4] ?? 0)) + '_index'])] = ((s as any).locArgs?.[2] ?? 0);
+    ((s as any).shop_display_sorted = (s as any).shop_display_sorted ?? {})['number_' + ((s as any).locArgs?.[4] ?? 0) + '_number_' + (((s as any).shop_display_sorted ?? 0)?.['number_' + String(((s as any).locArgs?.[4] ?? 0)) + '_index'])] = ((s as any).locArgs?.[3] ?? 0);
     ((s as any).shop_display_sorted = (s as any).shop_display_sorted ?? {})['number_' + String(((s as any).locArgs?.[4] ?? 0)) + '_index'] = ((s as any).shop_display_sorted['number_' + String(((s as any).locArgs?.[4] ?? 0)) + '_index'] ?? 0) + (1);
     ((s as any).shop_display_sorted = (s as any).shop_display_sorted ?? {})['max_number'] = Math.max((((s as any).shop_display_sorted ?? 0)?.['max_number']), ((s as any).locArgs?.[4] ?? 0));
     return;
   }
   if (String((s as any).locArgs?.[1] ?? '') === 'add_to_quality') {
-    // TODO-QSP: $shop_display_sorted['quality_<<ARGS[4]>>_type_' + shop_display_sorted['quality_<<ARGS[4]>>_index']]...
-    // TODO-QSP: shop_display_sorted['quality_<<ARGS[4]>>_number_' + shop_display_sorted['quality_<<ARGS[4]>>_index']...
+    ((s as any).shop_display_sorted = (s as any).shop_display_sorted ?? {})['quality_' + ((s as any).locArgs?.[4] ?? 0) + '_type_' + (((s as any).shop_display_sorted ?? 0)?.['quality_' + String(((s as any).locArgs?.[4] ?? 0)) + '_index'])] = ((s as any).locArgs?.[2] ?? 0);
+    ((s as any).shop_display_sorted = (s as any).shop_display_sorted ?? {})['quality_' + ((s as any).locArgs?.[4] ?? 0) + '_number_' + (((s as any).shop_display_sorted ?? 0)?.['quality_' + String(((s as any).locArgs?.[4] ?? 0)) + '_index'])] = ((s as any).locArgs?.[3] ?? 0);
     ((s as any).shop_display_sorted = (s as any).shop_display_sorted ?? {})['quality_' + String(((s as any).locArgs?.[4] ?? 0)) + '_index'] = ((s as any).shop_display_sorted['quality_' + String(((s as any).locArgs?.[4] ?? 0)) + '_index'] ?? 0) + (1);
     ((s as any).shop_display_sorted = (s as any).shop_display_sorted ?? {})['max_quality'] = Math.max((((s as any).shop_display_sorted ?? 0)?.['max_quality']), ((s as any).locArgs?.[4] ?? 0));
     return;
   }
   if (String((s as any).locArgs?.[1] ?? '') === 'add_to_inhibition') {
-    // TODO-QSP: ARGS[4] /= 5
-    // TODO-QSP: $shop_display_sorted['inhibition_<<ARGS[4]>>_type_' + shop_display_sorted['inhibition_<<ARGS[4]>>_in...
-    // TODO-QSP: shop_display_sorted['inhibition_<<ARGS[4]>>_number_' + shop_display_sorted['inhibition_<<ARGS[4]>>_i...
+    ((s as any).ARGS = (s as any).ARGS ?? {})[4] = ((s as any).ARGS[4] ?? 0) / (5);
+    ((s as any).shop_display_sorted = (s as any).shop_display_sorted ?? {})['inhibition_' + ((s as any).locArgs?.[4] ?? 0) + '_type_' + (((s as any).shop_display_sorted ?? 0)?.['inhibition_' + String(((s as any).locArgs?.[4] ?? 0)) + '_index'])] = ((s as any).locArgs?.[2] ?? 0);
+    ((s as any).shop_display_sorted = (s as any).shop_display_sorted ?? {})['inhibition_' + ((s as any).locArgs?.[4] ?? 0) + '_number_' + (((s as any).shop_display_sorted ?? 0)?.['inhibition_' + String(((s as any).locArgs?.[4] ?? 0)) + '_index'])] = ((s as any).locArgs?.[3] ?? 0);
     ((s as any).shop_display_sorted = (s as any).shop_display_sorted ?? {})['inhibition_' + String(((s as any).locArgs?.[4] ?? 0)) + '_index'] = ((s as any).shop_display_sorted['inhibition_' + String(((s as any).locArgs?.[4] ?? 0)) + '_index'] ?? 0) + (1);
     ((s as any).shop_display_sorted = (s as any).shop_display_sorted ?? {})['max_inhibition'] = Math.max((((s as any).shop_display_sorted ?? 0)?.['max_inhibition']), ((s as any).locArgs?.[4] ?? 0));
     return;
   }
   if (String((s as any).locArgs?.[1] ?? '') === 'add_to_heelsize') {
-    // TODO-QSP: $shop_display_sorted['heelsize_<<ARGS[4]>>_type_' + shop_display_sorted['heelsize_<<ARGS[4]>>_index'...
-    // TODO-QSP: shop_display_sorted['heelsize_<<ARGS[4]>>_number_' + shop_display_sorted['heelsize_<<ARGS[4]>>_index...
+    ((s as any).shop_display_sorted = (s as any).shop_display_sorted ?? {})['heelsize_' + ((s as any).locArgs?.[4] ?? 0) + '_type_' + (((s as any).shop_display_sorted ?? 0)?.['heelsize_' + String(((s as any).locArgs?.[4] ?? 0)) + '_index'])] = ((s as any).locArgs?.[2] ?? 0);
+    ((s as any).shop_display_sorted = (s as any).shop_display_sorted ?? {})['heelsize_' + ((s as any).locArgs?.[4] ?? 0) + '_number_' + (((s as any).shop_display_sorted ?? 0)?.['heelsize_' + String(((s as any).locArgs?.[4] ?? 0)) + '_index'])] = ((s as any).locArgs?.[3] ?? 0);
     ((s as any).shop_display_sorted = (s as any).shop_display_sorted ?? {})['heelsize_' + String(((s as any).locArgs?.[4] ?? 0)) + '_index'] = ((s as any).shop_display_sorted['heelsize_' + String(((s as any).locArgs?.[4] ?? 0)) + '_index'] ?? 0) + (1);
     ((s as any).shop_display_sorted = (s as any).shop_display_sorted ?? {})['max_heelsize'] = Math.max((((s as any).shop_display_sorted ?? 0)?.['max_heelsize']), ((s as any).locArgs?.[4] ?? 0));
     return;
@@ -325,10 +337,10 @@ function enterSorted(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === 'add_to_price') {
     ((s as any).ARGS = (s as any).ARGS ?? {})[5] = qspFunc(s, 'shop_utils', 'get_discount', ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[3] ?? 0));
     ((s as any).ARGS = (s as any).ARGS ?? {})[4] = ((s as any).locArgs?.[4] ?? 0) * (100 - ((s as any).locArgs?.[5] ?? 0)) / 5000 * 50;
-    // TODO-QSP: $shop_display_sorted['price_<<ARGS[4]>>_type_' + shop_display_sorted['price_<<ARGS[4]>>_index']] = $...
-    // TODO-QSP: shop_display_sorted['price_<<ARGS[4]>>_number_' + shop_display_sorted['price_<<ARGS[4]>>_index']] = ...
-    // TODO-QSP: $shop_display_sorted['discount_<<ARGS[5]>>_type_' + shop_display_sorted['discount_<<ARGS[5]>>_index'...
-    // TODO-QSP: shop_display_sorted['discount_<<ARGS[5]>>_number_' + shop_display_sorted['discount_<<ARGS[5]>>_index...
+    ((s as any).shop_display_sorted = (s as any).shop_display_sorted ?? {})['price_' + ((s as any).locArgs?.[4] ?? 0) + '_type_' + (((s as any).shop_display_sorted ?? 0)?.['price_' + String(((s as any).locArgs?.[4] ?? 0)) + '_index'])] = ((s as any).locArgs?.[2] ?? 0);
+    ((s as any).shop_display_sorted = (s as any).shop_display_sorted ?? {})['price_' + ((s as any).locArgs?.[4] ?? 0) + '_number_' + (((s as any).shop_display_sorted ?? 0)?.['price_' + String(((s as any).locArgs?.[4] ?? 0)) + '_index'])] = ((s as any).locArgs?.[3] ?? 0);
+    ((s as any).shop_display_sorted = (s as any).shop_display_sorted ?? {})['discount_' + ((s as any).locArgs?.[5] ?? 0) + '_type_' + (((s as any).shop_display_sorted ?? 0)?.['discount_' + String(((s as any).locArgs?.[5] ?? 0)) + '_index'])] = ((s as any).locArgs?.[2] ?? 0);
+    ((s as any).shop_display_sorted = (s as any).shop_display_sorted ?? {})['discount_' + ((s as any).locArgs?.[5] ?? 0) + '_number_' + (((s as any).shop_display_sorted ?? 0)?.['discount_' + String(((s as any).locArgs?.[5] ?? 0)) + '_index'])] = ((s as any).locArgs?.[3] ?? 0);
     ((s as any).shop_display_sorted = (s as any).shop_display_sorted ?? {})['price_' + String(((s as any).locArgs?.[4] ?? 0)) + '_index'] = ((s as any).shop_display_sorted['price_' + String(((s as any).locArgs?.[4] ?? 0)) + '_index'] ?? 0) + (1);
     ((s as any).shop_display_sorted = (s as any).shop_display_sorted ?? {})['discount_' + String(((s as any).locArgs?.[5] ?? 0)) + '_index'] = ((s as any).shop_display_sorted['discount_' + String(((s as any).locArgs?.[5] ?? 0)) + '_index'] ?? 0) + (1);
     ((s as any).shop_display_sorted = (s as any).shop_display_sorted ?? {})['max_price'] = Math.max((((s as any).shop_display_sorted ?? 0)?.['max_price']), ((s as any).locArgs?.[4] ?? 0));
@@ -336,15 +348,16 @@ function enterSorted(s: GameState, scene: SceneBuilder): void {
     return;
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterDisplay(s: GameState, scene: SceneBuilder): void {
   if (! hasLocation(((s as any).shop_display ?? 0)?.['view_file'])) {
+    alert('shop_utils ERROR: shop_utils, display called with non-existing view_file: "' + (((s as any).shop_display ?? 0)?.['view_file']) + '"');
     return;
   }
   if (! hasLocation(((s as any).shop_display ?? 0)?.['func_file'])) {
+    alert('shop_utils ERROR: shop_utils, display called with non-existing func_file: "' + (((s as any).shop_display ?? 0)?.['func_file']) + '"');
     return;
   }
   if (String((s as any).locArgs?.[1] ?? '') === 'init') {
@@ -389,43 +402,39 @@ function enterDisplay(s: GameState, scene: SceneBuilder): void {
       ((s as any).shop_display = (s as any).shop_display ?? {})['j_inc'] = (-1);
       ((s as any).shop_display = (s as any).shop_display ?? {})['j_max'] = 0;
     }
-    // TODO-QSP: :display_filter_loop
-    if (((s as any).shop_display ?? 0)?.['do_shop_title']  &&  ((s as any).shop_display ?? 0)?.['sort_type'] === 'number') {
-      ((s as any).shop_display = (s as any).shop_display ?? {})['shop_header'] = (((s as any).shop_display_sorted ?? 0)?.['number_' + (((s as any).shop_display ?? 0)?.['j']) + '_title'] ?? 0);
-      if (((s as any).shop_display ?? 0)?.['shop_header'] !== '') {
+    do {
+      if (((s as any).shop_display ?? 0)?.['do_shop_title']  &&  ((s as any).shop_display ?? 0)?.['sort_type'] === 'number') {
+        ((s as any).shop_display = (s as any).shop_display ?? {})['shop_header'] = (((s as any).shop_display_sorted ?? 0)?.['number_' + (((s as any).shop_display ?? 0)?.['j']) + '_title'] ?? 0);
+        if (((s as any).shop_display ?? 0)?.['shop_header'] !== '') {
+        }
       }
-    }
-    ((s as any).shop_display = (s as any).shop_display ?? {})['i'] = 0;
-    // TODO-QSP: :main_display_loop
-    ((s as any).shop_display = (s as any).shop_display ?? {})['type'] = (((s as any).shop_display_sorted ?? 0)?.[(((s as any).shop_display ?? 0)?.['sort_type']) + '_' + (((s as any).shop_display ?? 0)?.['j']) + '_type_' + (((s as any).shop_display ?? 0)?.['i'])] ?? 0);
-    ((s as any).shop_display = (s as any).shop_display ?? {})['number'] = (((s as any).shop_display_sorted ?? 0)?.[(((s as any).shop_display ?? 0)?.['sort_type']) + '_' + (((s as any).shop_display ?? 0)?.['j']) + '_number_' + (((s as any).shop_display ?? 0)?.['i'])] ?? 0);
-    if (((s as any).shop_display ?? 0)?.['type'] !== ''  &&  ((s as any).shop_display ?? 0)?.['number'] !== 0) {
-      if ((0 as any)) {
-        qspCall(s, '$shop_display[\'view_file\']', 'display', (((s as any).shop_display ?? 0)?.['display_func']), 'main', (((s as any).shop_display ?? 0)?.['link']), (((s as any).shop_display ?? 0)?.['type']), (((s as any).shop_display ?? 0)?.['number']), (((s as any).shop_display ?? 0)?.['discount']));
+      ((s as any).shop_display = (s as any).shop_display ?? {})['i'] = 0;
+      while (true) {
+        ((s as any).shop_display = (s as any).shop_display ?? {})['type'] = (((s as any).shop_display_sorted ?? 0)?.[(((s as any).shop_display ?? 0)?.['sort_type']) + '_' + (((s as any).shop_display ?? 0)?.['j']) + '_type_' + (((s as any).shop_display ?? 0)?.['i'])] ?? 0);
+        ((s as any).shop_display = (s as any).shop_display ?? {})['number'] = (((s as any).shop_display_sorted ?? 0)?.[(((s as any).shop_display ?? 0)?.['sort_type']) + '_' + (((s as any).shop_display ?? 0)?.['j']) + '_number_' + (((s as any).shop_display ?? 0)?.['i'])] ?? 0);
+        if (((s as any).shop_display ?? 0)?.['type'] !== ''  &&  ((s as any).shop_display ?? 0)?.['number'] !== 0) {
+          if ((0 as any)) {
+            qspCall(s, '$shop_display[\'view_file\']', 'display', (((s as any).shop_display ?? 0)?.['display_func']), 'main', (((s as any).shop_display ?? 0)?.['link']), (((s as any).shop_display ?? 0)?.['type']), (((s as any).shop_display ?? 0)?.['number']), (((s as any).shop_display ?? 0)?.['discount']));
+          }
+          ((s as any).shop_display = (s as any).shop_display ?? {})['i'] = ((s as any).shop_display['i'] ?? 0) + (1);
+          break;
+        }
+        ((s as any).shop_display = (s as any).shop_display ?? {})['j'] = ((s as any).shop_display['j'] ?? 0) + ((((s as any).shop_display ?? 0)?.['j_inc']));
+        qspCall(s, '$shop_display[\'view_file\']', 'display', (((s as any).shop_display ?? 0)?.['display_func']), 'footer');
+        return;
       }
-      ((s as any).shop_display = (s as any).shop_display ?? {})['i'] = ((s as any).shop_display['i'] ?? 0) + (1);
-      // TODO-QSP: jump 'main_display_loop'
-    }
-    ((s as any).shop_display = (s as any).shop_display ?? {})['j'] = ((s as any).shop_display['j'] ?? 0) + ((((s as any).shop_display ?? 0)?.['j_inc']));
-    if (0 <= ((s as any).shop_display ?? 0)?.['j']  &&  ((s as any).shop_display ?? 0)?.['j'] <= ((s as any).shop_display_sorted ?? 0)['max_' + ((s as any).shop_display ?? 0)?.['sort_type']]) {
-      // TODO-QSP: jump 'display_filter_loop'
-    }
-    qspCall(s, '$shop_display[\'view_file\']', 'display', (((s as any).shop_display ?? 0)?.['display_func']), 'footer');
-    return;
+    } while (0 <= ((s as any).shop_display ?? 0)?.['j']  &&  ((s as any).shop_display ?? 0)?.['j'] <= ((s as any).shop_display_sorted ?? 0)['max_' + ((s as any).shop_display ?? 0)?.['sort_type']]);
   }
   if (String((s as any).locArgs?.[1] ?? '') === 'wardrobe_storage_unwanted_header') {
     scene.text('<center><table border=1><tr>');
     if (((s as any).shop_display ?? 0)?.['link'] !== 'wardrobe') {
-      // TODO-QSP: dynamic text: <th><a href="exec:gs ''shop_utils'', ''cleanup'' & gt ''<<$shop_display[''view_f...
-      scene.text(`<th><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027shop_utils/u0027, /u0027cleanup/u0027); return false;">Wardrobe</a></th>`);
+      scene.text(`<th><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027shop_utils/u0027, /u0027cleanup//u0027 & gt //u0027/u0027 + (((s as any).shop_display ?? 0)?.[/u0027view_file/u0027] ?? /u0027/u0027), ((s as any).locArgs?.[2] ?? /u0027/u0027)); return false;">Wardrobe</a></th>`);
     }
     if (((s as any).shop_display ?? 0)?.['link'] !== 'storage') {
-      // TODO-QSP: dynamic text: <th><a href="exec:gs ''shop_utils'', ''cleanup'' & gt ''<<$shop_display[''view_f...
-      scene.text(`<th><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027shop_utils/u0027, /u0027cleanup/u0027); return false;">Storage</a></th>`);
+      scene.text(`<th><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027shop_utils/u0027, /u0027cleanup//u0027 & gt //u0027/u0027 + (((s as any).shop_display ?? 0)?.[/u0027view_file/u0027] ?? /u0027/u0027), ((s as any).locArgs?.[2] ?? /u0027/u0027)); return false;">Storage</a></th>`);
     }
     if (((s as any).shop_display ?? 0)?.['link'] !== 'unwanted') {
-      // TODO-QSP: dynamic text: <th><a href="exec:gs ''shop_utils'', ''cleanup'' & gt ''<<$shop_display[''view_f...
-      scene.text(`<th><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027shop_utils/u0027, /u0027cleanup/u0027); return false;">Unwanted</a></th>`);
+      scene.text(`<th><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027shop_utils/u0027, /u0027cleanup//u0027 & gt //u0027/u0027 + (((s as any).shop_display ?? 0)?.[/u0027view_file/u0027] ?? /u0027/u0027), ((s as any).locArgs?.[2] ?? /u0027/u0027)); return false;">Unwanted</a></th>`);
     }
     return;
   }
@@ -445,42 +454,41 @@ function enterDisplay(s: GameState, scene: SceneBuilder): void {
     return;
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterDisplayGridShop(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'grid_shop']; enterDisplay(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterDisplayGridWardrobe(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'grid_wardrobe']; enterDisplay(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterDisplayListWardrobe(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'list_wardrobe']; enterDisplay(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterReturn(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: dynamic "
-  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCleanup(s, scene); (s as any).locArgs = __savedLocArgs; }
-  dynamicGoto(s, String((((s as any).shop_display ?? {})['return_loc'])), '' + (((s as any).shop_display ?? 0)?.['return_arg0']) + '');
-  // TODO-QSP: "
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterCleanup(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: end
+  (s as any).outfitfilter = undefined;
+  (s as any).shop_display = undefined;
+  (s as any).shop_display_exceptions = undefined;
+  (s as any).shop_display_types = undefined;
+  (s as any).shop_display_items = undefined;
+  (s as any).shop_utils_view = undefined;
+  (s as any).shop_display_sorted = undefined;
+  (s as any).shop_display_sorted_titles = undefined;
+  (s as any).outfitfilter_check = undefined;
   scene.build();
 }
 
@@ -494,7 +502,6 @@ function enterSetAllExceptions(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'purse_view', 'init', 'set_exceptions');
   qspCall(s, 'tattoo_management', 'set_shop_display_exceptions');
   qspCall(s, 'piercing_management', 'set_shop_display_exceptions');
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -504,7 +511,6 @@ function enterGetDiscount(s: GameState, scene: SceneBuilder): void {
   ((s as any).ARGS = (s as any).ARGS ?? {})[4] = (((s as any).Clothingstock ?? 0)?.[1 + (419 + (3 * ((s as any).locArgs?.[1] ?? 0) + 5 * ((s as any).locArgs?.[2] ?? 0)) % 293) % 293] ?? 0);
   (s as any).result = (((s as any).locArgs?.[3] ?? 0) - ((s as any).locArgs?.[4] ?? 0)) * (((s as any).locArgs?.[3] ?? 0) - ((s as any).locArgs?.[4] ?? 0)) * 11 / 10000 * 5;
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -534,24 +540,25 @@ function enterFilter(s: GameState, scene: SceneBuilder): void {
     (s as any).result = 0;
     ((s as any).outfitfilter = (s as any).outfitfilter ?? {})['i'] = 0;
     ((s as any).outfitfilter = (s as any).outfitfilter ?? {})['i_max'] = 0;
-    // TODO-QSP: :apply_filter_loop
-    if (((s as any).outfitfilter ?? 0)?.['i'] < ((s as any).outfitfilter ?? 0)?.['i_max']) {
-      if ((!(0 as any))) {
-        // TODO-QSP: exit
+    while (true) {
+      if (((s as any).outfitfilter ?? 0)?.['i'] < ((s as any).outfitfilter ?? 0)?.['i_max']) {
+        if ((!(0 as any))) {
+          return;
+        }
+        ((s as any).outfitfilter = (s as any).outfitfilter ?? {})['i'] = ((s as any).outfitfilter['i'] ?? 0) + (1);
+        break;
       }
-      ((s as any).outfitfilter = (s as any).outfitfilter ?? {})['i'] = ((s as any).outfitfilter['i'] ?? 0) + (1);
-      // TODO-QSP: jump 'apply_filter_loop'
+      (s as any).result = 1;
+      return;
     }
-    (s as any).result = 1;
-    return;
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterFilterBuilder(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === 'init') {
+    (s as any).outfitfilter_check = undefined;
     ((s as any).Headerstring = (s as any).Headerstring ?? {})['return_loc'] = ((s as any).locArgs?.[2] ?? 0);
     ((s as any).Headerstring = (s as any).Headerstring ?? {})['return_arg0'] = ((s as any).locArgs?.[3] ?? 0);
     ((s as any).Headerstring = (s as any).Headerstring ?? {})['return_arg1'] = ((s as any).locArgs?.[4] ?? 0);
@@ -578,24 +585,21 @@ function enterFilterBuilder(s: GameState, scene: SceneBuilder): void {
       if (((s as any).Headerstring ?? 0)?.['filter_count'] + ((s as any).Headerstring ?? 0)?.['sorting_count'] > 0) {
         scene.text('<tr>');
         if (((s as any).Headerstring ?? 0)?.['filter_count'] > 0) {
-          // TODO-QSP: dynamic text: <th colspan="<<Headerstring['filter_count']>>"><font color="<<$Headerstring['inc...
           scene.text(`<th colspan="${(((s as any).Headerstring ?? 0)?.['filter_count'] ?? '')}"><font color="${(((s as any).Headerstring ?? 0)?.['inc_color'] ?? '')}">Include</font>/<font color="red">Exclude</font></th>`);
         }
         if (((s as any).Headerstring ?? 0)?.['sorting_count'] > 0) {
-          // TODO-QSP: dynamic text: "<th colspan=""<<Headerstring['sorting_count']>>"">Sort by</th>"
           scene.text(`"<th colspan=""${(((s as any).Headerstring ?? 0)?.['sorting_count'] ?? '')}"">Sort by</th>"`);
         }
         scene.text('</tr><tr>');
         if (((s as any).Headerstring ?? 0)?.['filter_count'] > 0) {
-          // TODO-QSP: dynamic text: $Headerstring['filter']
           scene.text('$Headerstring[\'filter\']');
         }
         if (((s as any).Headerstring ?? 0)?.['sorting_count'] > 0) {
-          // TODO-QSP: dynamic text: $Headerstring['sorting']
           scene.text('$Headerstring[\'sorting\']');
         }
         scene.text('</tr>');
       }
+      (s as any).Headerstring = undefined;
       return;
     }
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', '_set_headerstring_split_widths', 'sorting']; enterFilterBuilder(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -604,91 +608,89 @@ function enterFilterBuilder(s: GameState, scene: SceneBuilder): void {
     ((s as any).Headerstring = (s as any).Headerstring ?? {})['sorting_indent'] = '';
     if (((s as any).Headerstring ?? 0)?.['sorting_width'] / 2 < ((s as any).Headerstring ?? 0)?.['max_width'] / 2) {
       ((s as any).Headerstring = (s as any).Headerstring ?? {})['i'] = 0;
-      // TODO-QSP: :headerstring_sort_loop
-      ((s as any).Headerstring = (s as any).Headerstring ?? {})['sorting_indent'] = ((s as any).Headerstring['sorting_indent'] ?? 0) + ('<td></td>');
-      ((s as any).Headerstring = (s as any).Headerstring ?? {})['i'] = ((s as any).Headerstring['i'] ?? 0) + (1);
-      if (((s as any).Headerstring ?? 0)?.['i'] < ((s as any).Headerstring ?? 0)?.['max_width'] / 2  - ((s as any).Headerstring ?? 0)?.['sorting_width'] / 2) {
-        // TODO-QSP: jump 'headerstring_sort_loop'
-      }
+      do {
+        ((s as any).Headerstring = (s as any).Headerstring ?? {})['sorting_indent'] = ((s as any).Headerstring['sorting_indent'] ?? 0) + ('<td></td>');
+        ((s as any).Headerstring = (s as any).Headerstring ?? {})['i'] = ((s as any).Headerstring['i'] ?? 0) + (1);
+      } while (((s as any).Headerstring ?? 0)?.['i'] < ((s as any).Headerstring ?? 0)?.['max_width'] / 2  - ((s as any).Headerstring ?? 0)?.['sorting_width'] / 2);
     }
     ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter_indent'] = '';
     if (((s as any).Headerstring ?? 0)?.['filter_width'] / 2 < ((s as any).Headerstring ?? 0)?.['max_width'] / 2) {
       ((s as any).Headerstring = (s as any).Headerstring ?? {})['i'] = 0;
-      // TODO-QSP: :headerstring_filter_loop
-      ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter_indent'] = ((s as any).Headerstring['filter_indent'] ?? 0) + ('<td></td>');
-      ((s as any).Headerstring = (s as any).Headerstring ?? {})['i'] = ((s as any).Headerstring['i'] ?? 0) + (1);
-      if (((s as any).Headerstring ?? 0)?.['i'] < ((s as any).Headerstring ?? 0)?.['max_width'] / 2  - ((s as any).Headerstring ?? 0)?.['filter_width'] / 2) {
-        // TODO-QSP: jump 'headerstring_filter_loop'
-      }
+      do {
+        ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter_indent'] = ((s as any).Headerstring['filter_indent'] ?? 0) + ('<td></td>');
+        ((s as any).Headerstring = (s as any).Headerstring ?? {})['i'] = ((s as any).Headerstring['i'] ?? 0) + (1);
+      } while (((s as any).Headerstring ?? 0)?.['i'] < ((s as any).Headerstring ?? 0)?.['max_width'] / 2  - ((s as any).Headerstring ?? 0)?.['filter_width'] / 2);
     }
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', '_split_headerstring', 'sorting']; enterFilterBuilder(s, scene); (s as any).locArgs = __savedLocArgs; }
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', '_split_headerstring', 'filter']; enterFilterBuilder(s, scene); (s as any).locArgs = __savedLocArgs; }
     scene.text('<center><table>');
     if (((s as any).Headerstring ?? 0)?.['sorting_count'] > 0) {
-      // TODO-QSP: dynamic text: "<tr><th colspan=""<<Headerstring['max_width']>>"">Sort by</th></tr>"
       scene.text(`"<tr><th colspan=""${(((s as any).Headerstring ?? 0)?.['max_width'] ?? '')}"">Sort by</th></tr>"`);
-      // TODO-QSP: dynamic text: $Headerstring['sorting']
       scene.text('$Headerstring[\'sorting\']');
     }
     if (((s as any).Headerstring ?? 0)?.['filter_count'] > 0) {
-      // TODO-QSP: dynamic text: <tr><th colspan="<<Headerstring['max_width']>>"><font color="<<$Headerstring['in...
       scene.text(`<tr><th colspan="${(((s as any).Headerstring ?? 0)?.['max_width'] ?? '')}"><font color="${(((s as any).Headerstring ?? 0)?.['inc_color'] ?? '')}">Include</font>/<font color="red">Exclude</font></th></tr>`);
-      // TODO-QSP: dynamic text: $Headerstring['filter']
       scene.text('$Headerstring[\'filter\']');
     }
+    (s as any).Headerstring = undefined;
     return;
   }
   if (String((s as any).locArgs?.[1] ?? '') === '_set_headerstring_split_widths') {
     if (((s as any).Headerstring ?? 0)[String((s as any).locArgs?.[2] ?? '') + '_count'] <= 10) {
-      // TODO-QSP: Headerstring[$ARGS[2] + '_width'] = Headerstring[$ARGS[2] + '_count']
-      // TODO-QSP: Headerstring[$ARGS[2] + '_col_overshoot'] = 0
+      ((s as any).Headerstring = (s as any).Headerstring ?? {})[((s as any).locArgs?.[2] ?? 0) + '_width'] = (((s as any).Headerstring ?? 0)?.[((s as any).locArgs?.[2] ?? 0) + '_count'] ?? 0);
+      ((s as any).Headerstring = (s as any).Headerstring ?? {})[((s as any).locArgs?.[2] ?? 0) + '_col_overshoot'] = 0;
       return;
     }
     ((s as any).temp_sh_hs_vars = (s as any).temp_sh_hs_vars ?? {})['count'] = (((s as any).Headerstring ?? 0)?.[((s as any).locArgs?.[2] ?? 0) + '_count'] ?? 0);
     ((s as any).temp_sh_hs_vars = (s as any).temp_sh_hs_vars ?? {})['cols'] = 2;
-    // TODO-QSP: :split_headerstring_loop_1
-    if (((s as any).temp_sh_hs_vars ?? 0)?.['count'] > ((s as any).temp_sh_hs_vars ?? 0)?.['cols'] * 10) {
-      ((s as any).temp_sh_hs_vars = (s as any).temp_sh_hs_vars ?? {})['cols'] = ((s as any).temp_sh_hs_vars['cols'] ?? 0) + (1);
-      // TODO-QSP: jump 'split_headerstring_loop_1'
+    while (true) {
+      if (((s as any).temp_sh_hs_vars ?? 0)?.['count'] > ((s as any).temp_sh_hs_vars ?? 0)?.['cols'] * 10) {
+        ((s as any).temp_sh_hs_vars = (s as any).temp_sh_hs_vars ?? {})['cols'] = ((s as any).temp_sh_hs_vars['cols'] ?? 0) + (1);
+        break;
+      }
+      ((s as any).temp_sh_hs_vars = (s as any).temp_sh_hs_vars ?? {})['width'] = (((s as any).temp_sh_hs_vars ?? {})?.['count'] ?? 0) / (((s as any).temp_sh_hs_vars ?? {})?.['cols'] ?? 0);
+      ((s as any).temp_sh_hs_vars = (s as any).temp_sh_hs_vars ?? {})['cols_overshoot'] = (((s as any).temp_sh_hs_vars ?? {})?.['count'] ?? 0) % (((s as any).temp_sh_hs_vars ?? {})?.['cols'] ?? 0);
+      ((s as any).temp_sh_hs_vars = (s as any).temp_sh_hs_vars ?? {})['new_width'] = (((s as any).temp_sh_hs_vars ?? {})?.['width'] ?? 0) + ((((s as any).temp_sh_hs_vars ?? 0)?.['cols_overshoot'] > 0) ? (1) : (0));
+      ((s as any).Headerstring = (s as any).Headerstring ?? {})[((s as any).locArgs?.[2] ?? 0) + '_width'] = (((s as any).temp_sh_hs_vars ?? 0)?.['new_width']);
+      ((s as any).Headerstring = (s as any).Headerstring ?? {})[((s as any).locArgs?.[2] ?? 0) + '_cols'] = (((s as any).temp_sh_hs_vars ?? 0)?.['cols']);
+      ((s as any).Headerstring = (s as any).Headerstring ?? {})[((s as any).locArgs?.[2] ?? 0) + '_col_overshoot'] = (((s as any).temp_sh_hs_vars ?? 0)?.['cols_overshoot']);
+      (s as any).temp_sh_hs_vars = undefined;
+      return;
     }
-    ((s as any).temp_sh_hs_vars = (s as any).temp_sh_hs_vars ?? {})['width'] = (((s as any).temp_sh_hs_vars ?? {})?.['count'] ?? 0) / (((s as any).temp_sh_hs_vars ?? {})?.['cols'] ?? 0);
-    ((s as any).temp_sh_hs_vars = (s as any).temp_sh_hs_vars ?? {})['cols_overshoot'] = (((s as any).temp_sh_hs_vars ?? {})?.['count'] ?? 0) % (((s as any).temp_sh_hs_vars ?? {})?.['cols'] ?? 0);
-    ((s as any).temp_sh_hs_vars = (s as any).temp_sh_hs_vars ?? {})['new_width'] = (((s as any).temp_sh_hs_vars ?? {})?.['width'] ?? 0) + ((((s as any).temp_sh_hs_vars ?? 0)?.['cols_overshoot'] > 0) ? (1) : (0));
-    // TODO-QSP: Headerstring[$ARGS[2] + '_width'] = temp_sh_hs_vars['new_width']
-    // TODO-QSP: Headerstring[$ARGS[2] + '_cols'] = temp_sh_hs_vars['cols']
-    // TODO-QSP: Headerstring[$ARGS[2] + '_col_overshoot'] = temp_sh_hs_vars['cols_overshoot']
-    return;
   }
   if (String((s as any).locArgs?.[1] ?? '') === '_split_headerstring') {
     if (((s as any).Headerstring ?? 0)[String((s as any).locArgs?.[2] ?? '') + '_count'] <= ((s as any).Headerstring ?? 0)[String((s as any).locArgs?.[2] ?? '') + '_width']) {
-      // TODO-QSP: $Headerstring[$ARGS[2]] = "<tr><<$Headerstring[$ARGS[2] + '_indent']>><<$Headerstring[$ARGS[2]]>></t...
+      ((s as any).Headerstring = (s as any).Headerstring ?? {})[((s as any).locArgs?.[2] ?? 0)] = '<tr>' + (((s as any).Headerstring ?? 0)?.[((s as any).locArgs?.[2] ?? 0) + '_indent'] ?? 0) + '' + (((s as any).Headerstring ?? 0)?.[((s as any).locArgs?.[2] ?? 0)] ?? 0) + '</tr>';
       return;
     }
     ((s as any).temp_sh_hs_vars = (s as any).temp_sh_hs_vars ?? {})['cur_string'] = (((s as any).Headerstring ?? 0)?.[((s as any).locArgs?.[2] ?? 0)] ?? 0);
     ((s as any).temp_sh_hs_vars = (s as any).temp_sh_hs_vars ?? {})['new_string'] = '<tr>' + (((s as any).Headerstring ?? 0)?.[((s as any).locArgs?.[2] ?? 0) + '_indent'] ?? 0);
     ((s as any).temp_sh_hs_vars = (s as any).temp_sh_hs_vars ?? {})['i'] = 0;
-    // TODO-QSP: :split_headerstring_loop_2_outer
-    if (((s as any).temp_sh_hs_vars ?? 0)?.['i'] < ((s as any).Headerstring ?? 0)[String((s as any).locArgs?.[2] ?? '') + '_cols'] - 1) {
-      ((s as any).temp_sh_hs_vars = (s as any).temp_sh_hs_vars ?? {})['temp_width'] = ((s as any).Headerstring ?? 0)[String((s as any).locArgs?.[2] ?? '') + '_width'] - ((s as any).iif ?? 0)(((s as any).Headerstring ?? 0)[String((s as any).locArgs?.[2] ?? '') + '_col_overshoot'] > 0  &&  ((s as any).temp_sh_hs_vars ?? 0)?.['i'] >= ((s as any).Headerstring ?? 0)[String((s as any).locArgs?.[2] ?? '') + '_col_overshoot'], 1, 0);
-      ((s as any).temp_sh_hs_vars = (s as any).temp_sh_hs_vars ?? {})['j'] = 0;
-      ((s as any).temp_sh_hs_vars = (s as any).temp_sh_hs_vars ?? {})['new_string'] = ((s as any).temp_sh_hs_vars['new_string'] ?? 0) + ((((s as any).Headerstring ?? 0)?.[((s as any).locArgs?.[2] ?? 0) + '_indent'] ?? 0));
-      // TODO-QSP: :split_headerstring_loop_2_inner
-      if (((s as any).temp_sh_hs_vars ?? 0)?.['j'] < ((s as any).temp_sh_hs_vars ?? 0)?.['temp_width']) {
-        ((s as any).temp_sh_hs_vars = (s as any).temp_sh_hs_vars ?? {})['td_index'] = 5 + ((String((((s as any).temp_sh_hs_vars ?? 0)?.['cur_string'])).indexOf(String('</td><td>'))) + 1);
-        ((s as any).temp_sh_hs_vars = (s as any).temp_sh_hs_vars ?? {})['head'] = (String((((s as any).temp_sh_hs_vars ?? 0)?.['cur_string'])).slice((1)-1, ((1)-1)+((((s as any).temp_sh_hs_vars ?? {})?.['td_index'] ?? 0) - 1)));
-        ((s as any).temp_sh_hs_vars = (s as any).temp_sh_hs_vars ?? {})['tail'] = (String((((s as any).temp_sh_hs_vars ?? 0)?.['cur_string'])).slice(((((s as any).temp_sh_hs_vars ?? 0)?.['td_index']))-1));
-        ((s as any).temp_sh_hs_vars = (s as any).temp_sh_hs_vars ?? {})['new_string'] = ((s as any).temp_sh_hs_vars['new_string'] ?? 0) + ((((s as any).temp_sh_hs_vars ?? 0)?.['head']));
-        ((s as any).temp_sh_hs_vars = (s as any).temp_sh_hs_vars ?? {})['cur_string'] = (((s as any).temp_sh_hs_vars ?? 0)?.['tail']);
-        ((s as any).temp_sh_hs_vars = (s as any).temp_sh_hs_vars ?? {})['j'] = ((s as any).temp_sh_hs_vars['j'] ?? 0) + (1);
-        // TODO-QSP: jump 'split_headerstring_loop_2_inner'
+    while (true) {
+      if (((s as any).temp_sh_hs_vars ?? 0)?.['i'] < ((s as any).Headerstring ?? 0)[String((s as any).locArgs?.[2] ?? '') + '_cols'] - 1) {
+        ((s as any).temp_sh_hs_vars = (s as any).temp_sh_hs_vars ?? {})['temp_width'] = ((s as any).Headerstring ?? 0)[String((s as any).locArgs?.[2] ?? '') + '_width'] - ((s as any).iif ?? 0)(((s as any).Headerstring ?? 0)[String((s as any).locArgs?.[2] ?? '') + '_col_overshoot'] > 0  &&  ((s as any).temp_sh_hs_vars ?? 0)?.['i'] >= ((s as any).Headerstring ?? 0)[String((s as any).locArgs?.[2] ?? '') + '_col_overshoot'], 1, 0);
+        ((s as any).temp_sh_hs_vars = (s as any).temp_sh_hs_vars ?? {})['j'] = 0;
+        ((s as any).temp_sh_hs_vars = (s as any).temp_sh_hs_vars ?? {})['new_string'] = ((s as any).temp_sh_hs_vars['new_string'] ?? 0) + ((((s as any).Headerstring ?? 0)?.[((s as any).locArgs?.[2] ?? 0) + '_indent'] ?? 0));
+        while (true) {
+          if (((s as any).temp_sh_hs_vars ?? 0)?.['j'] < ((s as any).temp_sh_hs_vars ?? 0)?.['temp_width']) {
+            ((s as any).temp_sh_hs_vars = (s as any).temp_sh_hs_vars ?? {})['td_index'] = 5 + ((String((((s as any).temp_sh_hs_vars ?? 0)?.['cur_string'])).indexOf(String('</td><td>'))) + 1);
+            ((s as any).temp_sh_hs_vars = (s as any).temp_sh_hs_vars ?? {})['head'] = (String((((s as any).temp_sh_hs_vars ?? 0)?.['cur_string'])).slice((1)-1, ((1)-1)+((((s as any).temp_sh_hs_vars ?? {})?.['td_index'] ?? 0) - 1)));
+            ((s as any).temp_sh_hs_vars = (s as any).temp_sh_hs_vars ?? {})['tail'] = (String((((s as any).temp_sh_hs_vars ?? 0)?.['cur_string'])).slice(((((s as any).temp_sh_hs_vars ?? 0)?.['td_index']))-1));
+            ((s as any).temp_sh_hs_vars = (s as any).temp_sh_hs_vars ?? {})['new_string'] = ((s as any).temp_sh_hs_vars['new_string'] ?? 0) + ((((s as any).temp_sh_hs_vars ?? 0)?.['head']));
+            ((s as any).temp_sh_hs_vars = (s as any).temp_sh_hs_vars ?? {})['cur_string'] = (((s as any).temp_sh_hs_vars ?? 0)?.['tail']);
+            ((s as any).temp_sh_hs_vars = (s as any).temp_sh_hs_vars ?? {})['j'] = ((s as any).temp_sh_hs_vars['j'] ?? 0) + (1);
+            break;
+          }
+          ((s as any).temp_sh_hs_vars = (s as any).temp_sh_hs_vars ?? {})['new_string'] = ((s as any).temp_sh_hs_vars['new_string'] ?? 0) + ('</tr><tr>' + (((s as any).Headerstring ?? 0)?.[((s as any).locArgs?.[2] ?? 0) + '_indent'] ?? 0));
+          ((s as any).temp_sh_hs_vars = (s as any).temp_sh_hs_vars ?? {})['i'] = ((s as any).temp_sh_hs_vars['i'] ?? 0) + (1);
+          break;
+        }
       }
-      ((s as any).temp_sh_hs_vars = (s as any).temp_sh_hs_vars ?? {})['new_string'] = ((s as any).temp_sh_hs_vars['new_string'] ?? 0) + ('</tr><tr>' + (((s as any).Headerstring ?? 0)?.[((s as any).locArgs?.[2] ?? 0) + '_indent'] ?? 0));
-      ((s as any).temp_sh_hs_vars = (s as any).temp_sh_hs_vars ?? {})['i'] = ((s as any).temp_sh_hs_vars['i'] ?? 0) + (1);
-      // TODO-QSP: jump 'split_headerstring_loop_2_outer'
+      ((s as any).temp_sh_hs_vars = (s as any).temp_sh_hs_vars ?? {})['new_string'] = ((s as any).temp_sh_hs_vars['new_string'] ?? 0) + ((((s as any).temp_sh_hs_vars ?? 0)?.['cur_string']) + '</tr>');
+      ((s as any).Headerstring = (s as any).Headerstring ?? {})[((s as any).locArgs?.[2] ?? 0)] = (((s as any).temp_sh_hs_vars ?? 0)?.['new_string']);
+      (s as any).temp_sh_hs_vars = undefined;
+      return;
     }
-    ((s as any).temp_sh_hs_vars = (s as any).temp_sh_hs_vars ?? {})['new_string'] = ((s as any).temp_sh_hs_vars['new_string'] ?? 0) + ((((s as any).temp_sh_hs_vars ?? 0)?.['cur_string']) + '</tr>');
-    // TODO-QSP: $Headerstring[$ARGS[2]] = $temp_sh_hs_vars['new_string']
-    return;
   }
   if (String((s as any).locArgs?.[1] ?? '') === 'setup_number_sort') {
     if (Object.keys((s as any).ARGS ?? {}).length === 2) {
@@ -707,7 +709,7 @@ function enterFilterBuilder(s: GameState, scene: SceneBuilder): void {
       ((s as any).outfitfilter = (s as any).outfitfilter ?? {})['number_sort'] = 1;
       ((s as any).Headerstring = (s as any).Headerstring ?? {})['sorting'] = ((s as any).Headerstring['sorting'] ?? 0) + ('<img src="images/system/icons/clothing/number_inc' + (((s as any).Headerstring ?? 0)?.['inc_alt']) + '.png">');
     } else {
-      ((s as any).Headerstring = (s as any).Headerstring ?? {})['sorting'] = ((s as any).Headerstring['sorting'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})/u0027number_sort/u0027 = s.1; return s; }); window.__gameStore.getState().doGoto(/u0027shop_utils/u0027, /u0027filter/u0027, /u0027reset_sorting/u0027); return false;"><img src="images/system/icons/clothing/number_exc.png"></a>');
+      ((s as any).Headerstring = (s as any).Headerstring ?? {})['sorting'] = ((s as any).Headerstring['sorting'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})\u0027number_sort\u0027 = s.1; return s; }); window.__gameStore.getState().doGoto(\u0027shop_utils\u0027, \u0027filter\u0027, \u0027reset_sorting/\u0027 & outfitfilter[/\u0027number_sort/\u0027] = 1 & gt /\u0027\u0027 + ((s as any).locArgs?.[2] ?? \u0027\u0027)); return false;"><img src="images/system/icons/clothing/number_exc.png"></a>');
     }
     return;
   }
@@ -728,7 +730,7 @@ function enterFilterBuilder(s: GameState, scene: SceneBuilder): void {
       ((s as any).outfitfilter = (s as any).outfitfilter ?? {})['quality_sort'] = 1;
       ((s as any).Headerstring = (s as any).Headerstring ?? {})['sorting'] = ((s as any).Headerstring['sorting'] ?? 0) + ('<img src="images/system/icons/clothing/quality_inc' + (((s as any).Headerstring ?? 0)?.['inc_alt']) + '.png">');
     } else {
-      ((s as any).Headerstring = (s as any).Headerstring ?? {})['sorting'] = ((s as any).Headerstring['sorting'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})/u0027quality_sort/u0027 = s.1; return s; }); window.__gameStore.getState().doGoto(/u0027shop_utils/u0027, /u0027filter/u0027, /u0027reset_sorting/u0027); return false;"><img src="images/system/icons/clothing/quality_exc.png"></a>');
+      ((s as any).Headerstring = (s as any).Headerstring ?? {})['sorting'] = ((s as any).Headerstring['sorting'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})\u0027quality_sort\u0027 = s.1; return s; }); window.__gameStore.getState().doGoto(\u0027shop_utils\u0027, \u0027filter\u0027, \u0027reset_sorting/\u0027 & outfitfilter[/\u0027quality_sort/\u0027] = 1 & gt /\u0027\u0027 + ((s as any).locArgs?.[2] ?? \u0027\u0027)); return false;"><img src="images/system/icons/clothing/quality_exc.png"></a>');
     }
     return;
   }
@@ -749,7 +751,7 @@ function enterFilterBuilder(s: GameState, scene: SceneBuilder): void {
       ((s as any).outfitfilter = (s as any).outfitfilter ?? {})['inhibition_sort'] = 1;
       ((s as any).Headerstring = (s as any).Headerstring ?? {})['sorting'] = ((s as any).Headerstring['sorting'] ?? 0) + ('<img src="images/system/icons/clothing/inhibition_inc' + (((s as any).Headerstring ?? 0)?.['inc_alt']) + '.png">');
     } else {
-      ((s as any).Headerstring = (s as any).Headerstring ?? {})['sorting'] = ((s as any).Headerstring['sorting'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})/u0027inhibition_sort/u0027 = s.1; return s; }); window.__gameStore.getState().doGoto(/u0027shop_utils/u0027, /u0027filter/u0027, /u0027reset_sorting/u0027); return false;"><img src="images/system/icons/clothing/inhibition_exc.png"></a>');
+      ((s as any).Headerstring = (s as any).Headerstring ?? {})['sorting'] = ((s as any).Headerstring['sorting'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})\u0027inhibition_sort\u0027 = s.1; return s; }); window.__gameStore.getState().doGoto(\u0027shop_utils\u0027, \u0027filter\u0027, \u0027reset_sorting/\u0027 & outfitfilter[/\u0027inhibition_sort/\u0027] = 1 & gt /\u0027\u0027 + ((s as any).locArgs?.[2] ?? \u0027\u0027)); return false;"><img src="images/system/icons/clothing/inhibition_exc.png"></a>');
     }
     return;
   }
@@ -770,7 +772,7 @@ function enterFilterBuilder(s: GameState, scene: SceneBuilder): void {
       ((s as any).outfitfilter = (s as any).outfitfilter ?? {})['heelsize_sort'] = 1;
       ((s as any).Headerstring = (s as any).Headerstring ?? {})['sorting'] = ((s as any).Headerstring['sorting'] ?? 0) + ('<img src="images/system/icons/clothing/heels_inc' + (((s as any).Headerstring ?? 0)?.['inc_alt']) + '.png">');
     } else {
-      ((s as any).Headerstring = (s as any).Headerstring ?? {})['sorting'] = ((s as any).Headerstring['sorting'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})/u0027heelsize_sort/u0027 = s.1; return s; }); window.__gameStore.getState().doGoto(/u0027shop_utils/u0027, /u0027filter/u0027, /u0027reset_sorting/u0027); return false;"><img src="images/system/icons/clothing/heels_exc.png"></a>');
+      ((s as any).Headerstring = (s as any).Headerstring ?? {})['sorting'] = ((s as any).Headerstring['sorting'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})\u0027heelsize_sort\u0027 = s.1; return s; }); window.__gameStore.getState().doGoto(\u0027shop_utils\u0027, \u0027filter\u0027, \u0027reset_sorting/\u0027 & outfitfilter[/\u0027heelsize_sort/\u0027] = 1 & gt /\u0027\u0027 + ((s as any).locArgs?.[2] ?? \u0027\u0027)); return false;"><img src="images/system/icons/clothing/heels_exc.png"></a>');
     }
     return;
   }
@@ -791,7 +793,7 @@ function enterFilterBuilder(s: GameState, scene: SceneBuilder): void {
       ((s as any).outfitfilter = (s as any).outfitfilter ?? {})['price_sort'] = 1;
       ((s as any).Headerstring = (s as any).Headerstring ?? {})['sorting'] = ((s as any).Headerstring['sorting'] ?? 0) + ('<img src="images/system/icons/clothing/price_inc' + (((s as any).Headerstring ?? 0)?.['inc_alt']) + '.png">');
     } else {
-      ((s as any).Headerstring = (s as any).Headerstring ?? {})['sorting'] = ((s as any).Headerstring['sorting'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})/u0027price_sort/u0027 = s.1; return s; }); window.__gameStore.getState().doGoto(/u0027shop_utils/u0027, /u0027filter/u0027, /u0027reset_sorting/u0027); return false;"><img src="images/system/icons/clothing/price_exc.png"></a>');
+      ((s as any).Headerstring = (s as any).Headerstring ?? {})['sorting'] = ((s as any).Headerstring['sorting'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})\u0027price_sort\u0027 = s.1; return s; }); window.__gameStore.getState().doGoto(\u0027shop_utils\u0027, \u0027filter\u0027, \u0027reset_sorting/\u0027 & outfitfilter[/\u0027price_sort/\u0027] = 1 & gt /\u0027\u0027 + ((s as any).locArgs?.[2] ?? \u0027\u0027)); return false;"><img src="images/system/icons/clothing/price_exc.png"></a>');
     }
     return;
   }
@@ -812,7 +814,7 @@ function enterFilterBuilder(s: GameState, scene: SceneBuilder): void {
       ((s as any).outfitfilter = (s as any).outfitfilter ?? {})['discount_sort'] = 1;
       ((s as any).Headerstring = (s as any).Headerstring ?? {})['sorting'] = ((s as any).Headerstring['sorting'] ?? 0) + ('<img src="images/system/icons/clothing/discount_inc' + (((s as any).Headerstring ?? 0)?.['inc_alt']) + '.png">');
     } else {
-      ((s as any).Headerstring = (s as any).Headerstring ?? {})['sorting'] = ((s as any).Headerstring['sorting'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})/u0027discount_sort/u0027 = s.1; return s; }); window.__gameStore.getState().doGoto(/u0027shop_utils/u0027, /u0027filter/u0027, /u0027reset_sorting/u0027); return false;"><img src="images/system/icons/clothing/discount_exc.png"></a>');
+      ((s as any).Headerstring = (s as any).Headerstring ?? {})['sorting'] = ((s as any).Headerstring['sorting'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})\u0027discount_sort\u0027 = s.1; return s; }); window.__gameStore.getState().doGoto(\u0027shop_utils\u0027, \u0027filter\u0027, \u0027reset_sorting/\u0027 & outfitfilter[/\u0027discount_sort/\u0027] = 1 & gt /\u0027\u0027 + ((s as any).locArgs?.[2] ?? \u0027\u0027)); return false;"><img src="images/system/icons/clothing/discount_exc.png"></a>');
     }
     return;
   }
@@ -830,9 +832,9 @@ function enterFilterBuilder(s: GameState, scene: SceneBuilder): void {
     ((s as any).Headerstring = (s as any).Headerstring ?? {})['sorting'] = ((s as any).Headerstring['sorting'] ?? 0) + ('</td><td>');
     if (((s as any).outfitfilter ?? 0)?.['sort_direction']) {
       ((s as any).outfitfilter = (s as any).outfitfilter ?? {})['sort_direction'] = 1;
-      ((s as any).Headerstring = (s as any).Headerstring ?? {})['sorting'] = ((s as any).Headerstring['sorting'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})/u0027sort_direction/u0027 = s.0; return s; }); window.__gameStore.getState().doGoto(/u0027' + ((s as any).locArgs?.[2] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[3] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[4] ?? 0) + '/u0027); return false;"><img src="images/system/icons/clothing/high_low.png"></a>');
+      ((s as any).Headerstring = (s as any).Headerstring ?? {})['sorting'] = ((s as any).Headerstring['sorting'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})\u0027sort_direction\u0027 = s.0; return s; }); window.__gameStore.getState().doGoto(((s as any).locArgs?.[2] ?? \u0027\u0027), ((s as any).locArgs?.[3] ?? \u0027\u0027), ((s as any).locArgs?.[4] ?? \u0027\u0027)); return false;"><img src="images/system/icons/clothing/high_low.png"></a>');
     } else {
-      ((s as any).Headerstring = (s as any).Headerstring ?? {})['sorting'] = ((s as any).Headerstring['sorting'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})/u0027sort_direction/u0027 = s.1; return s; }); window.__gameStore.getState().doGoto(/u0027' + ((s as any).locArgs?.[2] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[3] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[4] ?? 0) + '/u0027); return false;"><img src="images/system/icons/clothing/low_high.png"></a>');
+      ((s as any).Headerstring = (s as any).Headerstring ?? {})['sorting'] = ((s as any).Headerstring['sorting'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})\u0027sort_direction\u0027 = s.1; return s; }); window.__gameStore.getState().doGoto(((s as any).locArgs?.[2] ?? \u0027\u0027), ((s as any).locArgs?.[3] ?? \u0027\u0027), ((s as any).locArgs?.[4] ?? \u0027\u0027)); return false;"><img src="images/system/icons/clothing/low_high.png"></a>');
     }
     return;
   }
@@ -853,14 +855,14 @@ function enterFilterBuilder(s: GameState, scene: SceneBuilder): void {
     ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('</td><td>');
     if (((s as any).outfitfilter ?? 0)?.['prostitution'] > 0) {
       ((s as any).outfitfilter_check = (s as any).outfitfilter_check ?? {})['prostitution'] = '(' + ((s as any).locArgs?.[2] ?? 0) + ')';
-      ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})/u0027prostitution/u0027 = -1; return s; }); window.__gameStore.getState().doGoto(/u0027' + ((s as any).locArgs?.[3] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[4] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[5] ?? 0) + '/u0027); return false;"><img src="images/system/icons/clothing/prostitute_inc' + (((s as any).Headerstring ?? 0)?.['inc_alt']) + '.png"></a>');
+      ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})\u0027prostitution\u0027 = -1; return s; }); window.__gameStore.getState().doGoto(((s as any).locArgs?.[3] ?? \u0027\u0027), ((s as any).locArgs?.[4] ?? \u0027\u0027), ((s as any).locArgs?.[5] ?? \u0027\u0027)); return false;"><img src="images/system/icons/clothing/prostitute_inc' + (((s as any).Headerstring ?? 0)?.['inc_alt']) + '.png"></a>');
     } else {
       if (((s as any).outfitfilter ?? 0)?.['prostitution'] < 0) {
         ((s as any).outfitfilter_check = (s as any).outfitfilter_check ?? {})['prostitution'] = '(' + ((s as any).locArgs?.[2] ?? 0) + ') = 0';
-        ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})/u0027prostitution/u0027 = s.0; return s; }); window.__gameStore.getState().doGoto(/u0027' + ((s as any).locArgs?.[3] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[4] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[5] ?? 0) + '/u0027); return false;"><img src="images/system/icons/clothing/prostitute_exc.png"></a>');
+        ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})\u0027prostitution\u0027 = s.0; return s; }); window.__gameStore.getState().doGoto(((s as any).locArgs?.[3] ?? \u0027\u0027), ((s as any).locArgs?.[4] ?? \u0027\u0027), ((s as any).locArgs?.[5] ?? \u0027\u0027)); return false;"><img src="images/system/icons/clothing/prostitute_exc.png"></a>');
       } else {
         ((s as any).outfitfilter_check = (s as any).outfitfilter_check ?? {})['prostitution'] = '1';
-        ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})/u0027prostitution/u0027 = s.1; return s; }); window.__gameStore.getState().doGoto(/u0027' + ((s as any).locArgs?.[3] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[4] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[5] ?? 0) + '/u0027); return false;"><img src="images/system/icons/clothing/prostitute_off.png"></a>');
+        ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})\u0027prostitution\u0027 = s.1; return s; }); window.__gameStore.getState().doGoto(((s as any).locArgs?.[3] ?? \u0027\u0027), ((s as any).locArgs?.[4] ?? \u0027\u0027), ((s as any).locArgs?.[5] ?? \u0027\u0027)); return false;"><img src="images/system/icons/clothing/prostitute_off.png"></a>');
       }
     }
     return;
@@ -882,14 +884,14 @@ function enterFilterBuilder(s: GameState, scene: SceneBuilder): void {
     ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('</td><td>');
     if (((s as any).outfitfilter ?? 0)?.['stripper'] > 0) {
       ((s as any).outfitfilter_check = (s as any).outfitfilter_check ?? {})['stripper'] = '(' + ((s as any).locArgs?.[2] ?? 0) + ')';
-      ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})/u0027stripper/u0027 = -1; return s; }); window.__gameStore.getState().doGoto(/u0027' + ((s as any).locArgs?.[3] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[4] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[5] ?? 0) + '/u0027); return false;"><img src="images/system/icons/clothing/stripper_inc' + (((s as any).Headerstring ?? 0)?.['inc_alt']) + '.png"></a>');
+      ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})\u0027stripper\u0027 = -1; return s; }); window.__gameStore.getState().doGoto(((s as any).locArgs?.[3] ?? \u0027\u0027), ((s as any).locArgs?.[4] ?? \u0027\u0027), ((s as any).locArgs?.[5] ?? \u0027\u0027)); return false;"><img src="images/system/icons/clothing/stripper_inc' + (((s as any).Headerstring ?? 0)?.['inc_alt']) + '.png"></a>');
     } else {
       if (((s as any).outfitfilter ?? 0)?.['stripper'] < 0) {
         ((s as any).outfitfilter_check = (s as any).outfitfilter_check ?? {})['stripper'] = '(' + ((s as any).locArgs?.[2] ?? 0) + ') = 0';
-        ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})/u0027stripper/u0027 = s.0; return s; }); window.__gameStore.getState().doGoto(/u0027' + ((s as any).locArgs?.[3] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[4] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[5] ?? 0) + '/u0027); return false;"><img src="images/system/icons/clothing/stripper_exc.png"></a>');
+        ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})\u0027stripper\u0027 = s.0; return s; }); window.__gameStore.getState().doGoto(((s as any).locArgs?.[3] ?? \u0027\u0027), ((s as any).locArgs?.[4] ?? \u0027\u0027), ((s as any).locArgs?.[5] ?? \u0027\u0027)); return false;"><img src="images/system/icons/clothing/stripper_exc.png"></a>');
       } else {
         ((s as any).outfitfilter_check = (s as any).outfitfilter_check ?? {})['stripper'] = '1';
-        ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})/u0027stripper/u0027 = s.1; return s; }); window.__gameStore.getState().doGoto(/u0027' + ((s as any).locArgs?.[3] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[4] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[5] ?? 0) + '/u0027); return false;"><img src="images/system/icons/clothing/stripper_off.png"></a>');
+        ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})\u0027stripper\u0027 = s.1; return s; }); window.__gameStore.getState().doGoto(((s as any).locArgs?.[3] ?? \u0027\u0027), ((s as any).locArgs?.[4] ?? \u0027\u0027), ((s as any).locArgs?.[5] ?? \u0027\u0027)); return false;"><img src="images/system/icons/clothing/stripper_off.png"></a>');
       }
     }
     return;
@@ -911,14 +913,14 @@ function enterFilterBuilder(s: GameState, scene: SceneBuilder): void {
     ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('</td><td>');
     if (((s as any).outfitfilter ?? 0)?.['bimbo'] > 0) {
       ((s as any).outfitfilter_check = (s as any).outfitfilter_check ?? {})['bimbo'] = '(' + ((s as any).locArgs?.[2] ?? 0) + ')';
-      ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})/u0027bimbo/u0027 = -1; return s; }); window.__gameStore.getState().doGoto(/u0027' + ((s as any).locArgs?.[3] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[4] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[5] ?? 0) + '/u0027); return false;"><img src="images/system/icons/clothing/bimbo_inc' + (((s as any).Headerstring ?? 0)?.['inc_alt']) + '.png"></a>');
+      ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})\u0027bimbo\u0027 = -1; return s; }); window.__gameStore.getState().doGoto(((s as any).locArgs?.[3] ?? \u0027\u0027), ((s as any).locArgs?.[4] ?? \u0027\u0027), ((s as any).locArgs?.[5] ?? \u0027\u0027)); return false;"><img src="images/system/icons/clothing/bimbo_inc' + (((s as any).Headerstring ?? 0)?.['inc_alt']) + '.png"></a>');
     } else {
       if (((s as any).outfitfilter ?? 0)?.['bimbo'] < 0) {
         ((s as any).outfitfilter_check = (s as any).outfitfilter_check ?? {})['bimbo'] = '(' + ((s as any).locArgs?.[2] ?? 0) + ') = 0';
-        ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})/u0027bimbo/u0027 = s.0; return s; }); window.__gameStore.getState().doGoto(/u0027' + ((s as any).locArgs?.[3] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[4] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[5] ?? 0) + '/u0027); return false;"><img src="images/system/icons/clothing/bimbo_exc.png"></a>');
+        ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})\u0027bimbo\u0027 = s.0; return s; }); window.__gameStore.getState().doGoto(((s as any).locArgs?.[3] ?? \u0027\u0027), ((s as any).locArgs?.[4] ?? \u0027\u0027), ((s as any).locArgs?.[5] ?? \u0027\u0027)); return false;"><img src="images/system/icons/clothing/bimbo_exc.png"></a>');
       } else {
         ((s as any).outfitfilter_check = (s as any).outfitfilter_check ?? {})['bimbo'] = '1';
-        ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})/u0027bimbo/u0027 = s.1; return s; }); window.__gameStore.getState().doGoto(/u0027' + ((s as any).locArgs?.[3] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[4] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[5] ?? 0) + '/u0027); return false;"><img src="images/system/icons/clothing/bimbo_off.png"></a>');
+        ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})\u0027bimbo\u0027 = s.1; return s; }); window.__gameStore.getState().doGoto(((s as any).locArgs?.[3] ?? \u0027\u0027), ((s as any).locArgs?.[4] ?? \u0027\u0027), ((s as any).locArgs?.[5] ?? \u0027\u0027)); return false;"><img src="images/system/icons/clothing/bimbo_off.png"></a>');
       }
     }
     return;
@@ -940,14 +942,14 @@ function enterFilterBuilder(s: GameState, scene: SceneBuilder): void {
     ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('</td><td>');
     if (((s as any).outfitfilter ?? 0)?.['goth'] > 0) {
       ((s as any).outfitfilter_check = (s as any).outfitfilter_check ?? {})['goth'] = '(' + ((s as any).locArgs?.[2] ?? 0) + ')';
-      ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})/u0027goth/u0027 = -1; return s; }); window.__gameStore.getState().doGoto(/u0027' + ((s as any).locArgs?.[3] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[4] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[5] ?? 0) + '/u0027); return false;"><img src="images/system/icons/clothing/goth_inc' + (((s as any).Headerstring ?? 0)?.['inc_alt']) + '.png"></a>');
+      ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})\u0027goth\u0027 = -1; return s; }); window.__gameStore.getState().doGoto(((s as any).locArgs?.[3] ?? \u0027\u0027), ((s as any).locArgs?.[4] ?? \u0027\u0027), ((s as any).locArgs?.[5] ?? \u0027\u0027)); return false;"><img src="images/system/icons/clothing/goth_inc' + (((s as any).Headerstring ?? 0)?.['inc_alt']) + '.png"></a>');
     } else {
       if (((s as any).outfitfilter ?? 0)?.['goth'] < 0) {
         ((s as any).outfitfilter_check = (s as any).outfitfilter_check ?? {})['goth'] = '(' + ((s as any).locArgs?.[2] ?? 0) + ') = 0';
-        ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})/u0027goth/u0027 = s.0; return s; }); window.__gameStore.getState().doGoto(/u0027' + ((s as any).locArgs?.[3] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[4] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[5] ?? 0) + '/u0027); return false;"><img src="images/system/icons/clothing/goth_exc.png"></a>');
+        ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})\u0027goth\u0027 = s.0; return s; }); window.__gameStore.getState().doGoto(((s as any).locArgs?.[3] ?? \u0027\u0027), ((s as any).locArgs?.[4] ?? \u0027\u0027), ((s as any).locArgs?.[5] ?? \u0027\u0027)); return false;"><img src="images/system/icons/clothing/goth_exc.png"></a>');
       } else {
         ((s as any).outfitfilter_check = (s as any).outfitfilter_check ?? {})['goth'] = '1';
-        ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})/u0027goth/u0027 = s.1; return s; }); window.__gameStore.getState().doGoto(/u0027' + ((s as any).locArgs?.[3] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[4] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[5] ?? 0) + '/u0027); return false;"><img src="images/system/icons/clothing/goth_off.png"></a>');
+        ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})\u0027goth\u0027 = s.1; return s; }); window.__gameStore.getState().doGoto(((s as any).locArgs?.[3] ?? \u0027\u0027), ((s as any).locArgs?.[4] ?? \u0027\u0027), ((s as any).locArgs?.[5] ?? \u0027\u0027)); return false;"><img src="images/system/icons/clothing/goth_off.png"></a>');
       }
     }
     return;
@@ -969,14 +971,14 @@ function enterFilterBuilder(s: GameState, scene: SceneBuilder): void {
     ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('</td><td>');
     if (((s as any).outfitfilter ?? 0)?.['preppy'] > 0) {
       ((s as any).outfitfilter_check = (s as any).outfitfilter_check ?? {})['preppy'] = '(' + ((s as any).locArgs?.[2] ?? 0) + ')';
-      ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})/u0027preppy/u0027 = -1; return s; }); window.__gameStore.getState().doGoto(/u0027' + ((s as any).locArgs?.[3] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[4] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[5] ?? 0) + '/u0027); return false;"><img src="images/system/icons/clothing/preppy_inc' + (((s as any).Headerstring ?? 0)?.['inc_alt']) + '.png"></a>');
+      ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})\u0027preppy\u0027 = -1; return s; }); window.__gameStore.getState().doGoto(((s as any).locArgs?.[3] ?? \u0027\u0027), ((s as any).locArgs?.[4] ?? \u0027\u0027), ((s as any).locArgs?.[5] ?? \u0027\u0027)); return false;"><img src="images/system/icons/clothing/preppy_inc' + (((s as any).Headerstring ?? 0)?.['inc_alt']) + '.png"></a>');
     } else {
       if (((s as any).outfitfilter ?? 0)?.['preppy'] < 0) {
         ((s as any).outfitfilter_check = (s as any).outfitfilter_check ?? {})['preppy'] = '(' + ((s as any).locArgs?.[2] ?? 0) + ') = 0';
-        ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})/u0027preppy/u0027 = s.0; return s; }); window.__gameStore.getState().doGoto(/u0027' + ((s as any).locArgs?.[3] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[4] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[5] ?? 0) + '/u0027); return false;"><img src="images/system/icons/clothing/preppy_exc.png"></a>');
+        ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})\u0027preppy\u0027 = s.0; return s; }); window.__gameStore.getState().doGoto(((s as any).locArgs?.[3] ?? \u0027\u0027), ((s as any).locArgs?.[4] ?? \u0027\u0027), ((s as any).locArgs?.[5] ?? \u0027\u0027)); return false;"><img src="images/system/icons/clothing/preppy_exc.png"></a>');
       } else {
         ((s as any).outfitfilter_check = (s as any).outfitfilter_check ?? {})['preppy'] = '1';
-        ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})/u0027preppy/u0027 = s.1; return s; }); window.__gameStore.getState().doGoto(/u0027' + ((s as any).locArgs?.[3] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[4] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[5] ?? 0) + '/u0027); return false;"><img src="images/system/icons/clothing/preppy_off.png"></a>');
+        ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})\u0027preppy\u0027 = s.1; return s; }); window.__gameStore.getState().doGoto(((s as any).locArgs?.[3] ?? \u0027\u0027), ((s as any).locArgs?.[4] ?? \u0027\u0027), ((s as any).locArgs?.[5] ?? \u0027\u0027)); return false;"><img src="images/system/icons/clothing/preppy_off.png"></a>');
       }
     }
     return;
@@ -998,14 +1000,14 @@ function enterFilterBuilder(s: GameState, scene: SceneBuilder): void {
     ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('</td><td>');
     if (((s as any).outfitfilter ?? 0)?.['prude'] > 0) {
       ((s as any).outfitfilter_check = (s as any).outfitfilter_check ?? {})['prude'] = '(' + ((s as any).locArgs?.[2] ?? 0) + ')';
-      ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})/u0027prude/u0027 = -1; return s; }); window.__gameStore.getState().doGoto(/u0027' + ((s as any).locArgs?.[3] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[4] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[5] ?? 0) + '/u0027); return false;"><img src="images/system/icons/clothing/prude_inc' + (((s as any).Headerstring ?? 0)?.['inc_alt']) + '.png"></a>');
+      ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})\u0027prude\u0027 = -1; return s; }); window.__gameStore.getState().doGoto(((s as any).locArgs?.[3] ?? \u0027\u0027), ((s as any).locArgs?.[4] ?? \u0027\u0027), ((s as any).locArgs?.[5] ?? \u0027\u0027)); return false;"><img src="images/system/icons/clothing/prude_inc' + (((s as any).Headerstring ?? 0)?.['inc_alt']) + '.png"></a>');
     } else {
       if (((s as any).outfitfilter ?? 0)?.['prude'] < 0) {
         ((s as any).outfitfilter_check = (s as any).outfitfilter_check ?? {})['prude'] = '(' + ((s as any).locArgs?.[2] ?? 0) + ') = 0';
-        ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})/u0027prude/u0027 = s.0; return s; }); window.__gameStore.getState().doGoto(/u0027' + ((s as any).locArgs?.[3] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[4] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[5] ?? 0) + '/u0027); return false;"><img src="images/system/icons/clothing/prude_exc.png"></a>');
+        ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})\u0027prude\u0027 = s.0; return s; }); window.__gameStore.getState().doGoto(((s as any).locArgs?.[3] ?? \u0027\u0027), ((s as any).locArgs?.[4] ?? \u0027\u0027), ((s as any).locArgs?.[5] ?? \u0027\u0027)); return false;"><img src="images/system/icons/clothing/prude_exc.png"></a>');
       } else {
         ((s as any).outfitfilter_check = (s as any).outfitfilter_check ?? {})['prude'] = '1';
-        ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})/u0027prude/u0027 = s.1; return s; }); window.__gameStore.getState().doGoto(/u0027' + ((s as any).locArgs?.[3] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[4] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[5] ?? 0) + '/u0027); return false;"><img src="images/system/icons/clothing/prude_off.png"></a>');
+        ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})\u0027prude\u0027 = s.1; return s; }); window.__gameStore.getState().doGoto(((s as any).locArgs?.[3] ?? \u0027\u0027), ((s as any).locArgs?.[4] ?? \u0027\u0027), ((s as any).locArgs?.[5] ?? \u0027\u0027)); return false;"><img src="images/system/icons/clothing/prude_off.png"></a>');
       }
     }
     return;
@@ -1027,14 +1029,14 @@ function enterFilterBuilder(s: GameState, scene: SceneBuilder): void {
     ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('</td><td>');
     if (((s as any).outfitfilter ?? 0)?.['punk'] > 0) {
       ((s as any).outfitfilter_check = (s as any).outfitfilter_check ?? {})['punk'] = '(' + ((s as any).locArgs?.[2] ?? 0) + ')';
-      ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})/u0027punk/u0027 = -1; return s; }); window.__gameStore.getState().doGoto(/u0027' + ((s as any).locArgs?.[3] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[4] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[5] ?? 0) + '/u0027); return false;"><img src="images/system/icons/clothing/punk_inc' + (((s as any).Headerstring ?? 0)?.['inc_alt']) + '.png"></a>');
+      ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})\u0027punk\u0027 = -1; return s; }); window.__gameStore.getState().doGoto(((s as any).locArgs?.[3] ?? \u0027\u0027), ((s as any).locArgs?.[4] ?? \u0027\u0027), ((s as any).locArgs?.[5] ?? \u0027\u0027)); return false;"><img src="images/system/icons/clothing/punk_inc' + (((s as any).Headerstring ?? 0)?.['inc_alt']) + '.png"></a>');
     } else {
       if (((s as any).outfitfilter ?? 0)?.['punk'] < 0) {
         ((s as any).outfitfilter_check = (s as any).outfitfilter_check ?? {})['punk'] = '(' + ((s as any).locArgs?.[2] ?? 0) + ') = 0';
-        ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})/u0027punk/u0027 = s.0; return s; }); window.__gameStore.getState().doGoto(/u0027' + ((s as any).locArgs?.[3] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[4] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[5] ?? 0) + '/u0027); return false;"><img src="images/system/icons/clothing/punk_exc.png"></a>');
+        ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})\u0027punk\u0027 = s.0; return s; }); window.__gameStore.getState().doGoto(((s as any).locArgs?.[3] ?? \u0027\u0027), ((s as any).locArgs?.[4] ?? \u0027\u0027), ((s as any).locArgs?.[5] ?? \u0027\u0027)); return false;"><img src="images/system/icons/clothing/punk_exc.png"></a>');
       } else {
         ((s as any).outfitfilter_check = (s as any).outfitfilter_check ?? {})['punk'] = '1';
-        ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})/u0027punk/u0027 = s.1; return s; }); window.__gameStore.getState().doGoto(/u0027' + ((s as any).locArgs?.[3] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[4] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[5] ?? 0) + '/u0027); return false;"><img src="images/system/icons/clothing/punk_off.png"></a>');
+        ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})\u0027punk\u0027 = s.1; return s; }); window.__gameStore.getState().doGoto(((s as any).locArgs?.[3] ?? \u0027\u0027), ((s as any).locArgs?.[4] ?? \u0027\u0027), ((s as any).locArgs?.[5] ?? \u0027\u0027)); return false;"><img src="images/system/icons/clothing/punk_off.png"></a>');
       }
     }
     return;
@@ -1056,14 +1058,14 @@ function enterFilterBuilder(s: GameState, scene: SceneBuilder): void {
     ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('</td><td>');
     if (((s as any).outfitfilter ?? 0)?.['alternative'] > 0) {
       ((s as any).outfitfilter_check = (s as any).outfitfilter_check ?? {})['alternative'] = '(' + ((s as any).locArgs?.[2] ?? 0) + ')';
-      ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})/u0027alternative/u0027 = -1; return s; }); window.__gameStore.getState().doGoto(/u0027' + ((s as any).locArgs?.[3] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[4] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[5] ?? 0) + '/u0027); return false;"><img src="images/system/icons/clothing/alternative_inc' + (((s as any).Headerstring ?? 0)?.['inc_alt']) + '.png"></a>');
+      ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})\u0027alternative\u0027 = -1; return s; }); window.__gameStore.getState().doGoto(((s as any).locArgs?.[3] ?? \u0027\u0027), ((s as any).locArgs?.[4] ?? \u0027\u0027), ((s as any).locArgs?.[5] ?? \u0027\u0027)); return false;"><img src="images/system/icons/clothing/alternative_inc' + (((s as any).Headerstring ?? 0)?.['inc_alt']) + '.png"></a>');
     } else {
       if (((s as any).outfitfilter ?? 0)?.['alternative'] < 0) {
         ((s as any).outfitfilter_check = (s as any).outfitfilter_check ?? {})['alternative'] = '(' + ((s as any).locArgs?.[2] ?? 0) + ') = 0';
-        ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})/u0027alternative/u0027 = s.0; return s; }); window.__gameStore.getState().doGoto(/u0027' + ((s as any).locArgs?.[3] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[4] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[5] ?? 0) + '/u0027); return false;"><img src="images/system/icons/clothing/alternative_exc.png"></a>');
+        ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})\u0027alternative\u0027 = s.0; return s; }); window.__gameStore.getState().doGoto(((s as any).locArgs?.[3] ?? \u0027\u0027), ((s as any).locArgs?.[4] ?? \u0027\u0027), ((s as any).locArgs?.[5] ?? \u0027\u0027)); return false;"><img src="images/system/icons/clothing/alternative_exc.png"></a>');
       } else {
         ((s as any).outfitfilter_check = (s as any).outfitfilter_check ?? {})['alternative'] = '1';
-        ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})/u0027alternative/u0027 = s.1; return s; }); window.__gameStore.getState().doGoto(/u0027' + ((s as any).locArgs?.[3] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[4] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[5] ?? 0) + '/u0027); return false;"><img src="images/system/icons/clothing/alternative_off.png"></a>');
+        ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})\u0027alternative\u0027 = s.1; return s; }); window.__gameStore.getState().doGoto(((s as any).locArgs?.[3] ?? \u0027\u0027), ((s as any).locArgs?.[4] ?? \u0027\u0027), ((s as any).locArgs?.[5] ?? \u0027\u0027)); return false;"><img src="images/system/icons/clothing/alternative_off.png"></a>');
       }
     }
     return;
@@ -1085,14 +1087,14 @@ function enterFilterBuilder(s: GameState, scene: SceneBuilder): void {
     ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('</td><td>');
     if (((s as any).outfitfilter ?? 0)?.['conservative'] > 0) {
       ((s as any).outfitfilter_check = (s as any).outfitfilter_check ?? {})['conservative'] = '(' + ((s as any).locArgs?.[2] ?? 0) + ')';
-      ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})/u0027conservative/u0027 = -1; return s; }); window.__gameStore.getState().doGoto(/u0027' + ((s as any).locArgs?.[3] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[4] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[5] ?? 0) + '/u0027); return false;"><img src="images/system/icons/clothing/conservative_inc' + (((s as any).Headerstring ?? 0)?.['inc_alt']) + '.png"></a>');
+      ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})\u0027conservative\u0027 = -1; return s; }); window.__gameStore.getState().doGoto(((s as any).locArgs?.[3] ?? \u0027\u0027), ((s as any).locArgs?.[4] ?? \u0027\u0027), ((s as any).locArgs?.[5] ?? \u0027\u0027)); return false;"><img src="images/system/icons/clothing/conservative_inc' + (((s as any).Headerstring ?? 0)?.['inc_alt']) + '.png"></a>');
     } else {
       if (((s as any).outfitfilter ?? 0)?.['conservative'] < 0) {
         ((s as any).outfitfilter_check = (s as any).outfitfilter_check ?? {})['conservative'] = '(' + ((s as any).locArgs?.[2] ?? 0) + ') = 0';
-        ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})/u0027conservative/u0027 = s.0; return s; }); window.__gameStore.getState().doGoto(/u0027' + ((s as any).locArgs?.[3] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[4] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[5] ?? 0) + '/u0027); return false;"><img src="images/system/icons/clothing/conservative_exc.png"></a>');
+        ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})\u0027conservative\u0027 = s.0; return s; }); window.__gameStore.getState().doGoto(((s as any).locArgs?.[3] ?? \u0027\u0027), ((s as any).locArgs?.[4] ?? \u0027\u0027), ((s as any).locArgs?.[5] ?? \u0027\u0027)); return false;"><img src="images/system/icons/clothing/conservative_exc.png"></a>');
       } else {
         ((s as any).outfitfilter_check = (s as any).outfitfilter_check ?? {})['conservative'] = '1';
-        ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})/u0027conservative/u0027 = s.1; (s.outfitfilter ??= {})/u0027risque/u0027 = s.0; (s.outfitfilter ??= {})/u0027too_risque/u0027 = s.0; return s; }); window.__gameStore.getState().doGoto(/u0027' + ((s as any).locArgs?.[3] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[4] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[5] ?? 0) + '/u0027); return false;"><img src="images/system/icons/clothing/conservative_off.png"></a>');
+        ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})\u0027conservative\u0027 = s.1; (s.outfitfilter ??= {})\u0027risque\u0027 = s.0; (s.outfitfilter ??= {})\u0027too_risque\u0027 = s.0; return s; }); window.__gameStore.getState().doGoto(((s as any).locArgs?.[3] ?? \u0027\u0027), ((s as any).locArgs?.[4] ?? \u0027\u0027), ((s as any).locArgs?.[5] ?? \u0027\u0027)); return false;"><img src="images/system/icons/clothing/conservative_off.png"></a>');
       }
     }
     return;
@@ -1114,14 +1116,14 @@ function enterFilterBuilder(s: GameState, scene: SceneBuilder): void {
     ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('</td><td>');
     if (((s as any).outfitfilter ?? 0)?.['risque'] > 0) {
       ((s as any).outfitfilter_check = (s as any).outfitfilter_check ?? {})['risque'] = '(' + ((s as any).locArgs?.[2] ?? 0) + ')';
-      ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})/u0027risque/u0027 = -1; return s; }); window.__gameStore.getState().doGoto(/u0027' + ((s as any).locArgs?.[3] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[4] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[5] ?? 0) + '/u0027); return false;"><img src="images/system/icons/clothing/risque_inc' + (((s as any).Headerstring ?? 0)?.['inc_alt']) + '.png"></a>');
+      ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})\u0027risque\u0027 = -1; return s; }); window.__gameStore.getState().doGoto(((s as any).locArgs?.[3] ?? \u0027\u0027), ((s as any).locArgs?.[4] ?? \u0027\u0027), ((s as any).locArgs?.[5] ?? \u0027\u0027)); return false;"><img src="images/system/icons/clothing/risque_inc' + (((s as any).Headerstring ?? 0)?.['inc_alt']) + '.png"></a>');
     } else {
       if (((s as any).outfitfilter ?? 0)?.['risque'] < 0) {
         ((s as any).outfitfilter_check = (s as any).outfitfilter_check ?? {})['risque'] = '(' + ((s as any).locArgs?.[2] ?? 0) + ') = 0';
-        ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})/u0027risque/u0027 = s.0; return s; }); window.__gameStore.getState().doGoto(/u0027' + ((s as any).locArgs?.[3] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[4] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[5] ?? 0) + '/u0027); return false;"><img src="images/system/icons/clothing/risque_exc.png"></a>');
+        ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})\u0027risque\u0027 = s.0; return s; }); window.__gameStore.getState().doGoto(((s as any).locArgs?.[3] ?? \u0027\u0027), ((s as any).locArgs?.[4] ?? \u0027\u0027), ((s as any).locArgs?.[5] ?? \u0027\u0027)); return false;"><img src="images/system/icons/clothing/risque_exc.png"></a>');
       } else {
         ((s as any).outfitfilter_check = (s as any).outfitfilter_check ?? {})['risque'] = '1';
-        ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})/u0027risque/u0027 = s.1; (s.outfitfilter ??= {})/u0027conservative/u0027 = s.0; (s.outfitfilter ??= {})/u0027too_risque/u0027 = s.0; return s; }); window.__gameStore.getState().doGoto(/u0027' + ((s as any).locArgs?.[3] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[4] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[5] ?? 0) + '/u0027); return false;"><img src="images/system/icons/clothing/risque_off.png"></a>');
+        ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})\u0027risque\u0027 = s.1; (s.outfitfilter ??= {})\u0027conservative\u0027 = s.0; (s.outfitfilter ??= {})\u0027too_risque\u0027 = s.0; return s; }); window.__gameStore.getState().doGoto(((s as any).locArgs?.[3] ?? \u0027\u0027), ((s as any).locArgs?.[4] ?? \u0027\u0027), ((s as any).locArgs?.[5] ?? \u0027\u0027)); return false;"><img src="images/system/icons/clothing/risque_off.png"></a>');
       }
     }
     return;
@@ -1143,14 +1145,14 @@ function enterFilterBuilder(s: GameState, scene: SceneBuilder): void {
     ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('</td><td>');
     if (((s as any).outfitfilter ?? 0)?.['too_risque'] > 0) {
       ((s as any).outfitfilter_check = (s as any).outfitfilter_check ?? {})['too_risque'] = '(' + ((s as any).locArgs?.[2] ?? 0) + ')';
-      ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})/u0027too_risque/u0027 = -1; return s; }); window.__gameStore.getState().doGoto(/u0027' + ((s as any).locArgs?.[3] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[4] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[5] ?? 0) + '/u0027); return false;"><img src="images/system/icons/clothing/too_risque_inc' + (((s as any).Headerstring ?? 0)?.['inc_alt']) + '.png"></a>');
+      ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})\u0027too_risque\u0027 = -1; return s; }); window.__gameStore.getState().doGoto(((s as any).locArgs?.[3] ?? \u0027\u0027), ((s as any).locArgs?.[4] ?? \u0027\u0027), ((s as any).locArgs?.[5] ?? \u0027\u0027)); return false;"><img src="images/system/icons/clothing/too_risque_inc' + (((s as any).Headerstring ?? 0)?.['inc_alt']) + '.png"></a>');
     } else {
       if (((s as any).outfitfilter ?? 0)?.['too_risque'] < 0) {
         ((s as any).outfitfilter_check = (s as any).outfitfilter_check ?? {})['too_risque'] = '(' + ((s as any).locArgs?.[2] ?? 0) + ') = 0';
-        ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})/u0027too_risque/u0027 = s.0; return s; }); window.__gameStore.getState().doGoto(/u0027' + ((s as any).locArgs?.[3] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[4] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[5] ?? 0) + '/u0027); return false;"><img src="images/system/icons/clothing/too_risque_exc.png"></a>');
+        ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})\u0027too_risque\u0027 = s.0; return s; }); window.__gameStore.getState().doGoto(((s as any).locArgs?.[3] ?? \u0027\u0027), ((s as any).locArgs?.[4] ?? \u0027\u0027), ((s as any).locArgs?.[5] ?? \u0027\u0027)); return false;"><img src="images/system/icons/clothing/too_risque_exc.png"></a>');
       } else {
         ((s as any).outfitfilter_check = (s as any).outfitfilter_check ?? {})['too_risque'] = '1';
-        ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})/u0027too_risque/u0027 = s.1; (s.outfitfilter ??= {})/u0027conservative/u0027 = s.0; (s.outfitfilter ??= {})/u0027risque/u0027 = s.0; return s; }); window.__gameStore.getState().doGoto(/u0027' + ((s as any).locArgs?.[3] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[4] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[5] ?? 0) + '/u0027); return false;"><img src="images/system/icons/clothing/too_risque_off.png"></a>');
+        ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})\u0027too_risque\u0027 = s.1; (s.outfitfilter ??= {})\u0027conservative\u0027 = s.0; (s.outfitfilter ??= {})\u0027risque\u0027 = s.0; return s; }); window.__gameStore.getState().doGoto(((s as any).locArgs?.[3] ?? \u0027\u0027), ((s as any).locArgs?.[4] ?? \u0027\u0027), ((s as any).locArgs?.[5] ?? \u0027\u0027)); return false;"><img src="images/system/icons/clothing/too_risque_off.png"></a>');
       }
     }
     return;
@@ -1172,14 +1174,14 @@ function enterFilterBuilder(s: GameState, scene: SceneBuilder): void {
     ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('</td><td>');
     if (((s as any).outfitfilter ?? 0)?.['loose'] > 0) {
       ((s as any).outfitfilter_check = (s as any).outfitfilter_check ?? {})['loose'] = '(' + ((s as any).locArgs?.[2] ?? 0) + ')';
-      ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})/u0027loose/u0027 = -1; return s; }); window.__gameStore.getState().doGoto(/u0027' + ((s as any).locArgs?.[3] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[4] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[5] ?? 0) + '/u0027); return false;"><img src="images/system/icons/clothing/loose_inc' + (((s as any).Headerstring ?? 0)?.['inc_alt']) + '.png"></a>');
+      ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})\u0027loose\u0027 = -1; return s; }); window.__gameStore.getState().doGoto(((s as any).locArgs?.[3] ?? \u0027\u0027), ((s as any).locArgs?.[4] ?? \u0027\u0027), ((s as any).locArgs?.[5] ?? \u0027\u0027)); return false;"><img src="images/system/icons/clothing/loose_inc' + (((s as any).Headerstring ?? 0)?.['inc_alt']) + '.png"></a>');
     } else {
       if (((s as any).outfitfilter ?? 0)?.['loose'] < 0) {
         ((s as any).outfitfilter_check = (s as any).outfitfilter_check ?? {})['loose'] = '(' + ((s as any).locArgs?.[2] ?? 0) + ') = 0';
-        ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})/u0027loose/u0027 = s.0; return s; }); window.__gameStore.getState().doGoto(/u0027' + ((s as any).locArgs?.[3] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[4] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[5] ?? 0) + '/u0027); return false;"><img src="images/system/icons/clothing/loose_exc.png"></a>');
+        ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})\u0027loose\u0027 = s.0; return s; }); window.__gameStore.getState().doGoto(((s as any).locArgs?.[3] ?? \u0027\u0027), ((s as any).locArgs?.[4] ?? \u0027\u0027), ((s as any).locArgs?.[5] ?? \u0027\u0027)); return false;"><img src="images/system/icons/clothing/loose_exc.png"></a>');
       } else {
         ((s as any).outfitfilter_check = (s as any).outfitfilter_check ?? {})['loose'] = '1';
-        ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})/u0027loose/u0027 = s.1; return s; }); window.__gameStore.getState().doGoto(/u0027' + ((s as any).locArgs?.[3] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[4] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[5] ?? 0) + '/u0027); return false;"><img src="images/system/icons/clothing/loose_off.png"></a>');
+        ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})\u0027loose\u0027 = s.1; return s; }); window.__gameStore.getState().doGoto(((s as any).locArgs?.[3] ?? \u0027\u0027), ((s as any).locArgs?.[4] ?? \u0027\u0027), ((s as any).locArgs?.[5] ?? \u0027\u0027)); return false;"><img src="images/system/icons/clothing/loose_off.png"></a>');
       }
     }
     return;
@@ -1201,14 +1203,14 @@ function enterFilterBuilder(s: GameState, scene: SceneBuilder): void {
     ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('</td><td>');
     if (((s as any).outfitfilter ?? 0)?.['sport'] > 0) {
       ((s as any).outfitfilter_check = (s as any).outfitfilter_check ?? {})['sport'] = '(' + ((s as any).locArgs?.[2] ?? 0) + ')';
-      ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})/u0027sport/u0027 = -1; return s; }); window.__gameStore.getState().doGoto(/u0027' + ((s as any).locArgs?.[3] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[4] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[5] ?? 0) + '/u0027); return false;"><img src="images/system/icons/clothing/sport_inc' + (((s as any).Headerstring ?? 0)?.['inc_alt']) + '.png"></a>');
+      ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})\u0027sport\u0027 = -1; return s; }); window.__gameStore.getState().doGoto(((s as any).locArgs?.[3] ?? \u0027\u0027), ((s as any).locArgs?.[4] ?? \u0027\u0027), ((s as any).locArgs?.[5] ?? \u0027\u0027)); return false;"><img src="images/system/icons/clothing/sport_inc' + (((s as any).Headerstring ?? 0)?.['inc_alt']) + '.png"></a>');
     } else {
       if (((s as any).outfitfilter ?? 0)?.['sport'] < 0) {
         ((s as any).outfitfilter_check = (s as any).outfitfilter_check ?? {})['sport'] = '(' + ((s as any).locArgs?.[2] ?? 0) + ') = 0';
-        ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})/u0027sport/u0027 = s.0; return s; }); window.__gameStore.getState().doGoto(/u0027' + ((s as any).locArgs?.[3] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[4] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[5] ?? 0) + '/u0027); return false;"><img src="images/system/icons/clothing/sport_exc.png"></a>');
+        ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})\u0027sport\u0027 = s.0; return s; }); window.__gameStore.getState().doGoto(((s as any).locArgs?.[3] ?? \u0027\u0027), ((s as any).locArgs?.[4] ?? \u0027\u0027), ((s as any).locArgs?.[5] ?? \u0027\u0027)); return false;"><img src="images/system/icons/clothing/sport_exc.png"></a>');
       } else {
         ((s as any).outfitfilter_check = (s as any).outfitfilter_check ?? {})['sport'] = '1';
-        ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})/u0027sport/u0027 = s.1; return s; }); window.__gameStore.getState().doGoto(/u0027' + ((s as any).locArgs?.[3] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[4] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[5] ?? 0) + '/u0027); return false;"><img src="images/system/icons/clothing/sport_off.png"></a>');
+        ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})\u0027sport\u0027 = s.1; return s; }); window.__gameStore.getState().doGoto(((s as any).locArgs?.[3] ?? \u0027\u0027), ((s as any).locArgs?.[4] ?? \u0027\u0027), ((s as any).locArgs?.[5] ?? \u0027\u0027)); return false;"><img src="images/system/icons/clothing/sport_off.png"></a>');
       }
     }
     return;
@@ -1230,14 +1232,14 @@ function enterFilterBuilder(s: GameState, scene: SceneBuilder): void {
     ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('</td><td>');
     if (((s as any).outfitfilter ?? 0)?.['school'] > 0) {
       ((s as any).outfitfilter_check = (s as any).outfitfilter_check ?? {})['school'] = '(' + ((s as any).locArgs?.[2] ?? 0) + ')';
-      ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})/u0027school/u0027 = -1; return s; }); window.__gameStore.getState().doGoto(/u0027' + ((s as any).locArgs?.[3] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[4] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[5] ?? 0) + '/u0027); return false;"><img src="images/system/icons/clothing/school_inc' + (((s as any).Headerstring ?? 0)?.['inc_alt']) + '.png"></a>');
+      ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})\u0027school\u0027 = -1; return s; }); window.__gameStore.getState().doGoto(((s as any).locArgs?.[3] ?? \u0027\u0027), ((s as any).locArgs?.[4] ?? \u0027\u0027), ((s as any).locArgs?.[5] ?? \u0027\u0027)); return false;"><img src="images/system/icons/clothing/school_inc' + (((s as any).Headerstring ?? 0)?.['inc_alt']) + '.png"></a>');
     } else {
       if (((s as any).outfitfilter ?? 0)?.['school'] < 0) {
         ((s as any).outfitfilter_check = (s as any).outfitfilter_check ?? {})['school'] = '(' + ((s as any).locArgs?.[2] ?? 0) + ') = 0';
-        ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})/u0027school/u0027 = s.0; return s; }); window.__gameStore.getState().doGoto(/u0027' + ((s as any).locArgs?.[3] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[4] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[5] ?? 0) + '/u0027); return false;"><img src="images/system/icons/clothing/school_exc.png"></a>');
+        ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})\u0027school\u0027 = s.0; return s; }); window.__gameStore.getState().doGoto(((s as any).locArgs?.[3] ?? \u0027\u0027), ((s as any).locArgs?.[4] ?? \u0027\u0027), ((s as any).locArgs?.[5] ?? \u0027\u0027)); return false;"><img src="images/system/icons/clothing/school_exc.png"></a>');
       } else {
         ((s as any).outfitfilter_check = (s as any).outfitfilter_check ?? {})['school'] = '1';
-        ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})/u0027school/u0027 = s.1; return s; }); window.__gameStore.getState().doGoto(/u0027' + ((s as any).locArgs?.[3] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[4] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[5] ?? 0) + '/u0027); return false;"><img src="images/system/icons/clothing/school_off.png"></a>');
+        ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})\u0027school\u0027 = s.1; return s; }); window.__gameStore.getState().doGoto(((s as any).locArgs?.[3] ?? \u0027\u0027), ((s as any).locArgs?.[4] ?? \u0027\u0027), ((s as any).locArgs?.[5] ?? \u0027\u0027)); return false;"><img src="images/system/icons/clothing/school_off.png"></a>');
       }
     }
     return;
@@ -1259,14 +1261,14 @@ function enterFilterBuilder(s: GameState, scene: SceneBuilder): void {
     ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('</td><td>');
     if (((s as any).outfitfilter ?? 0)?.['maid'] > 0) {
       ((s as any).outfitfilter_check = (s as any).outfitfilter_check ?? {})['maid'] = '(' + ((s as any).locArgs?.[2] ?? 0) + ')';
-      ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})/u0027maid/u0027 = -1; return s; }); window.__gameStore.getState().doGoto(/u0027' + ((s as any).locArgs?.[3] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[4] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[5] ?? 0) + '/u0027); return false;"><img src="images/system/icons/clothing/maid_inc' + (((s as any).Headerstring ?? 0)?.['inc_alt']) + '.png"></a>');
+      ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})\u0027maid\u0027 = -1; return s; }); window.__gameStore.getState().doGoto(((s as any).locArgs?.[3] ?? \u0027\u0027), ((s as any).locArgs?.[4] ?? \u0027\u0027), ((s as any).locArgs?.[5] ?? \u0027\u0027)); return false;"><img src="images/system/icons/clothing/maid_inc' + (((s as any).Headerstring ?? 0)?.['inc_alt']) + '.png"></a>');
     } else {
       if (((s as any).outfitfilter ?? 0)?.['maid'] < 0) {
         ((s as any).outfitfilter_check = (s as any).outfitfilter_check ?? {})['maid'] = '(' + ((s as any).locArgs?.[2] ?? 0) + ') = 0';
-        ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})/u0027maid/u0027 = s.0; return s; }); window.__gameStore.getState().doGoto(/u0027' + ((s as any).locArgs?.[3] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[4] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[5] ?? 0) + '/u0027); return false;"><img src="images/system/icons/clothing/maid_exc.png"></a>');
+        ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})\u0027maid\u0027 = s.0; return s; }); window.__gameStore.getState().doGoto(((s as any).locArgs?.[3] ?? \u0027\u0027), ((s as any).locArgs?.[4] ?? \u0027\u0027), ((s as any).locArgs?.[5] ?? \u0027\u0027)); return false;"><img src="images/system/icons/clothing/maid_exc.png"></a>');
       } else {
         ((s as any).outfitfilter_check = (s as any).outfitfilter_check ?? {})['maid'] = '1';
-        ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})/u0027maid/u0027 = s.1; return s; }); window.__gameStore.getState().doGoto(/u0027' + ((s as any).locArgs?.[3] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[4] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[5] ?? 0) + '/u0027); return false;"><img src="images/system/icons/clothing/maid_off.png"></a>');
+        ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})\u0027maid\u0027 = s.1; return s; }); window.__gameStore.getState().doGoto(((s as any).locArgs?.[3] ?? \u0027\u0027), ((s as any).locArgs?.[4] ?? \u0027\u0027), ((s as any).locArgs?.[5] ?? \u0027\u0027)); return false;"><img src="images/system/icons/clothing/maid_off.png"></a>');
       }
     }
     return;
@@ -1288,14 +1290,14 @@ function enterFilterBuilder(s: GameState, scene: SceneBuilder): void {
     ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('</td><td>');
     if (((s as any).outfitfilter ?? 0)?.['server'] > 0) {
       ((s as any).outfitfilter_check = (s as any).outfitfilter_check ?? {})['server'] = '(' + ((s as any).locArgs?.[2] ?? 0) + ')';
-      ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})/u0027server/u0027 = -1; return s; }); window.__gameStore.getState().doGoto(/u0027' + ((s as any).locArgs?.[3] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[4] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[5] ?? 0) + '/u0027); return false;"><img src="images/system/icons/clothing/server_inc' + (((s as any).Headerstring ?? 0)?.['inc_alt']) + '.png"></a>');
+      ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})\u0027server\u0027 = -1; return s; }); window.__gameStore.getState().doGoto(((s as any).locArgs?.[3] ?? \u0027\u0027), ((s as any).locArgs?.[4] ?? \u0027\u0027), ((s as any).locArgs?.[5] ?? \u0027\u0027)); return false;"><img src="images/system/icons/clothing/server_inc' + (((s as any).Headerstring ?? 0)?.['inc_alt']) + '.png"></a>');
     } else {
       if (((s as any).outfitfilter ?? 0)?.['server'] < 0) {
         ((s as any).outfitfilter_check = (s as any).outfitfilter_check ?? {})['server'] = '(' + ((s as any).locArgs?.[2] ?? 0) + ') = 0';
-        ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})/u0027server/u0027 = s.0; return s; }); window.__gameStore.getState().doGoto(/u0027' + ((s as any).locArgs?.[3] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[4] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[5] ?? 0) + '/u0027); return false;"><img src="images/system/icons/clothing/server_exc.png"></a>');
+        ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})\u0027server\u0027 = s.0; return s; }); window.__gameStore.getState().doGoto(((s as any).locArgs?.[3] ?? \u0027\u0027), ((s as any).locArgs?.[4] ?? \u0027\u0027), ((s as any).locArgs?.[5] ?? \u0027\u0027)); return false;"><img src="images/system/icons/clothing/server_exc.png"></a>');
       } else {
         ((s as any).outfitfilter_check = (s as any).outfitfilter_check ?? {})['server'] = '1';
-        ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})/u0027server/u0027 = s.1; return s; }); window.__gameStore.getState().doGoto(/u0027' + ((s as any).locArgs?.[3] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[4] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[5] ?? 0) + '/u0027); return false;"><img src="images/system/icons/clothing/server_off.png"></a>');
+        ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})\u0027server\u0027 = s.1; return s; }); window.__gameStore.getState().doGoto(((s as any).locArgs?.[3] ?? \u0027\u0027), ((s as any).locArgs?.[4] ?? \u0027\u0027), ((s as any).locArgs?.[5] ?? \u0027\u0027)); return false;"><img src="images/system/icons/clothing/server_off.png"></a>');
       }
     }
     return;
@@ -1317,14 +1319,14 @@ function enterFilterBuilder(s: GameState, scene: SceneBuilder): void {
     ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('</td><td>');
     if (((s as any).outfitfilter ?? 0)?.['swim'] > 0) {
       ((s as any).outfitfilter_check = (s as any).outfitfilter_check ?? {})['swim'] = '(' + ((s as any).locArgs?.[2] ?? 0) + ')';
-      ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})/u0027swim/u0027 = -1; return s; }); window.__gameStore.getState().doGoto(/u0027' + ((s as any).locArgs?.[3] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[4] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[5] ?? 0) + '/u0027); return false;"><img src="images/system/icons/clothing/swim_inc' + (((s as any).Headerstring ?? 0)?.['inc_alt']) + '.png"></a>');
+      ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})\u0027swim\u0027 = -1; return s; }); window.__gameStore.getState().doGoto(((s as any).locArgs?.[3] ?? \u0027\u0027), ((s as any).locArgs?.[4] ?? \u0027\u0027), ((s as any).locArgs?.[5] ?? \u0027\u0027)); return false;"><img src="images/system/icons/clothing/swim_inc' + (((s as any).Headerstring ?? 0)?.['inc_alt']) + '.png"></a>');
     } else {
       if (((s as any).outfitfilter ?? 0)?.['swim'] < 0) {
         ((s as any).outfitfilter_check = (s as any).outfitfilter_check ?? {})['swim'] = '(' + ((s as any).locArgs?.[2] ?? 0) + ') = 0';
-        ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})/u0027swim/u0027 = s.0; return s; }); window.__gameStore.getState().doGoto(/u0027' + ((s as any).locArgs?.[3] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[4] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[5] ?? 0) + '/u0027); return false;"><img src="images/system/icons/clothing/swim_exc.png"></a>');
+        ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})\u0027swim\u0027 = s.0; return s; }); window.__gameStore.getState().doGoto(((s as any).locArgs?.[3] ?? \u0027\u0027), ((s as any).locArgs?.[4] ?? \u0027\u0027), ((s as any).locArgs?.[5] ?? \u0027\u0027)); return false;"><img src="images/system/icons/clothing/swim_exc.png"></a>');
       } else {
         ((s as any).outfitfilter_check = (s as any).outfitfilter_check ?? {})['swim'] = '1';
-        ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})/u0027swim/u0027 = s.1; return s; }); window.__gameStore.getState().doGoto(/u0027' + ((s as any).locArgs?.[3] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[4] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[5] ?? 0) + '/u0027); return false;"><img src="images/system/icons/clothing/swim_off.png"></a>');
+        ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})\u0027swim\u0027 = s.1; return s; }); window.__gameStore.getState().doGoto(((s as any).locArgs?.[3] ?? \u0027\u0027), ((s as any).locArgs?.[4] ?? \u0027\u0027), ((s as any).locArgs?.[5] ?? \u0027\u0027)); return false;"><img src="images/system/icons/clothing/swim_off.png"></a>');
       }
     }
     return;
@@ -1346,14 +1348,14 @@ function enterFilterBuilder(s: GameState, scene: SceneBuilder): void {
     ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('</td><td>');
     if (((s as any).outfitfilter ?? 0)?.['heels'] > 0) {
       ((s as any).outfitfilter_check = (s as any).outfitfilter_check ?? {})['heels'] = '(' + ((s as any).locArgs?.[2] ?? 0) + ')';
-      ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})/u0027heels/u0027 = -1; return s; }); window.__gameStore.getState().doGoto(/u0027' + ((s as any).locArgs?.[3] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[4] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[5] ?? 0) + '/u0027); return false;"><img src="images/system/icons/clothing/heels_inc' + (((s as any).Headerstring ?? 0)?.['inc_alt']) + '.png"></a>');
+      ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})\u0027heels\u0027 = -1; return s; }); window.__gameStore.getState().doGoto(((s as any).locArgs?.[3] ?? \u0027\u0027), ((s as any).locArgs?.[4] ?? \u0027\u0027), ((s as any).locArgs?.[5] ?? \u0027\u0027)); return false;"><img src="images/system/icons/clothing/heels_inc' + (((s as any).Headerstring ?? 0)?.['inc_alt']) + '.png"></a>');
     } else {
       if (((s as any).outfitfilter ?? 0)?.['heels'] < 0) {
         ((s as any).outfitfilter_check = (s as any).outfitfilter_check ?? {})['heels'] = '(' + ((s as any).locArgs?.[2] ?? 0) + ') = 0';
-        ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})/u0027heels/u0027 = s.0; return s; }); window.__gameStore.getState().doGoto(/u0027' + ((s as any).locArgs?.[3] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[4] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[5] ?? 0) + '/u0027); return false;"><img src="images/system/icons/clothing/heels_exc.png"></a>');
+        ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})\u0027heels\u0027 = s.0; return s; }); window.__gameStore.getState().doGoto(((s as any).locArgs?.[3] ?? \u0027\u0027), ((s as any).locArgs?.[4] ?? \u0027\u0027), ((s as any).locArgs?.[5] ?? \u0027\u0027)); return false;"><img src="images/system/icons/clothing/heels_exc.png"></a>');
       } else {
         ((s as any).outfitfilter_check = (s as any).outfitfilter_check ?? {})['heels'] = '1';
-        ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})/u0027heels/u0027 = s.1; return s; }); window.__gameStore.getState().doGoto(/u0027' + ((s as any).locArgs?.[3] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[4] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[5] ?? 0) + '/u0027); return false;"><img src="images/system/icons/clothing/heels_off.png"></a>');
+        ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})\u0027heels\u0027 = s.1; return s; }); window.__gameStore.getState().doGoto(((s as any).locArgs?.[3] ?? \u0027\u0027), ((s as any).locArgs?.[4] ?? \u0027\u0027), ((s as any).locArgs?.[5] ?? \u0027\u0027)); return false;"><img src="images/system/icons/clothing/heels_off.png"></a>');
       }
     }
     return;
@@ -1375,14 +1377,14 @@ function enterFilterBuilder(s: GameState, scene: SceneBuilder): void {
     ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('</td><td>');
     if (((s as any).outfitfilter ?? 0)?.['comfy_heels'] > 0) {
       ((s as any).outfitfilter_check = (s as any).outfitfilter_check ?? {})['comfy_heels'] = '(' + ((s as any).locArgs?.[2] ?? 0) + ')';
-      ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})/u0027comfy_heels/u0027 = -1; return s; }); window.__gameStore.getState().doGoto(/u0027' + ((s as any).locArgs?.[3] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[4] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[5] ?? 0) + '/u0027); return false;"><img src="images/system/icons/clothing/comfy_heels_inc' + (((s as any).Headerstring ?? 0)?.['inc_alt']) + '.png"></a>');
+      ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})\u0027comfy_heels\u0027 = -1; return s; }); window.__gameStore.getState().doGoto(((s as any).locArgs?.[3] ?? \u0027\u0027), ((s as any).locArgs?.[4] ?? \u0027\u0027), ((s as any).locArgs?.[5] ?? \u0027\u0027)); return false;"><img src="images/system/icons/clothing/comfy_heels_inc' + (((s as any).Headerstring ?? 0)?.['inc_alt']) + '.png"></a>');
     } else {
       if (((s as any).outfitfilter ?? 0)?.['comfy_heels'] < 0) {
         ((s as any).outfitfilter_check = (s as any).outfitfilter_check ?? {})['comfy_heels'] = '(' + ((s as any).locArgs?.[2] ?? 0) + ') = 0';
-        ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})/u0027comfy_heels/u0027 = s.0; return s; }); window.__gameStore.getState().doGoto(/u0027' + ((s as any).locArgs?.[3] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[4] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[5] ?? 0) + '/u0027); return false;"><img src="images/system/icons/clothing/comfy_heels_exc.png"></a>');
+        ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})\u0027comfy_heels\u0027 = s.0; return s; }); window.__gameStore.getState().doGoto(((s as any).locArgs?.[3] ?? \u0027\u0027), ((s as any).locArgs?.[4] ?? \u0027\u0027), ((s as any).locArgs?.[5] ?? \u0027\u0027)); return false;"><img src="images/system/icons/clothing/comfy_heels_exc.png"></a>');
       } else {
         ((s as any).outfitfilter_check = (s as any).outfitfilter_check ?? {})['comfy_heels'] = '1';
-        ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})/u0027comfy_heels/u0027 = s.1; (s.outfitfilter ??= {})/u0027uncomfy_heels/u0027 = s.0; (s.outfitfilter ??= {})/u0027extreme_heels/u0027 = s.0; return s; }); window.__gameStore.getState().doGoto(/u0027' + ((s as any).locArgs?.[3] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[4] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[5] ?? 0) + '/u0027); return false;"><img src="images/system/icons/clothing/comfy_heels_off.png"></a>');
+        ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})\u0027comfy_heels\u0027 = s.1; (s.outfitfilter ??= {})\u0027uncomfy_heels\u0027 = s.0; (s.outfitfilter ??= {})\u0027extreme_heels\u0027 = s.0; return s; }); window.__gameStore.getState().doGoto(((s as any).locArgs?.[3] ?? \u0027\u0027), ((s as any).locArgs?.[4] ?? \u0027\u0027), ((s as any).locArgs?.[5] ?? \u0027\u0027)); return false;"><img src="images/system/icons/clothing/comfy_heels_off.png"></a>');
       }
     }
     return;
@@ -1404,14 +1406,14 @@ function enterFilterBuilder(s: GameState, scene: SceneBuilder): void {
     ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('</td><td>');
     if (((s as any).outfitfilter ?? 0)?.['uncomfy_heels'] > 0) {
       ((s as any).outfitfilter_check = (s as any).outfitfilter_check ?? {})['uncomfy_heels'] = '(' + ((s as any).locArgs?.[2] ?? 0) + ')';
-      ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})/u0027uncomfy_heels/u0027 = -1; return s; }); window.__gameStore.getState().doGoto(/u0027' + ((s as any).locArgs?.[3] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[4] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[5] ?? 0) + '/u0027); return false;"><img src="images/system/icons/clothing/uncomfy_heels_inc' + (((s as any).Headerstring ?? 0)?.['inc_alt']) + '.png"></a>');
+      ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})\u0027uncomfy_heels\u0027 = -1; return s; }); window.__gameStore.getState().doGoto(((s as any).locArgs?.[3] ?? \u0027\u0027), ((s as any).locArgs?.[4] ?? \u0027\u0027), ((s as any).locArgs?.[5] ?? \u0027\u0027)); return false;"><img src="images/system/icons/clothing/uncomfy_heels_inc' + (((s as any).Headerstring ?? 0)?.['inc_alt']) + '.png"></a>');
     } else {
       if (((s as any).outfitfilter ?? 0)?.['uncomfy_heels'] < 0) {
         ((s as any).outfitfilter_check = (s as any).outfitfilter_check ?? {})['uncomfy_heels'] = '(' + ((s as any).locArgs?.[2] ?? 0) + ') = 0';
-        ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})/u0027uncomfy_heels/u0027 = s.0; return s; }); window.__gameStore.getState().doGoto(/u0027' + ((s as any).locArgs?.[3] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[4] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[5] ?? 0) + '/u0027); return false;"><img src="images/system/icons/clothing/uncomfy_heels_exc.png"></a>');
+        ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})\u0027uncomfy_heels\u0027 = s.0; return s; }); window.__gameStore.getState().doGoto(((s as any).locArgs?.[3] ?? \u0027\u0027), ((s as any).locArgs?.[4] ?? \u0027\u0027), ((s as any).locArgs?.[5] ?? \u0027\u0027)); return false;"><img src="images/system/icons/clothing/uncomfy_heels_exc.png"></a>');
       } else {
         ((s as any).outfitfilter_check = (s as any).outfitfilter_check ?? {})['uncomfy_heels'] = '1';
-        ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})/u0027uncomfy_heels/u0027 = s.1; (s.outfitfilter ??= {})/u0027comfy_heels/u0027 = s.0; (s.outfitfilter ??= {})/u0027extreme_heels/u0027 = s.0; return s; }); window.__gameStore.getState().doGoto(/u0027' + ((s as any).locArgs?.[3] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[4] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[5] ?? 0) + '/u0027); return false;"><img src="images/system/icons/clothing/uncomfy_heels_off.png"></a>');
+        ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})\u0027uncomfy_heels\u0027 = s.1; (s.outfitfilter ??= {})\u0027comfy_heels\u0027 = s.0; (s.outfitfilter ??= {})\u0027extreme_heels\u0027 = s.0; return s; }); window.__gameStore.getState().doGoto(((s as any).locArgs?.[3] ?? \u0027\u0027), ((s as any).locArgs?.[4] ?? \u0027\u0027), ((s as any).locArgs?.[5] ?? \u0027\u0027)); return false;"><img src="images/system/icons/clothing/uncomfy_heels_off.png"></a>');
       }
     }
     return;
@@ -1433,139 +1435,121 @@ function enterFilterBuilder(s: GameState, scene: SceneBuilder): void {
     ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('</td><td>');
     if (((s as any).outfitfilter ?? 0)?.['extreme_heels'] > 0) {
       ((s as any).outfitfilter_check = (s as any).outfitfilter_check ?? {})['extreme_heels'] = '(' + ((s as any).locArgs?.[2] ?? 0) + ')';
-      ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})/u0027extreme_heels/u0027 = -1; return s; }); window.__gameStore.getState().doGoto(/u0027' + ((s as any).locArgs?.[3] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[4] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[5] ?? 0) + '/u0027); return false;"><img src="images/system/icons/clothing/extreme_heels_inc' + (((s as any).Headerstring ?? 0)?.['inc_alt']) + '.png"></a>');
+      ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})\u0027extreme_heels\u0027 = -1; return s; }); window.__gameStore.getState().doGoto(((s as any).locArgs?.[3] ?? \u0027\u0027), ((s as any).locArgs?.[4] ?? \u0027\u0027), ((s as any).locArgs?.[5] ?? \u0027\u0027)); return false;"><img src="images/system/icons/clothing/extreme_heels_inc' + (((s as any).Headerstring ?? 0)?.['inc_alt']) + '.png"></a>');
     } else {
       if (((s as any).outfitfilter ?? 0)?.['extreme_heels'] < 0) {
         ((s as any).outfitfilter_check = (s as any).outfitfilter_check ?? {})['extreme_heels'] = '(' + ((s as any).locArgs?.[2] ?? 0) + ') = 0';
-        ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})/u0027extreme_heels/u0027 = s.0; return s; }); window.__gameStore.getState().doGoto(/u0027' + ((s as any).locArgs?.[3] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[4] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[5] ?? 0) + '/u0027); return false;"><img src="images/system/icons/clothing/extreme_heels_exc.png"></a>');
+        ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})\u0027extreme_heels\u0027 = s.0; return s; }); window.__gameStore.getState().doGoto(((s as any).locArgs?.[3] ?? \u0027\u0027), ((s as any).locArgs?.[4] ?? \u0027\u0027), ((s as any).locArgs?.[5] ?? \u0027\u0027)); return false;"><img src="images/system/icons/clothing/extreme_heels_exc.png"></a>');
       } else {
         ((s as any).outfitfilter_check = (s as any).outfitfilter_check ?? {})['extreme_heels'] = '1';
-        ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})/u0027extreme_heels/u0027 = s.1; (s.outfitfilter ??= {})/u0027comfy_heels/u0027 = s.0; (s.outfitfilter ??= {})/u0027uncomfy_heels/u0027 = s.0; return s; }); window.__gameStore.getState().doGoto(/u0027' + ((s as any).locArgs?.[3] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[4] ?? 0) + '/u0027, /u0027' + ((s as any).locArgs?.[5] ?? 0) + '/u0027); return false;"><img src="images/system/icons/clothing/extreme_heels_off.png"></a>');
+        ((s as any).Headerstring = (s as any).Headerstring ?? {})['filter'] = ((s as any).Headerstring['filter'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.outfitfilter ??= {})\u0027extreme_heels\u0027 = s.1; (s.outfitfilter ??= {})\u0027comfy_heels\u0027 = s.0; (s.outfitfilter ??= {})\u0027uncomfy_heels\u0027 = s.0; return s; }); window.__gameStore.getState().doGoto(((s as any).locArgs?.[3] ?? \u0027\u0027), ((s as any).locArgs?.[4] ?? \u0027\u0027), ((s as any).locArgs?.[5] ?? \u0027\u0027)); return false;"><img src="images/system/icons/clothing/extreme_heels_off.png"></a>');
       }
     }
     return;
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterDisplayClothingGridShop(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'grid_shop']; enterDisplay(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterDisplayClothingGridWardrobe(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'grid_wardrobe']; enterDisplay(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterDisplayClothingListWardrobe(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'list_wardrobe']; enterDisplay(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterDisplayShoesGridShop(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'grid_shop']; enterDisplay(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterDisplayShoesListWardrobe(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'list_wardrobe']; enterDisplay(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterDisplayBrasGridShop(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'grid_shop']; enterDisplay(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterDisplayBrasGridWardrobe(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'grid_wardrobe']; enterDisplay(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterDisplayPantiesGridShop(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'grid_shop']; enterDisplay(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterDisplayPantiesGridWardrobe(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'grid_wardrobe']; enterDisplay(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterDisplayBodysuitsGridShop(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'grid_shop']; enterDisplay(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterDisplayBodysuitsGridWardrobe(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'grid_wardrobe']; enterDisplay(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterDisplayCoatsGridShop(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'grid_shop']; enterDisplay(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterDisplayCoatsGridWardrobe(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'grid_wardrobe']; enterDisplay(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterDisplayPursesGridShop(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'grid_shop']; enterDisplay(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterDisplayPursesGridWardrobe(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'grid_wardrobe']; enterDisplay(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterDisplayTattoosGridShop(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'grid_shop']; enterDisplay(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterDisplayPiercingsGridShop(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'grid_shop']; enterDisplay(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1582,7 +1566,6 @@ function enterInitDisplay(s: GameState, scene: SceneBuilder): void {
   }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'end']; enterInit(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1599,7 +1582,6 @@ function enterInitDisplayMultiple(s: GameState, scene: SceneBuilder): void {
   }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'end']; enterInit(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1632,14 +1614,12 @@ function enterInitAddTypes(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterAddTypes(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0)]; enterInitAddTypes(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 

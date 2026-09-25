@@ -71,7 +71,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -109,7 +108,6 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -118,7 +116,6 @@ function enterEvent2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/city/natalya/Dom.jpg');
   scene.text('"Oh, please enter," she happily says and lets you inside. "I\'ve been waiting for you and-" She stops, remembering what her role is, and looks down obediently.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the kitchen', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'erotic_nudity', 5, 'dom', 'lesbian', 'exhibitionism');
@@ -182,7 +179,6 @@ function enterEvent3(s: GameState, scene: SceneBuilder): void {
   scene.text('"Mistress! I\'ve been waiting for you," your slave greets you.');
   scene.text('"As you should," you respond with an enigmatic smile as you enter. "Last time, I explored your pussy, so this time I want to become better acquainted with your ass. Bend over for me, slave. Show me what you have to offer!"');
   scene.text('"Yes, Mistress. Please watch."');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Watch', handler: (st: GameState) => {
     (st as any).lesbiQW = 5;
@@ -242,7 +238,6 @@ function enterEvent3_1(s: GameState, scene: SceneBuilder): void {
   scene.text('"A good slave is always prepared Mistress." She counters');
   scene.text('You spank her butt and increase your pace, if she is going to get ass fucked it will be rough and forceful.');
   scene.text('A few minutes pass before you notice that she\'s muttering something under her breath.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Listen', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'anal_strap_give', 15, 'dom', 'lesbian');
@@ -491,7 +486,6 @@ function enterEvent4(s: GameState, scene: SceneBuilder): void {
     (st as any).slavejobQW = 0;
     qspCall(st, 'stat', '');
     scene.img('images/characters/city/natalya/sex/dom12.jpg');
-    // TODO-QSP: dynamic text: Your slave has earned <<$func(''money'', ''string_profit'', 300*cocsuckedonday)>...
     scene.text(`Your slave has earned ${qspFunc(s, 'money', 'string_profit', 300*((st as any).cocsuckedonday ?? ''))} for you at the gloryholes.`);
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
@@ -512,7 +506,6 @@ function enterEvent4(s: GameState, scene: SceneBuilder): void {
     (st as any).slavejobQW = 0;
     qspCall(st, 'stat', '');
     scene.img('images/characters/city/natalya/sex/dom12.jpg');
-    // TODO-QSP: dynamic text: Your slave has earned <<$func(''money'', ''string_profit'', 900*cocsuckedonday)>...
     scene.text(`Your slave has earned ${qspFunc(s, 'money', 'string_profit', 900*((st as any).cocsuckedonday ?? ''))} for you while whoring herself out.`);
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
@@ -601,7 +594,6 @@ function enterEvent4(s: GameState, scene: SceneBuilder): void {
   }, goto: ['city_residential', ''] },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Bind her', handler: (st: GameState) => {
     if (((st as any).mistendspank ?? 0) <= 50) {
@@ -653,7 +645,6 @@ function enterEvent4(s: GameState, scene: SceneBuilder): void {
 
 function enterEvent5(s: GameState, scene: SceneBuilder): void {
   scene.text('This is the end of the current content. Here to add more later.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['city_residential', ''] },
   ]);
@@ -668,7 +659,6 @@ function enterBDSMUnlock(s: GameState, scene: SceneBuilder): void {
   scene.text('She offers you a luxurious black business card with a gold trim. "If you\'re interested, this will get you in."');
   scene.text('Your slave then slowly strips off all her clothes, neatly folding them and placing them on a side table.');
   scene.text('"I am your slave body and soul. A slave has no need for clothing in private. I am yours to command, Mistress." She says in what sounds like a prepared speech.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Decide what to do', goto: ['lesbisubhouse', 'event4'] },
   ]);
@@ -1101,7 +1091,6 @@ function enterBound(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Untie her', goto: ['lesbisubhouse', 'events'] },
   ]);
@@ -1505,6 +1494,7 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
+    (st as any).temp_lesbisubhouse = undefined;
     qspCall(st, 'arousal', 'foreplay', 15, 'dom', 'exhibitionism', 'lesbian');
     qspCall(st, 'arousal', 'end');
     scene.actions([
@@ -1704,7 +1694,6 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Have her prepare a snack for you', goto: ['lesbisubhouse', 'cook'] },
   ]);
@@ -1727,7 +1716,6 @@ function enterCook(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/city/natalya/sex/dom392.jpg');
     scene.text('Just when you\'re starting to run out of patience, your slave finally returns with your meal and you happily eat what she made for you.');
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Finish eating', goto: ['lesbisubhouse', 'events'] },
   ]);
@@ -1737,7 +1725,6 @@ function enterCook(s: GameState, scene: SceneBuilder): void {
 function enterGetFucked(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/city/natalya/sex/dom40.jpg');
   scene.text('You see a glimmer of excitement light up your slave\'s eyes when you voice your desire to get fucked by her. Her only visible reaction, though, is an obedient nod as she puts on the strapon.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Fuck my pussy', handler: (st: GameState) => {
     qspCall(st, 'boyStat', 'A178');

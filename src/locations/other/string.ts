@@ -8,38 +8,43 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterParseString(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === '') {
+    alert('<b>Error: No array name found!</b> in string, parse_string');
     return;
   }
   if (String((s as any).locArgs?.[3] ?? '') === '') {
     ((s as any).ARGS = (s as any).ARGS ?? {})[3] = '|';
   }
   if (String((s as any).locArgs?.[2] ?? '') === ''  ||  ((String(((s as any).locArgs?.[2] ?? 0)).indexOf(String(((s as any).locArgs?.[3] ?? 0)))) + 1) <= 0) {
+    alert('<b>Error: No delimited string found!</b> in string, parse_string');
     return;
   }
   (s as any).ParserTmpDelim = ((s as any).locArgs?.[3] ?? 0);
+  (s as any).ParserTmpArr = undefined;
   (s as any).ParserTmpStr = ((s as any).locArgs?.[2] ?? 0);
-  // TODO-QSP: :StringParser01
-  (s as any).ParserTmpIdx = ((String(((s as any).ParserTmpStr ?? 0)).indexOf(String(((s as any).ParserTmpDelim ?? 0)))) + 1);
-  if (((s as any).ParserTmpIdx ?? 0) > 0) {
-    if ((String(((s as any).locArgs?.[1] ?? 0)).slice((1)-1, ((1)-1)+(1))) === '$') {
-      // TODO-QSP: $ParserTmpArr[] = $mid($ParserTmpStr, 1, ParserTmpIdx-1)
-      (s as any).ParserTmpStr = (String(((s as any).ParserTmpStr ?? 0)).slice((((s as any).ParserTmpIdx ?? 0)+1)-1));
+  while (true) {
+    (s as any).ParserTmpIdx = ((String(((s as any).ParserTmpStr ?? 0)).indexOf(String(((s as any).ParserTmpDelim ?? 0)))) + 1);
+    if (((s as any).ParserTmpIdx ?? 0) > 0) {
+      if ((String(((s as any).locArgs?.[1] ?? 0)).slice((1)-1, ((1)-1)+(1))) === '$') {
+        (s as any).ParserTmpArr = [...((s as any).ParserTmpArr ?? []), (String(((s as any).ParserTmpStr ?? 0)).slice((1)-1, ((1)-1)+(((s as any).ParserTmpIdx ?? 0)-1)))];
+        (s as any).ParserTmpStr = (String(((s as any).ParserTmpStr ?? 0)).slice((((s as any).ParserTmpIdx ?? 0)+1)-1));
+      } else {
+        (s as any).ParserTmpArr = [...((s as any).ParserTmpArr ?? []), parseFloat((String(((s as any).ParserTmpStr ?? 0)).slice((1)-1, ((1)-1)+(((s as any).ParserTmpIdx ?? 0)-1))))];
+        (s as any).ParserTmpStr = (String(((s as any).ParserTmpStr ?? 0)).slice((((s as any).ParserTmpIdx ?? 0)+1)-1));
+      }
+      break;
     } else {
-      // TODO-QSP: ParserTmpArr[] = val($mid($ParserTmpStr, 1, ParserTmpIdx-1))
-      (s as any).ParserTmpStr = (String(((s as any).ParserTmpStr ?? 0)).slice((((s as any).ParserTmpIdx ?? 0)+1)-1));
+      if ((String(((s as any).locArgs?.[1] ?? 0)).slice((1)-1, ((1)-1)+(1))) === '$') {
+        (s as any).ParserTmpArr = [...((s as any).ParserTmpArr ?? []), ((s as any).ParserTmpStr ?? 0)];
+      } else {
+        (s as any).ParserTmpArr = [...((s as any).ParserTmpArr ?? []), parseFloat(((s as any).ParserTmpStr ?? 0))];
+      }
     }
-    // TODO-QSP: jump 'StringParser01'
-  } else {
-    if ((String(((s as any).locArgs?.[1] ?? 0)).slice((1)-1, ((1)-1)+(1))) === '$') {
-      // TODO-QSP: $ParserTmpArr[] = $ParserTmpStr
-      // TODO-QSP: copyarr $ARGS[1], '$ParserTmpArr'
-    } else {
-      // TODO-QSP: ParserTmpArr[] = val($ParserTmpStr)
-      // TODO-QSP: copyarr $ARGS[1], 'ParserTmpArr'
-    }
+    (s as any).ParserTmpDelim = undefined;
+    (s as any).ParserTmpStr = undefined;
+    (s as any).ParserTmpIdx = undefined;
+    (s as any).ParserTmpArr = undefined;
+    return;
   }
-  return;
-  // TODO-QSP: end
   scene.build();
 }
 

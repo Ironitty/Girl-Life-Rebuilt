@@ -33,7 +33,6 @@ function enterFrontDoor(s: GameState, scene: SceneBuilder): void {
   }, goto: ['pav_residential', ''] },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -45,6 +44,7 @@ function enterHallw(s: GameState, scene: SceneBuilder): void {
   (s as any).locM = 'Zvereva_house';
   (s as any).locM_arg = 'hallw';
   (s as any).location_type = 'private';
+  (s as any).locclass = undefined;
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   qspCall(s, 'Zvereva_schedule', '');
   qspCall(s, 'stat', '');
@@ -55,7 +55,7 @@ function enterHallw(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Foyer</b></center>');
   scene.img('images/locations/pavlovsk/resident/christina_home/foyer.jpg');
   scene.text('The main hallway of Christina\'s house. You can visit the different rooms from here.');
-  scene.text('There\'s a <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027start/u0027); return false;">mirror</a> hanging on the wall.');
+  scene.text('There\'s a <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027start\u0027); return false;">mirror</a> hanging on the wall.');
   if (((s as any).locat ?? 0)?.['Christina'] === 1  ||  ((s as any).locat ?? 0)?.['Christina'] === 2  ||  ((s as any).locat ?? 0)?.['Christina'] === 8  ||  ((s as any).locat ?? 0)?.['Christina'] === 22) {
     scene.text('Christina is in her bedroom right now.');
   } else {
@@ -78,13 +78,13 @@ function enterHallw(s: GameState, scene: SceneBuilder): void {
       { label: 'Silvestr\'s bedroom', goto: ['Zvereva_house', 'sly_bedro'] },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     if (((st as any).clothingworntype ?? 0) !== 'nude') {
       (st as any).minut = ((st as any).minut ?? 0) + 1;
       qspGoto(st, 'pav_residential', '');
     } else {
+      alert('<b><font color = red>You need to get dressed.</font></b>');
       qspGoto(st, 'Zvereva_house', 'hallw');
     }
   } },
@@ -119,9 +119,8 @@ function enterLivroom(s: GameState, scene: SceneBuilder): void {
     scene.text('Christina is hanging out here, looking bored.');
   }
   if (((s as any).locat ?? 0)?.['Silvestr'] === 5) {
-    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027Zvereva_Sly_events/u0027, /u0027sly_house_chat/u0027); return false;">Silvestr</a> is here, watching TV.');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027Zvereva_Sly_events\u0027, \u0027sly_house_chat\u0027); return false;">Silvestr</a> is here, watching TV.');
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the room', goto: ['Zvereva_house', 'hallw'] },
   ]);
@@ -161,7 +160,6 @@ function enterKitch(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'core_library', 'kitchen', 'shared');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the room', goto: ['Zvereva_house', 'hallw'] },
   ]);
@@ -181,15 +179,13 @@ function enterBathr(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('<center><b>Bathroom</b></center>');
   scene.img('images/locations/pavlovsk/resident/christina_home/bathroom.jpg');
-  // TODO-QSP: dynamic text: 'The stylish room has a large glass shower, toilet, sink, and a <a href="exec:gt...
-  scene.text('The stylish room has a large glass shower, toilet, sink, and a <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027start/u0027); return false;">mirror</a> where you can ' + ((((s as any).pcs_hairbsh ?? 0) < 1) ? ('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027brush/u0027); return false;">brush</a>') : ('brush')) + ' your hair.');
+  scene.text('The stylish room has a large glass shower, toilet, sink, and a <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027start\u0027); return false;">mirror</a> where you can ' + ((((s as any).pcs_hairbsh ?? 0) < 1) ? ('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027brush\u0027); return false;">brush</a>') : ('brush')) + ' your hair.');
   if (((s as any).locat ?? 0)?.['Christina'] === 13) {
-    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027Zvereva_house_events/u0027, /u0027chris_shower/u0027); return false;">Christina</a> is here, taking a shower.');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027Zvereva_house_events\u0027, \u0027chris_shower\u0027); return false;">Christina</a> is here, taking a shower.');
   }
   if (((s as any).locat ?? 0)?.['Silvestr'] === 3) {
     scene.text('Silvestr is in the shower right now.');
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the room', goto: ['Zvereva_house', 'hallw'] },
   ]);
@@ -210,7 +206,7 @@ function enterChrisBedro(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('<center><b>Christina\'s Bedroom</b></center>');
   scene.img('images/locations/pavlovsk/resident/christina_home/chris_bedroom.jpg');
-  scene.text('Surprisingly girly for someone of Christina\'s tastes, there is a large bed, walk-in closet, a desk, and a large <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027start/u0027); return false;">mirror</a> leaning against the wall.');
+  scene.text('Surprisingly girly for someone of Christina\'s tastes, there is a large bed, walk-in closet, a desk, and a large <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027start\u0027); return false;">mirror</a> leaning against the wall.');
   if (((s as any).locat ?? 0)?.['Christina'] === 1) {
     scene.text('Christina is in bed, asleep.');
   }
@@ -221,9 +217,8 @@ function enterChrisBedro(s: GameState, scene: SceneBuilder): void {
     scene.text('Christina is here, doing her homework.');
   }
   if (((s as any).locat ?? 0)?.['Christina'] === 22) {
-    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027Zvereva_house_events/u0027, /u0027bed_chat/u0027); return false;">Christina</a> is hanging out here, looking bored.');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027Zvereva_house_events\u0027, \u0027bed_chat\u0027); return false;">Christina</a> is hanging out here, looking bored.');
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the room', goto: ['Zvereva_house', 'hallw'] },
   ]);
@@ -249,9 +244,8 @@ function enterSlyBedro(s: GameState, scene: SceneBuilder): void {
     scene.text('Silvestr is asleep in his bed.');
   }
   if (((s as any).locat ?? 0)?.['Silvestr'] === 7) {
-    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027Zvereva_Sly_events/u0027, /u0027sly_house_chat/u0027); return false;">Silvestr</a> is hanging out in here.');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027Zvereva_Sly_events\u0027, \u0027sly_house_chat\u0027); return false;">Silvestr</a> is hanging out in here.');
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the room', goto: ['Zvereva_house', 'hallw'] },
   ]);

@@ -10,6 +10,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'pav_residential', '');
   (s as any).location_type = 'public_outdoors';
   (s as any).region = 'pav';
+  (s as any).locclass = undefined;
   (s as any).alkoblock = 0;
   (s as any).boynumBlock = 0;
   qspCall(s, 'schedule', 'A23');
@@ -53,7 +54,6 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     if (((s as any).daystage ?? 0) === 2  ||  ((s as any).daystage ?? 0) === 3) {
       scene.img('images/locations/pavlovsk/pavres.jpg');
     } else {
-      // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/pavresn_'+ rand(1, 2)...
       scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/pavresn_` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
     }
   }
@@ -68,14 +68,12 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       if (((s as any).daystage ?? 0) === 2  ||  ((s as any).daystage ?? 0) === 3) {
         scene.img('images/locations/pavlovsk/pavres.jpg');
       } else {
-        // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/pavresn_'+ rand(1, 2)...
         scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/pavresn_` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
       }
     }
   }
-  scene.text('<br>The residential area of the town. This area is suburban with more modern houses, dusty roads and pockets of overgrown vegetation stretching out far and wide, but some would say that just adds to the town\'s rustic charm. Apart from the old <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = /u0027images/locations/pavlovsk/palace/pav_palace.jpg/u0027; return s; }); return false;">Imperial palace</a> built by Catherine the Great, with its surrounding gardens and forest, and the recently remodeled <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = /u0027images/locations/pavlovsk/fortress/bip_hotel.jpg/u0027; return s; }); return false;">Bip fortress</a>, everything else is relatively modern.');
-  // TODO-QSP: dynamic text: <br>Even from here, you can see the <a href="exec:minut += 1 & gt ''pav_church''...
-  scene.text('<br>Even from here, you can see the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(/u0027pav_church/u0027, /u0027start/u0027); return false;">Church of St. Nikolas</a>, the tallest building in town.');
+  scene.text('<br>The residential area of the town. This area is suburban with more modern houses, dusty roads and pockets of overgrown vegetation stretching out far and wide, but some would say that just adds to the town\'s rustic charm. Apart from the old <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = \u0027images/locations/pavlovsk/palace/pav_palace.jpg\u0027; return s; }); return false;">Imperial palace</a> built by Catherine the Great, with its surrounding gardens and forest, and the recently remodeled <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = \u0027images/locations/pavlovsk/fortress/bip_hotel.jpg\u0027; return s; }); return false;">Bip fortress</a>, everything else is relatively modern.');
+  scene.text('<br>Even from here, you can see the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027pav_church\u0027, \u0027start\u0027); return false;">Church of St. Nikolas</a>, the tallest building in town.');
   if (((s as any).flag_rape_1 ?? 0) === 1) {
     (s as any).flag_rape_1 = 0;
     (s as any).rape_count = (((s as any).stat ?? 0)?.['rape_count']);
@@ -113,8 +111,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     ((s as any).locat = (s as any).locat ?? {})['A23_save1'] = 1;
     if ((Math.floor(Math.random() * 3) + 0) === 0  &&  ((s as any).AlbinaQW ?? 0)?.['walk_of_shame'] !== ((s as any).daystart ?? 0)) {
       ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['walk_of_shame'] = ((s as any).daystart ?? 0);
-      // TODO-QSP: dynamic text: As you walk down the street, you spot a rather disheveled looking <a href="exec:...
-      scene.text('As you walk down the street, you spot a rather disheveled looking <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(/u0027albina_events/u0027, /u0027walk_of_shame/u0027); return false;">Albina</a> ducking down an alleyway, as if she doesn\'t want to be seen.');
+      scene.text('As you walk down the street, you spot a rather disheveled looking <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(\u0027albina_events\u0027, \u0027walk_of_shame\u0027); return false;">Albina</a> ducking down an alleyway, as if she doesn\'t want to be seen.');
     }
   }
   if ((Math.floor(Math.random() * 5) + 1) >= 4  &&  ((s as any).fame ?? 0)?.['pav_slut'] >= 150) {
@@ -129,55 +126,44 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (qspFunc(s, 'car_funcs', 'is_here')) {
-    // TODO-QSP: dynamic text: Your <a href="exec:gs ''carF'', ''start''"><<$car[''name'']>></a> is parked in t...
     scene.text(`Your <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027carF/u0027, /u0027start/u0027); return false;">${(((s as any).car ?? 0)?.['name'] ?? '')}</a> is parked in the street.`);
   }
   if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) <= 22) {
-    scene.text('<br>At the end of the street is a small <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: $loc = /u0027pav_residential/u0027 */ return s; }); window.__gameStore.getState().doGoto(/u0027kiosk/u0027, /u0027start/u0027); return false;">kiosk</a> selling a variety of items such as cigarettes, magazines, snacks, drinks and even themes for your phone.');
+    scene.text('<br>At the end of the street is a small <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: $loc = \u0027pav_residential\u0027 */ return s; }); window.__gameStore.getState().doGoto(\u0027kiosk\u0027, \u0027start\u0027); return false;">kiosk</a> selling a variety of items such as cigarettes, magazines, snacks, drinks and even themes for your phone.');
   }
   if (((s as any).start_type ?? 0)?.['loc'] === 'sg') {
     (s as any).minut = ((s as any).minut ?? 0) + 2;
-    (s as any).schoolname = 'the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.2; return s; }); window.__gameStore.getState().doGoto(/u0027gschool_grounds/u0027, /u0027main/u0027); return false;">local school</a>.';
+    (s as any).schoolname = 'the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.2; return s; }); window.__gameStore.getState().doGoto(\u0027gschool_grounds\u0027, \u0027main\u0027); return false;">local school</a>.';
   } else {
     (s as any).schoolname = 'your old school.';
   }
-  // TODO-QSP: dynamic text: <br>In the center of Pavlovsk is the town square, which features the <a href="ex...
   scene.text(`<br>In the center of Pavlovsk is the town square, which features the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.2; return s; }); window.__gameStore.getState().doGoto(/u0027pav_commcenter/u0027, /u0027/u0027); return false;">community center</a>, a popular hotspot for local teenagers to hang out after a long day at ${((s as any).schoolname ?? '')} Also nearby is the drab grey building of Pavlovsk's dilapidated public <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.4; return s; }); window.__gameStore.getState().doGoto(/u0027pav_pool/u0027, /u0027building/u0027); return false;">swimming pool</a>.`);
-  // TODO-QSP: dynamic text: Connected to the town center is the old palace grounds, which have been turned i...
-  scene.text('Connected to the town center is the old palace grounds, which have been turned into a large <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(/u0027pav_park/u0027, /u0027start/u0027); return false;">public park</a>.');
-  // TODO-QSP: dynamic text: The <a href="exec: minut += 5 & gt ''pav_lake''">lake</a> is also nearby, which ...
-  scene.text('The <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(/u0027pav_lake/u0027, /u0027/u0027); return false;">lake</a> is also nearby, which means the area can get quite busy with people coming to swim in the summer or skate in the winter.');
+  scene.text('Connected to the town center is the old palace grounds, which have been turned into a large <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(\u0027pav_park\u0027, \u0027start\u0027); return false;">public park</a>.');
+  scene.text('The <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(\u0027pav_lake\u0027, \u0027\u0027); return false;">lake</a> is also nearby, which means the area can get quite busy with people coming to swim in the summer or skate in the winter.');
   if (((s as any).cfg_vars ?? 0)?.['tablemap'] === 0) {
     if (((s as any).DimaBeHomeOnce ?? 0) === 1  &&  (!((s as any).DimaRudeBlock ?? 0))) {
-      // TODO-QSP: dynamic text: <a href="exec:minut += 10 & gt ''dimaHome'', ''home''">Dimka</a> lives in one of...
-      scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.10; return s; }); window.__gameStore.getState().doGoto(/u0027dimaHome/u0027, /u0027home/u0027); return false;">Dimka</a> lives in one of the fancier houses in town.');
+      scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.10; return s; }); window.__gameStore.getState().doGoto(\u0027dimaHome\u0027, \u0027home\u0027); return false;">Dimka</a> lives in one of the fancier houses in town.');
     }
     if (((s as any).fedorKozlovQW ?? 0) >= 20  &&  ((s as any).FedorKozHome ?? 0) === 1  ||  ((s as any).fedorKozlovQW ?? 0) === -15  &&  ((s as any).FedorKozHome ?? 0) === 1) {
-      // TODO-QSP: dynamic text: <br><a href="exec: minut += 1 & gt ''FedorEv4'', ''Home Entrance''">Fedor</a> li...
-      scene.text('<br><a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(/u0027FedorEv4/u0027, /u0027Home Entrance/u0027); return false;">Fedor</a> lives in a house nearby.');
+      scene.text('<br><a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027FedorEv4\u0027, \u0027Home Entrance\u0027); return false;">Fedor</a> lives in a house nearby.');
     }
     if ((((s as any).IgorQW ?? 0)?.['history'] === 1  ||  ((s as any).IgorQW ?? 0)?.['Lover'] > 0  ||  ((s as any).IgorQW ?? 0)?.['house_open'] === 1)  &&  ((s as any).IgorQW ?? 0)?.['block'] === 0) {
-      // TODO-QSP: dynamic text: <a href="exec:minut += 10 & gt ''IgorHome'', ''home''">Igor</a> lives in one of ...
-      scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.10; return s; }); window.__gameStore.getState().doGoto(/u0027IgorHome/u0027, /u0027home/u0027); return false;">Igor</a> lives in one of the fancier houses in town.');
+      scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.10; return s; }); window.__gameStore.getState().doGoto(\u0027IgorHome\u0027, \u0027home\u0027); return false;">Igor</a> lives in one of the fancier houses in town.');
     }
     if (((s as any).katjaQW ?? 0)?.['QWstage'] >= 2  ||  ((s as any).mey_vika ?? 0)?.['mey_vika_qw'] >= 27  ||  ((s as any).mey_vika ?? 0)?.['key'] === 1) {
-      // TODO-QSP: dynamic text: Nearby is a large house where the <a href="exec:minut += 10 & gt''mey_home'', ''...
-      scene.text('Nearby is a large house where the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.10; return s; }); window.__gameStore.getState().doGoto(/u0027mey_home/u0027, /u0027door/u0027); return false;">Meynold twins</a> live.');
+      scene.text('Nearby is a large house where the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.10; return s; }); return false;">Meynold twins</a> live.');
     }
     if (((s as any).LariskaQW ?? 0)?.['story'] >= 6) {
-      // TODO-QSP: dynamic text: <a href="exec:minut += 10 & gt ''LariskaHome'', ''front_door''">Lariska</a> live...
-      scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.10; return s; }); window.__gameStore.getState().doGoto(/u0027LariskaHome/u0027, /u0027front_door/u0027); return false;">Lariska</a> lives about 10 minutes away from here.');
+      scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.10; return s; }); window.__gameStore.getState().doGoto(\u0027LariskaHome\u0027, \u0027front_door\u0027); return false;">Lariska</a> lives about 10 minutes away from here.');
     }
     if (((s as any).christinaQW ?? 0)?.['subpath'] >= 5) {
-      scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027Zvereva_house/u0027, /u0027front_door/u0027); return false;">Christina</a> lives in an expensive house near here.');
+      scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027Zvereva_house\u0027, \u0027front_door\u0027); return false;">Christina</a> lives in an expensive house near here.');
     }
     if (((s as any).AlbinaQW ?? 0)?.['KnowsHouse'] === 1) {
-      // TODO-QSP: dynamic text: <a href="exec:minut += 10 & gt ''albinahome'',''door_bell''">Albina</a> lives in...
-      scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.10; return s; }); window.__gameStore.getState().doGoto(/u0027albinahome/u0027, /u0027door_bell/u0027); return false;">Albina</a> lives in one of the few luxurious mansions Pavlovsk has to offer.');
+      scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.10; return s; }); window.__gameStore.getState().doGoto(\u0027albinahome\u0027, \u0027door_bell\u0027); return false;">Albina</a> lives in one of the few luxurious mansions Pavlovsk has to offer.');
     }
     if (((s as any).soniaQW ?? 0)?.['homeinvite'] === 1) {
-      // TODO-QSP: dynamic text: <a href="exec:minut += 10 & gt ''soniahome'',''home''">Sonia''s</a> house is up ...
-      scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.10; return s; }); window.__gameStore.getState().doGoto(/u0027soniahome/u0027, /u0027home/u0027); return false;">Sonia\'s</a> house is up through a garden pathway to a well cared for grey, wooden-clad house.');
+      scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.10; return s; }); window.__gameStore.getState().doGoto(\u0027soniahome\u0027, \u0027home\u0027); return false;">Sonia\'s</a> house is up through a garden pathway to a well cared for grey, wooden-clad house.');
     }
   } else {
     (s as any).st_count = 0;
@@ -207,7 +193,6 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'show_table', 'A grey wooden-clad house that\'s home to <a href="exec:minut += 10 & gt \'soniahome\',\'home\'">Sonia Ivanko</a>', '3');
     }
     if (((s as any).st_count ?? 0) > 0) {
-      // TODO-QSP: dynamic text: <table BORDER=1><<$show_table>></tr></table>
       scene.text(`<table BORDER=1>${((s as any).show_table ?? '')}</tr></table>`);
     }
   }
@@ -221,12 +206,13 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   if (((s as any).InvitationToDimkaNYparty ?? 0) === 1  &&  ((s as any).month ?? 0) === 12  &&  ((s as any).day ?? 0) === 31  &&  ((s as any).hour ?? 0) > 14  &&  ((s as any).hour ?? 0) <= 18) {
     scene.actions([
       { label: '<b>Go to the New Year\'s party at Dimka\'s house</b>', handler: (st: GameState) => {
-    // TODO-QSP: killvar 'InvitationToDimkaNYparty'
+    (st as any).InvitationToDimkaNYparty = undefined;
     (st as any).minut = ((st as any).minut ?? 0) + 30;
   }, goto: ['sny', '3'] },
     ]);
   } else {
     if (((s as any).InvitationToDimkaNYparty ?? 0) === 1  &&  ((s as any).month ?? 0) !== 12) {
+      (s as any).InvitationToDimkaNYparty = undefined;
     }
   }
   if ((((s as any).hour ?? 0) > 20  ||  ((s as any).hour ?? 0) < 4)  &&  ((s as any).succubusQW ?? 0) === 14  &&  ((s as any).suchuntday ?? 0) !== ((s as any).daystart ?? 0)) {
@@ -234,7 +220,6 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'lover', 'lover_events');
   qspCall(s, 'prostitution_functions', 'check_solicitation_event');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Walk to the Five Eight estate (0:02)', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 2;
@@ -270,6 +255,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'pav_residential', '');
   (s as any).location_type = 'public_outdoors';
   (s as any).region = 'pav';
+  (s as any).locclass = undefined;
   (s as any).alkoblock = 0;
   (s as any).boynumBlock = 0;
   qspCall(s, 'schedule', 'A23');
@@ -313,7 +299,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     if (((s as any).daystage ?? 0) === 2  ||  ((s as any).daystage ?? 0) === 3) {
       scene.img('images/locations/pavlovsk/pavres.jpg');
     } else {
-      // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/pavresn_'+ rand(1, 2)...
       scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/pavresn_` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
     }
   }
@@ -328,14 +313,12 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       if (((s as any).daystage ?? 0) === 2  ||  ((s as any).daystage ?? 0) === 3) {
         scene.img('images/locations/pavlovsk/pavres.jpg');
       } else {
-        // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/pavresn_'+ rand(1, 2)...
         scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/pavresn_` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
       }
     }
   }
-  scene.text('<br>The residential area of the town. This area is suburban with more modern houses, dusty roads and pockets of overgrown vegetation stretching out far and wide, but some would say that just adds to the town\'s rustic charm. Apart from the old <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = /u0027images/locations/pavlovsk/palace/pav_palace.jpg/u0027; return s; }); return false;">Imperial palace</a> built by Catherine the Great, with its surrounding gardens and forest, and the recently remodeled <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = /u0027images/locations/pavlovsk/fortress/bip_hotel.jpg/u0027; return s; }); return false;">Bip fortress</a>, everything else is relatively modern.');
-  // TODO-QSP: dynamic text: <br>Even from here, you can see the <a href="exec:minut += 1 & gt ''pav_church''...
-  scene.text('<br>Even from here, you can see the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(/u0027pav_church/u0027, /u0027start/u0027); return false;">Church of St. Nikolas</a>, the tallest building in town.');
+  scene.text('<br>The residential area of the town. This area is suburban with more modern houses, dusty roads and pockets of overgrown vegetation stretching out far and wide, but some would say that just adds to the town\'s rustic charm. Apart from the old <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = \u0027images/locations/pavlovsk/palace/pav_palace.jpg\u0027; return s; }); return false;">Imperial palace</a> built by Catherine the Great, with its surrounding gardens and forest, and the recently remodeled <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = \u0027images/locations/pavlovsk/fortress/bip_hotel.jpg\u0027; return s; }); return false;">Bip fortress</a>, everything else is relatively modern.');
+  scene.text('<br>Even from here, you can see the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027pav_church\u0027, \u0027start\u0027); return false;">Church of St. Nikolas</a>, the tallest building in town.');
   if (((s as any).flag_rape_1 ?? 0) === 1) {
     (s as any).flag_rape_1 = 0;
     (s as any).rape_count = (((s as any).stat ?? 0)?.['rape_count']);
@@ -373,8 +356,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     ((s as any).locat = (s as any).locat ?? {})['A23_save1'] = 1;
     if ((Math.floor(Math.random() * 3) + 0) === 0  &&  ((s as any).AlbinaQW ?? 0)?.['walk_of_shame'] !== ((s as any).daystart ?? 0)) {
       ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['walk_of_shame'] = ((s as any).daystart ?? 0);
-      // TODO-QSP: dynamic text: As you walk down the street, you spot a rather disheveled looking <a href="exec:...
-      scene.text('As you walk down the street, you spot a rather disheveled looking <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(/u0027albina_events/u0027, /u0027walk_of_shame/u0027); return false;">Albina</a> ducking down an alleyway, as if she doesn\'t want to be seen.');
+      scene.text('As you walk down the street, you spot a rather disheveled looking <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(\u0027albina_events\u0027, \u0027walk_of_shame\u0027); return false;">Albina</a> ducking down an alleyway, as if she doesn\'t want to be seen.');
     }
   }
   if ((Math.floor(Math.random() * 5) + 1) >= 4  &&  ((s as any).fame ?? 0)?.['pav_slut'] >= 150) {
@@ -389,55 +371,44 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (qspFunc(s, 'car_funcs', 'is_here')) {
-    // TODO-QSP: dynamic text: Your <a href="exec:gs ''carF'', ''start''"><<$car[''name'']>></a> is parked in t...
     scene.text(`Your <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027carF/u0027, /u0027start/u0027); return false;">${(((s as any).car ?? 0)?.['name'] ?? '')}</a> is parked in the street.`);
   }
   if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) <= 22) {
-    scene.text('<br>At the end of the street is a small <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: $loc = /u0027pav_residential/u0027 */ return s; }); window.__gameStore.getState().doGoto(/u0027kiosk/u0027, /u0027start/u0027); return false;">kiosk</a> selling a variety of items such as cigarettes, magazines, snacks, drinks and even themes for your phone.');
+    scene.text('<br>At the end of the street is a small <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: $loc = \u0027pav_residential\u0027 */ return s; }); window.__gameStore.getState().doGoto(\u0027kiosk\u0027, \u0027start\u0027); return false;">kiosk</a> selling a variety of items such as cigarettes, magazines, snacks, drinks and even themes for your phone.');
   }
   if (((s as any).start_type ?? 0)?.['loc'] === 'sg') {
     (s as any).minut = ((s as any).minut ?? 0) + 2;
-    (s as any).schoolname = 'the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.2; return s; }); window.__gameStore.getState().doGoto(/u0027gschool_grounds/u0027, /u0027main/u0027); return false;">local school</a>.';
+    (s as any).schoolname = 'the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.2; return s; }); window.__gameStore.getState().doGoto(\u0027gschool_grounds\u0027, \u0027main\u0027); return false;">local school</a>.';
   } else {
     (s as any).schoolname = 'your old school.';
   }
-  // TODO-QSP: dynamic text: <br>In the center of Pavlovsk is the town square, which features the <a href="ex...
   scene.text(`<br>In the center of Pavlovsk is the town square, which features the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.2; return s; }); window.__gameStore.getState().doGoto(/u0027pav_commcenter/u0027, /u0027/u0027); return false;">community center</a>, a popular hotspot for local teenagers to hang out after a long day at ${((s as any).schoolname ?? '')} Also nearby is the drab grey building of Pavlovsk's dilapidated public <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.4; return s; }); window.__gameStore.getState().doGoto(/u0027pav_pool/u0027, /u0027building/u0027); return false;">swimming pool</a>.`);
-  // TODO-QSP: dynamic text: Connected to the town center is the old palace grounds, which have been turned i...
-  scene.text('Connected to the town center is the old palace grounds, which have been turned into a large <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(/u0027pav_park/u0027, /u0027start/u0027); return false;">public park</a>.');
-  // TODO-QSP: dynamic text: The <a href="exec: minut += 5 & gt ''pav_lake''">lake</a> is also nearby, which ...
-  scene.text('The <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(/u0027pav_lake/u0027, /u0027/u0027); return false;">lake</a> is also nearby, which means the area can get quite busy with people coming to swim in the summer or skate in the winter.');
+  scene.text('Connected to the town center is the old palace grounds, which have been turned into a large <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(\u0027pav_park\u0027, \u0027start\u0027); return false;">public park</a>.');
+  scene.text('The <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(\u0027pav_lake\u0027, \u0027\u0027); return false;">lake</a> is also nearby, which means the area can get quite busy with people coming to swim in the summer or skate in the winter.');
   if (((s as any).cfg_vars ?? 0)?.['tablemap'] === 0) {
     if (((s as any).DimaBeHomeOnce ?? 0) === 1  &&  (!((s as any).DimaRudeBlock ?? 0))) {
-      // TODO-QSP: dynamic text: <a href="exec:minut += 10 & gt ''dimaHome'', ''home''">Dimka</a> lives in one of...
-      scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.10; return s; }); window.__gameStore.getState().doGoto(/u0027dimaHome/u0027, /u0027home/u0027); return false;">Dimka</a> lives in one of the fancier houses in town.');
+      scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.10; return s; }); window.__gameStore.getState().doGoto(\u0027dimaHome\u0027, \u0027home\u0027); return false;">Dimka</a> lives in one of the fancier houses in town.');
     }
     if (((s as any).fedorKozlovQW ?? 0) >= 20  &&  ((s as any).FedorKozHome ?? 0) === 1  ||  ((s as any).fedorKozlovQW ?? 0) === -15  &&  ((s as any).FedorKozHome ?? 0) === 1) {
-      // TODO-QSP: dynamic text: <br><a href="exec: minut += 1 & gt ''FedorEv4'', ''Home Entrance''">Fedor</a> li...
-      scene.text('<br><a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(/u0027FedorEv4/u0027, /u0027Home Entrance/u0027); return false;">Fedor</a> lives in a house nearby.');
+      scene.text('<br><a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027FedorEv4\u0027, \u0027Home Entrance\u0027); return false;">Fedor</a> lives in a house nearby.');
     }
     if ((((s as any).IgorQW ?? 0)?.['history'] === 1  ||  ((s as any).IgorQW ?? 0)?.['Lover'] > 0  ||  ((s as any).IgorQW ?? 0)?.['house_open'] === 1)  &&  ((s as any).IgorQW ?? 0)?.['block'] === 0) {
-      // TODO-QSP: dynamic text: <a href="exec:minut += 10 & gt ''IgorHome'', ''home''">Igor</a> lives in one of ...
-      scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.10; return s; }); window.__gameStore.getState().doGoto(/u0027IgorHome/u0027, /u0027home/u0027); return false;">Igor</a> lives in one of the fancier houses in town.');
+      scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.10; return s; }); window.__gameStore.getState().doGoto(\u0027IgorHome\u0027, \u0027home\u0027); return false;">Igor</a> lives in one of the fancier houses in town.');
     }
     if (((s as any).katjaQW ?? 0)?.['QWstage'] >= 2  ||  ((s as any).mey_vika ?? 0)?.['mey_vika_qw'] >= 27  ||  ((s as any).mey_vika ?? 0)?.['key'] === 1) {
-      // TODO-QSP: dynamic text: Nearby is a large house where the <a href="exec:minut += 10 & gt''mey_home'', ''...
-      scene.text('Nearby is a large house where the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.10; return s; }); window.__gameStore.getState().doGoto(/u0027mey_home/u0027, /u0027door/u0027); return false;">Meynold twins</a> live.');
+      scene.text('Nearby is a large house where the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.10; return s; }); return false;">Meynold twins</a> live.');
     }
     if (((s as any).LariskaQW ?? 0)?.['story'] >= 6) {
-      // TODO-QSP: dynamic text: <a href="exec:minut += 10 & gt ''LariskaHome'', ''front_door''">Lariska</a> live...
-      scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.10; return s; }); window.__gameStore.getState().doGoto(/u0027LariskaHome/u0027, /u0027front_door/u0027); return false;">Lariska</a> lives about 10 minutes away from here.');
+      scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.10; return s; }); window.__gameStore.getState().doGoto(\u0027LariskaHome\u0027, \u0027front_door\u0027); return false;">Lariska</a> lives about 10 minutes away from here.');
     }
     if (((s as any).christinaQW ?? 0)?.['subpath'] >= 5) {
-      scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027Zvereva_house/u0027, /u0027front_door/u0027); return false;">Christina</a> lives in an expensive house near here.');
+      scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027Zvereva_house\u0027, \u0027front_door\u0027); return false;">Christina</a> lives in an expensive house near here.');
     }
     if (((s as any).AlbinaQW ?? 0)?.['KnowsHouse'] === 1) {
-      // TODO-QSP: dynamic text: <a href="exec:minut += 10 & gt ''albinahome'',''door_bell''">Albina</a> lives in...
-      scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.10; return s; }); window.__gameStore.getState().doGoto(/u0027albinahome/u0027, /u0027door_bell/u0027); return false;">Albina</a> lives in one of the few luxurious mansions Pavlovsk has to offer.');
+      scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.10; return s; }); window.__gameStore.getState().doGoto(\u0027albinahome\u0027, \u0027door_bell\u0027); return false;">Albina</a> lives in one of the few luxurious mansions Pavlovsk has to offer.');
     }
     if (((s as any).soniaQW ?? 0)?.['homeinvite'] === 1) {
-      // TODO-QSP: dynamic text: <a href="exec:minut += 10 & gt ''soniahome'',''home''">Sonia''s</a> house is up ...
-      scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.10; return s; }); window.__gameStore.getState().doGoto(/u0027soniahome/u0027, /u0027home/u0027); return false;">Sonia\'s</a> house is up through a garden pathway to a well cared for grey, wooden-clad house.');
+      scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.10; return s; }); window.__gameStore.getState().doGoto(\u0027soniahome\u0027, \u0027home\u0027); return false;">Sonia\'s</a> house is up through a garden pathway to a well cared for grey, wooden-clad house.');
     }
   } else {
     (s as any).st_count = 0;
@@ -467,7 +438,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'show_table', 'A grey wooden-clad house that\'s home to <a href="exec:minut += 10 & gt \'soniahome\',\'home\'">Sonia Ivanko</a>', '3');
     }
     if (((s as any).st_count ?? 0) > 0) {
-      // TODO-QSP: dynamic text: <table BORDER=1><<$show_table>></tr></table>
       scene.text(`<table BORDER=1>${((s as any).show_table ?? '')}</tr></table>`);
     }
   }
@@ -481,12 +451,13 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   if (((s as any).InvitationToDimkaNYparty ?? 0) === 1  &&  ((s as any).month ?? 0) === 12  &&  ((s as any).day ?? 0) === 31  &&  ((s as any).hour ?? 0) > 14  &&  ((s as any).hour ?? 0) <= 18) {
     scene.actions([
       { label: '<b>Go to the New Year\'s party at Dimka\'s house</b>', handler: (st: GameState) => {
-    // TODO-QSP: killvar 'InvitationToDimkaNYparty'
+    (st as any).InvitationToDimkaNYparty = undefined;
     (st as any).minut = ((st as any).minut ?? 0) + 30;
   }, goto: ['sny', '3'] },
     ]);
   } else {
     if (((s as any).InvitationToDimkaNYparty ?? 0) === 1  &&  ((s as any).month ?? 0) !== 12) {
+      (s as any).InvitationToDimkaNYparty = undefined;
     }
   }
   if ((((s as any).hour ?? 0) > 20  ||  ((s as any).hour ?? 0) < 4)  &&  ((s as any).succubusQW ?? 0) === 14  &&  ((s as any).suchuntday ?? 0) !== ((s as any).daystart ?? 0)) {
@@ -494,7 +465,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'lover', 'lover_events');
   qspCall(s, 'prostitution_functions', 'check_solicitation_event');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Walk to the Five Eight estate (0:02)', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 2;
@@ -525,7 +495,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSetSuccubusHuntAct(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go hunting near the community center (this can take a lot of time)', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + (40 + (Math.floor(Math.random() * 21) + 0) - 5 * ((st as any).succublvl ?? 0));
@@ -589,7 +558,6 @@ function enterMeetMishaStreetEvents(s: GameState, scene: SceneBuilder): void {
 { label: 'Continue', goto: ['pav_residential', ''] },
 ]);
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -603,7 +571,6 @@ function enterMeetTatianaMainQW(s: GameState, scene: SceneBuilder): void {
 { label: 'No?', goto: ['mainQW', ''] },
 ]);
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -621,7 +588,6 @@ function enterBoilerroomRevengeEvent(s: GameState, scene: SceneBuilder): void {
   } },
 ]);
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -635,7 +601,6 @@ function enterBelyPaydayEvent(s: GameState, scene: SceneBuilder): void {
 { label: 'Go to the jeep', goto: ['belgang', 'payday'] },
 ]);
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -645,7 +610,6 @@ function enterBelyWorkofdebtEvent(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/vadim/belyjeep.jpg');
   scene.text('You see the by now familiar old Mitsubishi Pajero driving through the streets with Vadim Bely and his gang inside. Your heart skips a beat as you notice one of them pointing at you and they pull over.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the jeep', goto: ['belgang', 'workofdebt'] },
   ]);

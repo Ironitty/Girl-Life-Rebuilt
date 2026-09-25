@@ -7,7 +7,7 @@ import type { SceneBuilder } from '../../core/scene';
 function enterDefault(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Tanya\'s Room</b></center>');
   scene.img('images/locations/city/citycenter/nichApartment/bedroomTanja.jpg');
-  scene.text('This room belongs to <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichTanya/u0027, /u0027desc/u0027); return false;">Tanya</a>, Nicholas\' stepdaughter. While she is a little bit selfish, quick-tempered and spoiled, her heart seems to be in the right place.');
+  scene.text('This room belongs to <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027nichTanya\u0027, \u0027desc\u0027); return false;">Tanya</a>, Nicholas\' stepdaughter. While she is a little bit selfish, quick-tempered and spoiled, her heart seems to be in the right place.');
   scene.text('Her room is usually in a state of chaos - typical for somebody who\'s gotten used to others cleaning up after them - but otherwise displays the warmth and mix of colors you would expect of a woman who is still trying to figure herself out and doesn\'t worry too much about the future.');
   (s as any).nichNichAct = qspFunc(s, 'nichUtil', 'npcActivity', 'nicholas');
   (s as any).nichTanyAct = qspFunc(s, 'nichUtil', 'npcActivity', 'tanya');
@@ -78,15 +78,15 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
         if (((s as any).nichTanyAct ?? 0) === 'tanya') {
           (s as any).nichRand = (Math.floor(Math.random() * 4) + 0);
           if ((!((s as any).nichRand ?? 0))) {
-            scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichTanya/u0027, /u0027bedroomTanya/u0027); return false;">Tanya</a> is lying on her bed listening to music.');
+            scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027nichTanya\u0027, \u0027bedroomTanya\u0027); return false;">Tanya</a> is lying on her bed listening to music.');
           } else {
             if (((s as any).nichRand ?? 0) === 1) {
-              scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichTanya/u0027, /u0027bedroomTanya/u0027); return false;">Tanya</a> is lying on her bed watching TV.');
+              scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027nichTanya\u0027, \u0027bedroomTanya\u0027); return false;">Tanya</a> is lying on her bed watching TV.');
             } else {
               if (((s as any).nichRand ?? 0) === 2) {
-                scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichTanya/u0027, /u0027bedroomTanya/u0027); return false;">Tanya</a> is in her walk-in closet trying on some outfits.');
+                scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027nichTanya\u0027, \u0027bedroomTanya\u0027); return false;">Tanya</a> is in her walk-in closet trying on some outfits.');
               } else {
-                scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichTanya/u0027, /u0027bedroomTanya/u0027); return false;">Tanya</a> is sitting at her desk surfing the internet.');
+                scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027nichTanya\u0027, \u0027bedroomTanya\u0027); return false;">Tanya</a> is sitting at her desk surfing the internet.');
               }
             }
           }
@@ -103,7 +103,6 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'nichChore', 'inspect', 'tanya');
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: '<b>Return to the hallway</b>', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -120,7 +119,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Tanya\'s Room</b></center>');
   scene.img('images/locations/city/citycenter/nichApartment/bedroomTanja.jpg');
-  scene.text('This room belongs to <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichTanya/u0027, /u0027desc/u0027); return false;">Tanya</a>, Nicholas\' stepdaughter. While she is a little bit selfish, quick-tempered and spoiled, her heart seems to be in the right place.');
+  scene.text('This room belongs to <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027nichTanya\u0027, \u0027desc\u0027); return false;">Tanya</a>, Nicholas\' stepdaughter. While she is a little bit selfish, quick-tempered and spoiled, her heart seems to be in the right place.');
   scene.text('Her room is usually in a state of chaos - typical for somebody who\'s gotten used to others cleaning up after them - but otherwise displays the warmth and mix of colors you would expect of a woman who is still trying to figure herself out and doesn\'t worry too much about the future.');
   (s as any).nichNichAct = qspFunc(s, 'nichUtil', 'npcActivity', 'nicholas');
   (s as any).nichTanyAct = qspFunc(s, 'nichUtil', 'npcActivity', 'tanya');
@@ -191,15 +190,15 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
         if (((s as any).nichTanyAct ?? 0) === 'tanya') {
           (s as any).nichRand = (Math.floor(Math.random() * 4) + 0);
           if ((!((s as any).nichRand ?? 0))) {
-            scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichTanya/u0027, /u0027bedroomTanya/u0027); return false;">Tanya</a> is lying on her bed listening to music.');
+            scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027nichTanya\u0027, \u0027bedroomTanya\u0027); return false;">Tanya</a> is lying on her bed listening to music.');
           } else {
             if (((s as any).nichRand ?? 0) === 1) {
-              scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichTanya/u0027, /u0027bedroomTanya/u0027); return false;">Tanya</a> is lying on her bed watching TV.');
+              scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027nichTanya\u0027, \u0027bedroomTanya\u0027); return false;">Tanya</a> is lying on her bed watching TV.');
             } else {
               if (((s as any).nichRand ?? 0) === 2) {
-                scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichTanya/u0027, /u0027bedroomTanya/u0027); return false;">Tanya</a> is in her walk-in closet trying on some outfits.');
+                scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027nichTanya\u0027, \u0027bedroomTanya\u0027); return false;">Tanya</a> is in her walk-in closet trying on some outfits.');
               } else {
-                scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichTanya/u0027, /u0027bedroomTanya/u0027); return false;">Tanya</a> is sitting at her desk surfing the internet.');
+                scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027nichTanya\u0027, \u0027bedroomTanya\u0027); return false;">Tanya</a> is sitting at her desk surfing the internet.');
               }
             }
           }
@@ -216,7 +215,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'nichChore', 'inspect', 'tanya');
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: '<b>Return to the hallway</b>', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -233,7 +231,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
 function enterReturn(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Tanya\'s Room</b></center>');
   scene.img('images/locations/city/citycenter/nichApartment/bedroomTanja.jpg');
-  scene.text('This room belongs to <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichTanya/u0027, /u0027desc/u0027); return false;">Tanya</a>, Nicholas\' stepdaughter. While she is a little bit selfish, quick-tempered and spoiled, her heart seems to be in the right place.');
+  scene.text('This room belongs to <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027nichTanya\u0027, \u0027desc\u0027); return false;">Tanya</a>, Nicholas\' stepdaughter. While she is a little bit selfish, quick-tempered and spoiled, her heart seems to be in the right place.');
   scene.text('Her room is usually in a state of chaos - typical for somebody who\'s gotten used to others cleaning up after them - but otherwise displays the warmth and mix of colors you would expect of a woman who is still trying to figure herself out and doesn\'t worry too much about the future.');
   (s as any).nichNichAct = qspFunc(s, 'nichUtil', 'npcActivity', 'nicholas');
   (s as any).nichTanyAct = qspFunc(s, 'nichUtil', 'npcActivity', 'tanya');
@@ -304,15 +302,15 @@ function enterReturn(s: GameState, scene: SceneBuilder): void {
         if (((s as any).nichTanyAct ?? 0) === 'tanya') {
           (s as any).nichRand = (Math.floor(Math.random() * 4) + 0);
           if ((!((s as any).nichRand ?? 0))) {
-            scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichTanya/u0027, /u0027bedroomTanya/u0027); return false;">Tanya</a> is lying on her bed listening to music.');
+            scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027nichTanya\u0027, \u0027bedroomTanya\u0027); return false;">Tanya</a> is lying on her bed listening to music.');
           } else {
             if (((s as any).nichRand ?? 0) === 1) {
-              scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichTanya/u0027, /u0027bedroomTanya/u0027); return false;">Tanya</a> is lying on her bed watching TV.');
+              scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027nichTanya\u0027, \u0027bedroomTanya\u0027); return false;">Tanya</a> is lying on her bed watching TV.');
             } else {
               if (((s as any).nichRand ?? 0) === 2) {
-                scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichTanya/u0027, /u0027bedroomTanya/u0027); return false;">Tanya</a> is in her walk-in closet trying on some outfits.');
+                scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027nichTanya\u0027, \u0027bedroomTanya\u0027); return false;">Tanya</a> is in her walk-in closet trying on some outfits.');
               } else {
-                scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichTanya/u0027, /u0027bedroomTanya/u0027); return false;">Tanya</a> is sitting at her desk surfing the internet.');
+                scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027nichTanya\u0027, \u0027bedroomTanya\u0027); return false;">Tanya</a> is sitting at her desk surfing the internet.');
               }
             }
           }
@@ -329,7 +327,6 @@ function enterReturn(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'nichChore', 'inspect', 'tanya');
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: '<b>Return to the hallway</b>', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;

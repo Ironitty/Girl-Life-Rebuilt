@@ -19,7 +19,6 @@ function enterKitchenActs(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDriwater(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDritea(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterFillBottle(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -29,7 +28,6 @@ function enterSantehnikgr(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/residential/apartment/sex/s3.jpg');
   scene.text('You called the plumber and Grisha arrived literally 15 minutes later. He quickly found the cause and repairs the problem.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Next', goto: ['kit_din', 'santehnikend'] },
   ]);
@@ -41,7 +39,6 @@ function enterSantehnikend(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 30;
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/residential/apartment/sex/s3.jpg');
-  // TODO-QSP: dynamic text: Half an hour later he says he is finished, and it will be <<$func(''money'', ''s...
   scene.text(`Half an hour later he says he is finished, and it will be ${qspFunc(s, 'money', 'string_price', 1500)}`);
   if (qspFunc(s, 'money', 'can_afford', 1500)) {
     scene.actions([
@@ -100,7 +97,6 @@ function enterSantehnikend(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -110,7 +106,6 @@ function enterSantehnikend1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/residential/apartment/sex/s3.jpg');
   scene.text('You helplessly shrug and mumble that you have no idea what to do now. The plumber examines you with oily eyes and tells you with an infamous smirk, "Maybe there is another way. I can take payment for work, but not with money."');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Suggest a loan', goto: ['kit_din', 'santehnikend1'] },
     { label: 'Another way?', handler: (st: GameState) => {
@@ -162,9 +157,7 @@ function enterSantehnikend2(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/residential/apartment/sex/s3.jpg');
-  // TODO-QSP: dynamic text: You offer to issue the plumber a receipt of debt. He thinks for a moment and say...
   scene.text(`You offer to issue the plumber a receipt of debt. He thinks for a moment and says, "Okay. Write a receipt. Next time I'm about, I'll look in and you give me the money. ${((s as any).textsan ?? '')} Then teking a pen and paper you write the plumber a receipt that you owe him ${qspFunc(s, 'money', 'string_price', 1500)}. Grisha takes the paper and puts it in his pocket. "If you have another leak, call me, here's my card."`);
-  // TODO-QSP: end
   scene.actions([
     { label: 'Plumber leaves', handler: (st: GameState) => {
     dynamicGoto(st, 'prevLoc', 'prevArg');
@@ -191,7 +184,6 @@ function enterSantehnikend3(s: GameState, scene: SceneBuilder): void {
   scene.text('You have try wiping the sperm from the face, hoping to unstick your eyes, but you only manage to smear it all over your face. Finally you are able to open one eye and see the plumber standing over you, he smirks as he buttons up his pants.');
   scene.text('Thereafter, the plumber turna and leaves your apartment.');
   qspCall(s, 'arousal', 'end');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Get up', handler: (st: GameState) => {
     dynamicGoto(st, 'prevLoc', 'prevArg');
@@ -207,7 +199,6 @@ function enterSantehnik1(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/residential/apartment/sex/s0.jpg');
   scene.text('You find a phone number for a plumber in a kitchen draw. After 20 minutes, the plumber arrives.');
   scene.text('You lead him into the kitchen and he starts to get to work. When you reached up to one of the shelves, you notice that he is staring at your ass.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Disregard', goto: ['kit_din', 'santehnikend'] },
   ]);
@@ -225,7 +216,6 @@ function enterSantehnik(s: GameState, scene: SceneBuilder): void {
       qspGoto(s, 'kit_din', 'santehnik1');
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -247,24 +237,23 @@ function enterDirtarm(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterEdagotd(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
+  (s as any)._eat = undefined;
   scene.img('images/shared/home/kitchen/cook.jpg');
   scene.text('What kind of meal would you like to make?');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Prepare a light meal (0:20)', handler: (st: GameState) => {
-    // TODO-QSP: $edameal = 'small_meal'
+    (st as any).edameal = 'small_meal';
   }, goto: ['kit_din', 'edagotpk', 'small_meal'] },
     { label: 'Prepare a normal meal (0:25)', handler: (st: GameState) => {
-    // TODO-QSP: $edameal = 'medium_meal'
+    (st as any).edameal = 'medium_meal';
   }, goto: ['kit_din', 'edagotpk', 'medium_meal'] },
     { label: 'Prepare a hearty meal (0:30)', handler: (st: GameState) => {
-    // TODO-QSP: $edameal = 'large_meal'
+    (st as any).edameal = 'large_meal';
   }, goto: ['kit_din', 'edagotpk', 'large_meal'] },
     { label: 'Nevermind', handler: (st: GameState) => {
     dynamicGoto(st, 'prevLoc', 'prevArg');
@@ -302,7 +291,6 @@ function enterEdagotpk(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the meal', handler: (st: GameState) => {
     dynamicGoto(st, 'prevLoc', 'prevArg');
@@ -321,15 +309,13 @@ function enterEdahotd(s: GameState, scene: SceneBuilder): void {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = 'medium_meal';
   }
   qspCall(s, 'food', '$ARGS[1]');
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterEdahota(s: GameState, scene: SceneBuilder): void {
   if (((s as any).edahot ?? 0) > 0) {
-    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027kit_din/u0027, /u0027edahotd/u0027, /u0027medium_meal/u0027); return false;">There\'s a warm meal on the table (0:15).</a>');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027kit_din\u0027, \u0027edahotd\u0027, \u0027medium_meal\u0027); return false;">There\'s a warm meal on the table (0:15).</a>');
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -337,7 +323,6 @@ function enterEatout(s: GameState, scene: SceneBuilder): void {
   (s as any).edahot = 0;
   qspCall(s, 'mood', 'raise', 'small');
   qspCall(s, 'food', 'medium_meal');
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -352,12 +337,10 @@ function enterPosudomashina(s: GameState, scene: SceneBuilder): void {
       scene.text('You have run out of dishwashing liquid.');
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterEdasnack(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: end
   scene.actions([
     { label: 'Have a snack (0:05)', handler: (st: GameState) => {
     qspCall(st, 'food', '');
@@ -371,7 +354,6 @@ function enterPranik(s: GameState, scene: SceneBuilder): void {
     if (((s as any).mc_inventory ?? 0)?.['food_biscuits'] === 1) {
       scene.text('You only have one more portion of tea biscuits.');
     } else {
-      // TODO-QSP: dynamic text: You have enough tea biscuits for <b><<mc_inventory[''food_biscuits'']>></b> more...
       scene.text(`You have enough tea biscuits for <b>${(((s as any).mc_inventory ?? 0)?.['food_biscuits'] ?? '')}</b> more snacks.`);
     }
     scene.actions([
@@ -394,12 +376,10 @@ function enterPranik(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterDritea(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: end
   scene.actions([
     { label: 'Have a cup of tea (0:10)', handler: (st: GameState) => {
     qspCall(st, 'beverage', '');
@@ -410,7 +390,6 @@ function enterDritea(s: GameState, scene: SceneBuilder): void {
 
 function enterEdaD(s: GameState, scene: SceneBuilder): void {
   if (((s as any).mc_inventory ?? 0)?.['food_diet'] > 0) {
-    // TODO-QSP: dynamic text: The refrigerator contains <b><<mc_inventory[''food_diet'']>></b> healthy meals.
     scene.text(`The refrigerator contains <b>${(((s as any).mc_inventory ?? 0)?.['food_diet'] ?? '')}</b> healthy meals.`);
     scene.actions([
       { label: 'Eat diet food (0:20)', handler: (st: GameState) => {
@@ -440,7 +419,6 @@ function enterEdaD(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -466,12 +444,10 @@ function enterFatdel(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterDriwater(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: end
   scene.actions([
     { label: 'Drink some water (0:01)', handler: (st: GameState) => {
     qspCall(st, 'beverage', '');
@@ -491,7 +467,6 @@ function enterFillBottle(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -505,13 +480,11 @@ function enterSandwich(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterLekarstvo(s: GameState, scene: SceneBuilder): void {
   if (((s as any).mc_inventory ?? 0)?.['antibiotics'] > 0) {
-    // TODO-QSP: dynamic text: You have <b><<mc_inventory[''antibiotics'']>></b> antibiotics.
     scene.text(`You have <b>${(((s as any).mc_inventory ?? 0)?.['antibiotics'] ?? '')}</b> antibiotics.`);
     if (((s as any).sick ?? 0) > 0  &&  ((s as any).lekarday ?? 0) !== ((s as any).daystart ?? 0)) {
       scene.actions([
@@ -537,13 +510,11 @@ function enterLekarstvo(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterVitamin(s: GameState, scene: SceneBuilder): void {
   if (((s as any).mc_inventory ?? 0)?.['vitamins'] > 0) {
-    // TODO-QSP: dynamic text: You have <b><<mc_inventory[''vitamins'']>></b> vitamin drinks.
     scene.text(`You have <b>${(((s as any).mc_inventory ?? 0)?.['vitamins'] ?? '')}</b> vitamin drinks.`);
     if (((s as any).vitaminday ?? 0) !== ((s as any).daystart ?? 0)) {
       scene.actions([
@@ -578,7 +549,6 @@ function enterVitamin(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -588,7 +558,6 @@ function enterSandwichDo(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('You make a sandwich to take with you.');
   qspCall(s, 'daily_routine', 'visit_item_done', 'sandwich');
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -598,7 +567,6 @@ function enterFillBottleDo(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('You fill your sports water bottle with filtered tap water.');
   qspCall(s, 'daily_routine', 'visit_item_done', 'fill_bottle');
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -622,7 +590,6 @@ function enterEdaDDo(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'stat', '');
   qspCall(s, 'daily_routine', 'visit_item_done', 'edaD');
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -640,7 +607,6 @@ function enterLekarstvoDo(s: GameState, scene: SceneBuilder): void {
   scene.text('You took an antibiotic pill');
   qspCall(s, 'stat', '');
   qspCall(s, 'daily_routine', 'visit_item_done', 'lekarstvo');
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -667,28 +633,24 @@ function enterVitaminDo(s: GameState, scene: SceneBuilder): void {
   scene.text('You took some vitamins.');
   qspCall(s, 'stat', '');
   qspCall(s, 'daily_routine', 'visit_item_done', 'vitamin');
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterDriwaterDo(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'beverage', 'water');
   qspCall(s, 'daily_routine', 'visit_item_done', 'driwater');
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterDriteaDo(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'beverage', 'tea');
   qspCall(s, 'daily_routine', 'visit_item_done', 'dritea');
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterEdasnackDo(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'food', 'snack');
   qspCall(s, 'daily_routine', 'visit_item_done', 'edasnack');
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -728,7 +690,6 @@ function enterCookMealDo(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -752,7 +713,6 @@ function enterCookMealPk(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/shared/home/kitchen/cook.jpg');
   scene.text('You prepare the meal and leave it on the table, still warm.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', handler: (st: GameState) => {
     qspCall(st, 'daily_routine', '');
@@ -808,8 +768,8 @@ function enterEatMealDo(s: GameState, scene: SceneBuilder): void {
     if ((!((s as any).eat_opt_count ?? 0))) {
       scene.text('There is nothing available to eat right now. You will need to go shopping.');
     }
+    (s as any).eat_opt_count = undefined;
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Nevermind', handler: (st: GameState) => {
     qspCall(st, 'daily_routine', '');
@@ -826,7 +786,6 @@ function enterParentsMealOptions(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'npc_relationship', 'modify', 'A29', (-20));
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/mom/prost6.jpg');
-    // TODO-QSP: dynamic text: Your <<$npc_nickname[''A29'']>> glares at you as you sit down and you realize yo...
     scene.text(`Your ${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')} glares at you as you sit down and you realize you still have cum on you!`);
     scene.text('"How disgusting! And at the breakfast table! Have you no shame?! Get out of my sight, whore!"');
     scene.text('Knowing there\'s nothing you can say, you simply mumble an apology and quickly head to the bathroom.');
@@ -850,7 +809,6 @@ function enterParentsMealOptions(s: GameState, scene: SceneBuilder): void {
     scene.text('As you sit down and join your family for breakfast, your stepfather engages you in conversation.');
     if (((st as any).kanikuli ?? 0) === 0  &&  ((st as any).start_type ?? 0)?.['loc'] === 'sg'  &&  ((st as any).home ?? 0)?.['current'] === 'parents_home'  &&  ((st as any).gschoolVars ?? 0)?.['block'] === 0) {
       if (((st as any).class ?? 0)?.['school_grade_average'] >= 80) {
-        // TODO-QSP: dynamic text: "So how are you doing in school, <<$pcs_nickname>>?" he asks.
         scene.text(`"So how are you doing in school, ${((st as any).pcs_nickname ?? '')}?" he asks.`);
         scene.text('You smile at him. "Really great. We were just learning something interesting the other day."');
         if ((((st as any).motherKnowSpravka ?? 0) > 0  ||  ((st as any).motherKnowWhore ?? 0) > 0)  &&  (((st as any).npc_rel ?? 0)?.['A29'] <= 20  ||  ((st as any).npc_QW ?? 0)?.['A29'] === 1)) {
@@ -863,7 +821,6 @@ function enterParentsMealOptions(s: GameState, scene: SceneBuilder): void {
           scene.text('The rest of breakfast is taken up with some small talk about what everyone has been up to of late. You thoroughly enjoy your breakfast with your family.');
         }
       } else {
-        // TODO-QSP: dynamic text: "So how are you doing in school, <<$pcs_nickname>>?" he asks.
         scene.text(`"So how are you doing in school, ${((st as any).pcs_nickname ?? '')}?" he asks.`);
         scene.text('You glance at him. "Um… Okay, I guess…"');
         if ((((st as any).motherKnowSpravka ?? 0) > 0  ||  ((st as any).motherKnowWhore ?? 0) > 0)  &&  (((st as any).npc_rel ?? 0)?.['A29'] <= 20  ||  ((st as any).npc_QW ?? 0)?.['A29'] === 1)) {
@@ -919,12 +876,12 @@ function enterParentsMealOptions(s: GameState, scene: SceneBuilder): void {
     if ((((st as any).motherKnowSpravka ?? 0) > 0  ||  ((st as any).motherKnowWhore ?? 0) > 0)  &&  (((st as any).npc_rel ?? 0)?.['A29'] <= 20  ||  ((st as any).npc_QW ?? 0)?.['A29'] === 1)) {
       scene.text('"Of course my whore of a so called daughter thinks <i>this</i> is appropriate at the breakfast table! Go and put some clothes on, you shameless slut!" she growls before throwing you out of the room.');
     } else {
-      // TODO-QSP: dynamic text: Your mother stands up from her seat, nearly knocking the chair over in the proce...
       scene.text(`Your mother stands up from her seat, nearly knocking the chair over in the process. "What on God's earth are you doing, ${((st as any).pcs_nickname ?? '')}?! Have you have no shame?! Go and get dressed <i>immediately</i>, young lady!"`);
     }
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
     qspCall(st, 'daily_routine', 'abort');
+    (st as any).fullmorrout = undefined;
     (st as any).minut = ((st as any).minut ?? 0) + (1);
   } },
     ]);
@@ -940,9 +897,7 @@ function enterParentsMealOptions(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'food', 'family_meals', 'breakfast');
     qspCall(st, 'food', 'aftermeal');
     qspCall(st, 'stat', '');
-    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/shared/food/breakfast_'+rand(0, 1)+'.jpg...
     scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/shared/food/breakfast_` + (Math.floor(Math.random() * 2) + 0) + '.jpg"></center>');
-    // TODO-QSP: dynamic text: You enjoy a quiet breakfast by yourself. The portions were moderate and<<$mtxt>>...
     scene.text(`You enjoy a quiet breakfast by yourself. The portions were moderate and${((st as any).mtxt ?? '')} You accompany it with a mug of tea.`);
     scene.actions([
       { label: 'Get up from the table', handler: (st: GameState) => {
@@ -959,7 +914,6 @@ function enterParentsMealOptions(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'npc_relationship', 'modify', 'A29', (-20));
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/mom/prost6.jpg');
-    // TODO-QSP: dynamic text: Your <<$npc_nickname[''A29'']>> glares at you as you sit down and you realize yo...
     scene.text(`Your ${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')} glares at you as you sit down and you realize you still have cum on you!`);
     scene.text('"How disgusting! And at the dinner table! Have you no shame?! Get out of my sight, whore!"');
     scene.text('Knowing there\'s nothing you can say, you simply mumble an apology and quickly head to the bathroom.');
@@ -980,7 +934,6 @@ function enterParentsMealOptions(s: GameState, scene: SceneBuilder): void {
     (st as any).dinner_day = ((st as any).daystart ?? 0);
     qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/apartment/home/dinnerhome.jpg');
-    // TODO-QSP: dynamic text: You sit down and join your family for dinner and your stepfather starts teasing ...
     scene.text(`You sit down and join your family for dinner and your stepfather starts teasing you. "So. Do you have a boyfriend yet, ${((st as any).pcs_nickname ?? '')}?"`);
     if ((((st as any).motherKnowSpravka ?? 0) > 0  ||  ((st as any).motherKnowWhore ?? 0) > 0)  &&  (((st as any).npc_rel ?? 0)?.['A29'] <= 20  ||  ((st as any).npc_QW ?? 0)?.['A29'] === 1)) {
       scene.text('You\'re about to answer when your mother scoffs. "I\'m sure she\'s found herself <i>plenty</i> of boys by now."');
@@ -1015,7 +968,6 @@ function enterParentsMealOptions(s: GameState, scene: SceneBuilder): void {
         } else {
           if (((st as any).npc_QW ?? 0)?.['A29'] === 2) {
             scene.text('You\'re about to respond when your mother interrupts you. "We\'ve spoken about this. It\'s okay if she starts dating so long as she\'s careful, but I\'d prefer if she focused on university first. She has plenty of time to settle down after that."');
-            // TODO-QSP: dynamic text: "Is that what <<$pcs_nickname>> wants?" he asks. "Maybe she wants to settle down...
             scene.text(`"Is that what ${((st as any).pcs_nickname ?? '')} wants?" he asks. "Maybe she wants to settle down and start a family of her own without worrying about university?"`);
             scene.text('Your mother gives him a hard stare and he drops it before he starts talking about some of the stuff that happened at his work. All and all, you have a fairly enjoyable dinner.');
           } else {
@@ -1045,12 +997,12 @@ function enterParentsMealOptions(s: GameState, scene: SceneBuilder): void {
     if ((((st as any).motherKnowSpravka ?? 0) > 0  ||  ((st as any).motherKnowWhore ?? 0) > 0)  &&  (((st as any).npc_rel ?? 0)?.['A29'] <= 20  ||  ((st as any).npc_QW ?? 0)?.['A29'] === 1)) {
       scene.text('"Of course my whore of a so called daughter thinks <i>this</i> is appropriate at the dinner table! Go and put some clothes on, you shameless slut!" she growls before throwing you out of the room.');
     } else {
-      // TODO-QSP: dynamic text: Your mother stands up from her seat, nearly knocking the chair over in the proce...
       scene.text(`Your mother stands up from her seat, nearly knocking the chair over in the process. "What on God's earth are you doing, ${((st as any).pcs_nickname ?? '')}?! Have you have no shame?! Go and get dressed <i>immediately</i>, young lady!"`);
     }
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
     qspCall(st, 'daily_routine', 'abort');
+    (st as any).fullmorrout = undefined;
     (st as any).minut = ((st as any).minut ?? 0) + (1);
   } },
     ]);
@@ -1073,7 +1025,6 @@ function enterParentsMealOptions(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1098,7 +1049,6 @@ function enterEatWarmPk(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'food', 'medium_meal_text');
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', handler: (st: GameState) => {
     qspCall(st, 'daily_routine', '');
@@ -1130,7 +1080,6 @@ function enterEatCookedPk(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'food', 'medium_meal_text');
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', handler: (st: GameState) => {
     qspCall(st, 'daily_routine', '');
@@ -1158,7 +1107,6 @@ function enterEatDietPk(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', handler: (st: GameState) => {
     qspCall(st, 'daily_routine', '');

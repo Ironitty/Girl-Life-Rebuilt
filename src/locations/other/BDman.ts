@@ -21,7 +21,6 @@ function enterGivi(s: GameState, scene: SceneBuilder): void {
   (s as any).hairBoy = 3;
   ((s as any).npc_rough = (s as any).npc_rough ?? {})[String((s as any).boy ?? 0)] = 1;
   ((s as any).npc_pervert = (s as any).npc_pervert ?? {})[String((s as any).boy ?? 0)] = 1;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -38,7 +37,6 @@ function enterAshot(s: GameState, scene: SceneBuilder): void {
   (s as any).hairBoy = 3;
   ((s as any).npc_rough = (s as any).npc_rough ?? {})[String((s as any).boy ?? 0)] = 1;
   ((s as any).npc_pervert = (s as any).npc_pervert ?? {})[String((s as any).boy ?? 0)] = 1;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -55,7 +53,6 @@ function enterArthur(s: GameState, scene: SceneBuilder): void {
   (s as any).hairBoy = 3;
   ((s as any).npc_rough = (s as any).npc_rough ?? {})[String((s as any).boy ?? 0)] = 1;
   ((s as any).npc_pervert = (s as any).npc_pervert ?? {})[String((s as any).boy ?? 0)] = 1;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -72,7 +69,6 @@ function enterAbdula(s: GameState, scene: SceneBuilder): void {
   (s as any).hairBoy = 3;
   ((s as any).npc_rough = (s as any).npc_rough ?? {})[String((s as any).boy ?? 0)] = 1;
   ((s as any).npc_pervert = (s as any).npc_pervert ?? {})[String((s as any).boy ?? 0)] = 1;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -89,7 +85,6 @@ function enterHasan(s: GameState, scene: SceneBuilder): void {
   (s as any).hairBoy = 3;
   ((s as any).npc_rough = (s as any).npc_rough ?? {})[String((s as any).boy ?? 0)] = 1;
   ((s as any).npc_pervert = (s as any).npc_pervert ?? {})[String((s as any).boy ?? 0)] = 1;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -106,7 +101,6 @@ function enterKamil(s: GameState, scene: SceneBuilder): void {
   (s as any).hairBoy = 3;
   ((s as any).npc_rough = (s as any).npc_rough ?? {})[String((s as any).boy ?? 0)] = 1;
   ((s as any).npc_pervert = (s as any).npc_pervert ?? {})[String((s as any).boy ?? 0)] = 1;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -123,7 +117,6 @@ function enterAslan(s: GameState, scene: SceneBuilder): void {
   (s as any).hairBoy = 3;
   ((s as any).npc_rough = (s as any).npc_rough ?? {})[String((s as any).boy ?? 0)] = 1;
   ((s as any).npc_pervert = (s as any).npc_pervert ?? {})[String((s as any).boy ?? 0)] = 1;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -140,7 +133,6 @@ function enterMuhtar(s: GameState, scene: SceneBuilder): void {
   (s as any).hairBoy = 3;
   ((s as any).npc_rough = (s as any).npc_rough ?? {})[String((s as any).boy ?? 0)] = 1;
   ((s as any).npc_pervert = (s as any).npc_pervert ?? {})[String((s as any).boy ?? 0)] = 1;
-  // TODO-QSP: end
   scene.build();
 }
 

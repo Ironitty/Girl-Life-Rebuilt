@@ -9,8 +9,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('<center><b>Cinema</b></center>');
   scene.img('images/locations/city/citycenter/mall/cinema/cinema.jpg');
-  // TODO-QSP: dynamic text: 'Small cinema ticket costs ' + $func('money', 'string_price', 300) + '.'
-  scene.text('Small cinema ticket costs 300₽.');
+  scene.text('\'Small cinema ticket costs 300₽.\'');
   if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) <= 20) {
     scene.actions([
       { label: 'Watch a movie', handler: (st: GameState) => {
@@ -25,7 +24,6 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('The cinema is closed.');
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['city_mall', ''] },
   ]);
@@ -96,7 +94,7 @@ function enterWatchMovie(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
-  // TODO-QSP: end
+  (s as any).temp_rand = undefined;
   scene.build();
 }
 
@@ -106,7 +104,6 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
   scene.text('After a few minutes, his groans of pleasure tell you that he is ready to pop.');
   qspCall(s, 'arousal', 'cuni', 10, 'sub');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Keep sucking', handler: (st: GameState) => {
     scene.text('You continue suck until, your mouth is filled with his liquid warmth');
@@ -155,7 +152,6 @@ function enterSex2(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Have some', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/mall/cinema/sex/kinosex2.jpg');
@@ -244,7 +240,6 @@ function enterKinoswallow(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'end');
   qspCall(s, 'cum_call', 'mouth_swallow', 'guy from the cinema');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['city_cinema', ''] },
   ]);
@@ -280,7 +275,7 @@ function enterMovie(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
+  (s as any).temp_rand = undefined;
   scene.build();
 }
 

@@ -28,7 +28,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the cafe', goto: ['pushkin_sq', ''] },
     { label: 'Sit down at a table', goto: ['pushkin_cafe', 'food'] },
@@ -55,7 +54,6 @@ function enterFood(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).stallionQ ?? 0))) {
     (s as any).stallionQ = 1;
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the table', goto: ['pushkin_cafe', 'start'] },
     { label: 'Order from the menu (0:05)', handler: (st: GameState) => {

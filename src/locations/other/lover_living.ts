@@ -23,10 +23,8 @@ function enterTalk(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterLoverAction(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).clothingworntype ?? 0) === 'nude') {
     if (((s as any).braworntype ?? 0) === 'none'  &&  ((s as any).pantyworntype ?? 0) === 'none') {
-      // TODO-QSP: dynamic text: Your <<$npcRelat>>, seeing you naked, says - "You are very beautiful."
       scene.text(`Your ${((s as any).npcRelat ?? '')}, seeing you naked, says - "You are very beautiful."`);
     } else {
-      // TODO-QSP: dynamic text: Your <<$npcRelat>> smiles, "It''s always nice to see you in your underwear honey...
       scene.text(`Your ${((s as any).npcRelat ?? '')} smiles, "It's always nice to see you in your underwear honey."`);
     }
   }
@@ -37,7 +35,6 @@ function enterTalk(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: '<b>Move away</b>', handler: (st: GameState) => {
     dynamicGoto(st, 'prevLoc', 'prevArg');
@@ -59,31 +56,25 @@ function enterLoverDiscription(s: GameState, scene: SceneBuilder): void {
       (s as any).h_age = '' + ((s as any).npcdesc ?? 0) + ' was born in ' + ((s as any).spouse_birth_year ?? 0) + ', ' + ((s as any).xe ?? 0) + ' is ' + ((s as any).npcAge ?? 0) + ' years old. You are ' + ((s as any).age_diff ?? 0) + ' years older than ' + ((s as any).xem ?? 0) + '';
     }
   }
-  // TODO-QSP: dynamic text: Your <<$npcRelat>> <<$npcdesc>>, <<$h_age>>. It <<$npcheight>> <<$npcbuild>> <<$...
   scene.text(`Your ${((s as any).npcRelat ?? '')} ${((s as any).npcdesc ?? '')}, ${((s as any).h_age ?? '')}. It ${((s as any).npcheight ?? '')} ${((s as any).npcbuild ?? '')} ${((s as any).npchair ?? '')}.`);
   if (((s as any).npc_rel ?? 0)?.[String((s as any).npcID ?? 0)] < 20) {
-    // TODO-QSP: dynamic text: You have a terrible row with your <<$npcRelat>>.
     scene.text(`You have a terrible row with your ${((s as any).npcRelat ?? '')}.`);
   } else {
     if (((s as any).npc_rel ?? 0)?.[String((s as any).npcID ?? 0)] < 40) {
-      // TODO-QSP: dynamic text: There are tension between you and your <<$npcRelat>>.
       scene.text(`There are tension between you and your ${((s as any).npcRelat ?? '')}.`);
     } else {
       if (((s as any).npc_rel ?? 0)?.[String((s as any).npcID ?? 0)] < 60) {
-        // TODO-QSP: dynamic text: You have a normal relationship with your <<$npcRelat>>.
         scene.text(`You have a normal relationship with your ${((s as any).npcRelat ?? '')}.`);
       } else {
         if (((s as any).npc_rel ?? 0)?.[String((s as any).npcID ?? 0)] < 80) {
-          // TODO-QSP: dynamic text: You have a good relationship with your <<$npcRelat>>.
           scene.text(`You have a good relationship with your ${((s as any).npcRelat ?? '')}.`);
         } else {
-          // TODO-QSP: dynamic text: You have a great relationship with your <<$npcRelat>>.
           scene.text(`You have a great relationship with your ${((s as any).npcRelat ?? '')}.`);
         }
       }
     }
   }
-  // TODO-QSP: end
+  (s as any).spouse_birth_year = undefined;
   scene.build();
 }
 
@@ -92,17 +83,14 @@ function enterLoverAction(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).loc ?? 0) === 'bedr') {
       if (((s as any).hour ?? 0) > 22  ||  ((s as any).hour ?? 0) < 7) {
-        // TODO-QSP: dynamic text: Your <<$npcRelat>> <<$npcdesc>> is lying in bed, eyes open. "What do you want? I...
         scene.text(`Your ${((s as any).npcRelat ?? '')} ${((s as any).npcdesc ?? '')} is lying in bed, eyes open. "What do you want? It is late, go to sleep."`);
       }
     } else {
       if (((s as any).loc ?? 0) === 'sitr') {
         if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) < 17  &&  ((s as any).week ?? 0) >= 6) {
-          // TODO-QSP: dynamic text: <<$npcdesc>> is sitting on the couch and watching TV.
           scene.text(`${((s as any).npcdesc ?? '')} is sitting on the couch and watching TV.`);
         } else {
           if (((s as any).hour ?? 0) >= 18  &&  ((s as any).hour ?? 0) < 23) {
-            // TODO-QSP: dynamic text: <<$npcdesc>> is sitting on the couch and watching TV.
             scene.text(`${((s as any).npcdesc ?? '')} is sitting on the couch and watching TV.`);
           }
         }
@@ -111,7 +99,6 @@ function enterLoverAction(s: GameState, scene: SceneBuilder): void {
         } else {
           if (((s as any).loc ?? 0) === 'kuhr') {
             if (((s as any).hour ?? 0) === 17  ||  ((s as any).hour ?? 0) === 7) {
-              // TODO-QSP: dynamic text: <<$npcdesc>> is sitting at the kitchen table.
               scene.text(`${((s as any).npcdesc ?? '')} is sitting at the kitchen table.`);
             }
           }
@@ -119,7 +106,6 @@ function enterLoverAction(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -138,28 +124,22 @@ function enterBedr(s: GameState, scene: SceneBuilder): void {
   if (((s as any).spouseVars ?? 0)?.['drunk_day'] === ((s as any).daystart ?? 0)) {
     if (((s as any).spouseVars ?? 0)?.['hus_strapon'] === 1) {
       if ((!(Math.floor(Math.random() * 2) + 0))) {
-        // TODO-QSP: dynamic text: Your <<$npcRelat>> is still passed out drunk after you used an anal plug on <<$x...
         scene.text(`Your ${((s as any).npcRelat ?? '')} is still passed out drunk after you used an anal plug on ${((s as any).xem ?? '')}.`);
       } else {
-        // TODO-QSP: dynamic text: Your <<$npcRelat>> is still passed out drunk after you used an anal plug on <<$x...
         scene.text(`Your ${((s as any).npcRelat ?? '')} is still passed out drunk after you used an anal plug on ${((s as any).xem ?? '')}.`);
       }
     } else {
       if (((s as any).spouseVars ?? 0)?.['hus_strapon'] === 2) {
         if ((!(Math.floor(Math.random() * 2) + 0))) {
-          // TODO-QSP: dynamic text: Your <<$npcRelat>> is still passed out drunk after you stuck a dildo in <<$xyr>>...
           scene.text(`Your ${((s as any).npcRelat ?? '')} is still passed out drunk after you stuck a dildo in ${((s as any).xyr ?? '')} ass.`);
         } else {
-          // TODO-QSP: dynamic text: Your <<$npcRelat>> is still passed out drunk after you stuck a dildo in <<$xyr>>...
           scene.text(`Your ${((s as any).npcRelat ?? '')} is still passed out drunk after you stuck a dildo in ${((s as any).xyr ?? '')} ass.`);
         }
       } else {
         if (((s as any).spouseVars ?? 0)?.['hus_strapon'] === 3) {
           if ((!(Math.floor(Math.random() * 2) + 0))) {
-            // TODO-QSP: dynamic text: Your <<$npcRelat>> is still passed out drunk after you fucked <<$xem>> in the as...
             scene.text(`Your ${((s as any).npcRelat ?? '')} is still passed out drunk after you fucked ${((s as any).xem ?? '')} in the ass with a strap-on.`);
           } else {
-            // TODO-QSP: dynamic text: Your <<$npcRelat>> is still passed out drunk after you fucked <<$xem>> in the as...
             scene.text(`Your ${((s as any).npcRelat ?? '')} is still passed out drunk after you fucked ${((s as any).xem ?? '')} in the ass with a strap-on.`);
           }
         }
@@ -169,7 +149,6 @@ function enterBedr(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).spouseVars ?? 0)?.['drink'] !== 10  &&  ((s as any).spouseVars ?? 0)?.['drunk_day'] !== ((s as any).daystart ?? 0)) {
     if (((s as any).hour ?? 0) > 22  ||  ((s as any).hour ?? 0) < 7) {
-      // TODO-QSP: dynamic text: Your <a href="exec: gt ''lover_living'', ''talk''"><<$npcRelat>></a> is sleeping...
       scene.text(`Your <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027lover_living/u0027, /u0027talk/u0027); return false;">${((s as any).npcRelat ?? '')}</a> is sleeping on the bed.`);
     }
     qspCall(s, 'music_actions', 'no_music');
@@ -177,14 +156,12 @@ function enterBedr(s: GameState, scene: SceneBuilder): void {
   if (((s as any).husID ?? 0) !== '') {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterHusbandDrunk(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterKitchen(s: GameState, scene: SceneBuilder): void {
   if (((s as any).spouseVars ?? 0)?.['drink'] !== 10) {
     if (((s as any).hour ?? 0) === 7  ||  ((s as any).hour ?? 0) === 17) {
-      // TODO-QSP: dynamic text: <a href="exec:gt ''lover_living'', ''talk''">Your <<$npcRelat>> is eating at the...
       scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027lover_living/u0027, /u0027talk/u0027); return false;">Your ${((s as any).npcRelat ?? '')} is eating at the table.</a>`);
     }
   }
@@ -201,7 +178,6 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'mood', 'lower', 'large');
     qspCall(st, 'stat', '');
     scene.img('images/shared/home/kitchen/cook.jpg');
-    // TODO-QSP: dynamic text: You prepare a meal for your <<$npcRelat>> and yourself.
     scene.text(`You prepare a meal for your ${((st as any).npcRelat ?? '')} and yourself.`);
     scene.actions([
       { label: 'Leave the meal', handler: (st: GameState) => {
@@ -212,14 +188,12 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterLivingroom(s: GameState, scene: SceneBuilder): void {
   if (((s as any).spouseVars ?? 0)?.['drink'] !== 10  &&  ((s as any).daystart ?? 0) > ((s as any).spouseVars ?? 0)?.['drunk_day']) {
     if ((((s as any).week ?? 0) >= 6  &&  ((s as any).hour ?? 0) > 7  &&  ((s as any).hour ?? 0) < 17)  ||  (((s as any).hour ?? 0) > 17  &&  ((s as any).hour ?? 0) <= 22)) {
-      // TODO-QSP: dynamic text: Your <a href="exec:gt ''lover_living'', ''talk''"><<$npcRelat>></a> is sitting o...
       scene.text(`Your <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027lover_living/u0027, /u0027talk/u0027); return false;">${((s as any).npcRelat ?? '')}</a> is sitting on the couch, watching television.`);
       qspCall(s, 'music_actions', 'not_alone');
     }
@@ -227,91 +201,91 @@ function enterLivingroom(s: GameState, scene: SceneBuilder): void {
   if (((s as any).spouseVars ?? 0)?.['drunk_day'] === ((s as any).daystart ?? 0)  &&  ((s as any).hour ?? 0) >= 20) {
     qspCall(s, 'music_actions', 'no_music');
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterHusbandDrunk(s: GameState, scene: SceneBuilder): void {
   if (((s as any).husID ?? 0) !== '') {
-    // TODO-QSP: exit
+    return;
   }
   if (((s as any).spouseVars ?? 0)?.['drink'] === 10  &&  ((s as any).hour ?? 0) > 20  &&  ((s as any).hour ?? 0) < 23  &&  ((s as any).spouseVars ?? 0)?.['hus_strapon'] === 0) {
     if ((!(Math.floor(Math.random() * 2) + 0))) {
-      // TODO-QSP: dynamic text: <<$boydesc>> came home very drunk and collapsed on the bed. <<$Xec>> fell asleep...
       scene.text(`${((s as any).boydesc ?? '')} came home very drunk and collapsed on the bed. ${((s as any).Xec ?? '')} fell asleep in ${((s as any).xyr ?? '')} clothes.`);
     } else {
-      // TODO-QSP: dynamic text: <<$boydesc>> came home drunk and fell asleep on the bed.
       scene.text(`${((s as any).boydesc ?? '')} came home drunk and fell asleep on the bed.`);
     }
-    // TODO-QSP: dynamic text: <i>That pig</i>! you think when an idea springs to mind. <i>Maybe I should teach...
     scene.text(`<i>That pig</i>! you think when an idea springs to mind. <i>Maybe I should teach ${((s as any).xem ?? '')} a lesson so ${((s as any).xe ?? '')} won't get drunk again</i>.`);
     if (((s as any).mc_inventory ?? 0)?.['buttplug'] === 1) {
-      // TODO-QSP: act iif(rand(0, 1) = 0, 'Insert an anal plug', 'Insert a butt plug in <<$xyr>> ass'):
-      ((s as any).spouseVars = (s as any).spouseVars ?? {})['drunk_day'] = ((s as any).daystart ?? 0);
-      ((s as any).spouseVars = (s as any).spouseVars ?? {})['drink'] = 11;
-      ((s as any).spouseVars = (s as any).spouseVars ?? {})['hus_strapon'] = 1;
-      (s as any).minut = ((s as any).minut ?? 0) + 10;
-      scene.img('images/characters/city/husband/sex/h0.jpg');
-      if ((!((s as any).analPlugIn ?? 0))) {
-        // TODO-QSP: dynamic text: You take an anal plug and put it into <<$xyr>> ass.
-        scene.text(`You take an anal plug and put it into ${((s as any).xyr ?? '')} ass.`);
+      scene.actions([
+        { label: '', labelFn: (s: GameState) => String((((!(Math.floor(Math.random() * 2) + 0))) ? ('Insert an anal plug') : ('Insert a butt plug in ' + ((s as any).xyr ?? '') + ' ass')) ?? ''), handler: (st: GameState) => {
+    ((st as any).spouseVars = (st as any).spouseVars ?? {})['drunk_day'] = ((st as any).daystart ?? 0);
+    ((st as any).spouseVars = (st as any).spouseVars ?? {})['drink'] = 11;
+    ((st as any).spouseVars = (st as any).spouseVars ?? {})['hus_strapon'] = 1;
+    (st as any).minut = ((st as any).minut ?? 0) + 10;
+    scene.img('images/characters/city/husband/sex/h0.jpg');
+    if ((!((st as any).analPlugIn ?? 0))) {
+      scene.text(`You take an anal plug and put it into ${((st as any).xyr ?? '')} ass.`);
+    } else {
+      (st as any).analPlugIn = 0;
+      (st as any).analPlugOut = 0;
+      if ((!(Math.floor(Math.random() * 2) + 0))) {
+        scene.text(`You get your butt plug out and pull down ${((st as any).xyr ?? '')} pants. You put just a dab of lube on the tip of the plug, then gently insert it into ${((st as any).xyr ?? '')} ass.`);
       } else {
-        (s as any).analPlugIn = 0;
-        (s as any).analPlugOut = 0;
-        if ((!(Math.floor(Math.random() * 2) + 0))) {
-          // TODO-QSP: dynamic text: You get your butt plug out and pull down <<$xyr>> pants. You put just a dab of l...
-          scene.text(`You get your butt plug out and pull down ${((s as any).xyr ?? '')} pants. You put just a dab of lube on the tip of the plug, then gently insert it into ${((s as any).xyr ?? '')} ass.`);
-        } else {
-          // TODO-QSP: dynamic text: You pull the plug out of you and shove it up <<$xyr>> ass.
-          scene.text(`You pull the plug out of you and shove it up ${((s as any).xyr ?? '')} ass.`);
-        }
-      }
-      // TODO-QSP: dynamic text: <<$boydesc>> moves, but he doesn''t wake up.
-      scene.text(`${((s as any).boydesc ?? '')} moves, but he doesn't wake up.`);
-      if (((s as any).mc_inventory ?? 0)?.['dildo_small'] > 0) {
-        // TODO-QSP: act iif(rand(0, 1) = 0, 'Insert dildo', 'Insert a dildo into <<$xyr>> ass'):
-        ((s as any).spouseVars = (s as any).spouseVars ?? {})['hus_strapon'] = 2;
-        qspCall(s, 'cum_call', 'mouth_swallow', ((s as any).boy ?? 0), 1);
-        scene.img('images/characters/city/husband/sex/h1.jpg');
-        if ((!(Math.floor(Math.random() * 2) + 0))) {
-          // TODO-QSP: dynamic text: You pull out the plug and replace it with a dildo. <<$boydesc>> doesn''t even bu...
-          scene.text(`You pull out the plug and replace it with a dildo. ${((s as any).boydesc ?? '')} doesn't even budge as you slowly move the dildo in and out, trying not to wake him up. You notice his cock starts to get rock-hard, and he starts to moan softly in his sleep. His dick starts to throb like he's going to cum. You take his dick in your mouth and don't need to suck on it for long. You swallow his cum before carefully putting his underpants back on.`);
-        } else {
-          // TODO-QSP: dynamic text: You pull out the plug and stick the dildo up his ass instead, <<$boydesc>> did n...
-          scene.text(`You pull out the plug and stick the dildo up his ass instead, ${((s as any).boydesc ?? '')} did not move. You began to slowly move the dildo trying not to wake him. After a bit, his dick begins to get hard in front of your face, and ${((s as any).boydesc ?? '')} moaned softly, but didn't wake up. You start to really work the dildo in his ass, stroking it deep in his ass, before too long his cock started to throb. You wrap your lips around his cock, you barely even started to suck his dick when suddenly your mouth is filled with a jet of sperm, you swallow it all and carefully cleaned his penis, then you pulled his pants back up.`);
-        }
-        qspCall(s, 'arousal', 'bj', 20);
-        qspCall(s, 'arousal', 'anal_dildo_give', (-20));
-        qspCall(s, 'arousal', 'end');
-        scene.actions([
-          { label: 'Finish', handler: (st: GameState) => {
-    dynamicGoto(st, 'prevLoc', 'prevArg');
-  } },
-        ]);
+        scene.text(`You pull the plug out of you and shove it up ${((st as any).xyr ?? '')} ass.`);
       }
     }
-    if (((s as any).mc_inventory ?? 0)?.['strapon'] > 0) {
-      // TODO-QSP: act iif(rand(0, 1) = 0, 'Use the strap-on', 'Wear strap-on'):
-      (s as any).minut = ((s as any).minut ?? 0) + 20;
-      ((s as any).spouseVars = (s as any).spouseVars ?? {})['hus_strapon'] = 3;
-      qspCall(s, 'cum_call', 'mouth_swallow', ((s as any).boy ?? 0), 1);
-      (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (30);
-      scene.img('images/characters/city/husband/sex/h2.jpg');
-      // TODO-QSP: dynamic text: You put on the strapon and pull out the butt plug. You gently move the shaft of ...
-      scene.text(`You put on the strapon and pull out the butt plug. You gently move the shaft of the strap-on inside his ass and ${((s as any).boydesc ?? '')} moves, but doesn't wake up. You continue to slowly move it in and out, trying not to wake him. You notice his cock is getting rock-hard and he starts to moan softly in his sleep. Hoping that he won't wake up, you increase your speed and push the entire length of the strap-on into his ass as you start to stroke his dick. Realizing he's not far from cumming, you pull out and finish him by giving him a blowjob. He cums in your mouth and you swallow before carefully putting his underpants back on.`);
-      qspCall(s, 'arousal', 'bj', 20);
-      qspCall(s, 'arousal', 'anal_strap_give', (-20));
-      qspCall(s, 'arousal', 'end');
+    scene.text(`${((st as any).boydesc ?? '')} moves, but he doesn't wake up.`);
+    if (((st as any).mc_inventory ?? 0)?.['dildo_small'] > 0) {
       scene.actions([
-        { label: 'Finish', handler: (st: GameState) => {
+        { label: '', labelFn: (s: GameState) => String((((!(Math.floor(Math.random() * 2) + 0))) ? ('Insert dildo') : ('Insert a dildo into ' + ((st as any).xyr ?? '') + ' ass')) ?? ''), handler: (st: GameState) => {
+    ((st as any).spouseVars = (st as any).spouseVars ?? {})['hus_strapon'] = 2;
+    qspCall(st, 'cum_call', 'mouth_swallow', ((st as any).boy ?? 0), 1);
+    scene.img('images/characters/city/husband/sex/h1.jpg');
+    if ((!(Math.floor(Math.random() * 2) + 0))) {
+      scene.text(`You pull out the plug and replace it with a dildo. ${((st as any).boydesc ?? '')} doesn't even budge as you slowly move the dildo in and out, trying not to wake him up. You notice his cock starts to get rock-hard, and he starts to moan softly in his sleep. His dick starts to throb like he's going to cum. You take his dick in your mouth and don't need to suck on it for long. You swallow his cum before carefully putting his underpants back on.`);
+    } else {
+      scene.text(`You pull out the plug and stick the dildo up his ass instead, ${((st as any).boydesc ?? '')} did not move. You began to slowly move the dildo trying not to wake him. After a bit, his dick begins to get hard in front of your face, and ${((st as any).boydesc ?? '')} moaned softly, but didn't wake up. You start to really work the dildo in his ass, stroking it deep in his ass, before too long his cock started to throb. You wrap your lips around his cock, you barely even started to suck his dick when suddenly your mouth is filled with a jet of sperm, you swallow it all and carefully cleaned his penis, then you pulled his pants back up.`);
+    }
+    qspCall(st, 'arousal', 'bj', 20);
+    qspCall(st, 'arousal', 'anal_dildo_give', (-20));
+    qspCall(st, 'arousal', 'end');
+    scene.actions([
+      { label: 'Finish', handler: (st: GameState) => {
     dynamicGoto(st, 'prevLoc', 'prevArg');
+  } },
+    ]);
+  } },
+      ]);
+    }
+    if (((st as any).mc_inventory ?? 0)?.['strapon'] > 0) {
+      scene.actions([
+        { label: '', labelFn: (s: GameState) => String((((!(Math.floor(Math.random() * 2) + 0))) ? ('Use the strap-on') : ('Wear strap-on')) ?? ''), handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 20;
+    ((st as any).spouseVars = (st as any).spouseVars ?? {})['hus_strapon'] = 3;
+    qspCall(st, 'cum_call', 'mouth_swallow', ((st as any).boy ?? 0), 1);
+    (st as any).pcs_horny = ((st as any).pcs_horny ?? 0) + (30);
+    scene.img('images/characters/city/husband/sex/h2.jpg');
+    scene.text(`You put on the strapon and pull out the butt plug. You gently move the shaft of the strap-on inside his ass and ${((st as any).boydesc ?? '')} moves, but doesn't wake up. You continue to slowly move it in and out, trying not to wake him. You notice his cock is getting rock-hard and he starts to moan softly in his sleep. Hoping that he won't wake up, you increase your speed and push the entire length of the strap-on into his ass as you start to stroke his dick. Realizing he's not far from cumming, you pull out and finish him by giving him a blowjob. He cums in your mouth and you swallow before carefully putting his underpants back on.`);
+    qspCall(st, 'arousal', 'bj', 20);
+    qspCall(st, 'arousal', 'anal_strap_give', (-20));
+    qspCall(st, 'arousal', 'end');
+    scene.actions([
+      { label: 'Finish', handler: (st: GameState) => {
+    dynamicGoto(st, 'prevLoc', 'prevArg');
+  } },
+    ]);
+  } },
+      ]);
+    }
+    scene.actions([
+      { label: 'Finish', handler: (st: GameState) => {
+    dynamicGoto(st, 'prevLoc', 'prevArg');
+  } },
+    ]);
   } },
       ]);
     }
   }
-  // TODO-QSP: end
-  // TODO-QSP: end
-  // TODO-QSP: end
   if (((s as any).spouseVars ?? 0)?.['drink'] === 11  &&  ((s as any).spouseVars ?? 0)?.['hus_strapon'] > 0  &&  ((s as any).daystart ?? 0) > ((s as any).spouseVars ?? 0)?.['drunk_day']) {
     if ((!(Math.floor(Math.random() * 2) + 0))) {
       scene.text('Your husband approaches you. "Honey, my ass hurts. Did something happen yesterday?"');
@@ -431,19 +405,13 @@ function enterHusbandDrunk(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Finish', handler: (st: GameState) => {
-    // TODO-QSP: spouseVars['hus_strapon'] = 0
+    ((st as any).spouseVars = (st as any).spouseVars ?? {})['hus_strapon'] = 0;
     dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
     ]);
   }
-  // TODO-QSP: end
-  scene.actions([
-    { label: 'Finish', handler: (st: GameState) => {
-    dynamicGoto(st, 'prevLoc', 'prevArg');
-  } },
-  ]);
   scene.build();
 }
 
@@ -626,13 +594,12 @@ function enterSantehnik(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enter(s: GameState, scene: SceneBuilder): void {
   if (((s as any).husID ?? 0) === ''  &&  (((s as any).wifID ?? 0) === ''  ||  1)) {
-    // TODO-QSP: exit
+    return;
   }
   const arg = s.locArg;
   switch (arg) {

@@ -40,14 +40,13 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).prostitute ?? 0)?.['gadukino'] === 1  &&  (((s as any).PCloStyle ?? 0) === 4  ||  ((s as any).PCloProstitute ?? 0) === 1)) {
       if (((s as any).prostitute ?? 0)?.['earnings_day'] > 0) {
-        // TODO-QSP: '<br>You have earned <<$func(''money'', ''string_profit'', prostitute[''earnings_day''])>> today.'+i...
+        scene.text(`<br>You have earned ${qspFunc(s, 'money', 'string_profit', (((s as any).prostitute ?? 0)?.['earnings_day'] ?? ''))} today.` + ((((s as any).prostitute ?? 0)?.['payment_method'] === 0) ? (' Your share is ' + qspFunc(s, 'money', 'string_profit', (((s as any).prostitute ?? {})?.['earnings_day'] ?? 0) * (((s as any).prostitute ?? {})?.['share_player'] ?? 0) / 100) + '' + ((((s as any).prostitute ?? 0)?.['debt_amount'] > 0) ? (', but your pimp will keep ' + qspFunc(s, 'money', 'string_profit', (((s as any).prostitute ?? {})?.['earnings_day'] ?? 0) * (((s as any).prostitute ?? {})?.['debt_payment_percent'] ?? 0) / 100) + ' to pay down your debt.') : ('.'))) : ('')));
       }
       scene.actions([
         { label: 'Look for clients', goto: ['gad_prostitutes', 'work'] },
       ]);
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Walk back to the highway', goto: ['road', '10'] },
   ]);
@@ -71,9 +70,7 @@ function enterPimpMira(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'willpower', 'pay', 'force');
     qspCall(st, 'stat', '');
     qspCall(st, 'miroslava', 'miraclothes');
-    // TODO-QSP: dynamic text: You call her over to you. Mira hurries over and looks at you with downcast eyes....
     scene.text(`You call her over to you. Mira hurries over and looks at you with downcast eyes. "Hi, ${((st as any).pcs_nickname ?? '')}. Are you having a good night?"`);
-    // TODO-QSP: dynamic text: You look at her angrily. "A better question, my lovely whore, is ''Are you havin...
     scene.text(`You look at her angrily. "A better question, my lovely whore, is 'Are you having a good night'? I want ${qspFunc(s, 'money', 'string_profit', 200)} per customer you have each night." You tell her earnestly.`);
     scene.text('Mira looks up in shock and with a hurt look on her face. "What are you talking about? Do you think I am a hooker?"');
     scene.text('You step up to her and place your hand on her face. Mira closes her eyes and leans into your hand. You look into her eyes once she opens them, then slap her hard across the face. Mira falls to the ground and starts to cry. "You\'re my property, whore. You will do whatever I tell you. You will never lie to me again, or I swear I will make you pay. Understand me?!"');
@@ -86,7 +83,6 @@ function enterPimpMira(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     dynamicGoto(st, 'prevloc', 'prevarg');
@@ -113,9 +109,7 @@ function enterMiraRebels(s: GameState, scene: SceneBuilder): void {
     }
   }
   scene.text('After Mira is done with her preaching, you try to think of something witty to say or raise your hand to slap her back, but you just can\'t bring yourself to do it.');
-  // TODO-QSP: dynamic text: Mira sees the defeated look in your eyes and knows that she has won. She pulls y...
   scene.text(`Mira sees the defeated look in your eyes and knows that she has won. She pulls you into an embrace and whispers, "It's alright, ${((s as any).pcs_nickname ?? '')}. We can just be friends again. And if you want to, maybe you can come work with me instead?"`);
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['gad_prostitutes', 'start'] },
   ]);
@@ -157,7 +151,6 @@ function enterJustMira(s: GameState, scene: SceneBuilder): void {
       { label: 'Walk back to Gadukino together', goto: ['gadukino', ''] },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -184,7 +177,6 @@ function enterWatchMira(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -193,7 +185,6 @@ function enterWatchFromHiding(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/gadukino/mira/sex/miraprost1_1.mp4');
   scene.text('You duck for cover as the guy suddenly gets out of the car, opens the passenger door, grabs Mira\'s head, and starts forcing his cock deep into her throat.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Keep watching', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'voyeur_sex', 10);
@@ -221,7 +212,6 @@ function enterWatchClose(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/gadukino/mira/sex/miraprost2_1.mp4');
   scene.text('Mira and the guy jump into the back of the van, and you watch as he starts fucking her wet pussy. His hand covers her mouth as she screams in ecstasy. The guy pounds his 20cm cock deep into her pussy. From Mira\'s grunts of partial joy and partial pain, you know the guy is hitting or entering her cervix.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Hide', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'voyeur_sex', 10);
@@ -245,7 +235,6 @@ function enterWatchClose(s: GameState, scene: SceneBuilder): void {
 
 function enterWork(s: GameState, scene: SceneBuilder): void {
   qspGoto(s, 'gad_prostitutes', 'work_alone');
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -258,7 +247,7 @@ function enterWorkAlone(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'prostitution_functions', 'parameters');
   if (((s as any).prostitute_names ?? 0)?.[String((s as any).prostitution_location ?? 0)] === '') {
     scene.text('If you want, you can tell your clients a different name.');
-    // TODO-QSP: $prostitute_names[$prostitution_location] = input("What name do you want to tell your clients? (Leav...
+    ((s as any).prostitute_names = (s as any).prostitute_names ?? {})[String((s as any).prostitution_location ?? 0)] = window.prompt("What name do you want to tell your clients? (Leave blank for " + (((s as any).pcs_nickname ?? 0)) + ")") ?? '';
     if (((s as any).prostitute_names ?? 0)?.[String((s as any).prostitution_location ?? 0)] === '') {
       ((s as any).prostitute_names = (s as any).prostitute_names ?? {})[String((s as any).prostitution_location ?? 0)] = ((s as any).pcs_nickname ?? 0);
     }
@@ -274,7 +263,7 @@ function enterWorkAlone(s: GameState, scene: SceneBuilder): void {
     scene.text('<br>You have visible cum stains on you. Most clients won\'t like that and will offer less money.');
   }
   if (((s as any).prostitute ?? 0)?.['earnings_day'] > 0) {
-    // TODO-QSP: 'You have earned <<$func(''money'', ''string_profit'', prostitute[''earnings_day''])>> today.'+iif(p...
+    scene.text(`You have earned ${qspFunc(s, 'money', 'string_profit', (((s as any).prostitute ?? 0)?.['earnings_day'] ?? ''))} today.` + ((((s as any).prostitute ?? 0)?.['payment_method'] === 0) ? (' Your share is ' + qspFunc(s, 'money', 'string_profit', (((s as any).prostitute ?? {})?.['earnings_day'] ?? 0) * (((s as any).prostitute ?? {})?.['share_player'] ?? 0) / 100) + '' + ((((s as any).prostitute ?? 0)?.['debt_amount'] > 0) ? (', but your pimp will keep ' + qspFunc(s, 'money', 'string_profit', (((s as any).prostitute ?? {})?.['earnings_day'] ?? 0) * (((s as any).prostitute ?? {})?.['debt_payment_percent'] ?? 0) / 100) + ' to pay down your debt.') : ('.'))) : ('')));
   }
   if (((s as any).prostitute ?? 0)?.['payment_method'] === 0) {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterEventCheck(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -310,7 +299,6 @@ function enterWorkAlone(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'prostitution_car_negotiation', 'general_description');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Stop working for now', goto: ['gad_prostitutes', 'start'] },
   ]);
@@ -318,7 +306,6 @@ function enterWorkAlone(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterEventCheck(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: end
   scene.build();
 }
 

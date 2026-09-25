@@ -13,6 +13,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'core_library', 'setloc', 'korrPar', ((s as any).locArgs?.[0] ?? 0));
   (s as any).location_type = 'private';
+  (s as any).locclass = undefined;
   (s as any).popolaini = 0;
   (s as any).saunaYouRoom = 0;
   (s as any).boycherdaksex = 0;
@@ -23,7 +24,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Corridor</b></center>');
   scene.img('images/locations/pavlovsk/resident/apartment/home/korrpar.jpg');
   scene.text('The corridor of your parent\'s apartment. There are several doors which lead to the other rooms of the apartment, as well as the front door which leads outside to the stairwell.');
-  scene.text('A <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027start/u0027); return false;">mirror</a> hangs on the wall near the front door.');
+  scene.text('A <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027start\u0027); return false;">mirror</a> hangs on the wall near the front door.');
   if (((s as any).locat ?? 0)?.['Fam_inGad'] === 1) {
     scene.text('With your parents away visiting your grandparents, the apartment seems quiet and empty.');
   }
@@ -84,7 +85,6 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
     qspCall(st, 'stat', '');
     scene.img('images/pc/activities/spy/peep3.jpg');
-    // TODO-QSP: dynamic text: You knock on the door and your <<$npc_nickname[''A29'']>> opens it, looking like...
     scene.text(`You knock on the door and your ${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')} opens it, looking like she just got out of the shower.`);
     scene.text('"I don\'t have time right now. Go wake up your brother."');
     scene.text('She then closes the door in your face.');
@@ -117,14 +117,14 @@ function enter(s: GameState, scene: SceneBuilder): void {
         } else {
           scene.actions([
             { label: 'Go to your parents\' room', handler: (st: GameState) => {
-    // TODO-QSP: msg 'Your parents are probably asleep. You shouldn''t go in ...
+    alert('Your parents are probably asleep. You shouldn\'t go in right now.');
   } },
           ]);
         }
       } else {
         scene.actions([
           { label: 'Go to your parents\' room', handler: (st: GameState) => {
-    // TODO-QSP: msg 'Your parents are probably asleep. You shouldn''t go in ...
+    alert('Your parents are probably asleep. You shouldn\'t go in right now.');
   } },
         ]);
       }
@@ -143,7 +143,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Go to the bathroom', handler: (st: GameState) => {
-    // TODO-QSP: msg 'You try to open the bathroom door, but it immediately b...
+    alert('You try to open the bathroom door, but it immediately bangs against the latch. "Does anybody in this family know how to knock?!" you hear your mother shout over the sound of running water.');
   } },
     ]);
   } else {
@@ -151,13 +151,13 @@ function enter(s: GameState, scene: SceneBuilder): void {
       if (((s as any).locat ?? 0)?.['Stepdad'] === 5) {
         scene.actions([
           { label: 'Go to the bathroom', handler: (st: GameState) => {
-    // TODO-QSP: msg 'You try to open the bathroom door, but it immediately b...
+    alert('You try to open the bathroom door, but it immediately bangs against the latch. "I\'m shaving! I\'ll be out in a few minutes!" your stepfather calls out.');
   } },
         ]);
       } else {
         scene.actions([
           { label: 'Go to the bathroom', handler: (st: GameState) => {
-    // TODO-QSP: msg 'You try to open the bathroom door, but it immediately b...
+    alert('You try to open the bathroom door, but it immediately bangs against the latch. "I\'m in the shower!" you hear your stepfather shout over the sound of running water.');
   } },
         ]);
       }
@@ -165,14 +165,14 @@ function enter(s: GameState, scene: SceneBuilder): void {
       if (((s as any).locat ?? 0)?.['Kolka'] === 10) {
         scene.actions([
           { label: 'Go to the bathroom', handler: (st: GameState) => {
-    // TODO-QSP: msg 'You try to open the bathroom door, but it immediately b...
+    alert('You try to open the bathroom door, but it immediately bangs against the latch. "I\'m in the shower!" you hear your brother shout over the sound of running water.');
   } },
         ]);
       } else {
         if (((s as any).locat ?? 0)?.['Anya'] === 5) {
           scene.actions([
             { label: 'Go to the bathroom', handler: (st: GameState) => {
-    // TODO-QSP: msg 'You try to open the bathroom door, but it immediately b...
+    alert('You try to open the bathroom door, but it immediately bangs against the latch. "I\'ll be done in a few minutes!" you hear your sister shout over the sound of running water.');
   } },
           ]);
         } else {
@@ -219,11 +219,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
         qspGoto(s, 'pet_dog', 'name');
       } else {
         if (((s as any).hour ?? 0) > 5) {
-          // TODO-QSP: dynamic text: <br>Your dog <a href="exec: gt ''pet_dog'', ''start''"><<$rex[''name'']>></a> is...
           scene.text(`<br>Your dog <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027pet_dog/u0027, /u0027start/u0027); return false;">${(((s as any).rex ?? 0)?.['name'] ?? '')}</a> is lying on the floor.<br>`);
         } else {
           if (((s as any).hour ?? 0) < 6) {
-            // TODO-QSP: dynamic text: <br><<$rex[''name'']>> is sleeping in his dog basket.<br>
             scene.text(`<br>${(((s as any).rex ?? 0)?.['name'] ?? '')} is sleeping in his dog basket.<br>`);
           }
         }
@@ -248,7 +246,6 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'npc_relationship', 'modify', 'A29', (-10));
     (st as any).minut = ((st as any).minut ?? 0) + 2;
     qspCall(st, 'stat', '');
-    // TODO-QSP: dynamic text: You slap away her hand with a defiant look in your eyes. "Oh really? Well you''r...
     scene.text(`You slap away her hand with a defiant look in your eyes. "Oh really? Well you're no angel yourself, ${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')}! Does Vladimir know what YOU have been up to lately? Why don't we go and ask him?"`);
     scene.text('Your mother looks at you furiously, but is at a loss for words. After a few seconds of awkward silence, she storms off, slamming the door behind her as she goes.');
     scene.actions([
@@ -264,7 +261,6 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (st as any).mothervideotalk = 2;
     (st as any).minut = ((st as any).minut ?? 0) + 2;
     qspCall(st, 'stat', '');
-    // TODO-QSP: dynamic text: You burst into tears. "<<$npc_nickname[''A29'']>>, please forgive me! It will ne...
     scene.text(`You burst into tears. "${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')}, please forgive me! It will never happen again! I made a stupid mistake, I'm sorry… I didn't mean to… Please… I don't… I'm sorry…"`);
     scene.text('You fall to your knees sobbing uncontrollably, hoping she will have mercy on you.');
     scene.text('Your mother looks down at you, still angry but not quite sure what to do. She just lets out an exasperated gasp, shakes her head and walks away.');
@@ -300,7 +296,6 @@ function enter(s: GameState, scene: SceneBuilder): void {
       (s as any).BJvideoPublic = 1;
       qspCall(s, 'mood', 'lower', 'min');
       qspCall(s, 'stat', '');
-      // TODO-QSP: dynamic text: When you enter the hallway, you find your mother waiting for you. "What''s all t...
       scene.text(`When you enter the hallway, you find your mother waiting for you. "What's all this I hear about a video of you sucking some guy's dick? How could you be so careless, ${((s as any).pcs_nickname ?? '')}? You do realize this makes our whole family look bad?"`);
       scene.actions([
 { label: 'Apologize', handler: (st: GameState) => {
@@ -308,7 +303,6 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 2;
     qspCall(st, 'npc_relationship', 'modify', 'A29', (-40));
     qspCall(st, 'stat', '');
-    // TODO-QSP: dynamic text: "I don''t know what to say, <<$npc_nickname[''A29'']>>… I''m really sorry."
     scene.text(`"I don't know what to say, ${(((st as any).npc_nickname ?? 0)?.['A29'] ?? '')}… I'm really sorry."`);
     scene.text('Your mother is clearly very upset with you. After a short discussion, she walks away.');
     scene.actions([
@@ -328,20 +322,17 @@ function enter(s: GameState, scene: SceneBuilder): void {
         (s as any).motherKnowSpravka = 1;
         qspCall(s, 'stat', '');
         if (((s as any).abductionReturned ?? 0) === 2) {
-          // TODO-QSP: dynamic text: "Oh <<$pcs_nickname>>! Thank god, where have you been? I''ve been worried sick!"
           scene.text(`"Oh ${((s as any).pcs_nickname ?? '')}! Thank god, where have you been? I've been worried sick!"`);
           scene.text('You tell her you went to stay with a friend for a few days and lost track of time, and apologize for not calling. She looks relieved, if annoyed you did not at least send a message.');
           scene.text('"Next time, you call me. Do you understand? I do not care how old you think you are, you scared me half to death." She pulls you into a tight hug anyway, holding on a little longer than usual.');
         } else {
           scene.text('"Oh my darling, where have you been? We\'ve been so worried!"');
-          // TODO-QSP: dynamic text: You walk into the kitchen with your <<$npc_nickname[''A29'']>> and spend some ti...
           scene.text(`You walk into the kitchen with your ${(((s as any).npc_nickname ?? 0)?.['A29'] ?? '')} and spend some time explaining what happened to you. Many of the details are difficult to talk about, and you cry and hug her as you tell your story.`);
-          // TODO-QSP: dynamic text: Your <<$npc_nickname[''A29'']>> tells you she''ll sort out everything with the s...
           scene.text(`Your ${(((s as any).npc_nickname ?? 0)?.['A29'] ?? '')} tells you she'll sort out everything with the school and makes you a bowl of chicken soup.`);
           qspCall(s, 'food', 'family_meals');
           qspCall(s, 'food', 'aftermeal');
-          // TODO-QSP: dynamic text: You eat the chicken soup, and<<$mtxt>>
           scene.text(`You eat the chicken soup, and${((s as any).mtxt ?? '')}`);
+          (s as any).mtxt = undefined;
         }
         (s as any).abductionReturned = 0;
         scene.actions([
@@ -369,11 +360,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
           qspCall(s, 'grades', 'grade_award', 'school', 'mus', (-20));
           qspCall(s, 'grades', 'grade_award', 'school', 'his', (-20));
           if (((s as any).npc_rel ?? 0)?.['A29'] >= 40) {
-            // TODO-QSP: dynamic text: You find your mother waiting for you when you enter the hallway. "<<$pcs_nicknam...
             scene.text(`You find your mother waiting for you when you enter the hallway. "${((s as any).pcs_nickname ?? '')}? The school called saying you weren't at school today. You know they're very unforgiving when it comes to absenteeism. They said they would expel you if it happens again. What are you doing with your life? Get it together!"`);
             scene.text('She angrily leaves the room, leaving you to your thoughts.');
           } else {
-            // TODO-QSP: dynamic text: You find your mother waiting for you when you enter the hallway. "<<$pcs_nicknam...
             scene.text(`You find your mother waiting for you when you enter the hallway. "${((s as any).pcs_nickname ?? '')}? The school called saying you weren't at school today. You know they're very unforgiving when it comes to absenteeism. They said they would expel you if it happens again. What are you doing with your life? Get it together!"`);
             scene.text('She angrily leaves the room, leaving you to your thoughts.');
           }
@@ -397,12 +386,10 @@ function enter(s: GameState, scene: SceneBuilder): void {
             qspCall(s, 'grades', 'grade_award', 'school', 'his', (-40));
             if (((s as any).npc_rel ?? 0)?.['A29'] >= 40) {
               scene.text('You find your mother waiting for you when you enter the hallway. She seems very angry with you. "The school called saying you didn\'t show up for class again. They wanted to expel you! I had to go over there and beg the principal to give you one last chance. I\'ve never felt so humiliated!"');
-              // TODO-QSP: dynamic text: She rubs the bridge of her nose, seemingly to calm herself down. "This is your l...
               scene.text(`She rubs the bridge of her nose, seemingly to calm herself down. "This is your last chance, ${((s as any).pcs_nickname ?? '')}. You will <i>not</i> embarrass me any further! If you miss one more day of school, they will kick you out. And if you get kicked out of school, life is going to get a lot tougher for you, especially around here!"`);
               scene.text('Having said her piece, she turns around and leaves.');
             } else {
               scene.text('You find your mother waiting for you when you enter the hallway. She seems very angry with you. "The school called saying you didn\'t show up for class again. They wanted to expel you! I had to go over there and beg the principal to give you one last chance. I\'ve never felt so humiliated!"');
-              // TODO-QSP: dynamic text: She rubs the bridge of her nose, seemingly to calm herself down. "This is your l...
               scene.text(`She rubs the bridge of her nose, seemingly to calm herself down. "This is your last chance, ${((s as any).pcs_nickname ?? '')}. You will <i>not</i> embarrass me any further! If you miss one more day of school, they will kick you out. And if you get kicked out of school, I will personally kick you out of the house. If you cannot be responsible and behave like a normal person, then get out! No one is forcing you to stay."`);
               scene.text('Having said her piece, she turns around and leaves.');
             }
@@ -428,12 +415,10 @@ function enter(s: GameState, scene: SceneBuilder): void {
               qspCall(s, 'grades', 'grade_award', 'school', 'his', (-100));
               qspCall(s, 'calendar', 'pack', 'remove', 'school');
               if (((s as any).npc_rel ?? 0)?.['A29'] >= 40) {
-                // TODO-QSP: dynamic text: You find your mother waiting for you when you enter the hallway. You have never ...
                 scene.text(`You find your mother waiting for you when you enter the hallway. You have never seen her this furious before. "${((s as any).pcs_nickname ?? '')}? I just got off the phone with the school. They told me you didn't show up yet again and expelled you. I'm extremely disappointed with you! I've warned you so many times! If you want to keep sleeping under this roof, then you better start pulling your weight around here! Right now, I want you to go out and find a job!"`);
                 scene.text('She pushes you out the door and slams it shut in your face.');
               } else {
                 qspCall(s, 'homes_properties', 'block_access', 'parents_home');
-                // TODO-QSP: dynamic text: You find your mother waiting for you when you enter the hallway. You have never ...
                 scene.text(`You find your mother waiting for you when you enter the hallway. You have never seen her this furious before. "${((s as any).pcs_nickname ?? '')}? I just got off the phone with the school, they told me you didn't show up yet again and expelled you. I've had it with you! I've warned you so many times! Go ahead, live your irresponsible life the way you want. You're no longer welcome here."`);
                 scene.text('She has already packed up your things and roughly shoves the bag into your hands before she pushes you out the door and slams it shut in your face.');
               }
@@ -454,14 +439,15 @@ function enter(s: GameState, scene: SceneBuilder): void {
   if (((s as any).hour ?? 0) >= 15  &&  ((s as any).hour ?? 0) < 20) {
     if ((!((s as any).Gcall ?? 0))) {
       (s as any).numnpcboy = 0;
-      // TODO-QSP: :markboyfrendcall
-      (s as any).numnpcboy = ((s as any).numnpcboy ?? 0) + (1);
-      if (((s as any).otnBoyFrend ?? 0)?.[String((s as any).numnpcboy ?? 0)] >= 20  &&  ((s as any).boyinday ?? 0)?.[String((s as any).numnpcboy ?? 0)]!((s as any).daystart ?? 0)) {
-        (s as any).Gcall = 1;
-        scene.text('You hear the <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027gtelefon/u0027, /u0027/u0027); return false;">phone</a> ringing in the hallway.');
-      } else {
-        if ((Object.keys((s as any).otnBoyFrend ?? {}).length-1) > ((s as any).numnpcboy ?? 0)) {
-          // TODO-QSP: jump 'markboyfrendcall'
+      while (true) {
+        (s as any).numnpcboy = ((s as any).numnpcboy ?? 0) + (1);
+        if (((s as any).otnBoyFrend ?? 0)?.[String((s as any).numnpcboy ?? 0)] >= 20  &&  ((s as any).boyinday ?? 0)?.[String((s as any).numnpcboy ?? 0)]!((s as any).daystart ?? 0)) {
+          (s as any).Gcall = 1;
+          scene.text('You hear the <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027gtelefon\u0027, \u0027\u0027); return false;">phone</a> ringing in the hallway.');
+        } else {
+          if ((Object.keys((s as any).otnBoyFrend ?? {}).length-1) > ((s as any).numnpcboy ?? 0)) {
+            break;
+          }
         }
       }
     }
@@ -495,10 +481,10 @@ function enter(s: GameState, scene: SceneBuilder): void {
   if (((s as any).hour ?? 0) >= 10  &&  ((s as any).hour ?? 0) <= 23  &&  ((s as any).fame ?? 0)?.['pav_slut'] >= 250  &&  ((s as any).podwhoreQW ?? 0) >= 3) {
     (s as any).pod_client = (Math.floor(Math.random() * 101) + 0);
     if (((s as any).pod_whore_countQW ?? 0) <= 15  &&  ((s as any).pod_client ?? 0) <= 5) {
-      scene.text('Someone is at the door: <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027pod_whore/u0027, /u0027client_talk/u0027); return false;">Answer</a>');
+      scene.text('Someone is at the door: <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027pod_whore\u0027, \u0027client_talk\u0027); return false;">Answer</a>');
     } else {
       if (((s as any).pod_whore_countQW ?? 0) > 15  &&  ((s as any).pod_client ?? 0) <= 20) {
-        scene.text('Someone is at the door: <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027pod_whore/u0027, /u0027client_talk/u0027); return false;">Answer</a>');
+        scene.text('Someone is at the door: <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027pod_whore\u0027, \u0027client_talk\u0027); return false;">Answer</a>');
       }
     }
   }
@@ -508,6 +494,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       (st as any).minut = ((st as any).minut ?? 0) + (1);
       qspGoto(st, 'pod_ezd', 'etaj_2');
     } else {
+      alert('<b><font color = red>You need to get dressed.</font></b>');
       qspGoto(st, 'korrPar', '');
     }
   } },
@@ -527,6 +514,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         qspGoto(st, 'pav_complex', 'start');
       }
     } else {
+      alert('<b><font color = red>You need to get dressed.</font></b>');
       qspGoto(st, 'korrPar', '');
     }
   } },

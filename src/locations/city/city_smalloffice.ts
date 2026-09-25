@@ -22,10 +22,9 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.text('You notice several ads on one of the walls. As you look through them you see a notice that someone is searching for cleaners.');
   if (((s as any).svQW ?? 0) >= 1) {
     if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) <= 16  &&  ((s as any).week ?? 0) < 6) {
-      scene.text('The door to the<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027city_trademission/u0027, /u0027/u0027); return false;">Trade Mission</a> is open.');
+      scene.text('The door to the<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027city_trademission\u0027, \u0027\u0027); return false;">Trade Mission</a> is open.');
     } else {
-      // TODO-QSP: dynamic text: 'The door of the trade mission is closed. There''s a note on the door, Open hour...
-      scene.text('The door of the trade mission is closed. There\'s a note on the door, Open hours: Saturday and Sunday 8:00--16:00');
+      scene.text('\'The door of the trade mission is closed. There\'s a note on the door, Open hours: Saturday and Sunday 8:00--16:00\'');
     }
   }
   if (((s as any).jouryQwNo ?? 0) === 1  &&  ((s as any).hour ?? 0) === 17) {
@@ -34,7 +33,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       { label: 'Talk to Yuri', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
     qspCall(st, 'stat', '');
-    // TODO-QSP: dynamic text: Still smiling he says, "<<$pcs_nickname>>, want to grab a cup of coffee?"
     scene.text(`Still smiling he says, "${((st as any).pcs_nickname ?? '')}, want to grab a cup of coffee?"`);
     scene.actions([
       { label: 'Decline', handler: (st: GameState) => {
@@ -60,7 +58,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.text('The security guard, Sasha, greets you.');
   }
   if (((s as any).borodachQW ?? 0) > 0  &&  ((s as any).borodachSex ?? 0) > 0  &&  ((s as any).hour ?? 0) >= 19) {
-    // TODO-QSP: dynamic text: The security guard, Sasha, smiles and says, "Hi <<$pcs_nickname>>!"
     scene.text(`The security guard, Sasha, smiles and says, "Hi ${((s as any).pcs_nickname ?? '')}!"`);
   }
   if (((s as any).borodachQW ?? 0) > 0  &&  ((s as any).hour ?? 0) >= 19) {
@@ -101,15 +98,12 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     (st as any).picrand = (Math.floor(Math.random() * 3) + 0);
     if ((!((st as any).picrand ?? 0))) {
-      // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/locations/city/residential/office/sex/gua...
       scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/city/residential/office/sex/guard/hj.jpg"></center>`);
     }
     if (((st as any).picrand ?? 0) === 1) {
-      // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/locations/city/residential/office/sex/gua...
       scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/city/residential/office/sex/guard/hj1.jpg"></center>`);
     }
     if (((st as any).picrand ?? 0) === 2) {
-      // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/locations/city/residential/office/sex/gua...
       scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/city/residential/office/sex/guard/hj2.jpg"></center>`);
     }
     scene.text('You put your hand on his crotch and feel his erection harden. Your thin fingers slide over his hardon and find the zipper. You unzip him and get his cock out of his pants. Sasha relaxes on the couch waiting for you to continue what you started.');
@@ -159,7 +153,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.text('You laugh at him, he smiles and puts aside the crossword. "You must be new, I haven\'t seen you before. Are you the new cleaning lady?"');
     scene.text('You nod, "Yes, the pay is pretty bad but I need the job…"');
     scene.text('"By the way, I\'m Sasha, and you\'re?"');
-    // TODO-QSP: dynamic text: "<<$pcs_nickname>>." you politely answer.
     scene.text(`"${((st as any).pcs_nickname ?? '')}." you politely answer.`);
     scene.text('"Nice name… I was just thinking about heading on a break, would you like to join me for a drink?"');
     qspCall(st, 'willpower', 'drink', 'resist');
@@ -239,7 +232,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     if (((st as any).job_hiring_step ?? 0)?.['city_office_toilet_cleaner'] === 0) {
       ((st as any).job_hiring_step = (st as any).job_hiring_step ?? {})['city_office_toilet_cleaner'] = 1;
     }
-    // TODO-QSP: dynamic text: You ask Boris Ivanovich whether he has more work for you. He says that he needs ...
     scene.text(`You ask Boris Ivanovich whether he has more work for you. He says that he needs a cleaner to clean the toilets. You'll be almost able to work every day. Cleaning toilets for an hour earns you ${qspFunc(s, 'money', 'string_profit', 65)} upfront.`);
     scene.actions([
       { label: 'Refuse and leave', handler: (st: GameState) => {
@@ -260,7 +252,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   if (((s as any).job_status ?? 0)?.['city_office_cleaner'] === ''  &&  ((s as any).job_hiring_step ?? 0)?.['city_office_cleaner'] === 1) {
     scene.actions([
       { label: 'Ask about available jobs', handler: (st: GameState) => {
-    // TODO-QSP: dynamic text: You head into the office that advertised the job. You see a large man in a jacke...
     scene.text(`You head into the office that advertised the job. You see a large man in a jacket sitting there. He tells you can clean the Office for ${qspFunc(s, 'money', 'string_profit', 65)} per hour, paid upfront.`);
     scene.actions([
       { label: 'Refuse and leave', handler: (st: GameState) => {
@@ -312,7 +303,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
 { label: 'No', handler: (st: GameState) => {
     (st as any).jouryQwNo = 1;
     scene.text('You look angrily at him, "No, I don\'t mix business with pleasure…" Yuri looks dejected as he moves away from you.');
-    // TODO-QSP: dynamic text: As you''ve finished, you head over to Boris Ivanovich''s office. He gives you <<...
     scene.text(`As you've finished, you head over to Boris Ivanovich's office. He gives you ${qspFunc(s, 'money', 'string_profit', 65)} for the work.`);
     scene.actions([
       { label: 'Leave', goto: ['city_smalloffice', 'start'] },
@@ -322,7 +312,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 15;
     qspCall(st, 'stat', '');
     scene.text('You smile and nod. Yuri says that he\'s just about to finish and will meet you at the entrance of the building.');
-    // TODO-QSP: dynamic text: As you''ve finished, you head over to Boris Ivanovich''s office. He gives you <<...
     scene.text(`As you've finished, you head over to Boris Ivanovich's office. He gives you ${qspFunc(s, 'money', 'string_profit', 65)} for the work.`);
     scene.text('As you leave, you notice Yuri awiting you. He\'s pretty nervous and it seems as if he doesn\'t know what to do. Not knowing what to say, he blurts out, "How about we head over to my place, watch some movies, drink champagne and talk."');
     scene.actions([
@@ -348,7 +337,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     if (((st as any).hour ?? 0) < 9  ||  ((st as any).hour ?? 0) > 16) {
       scene.text('The office is empty of people, you quietly wash the floor and wipe the floor in the office.');
     }
-    // TODO-QSP: dynamic text: As you''ve finished, you head over to Boris Ivanovich''s office. He gives you <<...
     scene.text(`As you've finished, you head over to Boris Ivanovich's office. He gives you ${qspFunc(s, 'money', 'string_profit', 65)} for the work.`);
     scene.actions([
       { label: 'Leave', goto: ['city_smalloffice', 'start'] },
@@ -367,13 +355,11 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'sweat', 'add', 30);
     scene.img('images/locations/city/residential/office/clener2.jpg');
     if (((st as any).jouryQw ?? 0) > 7  &&  ((st as any).hour ?? 0) >= 9  &&  ((st as any).hour ?? 0) <= 16  &&  ((st as any).jourySex ?? 0) > 0  &&  (!((st as any).jouryResult ?? 0))) {
-      // TODO-QSP: dynamic text: You enter a booth and begin scrubbing the toilet bowl. The toilet door slams as ...
       scene.text(`You enter a booth and begin scrubbing the toilet bowl. The toilet door slams as somebody comes in, you turn around and see Yuri standing there. He, quickly comes over to you, "${((st as any).pcs_nickname ?? '')}, don't approach me at the office, well, you know, I don't want the rest of the office to gossip about me seeing the cleaner."`);
       scene.actions([
 { label: 'You\'re ashamed of me?', handler: (st: GameState) => {
     scene.text('You let go off your cleaning stuff and look straight into Yuri\'s eyes, asking him, "Are you ashamed of me?"');
-    // TODO-QSP: dynamic text: 'Yuri stammers, "I-I''m not embarrassed by you being a cleaner, but you must und...
-    scene.text('Yuri stammers, "I-I\'m not embarrassed by you being a cleaner, but you must understand, I\'m a manager, and you\'re the cleaning lady. We must not be seen together. But I want you to keep seeing you. You know where I live, come by my place after 16:00."');
+    scene.text('\'Yuri stammers, "I-I\'m not embarrassed by you being a cleaner, but you must understand, I\'m a manager, and you\'re the cleaning lady. We must not be seen together. But I want you to keep seeing you. You know where I live, come by my place after 16:00."\'');
     qspCall(st, 'willpower', 'misc', 'self');
     if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
@@ -387,7 +373,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'willpower', 'pay', 'self');
     (st as any).jouryResult = 1;
     scene.text('You\'re offended by his behaviour and without any hesitation you tell Yuri to go to hell. He quickly turns and walks away.');
-    // TODO-QSP: dynamic text: You continue on by mopping the floor and polish the toilets and urinals. You are...
     scene.text(`You continue on by mopping the floor and polish the toilets and urinals. You are given ${qspFunc(s, 'money', 'string_profit', 65)} for your work.`);
     scene.actions([
       { label: 'Leave', goto: ['city_smalloffice', 'start'] },
@@ -399,7 +384,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       { label: 'Okay.', handler: (st: GameState) => {
     (st as any).jouryResult = 10;
     scene.text('Yuri only sees you as a simple fuck whore. But you\'re willing to put up with it and agree to visit him afterwards. Yuri nods in satisfaction and leaves the toilet.');
-    // TODO-QSP: dynamic text: You continue on by mopping the floor and polish the toilets and urinals. You are...
     scene.text(`You continue on by mopping the floor and polish the toilets and urinals. You are given ${qspFunc(s, 'money', 'string_profit', 65)} for your work.`);
     scene.actions([
       { label: 'Leave', goto: ['city_smalloffice', 'start'] },
@@ -411,7 +395,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       return;
     }
     if (((st as any).StasikValera ?? 0) > 0  &&  (!((st as any).svQW ?? 0))) {
-      // TODO-QSP: dynamic text: You clean the toilet and all of a sudden you hear the toilet door as someone wal...
       scene.text(`You clean the toilet and all of a sudden you hear the toilet door as someone walks in, as you turn around you see a man. To your surprise, it is Stasik, with him is his friend Valera that you've met at the beach. Stasik also apparently recognizes you, walking up to you, "Hi ${((st as any).pcs_nickname ?? '')}, you work here as a cleaner?"`);
       scene.actions([
 { label: 'Explain', handler: (st: GameState) => {
@@ -425,7 +408,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/locations/city/residential/office/clener2.jpg');
     scene.text('You ask him about the details. Stasik tells you, "It\'s very simple. In the northern, central and residential areas there are supermarkets. You come to our office to find out what your assignment is, then you visit all the three stores and arrange our products there, making changes according to the assignment. At the checkout you take a receipt confirming that you\'ve been to work."');
-    // TODO-QSP: dynamic text: "Afterwards, you head back to our office and we will pay you. How does <<$func('...
     scene.text(`"Afterwards, you head back to our office and we will pay you. How does ${qspFunc(s, 'money', 'string_profit', 500)} sound for a few hours work? No hard labour, what do you say?"`);
     scene.actions([
       { label: 'Not interested', goto: ['city_smalloffice', 'start'] },
@@ -445,7 +427,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
 ]);
       return;
     }
-    // TODO-QSP: dynamic text: You wash the floor and polish all the booths and urinals. You are given <<$func(...
     scene.text(`You wash the floor and polish all the booths and urinals. You are given ${qspFunc(s, 'money', 'string_profit', 65)} for your work.`);
     scene.actions([
       { label: 'Leave', goto: ['city_smalloffice', 'start'] },
@@ -453,7 +434,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -463,7 +443,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBorodachNo(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: end
   scene.actions([
     { label: 'I\'ve had enough', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -490,7 +469,6 @@ function enterBorodachNo(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBorodachNo2(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: end
   scene.actions([
     { label: 'I have to go now', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -517,7 +495,6 @@ function enterBorodachNo2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBorodachDrink(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: end
   scene.actions([
     { label: 'Another drink', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 15;
@@ -532,7 +509,6 @@ function enterBorodachDrink(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBorodachSex(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: end
   scene.actions([
     { label: 'Relax', handler: (st: GameState) => {
     if ((!((st as any).borodachSex ?? 0))) {
@@ -550,7 +526,6 @@ function enterBorodachSex(s: GameState, scene: SceneBuilder): void {
     (st as any).pose = 0;
     qspCall(st, 'boyStat', 'A39');
     scene.img('images/shared/sex/vag/miss/vag.jpg');
-    // TODO-QSP: dynamic text: <<$boydesc>> lays you on the sofa, spreads your legs and pulls out his <<dick>> ...
     scene.text(`${((st as any).boydesc ?? '')} lays you on the sofa, spreads your legs and pulls out his ${((st as any).dick ?? '')} cm dick, his fingers begin to caress your pussy, preparing it for entry.`);
     qspCall(st, 'dinsex', 'boy_puts_condom');
     qspCall(st, 'arousal', 'vaginal_finger', 5);
@@ -568,7 +543,6 @@ function enterBorodachSex(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterOhrhj(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: end
   scene.actions([
     { label: 'Masturbate him', handler: (st: GameState) => {
     scene.text('You start stroking his cock with your delicate hands. Quickly Sasha groans, "I can\'t hold on much longer."');
@@ -583,7 +557,6 @@ function enterOhrhj(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterOhrhjcum(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: end
   scene.actions([
     { label: 'Masturbate him more', handler: (st: GameState) => {
     (st as any).borodachSexDay = ((st as any).daystart ?? 0);
@@ -601,12 +574,10 @@ function enterOhrhjcum(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterOhrbj(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: end
   scene.actions([
     { label: 'Suck him', handler: (st: GameState) => {
     (st as any).picrand = (Math.floor(Math.random() * 4) + 1);
     scene.img(`images/locations/city/residential/office/sex/guard/bj${((st as any).picrand ?? '')}.jpg`);
-    // TODO-QSP: dynamic text: You wrap your <<$pc_desc[''lips'']>> lips around his strong and warm 15 cm cock ...
     scene.text(`You wrap your ${(((st as any).pc_desc ?? 0)?.['lips'] ?? '')} lips around his strong and warm 15 cm cock and quickly begin by sucking the head, caressing it with your tongue and lips. Sasha groans, "I'm going to come."`);
     qspCall(st, 'arousal', 'bj', 5, 'sub');
     qspCall(st, 'stat', '');
@@ -618,7 +589,6 @@ function enterOhrbj(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterOhrbjcum(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: end
   scene.actions([
     { label: 'Suck harder', handler: (st: GameState) => {
     (st as any).spafinloc = 12;
@@ -626,7 +596,6 @@ function enterOhrbjcum(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     (st as any).picrand = (Math.floor(Math.random() * 4) + 1);
     scene.img(`images/locations/city/residential/office/sex/guard/bjcum${((st as any).picrand ?? '')}.jpg`);
-    // TODO-QSP: dynamic text: You redouble your efforts, sucking his hard cock with your <<$pc_desc[''lips'']>...
     scene.text(`You redouble your efforts, sucking his hard cock with your ${(((st as any).pc_desc ?? 0)?.['lips'] ?? '')} lips. Hot sperm hits your mouth, again and again. You continue to suck, ignoring your mouth full of viscous sperm. Until he finally nothing left.`);
     qspCall(st, 'arousal', 'bj', 5, 'sub');
     qspCall(st, 'stat', '');
@@ -661,7 +630,6 @@ function enterOhrbjcum(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterOhrsex(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: end
   scene.actions([
     { label: 'Sex', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
@@ -669,7 +637,6 @@ function enterOhrsex(s: GameState, scene: SceneBuilder): void {
     (st as any).pose = 0;
     qspCall(st, 'boyStat', 'A39');
     scene.img('images/shared/sex/vag/miss/vag.jpg');
-    // TODO-QSP: dynamic text: <<$boydesc>> lays you on the sofa, spreads your legs and pulls out his <<dick>> ...
     scene.text(`${((st as any).boydesc ?? '')} lays you on the sofa, spreads your legs and pulls out his ${((st as any).dick ?? '')} centimeter dick. His fingers begin to caress your pussy, preparing it for entry.`);
     qspCall(st, 'arousal', 'vaginal_finger', 5);
     qspCall(st, 'arousal', 'vaginal', 15, 'sub');

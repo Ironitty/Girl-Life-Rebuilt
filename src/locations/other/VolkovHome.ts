@@ -19,7 +19,6 @@ function enterNikoBedroom(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/resident/volkovHome/Rooms/Niko/bedroom.jpg');
   scene.text('Niko\'s room is very messy with two lamps, a bed, and various electronics scattered around.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave bedroom', goto: ['VolkovHome', 'Hallway 2'] },
   ]);
@@ -31,6 +30,7 @@ function enterHallway2(s: GameState, scene: SceneBuilder): void {
   (s as any).loc = 'VolkovHome';
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   (s as any).location_type = 'private';
+  (s as any).locclass = undefined;
   (s as any).menu_loc = 'VolkovHome';
   (s as any).menu_arg = 'Niko Bedroom';
   qspCall(s, 'stat', '');
@@ -38,9 +38,8 @@ function enterHallway2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).NikoEv ?? 0) === 18) {
     scene.text('This is the second floor hallway where the bathroom, Niko\'s room and Yurik\'s room are located.');
   } else {
-    scene.text('This is the second floor hallway where the <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027VolkovHome/u0027, /u0027Bathroom/u0027); return false;">bathroom</a>, <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027VolkovHome/u0027, /u0027Niko Bedroom/u0027); return false;">Niko\'s room</a> and <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027VolkovHome/u0027, /u0027Yurik Bedroom/u0027); return false;">Yurik\'s room</a> are located.');
+    scene.text('This is the second floor hallway where the <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027VolkovHome\u0027, \u0027Bathroom\u0027); return false;">bathroom</a>, <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027VolkovHome\u0027, \u0027Niko Bedroom\u0027); return false;">Niko\'s room</a> and <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027VolkovHome\u0027, \u0027Yurik Bedroom\u0027); return false;">Yurik\'s room</a> are located.');
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Head downstairs', goto: ['NikoEv2', 'Yurik BJ'] },
   ]);
@@ -58,8 +57,7 @@ function enterBathroom(s: GameState, scene: SceneBuilder): void {
   (s as any).menu_arg = 'Bathroom';
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/resident/volkovHome/Rooms/bathroom.jpg');
-  scene.text('This bathroom seems rather clean and has two towels, two bathrobes, a sink, a toilet, a <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027start/u0027); return false;">mirror</a>, and a bathtub.');
-  // TODO-QSP: end
+  scene.text('This bathroom seems rather clean and has two towels, two bathrobes, a sink, a toilet, a <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027start\u0027); return false;">mirror</a>, and a bathtub.');
   scene.actions([
     { label: 'Quick wash (0:10)', goto: ['NikoDates', 'quick_wash'] },
     { label: 'Leave bathroom', handler: (st: GameState) => {
@@ -88,7 +86,6 @@ function enterQuickWash(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Bathroom</b></center>');
   scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/movies/Restroom/facecleanse.jpg');
   scene.text('You grab a few paper towels then approach the sink to clean yourself as thoroughly as possible. You take a few seconds to enjoy a splash of warm water on your face, leaving you feeling refreshed as you finish up and walk away from the sink.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Dry off', handler: (st: GameState) => {
     if (((st as any).NikoEv ?? 0) === 5) {

@@ -15,12 +15,10 @@ function enter(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).alexgangbang ?? 0))) {
     scene.text('You\'re a little surprised and wonder who it could be, but then you see Alexander, the nightclub owner, enter the room. He greets you as he sits down on a chair.');
     scene.text('Alexei pours alcohol into three glasses and hands them out. All of you spend some time drinking and talking together. Before long, Alexander asked you to call him by his nickname, Sasha.');
-    // TODO-QSP: dynamic text: After a while, Alexei puts the bottle aside to pull out his dick from his pants....
     scene.text(`After a while, Alexei puts the bottle aside to pull out his dick from his pants. "Come over here ${((s as any).pcs_firstname ?? '')}", he commands. You look at him in surprise then glance at Sasha. Alexei urges you on, "C'mon and get over here. Don't worry since everything is fine."`);
   } else {
     scene.text('You see Alexander, the nightclub owner, enter the room. He greets you as he sits down on a chair.');
     scene.text('Alexei pours alcohol in three glasses in which you spend some time drinking, talking, and laughing together.');
-    // TODO-QSP: dynamic text: After a while, Alexei puts the bottle aside to pull out his dick from his pants....
     scene.text(`After a while, Alexei puts the bottle aside to pull out his dick from his pants. "Get over here ${((s as any).pcs_firstname ?? '')}", he commands.`);
   }
   scene.actions([
@@ -29,7 +27,6 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img(`images/shared/sex/blowjob/bj${(Math.floor(Math.random() * 13) + 29)}.jpg`);
     scene.text('Kneeling before him, you pull Alexei\'s pants all the way down then take a firm grasp of his erect cock.');
-    // TODO-QSP: dynamic text: Leaning in closer, you give it a quick kiss with your <<$pc_desc[''lips'']>> lip...
     scene.text(`Leaning in closer, you give it a quick kiss with your ${(((st as any).pc_desc ?? 0)?.['lips'] ?? '')} lips before guiding it into your mouth.`);
     scene.text('As you suck on his hard dick, he relaxes in his chair and lets you take care of his needs.');
     scene.text('Suddenly, he removes his penis from your mouth and pulls you up on your feet. He leads you to his bedroom.');

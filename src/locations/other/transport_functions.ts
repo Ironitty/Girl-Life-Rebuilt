@@ -62,7 +62,6 @@ function enterBuyTrainPass(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -101,7 +100,6 @@ function enterBuyTrainTicket(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 

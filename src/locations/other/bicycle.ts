@@ -18,7 +18,6 @@ function enterClothes(s: GameState, scene: SceneBuilder): void {
       scene.img('images/locations/gadukino/village/bike.jpg');
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 

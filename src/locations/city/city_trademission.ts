@@ -38,7 +38,6 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (st as any).TPworkTimes = ((st as any).TPworkTimes ?? 0) + (1);
     qspCall(st, 'stat', '');
     scene.img('images/locations/city/citycenter/office/stasoffice.jpg');
-    // TODO-QSP: dynamic text: You head into the office to get paid, Stat is pleased with your work and hands <...
     scene.text(`You head into the office to get paid, Stat is pleased with your work and hands ${qspFunc(s, 'money', 'string_profit', 500)} over to you.`);
     if (((st as any).npc_has_sex ?? 0)?.['A50'] === 0) {
       if (((st as any).TPworkTimes ?? 0) >= 3  &&  ((st as any).TPmainQW ?? 0) === 0  &&  (!((st as any).mesec ?? 0))) {

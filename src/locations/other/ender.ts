@@ -14,6 +14,7 @@ function enterLoss(s: GameState, scene: SceneBuilder): void {
     if (((s as any).autocombat_surrender ?? 0) === 0  ||  ((s as any).pcs_health ?? 0) < 100) {
       (s as any).pcs_health = 100;
     }
+    (s as any).autocombat_surrender = undefined;
     (s as any).fightEnding = 0;
     scene.text('You fall to the floor and feel your consciousness slipping away.');
     scene.actions([
@@ -25,6 +26,7 @@ function enterLoss(s: GameState, scene: SceneBuilder): void {
       if (((s as any).autocombat_surrender ?? 0) === 0  ||  ((s as any).pcs_health ?? 0) < 100) {
         (s as any).pcs_health = 100;
       }
+      (s as any).autocombat_surrender = undefined;
       (s as any).fightEnding = 0;
       scene.text('You fall to the floor as you\'re not longer able to fight Gustav.');
       scene.actions([
@@ -36,6 +38,7 @@ function enterLoss(s: GameState, scene: SceneBuilder): void {
         if (((s as any).autocombat_surrender ?? 0) === 0  ||  ((s as any).pcs_health ?? 0) < 100) {
           (s as any).pcs_health = 100;
         }
+        (s as any).autocombat_surrender = undefined;
         (s as any).fightEnding = 0;
         scene.text('You fall to the floor as you\'re not longer able to fight Tatiana.');
         scene.actions([
@@ -47,6 +50,7 @@ function enterLoss(s: GameState, scene: SceneBuilder): void {
           if (((s as any).autocombat_surrender ?? 0) === 0  ||  ((s as any).pcs_health ?? 0) < 100) {
             (s as any).pcs_health = 100;
           }
+          (s as any).autocombat_surrender = undefined;
           (s as any).fightEnding = 0;
           qspCall(s, 'money', 'set', 0, 'cash');
           (s as any).Loss = ((s as any).Loss ?? 0) + (1);
@@ -64,6 +68,7 @@ function enterLoss(s: GameState, scene: SceneBuilder): void {
             if (((s as any).autocombat_surrender ?? 0) === 0  ||  ((s as any).pcs_health ?? 0) < 100) {
               (s as any).pcs_health = 100;
             }
+            (s as any).autocombat_surrender = undefined;
             (s as any).fightEnding = 0;
             qspCall(s, 'money', 'set', 0, 'cash');
             (s as any).Loss = ((s as any).Loss ?? 0) + (1);
@@ -83,6 +88,7 @@ function enterLoss(s: GameState, scene: SceneBuilder): void {
               if (((s as any).autocombat_surrender ?? 0) === 0  ||  ((s as any).pcs_health ?? 0) < 100) {
                 (s as any).pcs_health = 100;
               }
+              (s as any).autocombat_surrender = undefined;
               (s as any).fightEnding = 0;
               qspCall(s, 'money', 'set', 0, 'cash');
               (s as any).Loss = ((s as any).Loss ?? 0) + (1);
@@ -107,6 +113,7 @@ function enterLoss(s: GameState, scene: SceneBuilder): void {
                   if (((s as any).autocombat_surrender ?? 0) === 0  ||  ((s as any).pcs_health ?? 0) < 100) {
                     (s as any).pcs_health = 100;
                   }
+                  (s as any).autocombat_surrender = undefined;
                   if (qspFunc(s, 'succubus', 'active', 4)) {
                     qspGoto(s, 'succubus', 'RapistFight');
                   }
@@ -127,6 +134,7 @@ function enterLoss(s: GameState, scene: SceneBuilder): void {
                     if (((s as any).autocombat_surrender ?? 0) === 0  ||  ((s as any).pcs_health ?? 0) < 100) {
                       (s as any).pcs_health = 100;
                     }
+                    (s as any).autocombat_surrender = undefined;
                     (s as any).fightEnding = 0;
                     (s as any).Loss = ((s as any).Loss ?? 0) + (1);
                     if (((s as any).cheatVars ?? 0)?.['abduction_chance'] === 1) {
@@ -149,6 +157,7 @@ function enterLoss(s: GameState, scene: SceneBuilder): void {
                       }
                     }
                     if ((Math.floor(Math.random() * 80) + 1) <= ((s as any).temp_thresh ?? 0)) {
+                      (s as any).temp_thresh = undefined;
                       scene.text('Your assailant knocks you down with one final hit, and you pass out.');
                       scene.actions([
                         { label: 'Pass out', handler: (st: GameState) => {
@@ -156,6 +165,7 @@ function enterLoss(s: GameState, scene: SceneBuilder): void {
   } },
                       ]);
                     } else {
+                      (s as any).temp_thresh = undefined;
                       qspCall(s, 'money', 'set', 0, 'cash');
                       qspCall(s, 'stat', '');
                       scene.text('He knocks you down with one final hit. The moment he puts you out of commission, he grabs your money and runs away.');
@@ -171,15 +181,14 @@ function enterLoss(s: GameState, scene: SceneBuilder): void {
                       if (((s as any).autocombat_surrender ?? 0) === 0  ||  ((s as any).pcs_health ?? 0) < 100) {
                         (s as any).pcs_health = 100;
                       }
+                      (s as any).autocombat_surrender = undefined;
                       (s as any).fightEnding = 0;
                       ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (2);
                       if (((s as any).Loss ?? 0) < 0) {
                         (s as any).Loss = 0;
                       }
                       scene.img('images/characters/pavlovsk/school/boy/dimka/revenge/girlbeatsguy2.jpg');
-                      // TODO-QSP: dynamic text: "Where the hell did you learn how to fight <<$pcs_nickname>>?" Lera asks in an a...
                       scene.text(`"Where the hell did you learn how to fight ${((s as any).pcs_nickname ?? '')}?" Lera asks in an annoyed tone before sweeping Dimka's legs out from under him. Lena and Lera proceed to kick and stomp Dimka until he starts begging them to stop.`);
-                      // TODO-QSP: dynamic text: After a few more hits, they get bored and check his pockets for cash. "<<$func('...
                       scene.text(`After a few more hits, they get bored and check his pockets for cash. "${qspFunc(s, 'money', 'string_profit', 10000)}?! Sweet!" They split the money among themselves, leaving none for you.`);
                       scene.text('Lena turns to you and tauntingly says "You either need to learn how to fight or get used to serving us, little bunny." Before you can say anything, the bell rings for class.');
                       scene.actions([
@@ -190,6 +199,7 @@ function enterLoss(s: GameState, scene: SceneBuilder): void {
                         if (((s as any).autocombat_surrender ?? 0) === 0  ||  ((s as any).pcs_health ?? 0) < 100) {
                           (s as any).pcs_health = 100;
                         }
+                        (s as any).autocombat_surrender = undefined;
                         (s as any).fightEnding = 0;
                         (s as any).Loss = ((s as any).Loss ?? 0) + (1);
                         if (((s as any).rikudo ?? 0) > 10) {
@@ -204,6 +214,7 @@ function enterLoss(s: GameState, scene: SceneBuilder): void {
                           if (((s as any).autocombat_surrender ?? 0) === 0  ||  ((s as any).pcs_health ?? 0) < 100) {
                             (s as any).pcs_health = 100;
                           }
+                          (s as any).autocombat_surrender = undefined;
                           (s as any).fightEnding = 0;
                           ((s as any).christinaQW = (s as any).christinaQW ?? {})['fight'] = (-1);
                           ((s as any).christinaQW = (s as any).christinaQW ?? {})['pre_fight'] = 0;
@@ -224,6 +235,7 @@ function enterLoss(s: GameState, scene: SceneBuilder): void {
                             if (((s as any).autocombat_surrender ?? 0) === 0  ||  ((s as any).pcs_health ?? 0) < 100) {
                               (s as any).pcs_health = 100;
                             }
+                            (s as any).autocombat_surrender = undefined;
                             (s as any).fightEnding = 0;
                             (s as any).Loss = ((s as any).Loss ?? 0) + (1);
                             scene.text('You breath deeply, totally exhausted as the naked man advances upon you. You no longer have the strength to fight him off.');
@@ -235,6 +247,7 @@ function enterLoss(s: GameState, scene: SceneBuilder): void {
                               if (((s as any).autocombat_surrender ?? 0) === 0  ||  ((s as any).pcs_health ?? 0) < 100) {
                                 (s as any).pcs_health = 100;
                               }
+                              (s as any).autocombat_surrender = undefined;
                               (s as any).fightEnding = 0;
                               (s as any).Loss = ((s as any).Loss ?? 0) + (1);
                               qspCall(s, 'pain', '5', 'tummy', 'kick');
@@ -258,6 +271,7 @@ function enterLoss(s: GameState, scene: SceneBuilder): void {
                                 if (((s as any).autocombat_surrender ?? 0) === 0  ||  ((s as any).pcs_health ?? 0) < 100) {
                                   (s as any).pcs_health = 100;
                                 }
+                                (s as any).autocombat_surrender = undefined;
                                 (s as any).fightEnding = 0;
                                 (s as any).Loss = ((s as any).Loss ?? 0) + (1);
                                 ((s as any).slyQW = (s as any).slyQW ?? {})['fight'] = (-1);
@@ -274,6 +288,7 @@ function enterLoss(s: GameState, scene: SceneBuilder): void {
                                   if (((s as any).autocombat_surrender ?? 0) === 0  ||  ((s as any).pcs_health ?? 0) < 100) {
                                     (s as any).pcs_health = 100;
                                   }
+                                  (s as any).autocombat_surrender = undefined;
                                   (s as any).fightEnding = 0;
                                   (s as any).Loss = ((s as any).Loss ?? 0) + (1);
                                   ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = ((s as any).grupvalue[1] ?? 0) - (5);
@@ -282,10 +297,8 @@ function enterLoss(s: GameState, scene: SceneBuilder): void {
                                   qspCall(s, 'mood', 'lower', 'medium');
                                   scene.img('images/locations/shared/street/lostfight.jpg');
                                   scene.text('You groan on pain as the frozen ground reaches for you. Damm. That wasn\'t your best idea now that you see it, especially because the police have just arrived to break up the brawl turned riot.');
-                                  // TODO-QSP: dynamic text: "<<$pcs_nickname>>! Oh my god! What happened to you?!"
                                   scene.text(`"${((s as any).pcs_nickname ?? '')}! Oh my god! What happened to you?!"`);
                                   scene.text('Katja and Vicky appear over you and help Vanya take away your beaten body. It hurts a lot but somehow, after a while, you manage to stand without seeing stars. The trio looks at you in askance.');
-                                  // TODO-QSP: dynamic text: "<<$pcs_nickname>>! I don''t know what to do with you! What were you thinking?!"
                                   scene.text(`"${((s as any).pcs_nickname ?? '')}! I don't know what to do with you! What were you thinking?!"`);
                                   scene.text('Katja is really, really pissed and for a long while, she chastizes your actions. The fact that you are hurting doesn\'t seem to make her stop, but finally, after a long-winded tirade, the redhead seems to deflate and gives you a tired hug.');
                                   scene.text('"Please! Don\'t do that again!"');
@@ -298,6 +311,7 @@ function enterLoss(s: GameState, scene: SceneBuilder): void {
                                     if (((s as any).autocombat_surrender ?? 0) === 0  ||  ((s as any).pcs_health ?? 0) < 100) {
                                       (s as any).pcs_health = 100;
                                     }
+                                    (s as any).autocombat_surrender = undefined;
                                     (s as any).fightEnding = 0;
                                     (s as any).Loss = ((s as any).Loss ?? 0) + (1);
                                     (s as any).AlexandriaQW = 5;
@@ -321,6 +335,7 @@ function enterLoss(s: GameState, scene: SceneBuilder): void {
                                       if (((s as any).autocombat_surrender ?? 0) === 0  ||  ((s as any).pcs_health ?? 0) < 100) {
                                         (s as any).pcs_health = 100;
                                       }
+                                      (s as any).autocombat_surrender = undefined;
                                       (s as any).fightEnding = 0;
                                       (s as any).Loss = ((s as any).Loss ?? 0) + (1);
                                       qspCall(s, 'mood', 'lower', 'large');
@@ -368,6 +383,7 @@ function enterLoss(s: GameState, scene: SceneBuilder): void {
                                         if (((s as any).autocombat_surrender ?? 0) === 0  ||  ((s as any).pcs_health ?? 0) < 100) {
                                           (s as any).pcs_health = 100;
                                         }
+                                        (s as any).autocombat_surrender = undefined;
                                         (s as any).fightEnding = 0;
                                         (s as any).Loss = ((s as any).Loss ?? 0) + (1);
                                         qspCall(s, 'mood', 'lower', 'large');
@@ -399,6 +415,7 @@ function enterLoss(s: GameState, scene: SceneBuilder): void {
                                           if (((s as any).autocombat_surrender ?? 0) === 0  ||  ((s as any).pcs_health ?? 0) < 100) {
                                             (s as any).pcs_health = 100;
                                           }
+                                          (s as any).autocombat_surrender = undefined;
                                           (s as any).fightEnding = 0;
                                           (s as any).Loss = ((s as any).Loss ?? 0) + (1);
                                           qspCall(s, 'mood', 'lower', 'large');
@@ -436,6 +453,7 @@ function enterLoss(s: GameState, scene: SceneBuilder): void {
                                             if (((s as any).autocombat_surrender ?? 0) === 0  ||  ((s as any).pcs_health ?? 0) < 100) {
                                               (s as any).pcs_health = 100;
                                             }
+                                            (s as any).autocombat_surrender = undefined;
                                             (s as any).fightEnding = 0;
                                             (s as any).Loss = ((s as any).Loss ?? 0) + (1);
                                             qspCall(s, 'mood', 'lower', 'large');
@@ -445,6 +463,7 @@ function enterLoss(s: GameState, scene: SceneBuilder): void {
                                               if (((s as any).autocombat_surrender ?? 0) === 0  ||  ((s as any).pcs_health ?? 0) < 100) {
                                                 (s as any).pcs_health = 100;
                                               }
+                                              (s as any).autocombat_surrender = undefined;
                                               (s as any).fightEnding = 0;
                                               (s as any).Loss = ((s as any).Loss ?? 0) + (1);
                                               (s as any).pcs_hairbsh = 0;
@@ -484,6 +503,7 @@ function enterLoss(s: GameState, scene: SceneBuilder): void {
                                                   if (((s as any).autocombat_surrender ?? 0) === 0  ||  ((s as any).pcs_health ?? 0) < 100) {
                                                     (s as any).pcs_health = 100;
                                                   }
+                                                  (s as any).autocombat_surrender = undefined;
                                                   (s as any).fightEnding = 0;
                                                   (s as any).Loss = ((s as any).Loss ?? 0) + (1);
                                                   qspCall(s, 'mood', 'lower', 'large');
@@ -516,7 +536,7 @@ function enterLoss(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
+  (s as any).fight = undefined;
   scene.build();
 }
 
@@ -599,7 +619,6 @@ function enterWin(s: GameState, scene: SceneBuilder): void {
                   qspGoto(s, 'succubus', 'RapistFight');
                 }
                 scene.img('images/locations/shared/street/rapist_defeat.jpg');
-                // TODO-QSP: dynamic text: 'You defeat the '+iif(fightEnding = 8, 'rapist', 'thief')+' and empty his wallet...
                 scene.text('You defeat the ' + ((((s as any).fightEnding ?? 0) === 8) ? ('rapist') : ('thief')) + ' and empty his wallet as he lies unconscious on the street.');
                 (s as any).fightEnding = 0;
                 (s as any).scpopt = 0;
@@ -625,7 +644,6 @@ function enterWin(s: GameState, scene: SceneBuilder): void {
                   scene.text('"I\'ll stop, I swear!" Dimka says between pained breaths.');
                   scene.text('"You better." You turn to leave, but Lena stops you.');
                   scene.text('"Check his pockets." she says "I\'ll keep watch."');
-                  // TODO-QSP: dynamic text: You check his pockets and find <<$func(''money'', ''string_profit'', 10000)>> in...
                   scene.text(`You check his pockets and find ${qspFunc(s, 'money', 'string_profit', 10000)} in his wallet. Fucking rich kid. This should teach him. "The teacher is coming!" says Lera, "Let's get out of here!"`);
                   scene.actions([
                     { label: 'Continue', goto: ['gschool_lessons', 'short_break'] },
@@ -707,10 +725,8 @@ function enterWin(s: GameState, scene: SceneBuilder): void {
                               scene.img('images/locations/shared/street/girlgang.jpg');
                               scene.text('"Take that bitches!"');
                               scene.text('With one last kick, the bitch squad lies fallen before you, whimpering in pain thanks to the sound beating they\'ve received at your hand, but as you look around for your next victim, a redheaded girl grabs you and pulls you away from the brawl turned riot, towards the waiting Vanya & Vicky.');
-                              // TODO-QSP: dynamic text: "<<$pcs_nickname>>! I don''t know what to do with you! What were you thinking?!"
                               scene.text(`"${((s as any).pcs_nickname ?? '')}! I don't know what to do with you! What were you thinking?!"`);
                               scene.text('You… aren\'t too sure why the hell you incited the massive brawl that now is being broken apart by the police, and as you try to look for a good answer, Vanya chooses that moment to express his opinion.');
-                              // TODO-QSP: dynamic text: "Well… Katja, I want to say, well… That is hockey! Give me those five <<$pcs_nic...
                               scene.text(`"Well… Katja, I want to say, well… That is hockey! Give me those five ${((s as any).pcs_nickname ?? '')}!"`);
                               scene.text('Katja looks dumbfounded as he raises his hand, more even when you clap it, followed by a shrugging Vicky, who jumps and does the same. As you turn smiling towards Katja, waiting for her to join, she facepalms, turns and begins to walk away, musing about your idiocy. Well, it is probably better if you follow her, so after saying goodbye to Vanya & Vicky, you go with her. It was "fun" but it is time to look for something else to do.');
                               scene.actions([
@@ -860,7 +876,7 @@ function enterWin(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
+  (s as any).fight = undefined;
   scene.build();
 }
 
@@ -870,6 +886,7 @@ function enterSurrender(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_health ?? 0) < 100) {
       (s as any).pcs_health = 100;
     }
+    (s as any).autocombat_surrender = undefined;
     (s as any).fightEnding = 0;
     scene.text('He ignores your pleas and hits you with a huge upper cut.');
     scene.text('You fall to the floor and feel your consciousness slipping away.');
@@ -882,6 +899,7 @@ function enterSurrender(s: GameState, scene: SceneBuilder): void {
       if (((s as any).pcs_health ?? 0) < 100) {
         (s as any).pcs_health = 100;
       }
+      (s as any).autocombat_surrender = undefined;
       (s as any).fightEnding = 0;
       scene.text('You raise your hands asking Gustav to stop. He complains that he hasn\'t even warmed up yet, but stops the fight.');
       scene.actions([
@@ -893,6 +911,7 @@ function enterSurrender(s: GameState, scene: SceneBuilder): void {
         if (((s as any).pcs_health ?? 0) < 100) {
           (s as any).pcs_health = 100;
         }
+        (s as any).autocombat_surrender = undefined;
         (s as any).fightEnding = 0;
         scene.text('You tell Tatiana you\'ve had enough. She shakes her head and tells you you need to toughen up.');
         scene.actions([
@@ -901,6 +920,7 @@ function enterSurrender(s: GameState, scene: SceneBuilder): void {
         return;
       } else {
         if (((s as any).fightEnding ?? 0) === 4) {
+          (s as any).autocombat_surrender = undefined;
           (s as any).fightEnding = 0;
           qspCall(s, 'money', 'set', 0);
           (s as any).Loss = ((s as any).Loss ?? 0) + (1);
@@ -935,6 +955,7 @@ function enterSurrender(s: GameState, scene: SceneBuilder): void {
             if (((s as any).pcs_health ?? 0) < 100) {
               (s as any).pcs_health = 100;
             }
+            (s as any).autocombat_surrender = undefined;
             (s as any).fightEnding = 0;
             qspCall(s, 'money', 'set', 0, 'cash');
             (s as any).Loss = ((s as any).Loss ?? 0) + (1);
@@ -948,6 +969,7 @@ function enterSurrender(s: GameState, scene: SceneBuilder): void {
             return;
           } else {
             if (((s as any).fightEnding ?? 0) === 6) {
+              (s as any).autocombat_surrender = undefined;
               (s as any).fightEnding = 0;
               (s as any).Loss = ((s as any).Loss ?? 0) + (1);
               (s as any).stellfight = ((s as any).stellfight ?? 0) - 1;
@@ -980,6 +1002,7 @@ function enterSurrender(s: GameState, scene: SceneBuilder): void {
                   if (((s as any).pcs_health ?? 0) < 100) {
                     (s as any).pcs_health = 100;
                   }
+                  (s as any).autocombat_surrender = undefined;
                   if (qspFunc(s, 'succubus', 'active', 4)) {
                     qspGoto(s, 'succubus', 'RapistFight');
                   }
@@ -1000,6 +1023,7 @@ function enterSurrender(s: GameState, scene: SceneBuilder): void {
                     if (((s as any).pcs_health ?? 0) < 100) {
                       (s as any).pcs_health = 100;
                     }
+                    (s as any).autocombat_surrender = undefined;
                     (s as any).fightEnding = 0;
                     (s as any).Loss = ((s as any).Loss ?? 0) + (1);
                     // TODO-QSP: money /= 4
@@ -1022,6 +1046,7 @@ function enterSurrender(s: GameState, scene: SceneBuilder): void {
                     return;
                   } else {
                     if (((s as any).fightEnding ?? 0) === 10) {
+                      (s as any).autocombat_surrender = undefined;
                       (s as any).fightEnding = 0;
                       ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (2);
                       if (((s as any).Loss ?? 0) < 0) {
@@ -1029,22 +1054,16 @@ function enterSurrender(s: GameState, scene: SceneBuilder): void {
                       }
                       scene.img('images/characters/pavlovsk/school/boy/dimka/revenge/girlbeatsguy2.jpg');
                       if (((s as any).fightPStats ?? 0)?.['Health'] === ((s as any).pcs_health ?? 0)) {
-                        // TODO-QSP: dynamic text: What the fuck <<$pcs_nickname>>?" Lera asks in an annoyed tone before sweeping D...
                         scene.text(`What the fuck ${((s as any).pcs_nickname ?? '')}?" Lera asks in an annoyed tone before sweeping Dimka's legs out from under him. Lena and Lera proceed to kick and stomp Dimka until he starts begging them to stop.`);
-                        // TODO-QSP: dynamic text: After a few more hits, they get bored and check his pockets for cash. "<<$func('...
                         scene.text(`After a few more hits, they get bored and check his pockets for cash. "${qspFunc(s, 'money', 'format', 10000)}?! Sweet!" They split the money among themselves, leaving none for you.`);
                         scene.text('Lena turns to you and tauntingly says "You either need to learn how to fight or get used to serving us, little bunny." Before you can say anything, the bell rings for class.');
                       } else {
                         if (((s as any).fightPStats ?? 0)?.['Health'] > ((s as any).pcs_health ?? 0)/2) {
-                          // TODO-QSP: dynamic text: "That was pathetic <<$pcs_nickname>>." Lera states in shock before sweeping Dimk...
                           scene.text(`"That was pathetic ${((s as any).pcs_nickname ?? '')}." Lera states in shock before sweeping Dimka's legs out from under him. Lena and Lera proceed to kick and stomp Dimka until he starts begging them to stop.`);
-                          // TODO-QSP: dynamic text: After a few more hits, they get bored and check his pockets for cash. "<<$func('...
                           scene.text(`After a few more hits, they get bored and check his pockets for cash. "${qspFunc(s, 'money', 'format', 10000)}?! Sweet!" They split the money among themselves, leaving none for you.`);
                           scene.text('Lena turns to you and tauntingly says "You either need to learn how to fight or get used to serving us, little bunny." Before you can say anything, the bell rings for class.');
                         } else {
-                          // TODO-QSP: dynamic text: "Where the hell did you learn how to fight <<$pcs_nickname>>?" Lera asks in an a...
                           scene.text(`"Where the hell did you learn how to fight ${((s as any).pcs_nickname ?? '')}?" Lera asks in an annoyed tone before sweeping Dimka's legs out from under him. Lena and Lera proceed to kick and stomp Dimka until he starts begging them to stop.`);
-                          // TODO-QSP: dynamic text: After a few more hits, they get bored and check his pockets for cash. "<<$func('...
                           scene.text(`After a few more hits, they get bored and check his pockets for cash. "${qspFunc(s, 'money', 'format', 10000)}?! Sweet!" They split the money among themselves, leaving none for you.`);
                           scene.text('Lena turns to you and tauntingly says "You either need to learn how to fight or get used to serving us, little bunny." Before you can say anything, the bell rings for class.');
                         }
@@ -1060,6 +1079,7 @@ function enterSurrender(s: GameState, scene: SceneBuilder): void {
                         if (((s as any).autocombat_surrender ?? 0) === 0  ||  ((s as any).pcs_health ?? 0) < 100) {
                           (s as any).pcs_health = 100;
                         }
+                        (s as any).autocombat_surrender = undefined;
                         (s as any).fightEnding = 0;
                         (s as any).Loss = ((s as any).Loss ?? 0) + (1);
                         scene.text('They are very drunk and one of them shouts "Loser has to fuck us all!".');
@@ -1069,6 +1089,7 @@ function enterSurrender(s: GameState, scene: SceneBuilder): void {
                         ]);
                       } else {
                         if (((s as any).fightEnding ?? 0) === 12) {
+                          (s as any).autocombat_surrender = undefined;
                           (s as any).fightEnding = 0;
                           ((s as any).christinaQW = (s as any).christinaQW ?? {})['fight'] = (-1);
                           ((s as any).christinaQW = (s as any).christinaQW ?? {})['pre_fight'] = 0;
@@ -1103,6 +1124,7 @@ function enterSurrender(s: GameState, scene: SceneBuilder): void {
                             if (((s as any).pcs_health ?? 0) < 100) {
                               (s as any).pcs_health = 100;
                             }
+                            (s as any).autocombat_surrender = undefined;
                             (s as any).fightEnding = 0;
                             (s as any).Loss = ((s as any).Loss ?? 0) + (1);
                             scene.text('The naked man laughs and advances toward you.');
@@ -1111,6 +1133,7 @@ function enterSurrender(s: GameState, scene: SceneBuilder): void {
                             ]);
                           } else {
                             if (((s as any).fightEnding ?? 0) === 14) {
+                              (s as any).autocombat_surrender = undefined;
                               (s as any).fightEnding = 0;
                               (s as any).Loss = ((s as any).Loss ?? 0) + (1);
                               qspCall(s, 'pain', '5', 'hair', 'stretch');
@@ -1144,6 +1167,7 @@ function enterSurrender(s: GameState, scene: SceneBuilder): void {
                                 if (((s as any).autocombat_surrender ?? 0) === 0  ||  ((s as any).pcs_health ?? 0) < 100) {
                                   (s as any).pcs_health = 100;
                                 }
+                                (s as any).autocombat_surrender = undefined;
                                 (s as any).fightEnding = 0;
                                 (s as any).Loss = ((s as any).Loss ?? 0) + (1);
                                 ((s as any).slyQW = (s as any).slyQW ?? {})['fight'] = (-1);
@@ -1160,6 +1184,7 @@ function enterSurrender(s: GameState, scene: SceneBuilder): void {
                                   if (((s as any).autocombat_surrender ?? 0) === 0  ||  ((s as any).pcs_health ?? 0) < 100) {
                                     (s as any).pcs_health = 100;
                                   }
+                                  (s as any).autocombat_surrender = undefined;
                                   (s as any).fightEnding = 0;
                                   (s as any).Loss = ((s as any).Loss ?? 0) + (1);
                                   ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = ((s as any).grupvalue[1] ?? 0) - (10);
@@ -1170,7 +1195,6 @@ function enterSurrender(s: GameState, scene: SceneBuilder): void {
                                   scene.text('Oh shit! This was obviously a bad idea, and the girls surrounding you with murder in their eyes are more than willing to show you your error, so… you retreat and lift your hands in defeat, waiting for some mercy…');
                                   scene.text('"You will piss blood bitch!"');
                                   scene.text('Suddenly, a screaming Vanya runs towards the bitch squad and sweeps their legs with his hockey stick, causing them fall and letting the twins grab your hands and take you away from the brawl turned riot."');
-                                  // TODO-QSP: dynamic text: "<<$pcs_nickname>>! I don''t know what to do with you! What were you thinking?!"
                                   scene.text(`"${((s as any).pcs_nickname ?? '')}! I don't know what to do with you! What were you thinking?!"`);
                                   scene.text('Katja is really, really pissed and for a long while, she chastizes your actions, but finally, after a long-winded tirade, the redhead seems to deflate and gives you a tired hug.');
                                   scene.text('"Please! Don\'t do that again!"');
@@ -1180,6 +1204,7 @@ function enterSurrender(s: GameState, scene: SceneBuilder): void {
                                   ]);
                                 } else {
                                   if (((s as any).fightEnding ?? 0) === 17) {
+                                    (s as any).autocombat_surrender = undefined;
                                     (s as any).fightEnding = 0;
                                     (s as any).Loss = ((s as any).Loss ?? 0) + (1);
                                     (s as any).AlexandriaQW = 5;
@@ -1200,6 +1225,7 @@ function enterSurrender(s: GameState, scene: SceneBuilder): void {
                                     ]);
                                   } else {
                                     if (((s as any).fightEnding ?? 0) === 18) {
+                                      (s as any).autocombat_surrender = undefined;
                                       (s as any).fightEnding = 0;
                                       (s as any).Loss = ((s as any).Loss ?? 0) + (1);
                                       qspCall(s, 'mood', 'lower', 'medium');
@@ -1247,6 +1273,7 @@ function enterSurrender(s: GameState, scene: SceneBuilder): void {
                                         if (((s as any).autocombat_surrender ?? 0) === 0  ||  ((s as any).pcs_health ?? 0) < 100) {
                                           (s as any).pcs_health = 100;
                                         }
+                                        (s as any).autocombat_surrender = undefined;
                                         (s as any).fightEnding = 0;
                                         (s as any).Loss = ((s as any).Loss ?? 0) + (1);
                                         qspCall(s, 'mood', 'lower', 'medium');
@@ -1284,6 +1311,7 @@ function enterSurrender(s: GameState, scene: SceneBuilder): void {
                                         ]);
                                       } else {
                                         if (((s as any).fightEnding ?? 0) === 20) {
+                                          (s as any).autocombat_surrender = undefined;
                                           (s as any).fightEnding = 0;
                                           (s as any).Loss = ((s as any).Loss ?? 0) + (1);
                                           qspCall(s, 'mood', 'lower', 'medium');
@@ -1303,12 +1331,14 @@ function enterSurrender(s: GameState, scene: SceneBuilder): void {
                                           ]);
                                         } else {
                                           if (((s as any).fightEnding ?? 0) === 21) {
+                                            (s as any).autocombat_surrender = undefined;
                                             (s as any).fightEnding = 0;
                                             (s as any).Loss = ((s as any).Loss ?? 0) + (1);
                                             qspCall(s, 'mood', 'lower', 'medium');
                                             qspGoto(s, 'gopnew', 'fight_lost');
                                           } else {
                                             if (((s as any).fightEnding ?? 0) === 22) {
+                                              (s as any).autocombat_surrender = undefined;
                                               (s as any).fightEnding = 0;
                                               (s as any).Loss = ((s as any).Loss ?? 0) + (1);
                                               (s as any).pcs_hairbsh = 0;
@@ -1343,12 +1373,14 @@ function enterSurrender(s: GameState, scene: SceneBuilder): void {
                                               ]);
                                             } else {
                                               if (((s as any).fightEnding ?? 0) === 23) {
+                                                (s as any).autocombat_surrender = undefined;
                                                 (s as any).fightEnding = 0;
                                                 (s as any).Loss = ((s as any).Loss ?? 0) + (1);
                                                 qspCall(s, 'mood', 'lower', 'large');
                                                 qspGoto(s, 'rape_events', 'park_gangrape_fight_surrender');
                                               } else {
                                                 if (((s as any).fightEnding ?? 0) === 24) {
+                                                  (s as any).autocombat_surrender = undefined;
                                                   (s as any).fightEnding = 0;
                                                   (s as any).Loss = ((s as any).Loss ?? 0) + (1);
                                                   qspCall(s, 'stat', '');
@@ -1377,7 +1409,7 @@ function enterSurrender(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
+  (s as any).fight = undefined;
   scene.build();
 }
 

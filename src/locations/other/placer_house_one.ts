@@ -7,7 +7,6 @@ import type { SceneBuilder } from '../../core/scene';
 function enter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'drugs', 'alcohol', 'vodka', 3);
   qspCall(s, 'stat', '');
-  // TODO-QSP: dynamic text: <<$boydesc>> takes your hand and guides you away from the park, towards his apar...
   scene.text(`${((s as any).boydesc ?? '')} takes your hand and guides you away from the park, towards his apartment.`);
   scene.text('When you\'re about to enter a building, he suddenly puts his arms around you and begins to kiss you.');
   scene.actions([

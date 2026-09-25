@@ -7,14 +7,12 @@ import type { SceneBuilder } from '../../core/scene';
 function enterStart(s: GameState, scene: SceneBuilder): void {
   ((s as any).sleepVars = (s as any).sleepVars ?? {})['slept_in'] = 0;
   qspGoto(s, 'pre_sleep_events', 'start');
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
   ((s as any).sleepVars = (s as any).sleepVars ?? {})['slept_in'] = 0;
   qspGoto(s, 'pre_sleep_events', 'start');
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -32,7 +30,6 @@ function enterPreSleep2(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspGoto(s, 'pre_sleep', 'prepare_sleep');
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -45,10 +42,8 @@ function enterPrepareSleep(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if (((s as any).alarmVars ?? 0)?.['alarmOn'] === 1) {
     if (((s as any).alarmVars ?? 0)?.['alarm_holiday'] === 1  &&  ((s as any).kanikuli ?? 0) !== 0  ||  ((((s as any).hour ?? 0) >= ((s as any).alarmVars ?? 0)?.['timerEndH']  &&  (((s as any).week ?? 0) === 5  ||  ((s as any).week ?? 0) === 6))  ||  (((s as any).hour ?? 0) < ((s as any).alarmVars ?? 0)?.['timerEndH']  &&  (((s as any).week ?? 0) === 6  ||  ((s as any).week ?? 0) === 7)))) {
-      // TODO-QSP: dynamic text: You run through your regular nightly routine, setting your alarm for <<func(''al...
       scene.text(`You run through your regular nightly routine, setting your alarm for ${qspFunc(s, 'alarmclock', 'get_weekend_display')}, you undress, and prepare for sleep:`);
     } else {
-      // TODO-QSP: dynamic text: You run through your regular nightly routine, setting your alarm for <<func(''al...
       scene.text(`You run through your regular nightly routine, setting your alarm for ${qspFunc(s, 'alarmclock', 'get_week_display')}, you undress, and prepare for sleep:`);
     }
   } else {
@@ -156,19 +151,16 @@ function enterPrepareSleep(s: GameState, scene: SceneBuilder): void {
     (s as any).fat = ((s as any).fat ?? 0) - (5);
   }
   qspGoto(s, 'pre_sleep', 'mod_sleeptriggers');
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterModSleeptriggers(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'mod_system', 'sleep', 'pre_sleep', 'mod_sleeptriggers');
   qspGoto(s, 'pre_sleep', 'end');
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterEnd(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: end
   scene.actions([
     { label: 'Sleep…', handler: (st: GameState) => {
     ((st as any).clo_flag = (st as any).clo_flag ?? {})['bed'] = 0;

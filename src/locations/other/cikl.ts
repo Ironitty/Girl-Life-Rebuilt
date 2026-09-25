@@ -83,74 +83,76 @@ function enter(s: GameState, scene: SceneBuilder): void {
       (s as any).dailyhealthimprov = (((s as any).daystart ?? 0) - ((s as any).surgeryday ?? 0)) * 50;
       (s as any).pcs_health = ((s as any).dailyhealthimprov ?? 0);
       (s as any).recuperation = 1;
+    } else {
+      (s as any).surgeryday = undefined;
+      (s as any).recuperation = undefined;
+      (s as any).dailyhealthimprov = undefined;
     }
   }
   (s as any).streetevent_hour = (-2);
   (s as any).Clothingstock = (Math.floor(Math.random() * 120) + 0);
   ((s as any).ciklVars = (s as any).ciklVars ?? {})['i'] = 1;
-  // TODO-QSP: :loopprice
-  // TODO-QSP: Clothingstock[ciklVars['i']] = rand(0, 100)
-  ((s as any).ciklVars = (s as any).ciklVars ?? {})['i'] = ((s as any).ciklVars['i'] ?? 0) + (1);
-  if (((s as any).ciklVars ?? 0)?.['i'] <= 293) {
-    // TODO-QSP: jump 'loopprice'
-  }
-  if (qspFunc(s, 'coats', 'is_strength_low')) {
-    qspCall(s, 'coats', 'strip');
-  }
-  if (((s as any).abortionbirthdate ?? 0) !== 0  &&  ((s as any).daystart ?? 0) - ((s as any).abortionbirthdate ?? 0) > 24) {
-    (s as any).abortionbirthdate = 0;
-  }
-  if (((s as any).pregbirthdate ?? 0) !== 0  &&  ((s as any).daystart ?? 0) - ((s as any).pregbirthdate ?? 0) > 73) {
-    (s as any).pregbirthdate = 0;
-  }
-  (s as any).flash_heat_long = Math.max(0, ((s as any).flash_heat_long ?? 0) - 5);
-  if (((s as any).exhibition_outdoors ?? 0) > 0) {
-    if (((s as any).pcs_inhib ?? 0) > 90) {
-      (s as any).exhibition_outdoors = ((s as any).exhibition_outdoors ?? 0) * 3;
-    } else {
-      if (((s as any).pcs_inhib ?? 0) > 75) {
-        (s as any).exhibition_outdoors = ((s as any).exhibition_outdoors ?? 0) * 5 / 2;
+  do {
+    ((s as any).Clothingstock = (s as any).Clothingstock ?? {})[(((s as any).ciklVars ?? 0)?.['i'])] = (Math.floor(Math.random() * 101) + 0);
+    ((s as any).ciklVars = (s as any).ciklVars ?? {})['i'] = ((s as any).ciklVars['i'] ?? 0) + (1);
+    if (qspFunc(s, 'coats', 'is_strength_low')) {
+      qspCall(s, 'coats', 'strip');
+    }
+    if (((s as any).abortionbirthdate ?? 0) !== 0  &&  ((s as any).daystart ?? 0) - ((s as any).abortionbirthdate ?? 0) > 24) {
+      (s as any).abortionbirthdate = 0;
+    }
+    if (((s as any).pregbirthdate ?? 0) !== 0  &&  ((s as any).daystart ?? 0) - ((s as any).pregbirthdate ?? 0) > 73) {
+      (s as any).pregbirthdate = 0;
+    }
+    (s as any).flash_heat_long = Math.max(0, ((s as any).flash_heat_long ?? 0) - 5);
+    if (((s as any).exhibition_outdoors ?? 0) > 0) {
+      if (((s as any).pcs_inhib ?? 0) > 90) {
+        (s as any).exhibition_outdoors = ((s as any).exhibition_outdoors ?? 0) * 3;
       } else {
-        if (((s as any).pcs_inhib ?? 0) > 60) {
-          (s as any).exhibition_outdoors = ((s as any).exhibition_outdoors ?? 0) * 2;
+        if (((s as any).pcs_inhib ?? 0) > 75) {
+          (s as any).exhibition_outdoors = ((s as any).exhibition_outdoors ?? 0) * 5 / 2;
         } else {
-          if (((s as any).pcs_inhib ?? 0) > 30) {
-            (s as any).exhibition_outdoors = ((s as any).exhibition_outdoors ?? 0) * 3 / 2;
+          if (((s as any).pcs_inhib ?? 0) > 60) {
+            (s as any).exhibition_outdoors = ((s as any).exhibition_outdoors ?? 0) * 2;
+          } else {
+            if (((s as any).pcs_inhib ?? 0) > 30) {
+              (s as any).exhibition_outdoors = ((s as any).exhibition_outdoors ?? 0) * 3 / 2;
+            }
           }
         }
       }
-    }
-    if (((s as any).exhibition_outdoors ?? 0) <= 5) {
-      qspCall(s, 'exp_gain', 'inhib', (Math.floor(Math.random() * 4) + 3));
-    } else {
-      if (((s as any).exhibition_outdoors ?? 0) <= 10) {
-        qspCall(s, 'exp_gain', 'inhib', (Math.floor(Math.random() * 5) + 5));
+      if (((s as any).exhibition_outdoors ?? 0) <= 5) {
+        qspCall(s, 'exp_gain', 'inhib', (Math.floor(Math.random() * 4) + 3));
       } else {
-        if (((s as any).exhibition_outdoors ?? 0) <= 15) {
-          qspCall(s, 'exp_gain', 'inhib', (Math.floor(Math.random() * 6) + 7));
+        if (((s as any).exhibition_outdoors ?? 0) <= 10) {
+          qspCall(s, 'exp_gain', 'inhib', (Math.floor(Math.random() * 5) + 5));
         } else {
-          if (((s as any).exhibition_outdoors ?? 0) <= 20) {
-            qspCall(s, 'exp_gain', 'inhib', (Math.floor(Math.random() * 7) + 9));
+          if (((s as any).exhibition_outdoors ?? 0) <= 15) {
+            qspCall(s, 'exp_gain', 'inhib', (Math.floor(Math.random() * 6) + 7));
           } else {
-            if (((s as any).exhibition_outdoors ?? 0) <= 25) {
-              qspCall(s, 'exp_gain', 'inhib', (Math.floor(Math.random() * 9) + 12));
+            if (((s as any).exhibition_outdoors ?? 0) <= 20) {
+              qspCall(s, 'exp_gain', 'inhib', (Math.floor(Math.random() * 7) + 9));
             } else {
-              if (((s as any).exhibition_outdoors ?? 0) <= 30) {
-                qspCall(s, 'exp_gain', 'inhib', (Math.floor(Math.random() * 10) + 16));
+              if (((s as any).exhibition_outdoors ?? 0) <= 25) {
+                qspCall(s, 'exp_gain', 'inhib', (Math.floor(Math.random() * 9) + 12));
               } else {
-                if (((s as any).exhibition_outdoors ?? 0) <= 35) {
-                  qspCall(s, 'exp_gain', 'inhib', (Math.floor(Math.random() * 11) + 20));
+                if (((s as any).exhibition_outdoors ?? 0) <= 30) {
+                  qspCall(s, 'exp_gain', 'inhib', (Math.floor(Math.random() * 10) + 16));
                 } else {
-                  if (((s as any).exhibition_outdoors ?? 0) <= 40) {
-                    qspCall(s, 'exp_gain', 'inhib', (Math.floor(Math.random() * 16) + 25));
+                  if (((s as any).exhibition_outdoors ?? 0) <= 35) {
+                    qspCall(s, 'exp_gain', 'inhib', (Math.floor(Math.random() * 11) + 20));
                   } else {
-                    if (((s as any).exhibition_outdoors ?? 0) <= 50) {
-                      qspCall(s, 'exp_gain', 'inhib', (Math.floor(Math.random() * 16) + 35));
+                    if (((s as any).exhibition_outdoors ?? 0) <= 40) {
+                      qspCall(s, 'exp_gain', 'inhib', (Math.floor(Math.random() * 16) + 25));
                     } else {
-                      if (((s as any).exhibition_outdoors ?? 0) <= 65) {
-                        qspCall(s, 'exp_gain', 'inhib', (Math.floor(Math.random() * 26) + 50));
+                      if (((s as any).exhibition_outdoors ?? 0) <= 50) {
+                        qspCall(s, 'exp_gain', 'inhib', (Math.floor(Math.random() * 16) + 35));
                       } else {
-                        qspCall(s, 'exp_gain', 'inhib', (Math.floor(Math.random() * 31) + 70));
+                        if (((s as any).exhibition_outdoors ?? 0) <= 65) {
+                          qspCall(s, 'exp_gain', 'inhib', (Math.floor(Math.random() * 26) + 50));
+                        } else {
+                          qspCall(s, 'exp_gain', 'inhib', (Math.floor(Math.random() * 31) + 70));
+                        }
                       }
                     }
                   }
@@ -161,73 +163,73 @@ function enter(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
-  }
-  (s as any).exhibition_outdoors = 0;
-  if (((s as any).succubusflag ?? 0) === 1) {
-    qspCall(s, 'succubus', 'cikl');
-  }
-  if (((s as any).defcurly ?? 0) === 0  &&  ((s as any).curly ?? 0) > 0) {
-    (s as any).curly = ((s as any).curly ?? 0) - (1);
-  }
-  if (((s as any).defcurly ?? 0) === 1) {
-    if (((s as any).straight ?? 0) > 0) {
-      (s as any).straight = ((s as any).straight ?? 0) - (1);
+    (s as any).exhibition_outdoors = 0;
+    if (((s as any).succubusflag ?? 0) === 1) {
+      qspCall(s, 'succubus', 'cikl');
     }
-    if ((!((s as any).straight ?? 0))) {
-      (s as any).curly = 2147483647;
+    if (((s as any).defcurly ?? 0) === 0  &&  ((s as any).curly ?? 0) > 0) {
+      (s as any).curly = ((s as any).curly ?? 0) - (1);
     }
-  }
-  qspCall(s, 'sweat', 'add', 2);
-  if (((s as any).pcs_tan ?? 0) > 0) {
-    (s as any).pcs_tan = ((s as any).pcs_tan ?? 0) - (1);
-  }
-  if (((s as any).prezikmsg ?? 0) === 2) {
-    (s as any).prezikmsg = 3;
-  }
-  qspCall(s, 'fertility', 'daily_update');
-  if (((s as any).cycle ?? 0) < 4  &&  (((s as any).calCycleOpts ?? 0)?.['tracked_cycle'] !== ((s as any).cycle ?? 0)  ||  ((s as any).calCycleOpts ?? 0)['phase_start_' + ((s as any).cycle ?? 0)] === 0)) {
-    // TODO-QSP: calCycleOpts['phase_start_' + cycle] = daystart
-    ((s as any).calCycleOpts = (s as any).calCycleOpts ?? {})['tracked_cycle'] = ((s as any).cycle ?? 0);
-  }
-  qspCall(s, 'calendar', 'cycle_rebuild');
-  if (((s as any).pcs_breath ?? 0) === 1) {
-    (s as any).pcs_breath = 0;
-  }
-  if (((s as any).breastlastused ?? 0) !== ((s as any).daystart ?? 0)) {
-    (s as any).breastlastused = ((s as any).daystart ?? 0);
-    (s as any).breastaccommodation = ((s as any).breastaccommodation ?? 0) - (1);
-    if (((s as any).breastaccommodation ?? 0) < 0) {
-      (s as any).breastaccommodation = 0;
-    }
-  }
-  if (((s as any).cheatVars ?? 0)?.['hunger'] === 1  &&  ((s as any).dounspell ?? 0) === 1) {
-    (s as any).fat = ((s as any).fat ?? 0) + (15);
-  }
-  if (((s as any).mood_trauma ?? 0) > 0) {
-    (s as any).mood_trauma = ((s as any).mood_trauma ?? 0) - ((Math.floor(Math.random() * 2) + 0));
-  }
-  if (((s as any).SifacOnce ?? 0) === 1) {
-    (s as any).Sifilis = ((s as any).Sifilis ?? 0) + (1);
-  }
-  if (((s as any).GerpesOnce ?? 0) === 1) {
-    (s as any).Gerpes = ((s as any).Gerpes ?? 0) + (1);
-  }
-  if (((s as any).TriperOnce ?? 0) === 1) {
-    if (((s as any).Triper ?? 0) > 0) {
-      (s as any).Triper = ((s as any).Triper ?? 0) + (1);
-    }
-    if (((s as any).TriperOral ?? 0) > 0) {
-      (s as any).TriperOral = ((s as any).TriperOral ?? 0) + (1);
-    }
-    // TODO-QSP: If TriperOral > 14 and TriperNapr = 0:
-    if ((Math.floor(Math.random() * (100 - ((s as any).TriperOral ?? 0) + 1)) + (((s as any).TriperOral ?? 0))) > 80) {
-      (s as any).TriperOral = 0;
-      if ((!((s as any).Triper ?? 0))) {
-        (s as any).TriperOnce = 0;
+    if (((s as any).defcurly ?? 0) === 1) {
+      if (((s as any).straight ?? 0) > 0) {
+        (s as any).straight = ((s as any).straight ?? 0) - (1);
       }
-      (s as any).TriperOralSigns = 0;
+      if ((!((s as any).straight ?? 0))) {
+        (s as any).curly = 2147483647;
+      }
     }
-  }
+    qspCall(s, 'sweat', 'add', 2);
+    if (((s as any).pcs_tan ?? 0) > 0) {
+      (s as any).pcs_tan = ((s as any).pcs_tan ?? 0) - (1);
+    }
+    if (((s as any).prezikmsg ?? 0) === 2) {
+      (s as any).prezikmsg = 3;
+    }
+    qspCall(s, 'fertility', 'daily_update');
+    if (((s as any).cycle ?? 0) < 4  &&  (((s as any).calCycleOpts ?? 0)?.['tracked_cycle'] !== ((s as any).cycle ?? 0)  ||  ((s as any).calCycleOpts ?? 0)['phase_start_' + ((s as any).cycle ?? 0)] === 0)) {
+      ((s as any).calCycleOpts = (s as any).calCycleOpts ?? {})['phase_start_' + ((s as any).cycle ?? 0)] = ((s as any).daystart ?? 0);
+      ((s as any).calCycleOpts = (s as any).calCycleOpts ?? {})['tracked_cycle'] = ((s as any).cycle ?? 0);
+    }
+    qspCall(s, 'calendar', 'cycle_rebuild');
+    if (((s as any).pcs_breath ?? 0) === 1) {
+      (s as any).pcs_breath = 0;
+    }
+    if (((s as any).breastlastused ?? 0) !== ((s as any).daystart ?? 0)) {
+      (s as any).breastlastused = ((s as any).daystart ?? 0);
+      (s as any).breastaccommodation = ((s as any).breastaccommodation ?? 0) - (1);
+      if (((s as any).breastaccommodation ?? 0) < 0) {
+        (s as any).breastaccommodation = 0;
+      }
+    }
+    if (((s as any).cheatVars ?? 0)?.['hunger'] === 1  &&  ((s as any).dounspell ?? 0) === 1) {
+      (s as any).fat = ((s as any).fat ?? 0) + (15);
+    }
+    if (((s as any).mood_trauma ?? 0) > 0) {
+      (s as any).mood_trauma = ((s as any).mood_trauma ?? 0) - ((Math.floor(Math.random() * 2) + 0));
+    }
+    if (((s as any).SifacOnce ?? 0) === 1) {
+      (s as any).Sifilis = ((s as any).Sifilis ?? 0) + (1);
+    }
+    if (((s as any).GerpesOnce ?? 0) === 1) {
+      (s as any).Gerpes = ((s as any).Gerpes ?? 0) + (1);
+    }
+    if (((s as any).TriperOnce ?? 0) === 1) {
+      if (((s as any).Triper ?? 0) > 0) {
+        (s as any).Triper = ((s as any).Triper ?? 0) + (1);
+      }
+      if (((s as any).TriperOral ?? 0) > 0) {
+        (s as any).TriperOral = ((s as any).TriperOral ?? 0) + (1);
+      }
+      // TODO-QSP: If TriperOral > 14 and TriperNapr = 0:
+      if ((Math.floor(Math.random() * (100 - ((s as any).TriperOral ?? 0) + 1)) + (((s as any).TriperOral ?? 0))) > 80) {
+        (s as any).TriperOral = 0;
+        if ((!((s as any).Triper ?? 0))) {
+          (s as any).TriperOnce = 0;
+        }
+        (s as any).TriperOralSigns = 0;
+      }
+    }
+  } while (((s as any).ciklVars ?? 0)?.['i'] <= 293);
   scene.build();
 }
 

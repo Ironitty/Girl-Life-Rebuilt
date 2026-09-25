@@ -11,13 +11,11 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 function enterQuickie(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'public_indoors';
   scene.img('images/shared/romance/lovers/hookups/gf/gf1.jpg');
-  // TODO-QSP: dynamic text: <<$npcdesc>> opens the door to her apartment and you both immediately begin care...
   scene.text(`${((s as any).npcdesc ?? '')} opens the door to her apartment and you both immediately begin caressing each other and kissing passionately.`);
-  // TODO-QSP: 'Slowly '+iif(PCloSkirt = 0, 'you inch her dress upwards as she pulls your pants down', 'both your d...
+  scene.text('Slowly ' + (((!((s as any).PCloSkirt ?? 0))) ? ('you inch her dress upwards as she pulls your pants down') : ('both your dresses are inched upwards')) + ' exposing ' + ((((s as any).pantyworntype ?? 0) === 'none') ? ('her already soaking panties and your pussy.') : ('both of your already soaking panties.')));
   qspCall(s, 'arousal', 'foreplay', 2);
   qspCall(s, 'arousal', 'foreplay_give', (-2));
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'You can not resist that ass!', handler: (st: GameState) => {
     scene.img('images/shared/romance/lovers/hookups/gf/gf2.jpg');
@@ -26,7 +24,7 @@ function enterQuickie(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Stand back up', handler: (st: GameState) => {
     scene.img('images/shared/romance/lovers/hookups/gf/gf3.jpg');
-    // TODO-QSP: 'You continue to caress her as you slowly rise. She turns to you with lust in her eyes and pushes yo...
+    scene.text('You continue to caress her as you slowly rise. She turns to you with lust in her eyes and pushes you back against the door frame. She immediately starts kissing you while playing with your clit' + ((((st as any).pantyworntype ?? 0) === 'none') ? ('.') : (' through your panties.')));
     qspCall(st, 'arousal', 'kiss', (-5));
     (st as any).orgasm_or = 'no';
     qspCall(st, 'arousal', 'clit_finger', 5);
@@ -36,7 +34,6 @@ function enterQuickie(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'outfit', 'strip');
     scene.img('images/shared/romance/lovers/hookups/gf/gf4.jpg');
     scene.text('Growing a bit tired, she starts to pull you by the hand through the living room towards her bedroom.');
-    // TODO-QSP: dynamic text: Unable to contain your lust anymore, you don''t even make it to the bedroom but ...
     scene.text(`Unable to contain your lust anymore, you don't even make it to the bedroom but collapse on the couch. You lay on your back and hold your legs open for ${((st as any).npcdesc ?? '')}. She wastes no time and starts kissing and licking your clit, while gently fingering you.`);
     (st as any).orgasm_or = 'no';
     qspCall(st, 'arousal', 'vaginal_finger', (-10));
@@ -47,7 +44,6 @@ function enterQuickie(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Her turn', handler: (st: GameState) => {
     scene.img('images/shared/romance/lovers/hookups/gf/gf5.jpg');
-    // TODO-QSP: dynamic text: <<$npcdesc>> smiles at you and lays back on the couch. You move between her legs...
     scene.text(`${((st as any).npcdesc ?? '')} smiles at you and lays back on the couch. You move between her legs and happily work her private parts until she cums for you, squirting her juices into your mouth as you lap them up.`);
     qspCall(st, 'arousal', 'cuni_give', 10);
     scene.text('"Yum! You taste good," you mutter, smiling at her.');
@@ -56,9 +52,7 @@ function enterQuickie(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/romance/lovers/hookups/gf/gf6.jpg');
     scene.text('Both exhausted and in a state of bliss, she slowly closes her eyes while remaining on the couch.');
     scene.text('You climb on top of her and cuddle up to her, and you both fall asleep in each other\'s arms.');
-    // TODO-QSP: dynamic text: A short while later, you both wake up, still embracing one another. <<$npcdesc>>...
     scene.text(`A short while later, you both wake up, still embracing one another. ${((st as any).npcdesc ?? '')} turns and gives you a long passionate kiss.`);
-    // TODO-QSP: dynamic text: "You know, <<$pcs_nickname>>," she says. "That was so unexpected! Just spending ...
     scene.text(`"You know, ${((st as any).pcs_nickname ?? '')}," she says. "That was so unexpected! Just spending this short time with you made me happy. Do you want to swap phone numbers? Maybe we can go on a date and see where this goes?"`);
     qspCall(st, 'arousal', 'kiss', 2);
     scene.actions([

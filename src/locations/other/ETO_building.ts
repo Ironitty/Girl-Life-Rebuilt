@@ -16,7 +16,6 @@ function enterAtticTeens(s: GameState, scene: SceneBuilder): void {
   scene.text('You try to retrieve your clothes, but the teenagers constantly push and pull you in different directions. You beg them to let you go, promising never to come here again. But the teenagers only laugh and have openly pinned you down. Suddenly, you feel someone\'s hands at your pants, pulling sharply to force them down. Another one pulls off your bra and any remaining clothes.');
   scene.text('Now you\'re standing completely naked in front of them. They begin to push you toward the depths of the attic, and only now do you notice a huge old sofa with broken legs. As they force you toward the couch, you try again to calm the teenagers, but they pay no attention. They abruptly push you onto the couch. The teenagers begin to unbutton their jeans. A powerfully built man approaches first, shoves your shoulders down onto your back, unceremoniously spreads your legs, lies on top of you, and abruptly penetrates you.');
   qspCall(s, 'arousal', 'vaginal', 30, 'gangbang');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Next', handler: (st: GameState) => {
     scene.img('images/locations/city/residential/apartment/sex/cherdak1.jpg');
@@ -55,7 +54,6 @@ function enterBuildingEntrance(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: '', labelFn: (s: GameState) => String(((st as any).pcs_nickname ?? '') ?? ''), handler: (st: GameState) => {
     qspCall(st, 'stat', '');
-    // TODO-QSP: dynamic text: <font color="magenta">"My name is <<$pcs_nickname>>,"</font> you say. He nods an...
     scene.text(`<font color="magenta">"My name is ${((st as any).pcs_nickname ?? '')},"</font> you say. He nods and begins to retrieve the key to open apartment 68. The curious face of an elderly woman appears in the doorway. She points her sharp nose at you and stares curiously. Timofei enters the apartment and says irritably, "Mother, stop hanging around the front door!" before closing the door.`);
     scene.actions([
       { label: 'Continue', goto: ['ETO_building', 'building_entrance'] },
@@ -73,7 +71,6 @@ function enterBuildingEntrance(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the building', handler: (st: GameState) => {
     if (((st as any).clothingworntype ?? 0) === 'nude') {
@@ -102,9 +99,8 @@ function enterAttic(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/residential/apartment/cherdak.jpg');
   scene.text('A flight of stairs leads to the roof through the attic. It\'s dark and scary. This is clearly no place for a decent girl.');
   if ((Math.floor(Math.random() * 100) + 1) > 90) {
-    scene.text('In the depths of the attic, you hear a group of <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027ETO_building/u0027, /u0027attic_teens/u0027); return false;">teens</a> talking. It seems they don\'t notice you.');
+    scene.text('In the depths of the attic, you hear a group of <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027ETO_building\u0027, \u0027attic_teens\u0027); return false;">teens</a> talking. It seems they don\'t notice you.');
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the hallway', goto: ['ETO_building', 'building_entrance'] },
     { label: 'Go up to the roof', goto: ['ETO_building', 'roof'] },
@@ -174,10 +170,10 @@ function enterRoof(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go down to the attic', handler: (st: GameState) => {
     if (((st as any).PSwim ?? 0) === 1  ||  ((st as any).clothingworntype ?? 0) === 'nude') {
+      alert('<center><font color = red>You need to get dressed first</font></center>');
       qspGoto(st, 'ETO_building', 'roof');
     } else {
       (st as any).minut = ((st as any).minut ?? 0) + 1;

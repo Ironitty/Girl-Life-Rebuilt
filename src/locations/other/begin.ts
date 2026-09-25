@@ -11,7 +11,6 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 function enterWarning(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b><font color = white>WARNING</font></b></center>');
   scene.img('images/system/1_openings/warning.jpg');
-  // TODO-QSP: end
   scene.actions([
     { label: '<b>Continue</b>', goto: ['begin', 'start'] },
     { label: '<b>Quick Start</b>', goto: ['begin', 'quick_start'] },
@@ -24,17 +23,16 @@ function enterCheckimg(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === String((s as any).locArgs?.[3] ?? '')  &&  String((s as any).locArgs?.[2] ?? '') === String((s as any).locArgs?.[4] ?? '')) {
     (s as any).result = '<td><center><img src="images/system/icons/check.png" height="50"></center></td>';
   } else {
-    (s as any).result = '<td><center><a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: $start_type[/u0027loc/u0027] = /u0027' + ((s as any).locArgs?.[3] ?? 0) + '/u0027 */ /* TODO-QSP: $start_type[/u0027magic/u0027] = /u0027' + ((s as any).locArgs?.[4] ?? 0) + '/u0027 */ return s; }); window.__gameStore.getState().doGoto(/u0027begin/u0027, /u0027start/u0027); return false;"><img src="images/system/icons/uncheck.png" height="50"></a></center></td>';
+    (s as any).result = '<td><center><a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: $start_type[\u0027loc\u0027] = \u0027' + ((s as any).locArgs?.[3] ?? 0) + '\u0027 */ /* TODO-QSP: $start_type[\u0027magic\u0027] = \u0027' + ((s as any).locArgs?.[4] ?? 0) + '\u0027 */ return s; }); window.__gameStore.getState().doGoto(\u0027begin\u0027, \u0027start\u0027); return false;"><img src="images/system/icons/uncheck.png" height="50"></a></center></td>';
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'begin', 'start');
+  (s as any).settingmode = undefined;
   qspCall(s, 'cheatmenu_din', '');
-  // TODO-QSP: showstat 1
   scene.text('<center><b>CHOOSE GAME START</b></center>');
   scene.text('<center>There are three main start types:');
   scene.text('Last year of school (before or after summer holidays);');
@@ -46,18 +44,19 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.text('M2F (As per magic but your character will magically be turned into a girl in the intro).</center>');
   scene.text('<center><table><th width="100"><p align="center">Start Type</p></th><th width="80"><p align="center">Standard</p></th><th width="80"><p align="center">Magical</p></th><th width="80"><p align="center">M2F</p></th>');
   (s as any).start_text = '<tr><td><p align="center">School</p></td>';
-  // TODO-QSP: $start_text += $func('begin', 'checkimg', $start_type['loc'], $start_type['magic'], 'sg', 'nomagic')
-  // TODO-QSP: $start_text += $func('begin', 'checkimg', $start_type['loc'], $start_type['magic'], 'sg', 'magic')
-  // TODO-QSP: $start_text += $func('begin', 'checkimg', $start_type['loc'], $start_type['magic'], 'sg', 'tg')
-  // TODO-QSP: $start_text += '<tr><td><p align="center">University</p></td>'
-  // TODO-QSP: $start_text += $func('begin', 'checkimg', $start_type['loc'], $start_type['magic'], 'uni', 'nomagic'...
-  // TODO-QSP: $start_text += $func('begin', 'checkimg', $start_type['loc'], $start_type['magic'], 'uni', 'magic')
-  // TODO-QSP: $start_text += $func('begin', 'checkimg', $start_type['loc'], $start_type['magic'], 'uni', 'tg')
-  // TODO-QSP: $start_text += '<tr><td><p align="center">City</p></td>'
-  // TODO-QSP: $start_text += $func('begin', 'checkimg', $start_type['loc'], $start_type['magic'], 'city', 'nomagic...
-  // TODO-QSP: $start_text += $func('begin', 'checkimg', $start_type['loc'], $start_type['magic'], 'city', 'magic')
-  // TODO-QSP: $start_text += $func('begin', 'checkimg', $start_type['loc'], $start_type['magic'], 'city', 'tg')
-  // TODO-QSP: $start_text
+  (s as any).start_text = ((s as any).start_text ?? 0) + (qspFunc(s, 'begin', 'checkimg', (((s as any).start_type ?? 0)?.['loc']), (((s as any).start_type ?? 0)?.['magic']), 'sg', 'nomagic'));
+  (s as any).start_text = ((s as any).start_text ?? 0) + (qspFunc(s, 'begin', 'checkimg', (((s as any).start_type ?? 0)?.['loc']), (((s as any).start_type ?? 0)?.['magic']), 'sg', 'magic'));
+  (s as any).start_text = ((s as any).start_text ?? 0) + (qspFunc(s, 'begin', 'checkimg', (((s as any).start_type ?? 0)?.['loc']), (((s as any).start_type ?? 0)?.['magic']), 'sg', 'tg'));
+  (s as any).start_text = ((s as any).start_text ?? 0) + ('<tr><td><p align="center">University</p></td>');
+  (s as any).start_text = ((s as any).start_text ?? 0) + (qspFunc(s, 'begin', 'checkimg', (((s as any).start_type ?? 0)?.['loc']), (((s as any).start_type ?? 0)?.['magic']), 'uni', 'nomagic'));
+  (s as any).start_text = ((s as any).start_text ?? 0) + (qspFunc(s, 'begin', 'checkimg', (((s as any).start_type ?? 0)?.['loc']), (((s as any).start_type ?? 0)?.['magic']), 'uni', 'magic'));
+  (s as any).start_text = ((s as any).start_text ?? 0) + (qspFunc(s, 'begin', 'checkimg', (((s as any).start_type ?? 0)?.['loc']), (((s as any).start_type ?? 0)?.['magic']), 'uni', 'tg'));
+  (s as any).start_text = ((s as any).start_text ?? 0) + ('<tr><td><p align="center">City</p></td>');
+  (s as any).start_text = ((s as any).start_text ?? 0) + (qspFunc(s, 'begin', 'checkimg', (((s as any).start_type ?? 0)?.['loc']), (((s as any).start_type ?? 0)?.['magic']), 'city', 'nomagic'));
+  (s as any).start_text = ((s as any).start_text ?? 0) + (qspFunc(s, 'begin', 'checkimg', (((s as any).start_type ?? 0)?.['loc']), (((s as any).start_type ?? 0)?.['magic']), 'city', 'magic'));
+  (s as any).start_text = ((s as any).start_text ?? 0) + (qspFunc(s, 'begin', 'checkimg', (((s as any).start_type ?? 0)?.['loc']), (((s as any).start_type ?? 0)?.['magic']), 'city', 'tg'));
+  s.scene = { ...s.scene, mainText: String((s as any).start_text || ''), curActs: [] };
+  (s as any).start_text = undefined;
   scene.text('</table></center>');
   if (((s as any).start_type ?? 0)?.['loc'] !== ''  &&  ((s as any).start_type ?? 0)?.['magic'] !== '') {
     scene.actions([
@@ -65,7 +64,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       { label: '<b>Quick Start</b>', goto: ['intro_start', 'quick_start'] },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Change theme', handler: (st: GameState) => {
     (st as any).themes_menu_ret_loc = 'begin';
@@ -87,7 +85,6 @@ function enterQuickStart(s: GameState, scene: SceneBuilder): void {
   ((s as any).start_type = (s as any).start_type ?? {})['loc'] = qspFunc(s, 'begin', 'get_random', 'loc');
   ((s as any).start_type = (s as any).start_type ?? {})['magic'] = qspFunc(s, 'begin', 'get_random', 'magic');
   qspGoto(s, 'intro_start', 'quick_start');
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -117,8 +114,8 @@ function enterGetRandom(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  (s as any).temp_rand = undefined;
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -134,12 +131,11 @@ function enterRealCharacter(s: GameState, scene: SceneBuilder): void {
   scene.text('Your fixed image is your own personal choice, and is based on your personal preferences. By default, the game uses an avatar image from the site wikimedia.org.');
   scene.text('If you are playing on Android, click ');
   if (((s as any).stat_cfg ?? 0)?.['android'] === 1) {
-    // TODO-QSP: *P '<a href="exec:stat_cfg[''android''] = 0 & gt ''begin'',''real_character''">Here</a> (Current: <b...
+    scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { (s.stat_cfg ??= {})\u0027android\u0027 = s.0; return s; }); window.__gameStore.getState().doGoto(\u0027begin\u0027, \u0027real_character\u0027); return false;">Here</a> (Current: <b>Yes</b>)');
   } else {
-    // TODO-QSP: *P '<a href="exec:stat_cfg[''android''] = 1 & gt ''begin'',''real_character''">Here</a> (Current: <b...
+    scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { (s.stat_cfg ??= {})\u0027android\u0027 = s.1; return s; }); window.__gameStore.getState().doGoto(\u0027begin\u0027, \u0027real_character\u0027); return false;">Here</a> (Current: <b>No</b>)');
   }
   scene.text('</center>');
-  // TODO-QSP: end
   scene.actions([
     { label: '<b>Use the dynamic profile system</b>', handler: (st: GameState) => {
     ((st as any).face_style = (st as any).face_style ?? {})['type'] = 0;
@@ -162,9 +158,7 @@ function enterUseAvatarMenu(s: GameState, scene: SceneBuilder): void {
   if (((s as any).face_style ?? 0)?.['avatar_path'] === '') {
     ((s as any).face_style = (s as any).face_style ?? {})['avatar_path'] = 'images/avatar.jpg';
   }
-  // TODO-QSP: dynamic text: You have selected: <<$face_style[''avatar_path'']>>. Is this correct?
   scene.text(`You have selected: ${(((s as any).face_style ?? 0)?.['avatar_path'] ?? '')}. Is this correct?`);
-  // TODO-QSP: end
   scene.actions([
     { label: 'Yes', goto: ['intro_start', 'start'] },
     { label: 'Try again', goto: ['begin', 'use_avatar_menu'] },

@@ -105,10 +105,8 @@ function enterLazar(s: GameState, scene: SceneBuilder): void {
       } else {
         if (((st as any).npc_rel ?? 0)?.['A149'] <= 20  &&  ((st as any).fame ?? 0)?.['pav_slut'] < 250) {
           if (((st as any).grupTipe ?? 0) === 2) {
-            // TODO-QSP: dynamic text: "Well well, if it isn''t <<$pcs_nickname>>…" Lazar quips as he stands with his a...
             scene.text(`"Well well, if it isn't ${((st as any).pcs_nickname ?? '')}…" Lazar quips as he stands with his arms crossed.`);
             scene.text('You sigh. "What now, Lazar? I don\'t have time for your games today…"');
-            // TODO-QSP: dynamic text: He huffs. "Somebody''s been talking shit behind my back to some girls, but I hav...
             scene.text(`He huffs. "Somebody's been talking shit behind my back to some girls, but I haven't figured out who it is yet. I just wanted you to know that I'm keeping my eyes on you, ${((st as any).pcs_nickname ?? '')}."`);
             scene.text('"Well, it\'s not me," you say as you roll your eyes and spend time trying to convince him, but your words fall on deaf ears.');
           } else {
@@ -168,7 +166,6 @@ function enterLazar(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -188,7 +185,6 @@ function enterLazarDance(s: GameState, scene: SceneBuilder): void {
       { label: 'Keep dancing', goto: ['pav_disco_jocks', 'lazar_dance'] },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Do something else', goto: ['pav_disco_classmates', 'classmates'] },
   ]);
@@ -201,7 +197,6 @@ function enterIvan(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/shared/headshots_main/big3.jpg');
   scene.text('To your surprise, you see Ivan hanging out with the other jocks, talking to a few of them and smiling. You almost never see him here.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Do something else', goto: ['pav_disco_classmates', 'classmates'] },
     { label: 'Hang out with him', handler: (st: GameState) => {
@@ -230,7 +225,6 @@ function enterIvan(s: GameState, scene: SceneBuilder): void {
     scene.text('"Hey Ivan, want to dance?" you ask with a smile.');
     scene.text('He pauses and thinks about it before shaking his head. "Maybe another time."');
     if (((st as any).IvanShowerQW ?? 0) === 11  &&  ((st as any).IvanShowerYes ?? 0) === 1) {
-      // TODO-QSP: dynamic text: He pauses again for a moment, then smiles a mischievous smile. "We could have ou...
       scene.text(`He pauses again for a moment, then smiles a mischievous smile. "We could have our own private dance if you're... bored, ${((st as any).pcs_nickname ?? '')}." You know that is his code for fucking you in the ass, do you want to have sex with him?`);
       scene.actions([
         { label: 'Agree to go with him', goto: ['IvanEv', 'ivan_bored_disco'] },
@@ -299,7 +293,6 @@ function enterFedor(s: GameState, scene: SceneBuilder): void {
   } else {
     qspGoto(s, 'FedorMisc', 'Fedor Chat', '1');
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -440,7 +433,6 @@ function enterSvyatoslav(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -460,7 +452,6 @@ function enterSvyatoslavDance(s: GameState, scene: SceneBuilder): void {
       { label: 'Keep dancing', goto: ['pav_disco_jocks', 'svyatoslav_dance'] },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Do something else', goto: ['pav_disco_classmates', 'classmates'] },
   ]);
@@ -482,13 +473,11 @@ function enterVanya(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).npc_rel ?? 0)?.['A165'] >= 50  &&  ((s as any).fame ?? 0)?.['pav_slut'] < 200) {
       if (((s as any).grupTipe ?? 0) === 2) {
-        // TODO-QSP: dynamic text: Vanya is having a hard time stopping himself from laughing. "<<$pcs_nickname>>, ...
         scene.text(`Vanya is having a hard time stopping himself from laughing. "${((s as any).pcs_nickname ?? '')}, did you hear about the prank I pulled on the football coach?"`);
         scene.text('"No, what did you do this time?" you curiously ask.');
         scene.text('"During one of the training sessions, I unscrewed the top from a water bottle thinking one of the boys would drink it, but here comes the coach! ust as he\'s about to drink, the top falls off and water splashes all over him!"');
         scene.text('Unable to help himself, he bursts out into laughter.');
       } else {
-        // TODO-QSP: dynamic text: "<<$pcs_nickname>>! You need to help me hide!" Vanya says alarmingly as he looks...
         scene.text(`"${((s as any).pcs_nickname ?? '')}! You need to help me hide!" Vanya says alarmingly as he looks around.`);
         scene.text('"What\'s wrong?!" you reply in a panic. "Who\'s after you?!"');
         scene.text('Vanya cracks up. "Just kidding! I just wanted to see your reaction."');
@@ -525,7 +514,6 @@ function enterVanya(s: GameState, scene: SceneBuilder): void {
             { label: 'Do something else', goto: ['pav_disco_classmates', 'classmates'] },
           ]);
         } else {
-          // TODO-QSP: dynamic text: "Hey <<$pcs_nickname>>! Check this out!" Vanya yells as he throws a crumbled pap...
           scene.text(`"Hey ${((s as any).pcs_nickname ?? '')}! Check this out!" Vanya yells as he throws a crumbled paper ball at Vitek's head.`);
           scene.text('He in turn quickly spins around and glares, trying to figure out who threw the crumbled paper.');
           scene.text('"Who was it?!" Vitek yells out. "Tell me who the fuck it was!"');
@@ -537,7 +525,6 @@ function enterVanya(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -547,7 +534,6 @@ function enterErast(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/shared/headshots_main/big150.jpg');
   scene.text('You\'re a little surprised to see Erast hanging out with the cool kids and jocks, standing near one of the tables with his arms crossed. You rarely see him here and you don\'t think he\'s enjoying himself, but he gives polite smiles to people that talk to him.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Do something else', goto: ['pav_disco_classmates', 'classmates'] },
     { label: 'Hang out with him', handler: (st: GameState) => {
@@ -556,16 +542,12 @@ function enterErast(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/shared/headshots_main/big150.jpg');
     if (((st as any).npc_rel ?? 0)?.['A150'] >= 50  &&  ((st as any).fame ?? 0)?.['pav_slut'] < 250) {
       if (((st as any).grupTipe ?? 0) === 2) {
-        // TODO-QSP: dynamic text: Erast smiles as you approach. "Oh hey <<$pcs_nickname>>…" he gently says. "What ...
         scene.text(`Erast smiles as you approach. "Oh hey ${((st as any).pcs_nickname ?? '')}…" he gently says. "What can I help you with?"`);
         scene.text('"Hi Erast! So I saw you working out and needed some pointers…" you ask him.');
-        // TODO-QSP: dynamic text: "No worries <<$pcs_nickname>>. I''ll gladly share my secrets with you," he winks...
         scene.text(`"No worries ${((st as any).pcs_nickname ?? '')}. I'll gladly share my secrets with you," he winks and continues on, talking about different workout techniques, that he swears will make you stronger and more fit.`);
       } else {
-        // TODO-QSP: dynamic text: Erast smiles as you approach. "Oh hey <<$pcs_nickname>>…" he gently says. "What ...
         scene.text(`Erast smiles as you approach. "Oh hey ${((st as any).pcs_nickname ?? '')}…" he gently says. "What can I help you with?"`);
         scene.text('"Hi Erast! Well, I was thinking about starting to work out and wanted to ask you about some pointers, if you have the time?" you politely ask.');
-        // TODO-QSP: dynamic text: "Of course, <<$pcs_nickname>>," he replies, brightening up as he starts asking y...
         scene.text(`"Of course, ${((st as any).pcs_nickname ?? '')}," he replies, brightening up as he starts asking you about what you want to achieve with your training.`);
       }
       scene.actions([
@@ -574,12 +556,10 @@ function enterErast(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((st as any).npc_rel ?? 0)?.['A150'] <= 20  &&  ((st as any).fame ?? 0)?.['pav_slut'] < 250) {
         if (((st as any).grupTipe ?? 0) === 2) {
-          // TODO-QSP: dynamic text: "Oh hey <<$pcs_nickname>>…" Erast gently says as you approach. "What can I help ...
           scene.text(`"Oh hey ${((st as any).pcs_nickname ?? '')}…" Erast gently says as you approach. "What can I help you with?"`);
           scene.text('"Just a quick thing, Erast. I promise…" you plead with him.');
           scene.text('"Sorry, I don\'t have any time right now. Later, okay?" he politely replies, then walks off.');
         } else {
-          // TODO-QSP: dynamic text: "I''m sorry <<$pcs_nickname>>, but I don''t have the time to talk to you…" he ge...
           scene.text(`"I'm sorry ${((st as any).pcs_nickname ?? '')}, but I don't have the time to talk to you…" he gently apologizes as he sees you approach.`);
           scene.text('"Are you sure you don\'t have the time? I\'ll only be a few seconds…" you politely ask.');
           scene.text('"I\'m sorry, but I don\'t have time right now… I need to go to the restroom… Maybe another time…"');
@@ -600,7 +580,6 @@ function enterErast(s: GameState, scene: SceneBuilder): void {
             { label: 'Do something else', goto: ['pav_disco_classmates', 'classmates'] },
           ]);
         } else {
-          // TODO-QSP: dynamic text: "Hey <<$pcs_nickname>>… What''s up?" he asks as you approach.
           scene.text(`"Hey ${((st as any).pcs_nickname ?? '')}… What's up?" he asks as you approach.`);
           scene.text('"Nothing much," you reply. "Just hanging out and looking to have a little fun. You?"');
           scene.text('He shakes his head a little. "The guys talked me into coming," he replies.');
@@ -637,12 +616,10 @@ function enterAlbina(s: GameState, scene: SceneBuilder): void {
       { label: 'Go out on the dance floor', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/community/disco/club.jpg');
     if ((((st as any).grupTipe ?? 0) === 1  ||  ((st as any).grupTipe ?? 0) === 2)  &&  ((st as any).npc_rel ?? 0)?.['A23'] >= 60) {
-      // TODO-QSP: dynamic text: You walk over to Albina and she gives you a smile. "<<$pcs_nickname>>, I didn''t...
       scene.text(`You walk over to Albina and she gives you a smile. "${((st as any).pcs_nickname ?? '')}, I didn't know you were here! Come and dance with me!"`);
     } else {
       if (((st as any).AlbinaQW ?? 0)?.['Friends'] === 2) {
         scene.text('You walk over to Albina and she couldn\'t be any happier to see you. She embraces you in a tight hug and you catch a scent of what you assume is some rather expensive perfume.');
-        // TODO-QSP: dynamic text: "Come and dance with me, <<$pcs_nickname>>! Let''s show these amateurs what real...
         scene.text(`"Come and dance with me, ${((st as any).pcs_nickname ?? '')}! Let's show these amateurs what real dancing actually looks like!"`);
       } else {
         scene.text('You walk over to Albina, but she scoffs and rudely dismisses you before you even get a chance to open your mouth.');
@@ -686,7 +663,6 @@ function enterAlbina(s: GameState, scene: SceneBuilder): void {
         } else {
           if (((st as any).fame ?? 0)?.['pav_slut'] >= 250) {
             if (((st as any).AlbinaQW ?? 0)?.['Friends'] === 2  ||  ((st as any).npc_rel ?? 0)?.['A23'] >= 60) {
-              // TODO-QSP: dynamic text: Albina seems a little surprised at your presence. "<<$pcs_nickname>>! What are y...
               scene.text(`Albina seems a little surprised at your presence. "${((st as any).pcs_nickname ?? '')}! What are you doing here?"`);
               scene.text('Before you can react, she stands up and whispers in your ear. "You should go before one of the guys takes advantage of you."');
               scene.text('She gives you a gentle push before she walks back to her friends, pretending that she wanted nothing to do with you.');
@@ -709,13 +685,11 @@ function enterAlbina(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big23.jpg');
     if (((st as any).AlbinaQW ?? 0)?.['Lazar_Threesome'] >= 1) {
-      // TODO-QSP: dynamic text: You sit and chat with Albina. "This place is so fucking boring! I might find Laz...
       scene.text(`You sit and chat with Albina. "This place is so fucking boring! I might find Lazar and see if he wants to go and have a little fun at his place." She then turns to you. "We've had fun with Lazar together, ${((st as any).pcs_nickname ?? '')}. Wouldn't it be nice to have him, or <i>me</i>, inside you again?"`);
       scene.text('Before you\'re able to answer, she smiles and winks at you before getting up and walking away, seemingly in search of Lazar.');
     } else {
       if (((st as any).npc_had_sex ?? 0)?.['A23']) {
         scene.text('You sit and chat with Albina. "God, it\'s so fucking boring here! Wouldn\'t you rather sneak off to a quiet place with me and have a little fun? I\'d love to taste your pussy right now."');
-        // TODO-QSP: dynamic text: You''re not sure how to react, which causes her to laugh. "I''m just kidding, <<...
         scene.text(`You're not sure how to react, which causes her to laugh. "I'm just kidding, ${((st as any).pcs_nickname ?? '')}. About the sneaking off part anyway. You taste too good…" she says before giving you a wink and walking away.`);
         scene.text('You\'re again unsure if she was joking or not.');
       } else {
@@ -752,7 +726,6 @@ function enterAlbina(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -766,7 +739,6 @@ function enterAlbinaDance(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/community/disco/club.jpg');
   scene.text('You go out onto the dance floor and start dancing with Albina.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Do something else', goto: ['pav_disco_classmates', 'classmates'] },
     { label: 'Keep dancing', handler: (st: GameState) => {
@@ -809,11 +781,9 @@ function enterAlbinaDance(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/community/disco/club.jpg');
     if (((st as any).npc_had_sex ?? 0)?.['A23']) {
-      // TODO-QSP: dynamic text: When the song ends, Albina looks back at you and winks. "That was pretty hot, <<...
       scene.text(`When the song ends, Albina looks back at you and winks. "That was pretty hot, ${((st as any).pcs_nickname ?? '')}. I need to go and cool off for a while."`);
       scene.text('She excuses herself and walks away with a seductive sway in her hips directed at you, leaving you standing in the middle of the dance floor feeling a little flustered.');
     } else {
-      // TODO-QSP: dynamic text: When the song ends, Albina steps off to the side. "That was fun <<$pcs_nickname>...
       scene.text(`When the song ends, Albina steps off to the side. "That was fun ${((st as any).pcs_nickname ?? '')}, but I need to sit down for a bit."`);
       scene.text('She excuses herself and leaves you standing in the middle of the dance floor.');
     }
@@ -835,7 +805,6 @@ function enterAlbinaWalkhome(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/community/disco/school_kids/walkhome_katja.jpg');
   if (((s as any).AlbinaQW ?? 0)?.['Friends'] === 2) {
     scene.text('Albina takes you by the hand and leads you outside.');
-    // TODO-QSP: dynamic text: "Motorboating me in public, <<$pcs_nickname>>? You really have had one or three ...
     scene.text(`"Motorboating me in public, ${((s as any).pcs_nickname ?? '')}? You really have had one or three too many. Let's get you home before you do something you really regret."`);
     if (((s as any).npc_had_sex ?? 0)?.['A23']) {
       scene.text('You spend the walk home admiring the scent of her perfume, her hand slapping you away every time you try to paw at her ass before you reach your apartment complex.');
@@ -870,7 +839,6 @@ function enterAlbinaWalkhome(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -963,7 +931,6 @@ function enterChristina(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1030,7 +997,6 @@ function enterChristinaDance(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1047,7 +1013,6 @@ function enterLariska(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/community/disco/club.jpg');
     if (((st as any).npc_rel ?? 0)?.['A13'] >= 50  &&  ((st as any).fame ?? 0)?.['pav_slut'] < 200) {
       scene.text('She sees you coming and dances her way to you.');
-      // TODO-QSP: dynamic text: "Hey, <<$pcs_nickname>>. Dance with me."
       scene.text(`"Hey, ${((st as any).pcs_nickname ?? '')}. Dance with me."`);
       scene.actions([
         { label: 'Do something else', goto: ['pav_disco_classmates', 'classmates'] },
@@ -1080,7 +1045,6 @@ function enterLariska(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('You spot Lariska, wearing a low cut top and a short skirt, relaxing up against a wall watching other people dance.');
     if (((s as any).npc_rel ?? 0)?.['A13'] >= 50  &&  ((s as any).fame ?? 0)?.['pav_slut'] < 200) {
-      // TODO-QSP: dynamic text: She sees you coming and smiles at you. "Hey <<$pcs_nickname>>. Having a good tim...
       scene.text(`She sees you coming and smiles at you. "Hey ${((s as any).pcs_nickname ?? '')}. Having a good time?"`);
       scene.text('"Yeah. You?" you reply.');
       scene.text('"Yes, I love coming here and watching people mingle and dance."');
@@ -1154,7 +1118,6 @@ function enterLariska(s: GameState, scene: SceneBuilder): void {
       { label: 'Do something else', goto: ['pav_disco_classmates', 'classmates'] },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1171,7 +1134,6 @@ function enterLariskaDance(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/community/disco/club.jpg');
   scene.text('Dancing with her, you notice several guys hungrily eyeing the two of you. She doesn\'t seem to be paying attention though, and you try not to think about it yourself and let loose a little.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Do something else', goto: ['pav_disco_classmates', 'classmates'] },
     { label: 'Keep dancing', handler: (st: GameState) => {
@@ -1215,7 +1177,6 @@ function enterLina(s: GameState, scene: SceneBuilder): void {
       { label: 'Go out on the dance floor', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/community/disco/club.jpg');
     if (((st as any).npc_rel ?? 0)?.['A19'] >= 50  &&  ((st as any).fame ?? 0)?.['pav_slut'] < 200) {
-      // TODO-QSP: dynamic text: As you get closer to Lina, she sees you and calls you out. "<<$pcs_nickname>>! C...
       scene.text(`As you get closer to Lina, she sees you and calls you out. "${((st as any).pcs_nickname ?? '')}! Come dance with me!"`);
       scene.actions([
         { label: 'Dance with her', goto: ['pav_disco_jocks', 'lina_dance'] },
@@ -1227,7 +1188,6 @@ function enterLina(s: GameState, scene: SceneBuilder): void {
         if (((st as any).fame ?? 0)?.['pav_slut'] >= 200) {
           scene.text('As you get closer to Lina, she looks you over with disgust and mouths "slut" at you before she disappears into the crowd.');
         } else {
-          // TODO-QSP: dynamic text: As you get closer to Lina, she sees you and calls you out. "<<$pcs_nickname>>! C...
           scene.text(`As you get closer to Lina, she sees you and calls you out. "${((st as any).pcs_nickname ?? '')}! Come dance with me!"`);
           scene.actions([
             { label: 'Dance with her', goto: ['pav_disco_jocks', 'lina_dance'] },
@@ -1246,7 +1206,6 @@ function enterLina(s: GameState, scene: SceneBuilder): void {
       { label: 'Hang out with her', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/community/disco/club.jpg');
     if (((st as any).npc_rel ?? 0)?.['A19'] >= 50  &&  ((st as any).fame ?? 0)?.['pav_slut'] < 200) {
-      // TODO-QSP: dynamic text: "Hey <<$pcs_nickname>>. How''s it going?"
       scene.text(`"Hey ${((st as any).pcs_nickname ?? '')}. How's it going?"`);
       scene.text('"Pretty good. You?"');
       scene.text('"Enjoying the night."');
@@ -1284,7 +1243,6 @@ function enterLina(s: GameState, scene: SceneBuilder): void {
         } else {
           scene.text('"What do <i>you</i> want?" she scoels.');
           scene.text('"I just was going to say hi," you reply.');
-          // TODO-QSP: dynamic text: "Get lost, <<$pcs_nickname>>."
           scene.text(`"Get lost, ${((st as any).pcs_nickname ?? '')}."`);
         }
       } else {
@@ -1299,7 +1257,6 @@ function enterLina(s: GameState, scene: SceneBuilder): void {
             scene.text('"Get lost, slut!"');
           }
         } else {
-          // TODO-QSP: dynamic text: "Hey, <<$pcs_nickname>>. How''s it going?"
           scene.text(`"Hey, ${((st as any).pcs_nickname ?? '')}. How's it going?"`);
           scene.text('"Pretty good," you reply. "You?"');
           scene.text('"Enjoying the night."');
@@ -1337,7 +1294,6 @@ function enterLina(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1354,7 +1310,6 @@ function enterLinaDance(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/community/disco/club.jpg');
   scene.text('You spend some time dancing with Lina. She seems to enjoy dancing, her face lit up in a bright smile, even laughing when one of you tries a risky dance move.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Do something else', goto: ['pav_disco_classmates', 'classmates'] },
     { label: 'Keep dancing', handler: (st: GameState) => {

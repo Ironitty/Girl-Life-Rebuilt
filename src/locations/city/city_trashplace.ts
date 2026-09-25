@@ -24,7 +24,6 @@ function enterBomzstartqwestdi(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Yes', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 15;
@@ -60,7 +59,6 @@ function enterBomzstartqwestdi(s: GameState, scene: SceneBuilder): void {
     }
     qspCall(st, 'stat', '');
     if (((st as any).film ?? 0) > 0) {
-      // TODO-QSP: dynamic text: You walk into Dimitri''s office and he stares at you. "<<$pfname>>? What brings ...
       scene.text(`You walk into Dimitri's office and he stares at you. "${((st as any).pfname ?? '')}? What brings you here?"`);
     } else {
       scene.text('"You\'re not getting on camera Nick, no matter how hot, or desperate, the girl is," he says while looking you over.');
@@ -185,7 +183,6 @@ function enterBomzstartqwestdi(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Inquire', handler: (st: GameState) => {
     scene.text('"What kind of work are we talking about here?" you ask.');
-    // TODO-QSP: dynamic text: "It doesn''t matter. I can''t use one of my girls for this, so you''re free to g...
     scene.text(`"It doesn't matter. I can't use one of my girls for this, so you're free to go. I'll see you next time you're shooting, ${((st as any).pfname ?? '')}."`);
     scene.text('Dimitri waves you out of his office and you leave the studio.');
     scene.actions([
@@ -266,8 +263,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/locations/city/residential/bum.jpg');
     scene.text('As you\'re about to leave, a drunk old man stumbles up to you. He looks and smells like he hasn\'t washed in weeks.');
-    // TODO-QSP: dynamic text: '"It''s national give ' + $func('money', 'string_price', 300) + ' to a bum day, ...
-    scene.text('"It\'s national give 300₽ to a bum day, so come on then!" he drunkenly demands.');
+    scene.text('\'"It\'s national give 300₽ to a bum day, so come on then!" he drunkenly demands.\'');
     scene.actions([
 { label: 'Give him money', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 300, 'cash') === 0) {
@@ -446,7 +442,6 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;

@@ -14,16 +14,13 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><h4>Elite settlement<h4></center>');
   scene.img('images/locations/city/suburb/settlement.jpg');
   if (qspFunc(s, 'car_funcs', 'is_here')) {
-    // TODO-QSP: dynamic text: Your <a href="exec:gs ''carF'', ''start''"><<$car[''name'']>></a> stands on the ...
     scene.text(`Your <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027carF/u0027, /u0027start/u0027); return false;">${(((s as any).car ?? 0)?.['name'] ?? '')}</a> stands on the street.`);
   }
-  // TODO-QSP: dynamic text: The <a href="exec: minut += 20 & gt ''metro'', ''suburbs''">Metro</a> station is...
-  scene.text('The <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.20; return s; }); window.__gameStore.getState().doGoto(/u0027metro/u0027, /u0027suburbs/u0027); return false;">Metro</a> station is a 20 minute walk from here.');
+  scene.text('The <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.20; return s; }); window.__gameStore.getState().doGoto(\u0027metro\u0027, \u0027suburbs\u0027); return false;">Metro</a> station is a 20 minute walk from here.');
   qspCall(s, 'taxi', '');
   if (((s as any).AlexandriaQW ?? 0) > 6) {
     if (((s as any).hour ?? 0) > 7  &&  ((s as any).hour ?? 0) < 20) {
-      // TODO-QSP: dynamic text: You can visit <a href="exec: minut += 5 & gt ''AlexandriaHome'', ''intercom''">A...
-      scene.text('You can visit <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(/u0027AlexandriaHome/u0027, /u0027intercom/u0027); return false;">Aleksei\'s home</a> if you want to see the cranky wizard.');
+      scene.text('You can visit <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(\u0027AlexandriaHome\u0027, \u0027intercom\u0027); return false;">Aleksei\'s home</a> if you want to see the cranky wizard.');
     }
   }
   if (((s as any).bdsmclub ?? 0)?.['unlocked'] === 1) {
@@ -79,7 +76,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Walk to the main road (0:01)', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 15;
@@ -110,14 +106,11 @@ function enterPs1(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><h4>Insane asylum<h4></center>');
   scene.text('The inscription on the sign by the road reads, "Closed to the public".');
   if ((!((s as any).psiklik ?? 0))) {
-    // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/locations/city/suburb/asylum0.jpg" ></cen...
     scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/city/suburb/asylum0.jpg" ></center>`);
   }
   if (((s as any).psiklik ?? 0) === 1) {
-    // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/locations/city/suburb/asylum1.jpg" ></cen...
     scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/city/suburb/asylum1.jpg" ></center>`);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 2;
@@ -133,7 +126,6 @@ function enterPs2(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><h4>An old abandoned building<h4></center>');
   scene.img('images/locations/city/suburb/abandoned.jpg');
   scene.text('An abandoned building that spoils the local communities appearance and intimidates local residents.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 2;

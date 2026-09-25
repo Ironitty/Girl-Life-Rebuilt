@@ -257,12 +257,10 @@ function enterSauna(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterIcePlunge(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: end
   scene.actions([
     { label: 'Take an ice plunge', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 10;
@@ -351,7 +349,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   }, goto: ['gschool_socialchg1', 'ivan_fedor_naked'] },
       ]);
     } else {
-      scene.text('You\'re walking down the secluded beach, enjoying the tranquility when you suddenly hear someone running up behind you. Expecting the worst, you turn around only to see a sweaty <a href="#" onclick="window.__gameStore.setState((s) => { s.ivanfedorseennaked = s.daystart; return s; }); window.__gameStore.getState().doGoto(/u0027gschool_socialchg1/u0027, /u0027tIvan/u0027); return false;">Ivan</a>, closely followed by <a href="#" onclick="window.__gameStore.setState((s) => { s.ivanfedorseennaked = s.daystart; return s; }); window.__gameStore.getState().doGoto(/u0027gschool_socialchg1/u0027, /u0027tFedor/u0027); return false;">Feodor</a>.');
+      scene.text('You\'re walking down the secluded beach, enjoying the tranquility when you suddenly hear someone running up behind you. Expecting the worst, you turn around only to see a sweaty <a href="#" onclick="window.__gameStore.setState((s) => { s.ivanfedorseennaked = s.daystart; return s; }); window.__gameStore.getState().doGoto(\u0027gschool_socialchg1\u0027, \u0027tIvan\u0027); return false;">Ivan</a>, closely followed by <a href="#" onclick="window.__gameStore.setState((s) => { s.ivanfedorseennaked = s.daystart; return s; }); window.__gameStore.getState().doGoto(\u0027gschool_socialchg1\u0027, \u0027tFedor\u0027); return false;">Feodor</a>.');
     }
   }
   if (((s as any).month ?? 0) >= 5  &&  ((s as any).month ?? 0) < 10) {
@@ -621,7 +619,6 @@ function enter(s: GameState, scene: SceneBuilder): void {
         { label: 'Continue', goto: ['pav_lake_nude', ''] },
       ]);
     } else {
-      // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/lake/secluded_beach/s...
       scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/lake/secluded_beach/self/nudebeachself` + (Math.floor(Math.random() * 3) + 1) + '.jpg"></center>');
       scene.text('You want to watch for nudists, but suddenly start to feel weird.<br><dh>"Probably spying too much."</dh> you think to yourself and look straight ahead.');
       scene.actions([
@@ -651,7 +648,6 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'mood', 'raise', 'tiny');
     qspCall(st, 'stat', '');
     if ((((st as any).PSwim ?? 0) === 1)  &&  ((st as any).pcs_hips ?? 0) <= 90) {
-      // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/lake/lake.walk.bikini...
       scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/lake/lake.walk.bikini0,` + (Math.floor(Math.random() * 4) + 0) + '.jpg"></center>');
     } else {
       if ((((st as any).PSwim ?? 0) === 1)  &&  ((st as any).pcs_hips ?? 0) >= 90  &&  ((st as any).pcs_hips ?? 0) <= 110) {
@@ -667,7 +663,6 @@ function enter(s: GameState, scene: SceneBuilder): void {
             scene.img('images/locations/pavlovsk/lake/walknude.jpg');
             (st as any).inhib_exp = ((st as any).inhib_exp ?? 0) + ((Math.floor(Math.random() * 3) + 1));
           } else {
-            // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/lake/lake.walk0,' + r...
             scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/lake/lake.walk0,` + (Math.floor(Math.random() * 3) + 0) + '.jpg"></center>');
           }
         }

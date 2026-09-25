@@ -12,21 +12,18 @@ function enter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'miroslava_schedule', '');
   qspCall(s, 'stat', '');
   if (((s as any).npc_QW ?? 0)?.['A64'] === 0) {
-    // TODO-QSP: $func('wrap', 'header b center', 'Mira''s Father')
+    scene.text(qspFunc(s, 'wrap', 'header b center', 'Mira\'s Father'));
   }
   if (((s as any).npc_QW ?? 0)?.['A64'] > 0) {
-    // TODO-QSP: $func('wrap', 'header b center', 'Afanasiy')
+    scene.text(qspFunc(s, 'wrap', 'header b center', 'Afanasiy'));
   }
   scene.img('images/characters/shared/headshots_main/big64.jpg');
-  // TODO-QSP: dynamic text: Mira''s father is <<boyage>> years old. After his wife died, he started to drink...
   scene.text(`Mira's father is ${((s as any).boyage ?? '')} years old. After his wife died, he started to drink heavily. As a result, he looks much older than he actually is. However, he is still in good shape for a man his age.`);
   if (((s as any).daystart ?? 0) < ((s as any).MiraVars ?? 0)?.['emb_day']  &&  ((s as any).mirafathertalk ?? 0) === 0  &&  ((s as any).MiraVars ?? 0)?.['event_day'] !== ((s as any).daystart ?? 0)) {
     scene.img('images/characters/shared/headshots_main/big64.jpg');
     scene.text('You are passing Mira\'s house when you see Mira\'s father headed in your direction.');
-    // TODO-QSP: dynamic text: "<<$pcs_firstname>>, wait. I need to speak with you," he says, coming closer.
     scene.text(`"${((s as any).pcs_firstname ?? '')}, wait. I need to speak with you," he says, coming closer.`);
     scene.text('You stop and look at him frightfully. "Did Mira tell him what I made her do?" you think as panicked thoughts race through your head.');
-    // TODO-QSP: dynamic text: "<<$pcs_nickname>>, do you know what happened to Mira?" Afanasiy asks, looking y...
     scene.text(`"${((s as any).pcs_nickname ?? '')}, do you know what happened to Mira?" Afanasiy asks, looking you in the eye.`);
     scene.text('"N-no, what happened to her?" you ask in a confused voice, expecting him to start shouting any second.');
     scene.text('"I don\'t know. She is just sitting at home all the time. She doesn\'t leave the yard, I\'m concerned." Mira\'s father answers.');
@@ -54,7 +51,6 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
     qspCall(st, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big64.jpg');
-    // TODO-QSP: dynamic text: 'You are greeted by '+iif(npc_QW['A64'] = 0, 'Mira''s father', 'Afanasiy')+' and...
     scene.text('You are greeted by ' + ((((st as any).npc_QW ?? 0)?.['A64'] === 0) ? ('Mira\'s father') : ('Afanasiy')) + ' and politely inquire about his health.  He responds with a smile and says, "All is well, little lady."');
     if (((st as any).npc_QW ?? 0)?.['A64'] === 0) {
       scene.text('Mira\'s father continues, "I\'m glad Mira has finally found a friend here in the village. It will be good for her to have another girl around. By the way, you can call me Afanasiy."');

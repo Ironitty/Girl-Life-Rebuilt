@@ -15,7 +15,6 @@ function enterFirstdate(s: GameState, scene: SceneBuilder): void {
   scene.text('After a while, you end up near the small movie theater on campus. Artem\'s eyes light up when he sees it. "Hey, let\'s go see a movie!"');
   (s as any).minut = ((s as any).minut ?? 0) + 15;
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Sounds like fun', handler: (st: GameState) => {
     qspCall(st, 'npc_relationship', 'modify', 'A2', 1);
@@ -29,7 +28,6 @@ function enterFirstdate(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img(`images/locations/shared/park/walk_${(Math.floor(Math.random() * 2) + 1)}.jpg`);
     scene.text('When the movie ends, you and Artem leave the theater and he offers to walk you back to the dorms.');
-    // TODO-QSP: dynamic text: Arriving outside your dorm building, Artem stops and looks at you. "I had fun, <...
     scene.text(`Arriving outside your dorm building, Artem stops and looks at you. "I had fun, ${((st as any).pcs_nickname ?? '')}."`);
     scene.text('You smile at him. "Me too."');
     scene.text('He smiles widely. "Great! Maybe we can do it again some time?"');
@@ -48,7 +46,6 @@ function enterFirstdate(s: GameState, scene: SceneBuilder): void {
     scene.img(`images/locations/shared/park/walk_${(Math.floor(Math.random() * 2) + 1)}.jpg`);
     scene.text('You don\'t really feel like going to the cinema. "Let\'s just enjoy the walk we\'re on."');
     scene.text('Artem is happy enough to just spend time with you, regardless of what the two of you are doing. He nods as you continue on your walk, talking about everyday things. After a while, he checks his watch. "We should be getting back. I\'ll walk you to your dorm."');
-    // TODO-QSP: dynamic text: Once you''re outside your dorm room, Artem stops and looks at you. "I had fun, <...
     scene.text(`Once you're outside your dorm room, Artem stops and looks at you. "I had fun, ${((st as any).pcs_nickname ?? '')}."`);
     scene.text('You smile at him. "Me too."');
     scene.text('He smiles widely. "Great! Maybe we can do it again some time?"');
@@ -66,7 +63,6 @@ function enterFirstdate(s: GameState, scene: SceneBuilder): void {
 function enterArtemDate(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npc_relationship', 'modify', 'A2', 1);
   qspGoto(s, 'artem_date_events_uni', 'firstdate');
-  // TODO-QSP: end
   scene.build();
 }
 

@@ -20,7 +20,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   (s as any).picrand = (Math.floor(Math.random() * 2) + 0);
   qspGoto(s, 'sex', 'var');
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -72,7 +71,6 @@ function enterVar(s: GameState, scene: SceneBuilder): void {
       { label: 'In the ass', goto: ['sex', 'anal'] },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -111,7 +109,6 @@ function enterMinet(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspGoto(s, 'sex', 'var');
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -150,7 +147,6 @@ function enterKuni(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspGoto(s, 'sex', 'var');
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -195,7 +191,6 @@ function enterVag(s: GameState, scene: SceneBuilder): void {
   (s as any).cumprecheck = 1;
   qspCall(s, 'cum_manage', '');
   qspGoto(s, 'sex', 'var');
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -240,7 +235,6 @@ function enterNae(s: GameState, scene: SceneBuilder): void {
   (s as any).cumprecheck = 1;
   qspCall(s, 'cum_manage', '');
   qspGoto(s, 'sex', 'var');
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -285,7 +279,6 @@ function enterRak(s: GameState, scene: SceneBuilder): void {
   (s as any).cumprecheck = 1;
   qspCall(s, 'cum_manage', '');
   qspGoto(s, 'sex', 'var');
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -330,7 +323,6 @@ function enterBok(s: GameState, scene: SceneBuilder): void {
   (s as any).cumprecheck = 1;
   qspCall(s, 'cum_manage', '');
   qspGoto(s, 'sex', 'var');
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -373,11 +365,24 @@ function enterAnal(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspGoto(s, 'sex', 'var');
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterEnd(s: GameState, scene: SceneBuilder): void {
+  (s as any).sexstart = undefined;
+  (s as any).sexvar = undefined;
+  (s as any).sxbj = undefined;
+  (s as any).sxsex = undefined;
+  (s as any).sxanal = undefined;
+  (s as any).SexTypeCheck = undefined;
+  (s as any).BlowBan = undefined;
+  (s as any).CooneyBan = undefined;
+  (s as any).MissionBan = undefined;
+  (s as any).CowgirlBan = undefined;
+  (s as any).DoggyBan = undefined;
+  (s as any).SidewaysBan = undefined;
+  (s as any).AnalBan = undefined;
+  (s as any).dick = undefined;
   if (((s as any).pos ?? 0) === 1) {
     scene.text('He groans loudly, and you feel his hard cock erupting in your mouth. You swallow it obediently, figuring that is what he wants you to do.');
     qspCall(s, 'cum_call', 'mouth_swallow', ((s as any).npcID ?? 0), 1);
@@ -397,46 +402,49 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'arousal', 'end');
-  // TODO-QSP: end
+  (s as any).pos = undefined;
+  (s as any).textrand = undefined;
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     if (((st as any).picrand ?? 0) >= 54  &&  ((st as any).picrand ?? 0) <= 73) {
-      // TODO-QSP: killvar 'picrand'
+      (st as any).picrand = undefined;
       qspGoto(st, 'office', 'work');
     }
     if (((st as any).picrand ?? 0) >= 74  &&  ((st as any).picrand ?? 0) <= 76) {
-      // TODO-QSP: killvar 'picrand'
+      (st as any).picrand = undefined;
       qspGoto(st, 'vann', 'start');
     }
     if (((st as any).picrand ?? 0) >= 77  &&  ((st as any).picrand ?? 0) <= 80) {
-      // TODO-QSP: killvar 'picrand'
+      (st as any).picrand = undefined;
       qspGoto(st, 'nichApartment', '');
     }
     if (((st as any).picrand ?? 0) >= 81  &&  ((st as any).picrand ?? 0) <= 82) {
-      // TODO-QSP: killvar 'picrand'
+      (st as any).picrand = undefined;
       qspGoto(st, 'city_center', '');
     }
     if (((st as any).picrand ?? 0) >= 83  &&  ((st as any).picrand ?? 0) <= 84) {
-      // TODO-QSP: killvar 'picrand'
+      (st as any).picrand = undefined;
       qspGoto(st, 'dina', 'brodila');
     }
     if (((st as any).picrand ?? 0) >= 85  &&  ((st as any).picrand ?? 0) <= 86) {
-      // TODO-QSP: killvar 'picrand'
+      (st as any).picrand = undefined;
       qspGoto(st, 'city_center', '');
     }
     if (((st as any).picrand ?? 0) === 87  ||  ((st as any).picrand ?? 0) === 90) {
-      // TODO-QSP: killvar 'picrand'
+      (st as any).picrand = undefined;
       qspCall(st, 'dina', 'brodilk');
     }
     if (((st as any).picrand ?? 0) === 88) {
-      // TODO-QSP: killvar 'picrand'
+      (st as any).picrand = undefined;
       qspCall(st, 'dina', 'brodils');
     }
     if (((st as any).picrand ?? 0) === 89) {
-      // TODO-QSP: killvar 'picrand'
+      (st as any).picrand = undefined;
       qspGoto(st, 'bed', 'start');
     }
+    (st as any).picrand = undefined;
     if (((st as any).svidboysex ?? 0) === 1) {
+      (st as any).svidboysex = undefined;
       dynamicGoto(st, 'svidboy_home', 'svidboy_home_arg');
     }
     if (((st as any).sexloc ?? 0) === 'uni_dorm') {

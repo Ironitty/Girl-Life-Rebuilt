@@ -208,6 +208,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  (s as any).anrand = undefined;
   scene.build();
 }
 

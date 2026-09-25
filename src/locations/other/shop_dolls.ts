@@ -7,6 +7,7 @@ import type { SceneBuilder } from '../../core/scene';
 function enterDefault(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'shop_dolls', 'start');
   (s as any).location_type = 'public_indoors';
+  (s as any).locclass = undefined;
   if (((s as any).anushkaQW ?? 0)?.['dolls'] === 0) {
     ((s as any).anushkaQW = (s as any).anushkaQW ?? {})['dolls'] = 1;
   }
@@ -25,7 +26,6 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   }
   if ((!((s as any).doll_staff ?? 0))) {
     if (((s as any).know_Savva ?? 0) === 1) {
-      // TODO-QSP: dynamic text: As you walk in, Savva waves at you and smiles. "Hi <<$pcs_nickname>>, great to s...
       scene.text(`As you walk in, Savva waves at you and smiles. "Hi ${((s as any).pcs_nickname ?? '')}, great to see you again! Let me know if I can help you with anything."`);
     }
     scene.actions([
@@ -39,7 +39,6 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       { label: 'Go to the counter', goto: ['shop_dolls', 'viola'] },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Browse clothing', goto: ['shop_dolls', 'browse'] },
     { label: 'Leave', handler: (st: GameState) => {
@@ -52,6 +51,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'shop_dolls', 'start');
   (s as any).location_type = 'public_indoors';
+  (s as any).locclass = undefined;
   if (((s as any).anushkaQW ?? 0)?.['dolls'] === 0) {
     ((s as any).anushkaQW = (s as any).anushkaQW ?? {})['dolls'] = 1;
   }
@@ -70,7 +70,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   }
   if ((!((s as any).doll_staff ?? 0))) {
     if (((s as any).know_Savva ?? 0) === 1) {
-      // TODO-QSP: dynamic text: As you walk in, Savva waves at you and smiles. "Hi <<$pcs_nickname>>, great to s...
       scene.text(`As you walk in, Savva waves at you and smiles. "Hi ${((s as any).pcs_nickname ?? '')}, great to see you again! Let me know if I can help you with anything."`);
     }
     scene.actions([
@@ -84,7 +83,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       { label: 'Go to the counter', goto: ['shop_dolls', 'viola'] },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Browse clothing', goto: ['shop_dolls', 'browse'] },
     { label: 'Leave', handler: (st: GameState) => {
@@ -106,7 +104,6 @@ function enterBrowse(s: GameState, scene: SceneBuilder): void {
   if (((s as any).anushkaQW ?? 0)?.['dolls'] === 2) {
     ((s as any).anushkaQW = (s as any).anushkaQW ?? {})['discount'] = (-10);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return', goto: ['shop_dolls', 'start'] },
     { label: 'View dresses', handler: (st: GameState) => {
@@ -141,7 +138,6 @@ function enterDress(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'shop_utils', 'init', 'end');
   }
   qspCall(s, 'shop_utils', 'display', 'grid_shop');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -165,7 +161,6 @@ function enterClothing(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'shop_utils', 'init', 'end');
   }
   qspCall(s, 'shop_utils', 'display', 'grid_shop');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -188,7 +183,6 @@ function enterShoes(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'shop_utils', 'init', 'end');
   }
   qspCall(s, 'shop_utils', 'display', 'grid_shop');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -211,7 +205,6 @@ function enterPurses(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'shop_utils', 'init', 'end');
   }
   qspCall(s, 'shop_utils', 'display', 'grid_shop');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -234,7 +227,6 @@ function enterCoats(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'shop_utils', 'init', 'end');
   }
   qspCall(s, 'shop_utils', 'display', 'grid_shop');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -251,7 +243,6 @@ function enterSavva(s: GameState, scene: SceneBuilder): void {
     scene.text('You see a young man at the counter; he looks about your sister\'s age, but has a shy, quiet, almost girlish quality about him.');
     scene.text('"Can I help you?" he asks so quietly that you can barely hear him.');
   } else {
-    // TODO-QSP: dynamic text: Savva is working the counter today. As you walk up, he gives you a friendly smil...
     scene.text(`Savva is working the counter today. As you walk up, he gives you a friendly smile. "Hey ${((s as any).pcs_nickname ?? '')}, nice to see you again. What can I help you with?"`);
   }
   if (((s as any).anushkaQW ?? 0)?.['dolls'] === 2) {
@@ -273,7 +264,6 @@ function enterSavva(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Ask him about the store', handler: (st: GameState) => {
     qspCall(st, 'npc_relationship', 'modify', 'A204', 2);
@@ -314,7 +304,6 @@ function enterViola(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).know_Viola ?? 0))) {
     scene.text('You see a young woman at the counter who is about a year or two older than your sister. She\'s reading a magazine when you walk up, only glancing up at you as you stop at the counter. "How can I help you?"');
   } else {
-    // TODO-QSP: dynamic text: "What''s up, <<$pcs_nickname>>? You here to do a little shopping or to kill some...
     scene.text(`"What's up, ${((s as any).pcs_nickname ?? '')}? You here to do a little shopping or to kill some time?"`);
   }
   if (((s as any).anushkaQW ?? 0)?.['dolls'] === 2) {
@@ -335,7 +324,6 @@ function enterViola(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Ask her about the store', handler: (st: GameState) => {
     scene.img('images/characters/shared/headshots_main/big205.jpg');

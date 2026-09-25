@@ -1,4 +1,4 @@
-import { qspCall, qspGoto } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -43,7 +43,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
+  (s as any).temp_camVars = undefined;
   scene.actions([
     { label: 'Refuse', goto: ['komp_cam_MFC_main', 'waitclients'] },
   ]);
@@ -51,12 +51,10 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSetSmallAct(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: end
   scene.actions([
     { label: 'Use your small dildo', handler: (st: GameState) => {
     qspCall(st, 'komp_cam_functions', 'camming', 5, 'porn', 'request');
     qspCall(st, 'npcStat', 'D1');
-    // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/pc/items/accessories/com...
     scene.text(`<center><video autoplay loop ${((st as any).set_imgh ?? '')} src="images/pc/items/accessories/computer/webcam/toys/throat` + (Math.floor(Math.random() * 3) + 1) + '.mp4" ></video></center>');
     if (((st as any).pcs_throat ?? 0) < 10) {
       scene.text('You are terribly inexperienced at giving blowjobs. Hesitantly you take your small dildo into your mouth and do your best to put on an entertaining show.');
@@ -73,7 +71,7 @@ function enterSetSmallAct(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'dildo_suck', (-5), 'dick_length', 'masturbation', 'deepthroat');
     qspCall(st, 'stat', '');
     if (((st as any).camGirl ?? 0)?.['MFC_donate_message'] !== '') {
-      // TODO-QSP: $camGirl['MFC_donate_message']
+      scene.text(String(qspFunc(s, 'camGirl', 'MFC_donate_message') || ''));
     }
     scene.actions([
       { label: 'Continue', goto: ['komp_cam_MFC_main', 'waitclients'] },
@@ -84,23 +82,19 @@ function enterSetSmallAct(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSetNormalAct(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: end
   scene.actions([
     { label: 'Use your medium dildo', handler: (st: GameState) => {
     qspCall(st, 'komp_cam_functions', 'camming', 5, 'porn', 'request');
     qspCall(st, 'npcStat', 'D2');
     if (((st as any).pcs_throat ?? 0) < 15) {
-      // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/pc/items/accessories/com...
       scene.text(`<center><video autoplay loop ${((st as any).set_imgh ?? '')} src="images/pc/items/accessories/computer/webcam/toys/throat` + (Math.floor(Math.random() * 3) + 1) + '.mp4" ></video></center>');
       scene.text('You are terribly inexperienced at giving blowjobs. Hesitantly you take your medium dildo into your mouth and do your best to put on an entertaining show.');
       scene.text('You realize that with your inexperience you can\'t really do much with this dildo that you couldn\'t do with a smaller one. Nonetheless your clients seem to appreciate the effort and your ambition and you get a few donations.');
     } else {
       if (((st as any).pcs_throat ?? 0) < 20) {
-        // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/pc/items/accessories/com...
         scene.text(`<center><video autoplay loop ${((st as any).set_imgh ?? '')} src="images/pc/items/accessories/computer/webcam/toys/midthroat` + (Math.floor(Math.random() * 3) + 1) + '.mp4" ></video></center>');
         scene.text('Sucking on the head of the dildo seductively you push it into your mouth giving the toy a sensual blowjob.');
       } else {
-        // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/pc/items/accessories/com...
         scene.text(`<center><video autoplay loop ${((st as any).set_imgh ?? '')} src="images/pc/items/accessories/computer/webcam/toys/midthroat` + (Math.floor(Math.random() * 3) + 1) + '.mp4" ></video></center>');
         scene.text('You expertly suck on the dildo. Knowing that a toy of this size poses little challenge for someone of your experience you deepthroat the full length a few times to get a rise out the crowd.');
       }
@@ -108,7 +102,7 @@ function enterSetNormalAct(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'dildo_suck', (-5), 'dick_length', 'masturbation', 'deepthroat');
     qspCall(st, 'stat', '');
     if (((st as any).camGirl ?? 0)?.['MFC_donate_message'] !== '') {
-      // TODO-QSP: $camGirl['MFC_donate_message']
+      scene.text(String(qspFunc(s, 'camGirl', 'MFC_donate_message') || ''));
     }
     scene.actions([
       { label: 'Continue', goto: ['komp_cam_MFC_main', 'waitclients'] },
@@ -119,24 +113,20 @@ function enterSetNormalAct(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSetBigAct(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: end
   scene.actions([
     { label: 'Use your large dildo', handler: (st: GameState) => {
     qspCall(st, 'komp_cam_functions', 'camming', 5, 'porn', 'request');
     qspCall(st, 'npcStat', 'D3');
     if (((st as any).pcs_throat ?? 0) < 20) {
-      // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/pc/items/accessories/com...
       scene.text(`<center><video autoplay loop ${((st as any).set_imgh ?? '')} src="images/pc/items/accessories/computer/webcam/toys/throat` + (Math.floor(Math.random() * 3) + 1) + '.mp4" ></video></center>');
       scene.text('You are not necessarily inexperienced at giving blowjobs but taking the large dildo into your mouth you quickly realize it is well beyond your skill level.');
       scene.text('Nonetheless your clients seem to appreciate the effort and your ambition and you get a few donations.');
     } else {
       if (((st as any).pcs_throat ?? 0) < 25) {
-        // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/pc/items/accessories/com...
         scene.text(`<center><video autoplay loop ${((st as any).set_imgh ?? '')} src="images/pc/items/accessories/computer/webcam/toys/bigthroat` + (Math.floor(Math.random() * 3) + 1) + '.mp4" ></video></center>');
         scene.text('The large dildo slides easily down your throat as you begin to pump it back and forth to entertain the crowd.');
         scene.text('Your clients seem geniunely impressed by the show and promptly begin to donate.');
       } else {
-        // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/pc/items/accessories/com...
         scene.text(`<center><video autoplay loop ${((st as any).set_imgh ?? '')} src="images/pc/items/accessories/computer/webcam/toys/bigthroat` + (Math.floor(Math.random() * 3) + 1) + '.mp4" ></video></center>');
         scene.text('The large dildo slides easily down your throat as you begin to pump it back and forth to entertain the crowd.');
         scene.text('Your clients seem geniunely impressed by the show and promptly begin to donate.');
@@ -145,7 +135,7 @@ function enterSetBigAct(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'dildo_suck', (-5), 'dick_length', 'masturbation', 'deepthroat');
     qspCall(st, 'stat', '');
     if (((st as any).camGirl ?? 0)?.['MFC_donate_message'] !== '') {
-      // TODO-QSP: $camGirl['MFC_donate_message']
+      scene.text(String(qspFunc(s, 'camGirl', 'MFC_donate_message') || ''));
     }
     scene.actions([
       { label: 'Continue', goto: ['komp_cam_MFC_main', 'waitclients'] },
@@ -156,24 +146,20 @@ function enterSetBigAct(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSetLargeAct(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: end
   scene.actions([
     { label: 'Use your very large dildo', handler: (st: GameState) => {
     qspCall(st, 'komp_cam_functions', 'camming', 5, 'porn', 'request');
     qspCall(st, 'npcStat', 'D4');
     if (((st as any).pcs_throat ?? 0) < 25) {
-      // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/pc/items/accessories/com...
       scene.text(`<center><video autoplay loop ${((st as any).set_imgh ?? '')} src="images/pc/items/accessories/computer/webcam/toys/throat` + (Math.floor(Math.random() * 3) + 1) + '.mp4" ></video></center>');
       scene.text('You are not necessarily inexperienced at giving blowjobs but taking the very large dildo into your mouth you quickly realize it is well beyond your skill level.');
       scene.text('Nonetheless your clients seem to appreciate the effort and your ambition and you get a few donations.');
     } else {
       if (((st as any).pcs_throat ?? 0) < 30) {
-        // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/pc/items/accessories/com...
         scene.text(`<center><video autoplay loop ${((st as any).set_imgh ?? '')} src="images/pc/items/accessories/computer/webcam/toys/bigthroat` + (Math.floor(Math.random() * 3) + 1) + '.mp4" ></video></center>');
         scene.text('The very large dildo slides easily down your throat as you begin to pump it back and forth to entertain the crowd.');
         scene.text('Your clients seem geniunely impressed by the show and promptly begin to donate.');
       } else {
-        // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/pc/items/accessories/com...
         scene.text(`<center><video autoplay loop ${((st as any).set_imgh ?? '')} src="images/pc/items/accessories/computer/webcam/toys/bigthroat` + (Math.floor(Math.random() * 3) + 1) + '.mp4" ></video></center>');
         scene.text('The very large dildo slides easily down your throat as you begin to pump it back and forth to entertain the crowd.');
         scene.text('Your clients seem geniunely impressed by the show and promptly begin to donate.');
@@ -182,7 +168,7 @@ function enterSetLargeAct(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'dildo_suck', (-5), 'dick_length', 'masturbation', 'deepthroat');
     qspCall(st, 'stat', '');
     if (((st as any).camGirl ?? 0)?.['MFC_donate_message'] !== '') {
-      // TODO-QSP: $camGirl['MFC_donate_message']
+      scene.text(String(qspFunc(s, 'camGirl', 'MFC_donate_message') || ''));
     }
     scene.actions([
       { label: 'Continue', goto: ['komp_cam_MFC_main', 'waitclients'] },
@@ -193,24 +179,20 @@ function enterSetLargeAct(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSetHugeAct(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: end
   scene.actions([
     { label: 'Use your 30cm dildo', handler: (st: GameState) => {
     qspCall(st, 'komp_cam_functions', 'camming', 5, 'porn', 'request');
     qspCall(st, 'npcStat', 'D5');
     if (((st as any).pcs_throat ?? 0) < 30) {
-      // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/pc/items/accessories/com...
       scene.text(`<center><video autoplay loop ${((st as any).set_imgh ?? '')} src="images/pc/items/accessories/computer/webcam/toys/throat` + (Math.floor(Math.random() * 3) + 1) + '.mp4" ></video></center>');
       scene.text('You are not necessarily inexperienced at giving blowjobs but taking the large dildo into your mouth you quickly realize it is well beyond your skill level.');
       scene.text('Nonetheless your clients seem to appreciate the effort and your ambition and you get a few donations.');
     } else {
       if (((st as any).pcs_throat ?? 0) < 35) {
-        // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/pc/items/accessories/com...
         scene.text(`<center><video autoplay loop ${((st as any).set_imgh ?? '')} src="images/pc/items/accessories/computer/webcam/toys/bigthroat` + (Math.floor(Math.random() * 3) + 1) + '.mp4" ></video></center>');
         scene.text('The large dildo slides easily down your throat as you begin to pump it back and forth to entertain the crowd.');
         scene.text('Your clients seem geniunely impressed by the show and promptly begin to donate.');
       } else {
-        // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/pc/items/accessories/com...
         scene.text(`<center><video autoplay loop ${((st as any).set_imgh ?? '')} src="images/pc/items/accessories/computer/webcam/toys/bigthroat` + (Math.floor(Math.random() * 3) + 1) + '.mp4" ></video></center>');
         scene.text('The large dildo slides easily down your throat as you begin to pump it back and forth to entertain the crowd.');
         scene.text('Your clients seem geniunely impressed by the show and promptly begin to donate.');
@@ -219,7 +201,7 @@ function enterSetHugeAct(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'dildo_suck', (-5), 'dick_length', 'masturbation', 'deepthroat');
     qspCall(st, 'stat', '');
     if (((st as any).camGirl ?? 0)?.['MFC_donate_message'] !== '') {
-      // TODO-QSP: $camGirl['MFC_donate_message']
+      scene.text(String(qspFunc(s, 'camGirl', 'MFC_donate_message') || ''));
     }
     scene.actions([
       { label: 'Continue', goto: ['komp_cam_MFC_main', 'waitclients'] },
@@ -230,18 +212,15 @@ function enterSetHugeAct(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSetEnormousAct(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: end
   scene.actions([
     { label: 'Use your enormous 35cm dildo', handler: (st: GameState) => {
     qspCall(st, 'komp_cam_functions', 'camming', 5, 'porn', 'request');
     qspCall(st, 'npcStat', 'D6');
     if (((st as any).pcs_throat ?? 0) < 35) {
-      // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/pc/items/accessories/com...
       scene.text(`<center><video autoplay loop ${((st as any).set_imgh ?? '')} src="images/pc/items/accessories/computer/webcam/toys/throat` + (Math.floor(Math.random() * 3) + 1) + '.mp4" ></video></center>');
       scene.text('You are not necessarily inexperienced at giving blowjobs but taking the enormous dildo into your mouth you quickly realize it is well beyond your skill level.');
       scene.text('Nonetheless your clients seem to appreciate the effort and your ambition and you get a few donations.');
     } else {
-      // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/pc/items/accessories/com...
       scene.text(`<center><video autoplay loop ${((st as any).set_imgh ?? '')} src="images/pc/items/accessories/computer/webcam/toys/extrthroat` + (Math.floor(Math.random() * 2) + 1) + '.mp4" ></video></center>');
       scene.text('Wanting to truly showcase your throat skills you take the enormous dildo and start to roughly jam it down your throat.');
       scene.text('Your clients seem to be amazed at the demonstration of skill donating generously while praising your unparalleled oral ability at the same time.');
@@ -249,7 +228,7 @@ function enterSetEnormousAct(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'dildo_suck', (-5), 'dick_length', 'masturbation', 'deepthroat');
     qspCall(st, 'stat', '');
     if (((st as any).camGirl ?? 0)?.['MFC_donate_message'] !== '') {
-      // TODO-QSP: $camGirl['MFC_donate_message']
+      scene.text(String(qspFunc(s, 'camGirl', 'MFC_donate_message') || ''));
     }
     scene.actions([
       { label: 'Continue', goto: ['komp_cam_MFC_main', 'waitclients'] },
@@ -260,18 +239,15 @@ function enterSetEnormousAct(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSetGiganticAct(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: end
   scene.actions([
     { label: 'Use your humongous 40cm dildo', handler: (st: GameState) => {
     qspCall(st, 'komp_cam_functions', 'camming', 5, 'porn', 'request');
     qspCall(st, 'npcStat', 'D7');
     if (((st as any).pcs_throat ?? 0) < 40) {
-      // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/pc/items/accessories/com...
       scene.text(`<center><video autoplay loop ${((st as any).set_imgh ?? '')} src="images/pc/items/accessories/computer/webcam/toys/throat` + (Math.floor(Math.random() * 3) + 1) + '.mp4" ></video></center>');
       scene.text('You are not necessarily inexperienced at giving blowjobs but taking the humongous dildo into your mouth you quickly realize it is well beyond your skill level.');
       scene.text('Nonetheless your clients seem to appreciate the effort and your ambition and you get a few donations.');
     } else {
-      // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/pc/items/accessories/com...
       scene.text(`<center><video autoplay loop ${((st as any).set_imgh ?? '')} src="images/pc/items/accessories/computer/webcam/toys/extrthroat` + (Math.floor(Math.random() * 2) + 1) + '.mp4" ></video></center>');
       scene.text('Wanting to truly showcase your throat skills you take the humongous dildo and start to roughly jam it down your throat.');
       scene.text('Your clients seem to be amazed at the demonstration of skill donating generously while praising your unparalleled oral ability at the same time.');
@@ -279,7 +255,7 @@ function enterSetGiganticAct(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'dildo_suck', (-5), 'dick_length', 'masturbation', 'deepthroat');
     qspCall(st, 'stat', '');
     if (((st as any).camGirl ?? 0)?.['MFC_donate_message'] !== '') {
-      // TODO-QSP: $camGirl['MFC_donate_message']
+      scene.text(String(qspFunc(s, 'camGirl', 'MFC_donate_message') || ''));
     }
     scene.actions([
       { label: 'Continue', goto: ['komp_cam_MFC_main', 'waitclients'] },

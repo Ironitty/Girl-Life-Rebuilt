@@ -24,7 +24,6 @@ function enterAnushkaStudy(s: GameState, scene: SceneBuilder): void {
     scene.text('After a few hours, her phone starts beeping. "I need to get going. See you later, but you should stop by my place sometime."');
     scene.text('She tells you where the apartment she shares with the boys from the band is located before she gathers her stuff and leaves.');
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Get up', goto: ['uni_library', 'start'] },
   ]);
@@ -47,7 +46,6 @@ function enterObeyKendra(s: GameState, scene: SceneBuilder): void {
   scene.text('Kendra softly laughs. "You may refer to her as little white slut, little white bitch, or slave. Now unbutton his pants and take his dick out. Do you understand me, slave?"');
   qspCall(s, 'arousal', 'BDSM', 1, ((s as any).npcID1 ?? 0), 'humiliation', 'sub', 'lesbian');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Unbutton his pants', handler: (st: GameState) => {
     scene.img('images/characters/city/university/girl/kendra/sex/classroom/kendra1.jpg');
@@ -59,7 +57,6 @@ function enterObeyKendra(s: GameState, scene: SceneBuilder): void {
       { label: 'Suck his cock', handler: (st: GameState) => {
     ((st as any).kendraQW = (st as any).kendraQW ?? {})['classroom_sex'] = ((st as any).kendraQW['classroom_sex'] ?? 0) + (0);
     scene.img('images/characters/city/university/girl/kendra/sex/classroom/kendra2.jpg');
-    // TODO-QSP: dynamic text: You open your mouth while grabbing his <<dick>>cm <<$dick_girth>> dick with your...
     scene.text(`You open your mouth while grabbing his ${((st as any).dick ?? '')}cm ${((st as any).dick_girth ?? '')} dick with your hand and guiding it into your mouth. You stroke the shaft of his cock with one hand while you close your lips around and start sucking on it. You can hear him softly moan as you do.`);
     scene.text('"I\'m training this little white slut on how to suck black cock, like all little white bitches should."');
     scene.text('You keep sucking, not really paying attention to what they\'re saying.');
@@ -122,12 +119,10 @@ function enterObeyKendra(s: GameState, scene: SceneBuilder): void {
 
 function enterObeyKendraLaydown(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/city/university/girl/kendra/sex/classroom/kendra7.jpg');
-  // TODO-QSP: dynamic text: You obey your ebony mistress and lay on your back on the professor''s desk, prop...
   scene.text(`You obey your ebony mistress and lay on your back on the professor's desk, propping your shoulders up with your elbows as Kendra scoots you over so your ass is near the edge of the desk, pushing your legs wide apart as she does. The guy steps up between your legs and Kendra reaches over and grabs his cock to guide it to your pussy. You feel his ${((s as any).dick_length ?? '')}cm ${((s as any).dick_girth ?? '')} black cock slide into your wet pussy, stretching and filling it, causing you to moan softly. "Listen to her moaning like a fucking slut." As he slides his dick deeper into you, she continues talking. "That's right, rip that tight little white pussy apart with that huge black cock!" She lets go of his dick as he slides it balls deep inside you.`);
   qspCall(s, 'arousal', 'BDSM', (-1), ((s as any).npcID1 ?? 0), 'humiliation', 'sub', 'lesbian');
   qspCall(s, 'arousal', 'vaginal', 1, ((s as any).npcID ?? 0), 'humiliation', 'sub');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Get fucked', handler: (st: GameState) => {
     scene.img('images/characters/city/university/girl/kendra/sex/classroom/kendra8.jpg');
@@ -170,14 +165,12 @@ function enterObeyKendraOffdesk(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'BDSM', (-1), ((s as any).npcID1 ?? 0), 'humiliation', 'sub');
   qspCall(s, 'arousal', 'bj', 1, ((s as any).npcID ?? 0), 'humiliation', 'sub');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Bend over', handler: (st: GameState) => {
     (st as any).dick = 20;
     (st as any).dick_girth = 'thick';
     scene.img('images/characters/city/university/girl/kendra/sex/classroom/kendra12.jpg');
     scene.text('You bend over the desk, placing your elbows on the desk with your ass facing Kendra and the boy. You glance back to watch them, feeling very exposed and vulnerable standing like this in a classroom, knowing someone could come back at any moment. Kendra spreads your ass checks apart and spits on your asshole before she turns to the guy. "I want you to fuck this white slut\'s asshole dry, fuck it raw until she cries." He gives her a slightly surprised look. "Do what I tell you! This white slut loves having her ass ripped apart by huge black cocks."');
-    // TODO-QSP: dynamic text: When you don''t say anything, he moves up behind you and rubs the tip of his coc...
     scene.text(`When you don't say anything, he moves up behind you and rubs the tip of his cock against your asshole. He pushes hard until the head of his cock pops painfully into your ass, causing you to gasp and whine in pain. "Go on, shove that big black cock of yours into that tiny tight asshole and rip it up!" Kendra barks as you close your eyes against the growing pain. You let out a pained yelp as his ${((st as any).dick ?? '')}cm ${((st as any).dick_girth ?? '')} dick is shoved deeper into your unlubed asshole.`);
     qspCall(st, 'arousal', 'BDSM', (-1), ((st as any).npcID1 ?? 0), 'humiliation', 'sub');
     qspCall(st, 'arousal', 'anal', 2, ((st as any).npcID ?? 0), 'humiliation', 'sub');
@@ -216,7 +209,6 @@ function enterObeyKendraTakecum(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'cum_call', 'face', ((s as any).npcID ?? 0), 0);
   qspCall(s, 'cum_call', 'mouth', ((s as any).npcID ?? 0), 0);
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Stay put', handler: (st: GameState) => {
     qspCall(st, 'fame', 'city', 'sex', 5);

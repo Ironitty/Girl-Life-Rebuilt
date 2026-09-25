@@ -72,7 +72,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       { label: 'Masturbate', goto: ['balkon2', 'masopt'] },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return to the living room', handler: (st: GameState) => {
     if (((st as any).loc ?? 0) === 'sitr') {

@@ -141,7 +141,6 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 function enterApproach(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/city/nicholas/01.jpg');
   scene.text('You wait for Nicholas to notice you, then you approach him and curtsy.');
-  // TODO-QSP: dynamic text: "<<$pcs_nickname>>, what do you want?"
   scene.text(`"${((s as any).pcs_nickname ?? '')}, what do you want?"`);
   if (((s as any).nichEvaluationLast ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).nichWork ?? 0) === 2) {
     scene.actions([
@@ -218,13 +217,11 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
     (s as any).nichSexTemp = 1;
   } else {
     if (String((s as any).locArgs?.[1] ?? '') === 'bj') {
-      // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/city/nicholas/sex/bj/bj'+rand...
       scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/characters/city/nicholas/sex/bj/bj` + (Math.floor(Math.random() * 11) + 0) + '.jpg"></center>');
       qspCall(s, 'arousal', 'bj', 1);
       (s as any).nichSexTemp = ((s as any).nichSexTemp ?? 0) + (1);
     } else {
       if (String((s as any).locArgs?.[1] ?? '') === 'anal') {
-        // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/city/nicholas/sex/anal/anal'+...
         scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/characters/city/nicholas/sex/anal/anal` + (Math.floor(Math.random() * 8) + 0) + '.jpg"></center>');
         qspCall(s, 'arousal', 'anal', 1);
         (s as any).nichSexTemp = ((s as any).nichSexTemp ?? 0) + (1);
@@ -266,10 +263,8 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
 
 function enterSeduce(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/city/nicholas/sex/seduce.jpg');
-  // TODO-QSP: dynamic text: '"'+$npc_nickname['A52']+'? Is there anything I can do for you?"'
-  scene.text('\'"\'+$npc_nickname[\'A52\']+\'? Is there anything I can do for you?"\'');
-  // TODO-QSP: dynamic text: 'You squeze your breast together, so that '+$npc_firstname['A52']+' has a good l...
-  scene.text('\'You squeze your breast together, so that \'+$npc_firstname[\'A52\']+\' has a good look at them.\'');
+  scene.text('"' + (((s as any).npc_nickname ?? 0)?.['A52'] ?? '') + '? Is there anything I can do for you?"');
+  scene.text('You squeze your breast together, so that ' + (((s as any).npc_firstname ?? 0)?.['A52'] ?? '') + ' has a good look at them.');
   scene.text('"I mean <i>anything</i>."');
   scene.text('"Actually there is something you could help me with." he says while unzipping his pants.');
   scene.actions([
@@ -332,7 +327,6 @@ function enterFlirt(s: GameState, scene: SceneBuilder): void {
 ]);
             return;
           } else {
-            // TODO-QSP: dynamic text: "<<$pcs_nickname>>, I don''t think this would be appropriate. I suggest you get ...
             scene.text(`"${((s as any).pcs_nickname ?? '')}, I don't think this would be appropriate. I suggest you get back to your work."`);
             scene.actions([
               { label: 'Leave', handler: (st: GameState) => {
@@ -414,6 +408,7 @@ function enterDesc(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  (s as any).nichTemp = undefined;
   scene.actions([
     { label: 'Back', handler: (st: GameState) => {
     dynamicGoto(st, 'prevLoc');
@@ -578,10 +573,12 @@ function enterEvaluation(s: GameState, scene: SceneBuilder): void {
   if (((s as any).nichChoreModLaundry1 ?? 0) >= 1) {
     scene.text('<font color = red>I heard that you ruined one of my shirts while doing the laundry.</font>');
     (s as any).nichTempEval = ((s as any).nichTempEval ?? 0) - (10 * ((s as any).nichChoreModLaundry1 ?? 0));
+    (s as any).nichChoreModLaundry1 = undefined;
   }
   if (((s as any).nichChoreModLaundry2 ?? 0) >= 1) {
     scene.text('<font color = green>I took a look at the clothes you washed today. They are flawless and smell exceptionally well.</font>');
     (s as any).nichTempEval = ((s as any).nichTempEval ?? 0) + (3 * ((s as any).nichChoreModLaundry2 ?? 0));
+    (s as any).nichChoreModLaundry2 = undefined;
   }
   if (((s as any).nichChoreState ?? 0)[5] === 0) {
   } else {
@@ -714,10 +711,12 @@ function enterEvaluation(s: GameState, scene: SceneBuilder): void {
   if (((s as any).nichEvalGala ?? 0) === 1) {
     scene.text('<font color = green>My wife told me that you were <i>a good girl</i> today.</font>');
     (s as any).nichTempEval = ((s as any).nichTempEval ?? 0) + (1);
+    (s as any).nichEvalGala = undefined;
   } else {
     if (((s as any).nichEvalGala ?? 0) === 2) {
       scene.text('<font color = green>My wife told me that you were <i>a very good girl</i> today.</font>');
       (s as any).nichTempEval = ((s as any).nichTempEval ?? 0) + (2);
+      (s as any).nichEvalGala = undefined;
     }
   }
   if (((s as any).nichGalaOpponent ?? 0) >= 10  &&  ((s as any).nichGalaOpponent ?? 0) < 20) {
@@ -728,6 +727,7 @@ function enterEvaluation(s: GameState, scene: SceneBuilder): void {
   if (((s as any).nichGentleclubE1 ?? 0) > 0  &&  ((s as any).nichGentleclubE1 ?? 0) < 10  &&  ((s as any).nichGentleclubDayE1 ?? 0) < ((s as any).daystart ?? 0)) {
     scene.text('<font color = red>I asked you to attend me yesterday evening but you didn\'t show up.</font>');
     (s as any).nichTempEval = ((s as any).nichTempEval ?? 0) - (10);
+    (s as any).nichGentleclubE1 = undefined;
   }
   if (((s as any).nichTempEval ?? 0) > 5) {
     if (((s as any).nichPerformance ?? 0) >= 80) {
@@ -767,10 +767,10 @@ function enterEvaluation(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).nichDebug ?? 0) === 1) {
-    // TODO-QSP: dynamic text: DEBUG: nichTempEval = <<nichTempEval>>
     scene.text(`DEBUG: nichTempEval = ${((s as any).nichTempEval ?? '')}`);
   }
   (s as any).nichPerformance = ((s as any).nichPerformance ?? 0) + (((s as any).nichTempEval ?? 0));
+  (s as any).nichTempEval = undefined;
   (s as any).nichPerformance = Math.min(100, Math.max(0, ((s as any).nichPerformance ?? 0)));
   if (String((s as any).locArgs?.[1] ?? '') === 'silent') {
   } else {
@@ -813,7 +813,6 @@ function enterEvaluation(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 

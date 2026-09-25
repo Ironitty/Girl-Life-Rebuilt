@@ -14,12 +14,10 @@ function enterNinel0(s: GameState, scene: SceneBuilder): void {
   scene.text('She smiles at you. "Hello. My name is Ninel Pavlovna, and I\'m the new local doctor. Where is the patient?"');
   scene.text('"That would be me," you reply.');
   scene.text('She nods. "I see. Then I need you to go back to bed."');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Let her help you back to bed', handler: (st: GameState) => {
     (st as any).ninelmet = 1;
     scene.text('Ninel sits on the edge of your bed and looks you over.');
-    // TODO-QSP: dynamic text: "What are the symptoms, <<$pcs_nickname>>? Can I call you that?" she asks.
     scene.text(`"What are the symptoms, ${((st as any).pcs_nickname ?? '')}? Can I call you that?" she asks.`);
     scene.text('You smile weakly and nod. "Of course, Doctor. I think I have the flu. My coughs are just killing me, making my throat very sore, and I think I have a fever too."');
     scene.text('She feels your forehead. "Runny nose? Headaches? Aching body?"');
@@ -43,7 +41,6 @@ function enterNinel0(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/shared/apartment/event/sick/ninel04.jpg');
     scene.text('You keep your mouth open for the thermometer, but she shakes her head. "No, not orally. For a more accurate reading, we need to take your temperature rectally."');
     scene.text('Your eyes widen with surprise and you blush slightly. "Oh."');
-    // TODO-QSP: dynamic text: She smiles reassuringly at you. "Don''t be embarrassed or afraid, <<$pcs_nicknam...
     scene.text(`She smiles reassuringly at you. "Don't be embarrassed or afraid, ${((st as any).pcs_nickname ?? '')}. It's not painful."`);
     scene.text('You hesitate. "Well, if you\'re sure…"');
     scene.text('She pats your shoulder. "I\'m sure. Now lie down and roll over onto your stomach. I\'ll need you to use your hands to spread your buttocks."');
@@ -113,7 +110,6 @@ function enterNinel0(s: GameState, scene: SceneBuilder): void {
     scene.text('Once you roll back over, Ninel gives you an injection in the ass and you wince slightly in pain.');
     scene.text('She gives you a slight reassuring pat. "We\'re just about done with everything. I\'m prescribing you lots of bed rest, hot drinks, antibiotics, nose drops and a balanced diet. When your temperature drops, make an appointment at the clinic for a follow-up."');
     scene.text('You nod. "Thank you, Doctor."');
-    // TODO-QSP: dynamic text: She gets up. "Goodbye, <<$pcs_nickname>>. Get lots of rest," she says before lea...
     scene.text(`She gets up. "Goodbye, ${((st as any).pcs_nickname ?? '')}. Get lots of rest," she says before leaving.`);
     scene.actions([
       { label: 'Back to bed', goto: ['bedr', ''] },
@@ -127,7 +123,6 @@ function enterNinel0(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'Doctor, what\'s wrong with me?', handler: (st: GameState) => {
     scene.text('Your voice shakes slightly with fear. "Doctor, what\'s wrong with me?"');
-    // TODO-QSP: dynamic text: She shakes her head. "I''m afraid that you have angina, <<$pcs_nickname>>. I wou...
     scene.text(`She shakes her head. "I'm afraid that you have angina, ${((st as any).pcs_nickname ?? '')}. I would advise you to check yourself in."`);
     scene.text('"What, in the hospital or something?"');
     scene.text('She nods her head. "Yes."');
@@ -197,9 +192,7 @@ function enterNinel1(s: GameState, scene: SceneBuilder): void {
   scene.text('A pretty young girl carrying a medical bag walks into your bedroom and stops beside the bed, carefully looking you over.');
   scene.text('She smiles at you. "Hello. My name is Ninel Pavlovna, and I\'m the new local doctor. I assume you\'re the patient?"');
   scene.text('"Yes, that\'s me."');
-  // TODO-QSP: dynamic text: She nods. "I see. What are your symptoms, <<$pcs_nickname>>? Can I call you that...
   scene.text(`She nods. "I see. What are your symptoms, ${((s as any).pcs_nickname ?? '')}? Can I call you that?"`);
-  // TODO-QSP: end
   scene.actions([
     { label: 'Complain', handler: (st: GameState) => {
     (st as any).ninelmet = 1;
@@ -228,7 +221,6 @@ function enterNinel1(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/shared/apartment/event/sick/ninel04.jpg');
     scene.text('You keep your mouth open for the thermometer, but she shakes her head. "No, not orally. For a more accurate reading, we need to take your temperature rectally."');
     scene.text('Your eyes widen with surprise and you blush slightly. "Oh."');
-    // TODO-QSP: dynamic text: She smiles reassuringly at you. "Don''t be embarrassed or afraid, <<$pcs_nicknam...
     scene.text(`She smiles reassuringly at you. "Don't be embarrassed or afraid, ${((st as any).pcs_nickname ?? '')}. It's not painful."`);
     scene.text('You hesitate. "Well, if you\'re sure…"');
     scene.text('She pats your shoulder. "I\'m sure. Now lie down and roll over onto your stomach. I\'ll need you to use your hands to spread your buttocks."');
@@ -282,7 +274,6 @@ function enterNinel1(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/shared/apartment/event/sick/sex/ninel16.jpg');
     scene.text('As your orgasm wracks your body, Ninel crawls forward and straddles your stomach as she leans forward and her fingers plunge back into your wet depths. You can feel her pussy juices flowing down her thighs and onto your stomach. You groan as your hands ecstatically squeeze her ass, holding onto her tightly.');
     scene.text('Her fingers frantically plunge in and out of your pussy, her own breath coming in short gasps now.');
-    // TODO-QSP: dynamic text: "Oh <<$pcs_nickname>>!" she exhales. "I want to feel your fingers in me!
     scene.text(`"Oh ${((st as any).pcs_nickname ?? '')}!" she exhales. "I want to feel your fingers in me!`);
     qspCall(st, 'arousal', 'vaginal_finger', 10, 'lesbian');
     qspCall(st, 'stat', '');
@@ -358,7 +349,6 @@ function enterNinel2(s: GameState, scene: SceneBuilder): void {
   scene.text('Ninel lies down next to you and starts to kiss and caress your naked body. You feel confused and horrified by her behavior, but she\'s so gentle. Your body responds to her kisses and caresses, your nipples grow hard and your pussy grows wet. You\'re too excited to resist…');
   qspCall(s, 'arousal', 'kiss', 10, 'lesbian');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Surrender to your arousal', handler: (st: GameState) => {
     scene.img('images/locations/shared/apartment/event/sick/sex/ninel14.jpg');
@@ -380,7 +370,6 @@ function enterNinel2(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/shared/apartment/event/sick/sex/ninel16.jpg');
     scene.text('As an orgasm wracks your body, Ninel crawls forward and straddles your stomach. She leans forward and her hand slides down to your crotch as her fingers plunge back into your wet depths. You can feel her pussy juices flowing down her thighs onto your stomach. You groan as your hands ecstatically squeeze her ass, holding onto her tightly.');
     scene.text('Ninel fingers frantically plunge in and out of your pussy, her own breath coming in short gasps now.');
-    // TODO-QSP: dynamic text: "Oh <<$pcs_nickname>>!" She exhales. "I want to feel your fingers in me!"
     scene.text(`"Oh ${((st as any).pcs_nickname ?? '')}!" She exhales. "I want to feel your fingers in me!"`);
     (st as any).orgasm_or = 'yes';
     qspCall(st, 'arousal', 'vaginal_finger', 10, 'lesbian');
@@ -442,12 +431,10 @@ function enterNinel3(s: GameState, scene: SceneBuilder): void {
   scene.text('You lie in bed quietly waiting for Ninel, your fingers rubbing your pussy as you prepare yourself for her visit. When the doorbell rings, your pussy is soaking wet and ready.');
   qspCall(s, 'arousal', 'clit_finger', 10);
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'It\'s open!', handler: (st: GameState) => {
     scene.img('images/locations/shared/apartment/event/sick/sex/ninel21.jpg');
     scene.text('When you hear the doorbell, you shout "It\'s open!" Your throat sore is wheezing as Ninel enters the room.');
-    // TODO-QSP: dynamic text: "Hello <<$pcs_nickname>>. Sick again?"
     scene.text(`"Hello ${((st as any).pcs_nickname ?? '')}. Sick again?"`);
     scene.text('You cough. "Yeah, can you use your magic again?"');
     scene.text('"Sure, baby. Undress and let me examine you."');

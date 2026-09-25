@@ -16,7 +16,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === 1) {
     scene.img('images/locations/pushkin/rasputin/nadia_1.jpg');
     scene.text('Nadia waits with a warm smile.');
-    // TODO-QSP: dynamic text: "Is there anything else I can help you with <<$pcs_firstname>>?"
     scene.text(`"Is there anything else I can help you with ${((s as any).pcs_firstname ?? '')}?"`);
   } else {
     if (((s as any).rasputin ?? 0)?.['hostEv'] === 0) {
@@ -26,7 +25,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.img('images/locations/pushkin/rasputin/nadia_1.jpg');
       scene.text('Nadia notices as you walk into the club. She smiles and greets you with a warm smile.');
-      // TODO-QSP: dynamic text: "Hello, <<$pcs_firstname>>, how can I help you today?"
       scene.text(`"Hello, ${((s as any).pcs_firstname ?? '')}, how can I help you today?"`);
     }
   }
@@ -39,7 +37,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.text('You ask the woman after you introduce yourself. "Excuse me, would you mind tell me a little bit about this place?"');
     scene.text('The woman\'s eyes light up and she takes few steps closer to you.');
     scene.text('She smiles then answers your question.');
-    // TODO-QSP: dynamic text: Of course, <<$pcs_firstname>>. I am Nadia Titova but you can call me Nadia. What...
     scene.text(`Of course, ${((st as any).pcs_firstname ?? '')}. I am Nadia Titova but you can call me Nadia. What would you like to know?`);
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterOptions(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.actions([
@@ -61,7 +58,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   } else {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterOptions(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Apologize for the intrusion and return to the entrance', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -72,7 +68,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterOptions(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: end
   scene.actions([
     { label: 'About the shows', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -80,10 +75,8 @@ function enterOptions(s: GameState, scene: SceneBuilder): void {
     scene.text('<center>Nadia Titova</center>');
     scene.img('images/locations/pushkin/rasputin/nadia_2.jpg');
     scene.text('You ask Nadia about the shows Rasputin offers.');
-    // TODO-QSP: dynamic text: '"We have the burlesque shows that starts at ' + func('time', 'get_time_string',...
-    scene.text('"We have the burlesque shows that starts at 18:30 and runs about 2 hours with an intermission."');
-    // TODO-QSP: dynamic text: '"Then from ' + func('time', 'get_time_string', 22, 0) + ' to midnight we have t...
-    scene.text('"Then from 22:00 to midnight we have the exotic variety shows, you need to be at least 16 to see these shows."');
+    scene.text('\'"We have the burlesque shows that starts at 18:30 and runs about 2 hours with an intermission."\'');
+    scene.text('\'"Then from 22:00 to midnight we have the exotic variety shows, you need to be at least 16 to see these shows."\'');
     scene.text('She finishes with a wink. You found yourself blushing pink for a moment.');
     scene.actions([
       { label: 'Okay', handler: (st: GameState) => {
@@ -98,8 +91,7 @@ function enterOptions(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pushkin/rasputin/nadia_3.jpg');
     scene.text('You tell Nadia that you want to purchase ticket for a show.');
     scene.text('"Oh really? Of course, what shows would you be interested to see?"');
-    // TODO-QSP: dynamic text: '"' + $func('money', 'string_price', 3000) + ' for the burlesque show and ' + $f...
-    scene.text('"3000₽ for the burlesque show and 4000₽ for the exotic variety show"');
+    scene.text('\'"3000₽ for the burlesque show and 4000₽ for the exotic variety show"\'');
     if (((st as any).rasputin ?? 0)?.['burlesque_ticket'] === 0) {
       scene.actions([
         { label: 'For the burlesque show, please', handler: (st: GameState) => {
@@ -119,8 +111,7 @@ function enterOptions(s: GameState, scene: SceneBuilder): void {
         { label: 'Buy ticket ( [3000₽]...]', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
     scene.text('You buy the ticket for the burlesque show.');
-    // TODO-QSP: dynamic text: '"Sure, the shows starts at ' + func('time', 'get_time_string', 18, 30) + ' but ...
-    scene.text('"Sure, the shows starts at 18:30 but we start to admit customers at 17:30."');
+    scene.text('\'"Sure, the shows starts at 18:30 but we start to admit customers at 17:30."\'');
     scene.text('"Thank you!" Nadia smiles back as she hands you the ticket.');
     (st as any).minut = ((st as any).minut ?? 0) + 1;
     qspCall(st, 'money', 'pay', 3000);
@@ -153,8 +144,7 @@ function enterOptions(s: GameState, scene: SceneBuilder): void {
         { label: 'Buy ticket ( [4000₽]...]', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
     scene.text('You buy the ticket for the variety show.');
-    // TODO-QSP: dynamic text: '"Sure, the shows starts at ' + func('time', 'get_time_string', 22, 30) + ' but ...
-    scene.text('"Sure, the shows starts at 22:30 but we start to admit customers at 21:30."');
+    scene.text('\'"Sure, the shows starts at 22:30 but we start to admit customers at 21:30."\'');
     scene.text('"Thank you!" Nadia smiles back as she hands you the ticket.');
     (st as any).minut = ((st as any).minut ?? 0) + 1;
     qspCall(st, 'money', 'pay', 4000);
@@ -187,8 +177,7 @@ function enterOptions(s: GameState, scene: SceneBuilder): void {
         { label: 'Buy tickets ( [7000₽]...]', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
     scene.text('You buy tickets for both shows.');
-    // TODO-QSP: dynamic text: '"Sure, the first show starts at ' + func('time', 'get_time_string', 18, 30) + '...
-    scene.text('"Sure, the first show starts at 18:30 but we start to admit customers at 17:30."');
+    scene.text('\'"Sure, the first show starts at 18:30 but we start to admit customers at 17:30."\'');
     scene.text('"Thank you!" Nadia smiles back as she hands you the ticket.');
     (st as any).minut = ((st as any).minut ?? 0) + 1;
     qspCall(st, 'money', 'pay', 7000);

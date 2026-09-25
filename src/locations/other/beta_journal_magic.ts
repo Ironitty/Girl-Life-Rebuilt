@@ -16,7 +16,6 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'beta_journal', 'nav_construct');
   scene.text('magic content');
-  // TODO-QSP: end
   scene.build();
 }
 

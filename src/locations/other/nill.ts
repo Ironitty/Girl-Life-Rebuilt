@@ -3,6 +3,12 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
+  (s as any).fightAtk = undefined;
+  (s as any).fightAtk = undefined;
+  (s as any).fightAtk_Type = undefined;
+  (s as any).fightAtk_TargetType = undefined;
+  (s as any).fightAtk_TargetNumber = undefined;
+  (s as any).fightAtk_AttackerNumber = undefined;
   scene.build();
 }
 

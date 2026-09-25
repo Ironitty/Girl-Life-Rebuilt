@@ -53,7 +53,6 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       { label: 'Masturbate', goto: ['selfplay', 'start'] },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go back to the yard', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -132,7 +131,6 @@ function enterSearch(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', goto: ['gad_gpbarn', ''] },
   ]);
@@ -146,7 +144,6 @@ function enterHorse(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/gadukino/village/horse.jpg');
   scene.text('Grandfather\'s trusted workhorse, Desperado.');
   qspCall(s, 'gp_zlatek', 'check_for_chores', 'barn_horse');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -163,7 +160,6 @@ function enterCow(s: GameState, scene: SceneBuilder): void {
   scene.text('Grandma\'s favorite animal, the cow, Dawn.');
   qspCall(s, 'gp_elene', 'check_for_chores', 'cow');
   qspCall(s, 'gp_zlatek', 'check_for_chores', 'barn_cow');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -179,7 +175,6 @@ function enterBoar(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/gadukino/village/boar.jpg');
   scene.text('One of your grandparents\' dearest possessions, the boar, Nickle.');
   qspCall(s, 'gp_zlatek', 'check_for_chores', 'boar');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -226,33 +221,34 @@ function enterBarnRoom(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   qspCall(s, 'music_actions', 'start');
-  scene.text('At the foot of your bed is a small <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027wardrobe/u0027, /u0027start/u0027); return false;">chest</a> containing some of your clothes.');
+  scene.text('At the foot of your bed is a small <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027wardrobe\u0027, \u0027start\u0027); return false;">chest</a> containing some of your clothes.');
   scene.text('<table><tr><td valign="top">');
-  // TODO-QSP: func('alarmclock', 'base_alarmclock_text')
+  scene.text(String(qspFunc(s, 'alarmclock', 'base_alarmclock_text') || ''));
   if (((s as any).mc_inventory ?? 0)?.['contraceptive_pill'] > 0  &&  ((s as any).mc_inventory ?? 0)?.['equipped_condoms'] + ((s as any).mc_inventory ?? 0)?.['normal_condoms'] + ((s as any).mc_inventory ?? 0)?.['sabotaged_condoms'] > 0) {
-    scene.text('Your <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027stol/u0027, /u0027bc/u0027); return false;">birth control</a> are hidden a small nook, as are your <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027stol/u0027, /u0027bc/u0027); return false;">condoms</a>.');
+    scene.text('Your <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027stol\u0027, \u0027bc\u0027); return false;">birth control</a> are hidden a small nook, as are your <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027stol\u0027, \u0027bc\u0027); return false;">condoms</a>.');
   } else {
     if (((s as any).mc_inventory ?? 0)?.['contraceptive_pill'] > 0) {
-      scene.text('Your <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027stol/u0027, /u0027bc/u0027); return false;">birth control</a> are hidden in a small box under your pallet.');
+      scene.text('Your <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027stol\u0027, \u0027bc\u0027); return false;">birth control</a> are hidden in a small box under your pallet.');
     } else {
       if (((s as any).mc_inventory ?? 0)?.['equipped_condoms'] + ((s as any).mc_inventory ?? 0)?.['normal_condoms'] + ((s as any).mc_inventory ?? 0)?.['sabotaged_condoms'] > 0) {
-        scene.text('Your <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027stol/u0027, /u0027bc/u0027); return false;">condoms</a> are hidden behind a loose brick.');
+        scene.text('Your <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027stol\u0027, \u0027bc\u0027); return false;">condoms</a> are hidden behind a loose brick.');
       }
     }
   }
   if (((s as any).start_type ?? 0)?.['loc'] === 'sg'  &&  ((s as any).gschoolVars ?? 0)?.['school_diploma'] === 0  &&  ((s as any).week ?? 0) === 6  &&  ((s as any).hour ?? 0) > 4  &&  ((s as any).hour ?? 0) < 9  &&  ((s as any).detention_set ?? 0) === 1  &&  ((s as any).detention_warning ?? 0) !== ((s as any).daystart ?? 0)) {
     (s as any).detention_warning = ((s as any).daystart ?? 0);
+    alert('You have detention this morning and must be at school before ' + qspFunc(s, 'time', 'get_time_string', 9, 0) + '.');
   }
   if (((s as any).mc_inventory ?? 0)?.['tech_computer'] === 1) {
-    scene.text('Your <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027komp/u0027, /u0027start/u0027); return false;">computer</a> is on your desk.');
+    scene.text('Your <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027komp\u0027, \u0027start\u0027); return false;">computer</a> is on your desk.');
   }
-  // TODO-QSP: end
   scene.actions([
     { label: '<b>Leave and go to the yard</b>', handler: (st: GameState) => {
     if (((st as any).clothingworntype ?? 0) !== 'nude') {
       (st as any).minut = ((st as any).minut ?? 0) + 5;
       qspGoto(st, 'gad_gpyard', 'start');
     } else {
+      alert('<b><font color = red>You need to get dressed.</font></b>');
       qspGoto(st, 'gad_gpbarn', 'barn_room');
     }
   } },
@@ -261,6 +257,7 @@ function enterBarnRoom(s: GameState, scene: SceneBuilder): void {
       (st as any).minut = ((st as any).minut ?? 0) + 5;
       qspGoto(st, 'gad_gphouse', 'main');
     } else {
+      alert('<b><font color = red>You need to get dressed.</font></b>');
       qspGoto(st, 'gad_gpbarn', 'barn_room');
     }
   } },
@@ -270,7 +267,6 @@ function enterBarnRoom(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterLogStove(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: end
   scene.build();
 }
 

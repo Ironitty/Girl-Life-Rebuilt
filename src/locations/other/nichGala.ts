@@ -117,7 +117,6 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 function enterApproach(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/city/gala/02.jpg');
   scene.text('You wait for Gala to notice you, then you approach her and curtsy.');
-  // TODO-QSP: dynamic text: "<<$pcs_nickname>>, what is it?"
   scene.text(`"${((s as any).pcs_nickname ?? '')}, what is it?"`);
   if (((s as any).nichGalaTraining ?? 0) === 1  &&  ((s as any).nichGalaContract ?? 0) === 0  &&  ((s as any).nichGalaTrainCounter ?? 0) >= 5) {
     qspGoto(s, 'nichGala', 'contractOffer');
@@ -216,7 +215,6 @@ function enterTarasPlan(s: GameState, scene: SceneBuilder): void {
       scene.img('images/characters/city/gala/02.jpg');
       scene.text('You hesitate at first, but then you tell Gala everything you know about the plan of Taras.');
       scene.text('She is clearly shocked by this reveal. But she trusts your word. Who else could have told you about Katinka than Taras?');
-      // TODO-QSP: dynamic text: "Thank you, <<$pcs_nickname>>. You really did me a favor here. I will tell Nicho...
       scene.text(`"Thank you, ${((s as any).pcs_nickname ?? '')}. You really did me a favor here. I will tell Nicholas men to take care of our Taras-problem."`);
       (s as any).nichGalaTarasPlan = 100;
       (s as any).nichGalaContractTaras = 0;
@@ -232,7 +230,6 @@ function enterTarasPlan(s: GameState, scene: SceneBuilder): void {
 
 function enterContractOffer(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/city/gala/02.jpg');
-  // TODO-QSP: dynamic text: "<<$pcs_nickname>>, I have been thinking. I really enjoy our little training ses...
   scene.text(`"${((s as any).pcs_nickname ?? '')}, I have been thinking. I really enjoy our little training sessions. And I believe you do as well. What would you say if we took them a little further?"`);
   scene.actions([
     { label: 'Further?', handler: (st: GameState) => {
@@ -287,7 +284,6 @@ function enterContractOfferRead(s: GameState, scene: SceneBuilder): void {
     scene.text('You start reading the first few lines:');
     scene.text('');
     scene.text('Slave Contract');
-    // TODO-QSP: dynamic text: Contract between <<$pcs_firstname>> <<$pcs_lastname>> (the slave) and Gala Polya...
     scene.text(`Contract between ${((s as any).pcs_firstname ?? '')} ${((s as any).pcs_lastname ?? '')} (the slave) and Gala Polyakov (the owner).`);
   } else {
     if (((s as any).nichGalaContractRead ?? 0) === 1) {
@@ -758,13 +754,13 @@ function enterSlaveImplant(s: GameState, scene: SceneBuilder): void {
       (s as any).nichGalaTxt = 'Gala pulls you by your hair. She is obviously angry with you.';
       (s as any).nichTempDayDifference = ((s as any).daystart ?? 0) - ((s as any).nichGalaImplantDay ?? 0);
       if (((s as any).nichTempDayDifference ?? 0) <= 4) {
-        // TODO-QSP: $nichGalaTxt += '"Seriously, slave? Did you forget your last punishment already? I told you not to w...
+        (s as any).nichGalaTxt = ((s as any).nichGalaTxt ?? 0) + ('"Seriously, slave? Did you forget your last punishment already? I told you not to whore around."');
         (s as any).nichGalaImplantLevel = Math.min(((s as any).nichGalaImplantLevel ?? 0)+1, 3);
       } else {
         if (((s as any).nichTempDayDifference ?? 0) <= 14) {
-          // TODO-QSP: $nichGalaTxt += '"Stupid slave bitch. You can''t even walk around for two weeks without offering you...
+          (s as any).nichGalaTxt = ((s as any).nichGalaTxt ?? 0) + ('"Stupid slave bitch. You can\'t even walk around for two weeks without offering your pussy to strangers, can\'t you?"');
         } else {
-          // TODO-QSP: $nichGalaTxt += '"You naughty little bitch. I told you not to whore around the city. At least you ma...
+          (s as any).nichGalaTxt = ((s as any).nichGalaTxt ?? 0) + ('"You naughty little bitch. I told you not to whore around the city. At least you managed to keep your legs closed for a few weeks."');
           (s as any).nichGalaImplantLevel = Math.max(((s as any).nichGalaImplantLevel ?? 0)-1, 1);
         }
       }
@@ -808,9 +804,7 @@ function enterSlaveImplant(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       if (String((s as any).locArgs?.[1] ?? '') === 10) {
-        // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/city/gala/slave/whipped'+rand...
         scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/characters/city/gala/slave/whipped` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
-        // TODO-QSP: dynamic text: <<$nichGalaTxt>>
         scene.text(`${((s as any).nichGalaTxt ?? '')}`);
         scene.text('She leads you to your room. There she makes you undress. Once you are naked she ties you up.');
         scene.text('"I will make sure you remember that you might carry your pussy around but that it is my property."');
@@ -827,9 +821,7 @@ function enterSlaveImplant(s: GameState, scene: SceneBuilder): void {
         ]);
       } else {
         if (String((s as any).locArgs?.[1] ?? '') === 50) {
-          // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/city/gala/slave/cane'+rand(1,...
           scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/characters/city/gala/slave/cane` + (Math.floor(Math.random() * 3) + 1) + '.jpg"></center>');
-          // TODO-QSP: dynamic text: <<$nichGalaTxt>>
           scene.text(`${((s as any).nichGalaTxt ?? '')}`);
           scene.text('She leads you up to the attic. There she makes you undress. Once you are naked she ties you up.');
           scene.text('"Don\'t forget that you brought that onto yourself."');
@@ -854,7 +846,6 @@ function enterSlaveImplant(s: GameState, scene: SceneBuilder): void {
           ]);
         } else {
           if (String((s as any).locArgs?.[1] ?? '') === 100) {
-            // TODO-QSP: dynamic text: <<$nichGalaTxt>>
             scene.text(`${((s as any).nichGalaTxt ?? '')}`);
             scene.text('She leads you outside the house and to her car. She has her driver drive you to a tattoo studio.');
             scene.text('"I will make sure everybody knows what you are."');
@@ -900,6 +891,7 @@ function enterSlaveImplant(s: GameState, scene: SceneBuilder): void {
               }
               scene.text('The artist starts his work and about an hour later he is done. Gala inspects his work.');
               scene.text('She is obviously happy with what he did and pays him a little extra before heading back home with you.');
+              (s as any).nichTempOverwrite = undefined;
               (s as any).nichGalaTattoo = 1;
               (s as any).minut = ((s as any).minut ?? 0) + 60;
               qspCall(s, 'stat', '');
@@ -911,7 +903,6 @@ function enterSlaveImplant(s: GameState, scene: SceneBuilder): void {
             } else {
               if (String((s as any).locArgs?.[1] ?? '') === 120) {
                 scene.img('images/characters/city/gala/slave/pubhum1x1.jpg');
-                // TODO-QSP: dynamic text: <<$nichGalaTxt>>
                 scene.text(`${((s as any).nichGalaTxt ?? '')}`);
                 scene.text('She leads you outside the house and to her car. She has her driver drive you to the bar of a biker gang outside the city.');
                 scene.text('The bar is filled with people, both men and women. Gala pushes you to the middle of the room. You feel like all eyes are set on you.');
@@ -1094,7 +1085,6 @@ function enterSlaveGeneric(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     if (((s as any).nichRand ?? 0) <= 6) {
-      // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/city/gala/slave/bound'+rand(1...
       scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/characters/city/gala/slave/bound` + (Math.floor(Math.random() * 5) + 1) + '.jpg"></center>');
       scene.text('Gala leads you up to the attic. There she restrains you in an incredibly uncomfortable position.');
       scene.text('She grins as you try moving your muscles and shifting your weight only to find that you\'ve gotten into an even more uncomfortable position.');
@@ -1109,7 +1099,6 @@ function enterSlaveGeneric(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       if (((s as any).nichRand ?? 0) <= 8) {
-        // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/city/gala/slave/whipped'+rand...
         scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/characters/city/gala/slave/whipped` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
         scene.text('Gala leads you to her bedroom. There she makes you undress, ties you up and takes out her whip.');
         qspCall(s, 'pain', '3', 'tummy', 'hit');
@@ -1120,7 +1109,6 @@ function enterSlaveGeneric(s: GameState, scene: SceneBuilder): void {
           { label: 'Downstairs', goto: ['nichApartment', ''] },
         ]);
       } else {
-        // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/city/gala/slave/restrained'+r...
         scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/characters/city/gala/slave/restrained` + (Math.floor(Math.random() * 3) + 1) + '.jpg"></center>');
         scene.text('Gala leads you up to the attic. There she makes you undress.');
         scene.text('Then she ties you to some kind of metal restraints. They force you into an awkward position.');
@@ -1618,6 +1606,7 @@ function enterTraining(s: GameState, scene: SceneBuilder): void {
 function enterTrainingEnd(s: GameState, scene: SceneBuilder): void {
   (s as any).nichGalaTrainCounter = ((s as any).nichGalaTrainCounter ?? 0) + (1);
   (s as any).nichGalaTrainLast = ((s as any).daystart ?? 0);
+  (s as any).nichGalaTrainStage = undefined;
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     qspGoto(st, 'nichApartment', '');
@@ -1689,7 +1678,7 @@ function enterDesc(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
+  (s as any).nichTemp = undefined;
   scene.actions([
     { label: 'Back', handler: (st: GameState) => {
     dynamicGoto(st, 'prevLoc');

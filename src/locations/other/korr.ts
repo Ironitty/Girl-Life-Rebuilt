@@ -8,6 +8,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   (s as any).music_loop = 0;
   qspCall(s, 'core_library', 'setloc', 'korr', '');
   (s as any).location_type = 'private';
+  (s as any).locclass = undefined;
   (s as any).popolaini = 0;
   (s as any).saunaYouRoom = 0;
   (s as any).boycherdaksex = 0;
@@ -22,10 +23,10 @@ function enter(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Corridor</b></center>');
   if ((!((s as any).remkorr ?? 0))) {
     scene.img('images/locations/city/residential/apartment/home/korr.jpg');
-    scene.text('The wallpaper in the hallway has long since faded and is peeling from the walls. A <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027start/u0027); return false;">mirror</a> hangs on the wall.');
+    scene.text('The wallpaper in the hallway has long since faded and is peeling from the walls. A <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027start\u0027); return false;">mirror</a> hangs on the wall.');
   } else {
     scene.img('images/locations/city/residential/apartment/home/korr2.jpg');
-    scene.text('A modern hall with stylish furniture, including a wall-mounted <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027start/u0027); return false;">mirror</a>.');
+    scene.text('A modern hall with stylish furniture, including a wall-mounted <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027start\u0027); return false;">mirror</a>.');
   }
   qspCall(s, 'home_events', 'entry');
   if (((s as any).lesbiday ?? 0) + 14 <= ((s as any).daystart ?? 0)  &&  ((s as any).lesbiQW ?? 0) >= 11  &&  ((s as any).hour ?? 0) >= 19  &&  (!((s as any).santehnikDolg ?? 0))) {
@@ -48,11 +49,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
         qspGoto(s, 'pet_dog', 'name');
       } else {
         if (((s as any).hour ?? 0) > 5) {
-          // TODO-QSP: dynamic text: <br>Your dog <a href="exec: gt ''pet_dog'', ''start''"><<$rex[''name'']>></a> is...
           scene.text(`<br>Your dog <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027pet_dog/u0027, /u0027start/u0027); return false;">${(((s as any).rex ?? 0)?.['name'] ?? '')}</a> is lying on the floor.<br>`);
         } else {
           if (((s as any).hour ?? 0) < 6) {
-            // TODO-QSP: dynamic text: <br><<$rex[''name'']>> is sleeping in his dog basket.<br>
             scene.text(`<br>${(((s as any).rex ?? 0)?.['name'] ?? '')} is sleeping in his dog basket.<br>`);
           }
         }
@@ -63,14 +62,11 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.text('Your umbrella hangs on a hook.');
   }
   if (((s as any).krolik ?? 0) === 1) {
-    // TODO-QSP: dynamic text: Your rabbit <a href="exec:gt ''krol'', ''start''"><<$namekrol>></a> sits in it''...
     scene.text(`Your rabbit <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027krol/u0027, /u0027start/u0027); return false;">${((s as any).namekrol ?? '')}</a> sits in it's cage on the floor.`);
   }
   if (((s as any).ParrotQW ?? 0)?.['Owned1'] === 1) {
-    // TODO-QSP: dynamic text: Your parrot <a href="exec:gt ''popu'', ''start''"><<$ParrotQW[''Name1'']>></a> s...
     scene.text(`Your parrot <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027popu/u0027, /u0027start/u0027); return false;">${(((s as any).ParrotQW ?? 0)?.['Name1'] ?? '')}</a> sits in it's cage.`);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: '<b>Go to the stairwell</b>', handler: (st: GameState) => {
     if (((st as any).clothingworntype ?? 0) === 'nude') {

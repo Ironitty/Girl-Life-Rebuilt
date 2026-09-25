@@ -10,7 +10,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(s, '$attributes_' + ((s as any).locArgs?.[0] ?? 0) + '_purses', '', ((s as any).locArgs?.[1] ?? 0));
   }
   if ((!((s as any).PurseQuality ?? 0))) {
-    // TODO-QSP: exit
+    return;
   }
   if (qspFunc(s, 'purses', 'is_owned', ((s as any).locArgs?.[0] ?? 0), ((s as any).locArgs?.[1] ?? 0))) {
   }

@@ -13,15 +13,13 @@ function enterStoryIntro(s: GameState, scene: SceneBuilder): void {
   ((s as any).LariskaQW = (s as any).LariskaQW ?? {})['story'] = 1;
   scene.img('images/characters/shared/headshots_main/big13.jpg');
   scene.text('You carefully walk up behind her, trying your best not to distract her as she effortlessly smacks the ball into the wall and having it return to her hands over and over again…');
-  // TODO-QSP: $OpenInnerThought + '"What is she doing hanging around here,"' + $CloseInnerThought + ' you wonder.'
+  scene.text('$OpenInnerThought + \'"What is she doing hanging around here,"\' + $CloseInnerThought + \' you wonder.\'');
   scene.text('You stand there, observing her, trying to figure out why here of all places she would do this, instead of at a safer place like the Community Center, where she wouldn\'t have to worry about being messed with by the local gopniks. You know she doesn\'t live nearby either, which just feeds your curiosity.');
   scene.text('She catches the ball and stops, looking around as if trying to find someone. Noticing someone is behind her, she quickly spins around, but when she realizes it\'s you, her face goes bright red and she literally staggers backwards in surprise.');
-  // TODO-QSP: $OpenInnerThought + '"I think she was looking for me,"' + $CloseInnerThought + ' you say to yourself...
-  // TODO-QSP: dynamic text: "Hi, <<$pcs_nickname>>," she says, sounding nervous. "I was just practicing my c...
+  scene.text('$OpenInnerThought + \'"I think she was looking for me,"\' + $CloseInnerThought + \' you say to yourself.\'');
   scene.text(`"Hi, ${((s as any).pcs_nickname ?? '')}," she says, sounding nervous. "I was just practicing my control. Impressed?"`);
   (s as any).minut = ((s as any).minut ?? 0) + 10;
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Yes!', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 10;
@@ -29,7 +27,6 @@ function enterStoryIntro(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big13.jpg');
     scene.text('You nod your head, "Yeah, you\'re amazing, Lariska. I didn\'t know you were such a good volleyball player!');
-    // TODO-QSP: dynamic text: Lariska, breaks out in a huge smile and she says "Thanks, <<$pcs_nickname>>. I r...
     scene.text(`Lariska, breaks out in a huge smile and she says "Thanks, ${((st as any).pcs_nickname ?? '')}. I really got into the zone this time, usually I don't do this good."`);
     scene.text('"No need to be humble, it was really amazing, trust me. I\'ll let you go back to it, I don\'t want to bother you." you say with a smile.');
     scene.text('Smiling back, Lariska turns uncertainly back towards the wall and hits the ball again, only this time she misses it and it smacks her hard in the face.');
@@ -45,7 +42,7 @@ function enterStoryIntro(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/shared/headshots_main/big13.jpg');
     scene.text('You rush over to her and take her face in your hands, looking at the spot where the ball smacked her in the face. She tries to tell you she is fine, even though the spot is even more red than her blushing face.');
     scene.text('Surprisingly she stops protesting pretty quickly, and you catch her staring at your lips, which are now only a few centimeters from her own.');
-    // TODO-QSP: $OpenInnerThought + '"Does she have a crush on me? Is that why she''s hanging around here, maybe loo...
+    scene.text('$OpenInnerThought + \'"Does she have a crush on me? Is that why she\'s hanging around here, maybe looking for me? Should I try to kiss her and find out?"\' + $CloseInnerThought');
     scene.text('This might be a dangerous thing to do, Christina controls Lariska, and she may not like you messing with her. Kissing her would pretty much be declaring war on Christina, if she ever found out.');
     (st as any).minut = ((st as any).minut ?? 0) + 5;
     qspCall(st, 'npc_relationship', 'modify', 'A13', 'love');
@@ -79,7 +76,6 @@ function enterStoryIntro(s: GameState, scene: SceneBuilder): void {
     scene.text('Wanting to play it off nonchalantly, you shake your head, chuckle, and tell her you\'ve seen others pull off even more impressive moves.');
     scene.text('Lariska tries to smile it off, but deep down you know that rattled her fragile ego, making her lash out with "Like you could do it better!"');
     scene.text('"Why would I need to prove myself over such a silly little thing," you say, laughing derisively');
-    // TODO-QSP: dynamic text: By now you can clearly see that you''ve gotten under her skin. "Go away, <<$pcs_...
     scene.text(`By now you can clearly see that you've gotten under her skin. "Go away, ${((st as any).pcs_nickname ?? '')}… Or else I'll make you regret it…"`);
     scene.text('Deciding she isn\'t going to give you any more entertainment for the day, you move on. Behind you the bouncing sounds start again, louder than before…');
     scene.actions([
@@ -121,7 +117,6 @@ function enterGettingToKnow(s: GameState, scene: SceneBuilder): void {
     }
   }
   scene.text('You spend the next few minutes chatting about random stuff.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Finish this conversation', goto: ['LariskaHome', 'lariska_bedroom'] },
   ]);
@@ -133,16 +128,13 @@ function enterBoyfriend_1(s: GameState, scene: SceneBuilder): void {
   ((s as any).LariskaQW = (s as any).LariskaQW ?? {})['story'] = 11;
   (s as any).minut = ((s as any).minut ?? 0) + 10;
   scene.img('images/characters/shared/headshots_main/big13.jpg');
-  // TODO-QSP: dynamic text: "So… uuh…<<$pcs_nickname>>, I was wondering what you think about me finding a bo...
   scene.text(`"So… uuh…${((s as any).pcs_nickname ?? '')}, I was wondering what you think about me finding a boyfriend? I've never had one before, Christina never let me."`);
   scene.text('A little surprised, you can\'t help but ask her, "Are you a virgin?"');
   scene.text('"No, I\'ve had sex, I just never had an actual boyfriend. I like what we have been doing together, I don\'t want to stop, I just… I don\'t know… I want to see what having a boyfriend is like."');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Agree', handler: (st: GameState) => {
     scene.img('images/characters/shared/headshots_main/big13.jpg');
     scene.text('"Yeah, that\'s ok with me. You should be able to have some fun, enjoy your life." You give her a smile, trying to let her know it won\'t bother you.');
-    // TODO-QSP: dynamic text: "Thanks, <<$pcs_nickname>>. I was worried you would be mad at me for wanting tha...
     scene.text(`"Thanks, ${((st as any).pcs_nickname ?? '')}. I was worried you would be mad at me for wanting that." She leans in and gives you a kiss on the cheek.`);
     ((st as any).LariskaQW = (st as any).LariskaQW ?? {})['boyfriend'] = 1;
     (st as any).lariskalove = ((st as any).lariskalove ?? 0) + (2);
@@ -180,13 +172,11 @@ function enterBoyfriend_2(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/girl/lariska/lariska_cooking_2.jpg');
   scene.text('Finding Lariska in the kitchen cooking dinner, you decide to join her and help prepare the food. Grabbing a knife, you start chopping vegetables while chatting with her.');
   scene.text('It doesn\'t take long before the two of you are laughing at each other\'s jokes and having a great time together. Suddenly her cellphone starts ringing, so she stops to answer it.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Listen in', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/lariska/lariska_cooking_3.jpg');
-    // TODO-QSP: dynamic text: "Oh hey Lev!" She pauses a moment while he talks, before replying, "Cooking dinn...
     scene.text(`"Oh hey Lev!" She pauses a moment while he talks, before replying, "Cooking dinner with ${((st as any).pcs_nickname ?? '')}. What are you up to?"`);
-    // TODO-QSP: $OpenInnerThought + '"A boy! She moves fast. Did he have to call now though, we were having so much ...
+    scene.text('$OpenInnerThought + \'"A boy! She moves fast. Did he have to call now though, we were having so much fun?!"\' + $CloseInnerThought');
     scene.text('After a few minutes of chatting with him she says goodbye and hangs up.');
     scene.text('"Well?" you say with a raised eyebrow. "Start talking."');
     scene.text('She turns a bit red but smiles, and says "I met him at the disco. He has been really sweet to me! I\'ve been meaning to ask, would you come with me to Del Parco next Saturday and meet him? It would mean a lot to me."');
@@ -230,7 +220,6 @@ function enterBoyfriend_3(s: GameState, scene: SceneBuilder): void {
   ((s as any).LariskaQW = (s as any).LariskaQW ?? {})['story'] = 13;
   scene.img('images/characters/pavlovsk/school/girl/lariska/boyfriend/lev_lariska_meal.jpg');
   scene.text('You go into the restaurant and find Lariska and Lev already seated. They wave you over and you join them.');
-  // TODO-QSP: dynamic text: "Lev, this is <<$pcs_firstname>>. <<$pcs_nickname>>, this is Lev, my new boyfrie...
   scene.text(`"Lev, this is ${((s as any).pcs_firstname ?? '')}. ${((s as any).pcs_nickname ?? '')}, this is Lev, my new boyfriend." The two of you greet each other as you sit down.`);
   scene.text('"So tell me about yourself, Lev. Lariska said you met at the disco?"');
   scene.text('"Yeah, I work there. I help set up and maintain the lights."');
@@ -265,13 +254,11 @@ function enterBoyfriend_3(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'cum_cleanup', '');
   (s as any).pcs_breath = 0;
   qspCall(s, 'stat', '');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Finish Eating', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/lariska/boyfriend/lev_lariska_meal.jpg');
     scene.text('"Well, I have to get going soon. What are you two lovebirds going to do after this?"');
     scene.text('"We\'re going to take a walk in the park, maybe go see a movie. Thanks for coming to eat with us."');
-    // TODO-QSP: dynamic text: She gives you a big hug and says, "See you later, <<$pcs_nickname>>."
     scene.text(`She gives you a big hug and says, "See you later, ${((st as any).pcs_nickname ?? '')}."`);
     scene.actions([
       { label: 'Walk away', goto: ['cafe_parco', 'start'] },
@@ -287,9 +274,7 @@ function enterBoyfriend_4(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 10;
   qspCall(s, 'stat', '');
   scene.img('images/characters/shared/headshots_main/big13.jpg');
-  // TODO-QSP: dynamic text: "So, <<$pcs_nickname>>, what did you think of Lev?" She leans forward, eager to ...
   scene.text(`"So, ${((s as any).pcs_nickname ?? '')}, what did you think of Lev?" She leans forward, eager to hear your opinion.`);
-  // TODO-QSP: end
   scene.actions([
     { label: 'He seemed nice', handler: (st: GameState) => {
     scene.img('images/characters/shared/headshots_main/big13.jpg');
@@ -304,7 +289,6 @@ function enterBoyfriend_4(s: GameState, scene: SceneBuilder): void {
       { label: 'No thanks', handler: (st: GameState) => {
     scene.img('images/characters/shared/headshots_main/big13.jpg');
     scene.text('"I\'m not really into that idea, Lariska. Hope you\'re not mad about that."');
-    // TODO-QSP: dynamic text: She seems disappointed and says, "It''s ok, <<$pcs_nickname>>. If you change you...
     scene.text(`She seems disappointed and says, "It's ok, ${((st as any).pcs_nickname ?? '')}. If you change your mind let me know though."`);
     scene.actions([
       { label: 'Finish this conversation', goto: ['LariskaHome', 'lariska_bedroom'] },
@@ -338,7 +322,6 @@ function enterBoyfriend_4(s: GameState, scene: SceneBuilder): void {
       { label: 'No thanks', handler: (st: GameState) => {
     scene.img('images/characters/shared/headshots_main/big13.jpg');
     scene.text('"I\'m not really into that idea, Lariska. Hope you\'re not mad about that."');
-    // TODO-QSP: dynamic text: She seems disappointed and says, "It''s ok, <<$pcs_nickname>>. If you change you...
     scene.text(`She seems disappointed and says, "It's ok, ${((st as any).pcs_nickname ?? '')}. If you change your mind let me know though."`);
     scene.actions([
       { label: 'Finish this conversation', goto: ['LariskaHome', 'lariska_bedroom'] },
@@ -368,7 +351,6 @@ function enterBoyfriend_5(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/girl/lariska/boyfriend/lev_nightclub.jpg');
   scene.text('As you enter the nightclub and look around, you recognize someone on the dancefloor. Looking closer, you realize it\'s Lev with his arms wrapped around someone with blonde hair. Surprised to find Lariska not only at the disco but actually dancing, you head towards them. About halfway there you catch a glimpse of her face and realize the girl he\'s groping isn\'t Lariska.');
   scene.text('You consider making a scene, but decide against it. Better to just tell Lariska the next time you are at her house. She is going to be devastated, she really liked him!');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Walk away', goto: ['pav_disco', ''] },
   ]);
@@ -390,16 +372,13 @@ function enterBoyfriend_6(s: GameState, scene: SceneBuilder): void {
     }
     qspCall(s, 'mood', 'lower', 'small');
     qspCall(s, 'stat', '');
-    // TODO-QSP: dynamic text: Lariska''s face turns red with anger, but she catches you entirely by surprise w...
     scene.text(`Lariska's face turns red with anger, but she catches you entirely by surprise when she says "What the fuck, ${((s as any).pcs_nickname ?? '')}, I know you didn't want me to get a boyfriend, but this is a low blow!"`);
     scene.text('"I\'m not making it up, I swear! I saw him with my own eyes, Lariska, it was him. She was blonde, so I thought it was you with him, but when I got closer and realized it wasn\'t…" You trailed off.');
-    // TODO-QSP: dynamic text: "Where''s the proof? Did you take a picture? No? It wasn''t him. I don''t know w...
     scene.text(`"Where's the proof? Did you take a picture? No? It wasn't him. I don't know why you would make this up, but just drop it, ok ${((s as any).pcs_nickname ?? '')}."`);
     scene.text('She seemed to be completely in denial, this was NOT the way you expected this conversation to go! You mentally kick yourself for not taking a pic with your phone.');
   } else {
     scene.text('"What?! No, you have to be mistaken, it couldn\'t have been him. He loves me, he wouldn\'t do that to me."');
     scene.text('"I saw him with my own eyes, Lariska, it was him. She was blonde, so I thought it was you with him, but when I got closer and realized it wasn\'t…" You trailed off.');
-    // TODO-QSP: dynamic text: "Where''s the proof? Did you take a picture? No? It wasn''t him. I don''t know w...
     scene.text(`"Where's the proof? Did you take a picture? No? It wasn't him. I don't know why you would make this up, but just drop it, ok ${((s as any).pcs_nickname ?? '')}."`);
     scene.text('She seemed to be completely in denial, this was NOT the way you expected this conversation to go! You mentally kick yourself for not taking a pic with your phone.');
     if (((s as any).lariskalove ?? 0) > 6) {
@@ -410,7 +389,6 @@ function enterBoyfriend_6(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'mood', 'lower', 'small');
     qspCall(s, 'stat', '');
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Let it go for now', goto: ['LariskaHome', 'lariska_bedroom'] },
   ]);
@@ -426,7 +404,6 @@ function enterBoyfriend_7(s: GameState, scene: SceneBuilder): void {
   scene.text('Tears spring into her eyes and she bursts out "I\'m pregnant! Lev got me pregnant! We only had sex without a condom once and now I\'m pregnant and I don\'t know what to do… I wanted to play sports and go to University, but I\'m pregnant now and I don\'t know how he\'s gonna react. What\'s Mom going to say? What do I do? Oh God!"');
   scene.text('You quickly wrap your arms around her and just hold her, letting her vent all these fears out.');
   scene.text('Once she calms down a bit, she asks you "What should I do?"');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Keep the baby', handler: (st: GameState) => {
     scene.img('images/characters/shared/headshots_main/big13.jpg');
@@ -436,7 +413,6 @@ function enterBoyfriend_7(s: GameState, scene: SceneBuilder): void {
       (st as any).lariskalove = ((st as any).lariskalove ?? 0) + (2);
     }
     scene.text('"No matter what Lev thinks about this, I will always be there for you, and I cannot even imagine your mother being anything but supportive, no matter what you choose."');
-    // TODO-QSP: dynamic text: "Thanks, <<$pcs_nickname>>," she says, still sniffling. "I''m not getting an abo...
     scene.text(`"Thanks, ${((st as any).pcs_nickname ?? '')}," she says, still sniffling. "I'm not getting an abortion, I just can't do that. I don't want to give up on my dreams."`);
     scene.text('"There is no reason you cannot go to college because you\'re pregnant or a mother, and you can still exercise until the baby comes, then do your sports thing after. We\'ll figure it out, I promise."');
     scene.text('"O-Ok. I will wait until I\'ve calmed down a bit before I tell Lev, and him and I can tell Mom together."');
@@ -489,7 +465,6 @@ function enterBoyfriend_8(s: GameState, scene: SceneBuilder): void {
   scene.text('"Don\'t worry, I\'m not going anywhere."');
   scene.text('"I still don\'t know how to tell my mom."');
   scene.text('"When you\'re ready, we can do it together."');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Finish this conversation', goto: ['LariskaHome', 'lariska_bedroom'] },
   ]);
@@ -514,7 +489,6 @@ function enterBoyfriend_9(s: GameState, scene: SceneBuilder): void {
   scene.text('"See, It\'s going to be ok."');
   scene.text('"I\'m going to stop trying to find a boyfriend, and will stick to anal when I do mess around. Maybe someday, after I\'ve accomplished some things, I\'ll reconsider. For now though, can it just be us? Boys as toys only?"');
   scene.text('Giggling, you answer with "Yeah, for now it\'s just you and me."');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Finish this conversation', goto: ['LariskaHome', 'lariska_bedroom'] },
   ]);

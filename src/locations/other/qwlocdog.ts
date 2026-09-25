@@ -7,7 +7,6 @@ import type { SceneBuilder } from '../../core/scene';
 function enter(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 3;
   qspCall(s, 'stat', '');
-  // TODO-QSP: dynamic text: You pick up the phone and a female voice answers, "Hello <<$pcs_nickname>>, this...
   scene.text(`You pick up the phone and a female voice answers, "Hello ${((s as any).pcs_nickname ?? '')}, this is Margaret. Let's meet up in the cafe."`);
   scene.actions([
     { label: 'No today', handler: (st: GameState) => {

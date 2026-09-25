@@ -10,14 +10,12 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterGetTotalArrests(s: GameState, scene: SceneBuilder): void {
   (s as any).result = (((s as any).policeQW ?? {})?.['shoplift_booked'] ?? 0) + (((s as any).policeQW ?? {})?.['prostitution_booked'] ?? 0);
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterArrestFor(s: GameState, scene: SceneBuilder): void {
   ((s as any).policeQW = (s as any).policeQW ?? {})[String(((s as any).locArgs?.[1] ?? 0)) + '_booked'] = ((s as any).policeQW[String(((s as any).locArgs?.[1] ?? 0)) + '_booked'] ?? 0) + (1);
   ((s as any).policeQW = (s as any).policeQW ?? {})['crime_flag'] = ((s as any).locArgs?.[1] ?? 0);
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -31,7 +29,8 @@ function enterAddFine(s: GameState, scene: SceneBuilder): void {
     ((s as any).policeQW = (s as any).policeQW ?? {})['fine_deadline'] = Math.max(((s as any).daystart ?? 0), (((s as any).policeQW ?? 0)?.['fine_deadline'])) + 14 - Math.min(7, 2 * ((s as any).temp_current_missed ?? 0) + ((s as any).temp_tot_missed ?? 0) / 4);
   }
   qspCall(s, 'calendar', 'add', 'fine_deadline');
-  // TODO-QSP: end
+  (s as any).temp_current_missed = undefined;
+  (s as any).temp_tot_missed = undefined;
   scene.build();
 }
 

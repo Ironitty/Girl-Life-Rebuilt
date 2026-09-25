@@ -5,11 +5,11 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: $tpLocations[0] = 'CentralPark'
-  // TODO-QSP: $tpLocations[1] = 'PavlovskPark'
-  // TODO-QSP: $tpLocations[2] = 'gad_forest'
-  // TODO-QSP: $tpLocations[3] = 'PushkinPark'
-  // TODO-QSP: $tpLocations[4] = 'Village'
+  ((s as any).tpLocations = (s as any).tpLocations ?? {})[0] = 'CentralPark';
+  ((s as any).tpLocations = (s as any).tpLocations ?? {})[1] = 'PavlovskPark';
+  ((s as any).tpLocations = (s as any).tpLocations ?? {})[2] = 'gad_forest';
+  ((s as any).tpLocations = (s as any).tpLocations ?? {})[3] = 'PushkinPark';
+  ((s as any).tpLocations = (s as any).tpLocations ?? {})[4] = 'Village';
   ((s as any).treeCircName = (s as any).treeCircName ?? {})['CentralPark'] = 'Central Park';
   ((s as any).treeCircLoc = (s as any).treeCircLoc ?? {})['CentralPark'] = 'city_park';
   ((s as any).treeCircArg = (s as any).treeCircArg ?? {})['CentralPark'] = 'start';
@@ -26,6 +26,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   ((s as any).treeCircLoc = (s as any).treeCircLoc ?? {})['Village'] = 'ETO_village';
   ((s as any).treeCircArg = (s as any).treeCircArg ?? {})['Village'] = 'spring_water';
   (s as any).EntryPoint = ((s as any).locArgs?.[0] ?? 0);
+  (s as any).tpRand = undefined;
   scene.text('<center><h2>Mysterious Circle of Trees</h2></center>');
   scene.img('images/locations/shared/park/tree_circle.jpg');
   scene.text('The small clearing in the center of the tree circle is two body lengths wide. The ground is covered with a soft, spongy moss. Everything is surprisingly visible considering you can barely see the sky through the overhead cover of leaves and branches.As you look to the outside of the circle, everything seems to be vague and indistinct. This makes it hard to comprehend what lies outside the ring.');
@@ -48,17 +49,18 @@ function enter(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'treeCircActs', '$EntryPoint');
   (s as any).i = 0;
-  // TODO-QSP: :LocLoop
-  if (((s as any).i ?? 0) < Object.keys((s as any).tpLocations ?? {}).length) {
-    if (((s as any).EntryPoint ?? 0) !== ((s as any).tpLocations ?? 0)?.[String((s as any).i ?? 0)]) {
-      qspCall(s, 'treeCircActs', '', (((s as any).tpLocations ?? 0)?.[String((s as any).i ?? 0)] ?? 0));
+  while (true) {
+    if (((s as any).i ?? 0) < Object.keys((s as any).tpLocations ?? {}).length) {
+      if (((s as any).EntryPoint ?? 0) !== ((s as any).tpLocations ?? 0)?.[String((s as any).i ?? 0)]) {
+        qspCall(s, 'treeCircActs', '', (((s as any).tpLocations ?? 0)?.[String((s as any).i ?? 0)] ?? 0));
+      }
+      (s as any).i = ((s as any).i ?? 0) + (1);
+      break;
     }
-    (s as any).i = ((s as any).i ?? 0) + (1);
-    // TODO-QSP: jump 'LocLoop'
-  }
-  if (((s as any).pcs_inhib ?? 0) >= 30  &&  ((s as any).pcs_horny ?? 0) > 60) {
-    scene.actions([
-      { label: 'Masturbate to clear your head', handler: (st: GameState) => {
+    (s as any).i = undefined;
+    if (((s as any).pcs_inhib ?? 0) >= 30  &&  ((s as any).pcs_horny ?? 0) > 60) {
+      scene.actions([
+        { label: 'Masturbate to clear your head', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
     scene.img('images/locations/shared/park/tree_masturb.mp4');
     scene.text('It feels like it takes an age to masturbate out in the cold of the tree circle but the magical wards here keep you safe even when you would otherwise being putting on such a lewd show.');
@@ -71,7 +73,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
       { label: 'Head cleared', handler: (st: GameState) => { qspGoto(st, 'treeCircle', ((st as any).EntryPoint ?? '')); } },
     ]);
   } },
-    ]);
+      ]);
+    }
   }
   scene.build();
 }

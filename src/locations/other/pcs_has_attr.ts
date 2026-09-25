@@ -45,25 +45,21 @@ function enterBodyAssBubble(s: GameState, scene: SceneBuilder): void {
     (s as any).result = 1;
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterBodyAssAtLeast_(s: GameState, scene: SceneBuilder): void {
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterBodyAssAtMost_(s: GameState, scene: SceneBuilder): void {
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterBodyAss_(s: GameState, scene: SceneBuilder): void {
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -72,6 +68,7 @@ function enterBodyBmiStarving(s: GameState, scene: SceneBuilder): void {
   if (((s as any).temp_bs_class ?? 0) < 100) {
     (s as any).result = 1;
   }
+  (s as any).temp_bs_class = undefined;
   return;
   scene.build();
 }
@@ -81,6 +78,7 @@ function enterBodyBmiUnderweight(s: GameState, scene: SceneBuilder): void {
   if (((s as any).temp_bs_class ?? 0) >= 100  &&  ((s as any).temp_bs_class ?? 0) < 200) {
     (s as any).result = 1;
   }
+  (s as any).temp_bs_class = undefined;
   return;
   scene.build();
 }
@@ -90,6 +88,7 @@ function enterBodyBmiNormal(s: GameState, scene: SceneBuilder): void {
   if (((s as any).temp_bs_class ?? 0) >= 200  &&  ((s as any).temp_bs_class ?? 0) < 400) {
     (s as any).result = 1;
   }
+  (s as any).temp_bs_class = undefined;
   return;
   scene.build();
 }
@@ -99,6 +98,7 @@ function enterBodyBmiOverweight(s: GameState, scene: SceneBuilder): void {
   if (((s as any).temp_bs_class ?? 0) >= 400  &&  ((s as any).temp_bs_class ?? 0) < 500) {
     (s as any).result = 1;
   }
+  (s as any).temp_bs_class = undefined;
   return;
   scene.build();
 }
@@ -108,8 +108,8 @@ function enterBodyBmiObese(s: GameState, scene: SceneBuilder): void {
   if (((s as any).temp_bs_class ?? 0) >= 500) {
     (s as any).result = 1;
   }
+  (s as any).temp_bs_class = undefined;
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -142,7 +142,6 @@ function enterBodyEyesBlue(s: GameState, scene: SceneBuilder): void {
     (s as any).result = 1;
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -183,7 +182,6 @@ function enterBodyLipsPillowy(s: GameState, scene: SceneBuilder): void {
     (s as any).result = 1;
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -208,7 +206,6 @@ function enterBodySkinGood(s: GameState, scene: SceneBuilder): void {
     (s as any).result = 1;
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -233,7 +230,6 @@ function enterBodySweatStinky(s: GameState, scene: SceneBuilder): void {
     (s as any).result = 1;
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -266,13 +262,12 @@ function enterBodyTitsHuge(s: GameState, scene: SceneBuilder): void {
     (s as any).result = 1;
   }
   return;
-  // TODO-QSP: end
   if ((String(((s as any).locArgs?.[0] ?? 0)).slice((1)-1, ((1)-1)+(19))) === 'body_tits_at_least_') {
-    // TODO-QSP: $ARGS[0] = $mid($ARGS[0], 20)
+    ((s as any).ARGS = (s as any).ARGS ?? {})[0] = (String(((s as any).locArgs?.[0] ?? 0)).slice((20)-1));
     if ((String(((s as any).locArgs?.[0] ?? 0)).slice((1)-1, ((1)-1)+(18))) === 'body_tits_at_most_') {
-      // TODO-QSP: $ARGS[0] = $mid($ARGS[0], 19)
+      ((s as any).ARGS = (s as any).ARGS ?? {})[0] = (String(((s as any).locArgs?.[0] ?? 0)).slice((19)-1));
       if ((String(((s as any).locArgs?.[0] ?? 0)).slice((1)-1, ((1)-1)+(10))) === 'body_tits_') {
-        // TODO-QSP: $ARGS[0] = $mid($ARGS[0], 11)
+        ((s as any).ARGS = (s as any).ARGS ?? {})[0] = (String(((s as any).locArgs?.[0] ?? 0)).slice((11)-1));
       }
     }
   }
@@ -282,164 +277,180 @@ function enterBodyTitsHuge(s: GameState, scene: SceneBuilder): void {
 function enter(s: GameState, scene: SceneBuilder): void {
   (s as any).result = 0;
   if ((String(((s as any).locArgs?.[0] ?? 0)).toUpperCase()) === ' && ') {
-    (s as any).pha_i = 1;
-    (s as any).pha_maxi = 0;
-    if (((s as any).pha_maxi ?? 0) === 1) {
-      (s as any).result = 0;
-      // TODO-QSP: jump 'pha_AND_killvar'
-    }
-    // TODO-QSP: :pha_AND_loop
-    if (((s as any).ARGS ?? 0)?.[String((s as any).pha_i ?? 0)] !== '') {
-      if (qspFunc(s, 'pcs_has_attr', (((s as any).ARGS ?? 0)?.[String((s as any).pha_i ?? 0)] ?? 0)) === 0) {
-        (s as any).result = 0;
-        // TODO-QSP: jump 'pha_AND_killvar'
-      }
-    } else {
-      if (((s as any).ARGS ?? 0)?.[String((s as any).pha_i ?? 0)] === 0) {
-        (s as any).result = 0;
-        // TODO-QSP: jump 'pha_AND_killvar'
-      }
-    }
-    (s as any).pha_i = ((s as any).pha_i ?? 0) + (1);
-    if (((s as any).pha_i ?? 0) < ((s as any).pha_maxi ?? 0)) {
-      // TODO-QSP: jump 'pha_AND_loop'
-    }
-    (s as any).result = 1;
-    // TODO-QSP: :pha_AND_killvar
-    return;
-  } else {
-    if ((String(((s as any).locArgs?.[0] ?? 0)).toUpperCase()) === ' || ') {
+    while (true) {
       (s as any).pha_i = 1;
       (s as any).pha_maxi = 0;
       if (((s as any).pha_maxi ?? 0) === 1) {
         (s as any).result = 0;
-        // TODO-QSP: jump 'pha_OR_killvar'
+        break;
       }
-      // TODO-QSP: :pha_OR_loop
-      if (((s as any).ARGS ?? 0)?.[String((s as any).pha_i ?? 0)] !== '') {
-        if (qspFunc(s, 'pcs_has_attr', (((s as any).ARGS ?? 0)?.[String((s as any).pha_i ?? 0)] ?? 0))) {
-          (s as any).result = 1;
-          // TODO-QSP: jump 'pha_OR_killvar'
+      do {
+        if (((s as any).ARGS ?? 0)?.[String((s as any).pha_i ?? 0)] !== '') {
+          if (qspFunc(s, 'pcs_has_attr', (((s as any).ARGS ?? 0)?.[String((s as any).pha_i ?? 0)] ?? 0)) === 0) {
+            (s as any).result = 0;
+            break;
+          }
+        } else {
+          if (((s as any).ARGS ?? 0)?.[String((s as any).pha_i ?? 0)] === 0) {
+            (s as any).result = 0;
+            break;
+          }
         }
-      } else {
-        if (((s as any).ARGS ?? 0)?.[String((s as any).pha_i ?? 0)]) {
-          (s as any).result = 1;
-          // TODO-QSP: jump 'pha_OR_killvar'
-        }
-      }
-      (s as any).pha_i = ((s as any).pha_i ?? 0) + (1);
-      if (((s as any).pha_i ?? 0) < ((s as any).pha_maxi ?? 0)) {
-        // TODO-QSP: jump 'pha_OR_loop'
-      }
-      (s as any).result = 0;
-      // TODO-QSP: :pha_OR_killvar
-      return;
-    } else {
-      if ((String(((s as any).locArgs?.[0] ?? 0)).toUpperCase()) === 'NAND') {
+        (s as any).pha_i = ((s as any).pha_i ?? 0) + (1);
+        (s as any).result = 1;
+      } while (((s as any).pha_i ?? 0) < ((s as any).pha_maxi ?? 0));
+      break;
+    }
+    // LABEL: pha_AND_killvar
+    (s as any).pha_maxi = undefined;
+    (s as any).pha_i = undefined;
+    return;
+  } else {
+    if ((String(((s as any).locArgs?.[0] ?? 0)).toUpperCase()) === ' || ') {
+      while (true) {
         (s as any).pha_i = 1;
         (s as any).pha_maxi = 0;
         if (((s as any).pha_maxi ?? 0) === 1) {
           (s as any).result = 0;
-          // TODO-QSP: jump 'pha_NAND_killvar'
+          break;
         }
-        // TODO-QSP: :pha_NAND_loop
-        if (((s as any).ARGS ?? 0)?.[String((s as any).pha_i ?? 0)] !== '') {
-          if (qspFunc(s, 'pcs_has_attr', (((s as any).ARGS ?? 0)?.[String((s as any).pha_i ?? 0)] ?? 0)) === 0) {
-            (s as any).result = 1;
-            // TODO-QSP: jump 'pha_NAND_killvar'
+        do {
+          if (((s as any).ARGS ?? 0)?.[String((s as any).pha_i ?? 0)] !== '') {
+            if (qspFunc(s, 'pcs_has_attr', (((s as any).ARGS ?? 0)?.[String((s as any).pha_i ?? 0)] ?? 0))) {
+              (s as any).result = 1;
+              break;
+            }
+          } else {
+            if (((s as any).ARGS ?? 0)?.[String((s as any).pha_i ?? 0)]) {
+              (s as any).result = 1;
+              break;
+            }
           }
-        } else {
-          if (((s as any).ARGS ?? 0)?.[String((s as any).pha_i ?? 0)] === 0) {
-            (s as any).result = 1;
-            // TODO-QSP: jump 'pha_NAND_killvar'
-          }
-        }
-        (s as any).pha_i = ((s as any).pha_i ?? 0) + (1);
-        if (((s as any).pha_i ?? 0) < ((s as any).pha_maxi ?? 0)) {
-          // TODO-QSP: jump 'pha_NAND_loop'
-        }
-        (s as any).result = 0;
-        // TODO-QSP: :pha_NAND_killvar
-        return;
-      } else {
-        if ((String(((s as any).locArgs?.[0] ?? 0)).toUpperCase()) === 'NOR') {
+          (s as any).pha_i = ((s as any).pha_i ?? 0) + (1);
+          (s as any).result = 0;
+        } while (((s as any).pha_i ?? 0) < ((s as any).pha_maxi ?? 0));
+        break;
+      }
+      // LABEL: pha_OR_killvar
+      (s as any).pha_maxi = undefined;
+      (s as any).pha_i = undefined;
+      return;
+    } else {
+      if ((String(((s as any).locArgs?.[0] ?? 0)).toUpperCase()) === 'NAND') {
+        while (true) {
           (s as any).pha_i = 1;
           (s as any).pha_maxi = 0;
           if (((s as any).pha_maxi ?? 0) === 1) {
             (s as any).result = 0;
-            // TODO-QSP: jump 'pha_NOR_killvar'
+            break;
           }
-          // TODO-QSP: :pha_NOR_loop
-          if (((s as any).ARGS ?? 0)?.[String((s as any).pha_i ?? 0)] !== '') {
-            if (qspFunc(s, 'pcs_has_attr', (((s as any).ARGS ?? 0)?.[String((s as any).pha_i ?? 0)] ?? 0))) {
-              (s as any).result = 0;
-              // TODO-QSP: jump 'pha_NOR_killvar'
-            }
-          } else {
-            if (((s as any).ARGS ?? 0)?.[String((s as any).pha_i ?? 0)]) {
-              (s as any).result = 0;
-              // TODO-QSP: jump 'pha_NOR_killvar'
-            }
-          }
-          (s as any).pha_i = ((s as any).pha_i ?? 0) + (1);
-          if (((s as any).pha_i ?? 0) < ((s as any).pha_maxi ?? 0)) {
-            // TODO-QSP: jump 'pha_NOR_loop'
-          }
-          (s as any).result = 1;
-          // TODO-QSP: :pha_NOR_killvar
-          return;
-        } else {
-          if ((String(((s as any).locArgs?.[0] ?? 0)).toUpperCase()) === 'XOR') {
-            (s as any).pha_i = 1;
-            (s as any).pha_maxi = 0;
-            (s as any).pha_target = 0;
-            if (((s as any).pha_maxi ?? 0) === 1) {
-              (s as any).result = 0;
-              // TODO-QSP: jump 'pha_XOR_killvar'
-            }
-            (s as any).result = 0;
-            if (String((s as any).locArgs?.[1] ?? '') === 0) {
-              (s as any).pha_i = 1;
-              (s as any).pha_target = 1;
-            } else {
-              (s as any).pha_i = 2;
-              (s as any).pha_target = ((s as any).locArgs?.[1] ?? 0);
-            }
-            // TODO-QSP: :pha_XOR_loop
+          do {
             if (((s as any).ARGS ?? 0)?.[String((s as any).pha_i ?? 0)] !== '') {
-              if (qspFunc(s, 'pcs_has_attr', (((s as any).ARGS ?? 0)?.[String((s as any).pha_i ?? 0)] ?? 0))) {
-                if (((s as any).result ?? 0) < ((s as any).pha_target ?? 0)) {
-                  (s as any).result = ((s as any).result ?? 0) + (1);
-                } else {
-                  (s as any).result = 0;
-                  // TODO-QSP: jump 'pha_XOR_killvar'
-                }
+              if (qspFunc(s, 'pcs_has_attr', (((s as any).ARGS ?? 0)?.[String((s as any).pha_i ?? 0)] ?? 0)) === 0) {
+                (s as any).result = 1;
+                break;
               }
             } else {
-              if (((s as any).ARGS ?? 0)?.[String((s as any).pha_i ?? 0)]) {
-                if (((s as any).result ?? 0) < ((s as any).pha_target ?? 0)) {
-                  (s as any).result = ((s as any).result ?? 0) + (1);
-                } else {
-                  (s as any).result = 0;
-                  // TODO-QSP: jump 'pha_XOR_killvar'
-                }
+              if (((s as any).ARGS ?? 0)?.[String((s as any).pha_i ?? 0)] === 0) {
+                (s as any).result = 1;
+                break;
               }
             }
             (s as any).pha_i = ((s as any).pha_i ?? 0) + (1);
-            if (((s as any).pha_i ?? 0) < ((s as any).pha_maxi ?? 0)) {
-              // TODO-QSP: jump 'pha_XOR_loop'
-            }
-            if (((s as any).result ?? 0) !== ((s as any).pha_target ?? 0)) {
+            (s as any).result = 0;
+          } while (((s as any).pha_i ?? 0) < ((s as any).pha_maxi ?? 0));
+          break;
+        }
+        // LABEL: pha_NAND_killvar
+        (s as any).pha_maxi = undefined;
+        (s as any).pha_i = undefined;
+        return;
+      } else {
+        if ((String(((s as any).locArgs?.[0] ?? 0)).toUpperCase()) === 'NOR') {
+          while (true) {
+            (s as any).pha_i = 1;
+            (s as any).pha_maxi = 0;
+            if (((s as any).pha_maxi ?? 0) === 1) {
               (s as any).result = 0;
+              break;
             }
-            // TODO-QSP: :pha_XOR_killvar
+            do {
+              if (((s as any).ARGS ?? 0)?.[String((s as any).pha_i ?? 0)] !== '') {
+                if (qspFunc(s, 'pcs_has_attr', (((s as any).ARGS ?? 0)?.[String((s as any).pha_i ?? 0)] ?? 0))) {
+                  (s as any).result = 0;
+                  break;
+                }
+              } else {
+                if (((s as any).ARGS ?? 0)?.[String((s as any).pha_i ?? 0)]) {
+                  (s as any).result = 0;
+                  break;
+                }
+              }
+              (s as any).pha_i = ((s as any).pha_i ?? 0) + (1);
+              (s as any).result = 1;
+            } while (((s as any).pha_i ?? 0) < ((s as any).pha_maxi ?? 0));
+            break;
+          }
+          // LABEL: pha_NOR_killvar
+          (s as any).pha_maxi = undefined;
+          (s as any).pha_i = undefined;
+          return;
+        } else {
+          if ((String(((s as any).locArgs?.[0] ?? 0)).toUpperCase()) === 'XOR') {
+            while (true) {
+              (s as any).pha_i = 1;
+              (s as any).pha_maxi = 0;
+              (s as any).pha_target = 0;
+              if (((s as any).pha_maxi ?? 0) === 1) {
+                (s as any).result = 0;
+                break;
+              }
+              (s as any).result = 0;
+              if (String((s as any).locArgs?.[1] ?? '') === 0) {
+                (s as any).pha_i = 1;
+                (s as any).pha_target = 1;
+              } else {
+                (s as any).pha_i = 2;
+                (s as any).pha_target = ((s as any).locArgs?.[1] ?? 0);
+              }
+              do {
+                if (((s as any).ARGS ?? 0)?.[String((s as any).pha_i ?? 0)] !== '') {
+                  if (qspFunc(s, 'pcs_has_attr', (((s as any).ARGS ?? 0)?.[String((s as any).pha_i ?? 0)] ?? 0))) {
+                    if (((s as any).result ?? 0) < ((s as any).pha_target ?? 0)) {
+                      (s as any).result = ((s as any).result ?? 0) + (1);
+                    } else {
+                      (s as any).result = 0;
+                      break;
+                    }
+                  }
+                } else {
+                  if (((s as any).ARGS ?? 0)?.[String((s as any).pha_i ?? 0)]) {
+                    if (((s as any).result ?? 0) < ((s as any).pha_target ?? 0)) {
+                      (s as any).result = ((s as any).result ?? 0) + (1);
+                    } else {
+                      (s as any).result = 0;
+                      break;
+                    }
+                  }
+                }
+                (s as any).pha_i = ((s as any).pha_i ?? 0) + (1);
+                if (((s as any).result ?? 0) !== ((s as any).pha_target ?? 0)) {
+                  (s as any).result = 0;
+                }
+              } while (((s as any).pha_i ?? 0) < ((s as any).pha_maxi ?? 0));
+              break;
+            }
+            // LABEL: pha_XOR_killvar
+            (s as any).pha_maxi = undefined;
+            (s as any).pha_i = undefined;
+            (s as any).pha_target = undefined;
             return;
           }
         }
       }
     }
   }
-  // TODO-QSP: $ARGS[0] = $lcase($ARGS[0])
+  ((s as any).ARGS = (s as any).ARGS ?? {})[0] = (String(((s as any).locArgs?.[0] ?? 0)).toLowerCase());
   const arg = s.locArg;
   switch (arg) {
     case 'body_ass_flat':

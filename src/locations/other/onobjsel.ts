@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspFunc } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -14,8 +14,10 @@ function enter(s: GameState, scene: SceneBuilder): void {
   if (((s as any).selobj ?? 0) === '<center>Console</center>') {
     (s as any).dynamicCommand = window.prompt("Enter command to execute.") ?? '';
     if (((s as any).dynamicCommand ?? 0) === '') {
-      // TODO-QSP: exit
+      return;
     }
+    qspFunc(s, 'dynamicCommand');
+    (s as any).dynamicCommand = undefined;
   }
   if (((s as any).selobj ?? 0) === '<center>Toggle Debug Variables</center>') {
     if ((!((s as any).objectWindowDebug ?? 0))) {
@@ -31,6 +33,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'obj_din', 'AddDebugVar', ((s as any).tmpVar ?? 0));
       qspCall(s, 'stat', '');
     }
+    (s as any).tmpVar = undefined;
   }
   if (((s as any).selobj ?? 0) === '<center>Delete Debug Variable</center>') {
     (s as any).tmpVar = window.prompt("Enter the variable name to delete") ?? '';
@@ -38,6 +41,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'obj_din', 'DeleteDebugVar', ((s as any).tmpVar ?? 0));
       qspCall(s, 'stat', '');
     }
+    (s as any).tmpVar = undefined;
   }
   if (((s as any).selobj ?? 0) === '<center>Switch HTML</center>') {
     (s as any).usehtml = ((((s as any).usehtml ?? 0)) ? (0) : (1));
@@ -54,6 +58,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
       }
     }
     qspCall(s, 'stat', '');
+    (s as any).tmpVar = undefined;
+    (s as any).tmpPos = undefined;
+    (s as any).tmpVal = undefined;
   }
   if (((s as any).selobj ?? 0) === '<center>-1 Hour</center>') {
     qspCall(s, 'obj_din', '-1 Hour');
@@ -65,6 +72,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'obj_din', 'emergency');
   }
   if (((s as any).selobj ?? 0) === '<center>Remove debug info</center>') {
+    alert('The debug window will no longer auto-open on save load. You can adjust this in the settings.');
     (s as any).debug_warning_closed = 1;
     ((s as any).cfg_vars = (s as any).cfg_vars ?? {})['debug'] = 0;
     // TODO-QSP: showobjs cfg_vars['debug']

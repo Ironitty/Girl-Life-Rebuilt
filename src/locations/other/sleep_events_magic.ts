@@ -8,21 +8,17 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterDreamSexAnya(s: GameState, scene: SceneBuilder): void {
   ((s as any).tgQW = (s as any).tgQW ?? {})['dream_sex_anya'] = 1;
+  (s as any).tgQWtemp = undefined;
   scene.img('images/locations/pavlovsk/resident/apartment/home/bedrpar.jpg');
   scene.text('You awaken in your bedroom, but something feels… different. You glance over and see Anya snoozing away in her bed when you suddenly feel a tingling sensation pulse through you and pull back the covers to discover that you\'ve turned back to your old self, your cock hanging between your legs once more. It\'s at this point you realize that you\'re naked with Anya next to you!');
-  // TODO-QSP: dynamic text: "Is <<$pcs_nickname>> finally gone?"
   scene.text(`"Is ${((s as any).pcs_nickname ?? '')} finally gone?"`);
   scene.text('Surprised, you quickly pull the covers back over yourself and turn to see an equally naked Anya smiling at you, somehow having awoken without you noticing.');
-  // TODO-QSP: dynamic text: "<<$pcs_nickname>>? Gone? What?" you stutter.
   scene.text(`"${((s as any).pcs_nickname ?? '')}? Gone? What?" you stutter.`);
-  // TODO-QSP: dynamic text: "<<$pcs_nickname>>. My sister?" she replies. "And <i>your</i> girlfriend?"
   scene.text(`"${((s as any).pcs_nickname ?? '')}. My sister?" she replies. "And <i>your</i> girlfriend?"`);
   scene.text('Your head spins. "My <i>girlfriend</i>?"');
   scene.text('She rolls her eyes. "Yeah? You\'ve been dating her for a few weeks now, Mikhail, but let\'s be honest; you want to fuck <i>me</i> instead."');
   scene.text('The mention of your old name makes your head spin even more. "Anya! I-"');
-  // TODO-QSP: dynamic text: She cuts you off as she kneels next to your bed. "Ssssshhh… <<$pcs_nickname>> is...
   scene.text(`She cuts you off as she kneels next to your bed. "Ssssshhh… ${((s as any).pcs_nickname ?? '')} isn't here, so you can do what you want with me. I want to taste your nice big cock first, though."`);
-  // TODO-QSP: end
   scene.actions([
     { label: 'Let it happen', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/resident/anya/sex/sister4.jpg');
@@ -42,7 +38,6 @@ function enterDreamSexAnya(s: GameState, scene: SceneBuilder): void {
     scene.text('Taking this as consent, you shove her back down on your cock and fuck her throat until you suddenly feel your orgasm building. You\'re going to cum in her moouth!');
     scene.text('You start thrusting even harder, eager to blow your load when you suddenly feel the tingling sensation again. When it fades, you no longer feel your dick in Anya\'s mouth. In fact, you can\'t feel your dick at all!');
     scene.text('When you look down, you\'re dismayed to find that you\'ve transformed back into your feminine self. You try to let out a frustrated grunt, only to be met with a very feminine shriek instead.');
-    // TODO-QSP: dynamic text: "<<$pcs_nickname>>?" Anya asks in surprise. "You don''t want to know what your s...
     scene.text(`"${((st as any).pcs_nickname ?? '')}?" Anya asks in surprise. "You don't want to know what your so called boyfriend was just doing!"`);
     scene.text('You try to speak, but your vision blurs and the room starts spinning around you before you suddenly black out.');
     scene.actions([
@@ -56,14 +51,12 @@ function enterDreamSexAnya(s: GameState, scene: SceneBuilder): void {
     scene.text('Before you can say anything, she jumps up on your bed and spreads her legs, showing off her pussy.');
     scene.text('You feel your heart racing as you kneel between her legs and line the tip of your cock up with her wet slit. Is this actually happening?!');
     scene.text('You take a deep breath before pushing forward, moaning as you feel your cock slide into her warm, wet pussy. Her walls immediately clamp down around your shaft as she moans softly herself.');
-    // TODO-QSP: dynamic text: "Tighter than <<$pcs_nickname>>, right?" she grins as she lifts her legs and squ...
     scene.text(`"Tighter than ${((st as any).pcs_nickname ?? '')}, right?" she grins as she lifts her legs and squeezes them together, causing her pussy to grip your cock even tighter. "Now <i>fuck</i> me, Mikhail!"`);
     scene.text('You grin as you start thrusting, causing her to moan loudly as you push as deep as you can. This feels amazing!');
     scene.text('You suddenly feel your orgasm building and start grunting, causing Anya to giggle.');
     scene.text('"Go ahead. Cum in my pussy, Mikhail!" she says teasingly.');
     scene.text('You start thrusting harder, eager to blow your load in her wet, warm pussy. However, just as you\'re about to cum, you suddenly feel the tingling sensation again. When it fades, you no longer feel your dick in Anya\'s pussy. In fact, you can\'t feel your dick at all!');
     scene.text('When you look down, you\'re dismayed to find that you\'ve transformed back into your feminine self. You try to let out a frustrated grunt, only to be met with a very feminine shriek instead.');
-    // TODO-QSP: dynamic text: "<<$pcs_nickname>>?" Anya asks in surprise. "You don''t want to know what your s...
     scene.text(`"${((st as any).pcs_nickname ?? '')}?" Anya asks in surprise. "You don't want to know what your so called boyfriend was just doing!"`);
     scene.text('You try to speak, but your vision blurs and the room starts spinning around you before you suddenly black out.');
     scene.actions([
@@ -78,11 +71,11 @@ function enterDreamSexAnya(s: GameState, scene: SceneBuilder): void {
 
 function enterDreamSexVika(s: GameState, scene: SceneBuilder): void {
   ((s as any).tgQW = (s as any).tgQW ?? {})['dream_sex_vika'] = 1;
+  (s as any).tgQWtemp = undefined;
   scene.img('images/locations/pavlovsk/hotel/hotel.room.better.jpg');
   scene.text('You feel a tingling sensation pulse through your body before you slowly open your eyes. You find yourself standing in… a hotel room? Something feels off…');
   scene.text('When you look down, you\'re surprised to see that you\'ve turned back into your old self, your cock hanging between your legs once more.');
   scene.text('When you finish admiring yourself, you notice the light in the en-suite bathroom is on and can hear somebody inside.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Investigate', handler: (st: GameState) => {
     scene.img('images/characters/city/university/girl/vika/sex/dream/dream1.jpg');
@@ -142,7 +135,6 @@ function enterDreamSexVika(s: GameState, scene: SceneBuilder): void {
       scene.text('"You paid extra for the creampie privilege, so go ahead and fill me with every drop of your cum!"');
       scene.text('You close your eyes, ready to blow your load inside her. That\'s when the tingling sensation returns; when it fades, you no longer feel your dick inside her pussy. In fact, you can\'t feel your dick at all!');
       scene.text('When you open your eyes again, you\'re dismayed to find that you\'ve transformed back into your feminine self. You try to let out a frustrated grunt, only to be met with a very feminine shriek instead.');
-      // TODO-QSP: dynamic text: "<<$pcs_nickname>>?" Vika asks in shocked surprise. "I don''t normally work with...
       scene.text(`"${((st as any).pcs_nickname ?? '')}?" Vika asks in shocked surprise. "I don't normally work with girls, but there's a first time for everything, I guess…"`);
       scene.text('You try to speak, but your vision blurs and the room starts spinning around you before you suddenly black out.');
     } else {
@@ -150,7 +142,6 @@ function enterDreamSexVika(s: GameState, scene: SceneBuilder): void {
       scene.text('"Go ahead. I\'m on birth control, so you can cum inside me all you want," she grins.');
       scene.text('You close your eyes, ready to blow your load inside her. That\'s when the tingling sensation returns; when it fades, you no longer feel your dick inside her pussy. In fact, you can\'t feel your dick at all!');
       scene.text('When you open your eyes again, you\'re dismayed to find that you\'ve transformed back into your feminine self. You try to let out a frustrated grunt, only to be met with a very feminine shriek instead.');
-      // TODO-QSP: dynamic text: "<<$pcs_nickname>>? Where did that guy with the nice big cock go?"
       scene.text(`"${((st as any).pcs_nickname ?? '')}? Where did that guy with the nice big cock go?"`);
       scene.text('You try to speak, but your vision blurs and the room starts spinning around you before you suddenly black out.');
     }
@@ -172,13 +163,13 @@ function enterDreamSexVika(s: GameState, scene: SceneBuilder): void {
 
 function enterDreamSexAlbina(s: GameState, scene: SceneBuilder): void {
   ((s as any).tgQW = (s as any).tgQW ?? {})['dream_sex_albina'] = 1;
+  (s as any).tgQWtemp = undefined;
   scene.img('images/shared/home/bathroom/dush.mp4');
   scene.text('You dream that you\'re in the shower, washing your breasts when you suddenly feel a tingling sensation pulse through your body.');
   scene.text('When it fades, you look down. To your surprise, you discover that you\'ve turned back into your old self, your cock hanging between your legs once more.');
   scene.text('You grab it in your hand and start stroking it, grinning happily as it starts getting hard, only to be interrupted by a voice.');
   scene.text('"Mikhail, are you almost done in there?"');
   scene.text('Startled at the mentioning of your old name, you peek out of the shower and suddenly find yourself in what looks like a fancy hotel bathroom. You can\'t believe your eyes.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/albina/sex/dream/dream1.jpg');
@@ -231,7 +222,6 @@ function enterDreamSexAlbina(s: GameState, scene: SceneBuilder): void {
     scene.text('"Mikhail? Why did you stop?" Albina asks as she looks at you in confusion.');
     scene.text('You close your eyes and take a deep breath. That\'s when you no longer feel your dick inside Albina\'s pussy. In fact, you can\'t feel your dick at all!');
     scene.text('When you open your eyes again, you\'re dismayed to find that you\'ve transformed back into your feminine self. You try to let out a frustrated grunt, only to be met with a very feminine shriek instead.');
-    // TODO-QSP: dynamic text: "What the fuck? <<$pcs_nickname>>?! Where did Mikhail go?!" Albina squeals, her ...
     scene.text(`"What the fuck? ${((st as any).pcs_nickname ?? '')}?! Where did Mikhail go?!" Albina squeals, her legs still spread wide. It feels like the puffy wet lips of her pussy are mocking you for not being able to finish what you started.`);
     scene.text('You reach out to her and try to speak, but your vision blurs again and the room starts spinning around you before you suddenly black out.');
     scene.actions([
@@ -254,6 +244,7 @@ function enterDreamSexAlbina(s: GameState, scene: SceneBuilder): void {
 
 function enterDreamSexNush(s: GameState, scene: SceneBuilder): void {
   ((s as any).tgQW = (s as any).tgQW ?? {})['dream_sex_nush'] = 1;
+  (s as any).tgQWtemp = undefined;
   scene.img('images/characters/pavlovsk/school/girl/anushka/dreams/mikhail/man_dream1.jpg');
   scene.text('You\'re laying in bed when you suddenly feel a tingling sensation pulse through your body. When it fades, you look down. To your surprise, you discover that you\'ve turned back into your old self, no breasts blocking your view down your body. You reach down and lift up the band of your boxer shorts, happy to see your cock hanging between your legs once more.');
   scene.text('Just as you\'re about to grab your dick and start stroking it, you hear a familiar voice. "I knew it! I knew there was something different about you! Something <i>manly</i> and <i>strong</i>."');
@@ -262,7 +253,6 @@ function enterDreamSexNush(s: GameState, scene: SceneBuilder): void {
   scene.text('This is a dream come true. You\'re a man again and a pretty girl seems interested in you.');
   scene.text('She smiles and walks into the room before closing the door. "Would you like some help with that?" she asks while indicating your crotch.');
   scene.text('You can\'t help but nod your head and her smile widens. "Let me help get you in the mood."');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Watch her', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/anushka/dreams/mikhail/man_dream2.jpg');
@@ -331,7 +321,6 @@ function enterDreamSexNush1(s: GameState, scene: SceneBuilder): void {
   scene.text('She suddenly stands up and turns around before glancing back at you.');
   scene.text('"You want to fuck my pussy now?" she grins.');
   scene.text('You enthusiastically nod as she unbuttons her skirt and starts sliding it down her legs, only her thong keeping anything hidden from your view as her skirt drops around her ankles.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Watch her get naked', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/anushka/dreams/mikhail/man_dream10.jpg');
@@ -349,7 +338,6 @@ function enterDreamSexNush1(s: GameState, scene: SceneBuilder): void {
     scene.text('She starts riding you hard and fast, lifting herself so high you feel your dick nearly slip out of her pussy before she crashes back down, taking you balls deep inside her over and over. She moans loudly as you feel your balls start to tighten.');
     scene.text('You close your eyes, ready to blow your load inside her. That\'s when the tingling sensation returns; when it fades, you no longer feel your dick inside her pussy. In fact, you can\'t feel your dick at all!');
     scene.text('When you open your eyes again, you\'re dismayed to find that you\'ve transformed back into your feminine self. You try to let out a frustrated grunt, only to be met with a very feminine shriek instead.');
-    // TODO-QSP: dynamic text: "What the fuck? <<$pcs_nickname>>?! Why did you change back?!" Anushka asks in a...
     scene.text(`"What the fuck? ${((st as any).pcs_nickname ?? '')}?! Why did you change back?!" Anushka asks in a desperate dismay as she looks for where your dick went as well.`);
     scene.text('You reach out to her and try to speak, but your vision blurs again and the room starts spinning around you before you suddenly black out.');
     scene.actions([
@@ -366,13 +354,13 @@ function enterDreamSexNush1(s: GameState, scene: SceneBuilder): void {
 
 function enterDreamSexBella(s: GameState, scene: SceneBuilder): void {
   ((s as any).tgQW = (s as any).tgQW ?? {})['dream_sex_bella'] = 1;
+  (s as any).tgQWtemp = undefined;
   scene.img('images/characters/pavlovsk/school/girl/bella/dream/dream1.jpg');
   scene.text('You\'re laying in bed when you suddenly feel a tingling sensation pulse through your body. When it fades, you look down. To your surprise, you discover that you\'ve turned back into your old self, no breasts blocking your view down your body. You reach down and lift up the band of your boxer shorts, happy to see your cock hanging between your legs once more.');
   scene.text('You pull your boxers off and start stroking your cock, the thought of Bella in a sexy schoolgirl outfit being the first thing to enter your mind when you suddenly hear a voice.');
   scene.text('"Thinking about me, Mikhail? I can\'t say I can blame you. Who <i>wouldn\'t</i> want to fuck me?"');
   scene.text('You glance over and see Bella sitting next to you, her breasts hanging out of her… slutty school uniform…');
   scene.text('She smiles as she glances at your rock hard cock. "This is what you wanted, right? Let me help you with that…"');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Watch her', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/bella/dream/dream2.jpg');
@@ -416,6 +404,7 @@ function enterDreamSexBella(s: GameState, scene: SceneBuilder): void {
 
 function enterDreamSexJulia(s: GameState, scene: SceneBuilder): void {
   ((s as any).tgQW = (s as any).tgQW ?? {})['dream_sex_julia'] = 1;
+  (s as any).tgQWtemp = undefined;
   scene.img('images/characters/pavlovsk/school/girl/julia/dream/dream1.jpg');
   scene.text('You\'re alarmed to find yourself standing naked in a bedroom when you suddenly feel a tingling sensation pulse through your body. When it fades, you look down and discover that you\'ve turned back into your old self, your cock hanging between your legs once more.');
   scene.text('You\'re about to start jerking off when you suddenly hear a voice.');
@@ -423,7 +412,6 @@ function enterDreamSexJulia(s: GameState, scene: SceneBuilder): void {
   scene.text('You glance over and are surprised to see a naked Julia lying on the bed with a dildo in her hand.');
   scene.text('She glances at your cock as you feel it rapidly grow hard. "I wonder if this feels better than the real thing?"');
   scene.text('"The- The real thing?" you stutter.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Watch her', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/julia/dream/dream2.jpg');
@@ -470,6 +458,7 @@ function enterDreamSexJulia(s: GameState, scene: SceneBuilder): void {
 
 function enterDreamSexKatjaVicky(s: GameState, scene: SceneBuilder): void {
   ((s as any).tgQW = (s as any).tgQW ?? {})['dream_sex_katja_vicky'] = 1;
+  (s as any).tgQWtemp = undefined;
   scene.img('images/characters/pavlovsk/school/girl/katja/dreams/mikhail/twins_dream1.jpg');
   scene.text('You feel a tingling sensation pulse through your body before you slowly open your eyes.');
   scene.text('"Look! I think he\'s waking up, sis!" you hear a feminine voice state.');
@@ -478,7 +467,6 @@ function enterDreamSexKatjaVicky(s: GameState, scene: SceneBuilder): void {
   scene.text('"Glad you could join the awake people again, Mikhail!" Vicky says, and you suddenly notice that you\'re back in your old body. You look down on yourself and discreetely use your hands to check that everything is there.');
   scene.text('"He <i>is</i> a handsome one isn\'t he, sis?" Vicky says slyly when she notices Katja looking at you.');
   scene.text('"Ehm… Yes… I mean…" Katja stammers, getting very red in the face.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'See what they do', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/katja/dreams/mikhail/twins_dream2.jpg');

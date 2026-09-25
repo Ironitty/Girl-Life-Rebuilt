@@ -11,6 +11,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'gad_river', 'start');
   (s as any).location_type = 'public_outdoors';
+  (s as any).locclass = undefined;
   qspCall(s, 'schedule', 'A60');
   qspCall(s, 'stat', '');
   scene.text('<center><h2>Slavka River</h2></center>');
@@ -29,11 +30,11 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   }
   scene.text('A large river flows lazily for a few hundred meters on the northern outskirts of Gadukino.');
   if (((s as any).hour ?? 0) >= 6  &&  ((s as any).hour ?? 0) < 21  &&  ((s as any).sunWeather ?? 0) === 1) {
-    scene.text('You see the local <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027gad_river/u0027, /u0027fishers/u0027); return false;">fishermen</a> fishing with their rods on the riverbank.');
+    scene.text('You see the local <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027gad_river\u0027, \u0027fishers\u0027); return false;">fishermen</a> fishing with their rods on the riverbank.');
   }
   (s as any).temp_rand = (Math.floor(Math.random() * 21) + 0);
   if (((s as any).temp_rand ?? 0) === 1  &&  ((s as any).hour ?? 0) < 5  &&  ((s as any).month ?? 0) >= 5  &&  ((s as any).month ?? 0) <= 9  &&  ((s as any).MiraVars ?? 0)?.['QW'] >= 20) {
-    scene.text('Right next to the path leading to the river, you see <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027gad_river/u0027, /u0027mirapunish/u0027); return false;">Mira</a> naked, bound with ropes between two trees…');
+    scene.text('Right next to the path leading to the river, you see <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027gad_river\u0027, \u0027mirapunish\u0027); return false;">Mira</a> naked, bound with ropes between two trees…');
   } else {
     if (((s as any).temp_rand ?? 0) === 4  &&  ((s as any).GadBoy ?? 0)?.['river_day'] !== ((s as any).daystart ?? 0)  &&  (! qspFunc(s, 'miroslava_schedule', 'is_here', 'river'))  &&  ((s as any).npc_QW ?? 0)?.['A63'] >= 13  &&  ((s as any).hour ?? 0) >= 5) {
       ((s as any).GadBoy = (s as any).GadBoy ?? {})['river_day'] = ((s as any).daystart ?? 0);
@@ -143,7 +144,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
+  (s as any).temp_rand = undefined;
   scene.build();
 }
 
@@ -154,7 +155,6 @@ function enterMirapunish(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/gadukino/mira/mirapunish.jpg');
   scene.text('You approach Mira. She looks distressed and embarrassingly smiles as you start asking what happened. She pleads with you to release her. As you untie her, she explains that Kolyamba punished her for barely biting his cock as she sucked it…');
   scene.text('"Thank God you showed up," she says with a sigh of relief as you untie her. "I\'m glad you found me and not one of those old hags from the village. They would call me a whore, and I would get scolded for being promiscuous. Those old hags hate us, you know. We\'re young and beautiful, and they are just mean old wretches." said the naked Mira, revealing her true feelings about the villagers. She continues quietly, "Or it could have been even worse. Someone could have abused me, raped me or even killed m…" Then, she suddenly stops and lunges in your arms, weeping. "Thank you," she tells you. "You saved my life!"');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['gad_beach', 'start'] },
   ]);
@@ -230,14 +230,12 @@ function enterFishers(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterFishing(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/gadukino/river/gadriver.jpg');
   scene.text('The stream quietly flows over the rocks, pleasantly tickling your ears. You gaze at the village that\'s entirely peaceful. There is a sense of serenity about it today.');
-  // TODO-QSP: dynamic text: You caught <<fish>> fish.
   scene.text(`You caught ${((s as any).fish ?? '')} fish.`);
   if (((s as any).hour ?? 0) < 22) {
     scene.actions([
@@ -283,6 +281,7 @@ function enterFishing(s: GameState, scene: SceneBuilder): void {
       scene.img('images/locations/gadukino/river/gadriver.jpg');
       scene.text('You strike, but the lack of tension makes the fish escape from the hook.');
     }
+    (st as any).temp_randB = undefined;
     scene.actions([
       { label: 'Throw another bait', goto: ['gad_river', 'fishing'] },
     ]);
@@ -294,6 +293,7 @@ function enterFishing(s: GameState, scene: SceneBuilder): void {
         { label: 'Retrieve bait', goto: ['gad_river', 'fishing'] },
       ]);
     }
+    (st as any).temp_rand = undefined;
   } },
       { label: 'Finish', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -342,18 +342,15 @@ function enterFishing(s: GameState, scene: SceneBuilder): void {
     if (((st as any).fish ?? 0) > 0) {
       scene.text('You try to give the rest of the fish to your grandmother, but she takes one look at the intact fish and points at your grandfather.');
       if (((st as any).fish_stored ?? 0) >= 10) {
-        // TODO-QSP: dynamic text: He sighs heavily, then takes the fish outside to preserve them. Since you can''t...
         scene.text(`He sighs heavily, then takes the fish outside to preserve them. Since you can't store anymore fish in the root cellar, your grandfather decides to give the remaining ${((st as any).fish ?? '')} away.`);
       } else {
         if (((st as any).fish_stored ?? 0) + ((st as any).fish ?? 0) > 10) {
           (st as any).fish = ((st as any).fish ?? 0) - ((10 - ((st as any).fish_stored ?? 0)));
-          // TODO-QSP: dynamic text: He sighs heavily, then takes the fish outside to preserve and store them, fillin...
           scene.text(`He sighs heavily, then takes the fish outside to preserve and store them, filling up the remaining space. He decides to give the remaining ${((st as any).fish ?? '')} fish away.`);
         } else {
           (st as any).fish_stored = ((st as any).fish_stored ?? 0) + (((st as any).fish ?? 0));
           scene.text('You try to give the rest of the fish to your grandmother, but she takes one look at the intact fish and points at your grandfather. He sighs heavily, then takes the fish outside to preserve and store them in the root cellar.');
           if (((st as any).fish_stored ?? 0) < 10) {
-            // TODO-QSP: dynamic text: There''s still space for <<10 - fish_stored>> kg of preserved fish.
             scene.text(`There's still space for ${10 - ((st as any).fish_stored ?? '')} kg of preserved fish.`);
           } else {
             scene.text('There\'s no more space for preserved fish in the root cellar.');
@@ -372,18 +369,15 @@ function enterFishing(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/gadukino/grandparents/givefish.jpg');
     scene.text('You try to give the rest of the fish to your grandmother, but she takes one look at the intact fish and points at your grandfather.');
     if (((st as any).fish_stored ?? 0) >= 10) {
-      // TODO-QSP: dynamic text: He sighs heavily, then takes the fish outside to preserve them. Since you can''t...
       scene.text(`He sighs heavily, then takes the fish outside to preserve them. Since you can't store anymore fish in the root cellar, your grandfather decides to give the remaining ${((st as any).fish ?? '')} away.`);
     } else {
       if (((st as any).fish_stored ?? 0) + ((st as any).fish ?? 0) > 10) {
         (st as any).fish = ((st as any).fish ?? 0) - ((10 - ((st as any).fish_stored ?? 0)));
-        // TODO-QSP: dynamic text: He sighs heavily, then takes the fish outside to preserve and store them, fillin...
         scene.text(`He sighs heavily, then takes the fish outside to preserve and store them, filling up the remaining space. He decides to give the remaining ${((st as any).fish ?? '')} fish away.`);
       } else {
         (st as any).fish_stored = ((st as any).fish_stored ?? 0) + (((st as any).fish ?? 0));
         scene.text('You try to give the rest of the fish to your grandmother, but she takes one look at the intact fish and points at your grandfather. He sighs heavily, then takes the fish outside to preserve and store them in the root cellar.');
         if (((st as any).fish_stored ?? 0) < 10) {
-          // TODO-QSP: dynamic text: There''s still space for <<10 - fish_stored>> kg of preserved fish.
           scene.text(`There's still space for ${10 - ((st as any).fish_stored ?? '')} kg of preserved fish.`);
         } else {
           scene.text('There\'s no more space for preserved fish in the root cellar.');
@@ -424,18 +418,15 @@ function enterFishing(s: GameState, scene: SceneBuilder): void {
     if (((st as any).fish ?? 0) > 0) {
       scene.text('You try to give the rest of the fish to your grandmother, but she takes one look at the intact fish and points at your grandfather.');
       if (((st as any).fish_stored ?? 0) >= 10) {
-        // TODO-QSP: dynamic text: He sighs heavily, then takes the fish outside to preserve them. Since you can''t...
         scene.text(`He sighs heavily, then takes the fish outside to preserve them. Since you can't store anymore fish in the root cellar, your grandfather decides to give the remaining ${((st as any).fish ?? '')} away.`);
       } else {
         if (((st as any).fish_stored ?? 0) + ((st as any).fish ?? 0) > 10) {
           (st as any).fish = ((st as any).fish ?? 0) - ((10 - ((st as any).fish_stored ?? 0)));
-          // TODO-QSP: dynamic text: He sighs heavily, then takes the fish outside to preserve and store them, fillin...
           scene.text(`He sighs heavily, then takes the fish outside to preserve and store them, filling up the remaining space. He decides to give the remaining ${((st as any).fish ?? '')} fish away.`);
         } else {
           (st as any).fish_stored = ((st as any).fish_stored ?? 0) + (((st as any).fish ?? 0));
           scene.text('You try to give the rest of the fish to your grandmother, but she takes one look at the intact fish and points at your grandfather. He sighs heavily, then takes the fish outside to preserve and store them in the root cellar.');
           if (((st as any).fish_stored ?? 0) < 10) {
-            // TODO-QSP: dynamic text: There''s still space for <<10 - fish_stored>> kg of preserved fish.
             scene.text(`There's still space for ${10 - ((st as any).fish_stored ?? '')} kg of preserved fish.`);
           } else {
             scene.text('There\'s no more space for preserved fish in the root cellar.');
@@ -454,18 +445,15 @@ function enterFishing(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/gadukino/grandparents/givefish.jpg');
     scene.text('You try to give the rest of the fish to your grandmother, but she takes one look at the intact fish and points at your grandfather.');
     if (((st as any).fish_stored ?? 0) >= 10) {
-      // TODO-QSP: dynamic text: He sighs heavily, then takes the fish outside to preserve them. Since you can''t...
       scene.text(`He sighs heavily, then takes the fish outside to preserve them. Since you can't store anymore fish in the root cellar, your grandfather decides to give the remaining ${((st as any).fish ?? '')} away.`);
     } else {
       if (((st as any).fish_stored ?? 0) + ((st as any).fish ?? 0) > 10) {
         (st as any).fish = ((st as any).fish ?? 0) - ((10 - ((st as any).fish_stored ?? 0)));
-        // TODO-QSP: dynamic text: He sighs heavily, then takes the fish outside to preserve and store them, fillin...
         scene.text(`He sighs heavily, then takes the fish outside to preserve and store them, filling up the remaining space. He decides to give the remaining ${((st as any).fish ?? '')} fish away.`);
       } else {
         (st as any).fish_stored = ((st as any).fish_stored ?? 0) + (((st as any).fish ?? 0));
         scene.text('You try to give the rest of the fish to your grandmother, but she takes one look at the intact fish and points at your grandfather. He sighs heavily, then takes the fish outside to preserve and store them in the root cellar.');
         if (((st as any).fish_stored ?? 0) < 10) {
-          // TODO-QSP: dynamic text: There''s still space for <<10 - fish_stored>> kg of preserved fish.
           scene.text(`There's still space for ${10 - ((st as any).fish_stored ?? '')} kg of preserved fish.`);
         } else {
           scene.text('There\'s no more space for preserved fish in the root cellar.');
@@ -507,7 +495,6 @@ function enterFishing(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
-  // TODO-QSP: end
   scene.build();
 }
 

@@ -11,7 +11,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 function enterRandomRape(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'exp_gain', 'prcptn', (Math.floor(Math.random() * 2) + 1));
   (s as any).streetev_day = ((s as any).daystart ?? 0);
-  // TODO-QSP: $streetev_title
+  s.scene = { ...s.scene, mainText: String((s as any).streetev_title || ''), curActs: [] };
   scene.img('images/locations/shared/street/rapist.jpg');
   if ((Math.floor(Math.random() * 100) + 1) + ((s as any).pcs_observ ?? 0) >= 100) {
     scene.text('You notice a hooded man standing in a darkened alleyway up ahead. Feeling he is up to no good you cross the street to the other side before you get to him. You see him look your direction before fading back into the darkness of the alleyway.');
@@ -62,7 +62,6 @@ function enterRandomRape(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -71,7 +70,7 @@ function enterRandomRobbery(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'exp_gain', 'prcptn', (Math.floor(Math.random() * 2) + 1));
   qspCall(s, 'stat', '');
   (s as any).temp = (Math.floor(Math.random() * (100 - 1 + 1)) + (1));
-  // TODO-QSP: $streetev_title
+  s.scene = { ...s.scene, mainText: String((s as any).streetev_title || ''), curActs: [] };
   scene.img('images/locations/shared/street/mugger.jpg');
   if (((s as any).temp ?? 0) >= 100) {
     scene.text('You notice a hooded man standing in a darkened doorway up ahead. Feeling he is up to no good you cross the street to the other side before you get to him. You see him look your direction before fading back into the darkness of the doorway.');
@@ -134,14 +133,13 @@ function enterRandomRobbery(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterRandomSnatching(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   (s as any).streetev_day = ((s as any).daystart ?? 0);
-  // TODO-QSP: $streetev_title
+  s.scene = { ...s.scene, mainText: String((s as any).streetev_title || ''), curActs: [] };
   scene.img('images/locations/shared/street/pursesnatch.jpg');
   if ((Math.floor(Math.random() * 301) + 0) < (((s as any).pcs_agil ?? 0) + ((s as any).pcs_stren ?? 0))) {
     scene.text('As you are walking down the street minding your own business, you are suddenly jerked sideways and nearly pulled off your feet. You quickly regain your balance, and instinctively, your fingers hold your purse tighter as you feel something tugging on it. A man is trying to snatch your purse, but he runs away when you don\'t let go of it immediately.');
@@ -188,13 +186,11 @@ function enterRandomSnatching(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterMistmeet(s: GameState, scene: SceneBuilder): void {
   qspGoto(s, 'lesbimistress', 'mistmeet');
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -241,13 +237,11 @@ function enterFailedCelebBlackmail(s: GameState, scene: SceneBuilder): void {
   } },
 ]);
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterNichTarasAbduct(s: GameState, scene: SceneBuilder): void {
   qspGoto(s, 'nichTaras', 'van');
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -281,7 +275,6 @@ function enterDivorceParty(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/shared/divorcee/makeout.jpg');
     scene.text('You look behind her and see Eva blushing, trying to hide behind the rim of her cup as she takes a drink. She\'s actually really pretty and younger than you thought. You\'re not sure why her husband would cheat on her, but you\'re not going to pass up the opportunity to have some fun with her. "You\'re right, she does deserve the <i>best</i>, and I can give her just that," you purr with a knowing smile.');
     scene.text('In an instant, the other women are cheering and giggling as they lead Eva to the window. She tries to reluctantly argue against this, but she makes no real effort to stop them. "Uhm… hi?" she says sheepishly, her eyes avoiding yours as she bites her lip nervously. "My name is Eva…"');
-    // TODO-QSP: dynamic text: "Oh, I know…" Your hand cups her cheek gently, and you guide her head back, her ...
     scene.text(`"Oh, I know…" Your hand cups her cheek gently, and you guide her head back, her gaze now meeting yours. "I'm ${((st as any).pcs_nickname ?? '')}," you say before leaning in to kiss her. As soon as your lips meet, any resistance she had before melts away. Her lips part, and your tongues intertwine. You can taste the sweet alcohol she had been drinking as she eagerly presses against you with a soft moan. When you finally pull away, Eva is breathless with a dazed yet satisfied look.`);
     scene.text('"Holy shit that was <i>amazing</i>!" Marta laughs as Eva collapses back into the car seat. Marta is back at the window with a wide grin, "Look, I even caught it on camera!" She holds up her phone and you see a shaky but still rather clear video of the two of you making out. "Hey, you know what, why don\'t you come out with us? I know Eva would love to have you come!" Marta winks again, obviously hinting at the double meaning there.');
     qspCall(st, 'willpower', 'drink', 'resist', 'medium');
@@ -324,7 +317,6 @@ function enterDivorceParty(s: GameState, scene: SceneBuilder): void {
     scene.text('"Look at him, he\'s hard just for you!"');
     scene.text('"Why not give him a <i>hand</i>, Eva!"');
     scene.text('"Don\'t just leave him like that!"');
-    // TODO-QSP: dynamic text: You end up so distracted by your thoughts that you almost don''t feel Marta nudg...
     scene.text(`You end up so distracted by your thoughts that you almost don't feel Marta nudging you. "We gotta get her in the mood, ${((st as any).pcs_nickname ?? '')}."`);
     scene.actions([
       { label: 'Help Eva relax', handler: (st: GameState) => {
@@ -398,7 +390,6 @@ function enterDivorceParty(s: GameState, scene: SceneBuilder): void {
   } },
 ]);
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -409,15 +400,13 @@ function enterRandomLover(s: GameState, scene: SceneBuilder): void {
     qspGoto(s, 'dateM', 'start');
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterMinorGuitarMan(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
-  // TODO-QSP: $streetev_title
-  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/shared/street/guitarb'+ rand(1...
+  s.scene = { ...s.scene, mainText: String((s as any).streetev_title || ''), curActs: [] };
   scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/shared/street/guitarb` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
   scene.text('As you walk down the sidewalk, you notice a man playing a guitar. He has his guitar case open, and you can see some money in it already. Several other people have stopped to listen to him play. He isn\'t half bad.');
   scene.actions([
@@ -454,14 +443,13 @@ function enterMinorGuitarMan(s: GameState, scene: SceneBuilder): void {
   } },
 ]);
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterMinorGuitarGirl(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
-  // TODO-QSP: $streetev_title
+  s.scene = { ...s.scene, mainText: String((s as any).streetev_title || ''), curActs: [] };
   scene.img('images/locations/shared/street/guitarg1.jpg');
   scene.text('As you walk down the sidewalk, you notice a girl playing a guitar. She has her guitar case open, and you can see some money in it already. Several other people have stopped to listen to her play. She isn\'t half bad.');
   scene.actions([
@@ -472,7 +460,7 @@ function enterMinorGuitarGirl(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 10;
     qspCall(st, 'mood', 'raise', 'small');
     qspCall(st, 'stat', '');
-    // TODO-QSP: $streetev_title
+    s.scene = { ...s.scene, mainText: String((st as any).streetev_title || ''), curActs: [] };
     scene.img('images/locations/shared/street/guitarg1.jpg');
     scene.text('You stop and listen to her play several songs. She really is pretty good. You wonder why she is playing on the street. Perhaps the old adage about starving artists applies to musicians as well.');
     scene.actions([
@@ -501,14 +489,13 @@ function enterMinorGuitarGirl(s: GameState, scene: SceneBuilder): void {
   } },
 ]);
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterMinorViolinMan(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
-  // TODO-QSP: $streetev_title
+  s.scene = { ...s.scene, mainText: String((s as any).streetev_title || ''), curActs: [] };
   scene.img('images/locations/shared/street/violinb1.jpg');
   scene.text('As you walk down the sidewalk, you notice a man playing a violin. He has his violin case open, and you can see some money in it already. Several other people have stopped to listen to him play. He isn\'t half bad.');
   scene.actions([
@@ -519,7 +506,7 @@ function enterMinorViolinMan(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 10;
     qspCall(st, 'mood', 'raise', 'small');
     qspCall(st, 'stat', '');
-    // TODO-QSP: $streetev_title
+    s.scene = { ...s.scene, mainText: String((st as any).streetev_title || ''), curActs: [] };
     scene.img('images/locations/shared/street/violinb1.jpg');
     scene.text('You stop and listen to him play several songs. He really is pretty good. You wonder why he is playing on the street. Perhaps the old adage about starving artists applies to musicians as well.');
     scene.actions([
@@ -548,14 +535,13 @@ function enterMinorViolinMan(s: GameState, scene: SceneBuilder): void {
   } },
 ]);
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterMinorViolinGirl(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
-  // TODO-QSP: $streetev_title
+  s.scene = { ...s.scene, mainText: String((s as any).streetev_title || ''), curActs: [] };
   scene.img('images/locations/shared/street/violing1.jpg');
   scene.text('As you walk down the sidewalk, you notice a girl playing a violin. She has her violin case open, and you can see some money in it already. Several other people have stopped to listen to her play. She isn\'t half bad.');
   scene.actions([
@@ -566,7 +552,7 @@ function enterMinorViolinGirl(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 10;
     qspCall(st, 'mood', 'raise', 'small');
     qspCall(st, 'stat', '');
-    // TODO-QSP: $streetev_title
+    s.scene = { ...s.scene, mainText: String((st as any).streetev_title || ''), curActs: [] };
     scene.img('images/locations/shared/street/violing1.jpg');
     scene.text('You stop and listen to her play several songs. She really is pretty good. You wonder why she is playing on the street. Perhaps the old adage about starving artists applies to musicians as well.');
     scene.actions([
@@ -595,16 +581,14 @@ function enterMinorViolinGirl(s: GameState, scene: SceneBuilder): void {
   } },
 ]);
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterMinorPortraits(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
-  // TODO-QSP: $streetev_title
+  s.scene = { ...s.scene, mainText: String((s as any).streetev_title || ''), curActs: [] };
   scene.img('images/locations/shared/street/artist.jpg');
-  // TODO-QSP: dynamic text: 'As you walk down the street, you see a man sitting in a chair with a sign sayin...
-  scene.text('As you walk down the street, you see a man sitting in a chair with a sign saying "Will draw portrait for 50₽."');
+  scene.text('\'As you walk down the street, you see a man sitting in a chair with a sign saying "Will draw portrait for 50₽."\'');
   scene.actions([
 { label: 'Leave', handler: (st: GameState) => {
     dynamicGoto(st, 'prevLoc');
@@ -629,14 +613,13 @@ function enterMinorPortraits(s: GameState, scene: SceneBuilder): void {
   } },
 ]);
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterMinorGroping_1(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
-  // TODO-QSP: $streetev_title
+  s.scene = { ...s.scene, mainText: String((s as any).streetev_title || ''), curActs: [] };
   scene.img('images/locations/shared/street/assgrab.jpg');
   scene.text('As you walk down the street, you feel a hand grab your ass and squeeze it hard. You jerk away and look over your shoulder, and you see a guy grinning at you.');
   if (((s as any).trait_vars ?? 0)?.['exhibitionist'] > 0) {
@@ -649,7 +632,7 @@ function enterMinorGroping_1(s: GameState, scene: SceneBuilder): void {
     dynamicGoto(st, 'prevLoc');
   } },
 { label: 'Slap him', handler: (st: GameState) => {
-    // TODO-QSP: $streetev_title
+    s.scene = { ...s.scene, mainText: String((st as any).streetev_title || ''), curActs: [] };
     scene.img('images/locations/shared/street/slapb.jpg');
     scene.text('You turn around. and as you do, you swing your hand, palm open, and deliver a hard smack to his face. The pop is loud enough to draw attention, and the guy recoils from it rubbing his face, seemingly surprised you smacked him. "Don\'t touch me asshole." With that, you turn and continue on your way.');
     scene.actions([
@@ -660,14 +643,12 @@ function enterMinorGroping_1(s: GameState, scene: SceneBuilder): void {
   } },
 ]);
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterMinorGroping_2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
-  // TODO-QSP: $streetev_title
-  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/shared/street/street_groped'+ ...
+  s.scene = { ...s.scene, mainText: String((s as any).streetev_title || ''), curActs: [] };
   scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/shared/street/street_groped` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
   scene.text('As you walk down the street, someone comes up behind you and grabs your ass, sqeezing it tightly. You flinch while quickly turning around angrily but only seeing your perpetrator running away.');
   if (((s as any).trait_vars ?? 0)?.['exhibitionist'] > 1) {
@@ -691,7 +672,6 @@ function enterMinorGroping_2(s: GameState, scene: SceneBuilder): void {
   } },
 ]);
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -699,7 +679,7 @@ function enterMinorUnconscious(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'exp_gain', 'prcptn', (Math.floor(Math.random() * 2) + 1));
   qspCall(s, 'stat', '');
-  // TODO-QSP: $streetev_title
+  s.scene = { ...s.scene, mainText: String((s as any).streetev_title || ''), curActs: [] };
   scene.img('images/locations/shared/street/beatup.jpg');
   scene.text('As you walk down the street, you pass a man that is badly beaten lying unconscious on the sidewalk. You stop a moment, unsure what to do, but everyone else just ignores him.');
   scene.actions([
@@ -716,7 +696,7 @@ function enterMinorUnconscious(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 20;
     qspCall(st, 'mood', 'raise', 'small');
     qspCall(st, 'stat', '');
-    // TODO-QSP: $streetev_title
+    s.scene = { ...s.scene, mainText: String((st as any).streetev_title || ''), curActs: [] };
     scene.img('images/locations/shared/police/patrol.jpg');
     scene.text('You call the police and are told to wait for the officers, it takes some time before the do. When a car finally pulls the officers get out and ask you a few questions then tell you to be on your way. You look back and they call in and start talking to the man, you continue on your way finally.');
     scene.actions([
@@ -727,7 +707,6 @@ function enterMinorUnconscious(s: GameState, scene: SceneBuilder): void {
   } },
 ]);
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -762,7 +741,6 @@ function enterMinorClothesGrabbed(s: GameState, scene: SceneBuilder): void {
     if (((s as any).PCloSkirt ?? 0) > 0  &&  ((s as any).pantyworntype ?? 0) === 'none'  &&  ((s as any).PCloOnePiece ?? 0) === 1) {
       (s as any).minut = ((s as any).minut ?? 0) + 5;
       // TODO-QSP: $streetev_title
-      // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/locations/shared/street/...
       scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/locations/shared/street/sharkdress` + (Math.floor(Math.random() * 2) + 1) + '.mp4"></video></center>');
       scene.text('As you walk down the street, someone comes up behind you, grabs the top of your dress and yanks it down around your ankles, which leaves you standing stark naked. You quickly squat down and grab your dress, pulling it back up and into place. By that time, who ever did this is long gone.');
       scene.text('You look around and notice several people staring at you. You are sure they\'ve seen everything. ');
@@ -789,7 +767,6 @@ function enterMinorClothesGrabbed(s: GameState, scene: SceneBuilder): void {
       if (((s as any).PCloSkirt ?? 0) > 0  &&  ((s as any).pantyworntype ?? 0) !== 'none') {
         (s as any).minut = ((s as any).minut ?? 0) + 5;
         // TODO-QSP: $streetev_title
-        // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/locations/shared/street/...
         scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/locations/shared/street/bottomeds` + (Math.floor(Math.random() * 2) + 1) + '.mp4"></video></center>');
         scene.text('As you walk down the street, someone comes up behind you and grabs your skirt and panties, yanking them down. Your skirt ends up around your ankles and your panties halfway down your thighs, which leaves your ass and pussy on fully display to everyone around. You quickly pull up your panties and then squat down and grab your skirt, pulling it back up and into place. By that time, whoever did this is long gone.');
         scene.text('You look around and notice several people staring at you. You are sure they\'ve seen everything. ');
@@ -816,7 +793,6 @@ function enterMinorClothesGrabbed(s: GameState, scene: SceneBuilder): void {
       } else {
         (s as any).minut = ((s as any).minut ?? 0) + 5;
         // TODO-QSP: $streetev_title
-        // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/locations/shared/street/...
         scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/locations/shared/street/topped` + (Math.floor(Math.random() * 2) + 1) + '.mp4"></video></center>');
         scene.text('As you walk down the street, someone comes up behind you and grabs your top, yanking it down, which leaves your tits on full display to everyone around. You quickly pull your top back up. By that time, whoever did this is long gone.');
         scene.text('You look around and notice several people staring at you. You are sure they\'ve seen everything. ');
@@ -844,7 +820,6 @@ function enterMinorClothesGrabbed(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -907,7 +882,6 @@ function enterMinorWindSkirt(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -941,7 +915,6 @@ function enterMinorNoBra(s: GameState, scene: SceneBuilder): void {
     if (((s as any).PCloThinness ?? 0) >= 5) {
       qspCall(s, 'stat', '');
       // TODO-QSP: $streetev_title
-      // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/locations/shared/street/...
       scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/locations/shared/street/street_no_bra` + (Math.floor(Math.random() * 3) + 2) + '.mp4"></video></center>');
       scene.text('As you walk down the street you feel your breasts wobbling freely under your thin outfit, stretching it, emphasizing the outline of your tits, which can definitely be seen by people walking by too. As you look closely both men and women are staring at your jiggling tits.');
       if (((s as any).trait_vars ?? 0)?.['exhibitionist'] > 1) {
@@ -969,13 +942,12 @@ function enterMinorNoBra(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterMinorHeteroCouple(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
-  // TODO-QSP: $streetev_title
+  s.scene = { ...s.scene, mainText: String((s as any).streetev_title || ''), curActs: [] };
   scene.img('images/locations/shared/street/couple1.mp4');
   scene.text('As you walk down the street, you see a couple making out passionately. The guy reaches around and starts squeezing the girls ass. You can\'t help but watch them as you walk by, feeling your own arousal growing.');
   qspCall(s, 'arousal', 'voyeur', 5);
@@ -986,13 +958,12 @@ function enterMinorHeteroCouple(s: GameState, scene: SceneBuilder): void {
   } },
 ]);
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterMinorLesbianCouple(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
-  // TODO-QSP: $streetev_title
+  s.scene = { ...s.scene, mainText: String((s as any).streetev_title || ''), curActs: [] };
   scene.img('images/locations/shared/street/lesbians.jpg');
   scene.text('As you walk down the street, you see a couple of girls making out passionately. You can\'t help but watch them as you walk by, feeling your own arousal growing.');
   qspCall(s, 'arousal', 'voyeur', 5);
@@ -1003,7 +974,6 @@ function enterMinorLesbianCouple(s: GameState, scene: SceneBuilder): void {
   } },
 ]);
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1012,7 +982,7 @@ function enterMinorWomanWindow(s: GameState, scene: SceneBuilder): void {
   (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (5);
   qspCall(s, 'exp_gain', 'prcptn', (Math.floor(Math.random() * 2) + 1));
   qspCall(s, 'stat', '');
-  // TODO-QSP: $streetev_title
+  s.scene = { ...s.scene, mainText: String((s as any).streetev_title || ''), curActs: [] };
   scene.img('images/locations/shared/street/lostkey.jpg');
   scene.text('As you pass by an alleyway, you glance down and see a woman wearing a very nice dress with nice high heels trying to jimmy a window. A few moments later, she slides the window open and then crawls through, giving a nice view of her ass as she does. Once inside, she quickly shuts the window. As you continue on, you wonder if maybe she lost her keys. Or maybe she was just a very well dressed burglar.');
   scene.actions([
@@ -1021,14 +991,13 @@ function enterMinorWomanWindow(s: GameState, scene: SceneBuilder): void {
   } },
 ]);
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterMinorGuysFighting(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
-  // TODO-QSP: $streetev_title
+  s.scene = { ...s.scene, mainText: String((s as any).streetev_title || ''), curActs: [] };
   scene.img('images/locations/shared/street/fightb.jpg');
   scene.text('As you walk down the street, two guys just ahead of you start pushing each other. Seconds later, they are throwing punches. The fight escalates quickly.');
   scene.actions([
@@ -1038,7 +1007,7 @@ function enterMinorGuysFighting(s: GameState, scene: SceneBuilder): void {
 { label: 'Stop and watch', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
     qspCall(st, 'stat', '');
-    // TODO-QSP: $streetev_title
+    s.scene = { ...s.scene, mainText: String((st as any).streetev_title || ''), curActs: [] };
     scene.img('images/locations/shared/street/fightb.jpg');
     scene.text('You love a good fight, so you like many others stop and watch them duke it out. It goes on for a while as they trade blows. One of them finally gets the upper hand and gets the other one down and starts beating him. He doesn\'t stop until one of his friends pulls him off. With the fight over, everyone leaves. You can hear police sirens and decide it is time to leave yourself.');
     scene.actions([
@@ -1049,14 +1018,13 @@ function enterMinorGuysFighting(s: GameState, scene: SceneBuilder): void {
   } },
 ]);
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterMinorGirlsFighting(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
-  // TODO-QSP: $streetev_title
+  s.scene = { ...s.scene, mainText: String((s as any).streetev_title || ''), curActs: [] };
   if (((s as any).loc ?? 0) === 'pav_commercial'  ||  ((s as any).loc ?? 0) === 'pav_residential') {
     scene.img('images/locations/shared/street/town/fightg1.jpg');
   } else {
@@ -1069,7 +1037,7 @@ function enterMinorGirlsFighting(s: GameState, scene: SceneBuilder): void {
   } },
 { label: 'Stop and watch', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
-    // TODO-QSP: $streetev_title
+    s.scene = { ...s.scene, mainText: String((st as any).streetev_title || ''), curActs: [] };
     if (((st as any).loc ?? 0) === 'pav_commercial'  ||  ((st as any).loc ?? 0) === 'pav_residential') {
       scene.img('images/locations/shared/street/town/fightg1.jpg');
     } else {
@@ -1093,15 +1061,13 @@ function enterMinorGirlsFighting(s: GameState, scene: SceneBuilder): void {
   } },
 ]);
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterMinorWomanFlashing(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
-  // TODO-QSP: $streetev_title
+  s.scene = { ...s.scene, mainText: String((s as any).streetev_title || ''), curActs: [] };
   if (((s as any).month ?? 0) >= 11  ||  ((s as any).month ?? 0) <= 3) {
-    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/shared/street/girlflashw'+ ran...
     scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/shared/street/girlflashw` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
   } else {
     scene.img('images/locations/shared/street/girlfash1.jpg');
@@ -1112,13 +1078,11 @@ function enterMinorWomanFlashing(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Flash her back', handler: (st: GameState) => {
     qspCall(st, 'flash', 'tits', 'outdoors', 1, 1);
-    // TODO-QSP: $streetev_title
+    s.scene = { ...s.scene, mainText: String((st as any).streetev_title || ''), curActs: [] };
     if (((st as any).PCloSkirt ?? 0) > 0) {
-      // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/pc/activities/flashing/dress/outside/tit...
       scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/pc/activities/flashing/dress/outside/tits/` + (Math.floor(Math.random() * 12) + 1) + '.jpg"></center>');
       scene.text('You grin at her as she flashes you, and you lift your shirt, flashing your tits back at her, which makes her laugh.');
     } else {
-      // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/pc/activities/flashing/pants/outside/tit...
       scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/pc/activities/flashing/pants/outside/tits/` + (Math.floor(Math.random() * 14) + 1) + '.jpg"></center>');
       scene.text('You grin at her as she flashes you, and you lift your shirt, flashing your tits back at her, which makes her laugh.');
     }
@@ -1137,14 +1101,13 @@ function enterMinorWomanFlashing(s: GameState, scene: SceneBuilder): void {
   } },
 ]);
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterMinorGirlFlashing(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
-  // TODO-QSP: $streetev_title
+  s.scene = { ...s.scene, mainText: String((s as any).streetev_title || ''), curActs: [] };
   scene.img('images/locations/shared/street/nopanties.jpg');
   scene.text('As you walk down the street, you pass a young girl sitting on the sidewalk with some friends next to her. You throw a glance at her and surprisingly see her spread her legs revealing her bare pussy to you, all while smiling.');
   qspCall(s, 'arousal', 'erotic_nudity', 5);
@@ -1155,14 +1118,13 @@ function enterMinorGirlFlashing(s: GameState, scene: SceneBuilder): void {
   } },
 ]);
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterMinorGirlsGossiping(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
-  // TODO-QSP: $streetev_title
+  s.scene = { ...s.scene, mainText: String((s as any).streetev_title || ''), curActs: [] };
   scene.img('images/locations/shared/street/girls1.jpg');
   if (((s as any).pcs_hotcat ?? 0) > 6) {
     qspCall(s, 'mood', 'raise', 'medium');
@@ -1187,7 +1149,7 @@ function enterMinorGirlsGossiping(s: GameState, scene: SceneBuilder): void {
     dynamicGoto(st, 'prevLoc');
   } },
       { label: 'Tell them off', handler: (st: GameState) => {
-    // TODO-QSP: $streetev_title
+    s.scene = { ...s.scene, mainText: String((st as any).streetev_title || ''), curActs: [] };
     scene.img('images/locations/shared/street/girls1.jpg');
     scene.text('You spin around to face them. "Just what\'s your problem bitches?" One of the girls steps up to you. "You best back yourself up bitch before I smack the shit out of you."');
     scene.actions([
@@ -1195,7 +1157,7 @@ function enterMinorGirlsGossiping(s: GameState, scene: SceneBuilder): void {
     dynamicGoto(st, 'prevLoc');
   } },
       { label: 'Bring it Bitch!', handler: (st: GameState) => {
-    // TODO-QSP: $streetev_title
+    s.scene = { ...s.scene, mainText: String((st as any).streetev_title || ''), curActs: [] };
     (st as any).boydesc = 'The group of girls';
     scene.img('images/locations/shared/street/girlgang.jpg');
     scene.text('You give her a small shove to force her to step back. "Bring it on then, bitch." The words barely leave your mouth before she jumps you. Soon all of her friends join in, leaving you to fight them all.');
@@ -1208,17 +1170,15 @@ function enterMinorGirlsGossiping(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterMinorHandoutFlyers(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
-  // TODO-QSP: $streetev_title
+  s.scene = { ...s.scene, mainText: String((s as any).streetev_title || ''), curActs: [] };
   scene.img('images/locations/shared/street/flyerman.jpg');
-  // TODO-QSP: dynamic text: 'As you walk down the street, you run across a man handing out flyers. As you ge...
-  scene.text('As you walk down the street, you run across a man handing out flyers. As you get near him, he waves you over, "Hello there young lady, would you like to earn a little extra money? All you have to do is take some of these flyers and hand them out for half an hour, and I will pay you \' + $func(\'money\', \'string_profit\', 75) + \'. What do you say?"');
+  scene.text('As you walk down the street, you run across a man handing out flyers. As you get near him, he waves you over, "Hello there young lady, would you like to earn a little extra money? All you have to do is take some of these flyers and hand them out for half an hour, and I will pay you ' + qspFunc(s, 'money', 'string_profit', 75) + '. What do you say?"');
   scene.actions([
 { label: 'No thanks', handler: (st: GameState) => {
     dynamicGoto(st, 'prevLoc');
@@ -1228,28 +1188,26 @@ function enterMinorHandoutFlyers(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'money', 'earn', 75, 'cash');
     qspCall(st, 'mood', 'lower', 'tiny');
     qspCall(st, 'stat', '');
-    // TODO-QSP: $streetev_title
+    s.scene = { ...s.scene, mainText: String((st as any).streetev_title || ''), curActs: [] };
     if (((st as any).month ?? 0) >= 11  ||  ((st as any).month ?? 0) <= 3) {
       scene.img('images/locations/shared/street/flyerw.jpg');
     } else {
       scene.img('images/locations/shared/street/flyer.jpg');
     }
-    // TODO-QSP: dynamic text: 'For thirty minutes, you stand on the street, chatting up random people, trying ...
-    scene.text('For thirty minutes, you stand on the street, chatting up random people, trying to give them one of your flyers. After that, you are paid \' + $func(\'money\', \'string_profit\', 75) + \' for your effort by the man, and he offers you the same deal to hand out more.');
+    scene.text('For thirty minutes, you stand on the street, chatting up random people, trying to give them one of your flyers. After that, you are paid ' + qspFunc(s, 'money', 'string_profit', 75) + ' for your effort by the man, and he offers you the same deal to hand out more.');
     scene.actions([
       { label: 'Distribute flyers to earn money ( [+$func(\'money\', \'string_profit\', 75) + \')...]', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 30;
     qspCall(st, 'money', 'earn', 75, 'cash');
     qspCall(st, 'mood', 'lower', 'tiny');
     qspCall(st, 'stat', '');
-    // TODO-QSP: $streetev_title
+    s.scene = { ...s.scene, mainText: String((st as any).streetev_title || ''), curActs: [] };
     if (((st as any).month ?? 0) >= 11  ||  ((st as any).month ?? 0) <= 3) {
       scene.img('images/locations/shared/street/flyerw.jpg');
     } else {
       scene.img('images/locations/shared/street/flyer.jpg');
     }
-    // TODO-QSP: dynamic text: 'For thirty minutes, you stand on the street, chatting up random people, trying ...
-    scene.text('For thirty minutes, you stand on the street, chatting up random people, trying to give them one of your flyers. After that, you are paid \' + $func(\'money\', \'string_profit\', 75) + \' for your effort by the man, and he offers you the same deal to hand out more.');
+    scene.text('For thirty minutes, you stand on the street, chatting up random people, trying to give them one of your flyers. After that, you are paid ' + qspFunc(s, 'money', 'string_profit', 75) + ' for your effort by the man, and he offers you the same deal to hand out more.');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
     dynamicGoto(st, 'prevLoc');
@@ -1263,14 +1221,13 @@ function enterMinorHandoutFlyers(s: GameState, scene: SceneBuilder): void {
   } },
 ]);
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterMinorGirlBeggar(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
-  // TODO-QSP: $streetev_title
+  s.scene = { ...s.scene, mainText: String((s as any).streetev_title || ''), curActs: [] };
   scene.img('images/locations/shared/street/homelessg.jpg');
   scene.text('As you walk down the street, you pass a girl sitting on a barrel just inside of an alleyway, holding up a sign saying that she is homeless, pleading for help.');
   scene.actions([
@@ -1363,18 +1320,16 @@ function enterMinorGirlBeggar(s: GameState, scene: SceneBuilder): void {
   } },
 ]);
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterMinorNakedWoman(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
-  // TODO-QSP: $streetev_title
+  s.scene = { ...s.scene, mainText: String((s as any).streetev_title || ''), curActs: [] };
   if (((s as any).month ?? 0) >= 11  ||  ((s as any).month ?? 0) <= 3) {
     scene.img('images/locations/shared/street/nakedgw1.jpg');
   } else {
-    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/shared/street/nakedg'+ rand(1,...
     scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/shared/street/nakedg` + (Math.floor(Math.random() * 3) + 1) + '.jpg"></center>');
   }
   scene.text('As you walk down the street, you pass a naked young woman. She seems to be loving the attention she is getting. Otherwise, she is acting like any other person on the street.');
@@ -1386,14 +1341,13 @@ function enterMinorNakedWoman(s: GameState, scene: SceneBuilder): void {
   } },
 ]);
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterMinorMotorcycleNaked(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
-  // TODO-QSP: $streetev_title
+  s.scene = { ...s.scene, mainText: String((s as any).streetev_title || ''), curActs: [] };
   scene.img('images/locations/shared/street/nakedgmbike.jpg');
   scene.text('As you walk down the street, a motorcycle drives by slowly. Several people are taking pictures. The man driving waves at them, while behind him sits a naked girl only wearing a motorcycle helmet. A few moments later, the traffic clears up a bit and they zoom off.');
   qspCall(s, 'arousal', 'erotic_nudity', 5);
@@ -1404,14 +1358,13 @@ function enterMinorMotorcycleNaked(s: GameState, scene: SceneBuilder): void {
   } },
 ]);
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterMinorGirlSplit(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
-  // TODO-QSP: $streetev_title
+  s.scene = { ...s.scene, mainText: String((s as any).streetev_title || ''), curActs: [] };
   scene.img('images/locations/shared/street/splitsread.jpg');
   scene.text('As you walk down the street, you pass a young girl reading a magazine. All of a sudden she lifts her foot, doing a standing split. You look at her in confusement, wondering why she\'s behaving oddly. As you\'re about to step up to her, it\'s like she wakes up from a daze. She blushes and quickly runs away from you.');
   scene.actions([
@@ -1420,19 +1373,18 @@ function enterMinorGirlSplit(s: GameState, scene: SceneBuilder): void {
   } },
 ]);
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterMinorBoysBeer(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
-  // TODO-QSP: $streetev_title
+  s.scene = { ...s.scene, mainText: String((s as any).streetev_title || ''), curActs: [] };
   scene.img('images/locations/shared/street/teens.jpg');
   scene.text('As you walk down the street, you pass a group of teens. Just as you are about to pass them, one of the boys calls out. "Hey! Want a beer?" he says as he offers you one.');
   scene.actions([
 { label: 'Decline', handler: (st: GameState) => {
-    // TODO-QSP: $streetev_title
+    s.scene = { ...s.scene, mainText: String((st as any).streetev_title || ''), curActs: [] };
     scene.img('images/locations/shared/street/teens.jpg');
     scene.text('You shake your head no and mumble thanks but no thanks and continue on your way.');
     scene.actions([
@@ -1445,7 +1397,7 @@ function enterMinorBoysBeer(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 30;
     qspCall(st, 'drugs', 'alcohol', 'beer');
     qspCall(st, 'stat', '');
-    // TODO-QSP: $streetev_title
+    s.scene = { ...s.scene, mainText: String((st as any).streetev_title || ''), curActs: [] };
     scene.img('images/locations/shared/street/teens.jpg');
     scene.text('You stop a moment and consider it then walk over and take the offered beer. You sit and talk with them for a while and drink the beer. After a bit, you decide you should be on your way. You thank them for the beer and say goodbye as you head out.');
     scene.actions([
@@ -1456,7 +1408,6 @@ function enterMinorBoysBeer(s: GameState, scene: SceneBuilder): void {
   } },
 ]);
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -1465,13 +1416,11 @@ function enterFightRape(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'fight', 'initFight');
   qspCall(s, 'fight_npcdata', 'rapist');
   qspGoto(s, 'fight', 'start');
-  // TODO-QSP: end
   scene.build();
 }
 
 function enterRape(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'rape_events', 'urban_rape');
-  // TODO-QSP: end
   scene.build();
 }
 

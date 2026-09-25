@@ -9,7 +9,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   (s as any).region = 'pav';
   (s as any).location_type = 'public_indoors';
   if (((s as any).temp ?? 0) !== 0) {
-    // TODO-QSP: killvar 'temp'
+    (s as any).temp = undefined;
   }
   (s as any).receptionName = 'Elisabet';
   if (((s as any).daystart ?? 0) === ((s as any).hotelRoomDays ?? 0)?.['pav']  &&  ((s as any).hour ?? 0) > 11) {
@@ -33,16 +33,15 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).temp ?? 0) === 1) {
+    (s as any).temp = undefined;
   } else {
     scene.text('<center><h4>Pavlovsk Hotel</h4></center>');
     scene.img('images/locations/pavlovsk/hotel/hotel.hole.jpg');
     if ((!((s as any).pavHotelMaid ?? 0))) {
-      // TODO-QSP: dynamic text: You''re always surprised by how fancy the hotel looks on the inside given the sh...
-      scene.text('You\'re always surprised by how fancy the hotel looks on the inside given the shabby exterior. A cute brunette is manning the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(/u0027pav_hotelReception/u0027, /u0027/u0027); return false;">reception desk</a>.');
+      scene.text('You\'re always surprised by how fancy the hotel looks on the inside given the shabby exterior. A cute brunette is manning the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027pav_hotelReception\u0027, \u0027\u0027); return false;">reception desk</a>.');
       scene.text('She gives you a friendly nod when you get into her sight range.');
     } else {
-      // TODO-QSP: dynamic text: You''re always surprised by how fancy the hotel looks on the inside given the sh...
-      scene.text('You\'re always surprised by how fancy the hotel looks on the inside given the shabby exterior. Elisabet is manning the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(/u0027pav_hotelReception/u0027, /u0027/u0027); return false;">reception desk</a>.');
+      scene.text('You\'re always surprised by how fancy the hotel looks on the inside given the shabby exterior. Elisabet is manning the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027pav_hotelReception\u0027, \u0027\u0027); return false;">reception desk</a>.');
       scene.text('She gives you a friendly nod when you get into her sight range.');
     }
   }
@@ -70,19 +69,17 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     return;
   }
   if (((s as any).hour ?? 0) >= 12  &&  ((s as any).hour ?? 0) < 20  &&  ((s as any).proshotelopen ?? 0) === 1) {
-    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027pav_hotel/u0027, /u0027Pavlin/u0027); return false;">Pavlin</a> is sitting in the lobby, looking for fresh prey.');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027pav_hotel\u0027, \u0027Pavlin\u0027); return false;">Pavlin</a> is sitting in the lobby, looking for fresh prey.');
   }
   if (((s as any).hour ?? 0) >= 12  &&  ((s as any).hour ?? 0) <= 13  &&  ((s as any).job_hiring_step ?? 0)?.['pav_hotel_maid'] >= 2) {
-    // TODO-QSP: dynamic text: Next to the reception desk is a door labeled <a href="exec:minut += 1 & gt ''pav...
-    scene.text('Next to the reception desk is a door labeled <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(/u0027pav_hotelAdmin/u0027, /u0027/u0027); return false;">"Administration"</a>. That must be where the hotel manager works. The door is currently open.');
+    scene.text('Next to the reception desk is a door labeled <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027pav_hotelAdmin\u0027, \u0027\u0027); return false;">"Administration"</a>. That must be where the hotel manager works. The door is currently open.');
   }
   if (((s as any).hotwait ?? 0) === 1) {
     scene.text('You sit in one of the comfortable chairs in the lobby and watch the guests checking in and out.');
     (s as any).hotwait = 0;
   }
   if (((s as any).job_hiring_step ?? 0)?.['pav_hotel_maid'] <= 1) {
-    // TODO-QSP: dynamic text: You see a <a href="exec:minut += 1 & gt ''pav_hotel'', ''poster''">"recruitment ...
-    scene.text('You see a <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(/u0027pav_hotel/u0027, /u0027poster/u0027); return false;">"recruitment poster"</a> in a corner of the room.');
+    scene.text('You see a <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027pav_hotel\u0027, \u0027poster\u0027); return false;">"recruitment poster"</a> in a corner of the room.');
   }
   qspCall(s, 'pav_hotelWork', 'set_hotel_acts');
   if (((s as any).hotelcouple ?? 0) === 2  &&  ((s as any).week ?? 0) === 4  &&  ((s as any).hour ?? 0) >= 20  &&  ((s as any).hour ?? 0) < 23  &&  ((s as any).hcday ?? 0) !== ((s as any).daystart ?? 0)) {
@@ -93,7 +90,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   if (((s as any).hour ?? 0) === 20  &&  ((s as any).IgorevnaBDSM ?? 0) >= 5  &&  ((s as any).IgorevnaBDSM ?? 0) < 14  &&  ((s as any).week ?? 0) < 3  &&  ((s as any).AnnaQW ?? 0)?.['daystart'] !== ((s as any).daystart ?? 0)) {
     scene.actions([
       { label: 'Look for Anna', handler: (st: GameState) => {
-    // TODO-QSP: AnnaQW['daystart'] = daystart
+    ((st as any).AnnaQW = (st as any).AnnaQW ?? {})['daystart'] = ((st as any).daystart ?? 0);
   }, goto: ['hotel_anna', 'meeting'] },
     ]);
   }
@@ -115,7 +112,6 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   qspCall(s, 'lover', 'lover_events');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the hotel', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 3;
@@ -134,7 +130,7 @@ function enterSkipResepevent(s: GameState, scene: SceneBuilder): void {
   (s as any).region = 'pav';
   (s as any).location_type = 'public_indoors';
   if (((s as any).temp ?? 0) !== 0) {
-    // TODO-QSP: killvar 'temp'
+    (s as any).temp = undefined;
   }
   (s as any).receptionName = 'Elisabet';
   if (((s as any).daystart ?? 0) === ((s as any).hotelRoomDays ?? 0)?.['pav']  &&  ((s as any).hour ?? 0) > 11) {
@@ -158,16 +154,15 @@ function enterSkipResepevent(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).temp ?? 0) === 1) {
+    (s as any).temp = undefined;
   } else {
     scene.text('<center><h4>Pavlovsk Hotel</h4></center>');
     scene.img('images/locations/pavlovsk/hotel/hotel.hole.jpg');
     if ((!((s as any).pavHotelMaid ?? 0))) {
-      // TODO-QSP: dynamic text: You''re always surprised by how fancy the hotel looks on the inside given the sh...
-      scene.text('You\'re always surprised by how fancy the hotel looks on the inside given the shabby exterior. A cute brunette is manning the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(/u0027pav_hotelReception/u0027, /u0027/u0027); return false;">reception desk</a>.');
+      scene.text('You\'re always surprised by how fancy the hotel looks on the inside given the shabby exterior. A cute brunette is manning the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027pav_hotelReception\u0027, \u0027\u0027); return false;">reception desk</a>.');
       scene.text('She gives you a friendly nod when you get into her sight range.');
     } else {
-      // TODO-QSP: dynamic text: You''re always surprised by how fancy the hotel looks on the inside given the sh...
-      scene.text('You\'re always surprised by how fancy the hotel looks on the inside given the shabby exterior. Elisabet is manning the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(/u0027pav_hotelReception/u0027, /u0027/u0027); return false;">reception desk</a>.');
+      scene.text('You\'re always surprised by how fancy the hotel looks on the inside given the shabby exterior. Elisabet is manning the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027pav_hotelReception\u0027, \u0027\u0027); return false;">reception desk</a>.');
       scene.text('She gives you a friendly nod when you get into her sight range.');
     }
   }
@@ -195,19 +190,17 @@ function enterSkipResepevent(s: GameState, scene: SceneBuilder): void {
     return;
   }
   if (((s as any).hour ?? 0) >= 12  &&  ((s as any).hour ?? 0) < 20  &&  ((s as any).proshotelopen ?? 0) === 1) {
-    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027pav_hotel/u0027, /u0027Pavlin/u0027); return false;">Pavlin</a> is sitting in the lobby, looking for fresh prey.');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027pav_hotel\u0027, \u0027Pavlin\u0027); return false;">Pavlin</a> is sitting in the lobby, looking for fresh prey.');
   }
   if (((s as any).hour ?? 0) >= 12  &&  ((s as any).hour ?? 0) <= 13  &&  ((s as any).job_hiring_step ?? 0)?.['pav_hotel_maid'] >= 2) {
-    // TODO-QSP: dynamic text: Next to the reception desk is a door labeled <a href="exec:minut += 1 & gt ''pav...
-    scene.text('Next to the reception desk is a door labeled <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(/u0027pav_hotelAdmin/u0027, /u0027/u0027); return false;">"Administration"</a>. That must be where the hotel manager works. The door is currently open.');
+    scene.text('Next to the reception desk is a door labeled <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027pav_hotelAdmin\u0027, \u0027\u0027); return false;">"Administration"</a>. That must be where the hotel manager works. The door is currently open.');
   }
   if (((s as any).hotwait ?? 0) === 1) {
     scene.text('You sit in one of the comfortable chairs in the lobby and watch the guests checking in and out.');
     (s as any).hotwait = 0;
   }
   if (((s as any).job_hiring_step ?? 0)?.['pav_hotel_maid'] <= 1) {
-    // TODO-QSP: dynamic text: You see a <a href="exec:minut += 1 & gt ''pav_hotel'', ''poster''">"recruitment ...
-    scene.text('You see a <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(/u0027pav_hotel/u0027, /u0027poster/u0027); return false;">"recruitment poster"</a> in a corner of the room.');
+    scene.text('You see a <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027pav_hotel\u0027, \u0027poster\u0027); return false;">"recruitment poster"</a> in a corner of the room.');
   }
   qspCall(s, 'pav_hotelWork', 'set_hotel_acts');
   if (((s as any).hotelcouple ?? 0) === 2  &&  ((s as any).week ?? 0) === 4  &&  ((s as any).hour ?? 0) >= 20  &&  ((s as any).hour ?? 0) < 23  &&  ((s as any).hcday ?? 0) !== ((s as any).daystart ?? 0)) {
@@ -218,7 +211,7 @@ function enterSkipResepevent(s: GameState, scene: SceneBuilder): void {
   if (((s as any).hour ?? 0) === 20  &&  ((s as any).IgorevnaBDSM ?? 0) >= 5  &&  ((s as any).IgorevnaBDSM ?? 0) < 14  &&  ((s as any).week ?? 0) < 3  &&  ((s as any).AnnaQW ?? 0)?.['daystart'] !== ((s as any).daystart ?? 0)) {
     scene.actions([
       { label: 'Look for Anna', handler: (st: GameState) => {
-    // TODO-QSP: AnnaQW['daystart'] = daystart
+    ((st as any).AnnaQW = (st as any).AnnaQW ?? {})['daystart'] = ((st as any).daystart ?? 0);
   }, goto: ['hotel_anna', 'meeting'] },
     ]);
   }
@@ -240,7 +233,6 @@ function enterSkipResepevent(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   qspCall(s, 'lover', 'lover_events');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the hotel', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 3;
@@ -268,7 +260,6 @@ function enterPoster(s: GameState, scene: SceneBuilder): void {
   }, goto: ['pav_hotelReception', ''] },
 ]);
   return;
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -295,10 +286,10 @@ function enterResepEvent1(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'exp_gain', 'observ', 3);
     }
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Go back to the market', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 3;
+    (st as any).home_name = undefined;
     qspGoto(st, 'pav_market', '');
   } },
   ]);
@@ -312,7 +303,6 @@ function enterResepEvent2(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/hotel/sex/resep_event2.jpg');
   scene.text('You enter the lobby and see the desk girl and the manager talking to each other. When they notice you, they both give you a very disappointed look.');
   scene.text('You get the feeling you interrupted something here.');
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -334,7 +324,6 @@ function enterResepEvent3(s: GameState, scene: SceneBuilder): void {
   scene.text('You remember the pictures you found in his office and wonder why he\'s acting so surprised.');
   scene.text('"Oh! Mr. Leonidovich!" she says while pouting. "I\'ve been a bad little girl, haven\'t I, Daddy?"');
   scene.text('You figure they\'re just playing a game and being caught flashing was all part of their weird little role play.');
-  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/hotel/sex/resep_event9.jpg');
@@ -398,30 +387,23 @@ function enterResepEvent3(s: GameState, scene: SceneBuilder): void {
 function enterPavlin(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/pavlin/pavlin.jpg');
-  // TODO-QSP: dynamic text: Varsonofy Krestovoz is a small time gangster who makes his money whoring out vul...
   scene.text(`Varsonofy Krestovoz is a small time gangster who makes his money whoring out vulnerable women in Pavlovsk. Few people know his real name since he's usually called ${(((s as any).npc_nickname ?? 0)?.['A217'] ?? '')} (the Peacock).`);
   if (((s as any).npc_rel ?? 0)?.['A217'] === -1) {
-    // TODO-QSP: dynamic text: <<$npc_nickname[''A217'']>> killed your unborn baby; you truly hate him. You sho...
     scene.text(`${(((s as any).npc_nickname ?? 0)?.['A217'] ?? '')} killed your unborn baby; you truly hate him. You should go find some help if you don't want these negative feelings to completely take over your personality.`);
   }
   if (((s as any).npc_rel ?? 0)?.['A217'] < 20  &&  ((s as any).npc_rel ?? 0)?.['A217'] >= 0) {
-    // TODO-QSP: dynamic text: You and <<$npc_nickname[''A217'']>> have a dysfunctional relationship. You work ...
     scene.text(`You and ${(((s as any).npc_nickname ?? 0)?.['A217'] ?? '')} have a dysfunctional relationship. You work for him, but are just one of many girls.`);
   }
   if (((s as any).npc_rel ?? 0)?.['A217'] >= 20  &&  ((s as any).npc_rel ?? 0)?.['A217'] < 40) {
-    // TODO-QSP: dynamic text: You understand <<$npc_nickname[''A217'']>> a little better. You know he has an e...
     scene.text(`You understand ${(((s as any).npc_nickname ?? 0)?.['A217'] ?? '')} a little better. You know he has an extremely violent side, but have figured out some strategies to avoid these outbursts.`);
   }
   if (((s as any).npc_rel ?? 0)['A217' ] >= 40  &&  ((s as any).npc_rel ?? 0)?.['A217'] < 60) {
-    // TODO-QSP: dynamic text: You and <<$npc_nickname[''A217'']>> have a normal relationship.
     scene.text(`You and ${(((s as any).npc_nickname ?? 0)?.['A217'] ?? '')} have a normal relationship.`);
   }
   if (((s as any).npc_rel ?? 0)?.['A217'] >= 60  &&  ((s as any).npc_rel ?? 0)?.['A217'] < 80) {
-    // TODO-QSP: dynamic text: You and <<$npc_nickname[''A217'']>> have a good relationship.
     scene.text(`You and ${(((s as any).npc_nickname ?? 0)?.['A217'] ?? '')} have a good relationship.`);
   }
   if (((s as any).npc_rel ?? 0)?.['A217'] >= 80) {
-    // TODO-QSP: dynamic text: You and <<$npc_nickname[''A217'']>> have a great relationship.
     scene.text(`You and ${(((s as any).npc_nickname ?? 0)?.['A217'] ?? '')} have a great relationship.`);
   }
   if (((s as any).proshotelday ?? 0) !== ((s as any).daystart ?? 0)) {
@@ -434,7 +416,6 @@ function enterPavlin(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Start taking female customers', handler: (st: GameState) => {
     (st as any).pavprosnofemales = 0;
-    // TODO-QSP: dynamic text: "<<$npc_nickname[''A217'']>>, I wanted to talk to you about… I want to start tak...
     scene.text(`"${(((st as any).npc_nickname ?? 0)?.['A217'] ?? '')}, I wanted to talk to you about… I want to start taking on female customers."`);
     scene.text('"Sure, I can set those up. They usually pay better anyway."');
     scene.actions([
@@ -457,7 +438,6 @@ function enterPavlin(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'willpower', 'pay', 'self');
     qspCall(st, 'stat', '');
     (st as any).pavprosnofemales = 0;
-    // TODO-QSP: dynamic text: "<<$npc_nickname[''A217'']>>, I wanted to talk to you about… I want to stop taki...
     scene.text(`"${(((st as any).npc_nickname ?? 0)?.['A217'] ?? '')}, I wanted to talk to you about… I want to stop taking on female customers."`);
     scene.text('"Fine. If you really don\'t want to do it, then I\'ll only get you male customers."');
     scene.actions([
@@ -480,29 +460,24 @@ function enterPavlin(s: GameState, scene: SceneBuilder): void {
     (st as any).talkrand = (Math.floor(Math.random() * 7) + 0);
     qspCall(st, 'stat', '');
     if ((!((st as any).talkrand ?? 0))) {
-      // TODO-QSP: dynamic text: <<$npc_nickname[''A217'']>> complains about how hard it is to find decent girls ...
       scene.text(`${(((st as any).npc_nickname ?? 0)?.['A217'] ?? '')} complains about how hard it is to find decent girls in a hellhole like Pavlovsk.`);
       scene.text('…');
       scene.text('"You\'re the first decent girl to work for me since I set up shop here two years ago."');
       scene.text('You smile and thank him for the compliment.');
     } else {
       if (((st as any).talkrand ?? 0) === 1) {
-        // TODO-QSP: dynamic text: You tell <<$npc_nickname[''A217'']>> you love going to the city and spending you...
         scene.text(`You tell ${(((st as any).npc_nickname ?? 0)?.['A217'] ?? '')} you love going to the city and spending your money at the shopping center. You ask him if he wants to join you the next time you go.`);
-        // TODO-QSP: dynamic text: "I''m sorry <<$pcs_firstname>>, but I can never go back to the city."
         scene.text(`"I'm sorry ${((st as any).pcs_firstname ?? '')}, but I can never go back to the city."`);
         scene.text('He takes a sip of his beer and suddenly looks very depressed.');
         scene.text('It looks like you really hit a nerve there. You wonder what that\'s about.');
       } else {
         if (((st as any).talkrand ?? 0) === 2) {
-          // TODO-QSP: dynamic text: <<$npc_nickname[''A217'']>> tells you a story from his childhood.
           scene.text(`${(((st as any).npc_nickname ?? 0)?.['A217'] ?? '')} tells you a story from his childhood.`);
           scene.text('"My father used to beat me every day. One day when I was 12, after another savage beating, I asked my mother to do something about it.');
           scene.text('He snorts. "The bitch started giving me another beating and locked me out on the balcony in my underpants for 2 hours. This was in the middle of January, so I got lucky I didn\'t freeze to death."');
           scene.text('It seems like he had a very rough childhood.');
         } else {
           if (((st as any).talkrand ?? 0) === 3) {
-            // TODO-QSP: dynamic text: <<$npc_nickname[''A217'']>> tells you a story from his childhood.
             scene.text(`${(((st as any).npc_nickname ?? 0)?.['A217'] ?? '')} tells you a story from his childhood.`);
             scene.text('"My father frequently brought working girls to the house for punishment. If they were lucky, he just beat them up. If their mistake was worse, then he would involve my mother and she…"');
             scene.text('"Let\'s just say that these girls would never go against my father\'s wishes again once my mother was done with them."');
@@ -510,14 +485,12 @@ function enterPavlin(s: GameState, scene: SceneBuilder): void {
             scene.text('It seems like he had a very rough childhood.');
           } else {
             if (((st as any).talkrand ?? 0) === 4) {
-              // TODO-QSP: dynamic text: <<$npc_nickname[''A217'']>> tells you how he got in this business.
               scene.text(`${(((st as any).npc_nickname ?? 0)?.['A217'] ?? '')} tells you how he got in this business.`);
               scene.text('"I basically followed my father\'s footsteps. When I was 19, I ran my first girl on the streets of St. Petersburg. Too bad she had a nasty habit of always talking back to me."');
               scene.text('"Knocking her teeth out helped a lot with that. Too bad it made her too ugly to be profitable, ha ha ha!"');
               scene.text('He lets out an evil laugh and you don\'t think that was a joke.');
             } else {
               if (((st as any).talkrand ?? 0) === 5) {
-                // TODO-QSP: dynamic text: <<$npc_nickname[''A217'']>> tells you a story from his childhood.
                 scene.text(`${(((st as any).npc_nickname ?? 0)?.['A217'] ?? '')} tells you a story from his childhood.`);
                 scene.text('"One day, when I was 6 years old, I accidentally broke one of my mother\'s crystal figurines. She hit me over the head with her heels so hard you can still see the scar."');
                 scene.text('He moves his head towards you and moves his hair away. You indeed see a big scar on his scalp.');
@@ -525,9 +498,7 @@ function enterPavlin(s: GameState, scene: SceneBuilder): void {
                 scene.text('It seems like he had a very rough childhood.');
               } else {
                 if (((st as any).talkrand ?? 0) === 6) {
-                  // TODO-QSP: dynamic text: "You will never disobey me, right <<$pcs_firstname>>? Your face is so pretty… I ...
                   scene.text(`"You will never disobey me, right ${((st as any).pcs_firstname ?? '')}? Your face is so pretty… I really don't want to mess that up…"`);
-                  // TODO-QSP: dynamic text: "What are you saying, <<$npc_nickname[''A217'']>>? Stop that! You''re scaring me...
                   scene.text(`"What are you saying, ${(((st as any).npc_nickname ?? 0)?.['A217'] ?? '')}? Stop that! You're scaring me…"`);
                   scene.text('"What? I give you a compliment and you get <i>scared</i>? You don\'t have to fear me, I wouldn\'t hurt a fly."');
                   scene.text('He\'s clearly had too much to drink and is talking nonsense.');
@@ -552,29 +523,24 @@ function enterPavlin(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/pavlin/pavlin.jpg');
     if (((st as any).pavldaystart ?? 0) === ((st as any).daystart ?? 0)) {
       (st as any).PavlinQW = 5;
-      // TODO-QSP: dynamic text: Before you can even say one word, <<$npc_nickname[''A217'']>> is already yelling...
       scene.text(`Before you can even say one word, ${(((st as any).npc_nickname ?? 0)?.['A217'] ?? '')} is already yelling at you.`);
       if ((!((st as any).pavldom ?? 0))) {
         scene.text('"Didn\'t you have enough with one black eye? Do you really need another?"');
       } else {
         scene.text('"You\'re lucky we\'re in a public place right now or I would fucking murder you!"');
       }
-      // TODO-QSP: dynamic text: "Go away, <<$pcs_firstname>>! I''m too angry right now. We can discuss this late...
       scene.text(`"Go away, ${((st as any).pcs_firstname ?? '')}! I'm too angry right now. We can discuss this later."`);
       (st as any).pavldaystart2 = ((st as any).daystart ?? 0);
     } else {
       if ((!((st as any).pavtalk ?? 0))) {
         (st as any).PavlinQW = 6;
-        // TODO-QSP: dynamic text: "<<$npc_nickname[''A217'']>>, I…" you start, but he immediately interrupts you.
         scene.text(`"${(((st as any).npc_nickname ?? 0)?.['A217'] ?? '')}, I…" you start, but he immediately interrupts you.`);
-        // TODO-QSP: dynamic text: "I hope you learned your lesson, <<$pcs_firstname>>. I''m sorry I had to do that...
         scene.text(`"I hope you learned your lesson, ${((st as any).pcs_firstname ?? '')}. I'm sorry I had to do that, but you need to understand the situation here."`);
         scene.text('You were hoping you could have an honest conversation with him about the incident, but it\'s clear that that\'s not possible, at least not yet.');
         (st as any).pavtalk = 1;
         (st as any).pavldaystart2 = ((st as any).daystart ?? 0);
       } else {
         if (((st as any).pavtalk ?? 0) === 1) {
-          // TODO-QSP: dynamic text: "<<$npc_nickname[''A217'']>>, I need…" you start, but he immediately interrupts ...
           scene.text(`"${(((st as any).npc_nickname ?? 0)?.['A217'] ?? '')}, I need…" you start, but he immediately interrupts you.`);
           scene.text('"What now?! Stop bothering me and get back to work!"');
           scene.text('You were hoping you could have an honest conversation with him about the incident, but it\'s clear that that\'s not possible, at least not yet.');
@@ -582,19 +548,15 @@ function enterPavlin(s: GameState, scene: SceneBuilder): void {
           (st as any).pavldaystart2 = ((st as any).daystart ?? 0);
         } else {
           if (((st as any).pavtalk ?? 0) === 2) {
-            // TODO-QSP: dynamic text: "<<$npc_nickname[''A217'']>>, I need to talk…" you start, but he immediately int...
             scene.text(`"${(((st as any).npc_nickname ?? 0)?.['A217'] ?? '')}, I need to talk…" you start, but he immediately interrupts you.`);
-            // TODO-QSP: dynamic text: "I think I made myself clear, <<$pcs_firstname>>. Get back to work."
             scene.text(`"I think I made myself clear, ${((st as any).pcs_firstname ?? '')}. Get back to work."`);
             scene.text('For the first time since you met him, you can see a glimpse of insecurity in his eyes. You might be getting through to him.');
             (st as any).pavtalk = 3;
           } else {
             if (((st as any).pavtalk ?? 0) === 3) {
-              // TODO-QSP: dynamic text: "<<$npc_nickname[''A217'']>>, I need to talk to you about our… little incident…"
               scene.text(`"${(((st as any).npc_nickname ?? 0)?.['A217'] ?? '')}, I need to talk to you about our… little incident…"`);
               scene.text('"I\'m very sorry for my behaviour. I don\'t know what came over me. I had a very bad day and your request was just the final drop. I hope you can forgive me and we can still work together."');
               scene.text('"I was really shocked by the way you treated me and I need assurances it won\'t happen again," you reply.');
-              // TODO-QSP: dynamic text: "Of course, <<$pcs_firstname>>. From here on out, I will treat you with the resp...
               scene.text(`"Of course, ${((st as any).pcs_firstname ?? '')}. From here on out, I will treat you with the respect you deserve. And I was not kidding about the money. I'll need a bigger share in the future."`);
               scene.text('"Okay. I will see what I can do about that."');
               (st as any).minut = ((st as any).minut ?? 0) + 4;
@@ -621,24 +583,21 @@ function enterPavlin(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/pavlin/pavlin.jpg');
-    // TODO-QSP: dynamic text: "<<$pcs_firstname>>, I''ve got a guy who''s willing to pay a LOT of money for a ...
     scene.text(`"${((st as any).pcs_firstname ?? '')}, I've got a guy who's willing to pay a LOT of money for a threesome with a set of twins. Do you happen to know a pair of twins who'd be down to make some quick cash?" ${(((st as any).npc_nickname ?? 0)?.['A217'] ?? '')} asks, looking hopeful.`);
     scene.text('You think for a moment before responding. "No, I don\'t. However, a lot of people say my sister and I look alike. If I wear my hair like hers and we put on enough make up, we could probably pass as twins."');
     scene.text('"That\'s a great idea! Do you think she would be willing to do this?" he asks, suddenly very excited at the prospect.');
     if (((st as any).sisterLesb ?? 0) < 5) {
       scene.text('"What? No, I was just saying we look alike. I wouldn\'t dare propose an idea like this to her."');
       scene.text('His excitement quickly dissolves into rage as he raises his hand up, ready to strike. "THEN WHY BRING HER UP, YOU STUPID CUNT?!"');
-      // TODO-QSP: dynamic text: You brace for the hit, closing your eyes tightly, but the slap never comes. You ...
       scene.text(`You brace for the hit, closing your eyes tightly, but the slap never comes. You open your eyes to see ${(((st as any).npc_nickname ?? 0)?.['A217'] ?? '')} has backed off. You're confused at first, but notice that the people in the lobby are looking at the two of you after his little outburst.`);
       scene.text('You quickly stand up and leave him be. You probably shouldn\'t bring up this topic anymore unless you have a more positive response to this request.');
     } else {
       scene.text('You feel a tingling in your loins just thinking about your sister.');
       scene.text('"Of course she will!" you blurt out without thinking.');
-      // TODO-QSP: dynamic text: "That''s fantastic, <<$pcs_firstname>>! Once you''re ready, bring her over and I...
       scene.text(`"That's fantastic, ${((st as any).pcs_firstname ?? '')}! Once you're ready, bring her over and I'll introduce you to the client."`);
-      // TODO-QSP: dynamic text: Realizing the commitment you just made, worry begins to seep into you. You hope ...
       scene.text(`Realizing the commitment you just made, worry begins to seep into you. You hope your sister is really up for it, because you fear how ${(((st as any).npc_nickname ?? 0)?.['A217'] ?? '')} will react if you can't deliver.`);
       (st as any).TwinQW = 1;
+      (st as any).tmp_TwinQW_AskedToday = undefined;
     }
     scene.actions([
       { label: 'Back to lobby', goto: ['pav_hotel', ''] },
@@ -653,9 +612,7 @@ function enterPavlin(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/pavlin/pavlin.jpg');
-    // TODO-QSP: dynamic text: "<<$pcs_firstname>>, have you heard the circus is in town?"
     scene.text(`"${((st as any).pcs_firstname ?? '')}, have you heard the circus is in town?"`);
-    // TODO-QSP: dynamic text: You look at <<$npc_nickname[''A217'']>> with a surprised stare. "I didn''t know ...
     scene.text(`You look at ${(((st as any).npc_nickname ?? 0)?.['A217'] ?? '')} with a surprised stare. "I didn't know you were a fan of the circus. You want to go see a show or something?"`);
     scene.text('"What? No, don\'t be silly, girl! A circus here means at least 50 guys in town who are looking for a good time after the shows."');
     scene.text('"And sometimes even between the shows!" he laughs. "I actually have two performers waiting on a girl right now. I called a girl, but she\'s still 10 minutes out. They\'re getting restless because they need to start their next show soon. Do you think you can take them?"');
@@ -669,7 +626,6 @@ function enterPavlin(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'Sure', handler: (st: GameState) => {
     scene.text('"Okay, you can go ahead to room 312. They\'re expecting you."');
-    // TODO-QSP: dynamic text: <<$npc_nickname[''A217'']>> gives you the key for the hotel room.
     scene.text(`${(((st as any).npc_nickname ?? 0)?.['A217'] ?? '')} gives you the key for the hotel room.`);
     scene.actions([
       { label: 'Go to room 312', goto: ['pavlin', 'clown'] },
@@ -685,10 +641,8 @@ function enterPavlin(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/pavlin/pavlin.jpg');
-    // TODO-QSP: dynamic text: "<<$pcs_firstname>>, I received a request for a pregnant girl today. A pregnant ...
     scene.text(`"${((st as any).pcs_firstname ?? '')}, I received a request for a pregnant girl today. A pregnant girl! How the hell am I going to find a girl that's pregnant and willing to do this shit?" he says while shaking his head.`);
     if (((st as any).knowpreg ?? 0) === 1  &&  ((st as any).pregChem ?? 0) >= 3600) {
-      // TODO-QSP: dynamic text: You feel anger towards <<$npc_nickname[''A217'']>> rising up inside you. "Do you...
       scene.text(`You feel anger towards ${(((st as any).npc_nickname ?? 0)?.['A217'] ?? '')} rising up inside you. "Do you ever pay attention to me? Can't you see I am pregnant?" you say while gesturing at your swollen belly.`);
       scene.text('"Of course I know that!" His brows furrow, letting you know he\'s getting mad. Butterflies flutter in your stomach, fear trying to match up with the anger.');
       scene.text('His expression softens a little before continuing. "This customer has some pretty weird requests. Are you up for it?"');
@@ -713,7 +667,6 @@ function enterPavlin(s: GameState, scene: SceneBuilder): void {
         ]);
       } else {
         if ((!((st as any).knowpreg ?? 0))) {
-          // TODO-QSP: dynamic text: <<$npc_nickname[''A217'']>> looks at your body and you know what he''s thinking.
           scene.text(`${(((st as any).npc_nickname ?? 0)?.['A217'] ?? '')} looks at your body and you know what he's thinking.`);
           scene.text('"Yeah, that\'s definitely tough. Good luck with that," you say before quickly leaving.');
           scene.actions([
@@ -725,7 +678,6 @@ function enterPavlin(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Move away', goto: ['pav_hotel', 'skip_resepevent'] },
   ]);

@@ -13,7 +13,6 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
   (s as any).hot_link = ((s as any).loc_id ?? 0);
   qspCall(s, 'beta_journal', 'nav_construct');
   if (((s as any).debug ?? 0)?.['journal'] !== '') {
-    // TODO-QSP: dynamic text: <h2><font color = "red">Error with:</font> <<$debug[''journal'']>></h2>
     scene.text(`<h2><font color = "red">Error with:</font> ${(((s as any).debug ?? 0)?.['journal'] ?? '')}</h2>`);
     ((s as any).debug = (s as any).debug ?? {})['journal'] = '';
   }
@@ -29,7 +28,6 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
     scene.text('<ul style="margin:0; padding:0;">🧭 Visit the school sports field to meet your brother, and maybe other jocks.</ul>');
     scene.text('</div>');
   }
-  // TODO-QSP: end
   scene.actions([
     { label: 'Test vcard', handler: (st: GameState) => {
     qspCall(st, 'beta_journal_relationships', '');
@@ -48,7 +46,6 @@ function enterGameFlags(s: GameState, scene: SceneBuilder): void {
   if (((s as any).start_type ?? 0)?.['magic'] === 'nomagic') {
     scene.text('Non-magic start - all magic quests is disabled. Please restart game to play the magical questlines.');
   }
-  // TODO-QSP: end
   scene.build();
 }
 

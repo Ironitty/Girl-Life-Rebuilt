@@ -15,7 +15,6 @@ function enterCikl(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'gp_elene_schedule', 'cikl');
   qspCall(s, 'gp_zlatek_schedule', 'cikl');
   return;
-  // TODO-QSP: end
   if (String((s as any).locArgs?.[0] ?? '') === ''  ||  (Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('A2') : -1) >= 0) {
     qspCall(s, 'artem_chebotarev_schedule', '');
   }
@@ -82,28 +81,25 @@ function enterCikl(s: GameState, scene: SceneBuilder): void {
     ((s as any).scheduleVars = (s as any).scheduleVars ?? {})['i'] = 0;
     ((s as any).scheduleVars = (s as any).scheduleVars ?? {})['all'] = (String((s as any).locArgs?.[0] ?? '') === ''  ||  (Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('lover') : -1) >= 0  ||  (Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('lovers') : -1) >= 0);
     if (((s as any).scheduleVars ?? 0)?.['all']  ||  ((s as any).scheduleVars ?? 0)?.['maxi'] < Object.keys((s as any).ARGS ?? {}).length) {
-      // TODO-QSP: :lover_schedules1
-      ((s as any).scheduleVars = (s as any).scheduleVars ?? {})['ID'] = qspUntranslated(s, "lover[scheduleVars['i']]", { location: "schedule" });
-      if (((s as any).scheduleVars ?? 0)?.['all']  ||  (Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf(((s as any).scheduleVars ?? 0)?.['ID']) : -1) >= 0) {
-        qspCall(s, 'lover_schedule', '$scheduleVars[\'ID\']');
-      }
-      ((s as any).scheduleVars = (s as any).scheduleVars ?? {})['i'] = ((s as any).scheduleVars['i'] ?? 0) + (1);
-      if (((s as any).scheduleVars ?? 0)?.['i'] < ((s as any).scheduleVars ?? 0)?.['maxi']) {
-        // TODO-QSP: jump 'lover_schedules1'
-      }
+      do {
+        ((s as any).scheduleVars = (s as any).scheduleVars ?? {})['ID'] = qspUntranslated(s, "lover[scheduleVars['i']]", { location: "schedule" });
+        if (((s as any).scheduleVars ?? 0)?.['all']  ||  (Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf(((s as any).scheduleVars ?? 0)?.['ID']) : -1) >= 0) {
+          qspCall(s, 'lover_schedule', '$scheduleVars[\'ID\']');
+        }
+        ((s as any).scheduleVars = (s as any).scheduleVars ?? {})['i'] = ((s as any).scheduleVars['i'] ?? 0) + (1);
+      } while (((s as any).scheduleVars ?? 0)?.['i'] < ((s as any).scheduleVars ?? 0)?.['maxi']);
     } else {
       ((s as any).scheduleVars = (s as any).scheduleVars ?? {})['maxi'] = 0;
-      // TODO-QSP: :lover_schedules2
-      ((s as any).scheduleVars = (s as any).scheduleVars ?? {})['index'] = qspUntranslated(s, "arrpos('lover', ARGS[scheduleVars['i']])", { location: "schedule" });
-      if (((s as any).scheduleVars ?? 0)?.['index'] >= 0) {
-        qspCall(s, 'lover_schedule', '', qspUntranslated(s, "lover[scheduleVars['index']]", { location: "schedule" }));
-      }
-      ((s as any).scheduleVars = (s as any).scheduleVars ?? {})['i'] = ((s as any).scheduleVars['i'] ?? 0) + (1);
-      if (((s as any).scheduleVars ?? 0)?.['i'] < ((s as any).scheduleVars ?? 0)?.['maxi']) {
-        // TODO-QSP: jump 'lover_schedules2'
-      }
+      do {
+        ((s as any).scheduleVars = (s as any).scheduleVars ?? {})['index'] = qspUntranslated(s, "arrpos('lover', ARGS[scheduleVars['i']])", { location: "schedule" });
+        if (((s as any).scheduleVars ?? 0)?.['index'] >= 0) {
+          qspCall(s, 'lover_schedule', '', qspUntranslated(s, "lover[scheduleVars['index']]", { location: "schedule" }));
+        }
+        ((s as any).scheduleVars = (s as any).scheduleVars ?? {})['i'] = ((s as any).scheduleVars['i'] ?? 0) + (1);
+      } while (((s as any).scheduleVars ?? 0)?.['i'] < ((s as any).scheduleVars ?? 0)?.['maxi']);
     }
   }
+  (s as any).scheduleVars = undefined;
   scene.build();
 }
 
