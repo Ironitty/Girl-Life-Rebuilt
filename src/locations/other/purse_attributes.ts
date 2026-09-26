@@ -1,4 +1,4 @@
-import { qspCall, qspFunc, hasLocation } from '../_shared/qspBridge';
+import { qspCall, hasLocation } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -11,8 +11,6 @@ function enter(s: GameState, scene: SceneBuilder): void {
   }
   if ((!((s as any).PurseQuality ?? 0))) {
     return;
-  }
-  if (qspFunc(s, 'purses', 'is_owned', ((s as any).locArgs?.[0] ?? 0), ((s as any).locArgs?.[1] ?? 0))) {
   }
   scene.build();
 }

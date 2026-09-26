@@ -261,40 +261,6 @@ function enterCheckInternetAccess(s: GameState, scene: SceneBuilder): void {
 }
 
 function enter(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: subscription[<plan name>]    The subscription itself that will be checked to see if Sveta can access...
-  // TODO-QSP: Possible values:
-  // TODO-QSP: Monthly subscriptions:
-  // TODO-QSP: 0: subscription is inactive, either never bought or expired.
-  // TODO-QSP: 1: subscription is active
-  // TODO-QSP: Metered plans:
-  // TODO-QSP: Any integer number, which means the available minutes left within the plan.
-  // TODO-QSP: This is how the old mobile minutes and internet time worked, but tracked in minutes,
-  // TODO-QSP: not hours for the internet.
-  // TODO-QSP: subscription[<plan name>-date]  The day the subscription was bought for the home (or mobile), this w...
-  // TODO-QSP: automatically set to `day`.
-  // TODO-QSP: Possible values 0-31, 1-31 are renewal days, 0 means the plan never expires.
-  // TODO-QSP: subscription[<plan name>-price]  The monthly fee of the subscription.
-  // TODO-QSP: subscription[<plan name>-discount]  The discount on the plan - relevant if the original discount was...
-  // TODO-QSP: fee. If the value is higher than 0, payments come from this first until the value gets to
-  // TODO-QSP: 0.
-  // TODO-QSP: subscription[<plan nam>-type]    The type of the subscription.
-  // TODO-QSP: Possible values:
-  // TODO-QSP: 1: Monthly subscription
-  // TODO-QSP: 2: Metered plan
-  // TODO-QSP: Plan Names
-  // TODO-QSP: free:    A subscription that is freely available, libraries, friends and lovers apartment, etc. that...
-  // TODO-QSP: The value of this plan is always 1 and the subscription date is 0.
-  // TODO-QSP: mobile:    Mobile telephone (only internet or calls too?) and laptop if taken somewhere else.
-  // TODO-QSP: If at a location where subscription['free'] is used, she has to ask first to be able to use her own ...
-  // TODO-QSP: with the local internet, otherwise it will still use the mobile subscription - if there is none, it ...
-  // TODO-QSP: metered_mobile  Cheaper option for broke Svetas. When subscription['mobile'] = 0 check for this and ...
-  // TODO-QSP: `subscription['metered_mobile'] > 0` then use it.
-  // TODO-QSP: <property code>  This is a monthly subscription that can be used in a specific home owned/rented by ...
-  // TODO-QSP: This is tracking the internet subscription per home. So if Sveta owns several places, she has a sepa...
-  // TODO-QSP: subscription for each of them.
-  // TODO-QSP: For allowed values see `homes_properties`.
-  // TODO-QSP: monthly_calls  A monthly mobile subscription giving unlimited call minutes and text message
-  // TODO-QSP: metered_calls  A mobile plan that gives a set amount of minutes that can be used.
   if (((s as any).subscription ?? 0)?.['free'] === 0) {
     ((s as any).subscription = (s as any).subscription ?? {})['free'] = 1;
   }

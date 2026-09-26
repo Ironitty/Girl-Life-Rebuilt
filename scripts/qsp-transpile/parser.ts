@@ -177,8 +177,8 @@ export function parseQsp(content: string, fileName: string): QspLocation {
       if (inBody) bodyLines.push(line);
       continue;
     }
-    if (trimmed.startsWith('!{') || trimmed.startsWith('!!{')) {
-      const afterBrace = trimmed.slice(2).trim();
+    if (trimmed.startsWith('!{') || trimmed.startsWith('!!{') || trimmed.startsWith('!! {')) {
+      const afterBrace = trimmed.replace(/^!!?\s*\{/, '').trim();
       const isMultiLineStr = /^\$(\w+)\s*(\+=|-=|\/=|\*=|=)\s*(["'])$/.test(afterBrace) || /^\$(\w+)\['([^']+)'\]\s*(\+=|-=|\/=|\*=|=)\s*(["'])$/.test(afterBrace);
 
       if (!trimmed.endsWith('!}') && !isMultiLineStr) inBlockComment = true;
@@ -266,13 +266,13 @@ interface ParseResult {
 
 
 
-        // QSP block comment: !{ ... !} or !!{ ... end} or !!{ ... } (may span lines)
+        // QSP block comment: !{ ... !} or !!{ ... end} or !!{ ... } or !! { ... } (may span lines)
          if (inBlockComment) {
            if (trimmed.endsWith('!}') || trimmed.endsWith('!!}') || trimmed.endsWith('end}') || trimmed === '}') inBlockComment = false;
            i++;
            continue;
          }
-         if (trimmed.startsWith('!{') || trimmed.startsWith('!!{')) {
+         if (trimmed.startsWith('!{') || trimmed.startsWith('!!{') || trimmed.startsWith('!! {')) {
            if (!trimmed.endsWith('!}') && !trimmed.endsWith('end}') && trimmed !== '}') inBlockComment = true;
            i++;
            continue;
@@ -1529,7 +1529,7 @@ function parseUntilElseOrEnd(lines: string[], startIdx: number, unsupported: str
       i++;
       continue;
     }
-    if (trimmed.startsWith('!{') || trimmed.startsWith('!!{')) {
+    if (trimmed.startsWith('!{') || trimmed.startsWith('!!{') || trimmed.startsWith('!! {')) {
       if (!trimmed.endsWith('!}') && !trimmed.endsWith('end}') && trimmed !== '}') inBlockComment = true;
       i++;
       continue;

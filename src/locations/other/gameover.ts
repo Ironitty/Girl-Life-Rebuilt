@@ -1,6 +1,4 @@
-import { qspUntranslated } from '../_shared/qspUntranslated';
-
-import { qspCall, qspGoto, qspLoad } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -92,26 +90,6 @@ function enterScreen(s: GameState, scene: SceneBuilder): void {
                           if (((s as any).over ?? 0) === 13  ||  String((s as any).locArgs?.[1] ?? '') === '13') {
                             scene.img('images/system/2_endings/fade.jpg');
                             scene.text('As the procedure continues, you feel a strange sensation, as if someone punched a hole in your spirit. You lose focus on everything around you, and it feels like you\'re flying into the ether. You attempt to rally your magical energies to plug the hole, but the hole in your spirit isn\'t able to be blocked by spirit energy, and you just force more of yourself out of it. It eats you up from your center, leaving no energy in the part that was once you. The last b t of you f des aw y, an wha   as y   n     g r                                .');
-                          } else {
-                            if (((s as any).over ?? 0) === 14  ||  String((s as any).locArgs?.[1] ?? '') === '14') {
-                              scene.img('images/system/2_endings/prison.jpg');
-                              scene.text('You spend the rest of your life in and out of prison, wasting whatever potential you might have had.');
-                            } else {
-                              if (((s as any).over ?? 0) === 15  ||  String((s as any).locArgs?.[1] ?? '') === '15') {
-                                scene.img('images/system/2_endings/deadgirl.jpg');
-                                scene.text('Your throat has felt like sandpaper for what feels like forever, but you kept putting off finding something to drink. Without warning, your vision blurs, your legs give out from under you, and your heart just stops. You never realized just how badly you\'d let yourself go without noticing. Your body finally gives out from dehydration.');
-                              } else {
-                                if (((s as any).over ?? 0) === 16  ||  String((s as any).locArgs?.[1] ?? '') === '16') {
-                                  scene.img('images/system/2_endings/deadgirl.jpg');
-                                  scene.text('Between skipped meals and constantly running yourself ragged, your body simply runs out of anything left to give. Without warning, your heart gives out from sheer malnutrition and exhaustion.');
-                                } else {
-                                  if (((s as any).over ?? 0) === 17  ||  String((s as any).locArgs?.[1] ?? '') === '17') {
-                                    scene.img('images/system/2_endings/deadgirl.jpg');
-                                    scene.text('You can\'t remember the last time you ate or drank anything. Starving and parched, your body simply stops. You die alone, wondering how you let it get this bad without even noticing.');
-                                  }
-                                }
-                              }
-                            }
                           }
                         }
                       }
@@ -123,44 +101,6 @@ function enterScreen(s: GameState, scene: SceneBuilder): void {
           }
         }
       }
-    }
-  }
-  scene.text('act \'End?\': gt \'gameover\', \'endscreen\', \'' + ((s as any).locArgs?.[1] ?? 0) + '\' ');
-  scene.actions([
-    { label: 'End?', handler: (st: GameState) => { qspGoto(st, 'gameover', 'endscreen', qspUntranslated(st, "'<<ARGS[1]>>'", { location: "gameover" })); } },
-  ]);
-  scene.build();
-}
-
-function enterEndscreen(s: GameState, scene: SceneBuilder): void {
-  (s as any).fcolor = 0;
-  (s as any).bcolor = 0;
-  (s as any).lcolor = 0;
-  if (String((s as any).locArgs?.[1] ?? '') === '8') {
-    scene.text('<center><h1>end</h1></center>');
-    scene.text('<center><h1>Special ending - heroin whore!</h1></center>');
-    scene.img('images/system/2_endings/crackwhore8.jpg');
-  } else {
-    scene.text('<center><h1>End</h1></center>');
-  }
-  scene.actions([
-    { label: 'Return to main menu', goto: ['start', ''] },
-    { label: 'Load a save', handler: (st: GameState) => {
-    qspLoad(1, st);
-  } },
-    { label: 'Load last auto-save', goto: ['gameover', 'load_autosave'] },
-  ]);
-  scene.build();
-}
-
-function enterLoadAutosave(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).start_type ?? 0)?.['loc'] === 'city') {
-    qspLoad(1, s);
-  } else {
-    if (((s as any).start_type ?? 0)?.['loc'] === 'uni') {
-      qspLoad(1, s);
-    } else {
-      qspLoad(1, s);
     }
   }
   scene.build();
@@ -177,12 +117,6 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 'screen':
       enterScreen(s, scene);
-      break;
-    case 'endscreen':
-      enterEndscreen(s, scene);
-      break;
-    case 'load_autosave':
-      enterLoadAutosave(s, scene);
       break;
     default:
       enterDefault(s, scene);

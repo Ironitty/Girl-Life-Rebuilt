@@ -1558,20 +1558,6 @@ function enterLudaFreeCondoms(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  scene.actions([
-    { label: 'But that\'s a sin!', handler: (st: GameState) => {
-    scene.text('"But I can\'t use that," you frown back at your aunt. "That would be a sin, to use birth control?"');
-    scene.text('"I can\'t help but notice that you\'re objecting to birth control, but not the implication non-marital sex," Luda says, raising an eyebrow. "Just take the gift, darling."');
-    scene.text('She waggles the bag at you insistently.');
-    scene.actions([
-      { label: 'Accept', handler: (st: GameState) => {
-    scene.text('"Well..." you say hesitantly. "I suppose <i>something</i> could happen. God forbid, I get raped or something..."');
-    scene.text('"I doubt the condoms will help you with that," Luda smirks as you take the bag from her. "But the morning after pill will be good for that too."');
-  } },
-      { label: 'Decline' }, // TODO-QSP: empty action body
-    ]);
-  } },
-  ]);
   scene.build();
 }
 

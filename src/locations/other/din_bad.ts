@@ -981,49 +981,6 @@ function enterDCycreportActor(s: GameState, scene: SceneBuilder): void {
                 (s as any).potfather_temp = undefined;
                 scene.text('<br><a href="#" onclick="window.__gameStore.getState().doGoto(\u0027din_bad\u0027, \u0027d_cycreport_choice\u0027 & gs \u0027stat\u0027); return false;">Accept</a>');
                 scene.text('</td></tr></table></center>');
-                (s as any).tempmax = 0;
-                (s as any).tempcurr = 0;
-                (s as any).sumcum = 0;
-                while (true) {
-                  if (((s as any).cumtime ?? 0)?.[String((s as any).tempcurr ?? 0)] > 1) {
-                    (s as any).cum = 'cumshots';
-                  } else {
-                    (s as any).cum = 'cumshot';
-                  }
-                  if (((s as any).cumtime ?? 0)?.[String((s as any).tempcurr ?? 0)] > 0) {
-                    scene.text(`${(((s as any).npc_usedname ?? 0)?.[(((s as any).cumfthname ?? 0)?.[String((s as any).tempcurr ?? 0)] ?? '')] ?? '')} (${(((s as any).cumfthname ?? 0)?.[String((s as any).tempcurr ?? 0)] ?? '')}) - ${(((s as any).cumtime ?? 0)?.[String((s as any).tempcurr ?? 0)] ?? '')} ${((s as any).cum ?? '')}`);
-                    (s as any).sumcum = ((s as any).sumcum ?? 0) + ((((s as any).cumtime ?? 0)?.[String((s as any).tempcurr ?? 0)] ?? 0));
-                  }
-                  if (((s as any).tempcurr ?? 0) < ((s as any).tempmax ?? 0)) {
-                    (s as any).tempcurr = ((s as any).tempcurr ?? 0) + (1);
-                    break;
-                  }
-                  if (((s as any).sumcum ?? 0) > 1) {
-                    (s as any).cum = 's';
-                  } else {
-                    (s as any).cum = '';
-                  }
-                  scene.text(`<br>You think you have had ${((s as any).sumcum ?? '')} load${((s as any).cum ?? '')} of cum shot${((s as any).cum ?? '')} in your womb altogether that could have gotten you pregnant.`);
-                  scene.text(`You suspect the father being: ${((s as any).wombthfath ?? '')}<br>`);
-                  (s as any).tempcurr = 0;
-                  while (true) {
-                    if (((s as any).cumtime ?? 0)?.[String((s as any).tempcurr ?? 0)] > 0) {
-                      if (((s as any).npc_usedname ?? 0)[((s as any).cumfthname ?? 0)?.[String((s as any).tempcurr ?? 0)]] !== '') {
-                        scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: $wombthfath = /u0027/u003c/u003c$npc_usedname[$cumfthname[tempcurr]]>>/u0027 */ /* TODO-QSP: $wombthfathID = /u0027/u003c/u003c$cumfthname[tempcurr]>>/u0027 */ return s; }); window.__gameStore.getState().doGoto(/u0027din_bad/u0027, /u0027d_cycreport_actor/u0027, /u00277 & gs /u0027stat/u0027/u0027); return false;">${(((s as any).npc_usedname ?? 0)?.[(((s as any).cumfthname ?? 0)?.[String((s as any).tempcurr ?? 0)] ?? '')] ?? '')} (${(((s as any).cumfthname ?? 0)?.[String((s as any).tempcurr ?? 0)] ?? '')})</a>`);
-                      } else {
-                        scene.text(` <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: $wombthfath = /u0027/u003c/u003c$npc_usedname[$cumfthname[tempcurr]]>>/u0027 */ /* TODO-QSP: $wombthfathID = /u0027/u003c/u003c$cumfthname[tempcurr]>>/u0027 */ return s; }); window.__gameStore.getState().doGoto(/u0027din_bad/u0027, /u0027d_cycreport_actor/u0027, /u00277 & gs /u0027stat/u0027/u0027); return false;">Unknown (-)</a>`);
-                      }
-                    }
-                    if (((s as any).tempcurr ?? 0) < ((s as any).tempmax ?? 0)) {
-                      (s as any).tempcurr = ((s as any).tempcurr ?? 0) + (1);
-                      break;
-                    }
-                    (s as any).sumcum = undefined;
-                    (s as any).cum = undefined;
-                    (s as any).tempmax = undefined;
-                    (s as any).tempcurr = undefined;
-                  }
-                }
                 scene.actions([
                   { label: 'Return', handler: (st: GameState) => {
     qspCall(st, 'din_bad', '');

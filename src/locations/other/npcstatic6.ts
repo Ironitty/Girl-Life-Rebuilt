@@ -653,7 +653,6 @@ function enter(s: GameState, scene: SceneBuilder): void {
     ((s as any).npc_height = (s as any).npc_height ?? {})['A' + String(((s as any).npctemp ?? 0))] = 151;
     ((s as any).npc_bust = (s as any).npc_bust ?? {})['A' + String(((s as any).npctemp ?? 0))] = 14;
   }
-  (s as any).aarraynumber = ((s as any).npctemp ?? 0);
   scene.build();
 }
 
