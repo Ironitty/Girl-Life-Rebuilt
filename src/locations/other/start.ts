@@ -1,4 +1,4 @@
-import { qspCall, qspGoto } from '../_shared/qspBridge';
+import { qspCall, qspGoto, qspLoad } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -8,16 +8,12 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: killall
   (s as any).usehtml = 1;
   (s as any).debug = 1;
-  // TODO-QSP: showobjs 0
-  // TODO-QSP: showinput 0
   if (((s as any).qspver ?? 0) > '9.9.9') {
-    // TODO-QSP: showacts 0
     scene.text('<center><font size="+3" color="red"><b>RUNTIME VERSION MISMATCH</b></font><br>');
     scene.text('The player you are using is incompatible with <b>Girl Life</b><br>');
     scene.text('Please use one of the recommended players: https://tfgames.site/index.php?module=viewgame&id=597</center>');
     return;
   }
-  // TODO-QSP: showacts 1
   (s as any).disablescroll = 1;
   (s as any).ongload = 'loadg';
   (s as any).ongsave = 'saveg';
@@ -81,10 +77,10 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     qspGoto(st, 'begin', 'warning');
   } },
     { label: '<center><b>LOAD</b></center>', handler: (st: GameState) => {
-    // TODO-QSP: opengame
+    qspLoad(1, st);
   } },
     { label: '<center>Load <b>QuickSave</b></center>', handler: (st: GameState) => {
-    // TODO-QSP: opengame 'quicksave.sav'
+    qspLoad(0, st);
   } },
     { label: '<center>Test video</center>', handler: (st: GameState) => {
     scene.img('images/system/test_video.mp4');

@@ -315,12 +315,10 @@ function enterExport(s: GameState, scene: SceneBuilder): void {
 
 function enterImport(s: GameState, scene: SceneBuilder): void {
   scene.text('Paste your saved game settings into the input box (Likely at the bottom of the screen), then click Continue.');
-  // TODO-QSP: showinput 1
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     (st as any).initext = String(((st as any).usrtxt ?? 0));
     // TODO-QSP: cmdclear
-    // TODO-QSP: showinput 0
     if (((st as any).initext ?? 0) === '') {
       return;
     }
@@ -343,7 +341,6 @@ function enterImport(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'calendar', 'pack', 'remove', 'intercity_trains');
     }
     qspCall(st, 'calendar', 'cycle_rebuild', 1);
-    // TODO-QSP: showobjs cfg_vars['debug']
     qspCall(st, 'stat', '');
     alert('Import complete');
     dynamicGoto(st, 'menu_settings');

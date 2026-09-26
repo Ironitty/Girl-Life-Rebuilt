@@ -1,6 +1,6 @@
 import { qspUntranslated } from '../_shared/qspUntranslated';
 
-import { qspCall, qspGoto } from '../_shared/qspBridge';
+import { qspCall, qspGoto, qspLoad } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -133,8 +133,6 @@ function enterScreen(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterEndscreen(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: showobjs 0
-  // TODO-QSP: showinput 0
   (s as any).fcolor = 0;
   (s as any).bcolor = 0;
   (s as any).lcolor = 0;
@@ -148,7 +146,7 @@ function enterEndscreen(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Return to main menu', goto: ['start', ''] },
     { label: 'Load a save', handler: (st: GameState) => {
-    // TODO-QSP: opengame
+    qspLoad(1, st);
   } },
     { label: 'Load last auto-save', goto: ['gameover', 'load_autosave'] },
   ]);
@@ -157,12 +155,12 @@ function enterEndscreen(s: GameState, scene: SceneBuilder): void {
 
 function enterLoadAutosave(s: GameState, scene: SceneBuilder): void {
   if (((s as any).start_type ?? 0)?.['loc'] === 'city') {
-    // TODO-QSP: opengame 'autosave_city_<<$weekName>>.sav'
+    qspLoad(1, s);
   } else {
     if (((s as any).start_type ?? 0)?.['loc'] === 'uni') {
-      // TODO-QSP: opengame 'autosave_uni_<<$weekName>>.sav'
+      qspLoad(1, s);
     } else {
-      // TODO-QSP: opengame 'autosave_sg_<<$weekName>>.sav'
+      qspLoad(1, s);
     }
   }
   scene.build();

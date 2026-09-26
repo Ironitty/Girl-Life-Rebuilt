@@ -1049,7 +1049,13 @@ interface ParseResult {
       trimmed.startsWith('killvar ') ||
       trimmed.startsWith('wait ') ||
       trimmed.startsWith('savegame ') ||
+      trimmed.startsWith('opengame ') ||
+      trimmed === 'opengame' ||
       trimmed.startsWith('set $') ||
+      trimmed.startsWith('showobjs ') ||
+      trimmed.startsWith('showinput ') ||
+      trimmed.startsWith('showstat ') ||
+      trimmed.startsWith('showacts ') ||
       trimmed === '*pl' ||
       trimmed.startsWith('msg ') ||
       trimmed.startsWith("msg'")
@@ -2536,8 +2542,8 @@ function parseSingleLine(trimmed: string, lines: string[], idx: number, unsuppor
     return { nodes, nextIdx: idx + 1 };
   }
 
-  // savegame / set $ / cls / clr / cla
-  if (trimmed.startsWith('savegame ') || trimmed.startsWith('set $') || trimmed === 'cls' || trimmed === 'clr' || trimmed === '*clr' || trimmed === 'cla') {
+  // savegame / opengame / set $ / cls / clr / cla / showobjs / showinput / showstat / showacts
+  if (trimmed.startsWith('savegame ') || trimmed.startsWith('opengame ') || trimmed === 'opengame' || trimmed.startsWith('set $') || trimmed === 'cls' || trimmed === 'clr' || trimmed === '*clr' || trimmed === 'cla' || trimmed.startsWith('showobjs ') || trimmed.startsWith('showinput ') || trimmed.startsWith('showstat ') || trimmed.startsWith('showacts ')) {
     nodes.push({ kind: 'setup', raw: trimmed });
     return { nodes, nextIdx: idx + 1 };
   }
@@ -2562,7 +2568,7 @@ function parseInlineStatement(stmt: string, unsupported: string[]): QspNode[] {
     }
   }
 
-  if (trimmed.startsWith('PLAY ') || trimmed.startsWith('play ') || trimmed.startsWith('cla') || trimmed.startsWith('cls') || trimmed.startsWith('clr') || trimmed.startsWith('*clr') || trimmed.startsWith('*nl') || trimmed.startsWith('killvar ') || trimmed.startsWith('msg ') || trimmed.startsWith("msg'") || trimmed.startsWith('savegame ') || trimmed.startsWith('set $')) {
+  if (trimmed.startsWith('PLAY ') || trimmed.startsWith('play ') || trimmed.startsWith('cla') || trimmed.startsWith('cls') || trimmed.startsWith('clr') || trimmed.startsWith('*clr') || trimmed.startsWith('*nl') || trimmed.startsWith('killvar ') || trimmed.startsWith('msg ') || trimmed.startsWith("msg'") || trimmed.startsWith('savegame ') || trimmed.startsWith('opengame ') || trimmed === 'opengame' || trimmed.startsWith('set $')) {
     nodes.push({ kind: 'setup', raw: trimmed });
     return nodes;
   }

@@ -5,7 +5,6 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: showobjs max(1 - debug_warning_closed, cfg_vars['debug'])
   (s as any).git_hash = undefined;
   qspCall(s, 'addbuilddate', '');
   qspCall(s, 'saveupdater', '');

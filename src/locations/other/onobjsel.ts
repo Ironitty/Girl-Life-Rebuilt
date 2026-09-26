@@ -75,7 +75,6 @@ function enter(s: GameState, scene: SceneBuilder): void {
     alert('The debug window will no longer auto-open on save load. You can adjust this in the settings.');
     (s as any).debug_warning_closed = 1;
     ((s as any).cfg_vars = (s as any).cfg_vars ?? {})['debug'] = 0;
-    // TODO-QSP: showobjs cfg_vars['debug']
     qspCall(s, 'stat', '');
   }
   if (((s as any).selobj ?? 0) === '<center>Toggle Call Trace</center>') {

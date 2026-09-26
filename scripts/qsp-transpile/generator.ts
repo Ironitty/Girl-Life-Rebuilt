@@ -387,6 +387,7 @@ export function generateTs(loc: QspLocation): GenResult {
   if (body.includes('dynamicGoto(')) bridgeNames.push('dynamicGoto');
   if (body.includes('qspGoto(')) bridgeNames.push('qspGoto');
   if (body.includes('qspSave(')) bridgeNames.push('qspSave');
+  if (body.includes('qspLoad(')) bridgeNames.push('qspLoad');
   if (body.includes('hasLocation(')) bridgeNames.push('hasLocation');
   if (bridgeNames.length > 0) {
     lines.unshift(`import { ${bridgeNames.join(', ')} } from '../_shared/qspBridge';`, '');
@@ -820,6 +821,13 @@ function generateSceneBody(
           out.push(`qspSave(${slot}, s);`);
           break;
         }
+        const opengameSetupMatch = node.raw.match(/^opengame\s*(?:'(.+)')?$/);
+        if (opengameSetupMatch) {
+          const file = (opengameSetupMatch[1] || '').replace(/''/g, "'");
+          const slot = file.includes('quicksave') ? '0' : '1';
+          out.push(`qspLoad(${slot}, s);`);
+          break;
+        }
         const setVarSetupMatch = node.raw.match(/^set\s+\$(\w+)\s*=\s*(.+)$/);
         if (setVarSetupMatch) {
           const varName = setVarSetupMatch[1];
@@ -829,6 +837,9 @@ function generateSceneBody(
           break;
         }
         if (node.raw === 'cls' || node.raw === 'clr' || node.raw === '*clr' || node.raw === 'cla') {
+          break;
+        }
+        if (/^showobjs\s/.test(node.raw) || /^showinput\s/.test(node.raw) || /^showstat\s/.test(node.raw) || /^showacts\s/.test(node.raw)) {
           break;
         }
         const standaloneFuncSetup = node.raw.match(/^func\((.+)\)\s*$/);
@@ -1288,7 +1299,29 @@ function translateInlineAct(
       stateWrites.push(varName);
       continue;
     }
-    if (part === 'cla' || part === '*clr' || part.startsWith('*clr')) continue;
+    if (part === 'cla' || part === '*clr' || part.startsWith('*clr') || part === 'cls') continue;
+    const savegameInlineMatch = part.match(/^savegame\s*(?:'(.+)')?$/);
+    if (savegameInlineMatch) {
+      const file = (savegameInlineMatch[1] || '').replace(/''/g, "'");
+      const slot = file.includes('quicksave') ? '0' : '1';
+      handlerBits.push(`qspSave(${slot}, st);`);
+      continue;
+    }
+    const opengameInlineMatch = part.match(/^opengame\s*(?:'(.+)')?$/);
+    if (opengameInlineMatch) {
+      const file = (opengameInlineMatch[1] || '').replace(/''/g, "'");
+      const slot = file.includes('quicksave') ? '0' : '1';
+      handlerBits.push(`qspLoad(${slot}, st);`);
+      continue;
+    }
+    const setVarInlineMatch = part.match(/^set\s+\$(\w+)\s*=\s*(.+)$/);
+    if (setVarInlineMatch) {
+      const varName = setVarInlineMatch[1];
+      const val = translateValue(setVarInlineMatch[2].trim(), stateReads, todos, 'st');
+      handlerBits.push(`(st as any).${varName} = ${val};`);
+      stateWrites.push(varName);
+      continue;
+    }
     const killvarInlineMatch = part.match(/^killvar\s+'([^']+)'/);
     if (killvarInlineMatch) {
       const rawName = killvarInlineMatch[1];
@@ -3315,6 +3348,12 @@ function convertExecLinks(s: string, stateReads?: string[], todos?: string[], st
         const slot = file.includes('quicksave') ? '0' : '1';
         return `qspSave(${slot}, s);`;
       }
+      const opengameMatch = st.match(/^opengame\s*(?:'(.+)')?$/);
+      if (opengameMatch) {
+        const file = (opengameMatch[1] || '').replace(/''/g, "'");
+        const slot = file.includes('quicksave') ? '0' : '1';
+        return `qspLoad(${slot}, s);`;
+      }
       const setVarMatch = st.match(/^set\s+\$(\w+)\s*=\s*(.+)$/);
       if (setVarMatch) {
         const varName = setVarMatch[1];
@@ -3322,6 +3361,9 @@ function convertExecLinks(s: string, stateReads?: string[], todos?: string[], st
         return `(s as any).${varName} = ${val};`;
       }
       if (st === 'cls' || st === 'clr' || st === '*clr' || st === 'cla') {
+        return '';
+      }
+      if (/^showobjs\s/.test(st) || /^showinput\s/.test(st) || /^showstat\s/.test(st) || /^showacts\s/.test(st)) {
         return '';
       }
       return `/* TODO-QSP: ${st.replace(/</g, '\\u003c')} */`;

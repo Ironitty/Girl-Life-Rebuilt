@@ -34,7 +34,7 @@ import { expGain } from '../../core/exp_gain';
 import { fameAdd, fameCalculate, fameCalculateGroups, fameDeg, fameChurchReduction } from '../../core/fame';
 import { computeStats, applyCaps, statusMinima, fifteenMinuteLoop } from '../../core/stats';
 import { applyTheme } from '../../core/theme';
-import { saveGame } from '../../core/save';
+import { saveGame, loadGame } from '../../core/save';
 
 const num = (v: unknown): number => (typeof v === 'number' ? v : parseFloat(String(v ?? '')) || 0);
 const str = (v: unknown): string => String(v ?? '');
@@ -56,6 +56,12 @@ export function qspGoto(s: GameState, target: string, arg: string, arg2?: string
 
 export function qspSave(slot: string, s: GameState): void {
   if (s) saveGame(Number(slot), s);
+}
+
+export function qspLoad(slot: string, s: GameState): void {
+  loadGame(Number(slot)).then((loaded) => {
+    if (loaded) Object.assign(s, loaded);
+  });
 }
 
 export function hasLocation(name: string): boolean {
