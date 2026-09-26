@@ -18,7 +18,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'indoors');
   (s as any).sexloc = undefined;
-  // TODO-QSP: close 'sound/street_club.mp3'
   scene.text('<center><b>Dressing Room</b></center>');
   scene.img('images/locations/city/redlight/stripclub/backstage.jpg');
   scene.text('The room has <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027start\u0027); return false;">mirrors</a> all along the walls, where you can <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027brush\u0027); return false;">brush</a> your hair, and a selection of <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027wardrobe\u0027, \u0027start\u0027); return false;">clothes</a> hanging on rails for the girls to dress in. The whiteboard serving as the signup sheet for <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027stwork\u0027, \u0027set_schedule\u0027, \u0027this_week\u0027); return false;">this week</a> and <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027stwork\u0027, \u0027set_schedule\u0027, \u0027next_week\u0027); return false;">next week</a> is suctioned to one of the mirrors with a pen on top.');

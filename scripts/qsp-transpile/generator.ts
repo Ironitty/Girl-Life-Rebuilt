@@ -845,6 +845,9 @@ function generateSceneBody(
         if (node.raw === 'view' || /^view\s/.test(node.raw) || /^VIEW\s/.test(node.raw)) {
           break;
         }
+        if (node.raw === 'killqst' || node.raw === 'freelib' || /^addqst\s/.test(node.raw) || /^inclib\s/.test(node.raw) || /^close\s/.test(node.raw)) {
+          break;
+        }
         const standaloneFuncSetup = node.raw.match(/^func\((.+)\)\s*$/);
         if (standaloneFuncSetup) {
           const args = splitTopLevel(standaloneFuncSetup[1]).map((a: string) => a.trim());
@@ -1302,7 +1305,7 @@ function translateInlineAct(
       stateWrites.push(varName);
       continue;
     }
-    if (part === 'cla' || part === '*clr' || part.startsWith('*clr') || part === 'cls' || part === 'view' || /^view\s/.test(part) || /^VIEW\s/.test(part)) continue;
+    if (part === 'cla' || part === '*clr' || part.startsWith('*clr') || part === 'cls' || part === 'view' || /^view\s/.test(part) || /^VIEW\s/.test(part) || part === 'killqst' || part === 'freelib' || /^addqst\s/.test(part) || /^inclib\s/.test(part) || /^close\s/.test(part)) continue;
     const savegameInlineMatch = part.match(/^savegame\s*(?:'(.+)')?$/);
     if (savegameInlineMatch) {
       const file = (savegameInlineMatch[1] || '').replace(/''/g, "'");
@@ -3370,6 +3373,9 @@ function convertExecLinks(s: string, stateReads?: string[], todos?: string[], st
         return '';
       }
       if (st === 'view' || /^view\s/.test(st) || /^VIEW\s/.test(st)) {
+        return '';
+      }
+      if (st === 'killqst' || st === 'freelib' || /^addqst\s/.test(st) || /^inclib\s/.test(st) || /^close\s/.test(st)) {
         return '';
       }
       return `/* TODO-QSP: ${st.replace(/</g, '\\u003c')} */`;

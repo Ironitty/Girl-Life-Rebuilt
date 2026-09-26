@@ -135,9 +135,6 @@ function enterAddMod(s: GameState, scene: SceneBuilder): void {
     return;
   }
   if (((s as any).qspver ?? 0) < '5.8.0') {
-    // TODO-QSP: addqst 'mod/<<$ARGS[1]>>.qsp'
-  } else {
-    // TODO-QSP: inclib 'mod/<<$ARGS[1]>>.qsp'
   }
   (s as any).mod_temp = 'mod_' + ((s as any).locArgs?.[1] ?? 0) + '_setup';
   if (hasLocation(((s as any).mod_temp ?? 0))) {
@@ -179,9 +176,6 @@ function enterDeleteMod(s: GameState, scene: SceneBuilder): void {
     (s as any).mod_removed_temp = undefined;
     (s as any).mod_su_name = undefined;
     if (((s as any).qspver ?? 0) < '5.8.0') {
-      // TODO-QSP: killqst
-    } else {
-      // TODO-QSP: freelib
     }
     (s as any).mod_name = undefined;
     (s as any).mod_version = undefined;
@@ -192,9 +186,6 @@ function enterDeleteMod(s: GameState, scene: SceneBuilder): void {
     do {
       if (((s as any).mod_name_temp ?? 0)?.[String((s as any).mod_i ?? 0)] !== '') {
         if (((s as any).qspver ?? 0) < '5.8.0') {
-          // TODO-QSP: addqst 'mod/<<$mod_name_temp[mod_i]>>.qsp'
-        } else {
-          // TODO-QSP: inclib 'mod/<<$mod_name_temp[mod_i]>>.qsp'
         }
         (s as any).mod_name = [...((s as any).mod_name ?? []), (((s as any).mod_name_temp ?? 0)?.[String((s as any).mod_i ?? 0)] ?? 0)];
         (s as any).mod_version = [...((s as any).mod_version ?? []), (((s as any).mod_version_temp ?? 0)?.[String((s as any).mod_i ?? 0)] ?? 0)];
@@ -224,9 +215,6 @@ function enterUpdateAllMods(s: GameState, scene: SceneBuilder): void {
     ((s as any).mod_opt_temp = (s as any).mod_opt_temp ?? {})[String((s as any).mod_i ?? 0)] = (((s as any).mod_opt ?? 0)?.[String((s as any).mod_i ?? 0)] ?? 0);
     (s as any).mod_i = ((s as any).mod_i ?? 0) + (1);
     if (((s as any).qspver ?? 0) < '5.8.0') {
-      // TODO-QSP: killqst
-    } else {
-      // TODO-QSP: freelib
     }
     (s as any).mod_name = undefined;
     (s as any).mod_version = undefined;
@@ -238,9 +226,6 @@ function enterUpdateAllMods(s: GameState, scene: SceneBuilder): void {
       (s as any).mod_temp = (((s as any).mod_name_temp ?? 0)?.[String((s as any).mod_i ?? 0)] ?? 0);
       if (((s as any).mod_temp ?? 0) !== '') {
         if (((s as any).qspver ?? 0) < '5.8.0') {
-          // TODO-QSP: addqst 'mod/<<$mod_temp>>.qsp'
-        } else {
-          // TODO-QSP: inclib 'mod/<<$mod_temp>>.qsp'
         }
         (s as any).mod_temp = 'mod_' + ((s as any).mod_temp ?? 0) + '_setup';
         if (hasLocation(((s as any).mod_temp ?? 0))) {
@@ -282,9 +267,6 @@ function enterDeleteAllMods(s: GameState, scene: SceneBuilder): void {
     } while (((s as any).mod_i ?? 0) < Object.keys((s as any).mod_name ?? {}).length);
   }
   if (((s as any).qspver ?? 0) < '5.8.0') {
-    // TODO-QSP: killqst
-  } else {
-    // TODO-QSP: freelib
   }
   (s as any).mod_name = undefined;
   (s as any).mod_version = undefined;

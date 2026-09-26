@@ -487,7 +487,6 @@ function enterHypno(s: GameState, scene: SceneBuilder): void {
     (s as any).firsthypno_txt = '';
     (s as any).firsthypno_txt2 = '"<i>Cunt</i>, what do you know about the black room?"<br>"I know that everything that happens here I will not remember, <i>Master</i>."';
   }
-  // TODO-QSP: close 'sound/clock.mp3'
   if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
   }
   scene.img('images/locations/pavlovsk/clinic/therapist/hypnotism3.jpg');
@@ -1262,7 +1261,6 @@ function enterSleepProblems(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   (s as any).dreamedOfTherapistFucking = ((s as any).dreamedOfTherapistFucking ?? 0) + (1);
   qspCall(s, 'boyStat', 'A186');
-  // TODO-QSP: close 'sound/clock.mp3'
   if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
   }
   scene.text('"All right then. Please, lie on the couch and try to get comfortable."');

@@ -1059,6 +1059,11 @@ interface ParseResult {
       trimmed === 'view' ||
       trimmed.startsWith('view ') ||
       trimmed.startsWith('VIEW ') ||
+      trimmed === 'killqst' ||
+      trimmed === 'freelib' ||
+      trimmed.startsWith('addqst ') ||
+      trimmed.startsWith('inclib ') ||
+      trimmed.startsWith('close ') ||
       trimmed === '*pl' ||
       trimmed.startsWith('msg ') ||
       trimmed.startsWith("msg'")
@@ -2545,8 +2550,8 @@ function parseSingleLine(trimmed: string, lines: string[], idx: number, unsuppor
     return { nodes, nextIdx: idx + 1 };
   }
 
-  // savegame / opengame / set $ / cls / clr / cla / showobjs / showinput / showstat / showacts / view
-  if (trimmed.startsWith('savegame ') || trimmed.startsWith('opengame ') || trimmed === 'opengame' || trimmed.startsWith('set $') || trimmed === 'cls' || trimmed === 'clr' || trimmed === '*clr' || trimmed === 'cla' || trimmed.startsWith('showobjs ') || trimmed.startsWith('showinput ') || trimmed.startsWith('showstat ') || trimmed.startsWith('showacts ') || trimmed === 'view' || trimmed.startsWith('view ') || trimmed.startsWith('VIEW ')) {
+  // savegame / opengame / set $ / cls / clr / cla / showobjs / showinput / showstat / showacts / view / killqst / freelib / addqst / inclib / close
+  if (trimmed.startsWith('savegame ') || trimmed.startsWith('opengame ') || trimmed === 'opengame' || trimmed.startsWith('set $') || trimmed === 'cls' || trimmed === 'clr' || trimmed === '*clr' || trimmed === 'cla' || trimmed.startsWith('showobjs ') || trimmed.startsWith('showinput ') || trimmed.startsWith('showstat ') || trimmed.startsWith('showacts ') || trimmed === 'view' || trimmed.startsWith('view ') || trimmed.startsWith('VIEW ') || trimmed === 'killqst' || trimmed === 'freelib' || trimmed.startsWith('addqst ') || trimmed.startsWith('inclib ') || trimmed.startsWith('close ')) {
     nodes.push({ kind: 'setup', raw: trimmed });
     return { nodes, nextIdx: idx + 1 };
   }
