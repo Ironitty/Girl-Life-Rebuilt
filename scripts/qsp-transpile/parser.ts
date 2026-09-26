@@ -394,6 +394,16 @@ interface ParseResult {
       continue;
     }
 
+    // Act with inline exit: act 'label': exit
+    const actExitMatch = trimmed.match(/^act\s*\'((?:[^\']|\'\')*)\'\s*:\s*exit\s*$/i);
+    if (actExitMatch) {
+      const label = unescapeQsp(actExitMatch[1]);
+      const act: QspAct = { kind: 'act', label, body: [], inlineExit: true };
+      nodes.push(act);
+      i++;
+      continue;
+    }
+
     const actFuncBlockMatch = trimmed.match(/^act\s+(\$?func\(.+?\))\s*:\s*$/i);
     if (actFuncBlockMatch) {
       const labelExpr = actFuncBlockMatch[1].trim();
@@ -1624,6 +1634,14 @@ function parseSingleLine(trimmed: string, lines: string[], idx: number, unsuppor
     const inner = parseBlock(lines, idx + 1, unsupported);
     nodes.push({ kind: 'act', label, body: inner.nodes });
     return { nodes, nextIdx: inner.endIdx };
+  }
+
+  // Act with inline exit: act 'label': exit
+  const actExitMatch = trimmed.match(/^act\s*\'((?:[^\']|\'\')*)\'\s*:\s*exit\s*$/i);
+  if (actExitMatch) {
+    const label = unescapeQsp(actExitMatch[1]);
+    nodes.push({ kind: 'act', label, body: [], inlineExit: true });
+    return { nodes, nextIdx: idx + 1 };
   }
 
   const actFuncBlockMatch = trimmed.match(/^act\s+(\$?func\(.+?\))\s*:\s*$/i);

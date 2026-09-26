@@ -971,6 +971,10 @@ function generateAct(
   locName: string,
   argToFunc: Record<string, string>,
 ): string {
+  if (node.inlineExit) {
+    return `{ ${generateLabelCode(node.label, stateReads, todos, node.dynamicLabel)}, handler: () => { return; } },`;
+  }
+
   if (node.inlineText !== undefined) {
     const text = esc(node.inlineText);
     return `{ ${generateLabelCode(node.label, stateReads, todos, node.dynamicLabel)}, handler: (st: GameState) => { scene.text('${text}'); } },`;

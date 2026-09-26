@@ -65,6 +65,7 @@ export interface QspAct {
   inlineStatements?: string;
   inlineText?: string;
   inlineTextStyle?: string;
+  inlineExit?: boolean;
   dynamicLabel?: boolean;
 }
 
