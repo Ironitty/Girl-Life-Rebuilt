@@ -1527,11 +1527,9 @@ function enterNushFucked(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if (((s as any).npcID ?? 0) !== 'A158') {
     qspCall(s, 'npcStat', 'A158');
-    // TODO-QSP: !! Valentin
   }
   if (((s as any).npcID ?? 0) !== 'A144') {
     qspCall(s, 'npcStat', 'A144', 'a');
-    // TODO-QSP: !! Anushka
   }
   scene.img('images/locations/pavlovsk/park/event/gopnik/sex/hangout/val_nush/val_nush9.jpg');
   scene.text('You sit on the rock and he steps over and pushes your legs wide apart before shoving Anushka\'s face in your crotch. She starts licking your clit as Valentin gets her up on all fours and starts eating her out. She occasionally stops licking you to moan loudly; when she does, you rub your own clit while watching them.');
@@ -1591,11 +1589,9 @@ function enterFuckedByVal(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'public_outdoors';
   if (((s as any).npcID ?? 0) !== 'A158') {
     qspCall(s, 'npcStat', 'A158');
-    // TODO-QSP: !! Valentin
   }
   if (((s as any).npcID ?? 0) !== 'A144') {
     qspCall(s, 'npcStat', 'A144', 'a');
-    // TODO-QSP: !! Anushka
   }
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/park/event/gopnik/sex/hangout/val_nush/val_nush12.jpg');
@@ -1633,11 +1629,9 @@ function enterNushAnalFucked(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'public_outdoors';
   if (((s as any).npcID ?? 0) !== 'A158') {
     qspCall(s, 'npcStat', 'A158');
-    // TODO-QSP: !! Valentin
   }
   if (((s as any).npcID ?? 0) !== 'A144') {
     qspCall(s, 'npcStat', 'A144', 'a');
-    // TODO-QSP: !! Anushka
   }
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/park/event/gopnik/sex/hangout/val_nush/val_nush15.jpg');
@@ -1702,11 +1696,9 @@ function enterFuckedAnalByVal(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'public_outdoors';
   if (((s as any).npcID ?? 0) !== 'A158') {
     qspCall(s, 'npcStat', 'A158');
-    // TODO-QSP: !! Valentin
   }
   if (((s as any).npcID ?? 0) !== 'A144') {
     qspCall(s, 'npcStat', 'A144', 'a');
-    // TODO-QSP: !! Anushka
   }
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/park/event/gopnik/sex/hangout/val_nush/val_nush18.jpg');
@@ -1736,11 +1728,9 @@ function enterNushValCum(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'public_outdoors';
   if (((s as any).npcID ?? 0) !== 'A158') {
     qspCall(s, 'npcStat', 'A158');
-    // TODO-QSP: !! Valentin
   }
   if (((s as any).npcID ?? 0) !== 'A144') {
     qspCall(s, 'npcStat', 'A144', 'a');
-    // TODO-QSP: !! Anushka
   }
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/park/event/gopnik/sex/hangout/val_nush/val_nush18.jpg');

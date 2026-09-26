@@ -2345,10 +2345,10 @@ function enterReputation(s: GameState, scene: SceneBuilder): void {
   scene.text(String(qspFunc(s, 'settings', 'table_start') || ''));
   scene.text('<center><b>Family</b></center>');
   if ((!((s as any).Enable_family_Reputation ?? 0))) {
-    scene.text('<center><a href="#" onclick="window.__gameStore.setState((s) => { s.Enable_family_Reputation = s.1; return s; }); window.__gameStore.getState().doGoto(\u0027$menu_character\u0027, \u0027reputation\u0027); return false;">Show details</a></center>');
+    scene.text('<center><a href="#" onclick="window.__gameStore.setState((s) => { s.Enable_family_Reputation = 1; return s; }); window.__gameStore.getState().doGoto(\u0027$menu_character\u0027, \u0027reputation\u0027); return false;">Show details</a></center>');
   }
   if (((s as any).Enable_family_Reputation ?? 0) === 1) {
-    scene.text('<center><a href="#" onclick="window.__gameStore.setState((s) => { s.Enable_family_Reputation = s.0; return s; }); window.__gameStore.getState().doGoto(\u0027$menu_character\u0027, \u0027reputation\u0027); return false;">Hide details</a></center>');
+    scene.text('<center><a href="#" onclick="window.__gameStore.setState((s) => { s.Enable_family_Reputation = 0; return s; }); window.__gameStore.getState().doGoto(\u0027$menu_character\u0027, \u0027reputation\u0027); return false;">Hide details</a></center>');
     if (((s as any).rinslut ?? 0) > 0  ||  ((s as any).kavslut ?? 0) > 0) {
       scene.text('In the residential area of you are known as a whore that sleeps with Caucasians.');
     }
@@ -2456,30 +2456,30 @@ function enterReputation(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<tr>');
   (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<td width="25%" style="vertical-align:top">');
   if ((!((s as any).Enable_pav_Reputation ?? 0))) {
-    (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<center><a href="#" onclick="window.__gameStore.setState((s) => { s.Enable_pav_Reputation = s.1; return s; }); window.__gameStore.getState().doGoto(\u0027$menu_character\u0027, \u0027reputation\u0027); return false;">Show details</a></center>');
+    (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<center><a href="#" onclick="window.__gameStore.setState((s) => { s.Enable_pav_Reputation = 1; return s; }); window.__gameStore.getState().doGoto(\u0027$menu_character\u0027, \u0027reputation\u0027); return false;">Show details</a></center>');
   } else {
-    (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<center><a href="#" onclick="window.__gameStore.setState((s) => { s.Enable_pav_Reputation = s.0; return s; }); window.__gameStore.getState().doGoto(\u0027$menu_character\u0027, \u0027reputation\u0027); return false;">Hide details</a></center>');
+    (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<center><a href="#" onclick="window.__gameStore.setState((s) => { s.Enable_pav_Reputation = 0; return s; }); window.__gameStore.getState().doGoto(\u0027$menu_character\u0027, \u0027reputation\u0027); return false;">Hide details</a></center>');
     (s as any).temp_table = ((s as any).temp_table ?? 0) + (qspFunc(s, '$menu_character', '', 'display_region_fames', 'pav'));
   }
   (s as any).temp_table = ((s as any).temp_table ?? 0) + ('</td><td width="25%" style="vertical-align:top">');
   if ((!((s as any).Enable_city_Reputation ?? 0))) {
-    (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<center><a href="#" onclick="window.__gameStore.setState((s) => { s.Enable_city_Reputation = s.1; return s; }); window.__gameStore.getState().doGoto(\u0027$menu_character\u0027, \u0027reputation\u0027); return false;">Show details</a></center>');
+    (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<center><a href="#" onclick="window.__gameStore.setState((s) => { s.Enable_city_Reputation = 1; return s; }); window.__gameStore.getState().doGoto(\u0027$menu_character\u0027, \u0027reputation\u0027); return false;">Show details</a></center>');
   } else {
-    (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<center><a href="#" onclick="window.__gameStore.setState((s) => { s.Enable_city_Reputation = s.0; return s; }); window.__gameStore.getState().doGoto(\u0027$menu_character\u0027, \u0027reputation\u0027); return false;">Hide details</a></center>');
+    (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<center><a href="#" onclick="window.__gameStore.setState((s) => { s.Enable_city_Reputation = 0; return s; }); window.__gameStore.getState().doGoto(\u0027$menu_character\u0027, \u0027reputation\u0027); return false;">Hide details</a></center>');
     (s as any).temp_table = ((s as any).temp_table ?? 0) + (qspFunc(s, '$menu_character', '', 'display_region_fames', 'city'));
   }
   (s as any).temp_table = ((s as any).temp_table ?? 0) + ('</td><td width="25%" style="vertical-align:top">');
   if ((!((s as any).Enable_oldtown_Reputation ?? 0))) {
-    (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<center><a href="#" onclick="window.__gameStore.setState((s) => { s.Enable_oldtown_Reputation = s.1; return s; }); window.__gameStore.getState().doGoto(\u0027$menu_character\u0027, \u0027reputation\u0027); return false;">Show details</a></center>');
+    (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<center><a href="#" onclick="window.__gameStore.setState((s) => { s.Enable_oldtown_Reputation = 1; return s; }); window.__gameStore.getState().doGoto(\u0027$menu_character\u0027, \u0027reputation\u0027); return false;">Show details</a></center>');
   } else {
-    (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<center><a href="#" onclick="window.__gameStore.setState((s) => { s.Enable_oldtown_Reputation = s.0; return s; }); window.__gameStore.getState().doGoto(\u0027$menu_character\u0027, \u0027reputation\u0027); return false;">Hide details</a></center>');
+    (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<center><a href="#" onclick="window.__gameStore.setState((s) => { s.Enable_oldtown_Reputation = 0; return s; }); window.__gameStore.getState().doGoto(\u0027$menu_character\u0027, \u0027reputation\u0027); return false;">Hide details</a></center>');
     (s as any).temp_table = ((s as any).temp_table ?? 0) + (qspFunc(s, '$menu_character', '', 'display_region_fames', 'pushkin'));
   }
   (s as any).temp_table = ((s as any).temp_table ?? 0) + ('</td><td width="25%" style="vertical-align:top">');
   if ((!((s as any).Enable_village_Reputation ?? 0))) {
-    (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<center><a href="#" onclick="window.__gameStore.setState((s) => { s.Enable_village_Reputation = s.1; return s; }); window.__gameStore.getState().doGoto(\u0027$menu_character\u0027, \u0027reputation\u0027); return false;">Show details</a></center>');
+    (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<center><a href="#" onclick="window.__gameStore.setState((s) => { s.Enable_village_Reputation = 1; return s; }); window.__gameStore.getState().doGoto(\u0027$menu_character\u0027, \u0027reputation\u0027); return false;">Show details</a></center>');
   } else {
-    (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<center><a href="#" onclick="window.__gameStore.setState((s) => { s.Enable_village_Reputation = s.0; return s; }); window.__gameStore.getState().doGoto(\u0027$menu_character\u0027, \u0027reputation\u0027); return false;">Hide details</a></center>');
+    (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<center><a href="#" onclick="window.__gameStore.setState((s) => { s.Enable_village_Reputation = 0; return s; }); window.__gameStore.getState().doGoto(\u0027$menu_character\u0027, \u0027reputation\u0027); return false;">Hide details</a></center>');
     (s as any).temp_table = ((s as any).temp_table ?? 0) + (qspFunc(s, '$menu_character', '', 'display_region_fames', 'village'));
   }
   (s as any).temp_table = ((s as any).temp_table ?? 0) + ('</td>');
@@ -2502,7 +2502,8 @@ function enterReputation(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDisplayRegionFames(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: "
+  (s as any).result = '\n<b>Performer = ' + (((s as any).fame ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '_performer']) + '</b>\nActor = ' + (((s as any).fame ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '_acting']) + '\nDancer = ' + (((s as any).fame ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '_dance']) + '\nGlamour model = ' + (((s as any).fame ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '_modelling']) + '\nPainter = ' + (((s as any).fame ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '_painting']) + '\nMusician = ' + (((s as any).fame ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '_music']) + '\nBallet dancer = ' + (((s as any).fame ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '_ballet']) + '\n<b>Sex Industry = ' + (((s as any).fame ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '_sexind']) + '</b>\nPorn actor = ' + (((s as any).fame ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '_porn']) + '\nStripper = ' + (((s as any).fame ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '_stripping']) + '\n<b>Slut = ' + (((s as any).fame ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '_slut']) + '</b>\nSex = ' + (((s as any).fame ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '_sex']) + '\nProstitution = ' + (((s as any).fame ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '_prostitute']) + '\nFlash = ' + (((s as any).fame ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '_flash']) + '\n<b>Sports = ' + (((s as any).fame ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '_sport']) + '</b>\nKickboxer = ' + (((s as any).fame ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '_kickboxing']) + '\nRunner = ' + (((s as any).fame ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '_running']) + '\nVolleyball player = ' + (((s as any).fame ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '_volleyball']) + '\n<b>Intellectual = ' + (((s as any).fame ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '_int']) + '</b>\nChess player = ' + (((s as any).fame ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '_chess']) + '\nTeacher = ' + (((s as any).fame ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '_teaching']) + '\n<b>Social = ' + (((s as any).fame ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '_social']) + '</b>\nSocial media = ' + (((s as any).fame ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '_media']) + '\n';
+  scene.text('');
   (s as any).result = (String(((s as any).result ?? 0)).split('  ').join(''));
   scene.build();
 }
@@ -2517,7 +2518,7 @@ function enterMagic(s: GameState, scene: SceneBuilder): void {
     return;
   }
   scene.text(`You have ${((s as any).pcs_mana ?? '')} units of mana available to you.`);
-  // TODO-QSP: </center>"
+  (s as any).SpellListStr = '<center>\n<h1>Combat Spells</h1><br>\n' + qspFunc(s, 'spellBook', 'list', '$combatSpells') + '<br>\n<h1>Story Spells</h1><br>\n' + qspFunc(s, 'spellBook', 'list', '$storySpells') + '<br>\n<h1>Non-Combat Spells</h1><br>\n' + qspFunc(s, 'spellBook', 'list', '$nonComSpells') + '<br>\n</center>';
   (s as any).i = undefined;
   (s as any).ThisSpellName = undefined;
   (s as any).SpellListStr = undefined;

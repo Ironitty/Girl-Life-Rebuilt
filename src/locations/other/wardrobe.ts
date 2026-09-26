@@ -219,7 +219,7 @@ function enterMain(s: GameState, scene: SceneBuilder): void {
     scene.text('</center></td><td><center>');
   } else {
     scene.text('</center></td><tr><td><center>');
-    scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { (s.underwear ??= {})\u0027type\u0027 = s.0; return s; }); window.__gameStore.getState().doGoto(\u0027underwear_bodysuits\u0027, \u0027remove\u0027 & underwear[\u0027type\u0027] = 0 & gt \u0027wardrobe\u0027, \u0027main\u0027); return false;">Remove</a>');
+    scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { (s.underwear ??= {})\u0027type\u0027 = 0; return s; }); window.__gameStore.getState().doGoto(\u0027underwear_bodysuits\u0027, \u0027remove\u0027 & underwear[\u0027type\u0027] = 0 & gt \u0027wardrobe\u0027, \u0027main\u0027); return false;">Remove</a>');
     scene.text('</center></td><td><center>');
   }
   if (((s as any).shoeworntype ?? 0) !== 'none') {

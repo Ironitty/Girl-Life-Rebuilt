@@ -35,7 +35,7 @@ function enterSetResizeCurrentAct(s: GameState, scene: SceneBuilder): void {
             (st as any).minut = ((st as any).minut ?? 0) + 10;
             qspCall(st, 'money', 'pay', 500);
             qspCall(st, 'stat', '');
-            // TODO-QSP: dynamic '<<$clothingworntype>>_b[<<clothingwornnumber>>] = pcs_hips'
+            scene.text('' + ((st as any).clothingworntype ?? 0) + '_b[' + ((st as any).clothingwornnumber ?? 0) + '] = pcs_hips');
             scene.text('You are handed a t-shirt and shorts as you undress and give the clothes to the tailor for adjustment.');
             scene.text('He quickly measures your waist and hips, then only takes a few minutes to adjust your outfit.');
             scene.text('You are handed your clothes back and quickly get dressed. You\'re pleased with the job that the tailor has done.');

@@ -1108,7 +1108,7 @@ function enterTub(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/gadukino/hunters/basin.jpg');
   scene.text('An old tub that you can use to bathe yourself. It\'s a lot warmer than using the spring! You just need to warm some water and get undressed first.');
   if (((s as any).lashair ?? 0) !== 1) {
-    scene.text('If you are desperate enough, you find a handful of well-used ' + ((((s as any).mc_inventory ?? 0)?.['razor'] < 1) ? ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.mc_inventory ??= {})\u0027razor\u0027 +=s.5; return s; }); window.__gameStore.getState().doGoto(\u0027gad_swamphouse\u0027, \u0027tub\u0027); return false;">razors</a>') : ('razors')) + ' on a shelf that you can use to shave with. ' + ((((s as any).mc_inventory ?? 0)?.['razor'] > 0) ? ('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027din_van\u0027, \u0027shave_options\u0027); return false;">Shave Options</a>') : ('')) + '');
+    scene.text('If you are desperate enough, you find a handful of well-used ' + ((((s as any).mc_inventory ?? 0)?.['razor'] < 1) ? ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.mc_inventory ??= {})\u0027razor\u0027 +=5; return s; }); window.__gameStore.getState().doGoto(\u0027gad_swamphouse\u0027, \u0027tub\u0027); return false;">razors</a>') : ('razors')) + ' on a shelf that you can use to shave with. ' + ((((s as any).mc_inventory ?? 0)?.['razor'] > 0) ? ('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027din_van\u0027, \u0027shave_options\u0027); return false;">Shave Options</a>') : ('')) + '');
   }
   qspCall(s, 'din_van', 'brit');
   if (((s as any).swamp_enema ?? 0) === 1) {

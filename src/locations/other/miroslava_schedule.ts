@@ -218,7 +218,6 @@ function enterUpdateLocat(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).npc_known ?? 0)?.['A60'] === 0  &&  ((s as any).MiraLoc ?? 0) >= 20) {
       (s as any).MiraLoc = 30;
-      // TODO-QSP: !! Sveta and Mira aren''t friends yet.
     }
     if ((!((s as any).sunWeather ?? 0))) {
       if (((s as any).MiraLoc ?? 0) >= 30  &&  ((s as any).MiraLoc ?? 0) !== 42) {
@@ -238,19 +237,15 @@ function enterUpdateLocat(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).MiraVars ?? 0)?.['QW'] > 15  &&  ((s as any).locat ?? 0)?.['A60_prost']  &&  ((s as any).hour ?? 0) >= 16  &&  ((s as any).hour ?? 0) < 20) {
         (s as any).MiraLoc = 80;
-        // TODO-QSP: !! Prostitution
       }
       if (((s as any).MiraLoc ?? 0) === 61  &&  (((s as any).MiraVars ?? 0)?.['meadow'] !== 2  &&  ((s as any).MiraVars ?? 0)?.['meadow'] !== 5)) {
         (s as any).MiraLoc = 60;
-        // TODO-QSP: !! If meadow not unlocked -> Forest edge
       }
       if (((s as any).MiraLoc ?? 0) === 51  &&  (((s as any).sunWeather ?? 0) === 0  ||  ((s as any).temper ?? 0) < 15  ||  ((s as any).month ?? 0) < 5  ||  ((s as any).month ?? 0) > 9)) {
         (s as any).MiraLoc = 10;
-        // TODO-QSP: !! Winter = No Beach
       }
       if (((s as any).MiraLoc ?? 0) === 42  &&  (((s as any).MiraVars ?? 0)?.['QW'] === 0  ||  ((s as any).npc_drunk ?? 0)?.['A60'] > 0)) {
         (s as any).MiraLoc = 10;
-        // TODO-QSP: !! drunk or doesn''t know the guys
       }
       if ((((s as any).MiraLoc ?? 0) / 10) === 2  &&  ((s as any).grandpaQW ?? 0)?.['chore_herd_cattle'] === 1  &&  ((s as any).loc ?? 0) === 'gad_field'  &&  ((s as any).npc_rel ?? 0)?.['A60'] >= 15  &&  (((s as any).npc_QW ?? 0)?.['A63'] < 13  ||  ((s as any).MiraVars ?? 0)?.['QW'] >= 10  ||  ((s as any).MiraVars ?? 0)?.['had_sex'] > 1)) {
         (s as any).MiraLoc = 70;

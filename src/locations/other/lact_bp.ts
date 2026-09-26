@@ -310,10 +310,10 @@ function enterBpMilking(s: GameState, scene: SceneBuilder): void {
               scene.text('You currently use a 150ml bottle on your breast pump.');
             } else {
               if (((s as any).pump_bottletype ?? 0) === 1500) {
-                scene.text('Current bottle size in use: &gt;150ml | <a href="#" onclick="window.__gameStore.setState((s) => { s.pump_bottletype = s.2500; return s; }); window.__gameStore.getState().doGoto(\u0027lact_bp\u0027, \u0027bp_milking\u0027); return false;">250ml</a>');
+                scene.text('Current bottle size in use: &gt;150ml | <a href="#" onclick="window.__gameStore.setState((s) => { s.pump_bottletype = 2500; return s; }); window.__gameStore.getState().doGoto(\u0027lact_bp\u0027, \u0027bp_milking\u0027); return false;">250ml</a>');
               } else {
                 (s as any).pump_bottletype = 2500;
-                scene.text('Current bottle size in use <a href="#" onclick="window.__gameStore.setState((s) => { s.pump_bottletype = s.1500; return s; }); window.__gameStore.getState().doGoto(\u0027lact_bp\u0027, \u0027bp_milking\u0027); return false;">150ml</a> | &gt;250ml');
+                scene.text('Current bottle size in use <a href="#" onclick="window.__gameStore.setState((s) => { s.pump_bottletype = 1500; return s; }); window.__gameStore.getState().doGoto(\u0027lact_bp\u0027, \u0027bp_milking\u0027); return false;">150ml</a> | &gt;250ml');
               }
             }
           }

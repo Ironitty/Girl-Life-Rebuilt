@@ -1358,18 +1358,6 @@ function enterThoughtNoCreampies(s: GameState, scene: SceneBuilder): void {
   } },
         ]);
       }
-      scene.text(`"Finally decided to let a real man fill you up, huh?" ${((st as any).npcdesc ?? '')} grins, panting.`);
-      if ((!((st as any).pcs_lover ?? 0))) {
-        scene.actions([
-          { label: 'I\'m single now', handler: (st: GameState) => {
-    ((st as any).npc_boyfriend_creampie_rule = (st as any).npc_boyfriend_creampie_rule ?? {})[String((st as any).npcID ?? 0)] = 0;
-    scene.text('"My boyfriend and I broke up," you smile back. "Which means I\'m single again. Which means all the creampies in the world for me. At least until I get a new boyfriend."');
-    scene.text('You wink.');
-    qspCall(st, 'sex_ev_sex', 'sex_end');
-  } },
-        ]);
-      }
-      // TODO-QSP: end !}
       scene.actions([
         { label: 'Changed my rules', handler: (st: GameState) => {
     ((st as any).npc_boyfriend_creampie_rule = (st as any).npc_boyfriend_creampie_rule ?? {})[String((st as any).npcID ?? 0)] = 3;
@@ -3223,7 +3211,6 @@ function enterCreampieAccidentOhShit(s: GameState, scene: SceneBuilder): void {
 
 function enterOhShitOptions(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sex_ev ?? 0)?.['creampie_allowance'] === 0  &&  ((s as any).npc_free_creampies ?? 0)?.[String((s as any).npcID ?? 0)] !== 'at_will'  &&  ((s as any).birth_control ?? 0)?.['think_safe'] === 0) {
-    // TODO-QSP: else !}
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterHavePlanB(s, scene); (s as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'This isn\'t good', handler: (st: GameState) => {
@@ -3232,35 +3219,6 @@ function enterOhShitOptions(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'sex_ev_stats', 'no_birth_control_know');
     scene.text(`"Well this isn't good," you gulp, looking horrified at ${((st as any).npcdesc ?? '')}. "I'm not on birth control..."`);
     qspCall(st, 'sex_ev_cum', 'what_now');
-  } },
-      { label: 'I guess I need a pill', handler: (st: GameState) => {
-    scene.actions([
-      { label: 'Annoyed', handler: (st: GameState) => {
-    ((st as any).sex_ev = (st as any).sex_ev ?? {})['ma_pill_tomorrow'] = 1;
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCreampieWtfImage2(st, scene); (st as any).locArgs = __savedLocArgs; }
-    ((st as any).ex_ev = (st as any).ex_ev ?? {})['cock_inserted'] = 0;
-    scene.text('"I guess I\'m going to need a pill tomorrow," you say, frowning.');
-    qspCall(st, 'sex_ev_cum', 'what_now');
-  } },
-      { label: 'Unconcerned', handler: (st: GameState) => {
-    ((st as any).sex_ev = (st as any).sex_ev ?? {})['ma_pill_tomorrow'] = 1;
-    if (((st as any).sex_ev ?? 0)?.['position'] === 'miss') {
-      scene.img('images/shared/sex/cum/vagcreampie/miss1.mp4');
-    } else {
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCreampieWtfImage2(st, scene); (st as any).locArgs = __savedLocArgs; }
-    }
-    ((st as any).ex_ev = (st as any).ex_ev ?? {})['cock_inserted'] = 0;
-    scene.text('"I guess I\'m going to need a pill tomorrow," you shrug, unconcerned.');
-    qspCall(st, 'sex_ev_cum', 'what_now');
-  } },
-      { label: 'Humorous', handler: (st: GameState) => {
-    ((st as any).sex_ev = (st as any).sex_ev ?? {})['ma_pill_tomorrow'] = 1;
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCreampieWtfImage2(st, scene); (st as any).locArgs = __savedLocArgs; }
-    ((st as any).ex_ev = (st as any).ex_ev ?? {})['cock_inserted'] = 0;
-    scene.text(`"I guess I'm going to need a pill tomorrow," you say, giving ${((st as any).npcdesc ?? '')} a wry smirk to let him know you're not mad.`);
-    qspCall(st, 'sex_ev_cum', 'what_now');
-  } },
-    ]);
   } },
     ]);
   }
@@ -3533,18 +3491,9 @@ function enterCreampieFreakout(s: GameState, scene: SceneBuilder): void {
     if (((st as any).sex_ev ?? 0)?.['skip_condom'] === 1) {
       scene.text('"Ohmygodohmygodohmygodohmygod!" You start hyperventilating, a torrent of words spilling from your mouth while globs of cum spill from your pussy.' + ((((st as any).sex_ev ?? 0)?.['promise_no_creampie'] === 1) ? ('"You said-! You promised-!"') : ('')));
     } else {
-      if (((st as any).npc_selfish ?? 0)?.[String((st as any).npcID ?? 0)] === 1) {
-        scene.text('"Sorry, your pussy was just so tight and I-"');
-      } else {
-        scene.text('"Oh shit! I\'m sorry! I\'m sorry I\'m sorry I-"');
-        // TODO-QSP: end !}
-        scene.text('"Ohmygodohmygodohmygodohmygod!" You start hyperventilating, a torrent of words spilling from your mouth while globs of cum spill from your pussy.' + ((((st as any).sex_ev ?? 0)?.['promise_no_creampie'] === 1) ? ('"You said-! You promised-!"') : ('')));
-      }
-      scene.text('You put your hand to your head as you begin to feel faint.');
-      scene.text('<i>What was I thinking? What if I get an STD?! Why didn\'t I insist on a condom...</i>');
+      scene.text('"Ohmygodohmygodohmygodohmygod!" You start hyperventilating, a torrent of words spilling from your mouth while globs of cum spill from your pussy.' + ((((st as any).sex_ev ?? 0)?.['promise_no_creampie'] === 1) ? ('"You said-! You promised-!"') : ('')));
     }
-    scene.text('<i>What was I thinking? What if I get an STD? What if I get pregnant?! Why didn\'t I insist on a condom...</i>');
-    // TODO-QSP: end !}
+    scene.text('You put your hand to your head as you begin to feel faint.');
     if (((st as any).npc_selfish ?? 0)?.[String((st as any).npcID ?? 0)] === 1  ||  ((st as any).npc_abusive ?? 0)?.[String((st as any).npcID ?? 0)] > 0) {
       scene.text(`"It's just one creampie," ${((st as any).npcdesc ?? '')} says nonchalantly. "It's not gonna kill you."`);
     } else {
@@ -3744,32 +3693,6 @@ function enterPulloutGameTease(s: GameState, scene: SceneBuilder): void {
       { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterALittleMad(st, scene); (st as any).locArgs = __savedLocArgs; }
       { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCreampieSafeDay(st, scene); (st as any).locArgs = __savedLocArgs; }
       { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterHavePlanB(st, scene); (st as any).locArgs = __savedLocArgs; }
-      // TODO-QSP: end !}
-      scene.actions([
-        { label: 'It\'s a safe day', handler: (st: GameState) => {
-    if (((st as any).sex_ev ?? 0)?.['cock_inserted'] === 0) {
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCreampiePullOutImage(st, scene); (st as any).locArgs = __savedLocArgs; }
-      scene.text(`iif($sex_ev['preg_risk'] <> 'safe', '"Don't worry," you smile as ${((st as any).npcdesc ?? '')}'s cum continues to trickle from your pussy. "It's a safe day."', '"Like I said," you say as you watch ${((st as any).npcdesc ?? '')}'s cum continues to trickle from your pussy. "It's a safe day."')`);
-    } else {
-      if (((st as any).sex_ev ?? 0)?.['position'] === 'miss') {
-        scene.img('images/shared/sex/vag/miss/2.jpg');
-        scene.text(`iif($sex_ev['preg_risk'] <> 'safe', '"It's fine," you smile at ${((st as any).npcdesc ?? '')}, cupping his face. "It's a safe day."', '"I thought I told you already," you smile at ${((st as any).npcdesc ?? '')}, cupping his face. "It's a safe day."')`);
-      } else {
-        if (((st as any).sex_ev ?? 0)?.['position'] === 'doggy') {
-          scene.img('images/shared/sex/vag/doggy/1.jpg');
-          scene.text(`iif($sex_ev['preg_risk'] <> 'safe', '"It's fine," you smile at ${((st as any).npcdesc ?? '')} over your shoulder. "It's a safe day."', '"I thought I told you already," you smile at ${((st as any).npcdesc ?? '')} over your shoulder. "It's a safe day."')`);
-          scene.text('"Don\'t worry, it\'s a safe day."');
-        } else {
-          if (((st as any).sex_ev ?? 0)?.['position'] === 'cowgirl') {
-            scene.img('images/shared/sex/vag/cowgirl/smile1.jpg');
-            scene.text(`iif($sex_ev['preg_risk'] <> 'safe', '"It's fine," you smile down at ${((st as any).npcdesc ?? '')}. "It's a safe day."', '"I thought I told you already," you smile down at ${((st as any).npcdesc ?? '')}. "It's a safe day."')`);
-          }
-        }
-      }
-    }
-    ((st as any).sex_ev = (st as any).sex_ev ?? {})['preg_risk'] = 'safe';
-  } },
-      ]);
     }
   } },
     ]);

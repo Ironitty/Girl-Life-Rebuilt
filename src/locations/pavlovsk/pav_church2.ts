@@ -1,5 +1,3 @@
-import { qspUntranslated } from '../_shared/qspUntranslated';
-
 import { qspCall, qspFunc } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
@@ -686,7 +684,7 @@ function enterConfession(s: GameState, scene: SceneBuilder): void {
     ((st as any).conf_lie = (st as any).conf_lie ?? {})[4] = 'having committed a murder.';
     ((st as any).conf_lie = (st as any).conf_lie ?? {})[5] = 'wanting to do something blasphemous.';
     scene.img('images/locations/pavlovsk/church/confession.jpg');
-    scene.text(`You decide to make up a wild tale about ${qspUntranslated(s, "conf_lie[rand(1,5)]", { location: "pav_church2" })}. The priest seems to believe you at first, then realizes that you're making the story up.`);
+    scene.text(`You decide to make up a wild tale about ${(((st as any).conf_lie ?? 0)?.[(Math.floor(Math.random() * 5) + 1)] ?? '')}. The priest seems to believe you at first, then realizes that you're making the story up.`);
     scene.text('"You are a wicked child!" the priest scolds you, although he seems more saddened than angry. "You should be ashamed of yourself! Telling lies is a mortal sin and to do so before God is sure to stain your soul for eternity."');
     scene.actions([
       { label: 'Say nothing but feel bad', handler: (st: GameState) => {

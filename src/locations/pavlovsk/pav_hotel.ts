@@ -38,10 +38,10 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.text('<center><h4>Pavlovsk Hotel</h4></center>');
     scene.img('images/locations/pavlovsk/hotel/hotel.hole.jpg');
     if ((!((s as any).pavHotelMaid ?? 0))) {
-      scene.text('You\'re always surprised by how fancy the hotel looks on the inside given the shabby exterior. A cute brunette is manning the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027pav_hotelReception\u0027, \u0027\u0027); return false;">reception desk</a>.');
+      scene.text('You\'re always surprised by how fancy the hotel looks on the inside given the shabby exterior. A cute brunette is manning the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=1; return s; }); window.__gameStore.getState().doGoto(\u0027pav_hotelReception\u0027, \u0027\u0027); return false;">reception desk</a>.');
       scene.text('She gives you a friendly nod when you get into her sight range.');
     } else {
-      scene.text('You\'re always surprised by how fancy the hotel looks on the inside given the shabby exterior. Elisabet is manning the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027pav_hotelReception\u0027, \u0027\u0027); return false;">reception desk</a>.');
+      scene.text('You\'re always surprised by how fancy the hotel looks on the inside given the shabby exterior. Elisabet is manning the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=1; return s; }); window.__gameStore.getState().doGoto(\u0027pav_hotelReception\u0027, \u0027\u0027); return false;">reception desk</a>.');
       scene.text('She gives you a friendly nod when you get into her sight range.');
     }
   }
@@ -72,14 +72,14 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027pav_hotel\u0027, \u0027Pavlin\u0027); return false;">Pavlin</a> is sitting in the lobby, looking for fresh prey.');
   }
   if (((s as any).hour ?? 0) >= 12  &&  ((s as any).hour ?? 0) <= 13  &&  ((s as any).job_hiring_step ?? 0)?.['pav_hotel_maid'] >= 2) {
-    scene.text('Next to the reception desk is a door labeled <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027pav_hotelAdmin\u0027, \u0027\u0027); return false;">"Administration"</a>. That must be where the hotel manager works. The door is currently open.');
+    scene.text('Next to the reception desk is a door labeled <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=1; return s; }); window.__gameStore.getState().doGoto(\u0027pav_hotelAdmin\u0027, \u0027\u0027); return false;">"Administration"</a>. That must be where the hotel manager works. The door is currently open.');
   }
   if (((s as any).hotwait ?? 0) === 1) {
     scene.text('You sit in one of the comfortable chairs in the lobby and watch the guests checking in and out.');
     (s as any).hotwait = 0;
   }
   if (((s as any).job_hiring_step ?? 0)?.['pav_hotel_maid'] <= 1) {
-    scene.text('You see a <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027pav_hotel\u0027, \u0027poster\u0027); return false;">"recruitment poster"</a> in a corner of the room.');
+    scene.text('You see a <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=1; return s; }); window.__gameStore.getState().doGoto(\u0027pav_hotel\u0027, \u0027poster\u0027); return false;">"recruitment poster"</a> in a corner of the room.');
   }
   qspCall(s, 'pav_hotelWork', 'set_hotel_acts');
   if (((s as any).hotelcouple ?? 0) === 2  &&  ((s as any).week ?? 0) === 4  &&  ((s as any).hour ?? 0) >= 20  &&  ((s as any).hour ?? 0) < 23  &&  ((s as any).hcday ?? 0) !== ((s as any).daystart ?? 0)) {
@@ -159,10 +159,10 @@ function enterSkipResepevent(s: GameState, scene: SceneBuilder): void {
     scene.text('<center><h4>Pavlovsk Hotel</h4></center>');
     scene.img('images/locations/pavlovsk/hotel/hotel.hole.jpg');
     if ((!((s as any).pavHotelMaid ?? 0))) {
-      scene.text('You\'re always surprised by how fancy the hotel looks on the inside given the shabby exterior. A cute brunette is manning the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027pav_hotelReception\u0027, \u0027\u0027); return false;">reception desk</a>.');
+      scene.text('You\'re always surprised by how fancy the hotel looks on the inside given the shabby exterior. A cute brunette is manning the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=1; return s; }); window.__gameStore.getState().doGoto(\u0027pav_hotelReception\u0027, \u0027\u0027); return false;">reception desk</a>.');
       scene.text('She gives you a friendly nod when you get into her sight range.');
     } else {
-      scene.text('You\'re always surprised by how fancy the hotel looks on the inside given the shabby exterior. Elisabet is manning the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027pav_hotelReception\u0027, \u0027\u0027); return false;">reception desk</a>.');
+      scene.text('You\'re always surprised by how fancy the hotel looks on the inside given the shabby exterior. Elisabet is manning the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=1; return s; }); window.__gameStore.getState().doGoto(\u0027pav_hotelReception\u0027, \u0027\u0027); return false;">reception desk</a>.');
       scene.text('She gives you a friendly nod when you get into her sight range.');
     }
   }
@@ -193,14 +193,14 @@ function enterSkipResepevent(s: GameState, scene: SceneBuilder): void {
     scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027pav_hotel\u0027, \u0027Pavlin\u0027); return false;">Pavlin</a> is sitting in the lobby, looking for fresh prey.');
   }
   if (((s as any).hour ?? 0) >= 12  &&  ((s as any).hour ?? 0) <= 13  &&  ((s as any).job_hiring_step ?? 0)?.['pav_hotel_maid'] >= 2) {
-    scene.text('Next to the reception desk is a door labeled <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027pav_hotelAdmin\u0027, \u0027\u0027); return false;">"Administration"</a>. That must be where the hotel manager works. The door is currently open.');
+    scene.text('Next to the reception desk is a door labeled <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=1; return s; }); window.__gameStore.getState().doGoto(\u0027pav_hotelAdmin\u0027, \u0027\u0027); return false;">"Administration"</a>. That must be where the hotel manager works. The door is currently open.');
   }
   if (((s as any).hotwait ?? 0) === 1) {
     scene.text('You sit in one of the comfortable chairs in the lobby and watch the guests checking in and out.');
     (s as any).hotwait = 0;
   }
   if (((s as any).job_hiring_step ?? 0)?.['pav_hotel_maid'] <= 1) {
-    scene.text('You see a <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027pav_hotel\u0027, \u0027poster\u0027); return false;">"recruitment poster"</a> in a corner of the room.');
+    scene.text('You see a <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=1; return s; }); window.__gameStore.getState().doGoto(\u0027pav_hotel\u0027, \u0027poster\u0027); return false;">"recruitment poster"</a> in a corner of the room.');
   }
   qspCall(s, 'pav_hotelWork', 'set_hotel_acts');
   if (((s as any).hotelcouple ?? 0) === 2  &&  ((s as any).week ?? 0) === 4  &&  ((s as any).hour ?? 0) >= 20  &&  ((s as any).hour ?? 0) < 23  &&  ((s as any).hcday ?? 0) !== ((s as any).daystart ?? 0)) {

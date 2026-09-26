@@ -1,5 +1,3 @@
-import { qspUntranslated } from '../_shared/qspUntranslated';
-
 import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
@@ -12,21 +10,9 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterElectric(s: GameState, scene: SceneBuilder): void {
   (s as any).store = 'musicstore';
-  // TODO-QSP: </table></center>'
+  (s as any).temp_html = '<center><table border=1>\n<th>\n<center><a href="#" onclick="window.__gameStore.getState().doGoto(\u0027\u0027city_musicstore_stock\u0027\u0027, \u0027\u0027electric\u0027\u0027, \u0027\u0027store\u0027\u0027); return false;">Electric guitars</a></center>\n</th>\n<th>\n<center><a href="#" onclick="window.__gameStore.getState().doGoto(\u0027\u0027city_musicstore_stock\u0027\u0027, \u0027\u0027acoustic\u0027\u0027, \u0027\u0027store\u0027\u0027); return false;">Acoustic guitars</a></center>\n</th>\n<th>\n<center><a href="#" onclick="window.__gameStore.getState().doGoto(\u0027\u0027city_musicstore_stock\u0027\u0027, \u0027\u0027amplifier\u0027\u0027, \u0027\u0027store\u0027\u0027); return false;">Amplifiers</a></center>\n</th>\n<th>\n<center><a href="#" onclick="window.__gameStore.getState().doGoto(\u0027\u0027city_musicstore_stock\u0027\u0027, \u0027\u0027studio\u0027\u0027, \u0027\u0027store\u0027\u0027); return false;">Studio Equipment</a></center>\n</th>\n</table></center>';
   scene.text('<center><font size="+4" color="red"><b>Warning: These guitars don\'t yet have any unique gameplay effects.</b></font></center>');
-  // TODO-QSP: '<center><table border=1>
-  // TODO-QSP: <tr>
-  // TODO-QSP: <td><img src="images/locations/city/citycenter/mall/musicstore/musictorestock/burny-rlg55-vld.jpg" a...
-  // TODO-QSP: <td><img src="images/locations/city/citycenter/mall/musicstore/musictorestock/epiphone-les-paul-expr...
-  // TODO-QSP: <td><img src="images/locations/city/citycenter/mall/musicstore/musictorestock/fender-american-profes...
-  // TODO-QSP: </tr>
-  // TODO-QSP: <tr>
-  // TODO-QSP: <td><img src="images/locations/city/citycenter/mall/musicstore/musictorestock/fender-player-tele.jpg...
-  // TODO-QSP: <td><img src="images/locations/city/citycenter/mall/musicstore/musictorestock/gibson-2019-les-paul.j...
-  // TODO-QSP: <td><img src="images/locations/city/citycenter/mall/musicstore/musictorestock/yamaha-pacifica-012-rm...
-  // TODO-QSP: </tr>
-  // TODO-QSP: </table>
-  // TODO-QSP: </center>'
+  scene.img('images/locations/city/citycenter/mall/musicstore/musictorestock/burny-rlg55-vld.jpg');
   scene.text(qspFunc(s, 'cleanHTML', ((s as any).temp_html ?? '')));
   (s as any).temp_html = undefined;
   if (((s as any).ml_guitars ?? 0)?.['burny-rlg55-vld'] === 0) {
@@ -157,17 +143,9 @@ function enterElectric(s: GameState, scene: SceneBuilder): void {
 
 function enterAcoustic(s: GameState, scene: SceneBuilder): void {
   (s as any).store = 'musicstore';
-  // TODO-QSP: </table></center>'
+  (s as any).temp_html = '<center><table border=1>\n<th>\n<center><a href="#" onclick="window.__gameStore.getState().doGoto(\u0027\u0027city_musicstore_stock\u0027\u0027, \u0027\u0027electric\u0027\u0027, \u0027\u0027store\u0027\u0027); return false;">Electric guitars</a></center>\n</th>\n<th>\n<center><a href="#" onclick="window.__gameStore.getState().doGoto(\u0027\u0027city_musicstore_stock\u0027\u0027, \u0027\u0027acoustic\u0027\u0027, \u0027\u0027store\u0027\u0027); return false;">Acoustic guitars</a></center>\n</th>\n<th>\n<center><a href="#" onclick="window.__gameStore.getState().doGoto(\u0027\u0027city_musicstore_stock\u0027\u0027, \u0027\u0027amplifier\u0027\u0027, \u0027\u0027store\u0027\u0027); return false;">Amplifiers</a></center>\n</th>\n<th>\n<center><a href="#" onclick="window.__gameStore.getState().doGoto(\u0027\u0027city_musicstore_stock\u0027\u0027, \u0027\u0027studio\u0027\u0027, \u0027\u0027store\u0027\u0027); return false;">Studio Equipment</a></center>\n</th>\n</table></center>';
   (s as any).temp_html = ((s as any).temp_html ?? 0) + ('<center><font size="+4" color="red"><b>Warning: These guitars don\'t yet affect your stats or performance - buying one just gives you a guitar to practice and play with.</b></font></center>');
-  (s as any).temp_html = ((s as any).temp_html ?? 0) + (qspUntranslated(s, "'<center><table border=1>", { location: "city_musicstore_stock" }));
-  // TODO-QSP: <tr>
-  // TODO-QSP: <td><img src="images/locations/city/citycenter/mall/musicstore/musictorestock/martin-hdc-28e.jpg" al...
-  // TODO-QSP: <td><img src="images/locations/city/citycenter/mall/musicstore/musictorestock/martin-d10e-01.jpg" al...
-  // TODO-QSP: <td><img src="images/locations/city/citycenter/mall/musicstore/musictorestock/martin-ed-sheeran.jpg"...
-  // TODO-QSP: <td><img src="images/locations/city/citycenter/mall/musicstore/musictorestock/martin-lx-1.jpg" align...
-  // TODO-QSP: </tr>
-  // TODO-QSP: </table>
-  // TODO-QSP: </center>'
+  (s as any).temp_html = ((s as any).temp_html ?? 0) + ('<center><table border=1>\n<tr>\n<td><img src="images/locations/city/citycenter/mall/musicstore/musictorestock/martin-hdc-28e.jpg" align="left"></td>\n<td><img src="images/locations/city/citycenter/mall/musicstore/musictorestock/martin-d10e-01.jpg" align="left"></td>\n<td><img src="images/locations/city/citycenter/mall/musicstore/musictorestock/martin-ed-sheeran.jpg" align="left"></td>\n<td><img src="images/locations/city/citycenter/mall/musicstore/musictorestock/martin-lx-1.jpg" align="left"></td>\n</tr>\n</table>\n</center>');
   scene.text(qspFunc(s, 'cleanHTML', ((s as any).temp_html ?? '')));
   (s as any).temp_html = undefined;
   if (((s as any).ml_guitars ?? 0)?.['martin-hdc-28e'] === 0) {
@@ -258,16 +236,9 @@ function enterAcoustic(s: GameState, scene: SceneBuilder): void {
 
 function enterAmplifier(s: GameState, scene: SceneBuilder): void {
   (s as any).store = 'musicstore';
-  // TODO-QSP: </table></center>'
+  (s as any).temp_html = '<center><table border=1>\n<th>\n<center><a href="#" onclick="window.__gameStore.getState().doGoto(\u0027\u0027city_musicstore_stock\u0027\u0027, \u0027\u0027electric\u0027\u0027, \u0027\u0027store\u0027\u0027); return false;">Electric guitars</a></center>\n</th>\n<th>\n<center><a href="#" onclick="window.__gameStore.getState().doGoto(\u0027\u0027city_musicstore_stock\u0027\u0027, \u0027\u0027acoustic\u0027\u0027, \u0027\u0027store\u0027\u0027); return false;">Acoustic guitars</a></center>\n</th>\n<th>\n<center><a href="#" onclick="window.__gameStore.getState().doGoto(\u0027\u0027city_musicstore_stock\u0027\u0027, \u0027\u0027amplifier\u0027\u0027, \u0027\u0027store\u0027\u0027); return false;">Amplifiers</a></center>\n</th>\n<th>\n<center><a href="#" onclick="window.__gameStore.getState().doGoto(\u0027\u0027city_musicstore_stock\u0027\u0027, \u0027\u0027studio\u0027\u0027, \u0027\u0027store\u0027\u0027); return false;">Studio Equipment</a></center>\n</th>\n</table></center>';
   (s as any).temp_html = ((s as any).temp_html ?? 0) + ('<center><font size="+4" color="red"><b>Warning: Right now, these amplifiers have no effect on gameplay!</b></font></center>');
-  (s as any).temp_html = ((s as any).temp_html ?? 0) + (qspUntranslated(s, "'<center><table border=1>", { location: "city_musicstore_stock" }));
-  // TODO-QSP: <tr>
-  // TODO-QSP: <td><img src="images/locations/city/citycenter/mall/musicstore/musictorestock/kustom-kg112fx.jpg" al...
-  // TODO-QSP: <td><img src="images/locations/city/citycenter/mall/musicstore/musictorestock/orange-rocker-32.jpg" ...
-  // TODO-QSP: <td><img src="images/locations/city/citycenter/mall/musicstore/musictorestock/blackstar-artisan-15.j...
-  // TODO-QSP: </tr>
-  // TODO-QSP: </table>
-  // TODO-QSP: </center>'
+  (s as any).temp_html = ((s as any).temp_html ?? 0) + ('<center><table border=1>\n<tr>\n<td><img src="images/locations/city/citycenter/mall/musicstore/musictorestock/kustom-kg112fx.jpg" align="left"></td>\n<td><img src="images/locations/city/citycenter/mall/musicstore/musictorestock/orange-rocker-32.jpg" align="left"></td>\n<td><img src="images/locations/city/citycenter/mall/musicstore/musictorestock/blackstar-artisan-15.jpg" align="left"></td>\n</tr>\n</table>\n</center>');
   scene.text(qspFunc(s, 'cleanHTML', ((s as any).temp_html ?? '')));
   (s as any).temp_html = undefined;
   if (((s as any).ml_amplifiers ?? 0)?.['kustom-kg112fx'] === 0) {
@@ -323,13 +294,8 @@ function enterAmplifier(s: GameState, scene: SceneBuilder): void {
 
 function enterStudio(s: GameState, scene: SceneBuilder): void {
   (s as any).store = 'musicstore';
-  // TODO-QSP: </table></center>'
-  (s as any).temp_html = ((s as any).temp_html ?? 0) + (qspUntranslated(s, "'<center><table border=1>", { location: "city_musicstore_stock" }));
-  // TODO-QSP: <tr>
-  // TODO-QSP: <td><img src="images/locations/city/citycenter/mall/musicstore/musictorestock/home-studio.jpg" align...
-  // TODO-QSP: </tr>
-  // TODO-QSP: </table>
-  // TODO-QSP: </center>'
+  (s as any).temp_html = '<center><table border=1>\n<th>\n<center><a href="#" onclick="window.__gameStore.getState().doGoto(\u0027\u0027city_musicstore_stock\u0027\u0027, \u0027\u0027electric\u0027\u0027, \u0027\u0027store\u0027\u0027); return false;">Electric guitars</a></center>\n</th>\n<th>\n<center><a href="#" onclick="window.__gameStore.getState().doGoto(\u0027\u0027city_musicstore_stock\u0027\u0027, \u0027\u0027acoustic\u0027\u0027, \u0027\u0027store\u0027\u0027); return false;">Acoustic guitars</a></center>\n</th>\n<th>\n<center><a href="#" onclick="window.__gameStore.getState().doGoto(\u0027\u0027city_musicstore_stock\u0027\u0027, \u0027\u0027amplifier\u0027\u0027, \u0027\u0027store\u0027\u0027); return false;">Amplifiers</a></center>\n</th>\n<th>\n<center><a href="#" onclick="window.__gameStore.getState().doGoto(\u0027\u0027city_musicstore_stock\u0027\u0027, \u0027\u0027studio\u0027\u0027, \u0027\u0027store\u0027\u0027); return false;">Studio Equipment</a></center>\n</th>\n</table></center>';
+  (s as any).temp_html = ((s as any).temp_html ?? 0) + ('<center><table border=1>\n<tr>\n<td><img src="images/locations/city/citycenter/mall/musicstore/musictorestock/home-studio.jpg" align="left"></td>\n</tr>\n</table>\n</center>');
   scene.text(qspFunc(s, 'cleanHTML', ((s as any).temp_html ?? '')));
   (s as any).temp_html = undefined;
   if (((s as any).ml_studio ?? 0)?.['scarlet-3rd-gen'] === 0) {

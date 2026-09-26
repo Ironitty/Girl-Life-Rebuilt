@@ -714,8 +714,6 @@ function enterSpitOrSwallow(s: GameState, scene: SceneBuilder): void {
   } },
     { label: 'Swallow', handler: (st: GameState) => {
     if (((st as any).trait_vars ?? 0)?.['cumeater'] === 1) {
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSexTalkContinue(st, scene); (st as any).locArgs = __savedLocArgs; }
-      // TODO-QSP: end !}
       scene.actions([
         { label: 'I love the taste of cum', handler: (st: GameState) => {
     scene.text('"Swallow," you grin. "It tastes so good, I can\'t resist swallowing every time."');

@@ -115,7 +115,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).start_type ?? 0)?.['loc'] === 'sg'  &&  ((s as any).gschoolVars ?? 0)?.['school_diploma'] === 0) {
       if ((((s as any).sunWeather ?? 0) === 0  ||  ((s as any).temper ?? 0) <= 0)  &&  (((s as any).hour ?? 0) >= 18  &&  ((s as any).hour ?? 0) < 20  &&  ((s as any).week ?? 0) < 6)  ||  (((s as any).week ?? 0) >= 6  &&  ((s as any).hour ?? 0) >= 9  &&  ((s as any).hour ?? 0) < 20)) {
-        scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.3; return s; }); window.__gameStore.getState().doGoto(\u0027gopskver\u0027, \u0027\u0027); return false;">Vitek, Dan and Vasily</a> are sitting at a table in the far corner.');
+        scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=3; return s; }); window.__gameStore.getState().doGoto(\u0027gopskver\u0027, \u0027\u0027); return false;">Vitek, Dan and Vasily</a> are sitting at a table in the far corner.');
       }
     }
   }

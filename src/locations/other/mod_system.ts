@@ -66,7 +66,7 @@ function enterArousal(s: GameState, scene: SceneBuilder): void {
 
 function enterOutfit(s: GameState, scene: SceneBuilder): void {
   return;
-  (s as any).mod_system_loc = '_' + ((s as any).locArgs?.[1] ?? 0);
+  (s as any).mod_system_loc = '_\' + $ARGS[1';
   (s as any).modARGS = undefined;
   ((s as any).modARGS = (s as any).modARGS ?? {})[0] = ((s as any).locArgs?.[2] ?? 0);
   ((s as any).modARGS = (s as any).modARGS ?? {})[1] = ((s as any).locArgs?.[3] ?? 0);

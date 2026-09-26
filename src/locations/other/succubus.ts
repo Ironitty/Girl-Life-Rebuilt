@@ -96,7 +96,7 @@ function enterFirsttime(s: GameState, scene: SceneBuilder): void {
       { label: 'Push it back down', handler: (st: GameState) => {
     scene.text(`You try to contain ${((st as any).sucself1 ?? '')}…`);
     qspCall(st, 'willpower', 'misc', 'resist', 'easy');
-    // TODO-QSP: will_cost *= succublvl
+    (st as any).will_cost = ((st as any).will_cost ?? 0) * (((st as any).succublvl ?? 0));
     if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.text(`And you fail, ${((st as any).sucself1 ?? '')} continues rising toward the surface of your being.`);
       (st as any).succonfail = 1;

@@ -407,7 +407,7 @@ function enterTalking(s: GameState, scene: SceneBuilder): void {
                                       return;
                                     } else {
                                       if (((s as any).loc ?? 0) === 'kuhrPar'  &&  ((s as any).locat ?? 0)?.['Fam_inGad'] === 1) {
-                                        // TODO-QSP: '<center><img <<$set_imgh>> src="images/characters/pavlovsk/resident/anya/home/sister_chat_kitchen_e...
+                                        scene.img('images/characters/pavlovsk/resident/anya/home/sister_chat_kitchen_easteregg.jpg');
                                       } else {
                                         if (((s as any).loc ?? 0) === 'kuhrPar') {
                                           scene.img(`images/characters/pavlovsk/resident/anya/home/sister_chat_kitchen${(Math.floor(Math.random() * 3) + 1)}.jpg`);
@@ -915,7 +915,7 @@ function enterSmallTalk1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npc_relationship', 'modify', 'A33', 1);
   (s as any).temp = 0;
   if (((s as any).loc ?? 0) === 'kuhrPar'  &&  ((s as any).locat ?? 0)?.['Fam_inGad'] === 1) {
-    // TODO-QSP: '<center><img <<$set_imgh>> src="images/characters/pavlovsk/resident/anya/home/sister_chat_kitchen_e...
+    scene.img('images/characters/pavlovsk/resident/anya/home/sister_chat_kitchen_easteregg.jpg');
   } else {
     if (((s as any).loc ?? 0) === 'kuhrPar') {
       scene.img(`images/characters/pavlovsk/resident/anya/home/sister_chat_kitchen${(Math.floor(Math.random() * 3) + 1)}.jpg`);

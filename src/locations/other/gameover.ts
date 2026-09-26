@@ -1,3 +1,5 @@
+import { qspUntranslated } from '../_shared/qspUntranslated';
+
 import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
@@ -124,6 +126,9 @@ function enterScreen(s: GameState, scene: SceneBuilder): void {
     }
   }
   scene.text('act \'End?\': gt \'gameover\', \'endscreen\', \'' + ((s as any).locArgs?.[1] ?? 0) + '\' ');
+  scene.actions([
+    { label: 'End?', handler: (st: GameState) => { qspGoto(st, 'gameover', 'endscreen', qspUntranslated(st, "'<<ARGS[1]>>'", { location: "gameover" })); } },
+  ]);
   scene.build();
 }
 

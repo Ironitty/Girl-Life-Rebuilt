@@ -24,12 +24,12 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.text('As you pass by the sports field, you notice that most of the jocks have gathered around the <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027bbgamein\u0027, \u0027start\u0027); return false;">basketball court</a>.');
   }
   if (((s as any).kotovLoveQW ?? 0) > 0  &&  ((s as any).hour ?? 0) === 16) {
-    scene.text('You see <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.3; return s; }); window.__gameStore.getState().doGoto(\u0027kotovEv\u0027, \u0027\u0027); return false;">Vitek</a> entering the sports club with a large sports bag slung over his shoulder.');
+    scene.text('You see <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=3; return s; }); window.__gameStore.getState().doGoto(\u0027kotovEv\u0027, \u0027\u0027); return false;">Vitek</a> entering the sports club with a large sports bag slung over his shoulder.');
   }
   if (((s as any).npc_rel ?? 0)?.['A3'] >= 60  &&  ((s as any).hour ?? 0) === 17) {
     if (((s as any).ivansportday ?? 0) !== ((s as any).daystart ?? 0)) {
       (s as any).temp_ivan_seen = 1;
-      scene.text('You see <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.3; return s; }); window.__gameStore.getState().doGoto(\u0027IvanEv\u0027, \u0027ivan_vitek_fight1\u0027); return false;">Ivan</a> entering the sports club carrying a large sports bag.');
+      scene.text('You see <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=3; return s; }); window.__gameStore.getState().doGoto(\u0027IvanEv\u0027, \u0027ivan_vitek_fight1\u0027); return false;">Ivan</a> entering the sports club carrying a large sports bag.');
     }
     if (((s as any).ivanQW ?? 0)?.['ivan_boxing_invite'] === 1) {
       if ((!((s as any).temp_ivan_seen ?? 0))) {

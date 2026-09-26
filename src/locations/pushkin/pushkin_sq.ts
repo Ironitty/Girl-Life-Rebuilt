@@ -14,8 +14,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pushkin/liames.jpg');
   scene.text('Okhlopkov Square serves as the main intersection of several smaller streets.');
   scene.text('There are many small cafes and shops also a flourishing nightlife and entertainment activities.');
-  scene.text('Another street runs straight back to the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(\u0027pushkin\u0027, \u0027\u0027); return false;">Pushkin Town Center</a>.');
-  scene.text('Okhlopkov Square itself leads to the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(\u0027pushkin_parks\u0027, \u0027start\u0027); return false;">Pushkin Park</a>.');
+  scene.text('Another street runs straight back to the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=5; return s; }); window.__gameStore.getState().doGoto(\u0027pushkin\u0027, \u0027\u0027); return false;">Pushkin Town Center</a>.');
+  scene.text('Okhlopkov Square itself leads to the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=5; return s; }); window.__gameStore.getState().doGoto(\u0027pushkin_parks\u0027, \u0027start\u0027); return false;">Pushkin Park</a>.');
   if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) <= 20) {
     scene.text('A small <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027larek\u0027, \u0027start\u0027); return false;">grocery store</a> is currently open.');
   } else {

@@ -75,7 +75,7 @@ function enterContent(s: GameState, scene: SceneBuilder): void {
     scene.text('You stand gazing at St. Petersburg\'s famous Canals of the North, the hustle and bustle of people on the streets against a backdrop of elegant Russian buildings. You see the boatmen plying their trade on the waters below and working on their tour boats.');
     if (((s as any).loc_history ?? 0) !== 'city_suburbs') {
       scene.actions([
-        { label: 'Take a boat to City Suburbia (0:20,  [100₽])...]', handler: (st: GameState) => {
+        { label: '', labelFn: (s: GameState) => String('Take a boat to City Suburbia (0:20, ' + qspFunc(s, 'money', 'string_price', 100) + ')' ?? ''), handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 20;
     qspCall(st, 'money', 'pay', 100);
     qspCall(st, 'stat', '');
@@ -91,7 +91,7 @@ function enterContent(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).loc_history ?? 0) !== 'city_island') {
       scene.actions([
-        { label: 'Take a boat to Vasilyevsky Island (0:20,  [100₽])...]', handler: (st: GameState) => {
+        { label: '', labelFn: (s: GameState) => String('Take a boat to Vasilyevsky Island (0:20, ' + qspFunc(s, 'money', 'string_price', 100) + ')' ?? ''), handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 20;
     qspCall(st, 'money', 'pay', 100);
     qspCall(st, 'stat', '');
@@ -107,7 +107,7 @@ function enterContent(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).loc_history ?? 0) !== 'city_industrial') {
       scene.actions([
-        { label: 'Take a boat to the Industrial district (0:20,  [100₽])...]', handler: (st: GameState) => {
+        { label: '', labelFn: (s: GameState) => String('Take a boat to the Industrial district (0:20, ' + qspFunc(s, 'money', 'string_price', 100) + ')' ?? ''), handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 20;
     qspCall(st, 'money', 'pay', 100);
     qspCall(st, 'stat', '');
@@ -122,7 +122,7 @@ function enterContent(s: GameState, scene: SceneBuilder): void {
       ]);
     }
     scene.actions([
-      { label: 'Take a boat trip (1:20,  [150₽])...]', handler: (st: GameState) => {
+      { label: '', labelFn: (s: GameState) => String('Take a boat trip (1:20, ' + qspFunc(s, 'money', 'string_price', 150) + ')' ?? ''), handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 120;
     qspCall(st, 'money', 'pay', 150);
     qspCall(st, 'stat', '');
@@ -156,7 +156,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.text('You stand gazing at St. Petersburg\'s famous Canals of the North, the hustle and bustle of people on the streets against a backdrop of elegant Russian buildings. You see the boatmen plying their trade on the waters below and working on their tour boats.');
     if (((s as any).loc_history ?? 0) !== 'city_suburbs') {
       scene.actions([
-        { label: 'Take a boat to City Suburbia (0:20,  [100₽])...]', handler: (st: GameState) => {
+        { label: '', labelFn: (s: GameState) => String('Take a boat to City Suburbia (0:20, ' + qspFunc(s, 'money', 'string_price', 100) + ')' ?? ''), handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 20;
     qspCall(st, 'money', 'pay', 100);
     qspCall(st, 'stat', '');
@@ -172,7 +172,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).loc_history ?? 0) !== 'city_island') {
       scene.actions([
-        { label: 'Take a boat to Vasilyevsky Island (0:20,  [100₽])...]', handler: (st: GameState) => {
+        { label: '', labelFn: (s: GameState) => String('Take a boat to Vasilyevsky Island (0:20, ' + qspFunc(s, 'money', 'string_price', 100) + ')' ?? ''), handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 20;
     qspCall(st, 'money', 'pay', 100);
     qspCall(st, 'stat', '');
@@ -188,7 +188,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).loc_history ?? 0) !== 'city_industrial') {
       scene.actions([
-        { label: 'Take a boat to the Industrial district (0:20,  [100₽])...]', handler: (st: GameState) => {
+        { label: '', labelFn: (s: GameState) => String('Take a boat to the Industrial district (0:20, ' + qspFunc(s, 'money', 'string_price', 100) + ')' ?? ''), handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 20;
     qspCall(st, 'money', 'pay', 100);
     qspCall(st, 'stat', '');
@@ -203,7 +203,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       ]);
     }
     scene.actions([
-      { label: 'Take a boat trip (1:20,  [150₽])...]', handler: (st: GameState) => {
+      { label: '', labelFn: (s: GameState) => String('Take a boat trip (1:20, ' + qspFunc(s, 'money', 'string_price', 150) + ')' ?? ''), handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 120;
     qspCall(st, 'money', 'pay', 150);
     qspCall(st, 'stat', '');

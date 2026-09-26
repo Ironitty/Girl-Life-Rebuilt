@@ -35,7 +35,7 @@ function enterMenuCell(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_mc_bg = qspFunc(s, 'shortgs', 'rgb_to_hex', (((s as any).theme ?? 0)?.['bcolor']));
   (s as any).temp_mc_fg = qspFunc(s, 'shortgs', 'rgb_to_hex', (((s as any).theme ?? 0)?.['fcolor']));
   (s as any).temp_mc_sel = ((((s as any).themes_menu_cur ?? 0) === ((s as any).temp_mc_full ?? 0)) ? ('outline:3px solid ' + (((s as any).theme_hex ?? 0)?.['accent']) + '; outline-offset:-3px; ') : (''));
-  scene.text('<td bgcolor="' + ((s as any).temp_mc_bg ?? '') + '" width="250" align="center" style="background:' + ((s as any).temp_mc_bg ?? '') + '; ' + ((s as any).temp_mc_sel ?? '') + `width:250px; text-align:center; white-space:nowrap; border-radius:4px; padding:0; overflow:hidden;"><a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: $cfg_vars[/u0027theme_main_name/u0027] = /u0027${((s as any).locArgs?.[1] ?? '')}/u0027 */ return s; }); window.__gameStore.getState().doGoto(/u0027themes/u0027, /u0027set_theme/u0027, String((s as any).temp_mc_full ?? /u0027/u0027)); return false;">${((s as any).locArgs?.[1] ?? '')}</a></td>`);
+  scene.text('<td bgcolor="' + ((s as any).temp_mc_bg ?? '') + '" width="250" align="center" style="background:' + ((s as any).temp_mc_bg ?? '') + '; ' + ((s as any).temp_mc_sel ?? '') + `width:250px; text-align:center; white-space:nowrap; border-radius:4px; padding:0; overflow:hidden;"><a href="#" onclick="window.__gameStore.setState((s) => { (s.cfg_vars ??= {})/u0027theme_main_name/u0027 = /u0027${((s as any).locArgs?.[1] ?? '')}/u0027; return s; }); window.__gameStore.getState().doGoto(/u0027themes/u0027, /u0027set_theme/u0027, String((s as any).temp_mc_full ?? /u0027/u0027)); return false;">${((s as any).locArgs?.[1] ?? '')}</a></td>`);
   (s as any).temp_mc_full = undefined;
   (s as any).temp_mc_bg = undefined;
   (s as any).temp_mc_fg = undefined;
@@ -6975,12 +6975,12 @@ function enterGetTheme(s: GameState, scene: SceneBuilder): void {
         }
       }
     } else {
-      // TODO-QSP: "Invalid parameter call for themes / get_theme. You've found a bug! please let us know."
+      scene.text('Invalid parameter call for themes / get_theme. You\'ve found a bug! please let us know.');
       scene.text(String(qspFunc(s, 'theme', 'type') || ''));
     }
   }
   return;
-  // TODO-QSP: "Invalid parameter call for themes. You've found a bug! please let us know."
+  scene.text('Invalid parameter call for themes. You\'ve found a bug! please let us know.');
   scene.build();
 }
 

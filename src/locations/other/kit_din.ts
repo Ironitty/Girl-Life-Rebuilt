@@ -57,7 +57,7 @@ function enterSantehnikend(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    (st as any).sexloc = 'korr' + (String(((st as any).loc ?? 0)).slice((5)-1, ((5)-1)+(2)));
+    (st as any).sexloc = 'korr\' + $mid($loc, 5, 2';
     if (((st as any).pcs_apprnc ?? 0) < 60) {
       (st as any).guy = ((st as any).guy ?? 0) + (1);
       scene.img('images/locations/city/residential/apartment/sex/s5.jpg');
@@ -210,11 +210,7 @@ function enterSantehnik(s: GameState, scene: SceneBuilder): void {
   if (((s as any).husID ?? 0) !== ''  &&  ((s as any).spouseVars ?? 0)?.['drink'] !== 10  &&  ((s as any).week ?? 0) >= 6  &&  (((s as any).hour ?? 0) <= 6  ||  ((s as any).hour ?? 0) >= 17)) {
     qspGoto(s, 'lover_living', 'santehnik');
   } else {
-    if (((s as any).wifID ?? 0) !== ''  &&  ((s as any).spouseVars ?? 0)?.['drink'] !== 10  &&  ((s as any).week ?? 0) >= 6  &&  (((s as any).hour ?? 0) <= 6  ||  ((s as any).hour ?? 0) >= 17)) {
-      qspGoto(s, 'lover_living', 'santehnik_wife');
-    } else {
-      qspGoto(s, 'kit_din', 'santehnik1');
-    }
+    qspGoto(s, 'kit_din', 'santehnik1');
   }
   scene.build();
 }

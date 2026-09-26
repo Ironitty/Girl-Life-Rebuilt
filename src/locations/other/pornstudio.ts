@@ -601,8 +601,11 @@ function enterManager(s: GameState, scene: SceneBuilder): void {
               }
               (s as any).minut = ((s as any).minut ?? 0) + (60 - ((s as any).minut ?? 0));
               (s as any).temp_mgr_pf_type = parseFloat(qspFunc(s, 'jobs', 'get_booking_data_for_day', 'city_pornstudio_actress', ((s as any).daystart ?? 0)));
-              // TODO-QSP: dynamic 'act ''Go for medical check-up'': gt ''pornstudio'', ''medical'', <<temp_mgr_pf_type>>'
+              scene.text('act \'Go for medical check-up\': gt \'pornstudio\', \'medical\', ' + ((s as any).temp_mgr_pf_type ?? 0) + '');
               (s as any).temp_mgr_pf_type = undefined;
+              scene.actions([
+{ label: 'Go for medical check-up', handler: (st: GameState) => { qspGoto(st, 'pornstudio', 'medical', ((st as any).temp_mgr_pf_type ?? 0)); } },
+]);
               return;
             } else {
               if (((s as any).film ?? 0) === 0  &&  ((s as any).job_bookings_active ?? 0)?.['city_pornstudio_actress'] === 0) {
@@ -1178,7 +1181,6 @@ function enterPostvideo(s: GameState, scene: SceneBuilder): void {
           }
           scene.text(`With a growing sense of horror, you realize that you aren't on the shot and have no idea when you last took a birth control pill. ${((s as any).tmp ?? '')}`);
         } else {
-          // TODO-QSP: !{If she has birth control and deliberately isn''t using it, obviously she wants to get pregnant or ...
           if (((s as any).pfcash ?? 0) > 0) {
             (s as any).tmp = 'Either way, ' + qspFunc(s, 'money', 'string_profit', ((s as any).pfcash ?? 0)) + ' will definitely help make a better life for you and your baby if you do end up pregnant.';
           } else {

@@ -131,7 +131,7 @@ function enterStringHash(s: GameState, scene: SceneBuilder): void {
       break;
     }
     if (((s as any).temp_sh_hash ?? 0) < 0) {
-      // TODO-QSP: temp_sh_hash *= -1
+      (s as any).temp_sh_hash = ((s as any).temp_sh_hash ?? 0) * ((-1));
     }
     (s as any).result = ((s as any).temp_sh_hash ?? 0);
     (s as any).temp_sh_alphabet = undefined;

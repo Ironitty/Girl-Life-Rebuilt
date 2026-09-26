@@ -77,7 +77,7 @@ function enterMinorGirlBeggar_2(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'money', 'pay', 50, 'cash');
       qspCall(st, 'mood', 'raise', 'tiny');
       qspCall(st, 'stat', '');
-      // TODO-QSP: $streetev_title
+      scene.text(String((st as any).streetev_title ?? ''));
       scene.img('images/locations/shared/street/girlcat.jpg');
       scene.text('You open your purse up and pull out the money you can spare and hand it to her. She thanks you profusely and gives you a heartwarming smile as she hugs her cat close to her and whispers to him that they will get to eat tonight.');
       if (qspFunc(s, 'money', 'can_afford', 5000, 'cash') === 1) {
@@ -97,7 +97,7 @@ function enterMinorGirlBeggar_2(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'money', 'pay', 100, 'cash');
       qspCall(st, 'mood', 'raise', 'tiny');
       qspCall(st, 'stat', '');
-      // TODO-QSP: $streetev_title
+      scene.text(String((st as any).streetev_title ?? ''));
       scene.img('images/locations/shared/street/girlcat.jpg');
       scene.text('You open your purse up and pull out the money you can spare and hand it to her. She thanks you profusely and gives you a heartwarming smile as she hugs her cat close to her and whispers to him that they will get to eat tonight.');
       if (qspFunc(s, 'money', 'can_afford', 5000, 'cash') === 1) {
@@ -117,7 +117,7 @@ function enterMinorGirlBeggar_2(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'money', 'pay', 250, 'cash');
       qspCall(st, 'mood', 'raise', 'small');
       qspCall(st, 'stat', '');
-      // TODO-QSP: $streetev_title
+      scene.text(String((st as any).streetev_title ?? ''));
       scene.img('images/locations/shared/street/girlcat.jpg');
       scene.text('You open your purse up and pull out the money you can spare and hand it to her. She thanks you profusely and gives you a heartwarming smile as she hugs her cat close to her and whispers to him that they will get to eat tonight.');
       if (qspFunc(s, 'money', 'can_afford', 5000, 'cash') === 1) {
@@ -137,7 +137,7 @@ function enterMinorGirlBeggar_2(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'money', 'pay', 500, 'cash');
       qspCall(st, 'mood', 'raise', 'medium');
       qspCall(st, 'stat', '');
-      // TODO-QSP: $streetev_title
+      scene.text(String((st as any).streetev_title ?? ''));
       scene.img('images/locations/shared/street/girlcat.jpg');
       scene.text('You open your purse up and pull out the money you can spare and hand it to her. She thanks you profusely and gives you a heartwarming smile as she hugs her cat close to her and whispers to him that they will get to eat tonight.');
       if (qspFunc(s, 'money', 'can_afford', 5000, 'cash') === 1) {
@@ -157,7 +157,7 @@ function enterMinorGirlBeggar_2(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'money', 'pay', 1000, 'cash');
       qspCall(st, 'mood', 'raise', 'large');
       qspCall(st, 'stat', '');
-      // TODO-QSP: $streetev_title
+      scene.text(String((st as any).streetev_title ?? ''));
       scene.img('images/locations/shared/street/girlcat.jpg');
       scene.text('You open your purse up and pull out the money you can spare and hand it to her. She thanks you profusely and gives you a heartwarming smile as she hugs her cat close to her and whispers to him that they will get to eat tonight.');
       if (qspFunc(s, 'money', 'can_afford', 5000, 'cash') === 1) {

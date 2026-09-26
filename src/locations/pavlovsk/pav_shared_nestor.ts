@@ -133,7 +133,9 @@ function enterNestorDick(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).Nestor ?? 0)?.['hj'] > 1) {
     scene.text(`-you have jerked him off ${(((s as any).Nestor ?? 0)?.['hj'] ?? '')} times`);
-    // TODO-QSP: if Nestor['hjFail'] > 1: ' and failed to make him cum with your hands <<Nestor[''hjFail'']>> times'
+    if (((s as any).Nestor ?? 0)?.['hjFail'] > 1) {
+      scene.text(` and failed to make him cum with your hands ${(((s as any).Nestor ?? 0)?.['hjFail'] ?? '')} times`);
+    }
   }
   if (((s as any).Nestor ?? 0)?.['bj'] === 1) {
     scene.text('-you have given him a blowjob');

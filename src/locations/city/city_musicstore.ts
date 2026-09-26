@@ -111,7 +111,7 @@ function enterFirstvisit(s: GameState, scene: SceneBuilder): void {
         scene.text('The guitar isn\'t the best sounding. However, looking at the price tags on the others, you\'re not sure if you should spend so much money on a better one until you\'re better at playing.');
       }
       scene.actions([
-        { label: 'Buy a cheap acoustic guitar ( [3400₽]...]', goto: ['city_musicstore', 'buycheapacoustic'] },
+        { label: '', labelFn: (s: GameState) => String('Buy a cheap acoustic guitar (' + qspFunc(s, 'money', 'string_price', 3400) + ')' ?? ''), goto: ['city_musicstore', 'buycheapacoustic'] },
         { label: 'You have to think about it', handler: (st: GameState) => {
     (st as any).ml_didntbuyguitarthefirstvisit = 1;
     scene.text('You hesitate before deciding not to buy it, at least not for now. "I\'ll have to talk to think about it first," you tell Jimmy.');
@@ -158,7 +158,7 @@ function enterCameback(s: GameState, scene: SceneBuilder): void {
       scene.text('He looks up from the guitar. "Oh hey. Sure, I have it. Let me get it for you."');
       scene.text('He disappears for a while before he brings the guitar out. "See, all in good shape. Properly set up and everything."');
       scene.actions([
-        { label: 'Buy a cheap acoustic guitar ( [3400₽]...]', goto: ['city_musicstore', 'buycheapacoustic'] },
+        { label: '', labelFn: (s: GameState) => String('Buy a cheap acoustic guitar (' + qspFunc(s, 'money', 'string_price', 3400) + ')' ?? ''), goto: ['city_musicstore', 'buycheapacoustic'] },
         { label: 'You have to think about it', handler: (st: GameState) => {
     scene.text('You hesitate before deciding not to buy it, at least not for now. "I\'ll have to talk to think about it first," you tell Jimmy.');
     scene.text('\'He nods. "You know what? I\'ll put it aside for you in case you change your mind, but be quick before someone else beats you to it!" He scribbles something on a post-it note and sticks it on the guitar. "I\'ll try to keep the price the same, 3400₽."\'');

@@ -323,9 +323,9 @@ function enterKGOLstat(s: GameState, scene: SceneBuilder): void {
   scene.text(`${((s as any).KGOLname ?? '')}, level ${((s as any).KGOLlvl ?? '')} ${((s as any).KGOLrace ?? '')} ${((s as any).KGOLklass ?? '')}`);
   scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027KGOLgame\u0027, \u0027KGOLstat2\u0027); return false;">Close Statistics</a>');
   if (((s as any).KGOLneedExp ?? 0) > 0) {
-    // TODO-QSP: pl 'Total experience points: <<KGOLexp>> Experience needed to level up: <<KGOLneedExp>>'
+    scene.text(`Total experience points: ${((s as any).KGOLexp ?? '')} Experience needed to level up: ${((s as any).KGOLneedExp ?? '')}`);
   } else {
-    // TODO-QSP: pl '<a href="exec:gs ''KGOLexpa'', ''KGOLrise''">' + $func('wrap', 'neg', 'Earn experience points to...
+    scene.text('\'<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027KGOLexpa\u0027, \u0027KGOLrise\u0027); return false;">\' + $func(\'wrap\', \'neg\', \'Earn experience points to improve your stats.\') + \'</a>\'');
   }
   scene.text(`Strength: ${((s as any).KGOLstren ?? '')}`);
   scene.text(`Speed: ${((s as any).KGOLspeed ?? '')}`);
@@ -343,10 +343,10 @@ function enterKGOLstat(s: GameState, scene: SceneBuilder): void {
   scene.text('');
   scene.text('<center>Supplies</center>');
   if (((s as any).KGOLpotionH ?? 0) > 0) {
-    // TODO-QSP: pl 'You have <<KGOLpotionH>> health potion(s). <a href="exec:KGOLpotionH -= 1 & KGHP += 100 & gs ''s...
+    scene.text(`'You have ${((s as any).KGOLpotionH ?? '')} health potion(s). <a href="#" onclick="window.__gameStore.setState((s) => { s.KGOLpotionH -=1; s.KGHP +=100; return s; }); window.__gameStore.getState().doGoto(/u0027/u0027stat/u0027 & gt $curloc/u0027, /u0027/u0027); return false;">' + $func('wrap', 'neg', 'Drink one') + '</a>'`);
   }
   if (((s as any).KGOLpotionM ?? 0) > 0) {
-    // TODO-QSP: pl 'You have <<KGOLpotionM>> mana potion(s). <a href="exec:KGOLpotionM -= 1 & KGMana += 100 & gs ''s...
+    scene.text(`'You have ${((s as any).KGOLpotionM ?? '')} mana potion(s). <a href="#" onclick="window.__gameStore.setState((s) => { s.KGOLpotionM -=1; s.KGMana +=100; return s; }); window.__gameStore.getState().doGoto(/u0027/u0027stat/u0027 & gt $curloc/u0027, /u0027/u0027); return false;">' + $func('wrap', 'neg', 'Drink one') + '</a>'`);
   }
   scene.text('<center>PVE</center>');
   scene.text(`You have won ${((s as any).KGOLWin ?? '')} times and lost ${((s as any).KGOLLoss ?? '')} times.`);

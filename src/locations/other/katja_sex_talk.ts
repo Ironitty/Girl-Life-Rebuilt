@@ -1,4 +1,4 @@
-import { qspCall, qspGoto } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -49,7 +49,9 @@ function enterSextalk(s: GameState, scene: SceneBuilder): void {
       ]);
     }
     if (((s as any).katjaQW ?? 0)?.['knows_artem_is_boyfreind'] !== 1) {
-      // TODO-QSP: act 'Tell Katja you''re not into boys <br>' + $func('wrap', 'neg', '(blocks further contents with Ka...
+      scene.actions([
+        { label: '', labelFn: (s: GameState) => String('Tell Katja you\'re !== into boys <br>' + qspFunc(s, 'wrap', 'neg', '(blocks further contents with Katja  &&  boys)') ?? ''), goto: ['KatjaHomeTalk', 'boy_no'] },
+      ]);
     }
   } else {
     if (((s as any).kattalkrand ?? 0) === 1) {
@@ -123,7 +125,9 @@ function enterSextalk(s: GameState, scene: SceneBuilder): void {
         ]);
       }
       if (((s as any).katjaQW ?? 0)?.['knows_artem_is_boyfreind'] !== 1) {
-        // TODO-QSP: act 'Tell Katja you''re not into boys <br>' + $func('wrap', 'neg', '(blocks further contents with Ka...
+        scene.actions([
+          { label: '', labelFn: (s: GameState) => String('Tell Katja you\'re !== into boys <br>' + qspFunc(s, 'wrap', 'neg', '(blocks further contents with Katja  &&  boys)') ?? ''), goto: ['KatjaHomeTalk', 'boy_no'] },
+        ]);
       }
     } else {
       if (((s as any).kattalkrand ?? 0) === 2) {
@@ -196,7 +200,9 @@ function enterSextalk(s: GameState, scene: SceneBuilder): void {
           ]);
         }
         if (((s as any).katjaQW ?? 0)?.['knows_artem_is_boyfreind'] !== 1) {
-          // TODO-QSP: act 'Tell Katja you''re not into boys <br>' + $func('wrap', 'neg', '(blocks further contents with Ka...
+          scene.actions([
+            { label: '', labelFn: (s: GameState) => String('Tell Katja you\'re !== into boys <br>' + qspFunc(s, 'wrap', 'neg', '(blocks further contents with Katja  &&  boys)') ?? ''), goto: ['KatjaHomeTalk', 'boy_no'] },
+          ]);
         }
       } else {
         if (((s as any).kattalkrand ?? 0) === 3) {

@@ -78,58 +78,60 @@ function enterCounter(s: GameState, scene: SceneBuilder): void {
   if (qspFunc(s, 'money', 'can_afford', 100) === 0) {
     scene.text('<center><table><TR BGCOLOR="' + (((s as any).theme_hex ?? 0)?.['table_bg'] ?? '') + '"><td><b></b>You don\'t have enough money to buy a snack.</td></tr></table></center>');
   } else {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'money', 'pay', 100);
-    (s as any).pcs_health = ((s as any).pcs_health ?? 0) + (10);
-    qspCall(s, 'mood', 'raise', 'small');
-    (s as any).fat = ((s as any).fat ?? 0) + (6);
-    (s as any).pcs_energy = ((s as any).pcs_energy ?? 0) + (20);
-    if (((s as any).pcs_hydra ?? 0) >= 100) {
-      (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) + (10);
-    } else {
-      (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) + (20);
-    }
-    (s as any).cumspclnt = 2;
-    qspCall(s, 'cum_cleanup', '');
-    (s as any).pcs_breath = 0;
-    qspCall(s, 'stat', '');
-    scene.img('images/shared/food/food.jpg');
-    scene.text('<center><table><TR BGCOLOR="' + (((s as any).theme_hex ?? 0)?.['table_bg'] ?? '') + '"><td><b></b>You enjoy a small and tasty, but somewhat fattening, snack.</td></tr></table></center>');
     scene.actions([
-      { label: 'Buy a snack ( [100₽])...]', handler: (st: GameState) => {
-    // TODO-QSP: 05)':
-  } },
+      { label: '', labelFn: (s: GameState) => String('Buy a snack (' + qspFunc(s, 'money', 'string_price', 100) + ') (0:05)' ?? ''), handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'money', 'pay', 100);
+    (st as any).pcs_health = ((st as any).pcs_health ?? 0) + (10);
+    qspCall(st, 'mood', 'raise', 'small');
+    (st as any).fat = ((st as any).fat ?? 0) + (6);
+    (st as any).pcs_energy = ((st as any).pcs_energy ?? 0) + (20);
+    if (((st as any).pcs_hydra ?? 0) >= 100) {
+      (st as any).pcs_hydra = ((st as any).pcs_hydra ?? 0) + (10);
+    } else {
+      (st as any).pcs_hydra = ((st as any).pcs_hydra ?? 0) + (20);
+    }
+    (st as any).cumspclnt = 2;
+    qspCall(st, 'cum_cleanup', '');
+    (st as any).pcs_breath = 0;
+    qspCall(st, 'stat', '');
+    scene.img('images/shared/food/food.jpg');
+    scene.text('<center><table><TR BGCOLOR="' + (((st as any).theme_hex ?? 0)?.['table_bg'] ?? '') + '"><td><b></b>You enjoy a small and tasty, but somewhat fattening, snack.</td></tr></table></center>');
+    scene.actions([
       { label: 'Return', goto: ['kiosk', 'start'] },
+    ]);
+  } },
     ]);
   }
   if (qspFunc(s, 'money', 'can_afford', 40) === 0) {
     scene.text('<center><table><TR BGCOLOR="' + (((s as any).theme_hex ?? 0)?.['table_bg'] ?? '') + '"><td><b></b>You don\'t have enough money to buy water.</td></tr></table></center>');
   } else {
-    (s as any).frost = 1;
-    if (((s as any).alko ?? 0) > 0) {
-      (s as any).alko = ((s as any).alko ?? 0) - (1);
-    }
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'money', 'pay', 40);
-    (s as any).pcs_health = ((s as any).pcs_health ?? 0) + (10);
-    (s as any).pcs_energy = ((s as any).pcs_energy ?? 0) + (4);
-    if (((s as any).pcs_hydra ?? 0) >= 100) {
-      (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) + (25);
-    } else {
-      (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) + (50);
-    }
-    (s as any).cumspclnt = 2;
-    qspCall(s, 'cum_cleanup', '');
-    (s as any).pcs_breath = 0;
-    qspCall(s, 'cum_cleanup', '');
-    qspCall(s, 'stat', '');
-    scene.img('images/locations/shared/brothel/barorderwater.jpg');
-    scene.text('<center><table><TR BGCOLOR="' + (((s as any).theme_hex ?? 0)?.['table_bg'] ?? '') + '"><td><b></b>You enjoy a drink of water</td></tr></table></center>');
     scene.actions([
-      { label: 'Buy some water ( [40₽]) ...]', handler: (st: GameState) => {
-    // TODO-QSP: 05)':
-  } },
+      { label: '', labelFn: (s: GameState) => String('Buy some water (' + qspFunc(s, 'money', 'string_price', 40) + ') (0:05)' ?? ''), handler: (st: GameState) => {
+    (st as any).frost = 1;
+    if (((st as any).alko ?? 0) > 0) {
+      (st as any).alko = ((st as any).alko ?? 0) - (1);
+    }
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'money', 'pay', 40);
+    (st as any).pcs_health = ((st as any).pcs_health ?? 0) + (10);
+    (st as any).pcs_energy = ((st as any).pcs_energy ?? 0) + (4);
+    if (((st as any).pcs_hydra ?? 0) >= 100) {
+      (st as any).pcs_hydra = ((st as any).pcs_hydra ?? 0) + (25);
+    } else {
+      (st as any).pcs_hydra = ((st as any).pcs_hydra ?? 0) + (50);
+    }
+    (st as any).cumspclnt = 2;
+    qspCall(st, 'cum_cleanup', '');
+    (st as any).pcs_breath = 0;
+    qspCall(st, 'cum_cleanup', '');
+    qspCall(st, 'stat', '');
+    scene.img('images/locations/shared/brothel/barorderwater.jpg');
+    scene.text('<center><table><TR BGCOLOR="' + (((st as any).theme_hex ?? 0)?.['table_bg'] ?? '') + '"><td><b></b>You enjoy a drink of water</td></tr></table></center>');
+    scene.actions([
       { label: 'Return', goto: ['kiosk', 'start'] },
+    ]);
+  } },
     ]);
   }
   if (qspFunc(s, 'money', 'can_afford', 100) === 0  &&  ((s as any).mc_inventory ?? 0)?.['newspaper'] === 0) {
@@ -138,17 +140,18 @@ function enterCounter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).mc_inventory ?? 0)?.['newspaper'] === 1) {
       scene.text('<center><table><TR BGCOLOR="' + (((s as any).theme_hex ?? 0)?.['table_bg'] ?? '') + '"><td><b></b>You already own today\'s newspaper.</td></tr></table></center>');
     } else {
-      ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['newspaper'] = 1;
-      (s as any).minut = ((s as any).minut ?? 0) + 5;
-      qspCall(s, 'money', 'pay', 100);
-      qspCall(s, 'stat', '');
-      scene.img('images/system/image_needed.png');
-      scene.text('<center><table><TR BGCOLOR="' + (((s as any).theme_hex ?? 0)?.['table_bg'] ?? '') + '"><td><b></b>You buy the weekly newspaper</td></tr></table></center>');
       scene.actions([
-        { label: 'Buy a newspaper ( [100₽])...]', handler: (st: GameState) => {
-    // TODO-QSP: 05)':
+        { label: '', labelFn: (s: GameState) => String('Buy a newspaper (' + qspFunc(s, 'money', 'string_price', 100) + ') (0:05)' ?? ''), handler: (st: GameState) => {
+    ((st as any).mc_inventory = (st as any).mc_inventory ?? {})['newspaper'] = 1;
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'money', 'pay', 100);
+    qspCall(st, 'stat', '');
+    scene.img('images/system/image_needed.png');
+    scene.text('<center><table><TR BGCOLOR="' + (((st as any).theme_hex ?? 0)?.['table_bg'] ?? '') + '"><td><b></b>You buy the weekly newspaper</td></tr></table></center>');
+    scene.actions([
+      { label: 'Return', goto: ['kiosk', 'start'] },
+    ]);
   } },
-        { label: 'Return', goto: ['kiosk', 'start'] },
       ]);
     }
   }
@@ -212,7 +215,7 @@ function enterThemes(s: GameState, scene: SceneBuilder): void {
         (s as any).phoneNameTemp = 'Woodshop';
       }
       if (((s as any).phonetheme ?? 0)?.[String((s as any).i ?? 0)] === 0) {
-        scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: VIEW /u0027images/system/phone/previews/${(String(((s as any).phoneNameTemp ?? '')).toLowerCase())}.png/u0027 */ return s; }); return false;">Preview</a> <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: phonetheme[${((s as any).i ?? '')}] = 1 */ return s; }); window.__gameStore.getState().doGoto(/u0027money/u0027, /u0027pay/u0027, /u0027500 & phonetheme[/u0027 + String((s as any).i ?? /u0027/u0027) + /u0027] = 1 & gt //u0027kiosk//u0027/u0027); return false;">Buy</a> the <b>${((s as any).phoneNameTemp ?? '')}</b> theme.`);
+        scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: VIEW /u0027images/system/phone/previews//u003c/u003c$lcase($phoneNameTemp)>>.png/u0027 */ return s; }); return false;">Preview</a> <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: phonetheme[/u003c/u003ci>>] = 1 */ return s; }); window.__gameStore.getState().doGoto(/u0027money/u0027, /u0027pay/u0027, /u0027500 & phonetheme[/u0027 + String((s as any).i ?? /u0027/u0027) + /u0027] = 1 & gt //u0027kiosk//u0027/u0027); return false;">Buy</a> the <b>${((s as any).phoneNameTemp ?? '')}</b> theme.`);
       }
       (s as any).i = ((s as any).i ?? 0) + (1);
       (s as any).phoneNameTemp = undefined;

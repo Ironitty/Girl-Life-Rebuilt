@@ -8,7 +8,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   if (((s as any).selobj ?? 0) === '<center>Refresh</center>') {
     qspCall(s, 'stat', '');
     if (((s as any).stat_cfg ?? 0)?.['android']) {
-      // TODO-QSP: pl $stat_msg
+      scene.text(String((s as any).stat_msg ?? ''));
     }
   }
   if (((s as any).selobj ?? 0) === '<center>Console</center>') {

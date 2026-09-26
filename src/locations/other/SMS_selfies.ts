@@ -115,7 +115,7 @@ function enterRetrieveClothedSelfies(s: GameState, scene: SceneBuilder): void {
     ((s as any).SMSSelfieVars = (s as any).SMSSelfieVars ?? {})['column'] = 1;
     ((s as any).SMSSelfieVars = (s as any).SMSSelfieVars ?? {})['i'] = 1;
     do {
-      // TODO-QSP: dynamic 'phone_locval = <<$ARGS[2]>>_closelfie[<<SMSSelfieVars[''i'']>>]'
+      scene.text('phone_locval = ' + ((s as any).locArgs?.[2] ?? 0) + '_closelfie[' + (((s as any).SMSSelfieVars ?? 0)?.['i']) + ']');
       if (((s as any).phone_locval ?? 0) === 1) {
         if (((s as any).SMSSelfieVars ?? 0)?.['column'] === 3) {
           ((s as any).SMSSelfieVars = (s as any).SMSSelfieVars ?? {})['text'] = ((s as any).SMSSelfieVars['text'] ?? 0) + ('</tr><tr>');
@@ -140,7 +140,7 @@ function enterRetrieveSwimSelfies(s: GameState, scene: SceneBuilder): void {
     ((s as any).SMSSelfieVars = (s as any).SMSSelfieVars ?? {})['column'] = 0;
     ((s as any).SMSSelfieVars = (s as any).SMSSelfieVars ?? {})['i'] = 1;
     do {
-      // TODO-QSP: dynamic 'phone_locval = <<$ARGS[2]>>_swim[<<SMSSelfieVars[''i'']>>]'
+      scene.text('phone_locval = ' + ((s as any).locArgs?.[2] ?? 0) + '_swim[' + (((s as any).SMSSelfieVars ?? 0)?.['i']) + ']');
       if (((s as any).phone_locval ?? 0) === 1) {
         if (((s as any).SMSSelfieVars ?? 0)?.['column'] === 2) {
           ((s as any).SMSSelfieVars = (s as any).SMSSelfieVars ?? {})['text'] = ((s as any).SMSSelfieVars['text'] ?? 0) + ('</tr><tr>');
@@ -165,7 +165,7 @@ function enterRetrieveUnderwearSelfies(s: GameState, scene: SceneBuilder): void 
     ((s as any).SMSSelfieVars = (s as any).SMSSelfieVars ?? {})['column'] = 0;
     ((s as any).SMSSelfieVars = (s as any).SMSSelfieVars ?? {})['i'] = 1;
     do {
-      // TODO-QSP: dynamic 'phone_locval = <<$ARGS[2]>>_undselfie[<<SMSSelfieVars[''i'']>>]'
+      scene.text('phone_locval = ' + ((s as any).locArgs?.[2] ?? 0) + '_undselfie[' + (((s as any).SMSSelfieVars ?? 0)?.['i']) + ']');
       if (((s as any).phone_locval ?? 0) === 1) {
         if (((s as any).SMSSelfieVars ?? 0)?.['column'] === 2) {
           ((s as any).SMSSelfieVars = (s as any).SMSSelfieVars ?? {})['text'] = ((s as any).SMSSelfieVars['text'] ?? 0) + ('</tr><tr>');
@@ -190,7 +190,7 @@ function enterRetrieveNudeSelfies(s: GameState, scene: SceneBuilder): void {
     ((s as any).SMSSelfieVars = (s as any).SMSSelfieVars ?? {})['column'] = 0;
     ((s as any).SMSSelfieVars = (s as any).SMSSelfieVars ?? {})['i'] = 1;
     do {
-      // TODO-QSP: dynamic 'phone_locval = <<$ARGS[2]>>_nudselfie[<<SMSSelfieVars[''i'']>>]'
+      scene.text('phone_locval = ' + ((s as any).locArgs?.[2] ?? 0) + '_nudselfie[' + (((s as any).SMSSelfieVars ?? 0)?.['i']) + ']');
       if (((s as any).phone_locval ?? 0) === 1) {
         if (((s as any).SMSSelfieVars ?? 0)?.['column'] === 2) {
           ((s as any).SMSSelfieVars = (s as any).SMSSelfieVars ?? {})['text'] = ((s as any).SMSSelfieVars['text'] ?? 0) + ('</tr><tr>');
@@ -215,7 +215,7 @@ function enterRetrieveBathSelfies(s: GameState, scene: SceneBuilder): void {
     ((s as any).SMSSelfieVars = (s as any).SMSSelfieVars ?? {})['column'] = 0;
     ((s as any).SMSSelfieVars = (s as any).SMSSelfieVars ?? {})['i'] = 1;
     do {
-      // TODO-QSP: dynamic 'phone_locval = <<$ARGS[2]>>_bathselfie[<<SMSSelfieVars[''i'']>>]'
+      scene.text('phone_locval = ' + ((s as any).locArgs?.[2] ?? 0) + '_bathselfie[' + (((s as any).SMSSelfieVars ?? 0)?.['i']) + ']');
       if (((s as any).phone_locval ?? 0) === 1) {
         if (((s as any).SMSSelfieVars ?? 0)?.['column'] === 2) {
           ((s as any).SMSSelfieVars = (s as any).SMSSelfieVars ?? {})['text'] = ((s as any).SMSSelfieVars['text'] ?? 0) + ('</tr><tr>');
@@ -240,7 +240,7 @@ function enterRetrieveShowerSelfies(s: GameState, scene: SceneBuilder): void {
     ((s as any).SMSSelfieVars = (s as any).SMSSelfieVars ?? {})['column'] = 0;
     ((s as any).SMSSelfieVars = (s as any).SMSSelfieVars ?? {})['i'] = 1;
     do {
-      // TODO-QSP: dynamic 'phone_locval = <<$ARGS[2]>>_showerselfie[<<SMSSelfieVars[''i'']>>]'
+      scene.text('phone_locval = ' + ((s as any).locArgs?.[2] ?? 0) + '_showerselfie[' + (((s as any).SMSSelfieVars ?? 0)?.['i']) + ']');
       if (((s as any).phone_locval ?? 0) === 1) {
         if (((s as any).SMSSelfieVars ?? 0)?.['column'] === 2) {
           ((s as any).SMSSelfieVars = (s as any).SMSSelfieVars ?? {})['text'] = ((s as any).SMSSelfieVars['text'] ?? 0) + ('</tr><tr>');
@@ -265,7 +265,7 @@ function enterRetrieveTitflashSelfies(s: GameState, scene: SceneBuilder): void {
     ((s as any).SMSSelfieVars = (s as any).SMSSelfieVars ?? {})['column'] = 0;
     ((s as any).SMSSelfieVars = (s as any).SMSSelfieVars ?? {})['i'] = 1;
     do {
-      // TODO-QSP: dynamic 'phone_locval = <<$ARGS[2]>>_titflash[<<SMSSelfieVars[''i'']>>]'
+      scene.text('phone_locval = ' + ((s as any).locArgs?.[2] ?? 0) + '_titflash[' + (((s as any).SMSSelfieVars ?? 0)?.['i']) + ']');
       if (((s as any).phone_locval ?? 0) === 1) {
         if (((s as any).SMSSelfieVars ?? 0)?.['column'] === 2) {
           ((s as any).SMSSelfieVars = (s as any).SMSSelfieVars ?? {})['text'] = ((s as any).SMSSelfieVars['text'] ?? 0) + ('</tr><tr>');
@@ -290,7 +290,7 @@ function enterRetrieveAssflashSelfies(s: GameState, scene: SceneBuilder): void {
     ((s as any).SMSSelfieVars = (s as any).SMSSelfieVars ?? {})['column'] = 0;
     ((s as any).SMSSelfieVars = (s as any).SMSSelfieVars ?? {})['i'] = 1;
     do {
-      // TODO-QSP: dynamic 'phone_locval = <<$ARGS[2]>>_assflash[<<SMSSelfieVars[''i'']>>]'
+      scene.text('phone_locval = ' + ((s as any).locArgs?.[2] ?? 0) + '_assflash[' + (((s as any).SMSSelfieVars ?? 0)?.['i']) + ']');
       if (((s as any).phone_locval ?? 0) === 1) {
         if (((s as any).SMSSelfieVars ?? 0)?.['column'] === 2) {
           ((s as any).SMSSelfieVars = (s as any).SMSSelfieVars ?? {})['text'] = ((s as any).SMSSelfieVars['text'] ?? 0) + ('</tr><tr>');
@@ -315,7 +315,7 @@ function enterRetrievePussyflashSelfies(s: GameState, scene: SceneBuilder): void
     ((s as any).SMSSelfieVars = (s as any).SMSSelfieVars ?? {})['column'] = 0;
     ((s as any).SMSSelfieVars = (s as any).SMSSelfieVars ?? {})['i'] = 1;
     do {
-      // TODO-QSP: dynamic 'phone_locval = <<$ARGS[2]>>_pussyflash[<<SMSSelfieVars[''i'']>>]'
+      scene.text('phone_locval = ' + ((s as any).locArgs?.[2] ?? 0) + '_pussyflash[' + (((s as any).SMSSelfieVars ?? 0)?.['i']) + ']');
       if (((s as any).phone_locval ?? 0) === 1) {
         if (((s as any).SMSSelfieVars ?? 0)?.['column'] === 2) {
           ((s as any).SMSSelfieVars = (s as any).SMSSelfieVars ?? {})['text'] = ((s as any).SMSSelfieVars['text'] ?? 0) + ('</tr><tr>');

@@ -1661,11 +1661,11 @@ function enterCauseCatalog(s: GameState, scene: SceneBuilder): void {
   ((s as any).cc = (s as any).cc ?? {})['g-2'] = '<td align="center" bgcolor="' + (((s as any).cc ?? 0)?.['bg-_hex']) + '" style="' + (((s as any).cc ?? 0)?.['bg-']) + '">\' + $func(\'wrap\', \'goth\', \'↓\') + \'</td>';
   ((s as any).cc = (s as any).cc ?? {})['tbl'] = '<table width="100%" cellpadding="3" cellspacing="0" style="font-size:0.88em;border-collapse:collapse;">';
   ((s as any).cc = (s as any).cc ?? {})['hdr'] = '<tr style="border-bottom:1px solid #888888;font-size:0.85em;"><th align="left">Condition</th>';
-  ((s as any).cc = (s as any).cc ?? {})['hdr'] = ((s as any).cc['hdr'] ?? 0) + ('<th align="center" width="52"><a href="#" onclick="window.__gameStore.setState((s) => { s.archetype_catalog_view = s.1; s.archetype_catalog_sort = s.1; return s; }); window.__gameStore.getState().doGoto(\u0027$menu_character\u0027, \u0027archetypes\u0027, \u0027catalog\u0027); return false;">' + qspFunc(s, 'wrap', 'bimbo', 'Bimbo') + '</a></th>');
-  ((s as any).cc = (s as any).cc ?? {})['hdr'] = ((s as any).cc['hdr'] ?? 0) + ('<th align="center" width="52"><a href="#" onclick="window.__gameStore.setState((s) => { s.archetype_catalog_view = s.2; s.archetype_catalog_sort = s.1; return s; }); window.__gameStore.getState().doGoto(\u0027$menu_character\u0027, \u0027archetypes\u0027, \u0027catalog\u0027); return false;">' + qspFunc(s, 'wrap', 'preppy', 'Preppy') + '</a></th>');
-  ((s as any).cc = (s as any).cc ?? {})['hdr'] = ((s as any).cc['hdr'] ?? 0) + ('<th align="center" width="52"><a href="#" onclick="window.__gameStore.setState((s) => { s.archetype_catalog_view = s.3; s.archetype_catalog_sort = s.1; return s; }); window.__gameStore.getState().doGoto(\u0027$menu_character\u0027, \u0027archetypes\u0027, \u0027catalog\u0027); return false;">' + qspFunc(s, 'wrap', 'prude', 'Prude') + '</a></th>');
-  ((s as any).cc = (s as any).cc ?? {})['hdr'] = ((s as any).cc['hdr'] ?? 0) + ('<th align="center" width="52"><a href="#" onclick="window.__gameStore.setState((s) => { s.archetype_catalog_view = s.4; s.archetype_catalog_sort = s.1; return s; }); window.__gameStore.getState().doGoto(\u0027$menu_character\u0027, \u0027archetypes\u0027, \u0027catalog\u0027); return false;">' + qspFunc(s, 'wrap', 'punk', 'Punk') + '</a></th>');
-  ((s as any).cc = (s as any).cc ?? {})['hdr'] = ((s as any).cc['hdr'] ?? 0) + ('<th align="center" width="52"><a href="#" onclick="window.__gameStore.setState((s) => { s.archetype_catalog_view = s.5; s.archetype_catalog_sort = s.1; return s; }); window.__gameStore.getState().doGoto(\u0027$menu_character\u0027, \u0027archetypes\u0027, \u0027catalog\u0027); return false;">' + qspFunc(s, 'wrap', 'goth', 'Goth') + '</a></th></tr>');
+  ((s as any).cc = (s as any).cc ?? {})['hdr'] = ((s as any).cc['hdr'] ?? 0) + ('<th align="center" width="52"><a href="#" onclick="window.__gameStore.setState((s) => { s.archetype_catalog_view = 1; s.archetype_catalog_sort = 1; return s; }); window.__gameStore.getState().doGoto(\u0027$menu_character\u0027, \u0027archetypes\u0027, \u0027catalog\u0027); return false;">' + qspFunc(s, 'wrap', 'bimbo', 'Bimbo') + '</a></th>');
+  ((s as any).cc = (s as any).cc ?? {})['hdr'] = ((s as any).cc['hdr'] ?? 0) + ('<th align="center" width="52"><a href="#" onclick="window.__gameStore.setState((s) => { s.archetype_catalog_view = 2; s.archetype_catalog_sort = 1; return s; }); window.__gameStore.getState().doGoto(\u0027$menu_character\u0027, \u0027archetypes\u0027, \u0027catalog\u0027); return false;">' + qspFunc(s, 'wrap', 'preppy', 'Preppy') + '</a></th>');
+  ((s as any).cc = (s as any).cc ?? {})['hdr'] = ((s as any).cc['hdr'] ?? 0) + ('<th align="center" width="52"><a href="#" onclick="window.__gameStore.setState((s) => { s.archetype_catalog_view = 3; s.archetype_catalog_sort = 1; return s; }); window.__gameStore.getState().doGoto(\u0027$menu_character\u0027, \u0027archetypes\u0027, \u0027catalog\u0027); return false;">' + qspFunc(s, 'wrap', 'prude', 'Prude') + '</a></th>');
+  ((s as any).cc = (s as any).cc ?? {})['hdr'] = ((s as any).cc['hdr'] ?? 0) + ('<th align="center" width="52"><a href="#" onclick="window.__gameStore.setState((s) => { s.archetype_catalog_view = 4; s.archetype_catalog_sort = 1; return s; }); window.__gameStore.getState().doGoto(\u0027$menu_character\u0027, \u0027archetypes\u0027, \u0027catalog\u0027); return false;">' + qspFunc(s, 'wrap', 'punk', 'Punk') + '</a></th>');
+  ((s as any).cc = (s as any).cc ?? {})['hdr'] = ((s as any).cc['hdr'] ?? 0) + ('<th align="center" width="52"><a href="#" onclick="window.__gameStore.setState((s) => { s.archetype_catalog_view = 5; s.archetype_catalog_sort = 1; return s; }); window.__gameStore.getState().doGoto(\u0027$menu_character\u0027, \u0027archetypes\u0027, \u0027catalog\u0027); return false;">' + qspFunc(s, 'wrap', 'goth', 'Goth') + '</a></th></tr>');
   ((s as any).cc = (s as any).cc ?? {})['b'] = qspFunc(s, 'wrap', 'bimbo', 'Bimbo');
   ((s as any).cc = (s as any).cc ?? {})['g'] = qspFunc(s, 'wrap', 'goth', 'Goth');
   ((s as any).cc = (s as any).cc ?? {})['pp'] = qspFunc(s, 'wrap', 'preppy', 'Preppy');
@@ -2252,36 +2252,36 @@ function enterCauseCatalog(s: GameState, scene: SceneBuilder): void {
   ((s as any).cc = (s as any).cc ?? {})['btn'] = 'display:inline-block;padding:7px 18px;margin:2px;border:1px solid #888888;border-radius:4px;font-size:0.95em;';
   ((s as any).cc = (s as any).cc ?? {})['btn_on'] = (((s as any).cc ?? 0)?.['btn']) + 'font-weight:bold;opacity:0.5;cursor:default;';
   if ((!((s as any).archetype_catalog_view ?? 0))) {
-    scene.text('<div style="text-align:center;margin:10px 0 4px;"><span style="' + (((s as any).cc ?? 0)?.['btn_on'] ?? '') + '">By Category</span><a href="#" onclick="window.__gameStore.setState((s) => { s.archetype_catalog_view = s.1; s.archetype_catalog_sort = s.1; return s; }); window.__gameStore.getState().doGoto(\u0027$menu_character\u0027, \u0027archetypes\u0027, \u0027catalog\u0027); return false;">By Archetype</a></div>');
+    scene.text('<div style="text-align:center;margin:10px 0 4px;"><span style="' + (((s as any).cc ?? 0)?.['btn_on'] ?? '') + '">By Category</span><a href="#" onclick="window.__gameStore.setState((s) => { s.archetype_catalog_view = 1; s.archetype_catalog_sort = 1; return s; }); window.__gameStore.getState().doGoto(\u0027$menu_character\u0027, \u0027archetypes\u0027, \u0027catalog\u0027); return false;">By Archetype</a></div>');
   } else {
-    scene.text('\'<div style="text-align:center;margin:10px 0 4px;"><a href="#" onclick="window.__gameStore.setState((s) => { s.archetype_catalog_view = s.0; return s; }); window.__gameStore.getState().doGoto(\u0027$menu_character\u0027, \u0027archetypes\u0027, \u0027catalog\u0027); return false;">By Category</a><span style="\' + $cc[\'btn_on\'] + \'">By Archetype</span></div>\'');
+    scene.text('\'<div style="text-align:center;margin:10px 0 4px;"><a href="#" onclick="window.__gameStore.setState((s) => { s.archetype_catalog_view = 0; return s; }); window.__gameStore.getState().doGoto(\u0027$menu_character\u0027, \u0027archetypes\u0027, \u0027catalog\u0027); return false;">By Category</a><span style="\' + $cc[\'btn_on\'] + \'">By Archetype</span></div>\'');
     ((s as any).cc = (s as any).cc ?? {})['tb'] = 'display:inline-block;padding:5px 16px;margin:2px;border:1px solid;border-radius:4px;font-size:0.9em;';
     ((s as any).cc = (s as any).cc ?? {})['tb_on'] = (((s as any).cc ?? 0)?.['tb']) + 'font-weight:bold;opacity:0.6;cursor:default;';
     scene.text('<div style="text-align:center;margin:0 0 12px;">');
     if (((s as any).archetype_catalog_view ?? 0) === 1) {
       scene.text('<span style="' + (((s as any).cc ?? 0)?.['tb_on'] ?? '') + 'border-color:' + (((s as any).theme_hex ?? 0)?.['bimbo'] ?? '') + ';color:' + (((s as any).theme_hex ?? 0)?.['bimbo'] ?? '') + ';">Bimbo</span>');
     } else {
-      scene.text('\'<a href="#" onclick="window.__gameStore.setState((s) => { s.archetype_catalog_view = s.1; s.archetype_catalog_sort = s.1; return s; }); window.__gameStore.getState().doGoto(\u0027$menu_character\u0027, \u0027archetypes\u0027, \u0027catalog\u0027); return false;">Bimbo</a>\'');
+      scene.text('\'<a href="#" onclick="window.__gameStore.setState((s) => { s.archetype_catalog_view = 1; s.archetype_catalog_sort = 1; return s; }); window.__gameStore.getState().doGoto(\u0027$menu_character\u0027, \u0027archetypes\u0027, \u0027catalog\u0027); return false;">Bimbo</a>\'');
     }
     if (((s as any).archetype_catalog_view ?? 0) === 2) {
       scene.text('<span style="' + (((s as any).cc ?? 0)?.['tb_on'] ?? '') + 'border-color:' + (((s as any).theme_hex ?? 0)?.['accent'] ?? '') + ';color:' + (((s as any).theme_hex ?? 0)?.['accent'] ?? '') + ';">Preppy</span>');
     } else {
-      scene.text('\'<a href="#" onclick="window.__gameStore.setState((s) => { s.archetype_catalog_view = s.2; s.archetype_catalog_sort = s.1; return s; }); window.__gameStore.getState().doGoto(\u0027$menu_character\u0027, \u0027archetypes\u0027, \u0027catalog\u0027); return false;">Preppy</a>\'');
+      scene.text('\'<a href="#" onclick="window.__gameStore.setState((s) => { s.archetype_catalog_view = 2; s.archetype_catalog_sort = 1; return s; }); window.__gameStore.getState().doGoto(\u0027$menu_character\u0027, \u0027archetypes\u0027, \u0027catalog\u0027); return false;">Preppy</a>\'');
     }
     if (((s as any).archetype_catalog_view ?? 0) === 3) {
       scene.text('<span style="' + (((s as any).cc ?? 0)?.['tb_on'] ?? '') + 'border-color:' + (((s as any).theme_hex ?? 0)?.['neutral'] ?? '') + ';color:' + (((s as any).theme_hex ?? 0)?.['neutral'] ?? '') + ';">Prude</span>');
     } else {
-      scene.text('\'<a href="#" onclick="window.__gameStore.setState((s) => { s.archetype_catalog_view = s.3; s.archetype_catalog_sort = s.1; return s; }); window.__gameStore.getState().doGoto(\u0027$menu_character\u0027, \u0027archetypes\u0027, \u0027catalog\u0027); return false;">Prude</a>\'');
+      scene.text('\'<a href="#" onclick="window.__gameStore.setState((s) => { s.archetype_catalog_view = 3; s.archetype_catalog_sort = 1; return s; }); window.__gameStore.getState().doGoto(\u0027$menu_character\u0027, \u0027archetypes\u0027, \u0027catalog\u0027); return false;">Prude</a>\'');
     }
     if (((s as any).archetype_catalog_view ?? 0) === 4) {
       scene.text('<span style="' + (((s as any).cc ?? 0)?.['tb_on'] ?? '') + 'border-color:' + (((s as any).theme_hex ?? 0)?.['punk'] ?? '') + ';color:' + (((s as any).theme_hex ?? 0)?.['punk'] ?? '') + ';">Punk</span>');
     } else {
-      scene.text('\'<a href="#" onclick="window.__gameStore.setState((s) => { s.archetype_catalog_view = s.4; s.archetype_catalog_sort = s.1; return s; }); window.__gameStore.getState().doGoto(\u0027$menu_character\u0027, \u0027archetypes\u0027, \u0027catalog\u0027); return false;">Punk</a>\'');
+      scene.text('\'<a href="#" onclick="window.__gameStore.setState((s) => { s.archetype_catalog_view = 4; s.archetype_catalog_sort = 1; return s; }); window.__gameStore.getState().doGoto(\u0027$menu_character\u0027, \u0027archetypes\u0027, \u0027catalog\u0027); return false;">Punk</a>\'');
     }
     if (((s as any).archetype_catalog_view ?? 0) === 5) {
       scene.text('<span style="' + (((s as any).cc ?? 0)?.['tb_on'] ?? '') + 'border-color:' + (((s as any).theme_hex ?? 0)?.['goth'] ?? '') + ';color:' + (((s as any).theme_hex ?? 0)?.['goth'] ?? '') + ';">Goth</span>');
     } else {
-      scene.text('\'<a href="#" onclick="window.__gameStore.setState((s) => { s.archetype_catalog_view = s.5; s.archetype_catalog_sort = s.1; return s; }); window.__gameStore.getState().doGoto(\u0027$menu_character\u0027, \u0027archetypes\u0027, \u0027catalog\u0027); return false;">Goth</a>\'');
+      scene.text('\'<a href="#" onclick="window.__gameStore.setState((s) => { s.archetype_catalog_view = 5; s.archetype_catalog_sort = 1; return s; }); window.__gameStore.getState().doGoto(\u0027$menu_character\u0027, \u0027archetypes\u0027, \u0027catalog\u0027); return false;">Goth</a>\'');
     }
     scene.text('</div>');
   }
@@ -2350,9 +2350,9 @@ function enterCauseCatalog(s: GameState, scene: SceneBuilder): void {
       (s as any).cc_tcol = (((s as any).theme_hex ?? 0)?.['goth']);
     }
     if (((s as any).archetype_catalog_sort ?? 0) === 1) {
-      (s as any).cc_hdr2 = '<tr style="border-bottom:1px solid #888888;font-size:0.85em;"><th align="left">Condition</th><th align="left" width="120"><a href="#" onclick="window.__gameStore.setState((s) => { s.archetype_catalog_sort = s.0; return s; }); window.__gameStore.getState().doGoto(\u0027$menu_character\u0027, \u0027archetypes\u0027, \u0027catalog\u0027); return false;">Category ↕</a></th><th align="center" width="80">' + ((s as any).cc_title ?? 0) + '</th></tr>';
+      (s as any).cc_hdr2 = '<tr style="border-bottom:1px solid #888888;font-size:0.85em;"><th align="left">Condition</th><th align="left" width="120"><a href="#" onclick="window.__gameStore.setState((s) => { s.archetype_catalog_sort = 0; return s; }); window.__gameStore.getState().doGoto(\u0027$menu_character\u0027, \u0027archetypes\u0027, \u0027catalog\u0027); return false;">Category ↕</a></th><th align="center" width="80">' + ((s as any).cc_title ?? 0) + '</th></tr>';
     } else {
-      (s as any).cc_hdr2 = '<tr style="border-bottom:1px solid #888888;font-size:0.85em;"><th align="left">Condition</th><th align="left" width="120">Category</th><th align="center" width="80"><a href="#" onclick="window.__gameStore.setState((s) => { s.archetype_catalog_sort = s.1; return s; }); window.__gameStore.getState().doGoto(\u0027$menu_character\u0027, \u0027archetypes\u0027, \u0027catalog\u0027); return false;">' + ((s as any).cc_title ?? 0) + ' ↕</a></th></tr>';
+      (s as any).cc_hdr2 = '<tr style="border-bottom:1px solid #888888;font-size:0.85em;"><th align="left">Condition</th><th align="left" width="120">Category</th><th align="center" width="80"><a href="#" onclick="window.__gameStore.setState((s) => { s.archetype_catalog_sort = 1; return s; }); window.__gameStore.getState().doGoto(\u0027$menu_character\u0027, \u0027archetypes\u0027, \u0027catalog\u0027); return false;">' + ((s as any).cc_title ?? 0) + ' ↕</a></th></tr>';
     }
     scene.text('$cc[\'tbl\'] + $cc_hdr2');
     if (((s as any).archetype_catalog_sort ?? 0) === 1) {

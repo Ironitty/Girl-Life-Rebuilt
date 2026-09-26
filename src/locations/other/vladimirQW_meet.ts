@@ -105,7 +105,6 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 function enterQwmeetdy(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/city/vladimir/car.jpg');
   scene.text('The door opens and the driver offers to take your hand.');
-  // TODO-QSP: end & !! --- qwmeetdy ---
   scene.actions([
     { label: 'Climb out of the car with the driver\'s assistance', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 3;
@@ -335,7 +334,6 @@ function enterQwbereg(s: GameState, scene: SceneBuilder): void {
   scene.text('Nikolai, Vitaliy and Isolde say their goodbye and get into the car. Glory sits behind the wheel and drives off. You stay near the boat together with Vladimir who asks you to help clean up.');
   scene.text('Vladimir gathers the remnants of food in a bag and throws it in the trash. You help move the boxes with untouched food off the ship and wipe the deck with a damp cloth.');
   scene.text('Finally with the cleaning completed, Vladimir sits on the sofa to rest on deck.');
-  // TODO-QSP: end & !! --- qwpbereg ---
   scene.actions([
     { label: 'Sit next to him', handler: (st: GameState) => {
     scene.text('<center><b>Vladimir</b></center>');
@@ -470,7 +468,6 @@ function enterQwbereg2(s: GameState, scene: SceneBuilder): void {
   scene.text('After you\'ve finished fucking with Vladimir, you notice the familiar Audi drive up. Glory comes out of it and invites you to get in the car.');
   scene.text('You sit in the back seat of the car and Vladimir, pleased, though tired sits down next to you. Glory steps on the gas as usual and speeds down the road.');
   scene.text('Soon you are already around your porch. Vladimir promises to call you and leaves with Slava.');
-  // TODO-QSP: end & !! --- qwpbereg2 ---
   scene.actions([
     { label: 'Go home', handler: (st: GameState) => {
     qspCall(st, 'dina', '');
@@ -484,7 +481,6 @@ function enter3(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/city/glory/001.jpg');
   scene.text('Glory smiles and gestures for you to get in the car on the front passenger seat.');
-  // TODO-QSP: end & !! --- 3 ---
   scene.actions([
     { label: 'Sit next to the driver', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 3;
@@ -514,7 +510,6 @@ function enter3(s: GameState, scene: SceneBuilder): void {
 
 function enterQwmeetdin(s: GameState, scene: SceneBuilder): void {
   scene.text('Finally the car stops near the restaurant.');
-  // TODO-QSP: end & !! --- qwmeetdin ---
   scene.actions([
     { label: 'Out of the car', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 60;

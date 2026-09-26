@@ -739,7 +739,9 @@ function enterFuckPunch1(s: GameState, scene: SceneBuilder): void {
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['punchout'] = 1;
     scene.img('images/shared/sex/misc/fuck_punch1.mp4');
     scene.text(`"Night night, ${(((st as any).npc_usedname ?? 0)?.[String((st as any).npcID ?? 0)] ?? '')}," you smile and punch him in the face, knocking him out cold.`);
-    // TODO-QSP: act'Call it in': gt 'sex_ev_events', 'fuck_punch2'
+    scene.actions([
+      { label: 'Call it in', goto: ['sex_ev_events', 'fuck_punch2'] },
+    ]);
   } },
   ]);
   scene.build();
@@ -760,18 +762,19 @@ function enterFuckPunch2(s: GameState, scene: SceneBuilder): void {
     scene.text(String(qspFunc(s, 'sex_ev', 'bed_room') || ''));
     scene.text('You don\'t bother getting dressed and wait for the boys to show up.');
     scene.text(`It doesn't take long and within a few minutes They shamelessly ogle you, grinning at you as they tow ${(((st as any).npc_usedname ?? 0)?.[String((st as any).npcID ?? 0)] ?? '')}'s unconscious body out.`);
-    // TODO-QSP: act'Give them the finger':
-    scene.text('You sneer back at them with a look that says, <i>shut the fuck up</i> and put your finger up at them. This is the job.');
     scene.actions([
       { label: 'Ignore them', handler: (st: GameState) => {
     scene.text('Doesn\'t matter to you. Let them look if you want. You know your role in this.');
   } },
-    ]);
+      { label: 'Give them the finger', handler: (st: GameState) => {
+    scene.text('You sneer back at them with a look that says, <i>shut the fuck up</i> and put your finger up at them. This is the job.');
   } },
-    { label: 'Smile back', handler: (st: GameState) => {
+      { label: 'Smile back', handler: (st: GameState) => {
     scene.text('Doesn\'t matter to you if they look. Let them. You know your role in this. And that\'s being a hot piece of ass. If they\'re looking, it means you\'re working.');
     scene.text('You smile back.');
     scene.text('Besides. It\'s a compliment.');
+  } },
+    ]);
   } },
   ]);
   scene.build();
@@ -869,40 +872,49 @@ function enterOfferCiga1(s: GameState, scene: SceneBuilder): void {
 function enterBrushingTeeth(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/home/bathroom/brush_teeth_watch.jpg');
   scene.text(`You catch ${(((s as any).npc_usedname ?? 0)?.[String((s as any).npcID ?? 0)] ?? '')} watching you brush your teeth.`);
-  // TODO-QSP: act'"What?"':
-  scene.text('"What?" you mumble around the brush and toothpaste in your mouth.');
-  if (((s as any).npc_fav_body_part ?? 0)?.[String((s as any).npcID ?? 0)] === 'ass') {
-    scene.text('"I\'m just enjoying the view," he grins and you realize he\'s ogling your naked ass.');
-  } else {
-    scene.text('"Nothing," he says, smiling at you.');
-  }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBrushTeethRollEyes(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBrushTeethAssShake(s, scene); (s as any).locArgs = __savedLocArgs; }
-  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBrushTeethRollEyes(s, scene); (s as any).locArgs = __savedLocArgs; }
-  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBrushTeethAssShake(s, scene); (s as any).locArgs = __savedLocArgs; }
+  scene.actions([
+    { label: '"What?"', handler: (st: GameState) => {
+    scene.text('"What?" you mumble around the brush and toothpaste in your mouth.');
+    if (((st as any).npc_fav_body_part ?? 0)?.[String((st as any).npcID ?? 0)] === 'ass') {
+      scene.text('"I\'m just enjoying the view," he grins and you realize he\'s ogling your naked ass.');
+    } else {
+      scene.text('"Nothing," he says, smiling at you.');
+    }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBrushTeethRollEyes(st, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBrushTeethAssShake(st, scene); (st as any).locArgs = __savedLocArgs; }
+  } },
+  ]);
   scene.build();
 }
 
 function enterBrushTeethRollEyes(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: act'Roll your eyes':
-  scene.text('You roll your eyes to yourself, continuing what you\'re doing.');
-  scene.text('<i>Boys...</i>');
   scene.actions([
-    { label: 'Continue', goto: ['sex_ev_after', 'bathroom_after'] },
+    { label: 'Roll your eyes', handler: (st: GameState) => {
+    scene.text('You roll your eyes to yourself, continuing what you\'re doing.');
+    scene.text('<i>Boys...</i>');
+    scene.actions([
+      { label: 'Continue', goto: ['sex_ev_after', 'bathroom_after'] },
+    ]);
+  } },
   ]);
   scene.build();
 }
 
 function enterBrushTeethAssShake(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: act'Shake your ass at him':
-  if (((s as any).npc_fav_body_part ?? 0)?.[String((s as any).npcID ?? 0)] === 'ass') {
-    scene.text('"I bet you are."');
-  } else {
-    scene.text('"Yeah. Sure."');
-  }
-  scene.text('You grin back, shaking your ass for him.');
   scene.actions([
-    { label: 'Continue', goto: ['sex_ev_after', 'bathroom_after'] },
+    { label: 'Shake your ass at him', handler: (st: GameState) => {
+    if (((st as any).npc_fav_body_part ?? 0)?.[String((st as any).npcID ?? 0)] === 'ass') {
+      scene.text('"I bet you are."');
+    } else {
+      scene.text('"Yeah. Sure."');
+    }
+    scene.text('You grin back, shaking your ass for him.');
+    scene.actions([
+      { label: 'Continue', goto: ['sex_ev_after', 'bathroom_after'] },
+    ]);
+  } },
   ]);
   scene.build();
 }

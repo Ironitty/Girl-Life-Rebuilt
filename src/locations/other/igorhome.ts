@@ -208,7 +208,6 @@ function enterIgorroom(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'Agree', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 20;
-    // TODO-QSP: !! if they are dating I will add a new version but have not ...
   }, goto: ['pav_disco', ''] },
           { label: 'Decline and go home', goto: ['pav_residential', ''] },
           { label: 'Decline and chat instead', goto: ['igorhome', 'chat'] },

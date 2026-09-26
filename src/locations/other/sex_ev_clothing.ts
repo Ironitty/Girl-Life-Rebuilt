@@ -377,8 +377,8 @@ function enterDressLoopCode(s: GameState, scene: SceneBuilder): void {
   if (((s as any).clothingworntype ?? 0) === 'nude') {
     scene.text('<b>Failsafe:</b> dressing did not happen properly. You are not wearing clothes.');
     scene.text('Stored clothing values:');
-    // TODO-QSP: "  $lastwornclothingtype['sex_ev'] = '<<$lastwornclothingtype['sex_ev']>>'"
-    // TODO-QSP: "  lastwornclothingnumber['sex_ev'] = <<lastwornclothingnumber['sex_ev']>>"
+    scene.text(`  $lastwornclothingtype['sex_ev'] = '${(((s as any).lastwornclothingtype ?? 0)?.['sex_ev'] ?? '')}'`);
+    scene.text(`  lastwornclothingnumber['sex_ev'] = ${(((s as any).lastwornclothingnumber ?? 0)?.['sex_ev'] ?? '')}`);
     ((s as any).sex_ev = (s as any).sex_ev ?? {})['dress_end'] = 2;
     return;
   }
@@ -439,8 +439,8 @@ function enterDressLoopCode(s: GameState, scene: SceneBuilder): void {
       if (((s as any).shoeworntype ?? 0) === 'none') {
         scene.text('<b>Failsafe:</b> dressing did not happen properly. You are not wearing shoes.');
         scene.text('Stored shoe values:');
-        // TODO-QSP: "  $lastwornshoetype['sex_ev'] = '<<$lastwornshoetype['sex_ev']>>'"
-        // TODO-QSP: "  lastwornshoenumber['sex_ev'] = '<<lastwornshoenumber['sex_ev']>>'"
+        scene.text(`  $lastwornshoetype['sex_ev'] = '${(((s as any).lastwornshoetype ?? 0)?.['sex_ev'] ?? '')}'`);
+        scene.text(`  lastwornshoenumber['sex_ev'] = '${(((s as any).lastwornshoenumber ?? 0)?.['sex_ev'] ?? '')}'`);
         ((s as any).sex_ev = (s as any).sex_ev ?? {})['dress_end'] = 2;
         return;
       }

@@ -377,14 +377,18 @@ function enterYakovDick(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).Yakov ?? 0)?.['hj'] > 1) {
     scene.text(`-you jerked him off ${(((s as any).Yakov ?? 0)?.['hj'] ?? '')} times`);
-    // TODO-QSP: if Yakov['hjFail'] > 1: ' and failed to make him cum with your hands <<Yakov[''hjFail'']>> times'
+    if (((s as any).Yakov ?? 0)?.['hjFail'] > 1) {
+      scene.text(` and failed to make him cum with your hands ${(((s as any).Yakov ?? 0)?.['hjFail'] ?? '')} times`);
+    }
   }
   if (((s as any).Yakov ?? 0)?.['bj'] === 1) {
     scene.text('-you have given him a blowjob');
   }
   if (((s as any).Yakov ?? 0)?.['bj'] > 1) {
     scene.text(`-you have given him ${(((s as any).Yakov ?? 0)?.['bj'] ?? '')} blowjobs`);
-    // TODO-QSP: if Yakov['bjFail'] > 1: ' and failed to make him cum with your mouth <<Yakov[''bjFail'']>> times'
+    if (((s as any).Yakov ?? 0)?.['bjFail'] > 1) {
+      scene.text(` and failed to make him cum with your mouth ${(((s as any).Yakov ?? 0)?.['bjFail'] ?? '')} times`);
+    }
   }
   if (((s as any).Yakov ?? 0)?.['bjDeep'] === 1) {
     scene.text('-you have given him a blowjob with deepthroat');

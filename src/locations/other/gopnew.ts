@@ -321,7 +321,7 @@ function enterStart5(s: GameState, scene: SceneBuilder): void {
       scene.text('"Got the money?" he asks intently.');
       if (qspFunc(s, 'money', 'can_afford', 2000, 'cash') === 1) {
         scene.actions([
-          { label: 'Give him the money ( [2000₽]...]', handler: (st: GameState) => {
+          { label: '', labelFn: (s: GameState) => String('Give him the money (' + qspFunc(s, 'money', 'string_price', 2000) + ')' ?? ''), handler: (st: GameState) => {
     qspCall(st, 'money', 'pay', 2000, 'cash');
     (st as any).gopopusday = ((st as any).daystart ?? 0);
     scene.text('\'You offer him the 2000₽ he expects from you. He counts it quickly and gives you an affirmative grunt.\'');
@@ -383,7 +383,7 @@ function enterStart5(s: GameState, scene: SceneBuilder): void {
         scene.text('"Do you have cum in your ears or something, slut? We asked you a question! Where\'s our fucking money?" Vasan shouts.');
         if (qspFunc(s, 'money', 'can_afford', 2000, 'cash') === 1) {
           scene.actions([
-            { label: 'Give him the money ( [2000₽]...]', handler: (st: GameState) => {
+            { label: '', labelFn: (s: GameState) => String('Give him the money (' + qspFunc(s, 'money', 'string_price', 2000) + ')' ?? ''), handler: (st: GameState) => {
     qspCall(st, 'money', 'pay', 2000, 'cash');
     (st as any).gopopusday = ((st as any).daystart ?? 0);
     scene.text('\'You offer him the 2000₽ he expects from you. He counts it quickly and gives you an affirmative grunt.\'');

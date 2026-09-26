@@ -90,16 +90,13 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((st as any).TPmainQW ?? 0) === 1) {
       if (((st as any).npc_has_sex ?? 0)?.['A50']  &&  (!((st as any).StVaGang ?? 0))) {
         scene.text('');
-        // TODO-QSP: !! Sveta gave Stas, he did not consider her a whore, and wants to continue the relationship
       }
       if (((st as any).npc_has_sex ?? 0)?.['A50'] === 0) {
         scene.text('');
-        // TODO-QSP: !! Sveta gave Stas, he did not consider her a whore, and wants to continue the relationship
       }
     }
     if (((st as any).StVaGang ?? 0) > 0) {
       scene.text('');
-      // TODO-QSP: !! Stas and Valera believe whore Sveta
     }
     scene.actions([
       { label: 'Leave', goto: ['city_smalloffice', 'start'] },

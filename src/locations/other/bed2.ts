@@ -99,13 +99,13 @@ function enterMain(s: GameState, scene: SceneBuilder): void {
 function enterWearPantiesDecider(s: GameState, scene: SceneBuilder): void {
   if (((s as any).hypnoPanty ?? 0) <= 0) {
     if (((s as any).sleepVars ?? 0)?.['bedPanty'] === 0) {
-      scene.text('Will you always wear your underwear to bed? Currently - <a href="#" onclick="window.__gameStore.setState((s) => { (s.sleepVars ??= {})\u0027bedPanty\u0027 = s.1; return s; }); window.__gameStore.getState().doGoto(\u0027stat\u0027 & gt \u0027bed2\u0027, \u0027main\u0027); return false;">AS IS</a>.');
+      scene.text('Will you always wear your underwear to bed? Currently - <a href="#" onclick="window.__gameStore.setState((s) => { (s.sleepVars ??= {})\u0027bedPanty\u0027 = 1; return s; }); window.__gameStore.getState().doGoto(\u0027stat\u0027 & gt \u0027bed2\u0027, \u0027main\u0027); return false;">AS IS</a>.');
     } else {
       if (((s as any).sleepVars ?? 0)?.['bedPanty'] === 1) {
-        scene.text('Will you always wear your underwear to bed? Currently - <a href="#" onclick="window.__gameStore.setState((s) => { (s.sleepVars ??= {})\u0027bedPanty\u0027 = s.2; return s; }); window.__gameStore.getState().doGoto(\u0027stat\u0027 & gt \u0027bed2\u0027, \u0027main\u0027); return false;">YES</a>.');
+        scene.text('Will you always wear your underwear to bed? Currently - <a href="#" onclick="window.__gameStore.setState((s) => { (s.sleepVars ??= {})\u0027bedPanty\u0027 = 2; return s; }); window.__gameStore.getState().doGoto(\u0027stat\u0027 & gt \u0027bed2\u0027, \u0027main\u0027); return false;">YES</a>.');
       } else {
         if (((s as any).sleepVars ?? 0)?.['bedPanty'] === 2) {
-          scene.text('Will you always wear your underwear to bed? Currently - <a href="#" onclick="window.__gameStore.setState((s) => { (s.sleepVars ??= {})\u0027bedPanty\u0027 = s.0; return s; }); window.__gameStore.getState().doGoto(\u0027stat\u0027 & gt \u0027bed2\u0027, \u0027main\u0027); return false;">NO</a>.');
+          scene.text('Will you always wear your underwear to bed? Currently - <a href="#" onclick="window.__gameStore.setState((s) => { (s.sleepVars ??= {})\u0027bedPanty\u0027 = 0; return s; }); window.__gameStore.getState().doGoto(\u0027stat\u0027 & gt \u0027bed2\u0027, \u0027main\u0027); return false;">NO</a>.');
         }
       }
     }
@@ -116,10 +116,10 @@ function enterWearPantiesDecider(s: GameState, scene: SceneBuilder): void {
 function enterWearButtplugDecider(s: GameState, scene: SceneBuilder): void {
   if (((s as any).mc_inventory ?? 0)?.['buttplug'] === 1) {
     if (((s as any).sleepVars ?? 0)?.['bedAnal'] === 0) {
-      scene.text('Should you always remove your anal plug before bed? Currently - <a href="#" onclick="window.__gameStore.setState((s) => { (s.sleepVars ??= {})\u0027bedAnal\u0027 = s.1; return s; }); window.__gameStore.getState().doGoto(\u0027stat\u0027 & gt \u0027bed2\u0027, \u0027main\u0027); return false;">NO</a>.');
+      scene.text('Should you always remove your anal plug before bed? Currently - <a href="#" onclick="window.__gameStore.setState((s) => { (s.sleepVars ??= {})\u0027bedAnal\u0027 = 1; return s; }); window.__gameStore.getState().doGoto(\u0027stat\u0027 & gt \u0027bed2\u0027, \u0027main\u0027); return false;">NO</a>.');
     } else {
       if (((s as any).sleepVars ?? 0)?.['bedAnal'] === 1) {
-        scene.text('Should you always remove your anal plug before bed? Currently - <a href="#" onclick="window.__gameStore.setState((s) => { (s.sleepVars ??= {})\u0027bedAnal\u0027 = s.0; return s; }); window.__gameStore.getState().doGoto(\u0027stat\u0027 & gt \u0027bed2\u0027, \u0027main\u0027); return false;">YES</a>.');
+        scene.text('Should you always remove your anal plug before bed? Currently - <a href="#" onclick="window.__gameStore.setState((s) => { (s.sleepVars ??= {})\u0027bedAnal\u0027 = 0; return s; }); window.__gameStore.getState().doGoto(\u0027stat\u0027 & gt \u0027bed2\u0027, \u0027main\u0027); return false;">YES</a>.');
       }
     }
   }
@@ -129,10 +129,10 @@ function enterWearButtplugDecider(s: GameState, scene: SceneBuilder): void {
 function enterWearVibeDecider(s: GameState, scene: SceneBuilder): void {
   if (((s as any).mc_inventory ?? 0)?.['vibe'] === 1  &&  ((s as any).cheatVars ?? 0)?.['sleep_vib'] === 1) {
     if (((s as any).sleepVars ?? 0)?.['bedVibrator'] === 0) {
-      scene.text('Should you always remove your vibrator before bed? Currently - <a href="#" onclick="window.__gameStore.setState((s) => { (s.sleepVars ??= {})\u0027bedVibrator\u0027 = s.1; return s; }); window.__gameStore.getState().doGoto(\u0027stat\u0027 & gt \u0027bed2\u0027, \u0027main\u0027); return false;">NO</a>.');
+      scene.text('Should you always remove your vibrator before bed? Currently - <a href="#" onclick="window.__gameStore.setState((s) => { (s.sleepVars ??= {})\u0027bedVibrator\u0027 = 1; return s; }); window.__gameStore.getState().doGoto(\u0027stat\u0027 & gt \u0027bed2\u0027, \u0027main\u0027); return false;">NO</a>.');
     } else {
       if (((s as any).sleepVars ?? 0)?.['bedVibrator'] === 1) {
-        scene.text('Should you always remove your vibrator before bed? Currently - <a href="#" onclick="window.__gameStore.setState((s) => { (s.sleepVars ??= {})\u0027bedVibrator\u0027 = s.0; return s; }); window.__gameStore.getState().doGoto(\u0027stat\u0027 & gt \u0027bed2\u0027, \u0027main\u0027); return false;">YES</a>.');
+        scene.text('Should you always remove your vibrator before bed? Currently - <a href="#" onclick="window.__gameStore.setState((s) => { (s.sleepVars ??= {})\u0027bedVibrator\u0027 = 0; return s; }); window.__gameStore.getState().doGoto(\u0027stat\u0027 & gt \u0027bed2\u0027, \u0027main\u0027); return false;">YES</a>.');
       }
     }
   }

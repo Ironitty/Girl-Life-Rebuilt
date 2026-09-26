@@ -360,7 +360,7 @@ function enterLecture(s: GameState, scene: SceneBuilder): void {
     (s as any).result = qspFunc(s, 'uniutil', 'lecture', 'offered_today')  &&  ((s as any).hour ?? 0) < qspFunc(s, 'uniutil', 'lecture', 'start_hour');
   }
   if (String((s as any).locArgs?.[1] ?? '') === 'print_start_month') {
-    (s as any).result = qspUntranslated(s, "monthName[func('uniutil', 'lecture', 'start_month', ARGS[2])]", { location: "uniutil" });
+    (s as any).result = (((s as any).monthName ?? 0)?.[qspFunc(s, 'uniutil', 'lecture', 'start_month', ((s as any).locArgs?.[2] ?? 0))] ?? 0);
   }
   if (String((s as any).locArgs?.[1] ?? '') === 'print_months') {
     (s as any).unilect_idx = qspFunc(s, 'uniutil', 'lecture', 'start_month', ((s as any).locArgs?.[2] ?? 0));
@@ -399,7 +399,7 @@ function enterExam(s: GameState, scene: SceneBuilder): void {
     (s as any).result = qspFunc(s, 'uniutil', 'exam', 'offered_this_month')  &&  ((s as any).week ?? 0) < 6;
   }
   if (String((s as any).locArgs?.[1] ?? '') === 'print_month') {
-    (s as any).result = qspUntranslated(s, "monthName[func('uniutil', 'exam', 'month', ARGS[2])]", { location: "uniutil" });
+    (s as any).result = (((s as any).monthName ?? 0)?.[qspFunc(s, 'uniutil', 'exam', 'month', ((s as any).locArgs?.[2] ?? 0))] ?? 0);
   }
   return;
   scene.build();

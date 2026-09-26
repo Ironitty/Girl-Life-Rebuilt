@@ -157,7 +157,7 @@ function enterPayTheRoom(s: GameState, scene: SceneBuilder): void {
     (s as any).hotel_room_id = undefined;
   } else {
     scene.actions([
-      { label: 'Pay ( [+$func(\'money\', \'string_price\', totalCost...]', handler: (st: GameState) => {
+      { label: '', labelFn: (s: GameState) => String('Pay (' + qspFunc(s, 'money', 'string_price', ((s as any).totalCost ?? '')) + ')' ?? ''), handler: (st: GameState) => {
     qspCall(st, 'money', 'pay', ((st as any).totalCost ?? 0));
     ((st as any).HotelRoom = (st as any).HotelRoom ?? {})['city'] = ((st as any).hotel_room_id ?? 0);
     ((st as any).hotelRoomDays = (st as any).hotelRoomDays ?? {})['city'] = ((st as any).daystart ?? 0) + (((st as any).hotelRoomDays ?? {})?.['city'] ?? 0);

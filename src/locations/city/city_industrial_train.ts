@@ -29,7 +29,7 @@ function enterOutside(s: GameState, scene: SceneBuilder): void {
   if (qspFunc(s, 'car_funcs', 'is_here')) {
     scene.text(`In the parking lot is <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027carF/u0027, /u0027start/u0027); return false;">your ${(((s as any).car ?? 0)?.['name'] ?? '')}</a>.`);
   }
-  scene.text('There is a path leading off in to the distance, in the direction of the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.60; return s; }); window.__gameStore.getState().doGoto(\u0027city_lake\u0027, \u0027start\u0027); return false;">lake</a>.');
+  scene.text('There is a path leading off in to the distance, in the direction of the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=60; return s; }); window.__gameStore.getState().doGoto(\u0027city_lake\u0027, \u0027start\u0027); return false;">lake</a>.');
   scene.actions([
     { label: 'Walk to the City Industrial Region', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 15;

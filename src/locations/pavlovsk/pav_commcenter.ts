@@ -28,7 +28,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).hour ?? 0) >= 20  &&  ((s as any).hour ?? 0) <= 23  &&  ((s as any).week ?? 0) >= 5  &&  ((s as any).week ?? 0) < 7) {
       scene.text('The entrance to the community center is full of young people. The guys are hanging around smoking and joking while the girls are in small groups, all dressed up and gossiping. You see the bushes moving - Pavlovsk\'s famous make out garden.');
-      scene.text('You hear people in the alley beside the club. <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(\u0027pav_commcenter\u0027, \u0027alley\u0027); return false;">Investigate</a>.');
+      scene.text('You hear people in the alley beside the club. <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=5; return s; }); window.__gameStore.getState().doGoto(\u0027pav_commcenter\u0027, \u0027alley\u0027); return false;">Investigate</a>.');
       if (((s as any).gdkincum ?? 0) === ((s as any).daystart ?? 0)  &&  (((s as any).cumloc ?? 0)[6] === 0  &&  ((s as any).cumloc ?? 0)[7] === 0)  &&  ((s as any).cumloc ?? 0)[11] === 0) {
         (s as any).gdkincum = 0;
       }
@@ -40,7 +40,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
         } else {
           if (qspFunc(s, 'money', 'can_afford', 25) === 1) {
             scene.actions([
-              { label: 'Go to the dance ( [25₽])\']', handler: (st: GameState) => {
+              { label: '\'Go to the dance (25₽)\'', handler: (st: GameState) => {
     qspCall(st, 'money', '');
     (st as any).minut = ((st as any).minut ?? 0) + 1;
   }, goto: ['pav_disco', ''] },

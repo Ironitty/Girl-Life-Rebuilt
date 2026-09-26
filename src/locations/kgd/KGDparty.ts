@@ -4,7 +4,7 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
   if (((s as any).KDG ?? 0)?.['razm'] === 0) {
-    scene.text(`<table><tr><td>Hero:</td><td>Level: ${(((s as any).KGD ?? 0)?.['lvl'] ?? '')} </td><td>HP: ${(((s as any).KDG ?? 0)?.['HP'] ?? '')} </td><td>Damage: ${(((s as any).KGD ?? 0)?.['damage'] ?? '')}.</td><td><a href="#" onclick="window.__gameStore.setState((s) => { (s.KDG ??= {})/u0027razm/u0027 = s.1; (s.KGD ??= {})/u0027subsp/u0027 = s.1; return s; }); window.__gameStore.getState().doGoto(/u0027KGDparty/u0027, /u0027kgddin/u0027); return false;">Post</a></td></tr></table>`);
+    scene.text(`<table><tr><td>Hero:</td><td>Level: ${(((s as any).KGD ?? 0)?.['lvl'] ?? '')} </td><td>HP: ${(((s as any).KDG ?? 0)?.['HP'] ?? '')} </td><td>Damage: ${(((s as any).KGD ?? 0)?.['damage'] ?? '')}.</td><td><a href="#" onclick="window.__gameStore.setState((s) => { (s.KDG ??= {})/u0027razm/u0027 = 1; (s.KGD ??= {})/u0027subsp/u0027 = 1; return s; }); window.__gameStore.getState().doGoto(/u0027KGDparty/u0027, /u0027kgddin/u0027); return false;">Post</a></td></tr></table>`);
   } else {
     scene.text(`<table><tr><td>Hero:</td><td>Level: ${(((s as any).KGD ?? 0)?.['lvl'] ?? '')} </td><td>HP: ${(((s as any).KDG ?? 0)?.['HP'] ?? '')} </td><td>Damage: ${(((s as any).KGD ?? 0)?.['damage'] ?? '')}.</td></tr></table>`);
   }

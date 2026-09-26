@@ -39,40 +39,40 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).pcs_hairlng ?? 0) > 80  &&  (!((s as any).hbraids ?? 0))) {
         if (((s as any).mc_inventory ?? 0)?.['scrunchies'] >= 1  &&  ((s as any).hscrunchw ?? 0) + ((s as any).hpingripw ?? 0) === 0) {
-          ((s as any).serv = (s as any).serv ?? {})['ponytail'] = '<a href="#" onclick="window.__gameStore.setState((s) => { s.hscrunchw = s.1; return s; }); window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027start\u0027); return false;"><img src="images/system/icons/action/scrunchy.png"></a>';
-          ((s as any).serv = (s as any).serv ?? {})['ponytail desc'] = 'As you have a scrunchy, you can arrange your hair into a <a href="#" onclick="window.__gameStore.setState((s) => { s.hscrunchw = s.1; return s; }); window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027start\u0027); return false;">ponytail</a>. You have <b>' + (((s as any).mc_inventory ?? 0)?.['scrunchies']) + '</b> scrunchies left.';
+          ((s as any).serv = (s as any).serv ?? {})['ponytail'] = '<a href="#" onclick="window.__gameStore.setState((s) => { s.hscrunchw = 1; return s; }); window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027start\u0027); return false;"><img src="images/system/icons/action/scrunchy.png"></a>';
+          ((s as any).serv = (s as any).serv ?? {})['ponytail desc'] = 'As you have a scrunchy, you can arrange your hair into a <a href="#" onclick="window.__gameStore.setState((s) => { s.hscrunchw = 1; return s; }); window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027start\u0027); return false;">ponytail</a>. You have <b>' + (((s as any).mc_inventory ?? 0)?.['scrunchies']) + '</b> scrunchies left.';
         }
         if (((s as any).pcs_hairlng ?? 0) <= 400  &&  ((s as any).mc_inventory ?? 0)?.['kirbygrips'] >= 1  &&  ((s as any).hscrunchw ?? 0) + ((s as any).hpingripw ?? 0) === 0) {
-          ((s as any).serv = (s as any).serv ?? {})['bun'] = '<a href="#" onclick="window.__gameStore.setState((s) => { s.hpingripw = s.1; return s; }); window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027start\u0027); return false;"><img src="images/system/icons/action/clips_pins_grips.png"></a>';
-          ((s as any).serv = (s as any).serv ?? {})['bun desc'] = 'You have several clips, pins and grips for you hair. Hence, you can <a href="#" onclick="window.__gameStore.setState((s) => { s.hpingripw = s.1; return s; }); window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027start\u0027); return false;">updo your hair</a>. You have <b>' + (((s as any).mc_inventory ?? 0)?.['kirbygrips']) + '</b> hair accessories at your disposal.';
+          ((s as any).serv = (s as any).serv ?? {})['bun'] = '<a href="#" onclick="window.__gameStore.setState((s) => { s.hpingripw = 1; return s; }); window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027start\u0027); return false;"><img src="images/system/icons/action/clips_pins_grips.png"></a>';
+          ((s as any).serv = (s as any).serv ?? {})['bun desc'] = 'You have several clips, pins and grips for you hair. Hence, you can <a href="#" onclick="window.__gameStore.setState((s) => { s.hpingripw = 1; return s; }); window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027start\u0027); return false;">updo your hair</a>. You have <b>' + (((s as any).mc_inventory ?? 0)?.['kirbygrips']) + '</b> hair accessories at your disposal.';
         }
         if (((s as any).pcs_hairlng ?? 0) <= 800  &&  ((s as any).mc_inventory ?? 0)?.['scrunchies'] >= 1) {
           if (((s as any).mc_inventory ?? 0)?.['scrunchies'] >= 2  &&  ((s as any).hscrunchw ?? 0) + ((s as any).hpingripw ?? 0) === 0) {
-            ((s as any).serv = (s as any).serv ?? {})['pigtails'] = '<a href="#" onclick="window.__gameStore.setState((s) => { s.hpigtail = s.1; s.hscrunchw = s.2; return s; }); window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027start\u0027); return false;"><img src="images/system/icons/action/hair_ties.png"></a>';
-            ((s as any).serv = (s as any).serv ?? {})['pigtails desc'] = 'You can use two hair ties to make yourself some <a href="#" onclick="window.__gameStore.setState((s) => { s.hpigtail = s.1; s.hscrunchw = s.2; return s; }); window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027start\u0027); return false;">pigtails</a>.';
+            ((s as any).serv = (s as any).serv ?? {})['pigtails'] = '<a href="#" onclick="window.__gameStore.setState((s) => { s.hpigtail = 1; s.hscrunchw = 2; return s; }); window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027start\u0027); return false;"><img src="images/system/icons/action/hair_ties.png"></a>';
+            ((s as any).serv = (s as any).serv ?? {})['pigtails desc'] = 'You can use two hair ties to make yourself some <a href="#" onclick="window.__gameStore.setState((s) => { s.hpigtail = 1; s.hscrunchw = 2; return s; }); window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027start\u0027); return false;">pigtails</a>.';
           }
           if (((s as any).canBraidHair ?? 0) === 1  &&  ((s as any).hscrunchw ?? 0) + ((s as any).hpingripw ?? 0) + ((s as any).hpigtail ?? 0) === 0) {
-            ((s as any).serv = (s as any).serv ?? {})['braid'] = '<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=pcs_hairlng/10; s.hbraids = s.15; return s; }); window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027start\u0027); return false;"><img src="images/system/icons/action/braiding.png"></a>';
-            ((s as any).serv = (s as any).serv ?? {})['braid desc'] = 'You can spend ' + ((s as any).pcs_hairlng ?? 0)/10 + ' minutes <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=pcs_hairlng/10; s.hbraids = s.15; return s; }); window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027start\u0027); return false;">braiding</a> your hair, just the way your sister taught you.';
+            ((s as any).serv = (s as any).serv ?? {})['braid'] = '<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=pcs_hairlng/10; s.hbraids = 15; return s; }); window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027start\u0027); return false;"><img src="images/system/icons/action/braiding.png"></a>';
+            ((s as any).serv = (s as any).serv ?? {})['braid desc'] = 'You can spend ' + ((s as any).pcs_hairlng ?? 0)/10 + ' minutes <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=pcs_hairlng/10; s.hbraids = 15; return s; }); window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027start\u0027); return false;">braiding</a> your hair, just the way your sister taught you.';
           }
         }
       }
     }
     if (((s as any).hscrunchw ?? 0) === 1) {
-      ((s as any).serv = (s as any).serv ?? {})['ponytail'] = '<a href="#" onclick="window.__gameStore.setState((s) => { s.hscrunchw = s.0; return s; }); window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027start\u0027); return false;"><img src="images/system/icons/action/ponytail.png"></a>';
-      ((s as any).serv = (s as any).serv ?? {})['ponytail desc'] = 'Remove the <a href="#" onclick="window.__gameStore.setState((s) => { s.hscrunchw = s.0; return s; }); window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027start\u0027); return false;">scrunchie</a> to get rid of the ponytail.';
+      ((s as any).serv = (s as any).serv ?? {})['ponytail'] = '<a href="#" onclick="window.__gameStore.setState((s) => { s.hscrunchw = 0; return s; }); window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027start\u0027); return false;"><img src="images/system/icons/action/ponytail.png"></a>';
+      ((s as any).serv = (s as any).serv ?? {})['ponytail desc'] = 'Remove the <a href="#" onclick="window.__gameStore.setState((s) => { s.hscrunchw = 0; return s; }); window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027start\u0027); return false;">scrunchie</a> to get rid of the ponytail.';
     }
     if (((s as any).hscrunchw ?? 0) === 2) {
-      ((s as any).serv = (s as any).serv ?? {})['pigtails'] = '<a href="#" onclick="window.__gameStore.setState((s) => { s.hpigtail = s.0; s.hscrunchw = s.0; return s; }); window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027start\u0027); return false;"><img src="images/system/icons/action/pigtails.png"></a>';
-      ((s as any).serv = (s as any).serv ?? {})['pigtails desc'] = '<a href="#" onclick="window.__gameStore.setState((s) => { s.hpigtail = s.0; s.hscrunchw = s.0; return s; }); window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027start\u0027); return false;">Remove</a> your scrunchies and let your hair flow free again.';
+      ((s as any).serv = (s as any).serv ?? {})['pigtails'] = '<a href="#" onclick="window.__gameStore.setState((s) => { s.hpigtail = 0; s.hscrunchw = 0; return s; }); window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027start\u0027); return false;"><img src="images/system/icons/action/pigtails.png"></a>';
+      ((s as any).serv = (s as any).serv ?? {})['pigtails desc'] = '<a href="#" onclick="window.__gameStore.setState((s) => { s.hpigtail = 0; s.hscrunchw = 0; return s; }); window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027start\u0027); return false;">Remove</a> your scrunchies and let your hair flow free again.';
     }
     if (((s as any).hpingripw ?? 0) === 1) {
-      ((s as any).serv = (s as any).serv ?? {})['bun'] = '<a href="#" onclick="window.__gameStore.setState((s) => { s.hpingripw = s.0; return s; }); window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027start\u0027); return false;"><img src="images/system/icons/action/bun.png"></a>';
-      ((s as any).serv = (s as any).serv ?? {})['bun desc'] = 'Let your hair <a href="#" onclick="window.__gameStore.setState((s) => { s.hpingripw = s.0; return s; }); window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027start\u0027); return false;">flow free</a>.';
+      ((s as any).serv = (s as any).serv ?? {})['bun'] = '<a href="#" onclick="window.__gameStore.setState((s) => { s.hpingripw = 0; return s; }); window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027start\u0027); return false;"><img src="images/system/icons/action/bun.png"></a>';
+      ((s as any).serv = (s as any).serv ?? {})['bun desc'] = 'Let your hair <a href="#" onclick="window.__gameStore.setState((s) => { s.hpingripw = 0; return s; }); window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027start\u0027); return false;">flow free</a>.';
     }
     if (((s as any).hbraids ?? 0) > 0) {
-      ((s as any).serv = (s as any).serv ?? {})['braid'] = '<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=hbraids*2+pcs_hairlng/50; s.hbraids = s.0; return s; }); window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027start\u0027); return false;"><img src="images/system/icons/action/braid.png"></a>';
-      ((s as any).serv = (s as any).serv ?? {})['braid desc'] = 'Take ' + ((s as any).hbraids ?? 0)*2+((s as any).pcs_hairlng ?? 0)/50 + ' minutes removing your <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=hbraids*2+pcs_hairlng/50; s.hbraids = s.0; return s; }); window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027start\u0027); return false;">braid</a>.';
+      ((s as any).serv = (s as any).serv ?? {})['braid'] = '<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=hbraids*2+pcs_hairlng/50; s.hbraids = 0; return s; }); window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027start\u0027); return false;"><img src="images/system/icons/action/braid.png"></a>';
+      ((s as any).serv = (s as any).serv ?? {})['braid desc'] = 'Take ' + ((s as any).hbraids ?? 0)*2+((s as any).pcs_hairlng ?? 0)/50 + ' minutes removing your <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=hbraids*2+pcs_hairlng/50; s.hbraids = 0; return s; }); window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027start\u0027); return false;">braid</a>.';
     }
     ((s as any).serv = (s as any).serv ?? {})['back'] = '<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027fin\u0027); return false;"><img src="images/system/icons/action/back.png"></a>';
     if (((s as any).mc_inventory ?? 0)?.['lipbalm'] > 0  &&  ((s as any).pcs_lipbalm ?? 0) <= 0) {
@@ -85,8 +85,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       ((s as any).serv = (s as any).serv ?? {})['minklashes'] = '<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: cla */ /* TODO-QSP: act \u0027View results\u0027:gt \u0027mirror\u0027, \u0027start\u0027 */ return s; }); window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027applyLashesmink\u0027 & act \u0027View results\u0027:gt \u0027mirror\u0027, \u0027start\u0027); return false;"><img src="images/system/icons/action/minklashes.png"></a>';
     }
     if (((s as any).pcs_makeup ?? 0) === ((s as any).makeup ?? 0)?.['base']  &&  ((s as any).mc_inventory ?? 0)?.['cosmetics'] > 0) {
-      (s as any).minut = ((s as any).minut ?? 0) + 3;
-      // TODO-QSP: "
+      (s as any).serv4 = '\n*clr & cla\n\'<center><img ' + ((s as any).set_imgh ?? 0) + ' src="images/pc/activities/routine/1.jpg"></center>\'\n\'You consider for a moment which look you want to go for.\'\n*nl\nact \'Change your mind\': gt \'mirror\', \'start\'\nif pcs_makeup < 2 and mc_inventory[\'cosmetics\'] >= 1:\nact \'Light make-up\':\n*clr & cla\nminut += 3\ngs \'exp_gain\', \'makupskl\', rand(1,3)\nmc_inventory[\'cosmetics\'] -= 1\npcs_makeup = 2\n\'' + ((s as any).makeupLight ?? 0) + '\'\nact \'Continue\': gt \'mirror\', \'start\'\nend\nend\nif pcs_makeup < 3 and mc_inventory[\'cosmetics\'] >= 2:\nact \'Vibrant make-up\':\n*clr & cla\nminut += 5\ngs \'exp_gain\', \'makupskl\', rand(1,3)\nmc_inventory[\'cosmetics\'] -= 2\npcs_makeup = 3\n\'' + ((s as any).makeupNatural ?? 0) + '\'\nact \'Continue\': gt \'mirror\', \'start\'\nend\nend\nif mc_inventory[\'cosmetics\'] >= 3:\nif pcs_makeup < 4:\nact \'Thick make-up\':\n*clr & cla\nminut += 10\ngs \'exp_gain\', \'makupskl\', rand(1,3)\nmc_inventory[\'cosmetics\'] -= 3\nvidageday -= 1\npcs_makeup = 4\n\'' + ((s as any).makeupHeavy ?? 0) + '\'\nact \'Continue\': gt \'mirror\', \'start\'\nend\nend\nif pcs_makeup < 6:\nact \'Bimbo make-up\':\n*clr & cla\nminut += 10\ngs \'exp_gain\', \'makupskl\', rand(1,3)\nmc_inventory[\'cosmetics\'] -= 3\nvidageday -= 1\npcs_makeup = 6\n\'' + ((s as any).makeupBimbo ?? 0) + '\'\nact \'Continue\': gt \'mirror\', \'start\'\nend\nend\nif pcs_makeup < 6:\nact \'Goth make-up\':\n*clr & cla\nminut += 10\ngs \'exp_gain\', \'makupskl\', rand(1,3)\nmc_inventory[\'cosmetics\'] -= 3\nvidageday -= 1\npcs_makeup = 7\n\'' + ((s as any).makeupGoth ?? 0) + '\'\nact \'Continue\': gt \'mirror\', \'start\'\nend\nend\nact \'Smeared make-up\':\n*clr & cla\nminut += 5\ngs \'exp_gain\', \'makupskl\', rand(1,3)\nmc_inventory[\'cosmetics\'] -= 3\npcs_makeup = 0\n\'' + ((s as any).makeupSmeared ?? 0) + '\'\nact \'Continue\': gt \'mirror\', \'start\'\nend\nend\n';
       ((s as any).serv = (s as any).serv ?? {})['makeup'] = '<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: dynamic $serv4 */ return s; }); return false;"><img src="images/system/icons/action/makeup.png"></a>';
     }
     scene.text(`<center><table align=center cellspacing=0 cellpadding=0><tr><td align=center colspan=15>${(((s as any).serv ?? 0)?.['avatar'] ?? '')}</td></tr><tr><td colspan=15><hr></td></tr><tr><td align=center>${(((s as any).serv ?? 0)?.['falselashes'] ?? '')}</td>  <td align=center>${(((s as any).serv ?? 0)?.['minklashes'] ?? '')}</td><td align=center>${(((s as any).serv ?? 0)?.['lipbalm'] ?? '')}</td><td align=center>${(((s as any).serv ?? 0)?.['makeup'] ?? '')}</td><td align=center>${(((s as any).serv ?? 0)?.['ponytail'] ?? '')}</td><td align=center>${(((s as any).serv ?? 0)?.['bun'] ?? '')}</td><td align=center>${(((s as any).serv ?? 0)?.['pigtails'] ?? '')}</td><td align=center>${(((s as any).serv ?? 0)?.['braid'] ?? '')}</td><td align=center>${(((s as any).serv ?? 0)?.['hairbrush'] ?? '')}</td><td align=center>${(((s as any).serv ?? 0)?.['back'] ?? '')}</td></tr></table></center>`);
@@ -105,7 +104,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     if (((s as any).glass ?? 0) > 0) {
       scene.text(`You are wearing ${(((s as any).pc_descWordy ?? 0)?.['vision'] ?? '')}.`);
     }
-    // TODO-QSP: $pcs_teeth_txt
+    scene.text(String((s as any).pcs_teeth_txt ?? ''));
     scene.text(`${(((s as any).pc_descFull ?? 0)?.['skin'] ?? '')}`);
     if (((s as any).curly ?? 0) > 0  &&  (!((s as any).defcurly ?? 0))) {
       ((s as any).serv = (s as any).serv ?? {})['hhair'] = 'Your curly hair will last for another <b>' + ((s as any).curly ?? 0) + '</b> days.';
@@ -163,7 +162,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       scene.text(`You are wearing ${(((s as any).pc_descWordy ?? 0)?.['vision'] ?? '')}.`);
     }
     scene.text(`You have ${((s as any).pcs_lipbalm_str ?? '')} ${(((s as any).pc_desc ?? 0)?.['lip size'] ?? '')} lips.`);
-    // TODO-QSP: $pcs_teeth_txt
+    scene.text(String((s as any).pcs_teeth_txt ?? ''));
     scene.text(`${(((s as any).pc_descFull ?? 0)?.['skin'] ?? '')}`);
     if (((s as any).curly ?? 0) > 0  &&  (!((s as any).defcurly ?? 0))) {
       scene.text(`<br>Your curly hair will last for another ${((s as any).curly ?? '')} days.`);
@@ -196,31 +195,31 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).pcs_hairbsh ?? 0) > 0  &&  ((s as any).pcs_hairlng ?? 0) > 80  &&  (!((s as any).hbraids ?? 0))) {
       if (((s as any).mc_inventory ?? 0)?.['scrunchies'] >= 1  &&  ((s as any).hscrunchw ?? 0) + ((s as any).hpingripw ?? 0) === 0) {
-        scene.text(`As you have a scrunchy, you can arrange your hair into a <a href="#" onclick="window.__gameStore.setState((s) => { s.hscrunchw = s.1; return s; }); window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027start/u0027); return false;">ponytail</a>. You have ${(((s as any).mc_inventory ?? 0)?.['scrunchies'] ?? '')} scrunchies left.`);
+        scene.text(`As you have a scrunchy, you can arrange your hair into a <a href="#" onclick="window.__gameStore.setState((s) => { s.hscrunchw = 1; return s; }); window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027start/u0027); return false;">ponytail</a>. You have ${(((s as any).mc_inventory ?? 0)?.['scrunchies'] ?? '')} scrunchies left.`);
       }
       if (((s as any).pcs_hairlng ?? 0) <= 400  &&  ((s as any).mc_inventory ?? 0)?.['kirbygrips'] >= 1  &&  ((s as any).hscrunchw ?? 0) + ((s as any).hpingripw ?? 0) === 0) {
-        scene.text(`You have several clips, pins and grips for you hair. Hence, you can <a href="#" onclick="window.__gameStore.setState((s) => { s.hpingripw = s.1; return s; }); window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027start/u0027); return false;">updo your hair</a>. You have ${(((s as any).mc_inventory ?? 0)?.['kirbygrips'] ?? '')} hair accessories at your disposal.`);
+        scene.text(`You have several clips, pins and grips for you hair. Hence, you can <a href="#" onclick="window.__gameStore.setState((s) => { s.hpingripw = 1; return s; }); window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027start/u0027); return false;">updo your hair</a>. You have ${(((s as any).mc_inventory ?? 0)?.['kirbygrips'] ?? '')} hair accessories at your disposal.`);
       }
       if (((s as any).pcs_hairlng ?? 0) <= 800  &&  ((s as any).mc_inventory ?? 0)?.['scrunchies'] >= 1) {
         if (((s as any).mc_inventory ?? 0)?.['scrunchies'] >= 2  &&  ((s as any).hscrunchw ?? 0) + ((s as any).hpingripw ?? 0) === 0) {
-          scene.text('You can use two hair ties to make yourself some <a href="#" onclick="window.__gameStore.setState((s) => { s.hpigtail = s.1; s.hscrunchw = s.2; return s; }); window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027start\u0027); return false;">pigtails</a>.');
+          scene.text('You can use two hair ties to make yourself some <a href="#" onclick="window.__gameStore.setState((s) => { s.hpigtail = 1; s.hscrunchw = 2; return s; }); window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027start\u0027); return false;">pigtails</a>.');
         }
         if (((s as any).canBraidHair ?? 0) === 1  &&  ((s as any).hscrunchw ?? 0) + ((s as any).hpingripw ?? 0) + ((s as any).hpigtail ?? 0) === 0) {
-          scene.text(`You can spend ${((s as any).pcs_hairlng ?? '')/10} minutes <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=pcs_hairlng/10; s.hbraids = s.15; return s; }); window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027start/u0027); return false;">braiding</a> your hair, just the way your sister taught you.`);
+          scene.text(`You can spend ${((s as any).pcs_hairlng ?? '')/10} minutes <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=pcs_hairlng/10; s.hbraids = 15; return s; }); window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027start/u0027); return false;">braiding</a> your hair, just the way your sister taught you.`);
         }
       }
     }
     if (((s as any).hscrunchw ?? 0) === 1) {
-      scene.text('Remove the <a href="#" onclick="window.__gameStore.setState((s) => { s.hscrunchw = s.0; return s; }); window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027start\u0027); return false;">scrunchie</a> to get rid of the ponytail.');
+      scene.text('Remove the <a href="#" onclick="window.__gameStore.setState((s) => { s.hscrunchw = 0; return s; }); window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027start\u0027); return false;">scrunchie</a> to get rid of the ponytail.');
     }
     if (((s as any).hscrunchw ?? 0) === 2) {
-      scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.hpigtail = s.0; s.hscrunchw = s.0; return s; }); window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027start\u0027); return false;">Remove</a> your scrunchies and let your hair flow free again.');
+      scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.hpigtail = 0; s.hscrunchw = 0; return s; }); window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027start\u0027); return false;">Remove</a> your scrunchies and let your hair flow free again.');
     }
     if (((s as any).hpingripw ?? 0) === 1) {
-      scene.text('Let your hair <a href="#" onclick="window.__gameStore.setState((s) => { s.hpingripw = s.0; return s; }); window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027start\u0027); return false;">flow free</a>.');
+      scene.text('Let your hair <a href="#" onclick="window.__gameStore.setState((s) => { s.hpingripw = 0; return s; }); window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027start\u0027); return false;">flow free</a>.');
     }
     if (((s as any).hbraids ?? 0) > 0) {
-      scene.text(`Take ${((s as any).hbraids ?? '')*2+((s as any).pcs_hairlng ?? '')/50} minutes removing your <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=hbraids*2+pcs_hairlng/50; s.hbraids = s.0; return s; }); window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027start/u0027); return false;">braid</a>.`);
+      scene.text(`Take ${((s as any).hbraids ?? '')*2+((s as any).pcs_hairlng ?? '')/50} minutes removing your <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=hbraids*2+pcs_hairlng/50; s.hbraids = 0; return s; }); window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027start/u0027); return false;">braid</a>.`);
     }
   }
   if (((s as any).mc_inventory ?? 0)?.['cosmetics'] > 0) {
@@ -423,17 +422,17 @@ function enterGetMaxCosmeticRoutines(s: GameState, scene: SceneBuilder): void {
 
 function enterRoutineManage(s: GameState, scene: SceneBuilder): void {
   scene.text('Select make-up level');
-  scene.text('iif(makeupSetting = 0,  \' none,\',    \'<a href="#" onclick="window.__gameStore.setState((s) => { s.makeupSetting = s.0; return s; }); window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027routine_manage\u0027); return false;">none</a>,\')');
-  scene.text('iif(makeupSetting = 1,  \' light,\',    \' <a href="#" onclick="window.__gameStore.setState((s) => { s.makeupSetting = s.1; return s; }); window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027routine_manage\u0027); return false;">light</a>,\')');
-  scene.text('iif(makeupSetting = 2,  \' vibrant,\',  \' <a href="#" onclick="window.__gameStore.setState((s) => { s.makeupSetting = s.2; return s; }); window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027routine_manage\u0027); return false;">vibrant</a>,\')');
-  scene.text('iif(makeupSetting = 3,  \' thick,\',    \' <a href="#" onclick="window.__gameStore.setState((s) => { s.makeupSetting = s.3; return s; }); window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027routine_manage\u0027); return false;">thick</a>,\')');
-  scene.text('iif(makeupSetting = 4,  \' smeared,\',  \' <a href="#" onclick="window.__gameStore.setState((s) => { s.makeupSetting = s.4; return s; }); window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027routine_manage\u0027); return false;">smeared</a>,\')');
-  scene.text('iif(makeupSetting = 5,  \' bimbo\',    \' <a href="#" onclick="window.__gameStore.setState((s) => { s.makeupSetting = s.5; return s; }); window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027routine_manage\u0027); return false;">bimbo</a>\')');
+  scene.text('iif(makeupSetting = 0,  \' none,\',    \'<a href="#" onclick="window.__gameStore.setState((s) => { s.makeupSetting = 0; return s; }); window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027routine_manage\u0027); return false;">none</a>,\')');
+  scene.text('iif(makeupSetting = 1,  \' light,\',    \' <a href="#" onclick="window.__gameStore.setState((s) => { s.makeupSetting = 1; return s; }); window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027routine_manage\u0027); return false;">light</a>,\')');
+  scene.text('iif(makeupSetting = 2,  \' vibrant,\',  \' <a href="#" onclick="window.__gameStore.setState((s) => { s.makeupSetting = 2; return s; }); window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027routine_manage\u0027); return false;">vibrant</a>,\')');
+  scene.text('iif(makeupSetting = 3,  \' thick,\',    \' <a href="#" onclick="window.__gameStore.setState((s) => { s.makeupSetting = 3; return s; }); window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027routine_manage\u0027); return false;">thick</a>,\')');
+  scene.text('iif(makeupSetting = 4,  \' smeared,\',  \' <a href="#" onclick="window.__gameStore.setState((s) => { s.makeupSetting = 4; return s; }); window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027routine_manage\u0027); return false;">smeared</a>,\')');
+  scene.text('iif(makeupSetting = 5,  \' bimbo\',    \' <a href="#" onclick="window.__gameStore.setState((s) => { s.makeupSetting = 5; return s; }); window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027routine_manage\u0027); return false;">bimbo</a>\')');
   scene.text('Choose if you will use lipbalm');
-  scene.text('iif(cust_lipbalm = 0, \'no,\', \'<a href="#" onclick="window.__gameStore.setState((s) => { s.cust_lipbalm = s.0; return s; }); window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027routine_manage\u0027); return false;">no</a>,\')');
+  scene.text('iif(cust_lipbalm = 0, \'no,\', \'<a href="#" onclick="window.__gameStore.setState((s) => { s.cust_lipbalm = 0; return s; }); window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027routine_manage\u0027); return false;">no</a>,\')');
   scene.text('Choose lash options');
-  scene.text('iif(custlashes = 0, \'none,\', \'<a href="#" onclick="window.__gameStore.setState((s) => { s.custlashes = s.0; return s; }); window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027routine_manage\u0027); return false;">none</a>,\')');
-  scene.text('iif(custlashes = 1, \' fake,\', \' <a href="#" onclick="window.__gameStore.setState((s) => { s.custlashes = s.1; return s; }); window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027routine_manage\u0027); return false;">fake</a>,\')');
+  scene.text('iif(custlashes = 0, \'none,\', \'<a href="#" onclick="window.__gameStore.setState((s) => { s.custlashes = 0; return s; }); window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027routine_manage\u0027); return false;">none</a>,\')');
+  scene.text('iif(custlashes = 1, \' fake,\', \' <a href="#" onclick="window.__gameStore.setState((s) => { s.custlashes = 1; return s; }); window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027routine_manage\u0027); return false;">fake</a>,\')');
   (s as any).routine = String(((s as any).makeupSetting ?? 0)) + String(((s as any).cust_lipbalm ?? 0)) + String(((s as any).custlashes ?? 0));
   (s as any).temp_routine_index = 0;
   (s as any).temp_max_cosmetic_routines = qspFunc(s, 'mirror', 'get_max_cosmetic_routines');

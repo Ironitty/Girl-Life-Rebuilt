@@ -43,7 +43,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   if (qspFunc(s, 'car_funcs', 'has_car')) {
     if (((s as any).kanistra ?? 0) < 5) {
       scene.actions([
-        { label: 'Buy a canister and fill it with 5 liters of gasoline ( [150₽])...]', handler: (st: GameState) => {
+        { label: '', labelFn: (s: GameState) => String('Buy a canister and fill it with 5 liters of gasoline (' + qspFunc(s, 'money', 'string_price', 150) + ')' ?? ''), handler: (st: GameState) => {
     (st as any).kanistra = ((st as any).kanistra ?? 0) + (1);
     qspCall(st, 'money', 'pay', 150);
     scene.text('You buy a canister of gasoline. (It will automatically be put in the trunk of your car)');

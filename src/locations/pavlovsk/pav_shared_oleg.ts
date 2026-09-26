@@ -453,7 +453,9 @@ function enterOlegDick(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).Oleg ?? 0)?.['bj'] > 1) {
     scene.text(`-you have given him ${(((s as any).Oleg ?? 0)?.['bj'] ?? '')} blowjobs`);
-    // TODO-QSP: if Oleg['bjFail'] > 1: ' and failed to make him cum with your mouth <<Oleg[''bjFail'']>> times'
+    if (((s as any).Oleg ?? 0)?.['bjFail'] > 1) {
+      scene.text(` and failed to make him cum with your mouth ${(((s as any).Oleg ?? 0)?.['bjFail'] ?? '')} times`);
+    }
   }
   if (((s as any).Oleg ?? 0)?.['bjDeep'] === 1) {
     scene.text('-you have given him a blowjob with deepthroat');

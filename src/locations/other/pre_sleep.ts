@@ -136,7 +136,7 @@ function enterPrepareSleep(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).hairstyle ?? 0) !== '') {
-    // TODO-QSP: $hairstyle
+    scene.text(String((s as any).hairstyle ?? ''));
   } else {
     scene.text('Your hair is loose and free.');
   }

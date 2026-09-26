@@ -60,22 +60,22 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.text(`Your <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027carF/u0027, /u0027start/u0027); return false;">${(((s as any).car ?? 0)?.['name'] ?? '')}</a> sits in the parking lot.`);
   }
   qspCall(s, 'taxi', '');
-  scene.text('You have easy access to the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(\u0027train\u0027, \u0027center\u0027); return false;">train station</a> and <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(\u0027metro\u0027, \u0027center\u0027); return false;">the metro</a> is only a short walk from there. Both connect you quickly to other parts of St. Petersburg and the subway is great if you\'re tight on cash. If you can\'t afford either, the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.35; return s; }); window.__gameStore.getState().doGoto(\u0027city_park\u0027, \u0027start\u0027); return false;">central park</a> is a 35 minute walk from here and provides a more scenic route to the other city districts.');
+  scene.text('You have easy access to the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=5; return s; }); window.__gameStore.getState().doGoto(\u0027train\u0027, \u0027center\u0027); return false;">train station</a> and <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=5; return s; }); window.__gameStore.getState().doGoto(\u0027metro\u0027, \u0027center\u0027); return false;">the metro</a> is only a short walk from there. Both connect you quickly to other parts of St. Petersburg and the subway is great if you\'re tight on cash. If you can\'t afford either, the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=35; return s; }); window.__gameStore.getState().doGoto(\u0027city_park\u0027, \u0027start\u0027); return false;">central park</a> is a 35 minute walk from here and provides a more scenic route to the other city districts.');
   if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) < 22) {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
-    (s as any).desc_txt1 = '<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027kiosk\u0027, \u0027start\u0027); return false;">kiosk</a>';
+    (s as any).desc_txt1 = '<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=1; return s; }); window.__gameStore.getState().doGoto(\u0027kiosk\u0027, \u0027start\u0027); return false;">kiosk</a>';
   } else {
     (s as any).desc_txt1 = '<a href="#" onclick="window.__gameStore.setState((s) => { alert(\u0027The Ruch kiosk is closed and will reopen at \u0027+qspFunc(s, \u0027time\u0027, \u0027get_time_string\u0027, 8, 0)+\u0027\u0027); return s; }); return false;">kiosk</a>';
   }
   scene.text(`'The neon green sign of a ${((s as any).desc_txt1 ?? '')} catches your eye. It's open between 8:00 and 22:00 and sells cheap magazines and cigarettes.'`);
   if (((s as any).hour ?? 0) === 8  &&  ((s as any).minut ?? 0) >= 30) {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
-    (s as any).desc_txt1 = '<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027city_mall\u0027, \u0027\u0027); return false;">The Galeria mall</a>';
+    (s as any).desc_txt1 = '<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=1; return s; }); window.__gameStore.getState().doGoto(\u0027city_mall\u0027, \u0027\u0027); return false;">The Galeria mall</a>';
     (s as any).desc_txt2 = '<a href="#" onclick="window.__gameStore.setState((s) => { alert(\u0027The Havana Fitness Center is closed and will reopen at \u0027+qspFunc(s, \u0027time\u0027, \u0027get_time_string\u0027, 9, 0)+\u0027\u0027); return s; }); return false;">Havana Fitness Center</a>';
   } else {
     if (((s as any).hour ?? 0) >= 9  &&  ((s as any).hour ?? 0) <= 20) {
       (s as any).minut = ((s as any).minut ?? 0) + 1;
-      (s as any).desc_txt1 = '<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027city_mall\u0027, \u0027\u0027); return false;">The Galeria mall</a>';
+      (s as any).desc_txt1 = '<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=1; return s; }); window.__gameStore.getState().doGoto(\u0027city_mall\u0027, \u0027\u0027); return false;">The Galeria mall</a>';
       (s as any).desc_txt2 = '<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027havana\u0027, \u0027start\u0027); return false;">Havana Fitness Center</a>';
     } else {
       (s as any).desc_txt1 = '<a href="#" onclick="window.__gameStore.setState((s) => { alert(\u0027The Galeria mall is closed and will reopen at \u0027+qspFunc(s, \u0027time\u0027, \u0027get_time_string\u0027, 8, 30)+\u0027\u0027); return s; }); return false;">The Galeria mall</a>';
@@ -85,13 +85,13 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   scene.text(`${((s as any).desc_txt1 ?? '')} is front and center in the commercial area. Nearby is a ${((s as any).desc_txt2 ?? '')} which has a swimming pool that can be used for a small fee.`);
   if (((s as any).hour ?? 0) >= 6) {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
-    (s as any).desc_txt1 = '<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027foto\u0027, \u0027start\u0027); return false;">Aphrodite Photography</a>';
+    (s as any).desc_txt1 = '<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=1; return s; }); window.__gameStore.getState().doGoto(\u0027foto\u0027, \u0027start\u0027); return false;">Aphrodite Photography</a>';
   } else {
     (s as any).desc_txt1 = '<a href="#" onclick="window.__gameStore.setState((s) => { alert(\u0027Aphrodite Photography is closed and will reopen at \u0027+qspFunc(s, \u0027time\u0027, \u0027get_time_string\u0027, 6, 0)+\u0027\u0027); return s; }); return false;">Aphrodite Photography</a>';
   }
   if (((s as any).hour ?? 0) >= 6) {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
-    (s as any).desc_txt2 = '<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027burger\u0027, \u0027start\u0027); return false;">Diner Bystroeshka</a>';
+    (s as any).desc_txt2 = '<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=1; return s; }); window.__gameStore.getState().doGoto(\u0027burger\u0027, \u0027start\u0027); return false;">Diner Bystroeshka</a>';
   } else {
     (s as any).desc_txt2 = '<a href="#" onclick="window.__gameStore.setState((s) => { alert(\u0027Diner Bystroeshka is closed and will reopen at \u0027+qspFunc(s, \u0027time\u0027, \u0027get_time_string\u0027, 6, 0)+\u0027\u0027); return s; }); return false;">Diner Bystroeshka</a>';
   }
@@ -137,13 +137,13 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) < 23) {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
-    (s as any).desc_txt3 = '<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027agentned\u0027, \u0027start\u0027); return false;">Kirsanova Realty</a>';
+    (s as any).desc_txt3 = '<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=1; return s; }); window.__gameStore.getState().doGoto(\u0027agentned\u0027, \u0027start\u0027); return false;">Kirsanova Realty</a>';
   } else {
     (s as any).desc_txt3 = '<a href="#" onclick="window.__gameStore.setState((s) => { alert(\u0027Kirsanova Realty is closed and will reopen at \u0027+qspFunc(s, \u0027time\u0027, \u0027get_time_string\u0027, 8, 0)+\u0027\u0027); return s; }); return false;">Kirsanova Realty</a>';
   }
   if ((((s as any).week ?? 0) < 6  &&  ((s as any).hour ?? 0) >= 9  &&  ((s as any).hour ?? 0) < 17)  ||  (((s as any).week ?? 0) === 6  &&  ((s as any).hour ?? 0) >= 9  &&  ((s as any).hour ?? 0) < 14)) {
     (s as any).minut = ((s as any).minut ?? 0) + 3;
-    (s as any).desc_txt4 = '<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.3; return s; }); window.__gameStore.getState().doGoto(\u0027post_office\u0027, \u0027start\u0027); return false;">post office</a>';
+    (s as any).desc_txt4 = '<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=3; return s; }); window.__gameStore.getState().doGoto(\u0027post_office\u0027, \u0027start\u0027); return false;">post office</a>';
   } else {
     if (((s as any).week ?? 0) === 6  &&  ((s as any).hour ?? 0) > 16  ||  ((s as any).week ?? 0) === 7  &&  ((s as any).hour ?? 0) < 12) {
       (s as any).desc_txt4 = '<a href="#" onclick="window.__gameStore.setState((s) => { alert(\u0027The post office is closed and will reopen at \u0027+qspFunc(s, \u0027time\u0027, \u0027get_time_string\u0027, 9, 0)+\u0027 on Monday\u0027); return s; }); return false;">post office</a>';
@@ -153,14 +153,14 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) < 19) {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
-    (s as any).desc_txt5 = '<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027city_library\u0027, \u0027\u0027); return false;">National Library of Russia</a> and <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027city_hermitage\u0027, \u0027start\u0027); return false;">Hermitage Museum</a>';
+    (s as any).desc_txt5 = '<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=1; return s; }); window.__gameStore.getState().doGoto(\u0027city_library\u0027, \u0027\u0027); return false;">National Library of Russia</a> and <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=1; return s; }); window.__gameStore.getState().doGoto(\u0027city_hermitage\u0027, \u0027start\u0027); return false;">Hermitage Museum</a>';
   } else {
     (s as any).desc_txt5 = '<a href="#" onclick="window.__gameStore.setState((s) => { alert(\u0027The National Library of Russia is closed and will reopen at \u0027+qspFunc(s, \u0027time\u0027, \u0027get_time_string\u0027, 8, 0)+\u0027\u0027); return s; }); return false;">National Library of Russia</a> and <a href="#" onclick="window.__gameStore.setState((s) => { alert(\u0027The Hermitage Museum is closed and will reopen at \u0027+qspFunc(s, \u0027time\u0027, \u0027get_time_string\u0027, 8, 0)+\u0027\u0027); return s; }); return false;">Hermitage Museum</a>';
   }
-  scene.text(`Next door is the ${((s as any).desc_txt1 ?? '')} followed by a ${((s as any).desc_txt2 ?? '')}, ${((s as any).desc_txt3 ?? '')} and the 5-star <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(/u0027city_hotel/u0027, /u0027/u0027); return false;">Hotel Indigo</a> for your housing needs. Lastly, the local ${((s as any).desc_txt4 ?? '')}, ${((s as any).desc_txt5 ?? '')} can be found at the end of the road.`);
+  scene.text(`Next door is the ${((s as any).desc_txt1 ?? '')} followed by a ${((s as any).desc_txt2 ?? '')}, ${((s as any).desc_txt3 ?? '')} and the 5-star <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=1; return s; }); window.__gameStore.getState().doGoto(/u0027city_hotel/u0027, /u0027/u0027); return false;">Hotel Indigo</a> for your housing needs. Lastly, the local ${((s as any).desc_txt4 ?? '')}, ${((s as any).desc_txt5 ?? '')} can be found at the end of the road.`);
   if (((s as any).week ?? 0) < 6  &&  ((s as any).hour ?? 0) >= 7  &&  ((s as any).hour ?? 0) < 18) {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
-    (s as any).desc_txt6 = '<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027sentence\u0027, \u0027start\u0027); return false;">The City Courthouse</a>';
+    (s as any).desc_txt6 = '<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=1; return s; }); window.__gameStore.getState().doGoto(\u0027sentence\u0027, \u0027start\u0027); return false;">The City Courthouse</a>';
   } else {
     if (((s as any).week ?? 0) < 5  &&  ((s as any).hour ?? 0) >= 18) {
       (s as any).desc_txt6 = '<a href="#" onclick="window.__gameStore.setState((s) => { alert(\u0027The City Courthouse is closed and will reopen tomorrow at \u0027+qspFunc(s, \u0027time\u0027, \u0027get_time_string\u0027, 7, 0)+\u0027\u0027); return s; }); return false;">City Courthouse</a>';
@@ -169,9 +169,9 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     }
   }
   (s as any).minut = ((s as any).minut ?? 0) + 1;
-  (s as any).desc_txt7 = '<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027police_station\u0027, \u0027start\u0027); return false;">Main city police station</a>';
+  (s as any).desc_txt7 = '<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=1; return s; }); window.__gameStore.getState().doGoto(\u0027police_station\u0027, \u0027start\u0027); return false;">Main city police station</a>';
   scene.text(`Away from the shops is both ${((s as any).desc_txt6 ?? '')} and the ${((s as any).desc_txt7 ?? '')}.`);
-  scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027city_church\u0027, \u0027start\u0027); return false;">Kazan Cathedral</a>, also known as the Cathedral of Our Lady of Kazan, sits at the very center of the city.');
+  scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=1; return s; }); window.__gameStore.getState().doGoto(\u0027city_church\u0027, \u0027start\u0027); return false;">Kazan Cathedral</a>, also known as the Cathedral of Our Lady of Kazan, sits at the very center of the city.');
   if (((s as any).nichHotelReferral ?? 0) === 2  &&  ((s as any).nichWork ?? 0) !== 2  &&  ((s as any).nichWork ?? 0) !== 4) {
     if (((s as any).hour ?? 0) >= 4  &&  ((s as any).hour ?? 0) < 16) {
       scene.text('\'You could go to the apartment of a man named Nicholas to apply for a job as a live-in maid, but it\'s too early for that. You should come back between 16:00 and 21:00.\'');
@@ -306,22 +306,22 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.text(`Your <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027carF/u0027, /u0027start/u0027); return false;">${(((s as any).car ?? 0)?.['name'] ?? '')}</a> sits in the parking lot.`);
   }
   qspCall(s, 'taxi', '');
-  scene.text('You have easy access to the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(\u0027train\u0027, \u0027center\u0027); return false;">train station</a> and <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(\u0027metro\u0027, \u0027center\u0027); return false;">the metro</a> is only a short walk from there. Both connect you quickly to other parts of St. Petersburg and the subway is great if you\'re tight on cash. If you can\'t afford either, the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.35; return s; }); window.__gameStore.getState().doGoto(\u0027city_park\u0027, \u0027start\u0027); return false;">central park</a> is a 35 minute walk from here and provides a more scenic route to the other city districts.');
+  scene.text('You have easy access to the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=5; return s; }); window.__gameStore.getState().doGoto(\u0027train\u0027, \u0027center\u0027); return false;">train station</a> and <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=5; return s; }); window.__gameStore.getState().doGoto(\u0027metro\u0027, \u0027center\u0027); return false;">the metro</a> is only a short walk from there. Both connect you quickly to other parts of St. Petersburg and the subway is great if you\'re tight on cash. If you can\'t afford either, the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=35; return s; }); window.__gameStore.getState().doGoto(\u0027city_park\u0027, \u0027start\u0027); return false;">central park</a> is a 35 minute walk from here and provides a more scenic route to the other city districts.');
   if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) < 22) {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
-    (s as any).desc_txt1 = '<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027kiosk\u0027, \u0027start\u0027); return false;">kiosk</a>';
+    (s as any).desc_txt1 = '<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=1; return s; }); window.__gameStore.getState().doGoto(\u0027kiosk\u0027, \u0027start\u0027); return false;">kiosk</a>';
   } else {
     (s as any).desc_txt1 = '<a href="#" onclick="window.__gameStore.setState((s) => { alert(\u0027The Ruch kiosk is closed and will reopen at \u0027+qspFunc(s, \u0027time\u0027, \u0027get_time_string\u0027, 8, 0)+\u0027\u0027); return s; }); return false;">kiosk</a>';
   }
   scene.text(`'The neon green sign of a ${((s as any).desc_txt1 ?? '')} catches your eye. It's open between 8:00 and 22:00 and sells cheap magazines and cigarettes.'`);
   if (((s as any).hour ?? 0) === 8  &&  ((s as any).minut ?? 0) >= 30) {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
-    (s as any).desc_txt1 = '<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027city_mall\u0027, \u0027\u0027); return false;">The Galeria mall</a>';
+    (s as any).desc_txt1 = '<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=1; return s; }); window.__gameStore.getState().doGoto(\u0027city_mall\u0027, \u0027\u0027); return false;">The Galeria mall</a>';
     (s as any).desc_txt2 = '<a href="#" onclick="window.__gameStore.setState((s) => { alert(\u0027The Havana Fitness Center is closed and will reopen at \u0027+qspFunc(s, \u0027time\u0027, \u0027get_time_string\u0027, 9, 0)+\u0027\u0027); return s; }); return false;">Havana Fitness Center</a>';
   } else {
     if (((s as any).hour ?? 0) >= 9  &&  ((s as any).hour ?? 0) <= 20) {
       (s as any).minut = ((s as any).minut ?? 0) + 1;
-      (s as any).desc_txt1 = '<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027city_mall\u0027, \u0027\u0027); return false;">The Galeria mall</a>';
+      (s as any).desc_txt1 = '<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=1; return s; }); window.__gameStore.getState().doGoto(\u0027city_mall\u0027, \u0027\u0027); return false;">The Galeria mall</a>';
       (s as any).desc_txt2 = '<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027havana\u0027, \u0027start\u0027); return false;">Havana Fitness Center</a>';
     } else {
       (s as any).desc_txt1 = '<a href="#" onclick="window.__gameStore.setState((s) => { alert(\u0027The Galeria mall is closed and will reopen at \u0027+qspFunc(s, \u0027time\u0027, \u0027get_time_string\u0027, 8, 30)+\u0027\u0027); return s; }); return false;">The Galeria mall</a>';
@@ -331,13 +331,13 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.text(`${((s as any).desc_txt1 ?? '')} is front and center in the commercial area. Nearby is a ${((s as any).desc_txt2 ?? '')} which has a swimming pool that can be used for a small fee.`);
   if (((s as any).hour ?? 0) >= 6) {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
-    (s as any).desc_txt1 = '<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027foto\u0027, \u0027start\u0027); return false;">Aphrodite Photography</a>';
+    (s as any).desc_txt1 = '<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=1; return s; }); window.__gameStore.getState().doGoto(\u0027foto\u0027, \u0027start\u0027); return false;">Aphrodite Photography</a>';
   } else {
     (s as any).desc_txt1 = '<a href="#" onclick="window.__gameStore.setState((s) => { alert(\u0027Aphrodite Photography is closed and will reopen at \u0027+qspFunc(s, \u0027time\u0027, \u0027get_time_string\u0027, 6, 0)+\u0027\u0027); return s; }); return false;">Aphrodite Photography</a>';
   }
   if (((s as any).hour ?? 0) >= 6) {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
-    (s as any).desc_txt2 = '<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027burger\u0027, \u0027start\u0027); return false;">Diner Bystroeshka</a>';
+    (s as any).desc_txt2 = '<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=1; return s; }); window.__gameStore.getState().doGoto(\u0027burger\u0027, \u0027start\u0027); return false;">Diner Bystroeshka</a>';
   } else {
     (s as any).desc_txt2 = '<a href="#" onclick="window.__gameStore.setState((s) => { alert(\u0027Diner Bystroeshka is closed and will reopen at \u0027+qspFunc(s, \u0027time\u0027, \u0027get_time_string\u0027, 6, 0)+\u0027\u0027); return s; }); return false;">Diner Bystroeshka</a>';
   }
@@ -383,13 +383,13 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) < 23) {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
-    (s as any).desc_txt3 = '<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027agentned\u0027, \u0027start\u0027); return false;">Kirsanova Realty</a>';
+    (s as any).desc_txt3 = '<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=1; return s; }); window.__gameStore.getState().doGoto(\u0027agentned\u0027, \u0027start\u0027); return false;">Kirsanova Realty</a>';
   } else {
     (s as any).desc_txt3 = '<a href="#" onclick="window.__gameStore.setState((s) => { alert(\u0027Kirsanova Realty is closed and will reopen at \u0027+qspFunc(s, \u0027time\u0027, \u0027get_time_string\u0027, 8, 0)+\u0027\u0027); return s; }); return false;">Kirsanova Realty</a>';
   }
   if ((((s as any).week ?? 0) < 6  &&  ((s as any).hour ?? 0) >= 9  &&  ((s as any).hour ?? 0) < 17)  ||  (((s as any).week ?? 0) === 6  &&  ((s as any).hour ?? 0) >= 9  &&  ((s as any).hour ?? 0) < 14)) {
     (s as any).minut = ((s as any).minut ?? 0) + 3;
-    (s as any).desc_txt4 = '<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.3; return s; }); window.__gameStore.getState().doGoto(\u0027post_office\u0027, \u0027start\u0027); return false;">post office</a>';
+    (s as any).desc_txt4 = '<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=3; return s; }); window.__gameStore.getState().doGoto(\u0027post_office\u0027, \u0027start\u0027); return false;">post office</a>';
   } else {
     if (((s as any).week ?? 0) === 6  &&  ((s as any).hour ?? 0) > 16  ||  ((s as any).week ?? 0) === 7  &&  ((s as any).hour ?? 0) < 12) {
       (s as any).desc_txt4 = '<a href="#" onclick="window.__gameStore.setState((s) => { alert(\u0027The post office is closed and will reopen at \u0027+qspFunc(s, \u0027time\u0027, \u0027get_time_string\u0027, 9, 0)+\u0027 on Monday\u0027); return s; }); return false;">post office</a>';
@@ -399,14 +399,14 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) < 19) {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
-    (s as any).desc_txt5 = '<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027city_library\u0027, \u0027\u0027); return false;">National Library of Russia</a> and <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027city_hermitage\u0027, \u0027start\u0027); return false;">Hermitage Museum</a>';
+    (s as any).desc_txt5 = '<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=1; return s; }); window.__gameStore.getState().doGoto(\u0027city_library\u0027, \u0027\u0027); return false;">National Library of Russia</a> and <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=1; return s; }); window.__gameStore.getState().doGoto(\u0027city_hermitage\u0027, \u0027start\u0027); return false;">Hermitage Museum</a>';
   } else {
     (s as any).desc_txt5 = '<a href="#" onclick="window.__gameStore.setState((s) => { alert(\u0027The National Library of Russia is closed and will reopen at \u0027+qspFunc(s, \u0027time\u0027, \u0027get_time_string\u0027, 8, 0)+\u0027\u0027); return s; }); return false;">National Library of Russia</a> and <a href="#" onclick="window.__gameStore.setState((s) => { alert(\u0027The Hermitage Museum is closed and will reopen at \u0027+qspFunc(s, \u0027time\u0027, \u0027get_time_string\u0027, 8, 0)+\u0027\u0027); return s; }); return false;">Hermitage Museum</a>';
   }
-  scene.text(`Next door is the ${((s as any).desc_txt1 ?? '')} followed by a ${((s as any).desc_txt2 ?? '')}, ${((s as any).desc_txt3 ?? '')} and the 5-star <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(/u0027city_hotel/u0027, /u0027/u0027); return false;">Hotel Indigo</a> for your housing needs. Lastly, the local ${((s as any).desc_txt4 ?? '')}, ${((s as any).desc_txt5 ?? '')} can be found at the end of the road.`);
+  scene.text(`Next door is the ${((s as any).desc_txt1 ?? '')} followed by a ${((s as any).desc_txt2 ?? '')}, ${((s as any).desc_txt3 ?? '')} and the 5-star <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=1; return s; }); window.__gameStore.getState().doGoto(/u0027city_hotel/u0027, /u0027/u0027); return false;">Hotel Indigo</a> for your housing needs. Lastly, the local ${((s as any).desc_txt4 ?? '')}, ${((s as any).desc_txt5 ?? '')} can be found at the end of the road.`);
   if (((s as any).week ?? 0) < 6  &&  ((s as any).hour ?? 0) >= 7  &&  ((s as any).hour ?? 0) < 18) {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
-    (s as any).desc_txt6 = '<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027sentence\u0027, \u0027start\u0027); return false;">The City Courthouse</a>';
+    (s as any).desc_txt6 = '<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=1; return s; }); window.__gameStore.getState().doGoto(\u0027sentence\u0027, \u0027start\u0027); return false;">The City Courthouse</a>';
   } else {
     if (((s as any).week ?? 0) < 5  &&  ((s as any).hour ?? 0) >= 18) {
       (s as any).desc_txt6 = '<a href="#" onclick="window.__gameStore.setState((s) => { alert(\u0027The City Courthouse is closed and will reopen tomorrow at \u0027+qspFunc(s, \u0027time\u0027, \u0027get_time_string\u0027, 7, 0)+\u0027\u0027); return s; }); return false;">City Courthouse</a>';
@@ -415,9 +415,9 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     }
   }
   (s as any).minut = ((s as any).minut ?? 0) + 1;
-  (s as any).desc_txt7 = '<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027police_station\u0027, \u0027start\u0027); return false;">Main city police station</a>';
+  (s as any).desc_txt7 = '<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=1; return s; }); window.__gameStore.getState().doGoto(\u0027police_station\u0027, \u0027start\u0027); return false;">Main city police station</a>';
   scene.text(`Away from the shops is both ${((s as any).desc_txt6 ?? '')} and the ${((s as any).desc_txt7 ?? '')}.`);
-  scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027city_church\u0027, \u0027start\u0027); return false;">Kazan Cathedral</a>, also known as the Cathedral of Our Lady of Kazan, sits at the very center of the city.');
+  scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=1; return s; }); window.__gameStore.getState().doGoto(\u0027city_church\u0027, \u0027start\u0027); return false;">Kazan Cathedral</a>, also known as the Cathedral of Our Lady of Kazan, sits at the very center of the city.');
   if (((s as any).nichHotelReferral ?? 0) === 2  &&  ((s as any).nichWork ?? 0) !== 2  &&  ((s as any).nichWork ?? 0) !== 4) {
     if (((s as any).hour ?? 0) >= 4  &&  ((s as any).hour ?? 0) < 16) {
       scene.text('\'You could go to the apartment of a man named Nicholas to apply for a job as a live-in maid, but it\'s too early for that. You should come back between 16:00 and 21:00.\'');

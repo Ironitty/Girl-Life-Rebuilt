@@ -1480,30 +1480,26 @@ function enterWishNoCondoms2(s: GameState, scene: SceneBuilder): void {
     }
   } },
           ]);
-        } else {
-          qspCall(s, 'sex_ev_talk', 'boy_accidental_creampie');
         }
-        scene.text(`"Sorry about that again," ${((s as any).npcdesc ?? '')} blushes.`);
       } else {
-        // TODO-QSP: end !}
-      }
-    }
-  }
-  if (((s as any).sex_ev ?? 0)?.['npc_doesnt_want_condoms'] === 1) {
-    scene.text(`"Hey, <i>I</i> said I didn't want to use them," ${((s as any).npcdesc ?? '')} says. "You're the one who insisted."`);
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterWishNoCondomsResponseNoKids(s, scene); (s as any).locArgs = __savedLocArgs; }
-  } else {
-    if (((s as any).sex_ev ?? 0)?.['preg_risk'] === 'danger') {
-      scene.text(`"But you said it was a danger day, didn't you?" ${((s as any).npcdesc ?? '')} asks.`);
-      scene.text('"Yeah," you reply wistfully. "Had to be safe. But that doesn\'t mean I have to like it."');
-      qspGoto(s, 'sex_ev_pillow_talk', 'topic_route');
-    } else {
-      if (((s as any).sex_ev ?? 0)?.['condom_motive'] !== '') {
-        scene.text(`"You're the one who asked to use them," ${((s as any).npcdesc ?? '')} points out.`);
-        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterWishNoCondomsResponseNoKids(s, scene); (s as any).locArgs = __savedLocArgs; }
-      } else {
-        scene.text(`"Tell me about it," ${((s as any).npcdesc ?? '')} sighs back. "At least you don't need to be the one to wrap it around your dick."`);
-        qspGoto(s, 'sex_ev_pillow_talk', 'topic_route');
+        if (((s as any).sex_ev ?? 0)?.['npc_doesnt_want_condoms'] === 1) {
+          scene.text(`"Hey, <i>I</i> said I didn't want to use them," ${((s as any).npcdesc ?? '')} says. "You're the one who insisted."`);
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterWishNoCondomsResponseNoKids(s, scene); (s as any).locArgs = __savedLocArgs; }
+        } else {
+          if (((s as any).sex_ev ?? 0)?.['preg_risk'] === 'danger') {
+            scene.text(`"But you said it was a danger day, didn't you?" ${((s as any).npcdesc ?? '')} asks.`);
+            scene.text('"Yeah," you reply wistfully. "Had to be safe. But that doesn\'t mean I have to like it."');
+            qspGoto(s, 'sex_ev_pillow_talk', 'topic_route');
+          } else {
+            if (((s as any).sex_ev ?? 0)?.['condom_motive'] !== '') {
+              scene.text(`"You're the one who asked to use them," ${((s as any).npcdesc ?? '')} points out.`);
+              { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterWishNoCondomsResponseNoKids(s, scene); (s as any).locArgs = __savedLocArgs; }
+            } else {
+              scene.text(`"Tell me about it," ${((s as any).npcdesc ?? '')} sighs back. "At least you don't need to be the one to wrap it around your dick."`);
+              qspGoto(s, 'sex_ev_pillow_talk', 'topic_route');
+            }
+          }
+        }
       }
     }
   }

@@ -165,27 +165,6 @@ function enterSelfishBjStart(s: GameState, scene: SceneBuilder): void {
         ]);
       }
       qspCall(st, 'willpower', 'bj', 'resist', 'easy');
-      if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
-        scene.actions([
-          { label: 'Can we 69?', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
-  } },
-        ]);
-      } else {
-        scene.actions([
-          { label: 'Can we 69?', handler: (st: GameState) => {
-    qspCall(st, 'willpower', 'pay', 'self');
-    qspCall(st, 'stat', '');
-    scene.text('"How about we sixty-nine instead?" you ask. "I could use some loving down there myself right now..."');
-    scene.text('"I can get behind that," he grins, laying back.');
-    scene.actions([
-      { label: 'Climb over him', handler: (st: GameState) => {
-    qspCall(st, 'sex_ev_foreplay', '');
-  } },
-    ]);
-  } },
-        ]);
-      }
       scene.actions([
         { label: 'Blow him reluctantly (submissive)', handler: (st: GameState) => {
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['reluctant_bj'] = 1;
@@ -2525,9 +2504,17 @@ function enter69Start(s: GameState, scene: SceneBuilder): void {
       ((st as any).sex_ev = (st as any).sex_ev ?? {})['foreplay_change'] = ((st as any).sex_ev['foreplay_change'] ?? 0) + (1);
       scene.text(`You push ${((st as any).npcdesc ?? '')} back onto the bed and throw your legs over him, reversing yourself in the process, and scooching your ass back towards his head. Grinning, you lower your hips down to his face while simultaneously grabbing his cock and preparing it for your mouth.`);
     }
-    // TODO-QSP: act'Enjoy it': $sex_ev['foreplay_enjoyment'] = 'enjoy' & gt 'sex_ev_foreplay', '69_1'
-    // TODO-QSP: act'Token effort': $sex_ev['foreplay_enjoyment'] = 'unsatisfying' & gt 'sex_ev_foreplay', '69_1'
-    // TODO-QSP: act'Distracting': $sex_ev['foreplay_enjoyment'] = 'distracted' & gt 'sex_ev_foreplay', '69_1'
+    scene.actions([
+      { label: 'Enjoy it', handler: (st: GameState) => {
+    (st as any).sex_ev[foreplay_enjoyment] = 'enjoy';
+  }, goto: ['sex_ev_foreplay', '69_1'] },
+      { label: 'Token effort', handler: (st: GameState) => {
+    (st as any).sex_ev[foreplay_enjoyment] = 'unsatisfying';
+  }, goto: ['sex_ev_foreplay', '69_1'] },
+      { label: 'Distracting', handler: (st: GameState) => {
+    (st as any).sex_ev[foreplay_enjoyment] = 'distracted';
+  }, goto: ['sex_ev_foreplay', '69_1'] },
+    ]);
   } },
   ]);
   scene.build();
@@ -2589,7 +2576,9 @@ function enter69CumSort(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).sex_ev ?? 0)?.['orgasm'] < ((s as any).orgasm ?? 0)) {
     scene.text('Just a little more... a little more... and you\'re gonna...');
-    // TODO-QSP: act'Come!': gt 'sex_ev_foreplay', '69_girl_cum'
+    scene.actions([
+      { label: 'Come!', goto: ['sex_ev_foreplay', '69_girl_cum'] },
+    ]);
   } else {
     if (((s as any).sex_ev ?? 0)?.['boy_cum'] === 1) {
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enter69CumWarn(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -2603,8 +2592,10 @@ function enter69CumSort(s: GameState, scene: SceneBuilder): void {
         }
         { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enter69CumMenu(s, scene); (s as any).locArgs = __savedLocArgs; }
       } else {
-        // TODO-QSP: act'Keep 69ing': gt 'sex_ev_foreplay', '69_2'
         { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterForeplayChoose(s, scene); (s as any).locArgs = __savedLocArgs; }
+        scene.actions([
+          { label: 'Keep 69ing', goto: ['sex_ev_foreplay', '69_2'] },
+        ]);
       }
     }
   }
@@ -2614,12 +2605,13 @@ function enter69CumSort(s: GameState, scene: SceneBuilder): void {
 function enter69CumWarn(s: GameState, scene: SceneBuilder): void {
   scene.text(`"${((s as any).pcs_nickname ?? '')}-!" ${(((s as any).npc_usedname ?? 0)?.[String((s as any).npcID ?? 0)] ?? '')} grunts. "I'm cumming-!"`);
   scene.text('His hips buck upwards, shoving his cock further into your mouth.');
-  // TODO-QSP: act'Suck him dry': gt 'sex_ev_foreplay', '69_boy_cum'
+  scene.actions([
+    { label: 'Suck him dry', goto: ['sex_ev_foreplay', '69_boy_cum'] },
+  ]);
   scene.build();
 }
 
 function enter69CumMenu(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: act'Suck him dry': gt 'sex_ev_foreplay', '69_boy_cum'
   scene.actions([
     { label: 'Pull back (sex)', handler: (st: GameState) => {
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['must_fuck'] = 1;
@@ -2628,6 +2620,7 @@ function enter69CumMenu(s: GameState, scene: SceneBuilder): void {
     scene.text('"Me too," you say, throwing your self off of his face.');
     qspCall(st, 'sex_ev_sex', 'sex_start');
   } },
+    { label: 'Suck him dry', goto: ['sex_ev_foreplay', '69_boy_cum'] },
   ]);
   scene.build();
 }
@@ -2656,8 +2649,10 @@ function enter69GirlCum(s: GameState, scene: SceneBuilder): void {
   scene.text('<i>Fuck!</i>');
   if (((s as any).sex_ev ?? 0)?.['boy_cum'] === 0) {
     scene.text(`Pleasure explodes through your body, your pussy quivering uncontrollably beneath the ministrations of ${(((s as any).npc_usedname ?? 0)?.[String((s as any).npcID ?? 0)] ?? '')}'s tongue even as your eyes roll back in your head. Your thighs tighten around his head and your throat is choked with his cock and everything is <i>perfect</i> as your vision goes white in mind numbing ecstasy for a few moments. When your orgasm finally dies down, you take a shuddering gasp through your nose, lips still wrapped around ${(((s as any).npc_usedname ?? 0)?.[String((s as any).npcID ?? 0)] ?? '')}'s cock.`);
-    // TODO-QSP: act'Keep 69ing': gt 'sex_ev_foreplay', '69_2'
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterForeplayChoose(s, scene); (s as any).locArgs = __savedLocArgs; }
+    scene.actions([
+      { label: 'Keep 69ing', goto: ['sex_ev_foreplay', '69_2'] },
+    ]);
   } else {
     ((s as any).sex_ev = (s as any).sex_ev ?? {})['last_cum'] = 'swallow';
     ((s as any).sex_ev = (s as any).sex_ev ?? {})['swallow'] = 1;

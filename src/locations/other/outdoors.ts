@@ -107,7 +107,6 @@ function enterWeather(s: GameState, scene: SceneBuilder): void {
   (s as any).weatherDay = ((s as any).daystart ?? 0);
   if (((s as any).totminut ?? 0) < ((s as any).sunWeather ?? 0)[1]-240) {
     ((s as any).sunWeather = (s as any).sunWeather ?? {})[1] = ((s as any).totminut ?? 0);
-    // TODO-QSP: !! Time cheat
   }
   if (((s as any).totminut ?? 0) > ((s as any).sunWeather ?? 0)[1]) {
     ((s as any).sunWeather = (s as any).sunWeather ?? {})[1] = ((s as any).totminut ?? 0) + (Math.floor(Math.random() * 121) + 30);

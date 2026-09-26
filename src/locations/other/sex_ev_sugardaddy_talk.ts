@@ -483,24 +483,28 @@ function enterTherapyReact(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPretendListenThoughts(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: act'Grocery shopping':
-  scene.text('... what you need to buy at the store later.');
-  scene.text('<i>What\'s left in the fridge? I can\'t remember.</i>');
-  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPretendListenEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: act'What you want to eat later':
-  if (((s as any).hour ?? 0) >= 21) {
-    scene.text('... what you want to have for breakfast.');
-    scene.text('<i>Pancakes? Eggs? Maybe I should just have a cup of coffee and call it quits.</i>');
-  } else {
-    if (((s as any).hour ?? 0) >= 16) {
-      scene.text('... what you want to have for dinner later.');
-      scene.text('<i>Should I go out for dinner? Maybe I should cook something at home. Takeout and split the difference?</i>');
+  scene.actions([
+    { label: 'Grocery shopping', handler: (st: GameState) => {
+    scene.text('... what you need to buy at the store later.');
+    scene.text('<i>What\'s left in the fridge? I can\'t remember.</i>');
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPretendListenEnd(st, scene); (st as any).locArgs = __savedLocArgs; }
+  } },
+    { label: 'What you want to eat later', handler: (st: GameState) => {
+    if (((st as any).hour ?? 0) >= 21) {
+      scene.text('... what you want to have for breakfast.');
+      scene.text('<i>Pancakes? Eggs? Maybe I should just have a cup of coffee and call it quits.</i>');
     } else {
-      scene.text('... what you want to have for lunch later.');
-      scene.text('<i>Should I go out for lunch? Maybe I should cook something at home. Takeout and split the difference?</i>');
+      if (((st as any).hour ?? 0) >= 16) {
+        scene.text('... what you want to have for dinner later.');
+        scene.text('<i>Should I go out for dinner? Maybe I should cook something at home. Takeout and split the difference?</i>');
+      } else {
+        scene.text('... what you want to have for lunch later.');
+        scene.text('<i>Should I go out for lunch? Maybe I should cook something at home. Takeout and split the difference?</i>');
+      }
     }
-  }
-  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPretendListenEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPretendListenEnd(st, scene); (st as any).locArgs = __savedLocArgs; }
+  } },
+  ]);
   scene.build();
 }
 
@@ -547,21 +551,26 @@ function enterWorkEmails(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterWorkComplainReact(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: act'Listen intently':
-  qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), 'like');
-  scene.text('To other people, what he says might seem boring. But you can\'t help but hang on every word. And you can tell he appreciates it.');
-  qspGoto(s, 'sex_ev_pillow_talk', 'topic_route');
-  // TODO-QSP: act'Smile and pretend to listen':
-  qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), 'like');
-  scene.text('You nod along, smiling like a Barbie as he goes on and on and <i>on and on and on...</i>');
-  scene.text('<i>For fuck\'s sake, how can anybody talk about themselves this much? What a fucking bore. Makes me wonder if it\'s even worth the money...</i>');
-  qspGoto(s, 'sex_ev_pillow_talk', 'topic_route');
-  // TODO-QSP: act'Sigh in boredom':
-  qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), 'dislike');
-  qspCall(s, 'sex_ev_pillow_talk', 'pillow_picture1', 3);
-  scene.text('As the minutes drag on, you start to feel your soul breaking. He\'s so. Fucking. Boring.');
-  scene.text('You let out a long and tired sigh and he\'s so caught up in his own idiotic tirade that he doesn\'t even notice. Is this <i>really</i> worth the money he\'s paying you?');
-  qspGoto(s, 'sex_ev_pillow_talk', 'topic_route');
+  scene.actions([
+    { label: 'Listen intently', handler: (st: GameState) => {
+    qspCall(st, 'npc_relationship', 'modify', ((st as any).npcID ?? 0), 'like');
+    scene.text('To other people, what he says might seem boring. But you can\'t help but hang on every word. And you can tell he appreciates it.');
+    qspGoto(st, 'sex_ev_pillow_talk', 'topic_route');
+  } },
+    { label: 'Smile and pretend to listen', handler: (st: GameState) => {
+    qspCall(st, 'npc_relationship', 'modify', ((st as any).npcID ?? 0), 'like');
+    scene.text('You nod along, smiling like a Barbie as he goes on and on and <i>on and on and on...</i>');
+    scene.text('<i>For fuck\'s sake, how can anybody talk about themselves this much? What a fucking bore. Makes me wonder if it\'s even worth the money...</i>');
+    qspGoto(st, 'sex_ev_pillow_talk', 'topic_route');
+  } },
+    { label: 'Sigh in boredom', handler: (st: GameState) => {
+    qspCall(st, 'npc_relationship', 'modify', ((st as any).npcID ?? 0), 'dislike');
+    qspCall(st, 'sex_ev_pillow_talk', 'pillow_picture1', 3);
+    scene.text('As the minutes drag on, you start to feel your soul breaking. He\'s so. Fucking. Boring.');
+    scene.text('You let out a long and tired sigh and he\'s so caught up in his own idiotic tirade that he doesn\'t even notice. Is this <i>really</i> worth the money he\'s paying you?');
+    qspGoto(st, 'sex_ev_pillow_talk', 'topic_route');
+  } },
+  ]);
   scene.build();
 }
 

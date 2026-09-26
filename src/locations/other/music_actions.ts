@@ -33,9 +33,9 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
           } else {
             if (((s as any).ml_settings ?? 0)?.['its_me'] === 1) {
               if (((s as any).ml_guitar ?? 0)?.['hasguitar'] === 1  &&  (((s as any).ml_guitar ?? 0)?.['carried'] === 1  ||  ((s as any).ml_guitar ?? 0)?.['location'] === ((s as any).loc ?? 0))) {
-                // TODO-QSP: pl '<center><a href="exec: gs ''music_actions'', ''available_actions''"><img title="Click to to see ...
+                scene.text('<center><a href="#" onclick="window.__gameStore.getState().doGoto(\u0027music_actions\u0027, \u0027available_actions\u0027); return false;"><img title="Click to to see available music activities." height = 120 src="images/system/icons/icon_transp_guitaraction01.png"></a></center>');
               } else {
-                // TODO-QSP: pl '<center><a href="exec: gs ''music_actions'', ''available_actions''"><img title="Click to to see ...
+                scene.text('<center><a href="#" onclick="window.__gameStore.getState().doGoto(\u0027music_actions\u0027, \u0027available_actions\u0027); return false;"><img title="Click to to see available music activities." height = 120 src="images/system/icons/icon_transp_singeraction01.png"></a></center>');
               }
             } else {
               scene.actions([

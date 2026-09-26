@@ -675,7 +675,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       (s as any)._str = ((s as any)._str ?? 0) + ('<td bgcolor=\'+$temp_bcolor+\' height="30" width="40%" align="center">\' + $_eat[\'' + ((s as any).food_loop ?? 0) + ',name\'] + \'</td>');
       (s as any)._str = ((s as any)._str ?? 0) + ('<td bgcolor=' + ((s as any).temp_bcolor ?? 0) + ' height="30" width="10%" align="center">');
       if (qspFunc(s, 'money', 'can_afford', qspUntranslated(s, "_eat[\u00000\u0000]", { location: "food_menu" })) === 1) {
-        (s as any)._str = ((s as any)._str ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { s.pcs_ate +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027food\u0027, \u0027$_eat[/\u0027\u0027 + String((s as any).food_loop ?? \u0027\u0027), \u0027type\u0027]\u0027); return false;">\' + $func(\'money\', \'string_price\', _eat[\'' + ((s as any).food_loop ?? 0) + ',price\']) + \'</a>');
+        (s as any)._str = ((s as any)._str ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { s.pcs_ate +=1; return s; }); window.__gameStore.getState().doGoto(\u0027food\u0027, \u0027$_eat[/\u0027\u0027 + String((s as any).food_loop ?? \u0027\u0027), \u0027type\u0027]\u0027); return false;">\' + $func(\'money\', \'string_price\', _eat[\'' + ((s as any).food_loop ?? 0) + ',price\']) + \'</a>');
       } else {
         (s as any)._str = ((s as any)._str ?? 0) + (qspFunc(s, 'money', 'string_price', (((s as any)._eat ?? 0)?.[String(((s as any).food_loop ?? 0)) + ',price'])));
       }
@@ -689,7 +689,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       (s as any)._str = ((s as any)._str ?? 0) + ('<td bgcolor=\'+$temp_bcolor+\' height="30" width="40%" align="center">\' + $_drink[\'' + ((s as any).food_loop ?? 0) + ',name\'] + \'</td>');
       (s as any)._str = ((s as any)._str ?? 0) + ('<td bgcolor=' + ((s as any).temp_bcolor ?? 0) + ' height="30" width="10%" align="center">');
       if (qspFunc(s, 'money', 'can_afford', qspUntranslated(s, "_drink[\u00000\u0000]", { location: "food_menu" })) === 1) {
-        (s as any)._str = ((s as any)._str ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { s.pcs_drank +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027beverage\u0027, \u0027$_drink[/\u0027\u0027 + String((s as any).food_loop ?? \u0027\u0027), \u0027type\u0027]\u0027); return false;">\' + $func(\'money\', \'string_price\', _drink[\'' + ((s as any).food_loop ?? 0) + ',price\']) + \'</a>');
+        (s as any)._str = ((s as any)._str ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { s.pcs_drank +=1; return s; }); window.__gameStore.getState().doGoto(\u0027beverage\u0027, \u0027$_drink[/\u0027\u0027 + String((s as any).food_loop ?? \u0027\u0027), \u0027type\u0027]\u0027); return false;">\' + $func(\'money\', \'string_price\', _drink[\'' + ((s as any).food_loop ?? 0) + ',price\']) + \'</a>');
       } else {
         (s as any)._str = ((s as any)._str ?? 0) + (qspFunc(s, 'money', 'string_price', (((s as any)._drink ?? 0)?.[String(((s as any).food_loop ?? 0)) + ',price'])));
       }

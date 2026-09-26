@@ -143,7 +143,7 @@ function enterRestroom(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'gas_station_gp_117', 'restroom');
   (s as any).location_type = 'public_outdoors';
   scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/highway/gas_station_gp_117/restroom_` + ((((s as any).daystage ?? 0) === 5) ? ('night') : ('day')) + '.jpg"></center>');
-  scene.text('The gas station has a public bathroom. ' + ((((s as any).prostitute_status ?? 0)?.['restroom_chip'] === 0) ? ('It costs ' + qspFunc(s, 'money', 'string_price', 10) + ' to use it.') : ('You have an employee chip and can use it for free.')) + ' On the right side of the restroom is a <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027gas_station_gp_117\u0027, \u0027condom_dispenser\u0027); return false;">condom dispenser</a>.');
+  scene.text('The gas station has a public bathroom. ' + ((((s as any).prostitute_status ?? 0)?.['restroom_chip'] === 0) ? ('It costs ' + qspFunc(s, 'money', 'string_price', 10) + ' to use it.') : ('You have an employee chip and can use it for free.')) + ' On the right side of the restroom is a <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=1; return s; }); window.__gameStore.getState().doGoto(\u0027gas_station_gp_117\u0027, \u0027condom_dispenser\u0027); return false;">condom dispenser</a>.');
   qspCall(s, 'stat', '');
   if (((s as any).prostitute_status ?? 0)?.['restroom_chip'] === 1) {
     scene.actions([

@@ -864,25 +864,24 @@ function enterRemovepan(s: GameState, scene: SceneBuilder): void {
 
 function enterPublicpan(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pantyworntype ?? 0) !== 'none'  &&  ((s as any).braworntype ?? 0) !== 'none') {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
-    if (((s as any).bag ?? 0) === 1) {
-      (s as any).pursepantytype = ((s as any).pantyworntype ?? 0);
-      (s as any).pursepantynumber = ((s as any).pantywornnumber ?? 0);
-      (s as any).pursebratype = ((s as any).braworntype ?? 0);
-      (s as any).pursebranumber = ((s as any).brawornnumber ?? 0);
-    }
-    qspCall(s, 'underwear', 'remove');
-    dynamicGoto(s, 'prevLoc', 'prevArg');
     scene.actions([
-      { label: 'Remove underwear [+iif(bag = 1, \' and put it in your purse ...]', handler: (st: GameState) => {
-    // TODO-QSP: 02)':
+      { label: '', labelFn: (s: GameState) => String('Remove underwear' + ((((s as any).bag ?? 0) === 1) ? (' and put it in your purse ') : (' ')) + '(0:02)' ?? ''), handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
+    if (((st as any).bag ?? 0) === 1) {
+      (st as any).pursepantytype = ((st as any).pantyworntype ?? 0);
+      (st as any).pursepantynumber = ((st as any).pantywornnumber ?? 0);
+      (st as any).pursebratype = ((st as any).braworntype ?? 0);
+      (st as any).pursebranumber = ((st as any).brawornnumber ?? 0);
+    }
+    qspCall(st, 'underwear', 'remove');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
-  }
-  if (((s as any).bag ?? 0) === 1  &&  ((s as any).pantyworntype ?? 0) === 'none'  &&  ((s as any).braworntype ?? 0) === 'none'  &&  ((s as any).pursepantytype ?? 0) !== ''  &&  ((s as any).pursebratype ?? 0) !== '') {
-    scene.actions([
-      { label: 'Put your underwear back on (0:02)', handler: (st: GameState) => {
+  } else {
+    if (((s as any).bag ?? 0) === 1  &&  ((s as any).pantyworntype ?? 0) === 'none'  &&  ((s as any).braworntype ?? 0) === 'none'  &&  ((s as any).pursepantytype ?? 0) !== ''  &&  ((s as any).pursebratype ?? 0) !== '') {
+      scene.actions([
+        { label: 'Put your underwear back on (0:02)', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 2;
     qspCall(st, 'stat', '');
     qspCall(st, 'panties', 'wear', ((st as any).pursepantytype ?? 0), ((st as any).pursepantynumber ?? 0));
@@ -891,59 +890,60 @@ function enterPublicpan(s: GameState, scene: SceneBuilder): void {
     (st as any).pursebratype = undefined;
     dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
-    ]);
+      ]);
+    }
   }
   if (((s as any).pantyworntype ?? 0) !== 'none') {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
-    if (((s as any).bag ?? 0) === 1) {
-      (s as any).pursepantytype = ((s as any).pantyworntype ?? 0);
-      (s as any).pursepantynumber = ((s as any).pantywornnumber ?? 0);
-    }
-    qspCall(s, 'panties', 'remove');
-    dynamicGoto(s, 'prevLoc', 'prevArg');
     scene.actions([
-      { label: 'Remove panties [+iif(bag = 1, \' and put them in your purs...]', handler: (st: GameState) => {
-    // TODO-QSP: 02)':
+      { label: '', labelFn: (s: GameState) => String('Remove panties' + ((((s as any).bag ?? 0) === 1) ? (' and put them in your purse ') : (' ')) + '(0:02)' ?? ''), handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
+    if (((st as any).bag ?? 0) === 1) {
+      (st as any).pursepantytype = ((st as any).pantyworntype ?? 0);
+      (st as any).pursepantynumber = ((st as any).pantywornnumber ?? 0);
+    }
+    qspCall(st, 'panties', 'remove');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
-  }
-  if (((s as any).bag ?? 0) === 1  &&  ((s as any).pantyworntype ?? 0) === 'none'  &&  ((s as any).pursepantytype ?? 0) !== '') {
-    scene.actions([
-      { label: 'Put your panties back on (0:02)', handler: (st: GameState) => {
+  } else {
+    if (((s as any).bag ?? 0) === 1  &&  ((s as any).pantyworntype ?? 0) === 'none'  &&  ((s as any).pursepantytype ?? 0) !== '') {
+      scene.actions([
+        { label: 'Put your panties back on (0:02)', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 2;
     qspCall(st, 'stat', '');
     qspCall(st, 'panties', 'wear', ((st as any).pursepantytype ?? 0), ((st as any).pursepantynumber ?? 0));
     (st as any).pursepantytype = undefined;
     dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
-    ]);
+      ]);
+    }
   }
   if (((s as any).braworntype ?? 0) !== 'none') {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
-    if (((s as any).bag ?? 0) === 1) {
-      (s as any).pursebratype = ((s as any).braworntype ?? 0);
-      (s as any).pursebranumber = ((s as any).brawornnumber ?? 0);
-    }
-    qspCall(s, 'bras', 'remove');
-    dynamicGoto(s, 'prevLoc', 'prevArg');
     scene.actions([
-      { label: 'Remove bra [+iif(bag = 1, \' and put it in your purse ...]', handler: (st: GameState) => {
-    // TODO-QSP: 02)':
+      { label: '', labelFn: (s: GameState) => String('Remove bra' + ((((s as any).bag ?? 0) === 1) ? (' and put it in your purse ') : (' ')) + '(0:02)' ?? ''), handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
+    if (((st as any).bag ?? 0) === 1) {
+      (st as any).pursebratype = ((st as any).braworntype ?? 0);
+      (st as any).pursebranumber = ((st as any).brawornnumber ?? 0);
+    }
+    qspCall(st, 'bras', 'remove');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
-  }
-  if (((s as any).bag ?? 0) === 1  &&  ((s as any).braworntype ?? 0) === 'none'  &&  ((s as any).pursebratype ?? 0) !== '') {
-    scene.actions([
-      { label: 'Put your bra back on (0:02)', handler: (st: GameState) => {
+  } else {
+    if (((s as any).bag ?? 0) === 1  &&  ((s as any).braworntype ?? 0) === 'none'  &&  ((s as any).pursebratype ?? 0) !== '') {
+      scene.actions([
+        { label: 'Put your bra back on (0:02)', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 2;
     qspCall(st, 'stat', '');
     qspCall(st, 'bras', 'wear', ((st as any).pursebratype ?? 0), ((st as any).pursebranumber ?? 0));
     (st as any).pursebratype = undefined;
     dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
-    ]);
+      ]);
+    }
   }
   if (((s as any).prostitute ?? 0)?.['active'] === 1  &&  String((s as any).locArgs?.[1] ?? '') !== 'no_prost'  &&  ((s as any).loc ?? 0) !== 'gschool_break') {
     qspCall(s, 'prostitution_functions', 'work_clothes');
@@ -1393,7 +1393,7 @@ function enterButtplugOutDo(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'stat', '');
   scene.img('images/pc/body/analplug.jpg');
-  // TODO-QSP: 'You squat and tug gently at the butt plug, gasping as you push it out. You can''t help but feel a b...
+  scene.text('You squat and tug gently at the butt plug, gasping as you push it out. You can\'t help but feel a bit empty now that it\'s out.\' & !! 0.2.6: Removed unneccessary var chec');
   scene.actions([
     { label: 'Finish', handler: (st: GameState) => {
     qspCall(st, 'daily_routine', '');
@@ -1528,7 +1528,7 @@ function enterPrivate(s: GameState, scene: SceneBuilder): void {
     if (((s as any).tampon ?? 0)?.['warning'] !== ((s as any).daystart ?? 0)) {
       if (((s as any).mc_inventory ?? 0)?.['tampons'] === 1  &&  ((s as any).mc_inventory ?? 0)?.['sanitary_pads'] === 1) {
         ((s as any).tampon = (s as any).tampon ?? {})['warning'] = ((s as any).daystart ?? 0);
-        // TODO-QSP: $temp_tamp_text
+        scene.text(String((s as any).temp_tamp_text ?? ''));
         alert(qspFunc(s, 'wrap', 'neg', 'You only have <b>1</b> tampon  &&  <b>1</b> pad left!=='));
       } else {
         if (((s as any).mc_inventory ?? 0)?.['tampons'] === 1) {
@@ -1633,10 +1633,10 @@ function enterPrivate(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'piercing_management', 'set_manage_string');
   if (((s as any).fillimplant ?? 0) === 1) {
     if (((s as any).siliconeBag ?? 0) >= 1) {
-      scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: cls */ s.siliconeBag -=s.1; (s.bodyVars ??= {})\u0027bust_silicone\u0027 +=s.10; return s; }); window.__gameStore.getState().doGoto(window.__gameStore.getState().prevLoc, window.__gameStore.getState().prevArg); return false;">Inject silicone into your breast implants.</a>');
+      scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: cls */ s.siliconeBag -=1; (s.bodyVars ??= {})\u0027bust_silicone\u0027 +=10; return s; }); window.__gameStore.getState().doGoto(window.__gameStore.getState().prevLoc, window.__gameStore.getState().prevArg); return false;">Inject silicone into your breast implants.</a>');
     }
     if (((s as any).bodyVars ?? 0)?.['bust_silicone'] >= 20) {
-      scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: cls */ (s.bodyVars ??= {})\u0027bust_silicone\u0027 -=s.10; return s; }); window.__gameStore.getState().doGoto(window.__gameStore.getState().prevLoc, window.__gameStore.getState().prevArg); return false;">Drain silicone from your breast implants.</a>');
+      scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: cls */ (s.bodyVars ??= {})\u0027bust_silicone\u0027 -=10; return s; }); window.__gameStore.getState().doGoto(window.__gameStore.getState().prevLoc, window.__gameStore.getState().prevArg); return false;">Drain silicone from your breast implants.</a>');
     }
   }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBteeth(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -2529,13 +2529,13 @@ function enterShaveOptions(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).pubestyle ?? 0))) {
     scene.text('iif(shave_menu = 1, \'Everything&nbsp;|&nbsp;\', \'<a href="#" onclick="window.__gameStore.setState((s) => { alert(\u0027You must choose a shave style before you can choose to shave everything.\u0027); return s; }); return false;">Everything</a>&nbsp;|&nbsp;\')');
     scene.text('iif(shave_menu = 2, \'Pussy only&nbsp;|&nbsp;\', \'<a href="#" onclick="window.__gameStore.setState((s) => { alert(\u0027You must choose a shave style before you can choose to shave your pussy.\u0027); return s; }); return false;">Pussy only</a>&nbsp;|&nbsp;\')');
-    scene.text('iif(shave_menu = 3, \'Legs only&nbsp;|&nbsp;\', \'<a href="#" onclick="window.__gameStore.setState((s) => { s.shave_menu = s.3; s.pubestyle = s.0; return s; }); window.__gameStore.getState().doGoto(\u0027din_van\u0027, \u0027shave_options\u0027); return false;">Legs only</a>&nbsp;|&nbsp;\')');
-    scene.text('iif(shave_menu = 0, \'Never shave\', \'<a href="#" onclick="window.__gameStore.setState((s) => { s.shave_menu = s.0; s.pubestyle = s.0; return s; }); window.__gameStore.getState().doGoto(\u0027din_van\u0027, \u0027shave_options\u0027); return false;">Never shave</a>\')');
+    scene.text('iif(shave_menu = 3, \'Legs only&nbsp;|&nbsp;\', \'<a href="#" onclick="window.__gameStore.setState((s) => { s.shave_menu = 3; s.pubestyle = 0; return s; }); window.__gameStore.getState().doGoto(\u0027din_van\u0027, \u0027shave_options\u0027); return false;">Legs only</a>&nbsp;|&nbsp;\')');
+    scene.text('iif(shave_menu = 0, \'Never shave\', \'<a href="#" onclick="window.__gameStore.setState((s) => { s.shave_menu = 0; s.pubestyle = 0; return s; }); window.__gameStore.getState().doGoto(\u0027din_van\u0027, \u0027shave_options\u0027); return false;">Never shave</a>\')');
   } else {
-    scene.text('iif(shave_menu = 1, \'Everything&nbsp;|&nbsp;\', \'<a href="#" onclick="window.__gameStore.setState((s) => { s.shave_menu = s.1; return s; }); window.__gameStore.getState().doGoto(\u0027din_van\u0027, \u0027shave_options\u0027); return false;">Everything</a>&nbsp;|&nbsp;\')');
-    scene.text('iif(shave_menu = 2, \'Pussy only&nbsp;|&nbsp;\', \'<a href="#" onclick="window.__gameStore.setState((s) => { s.shave_menu = s.2; return s; }); window.__gameStore.getState().doGoto(\u0027din_van\u0027, \u0027shave_options\u0027); return false;">Pussy only</a>&nbsp;|&nbsp;\')');
-    scene.text('iif(shave_menu = 3, \'Legs only&nbsp;|&nbsp;\', \'<a href="#" onclick="window.__gameStore.setState((s) => { s.shave_menu = s.3; s.pubestyle = s.0; return s; }); window.__gameStore.getState().doGoto(\u0027din_van\u0027, \u0027shave_options\u0027); return false;">Legs only</a>&nbsp;|&nbsp;\')');
-    scene.text('iif(shave_menu = 0, \'Never shave\', \'<a href="#" onclick="window.__gameStore.setState((s) => { s.shave_menu = s.0; s.pubestyle = s.0; return s; }); window.__gameStore.getState().doGoto(\u0027din_van\u0027, \u0027shave_options\u0027); return false;">Never shave</a>\')');
+    scene.text('iif(shave_menu = 1, \'Everything&nbsp;|&nbsp;\', \'<a href="#" onclick="window.__gameStore.setState((s) => { s.shave_menu = 1; return s; }); window.__gameStore.getState().doGoto(\u0027din_van\u0027, \u0027shave_options\u0027); return false;">Everything</a>&nbsp;|&nbsp;\')');
+    scene.text('iif(shave_menu = 2, \'Pussy only&nbsp;|&nbsp;\', \'<a href="#" onclick="window.__gameStore.setState((s) => { s.shave_menu = 2; return s; }); window.__gameStore.getState().doGoto(\u0027din_van\u0027, \u0027shave_options\u0027); return false;">Pussy only</a>&nbsp;|&nbsp;\')');
+    scene.text('iif(shave_menu = 3, \'Legs only&nbsp;|&nbsp;\', \'<a href="#" onclick="window.__gameStore.setState((s) => { s.shave_menu = 3; s.pubestyle = 0; return s; }); window.__gameStore.getState().doGoto(\u0027din_van\u0027, \u0027shave_options\u0027); return false;">Legs only</a>&nbsp;|&nbsp;\')');
+    scene.text('iif(shave_menu = 0, \'Never shave\', \'<a href="#" onclick="window.__gameStore.setState((s) => { s.shave_menu = 0; s.pubestyle = 0; return s; }); window.__gameStore.getState().doGoto(\u0027din_van\u0027, \u0027shave_options\u0027); return false;">Never shave</a>\')');
   }
   if ((!((s as any).shave_menu ?? 0))) {
     scene.text('Your current routine doesn\'t include any shaving options.');
@@ -2571,31 +2571,31 @@ function enterShaveOptions(s: GameState, scene: SceneBuilder): void {
   scene.img(`${((s as any).temp_pube_image ?? '')}`);
   scene.text('<tr><td><center>');
   if (((s as any).pubestyle ?? 0) !== 1) {
-    scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.pubestyle = s.1; s.shave_length = s.0; s.shave_trigger = s.3; /* TODO-QSP: ${((s as any).temp_toggle ?? '')} */ return s; }); window.__gameStore.getState().doGoto(/u0027din_van/u0027, /u0027shave_options/u0027); return false;">Clean Shave</a>`);
+    scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.pubestyle = 1; s.shave_length = 0; s.shave_trigger = 3; { const _t = String((s as any).temp_toggle || /u0027/u0027); const _tp = _t.split(/u0027 /u0027); if (_tp.length >= 3 && _tp[1] === /u0027=/u0027) (s as any)[_tp[0]] = Number(_tp[2]); } return s; }); window.__gameStore.getState().doGoto(/u0027din_van/u0027, /u0027shave_options/u0027); return false;">Clean Shave</a>`);
   } else {
     scene.text('Clean Shave');
   }
   scene.text('</center></td><td><center>');
   if (((s as any).pubestyle ?? 0) !== 2  &&  ((s as any).pcs_pubes ?? 0) > 15) {
-    scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.pubestyle = s.2; s.shave_length = s.16; s.shave_trigger = s.21; /* TODO-QSP: ${((s as any).temp_toggle ?? '')} */ return s; }); window.__gameStore.getState().doGoto(/u0027din_van/u0027, /u0027shave_options/u0027); return false;">V-shaped</a>`);
+    scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.pubestyle = 2; s.shave_length = 16; s.shave_trigger = 21; { const _t = String((s as any).temp_toggle || /u0027/u0027); const _tp = _t.split(/u0027 /u0027); if (_tp.length >= 3 && _tp[1] === /u0027=/u0027) (s as any)[_tp[0]] = Number(_tp[2]); } return s; }); window.__gameStore.getState().doGoto(/u0027din_van/u0027, /u0027shave_options/u0027); return false;">V-shaped</a>`);
   } else {
     scene.text('V-shaped');
   }
   scene.text('</center></td><td><center>');
   if (((s as any).pubestyle ?? 0) !== 3  &&  ((s as any).pcs_pubes ?? 0) > 15) {
-    scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.pubestyle = s.3; s.shave_length = s.16; s.shave_trigger = s.21; /* TODO-QSP: ${((s as any).temp_toggle ?? '')} */ return s; }); window.__gameStore.getState().doGoto(/u0027din_van/u0027, /u0027shave_options/u0027); return false;">Triangle-shaped</a>`);
+    scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.pubestyle = 3; s.shave_length = 16; s.shave_trigger = 21; { const _t = String((s as any).temp_toggle || /u0027/u0027); const _tp = _t.split(/u0027 /u0027); if (_tp.length >= 3 && _tp[1] === /u0027=/u0027) (s as any)[_tp[0]] = Number(_tp[2]); } return s; }); window.__gameStore.getState().doGoto(/u0027din_van/u0027, /u0027shave_options/u0027); return false;">Triangle-shaped</a>`);
   } else {
     scene.text('Triangle-shaped');
   }
   scene.text('</center></td><td><center>');
   if (((s as any).pubestyle ?? 0) !== 4  &&  ((s as any).pcs_pubes ?? 0) > 15) {
-    scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.pubestyle = s.4; s.shave_length = s.16; s.shave_trigger = s.21; /* TODO-QSP: ${((s as any).temp_toggle ?? '')} */ return s; }); window.__gameStore.getState().doGoto(/u0027din_van/u0027, /u0027shave_options/u0027); return false;">Landing-strip</a>`);
+    scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.pubestyle = 4; s.shave_length = 16; s.shave_trigger = 21; { const _t = String((s as any).temp_toggle || /u0027/u0027); const _tp = _t.split(/u0027 /u0027); if (_tp.length >= 3 && _tp[1] === /u0027=/u0027) (s as any)[_tp[0]] = Number(_tp[2]); } return s; }); window.__gameStore.getState().doGoto(/u0027din_van/u0027, /u0027shave_options/u0027); return false;">Landing-strip</a>`);
   } else {
     scene.text('Landing-strip');
   }
   scene.text('</center></td><td><center>');
   if (((s as any).pubestyle ?? 0) !== 5  &&  ((s as any).pcs_pubes ?? 0) > 15) {
-    scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.pubestyle = s.5; s.shave_length = s.16; s.shave_trigger = s.21; /* TODO-QSP: ${((s as any).temp_toggle ?? '')} */ return s; }); window.__gameStore.getState().doGoto(/u0027din_van/u0027, /u0027shave_options/u0027); return false;">Heart-shaped</a>`);
+    scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.pubestyle = 5; s.shave_length = 16; s.shave_trigger = 21; { const _t = String((s as any).temp_toggle || /u0027/u0027); const _tp = _t.split(/u0027 /u0027); if (_tp.length >= 3 && _tp[1] === /u0027=/u0027) (s as any)[_tp[0]] = Number(_tp[2]); } return s; }); window.__gameStore.getState().doGoto(/u0027din_van/u0027, /u0027shave_options/u0027); return false;">Heart-shaped</a>`);
   } else {
     scene.text('Heart-shaped');
   }
@@ -2612,31 +2612,31 @@ function enterShaveOptions(s: GameState, scene: SceneBuilder): void {
   scene.img(`${((s as any).temp_pube_image ?? '')}`);
   scene.text('<tr><td><center>');
   if (((s as any).pubestyle ?? 0) !== 6  &&  ((s as any).pcs_pubes ?? 0) > 15) {
-    scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.pubestyle = s.6; s.shave_length = s.16; s.shave_trigger = s.21; /* TODO-QSP: ${((s as any).temp_toggle ?? '')} */ return s; }); window.__gameStore.getState().doGoto(/u0027din_van/u0027, /u0027shave_options/u0027); return false;">Flame-shaped</a>`);
+    scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.pubestyle = 6; s.shave_length = 16; s.shave_trigger = 21; { const _t = String((s as any).temp_toggle || /u0027/u0027); const _tp = _t.split(/u0027 /u0027); if (_tp.length >= 3 && _tp[1] === /u0027=/u0027) (s as any)[_tp[0]] = Number(_tp[2]); } return s; }); window.__gameStore.getState().doGoto(/u0027din_van/u0027, /u0027shave_options/u0027); return false;">Flame-shaped</a>`);
   } else {
     scene.text('Flame-shaped');
   }
   scene.text('</center></td><td><center>');
   if (((s as any).pubestyle ?? 0) !== 7  &&  ((s as any).pcs_pubes ?? 0) > 15) {
-    scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.pubestyle = s.7; s.shave_length = s.16; s.shave_trigger = s.21; /* TODO-QSP: ${((s as any).temp_toggle ?? '')} */ return s; }); window.__gameStore.getState().doGoto(/u0027din_van/u0027, /u0027shave_options/u0027); return false;">Cross-Shaped</a>`);
+    scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.pubestyle = 7; s.shave_length = 16; s.shave_trigger = 21; { const _t = String((s as any).temp_toggle || /u0027/u0027); const _tp = _t.split(/u0027 /u0027); if (_tp.length >= 3 && _tp[1] === /u0027=/u0027) (s as any)[_tp[0]] = Number(_tp[2]); } return s; }); window.__gameStore.getState().doGoto(/u0027din_van/u0027, /u0027shave_options/u0027); return false;">Cross-Shaped</a>`);
   } else {
     scene.text('Cross-Shaped');
   }
   scene.text('</center></td><td><center>');
   if (((s as any).pubestyle ?? 0) !== 8  &&  ((s as any).pcs_pubes ?? 0) > 16) {
-    scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.pubestyle = s.8; s.shave_length = s.16; s.shave_trigger = s.21; /* TODO-QSP: ${((s as any).temp_toggle ?? '')} */ return s; }); window.__gameStore.getState().doGoto(/u0027din_van/u0027, /u0027shave_options/u0027); return false;">Trimmed</a>`);
+    scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.pubestyle = 8; s.shave_length = 16; s.shave_trigger = 21; { const _t = String((s as any).temp_toggle || /u0027/u0027); const _tp = _t.split(/u0027 /u0027); if (_tp.length >= 3 && _tp[1] === /u0027=/u0027) (s as any)[_tp[0]] = Number(_tp[2]); } return s; }); window.__gameStore.getState().doGoto(/u0027din_van/u0027, /u0027shave_options/u0027); return false;">Trimmed</a>`);
   } else {
     scene.text('Trimmed');
   }
   scene.text('</center></td><td><center>');
   if (((s as any).pubestyle ?? 0) !== 9  &&  ((s as any).pcs_pubes ?? 0) > 20) {
-    scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.pubestyle = s.9; s.shave_length = s.20; s.shave_trigger = s.26; /* TODO-QSP: ${((s as any).temp_toggle ?? '')} */ return s; }); window.__gameStore.getState().doGoto(/u0027din_van/u0027, /u0027shave_options/u0027); return false;">Small Bush</a>`);
+    scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.pubestyle = 9; s.shave_length = 20; s.shave_trigger = 26; { const _t = String((s as any).temp_toggle || /u0027/u0027); const _tp = _t.split(/u0027 /u0027); if (_tp.length >= 3 && _tp[1] === /u0027=/u0027) (s as any)[_tp[0]] = Number(_tp[2]); } return s; }); window.__gameStore.getState().doGoto(/u0027din_van/u0027, /u0027shave_options/u0027); return false;">Small Bush</a>`);
   } else {
     scene.text('Small Bush');
   }
   scene.text('</center></td><td><center>');
   if (((s as any).pubestyle ?? 0) !== 10) {
-    scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.pubestyle = s.10; s.shave_length = s.26; s.shave_trigger = s.31; /* TODO-QSP: ${((s as any).temp_toggle ?? '')} */ return s; }); window.__gameStore.getState().doGoto(/u0027din_van/u0027, /u0027shave_options/u0027); return false;">Full Bush</a>`);
+    scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.pubestyle = 10; s.shave_length = 26; s.shave_trigger = 31; { const _t = String((s as any).temp_toggle || /u0027/u0027); const _tp = _t.split(/u0027 /u0027); if (_tp.length >= 3 && _tp[1] === /u0027=/u0027) (s as any)[_tp[0]] = Number(_tp[2]); } return s; }); window.__gameStore.getState().doGoto(/u0027din_van/u0027, /u0027shave_options/u0027); return false;">Full Bush</a>`);
   } else {
     scene.text('Full Bush');
   }
@@ -2647,13 +2647,13 @@ function enterShaveOptions(s: GameState, scene: SceneBuilder): void {
   scene.img(`${((s as any).temp_pube_image ?? '')}`);
   scene.text('<tr><td><center>');
   if (((s as any).pubestyle ?? 0) !== 11  &&  ((s as any).pcs_pubes ?? 0) > 10) {
-    scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.pubestyle = s.11; s.shave_length = s.0; s.shave_trigger = s.8; /* TODO-QSP: ${((s as any).temp_toggle ?? '')} */ return s; }); window.__gameStore.getState().doGoto(/u0027din_van/u0027, /u0027shave_options/u0027); return false;">Lazy</a>`);
+    scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.pubestyle = 11; s.shave_length = 0; s.shave_trigger = 8; { const _t = String((s as any).temp_toggle || /u0027/u0027); const _tp = _t.split(/u0027 /u0027); if (_tp.length >= 3 && _tp[1] === /u0027=/u0027) (s as any)[_tp[0]] = Number(_tp[2]); } return s; }); window.__gameStore.getState().doGoto(/u0027din_van/u0027, /u0027shave_options/u0027); return false;">Lazy</a>`);
   } else {
     scene.text('Lazy');
   }
   scene.text('</center></td><td><center>');
   if (((s as any).pubestyle ?? 0) !== 12  &&  ((s as any).pcs_pubes ?? 0) > 15) {
-    scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.pubestyle = s.12; s.shave_length = s.16; s.shave_trigger = s.21; /* TODO-QSP: ${((s as any).temp_toggle ?? '')} */ return s; }); window.__gameStore.getState().doGoto(/u0027din_van/u0027, /u0027shave_options/u0027); return false;">Mini Bush</a>`);
+    scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.pubestyle = 12; s.shave_length = 16; s.shave_trigger = 21; { const _t = String((s as any).temp_toggle || /u0027/u0027); const _tp = _t.split(/u0027 /u0027); if (_tp.length >= 3 && _tp[1] === /u0027=/u0027) (s as any)[_tp[0]] = Number(_tp[2]); } return s; }); window.__gameStore.getState().doGoto(/u0027din_van/u0027, /u0027shave_options/u0027); return false;">Mini Bush</a>`);
   } else {
     scene.text('Mini Bush');
   }

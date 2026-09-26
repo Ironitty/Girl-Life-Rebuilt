@@ -21,16 +21,16 @@ function enterJournalmenu(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   (s as any).tablebody = '<tr>';
   if (((s as any).start_type ?? 0)?.['magic'] !== 'nomagic') {
-    (s as any).tablebody = ((s as any).tablebody ?? '') + '<th><a href="#" onclick="window.__gameStore.setState((s) => { s.menutrack = s.0; return s; }); window.__gameStore.getState().doGoto(\u0027journal\u0027, \u0027magictab\u0027); return false;">Magic</a></th>';
+    (s as any).tablebody = ((s as any).tablebody ?? '') + '<th><a href="#" onclick="window.__gameStore.setState((s) => { s.menutrack = 0; return s; }); window.__gameStore.getState().doGoto(\u0027journal\u0027, \u0027magictab\u0027); return false;">Magic</a></th>';
   }
-  (s as any).tablebody = ((s as any).tablebody ?? 0) + ('<th><a href="#" onclick="window.__gameStore.setState((s) => { s.menutrack = s.1; return s; }); window.__gameStore.getState().doGoto(\u0027journal\u0027, \u0027calendar\u0027); return false;">Calendar</a></th>');
-  (s as any).tablebody = ((s as any).tablebody ?? 0) + ('<th><a href="#" onclick="window.__gameStore.setState((s) => { s.menutrack = s.2; return s; }); window.__gameStore.getState().doGoto(\u0027journal\u0027, \u0027housingtab\u0027); return false;">Housing</a></th>');
-  (s as any).tablebody = ((s as any).tablebody ?? 0) + ('<th><a href="#" onclick="window.__gameStore.setState((s) => { s.menutrack = s.3; return s; }); window.__gameStore.getState().doGoto(\u0027journal_work\u0027, \u0027start\u0027); return false;">Work</a></th>');
-  (s as any).tablebody = ((s as any).tablebody ?? 0) + ('<th><a href="#" onclick="window.__gameStore.setState((s) => { s.menutrack = s.4; return s; }); window.__gameStore.getState().doGoto(\u0027journal_quests\u0027, \u0027start\u0027); return false;">Quests</a></th>');
-  (s as any).tablebody = ((s as any).tablebody ?? 0) + ('<th><a href="#" onclick="window.__gameStore.setState((s) => { s.menutrack = s.5; return s; }); window.__gameStore.getState().doGoto(\u0027journal\u0027, \u0027relationstab\u0027); return false;">Relations</a></th>');
-  (s as any).tablebody = ((s as any).tablebody ?? 0) + ('<th><a href="#" onclick="window.__gameStore.setState((s) => { s.menutrack = s.6; return s; }); window.__gameStore.getState().doGoto(\u0027journal\u0027, \u0027generaltab\u0027); return false;">Game Information</a></th>');
-  (s as any).tablebody = ((s as any).tablebody ?? 0) + ('<th><a href="#" onclick="window.__gameStore.setState((s) => { s.menutrack = s.7; return s; }); window.__gameStore.getState().doGoto(\u0027journal\u0027, \u0027notestab\u0027); return false;">Notes</a></th>');
-  (s as any).tablebody = ((s as any).tablebody ?? 0) + ('<th><a href="#" onclick="window.__gameStore.setState((s) => { s.menutrack = s.8; return s; }); window.__gameStore.getState().doGoto(\u0027journal\u0027, \u0027notification_log\u0027); return false;">Notifications</a></th>');
+  (s as any).tablebody = ((s as any).tablebody ?? 0) + ('<th><a href="#" onclick="window.__gameStore.setState((s) => { s.menutrack = 1; return s; }); window.__gameStore.getState().doGoto(\u0027journal\u0027, \u0027calendar\u0027); return false;">Calendar</a></th>');
+  (s as any).tablebody = ((s as any).tablebody ?? 0) + ('<th><a href="#" onclick="window.__gameStore.setState((s) => { s.menutrack = 2; return s; }); window.__gameStore.getState().doGoto(\u0027journal\u0027, \u0027housingtab\u0027); return false;">Housing</a></th>');
+  (s as any).tablebody = ((s as any).tablebody ?? 0) + ('<th><a href="#" onclick="window.__gameStore.setState((s) => { s.menutrack = 3; return s; }); window.__gameStore.getState().doGoto(\u0027journal_work\u0027, \u0027start\u0027); return false;">Work</a></th>');
+  (s as any).tablebody = ((s as any).tablebody ?? 0) + ('<th><a href="#" onclick="window.__gameStore.setState((s) => { s.menutrack = 4; return s; }); window.__gameStore.getState().doGoto(\u0027journal_quests\u0027, \u0027start\u0027); return false;">Quests</a></th>');
+  (s as any).tablebody = ((s as any).tablebody ?? 0) + ('<th><a href="#" onclick="window.__gameStore.setState((s) => { s.menutrack = 5; return s; }); window.__gameStore.getState().doGoto(\u0027journal\u0027, \u0027relationstab\u0027); return false;">Relations</a></th>');
+  (s as any).tablebody = ((s as any).tablebody ?? 0) + ('<th><a href="#" onclick="window.__gameStore.setState((s) => { s.menutrack = 6; return s; }); window.__gameStore.getState().doGoto(\u0027journal\u0027, \u0027generaltab\u0027); return false;">Game Information</a></th>');
+  (s as any).tablebody = ((s as any).tablebody ?? 0) + ('<th><a href="#" onclick="window.__gameStore.setState((s) => { s.menutrack = 7; return s; }); window.__gameStore.getState().doGoto(\u0027journal\u0027, \u0027notestab\u0027); return false;">Notes</a></th>');
+  (s as any).tablebody = ((s as any).tablebody ?? 0) + ('<th><a href="#" onclick="window.__gameStore.setState((s) => { s.menutrack = 8; return s; }); window.__gameStore.getState().doGoto(\u0027journal\u0027, \u0027notification_log\u0027); return false;">Notifications</a></th>');
   (s as any).tablebody = ((s as any).tablebody ?? 0) + ('</tr>');
   scene.text(`<center><table width="90%" align="center" width="90%" cellspacing="0" cellpadding="0" valign="top"><tr>${((s as any).tablebody ?? '')}</tr></table></center>`);
   (s as any).tablebody = undefined;
@@ -1101,7 +1101,7 @@ function enterNotestab(s: GameState, scene: SceneBuilder): void {
   (s as any).jur_temp = 0;
   while (true) {
     if (((s as any).jur_temp ?? 0) < Object.keys((s as any).zapis ?? {}).length) {
-      scene.text(`${(((s as any).zapis ?? 0)?.[String((s as any).jur_temp ?? 0)] ?? '')} <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: dynamic /u0027killvar/u0027/u0027$zapis/u0027/u0027,${((s as any).jur_temp ?? '')} */ return s; }); window.__gameStore.getState().doGoto(/u0027/u0027journal/u0027/u0027, /u0027/u0027notestab/u0027/u0027/u0027); return false;">Delete</a>`);
+      scene.text(`${(((s as any).zapis ?? 0)?.[String((s as any).jur_temp ?? 0)] ?? '')} <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: dynamic /u0027killvar/u0027/u0027$zapis/u0027/u0027,/u003c/u003cjur_temp>> */ return s; }); window.__gameStore.getState().doGoto(/u0027/u0027journal/u0027/u0027, /u0027/u0027notestab/u0027/u0027/u0027); return false;">Delete</a>`);
       (s as any).jur_temp = ((s as any).jur_temp ?? 0) + (1);
       break;
     }

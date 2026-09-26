@@ -604,55 +604,6 @@ function enterFreeCreampies(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
-    if (((s as any).stat ?? 0)?.['preg_risk'] === 'safe') {
-      scene.actions([
-        { label: 'It\'s a safe day', handler: (st: GameState) => {
-    ((st as any).sex_ev = (st as any).sex_ev ?? {})['preg_risk'] = 'safe';
-    scene.text(String(qspFunc(s, 'sex_ev', 'temp_pic') || ''));
-    scene.text('"Don\'t worry," you smile. "It\'s a safe day for me. You can come inside me as much as you want today."');
-    if (((st as any).npc_childfree ?? 0)?.[String((st as any).npcID ?? 0)] === 1) {
-      scene.text(`${((st as any).npcdesc ?? '')} lets out a sigh of relief.`);
-    }
-    qspCall(st, 'sex_ev_sex', 'sex_end');
-  } },
-      ]);
-    } else {
-      if (((s as any).stat ?? 0)?.['preg_risk'] === 'prob_safe') {
-        scene.actions([
-          { label: 'It\'s probably safe day', handler: (st: GameState) => {
-    ((st as any).sex_ev = (st as any).sex_ev ?? {})['preg_risk'] = 'prob_safe';
-    scene.text(String(qspFunc(s, 'sex_ev', 'temp_pic') || ''));
-    scene.text('"Don\'t worry," you smile. "I\'m probably safe. It\'s okay for you to come inside me today."');
-    if (((st as any).npc_childfree ?? 0)?.[String((st as any).npcID ?? 0)] === 1) {
-      scene.text(`${((st as any).npcdesc ?? '')} lets out a sigh of relief.`);
-    }
-    scene.text('<i>Probably...</i> you quietly reiterate to yourself.');
-    qspCall(st, 'sex_ev_sex', 'sex_end');
-  } },
-        ]);
-      } else {
-        if (((s as any).sex_ev ?? 0)?.['preg_risk'] !== 'danger') {
-          // TODO-QSP: end !}
-          scene.actions([
-            { label: 'It\'s a safe day (lie)', handler: (st: GameState) => {
-    ((st as any).sex_ev = (st as any).sex_ev ?? {})['preg_risk'] = 'safe';
-    scene.text(String(qspFunc(s, 'sex_ev', 'temp_pic') || ''));
-    scene.text('"Don\'t worry," you smile. "It\'s a safe day for me. You can come inside me as much as you want."');
-    scene.actions([
-      { label: '<i>I\'ll be fine</i>', handler: (st: GameState) => {
-    scene.text('<i>It\'s fine,</i> you think to yourself. <i>A few creampies won\'t kill me...</i>');
-    qspCall(st, 'sex_ev_sex', 'sex_end');
-  } },
-      { label: '<i>I hope I get pregnant</i>', handler: (st: GameState) => {
-    scene.text(`<i>I really hope this gets me pregnant,</i> you think giddily to yourself. <i>I want ${((st as any).npcdesc ?? '')}'s babies swimming around inside me...</i>`);
-    qspCall(st, 'sex_ev_sex', 'sex_end');
-  } },
-    ]);
-  } },
-          ]);
-        }
-      }
-    }
     scene.actions([
       { label: 'You don\'t need to ask', handler: (st: GameState) => {
     scene.text(String(qspFunc(s, 'sex_ev', 'temp_pic') || ''));

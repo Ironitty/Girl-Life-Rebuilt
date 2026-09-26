@@ -1719,7 +1719,7 @@ function enterFirstOrgyInitiativeContinuedDance2(s: GameState, scene: SceneBuild
     ((st as any).katjaQW = (st as any).katjaQW ?? {})['horny'] = ((st as any).katjaQW['horny'] ?? 0) + ((Math.floor(Math.random() * 21) + 20));
     scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/characters/pavlovsk/school/girl/katja/uni/nightclub/orgy/first_orgy_katja23` + ((((st as any).katjaQW ?? 0)?.['horny'] >= 100) ? ('b') : ('a')) + '.jpg"></center>');
     scene.text(`As you're standing around, ${(((st as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_tatoo_guy'] ?? '')} comes up to you and smiles.'`);
-    // TODO-QSP: "Hey, how are you?" he asks.'
+    scene.text('Hey, how are you?" he asks.');
     scene.text('"Good," you reply. "How about you?"');
     scene.text('"Good, good. Had to take a break, but now I\'m ready again," he says, clearly indicating that he wants to have sex with you.');
     scene.text('"You think so?" you grin as you take his cock in your hand while checking to see how your friends are doing.');

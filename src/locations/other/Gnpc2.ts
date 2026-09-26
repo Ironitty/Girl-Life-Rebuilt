@@ -379,7 +379,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'pain', '6', 'lips', 'hit');
       qspCall(st, 'stat', '');
       scene.text('You swing at the Gopnik and hit him right on the nose. He staggers briefly and then yells angrily at you, "Oh, you bitch!". He charges quickly at you and then a barrage of punches comes raining down on you.');
-      // TODO-QSP: $looseTooth
+      scene.text(String((st as any).looseTooth ?? ''));
       scene.actions([
         { label: 'Go home', goto: ['pav_residential', ''] },
       ]);
@@ -388,7 +388,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'pain', '6', 'head', 'hit');
       qspCall(st, 'stat', '');
       scene.text('You try to hit the hooligan with a punch to the face but your blow is too slow. The Gopnik dodges your weak attempt and pushes you roughly away.');
-      // TODO-QSP: $stumble
+      scene.text(String((st as any).stumble ?? ''));
       scene.actions([
         { label: 'Go home', goto: ['pav_residential', ''] },
       ]);

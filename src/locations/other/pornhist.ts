@@ -59,7 +59,7 @@ function enterPdetail(s: GameState, scene: SceneBuilder): void {
         (s as any).firstvariable = 1;
         (s as any).fvvalue = ((s as any).i ?? 0);
       }
-      scene.text(`<b><a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: $porntitle[fvvalue] = input(/u0027<font color=#FF0000>WARNING!</font> No matter where you clicked, it will name the <b>first</b> unnamed movie! This action can be done only once!/u0027) */ return s; }); window.__gameStore.getState().doGoto(/u0027pornhist/u0027, /u0027pdetail/u0027); return false;">${((s as any).i ?? '')}. Movie</a></b>`);
+      scene.text(`<b><a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: $porntitle[fvvalue] = input(/u0027/u003cfont color=#FF0000>WARNING!/u003c/font> No matter where you clicked, it will name the /u003cb>first/u003c/b> unnamed movie! This action can be done only once!/u0027) */ return s; }); window.__gameStore.getState().doGoto(/u0027pornhist/u0027, /u0027pdetail/u0027); return false;">${((s as any).i ?? '')}. Movie</a></b>`);
     } else {
       if (((s as any).i ?? 0) === 1) {
         scene.text(`<b><font color="brown">${(((s as any).porntitle ?? 0)?.[String((s as any).i ?? 0)] ?? '')}${((s as any).pfname ?? '')}</font></b>`);
@@ -127,7 +127,7 @@ function enterPdetail(s: GameState, scene: SceneBuilder): void {
         (s as any).firstvariable2 = 1;
         (s as any).fvvalue2 = ((s as any).i ?? 0);
       }
-      scene.text(' <b>Story:</b> <font size=2><a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: $pornfilmstory[fvvalue2] = input(\u0027<font color=#FF0000>WARNING!</font> No matter where you clicked, you will enter the story of the <b>first</b> movie missing it! This action can be done only once!\u0027) */ return s; }); window.__gameStore.getState().doGoto(\u0027pornhist\u0027, \u0027pdetail\u0027); return false;">Missing story</a></font>');
+      scene.text(' <b>Story:</b> <font size=2><a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: $pornfilmstory[fvvalue2] = input(\u0027/u003cfont color=#FF0000>WARNING!/u003c/font> No matter where you clicked, you will enter the story of the /u003cb>first/u003c/b> movie missing it! This action can be done only once!\u0027) */ return s; }); window.__gameStore.getState().doGoto(\u0027pornhist\u0027, \u0027pdetail\u0027); return false;">Missing story</a></font>');
     } else {
       scene.text(` <b>Story:</b> <font color=#1B4532 size=2>${(((s as any).pornfilmstory ?? 0)?.[String((s as any).i ?? 0)] ?? '')}</font>`);
     }

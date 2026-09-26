@@ -17,7 +17,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (qspFunc(s, 'homes_properties', 'is_property_of_status', 'purchased', 'city_apartment')) {
       if ((!((s as any).rembedr ?? 0))) {
         scene.actions([
-          { label: 'Renovate city apartment bedroom ( [50000₽]...]', handler: (st: GameState) => {
+          { label: '', labelFn: (s: GameState) => String('Renovate city apartment bedroom (' + qspFunc(s, 'money', 'string_price', 50000) + ')' ?? ''), handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 50000, 'card') === 1) {
       (st as any).rembedr = 1;
       qspCall(st, 'money', 'pay', 50000, 'card');
@@ -34,7 +34,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       }
       if ((!((s as any).remsitr ?? 0))) {
         scene.actions([
-          { label: 'Renovate city apartment living room ( [50000₽]...]', handler: (st: GameState) => {
+          { label: '', labelFn: (s: GameState) => String('Renovate city apartment living room (' + qspFunc(s, 'money', 'string_price', 50000) + ')' ?? ''), handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 50000, 'card') === 1) {
       (st as any).remsitr = 1;
       qspCall(st, 'money', 'pay', 50000, 'card');
@@ -51,7 +51,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       }
       if ((!((s as any).remkorr ?? 0))) {
         scene.actions([
-          { label: 'Renovate city apartment hallway ( [50000₽]...]', handler: (st: GameState) => {
+          { label: '', labelFn: (s: GameState) => String('Renovate city apartment hallway (' + qspFunc(s, 'money', 'string_price', 50000) + ')' ?? ''), handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 50000, 'card') === 1) {
       (st as any).remkorr = 1;
       qspCall(st, 'money', 'pay', 50000, 'card');
@@ -68,7 +68,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       }
       if ((!((s as any).remvanr ?? 0))) {
         scene.actions([
-          { label: 'Renovate city apartment bathroom ( [50000₽]...]', handler: (st: GameState) => {
+          { label: '', labelFn: (s: GameState) => String('Renovate city apartment bathroom (' + qspFunc(s, 'money', 'string_price', 50000) + ')' ?? ''), handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 50000, 'card') === 1) {
       (st as any).remvanr = 1;
       qspCall(st, 'money', 'pay', 50000, 'card');
@@ -85,7 +85,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       }
       if ((!((s as any).remkuhr ?? 0))) {
         scene.actions([
-          { label: 'Renovate city apartment kitchen ( [50000₽]...]', handler: (st: GameState) => {
+          { label: '', labelFn: (s: GameState) => String('Renovate city apartment kitchen (' + qspFunc(s, 'money', 'string_price', 50000) + ')' ?? ''), handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 50000, 'card') === 1) {
       (st as any).remkuhr = 1;
       qspCall(st, 'money', 'pay', 50000, 'card');

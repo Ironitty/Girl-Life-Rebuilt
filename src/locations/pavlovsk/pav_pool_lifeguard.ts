@@ -109,7 +109,7 @@ function enterTraining1(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/community/swim/photoclothing.jpg');
     scene.text('As you change back into your clothes, you\'re startled when you think you hear a camera click, as if someone was taking photos, but you don\'t see anything. You tell yourself you\'re just being paranoid and continue getting dressed.');
-    scene.text('Once you\'re finished, you spot a set of <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027pav_pool_lifeguard\u0027, \u0027mirror\u0027); return false;">mirrors</a> where you can brush your hair or do your makeup.');
+    scene.text('Once you\'re finished, you spot a set of <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=1; return s; }); window.__gameStore.getState().doGoto(\u0027pav_pool_lifeguard\u0027, \u0027mirror\u0027); return false;">mirrors</a> where you can brush your hair or do your makeup.');
     scene.actions([
       { label: 'Leave', goto: ['pav_pool_lifeguard', 'leave'] },
     ]);
@@ -164,7 +164,7 @@ function enterTraining2(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/community/swim/photoclothing.jpg');
     scene.text('As you change back into your clothes, you\'re startled when you think you hear a camera click, as if someone was taking photos, but you don\'t see anything. You tell yourself you\'re just being paranoid and continue getting dressed.');
-    scene.text('Once you\'re finished, you spot a set of <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027pav_pool_lifeguard\u0027, \u0027mirror\u0027); return false;">mirrors</a> where you can brush your hair or do your makeup.');
+    scene.text('Once you\'re finished, you spot a set of <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=1; return s; }); window.__gameStore.getState().doGoto(\u0027pav_pool_lifeguard\u0027, \u0027mirror\u0027); return false;">mirrors</a> where you can brush your hair or do your makeup.');
     scene.actions([
       { label: 'Leave', goto: ['pav_pool_lifeguard', 'leave'] },
     ]);
@@ -180,7 +180,7 @@ function enterStaffLockerRoom(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/community/swim/lockers.jpg');
   scene.text('The staff locker room is just as run down and grimy as the rest of the building. The unisex design offers little privacy, but you rarely encounter any of your fellow staff members here.');
   scene.text('A row of dilapidated lockers line one wall, with a group of old benches provided as a seating area. The showers are towards the back of the room.');
-  scene.text('A set of <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027pav_pool_lifeguard\u0027, \u0027mirror\u0027); return false;">mirrors</a> where you can brush your hair or do your makeup line the wall opposite the lockers, while an old water fountain provides hydration to anyone desperate enough to use it.');
+  scene.text('A set of <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=1; return s; }); window.__gameStore.getState().doGoto(\u0027pav_pool_lifeguard\u0027, \u0027mirror\u0027); return false;">mirrors</a> where you can brush your hair or do your makeup line the wall opposite the lockers, while an old water fountain provides hydration to anyone desperate enough to use it.');
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (st as any).temp_pay = qspFunc(s, 'jobs', 'paycheck', 'pav_pool_lifeguard', 'cash');
@@ -226,7 +226,7 @@ function enterMirror(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'pav_pool_lifeguard', 'mirror');
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/community/swim/mirrorsink.jpg');
-  scene.text('The <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027start\u0027); return false;">mirrors</a> are is just as murky as the rest of the changing room. It\'s almost like the owners don\'t care about the dilapidated appearance.');
+  scene.text('The <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=1; return s; }); window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027start\u0027); return false;">mirrors</a> are is just as murky as the rest of the changing room. It\'s almost like the owners don\'t care about the dilapidated appearance.');
   scene.actions([
     { label: 'Go back to the changing room', goto: ['pav_pool_lifeguard', 'staff_locker_room'] },
   ]);

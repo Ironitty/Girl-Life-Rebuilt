@@ -47,7 +47,7 @@ function enterCikl(s: GameState, scene: SceneBuilder): void {
                         (s as any).passed_count = ((s as any).passed_count ?? 0) + (1);
                       } else {
                         if ((!(0 as any))) {
-                          // TODO-QSP: dynamic 'class[''<<$class_list_institution[i]>>_<<$class_list_name[i]>>_grade''] = 0'
+                          (s as any)['class']['' + (((s as any).class_list_institution ?? 0)?.[String((s as any).i ?? 0)] ?? 0) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).i ?? 0)] ?? 0) + '_grade'] = 0;
                           ((s as any).university = (s as any).university ?? {})['expelled_for_missing_exam'] = 1;
                         }
                       }

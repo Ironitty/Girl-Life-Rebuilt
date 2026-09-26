@@ -27,7 +27,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'outdoors');
   scene.img('images/locations/city/residential/market/rinok.jpg');
-  scene.text('One of the stalls has a sign attached to it that reads "Cash paid for secondhand clothes". You can <a href="#" onclick="window.__gameStore.setState((s) => { s.cloc = s.2; return s; }); window.__gameStore.getState().doGoto(\u0027clothing_view\u0027, \u0027view_lists_list\u0027, \u0027sell\u0027); return false;">sell individual items</a> or <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027portnoi\u0027, \u0027\u0027); return false;">all of your unwanted clothes here</a>.');
+  scene.text('One of the stalls has a sign attached to it that reads "Cash paid for secondhand clothes". You can <a href="#" onclick="window.__gameStore.setState((s) => { s.cloc = 2; return s; }); window.__gameStore.getState().doGoto(\u0027clothing_view\u0027, \u0027view_lists_list\u0027, \u0027sell\u0027); return false;">sell individual items</a> or <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027portnoi\u0027, \u0027\u0027); return false;">all of your unwanted clothes here</a>.');
   if (((s as any).analPlugIn ?? 0) === 1  &&  ((s as any).pantyworntype ?? 0) === 'none'  &&  ((s as any).PCloSkirt ?? 0) > 2) {
     (s as any).nurand = (Math.floor(Math.random() * 101) + 0);
     if (((s as any).nurand ?? 0) >= 80) {

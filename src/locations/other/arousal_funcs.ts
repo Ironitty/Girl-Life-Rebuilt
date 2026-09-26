@@ -370,7 +370,7 @@ function enterAutoLube(s: GameState, scene: SceneBuilder): void {
         scene.text('You rub some lube in and around your anus.');
       } else {
         if (((s as any).lube_txt ?? 0) !== '') {
-          // TODO-QSP: $lube_txt
+          scene.text(String((s as any).lube_txt ?? ''));
         }
       }
       ((s as any).temp_stim = (s as any).temp_stim ?? {})['mag'] = qspFunc(s, 'arousal_funcs', 'get_base_stimmag');
@@ -404,7 +404,7 @@ function enterAutoLube(s: GameState, scene: SceneBuilder): void {
           scene.text('You rub some lube in and around your vagina.');
         } else {
           if (((s as any).lube_txt ?? 0) !== '') {
-            // TODO-QSP: $lube_txt
+            scene.text(String((s as any).lube_txt ?? ''));
           }
         }
         ((s as any).temp_stim = (s as any).temp_stim ?? {})['mag'] = qspFunc(s, 'arousal_funcs', 'get_base_stimmag');

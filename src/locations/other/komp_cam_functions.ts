@@ -363,12 +363,12 @@ function enterMFCViews(s: GameState, scene: SceneBuilder): void {
 function enterViewsCore(s: GameState, scene: SceneBuilder): void {
   ((s as any).cam_viewsVars = (s as any).cam_viewsVars ?? {})['N2'] = qspFunc(s, 'math', 'long_mult', (((s as any).cam_viewsVars ?? 0)?.['N']), (((s as any).cam_viewsVars ?? 0)?.['N']));
   if (((s as any).camGirl ?? 0)?.['debug'] === 1) {
-    // TODO-QSP: "
+    scene.text('');
     (s as any).Ot = (((s as any).cam_viewsVars ?? 0)?.['Ot']);
     (s as any).Lt = (((s as any).cam_viewsVars ?? 0)?.['Lt']);
     (s as any).At = (((s as any).cam_viewsVars ?? 0)?.['At']);
     (s as any).Pt = (((s as any).cam_viewsVars ?? 0)?.['Pt']);
-    // TODO-QSP: "
+    scene.text('');
   }
   ((s as any).cam_viewsVars = (s as any).cam_viewsVars ?? {})['v1'] = qspFunc(s, 'math', 'long_mult', (((s as any).cam_viewsVars ?? 0)?.['OL_g']), (((s as any).cam_viewsVars ?? 0)?.['N']));
   ((s as any).cam_viewsVars = (s as any).cam_viewsVars ?? {})['v2'] = qspFunc(s, 'math', 'long_mult', (((s as any).cam_viewsVars ?? 0)?.['OL_a']), (((s as any).cam_viewsVars ?? 0)?.['At']));
@@ -414,7 +414,7 @@ function enterViewsCore(s: GameState, scene: SceneBuilder): void {
   ((s as any).cam_viewsVars = (s as any).cam_viewsVars ?? {})['d_APA'] = Math.max(-((((s as any).cam_viewsVars ?? {})?.['At'] ?? 0) / 2), Math.min((((s as any).cam_viewsVars ?? 0)?.['rand_APA']), (((s as any).cam_viewsVars ?? {})?.['Pt'] ?? 0) / 2));
   ((s as any).cam_viewsVars = (s as any).cam_viewsVars ?? {})['d_PO'] = (Math.floor(Math.random() * (Math.max(0, Math.min((((s as any).cam_viewsVars ?? {})?.['Pt'] ?? 0) / 3, (((s as any).cam_viewsVars ?? 0)?.['r_PO']))) - 0 + 1)) + (0));
   if (((s as any).camGirl ?? 0)?.['debug'] === 1) {
-    // TODO-QSP: "
+    scene.text('');
     (s as any).r_OL = (((s as any).cam_viewsVars ?? 0)?.['r_OL']);
     (s as any).r_LO = (((s as any).cam_viewsVars ?? 0)?.['r_LO']);
     (s as any).r_LA = (((s as any).cam_viewsVars ?? 0)?.['r_LA']);
@@ -425,19 +425,19 @@ function enterViewsCore(s: GameState, scene: SceneBuilder): void {
     (s as any).d_LA = (((s as any).cam_viewsVars ?? 0)?.['d_LA']);
     (s as any).d_APA = (((s as any).cam_viewsVars ?? 0)?.['d_APA']);
     (s as any).d_PO = (((s as any).cam_viewsVars ?? 0)?.['d_PO']);
-    // TODO-QSP: "
+    scene.text('');
   }
   ((s as any).cam_viewsVars = (s as any).cam_viewsVars ?? {})['nO'] = (((s as any).cam_viewsVars ?? {})?.['Ot'] ?? 0) - (((s as any).cam_viewsVars ?? {})?.['d_LOL'] ?? 0) + (((s as any).cam_viewsVars ?? {})?.['d_PO'] ?? 0);
   ((s as any).cam_viewsVars = (s as any).cam_viewsVars ?? {})['nL'] = (((s as any).cam_viewsVars ?? {})?.['Lt'] ?? 0) + (((s as any).cam_viewsVars ?? {})?.['d_LOL'] ?? 0) - (((s as any).cam_viewsVars ?? {})?.['d_LA'] ?? 0);
   ((s as any).cam_viewsVars = (s as any).cam_viewsVars ?? {})['nA'] = (((s as any).cam_viewsVars ?? {})?.['At'] ?? 0) + (((s as any).cam_viewsVars ?? {})?.['d_APA'] ?? 0) + (((s as any).cam_viewsVars ?? {})?.['d_LA'] ?? 0);
   ((s as any).cam_viewsVars = (s as any).cam_viewsVars ?? {})['nP'] = (((s as any).cam_viewsVars ?? {})?.['Pt'] ?? 0) - (((s as any).cam_viewsVars ?? {})?.['d_APA'] ?? 0) - (((s as any).cam_viewsVars ?? {})?.['d_PO'] ?? 0);
   if (((s as any).camGirl ?? 0)?.['debug'] === 1) {
-    // TODO-QSP: "
+    scene.text('');
     (s as any).nO = (((s as any).cam_viewsVars ?? 0)?.['nO']);
     (s as any).nL = (((s as any).cam_viewsVars ?? 0)?.['nL']);
     (s as any).nA = (((s as any).cam_viewsVars ?? 0)?.['nA']);
     (s as any).nP = (((s as any).cam_viewsVars ?? 0)?.['nP']);
-    // TODO-QSP: "
+    scene.text('');
   }
   if (((s as any).cam_viewsVars ?? 0)?.['nL'] < 0) {
     ((s as any).cam_viewsVars = (s as any).cam_viewsVars ?? {})['nO'] = ((s as any).cam_viewsVars['nO'] ?? 0) - ((((s as any).cam_viewsVars ?? 0)?.['nL']));

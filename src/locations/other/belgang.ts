@@ -20,12 +20,12 @@ function enterWorkofdebt(s: GameState, scene: SceneBuilder): void {
   }
   if (qspFunc(s, 'money', 'can_afford_debt', ((s as any).belgangPay ?? 0), 'cash')) {
     scene.actions([
-      { label: 'Pay the remaining debt ( [+$func(\'money\', \'string_debt\', belgangPay...]', goto: ['belgang', 'payremaining'] },
+      { label: '', labelFn: (s: GameState) => String('Pay the remaining debt (' + qspFunc(s, 'money', 'string_debt', ((s as any).belgangPay ?? '')) + ')' ?? ''), goto: ['belgang', 'payremaining'] },
     ]);
   } else {
     if (qspFunc(s, 'money', 'can_afford_debt', ((s as any).belgangPayWeek ?? 0), 'cash')) {
       scene.actions([
-        { label: 'Pay for this week ( [+$func(\'money\', \'string_debt\', belgangPay...]', handler: (st: GameState) => {
+        { label: '', labelFn: (s: GameState) => String('Pay for this week (' + qspFunc(s, 'money', 'string_debt', ((s as any).belgangPayWeek ?? '')) + ')' ?? ''), handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
     qspCall(st, 'money', 'debt_pay', 'belgangPay', ((st as any).belgangPayWeek ?? 0), 'cash');
     qspCall(st, 'money', 'debt_pay', 'belgangPayWeek', 0, 'none');
@@ -85,7 +85,7 @@ function enterPayday(s: GameState, scene: SceneBuilder): void {
   }
   if (qspFunc(s, 'money', 'can_afford_debt', ((s as any).belgangPay ?? 0), 'cash')) {
     scene.actions([
-      { label: 'Pay the remaining debt ( [+$func(\'money\', \'string_debt\', belgangPay...]', goto: ['belgang', 'payremaining'] },
+      { label: '', labelFn: (s: GameState) => String('Pay the remaining debt (' + qspFunc(s, 'money', 'string_debt', ((s as any).belgangPay ?? '')) + ')' ?? ''), goto: ['belgang', 'payremaining'] },
     ]);
   } else {
     if (((s as any).belgangPayWeek ?? 0) <= 0) {
@@ -119,7 +119,7 @@ function enterPayday(s: GameState, scene: SceneBuilder): void {
     } else {
       if (qspFunc(s, 'money', 'can_afford_debt', ((s as any).belgangPayWeek ?? 0), 'cash')) {
         scene.actions([
-          { label: 'Pay for this week ( [+$func(\'money\', \'string_debt\', belgangPay...]', handler: (st: GameState) => {
+          { label: '', labelFn: (s: GameState) => String('Pay for this week (' + qspFunc(s, 'money', 'string_debt', ((s as any).belgangPayWeek ?? '')) + ')' ?? ''), handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
     qspCall(st, 'money', 'debt_pay', 'belgangPay', ((st as any).belgangPayWeek ?? 0), 'cash');
     qspCall(st, 'money', 'debt_pay', 'belgangPayWeek', 0, 'none');

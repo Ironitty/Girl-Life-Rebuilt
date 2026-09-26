@@ -1286,7 +1286,7 @@ function enterGopnikSlut(s: GameState, scene: SceneBuilder): void {
     scene.text('"Enough already, I want to fuck her." Roman pushes Lera aside, who shoves him back. Roman in turn shoves her harder, almost knocking her to the floor. For a moment, you think a fight might break out before Vitek\'s voice cuts through. "Enough you two!"');
     scene.text('Roman then drags you over to the table again and pushes you down on it. As you lay on your back, he raises your legs and spreads them apart before you feel his cock plunge deep into your pussy as another cock is shoved into your mouth. Before long, there is a line of guys taking turns fucking your pussy or your mouth. You can\'t even keep up with who is fucking you.');
     qspCall(st, 'arousal', 'vaginal', 10, ((st as any).npcID3 ?? 0), 'group', 'rough', 'sub', 'humiliation', 'gangbang', 'exhibitionism');
-    qspCall(st, 'arousal', 'bj', (-10), 0, 'group', 'rough', 'sub', 'humiliation', 'gangbang', 'deepthroat');
+    qspCall(st, 'arousal', 'bj', (-10), (((st as any).npcID ?? 0)?.[(Math.floor(Math.random() * 5) + 1)] ?? 0), 'group', 'rough', 'sub', 'humiliation', 'gangbang', 'deepthroat');
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Flipped over', handler: (st: GameState) => {
@@ -1294,7 +1294,7 @@ function enterGopnikSlut(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/school/oldschool/gophangout/slut/12.jpg');
     scene.text('You see Vasily approaching and he takes one look at you before he roughly grabs you and flips you over onto your stomach so you\'re bent over the table. "I don\'t want to look at the slut\'s face. Now this is the view every bitch should show you." He plunges his dick into your pussy and starts pounding away while another cock is shoved in your mouth and it\'s back to the guys standing in line taking turns.');
     qspCall(st, 'arousal', 'vaginal', 10, ((st as any).npcID4 ?? 0), 'group', 'rough', 'sub', 'humiliation', 'gangbang', 'exhibitionism');
-    qspCall(st, 'arousal', 'bj', (-10), 0, 'group', 'rough', 'sub', 'humiliation', 'gangbang', 'deepthroat');
+    qspCall(st, 'arousal', 'bj', (-10), (((st as any).npcID ?? 0)?.[(Math.floor(Math.random() * 5) + 1)] ?? 0), 'group', 'rough', 'sub', 'humiliation', 'gangbang', 'deepthroat');
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Vitek\'s claim', handler: (st: GameState) => {
@@ -1309,7 +1309,7 @@ function enterGopnikSlut(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/school/oldschool/gophangout/slut/14.jpg');
     scene.text('Sometime later, Vitek pulls out and walks around the table. "Next!" Before he even finishes saying it, you feel another cock being shoved up your ass. As the next guy starts pounding your ass, Vitek holds you by the hair and jerks off on your face, coating your face with his cum.');
     qspCall(st, 'arousal', 'anal', 15, ((st as any).npcID ?? 0), 'group', 'rough', 'sub', 'humiliation', 'gangbang', 'exhibitionism');
-    qspCall(st, 'arousal', 'anal', 5, 0, 'group', 'rough', 'sub', 'humiliation', 'gangbang', 'exhibitionism');
+    qspCall(st, 'arousal', 'anal', 5, (((st as any).npcID ?? 0)?.[(Math.floor(Math.random() * 5) + 1)] ?? 0), 'group', 'rough', 'sub', 'humiliation', 'gangbang', 'exhibitionism');
     qspCall(st, 'cum_call', 'face', ((st as any).npcID ?? 0), 1);
     qspCall(st, 'stat', '');
     scene.actions([

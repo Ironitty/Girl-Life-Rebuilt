@@ -769,7 +769,7 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
   while (true) {
     if (((s as any).nichRand ?? 0) <= ((s as any).nichChoreResulChance ?? 0)?.[String((s as any).nichI ?? 0)]) {
       scene.img(`${((s as any).nichTempPic ?? '')}`);
-      // TODO-QSP: $nichChoreDesc
+      scene.text(String((s as any).nichChoreDesc ?? ''));
     } else {
       (s as any).nichRand = ((s as any).nichRand ?? 0) - ((((s as any).nichChoreResulChance ?? 0)?.[String((s as any).nichI ?? 0)] ?? 0));
       (s as any).nichI = ((s as any).nichI ?? 0) + (1);

@@ -58,7 +58,7 @@ function enterMain(s: GameState, scene: SceneBuilder): void {
   (s as any).locclass = 'livingr';
   scene.text('A fairly simple cottage in the village of Gadukino which your grandparents call home. In the main room there is a huge <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027wardrobe\u0027, \u0027start\u0027); return false;">wardrobe</a>. You share this with your grandparents to store anything that won\'t fit in your chest.');
   scene.text('There is an old <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027TV\u0027, \u0027gad\u0027); return false;">television</a> in the living room. It\'s positioned next to a body length <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027start\u0027); return false;">mirror</a>.');
-  scene.text('Your grandfather\'s <a href="#" onclick="window.__gameStore.setState((s) => { (s.newspaperVars ??= {})\u0027dbag\u0027 = s.0; return s; }); window.__gameStore.getState().doGoto(\u0027newspaper\u0027, \u0027start\u0027); return false;">newspaper</a> is lying to the side.');
+  scene.text('Your grandfather\'s <a href="#" onclick="window.__gameStore.setState((s) => { (s.newspaperVars ??= {})\u0027dbag\u0027 = 0; return s; }); window.__gameStore.getState().doGoto(\u0027newspaper\u0027, \u0027start\u0027); return false;">newspaper</a> is lying to the side.');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterVillagecatString(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).locat ?? 0)?.['A31_loc'] === ((s as any).loc ?? 0)  &&  ((s as any).locat ?? 0)?.['A31_arg'] === ((s as any).loc_arg ?? 0)) {
     if (((s as any).locat ?? 0)?.['A31_arg1'] === 'reading') {
@@ -130,7 +130,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   (s as any).locclass = 'livingr';
   scene.text('A fairly simple cottage in the village of Gadukino which your grandparents call home. In the main room there is a huge <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027wardrobe\u0027, \u0027start\u0027); return false;">wardrobe</a>. You share this with your grandparents to store anything that won\'t fit in your chest.');
   scene.text('There is an old <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027TV\u0027, \u0027gad\u0027); return false;">television</a> in the living room. It\'s positioned next to a body length <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027start\u0027); return false;">mirror</a>.');
-  scene.text('Your grandfather\'s <a href="#" onclick="window.__gameStore.setState((s) => { (s.newspaperVars ??= {})\u0027dbag\u0027 = s.0; return s; }); window.__gameStore.getState().doGoto(\u0027newspaper\u0027, \u0027start\u0027); return false;">newspaper</a> is lying to the side.');
+  scene.text('Your grandfather\'s <a href="#" onclick="window.__gameStore.setState((s) => { (s.newspaperVars ??= {})\u0027dbag\u0027 = 0; return s; }); window.__gameStore.getState().doGoto(\u0027newspaper\u0027, \u0027start\u0027); return false;">newspaper</a> is lying to the side.');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterVillagecatString(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).locat ?? 0)?.['A31_loc'] === ((s as any).loc ?? 0)  &&  ((s as any).locat ?? 0)?.['A31_arg'] === ((s as any).loc_arg ?? 0)) {
     if (((s as any).locat ?? 0)?.['A31_arg1'] === 'reading') {
@@ -202,7 +202,7 @@ function enterEntry(s: GameState, scene: SceneBuilder): void {
   (s as any).locclass = 'livingr';
   scene.text('A fairly simple cottage in the village of Gadukino which your grandparents call home. In the main room there is a huge <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027wardrobe\u0027, \u0027start\u0027); return false;">wardrobe</a>. You share this with your grandparents to store anything that won\'t fit in your chest.');
   scene.text('There is an old <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027TV\u0027, \u0027gad\u0027); return false;">television</a> in the living room. It\'s positioned next to a body length <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027start\u0027); return false;">mirror</a>.');
-  scene.text('Your grandfather\'s <a href="#" onclick="window.__gameStore.setState((s) => { (s.newspaperVars ??= {})\u0027dbag\u0027 = s.0; return s; }); window.__gameStore.getState().doGoto(\u0027newspaper\u0027, \u0027start\u0027); return false;">newspaper</a> is lying to the side.');
+  scene.text('Your grandfather\'s <a href="#" onclick="window.__gameStore.setState((s) => { (s.newspaperVars ??= {})\u0027dbag\u0027 = 0; return s; }); window.__gameStore.getState().doGoto(\u0027newspaper\u0027, \u0027start\u0027); return false;">newspaper</a> is lying to the side.');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterVillagecatString(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).locat ?? 0)?.['A31_loc'] === ((s as any).loc ?? 0)  &&  ((s as any).locat ?? 0)?.['A31_arg'] === ((s as any).loc_arg ?? 0)) {
     if (((s as any).locat ?? 0)?.['A31_arg1'] === 'reading') {
@@ -274,7 +274,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   (s as any).locclass = 'livingr';
   scene.text('A fairly simple cottage in the village of Gadukino which your grandparents call home. In the main room there is a huge <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027wardrobe\u0027, \u0027start\u0027); return false;">wardrobe</a>. You share this with your grandparents to store anything that won\'t fit in your chest.');
   scene.text('There is an old <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027TV\u0027, \u0027gad\u0027); return false;">television</a> in the living room. It\'s positioned next to a body length <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027start\u0027); return false;">mirror</a>.');
-  scene.text('Your grandfather\'s <a href="#" onclick="window.__gameStore.setState((s) => { (s.newspaperVars ??= {})\u0027dbag\u0027 = s.0; return s; }); window.__gameStore.getState().doGoto(\u0027newspaper\u0027, \u0027start\u0027); return false;">newspaper</a> is lying to the side.');
+  scene.text('Your grandfather\'s <a href="#" onclick="window.__gameStore.setState((s) => { (s.newspaperVars ??= {})\u0027dbag\u0027 = 0; return s; }); window.__gameStore.getState().doGoto(\u0027newspaper\u0027, \u0027start\u0027); return false;">newspaper</a> is lying to the side.');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterVillagecatString(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).locat ?? 0)?.['A31_loc'] === ((s as any).loc ?? 0)  &&  ((s as any).locat ?? 0)?.['A31_arg'] === ((s as any).loc_arg ?? 0)) {
     if (((s as any).locat ?? 0)?.['A31_arg1'] === 'reading') {
@@ -792,7 +792,7 @@ function enterVillagecatString(s: GameState, scene: SceneBuilder): void {
         if (((s as any).hour ?? 0) >= 12  &&  ((s as any).hour ?? 0) < 18) {
           (s as any).temp = (Math.floor(Math.random() * 6) + 0);
           if (((s as any).temp ?? 0) === 3) {
-            scene.text('Next to the table by the window, <a href="#" onclick="window.__gameStore.setState((s) => { s.feedcat = s.1; return s; }); window.__gameStore.getState().doGoto(\u0027gad_gphouse\u0027, \u0027villagecat\u0027); return false;">Boniface</a> stretches and meows loudly. It\'s time for dinner.');
+            scene.text('Next to the table by the window, <a href="#" onclick="window.__gameStore.setState((s) => { s.feedcat = 1; return s; }); window.__gameStore.getState().doGoto(\u0027gad_gphouse\u0027, \u0027villagecat\u0027); return false;">Boniface</a> stretches and meows loudly. It\'s time for dinner.');
           }
           if (((s as any).temp ?? 0) === 4  &&  ((s as any).sunWeather ?? 0) === 1) {
             scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027gad_gphouse\u0027, \u0027villagecat\u0027); return false;">Boniface</a> lies lazily on the table by the window, soaking up some sunshine rays.');

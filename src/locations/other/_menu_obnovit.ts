@@ -7,7 +7,7 @@ import type { SceneBuilder } from '../../core/scene';
 function enter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat_display', '');
   if (((s as any).stat_cfg ?? 0)?.['android'] === 1) {
-    // TODO-QSP: pl $stat_msg
+    scene.text(String((s as any).stat_msg ?? ''));
   }
   scene.build();
 }

@@ -186,10 +186,10 @@ function enterMissFirstInsertion(s: GameState, scene: SceneBuilder): void {
   ((s as any).sex_ev = (s as any).sex_ev ?? {})['first_insertion'] = 1;
   scene.img('images/shared/sex/foreplay/miss3.jpg');
   scene.text(`${((s as any).npcdesc ?? '')} pushes you down onto the bed and puts his hands on your knees and spreads your legs apart, placing his ${((s as any).dick_desc ?? '')} cock right on top of your pussy as he prepares to fuck you.`);
-  // TODO-QSP: act'Wait for him to put it in': gt 'sex_ev_miss', 'miss_insert_slow'
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMissBigCockReact(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'sex_ev_anal', 'no_vaginal');
   scene.actions([
+    { label: 'Wait for him to put it in', goto: ['sex_ev_miss', 'miss_insert_slow'] },
     { label: '"I\'ve been waiting for this"', handler: (st: GameState) => {
     scene.text('"I\'ve been waiting all ' + ((((st as any).hour ?? 0) < 21  ||  ((st as any).hour ?? 0) < 5) ? ('day') : ('night')) + ' for this," you grin, spreading your thighs even wider to make room for him and he grins back at you.');
     scene.actions([
@@ -208,35 +208,44 @@ function enterMissBigCockReact(s: GameState, scene: SceneBuilder): void {
       } else {
         scene.text('"Don\'t be too intimidated by the size," he grins. "Your pussy will get used to it eventually."');
       }
-      // TODO-QSP: act'Nod':
-      scene.text('You nod slowly, unable to help from gulping as you do.');
-      scene.actions([
-        { label: 'Insertion', goto: ['sex_ev_miss', 'miss_insert_slow'] },
-      ]);
-    }
-    if (((s as any).npc_dick ?? 0)?.[String((s as any).npcID ?? 0)] < ((s as any).stat ?? 0)?.['biggest_cock']) {
-      // TODO-QSP: act'"I''ve taken bigger than you" (amused)':
-      scene.text('"I\'ve taken bigger dicks than this before," you smirk. "I\'ll be fine."');
-      scene.actions([
-        { label: 'Insertion', goto: ['sex_ev_miss', 'miss_insert_slow'] },
-      ]);
-    }
-    // TODO-QSP: act'"I''ve taken bigger than you" (unimpressed)':
+      if (((s as any).npc_dick ?? 0)?.[String((s as any).npcID ?? 0)] < ((s as any).stat ?? 0)?.['biggest_cock']) {
+        scene.actions([
+          { label: '"I\'ve taken bigger than you" (amused)', handler: (st: GameState) => {
+    scene.text('"I\'ve taken bigger dicks than this before," you smirk. "I\'ll be fine."');
+    scene.actions([
+      { label: 'Insertion', goto: ['sex_ev_miss', 'miss_insert_slow'] },
+    ]);
+  } },
+          { label: '"I\'ve taken bigger than you" (unimpressed)', handler: (st: GameState) => {
     scene.text('"Oh please," you sigh, rolling your eyes. "Don\'t get all proud just cause you have a big dick. I\'ve taken bigger guys than you before."');
     scene.actions([
       { label: 'Insertion', goto: ['sex_ev_miss', 'miss_insert_slow'] },
     ]);
-  }
-  if (((s as any).npc_dick ?? 0)?.[String((s as any).npcID ?? 0)] < ((s as any).virgin_stats ?? 0)?.['cock_size']) {
-    // TODO-QSP: act'First time was bigger (unimpressed)':
+  } },
+        ]);
+      }
+      if (((s as any).npc_dick ?? 0)?.[String((s as any).npcID ?? 0)] < ((s as any).virgin_stats ?? 0)?.['cock_size']) {
+        scene.actions([
+          { label: 'First time was bigger (unimpressed)', handler: (st: GameState) => {
     scene.text('"Oh please," you sigh, rolling your eyes. "I lost my virginity to a guy bigger than you. I think I\'ll be fine."');
     scene.actions([
       { label: 'Insertion', goto: ['sex_ev_miss', 'miss_insert_slow'] },
     ]);
-  }
-  if (((s as any).npc_dick ?? 0)?.[String((s as any).npcID ?? 0)] > ((s as any).stat ?? 0)?.['biggest_cock']) {
+  } },
+        ]);
+      }
+      scene.actions([
+        { label: 'Nod', handler: (st: GameState) => {
+    scene.text('You nod slowly, unable to help from gulping as you do.');
     scene.actions([
-      { label: '"Is that gonna fit inside me?"', handler: (st: GameState) => {
+      { label: 'Insertion', goto: ['sex_ev_miss', 'miss_insert_slow'] },
+    ]);
+  } },
+      ]);
+    } else {
+      if (((s as any).npc_dick ?? 0)?.[String((s as any).npcID ?? 0)] > ((s as any).stat ?? 0)?.['biggest_cock']) {
+        scene.actions([
+          { label: '"Is that gonna fit inside me?"', handler: (st: GameState) => {
     scene.text('You can\'t help but gulp anxiously, feeling the size of him resting on the entrance to your snatch.');
     scene.text('"Is that going to fit inside me?" you ask, nervously staring at his member with wide eyes.');
     if (((st as any).npc_caretaker ?? 0)?.[String((st as any).npcID ?? 0)] > 0) {
@@ -252,21 +261,21 @@ function enterMissBigCockReact(s: GameState, scene: SceneBuilder): void {
       { label: 'Insertion', goto: ['sex_ev_miss', 'miss_insert_slow'] },
     ]);
   } },
-    ]);
-  } else {
-    if (((s as any).npc_fuck_times ?? 0)?.[String((s as any).npcID ?? 0)] === 0) {
-      scene.actions([
-        { label: '"I love big cocks"', handler: (st: GameState) => {
+        ]);
+      } else {
+        if (((s as any).npc_fuck_times ?? 0)?.[String((s as any).npcID ?? 0)] === 0) {
+          scene.actions([
+            { label: '"I love big cocks"', handler: (st: GameState) => {
     scene.text('You grin, feeling the size of him resting on the entrance to your snatch.');
     scene.text('"I love a guy with a big cock," you grin and he grins back.');
     scene.actions([
       { label: 'Insertion', goto: ['sex_ev_miss', 'miss_insert_slow'] },
     ]);
   } },
-      ]);
-    } else {
-      scene.actions([
-        { label: '"I love big cocks"', handler: (st: GameState) => {
+          ]);
+        } else {
+          scene.actions([
+            { label: '"I love big cocks"', handler: (st: GameState) => {
     scene.text('You grin, feeling the size of him resting on the entrance to your snatch.');
     scene.text('"Have I ever told you how much I love the size of your cock?" you grin.');
     scene.text('"You could stand to mention it more," he grins back as he starts to push in.');
@@ -274,7 +283,9 @@ function enterMissBigCockReact(s: GameState, scene: SceneBuilder): void {
       { label: 'Insertion', goto: ['sex_ev_miss', 'miss_insert_slow'] },
     ]);
   } },
-      ]);
+          ]);
+        }
+      }
     }
   }
   scene.build();
@@ -881,12 +892,6 @@ function enterMiss1(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
-    // TODO-QSP: act'But you''re just not connecting':
-    ((s as any).sex_ev = (s as any).sex_ev ?? {})['fuck_enjoyment'] = 'unsatisfying';
-    scene.text('But... for all his skill, somehow just isn\'t doing it for you.');
-    scene.text('The pleasure is there but... the emotional connection--the <i>intimacy</i>--isn\'t, and it leaves you feeling strangely hollow and unsatisfied. Your bodies are joined together, but it seems without the soul, all you feel are bits of flesh smacking each other...');
-    qspCall(s, 'sex_ev_cum', 'fuck_cum');
-    qspCall(s, 'sex_ev_sex', 'fuck_continue');
     scene.actions([
       { label: 'Enjoy yourself', handler: (st: GameState) => {
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['fuck_enjoyment'] = 'enjoy';
@@ -895,18 +900,25 @@ function enterMiss1(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'sex_ev_cum', 'fuck_cum');
     qspCall(st, 'sex_ev_sex', 'fuck_continue');
   } },
+      { label: 'But you\'re just not connecting', handler: (st: GameState) => {
+    ((st as any).sex_ev = (st as any).sex_ev ?? {})['fuck_enjoyment'] = 'unsatisfying';
+    scene.text('But... for all his skill, somehow just isn\'t doing it for you.');
+    scene.text('The pleasure is there but... the emotional connection--the <i>intimacy</i>--isn\'t, and it leaves you feeling strangely hollow and unsatisfied. Your bodies are joined together, but it seems without the soul, all you feel are bits of flesh smacking each other...');
+    qspCall(st, 'sex_ev_cum', 'fuck_cum');
+    qspCall(st, 'sex_ev_sex', 'fuck_continue');
+  } },
     ]);
-  }
-  if (((s as any).npc_sexskill ?? 0)?.[String((s as any).npcID ?? 0)] > 50) {
-    scene.text(`An uncontrollable gasp escapes your lips as ${((s as any).npcdesc ?? '')}'s hips meet yours in the next thrust. <i>That one felt pretty good!</i> And of course, right as you think that, the next one hits a little awkward inside you, rubbing the wrong way. He's still good for the most part, but about one in ten thrusts can't help but hit wrong.`);
-    scene.actions([
-      { label: 'You\'re going to enjoy this', handler: (st: GameState) => {
+  } else {
+    if (((s as any).npc_sexskill ?? 0)?.[String((s as any).npcID ?? 0)] > 50) {
+      scene.text(`An uncontrollable gasp escapes your lips as ${((s as any).npcdesc ?? '')}'s hips meet yours in the next thrust. <i>That one felt pretty good!</i> And of course, right as you think that, the next one hits a little awkward inside you, rubbing the wrong way. He's still good for the most part, but about one in ten thrusts can't help but hit wrong.`);
+      scene.actions([
+        { label: 'You\'re going to enjoy this', handler: (st: GameState) => {
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['fuck_enjoyment'] = 'enjoy';
     scene.text(`Still, that's good enough and you don't mind the awkward hit now and then. You smile back at ${((st as any).npcdesc ?? '')}, determined to enjoy fucking him today.`);
     qspCall(st, 'sex_ev_cum', 'fuck_cum');
     qspCall(st, 'sex_ev_sex', 'fuck_continue');
   } },
-      { label: 'Fake enjoyment', handler: (st: GameState) => {
+        { label: 'Fake enjoyment', handler: (st: GameState) => {
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['fuck_enjoyment'] = 'unsatisfying';
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['fake_enjoy'] = 1;
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['moan'] = 2;
@@ -929,13 +941,13 @@ function enterMiss1(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'sex_ev_cum', 'fuck_cum');
     qspCall(st, 'sex_ev_sex', 'fuck_continue');
   } },
-    ]);
-  } else {
-    if (((s as any).npc_sexskill ?? 0)?.[String((s as any).npcID ?? 0)] > 25) {
-      scene.text(`An grunt of surprise escapes your lips as ${((s as any).npcdesc ?? '')}'s hips meet yours in a clumsy thrust. That last one was a little bit awkward. <i>Oof.</i> And that one too. Oh, that one wasn't too bad- And we're back to awkward again.`);
-      scene.text(`In a word, ${((s as any).npcdesc ?? '')} is... uncoordinated? Every few thrusts of his ${((s as any).dick_desc ?? '')} dick inevitably result in an uncomfortable spot getting hit and a sharp prick of pain inside your pussy.`);
-      scene.actions([
-        { label: 'Coach him to do better', handler: (st: GameState) => {
+      ]);
+    } else {
+      if (((s as any).npc_sexskill ?? 0)?.[String((s as any).npcID ?? 0)] > 25) {
+        scene.text(`An grunt of surprise escapes your lips as ${((s as any).npcdesc ?? '')}'s hips meet yours in a clumsy thrust. That last one was a little bit awkward. <i>Oof.</i> And that one too. Oh, that one wasn't too bad- And we're back to awkward again.`);
+        scene.text(`In a word, ${((s as any).npcdesc ?? '')} is... uncoordinated? Every few thrusts of his ${((s as any).dick_desc ?? '')} dick inevitably result in an uncomfortable spot getting hit and a sharp prick of pain inside your pussy.`);
+        scene.actions([
+          { label: 'Coach him to do better', handler: (st: GameState) => {
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['fuck_enjoyment'] = 'enjoy';
     scene.text(`"<i>Hnn~!</i> Not like that, ${((st as any).npcdesc ?? '')}," you coo, smiling and putting your hands on his sides and guiding him. "Like <i>this</i>."`);
     scene.text(`You spread your thighs a little wider as he pushes his ${((st as any).dick_desc ?? '')} cock into you again, encouraging the movements you want from him. It takes a few minutes of trying, but eventually he starts to get the hang of it.`);
@@ -944,7 +956,7 @@ function enterMiss1(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'sex_ev_cum', 'fuck_cum');
     qspCall(st, 'sex_ev_sex', 'fuck_continue');
   } },
-        { label: 'Fake enjoyment', handler: (st: GameState) => {
+          { label: 'Fake enjoyment', handler: (st: GameState) => {
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['fuck_enjoyment'] = 'unsatisfying';
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['fake_enjoy'] = 1;
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['moan'] = 2;
@@ -967,7 +979,7 @@ function enterMiss1(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'sex_ev_cum', 'fuck_cum');
     qspCall(st, 'sex_ev_sex', 'fuck_continue');
   } },
-        { label: 'This hurts!', handler: (st: GameState) => {
+          { label: 'This hurts!', handler: (st: GameState) => {
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['fuck_enjoyment'] = 'painful';
     scene.text('<i>Gah! What the fuck is wrong with him? Is it getting worse?!</i>');
     if (((st as any).npc_dick_class ?? 0)?.[String((st as any).npcID ?? 0)] === 'short') {
@@ -988,11 +1000,11 @@ function enterMiss1(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'sex_ev_cum', 'fuck_cum');
     qspCall(st, 'sex_ev_sex', 'fuck_continue');
   } },
-      ]);
-    } else {
-      scene.text(`A stifled gasp of discomfort escapes your lips as ${((s as any).npcdesc ?? '')}'s hips meet yours in clumsy thrust, sending a sharp jab of pain into your pussy. He keeps moving in weird ways, making nearly every pump of his ${((s as any).dick_desc ?? '')} dick into your pussy inevitably result in an awkward spot getting hit and a sharp prick of pain. What on earth is he doing?!`);
-      scene.actions([
-        { label: 'Coach him to do better', handler: (st: GameState) => {
+        ]);
+      } else {
+        scene.text(`A stifled gasp of discomfort escapes your lips as ${((s as any).npcdesc ?? '')}'s hips meet yours in clumsy thrust, sending a sharp jab of pain into your pussy. He keeps moving in weird ways, making nearly every pump of his ${((s as any).dick_desc ?? '')} dick into your pussy inevitably result in an awkward spot getting hit and a sharp prick of pain. What on earth is he doing?!`);
+        scene.actions([
+          { label: 'Coach him to do better', handler: (st: GameState) => {
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['fuck_enjoyment'] = 'enjoy';
     scene.text(`"<i>Hnn~!</i> Not like that, ${((st as any).npcdesc ?? '')}," you coo, smiling and putting your hands on his sides and guiding him. "Like <i>this</i>."`);
     scene.text(`You spread your thighs a little wider as he pushes his ${((st as any).dick_desc ?? '')} cock into you again, encouraging the movements you want from him. It takes a few minutes of trying, but eventually he starts to get the hang of it.`);
@@ -1001,7 +1013,7 @@ function enterMiss1(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'sex_ev_cum', 'fuck_cum');
     qspCall(st, 'sex_ev_sex', 'fuck_continue');
   } },
-        { label: 'Fake enjoyment', handler: (st: GameState) => {
+          { label: 'Fake enjoyment', handler: (st: GameState) => {
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['fuck_enjoyment'] = 'unsatisfying';
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['fake_enjoy'] = 1;
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['moan'] = 2;
@@ -1024,7 +1036,7 @@ function enterMiss1(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'sex_ev_cum', 'fuck_cum');
     qspCall(st, 'sex_ev_sex', 'fuck_continue');
   } },
-        { label: 'This hurts!', handler: (st: GameState) => {
+          { label: 'This hurts!', handler: (st: GameState) => {
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['fuck_enjoyment'] = 'painful';
     scene.text('<i>Gah! What the fuck is wrong with him? Is it getting worse?!</i>');
     if (((st as any).npc_dick_class ?? 0)?.[String((st as any).npcID ?? 0)] === 'short') {
@@ -1045,20 +1057,24 @@ function enterMiss1(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'sex_ev_cum', 'fuck_cum');
     qspCall(st, 'sex_ev_sex', 'fuck_continue');
   } },
-      ]);
+        ]);
+      }
     }
   }
   if (((s as any).npc_sexskill ?? 0)?.[String((s as any).npcID ?? 0)] < 75  &&  (((s as any).npc_dick_class ?? 0)?.[String((s as any).npcID ?? 0)] === 'short'  ||  ((s as any).dick_desc ?? 0) === 'thin')) {
-    // TODO-QSP: act'His dick is so small!':
-    ((s as any).sex_ev = (s as any).sex_ev ?? {})['fuck_enjoyment'] = 'unsatisfying';
+    scene.actions([
+      { label: 'His dick is so small!', handler: (st: GameState) => {
+    ((st as any).sex_ev = (st as any).sex_ev ?? {})['fuck_enjoyment'] = 'unsatisfying';
     scene.img('images/shared/sex/vag/doggy/bored1.mp4');
     scene.text('<i>Holy shit,</i> you think to yourself. <i>How\'s a girl supposed to get off with a dick this small?</i>');
-    scene.text(`It takes all of your willpower not to audibly sigh as you keep letting ${(((s as any).npc_usedname ?? 0)?.[String((s as any).npcID ?? 0)] ?? '')} plow into you with his amazingly <i>disappointing</i> cock.`);
-    if (((s as any).sex_ev ?? 0)?.['prostitution'] === 1) {
+    scene.text(`It takes all of your willpower not to audibly sigh as you keep letting ${(((st as any).npc_usedname ?? 0)?.[String((st as any).npcID ?? 0)] ?? '')} plow into you with his amazingly <i>disappointing</i> cock.`);
+    if (((st as any).sex_ev ?? 0)?.['prostitution'] === 1) {
       scene.text('<i>At least I\'m getting paid for this...</i>');
     }
-    qspCall(s, 'sex_ev_cum', 'fuck_cum');
-    qspCall(s, 'sex_ev_sex', 'fuck_continue');
+    qspCall(st, 'sex_ev_cum', 'fuck_cum');
+    qspCall(st, 'sex_ev_sex', 'fuck_continue');
+  } },
+    ]);
   }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMissionaryChangePosition(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.actions([
@@ -1316,12 +1332,6 @@ function enterMiss2(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
-    // TODO-QSP: act'But you''re just not connecting':
-    ((s as any).sex_ev = (s as any).sex_ev ?? {})['fuck_enjoyment'] = 'unsatisfying';
-    scene.text('But... for all his skill, somehow just isn\'t doing it for you.');
-    scene.text('The pleasure is there but... the emotional connection--the <i>intimacy</i>--isn\'t, and it leaves you feeling strangely hollow and unsatisfied. Your bodies are joined together, but it seems without the soul, all you feel are bits of flesh smacking each other...');
-    qspCall(s, 'sex_ev_cum', 'fuck_cum');
-    qspCall(s, 'sex_ev_sex', 'fuck_continue');
     scene.actions([
       { label: 'Enjoy yourself', handler: (st: GameState) => {
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['fuck_enjoyment'] = 'enjoy';
@@ -1330,18 +1340,25 @@ function enterMiss2(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'sex_ev_cum', 'fuck_cum');
     qspCall(st, 'sex_ev_sex', 'fuck_continue');
   } },
+      { label: 'But you\'re just not connecting', handler: (st: GameState) => {
+    ((st as any).sex_ev = (st as any).sex_ev ?? {})['fuck_enjoyment'] = 'unsatisfying';
+    scene.text('But... for all his skill, somehow just isn\'t doing it for you.');
+    scene.text('The pleasure is there but... the emotional connection--the <i>intimacy</i>--isn\'t, and it leaves you feeling strangely hollow and unsatisfied. Your bodies are joined together, but it seems without the soul, all you feel are bits of flesh smacking each other...');
+    qspCall(st, 'sex_ev_cum', 'fuck_cum');
+    qspCall(st, 'sex_ev_sex', 'fuck_continue');
+  } },
     ]);
-  }
-  if (((s as any).npc_sexskill ?? 0)?.[String((s as any).npcID ?? 0)] > 50) {
-    scene.text(`An uncontrollable gasp escapes your lips as ${((s as any).npcdesc ?? '')}'s hips meet yours in the next thrust. <i>That one felt pretty good!</i> And of course, right as you think that, the next one hits a little awkward inside you, rubbing the wrong way. He's still good for the most part, but about one in ten thrusts can't help but hit wrong.`);
-    scene.actions([
-      { label: 'You\'re going to enjoy this', handler: (st: GameState) => {
+  } else {
+    if (((s as any).npc_sexskill ?? 0)?.[String((s as any).npcID ?? 0)] > 50) {
+      scene.text(`An uncontrollable gasp escapes your lips as ${((s as any).npcdesc ?? '')}'s hips meet yours in the next thrust. <i>That one felt pretty good!</i> And of course, right as you think that, the next one hits a little awkward inside you, rubbing the wrong way. He's still good for the most part, but about one in ten thrusts can't help but hit wrong.`);
+      scene.actions([
+        { label: 'You\'re going to enjoy this', handler: (st: GameState) => {
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['fuck_enjoyment'] = 'enjoy';
     scene.text(`Still, that's good enough and you don't mind the awkward hit now and then. You smile back at ${((st as any).npcdesc ?? '')}, determined to enjoy fucking him today.`);
     qspCall(st, 'sex_ev_cum', 'fuck_cum');
     qspCall(st, 'sex_ev_sex', 'fuck_continue');
   } },
-      { label: 'Fake enjoyment', handler: (st: GameState) => {
+        { label: 'Fake enjoyment', handler: (st: GameState) => {
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['fuck_enjoyment'] = 'unsatisfying';
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['fake_enjoy'] = 1;
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['moan'] = 2;
@@ -1364,13 +1381,13 @@ function enterMiss2(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'sex_ev_cum', 'fuck_cum');
     qspCall(st, 'sex_ev_sex', 'fuck_continue');
   } },
-    ]);
-  } else {
-    if (((s as any).npc_sexskill ?? 0)?.[String((s as any).npcID ?? 0)] > 25) {
-      scene.text(`An grunt of surprise escapes your lips as ${((s as any).npcdesc ?? '')}'s hips meet yours in a clumsy thrust. That last one was a little bit awkward. <i>Oof.</i> And that one too. Oh, that one wasn't too bad- And we're back to awkward again.`);
-      scene.text(`In a word, ${((s as any).npcdesc ?? '')} is... uncoordinated? Every few thrusts of his ${((s as any).dick_desc ?? '')} dick inevitably result in an uncomfortable spot getting hit and a sharp prick of pain inside your pussy.`);
-      scene.actions([
-        { label: 'Coach him to do better', handler: (st: GameState) => {
+      ]);
+    } else {
+      if (((s as any).npc_sexskill ?? 0)?.[String((s as any).npcID ?? 0)] > 25) {
+        scene.text(`An grunt of surprise escapes your lips as ${((s as any).npcdesc ?? '')}'s hips meet yours in a clumsy thrust. That last one was a little bit awkward. <i>Oof.</i> And that one too. Oh, that one wasn't too bad- And we're back to awkward again.`);
+        scene.text(`In a word, ${((s as any).npcdesc ?? '')} is... uncoordinated? Every few thrusts of his ${((s as any).dick_desc ?? '')} dick inevitably result in an uncomfortable spot getting hit and a sharp prick of pain inside your pussy.`);
+        scene.actions([
+          { label: 'Coach him to do better', handler: (st: GameState) => {
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['fuck_enjoyment'] = 'enjoy';
     scene.text(`"<i>Hnn~!</i> Not like that, ${((st as any).npcdesc ?? '')}," you coo, smiling and putting your hands on his sides and guiding him. "Like <i>this</i>."`);
     scene.text(`You spread your thighs a little wider as he pushes his ${((st as any).dick_desc ?? '')} cock into you again, encouraging the movements you want from him. It takes a few minutes of trying, but eventually he starts to get the hang of it.`);
@@ -1379,7 +1396,7 @@ function enterMiss2(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'sex_ev_cum', 'fuck_cum');
     qspCall(st, 'sex_ev_sex', 'fuck_continue');
   } },
-        { label: 'Fake enjoyment', handler: (st: GameState) => {
+          { label: 'Fake enjoyment', handler: (st: GameState) => {
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['fuck_enjoyment'] = 'unsatisfying';
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['fake_enjoy'] = 1;
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['moan'] = 2;
@@ -1402,7 +1419,7 @@ function enterMiss2(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'sex_ev_cum', 'fuck_cum');
     qspCall(st, 'sex_ev_sex', 'fuck_continue');
   } },
-        { label: 'This hurts!', handler: (st: GameState) => {
+          { label: 'This hurts!', handler: (st: GameState) => {
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['fuck_enjoyment'] = 'painful';
     scene.text('<i>Gah! What the fuck is wrong with him? Is it getting worse?!</i>');
     if (((st as any).npc_dick_class ?? 0)?.[String((st as any).npcID ?? 0)] === 'short') {
@@ -1423,11 +1440,11 @@ function enterMiss2(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'sex_ev_cum', 'fuck_cum');
     qspCall(st, 'sex_ev_sex', 'fuck_continue');
   } },
-      ]);
-    } else {
-      scene.text(`A stifled gasp of discomfort escapes your lips as ${((s as any).npcdesc ?? '')}'s hips meet yours in clumsy thrust, sending a sharp jab of pain into your pussy. He keeps moving in weird ways, making nearly every pump of his ${((s as any).dick_desc ?? '')} dick into your pussy inevitably result in an awkward spot getting hit and a sharp prick of pain. What on earth is he doing?!`);
-      scene.actions([
-        { label: 'Coach him to do better', handler: (st: GameState) => {
+        ]);
+      } else {
+        scene.text(`A stifled gasp of discomfort escapes your lips as ${((s as any).npcdesc ?? '')}'s hips meet yours in clumsy thrust, sending a sharp jab of pain into your pussy. He keeps moving in weird ways, making nearly every pump of his ${((s as any).dick_desc ?? '')} dick into your pussy inevitably result in an awkward spot getting hit and a sharp prick of pain. What on earth is he doing?!`);
+        scene.actions([
+          { label: 'Coach him to do better', handler: (st: GameState) => {
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['fuck_enjoyment'] = 'enjoy';
     scene.text(`"<i>Hnn~!</i> Not like that, ${((st as any).npcdesc ?? '')}," you coo, smiling and putting your hands on his sides and guiding him. "Like <i>this</i>."`);
     scene.text(`You spread your thighs a little wider as he pushes his ${((st as any).dick_desc ?? '')} cock into you again, encouraging the movements you want from him. It takes a few minutes of trying, but eventually he starts to get the hang of it.`);
@@ -1436,7 +1453,7 @@ function enterMiss2(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'sex_ev_cum', 'fuck_cum');
     qspCall(st, 'sex_ev_sex', 'fuck_continue');
   } },
-        { label: 'Fake enjoyment', handler: (st: GameState) => {
+          { label: 'Fake enjoyment', handler: (st: GameState) => {
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['fuck_enjoyment'] = 'unsatisfying';
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['fake_enjoy'] = 1;
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['moan'] = 2;
@@ -1459,7 +1476,7 @@ function enterMiss2(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'sex_ev_cum', 'fuck_cum');
     qspCall(st, 'sex_ev_sex', 'fuck_continue');
   } },
-        { label: 'This hurts!', handler: (st: GameState) => {
+          { label: 'This hurts!', handler: (st: GameState) => {
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['fuck_enjoyment'] = 'painful';
     scene.text('<i>Gah! What the fuck is wrong with him? Is it getting worse?!</i>');
     if (((st as any).npc_dick_class ?? 0)?.[String((st as any).npcID ?? 0)] === 'short') {
@@ -1480,20 +1497,24 @@ function enterMiss2(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'sex_ev_cum', 'fuck_cum');
     qspCall(st, 'sex_ev_sex', 'fuck_continue');
   } },
-      ]);
+        ]);
+      }
     }
   }
   if (((s as any).npc_sexskill ?? 0)?.[String((s as any).npcID ?? 0)] < 75  &&  (((s as any).npc_dick_class ?? 0)?.[String((s as any).npcID ?? 0)] === 'short'  ||  ((s as any).dick_desc ?? 0) === 'thin')) {
-    // TODO-QSP: act'His dick is so small!':
-    ((s as any).sex_ev = (s as any).sex_ev ?? {})['fuck_enjoyment'] = 'unsatisfying';
+    scene.actions([
+      { label: 'His dick is so small!', handler: (st: GameState) => {
+    ((st as any).sex_ev = (st as any).sex_ev ?? {})['fuck_enjoyment'] = 'unsatisfying';
     scene.img('images/shared/sex/vag/doggy/bored1.mp4');
     scene.text('<i>Holy shit,</i> you think to yourself. <i>How\'s a girl supposed to get off with a dick this small?</i>');
-    scene.text(`It takes all of your willpower not to audibly sigh as you keep letting ${(((s as any).npc_usedname ?? 0)?.[String((s as any).npcID ?? 0)] ?? '')} plow into you with his amazingly <i>disappointing</i> cock.`);
-    if (((s as any).sex_ev ?? 0)?.['prostitution'] === 1) {
+    scene.text(`It takes all of your willpower not to audibly sigh as you keep letting ${(((st as any).npc_usedname ?? 0)?.[String((st as any).npcID ?? 0)] ?? '')} plow into you with his amazingly <i>disappointing</i> cock.`);
+    if (((st as any).sex_ev ?? 0)?.['prostitution'] === 1) {
       scene.text('<i>At least I\'m getting paid for this...</i>');
     }
-    qspCall(s, 'sex_ev_cum', 'fuck_cum');
-    qspCall(s, 'sex_ev_sex', 'fuck_continue');
+    qspCall(st, 'sex_ev_cum', 'fuck_cum');
+    qspCall(st, 'sex_ev_sex', 'fuck_continue');
+  } },
+    ]);
   }
   scene.build();
 }
@@ -1829,15 +1850,18 @@ function enterMiss3(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).npc_sexskill ?? 0)?.[String((s as any).npcID ?? 0)] < 75  &&  (((s as any).npc_dick_class ?? 0)?.[String((s as any).npcID ?? 0)] === 'short'  ||  ((s as any).dick_desc ?? 0) === 'thin')) {
-    // TODO-QSP: act'His dick is so small!':
-    ((s as any).sex_ev = (s as any).sex_ev ?? {})['fuck_enjoyment'] = 'unsatisfying';
+    scene.actions([
+      { label: 'His dick is so small!', handler: (st: GameState) => {
+    ((st as any).sex_ev = (st as any).sex_ev ?? {})['fuck_enjoyment'] = 'unsatisfying';
     scene.text('<i>Holy shit,</i> you think to yourself. <i>How\'s a girl supposed to get off with a dick this small?</i>');
-    scene.text(`${(((s as any).npc_usedname ?? 0)?.[String((s as any).npcID ?? 0)] ?? '')}'s hips are smacking into yours with an exceptional amount of force but despite that, you can't feel <i>anything</i> inside you. You didn't even know it was possible for someone to fuck you this hard without pleasure or even pain to show for it.`);
-    if (((s as any).sex_ev ?? 0)?.['prostitution'] === 1) {
+    scene.text(`${(((st as any).npc_usedname ?? 0)?.[String((st as any).npcID ?? 0)] ?? '')}'s hips are smacking into yours with an exceptional amount of force but despite that, you can't feel <i>anything</i> inside you. You didn't even know it was possible for someone to fuck you this hard without pleasure or even pain to show for it.`);
+    if (((st as any).sex_ev ?? 0)?.['prostitution'] === 1) {
       scene.text('<i>At least I\'m getting paid for this...</i>');
     }
-    qspCall(s, 'sex_ev_cum', 'fuck_cum');
-    qspCall(s, 'sex_ev_sex', 'fuck_continue');
+    qspCall(st, 'sex_ev_cum', 'fuck_cum');
+    qspCall(st, 'sex_ev_sex', 'fuck_continue');
+  } },
+    ]);
   }
   if (((s as any).sex_ev ?? 0)?.['rough_enjoy'] !== 1) {
     scene.actions([

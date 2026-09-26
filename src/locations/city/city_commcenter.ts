@@ -198,7 +198,7 @@ function enterSecretarialschool(s: GameState, scene: SceneBuilder): void {
         scene.text('As you read the pamphlet, it tells you that the Secretarial certification courses teach you a wide range of basic secretary skills. From verbal and written communication skills, to time management and organization, to basic computer use and how to use Microsoft Office, Word, Power Point, and Excel, to typing, note taking, and how to use a file system. By the end of the course you should know the basics of all of those skills.');
         scene.text('\'Once you finish reading the pamphlet she tells you, "The basic course is 10 lessons, and the full set of courses costs 15000₽."\'');
         scene.actions([
-          { label: 'Book a secretarial course ( [15000₽]...]', handler: (st: GameState) => {
+          { label: '', labelFn: (s: GameState) => String('Book a secretarial course (' + qspFunc(s, 'money', 'string_price', 15000) + ')' ?? ''), handler: (st: GameState) => {
     scene.text('You pay the money for the course and fill out the application paper. You can now attend secretary training once a day for 2 hours. You need to complete 10 training lessons to earn a certification.');
     scene.actions([
       { label: 'Pay for the course', handler: (st: GameState) => {
@@ -330,7 +330,7 @@ function enterSingingtutor(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('The center offers singing lessons with Alexei, an established local singer and musician who works with up and coming talent. Unlike the center\'s other classes, he only ever accepts cash for his lessons.');
       scene.actions([
-        { label: 'Singing lessons ( [500₽])...]', handler: (st: GameState) => {
+        { label: '', labelFn: (s: GameState) => String('Singing lessons (' + qspFunc(s, 'money', 'string_price', 500) + ')' ?? ''), handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 60;
     (st as any).alexeyQW = ((st as any).alexeyQW ?? 0) + (1);
     qspCall(st, 'exp_gain', 'vokal', (Math.floor(Math.random() * 6) + 5));

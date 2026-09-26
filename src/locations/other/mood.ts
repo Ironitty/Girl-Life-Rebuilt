@@ -163,7 +163,7 @@ function enterStatusEffects(s: GameState, scene: SceneBuilder): void {
   } else {
     if (String((s as any).locArgs?.[1] ?? '') === 'pop') {
       if (((s as any).moodSE ?? 0)[String((s as any).locArgs?.[2] ?? '')] === 0) {
-        // TODO-QSP: "removed nonexistent mood base status effect <<$ARGS[2]>>. This is a bug, please report it"
+        scene.text(`removed nonexistent mood base status effect ${((s as any).locArgs?.[2] ?? '')}. This is a bug, please report it`);
       } else {
         ((s as any).moodSE = (s as any).moodSE ?? {})[((s as any).locArgs?.[2] ?? 0)] = ((s as any).moodSE[((s as any).locArgs?.[2] ?? 0)] ?? 0) - (1);
         { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', (((s as any).moodSEValues ?? 0)?.[((s as any).locArgs?.[2] ?? 0)] ?? 0)]; enterLowerDisposition(s, scene); (s as any).locArgs = __savedLocArgs; }

@@ -147,7 +147,7 @@ function enterDispEvt1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'jobs_gigs', 'job_evt');
   scene.text('I have this job for you do you want to accept it?');
   qspCall(s, 'time', 'to_date', (((s as any).evt_transient ?? 0)?.['event_daystart']));
-  // TODO-QSP: "Event Scheduled for: <<dateVars['day']>><<$dateVars['suffix']>>, <<$dateVars['monthName']>> <<dateV...
+  scene.text(`Event Scheduled for: ${(((s as any).dateVars ?? 0)?.['day'] ?? '')}${(((s as any).dateVars ?? 0)?.['suffix'] ?? '')}, ${(((s as any).dateVars ?? 0)?.['monthName'] ?? '')} ${(((s as any).dateVars ?? 0)?.['year'] ?? '')}`);
   scene.text('Job: ' + qspUntranslated(s, "evt_job[evt_transient['type']]", { location: "jobs_gigs" }));
   scene.text('Pay: ' + qspFunc(s, 'money', 'format', (((s as any).evt_transient ?? 0)?.['wage'] ?? '')));
   (s as any).temp_disp_time = ((((s as any).evt_transient ?? {})?.['start_time'] ?? 0) + 15) / 30 * 30;

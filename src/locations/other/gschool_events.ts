@@ -2293,7 +2293,7 @@ function enterRandomPers(s: GameState, scene: SceneBuilder): void {
     }
     (s as any).tmpArrIdx = ((s as any).tmpArrIdx ?? 0) + (1);
     if (Object.keys((s as any).tmpCandidateArr ?? {}).length > 0) {
-      (s as any).result = ((s as any).tmpCandidateArr ?? 0)[((s as any).rand ?? 0)(0, ((s as any).arrsize ?? 0)('tmpCandidateArr') -1)];
+      (s as any).result = (((s as any).tmpCandidateArr ?? 0)?.[(Math.floor(Math.random() * (0 - 0 + 1)) + (0))] ?? 0);
     } else {
       (s as any).result = 'A0';
     }

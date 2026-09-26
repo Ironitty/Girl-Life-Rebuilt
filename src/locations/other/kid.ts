@@ -32,7 +32,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     }
     scene.text(`Child Selected: ${(((s as any).kidname ?? 0)?.[String((s as any).ks ?? 0)] ?? '')}`);
     if (((s as any).ks ?? 0) < (((s as any).kid ?? 0) - 1)) {
-      scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.ks +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027kid\u0027, \u0027start\u0027); return false;">Select Next Child</a>');
+      scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.ks +=1; return s; }); window.__gameStore.getState().doGoto(\u0027kid\u0027, \u0027start\u0027); return false;">Select Next Child</a>');
       scene.actions([
         { label: 'Select Next Child', handler: (st: GameState) => {
     (st as any).ks = ((st as any).ks ?? 0) + (1);
@@ -40,7 +40,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       ]);
     }
     if (((s as any).ks ?? 0) > 0) {
-      scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.ks -=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027kid\u0027, \u0027start\u0027); return false;">Select Previous Child</a>');
+      scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.ks -=1; return s; }); window.__gameStore.getState().doGoto(\u0027kid\u0027, \u0027start\u0027); return false;">Select Previous Child</a>');
       scene.actions([
         { label: 'Select Previous Child', handler: (st: GameState) => {
     (st as any).ks = ((st as any).ks ?? 0) - (1);
@@ -249,7 +249,7 @@ function enterKidlist(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: "<hr>"
+  scene.text('<hr>');
   scene.build();
 }
 

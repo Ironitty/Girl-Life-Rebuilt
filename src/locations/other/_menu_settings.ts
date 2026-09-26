@@ -85,13 +85,13 @@ function enterSwap(s: GameState, scene: SceneBuilder): void {
     }
     if (String((s as any).locArgs?.[3] ?? '') === 'up') {
       (s as any).temp_stat_feature = 0;
-      // TODO-QSP: dynamic '$<<$temp_arr>>[<<ARGS[2] - 1>>] = $<<$temp_arr>>[<<ARGS[2]>>]'
-      // TODO-QSP: dynamic '$<<$temp_arr>>[<<ARGS[2]>>] = $temp_stat_feature'
+      scene.text('$' + ((s as any).temp_arr ?? 0) + '[' + ((s as any).locArgs?.[2] ?? 0) - 1 + '] = $' + ((s as any).temp_arr ?? 0) + '[' + ((s as any).locArgs?.[2] ?? 0) + ']');
+      scene.text('$' + ((s as any).temp_arr ?? 0) + '[' + ((s as any).locArgs?.[2] ?? 0) + '] = $temp_stat_feature');
     } else {
       if (String((s as any).locArgs?.[3] ?? '') === 'down') {
         (s as any).temp_stat_feature = 0;
-        // TODO-QSP: dynamic '$<<$temp_arr>>[<<ARGS[2] + 1>>] = $<<$temp_arr>>[<<ARGS[2]>>]'
-        // TODO-QSP: dynamic '$<<$temp_arr>>[<<ARGS[2]>>] = $temp_stat_feature'
+        scene.text('$' + ((s as any).temp_arr ?? 0) + '[' + ((s as any).locArgs?.[2] ?? 0) + 1 + '] = $' + ((s as any).temp_arr ?? 0) + '[' + ((s as any).locArgs?.[2] ?? 0) + ']');
+        scene.text('$' + ((s as any).temp_arr ?? 0) + '[' + ((s as any).locArgs?.[2] ?? 0) + '] = $temp_stat_feature');
       }
     }
     break;

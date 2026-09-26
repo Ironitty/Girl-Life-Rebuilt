@@ -325,7 +325,7 @@ function enterRenderActs(s: GameState, scene: SceneBuilder): void {
     qspCall(s, '$ARGS[2]', '$ARGS[3]', ((s as any).locArgs?.[1] ?? 0));
   } else {
     if (((s as any).temp_apptRender ?? 0)?.['state'] === 'pending') {
-      // TODO-QSP: "You still have some time before your appointment (about <<$func('time', 'get_duration_string', temp...
+      scene.text(`You still have some time before your appointment (about ${qspFunc(s, 'time', 'get_duration_string', (((s as any).temp_apptRender ?? 0)?.['wait'] ?? ''))}).`);
       if (((s as any).temp_apptRender ?? 0)?.['wait'] <= 120) {
         (s as any).appt_pending_loc = ((s as any).locArgs?.[2] ?? 0);
         (s as any).appt_pending_none_func = ((s as any).locArgs?.[3] ?? 0);

@@ -1,5 +1,3 @@
-import { qspUntranslated } from '../_shared/qspUntranslated';
-
 import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
@@ -15,7 +13,9 @@ function enterWashSheets(s: GameState, scene: SceneBuilder): void {
   (s as any).cum_sheets = undefined;
   scene.img('images/system/image_needed.png');
   scene.text('You wash your sheets.');
-  // TODO-QSP: act'Continue': gt 'bed_get_out', 'start'
+  scene.actions([
+    { label: 'Continue', goto: ['bed_get_out', 'start'] },
+  ]);
   scene.build();
 }
 
@@ -109,17 +109,12 @@ function enterVomitingImages(s: GameState, scene: SceneBuilder): void {
               }
               (s as any).loc = 'HotelRoom';
               (s as any).loc_arg = 'shower1';
-              ((s as any).home_activity = (s as any).home_activity ?? {})['vomit_bedroom'] = '';
-              ((s as any).home_activity = (s as any).home_activity ?? {})['vomit_bathroom'] = '';
-              // TODO-QSP: 'vasilyhome', 'bathroom' !}
             } else {
               if (((s as any).at_home_txt ?? 0) === 'shared_apartment') {
                 ((s as any).home_activity = (s as any).home_activity ?? {})['vomit_bedroom'] = '<center><img ' + ((s as any).set_imgh ?? 0) + ' src="images/shared/home/bedroom/sofabed.jpg"></center>';
                 ((s as any).home_activity = (s as any).home_activity ?? {})['vomit_bathroom'] = '<center><img ' + ((s as any).set_imgh ?? 0) + ' src="images/locations/pavlovsk/resident/apartment/home/vanrpar.jpg"></center>';
                 (s as any).loc = 'pav_shared_apt';
                 (s as any).loc_arg = 'bathroom';
-                ((s as any).home_activity = (s as any).home_activity ?? {})['vomit_bedroom'] = '';
-                ((s as any).home_activity = (s as any).home_activity ?? {})['vomit_bathroom'] = qspUntranslated(s, "'' !}", { location: "home_activity" });
               } else {
                 if (((s as any).at_home_txt ?? 0) === 'city_house') {
                   ((s as any).home_activity = (s as any).home_activity ?? {})['vomit_bedroom'] = '<center><img ' + ((s as any).set_imgh ?? 0) + ' src="images/locations/city/residential/house/crh_bedroom.jpg"></center>';

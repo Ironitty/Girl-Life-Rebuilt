@@ -96,14 +96,6 @@ function enterModelChatter(s: GameState, scene: SceneBuilder): void {
                     scene.text('"Well why don\'t you ask Olga about that? She\'s an actress, right?"');
                     scene.text('"She\'s too eccentric for me. She\'s the other way around. She gets all her money from acting and just works here just for fun. Probably doesn\'t have any good advice for getting in anyway."');
                     scene.text('"I guess you\'re right. What about you, Sofya? You\'ve been getting jobs at Aurora right? Got any tips for the new girl?"');
-                    scene.text('"Yeah."');
-                    scene.text('"You do anything to stand out there?"');
-                    scene.text('"What do you mean?"');
-                    scene.text('"I\'m asking if you have a \'talented tongue\'."');
-                    scene.text('"Like if I sing? I\'ve heard that singing experience makes it easier to get hired, but I haven\'t been auditioning for musical roles so why would I be singing?"');
-                    scene.text('"No, I\'m asking if you give head."');
-                    scene.text('"Well… yeah, sure… I give my boyfriend blowjobs all the time. But what does that have to do with this?"');
-                    // TODO-QSP: '"Try offering to give the director one."' !}
                     scene.text('"Have you tried sucking someone\'s dick?"');
                     scene.text('"What? No! I\'m not that kind of girl! What are you even saying? Besides, I could never cheat on my boyfriend like that!"');
                     scene.text('"Listen girl, nothing sets you apart from any other girl who comes into that audition room, no matter how talented you are. If you want to rely on talent alone, you either have to get lucky or you\'ll just get nowhere. You want to stand out, you have to do be willing to do some favors."');

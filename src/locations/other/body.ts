@@ -302,9 +302,9 @@ function enterUpdate_Body(s: GameState, scene: SceneBuilder): void {
           (s as any).fat = 0;
         } else {
           if (((s as any).fat ?? 0) < 0) {
-            // TODO-QSP: fat /= 2
+            (s as any).fat = ((s as any).fat ?? 0) / (2);
           } else {
-            // TODO-QSP: fat /= 6
+            (s as any).fat = ((s as any).fat ?? 0) / (6);
           }
         }
       }
@@ -317,7 +317,7 @@ function enterUpdate_Body(s: GameState, scene: SceneBuilder): void {
           ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['body'] = ((s as any).pcs_mass['body'] ?? 0) - (1);
           (s as any).fat = 0;
         } else {
-          // TODO-QSP: fat /= 4
+          (s as any).fat = ((s as any).fat ?? 0) / (4);
         }
       }
     }
@@ -349,7 +349,7 @@ function enterUpdate_Body(s: GameState, scene: SceneBuilder): void {
       ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['body'] = 1;
     } else {
       qspCall(s, 'gameover', 'check', 3);
-      // TODO-QSP: pl '<font color=red><b>You starved to death, but Cheat Mode keeps you Alive.</b></font>'
+      scene.text('<font color=red><b>You starved to death, but Cheat Mode keeps you Alive.</b></font>');
       ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['body'] = 1;
     }
   }

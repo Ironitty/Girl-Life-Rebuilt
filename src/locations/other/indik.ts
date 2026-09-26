@@ -37,10 +37,6 @@ function enter4(s: GameState, scene: SceneBuilder): void {
   (s as any).ind = ((s as any).result ?? 0);
   return;
   if (((String(';1;2;3;4;').indexOf(String(';' + (String((s as any).locArgs?.[0] ?? '')) + ';'))) + 1)) {
-    if (((s as any).Enable_Android ?? 0) === 1) {
-      (s as any).result = ((s as any).ind ?? 0);
-      return;
-    }
     if (((s as any).cheatStatusBars ?? 0) === 1) {
       (s as any).indik_text_size = 2;
     } else {

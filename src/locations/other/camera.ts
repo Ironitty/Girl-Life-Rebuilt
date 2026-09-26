@@ -66,7 +66,7 @@ function enterCheckLocation(s: GameState, scene: SceneBuilder): void {
 function enterCheckPerson(s: GameState, scene: SceneBuilder): void {
   if (((s as any).photographyEv ?? 0) >= 2  &&  ((s as any).camera_people ?? 0)[String((s as any).locArgs?.[1] ?? '')] !== '') {
     if (((s as any).camera_found ?? 0)[String((s as any).locArgs?.[1] ?? '')] !== 1  &&  ((s as any).camera_requirement ?? 0) === -1) {
-      // TODO-QSP: dynamic ' act ''Ask to take a photo'': camera_found["<<$ARGS[1]>>"] = 1 & gt ''camera'', $camera_eve...
+      scene.text(' act \'Ask to take a photo\': camera_found["' + ((s as any).locArgs?.[1] ?? 0) + '"] = 1 & gt \'camera\', $camera_event');
     }
   }
   scene.build();

@@ -24,7 +24,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).manaCost = (((s as any).spellMana ?? 0)?.[String((s as any).SpellID ?? 0)] ?? 0);
     (s as any).casterMana = 0;
     if (((s as any).casterMana ?? 0) >= ((s as any).manaCost ?? 0)) {
-      // TODO-QSP: dynamic '<<$ARGS[3]>>_mana[<<ARGS[4]>>] -= <<manaCost>>'
+      scene.text('' + ((s as any).locArgs?.[3] ?? 0) + '_mana[' + ((s as any).locArgs?.[4] ?? 0) + '] -= ' + ((s as any).manaCost ?? 0) + '');
       (s as any).SpellExec = 'gs \'spell\', \'' + ((s as any).SpellID ?? 0) + '\', \'' + ((s as any).spellSuccess ?? 0) + '\', \'' + ((s as any).locArgs?.[1] ?? 0) + '\', ' + ((s as any).locArgs?.[2] ?? 0) + ', ' + ((s as any).locArgs?.[4] ?? 0) + '' + ((s as any).SpellArgs ?? 0) + '';
       qspFunc(s, 'SpellExec');
     } else {

@@ -22,11 +22,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       if (((s as any).sugar_daddy_call ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 1) {
         { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0)]; enterAddNewBootyCall_SMS(s, scene); (s as any).locArgs = __savedLocArgs; }
       } else {
-        if (((s as any).not_free ?? 0)) {
-          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0)]; enterAddDelayedBootyCall_SMS(s, scene); (s as any).locArgs = __savedLocArgs; }
-        } else {
-          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0)]; enterAddNewBootyCall_SMS(s, scene); (s as any).locArgs = __savedLocArgs; }
-        }
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0)]; enterAddNewBootyCall_SMS(s, scene); (s as any).locArgs = __savedLocArgs; }
       }
     }
   }

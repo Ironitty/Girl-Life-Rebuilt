@@ -277,7 +277,7 @@ function enterCounter(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).used_pattest ?? 0) > 0) {
     scene.actions([
-      { label: 'Send paternity test ( [20000₽]...]', handler: (st: GameState) => {
+      { label: '', labelFn: (s: GameState) => String('Send paternity test (' + qspFunc(s, 'money', 'string_price', 20000) + ')' ?? ''), handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 20000) === 1) {
       qspCall(st, 'money', 'pay', 20000);
       qspFunc(s, 'send_test');

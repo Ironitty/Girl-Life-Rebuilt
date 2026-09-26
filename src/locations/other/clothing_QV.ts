@@ -183,7 +183,7 @@ function enterChange(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'clothing_descriptions', '');
       scene.text(`${((s as any).description ?? '')}`);
     } else {
-      // TODO-QSP: $swimwear_description
+      scene.text(String((s as any).swimwear_description ?? ''));
     }
   }
   if (((s as any).CloBimbo ?? 0) === 1  &&  ((s as any).cheatVars ?? 0)?.['bimbo'] === 0) {

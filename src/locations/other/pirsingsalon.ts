@@ -81,9 +81,9 @@ function enterShopMenu(s: GameState, scene: SceneBuilder): void {
   scene.text('</td>');
   scene.text('<td>');
   if (((s as any).pcs_piercings ?? 0)?.['ears'] === 0) {
-    scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.salon_temp_state = s.0; return s; }); window.__gameStore.getState().doGoto(/u0027pirsingsalon/u0027, /u0027piercing_ears/u0027); return false;">Ear - ${qspFunc(s, 'money', 'string_price', 3000)}</a>`);
+    scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.salon_temp_state = 0; return s; }); window.__gameStore.getState().doGoto(/u0027pirsingsalon/u0027, /u0027piercing_ears/u0027); return false;">Ear - ${qspFunc(s, 'money', 'string_price', 3000)}</a>`);
   } else {
-    scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.salon_temp_state = s.1; return s; }); window.__gameStore.getState().doGoto(/u0027pirsingsalon/u0027, /u0027piercing_ears/u0027); return false;">Ear - ${qspFunc(s, 'money', 'string_price', 1000)}</a>`);
+    scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.salon_temp_state = 1; return s; }); window.__gameStore.getState().doGoto(/u0027pirsingsalon/u0027, /u0027piercing_ears/u0027); return false;">Ear - ${qspFunc(s, 'money', 'string_price', 1000)}</a>`);
   }
   scene.text('</td>');
   scene.text('</tr>');
@@ -96,9 +96,9 @@ function enterShopMenu(s: GameState, scene: SceneBuilder): void {
   scene.text('</td>');
   scene.text('<td>');
   if (((s as any).pcs_piercings ?? 0)?.['nose'] === 0) {
-    scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.salon_temp_state = s.0; return s; }); window.__gameStore.getState().doGoto(/u0027pirsingsalon/u0027, /u0027piercing_nose/u0027); return false;">Nose - ${qspFunc(s, 'money', 'string_price', 5000)}</a>`);
+    scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.salon_temp_state = 0; return s; }); window.__gameStore.getState().doGoto(/u0027pirsingsalon/u0027, /u0027piercing_nose/u0027); return false;">Nose - ${qspFunc(s, 'money', 'string_price', 5000)}</a>`);
   } else {
-    scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.salon_temp_state = s.1; return s; }); window.__gameStore.getState().doGoto(/u0027pirsingsalon/u0027, /u0027piercing_nose/u0027); return false;">Nose - ${qspFunc(s, 'money', 'string_price', 2000)}</a>`);
+    scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.salon_temp_state = 1; return s; }); window.__gameStore.getState().doGoto(/u0027pirsingsalon/u0027, /u0027piercing_nose/u0027); return false;">Nose - ${qspFunc(s, 'money', 'string_price', 2000)}</a>`);
   }
   scene.text('</td>');
   scene.text('</tr>');
@@ -111,9 +111,9 @@ function enterShopMenu(s: GameState, scene: SceneBuilder): void {
   scene.text('</td>');
   scene.text('<td>');
   if (((s as any).pcs_piercings ?? 0)?.['brow'] === 0) {
-    scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.salon_temp_state = s.0; return s; }); window.__gameStore.getState().doGoto(/u0027pirsingsalon/u0027, /u0027piercing_brow/u0027); return false;">Eyebrow - ${qspFunc(s, 'money', 'string_price', 5000)}</a>`);
+    scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.salon_temp_state = 0; return s; }); window.__gameStore.getState().doGoto(/u0027pirsingsalon/u0027, /u0027piercing_brow/u0027); return false;">Eyebrow - ${qspFunc(s, 'money', 'string_price', 5000)}</a>`);
   } else {
-    scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.salon_temp_state = s.1; return s; }); window.__gameStore.getState().doGoto(/u0027pirsingsalon/u0027, /u0027piercing_brow/u0027); return false;">Eyebrow - ${qspFunc(s, 'money', 'string_price', 2000)}</a>`);
+    scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.salon_temp_state = 1; return s; }); window.__gameStore.getState().doGoto(/u0027pirsingsalon/u0027, /u0027piercing_brow/u0027); return false;">Eyebrow - ${qspFunc(s, 'money', 'string_price', 2000)}</a>`);
   }
   scene.text('</td>');
   scene.text('</tr>');
@@ -126,9 +126,9 @@ function enterShopMenu(s: GameState, scene: SceneBuilder): void {
   scene.text('</td>');
   scene.text('<td>');
   if (((s as any).pcs_piercings ?? 0)?.['lip'] === 0) {
-    scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.salon_temp_state = s.0; return s; }); window.__gameStore.getState().doGoto(/u0027pirsingsalon/u0027, /u0027piercing_lip/u0027); return false;">Lip - ${qspFunc(s, 'money', 'string_price', 6000)}</a>`);
+    scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.salon_temp_state = 0; return s; }); window.__gameStore.getState().doGoto(/u0027pirsingsalon/u0027, /u0027piercing_lip/u0027); return false;">Lip - ${qspFunc(s, 'money', 'string_price', 6000)}</a>`);
   } else {
-    scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.salon_temp_state = s.1; return s; }); window.__gameStore.getState().doGoto(/u0027pirsingsalon/u0027, /u0027piercing_lip/u0027); return false;">Lip - ${qspFunc(s, 'money', 'string_price', 3000)}</a>`);
+    scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.salon_temp_state = 1; return s; }); window.__gameStore.getState().doGoto(/u0027pirsingsalon/u0027, /u0027piercing_lip/u0027); return false;">Lip - ${qspFunc(s, 'money', 'string_price', 3000)}</a>`);
   }
   scene.text('</td>');
   scene.text('</tr>');
@@ -141,9 +141,9 @@ function enterShopMenu(s: GameState, scene: SceneBuilder): void {
   scene.text('</td>');
   scene.text('<td>');
   if (((s as any).pcs_piercings ?? 0)?.['tongue'] === 0) {
-    scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.salon_temp_state = s.0; return s; }); window.__gameStore.getState().doGoto(/u0027pirsingsalon/u0027, /u0027piercing_tongue/u0027); return false;">Tongue - ${qspFunc(s, 'money', 'string_price', 7000)}</a>`);
+    scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.salon_temp_state = 0; return s; }); window.__gameStore.getState().doGoto(/u0027pirsingsalon/u0027, /u0027piercing_tongue/u0027); return false;">Tongue - ${qspFunc(s, 'money', 'string_price', 7000)}</a>`);
   } else {
-    scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.salon_temp_state = s.1; return s; }); window.__gameStore.getState().doGoto(/u0027pirsingsalon/u0027, /u0027piercing_tongue/u0027); return false;">Tongue - ${qspFunc(s, 'money', 'string_price', 4000)}</a>`);
+    scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.salon_temp_state = 1; return s; }); window.__gameStore.getState().doGoto(/u0027pirsingsalon/u0027, /u0027piercing_tongue/u0027); return false;">Tongue - ${qspFunc(s, 'money', 'string_price', 4000)}</a>`);
   }
   scene.text('</td>');
   scene.text('</tr>');
@@ -156,9 +156,9 @@ function enterShopMenu(s: GameState, scene: SceneBuilder): void {
   scene.text('</td>');
   scene.text('<td>');
   if (((s as any).pcs_piercings ?? 0)?.['navel'] === 0) {
-    scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.salon_temp_state = s.0; return s; }); window.__gameStore.getState().doGoto(/u0027pirsingsalon/u0027, /u0027piercing_navel/u0027); return false;">Navel - ${qspFunc(s, 'money', 'string_price', 8000)}</a>`);
+    scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.salon_temp_state = 0; return s; }); window.__gameStore.getState().doGoto(/u0027pirsingsalon/u0027, /u0027piercing_navel/u0027); return false;">Navel - ${qspFunc(s, 'money', 'string_price', 8000)}</a>`);
   } else {
-    scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.salon_temp_state = s.1; return s; }); window.__gameStore.getState().doGoto(/u0027pirsingsalon/u0027, /u0027piercing_navel/u0027); return false;">Navel - ${qspFunc(s, 'money', 'string_price', 5000)}</a>`);
+    scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.salon_temp_state = 1; return s; }); window.__gameStore.getState().doGoto(/u0027pirsingsalon/u0027, /u0027piercing_navel/u0027); return false;">Navel - ${qspFunc(s, 'money', 'string_price', 5000)}</a>`);
   }
   scene.text('</td>');
   scene.text('</tr>');
@@ -171,9 +171,9 @@ function enterShopMenu(s: GameState, scene: SceneBuilder): void {
   scene.text('</td>');
   scene.text('<td>');
   if (((s as any).pcs_piercings ?? 0)?.['nipples'] === 0) {
-    scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.salon_temp_state = s.0; return s; }); window.__gameStore.getState().doGoto(/u0027pirsingsalon/u0027, /u0027piercing_nipples/u0027); return false;">Nipple - ${qspFunc(s, 'money', 'string_price', 10000)}</a>`);
+    scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.salon_temp_state = 0; return s; }); window.__gameStore.getState().doGoto(/u0027pirsingsalon/u0027, /u0027piercing_nipples/u0027); return false;">Nipple - ${qspFunc(s, 'money', 'string_price', 10000)}</a>`);
   } else {
-    scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.salon_temp_state = s.1; return s; }); window.__gameStore.getState().doGoto(/u0027pirsingsalon/u0027, /u0027piercing_nipples/u0027); return false;">Nipple - ${qspFunc(s, 'money', 'string_price', 6000)}</a>`);
+    scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.salon_temp_state = 1; return s; }); window.__gameStore.getState().doGoto(/u0027pirsingsalon/u0027, /u0027piercing_nipples/u0027); return false;">Nipple - ${qspFunc(s, 'money', 'string_price', 6000)}</a>`);
   }
   scene.text('</td>');
   scene.text('</tr>');
@@ -186,9 +186,9 @@ function enterShopMenu(s: GameState, scene: SceneBuilder): void {
   scene.text('</td>');
   scene.text('<td>');
   if (((s as any).pcs_piercings ?? 0)?.['pussy'] === 0) {
-    scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.salon_temp_state = s.0; return s; }); window.__gameStore.getState().doGoto(/u0027pirsingsalon/u0027, /u0027piercing_pussy/u0027); return false;">Pussy - ${qspFunc(s, 'money', 'string_price', 25000)}</a>`);
+    scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.salon_temp_state = 0; return s; }); window.__gameStore.getState().doGoto(/u0027pirsingsalon/u0027, /u0027piercing_pussy/u0027); return false;">Pussy - ${qspFunc(s, 'money', 'string_price', 25000)}</a>`);
   } else {
-    scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.salon_temp_state = s.1; return s; }); window.__gameStore.getState().doGoto(/u0027pirsingsalon/u0027, /u0027piercing_pussy/u0027); return false;">Pussy - ${qspFunc(s, 'money', 'string_price', 10000)}</a>`);
+    scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.salon_temp_state = 1; return s; }); window.__gameStore.getState().doGoto(/u0027pirsingsalon/u0027, /u0027piercing_pussy/u0027); return false;">Pussy - ${qspFunc(s, 'money', 'string_price', 10000)}</a>`);
   }
   scene.text('</td>');
   scene.text('</tr>');

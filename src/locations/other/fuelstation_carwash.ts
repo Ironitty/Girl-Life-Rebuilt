@@ -1013,13 +1013,13 @@ function enterPunishEnd(s: GameState, scene: SceneBuilder): void {
     (s as any).temp_abd_thresh = 0;
   } else {
     if (((s as any).cheatVars ?? 0)?.['abduction_chance'] === 2) {
-      // TODO-QSP: temp_abd_thresh /= 5
+      (s as any).temp_abd_thresh = ((s as any).temp_abd_thresh ?? 0) / (5);
     } else {
       if (((s as any).cheatVars ?? 0)?.['abduction_chance'] === 3) {
         (s as any).temp_abd_thresh = (((s as any).temp_abd_thresh ?? 0) * 3) / 2;
       } else {
         if (((s as any).cheatVars ?? 0)?.['abduction_chance'] === 4) {
-          // TODO-QSP: temp_abd_thresh *= 2
+          (s as any).temp_abd_thresh = ((s as any).temp_abd_thresh ?? 0) * (2);
         }
       }
     }

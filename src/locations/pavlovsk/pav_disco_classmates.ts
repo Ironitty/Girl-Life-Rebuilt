@@ -146,7 +146,7 @@ function enterClassmates(s: GameState, scene: SceneBuilder): void {
         }
         (s as any).table_disco = ((s as any).table_disco ?? 0) + ('<tr><td align=center><a href="#" onclick="window.__gameStore.getState().doGoto(\u0027pav_disco_classmates\u0027, \u0027coach\u0027); return false;"><img height="100" src="images/characters/shared/headshots_main/69.jpg"></a></td></tr><tr><td align=center>Coach</td></tr></table></td><td colspan=7></td></tr>');
         (s as any).table_disco = ((s as any).table_disco ?? 0) + ('</table></center>');
-        // TODO-QSP: $table_disco
+        scene.text(String((s as any).table_disco ?? ''));
       }
       (s as any).table_disco = undefined;
       scene.actions([

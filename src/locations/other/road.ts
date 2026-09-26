@@ -682,16 +682,16 @@ function enter(s: GameState, scene: SceneBuilder): void {
     }
     if ((!((s as any).nroad ?? 0))) {
       scene.text('You\'re on the outskirts of St. Petersburg. You see a number of crudely made huts near the trees. A bunch of homeless people must have sought shelter here.');
-      scene.text('A <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(\u0027furi\u0027, \u0027\u0027); return false;">lorry</a> is parked next to the road. The driver is currently taking a break and is having a cigarette. He could probably bring you to Gadukino or Pavlovsk, for a price…');
+      scene.text('A <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=5; return s; }); window.__gameStore.getState().doGoto(\u0027furi\u0027, \u0027\u0027); return false;">lorry</a> is parked next to the road. The driver is currently taking a break and is having a cigarette. He could probably bring you to Gadukino or Pavlovsk, for a price…');
     } else {
       if (((s as any).nroad ?? 0) === 1) {
-        scene.text('You\'re not very far from St. Petersburg. You see a bunch of <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.15; return s; }); window.__gameStore.getState().doGoto(\u0027city_suburbs\u0027, \u0027start\u0027); return false;">luxury houses</a> not far from the road. That settlement looks like it\'s very expensive to live in.');
+        scene.text('You\'re not very far from St. Petersburg. You see a bunch of <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=15; return s; }); window.__gameStore.getState().doGoto(\u0027city_suburbs\u0027, \u0027start\u0027); return false;">luxury houses</a> not far from the road. That settlement looks like it\'s very expensive to live in.');
       } else {
         if (((s as any).nroad ?? 0) === 2) {
           scene.text('');
         } else {
           if (((s as any).nroad ?? 0) === 3) {
-            scene.text('You see a sign pointing towards a <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.15; return s; }); window.__gameStore.getState().doGoto(\u0027graveyard\u0027, \u0027\u0027); return false;">cemetery</a>, hidden between lots of trees. You think it\'d be a 15 minute walk from here.');
+            scene.text('You see a sign pointing towards a <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=15; return s; }); window.__gameStore.getState().doGoto(\u0027graveyard\u0027, \u0027\u0027); return false;">cemetery</a>, hidden between lots of trees. You think it\'d be a 15 minute walk from here.');
             scene.actions([
               { label: 'Walk to the bus station (0:01)', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -702,7 +702,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
               scene.text('');
             } else {
               if (((s as any).nroad ?? 0) === 5) {
-                scene.text('You see a <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027train\u0027, \u0027communal\u0027); return false;">railway platform</a> not far from the road. A bit further away, someone built <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.15; return s; }); window.__gameStore.getState().doGoto(\u0027dachi\u0027, \u0027\u0027); return false;">a bunch of cottages</a>. Some of them are for sale. This must be a nice place to stay at in the summer!');
+                scene.text('You see a <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027train\u0027, \u0027communal\u0027); return false;">railway platform</a> not far from the road. A bit further away, someone built <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=15; return s; }); window.__gameStore.getState().doGoto(\u0027dachi\u0027, \u0027\u0027); return false;">a bunch of cottages</a>. Some of them are for sale. This must be a nice place to stay at in the summer!');
               } else {
                 if (((s as any).nroad ?? 0) === 6) {
                   scene.text('');
@@ -719,8 +719,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
                         if (((s as any).nroad ?? 0) === 10) {
                           (s as any).display_bb = 1;
                           qspCall(s, 'stat', '');
-                          scene.text('You see a <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027train\u0027, \u0027gadukino\u0027); return false;">railway platform</a> not far from the road. In the same direction, a dirt road leads to the village of <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.15; return s; }); window.__gameStore.getState().doGoto(\u0027gadukino\u0027, \u0027\u0027); return false;">Gadukino</a>.');
-                          scene.text('A <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(\u0027furi\u0027, \u0027\u0027); return false;">lorry</a> is parked next to the road. The driver is currently taking a break and is having a cigarette. He could probably bring you to Pavlovsk or St. Petersburg, for a price…');
+                          scene.text('You see a <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027train\u0027, \u0027gadukino\u0027); return false;">railway platform</a> not far from the road. In the same direction, a dirt road leads to the village of <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=15; return s; }); window.__gameStore.getState().doGoto(\u0027gadukino\u0027, \u0027\u0027); return false;">Gadukino</a>.');
+                          scene.text('A <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=5; return s; }); window.__gameStore.getState().doGoto(\u0027furi\u0027, \u0027\u0027); return false;">lorry</a> is parked next to the road. The driver is currently taking a break and is having a cigarette. He could probably bring you to Pavlovsk or St. Petersburg, for a price…');
                           if (((s as any).MiraVars ?? 0)?.['QW'] > 15) {
                             scene.text('Mira <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027gad_prostitutes\u0027, \u0027start\u0027); return false;">prostitutes</a> herself around here.');
                           }
@@ -804,7 +804,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                             scene.text('');
                           } else {
                             if (((s as any).nroad ?? 0) === 12) {
-                              scene.text('You see a <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.15; return s; }); window.__gameStore.getState().doGoto(\u0027motel\u0027, \u0027\u0027); return false;">trucker motel</a> near the road. You have no business there. You\'re no trucker!');
+                              scene.text('You see a <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=15; return s; }); window.__gameStore.getState().doGoto(\u0027motel\u0027, \u0027\u0027); return false;">trucker motel</a> near the road. You have no business there. You\'re no trucker!');
                             } else {
                               if (((s as any).nroad ?? 0) === 13) {
                                 scene.text('');
@@ -830,11 +830,11 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                           scene.text('');
                                         } else {
                                           if (((s as any).nroad ?? 0) === 19) {
-                                            scene.text('You are on the outskirts of the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(\u0027pushkin\u0027, \u0027\u0027); return false;">old town</a> district of Pavlovsk. About five minutes down a cobblestone road is the old town center. It\'s a fairly popular place for tourists to explore with much of its old architecture still intact.');
+                                            scene.text('You are on the outskirts of the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=5; return s; }); window.__gameStore.getState().doGoto(\u0027pushkin\u0027, \u0027\u0027); return false;">old town</a> district of Pavlovsk. About five minutes down a cobblestone road is the old town center. It\'s a fairly popular place for tourists to explore with much of its old architecture still intact.');
                                           } else {
                                             if (((s as any).nroad ?? 0) === 20) {
                                               scene.text('The main road ends at the provincial town of Pavlovsk. You can see the castle in the distance.');
-                                              scene.text('A <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(\u0027furi\u0027, \u0027\u0027); return false;">lorry</a> is parked next to the road. The driver is currently taking a break and is having a cigarette. He could probably bring you to Gadukino or St. Petersburg, for a price…');
+                                              scene.text('A <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=5; return s; }); window.__gameStore.getState().doGoto(\u0027furi\u0027, \u0027\u0027); return false;">lorry</a> is parked next to the road. The driver is currently taking a break and is having a cigarette. He could probably bring you to Gadukino or St. Petersburg, for a price…');
                                               scene.text('A small road leads to an almost hidden old <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027brothel\u0027, \u0027lobby\u0027); return false;">hotel</a>. Usually tourists use it when passing by or when visiting the old town of Pavlovsk.');
                                               if (((s as any).hour ?? 0) >= 7  &&  ((s as any).hour ?? 0) <= 17) {
                                                 scene.text('You can see a bunch of trucks around the <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027NikoSlut\u0027, \u0027Diner Exterior\u0027); return false;">Boris diner</a>, which is a diner that is frequently visited by both truckers and bikers.');

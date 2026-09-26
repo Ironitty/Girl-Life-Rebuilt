@@ -83,7 +83,7 @@ function enterReadBook(s: GameState, scene: SceneBuilder): void {
   (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (2);
   (s as any).minut = ((s as any).minut ?? 0) + 3;
   qspCall(s, 'stat', '');
-  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/pc/items/accessories/books/kamasutra/ik` + ((s as any).kamasutra_page ?? '') + '.jpg"></td></tr><tr><td align=center>' + ((((s as any).kamasutra_page ?? 0) < 1) ? ('') : ('<a href="#" onclick="window.__gameStore.setState((s) => { s.kamasutra_page -=s.1; return s; }); return false;"><br>Previous page</a>')) + '</td><td align=center>' + ((((s as any).kamasutra_page ?? 0) > 45) ? ('') : ('<a href="#" onclick="window.__gameStore.setState((s) => { s.kamasutra_page +=s.1; return s; }); return false;"><br>Next page</a>')) + '</center>');
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/pc/items/accessories/books/kamasutra/ik` + ((s as any).kamasutra_page ?? '') + '.jpg"></td></tr><tr><td align=center>' + ((((s as any).kamasutra_page ?? 0) < 1) ? ('') : ('<a href="#" onclick="window.__gameStore.setState((s) => { s.kamasutra_page -=1; return s; }); return false;"><br>Previous page</a>')) + '</td><td align=center>' + ((((s as any).kamasutra_page ?? 0) > 45) ? ('') : ('<a href="#" onclick="window.__gameStore.setState((s) => { s.kamasutra_page +=1; return s; }); return false;"><br>Next page</a>')) + '</center>');
   if (((s as any).pcs_horny ?? 0) >= 60  &&  ((s as any).week ?? 0) === 6  &&  ((s as any).family_trip ?? 0) === 1) {
     scene.actions([
       { label: 'Masturbate', goto: ['selfplay', 'start'] },

@@ -180,7 +180,7 @@ function enterLongAdd(s: GameState, scene: SceneBuilder): void {
     } else {
       (s as any).temp_add_carry = 0;
     }
-    (s as any).result = '' + ((s as any).temp_add_res ?? 0) + '' + ((s as any).result ?? 0);
+    (s as any).result = '' + ((s as any).temp_add_res ?? 0) + '\' + $resul';
     (s as any).math_i = ((s as any).math_i ?? 0) - (1);
     if (((s as any).temp_add_carry ?? 0) > 0) {
       (s as any).result = '' + ((s as any).temp_add_carry ?? 0) + '' + ((s as any).result ?? 0);
@@ -255,7 +255,7 @@ function enterLongSub(s: GameState, scene: SceneBuilder): void {
     } else {
       (s as any).temp_sub_carry = 0;
     }
-    (s as any).result = '' + ((s as any).temp_sub_res ?? 0) + '' + ((s as any).result ?? 0);
+    (s as any).result = '' + ((s as any).temp_sub_res ?? 0) + '\' + $resul';
     (s as any).math_i = ((s as any).math_i ?? 0) - (1);
     if (((s as any).temp_sub_carry ?? 0) > 0) {
       ((s as any).temp_sub_sign = (s as any).temp_sub_sign ?? {})[0] = 1 - ((s as any).temp_sub_sign ?? 0)[0];
@@ -320,9 +320,9 @@ function enterLongMult(s: GameState, scene: SceneBuilder): void {
           ((s as any).long = (s as any).long ?? {})[((s as any).math_i ?? 0)-1] = ((s as any).long[((s as any).math_i ?? 0)-1] ?? 0) + ((((s as any).long ?? 0)?.[String((s as any).math_i ?? 0)] ?? 0) / 10);
           ((s as any).long = (s as any).long ?? {})[String((s as any).math_i ?? 0)] = ((((s as any).long ?? 0)?.[String((s as any).math_i ?? 0)] ?? 0) % 10);
         }
-        (s as any).result = '' + (((s as any).long ?? 0)?.[String((s as any).math_i ?? 0)] ?? 0) + '' + ((s as any).result ?? 0);
+        (s as any).result = '' + (((s as any).long ?? 0)?.[String((s as any).math_i ?? 0)] ?? 0) + '\' + $resul';
         (s as any).math_i = ((s as any).math_i ?? 0) - (1);
-        (s as any).result = '' + (((s as any).long ?? 0)?.[0] ?? 0) + '' + ((s as any).result ?? 0);
+        (s as any).result = '' + (((s as any).long ?? 0)?.[0] ?? 0) + '\' + $resul';
         (s as any).result = qspFunc(s, 'math', 'trim_long', ((s as any).result ?? 0));
         if (((s as any).temp_mult_sign ?? 0)[0] === 1) {
           (s as any).result = '-' + ((s as any).result ?? 0);

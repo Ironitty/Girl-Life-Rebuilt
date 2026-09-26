@@ -173,159 +173,159 @@ function enterGeneric_1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGeneric_2(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: "<center>A Spooky Symphony Echoes Through Pavlovsk</center>"
-  // TODO-QSP: "In the quaint little Russian village of Pavlovsk, residents are left bewildered and intrigued by an...
-  // TODO-QSP: "For weeks now, this spectral serenade has been a source of curiosity for the townsfolk who can't se...
-  // TODO-QSP: "Could it be the work of a local prankster, or perhaps something more supernatural? The mystery deep...
+  scene.text('<center>A Spooky Symphony Echoes Through Pavlovsk</center>');
+  scene.text('In the quaint little Russian village of Pavlovsk, residents are left bewildered and intrigued by an eerie melody that seems to emanate from the local cemetery at midnight.');
+  scene.text('For weeks now, this spectral serenade has been a source of curiosity for the townsfolk who can\'t seem to find any trace of its origin or creator.');
+  scene.text('Could it be the work of a local prankster, or perhaps something more supernatural? The mystery deepens as more bizarre occurrences take place in Pavlovsk, leaving residents both frightened and enchanted by this haunting melody that lingers like an unshakable ghostly presence.');
   scene.build();
 }
 
 function enterGeneric_3(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: "<center>Pavlovsk Police Investigate String of Thefts</center>"
-  // TODO-QSP: "In a shocking turn of events in Pavlovsk, residents have been left reeling as a series of high-prof...
-  // TODO-QSP: "Authorities are currently investigating the matter, with little to no leads so far. Is this the wor...
-  // TODO-QSP: "Only time will tell as Pavlovsk remains on edge in anticipation of a resolution to this confounding...
+  scene.text('<center>Pavlovsk Police Investigate String of Thefts</center>');
+  scene.text('In a shocking turn of events in Pavlovsk, residents have been left reeling as a series of high-profile thefts target local art galleries and antique shops.');
+  scene.text('Authorities are currently investigating the matter, with little to no leads so far. Is this the work of an organized crime syndicate or a lone wolf?');
+  scene.text('Only time will tell as Pavlovsk remains on edge in anticipation of a resolution to this confounding case.');
   scene.build();
 }
 
 function enterGeneric_4(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: "<center>The Ghostly Whispers of the Old Library</center>"
-  // TODO-QSP: "A chilling tale has emerged from Pavlovsk's library, as patrons claim to hear ghostly whispers and ...
-  // TODO-QSP: "The source of this spectral activity remains unknown, with speculation ranging from a lingering spi...
-  // TODO-QSP: "Is there truth behind these eerie tales or is it merely the product of an overactive imagination?"
+  scene.text('<center>The Ghostly Whispers of the Old Library</center>');
+  scene.text('A chilling tale has emerged from Pavlovsk\'s library, as patrons claim to hear ghostly whispers and see apparitions late at night.');
+  scene.text('The source of this spectral activity remains unknown, with speculation ranging from a lingering spirit to some form of paranormal phenomenon.');
+  scene.text('Is there truth behind these eerie tales or is it merely the product of an overactive imagination?');
   scene.build();
 }
 
 function enterGeneric_5(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: "<center>Pavlovsk Celebrates Annual Cultural Festival</center>"
-  // TODO-QSP: "This weekend, Pavlovsk comes alive as it hosts its annual cultural festival showcasing traditional ...
-  // TODO-QSP: "The event draws in visitors from all corners of the globe who come to revel in the rich tapestry th...
-  // TODO-QSP: "Don't miss out on this captivating celebration!"
+  scene.text('<center>Pavlovsk Celebrates Annual Cultural Festival</center>');
+  scene.text('This weekend, Pavlovsk comes alive as it hosts its annual cultural festival showcasing traditional Russian music, dance and cuisine.');
+  scene.text('The event draws in visitors from all corners of the globe who come to revel in the rich tapestry that is the heart of Russia\'s artistic heritage.');
+  scene.text('Don\'t miss out on this captivating celebration!');
   scene.build();
 }
 
 function enterGeneric_6(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: "<center>Rumours Swirl Around Pavlovsk Celebrity Sighting</center>"
-  // TODO-QSP: "Was it just a figment of an overactive imagination or could it be the real deal? Residents in Pavlo...
-  // TODO-QSP: "With no confirmation from his reps and no sightings since, only time will tell if this was a mere h...
+  scene.text('<center>Rumours Swirl Around Pavlovsk Celebrity Sighting</center>');
+  scene.text('Was it just a figment of an overactive imagination or could it be the real deal? Residents in Pavlovsk are abuzz with excitement as word spreads that Hollywood A-lister, Alexei Zhukov, has been spotted wandering the streets.');
+  scene.text('With no confirmation from his reps and no sightings since, only time will tell if this was a mere hoax or the start of an exclusive encounter in Pavlovsk\'s s.');
   scene.build();
 }
 
 function enterGeneric_7(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: "<center>Pavlovsk Police Crack Down on Street Crime</center>"
-  // TODO-QSP: "In a bold move to restore peace and order, Pavlovsk police have launched an intensified crackdown o...
-  // TODO-QSP: "The operation has led to several high-profile arrests and the recovery of stolen goods, leaving res...
-  // TODO-QSP: "However, some critics question whether these measures are enough or if more action is needed to tru...
+  scene.text('<center>Pavlovsk Police Crack Down on Street Crime</center>');
+  scene.text('In a bold move to restore peace and order, Pavlovsk police have launched an intensified crackdown on street crime.');
+  scene.text('The operation has led to several high-profile arrests and the recovery of stolen goods, leaving residents feeling safer than ever before.');
+  scene.text('However, some critics question whether these measures are enough or if more action is needed to truly address the root causes behind this escalating issue.');
   scene.build();
 }
 
 function enterGeneric_8(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: "<center>The Secret Life of Pavlovsk's Haunted Mansion</center>"
-  // TODO-QSP: "On the outskirts of Pavlovsk is the ruined factory of Severnye Proizvodstvennye Tekstilniye Zavody ...
-  // TODO-QSP: "For years, rumours have circulated about its paranormal inhabitants and haunting history. The site ...
-  // TODO-QSP: "Will we ever uncover the truth or remain forever in the dark?"
+  scene.text('<center>The Secret Life of Pavlovsk\'s Haunted Mansion</center>');
+  scene.text('On the outskirts of Pavlovsk is the ruined factory of Severnye Proizvodstvennye Tekstilniye Zavody shrouded in mystery and intrigue since it burned down.');
+  scene.text('For years, rumours have circulated about its paranormal inhabitants and haunting history. The site is heavily guarded and limited information available about the circumstances of the fire, one can only imagine what secrets lie hidden behind those ominous walls.');
+  scene.text('Will we ever uncover the truth or remain forever in the dark?');
   scene.build();
 }
 
 function enterGeneric_9(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: "<center>Pushkin Hosts Annual Art Auction</center>"
-  // TODO-QSP: "Get ready to bid on your heart's desire as Pushkin hosts its annual art auction. Featuring works fr...
-  // TODO-QSP: "With pieces ranging in price and style, there's something for everyone at this exciting event."
+  scene.text('<center>Pushkin Hosts Annual Art Auction</center>');
+  scene.text('Get ready to bid on your heart\'s desire as Pushkin hosts its annual art auction. Featuring works from both local and international artists, this event is a must-attend for collectors and enthusiasts alike.');
+  scene.text('With pieces ranging in price and style, there\'s something for everyone at this exciting event.');
   scene.build();
 }
 
 function enterGeneric_10(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: "<center>Pavlovsk Mayor Embroiled in Scandal</center>"
-  // TODO-QSP: "The mayor of Pavlovsk is under fire as allegations surface regarding corruption and mismanagement w...
-  // TODO-QSP: "With a growing chorus of discontent, it remains to be seen if the embattled leader can weather this...
-  // TODO-QSP: "Stay tuned for updates on this developing story!"
+  scene.text('<center>Pavlovsk Mayor Embroiled in Scandal</center>');
+  scene.text('The mayor of Pavlovsk is under fire as allegations surface regarding corruption and mismanagement within city hall.');
+  scene.text('With a growing chorus of discontent, it remains to be seen if the embattled leader can weather this storm or if he\'ll ultimately succumb to public pressure.');
+  scene.text('Stay tuned for updates on this developing story!');
   scene.build();
 }
 
 function enterGeneric_11(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: "<center>Pavlovsk Unveils New Sculpture Garden</center>"
-  // TODO-QSP: "Step into a world of wonder as Pavlovsk unveils its stunning new sculpture garden."
-  // TODO-QSP: "Featuring works from renowned artists, this serene oasis offers visitors a chance to appreciate the...
-  // TODO-QSP: "Be sure to visit before the leaves change color!"
+  scene.text('<center>Pavlovsk Unveils New Sculpture Garden</center>');
+  scene.text('Step into a world of wonder as Pavlovsk unveils its stunning new sculpture garden.');
+  scene.text('Featuring works from renowned artists, this serene oasis offers visitors a chance to appreciate the beauty and artistry that is Russia\'s cultural legacy.');
+  scene.text('Be sure to visit before the leaves change color!');
   scene.build();
 }
 
 function enterGeneric_12(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: "<center>Pavlovsk Police Arrest Notorious Cat Burglar</center>"
-  // TODO-QSP: "In a shocking turn of events, Pavlovsk police have apprehended the notorious cat burglar who has be...
-  // TODO-QSP: "The arrest comes as relief to residents, but many are left wondering if this is the end or just the...
+  scene.text('<center>Pavlovsk Police Arrest Notorious Cat Burglar</center>');
+  scene.text('In a shocking turn of events, Pavlovsk police have apprehended the notorious cat burglar who has been terrorizing local pet owners for months.');
+  scene.text('The arrest comes as relief to residents, but many are left wondering if this is the end or just the beginning of a new chapter in their battle against crime.');
   scene.build();
 }
 
 function enterGeneric_13(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: "<center>Sweet Treats, Bitter Secrets</center>"
-  // TODO-QSP: "Local baker, Dimitri Volkov, is under investigation after threatening to expose compromising photog...
-  // TODO-QSP: "The investigation is ongoing, with concerns raised about potential extortion and a widening web of ...
-  // TODO-QSP: "The motive remains unclear, but whispers suggest a dispute over a lucrative property deal."
+  scene.text('<center>Sweet Treats, Bitter Secrets</center>');
+  scene.text('Local baker, Dimitri Volkov, is under investigation after threatening to expose compromising photographs of prominent town councilman, Boris Petrov.');
+  scene.text('The investigation is ongoing, with concerns raised about potential extortion and a widening web of accusations swirling through Pavlovsk.');
+  scene.text('The motive remains unclear, but whispers suggest a dispute over a lucrative property deal.');
   scene.build();
 }
 
 function enterGeneric_14(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: "<center>Silence Speaks Volumes</center>"
-  // TODO-QSP: "Residents near the abandoned Pavlovsk Mill report hearing disembodied voices and unsettling noises ...
-  // TODO-QSP: "Local historian, Anya Morozova, believes the mill holds a tragic history connected to a family mass...
-  // TODO-QSP: "Experts are divided - is it a genuine haunting or simply the wind playing tricks on the aging stone...
+  scene.text('<center>Silence Speaks Volumes</center>');
+  scene.text('Residents near the abandoned Pavlovsk Mill report hearing disembodied voices and unsettling noises emanating from the structure, particularly during the full moon.');
+  scene.text('Local historian, Anya Morozova, believes the mill holds a tragic history connected to a family massacre in the 19th century.');
+  scene.text('Experts are divided - is it a genuine haunting or simply the wind playing tricks on the aging stone?');
   scene.build();
 }
 
 function enterGeneric_15(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: "<center>A Star Stumbles Upon Small-Town Charm</center>"
-  // TODO-QSP: "Pop sensation, Lyubov “Leya” Petrova, was spotted enjoying a quiet weekend in Pavlovsk, staying at ...
-  // TODO-QSP: "Rumours are swirling about a potential romance with the Pushkin artist, Ivan Sokolov, sparking inte...
+  scene.text('<center>A Star Stumbles Upon Small-Town Charm</center>');
+  scene.text('Pop sensation, Lyubov “Leya” Petrova, was spotted enjoying a quiet weekend in Pavlovsk, staying at the historic BIP Hotel.');
+  scene.text('Rumours are swirling about a potential romance with the Pushkin artist, Ivan Sokolov, sparking intense speculation amongst fans and locals alike.');
   scene.build();
 }
 
 function enterGeneric_16(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: "<center>Lost Pages, Lost Trust</center>"
-  // TODO-QSP: "The rare first edition of Tolstoy's War and Peace vanished from the Pavlovsk Regional Museum, baffl...
-  // TODO-QSP: "Security footage is inconclusive, and suspicion has fallen on a disgruntled former curator, Victor ...
+  scene.text('<center>Lost Pages, Lost Trust</center>');
+  scene.text('The rare first edition of Tolstoy\'s War and Peace vanished from the Pavlovsk Regional Museum, baffling investigators.');
+  scene.text('Security footage is inconclusive, and suspicion has fallen on a disgruntled former curator, Victor Markov, who claims he was unfairly dismissed.');
   scene.build();
 }
 
 function enterGeneric_17(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: "<center>The Art Heist - Update</center>"
-  // TODO-QSP: "Police have announced a breakthrough in the art heist case, recovering a single, cryptic page from ...
-  // TODO-QSP: "The page contains a coded message, hinting at a larger conspiracy."
+  scene.text('<center>The Art Heist - Update</center>');
+  scene.text('Police have announced a breakthrough in the art heist case, recovering a single, cryptic page from the missing manuscript.');
+  scene.text('The page contains a coded message, hinting at a larger conspiracy.');
   scene.build();
 }
 
 function enterGeneric_18(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: "<center>A Phantom Display</center>"
-  // TODO-QSP: "Witnesses report seeing strange, pulsating lights deep within the Gadukino Forest. Some believe it'...
-  // TODO-QSP: "Video footage is being analysed, but the source remains elusive."
+  scene.text('<center>A Phantom Display</center>');
+  scene.text('Witnesses report seeing strange, pulsating lights deep within the Gadukino Forest. Some believe it\'s a military operation, while others whisper of ancient spirits disturbed by human activity.');
+  scene.text('Video footage is being analysed, but the source remains elusive.');
   scene.build();
 }
 
 function enterGeneric_19(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: "<center>Lights, Camera, Pavlovsk!</center>"
-  // TODO-QSP: "The inaugural Pavlovsk Film Festival showcased independent Russian cinema, attracting a diverse aud...
-  // TODO-QSP: "The festival culminated in a screening of a short film directed by Ivan Sokolov, adding a local ele...
-  // TODO-QSP: "Showings are to be held at the Pavlovsk Park Cinema."
+  scene.text('<center>Lights, Camera, Pavlovsk!</center>');
+  scene.text('The inaugural Pavlovsk Film Festival showcased independent Russian cinema, attracting a diverse audience and generating significant buzz.');
+  scene.text('The festival culminated in a screening of a short film directed by Ivan Sokolov, adding a local element to the event.');
+  scene.text('Showings are to be held at the Pavlovsk Park Cinema.');
   scene.build();
 }
 
 function enterGeneric_20(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: "<center>A Local's Bold Move</center>"
-  // TODO-QSP: "Rumours are spreading that Lyubov “Leya” Petrova has been leaving anonymous bouquets of wildflowers...
-  // TODO-QSP: "Is this a genuine connection or a publicity stunt?"
+  scene.text('<center>A Local\'s Bold Move</center>');
+  scene.text('Rumours are spreading that Lyubov “Leya” Petrova has been leaving anonymous bouquets of wildflowers on the doorstep of Ivan Sokolov\'s studio.');
+  scene.text('Is this a genuine connection or a publicity stunt?');
   scene.build();
 }
 
 function enterGeneric_21(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: "<center>Ancient Voices</center>"
-  // TODO-QSP: "Researchers studying the ancient standing stones outside Pavlovsk are reporting experiencing unsett...
-  // TODO-QSP: "Preliminary investigations suggest a possible link to geomagnetic activity."
+  scene.text('<center>Ancient Voices</center>');
+  scene.text('Researchers studying the ancient standing stones outside Pavlovsk are reporting experiencing unsettling auditory hallucinations - whispers carried on the wind.');
+  scene.text('Preliminary investigations suggest a possible link to geomagnetic activity.');
   scene.build();
 }
 
 function enterGeneric_(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: "<center></center>"
-  // TODO-QSP: ""
+  scene.text('<center></center>');
+  scene.text('');
   scene.build();
 }
 
@@ -346,60 +346,60 @@ function enterAdvert_1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAdvert_2(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: "<center>Guitar Lessons at the Pavlovsk Community Center - Unleash Your Inner Maestro!</center>"
-  // TODO-QSP: "Ever dreamed of strumming your way to stardom or composing a melody that touches hearts?"
-  // TODO-QSP: "Now's your chance to bring those dreams to life with our beginner-friendly guitar lessons, availabl...
-  // TODO-QSP: "Whether you're looking for a creative outlet or simply want to learn an exciting new skill, our exp...
-  // TODO-QSP: "Sign up today and unleash your inner maestro!"
+  scene.text('<center>Guitar Lessons at the Pavlovsk Community Center - Unleash Your Inner Maestro!</center>');
+  scene.text('Ever dreamed of strumming your way to stardom or composing a melody that touches hearts?');
+  scene.text('Now\'s your chance to bring those dreams to life with our beginner-friendly guitar lessons, available at the Pavlovsk Community Center.');
+  scene.text('Whether you\'re looking for a creative outlet or simply want to learn an exciting new skill, our experienced instructors will guide you on this musical journey.');
+  scene.text('Sign up today and unleash your inner maestro!');
   scene.build();
 }
 
 function enterAdvert_3(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: "<center>Chess Club at the Pavlovsk Community Center - Master the Art of Strategy!</center>"
-  // TODO-QSP: "Sharpen your mind and flex those strategic muscles as you join fellow chess enthusiasts in our week...
-  // TODO-QSP: "Whether you're a novice or seasoned player, there's something for everyone at our club."
-  // TODO-QSP: "Meet new friends, hone your skills, and engage in thrilling games of strategy that will keep you on...
-  // TODO-QSP: "Register today to secure your spot!"
+  scene.text('<center>Chess Club at the Pavlovsk Community Center - Master the Art of Strategy!</center>');
+  scene.text('Sharpen your mind and flex those strategic muscles as you join fellow chess enthusiasts in our weekly sessions at the Pavlovsk Community Center.');
+  scene.text('Whether you\'re a novice or seasoned player, there\'s something for everyone at our club.');
+  scene.text('Meet new friends, hone your skills, and engage in thrilling games of strategy that will keep you on the edge of your seat.');
+  scene.text('Register today to secure your spot!');
   scene.build();
 }
 
 function enterAdvert_4(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: "<center>Volleyball League at the Pavlovsk Community Center</center>"
-  // TODO-QSP: "Get ready for a season filled with adrenaline, camaraderie, and countless memories as you take part...
-  // TODO-QSP: "Whether you're looking to refine your skills or simply enjoy some friendly competition, there's a p...
-  // TODO-QSP: "Join us today and let the games begin!"
+  scene.text('<center>Volleyball League at the Pavlovsk Community Center</center>');
+  scene.text('Get ready for a season filled with adrenaline, camaraderie, and countless memories as you take part in our exciting volleyball league at the Pavlovsk Community Center.');
+  scene.text('Whether you\'re looking to refine your skills or simply enjoy some friendly competition, there\'s a place for everyone on our courts.');
+  scene.text('Join us today and let the games begin!');
   scene.build();
 }
 
 function enterAdvert_5(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: "<center>Running Group at the Pavlovsk Community Center - Embrace Fitness, Empower Yourself!</center...
-  // TODO-QSP: "Lace up those sneakers and join our supportive running group at the Pavlovsk Community Center."
-  // TODO-QSP: "Whether you're just starting your fitness journey or are an experienced runner looking to push your...
-  // TODO-QSP: "From 5K fun runs to more ambitious marathon training, there's something for every pace and skill le...
-  // TODO-QSP: "Register today and embrace the joy of running!"
+  scene.text('<center>Running Group at the Pavlovsk Community Center - Embrace Fitness, Empower Yourself!</center>');
+  scene.text('Lace up those sneakers and join our supportive running group at the Pavlovsk Community Center.');
+  scene.text('Whether you\'re just starting your fitness journey or are an experienced runner looking to push yourself further, we offer a welcoming environment where everyone can achieve their goals.');
+  scene.text('From 5K fun runs to more ambitious marathon training, there\'s something for every pace and skill level.');
+  scene.text('Register today and embrace the joy of running!');
   scene.build();
 }
 
 function enterAdvert_6(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: "<center>Amateur Dancing Classes at the Pavlovsk Community Center - Move to the Beat of Life!</cente...
-  // TODO-QSP: "Discover a world of rhythm and expression as you join our beginner-friendly dancing classes at the ...
-  // TODO-QSP: "Whether you're looking to learn ballroom, salsa, or hip hop, we offer a variety of styles for all a...
-  // TODO-QSP: "Come dance with us and let the music move your soul!"
+  scene.text('<center>Amateur Dancing Classes at the Pavlovsk Community Center - Move to the Beat of Life!</center>');
+  scene.text('Discover a world of rhythm and expression as you join our beginner-friendly dancing classes at the Pavlovsk Community Center.');
+  scene.text('Whether you\'re looking to learn ballroom, salsa, or hip hop, we offer a variety of styles for all ages and skill levels.');
+  scene.text('Come dance with us and let the music move your soul!');
   scene.build();
 }
 
 function enterAdvert_7(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: "<center>Sewing Club at the Pavlovsk Community Center - Stitch Together More Than Fabric!</center>"
-  // TODO-QSP: "Embark on a creative journey as you learn, share and grow with fellow sewing enthusiasts in our fri...
-  // TODO-QSP: "Whether you're an aspiring fashion designer or simply enjoy crafting your own unique creations, the...
-  // TODO-QSP: "Join us today to stitch together more than just fabric - create lasting connections and a sense of ...
-  // TODO-QSP: "Together More Than Fabric"
+  scene.text('<center>Sewing Club at the Pavlovsk Community Center - Stitch Together More Than Fabric!</center>');
+  scene.text('Embark on a creative journey as you learn, share and grow with fellow sewing enthusiasts in our friendly club at the Pavlovsk Community Center.');
+  scene.text('Whether you\'re an aspiring fashion designer or simply enjoy crafting your own unique creations, there\'s something for everyone in our community of talented crafters.');
+  scene.text('Join us today to stitch together more than just fabric - create lasting connections and a sense of accomplishment that transcends the world of sewing!');
+  scene.text('Together More Than Fabric');
   scene.build();
 }
 
 function enterAdvert_(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: "<center></center>"
-  // TODO-QSP: ""
+  scene.text('<center></center>');
+  scene.text('');
   scene.build();
 }
 
@@ -410,9 +410,9 @@ function enterGadMissing(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCheerleadingTryouts(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: "<center>Cheerleading Try-outs: A New Era Dawns at Pavlovsk School</center>"
-  // TODO-QSP: "The stage is set for an exciting display of spirit and athleticism as the prestigious Pavlovsk High...
-  // TODO-QSP: "As students from across the school prepare to showcase their skills, a new wave of enthusiasm sweep...
+  scene.text('<center>Cheerleading Try-outs: A New Era Dawns at Pavlovsk School</center>');
+  scene.text('The stage is set for an exciting display of spirit and athleticism as the prestigious Pavlovsk High kicks off its annual cheerleading try-outs.');
+  scene.text('As students from across the school prepare to showcase their skills, a new wave of enthusiasm sweeps through the halls, promising to herald in a fresh era for the esteemed institution\'s cheer squad.');
   scene.build();
 }
 
@@ -424,45 +424,45 @@ function enterBorisArrested(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterStarletsReport_0(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: "<center>The Dance of Shadows in Pavlovsk</center>"
-  // TODO-QSP: "Beneath the graceful twirls and luminous smiles of the enchanting dance troupe, known only as 'Star...
-  // TODO-QSP: "The small Russian town of Pavlovsk is home to this seemingly innocent group that has captivated aud...
-  // TODO-QSP: "Yet, delving deeper into the world of Starlets reveals a pattern of questionable connections and su...
-  // TODO-QSP: "This five-part investigation will unravel the enigmatic tapestry that is the Starlets, their ascent...
-  // TODO-QSP: "From their mysterious origins and meteoric rise to stardom, through a series of curious events and ...
-  // TODO-QSP: "Join us as we sift through the layers of deception surrounding Pavlovsk's most captivating dance gr...
+  scene.text('<center>The Dance of Shadows in Pavlovsk</center>');
+  scene.text('Beneath the graceful twirls and luminous smiles of the enchanting dance troupe, known only as \'Starlets\', lies a tangled web of whispers, rumours, and secrets.');
+  scene.text('The small Russian town of Pavlovsk is home to this seemingly innocent group that has captivated audiences with their mesmerizing performances.');
+  scene.text('Yet, delving deeper into the world of Starlets reveals a pattern of questionable connections and suspicious activities involving influential local figures - politicians and businessmen who wield power and wealth over the quiet town\'s economy.');
+  scene.text('This five-part investigation will unravel the enigmatic tapestry that is the Starlets, their ascent to fame, and the intricate web of secrets they seem to weave around them.');
+  scene.text('From their mysterious origins and meteoric rise to stardom, through a series of curious events and unexplained disappearances, this story paints an unsettling picture that begs for answers.');
+  scene.text('Join us as we sift through the layers of deception surrounding Pavlovsk\'s most captivating dance group - Starlets.');
   scene.build();
 }
 
 function enterStarletsReport_1(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: "<center>The Price of Performance</center>"
-  // TODO-QSP: "As suspicions about their suspicious ties grow, the financial dealings surrounding the enigmatic St...
-  // TODO-QSP: "Anonymous sources claim that generous funding for the group has been provided by influential figure...
-  // TODO-QSP: "Investigations into this tangled web of money and power are ongoing, as residents grow increasingly...
+  scene.text('<center>The Price of Performance</center>');
+  scene.text('As suspicions about their suspicious ties grow, the financial dealings surrounding the enigmatic Starlets dance troupe have come under intense scrutiny.');
+  scene.text('Anonymous sources claim that generous funding for the group has been provided by influential figures in the town - prominent businessmen whose interests may not be entirely altruistic.');
+  scene.text('Investigations into this tangled web of money and power are ongoing, as residents grow increasingly wary of these shadowy connections between art and intrigue.');
   scene.build();
 }
 
 function enterStarletsReport_2(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: "<center>The Power Brokers</center>"
-  // TODO-QSP: "As the investigation unfolds, it becomes apparent that several influential local politicians have b...
-  // TODO-QSP: "While their presence may initially seem innocuous, questions are being raised about the nature of t...
-  // TODO-QSP: "The dance floor serves as a stage for far more than just performance - it could be a battleground f...
+  scene.text('<center>The Power Brokers</center>');
+  scene.text('As the investigation unfolds, it becomes apparent that several influential local politicians have been attending Starlets performances with alarming regularity.');
+  scene.text('While their presence may initially seem innocuous, questions are being raised about the nature of these relationships and whether political influence is being leveraged to secure the group\'s success.');
+  scene.text('The dance floor serves as a stage for far more than just performance - it could be a battleground for power plays in Pavlovsk.');
   scene.build();
 }
 
 function enterStarletsReport_3(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: "<center>A Familiar Face</center>"
-  // TODO-QSP: "As the investigation continues, reports surface that one of these powerful figures may have had mor...
-  // TODO-QSP: "Allegations point to the relationship between an influential politician and the troupe's leader, ra...
-  // TODO-QSP: "This revelation has sent ripples through Pavlovsk as residents grapple with the idea that their ele...
+  scene.text('<center>A Familiar Face</center>');
+  scene.text('As the investigation continues, reports surface that one of these powerful figures may have had more than just a passing interest in the enigmatic Starlets.');
+  scene.text('Allegations point to the relationship between an influential politician and the troupe\'s leader, raising concerns about potential manipulation and control.');
+  scene.text('This revelation has sent ripples through Pavlovsk as residents grapple with the idea that their elected officials may be involved in unsavoury activities.');
   scene.build();
 }
 
 function enterStarletsReport_4(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: "<center>The Vanishing Stars</center>"
-  // TODO-QSP: "As suspicions escalate and questions mount, two members of the Starlets have disappeared without a ...
-  // TODO-QSP: "Their departures coincide with an increase in security measures surrounding their rehearsal space."
-  // TODO-QSP: "While the official explanation is that the dancers are taking a temporary hiatus to pursue individu...
+  scene.text('<center>The Vanishing Stars</center>');
+  scene.text('As suspicions escalate and questions mount, two members of the Starlets have disappeared without a trace.');
+  scene.text('Their departures coincide with an increase in security measures surrounding their rehearsal space.');
+  scene.text('While the official explanation is that the dancers are taking a temporary hiatus to pursue individual opportunities, many residents fear that these disappearances may be signs of something more sinister - perhaps even a dangerous trade concealed beneath the glamour and allure of dance.');
   scene.build();
 }
 
@@ -481,21 +481,21 @@ function enterBalletFirst(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBalletAfterNoSveta(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: "<center>Two Weeks to Shine: A Life-Changing Opportunity at Pushkin Ballet Academy</center>"
-  // TODO-QSP: "Five lucky dancers from Pavlovsk, three from Pushkin, and two more from surrounding areas have been...
-  // TODO-QSP: "This select group of young ballerinas will undergo rigorous training in preparation for a demanding...
-  // TODO-QSP: "With an emphasis on technique, artistry, and stage presence, this intensive program promises to cha...
-  // TODO-QSP: "Join us as we follow these promising dancers on their journey and witness the passion, determinatio...
+  scene.text('<center>Two Weeks to Shine: A Life-Changing Opportunity at Pushkin Ballet Academy</center>');
+  scene.text('Five lucky dancers from Pavlovsk, three from Pushkin, and two more from surrounding areas have been chosen for an intensive two-week course at the prestigious Pushkin Ballet Academy.');
+  scene.text('This select group of young ballerinas will undergo rigorous training in preparation for a demanding test that could potentially land them a place at the esteemed Vaganova Ballet Academy, one of Russia\'s most illustrious institutions for ballet education.');
+  scene.text('With an emphasis on technique, artistry, and stage presence, this intensive program promises to challenge participants both physically and mentally as they strive towards their ultimate goal: becoming part of the next generation of world-class ballerinas.');
+  scene.text('Join us as we follow these promising dancers on their journey and witness the passion, determination, and talent that defines Russian ballet! Cont. Page 8');
   scene.build();
 }
 
 function enterBalletAfterWithSveta(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: "<center>Surprise Selection Svetlana Lebedev at Pushkin Ballet Academy</center>"
-  // TODO-QSP: "When 17-year-old <<$pcs_firstname>> <<$pcs_lastname>> from Pavlovsk was selected for the year's pre...
-  // TODO-QSP: "With dreams of escaping poverty and following her passion for dance, Sveta faced an uphill battle t...
-  // TODO-QSP: "But with grit, determination, and the unwavering support of her fellow dancers and teachers, this r...
-  // TODO-QSP: "As she prepares for an intense two-week course and a make or break test for selection into the Vaga...
-  // TODO-QSP: "Follow us on her incredible journey from humble beginnings to potentially becoming one of Russia's ...
+  scene.text('<center>Surprise Selection Svetlana Lebedev at Pushkin Ballet Academy</center>');
+  scene.text(`When 17-year-old ${((s as any).pcs_firstname ?? '')} ${((s as any).pcs_lastname ?? '')} from Pavlovsk was selected for the year's prestigious Pushkin Ballet Academy's annual summer school, few could have predicted the impact she would make on both herself and those around her.`);
+  scene.text('With dreams of escaping poverty and following her passion for dance, Sveta faced an uphill battle to even get accepted into a ballet program, let alone one as esteemed as Pushkin Ballet Academy.');
+  scene.text('But with grit, determination, and the unwavering support of her fellow dancers and teachers, this resilient young ballerina refuses to give in to adversity.');
+  scene.text('As she prepares for an intense two-week course and a make or break test for selection into the Vaganova Ballet Academy, Sveta\'s story serves as a shining example of hope, perseverance, and the transformative power of dance.');
+  scene.text('Follow us on her incredible journey from humble beginnings to potentially becoming one of Russia\'s most promising ballerinas on P3.');
   scene.build();
 }
 

@@ -22,13 +22,13 @@ function enterMain(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/school/building/gschool.jpg');
   }
   scene.text('Pavlovsk\'s only school, where all the local children go for their education. Next to the school is the athletic field and a parking lot for the teachers, with a large grove of trees just beyond them.');
-  scene.text('Hidden behind these trees is the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027pav_old_school\u0027, \u0027old_school\u0027); return false;">old school building</a>, which was supposed to be renovated and used for advanced classes after the new one was built, but budget cuts meant the project was cancelled and now the old building stands empty and abandoned. It\'s a popular spot for students to skip class or hang out outside of school.');
+  scene.text('Hidden behind these trees is the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=1; return s; }); window.__gameStore.getState().doGoto(\u0027pav_old_school\u0027, \u0027old_school\u0027); return false;">old school building</a>, which was supposed to be renovated and used for advanced classes after the new one was built, but budget cuts meant the project was cancelled and now the old building stands empty and abandoned. It\'s a popular spot for students to skip class or hang out outside of school.');
   if (((s as any).mother ?? 0)?.['kickedout_timer'] !== 0  &&  ((s as any).mother ?? 0)?.['kickedout_timer'] + 3 <= ((s as any).daystart ?? 0)  &&  (((s as any).hour ?? 0) === 6  ||  (((s as any).hour ?? 0) > 13  &&  ((s as any).hour ?? 0) <= 15))  &&  ((s as any).cumloc ?? 0)[11] === 0  &&  ((s as any).gschoolVars ?? 0)?.['school_diploma'] === 0  &&  ((s as any).gschoolVars ?? 0)?.['block'] === 0) {
     qspCall(s, 'mother_chats', 'reconciliation_talk');
     return;
   }
   if (((((s as any).hour ?? 0) === 6  &&  ((s as any).minut ?? 0) >= 30)  ||  (((s as any).hour ?? 0) >= 7  &&  ((s as any).hour ?? 0) < 18))  &&  ((s as any).start_type ?? 0)?.['loc'] === 'sg'  &&  ((s as any).gschoolVars ?? 0)?.['school_diploma'] === 0  &&  ((s as any).kanikuli ?? 0) === 0  &&  ((s as any).suspended ?? 0)?.['on'] !== 1) {
-    scene.text('With the school open, you can go to the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027gschool_grounds\u0027, \u0027change_room\u0027); return false;">changing rooms</a> by the gym and change your outfit.');
+    scene.text('With the school open, you can go to the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=1; return s; }); window.__gameStore.getState().doGoto(\u0027gschool_grounds\u0027, \u0027change_room\u0027); return false;">changing rooms</a> by the gym and change your outfit.');
   }
   if (((s as any).day ?? 0) === ((s as any).nyp_day ?? 0)  &&  ((s as any).month ?? 0) === 12  &&  ((s as any).start_type ?? 0)?.['loc'] === 'sg'  &&  ((s as any).gschoolVars ?? 0)?.['school_diploma'] === 0  &&  ((s as any).gschoolVars ?? 0)?.['block'] === 0) {
     if (((s as any).hour ?? 0) >= 14  &&  ((s as any).hour ?? 0) < 17) {
@@ -333,35 +333,35 @@ function enterMain(s: GameState, scene: SceneBuilder): void {
         scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027radapt\u0027, \u0027meet_after_school\u0027); return false;">Radomir</a> is leaning against a tree just in front of the school.');
       }
       if (((s as any).LariskaQW ?? 0)?.['story'] >= 5  &&  (!((s as any).cheerleaders_on ?? 0))) {
-        scene.text('You see <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027LariskaGo\u0027, \u0027\u0027); return false;">Lariska</a> impatiently walks back and fourth across the courtyard, as if she\'s waiting for someone.');
+        scene.text('You see <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=1; return s; }); window.__gameStore.getState().doGoto(\u0027LariskaGo\u0027, \u0027\u0027); return false;">Lariska</a> impatiently walks back and fourth across the courtyard, as if she\'s waiting for someone.');
       }
       if (((s as any).christinaQW ?? 0)?.['subpath'] >= 4  &&  (!((s as any).cheerleaders_on ?? 0))) {
-        scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027Zvereva_house_events\u0027, \u0027Chris_walk_home\u0027); return false;">Christina Zvereva</a> is walking across the school courtyard, looking irritated.');
+        scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=1; return s; }); window.__gameStore.getState().doGoto(\u0027Zvereva_house_events\u0027, \u0027Chris_walk_home\u0027); return false;">Christina Zvereva</a> is walking across the school courtyard, looking irritated.');
       }
       if (((s as any).juliaQW ?? 0)?.['study_unlocked'] >= 1) {
-        scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027JuliaMilHome\u0027, \u0027julia_go\u0027); return false;">Julia</a> is sitting out on the courtyard, reading a book.');
+        scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=1; return s; }); window.__gameStore.getState().doGoto(\u0027JuliaMilHome\u0027, \u0027julia_go\u0027); return false;">Julia</a> is sitting out on the courtyard, reading a book.');
       }
       if (((s as any).NatbelQW ?? 0)?.['QWstage'] > 0  &&  ((s as any).NatbelQW ?? 0)?.['blocked'] !== 1) {
-        scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027natbelEv\u0027, \u0027natbel_go\u0027); return false;">Natasha</a> is standing in a corner.');
+        scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=1; return s; }); window.__gameStore.getState().doGoto(\u0027natbelEv\u0027, \u0027natbel_go\u0027); return false;">Natasha</a> is standing in a corner.');
       }
       if (((s as any).artemLernQW ?? 0) >= 1  &&  ((s as any).artemVitokQW ?? 0) !== 2  &&  ((s as any).artemQW ?? 0)?.['artemblok'] === 0  &&  ((s as any).artemQW ?? 0)?.['artlie'] !== 2  &&  ((s as any).artemQW ?? 0)?.['artembrokenheart'] !== 1) {
-        scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.15; return s; }); window.__gameStore.getState().doGoto(\u0027artem_events\u0027, \u0027start\u0027); return false;">Artem</a> is waiting for you near the school entrance.');
+        scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=15; return s; }); window.__gameStore.getState().doGoto(\u0027artem_events\u0027, \u0027start\u0027); return false;">Artem</a> is waiting for you near the school entrance.');
       }
       if (((s as any).katjaQW ?? 0)?.['afterschool_hangout_day'] !== ((s as any).daystart ?? 0)  &&  ((s as any).katjaQW ?? 0)?.['QWstage'] >= 1  &&  ((s as any).locat ?? 0)?.['katja'] === 6) {
-        scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.15; return s; }); window.__gameStore.getState().doGoto(\u0027katjaEv\u0027, \u0027\u0027); return false;">Katja</a> is walking across the school courtyard, getting ready to go home.');
+        scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=15; return s; }); window.__gameStore.getState().doGoto(\u0027katjaEv\u0027, \u0027\u0027); return false;">Katja</a> is walking across the school courtyard, getting ready to go home.');
       }
       if (((s as any).DimaBeHomeOnce ?? 0) === 1  &&  (!((s as any).DimaRudeBlock ?? 0))) {
-        scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.15; return s; }); window.__gameStore.getState().doGoto(\u0027dimaEv\u0027, \u0027after_school\u0027); return false;">Dimka</a> is deep in thought, as he leans against a lamp post.');
+        scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=15; return s; }); window.__gameStore.getState().doGoto(\u0027dimaEv\u0027, \u0027after_school\u0027); return false;">Dimka</a> is deep in thought, as he leans against a lamp post.');
       } else {
         if (((s as any).DimaRudeQW ?? 0) > 0  &&  ((s as any).dimarudeday ?? 0) !== ((s as any).daystart ?? 0)  &&  (!((s as any).DimaRudeBlock ?? 0))) {
           if ((!(Math.floor(Math.random() * 5) + 0))) {
             qspGoto(s, 'dimaEv', 'after_school');
           }
-          scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.15; return s; }); window.__gameStore.getState().doGoto(\u0027dimaEv\u0027, \u0027after_school\u0027); return false;">Dimka</a> is deep in thought, as he leans against a lamp post.');
+          scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=15; return s; }); window.__gameStore.getState().doGoto(\u0027dimaEv\u0027, \u0027after_school\u0027); return false;">Dimka</a> is deep in thought, as he leans against a lamp post.');
         }
       }
       if ((((s as any).IgorQW ?? 0)?.['history'] === 1  ||  ((s as any).IgorQW ?? 0)?.['Lover'] > 0)  &&  ((s as any).IgorQW ?? 0)?.['daystart'] !== ((s as any).daystart ?? 0)  &&  ((s as any).IgorQW ?? 0)?.['block'] === 0  &&  ((s as any).locat ?? 0)?.['igor'] === 6) {
-        scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.15; (s.IgorQW ??= {})\u0027daystart\u0027 = s.daystart; return s; }); window.__gameStore.getState().doGoto(\u0027igorhome\u0027, \u0027entrance\u0027); return false;">Igor</a> is talking to some of his friends on the courtyard.');
+        scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=15; (s.IgorQW ??= {})\u0027daystart\u0027 = s.daystart; return s; }); window.__gameStore.getState().doGoto(\u0027igorhome\u0027, \u0027entrance\u0027); return false;">Igor</a> is talking to some of his friends on the courtyard.');
       }
       if (((s as any).fedorKozlovQW ?? 0) >= 10  &&  ((s as any).kotovVSkozlov ?? 0) === 1) {
         scene.text('You can see <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027FedorEv\u0027, \u0027Strela Chat\u0027); return false;">Fedor</a> sitting in the corner of the schoolyard by himself.');
@@ -445,7 +445,7 @@ function enterMain(s: GameState, scene: SceneBuilder): void {
       }
     }
     if (((s as any).AlbinaQW ?? 0)?.['albride'] === 0  &&  ((s as any).AlbinaQW ?? 0)?.['RideDaystart'] <= ((s as any).daystart ?? 0)  &&  ((s as any).AlbinaQW ?? 0)?.['Chernov'] > 0  &&  (!((s as any).cheerleaders_on ?? 0))) {
-      scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.15; return s; }); window.__gameStore.getState().doGoto(\u0027albina_starlets_aftermath\u0027, \u0027\u0027); return false;">Albina</a> is standing next to a car parked near the school.');
+      scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=15; return s; }); window.__gameStore.getState().doGoto(\u0027albina_starlets_aftermath\u0027, \u0027\u0027); return false;">Albina</a> is standing next to a car parked near the school.');
     }
     if (((s as any).hour ?? 0) === 14  &&  ((s as any).vicky_afterschool ?? 0) !== ((s as any).daystart ?? 0)) {
       qspCall(s, 'mey_vika_events', 'near_school');
@@ -534,7 +534,7 @@ function enterSports(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).hour ?? 0) >= 9  &&  ((s as any).hour ?? 0) < 18  &&  ((s as any).start_type ?? 0)?.['loc'] === 'sg'  &&  ((s as any).gschoolVars ?? 0)?.['school_diploma'] === 0  &&  (!((s as any).kanikuli ?? 0))) {
-    scene.text('With the school open, you can go to the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027gschool_grounds\u0027, \u0027change_room\u0027); return false;">changing rooms</a> by the gym and change your outfit.');
+    scene.text('With the school open, you can go to the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=1; return s; }); window.__gameStore.getState().doGoto(\u0027gschool_grounds\u0027, \u0027change_room\u0027); return false;">changing rooms</a> by the gym and change your outfit.');
   }
   if (((s as any).week ?? 0) === 6  &&  ((s as any).runnerQW ?? 0)?.['pav_racetype'] === 2  &&  ((s as any).hour ?? 0) === 10  &&  ((s as any).gschoolVars ?? 0)?.['block'] === 0) {
     scene.text('Athletic students of your school and other schools in the area have gathered at the athletics track near your school. Everyone is getting ready for the running competition.');

@@ -52,7 +52,7 @@ function enterStatLoopCore1(s: GameState, scene: SceneBuilder): void {
           ((s as any).stat = (s as any).stat ?? {})[((s as any).locArgs?.[6] ?? 0) + '_times'] = ((s as any).stat[((s as any).locArgs?.[6] ?? 0) + '_times'] ?? 0) + (1);
         }
       }
-      // TODO-QSP: dynamic '<<$ARGS[2]>>[$arousal_temp_npcID] += 1'
+      scene.text('' + ((s as any).locArgs?.[2] ?? 0) + '[$arousal_temp_npcID] += 1');
       if (String((s as any).locArgs?.[3] ?? '') !== '') {
         scene.text('' + ((s as any).locArgs?.[3] ?? 0) + '[$arousal_temp_npcID] = daystart');
       }

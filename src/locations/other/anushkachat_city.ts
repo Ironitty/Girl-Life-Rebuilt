@@ -885,7 +885,10 @@ function enterBoyfriendChat(s: GameState, scene: SceneBuilder): void {
     if (((s as any).i ?? 0) < Object.keys((s as any).lover ?? {}).length) {
       (s as any).temp_npcid = (((s as any).lover ?? 0)?.[String((s as any).i ?? 0)] ?? 0);
       if (((s as any).npc_rel_type ?? 0)?.[String((s as any).temp_npcid ?? 0)] === 'boyfriend') {
-        // TODO-QSP: dynamic 'act ''<<$npc_usedname["<<$temp_npcid>>"]>>'': gt ''anushkachat_city'', ''tell_about_generic...
+        scene.text('act \'' + (((s as any).npc_usedname ?? 0)?.[String(((s as any).temp_npcid ?? 0))]) + '\': gt \'anushkachat_city\', \'tell_about_generic_boyfriend\', $npc_usedname["' + ((s as any).temp_npcid ?? 0) + '"]');
+        scene.actions([
+          { label: '', labelFn: (s: GameState) => String((((s as any).npc_usedname ?? 0)?.[String(((s as any).temp_npcid ?? 0))] ?? '') ?? ''), handler: (st: GameState) => { qspGoto(st, 'anushkachat_city', 'tell_about_generic_boyfriend', (((st as any).npc_usedname ?? 0)?.[String(((st as any).temp_npcid ?? 0))])); } },
+        ]);
       }
       (s as any).temp_npcid = undefined;
       (s as any).i = ((s as any).i ?? 0) + (1);

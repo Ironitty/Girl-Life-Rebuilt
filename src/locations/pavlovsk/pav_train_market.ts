@@ -1122,8 +1122,7 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'willpower', 'pay', 'resist');
     qspCall(st, 'stat', '');
     scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/market/pereodev` + (Math.floor(Math.random() * 15) + 1) + '.jpg"></center>');
-    // TODO-QSP: dynamic text: 'You look inside the tent and see ' + $pavtrain_marketrandtext[rand(3, 7)]
-    scene.text('You look inside the tent and see ' + 0);
+    scene.text('You look inside the tent and see ' + (((st as any).pavtrain_marketrandtext ?? 0)?.[(Math.floor(Math.random() * 5) + 3)] ?? ''));
     scene.actions([
       { label: 'Leave', goto: ['pav_train_market', 'start'] },
     ]);

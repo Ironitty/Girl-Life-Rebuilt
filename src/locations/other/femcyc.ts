@@ -82,13 +82,6 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
               ((s as any).sparrvol = (s as any).sparrvol ?? {})[String((s as any).cumarrtemp ?? 0)] = 0;
             }
           }
-          (s as any).sexnutrition = ((s as any).sexnutrition ?? 0) + (30*((s as any).succublvl ?? 0));
-          ((s as any).sparrvol = (s as any).sparrvol ?? {})[String((s as any).cumarrtemp ?? 0)] = ((s as any).sparrvol[String((s as any).cumarrtemp ?? 0)] ?? 0) - (30*((s as any).succublvl ?? 0));
-          if (((s as any).sparrvol ?? 0)?.[String((s as any).cumarrtemp ?? 0)] < 0) {
-            (s as any).sexnutrition = ((s as any).sexnutrition ?? 0) + ((((s as any).sparrvol ?? 0)?.[String((s as any).cumarrtemp ?? 0)] ?? 0));
-            ((s as any).sparrvol = (s as any).sparrvol ?? {})[String((s as any).cumarrtemp ?? 0)] = 0;
-          }
-          // TODO-QSP: end !}
         }
         if (((s as any).sparrvol ?? 0)?.[String((s as any).cumarrtemp ?? 0)] <= 0  &&  (((s as any).sparrloc ?? 0)?.[String((s as any).cumarrtemp ?? 0)] !== 0  ||  ((s as any).sparrage ?? 0)?.[String((s as any).cumarrtemp ?? 0)] >= 10  ||  ((s as any).sparrnam ?? 0)?.[String((s as any).cumarrtemp ?? 0)] === '')) {
           qspCall(s, 'cum_cleanup', 'cleandeposit', ((s as any).cumarrtemp ?? 0));
@@ -337,7 +330,6 @@ function enterCyc1(s: GameState, scene: SceneBuilder): void {
     }
   } else {
     (s as any).lutH_max = (Math.floor(Math.random() * 49) + 312);
-    // TODO-QSP: !{If you are ready to ovulate, it creates a chance to double ovulate. That chance is increased by yo...
     (s as any).temprand = (Math.floor(Math.random() * 21) + 0);
     (s as any).temprand = ((s as any).temprand ?? 0) + (((s as any).age ?? 0) / 15);
     (s as any).temprand = ((s as any).temprand ?? 0) - (((s as any).pillcon ?? 0) / 1000);
@@ -436,16 +428,16 @@ function enterCyc2(s: GameState, scene: SceneBuilder): void {
               (s as any).fert_thresh = ((s as any).fert_thresh ?? 0) + (((s as any).fert_thresh ?? 0) * 30);
             }
             if (((s as any).broodcurse ?? 0) > 0) {
-              // TODO-QSP: fert_thresh /= 2
+              (s as any).fert_thresh = ((s as any).fert_thresh ?? 0) / (2);
             }
             if (((s as any).cheatVars ?? 0)?.['preg_chance'] !== 0) {
               (s as any).fert_thresh = (((s as any).fert_thresh ?? 0) * 100) / qspFunc(s, '_difficulty', 'get_multiplied', (((s as any).cheatVars ?? 0)?.['preg_chance']), 100, (((s as any).cheatVars ?? 0)?.['preg_chance_custom']));
             }
             if (((s as any).trait_vars ?? 0)?.['fertility'] > 0) {
-              // TODO-QSP: fert_thresh /= 2
+              (s as any).fert_thresh = ((s as any).fert_thresh ?? 0) / (2);
             }
             if (((s as any).trait_vars ?? 0)?.['fertility'] === -1) {
-              // TODO-QSP: fert_thresh *= 2
+              (s as any).fert_thresh = ((s as any).fert_thresh ?? 0) * (2);
             }
             if (((s as any).fert_thresh ?? 0) <= ((s as any).cum_total ?? 0)  &&  ((s as any).trait_vars ?? 0)?.['fertility'] !== -2) {
               (s as any).lotto_idx = (Math.floor(Math.random() * (((s as any).cfl_sz ?? 0) - 1 - 0 + 1)) + (0));
@@ -826,11 +818,9 @@ function enterFemcycErrhdl(s: GameState, scene: SceneBuilder): void {
 function enter(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).lutH_max ?? 0))) {
     (s as any).lutH_max = (Math.floor(Math.random() * 49) + 312);
-    // TODO-QSP: !! 13-15 days including ovulation
   }
   if ((!((s as any).focH_max ?? 0))) {
     (s as any).focH_max = (Math.floor(Math.random() * 49) + 312);
-    // TODO-QSP: !! 13-15 days including menstruation
   }
   const arg = s.locArg;
   switch (arg) {

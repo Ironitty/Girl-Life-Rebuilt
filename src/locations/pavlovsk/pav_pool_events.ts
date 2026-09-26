@@ -661,10 +661,8 @@ function enterRelaxedwater(s: GameState, scene: SceneBuilder): void {
           ]);
         } else {
           if (((s as any).temp_rand ?? 0) === 1) {
-            // TODO-QSP: !{ elseif temp_rand = 2:
             scene.actions([
               { label: 'Continue', goto: ['pav_pool_events', 'kidsplashgroup'] },
-              { label: 'Continue', goto: ['pav_pool_events', 'relaxgropebelow'] },
             ]);
           } else {
             if (((s as any).temp_rand ?? 0) === 3  &&  (!((s as any).PCloOnePiece ?? 0))) {

@@ -62,13 +62,9 @@ function enterMasturbate(s: GameState, scene: SceneBuilder): void {
   if (((s as any).husID ?? 0) !== ''  &&  ((s as any).spouseVars ?? 0)?.['drink'] !== 10  &&  (((s as any).week ?? 0) >= 5  ||  ((s as any).hour ?? 0) >= 17)) {
     qspGoto(s, 'husbsex', 'husb_mastr_vtor');
   } else {
-    if (((s as any).wifID ?? 0) !== ''  &&  ((s as any).spouseVars ?? 0)?.['drink'] !== 10  &&  (((s as any).week ?? 0) >= 5  ||  ((s as any).hour ?? 0) >= 17)) {
-      qspGoto(s, 'husbsex', 'husb_mastr_vtor');
-    } else {
-      qspCall(s, 'npcStat', 'D1');
-      scene.img('images/shared/sex/mast/mastr.mp4');
-      scene.text('You put your dildo on the floor and start to ride it. It moves in and out, and you feel the pleasure running through your entire body with each thrust. You begin to moan, and a few minutes later, you climax and a wave of pleasure runs through your entire body.');
-    }
+    qspCall(s, 'npcStat', 'D1');
+    scene.img('images/shared/sex/mast/mastr.mp4');
+    scene.text('You put your dildo on the floor and start to ride it. It moves in and out, and you feel the pleasure running through your entire body with each thrust. You begin to moan, and a few minutes later, you climax and a wave of pleasure runs through your entire body.');
   }
   (s as any).orgasm_or = 'custom';
   qspCall(s, 'arousal', 'vaginal_dildo', 10, 'masturbate', 'no_orgasm_msg');

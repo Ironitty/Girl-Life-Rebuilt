@@ -458,7 +458,7 @@ function enterGetBirthdaySetter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'time', 'init_monthends', ((s as any).birthyear ?? 0));
   (s as any).temp_action_left_day = 'birthday = ((birthday - 2 + ' + (((s as any).monthsend ?? 0)?.[String((s as any).birthmonth ?? 0)] ?? 0) + ') mod ' + (((s as any).monthsend ?? 0)?.[String((s as any).birthmonth ?? 0)] ?? 0) + ') + 1';
   (s as any).temp_action_right_day = 'birthday = ((birthday + ' + (((s as any).monthsend ?? 0)?.[String((s as any).birthmonth ?? 0)] ?? 0) + ') mod ' + (((s as any).monthsend ?? 0)?.[String((s as any).birthmonth ?? 0)] ?? 0) + ') + 1';
-  (s as any).temp_value_day = '' + ((s as any).birthday ?? 0) + '' + qspFunc(s, 'shortgs', 'get_number_suffix', ((s as any).birthday ?? 0));
+  (s as any).temp_value_day = '' + ((s as any).birthday ?? 0) + '\' + $func(\'shortgs\', \'get_number_suffix\', birthday';
   (s as any).result = qspFunc(s, 'intro_overview', 'render_cell', 'Birth Day', ((s as any).temp_value_day ?? 0), 0, ((s as any).temp_action_left_day ?? 0), ((s as any).temp_action_right_day ?? 0));
   qspCall(s, 'time', 'init_monthends', ((s as any).year ?? 0));
   (s as any).temp_action_left_day = undefined;
@@ -508,8 +508,8 @@ function enterGetHaircolorSetter(s: GameState, scene: SceneBuilder): void {
 function enterGetHairlengthSetter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'body_desc', 'hair');
   qspCall(s, 'intro_character_creation', 'set_hair_next_prev');
-  (s as any).temp_action_left_hair_length = 'pcs_hairlng = ' + ((s as any).hairlng_prev ?? 0);
-  (s as any).temp_action_right_hair_length = 'pcs_hairlng = ' + ((s as any).hairlng_next ?? 0);
+  (s as any).temp_action_left_hair_length = 'pcs_hairlng = \' + hairlng_pre';
+  (s as any).temp_action_right_hair_length = 'pcs_hairlng = \' + hairlng_nex';
   (s as any).temp_value_hair_length = (String((String((((s as any).pc_descWordy ?? 0)?.['hair length'])).slice((1)-1, ((1)-1)+(1)))).toUpperCase()) + (String((((s as any).pc_descWordy ?? 0)?.['hair length'])).slice((2)-1));
   (s as any).result = qspFunc(s, 'intro_overview', 'render_cell', 'Hair Length', ((s as any).temp_value_hair_length ?? 0), 0, ((s as any).temp_action_left_hair_length ?? 0), ((s as any).temp_action_right_hair_length ?? 0));
   (s as any).hairlng_next = undefined;

@@ -54,7 +54,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       qspGoto(st, 'KGstart', '');
     }
   } },
-      { label: 'Buy game coins', handler: (st: GameState) => {
+      { label: '', labelFn: (s: GameState) => String('Buy game coins' + qspFunc(s, 'money', 'get_cost_string', 1, 'bank') + ' = 1 Coin' ?? ''), handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 1, 'bank') === 0) {
       s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {

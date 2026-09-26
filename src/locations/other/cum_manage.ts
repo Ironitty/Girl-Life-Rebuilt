@@ -118,35 +118,6 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
         if (((s as any).sexcontra ?? 0) === 3) {
           (s as any).temprand = (Math.floor(Math.random() * 1001) + 0);
           (s as any).dick_wid = Math.max(4, Math.min(4 * ((s as any).dick_width ?? 0) / 3 - 8, 12));
-          if (((s as any).dick_girth ?? 0) === 'skinny') {
-            (s as any).dick_wid = 4;
-          } else {
-            if (((s as any).dick_girth ?? 0) === 'slim') {
-              (s as any).dick_wid = 5;
-            } else {
-              if (((s as any).dick_girth ?? 0) === 'well proportioned') {
-                (s as any).dick_wid = 6;
-              } else {
-                if (((s as any).dick_girth ?? 0) === 'thicker than average') {
-                  (s as any).dick_wid = 7;
-                } else {
-                  if (((s as any).dick_girth ?? 0) === 'thick') {
-                    (s as any).dick_wid = 8;
-                  } else {
-                    if (((s as any).dick_girth ?? 0) === 'massive') {
-                      (s as any).dick_wid = 10;
-                    } else {
-                      if (((s as any).dick_girth ?? 0) === 'monstrous') {
-                        (s as any).dick_wid = 12;
-                      } else {
-                        (s as any).dick_wid = 6;
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
           (s as any).break_thresh = ((s as any).dick_wid ?? 0);
           (s as any).break_thresh = ((s as any).break_thresh ?? 0) - (((s as any).pcs_vag ?? 0) / 4);
           (s as any).break_thresh = ((s as any).break_thresh ?? 0) + (((s as any).dick_length ?? 0) / 4);
@@ -157,7 +128,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
             (s as any).break_thresh = 1;
           }
           if (((s as any).npcCondom ?? 0) === 'extra_thin') {
-            // TODO-QSP: break_thresh *= 2
+            (s as any).break_thresh = ((s as any).break_thresh ?? 0) * (2);
           }
           if (((s as any).slip_thresh ?? 0) < 4) {
             (s as any).slip_thresh = 4;

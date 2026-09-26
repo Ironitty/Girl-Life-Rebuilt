@@ -12,7 +12,6 @@ function enterSecretroom(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcStat', 'A14');
   if (((s as any).katjaQW ?? 0)?.['school_sex'] === 0) {
     ((s as any).katjaQW = (s as any).katjaQW ?? {})['school_sex'] = 1;
-    // TODO-QSP: !! Flag sex with Kate at the school
   }
   scene.img('images/characters/pavlovsk/school/girl/katja/tanga4_4.jpg');
   scene.text('You hurry down the hall hand in hand with Katja towards the storage room she told you about as each of you tries to pull up the other\'s skirt. Once at the door, she pulls out a key and unlocks it. You grab and squeeze her ass as she does before she pushes the door open and turns towards you. You both immediately start kissing and fondling each other, barely avoiding tumbling into the room before you manage to close the door and lock it.');

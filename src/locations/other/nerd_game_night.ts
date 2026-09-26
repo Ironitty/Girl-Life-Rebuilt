@@ -108,7 +108,7 @@ function enterInvite(s: GameState, scene: SceneBuilder): void {
     ((s as any).nerd_game = (s as any).nerd_game ?? {})['invite_day'] = ((s as any).daystart ?? 0);
     qspCall(s, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big152.jpg');
-    scene.text(`You stop by your locker and Feofan walks over to you and smiles. "Hey ${((s as any).pcs_nickname ?? '')}, we do a weekly game night where we mostly play Dungeons and Dragons, but we sometimes play some board games. I was talking to the others and we were wondering if you'd like to join us on ${qspUntranslated(s, "weekName[val(mid(temp,1,1))]", { location: "nerd_game_night" })} or ${qspUntranslated(s, "weekName[val(mid(temp,2,1))]", { location: "nerd_game_night" })} if you're free then?"`);
+    scene.text(`You stop by your locker and Feofan walks over to you and smiles. "Hey ${((s as any).pcs_nickname ?? '')}, we do a weekly game night where we mostly play Dungeons and Dragons, but we sometimes play some board games. I was talking to the others and we were wondering if you'd like to join us on ${(((s as any).weekName ?? 0)?.[parseFloat((String(((s as any).temp ?? '')).slice((1)-1, ((1)-1)+(1))))] ?? '')} or ${(((s as any).weekName ?? 0)?.[parseFloat((String(((s as any).temp ?? '')).slice((2)-1, ((2)-1)+(1))))] ?? '')} if you're free then?"`);
     scene.actions([
       { label: 'Not interested <br> [+$func(\'wrap\', \'neg\', \'This will block th...]', handler: (st: GameState) => {
     ((st as any).nerd_game = (st as any).nerd_game ?? {})['invite_day'] = ((st as any).daystart ?? 0) + 7305;
@@ -139,22 +139,22 @@ function enterInvite(s: GameState, scene: SceneBuilder): void {
     scene.text('He walks away before you can reply.');
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'exit']; enterInvite(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
-      { label: '', labelFn: (s: GameState) => String(qspUntranslated(s, "weekName[val(mid(nerd_game['lot'], 1, 1))]", { location: "nerd_game_night" }) ?? ''), handler: (st: GameState) => {
+      { label: '', labelFn: (s: GameState) => String((((s as any).weekName ?? 0)?.[parseFloat((String((((s as any).nerd_game ?? 0)?.['lot'] ?? '')).slice((1)-1, ((1)-1)+(1))))] ?? '') ?? ''), handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 2;
     ((st as any).nerd_game = (st as any).nerd_game ?? {})['game_day'] = ((st as any).daystart ?? 0) - ((st as any).week ?? 0) + parseFloat((String((((st as any).nerd_game ?? 0)?.['lot'])).slice((1)-1, ((1)-1)+(1))));
     qspCall(st, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big152.jpg');
-    scene.text(`"Sure, I can make it on ${qspUntranslated(s, "weekName[val(mid(nerd_game['lot'], 1, 1))]", { location: "nerd_game_night" })}," you reply.`);
-    scene.text(`'He looks excited. "Great! I'll see you on ${qspUntranslated(s, "weekName[val(mid(nerd_game['lot'],1,1))]", { location: "nerd_game_night" })} at 20:00 in the library then! Be ready to get your nerd on, because we're going to rock it so hard!" he says with a cheesy wink and double finger point before walking away.'`);
+    scene.text(`"Sure, I can make it on ${(((st as any).weekName ?? 0)?.[parseFloat((String((((st as any).nerd_game ?? 0)?.['lot'] ?? '')).slice((1)-1, ((1)-1)+(1))))] ?? '')}," you reply.`);
+    scene.text(`'He looks excited. "Great! I'll see you on ${(((st as any).weekName ?? 0)?.[parseFloat((String((((st as any).nerd_game ?? 0)?.['lot'] ?? '')).slice((1)-1, ((1)-1)+(1))))] ?? '')} at 20:00 in the library then! Be ready to get your nerd on, because we're going to rock it so hard!" he says with a cheesy wink and double finger point before walking away.'`);
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'exit']; enterInvite(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
-      { label: '', labelFn: (s: GameState) => String(qspUntranslated(s, "weekName[val(mid(nerd_game['lot'], 2, 1))]", { location: "nerd_game_night" }) ?? ''), handler: (st: GameState) => {
+      { label: '', labelFn: (s: GameState) => String((((s as any).weekName ?? 0)?.[parseFloat((String((((s as any).nerd_game ?? 0)?.['lot'] ?? '')).slice((2)-1, ((2)-1)+(1))))] ?? '') ?? ''), handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 2;
     ((st as any).nerd_game = (st as any).nerd_game ?? {})['game_day'] = ((st as any).daystart ?? 0) - ((st as any).week ?? 0) + parseFloat((String((((st as any).nerd_game ?? 0)?.['lot'])).slice((2)-1, ((2)-1)+(1))));
     qspCall(st, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big152.jpg');
-    scene.text(`"Sure, I can make it on ${qspUntranslated(s, "weekName[val(mid(nerd_game['lot'], 2, 1))]", { location: "nerd_game_night" })}," you reply.`);
-    scene.text(`'He looks excited. "Great! I'll see you on ${qspUntranslated(s, "weekName[val(mid(nerd_game['lot'], 2, 1))]", { location: "nerd_game_night" })} at 20:00 in the library then! Be ready to get your nerd on, because we're going to rock it so hard!" he says with a cheesy wink and double finger point before walking away.'`);
+    scene.text(`"Sure, I can make it on ${(((st as any).weekName ?? 0)?.[parseFloat((String((((st as any).nerd_game ?? 0)?.['lot'] ?? '')).slice((2)-1, ((2)-1)+(1))))] ?? '')}," you reply.`);
+    scene.text(`'He looks excited. "Great! I'll see you on ${(((st as any).weekName ?? 0)?.[parseFloat((String((((st as any).nerd_game ?? 0)?.['lot'] ?? '')).slice((2)-1, ((2)-1)+(1))))] ?? '')} at 20:00 in the library then! Be ready to get your nerd on, because we're going to rock it so hard!" he says with a cheesy wink and double finger point before walking away.'`);
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'exit']; enterInvite(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
@@ -1757,16 +1757,16 @@ function enterSummerInviteSms(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).temp_start_text = '';
   if (((s as any).nerd_game ?? 0)?.['first_SMS_received'] === 0) {
-    ((s as any).SMSTree = (s as any).SMSTree ?? {})['0'] = 'Hey ' + ((s as any).pcs_nickname ?? 0) + ' this is Feofan. We do a weekly game night, mostly playing Dungeons and Dragons and board games. I was talking to the others and we were wondering if you would like to join us? We have a few nights free this week and were wondering which one works best for you. We can do it either on ' + qspUntranslated(s, "weekName[val(mid(nerd_game['lot'],1,1))]", { location: "nerd_game_night" }) + ' or ' + qspUntranslated(s, "weekName[val(mid(nerd_game['lot'],2,1))]", { location: "nerd_game_night" }) + '.';
+    ((s as any).SMSTree = (s as any).SMSTree ?? {})['0'] = 'Hey ' + ((s as any).pcs_nickname ?? 0) + ' this is Feofan. We do a weekly game night, mostly playing Dungeons and Dragons and board games. I was talking to the others and we were wondering if you would like to join us? We have a few nights free this week and were wondering which one works best for you. We can do it either on ' + (((s as any).weekName ?? 0)?.[parseFloat((String((((s as any).nerd_game ?? 0)?.['lot'])).slice((1)-1, ((1)-1)+(1))))] ?? 0) + ' or ' + (((s as any).weekName ?? 0)?.[parseFloat((String((((s as any).nerd_game ?? 0)?.['lot'])).slice((2)-1, ((2)-1)+(1))))] ?? 0) + '.';
   } else {
-    ((s as any).SMSTree = (s as any).SMSTree ?? {})['0'] = 'Hey ' + ((s as any).pcs_nickname ?? 0) + ', would you like to join us for our weekly game night? We have a few nights free this week and were wondering which one works best for you. We can do it either on ' + qspUntranslated(s, "weekName[val(mid(nerd_game['lot'],1,1))]", { location: "nerd_game_night" }) + ' or ' + qspUntranslated(s, "weekName[val(mid(nerd_game['lot'],2,1))]", { location: "nerd_game_night" }) + '.';
+    ((s as any).SMSTree = (s as any).SMSTree ?? {})['0'] = 'Hey ' + ((s as any).pcs_nickname ?? 0) + ', would you like to join us for our weekly game night? We have a few nights free this week and were wondering which one works best for you. We can do it either on ' + (((s as any).weekName ?? 0)?.[parseFloat((String((((s as any).nerd_game ?? 0)?.['lot'])).slice((1)-1, ((1)-1)+(1))))] ?? 0) + ' or ' + (((s as any).weekName ?? 0)?.[parseFloat((String((((s as any).nerd_game ?? 0)?.['lot'])).slice((2)-1, ((2)-1)+(1))))] ?? 0) + '.';
   }
-  ((s as any).SMSTree = (s as any).SMSTree ?? {})['ca1'] = '' + qspUntranslated(s, "weekName[val(mid(nerd_game['lot'],1,1))]", { location: "nerd_game_night" }) + '';
-  ((s as any).SMSTree = (s as any).SMSTree ?? {})['a1'] = 'Sure, I can make it on ' + qspUntranslated(s, "weekName[val(mid(nerd_game['lot'],1,1))]", { location: "nerd_game_night" }) + '.';
-  ((s as any).SMSTree = (s as any).SMSTree ?? {})['a2'] = ':-) Great! I\'ll see you on ' + qspUntranslated(s, "weekName[val(mid(nerd_game['lot'],1,1))]", { location: "nerd_game_night" }) + ' at \'+func(\'time\', \'get_time_string\', 20, 0)+\' in the library then! Be ready to get your nerd on, because we\'re going to rock it so hard!';
-  ((s as any).SMSTree = (s as any).SMSTree ?? {})['cb1'] = '' + qspUntranslated(s, "weekName[val(mid(nerd_game['lot'],2,1))]", { location: "nerd_game_night" }) + '';
-  ((s as any).SMSTree = (s as any).SMSTree ?? {})['b1'] = 'Sure, I can make it on ' + qspUntranslated(s, "weekName[val(mid(nerd_game['lot'],2,1))]", { location: "nerd_game_night" }) + '.';
-  ((s as any).SMSTree = (s as any).SMSTree ?? {})['b2'] = ':-) Great! I\'ll see you on ' + qspUntranslated(s, "weekName[val(mid(nerd_game['lot'],2,1))]", { location: "nerd_game_night" }) + ' at \'+func(\'time\', \'get_time_string\', 20, 0)+\' in the library then! Be ready to get your nerd on, because we\'re going to rock it so hard!';
+  ((s as any).SMSTree = (s as any).SMSTree ?? {})['ca1'] = '' + (((s as any).weekName ?? 0)?.[parseFloat((String((((s as any).nerd_game ?? 0)?.['lot'])).slice((1)-1, ((1)-1)+(1))))] ?? 0) + '';
+  ((s as any).SMSTree = (s as any).SMSTree ?? {})['a1'] = 'Sure, I can make it on ' + (((s as any).weekName ?? 0)?.[parseFloat((String((((s as any).nerd_game ?? 0)?.['lot'])).slice((1)-1, ((1)-1)+(1))))] ?? 0) + '.';
+  ((s as any).SMSTree = (s as any).SMSTree ?? {})['a2'] = ':-) Great! I\'ll see you on ' + (((s as any).weekName ?? 0)?.[parseFloat((String((((s as any).nerd_game ?? 0)?.['lot'])).slice((1)-1, ((1)-1)+(1))))] ?? 0) + ' at \'+func(\'time\', \'get_time_string\', 20, 0)+\' in the library then! Be ready to get your nerd on, because we\'re going to rock it so hard!';
+  ((s as any).SMSTree = (s as any).SMSTree ?? {})['cb1'] = '' + (((s as any).weekName ?? 0)?.[parseFloat((String((((s as any).nerd_game ?? 0)?.['lot'])).slice((2)-1, ((2)-1)+(1))))] ?? 0) + '';
+  ((s as any).SMSTree = (s as any).SMSTree ?? {})['b1'] = 'Sure, I can make it on ' + (((s as any).weekName ?? 0)?.[parseFloat((String((((s as any).nerd_game ?? 0)?.['lot'])).slice((2)-1, ((2)-1)+(1))))] ?? 0) + '.';
+  ((s as any).SMSTree = (s as any).SMSTree ?? {})['b2'] = ':-) Great! I\'ll see you on ' + (((s as any).weekName ?? 0)?.[parseFloat((String((((s as any).nerd_game ?? 0)?.['lot'])).slice((2)-1, ((2)-1)+(1))))] ?? 0) + ' at \'+func(\'time\', \'get_time_string\', 20, 0)+\' in the library then! Be ready to get your nerd on, because we\'re going to rock it so hard!';
   ((s as any).SMSTree = (s as any).SMSTree ?? {})['cc1'] = 'Not this week';
   ((s as any).SMSTree = (s as any).SMSTree ?? {})['c1'] = 'Sorry I don\'t have time this week, but next week I should be able too.';
   ((s as any).SMSTree = (s as any).SMSTree ?? {})['c2'] = ':-( Oh… okay yeah I get it. Guess we\'ll see you next week.';

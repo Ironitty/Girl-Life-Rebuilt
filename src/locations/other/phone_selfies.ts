@@ -263,7 +263,7 @@ function enterSelfieImage(s: GameState, scene: SceneBuilder): void {
     (s as any).temp_titflash = (((s as any).selfieTitFlashTot ?? 0)?.[String((s as any).locIndex ?? 0)] ?? 0);
     if (((s as any).temp_titflash ?? 0) > 0) {
       (s as any).phone_rand = (Math.floor(Math.random() * (((s as any).temp_titflash ?? 0) - 1 + 1)) + (1));
-      // TODO-QSP: dynamic '<<$ARGS[1]>>_titflash[<<phone_rand>>] = 1'
+      scene.text('' + ((s as any).locArgs?.[1] ?? 0) + '_titflash[' + ((s as any).phone_rand ?? 0) + '] = 1');
       (s as any).result = 'images/pc/activities/phone/selfies/' + ((s as any).locArgs?.[1] ?? 0) + '/titflash/' + (((s as any).selfieFilePrefix ?? 0)?.[String((s as any).locIndex ?? 0)] ?? 0) + '' + ((s as any).phone_rand ?? 0) + '.jpg';
     }
     (s as any).temp_titflash = undefined;
@@ -272,7 +272,7 @@ function enterSelfieImage(s: GameState, scene: SceneBuilder): void {
       (s as any).temp_assflash = (((s as any).selfieAssFlashTot ?? 0)?.[String((s as any).locIndex ?? 0)] ?? 0);
       if (((s as any).temp_assflash ?? 0) > 0) {
         (s as any).phone_rand = (Math.floor(Math.random() * (((s as any).temp_assflash ?? 0) - 1 + 1)) + (1));
-        // TODO-QSP: dynamic '<<$ARGS[1]>>_assflash[<<phone_rand>>] = 1'
+        scene.text('' + ((s as any).locArgs?.[1] ?? 0) + '_assflash[' + ((s as any).phone_rand ?? 0) + '] = 1');
         (s as any).result = 'images/pc/activities/phone/selfies/' + ((s as any).locArgs?.[1] ?? 0) + '/assflash/' + (((s as any).selfieFilePrefix ?? 0)?.[String((s as any).locIndex ?? 0)] ?? 0) + '' + ((s as any).phone_rand ?? 0) + '.jpg';
       }
       (s as any).temp_assflash = undefined;
@@ -281,7 +281,7 @@ function enterSelfieImage(s: GameState, scene: SceneBuilder): void {
         (s as any).temp_pussyflash = (((s as any).selfiePussyFlashTot ?? 0)?.[String((s as any).locIndex ?? 0)] ?? 0);
         if (((s as any).temp_pussyflash ?? 0) > 0) {
           (s as any).phone_rand = (Math.floor(Math.random() * (((s as any).temp_pussyflash ?? 0) - 1 + 1)) + (1));
-          // TODO-QSP: dynamic '<<$ARGS[1]>>_pussyflash[<<phone_rand>>] = 1'
+          scene.text('' + ((s as any).locArgs?.[1] ?? 0) + '_pussyflash[' + ((s as any).phone_rand ?? 0) + '] = 1');
           (s as any).result = 'images/pc/activities/phone/selfies/' + ((s as any).locArgs?.[1] ?? 0) + '/pussyflash/' + (((s as any).selfieFilePrefix ?? 0)?.[String((s as any).locIndex ?? 0)] ?? 0) + '' + ((s as any).phone_rand ?? 0) + '.jpg';
         }
         (s as any).temp_pussyflash = undefined;
@@ -290,7 +290,7 @@ function enterSelfieImage(s: GameState, scene: SceneBuilder): void {
           (s as any).temp_swim = (((s as any).selfieSwimTot ?? 0)?.[String((s as any).locIndex ?? 0)] ?? 0);
           if (((s as any).temp_swim ?? 0) > 0) {
             (s as any).phone_rand = (Math.floor(Math.random() * (((s as any).temp_swim ?? 0) - 1 + 1)) + (1));
-            // TODO-QSP: dynamic '<<$ARGS[1]>>_swim[<<phone_rand>>] = 1'
+            scene.text('' + ((s as any).locArgs?.[1] ?? 0) + '_swim[' + ((s as any).phone_rand ?? 0) + '] = 1');
             (s as any).result = 'images/pc/activities/phone/selfies/' + ((s as any).locArgs?.[1] ?? 0) + '/bikini/' + (((s as any).selfieFilePrefix ?? 0)?.[String((s as any).locIndex ?? 0)] ?? 0) + '' + ((s as any).phone_rand ?? 0) + '.jpg';
           }
           (s as any).temp_swim = undefined;
@@ -299,7 +299,7 @@ function enterSelfieImage(s: GameState, scene: SceneBuilder): void {
             (s as any).temp_clotot = (((s as any).selfieCloTot ?? 0)?.[String((s as any).locIndex ?? 0)] ?? 0);
             if (((s as any).temp_clotot ?? 0) > 0) {
               (s as any).phone_rand = (Math.floor(Math.random() * (((s as any).temp_clotot ?? 0) - 1 + 1)) + (1));
-              // TODO-QSP: dynamic '<<$ARGS[1]>>_closelfie[<<phone_rand>>] = 1'
+              scene.text('' + ((s as any).locArgs?.[1] ?? 0) + '_closelfie[' + ((s as any).phone_rand ?? 0) + '] = 1');
               (s as any).result = 'images/pc/activities/phone/selfies/' + ((s as any).locArgs?.[1] ?? 0) + '/clothed/' + (((s as any).selfieFilePrefix ?? 0)?.[String((s as any).locIndex ?? 0)] ?? 0) + '' + ((s as any).phone_rand ?? 0) + '.jpg';
             }
             (s as any).temp_clotot = undefined;
@@ -308,7 +308,7 @@ function enterSelfieImage(s: GameState, scene: SceneBuilder): void {
               (s as any).temp_undtot = (((s as any).selfieUndTot ?? 0)?.[String((s as any).locIndex ?? 0)] ?? 0);
               if (((s as any).temp_undtot ?? 0) > 0) {
                 (s as any).phone_rand = (Math.floor(Math.random() * (((s as any).temp_undtot ?? 0) - 1 + 1)) + (1));
-                // TODO-QSP: dynamic '<<$ARGS[1]>>_undselfie[<<phone_rand>>] = 1'
+                scene.text('' + ((s as any).locArgs?.[1] ?? 0) + '_undselfie[' + ((s as any).phone_rand ?? 0) + '] = 1');
                 (s as any).result = 'images/pc/activities/phone/selfies/' + ((s as any).locArgs?.[1] ?? 0) + '/underwear/' + (((s as any).selfieFilePrefix ?? 0)?.[String((s as any).locIndex ?? 0)] ?? 0) + '' + ((s as any).phone_rand ?? 0) + '.jpg';
               }
               (s as any).temp_undtot = undefined;
@@ -316,7 +316,7 @@ function enterSelfieImage(s: GameState, scene: SceneBuilder): void {
               (s as any).temp_nudtot = (((s as any).selfieNudTot ?? 0)?.[String((s as any).locIndex ?? 0)] ?? 0);
               if (((s as any).temp_nudtot ?? 0) > 0) {
                 (s as any).phone_rand = (Math.floor(Math.random() * (((s as any).temp_nudtot ?? 0) - 1 + 1)) + (1));
-                // TODO-QSP: dynamic '<<$ARGS[1]>>_nudselfie[<<phone_rand>>] = 1'
+                scene.text('' + ((s as any).locArgs?.[1] ?? 0) + '_nudselfie[' + ((s as any).phone_rand ?? 0) + '] = 1');
                 (s as any).result = 'images/pc/activities/phone/selfies/' + ((s as any).locArgs?.[1] ?? 0) + '/nude/' + (((s as any).selfieFilePrefix ?? 0)?.[String((s as any).locIndex ?? 0)] ?? 0) + '' + ((s as any).phone_rand ?? 0) + '.jpg';
               }
               (s as any).temp_nudtot = undefined;
@@ -328,7 +328,7 @@ function enterSelfieImage(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).result ?? 0) === '') {
     (s as any).phone_rand = (Math.floor(Math.random() * ((((s as any).selfieCloTot ?? 0)?.[0] ?? 0) - 1 + 1)) + (1));
-    // TODO-QSP: dynamic '<<$selfieLoc[0]>>_closelfie[<<phone_rand>>] = 1'
+    scene.text('' + (((s as any).selfieLoc ?? 0)?.[0] ?? 0) + '_closelfie[' + ((s as any).phone_rand ?? 0) + '] = 1');
     (s as any).result = 'images/pc/activities/phone/selfies/' + (((s as any).selfieLoc ?? 0)?.[0] ?? 0) + '/clothed/' + (((s as any).selfieFilePrefix ?? 0)?.[0] ?? 0) + '' + ((s as any).phone_rand ?? 0) + '.jpg';
   }
   (s as any).phone_rand = undefined;
@@ -470,7 +470,7 @@ function enterRetrieveClothedSelfies(s: GameState, scene: SceneBuilder): void {
     (s as any).temp_cnum = 0;
     (s as any).temp_clocnt = 1;
     do {
-      // TODO-QSP: dynamic 'phone_locval = <<$ARGS[2]>>_closelfie[<<temp_clocnt>>]'
+      scene.text('phone_locval = ' + ((s as any).locArgs?.[2] ?? 0) + '_closelfie[' + ((s as any).temp_clocnt ?? 0) + ']');
       if (((s as any).phone_locval ?? 0) === 1) {
         if (((s as any).temp_cnum ?? 0) === 5) {
           (s as any).result = ((s as any).result ?? '') + '</tr><tr>';
@@ -499,7 +499,7 @@ function enterRetrieveSwimSelfies(s: GameState, scene: SceneBuilder): void {
     (s as any).temp_cnum = 0;
     (s as any).temp_swicnt = 1;
     do {
-      // TODO-QSP: dynamic 'phone_locval = <<$ARGS[2]>>_swim[<<temp_swicnt>>]'
+      scene.text('phone_locval = ' + ((s as any).locArgs?.[2] ?? 0) + '_swim[' + ((s as any).temp_swicnt ?? 0) + ']');
       if (((s as any).phone_locval ?? 0) === 1) {
         if (((s as any).temp_cnum ?? 0) === 5) {
           (s as any).result = ((s as any).result ?? '') + '</tr><tr>';
@@ -528,7 +528,7 @@ function enterRetrieveUnderwearSelfies(s: GameState, scene: SceneBuilder): void 
     (s as any).temp_cnum = 0;
     (s as any).temp_undcnt = 1;
     do {
-      // TODO-QSP: dynamic 'phone_locval = <<$ARGS[2]>>_undselfie[<<temp_undcnt>>]'
+      scene.text('phone_locval = ' + ((s as any).locArgs?.[2] ?? 0) + '_undselfie[' + ((s as any).temp_undcnt ?? 0) + ']');
       if (((s as any).phone_locval ?? 0) === 1) {
         if (((s as any).temp_cnum ?? 0) === 5) {
           (s as any).result = ((s as any).result ?? '') + '</tr><tr>';
@@ -557,7 +557,7 @@ function enterRetrieveNudeSelfies(s: GameState, scene: SceneBuilder): void {
     (s as any).temp_cnum = 0;
     (s as any).temp_nudcnt = 1;
     do {
-      // TODO-QSP: dynamic 'phone_locval = <<$ARGS[2]>>_nudselfie[<<temp_nudcnt>>]'
+      scene.text('phone_locval = ' + ((s as any).locArgs?.[2] ?? 0) + '_nudselfie[' + ((s as any).temp_nudcnt ?? 0) + ']');
       if (((s as any).phone_locval ?? 0) === 1) {
         if (((s as any).temp_cnum ?? 0) === 5) {
           (s as any).result = ((s as any).result ?? '') + '</tr><tr>';
@@ -586,7 +586,7 @@ function enterRetrieveBathSelfies(s: GameState, scene: SceneBuilder): void {
     (s as any).temp_cnum = 0;
     (s as any).temp_bathcnt = 1;
     do {
-      // TODO-QSP: dynamic 'phone_locval = <<$ARGS[2]>>_bathselfie[<<temp_bathcnt>>]'
+      scene.text('phone_locval = ' + ((s as any).locArgs?.[2] ?? 0) + '_bathselfie[' + ((s as any).temp_bathcnt ?? 0) + ']');
       if (((s as any).phone_locval ?? 0) === 1) {
         if (((s as any).temp_cnum ?? 0) === 5) {
           (s as any).result = ((s as any).result ?? '') + '</tr><tr>';
@@ -615,7 +615,7 @@ function enterRetrieveShowerSelfies(s: GameState, scene: SceneBuilder): void {
     (s as any).temp_cnum = 0;
     (s as any).temp_showercnt = 1;
     do {
-      // TODO-QSP: dynamic 'phone_locval = <<$ARGS[2]>>_showerselfie[<<temp_showercnt>>]'
+      scene.text('phone_locval = ' + ((s as any).locArgs?.[2] ?? 0) + '_showerselfie[' + ((s as any).temp_showercnt ?? 0) + ']');
       if (((s as any).phone_locval ?? 0) === 1) {
         if (((s as any).temp_cnum ?? 0) === 5) {
           (s as any).result = ((s as any).result ?? '') + '</tr><tr>';
@@ -644,7 +644,7 @@ function enterRetrieveTitflashSelfies(s: GameState, scene: SceneBuilder): void {
     (s as any).temp_cnum = 0;
     (s as any).temp_flashtitscnt = 1;
     do {
-      // TODO-QSP: dynamic 'phone_locval = <<$ARGS[2]>>_titflash[<<temp_flashtitscnt>>]'
+      scene.text('phone_locval = ' + ((s as any).locArgs?.[2] ?? 0) + '_titflash[' + ((s as any).temp_flashtitscnt ?? 0) + ']');
       if (((s as any).phone_locval ?? 0) === 1) {
         if (((s as any).temp_cnum ?? 0) === 5) {
           (s as any).result = ((s as any).result ?? '') + '</tr><tr>';
@@ -673,7 +673,7 @@ function enterRetrieveAssflashSelfies(s: GameState, scene: SceneBuilder): void {
     (s as any).temp_cnum = 0;
     (s as any).temp_flashasscnt = 1;
     do {
-      // TODO-QSP: dynamic 'phone_locval = <<$ARGS[2]>>_assflash[<<temp_flashasscnt>>]'
+      scene.text('phone_locval = ' + ((s as any).locArgs?.[2] ?? 0) + '_assflash[' + ((s as any).temp_flashasscnt ?? 0) + ']');
       if (((s as any).phone_locval ?? 0) === 1) {
         if (((s as any).temp_cnum ?? 0) === 5) {
           (s as any).result = ((s as any).result ?? '') + '</tr><tr>';
@@ -702,7 +702,7 @@ function enterRetrievePussyflashSelfies(s: GameState, scene: SceneBuilder): void
     (s as any).temp_cnum = 0;
     (s as any).temp_flashpussycnt = 1;
     do {
-      // TODO-QSP: dynamic 'phone_locval = <<$ARGS[2]>>_pussyflash[<<temp_flashpussycnt>>]'
+      scene.text('phone_locval = ' + ((s as any).locArgs?.[2] ?? 0) + '_pussyflash[' + ((s as any).temp_flashpussycnt ?? 0) + ']');
       if (((s as any).phone_locval ?? 0) === 1) {
         if (((s as any).temp_cnum ?? 0) === 5) {
           (s as any).result = ((s as any).result ?? '') + '</tr><tr>';
@@ -916,7 +916,7 @@ function enterPopulateClothesType(s: GameState, scene: SceneBuilder): void {
   while (true) {
     scene.text('phone_locval = ' + (((s as any).selfieLoc ?? 0)?.[String((s as any).temp_locationCnt ?? 0)] ?? 0) + '_' + ((s as any).CloTypePrefix ?? 0) + '[' + ((s as any).temp_clocnt ?? 0) + ']');
     if (((s as any).phone_locval ?? 0) === 1) {
-      // TODO-QSP: dynamic 'tmpIndex = <<$CloArraySize>>'
+      scene.text('tmpIndex = ' + ((s as any).CloArraySize ?? 0) + '');
     }
   }
   scene.build();

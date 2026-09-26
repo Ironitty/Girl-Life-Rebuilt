@@ -15,27 +15,27 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'themes', 'indoors');
   scene.text('<center><h2>Pavlovsk Train Station</h2></center>');
   scene.img('images/locations/pavlovsk/trainstation/vokzal.jpg');
-  scene.text('Stepping into the station building, you\'re greeted by a large waiting room where passengers await the trains. In one of the corners is the <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027pav_train_hall_events\u0027, \u0027manager\u0027); return false;">station manager\'s office</a>. The <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027pav_train_hall\u0027, \u0027toilet\u0027); return false;">toilets</a> are located at the back of the building.');
+  scene.text('Stepping into the station building, you\'re greeted by a large waiting room where passengers await the trains. In one of the corners is the <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027pav_train_hall_events\u0027, \u0027manager\u0027); return false;">station manager\'s office</a>. The <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=1; return s; }); window.__gameStore.getState().doGoto(\u0027pav_train_hall\u0027, \u0027toilet\u0027); return false;">toilets</a> are located at the back of the building.');
   scene.text('\'The long-distance trains are at the station platforms between 11:00-11:30 and 18:00-18:30.\'');
   if ((Math.floor(Math.random() * 3) + 0) === 0  &&  ((s as any).week ?? 0) < 5  &&  ((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) < 18) {
     if (((s as any).OluQW ?? 0)?.['met'] === 0) {
       scene.text('You see a very large black man sitting on one of the benches. When people head for the exit, he quickly gets up and asks if they need a taxi. It doesn\'t look like anyone is taking him up on his offer, though.');
     } else {
       if (((s as any).week ?? 0) !== 1  ||  (Math.floor(Math.random() * 5) + 0) !== 0) {
-        scene.text('You see your aunt\'s boyfriend <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027olutaxi\u0027, \u0027station\u0027); return false;">Olu</a> sitting on one of the benches. When people head for the exit, he quickly gets up and asks if they need a taxi, but it doesn\'t look like anyone is taking him up on his offer.');
+        scene.text('You see your aunt\'s boyfriend <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=1; return s; }); window.__gameStore.getState().doGoto(\u0027olutaxi\u0027, \u0027station\u0027); return false;">Olu</a> sitting on one of the benches. When people head for the exit, he quickly gets up and asks if they need a taxi, but it doesn\'t look like anyone is taking him up on his offer.');
       } else {
         ((s as any).DjibrilQW = (s as any).DjibrilQW ?? {})['taxi'] = 1;
         if (((s as any).DjibrilQW ?? 0)?.['meet'] === 1) {
-          scene.text('You see your aunt\'s boyfriend <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027olutaxi\u0027, \u0027station\u0027); return false;">Olu</a> sitting on one of the benches. His nephew Djibril is sitting next to him. When people head for the exit, Olu quickly gets up and asks if they need a taxi, but it doesn\'t look like anyone is taking him up on his offer.');
+          scene.text('You see your aunt\'s boyfriend <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=1; return s; }); window.__gameStore.getState().doGoto(\u0027olutaxi\u0027, \u0027station\u0027); return false;">Olu</a> sitting on one of the benches. His nephew Djibril is sitting next to him. When people head for the exit, Olu quickly gets up and asks if they need a taxi, but it doesn\'t look like anyone is taking him up on his offer.');
         } else {
-          scene.text('You see your aunt\'s boyfriend <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027olutaxi\u0027, \u0027station\u0027); return false;">Olu</a> sitting on one of the benches. A younger man that looks similar enough to him that they might be related is sitting next to him. When people head for the exit, Olu quickly gets up and asks if they need a taxi, but it doesn\'t look like anyone is taking him up on his offer.');
+          scene.text('You see your aunt\'s boyfriend <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=1; return s; }); window.__gameStore.getState().doGoto(\u0027olutaxi\u0027, \u0027station\u0027); return false;">Olu</a> sitting on one of the benches. A younger man that looks similar enough to him that they might be related is sitting next to him. When people head for the exit, Olu quickly gets up and asks if they need a taxi, but it doesn\'t look like anyone is taking him up on his offer.');
         }
       }
     }
   }
   if (((s as any).start_type ?? 0)?.['loc'] === 'sg'  &&  ((s as any).gschoolVars ?? 0)?.['school_diploma'] === 0  &&  ((s as any).hour ?? 0) >= 18  &&  ((s as any).hour ?? 0) < 20  &&  ((s as any).week ?? 0) < 6) {
     if (((s as any).sunWeather ?? 0) === 0  ||  ((s as any).temper ?? 0) <= 0) {
-      scene.text('You see your classmates <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.3; return s; }); window.__gameStore.getState().doGoto(\u0027gopskver\u0027, \u0027\u0027); return false;">Vitek, Dan and Vasily</a> hanging around.');
+      scene.text('You see your classmates <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=3; return s; }); window.__gameStore.getState().doGoto(\u0027gopskver\u0027, \u0027\u0027); return false;">Vitek, Dan and Vasily</a> hanging around.');
     }
   }
   if (((s as any).podbros ?? 0) === 0  &&  ((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) < 21  &&  (!(Math.floor(Math.random() * 2) + 0))) {
@@ -256,7 +256,7 @@ function enterToilet(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('<center><h2>Pavlovsk train station interior</h2></center>');
   scene.img('images/locations/pavlovsk/trainstation/vokzal.jpg');
-  scene.text('You stand by the station\'s restrooms. You see the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027pav_train_hall\u0027, \u0027female\u0027); return false;">ladies\' restroom</a> to the right and <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027pav_train_hall\u0027, \u0027male\u0027); return false;">men\'s restroom</a> to the left, clearly marked by signs on the door.');
+  scene.text('You stand by the station\'s restrooms. You see the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=1; return s; }); window.__gameStore.getState().doGoto(\u0027pav_train_hall\u0027, \u0027female\u0027); return false;">ladies\' restroom</a> to the right and <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=1; return s; }); window.__gameStore.getState().doGoto(\u0027pav_train_hall\u0027, \u0027male\u0027); return false;">men\'s restroom</a> to the left, clearly marked by signs on the door.');
   scene.actions([
     { label: 'Return to the train station', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;

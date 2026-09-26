@@ -11,7 +11,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPrecum(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: sexspecpot /= 40
+  (s as any).sexspecpot = ((s as any).sexspecpot ?? 0) / (40);
   (s as any).sexvolume = 1;
   (s as any).spafinloc = 0;
   (s as any).cumprecheck = 1;

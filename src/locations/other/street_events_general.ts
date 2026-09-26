@@ -162,7 +162,7 @@ function enterRandomSnatching(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'purses', 'dispose');
       qspCall(st, 'money', 'set', 0, 'cash');
       qspCall(st, 'stat', '');
-      // TODO-QSP: $streetev_title
+      scene.text(String((st as any).streetev_title ?? ''));
       scene.img('images/locations/shared/street/purselose.jpg');
       scene.text('You chase after him, screaming at him to stop or for someone to stop him, but he quickly out paces you, and soon, you lose sight of him. After a couple of blocks of not seeing him anymore, you stop and lean against the wall to catch your breath.');
       scene.actions([
@@ -173,7 +173,7 @@ function enterRandomSnatching(s: GameState, scene: SceneBuilder): void {
     } else {
       qspCall(st, 'npcgeneratec', '0', 'Purse Snatcher', (Math.floor(Math.random() * 28) + 18));
       qspCall(st, 'boyStat', '$npclastgenerated');
-      // TODO-QSP: $streetev_title
+      scene.text(String((st as any).streetev_title ?? ''));
       scene.img('images/locations/shared/street/pursechase.jpg');
       scene.text('You chase after him, screaming at him to stop or for someone to stop him. All that working out is paying off, you are gaining on him. He keeps glancing back as you get closer, he turns and ducks down an alley when you are nearly on top of him. He leaps over an overturned trash can, obviously still hoping to get away from you. You easily leap over it as well, and a few steps later, you tackle him, sending both of you rolling on the ground. You both get back to your feet at the same time. Realising he can\'t escape, he lunges at you.');
       qspCall(st, 'fight', 'initFight');
@@ -475,7 +475,7 @@ function enterMinorGuitarGirl(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'money', 'pay', 50, 'cash');
       qspCall(st, 'mood', 'raise', 'small');
       qspCall(st, 'stat', '');
-      // TODO-QSP: $streetev_title
+      scene.text(String((st as any).streetev_title ?? ''));
       scene.img('images/locations/shared/street/guitarg1.jpg');
       scene.text('You reach into your purse and pull out some money. You drop it into her case. She looks up at you and smiles and nods her head, but keeps playing. With your good deed done you go on your way.');
       scene.actions([
@@ -521,7 +521,7 @@ function enterMinorViolinMan(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'money', 'pay', 50, 'cash');
       qspCall(st, 'mood', 'raise', 'small');
       qspCall(st, 'stat', '');
-      // TODO-QSP: $streetev_title
+      scene.text(String((st as any).streetev_title ?? ''));
       scene.img('images/locations/shared/street/violinb1.jpg');
       scene.text('You reach into your purse and pull out some money. You drop it into his case. He looks up at you and smiles and nods his head, but keeps playing. With your good deed done, you go on your way.');
       scene.actions([
@@ -567,7 +567,7 @@ function enterMinorViolinGirl(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'money', 'pay', 50, 'cash');
       qspCall(st, 'mood', 'raise', 'small');
       qspCall(st, 'stat', '');
-      // TODO-QSP: $streetev_title
+      scene.text(String((st as any).streetev_title ?? ''));
       scene.img('images/locations/shared/street/violing1.jpg');
       scene.text('You reach into your purse and pull out some money. You drop it into her case. She looks up at you and smiles and nods her head, but keeps playing. With your good deed done, you go on your way.');
       scene.actions([
@@ -601,7 +601,7 @@ function enterMinorPortraits(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'money', 'pay', 50, 'cash');
       qspCall(st, 'mood', 'raise', 'small');
       qspCall(st, 'stat', '');
-      // TODO-QSP: $streetev_title
+      scene.text(String((st as any).streetev_title ?? ''));
       scene.img('images/locations/shared/street/artist.jpg');
       scene.text('You stop next to her and smile. "I would like you to draw me please." She gives you a friendly smile in return, pointing towards the other chair. "Please take a seat," she says, following this with a glance to the can sitting next to the chair. You understand and pull out the money and put it in the can. You sit for a while as she draws your portrait. After some time, she is finished and shows it to you. It is really very good and might make a good gift to give someone. You thank her for it and go on your way.');
       scene.actions([
@@ -713,7 +713,7 @@ function enterMinorUnconscious(s: GameState, scene: SceneBuilder): void {
 function enterMinorClothesGrabbed(s: GameState, scene: SceneBuilder): void {
   if (((s as any).PCloSkirt ?? 0) > 0  &&  ((s as any).pantyworntype ?? 0) !== 'none'  &&  ((s as any).PCloOnePiece ?? 0) === 1) {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    // TODO-QSP: $streetev_title
+    scene.text(String((s as any).streetev_title ?? ''));
     scene.img('images/locations/shared/street/bottomed1.mp4');
     scene.text('As you walk down the street, you are suddenly pushed forward hard. You nearly lose your balance and only barely catch yourself. While you are half bent over and trying to recover, you feel someone yank up your dress and yank down your panties, exposing your ass and pussy for everyone to see. You quickly regain your balance. As you do, you pull up your panties and smooth your dress back in place. By that time, whoever did this is long gone.');
     scene.text('You look around and notice several people staring at you. You are sure they\'ve seen everything. ');
@@ -740,7 +740,7 @@ function enterMinorClothesGrabbed(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).PCloSkirt ?? 0) > 0  &&  ((s as any).pantyworntype ?? 0) === 'none'  &&  ((s as any).PCloOnePiece ?? 0) === 1) {
       (s as any).minut = ((s as any).minut ?? 0) + 5;
-      // TODO-QSP: $streetev_title
+      scene.text(String((s as any).streetev_title ?? ''));
       scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/locations/shared/street/sharkdress` + (Math.floor(Math.random() * 2) + 1) + '.mp4"></video></center>');
       scene.text('As you walk down the street, someone comes up behind you, grabs the top of your dress and yanks it down around your ankles, which leaves you standing stark naked. You quickly squat down and grab your dress, pulling it back up and into place. By that time, who ever did this is long gone.');
       scene.text('You look around and notice several people staring at you. You are sure they\'ve seen everything. ');
@@ -766,7 +766,7 @@ function enterMinorClothesGrabbed(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).PCloSkirt ?? 0) > 0  &&  ((s as any).pantyworntype ?? 0) !== 'none') {
         (s as any).minut = ((s as any).minut ?? 0) + 5;
-        // TODO-QSP: $streetev_title
+        scene.text(String((s as any).streetev_title ?? ''));
         scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/locations/shared/street/bottomeds` + (Math.floor(Math.random() * 2) + 1) + '.mp4"></video></center>');
         scene.text('As you walk down the street, someone comes up behind you and grabs your skirt and panties, yanking them down. Your skirt ends up around your ankles and your panties halfway down your thighs, which leaves your ass and pussy on fully display to everyone around. You quickly pull up your panties and then squat down and grab your skirt, pulling it back up and into place. By that time, whoever did this is long gone.');
         scene.text('You look around and notice several people staring at you. You are sure they\'ve seen everything. ');
@@ -792,7 +792,7 @@ function enterMinorClothesGrabbed(s: GameState, scene: SceneBuilder): void {
         ]);
       } else {
         (s as any).minut = ((s as any).minut ?? 0) + 5;
-        // TODO-QSP: $streetev_title
+        scene.text(String((s as any).streetev_title ?? ''));
         scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/locations/shared/street/topped` + (Math.floor(Math.random() * 2) + 1) + '.mp4"></video></center>');
         scene.text('As you walk down the street, someone comes up behind you and grabs your top, yanking it down, which leaves your tits on full display to everyone around. You quickly pull your top back up. By that time, whoever did this is long gone.');
         scene.text('You look around and notice several people staring at you. You are sure they\'ve seen everything. ');
@@ -827,7 +827,7 @@ function enterMinorWindSkirt(s: GameState, scene: SceneBuilder): void {
   if (((s as any).PCloSkirt ?? 0) > 0  &&  ((s as any).sunWeather ?? 0) === 1  &&  ((s as any).pantyworntype ?? 0) !== 'none') {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
-    // TODO-QSP: $streetev_title
+    scene.text(String((s as any).streetev_title ?? ''));
     scene.img('images/locations/shared/street/breeze.mp4');
     scene.text('As you walk down the street, a strong breeze suddenly blows down it, which causes your skirt to blow up, exposing your panty-clad ass to everyone on the street. You quickly push it back down, but as soon as you let go, the breeze blows it right back up. You fight against the breeze for almost a minute before it finally stops.');
     if (((s as any).trait_vars ?? 0)?.['exhibitionist'] > 1) {
@@ -854,7 +854,7 @@ function enterMinorWindSkirt(s: GameState, scene: SceneBuilder): void {
     if (((s as any).PCloSkirt ?? 0) > 2  &&  ((s as any).sunWeather ?? 0) === 0  &&  ((s as any).pantyworntype ?? 0) === 'none') {
       (s as any).minut = ((s as any).minut ?? 0) + 5;
       qspCall(s, 'stat', '');
-      // TODO-QSP: $streetev_title
+      scene.text(String((s as any).streetev_title ?? ''));
       scene.img('images/locations/shared/street/breeze_rainy.mp4');
       scene.text('A strong windy breeze blows down the street which causes your skirt to blow up entirely, exposing all of your crotch to the people around. You struggle pushing it back down where it belongs, as the breeze continues to expose you.');
       if (((s as any).trait_vars ?? 0)?.['exhibitionist'] > 1) {
@@ -888,7 +888,7 @@ function enterMinorWindSkirt(s: GameState, scene: SceneBuilder): void {
 function enterMinorNoBra(s: GameState, scene: SceneBuilder): void {
   if (((s as any).PCloThinness ?? 0) === 4) {
     qspCall(s, 'stat', '');
-    // TODO-QSP: $streetev_title
+    scene.text(String((s as any).streetev_title ?? ''));
     scene.img('images/locations/shared/street/street_no_bra1.mp4');
     scene.text('As you walk down the street you feel your breasts wobbling freely under your outfit, which can probably be seen by people walking by too.');
     if (((s as any).trait_vars ?? 0)?.['exhibitionist'] > 1) {
@@ -914,7 +914,7 @@ function enterMinorNoBra(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).PCloThinness ?? 0) >= 5) {
       qspCall(s, 'stat', '');
-      // TODO-QSP: $streetev_title
+      scene.text(String((s as any).streetev_title ?? ''));
       scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/locations/shared/street/street_no_bra` + (Math.floor(Math.random() * 3) + 2) + '.mp4"></video></center>');
       scene.text('As you walk down the street you feel your breasts wobbling freely under your thin outfit, stretching it, emphasizing the outline of your tits, which can definitely be seen by people walking by too. As you look closely both men and women are staring at your jiggling tits.');
       if (((s as any).trait_vars ?? 0)?.['exhibitionist'] > 1) {
@@ -1183,7 +1183,7 @@ function enterMinorHandoutFlyers(s: GameState, scene: SceneBuilder): void {
 { label: 'No thanks', handler: (st: GameState) => {
     dynamicGoto(st, 'prevLoc');
   } },
-{ label: 'Distribute flyers to earn money ( [+$func(\'money\', \'string_profit\', 75) + \')...]', handler: (st: GameState) => {
+{ label: '', labelFn: (s: GameState) => String('Distribute flyers to earn money (' + qspFunc(s, 'money', 'string_profit', 75) + ')' ?? ''), handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 30;
     qspCall(st, 'money', 'earn', 75, 'cash');
     qspCall(st, 'mood', 'lower', 'tiny');
@@ -1196,7 +1196,7 @@ function enterMinorHandoutFlyers(s: GameState, scene: SceneBuilder): void {
     }
     scene.text('For thirty minutes, you stand on the street, chatting up random people, trying to give them one of your flyers. After that, you are paid ' + qspFunc(s, 'money', 'string_profit', 75) + ' for your effort by the man, and he offers you the same deal to hand out more.');
     scene.actions([
-      { label: 'Distribute flyers to earn money ( [+$func(\'money\', \'string_profit\', 75) + \')...]', handler: (st: GameState) => {
+      { label: '', labelFn: (s: GameState) => String('Distribute flyers to earn money (' + qspFunc(s, 'money', 'string_profit', 75) + ')' ?? ''), handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 30;
     qspCall(st, 'money', 'earn', 75, 'cash');
     qspCall(st, 'mood', 'lower', 'tiny');
@@ -1241,7 +1241,7 @@ function enterMinorGirlBeggar(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'money', 'pay', 50, 'cash');
       qspCall(st, 'mood', 'raise', 'tiny');
       qspCall(st, 'stat', '');
-      // TODO-QSP: $streetev_title
+      scene.text(String((st as any).streetev_title ?? ''));
       scene.img('images/locations/shared/street/homelessg.jpg');
       scene.text('You open your purse up and pull out the money you can spare and hand it to her. She thanks you profusely and gives you a heart warming smile.');
       scene.actions([
@@ -1258,7 +1258,7 @@ function enterMinorGirlBeggar(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'money', 'pay', 100, 'cash');
       qspCall(st, 'mood', 'raise', 'small');
       qspCall(st, 'stat', '');
-      // TODO-QSP: $streetev_title
+      scene.text(String((st as any).streetev_title ?? ''));
       scene.img('images/locations/shared/street/homelessg.jpg');
       scene.text('You open your purse up and pull out the money you can spare and hand it to her. She thanks you profusely and gives you a heart warming smile.');
       scene.actions([
@@ -1275,7 +1275,7 @@ function enterMinorGirlBeggar(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'money', 'pay', 250, 'cash');
       qspCall(st, 'mood', 'raise', 'medium');
       qspCall(st, 'stat', '');
-      // TODO-QSP: $streetev_title
+      scene.text(String((st as any).streetev_title ?? ''));
       scene.img('images/locations/shared/street/homelessg.jpg');
       scene.text('You open your purse up and pull out the money you can spare and hand it to her. She thanks you profusely and gives you a heart warming smile.');
       scene.actions([
@@ -1292,7 +1292,7 @@ function enterMinorGirlBeggar(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'money', 'pay', 500, 'cash');
       qspCall(st, 'mood', 'raise', 'large');
       qspCall(st, 'stat', '');
-      // TODO-QSP: $streetev_title
+      scene.text(String((st as any).streetev_title ?? ''));
       scene.img('images/locations/shared/street/homelessg.jpg');
       scene.text('You open your purse up and pull out the money you can spare and hand it to her. She thanks you profusely and gives you a heart warming smile.');
       scene.actions([
@@ -1307,7 +1307,7 @@ function enterMinorGirlBeggar(s: GameState, scene: SceneBuilder): void {
       s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
       qspCall(st, 'money', 'pay', 1000, 'cash');
-      // TODO-QSP: $streetev_title
+      scene.text(String((st as any).streetev_title ?? ''));
       scene.img('images/locations/shared/street/homelessg.jpg');
       qspCall(st, 'mood', 'raise', 'huge');
       scene.text('You open your purse up and pull out the money you can spare and hand it to her. She thanks you profusely and gives you a heart warming smile.');

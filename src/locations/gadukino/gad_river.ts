@@ -320,18 +320,6 @@ function enterFishing(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } },
-        { label: 'Give the fish to Uncle Stepan', handler: (st: GameState) => {
-    (st as any).minut = ((st as any).minut ?? 0) + 5;
-    (st as any).fish = 0;
-    qspCall(st, 'stat', '');
-    scene.img('images/locations/gadukino/river/talkfishers.jpg');
-    scene.text('You give all the fish you caught to uncle Stepan, and he makes a show out of reluctantly accepting them. Still, you can see that he is pretty happy with this arrangement.');
-    scene.actions([
-      { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'prevLoc', 'prevArg');
-  } },
-    ]);
-  } },
         { label: 'Bring a fish to Boniface', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
     (st as any).fish = ((st as any).fish ?? 0) - (1);
@@ -474,18 +462,6 @@ function enterFishing(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/locations/gadukino/river/talkfishers.jpg');
     scene.text('You decide to release all the fish you caught today. The other fishermen shake their heads disapprovingly, throwing sidelong glances at your body as you dump the fish back into the river.');
-    scene.actions([
-      { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'prevLoc', 'prevArg');
-  } },
-    ]);
-  } },
-        { label: 'Give to Uncle Stepan', handler: (st: GameState) => {
-    (st as any).minut = ((st as any).minut ?? 0) + 5;
-    (st as any).fish = 0;
-    qspCall(st, 'stat', '');
-    scene.img('images/locations/gadukino/river/talkfishers.jpg');
-    scene.text('You give all the fish caught to uncle Stepan, who reluctantly accepts them. You can see he is pretty happy with this arrangement.');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
     dynamicGoto(st, 'prevLoc', 'prevArg');

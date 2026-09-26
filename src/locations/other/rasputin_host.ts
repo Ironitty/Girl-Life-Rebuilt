@@ -108,7 +108,7 @@ function enterOptions(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Buy ticket ( [3000₽]...]', handler: (st: GameState) => {
+        { label: '', labelFn: (s: GameState) => String('Buy ticket (' + qspFunc(s, 'money', 'string_price', 3000) + ')' ?? ''), handler: (st: GameState) => {
     qspCall(st, 'stat', '');
     scene.text('You buy the ticket for the burlesque show.');
     scene.text('\'"Sure, the shows starts at 18:30 but we start to admit customers at 17:30."\'');
@@ -141,7 +141,7 @@ function enterOptions(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Buy ticket ( [4000₽]...]', handler: (st: GameState) => {
+        { label: '', labelFn: (s: GameState) => String('Buy ticket (' + qspFunc(s, 'money', 'string_price', 4000) + ')' ?? ''), handler: (st: GameState) => {
     qspCall(st, 'stat', '');
     scene.text('You buy the ticket for the variety show.');
     scene.text('\'"Sure, the shows starts at 22:30 but we start to admit customers at 21:30."\'');
@@ -174,7 +174,7 @@ function enterOptions(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Buy tickets ( [7000₽]...]', handler: (st: GameState) => {
+        { label: '', labelFn: (s: GameState) => String('Buy tickets (' + qspFunc(s, 'money', 'string_price', 7000) + ')' ?? ''), handler: (st: GameState) => {
     qspCall(st, 'stat', '');
     scene.text('You buy tickets for both shows.');
     scene.text('\'"Sure, the first show starts at 18:30 but we start to admit customers at 17:30."\'');

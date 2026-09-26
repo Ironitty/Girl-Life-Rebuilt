@@ -669,7 +669,7 @@ function enterPlayingInSnow(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/girl/katja/KWT11.jpg');
     scene.text('The thought of the biting cold races through your mind as you lie on the frozen ground. The snow, relentless in its pursuit, attempts to breach the meager defense offered by your winter garments');
     scene.text('You shout at the heavens, and with unwavering determination, your arms and legs defy the icy grip of the snow, molding it to your resolute form before a sudden icy wind blasts against your face.');
-    // TODO-QSP: "<<$pcs_nickname>>! Haha! You''re insane!"
+    scene.text(`${((st as any).pcs_nickname ?? '')}! Haha! You're insane!`);
     scene.text('You glance at a smiling Katja, who tries to stand but ends up seated on the ground, laughing at your antics until you extend a hand to help her to her feet. There, on the ground, your silhouettes remain. It\'s been a delightful adventure, but now the cold seeps into your bones, suggesting it\'s time to find another activity.');
     scene.actions([
       { label: 'Continue', goto: ['katjaEv', 'kathan'] },

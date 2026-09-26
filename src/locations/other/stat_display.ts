@@ -352,15 +352,15 @@ function enterSecMoney(s: GameState, scene: SceneBuilder): void {
 
 function enterSecLoadsave(s: GameState, scene: SceneBuilder): void {
   if (((s as any).stat_cfg ?? 0)?.['loadsave_mode'] === 1) {
-    (s as any).result = '<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: savegame \u0027quicksave.sav\u0027 */ /* TODO-QSP: pl\u0027Quicksave Done\u0027 */ return s; }); return false;">Quick Save</a>';
+    (s as any).result = '<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: savegame \u0027quicksave.sav\u0027 */ s.scene = { ...s.scene, mainText: \u0027Quicksave Done\u0027, curActs: [] }; return s; }); return false;">Quick Save</a>';
     (s as any).result = ((s as any).result ?? 0) + ('  <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: savegame */ return s; }); return false;">Save</a>');
     (s as any).result = ((s as any).result ?? 0) + ('  <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: opengame */ return s; }); return false;">Load</a>');
-    (s as any).result = ((s as any).result ?? 0) + ('  <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: if input(\u0027Input Anything to confirm Quick Load\u0027) <> \u0027\u0027: opengame \u0027quicksave.sav\u0027 */ return s; }); return false;">Quick Load</a>');
+    (s as any).result = ((s as any).result ?? 0) + ('  <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: if input(\u0027Input Anything to confirm Quick Load\u0027) /u003c> \u0027\u0027: opengame \u0027quicksave.sav\u0027 */ return s; }); return false;">Quick Load</a>');
   } else {
-    (s as any).result = '<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: savegame \u0027quicksave.sav\u0027 */ /* TODO-QSP: pl\u0027Quicksave Done\u0027 */ return s; }); return false;"><img src="images/system/icons/stat_qsave.png" height="' + (((s as any).stat_cfg ?? 0)?.['menu_icon_height']) + '"></a>';
+    (s as any).result = '<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: savegame \u0027quicksave.sav\u0027 */ s.scene = { ...s.scene, mainText: \u0027Quicksave Done\u0027, curActs: [] }; return s; }); return false;"><img src="images/system/icons/stat_qsave.png" height="' + (((s as any).stat_cfg ?? 0)?.['menu_icon_height']) + '"></a>';
     (s as any).result = ((s as any).result ?? 0) + ('  <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: savegame */ return s; }); return false;"><img src="images/system/icons/stat_save.png" height="' + (((s as any).stat_cfg ?? 0)?.['menu_icon_height']) + '"></a>');
     (s as any).result = ((s as any).result ?? 0) + ('  <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: opengame */ return s; }); return false;"><img src="images/system/icons/stat_load.png" height="' + (((s as any).stat_cfg ?? 0)?.['menu_icon_height']) + '"></a>');
-    (s as any).result = ((s as any).result ?? 0) + ('  <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: if input(\u0027Input Anything to confirm Quick Load\u0027) <> \u0027\u0027: opengame \u0027quicksave.sav\u0027 */ return s; }); return false;"><img src="images/system/icons/stat_qload.png" height="' + (((s as any).stat_cfg ?? 0)?.['menu_icon_height']) + '"></a>');
+    (s as any).result = ((s as any).result ?? 0) + ('  <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: if input(\u0027Input Anything to confirm Quick Load\u0027) /u003c> \u0027\u0027: opengame \u0027quicksave.sav\u0027 */ return s; }); return false;"><img src="images/system/icons/stat_qload.png" height="' + (((s as any).stat_cfg ?? 0)?.['menu_icon_height']) + '"></a>');
   }
   (s as any).result = qspFunc(s, 'stat_display', 'helper_font_wrap', ((s as any).result ?? 0));
   (s as any).result = qspFunc(s, 'stat_display', 'helper_align_wrap', 'loadsave', ((s as any).result ?? 0));
@@ -938,151 +938,149 @@ function enterSecSkills(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSecRelations(s: GameState, scene: SceneBuilder): void {
-  while (true) {
-    (s as any).result = '';
-    ((s as any).sd_rl = (s as any).sd_rl ?? {})['rows'] = '';
-    ((s as any).sd_rl = (s as any).sd_rl ?? {})['cols'] = (((s as any).sd ?? 0)?.['relations_columns']);
-    ((s as any).sd_rl = (s as any).sd_rl ?? {})['align'] = qspFunc(s, 'stat_display', 'helper_resolve_align', 'relations');
-    if (((s as any).stat_cfg ?? 0)?.['relations_mode'] > 0) {
-      ((s as any).sd = (s as any).sd ?? {})['render_mode'] = (((s as any).stat_cfg ?? {})?.['relations_mode'] ?? 0) - 1;
-    }
-    ((s as any).sd = (s as any).sd ?? {})['name_side'] = (((s as any).stat_cfg ?? 0)?.['name_side_relations']);
-    ((s as any).sd_rl = (s as any).sd_rl ?? {})['td_cols'] = ((((s as any).stat_cfg ?? 0)?.['relations_mode'] > 0) ? ((((s as any).sd ?? {})?.['relations_columns'] ?? 0) * 2) : ((((s as any).sd ?? 0)?.['relations_columns'])));
-    ((s as any).sd_rl = (s as any).sd_rl ?? {})['save_barwidth'] = (((s as any).stat_cfg ?? 0)?.['bar_width']);
-    if (((s as any).sd ?? 0)?.['relations_columns'] > 1) {
-      ((s as any).stat_cfg = (s as any).stat_cfg ?? {})['bar_width'] = 'TODO';
-    }
-    ((s as any).sd_rl = (s as any).sd_rl ?? {})['gi'] = 0;
-    ((s as any).sd_rl = (s as any).sd_rl ?? {})['gmax'] = 0;
-    ((s as any).sd_rl = (s as any).sd_rl ?? {})['joined_cnt'] = 0;
-    // LABEL: sd_rel_group_loop
-    ((s as any).sd_rl = (s as any).sd_rl ?? {})['grp'] = qspUntranslated(s, "rel_group_order[sd_rl['gi']]", { location: "stat_display" });
-    ((s as any).sd_rl = (s as any).sd_rl ?? {})['grp_rows'] = '';
-    if (((s as any).stat_cfg ?? 0)?.['relations_group_mode'] === 0) {
-      ((s as any).sd_rl = (s as any).sd_rl ?? {})['cnt'] = (((s as any).sd_rl ?? 0)?.['joined_cnt']);
-    } else {
-      ((s as any).sd_rl = (s as any).sd_rl ?? {})['cnt'] = 0;
-    }
-    if (((s as any).stat_hide_rel_grp ?? 0)[((s as any).sd_rl ?? 0)?.['grp']] === 0) {
-      if (((s as any).sd_rl ?? 0)?.['grp'] === 'family'  &&  ((s as any).start_type ?? 0)?.['loc'] !== 'sg') {
-        break;
+  (s as any).result = '';
+  ((s as any).sd_rl = (s as any).sd_rl ?? {})['rows'] = '';
+  ((s as any).sd_rl = (s as any).sd_rl ?? {})['cols'] = (((s as any).sd ?? 0)?.['relations_columns']);
+  ((s as any).sd_rl = (s as any).sd_rl ?? {})['align'] = qspFunc(s, 'stat_display', 'helper_resolve_align', 'relations');
+  if (((s as any).stat_cfg ?? 0)?.['relations_mode'] > 0) {
+    ((s as any).sd = (s as any).sd ?? {})['render_mode'] = (((s as any).stat_cfg ?? {})?.['relations_mode'] ?? 0) - 1;
+  }
+  ((s as any).sd = (s as any).sd ?? {})['name_side'] = (((s as any).stat_cfg ?? 0)?.['name_side_relations']);
+  ((s as any).sd_rl = (s as any).sd_rl ?? {})['td_cols'] = ((((s as any).stat_cfg ?? 0)?.['relations_mode'] > 0) ? ((((s as any).sd ?? {})?.['relations_columns'] ?? 0) * 2) : ((((s as any).sd ?? 0)?.['relations_columns'])));
+  ((s as any).sd_rl = (s as any).sd_rl ?? {})['save_barwidth'] = (((s as any).stat_cfg ?? 0)?.['bar_width']);
+  if (((s as any).sd ?? 0)?.['relations_columns'] > 1) {
+    ((s as any).stat_cfg = (s as any).stat_cfg ?? {})['bar_width'] = 'TODO';
+  }
+  ((s as any).sd_rl = (s as any).sd_rl ?? {})['gi'] = 0;
+  ((s as any).sd_rl = (s as any).sd_rl ?? {})['gmax'] = 0;
+  ((s as any).sd_rl = (s as any).sd_rl ?? {})['joined_cnt'] = 0;
+  do {
+    while (true) {
+      ((s as any).sd_rl = (s as any).sd_rl ?? {})['grp'] = qspUntranslated(s, "rel_group_order[sd_rl['gi']]", { location: "stat_display" });
+      ((s as any).sd_rl = (s as any).sd_rl ?? {})['grp_rows'] = '';
+      if (((s as any).stat_cfg ?? 0)?.['relations_group_mode'] === 0) {
+        ((s as any).sd_rl = (s as any).sd_rl ?? {})['cnt'] = (((s as any).sd_rl ?? 0)?.['joined_cnt']);
+      } else {
+        ((s as any).sd_rl = (s as any).sd_rl ?? {})['cnt'] = 0;
       }
-      if (((s as any).sd_rl ?? 0)?.['grp'] === 'lovers') {
-        while (true) {
-          ((s as any).sd_rl = (s as any).sd_rl ?? {})['li'] = 0;
-          ((s as any).sd_rl = (s as any).sd_rl ?? {})['lmax'] = 0;
+      if (((s as any).stat_hide_rel_grp ?? 0)[((s as any).sd_rl ?? 0)?.['grp']] === 0) {
+        if (((s as any).sd_rl ?? 0)?.['grp'] === 'family'  &&  ((s as any).start_type ?? 0)?.['loc'] !== 'sg') {
+          break;
+        }
+        if (((s as any).sd_rl ?? 0)?.['grp'] === 'lovers') {
           while (true) {
-            if (((s as any).sd_rl ?? 0)?.['li'] >= ((s as any).sd_rl ?? 0)?.['lmax']) {
-              break;
-            }
-            ((s as any).sd_rl = (s as any).sd_rl ?? {})['lovid'] = qspUntranslated(s, "lover[sd_rl['li']]", { location: "stat_display" });
-            if (((s as any).npc_rel_type ?? 0)[((s as any).sd_rl ?? 0)?.['lovid']] === 'boyfriend') {
-              ((s as any).sd_rl = (s as any).sd_rl ?? {})['lovtype'] = 'BF';
-            } else {
-              if (((s as any).npc_rel_type ?? 0)[((s as any).sd_rl ?? 0)?.['lovid']] === 'girlfriend') {
-                ((s as any).sd_rl = (s as any).sd_rl ?? {})['lovtype'] = 'GF';
+            ((s as any).sd_rl = (s as any).sd_rl ?? {})['li'] = 0;
+            ((s as any).sd_rl = (s as any).sd_rl ?? {})['lmax'] = 0;
+            while (true) {
+              if (((s as any).sd_rl ?? 0)?.['li'] >= ((s as any).sd_rl ?? 0)?.['lmax']) {
+                break;
+              }
+              ((s as any).sd_rl = (s as any).sd_rl ?? {})['lovid'] = qspUntranslated(s, "lover[sd_rl['li']]", { location: "stat_display" });
+              if (((s as any).npc_rel_type ?? 0)[((s as any).sd_rl ?? 0)?.['lovid']] === 'boyfriend') {
+                ((s as any).sd_rl = (s as any).sd_rl ?? {})['lovtype'] = 'BF';
               } else {
-                if (((s as any).npc_rel_type ?? 0)[((s as any).sd_rl ?? 0)?.['lovid']] === 'fuckbuddy') {
-                  ((s as any).sd_rl = (s as any).sd_rl ?? {})['lovtype'] = 'FB';
+                if (((s as any).npc_rel_type ?? 0)[((s as any).sd_rl ?? 0)?.['lovid']] === 'girlfriend') {
+                  ((s as any).sd_rl = (s as any).sd_rl ?? {})['lovtype'] = 'GF';
                 } else {
-                  if (((s as any).npc_rel_type ?? 0)[((s as any).sd_rl ?? 0)?.['lovid']] === 'sugar_daddy') {
-                    ((s as any).sd_rl = (s as any).sd_rl ?? {})['lovtype'] = 'SD';
+                  if (((s as any).npc_rel_type ?? 0)[((s as any).sd_rl ?? 0)?.['lovid']] === 'fuckbuddy') {
+                    ((s as any).sd_rl = (s as any).sd_rl ?? {})['lovtype'] = 'FB';
                   } else {
-                    ((s as any).sd_rl = (s as any).sd_rl ?? {})['lovtype'] = '';
+                    if (((s as any).npc_rel_type ?? 0)[((s as any).sd_rl ?? 0)?.['lovid']] === 'sugar_daddy') {
+                      ((s as any).sd_rl = (s as any).sd_rl ?? {})['lovtype'] = 'SD';
+                    } else {
+                      ((s as any).sd_rl = (s as any).sd_rl ?? {})['lovtype'] = '';
+                    }
                   }
                 }
               }
-            }
-            if (((s as any).sd_rl ?? 0)?.['lovtype'] !== '') {
-              if (((s as any).stat_hide_rel ?? 0)[((s as any).sd_rl ?? 0)?.['lovid']] === 0) {
-                ((s as any).sd_rl = (s as any).sd_rl ?? {})['lovname'] = (((s as any).sd_rl ?? 0)?.['lovtype']) + ' ' + qspFunc(s, 'stat_display', 'helper_rel_name', '', (((s as any).sd_rl ?? 0)?.['lovid']));
-                ((s as any).sd_rl = (s as any).sd_rl ?? {})['grp_rows'] = ((s as any).sd_rl['grp_rows'] ?? 0) + (qspFunc(s, 'stat_display', 'helper_rel_entry', (((s as any).sd_rl ?? 0)?.['lovname']), (((s as any).npc_rel ?? 0)?.[(((s as any).sd_rl ?? 0)?.['lovid'])] ?? 0), (((s as any).sd_rl ?? 0)?.['cnt'])));
-                ((s as any).sd_rl = (s as any).sd_rl ?? {})['cnt'] = ((s as any).sd_rl['cnt'] ?? 0) + (1);
+              if (((s as any).sd_rl ?? 0)?.['lovtype'] !== '') {
+                if (((s as any).stat_hide_rel ?? 0)[((s as any).sd_rl ?? 0)?.['lovid']] === 0) {
+                  ((s as any).sd_rl = (s as any).sd_rl ?? {})['lovname'] = (((s as any).sd_rl ?? 0)?.['lovtype']) + ' ' + qspFunc(s, 'stat_display', 'helper_rel_name', '', (((s as any).sd_rl ?? 0)?.['lovid']));
+                  ((s as any).sd_rl = (s as any).sd_rl ?? {})['grp_rows'] = ((s as any).sd_rl['grp_rows'] ?? 0) + (qspFunc(s, 'stat_display', 'helper_rel_entry', (((s as any).sd_rl ?? 0)?.['lovname']), (((s as any).npc_rel ?? 0)?.[(((s as any).sd_rl ?? 0)?.['lovid'])] ?? 0), (((s as any).sd_rl ?? 0)?.['cnt'])));
+                  ((s as any).sd_rl = (s as any).sd_rl ?? {})['cnt'] = ((s as any).sd_rl['cnt'] ?? 0) + (1);
+                }
               }
-            }
-            ((s as any).sd_rl = (s as any).sd_rl ?? {})['li'] = ((s as any).sd_rl['li'] ?? 0) + (1);
-            break;
-          }
-          break;
-        }
-        // LABEL: sd_rel_lover_done
-      } else {
-        while (true) {
-          ((s as any).sd_rl = (s as any).sd_rl ?? {})['mi'] = 0;
-          while (true) {
-            ((s as any).sd_rl = (s as any).sd_rl ?? {})['key'] = (((s as any).rel_grp ?? 0)?.[(((s as any).sd_rl ?? 0)?.['grp']) + '_' + String((((s as any).sd_rl ?? 0)?.['mi']))] ?? 0);
-            if (((s as any).sd_rl ?? 0)?.['key'] === '') {
+              ((s as any).sd_rl = (s as any).sd_rl ?? {})['li'] = ((s as any).sd_rl['li'] ?? 0) + (1);
               break;
             }
-            if (((s as any).stat_hide_rel ?? 0)[((s as any).sd_rl ?? 0)?.['key']] === 0) {
-              ((s as any).sd_rl = (s as any).sd_rl ?? {})['val'] = (((s as any).npc_rel ?? 0)?.[(((s as any).sd_rl ?? 0)?.['key'])] ?? 0);
-              if (((s as any).sd_rl ?? 0)?.['val'] > 0) {
-                ((s as any).sd_rl = (s as any).sd_rl ?? {})['name'] = qspFunc(s, 'stat_display', 'helper_rel_name', (((s as any).sd_rl ?? 0)?.['key']));
-                ((s as any).sd_rl = (s as any).sd_rl ?? {})['grp_rows'] = ((s as any).sd_rl['grp_rows'] ?? 0) + (qspFunc(s, 'stat_display', 'helper_rel_entry', (((s as any).sd_rl ?? 0)?.['name']), (((s as any).sd_rl ?? 0)?.['val']), (((s as any).sd_rl ?? 0)?.['cnt'])));
-                ((s as any).sd_rl = (s as any).sd_rl ?? {})['cnt'] = ((s as any).sd_rl['cnt'] ?? 0) + (1);
-              }
-            }
-            ((s as any).sd_rl = (s as any).sd_rl ?? {})['mi'] = ((s as any).sd_rl['mi'] ?? 0) + (1);
             break;
           }
-          break;
-        }
-        // LABEL: sd_rel_member_done
-      }
-      if (((s as any).sd_rl ?? 0)?.['grp_rows'] !== '') {
-        if (((s as any).stat_cfg ?? 0)?.['relations_group_mode'] === 0) {
-          ((s as any).sd_rl = (s as any).sd_rl ?? {})['joined_cnt'] = (((s as any).sd_rl ?? 0)?.['cnt']);
-          ((s as any).sd_rl = (s as any).sd_rl ?? {})['rows'] = ((s as any).sd_rl['rows'] ?? 0) + ((((s as any).sd_rl ?? 0)?.['grp_rows']));
+          // LABEL: sd_rel_lover_done
         } else {
-          if (((s as any).stat_cfg ?? 0)?.['relations_group_mode'] === 1) {
-            if (((s as any).sd_rl ?? 0)?.['cnt'] % ((s as any).sd ?? 0)?.['relations_columns'] !== 0) {
-              ((s as any).sd_rl = (s as any).sd_rl ?? {})['grp_rows'] = ((s as any).sd_rl['grp_rows'] ?? 0) + ('</tr>');
+          while (true) {
+            ((s as any).sd_rl = (s as any).sd_rl ?? {})['mi'] = 0;
+            while (true) {
+              ((s as any).sd_rl = (s as any).sd_rl ?? {})['key'] = (((s as any).rel_grp ?? 0)?.[(((s as any).sd_rl ?? 0)?.['grp']) + '_' + String((((s as any).sd_rl ?? 0)?.['mi']))] ?? 0);
+              if (((s as any).sd_rl ?? 0)?.['key'] === '') {
+                break;
+              }
+              if (((s as any).stat_hide_rel ?? 0)[((s as any).sd_rl ?? 0)?.['key']] === 0) {
+                ((s as any).sd_rl = (s as any).sd_rl ?? {})['val'] = (((s as any).npc_rel ?? 0)?.[(((s as any).sd_rl ?? 0)?.['key'])] ?? 0);
+                if (((s as any).sd_rl ?? 0)?.['val'] > 0) {
+                  ((s as any).sd_rl = (s as any).sd_rl ?? {})['name'] = qspFunc(s, 'stat_display', 'helper_rel_name', (((s as any).sd_rl ?? 0)?.['key']));
+                  ((s as any).sd_rl = (s as any).sd_rl ?? {})['grp_rows'] = ((s as any).sd_rl['grp_rows'] ?? 0) + (qspFunc(s, 'stat_display', 'helper_rel_entry', (((s as any).sd_rl ?? 0)?.['name']), (((s as any).sd_rl ?? 0)?.['val']), (((s as any).sd_rl ?? 0)?.['cnt'])));
+                  ((s as any).sd_rl = (s as any).sd_rl ?? {})['cnt'] = ((s as any).sd_rl['cnt'] ?? 0) + (1);
+                }
+              }
+              ((s as any).sd_rl = (s as any).sd_rl ?? {})['mi'] = ((s as any).sd_rl['mi'] ?? 0) + (1);
+              break;
             }
-            if (((s as any).sd_rl ?? 0)?.['rows'] !== '') {
-              ((s as any).sd_rl = (s as any).sd_rl ?? {})['rows'] = ((s as any).sd_rl['rows'] ?? 0) + ('<tr><td colspan="' + String((((s as any).sd_rl ?? 0)?.['td_cols'])) + '" style="padding-top:6px;border:none;"></td></tr>');
-            }
+            break;
+          }
+          // LABEL: sd_rel_member_done
+        }
+        if (((s as any).sd_rl ?? 0)?.['grp_rows'] !== '') {
+          if (((s as any).stat_cfg ?? 0)?.['relations_group_mode'] === 0) {
+            ((s as any).sd_rl = (s as any).sd_rl ?? {})['joined_cnt'] = (((s as any).sd_rl ?? 0)?.['cnt']);
             ((s as any).sd_rl = (s as any).sd_rl ?? {})['rows'] = ((s as any).sd_rl['rows'] ?? 0) + ((((s as any).sd_rl ?? 0)?.['grp_rows']));
           } else {
-            if (((s as any).sd_rl ?? 0)?.['cnt'] % ((s as any).sd ?? 0)?.['relations_columns'] !== 0) {
-              ((s as any).sd_rl = (s as any).sd_rl ?? {})['grp_rows'] = ((s as any).sd_rl['grp_rows'] ?? 0) + ('</tr>');
-            }
-            ((s as any).sd_rl = (s as any).sd_rl ?? {})['hdr_style'] = 'padding-top:4px;border-left:none;border-right:none;font-size:' + ((s as any).sd_font_pct ?? 0) + '%;';
-            ((s as any).sd_rl = (s as any).sd_rl ?? {})['hdr_align'] = '';
-            if (((s as any).sd_rl ?? 0)?.['align'] === 1) {
-              ((s as any).sd_rl = (s as any).sd_rl ?? {})['hdr_style'] = ((s as any).sd_rl['hdr_style'] ?? 0) + ('text-align:center;');
-              ((s as any).sd_rl = (s as any).sd_rl ?? {})['hdr_align'] = ' align="center"';
-            } else {
-              if (((s as any).sd_rl ?? 0)?.['align'] === 2) {
-                ((s as any).sd_rl = (s as any).sd_rl ?? {})['hdr_style'] = ((s as any).sd_rl['hdr_style'] ?? 0) + ('text-align:right;');
-                ((s as any).sd_rl = (s as any).sd_rl ?? {})['hdr_align'] = ' align="right"';
+            if (((s as any).stat_cfg ?? 0)?.['relations_group_mode'] === 1) {
+              if (((s as any).sd_rl ?? 0)?.['cnt'] % ((s as any).sd ?? 0)?.['relations_columns'] !== 0) {
+                ((s as any).sd_rl = (s as any).sd_rl ?? {})['grp_rows'] = ((s as any).sd_rl['grp_rows'] ?? 0) + ('</tr>');
               }
+              if (((s as any).sd_rl ?? 0)?.['rows'] !== '') {
+                ((s as any).sd_rl = (s as any).sd_rl ?? {})['rows'] = ((s as any).sd_rl['rows'] ?? 0) + ('<tr><td colspan="' + String((((s as any).sd_rl ?? 0)?.['td_cols'])) + '" style="padding-top:6px;border:none;"></td></tr>');
+              }
+              ((s as any).sd_rl = (s as any).sd_rl ?? {})['rows'] = ((s as any).sd_rl['rows'] ?? 0) + ((((s as any).sd_rl ?? 0)?.['grp_rows']));
+            } else {
+              if (((s as any).sd_rl ?? 0)?.['cnt'] % ((s as any).sd ?? 0)?.['relations_columns'] !== 0) {
+                ((s as any).sd_rl = (s as any).sd_rl ?? {})['grp_rows'] = ((s as any).sd_rl['grp_rows'] ?? 0) + ('</tr>');
+              }
+              ((s as any).sd_rl = (s as any).sd_rl ?? {})['hdr_style'] = 'padding-top:4px;border-left:none;border-right:none;font-size:' + ((s as any).sd_font_pct ?? 0) + '%;';
+              ((s as any).sd_rl = (s as any).sd_rl ?? {})['hdr_align'] = '';
+              if (((s as any).sd_rl ?? 0)?.['align'] === 1) {
+                ((s as any).sd_rl = (s as any).sd_rl ?? {})['hdr_style'] = ((s as any).sd_rl['hdr_style'] ?? 0) + ('text-align:center;');
+                ((s as any).sd_rl = (s as any).sd_rl ?? {})['hdr_align'] = ' align="center"';
+              } else {
+                if (((s as any).sd_rl ?? 0)?.['align'] === 2) {
+                  ((s as any).sd_rl = (s as any).sd_rl ?? {})['hdr_style'] = ((s as any).sd_rl['hdr_style'] ?? 0) + ('text-align:right;');
+                  ((s as any).sd_rl = (s as any).sd_rl ?? {})['hdr_align'] = ' align="right"';
+                }
+              }
+              ((s as any).sd_rl = (s as any).sd_rl ?? {})['rows'] = ((s as any).sd_rl['rows'] ?? 0) + ('<tr><td colspan="' + String((((s as any).sd_rl ?? 0)?.['td_cols'])) + '"' + (((s as any).sd_rl ?? 0)?.['hdr_align']) + ' style="' + (((s as any).sd_rl ?? 0)?.['hdr_style']) + '"><b>' + (((s as any).sd_dn ?? 0)?.[(((s as any).sd_rl ?? 0)?.['grp'])] ?? 0) + '</b></td></tr>' + (((s as any).sd_rl ?? 0)?.['grp_rows']));
             }
-            ((s as any).sd_rl = (s as any).sd_rl ?? {})['rows'] = ((s as any).sd_rl['rows'] ?? 0) + ('<tr><td colspan="' + String((((s as any).sd_rl ?? 0)?.['td_cols'])) + '"' + (((s as any).sd_rl ?? 0)?.['hdr_align']) + ' style="' + (((s as any).sd_rl ?? 0)?.['hdr_style']) + '"><b>' + (((s as any).sd_dn ?? 0)?.[(((s as any).sd_rl ?? 0)?.['grp'])] ?? 0) + '</b></td></tr>' + (((s as any).sd_rl ?? 0)?.['grp_rows']));
           }
         }
       }
+      break;
     }
-    break;
-  }
-  // LABEL: sd_rel_group_next
-  ((s as any).sd_rl = (s as any).sd_rl ?? {})['gi'] = ((s as any).sd_rl['gi'] ?? 0) + (1);
-  if (((s as any).sd_rl ?? 0)?.['gi'] < ((s as any).sd_rl ?? 0)?.['gmax']) {
-    // TODO-QSP: jump 'sd_rel_group_loop'
-  }
-  if (((s as any).stat_cfg ?? 0)?.['relations_group_mode'] === 0  &&  ((s as any).sd_rl ?? 0)?.['joined_cnt'] % ((s as any).sd ?? 0)?.['relations_columns'] !== 0) {
-    ((s as any).sd_rl = (s as any).sd_rl ?? {})['rows'] = ((s as any).sd_rl['rows'] ?? 0) + ('</tr>');
-  }
-  if (((s as any).sd_rl ?? 0)?.['rows'] !== '') {
-    ((s as any).sd_rl = (s as any).sd_rl ?? {})['align_attr'] = ((((s as any).sd_rl ?? 0)?.['align'] === 1) ? (' align="center"') : (((((s as any).sd_rl ?? 0)?.['align'] === 2) ? (' align="right"') : (''))));
-    if (((s as any).stat_cfg ?? 0)?.['relations_mode'] === 0) {
-      (s as any).result = '<table' + (((s as any).sd_rl ?? 0)?.['align_attr']) + ' cellpadding="2" cellspacing="0" border="1" style="border-collapse:collapse;border-color:#555;">' + (((s as any).sd_rl ?? 0)?.['rows']) + '</table>';
-    } else {
-      (s as any).result = '<table' + (((s as any).sd_rl ?? 0)?.['align_attr']) + ' cellpadding="1" cellspacing="0">' + (((s as any).sd_rl ?? 0)?.['rows']) + '</table>';
+    // LABEL: sd_rel_group_next
+    ((s as any).sd_rl = (s as any).sd_rl ?? {})['gi'] = ((s as any).sd_rl['gi'] ?? 0) + (1);
+    if (((s as any).stat_cfg ?? 0)?.['relations_group_mode'] === 0  &&  ((s as any).sd_rl ?? 0)?.['joined_cnt'] % ((s as any).sd ?? 0)?.['relations_columns'] !== 0) {
+      ((s as any).sd_rl = (s as any).sd_rl ?? {})['rows'] = ((s as any).sd_rl['rows'] ?? 0) + ('</tr>');
     }
-  }
-  ((s as any).stat_cfg = (s as any).stat_cfg ?? {})['bar_width'] = (((s as any).sd_rl ?? 0)?.['save_barwidth']);
-  (s as any).sd_rl = undefined;
-  return;
+    if (((s as any).sd_rl ?? 0)?.['rows'] !== '') {
+      ((s as any).sd_rl = (s as any).sd_rl ?? {})['align_attr'] = ((((s as any).sd_rl ?? 0)?.['align'] === 1) ? (' align="center"') : (((((s as any).sd_rl ?? 0)?.['align'] === 2) ? (' align="right"') : (''))));
+      if (((s as any).stat_cfg ?? 0)?.['relations_mode'] === 0) {
+        (s as any).result = '<table' + (((s as any).sd_rl ?? 0)?.['align_attr']) + ' cellpadding="2" cellspacing="0" border="1" style="border-collapse:collapse;border-color:#555;">' + (((s as any).sd_rl ?? 0)?.['rows']) + '</table>';
+      } else {
+        (s as any).result = '<table' + (((s as any).sd_rl ?? 0)?.['align_attr']) + ' cellpadding="1" cellspacing="0">' + (((s as any).sd_rl ?? 0)?.['rows']) + '</table>';
+      }
+    }
+    ((s as any).stat_cfg = (s as any).stat_cfg ?? {})['bar_width'] = (((s as any).sd_rl ?? 0)?.['save_barwidth']);
+    (s as any).sd_rl = undefined;
+    return;
+  } while (((s as any).sd_rl ?? 0)?.['gi'] < ((s as any).sd_rl ?? 0)?.['gmax']);
   scene.build();
 }
 
@@ -1287,40 +1285,40 @@ function enterSecImages(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDebugTrace(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: p '<center>'
+  scene.text('<center>');
   if (((s as any).git_hash ?? 0) !== '') {
-    // TODO-QSP: pl '<<$git_hash>>'
+    scene.text(`${((s as any).git_hash ?? '')}`);
   }
   if (((s as any).debug ?? 0)?.['call_trace_selector'] === 0) {
-    // TODO-QSP: p 'loc change&nbsp;|&nbsp;'
-    // TODO-QSP: p '<a href="exec: debug[''call_trace_selector''] = 1 & gs ''stat_display''">direct</a>'
+    scene.text('loc change&nbsp;|&nbsp;');
+    scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { (s.debug ??= {})\u0027call_trace_selector\u0027 = 1; return s; }); window.__gameStore.getState().doGoto(\u0027stat_display\u0027, \u0027\u0027); return false;">direct</a>');
     scene.text('<hr>');
     if (((s as any).debug ?? 0)?.['trace_loc_change'] === 0) {
-      // TODO-QSP: p '<a href="exec: debug[''trace_loc_change''] = 1 & gs ''stat_display''">start</a>&nbsp;|&nbsp;'
+      scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { (s.debug ??= {})\u0027trace_loc_change\u0027 = 1; return s; }); window.__gameStore.getState().doGoto(\u0027stat_display\u0027, \u0027\u0027); return false;">start</a>&nbsp;|&nbsp;');
     } else {
-      // TODO-QSP: p '<a href="exec: debug[''trace_loc_change''] = 0 & gs ''stat_display''">stop</a>&nbsp;|&nbsp;'
+      scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { (s.debug ??= {})\u0027trace_loc_change\u0027 = 0; return s; }); window.__gameStore.getState().doGoto(\u0027stat_display\u0027, \u0027\u0027); return false;">stop</a>&nbsp;|&nbsp;');
     }
-    // TODO-QSP: p '<a href="exec: $debug[''loc_change_trace''] = '''' & gs ''stat_display''">clear</a>&nbsp;|&nbsp;'
-    // TODO-QSP: pl '<a href="exec: debug[''trace_shown''] = 0 & gs ''stat''">return</a></center>'
-    // TODO-QSP: p $debug['loc_change_trace']
+    scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { (s.debug ??= {})\u0027loc_change_trace\u0027 = \u0027; return s; }); window.__gameStore.getState().doGoto(\u0027stat_display\u0027, \u0027\u0027); return false;">clear</a>&nbsp;|&nbsp;');
+    scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { (s.debug ??= {})\u0027trace_shown\u0027 = 0; return s; }); window.__gameStore.getState().doGoto(\u0027stat\u0027, \u0027\u0027); return false;">return</a></center>');
+    scene.text('$debug[\'loc_change_trace\']');
   } else {
-    // TODO-QSP: p '<a href="exec: debug[''call_trace_selector''] = 0 & gs ''stat_display''">loc change</a>&nbsp;|&nb...
-    // TODO-QSP: p 'direct'
+    scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { (s.debug ??= {})\u0027call_trace_selector\u0027 = 0; return s; }); window.__gameStore.getState().doGoto(\u0027stat_display\u0027, \u0027\u0027); return false;">loc change</a>&nbsp;|&nbsp;');
+    scene.text('direct');
     scene.text('<hr>');
-    // TODO-QSP: p '<a href="exec: $trace_locations[] = $input(''location name'') & gs ''stat_display''">add by name<...
-    // TODO-QSP: p '<a href="exec: $trace_locations[] = $curloc & gs ''stat_display''">add $curloc</a>'
+    scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: $trace_locations[] = $input(\u0027location name\u0027) */ return s; }); window.__gameStore.getState().doGoto(\u0027stat_display\u0027, \u0027\u0027); return false;">add by name</a>&nbsp;|&nbsp;');
+    scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: $trace_locations[] = $curloc */ return s; }); window.__gameStore.getState().doGoto(\u0027stat_display\u0027, \u0027\u0027); return false;">add $curloc</a>');
     scene.text('<hr>');
     if (Object.keys((s as any).trace_locations ?? {}).length > 0) {
-      // TODO-QSP: p '<a href="exec: gs ''debug_tools'', ''trace_list_locs''">list locations</a>&nbsp;|&nbsp;'
-      // TODO-QSP: p '<a href="exec: killvar ''$trace_locations'' & gs ''stat_display''">clear</a>'
+      scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027debug_tools\u0027, \u0027trace_list_locs\u0027); return false;">list locations</a>&nbsp;|&nbsp;');
+      scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: killvar \u0027$trace_locations\u0027 */ return s; }); window.__gameStore.getState().doGoto(\u0027stat_display\u0027, \u0027\u0027); return false;">clear</a>');
     } else {
-      // TODO-QSP: p 'list locations&nbsp;|&nbsp;'
-      // TODO-QSP: p 'clear'
+      scene.text('list locations&nbsp;|&nbsp;');
+      scene.text('clear');
     }
     scene.text('<hr>');
-    // TODO-QSP: p '<a href="exec: $debug[''direct_trace''] = '''' & gs ''stat_display''">clear</a>&nbsp;|&nbsp;'
-    // TODO-QSP: pl '<a href="exec: debug[''trace_shown''] = 0 & gs ''stat''">return</a></center>'
-    // TODO-QSP: p $debug['direct_trace']
+    scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { (s.debug ??= {})\u0027direct_trace\u0027 = \u0027; return s; }); window.__gameStore.getState().doGoto(\u0027stat_display\u0027, \u0027\u0027); return false;">clear</a>&nbsp;|&nbsp;');
+    scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { (s.debug ??= {})\u0027trace_shown\u0027 = 0; return s; }); window.__gameStore.getState().doGoto(\u0027stat\u0027, \u0027\u0027); return false;">return</a></center>');
+    scene.text('$debug[\'direct_trace\']');
   }
   return;
   scene.build();
@@ -1679,7 +1677,7 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
 
 function enterFinalize(s: GameState, scene: SceneBuilder): void {
   if (((s as any).stat_cfg ?? 0)?.['android']) {
-    (s as any).sd_android = ((s as any).sd_android ?? 0) + (' <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: savegame \u0027quicksave.sav\u0027 */ /* TODO-QSP: pl\u0027Quicksave Done\u0027 */ return s; }); return false;">Q.S</a>  <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: if input(\u0027Input Anything to confirm Quick Load\u0027) <> \u0027\u0027: opengame \u0027quicksave.sav\u0027 */ return s; }); return false;">Q.L</a>');
+    (s as any).sd_android = ((s as any).sd_android ?? 0) + (' <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: savegame \u0027quicksave.sav\u0027 */ s.scene = { ...s.scene, mainText: \u0027Quicksave Done\u0027, curActs: [] }; return s; }); return false;">Q.S</a>  <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: if input(\u0027Input Anything to confirm Quick Load\u0027) /u003c> \u0027\u0027: opengame \u0027quicksave.sav\u0027 */ return s; }); return false;">Q.L</a>');
     (s as any).sd_android = qspFunc(s, 'stat_display', 'helper_font_wrap', ((s as any).sd_android ?? 0));
   }
   (s as any).sd_font_wrap_o = undefined;
@@ -1692,7 +1690,7 @@ function enterFinalize(s: GameState, scene: SceneBuilder): void {
   if (((s as any).stat_cfg ?? 0)?.['android']) {
     (s as any).stat_msg = 'Android mode, <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027$menu_obnovit\u0027, \u0027\u0027); return false;">Refresh</a>' + ((s as any).stat_msg ?? 0);
   } else {
-    // TODO-QSP: pl $stat_msg
+    scene.text(String((s as any).stat_msg ?? ''));
   }
   return;
   if (String((s as any).locArgs?.[0] ?? '') !== '') {
@@ -1706,7 +1704,7 @@ function enterFinalize(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: clear
   }
   (s as any).sd_android = '<b>' + qspFunc(s, 'time', 'get_time_string') + '</b>';
-  (s as any).sd_android = ((s as any).sd_android ?? 0) + ('' + ((s as any).weekName ?? 0) + ' ' + ((s as any).day ?? 0) + '/' + ((s as any).month ?? 0) + ', ' + qspFunc(s, 'money', 'format', ((s as any).money ?? 0)) + ', <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: clr */ /* TODO-QSP: pl $sd_android */ return s; }); return false;">Status</a>');
+  (s as any).sd_android = ((s as any).sd_android ?? 0) + ('' + ((s as any).weekName ?? 0) + ' ' + ((s as any).day ?? 0) + '/' + ((s as any).month ?? 0) + ', ' + qspFunc(s, 'money', 'format', ((s as any).money ?? 0)) + ', <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: clr */ s.scene = { ...s.scene, mainText: $sd_android, curActs: [] }; return s; }); return false;">Status</a>');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterInit(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'stat_display_compute', 'compute_data');
   if (((s as any).cfg_vars ?? 0)?.['faceturn'] === 1) {
@@ -1867,7 +1865,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
 
 export const stat_display: LocationDef = {
   name: 'stat_display',
-  title: '<hr>',
+  title: '<center>',
   region: 'other',
   enter: enter,
 };

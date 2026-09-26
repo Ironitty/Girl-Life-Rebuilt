@@ -24,8 +24,8 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterClose(s, scene); (s as any).locArgs = __savedLocArgs; }
     return;
   }
-  scene.text('On one side you spot a stand where' + ((((s as any).hunterVars ?? 0)?.['were_met'] === 1) ? (' the hunters are ') : (' ')) + 'selling <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027gad_market\u0027, \u0027hunter_stand\u0027); return false;">dried goods</a>.');
-  scene.text('You spot a stand filled with <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027gad_market\u0027, \u0027clothing_stand\u0027); return false;">cheap clothing</a>.');
+  scene.text('On one side you spot a stand where' + ((((s as any).hunterVars ?? 0)?.['were_met'] === 1) ? (' the hunters are ') : (' ')) + 'selling <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=1; return s; }); window.__gameStore.getState().doGoto(\u0027gad_market\u0027, \u0027hunter_stand\u0027); return false;">dried goods</a>.');
+  scene.text('You spot a stand filled with <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=1; return s; }); window.__gameStore.getState().doGoto(\u0027gad_market\u0027, \u0027clothing_stand\u0027); return false;">cheap clothing</a>.');
   if (((s as any).gad_stand ?? 0) === 1) {
     if (((s as any).hour ?? 0) <= 20) {
       scene.actions([

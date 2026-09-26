@@ -37,7 +37,6 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 function enterQwvladdy(s: GameState, scene: SceneBuilder): void {
   scene.text('The man smiles at you. "My name is Vladimir. I couldn\'t help but admire your beauty. Would you allow me the honor of your name?"');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterQwnamedy(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: end & !! --- qwladdy ---
   scene.actions([
     { label: 'Sorry, I\'m busy', handler: (st: GameState) => {
     ((st as any).vladimirQW = (st as any).vladimirQW ?? {})['stage'] = 1;
@@ -59,7 +58,6 @@ function enterQwvladdy(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterQwnamedy(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: end & !! --- qwnamedy ---
   scene.actions([
     { label: '', labelFn: (s: GameState) => String(((s as any).pcs_nickname ?? '') ?? ''), handler: (st: GameState) => {
     ((st as any).vladimirQW = (st as any).vladimirQW ?? {})['stage'] = 10;

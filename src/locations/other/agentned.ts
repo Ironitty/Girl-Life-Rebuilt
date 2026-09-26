@@ -163,18 +163,6 @@ function enterSell(s: GameState, scene: SceneBuilder): void {
     (s as any).agentned_count = undefined;
     (s as any).agentned_i = undefined;
     (s as any).j = undefined;
-    if (((s as any).bankAccount ?? 0) === 1) {
-      if (((s as any).rembedr ?? 0) === 1  &&  ((s as any).remsitr ?? 0) === 1  &&  ((s as any).remkorr ?? 0) === 1  &&  ((s as any).remvanr ?? 0) === 1  &&  ((s as any).remkuhr ?? 0) === 1) {
-        (s as any).offer1 = ((800000 + 250000) + (Math.floor(Math.random() * (100000 - (-100000) + 1)) + ((-100000))));
-      } else {
-        (s as any).offer1 = (800000 + (Math.floor(Math.random() * (100000 - (-100000) + 1)) + ((-100000))));
-      }
-      if (qspFunc(s, 'homes_properties', 'property_renovated', 'village_cottage') === 1) {
-        (s as any).offer2 = (((((s as any).prop_price ?? {})?.['village_cottage'] ?? 0) + 200000) + (Math.floor(Math.random() * (10000 - (-10000) + 1)) + ((-10000))));
-      } else {
-        (s as any).offer2 = ((((s as any).prop_price ?? {})?.['village_cottage'] ?? 0) + (Math.floor(Math.random() * (5000 - (-5000) + 1)) + ((-5000))));
-      }
-    }
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;

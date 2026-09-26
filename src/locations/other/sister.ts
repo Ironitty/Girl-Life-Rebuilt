@@ -1,3 +1,5 @@
+import { qspUntranslated } from '../_shared/qspUntranslated';
+
 import { qspCall, qspFunc, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
@@ -154,7 +156,7 @@ function enterPartyanswer(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
         { label: 'Go to the party', handler: (st: GameState) => {
-    // TODO-QSP: if sisterQW['partycount'] > 0: gt 'rex_party', 'start' else ...
+    if (qspUntranslated(st, "sisterQW['partycount'] > 0", { location: "sister" })) { dynamicGoto(st, 'rex_party', 'start'); } else { dynamicGoto(st, 'rex_party_firstTime', 'sisboyQW_party'); }
   } },
       ]);
     }

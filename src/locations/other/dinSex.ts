@@ -287,7 +287,6 @@ function enterBoyPutsCondom(s: GameState, scene: SceneBuilder): void {
       (s as any).sexcontra = 0;
     }
   }
-  // TODO-QSP: end & !! --- boy_puts_condom ---
   scene.build();
 }
 
@@ -296,7 +295,6 @@ function enterBoyPutsHisCondom(s: GameState, scene: SceneBuilder): void {
   (s as any).protect = 1;
   (s as any).sexcontra = 3;
   scene.text(`${(String((String(((s as any).bwa_boy ?? '')).slice((1)-1, ((1)-1)+(1)))).toUpperCase())}${(String(((s as any).bwa_boy ?? '')).slice((2)-1, ((2)-1)+((String(((s as any).bwa_boy ?? '')).length)-1)))} takes his condom and puts it on ${((s as any).xyr ?? '')} ${((s as any).penis_desc ?? '')}. `);
-  // TODO-QSP: end & !! --- boy_puts_his_condom ---
   scene.build();
 }
 
@@ -343,7 +341,6 @@ function enterPcPutsCondom(s: GameState, scene: SceneBuilder): void {
       (s as any).sexcontra = 0;
     }
   }
-  // TODO-QSP: end & !! --- pc_puts_condom ---
   scene.build();
 }
 
@@ -383,7 +380,6 @@ function enterBoyWantsAnal(s: GameState, scene: SceneBuilder): void {
     }
   }
   (s as any).bwa_boy = undefined;
-  // TODO-QSP: end & !! --- boy_wants_anal ---
   scene.build();
 }
 
@@ -417,7 +413,6 @@ function enterGirlWantsAnal(s: GameState, scene: SceneBuilder): void {
     }
   }
   (s as any).bwa_girl = undefined;
-  // TODO-QSP: end & !! --- girl_wants_anal ---
   scene.build();
 }
 
@@ -442,7 +437,6 @@ function enterAfterAnal(s: GameState, scene: SceneBuilder): void {
     }
     (s as any).analPlugOut = undefined;
   }
-  // TODO-QSP: end & !! --- after_anal ---
   scene.build();
 }
 
@@ -484,7 +478,6 @@ function enterAnalsex(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'dinsex', 'after_anal', 'boy', ((s as any).boydesc ?? 0));
     }
   }
-  // TODO-QSP: end & !! --- analsex ---
   scene.build();
 }
 
@@ -537,7 +530,6 @@ function enterSexcum(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).pose = 0;
   (s as any).eff_contra = undefined;
-  // TODO-QSP: end & !! --- sexcum ---
   scene.build();
 }
 
@@ -566,7 +558,6 @@ function enterBjRandom(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end & !! --- bj_random ---
   scene.build();
 }
 
@@ -589,7 +580,6 @@ function enterBjSwallowRandom(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end & !! --- bj_swallow_random ---
   scene.build();
 }
 
@@ -606,7 +596,6 @@ function enterEnema(s: GameState, scene: SceneBuilder): void {
       scene.text(`${((s as any).locArgs?.[1] ?? '')} `);
     }
   }
-  // TODO-QSP: end & !! --- enema ---
   scene.build();
 }
 

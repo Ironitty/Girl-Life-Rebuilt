@@ -91,41 +91,41 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.text('Located in the old part of Pavlovsk, these Soviet era apartment blocks are the Five Eight Estate. Your family\'s apartment is on the second floor of the nearest building' + ((qspFunc(s, 'homes_properties', 'has_access', 'parents_home')) ? ('.') : (', but you are no longer welcome there.')));
   scene.text('Opposite you is a meager courtyard, which has changed over the years to now include a kid\'s playground, a basketball court and a small grassy area that\'s mostly used to play football.');
   scene.text('A few benches and tables surround it, and there\'s a handful of small utility sheds tucked away in the corner for tenants to use if they\'re willing to pay for the extra space.');
-  scene.text('Behind the apartments is a row of <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.3; return s; }); window.__gameStore.getState().doGoto(\u0027pav_complex\u0027, \u0027garages\u0027); return false;">garages</a> and storage space for tenants.');
+  scene.text('Behind the apartments is a row of <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=3; return s; }); window.__gameStore.getState().doGoto(\u0027pav_complex\u0027, \u0027garages\u0027); return false;">garages</a> and storage space for tenants.');
   if ((((s as any).mother ?? 0)?.['kickedout_timer'] !== 0  &&  ((s as any).mother ?? 0)?.['kickedout_timer'] + 3 <= ((s as any).daystart ?? 0))  &&  (((s as any).hour ?? 0) > 6  &&  ((s as any).hour ?? 0) <= 15  &&  ((s as any).cumloc ?? 0)[11] === 0)) {
     qspCall(s, 'mother_chats', 'reconciliation_talk');
     return;
   }
   if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) < 22) {
-    scene.text('<br>The <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027pav_laundromat\u0027, \u0027\u0027); return false;">old laundromat</a> is open. The advertisement says: "You can wash your clothes here."');
+    scene.text('<br>The <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=1; return s; }); window.__gameStore.getState().doGoto(\u0027pav_laundromat\u0027, \u0027\u0027); return false;">old laundromat</a> is open. The advertisement says: "You can wash your clothes here."');
   } else {
     scene.text(`<br>The old laundromat is closed, it'll open again at ${qspFunc(s, 'time', 'get_time_string', 8, 0)}. The advertisement says: "You can wash your clothes here."`);
   }
   if (((s as any).pavComplex_met_dealer ?? 0) >= 3  &&  ((s as any).hour ?? 0) > 20) {
-    scene.text('<br>You can see the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.3; return s; }); window.__gameStore.getState().doGoto(\u0027pav_aptcourtev\u0027, \u0027dealer\u0027); return false;">boy</a> who sells weed in the courtyard.');
+    scene.text('<br>You can see the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=3; return s; }); window.__gameStore.getState().doGoto(\u0027pav_aptcourtev\u0027, \u0027dealer\u0027); return false;">boy</a> who sells weed in the courtyard.');
   }
   if (((s as any).cfg_vars ?? 0)?.['tablemap'] === 0) {
     if (((s as any).npc_rel ?? 0)?.['A112'] >= 70  ||  (((s as any).week ?? 0) < 6  &&  ((s as any).hour ?? 0) >= 14  &&  ((s as any).hour ?? 0) <= 23)  ||  (((s as any).week ?? 0) >= 6  &&  ((s as any).hour ?? 0) >= 10  &&  ((s as any).hour ?? 0) < 14)  ||  (((s as any).hour ?? 0) >= 0  &&  ((s as any).hour ?? 0) < 2)) {
-      scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.15; return s; }); window.__gameStore.getState().doGoto(\u0027vasilyhome\u0027, \u0027home\u0027); return false;">The Shulgin family</a> live in the apartment above your parents.');
+      scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=15; return s; }); window.__gameStore.getState().doGoto(\u0027vasilyhome\u0027, \u0027home\u0027); return false;">The Shulgin family</a> live in the apartment above your parents.');
     }
     if (((s as any).ArtemBeInHome ?? 0) > 0  &&  ((s as any).artemQW ?? 0)?.['artemblok'] === 0) {
-      scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.15; return s; }); window.__gameStore.getState().doGoto(\u0027artemhome\u0027, \u0027home\u0027); return false;">Artem Chebotarev</a>, one of your classmates, lives in the same apartment building as your parents, on the first floor.');
+      scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=15; return s; }); window.__gameStore.getState().doGoto(\u0027artemhome\u0027, \u0027home\u0027); return false;">Artem Chebotarev</a>, one of your classmates, lives in the same apartment building as your parents, on the first floor.');
     }
     if (((s as any).juliaQW ?? 0)?.['home_unlocked'] === 1) {
       if ((((s as any).hour ?? 0) >= 15  &&  ((s as any).hour ?? 0) <= 20  &&  ((s as any).week ?? 0) < 6)  ||  (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) <= 20  &&  ((s as any).week ?? 0) >= 6)) {
-        scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.15; return s; }); window.__gameStore.getState().doGoto(\u0027JuliaMilHome\u0027, \u0027home\u0027); return false;">Julia Milova</a>, one of your classmates, lives in the same apartment building as your parents, on the third floor.');
+        scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=15; return s; }); window.__gameStore.getState().doGoto(\u0027JuliaMilHome\u0027, \u0027home\u0027); return false;">Julia Milova</a>, one of your classmates, lives in the same apartment building as your parents, on the third floor.');
       } else {
         scene.text('Julia Milova, one of your classmates, lives in the same apartment building as your parents. She resides on the third floor.');
       }
     }
     if (((s as any).NatbelQW ?? 0)?.['VisitedHome'] === 1) {
-      scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.15; return s; }); window.__gameStore.getState().doGoto(\u0027natbelapt\u0027, \u0027home\u0027); return false;">Natasha Belova</a>, one of your classmates, lives in the same apartment building as your parents. She resides on the fourth floor.');
+      scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=15; return s; }); window.__gameStore.getState().doGoto(\u0027natbelapt\u0027, \u0027home\u0027); return false;">Natasha Belova</a>, one of your classmates, lives in the same apartment building as your parents. She resides on the fourth floor.');
     }
     if (((s as any).anushkaQW ?? 0)?.['first_visit'] !== 0) {
-      scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.10; return s; }); window.__gameStore.getState().doGoto(\u0027anushapt\u0027, \u0027home\u0027); return false;">Anushka Konstantinov</a>, a classmate, lives in one of the other apartment blocks here.');
+      scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=10; return s; }); window.__gameStore.getState().doGoto(\u0027anushapt\u0027, \u0027home\u0027); return false;">Anushka Konstantinov</a>, a classmate, lives in one of the other apartment blocks here.');
     }
     if (((s as any).radomirQW ?? 0)?.['first_visit'] !== 0) {
-      scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.10; return s; }); window.__gameStore.getState().doGoto(\u0027radapt\u0027, \u0027home\u0027); return false;">Radomir Popov</a>, a classmate, lives in one of the other apartment blocks here.');
+      scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=10; return s; }); window.__gameStore.getState().doGoto(\u0027radapt\u0027, \u0027home\u0027); return false;">Radomir Popov</a>, a classmate, lives in one of the other apartment blocks here.');
     }
   } else {
     (s as any).st_count = 0;
@@ -156,10 +156,10 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).shared_apt ?? 0)?.['seenAd'] === 1  &&  ((s as any).shared_apt ?? 0)?.['enabled'] === 0) {
-    scene.text('<br>Some guys in one of the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(\u0027pav_shared_apt\u0027, \u0027doorNo30\u0027); return false;">apartments</a> are looking for a roommate.');
+    scene.text('<br>Some guys in one of the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=5; return s; }); window.__gameStore.getState().doGoto(\u0027pav_shared_apt\u0027, \u0027doorNo30\u0027); return false;">apartments</a> are looking for a roommate.');
   }
   if (((s as any).rolanmeet ?? 0) === 8  &&  ((s as any).rolanblockhome ?? 0) !== 1) {
-    scene.text('<br>Mr. Matveev\'s is living in an <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(\u0027rolanapt\u0027, \u0027home\u0027); return false;">apartment</a> in the Five Eight Estate.');
+    scene.text('<br>Mr. Matveev\'s is living in an <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=5; return s; }); window.__gameStore.getState().doGoto(\u0027rolanapt\u0027, \u0027home\u0027); return false;">apartment</a> in the Five Eight Estate.');
   }
   if (qspFunc(s, 'homes_properties', 'has_access', 'parents_home')) {
     scene.actions([
@@ -225,10 +225,10 @@ function enterGarages(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/resident/apartment/garage/garages.jpg');
   scene.text('Along the back street is a row of garages available for the residents of the apartments to rent. The weather in Pavlovsk can be brutal, especially in the winter, so people who own a car often have a garage to put it away safely. Between the garages and the courtyard is a series of smaller storage buildings that can be rented, as well as the complex\'s maintenance and laundry buildings. The layout of the buildings leaves a maze of walkways between them, which are a popular place for kids to play or for teenagers to hang out.');
   if (((s as any).start_type ?? 0)?.['loc'] === 'sg') {
-    scene.text('Your <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(\u0027gargazel\u0027, \u0027\u0027); return false;">stepfather\'s garage</a> is around here somewhere.');
+    scene.text('Your <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=5; return s; }); window.__gameStore.getState().doGoto(\u0027gargazel\u0027, \u0027\u0027); return false;">stepfather\'s garage</a> is around here somewhere.');
   }
   if (((s as any).gopnikbandQW ?? 0)?.['practice_invite'] === 1) {
-    scene.text('The converted <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(\u0027praiders_garage\u0027, \u0027band_garage\u0027); return false;">garage</a> the band uses to practice in is around here.');
+    scene.text('The converted <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=5; return s; }); window.__gameStore.getState().doGoto(\u0027praiders_garage\u0027, \u0027band_garage\u0027); return false;">garage</a> the band uses to practice in is around here.');
   }
   if (((s as any).gopnik_initiation ?? 0) === 1  &&  ((s as any).gopnik_initiation_day ?? 0) === ((s as any).daystart ?? 0)  &&  ((s as any).hour ?? 0) === 20) {
     scene.actions([

@@ -408,7 +408,7 @@ function enterSwampEscape(s: GameState, scene: SceneBuilder): void {
         qspGoto(s, 'gad_swamp', 'stuck');
       }
     } else {
-      // TODO-QSP: '<center><img <<$set_imgh>> src="images/locations/gadukino/hunters/handshelp.jpg"></center>' & !! in...
+      scene.img('images/locations/gadukino/hunters/handshelp.jpg');
       scene.text('As you start moving into the swamp, Igor calls after you.');
       scene.text(`"${((s as any).pcs_nickname ?? '')}, where are you going? You will get stuck in there!`);
       qspCall(s, 'stat', '');

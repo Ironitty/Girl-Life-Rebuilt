@@ -443,7 +443,7 @@ function enterRandGopnic1(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/school/events/rand_scoolboy5.jpg');
     scene.text(`"I'll show you what the fuck I want, slut!" Vitek suddenly grabs you by the hair and presses your face against a desk. "What I want is your lips around my dick, right now. Everyone already knows you're a ${((st as any).gnikname ?? '')}, so you better start acting like it or there will be consequences."`);
     scene.text('He turns to his friends. "Come on boys, this whore doesn\'t understand her place in life. It\'s about time we show her."');
-    (st as any).availble_rescuers = 'none|none|none|none|erast' + ((((st as any).npc_rel ?? 0)?.['A3'] > 60) ? ('|ivan') : ('')) + ((((st as any).npc_rel ?? 0)?.['A146'] > 50) ? ('|marcus') : ('')) + ((((st as any).npc_rel ?? 0)?.['A149'] > 70) ? ('|lazar') : ('')) + ((((st as any).npc_rel ?? 0)?.['A144'] > 50) ? ('|nush') : (''));
+    (st as any).availble_rescuers = 'none|none|none|none|erast\'+iif(npc_rel[\'A3\'] > 60, \'|ivan\', \'\')+iif(npc_rel[\'A146\'] > 50, \'|marcus\', \'\')+iif(npc_rel[\'A149\'] > 70, \'|lazar\', \'\')+iif(npc_rel[\'A144\'] > 50, \'|nush\', \'\'';
     (st as any).temperson = qspFunc(s, 'random', 'pick_from_delimited_string', ((st as any).availble_rescuers ?? 0));
     (st as any).availble_rescuers = undefined;
     if (((st as any).temperson ?? 0) === 'ivan') {
@@ -561,7 +561,7 @@ function enterRandGopnic1(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big9.jpg');
     scene.text('Vitek suddenly grabs you by the hair. "Why don\'t we go somewhere where you can put that mouth of yours to good use for a change?"');
-    (st as any).availble_rescuers = 'none|none|none|none|erast' + ((((st as any).npc_rel ?? 0)?.['A3'] > 60) ? ('|ivan') : ('')) + ((((st as any).npc_rel ?? 0)?.['A146'] > 50) ? ('|marcus') : ('')) + ((((st as any).npc_rel ?? 0)?.['A149'] > 70) ? ('|lazar') : ('')) + ((((st as any).npc_rel ?? 0)?.['A144'] > 50) ? ('|nush') : (''));
+    (st as any).availble_rescuers = 'none|none|none|none|erast\'+iif(npc_rel[\'A3\'] > 60, \'|ivan\', \'\')+iif(npc_rel[\'A146\'] > 50, \'|marcus\', \'\')+iif(npc_rel[\'A149\'] > 70, \'|lazar\', \'\')+iif(npc_rel[\'A144\'] > 50, \'|nush\', \'\'';
     (st as any).temperson = qspFunc(s, 'random', 'pick_from_delimited_string', ((st as any).availble_rescuers ?? 0));
     (st as any).availble_rescuers = undefined;
     if (((st as any).temperson ?? 0) === 'ivan') {
@@ -683,7 +683,7 @@ function enterRandGopnic1(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big9.jpg');
     scene.text('Vitek suddenly grabs you by the hair. "Why don\'t we go somewhere where you can put that mouth of yours to good use for a change?"');
-    (st as any).availble_rescuers = 'none|none|none|none|erast' + ((((st as any).npc_rel ?? 0)?.['A3'] > 60) ? ('|ivan') : ('')) + ((((st as any).npc_rel ?? 0)?.['A146'] > 50) ? ('|marcus') : ('')) + ((((st as any).npc_rel ?? 0)?.['A149'] > 70) ? ('|lazar') : ('')) + ((((st as any).npc_rel ?? 0)?.['A144'] > 50) ? ('|nush') : (''));
+    (st as any).availble_rescuers = 'none|none|none|none|erast\'+iif(npc_rel[\'A3\'] > 60, \'|ivan\', \'\')+iif(npc_rel[\'A146\'] > 50, \'|marcus\', \'\')+iif(npc_rel[\'A149\'] > 70, \'|lazar\', \'\')+iif(npc_rel[\'A144\'] > 50, \'|nush\', \'\'';
     (st as any).temperson = qspFunc(s, 'random', 'pick_from_delimited_string', ((st as any).availble_rescuers ?? 0));
     (st as any).availble_rescuers = undefined;
     if (((st as any).temperson ?? 0) === 'ivan') {
@@ -873,7 +873,7 @@ function enterRandGopnic2(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/school/events/rand_scoolboy5.jpg');
     scene.text(`"I'll show you what the fuck I want, slut!" Roman suddenly grabs you by the hair and presses your face against a desk. "What I want is your lips around my dick, right now. Everyone already knows you're a ${((st as any).gnikname ?? '')}, so you better start acting like it or there will be consequences."`);
     scene.text('He turns to his friends and says "Come on boys, this whore doesn\'t understand her place in life. It\'s about time we show her."');
-    (st as any).availble_rescuers = 'none|none|none|none|erast' + ((((st as any).npc_rel ?? 0)?.['A3'] > 60) ? ('|ivan') : ('')) + ((((st as any).npc_rel ?? 0)?.['A146'] > 50) ? ('|marcus') : ('')) + ((((st as any).npc_rel ?? 0)?.['A149'] > 70) ? ('|lazar') : ('')) + ((((st as any).npc_rel ?? 0)?.['A144'] > 50) ? ('|nush') : (''));
+    (st as any).availble_rescuers = 'none|none|none|none|erast\'+iif(npc_rel[\'A3\'] > 60, \'|ivan\', \'\')+iif(npc_rel[\'A146\'] > 50, \'|marcus\', \'\')+iif(npc_rel[\'A149\'] > 70, \'|lazar\', \'\')+iif(npc_rel[\'A144\'] > 50, \'|nush\', \'\'';
     (st as any).temperson = qspFunc(s, 'random', 'pick_from_delimited_string', ((st as any).availble_rescuers ?? 0));
     (st as any).availble_rescuers = undefined;
     if (((st as any).temperson ?? 0) === 'ivan') {
@@ -993,7 +993,7 @@ function enterRandGopnic2(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big157.jpg');
     scene.text('Roman suddenly grabs you by the hair. "Why don\'t we go somewhere where you can put that mouth of yours to good use for a change?"');
-    (st as any).availble_rescuers = 'none|none|none|none|erast' + ((((st as any).npc_rel ?? 0)?.['A3'] > 60) ? ('|ivan') : ('')) + ((((st as any).npc_rel ?? 0)?.['A146'] > 50) ? ('|marcus') : ('')) + ((((st as any).npc_rel ?? 0)?.['A149'] > 70) ? ('|lazar') : ('')) + ((((st as any).npc_rel ?? 0)?.['A144'] > 50) ? ('|nush') : (''));
+    (st as any).availble_rescuers = 'none|none|none|none|erast\'+iif(npc_rel[\'A3\'] > 60, \'|ivan\', \'\')+iif(npc_rel[\'A146\'] > 50, \'|marcus\', \'\')+iif(npc_rel[\'A149\'] > 70, \'|lazar\', \'\')+iif(npc_rel[\'A144\'] > 50, \'|nush\', \'\'';
     (st as any).temperson = qspFunc(s, 'random', 'pick_from_delimited_string', ((st as any).availble_rescuers ?? 0));
     (st as any).availble_rescuers = undefined;
     if (((st as any).temperson ?? 0) === 'ivan') {
@@ -1117,7 +1117,7 @@ function enterRandGopnic2(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big157.jpg');
     scene.text('Roman suddenly grabs you by the hair. "Why don\'t we go somewhere where you can put that mouth of yours to good use for a change?"');
-    (st as any).availble_rescuers = 'none|none|none|none|erast' + ((((st as any).npc_rel ?? 0)?.['A3'] > 60) ? ('|ivan') : ('')) + ((((st as any).npc_rel ?? 0)?.['A146'] > 50) ? ('|marcus') : ('')) + ((((st as any).npc_rel ?? 0)?.['A149'] > 70) ? ('|lazar') : ('')) + ((((st as any).npc_rel ?? 0)?.['A144'] > 50) ? ('|nush') : (''));
+    (st as any).availble_rescuers = 'none|none|none|none|erast\'+iif(npc_rel[\'A3\'] > 60, \'|ivan\', \'\')+iif(npc_rel[\'A146\'] > 50, \'|marcus\', \'\')+iif(npc_rel[\'A149\'] > 70, \'|lazar\', \'\')+iif(npc_rel[\'A144\'] > 50, \'|nush\', \'\'';
     (st as any).temperson = qspFunc(s, 'random', 'pick_from_delimited_string', ((st as any).availble_rescuers ?? 0));
     (st as any).availble_rescuers = undefined;
     if (((st as any).temperson ?? 0) === 'ivan') {

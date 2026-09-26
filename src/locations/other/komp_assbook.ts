@@ -159,7 +159,7 @@ function enterRetrieveClothedSelfies(s: GameState, scene: SceneBuilder): void {
     (s as any).temp_cnum = 0;
     (s as any).temp_clocnt = 1;
     do {
-      // TODO-QSP: dynamic 'assbook_locval = assbook_<<$ARGS[2]>>_clothed[<<temp_clocnt>>]'
+      scene.text('assbook_locval = assbook_' + ((s as any).locArgs?.[2] ?? 0) + '_clothed[' + ((s as any).temp_clocnt ?? 0) + ']');
       if (((s as any).assbook_locval ?? 0) === 1) {
         if (((s as any).temp_cnum ?? 0) === 5) {
           (s as any).result = ((s as any).result ?? '') + '</tr><tr>';
@@ -185,7 +185,7 @@ function enterRetrieveSwimSelfies(s: GameState, scene: SceneBuilder): void {
     (s as any).temp_cnum = 0;
     (s as any).temp_swicnt = 1;
     do {
-      // TODO-QSP: dynamic 'assbook_locval = assbook_<<$ARGS[2]>>_bikini[<<temp_clocnt>>]'
+      scene.text('assbook_locval = assbook_' + ((s as any).locArgs?.[2] ?? 0) + '_bikini[' + ((s as any).temp_clocnt ?? 0) + ']');
       if (((s as any).phone_locval ?? 0) === 1) {
         if (((s as any).temp_cnum ?? 0) === 5) {
           (s as any).result = ((s as any).result ?? '') + '</tr><tr>';
@@ -261,8 +261,8 @@ function enterUploadClothedSelfies(s: GameState, scene: SceneBuilder): void {
     (s as any).temp_cnum = 0;
     (s as any).temp_clocnt = 1;
     do {
-      // TODO-QSP: dynamic 'assbook_locval = assbook_<<$ARGS[2]>>_clothed[<<temp_clocnt>>]'
-      // TODO-QSP: dynamic 'phone_locval = <<$ARGS[2]>>_closelfie[<<temp_clocnt>>]'
+      scene.text('assbook_locval = assbook_' + ((s as any).locArgs?.[2] ?? 0) + '_clothed[' + ((s as any).temp_clocnt ?? 0) + ']');
+      scene.text('phone_locval = ' + ((s as any).locArgs?.[2] ?? 0) + '_closelfie[' + ((s as any).temp_clocnt ?? 0) + ']');
       if (((s as any).assbook_locval ?? 0) === 0  &&  ((s as any).phone_locval ?? 0) === 1) {
         if (((s as any).temp_cnum ?? 0) === 5) {
           (s as any).result = ((s as any).result ?? '') + '</tr><tr>';
@@ -288,8 +288,8 @@ function enterUploadSwimSelfies(s: GameState, scene: SceneBuilder): void {
     (s as any).temp_cnum = 0;
     (s as any).temp_swicnt = 1;
     do {
-      // TODO-QSP: dynamic 'assbook_locval = assbook_<<$ARGS[2]>>_bikini[<<temp_clocnt>>]'
-      // TODO-QSP: dynamic 'phone_locval = <<$ARGS[2]>>_swim[<<temp_clocnt>>]'
+      scene.text('assbook_locval = assbook_' + ((s as any).locArgs?.[2] ?? 0) + '_bikini[' + ((s as any).temp_clocnt ?? 0) + ']');
+      scene.text('phone_locval = ' + ((s as any).locArgs?.[2] ?? 0) + '_swim[' + ((s as any).temp_clocnt ?? 0) + ']');
       if (((s as any).assbook_locval ?? 0) === 0  &&  ((s as any).phone_locval ?? 0) === 1) {
         if (((s as any).temp_cnum ?? 0) === 5) {
           (s as any).result = ((s as any).result ?? '') + '</tr><tr>';

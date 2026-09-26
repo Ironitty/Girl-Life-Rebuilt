@@ -152,7 +152,7 @@ function enterStudy(s: GameState, scene: SceneBuilder): void {
     do {
       if (((s as any).class_list_institution ?? 0)?.[String((s as any).i ?? 0)] === 'uni_' + (((s as any).university ?? 0)?.['enrolled_in']) + '_semester_' + (((s as any).university ?? 0)?.['enrolled_in_semester'])) {
         if (((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).i ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).i ?? 0)]) + '_optional_weekly_grade_gain'] < ((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).i ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).i ?? 0)]) + '_optional_weekly_max']) {
-          // TODO-QSP: dynamic '  act ''Study for your <<$class_list_name[i]>> class (30 minutes)'': gt ''uni_library'', ''...
+          scene.text('  act \'Study for your ' + (((s as any).class_list_name ?? 0)?.[String((s as any).i ?? 0)] ?? 0) + ' class (30 minutes)\': gt \'uni_library\', \'studying\', \'' + (((s as any).class_list_institution ?? 0)?.[String((s as any).i ?? 0)] ?? 0) + '\', \'' + (((s as any).class_list_name ?? 0)?.[String((s as any).i ?? 0)] ?? 0) + '\' ');
         } else {
           scene.text(`You don't need to study any more this week for your ${(((s as any).class_list_name ?? 0)?.[String((s as any).i ?? 0)] ?? '')} class.`);
         }
@@ -166,7 +166,7 @@ function enterStudy(s: GameState, scene: SceneBuilder): void {
       do {
         if (((s as any).class_list_institution ?? 0)?.[String((s as any).i ?? 0)] === 'uni_' + (((s as any).university ?? 0)?.['enrolled_in']) + '_semester_' + (((s as any).university ?? 0)?.['enrolled_in_semester'])) {
           if (qspFunc(s, 'uni_programs', 'exam', 'is_over', (((s as any).class_list_name ?? 0)?.[String((s as any).i ?? 0)] ?? 0)) === 0) {
-            // TODO-QSP: dynamic '  act ''Study intensely for your <<$class_list_name[i]>> exam (30 minutes)'': gt ''uni_libr...
+            scene.text('  act \'Study intensely for your ' + (((s as any).class_list_name ?? 0)?.[String((s as any).i ?? 0)] ?? 0) + ' exam (30 minutes)\': gt \'uni_library\', \'studying_exam\', \'' + (((s as any).class_list_institution ?? 0)?.[String((s as any).i ?? 0)] ?? 0) + '\',  \'' + (((s as any).class_list_name ?? 0)?.[String((s as any).i ?? 0)] ?? 0) + '\' ');
           }
         }
         (s as any).i = ((s as any).i ?? 0) + (1);

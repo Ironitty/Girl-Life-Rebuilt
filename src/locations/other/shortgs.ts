@@ -54,7 +54,6 @@ function enterGuy(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).temptask = undefined;
   return;
-  // TODO-QSP: end & !! --- guy ---
   scene.build();
 }
 
@@ -71,21 +70,18 @@ function enterGirl(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).temptask = undefined;
   return;
-  // TODO-QSP: end & !! --- girl ---
   scene.build();
 }
 
 function enterUndress(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'outfit', 'undress', ((s as any).locArgs?.[1] ?? 0));
   return;
-  // TODO-QSP: end & !! --- undress ---
   scene.build();
 }
 
 function enterDress(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'outfit', 'dress', ((s as any).locArgs?.[1] ?? 0));
   return;
-  // TODO-QSP: end & !! --- dress ---
   scene.build();
 }
 

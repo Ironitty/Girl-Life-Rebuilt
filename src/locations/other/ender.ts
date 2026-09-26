@@ -255,7 +255,7 @@ function enterLoss(s: GameState, scene: SceneBuilder): void {
                               qspCall(s, 'pain', '5', 'thighs', 'kick');
                               qspCall(s, 'pain', '5', 'hair', 'stretch');
                               qspCall(s, 'clothing', 'displose');
-                              // TODO-QSP: $streetev_title
+                              scene.text(String((s as any).streetev_title ?? ''));
                               scene.img('images/locations/shared/street/lostfight.jpg');
                               scene.text('You do your best, but there are just too many of them. Eventually they get you down on the ground and beat you, ripping out handfuls of your hair and tearing your clothes.');
                               scene.text('After what feels like an eternity, they finally stop hitting you. "That\'s what you get, you stupid bitch." Then the girl spits on you, with the rest of the gang following suit and spitting on you as well. Finally they get bored of tormenting you further and leave, laughing about how they beat the ugly girls ass.');
@@ -691,7 +691,7 @@ function enterWin(s: GameState, scene: SceneBuilder): void {
                         if (((s as any).fightEnding ?? 0) === 14) {
                           (s as any).fightEnding = 0;
                           (s as any).Win = ((s as any).Win ?? 0) + (1);
-                          // TODO-QSP: $streetev_title
+                          scene.text(String((s as any).streetev_title ?? ''));
                           scene.img('images/locations/shared/street/girlgang.jpg');
                           scene.text('Even though it was four against one, you beat their asses triumphantly. They got in some hits of their own, but in the end you are the only one standing while the four of them lay around your feet curled up, bloody and crying. You straighten your clothes the best you can and proudly continue on your way to the claps of several onlookers that watched the fight.');
                           scene.actions([
@@ -1026,7 +1026,7 @@ function enterSurrender(s: GameState, scene: SceneBuilder): void {
                     (s as any).autocombat_surrender = undefined;
                     (s as any).fightEnding = 0;
                     (s as any).Loss = ((s as any).Loss ?? 0) + (1);
-                    // TODO-QSP: money /= 4
+                    (s as any).money = ((s as any).money ?? 0) / (4);
                     qspCall(s, 'stat', '');
                     if (((s as any).fightPStats ?? 0)?.['Health'] === ((s as any).pcs_health ?? 0)) {
                       scene.text('Your opponent\'s demeanour is making you worried. They seem to have the upper hand and you start doubting yourself. Your opponent starts running towards you, but before they strike you start yelling "I give up! I give up!"');
@@ -1137,7 +1137,7 @@ function enterSurrender(s: GameState, scene: SceneBuilder): void {
                               (s as any).fightEnding = 0;
                               (s as any).Loss = ((s as any).Loss ?? 0) + (1);
                               qspCall(s, 'pain', '5', 'hair', 'stretch');
-                              // TODO-QSP: $streetev_title
+                              scene.text(String((s as any).streetev_title ?? ''));
                               scene.img('images/locations/shared/street/lostfight.jpg');
                               if (((s as any).fightPStats ?? 0)?.['Health'] === ((s as any).pcs_health ?? 0)) {
                                 scene.text('Just the mere thought of a fight, your knees go weak and you feel yourself being out of breath. Before even the first punch is thrown you raise up your hands and squeak out in fear. "Don\'t hurt me, I give up."');

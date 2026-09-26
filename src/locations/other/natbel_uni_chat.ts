@@ -11,11 +11,9 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 function enterSetCoffeeHoleChats(s: GameState, scene: SceneBuilder): void {
   if (((s as any).daystart ?? 0) < 579) {
     return;
-    // TODO-QSP: !! 579: 2017-08-01
   }
   if (((s as any).daystart ?? 0) >= 1400) {
     return;
-    // TODO-QSP: !! roughly when uni ends
   }
   if (((s as any).hour ?? 0) < 16  ||  ((s as any).hour ?? 0) >= 21) {
     return;

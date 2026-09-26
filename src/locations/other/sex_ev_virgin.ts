@@ -657,7 +657,9 @@ function enterAnalInstead(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('"Well, I won\'t say no to that," he grins.');
     }
-    // TODO-QSP: act'Bend over': gt 'sex_ev_anal', 'anal_start'
+    scene.actions([
+      { label: 'Bend over', goto: ['sex_ev_anal', 'anal_start'] },
+    ]);
   } },
   ]);
   scene.build();
@@ -1227,28 +1229,6 @@ function enterChangeMind(s: GameState, scene: SceneBuilder): void {
       scene.text('"Ugh, fine," he grumbles, backing off. "At least suck me off if you\'re not going to let me fuck you," he says, shoving your head towards his cock.');
     } else {
       scene.text('"Ugh, fine," he grumbles, backing off. "At least suck me off again if you\'re not going to let me fuck you," he says, shoving your head towards his cock.');
-    }
-    qspCall(s, 'willpower', 'bj', 'resist', 'easy');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
-      scene.actions([
-        { label: 'Can we 69?', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
-  } },
-      ]);
-    } else {
-      scene.actions([
-        { label: 'Can we 69?', handler: (st: GameState) => {
-    qspCall(st, 'willpower', 'pay', 'self');
-    qspCall(st, 'stat', '');
-    scene.text('"Can we at least sixty-nine? I really need some loving down there right now."');
-    scene.text('"I can get behind that," he grins, laying back.');
-    scene.actions([
-      { label: 'Climb over him', handler: (st: GameState) => {
-    qspCall(st, 'sex_ev_foreplay', '');
-  } },
-    ]);
-  } },
-      ]);
     }
     scene.actions([
       { label: 'Blow him', handler: (st: GameState) => {

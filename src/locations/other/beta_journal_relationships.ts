@@ -16,7 +16,7 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'beta_journal', 'nav_construct');
   scene.text('<center>');
   if (((s as any).panel_show ?? 0) !== 1  ||  (!((s as any).panel_show ?? 0))) {
-    scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.panel_show = s.1; return s; }); window.__gameStore.getState().doGoto(String((s as any).loc_id ?? /u0027/u0027), /u0027init/u0027); return false;">Show Family</a>`);
+    scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.panel_show = 1; return s; }); window.__gameStore.getState().doGoto(String((s as any).loc_id ?? /u0027/u0027), /u0027init/u0027); return false;">Show Family</a>`);
   } else {
     if (((s as any).panel_show ?? 0) === 1) {
       scene.text('<i>Show Family</i>');
@@ -24,7 +24,7 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).panel_show ?? 0) !== 2) {
-    scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.panel_show = s.2; return s; }); window.__gameStore.getState().doGoto(String((s as any).loc_id ?? /u0027/u0027), /u0027init/u0027); return false;">Show Pavlovsk NPCs</a>`);
+    scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.panel_show = 2; return s; }); window.__gameStore.getState().doGoto(String((s as any).loc_id ?? /u0027/u0027), /u0027init/u0027); return false;">Show Pavlovsk NPCs</a>`);
   } else {
     if (((s as any).panel_show ?? 0) === 2) {
       scene.text('<i>Show Pavlovsk NPCs</i>');
@@ -32,7 +32,7 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).panel_show ?? 0) !== 3) {
-    scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.panel_show = s.3; return s; }); window.__gameStore.getState().doGoto(String((s as any).loc_id ?? /u0027/u0027), /u0027init/u0027); return false;">Show Gadukino NPCs</a>`);
+    scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.panel_show = 3; return s; }); window.__gameStore.getState().doGoto(String((s as any).loc_id ?? /u0027/u0027), /u0027init/u0027); return false;">Show Gadukino NPCs</a>`);
   } else {
     if (((s as any).panel_show ?? 0) === 3) {
       scene.text('<i>Show Gadukino NPCs</i>');
@@ -40,7 +40,7 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).panel_show ?? 0) !== 4) {
-    scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.panel_show = s.4; return s; }); window.__gameStore.getState().doGoto(String((s as any).loc_id ?? /u0027/u0027), /u0027init/u0027); return false;">Show St Petersburg NPCs</a>`);
+    scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.panel_show = 4; return s; }); window.__gameStore.getState().doGoto(String((s as any).loc_id ?? /u0027/u0027), /u0027init/u0027); return false;">Show St Petersburg NPCs</a>`);
   } else {
     if (((s as any).panel_show ?? 0) === 4) {
       scene.text('<i>Show St Petersburg NPCs</i>');
@@ -48,7 +48,7 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).panel_show ?? 0) !== 5) {
-    scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.panel_show = s.5; return s; }); window.__gameStore.getState().doGoto(String((s as any).loc_id ?? /u0027/u0027), /u0027init/u0027); return false;">Show Pushkin NPCs</a>`);
+    scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.panel_show = 5; return s; }); window.__gameStore.getState().doGoto(String((s as any).loc_id ?? /u0027/u0027), /u0027init/u0027); return false;">Show Pushkin NPCs</a>`);
   } else {
     if (((s as any).panel_show ?? 0) === 5) {
       scene.text('<i>Show Pushkin NPCs</i>');
@@ -56,7 +56,7 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).panel_show ?? 0) !== 6) {
-    scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.panel_show = s.6; return s; }); window.__gameStore.getState().doGoto(String((s as any).loc_id ?? /u0027/u0027), /u0027init/u0027); return false;">Show School NPCs</a>`);
+    scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.panel_show = 6; return s; }); window.__gameStore.getState().doGoto(String((s as any).loc_id ?? /u0027/u0027), /u0027init/u0027); return false;">Show School NPCs</a>`);
   } else {
     if (((s as any).panel_show ?? 0) === 6) {
       scene.text('<i>Show Gadukino NPCs</i>');
@@ -281,7 +281,7 @@ function enterRelGadukino(s: GameState, scene: SceneBuilder): void {
     scene.text('Friendship with Sergei (hunter):');
     qspCall(s, 'journal', 'relindex', 'A174');
   }
-  scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.pavlovsk_show = s.0; return s; }); window.__gameStore.getState().doGoto(String((s as any).loc_id ?? /u0027/u0027), /u0027init/u0027); return false;">Hide Gadukino NPCs</a>`);
+  scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.pavlovsk_show = 0; return s; }); window.__gameStore.getState().doGoto(String((s as any).loc_id ?? /u0027/u0027), /u0027init/u0027); return false;">Hide Gadukino NPCs</a>`);
   scene.build();
 }
 
@@ -613,7 +613,7 @@ function enterNpcPreview(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterVcard(s: GameState, scene: SceneBuilder): void {
-  (s as any).quest_id = 'A' + ((s as any).locArgs?.[1] ?? 0);
+  (s as any).quest_id = 'A\' + ARGS[1';
   (s as any).loc_id = 'beta_journal_quests';
   if (String((s as any).locArgs?.[1] ?? '') === 0) {
     dynamicGoto(s, 'loc_id');
@@ -653,11 +653,11 @@ function enterVcard(s: GameState, scene: SceneBuilder): void {
   (s as any).qsteps = ((s as any).qsteps ?? 0) + ('<div style="padding: 10px;">');
   (s as any).qsteps = ((s as any).qsteps ?? 0) + ('<h4>🔎 Quest hints:</h4>');
   if ((!((s as any).journal_hints ?? 0))) {
-    (s as any).qsteps = ((s as any).qsteps ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { s.journal_hints = s.1; return s; }); window.__gameStore.getState().doGoto(String((s as any).loc_id ?? \u0027\u0027), \u0027vcard\u0027, ((s as any).locArgs?.[1] ?? \u0027\u0027)); return false;">Enable hints</a><font color = "red"><b> Spoilers!</b></font> ');
+    (s as any).qsteps = ((s as any).qsteps ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { s.journal_hints = 1; return s; }); window.__gameStore.getState().doGoto(String((s as any).loc_id ?? \u0027\u0027), \u0027vcard\u0027, ((s as any).locArgs?.[1] ?? \u0027\u0027)); return false;">Enable hints</a><font color = "red"><b> Spoilers!</b></font> ');
   } else {
     (s as any).qsteps = ((s as any).qsteps ?? 0) + ((((s as any).npc_quest ?? 0)?.['hints']));
     (s as any).qsteps = ((s as any).qsteps ?? 0) + ('<br> <br>');
-    (s as any).qsteps = ((s as any).qsteps ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { s.journal_hints = s.0; return s; }); window.__gameStore.getState().doGoto(String((s as any).loc_id ?? \u0027\u0027), \u0027vcard\u0027, ((s as any).locArgs?.[1] ?? \u0027\u0027)); return false;">Disable hints</a> ');
+    (s as any).qsteps = ((s as any).qsteps ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { s.journal_hints = 0; return s; }); window.__gameStore.getState().doGoto(String((s as any).loc_id ?? \u0027\u0027), \u0027vcard\u0027, ((s as any).locArgs?.[1] ?? \u0027\u0027)); return false;">Disable hints</a> ');
   }
   (s as any).qsteps = ((s as any).qsteps ?? 0) + ('<br>');
   (s as any).qsteps = ((s as any).qsteps ?? 0) + ('<h4>🧭 Quest requisites:</h4>');

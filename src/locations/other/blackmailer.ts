@@ -505,24 +505,6 @@ function enterChoosePackage(s: GameState, scene: SceneBuilder): void {
       } else {
         if (((s as any).blackmailQW ?? 0)?.['cosplay_stage'] === 5) {
           (s as any).temp_i = (Math.floor(Math.random() * 12) + 1);
-        } else {
-          if (((s as any).blackmailQW ?? 0)?.['cosplay_stage'] === 6) {
-            (s as any).temp_i = (Math.floor(Math.random() * 18) + 1);
-          } else {
-            if (((s as any).blackmailQW ?? 0)?.['cosplay_stage'] === 7) {
-              (s as any).temp_i = (Math.floor(Math.random() * 20) + 1);
-            } else {
-              if (((s as any).blackmailQW ?? 0)?.['cosplay_stage'] === 8) {
-                (s as any).temp_i = (Math.floor(Math.random() * 20) + 1);
-              } else {
-                if (((s as any).blackmailQW ?? 0)?.['cosplay_stage'] === 9) {
-                  (s as any).temp_i = (Math.floor(Math.random() * 30) + 1);
-                } else {
-                  (s as any).temp_i = (Math.floor(Math.random() * 20) + 21);
-                }
-              }
-            }
-          }
         }
       }
     }
@@ -574,100 +556,6 @@ function enterGetPackageContent(s: GameState, scene: SceneBuilder): void {
     ((s as any).temp_package = (s as any).temp_package ?? {})['set_vars'] = 'gs \'clothing_attributes\', \'nerdvana_cosplay\', ' + ((s as any).bm_i ?? 0) + '';
     ((s as any).temp_package = (s as any).temp_package ?? {})['add_item'] = 'gs \'clothing\', \'add_item\', \'nerdvana_cosplay\', ' + ((s as any).bm_i ?? 0) + '';
     ((s as any).temp_package = (s as any).temp_package ?? {})['image'] = 'images/pc/items/nerdvana/cosplay/' + ((s as any).bm_i ?? 0) + '.jpg';
-  } else {
-    if (((s as any).temp_package ?? 0) >= 21  &&  ((s as any).temp_package ?? 0) <= 25) {
-      if (((s as any).temp_package ?? 0) === 21) {
-        (s as any).bm_i = 1;
-      } else {
-        if (((s as any).temp_package ?? 0) === 22) {
-          (s as any).bm_i = 11;
-        } else {
-          if (((s as any).temp_package ?? 0) === 23) {
-            (s as any).bm_i = 13;
-          } else {
-            if (((s as any).temp_package ?? 0) === 24) {
-              (s as any).bm_i = 6;
-            } else {
-              (s as any).bm_i = 18;
-            }
-          }
-        }
-      }
-      ((s as any).temp_package = (s as any).temp_package ?? {})['type'] = 'clothing';
-      ((s as any).temp_package = (s as any).temp_package ?? {})['set_vars'] = 'gs \'clothing_attributes\', \'salacious_outfits\', ' + ((s as any).bm_i ?? 0) + '';
-      ((s as any).temp_package = (s as any).temp_package ?? {})['add_item'] = 'gs \'clothing\', \'add_item\', \'salacious_outfits\', ' + ((s as any).bm_i ?? 0) + ', 0';
-      ((s as any).temp_package = (s as any).temp_package ?? {})['image'] = 'images/pc/items/salacious/outfits/' + ((s as any).bm_i ?? 0) + '.jpg';
-    } else {
-      if (((s as any).temp_package ?? 0) >= 26  &&  ((s as any).temp_package ?? 0) <= 30) {
-        if (((s as any).temp_package ?? 0) === 26) {
-          (s as any).bm_i = 2;
-        } else {
-          if (((s as any).temp_package ?? 0) === 27) {
-            (s as any).bm_i = 19;
-          } else {
-            if (((s as any).temp_package ?? 0) === 28) {
-              (s as any).bm_i = 66;
-            } else {
-              if (((s as any).temp_package ?? 0) === 29) {
-                (s as any).bm_i = 88;
-              } else {
-                (s as any).bm_i = 98;
-              }
-            }
-          }
-        }
-        ((s as any).temp_package = (s as any).temp_package ?? {})['type'] = 'clothing';
-        ((s as any).temp_package = (s as any).temp_package ?? {})['set_vars'] = 'gs \'clothing_attributes\', \'eroto_outfits\', ' + ((s as any).bm_i ?? 0) + '';
-        ((s as any).temp_package = (s as any).temp_package ?? {})['add_item'] = 'gs \'clothing\', \'add_item\', \'eroto_outfits\', ' + ((s as any).bm_i ?? 0) + '';
-        ((s as any).temp_package = (s as any).temp_package ?? {})['image'] = 'images/pc/items/eroto/outfits/' + ((s as any).bm_i ?? 0) + '.jpg';
-      } else {
-        if (((s as any).temp_package ?? 0) >= 31  &&  ((s as any).temp_package ?? 0) <= 35) {
-          if (((s as any).temp_package ?? 0) === 31) {
-            (s as any).bm_i = 7;
-          } else {
-            if (((s as any).temp_package ?? 0) === 32) {
-              (s as any).bm_i = 9;
-            } else {
-              if (((s as any).temp_package ?? 0) === 33) {
-                (s as any).bm_i = 2;
-              } else {
-                if (((s as any).temp_package ?? 0) === 34) {
-                  (s as any).bm_i = 19;
-                } else {
-                  (s as any).bm_i = 30;
-                }
-              }
-            }
-          }
-          ((s as any).temp_package = (s as any).temp_package ?? {})['type'] = 'clothing';
-          ((s as any).temp_package = (s as any).temp_package ?? {})['set_vars'] = 'gs \'clothing_attributes\', \'scandalicious_outfits\', ' + ((s as any).bm_i ?? 0) + '';
-          ((s as any).temp_package = (s as any).temp_package ?? {})['add_item'] = 'gs \'clothing\', \'add_item\', \'scandalicious_outfits\', ' + ((s as any).bm_i ?? 0) + '';
-          ((s as any).temp_package = (s as any).temp_package ?? {})['image'] = 'images/pc/items/scandalicious/outfits/' + ((s as any).bm_i ?? 0) + '.jpg';
-        } else {
-          if (((s as any).temp_package ?? 0) === 36) {
-            (s as any).bm_i = 34;
-          } else {
-            if (((s as any).temp_package ?? 0) === 37) {
-              (s as any).bm_i = 94;
-            } else {
-              if (((s as any).temp_package ?? 0) === 38) {
-                (s as any).bm_i = 129;
-              } else {
-                if (((s as any).temp_package ?? 0) === 39) {
-                  (s as any).bm_i = 95;
-                } else {
-                  (s as any).bm_i = 149;
-                }
-              }
-            }
-          }
-          ((s as any).temp_package = (s as any).temp_package ?? {})['type'] = 'clothing';
-          ((s as any).temp_package = (s as any).temp_package ?? {})['set_vars'] = 'gs \'clothing_attributes\', \'scandalicious_dress\', ' + ((s as any).bm_i ?? 0) + '';
-          ((s as any).temp_package = (s as any).temp_package ?? {})['add_item'] = 'gs \'clothing\', \'add_item\', \'scandalicious_dress\', ' + ((s as any).bm_i ?? 0) + '';
-          ((s as any).temp_package = (s as any).temp_package ?? {})['image'] = 'images/pc/items/scandalicious/dress/' + ((s as any).bm_i ?? 0) + '.jpg';
-        }
-      }
-    }
   }
   (s as any).bm_i = undefined;
   scene.build();
@@ -763,35 +651,6 @@ function enterBmidToCosplaynumber(s: GameState, scene: SceneBuilder): void {
                       } else {
                         if (String((s as any).locArgs?.[1] ?? '') === 12) {
                           (s as any).result = 133;
-                        } else {
-                          if (String((s as any).locArgs?.[1] ?? '') === 13) {
-                          } else {
-                            if (String((s as any).locArgs?.[1] ?? '') === 14) {
-                              (s as any).bm_i = 37;
-                            } else {
-                              if (String((s as any).locArgs?.[1] ?? '') === 15) {
-                                (s as any).bm_i = 86;
-                              } else {
-                                if (String((s as any).locArgs?.[1] ?? '') === 16) {
-                                  (s as any).bm_i = 95;
-                                } else {
-                                  if (String((s as any).locArgs?.[1] ?? '') === 17) {
-                                    (s as any).bm_i = 130;
-                                  } else {
-                                    if (String((s as any).locArgs?.[1] ?? '') === 18) {
-                                      (s as any).bm_i = 132;
-                                    } else {
-                                      if (String((s as any).locArgs?.[1] ?? '') === 19) {
-                                        (s as any).bm_i = 138;
-                                      } else {
-                                        (s as any).bm_i = 104;
-                                      }
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          }
                         }
                       }
                     }
@@ -1370,7 +1229,7 @@ function enterPolice1(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: '', labelFn: (s: GameState) => 'Tell them that somebody caught you flashing your ' + String((((st as any).blackmailQW ?? 0)?.['init_flashaction'] ?? '') ?? '') + ' [+iif($blackmailQW[\'init_flashloc_desc\'] =...]', handler: (st: GameState) => {
+        { label: '', labelFn: (s: GameState) => String('Tell them that somebody caught you flashing your ' + (((st as any).blackmailQW ?? 0)?.['init_flashaction'] ?? '') + '\' + iif($blackmailQW[\'init_flashloc_desc\'] = \', \', \' ' + (((st as any).blackmailQW ?? 0)?.['init_flashloc_desc'] ?? '') + '\') + \' and has been demanding money.' ?? ''), handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
     qspCall(st, 'stat', '');
     scene.img('images/locations/shared/police/interrogation2.jpg');

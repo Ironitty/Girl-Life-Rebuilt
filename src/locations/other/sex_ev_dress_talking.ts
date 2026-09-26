@@ -75,35 +75,27 @@ function enterDressTalk(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   if (((s as any).npc_rel_type ?? 0)?.[String((s as any).npcID ?? 0)] === 'sugar_daddy'  &&  ((s as any).sex_ev ?? 0)?.['sugar_daddy_paid'] === 0  &&  ((s as any).npc_sugar_nice_things ?? 0)?.[String((s as any).npcID ?? 0)] === 0) {
-    if (((s as any).pantyworntype ?? 0) !== 'none'  &&  ((s as any).braworntype ?? 0) === 'none'  &&  ((s as any).clothingworntype ?? 0) === 'nude'  &&  ((s as any).sex_ev ?? 0)?.['mad'] === 0  &&  ((s as any).sex_ev ?? 0)?.['fuck_count'] > 0  &&  ((s as any).sex_ev ?? 0)?.['loc'] !== 'pc_home') {
-      scene.actions([
-        { label: 'Give him your panties', goto: ['sex_ev_leave', 'panty_gift'] },
-      ]);
-    }
-    if ((!(Array.isArray((s as any).lover) ? ((s as any).lover as any[]).indexOf(((s as any).npcID ?? 0)) : -1))) {
-      scene.actions([
-        { label: '', labelFn: (s: GameState) => 'End things with ' + String(((s as any).npcdesc ?? '') ?? ''), goto: ['sex_ev_dress_talking', 'break_up_ev'] },
-      ]);
-    }
-    (s as any).sex_ev_dress_topics = undefined;
-    if (((s as any).sex_ev ?? 0)?.['panty_wear'] === 1  &&  ((s as any).sex_ev ?? 0)?.['bra_wear'] === 0  &&  ((s as any).pantyworntype ?? 0) === 'none') {
-      (s as any).sex_ev_dress_topics = [...((s as any).sex_ev_dress_topics ?? []), 'xgt \'sex_ev_dress_talking\', \'no_panties_today\''];
-    }
-    if (((s as any).sex_ev ?? 0)?.['dress_end'] === 0  &&  ((s as any).sex_ev ?? 0)?.['sex_ev_ask'] === 0  &&  (Math.floor(Math.random() * 2) + 0) === 1  &&  ((s as any).sex_ev ?? 0)?.['type'] !== 'hookup') {
-      (s as any).sex_ev_dress_topics = [...((s as any).sex_ev_dress_topics ?? []), 'xgt \'sex_ev_dress_talking\', \'npc_sex_ev_invite\''];
-    }
-    qspCall(s, 'sex_ev_dress_talking', 'dress_talk_boy');
     scene.actions([
       { label: 'Ask for your sugar money', goto: ['sex_ev_dress_talking', 'sugar_money'] },
-      { label: 'Ask for your prostitution money', handler: (st: GameState) => {
-    // TODO-QSP: end}
-  } },
     ]);
-  } else {
-    qspCall(s, 'sex_ev_dress_talking', 'pc_dress_talk_menu');
-    // TODO-QSP: !
   }
-  // TODO-QSP: end}
+  if (((s as any).pantyworntype ?? 0) !== 'none'  &&  ((s as any).braworntype ?? 0) === 'none'  &&  ((s as any).clothingworntype ?? 0) === 'nude'  &&  ((s as any).sex_ev ?? 0)?.['mad'] === 0  &&  ((s as any).sex_ev ?? 0)?.['fuck_count'] > 0  &&  ((s as any).sex_ev ?? 0)?.['loc'] !== 'pc_home') {
+    scene.actions([
+      { label: 'Give him your panties', goto: ['sex_ev_leave', 'panty_gift'] },
+    ]);
+  }
+  if ((!(Array.isArray((s as any).lover) ? ((s as any).lover as any[]).indexOf(((s as any).npcID ?? 0)) : -1))) {
+    scene.actions([
+      { label: '', labelFn: (s: GameState) => 'End things with ' + String(((s as any).npcdesc ?? '') ?? ''), goto: ['sex_ev_dress_talking', 'break_up_ev'] },
+    ]);
+  }
+  (s as any).sex_ev_dress_topics = undefined;
+  if (((s as any).sex_ev ?? 0)?.['panty_wear'] === 1  &&  ((s as any).sex_ev ?? 0)?.['bra_wear'] === 0  &&  ((s as any).pantyworntype ?? 0) === 'none') {
+    (s as any).sex_ev_dress_topics = [...((s as any).sex_ev_dress_topics ?? []), 'xgt \'sex_ev_dress_talking\', \'no_panties_today\''];
+  }
+  if (((s as any).sex_ev ?? 0)?.['dress_end'] === 0  &&  ((s as any).sex_ev ?? 0)?.['sex_ev_ask'] === 0  &&  (Math.floor(Math.random() * 2) + 0) === 1  &&  ((s as any).sex_ev ?? 0)?.['type'] !== 'hookup') {
+    (s as any).sex_ev_dress_topics = [...((s as any).sex_ev_dress_topics ?? []), 'xgt \'sex_ev_dress_talking\', \'npc_sex_ev_invite\''];
+  }
   if (((s as any).sex_ev ?? 0)?.['hookup_continuation_check'] === 0  &&  ((s as any).sex_ev ?? 0)?.['type'] === 'hookup') {
     (s as any).sex_ev_dress_topics = [...((s as any).sex_ev_dress_topics ?? []), 'xgt \'sex_ev_hookup_leave\', \'hookup_continuation\''];
   }

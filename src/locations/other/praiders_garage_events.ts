@@ -255,7 +255,7 @@ function enterNikoConfront(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAlyonaDad(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: minut + 15
+  (s as any).minut = ((s as any).minut ?? 0) + 15;
   scene.img('images/locations/pavlovsk/resident/apartment/garage/band/hangout4.jpg');
   scene.text('Everyone is scattered around the garage, enjoying themselves as they drink and hang out. The atmosphere is relaxed and easy going, but people slowly start to head out as it gets late. Before long but Anushka, Valentin, Alyona and yourself have left. "Okay girls, let\'s pack it up for the night, unless…" Valentin says.');
   scene.text('He has a lewd smile on his face as Anushka snorts. "In your dreams." Alyona just rolls her eyes slightly before everyone heads outside and Valentin locks the garage up. The three of them start walking back to the apartments. You could go with them or call it a night and head home.');
@@ -319,7 +319,7 @@ function enterAlyonaDad(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterEdwardGarage(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: minut + 15
+  (s as any).minut = ((s as any).minut ?? 0) + 15;
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/resident/apartment/garage/ed/ed2.jpg');
   scene.text('You rush down to Edward\'s garage as you hear Alyona screaming "Dad! Leave him alone!" As you reach the garage, you jerk open the door and find Edward inside working on his bike. He looks up at you in surprise and opens his mouth to say something, but you beat him to it. "Alyona\'s dad hit her and when Val tried to stop him, he starting beating the shit out of Val!"');

@@ -55,11 +55,6 @@ function enterCafeteria(s: GameState, scene: SceneBuilder): void {
             if (((s as any).NikoVolkovQW ?? 0) === 10  &&  ((s as any).NikoEv ?? 0) === 21  &&  ((s as any).NikoDate_Day ?? 0) !== ((s as any).daystart ?? 0)) {
               (s as any).school_lunch = 1;
               qspGoto(s, 'NikoEv2', 'Natalia Talk 2');
-            } else {
-              if (((s as any).VKLenaBully ?? 0) === 1  &&  ((s as any).VKLena_Day ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).VKWip ?? 0) === 100) {
-                (s as any).school_lunch = 1;
-                qspGoto(s, 'NikoBully', 'Lena Bully');
-              }
             }
           }
         }

@@ -978,7 +978,7 @@ function enterLazarAgree(s: GameState, scene: SceneBuilder): void {
     scene.text('"We will be right over," you say' + ((((st as any).katjaQW ?? 0)?.['lazer_anal'] + ((st as any).katjaQW ?? 0)?.['lazer_pussy'] === 0) ? (' and he gives you his address ') : (' ')) + 'before you hang up.');
     scene.actions([
       { label: 'Go to Lazar\'s place', handler: (st: GameState) => {
-    // TODO-QSP: minut + 5
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
   }, goto: ['katja_uni_sex', 'lazar_katja_uni_3some'] },
     ]);
   } },

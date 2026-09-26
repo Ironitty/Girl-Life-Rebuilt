@@ -870,80 +870,80 @@ function enter(s: GameState, scene: SceneBuilder): void {
     do {
       (s as any).i = ((s as any).i ?? 0) + (1);
       if (((s as any).boutique_panties ?? 0)?.[String((s as any).i ?? 0)] === 1) {
-        // TODO-QSP: dynamic 'lusso_panties[i] = 1'
-        // TODO-QSP: dynamic 'lusso_pantiesS[i] = boutique_pantiesS[i]'
+        scene.text('lusso_panties[i] = 1');
+        scene.text('lusso_pantiesS[i] = boutique_pantiesS[i]');
       }
       (s as any).boutique_panties = undefined;
       (s as any).i = 0;
       do {
         (s as any).i = ((s as any).i ?? 0) + (1);
         if (((s as any).boutique_bras ?? 0)?.[String((s as any).i ?? 0)] === 1) {
-          // TODO-QSP: dynamic 'lusso_bras[i] = 1'
-          // TODO-QSP: dynamic 'lusso_brasS[i] = boutique_brasS[i]'
+          scene.text('lusso_bras[i] = 1');
+          scene.text('lusso_brasS[i] = boutique_brasS[i]');
         }
         (s as any).boutique_bras = undefined;
         (s as any).i = 0;
         do {
           (s as any).i = ((s as any).i ?? 0) + (1);
           if (((s as any).cheap_panties ?? 0)?.[String((s as any).i ?? 0)] === 1) {
-            // TODO-QSP: dynamic 'gm_panties[i] = 1'
-            // TODO-QSP: dynamic 'gm_pantiesS[i] = cheap_pantiesS[i]'
+            scene.text('gm_panties[i] = 1');
+            scene.text('gm_pantiesS[i] = cheap_pantiesS[i]');
           }
           (s as any).cheap_panties = undefined;
           (s as any).i = 0;
           do {
             (s as any).i = ((s as any).i ?? 0) + (1);
             if (((s as any).cheap_bras ?? 0)?.[String((s as any).i ?? 0)] === 1) {
-              // TODO-QSP: dynamic 'gm_bras[i] = 1'
-              // TODO-QSP: dynamic 'gm_brasS[i] = cheap_brasS[i]'
+              scene.text('gm_bras[i] = 1');
+              scene.text('gm_brasS[i] = cheap_brasS[i]');
             }
             (s as any).cheap_bras = undefined;
             (s as any).i = 0;
             do {
               (s as any).i = ((s as any).i ?? 0) + (1);
               if (((s as any).exhibitionist_panties ?? 0)?.[String((s as any).i ?? 0)] === 1) {
-                // TODO-QSP: dynamic 'salacious_panties[i] = 1'
-                // TODO-QSP: dynamic 'salacious_pantiesS[i] = exhibitionist_pantiesS[i]'
+                scene.text('salacious_panties[i] = 1');
+                scene.text('salacious_pantiesS[i] = exhibitionist_pantiesS[i]');
               }
               (s as any).exhibitionist_panties = undefined;
               (s as any).i = 0;
               do {
                 (s as any).i = ((s as any).i ?? 0) + (1);
                 if (((s as any).exhibitionist_bras ?? 0)?.[String((s as any).i ?? 0)] === 1) {
-                  // TODO-QSP: dynamic 'salacious_bras[i] = 1'
-                  // TODO-QSP: dynamic 'salacious_brasS[i] = exhibitionist_brasS[i]'
+                  scene.text('salacious_bras[i] = 1');
+                  scene.text('salacious_brasS[i] = exhibitionist_brasS[i]');
                 }
                 (s as any).exhibitionist_bras = undefined;
                 (s as any).i = 0;
                 do {
                   (s as any).i = ((s as any).i ?? 0) + (1);
                   if (((s as any).sexshop_panties ?? 0)?.[String((s as any).i ?? 0)] === 1) {
-                    // TODO-QSP: dynamic 'eroto_panties[i] = 1'
-                    // TODO-QSP: dynamic 'eroto_pantiesS[i] = sexshop_pantiesS[i]'
+                    scene.text('eroto_panties[i] = 1');
+                    scene.text('eroto_pantiesS[i] = sexshop_pantiesS[i]');
                   }
                   (s as any).sexshop_panties = undefined;
                   (s as any).i = 0;
                   do {
                     (s as any).i = ((s as any).i ?? 0) + (1);
                     if (((s as any).sexshop_bras ?? 0)?.[String((s as any).i ?? 0)] === 1) {
-                      // TODO-QSP: dynamic 'eroto_bras[i] = 1'
-                      // TODO-QSP: dynamic 'eroto_brasS[i] = sexshop_brasS[i]'
+                      scene.text('eroto_bras[i] = 1');
+                      scene.text('eroto_brasS[i] = sexshop_brasS[i]');
                     }
                     (s as any).sexshop_bras = undefined;
                     (s as any).i = 0;
                     do {
                       (s as any).i = ((s as any).i ?? 0) + (1);
                       if (((s as any).sport_panties ?? 0)?.[String((s as any).i ?? 0)] === 1) {
-                        // TODO-QSP: dynamic 'danilovich_panties[i] = 1'
-                        // TODO-QSP: dynamic 'danilovich_pantiesS[i] = sport_pantiesS[i]'
+                        scene.text('danilovich_panties[i] = 1');
+                        scene.text('danilovich_pantiesS[i] = sport_pantiesS[i]');
                       }
                       (s as any).sport_panties = undefined;
                       (s as any).i = 0;
                       do {
                         (s as any).i = ((s as any).i ?? 0) + (1);
                         if (((s as any).sport_bras ?? 0)?.[String((s as any).i ?? 0)] === 1) {
-                          // TODO-QSP: dynamic 'danilovich_bras[i] = 1'
-                          // TODO-QSP: dynamic 'danilovich_brasS[i] = sport_brasS[i]'
+                          scene.text('danilovich_bras[i] = 1');
+                          scene.text('danilovich_brasS[i] = sport_brasS[i]');
                         }
                         (s as any).sport_bras = undefined;
                         if (((s as any).metmira ?? 0) === 1) {

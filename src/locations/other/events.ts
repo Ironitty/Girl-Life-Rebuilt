@@ -108,7 +108,7 @@ function enterPavDrugDropoff(s: GameState, scene: SceneBuilder): void {
   scene.text('Weed: ' + qspFunc(s, 'money', 'string_price', 300));
   if (qspFunc(s, 'money', 'can_afford', 560, 'cash') === 1) {
     scene.actions([
-      { label: 'Buy and use heroin ( [560₽])...]', handler: (st: GameState) => {
+      { label: '', labelFn: (s: GameState) => String('Buy and use heroin (' + qspFunc(s, 'money', 'string_price', 560) + ')' ?? ''), handler: (st: GameState) => {
     qspCall(st, 'money', 'pay', 560, 'cash');
     if (((st as any).drugVars ?? 0)?.['heroin_inject'] < 1) {
       (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -142,7 +142,7 @@ function enterPavDrugDropoff(s: GameState, scene: SceneBuilder): void {
   }
   if (qspFunc(s, 'money', 'can_afford', 2100, 'cash') === 1) {
     scene.actions([
-      { label: 'Buy enough cocaine for 5 lines ( [2100₽]...]', handler: (st: GameState) => {
+      { label: '', labelFn: (s: GameState) => String('Buy enough cocaine for 5 lines (' + qspFunc(s, 'money', 'string_price', 2100) + ')' ?? ''), handler: (st: GameState) => {
     qspCall(st, 'money', 'pay', 2100, 'cash');
     ((st as any).mc_inventory = (st as any).mc_inventory ?? {})['cocaine'] = ((st as any).mc_inventory['cocaine'] ?? 0) + (5);
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -154,7 +154,7 @@ function enterPavDrugDropoff(s: GameState, scene: SceneBuilder): void {
   }
   if (qspFunc(s, 'money', 'can_afford', 600, 'cash') === 1) {
     scene.actions([
-      { label: 'Buy 5 Amphetamine ( [600₽])...]', handler: (st: GameState) => {
+      { label: '', labelFn: (s: GameState) => String('Buy 5 Amphetamine (' + qspFunc(s, 'money', 'string_price', 600) + ')' ?? ''), handler: (st: GameState) => {
     qspCall(st, 'money', 'pay', 600, 'cash');
     ((st as any).mc_inventory = (st as any).mc_inventory ?? {})['amphetamine'] = ((st as any).mc_inventory['amphetamine'] ?? 0) + (5);
     qspGoto(st, 'events', 'pav_drug_dropoff');
@@ -165,7 +165,7 @@ function enterPavDrugDropoff(s: GameState, scene: SceneBuilder): void {
   }
   if (qspFunc(s, 'money', 'can_afford', 300, 'cash') === 1) {
     scene.actions([
-      { label: 'Buy enough weed for 5 joints ( [300₽])...]', handler: (st: GameState) => {
+      { label: '', labelFn: (s: GameState) => String('Buy enough weed for 5 joints (' + qspFunc(s, 'money', 'string_price', 300) + ')' ?? ''), handler: (st: GameState) => {
     qspCall(st, 'money', 'pay', 300, 'cash');
     (st as any).drugUser = 1;
     ((st as any).mc_inventory = (st as any).mc_inventory ?? {})['joints'] = ((st as any).mc_inventory['joints'] ?? 0) + (5);

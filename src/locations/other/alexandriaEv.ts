@@ -520,7 +520,7 @@ function enterContribution(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSuccubribe(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: minut + 5
+  (s as any).minut = ((s as any).minut ?? 0) + 5;
   (s as any).AlexandriaMissionQW = 2;
   qspCall(s, 'mood', 'lower', 'small');
   qspCall(s, 'stat', '');

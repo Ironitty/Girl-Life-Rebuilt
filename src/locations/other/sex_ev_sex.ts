@@ -916,10 +916,6 @@ function enterFuckContinue(s: GameState, scene: SceneBuilder): void {
   } },
           ]);
         } else {
-          (s as any).orgasm_or = '';
-          ((s as any).sex_ev = (s as any).sex_ev ?? {})['moan'] = 0;
-          ((s as any).sex_ev = (s as any).sex_ev ?? {})['dirty_talk_count'] = 1;
-          dynamicGoto(s, 'sex_ev_' + String((((s as any).sex_ev ?? {})['position'])), '' + (((s as any).sex_ev ?? 0)?.['position']) + '' + (((s as any).sex_ev ?? 0)?.['speed']) + '.2');
           if (((s as any).sex_ev ?? 0)?.['speed'] !== 3  &&  ((s as any).sex_ev ?? 0)?.['unique_npc'] === 1) {
             scene.actions([
               { label: 'Talk while fucking', handler: (st: GameState) => {
@@ -1014,12 +1010,6 @@ function enterFuckContinue(s: GameState, scene: SceneBuilder): void {
     }
     qspCall(s, 'sex_ev_events', 'rand_ev_check');
     scene.actions([
-      { label: 'Fake enjoyment', handler: (st: GameState) => {
-    ((st as any).sex_ev = (st as any).sex_ev ?? {})['bored'] = 1;
-    ((st as any).sex_ev = (st as any).sex_ev ?? {})['moan'] = 3;
-    (st as any).orgasm_or = 'no';
-    dynamicGoto(st, 'sex_ev_' + String((((st as any).sex_ev ?? {})['position'])), String((((st as any).sex_ev ?? {})['position'])) + String((((st as any).sex_ev ?? {})['speed'])) + '.2');
-  } },
       { label: '', labelFn: (s: GameState) => 'Try to make ' + String(((s as any).npcdesc ?? '') ?? '') + ' come', handler: (st: GameState) => {
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['cum_speed_up'] = 1;
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['extra_stim'] = ((st as any).sex_ev['extra_stim'] ?? 0) + (1);

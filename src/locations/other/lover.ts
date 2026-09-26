@@ -392,7 +392,7 @@ function enterClearAll(s: GameState, scene: SceneBuilder): void {
 function enterGenerateHomeLink(s: GameState, scene: SceneBuilder): void {
   if (((s as any).npc_residence ?? 0)[String((s as any).locArgs?.[1] ?? '')] === ((s as any).loc ?? 0)) {
     if (((String(';fuckbuddy;sugar_daddy;').indexOf(String(';' + (((s as any).npc_rel_type ?? 0)[String((s as any).locArgs?.[1] ?? '')]) + ';'))) + 1) > 0) {
-      scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.2; return s; }); window.__gameStore.getState().doGoto(/u0027sex_ev_start/u0027, /u0027initiate_pre/u0027, ((s as any).locArgs?.[1] ?? /u0027/u0027)); return false;">${(((s as any).npc_firstname ?? 0)?.[((s as any).locArgs?.[1] ?? '')] ?? '')}'s</a>` + ((((s as any).npc_residence ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 'uni_grounds') ? ('dorm') : ('apartment')) + ' is nearby.');
+      scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=2; return s; }); window.__gameStore.getState().doGoto(/u0027sex_ev_start/u0027, /u0027initiate_pre/u0027, ((s as any).locArgs?.[1] ?? /u0027/u0027)); return false;">${(((s as any).npc_firstname ?? 0)?.[((s as any).locArgs?.[1] ?? '')] ?? '')}'s</a>` + ((((s as any).npc_residence ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 'uni_grounds') ? ('dorm') : ('apartment')) + ' is nearby.');
     }
   }
   return;
@@ -403,7 +403,7 @@ function enterGenerateHotelLink(s: GameState, scene: SceneBuilder): void {
   if (qspFunc(s, 'lover', 'is_hotel', ((s as any).loc ?? 0))) {
     if (((s as any).booty_call_hotel ?? 0)[String((s as any).locArgs?.[1] ?? '')] === ((s as any).region ?? 0)  &&  ((s as any).booty_call_invite ?? 0)[String((s as any).locArgs?.[1] ?? '')] === ((s as any).daystart ?? 0)) {
       if (((String(';fuckbuddy;sugar_daddy;').indexOf(String(';' + (((s as any).npc_rel_type ?? 0)[String((s as any).locArgs?.[1] ?? '')]) + ';'))) + 1) > 0) {
-        scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.2; return s; }); window.__gameStore.getState().doGoto(/u0027sex_ev_start/u0027, /u0027initiate_pre/u0027, ((s as any).locArgs?.[1] ?? /u0027/u0027)); return false;">${(((s as any).npc_firstname ?? 0)?.[((s as any).locArgs?.[1] ?? '')] ?? '')}</a> booked a hotel room to meet you in.`);
+        scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=2; return s; }); window.__gameStore.getState().doGoto(/u0027sex_ev_start/u0027, /u0027initiate_pre/u0027, ((s as any).locArgs?.[1] ?? /u0027/u0027)); return false;">${(((s as any).npc_firstname ?? 0)?.[((s as any).locArgs?.[1] ?? '')] ?? '')}</a> booked a hotel room to meet you in.`);
       }
     }
   }
@@ -417,7 +417,7 @@ function enterGenerateDateLink(s: GameState, scene: SceneBuilder): void {
       scene.text(`You have a date with ${(((s as any).npc_firstname ?? 0)?.[((s as any).locArgs?.[1] ?? '')] ?? '')} at ${qspFunc(s, 'time', 'get_time_string', (((s as any).npc_date_meethour ?? 0)?.[((s as any).locArgs?.[1] ?? '')] ?? ''), 0)}.`);
     } else {
       if (((s as any).hour ?? 0) === ((s as any).npc_date_meethour ?? 0)[String((s as any).locArgs?.[1] ?? '')]) {
-        scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.2; return s; }); window.__gameStore.getState().doGoto(/u0027date_ev/u0027, /u0027initiate_pre/u0027, ((s as any).locArgs?.[1] ?? /u0027/u0027)); return false;">${(((s as any).npc_firstname ?? 0)?.[((s as any).locArgs?.[1] ?? '')] ?? '')} is waiting for you</a>.`);
+        scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=2; return s; }); window.__gameStore.getState().doGoto(/u0027date_ev/u0027, /u0027initiate_pre/u0027, ((s as any).locArgs?.[1] ?? /u0027/u0027)); return false;">${(((s as any).npc_firstname ?? 0)?.[((s as any).locArgs?.[1] ?? '')] ?? '')} is waiting for you</a>.`);
       } else {
         scene.text(`You missed your date with ${(((s as any).npc_firstname ?? 0)?.[((s as any).locArgs?.[1] ?? '')] ?? '')} at ${qspFunc(s, 'time', 'get_time_string', (((s as any).npc_date_meethour ?? 0)?.[((s as any).locArgs?.[1] ?? '')] ?? ''), 0)}.`);
       }

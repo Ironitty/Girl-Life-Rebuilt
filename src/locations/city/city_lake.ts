@@ -29,10 +29,10 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   if (((s as any).PSwim ?? 0) === 1  ||  ((s as any).clothingworntype ?? 0) === 'nude') {
     scene.text('You can see the winding path leading to the railway station in the industrial region. You should get dressed into your clothes if you want to go there.');
   } else {
-    scene.text('There is a winding path leading to the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.60; return s; }); window.__gameStore.getState().doGoto(\u0027city_industrial_train\u0027, \u0027outside\u0027); return false;">railway station</a> in the city industrial region.');
+    scene.text('There is a winding path leading to the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=60; return s; }); window.__gameStore.getState().doGoto(\u0027city_industrial_train\u0027, \u0027outside\u0027); return false;">railway station</a> in the city industrial region.');
   }
   if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) < 18) {
-    scene.text('There is a branch of the swimwear chain <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.3; return s; }); window.__gameStore.getState().doGoto(\u0027shop_allure\u0027, \u0027start\u0027); return false;">Allure</a> here');
+    scene.text('There is a branch of the swimwear chain <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=3; return s; }); window.__gameStore.getState().doGoto(\u0027shop_allure\u0027, \u0027start\u0027); return false;">Allure</a> here');
   } else {
     scene.text('\'There is a branch of the swimwear chain Allure here, but it is currently closed. It will reopen at 8:00.\'');
   }
@@ -54,8 +54,8 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027nastja\u0027, \u0027pos14\u0027); return false;">Anastasia</a> is waving her hand at you.');
   }
   if (((s as any).hour ?? 0) >= 6  &&  ((s as any).hour ?? 0) <= 20) {
-    scene.text('There are various ' + ((((s as any).PSwim ?? 0) === 1) ? ('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(\u0027city_lake\u0027, \u0027aquapark\u0027); return false;">water attractions</a>.') : ('water attractions, but you need to put on some swimwear before you go there.')) + '');
-    scene.text('You can go for a ride on a <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027city_lake\u0027, \u0027horse\u0027); return false;">horse</a> along the beach.');
+    scene.text('There are various ' + ((((s as any).PSwim ?? 0) === 1) ? ('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=5; return s; }); window.__gameStore.getState().doGoto(\u0027city_lake\u0027, \u0027aquapark\u0027); return false;">water attractions</a>.') : ('water attractions, but you need to put on some swimwear before you go there.')) + '');
+    scene.text('You can go for a ride on a <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=1; return s; }); window.__gameStore.getState().doGoto(\u0027city_lake\u0027, \u0027horse\u0027); return false;">horse</a> along the beach.');
     scene.text('There is also a ' + ((((s as any).pcs_inhib ?? 0) >= 30  ||  (((s as any).trait_vars ?? 0)?.['exhibitionist'] > 1  &&  ((s as any).pcs_horny ?? 0) > 60)) ? ('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027Nudelake\u0027, \u0027\u0027); return false;">nudist beach</a>') : ('nudist beach a short walk away, but you are\'t confident enough to go in that direction.')) + '');
     if (((s as any).temper ?? 0) >= 15  &&  ((s as any).PSwim ?? 0) === 1) {
       scene.text('You can sunbathe or go for a swim.');
@@ -228,8 +228,8 @@ function enterAquapark(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'public_outdoors';
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/residential/lake/aquapark.jpg');
-  scene.text('You go to the attractions. There is <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027city_lake\u0027, \u0027gidro\u0027); return false;">jet skiing</a>, a <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027city_lake\u0027, \u0027banan\u0027); return false;">banana ride</a>, the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027city_lake\u0027, \u0027gorka\u0027); return false;">water slide</a>, and a <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027city_lake\u0027, \u0027tour_boat\u0027); return false;">tour boat</a>.');
-  scene.text('There is also a small <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027city_lake\u0027, \u0027hut\u0027); return false;">hut</a> that rents out surf boards.');
+  scene.text('You go to the attractions. There is <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=1; return s; }); window.__gameStore.getState().doGoto(\u0027city_lake\u0027, \u0027gidro\u0027); return false;">jet skiing</a>, a <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=1; return s; }); window.__gameStore.getState().doGoto(\u0027city_lake\u0027, \u0027banan\u0027); return false;">banana ride</a>, the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=1; return s; }); window.__gameStore.getState().doGoto(\u0027city_lake\u0027, \u0027gorka\u0027); return false;">water slide</a>, and a <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=1; return s; }); window.__gameStore.getState().doGoto(\u0027city_lake\u0027, \u0027tour_boat\u0027); return false;">tour boat</a>.');
+  scene.text('There is also a small <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=1; return s; }); window.__gameStore.getState().doGoto(\u0027city_lake\u0027, \u0027hut\u0027); return false;">hut</a> that rents out surf boards.');
   scene.actions([
     { label: 'Leave', goto: ['city_lake', 'start'] },
   ]);

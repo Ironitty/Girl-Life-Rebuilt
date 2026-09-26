@@ -92,22 +92,15 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).locat ?? 0)?.['Stepdad'] === 7) {
       scene.text('<a href="exec:gt\'father\',\'kit\'">Your stepfather</a> is setting the table for dinner.');
     } else {
-      scene.text('A <a href="#" onclick="window.__gameStore.setState((s) => { (s.newspaperVars ??= {})\u0027dbag\u0027 = s.0; return s; }); window.__gameStore.getState().doGoto(\u0027newspaper\u0027, \u0027start\u0027); return false;">newspaper</a> lies on the kitchen table.');
+      scene.text('A <a href="#" onclick="window.__gameStore.setState((s) => { (s.newspaperVars ??= {})\u0027dbag\u0027 = 0; return s; }); window.__gameStore.getState().doGoto(\u0027newspaper\u0027, \u0027start\u0027); return false;">newspaper</a> lies on the kitchen table.');
     }
   }
   if (((s as any).week ?? 0) === 6  &&  ((s as any).locat ?? 0)?.['Fam_set_month_inGad'] === 1  &&  ((s as any).grandmaQW ?? 0)?.['block'] === 0  &&  ((s as any).hour ?? 0) > 9  &&  ((s as any).hour ?? 0) < 12  &&  qspFunc(s, 'homes_properties', 'can_live_here')) {
     scene.text('Your parents are getting ready to go to <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027gad_gphouse\u0027, \u0027to_gadukino\u0027); return false;">Gadukino</a> to visit your great grandparents. You can go with them if you want, or stay home like Anya usually does.');
   }
   if (qspFunc(s, 'homes_properties', 'can_live_here')) {
-    // TODO-QSP: !{if locat['Mom_athome'] = 0 and locat['sdad_athome'] = 0 and pcs_inhib >= 35 and pcs_horny >= 50:
-    // TODO-QSP: end !}
     qspCall(s, 'kit_din', 'parents_meal_options');
     qspCall(s, 'core_library', 'kitchen', 'full');
-    scene.actions([
-      { label: 'Look for something to masturbate with…', handler: (st: GameState) => {
-    (st as any).minut = ((st as any).minut ?? 0) + 2;
-  }, goto: ['selfplay', 'veggie_mast', 'pick_veg'] },
-    ]);
   }
   scene.actions([
     { label: 'Return to the hallway', handler: (st: GameState) => {

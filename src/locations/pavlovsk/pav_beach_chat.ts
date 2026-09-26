@@ -55,7 +55,7 @@ function enterBeachHangout(s: GameState, scene: SceneBuilder): void {
           } while (!(((s as any).i2 ?? 0) % 6 === 0));
         }
         (s as any).table_beach = ((s as any).table_beach ?? 0) + ('</table>');
-        // TODO-QSP: $table_beach
+        scene.text(String((s as any).table_beach ?? ''));
         scene.actions([
           { label: 'Go back', goto: ['pav_lake', ''] },
         ]);

@@ -693,1910 +693,836 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
       (s as any).ind_npc = '<font color = red  > Cumming! </font>';
     }
     scene.text('<center>The ' + qspFunc(s, 'gopsex', 'hide', 'gop_text_npcr') + ' are ' + qspFunc(s, 'gopsex', 'hide', 'gop_sextext3') + ` you, their endurance: ${((s as any).ind_npc ?? '')}</center>`);
-    // TODO-QSP: end & !! ---- ind_stamina_groupnpc ------
-    if (String((s as any).locArgs?.[1] ?? '') === 'ind_stamina_npc') {
-      (s as any).sh_ind = ((s as any).shgopsex_count ?? 0);
-      if (((s as any).sh_ind ?? 0) === 7) {
-        (s as any).ind_npc = '<font color = green  > ███████ </font> ';
+  }
+  if (String((s as any).locArgs?.[1] ?? '') === 'ind_stamina_npc') {
+    (s as any).sh_ind = ((s as any).shgopsex_count ?? 0);
+    if (((s as any).sh_ind ?? 0) === 7) {
+      (s as any).ind_npc = '<font color = green  > ███████ </font> ';
+    }
+    if (((s as any).sh_ind ?? 0) === 6) {
+      (s as any).ind_npc = '<font color = green  > ██████_ </font> ';
+    }
+    if (((s as any).sh_ind ?? 0) === 5) {
+      (s as any).ind_npc = '<font color = green  > █████__ </font> ';
+    }
+    if (((s as any).sh_ind ?? 0) === 4) {
+      (s as any).ind_npc = qspFunc(s, 'wrap', 'accent', ' ████___ ') + ' ';
+    }
+    if (((s as any).sh_ind ?? 0) === 3) {
+      (s as any).ind_npc = qspFunc(s, 'wrap', 'accent', ' ███____ ') + ' ';
+    }
+    if (((s as any).sh_ind ?? 0) === 2) {
+      (s as any).ind_npc = '<font color = red  > ██_____ </font> ';
+    }
+    if (((s as any).sh_ind ?? 0) === 1) {
+      (s as any).ind_npc = '<font color = red  > █______ </font> ';
+    }
+    if (((s as any).sh_ind ?? 0) <= 0) {
+      (s as any).ind_npc = '<font color = red  > Cumming! </font> ';
+    }
+    scene.text(`<center>You have sex with ${((s as any).npcdesc ?? '')}, his stamina: ${((s as any).ind_npc ?? '')}</center>`);
+  }
+  if (String((s as any).locArgs?.[1] ?? '') === 'npc_orgasm') {
+    if ((!((s as any).shgopsex_count ?? 0))) {
+      (s as any).npc_orgasm_txt = (Math.floor(Math.random() * 5) + 1);
+      if (((s as any).npc_orgasm_txt ?? 0) === 1) {
+        scene.text(`"Oh shit, ${((s as any).pcs_nickname ?? '')}, I can't hold it any longer. I'll finish right now!" ${((s as any).npcdesc ?? '')} warns you.`);
       }
-      if (((s as any).sh_ind ?? 0) === 6) {
-        (s as any).ind_npc = '<font color = green  > ██████_ </font> ';
+      if (((s as any).npc_orgasm_txt ?? 0) === 2) {
+        scene.text(`${((s as any).npcdesc ?? '')} warns you, "${((s as any).pcs_nickname ?? '')}, I'm going to cum right now, finish!"`);
       }
-      if (((s as any).sh_ind ?? 0) === 5) {
-        (s as any).ind_npc = '<font color = green  > █████__ </font> ';
+      if (((s as any).npc_orgasm_txt ?? 0) === 3) {
+        scene.text(`${((s as any).npcdesc ?? '')}, "So ${((s as any).pcs_nickname ?? '')}, where should I offload my cum? It doesn't matter? Well, I'll choose myself!"`);
       }
-      if (((s as any).sh_ind ?? 0) === 4) {
-        (s as any).ind_npc = qspFunc(s, 'wrap', 'accent', ' ████___ ') + ' ';
+      if (((s as any).npc_orgasm_txt ?? 0) === 4) {
+        scene.text(`"I'm ready to finish! ${((s as any).pcs_nickname ?? '')}, where do you want my semen? You don't know? Well, I'll choose myself!"`);
       }
-      if (((s as any).sh_ind ?? 0) === 3) {
-        (s as any).ind_npc = qspFunc(s, 'wrap', 'accent', ' ███____ ') + ' ';
+      if (((s as any).npc_orgasm_txt ?? 0) === 5) {
+        scene.text(`${((s as any).npcdesc ?? '')} tells you, "${((s as any).pcs_nickname ?? '')}, I'm on the top. I'll cum soon!"`);
       }
-      if (((s as any).sh_ind ?? 0) === 2) {
-        (s as any).ind_npc = '<font color = red  > ██_____ </font> ';
-      }
-      if (((s as any).sh_ind ?? 0) === 1) {
-        (s as any).ind_npc = '<font color = red  > █______ </font> ';
-      }
-      if (((s as any).sh_ind ?? 0) <= 0) {
-        (s as any).ind_npc = '<font color = red  > Cumming! </font> ';
-      }
-      scene.text(`<center>You have sex with ${((s as any).npcdesc ?? '')}, his stamina: ${((s as any).ind_npc ?? '')}</center>`);
-      // TODO-QSP: end & !! --- ind_stamina_npc ---
-      if (String((s as any).locArgs?.[1] ?? '') === 'npc_orgasm') {
-        if ((!((s as any).shgopsex_count ?? 0))) {
-          (s as any).npc_orgasm_txt = (Math.floor(Math.random() * 5) + 1);
-          if (((s as any).npc_orgasm_txt ?? 0) === 1) {
-            scene.text(`"Oh shit, ${((s as any).pcs_nickname ?? '')}, I can't hold it any longer. I'll finish right now!" ${((s as any).npcdesc ?? '')} warns you.`);
-          }
-          if (((s as any).npc_orgasm_txt ?? 0) === 2) {
-            scene.text(`${((s as any).npcdesc ?? '')} warns you, "${((s as any).pcs_nickname ?? '')}, I'm going to cum right now, finish!"`);
-          }
-          if (((s as any).npc_orgasm_txt ?? 0) === 3) {
-            scene.text(`${((s as any).npcdesc ?? '')}, "So ${((s as any).pcs_nickname ?? '')}, where should I offload my cum? It doesn't matter? Well, I'll choose myself!"`);
-          }
-          if (((s as any).npc_orgasm_txt ?? 0) === 4) {
-            scene.text(`"I'm ready to finish! ${((s as any).pcs_nickname ?? '')}, where do you want my semen? You don't know? Well, I'll choose myself!"`);
-          }
-          if (((s as any).npc_orgasm_txt ?? 0) === 5) {
-            scene.text(`${((s as any).npcdesc ?? '')} tells you, "${((s as any).pcs_nickname ?? '')}, I'm on the top. I'll cum soon!"`);
-          }
-          (s as any).npc_orgasm_txt = undefined;
+      (s as any).npc_orgasm_txt = undefined;
+    }
+  }
+  if (String((s as any).locArgs?.[1] ?? '') === 'gop_sex_analPlugIn') {
+    if (((s as any).analPlugIn ?? 0) === 1) {
+      (s as any).analPlugIn = 0;
+      (s as any).analPlugOut = 1;
+      scene.text(`"What?! Do you have a buttplug in your ass?" ${((s as any).npcdesc ?? '')} asks in surprise.`);
+      scene.text('"Aha, you are loosening your anus."');
+      scene.text('"That\'s great, but it\'s in the way right now." He comments and pulls the plug out from your ass.<br>');
+    }
+  }
+  if (String((s as any).locArgs?.[1] ?? '') === 'group_sex_start') {
+    if (((s as any).shgopsex_gr_day ?? 0) !== ((s as any).daystart ?? 0)) {
+      ((s as any).stat = (s as any).stat ?? {})['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
+    }
+    (s as any).shgopsex_gr_day = ((s as any).daystart ?? 0);
+    (s as any).shgopsex_gr_count = ((s as any).shgopsex_gr_count ?? 0) - (1);
+    ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})['A9'] = 1;
+    ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})['A10'] = 1;
+    ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})['A11'] = 1;
+  }
+  if (String((s as any).locArgs?.[1] ?? '') === 'gop_sex_lubri') {
+    if ((!((s as any).gop_sex_lubri ?? 0))) {
+      if (((s as any).mc_inventory ?? 0)?.['lubricant'] > 0) {
+        ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['lubricant'] = ((s as any).mc_inventory['lubricant'] ?? 0) - (1);
+        if (((s as any).agape ?? 0) > 1) {
+          (s as any).agape = 1;
         }
-        // TODO-QSP: end & !! --- npc_orgasm ---
-        if (String((s as any).locArgs?.[1] ?? '') === 'gop_sex_analPlugIn') {
-          if (((s as any).analPlugIn ?? 0) === 1) {
-            (s as any).analPlugIn = 0;
-            (s as any).analPlugOut = 1;
-            scene.text(`"What?! Do you have a buttplug in your ass?" ${((s as any).npcdesc ?? '')} asks in surprise.`);
-            scene.text('"Aha, you are loosening your anus."');
-            scene.text('"That\'s great, but it\'s in the way right now." He comments and pulls the plug out from your ass.<br>');
+        (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (20);
+        (s as any).gop_sex_lubri = 1;
+        (s as any).pod_whore_lubri_text = '"' + ((s as any).npcdesc ?? 0) + ', wait! If you want to fuck me in the ass, you should lube up my hole!" You say and pull a tube out of your purse. You take the cap off, squeeze some lube onto your fingers, and smear your anus with lube.';
+      } else {
+        if (((s as any).mc_inventory ?? 0)?.['lubricant'] === 0) {
+          if (((s as any).agape ?? 0) > 2) {
+            (s as any).agape = 2;
           }
-          // TODO-QSP: end & !! --- gop_sex_analPlugIn ---
-          if (String((s as any).locArgs?.[1] ?? '') === 'group_sex_start') {
-            if (((s as any).shgopsex_gr_day ?? 0) !== ((s as any).daystart ?? 0)) {
-              ((s as any).stat = (s as any).stat ?? {})['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
-            }
-            (s as any).shgopsex_gr_day = ((s as any).daystart ?? 0);
-            (s as any).shgopsex_gr_count = ((s as any).shgopsex_gr_count ?? 0) - (1);
-            ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})['A9'] = 1;
-            ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})['A10'] = 1;
-            ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})['A11'] = 1;
-            // TODO-QSP: end & !! --- group_sex_start ---
-            if (String((s as any).locArgs?.[1] ?? '') === 'gop_sex_lubri') {
-              if ((!((s as any).gop_sex_lubri ?? 0))) {
-                if (((s as any).mc_inventory ?? 0)?.['lubricant'] > 0) {
-                  ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['lubricant'] = ((s as any).mc_inventory['lubricant'] ?? 0) - (1);
-                  if (((s as any).agape ?? 0) > 1) {
-                    (s as any).agape = 1;
-                  }
-                  (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (20);
-                  (s as any).gop_sex_lubri = 1;
-                  (s as any).pod_whore_lubri_text = '"' + ((s as any).npcdesc ?? 0) + ', wait! If you want to fuck me in the ass, you should lube up my hole!" You say and pull a tube out of your purse. You take the cap off, squeeze some lube onto your fingers, and smear your anus with lube.';
+          (s as any).pcs_horny = 0;
+        }
+      }
+    }
+  }
+  if (String((s as any).locArgs?.[1] ?? '') === 'gop_groupsex_analPlugIn') {
+    if (((s as any).analPlugIn ?? 0) === 1) {
+      (s as any).analPlugIn = 0;
+      (s as any).analPlugOut = 1;
+      scene.text('"What?! Do you have a buttplug in your ass?" ' + qspFunc(s, 'gopsex', 'hide', 'gop_name_npc') + ' asks in surprise.');
+      scene.text('"Aha, you are loosening your anus."');
+      scene.text('"That\'s great, but it\'s in the way right now." He comments and pulls the plug out from your ass.<br>');
+    }
+  }
+  if (String((s as any).locArgs?.[1] ?? '') === 'gop_groupsex_lubri') {
+    if ((!((s as any).gop_groupsex_lubri ?? 0))) {
+      if (((s as any).mc_inventory ?? 0)?.['lubricant'] > 0) {
+        ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['lubricant'] = ((s as any).mc_inventory['lubricant'] ?? 0) - (1);
+        if (((s as any).agape ?? 0) > 1) {
+          (s as any).agape = 1;
+        }
+        (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (20);
+        (s as any).gop_groupsex_lubri = 1;
+        (s as any).pod_whore_lubri_text = '"' + qspFunc(s, 'gopsex', 'hide', 'gop_text_npcr') + ', wait! If you want to fuck me in the ass, you should lube up my hole!" You say and pull a tube out of your purse. You take the cap off, squeeze some lube onto your fingers, and smear your anus with lube.';
+      } else {
+        if (((s as any).mc_inventory ?? 0)?.['lubricant'] === 0) {
+          if (((s as any).agape ?? 0) > 2) {
+            (s as any).agape = 2;
+          }
+          (s as any).pcs_horny = 0;
+        }
+      }
+    }
+  }
+  if (String((s as any).locArgs?.[1] ?? '') === 'shgopsex_vag1') {
+    (s as any).shgopsex_count = ((s as any).shgopsex_count ?? 0) - (1);
+    qspCall(s, 'arousal', 'vaginal', (Math.floor(Math.random() * 5) + 3));
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'ind_stamina_npc']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
+    scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/gopsex/sex/pussy/miss` + (Math.floor(Math.random() * 20) + 1) + '.jpg"></center>');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'text_sex_miss']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGgSexOrgasm(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'npc_orgasm']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
+    if (((s as any).shgopsex_count ?? 0) > 0) {
+      scene.actions([
+        { label: 'Change position: doggie', goto: ['gopsex', 'shgopsex_vag'] },
+        { label: 'Change position: cowgirl', goto: ['gopsex', 'hide', 'shgopsex_vag2'] },
+        { label: 'Change position: screw sex', goto: ['gopsex', 'hide', 'shgopsex_vag3'] },
+        { label: 'Sex selection', handler: (st: GameState) => {
+    qspCall(st, 'gopsex', '');
+  } },
+      ]);
+    } else {
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterShgopsexEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
+    }
+    qspCall(s, 'stat', '');
+  }
+  if (String((s as any).locArgs?.[1] ?? '') === 'shgopsex_vag2') {
+    (s as any).shgopsex_count = ((s as any).shgopsex_count ?? 0) - (1);
+    qspCall(s, 'arousal', 'vaginal', (Math.floor(Math.random() * 5) + 3));
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'ind_stamina_npc']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
+    scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/gopsex/sex/pussy/cow` + (Math.floor(Math.random() * 20) + 1) + '.jpg"></center>');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'text_sex_cow']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGgSexOrgasm(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'npc_orgasm']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
+    if (((s as any).shgopsex_count ?? 0) > 0) {
+      scene.actions([
+        { label: 'Change position: doggie', goto: ['gopsex', 'shgopsex_vag'] },
+        { label: 'Change position: missionary', goto: ['gopsex', 'hide', 'shgopsex_vag1'] },
+        { label: 'Change position: screw sex', goto: ['gopsex', 'hide', 'shgopsex_vag3'] },
+        { label: 'Sex selection', handler: (st: GameState) => {
+    qspCall(st, 'gopsex', '');
+  } },
+      ]);
+    } else {
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterShgopsexEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
+    }
+    qspCall(s, 'stat', '');
+  }
+  if (String((s as any).locArgs?.[1] ?? '') === 'shgopsex_vag3') {
+    (s as any).shgopsex_count = ((s as any).shgopsex_count ?? 0) - (1);
+    qspCall(s, 'arousal', 'vaginal', (Math.floor(Math.random() * 5) + 3));
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'ind_stamina_npc']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
+    scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/gopsex/sex/pussy/bok` + (Math.floor(Math.random() * 3) + 1) + '.jpg"></center>');
+    scene.text('screw sex');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGgSexOrgasm(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'npc_orgasm']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
+    if (((s as any).shgopsex_count ?? 0) > 0) {
+      scene.actions([
+        { label: 'Change position: doggie', goto: ['gopsex', 'shgopsex_vag'] },
+        { label: 'Change position: missionary', goto: ['gopsex', 'hide', 'shgopsex_vag1'] },
+        { label: 'Change position: cowgirl', goto: ['gopsex', 'hide', 'shgopsex_vag2'] },
+        { label: 'Sex selection', handler: (st: GameState) => {
+    qspCall(st, 'gopsex', '');
+  } },
+      ]);
+    } else {
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterShgopsexEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
+    }
+    qspCall(s, 'stat', '');
+  }
+  if (String((s as any).locArgs?.[1] ?? '') === 'shgopsex_anal1') {
+    (s as any).shgopsex_count = ((s as any).shgopsex_count ?? 0) - (1);
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'ind_stamina_npc']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
+    scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/gopsex/sex/anal/miss` + (Math.floor(Math.random() * 20) + 1) + '.jpg"></center>');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'gop_sex_analPlugIn']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'gop_sex_lubri']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'text_sex_miss_anal']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
+    qspCall(s, 'arousal', 'anal', (Math.floor(Math.random() * 5) + 3));
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGgSexOrgasm(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'npc_orgasm']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
+    if (((s as any).shgopsex_count ?? 0) > 0) {
+      scene.actions([
+        { label: 'Change position: doggie', goto: ['gopsex', 'shgopsex_anal'] },
+        { label: 'Change position: cowgirl', goto: ['gopsex', 'hide', 'shgopsex_anal2'] },
+        { label: 'Change position: screw sex', goto: ['gopsex', 'hide', 'shgopsex_anal3'] },
+        { label: 'Sex selection', handler: (st: GameState) => {
+    qspCall(st, 'gopsex', '');
+  } },
+      ]);
+    } else {
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterShgopsexEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
+    }
+    qspCall(s, 'stat', '');
+  }
+  if (String((s as any).locArgs?.[1] ?? '') === 'shgopsex_anal2') {
+    (s as any).shgopsex_count = ((s as any).shgopsex_count ?? 0) - (1);
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'ind_stamina_npc']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
+    scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/gopsex/sex/anal/cow` + (Math.floor(Math.random() * 20) + 1) + '.jpg"></center>');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'gop_sex_analPlugIn']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'gop_sex_lubri']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'text_sex_cow_anal']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
+    qspCall(s, 'arousal', 'anal', (Math.floor(Math.random() * 5) + 3));
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGgSexOrgasm(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'npc_orgasm']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
+    if (((s as any).shgopsex_count ?? 0) > 0) {
+      scene.actions([
+        { label: 'Change position: doggie', goto: ['gopsex', 'shgopsex_anal'] },
+        { label: 'Change position: missionary', goto: ['gopsex', 'hide', 'shgopsex_anal1'] },
+        { label: 'Change position: screw sex', goto: ['gopsex', 'hide', 'shgopsex_anal3'] },
+        { label: 'Sex selection', handler: (st: GameState) => {
+    qspCall(st, 'gopsex', '');
+  } },
+      ]);
+    } else {
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterShgopsexEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
+    }
+    qspCall(s, 'stat', '');
+  }
+  if (String((s as any).locArgs?.[1] ?? '') === 'shgopsex_anal3') {
+    (s as any).shgopsex_count = ((s as any).shgopsex_count ?? 0) - (1);
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'ind_stamina_npc']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
+    scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/gopsex/sex/anal/bok` + (Math.floor(Math.random() * 9) + 1) + '.jpg"></center>');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'gop_sex_analPlugIn']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'gop_sex_lubri']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
+    qspCall(s, 'arousal', 'anal', (Math.floor(Math.random() * 5) + 3));
+    scene.text('On the side');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGgSexOrgasm(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'npc_orgasm']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
+    if (((s as any).shgopsex_count ?? 0) > 0) {
+      scene.actions([
+        { label: 'Change position: doggie', goto: ['gopsex', 'shgopsex_anal'] },
+        { label: 'Change position: missionary', goto: ['gopsex', 'hide', 'shgopsex_anal1'] },
+        { label: 'Change position: cowgirl', goto: ['gopsex', 'hide', 'shgopsex_anal2'] },
+        { label: 'Sex selection', handler: (st: GameState) => {
+    qspCall(st, 'gopsex', '');
+  } },
+      ]);
+    } else {
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterShgopsexEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
+    }
+    qspCall(s, 'stat', '');
+  }
+  if (String((s as any).locArgs?.[1] ?? '') === 'shgopsex_eattits') {
+    (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (5);
+    (s as any).minut = ((s as any).minut ?? 0) + ((Math.floor(Math.random() * 3) + 1));
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'ind_stamina_npc']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
+    scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/gopsex/tits/eat` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
+    scene.text(`${((s as any).npcdesc ?? '')} is nibbling on your nipples.`);
+    scene.actions([
+      { label: 'Do a tit job or a titty fuck', goto: ['gopsex', 'hide', 'shgopsex_fucktits'] },
+      { label: 'Sex selection', handler: (st: GameState) => {
+    qspCall(st, 'gopsex', '');
+  } },
+    ]);
+  }
+  if (String((s as any).locArgs?.[1] ?? '') === 'shgopsex_fucktits') {
+    (s as any).shgopsex_count = ((s as any).shgopsex_count ?? 0) - (1);
+    (s as any).sh_bjandhj_cum = 1;
+    qspCall(s, 'arousal', 'breasts', (Math.floor(Math.random() * 5) + 3));
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'ind_stamina_npc']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
+    scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/gopsex/tits/tj` + (Math.floor(Math.random() * 9) + 1) + '.jpg"></center>');
+    scene.text(`${((s as any).npcdesc ?? '')} wants to tittyfuck you, and you don't mind.`);
+    if (((s as any).shgopsex_count ?? 0) > 0) {
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'cont']; enterShgopsex(s, scene); (s as any).locArgs = __savedLocArgs; }
+    } else {
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterShgopsexEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
+    }
+    qspCall(s, 'stat', '');
+  }
+  if (String((s as any).locArgs?.[1] ?? '') === 'shgopsex_swallow') {
+    (s as any).minut = ((s as any).minut ?? 0) + ((Math.floor(Math.random() * 3) + 1));
+    qspCall(s, 'cum_call', 'mouth', ((s as any).npcID ?? 0), 1);
+    scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/pc/body/cum/swallow/swallow` + (Math.floor(Math.random() * 19) + 1) + '.jpg"></center>');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'text_sex_cumm']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Leave', goto: ['vasilyhome', 'livingroom'] },
+    ]);
+  }
+  if (String((s as any).locArgs?.[1] ?? '') === 'shgopsex_cumface') {
+    (s as any).minut = ((s as any).minut ?? 0) + ((Math.floor(Math.random() * 3) + 1));
+    qspCall(s, 'cum_call', 'face', ((s as any).npcID ?? 0), 1);
+    if (((s as any).pcs_haircol ?? 0) < 4) {
+      scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/pc/body/cum/cumface/${((s as any).pcs_haircolor ?? '')}/` + (Math.floor(Math.random() * 19) + 1) + '.jpg"></center>');
+    }
+    if (((s as any).pcs_haircol ?? 0) > 3) {
+      scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/pc/body/cum/cumface/custom/` + (Math.floor(Math.random() * 19) + 1) + '.jpg"></center>');
+    }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'text_sex_cumface']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Leave', goto: ['vasilyhome', 'livingroom'] },
+    ]);
+  }
+  if (String((s as any).locArgs?.[1] ?? '') === 'shgopsex_cumbelly') {
+    (s as any).minut = ((s as any).minut ?? 0) + ((Math.floor(Math.random() * 3) + 1));
+    qspCall(s, 'cum_call', 'stomach', ((s as any).npcID ?? 0), 1);
+    scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/pc/body/cum/cumbelly/cumbelly` + (Math.floor(Math.random() * 13) + 1) + '.jpg"></center>');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'text_sex_cumbody']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Leave', goto: ['vasilyhome', 'livingroom'] },
+    ]);
+  }
+  if (String((s as any).locArgs?.[1] ?? '') === 'shgopsex_cumvag') {
+    (s as any).minut = ((s as any).minut ?? 0) + ((Math.floor(Math.random() * 3) + 1));
+    qspCall(s, 'cum_call', '', ((s as any).npcID ?? 0), 1);
+    scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/pc/body/cum/creampie/cumpussy` + (Math.floor(Math.random() * 17) + 1) + '.jpg"></center>');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'text_sex_cumvag']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Leave', goto: ['vasilyhome', 'livingroom'] },
+    ]);
+  }
+  if (String((s as any).locArgs?.[1] ?? '') === 'shgopsex_cumanal') {
+    (s as any).minut = ((s as any).minut ?? 0) + ((Math.floor(Math.random() * 3) + 1));
+    qspCall(s, 'cum_call', 'anus', ((s as any).npcID ?? 0), 1);
+    scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/pc/body/cum/cumanal/cumanal` + (Math.floor(Math.random() * 11) + 1) + '.jpg"></center>');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'text_sex_cumass']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Leave', goto: ['vasilyhome', 'livingroom'] },
+    ]);
+  }
+  if (String((s as any).locArgs?.[1] ?? '') === 'shgopsex_group_end') {
+    if (((s as any).sh_bjandhj_cum ?? 0) >= 1) {
+      scene.actions([
+        { label: 'In your mouth', goto: ['gopsex', 'hide', 'shgopsex_group_swallow'] },
+        { label: 'On your face', goto: ['gopsex', 'hide', 'shgopsex_group_cumface'] },
+        { label: 'On your body', goto: ['gopsex', 'hide', 'shgopsex_group_cumbelly'] },
+      ]);
+    } else {
+      if (((s as any).sh_bjandhj_cum ?? 0) <= 0) {
+        scene.actions([
+          { label: 'In your mouth', goto: ['gopsex', 'hide', 'shgopsex_group_swallow'] },
+          { label: 'On your face', goto: ['gopsex', 'hide', 'shgopsex_group_cumface'] },
+          { label: 'On your body', goto: ['gopsex', 'hide', 'shgopsex_group_cumbelly'] },
+          { label: 'On your pussy', goto: ['gopsex', 'hide', 'shgopsex_group_cumvag'] },
+          { label: 'On your ass', goto: ['gopsex', 'hide', 'shgopsex_group_cumanal'] },
+        ]);
+      }
+    }
+    qspCall(s, 'stat', '');
+    (s as any).sh_bjandhj_cum = undefined;
+    (s as any).shgopsex_group_count = undefined;
+  }
+  if (String((s as any).locArgs?.[1] ?? '') === 'shgopsex_group_bj') {
+    (s as any).shgopsex_group_count = ((s as any).shgopsex_group_count ?? 0) - (1);
+    (s as any).sh_bjandhj_cum = 1;
+    qspCall(s, 'arousal', 'bj', (Math.floor(Math.random() * 5) + 1), (((s as any).npcID ?? 0)?.[3] ?? 0), 'group', 'gangbang');
+    qspCall(s, 'arousal', 'bj', (Math.floor(Math.random() * 5) + 1), (((s as any).npcID ?? 0)?.[1] ?? 0), 'group', 'gangbang');
+    qspCall(s, 'arousal', 'bj', (Math.floor(Math.random() * 5) + 1), (((s as any).npcID ?? 0)?.[2] ?? 0), 'group', 'gangbang');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'ind_stamina_groupnpc']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
+    scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/gopsex/group/sex/oral/bj` + (Math.floor(Math.random() * 3) + 1) + '.jpg"></center>');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'text_sex_group_bj']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'npc_orgasm']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
+    if (((s as any).shgopsex_group_count ?? 0) > 0) {
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'cont']; enterShgopsexGroup(s, scene); (s as any).locArgs = __savedLocArgs; }
+    } else {
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'shgopsex_group_end']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
+    }
+    qspCall(s, 'stat', '');
+  }
+  if (String((s as any).locArgs?.[1] ?? '') === 'shgopsex_group_bja') {
+    (s as any).shgopsex_group_count = ((s as any).shgopsex_group_count ?? 0) - (1);
+    (s as any).sh_bjandhj_cum = 1;
+    qspCall(s, 'arousal', 'bj', (Math.floor(Math.random() * 4) + 1), (((s as any).npcID ?? 0)?.[3] ?? 0), 'group', 'gangbang');
+    qspCall(s, 'arousal', 'bj', (Math.floor(Math.random() * 4) + 1), (((s as any).npcID ?? 0)?.[1] ?? 0), 'group', 'gangbang');
+    qspCall(s, 'arousal', 'bj', (Math.floor(Math.random() * 4) + 1), (((s as any).npcID ?? 0)?.[2] ?? 0), 'group', 'gangbang');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'ind_stamina_groupnpc']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
+    scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/gopsex/group/sex/oral/bja` + (Math.floor(Math.random() * 25) + 1) + '.jpg"></center>');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'text_sex_group_bjall']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'npc_orgasm']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
+    if (((s as any).shgopsex_group_count ?? 0) > 0) {
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'cont']; enterShgopsexGroup(s, scene); (s as any).locArgs = __savedLocArgs; }
+    } else {
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'shgopsex_group_end']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
+    }
+    qspCall(s, 'stat', '');
+  }
+  if (String((s as any).locArgs?.[1] ?? '') === 'shgopsex_group_vag') {
+    (s as any).shgopsex_group_count = ((s as any).shgopsex_group_count ?? 0) - (1);
+    (s as any).sh_bjandhj_cum = 0;
+    qspCall(s, 'arousal', 'vaginal', (Math.floor(Math.random() * 6) + 10), (((s as any).npcID ?? 0)?.[1] ?? 0), 'group', 'gangbang');
+    qspCall(s, 'arousal', 'hj', (-5), (((s as any).npcID ?? 0)?.[2] ?? 0), 'group', 'gangbang');
+    qspCall(s, 'arousal', 'bj', (-5), (((s as any).npcID ?? 0)?.[3] ?? 0), 'group', 'gangbang');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'ind_stamina_groupnpc']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
+    scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/gopsex/group/sex/vag` + (Math.floor(Math.random() * 25) + 1) + '.jpg"></center>');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'text_sex_group_vag']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGgSexOrgasm(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'npc_orgasm']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
+    if (((s as any).shgopsex_group_count ?? 0) > 0) {
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'cont']; enterShgopsexGroup(s, scene); (s as any).locArgs = __savedLocArgs; }
+    } else {
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'shgopsex_group_end']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
+    }
+    qspCall(s, 'stat', '');
+  }
+  if (String((s as any).locArgs?.[1] ?? '') === 'shgopsex_group_anal') {
+    (s as any).shgopsex_group_count = ((s as any).shgopsex_group_count ?? 0) - (1);
+    (s as any).sh_bjandhj_cum = 0;
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'ind_stamina_groupnpc']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
+    scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/gopsex/group/sex/anal` + (Math.floor(Math.random() * 18) + 1) + '.jpg"></center>');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'gop_groupsex_analPlugIn']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'gop_groupsex_lubri']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'text_sex_group_anal']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
+    qspCall(s, 'arousal', 'anal', (Math.floor(Math.random() * 6) + 10), (((s as any).npcID ?? 0)?.[2] ?? 0), 'group', 'gangbang');
+    qspCall(s, 'arousal', 'anal', (-5), (((s as any).npcID ?? 0)?.[3] ?? 0), 'group', 'gangbang');
+    qspCall(s, 'arousal', 'anal', (-5), (((s as any).npcID ?? 0)?.[1] ?? 0), 'group', 'gangbang');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGgSexOrgasm(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'npc_orgasm']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
+    if (((s as any).shgopsex_group_count ?? 0) > 0) {
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'cont']; enterShgopsexGroup(s, scene); (s as any).locArgs = __savedLocArgs; }
+    } else {
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'shgopsex_group_end']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
+    }
+    qspCall(s, 'stat', '');
+  }
+  if (String((s as any).locArgs?.[1] ?? '') === 'shgopsex_group_dp') {
+    (s as any).shgopsex_group_count = ((s as any).shgopsex_group_count ?? 0) - (1);
+    (s as any).sh_bjandhj_cum = 0;
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'ind_stamina_groupnpc']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
+    scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/gopsex/group/sex/dp` + (Math.floor(Math.random() * 30) + 1) + '.jpg"></center>');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'gop_groupsex_analPlugIn']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'gop_groupsex_lubri']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'text_sex_group_dp']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
+    qspCall(s, 'arousal', 'vaginal', (Math.floor(Math.random() * 9) + 7), (((s as any).npcID ?? 0)?.[3] ?? 0), 'group', 'gangbang');
+    qspCall(s, 'arousal', 'anal', -(Math.floor(Math.random() * 9) + 7), (((s as any).npcID ?? 0)?.[2] ?? 0), 'group', 'gangbang');
+    qspCall(s, 'arousal', 'bj', (-5), (((s as any).npcID ?? 0)?.[1] ?? 0), 'group', 'gangbang');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGgSexOrgasm(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'npc_orgasm']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
+    if (((s as any).shgopsex_group_count ?? 0) > 0) {
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'cont']; enterShgopsexGroup(s, scene); (s as any).locArgs = __savedLocArgs; }
+    } else {
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'shgopsex_group_end']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
+    }
+    qspCall(s, 'stat', '');
+  }
+  if (String((s as any).locArgs?.[1] ?? '') === 'shgopsex_group_twoanal') {
+    (s as any).shgopsex_group_count = ((s as any).shgopsex_group_count ?? 0) - (1);
+    (s as any).sh_bjandhj_cum = 0;
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'ind_stamina_groupnpc']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
+    scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/gopsex/group/sex/dpa` + (Math.floor(Math.random() * 10) + 1) + '.jpg"></center>');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'gop_groupsex_analPlugIn']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'gop_groupsex_lubri']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'text_sex_group_dpa']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
+    qspCall(s, 'arousal', 'anal', (Math.floor(Math.random() * 9) + 7), (((s as any).npcID ?? 0)?.[2] ?? 0), 'group', 'gangbang');
+    qspCall(s, 'arousal', 'anal', (Math.floor(Math.random() * 9) + 7), (((s as any).npcID ?? 0)?.[1] ?? 0), 'group', 'gangbang');
+    qspCall(s, 'arousal', 'hj', (-6), (((s as any).npcID ?? 0)?.[3] ?? 0), 'group', 'gangbang');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGgSexOrgasm(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'npc_orgasm']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
+    if (((s as any).shgopsex_group_count ?? 0) > 0) {
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'cont']; enterShgopsexGroup(s, scene); (s as any).locArgs = __savedLocArgs; }
+    } else {
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'shgopsex_group_end']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
+    }
+    qspCall(s, 'stat', '');
+  }
+  if (String((s as any).locArgs?.[1] ?? '') === 'shgopsex_group_tripleanal') {
+    (s as any).shgopsex_group_count = ((s as any).shgopsex_group_count ?? 0) - (1);
+    (s as any).sh_bjandhj_cum = 0;
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'ind_stamina_groupnpc']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
+    scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/gopsex/group/sex/triple` + (Math.floor(Math.random() * 4) + 1) + '.jpg"></center>');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'gop_groupsex_analPlugIn']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'gop_groupsex_lubri']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'text_sex_group_triple']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
+    qspCall(s, 'arousal', 'anal', (Math.floor(Math.random() * 3) + 4), (((s as any).npcID ?? 0)?.[1] ?? 0), 'group', 'gangbang');
+    qspCall(s, 'arousal', 'anal', (Math.floor(Math.random() * 3) + 4), (((s as any).npcID ?? 0)?.[3] ?? 0), 'group', 'gangbang');
+    qspCall(s, 'arousal', 'anal', (Math.floor(Math.random() * 3) + 4), (((s as any).npcID ?? 0)?.[2] ?? 0), 'group', 'gangbang');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGgSexOrgasm(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'npc_orgasm']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
+    if (((s as any).shgopsex_group_count ?? 0) > 0) {
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'cont']; enterShgopsexGroup(s, scene); (s as any).locArgs = __savedLocArgs; }
+    } else {
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'shgopsex_group_end']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
+    }
+    qspCall(s, 'stat', '');
+  }
+  if (String((s as any).locArgs?.[1] ?? '') === 'shgopsex_group_cumface') {
+    (s as any).pcs_hairbsh = 0;
+    (s as any).minut = ((s as any).minut ?? 0) + ((Math.floor(Math.random() * 4) + 2));
+    (s as any).O = qspFunc(s, 'gopsex', 'hide', 'rndorder3');
+    qspCall(s, 'npcStat', 'A' + ((s as any).O ?? 0) % 12 + '');
+    qspCall(s, 'cum_call', 'face', ((s as any).npcID ?? 0), 1);
+    qspCall(s, 'npcStat', 'A' + (((s as any).O ?? 0)/12) % 12 + '');
+    qspCall(s, 'cum_call', 'face', ((s as any).npcID ?? 0), 1);
+    qspCall(s, 'npcStat', 'A' + ((s as any).O ?? 0)/144 + '');
+    qspCall(s, 'cum_call', 'hair', ((s as any).npcID ?? 0), 1);
+    (s as any).O = undefined;
+    scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/gopsex/group/cum/cumface` + (Math.floor(Math.random() * 16) + 1) + '.jpg"></center>');
+    scene.text('The ' + qspFunc(s, 'gopsex', 'hide', 'gop_text_npcr') + ' spray their cum all over your face');
+    qspCall(s, 'arousal', 'end');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Leave', goto: ['vasilyhome', 'livingroom'] },
+    ]);
+  }
+  if (String((s as any).locArgs?.[1] ?? '') === 'shgopsex_group_swallow') {
+    (s as any).pcs_hairbsh = 0;
+    (s as any).minut = ((s as any).minut ?? 0) + ((Math.floor(Math.random() * 4) + 2));
+    (s as any).O = qspFunc(s, 'gopsex', 'hide', 'rndorder3');
+    qspCall(s, 'npcStat', 'A' + ((s as any).O ?? 0) % 12 + '');
+    qspCall(s, 'cum_call', 'mouth', ((s as any).npcID ?? 0), 1);
+    qspCall(s, 'npcStat', 'A' + (((s as any).O ?? 0)/12) % 12 + '');
+    qspCall(s, 'cum_call', 'mouth', ((s as any).npcID ?? 0), 1);
+    qspCall(s, 'npcStat', 'A' + ((s as any).O ?? 0)/144 + '');
+    qspCall(s, 'cum_call', 'face', ((s as any).npcID ?? 0), 1);
+    (s as any).O = undefined;
+    qspCall(s, 'stat', '');
+    scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/gopsex/group/cum/swallow` + (Math.floor(Math.random() * 11) + 1) + '.jpg"></center>');
+    scene.text('One by one the ' + qspFunc(s, 'gopsex', 'hide', 'gop_text_npcr') + ' cum their semen into your mouth and you swallow it all.');
+    qspCall(s, 'arousal', 'end');
+    scene.actions([
+      { label: 'Leave', goto: ['vasilyhome', 'livingroom'] },
+    ]);
+  }
+  if (String((s as any).locArgs?.[1] ?? '') === 'shgopsex_group_cumbelly') {
+    (s as any).pcs_hairbsh = 0;
+    (s as any).minut = ((s as any).minut ?? 0) + ((Math.floor(Math.random() * 4) + 2));
+    (s as any).O = qspFunc(s, 'gopsex', 'hide', 'rndorder3');
+    qspCall(s, 'npcStat', 'A' + ((s as any).O ?? 0) % 12 + '');
+    qspCall(s, 'cum_call', 'stomach', ((s as any).npcID ?? 0), 1);
+    qspCall(s, 'npcStat', 'A' + (((s as any).O ?? 0)/12) % 12 + '');
+    qspCall(s, 'cum_call', 'stomach', ((s as any).npcID ?? 0), 1);
+    qspCall(s, 'npcStat', 'A' + ((s as any).O ?? 0)/144 + '');
+    qspCall(s, 'cum_call', 'breasts', ((s as any).npcID ?? 0), 1);
+    (s as any).O = undefined;
+    qspCall(s, 'arousal', 'end');
+    scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/gopsex/group/cum/cumbody` + (Math.floor(Math.random() * 15) + 1) + '.jpg"></center>');
+    scene.text('The ' + qspFunc(s, 'gopsex', 'hide', 'gop_text_npcr') + ' come, squirting their hot sticky cum all over your body.');
+    scene.actions([
+      { label: 'Leave', goto: ['vasilyhome', 'livingroom'] },
+    ]);
+  }
+  if (String((s as any).locArgs?.[1] ?? '') === 'shgopsex_group_cumvag') {
+    (s as any).pcs_hairbsh = 0;
+    (s as any).minut = ((s as any).minut ?? 0) + ((Math.floor(Math.random() * 4) + 2));
+    (s as any).O = qspFunc(s, 'gopsex', 'hide', 'rndorder3');
+    qspCall(s, 'npcStat', 'A' + ((s as any).O ?? 0) % 12 + '');
+    qspCall(s, 'cum_call', 'labia', ((s as any).npcID ?? 0), 1);
+    qspCall(s, 'npcStat', 'A' + (((s as any).O ?? 0)/12) % 12 + '');
+    qspCall(s, 'cum_call', 'labia', ((s as any).npcID ?? 0), 1);
+    qspCall(s, 'npcStat', 'A' + ((s as any).O ?? 0)/144 + '');
+    qspCall(s, 'cum_call', 'stomach', ((s as any).npcID ?? 0), 1);
+    (s as any).O = undefined;
+    qspCall(s, 'arousal', 'end');
+    scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/gopsex/group/cum/cumvag` + (Math.floor(Math.random() * 4) + 1) + '.jpg"></center>');
+    scene.text('One by one the ' + qspFunc(s, 'gopsex', 'hide', 'gop_text_npcr') + ' take their turns and shot their hot cum onto your pussy.');
+    scene.actions([
+      { label: 'Leave', goto: ['vasilyhome', 'livingroom'] },
+    ]);
+  }
+  if (String((s as any).locArgs?.[1] ?? '') === 'shgopsex_group_cumanal') {
+    (s as any).pcs_hairbsh = 0;
+    (s as any).minut = ((s as any).minut ?? 0) + ((Math.floor(Math.random() * 4) + 2));
+    (s as any).O = qspFunc(s, 'gopsex', 'hide', 'rndorder3');
+    qspCall(s, 'npcStat', 'A' + ((s as any).O ?? 0) % 12 + '');
+    qspCall(s, 'cum_call', 'anus', ((s as any).npcID ?? 0), 1);
+    qspCall(s, 'npcStat', 'A' + (((s as any).O ?? 0)/12) % 12 + '');
+    qspCall(s, 'cum_call', 'butt', ((s as any).npcID ?? 0), 1);
+    qspCall(s, 'npcStat', 'A' + ((s as any).O ?? 0)/144 + '');
+    qspCall(s, 'cum_call', 'butt', ((s as any).npcID ?? 0), 1);
+    (s as any).O = undefined;
+    qspCall(s, 'arousal', 'end');
+    scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/pc/body/cum/cumass/cumass` + (Math.floor(Math.random() * 19) + 1) + '.jpg"></center>');
+    scene.text('One by one the ' + qspFunc(s, 'gopsex', 'hide', 'gop_text_npcr') + ' take their turns and cover your asshole with their sperm.');
+    scene.actions([
+      { label: 'Leave', goto: ['vasilyhome', 'livingroom'] },
+    ]);
+  }
+  if (String((s as any).locArgs?.[1] ?? '') === 'accview_ggsex') {
+    (s as any).temp_rand = (Math.floor(Math.random() * 9) + 1);
+    if (((s as any).temp_rand ?? 0) === 1) {
+      (s as any).rnd_domdela_text = 'cook some dinner';
+    }
+    if (((s as any).temp_rand ?? 0) === 2) {
+      (s as any).rnd_domdela_text = 'do homework';
+    }
+    if (((s as any).temp_rand ?? 0) === 3) {
+      (s as any).rnd_domdela_text = 'clean your room';
+    }
+    if (((s as any).temp_rand ?? 0) === 4) {
+      (s as any).rnd_domdela_text = 'wash dishes';
+    }
+    if (((s as any).temp_rand ?? 0) === 5) {
+      (s as any).rnd_domdela_text = 'go to bakery for a loaf of bread';
+    }
+    if (((s as any).temp_rand ?? 0) === 6) {
+      (s as any).rnd_domdela_text = 'wash your fanny';
+    }
+    if (((s as any).temp_rand ?? 0) === 7) {
+      (s as any).rnd_domdela_text = 'go to shop';
+    }
+    if (((s as any).temp_rand ?? 0) === 8) {
+      (s as any).rnd_domdela_text = 'cook some supper';
+    }
+    if (((s as any).temp_rand ?? 0) === 9) {
+      (s as any).rnd_domdela_text = 'do the laundry';
+    }
+    (s as any).temp_rand = (Math.floor(Math.random() * 15) + 1);
+    if (((s as any).temp_rand ?? 0) === 1) {
+      (s as any).rnd_telogg_text = '"That\'s no pussy but a bucket fanny."';
+    }
+    if (((s as any).temp_rand ?? 0) === 2) {
+      (s as any).rnd_telogg_text = '"The girl is thoroughly fucked."';
+    }
+    if (((s as any).temp_rand ?? 0) === 3) {
+      (s as any).rnd_telogg_text = '"Our ' + ((s as any).pcs_nickname ?? 0) + ' has got a bottomless hole!"';
+    }
+    if (((s as any).temp_rand ?? 0) === 4) {
+      (s as any).rnd_telogg_text = '"Again, ' + ((s as any).pcs_nickname ?? 0) + ', you sleep around in a row…"';
+    }
+    if (((s as any).temp_rand ?? 0) === 5) {
+      (s as any).rnd_telogg_text = '"They are ' + ((s as any).gop_sextext3 ?? 0) + ' you again, ' + ((s as any).pcs_nickname ?? 0) + '? Is it possible? Aren\'t you tired of lending your holes to everybody in a row…"';
+    }
+    if (((s as any).temp_rand ?? 0) === 6) {
+      (s as any).rnd_telogg_text = '"Poor girl, ' + ((s as any).gop_sextext2 ?? 0) + ' at every corner."';
+    }
+    if (((s as any).temp_rand ?? 0) === 7) {
+      (s as any).rnd_telogg_text = '"' + ((s as any).pcs_nickname ?? 0) + ' unfailing \' + func(\'gopsex\', \'hide\', \'gop_gg_name2\') + \'!"';
+    }
+    if (((s as any).temp_rand ?? 0) === 8) {
+      (s as any).rnd_telogg_text = '"Poor ' + ((s as any).pcs_nickname ?? 0) + ', they probably fuck up all her holes."';
+    }
+    if (((s as any).temp_rand ?? 0) === 9) {
+      (s as any).rnd_telogg_text = '"Blimey, ' + ((s as any).pcs_nickname ?? 0) + ', damn, you\'re a worn cunt!"';
+    }
+    if (((s as any).temp_rand ?? 0) === 10) {
+      (s as any).rnd_telogg_text = '"What have we here, ' + ((s as any).pcs_nickname ?? 0) + '?! How come they stretch you here so?"';
+    }
+    if (((s as any).temp_rand ?? 0) === 11) {
+      (s as any).rnd_telogg_text = '"She lost her fear completely, ' + qspFunc(s, 'gopsex', 'hide', 'gop_gg_name2') + '!"';
+    }
+    if (((s as any).temp_rand ?? 0) === 12) {
+      (s as any).rnd_telogg_text = '"She lost her shyness completely, ' + qspFunc(s, 'gopsex', 'hide', 'gop_gg_name2') + '!"';
+    }
+    if (((s as any).temp_rand ?? 0) === 13) {
+      (s as any).rnd_telogg_text = '"How can you shamelessly expose your holes right, left and center, ' + qspFunc(s, 'gopsex', 'hide', 'gop_gg_name2') + '?"';
+    }
+    if (((s as any).temp_rand ?? 0) === 14) {
+      (s as any).rnd_telogg_text = '"' + ((s as any).pcs_nickname ?? 0) + ', you are so shameless, \' + func(\'gopsex\', \'hide\', \'gop_gg_name2\') + \'!"';
+    }
+    if (((s as any).temp_rand ?? 0) === 15) {
+      (s as any).rnd_telogg_text = '"Oh, ' + ((s as any).pcs_nickname ?? 0) + ', aren\'t you sorry for yourself?"';
+    }
+    (s as any).temp_rand = (Math.floor(Math.random() * 14) + 1);
+    if (((s as any).temp_rand ?? 0) === 1) {
+      (s as any).rnd_telogg2_text = '"' + ((s as any).pcs_nickname ?? 0) + ', aren\'t you ashamed of working at such a filthy place?"';
+    }
+    if (((s as any).temp_rand ?? 0) === 2) {
+      (s as any).rnd_telogg2_text = '"' + ((s as any).pcs_nickname ?? 0) + ', are you earning extra money even here?"';
+    }
+    if (((s as any).temp_rand ?? 0) === 3) {
+      (s as any).rnd_telogg2_text = '"' + ((s as any).pcs_nickname ?? 0) + ', are you selling your body like a whore?"';
+    }
+    if (((s as any).temp_rand ?? 0) === 4) {
+      (s as any).rnd_telogg2_text = '"You found customers, and you\'re working wholeheartedly ' + ((s as any).pcs_nickname ?? 0) + '."';
+    }
+    if (((s as any).temp_rand ?? 0) === 5) {
+      (s as any).rnd_telogg2_text = '"You are quickly finding your customers, ' + ((s as any).pcs_nickname ?? 0) + '. I\'m amazed!"';
+    }
+    if (((s as any).temp_rand ?? 0) === 6) {
+      (s as any).rnd_telogg2_text = '"Look ' + ((s as any).pcs_nickname ?? 0) + ', if they ruin all your holes, you\'ll be unable to do your business!"';
+    }
+    if (((s as any).temp_rand ?? 0) === 7) {
+      (s as any).rnd_telogg2_text = '"' + ((s as any).pcs_nickname ?? 0) + ', if you\'ll serve anywhere and anybody, you\'ll wear out your slit, and you\'ll be out of work!"';
+    }
+    if (((s as any).temp_rand ?? 0) === 8) {
+      (s as any).rnd_telogg2_text = '"Who do I see, ' + ((s as any).pcs_nickname ?? 0) + '? You sell your body again! I\'m surprised you are such a natural \' + func(\'gopsex\', \'hide\', \'gop_gg_name2\') + \'!"';
+    }
+    if (((s as any).temp_rand ?? 0) === 9) {
+      (s as any).rnd_telogg2_text = '"You sell your body, so you are a \' + func(\'gopsex\', \'hide\', \'gop_gg_name2\') + \'. ' + ((s as any).pcs_nickname ?? 0) + '. I can\'t understand after whom."';
+    }
+    if (((s as any).temp_rand ?? 0) === 10) {
+      (s as any).rnd_telogg2_text = '"You are giving yourself to anybody for a hundred bucks again. Doesn\'t it bother you?"';
+    }
+    if (((s as any).temp_rand ?? 0) === 11) {
+      (s as any).rnd_telogg2_text = '"' + ((s as any).pcs_nickname ?? 0) + ', even a \' + func(\'gopsex\', \'hide\', \'gop_gg_name2\') + \' takes a day off!"';
+    }
+    if (((s as any).temp_rand ?? 0) === 12) {
+      (s as any).rnd_telogg2_text = '"Well, you are a \' + func(\'gopsex\', \'hide\', \'gop_gg_name2\') + \' ' + ((s as any).pcs_nickname ?? 0) + '. If I don\'t pass by, you sell your pussy…"';
+    }
+    if (((s as any).temp_rand ?? 0) === 13) {
+      (s as any).rnd_telogg2_text = '"Complete ' + qspFunc(s, 'gopsex', 'hide', 'gop_gg_name2') + ', she was lost to shame, she is giving to in underpass…"';
+    }
+    if (((s as any).temp_rand ?? 0) === 14) {
+      (s as any).rnd_telogg2_text = '"Whore lost her shame completely, she\'s ready for 50 bucks her box in the street expose…"';
+    }
+    (s as any).temp_rand = (Math.floor(Math.random() * 3) + 1);
+    if (((s as any).temp_rand ?? 0) === 1) {
+      (s as any).rnd_rodnya_text = 'Passing by you';
+    }
+    if (((s as any).temp_rand ?? 0) === 2) {
+      (s as any).rnd_rodnya_text = 'Walking past you';
+    }
+    if (((s as any).temp_rand ?? 0) === 3) {
+      (s as any).rnd_rodnya_text = 'Going past you';
+    }
+    (s as any).temp_rand = (Math.floor(Math.random() * 7) + 1);
+    if (((s as any).temp_rand ?? 0) === 1) {
+      (s as any).rnd_viewgg_text = 'notices you';
+    }
+    if (((s as any).temp_rand ?? 0) === 2) {
+      (s as any).rnd_viewgg_text = 'spots you';
+    }
+    if (((s as any).temp_rand ?? 0) === 3) {
+      (s as any).rnd_viewgg_text = 'spies you';
+    }
+    if (((s as any).temp_rand ?? 0) === 4) {
+      (s as any).rnd_viewgg_text = 'catches a sight of you';
+    }
+    if (((s as any).temp_rand ?? 0) === 5) {
+      (s as any).rnd_viewgg_text = 'throws a look at you';
+    }
+    if (((s as any).temp_rand ?? 0) === 6) {
+      (s as any).rnd_viewgg_text = 'casts a look at you';
+    }
+    if (((s as any).temp_rand ?? 0) === 7) {
+      (s as any).rnd_viewgg_text = 'notices you being ' + qspFunc(s, 'gopsex', 'hide', 'gop_sextext2') + '';
+    }
+    if (((s as any).temp_rand ?? 0) === 8) {
+      (s as any).rnd_viewgg_text = 'sees you being ' + qspFunc(s, 'gopsex', 'hide', 'gop_sextext2') + '';
+    }
+    (s as any).temp_rand = (Math.floor(Math.random() * 2) + 1);
+    if (((s as any).temp_rand ?? 0) === 1) {
+      (s as any).rnd_talkgg_text = 'tells you';
+    }
+    if (((s as any).temp_rand ?? 0) === 2) {
+      (s as any).rnd_talkgg_text = 'says';
+    }
+    (s as any).temp_rand = (Math.floor(Math.random() * 14) + 1);
+    if (((s as any).temp_rand ?? 0) === 1) {
+      (s as any).rnd_talkgg2_text = 'gently';
+    }
+    if (((s as any).temp_rand ?? 0) === 2) {
+      (s as any).rnd_talkgg2_text = 'sarky';
+    }
+    if (((s as any).temp_rand ?? 0) === 3) {
+      (s as any).rnd_talkgg2_text = 'in a low voice';
+    }
+    if (((s as any).temp_rand ?? 0) === 4) {
+      (s as any).rnd_talkgg2_text = 'softly';
+    }
+    if (((s as any).temp_rand ?? 0) === 5) {
+      (s as any).rnd_talkgg2_text = 'arrogantly';
+    }
+    if (((s as any).temp_rand ?? 0) === 6) {
+      (s as any).rnd_talkgg2_text = 'with a smirk';
+    }
+    if (((s as any).temp_rand ?? 0) === 7) {
+      (s as any).rnd_talkgg2_text = 'loudly';
+    }
+    if (((s as any).temp_rand ?? 0) === 8) {
+      (s as any).rnd_talkgg2_text = 'roughly';
+    }
+    if (((s as any).temp_rand ?? 0) === 9) {
+      (s as any).rnd_talkgg2_text = 'sotto voce';
+    }
+    if (((s as any).temp_rand ?? 0) === 10) {
+      (s as any).rnd_talkgg2_text = 'looking';
+    }
+    if (((s as any).temp_rand ?? 0) === 11) {
+      (s as any).rnd_talkgg2_text = 'calmly';
+    }
+    if (((s as any).temp_rand ?? 0) === 12) {
+      (s as any).rnd_talkgg2_text = 'with a laugh';
+    }
+    if (((s as any).temp_rand ?? 0) === 13) {
+      (s as any).rnd_talkgg2_text = 'drowsily';
+    }
+    if (((s as any).temp_rand ?? 0) === 14) {
+      (s as any).rnd_talkgg2_text = 'wickedly';
+    }
+    if ((Math.floor(Math.random() * 2) + 0) === 1) {
+      (s as any).rnd_namesis_text = 'Sister';
+    } else {
+      (s as any).rnd_namesis_text = 'Sis';
+    }
+    (s as any).temp_rand = (Math.floor(Math.random() * 2) + 1);
+    if (((s as any).temp_rand ?? 0) === 1) {
+      (s as any).rnd_mom_txt1 = '" It\'s all, ' + (((s as any).npc_nickname ?? 0)?.['A29']) + ', I\'ll come right away."';
+    }
+    if (((s as any).temp_rand ?? 0) === 2) {
+      (s as any).rnd_mom_txt1 = '" ' + (((s as any).npc_nickname ?? 0)?.['A29']) + ', one more to be served and I\'ll come right away."';
+    }
+    (s as any).temp_rand = (Math.floor(Math.random() * 6) + 1);
+    if (((s as any).fame ?? 0)?.['pav_slut'] >= 250) {
+      if ((!(Math.floor(Math.random() * 2) + 0))) {
+        (s as any).rnd_caught_mom = '' + ((s as any).rnd_rodnya_text ?? 0) + ' your ' + (((s as any).npc_nickname ?? 0)?.['A29']) + ', ' + ((s as any).rnd_viewgg_text ?? 0) + ' and ' + ((s as any).rnd_talkgg_text ?? 0) + ' ' + ((s as any).rnd_talkgg2_text ?? 0) + ': - ' + ((s as any).rnd_telogg2_text ?? 0) + '';
+      } else {
+        (s as any).rnd_caught_mom = '' + ((s as any).rnd_rodnya_text ?? 0) + ' your ' + (((s as any).npc_nickname ?? 0)?.['A29']) + ', ' + ((s as any).rnd_viewgg_text ?? 0) + ' and ' + ((s as any).rnd_talkgg_text ?? 0) + ' ' + ((s as any).rnd_talkgg2_text ?? 0) + ': "Well, ' + ((s as any).pcs_nickname ?? 0) + ', you found a place, where customers take."';
+      }
+    } else {
+      if (((s as any).momslut ?? 0) >= 1) {
+        (s as any).rnd_caught_mom = '' + ((s as any).rnd_rodnya_text ?? 0) + ' your ' + (((s as any).npc_nickname ?? 0)?.['A29']) + ', ' + ((s as any).rnd_viewgg_text ?? 0) + ' and ' + ((s as any).rnd_talkgg_text ?? 0) + ' ' + ((s as any).rnd_talkgg2_text ?? 0) + ': "When you\'ve served the boys, don\'t forget to ' + ((s as any).rnd_domdela_text ?? 0) + '"';
+      } else {
+        if (((s as any).pcs_vag ?? 0) >= 30) {
+          (s as any).rnd_caught_mom = '' + ((s as any).rnd_rodnya_text ?? 0) + ' your ' + (((s as any).npc_nickname ?? 0)?.['A29']) + ', ' + ((s as any).rnd_viewgg_text ?? 0) + ' and ' + ((s as any).rnd_talkgg_text ?? 0) + ' ' + ((s as any).rnd_talkgg2_text ?? 0) + ': "Girl, you should have a rest and not to fuck for a while - your cunny is like a bucket, it isn\'t closing."';
+        } else {
+          if (((s as any).temp_rand ?? 0) === 1) {
+            (s as any).rnd_caught_mom = '' + ((s as any).rnd_rodnya_text ?? 0) + ' your ' + (((s as any).npc_nickname ?? 0)?.['A29']) + ', ' + ((s as any).rnd_viewgg_text ?? 0) + ' and ' + ((s as any).rnd_talkgg_text ?? 0) + ' ' + ((s as any).rnd_talkgg2_text ?? 0) + ': - ' + ((s as any).rnd_telogg_text ?? 0) + '';
+          } else {
+            if (((s as any).temp_rand ?? 0) === 2) {
+              (s as any).rnd_caught_mom = '' + ((s as any).rnd_rodnya_text ?? 0) + ' your ' + (((s as any).npc_nickname ?? 0)?.['A29']) + ', ' + ((s as any).rnd_viewgg_text ?? 0) + ' and ' + ((s as any).rnd_talkgg_text ?? 0) + ' ' + ((s as any).rnd_talkgg2_text ?? 0) + ': "You are naughty again ' + ((s as any).pcs_nickname ?? 0) + '? I begged you not to fuck at every corner, you got fully out of hand, slut!"';
+            } else {
+              if (((s as any).temp_rand ?? 0) === 3) {
+                (s as any).rnd_caught_mom = '' + ((s as any).rnd_rodnya_text ?? 0) + ' your ' + (((s as any).npc_nickname ?? 0)?.['A29']) + ', ' + ((s as any).rnd_viewgg_text ?? 0) + ' and ' + ((s as any).rnd_talkgg_text ?? 0) + ' ' + ((s as any).rnd_talkgg2_text ?? 0) + ': "Well, ' + ((s as any).pcs_nickname ?? 0) + ', I can see you\'ve found a place to spread your legs for guys… horribly unsanitary."\n"It\'s not my fault, the idea, to go here, occurred to the boys. As soon as they finish, I\'ll come home and I\'ll take a bath." You replied being on your knees and cleaning your messy holes with wet wipes.';
+              } else {
+                if (((s as any).temp_rand ?? 0) === 4) {
+                  (s as any).rnd_caught_mom = '' + ((s as any).rnd_rodnya_text ?? 0) + ' your ' + (((s as any).npc_nickname ?? 0)?.['A29']) + ', ' + ((s as any).rnd_viewgg_text ?? 0) + ' and ' + ((s as any).rnd_talkgg_text ?? 0) + ' ' + ((s as any).rnd_talkgg2_text ?? 0) + ': "' + ((s as any).pcs_nickname ?? 0) + ', instead of fucking the whole town, you should do your homework." "Yes ' + (((s as any).npc_nickname ?? 0)?.['A29']) + ', I\'ve done it!"';
                 } else {
-                  if (((s as any).mc_inventory ?? 0)?.['lubricant'] === 0) {
-                    if (((s as any).agape ?? 0) > 2) {
-                      (s as any).agape = 2;
-                    }
-                    (s as any).pcs_horny = 0;
-                  }
-                }
-              }
-              // TODO-QSP: end & !! --- gop_sex_lubri ---
-              if (String((s as any).locArgs?.[1] ?? '') === 'gop_groupsex_analPlugIn') {
-                if (((s as any).analPlugIn ?? 0) === 1) {
-                  (s as any).analPlugIn = 0;
-                  (s as any).analPlugOut = 1;
-                  scene.text('"What?! Do you have a buttplug in your ass?" ' + qspFunc(s, 'gopsex', 'hide', 'gop_name_npc') + ' asks in surprise.');
-                  scene.text('"Aha, you are loosening your anus."');
-                  scene.text('"That\'s great, but it\'s in the way right now." He comments and pulls the plug out from your ass.<br>');
-                }
-                // TODO-QSP: end & !! --- gop_groupsex_analPlugIn ---
-                if (String((s as any).locArgs?.[1] ?? '') === 'gop_groupsex_lubri') {
-                  if ((!((s as any).gop_groupsex_lubri ?? 0))) {
-                    if (((s as any).mc_inventory ?? 0)?.['lubricant'] > 0) {
-                      ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['lubricant'] = ((s as any).mc_inventory['lubricant'] ?? 0) - (1);
-                      if (((s as any).agape ?? 0) > 1) {
-                        (s as any).agape = 1;
-                      }
-                      (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (20);
-                      (s as any).gop_groupsex_lubri = 1;
-                      (s as any).pod_whore_lubri_text = '"' + qspFunc(s, 'gopsex', 'hide', 'gop_text_npcr') + ', wait! If you want to fuck me in the ass, you should lube up my hole!" You say and pull a tube out of your purse. You take the cap off, squeeze some lube onto your fingers, and smear your anus with lube.';
-                    } else {
-                      if (((s as any).mc_inventory ?? 0)?.['lubricant'] === 0) {
-                        if (((s as any).agape ?? 0) > 2) {
-                          (s as any).agape = 2;
-                        }
-                        (s as any).pcs_horny = 0;
-                      }
-                    }
-                  }
-                  // TODO-QSP: end & !! --- gop_groupsex_lubri ---
-                  if (String((s as any).locArgs?.[1] ?? '') === 'shgopsex_vag1') {
-                    (s as any).shgopsex_count = ((s as any).shgopsex_count ?? 0) - (1);
-                    qspCall(s, 'arousal', 'vaginal', (Math.floor(Math.random() * 5) + 3));
-                    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'ind_stamina_npc']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
-                    scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/gopsex/sex/pussy/miss` + (Math.floor(Math.random() * 20) + 1) + '.jpg"></center>');
-                    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'text_sex_miss']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
-                    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGgSexOrgasm(s, scene); (s as any).locArgs = __savedLocArgs; }
-                    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'npc_orgasm']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
-                    if (((s as any).shgopsex_count ?? 0) > 0) {
-                      scene.actions([
-                        { label: 'Change position: doggie', goto: ['gopsex', 'shgopsex_vag'] },
-                        { label: 'Change position: cowgirl', goto: ['gopsex', 'hide', 'shgopsex_vag2'] },
-                        { label: 'Change position: screw sex', goto: ['gopsex', 'hide', 'shgopsex_vag3'] },
-                        { label: 'Sex selection', handler: (st: GameState) => {
-    qspCall(st, 'gopsex', '');
-  } },
-                      ]);
-                    } else {
-                      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterShgopsexEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
-                    }
-                    qspCall(s, 'stat', '');
-                    // TODO-QSP: end & !! --- shgopsex_vag1 ---
-                    if (String((s as any).locArgs?.[1] ?? '') === 'shgopsex_vag2') {
-                      (s as any).shgopsex_count = ((s as any).shgopsex_count ?? 0) - (1);
-                      qspCall(s, 'arousal', 'vaginal', (Math.floor(Math.random() * 5) + 3));
-                      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'ind_stamina_npc']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
-                      scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/gopsex/sex/pussy/cow` + (Math.floor(Math.random() * 20) + 1) + '.jpg"></center>');
-                      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'text_sex_cow']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
-                      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGgSexOrgasm(s, scene); (s as any).locArgs = __savedLocArgs; }
-                      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'npc_orgasm']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
-                      if (((s as any).shgopsex_count ?? 0) > 0) {
-                        scene.actions([
-                          { label: 'Change position: doggie', goto: ['gopsex', 'shgopsex_vag'] },
-                          { label: 'Change position: missionary', goto: ['gopsex', 'hide', 'shgopsex_vag1'] },
-                          { label: 'Change position: screw sex', goto: ['gopsex', 'hide', 'shgopsex_vag3'] },
-                          { label: 'Sex selection', handler: (st: GameState) => {
-    qspCall(st, 'gopsex', '');
-  } },
-                        ]);
-                      } else {
-                        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterShgopsexEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
-                      }
-                      qspCall(s, 'stat', '');
-                      // TODO-QSP: end & !! --- shgopsex_vag2 ---
-                      if (String((s as any).locArgs?.[1] ?? '') === 'shgopsex_vag3') {
-                        (s as any).shgopsex_count = ((s as any).shgopsex_count ?? 0) - (1);
-                        qspCall(s, 'arousal', 'vaginal', (Math.floor(Math.random() * 5) + 3));
-                        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'ind_stamina_npc']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
-                        scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/gopsex/sex/pussy/bok` + (Math.floor(Math.random() * 3) + 1) + '.jpg"></center>');
-                        scene.text('screw sex');
-                        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGgSexOrgasm(s, scene); (s as any).locArgs = __savedLocArgs; }
-                        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'npc_orgasm']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
-                        if (((s as any).shgopsex_count ?? 0) > 0) {
-                          scene.actions([
-                            { label: 'Change position: doggie', goto: ['gopsex', 'shgopsex_vag'] },
-                            { label: 'Change position: missionary', goto: ['gopsex', 'hide', 'shgopsex_vag1'] },
-                            { label: 'Change position: cowgirl', goto: ['gopsex', 'hide', 'shgopsex_vag2'] },
-                            { label: 'Sex selection', handler: (st: GameState) => {
-    qspCall(st, 'gopsex', '');
-  } },
-                          ]);
-                        } else {
-                          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterShgopsexEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
-                        }
-                        qspCall(s, 'stat', '');
-                        // TODO-QSP: end & !! --- shgopsex_vag3 ---
-                        if (String((s as any).locArgs?.[1] ?? '') === 'shgopsex_anal1') {
-                          (s as any).shgopsex_count = ((s as any).shgopsex_count ?? 0) - (1);
-                          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'ind_stamina_npc']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
-                          scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/gopsex/sex/anal/miss` + (Math.floor(Math.random() * 20) + 1) + '.jpg"></center>');
-                          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'gop_sex_analPlugIn']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
-                          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'gop_sex_lubri']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
-                          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'text_sex_miss_anal']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
-                          qspCall(s, 'arousal', 'anal', (Math.floor(Math.random() * 5) + 3));
-                          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGgSexOrgasm(s, scene); (s as any).locArgs = __savedLocArgs; }
-                          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'npc_orgasm']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
-                          if (((s as any).shgopsex_count ?? 0) > 0) {
-                            scene.actions([
-                              { label: 'Change position: doggie', goto: ['gopsex', 'shgopsex_anal'] },
-                              { label: 'Change position: cowgirl', goto: ['gopsex', 'hide', 'shgopsex_anal2'] },
-                              { label: 'Change position: screw sex', goto: ['gopsex', 'hide', 'shgopsex_anal3'] },
-                              { label: 'Sex selection', handler: (st: GameState) => {
-    qspCall(st, 'gopsex', '');
-  } },
-                            ]);
-                          } else {
-                            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterShgopsexEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
-                          }
-                          qspCall(s, 'stat', '');
-                          // TODO-QSP: end & !! --- shgopsex_anal1 ---
-                          if (String((s as any).locArgs?.[1] ?? '') === 'shgopsex_anal2') {
-                            (s as any).shgopsex_count = ((s as any).shgopsex_count ?? 0) - (1);
-                            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'ind_stamina_npc']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
-                            scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/gopsex/sex/anal/cow` + (Math.floor(Math.random() * 20) + 1) + '.jpg"></center>');
-                            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'gop_sex_analPlugIn']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
-                            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'gop_sex_lubri']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
-                            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'text_sex_cow_anal']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
-                            qspCall(s, 'arousal', 'anal', (Math.floor(Math.random() * 5) + 3));
-                            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGgSexOrgasm(s, scene); (s as any).locArgs = __savedLocArgs; }
-                            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'npc_orgasm']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
-                            if (((s as any).shgopsex_count ?? 0) > 0) {
-                              scene.actions([
-                                { label: 'Change position: doggie', goto: ['gopsex', 'shgopsex_anal'] },
-                                { label: 'Change position: missionary', goto: ['gopsex', 'hide', 'shgopsex_anal1'] },
-                                { label: 'Change position: screw sex', goto: ['gopsex', 'hide', 'shgopsex_anal3'] },
-                                { label: 'Sex selection', handler: (st: GameState) => {
-    qspCall(st, 'gopsex', '');
-  } },
-                              ]);
-                            } else {
-                              { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterShgopsexEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
-                            }
-                            qspCall(s, 'stat', '');
-                            // TODO-QSP: end & !! --- shgopsex_anal2 ---
-                            if (String((s as any).locArgs?.[1] ?? '') === 'shgopsex_anal3') {
-                              (s as any).shgopsex_count = ((s as any).shgopsex_count ?? 0) - (1);
-                              { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'ind_stamina_npc']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
-                              scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/gopsex/sex/anal/bok` + (Math.floor(Math.random() * 9) + 1) + '.jpg"></center>');
-                              { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'gop_sex_analPlugIn']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
-                              { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'gop_sex_lubri']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
-                              qspCall(s, 'arousal', 'anal', (Math.floor(Math.random() * 5) + 3));
-                              scene.text('On the side');
-                              { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGgSexOrgasm(s, scene); (s as any).locArgs = __savedLocArgs; }
-                              { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'npc_orgasm']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
-                              if (((s as any).shgopsex_count ?? 0) > 0) {
-                                scene.actions([
-                                  { label: 'Change position: doggie', goto: ['gopsex', 'shgopsex_anal'] },
-                                  { label: 'Change position: missionary', goto: ['gopsex', 'hide', 'shgopsex_anal1'] },
-                                  { label: 'Change position: cowgirl', goto: ['gopsex', 'hide', 'shgopsex_anal2'] },
-                                  { label: 'Sex selection', handler: (st: GameState) => {
-    qspCall(st, 'gopsex', '');
-  } },
-                                ]);
-                              } else {
-                                { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterShgopsexEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
-                              }
-                              qspCall(s, 'stat', '');
-                              // TODO-QSP: end & !! --- shgopsex_anal3 ---
-                              if (String((s as any).locArgs?.[1] ?? '') === 'shgopsex_eattits') {
-                                (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (5);
-                                (s as any).minut = ((s as any).minut ?? 0) + ((Math.floor(Math.random() * 3) + 1));
-                                { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'ind_stamina_npc']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
-                                scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/gopsex/tits/eat` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
-                                scene.text(`${((s as any).npcdesc ?? '')} is nibbling on your nipples.`);
-                                // TODO-QSP: end & !! --- shgopsex_eattits ---
-                                if (String((s as any).locArgs?.[1] ?? '') === 'shgopsex_fucktits') {
-                                  (s as any).shgopsex_count = ((s as any).shgopsex_count ?? 0) - (1);
-                                  (s as any).sh_bjandhj_cum = 1;
-                                  qspCall(s, 'arousal', 'breasts', (Math.floor(Math.random() * 5) + 3));
-                                  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'ind_stamina_npc']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
-                                  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/gopsex/tits/tj` + (Math.floor(Math.random() * 9) + 1) + '.jpg"></center>');
-                                  scene.text(`${((s as any).npcdesc ?? '')} wants to tittyfuck you, and you don't mind.`);
-                                  if (((s as any).shgopsex_count ?? 0) > 0) {
-                                    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'cont']; enterShgopsex(s, scene); (s as any).locArgs = __savedLocArgs; }
-                                  } else {
-                                    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterShgopsexEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
-                                  }
-                                  qspCall(s, 'stat', '');
-                                  // TODO-QSP: end & !! --- shgopsex_fucktits ---
-                                  if (String((s as any).locArgs?.[1] ?? '') === 'shgopsex_swallow') {
-                                    (s as any).minut = ((s as any).minut ?? 0) + ((Math.floor(Math.random() * 3) + 1));
-                                    qspCall(s, 'cum_call', 'mouth', ((s as any).npcID ?? 0), 1);
-                                    scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/pc/body/cum/swallow/swallow` + (Math.floor(Math.random() * 19) + 1) + '.jpg"></center>');
-                                    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'text_sex_cumm']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
-                                    qspCall(s, 'stat', '');
-                                    // TODO-QSP: end & !! --- shgopsex_swallow ---
-                                    if (String((s as any).locArgs?.[1] ?? '') === 'shgopsex_cumface') {
-                                      (s as any).minut = ((s as any).minut ?? 0) + ((Math.floor(Math.random() * 3) + 1));
-                                      qspCall(s, 'cum_call', 'face', ((s as any).npcID ?? 0), 1);
-                                      if (((s as any).pcs_haircol ?? 0) < 4) {
-                                        scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/pc/body/cum/cumface/${((s as any).pcs_haircolor ?? '')}/` + (Math.floor(Math.random() * 19) + 1) + '.jpg"></center>');
-                                      }
-                                      if (((s as any).pcs_haircol ?? 0) > 3) {
-                                        scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/pc/body/cum/cumface/custom/` + (Math.floor(Math.random() * 19) + 1) + '.jpg"></center>');
-                                      }
-                                      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'text_sex_cumface']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
-                                      qspCall(s, 'stat', '');
-                                      // TODO-QSP: end & !! --- shgopsex_cumface ---
-                                      if (String((s as any).locArgs?.[1] ?? '') === 'shgopsex_cumbelly') {
-                                        (s as any).minut = ((s as any).minut ?? 0) + ((Math.floor(Math.random() * 3) + 1));
-                                        qspCall(s, 'cum_call', 'stomach', ((s as any).npcID ?? 0), 1);
-                                        scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/pc/body/cum/cumbelly/cumbelly` + (Math.floor(Math.random() * 13) + 1) + '.jpg"></center>');
-                                        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'text_sex_cumbody']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
-                                        qspCall(s, 'stat', '');
-                                        // TODO-QSP: end & !! --- shgopsex_cumbelly ---
-                                        if (String((s as any).locArgs?.[1] ?? '') === 'shgopsex_cumvag') {
-                                          (s as any).minut = ((s as any).minut ?? 0) + ((Math.floor(Math.random() * 3) + 1));
-                                          qspCall(s, 'cum_call', '', ((s as any).npcID ?? 0), 1);
-                                          scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/pc/body/cum/creampie/cumpussy` + (Math.floor(Math.random() * 17) + 1) + '.jpg"></center>');
-                                          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'text_sex_cumvag']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
-                                          qspCall(s, 'stat', '');
-                                          // TODO-QSP: end & !! --- shgopsex_cumvag ---
-                                          if (String((s as any).locArgs?.[1] ?? '') === 'shgopsex_cumanal') {
-                                            (s as any).minut = ((s as any).minut ?? 0) + ((Math.floor(Math.random() * 3) + 1));
-                                            qspCall(s, 'cum_call', 'anus', ((s as any).npcID ?? 0), 1);
-                                            scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/pc/body/cum/cumanal/cumanal` + (Math.floor(Math.random() * 11) + 1) + '.jpg"></center>');
-                                            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'text_sex_cumass']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
-                                            qspCall(s, 'stat', '');
-                                            // TODO-QSP: end & !! --- shgopsex_cumanal ---
-                                            if (String((s as any).locArgs?.[1] ?? '') === 'shgopsex_group_end') {
-                                              if (((s as any).sh_bjandhj_cum ?? 0) >= 1) {
-                                                scene.actions([
-                                                  { label: 'In your mouth', goto: ['gopsex', 'hide', 'shgopsex_group_swallow'] },
-                                                  { label: 'On your face', goto: ['gopsex', 'hide', 'shgopsex_group_cumface'] },
-                                                  { label: 'On your body', goto: ['gopsex', 'hide', 'shgopsex_group_cumbelly'] },
-                                                ]);
-                                              } else {
-                                                if (((s as any).sh_bjandhj_cum ?? 0) <= 0) {
-                                                  scene.actions([
-                                                    { label: 'In your mouth', goto: ['gopsex', 'hide', 'shgopsex_group_swallow'] },
-                                                    { label: 'On your face', goto: ['gopsex', 'hide', 'shgopsex_group_cumface'] },
-                                                    { label: 'On your body', goto: ['gopsex', 'hide', 'shgopsex_group_cumbelly'] },
-                                                    { label: 'On your pussy', goto: ['gopsex', 'hide', 'shgopsex_group_cumvag'] },
-                                                    { label: 'On your ass', goto: ['gopsex', 'hide', 'shgopsex_group_cumanal'] },
-                                                  ]);
-                                                }
-                                              }
-                                              qspCall(s, 'stat', '');
-                                              (s as any).sh_bjandhj_cum = undefined;
-                                              (s as any).shgopsex_group_count = undefined;
-                                              // TODO-QSP: end & !! --- shgopsex_group_end ---
-                                              if (String((s as any).locArgs?.[1] ?? '') === 'shgopsex_group_bj') {
-                                                (s as any).shgopsex_group_count = ((s as any).shgopsex_group_count ?? 0) - (1);
-                                                (s as any).sh_bjandhj_cum = 1;
-                                                qspCall(s, 'arousal', 'bj', (Math.floor(Math.random() * 5) + 1), (((s as any).npcID ?? 0)?.[3] ?? 0), 'group', 'gangbang');
-                                                qspCall(s, 'arousal', 'bj', (Math.floor(Math.random() * 5) + 1), (((s as any).npcID ?? 0)?.[1] ?? 0), 'group', 'gangbang');
-                                                qspCall(s, 'arousal', 'bj', (Math.floor(Math.random() * 5) + 1), (((s as any).npcID ?? 0)?.[2] ?? 0), 'group', 'gangbang');
-                                                { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'ind_stamina_groupnpc']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
-                                                scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/gopsex/group/sex/oral/bj` + (Math.floor(Math.random() * 3) + 1) + '.jpg"></center>');
-                                                { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'text_sex_group_bj']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
-                                                { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'npc_orgasm']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
-                                                if (((s as any).shgopsex_group_count ?? 0) > 0) {
-                                                  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'cont']; enterShgopsexGroup(s, scene); (s as any).locArgs = __savedLocArgs; }
-                                                } else {
-                                                  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'shgopsex_group_end']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
-                                                }
-                                                qspCall(s, 'stat', '');
-                                                // TODO-QSP: end & !! --- shgopsex_group_bj ---
-                                                if (String((s as any).locArgs?.[1] ?? '') === 'shgopsex_group_bja') {
-                                                  (s as any).shgopsex_group_count = ((s as any).shgopsex_group_count ?? 0) - (1);
-                                                  (s as any).sh_bjandhj_cum = 1;
-                                                  qspCall(s, 'arousal', 'bj', (Math.floor(Math.random() * 4) + 1), (((s as any).npcID ?? 0)?.[3] ?? 0), 'group', 'gangbang');
-                                                  qspCall(s, 'arousal', 'bj', (Math.floor(Math.random() * 4) + 1), (((s as any).npcID ?? 0)?.[1] ?? 0), 'group', 'gangbang');
-                                                  qspCall(s, 'arousal', 'bj', (Math.floor(Math.random() * 4) + 1), (((s as any).npcID ?? 0)?.[2] ?? 0), 'group', 'gangbang');
-                                                  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'ind_stamina_groupnpc']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
-                                                  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/gopsex/group/sex/oral/bja` + (Math.floor(Math.random() * 25) + 1) + '.jpg"></center>');
-                                                  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'text_sex_group_bjall']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
-                                                  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'npc_orgasm']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
-                                                  if (((s as any).shgopsex_group_count ?? 0) > 0) {
-                                                    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'cont']; enterShgopsexGroup(s, scene); (s as any).locArgs = __savedLocArgs; }
-                                                  } else {
-                                                    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'shgopsex_group_end']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
-                                                  }
-                                                  qspCall(s, 'stat', '');
-                                                  // TODO-QSP: end & !! --- shgopsex_group_bja ---
-                                                  if (String((s as any).locArgs?.[1] ?? '') === 'shgopsex_group_vag') {
-                                                    (s as any).shgopsex_group_count = ((s as any).shgopsex_group_count ?? 0) - (1);
-                                                    (s as any).sh_bjandhj_cum = 0;
-                                                    qspCall(s, 'arousal', 'vaginal', (Math.floor(Math.random() * 6) + 10), (((s as any).npcID ?? 0)?.[1] ?? 0), 'group', 'gangbang');
-                                                    qspCall(s, 'arousal', 'hj', (-5), (((s as any).npcID ?? 0)?.[2] ?? 0), 'group', 'gangbang');
-                                                    qspCall(s, 'arousal', 'bj', (-5), (((s as any).npcID ?? 0)?.[3] ?? 0), 'group', 'gangbang');
-                                                    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'ind_stamina_groupnpc']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
-                                                    scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/gopsex/group/sex/vag` + (Math.floor(Math.random() * 25) + 1) + '.jpg"></center>');
-                                                    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'text_sex_group_vag']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
-                                                    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGgSexOrgasm(s, scene); (s as any).locArgs = __savedLocArgs; }
-                                                    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'npc_orgasm']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
-                                                    if (((s as any).shgopsex_group_count ?? 0) > 0) {
-                                                      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'cont']; enterShgopsexGroup(s, scene); (s as any).locArgs = __savedLocArgs; }
-                                                    } else {
-                                                      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'shgopsex_group_end']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
-                                                    }
-                                                    qspCall(s, 'stat', '');
-                                                    // TODO-QSP: end & !! --- shgopsex_group_vag ---
-                                                    if (String((s as any).locArgs?.[1] ?? '') === 'shgopsex_group_anal') {
-                                                      (s as any).shgopsex_group_count = ((s as any).shgopsex_group_count ?? 0) - (1);
-                                                      (s as any).sh_bjandhj_cum = 0;
-                                                      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'ind_stamina_groupnpc']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
-                                                      scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/gopsex/group/sex/anal` + (Math.floor(Math.random() * 18) + 1) + '.jpg"></center>');
-                                                      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'gop_groupsex_analPlugIn']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
-                                                      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'gop_groupsex_lubri']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
-                                                      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'text_sex_group_anal']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
-                                                      qspCall(s, 'arousal', 'anal', (Math.floor(Math.random() * 6) + 10), (((s as any).npcID ?? 0)?.[2] ?? 0), 'group', 'gangbang');
-                                                      qspCall(s, 'arousal', 'anal', (-5), (((s as any).npcID ?? 0)?.[3] ?? 0), 'group', 'gangbang');
-                                                      qspCall(s, 'arousal', 'anal', (-5), (((s as any).npcID ?? 0)?.[1] ?? 0), 'group', 'gangbang');
-                                                      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGgSexOrgasm(s, scene); (s as any).locArgs = __savedLocArgs; }
-                                                      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'npc_orgasm']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
-                                                      if (((s as any).shgopsex_group_count ?? 0) > 0) {
-                                                        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'cont']; enterShgopsexGroup(s, scene); (s as any).locArgs = __savedLocArgs; }
-                                                      } else {
-                                                        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'shgopsex_group_end']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
-                                                      }
-                                                      qspCall(s, 'stat', '');
-                                                      // TODO-QSP: end & !! --- shgopsex_group_anal ---
-                                                      if (String((s as any).locArgs?.[1] ?? '') === 'shgopsex_group_dp') {
-                                                        (s as any).shgopsex_group_count = ((s as any).shgopsex_group_count ?? 0) - (1);
-                                                        (s as any).sh_bjandhj_cum = 0;
-                                                        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'ind_stamina_groupnpc']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
-                                                        scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/gopsex/group/sex/dp` + (Math.floor(Math.random() * 30) + 1) + '.jpg"></center>');
-                                                        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'gop_groupsex_analPlugIn']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
-                                                        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'gop_groupsex_lubri']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
-                                                        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'text_sex_group_dp']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
-                                                        qspCall(s, 'arousal', 'vaginal', (Math.floor(Math.random() * 9) + 7), (((s as any).npcID ?? 0)?.[3] ?? 0), 'group', 'gangbang');
-                                                        qspCall(s, 'arousal', 'anal', -(Math.floor(Math.random() * 9) + 7), (((s as any).npcID ?? 0)?.[2] ?? 0), 'group', 'gangbang');
-                                                        qspCall(s, 'arousal', 'bj', (-5), (((s as any).npcID ?? 0)?.[1] ?? 0), 'group', 'gangbang');
-                                                        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGgSexOrgasm(s, scene); (s as any).locArgs = __savedLocArgs; }
-                                                        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'npc_orgasm']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
-                                                        if (((s as any).shgopsex_group_count ?? 0) > 0) {
-                                                          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'cont']; enterShgopsexGroup(s, scene); (s as any).locArgs = __savedLocArgs; }
-                                                        } else {
-                                                          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'shgopsex_group_end']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
-                                                        }
-                                                        qspCall(s, 'stat', '');
-                                                        // TODO-QSP: end & !! --- shgopsex_group_dp ---
-                                                        if (String((s as any).locArgs?.[1] ?? '') === 'shgopsex_group_twoanal') {
-                                                          (s as any).shgopsex_group_count = ((s as any).shgopsex_group_count ?? 0) - (1);
-                                                          (s as any).sh_bjandhj_cum = 0;
-                                                          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'ind_stamina_groupnpc']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
-                                                          scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/gopsex/group/sex/dpa` + (Math.floor(Math.random() * 10) + 1) + '.jpg"></center>');
-                                                          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'gop_groupsex_analPlugIn']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
-                                                          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'gop_groupsex_lubri']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
-                                                          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'text_sex_group_dpa']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
-                                                          qspCall(s, 'arousal', 'anal', (Math.floor(Math.random() * 9) + 7), (((s as any).npcID ?? 0)?.[2] ?? 0), 'group', 'gangbang');
-                                                          qspCall(s, 'arousal', 'anal', (Math.floor(Math.random() * 9) + 7), (((s as any).npcID ?? 0)?.[1] ?? 0), 'group', 'gangbang');
-                                                          qspCall(s, 'arousal', 'hj', (-6), (((s as any).npcID ?? 0)?.[3] ?? 0), 'group', 'gangbang');
-                                                          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGgSexOrgasm(s, scene); (s as any).locArgs = __savedLocArgs; }
-                                                          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'npc_orgasm']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
-                                                          if (((s as any).shgopsex_group_count ?? 0) > 0) {
-                                                            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'cont']; enterShgopsexGroup(s, scene); (s as any).locArgs = __savedLocArgs; }
-                                                          } else {
-                                                            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'shgopsex_group_end']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
-                                                          }
-                                                          qspCall(s, 'stat', '');
-                                                          // TODO-QSP: end & !! --- shgopsex_group_twoanal ---
-                                                          if (String((s as any).locArgs?.[1] ?? '') === 'shgopsex_group_tripleanal') {
-                                                            (s as any).shgopsex_group_count = ((s as any).shgopsex_group_count ?? 0) - (1);
-                                                            (s as any).sh_bjandhj_cum = 0;
-                                                            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'ind_stamina_groupnpc']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
-                                                            scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/gopsex/group/sex/triple` + (Math.floor(Math.random() * 4) + 1) + '.jpg"></center>');
-                                                            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'gop_groupsex_analPlugIn']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
-                                                            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'gop_groupsex_lubri']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
-                                                            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'text_sex_group_triple']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
-                                                            qspCall(s, 'arousal', 'anal', (Math.floor(Math.random() * 3) + 4), (((s as any).npcID ?? 0)?.[1] ?? 0), 'group', 'gangbang');
-                                                            qspCall(s, 'arousal', 'anal', (Math.floor(Math.random() * 3) + 4), (((s as any).npcID ?? 0)?.[3] ?? 0), 'group', 'gangbang');
-                                                            qspCall(s, 'arousal', 'anal', (Math.floor(Math.random() * 3) + 4), (((s as any).npcID ?? 0)?.[2] ?? 0), 'group', 'gangbang');
-                                                            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGgSexOrgasm(s, scene); (s as any).locArgs = __savedLocArgs; }
-                                                            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'npc_orgasm']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
-                                                            if (((s as any).shgopsex_group_count ?? 0) > 0) {
-                                                              { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'cont']; enterShgopsexGroup(s, scene); (s as any).locArgs = __savedLocArgs; }
-                                                            } else {
-                                                              { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'shgopsex_group_end']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
-                                                            }
-                                                            qspCall(s, 'stat', '');
-                                                            // TODO-QSP: end & !! --- shgopsex_group_tripleanal ---
-                                                            if (String((s as any).locArgs?.[1] ?? '') === 'shgopsex_group_cumface') {
-                                                              (s as any).pcs_hairbsh = 0;
-                                                              (s as any).minut = ((s as any).minut ?? 0) + ((Math.floor(Math.random() * 4) + 2));
-                                                              (s as any).O = qspFunc(s, 'gopsex', 'hide', 'rndorder3');
-                                                              qspCall(s, 'npcStat', 'A' + ((s as any).O ?? 0) % 12 + '');
-                                                              qspCall(s, 'cum_call', 'face', ((s as any).npcID ?? 0), 1);
-                                                              qspCall(s, 'npcStat', 'A' + (((s as any).O ?? 0)/12) % 12 + '');
-                                                              qspCall(s, 'cum_call', 'face', ((s as any).npcID ?? 0), 1);
-                                                              qspCall(s, 'npcStat', 'A' + ((s as any).O ?? 0)/144 + '');
-                                                              qspCall(s, 'cum_call', 'hair', ((s as any).npcID ?? 0), 1);
-                                                              (s as any).O = undefined;
-                                                              scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/gopsex/group/cum/cumface` + (Math.floor(Math.random() * 16) + 1) + '.jpg"></center>');
-                                                              scene.text('The ' + qspFunc(s, 'gopsex', 'hide', 'gop_text_npcr') + ' spray their cum all over your face');
-                                                              qspCall(s, 'arousal', 'end');
-                                                              qspCall(s, 'stat', '');
-                                                              // TODO-QSP: end & !! --- shgopsex_group_cumface ---
-                                                              if (String((s as any).locArgs?.[1] ?? '') === 'shgopsex_group_swallow') {
-                                                                (s as any).pcs_hairbsh = 0;
-                                                                (s as any).minut = ((s as any).minut ?? 0) + ((Math.floor(Math.random() * 4) + 2));
-                                                                (s as any).O = qspFunc(s, 'gopsex', 'hide', 'rndorder3');
-                                                                qspCall(s, 'npcStat', 'A' + ((s as any).O ?? 0) % 12 + '');
-                                                                qspCall(s, 'cum_call', 'mouth', ((s as any).npcID ?? 0), 1);
-                                                                qspCall(s, 'npcStat', 'A' + (((s as any).O ?? 0)/12) % 12 + '');
-                                                                qspCall(s, 'cum_call', 'mouth', ((s as any).npcID ?? 0), 1);
-                                                                qspCall(s, 'npcStat', 'A' + ((s as any).O ?? 0)/144 + '');
-                                                                qspCall(s, 'cum_call', 'face', ((s as any).npcID ?? 0), 1);
-                                                                (s as any).O = undefined;
-                                                                qspCall(s, 'stat', '');
-                                                                scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/gopsex/group/cum/swallow` + (Math.floor(Math.random() * 11) + 1) + '.jpg"></center>');
-                                                                scene.text('One by one the ' + qspFunc(s, 'gopsex', 'hide', 'gop_text_npcr') + ' cum their semen into your mouth and you swallow it all.');
-                                                                qspCall(s, 'arousal', 'end');
-                                                                // TODO-QSP: end & !! --- shgopsex_group_swallow ---
-                                                                if (String((s as any).locArgs?.[1] ?? '') === 'shgopsex_group_cumbelly') {
-                                                                  (s as any).pcs_hairbsh = 0;
-                                                                  (s as any).minut = ((s as any).minut ?? 0) + ((Math.floor(Math.random() * 4) + 2));
-                                                                  (s as any).O = qspFunc(s, 'gopsex', 'hide', 'rndorder3');
-                                                                  qspCall(s, 'npcStat', 'A' + ((s as any).O ?? 0) % 12 + '');
-                                                                  qspCall(s, 'cum_call', 'stomach', ((s as any).npcID ?? 0), 1);
-                                                                  qspCall(s, 'npcStat', 'A' + (((s as any).O ?? 0)/12) % 12 + '');
-                                                                  qspCall(s, 'cum_call', 'stomach', ((s as any).npcID ?? 0), 1);
-                                                                  qspCall(s, 'npcStat', 'A' + ((s as any).O ?? 0)/144 + '');
-                                                                  qspCall(s, 'cum_call', 'breasts', ((s as any).npcID ?? 0), 1);
-                                                                  (s as any).O = undefined;
-                                                                  qspCall(s, 'arousal', 'end');
-                                                                  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/gopsex/group/cum/cumbody` + (Math.floor(Math.random() * 15) + 1) + '.jpg"></center>');
-                                                                  scene.text('The ' + qspFunc(s, 'gopsex', 'hide', 'gop_text_npcr') + ' come, squirting their hot sticky cum all over your body.');
-                                                                  // TODO-QSP: end & !! --- shgopsex_group_cumbelly ---
-                                                                  if (String((s as any).locArgs?.[1] ?? '') === 'shgopsex_group_cumvag') {
-                                                                    (s as any).pcs_hairbsh = 0;
-                                                                    (s as any).minut = ((s as any).minut ?? 0) + ((Math.floor(Math.random() * 4) + 2));
-                                                                    (s as any).O = qspFunc(s, 'gopsex', 'hide', 'rndorder3');
-                                                                    qspCall(s, 'npcStat', 'A' + ((s as any).O ?? 0) % 12 + '');
-                                                                    qspCall(s, 'cum_call', 'labia', ((s as any).npcID ?? 0), 1);
-                                                                    qspCall(s, 'npcStat', 'A' + (((s as any).O ?? 0)/12) % 12 + '');
-                                                                    qspCall(s, 'cum_call', 'labia', ((s as any).npcID ?? 0), 1);
-                                                                    qspCall(s, 'npcStat', 'A' + ((s as any).O ?? 0)/144 + '');
-                                                                    qspCall(s, 'cum_call', 'stomach', ((s as any).npcID ?? 0), 1);
-                                                                    (s as any).O = undefined;
-                                                                    qspCall(s, 'arousal', 'end');
-                                                                    scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/gopsex/group/cum/cumvag` + (Math.floor(Math.random() * 4) + 1) + '.jpg"></center>');
-                                                                    scene.text('One by one the ' + qspFunc(s, 'gopsex', 'hide', 'gop_text_npcr') + ' take their turns and shot their hot cum onto your pussy.');
-                                                                    // TODO-QSP: end & !! --- shgopsex_group_cumvag ---
-                                                                    if (String((s as any).locArgs?.[1] ?? '') === 'shgopsex_group_cumanal') {
-                                                                      (s as any).pcs_hairbsh = 0;
-                                                                      (s as any).minut = ((s as any).minut ?? 0) + ((Math.floor(Math.random() * 4) + 2));
-                                                                      (s as any).O = qspFunc(s, 'gopsex', 'hide', 'rndorder3');
-                                                                      qspCall(s, 'npcStat', 'A' + ((s as any).O ?? 0) % 12 + '');
-                                                                      qspCall(s, 'cum_call', 'anus', ((s as any).npcID ?? 0), 1);
-                                                                      qspCall(s, 'npcStat', 'A' + (((s as any).O ?? 0)/12) % 12 + '');
-                                                                      qspCall(s, 'cum_call', 'butt', ((s as any).npcID ?? 0), 1);
-                                                                      qspCall(s, 'npcStat', 'A' + ((s as any).O ?? 0)/144 + '');
-                                                                      qspCall(s, 'cum_call', 'butt', ((s as any).npcID ?? 0), 1);
-                                                                      (s as any).O = undefined;
-                                                                      qspCall(s, 'arousal', 'end');
-                                                                      scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/pc/body/cum/cumass/cumass` + (Math.floor(Math.random() * 19) + 1) + '.jpg"></center>');
-                                                                      scene.text('One by one the ' + qspFunc(s, 'gopsex', 'hide', 'gop_text_npcr') + ' take their turns and cover your asshole with their sperm.');
-                                                                      // TODO-QSP: end & !! --- shgopsex_group_cumanal ---
-                                                                      if (String((s as any).locArgs?.[1] ?? '') === 'accview_ggsex') {
-                                                                        (s as any).temp_rand = (Math.floor(Math.random() * 9) + 1);
-                                                                        if (((s as any).temp_rand ?? 0) === 1) {
-                                                                          (s as any).rnd_domdela_text = 'cook some dinner';
-                                                                        }
-                                                                        if (((s as any).temp_rand ?? 0) === 2) {
-                                                                          (s as any).rnd_domdela_text = 'do homework';
-                                                                        }
-                                                                        if (((s as any).temp_rand ?? 0) === 3) {
-                                                                          (s as any).rnd_domdela_text = 'clean your room';
-                                                                        }
-                                                                        if (((s as any).temp_rand ?? 0) === 4) {
-                                                                          (s as any).rnd_domdela_text = 'wash dishes';
-                                                                        }
-                                                                        if (((s as any).temp_rand ?? 0) === 5) {
-                                                                          (s as any).rnd_domdela_text = 'go to bakery for a loaf of bread';
-                                                                        }
-                                                                        if (((s as any).temp_rand ?? 0) === 6) {
-                                                                          (s as any).rnd_domdela_text = 'wash your fanny';
-                                                                        }
-                                                                        if (((s as any).temp_rand ?? 0) === 7) {
-                                                                          (s as any).rnd_domdela_text = 'go to shop';
-                                                                        }
-                                                                        if (((s as any).temp_rand ?? 0) === 8) {
-                                                                          (s as any).rnd_domdela_text = 'cook some supper';
-                                                                        }
-                                                                        if (((s as any).temp_rand ?? 0) === 9) {
-                                                                          (s as any).rnd_domdela_text = 'do the laundry';
-                                                                        }
-                                                                        (s as any).temp_rand = (Math.floor(Math.random() * 15) + 1);
-                                                                        if (((s as any).temp_rand ?? 0) === 1) {
-                                                                          (s as any).rnd_telogg_text = '"That\'s no pussy but a bucket fanny."';
-                                                                        }
-                                                                        if (((s as any).temp_rand ?? 0) === 2) {
-                                                                          (s as any).rnd_telogg_text = '"The girl is thoroughly fucked."';
-                                                                        }
-                                                                        if (((s as any).temp_rand ?? 0) === 3) {
-                                                                          (s as any).rnd_telogg_text = '"Our ' + ((s as any).pcs_nickname ?? 0) + ' has got a bottomless hole!"';
-                                                                        }
-                                                                        if (((s as any).temp_rand ?? 0) === 4) {
-                                                                          (s as any).rnd_telogg_text = '"Again, ' + ((s as any).pcs_nickname ?? 0) + ', you sleep around in a row…"';
-                                                                        }
-                                                                        if (((s as any).temp_rand ?? 0) === 5) {
-                                                                          (s as any).rnd_telogg_text = '"They are ' + ((s as any).gop_sextext3 ?? 0) + ' you again, ' + ((s as any).pcs_nickname ?? 0) + '? Is it possible? Aren\'t you tired of lending your holes to everybody in a row…"';
-                                                                        }
-                                                                        if (((s as any).temp_rand ?? 0) === 6) {
-                                                                          (s as any).rnd_telogg_text = '"Poor girl, ' + ((s as any).gop_sextext2 ?? 0) + ' at every corner."';
-                                                                        }
-                                                                        if (((s as any).temp_rand ?? 0) === 7) {
-                                                                          (s as any).rnd_telogg_text = '"' + ((s as any).pcs_nickname ?? 0) + ' unfailing \' + func(\'gopsex\', \'hide\', \'gop_gg_name2\') + \'!"';
-                                                                        }
-                                                                        if (((s as any).temp_rand ?? 0) === 8) {
-                                                                          (s as any).rnd_telogg_text = '"Poor ' + ((s as any).pcs_nickname ?? 0) + ', they probably fuck up all her holes."';
-                                                                        }
-                                                                        if (((s as any).temp_rand ?? 0) === 9) {
-                                                                          (s as any).rnd_telogg_text = '"Blimey, ' + ((s as any).pcs_nickname ?? 0) + ', damn, you\'re a worn cunt!"';
-                                                                        }
-                                                                        if (((s as any).temp_rand ?? 0) === 10) {
-                                                                          (s as any).rnd_telogg_text = '"What have we here, ' + ((s as any).pcs_nickname ?? 0) + '?! How come they stretch you here so?"';
-                                                                        }
-                                                                        if (((s as any).temp_rand ?? 0) === 11) {
-                                                                          (s as any).rnd_telogg_text = '"She lost her fear completely, ' + qspFunc(s, 'gopsex', 'hide', 'gop_gg_name2') + '!"';
-                                                                        }
-                                                                        if (((s as any).temp_rand ?? 0) === 12) {
-                                                                          (s as any).rnd_telogg_text = '"She lost her shyness completely, ' + qspFunc(s, 'gopsex', 'hide', 'gop_gg_name2') + '!"';
-                                                                        }
-                                                                        if (((s as any).temp_rand ?? 0) === 13) {
-                                                                          (s as any).rnd_telogg_text = '"How can you shamelessly expose your holes right, left and center, ' + qspFunc(s, 'gopsex', 'hide', 'gop_gg_name2') + '?"';
-                                                                        }
-                                                                        if (((s as any).temp_rand ?? 0) === 14) {
-                                                                          (s as any).rnd_telogg_text = '"' + ((s as any).pcs_nickname ?? 0) + ', you are so shameless, \' + func(\'gopsex\', \'hide\', \'gop_gg_name2\') + \'!"';
-                                                                        }
-                                                                        if (((s as any).temp_rand ?? 0) === 15) {
-                                                                          (s as any).rnd_telogg_text = '"Oh, ' + ((s as any).pcs_nickname ?? 0) + ', aren\'t you sorry for yourself?"';
-                                                                        }
-                                                                        (s as any).temp_rand = (Math.floor(Math.random() * 14) + 1);
-                                                                        if (((s as any).temp_rand ?? 0) === 1) {
-                                                                          (s as any).rnd_telogg2_text = '"' + ((s as any).pcs_nickname ?? 0) + ', aren\'t you ashamed of working at such a filthy place?"';
-                                                                        }
-                                                                        if (((s as any).temp_rand ?? 0) === 2) {
-                                                                          (s as any).rnd_telogg2_text = '"' + ((s as any).pcs_nickname ?? 0) + ', are you earning extra money even here?"';
-                                                                        }
-                                                                        if (((s as any).temp_rand ?? 0) === 3) {
-                                                                          (s as any).rnd_telogg2_text = '"' + ((s as any).pcs_nickname ?? 0) + ', are you selling your body like a whore?"';
-                                                                        }
-                                                                        if (((s as any).temp_rand ?? 0) === 4) {
-                                                                          (s as any).rnd_telogg2_text = '"You found customers, and you\'re working wholeheartedly ' + ((s as any).pcs_nickname ?? 0) + '."';
-                                                                        }
-                                                                        if (((s as any).temp_rand ?? 0) === 5) {
-                                                                          (s as any).rnd_telogg2_text = '"You are quickly finding your customers, ' + ((s as any).pcs_nickname ?? 0) + '. I\'m amazed!"';
-                                                                        }
-                                                                        if (((s as any).temp_rand ?? 0) === 6) {
-                                                                          (s as any).rnd_telogg2_text = '"Look ' + ((s as any).pcs_nickname ?? 0) + ', if they ruin all your holes, you\'ll be unable to do your business!"';
-                                                                        }
-                                                                        if (((s as any).temp_rand ?? 0) === 7) {
-                                                                          (s as any).rnd_telogg2_text = '"' + ((s as any).pcs_nickname ?? 0) + ', if you\'ll serve anywhere and anybody, you\'ll wear out your slit, and you\'ll be out of work!"';
-                                                                        }
-                                                                        if (((s as any).temp_rand ?? 0) === 8) {
-                                                                          (s as any).rnd_telogg2_text = '"Who do I see, ' + ((s as any).pcs_nickname ?? 0) + '? You sell your body again! I\'m surprised you are such a natural \' + func(\'gopsex\', \'hide\', \'gop_gg_name2\') + \'!"';
-                                                                        }
-                                                                        if (((s as any).temp_rand ?? 0) === 9) {
-                                                                          (s as any).rnd_telogg2_text = '"You sell your body, so you are a \' + func(\'gopsex\', \'hide\', \'gop_gg_name2\') + \'. ' + ((s as any).pcs_nickname ?? 0) + '. I can\'t understand after whom."';
-                                                                        }
-                                                                        if (((s as any).temp_rand ?? 0) === 10) {
-                                                                          (s as any).rnd_telogg2_text = '"You are giving yourself to anybody for a hundred bucks again. Doesn\'t it bother you?"';
-                                                                        }
-                                                                        if (((s as any).temp_rand ?? 0) === 11) {
-                                                                          (s as any).rnd_telogg2_text = '"' + ((s as any).pcs_nickname ?? 0) + ', even a \' + func(\'gopsex\', \'hide\', \'gop_gg_name2\') + \' takes a day off!"';
-                                                                        }
-                                                                        if (((s as any).temp_rand ?? 0) === 12) {
-                                                                          (s as any).rnd_telogg2_text = '"Well, you are a \' + func(\'gopsex\', \'hide\', \'gop_gg_name2\') + \' ' + ((s as any).pcs_nickname ?? 0) + '. If I don\'t pass by, you sell your pussy…"';
-                                                                        }
-                                                                        if (((s as any).temp_rand ?? 0) === 13) {
-                                                                          (s as any).rnd_telogg2_text = '"Complete ' + qspFunc(s, 'gopsex', 'hide', 'gop_gg_name2') + ', she was lost to shame, she is giving to in underpass…"';
-                                                                        }
-                                                                        if (((s as any).temp_rand ?? 0) === 14) {
-                                                                          (s as any).rnd_telogg2_text = '"Whore lost her shame completely, she\'s ready for 50 bucks her box in the street expose…"';
-                                                                        }
-                                                                        (s as any).temp_rand = (Math.floor(Math.random() * 3) + 1);
-                                                                        if (((s as any).temp_rand ?? 0) === 1) {
-                                                                          (s as any).rnd_rodnya_text = 'Passing by you';
-                                                                        }
-                                                                        if (((s as any).temp_rand ?? 0) === 2) {
-                                                                          (s as any).rnd_rodnya_text = 'Walking past you';
-                                                                        }
-                                                                        if (((s as any).temp_rand ?? 0) === 3) {
-                                                                          (s as any).rnd_rodnya_text = 'Going past you';
-                                                                        }
-                                                                        (s as any).temp_rand = (Math.floor(Math.random() * 7) + 1);
-                                                                        if (((s as any).temp_rand ?? 0) === 1) {
-                                                                          (s as any).rnd_viewgg_text = 'notices you';
-                                                                        }
-                                                                        if (((s as any).temp_rand ?? 0) === 2) {
-                                                                          (s as any).rnd_viewgg_text = 'spots you';
-                                                                        }
-                                                                        if (((s as any).temp_rand ?? 0) === 3) {
-                                                                          (s as any).rnd_viewgg_text = 'spies you';
-                                                                        }
-                                                                        if (((s as any).temp_rand ?? 0) === 4) {
-                                                                          (s as any).rnd_viewgg_text = 'catches a sight of you';
-                                                                        }
-                                                                        if (((s as any).temp_rand ?? 0) === 5) {
-                                                                          (s as any).rnd_viewgg_text = 'throws a look at you';
-                                                                        }
-                                                                        if (((s as any).temp_rand ?? 0) === 6) {
-                                                                          (s as any).rnd_viewgg_text = 'casts a look at you';
-                                                                        }
-                                                                        if (((s as any).temp_rand ?? 0) === 7) {
-                                                                          (s as any).rnd_viewgg_text = 'notices you being ' + qspFunc(s, 'gopsex', 'hide', 'gop_sextext2') + '';
-                                                                        }
-                                                                        if (((s as any).temp_rand ?? 0) === 8) {
-                                                                          (s as any).rnd_viewgg_text = 'sees you being ' + qspFunc(s, 'gopsex', 'hide', 'gop_sextext2') + '';
-                                                                        }
-                                                                        (s as any).temp_rand = (Math.floor(Math.random() * 2) + 1);
-                                                                        if (((s as any).temp_rand ?? 0) === 1) {
-                                                                          (s as any).rnd_talkgg_text = 'tells you';
-                                                                        }
-                                                                        if (((s as any).temp_rand ?? 0) === 2) {
-                                                                          (s as any).rnd_talkgg_text = 'says';
-                                                                        }
-                                                                        (s as any).temp_rand = (Math.floor(Math.random() * 14) + 1);
-                                                                        if (((s as any).temp_rand ?? 0) === 1) {
-                                                                          (s as any).rnd_talkgg2_text = 'gently';
-                                                                        }
-                                                                        if (((s as any).temp_rand ?? 0) === 2) {
-                                                                          (s as any).rnd_talkgg2_text = 'sarky';
-                                                                        }
-                                                                        if (((s as any).temp_rand ?? 0) === 3) {
-                                                                          (s as any).rnd_talkgg2_text = 'in a low voice';
-                                                                        }
-                                                                        if (((s as any).temp_rand ?? 0) === 4) {
-                                                                          (s as any).rnd_talkgg2_text = 'softly';
-                                                                        }
-                                                                        if (((s as any).temp_rand ?? 0) === 5) {
-                                                                          (s as any).rnd_talkgg2_text = 'arrogantly';
-                                                                        }
-                                                                        if (((s as any).temp_rand ?? 0) === 6) {
-                                                                          (s as any).rnd_talkgg2_text = 'with a smirk';
-                                                                        }
-                                                                        if (((s as any).temp_rand ?? 0) === 7) {
-                                                                          (s as any).rnd_talkgg2_text = 'loudly';
-                                                                        }
-                                                                        if (((s as any).temp_rand ?? 0) === 8) {
-                                                                          (s as any).rnd_talkgg2_text = 'roughly';
-                                                                        }
-                                                                        if (((s as any).temp_rand ?? 0) === 9) {
-                                                                          (s as any).rnd_talkgg2_text = 'sotto voce';
-                                                                        }
-                                                                        if (((s as any).temp_rand ?? 0) === 10) {
-                                                                          (s as any).rnd_talkgg2_text = 'looking';
-                                                                        }
-                                                                        if (((s as any).temp_rand ?? 0) === 11) {
-                                                                          (s as any).rnd_talkgg2_text = 'calmly';
-                                                                        }
-                                                                        if (((s as any).temp_rand ?? 0) === 12) {
-                                                                          (s as any).rnd_talkgg2_text = 'with a laugh';
-                                                                        }
-                                                                        if (((s as any).temp_rand ?? 0) === 13) {
-                                                                          (s as any).rnd_talkgg2_text = 'drowsily';
-                                                                        }
-                                                                        if (((s as any).temp_rand ?? 0) === 14) {
-                                                                          (s as any).rnd_talkgg2_text = 'wickedly';
-                                                                        }
-                                                                        if ((Math.floor(Math.random() * 2) + 0) === 1) {
-                                                                          (s as any).rnd_namesis_text = 'Sister';
-                                                                        } else {
-                                                                          (s as any).rnd_namesis_text = 'Sis';
-                                                                        }
-                                                                        (s as any).temp_rand = (Math.floor(Math.random() * 2) + 1);
-                                                                        if (((s as any).temp_rand ?? 0) === 1) {
-                                                                          (s as any).rnd_mom_txt1 = '" It\'s all, ' + (((s as any).npc_nickname ?? 0)?.['A29']) + ', I\'ll come right away."';
-                                                                        }
-                                                                        if (((s as any).temp_rand ?? 0) === 2) {
-                                                                          (s as any).rnd_mom_txt1 = '" ' + (((s as any).npc_nickname ?? 0)?.['A29']) + ', one more to be served and I\'ll come right away."';
-                                                                        }
-                                                                        (s as any).temp_rand = (Math.floor(Math.random() * 6) + 1);
-                                                                        if (((s as any).fame ?? 0)?.['pav_slut'] >= 250) {
-                                                                          if ((!(Math.floor(Math.random() * 2) + 0))) {
-                                                                            (s as any).rnd_caught_mom = '' + ((s as any).rnd_rodnya_text ?? 0) + ' your ' + (((s as any).npc_nickname ?? 0)?.['A29']) + ', ' + ((s as any).rnd_viewgg_text ?? 0) + ' and ' + ((s as any).rnd_talkgg_text ?? 0) + ' ' + ((s as any).rnd_talkgg2_text ?? 0) + ': - ' + ((s as any).rnd_telogg2_text ?? 0) + '';
-                                                                          } else {
-                                                                            (s as any).rnd_caught_mom = '' + ((s as any).rnd_rodnya_text ?? 0) + ' your ' + (((s as any).npc_nickname ?? 0)?.['A29']) + ', ' + ((s as any).rnd_viewgg_text ?? 0) + ' and ' + ((s as any).rnd_talkgg_text ?? 0) + ' ' + ((s as any).rnd_talkgg2_text ?? 0) + ': "Well, ' + ((s as any).pcs_nickname ?? 0) + ', you found a place, where customers take."';
-                                                                          }
-                                                                        } else {
-                                                                          if (((s as any).momslut ?? 0) >= 1) {
-                                                                            (s as any).rnd_caught_mom = '' + ((s as any).rnd_rodnya_text ?? 0) + ' your ' + (((s as any).npc_nickname ?? 0)?.['A29']) + ', ' + ((s as any).rnd_viewgg_text ?? 0) + ' and ' + ((s as any).rnd_talkgg_text ?? 0) + ' ' + ((s as any).rnd_talkgg2_text ?? 0) + ': "When you\'ve served the boys, don\'t forget to ' + ((s as any).rnd_domdela_text ?? 0) + '"';
-                                                                          } else {
-                                                                            if (((s as any).pcs_vag ?? 0) >= 30) {
-                                                                              (s as any).rnd_caught_mom = '' + ((s as any).rnd_rodnya_text ?? 0) + ' your ' + (((s as any).npc_nickname ?? 0)?.['A29']) + ', ' + ((s as any).rnd_viewgg_text ?? 0) + ' and ' + ((s as any).rnd_talkgg_text ?? 0) + ' ' + ((s as any).rnd_talkgg2_text ?? 0) + ': "Girl, you should have a rest and not to fuck for a while - your cunny is like a bucket, it isn\'t closing."';
-                                                                            } else {
-                                                                              if (((s as any).temp_rand ?? 0) === 1) {
-                                                                                (s as any).rnd_caught_mom = '' + ((s as any).rnd_rodnya_text ?? 0) + ' your ' + (((s as any).npc_nickname ?? 0)?.['A29']) + ', ' + ((s as any).rnd_viewgg_text ?? 0) + ' and ' + ((s as any).rnd_talkgg_text ?? 0) + ' ' + ((s as any).rnd_talkgg2_text ?? 0) + ': - ' + ((s as any).rnd_telogg_text ?? 0) + '';
-                                                                              } else {
-                                                                                if (((s as any).temp_rand ?? 0) === 2) {
-                                                                                  (s as any).rnd_caught_mom = '' + ((s as any).rnd_rodnya_text ?? 0) + ' your ' + (((s as any).npc_nickname ?? 0)?.['A29']) + ', ' + ((s as any).rnd_viewgg_text ?? 0) + ' and ' + ((s as any).rnd_talkgg_text ?? 0) + ' ' + ((s as any).rnd_talkgg2_text ?? 0) + ': "You are naughty again ' + ((s as any).pcs_nickname ?? 0) + '? I begged you not to fuck at every corner, you got fully out of hand, slut!"';
-                                                                                } else {
-                                                                                  if (((s as any).temp_rand ?? 0) === 3) {
-                                                                                    // TODO-QSP: "It''s not my fault, the idea, to go here, occurred to the boys. As soon as they finish, I''ll come ...
-                                                                                  } else {
-                                                                                    if (((s as any).temp_rand ?? 0) === 4) {
-                                                                                      (s as any).rnd_caught_mom = '' + ((s as any).rnd_rodnya_text ?? 0) + ' your ' + (((s as any).npc_nickname ?? 0)?.['A29']) + ', ' + ((s as any).rnd_viewgg_text ?? 0) + ' and ' + ((s as any).rnd_talkgg_text ?? 0) + ' ' + ((s as any).rnd_talkgg2_text ?? 0) + ': "' + ((s as any).pcs_nickname ?? 0) + ', instead of fucking the whole town, you should do your homework." "Yes ' + (((s as any).npc_nickname ?? 0)?.['A29']) + ', I\'ve done it!"';
-                                                                                    } else {
-                                                                                      if (((s as any).temp_rand ?? 0) === 5) {
-                                                                                        (s as any).rnd_caught_mom = '' + ((s as any).rnd_rodnya_text ?? 0) + ' your ' + (((s as any).npc_nickname ?? 0)?.['A29']) + ', ' + ((s as any).rnd_viewgg_text ?? 0) + ' and ' + ((s as any).rnd_talkgg_text ?? 0) + ' ' + ((s as any).rnd_talkgg2_text ?? 0) + ': - "Girl, you should have a break and not to fuck for a while."';
-                                                                                      } else {
-                                                                                        if (((s as any).temp_rand ?? 0) === 6) {
-                                                                                          (s as any).rnd_caught_mom = '' + ((s as any).rnd_rodnya_text ?? 0) + ' your ' + (((s as any).npc_nickname ?? 0)?.['A29']) + ', ' + ((s as any).rnd_viewgg_text ?? 0) + ' and ' + ((s as any).rnd_talkgg_text ?? 0) + ' ' + ((s as any).rnd_talkgg2_text ?? 0) + ': - "Girl, how come they bitched you so…? Will you be home soon?" ' + ((s as any).rnd_mom_txt1 ?? 0) + '';
-                                                                                        }
-                                                                                      }
-                                                                                    }
-                                                                                  }
-                                                                                }
-                                                                              }
-                                                                            }
-                                                                          }
-                                                                        }
-                                                                        (s as any).temp_rand = (Math.floor(Math.random() * 4) + 1);
-                                                                        if (((s as any).temp_rand ?? 0) === 1  &&  ((s as any).fame ?? 0)?.['pav_slut'] < 250) {
-                                                                          (s as any).rnd_caught_sister = '' + ((s as any).rnd_rodnya_text ?? 0) + ' your ' + ((s as any).rnd_namesis_text ?? 0) + ', ' + ((s as any).rnd_viewgg_text ?? 0) + ' and ' + ((s as any).rnd_talkgg_text ?? 0) + ' ' + ((s as any).rnd_talkgg2_text ?? 0) + ':  "' + (((s as any).npc_nickname ?? 0)?.['A29']) + ' asked me to tell you, not forget to ' + ((s as any).rnd_domdela_text ?? 0) + ', when you\'ve finished."';
-                                                                        }
-                                                                        if (((s as any).temp_rand ?? 0) === 1  &&  ((s as any).fame ?? 0)?.['pav_slut'] >= 250) {
-                                                                          (s as any).rnd_caught_sister = '' + ((s as any).rnd_rodnya_text ?? 0) + ' your ' + ((s as any).rnd_namesis_text ?? 0) + ', ' + ((s as any).rnd_viewgg_text ?? 0) + ' and ' + ((s as any).rnd_talkgg_text ?? 0) + ' ' + ((s as any).rnd_talkgg2_text ?? 0) + ': "You\'re such slut, ' + ((s as any).pcs_nickname ?? 0) + '"';
-                                                                        }
-                                                                        if (((s as any).temp_rand ?? 0) === 2  &&  ((s as any).fame ?? 0)?.['pav_slut'] < 250) {
-                                                                          (s as any).rnd_caught_sister = '' + ((s as any).rnd_rodnya_text ?? 0) + ' your ' + ((s as any).rnd_namesis_text ?? 0) + ', ' + ((s as any).rnd_viewgg_text ?? 0) + ' and ' + ((s as any).rnd_talkgg_text ?? 0) + ' ' + ((s as any).rnd_talkgg2_text ?? 0) + ': ' + ((s as any).rnd_telogg_text ?? 0) + '';
-                                                                        }
-                                                                        if (((s as any).temp_rand ?? 0) === 2  &&  ((s as any).fame ?? 0)?.['pav_slut'] >= 250) {
-                                                                          (s as any).rnd_caught_sister = '' + ((s as any).rnd_rodnya_text ?? 0) + ' your ' + ((s as any).rnd_namesis_text ?? 0) + ', ' + ((s as any).rnd_viewgg_text ?? 0) + ' and ' + ((s as any).rnd_talkgg_text ?? 0) + ' ' + ((s as any).rnd_talkgg2_text ?? 0) + ': ' + ((s as any).rnd_telogg2_text ?? 0) + '';
-                                                                        }
-                                                                        if (((s as any).temp_rand ?? 0) === 3) {
-                                                                          (s as any).rnd_caught_sister = '' + ((s as any).rnd_rodnya_text ?? 0) + ' your ' + ((s as any).rnd_namesis_text ?? 0) + ', ' + ((s as any).rnd_viewgg_text ?? 0) + ' and ' + ((s as any).rnd_talkgg_text ?? 0) + ' ' + ((s as any).rnd_talkgg2_text ?? 0) + ': "I\'m running about and searching her high and low… and it emerges that she is being fucked here. Put a bell on your neck or something, so I could find you easier next time. Give me your keys, filthy slut, I forgot my keys at home… Okay! let it be, I\'ll do it myself. In your purse? Take out the dick out of your mouth, when an elder inquires you! In your pocket? Ok, I found them… If you go into bathroom, clean it all with powder. The last thing I need is being after you by Holy Ghost knocked up."';
-                                                                        }
-                                                                        if (((s as any).temp_rand ?? 0) === 4  &&  ((s as any).fame ?? 0)?.['pav_slut'] < 250) {
-                                                                          (s as any).rnd_caught_sister = '' + ((s as any).rnd_rodnya_text ?? 0) + ' your ' + ((s as any).rnd_namesis_text ?? 0) + ', ' + ((s as any).rnd_viewgg_text ?? 0) + ' and ' + ((s as any).rnd_talkgg_text ?? 0) + ' ' + ((s as any).rnd_talkgg2_text ?? 0) + ': "' + ((s as any).pcs_nickname ?? 0) + ', ' + (((s as any).npc_nickname ?? 0)?.['A29']) + ' is looking for you, and you are being fucked right here! How long do you need?" "Oh sis, it\'s so enjoyable… another ten minutes they fuck me and then I\'ll come right."';
-                                                                        }
-                                                                        if (((s as any).temp_rand ?? 0) === 4  &&  ((s as any).fame ?? 0)?.['pav_slut'] >= 250) {
-                                                                          (s as any).rnd_caught_sister = '' + ((s as any).rnd_rodnya_text ?? 0) + ' your ' + ((s as any).rnd_namesis_text ?? 0) + ', ' + ((s as any).rnd_viewgg_text ?? 0) + ' and ' + ((s as any).rnd_talkgg_text ?? 0) + ' ' + ((s as any).rnd_talkgg2_text ?? 0) + ': "' + ((s as any).pcs_nickname ?? 0) + ', you are with clients? How long yet? You\'ve to wake up early tomorrow." Your sister turns to the boys that were standing in line. "Have you fucked her already?" "Nope, the first just started."';
-                                                                        }
-                                                                        (s as any).temp_rand = (Math.floor(Math.random() * 3) + 1);
-                                                                        if (((s as any).temp_rand ?? 0) === 1  &&  ((s as any).momslut ?? 0) >= 1) {
-                                                                          (s as any).rnd_caught_brother = '' + ((s as any).rnd_rodnya_text ?? 0) + ', your brother ' + ((s as any).rnd_viewgg_text ?? 0) + ' ' + ((s as any).rnd_talkgg_text ?? 0) + ' ' + ((s as any).rnd_talkgg2_text ?? 0) + ': "' + (((s as any).npc_nickname ?? 0)?.['A29']) + ' asked me to tell you, not forget to ' + ((s as any).rnd_domdela_text ?? 0) + ', when you\'ve finished."';
-                                                                        }
-                                                                        if (((s as any).temp_rand ?? 0) === 1  &&  ((s as any).momslut ?? 0) < 1) {
-                                                                          (s as any).rnd_caught_brother = '' + ((s as any).rnd_rodnya_text ?? 0) + ', your brother ' + ((s as any).rnd_viewgg_text ?? 0) + ' ' + ((s as any).rnd_talkgg_text ?? 0) + ' ' + ((s as any).rnd_talkgg2_text ?? 0) + ': "You\'re such slut, ' + ((s as any).pcs_nickname ?? 0) + '"';
-                                                                        }
-                                                                        if (((s as any).temp_rand ?? 0) === 2  &&  ((s as any).fame ?? 0)?.['pav_slut'] < 250) {
-                                                                          (s as any).rnd_caught_brother = '' + ((s as any).rnd_rodnya_text ?? 0) + ', your brother ' + ((s as any).rnd_viewgg_text ?? 0) + ' ' + ((s as any).rnd_talkgg_text ?? 0) + ' ' + ((s as any).rnd_talkgg2_text ?? 0) + ': ' + ((s as any).rnd_telogg_text ?? 0) + '';
-                                                                        }
-                                                                        if (((s as any).temp_rand ?? 0) === 2  &&  ((s as any).fame ?? 0)?.['pav_slut'] >= 250) {
-                                                                          (s as any).rnd_caught_brother = '' + ((s as any).rnd_rodnya_text ?? 0) + ', your brother ' + ((s as any).rnd_viewgg_text ?? 0) + ' ' + ((s as any).rnd_talkgg_text ?? 0) + ' ' + ((s as any).rnd_talkgg2_text ?? 0) + ': ' + ((s as any).rnd_telogg2_text ?? 0) + '';
-                                                                        }
-                                                                        if (((s as any).temp_rand ?? 0) === 3  &&  ((s as any).evgenQW ?? 0) >= 4  &&  ((s as any).fame ?? 0)?.['pav_slut'] < 250) {
-                                                                          (s as any).rnd_caught_brother = '' + ((s as any).rnd_rodnya_text ?? 0) + ', your brother ' + ((s as any).rnd_viewgg_text ?? 0) + ' ' + ((s as any).rnd_talkgg_text ?? 0) + ' ' + ((s as any).rnd_talkgg2_text ?? 0) + ': "' + ((s as any).pcs_nickname ?? 0) + ', you do only blowjob to my buddies so heaven knows to whom you allow to fuck your pussy?" "So, they didn\'t request to do it. If they ask, they may fuck either my pussy or my ass."';
-                                                                        }
-                                                                        if (((s as any).temp_rand ?? 0) === 3  &&  ((s as any).evgenQW ?? 0) >= 4  &&  ((s as any).fame ?? 0)?.['pav_slut'] >= 250) {
-                                                                          (s as any).rnd_caught_brother = '' + ((s as any).rnd_rodnya_text ?? 0) + ', your brother ' + ((s as any).rnd_viewgg_text ?? 0) + ' ' + ((s as any).rnd_talkgg_text ?? 0) + ' ' + ((s as any).rnd_talkgg2_text ?? 0) + ': "' + ((s as any).pcs_nickname ?? 0) + ', you do only blowjob to my buddies so heaven knows to whom you allow to fuck your pussy?" "Well, I\'m still willing to give free of charge to your friends. Let they rejoice getting blowjobs for free."';
-                                                                        }
-                                                                        (s as any).temp_rand = (Math.floor(Math.random() * 2) + 1);
-                                                                        if (((s as any).temp_rand ?? 0) === 1  &&  ((s as any).momslut ?? 0) >= 1) {
-                                                                          (s as any).rnd_caught_stepfather = '' + ((s as any).rnd_rodnya_text ?? 0) + ', your stepfather ' + ((s as any).rnd_viewgg_text ?? 0) + ' ' + ((s as any).rnd_talkgg_text ?? 0) + ' ' + ((s as any).rnd_talkgg2_text ?? 0) + ': "' + (((s as any).npc_nickname ?? 0)?.['A29']) + ' asked me to tell you, not forget to ' + ((s as any).rnd_domdela_text ?? 0) + ', when you\'ve finished."';
-                                                                        }
-                                                                        if (((s as any).temp_rand ?? 0) === 1  &&  ((s as any).momslut ?? 0) < 1) {
-                                                                          (s as any).rnd_caught_stepfather = '' + ((s as any).rnd_rodnya_text ?? 0) + ', your stepfather ' + ((s as any).rnd_viewgg_text ?? 0) + ' ' + ((s as any).rnd_talkgg_text ?? 0) + ' ' + ((s as any).rnd_talkgg2_text ?? 0) + ': "You\'re such slut, ' + ((s as any).pcs_nickname ?? 0) + '"';
-                                                                        }
-                                                                        if (((s as any).temp_rand ?? 0) === 2  &&  ((s as any).fame ?? 0)?.['pav_slut'] < 250) {
-                                                                          (s as any).rnd_caught_stepfather = '' + ((s as any).rnd_rodnya_text ?? 0) + ', your stepfather ' + ((s as any).rnd_viewgg_text ?? 0) + ' ' + ((s as any).rnd_talkgg_text ?? 0) + ' ' + ((s as any).rnd_talkgg2_text ?? 0) + ': ' + ((s as any).rnd_telogg_text ?? 0) + '';
-                                                                        }
-                                                                        if (((s as any).temp_rand ?? 0) === 2  &&  ((s as any).fame ?? 0)?.['pav_slut'] >= 250) {
-                                                                          (s as any).rnd_caught_stepfather = '' + ((s as any).rnd_rodnya_text ?? 0) + ', your stepfather ' + ((s as any).rnd_viewgg_text ?? 0) + ' ' + ((s as any).rnd_talkgg_text ?? 0) + ' ' + ((s as any).rnd_talkgg2_text ?? 0) + ': ' + ((s as any).rnd_telogg2_text ?? 0) + '';
-                                                                        }
-                                                                        (s as any).temp_rand = (Math.floor(Math.random() * 13) + 1);
-                                                                        if (((s as any).temp_rand ?? 0) === 1  &&  ((s as any).fame ?? 0)?.['pav_slut'] < 250) {
-                                                                          (s as any).rnd_caught_othernpc = '' + ((s as any).rnd_rodnya_text ?? 0) + ', uncle Misha ' + ((s as any).rnd_viewgg_text ?? 0) + ' ' + ((s as any).rnd_talkgg_text ?? 0) + ' ' + ((s as any).rnd_talkgg2_text ?? 0) + ': ' + ((s as any).rnd_telogg_text ?? 0) + '';
-                                                                        }
-                                                                        if (((s as any).temp_rand ?? 0) === 1  &&  ((s as any).fame ?? 0)?.['pav_slut'] >= 250) {
-                                                                          (s as any).rnd_caught_othernpc = '' + ((s as any).rnd_rodnya_text ?? 0) + ', uncle Misha ' + ((s as any).rnd_viewgg_text ?? 0) + ' ' + ((s as any).rnd_talkgg_text ?? 0) + ' ' + ((s as any).rnd_talkgg2_text ?? 0) + ': ' + ((s as any).rnd_telogg2_text ?? 0) + '';
-                                                                        }
-                                                                        if (((s as any).temp_rand ?? 0) === 2  &&  ((s as any).fame ?? 0)?.['pav_slut'] < 250) {
-                                                                          (s as any).rnd_caught_othernpc = 'Passing by, \' + func(\'gopsex\', \'hide\', \'Shulga_var_name\') + \' sees me being \' + func(\'gopsex\', \'hide\', \'gop_sextext2\') + \'. He shows a thumbs-up to the boys and says: ' + ((s as any).rnd_telogg_text ?? 0) + ' and he went on about his business.';
-                                                                        }
-                                                                        if (((s as any).temp_rand ?? 0) === 2  &&  ((s as any).fame ?? 0)?.['pav_slut'] >= 250) {
-                                                                          (s as any).rnd_caught_othernpc = 'Passing by, \' + func(\'gopsex\', \'hide\', \'Shulga_var_name\') + \' sees me being \' + func(\'gopsex\', \'hide\', \'gop_sextext2\') + \'. He shows a thumbs-up to the boys and without hiding a smile he tells you: ' + ((s as any).rnd_telogg2_text ?? 0) + ' and went on about his business';
-                                                                        }
-                                                                        if (((s as any).temp_rand ?? 0) === 3  &&  ((s as any).fame ?? 0)?.['pav_slut'] < 250) {
-                                                                          (s as any).rnd_caught_othernpc = '' + ((s as any).rnd_rodnya_text ?? 0) + ' aunt Luda, ' + ((s as any).rnd_viewgg_text ?? 0) + ' and ' + ((s as any).rnd_talkgg_text ?? 0) + ' ' + ((s as any).rnd_talkgg2_text ?? 0) + ': - ' + ((s as any).rnd_telogg_text ?? 0) + '';
-                                                                        }
-                                                                        if (((s as any).temp_rand ?? 0) === 3  &&  ((s as any).fame ?? 0)?.['pav_slut'] >= 250) {
-                                                                          (s as any).rnd_caught_othernpc = '' + ((s as any).rnd_rodnya_text ?? 0) + ' aunt Luda, ' + ((s as any).rnd_viewgg_text ?? 0) + ' and ' + ((s as any).rnd_talkgg_text ?? 0) + ' ' + ((s as any).rnd_talkgg2_text ?? 0) + ': -' + ((s as any).rnd_telogg2_text ?? 0) + '';
-                                                                        }
-                                                                        if (((s as any).temp_rand ?? 0) === 4  &&  ((s as any).fame ?? 0)?.['pav_slut'] < 250) {
-                                                                          (s as any).rnd_caught_othernpc = '' + ((s as any).rnd_rodnya_text ?? 0) + ' Natasha Belova, ' + ((s as any).rnd_viewgg_text ?? 0) + ' and ' + ((s as any).rnd_talkgg_text ?? 0) + ' ' + ((s as any).rnd_talkgg2_text ?? 0) + ': - ' + ((s as any).rnd_telogg_text ?? 0) + '';
-                                                                        }
-                                                                        if (((s as any).temp_rand ?? 0) === 4  &&  ((s as any).fame ?? 0)?.['pav_slut'] >= 250) {
-                                                                          (s as any).rnd_caught_othernpc = '' + ((s as any).rnd_rodnya_text ?? 0) + ' Natasha Belova, ' + ((s as any).rnd_viewgg_text ?? 0) + ' and ' + ((s as any).rnd_talkgg_text ?? 0) + ' ' + ((s as any).rnd_talkgg2_text ?? 0) + ': - ' + ((s as any).rnd_telogg2_text ?? 0) + '';
-                                                                        }
-                                                                        if (((s as any).temp_rand ?? 0) === 5  &&  ((s as any).fame ?? 0)?.['pav_slut'] < 250) {
-                                                                          (s as any).rnd_caught_othernpc = '' + ((s as any).rnd_rodnya_text ?? 0) + ' Julia Milov, ' + ((s as any).rnd_viewgg_text ?? 0) + ' and ' + ((s as any).rnd_talkgg_text ?? 0) + ' ' + ((s as any).rnd_talkgg2_text ?? 0) + ': - ' + ((s as any).rnd_telogg_text ?? 0) + '';
-                                                                        }
-                                                                        if (((s as any).temp_rand ?? 0) === 5  &&  ((s as any).fame ?? 0)?.['pav_slut'] >= 250) {
-                                                                          (s as any).rnd_caught_othernpc = '' + ((s as any).rnd_rodnya_text ?? 0) + ' Julia Milov, ' + ((s as any).rnd_viewgg_text ?? 0) + ' and ' + ((s as any).rnd_talkgg_text ?? 0) + ' ' + ((s as any).rnd_talkgg2_text ?? 0) + ': - ' + ((s as any).rnd_telogg2_text ?? 0) + '';
-                                                                        }
-                                                                        if (((s as any).temp_rand ?? 0) === 6) {
-                                                                          (s as any).rnd_caught_othernpc = 'Young boys notice you. Nudging each other, they click on their phone to see what\'s happening. You overhear their talk vaguely: "Look…! Look…! Not here, over there…! There is… Oh shit…!" "Shoot! Shoot! Faster…!" "Holy shit!", I\'ve never seen a woman being fucked in real." "What the fuck…?" "That\'s a cunt!" "Can it be done also in the ass?" "Idiot, they\'re able almost whole forearm insert there. Heifers want it so. I\'ve seen pics at Kirian\'s." "Don\'t brag…!" "Let\'s no quarrel!"';
-                                                                        }
-                                                                        if (((s as any).temp_rand ?? 0) === 7  &&  ((s as any).evgenQW ?? 0) < 4) {
-                                                                          (s as any).rnd_caught_othernpc = '' + ((s as any).rnd_rodnya_text ?? 0) + ', uncle Misha ' + ((s as any).rnd_viewgg_text ?? 0) + ' ' + ((s as any).rnd_talkgg_text ?? 0) + ' ' + ((s as any).rnd_talkgg2_text ?? 0) + ': "Oh dear! What kind of people! Like mother, like daughter! Exactly the same! Boobs exposed, legs apart. And the eyes are so cunning… Come to me then, we need to talk."';
-                                                                        }
-                                                                        if (((s as any).temp_rand ?? 0) === 7  &&  ((s as any).evgenQW ?? 0) >= 4) {
-                                                                          (s as any).rnd_caught_othernpc = 'Your brother\'s football buddies notice you, when they are walking past you. They stop and start talking about you intensively: "Oh, my fuck, we treat her like a princess: only in her mouth… thank you… please… see you! It turns out that she is quite a prostitute. Oh shit, if we had known it then, we would have \' + func(\'gopsex\', \'hide\', \'gop_sextext2\') + \' that ripper in one gate all three of us, as we had wanted always. Well… Svetochka… It isn\'t hard for you to help us, is it…? After all, you are Kolya\'s sister… moreover older. Cavaliers, fuck… Now we get all. After all, they don\'t ask whores, they bang them right with their cocks, do they? Am I right, ' + ((s as any).pcs_nickname ?? 0) + '?"… "Hurrah, she nodded! Oooh, you\'re such our sweetie! Fuck yeah! We\'re lucky: We have got our cum dumpster now. See you soon, fuckhole! Prepare your butt hole! Let\'s delight Kolya. He has been always jacking off dreaming about her… I call dibs on her ass!" "Can she hold three at once in her mouth? We should try it long ago. Fuck, we were too shy to suggest it, frigging gentlemen!"';
-                                                                        }
-                                                                        if (((s as any).temp_rand ?? 0) === 8) {
-                                                                          (s as any).rnd_caught_othernpc = 'You are approached by a charwoman in the stairwell: "Well boys, step back and let your toy have a rest for a while. Don\'t throw away bottle, just put them on window sill when you\'re done. I\'ll take them away. Don\'t make a mess with scumbags everywhere! I gather up after you on half a bucket each day! Better, don\'t use them at all: it will be much pleasurable for you and your smasher without them or stack them neatly into her purse: she can take her trophies home with her, when she is done. Oi! Oi!!! Fuckbunny! Swallow, don\'t spit on the floor! Did you understand? Washing the floor after every whore, I would ruin my health. Don\'t drain your pussy onto the floor otherwise I\'ll make you lick all the scum!"';
-                                                                        }
-                                                                        if (((s as any).temp_rand ?? 0) === 9) {
-                                                                          (s as any).rnd_caught_othernpc = '' + ((s as any).rnd_rodnya_text ?? 0) + ', Aunt Luda ' + ((s as any).rnd_viewgg_text ?? 0) + ' ' + ((s as any).rnd_talkgg_text ?? 0) + ' ' + ((s as any).rnd_talkgg2_text ?? 0) + ': "Hey, ' + ((s as any).pcs_nickname ?? 0) + ', how is your sex life? Just think, it was only recently, when a tweeny, bows in her hair, blushing and stuttering, bought pads in my pharmacy for the first time. And now her lap squelches here all around so one can hear even on the street. You grew up very early. You better not stand like doggie here, fool. Do you know, what distinguishes sluts from decent girls? Scraped knees. Come for Green, I\'ll give it to you for a half price, goof!"';
-                                                                        }
-                                                                        if (((s as any).temp_rand ?? 0) === 10) {
-                                                                          (s as any).rnd_caught_othernpc = '' + ((s as any).rnd_rodnya_text ?? 0) + ', a mother with her little daughter notice you. The mother takes daughter by the hand and tells her: "Turn away and don\'t watch! This girl just did not obey her mama and that\'s why she\'s punished. Do you hear her calling her mama now? Obey mama and you\'ll never end up like her!" She turns to you: "Couldn\'t you wait, until you get home, slut? Do you have to shake buttocks just here? By the way, children walk here."';
-                                                                        }
-                                                                        if (((s as any).temp_rand ?? 0) === 11  &&  ((s as any).fame ?? 0)?.['pav_slut'] < 250) {
-                                                                          (s as any).rnd_caught_othernpc = '' + ((s as any).rnd_rodnya_text ?? 0) + ', \' + func(\'gopsex\', \'hide\', \'Shulga_var_name\') + \' notices you and stops. He asked you: "' + ((s as any).pcs_nickname ?? 0) + ', why do you go with these tadpoles?" You smirks and reply: "Frankly, I go with everybody."';
-                                                                        }
-                                                                        if (((s as any).temp_rand ?? 0) === 11  &&  ((s as any).fame ?? 0)?.['pav_slut'] >= 250) {
-                                                                          (s as any).rnd_caught_othernpc = '' + ((s as any).rnd_rodnya_text ?? 0) + ', \' + func(\'gopsex\', \'hide\', \'Shulga_var_name\') + \' notices you and stops. He asks you: -"' + ((s as any).pcs_nickname ?? 0) + ', do you have a session of beneficence today, or something?" You are taken aback and you reply: "Why on earth? I don\'t go with strangers for free."';
-                                                                        }
-                                                                        if (((s as any).temp_rand ?? 0) === 12  &&  ((s as any).fame ?? 0)?.['pav_slut'] < 250) {
-                                                                          (s as any).rnd_caught_othernpc = '' + ((s as any).rnd_rodnya_text ?? 0) + ', uncle Misha ' + ((s as any).rnd_viewgg_text ?? 0) + ' and ' + ((s as any).rnd_talkgg_text ?? 0) + ' ' + ((s as any).rnd_talkgg2_text ?? 0) + ': "' + ((s as any).pcs_nickname ?? 0) + ', you are already hyped up, could you gratify the old boy?" You smile at him and reply: "Uncle Misha, as soon as I\'ve finished it here, I\'ll drop by you."';
-                                                                        }
-                                                                        if (((s as any).temp_rand ?? 0) === 12  &&  ((s as any).fame ?? 0)?.['pav_slut'] >= 250) {
-                                                                          (s as any).rnd_caught_othernpc = '' + ((s as any).rnd_rodnya_text ?? 0) + ', uncle Misha ' + ((s as any).rnd_viewgg_text ?? 0) + ' and ' + ((s as any).rnd_talkgg_text ?? 0) + ' ' + ((s as any).rnd_talkgg2_text ?? 0) + ': "' + ((s as any).pcs_nickname ?? 0) + ', you are already hyped up, could you gratify the old boy?" You turn to him and reply: "Uncle Misha, I\'ll drop by you late in the evening, but for free I can do only a blowjob, fucking my pussy or my ass is for money. He bobbed: "OK, I\'ll consider about it and I\'ll be waiting for you in the evening!"';
-                                                                        }
-                                                                        if (((s as any).temp_rand ?? 0) === 13  &&  ((s as any).fame ?? 0)?.['pav_slut'] < 250) {
-                                                                          (s as any).rnd_caught_othernpc = '' + ((s as any).rnd_rodnya_text ?? 0) + ', aunt Luda ' + ((s as any).rnd_viewgg_text ?? 0) + ' and ' + ((s as any).rnd_talkgg_text ?? 0) + ' ' + ((s as any).rnd_talkgg2_text ?? 0) + ':  "' + ((s as any).pcs_nickname ?? 0) + ', you brought your fuckers again! You\'ve been heard all over the house!"  You smirk and reply: "Aunt Luda, I cannot do it quietly."';
-                                                                        }
-                                                                        if (((s as any).temp_rand ?? 0) === 13  &&  ((s as any).fame ?? 0)?.['pav_slut'] >= 250) {
-                                                                          (s as any).rnd_caught_othernpc = '' + ((s as any).rnd_rodnya_text ?? 0) + ', aunt Luda ' + ((s as any).rnd_viewgg_text ?? 0) + ' and ' + ((s as any).rnd_talkgg_text ?? 0) + ' ' + ((s as any).rnd_talkgg2_text ?? 0) + ': "' + ((s as any).pcs_nickname ?? 0) + ', you make again the plan for me tomorrow!"';
-                                                                        }
-                                                                        (s as any).temp_rand = (Math.floor(Math.random() * 5) + 1);
-                                                                        if (((s as any).temp_rand ?? 0) === 1) {
-                                                                          (s as any).rnd_caughtgg_npc = '' + ((s as any).rnd_caught_mom ?? 0) + '';
-                                                                          if ((!((s as any).motherKnowSpravka ?? 0))) {
-                                                                            (s as any).motherKnowSpravka = 1;
-                                                                          }
-                                                                          if ((!((s as any).motherKnowWhore ?? 0))) {
-                                                                            (s as any).motherKnowWhore = 1;
-                                                                          }
-                                                                        }
-                                                                        if (((s as any).temp_rand ?? 0) === 2) {
-                                                                          (s as any).rnd_caughtgg_npc = '' + ((s as any).rnd_caught_othernpc ?? 0) + '';
-                                                                        }
-                                                                        if (((s as any).temp_rand ?? 0) === 3) {
-                                                                          (s as any).rnd_caughtgg_npc = '' + ((s as any).rnd_caught_sister ?? 0) + '';
-                                                                        }
-                                                                        if (((s as any).temp_rand ?? 0) === 4) {
-                                                                          (s as any).rnd_caughtgg_npc = '' + ((s as any).rnd_caught_brother ?? 0) + '';
-                                                                          if (((s as any).brotherQW ?? 0)?.['know_slut'] < 2) {
-                                                                            ((s as any).brotherQW = (s as any).brotherQW ?? {})['know_slut'] = 2;
-                                                                          }
-                                                                        }
-                                                                        if (((s as any).temp_rand ?? 0) === 5) {
-                                                                          (s as any).rnd_caughtgg_npc = '' + ((s as any).rnd_caught_stepfather ?? 0) + '';
-                                                                        }
-                                                                        (s as any).temp_rand = (Math.floor(Math.random() * 101) + 0);
-                                                                        if (((s as any).temp_rand ?? 0) < 50) {
-                                                                          (s as any).rnd_caughtgg_view = '';
-                                                                        }
-                                                                        if (((s as any).temp_rand ?? 0) >= 50  &&  ((s as any).hour ?? 0) >= 0  &&  ((s as any).hour ?? 0) < 5) {
-                                                                          (s as any).rnd_caughtgg_view = '';
-                                                                        }
-                                                                        if (((s as any).temp_rand ?? 0) >= 50  &&  ((s as any).hour ?? 0) >= 5  &&  ((s as any).hour ?? 0) <= 23) {
-                                                                          (s as any).rnd_caughtgg_view = '<br><font color = red>' + ((s as any).rnd_caughtgg_npc ?? 0) + '</font>';
-                                                                        }
-                                                                        scene.text(`${((s as any).rnd_caughtgg_view ?? '')}`);
-                                                                        (s as any).rnd_domdela_text = undefined;
-                                                                        (s as any).rnd_telogg_text = undefined;
-                                                                        (s as any).rnd_telogg2_text = undefined;
-                                                                        (s as any).rnd_rodnya_text = undefined;
-                                                                        (s as any).rnd_viewgg_text = undefined;
-                                                                        (s as any).rnd_talkgg_text = undefined;
-                                                                        (s as any).rnd_talkgg2_text = undefined;
-                                                                        (s as any).rnd_namesis_text = undefined;
-                                                                        (s as any).rnd_mom_txt1 = undefined;
-                                                                        (s as any).rnd_caught_mom = undefined;
-                                                                        (s as any).rnd_caught_sister = undefined;
-                                                                        (s as any).rnd_caught_brother = undefined;
-                                                                        (s as any).rnd_caught_stepfather = undefined;
-                                                                        (s as any).rnd_caught_othernpc = undefined;
-                                                                        (s as any).rnd_caughtgg_npc = undefined;
-                                                                        (s as any).rnd_caughtgg_view = undefined;
-                                                                        // TODO-QSP: end & !! --- accview_ggsex ---
-                                                                        if (String((s as any).locArgs?.[1] ?? '') === 'gg_whore_text') {
-                                                                          (s as any).temp_rand = (Math.floor(Math.random() * 8) + 0);
-                                                                          if ((!((s as any).temp_rand ?? 0))) {
-                                                                            (s as any).dummy = 'slut';
-                                                                          }
-                                                                          if (((s as any).temp_rand ?? 0) === 1) {
-                                                                            (s as any).dummy = 'prostitute';
-                                                                          }
-                                                                          if (((s as any).temp_rand ?? 0) === 2) {
-                                                                            (s as any).dummy = 'whore';
-                                                                          }
-                                                                          if (((s as any).temp_rand ?? 0) === 3) {
-                                                                            (s as any).dummy = 'hooker';
-                                                                          }
-                                                                          if (((s as any).temp_rand ?? 0) === 4) {
-                                                                            (s as any).dummy = 'sporting lady';
-                                                                          }
-                                                                          if (((s as any).temp_rand ?? 0) === 5) {
-                                                                            (s as any).dummy = 'floozy';
-                                                                          }
-                                                                          if (((s as any).temp_rand ?? 0) === 6) {
-                                                                            (s as any).dummy = 'hoochie';
-                                                                          }
-                                                                          if (((s as any).temp_rand ?? 0) === 7) {
-                                                                            (s as any).dummy = 'working girl';
-                                                                          }
-                                                                          (s as any).result = ((s as any).dummy ?? 0);
-                                                                          (s as any).dummy = undefined;
-                                                                          // TODO-QSP: end & !! --- gg_whore_text ---
-                                                                          if (String((s as any).locArgs?.[1] ?? '') === 'gop_gg_name') {
-                                                                            (s as any).temp_rand = (Math.floor(Math.random() * 31) + 0);
-                                                                            if ((!((s as any).temp_rand ?? 0))) {
-                                                                              (s as any).dummy = 'floozy';
-                                                                            }
-                                                                            if (((s as any).temp_rand ?? 0) === 1) {
-                                                                              (s as any).dummy = 'slag';
-                                                                            }
-                                                                            if (((s as any).temp_rand ?? 0) === 2) {
-                                                                              (s as any).dummy = 'whore';
-                                                                            }
-                                                                            if (((s as any).temp_rand ?? 0) === 3) {
-                                                                              (s as any).dummy = 'scrub';
-                                                                            }
-                                                                            if (((s as any).temp_rand ?? 0) === 4) {
-                                                                              (s as any).dummy = 'broad';
-                                                                            }
-                                                                            if (((s as any).temp_rand ?? 0) === 5) {
-                                                                              (s as any).dummy = 'hole';
-                                                                            }
-                                                                            if (((s as any).temp_rand ?? 0) === 6) {
-                                                                              (s as any).dummy = 'cunt';
-                                                                            }
-                                                                            if (((s as any).temp_rand ?? 0) === 7) {
-                                                                              (s as any).dummy = 'slut';
-                                                                            }
-                                                                            if (((s as any).temp_rand ?? 0) === 8) {
-                                                                              (s as any).dummy = 'hoochie';
-                                                                            }
-                                                                            if (((s as any).temp_rand ?? 0) === 9) {
-                                                                              (s as any).dummy = 'moll';
-                                                                            }
-                                                                            if (((s as any).temp_rand ?? 0) === 10) {
-                                                                              (s as any).dummy = 'bitch';
-                                                                            }
-                                                                            if (((s as any).temp_rand ?? 0) === 11) {
-                                                                              (s as any).dummy = 'total hole';
-                                                                            }
-                                                                            if (((s as any).temp_rand ?? 0) === 12) {
-                                                                              (s as any).dummy = 'anal bitch';
-                                                                            }
-                                                                            if (((s as any).temp_rand ?? 0) === 13) {
-                                                                              (s as any).dummy = 'hooker';
-                                                                            }
-                                                                            if (((s as any).temp_rand ?? 0) === 14) {
-                                                                              (s as any).dummy = 'our toy';
-                                                                            }
-                                                                            if (((s as any).temp_rand ?? 0) === 15) {
-                                                                              (s as any).dummy = 'fuckbunny';
-                                                                            }
-                                                                            if (((s as any).temp_rand ?? 0) === 16) {
-                                                                              (s as any).dummy = 'sporting lady';
-                                                                            }
-                                                                            if (((s as any).temp_rand ?? 0) === 17) {
-                                                                              (s as any).dummy = 'free whore';
-                                                                            }
-                                                                            if (((s as any).temp_rand ?? 0) === 18) {
-                                                                              (s as any).dummy = 'working girl';
-                                                                            }
-                                                                            if (((s as any).temp_rand ?? 0) === 19) {
-                                                                              (s as any).dummy = '' + ((s as any).pcs_nickname ?? 0) + '-sweetie';
-                                                                            }
-                                                                            if (((s as any).temp_rand ?? 0) === 20) {
-                                                                              (s as any).dummy = 'promiscuous hole';
-                                                                            }
-                                                                            if (((s as any).temp_rand ?? 0) === 21) {
-                                                                              (s as any).dummy = '' + ((s as any).pcs_nickname ?? 0) + '-nymphet';
-                                                                            }
-                                                                            if (((s as any).temp_rand ?? 0) === 22) {
-                                                                              (s as any).dummy = 'sausage jockey';
-                                                                            }
-                                                                            if (((s as any).temp_rand ?? 0) === 23) {
-                                                                              (s as any).dummy = 'tart';
-                                                                            }
-                                                                            if (((s as any).temp_rand ?? 0) === 24) {
-                                                                              (s as any).dummy = 'cum dumpster';
-                                                                            }
-                                                                            if (((s as any).temp_rand ?? 0) === 25) {
-                                                                              (s as any).dummy = 'village bicycle';
-                                                                            }
-                                                                            if (((s as any).temp_rand ?? 0) === 26) {
-                                                                              (s as any).dummy = 'school bike';
-                                                                            }
-                                                                            if (((s as any).temp_rand ?? 0) === 27) {
-                                                                              (s as any).dummy = 'garden tool';
-                                                                            }
-                                                                            if (((s as any).temp_rand ?? 0) === 28) {
-                                                                              (s as any).dummy = 'slut';
-                                                                            }
-                                                                            if (((s as any).temp_rand ?? 0) === 29) {
-                                                                              (s as any).dummy = '' + ((s as any).gnikname ?? 0) + '';
-                                                                            }
-                                                                            if (((s as any).temp_rand ?? 0) === 30) {
-                                                                              (s as any).dummy = '' + ((s as any).pcs_nickname ?? 0) + '-prostitot';
-                                                                            }
-                                                                            (s as any).result = ((s as any).dummy ?? 0);
-                                                                            (s as any).dummy = undefined;
-                                                                            // TODO-QSP: end & !! --- gop_gg_name ---
-                                                                            if (String((s as any).locArgs?.[1] ?? '') === 'gop_gg_name2') {
-                                                                              (s as any).temp_rand = (Math.floor(Math.random() * 11) + 1);
-                                                                              if (((s as any).temp_rand ?? 0) === 1) {
-                                                                                (s as any).dummy = 'floozy';
-                                                                              }
-                                                                              if (((s as any).temp_rand ?? 0) === 2) {
-                                                                                (s as any).dummy = 'slag';
-                                                                              }
-                                                                              if (((s as any).temp_rand ?? 0) === 3) {
-                                                                                (s as any).dummy = 'whore';
-                                                                              }
-                                                                              if (((s as any).temp_rand ?? 0) === 4) {
-                                                                                (s as any).dummy = 'bitch';
-                                                                              }
-                                                                              if (((s as any).temp_rand ?? 0) === 5) {
-                                                                                (s as any).dummy = 'scrub';
-                                                                              }
-                                                                              if (((s as any).temp_rand ?? 0) === 6) {
-                                                                                (s as any).dummy = 'slut';
-                                                                              }
-                                                                              if (((s as any).temp_rand ?? 0) === 7) {
-                                                                                (s as any).dummy = 'broad';
-                                                                              }
-                                                                              if (((s as any).temp_rand ?? 0) === 8) {
-                                                                                (s as any).dummy = 'hooker';
-                                                                              }
-                                                                              if (((s as any).temp_rand ?? 0) === 9) {
-                                                                                (s as any).dummy = 'tramp';
-                                                                              }
-                                                                              if (((s as any).temp_rand ?? 0) === 10) {
-                                                                                (s as any).dummy = 'prostitute';
-                                                                              }
-                                                                              (s as any).result = ((s as any).dummy ?? 0);
-                                                                              (s as any).dummy = undefined;
-                                                                              // TODO-QSP: end & !! --- gop_gg_name2 ---
-                                                                              if (String((s as any).locArgs?.[1] ?? '') === 'gop_text_npcr') {
-                                                                                (s as any).temp_rand = (Math.floor(Math.random() * 4) + 1);
-                                                                                if (((s as any).temp_rand ?? 0) === 1) {
-                                                                                  (s as any).dummy = 'boys';
-                                                                                }
-                                                                                if (((s as any).temp_rand ?? 0) === 2) {
-                                                                                  (s as any).dummy = 'guys';
-                                                                                }
-                                                                                if (((s as any).temp_rand ?? 0) === 3) {
-                                                                                  (s as any).dummy = 'buddies';
-                                                                                }
-                                                                                if (((s as any).temp_rand ?? 0) === 4) {
-                                                                                  (s as any).dummy = 'companions';
-                                                                                }
-                                                                                (s as any).result = ((s as any).dummy ?? 0);
-                                                                                (s as any).dummy = undefined;
-                                                                                // TODO-QSP: end & !! --- gop_text_npcr ---
-                                                                                if (String((s as any).locArgs?.[1] ?? '') === 'gop_family_npc') {
-                                                                                  (s as any).temp_rand = (Math.floor(Math.random() * 3) + 1);
-                                                                                  if (((s as any).temp_rand ?? 0) === 1) {
-                                                                                    (s as any).dummy = 'Shulga';
-                                                                                  }
-                                                                                  if (((s as any).temp_rand ?? 0) === 2) {
-                                                                                    (s as any).dummy = 'Kotov';
-                                                                                  }
-                                                                                  if (((s as any).temp_rand ?? 0) === 3) {
-                                                                                    (s as any).dummy = 'Ryzhov';
-                                                                                  }
-                                                                                  (s as any).result = ((s as any).dummy ?? 0);
-                                                                                  (s as any).dummy = undefined;
-                                                                                  // TODO-QSP: end & !! --- gop_family_npc ---
-                                                                                  if (String((s as any).locArgs?.[1] ?? '') === 'gop_sextext1') {
-                                                                                    (s as any).temp_rand = (Math.floor(Math.random() * 8) + 0);
-                                                                                    if ((!((s as any).temp_rand ?? 0))) {
-                                                                                      (s as any).dummy = 'plow';
-                                                                                    }
-                                                                                    if (((s as any).temp_rand ?? 0) === 1) {
-                                                                                      (s as any).dummy = 'ram';
-                                                                                    }
-                                                                                    if (((s as any).temp_rand ?? 0) === 2) {
-                                                                                      (s as any).dummy = 'fuck';
-                                                                                    }
-                                                                                    if (((s as any).temp_rand ?? 0) === 3) {
-                                                                                      (s as any).dummy = 'hump';
-                                                                                    }
-                                                                                    if (((s as any).temp_rand ?? 0) === 4) {
-                                                                                      (s as any).dummy = 'pound';
-                                                                                    }
-                                                                                    if (((s as any).temp_rand ?? 0) === 5) {
-                                                                                      (s as any).dummy = 'bang';
-                                                                                    }
-                                                                                    if (((s as any).temp_rand ?? 0) === 6) {
-                                                                                      (s as any).dummy = 'screw';
-                                                                                    }
-                                                                                    if (((s as any).temp_rand ?? 0) === 7) {
-                                                                                      (s as any).dummy = 'hump';
-                                                                                    }
-                                                                                    (s as any).result = ((s as any).dummy ?? 0);
-                                                                                    (s as any).dummy = undefined;
-                                                                                    // TODO-QSP: end & !! --- gop_sextext1 ---
-                                                                                    if (String((s as any).locArgs?.[1] ?? '') === 'gop_sextext2') {
-                                                                                      (s as any).temp_rand = (Math.floor(Math.random() * 8) + 0);
-                                                                                      if ((!((s as any).temp_rand ?? 0))) {
-                                                                                        (s as any).dummy = 'fucked';
-                                                                                      }
-                                                                                      if (((s as any).temp_rand ?? 0) === 1) {
-                                                                                        (s as any).dummy = 'banged';
-                                                                                      }
-                                                                                      if (((s as any).temp_rand ?? 0) === 2) {
-                                                                                        (s as any).dummy = 'pounded';
-                                                                                      }
-                                                                                      if (((s as any).temp_rand ?? 0) === 3) {
-                                                                                        (s as any).dummy = 'fucked';
-                                                                                      }
-                                                                                      if (((s as any).temp_rand ?? 0) === 4) {
-                                                                                        (s as any).dummy = 'rammed';
-                                                                                      }
-                                                                                      if (((s as any).temp_rand ?? 0) === 5) {
-                                                                                        (s as any).dummy = 'plowed';
-                                                                                      }
-                                                                                      if (((s as any).temp_rand ?? 0) === 6) {
-                                                                                        (s as any).dummy = 'screwed';
-                                                                                      }
-                                                                                      if (((s as any).temp_rand ?? 0) === 7) {
-                                                                                        (s as any).dummy = 'humped';
-                                                                                      }
-                                                                                      (s as any).result = ((s as any).dummy ?? 0);
-                                                                                      (s as any).dummy = undefined;
-                                                                                      // TODO-QSP: end & !! --- gop_sextext2 ---
-                                                                                      if (String((s as any).locArgs?.[1] ?? '') === 'gop_sextext3') {
-                                                                                        (s as any).temp_rand = (Math.floor(Math.random() * 9) + 0);
-                                                                                        if ((!((s as any).temp_rand ?? 0))) {
-                                                                                          (s as any).dummy = 'fucking';
-                                                                                        }
-                                                                                        if (((s as any).temp_rand ?? 0) === 1) {
-                                                                                          (s as any).dummy = 'humping';
-                                                                                        }
-                                                                                        if (((s as any).temp_rand ?? 0) === 2) {
-                                                                                          (s as any).dummy = 'screwing';
-                                                                                        }
-                                                                                        if (((s as any).temp_rand ?? 0) === 3) {
-                                                                                          (s as any).dummy = 'banging';
-                                                                                        }
-                                                                                        if (((s as any).temp_rand ?? 0) === 4) {
-                                                                                          (s as any).dummy = 'bonking';
-                                                                                        }
-                                                                                        if (((s as any).temp_rand ?? 0) === 5) {
-                                                                                          (s as any).dummy = 'plowing';
-                                                                                        }
-                                                                                        if (((s as any).temp_rand ?? 0) === 6) {
-                                                                                          (s as any).dummy = 'shagging';
-                                                                                        }
-                                                                                        if (((s as any).temp_rand ?? 0) === 7) {
-                                                                                          (s as any).dummy = 'pounding';
-                                                                                        }
-                                                                                        if (((s as any).temp_rand ?? 0) === 8) {
-                                                                                          (s as any).dummy = 'ramming';
-                                                                                        }
-                                                                                        (s as any).result = ((s as any).dummy ?? 0);
-                                                                                        (s as any).dummy = undefined;
-                                                                                        // TODO-QSP: end & !! --- gop_sextext3 ---
-                                                                                        if (String((s as any).locArgs?.[1] ?? '') === 'gop_text3') {
-                                                                                          (s as any).temp_rand = (Math.floor(Math.random() * 5) + 0);
-                                                                                          if ((!((s as any).temp_rand ?? 0))) {
-                                                                                            (s as any).dummy = 'touch';
-                                                                                          }
-                                                                                          if (((s as any).temp_rand ?? 0) === 1) {
-                                                                                            (s as any).dummy = 'grope';
-                                                                                          }
-                                                                                          if (((s as any).temp_rand ?? 0) === 2) {
-                                                                                            (s as any).dummy = 'feel';
-                                                                                          }
-                                                                                          if (((s as any).temp_rand ?? 0) === 3) {
-                                                                                            (s as any).dummy = 'fondle';
-                                                                                          }
-                                                                                          if (((s as any).temp_rand ?? 0) === 4) {
-                                                                                            (s as any).dummy = 'caress';
-                                                                                          }
-                                                                                          (s as any).result = ((s as any).dummy ?? 0);
-                                                                                          (s as any).dummy = undefined;
-                                                                                          // TODO-QSP: end & !! --- gop_text3 ---
-                                                                                          if (String((s as any).locArgs?.[1] ?? '') === 'gop_name_npc') {
-                                                                                            (s as any).dummyi = (Math.floor(Math.random() * 3) + 0);
-                                                                                            ((s as any).dummy = (s as any).dummy ?? {})[0] = 'A11';
-                                                                                            ((s as any).dummy = (s as any).dummy ?? {})[1] = 'A9';
-                                                                                            ((s as any).dummy = (s as any).dummy ?? {})[2] = 'A10';
-                                                                                            (s as any).gop_ID_npc = (((s as any).dummy ?? 0)?.[String((s as any).dummyi ?? 0)] ?? 0);
-                                                                                            ((s as any).dummy = (s as any).dummy ?? {})[0] = 'Vasily';
-                                                                                            ((s as any).dummy = (s as any).dummy ?? {})[1] = 'Vitek';
-                                                                                            ((s as any).dummy = (s as any).dummy ?? {})[2] = 'Dan';
-                                                                                            (s as any).result = (((s as any).dummy ?? 0)?.[String((s as any).dummyi ?? 0)] ?? 0);
-                                                                                            (s as any).dummy = undefined;
-                                                                                            (s as any).dummyi = undefined;
-                                                                                            // TODO-QSP: end & !! --- gop_name_npc ---
-                                                                                            if (String((s as any).locArgs?.[1] ?? '') === 'gop_text_beer2') {
-                                                                                              (s as any).dummyi = (Math.floor(Math.random() * 10) + 0);
-                                                                                              if ((!((s as any).dummyi ?? 0))) {
-                                                                                                (s as any).dummy = qspFunc(s, 'gopsex', 'hide', 'gop_name_npc') + ' opens a new bottle of beer, he makes a couple of sips and passes the bottle to you. You stay to drink with the boys.';
-                                                                                              }
-                                                                                              if (((s as any).dummyi ?? 0) === 1) {
-                                                                                                (s as any).dummy = qspFunc(s, 'gopsex', 'hide', 'gop_name_npc') + ' pours beer into an empty glass and hands it to you. You stay to drink with the guys.';
-                                                                                              }
-                                                                                              if (((s as any).dummyi ?? 0) === 2) {
-                                                                                                (s as any).dummy = qspFunc(s, 'gopsex', 'hide', 'gop_name_npc') + ' hands you a bottle of beer. You take a draught. ' + qspFunc(s, 'gopsex', 'hide', 'gop_family_npc') + ' says loudly, "Drunken slut".';
-                                                                                              }
-                                                                                              if (((s as any).dummyi ?? 0) === 3) {
-                                                                                                (s as any).dummy = qspFunc(s, 'gopsex', 'hide', 'gop_name_npc') + ' uncorks and gives you a can of beer. You eagerly drain it in one gulp. "Wow" ' + qspFunc(s, 'gopsex', 'hide', 'gop_text_npcr') + ' gives a sigh of admiration seeing it.';
-                                                                                              }
-                                                                                              if (((s as any).dummyi ?? 0) === 4) {
-                                                                                                (s as any).dummy = qspFunc(s, 'gopsex', 'hide', 'gop_name_npc') + ' take a flask, pours beer into a glass, and hands it to you. You sit down on the bench and sprawl leisurely boozing with chavs.';
-                                                                                              }
-                                                                                              if (((s as any).dummyi ?? 0) === 5) {
-                                                                                                (s as any).dummy = qspFunc(s, 'gopsex', 'hide', 'gop_name_npc') + ' opens a bottle of beer and hands it to you. You sip beer slowly.';
-                                                                                              }
-                                                                                              if (((s as any).dummyi ?? 0) === 6) {
-                                                                                                (s as any).dummy = qspFunc(s, 'gopsex', 'hide', 'gop_name_npc') + ' uncork a bottle of beer and gives it to you. You eagerly drain it and plop the empty bottle on the bench.';
-                                                                                              }
-                                                                                              if (((s as any).dummyi ?? 0) === 7) {
-                                                                                                (s as any).dummy = qspFunc(s, 'gopsex', 'hide', 'gop_name_npc') + ' take a sip from a big PET-bottle and hands it to you. You take few gulps and ' + qspFunc(s, 'gopsex', 'hide', 'gop_family_npc') + ' takes the bottle from you.';
-                                                                                              }
-                                                                                              if (((s as any).dummyi ?? 0) === 8) {
-                                                                                                (s as any).dummy = qspFunc(s, 'gopsex', 'hide', 'gop_name_npc') + ' take a sip from a can and hands it to you. You begin eagerly swig the beer… ' + qspFunc(s, 'gopsex', 'hide', 'gop_family_npc') + ' takes the can away from you "Fuck, let some for us, fool!"';
-                                                                                              }
-                                                                                              if (((s as any).dummyi ?? 0) === 9) {
-                                                                                                (s as any).dummy = '"Have one." ' + qspFunc(s, 'gopsex', 'hide', 'gop_name_npc') + ' hands you a bottle of unfinished Zhiguli and he smirks seeing as you drink it eagerly. Your mood lightenes.';
-                                                                                              }
-                                                                                              (s as any).result = ((s as any).dummy ?? 0);
-                                                                                              (s as any).dummyi = undefined;
-                                                                                              (s as any).dummy = undefined;
-                                                                                              // TODO-QSP: end & !! --- gop_text_beer2 ----
-                                                                                              if (String((s as any).locArgs?.[1] ?? '') === 'Shulga_var_name') {
-                                                                                                ((s as any).dummy = (s as any).dummy ?? {})[0] = 'Shulga';
-                                                                                                ((s as any).dummy = (s as any).dummy ?? {})[1] = 'Vasily';
-                                                                                                ((s as any).dummy = (s as any).dummy ?? {})[2] = 'Vaska';
-                                                                                                ((s as any).dummy = (s as any).dummy ?? {})[3] = 'Vasily';
-                                                                                                (s as any).result = 0;
-                                                                                                (s as any).dummy = undefined;
-                                                                                                // TODO-QSP: end & !! --- Shulga_var_name ---
-                                                                                                if (String((s as any).locArgs?.[1] ?? '') === 'gop_beer_drova') {
-                                                                                                  (s as any).temp_rand = 0;
-                                                                                                  if ((!((s as any).temp_rand ?? 0))) {
-                                                                                                    (s as any).dummy = '"' + qspFunc(s, 'gopsex', 'hide', 'gop_gg_name') + ', you drank all the beer! Get up, let\'s ' + qspFunc(s, 'gopsex', 'hide', 'gop_sextext1') + ' you!"';
-                                                                                                  }
-                                                                                                  if (((s as any).temp_rand ?? 0) === 1) {
-                                                                                                    (s as any).dummy = '"You drank up all our beer, ' + qspFunc(s, 'gopsex', 'hide', 'gop_gg_name') + '!, Get up, it\'s time to work off your share."';
-                                                                                                  }
-                                                                                                  if (((s as any).temp_rand ?? 0) === 2) {
-                                                                                                    (s as any).dummy = '"' + ((s as any).pcs_nickname ?? 0) + ', stop drinking! Come on. Get up and serve us."';
-                                                                                                  }
-                                                                                                  if (((s as any).temp_rand ?? 0) === 3) {
-                                                                                                    (s as any).dummy = '"Fuck you ' + ((s as any).pcs_nickname ?? 0) + '-drunkard, no more drink, you are almost dopey. Get up, let\'s \' + func(\'gopsex\', \'hide\', \'gop_sextext1\') + \' you!"';
-                                                                                                  }
-                                                                                                  if (((s as any).temp_rand ?? 0) === 4) {
-                                                                                                    (s as any).dummy = '"Are you drunk? It\'s time to work off: Get up, prepare your box!"';
-                                                                                                  }
-                                                                                                  if (((s as any).temp_rand ?? 0) === 5) {
-                                                                                                    (s as any).dummy = '"Well ' + ((s as any).pcs_nickname ?? 0) + '. You drank all the beer, \' + func(\'gopsex\', \'hide\', \'gop_gg_name\') + \'! Get up, it\'s time to \' + func(\'gopsex\', \'hide\', \'gop_sextext1\') + \' you!"';
-                                                                                                  }
-                                                                                                  if (((s as any).temp_rand ?? 0) === 6) {
-                                                                                                    (s as any).dummy = '"Well ' + ((s as any).pcs_nickname ?? 0) + ', freebies ran out. Get up, let\'s \' + func(\'gopsex\', \'hide\', \'gop_sextext1\') + \' you!"';
-                                                                                                  }
-                                                                                                  if (((s as any).temp_rand ?? 0) === 7) {
-                                                                                                    (s as any).dummy = '"You aren\'t ruined yet, ' + ((s as any).pcs_nickname ?? 0) + '? So no more drink! You roped in beer us, now get up and work off the treat!"';
-                                                                                                  }
-                                                                                                  if (((s as any).temp_rand ?? 0) === 8) {
-                                                                                                    (s as any).dummy = '"At this rate, we would fuck a rubber doll, and I don\'t like it so. \' + func(\'gopsex\', \'hide\', \'gop_text_npcr\') + \', don\'t pour her glass more! Come on, ' + ((s as any).pcs_nickname ?? 0) + '! Get up and show off your box!"';
-                                                                                                  }
-                                                                                                  (s as any).result = ((s as any).dummy ?? 0);
-                                                                                                  (s as any).dummy = undefined;
-                                                                                                  // TODO-QSP: end & !! --- gop_beer_drova ---
-                                                                                                  if (String((s as any).locArgs?.[1] ?? '') === 'text_sex_cun') {
-                                                                                                    (s as any).temp_rand = (Math.floor(Math.random() * 6) + 0);
-                                                                                                    if ((!((s as any).temp_rand ?? 0))) {
-                                                                                                    }
-                                                                                                    if (((s as any).temp_rand ?? 0) === 1) {
-                                                                                                    }
-                                                                                                    if (((s as any).temp_rand ?? 0) === 2) {
-                                                                                                      (s as any).txt_sex_cun = 'You lie down on your back and spread your thighs wide apart. ' + ((s as any).npcdesc ?? 0) + ' pulls your panties aside and his mouth clings to your wet pussy. He licks and sucks your cunt lips, your clit, and from time to time his tongue slides into your box. You moan, holding his head and pressing it tightly to your wet pussy.';
-                                                                                                    }
-                                                                                                    if (((s as any).temp_rand ?? 0) === 3) {
-                                                                                                      (s as any).txt_sex_cun = '' + ((s as any).npcdesc ?? 0) + ' puts you on your back and moves to your wet box. He licks your clitoris, then he puts straight two fingers into your wet pussy and starts fingering you. Squishing sounds are coming from your cunny and your moaning resounds surroundings. ' + ((s as any).npcdesc ?? 0) + ' grins and his hand moves even faster';
-                                                                                                    }
-                                                                                                    if (((s as any).temp_rand ?? 0) === 4) {
-                                                                                                      (s as any).txt_sex_cun = 'You part your legs apart exposing your pussy to his view. Without hesitation, ' + ((s as any).npcdesc ?? 0) + ' starts kissing your box. He tickles your clit with his tongue and then he ran down between your pussy lips to your love hole, which was really very wet. You were ready for sex already so you could start fucking right now. But ' + ((s as any).npcdesc ?? 0) + ' is not in a hurry. He caresses you with both his tongue and his fingers listening to your sweet moans. You writhes with eagerness, but you don\'t beg just enjoy the moment.';
-                                                                                                    }
-                                                                                                    if (((s as any).temp_rand ?? 0) === 5) {
-                                                                                                    }
-                                                                                                    scene.text(`${((s as any).txt_sex_cun ?? '')}`);
-                                                                                                    (s as any).txt_sex_cun = undefined;
-                                                                                                    // TODO-QSP: end & !! --- text_sex_cun ---
-                                                                                                    if (String((s as any).locArgs?.[1] ?? '') === 'text_sex_69') {
-                                                                                                      (s as any).temp_rand = (Math.floor(Math.random() * 2) + 0);
-                                                                                                      if ((!((s as any).temp_rand ?? 0))) {
-                                                                                                        (s as any).txt_sex_69 = 'Your ' + (((s as any).pc_desc ?? 0)?.['lips']) + ' lips softly accept his member sucking it passionately all round like a lollipop, helping yourself with your nimble tongue tickling his frenulum. At the same time ' + ((s as any).npcdesc ?? 0) + ' grasps your clit with his fingertips rubbing it gently between them. Simultaneously he examines your love hole with his tongue, which has been already prepared to accept something bigger.';
-                                                                                                      }
-                                                                                                      if (((s as any).temp_rand ?? 0) === 1) {
-                                                                                                        (s as any).txt_sex_69 = '' + ((s as any).npcdesc ?? 0) + ' lies down on his back, takes your leg and shifts it over himself so your tushie was just in front of his face. Running his tongue between your nether lips, he feels you take his cock deep into your mouth again. You loosen your grasp a bit then and start sucking it with your ' + (((s as any).pc_desc ?? 0)?.['lips']) + ' lips.';
-                                                                                                      }
-                                                                                                      scene.text(`${((s as any).txt_sex_69 ?? '')}`);
-                                                                                                      (s as any).txt_sex_69 = undefined;
-                                                                                                      // TODO-QSP: end & !! --- text_sex_69 ---
-                                                                                                      if (String((s as any).locArgs?.[1] ?? '') === 'text_sex_hj') {
-                                                                                                        (s as any).temp_rand = (Math.floor(Math.random() * 4) + 0);
-                                                                                                        if ((!((s as any).temp_rand ?? 0))) {
-                                                                                                          (s as any).txt_sex_hj = 'Without talking, ' + ((s as any).npcdesc ?? 0) + ' shoves his cock in your face.';
-                                                                                                        }
-                                                                                                        scene.text('"That\'s like jerk off." You say laughing, take his member into your hand and start pumping.');
-                                                                                                        if (((s as any).temp_rand ?? 0) === 1) {
-                                                                                                          (s as any).txt_sex_hj = 'You take his still soft cock into your hand and it starts growing noticeably. You begin a hand job feasting your eyes on his strong prick.';
-                                                                                                        }
-                                                                                                        if (((s as any).temp_rand ?? 0) === 2) {
-                                                                                                          (s as any).txt_sex_hj = '' + ((s as any).npcdesc ?? 0) + ' shoves his cock into your hand. Your fingers grip on his fat elastic trunk shakily. He tells you to hold it firmer.';
-                                                                                                        }
-                                                                                                        scene.text('"Don\'t release it and move your hand up and down…" He takes hold showing how to do it.');
-                                                                                                        scene.text('"Not so sharply… yes so. Don\'t pull… Yes, that\'s it. Great…! More… More.!"');
-                                                                                                        if (((s as any).temp_rand ?? 0) === 3) {
-                                                                                                          (s as any).txt_sex_hj = '' + ((s as any).npcdesc ?? 0) + ' asks you to do hand job to him. You take his dick firmly into your hand and start to rub the skin back and forth.';
-                                                                                                        }
-                                                                                                        scene.text(`${((s as any).txt_sex_hj ?? '')}`);
-                                                                                                        (s as any).txt_sex_hj = undefined;
-                                                                                                        // TODO-QSP: end & !! --- text_sex_hj ---
-                                                                                                        if (String((s as any).locArgs?.[1] ?? '') === 'text_sex_bj') {
-                                                                                                          (s as any).temp_rand = (Math.floor(Math.random() * 8) + 0);
-                                                                                                          if ((!((s as any).temp_rand ?? 0))) {
-                                                                                                            (s as any).txt_sex_bj = 'You take his member into your ' + (((s as any).pc_desc ?? 0)?.['lips']) + ' lips, and ' + ((s as any).npcdesc ?? 0) + ' starts to fuck your mouth.';
-                                                                                                          }
-                                                                                                          if (((s as any).temp_rand ?? 0) === 1) {
-                                                                                                            (s as any).txt_sex_bj = 'You take his member into your mouth, and start to suck it. ' + ((s as any).npcdesc ?? 0) + ' takes hold of your ' + ((s as any).pcs_haircolor ?? 0) + ' ' + ((s as any).curly_txt ?? 0) + ' hair and impales your head at his prick. Slurping, you swallow his member. You could feel with your ' + (((s as any).pc_desc ?? 0)?.['lips']) + ' lips every vein and bump on its skin.';
-                                                                                                          }
-                                                                                                          if (((s as any).temp_rand ?? 0) === 2) {
-                                                                                                            (s as any).txt_sex_bj = 'You grasp his member with your hand and pumping, you take with your ' + (((s as any).pc_desc ?? 0)?.['lips']) + ' lips its head into your mouth. His dick stiffens more and gains impressive size. You learned to swallow a cock quite well long ago, and you used it always since that time. ' + ((s as any).npcdesc ?? 0) + ' was fascinated. You fondle his balls with one hand, and stroke his prick with other one, you release it from time to time so that you can take his shaft in your mouth fully.';
-                                                                                                          }
-                                                                                                          if (((s as any).temp_rand ?? 0) === 3) {
-                                                                                                            (s as any).txt_sex_bj = 'Without talking, ' + ((s as any).npcdesc ?? 0) + ', seizes you by your ' + ((s as any).pcs_haircolor ?? 0) + ' ' + ((s as any).curly_txt ?? 0) + ' hair, tilts your head towards his penis. He starts swinging his hips fucking your mouth in such way.';
-                                                                                                          }
-                                                                                                          if (((s as any).temp_rand ?? 0) === 4) {
-                                                                                                            (s as any).txt_sex_bj = '' + ((s as any).npcdesc ?? 0) + ', seizes you by your ' + ((s as any).pcs_haircolor ?? 0) + ' ' + ((s as any).curly_txt ?? 0) + ' hair and starts moving with your head in pace of his swinging. You choke a bit but continued in sucking.';
-                                                                                                          }
-                                                                                                          if (((s as any).temp_rand ?? 0) === 5) {
-                                                                                                            (s as any).txt_sex_bj = 'You start to lick his dick with yout nimble tongue, then gather a little saliva, you take his prick in your ' + (((s as any).pc_desc ?? 0)?.['lips']) + ' lips and begin to suck, rubbing it with your hand at the same time.';
-                                                                                                          }
-                                                                                                          if (((s as any).temp_rand ?? 0) === 6) {
-                                                                                                            (s as any).txt_sex_bj = 'You take his dick in your mouth, your tongue caress its sides, then the bottom and then the tip of head. You purse your ' + (((s as any).pc_desc ?? 0)?.['lips']) + ' lips and start moving back and forth faster. You let his dick slid out of your mouth and you examine a result of your job with excitement. The head becomes even harder, purple and shiny. You feel a faint ache in your lower abdomen. You bend upward the hard shaft and run your tongue from the balls to the cock head, then you tickle it from all sides digging your ' + (((s as any).pc_desc ?? 0)?.['lips']) + ' lips in the head.';
-                                                                                                          }
-                                                                                                          if (((s as any).temp_rand ?? 0) === 7) {
-                                                                                                            (s as any).txt_sex_bj = 'You gently wrap his prick with your wet ' + (((s as any).pc_desc ?? 0)?.['lips']) + ' lips and let it slide in your mouth. You rub it with your nimble tongue, stroke its trunk and fondling his sack with your hands. You captur it stronger, slurping juices and your saliva enveloping its head. You are tickling it with your tongue and you hear ' + ((s as any).npcdesc ?? 0) + '\'s sweet moaning.';
-                                                                                                          }
-                                                                                                          scene.text(`${((s as any).txt_sex_bj ?? '')}`);
-                                                                                                          (s as any).txt_sex_bj = undefined;
-                                                                                                          // TODO-QSP: end & !! --- text_sex_bj ---
-                                                                                                          if (String((s as any).locArgs?.[1] ?? '') === 'text_sex_bjt') {
-                                                                                                            (s as any).temp_rand = (Math.floor(Math.random() * 3) + 0);
-                                                                                                            if ((!((s as any).temp_rand ?? 0))) {
-                                                                                                              (s as any).txt_sex_bjt = 'He shove his prick deep into your throat squeezing it with his hand. Your ' + (((s as any).pc_desc ?? 0)?.['lips']) + ' lips grip tightly his trunk. You aren\'t giving a blowjob. ' + ((s as any).npcdesc ?? 0) + ' is simply fucking your throat and you both have a lot of fun.';
-                                                                                                            }
-                                                                                                            if (((s as any).temp_rand ?? 0) === 1) {
-                                                                                                              (s as any).txt_sex_bjt = 'You try to swallow his cock deeper with your ' + (((s as any).pc_desc ?? 0)?.['lips']) + ' lips. You are rubbing it with you hand again, and caressing it with your mouth simultaneously. With each thrust you take it deeper and deeper in your mouth until it reaches your throat. Tears well in your eyes but you still try to put it in even deeper. ' + ((s as any).npcdesc ?? 0) + ' grabbs your ' + ((s as any).pcs_haircolor ?? 0) + ' ' + ((s as any).curly_txt ?? 0) + ' hair and took the initiative and starts pulling your head on his shaft.';
-                                                                                                            }
-                                                                                                            if (((s as any).temp_rand ?? 0) === 2) {
-                                                                                                              (s as any).txt_sex_bjt = 'The cock head bumps into your throat and it even moves farther, but you can\'t take it more - it was simply too thick. Nevertheless, at each thrust, bit by bit, it moves deeper and deeper. A rope of your saliva oozes out of your mouth down to your chin and drips on the ground.';
-                                                                                                            }
-                                                                                                            scene.text(`${((s as any).txt_sex_bjt ?? '')}`);
-                                                                                                            (s as any).txt_sex_bjt = undefined;
-                                                                                                            // TODO-QSP: end & !! --- text_sex_bjt ---
-                                                                                                            if (String((s as any).locArgs?.[1] ?? '') === 'text_sex_doggy') {
-                                                                                                              (s as any).temp_rand = (Math.floor(Math.random() * 7) + 0);
-                                                                                                              if ((!((s as any).temp_rand ?? 0))) {
-                                                                                                                if (((s as any).PCloSkirt ?? 0) > 0) {
-                                                                                                                  (s as any).dummytxt = 'He hikes up your skirt';
-                                                                                                                } else {
-                                                                                                                  if (((s as any).PCloPants ?? 0) > 2) {
-                                                                                                                    (s as any).dummytxt = 'He pulls your shorts down to your knees';
-                                                                                                                  } else {
-                                                                                                                    (s as any).dummytxt = 'He pulls your pants down to your knees';
-                                                                                                                  }
-                                                                                                                }
-                                                                                                                (s as any).txt_sex_doggy = 'You delight ' + ((s as any).npcdesc ?? 0) + '. He jumps, and prompts you to bend forward. ' + ((s as any).dummytxt ?? 0) + ' revealing your cute tushy, and shoves his dick into your pussy from behind. You don\'t expect such abrupt action, but he is fucking you for ten minutes, almost without slowing the pace, only occasionally stopping to take a breath. You think he would be tired soon, but it turns out that he is more tenacious than one might assume. The last five minutes you forget where you are, and screaming your head off. ' + ((s as any).npcdesc ?? 0) + ' is growling spanking your butt with one hand and pulling your ' + ((s as any).pcs_haircolor ?? 0) + ' ' + ((s as any).curly_txt ?? 0) + ' hair with the other.';
-                                                                                                                (s as any).dummytxt = undefined;
-                                                                                                              }
-                                                                                                              if (((s as any).temp_rand ?? 0) === 1) {
-                                                                                                                (s as any).txt_sex_doggy = '' + ((s as any).npcdesc ?? 0) + ' jerks off and then plants you on his cock. You start jiggle with your ass and his prick slides fully into your cunny and hits your cervix. You arch back and he grabs firmly your butt and starts fucking you stronger.';
-                                                                                                              }
-                                                                                                              if (((s as any).temp_rand ?? 0) === 2) {
-                                                                                                              }
-                                                                                                              if (((s as any).temp_rand ?? 0) === 3) {
-                                                                                                                (s as any).txt_sex_doggy = '' + ((s as any).npcdesc ?? 0) + ' has made you bend forward and then he stands behind you. Thereafter, he thrusts his cock into your wet cunt in one sharp move. You twitch and scream with searing and sharp pain, but stay obediently forward bending. He starts screwing you to the hilt roughly, he is ramming his shaft into you as if he wanted to get with each thrust deeper and deeper into your hole. He is fucking violently his classmate, holding your ' + ((s as any).pcs_haircolor ?? 0) + ' ' + ((s as any).curly_txt ?? 0) + ' hair with one hand. ' + ((s as any).npcdesc ?? 0) + '\'s moves are sharp and strong. Silence is breaking with smacking sounds when his pelvis rebound with force from your springy butt, and you silently moan through gritted teeth.';
-                                                                                                              }
-                                                                                                              if (((s as any).temp_rand ?? 0) === 4) {
-                                                                                                              }
-                                                                                                              if (((s as any).temp_rand ?? 0) === 5) {
-                                                                                                                (s as any).txt_sex_doggy = 'Holding your waist, ' + ((s as any).npcdesc ?? 0) + ' is banging you, slowly increasing his pace. You are diligently fucking back moaning with pleasure and in quest to please him. Your boobs are swaying and your pink swollen nipples are sticking out seductively. You feel as his strong member alternately fills and pleasantly stretches your pussy at one moment and then it gets out fully. You feel like a whore and you like it.';
-                                                                                                              }
-                                                                                                              if (((s as any).temp_rand ?? 0) === 6) {
-                                                                                                                (s as any).txt_sex_doggy = '' + ((s as any).npcdesc ?? 0) + ' turns you, prompts you to bend forward and without ceremony he starts banging your pussy. Slaps beoame louder and louder. His chest and back are glistening with sweat, his fingers dig into your butt and the thrusts become stronger and shorter. ' + ((s as any).npcdesc ?? 0) + ' is not pulling out his prick fully from your cunt but just a bit. His cock is in your box completely and still keeps pounding. It seems that he won\'t stop.';
-                                                                                                              }
-                                                                                                              scene.text(`${((s as any).txt_sex_doggy ?? '')}`);
-                                                                                                              (s as any).txt_sex_doggy = undefined;
-                                                                                                              // TODO-QSP: end & !! --- text_sex_doggy ---
-                                                                                                              if (String((s as any).locArgs?.[1] ?? '') === 'text_sex_doggy_anal') {
-                                                                                                                (s as any).temp_rand = (Math.floor(Math.random() * 9) + 0);
-                                                                                                                if ((!((s as any).temp_rand ?? 0))) {
-                                                                                                                }
-                                                                                                                if (((s as any).temp_rand ?? 0) === 1) {
-                                                                                                                }
-                                                                                                                if (((s as any).temp_rand ?? 0) === 2) {
-                                                                                                                  (s as any).txt_sex_doggy_anal = '"I missed your tight tushie, baby! I\'m going to fuck your bum now, my sweet chick". You feel that his prick is hard and jostles against your butt. ' + ((s as any).npcdesc ?? 0) + ' spits into his palm, greases his cock head and sets the glans to your anus. He starts pushing and slowly and gentle shoves his cock in your ass. As soon as the cock is fully in your bum, ' + ((s as any).npcdesc ?? 0) + ' starts wiggling with his pelvis holding your hips. You moan loudly and start fucking back and impaling yourself on his big cock.';
-                                                                                                                }
-                                                                                                                if (((s as any).temp_rand ?? 0) === 3) {
-                                                                                                                  (s as any).txt_sex_doggy_anal = '' + ((s as any).npcdesc ?? 0) + ' puts his cock head to your narrow entrance and pushes in. Your sphincter stretches and allows his thin prick to slide into your bum without exceptional resistance. He grabs your hips and starts fucking fast your bum. You shriek out at each thrust, which he enjoyes it a lot he is banging you faster and faster. He was seize with animal instincts and he desires so as you scream louder and louder continuously. ' + ((s as any).npcdesc ?? 0) + ' shoves his prick deep into your bowels so his balls smash your taint.';
-                                                                                                                }
-                                                                                                                if (((s as any).temp_rand ?? 0) === 4) {
-                                                                                                                  (s as any).txt_sex_doggy_anal = '' + ((s as any).npcdesc ?? 0) + ' moves you on your knees and he spoons to you from behind. He holds your bum with one hand and with other hand he aims his prick into the brown eye. It is seen that you enjoyed it. Holding your butt firmly, he is swinging his hips back and forth so forcefully, so smacks are somewhat frenzied, are both sonorous and muffled. And so fast: a swing, a hit, a swing, a hit. He starts drawing you close, when he reaches your womb, he draws close your ass, which rippled by his strokes.';
-                                                                                                                }
-                                                                                                                if (((s as any).temp_rand ?? 0) === 5) {
-                                                                                                                  (s as any).txt_sex_doggy_anal = '' + ((s as any).npcdesc ?? 0) + ' drags you with him. You find yourself being on elbows and knees and you grasp that he is about to penetrate you. He leans tip of his cock against your anus and jostles. It is a little painful, but the desire to pleasure outweighed. ' + ((s as any).npcdesc ?? 0) + ' gradually accelerates his screwing. Your anus relaxes and stretches so his prick could pass easily now.';
-                                                                                                                }
-                                                                                                                if (((s as any).temp_rand ?? 0) === 6) {
-                                                                                                                  (s as any).txt_sex_doggy_anal = 'You stand with legs slightly apart, bending forward, he is holding your butt and his prick is fully hid in your ass hole. Breathing heavily, you are taking pleasure in this state. You want so that ' + ((s as any).npcdesc ?? 0) + ' is fully in you and your whole butt feels his strong bangs, and his member is moving back and forth, and waves induced by his banging, fly along your bum. You want to be fucked as a filthy whore.';
-                                                                                                                }
-                                                                                                                if (((s as any).temp_rand ?? 0) === 7) {
-                                                                                                                  (s as any).txt_sex_doggy_anal = '' + ((s as any).npcdesc ?? 0) + ' is holding your bum firmly and screwing your brown eye with his prick in full swing. He is banging you heftily and with a backswing. Stronger and even stronger, helping yourself with his hands, he pulls your firm bum towards him. You don\'t feel pain in your anus yet, it gives nice pleasant itching, and you feel something hot and flexible which penetrated deeper and deeper, and disappearing somewhere there.';
-                                                                                                                }
-                                                                                                                if (((s as any).temp_rand ?? 0) === 8) {
-                                                                                                                  (s as any).txt_sex_doggy_anal = '' + ((s as any).npcdesc ?? 0) + ' instructs you to bend forward and aims the head of his cock to your anus and starts pushing his member into your butt. Your ass is already relaxed and stretched and his cock slide fully into your bowels. ' + ((s as any).npcdesc ?? 0) + ' starts screwing you roughly. Bang! Bang! Bang! Smack! The cock moves back and forth. Waves caused by his blows, fly along your arse, your boobs are shaking, your head shudders in the pace of his strokes. Moan of pleasure flies from your lips. You try to resist to his violent pressure and the bonking. Your vision becomes blurred and color shadows and patterns filled your mind. Squeezing your ass, ' + ((s as any).npcdesc ?? 0) + ' is fucking it strongly and tiresome.';
-                                                                                                                }
-                                                                                                                scene.text(`${((s as any).txt_sex_doggy_anal ?? '')}`);
-                                                                                                                (s as any).txt_sex_doggy_anal = undefined;
-                                                                                                                // TODO-QSP: end & !! --- text_sex_doggy_anal ---
-                                                                                                                if (String((s as any).locArgs?.[1] ?? '') === 'text_sex_cow') {
-                                                                                                                  (s as any).temp_rand = (Math.floor(Math.random() * 3) + 0);
-                                                                                                                  if ((!((s as any).temp_rand ?? 0))) {
-                                                                                                                    (s as any).txt_sex_cow = '' + ((s as any).npcdesc ?? 0) + ' sits down on the couch, you straddle him and slowly lower yourself on his cock slipping it all of the way up inside your tight cunt. You start bouncing your hips sliding up and down his shaft. You are fucking, your eyes closed and you forget everything but her lust';
-                                                                                                                  }
-                                                                                                                  if (((s as any).temp_rand ?? 0) === 1) {
-                                                                                                                  }
-                                                                                                                  if (((s as any).temp_rand ?? 0) === 2) {
-                                                                                                                    (s as any).txt_sex_cow = 'You swing your leg over and straddle him, reaching down, you grasp his hard cock and guide it to your wet pussy. Fucking him, you occasionally lean and kiss him and at that time your boobs touch his chest. After a while, you start squeezing him more with your legs and you press tightly to his groin, trying to get his member deeper into your box.';
-                                                                                                                  }
-                                                                                                                  scene.text(`${((s as any).txt_sex_cow ?? '')}`);
-                                                                                                                  (s as any).txt_sex_cow = undefined;
-                                                                                                                  // TODO-QSP: end & !! --- text_sex_cow ---
-                                                                                                                  if (String((s as any).locArgs?.[1] ?? '') === 'text_sex_cow_anal') {
-                                                                                                                    (s as any).txt_sex_cow_anal = 'You squat so you could control height of your ass better. You lift your bum up firstly and then slowly lower your ass again, trying impale yourself on ' + ((s as any).npcdesc ?? 0) + '\'s dick. As soon as its head passes your sphincter, you start swaying your hips slightly. During the riding, you feet that your ass became accustomed to his member, there is no pain. You realize that you have started spontaneously sliding lower and lower.';
-                                                                                                                    scene.text(`${((s as any).txt_sex_cow_anal ?? '')}`);
-                                                                                                                    (s as any).txt_sex_cow_anal = undefined;
-                                                                                                                    // TODO-QSP: end & !! --- text_sex_cow_anal ---
-                                                                                                                    if (String((s as any).locArgs?.[1] ?? '') === 'text_sex_miss') {
-                                                                                                                      (s as any).temp_rand = (Math.floor(Math.random() * 6) + 0);
-                                                                                                                      if ((!((s as any).temp_rand ?? 0))) {
-                                                                                                                        (s as any).txt_sex_miss = '' + ((s as any).npcdesc ?? 0) + ' pushes you to lay on your back and then he lies down at you. The boy puts the soft purple head of his cock to your box and pushes in. You sigh feebly and clasp your legs around his butt. He slides to the hilt in your box and starts carefully moving as if he is afraid to cause you pain. Your cunt is wet inside and hot like a furnace. You catch his pace and fucking back you fully forget about the rest of world.';
-                                                                                                                      }
-                                                                                                                      if (((s as any).temp_rand ?? 0) === 1) {
-                                                                                                                      }
-                                                                                                                      if (((s as any).temp_rand ?? 0) === 2) {
-                                                                                                                        (s as any).txt_sex_miss = '' + ((s as any).npcdesc ?? 0) + ' puts you down on your back, he spreads your legs with his pelvis to sides and he lies down his stomach at you. He penetrates you groaning and watching his member sliding fast into your love hole, softly parting your nether lips. Elastic walls of your cunt softly envelope and captivate his member. He leans his hands on the bed hanging down over you, looking into your face and you keep your eyes on him. You are quite skilled, despite your age. When he is in you, you tightly squeeze your feet beneath him and to further stimulate his member with your hips. He is screwing you experiences a special gripping pleasure, being tightly captured with your hips.';
-                                                                                                                      }
-                                                                                                                      if (((s as any).temp_rand ?? 0) === 3) {
-                                                                                                                        (s as any).txt_sex_miss = 'His member is tossing in your cunt like a crazy bull, you sense his hard trunk every time when ' + ((s as any).npcdesc ?? 0) + ' literally stamps your tender groin with his pelvis. He tenses up somewhat and starts banging you tirelessly, what make his dick quite hot.';
-                                                                                                                      }
-                                                                                                                      if (((s as any).temp_rand ?? 0) === 4) {
-                                                                                                                        (s as any).txt_sex_miss = 'You are lying on your back, ' + ((s as any).npcdesc ?? 0) + ' starts running along yours nether lips with his bare glans. You feel very ticklish sensation, when he rubs your clit. Later, when he reaches your hole, he starts dipping there a bit more, ramming several times and then he gets out again. Gradually the deepness increases and finally he is fucking you fully. To say true, the position isn\'t very comfortable, but on the other hand he can see the whole body of his moaning mate and it was worth seeing. Suddenly you moans : "More…! More…! Come on!"';
-                                                                                                                      }
-                                                                                                                      if (((s as any).temp_rand ?? 0) === 5) {
-                                                                                                                        (s as any).txt_sex_miss = 'Your pussy is well greased and his member slides easily into your love hole. You feel as his mushroom head is stretching inner walls of your fanny. You let out moan with each penetration. It doesn\'t last long and you get accustomed. You put your hands on his buttock and start set the pace. "Faster! faster!" Your whisper is melting into moaning and you tilt your head back. ' + ((s as any).npcdesc ?? 0) + ' doesn\'t contain himself and he rams his prick so deep so your pubes touched. You are breathing fast and heavily through your teeth. After a while ' + ((s as any).npcdesc ?? 0) + ' is fucking you openly. In turn, you seize his back and moan monotonously.';
-                                                                                                                      }
-                                                                                                                      scene.text(`${((s as any).txt_sex_miss ?? '')}`);
-                                                                                                                      (s as any).txt_sex_miss = undefined;
-                                                                                                                      // TODO-QSP: end & !! --- text_sex_miss ---
-                                                                                                                      if (String((s as any).locArgs?.[1] ?? '') === 'text_sex_miss_anal') {
-                                                                                                                        (s as any).temp_rand = (Math.floor(Math.random() * 2) + 0);
-                                                                                                                        if ((!((s as any).temp_rand ?? 0))) {
-                                                                                                                          (s as any).txt_sex_miss_anal = '' + ((s as any).npcdesc ?? 0) + ' pushes you to lay on your back and then he lies down at you. The boy puts the soft purple head of his cock to your pucker and pushes in. You sigh feebly and clasp your legs around his butt. He slides to the hilt in your bum and starts carefully moving as if he is afraid to cause you pain. Your anus is well lubbed and hot like a furnace. You catch his pace and fucking back you fully forget about the rest of world.';
-                                                                                                                        }
-                                                                                                                        if (((s as any).temp_rand ?? 0) === 1) {
-                                                                                                                        }
-                                                                                                                        scene.text(`${((s as any).txt_sex_miss_anal ?? '')}`);
-                                                                                                                        (s as any).txt_sex_miss_anal = undefined;
-                                                                                                                        // TODO-QSP: end & !! --- text_sex_miss_anal ---
-                                                                                                                        if (String((s as any).locArgs?.[1] ?? '') === 'text_sex_sideways') {
-                                                                                                                          (s as any).temp_rand = (Math.floor(Math.random() * 2) + 0);
-                                                                                                                          if ((!((s as any).temp_rand ?? 0))) {
-                                                                                                                            (s as any).txt_sex_sideways = '';
-                                                                                                                          }
-                                                                                                                          if (((s as any).temp_rand ?? 0) === 1) {
-                                                                                                                            (s as any).txt_sex_sideways = '';
-                                                                                                                          }
-                                                                                                                          scene.text(`${((s as any).txt_sex_sideways ?? '')}`);
-                                                                                                                          (s as any).text_sex_sideways = undefined;
-                                                                                                                          // TODO-QSP: end & !! --- text_sex_sideways ---
-                                                                                                                          if (String((s as any).locArgs?.[1] ?? '') === 'text_sex_sideways_anal') {
-                                                                                                                            (s as any).temp_rand = (Math.floor(Math.random() * 2) + 0);
-                                                                                                                            if ((!((s as any).temp_rand ?? 0))) {
-                                                                                                                              (s as any).txt_sex_sideways_anal = '';
-                                                                                                                            }
-                                                                                                                            if (((s as any).temp_rand ?? 0) === 1) {
-                                                                                                                              (s as any).txt_sex_sideways_anal = '';
-                                                                                                                            }
-                                                                                                                            scene.text(`${((s as any).txt_sex_sideways_anal ?? '')}`);
-                                                                                                                            (s as any).text_sex_sideways_anal = undefined;
-                                                                                                                            // TODO-QSP: end & !! --- text_sex_sideways_anal ---
-                                                                                                                            if (String((s as any).locArgs?.[1] ?? '') === 'text_sex_cumm') {
-                                                                                                                              (s as any).temp_rand = (Math.floor(Math.random() * 3) + 0);
-                                                                                                                              if ((!((s as any).temp_rand ?? 0))) {
-                                                                                                                                (s as any).txt_sex_cumm = '' + ((s as any).npcdesc ?? 0) + ' quickly pulls out his cock and shoves it into your mouth. You don\'t succeed in making an objection and stream of his hot cum hits your tonsils, you instinctively cling closer to him. He cumms and several long torrents of hot juice flood your mouth. In spite of that you try to swallow it all, surplus of his semen runs out of your mouth down your chin.';
-                                                                                                                              }
-                                                                                                                              if (((s as any).temp_rand ?? 0) === 1) {
-                                                                                                                                (s as any).txt_sex_cumm = 'You willingly take his cock in your mouth and you are sucking it with delight until ' + ((s as any).npcdesc ?? 0) + ' pours into your mouth a fair dose of his sticky baby batter.';
-                                                                                                                              }
-                                                                                                                              if (((s as any).temp_rand ?? 0) === 2) {
-                                                                                                                                (s as any).txt_sex_cumm = 'You swallow his dick, your tongue is tickling his big balls and don\'t last long and his throbbing member spills hot stream of semen into your mouth.';
-                                                                                                                              }
-                                                                                                                              scene.text(`${((s as any).txt_sex_cumm ?? '')}`);
-                                                                                                                              (s as any).text_sex_cumm = undefined;
-                                                                                                                              // TODO-QSP: end & !! --- text_sex_cumm ---
-                                                                                                                              if (String((s as any).locArgs?.[1] ?? '') === 'text_sex_cumface') {
-                                                                                                                                (s as any).temp_rand = (Math.floor(Math.random() * 4) + 0);
-                                                                                                                                if ((!((s as any).temp_rand ?? 0))) {
-                                                                                                                                  (s as any).txt_sex_cumface = '' + ((s as any).npcdesc ?? 0) + ' covers all your face with his hot sticky semen.';
-                                                                                                                                }
-                                                                                                                                if (((s as any).temp_rand ?? 0) === 1) {
-                                                                                                                                  (s as any).txt_sex_cumface = '' + ((s as any).npcdesc ?? 0) + ' pulls out his cock and aims it at your face. You see its purple head from which spurts his cum. You feel as warm sticky blobs are landing on your face and after a while his hot cum runs down over your chin and drips on the ground.';
-                                                                                                                                }
-                                                                                                                                if (((s as any).temp_rand ?? 0) === 2) {
-                                                                                                                                  (s as any).txt_sex_cumface = '"Oh fuck!" ' + ((s as any).npcdesc ?? 0) + ' shouts out and pulls his cock out of your sweet captivity and takes it in his hand. A first long stream appears, you screw up your eyes and feel as a trickle of semen hits your chin and made a rope over your cheek. The second shot he aims deliberately straight at your cheek so you have barely a chance to close your eyes. This eruption is rich enough to cover your face with sticky cream.';
-                                                                                                                                }
-                                                                                                                                if (((s as any).temp_rand ?? 0) === 3) {
-                                                                                                                                  (s as any).txt_sex_cumface = '' + ((s as any).npcdesc ?? 0) + ' shifts his cock up to front of your face. At that moment a sticky stream strikes straight into your ' + (((s as any).pc_desc ?? 0)?.['lips']) + ' lips. Trickles of semen is flowing down along your chin and drips on the ground. Ropes of sticky cum hangs down from your chin now. ' + ((s as any).npcdesc ?? 0) + ' spots it after a while when he finally complacently releases last drops of his semen.';
-                                                                                                                                }
-                                                                                                                                scene.text(`${((s as any).txt_sex_cumface ?? '')}`);
-                                                                                                                                (s as any).text_sex_cumface = undefined;
-                                                                                                                                // TODO-QSP: end & !! --- text_sex_cumface ---
-                                                                                                                                if (String((s as any).locArgs?.[1] ?? '') === 'text_sex_cumbody') {
-                                                                                                                                  (s as any).temp_rand = (Math.floor(Math.random() * 2) + 0);
-                                                                                                                                  if ((!((s as any).temp_rand ?? 0))) {
-                                                                                                                                    (s as any).txt_sex_cumbody = 'A minute later, he is barely having time to pull his dick out of you, ' + ((s as any).npcdesc ?? 0) + ' cumms on your boobs, even your face is partially messed with his semen.';
-                                                                                                                                  }
-                                                                                                                                  if (((s as any).temp_rand ?? 0) === 1) {
-                                                                                                                                    (s as any).txt_sex_cumbody = '' + ((s as any).npcdesc ?? 0) + ' runs his member over your tummy and finishes. It is so hot, his hard member and warm thick seed.';
-                                                                                                                                  }
-                                                                                                                                  scene.text(`${((s as any).txt_sex_cumbody ?? '')}`);
-                                                                                                                                  (s as any).text_sex_cumbody = undefined;
-                                                                                                                                  // TODO-QSP: end & !! --- text_sex_cumbody ---
-                                                                                                                                  if (String((s as any).locArgs?.[1] ?? '') === 'text_sex_cumvag') {
-                                                                                                                                    (s as any).temp_rand = (Math.floor(Math.random() * 4) + 0);
-                                                                                                                                    if ((!((s as any).temp_rand ?? 0))) {
-                                                                                                                                      (s as any).txt_sex_cumvag = 'After a while you feel that ' + ((s as any).npcdesc ?? 0) + ' even more increased his furious pace and wheezes. He finishes very explosively. You feel as from his throbbing member spurts his jizz, one jet after another. When ' + ((s as any).npcdesc ?? 0) + ' dick pulls his cock out of your pussy, his sticky cum oozes out of it.';
-                                                                                                                                    }
-                                                                                                                                    if (((s as any).temp_rand ?? 0) === 1) {
-                                                                                                                                      (s as any).txt_sex_cumvag = 'After some time ' + ((s as any).npcdesc ?? 0) + ' can feel as your pussy begins to shrink and throb. You loudly and sensually groan, fuck back wildly moaning with pleasure. He grabs you stronger and begins to bang you even faster and in a few minutes he reaches the peak too. ' + ((s as any).npcdesc ?? 0) + ' cumms right into your pussy. You can feel that your pussy fills with his hot semen…';
-                                                                                                                                    }
-                                                                                                                                    if (((s as any).temp_rand ?? 0) === 2) {
-                                                                                                                                      (s as any).txt_sex_cumvag = 'Suddenly you tighten muscles of your pussy and ' + ((s as any).npcdesc ?? 0) + ' feels that your pussy is even tighter. He can\'t hold it longer and begins to finish right into your pussy. You tense your cunt muscles to milk his sperm from his cock.';
-                                                                                                                                    }
-                                                                                                                                    if (((s as any).temp_rand ?? 0) === 3) {
-                                                                                                                                      (s as any).txt_sex_cumvag = 'Holding your waist, ' + ((s as any).npcdesc ?? 0) + ' pulls you stronger to him not letting his member slid out. His big cock throbs and twitches indicating so that ' + ((s as any).npcdesc ?? 0) + ' is about to cum. Thanks to your skillful effort his orgasm begins and it is so strong that he is cumming into your pussy at least thirty seconds.';
-                                                                                                                                    }
-                                                                                                                                    scene.text(`${((s as any).txt_sex_cumvag ?? '')}`);
-                                                                                                                                    (s as any).text_sex_cumvag = undefined;
-                                                                                                                                    // TODO-QSP: end & !! --- text_sex_cumvag ---
-                                                                                                                                    if (String((s as any).locArgs?.[1] ?? '') === 'text_sex_cumass') {
-                                                                                                                                      (s as any).temp_rand = (Math.floor(Math.random() * 2) + 0);
-                                                                                                                                      if ((!((s as any).temp_rand ?? 0))) {
-                                                                                                                                        (s as any).txt_sex_cumass = '' + ((s as any).npcdesc ?? 0) + ' shoves his dick in your ass but not whole, only its head. He starts jerking off his prick keeping the head inside of your bum and after some time he pours in your ass huge dose of his semen, which runs down along your thighs and drips on the ground.';
-                                                                                                                                      }
-                                                                                                                                      if (((s as any).temp_rand ?? 0) === 1) {
-                                                                                                                                        (s as any).txt_sex_cumass = '' + ((s as any).npcdesc ?? 0) + ' begins to cum into your ass, his sperm melts and thins in your bowels. When he finished, he tries to shove his cock even deeper, and he presses onto your ass with full strength of his body.';
-                                                                                                                                      }
-                                                                                                                                      scene.text(`${((s as any).txt_sex_cumass ?? '')}`);
-                                                                                                                                      (s as any).text_sex_cumass = undefined;
-                                                                                                                                      // TODO-QSP: end & !! --- text_sex_cumass ---
-                                                                                                                                      if (String((s as any).locArgs?.[1] ?? '') === 'text_sex_group_bjall') {
-                                                                                                                                        (s as any).temp_rand = (Math.floor(Math.random() * 3) + 1);
-                                                                                                                                        if (((s as any).temp_rand ?? 0) === 1) {
-                                                                                                                                          (s as any).txt_sex_group_bjall = 'You decide to give blow job to all three guys at once. They poke their soft purple glans into your full lips immediately and when you\'ve opened your mouth they try to get into. You suck their thick members one by one and meanwhile one of them fucks your mouth, you are doing a hand job to other two guys with your hands. The boys are in seven heaven.';
-                                                                                                                                        }
-                                                                                                                                        if (((s as any).temp_rand ?? 0) === 2) {
-                                                                                                                                        }
-                                                                                                                                        if (((s as any).temp_rand ?? 0) === 3) {
-                                                                                                                                          (s as any).txt_sex_group_bjall = 'Vitek feel that he has free hand, so one time he stuffs his whole cock into your mouth so his sack hits your chin and another time he pulls it whole out, and moistens your lips with his precum. Vasily watches you for a while and then he pulls out his already hard member. He stands next to Vitek and they let you suck their cocks alternately, sometimes even both at once. Dan joins after a few minutes, your mouth is fucked by three guys now, one by one, but sometimes they try to insert into your mouth their members at once…';
-                                                                                                                                        }
-                                                                                                                                        scene.text(`${((s as any).txt_sex_group_bjall ?? '')}`);
-                                                                                                                                        (s as any).text_sex_group_bjall = undefined;
-                                                                                                                                        // TODO-QSP: end & !! --- text_sex_group_bjall ---
-                                                                                                                                        if (String((s as any).locArgs?.[1] ?? '') === 'text_sex_group_bj') {
-                                                                                                                                          (s as any).temp_rand = (Math.floor(Math.random() * 5) + 1);
-                                                                                                                                          if (((s as any).temp_rand ?? 0) === 1) {
-                                                                                                                                            (s as any).txt_sex_group_bj = 'The boys move you to your knees and they start to jerk off over your face. You begin to serve them successively and blow job each boy for a few minutes. It lasts quite a long time and you take delight in kneeling there and giving the boys the pleasure.';
-                                                                                                                                          }
-                                                                                                                                          if (((s as any).temp_rand ?? 0) === 2) {
-                                                                                                                                            (s as any).txt_sex_group_bj = 'They move you to your knees and you start to blow job each participating boy around.';
-                                                                                                                                          }
-                                                                                                                                          if (((s as any).temp_rand ?? 0) === 3) {
-                                                                                                                                            (s as any).txt_sex_group_bj = 'The boys are standing around you and one by one each boy lets you suck his cock.';
-                                                                                                                                          }
-                                                                                                                                          if (((s as any).temp_rand ?? 0) === 4) {
-                                                                                                                                            (s as any).txt_sex_group_bj = 'Look, you are on your knees and boys alternate to fuck your mouth, groping your boobs, slightly smacking in your face and they call you foul names like to a last whore. You are only even more excited with all that.';
-                                                                                                                                          }
-                                                                                                                                          if (((s as any).temp_rand ?? 0) === 5) {
-                                                                                                                                            (s as any).txt_sex_group_bj = 'You are on your knees with your mouth open, the boys one by one coming and you take their cocks deep into your beautiful mouth using no hands. No, you don\'t suck them, they just fuck hard your mouth.';
-                                                                                                                                          }
-                                                                                                                                          scene.text(`${((s as any).txt_sex_group_bj ?? '')}`);
-                                                                                                                                          (s as any).text_sex_group_bj = undefined;
-                                                                                                                                          // TODO-QSP: end & !! --- text_sex_group_bj ---
-                                                                                                                                          if (String((s as any).locArgs?.[1] ?? '') === 'text_sex_group_vag') {
-                                                                                                                                            (s as any).temp_rand = (Math.floor(Math.random() * 2) + 1);
-                                                                                                                                            if (((s as any).temp_rand ?? 0) === 1) {
-                                                                                                                                              (s as any).txt_sex_group_vag = '"Suck my dick now!" Dan commands you. You obey and incline to his member and start working intensively with your tongue. You lick his sweaty balls, then his groin and finally you lick his hard shaft up until you reach his cock head. Now you take the shaft into your mouth and let it slide deep into your throat. You take it in your mouth almost whole, your nose touch his belly. Vasily take his place next to Dan and asks you to blow job his cock too and so you begin to handle two cocks with your mouth. Meanwhile, Vitek starts to draw close to you from behind. You feel his fingers parting your cunt lips, and you spread your thighs more. In a wink you feet as his hard cock slides into your wet pussy. He starts humping you rhythmically and he manages squeezing your boobs and butt at the same time. His prick is big enough and you feel as its head leans against your cervix each time when he inserts his tool into your box. It lasts about five minutes and the boys choose to make change.';
-                                                                                                                                            }
-                                                                                                                                            if (((s as any).temp_rand ?? 0) === 2) {
-                                                                                                                                            }
-                                                                                                                                            scene.text(`${((s as any).txt_sex_group_vag ?? '')}`);
-                                                                                                                                            (s as any).text_sex_group_vag = undefined;
-                                                                                                                                            // TODO-QSP: end & !! --- text_sex_group_vag ---
-                                                                                                                                            if (String((s as any).locArgs?.[1] ?? '') === 'text_sex_group_anal') {
-                                                                                                                                              (s as any).temp_rand = (Math.floor(Math.random() * 2) + 1);
-                                                                                                                                              if (((s as any).temp_rand ?? 0) === 1) {
-                                                                                                                                                (s as any).txt_sex_group_anal = 'Suddenly the boys have a desire to fuck you in the ass. You agree delightedly. They move you into proper position and Vasily starts to fuck your butt and you are doing hand-job and blow-job to the rest. After a while the guys swap their places. Vasily pulls his dick out of your ass and shoves it into your mouth, Dan goes up to you from behind and starts fucking your anus. You gasp at each stroke and you choke each time when a cock gets deep into your mouth. Behind you start to be hot, Dan and Vitek in turn start to exploit your anus. They take apparently delight in fucking your butt and shoving their cocks into your mouth then.';
-                                                                                                                                              }
-                                                                                                                                              if (((s as any).temp_rand ?? 0) === 2) {
-                                                                                                                                                (s as any).txt_sex_group_anal = 'Dan suggests: "Let\'s go guys, two from sides and one from behind." You bend down, resting your hands. Two boys stand on your sides putting their members to your face, and the third goes up to you from behind. He gropes your ass and starts poking his hard member between your ass cheeks and heading to your brown star. When his cock finally enters into your bum, you give a sigh of pleasure. Vitek starts to fuck your bum, and you are turning your head to one side or the other, and you are giving blow-jobs to the guys standing next to you. The pace of the member in your ass grow gradually and in the same way your excitement grows.';
-                                                                                                                                              }
-                                                                                                                                              scene.text(`${((s as any).txt_sex_group_anal ?? '')}`);
-                                                                                                                                              (s as any).text_sex_group_anal = undefined;
-                                                                                                                                              // TODO-QSP: end & !! --- text_sex_group_anal ---
-                                                                                                                                              if (String((s as any).locArgs?.[1] ?? '') === 'text_sex_group_dp') {
-                                                                                                                                                (s as any).temp_rand = (Math.floor(Math.random() * 4) + 1);
-                                                                                                                                                if (((s as any).temp_rand ?? 0) === 1) {
-                                                                                                                                                  (s as any).txt_sex_group_dp = 'Dan is pressing you tight against his chest and starts banging your cunt forcefully and so deep so his prick is ramming into your cervix. He turns his head towards Vasily after a while and tells him to stop wanking and shove his prick into your butt hole instead. Vasily expects such opportunity, so he quickly moves behind your butt, kneels and digs his prick into your anus. Dan stops and firmly holds your back, allowing so Vasily penetrate your hole. Your relaxed butt hole adopts his prick naturally almost without resistance. As his prick deep works his way along Dan\'s big shaft, it seems to you that they rip a wall between the holes and that they fuck one big hole together. Vitek can\'t resist this view. He comes before you and shoves his cock head into your mouth and you start to suck his hard member. At first only Vasily is banging your butt and Dan is lying on his back and squeezing your boobs. After a while, they fuck you alternately and at the end, they dig your holes together in the same pace. You are sandwiched between them like a burger in a bun and as your mouth is plugged by Vita\'s cock, you can only softly moaned with pleasure.';
-                                                                                                                                                }
-                                                                                                                                                if (((s as any).temp_rand ?? 0) === 2) {
-                                                                                                                                                  (s as any).txt_sex_group_dp = 'Everybody wants to screw you, so the guys decide to bonk you all together. Dan shoves his prick into your pussy, Vitek sink his member into your ass-hole and Vasily lets you suck his shaft and they gradually increase the pace dipping their cocks deeper into your holes. Vitek is kissing your body and fondles you boobs gently, Dan strokes and squeezes your butt and he helps you mount their cocks. It is so weird and exciting that it alters your thinking. The boys are now so gentle and loving so you become less tense and finally start feeling pleasure. You start to sway back and forth your bum and help so the guys fuck your holes and you even open your mouth more to allow Vasily to shove his prick into your throat. Vitek whispers you into your ear flattery and you hear that you are the best slut in his life and that he has never fucked so nice girl and more and more…';
-                                                                                                                                                }
-                                                                                                                                                if (((s as any).temp_rand ?? 0) === 3) {
-                                                                                                                                                  (s as any).txt_sex_group_dp = 'You get Vitek to laid down on his back and you straddle him and impale yourself on his sticking hard prick. You let him slide deep into your cunt and then start to ride him slowly. Dan offers you to suck his hard prick and when you take it in your mouth he starts to fuck your mouth as deep as he can. You are in heaven and you wish it lasts forever. At the moment you feet as Vasily shoves his cock into your bum. It was incredible, you sense as the cocks grind one against another through thin wall of your pussy. You feet like a rubber doll, every your hole is stacked with a hard dick.';
-                                                                                                                                                }
-                                                                                                                                                if (((s as any).temp_rand ?? 0) === 4) {
-                                                                                                                                                  (s as any).txt_sex_group_dp = 'You climb at Vasily and sit down at his shaft. It slides slowly into your box giving an incredible pleasure to its wearer. Dan take his hard cock and begins to poke into your ass. His member is long and thin, but your anus is not relaxed so he can stretch it still. Dan increases the pressure and his shaft arches and wrinkles a bit, but gradually bit by bit his cock-head disappears into your butt-hole leaving its foreskin outside. It doesn\'t last long and Dan shoves his whole prick into your bum. Vasily breathes heavily and fuckes vigorously your wet squelching pussy. You are wriggling at their cocks and you feel as inside is growing long-forgotten feeling of coming climax. Something soft and warm begins to touch your lips. It is Vitek\'s member, you open your eyes and take his prick into your hand and start suck its head and rub the shaft with your hand.';
-                                                                                                                                                }
-                                                                                                                                                scene.text(`${((s as any).txt_sex_group_dp ?? '')}`);
-                                                                                                                                                (s as any).text_sex_group_dp = undefined;
-                                                                                                                                                // TODO-QSP: end & !! --- text_sex_group_dp ---
-                                                                                                                                                if (String((s as any).locArgs?.[1] ?? '') === 'text_sex_group_dpa') {
-                                                                                                                                                  (s as any).txt_sex_group_dpa = 'Dan is pressing you tight against his chest and starts to ram forcefully his prick deep into your butt. He turns his head towards Vasily after a while and tells him to stop wanking and shove his prick into your butt hole instead. Vasily expects such opportunity, so he quickly moves behind your butt, kneels and digs his prick into your anus. Dan stops and firmly holds your back, allowing so Vasily penetrate your hole. Your relaxed butt hole adopts his prick naturally almost without resistance. As he shoves his prick deep into your ass, both guys start together to fuck your stretched hole. You think that your hole remained gaping and it will be loose for any pricks. Vitek can\'t resist this view. He comes before you and shoves his cock head into your mouth. You start to suck his prick and at the same time you are wiggling your ass to increase its penetration.';
-                                                                                                                                                  scene.text(`${((s as any).txt_sex_group_dpa ?? '')}`);
-                                                                                                                                                  (s as any).text_sex_group_dpa = undefined;
-                                                                                                                                                  // TODO-QSP: end & !! --- text_sex_group_dpa ---
-                                                                                                                                                  if (String((s as any).locArgs?.[1] ?? '') === 'text_sex_group_triple') {
-                                                                                                                                                    (s as any).txt_sex_group_triple = 'The boys remove rests of your clothes, and then they lie you on the bed. You resign and let them to treat you like a rubber doll, which can fulfill any imagination. You cannot remember that your ass was filled with three cocks. They simply use your body along their perverse fantasy…';
-                                                                                                                                                    scene.text(`${((s as any).txt_sex_group_triple ?? '')}`);
-                                                                                                                                                    (s as any).text_sex_group_triple = undefined;
-                                                                                                                                                    // TODO-QSP: end & !! --- text_sex_group_triple ---
-                                                                                                                                                    if (String((s as any).locArgs?.[1] ?? '') === 'group_sex_text') {
-                                                                                                                                                      (s as any).temp_rand = (Math.floor(Math.random() * 9) + 0);
-                                                                                                                                                      if ((!((s as any).temp_rand ?? 0))) {
-                                                                                                                                                        (s as any).group_sex_text = 'You ask playfully: "Well ' + qspFunc(s, 'gopsex', 'hide', 'gop_text_npcr') + ', how are you gonna ' + qspFunc(s, 'gopsex', 'hide', 'gop_sextext1') + ' me?"';
-                                                                                                                                                      }
-                                                                                                                                                      if (((s as any).temp_rand ?? 0) === 1) {
-                                                                                                                                                        (s as any).group_sex_text = qspFunc(s, 'gopsex', 'hide', 'gop_name_npc') + ' asks: "How can we ' + qspFunc(s, 'gopsex', 'hide', 'gop_sextext1') + ' you ' + qspFunc(s, 'gopsex', 'hide', 'gop_gg_name') + ' ?"';
-                                                                                                                                                      }
-                                                                                                                                                      if (((s as any).temp_rand ?? 0) === 2) {
-                                                                                                                                                        (s as any).group_sex_text = qspFunc(s, 'gopsex', 'hide', 'gop_name_npc') + ' dares you: "Make your slit ready ' + qspFunc(s, 'gopsex', 'hide', 'gop_gg_name') + '! You\'ll go round now.';
-                                                                                                                                                      }
-                                                                                                                                                      if (((s as any).temp_rand ?? 0) === 3) {
-                                                                                                                                                        (s as any).group_sex_text = qspFunc(s, 'gopsex', 'hide', 'gop_name_npc') + ' asks: "' + ((s as any).pcs_nickname ?? 0) + ', It seems to me that your holes are itching. Do you fancy ' + qspFunc(s, 'gopsex', 'hide', 'gop_sextext3') + ', don\'t you?"';
-                                                                                                                                                      }
-                                                                                                                                                      if (((s as any).temp_rand ?? 0) === 4) {
-                                                                                                                                                        (s as any).group_sex_text = qspFunc(s, 'gopsex', 'hide', 'gop_name_npc') + ' asks: "' + ((s as any).pcs_nickname ?? 0) + ' - ' + qspFunc(s, 'gopsex', 'hide', 'gop_gg_name') + ' are you ready to serve three dicks?"';
-                                                                                                                                                      }
-                                                                                                                                                      if (((s as any).temp_rand ?? 0) === 5) {
-                                                                                                                                                        (s as any).group_sex_text = qspFunc(s, 'gopsex', 'hide', 'gop_name_npc') + ' asks: "' + ((s as any).pcs_nickname ?? 0) + ', what about if we\'ll ' + qspFunc(s, 'gopsex', 'hide', 'gop_sextext1') + ' you into all holes at once?"';
-                                                                                                                                                      }
-                                                                                                                                                      if (((s as any).temp_rand ?? 0) === 6) {
-                                                                                                                                                        (s as any).group_sex_text = qspFunc(s, 'gopsex', 'hide', 'gop_family_npc') + ' tells you: "' + ((s as any).pcs_nickname ?? 0) + ', you\'re our ' + qspFunc(s, 'gopsex', 'hide', 'gop_gg_name') + ', Let\'s get into all your holes!"';
-                                                                                                                                                      }
-                                                                                                                                                      if (((s as any).temp_rand ?? 0) === 7) {
-                                                                                                                                                        (s as any).group_sex_text = 'You wink at the guys and say: "Boys, yours ' + ((s as any).pcs_nickname ?? 0) + ' is ready for anything. How do you want to \' + func(\'gopsex\', \'hide\', \'gop_sextext1\') + \' me?"';
-                                                                                                                                                      }
-                                                                                                                                                      if (((s as any).temp_rand ?? 0) === 8) {
-                                                                                                                                                        (s as any).group_sex_text = 'You smile wickedly and say: "Yours ' + ((s as any).pcs_nickname ?? 0) + ' wants some jizz. How do you\'ll be \' + func(\'gopsex\', \'hide\', \'gop_sextext3\') + \' me?"';
-                                                                                                                                                      }
-                                                                                                                                                      (s as any).group_sex_text = undefined;
-                                                                                                                                                      // TODO-QSP: end & !! --- group_sex_text ---
-                                                                                                                                                      if (String((s as any).locArgs?.[1] ?? '') === 'rndorder3') {
-                                                                                                                                                        ((s as any).rndorder = (s as any).rndorder ?? {})[1] = 9;
-                                                                                                                                                        ((s as any).rndorder = (s as any).rndorder ?? {})[2] = 10;
-                                                                                                                                                        ((s as any).rndorder = (s as any).rndorder ?? {})[3] = 11;
-                                                                                                                                                        (s as any).irndorder = 1;
-                                                                                                                                                        while (true) {
-                                                                                                                                                          if (((s as any).irndorder ?? 0) < 4) {
-                                                                                                                                                            (s as any).jrndorder = (Math.floor(Math.random() * 3) + 1);
-                                                                                                                                                            (s as any).krndorder = (((s as any).rndorder ?? 0)?.[String((s as any).irndorder ?? 0)] ?? 0);
-                                                                                                                                                            ((s as any).rndorder = (s as any).rndorder ?? {})[String((s as any).irndorder ?? 0)] = (((s as any).rndorder ?? 0)?.[String((s as any).jrndorder ?? 0)] ?? 0);
-                                                                                                                                                            ((s as any).rndorder = (s as any).rndorder ?? {})[String((s as any).jrndorder ?? 0)] = ((s as any).krndorder ?? 0);
-                                                                                                                                                            (s as any).irndorder = ((s as any).irndorder ?? 0) + (1);
-                                                                                                                                                            break;
-                                                                                                                                                          }
-                                                                                                                                                          (s as any).result = ((s as any).rndorder ?? 0)[1] + 12 * ((s as any).rndorder ?? 0)[2] + 144 * ((s as any).rndorder ?? 0)[3];
-                                                                                                                                                          (s as any).rndorder = undefined;
-                                                                                                                                                          (s as any).irndorder = undefined;
-                                                                                                                                                          (s as any).jrndorder = undefined;
-                                                                                                                                                          (s as any).krndorder = undefined;
-                                                                                                                                                          // TODO-QSP: end & !! --- rndorder3 ---
-                                                                                                                                                          (s as any).temp_rand = undefined;
-                                                                                                                                                        }
-                                                                                                                                                      }
-                                                                                                                                                    }
-                                                                                                                                                  }
-                                                                                                                                                }
-                                                                                                                                              }
-                                                                                                                                            }
-                                                                                                                                          }
-                                                                                                                                        }
-                                                                                                                                      }
-                                                                                                                                    }
-                                                                                                                                  }
-                                                                                                                                }
-                                                                                                                              }
-                                                                                                                            }
-                                                                                                                          }
-                                                                                                                        }
-                                                                                                                      }
-                                                                                                                    }
-                                                                                                                  }
-                                                                                                                }
-                                                                                                              }
-                                                                                                            }
-                                                                                                          }
-                                                                                                        }
-                                                                                                      }
-                                                                                                    }
-                                                                                                  }
-                                                                                                }
-                                                                                              }
-                                                                                            }
-                                                                                          }
-                                                                                        }
-                                                                                      }
-                                                                                    }
-                                                                                  }
-                                                                                }
-                                                                              }
-                                                                            }
-                                                                          }
-                                                                        }
-                                                                      }
-                                                                      scene.actions([
-                                                                        { label: 'Leave', goto: ['vasilyhome', 'livingroom'] },
-                                                                      ]);
-                                                                    }
-                                                                    scene.actions([
-                                                                      { label: 'Leave', goto: ['vasilyhome', 'livingroom'] },
-                                                                    ]);
-                                                                  }
-                                                                  scene.actions([
-                                                                    { label: 'Leave', goto: ['vasilyhome', 'livingroom'] },
-                                                                  ]);
-                                                                }
-                                                                scene.actions([
-                                                                  { label: 'Leave', goto: ['vasilyhome', 'livingroom'] },
-                                                                ]);
-                                                              }
-                                                              scene.actions([
-                                                                { label: 'Leave', goto: ['vasilyhome', 'livingroom'] },
-                                                              ]);
-                                                            }
-                                                          }
-                                                        }
-                                                      }
-                                                    }
-                                                  }
-                                                }
-                                              }
-                                            }
-                                            scene.actions([
-                                              { label: 'Leave', goto: ['vasilyhome', 'livingroom'] },
-                                            ]);
-                                          }
-                                          scene.actions([
-                                            { label: 'Leave', goto: ['vasilyhome', 'livingroom'] },
-                                          ]);
-                                        }
-                                        scene.actions([
-                                          { label: 'Leave', goto: ['vasilyhome', 'livingroom'] },
-                                        ]);
-                                      }
-                                      scene.actions([
-                                        { label: 'Leave', goto: ['vasilyhome', 'livingroom'] },
-                                      ]);
-                                    }
-                                    scene.actions([
-                                      { label: 'Leave', goto: ['vasilyhome', 'livingroom'] },
-                                    ]);
-                                  }
-                                }
-                                scene.actions([
-                                  { label: 'Do a tit job or a titty fuck', goto: ['gopsex', 'hide', 'shgopsex_fucktits'] },
-                                  { label: 'Sex selection', handler: (st: GameState) => {
-    qspCall(st, 'gopsex', '');
-  } },
-                                ]);
-                              }
-                            }
-                          }
-                        }
-                      }
+                  if (((s as any).temp_rand ?? 0) === 5) {
+                    (s as any).rnd_caught_mom = '' + ((s as any).rnd_rodnya_text ?? 0) + ' your ' + (((s as any).npc_nickname ?? 0)?.['A29']) + ', ' + ((s as any).rnd_viewgg_text ?? 0) + ' and ' + ((s as any).rnd_talkgg_text ?? 0) + ' ' + ((s as any).rnd_talkgg2_text ?? 0) + ': - "Girl, you should have a break and not to fuck for a while."';
+                  } else {
+                    if (((s as any).temp_rand ?? 0) === 6) {
+                      (s as any).rnd_caught_mom = '' + ((s as any).rnd_rodnya_text ?? 0) + ' your ' + (((s as any).npc_nickname ?? 0)?.['A29']) + ', ' + ((s as any).rnd_viewgg_text ?? 0) + ' and ' + ((s as any).rnd_talkgg_text ?? 0) + ' ' + ((s as any).rnd_talkgg2_text ?? 0) + ': - "Girl, how come they bitched you so…? Will you be home soon?" ' + ((s as any).rnd_mom_txt1 ?? 0) + '';
                     }
                   }
                 }
@@ -2606,7 +1532,1018 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
+    (s as any).temp_rand = (Math.floor(Math.random() * 4) + 1);
+    if (((s as any).temp_rand ?? 0) === 1  &&  ((s as any).fame ?? 0)?.['pav_slut'] < 250) {
+      (s as any).rnd_caught_sister = '' + ((s as any).rnd_rodnya_text ?? 0) + ' your ' + ((s as any).rnd_namesis_text ?? 0) + ', ' + ((s as any).rnd_viewgg_text ?? 0) + ' and ' + ((s as any).rnd_talkgg_text ?? 0) + ' ' + ((s as any).rnd_talkgg2_text ?? 0) + ':  "' + (((s as any).npc_nickname ?? 0)?.['A29']) + ' asked me to tell you, not forget to ' + ((s as any).rnd_domdela_text ?? 0) + ', when you\'ve finished."';
+    }
+    if (((s as any).temp_rand ?? 0) === 1  &&  ((s as any).fame ?? 0)?.['pav_slut'] >= 250) {
+      (s as any).rnd_caught_sister = '' + ((s as any).rnd_rodnya_text ?? 0) + ' your ' + ((s as any).rnd_namesis_text ?? 0) + ', ' + ((s as any).rnd_viewgg_text ?? 0) + ' and ' + ((s as any).rnd_talkgg_text ?? 0) + ' ' + ((s as any).rnd_talkgg2_text ?? 0) + ': "You\'re such slut, ' + ((s as any).pcs_nickname ?? 0) + '"';
+    }
+    if (((s as any).temp_rand ?? 0) === 2  &&  ((s as any).fame ?? 0)?.['pav_slut'] < 250) {
+      (s as any).rnd_caught_sister = '' + ((s as any).rnd_rodnya_text ?? 0) + ' your ' + ((s as any).rnd_namesis_text ?? 0) + ', ' + ((s as any).rnd_viewgg_text ?? 0) + ' and ' + ((s as any).rnd_talkgg_text ?? 0) + ' ' + ((s as any).rnd_talkgg2_text ?? 0) + ': ' + ((s as any).rnd_telogg_text ?? 0) + '';
+    }
+    if (((s as any).temp_rand ?? 0) === 2  &&  ((s as any).fame ?? 0)?.['pav_slut'] >= 250) {
+      (s as any).rnd_caught_sister = '' + ((s as any).rnd_rodnya_text ?? 0) + ' your ' + ((s as any).rnd_namesis_text ?? 0) + ', ' + ((s as any).rnd_viewgg_text ?? 0) + ' and ' + ((s as any).rnd_talkgg_text ?? 0) + ' ' + ((s as any).rnd_talkgg2_text ?? 0) + ': ' + ((s as any).rnd_telogg2_text ?? 0) + '';
+    }
+    if (((s as any).temp_rand ?? 0) === 3) {
+      (s as any).rnd_caught_sister = '' + ((s as any).rnd_rodnya_text ?? 0) + ' your ' + ((s as any).rnd_namesis_text ?? 0) + ', ' + ((s as any).rnd_viewgg_text ?? 0) + ' and ' + ((s as any).rnd_talkgg_text ?? 0) + ' ' + ((s as any).rnd_talkgg2_text ?? 0) + ': "I\'m running about and searching her high and low… and it emerges that she is being fucked here. Put a bell on your neck or something, so I could find you easier next time. Give me your keys, filthy slut, I forgot my keys at home… Okay! let it be, I\'ll do it myself. In your purse? Take out the dick out of your mouth, when an elder inquires you! In your pocket? Ok, I found them… If you go into bathroom, clean it all with powder. The last thing I need is being after you by Holy Ghost knocked up."';
+    }
+    if (((s as any).temp_rand ?? 0) === 4  &&  ((s as any).fame ?? 0)?.['pav_slut'] < 250) {
+      (s as any).rnd_caught_sister = '' + ((s as any).rnd_rodnya_text ?? 0) + ' your ' + ((s as any).rnd_namesis_text ?? 0) + ', ' + ((s as any).rnd_viewgg_text ?? 0) + ' and ' + ((s as any).rnd_talkgg_text ?? 0) + ' ' + ((s as any).rnd_talkgg2_text ?? 0) + ': "' + ((s as any).pcs_nickname ?? 0) + ', ' + (((s as any).npc_nickname ?? 0)?.['A29']) + ' is looking for you, and you are being fucked right here! How long do you need?" "Oh sis, it\'s so enjoyable… another ten minutes they fuck me and then I\'ll come right."';
+    }
+    if (((s as any).temp_rand ?? 0) === 4  &&  ((s as any).fame ?? 0)?.['pav_slut'] >= 250) {
+      (s as any).rnd_caught_sister = '' + ((s as any).rnd_rodnya_text ?? 0) + ' your ' + ((s as any).rnd_namesis_text ?? 0) + ', ' + ((s as any).rnd_viewgg_text ?? 0) + ' and ' + ((s as any).rnd_talkgg_text ?? 0) + ' ' + ((s as any).rnd_talkgg2_text ?? 0) + ': "' + ((s as any).pcs_nickname ?? 0) + ', you are with clients? How long yet? You\'ve to wake up early tomorrow." Your sister turns to the boys that were standing in line. "Have you fucked her already?" "Nope, the first just started."';
+    }
+    (s as any).temp_rand = (Math.floor(Math.random() * 3) + 1);
+    if (((s as any).temp_rand ?? 0) === 1  &&  ((s as any).momslut ?? 0) >= 1) {
+      (s as any).rnd_caught_brother = '' + ((s as any).rnd_rodnya_text ?? 0) + ', your brother ' + ((s as any).rnd_viewgg_text ?? 0) + ' ' + ((s as any).rnd_talkgg_text ?? 0) + ' ' + ((s as any).rnd_talkgg2_text ?? 0) + ': "' + (((s as any).npc_nickname ?? 0)?.['A29']) + ' asked me to tell you, not forget to ' + ((s as any).rnd_domdela_text ?? 0) + ', when you\'ve finished."';
+    }
+    if (((s as any).temp_rand ?? 0) === 1  &&  ((s as any).momslut ?? 0) < 1) {
+      (s as any).rnd_caught_brother = '' + ((s as any).rnd_rodnya_text ?? 0) + ', your brother ' + ((s as any).rnd_viewgg_text ?? 0) + ' ' + ((s as any).rnd_talkgg_text ?? 0) + ' ' + ((s as any).rnd_talkgg2_text ?? 0) + ': "You\'re such slut, ' + ((s as any).pcs_nickname ?? 0) + '"';
+    }
+    if (((s as any).temp_rand ?? 0) === 2  &&  ((s as any).fame ?? 0)?.['pav_slut'] < 250) {
+      (s as any).rnd_caught_brother = '' + ((s as any).rnd_rodnya_text ?? 0) + ', your brother ' + ((s as any).rnd_viewgg_text ?? 0) + ' ' + ((s as any).rnd_talkgg_text ?? 0) + ' ' + ((s as any).rnd_talkgg2_text ?? 0) + ': ' + ((s as any).rnd_telogg_text ?? 0) + '';
+    }
+    if (((s as any).temp_rand ?? 0) === 2  &&  ((s as any).fame ?? 0)?.['pav_slut'] >= 250) {
+      (s as any).rnd_caught_brother = '' + ((s as any).rnd_rodnya_text ?? 0) + ', your brother ' + ((s as any).rnd_viewgg_text ?? 0) + ' ' + ((s as any).rnd_talkgg_text ?? 0) + ' ' + ((s as any).rnd_talkgg2_text ?? 0) + ': ' + ((s as any).rnd_telogg2_text ?? 0) + '';
+    }
+    if (((s as any).temp_rand ?? 0) === 3  &&  ((s as any).evgenQW ?? 0) >= 4  &&  ((s as any).fame ?? 0)?.['pav_slut'] < 250) {
+      (s as any).rnd_caught_brother = '' + ((s as any).rnd_rodnya_text ?? 0) + ', your brother ' + ((s as any).rnd_viewgg_text ?? 0) + ' ' + ((s as any).rnd_talkgg_text ?? 0) + ' ' + ((s as any).rnd_talkgg2_text ?? 0) + ': "' + ((s as any).pcs_nickname ?? 0) + ', you do only blowjob to my buddies so heaven knows to whom you allow to fuck your pussy?" "So, they didn\'t request to do it. If they ask, they may fuck either my pussy or my ass."';
+    }
+    if (((s as any).temp_rand ?? 0) === 3  &&  ((s as any).evgenQW ?? 0) >= 4  &&  ((s as any).fame ?? 0)?.['pav_slut'] >= 250) {
+      (s as any).rnd_caught_brother = '' + ((s as any).rnd_rodnya_text ?? 0) + ', your brother ' + ((s as any).rnd_viewgg_text ?? 0) + ' ' + ((s as any).rnd_talkgg_text ?? 0) + ' ' + ((s as any).rnd_talkgg2_text ?? 0) + ': "' + ((s as any).pcs_nickname ?? 0) + ', you do only blowjob to my buddies so heaven knows to whom you allow to fuck your pussy?" "Well, I\'m still willing to give free of charge to your friends. Let they rejoice getting blowjobs for free."';
+    }
+    (s as any).temp_rand = (Math.floor(Math.random() * 2) + 1);
+    if (((s as any).temp_rand ?? 0) === 1  &&  ((s as any).momslut ?? 0) >= 1) {
+      (s as any).rnd_caught_stepfather = '' + ((s as any).rnd_rodnya_text ?? 0) + ', your stepfather ' + ((s as any).rnd_viewgg_text ?? 0) + ' ' + ((s as any).rnd_talkgg_text ?? 0) + ' ' + ((s as any).rnd_talkgg2_text ?? 0) + ': "' + (((s as any).npc_nickname ?? 0)?.['A29']) + ' asked me to tell you, not forget to ' + ((s as any).rnd_domdela_text ?? 0) + ', when you\'ve finished."';
+    }
+    if (((s as any).temp_rand ?? 0) === 1  &&  ((s as any).momslut ?? 0) < 1) {
+      (s as any).rnd_caught_stepfather = '' + ((s as any).rnd_rodnya_text ?? 0) + ', your stepfather ' + ((s as any).rnd_viewgg_text ?? 0) + ' ' + ((s as any).rnd_talkgg_text ?? 0) + ' ' + ((s as any).rnd_talkgg2_text ?? 0) + ': "You\'re such slut, ' + ((s as any).pcs_nickname ?? 0) + '"';
+    }
+    if (((s as any).temp_rand ?? 0) === 2  &&  ((s as any).fame ?? 0)?.['pav_slut'] < 250) {
+      (s as any).rnd_caught_stepfather = '' + ((s as any).rnd_rodnya_text ?? 0) + ', your stepfather ' + ((s as any).rnd_viewgg_text ?? 0) + ' ' + ((s as any).rnd_talkgg_text ?? 0) + ' ' + ((s as any).rnd_talkgg2_text ?? 0) + ': ' + ((s as any).rnd_telogg_text ?? 0) + '';
+    }
+    if (((s as any).temp_rand ?? 0) === 2  &&  ((s as any).fame ?? 0)?.['pav_slut'] >= 250) {
+      (s as any).rnd_caught_stepfather = '' + ((s as any).rnd_rodnya_text ?? 0) + ', your stepfather ' + ((s as any).rnd_viewgg_text ?? 0) + ' ' + ((s as any).rnd_talkgg_text ?? 0) + ' ' + ((s as any).rnd_talkgg2_text ?? 0) + ': ' + ((s as any).rnd_telogg2_text ?? 0) + '';
+    }
+    (s as any).temp_rand = (Math.floor(Math.random() * 13) + 1);
+    if (((s as any).temp_rand ?? 0) === 1  &&  ((s as any).fame ?? 0)?.['pav_slut'] < 250) {
+      (s as any).rnd_caught_othernpc = '' + ((s as any).rnd_rodnya_text ?? 0) + ', uncle Misha ' + ((s as any).rnd_viewgg_text ?? 0) + ' ' + ((s as any).rnd_talkgg_text ?? 0) + ' ' + ((s as any).rnd_talkgg2_text ?? 0) + ': ' + ((s as any).rnd_telogg_text ?? 0) + '';
+    }
+    if (((s as any).temp_rand ?? 0) === 1  &&  ((s as any).fame ?? 0)?.['pav_slut'] >= 250) {
+      (s as any).rnd_caught_othernpc = '' + ((s as any).rnd_rodnya_text ?? 0) + ', uncle Misha ' + ((s as any).rnd_viewgg_text ?? 0) + ' ' + ((s as any).rnd_talkgg_text ?? 0) + ' ' + ((s as any).rnd_talkgg2_text ?? 0) + ': ' + ((s as any).rnd_telogg2_text ?? 0) + '';
+    }
+    if (((s as any).temp_rand ?? 0) === 2  &&  ((s as any).fame ?? 0)?.['pav_slut'] < 250) {
+      (s as any).rnd_caught_othernpc = 'Passing by, \' + func(\'gopsex\', \'hide\', \'Shulga_var_name\') + \' sees me being \' + func(\'gopsex\', \'hide\', \'gop_sextext2\') + \'. He shows a thumbs-up to the boys and says: ' + ((s as any).rnd_telogg_text ?? 0) + ' and he went on about his business.';
+    }
+    if (((s as any).temp_rand ?? 0) === 2  &&  ((s as any).fame ?? 0)?.['pav_slut'] >= 250) {
+      (s as any).rnd_caught_othernpc = 'Passing by, \' + func(\'gopsex\', \'hide\', \'Shulga_var_name\') + \' sees me being \' + func(\'gopsex\', \'hide\', \'gop_sextext2\') + \'. He shows a thumbs-up to the boys and without hiding a smile he tells you: ' + ((s as any).rnd_telogg2_text ?? 0) + ' and went on about his business';
+    }
+    if (((s as any).temp_rand ?? 0) === 3  &&  ((s as any).fame ?? 0)?.['pav_slut'] < 250) {
+      (s as any).rnd_caught_othernpc = '' + ((s as any).rnd_rodnya_text ?? 0) + ' aunt Luda, ' + ((s as any).rnd_viewgg_text ?? 0) + ' and ' + ((s as any).rnd_talkgg_text ?? 0) + ' ' + ((s as any).rnd_talkgg2_text ?? 0) + ': - ' + ((s as any).rnd_telogg_text ?? 0) + '';
+    }
+    if (((s as any).temp_rand ?? 0) === 3  &&  ((s as any).fame ?? 0)?.['pav_slut'] >= 250) {
+      (s as any).rnd_caught_othernpc = '' + ((s as any).rnd_rodnya_text ?? 0) + ' aunt Luda, ' + ((s as any).rnd_viewgg_text ?? 0) + ' and ' + ((s as any).rnd_talkgg_text ?? 0) + ' ' + ((s as any).rnd_talkgg2_text ?? 0) + ': -' + ((s as any).rnd_telogg2_text ?? 0) + '';
+    }
+    if (((s as any).temp_rand ?? 0) === 4  &&  ((s as any).fame ?? 0)?.['pav_slut'] < 250) {
+      (s as any).rnd_caught_othernpc = '' + ((s as any).rnd_rodnya_text ?? 0) + ' Natasha Belova, ' + ((s as any).rnd_viewgg_text ?? 0) + ' and ' + ((s as any).rnd_talkgg_text ?? 0) + ' ' + ((s as any).rnd_talkgg2_text ?? 0) + ': - ' + ((s as any).rnd_telogg_text ?? 0) + '';
+    }
+    if (((s as any).temp_rand ?? 0) === 4  &&  ((s as any).fame ?? 0)?.['pav_slut'] >= 250) {
+      (s as any).rnd_caught_othernpc = '' + ((s as any).rnd_rodnya_text ?? 0) + ' Natasha Belova, ' + ((s as any).rnd_viewgg_text ?? 0) + ' and ' + ((s as any).rnd_talkgg_text ?? 0) + ' ' + ((s as any).rnd_talkgg2_text ?? 0) + ': - ' + ((s as any).rnd_telogg2_text ?? 0) + '';
+    }
+    if (((s as any).temp_rand ?? 0) === 5  &&  ((s as any).fame ?? 0)?.['pav_slut'] < 250) {
+      (s as any).rnd_caught_othernpc = '' + ((s as any).rnd_rodnya_text ?? 0) + ' Julia Milov, ' + ((s as any).rnd_viewgg_text ?? 0) + ' and ' + ((s as any).rnd_talkgg_text ?? 0) + ' ' + ((s as any).rnd_talkgg2_text ?? 0) + ': - ' + ((s as any).rnd_telogg_text ?? 0) + '';
+    }
+    if (((s as any).temp_rand ?? 0) === 5  &&  ((s as any).fame ?? 0)?.['pav_slut'] >= 250) {
+      (s as any).rnd_caught_othernpc = '' + ((s as any).rnd_rodnya_text ?? 0) + ' Julia Milov, ' + ((s as any).rnd_viewgg_text ?? 0) + ' and ' + ((s as any).rnd_talkgg_text ?? 0) + ' ' + ((s as any).rnd_talkgg2_text ?? 0) + ': - ' + ((s as any).rnd_telogg2_text ?? 0) + '';
+    }
+    if (((s as any).temp_rand ?? 0) === 6) {
+      (s as any).rnd_caught_othernpc = 'Young boys notice you. Nudging each other, they click on their phone to see what\'s happening. You overhear their talk vaguely: "Look…! Look…! Not here, over there…! There is… Oh shit…!" "Shoot! Shoot! Faster…!" "Holy shit!", I\'ve never seen a woman being fucked in real." "What the fuck…?" "That\'s a cunt!" "Can it be done also in the ass?" "Idiot, they\'re able almost whole forearm insert there. Heifers want it so. I\'ve seen pics at Kirian\'s." "Don\'t brag…!" "Let\'s no quarrel!"';
+    }
+    if (((s as any).temp_rand ?? 0) === 7  &&  ((s as any).evgenQW ?? 0) < 4) {
+      (s as any).rnd_caught_othernpc = '' + ((s as any).rnd_rodnya_text ?? 0) + ', uncle Misha ' + ((s as any).rnd_viewgg_text ?? 0) + ' ' + ((s as any).rnd_talkgg_text ?? 0) + ' ' + ((s as any).rnd_talkgg2_text ?? 0) + ': "Oh dear! What kind of people! Like mother, like daughter! Exactly the same! Boobs exposed, legs apart. And the eyes are so cunning… Come to me then, we need to talk."';
+    }
+    if (((s as any).temp_rand ?? 0) === 7  &&  ((s as any).evgenQW ?? 0) >= 4) {
+      (s as any).rnd_caught_othernpc = 'Your brother\'s football buddies notice you, when they are walking past you. They stop and start talking about you intensively: "Oh, my fuck, we treat her like a princess: only in her mouth… thank you… please… see you! It turns out that she is quite a prostitute. Oh shit, if we had known it then, we would have \' + func(\'gopsex\', \'hide\', \'gop_sextext2\') + \' that ripper in one gate all three of us, as we had wanted always. Well… Svetochka… It isn\'t hard for you to help us, is it…? After all, you are Kolya\'s sister… moreover older. Cavaliers, fuck… Now we get all. After all, they don\'t ask whores, they bang them right with their cocks, do they? Am I right, ' + ((s as any).pcs_nickname ?? 0) + '?"… "Hurrah, she nodded! Oooh, you\'re such our sweetie! Fuck yeah! We\'re lucky: We have got our cum dumpster now. See you soon, fuckhole! Prepare your butt hole! Let\'s delight Kolya. He has been always jacking off dreaming about her… I call dibs on her ass!" "Can she hold three at once in her mouth? We should try it long ago. Fuck, we were too shy to suggest it, frigging gentlemen!"';
+    }
+    if (((s as any).temp_rand ?? 0) === 8) {
+      (s as any).rnd_caught_othernpc = 'You are approached by a charwoman in the stairwell: "Well boys, step back and let your toy have a rest for a while. Don\'t throw away bottle, just put them on window sill when you\'re done. I\'ll take them away. Don\'t make a mess with scumbags everywhere! I gather up after you on half a bucket each day! Better, don\'t use them at all: it will be much pleasurable for you and your smasher without them or stack them neatly into her purse: she can take her trophies home with her, when she is done. Oi! Oi!!! Fuckbunny! Swallow, don\'t spit on the floor! Did you understand? Washing the floor after every whore, I would ruin my health. Don\'t drain your pussy onto the floor otherwise I\'ll make you lick all the scum!"';
+    }
+    if (((s as any).temp_rand ?? 0) === 9) {
+      (s as any).rnd_caught_othernpc = '' + ((s as any).rnd_rodnya_text ?? 0) + ', Aunt Luda ' + ((s as any).rnd_viewgg_text ?? 0) + ' ' + ((s as any).rnd_talkgg_text ?? 0) + ' ' + ((s as any).rnd_talkgg2_text ?? 0) + ': "Hey, ' + ((s as any).pcs_nickname ?? 0) + ', how is your sex life? Just think, it was only recently, when a tweeny, bows in her hair, blushing and stuttering, bought pads in my pharmacy for the first time. And now her lap squelches here all around so one can hear even on the street. You grew up very early. You better not stand like doggie here, fool. Do you know, what distinguishes sluts from decent girls? Scraped knees. Come for Green, I\'ll give it to you for a half price, goof!"';
+    }
+    if (((s as any).temp_rand ?? 0) === 10) {
+      (s as any).rnd_caught_othernpc = '' + ((s as any).rnd_rodnya_text ?? 0) + ', a mother with her little daughter notice you. The mother takes daughter by the hand and tells her: "Turn away and don\'t watch! This girl just did not obey her mama and that\'s why she\'s punished. Do you hear her calling her mama now? Obey mama and you\'ll never end up like her!" She turns to you: "Couldn\'t you wait, until you get home, slut? Do you have to shake buttocks just here? By the way, children walk here."';
+    }
+    if (((s as any).temp_rand ?? 0) === 11  &&  ((s as any).fame ?? 0)?.['pav_slut'] < 250) {
+      (s as any).rnd_caught_othernpc = '' + ((s as any).rnd_rodnya_text ?? 0) + ', \' + func(\'gopsex\', \'hide\', \'Shulga_var_name\') + \' notices you and stops. He asked you: "' + ((s as any).pcs_nickname ?? 0) + ', why do you go with these tadpoles?" You smirks and reply: "Frankly, I go with everybody."';
+    }
+    if (((s as any).temp_rand ?? 0) === 11  &&  ((s as any).fame ?? 0)?.['pav_slut'] >= 250) {
+      (s as any).rnd_caught_othernpc = '' + ((s as any).rnd_rodnya_text ?? 0) + ', \' + func(\'gopsex\', \'hide\', \'Shulga_var_name\') + \' notices you and stops. He asks you: -"' + ((s as any).pcs_nickname ?? 0) + ', do you have a session of beneficence today, or something?" You are taken aback and you reply: "Why on earth? I don\'t go with strangers for free."';
+    }
+    if (((s as any).temp_rand ?? 0) === 12  &&  ((s as any).fame ?? 0)?.['pav_slut'] < 250) {
+      (s as any).rnd_caught_othernpc = '' + ((s as any).rnd_rodnya_text ?? 0) + ', uncle Misha ' + ((s as any).rnd_viewgg_text ?? 0) + ' and ' + ((s as any).rnd_talkgg_text ?? 0) + ' ' + ((s as any).rnd_talkgg2_text ?? 0) + ': "' + ((s as any).pcs_nickname ?? 0) + ', you are already hyped up, could you gratify the old boy?" You smile at him and reply: "Uncle Misha, as soon as I\'ve finished it here, I\'ll drop by you."';
+    }
+    if (((s as any).temp_rand ?? 0) === 12  &&  ((s as any).fame ?? 0)?.['pav_slut'] >= 250) {
+      (s as any).rnd_caught_othernpc = '' + ((s as any).rnd_rodnya_text ?? 0) + ', uncle Misha ' + ((s as any).rnd_viewgg_text ?? 0) + ' and ' + ((s as any).rnd_talkgg_text ?? 0) + ' ' + ((s as any).rnd_talkgg2_text ?? 0) + ': "' + ((s as any).pcs_nickname ?? 0) + ', you are already hyped up, could you gratify the old boy?" You turn to him and reply: "Uncle Misha, I\'ll drop by you late in the evening, but for free I can do only a blowjob, fucking my pussy or my ass is for money. He bobbed: "OK, I\'ll consider about it and I\'ll be waiting for you in the evening!"';
+    }
+    if (((s as any).temp_rand ?? 0) === 13  &&  ((s as any).fame ?? 0)?.['pav_slut'] < 250) {
+      (s as any).rnd_caught_othernpc = '' + ((s as any).rnd_rodnya_text ?? 0) + ', aunt Luda ' + ((s as any).rnd_viewgg_text ?? 0) + ' and ' + ((s as any).rnd_talkgg_text ?? 0) + ' ' + ((s as any).rnd_talkgg2_text ?? 0) + ':  "' + ((s as any).pcs_nickname ?? 0) + ', you brought your fuckers again! You\'ve been heard all over the house!"  You smirk and reply: "Aunt Luda, I cannot do it quietly."';
+    }
+    if (((s as any).temp_rand ?? 0) === 13  &&  ((s as any).fame ?? 0)?.['pav_slut'] >= 250) {
+      (s as any).rnd_caught_othernpc = '' + ((s as any).rnd_rodnya_text ?? 0) + ', aunt Luda ' + ((s as any).rnd_viewgg_text ?? 0) + ' and ' + ((s as any).rnd_talkgg_text ?? 0) + ' ' + ((s as any).rnd_talkgg2_text ?? 0) + ': "' + ((s as any).pcs_nickname ?? 0) + ', you make again the plan for me tomorrow!"';
+    }
+    (s as any).temp_rand = (Math.floor(Math.random() * 5) + 1);
+    if (((s as any).temp_rand ?? 0) === 1) {
+      (s as any).rnd_caughtgg_npc = '' + ((s as any).rnd_caught_mom ?? 0) + '';
+      if ((!((s as any).motherKnowSpravka ?? 0))) {
+        (s as any).motherKnowSpravka = 1;
+      }
+      if ((!((s as any).motherKnowWhore ?? 0))) {
+        (s as any).motherKnowWhore = 1;
+      }
+    }
+    if (((s as any).temp_rand ?? 0) === 2) {
+      (s as any).rnd_caughtgg_npc = '' + ((s as any).rnd_caught_othernpc ?? 0) + '';
+    }
+    if (((s as any).temp_rand ?? 0) === 3) {
+      (s as any).rnd_caughtgg_npc = '' + ((s as any).rnd_caught_sister ?? 0) + '';
+    }
+    if (((s as any).temp_rand ?? 0) === 4) {
+      (s as any).rnd_caughtgg_npc = '' + ((s as any).rnd_caught_brother ?? 0) + '';
+      if (((s as any).brotherQW ?? 0)?.['know_slut'] < 2) {
+        ((s as any).brotherQW = (s as any).brotherQW ?? {})['know_slut'] = 2;
+      }
+    }
+    if (((s as any).temp_rand ?? 0) === 5) {
+      (s as any).rnd_caughtgg_npc = '' + ((s as any).rnd_caught_stepfather ?? 0) + '';
+    }
+    (s as any).temp_rand = (Math.floor(Math.random() * 101) + 0);
+    if (((s as any).temp_rand ?? 0) < 50) {
+      (s as any).rnd_caughtgg_view = '';
+    }
+    if (((s as any).temp_rand ?? 0) >= 50  &&  ((s as any).hour ?? 0) >= 0  &&  ((s as any).hour ?? 0) < 5) {
+      (s as any).rnd_caughtgg_view = '';
+    }
+    if (((s as any).temp_rand ?? 0) >= 50  &&  ((s as any).hour ?? 0) >= 5  &&  ((s as any).hour ?? 0) <= 23) {
+      (s as any).rnd_caughtgg_view = '<br><font color = red>' + ((s as any).rnd_caughtgg_npc ?? 0) + '</font>';
+    }
+    scene.text(`${((s as any).rnd_caughtgg_view ?? '')}`);
+    (s as any).rnd_domdela_text = undefined;
+    (s as any).rnd_telogg_text = undefined;
+    (s as any).rnd_telogg2_text = undefined;
+    (s as any).rnd_rodnya_text = undefined;
+    (s as any).rnd_viewgg_text = undefined;
+    (s as any).rnd_talkgg_text = undefined;
+    (s as any).rnd_talkgg2_text = undefined;
+    (s as any).rnd_namesis_text = undefined;
+    (s as any).rnd_mom_txt1 = undefined;
+    (s as any).rnd_caught_mom = undefined;
+    (s as any).rnd_caught_sister = undefined;
+    (s as any).rnd_caught_brother = undefined;
+    (s as any).rnd_caught_stepfather = undefined;
+    (s as any).rnd_caught_othernpc = undefined;
+    (s as any).rnd_caughtgg_npc = undefined;
+    (s as any).rnd_caughtgg_view = undefined;
   }
+  if (String((s as any).locArgs?.[1] ?? '') === 'gg_whore_text') {
+    (s as any).temp_rand = (Math.floor(Math.random() * 8) + 0);
+    if ((!((s as any).temp_rand ?? 0))) {
+      (s as any).dummy = 'slut';
+    }
+    if (((s as any).temp_rand ?? 0) === 1) {
+      (s as any).dummy = 'prostitute';
+    }
+    if (((s as any).temp_rand ?? 0) === 2) {
+      (s as any).dummy = 'whore';
+    }
+    if (((s as any).temp_rand ?? 0) === 3) {
+      (s as any).dummy = 'hooker';
+    }
+    if (((s as any).temp_rand ?? 0) === 4) {
+      (s as any).dummy = 'sporting lady';
+    }
+    if (((s as any).temp_rand ?? 0) === 5) {
+      (s as any).dummy = 'floozy';
+    }
+    if (((s as any).temp_rand ?? 0) === 6) {
+      (s as any).dummy = 'hoochie';
+    }
+    if (((s as any).temp_rand ?? 0) === 7) {
+      (s as any).dummy = 'working girl';
+    }
+    (s as any).result = ((s as any).dummy ?? 0);
+    (s as any).dummy = undefined;
+  }
+  if (String((s as any).locArgs?.[1] ?? '') === 'gop_gg_name') {
+    (s as any).temp_rand = (Math.floor(Math.random() * 31) + 0);
+    if ((!((s as any).temp_rand ?? 0))) {
+      (s as any).dummy = 'floozy';
+    }
+    if (((s as any).temp_rand ?? 0) === 1) {
+      (s as any).dummy = 'slag';
+    }
+    if (((s as any).temp_rand ?? 0) === 2) {
+      (s as any).dummy = 'whore';
+    }
+    if (((s as any).temp_rand ?? 0) === 3) {
+      (s as any).dummy = 'scrub';
+    }
+    if (((s as any).temp_rand ?? 0) === 4) {
+      (s as any).dummy = 'broad';
+    }
+    if (((s as any).temp_rand ?? 0) === 5) {
+      (s as any).dummy = 'hole';
+    }
+    if (((s as any).temp_rand ?? 0) === 6) {
+      (s as any).dummy = 'cunt';
+    }
+    if (((s as any).temp_rand ?? 0) === 7) {
+      (s as any).dummy = 'slut';
+    }
+    if (((s as any).temp_rand ?? 0) === 8) {
+      (s as any).dummy = 'hoochie';
+    }
+    if (((s as any).temp_rand ?? 0) === 9) {
+      (s as any).dummy = 'moll';
+    }
+    if (((s as any).temp_rand ?? 0) === 10) {
+      (s as any).dummy = 'bitch';
+    }
+    if (((s as any).temp_rand ?? 0) === 11) {
+      (s as any).dummy = 'total hole';
+    }
+    if (((s as any).temp_rand ?? 0) === 12) {
+      (s as any).dummy = 'anal bitch';
+    }
+    if (((s as any).temp_rand ?? 0) === 13) {
+      (s as any).dummy = 'hooker';
+    }
+    if (((s as any).temp_rand ?? 0) === 14) {
+      (s as any).dummy = 'our toy';
+    }
+    if (((s as any).temp_rand ?? 0) === 15) {
+      (s as any).dummy = 'fuckbunny';
+    }
+    if (((s as any).temp_rand ?? 0) === 16) {
+      (s as any).dummy = 'sporting lady';
+    }
+    if (((s as any).temp_rand ?? 0) === 17) {
+      (s as any).dummy = 'free whore';
+    }
+    if (((s as any).temp_rand ?? 0) === 18) {
+      (s as any).dummy = 'working girl';
+    }
+    if (((s as any).temp_rand ?? 0) === 19) {
+      (s as any).dummy = '' + ((s as any).pcs_nickname ?? 0) + '-sweetie';
+    }
+    if (((s as any).temp_rand ?? 0) === 20) {
+      (s as any).dummy = 'promiscuous hole';
+    }
+    if (((s as any).temp_rand ?? 0) === 21) {
+      (s as any).dummy = '' + ((s as any).pcs_nickname ?? 0) + '-nymphet';
+    }
+    if (((s as any).temp_rand ?? 0) === 22) {
+      (s as any).dummy = 'sausage jockey';
+    }
+    if (((s as any).temp_rand ?? 0) === 23) {
+      (s as any).dummy = 'tart';
+    }
+    if (((s as any).temp_rand ?? 0) === 24) {
+      (s as any).dummy = 'cum dumpster';
+    }
+    if (((s as any).temp_rand ?? 0) === 25) {
+      (s as any).dummy = 'village bicycle';
+    }
+    if (((s as any).temp_rand ?? 0) === 26) {
+      (s as any).dummy = 'school bike';
+    }
+    if (((s as any).temp_rand ?? 0) === 27) {
+      (s as any).dummy = 'garden tool';
+    }
+    if (((s as any).temp_rand ?? 0) === 28) {
+      (s as any).dummy = 'slut';
+    }
+    if (((s as any).temp_rand ?? 0) === 29) {
+      (s as any).dummy = '' + ((s as any).gnikname ?? 0) + '';
+    }
+    if (((s as any).temp_rand ?? 0) === 30) {
+      (s as any).dummy = '' + ((s as any).pcs_nickname ?? 0) + '-prostitot';
+    }
+    (s as any).result = ((s as any).dummy ?? 0);
+    (s as any).dummy = undefined;
+  }
+  if (String((s as any).locArgs?.[1] ?? '') === 'gop_gg_name2') {
+    (s as any).temp_rand = (Math.floor(Math.random() * 11) + 1);
+    if (((s as any).temp_rand ?? 0) === 1) {
+      (s as any).dummy = 'floozy';
+    }
+    if (((s as any).temp_rand ?? 0) === 2) {
+      (s as any).dummy = 'slag';
+    }
+    if (((s as any).temp_rand ?? 0) === 3) {
+      (s as any).dummy = 'whore';
+    }
+    if (((s as any).temp_rand ?? 0) === 4) {
+      (s as any).dummy = 'bitch';
+    }
+    if (((s as any).temp_rand ?? 0) === 5) {
+      (s as any).dummy = 'scrub';
+    }
+    if (((s as any).temp_rand ?? 0) === 6) {
+      (s as any).dummy = 'slut';
+    }
+    if (((s as any).temp_rand ?? 0) === 7) {
+      (s as any).dummy = 'broad';
+    }
+    if (((s as any).temp_rand ?? 0) === 8) {
+      (s as any).dummy = 'hooker';
+    }
+    if (((s as any).temp_rand ?? 0) === 9) {
+      (s as any).dummy = 'tramp';
+    }
+    if (((s as any).temp_rand ?? 0) === 10) {
+      (s as any).dummy = 'prostitute';
+    }
+    (s as any).result = ((s as any).dummy ?? 0);
+    (s as any).dummy = undefined;
+  }
+  if (String((s as any).locArgs?.[1] ?? '') === 'gop_text_npcr') {
+    (s as any).temp_rand = (Math.floor(Math.random() * 4) + 1);
+    if (((s as any).temp_rand ?? 0) === 1) {
+      (s as any).dummy = 'boys';
+    }
+    if (((s as any).temp_rand ?? 0) === 2) {
+      (s as any).dummy = 'guys';
+    }
+    if (((s as any).temp_rand ?? 0) === 3) {
+      (s as any).dummy = 'buddies';
+    }
+    if (((s as any).temp_rand ?? 0) === 4) {
+      (s as any).dummy = 'companions';
+    }
+    (s as any).result = ((s as any).dummy ?? 0);
+    (s as any).dummy = undefined;
+  }
+  if (String((s as any).locArgs?.[1] ?? '') === 'gop_family_npc') {
+    (s as any).temp_rand = (Math.floor(Math.random() * 3) + 1);
+    if (((s as any).temp_rand ?? 0) === 1) {
+      (s as any).dummy = 'Shulga';
+    }
+    if (((s as any).temp_rand ?? 0) === 2) {
+      (s as any).dummy = 'Kotov';
+    }
+    if (((s as any).temp_rand ?? 0) === 3) {
+      (s as any).dummy = 'Ryzhov';
+    }
+    (s as any).result = ((s as any).dummy ?? 0);
+    (s as any).dummy = undefined;
+  }
+  if (String((s as any).locArgs?.[1] ?? '') === 'gop_sextext1') {
+    (s as any).temp_rand = (Math.floor(Math.random() * 8) + 0);
+    if ((!((s as any).temp_rand ?? 0))) {
+      (s as any).dummy = 'plow';
+    }
+    if (((s as any).temp_rand ?? 0) === 1) {
+      (s as any).dummy = 'ram';
+    }
+    if (((s as any).temp_rand ?? 0) === 2) {
+      (s as any).dummy = 'fuck';
+    }
+    if (((s as any).temp_rand ?? 0) === 3) {
+      (s as any).dummy = 'hump';
+    }
+    if (((s as any).temp_rand ?? 0) === 4) {
+      (s as any).dummy = 'pound';
+    }
+    if (((s as any).temp_rand ?? 0) === 5) {
+      (s as any).dummy = 'bang';
+    }
+    if (((s as any).temp_rand ?? 0) === 6) {
+      (s as any).dummy = 'screw';
+    }
+    if (((s as any).temp_rand ?? 0) === 7) {
+      (s as any).dummy = 'hump';
+    }
+    (s as any).result = ((s as any).dummy ?? 0);
+    (s as any).dummy = undefined;
+  }
+  if (String((s as any).locArgs?.[1] ?? '') === 'gop_sextext2') {
+    (s as any).temp_rand = (Math.floor(Math.random() * 8) + 0);
+    if ((!((s as any).temp_rand ?? 0))) {
+      (s as any).dummy = 'fucked';
+    }
+    if (((s as any).temp_rand ?? 0) === 1) {
+      (s as any).dummy = 'banged';
+    }
+    if (((s as any).temp_rand ?? 0) === 2) {
+      (s as any).dummy = 'pounded';
+    }
+    if (((s as any).temp_rand ?? 0) === 3) {
+      (s as any).dummy = 'fucked';
+    }
+    if (((s as any).temp_rand ?? 0) === 4) {
+      (s as any).dummy = 'rammed';
+    }
+    if (((s as any).temp_rand ?? 0) === 5) {
+      (s as any).dummy = 'plowed';
+    }
+    if (((s as any).temp_rand ?? 0) === 6) {
+      (s as any).dummy = 'screwed';
+    }
+    if (((s as any).temp_rand ?? 0) === 7) {
+      (s as any).dummy = 'humped';
+    }
+    (s as any).result = ((s as any).dummy ?? 0);
+    (s as any).dummy = undefined;
+  }
+  if (String((s as any).locArgs?.[1] ?? '') === 'gop_sextext3') {
+    (s as any).temp_rand = (Math.floor(Math.random() * 9) + 0);
+    if ((!((s as any).temp_rand ?? 0))) {
+      (s as any).dummy = 'fucking';
+    }
+    if (((s as any).temp_rand ?? 0) === 1) {
+      (s as any).dummy = 'humping';
+    }
+    if (((s as any).temp_rand ?? 0) === 2) {
+      (s as any).dummy = 'screwing';
+    }
+    if (((s as any).temp_rand ?? 0) === 3) {
+      (s as any).dummy = 'banging';
+    }
+    if (((s as any).temp_rand ?? 0) === 4) {
+      (s as any).dummy = 'bonking';
+    }
+    if (((s as any).temp_rand ?? 0) === 5) {
+      (s as any).dummy = 'plowing';
+    }
+    if (((s as any).temp_rand ?? 0) === 6) {
+      (s as any).dummy = 'shagging';
+    }
+    if (((s as any).temp_rand ?? 0) === 7) {
+      (s as any).dummy = 'pounding';
+    }
+    if (((s as any).temp_rand ?? 0) === 8) {
+      (s as any).dummy = 'ramming';
+    }
+    (s as any).result = ((s as any).dummy ?? 0);
+    (s as any).dummy = undefined;
+  }
+  if (String((s as any).locArgs?.[1] ?? '') === 'gop_text3') {
+    (s as any).temp_rand = (Math.floor(Math.random() * 5) + 0);
+    if ((!((s as any).temp_rand ?? 0))) {
+      (s as any).dummy = 'touch';
+    }
+    if (((s as any).temp_rand ?? 0) === 1) {
+      (s as any).dummy = 'grope';
+    }
+    if (((s as any).temp_rand ?? 0) === 2) {
+      (s as any).dummy = 'feel';
+    }
+    if (((s as any).temp_rand ?? 0) === 3) {
+      (s as any).dummy = 'fondle';
+    }
+    if (((s as any).temp_rand ?? 0) === 4) {
+      (s as any).dummy = 'caress';
+    }
+    (s as any).result = ((s as any).dummy ?? 0);
+    (s as any).dummy = undefined;
+  }
+  if (String((s as any).locArgs?.[1] ?? '') === 'gop_name_npc') {
+    (s as any).dummyi = (Math.floor(Math.random() * 3) + 0);
+    ((s as any).dummy = (s as any).dummy ?? {})[0] = 'A11';
+    ((s as any).dummy = (s as any).dummy ?? {})[1] = 'A9';
+    ((s as any).dummy = (s as any).dummy ?? {})[2] = 'A10';
+    (s as any).gop_ID_npc = (((s as any).dummy ?? 0)?.[String((s as any).dummyi ?? 0)] ?? 0);
+    ((s as any).dummy = (s as any).dummy ?? {})[0] = 'Vasily';
+    ((s as any).dummy = (s as any).dummy ?? {})[1] = 'Vitek';
+    ((s as any).dummy = (s as any).dummy ?? {})[2] = 'Dan';
+    (s as any).result = (((s as any).dummy ?? 0)?.[String((s as any).dummyi ?? 0)] ?? 0);
+    (s as any).dummy = undefined;
+    (s as any).dummyi = undefined;
+  }
+  if (String((s as any).locArgs?.[1] ?? '') === 'gop_text_beer2') {
+    (s as any).dummyi = (Math.floor(Math.random() * 10) + 0);
+    if ((!((s as any).dummyi ?? 0))) {
+      (s as any).dummy = qspFunc(s, 'gopsex', 'hide', 'gop_name_npc') + ' opens a new bottle of beer, he makes a couple of sips and passes the bottle to you. You stay to drink with the boys.';
+    }
+    if (((s as any).dummyi ?? 0) === 1) {
+      (s as any).dummy = qspFunc(s, 'gopsex', 'hide', 'gop_name_npc') + ' pours beer into an empty glass and hands it to you. You stay to drink with the guys.';
+    }
+    if (((s as any).dummyi ?? 0) === 2) {
+      (s as any).dummy = qspFunc(s, 'gopsex', 'hide', 'gop_name_npc') + ' hands you a bottle of beer. You take a draught. ' + qspFunc(s, 'gopsex', 'hide', 'gop_family_npc') + ' says loudly, "Drunken slut".';
+    }
+    if (((s as any).dummyi ?? 0) === 3) {
+      (s as any).dummy = qspFunc(s, 'gopsex', 'hide', 'gop_name_npc') + ' uncorks and gives you a can of beer. You eagerly drain it in one gulp. "Wow" ' + qspFunc(s, 'gopsex', 'hide', 'gop_text_npcr') + ' gives a sigh of admiration seeing it.';
+    }
+    if (((s as any).dummyi ?? 0) === 4) {
+      (s as any).dummy = qspFunc(s, 'gopsex', 'hide', 'gop_name_npc') + ' take a flask, pours beer into a glass, and hands it to you. You sit down on the bench and sprawl leisurely boozing with chavs.';
+    }
+    if (((s as any).dummyi ?? 0) === 5) {
+      (s as any).dummy = qspFunc(s, 'gopsex', 'hide', 'gop_name_npc') + ' opens a bottle of beer and hands it to you. You sip beer slowly.';
+    }
+    if (((s as any).dummyi ?? 0) === 6) {
+      (s as any).dummy = qspFunc(s, 'gopsex', 'hide', 'gop_name_npc') + ' uncork a bottle of beer and gives it to you. You eagerly drain it and plop the empty bottle on the bench.';
+    }
+    if (((s as any).dummyi ?? 0) === 7) {
+      (s as any).dummy = qspFunc(s, 'gopsex', 'hide', 'gop_name_npc') + ' take a sip from a big PET-bottle and hands it to you. You take few gulps and ' + qspFunc(s, 'gopsex', 'hide', 'gop_family_npc') + ' takes the bottle from you.';
+    }
+    if (((s as any).dummyi ?? 0) === 8) {
+      (s as any).dummy = qspFunc(s, 'gopsex', 'hide', 'gop_name_npc') + ' take a sip from a can and hands it to you. You begin eagerly swig the beer… ' + qspFunc(s, 'gopsex', 'hide', 'gop_family_npc') + ' takes the can away from you "Fuck, let some for us, fool!"';
+    }
+    if (((s as any).dummyi ?? 0) === 9) {
+      (s as any).dummy = '"Have one." ' + qspFunc(s, 'gopsex', 'hide', 'gop_name_npc') + ' hands you a bottle of unfinished Zhiguli and he smirks seeing as you drink it eagerly. Your mood lightenes.';
+    }
+    (s as any).result = ((s as any).dummy ?? 0);
+    (s as any).dummyi = undefined;
+    (s as any).dummy = undefined;
+  }
+  if (String((s as any).locArgs?.[1] ?? '') === 'Shulga_var_name') {
+    ((s as any).dummy = (s as any).dummy ?? {})[0] = 'Shulga';
+    ((s as any).dummy = (s as any).dummy ?? {})[1] = 'Vasily';
+    ((s as any).dummy = (s as any).dummy ?? {})[2] = 'Vaska';
+    ((s as any).dummy = (s as any).dummy ?? {})[3] = 'Vasily';
+    (s as any).result = (((s as any).dummy ?? 0)?.[(Math.floor(Math.random() * 4) + 0)] ?? 0);
+    (s as any).dummy = undefined;
+  }
+  if (String((s as any).locArgs?.[1] ?? '') === 'gop_beer_drova') {
+    (s as any).temp_rand = 0;
+    if ((!((s as any).temp_rand ?? 0))) {
+      (s as any).dummy = '"' + qspFunc(s, 'gopsex', 'hide', 'gop_gg_name') + ', you drank all the beer! Get up, let\'s ' + qspFunc(s, 'gopsex', 'hide', 'gop_sextext1') + ' you!"';
+    }
+    if (((s as any).temp_rand ?? 0) === 1) {
+      (s as any).dummy = '"You drank up all our beer, ' + qspFunc(s, 'gopsex', 'hide', 'gop_gg_name') + '!, Get up, it\'s time to work off your share."';
+    }
+    if (((s as any).temp_rand ?? 0) === 2) {
+      (s as any).dummy = '"' + ((s as any).pcs_nickname ?? 0) + ', stop drinking! Come on. Get up and serve us."';
+    }
+    if (((s as any).temp_rand ?? 0) === 3) {
+      (s as any).dummy = '"Fuck you ' + ((s as any).pcs_nickname ?? 0) + '-drunkard, no more drink, you are almost dopey. Get up, let\'s \' + func(\'gopsex\', \'hide\', \'gop_sextext1\') + \' you!"';
+    }
+    if (((s as any).temp_rand ?? 0) === 4) {
+      (s as any).dummy = '"Are you drunk? It\'s time to work off: Get up, prepare your box!"';
+    }
+    if (((s as any).temp_rand ?? 0) === 5) {
+      (s as any).dummy = '"Well ' + ((s as any).pcs_nickname ?? 0) + '. You drank all the beer, \' + func(\'gopsex\', \'hide\', \'gop_gg_name\') + \'! Get up, it\'s time to \' + func(\'gopsex\', \'hide\', \'gop_sextext1\') + \' you!"';
+    }
+    if (((s as any).temp_rand ?? 0) === 6) {
+      (s as any).dummy = '"Well ' + ((s as any).pcs_nickname ?? 0) + ', freebies ran out. Get up, let\'s \' + func(\'gopsex\', \'hide\', \'gop_sextext1\') + \' you!"';
+    }
+    if (((s as any).temp_rand ?? 0) === 7) {
+      (s as any).dummy = '"You aren\'t ruined yet, ' + ((s as any).pcs_nickname ?? 0) + '? So no more drink! You roped in beer us, now get up and work off the treat!"';
+    }
+    if (((s as any).temp_rand ?? 0) === 8) {
+      (s as any).dummy = '"At this rate, we would fuck a rubber doll, and I don\'t like it so. \' + func(\'gopsex\', \'hide\', \'gop_text_npcr\') + \', don\'t pour her glass more! Come on, ' + ((s as any).pcs_nickname ?? 0) + '! Get up and show off your box!"';
+    }
+    (s as any).result = ((s as any).dummy ?? 0);
+    (s as any).dummy = undefined;
+  }
+  if (String((s as any).locArgs?.[1] ?? '') === 'text_sex_cun') {
+    (s as any).temp_rand = (Math.floor(Math.random() * 6) + 0);
+    if ((!((s as any).temp_rand ?? 0))) {
+      (s as any).txt_sex_cun = 'Your fingers run through his hair and your hand is pushing his head gentle down towards your crotch. ' + ((s as any).npcdesc ?? 0) + ' kisses your pussy. You arch and poke out your cunny forward. ' + ((s as any).npcdesc ?? 0) + ' slightly touches your pussy with his lips.\n"You have got a nice pussy indeed!"\nYou smiled: "I know"\nHis tongue penetrates slowly into your pussy parting your meaty nether lips. Your moaning gradually passes into scream.';
+    }
+    if (((s as any).temp_rand ?? 0) === 1) {
+      (s as any).txt_sex_cun = '' + ((s as any).npcdesc ?? 0) + ' leans his face close to your pussy.\n"Do you like?" You ask.\n"Very much!" He replies and touches your clit with his lips and starts caressing it with his tongue. He licks skillfully, especially for his age. It was clear that it\'s not first time he puts his tongue in the girl\'s cunny.\n"You\'re good at it. Have you trained it?"\n"Sometimes" He replies with a smile.\n"Do you have a girlfriend?"\n"No…" He answers, when has a short rest.\n"Who taught you then?"\n"I got a friend."\n"Ooh. Do I know her? Is she at school?\n"No. I\'ll tell you later."';
+    }
+    if (((s as any).temp_rand ?? 0) === 2) {
+      (s as any).txt_sex_cun = 'You lie down on your back and spread your thighs wide apart. ' + ((s as any).npcdesc ?? 0) + ' pulls your panties aside and his mouth clings to your wet pussy. He licks and sucks your cunt lips, your clit, and from time to time his tongue slides into your box. You moan, holding his head and pressing it tightly to your wet pussy.';
+    }
+    if (((s as any).temp_rand ?? 0) === 3) {
+      (s as any).txt_sex_cun = '' + ((s as any).npcdesc ?? 0) + ' puts you on your back and moves to your wet box. He licks your clitoris, then he puts straight two fingers into your wet pussy and starts fingering you. Squishing sounds are coming from your cunny and your moaning resounds surroundings. ' + ((s as any).npcdesc ?? 0) + ' grins and his hand moves even faster';
+    }
+    if (((s as any).temp_rand ?? 0) === 4) {
+      (s as any).txt_sex_cun = 'You part your legs apart exposing your pussy to his view. Without hesitation, ' + ((s as any).npcdesc ?? 0) + ' starts kissing your box. He tickles your clit with his tongue and then he ran down between your pussy lips to your love hole, which was really very wet. You were ready for sex already so you could start fucking right now. But ' + ((s as any).npcdesc ?? 0) + ' is not in a hurry. He caresses you with both his tongue and his fingers listening to your sweet moans. You writhes with eagerness, but you don\'t beg just enjoy the moment.';
+    }
+    if (((s as any).temp_rand ?? 0) === 5) {
+      (s as any).txt_sex_cun = '"' + ((s as any).npcdesc ?? 0) + ', lick my pussy, please!" you asks kindly.\n"With pleasure!" He replies.\n' + ((s as any).npcdesc ?? 0) + ' lowers his mouth to your groin and starts licking your pussy skillfully.';
+    }
+    scene.text(`${((s as any).txt_sex_cun ?? '')}`);
+    (s as any).txt_sex_cun = undefined;
+  }
+  if (String((s as any).locArgs?.[1] ?? '') === 'text_sex_69') {
+    (s as any).temp_rand = (Math.floor(Math.random() * 2) + 0);
+    if ((!((s as any).temp_rand ?? 0))) {
+      (s as any).txt_sex_69 = 'Your ' + (((s as any).pc_desc ?? 0)?.['lips']) + ' lips softly accept his member sucking it passionately all round like a lollipop, helping yourself with your nimble tongue tickling his frenulum. At the same time ' + ((s as any).npcdesc ?? 0) + ' grasps your clit with his fingertips rubbing it gently between them. Simultaneously he examines your love hole with his tongue, which has been already prepared to accept something bigger.';
+    }
+    if (((s as any).temp_rand ?? 0) === 1) {
+      (s as any).txt_sex_69 = '' + ((s as any).npcdesc ?? 0) + ' lies down on his back, takes your leg and shifts it over himself so your tushie was just in front of his face. Running his tongue between your nether lips, he feels you take his cock deep into your mouth again. You loosen your grasp a bit then and start sucking it with your ' + (((s as any).pc_desc ?? 0)?.['lips']) + ' lips.';
+    }
+    scene.text(`${((s as any).txt_sex_69 ?? '')}`);
+    (s as any).txt_sex_69 = undefined;
+  }
+  if (String((s as any).locArgs?.[1] ?? '') === 'text_sex_hj') {
+    (s as any).temp_rand = (Math.floor(Math.random() * 4) + 0);
+    if ((!((s as any).temp_rand ?? 0))) {
+      (s as any).txt_sex_hj = 'Without talking, ' + ((s as any).npcdesc ?? 0) + ' shoves his cock in your face.';
+    }
+    scene.text('"That\'s like jerk off." You say laughing, take his member into your hand and start pumping.');
+    if (((s as any).temp_rand ?? 0) === 1) {
+      (s as any).txt_sex_hj = 'You take his still soft cock into your hand and it starts growing noticeably. You begin a hand job feasting your eyes on his strong prick.';
+    }
+    if (((s as any).temp_rand ?? 0) === 2) {
+      (s as any).txt_sex_hj = '' + ((s as any).npcdesc ?? 0) + ' shoves his cock into your hand. Your fingers grip on his fat elastic trunk shakily. He tells you to hold it firmer.';
+    }
+    scene.text('"Don\'t release it and move your hand up and down…" He takes hold showing how to do it.');
+    scene.text('"Not so sharply… yes so. Don\'t pull… Yes, that\'s it. Great…! More… More.!"');
+    if (((s as any).temp_rand ?? 0) === 3) {
+      (s as any).txt_sex_hj = '' + ((s as any).npcdesc ?? 0) + ' asks you to do hand job to him. You take his dick firmly into your hand and start to rub the skin back and forth.';
+    }
+    scene.text(`${((s as any).txt_sex_hj ?? '')}`);
+    (s as any).txt_sex_hj = undefined;
+  }
+  if (String((s as any).locArgs?.[1] ?? '') === 'text_sex_bj') {
+    (s as any).temp_rand = (Math.floor(Math.random() * 8) + 0);
+    if ((!((s as any).temp_rand ?? 0))) {
+      (s as any).txt_sex_bj = 'You take his member into your ' + (((s as any).pc_desc ?? 0)?.['lips']) + ' lips, and ' + ((s as any).npcdesc ?? 0) + ' starts to fuck your mouth.';
+    }
+    if (((s as any).temp_rand ?? 0) === 1) {
+      (s as any).txt_sex_bj = 'You take his member into your mouth, and start to suck it. ' + ((s as any).npcdesc ?? 0) + ' takes hold of your ' + ((s as any).pcs_haircolor ?? 0) + ' ' + ((s as any).curly_txt ?? 0) + ' hair and impales your head at his prick. Slurping, you swallow his member. You could feel with your ' + (((s as any).pc_desc ?? 0)?.['lips']) + ' lips every vein and bump on its skin.';
+    }
+    if (((s as any).temp_rand ?? 0) === 2) {
+      (s as any).txt_sex_bj = 'You grasp his member with your hand and pumping, you take with your ' + (((s as any).pc_desc ?? 0)?.['lips']) + ' lips its head into your mouth. His dick stiffens more and gains impressive size. You learned to swallow a cock quite well long ago, and you used it always since that time. ' + ((s as any).npcdesc ?? 0) + ' was fascinated. You fondle his balls with one hand, and stroke his prick with other one, you release it from time to time so that you can take his shaft in your mouth fully.';
+    }
+    if (((s as any).temp_rand ?? 0) === 3) {
+      (s as any).txt_sex_bj = 'Without talking, ' + ((s as any).npcdesc ?? 0) + ', seizes you by your ' + ((s as any).pcs_haircolor ?? 0) + ' ' + ((s as any).curly_txt ?? 0) + ' hair, tilts your head towards his penis. He starts swinging his hips fucking your mouth in such way.';
+    }
+    if (((s as any).temp_rand ?? 0) === 4) {
+      (s as any).txt_sex_bj = '' + ((s as any).npcdesc ?? 0) + ', seizes you by your ' + ((s as any).pcs_haircolor ?? 0) + ' ' + ((s as any).curly_txt ?? 0) + ' hair and starts moving with your head in pace of his swinging. You choke a bit but continued in sucking.';
+    }
+    if (((s as any).temp_rand ?? 0) === 5) {
+      (s as any).txt_sex_bj = 'You start to lick his dick with yout nimble tongue, then gather a little saliva, you take his prick in your ' + (((s as any).pc_desc ?? 0)?.['lips']) + ' lips and begin to suck, rubbing it with your hand at the same time.';
+    }
+    if (((s as any).temp_rand ?? 0) === 6) {
+      (s as any).txt_sex_bj = 'You take his dick in your mouth, your tongue caress its sides, then the bottom and then the tip of head. You purse your ' + (((s as any).pc_desc ?? 0)?.['lips']) + ' lips and start moving back and forth faster. You let his dick slid out of your mouth and you examine a result of your job with excitement. The head becomes even harder, purple and shiny. You feel a faint ache in your lower abdomen. You bend upward the hard shaft and run your tongue from the balls to the cock head, then you tickle it from all sides digging your ' + (((s as any).pc_desc ?? 0)?.['lips']) + ' lips in the head.';
+    }
+    if (((s as any).temp_rand ?? 0) === 7) {
+      (s as any).txt_sex_bj = 'You gently wrap his prick with your wet ' + (((s as any).pc_desc ?? 0)?.['lips']) + ' lips and let it slide in your mouth. You rub it with your nimble tongue, stroke its trunk and fondling his sack with your hands. You captur it stronger, slurping juices and your saliva enveloping its head. You are tickling it with your tongue and you hear ' + ((s as any).npcdesc ?? 0) + '\'s sweet moaning.';
+    }
+    scene.text(`${((s as any).txt_sex_bj ?? '')}`);
+    (s as any).txt_sex_bj = undefined;
+  }
+  if (String((s as any).locArgs?.[1] ?? '') === 'text_sex_bjt') {
+    (s as any).temp_rand = (Math.floor(Math.random() * 3) + 0);
+    if ((!((s as any).temp_rand ?? 0))) {
+      (s as any).txt_sex_bjt = 'He shove his prick deep into your throat squeezing it with his hand. Your ' + (((s as any).pc_desc ?? 0)?.['lips']) + ' lips grip tightly his trunk. You aren\'t giving a blowjob. ' + ((s as any).npcdesc ?? 0) + ' is simply fucking your throat and you both have a lot of fun.';
+    }
+    if (((s as any).temp_rand ?? 0) === 1) {
+      (s as any).txt_sex_bjt = 'You try to swallow his cock deeper with your ' + (((s as any).pc_desc ?? 0)?.['lips']) + ' lips. You are rubbing it with you hand again, and caressing it with your mouth simultaneously. With each thrust you take it deeper and deeper in your mouth until it reaches your throat. Tears well in your eyes but you still try to put it in even deeper. ' + ((s as any).npcdesc ?? 0) + ' grabbs your ' + ((s as any).pcs_haircolor ?? 0) + ' ' + ((s as any).curly_txt ?? 0) + ' hair and took the initiative and starts pulling your head on his shaft.';
+    }
+    if (((s as any).temp_rand ?? 0) === 2) {
+      (s as any).txt_sex_bjt = 'The cock head bumps into your throat and it even moves farther, but you can\'t take it more - it was simply too thick. Nevertheless, at each thrust, bit by bit, it moves deeper and deeper. A rope of your saliva oozes out of your mouth down to your chin and drips on the ground.';
+    }
+    scene.text(`${((s as any).txt_sex_bjt ?? '')}`);
+    (s as any).txt_sex_bjt = undefined;
+  }
+  if (String((s as any).locArgs?.[1] ?? '') === 'text_sex_doggy') {
+    (s as any).temp_rand = (Math.floor(Math.random() * 7) + 0);
+    if ((!((s as any).temp_rand ?? 0))) {
+      if (((s as any).PCloSkirt ?? 0) > 0) {
+        (s as any).dummytxt = 'He hikes up your skirt';
+      } else {
+        if (((s as any).PCloPants ?? 0) > 2) {
+          (s as any).dummytxt = 'He pulls your shorts down to your knees';
+        } else {
+          (s as any).dummytxt = 'He pulls your pants down to your knees';
+        }
+      }
+      (s as any).txt_sex_doggy = 'You delight ' + ((s as any).npcdesc ?? 0) + '. He jumps, and prompts you to bend forward. ' + ((s as any).dummytxt ?? 0) + ' revealing your cute tushy, and shoves his dick into your pussy from behind. You don\'t expect such abrupt action, but he is fucking you for ten minutes, almost without slowing the pace, only occasionally stopping to take a breath. You think he would be tired soon, but it turns out that he is more tenacious than one might assume. The last five minutes you forget where you are, and screaming your head off. ' + ((s as any).npcdesc ?? 0) + ' is growling spanking your butt with one hand and pulling your ' + ((s as any).pcs_haircolor ?? 0) + ' ' + ((s as any).curly_txt ?? 0) + ' hair with the other.';
+      (s as any).dummytxt = undefined;
+    }
+    if (((s as any).temp_rand ?? 0) === 1) {
+      (s as any).txt_sex_doggy = '' + ((s as any).npcdesc ?? 0) + ' jerks off and then plants you on his cock. You start jiggle with your ass and his prick slides fully into your cunny and hits your cervix. You arch back and he grabs firmly your butt and starts fucking you stronger.';
+    }
+    if (((s as any).temp_rand ?? 0) === 2) {
+      (s as any).txt_sex_doggy = 'You are breathing heavily being bending forward and dutifully waggling with your tushie. ' + ((s as any).npcdesc ?? 0) + ' is standing behind you and pulling you up like a dog on a bitch. ' + ((s as any).npcdesc ?? 0) + '\'s rough hands grab your butt helping you get his hard prick deeper into your box. You moan with pleasure, your butt bounces fast against his fascinating insatiable schlong. ' + ((s as any).npcdesc ?? 0) + ' raises his hand to strike and slaps your butt.\n"Good job, bitch, keep banging with your fanny. Come on sweetie, do it faster!" ' + ((s as any).npcdesc ?? 0) + ' is urging and slapping you alternately with left or right hand.';
+    }
+    if (((s as any).temp_rand ?? 0) === 3) {
+      (s as any).txt_sex_doggy = '' + ((s as any).npcdesc ?? 0) + ' has made you bend forward and then he stands behind you. Thereafter, he thrusts his cock into your wet cunt in one sharp move. You twitch and scream with searing and sharp pain, but stay obediently forward bending. He starts screwing you to the hilt roughly, he is ramming his shaft into you as if he wanted to get with each thrust deeper and deeper into your hole. He is fucking violently his classmate, holding your ' + ((s as any).pcs_haircolor ?? 0) + ' ' + ((s as any).curly_txt ?? 0) + ' hair with one hand. ' + ((s as any).npcdesc ?? 0) + '\'s moves are sharp and strong. Silence is breaking with smacking sounds when his pelvis rebound with force from your springy butt, and you silently moan through gritted teeth.';
+    }
+    if (((s as any).temp_rand ?? 0) === 4) {
+      (s as any).txt_sex_doggy = '"Go down on the floor and get on all fours, my sweet!"\nYou obey dumbly, and you get on all fours. You like to be fucked in this way.\n"' + ((s as any).pcs_nickname ?? 0) + ' bend backwards and lower your head!"\n"Yes, ' + ((s as any).npcdesc ?? 0) + '." You say excitedly and arch your back more and lower your head. Your bum move up more and your pussy become closer and easier to reach that appeals to him. ' + ((s as any).npcdesc ?? 0) + ' gets on the floor and parts your legs to sides and he kneels between them. Thereafter, he widely stretches your butt cheeks, slowly runs his shaft along your wet pussy and then shoves it deeply in.\n"Mmmm… aaah… mmm," you moaned.\n' + ((s as any).npcdesc ?? 0) + ' puts both hands on your bum and starts plowing your pussy with his prick with delight.';
+    }
+    if (((s as any).temp_rand ?? 0) === 5) {
+      (s as any).txt_sex_doggy = 'Holding your waist, ' + ((s as any).npcdesc ?? 0) + ' is banging you, slowly increasing his pace. You are diligently fucking back moaning with pleasure and in quest to please him. Your boobs are swaying and your pink swollen nipples are sticking out seductively. You feel as his strong member alternately fills and pleasantly stretches your pussy at one moment and then it gets out fully. You feel like a whore and you like it.';
+    }
+    if (((s as any).temp_rand ?? 0) === 6) {
+      (s as any).txt_sex_doggy = '' + ((s as any).npcdesc ?? 0) + ' turns you, prompts you to bend forward and without ceremony he starts banging your pussy. Slaps beoame louder and louder. His chest and back are glistening with sweat, his fingers dig into your butt and the thrusts become stronger and shorter. ' + ((s as any).npcdesc ?? 0) + ' is not pulling out his prick fully from your cunt but just a bit. His cock is in your box completely and still keeps pounding. It seems that he won\'t stop.';
+    }
+    scene.text(`${((s as any).txt_sex_doggy ?? '')}`);
+    (s as any).txt_sex_doggy = undefined;
+  }
+  if (String((s as any).locArgs?.[1] ?? '') === 'text_sex_doggy_anal') {
+    (s as any).temp_rand = (Math.floor(Math.random() * 9) + 0);
+    if ((!((s as any).temp_rand ?? 0))) {
+      (s as any).txt_sex_doggy_anal = '' + ((s as any).npcdesc ?? 0) + ' puts his cock to your anus and shoves it in your tight hole up to his sack with one stroke. You succeed in only twitching and screaming, when his big prick pierces your butt. After a couple of minutes, you become used and start moaning.\n"Oh yess…! mmm… deeper…! mmmm…"\nHe grabs your hips and starts banging increasing his pace gradually. You diligently fuck back wanting to get even more on his shaft. You are insanely excited and serve him with pleasure.';
+    }
+    if (((s as any).temp_rand ?? 0) === 1) {
+      (s as any).txt_sex_doggy_anal = '' + ((s as any).npcdesc ?? 0) + ' is kneeling between your legs and shoving his prick into your ass hole up to his balls.You are on all fours having your bum lifted and you are fucking back in pace and moaning with pleasure. Your lover is propelled even more by your moaning. He is fucking you in silence for a while and then begins moaning excitedly.\n"You have got a nice big butt, ' + ((s as any).pcs_nickname ?? 0) + '…", he tells you, still keeping his pace."\n"Mmmm… yesss… yess… harder… deeper… mmm… oh yesss, you have such big cock… hmmmm…" you are cheering him on.';
+    }
+    if (((s as any).temp_rand ?? 0) === 2) {
+      (s as any).txt_sex_doggy_anal = '"I missed your tight tushie, baby! I\'m going to fuck your bum now, my sweet chick". You feel that his prick is hard and jostles against your butt. ' + ((s as any).npcdesc ?? 0) + ' spits into his palm, greases his cock head and sets the glans to your anus. He starts pushing and slowly and gentle shoves his cock in your ass. As soon as the cock is fully in your bum, ' + ((s as any).npcdesc ?? 0) + ' starts wiggling with his pelvis holding your hips. You moan loudly and start fucking back and impaling yourself on his big cock.';
+    }
+    if (((s as any).temp_rand ?? 0) === 3) {
+      (s as any).txt_sex_doggy_anal = '' + ((s as any).npcdesc ?? 0) + ' puts his cock head to your narrow entrance and pushes in. Your sphincter stretches and allows his thin prick to slide into your bum without exceptional resistance. He grabs your hips and starts fucking fast your bum. You shriek out at each thrust, which he enjoyes it a lot he is banging you faster and faster. He was seize with animal instincts and he desires so as you scream louder and louder continuously. ' + ((s as any).npcdesc ?? 0) + ' shoves his prick deep into your bowels so his balls smash your taint.';
+    }
+    if (((s as any).temp_rand ?? 0) === 4) {
+      (s as any).txt_sex_doggy_anal = '' + ((s as any).npcdesc ?? 0) + ' moves you on your knees and he spoons to you from behind. He holds your bum with one hand and with other hand he aims his prick into the brown eye. It is seen that you enjoyed it. Holding your butt firmly, he is swinging his hips back and forth so forcefully, so smacks are somewhat frenzied, are both sonorous and muffled. And so fast: a swing, a hit, a swing, a hit. He starts drawing you close, when he reaches your womb, he draws close your ass, which rippled by his strokes.';
+    }
+    if (((s as any).temp_rand ?? 0) === 5) {
+      (s as any).txt_sex_doggy_anal = '' + ((s as any).npcdesc ?? 0) + ' drags you with him. You find yourself being on elbows and knees and you grasp that he is about to penetrate you. He leans tip of his cock against your anus and jostles. It is a little painful, but the desire to pleasure outweighed. ' + ((s as any).npcdesc ?? 0) + ' gradually accelerates his screwing. Your anus relaxes and stretches so his prick could pass easily now.';
+    }
+    if (((s as any).temp_rand ?? 0) === 6) {
+      (s as any).txt_sex_doggy_anal = 'You stand with legs slightly apart, bending forward, he is holding your butt and his prick is fully hid in your ass hole. Breathing heavily, you are taking pleasure in this state. You want so that ' + ((s as any).npcdesc ?? 0) + ' is fully in you and your whole butt feels his strong bangs, and his member is moving back and forth, and waves induced by his banging, fly along your bum. You want to be fucked as a filthy whore.';
+    }
+    if (((s as any).temp_rand ?? 0) === 7) {
+      (s as any).txt_sex_doggy_anal = '' + ((s as any).npcdesc ?? 0) + ' is holding your bum firmly and screwing your brown eye with his prick in full swing. He is banging you heftily and with a backswing. Stronger and even stronger, helping yourself with his hands, he pulls your firm bum towards him. You don\'t feel pain in your anus yet, it gives nice pleasant itching, and you feel something hot and flexible which penetrated deeper and deeper, and disappearing somewhere there.';
+    }
+    if (((s as any).temp_rand ?? 0) === 8) {
+      (s as any).txt_sex_doggy_anal = '' + ((s as any).npcdesc ?? 0) + ' instructs you to bend forward and aims the head of his cock to your anus and starts pushing his member into your butt. Your ass is already relaxed and stretched and his cock slide fully into your bowels. ' + ((s as any).npcdesc ?? 0) + ' starts screwing you roughly. Bang! Bang! Bang! Smack! The cock moves back and forth. Waves caused by his blows, fly along your arse, your boobs are shaking, your head shudders in the pace of his strokes. Moan of pleasure flies from your lips. You try to resist to his violent pressure and the bonking. Your vision becomes blurred and color shadows and patterns filled your mind. Squeezing your ass, ' + ((s as any).npcdesc ?? 0) + ' is fucking it strongly and tiresome.';
+    }
+    scene.text(`${((s as any).txt_sex_doggy_anal ?? '')}`);
+    (s as any).txt_sex_doggy_anal = undefined;
+  }
+  if (String((s as any).locArgs?.[1] ?? '') === 'text_sex_cow') {
+    (s as any).temp_rand = (Math.floor(Math.random() * 3) + 0);
+    if ((!((s as any).temp_rand ?? 0))) {
+      (s as any).txt_sex_cow = '' + ((s as any).npcdesc ?? 0) + ' sits down on the couch, you straddle him and slowly lower yourself on his cock slipping it all of the way up inside your tight cunt. You start bouncing your hips sliding up and down his shaft. You are fucking, your eyes closed and you forget everything but her lust';
+    }
+    if (((s as any).temp_rand ?? 0) === 1) {
+      (s as any).txt_sex_cow = 'You straddle him, inserting his cock into your hot wet pussy to the hilt.\n"Oh my god! That\'s so great!" you sigh and wiggle your hips and then you start bouncing up and down on his member. You increase speed of your fucking but after several minutes you fade and slow your ride. ' + ((s as any).npcdesc ?? 0) + ' grabs your ass and he begins set the pace, fucking you back.';
+    }
+    if (((s as any).temp_rand ?? 0) === 2) {
+      (s as any).txt_sex_cow = 'You swing your leg over and straddle him, reaching down, you grasp his hard cock and guide it to your wet pussy. Fucking him, you occasionally lean and kiss him and at that time your boobs touch his chest. After a while, you start squeezing him more with your legs and you press tightly to his groin, trying to get his member deeper into your box.';
+    }
+    scene.text(`${((s as any).txt_sex_cow ?? '')}`);
+    (s as any).txt_sex_cow = undefined;
+  }
+  if (String((s as any).locArgs?.[1] ?? '') === 'text_sex_cow_anal') {
+    (s as any).txt_sex_cow_anal = 'You squat so you could control height of your ass better. You lift your bum up firstly and then slowly lower your ass again, trying impale yourself on ' + ((s as any).npcdesc ?? 0) + '\'s dick. As soon as its head passes your sphincter, you start swaying your hips slightly. During the riding, you feet that your ass became accustomed to his member, there is no pain. You realize that you have started spontaneously sliding lower and lower.';
+    scene.text(`${((s as any).txt_sex_cow_anal ?? '')}`);
+    (s as any).txt_sex_cow_anal = undefined;
+  }
+  if (String((s as any).locArgs?.[1] ?? '') === 'text_sex_miss') {
+    (s as any).temp_rand = (Math.floor(Math.random() * 6) + 0);
+    if ((!((s as any).temp_rand ?? 0))) {
+      (s as any).txt_sex_miss = '' + ((s as any).npcdesc ?? 0) + ' pushes you to lay on your back and then he lies down at you. The boy puts the soft purple head of his cock to your box and pushes in. You sigh feebly and clasp your legs around his butt. He slides to the hilt in your box and starts carefully moving as if he is afraid to cause you pain. Your cunt is wet inside and hot like a furnace. You catch his pace and fucking back you fully forget about the rest of world.';
+    }
+    if (((s as any).temp_rand ?? 0) === 1) {
+      (s as any).txt_sex_miss = 'You couldn\'t resist telling him: "Come on, fuck my hot cunny!"\nYou turn on your back and invitingly spread your legs. He doesn\'t need to be asked twice. ' + ((s as any).npcdesc ?? 0) + ' lies down at you and his member plungs into your wet tunnel. You clasp his body with your legs as if you were afraid that he leaves you. ' + ((s as any).npcdesc ?? 0) + ' starts moving rhythmically gradually increasing his pace and you are fucking back actively. You moan loudly and scream when he shoves his prick extra deep into your squelching slit.';
+    }
+    if (((s as any).temp_rand ?? 0) === 2) {
+      (s as any).txt_sex_miss = '' + ((s as any).npcdesc ?? 0) + ' puts you down on your back, he spreads your legs with his pelvis to sides and he lies down his stomach at you. He penetrates you groaning and watching his member sliding fast into your love hole, softly parting your nether lips. Elastic walls of your cunt softly envelope and captivate his member. He leans his hands on the bed hanging down over you, looking into your face and you keep your eyes on him. You are quite skilled, despite your age. When he is in you, you tightly squeeze your feet beneath him and to further stimulate his member with your hips. He is screwing you experiences a special gripping pleasure, being tightly captured with your hips.';
+    }
+    if (((s as any).temp_rand ?? 0) === 3) {
+      (s as any).txt_sex_miss = 'His member is tossing in your cunt like a crazy bull, you sense his hard trunk every time when ' + ((s as any).npcdesc ?? 0) + ' literally stamps your tender groin with his pelvis. He tenses up somewhat and starts banging you tirelessly, what make his dick quite hot.';
+    }
+    if (((s as any).temp_rand ?? 0) === 4) {
+      (s as any).txt_sex_miss = 'You are lying on your back, ' + ((s as any).npcdesc ?? 0) + ' starts running along yours nether lips with his bare glans. You feel very ticklish sensation, when he rubs your clit. Later, when he reaches your hole, he starts dipping there a bit more, ramming several times and then he gets out again. Gradually the deepness increases and finally he is fucking you fully. To say true, the position isn\'t very comfortable, but on the other hand he can see the whole body of his moaning mate and it was worth seeing. Suddenly you moans : "More…! More…! Come on!"';
+    }
+    if (((s as any).temp_rand ?? 0) === 5) {
+      (s as any).txt_sex_miss = 'Your pussy is well greased and his member slides easily into your love hole. You feel as his mushroom head is stretching inner walls of your fanny. You let out moan with each penetration. It doesn\'t last long and you get accustomed. You put your hands on his buttock and start set the pace. "Faster! faster!" Your whisper is melting into moaning and you tilt your head back. ' + ((s as any).npcdesc ?? 0) + ' doesn\'t contain himself and he rams his prick so deep so your pubes touched. You are breathing fast and heavily through your teeth. After a while ' + ((s as any).npcdesc ?? 0) + ' is fucking you openly. In turn, you seize his back and moan monotonously.';
+    }
+    scene.text(`${((s as any).txt_sex_miss ?? '')}`);
+    (s as any).txt_sex_miss = undefined;
+  }
+  if (String((s as any).locArgs?.[1] ?? '') === 'text_sex_miss_anal') {
+    (s as any).temp_rand = (Math.floor(Math.random() * 2) + 0);
+    if ((!((s as any).temp_rand ?? 0))) {
+      (s as any).txt_sex_miss_anal = '' + ((s as any).npcdesc ?? 0) + ' pushes you to lay on your back and then he lies down at you. The boy puts the soft purple head of his cock to your pucker and pushes in. You sigh feebly and clasp your legs around his butt. He slides to the hilt in your bum and starts carefully moving as if he is afraid to cause you pain. Your anus is well lubbed and hot like a furnace. You catch his pace and fucking back you fully forget about the rest of world.';
+    }
+    if (((s as any).temp_rand ?? 0) === 1) {
+      (s as any).txt_sex_miss_anal = 'You can\'t resist telling him: "Come on, fuck my tight ass!"\nYou turn on your back and invitingly spread your legs. He doesn\'t need to be asked twice.';
+    }
+    scene.text(`${((s as any).txt_sex_miss_anal ?? '')}`);
+    (s as any).txt_sex_miss_anal = undefined;
+  }
+  if (String((s as any).locArgs?.[1] ?? '') === 'text_sex_sideways') {
+    (s as any).temp_rand = (Math.floor(Math.random() * 2) + 0);
+    if ((!((s as any).temp_rand ?? 0))) {
+      (s as any).txt_sex_sideways = '';
+    }
+    if (((s as any).temp_rand ?? 0) === 1) {
+      (s as any).txt_sex_sideways = '';
+    }
+    scene.text(`${((s as any).txt_sex_sideways ?? '')}`);
+    (s as any).text_sex_sideways = undefined;
+  }
+  if (String((s as any).locArgs?.[1] ?? '') === 'text_sex_sideways_anal') {
+    (s as any).temp_rand = (Math.floor(Math.random() * 2) + 0);
+    if ((!((s as any).temp_rand ?? 0))) {
+      (s as any).txt_sex_sideways_anal = '';
+    }
+    if (((s as any).temp_rand ?? 0) === 1) {
+      (s as any).txt_sex_sideways_anal = '';
+    }
+    scene.text(`${((s as any).txt_sex_sideways_anal ?? '')}`);
+    (s as any).text_sex_sideways_anal = undefined;
+  }
+  if (String((s as any).locArgs?.[1] ?? '') === 'text_sex_cumm') {
+    (s as any).temp_rand = (Math.floor(Math.random() * 3) + 0);
+    if ((!((s as any).temp_rand ?? 0))) {
+      (s as any).txt_sex_cumm = '' + ((s as any).npcdesc ?? 0) + ' quickly pulls out his cock and shoves it into your mouth. You don\'t succeed in making an objection and stream of his hot cum hits your tonsils, you instinctively cling closer to him. He cumms and several long torrents of hot juice flood your mouth. In spite of that you try to swallow it all, surplus of his semen runs out of your mouth down your chin.';
+    }
+    if (((s as any).temp_rand ?? 0) === 1) {
+      (s as any).txt_sex_cumm = 'You willingly take his cock in your mouth and you are sucking it with delight until ' + ((s as any).npcdesc ?? 0) + ' pours into your mouth a fair dose of his sticky baby batter.';
+    }
+    if (((s as any).temp_rand ?? 0) === 2) {
+      (s as any).txt_sex_cumm = 'You swallow his dick, your tongue is tickling his big balls and don\'t last long and his throbbing member spills hot stream of semen into your mouth.';
+    }
+    scene.text(`${((s as any).txt_sex_cumm ?? '')}`);
+    (s as any).text_sex_cumm = undefined;
+  }
+  if (String((s as any).locArgs?.[1] ?? '') === 'text_sex_cumface') {
+    (s as any).temp_rand = (Math.floor(Math.random() * 4) + 0);
+    if ((!((s as any).temp_rand ?? 0))) {
+      (s as any).txt_sex_cumface = '' + ((s as any).npcdesc ?? 0) + ' covers all your face with his hot sticky semen.';
+    }
+    if (((s as any).temp_rand ?? 0) === 1) {
+      (s as any).txt_sex_cumface = '' + ((s as any).npcdesc ?? 0) + ' pulls out his cock and aims it at your face. You see its purple head from which spurts his cum. You feel as warm sticky blobs are landing on your face and after a while his hot cum runs down over your chin and drips on the ground.';
+    }
+    if (((s as any).temp_rand ?? 0) === 2) {
+      (s as any).txt_sex_cumface = '"Oh fuck!" ' + ((s as any).npcdesc ?? 0) + ' shouts out and pulls his cock out of your sweet captivity and takes it in his hand. A first long stream appears, you screw up your eyes and feel as a trickle of semen hits your chin and made a rope over your cheek. The second shot he aims deliberately straight at your cheek so you have barely a chance to close your eyes. This eruption is rich enough to cover your face with sticky cream.';
+    }
+    if (((s as any).temp_rand ?? 0) === 3) {
+      (s as any).txt_sex_cumface = '' + ((s as any).npcdesc ?? 0) + ' shifts his cock up to front of your face. At that moment a sticky stream strikes straight into your ' + (((s as any).pc_desc ?? 0)?.['lips']) + ' lips. Trickles of semen is flowing down along your chin and drips on the ground. Ropes of sticky cum hangs down from your chin now. ' + ((s as any).npcdesc ?? 0) + ' spots it after a while when he finally complacently releases last drops of his semen.';
+    }
+    scene.text(`${((s as any).txt_sex_cumface ?? '')}`);
+    (s as any).text_sex_cumface = undefined;
+  }
+  if (String((s as any).locArgs?.[1] ?? '') === 'text_sex_cumbody') {
+    (s as any).temp_rand = (Math.floor(Math.random() * 2) + 0);
+    if ((!((s as any).temp_rand ?? 0))) {
+      (s as any).txt_sex_cumbody = 'A minute later, he is barely having time to pull his dick out of you, ' + ((s as any).npcdesc ?? 0) + ' cumms on your boobs, even your face is partially messed with his semen.';
+    }
+    if (((s as any).temp_rand ?? 0) === 1) {
+      (s as any).txt_sex_cumbody = '' + ((s as any).npcdesc ?? 0) + ' runs his member over your tummy and finishes. It is so hot, his hard member and warm thick seed.';
+    }
+    scene.text(`${((s as any).txt_sex_cumbody ?? '')}`);
+    (s as any).text_sex_cumbody = undefined;
+  }
+  if (String((s as any).locArgs?.[1] ?? '') === 'text_sex_cumvag') {
+    (s as any).temp_rand = (Math.floor(Math.random() * 4) + 0);
+    if ((!((s as any).temp_rand ?? 0))) {
+      (s as any).txt_sex_cumvag = 'After a while you feel that ' + ((s as any).npcdesc ?? 0) + ' even more increased his furious pace and wheezes. He finishes very explosively. You feel as from his throbbing member spurts his jizz, one jet after another. When ' + ((s as any).npcdesc ?? 0) + ' dick pulls his cock out of your pussy, his sticky cum oozes out of it.';
+    }
+    if (((s as any).temp_rand ?? 0) === 1) {
+      (s as any).txt_sex_cumvag = 'After some time ' + ((s as any).npcdesc ?? 0) + ' can feel as your pussy begins to shrink and throb. You loudly and sensually groan, fuck back wildly moaning with pleasure. He grabs you stronger and begins to bang you even faster and in a few minutes he reaches the peak too. ' + ((s as any).npcdesc ?? 0) + ' cumms right into your pussy. You can feel that your pussy fills with his hot semen…';
+    }
+    if (((s as any).temp_rand ?? 0) === 2) {
+      (s as any).txt_sex_cumvag = 'Suddenly you tighten muscles of your pussy and ' + ((s as any).npcdesc ?? 0) + ' feels that your pussy is even tighter. He can\'t hold it longer and begins to finish right into your pussy. You tense your cunt muscles to milk his sperm from his cock.';
+    }
+    if (((s as any).temp_rand ?? 0) === 3) {
+      (s as any).txt_sex_cumvag = 'Holding your waist, ' + ((s as any).npcdesc ?? 0) + ' pulls you stronger to him not letting his member slid out. His big cock throbs and twitches indicating so that ' + ((s as any).npcdesc ?? 0) + ' is about to cum. Thanks to your skillful effort his orgasm begins and it is so strong that he is cumming into your pussy at least thirty seconds.';
+    }
+    scene.text(`${((s as any).txt_sex_cumvag ?? '')}`);
+    (s as any).text_sex_cumvag = undefined;
+  }
+  if (String((s as any).locArgs?.[1] ?? '') === 'text_sex_cumass') {
+    (s as any).temp_rand = (Math.floor(Math.random() * 2) + 0);
+    if ((!((s as any).temp_rand ?? 0))) {
+      (s as any).txt_sex_cumass = '' + ((s as any).npcdesc ?? 0) + ' shoves his dick in your ass but not whole, only its head. He starts jerking off his prick keeping the head inside of your bum and after some time he pours in your ass huge dose of his semen, which runs down along your thighs and drips on the ground.';
+    }
+    if (((s as any).temp_rand ?? 0) === 1) {
+      (s as any).txt_sex_cumass = '' + ((s as any).npcdesc ?? 0) + ' begins to cum into your ass, his sperm melts and thins in your bowels. When he finished, he tries to shove his cock even deeper, and he presses onto your ass with full strength of his body.';
+    }
+    scene.text(`${((s as any).txt_sex_cumass ?? '')}`);
+    (s as any).text_sex_cumass = undefined;
+  }
+  if (String((s as any).locArgs?.[1] ?? '') === 'text_sex_group_bjall') {
+    (s as any).temp_rand = (Math.floor(Math.random() * 3) + 1);
+    if (((s as any).temp_rand ?? 0) === 1) {
+      (s as any).txt_sex_group_bjall = 'You decide to give blow job to all three guys at once. They poke their soft purple glans into your full lips immediately and when you\'ve opened your mouth they try to get into. You suck their thick members one by one and meanwhile one of them fucks your mouth, you are doing a hand job to other two guys with your hands. The boys are in seven heaven.';
+    }
+    if (((s as any).temp_rand ?? 0) === 2) {
+      (s as any).txt_sex_group_bjall = '"Gulp bitch, or you\'ll choke by a cock!" Dan orders "I\'ll teach you how to suck, you\'ll manage two members now!"\n"Vitek, why are you standing and staring? Get her your member, I can see that it\'s hard already and Vasily is about to wank." The boys wake up from feasting their eyes on the view of Dan fucking your mouth. Vitek and Vasily come to you and unfasten their pants and lower them together with their shorts to their ankles.\n"Come on! ' + ((s as any).pcs_nickname ?? 0) + ' take me in your mouth too!" Vitek asks kindly and simply. Dan takes his cock out of your mouth, turns your head towards Vitek and puts your mouth on his hard member. He moves your head back and forth a few times and then he turns you back to his cock. So you are fucked in mouth by two. Vasily joins you after a while. To not choke you has to adapt and take a breath when their cocks alternate. You only don\'t manage to take their dicks deep into your throat without gagging. Your eyes pop, you gag and cough then, the guys give you a short break and then start another round.';
+    }
+    if (((s as any).temp_rand ?? 0) === 3) {
+      (s as any).txt_sex_group_bjall = 'Vitek feel that he has free hand, so one time he stuffs his whole cock into your mouth so his sack hits your chin and another time he pulls it whole out, and moistens your lips with his precum. Vasily watches you for a while and then he pulls out his already hard member. He stands next to Vitek and they let you suck their cocks alternately, sometimes even both at once. Dan joins after a few minutes, your mouth is fucked by three guys now, one by one, but sometimes they try to insert into your mouth their members at once…';
+    }
+    scene.text(`${((s as any).txt_sex_group_bjall ?? '')}`);
+    (s as any).text_sex_group_bjall = undefined;
+  }
+  if (String((s as any).locArgs?.[1] ?? '') === 'text_sex_group_bj') {
+    (s as any).temp_rand = (Math.floor(Math.random() * 5) + 1);
+    if (((s as any).temp_rand ?? 0) === 1) {
+      (s as any).txt_sex_group_bj = 'The boys move you to your knees and they start to jerk off over your face. You begin to serve them successively and blow job each boy for a few minutes. It lasts quite a long time and you take delight in kneeling there and giving the boys the pleasure.';
+    }
+    if (((s as any).temp_rand ?? 0) === 2) {
+      (s as any).txt_sex_group_bj = 'They move you to your knees and you start to blow job each participating boy around.';
+    }
+    if (((s as any).temp_rand ?? 0) === 3) {
+      (s as any).txt_sex_group_bj = 'The boys are standing around you and one by one each boy lets you suck his cock.';
+    }
+    if (((s as any).temp_rand ?? 0) === 4) {
+      (s as any).txt_sex_group_bj = 'Look, you are on your knees and boys alternate to fuck your mouth, groping your boobs, slightly smacking in your face and they call you foul names like to a last whore. You are only even more excited with all that.';
+    }
+    if (((s as any).temp_rand ?? 0) === 5) {
+      (s as any).txt_sex_group_bj = 'You are on your knees with your mouth open, the boys one by one coming and you take their cocks deep into your beautiful mouth using no hands. No, you don\'t suck them, they just fuck hard your mouth.';
+    }
+    scene.text(`${((s as any).txt_sex_group_bj ?? '')}`);
+    (s as any).text_sex_group_bj = undefined;
+  }
+  if (String((s as any).locArgs?.[1] ?? '') === 'text_sex_group_vag') {
+    (s as any).temp_rand = (Math.floor(Math.random() * 2) + 1);
+    if (((s as any).temp_rand ?? 0) === 1) {
+      (s as any).txt_sex_group_vag = '"Suck my dick now!" Dan commands you. You obey and incline to his member and start working intensively with your tongue. You lick his sweaty balls, then his groin and finally you lick his hard shaft up until you reach his cock head. Now you take the shaft into your mouth and let it slide deep into your throat. You take it in your mouth almost whole, your nose touch his belly. Vasily take his place next to Dan and asks you to blow job his cock too and so you begin to handle two cocks with your mouth. Meanwhile, Vitek starts to draw close to you from behind. You feel his fingers parting your cunt lips, and you spread your thighs more. In a wink you feet as his hard cock slides into your wet pussy. He starts humping you rhythmically and he manages squeezing your boobs and butt at the same time. His prick is big enough and you feel as its head leans against your cervix each time when he inserts his tool into your box. It lasts about five minutes and the boys choose to make change.';
+    }
+    if (((s as any).temp_rand ?? 0) === 2) {
+      (s as any).txt_sex_group_vag = 'Dan asks: "Why are you moaning, you little slut?" and then he says: "Seize her mouth, Vasily! I can see that your shaft is hard, don\'t let it lie idle."\nVasily comes with noticeable eagerness and shoves his cock into your mouth. His dick isn\'t so big as Dan\'s member, but he can rival in its length. He starts with enthusiasm beating your throat deeply, watching admiringly as your lips get at his sack and pubes. At that moment also Vitek adds his member to your mouth and at that time Dan shoves his big cock fully into your wet cunt and starts humping sweepy. So, you find yourself being impaled at cocks from both sides. To top it all they agree and they ram their prick at the same time to get deep into your holes as much as possible. Hearing their moaning, you know that they like it madly.';
+    }
+    scene.text(`${((s as any).txt_sex_group_vag ?? '')}`);
+    (s as any).text_sex_group_vag = undefined;
+  }
+  if (String((s as any).locArgs?.[1] ?? '') === 'text_sex_group_anal') {
+    (s as any).temp_rand = (Math.floor(Math.random() * 2) + 1);
+    if (((s as any).temp_rand ?? 0) === 1) {
+      (s as any).txt_sex_group_anal = 'Suddenly the boys have a desire to fuck you in the ass. You agree delightedly. They move you into proper position and Vasily starts to fuck your butt and you are doing hand-job and blow-job to the rest. After a while the guys swap their places. Vasily pulls his dick out of your ass and shoves it into your mouth, Dan goes up to you from behind and starts fucking your anus. You gasp at each stroke and you choke each time when a cock gets deep into your mouth. Behind you start to be hot, Dan and Vitek in turn start to exploit your anus. They take apparently delight in fucking your butt and shoving their cocks into your mouth then.';
+    }
+    if (((s as any).temp_rand ?? 0) === 2) {
+      (s as any).txt_sex_group_anal = 'Dan suggests: "Let\'s go guys, two from sides and one from behind." You bend down, resting your hands. Two boys stand on your sides putting their members to your face, and the third goes up to you from behind. He gropes your ass and starts poking his hard member between your ass cheeks and heading to your brown star. When his cock finally enters into your bum, you give a sigh of pleasure. Vitek starts to fuck your bum, and you are turning your head to one side or the other, and you are giving blow-jobs to the guys standing next to you. The pace of the member in your ass grow gradually and in the same way your excitement grows.';
+    }
+    scene.text(`${((s as any).txt_sex_group_anal ?? '')}`);
+    (s as any).text_sex_group_anal = undefined;
+  }
+  if (String((s as any).locArgs?.[1] ?? '') === 'text_sex_group_dp') {
+    (s as any).temp_rand = (Math.floor(Math.random() * 4) + 1);
+    if (((s as any).temp_rand ?? 0) === 1) {
+      (s as any).txt_sex_group_dp = 'Dan is pressing you tight against his chest and starts banging your cunt forcefully and so deep so his prick is ramming into your cervix. He turns his head towards Vasily after a while and tells him to stop wanking and shove his prick into your butt hole instead. Vasily expects such opportunity, so he quickly moves behind your butt, kneels and digs his prick into your anus. Dan stops and firmly holds your back, allowing so Vasily penetrate your hole. Your relaxed butt hole adopts his prick naturally almost without resistance. As his prick deep works his way along Dan\'s big shaft, it seems to you that they rip a wall between the holes and that they fuck one big hole together. Vitek can\'t resist this view. He comes before you and shoves his cock head into your mouth and you start to suck his hard member. At first only Vasily is banging your butt and Dan is lying on his back and squeezing your boobs. After a while, they fuck you alternately and at the end, they dig your holes together in the same pace. You are sandwiched between them like a burger in a bun and as your mouth is plugged by Vita\'s cock, you can only softly moaned with pleasure.';
+    }
+    if (((s as any).temp_rand ?? 0) === 2) {
+      (s as any).txt_sex_group_dp = 'Everybody wants to screw you, so the guys decide to bonk you all together. Dan shoves his prick into your pussy, Vitek sink his member into your ass-hole and Vasily lets you suck his shaft and they gradually increase the pace dipping their cocks deeper into your holes. Vitek is kissing your body and fondles you boobs gently, Dan strokes and squeezes your butt and he helps you mount their cocks. It is so weird and exciting that it alters your thinking. The boys are now so gentle and loving so you become less tense and finally start feeling pleasure. You start to sway back and forth your bum and help so the guys fuck your holes and you even open your mouth more to allow Vasily to shove his prick into your throat. Vitek whispers you into your ear flattery and you hear that you are the best slut in his life and that he has never fucked so nice girl and more and more…';
+    }
+    if (((s as any).temp_rand ?? 0) === 3) {
+      (s as any).txt_sex_group_dp = 'You get Vitek to laid down on his back and you straddle him and impale yourself on his sticking hard prick. You let him slide deep into your cunt and then start to ride him slowly. Dan offers you to suck his hard prick and when you take it in your mouth he starts to fuck your mouth as deep as he can. You are in heaven and you wish it lasts forever. At the moment you feet as Vasily shoves his cock into your bum. It was incredible, you sense as the cocks grind one against another through thin wall of your pussy. You feet like a rubber doll, every your hole is stacked with a hard dick.';
+    }
+    if (((s as any).temp_rand ?? 0) === 4) {
+      (s as any).txt_sex_group_dp = 'You climb at Vasily and sit down at his shaft. It slides slowly into your box giving an incredible pleasure to its wearer. Dan take his hard cock and begins to poke into your ass. His member is long and thin, but your anus is not relaxed so he can stretch it still. Dan increases the pressure and his shaft arches and wrinkles a bit, but gradually bit by bit his cock-head disappears into your butt-hole leaving its foreskin outside. It doesn\'t last long and Dan shoves his whole prick into your bum. Vasily breathes heavily and fuckes vigorously your wet squelching pussy. You are wriggling at their cocks and you feel as inside is growing long-forgotten feeling of coming climax. Something soft and warm begins to touch your lips. It is Vitek\'s member, you open your eyes and take his prick into your hand and start suck its head and rub the shaft with your hand.';
+    }
+    scene.text(`${((s as any).txt_sex_group_dp ?? '')}`);
+    (s as any).text_sex_group_dp = undefined;
+  }
+  if (String((s as any).locArgs?.[1] ?? '') === 'text_sex_group_dpa') {
+    (s as any).txt_sex_group_dpa = 'Dan is pressing you tight against his chest and starts to ram forcefully his prick deep into your butt. He turns his head towards Vasily after a while and tells him to stop wanking and shove his prick into your butt hole instead. Vasily expects such opportunity, so he quickly moves behind your butt, kneels and digs his prick into your anus. Dan stops and firmly holds your back, allowing so Vasily penetrate your hole. Your relaxed butt hole adopts his prick naturally almost without resistance. As he shoves his prick deep into your ass, both guys start together to fuck your stretched hole. You think that your hole remained gaping and it will be loose for any pricks. Vitek can\'t resist this view. He comes before you and shoves his cock head into your mouth. You start to suck his prick and at the same time you are wiggling your ass to increase its penetration.';
+    scene.text(`${((s as any).txt_sex_group_dpa ?? '')}`);
+    (s as any).text_sex_group_dpa = undefined;
+  }
+  if (String((s as any).locArgs?.[1] ?? '') === 'text_sex_group_triple') {
+    (s as any).txt_sex_group_triple = 'The boys remove rests of your clothes, and then they lie you on the bed. You resign and let them to treat you like a rubber doll, which can fulfill any imagination. You cannot remember that your ass was filled with three cocks. They simply use your body along their perverse fantasy…';
+    scene.text(`${((s as any).txt_sex_group_triple ?? '')}`);
+    (s as any).text_sex_group_triple = undefined;
+  }
+  if (String((s as any).locArgs?.[1] ?? '') === 'group_sex_text') {
+    (s as any).temp_rand = (Math.floor(Math.random() * 9) + 0);
+    if ((!((s as any).temp_rand ?? 0))) {
+      (s as any).group_sex_text = 'You ask playfully: "Well ' + qspFunc(s, 'gopsex', 'hide', 'gop_text_npcr') + ', how are you gonna ' + qspFunc(s, 'gopsex', 'hide', 'gop_sextext1') + ' me?"';
+    }
+    if (((s as any).temp_rand ?? 0) === 1) {
+      (s as any).group_sex_text = qspFunc(s, 'gopsex', 'hide', 'gop_name_npc') + ' asks: "How can we ' + qspFunc(s, 'gopsex', 'hide', 'gop_sextext1') + ' you ' + qspFunc(s, 'gopsex', 'hide', 'gop_gg_name') + ' ?"';
+    }
+    if (((s as any).temp_rand ?? 0) === 2) {
+      (s as any).group_sex_text = qspFunc(s, 'gopsex', 'hide', 'gop_name_npc') + ' dares you: "Make your slit ready ' + qspFunc(s, 'gopsex', 'hide', 'gop_gg_name') + '! You\'ll go round now.';
+    }
+    if (((s as any).temp_rand ?? 0) === 3) {
+      (s as any).group_sex_text = qspFunc(s, 'gopsex', 'hide', 'gop_name_npc') + ' asks: "' + ((s as any).pcs_nickname ?? 0) + ', It seems to me that your holes are itching. Do you fancy ' + qspFunc(s, 'gopsex', 'hide', 'gop_sextext3') + ', don\'t you?"';
+    }
+    if (((s as any).temp_rand ?? 0) === 4) {
+      (s as any).group_sex_text = qspFunc(s, 'gopsex', 'hide', 'gop_name_npc') + ' asks: "' + ((s as any).pcs_nickname ?? 0) + ' - ' + qspFunc(s, 'gopsex', 'hide', 'gop_gg_name') + ' are you ready to serve three dicks?"';
+    }
+    if (((s as any).temp_rand ?? 0) === 5) {
+      (s as any).group_sex_text = qspFunc(s, 'gopsex', 'hide', 'gop_name_npc') + ' asks: "' + ((s as any).pcs_nickname ?? 0) + ', what about if we\'ll ' + qspFunc(s, 'gopsex', 'hide', 'gop_sextext1') + ' you into all holes at once?"';
+    }
+    if (((s as any).temp_rand ?? 0) === 6) {
+      (s as any).group_sex_text = qspFunc(s, 'gopsex', 'hide', 'gop_family_npc') + ' tells you: "' + ((s as any).pcs_nickname ?? 0) + ', you\'re our ' + qspFunc(s, 'gopsex', 'hide', 'gop_gg_name') + ', Let\'s get into all your holes!"';
+    }
+    if (((s as any).temp_rand ?? 0) === 7) {
+      (s as any).group_sex_text = 'You wink at the guys and say: "Boys, yours ' + ((s as any).pcs_nickname ?? 0) + ' is ready for anything. How do you want to \' + func(\'gopsex\', \'hide\', \'gop_sextext1\') + \' me?"';
+    }
+    if (((s as any).temp_rand ?? 0) === 8) {
+      (s as any).group_sex_text = 'You smile wickedly and say: "Yours ' + ((s as any).pcs_nickname ?? 0) + ' wants some jizz. How do you\'ll be \' + func(\'gopsex\', \'hide\', \'gop_sextext3\') + \' me?"';
+    }
+    (s as any).group_sex_text = undefined;
+  }
+  if (String((s as any).locArgs?.[1] ?? '') === 'rndorder3') {
+    ((s as any).rndorder = (s as any).rndorder ?? {})[1] = 9;
+    ((s as any).rndorder = (s as any).rndorder ?? {})[2] = 10;
+    ((s as any).rndorder = (s as any).rndorder ?? {})[3] = 11;
+    (s as any).irndorder = 1;
+    while (true) {
+      if (((s as any).irndorder ?? 0) < 4) {
+        (s as any).jrndorder = (Math.floor(Math.random() * 3) + 1);
+        (s as any).krndorder = (((s as any).rndorder ?? 0)?.[String((s as any).irndorder ?? 0)] ?? 0);
+        ((s as any).rndorder = (s as any).rndorder ?? {})[String((s as any).irndorder ?? 0)] = (((s as any).rndorder ?? 0)?.[String((s as any).jrndorder ?? 0)] ?? 0);
+        ((s as any).rndorder = (s as any).rndorder ?? {})[String((s as any).jrndorder ?? 0)] = ((s as any).krndorder ?? 0);
+        (s as any).irndorder = ((s as any).irndorder ?? 0) + (1);
+        break;
+      }
+      (s as any).result = ((s as any).rndorder ?? 0)[1] + 12 * ((s as any).rndorder ?? 0)[2] + 144 * ((s as any).rndorder ?? 0)[3];
+      (s as any).rndorder = undefined;
+      (s as any).irndorder = undefined;
+      (s as any).jrndorder = undefined;
+      (s as any).krndorder = undefined;
+    }
+  }
+  (s as any).temp_rand = undefined;
   scene.build();
 }
 

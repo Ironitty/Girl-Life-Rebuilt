@@ -285,7 +285,7 @@ function enterDungeon(s: GameState, scene: SceneBuilder): void {
       scene.text('<center><b>Basement</b></center>');
       scene.img('images/characters/city/taras/dungeon.jpg');
       scene.text('You are in a basement. There are several metal objects bolted to the ground and to the walls. They are used for chaining up prisoners. There is also a hose for cleaning.');
-      scene.text('In one corner of the room stands an <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.10; return s; }); window.__gameStore.getState().doGoto(\u0027nichTaras\u0027, \u0027dungeon\u0027, \u0027bed\u0027); return false;">old bed</a> with a dirty mattress on it.');
+      scene.text('In one corner of the room stands an <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=10; return s; }); window.__gameStore.getState().doGoto(\u0027nichTaras\u0027, \u0027dungeon\u0027, \u0027bed\u0027); return false;">old bed</a> with a dirty mattress on it.');
       scene.text('There is also a bucket with water and another one with some kind of bad tasting food. You could <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027nichTaras\u0027, \u0027dungeon\u0027, \u0027eat\u0027); return false;">eat and drink</a> from them.');
       if ((!((s as any).nichTarasMirror ?? 0))) {
         scene.text('In another corner of the room is an <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027nichTaras\u0027, \u0027dungeon\u0027, \u0027mirror\u0027); return false;">old mirror</a>.');

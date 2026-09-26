@@ -257,7 +257,7 @@ function enterCsExport(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'cheatmenu_bisets', '');
   } },
   ]);
-  // TODO-QSP: "
+  (s as any).temp_export_text = 'fix_bod_set[\'advanced\'] = ' + (((s as any).cheatVars ?? 0)?.['fix_biset_' + String(((s as any).cmbs_exp_set ?? 0)) + '_advanced']) + '\n$fix_bod_set[\'folder\'] = \'' + (((s as any).cheatVars ?? 0)?.['fix_biset_' + String(((s as any).cmbs_exp_set ?? 0)) + '_folder']) + '\'\n';
   if (((s as any).cheatVars ?? 0)['fix_biset_' + (((s as any).cmbs_exp_set ?? 0)) + '_name'] !== '') {
     (s as any).temp_export_text = ((s as any).temp_export_text ?? 0) + ('$fix_bod_set[\'name\'] = \'' + (((s as any).cheatVars ?? 0)?.['fix_biset_' + String(((s as any).cmbs_exp_set ?? 0)) + '_name']) + '\'\n');
   }
@@ -490,7 +490,7 @@ function enterCsMainAdvanced2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).temp_cmd_path ?? 0) === '') {
     (s as any).temp_cmd_path = 'images/pc/body/shape';
   }
-  (s as any).temp_cmd_path = ((s as any).temp_cmd_path ?? 0) + ('/' + (((s as any).cheatVars ?? 0)?.['fix_biset_' + String(((s as any).cmbs_set ?? 0)) + '_folder']));
+  (s as any).temp_cmd_path = ((s as any).temp_cmd_path ?? 0) + ('/\' + $cheatVars[\'fix_biset_' + ((s as any).cmbs_set ?? 0) + '_folder\'');
   (s as any).temp_cmd_subpath = (((s as any).cheatVars ?? 0)?.['fix_biset_' + String(((s as any).cmbs_set ?? 0)) + '_path_' + String(((s as any).cmdbs_class_str ?? 0))]);
   if (((s as any).temp_cmd_subpath ?? 0) === '') {
     (s as any).temp_cmd_subpath = qspFunc(s, 'cheatmenu_bisets', 'cs_get_default_subpath', ((s as any).cmbs_set ?? 0), ((s as any).cmbs_class ?? 0));
@@ -594,7 +594,7 @@ function enterGetPregsetLink(s: GameState, scene: SceneBuilder): void {
   if (((s as any).temp_cmd_path ?? 0) === '') {
     (s as any).temp_cmd_path = 'images/pc/body/shape';
   }
-  (s as any).temp_cmd_path = ((s as any).temp_cmd_path ?? 0) + ('/' + (((s as any).cheatVars ?? 0)?.['fix_biset_' + String(((s as any).cmbs_set ?? 0)) + '_folder']));
+  (s as any).temp_cmd_path = ((s as any).temp_cmd_path ?? 0) + ('/\' + $cheatVars[\'fix_biset_' + ((s as any).cmbs_set ?? 0) + '_folder\'');
   (s as any).temp_cmd_subpath = (((s as any).cheatVars ?? 0)?.['fix_biset_' + String(((s as any).cmbs_set ?? 0)) + '_pregpath_' + String(((s as any).preg_set ?? 0))]);
   if (((s as any).temp_cmd_subpath ?? 0) === '') {
     (s as any).temp_cmd_subpath = 'preg/0';
@@ -711,9 +711,9 @@ function enterCsCopyClassMenu(s: GameState, scene: SceneBuilder): void {
         } else {
           if (((s as any).cmd_copy_class ?? 0)?.[String((s as any).cmbs_class_str ?? 0)] === 1) {
             ((s as any).cmd_copy_class = (s as any).cmd_copy_class ?? {})['counter'] = ((s as any).cmd_copy_class['counter'] ?? 0) + (1);
-            (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<td><i><a href="#" onclick="window.__gameStore.setState((s) => { (s.cmd_copy_class ??= {})\u0027' + ((s as any).cmbs_class_str ?? 0) + '\u0027 = s.0; return s; }); window.__gameStore.getState().doGoto(\u0027cheatmenu_bisets\u0027, \u0027cs_copy_class_menu\u0027); return false;">' + ((s as any).cmbs_class_str ?? 0) + '</a></i></td>');
+            (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<td><i><a href="#" onclick="window.__gameStore.setState((s) => { (s.cmd_copy_class ??= {})\u0027' + ((s as any).cmbs_class_str ?? 0) + '\u0027 = 0; return s; }); window.__gameStore.getState().doGoto(\u0027cheatmenu_bisets\u0027, \u0027cs_copy_class_menu\u0027); return false;">' + ((s as any).cmbs_class_str ?? 0) + '</a></i></td>');
           } else {
-            (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<td><a href="#" onclick="window.__gameStore.setState((s) => { (s.cmd_copy_class ??= {})\u0027' + ((s as any).cmbs_class_str ?? 0) + '\u0027 = s.1; return s; }); window.__gameStore.getState().doGoto(\u0027cheatmenu_bisets\u0027, \u0027cs_copy_class_menu\u0027); return false;">' + ((s as any).cmbs_class_str ?? 0) + '</a></td>');
+            (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<td><a href="#" onclick="window.__gameStore.setState((s) => { (s.cmd_copy_class ??= {})\u0027' + ((s as any).cmbs_class_str ?? 0) + '\u0027 = 1; return s; }); window.__gameStore.getState().doGoto(\u0027cheatmenu_bisets\u0027, \u0027cs_copy_class_menu\u0027); return false;">' + ((s as any).cmbs_class_str ?? 0) + '</a></td>');
           }
         }
         (s as any).cmd_adv_bmi_i = ((s as any).cmd_adv_bmi_i ?? 0) + (1);
@@ -1309,7 +1309,7 @@ function enterCsDeleteSet(s: GameState, scene: SceneBuilder): void {
   scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: killvar /u0027klsetask/u0027 */ return s; }); window.__gameStore.getState().doGoto(/u0027cheatmenu_bisets/u0027, /u0027cs_main/u0027, ((s as any).locArgs?.[1] ?? /u0027/u0027)); return false;"><b>Go Back</b></a>`);
   scene.text('This is where you remove a body image set from use, please note it does not delete anything, it just clears the custom set from this game instance/save.');
   if (((s as any).klsetask ?? 0) === 1) {
-    scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.klsetask = s.2; return s; }); window.__gameStore.getState().doGoto(/u0027cheatmenu_bisets/u0027, /u0027cs_delete_set/u0027, ((s as any).locArgs?.[1] ?? /u0027/u0027)); return false;"><b>Are you sure you want to remove set ${(((s as any).cheatVars ?? 0)?.['fix_biset_' + String(((s as any).locArgs?.[1] ?? 0)) + '_folder'] ?? '')}?</b></a>`);
+    scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.klsetask = 2; return s; }); window.__gameStore.getState().doGoto(/u0027cheatmenu_bisets/u0027, /u0027cs_delete_set/u0027, ((s as any).locArgs?.[1] ?? /u0027/u0027)); return false;"><b>Are you sure you want to remove set ${(((s as any).cheatVars ?? 0)?.['fix_biset_' + String(((s as any).locArgs?.[1] ?? 0)) + '_folder'] ?? '')}?</b></a>`);
   } else {
     if (((s as any).klsetask ?? 0) === 2) {
       if (((s as any).cheatVars ?? 0)?.['fix_bodyimg'] === 1  &&  ((s as any).cheatVars ?? 0)?.['fix_bi_set'] === String((s as any).locArgs?.[1] ?? '')) {
@@ -1320,7 +1320,7 @@ function enterCsDeleteSet(s: GameState, scene: SceneBuilder): void {
       (s as any).klsetask = undefined;
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMain(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
-      scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.klsetask = s.1; return s; }); window.__gameStore.getState().doGoto(/u0027cheatmenu_bisets/u0027, /u0027cs_delete_set/u0027, ((s as any).locArgs?.[1] ?? /u0027/u0027)); return false;">Remove set ${(((s as any).cheatVars ?? 0)?.['fix_biset_' + String(((s as any).locArgs?.[1] ?? 0)) + '_folder'] ?? '')}?</a>`);
+      scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.klsetask = 1; return s; }); window.__gameStore.getState().doGoto(/u0027cheatmenu_bisets/u0027, /u0027cs_delete_set/u0027, ((s as any).locArgs?.[1] ?? /u0027/u0027)); return false;">Remove set ${(((s as any).cheatVars ?? 0)?.['fix_biset_' + String(((s as any).locArgs?.[1] ?? 0)) + '_folder'] ?? '')}?</a>`);
     }
   }
   scene.text(String(qspFunc(s, 'cheatmenu', 'table_end') || ''));

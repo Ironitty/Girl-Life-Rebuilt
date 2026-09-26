@@ -149,7 +149,7 @@ function enterWeeklyGradeUpdate(s: GameState, scene: SceneBuilder): void {
     } else {
       (s as any).i = 0;
       do {
-        // TODO-QSP: dynamic 'class[''school_<<$class_list_name[i]>>_weekly_grade_gain''] = 0'
+        (s as any)['class']['school_' + (((s as any).class_list_name ?? 0)?.[String((s as any).i ?? 0)] ?? 0) + '_weekly_grade_gain'] = 0;
         (s as any).i = ((s as any).i ?? 0) + (1);
       } while (Object.keys((s as any).class_list_institution ?? {}).length > ((s as any).i ?? 0));
     }

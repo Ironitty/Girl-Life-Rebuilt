@@ -1,4 +1,6 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspUntranslated } from '../_shared/qspUntranslated';
+
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -194,7 +196,10 @@ function enterSoniaChat(s: GameState, scene: SceneBuilder): void {
         if (((st as any).i ?? 0) < Object.keys((st as any).lover ?? {}).length) {
           (st as any).temp_npcid = (((st as any).lover ?? 0)?.[String((st as any).i ?? 0)] ?? 0);
           if (((st as any).npc_rel_type ?? 0)?.[String((st as any).temp_npcid ?? 0)] === 'boyfriend') {
-            // TODO-QSP: dynamic 'act ''Get married to <<$npc_usedname["<<$temp_npcid>>"]>>'': gt ''soniachat'', ''telling_ma...
+            scene.text('act \'Get married to ' + (((st as any).npc_usedname ?? 0)?.[String(((st as any).temp_npcid ?? 0))]) + '\': gt \'soniachat\', \'telling_marrige_dreams\', $npc_usedname["' + ((st as any).temp_npcid ?? 0) + '"]');
+            scene.actions([
+              { label: '', labelFn: (s: GameState) => String(qspUntranslated(s, "Get married to <<npc_usedname[\"<<temp_npcid>>\"]>>", { location: "soniachat" }) ?? ''), handler: (st: GameState) => { qspGoto(st, 'soniachat', 'telling_marrige_dreams', (((st as any).npc_usedname ?? 0)?.[String(((st as any).temp_npcid ?? 0))])); } },
+            ]);
           }
           (st as any).temp_npcid = undefined;
           (st as any).i = ((st as any).i ?? 0) + (1);
@@ -425,7 +430,10 @@ function enterBoyfriendChat(s: GameState, scene: SceneBuilder): void {
     if (((s as any).i ?? 0) < Object.keys((s as any).lover ?? {}).length) {
       (s as any).temp_npcid = (((s as any).lover ?? 0)?.[String((s as any).i ?? 0)] ?? 0);
       if (((s as any).npc_rel_type ?? 0)?.[String((s as any).temp_npcid ?? 0)] === 'boyfriend') {
-        // TODO-QSP: dynamic 'act ''<<$npc_usedname["<<$temp_npcid>>"]>>'': gt ''soniachat'', ''tell_about_generic_boyfri...
+        scene.text('act \'' + (((s as any).npc_usedname ?? 0)?.[String(((s as any).temp_npcid ?? 0))]) + '\': gt \'soniachat\', \'tell_about_generic_boyfriend\', $npc_usedname["' + ((s as any).temp_npcid ?? 0) + '"]');
+        scene.actions([
+          { label: '', labelFn: (s: GameState) => String((((s as any).npc_usedname ?? 0)?.[String(((s as any).temp_npcid ?? 0))] ?? '') ?? ''), handler: (st: GameState) => { qspGoto(st, 'soniachat', 'tell_about_generic_boyfriend', (((st as any).npc_usedname ?? 0)?.[String(((st as any).temp_npcid ?? 0))])); } },
+        ]);
       }
       (s as any).temp_npcid = undefined;
       (s as any).i = ((s as any).i ?? 0) + (1);

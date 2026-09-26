@@ -20,7 +20,6 @@ function enterDinMesec(s: GameState, scene: SceneBuilder): void {
     scene.text('"Let\'s not rush things too fast", you say.');
   }
   qspGoto(s, 'hunterLoveSex', 'din_hunters_bj');
-  // TODO-QSP: end & !! --- din_mesec ---
   scene.build();
 }
 
@@ -36,7 +35,6 @@ function enterDinHuntersBjBonusH1(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'arousal', 'foreplay', 5, 'sub');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end & !! --- din_hunters_bj_bonusH1 ---
   scene.actions([
     { label: 'Continue', goto: ['hunterLoveSex', 'din_hunters_bjH1'] },
   ]);
@@ -159,7 +157,6 @@ function enterDinHuntersBjH1(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end & !! --- din_hunters_bjH1 ---
   scene.build();
 }
 
@@ -176,7 +173,6 @@ function enterDinHuntersBjBonusH2(s: GameState, scene: SceneBuilder): void {
   scene.text('You smile and look at him.');
   qspCall(s, 'arousal', 'foreplay', 5, 'sub');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end & !! --- din_hunters_bj_bonusH2 ---
   scene.actions([
     { label: 'Continue', goto: ['hunterLoveSex', 'din_hunters_bjH2'] },
   ]);
@@ -299,7 +295,6 @@ function enterDinHuntersBjH2(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end & !! --- din_hunters_bjH2 ---
   scene.build();
 }
 
@@ -311,7 +306,6 @@ function enterDinHuntersBjBonusH3(s: GameState, scene: SceneBuilder): void {
   scene.text(`-Class ${((s as any).pcs_nickname ?? '')}, you know how to make me even harder.`);
   qspCall(s, 'arousal', 'foreplay', 5, 'sub');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end & !! --- din_hunters_bj_bonusH3 ---
   scene.actions([
     { label: 'Continue', goto: ['hunterLoveSex', 'din_hunters_bjH3'] },
   ]);
@@ -428,7 +422,6 @@ function enterDinHuntersBjH3(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end & !! --- din_hunters_bjH3 ---
   scene.build();
 }
 
@@ -446,7 +439,6 @@ function enterDinHuntersBjBonusH4(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'arousal', 'foreplay', 5, 'sub');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end & !! --- din_hunters_bj_bonusH4 ---
   scene.actions([
     { label: 'Continue', goto: ['hunterLoveSex', 'din_hunters_bjH4'] },
   ]);
@@ -536,7 +528,6 @@ function enterDinHuntersBjH4(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end & !! --- din_hunters_bjH4 ---
   scene.build();
 }
 
@@ -552,7 +543,6 @@ function enterDinHuntersBjBonusH6(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'arousal', 'foreplay', 5, 'sub');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end & !! --- din_hunters_bj_bonusH6 ---
   scene.actions([
     { label: 'Continue', goto: ['hunterLoveSex', 'din_hunters_bjH6'] },
   ]);
@@ -667,7 +657,6 @@ function enterDinHuntersBjH6(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end & !! --- din_hunters_bjH6 ---
   scene.build();
 }
 
@@ -679,7 +668,6 @@ function enterDinHuntersBjBonusH7(s: GameState, scene: SceneBuilder): void {
   scene.text('-Oh yeah, baby, just take it for a little while, your pretty face looks so fucking sexy like that.');
   qspCall(s, 'arousal', 'bj', 5, 'sub', 'rough');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end & !! --- din_hunters_bj_bonusH7 ---
   scene.actions([
     { label: 'Continue', goto: ['hunterLoveSex', 'din_hunters_bjH7'] },
   ]);
@@ -797,7 +785,6 @@ function enterDinHuntersBjH7(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end & !! --- din_hunters_bjH7 ---
   scene.build();
 }
 
@@ -815,7 +802,6 @@ function enterDinHuntersBjBonusH8(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'arousal', 'bj', 5, 'sub', 'deepthroat');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end & !! --- din_hunters_bj_bonusH8 ---
   scene.actions([
     { label: 'Continue', goto: ['hunterLoveSex', 'din_hunters_bjH8'] },
   ]);
@@ -933,12 +919,10 @@ function enterDinHuntersBjH8(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end & !! --- din_hunters_bjH8 ---
   scene.build();
 }
 
 function enterDinHuntersBj(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: end & !! --- din_hunters_bj ---
   scene.actions([
     { label: 'Kneel', handler: (st: GameState) => {
     (st as any).bja = ((st as any).bja ?? 0) + (1);
@@ -1015,7 +999,6 @@ function enterDinHuntersSexBellAnalH(s: GameState, scene: SceneBuilder): void {
       { label: 'Bend over', goto: ['hunterLoveSex', 'din_hunters_sex_dog_analH'] },
     ]);
   }
-  // TODO-QSP: end & !! --- din_hunters_sex_bell_analH ---
   scene.build();
 }
 
@@ -1060,7 +1043,6 @@ function enterDinHuntersSexCowAnalH(s: GameState, scene: SceneBuilder): void {
       { label: 'Lie on your stomach', goto: ['hunterLoveSex', 'din_hunters_sex_bell_analH'] },
     ]);
   }
-  // TODO-QSP: end & !! --- din_hunters_sex_cow_analH ---
   scene.build();
 }
 
@@ -1105,7 +1087,6 @@ function enterDinHuntersSexDogAnalH(s: GameState, scene: SceneBuilder): void {
       { label: 'Lie on your stomach', goto: ['hunterLoveSex', 'din_hunters_sex_bell_analH'] },
     ]);
   }
-  // TODO-QSP: end & !! --- din_hunters_sex_dog_analH ---
   scene.build();
 }
 
@@ -1150,7 +1131,6 @@ function enterDinHuntersSexMisionaryAnalH(s: GameState, scene: SceneBuilder): vo
       { label: 'Lie on your stomach', goto: ['hunterLoveSex', 'din_hunters_sex_bell_analH'] },
     ]);
   }
-  // TODO-QSP: end & !! --- din_hunters_sex_misionary_analH ---
   scene.build();
 }
 
@@ -1275,7 +1255,6 @@ function enterDinHuntersSexCumface7(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end & !! --- din_hunters_sex_cumface7 ---
   scene.actions([
     { label: 'Depart', handler: (st: GameState) => {
     ((st as any).hunterVars = (st as any).hunterVars ?? {})['bj_times'] = 0;
@@ -1406,7 +1385,6 @@ function enterDinHuntersSexCumface6(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end & !! --- din_hunters_sex_cumface6 ---
   scene.actions([
     { label: 'Depart', handler: (st: GameState) => {
     ((st as any).hunterVars = (st as any).hunterVars ?? {})['bj_times'] = 0;
@@ -1537,7 +1515,6 @@ function enterDinHuntersSexCumface5(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end & !! --- din_hunters_sex_cumface5 ---
   scene.actions([
     { label: 'Depart', handler: (st: GameState) => {
     ((st as any).hunterVars = (st as any).hunterVars ?? {})['bj_times'] = 0;
@@ -1668,7 +1645,6 @@ function enterDinHuntersSexCumface4(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end & !! --- din_hunters_sex_cumface4 ---
   scene.actions([
     { label: 'Depart', handler: (st: GameState) => {
     ((st as any).hunterVars = (st as any).hunterVars ?? {})['bj_times'] = 0;
@@ -1799,7 +1775,6 @@ function enterDinHuntersSexCumface3(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end & !! --- din_hunters_sex_cumface3 ---
   scene.actions([
     { label: 'Depart', handler: (st: GameState) => {
     ((st as any).hunterVars = (st as any).hunterVars ?? {})['bj_times'] = 0;
@@ -1818,7 +1793,6 @@ function enterDinHuntersSexCumface2(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><h4>Hut</h4></center>');
   scene.img('images/shared/sex/cum/cumf20.mp4');
   scene.text('You feel his member start to throb in your mouth and taste the tartness of his cum as his load begins to flow onto your tongue.');
-  // TODO-QSP: end & !! --- din_hunters_sex_cumface2 ---
   scene.actions([
     { label: 'Swallow', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -2199,7 +2173,6 @@ function enterDinHuntersSexCumface1(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end & !! --- din_hunters_sex_cumface1 ---
   scene.actions([
     { label: 'Depart', handler: (st: GameState) => {
     ((st as any).hunterVars = (st as any).hunterVars ?? {})['bj_times'] = 0;
@@ -2459,7 +2432,6 @@ function enterDinHuntersSexCum11(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end & !! --- din_hunters_sex_cum11 ---
   scene.build();
 }
 
@@ -2580,7 +2552,6 @@ function enterDinHuntersSexCum10(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end & !! --- din_hunters_sex_cum10 ---
   scene.actions([
     { label: 'Depart', handler: (st: GameState) => {
     ((st as any).hunterVars = (st as any).hunterVars ?? {})['bj_times'] = 0;
@@ -2841,7 +2812,6 @@ function enterDinHuntersSexCum9(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end & !! --- din_hunters_sex_cum9 ---
   scene.build();
 }
 
@@ -3095,7 +3065,6 @@ function enterDinHuntersSexCum81(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end & !! --- din_hunters_sex_cum81 ---
   scene.build();
 }
 
@@ -3349,7 +3318,6 @@ function enterDinHuntersSexCum8(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end & !! --- din_hunters_sex_cum8 ---
   scene.build();
 }
 
@@ -3603,7 +3571,6 @@ function enterDinHuntersSexCum7(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end & !! --- din_hunters_sex_cum7 ---
   scene.build();
 }
 
@@ -3857,7 +3824,6 @@ function enterDinHuntersSexCum6(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end & !! --- din_hunters_sex_cum6 ---
   scene.build();
 }
 
@@ -3978,7 +3944,6 @@ function enterDinHuntersSexCum5(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end & !! --- din_hunters_sex_cum5 ---
   scene.actions([
     { label: 'Depart', handler: (st: GameState) => {
     ((st as any).hunterVars = (st as any).hunterVars ?? {})['bj_times'] = 0;
@@ -4106,7 +4071,6 @@ function enterDinHuntersSexCum41(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end & !! --- din_hunters_sex_cum41 ---
   scene.actions([
     { label: 'Depart', handler: (st: GameState) => {
     ((st as any).hunterVars = (st as any).hunterVars ?? {})['bj_times'] = 0;
@@ -4234,7 +4198,6 @@ function enterDinHuntersSexCum4(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end & !! --- din_hunters_sex_cum4 ---
   scene.actions([
     { label: 'Depart', handler: (st: GameState) => {
     ((st as any).hunterVars = (st as any).hunterVars ?? {})['bj_times'] = 0;
@@ -4368,7 +4331,6 @@ function enterDinHuntersSexCum3(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end & !! --- din_hunters_sex_cum3 ---
   scene.actions([
     { label: 'Depart', handler: (st: GameState) => {
     ((st as any).hunterVars = (st as any).hunterVars ?? {})['bj_times'] = 0;
@@ -4499,7 +4461,6 @@ function enterDinHuntersSexCum2(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end & !! --- din_hunters_sex_cum2 ---
   scene.actions([
     { label: 'Depart', handler: (st: GameState) => {
     ((st as any).hunterVars = (st as any).hunterVars ?? {})['bj_times'] = 0;
@@ -4627,7 +4588,6 @@ function enterDinHuntersSexCum1(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end & !! --- din_hunters_sex_cum1 ---
   scene.actions([
     { label: 'Depart', handler: (st: GameState) => {
     ((st as any).hunterVars = (st as any).hunterVars ?? {})['bj_times'] = 0;
@@ -4656,7 +4616,6 @@ function enterDinHuntersSexBellAnal(s: GameState, scene: SceneBuilder): void {
       { label: 'Cum', goto: ['hunterLoveSex', 'din_hunters_sex_cum5'] },
     ]);
   }
-  // TODO-QSP: end & !! --- din_hunters_sex_bell_anal ---
   scene.build();
 }
 
@@ -4679,7 +4638,6 @@ function enterDinHuntersSexCowAnal2(s: GameState, scene: SceneBuilder): void {
       { label: 'Cum', goto: ['hunterLoveSex', 'din_hunters_sex_cum4'] },
     ]);
   }
-  // TODO-QSP: end & !! --- din_hunters_sex_cow_anal2 ---
   scene.build();
 }
 
@@ -4702,7 +4660,6 @@ function enterDinHuntersSexCowAnal1(s: GameState, scene: SceneBuilder): void {
       { label: 'Cum', goto: ['hunterLoveSex', 'din_hunters_sex_cum4'] },
     ]);
   }
-  // TODO-QSP: end & !! --- din_hunters_sex_cow_anal1 ---
   scene.build();
 }
 
@@ -4725,7 +4682,6 @@ function enterDinHuntersSexCowAnal(s: GameState, scene: SceneBuilder): void {
       { label: 'Cum', goto: ['hunterLoveSex', 'din_hunters_sex_cum4'] },
     ]);
   }
-  // TODO-QSP: end & !! --- din_hunters_sex_cow_anal ---
   scene.build();
 }
 
@@ -4748,7 +4704,6 @@ function enterDinHuntersSexDogAnal(s: GameState, scene: SceneBuilder): void {
       { label: 'Cum', goto: ['hunterLoveSex', 'din_hunters_sex_cum3'] },
     ]);
   }
-  // TODO-QSP: end & !! --- din_hunters_sex_dog_anal ---
   scene.build();
 }
 
@@ -4771,7 +4726,6 @@ function enterDinHuntersSexMisionaryAnal(s: GameState, scene: SceneBuilder): voi
       { label: 'Cum', goto: ['hunterLoveSex', 'din_hunters_sex_cum2'] },
     ]);
   }
-  // TODO-QSP: end & !! --- din_hunters_sex_misionary_anal ---
   scene.build();
 }
 
@@ -4805,7 +4759,6 @@ function enterDinHuntersSexAnalNo(s: GameState, scene: SceneBuilder): void {
       { label: 'Lie on your stomach', goto: ['hunterLoveSex', 'din_hunters_sex_bell'] },
     ]);
   }
-  // TODO-QSP: end & !! --- din_hunters_sex_anal_no ---
   scene.build();
 }
 
@@ -4890,7 +4843,6 @@ function enterDinHuntersSex_69(s: GameState, scene: SceneBuilder): void {
       { label: 'Cum', goto: ['hunterLoveSex', 'din_hunters_sex_cumface7'] },
     ]);
   }
-  // TODO-QSP: end & !! --- din_hunters_sex_69 ---
   scene.build();
 }
 
@@ -4971,7 +4923,6 @@ function enterDinHuntersSexHandBonus(s: GameState, scene: SceneBuilder): void {
       { label: 'Cum', goto: ['hunterLoveSex', 'din_hunters_sex_cum11'] },
     ]);
   }
-  // TODO-QSP: end & !! --- din_hunters_sex_hand_bonus ---
   scene.build();
 }
 
@@ -5055,7 +5006,6 @@ function enterDinHuntersSexHand(s: GameState, scene: SceneBuilder): void {
       { label: 'Cum', goto: ['hunterLoveSex', 'din_hunters_sex_cum11'] },
     ]);
   }
-  // TODO-QSP: end & !! --- din_hunters_sex_hand ---
   scene.build();
 }
 
@@ -5144,7 +5094,6 @@ function enterDinHuntersSexBellBonus1(s: GameState, scene: SceneBuilder): void {
       { label: 'Cum', goto: ['hunterLoveSex', 'din_hunters_sex_cum9'] },
     ]);
   }
-  // TODO-QSP: end & !! --- din_hunters_sex_bell_bonus1 ---
   scene.build();
 }
 
@@ -5225,7 +5174,6 @@ function enterDinHuntersSexBellBonus(s: GameState, scene: SceneBuilder): void {
       { label: 'Cum', goto: ['hunterLoveSex', 'din_hunters_sex_cum9'] },
     ]);
   }
-  // TODO-QSP: end & !! --- din_hunters_sex_bell_bonus ---
   scene.build();
 }
 
@@ -5313,7 +5261,6 @@ function enterDinHuntersSexBell(s: GameState, scene: SceneBuilder): void {
       { label: 'Cum', goto: ['hunterLoveSex', 'din_hunters_sex_cum9'] },
     ]);
   }
-  // TODO-QSP: end & !! --- din_hunters_sex_bell ---
   scene.build();
 }
 
@@ -5394,7 +5341,6 @@ function enterDinHuntersSexCowBonus3(s: GameState, scene: SceneBuilder): void {
       { label: 'Cum', goto: ['hunterLoveSex', 'din_hunters_sex_cum8'] },
     ]);
   }
-  // TODO-QSP: end & !! --- din_hunters_sex_cow_bonus3 ---
   scene.build();
 }
 
@@ -5480,7 +5426,6 @@ function enterDinHuntersSexCowBonus2(s: GameState, scene: SceneBuilder): void {
       { label: 'Cum', goto: ['hunterLoveSex', 'din_hunters_sex_cum8'] },
     ]);
   }
-  // TODO-QSP: end & !! --- din_hunters_sex_cow_bonus2 ---
   scene.build();
 }
 
@@ -5567,7 +5512,6 @@ function enterDinHuntersSexCowBonus1(s: GameState, scene: SceneBuilder): void {
       { label: 'Cum', goto: ['hunterLoveSex', 'din_hunters_sex_cum81'] },
     ]);
   }
-  // TODO-QSP: end & !! --- din_hunters_sex_cow_bonus1 ---
   scene.build();
 }
 
@@ -5651,7 +5595,6 @@ function enterDinHuntersSexCowBonus(s: GameState, scene: SceneBuilder): void {
       { label: 'Cum', goto: ['hunterLoveSex', 'din_hunters_sex_cum8'] },
     ]);
   }
-  // TODO-QSP: end & !! --- din_hunters_sex_cow_bonus ---
   scene.build();
 }
 
@@ -5739,7 +5682,6 @@ function enterDinHuntersSexCow(s: GameState, scene: SceneBuilder): void {
       { label: 'Cum', goto: ['hunterLoveSex', 'din_hunters_sex_cum8'] },
     ]);
   }
-  // TODO-QSP: end & !! --- din_hunters_sex_cow ---
   scene.build();
 }
 
@@ -5828,7 +5770,6 @@ function enterDinHuntersSexDogBonus(s: GameState, scene: SceneBuilder): void {
       { label: 'Cum', goto: ['hunterLoveSex', 'din_hunters_sex_cum7'] },
     ]);
   }
-  // TODO-QSP: end & !! --- din_hunters_sex_dog_bonus ---
   scene.build();
 }
 
@@ -5908,7 +5849,6 @@ function enterDinHuntersSexDogBonus1(s: GameState, scene: SceneBuilder): void {
       { label: 'Cum', goto: ['hunterLoveSex', 'din_hunters_sex_cum7'] },
     ]);
   }
-  // TODO-QSP: end & !! --- din_hunters_sex_dog_bonus1 ---
   scene.build();
 }
 
@@ -5988,7 +5928,6 @@ function enterDinHuntersSexDogBonus2(s: GameState, scene: SceneBuilder): void {
       { label: 'Cum', goto: ['hunterLoveSex', 'din_hunters_sex_cum7'] },
     ]);
   }
-  // TODO-QSP: end & !! --- din_hunters_sex_dog_bonus2 ---
   scene.build();
 }
 
@@ -6079,7 +6018,6 @@ function enterDinHuntersSexDog(s: GameState, scene: SceneBuilder): void {
       { label: 'Cum', goto: ['hunterLoveSex', 'din_hunters_sex_cum7'] },
     ]);
   }
-  // TODO-QSP: end & !! --- din_hunters_sex_dog ---
   scene.build();
 }
 
@@ -6160,7 +6098,6 @@ function enterDinHuntersSexMisionaryBonus2(s: GameState, scene: SceneBuilder): v
       { label: 'Cum', goto: ['hunterLoveSex', 'din_hunters_sex_cum6'] },
     ]);
   }
-  // TODO-QSP: end & !! --- din_hunters_sex_misionary_bonus2 ---
   scene.build();
 }
 
@@ -6248,7 +6185,6 @@ function enterDinHuntersSexMisionaryBonus1(s: GameState, scene: SceneBuilder): v
   } },
     ]);
   }
-  // TODO-QSP: end & !! --- din_hunters_sex_misionary_bonus1 ---
   scene.build();
 }
 
@@ -6332,7 +6268,6 @@ function enterDinHuntersSexMisionaryBonus(s: GameState, scene: SceneBuilder): vo
       { label: 'Cum', goto: ['hunterLoveSex', 'din_hunters_sex_cum6'] },
     ]);
   }
-  // TODO-QSP: end & !! --- din_hunters_sex_misionary_bonus ---
   scene.build();
 }
 
@@ -6403,7 +6338,6 @@ function enterDinHuntersSexKuniBonus(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end & !! --- din_hunters_sex_kuni_bonus ---
   scene.build();
 }
 
@@ -6538,7 +6472,6 @@ function enterDinHuntersSexKuni(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
-  // TODO-QSP: end & !! --- din_hunters_sex_kuni ---
   scene.build();
 }
 
@@ -6619,7 +6552,6 @@ function enterDinHuntersSexMisionary(s: GameState, scene: SceneBuilder): void {
       { label: 'Cum', goto: ['hunterLoveSex', 'din_hunters_sex_cum6'] },
     ]);
   }
-  // TODO-QSP: end & !! --- din_hunters_sex_misionary ---
   scene.build();
 }
 
@@ -6749,7 +6681,6 @@ function enterDinHuntersBj14(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end & !! --- din_hunters_bj14 ---
   scene.build();
 }
 
@@ -6879,7 +6810,6 @@ function enterDinHuntersBj13(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end & !! --- din_hunters_bj13 ---
   scene.build();
 }
 
@@ -6900,7 +6830,6 @@ function enterDinHuntersBjBonus12(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'arousal', 'bj', 5, 'sub', 'deepthroat');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end & !! --- din_hunters_bj_bonus12 ---
   scene.actions([
     { label: 'Continue', goto: ['hunterLoveSex', 'din_hunters_bj12'] },
   ]);
@@ -7036,7 +6965,6 @@ function enterDinHuntersBj12(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end & !! --- din_hunters_bj12 ---
   scene.build();
 }
 
@@ -7056,7 +6984,6 @@ function enterDinHuntersBjBonus11(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'arousal', 'bj', 5, 'sub', 'deepthroat');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end & !! --- din_hunters_bj_bonus11 ---
   scene.actions([
     { label: 'Continue', goto: ['hunterLoveSex', 'din_hunters_bj11'] },
   ]);
@@ -7191,7 +7118,6 @@ function enterDinHuntersBj11(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end & !! --- din_hunters_bj11 ---
   scene.build();
 }
 
@@ -7312,7 +7238,6 @@ function enterDinHuntersBj10(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end & !! --- din_hunters_bj10 ---
   scene.build();
 }
 
@@ -7433,7 +7358,6 @@ function enterDinHuntersBj9(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end & !! --- din_hunters_bj9 ---
   scene.build();
 }
 
@@ -7458,7 +7382,6 @@ function enterDinHuntersBjBonus8(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'arousal', 'cuni_give', 5, 'sub');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end & !! --- din_hunters_bj_bonus8 ---
   scene.actions([
     { label: 'Continue', goto: ['hunterLoveSex', 'din_hunters_bj8'] },
   ]);
@@ -7599,7 +7522,6 @@ function enterDinHuntersBj8(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end & !! --- din_hunters_bj8 ---
   scene.build();
 }
 
@@ -7611,7 +7533,6 @@ function enterDinHuntersBjBonus7(s: GameState, scene: SceneBuilder): void {
   scene.text('-Fuck, baby, don\'t stop!');
   qspCall(s, 'arousal', 'foreplay', 5, 'sub');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end & !! --- din_hunters_bj_bonus7 ---
   scene.actions([
     { label: 'Continue', goto: ['hunterLoveSex', 'din_hunters_bj7'] },
   ]);
@@ -7752,7 +7673,6 @@ function enterDinHuntersBj7(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end & !! --- din_hunters_bj7 ---
   scene.build();
 }
 
@@ -7769,7 +7689,6 @@ function enterDinHuntersBjBonus6(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'arousal', 'foreplay', 5, 'sub');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end & !! --- din_hunters_bj_bonus6 ---
   scene.actions([
     { label: 'Continue', goto: ['hunterLoveSex', 'din_hunters_bj6'] },
   ]);
@@ -7908,7 +7827,6 @@ function enterDinHuntersBj6(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end & !! --- din_hunters_bj6 ---
   scene.build();
 }
 
@@ -7920,7 +7838,6 @@ function enterDinHuntersBjBonus5(s: GameState, scene: SceneBuilder): void {
   scene.text(` -Uhh, ${((s as any).pcs_nickname ?? '')}, that's the kind of lubrication you don't have to spend money on.`);
   qspCall(s, 'arousal', 'foreplay', 5, 'sub');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end & !! --- din_hunters_bj_bonus5 ---
   scene.actions([
     { label: 'Continue', goto: ['hunterLoveSex', 'din_hunters_bj5'] },
   ]);
@@ -8054,7 +7971,6 @@ function enterDinHuntersBj5(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end & !! --- din_hunters_bj5 ---
   scene.build();
 }
 
@@ -8071,7 +7987,6 @@ function enterDinHuntersBjBonus4(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'arousal', 'foreplay', 5, 'sub');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end & !! --- din_hunters_bj_bonus4 ---
   scene.actions([
     { label: 'Continue', goto: ['hunterLoveSex', 'din_hunters_bj4'] },
   ]);
@@ -8205,7 +8120,6 @@ function enterDinHuntersBj4(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end & !! --- din_hunters_bj4 ---
   scene.build();
 }
 
@@ -8217,7 +8131,6 @@ function enterDinHuntersBjBonus3(s: GameState, scene: SceneBuilder): void {
   scene.text(`-Mmmm ${((s as any).pcs_nickname ?? '')}, how do you know how to make me even harder?`);
   qspCall(s, 'arousal', 'foreplay', 5, 'sub');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end & !! --- din_hunters_bj_bonus3 ---
   scene.actions([
     { label: 'Continue', goto: ['hunterLoveSex', 'din_hunters_bj3'] },
   ]);
@@ -8351,7 +8264,6 @@ function enterDinHuntersBj3(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end & !! --- din_hunters_bj3 ---
   scene.build();
 }
 
@@ -8369,7 +8281,6 @@ function enterDinHuntersBjBonus2(s: GameState, scene: SceneBuilder): void {
   scene.text('You smiled and look at him, deciding to…');
   qspCall(s, 'arousal', 'foreplay', 5, 'sub');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end & !! --- din_hunters_bj_bonus2 ---
   scene.actions([
     { label: 'Continue', goto: ['hunterLoveSex', 'din_hunters_bj2'] },
   ]);
@@ -8510,7 +8421,6 @@ function enterDinHuntersBj2(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end & !! --- din_hunters_bj2 ---
   scene.build();
 }
 
@@ -8527,7 +8437,6 @@ function enterDinHuntersBjBonus1(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'arousal', 'foreplay', 5, 'sub');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end & !! --- din_hunters_bj_bonus1 ---
   scene.actions([
     { label: 'Continue', goto: ['hunterLoveSex', 'din_hunters_bj1'] },
   ]);
@@ -8669,7 +8578,6 @@ function enterDinHuntersBj1(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end & !! --- 'din_hunters_bj1' ---
   scene.build();
 }
 
@@ -8706,7 +8614,6 @@ function enterDinHuntersBj200(s: GameState, scene: SceneBuilder): void {
       { label: 'Lick the shaft', goto: ['hunterLoveSex', 'din_hunters_bj5'] },
     ]);
   }
-  // TODO-QSP: end & !! --- din_hunters_bj200 ---
   scene.build();
 }
 
@@ -8748,7 +8655,6 @@ function enterDinHuntersSub(s: GameState, scene: SceneBuilder): void {
       { label: 'Take him in your hands', goto: ['hunterLoveSex', 'din_hunters_sex_hand'] },
     ]);
   }
-  // TODO-QSP: end & !! --- din_hunters_sub ---
   scene.build();
 }
 
@@ -8761,7 +8667,6 @@ function enterDinHuntersFirstSex(s: GameState, scene: SceneBuilder): void {
   scene.text(`${((s as any).boydesc ?? '')} puts you on your back and spreads your legs, opening your virgin womb to his gaze and his quivering member.`);
   qspCall(s, 'arousal', 'vaginal', 30, 'sub');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end & !! --- din_hunters_first_sex ---
   scene.actions([
     { label: 'To recover', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;

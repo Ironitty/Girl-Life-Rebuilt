@@ -392,9 +392,6 @@ function enterKissing(s: GameState, scene: SceneBuilder): void {
     scene.text('You moan under his touch, letting your leg slide between his. You can feel his cock brushing up against your thigh, stiff as a rock.');
     if ((Math.floor(Math.random() * 3) + 0) === 1  &&  ((st as any).npc_residence ?? 0)?.[String((st as any).npcID ?? 0)] === 'pav_residential') {
       scene.text('"Hey," he breathes between kisses. "I was wondering... Do you want to come back to my place for some coffee?"');
-      // TODO-QSP: act'Only if "coffee" means "sex"':
-      scene.img('images/locations/pavlovsk/community/disco/sex/tits.jpg');
-      scene.text('"That sounds great! If by \'coffee\' you mean \'sex.\'" You grin at him. There\'s a moment of surprise by your forwardness, but he quickly helps you get your clothes back in place and starts pulling you away towards his apartment.');
       scene.actions([
         { label: 'No thanks', handler: (st: GameState) => {
     scene.text('"Thanks, but no thanks. Not interested."');
@@ -409,16 +406,22 @@ function enterKissing(s: GameState, scene: SceneBuilder): void {
       { label: 'Go to his place', goto: ['date_hangout', 'start', 'disco'] },
     ]);
   } },
-        { label: 'Go to his place', goto: ['sex_ev_start', 'npc_home_start', 'hookup'] },
+        { label: 'Only if "coffee" means "sex"', handler: (st: GameState) => {
+    scene.img('images/locations/pavlovsk/community/disco/sex/tits.jpg');
+    scene.text('"That sounds great! If by \'coffee\' you mean \'sex.\'" You grin at him. There\'s a moment of surprise by your forwardness, but he quickly helps you get your clothes back in place and starts pulling you away towards his apartment.');
+    scene.actions([
+      { label: 'Go to his place', goto: ['sex_ev_start', 'npc_home_start', 'hookup'] },
+    ]);
+  } },
       ]);
-    }
-    if ((Math.floor(Math.random() * 2) + 0) === 1) {
-      if (((st as any).npc_residence ?? 0)?.[String((st as any).npcID ?? 0)] === 'pav_residential') {
-        scene.text('"Hey," he breathes between kisses. "Why don\'t we take this back to my place?"');
-        qspCall(st, 'family_schedule', '');
-        if (((st as any).locat ?? 0)?.['Fam_inGad'] === 1) {
-          scene.actions([
-            { label: 'Invite him home (hookup)', handler: (st: GameState) => {
+    } else {
+      if ((Math.floor(Math.random() * 2) + 0) === 1) {
+        if (((st as any).npc_residence ?? 0)?.[String((st as any).npcID ?? 0)] === 'pav_residential') {
+          scene.text('"Hey," he breathes between kisses. "Why don\'t we take this back to my place?"');
+          qspCall(st, 'family_schedule', '');
+          if (((st as any).locat ?? 0)?.['Fam_inGad'] === 1) {
+            scene.actions([
+              { label: 'Invite him home (hookup)', handler: (st: GameState) => {
     qspCall(st, 'fame', 'pav', 'sex', 1);
     scene.img('images/locations/pavlovsk/community/disco/outside_kiss.jpg');
     scene.text(`"How about mine instead?" you ask. With a sultry smirk, you lean in to whisper in ${((st as any).npcdesc ?? '')}'s ear.`);
@@ -428,11 +431,11 @@ function enterKissing(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', goto: ['sex_ev_start', 'pc_home_start', 'hookup'] },
     ]);
   } },
-          ]);
-        }
-        if (((st as any).home ?? 0)?.['current'] === 'mey_home') {
-          scene.actions([
-            { label: 'Invite him home (hookup)', handler: (st: GameState) => {
+            ]);
+          }
+          if (((st as any).home ?? 0)?.['current'] === 'mey_home') {
+            scene.actions([
+              { label: 'Invite him home (hookup)', handler: (st: GameState) => {
     qspCall(st, 'fame', 'pav', 'sex', 1);
     scene.img('images/locations/pavlovsk/community/disco/outside_kiss.jpg');
     scene.text('"How about you come back to my place instead?" you ask. "My housemates won\'t mind."');
@@ -441,29 +444,29 @@ function enterKissing(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', goto: ['sex_ev_start', 'pc_home_start', 'hookup'] },
     ]);
   } },
-          ]);
-        }
-        scene.actions([
-          { label: 'Pull out his cock', handler: (st: GameState) => {
+            ]);
+          }
+          scene.actions([
+            { label: 'Pull out his cock', handler: (st: GameState) => {
     scene.img('images/shared/sex/handjob/hj.jpg');
     scene.text('You reach down his pants, grab hold of his erection and pull it out.');
     scene.text('"Why wait?" you grin, steadily stroking him.');
     qspGoto(st, 'pav_disco_sex', 'handjob');
   } },
-          { label: 'Sure', handler: (st: GameState) => {
+            { label: 'Sure', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/community/disco/sex/tits.jpg');
     scene.text('You pull your clothes back into place before letting him drag you away.');
     scene.actions([
       { label: 'Go to his place', goto: ['sex_ev_start', 'npc_home_start', 'hookup'] },
     ]);
   } },
-        ]);
-      } else {
-        scene.text('"Hey," he breathes between kisses. "Do you want to come back to my place in the city?"');
-        qspCall(st, 'family_schedule', '');
-        if (((st as any).locat ?? 0)?.['Fam_inGad'] === 1) {
-          scene.actions([
-            { label: 'Invite him home (hookup)', handler: (st: GameState) => {
+          ]);
+        } else {
+          scene.text('"Hey," he breathes between kisses. "Do you want to come back to my place in the city?"');
+          qspCall(st, 'family_schedule', '');
+          if (((st as any).locat ?? 0)?.['Fam_inGad'] === 1) {
+            scene.actions([
+              { label: 'Invite him home (hookup)', handler: (st: GameState) => {
     qspCall(st, 'fame', 'pav', 'sex', 1);
     scene.img('images/locations/pavlovsk/community/disco/outside_kiss.jpg');
     scene.text(`"How about mine instead?" you ask. With a sultry smirk, you lean in to whisper in ${((st as any).npcdesc ?? '')}'s ear.`);
@@ -473,11 +476,11 @@ function enterKissing(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', goto: ['sex_ev_start', 'pc_home_start', 'hookup'] },
     ]);
   } },
-          ]);
-        }
-        if (((st as any).home ?? 0)?.['current'] === 'mey_home') {
-          scene.actions([
-            { label: 'Invite him home (hookup)', handler: (st: GameState) => {
+            ]);
+          }
+          if (((st as any).home ?? 0)?.['current'] === 'mey_home') {
+            scene.actions([
+              { label: 'Invite him home (hookup)', handler: (st: GameState) => {
     qspCall(st, 'fame', 'pav', 'sex', 1);
     scene.img('images/locations/pavlovsk/community/disco/outside_kiss.jpg');
     scene.text('"How about you come back to my place instead?" you ask. "My housemates won\'t mind."');
@@ -486,16 +489,16 @@ function enterKissing(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', goto: ['sex_ev_start', 'pc_home_start', 'hookup'] },
     ]);
   } },
-          ]);
-        }
-        scene.actions([
-          { label: 'Pull out his cock', handler: (st: GameState) => {
+            ]);
+          }
+          scene.actions([
+            { label: 'Pull out his cock', handler: (st: GameState) => {
     scene.img('images/shared/sex/handjob/hj.jpg');
     scene.text('You reach down his pants, grab hold of his erection and pull it out.');
     scene.text('"That\'s way too far," you grin, steadily stroking him.');
     qspGoto(st, 'pav_disco_sex', 'handjob');
   } },
-          { label: 'Sure', handler: (st: GameState) => {
+            { label: 'Sure', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/community/disco/sex/tits.jpg');
     if (((st as any).npc_car ?? 0)?.[String((st as any).npcID ?? 0)] > 0) {
       scene.text('You pull your clothes back into place as he leads you back to his car.');
@@ -506,32 +509,32 @@ function enterKissing(s: GameState, scene: SceneBuilder): void {
       { label: 'Go to his place', goto: ['sex_ev_start', 'npc_home_start', 'hookup'] },
     ]);
   } },
-        ]);
-      }
-    } else {
-      if (((st as any).fame ?? 0)?.['pav_slut'] < 150) {
-        qspCall(st, 'willpower', 'mast', 'resist');
-        if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
-          scene.actions([
-            { label: 'Go back to the disco', handler: (st: GameState) => {
+          ]);
+        }
+      } else {
+        if (((st as any).fame ?? 0)?.['pav_slut'] < 150) {
+          qspCall(st, 'willpower', 'mast', 'resist');
+          if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
+            scene.actions([
+              { label: 'Go back to the disco', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
-          ]);
-        } else {
-          scene.actions([
-            { label: 'Go back to the disco', handler: (st: GameState) => {
+            ]);
+          } else {
+            scene.actions([
+              { label: 'Go back to the disco', handler: (st: GameState) => {
     (st as any).gdk = undefined;
     qspCall(st, 'willpower', 'mast', 'resist');
     qspCall(st, 'willpower', 'pay', 'resist');
     qspCall(st, 'stat', '');
     qspGoto(st, 'pav_disco', '');
   } },
-          ]);
+            ]);
+          }
         }
-      }
-      if (((st as any).fame ?? 0)?.['pav_slut'] < 250) {
-        scene.actions([
-          { label: 'Let him finger you', handler: (st: GameState) => {
+        if (((st as any).fame ?? 0)?.['pav_slut'] < 250) {
+          scene.actions([
+            { label: 'Let him finger you', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'vaginal_finger', 3, 'no_orgasm_msg');
     qspCall(st, 'stat', '');
     scene.img('images/shared/sex/pet/petting.jpg');
@@ -690,10 +693,10 @@ function enterKissing(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } },
-        ]);
-      }
-      scene.actions([
-        { label: 'Caress his cock through his pants', handler: (st: GameState) => {
+          ]);
+        }
+        scene.actions([
+          { label: 'Caress his cock through his pants', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'foreplay', 3, 'no_orgasm_msg');
     qspCall(st, 'stat', '');
     scene.img('images/shared/sex/grab/cock.jpg');
@@ -747,7 +750,8 @@ function enterKissing(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } },
-      ]);
+        ]);
+      }
     }
   } },
     ]);
@@ -1915,12 +1919,8 @@ function enterDiscoSexEnd(s: GameState, scene: SceneBuilder): void {
             if (((s as any).gdk ?? 0)?.['cum'] === 'creampie') {
               scene.text(`You pull up your panties while ${((s as any).npcdesc ?? '')} zips up his pants before heading back inside, leaving you alone in the dark, cum soaking into your underwear.`);
             } else {
-              if (((s as any).gdk ?? 0)?.['cum'] === 'creampie_wipe') {
-                scene.text(`You pull out some wipes and begin to clean up the mess leaking out of your pussy while ${((s as any).npcdesc ?? '')} zips up his pants and heads back inside. By the time you're done, you're alone, pulling up your panties in the dark.`);
-              } else {
-                if (((s as any).gdk ?? 0)?.['cum'] === 'condom') {
-                  scene.text(`${((s as any).npcdesc ?? '')} pulls off the condom and tosses it aside while you pull up your panties. Afterwards, he zips his pants back up and heads inside, leaving you alone in the dark.`);
-                }
+              if (((s as any).gdk ?? 0)?.['cum'] === 'condom') {
+                scene.text(`${((s as any).npcdesc ?? '')} pulls off the condom and tosses it aside while you pull up your panties. Afterwards, he zips his pants back up and heads inside, leaving you alone in the dark.`);
               }
             }
           }

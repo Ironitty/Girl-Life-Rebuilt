@@ -15,36 +15,51 @@ function enterBoyLikeHairTalk(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'What do you like about it?', handler: (st: GameState) => {
     if (((st as any).pcs_haircolor ?? 0) === 'black') {
-      // TODO-QSP: act'You do?':
-      qspCall(st, 'sex_ev_pillow_talk', 'pillow_picture1', 2);
-      scene.text('"You do?" you ask, surprised.');
-      scene.text('"Don\'t know why everybody is into blondes," he smiles. "Black hair is so sexy."');
-      qspGoto(st, 'sex_ev_pillow_talk', 'topic_route');
-    }
-    if (((st as any).pcs_haircolor ?? 0) === 'brown') {
-      // TODO-QSP: act'You do?':
-      qspCall(st, 'sex_ev_pillow_talk', 'pillow_picture1', 2);
-      scene.text('"You do?" you ask, surprised.');
-      scene.text('"Don\'t know why everybody is into blondes," he smiles. "Brunettes are gorgeous."');
-      qspGoto(st, 'sex_ev_pillow_talk', 'topic_route');
-    }
-    if (((st as any).pcs_haircolor ?? 0) === 'red') {
-      // TODO-QSP: act'You do?':
-      qspCall(st, 'sex_ev_pillow_talk', 'pillow_picture1', 2);
-      scene.text('"You do?" you ask, surprised.');
-      if (((st as any).npc_humor ?? 0)?.[String((st as any).npcID ?? 0)] === 'intellectual') {
-        scene.text('"I never understood the whole idiom about redheaded stepchildren," he jokes. "Cause you\'re proof that they\'re hot."');
+      scene.actions([
+        { label: 'You do?', handler: (st: GameState) => {
+    qspCall(st, 'sex_ev_pillow_talk', 'pillow_picture1', 2);
+    scene.text('"You do?" you ask, surprised.');
+    scene.text('"Don\'t know why everybody is into blondes," he smiles. "Black hair is so sexy."');
+    qspGoto(st, 'sex_ev_pillow_talk', 'topic_route');
+  } },
+      ]);
+    } else {
+      if (((st as any).pcs_haircolor ?? 0) === 'brown') {
+        scene.actions([
+          { label: 'You do?', handler: (st: GameState) => {
+    qspCall(st, 'sex_ev_pillow_talk', 'pillow_picture1', 2);
+    scene.text('"You do?" you ask, surprised.');
+    scene.text('"Don\'t know why everybody is into blondes," he smiles. "Brunettes are gorgeous."');
+    qspGoto(st, 'sex_ev_pillow_talk', 'topic_route');
+  } },
+        ]);
       } else {
-        scene.text('"Who doesn\'t think redheads are hot?" he grins back. ');
-      }
-      qspGoto(st, 'sex_ev_pillow_talk', 'topic_route');
+        if (((st as any).pcs_haircolor ?? 0) === 'red') {
+          scene.actions([
+            { label: 'You do?', handler: (st: GameState) => {
+    qspCall(st, 'sex_ev_pillow_talk', 'pillow_picture1', 2);
+    scene.text('"You do?" you ask, surprised.');
+    if (((st as any).npc_humor ?? 0)?.[String((st as any).npcID ?? 0)] === 'intellectual') {
+      scene.text('"I never understood the whole idiom about redheaded stepchildren," he jokes. "Cause you\'re proof that they\'re hot."');
+    } else {
+      scene.text('"Who doesn\'t think redheads are hot?" he grins back. ');
     }
-    if (((st as any).pcs_haircolor ?? 0) === 'blonde') {
-      // TODO-QSP: act'You do?':
-      qspCall(st, 'sex_ev_pillow_talk', 'pillow_picture1', 2);
-      scene.text('"You do?" you ask, surprised.');
-      scene.text('"It\'s gorgeous," he smiles. "Blondes are so sexy."');
-      qspGoto(st, 'sex_ev_pillow_talk', 'topic_route');
+    qspGoto(st, 'sex_ev_pillow_talk', 'topic_route');
+  } },
+          ]);
+        } else {
+          if (((st as any).pcs_haircolor ?? 0) === 'blonde') {
+            scene.actions([
+              { label: 'You do?', handler: (st: GameState) => {
+    qspCall(st, 'sex_ev_pillow_talk', 'pillow_picture1', 2);
+    scene.text('"You do?" you ask, surprised.');
+    scene.text('"It\'s gorgeous," he smiles. "Blondes are so sexy."');
+    qspGoto(st, 'sex_ev_pillow_talk', 'topic_route');
+  } },
+            ]);
+          }
+        }
+      }
     }
   } },
   ]);
@@ -900,20 +915,8 @@ function enterPubesProblem(s: GameState, scene: SceneBuilder): void {
     } else {
       if (qspFunc(s, 'pcs_has_attr', 'hair_pubes_bush')  ||  qspFunc(s, 'pcs_has_attr', 'hair_pubes_untrimmed')) {
         scene.text(`"Got a problem with my bush?" you ask, giving ${((st as any).npcdesc ?? '')} a hard side-eye.`);
-        scene.text('"You\'d look super sexy if you shaved it all off," he says.');
-        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBoyAsksCleanshave(st, scene); (st as any).locArgs = __savedLocArgs; }
       } else {
-        if (((st as any).ngpPrefResult ?? 0)?.['NotPos'] === 'hair_pubes_patch'  ||  ((st as any).ngpPrefResult ?? 0)?.['NotPos'] === 'hair_pubes_trimmed') {
-          scene.text('"Ever considered trimming it down?" he asks.');
-          { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBoyAsksTrim(st, scene); (st as any).locArgs = __savedLocArgs; }
-        } else {
-          if (((st as any).ngpPrefResult ?? 0)?.['NotPos'] === 'hair_pubes_bush'  ||  ((st as any).ngpPrefResult ?? 0)?.['NotPos'] === 'hair_pubes_untrimmed') {
-            scene.text('"I think it\'s sexy too," he grins. "Too many girls feel peer pressured into shaving it off, but I love a nice full bush."');
-            { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBoyLikesPubes(st, scene); (st as any).locArgs = __savedLocArgs; }
-          } else {
-            scene.text(`"Got a problem with my pubes?" you ask, giving ${((st as any).npcdesc ?? '')} a hard side-eye.`);
-          }
-        }
+        scene.text(`"Got a problem with my pubes?" you ask, giving ${((st as any).npcdesc ?? '')} a hard side-eye.`);
       }
     }
     qspGoto(st, 'sex_ev_body_talk', 'boy_pubes_response');

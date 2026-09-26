@@ -2111,9 +2111,9 @@ function enterFatherCheck(s: GameState, scene: SceneBuilder): void {
   scene.text('List of potential fathers:');
   do {
     if (((s as any).wombpotfath ?? 0)?.[String((s as any).potfather_counter ?? 0)] !== 'unknown') {
-      ((s as any).potfather_temp = (s as any).potfather_temp ?? {})[2] = '<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: $wombthfath = \u0027' + (((s as any).npc_usedname ?? 0)?.[(((s as any).wombpotfath ?? 0)?.[String((s as any).potfather_counter ?? 0)] ?? 0)] ?? 0) + '\u0027 */ /* TODO-QSP: $wombthfathID = \u0027' + (((s as any).wombpotfath ?? 0)?.[String((s as any).potfather_counter ?? 0)] ?? 0) + '\u0027 */ return s; }); window.__gameStore.getState().doGoto(\u0027din_bad\u0027, \u0027d_cycreport_actor\u0027, \u00277 & gs \u0027stat\u0027\u0027); return false;">' + (((s as any).npc_usedname ?? 0)?.[(((s as any).wombpotfath ?? 0)?.[String((s as any).potfather_counter ?? 0)] ?? 0)] ?? 0) + ' (' + (((s as any).wombpotfath ?? 0)?.[String((s as any).potfather_counter ?? 0)] ?? 0) + ')</a>';
+      // TODO-QSP: $potfather_temp[2] = '<a href="exec: $wombthfath = ''<<$npc_usedname[$wombpotfath[potfather_counter]]>>'' & $wombthfathID = ''<<$wombpotfath[potfather_counter]>>'' & gs ''din_bad'', ''d_cycreport_actor'', 7 & gs ''stat''"><<$npc_usedname[$wombpotfath[potfather_counter]]>> (<<$wombpotfath[potfather_counter]>>)</a>'
     } else {
-      ((s as any).potfather_temp = (s as any).potfather_temp ?? {})[2] = '<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: $wombthfath = \u0027' + (((s as any).npc_usedname ?? 0)?.[(((s as any).wombpotfath ?? 0)?.[String((s as any).potfather_counter ?? 0)] ?? 0)] ?? 0) + '\u0027 */ /* TODO-QSP: $wombthfathID = \u0027' + (((s as any).wombpotfath ?? 0)?.[String((s as any).potfather_counter ?? 0)] ?? 0) + '\u0027 */ return s; }); window.__gameStore.getState().doGoto(\u0027din_bad\u0027, \u0027d_cycreport_actor\u0027, \u00277 & gs \u0027stat\u0027\u0027); return false;">Unknown (-)</a>';
+      // TODO-QSP: $potfather_temp[2] = '<a href="exec: $wombthfath = ''<<$npc_usedname[$wombpotfath[potfather_counter]]>>'' & $wombthfathID = ''<<$wombpotfath[potfather_counter]>>'' & gs ''din_bad'', ''d_cycreport_actor'', 7 & gs ''stat''">Unknown (-)</a>'
     }
     if (((s as any).npcID ?? 0) === ((s as any).potfather_temp ?? 0)[2]) {
       (s as any).potfather_counter = ((s as any).potfather_counter ?? 0) + (1);
@@ -2315,10 +2315,6 @@ function enterSafedayCheck(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       if (((s as any).stat ?? 0)?.['preg_risk'] === 'prob_safe') {
-        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterAlreadyCreampie2(s, scene); (s as any).locArgs = __savedLocArgs; }
-        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPcDangerousDayCantCumInside(s, scene); (s as any).locArgs = __savedLocArgs; }
-        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPcDangerousDayPullout(s, scene); (s as any).locArgs = __savedLocArgs; }
-        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPcDangerousDayCondomInsist(s, scene); (s as any).locArgs = __savedLocArgs; }
         scene.actions([
           { label: 'Probably safe', handler: (st: GameState) => {
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['preg_risk'] = 'prob_safe';
@@ -2327,26 +2323,23 @@ function enterSafedayCheck(s: GameState, scene: SceneBuilder): void {
     scene.text('"Safe enough," you smile. "Go ahead. Fill me up."');
     qspGoto(st, 'sex_ev_sex', 'position_choose');
   } },
-          { label: 'Risk it (dangerous)', handler: (st: GameState) => {
-    ((st as any).sex_ev = (st as any).sex_ev ?? {})['preg_risk'] = 'danger';
-    ((st as any).npc_free_creampies = (st as any).npc_free_creampies ?? {})[String((st as any).npcID ?? 0)] = 'at_will';
-    scene.text('"It probably isn\'t safe today," you admit. "But I ."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcDangerousDay2(st, scene); (st as any).locArgs = __savedLocArgs; }
-    // TODO-QSP: end !}
-  } },
         ]);
-      } else {
-        scene.actions([
-          { label: 'You\'re on birth control', handler: (st: GameState) => {
+      }
+    }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterAlreadyCreampie2(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPcDangerousDayCantCumInside(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPcDangerousDayPullout(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPcDangerousDayCondomInsist(s, scene); (s as any).locArgs = __savedLocArgs; }
+  } else {
+    scene.actions([
+      { label: 'You\'re on birth control', handler: (st: GameState) => {
     scene.text(`"I'm on the ${(((st as any).birth_control ?? 0)?.['type'] ?? '')} now," you smile. "Come inside me as much as you want."`);
     qspCall(st, 'sex_ev_stats', 'birth_control_know');
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['no_condom'] = 1;
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['creampie_allowance'] = 1;
     qspGoto(st, 'sex_ev_sex', 'position_choose');
   } },
-        ]);
-      }
-    }
+    ]);
   }
   scene.build();
 }

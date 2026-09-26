@@ -26,7 +26,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   scene.text('This is the Industrial region of Pavlovsk. It houses some factories and warehouses, along with the old houses that are small and run down.');
   scene.text('This area is dominated by one of the biggest employers in Pavlovsk, the local textile factory. It\'s owned by G&M, who opened up a store opposite.');
   if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) < 20  &&  ((s as any).week ?? 0) >= 1  &&  ((s as any).week ?? 0) <= 5) {
-    scene.text('Behind the security checkpoint, you can see the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(\u0027pav_factory\u0027, \u0027enter\u0027); return false;">entrance</a> that every employee passes through.');
+    scene.text('Behind the security checkpoint, you can see the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=5; return s; }); window.__gameStore.getState().doGoto(\u0027pav_factory\u0027, \u0027enter\u0027); return false;">entrance</a> that every employee passes through.');
   } else {
     if (((s as any).hour ?? 0) < 8  ||  ((s as any).hour ?? 0) > 20  ||  ((s as any).week ?? 0) > 5) {
       scene.text('The factory is currently closed.');

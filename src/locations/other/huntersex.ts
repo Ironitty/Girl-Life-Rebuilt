@@ -1558,7 +1558,6 @@ function enterSluthomeSTART(s: GameState, scene: SceneBuilder): void {
       { label: 'Panties', goto: ['huntersex', 'sluthomeTanga'] },
     ]);
   }
-  // TODO-QSP: end & !! --- sluthomeSTART ---
   scene.build();
 }
 
@@ -1584,7 +1583,6 @@ function enterSluthomeOralCum1(s: GameState, scene: SceneBuilder): void {
   scene.text(`${(((s as any).textsexhunter ?? 0)?.[3] ?? '')}`);
   qspCall(s, 'arousal', 'bj', 5, 'sub', 'group');
   qspCall(s, 'arousal', 'end');
-  // TODO-QSP: end & !! --- sluthomeOralCum1 ---
   scene.actions([
     { label: 'Further', goto: ['gad_swamphouse', 'start'] },
   ]);

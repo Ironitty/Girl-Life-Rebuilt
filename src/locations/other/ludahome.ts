@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -1271,7 +1271,10 @@ function enterChatLuda(s: GameState, scene: SceneBuilder): void {
       if (((st as any).i ?? 0) < Object.keys((st as any).lover ?? {}).length) {
         (st as any).temp_npcid = (((st as any).lover ?? 0)?.[String((st as any).i ?? 0)] ?? 0);
         if (((st as any).npc_rel_type ?? 0)?.[String((st as any).temp_npcid ?? 0)] === 'boyfriend') {
-          // TODO-QSP: dynamic 'act ''<<$npc_usedname["<<$temp_npcid>>"]>>'': gt ''ludahome'', ''tell_about_generic_boyfrei...
+          scene.text('act \'' + (((st as any).npc_usedname ?? 0)?.[String(((st as any).temp_npcid ?? 0))]) + '\': gt \'ludahome\', \'tell_about_generic_boyfreind\', $npc_usedname["' + ((st as any).temp_npcid ?? 0) + '"]');
+          scene.actions([
+            { label: '', labelFn: (s: GameState) => String((((st as any).npc_usedname ?? 0)?.[String(((st as any).temp_npcid ?? 0))] ?? '') ?? ''), handler: (st: GameState) => { qspGoto(st, 'ludahome', 'tell_about_generic_boyfreind', (((st as any).npc_usedname ?? 0)?.[String(((st as any).temp_npcid ?? 0))])); } },
+          ]);
         }
         (st as any).temp_npcid = undefined;
         (st as any).i = ((st as any).i ?? 0) + (1);

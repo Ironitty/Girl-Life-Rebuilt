@@ -855,33 +855,7 @@ function enterNatMotherRoom(s: GameState, scene: SceneBuilder): void {
         }
         qspCall(s, 'arousal', 'end');
       }
-      if (((s as any).month ?? 0) < 4  ||  ((s as any).month ?? 0) > 9) {
-        scene.img('images/locations/pavlovsk/resident/apartment/natbelapt/natmomsleep3.jpg');
-        scene.text(`You look into the bedroom and see ${(((s as any).npc_nickname ?? 0)?.['A191'] ?? '')} sound asleep under the covers. Not wanting to disturb her you close the door and leave.`);
-      }
-      if ((Math.floor(Math.random() * 3) + 1) === 1) {
-        scene.img('images/locations/pavlovsk/resident/apartment/natbelapt/natmomsleep1.jpg');
-        scene.text(`You look into the bedroom and see ${(((s as any).npc_nickname ?? 0)?.['A191'] ?? '')}, sound asleep in her bra and panties. You can see part of her pussy from where you're standing. Not wanting to disturb her you close the door and leave.`);
-      } else {
-        if ((Math.floor(Math.random() * 2) + 1) === 1) {
-          scene.img('images/locations/pavlovsk/resident/apartment/natbelapt/natmomsleep2.jpg');
-          scene.text(`You look into the bedroom and see ${(((s as any).npc_nickname ?? 0)?.['A191'] ?? '')}, tossing in her sleep in her bra and panties. As you're watching she rolls onto her back and puts her hand in her panties. "That must be one hell of an enjoyable dream." You think to yourself. Not wanting to disturb her you close the door and leave.`);
-          (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
-        } else {
-          if ((Math.floor(Math.random() * 2) + 1) === 1) {
-            scene.img('images/locations/pavlovsk/resident/apartment/natbelapt/natmomsleep1.jpg');
-            scene.text(`You look into the bedroom and see ${(((s as any).npc_nickname ?? 0)?.['A191'] ?? '')}, sound asleep in her bra and panties. You can see part of her pussy from where you're standing. Not wanting to disturb her you close the door and leave.`);
-          } else {
-            scene.img('images/locations/pavlovsk/resident/apartment/natbelapt/natmomsleep2.jpg');
-            scene.text(`You look into the bedroom and see ${(((s as any).npc_nickname ?? 0)?.['A191'] ?? '')}, tossing in her sleep in her bra and panties. As you're watching she rolls onto her back and puts her hand in her panties. "That must be one hell of an enjoyable dream." You think to yourself. Not wanting to disturb her you close the door and leave.`);
-            (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
-          }
-          qspCall(s, 'arousal', 'voyeur', 2);
-          qspCall(s, 'arousal', 'end');
-        }
-      }
       scene.actions([
-        { label: 'Leave', goto: ['natbelapt', 'hallway'] },
         { label: 'Leave', goto: ['natbelapt', 'hallway'] },
       ]);
     } else {

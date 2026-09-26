@@ -23,7 +23,7 @@ function enterCheckimg(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === String((s as any).locArgs?.[3] ?? '')  &&  String((s as any).locArgs?.[2] ?? '') === String((s as any).locArgs?.[4] ?? '')) {
     (s as any).result = '<td><center><img src="images/system/icons/check.png" height="50"></center></td>';
   } else {
-    (s as any).result = '<td><center><a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: $start_type[\u0027loc\u0027] = \u0027' + ((s as any).locArgs?.[3] ?? 0) + '\u0027 */ /* TODO-QSP: $start_type[\u0027magic\u0027] = \u0027' + ((s as any).locArgs?.[4] ?? 0) + '\u0027 */ return s; }); window.__gameStore.getState().doGoto(\u0027begin\u0027, \u0027start\u0027); return false;"><img src="images/system/icons/uncheck.png" height="50"></a></center></td>';
+    (s as any).result = '<td><center><a href="#" onclick="window.__gameStore.setState((s) => { (s.start_type ??= {})\u0027loc\u0027 = \u0027' + ((s as any).locArgs?.[3] ?? 0) + '\u0027; (s.start_type ??= {})\u0027magic\u0027 = \u0027' + ((s as any).locArgs?.[4] ?? 0) + '\u0027; return s; }); window.__gameStore.getState().doGoto(\u0027begin\u0027, \u0027start\u0027); return false;"><img src="images/system/icons/uncheck.png" height="50"></a></center></td>';
   }
   return;
   scene.build();
@@ -131,9 +131,9 @@ function enterRealCharacter(s: GameState, scene: SceneBuilder): void {
   scene.text('Your fixed image is your own personal choice, and is based on your personal preferences. By default, the game uses an avatar image from the site wikimedia.org.');
   scene.text('If you are playing on Android, click ');
   if (((s as any).stat_cfg ?? 0)?.['android'] === 1) {
-    scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { (s.stat_cfg ??= {})\u0027android\u0027 = s.0; return s; }); window.__gameStore.getState().doGoto(\u0027begin\u0027, \u0027real_character\u0027); return false;">Here</a> (Current: <b>Yes</b>)');
+    scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { (s.stat_cfg ??= {})\u0027android\u0027 = 0; return s; }); window.__gameStore.getState().doGoto(\u0027begin\u0027, \u0027real_character\u0027); return false;">Here</a> (Current: <b>Yes</b>)');
   } else {
-    scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { (s.stat_cfg ??= {})\u0027android\u0027 = s.1; return s; }); window.__gameStore.getState().doGoto(\u0027begin\u0027, \u0027real_character\u0027); return false;">Here</a> (Current: <b>No</b>)');
+    scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { (s.stat_cfg ??= {})\u0027android\u0027 = 1; return s; }); window.__gameStore.getState().doGoto(\u0027begin\u0027, \u0027real_character\u0027); return false;">Here</a> (Current: <b>No</b>)');
   }
   scene.text('</center>');
   scene.actions([

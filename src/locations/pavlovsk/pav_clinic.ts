@@ -15,7 +15,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   scene.text('The entrance hall of Pavlovsk Poliklinik is a modest, well-worn space typical of a small town. Natural daylight filters through front windows onto pale turquise walls and scuffed light-gray floor tiles.');
   scene.text('A simple wooden reception desk sits on the left, where two nurses in white coats manage registrations. Blue plastic chairs line the right wall, occupied by a mix of elderly residents, young mothers, and workers waiting quietly.');
   scene.text('A central notice board is layered with schedules for specialists, vaccination reminders, and local health announcements.');
-  // TODO-QSP: "The air carries a faint scent of disinfectant and fresh pine cleaner. Straight ahead, a corridor br...
+  scene.text('The air carries a faint scent of disinfectant and fresh pine cleaner. Straight ahead, a corridor branches toward the various departments, while a quiet hum of conversation and occasional intercom calls fill the functional, unpretentious room that serves as the town\'s everyday healthcare gateway.');
   if (((s as any).preg ?? 0) === 2  ||  ((s as any).pcs_health ?? 0) < ((s as any).healthmax ?? 0) / 2  ||  ((s as any).pain ?? 0)?.['total'] >= 70) {
     if (((s as any).hour ?? 0) < 6  &&  ((s as any).hour ?? 0) > 21) {
       scene.text('At this time the hospital is only staffed with emergency personell.');
@@ -89,7 +89,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       scene.text('"How can I help you, my dear?" she asks.');
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterReception(s, scene); (s as any).locArgs = __savedLocArgs; }
       if ((((s as any).lactation ?? 0)?.['active'] > 0  ||  ((s as any).thinkpreg ?? 0) === 1  ||  ((s as any).knowpreg ?? 0) === 1)  &&  ((s as any).pcs_know_mward ?? 0) <= 0) {
-        scene.text('A sign on the notice board catches your attention. It reads <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(\u0027pav_clinic\u0027, \u0027maternity_ward\u0027); return false;">"Maternity ward"</a>.');
+        scene.text('A sign on the notice board catches your attention. It reads <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=5; return s; }); window.__gameStore.getState().doGoto(\u0027pav_clinic\u0027, \u0027maternity_ward\u0027); return false;">"Maternity ward"</a>.');
       }
       if (((s as any).pcs_know_mward ?? 0) > 0) {
         scene.actions([
@@ -142,20 +142,22 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).job_status ?? 0)?.['pav_clinic_cleaner'] === 'employed') {
         if (qspFunc(s, 'jobs', 'is_arrival_time', 'pav_clinic_cleaner') === 1  &&  ((s as any).job_last_work_day ?? 0)?.['pav_clinic_cleaner'] !== ((s as any).daystart ?? 0)) {
-          (s as any).minut = ((s as any).minut ?? 0) + 60;
-          qspCall(s, 'jobs', 'clock', 'pav_clinic_cleaner');
-          qspCall(s, 'exp_gain', 'cleaning', (Math.floor(Math.random() * 3) + 1));
-          qspCall(s, 'mood', 'lower', 'medium');
-          qspCall(s, 'sweat', 'add', 10);
-          qspCall(s, 'stat', '');
-          scene.img('images/locations/city/residential/office/clener1.jpg');
-          scene.text('As instructed, you take a mop and a bucket from the maintenance closet and begin by cleaning the corridors throughout the clinic. Once you\'re done with that, you enter the examination rooms and offices one by one, occasionally hearing a softly muttered curse from a doctor when you interrupt their work. Nevertheless, you work quickly and the doctors don\'t give you any trouble while you clean the floors of the rooms.');
-          (s as any).ginrand = (Math.floor(Math.random() * 2) + 0);
-          if (((s as any).Gspravka ?? 0) < 10  &&  (!((s as any).ginrand ?? 0))) {
-            scene.text('When you clean the floor of the gynecologist\'s examination room, he leaves the room to let you do your work in peace. You\'re alone now.');
-            if (qspFunc(s, 'pcs_has_attr', 'sex_virgin') === 0  &&  ((s as any).gschoolVars ?? 0)?.['school_diploma'] === 0  &&  ((s as any).motherKnowSpravka ?? 0) === 0  &&  ((s as any).motherKnowRaped ?? 0) === 0  &&  qspFunc(s, 'homes_properties', 'has_access', 'parents_home')) {
-              scene.actions([
-                { label: 'Forge a referral to give to your mother', handler: (st: GameState) => {
+          scene.actions([
+            { label: '', labelFn: (s: GameState) => String('Work as a cleaner for ' + qspFunc(s, 'money', 'string_profit', 100) + ' (1:00)' ?? ''), handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 60;
+    qspCall(st, 'jobs', 'clock', 'pav_clinic_cleaner');
+    qspCall(st, 'exp_gain', 'cleaning', (Math.floor(Math.random() * 3) + 1));
+    qspCall(st, 'mood', 'lower', 'medium');
+    qspCall(st, 'sweat', 'add', 10);
+    qspCall(st, 'stat', '');
+    scene.img('images/locations/city/residential/office/clener1.jpg');
+    scene.text('As instructed, you take a mop and a bucket from the maintenance closet and begin by cleaning the corridors throughout the clinic. Once you\'re done with that, you enter the examination rooms and offices one by one, occasionally hearing a softly muttered curse from a doctor when you interrupt their work. Nevertheless, you work quickly and the doctors don\'t give you any trouble while you clean the floors of the rooms.');
+    (st as any).ginrand = (Math.floor(Math.random() * 2) + 0);
+    if (((st as any).Gspravka ?? 0) < 10  &&  (!((st as any).ginrand ?? 0))) {
+      scene.text('When you clean the floor of the gynecologist\'s examination room, he leaves the room to let you do your work in peace. You\'re alone now.');
+      if (qspFunc(s, 'pcs_has_attr', 'sex_virgin') === 0  &&  ((st as any).gschoolVars ?? 0)?.['school_diploma'] === 0  &&  ((st as any).motherKnowSpravka ?? 0) === 0  &&  ((st as any).motherKnowRaped ?? 0) === 0  &&  qspFunc(s, 'homes_properties', 'has_access', 'parents_home')) {
+        scene.actions([
+          { label: 'Forge a referral to give to your mother', handler: (st: GameState) => {
     (st as any).Gspravka = 30;
     (st as any).GspravkaT = 1;
     (st as any).Gspassed = 1;
@@ -171,16 +173,15 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   }, goto: ['pav_clinic', ''] },
     ]);
   } },
-              ]);
-            }
-          }
-          scene.actions([
-            { label: 'Work as a cleaner for  [+$func(\'money\', \'string_profit\', 100)+\' (...]', handler: (st: GameState) => {
-    // TODO-QSP: 00)':
-  } },
-            { label: 'Finish cleaning', handler: (st: GameState) => {
+        ]);
+      }
+    }
+    scene.actions([
+      { label: 'Finish cleaning', handler: (st: GameState) => {
     qspCall(st, 'jobs', '');
   }, goto: ['pav_clinic', ''] },
+    ]);
+  } },
           ]);
         }
       }
@@ -370,10 +371,10 @@ function enterPetrovich1(s: GameState, scene: SceneBuilder): void {
       }
       scene.text(`He looks up from his desk when you enter his office and recognizes you immediately. "Ah, hello ${((s as any).pcs_nickname ?? '')}. Did you come for a check-up?"`);
       scene.text('You nod and take a seat. "Hello, Dr. Petrovich. Yes, I\'m here for a check-up."');
-      // TODO-QSP: $gyn1
+      scene.text(String((s as any).gyn1 ?? ''));
       scene.text('You smile at him. "It\'s true, Dr. Petrovich. I am."');
       scene.text('He rubs his hand over his chin and continues. "Does your mother know?"');
-      // TODO-QSP: $gyn2
+      scene.text(String((s as any).gyn2 ?? ''));
       scene.text('The gynecologist nods, and motions for you to stand up. "Very well, let\'s see how you\'re doing then. Undress for me, please."');
     } else {
       if (((s as any).docKnow ?? 0) === 1) {
@@ -386,10 +387,10 @@ function enterPetrovich1(s: GameState, scene: SceneBuilder): void {
         }
         scene.text(`He looks up from his desk when you enter his office and recognizes you immediately. "Ah, hello ${((s as any).pcs_nickname ?? '')}. Back for another check-up?"`);
         scene.text('You nod and take a seat. "Hello, Dr. Petrovich. Yes, I\'m here for a check-up."');
-        // TODO-QSP: $gyn1
+        scene.text(String((s as any).gyn1 ?? ''));
         scene.text('"Yes, doctor. I am," you tell him.');
         scene.text('He rubs his hand over his chin and continues. "If I may be so bold… Why?"');
-        // TODO-QSP: $gyn2
+        scene.text(String((s as any).gyn2 ?? ''));
         scene.text('He smirks, but nods. "I understand. It\'s not my place to judge anyway. Let\'s see how you\'re doing. Undress for me, please."');
       }
     }
@@ -621,7 +622,7 @@ function enterPetrovichCheckupProst(s: GameState, scene: SceneBuilder): void {
       scene.text('You smile, knowing this question would come. "I can pay. How much do I owe you?"');
       scene.text('\'He returns your smile. "For you? 1000₽."\'');
       scene.actions([
-        { label: 'Pay him ( [1000₽]...]', handler: (st: GameState) => {
+        { label: '', labelFn: (s: GameState) => String('Pay him (' + qspFunc(s, 'money', 'string_price', 1000) + ')' ?? ''), handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
     qspCall(st, 'money', 'pay', 1000, 'cash');
     scene.text('\'You gladly pay him the 1000₽ and thank him again.\'');

@@ -364,7 +364,7 @@ function enter15MinuteLoop(s: GameState, scene: SceneBuilder): void {
       return;
     }
     if (((s as any).daystart_start ?? 0) < 100) {
-      // TODO-QSP: pl '<br>Did you start at the <a href="exec:daystart_start = 239 & gs ''time'' & gs''stat''">end of A...
+      scene.text('<br>Did you start at the <a href="#" onclick="window.__gameStore.setState((s) => { s.daystart_start = 239; return s; }); window.__gameStore.getState().doGoto(\u0027time\u0027 & gs\u0027stat\u0027, \u0027\u0027); return false;">end of August</a> or <a href="#" onclick="window.__gameStore.setState((s) => { s.daystart_start = 153; return s; }); window.__gameStore.getState().doGoto(\u0027time\u0027 & gs\u0027stat\u0027, \u0027\u0027); return false;">beginning of June</a>?');
       return;
     }
     (s as any).BACKIMAGE = '';
@@ -760,6 +760,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
 
 export const stat: LocationDef = {
   name: 'stat',
+  title: '<br>Did you start at the <a href="#" onclick="window.__gameS',
   region: 'other',
   enter: enter,
 };

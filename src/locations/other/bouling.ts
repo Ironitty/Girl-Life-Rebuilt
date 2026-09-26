@@ -53,7 +53,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
           ]);
         }
         scene.actions([
-          { label: 'Gamble ( [2000₽]...]', handler: (st: GameState) => {
+          { label: '\'Gamble (2000₽)\'', handler: (st: GameState) => {
     (st as any).boulvar = 1;
   }, goto: ['bouling', 'randwin'] },
         ]);
@@ -152,7 +152,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
           ]);
         }
         scene.actions([
-          { label: 'Gamble ( [2000₽]...]', handler: (st: GameState) => {
+          { label: '\'Gamble (2000₽)\'', handler: (st: GameState) => {
     (st as any).boulvar = 1;
   }, goto: ['bouling', 'randwin'] },
         ]);
@@ -294,7 +294,7 @@ function enterRandwin(s: GameState, scene: SceneBuilder): void {
             ]);
           }
           scene.actions([
-            { label: 'Pay ( [2000₽]...]', handler: (st: GameState) => {
+            { label: '\'Pay (2000₽)\'', handler: (st: GameState) => {
     qspCall(st, 'money', '');
   }, goto: ['bouling', ''] },
           ]);

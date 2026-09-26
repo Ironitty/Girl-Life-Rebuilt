@@ -17,7 +17,6 @@ function enterVasilyHomeMomgg1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'voyeur_sex', 5);
   qspCall(s, 'gopsex', 'masturb_gg');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end & !! --- vasily_home_momgg1 ---
   scene.actions([
     { label: 'Keep watching', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/smroom/momgg/ev1_2.jpg');
@@ -80,7 +79,6 @@ function enterVasilyHomeMomgg2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'voyeur_sex', 5);
   qspCall(s, 'gopsex', 'masturb_gg');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end & !! --- vasily_home_momgg2 ---
   scene.actions([
     { label: 'Keep watching', handler: (st: GameState) => {
     scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/shulginhome/smroom/momgg/ev2_2_` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
@@ -132,7 +130,6 @@ function enterVasilyHomeMomggbang(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'voyeur_sex', 5);
   qspCall(s, 'gopsex', 'masturb_gg');
   qspCall(s, 'stat', '');
-  // TODO-QSP: end & !! --- vasily_home_momggbang ---
   scene.actions([
     { label: 'Keep watching', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/smroom/momgg/ev3_2_1.jpg');
@@ -214,7 +211,6 @@ function enterGangSexEv1(s: GameState, scene: SceneBuilder): void {
   scene.text('When you enter the kitchen, you see Vasily and his friends sitting at the table. They\'ve clearly been drinking.');
   scene.text(`"${((s as any).pcs_nickname ?? '')}, how nice of you to join us! We were just talking about you," Vitek grins as he pulls you onto the table. The other boys immediately surround you, and the three of them begin to paw at your clothes.`);
   scene.text('"Guys, what are you doing!?" you protest as you weakly try to get away from them. They\'re too strong though, and your struggling just encourages them.');
-  // TODO-QSP: end & !! --- gang_sex_ev1 ---
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/kuh/event/gang2.jpg');
@@ -861,9 +857,9 @@ function enterDrunkenSex(s: GameState, scene: SceneBuilder): void {
     ((st as any).temp = (st as any).temp ?? {})[0] = 'face';
     ((st as any).temp = (st as any).temp ?? {})[1] = 'mouth';
     ((st as any).temp = (st as any).temp ?? {})[2] = 'stomach';
-    qspCall(st, 'cum_call', '', 0, (((st as any).boy ?? 0)?.[2] ?? 0), 1);
-    qspCall(st, 'cum_call', '', 0, (((st as any).boy ?? 0)?.[1] ?? 0), 1);
-    qspCall(st, 'cum_call', '', 0, (((st as any).boy ?? 0)?.[3] ?? 0), 1);
+    qspCall(st, 'cum_call', '', (((st as any).temp ?? 0)?.[(Math.floor(Math.random() * 3) + 0)] ?? 0), (((st as any).boy ?? 0)?.[2] ?? 0), 1);
+    qspCall(st, 'cum_call', '', (((st as any).temp ?? 0)?.[(Math.floor(Math.random() * 3) + 0)] ?? 0), (((st as any).boy ?? 0)?.[1] ?? 0), 1);
+    qspCall(st, 'cum_call', '', (((st as any).temp ?? 0)?.[(Math.floor(Math.random() * 3) + 0)] ?? 0), (((st as any).boy ?? 0)?.[3] ?? 0), 1);
     ((st as any).npc_had_sex = (st as any).npc_had_sex ?? {})['A9'] = 1;
     ((st as any).npc_had_sex = (st as any).npc_had_sex ?? {})['A10'] = 1;
     ((st as any).npc_had_sex = (st as any).npc_had_sex ?? {})['A11'] = 1;

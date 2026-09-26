@@ -9,15 +9,15 @@ import type { SceneBuilder } from '../../core/scene';
 function enter(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') !== 1  &&  ((s as any).pattest ?? 0) > 0) {
     (s as any).j = 0;
-    // TODO-QSP: p ''
+    scene.text('');
     if (((s as any).kid ?? 0) > 0  &&  (Array.isArray((s as any).surefather) ? ((s as any).surefather as any[]).indexOf('0') : -1) !== ((s as any).kid ?? 0)) {
-      // TODO-QSP: pl '<br>Select the child you want to compare with <<$ARGS[0]>>:<br>'
+      scene.text(`<br>Select the child you want to compare with ${((s as any).locArgs?.[0] ?? '')}:<br>`);
       (s as any).papa = ((s as any).locArgs?.[0] ?? 0);
       while (true) {
         ((s as any).kidid = (s as any).kidid ?? {})[String((s as any).j ?? 0)] = ((s as any).j ?? 0);
         (s as any).value = (((s as any).kidid ?? 0)?.[String((s as any).j ?? 0)] ?? 0);
         if (((s as any).surefather ?? 0)?.[String((s as any).j ?? 0)] === 0) {
-          // TODO-QSP: pl '    <a href="exec:func(''pattest'', value, 1) & pattest -= 1 & gs ''stat''"><<$kidname[j]>></a>'
+          scene.text(`    <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: func(/u0027pattest/u0027, value, 1) */ s.pattest -=1; return s; }); window.__gameStore.getState().doGoto(/u0027stat/u0027, /u0027/u0027); return false;">${(((s as any).kidname ?? 0)?.[String((s as any).j ?? 0)] ?? '')}</a>`);
         }
         if (((s as any).j ?? 0) < ((s as any).kid ?? 0)-1) {
           (s as any).j = ((s as any).j ?? 0) + (1);
@@ -72,7 +72,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     while (true) {
       ((s as any).kidid = (s as any).kidid ?? {})[String((s as any).j ?? 0)] = ((s as any).j ?? 0);
       if (((s as any).patpack ?? 0)?.[String((s as any).j ?? 0)] === 1) {
-        scene.text('    <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: testresDay[kidid[j]] = daystart+rand(5,7) */ /* TODO-QSP: patpack[kidid[j]] = 0 */ s.used_pattest -=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027money\u0027, \u0027pay\u0027, String(window.__gameStore.getState().20000 ?? \u0027\u0027)); return false;">$kidname[j]</a>');
+        scene.text('    <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: testresDay[kidid[j]] = daystart+rand(5,7) */ /* TODO-QSP: patpack[kidid[j]] = 0 */ s.used_pattest -=1; return s; }); window.__gameStore.getState().doGoto(\u0027money\u0027, \u0027pay\u0027, String(window.__gameStore.getState().20000 ?? \u0027\u0027)); return false;">$kidname[j]</a>');
       }
       if (((s as any).j ?? 0) < ((s as any).kid ?? 0) - 1) {
         (s as any).j = ((s as any).j ?? 0) + (1);

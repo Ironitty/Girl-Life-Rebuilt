@@ -73,16 +73,16 @@ function enterMain(s: GameState, scene: SceneBuilder): void {
 ]);
     return;
   }
-  scene.text('An <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027shop\u0027, \u0027ATM\u0027); return false;">ATM</a>, from which you can withdraw money from your bank account, stands against a wall.');
-  scene.text('There is a branch of the communications giant <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027shop\u0027, \u0027megafon\u0027); return false;">MegaFon</a>.');
+  scene.text('An <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=1; return s; }); window.__gameStore.getState().doGoto(\u0027shop\u0027, \u0027ATM\u0027); return false;">ATM</a>, from which you can withdraw money from your bank account, stands against a wall.');
+  scene.text('There is a branch of the communications giant <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=1; return s; }); window.__gameStore.getState().doGoto(\u0027shop\u0027, \u0027megafon\u0027); return false;">MegaFon</a>.');
   scene.text('A <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027adverts_manager\u0027, \u0027start\u0027); return false;">Public notice board</a>, where you can check various private and official advertisements, is sitting on a nearby wall.');
-  scene.text('<br>Most of the space in the supermarket is taken up by the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027shop\u0027, \u0027grocery\u0027); return false;">grocery department</a>, but the store has many smaller departments as well.');
-  scene.text('These include <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027shop\u0027, \u0027cosmetics\u0027); return false;">cosmetics</a>, <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027shop\u0027, \u0027hardware\u0027); return false;">hardware</a>, <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027shop\u0027, \u0027clothing\u0027); return false;">clothing</a> and <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027shop\u0027, \u0027tech\u0027); return false;">household appliances</a>. Not far from the entrance is a <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027shop\u0027, \u0027icecream\u0027); return false;">counter selling ice cream</a>.');
+  scene.text('<br>Most of the space in the supermarket is taken up by the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=1; return s; }); window.__gameStore.getState().doGoto(\u0027shop\u0027, \u0027grocery\u0027); return false;">grocery department</a>, but the store has many smaller departments as well.');
+  scene.text('These include <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=1; return s; }); window.__gameStore.getState().doGoto(\u0027shop\u0027, \u0027cosmetics\u0027); return false;">cosmetics</a>, <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=1; return s; }); window.__gameStore.getState().doGoto(\u0027shop\u0027, \u0027hardware\u0027); return false;">hardware</a>, <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=1; return s; }); window.__gameStore.getState().doGoto(\u0027shop\u0027, \u0027clothing\u0027); return false;">clothing</a> and <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=1; return s; }); window.__gameStore.getState().doGoto(\u0027shop\u0027, \u0027tech\u0027); return false;">household appliances</a>. Not far from the entrance is a <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=1; return s; }); window.__gameStore.getState().doGoto(\u0027shop\u0027, \u0027icecream\u0027); return false;">counter selling ice cream</a>.');
   qspCall(s, 'stat', '');
   qspCall(s, 'family_schedule', '');
   if (((s as any).loc_bak ?? 0) === 'pav_commercial') {
     if (((s as any).locat ?? 0)?.['Anya'] === 7) {
-      scene.text('Your sister <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027shop\u0027, \u0027Anya\u0027); return false;">Anya</a> is sitting at the cash register.');
+      scene.text('Your sister <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=1; return s; }); window.__gameStore.getState().doGoto(\u0027shop\u0027, \u0027Anya\u0027); return false;">Anya</a> is sitting at the cash register.');
     }
   }
   if (((s as any).loc_bak ?? 0) === 'city_residential') {
@@ -233,7 +233,7 @@ function enterATM(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).karta ?? 0) >= 1000) {
         scene.actions([
-          { label: 'Withdraw  [+$func(\'money\', \'format\', 1000) + \' from ...]', handler: (st: GameState) => {
+          { label: '', labelFn: (s: GameState) => String('Withdraw ' + qspFunc(s, 'money', 'format', 1000) + ' from the ATM' ?? ''), handler: (st: GameState) => {
     (st as any).karta = ((st as any).karta ?? 0) - (1000);
     (st as any).money = ((st as any).money ?? 0) + (1000);
     qspCall(st, 'bank', 'set_withdraw_text', 1000);
@@ -698,7 +698,7 @@ function enterMegafon(s: GameState, scene: SceneBuilder): void {
           if (qspFunc(s, 'money', 'can_afford', ((s as any).price ?? 0), 'bank') === 0) {
             (s as any).line = ((s as any).line ?? 0) + ('<td style="padding-left: 10px; padding-right: 10px;">Insufficient balance</td></tr>');
           } else {
-            (s as any).line = ((s as any).line ?? 0) + ('<td style="padding-left: 10px; padding-right: 10px;"><a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.30; return s; }); window.__gameStore.getState().doGoto(\u0027internet_mobile\u0027, \u0027buy_subscription\u0027, (((s as any).home ?? 0)?.[\u0027current\u0027] ?? \u0027\u0027)); return false;">Pay with Card</a></td></tr>');
+            (s as any).line = ((s as any).line ?? 0) + ('<td style="padding-left: 10px; padding-right: 10px;"><a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=30; return s; }); window.__gameStore.getState().doGoto(\u0027internet_mobile\u0027, \u0027buy_subscription\u0027, (((s as any).home ?? 0)?.[\u0027current\u0027] ?? \u0027\u0027)); return false;">Pay with Card</a></td></tr>');
           }
         }
       }
@@ -724,7 +724,7 @@ function enterMegafon(s: GameState, scene: SceneBuilder): void {
               if (qspFunc(s, 'money', 'can_afford', ((s as any).price ?? 0), 'bank') === 0) {
                 (s as any).line = ((s as any).line ?? 0) + ('<td style="padding-left: 10px; padding-right: 10px;">Insufficient balance</td></tr>');
               } else {
-                (s as any).line = ((s as any).line ?? 0) + ('<td style="padding-left: 10px; padding-right: 10px;"><a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.30; return s; }); window.__gameStore.getState().doGoto(\u0027internet_mobile\u0027, \u0027buy_subscription\u0027, (((s as any).property_code ?? 0)?.[String((s as any).i ?? 0)] ?? \u0027\u0027)); return false;">Pay with card</a></td></tr>');
+                (s as any).line = ((s as any).line ?? 0) + ('<td style="padding-left: 10px; padding-right: 10px;"><a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=30; return s; }); window.__gameStore.getState().doGoto(\u0027internet_mobile\u0027, \u0027buy_subscription\u0027, (((s as any).property_code ?? 0)?.[String((s as any).i ?? 0)] ?? \u0027\u0027)); return false;">Pay with card</a></td></tr>');
               }
             }
           } else {
@@ -763,7 +763,7 @@ function enterMegafon(s: GameState, scene: SceneBuilder): void {
       if (qspFunc(s, 'money', 'can_afford', ((s as any).discount_left ?? 0), 'bank') === 0) {
         (s as any).line = ((s as any).line ?? 0) + ('<td style="padding-left: 10px; padding-right: 10px;">Insufficient funds</td></tr>');
       } else {
-        (s as any).line = ((s as any).line ?? 0) + ('<td style="padding-left: 10px; padding-right: 10px;"><a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.30; return s; }); window.__gameStore.getState().doGoto(\u0027internet_mobile\u0027, \u0027buy_subscription\u0027, \u0027mobile\u0027); return false;">Pay with card</a></td></tr>');
+        (s as any).line = ((s as any).line ?? 0) + ('<td style="padding-left: 10px; padding-right: 10px;"><a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=30; return s; }); window.__gameStore.getState().doGoto(\u0027internet_mobile\u0027, \u0027buy_subscription\u0027, \u0027mobile\u0027); return false;">Pay with card</a></td></tr>');
       }
     }
   }
@@ -782,25 +782,25 @@ function enterMegafon(s: GameState, scene: SceneBuilder): void {
     if (qspFunc(s, 'money', 'can_afford', 80) === 0) {
       (s as any).line = ((s as any).line ?? 0) + ('<td style="padding-left: 10px; padding-right: 10px;" colspan="2">You can\'t afford this</td></tr>');
     } else {
-      (s as any).line = ((s as any).line ?? 0) + ('<td style="padding-left: 10px; padding-right: 10px;" colspan="2"><a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.10; return s; }); window.__gameStore.getState().doGoto(\u0027internet_mobile\u0027, \u0027top_up_metered\u0027, \u0027metered_mobile\u0027); return false;">Buy</a></td></tr>');
+      (s as any).line = ((s as any).line ?? 0) + ('<td style="padding-left: 10px; padding-right: 10px;" colspan="2"><a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=10; return s; }); window.__gameStore.getState().doGoto(\u0027internet_mobile\u0027, \u0027top_up_metered\u0027, \u0027metered_mobile\u0027); return false;">Buy</a></td></tr>');
     }
     (s as any).line = ((s as any).line ?? 0) + ('<tr><td style="padding-left: 10px; padding-right: 10px; align: left; "><b>600 minutes</b> (10 hours) of mobile internet for ' + qspFunc(s, 'money', 'string_price', 155) + '</td>');
     if (qspFunc(s, 'money', 'can_afford', 155) === 0) {
       (s as any).line = ((s as any).line ?? 0) + ('<td style="padding-left: 10px; padding-right: 10px;" colspan="2">You can\'t afford this</td></tr>');
     } else {
-      (s as any).line = ((s as any).line ?? 0) + ('<td style="padding-left: 10px; padding-right: 10px;" colspan="2"><a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.10; return s; }); window.__gameStore.getState().doGoto(\u0027internet_mobile\u0027, \u0027top_up_metered\u0027, \u0027metered_mobile\u0027); return false;">Buy</a></td></tr>');
+      (s as any).line = ((s as any).line ?? 0) + ('<td style="padding-left: 10px; padding-right: 10px;" colspan="2"><a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=10; return s; }); window.__gameStore.getState().doGoto(\u0027internet_mobile\u0027, \u0027top_up_metered\u0027, \u0027metered_mobile\u0027); return false;">Buy</a></td></tr>');
     }
     (s as any).line = ((s as any).line ?? 0) + ('<tr><td style="padding-left: 10px; padding-right: 10px; align: left; "><b>1200 minutes</b> (20 hours) of mobile internet for ' + qspFunc(s, 'money', 'string_price', 295) + '</td>');
     if (qspFunc(s, 'money', 'can_afford', 295) === 0) {
       (s as any).line = ((s as any).line ?? 0) + ('<td style="padding-left: 10px; padding-right: 10px;" colspan="2">You can\'t afford this</td></tr>');
     } else {
-      (s as any).line = ((s as any).line ?? 0) + ('<td style="padding-left: 10px; padding-right: 10px;" colspan="2"><a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.10; return s; }); window.__gameStore.getState().doGoto(\u0027internet_mobile\u0027, \u0027top_up_metered\u0027, \u0027metered_mobile\u0027); return false;">Buy</a></td></tr>');
+      (s as any).line = ((s as any).line ?? 0) + ('<td style="padding-left: 10px; padding-right: 10px;" colspan="2"><a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=10; return s; }); window.__gameStore.getState().doGoto(\u0027internet_mobile\u0027, \u0027top_up_metered\u0027, \u0027metered_mobile\u0027); return false;">Buy</a></td></tr>');
     }
     (s as any).line = ((s as any).line ?? 0) + ('<tr><td style="padding-left: 10px; padding-right: 10px; align: left; "><b>3000 minutes</b> (50 hours) of mobile internet for ' + qspFunc(s, 'money', 'string_price', 695) + '</td>');
     if (qspFunc(s, 'money', 'can_afford', 695) === 0) {
       (s as any).line = ((s as any).line ?? 0) + ('<td style="padding-left: 10px; padding-right: 10px;" colspan="2">You can\'t afford this</td></tr>');
     } else {
-      (s as any).line = ((s as any).line ?? 0) + ('<td style="padding-left: 10px; padding-right: 10px;" colspan="2"><a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.10; return s; }); window.__gameStore.getState().doGoto(\u0027internet_mobile\u0027, \u0027top_up_metered\u0027, \u0027metered_mobile\u0027); return false;">Buy</a></td></tr>');
+      (s as any).line = ((s as any).line ?? 0) + ('<td style="padding-left: 10px; padding-right: 10px;" colspan="2"><a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=10; return s; }); window.__gameStore.getState().doGoto(\u0027internet_mobile\u0027, \u0027top_up_metered\u0027, \u0027metered_mobile\u0027); return false;">Buy</a></td></tr>');
     }
   }
   scene.text(`${((s as any).title ?? '')}${((s as any).tables ?? '')}${((s as any).line ?? '')}${((s as any).tablec ?? '')}`);
@@ -824,7 +824,7 @@ function enterMegafon(s: GameState, scene: SceneBuilder): void {
       if (qspFunc(s, 'money', 'can_afford', ((s as any).discount_left ?? 0), 'bank') === 0) {
         (s as any).line = ((s as any).line ?? 0) + ('<td style="padding-left: 10px; padding-right: 10px;">Insufficient funds</td></tr>');
       } else {
-        (s as any).line = ((s as any).line ?? 0) + ('<td style="padding-left: 10px; padding-right: 10px;"><a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.30; return s; }); window.__gameStore.getState().doGoto(\u0027internet_mobile\u0027, \u0027buy_subscription\u0027, \u0027monthly_calls\u0027); return false;">Pay with card</a></td></tr>');
+        (s as any).line = ((s as any).line ?? 0) + ('<td style="padding-left: 10px; padding-right: 10px;"><a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=30; return s; }); window.__gameStore.getState().doGoto(\u0027internet_mobile\u0027, \u0027buy_subscription\u0027, \u0027monthly_calls\u0027); return false;">Pay with card</a></td></tr>');
       }
     }
   }
@@ -839,25 +839,25 @@ function enterMegafon(s: GameState, scene: SceneBuilder): void {
     if (qspFunc(s, 'money', 'can_afford', 60) === 0) {
       (s as any).line = ((s as any).line ?? 0) + ('<td style="padding-left: 10px; padding-right: 10px;" colspan="2">You can\'t afford this</td></tr>');
     } else {
-      (s as any).line = ((s as any).line ?? 0) + ('<td style="padding-left: 10px; padding-right: 10px;" colspan="2"><a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.10; return s; }); window.__gameStore.getState().doGoto(\u0027internet_mobile\u0027, \u0027top_up_metered\u0027, \u0027metered_calls\u0027); return false;">Buy</a></td></tr>');
+      (s as any).line = ((s as any).line ?? 0) + ('<td style="padding-left: 10px; padding-right: 10px;" colspan="2"><a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=10; return s; }); window.__gameStore.getState().doGoto(\u0027internet_mobile\u0027, \u0027top_up_metered\u0027, \u0027metered_calls\u0027); return false;">Buy</a></td></tr>');
     }
     (s as any).line = ((s as any).line ?? 0) + ('<tr><td style="padding-left: 10px; padding-right: 10px; align: left;">' + qspFunc(s, 'money', 'string_price', 115) + ' call pack for your mobile phone that gives you 120 minutes of calltime and 240 text messages</td>');
     if (qspFunc(s, 'money', 'can_afford', 115) === 0) {
       (s as any).line = ((s as any).line ?? 0) + ('<td style="padding-left: 10px; padding-right: 10px;" colspan="2">You can\'t afford this</td></tr>');
     } else {
-      (s as any).line = ((s as any).line ?? 0) + ('<td style="padding-left: 10px; padding-right: 10px;" colspan="2"><a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.10; return s; }); window.__gameStore.getState().doGoto(\u0027internet_mobile\u0027, \u0027top_up_metered\u0027, \u0027metered_calls\u0027); return false;">Buy</a></td></tr>');
+      (s as any).line = ((s as any).line ?? 0) + ('<td style="padding-left: 10px; padding-right: 10px;" colspan="2"><a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=10; return s; }); window.__gameStore.getState().doGoto(\u0027internet_mobile\u0027, \u0027top_up_metered\u0027, \u0027metered_calls\u0027); return false;">Buy</a></td></tr>');
     }
     (s as any).line = ((s as any).line ?? 0) + ('<tr><td style="padding-left: 10px; padding-right: 10px; align: left;">' + qspFunc(s, 'money', 'string_price', 170) + ' call pack for your mobile phone that gives you 180 minutes of calltime and 360 text messages</td>');
     if (qspFunc(s, 'money', 'can_afford', 170) === 0) {
       (s as any).line = ((s as any).line ?? 0) + ('<td style="padding-left: 10px; padding-right: 10px;" colspan="2">You can\'t afford this</td></tr>');
     } else {
-      (s as any).line = ((s as any).line ?? 0) + ('<td style="padding-left: 10px; padding-right: 10px;" colspan="2"><a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.10; return s; }); window.__gameStore.getState().doGoto(\u0027internet_mobile\u0027, \u0027top_up_metered\u0027, \u0027metered_calls\u0027); return false;">Buy</a></td></tr>');
+      (s as any).line = ((s as any).line ?? 0) + ('<td style="padding-left: 10px; padding-right: 10px;" colspan="2"><a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=10; return s; }); window.__gameStore.getState().doGoto(\u0027internet_mobile\u0027, \u0027top_up_metered\u0027, \u0027metered_calls\u0027); return false;">Buy</a></td></tr>');
     }
     (s as any).line = ((s as any).line ?? 0) + ('<tr><td style="padding-left: 10px; padding-right: 10px; align: left;">' + qspFunc(s, 'money', 'string_price', 225) + ' call pack for your mobile phone that gives you 240 minutes of calltime and 480 text messages</td>');
     if (qspFunc(s, 'money', 'can_afford', 225) === 0) {
       (s as any).line = ((s as any).line ?? 0) + ('<td style="padding-left: 10px; padding-right: 10px;" colspan="2">You can\'t afford this</td></tr>');
     } else {
-      (s as any).line = ((s as any).line ?? 0) + ('<td style="padding-left: 10px; padding-right: 10px;" colspan="2"><a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.10; return s; }); window.__gameStore.getState().doGoto(\u0027internet_mobile\u0027, \u0027top_up_metered\u0027, \u0027metered_calls\u0027); return false;">Buy</a></td></tr>');
+      (s as any).line = ((s as any).line ?? 0) + ('<td style="padding-left: 10px; padding-right: 10px;" colspan="2"><a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=10; return s; }); window.__gameStore.getState().doGoto(\u0027internet_mobile\u0027, \u0027top_up_metered\u0027, \u0027metered_calls\u0027); return false;">Buy</a></td></tr>');
     }
   }
   scene.text(`${((s as any).title ?? '')}${((s as any).tables ?? '')}${((s as any).line ?? '')}${((s as any).tablec ?? '')}`);

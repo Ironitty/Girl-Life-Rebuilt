@@ -1,4 +1,4 @@
-import { qspCall, dynamicGoto } from '../_shared/qspBridge';
+import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -31,7 +31,7 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).loc ?? 0) === 'pushkin_ballet_res'  &&  ((s as any).loc_arg ?? 0) === 'hallway'  &&  (((s as any).hour ?? 0) >= 6  &&  ((s as any).hour ?? 0) < 8)  &&  (((s as any).day ?? 0) >= 1  ||  ((s as any).day ?? 0) <= 6)) {
         scene.actions([
-          { label: 'Go to School ( [7:30]...]', goto: ['pushkin_ballet_class', 'start'] },
+          { label: '', labelFn: (s: GameState) => String('Go to School (' + qspFunc(s, 'time', 'get_time_string', 7, 30) + ' start)' ?? ''), goto: ['pushkin_ballet_class', 'start'] },
         ]);
       }
     }
@@ -105,7 +105,9 @@ function enterDailyAssessment(s: GameState, scene: SceneBuilder): void {
   if (((s as any).school_daily_check ?? 0) !== ((s as any).daystart ?? 0)  &&  (((s as any).nclass ?? 0) > 0  ||  ((s as any).nclass ?? 0) <= 5)) {
     qspCall(s, 'shortgs', 'clothing_status');
     if (((s as any).ballet_debug ?? 0) === 1) {
-      // TODO-QSP: if nclass > 0: $ballet_class_debug += nclass + ' - ' + $loc_arg + iif(nclass = 5, ' -|- <br>', ', ')
+      if (((s as any).nclass ?? 0) > 0) {
+        (s as any).ballet_class_debug = ((s as any).ballet_class_debug ?? '') + ((s as any).nclass ?? 0) + ' - ' + ((s as any).loc_arg ?? 0) + ((((s as any).nclass ?? 0) === 5) ? (' -|- <br>') : (', '));
+      }
     }
     ((s as any).ballet_grade_attendance = (s as any).ballet_grade_attendance ?? {})[String((s as any).week ?? 0)] = ((s as any).ballet_grade_attendance[String((s as any).week ?? 0)] ?? 0) + (1);
     if (((s as any).pcs_makeup ?? 0) > 1) {

@@ -620,10 +620,10 @@ function enter(s: GameState, scene: SceneBuilder): void {
   (s as any).NPCFS_Attrib = ((s as any).locArgs?.[0] ?? 0);
   if (String((s as any).locArgs?.[1] ?? '') === '') {
     (s as any).NPCFS_Value = ((s as any).locArgs?.[1] ?? 0);
-    // TODO-QSP: dynamic '<<$NPCFS_Team>>_<<$NPCFS_Attrib>>[<<NPCFS_TeamSlot>>] = <<NPCFS_Value>>'
+    scene.text('' + ((s as any).NPCFS_Team ?? 0) + '_' + ((s as any).NPCFS_Attrib ?? 0) + '[' + ((s as any).NPCFS_TeamSlot ?? 0) + '] = ' + ((s as any).NPCFS_Value ?? 0) + '');
   } else {
     (s as any).NPCFS_Value = ((s as any).locArgs?.[1] ?? 0);
-    // TODO-QSP: dynamic '$<<$NPCFS_Team>>_<<$NPCFS_Attrib>>[<<NPCFS_TeamSlot>>] = ''<<$NPCFS_Value>>'''
+    scene.text('$' + ((s as any).NPCFS_Team ?? 0) + '_' + ((s as any).NPCFS_Attrib ?? 0) + '[' + ((s as any).NPCFS_TeamSlot ?? 0) + '] = \'' + ((s as any).NPCFS_Value ?? 0) + '\'');
   }
   (s as any).calcNPCFightHealth = qspUntranslated(s, "{", { location: "fight_npcdata" });
   (s as any).NPCFightStatStr = 0;

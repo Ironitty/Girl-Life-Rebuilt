@@ -262,23 +262,6 @@ function enterEveningAfterMenu(s: GameState, scene: SceneBuilder): void {
     scene.text('"So, what do you want to do now?"');
   }
   if (((s as any).date_ev ?? 0)?.['at_home'] === 0) {
-    if (((s as any).hour ?? 0) < 21) {
-      if ((Array.isArray((s as any).date_ev) ? ((s as any).date_ev as any[]).indexOf('dinner_date') : -1) < 0) {
-        scene.actions([
-          { label: 'Get dinner', goto: ['date_ev', 'dinner_after_ask'] },
-        ]);
-      }
-    }
-    if ((Array.isArray((s as any).date_ev) ? ((s as any).date_ev as any[]).indexOf('park_date') : -1) < 0) {
-      scene.actions([
-        { label: 'Go for a walk', goto: ['date_ev', 'dinner_after_ask'] },
-      ]);
-    }
-    if ((Array.isArray((s as any).date_ev) ? ((s as any).date_ev as any[]).indexOf('cinema_date') : -1) < 0) {
-      scene.actions([
-        { label: 'Go see a movie', goto: ['date_ev', 'cinema_after_ask'] },
-      ]);
-    }
     scene.actions([
       { label: 'Say goodbye', goto: ['date_after', 'goodbye_route'] },
       { label: 'Come over for coffee', goto: ['date_after', 'coffee_after_ask'] },
@@ -578,7 +561,6 @@ function enterStayAsk(s: GameState, scene: SceneBuilder): void {
     scene.text(`${(((st as any).date_ev ?? 0)?.['spend_night_question'] ?? '')}. "My boyfriend's been pissing me off lately and I don't want to go home to that."`);
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSpendNight(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
-        { label: 'I don\'t want to see my boyfriend(guilt)' }, // TODO-QSP: empty action body
       ]);
     }
     scene.actions([
@@ -1324,30 +1306,6 @@ function enterLeavingDialogueChoices(s: GameState, scene: SceneBuilder): void {
   } },
         ]);
       }
-      if (((s as any).npc_booty_call_date ?? 0)?.[String((s as any).npcID ?? 0)] === ((s as any).daystart ?? 0)  &&  ((s as any).date_ev ?? 0)?.['sleepover'] === 1) {
-        scene.actions([
-          { label: '"See you soon"', handler: (st: GameState) => {
-    ((st as any).date_ev = (st as any).date_ev ?? {})['leave_dialogue'] = 'See you soon';
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeavingAction(st, scene); (st as any).locArgs = __savedLocArgs; }
-  } },
-        ]);
-      } else {
-        if (((s as any).npc_booty_call_date ?? 0)?.[String((s as any).npcID ?? 0)] === ((s as any).daystart ?? 0) + 1) {
-          scene.actions([
-            { label: '"See you tomorrow"', handler: (st: GameState) => {
-    ((st as any).date_ev = (st as any).date_ev ?? {})['leave_dialogue'] = 'See you tomorrow';
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeavingAction(st, scene); (st as any).locArgs = __savedLocArgs; }
-  } },
-          ]);
-        } else {
-          scene.actions([
-            { label: '"Till next time"', handler: (st: GameState) => {
-    ((st as any).date_ev = (st as any).date_ev ?? {})['leave_dialogue'] = 'Till next time';
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeavingAction(st, scene); (st as any).locArgs = __savedLocArgs; }
-  } },
-          ]);
-        }
-      }
       scene.actions([
         { label: '"Let\'s do this again"', handler: (st: GameState) => {
     ((st as any).date_ev = (st as any).date_ev ?? {})['leave_dialogue'] = 'Let\'s do this again sometime';
@@ -1464,19 +1422,8 @@ function enterPcHomeLeave(s: GameState, scene: SceneBuilder): void {
   if (((s as any).npcID ?? 0) === 'A34') {
     qspCall(s, 'date_ev_A34', 'kolka_leave');
   } else {
-    if (((s as any).npc_latesleeper ?? 0)?.[String((s as any).npcID ?? 0)] === 1  &&  ((s as any).date_ev ?? 0)?.['boy_wakeup'] === 0  &&  ((s as any).date_ev ?? 0)?.['boy_asleep'] === 1  &&  ((s as any).home ?? 0)?.['current'] !== 'parents_home') {
-      scene.actions([
-        { label: '', labelFn: (s: GameState) => 'Get up and leave ' + String(((s as any).npcdesc ?? '') ?? '') + ' in bed', handler: (st: GameState) => {
-    qspCall(st, 'date_ev', 'bed_room_img');
-    scene.text(`Not wanting to wake ${((st as any).npcdesc ?? '')}, you sneak over to the door and let yourself out, closing it as gently as you can behind you.`);
     scene.actions([
-      { label: 'Leave', goto: ['date_after', 'exit'] },
-    ]);
-  } },
-      ]);
-    } else {
-      scene.actions([
-        { label: '', labelFn: (s: GameState) => 'Tell ' + String(((s as any).npcdesc ?? '') ?? '') + ' to leave', handler: (st: GameState) => {
+      { label: '', labelFn: (s: GameState) => 'Tell ' + String(((s as any).npcdesc ?? '') ?? '') + ' to leave', handler: (st: GameState) => {
     qspCall(st, 'date_ev', 'bed_room_img');
     if (((st as any).date_ev ?? 0)?.['angry_after'] === 1  ||  ((st as any).date_ev ?? 0)?.['annoyed'] > 0) {
       scene.text('"You should go," you say flatly.');
@@ -1493,8 +1440,7 @@ function enterPcHomeLeave(s: GameState, scene: SceneBuilder): void {
       { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcHomeLeavingAction(st, scene); (st as any).locArgs = __savedLocArgs; }
     }
   } },
-      ]);
-    }
+    ]);
   }
   scene.build();
 }
@@ -1555,21 +1501,6 @@ function enterPcHomeLeavingAction(s: GameState, scene: SceneBuilder): void {
 
 function enterPcHomeLeavingDialogue(s: GameState, scene: SceneBuilder): void {
   if (((s as any).npc_rel_type ?? 0)?.[String((s as any).npcID ?? 0)] === '') {
-    if (((s as any).date_ev ?? 0)?.['sleepover'] === 1  ||  ((s as any).hour ?? 0) < 5) {
-      scene.actions([
-        { label: '"Wanna do this again?"', handler: (st: GameState) => {
-    ((st as any).date_ev = (st as any).date_ev ?? {})['invite_today'] = 1;
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcHomeLeavingEnd(st, scene); (st as any).locArgs = __savedLocArgs; }
-  } },
-      ]);
-    } else {
-      scene.actions([
-        { label: '"Wanna do this again? tomorrow?"', handler: (st: GameState) => {
-    ((st as any).date_ev = (st as any).date_ev ?? {})['invite_tomorrow'] = 1;
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcHomeLeavingEnd(st, scene); (st as any).locArgs = __savedLocArgs; }
-  } },
-      ]);
-    }
   } else {
     if (((s as any).npc_booty_call_date ?? 0)?.[String((s as any).npcID ?? 0)] === ((s as any).daystart ?? 0)  &&  ((s as any).date_ev ?? 0)?.['sleepover'] === 1) {
       scene.actions([
@@ -1592,20 +1523,12 @@ function enterPcHomeLeavingDialogue(s: GameState, scene: SceneBuilder): void {
     ((st as any).date_ev = (st as any).date_ev ?? {})['leave_dialogue'] = '"Till next time."';
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcHomeLeavingEnd(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
-          { label: '"Wanna do this again?"', handler: (st: GameState) => {
-    ((st as any).date_ev = (st as any).date_ev ?? {})['invite_today'] = 1;
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcHomeLeavingEnd(st, scene); (st as any).locArgs = __savedLocArgs; }
-  } },
         ]);
       }
     }
     scene.actions([
       { label: '"Text me"', handler: (st: GameState) => {
     ((st as any).date_ev = (st as any).date_ev ?? {})['leave_dialogue'] = '"Text me."';
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcHomeLeavingEnd(st, scene); (st as any).locArgs = __savedLocArgs; }
-  } },
-      { label: '"Wanna do this again? tomorrow?"', handler: (st: GameState) => {
-    ((st as any).date_ev = (st as any).date_ev ?? {})['invite_tomorrow'] = 1;
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcHomeLeavingEnd(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);

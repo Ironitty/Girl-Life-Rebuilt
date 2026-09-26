@@ -289,7 +289,7 @@ function enterBedroom(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  scene.text('The <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027wardrobe\u0027, \u0027start\u0027); return false;">change of clothes</a> you brought with you sits on the floor next to the corner of the bed' + ((((s as any).lastwornclothingtype ?? 0)?.['lover_ev'] === '') ? (', some of your <a href="#" onclick="window.__gameStore.setState((s) => { s.quick_dress = s.1; return s; }); window.__gameStore.getState().doGoto(\u0027wardrobe\u0027, \u0027default\u0027); return false;">outfits</a> packed away inside.') : (' and <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027lover_home\u0027, \u0027dress_cloth\u0027); return false;">the clothes you were wearing earlier</a> are haphazardly scattered across the floor.')));
+  scene.text('The <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027wardrobe\u0027, \u0027start\u0027); return false;">change of clothes</a> you brought with you sits on the floor next to the corner of the bed' + ((((s as any).lastwornclothingtype ?? 0)?.['lover_ev'] === '') ? (', some of your <a href="#" onclick="window.__gameStore.setState((s) => { s.quick_dress = 1; return s; }); window.__gameStore.getState().doGoto(\u0027wardrobe\u0027, \u0027default\u0027); return false;">outfits</a> packed away inside.') : (' and <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027lover_home\u0027, \u0027dress_cloth\u0027); return false;">the clothes you were wearing earlier</a> are haphazardly scattered across the floor.')));
   if (((s as any).npc_living_together ?? 0)?.[String((s as any).npcID ?? 0)] > 0) {
     scene.actions([
       { label: 'Relax in bed', goto: ['bed', 'start'] },

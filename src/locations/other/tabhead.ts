@@ -15,7 +15,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (String((s as any).locArgs?.[0] ?? '') === ((s as any).tabhead_i ?? 0)) {
       (s as any).tabhead_table = ((s as any).tabhead_table ?? 0) + ('' + (((s as any).tabsname ?? 0)?.[String((s as any).tabhead_i ?? 0)] ?? 0) + '');
     } else {
-      (s as any).tabhead_table = ((s as any).tabhead_table ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: ' + (((s as any).tabsaction ?? 0)?.[String((s as any).tabhead_i ?? 0)] ?? 0) + ' */ return s; }); return false;">' + (((s as any).tabsname ?? 0)?.[String((s as any).tabhead_i ?? 0)] ?? 0) + '</a>');
+      // TODO-QSP: $tabhead_table += '<a href="exec:<<$tabsaction[tabhead_i]>>"><<$tabsname[tabhead_i]>></a>'
     }
     (s as any).tabhead_table = ((s as any).tabhead_table ?? 0) + ('</th>');
     if (((s as any).tabhead_i ?? 0) > 0  &&  (Array.isArray((s as any).tabsrow) ? ((s as any).tabsrow as any[]).indexOf(((s as any).tabhead_i ?? 0)) : -1) >= 0) {

@@ -703,7 +703,6 @@ function enterMaleGopnikBeer(s: GameState, scene: SceneBuilder): void {
         scene.text('With that, everyone drinks the last of the beers, and you notice the area around you is littered with empty beer bottles. Once the final beer is gone, the talking starts to wind down, and people drift off; either alone, or in small groups.');
         scene.text('You get up and head out as well when you feel an arm wrapped around your waist and turn to see Niko with a smile on his face. "It seems my princess has had a few too many. Let me get you home."');
       }
-      // TODO-QSP: !{ Missing event niko_park_exploit
       scene.actions([
         { label: 'I\'m fine', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
@@ -767,16 +766,6 @@ function enterMaleGopnikBeer(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     }
-  } },
-        { label: 'Go with Niko', handler: (st: GameState) => {
-    (st as any).minut = ((st as any).minut ?? 0) + 10;
-    qspCall(st, 'stat', '');
-    scene.img('images/characters/pavlovsk/school/boy/niko/nikoev/smile1.jpg');
-    scene.text('Knowing that Niko is right, you nod and he lifts you up before carrying you through the park while chatting, but you\'re too drunk to focus on what he\'s saying as the world seems to spin around you.');
-    scene.text('Feeling so wasted, you spend the next few minute trying not to fall over as Niko expertly carries you out of the park towards an apartment complex.');
-    scene.actions([
-      { label: 'See where Niko takes you', goto: ['NikoEv', 'niko_park_exploit'] },
-    ]);
   } },
       ]);
     } else {
@@ -1132,7 +1121,6 @@ function enterGopnikBeer(s: GameState, scene: SceneBuilder): void {
       scene.text('Feeling really tipsy, you try to get up and head out as well, but almost fall over when you feel an arm wrap around your waist and stop you from falling.');
       scene.text('You quickly turn to see Niko with a smile on his face. "It seems my princess has had a few too many. Let me get you home."');
       qspCall(st, 'willpower', 'misc', 'resist', 'medium');
-      // TODO-QSP: !{ Missing event niko_park_exploit
       scene.actions([
         { label: 'I\'m fine', handler: (st: GameState) => {
     qspCall(st, 'willpower', 'pay', 'resist');
@@ -1143,16 +1131,6 @@ function enterGopnikBeer(s: GameState, scene: SceneBuilder): void {
     scene.text('He then turns around and joins Valentin as he heads further down the park.');
     scene.actions([
       { label: 'Leave', goto: ['pav_park', 'deeper_park'] },
-    ]);
-  } },
-        { label: 'Go with Niko', handler: (st: GameState) => {
-    (st as any).minut = ((st as any).minut ?? 0) + 10;
-    qspCall(st, 'stat', '');
-    scene.img('images/characters/pavlovsk/school/boy/niko/nikoev/smile1.jpg');
-    scene.text('Knowing that Niko is right, you nod and he lifts you up before carrying you through the park while chatting, but you\'re too drunk to focus on what he\'s saying as the world seems to spin around you.');
-    scene.text('Feeling so wasted, you spend the next few minute trying not to fall over as Niko expertly carries you out of the park towards an apartment complex.');
-    scene.actions([
-      { label: 'See where Niko takes you', goto: ['NikoEv', 'niko_park_exploit'] },
     ]);
   } },
       ]);

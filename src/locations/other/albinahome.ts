@@ -396,7 +396,7 @@ function enterLivingRoom(s: GameState, scene: SceneBuilder): void {
   scene.text('The living room is very well appointed, with polished wood flooring and expensive looking furniture used throughout the room.');
   scene.text('Your attention is drawn to some sort of decortative fixture made of glass and metal that\'s probably worth more than your entire apartment.');
   if (((s as any).locat ?? 0)?.['zoya'] === 5) {
-    scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027zoya_chat\u0027, \u0027lounge_chat\u0027); return false;">Zoya</a> is here, relaxing on the sofa with a glass of wine while looking over what appears to be various work related papers.');
+    scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=1; return s; }); window.__gameStore.getState().doGoto(\u0027zoya_chat\u0027, \u0027lounge_chat\u0027); return false;">Zoya</a> is here, relaxing on the sofa with a glass of wine while looking over what appears to be various work related papers.');
     scene.text('You could sit and chat with her.');
   } else {
     if ((Math.floor(Math.random() * 3) + 0) === 0  &&  ((s as any).hour ?? 0) < 17) {
@@ -436,7 +436,7 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).locat ?? 0)?.['zoya'] === 3) {
       if (((s as any).hour ?? 0) < 7) {
-        scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027zoya_chat\u0027, \u0027breakfast_chat\u0027); return false;">Zoya</a> is here, eating her breakfast at the table.');
+        scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=1; return s; }); window.__gameStore.getState().doGoto(\u0027zoya_chat\u0027, \u0027breakfast_chat\u0027); return false;">Zoya</a> is here, eating her breakfast at the table.');
         scene.text('You could sit and chat with her.');
       } else {
         scene.text('Zoya is here, eating her dinner at the table while looking over what appears to be various work related papers. You probably shouldn\'t disturb her.');
@@ -477,7 +477,7 @@ function enterPoolSide(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).locat ?? 0)?.['zoya'] === 8) {
-    scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027albina_mother_events\u0027, \u0027zoya_sunbathing_solo2\u0027); return false;">Zoya</a> is sunbathing topless on a floatie in the middle of the pool.');
+    scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=1; return s; }); window.__gameStore.getState().doGoto(\u0027albina_mother_events\u0027, \u0027zoya_sunbathing_solo2\u0027); return false;">Zoya</a> is sunbathing topless on a floatie in the middle of the pool.');
     scene.text('You wonder if you should disturb her. She looks rather relaxed right now and might not be looking for company.');
   } else {
     if (((s as any).hour ?? 0) >= 21) {

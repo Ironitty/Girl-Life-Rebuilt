@@ -202,16 +202,15 @@ function enterStopHere2(s: GameState, scene: SceneBuilder): void {
               if (((s as any).npc_abusive ?? 0)?.[String((s as any).npcID ?? 0)] === 1  ||  ((s as any).npc_selfish ?? 0)?.[String((s as any).npcID ?? 0)] === 1  ||  (((s as any).npc_caretaker ?? 0)?.[String((s as any).npcID ?? 0)] !== 1  &&  (Math.floor(Math.random() * 3) + 1))) {
                 scene.text(`"You're done already?" ${((s as any).npcdesc ?? '')} complains. "I still want to get off a few more times with you."`);
                 { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterAskContinueOptions(s, scene); (s as any).locArgs = __savedLocArgs; }
-                ((s as any).sex_ev = (s as any).sex_ev ?? {})['ask_to_cum_once'] = 1;
-                if (((s as any).sex_ev ?? 0)?.['position'] === 'miss'  ||  ((s as any).sex_ev ?? 0)?.['position'] === 'doggy'  ||  ((s as any).sex_ev ?? 0)?.['position'] === 'cowgirl') {
-                  scene.text(`"Can I just come real quick?" ${((s as any).npcdesc ?? '')} asks. "I'm really close."`);
-                }
-                scene.text(`"Are you sure?" ${((s as any).npcdesc ?? '')} asks. "You haven't gotten to come yet."`);
-                { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterAskContinueOptions(s, scene); (s as any).locArgs = __savedLocArgs; }
               } else {
-                if (((s as any).npc_caretaker ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
-                  scene.text(`"I was actually hoping to go a few more times. But if you want to stop, that's all right." ${((s as any).npcdesc ?? '')} gives you a gentle smile.`);
+                if (((s as any).npc_caretaker ?? 0)?.[String((s as any).npcID ?? 0)] === 1  &&  ((s as any).sex_ev ?? 0)?.['orgasm_count'] === 0) {
+                  scene.text(`"Are you sure?" ${((s as any).npcdesc ?? '')} asks. "You haven't gotten to come yet."`);
                   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterAskContinueOptions(s, scene); (s as any).locArgs = __savedLocArgs; }
+                } else {
+                  if (((s as any).npc_caretaker ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
+                    scene.text(`"I was actually hoping to go a few more times. But if you want to stop, that's all right." ${((s as any).npcdesc ?? '')} gives you a gentle smile.`);
+                    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterAskContinueOptions(s, scene); (s as any).locArgs = __savedLocArgs; }
+                  }
                 }
               }
             }
@@ -1736,18 +1735,19 @@ function enterBathroomAfter(s: GameState, scene: SceneBuilder): void {
   ((s as any).sex_ev = (s as any).sex_ev ?? {})['get_up'] = 1;
   scene.text(String(qspFunc(s, 'sex_ev', 'bath_room') || ''));
   if ((((s as any).pcs_breath ?? 0) !== 1  ||  ((s as any).cumloc ?? 0)[12] === 1)  &&  (((s as any).mc_inventory ?? 0)?.['travel_toothbrush'] === 1  ||  ((s as any).overnight_bag ?? 0)?.[String((s as any).npcID ?? 0)] === 1  ||  ((s as any).sex_ev ?? 0)?.['loc'] === 'pc_home')) {
-    // TODO-QSP: act'Brush your teeth':
-    (s as any).minut = ((s as any).minut ?? 0) + 3;
-    (s as any).cumspclnt = 2;
-    qspCall(s, 'cum_cleanup', '');
-    (s as any).pcs_breath = 1;
-    ((s as any).teeth = (s as any).teeth ?? {})['brushed'] = ((s as any).teeth['brushed'] ?? 0) + (1);
+    scene.actions([
+      { label: 'Brush your teeth', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 3;
+    (st as any).cumspclnt = 2;
+    qspCall(st, 'cum_cleanup', '');
+    (st as any).pcs_breath = 1;
+    ((st as any).teeth = (st as any).teeth ?? {})['brushed'] = ((st as any).teeth['brushed'] ?? 0) + (1);
     if ((Math.floor(Math.random() * 3) + 1) === 1) {
-      qspGoto(s, 'sex_ev_events', 'brushing_teeth');
+      qspGoto(st, 'sex_ev_events', 'brushing_teeth');
     } else {
-      if (((s as any).clothingworntype ?? 0) === 'nude'  &&  ((s as any).braworntype ?? 0) === 'none'  &&  ((s as any).pantyworntype ?? 0) === 'none') {
+      if (((st as any).clothingworntype ?? 0) === 'nude'  &&  ((st as any).braworntype ?? 0) === 'none'  &&  ((st as any).pantyworntype ?? 0) === 'none') {
         scene.img('images/shared/home/bathroom/brushteeth.mp4');
-        if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
+        if (((st as any).sound_settings ?? 0)?.['environment_off'] === 0) {
         }
       } else {
         scene.img('images/shared/home/bathroom/brushteeth.jpg');
@@ -1757,6 +1757,8 @@ function enterBathroomAfter(s: GameState, scene: SceneBuilder): void {
         { label: 'Continue', goto: ['sex_ev_after', 'bathroom_after'] },
       ]);
     }
+  } },
+    ]);
   }
   if (((s as any).sex_ev ?? 0)?.['shower'] === 0  ||  ((s as any).stat_cum_msg ?? 0) !== ''  ||  ((s as any).pcs_sweat ?? 0) > 0) {
     if (((s as any).sex_ev ?? 0)?.['sleepover'] === 0) {
@@ -2966,8 +2968,6 @@ function enterCuddleUp(s: GameState, scene: SceneBuilder): void {
 
 function enterCuddleUp2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sex_ev ?? 0)?.['boy_asleep'] === 1  &&  ((s as any).sex_ev ?? 0)?.['action_restricted'] === 0  &&  ((s as any).sex_ev ?? 0)?.['morning_after'] === 0) {
-    // TODO-QSP: act'Watch <<$npc_usedname[$npcID]>> sleep':
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterAfterSex2(s, scene); (s as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: '', labelFn: (s: GameState) => 'Sleep with ' + String(((s as any).npcdesc ?? '') ?? ''), handler: (st: GameState) => {
     scene.actions([
@@ -2987,6 +2987,9 @@ function enterCuddleUp2(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     ]);
+  } },
+      { label: '', labelFn: (s: GameState) => 'Watch ' + String((((s as any).npc_usedname ?? 0)?.[String((s as any).npcID ?? 0)] ?? '') ?? '') + ' sleep', handler: (st: GameState) => {
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterAfterSex2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }

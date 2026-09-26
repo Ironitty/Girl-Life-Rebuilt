@@ -30,10 +30,10 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.text('At first, you thought the warning was only health department boiler-plate. However, no sooner do you finish thinking that then you notice a nurse pushing a cart of freshly sterilized coat hangers down the hallway and begin to wonder how competent this facility really is in terms of women\'s health…');
   scene.text('One area of the clinic is devoted to cosmetic surgery. A sign with directions on the wall point you to the surgeon\'s office.');
   if (((s as any).pcs_gpolimilkdonation ?? 0) >= 2  &&  ((s as any).lactation ?? 0)?.['active'] > 0  &&  ((s as any).lact_ev ?? 0)?.['pcs_knows_milkbank'] < 1  &&  ((s as any).lactation ?? 0)?.['pc_aware'] > 0) {
-    scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(\u0027city_clinic\u0027, \u0027milk_reception\u0027); return false;">Ask</a> at the reception if there is the possibility for breast milk donation');
+    scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=5; return s; }); window.__gameStore.getState().doGoto(\u0027city_clinic\u0027, \u0027milk_reception\u0027); return false;">Ask</a> at the reception if there is the possibility for breast milk donation');
   } else {
     if (((s as any).pcs_gpolimilkdonation ?? 0) < 2  &&  ((s as any).lactation ?? 0)?.['active'] > 0  &&  ((s as any).lact_ev ?? 0)?.['pcs_knows_milkbank'] < 1  &&  ((s as any).lactation ?? 0)?.['pc_aware'] > 0) {
-      scene.text('A small <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(\u0027city_clinic\u0027, \u0027milk_advertisement\u0027); return false;">advertisement</a> at reception catches your eye.');
+      scene.text('A small <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=5; return s; }); window.__gameStore.getState().doGoto(\u0027city_clinic\u0027, \u0027milk_advertisement\u0027); return false;">advertisement</a> at reception catches your eye.');
     }
   }
   if (((s as any).job_status ?? 0)?.['city_hospital_nurse'] === 'employed'  &&  qspFunc(s, 'jobs', 'is_arrival_time', 'city_hospital_nurse') === 1) {
@@ -88,10 +88,10 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'medical_din', 'birth_control');
   qspCall(s, 'clinic_functions', 'set_abortion_act');
   if (((s as any).experimentQW ?? 0)?.['discovered'] === 1) {
-    scene.text('In the far corner you spot the entrance to a signup area for <a href="#" onclick="window.__gameStore.setState((s) => { (s.experimentQW ??= {})\u0027discovered\u0027 = s.2; return s; }); window.__gameStore.getState().doGoto(\u0027city_experimental_trials\u0027, \u0027front_desk\u0027); return false;">experimental trials</a>.');
+    scene.text('In the far corner you spot the entrance to a signup area for <a href="#" onclick="window.__gameStore.setState((s) => { (s.experimentQW ??= {})\u0027discovered\u0027 = 2; return s; }); window.__gameStore.getState().doGoto(\u0027city_experimental_trials\u0027, \u0027front_desk\u0027); return false;">experimental trials</a>.');
   } else {
     if (((s as any).experimentQW ?? 0)?.['discovered'] === 10) {
-      scene.text('In the far corner you spot the entrance to a signup area for <a href="#" onclick="window.__gameStore.setState((s) => { (s.experimentQW ??= {})\u0027discovered\u0027 = s.2; return s; }); window.__gameStore.getState().doGoto(\u0027city_experimental_trials\u0027, \u0027front_desk\u0027); return false;">experimental trials</a>. That must be the place your <i>husband</i> told you about.');
+      scene.text('In the far corner you spot the entrance to a signup area for <a href="#" onclick="window.__gameStore.setState((s) => { (s.experimentQW ??= {})\u0027discovered\u0027 = 2; return s; }); window.__gameStore.getState().doGoto(\u0027city_experimental_trials\u0027, \u0027front_desk\u0027); return false;">experimental trials</a>. That must be the place your <i>husband</i> told you about.');
     } else {
       if (((s as any).experimentQW ?? 0)?.['discovered'] === 2) {
         scene.actions([
@@ -1518,7 +1518,6 @@ function enterDonateMilkBottle(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_pay = (((s as any).mbarrfill ?? 0)?.[String((s as any).temp_id ?? 0)] ?? 0) / 10;
   if (((s as any).mbarrstat ?? 0)?.[String((s as any).temp_id ?? 0)] === 'normal') {
     (s as any).temp_pay = ((s as any).temp_pay ?? 0) / 2;
-    // TODO-QSP: !! And 0.5 rbl / ml for normal milk
   }
   (s as any).temp_total_pay = ((s as any).temp_total_pay ?? 0) + (((s as any).temp_pay ?? 0));
   qspCall(s, 'money', 'earn', ((s as any).temp_pay ?? 0), 'cash');

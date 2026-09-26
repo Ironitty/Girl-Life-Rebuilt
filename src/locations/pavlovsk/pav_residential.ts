@@ -73,7 +73,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     }
   }
   scene.text('<br>The residential area of the town. This area is suburban with more modern houses, dusty roads and pockets of overgrown vegetation stretching out far and wide, but some would say that just adds to the town\'s rustic charm. Apart from the old <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = \u0027images/locations/pavlovsk/palace/pav_palace.jpg\u0027; return s; }); return false;">Imperial palace</a> built by Catherine the Great, with its surrounding gardens and forest, and the recently remodeled <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = \u0027images/locations/pavlovsk/fortress/bip_hotel.jpg\u0027; return s; }); return false;">Bip fortress</a>, everything else is relatively modern.');
-  scene.text('<br>Even from here, you can see the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027pav_church\u0027, \u0027start\u0027); return false;">Church of St. Nikolas</a>, the tallest building in town.');
+  scene.text('<br>Even from here, you can see the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=1; return s; }); window.__gameStore.getState().doGoto(\u0027pav_church\u0027, \u0027start\u0027); return false;">Church of St. Nikolas</a>, the tallest building in town.');
   if (((s as any).flag_rape_1 ?? 0) === 1) {
     (s as any).flag_rape_1 = 0;
     (s as any).rape_count = (((s as any).stat ?? 0)?.['rape_count']);
@@ -111,7 +111,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     ((s as any).locat = (s as any).locat ?? {})['A23_save1'] = 1;
     if ((Math.floor(Math.random() * 3) + 0) === 0  &&  ((s as any).AlbinaQW ?? 0)?.['walk_of_shame'] !== ((s as any).daystart ?? 0)) {
       ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['walk_of_shame'] = ((s as any).daystart ?? 0);
-      scene.text('As you walk down the street, you spot a rather disheveled looking <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(\u0027albina_events\u0027, \u0027walk_of_shame\u0027); return false;">Albina</a> ducking down an alleyway, as if she doesn\'t want to be seen.');
+      scene.text('As you walk down the street, you spot a rather disheveled looking <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=5; return s; }); window.__gameStore.getState().doGoto(\u0027albina_events\u0027, \u0027walk_of_shame\u0027); return false;">Albina</a> ducking down an alleyway, as if she doesn\'t want to be seen.');
     }
   }
   if ((Math.floor(Math.random() * 5) + 1) >= 4  &&  ((s as any).fame ?? 0)?.['pav_slut'] >= 150) {
@@ -133,37 +133,37 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).start_type ?? 0)?.['loc'] === 'sg') {
     (s as any).minut = ((s as any).minut ?? 0) + 2;
-    (s as any).schoolname = 'the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.2; return s; }); window.__gameStore.getState().doGoto(\u0027gschool_grounds\u0027, \u0027main\u0027); return false;">local school</a>.';
+    (s as any).schoolname = 'the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=2; return s; }); window.__gameStore.getState().doGoto(\u0027gschool_grounds\u0027, \u0027main\u0027); return false;">local school</a>.';
   } else {
     (s as any).schoolname = 'your old school.';
   }
-  scene.text(`<br>In the center of Pavlovsk is the town square, which features the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.2; return s; }); window.__gameStore.getState().doGoto(/u0027pav_commcenter/u0027, /u0027/u0027); return false;">community center</a>, a popular hotspot for local teenagers to hang out after a long day at ${((s as any).schoolname ?? '')} Also nearby is the drab grey building of Pavlovsk's dilapidated public <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.4; return s; }); window.__gameStore.getState().doGoto(/u0027pav_pool/u0027, /u0027building/u0027); return false;">swimming pool</a>.`);
-  scene.text('Connected to the town center is the old palace grounds, which have been turned into a large <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(\u0027pav_park\u0027, \u0027start\u0027); return false;">public park</a>.');
-  scene.text('The <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(\u0027pav_lake\u0027, \u0027\u0027); return false;">lake</a> is also nearby, which means the area can get quite busy with people coming to swim in the summer or skate in the winter.');
+  scene.text(`<br>In the center of Pavlovsk is the town square, which features the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=2; return s; }); window.__gameStore.getState().doGoto(/u0027pav_commcenter/u0027, /u0027/u0027); return false;">community center</a>, a popular hotspot for local teenagers to hang out after a long day at ${((s as any).schoolname ?? '')} Also nearby is the drab grey building of Pavlovsk's dilapidated public <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=4; return s; }); window.__gameStore.getState().doGoto(/u0027pav_pool/u0027, /u0027building/u0027); return false;">swimming pool</a>.`);
+  scene.text('Connected to the town center is the old palace grounds, which have been turned into a large <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=5; return s; }); window.__gameStore.getState().doGoto(\u0027pav_park\u0027, \u0027start\u0027); return false;">public park</a>.');
+  scene.text('The <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=5; return s; }); window.__gameStore.getState().doGoto(\u0027pav_lake\u0027, \u0027\u0027); return false;">lake</a> is also nearby, which means the area can get quite busy with people coming to swim in the summer or skate in the winter.');
   if (((s as any).cfg_vars ?? 0)?.['tablemap'] === 0) {
     if (((s as any).DimaBeHomeOnce ?? 0) === 1  &&  (!((s as any).DimaRudeBlock ?? 0))) {
-      scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.10; return s; }); window.__gameStore.getState().doGoto(\u0027dimaHome\u0027, \u0027home\u0027); return false;">Dimka</a> lives in one of the fancier houses in town.');
+      scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=10; return s; }); window.__gameStore.getState().doGoto(\u0027dimaHome\u0027, \u0027home\u0027); return false;">Dimka</a> lives in one of the fancier houses in town.');
     }
     if (((s as any).fedorKozlovQW ?? 0) >= 20  &&  ((s as any).FedorKozHome ?? 0) === 1  ||  ((s as any).fedorKozlovQW ?? 0) === -15  &&  ((s as any).FedorKozHome ?? 0) === 1) {
-      scene.text('<br><a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027FedorEv4\u0027, \u0027Home Entrance\u0027); return false;">Fedor</a> lives in a house nearby.');
+      scene.text('<br><a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=1; return s; }); window.__gameStore.getState().doGoto(\u0027FedorEv4\u0027, \u0027Home Entrance\u0027); return false;">Fedor</a> lives in a house nearby.');
     }
     if ((((s as any).IgorQW ?? 0)?.['history'] === 1  ||  ((s as any).IgorQW ?? 0)?.['Lover'] > 0  ||  ((s as any).IgorQW ?? 0)?.['house_open'] === 1)  &&  ((s as any).IgorQW ?? 0)?.['block'] === 0) {
-      scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.10; return s; }); window.__gameStore.getState().doGoto(\u0027IgorHome\u0027, \u0027home\u0027); return false;">Igor</a> lives in one of the fancier houses in town.');
+      scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=10; return s; }); window.__gameStore.getState().doGoto(\u0027IgorHome\u0027, \u0027home\u0027); return false;">Igor</a> lives in one of the fancier houses in town.');
     }
     if (((s as any).katjaQW ?? 0)?.['QWstage'] >= 2  ||  ((s as any).mey_vika ?? 0)?.['mey_vika_qw'] >= 27  ||  ((s as any).mey_vika ?? 0)?.['key'] === 1) {
-      scene.text('Nearby is a large house where the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.10; return s; }); return false;">Meynold twins</a> live.');
+      scene.text('Nearby is a large house where the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=10; return s; }); return false;">Meynold twins</a> live.');
     }
     if (((s as any).LariskaQW ?? 0)?.['story'] >= 6) {
-      scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.10; return s; }); window.__gameStore.getState().doGoto(\u0027LariskaHome\u0027, \u0027front_door\u0027); return false;">Lariska</a> lives about 10 minutes away from here.');
+      scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=10; return s; }); window.__gameStore.getState().doGoto(\u0027LariskaHome\u0027, \u0027front_door\u0027); return false;">Lariska</a> lives about 10 minutes away from here.');
     }
     if (((s as any).christinaQW ?? 0)?.['subpath'] >= 5) {
       scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027Zvereva_house\u0027, \u0027front_door\u0027); return false;">Christina</a> lives in an expensive house near here.');
     }
     if (((s as any).AlbinaQW ?? 0)?.['KnowsHouse'] === 1) {
-      scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.10; return s; }); window.__gameStore.getState().doGoto(\u0027albinahome\u0027, \u0027door_bell\u0027); return false;">Albina</a> lives in one of the few luxurious mansions Pavlovsk has to offer.');
+      scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=10; return s; }); window.__gameStore.getState().doGoto(\u0027albinahome\u0027, \u0027door_bell\u0027); return false;">Albina</a> lives in one of the few luxurious mansions Pavlovsk has to offer.');
     }
     if (((s as any).soniaQW ?? 0)?.['homeinvite'] === 1) {
-      scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.10; return s; }); window.__gameStore.getState().doGoto(\u0027soniahome\u0027, \u0027home\u0027); return false;">Sonia\'s</a> house is up through a garden pathway to a well cared for grey, wooden-clad house.');
+      scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=10; return s; }); window.__gameStore.getState().doGoto(\u0027soniahome\u0027, \u0027home\u0027); return false;">Sonia\'s</a> house is up through a garden pathway to a well cared for grey, wooden-clad house.');
     }
   } else {
     (s as any).st_count = 0;
@@ -318,7 +318,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     }
   }
   scene.text('<br>The residential area of the town. This area is suburban with more modern houses, dusty roads and pockets of overgrown vegetation stretching out far and wide, but some would say that just adds to the town\'s rustic charm. Apart from the old <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = \u0027images/locations/pavlovsk/palace/pav_palace.jpg\u0027; return s; }); return false;">Imperial palace</a> built by Catherine the Great, with its surrounding gardens and forest, and the recently remodeled <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = \u0027images/locations/pavlovsk/fortress/bip_hotel.jpg\u0027; return s; }); return false;">Bip fortress</a>, everything else is relatively modern.');
-  scene.text('<br>Even from here, you can see the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027pav_church\u0027, \u0027start\u0027); return false;">Church of St. Nikolas</a>, the tallest building in town.');
+  scene.text('<br>Even from here, you can see the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=1; return s; }); window.__gameStore.getState().doGoto(\u0027pav_church\u0027, \u0027start\u0027); return false;">Church of St. Nikolas</a>, the tallest building in town.');
   if (((s as any).flag_rape_1 ?? 0) === 1) {
     (s as any).flag_rape_1 = 0;
     (s as any).rape_count = (((s as any).stat ?? 0)?.['rape_count']);
@@ -356,7 +356,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     ((s as any).locat = (s as any).locat ?? {})['A23_save1'] = 1;
     if ((Math.floor(Math.random() * 3) + 0) === 0  &&  ((s as any).AlbinaQW ?? 0)?.['walk_of_shame'] !== ((s as any).daystart ?? 0)) {
       ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['walk_of_shame'] = ((s as any).daystart ?? 0);
-      scene.text('As you walk down the street, you spot a rather disheveled looking <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(\u0027albina_events\u0027, \u0027walk_of_shame\u0027); return false;">Albina</a> ducking down an alleyway, as if she doesn\'t want to be seen.');
+      scene.text('As you walk down the street, you spot a rather disheveled looking <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=5; return s; }); window.__gameStore.getState().doGoto(\u0027albina_events\u0027, \u0027walk_of_shame\u0027); return false;">Albina</a> ducking down an alleyway, as if she doesn\'t want to be seen.');
     }
   }
   if ((Math.floor(Math.random() * 5) + 1) >= 4  &&  ((s as any).fame ?? 0)?.['pav_slut'] >= 150) {
@@ -378,37 +378,37 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).start_type ?? 0)?.['loc'] === 'sg') {
     (s as any).minut = ((s as any).minut ?? 0) + 2;
-    (s as any).schoolname = 'the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.2; return s; }); window.__gameStore.getState().doGoto(\u0027gschool_grounds\u0027, \u0027main\u0027); return false;">local school</a>.';
+    (s as any).schoolname = 'the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=2; return s; }); window.__gameStore.getState().doGoto(\u0027gschool_grounds\u0027, \u0027main\u0027); return false;">local school</a>.';
   } else {
     (s as any).schoolname = 'your old school.';
   }
-  scene.text(`<br>In the center of Pavlovsk is the town square, which features the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.2; return s; }); window.__gameStore.getState().doGoto(/u0027pav_commcenter/u0027, /u0027/u0027); return false;">community center</a>, a popular hotspot for local teenagers to hang out after a long day at ${((s as any).schoolname ?? '')} Also nearby is the drab grey building of Pavlovsk's dilapidated public <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.4; return s; }); window.__gameStore.getState().doGoto(/u0027pav_pool/u0027, /u0027building/u0027); return false;">swimming pool</a>.`);
-  scene.text('Connected to the town center is the old palace grounds, which have been turned into a large <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(\u0027pav_park\u0027, \u0027start\u0027); return false;">public park</a>.');
-  scene.text('The <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(\u0027pav_lake\u0027, \u0027\u0027); return false;">lake</a> is also nearby, which means the area can get quite busy with people coming to swim in the summer or skate in the winter.');
+  scene.text(`<br>In the center of Pavlovsk is the town square, which features the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=2; return s; }); window.__gameStore.getState().doGoto(/u0027pav_commcenter/u0027, /u0027/u0027); return false;">community center</a>, a popular hotspot for local teenagers to hang out after a long day at ${((s as any).schoolname ?? '')} Also nearby is the drab grey building of Pavlovsk's dilapidated public <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=4; return s; }); window.__gameStore.getState().doGoto(/u0027pav_pool/u0027, /u0027building/u0027); return false;">swimming pool</a>.`);
+  scene.text('Connected to the town center is the old palace grounds, which have been turned into a large <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=5; return s; }); window.__gameStore.getState().doGoto(\u0027pav_park\u0027, \u0027start\u0027); return false;">public park</a>.');
+  scene.text('The <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=5; return s; }); window.__gameStore.getState().doGoto(\u0027pav_lake\u0027, \u0027\u0027); return false;">lake</a> is also nearby, which means the area can get quite busy with people coming to swim in the summer or skate in the winter.');
   if (((s as any).cfg_vars ?? 0)?.['tablemap'] === 0) {
     if (((s as any).DimaBeHomeOnce ?? 0) === 1  &&  (!((s as any).DimaRudeBlock ?? 0))) {
-      scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.10; return s; }); window.__gameStore.getState().doGoto(\u0027dimaHome\u0027, \u0027home\u0027); return false;">Dimka</a> lives in one of the fancier houses in town.');
+      scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=10; return s; }); window.__gameStore.getState().doGoto(\u0027dimaHome\u0027, \u0027home\u0027); return false;">Dimka</a> lives in one of the fancier houses in town.');
     }
     if (((s as any).fedorKozlovQW ?? 0) >= 20  &&  ((s as any).FedorKozHome ?? 0) === 1  ||  ((s as any).fedorKozlovQW ?? 0) === -15  &&  ((s as any).FedorKozHome ?? 0) === 1) {
-      scene.text('<br><a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027FedorEv4\u0027, \u0027Home Entrance\u0027); return false;">Fedor</a> lives in a house nearby.');
+      scene.text('<br><a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=1; return s; }); window.__gameStore.getState().doGoto(\u0027FedorEv4\u0027, \u0027Home Entrance\u0027); return false;">Fedor</a> lives in a house nearby.');
     }
     if ((((s as any).IgorQW ?? 0)?.['history'] === 1  ||  ((s as any).IgorQW ?? 0)?.['Lover'] > 0  ||  ((s as any).IgorQW ?? 0)?.['house_open'] === 1)  &&  ((s as any).IgorQW ?? 0)?.['block'] === 0) {
-      scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.10; return s; }); window.__gameStore.getState().doGoto(\u0027IgorHome\u0027, \u0027home\u0027); return false;">Igor</a> lives in one of the fancier houses in town.');
+      scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=10; return s; }); window.__gameStore.getState().doGoto(\u0027IgorHome\u0027, \u0027home\u0027); return false;">Igor</a> lives in one of the fancier houses in town.');
     }
     if (((s as any).katjaQW ?? 0)?.['QWstage'] >= 2  ||  ((s as any).mey_vika ?? 0)?.['mey_vika_qw'] >= 27  ||  ((s as any).mey_vika ?? 0)?.['key'] === 1) {
-      scene.text('Nearby is a large house where the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.10; return s; }); return false;">Meynold twins</a> live.');
+      scene.text('Nearby is a large house where the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=10; return s; }); return false;">Meynold twins</a> live.');
     }
     if (((s as any).LariskaQW ?? 0)?.['story'] >= 6) {
-      scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.10; return s; }); window.__gameStore.getState().doGoto(\u0027LariskaHome\u0027, \u0027front_door\u0027); return false;">Lariska</a> lives about 10 minutes away from here.');
+      scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=10; return s; }); window.__gameStore.getState().doGoto(\u0027LariskaHome\u0027, \u0027front_door\u0027); return false;">Lariska</a> lives about 10 minutes away from here.');
     }
     if (((s as any).christinaQW ?? 0)?.['subpath'] >= 5) {
       scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027Zvereva_house\u0027, \u0027front_door\u0027); return false;">Christina</a> lives in an expensive house near here.');
     }
     if (((s as any).AlbinaQW ?? 0)?.['KnowsHouse'] === 1) {
-      scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.10; return s; }); window.__gameStore.getState().doGoto(\u0027albinahome\u0027, \u0027door_bell\u0027); return false;">Albina</a> lives in one of the few luxurious mansions Pavlovsk has to offer.');
+      scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=10; return s; }); window.__gameStore.getState().doGoto(\u0027albinahome\u0027, \u0027door_bell\u0027); return false;">Albina</a> lives in one of the few luxurious mansions Pavlovsk has to offer.');
     }
     if (((s as any).soniaQW ?? 0)?.['homeinvite'] === 1) {
-      scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.10; return s; }); window.__gameStore.getState().doGoto(\u0027soniahome\u0027, \u0027home\u0027); return false;">Sonia\'s</a> house is up through a garden pathway to a well cared for grey, wooden-clad house.');
+      scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=10; return s; }); window.__gameStore.getState().doGoto(\u0027soniahome\u0027, \u0027home\u0027); return false;">Sonia\'s</a> house is up through a garden pathway to a well cared for grey, wooden-clad house.');
     }
   } else {
     (s as any).st_count = 0;

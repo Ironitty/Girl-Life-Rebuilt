@@ -21,7 +21,7 @@ function enterMobileCheck(s: GameState, scene: SceneBuilder): void {
     (s as any).caller = 'Leonid Vostov';
     (s as any).callerid = 'images/characters/pavlovsk/resident/leonid/leonidphone.jpg';
     qspCall(s, 'telefon', 'phone_ring');
-    // TODO-QSP: pl '<center><a href="exec:gt ''leonid'', ''call''"><img src="images/system/phone/call_accept.png"></...
+    scene.text('<center><a href="#" onclick="window.__gameStore.getState().doGoto(\u0027leonid\u0027, \u0027call\u0027); return false;"><img src="images/system/phone/call_accept.png"></a>    <a href="#" onclick="window.__gameStore.getState().doGoto(window.__gameStore.getState().prevLoc, window.__gameStore.getState().prevArg); return false;"><img src="images/system/phone/decline.png"></a></center>');
   }
   if (((s as any).QWdogreiqTimer ?? 0) === 0  &&  ((s as any).QWdogReiq ?? 0) === 2  &&  ((s as any).week ?? 0) === 7  &&  ((s as any).qwdogiventday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).hour ?? 0) >= 12) {
     scene.text('<center><b>Your phone is ringing</b></center>');
@@ -39,25 +39,25 @@ function enterDSalf(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><table cellspacing="0" cellpadding="20" valign="top"><tr>');
   scene.text('<td cellspacing="0" cellpadding="0" valign="top">');
   if (((s as any).cumloc ?? 0)[13] > 0  ||  ((s as any).cumloc ?? 0)[11] > 0  ||  ((s as any).cumloc ?? 0)[16] > 0) {
-    scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { (s.mc_inventory ??= {})\u0027makeup_wipes\u0027 -=s.1; s.cumspclnt = s.12; s.cumspclnt = s.9; s.minut +=s.2; return s; }); window.__gameStore.getState().doGoto(\u0027cum_cleanup\u0027 & cumspclnt = 9 & gs \u0027cum_cleanup\u0027 & minut += 2 & gs \u0027stat\u0027 & gs \u0027din_bad\u0027, \u0027d_bag\u0027); return false;"><b>Wipe your face and hands clean</b></a>');
+    scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { (s.mc_inventory ??= {})\u0027makeup_wipes\u0027 -=1; s.cumspclnt = 12; s.cumspclnt = 9; s.minut +=2; return s; }); window.__gameStore.getState().doGoto(\u0027cum_cleanup\u0027 & cumspclnt = 9 & gs \u0027cum_cleanup\u0027 & minut += 2 & gs \u0027stat\u0027 & gs \u0027din_bad\u0027, \u0027d_bag\u0027); return false;"><b>Wipe your face and hands clean</b></a>');
   }
   if (((s as any).cumloc ?? 0)[14] > 0) {
-    scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { (s.mc_inventory ??= {})\u0027makeup_wipes\u0027 -=s.1; s.cumspclnt = s.14; s.minut +=s.2; return s; }); window.__gameStore.getState().doGoto(\u0027cum_cleanup\u0027 & minut += 2 & gs \u0027stat\u0027 & gs \u0027din_bad\u0027, \u0027d_bag\u0027); return false;"><b>Wipe your belly clean</b></a>');
+    scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { (s.mc_inventory ??= {})\u0027makeup_wipes\u0027 -=1; s.cumspclnt = 14; s.minut +=2; return s; }); window.__gameStore.getState().doGoto(\u0027cum_cleanup\u0027 & minut += 2 & gs \u0027stat\u0027 & gs \u0027din_bad\u0027, \u0027d_bag\u0027); return false;"><b>Wipe your belly clean</b></a>');
   }
   if (qspFunc(s, 'cum_manage', 'check_private', 15) === 1  &&  ((s as any).cumloc ?? 0)[15] > 0) {
-    scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { (s.mc_inventory ??= {})\u0027makeup_wipes\u0027 -=s.1; s.cumspclnt = s.16; s.minut +=s.2; return s; }); window.__gameStore.getState().doGoto(\u0027cum_cleanup\u0027 & minut += 2 & gs \u0027stat\u0027 & gs \u0027din_bad\u0027, \u0027d_bag\u0027); return false;"><b>Wipe your breasts clean</b></a>');
+    scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { (s.mc_inventory ??= {})\u0027makeup_wipes\u0027 -=1; s.cumspclnt = 16; s.minut +=2; return s; }); window.__gameStore.getState().doGoto(\u0027cum_cleanup\u0027 & minut += 2 & gs \u0027stat\u0027 & gs \u0027din_bad\u0027, \u0027d_bag\u0027); return false;"><b>Wipe your breasts clean</b></a>');
   }
   if (qspFunc(s, 'cum_manage', 'check_private') === 1  &&  (((s as any).cumloc ?? 0)[1] + ((s as any).cumloc ?? 0)[4] > 0  ||  qspFunc(s, 'cum_manage', 'check_inner_overflow', (-1)) === 1)) {
-    scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { (s.mc_inventory ??= {})\u0027makeup_wipes\u0027 -=s.1; s.cumspclnt = s.15; s.minut +=s.2; return s; }); window.__gameStore.getState().doGoto(\u0027cum_cleanup\u0027 & minut += 2 & gs \u0027stat\u0027 & gs \u0027din_bad\u0027, \u0027d_bag\u0027); return false;"><b>Wipe your ass and pussy clean</b></a>');
+    scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { (s.mc_inventory ??= {})\u0027makeup_wipes\u0027 -=1; s.cumspclnt = 15; s.minut +=2; return s; }); window.__gameStore.getState().doGoto(\u0027cum_cleanup\u0027 & minut += 2 & gs \u0027stat\u0027 & gs \u0027din_bad\u0027, \u0027d_bag\u0027); return false;"><b>Wipe your ass and pussy clean</b></a>');
   }
   if (((s as any).cumloc ?? 0)[10] > 0  ||  ((s as any).cumloc ?? 0)[9] > 0) {
-    scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { (s.mc_inventory ??= {})\u0027makeup_wipes\u0027 -=s.1; s.cumspclnt = s.17; s.minut +=s.2; return s; }); window.__gameStore.getState().doGoto(\u0027cum_cleanup\u0027 & minut += 2 & gs \u0027stat\u0027 & gs \u0027din_bad\u0027, \u0027d_bag\u0027); return false;"><b>Wipe your arms and legs clean</b></a>');
+    scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { (s.mc_inventory ??= {})\u0027makeup_wipes\u0027 -=1; s.cumspclnt = 17; s.minut +=2; return s; }); window.__gameStore.getState().doGoto(\u0027cum_cleanup\u0027 & minut += 2 & gs \u0027stat\u0027 & gs \u0027din_bad\u0027, \u0027d_bag\u0027); return false;"><b>Wipe your arms and legs clean</b></a>');
   }
   if (((s as any).cumloc ?? 0)[2] > 0  ||  ((s as any).cumloc ?? 0)[5] > 0  ||  ((s as any).cumloc ?? 0)[6] > 0  ||  ((s as any).cumloc ?? 0)[7] > 0) {
-    scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { (s.mc_inventory ??= {})\u0027makeup_wipes\u0027 -=s.1; s.cumspclnt = s.6; s.minut +=s.2; return s; }); window.__gameStore.getState().doGoto(\u0027cum_cleanup\u0027 & minut += 2 & gs \u0027stat\u0027 & gs \u0027din_bad\u0027, \u0027d_bag\u0027); return false;"><b>Clean your clothing</b></a>');
+    scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { (s.mc_inventory ??= {})\u0027makeup_wipes\u0027 -=1; s.cumspclnt = 6; s.minut +=2; return s; }); window.__gameStore.getState().doGoto(\u0027cum_cleanup\u0027 & minut += 2 & gs \u0027stat\u0027 & gs \u0027din_bad\u0027, \u0027d_bag\u0027); return false;"><b>Clean your clothing</b></a>');
   }
   if (((s as any).pcs_makeup ?? 0) !== 1  &&  (!((s as any).cosmetic_tattoo ?? 0))) {
-    scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { (s.mc_inventory ??= {})\u0027makeup_wipes\u0027 -=s.1; s.pcs_makeup = s.1; s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(\u0027stat\u0027 & gs \u0027din_bad\u0027, \u0027d_bag\u0027); return false;"><b>Remove your makeup</b></a>');
+    scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { (s.mc_inventory ??= {})\u0027makeup_wipes\u0027 -=1; s.pcs_makeup = 1; s.minut +=5; return s; }); window.__gameStore.getState().doGoto(\u0027stat\u0027 & gs \u0027din_bad\u0027, \u0027d_bag\u0027); return false;"><b>Remove your makeup</b></a>');
   }
   scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027stat\u0027 & gs \u0027din_bad\u0027, \u0027d_bag\u0027); return false;"><br><b>Put tissues away</b></a>');
   scene.text('</td></tr></table></center>');
@@ -121,7 +121,7 @@ function enterDBag(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).mc_inventory ?? 0)?.['deodorant'] > 0  &&  (!((s as any).deodorant_on ?? 0))) {
-    scene.text(`There's <a href="#" onclick="window.__gameStore.setState((s) => { s.hscrunchw = s.0; return s; }); window.__gameStore.getState().doGoto(/u0027din_bad/u0027, /u0027p_deodorant/u0027); return false;">deodorant</a> in your purse. <b>${(((s as any).mc_inventory ?? 0)?.['deodorant'] ?? '')}</b> uses remaining.`);
+    scene.text(`There's <a href="#" onclick="window.__gameStore.setState((s) => { s.hscrunchw = 0; return s; }); window.__gameStore.getState().doGoto(/u0027din_bad/u0027, /u0027p_deodorant/u0027); return false;">deodorant</a> in your purse. <b>${(((s as any).mc_inventory ?? 0)?.['deodorant'] ?? '')}</b> uses remaining.`);
   } else {
     if (((s as any).mc_inventory ?? 0)?.['deodorant'] > 0  &&  ((s as any).deodorant_on ?? 0) === 1) {
       scene.text(`You are already wearing deodorant. <b>${(((s as any).mc_inventory ?? 0)?.['deodorant'] ?? '')}</b> uses remaining.`);
@@ -137,38 +137,38 @@ function enterDBag(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).mc_inventory ?? 0)?.['travel_mirror'] === 1  ||  ((s as any).mc_inventory ?? 0)?.['comb'] === 1) {
     if ((!((s as any).pcs_hairbsh ?? 0))) {
-      scene.text('There\'s a hairbrush in your purse. <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=min(15, max(1, pcs_hairlng / 80)); s.pcs_hairbsh = s.1; return s; }); window.__gameStore.getState().doGoto(\u0027stat\u0027 & gs \u0027din_bad\u0027, \u0027d_bag\u0027); return false;">Brush your hair</a>');
+      scene.text('There\'s a hairbrush in your purse. <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=min(15, max(1, pcs_hairlng / 80)); s.pcs_hairbsh = 1; return s; }); window.__gameStore.getState().doGoto(\u0027stat\u0027 & gs \u0027din_bad\u0027, \u0027d_bag\u0027); return false;">Brush your hair</a>');
     } else {
       scene.text('There\'s a hairbrush in your purse. Your hair doesn\'t need brushing right now.');
     }
   }
   if (((s as any).pcs_hairbsh ?? 0) > 0  &&  ((s as any).pcs_hairlng ?? 0) > 80  &&  (!((s as any).hbraids ?? 0))) {
     if (((s as any).mc_inventory ?? 0)?.['scrunchies'] >= 1  &&  ((s as any).hscrunchw ?? 0) + ((s as any).hpingripw ?? 0) === 0) {
-      scene.text(`As you have a scrunchy, you can arrange your hair into a <a href="#" onclick="window.__gameStore.setState((s) => { s.hscrunchw = s.1; return s; }); window.__gameStore.getState().doGoto(/u0027din_bad/u0027, /u0027d_bag/u0027); return false;">ponytail</a>. You have ${(((s as any).mc_inventory ?? 0)?.['scrunchies'] ?? '')} scrunchies left.`);
+      scene.text(`As you have a scrunchy, you can arrange your hair into a <a href="#" onclick="window.__gameStore.setState((s) => { s.hscrunchw = 1; return s; }); window.__gameStore.getState().doGoto(/u0027din_bad/u0027, /u0027d_bag/u0027); return false;">ponytail</a>. You have ${(((s as any).mc_inventory ?? 0)?.['scrunchies'] ?? '')} scrunchies left.`);
     }
     if (((s as any).pcs_hairlng ?? 0) <= 400  &&  ((s as any).mc_inventory ?? 0)?.['kirbygrips'] >= 1  &&  ((s as any).hscrunchw ?? 0) + ((s as any).hpingripw ?? 0) === 0) {
-      scene.text(`You have several clips, pins and grips for you hair. Hence, you can <a href="#" onclick="window.__gameStore.setState((s) => { s.hpingripw = s.1; return s; }); window.__gameStore.getState().doGoto(/u0027din_bad/u0027, /u0027d_bag/u0027); return false;">updo your hair</a>. You have ${(((s as any).mc_inventory ?? 0)?.['kirbygrips'] ?? '')} hair accessories at your disposal.`);
+      scene.text(`You have several clips, pins and grips for you hair. Hence, you can <a href="#" onclick="window.__gameStore.setState((s) => { s.hpingripw = 1; return s; }); window.__gameStore.getState().doGoto(/u0027din_bad/u0027, /u0027d_bag/u0027); return false;">updo your hair</a>. You have ${(((s as any).mc_inventory ?? 0)?.['kirbygrips'] ?? '')} hair accessories at your disposal.`);
     }
     if (((s as any).pcs_hairlng ?? 0) <= 800  &&  ((s as any).mc_inventory ?? 0)?.['scrunchies'] >= 1) {
       if (((s as any).mc_inventory ?? 0)?.['scrunchies'] >= 2  &&  ((s as any).hscrunchw ?? 0) + ((s as any).hpingripw ?? 0) === 0) {
-        scene.text('You can use two hair ties to make yourself some <a href="#" onclick="window.__gameStore.setState((s) => { s.hpigtail = s.1; s.hscrunchw = s.2; return s; }); window.__gameStore.getState().doGoto(\u0027din_bad\u0027, \u0027d_bag\u0027); return false;">pigtails</a>.');
+        scene.text('You can use two hair ties to make yourself some <a href="#" onclick="window.__gameStore.setState((s) => { s.hpigtail = 1; s.hscrunchw = 2; return s; }); window.__gameStore.getState().doGoto(\u0027din_bad\u0027, \u0027d_bag\u0027); return false;">pigtails</a>.');
       }
       if (((s as any).canBraidHair ?? 0) === 1  &&  ((s as any).hscrunchw ?? 0) + ((s as any).hpingripw ?? 0) + ((s as any).hpigtail ?? 0) === 0) {
-        scene.text(`You can spend ${((s as any).pcs_hairlng ?? '')/10} minutes <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=pcs_hairlng/10; s.hbraids = s.15; return s; }); window.__gameStore.getState().doGoto(/u0027din_bad/u0027, /u0027d_bag/u0027); return false;">braiding</a> your hair, just the way your sister taught you.`);
+        scene.text(`You can spend ${((s as any).pcs_hairlng ?? '')/10} minutes <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=pcs_hairlng/10; s.hbraids = 15; return s; }); window.__gameStore.getState().doGoto(/u0027din_bad/u0027, /u0027d_bag/u0027); return false;">braiding</a> your hair, just the way your sister taught you.`);
       }
     }
   }
   if (((s as any).hscrunchw ?? 0) === 1) {
-    scene.text('Remove the <a href="#" onclick="window.__gameStore.setState((s) => { s.hscrunchw = s.0; return s; }); window.__gameStore.getState().doGoto(\u0027din_bad\u0027, \u0027d_bag\u0027); return false;">scrunchie</a> to get rid of the ponytail.');
+    scene.text('Remove the <a href="#" onclick="window.__gameStore.setState((s) => { s.hscrunchw = 0; return s; }); window.__gameStore.getState().doGoto(\u0027din_bad\u0027, \u0027d_bag\u0027); return false;">scrunchie</a> to get rid of the ponytail.');
   }
   if (((s as any).hscrunchw ?? 0) === 2) {
-    scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.hpigtail = s.0; s.hscrunchw = s.0; return s; }); window.__gameStore.getState().doGoto(\u0027din_bad\u0027, \u0027d_bag\u0027); return false;">Remove</a> your scrunchies and let your hair flow free again.');
+    scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.hpigtail = 0; s.hscrunchw = 0; return s; }); window.__gameStore.getState().doGoto(\u0027din_bad\u0027, \u0027d_bag\u0027); return false;">Remove</a> your scrunchies and let your hair flow free again.');
   }
   if (((s as any).hpingripw ?? 0) === 1) {
-    scene.text('Let your hair <a href="#" onclick="window.__gameStore.setState((s) => { s.hpingripw = s.0; return s; }); window.__gameStore.getState().doGoto(\u0027din_bad\u0027, \u0027d_bag\u0027); return false;">flow free</a>.');
+    scene.text('Let your hair <a href="#" onclick="window.__gameStore.setState((s) => { s.hpingripw = 0; return s; }); window.__gameStore.getState().doGoto(\u0027din_bad\u0027, \u0027d_bag\u0027); return false;">flow free</a>.');
   }
   if (((s as any).hbraids ?? 0) > 0) {
-    scene.text(`Take ${((s as any).hbraids ?? '')*2+((s as any).pcs_hairlng ?? '')/50} minutes removing your <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=hbraids*2+pcs_hairlng/50; s.hbraids = s.0; return s; }); window.__gameStore.getState().doGoto(/u0027din_bad/u0027, /u0027d_bag/u0027); return false;">braid</a>.`);
+    scene.text(`Take ${((s as any).hbraids ?? '')*2+((s as any).pcs_hairlng ?? '')/50} minutes removing your <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=hbraids*2+pcs_hairlng/50; s.hbraids = 0; return s; }); window.__gameStore.getState().doGoto(/u0027din_bad/u0027, /u0027d_bag/u0027); return false;">braid</a>.`);
   }
   if (((s as any).mc_inventory ?? 0)?.['equipped_condoms'] + ((s as any).mc_inventory ?? 0)?.['normal_condoms'] + ((s as any).mc_inventory ?? 0)?.['sabotaged_condoms'] > 0) {
     if (((s as any).preziktype ?? 0) === 2  ||  ((s as any).mc_inventory ?? 0)?.['sabotaged_condoms'] > 0) {
@@ -184,14 +184,14 @@ function enterDBag(s: GameState, scene: SceneBuilder): void {
   if (((s as any).mc_inventory ?? 0)?.['lubricant'] > 0) {
     scene.text(`You have <b>${(((s as any).mc_inventory ?? 0)?.['lubricant'] ?? '')}</b> squirts of lubricant available`);
     if ((!((s as any).auto_anal_lube ?? 0))) {
-      scene.text('Automatically use for anal sex: <a href="#" onclick="window.__gameStore.setState((s) => { s.auto_anal_lube = s.1; return s; }); window.__gameStore.getState().doGoto(\u0027stat\u0027 & gs \u0027din_bad\u0027, \u0027d_bag\u0027); return false;">No</a>');
+      scene.text('Automatically use for anal sex: <a href="#" onclick="window.__gameStore.setState((s) => { s.auto_anal_lube = 1; return s; }); window.__gameStore.getState().doGoto(\u0027stat\u0027 & gs \u0027din_bad\u0027, \u0027d_bag\u0027); return false;">No</a>');
     } else {
-      scene.text('Automatically use for anal sex: <a href="#" onclick="window.__gameStore.setState((s) => { s.auto_anal_lube = s.0; return s; }); window.__gameStore.getState().doGoto(\u0027stat\u0027 & gs \u0027din_bad\u0027, \u0027d_bag\u0027); return false;">Yes</a>');
+      scene.text('Automatically use for anal sex: <a href="#" onclick="window.__gameStore.setState((s) => { s.auto_anal_lube = 0; return s; }); window.__gameStore.getState().doGoto(\u0027stat\u0027 & gs \u0027din_bad\u0027, \u0027d_bag\u0027); return false;">Yes</a>');
     }
     if ((!((s as any).auto_vag_lube ?? 0))) {
-      scene.text('Automatically use for vaginal sex: <a href="#" onclick="window.__gameStore.setState((s) => { s.auto_vag_lube = s.1; return s; }); window.__gameStore.getState().doGoto(\u0027stat\u0027 & gs \u0027din_bad\u0027, \u0027d_bag\u0027); return false;">No</a>');
+      scene.text('Automatically use for vaginal sex: <a href="#" onclick="window.__gameStore.setState((s) => { s.auto_vag_lube = 1; return s; }); window.__gameStore.getState().doGoto(\u0027stat\u0027 & gs \u0027din_bad\u0027, \u0027d_bag\u0027); return false;">No</a>');
     } else {
-      scene.text('Automatically use for vaginal sex: <a href="#" onclick="window.__gameStore.setState((s) => { s.auto_vag_lube = s.0; return s; }); window.__gameStore.getState().doGoto(\u0027stat\u0027 & gs \u0027din_bad\u0027, \u0027d_bag\u0027); return false;">Yes</a>');
+      scene.text('Automatically use for vaginal sex: <a href="#" onclick="window.__gameStore.setState((s) => { s.auto_vag_lube = 0; return s; }); window.__gameStore.getState().doGoto(\u0027stat\u0027 & gs \u0027din_bad\u0027, \u0027d_bag\u0027); return false;">Yes</a>');
     }
   }
   if (qspFunc(s, 'cum_manage', 'is_private_location') === 1) {
@@ -227,7 +227,7 @@ function enterDBag(s: GameState, scene: SceneBuilder): void {
     scene.text('You have no morning after pills.');
   }
   if (((s as any).mc_inventory ?? 0)?.['mentats'] > 0  &&  ((s as any).drugVars ?? 0)?.['mentats_dose'] < 3) {
-    scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: *pl /u0027<font color = green><br>You swallow the neurobooster pill.</font>/u0027 */ return s; }); window.__gameStore.getState().doGoto(/u0027drugs/u0027, /u0027mentats/u0027 & gs /u0027din_bad/u0027, /u0027d_bag/u0027 & *pl /u0027<font color = green><br>You swallow the neurobooster pill.</font>/u0027); return false;">Use a neurobooster pill in your purse.</a> There are <b>${(((s as any).mc_inventory ?? 0)?.['mentats'] ?? '')}</b> pills left. The warning label says not to take more than one per day.`);
+    scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: *pl /u0027/u003cfont color = green>/u003cbr>You swallow the neurobooster pill./u003c/font>/u0027 */ return s; }); window.__gameStore.getState().doGoto(/u0027drugs/u0027, /u0027mentats/u0027 & gs /u0027din_bad/u0027, /u0027d_bag/u0027 & *pl /u0027<font color = green><br>You swallow the neurobooster pill.</font>/u0027); return false;">Use a neurobooster pill in your purse.</a> There are <b>${(((s as any).mc_inventory ?? 0)?.['mentats'] ?? '')}</b> pills left. The warning label says not to take more than one per day.`);
   } else {
     if (((s as any).mc_inventory ?? 0)?.['mentats'] > 0) {
       scene.text(`There are <b>${(((s as any).mc_inventory ?? 0)?.['mentats'] ?? '')}</b> neurobooster pills left. You really shouldn't take any more pills today.`);
@@ -243,16 +243,16 @@ function enterDBag(s: GameState, scene: SceneBuilder): void {
     scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: *pl $drugVars[/u0027aphrodisiac_msg/u0027] */ /* TODO-QSP: *pl $min_arousal_msg */ /* TODO-QSP: killvar /u0027$min_arousal_msg/u0027 */ return s; }); window.__gameStore.getState().doGoto(/u0027drugs/u0027, /u0027aphrodisiac/u0027 & gs /u0027din_bad/u0027, /u0027d_bag/u0027 & *pl $drugVars[/u0027aphrodisiac_msg/u0027] & *pl $min_arousal_msg & killvar /u0027$min_arousal_msg/u0027); return false;">Chew aphrodisiac gum.</a> You have <b>${(((s as any).mc_inventory ?? 0)?.['aphrodisiac'] ?? '')}</b> gum left in your purse.`);
   }
   if (((s as any).mc_inventory ?? 0)?.['refill_bottle_water'] === 4  &&  ((s as any).mc_inventory ?? 0)?.['refill_bottle'] >= 1) {
-    scene.text('You carry your sports water bottle in your purse. It\'s still completely full. <a href="#" onclick="window.__gameStore.setState((s) => { (s.mc_inventory ??= {})\u0027refill_bottle_water\u0027 = s.3; s.pcs_hydra +=s.75; s.cumspclnt = s.2; return s; }); window.__gameStore.getState().doGoto(\u0027cum_cleanup\u0027 & gs \u0027stat\u0027 & gs \u0027din_bad\u0027, \u0027d_bag\u0027); return false;">Drink</a>');
+    scene.text('You carry your sports water bottle in your purse. It\'s still completely full. <a href="#" onclick="window.__gameStore.setState((s) => { (s.mc_inventory ??= {})\u0027refill_bottle_water\u0027 = 3; s.pcs_hydra +=75; s.cumspclnt = 2; return s; }); window.__gameStore.getState().doGoto(\u0027cum_cleanup\u0027 & gs \u0027stat\u0027 & gs \u0027din_bad\u0027, \u0027d_bag\u0027); return false;">Drink</a>');
   } else {
     if (((s as any).mc_inventory ?? 0)?.['refill_bottle_water'] === 3  &&  ((s as any).mc_inventory ?? 0)?.['refill_bottle'] >= 1) {
-      scene.text('You carry your sports water bottle in your purse. It\'s almost full. <a href="#" onclick="window.__gameStore.setState((s) => { (s.mc_inventory ??= {})\u0027refill_bottle_water\u0027 = s.2; s.pcs_hydra +=s.75; s.cumspclnt = s.2; return s; }); window.__gameStore.getState().doGoto(\u0027cum_cleanup\u0027 & gs \u0027stat\u0027 & gs \u0027din_bad\u0027, \u0027d_bag\u0027); return false;">Drink</a>');
+      scene.text('You carry your sports water bottle in your purse. It\'s almost full. <a href="#" onclick="window.__gameStore.setState((s) => { (s.mc_inventory ??= {})\u0027refill_bottle_water\u0027 = 2; s.pcs_hydra +=75; s.cumspclnt = 2; return s; }); window.__gameStore.getState().doGoto(\u0027cum_cleanup\u0027 & gs \u0027stat\u0027 & gs \u0027din_bad\u0027, \u0027d_bag\u0027); return false;">Drink</a>');
     } else {
       if (((s as any).mc_inventory ?? 0)?.['refill_bottle_water'] === 2  &&  ((s as any).mc_inventory ?? 0)?.['refill_bottle'] >= 1) {
-        scene.text('You carry your sports water bottle in your purse. It\'s half full. <a href="#" onclick="window.__gameStore.setState((s) => { (s.mc_inventory ??= {})\u0027refill_bottle_water\u0027 = s.1; s.pcs_hydra +=s.75; s.cumspclnt = s.2; return s; }); window.__gameStore.getState().doGoto(\u0027cum_cleanup\u0027 & gs \u0027stat\u0027 & gs \u0027din_bad\u0027, \u0027d_bag\u0027); return false;">Drink</a>');
+        scene.text('You carry your sports water bottle in your purse. It\'s half full. <a href="#" onclick="window.__gameStore.setState((s) => { (s.mc_inventory ??= {})\u0027refill_bottle_water\u0027 = 1; s.pcs_hydra +=75; s.cumspclnt = 2; return s; }); window.__gameStore.getState().doGoto(\u0027cum_cleanup\u0027 & gs \u0027stat\u0027 & gs \u0027din_bad\u0027, \u0027d_bag\u0027); return false;">Drink</a>');
       } else {
         if (((s as any).mc_inventory ?? 0)?.['refill_bottle_water'] === 1  &&  ((s as any).mc_inventory ?? 0)?.['refill_bottle'] >= 1) {
-          scene.text('You carry your sports water bottle in your purse. It\'s almost empty. <a href="#" onclick="window.__gameStore.setState((s) => { (s.mc_inventory ??= {})\u0027refill_bottle_water\u0027 = s.0; s.pcs_hydra +=s.75; s.cumspclnt = s.2; return s; }); window.__gameStore.getState().doGoto(\u0027cum_cleanup\u0027 & gs \u0027stat\u0027 & gs \u0027din_bad\u0027, \u0027d_bag\u0027); return false;">Drink</a>');
+          scene.text('You carry your sports water bottle in your purse. It\'s almost empty. <a href="#" onclick="window.__gameStore.setState((s) => { (s.mc_inventory ??= {})\u0027refill_bottle_water\u0027 = 0; s.pcs_hydra +=75; s.cumspclnt = 2; return s; }); window.__gameStore.getState().doGoto(\u0027cum_cleanup\u0027 & gs \u0027stat\u0027 & gs \u0027din_bad\u0027, \u0027d_bag\u0027); return false;">Drink</a>');
         } else {
           if (((s as any).mc_inventory ?? 0)?.['refill_bottle_water'] === 0  &&  ((s as any).mc_inventory ?? 0)?.['refill_bottle'] >= 1) {
             scene.text('You carry your sports water bottle in your purse. It\'s empty.');
@@ -262,10 +262,10 @@ function enterDBag(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).mc_inventory ?? 0)?.['food_water'] > 0) {
-    scene.text('There\'s a bottle of water in your purse. <a href="#" onclick="window.__gameStore.setState((s) => { (s.mc_inventory ??= {})\u0027food_water\u0027 = s.0; s.pcs_hydra +=s.100; s.cumspclnt = s.2; return s; }); window.__gameStore.getState().doGoto(\u0027cum_cleanup\u0027 & gs \u0027stat\u0027 & gs \u0027din_bad\u0027, \u0027d_bag\u0027); return false;">Drink</a>');
+    scene.text('There\'s a bottle of water in your purse. <a href="#" onclick="window.__gameStore.setState((s) => { (s.mc_inventory ??= {})\u0027food_water\u0027 = 0; s.pcs_hydra +=100; s.cumspclnt = 2; return s; }); window.__gameStore.getState().doGoto(\u0027cum_cleanup\u0027 & gs \u0027stat\u0027 & gs \u0027din_bad\u0027, \u0027d_bag\u0027); return false;">Drink</a>');
   }
   if (((s as any).mc_inventory ?? 0)?.['food_sandwich'] > 0) {
-    scene.text('There\'s a sandwich in your purse. <a href="#" onclick="window.__gameStore.setState((s) => { (s.mc_inventory ??= {})\u0027food_sandwich\u0027 = s.0; s.pcs_energy +=s.40; s.cumspclnt = s.2; s.fat +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027cum_cleanup\u0027 & fat += 1 & gs \u0027stat\u0027 & gs \u0027din_bad\u0027, \u0027d_bag\u0027); return false;">Eat</a>');
+    scene.text('There\'s a sandwich in your purse. <a href="#" onclick="window.__gameStore.setState((s) => { (s.mc_inventory ??= {})\u0027food_sandwich\u0027 = 0; s.pcs_energy +=40; s.cumspclnt = 2; s.fat +=1; return s; }); window.__gameStore.getState().doGoto(\u0027cum_cleanup\u0027 & fat += 1 & gs \u0027stat\u0027 & gs \u0027din_bad\u0027, \u0027d_bag\u0027); return false;">Eat</a>');
   }
   if (((s as any).mc_inventory ?? 0)?.['strapon'] === 1  &&  (!((s as any).strapNumber ?? 0))) {
     scene.text('You have a strapon harness in your purse, but you don\'t have a dildo attached to it' + ((((s as any).mc_inventory ?? 0)?.['dildo_small'] + ((s as any).mc_inventory ?? 0)?.['dildo_normal'] + ((s as any).mc_inventory ?? 0)?.['dildo_big'] + ((s as any).mc_inventory ?? 0)?.['dildo_large'] + ((s as any).mc_inventory ?? 0)?.['dildo_huge'] + ((s as any).mc_inventory ?? 0)?.['dildo_enormous'] + ((s as any).mc_inventory ?? 0)?.['dildo_gigantic'] > 0) ? ('. You keep your dildos in your desk at home.') : (', because you don\'t own one.')));
@@ -575,10 +575,10 @@ function enterDTabletkied(s: GameState, scene: SceneBuilder): void {
       scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027din_bad\u0027, \u0027d_tabletkieda\u0027, \u00275 & gs \u0027din_bad\u0027\u0027); return false;">Dump the strange pills.</a>');
     }
     if (((s as any).birth_control ?? 0)?.['placebo_skip'] === 0) {
-      scene.text('Skip your <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: *clr */ (s.birth_control ??= {})\u0027placebo_skip\u0027 = s.1; return s; }); window.__gameStore.getState().doGoto(\u0027din_bad\u0027, \u0027d_tabletkied\u0027); return false;">placebo pills.</a>');
+      scene.text('Skip your <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: *clr */ (s.birth_control ??= {})\u0027placebo_skip\u0027 = 1; return s; }); window.__gameStore.getState().doGoto(\u0027din_bad\u0027, \u0027d_tabletkied\u0027); return false;">placebo pills.</a>');
       scene.text('(Will cause you to no longer menstruate)');
     } else {
-      scene.text('Start taking your <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: *clr */ (s.birth_control ??= {})\u0027placebo_skip\u0027 = s.0; return s; }); window.__gameStore.getState().doGoto(\u0027din_bad\u0027, \u0027d_tabletkied\u0027); return false;">placebo pills</a> again.');
+      scene.text('Start taking your <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: *clr */ (s.birth_control ??= {})\u0027placebo_skip\u0027 = 0; return s; }); window.__gameStore.getState().doGoto(\u0027din_bad\u0027, \u0027d_tabletkied\u0027); return false;">placebo pills</a> again.');
       scene.text('(Will cause periods to start back up again in your menstrual cycle)');
     }
   } else {
@@ -916,7 +916,7 @@ function enterDCycreportActor(s: GameState, scene: SceneBuilder): void {
           scene.text('<td width="250" cellspacing="0" cellpadding="0" valign="top">');
           scene.text('How many days ago was it you had your last period?');
           scene.text(`Currently: ${((s as any).pertemp ?? '')}`);
-          scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.pertemp +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027din_bad\u0027, \u0027d_cycreport_actor\u0027, String(window.__gameStore.getState().4 ?? \u0027\u0027)); return false;">+1</a> <a href="#" onclick="window.__gameStore.setState((s) => { s.pertemp +=s.5; return s; }); window.__gameStore.getState().doGoto(\u0027din_bad\u0027, \u0027d_cycreport_actor\u0027, String(window.__gameStore.getState().4 ?? \u0027\u0027)); return false;">+5</a> <a href="#" onclick="window.__gameStore.setState((s) => { s.pertemp +=s.10; return s; }); window.__gameStore.getState().doGoto(\u0027din_bad\u0027, \u0027d_cycreport_actor\u0027, String(window.__gameStore.getState().4 ?? \u0027\u0027)); return false;">+10</a> <a href="#" onclick="window.__gameStore.setState((s) => { s.pertemp = s.0; return s; }); window.__gameStore.getState().doGoto(\u0027din_bad\u0027, \u0027d_cycreport_actor\u0027, String(window.__gameStore.getState().4 ?? \u0027\u0027)); return false;">Reset</a> <a href="#" onclick="window.__gameStore.setState((s) => { s.daylastperiod = (daystart - pertemp); return s; }); window.__gameStore.getState().doGoto(\u0027din_bad\u0027, \u0027d_cycreport_update\u0027 & gs \u0027stat\u0027 & gs \u0027din_bad\u0027, \u0027d_cycreport_choice\u0027); return false;">Accept</a>');
+          scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.pertemp +=1; return s; }); window.__gameStore.getState().doGoto(\u0027din_bad\u0027, \u0027d_cycreport_actor\u0027, String(window.__gameStore.getState().4 ?? \u0027\u0027)); return false;">+1</a> <a href="#" onclick="window.__gameStore.setState((s) => { s.pertemp +=5; return s; }); window.__gameStore.getState().doGoto(\u0027din_bad\u0027, \u0027d_cycreport_actor\u0027, String(window.__gameStore.getState().4 ?? \u0027\u0027)); return false;">+5</a> <a href="#" onclick="window.__gameStore.setState((s) => { s.pertemp +=10; return s; }); window.__gameStore.getState().doGoto(\u0027din_bad\u0027, \u0027d_cycreport_actor\u0027, String(window.__gameStore.getState().4 ?? \u0027\u0027)); return false;">+10</a> <a href="#" onclick="window.__gameStore.setState((s) => { s.pertemp = 0; return s; }); window.__gameStore.getState().doGoto(\u0027din_bad\u0027, \u0027d_cycreport_actor\u0027, String(window.__gameStore.getState().4 ?? \u0027\u0027)); return false;">Reset</a> <a href="#" onclick="window.__gameStore.setState((s) => { s.daylastperiod = (daystart - pertemp); return s; }); window.__gameStore.getState().doGoto(\u0027din_bad\u0027, \u0027d_cycreport_update\u0027 & gs \u0027stat\u0027 & gs \u0027din_bad\u0027, \u0027d_cycreport_choice\u0027); return false;">Accept</a>');
           scene.text('</td></tr></table></center>');
           scene.actions([
             { label: 'Return', handler: (st: GameState) => {
@@ -945,7 +945,7 @@ function enterDCycreportActor(s: GameState, scene: SceneBuilder): void {
               scene.text('<td width="250" cellspacing="0" cellpadding="0" valign="top">');
               scene.text('How many days ago was it you had your last period?');
               scene.text(`Currently: ${((s as any).pertemp ?? '')}`);
-              scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.pertemp +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027din_bad\u0027, \u0027d_cycreport_actor\u0027, String(window.__gameStore.getState().6 ?? \u0027\u0027)); return false;">+1</a> <a href="#" onclick="window.__gameStore.setState((s) => { s.pertemp +=s.5; return s; }); window.__gameStore.getState().doGoto(\u0027din_bad\u0027, \u0027d_cycreport_actor\u0027, String(window.__gameStore.getState().6 ?? \u0027\u0027)); return false;">+5</a> <a href="#" onclick="window.__gameStore.setState((s) => { s.pertemp +=s.10; return s; }); window.__gameStore.getState().doGoto(\u0027din_bad\u0027, \u0027d_cycreport_actor\u0027, String(window.__gameStore.getState().6 ?? \u0027\u0027)); return false;">+10</a> <a href="#" onclick="window.__gameStore.setState((s) => { s.pertemp = s.0; return s; }); window.__gameStore.getState().doGoto(\u0027din_bad\u0027, \u0027d_cycreport_actor\u0027, String(window.__gameStore.getState().6 ?? \u0027\u0027)); return false;">Reset</a> <a href="#" onclick="window.__gameStore.setState((s) => { s.daylastperiod = daystart - pertemp; return s; }); window.__gameStore.getState().doGoto(\u0027din_bad\u0027, \u0027d_cycreport_update\u0027 & gs \u0027stat\u0027 & gs \u0027din_bad\u0027, \u0027d_cycreport_choice\u0027); return false;">Accept</a>');
+              scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.pertemp +=1; return s; }); window.__gameStore.getState().doGoto(\u0027din_bad\u0027, \u0027d_cycreport_actor\u0027, String(window.__gameStore.getState().6 ?? \u0027\u0027)); return false;">+1</a> <a href="#" onclick="window.__gameStore.setState((s) => { s.pertemp +=5; return s; }); window.__gameStore.getState().doGoto(\u0027din_bad\u0027, \u0027d_cycreport_actor\u0027, String(window.__gameStore.getState().6 ?? \u0027\u0027)); return false;">+5</a> <a href="#" onclick="window.__gameStore.setState((s) => { s.pertemp +=10; return s; }); window.__gameStore.getState().doGoto(\u0027din_bad\u0027, \u0027d_cycreport_actor\u0027, String(window.__gameStore.getState().6 ?? \u0027\u0027)); return false;">+10</a> <a href="#" onclick="window.__gameStore.setState((s) => { s.pertemp = 0; return s; }); window.__gameStore.getState().doGoto(\u0027din_bad\u0027, \u0027d_cycreport_actor\u0027, String(window.__gameStore.getState().6 ?? \u0027\u0027)); return false;">Reset</a> <a href="#" onclick="window.__gameStore.setState((s) => { s.daylastperiod = daystart - pertemp; return s; }); window.__gameStore.getState().doGoto(\u0027din_bad\u0027, \u0027d_cycreport_update\u0027 & gs \u0027stat\u0027 & gs \u0027din_bad\u0027, \u0027d_cycreport_choice\u0027); return false;">Accept</a>');
               scene.text('</td></tr></table></center>');
               scene.actions([
                 { label: 'Return', handler: (st: GameState) => {
@@ -967,9 +967,9 @@ function enterDCycreportActor(s: GameState, scene: SceneBuilder): void {
                   scene.text('List of potential fathers:');
                   do {
                     if (((s as any).wombpotfath ?? 0)?.[String((s as any).potfather_counter ?? 0)] !== 'unknown') {
-                      ((s as any).potfather_temp = (s as any).potfather_temp ?? {})[2] = '<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: $wombthfath = \u0027' + (((s as any).npc_usedname ?? 0)?.[(((s as any).wombpotfath ?? 0)?.[String((s as any).potfather_counter ?? 0)] ?? 0)] ?? 0) + '\u0027 */ /* TODO-QSP: $wombthfathID = \u0027' + (((s as any).wombpotfath ?? 0)?.[String((s as any).potfather_counter ?? 0)] ?? 0) + '\u0027 */ return s; }); window.__gameStore.getState().doGoto(\u0027din_bad\u0027, \u0027d_cycreport_actor\u0027, \u00277 & gs \u0027stat\u0027\u0027); return false;">' + (((s as any).npc_usedname ?? 0)?.[(((s as any).wombpotfath ?? 0)?.[String((s as any).potfather_counter ?? 0)] ?? 0)] ?? 0) + ' (' + (((s as any).wombpotfath ?? 0)?.[String((s as any).potfather_counter ?? 0)] ?? 0) + ')</a>';
+                      // TODO-QSP: $potfather_temp[2] = '<a href="exec: $wombthfath = ''<<$npc_usedname[$wombpotfath[potfather_counter]]>>'' & $wombthfathID = ''<<$wombpotfath[potfather_counter]>>'' & gs ''din_bad'', ''d_cycreport_actor'', 7 & gs ''stat''"><<$npc_usedname[$wombpotfath[potfather_counter]]>> (<<$wombpotfath[potfather_counter]>>)</a>'
                     } else {
-                      ((s as any).potfather_temp = (s as any).potfather_temp ?? {})[2] = '<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: $wombthfath = \u0027' + (((s as any).npc_usedname ?? 0)?.[(((s as any).wombpotfath ?? 0)?.[String((s as any).potfather_counter ?? 0)] ?? 0)] ?? 0) + '\u0027 */ /* TODO-QSP: $wombthfathID = \u0027' + (((s as any).wombpotfath ?? 0)?.[String((s as any).potfather_counter ?? 0)] ?? 0) + '\u0027 */ return s; }); window.__gameStore.getState().doGoto(\u0027din_bad\u0027, \u0027d_cycreport_actor\u0027, \u00277 & gs \u0027stat\u0027\u0027); return false;">Unknown (-)</a>';
+                      // TODO-QSP: $potfather_temp[2] = '<a href="exec: $wombthfath = ''<<$npc_usedname[$wombpotfath[potfather_counter]]>>'' & $wombthfathID = ''<<$wombpotfath[potfather_counter]>>'' & gs ''din_bad'', ''d_cycreport_actor'', 7 & gs ''stat''">Unknown (-)</a>'
                     }
                     scene.text(`Potential father (${((s as any).potfather_counter ?? '') + 1}): ${(((s as any).potfather_temp ?? 0)?.[2] ?? '')}`);
                     (s as any).potfather_counter = ((s as any).potfather_counter ?? 0) + (1);
@@ -1009,9 +1009,9 @@ function enterDCycreportActor(s: GameState, scene: SceneBuilder): void {
                   while (true) {
                     if (((s as any).cumtime ?? 0)?.[String((s as any).tempcurr ?? 0)] > 0) {
                       if (((s as any).npc_usedname ?? 0)[((s as any).cumfthname ?? 0)?.[String((s as any).tempcurr ?? 0)]] !== '') {
-                        scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: $wombthfath = /u0027${(((s as any).npc_usedname ?? 0)?.[(((s as any).cumfthname ?? 0)?.[String((s as any).tempcurr ?? 0)] ?? '')] ?? '')}/u0027 */ /* TODO-QSP: $wombthfathID = /u0027${(((s as any).cumfthname ?? 0)?.[String((s as any).tempcurr ?? 0)] ?? '')}/u0027 */ return s; }); window.__gameStore.getState().doGoto(/u0027din_bad/u0027, /u0027d_cycreport_actor/u0027, /u00277 & gs /u0027stat/u0027/u0027); return false;">${(((s as any).npc_usedname ?? 0)?.[(((s as any).cumfthname ?? 0)?.[String((s as any).tempcurr ?? 0)] ?? '')] ?? '')} (${(((s as any).cumfthname ?? 0)?.[String((s as any).tempcurr ?? 0)] ?? '')})</a>`);
+                        scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: $wombthfath = /u0027/u003c/u003c$npc_usedname[$cumfthname[tempcurr]]>>/u0027 */ /* TODO-QSP: $wombthfathID = /u0027/u003c/u003c$cumfthname[tempcurr]>>/u0027 */ return s; }); window.__gameStore.getState().doGoto(/u0027din_bad/u0027, /u0027d_cycreport_actor/u0027, /u00277 & gs /u0027stat/u0027/u0027); return false;">${(((s as any).npc_usedname ?? 0)?.[(((s as any).cumfthname ?? 0)?.[String((s as any).tempcurr ?? 0)] ?? '')] ?? '')} (${(((s as any).cumfthname ?? 0)?.[String((s as any).tempcurr ?? 0)] ?? '')})</a>`);
                       } else {
-                        scene.text(` <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: $wombthfath = /u0027${(((s as any).npc_usedname ?? 0)?.[(((s as any).cumfthname ?? 0)?.[String((s as any).tempcurr ?? 0)] ?? '')] ?? '')}/u0027 */ /* TODO-QSP: $wombthfathID = /u0027${(((s as any).cumfthname ?? 0)?.[String((s as any).tempcurr ?? 0)] ?? '')}/u0027 */ return s; }); window.__gameStore.getState().doGoto(/u0027din_bad/u0027, /u0027d_cycreport_actor/u0027, /u00277 & gs /u0027stat/u0027/u0027); return false;">Unknown (-)</a>`);
+                        scene.text(` <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: $wombthfath = /u0027/u003c/u003c$npc_usedname[$cumfthname[tempcurr]]>>/u0027 */ /* TODO-QSP: $wombthfathID = /u0027/u003c/u003c$cumfthname[tempcurr]>>/u0027 */ return s; }); window.__gameStore.getState().doGoto(/u0027din_bad/u0027, /u0027d_cycreport_actor/u0027, /u00277 & gs /u0027stat/u0027/u0027); return false;">Unknown (-)</a>`);
                       }
                     }
                     if (((s as any).tempcurr ?? 0) < ((s as any).tempmax ?? 0)) {

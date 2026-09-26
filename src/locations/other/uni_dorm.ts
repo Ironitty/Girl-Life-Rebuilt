@@ -140,24 +140,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
         ]);
       }
       if (((s as any).NatbelQW ?? 0)?.['uni_dorm_access'] === 1  &&  ((s as any).yearstart ?? 0) > 1) {
-        scene.actions([
-          { label: 'I\'m here to visit Natasha',  },
-        ]);
       }
-      // TODO-QSP: if twins
-      scene.actions([
-        { label: 'I\'m here to visit the twins', handler: (st: GameState) => {
-    scene.img('images/locations/city/island/university/dorm/dorm.jpg');
-    scene.text('You walk over to the counter and pull out your ID. "I\'m here to visit Mia and Yana Radimova."');
-    scene.text('The woman rolls her eyes. "Those two troublemakers really aren\'t as funny as they think they are. Anyway, they\'re up on the seventh floor, room 702."');
-    scene.text('She lets you in and you thank her before heading for the elevator.');
-    scene.actions([
-      { label: 'Take the elevator', handler: (st: GameState) => {
-    (st as any).minut = ((st as any).minut ?? 0) + 2;
-  }, goto: ['uni_dorm', 'elevator'] },
-    ]);
-  } },
-      ]);
     }
   }
   scene.actions([
@@ -306,24 +289,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
         ]);
       }
       if (((s as any).NatbelQW ?? 0)?.['uni_dorm_access'] === 1  &&  ((s as any).yearstart ?? 0) > 1) {
-        scene.actions([
-          { label: 'I\'m here to visit Natasha',  },
-        ]);
       }
-      // TODO-QSP: if twins
-      scene.actions([
-        { label: 'I\'m here to visit the twins', handler: (st: GameState) => {
-    scene.img('images/locations/city/island/university/dorm/dorm.jpg');
-    scene.text('You walk over to the counter and pull out your ID. "I\'m here to visit Mia and Yana Radimova."');
-    scene.text('The woman rolls her eyes. "Those two troublemakers really aren\'t as funny as they think they are. Anyway, they\'re up on the seventh floor, room 702."');
-    scene.text('She lets you in and you thank her before heading for the elevator.');
-    scene.actions([
-      { label: 'Take the elevator', handler: (st: GameState) => {
-    (st as any).minut = ((st as any).minut ?? 0) + 2;
-  }, goto: ['uni_dorm', 'elevator'] },
-    ]);
-  } },
-      ]);
     }
   }
   scene.actions([
@@ -1515,7 +1481,7 @@ function enterDormLounge(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/island/university/dorm/dorm_lounge.jpg');
   scene.text('This is the large shared lounge for this floor. Couches and chairs clustered around a TV on the wall create a square for groups of people to sit at, with just enough space between them to allow people to enter or leave.');
   scene.text('A vending machine charges a flat fee of 80 <b>₽</b> per item for snacks and energy drinks, likely for those cramming a late night study session.');
-  scene.text('A free <a href="#" onclick="window.__gameStore.setState((s) => { (s.newspaperVars ??= {})\u0027dbag\u0027 = s.0; return s; }); window.__gameStore.getState().doGoto(\u0027newspaper\u0027, \u0027start\u0027); return false;">newspaper</a> is available.');
+  scene.text('A free <a href="#" onclick="window.__gameStore.setState((s) => { (s.newspaperVars ??= {})\u0027dbag\u0027 = 0; return s; }); window.__gameStore.getState().doGoto(\u0027newspaper\u0027, \u0027start\u0027); return false;">newspaper</a> is available.');
   if (((s as any).money ?? 0) < 80) {
     scene.text('You don\'t have enough money to buy anything from the vending machine.');
   } else {

@@ -359,7 +359,7 @@ function enterWardenRoom(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'themes', 'indoors');
   qspCall(s, 'core_library', 'stage_title');
   if (String((s as any).locArgs?.[1] ?? '') === 'reputation') {
-    // TODO-QSP: "That Talk"
+    scene.text('That Talk');
   }
   scene.actions([
     { label: 'Go to the hallway', handler: (st: GameState) => {

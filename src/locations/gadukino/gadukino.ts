@@ -101,7 +101,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     if (qspFunc(s, 'car_funcs', 'is_here')) {
       scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027carF/u0027, /u0027start/u0027); return false;">Your ${(((s as any).car ?? 0)?.['name'] ?? '')}</a> is close by.`);
     }
-    scene.text('Several small farms are scattered around the outskirts of the village, one of which belongs to <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(\u0027gad_gpyard\u0027, \u0027start\u0027); return false;">your grandparents</a>.');
+    scene.text('Several small farms are scattered around the outskirts of the village, one of which belongs to <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=5; return s; }); window.__gameStore.getState().doGoto(\u0027gad_gpyard\u0027, \u0027start\u0027); return false;">your grandparents</a>.');
     if (((s as any).home ?? 0)?.['current'] === 'hunters_lodge'  ||  ((s as any).home ?? 0)?.['current'] === 'grandparents_house') {
       if (((s as any).vladimirQW ?? 0)?.['day'] === ((s as any).daystart ?? 0)  &&  ((s as any).vladimirQW ?? 0)?.['stage'] === 30  &&  ((s as any).hour ?? 0) >= 16  &&  ((s as any).week ?? 0) === 6) {
         scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027vladimirQW_meet\u0027, \u00272\u0027); return false;">There\'s an Audi parked in the street, and standing beside it, you notice Vladimir</a>.');
@@ -124,7 +124,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       }
     }
     if (((s as any).npc_rel ?? 0)?.['A60'] > 0  &&  ((s as any).npc_known ?? 0)?.['A60'] === 1) {
-      scene.text('Just down the road from your grandparents\' house is <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(\u0027gad_miroslava_home\u0027, \u0027start\u0027); return false;">Mira\'s house</a>.');
+      scene.text('Just down the road from your grandparents\' house is <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=5; return s; }); window.__gameStore.getState().doGoto(\u0027gad_miroslava_home\u0027, \u0027start\u0027); return false;">Mira\'s house</a>.');
       scene.actions([
         { label: 'Go to Mira\'s house', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -141,9 +141,9 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       scene.text('During the summer, a truck usually comes into town from the city to buy fresh mushrooms and berries from the locals. It\'s not the right season for it right now, though.');
     }
     scene.text('In the center of the village is a small grass-covered square where villagers gather to meet and discuss or argue about politics or village life.');
-    scene.text('Near the square sits the old <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.3; return s; }); window.__gameStore.getState().doGoto(\u0027gad_church\u0027, \u0027start\u0027); return false;">chapel</a>, it is not in the best shape, but it appears well-loved.');
+    scene.text('Near the square sits the old <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=3; return s; }); window.__gameStore.getState().doGoto(\u0027gad_church\u0027, \u0027start\u0027); return false;">chapel</a>, it is not in the best shape, but it appears well-loved.');
     if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) < 20) {
-      scene.text('One of the buildings facing the square has a sign saying, <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(\u0027gad_store\u0027, \u0027\u0027); return false;">General Store</a>. A sign on the door proclaims it "OPEN". It looks like the only place in the village to buy goods.');
+      scene.text('One of the buildings facing the square has a sign saying, <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=5; return s; }); window.__gameStore.getState().doGoto(\u0027gad_store\u0027, \u0027\u0027); return false;">General Store</a>. A sign on the door proclaims it "OPEN". It looks like the only place in the village to buy goods.');
       scene.actions([
         { label: 'Go to the general store', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;

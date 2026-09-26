@@ -184,7 +184,7 @@ function enterEntrance(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/community/swim/entrance.jpg');
   scene.text('You\'re currently inside the entrance to the swimming pool.');
-  scene.text('From here, you can access the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027pav_pool\u0027, \u0027lockerfemale\u0027); return false;">girls locker room</a>, visit the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027pav_pool\u0027, \u0027cafeteria\u0027); return false;">cafeteria</a> or browse the pool\'s <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027pav_pool\u0027, \u0027store\u0027); return false;">store</a>.');
+  scene.text('From here, you can access the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=1; return s; }); window.__gameStore.getState().doGoto(\u0027pav_pool\u0027, \u0027lockerfemale\u0027); return false;">girls locker room</a>, visit the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=1; return s; }); window.__gameStore.getState().doGoto(\u0027pav_pool\u0027, \u0027cafeteria\u0027); return false;">cafeteria</a> or browse the pool\'s <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=1; return s; }); window.__gameStore.getState().doGoto(\u0027pav_pool\u0027, \u0027store\u0027); return false;">store</a>.');
   scene.text('There\'s a sign by the store\'s entrance that reads: "If closed, I\'m working in the pool. Be back soon." It seems like the store clerk is also the janitor.');
   if (((s as any).job_hiring_step ?? 0)?.['pav_pool_lifeguard'] === 0  &&  (((s as any).year ?? 0) === 2016  &&  ((s as any).month ?? 0) < 10)) {
     scene.text('\'You also notice a sign stating that the pool is looking for an extra lifeguard and that anyone interested should apply in the main office between 9:00 and 18:00.\'');
@@ -200,7 +200,7 @@ function enterEntrance(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   if (((s as any).job_status ?? 0)?.['pav_pool_lifeguard'] === 'employed'  &&  ((s as any).job_rank ?? 0)?.['pav_pool_lifeguard'] === 0  &&  (((s as any).year ?? 0) === 2017  &&  ((s as any).month ?? 0) === 6)  &&  (Math.floor(Math.random() * 2) + 0) === 0  &&  (((s as any).hour ?? 0) >= 9  &&  ((s as any).hour ?? 0) < 18)) {
-    scene.text('You see <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027pav_pool\u0027, \u0027lifeguard_offer\u0027); return false;">Maria</a> approaching from her office, trying to get your attention.');
+    scene.text('You see <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=1; return s; }); window.__gameStore.getState().doGoto(\u0027pav_pool\u0027, \u0027lifeguard_offer\u0027); return false;">Maria</a> approaching from her office, trying to get your attention.');
   }
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
@@ -301,8 +301,8 @@ function enterLockerfemale(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/community/swim/lockers.jpg');
   scene.text('The changing rooms are old, murky and uncomfortable. They\'re also very cramped and you always feel compelled to leave as quickly as possible. The small windows on one side don\'t make you feel any better.');
-  scene.text('From here, you can access the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027pav_pool\u0027, \u0027showerfemale\u0027); return false;">showers</a> or go to the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027pav_pool\u0027, \u0027mirror\u0027); return false;">mirrors</a> area, highly contested in busy times. You can also access the pool, but only if you\'re wearing swimwear.');
-  scene.text('A small <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027pav_pool\u0027, \u0027locker_fountain\u0027); return false;">water fountain</a> sitting against one of the walls.');
+  scene.text('From here, you can access the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=1; return s; }); window.__gameStore.getState().doGoto(\u0027pav_pool\u0027, \u0027showerfemale\u0027); return false;">showers</a> or go to the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=1; return s; }); window.__gameStore.getState().doGoto(\u0027pav_pool\u0027, \u0027mirror\u0027); return false;">mirrors</a> area, highly contested in busy times. You can also access the pool, but only if you\'re wearing swimwear.');
+  scene.text('A small <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=1; return s; }); window.__gameStore.getState().doGoto(\u0027pav_pool\u0027, \u0027locker_fountain\u0027); return false;">water fountain</a> sitting against one of the walls.');
   if (qspFunc(s, 'changingroom', 'count_swim_item') === 0  &&  ((s as any).clothingworntype ?? 0) !== 'nude') {
     scene.text('You should buy some swimwear if you intend on spending time at the pool.');
   } else {
@@ -431,7 +431,7 @@ function enterMirror(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/community/swim/mirrorsink.jpg');
-  scene.text('The area where the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027start\u0027); return false;">mirrors</a> are is just as murky as the rest of the changing room. It\'s almost like the owners don\'t care about the dilapidated appearance.');
+  scene.text('The area where the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=1; return s; }); window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027start\u0027); return false;">mirrors</a> are is just as murky as the rest of the changing room. It\'s almost like the owners don\'t care about the dilapidated appearance.');
   if (((s as any).clothingworntype ?? 0) === 'nude') {
     scene.text('You are completely naked.');
   }

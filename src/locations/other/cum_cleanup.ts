@@ -237,7 +237,6 @@ function enterFace(s: GameState, scene: SceneBuilder): void {
   (s as any).toclean = undefined;
   (s as any).deresidue = undefined;
   if (String((s as any).locArgs?.[0] ?? '') === 1  ||  String((s as any).locArgs?.[0] ?? '') === 10) {
-    // TODO-QSP: !{full external clean !}
     if (((s as any).isprok ?? 0) === 0  &&  (!((s as any).vibratorIN ?? 0))) {
       (s as any).deresidue = [...((s as any).deresidue ?? []), 0];
     }
@@ -261,11 +260,9 @@ function enterFace(s: GameState, scene: SceneBuilder): void {
     (s as any).toclean = [...((s as any).toclean ?? []), 16];
   } else {
     if (String((s as any).locArgs?.[0] ?? '') === 2) {
-      // TODO-QSP: !{teeth clean !}
       (s as any).toclean = [...((s as any).toclean ?? []), 12];
     } else {
       if (String((s as any).locArgs?.[0] ?? '') === 3) {
-        // TODO-QSP: !{internal clean !}
         (s as any).toclean = [...((s as any).toclean ?? []), 0];
         (s as any).toclean = [...((s as any).toclean ?? []), 3];
         (s as any).toclean = [...((s as any).toclean ?? []), 17];
@@ -274,7 +271,6 @@ function enterFace(s: GameState, scene: SceneBuilder): void {
         }
       } else {
         if (String((s as any).locArgs?.[0] ?? '') === 4) {
-          // TODO-QSP: !{external body clean !}
           (s as any).toclean = [...((s as any).toclean ?? []), 1];
           (s as any).toclean = [...((s as any).toclean ?? []), 4];
           (s as any).toclean = [...((s as any).toclean ?? []), 8];
@@ -287,48 +283,38 @@ function enterFace(s: GameState, scene: SceneBuilder): void {
           (s as any).toclean = [...((s as any).toclean ?? []), 16];
         } else {
           if (String((s as any).locArgs?.[0] ?? '') === 5) {
-            // TODO-QSP: !{hair clean !}
             (s as any).toclean = [...((s as any).toclean ?? []), 16];
           } else {
             if (String((s as any).locArgs?.[0] ?? '') === 6) {
-              // TODO-QSP: !{clothes clean !}
               (s as any).toclean = [...((s as any).toclean ?? []), 2];
               (s as any).toclean = [...((s as any).toclean ?? []), 5];
               (s as any).toclean = [...((s as any).toclean ?? []), 6];
               (s as any).toclean = [...((s as any).toclean ?? []), 7];
             } else {
               if (String((s as any).locArgs?.[0] ?? '') === 7) {
-                // TODO-QSP: !{enema !}
                 (s as any).toclean = [...((s as any).toclean ?? []), 3];
               } else {
                 if (String((s as any).locArgs?.[0] ?? '') === 8) {
-                  // TODO-QSP: !{blank !}
                 } else {
                   if (String((s as any).locArgs?.[0] ?? '') === 9) {
-                    // TODO-QSP: !{wash hands !}
                     (s as any).toclean = [...((s as any).toclean ?? []), 13];
                   } else {
                     if (String((s as any).locArgs?.[0] ?? '') === 11) {
-                      // TODO-QSP: !{wash face !}
                       (s as any).toclean = [...((s as any).toclean ?? []), 11];
                     } else {
                       if (String((s as any).locArgs?.[0] ?? '') === 12) {
-                        // TODO-QSP: !{face and hair !}
                         (s as any).toclean = [...((s as any).toclean ?? []), 11];
                         (s as any).toclean = [...((s as any).toclean ?? []), 16];
                       } else {
                         if (String((s as any).locArgs?.[0] ?? '') === 13) {
-                          // TODO-QSP: !{head !}
                           (s as any).toclean = [...((s as any).toclean ?? []), 11];
                           (s as any).toclean = [...((s as any).toclean ?? []), 12];
                           (s as any).toclean = [...((s as any).toclean ?? []), 16];
                         } else {
                           if (String((s as any).locArgs?.[0] ?? '') === 14) {
-                            // TODO-QSP: !{belly !}
                             (s as any).toclean = [...((s as any).toclean ?? []), 14];
                           } else {
                             if (String((s as any).locArgs?.[0] ?? '') === 15) {
-                              // TODO-QSP: !{wipe ass/pussy !}
                               (s as any).toclean = [...((s as any).toclean ?? []), 1];
                               (s as any).toclean = [...((s as any).toclean ?? []), 4];
                               (s as any).deresidue = [...((s as any).deresidue ?? []), 0];
@@ -338,16 +324,13 @@ function enterFace(s: GameState, scene: SceneBuilder): void {
                               }
                             } else {
                               if (String((s as any).locArgs?.[0] ?? '') === 16) {
-                                // TODO-QSP: !{Breasts !}
                                 (s as any).toclean = [...((s as any).toclean ?? []), 15];
                               } else {
                                 if (String((s as any).locArgs?.[0] ?? '') === 17) {
-                                  // TODO-QSP: !{Arms/legs !}
                                   (s as any).toclean = [...((s as any).toclean ?? []), 9];
                                   (s as any).toclean = [...((s as any).toclean ?? []), 10];
                                 } else {
                                   if (String((s as any).locArgs?.[0] ?? '') === 18) {
-                                    // TODO-QSP: !{full clean but skipping internal due to hypno !}
                                     (s as any).toclean = [...((s as any).toclean ?? []), 1];
                                     (s as any).toclean = [...((s as any).toclean ?? []), 2];
                                     (s as any).toclean = [...((s as any).toclean ?? []), 4];
@@ -365,7 +348,6 @@ function enterFace(s: GameState, scene: SceneBuilder): void {
                                     (s as any).toclean = [...((s as any).toclean ?? []), 16];
                                   } else {
                                     if (String((s as any).locArgs?.[0] ?? '') === 20) {
-                                      // TODO-QSP: !{Clean everything !}
                                       (s as any).sparrage = undefined;
                                       (s as any).sparrloc = undefined;
                                       (s as any).sparrnam = undefined;

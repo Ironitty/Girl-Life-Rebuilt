@@ -1413,21 +1413,21 @@ function enterShop(s: GameState, scene: SceneBuilder): void {
   if (qspFunc(s, 'money', 'can_afford', 1000, 'cash') === 0) {
     scene.text('\'Buy neuroboosters 1000₽ (You do not have enough money)\'');
   } else {
-    scene.text('\'<a href="#" onclick="window.__gameStore.setState((s) => { (s.mc_inventory ??= {})\u0027mentats\u0027 +=s.20; return s; }); window.__gameStore.getState().doGoto(\u0027money\u0027, \u0027pay\u0027, String(window.__gameStore.getState().1000 ?? \u0027\u0027)); return false;">Buy neuroboosters</a> \' + $func(\'money\', \'string_price\', 1000)');
+    scene.text('\'<a href="#" onclick="window.__gameStore.setState((s) => { (s.mc_inventory ??= {})\u0027mentats\u0027 +=20; return s; }); window.__gameStore.getState().doGoto(\u0027money\u0027, \u0027pay\u0027, String(window.__gameStore.getState().1000 ?? \u0027\u0027)); return false;">Buy neuroboosters</a> \' + $func(\'money\', \'string_price\', 1000)');
   }
   scene.text(`Uses left: ${(((s as any).mc_inventory ?? 0)?.['mentats'] ?? '')}`);
   scene.text('A pillbox with 10 orange pills inside, the description is removed from the box.');
   if (qspFunc(s, 'money', 'can_afford', 500, 'cash') === 0) {
     scene.text('\'Buy steroids 500₽ (You do not have enough money)\'');
   } else {
-    scene.text('\'<a href="#" onclick="window.__gameStore.setState((s) => { (s.mc_inventory ??= {})\u0027steroids\u0027 +=s.10; return s; }); window.__gameStore.getState().doGoto(\u0027money\u0027, \u0027pay\u0027, String(window.__gameStore.getState().500 ?? \u0027\u0027)); return false;">Buy steroids</a> \' + $func(\'money\', \'string_price\', 500)');
+    scene.text('\'<a href="#" onclick="window.__gameStore.setState((s) => { (s.mc_inventory ??= {})\u0027steroids\u0027 +=10; return s; }); window.__gameStore.getState().doGoto(\u0027money\u0027, \u0027pay\u0027, String(window.__gameStore.getState().500 ?? \u0027\u0027)); return false;">Buy steroids</a> \' + $func(\'money\', \'string_price\', 500)');
   }
   scene.text(`Uses left: ${(((s as any).mc_inventory ?? 0)?.['steroids'] ?? '')}`);
   scene.text('Paste tube with two pictures of a woman. In the latter one, she sports an enormous bust.');
   if (qspFunc(s, 'money', 'can_afford', 500, 'cash') === 0) {
     scene.text('\'Buy breast cream 500₽ (You do not have enough money)\'');
   } else {
-    scene.text('\'<a href="#" onclick="window.__gameStore.setState((s) => { (s.mc_inventory ??= {})\u0027breastcream\u0027 +=s.5; return s; }); window.__gameStore.getState().doGoto(\u0027money\u0027, \u0027pay\u0027, String(window.__gameStore.getState().500 ?? \u0027\u0027)); return false;">Buy breast cream</a> \' + $func(\'money\', \'string_price\', 500)');
+    scene.text('\'<a href="#" onclick="window.__gameStore.setState((s) => { (s.mc_inventory ??= {})\u0027breastcream\u0027 +=5; return s; }); window.__gameStore.getState().doGoto(\u0027money\u0027, \u0027pay\u0027, String(window.__gameStore.getState().500 ?? \u0027\u0027)); return false;">Buy breast cream</a> \' + $func(\'money\', \'string_price\', 500)');
   }
   scene.text(`Uses left: ${(((s as any).mc_inventory ?? 0)?.['breastcream'] ?? '')}`);
   if (((s as any).start_type ?? 0)?.['magic'] !== 'nomagic') {
@@ -1435,16 +1435,16 @@ function enterShop(s: GameState, scene: SceneBuilder): void {
     if (qspFunc(s, 'money', 'can_afford', 200, 'cash') === 0) {
       scene.text('\'Buy aphrodisiacs 200₽ (You do not have enough money)\'');
     } else {
-      scene.text('\'<a href="#" onclick="window.__gameStore.setState((s) => { (s.mc_inventory ??= {})\u0027aphrodisiac\u0027 +=s.10; return s; }); window.__gameStore.getState().doGoto(\u0027money\u0027, \u0027pay\u0027, String(window.__gameStore.getState().200 ?? \u0027\u0027)); return false;">Buy aphrodisiacs</a> \' + $func(\'money\', \'string_price\', 200)');
+      scene.text('\'<a href="#" onclick="window.__gameStore.setState((s) => { (s.mc_inventory ??= {})\u0027aphrodisiac\u0027 +=10; return s; }); window.__gameStore.getState().doGoto(\u0027money\u0027, \u0027pay\u0027, String(window.__gameStore.getState().200 ?? \u0027\u0027)); return false;">Buy aphrodisiacs</a> \' + $func(\'money\', \'string_price\', 200)');
     }
     scene.text(`Uses left: ${(((s as any).mc_inventory ?? 0)?.['aphrodisiac'] ?? '')}`);
   }
   if (qspFunc(s, 'money', 'can_afford', 250, 'cash') === 0) {
     scene.text('\'Buy enough weed for 5 joints for 250₽ (You do not have enough money)\'');
   } else {
-    scene.text('\'Buy enough <a href="#" onclick="window.__gameStore.setState((s) => { (s.mc_inventory ??= {})\u0027joints\u0027 +=s.5; return s; }); window.__gameStore.getState().doGoto(\u0027money\u0027, \u0027pay\u0027, String(window.__gameStore.getState().250 ?? \u0027\u0027)); return false;">weed</a> for 5 joints for \' + $func(\'money\', \'string_price\', 250)');
+    scene.text('\'Buy enough <a href="#" onclick="window.__gameStore.setState((s) => { (s.mc_inventory ??= {})\u0027joints\u0027 +=5; return s; }); window.__gameStore.getState().doGoto(\u0027money\u0027, \u0027pay\u0027, String(window.__gameStore.getState().250 ?? \u0027\u0027)); return false;">weed</a> for 5 joints for \' + $func(\'money\', \'string_price\', 250)');
     if (qspFunc(s, 'money', 'can_afford', 500, 'cash') === 1) {
-      scene.text('\'Buy enough <a href="#" onclick="window.__gameStore.setState((s) => { (s.mc_inventory ??= {})\u0027joints\u0027 +=s.10; return s; }); window.__gameStore.getState().doGoto(\u0027money\u0027, \u0027pay\u0027, String(window.__gameStore.getState().500 ?? \u0027\u0027)); return false;">weed</a> for 10 joints for \' + $func(\'money\', \'string_price\', 500)');
+      scene.text('\'Buy enough <a href="#" onclick="window.__gameStore.setState((s) => { (s.mc_inventory ??= {})\u0027joints\u0027 +=10; return s; }); window.__gameStore.getState().doGoto(\u0027money\u0027, \u0027pay\u0027, String(window.__gameStore.getState().500 ?? \u0027\u0027)); return false;">weed</a> for 10 joints for \' + $func(\'money\', \'string_price\', 500)');
     }
   }
   if (String((s as any).locArgs?.[0] ?? '') !== 'get_metro_image') {

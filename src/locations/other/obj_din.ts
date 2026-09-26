@@ -156,9 +156,9 @@ function enterOld(s: GameState, scene: SceneBuilder): void {
       while (true) {
         if (((s as any).i ?? 0) < Object.keys((s as any).ObjDebugVars ?? {}).length) {
           if (((String((((s as any).ObjDebugVars ?? 0)?.[String((s as any).i ?? 0)] ?? 0)).indexOf(String('$'))) + 1) === 1) {
-            // TODO-QSP: dynamic '$tmp = <<$ObjDebugVars[i]>>'
+            scene.text('$tmp = ' + (((s as any).ObjDebugVars ?? 0)?.[String((s as any).i ?? 0)] ?? 0) + '');
           } else {
-            // TODO-QSP: dynamic 'tmp = <<$ObjDebugVars[i]>>'
+            scene.text('tmp = ' + (((s as any).ObjDebugVars ?? 0)?.[String((s as any).i ?? 0)] ?? 0) + '');
           }
           (s as any).i = ((s as any).i ?? 0) + (1);
           break;

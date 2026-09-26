@@ -81,9 +81,9 @@ function enterQueueMsg(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).sd_qm ?? 0)?.['icon'] !== ''  &&  (((s as any).stat_cfg ?? 0)?.['msg_display_mode'] === 0  ||  ((s as any).stat_cfg ?? 0)?.['msg_display_mode'] === 1)) {
     if (((s as any).sd_qm ?? 0)?.['bg_color'] !== '') {
-      ((s as any).sd_qm = (s as any).sd_qm ?? {})['final_icon'] = '<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: ' + qspUntranslated(s, "sd_qm[\\u0027action\\u0027]", { location: "stat_display_compute" }) + ' */ return s; }); return false;"><span style="display:inline-block;background:' + (((s as any).sd_qm ?? 0)?.['bg_color']) + ';border-radius:12px;width:' + (((s as any).stat_cfg ?? 0)?.['icon_height']) + 'px;height:' + (((s as any).stat_cfg ?? 0)?.['icon_height']) + 'px;padding:5%;box-sizing:border-box;"><img src="images/system/icons/' + (((s as any).sd_qm ?? 0)?.['icon']) + '.png" title="' + (((s as any).sd_qm ?? 0)?.['title']) + '" style="width:100%;height:100%;display:block;"></span></a>';
+      // TODO-QSP: $sd_qm['final_icon'] = '<a href="exec: <<$sd_qm[''action'']>>"><span style="display:inline-block;background:<<$sd_qm[''bg_color'']>>;border-radius:12px;width:<<stat_cfg[''icon_height'']>>px;height:<<stat_cfg[''icon_height'']>>px;padding:5%;box-sizing:border-box;"><img src="images/system/icons/<<$sd_qm[''icon'']>>.png" title="<<$sd_qm[''title'']>>" style="width:100%;height:100%;display:block;"></span></a>'
     } else {
-      ((s as any).sd_qm = (s as any).sd_qm ?? {})['final_icon'] = '<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: ' + qspUntranslated(s, "sd_qm[\\u0027action\\u0027]", { location: "stat_display_compute" }) + ' */ return s; }); return false;"><img src="images/system/icons/' + (((s as any).sd_qm ?? 0)?.['icon']) + '.png" title="' + (((s as any).sd_qm ?? 0)?.['title']) + '" height="' + (((s as any).stat_cfg ?? 0)?.['icon_height']) + '"></a>';
+      // TODO-QSP: $sd_qm['final_icon'] = '<a href="exec: <<$sd_qm[''action'']>>"><img src="images/system/icons/<<$sd_qm[''icon'']>>.png" title="<<$sd_qm[''title'']>>" height="<<stat_cfg[''icon_height'']>>"></a>'
     }
     if (((s as any).sd_qm ?? 0)?.['row_arg'] === 1) {
       (s as any).sd_icons_1 = [...((s as any).sd_icons_1 ?? []), (((s as any).sd_qm ?? 0)?.['final_icon'])];
@@ -1373,13 +1373,13 @@ function enterComputeMisc(s: GameState, scene: SceneBuilder): void {
         ((s as any).stat_texts = (s as any).stat_texts ?? {})['gadukino'] = 'Your basket is partially full.';
       }
       if (((s as any).boletus ?? 0) > 0) {
-        ((s as any).stat_texts = (s as any).stat_texts ?? {})['gadukino'] = ((s as any).stat_texts['gadukino'] ?? 0) + ('<br>Mushrooms: <a href="#" onclick="window.__gameStore.setState((s) => { s.boletus -=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027stat\u0027, \u0027\u0027); return false;"><b>' + ((s as any).boletus ?? 0) + '</b></a> kg.');
+        ((s as any).stat_texts = (s as any).stat_texts ?? {})['gadukino'] = ((s as any).stat_texts['gadukino'] ?? 0) + ('<br>Mushrooms: <a href="#" onclick="window.__gameStore.setState((s) => { s.boletus -=1; return s; }); window.__gameStore.getState().doGoto(\u0027stat\u0027, \u0027\u0027); return false;"><b>' + ((s as any).boletus ?? 0) + '</b></a> kg.');
       }
       if (((s as any).boletus_cooked ?? 0) > 0) {
-        ((s as any).stat_texts = (s as any).stat_texts ?? {})['gadukino'] = ((s as any).stat_texts['gadukino'] ?? 0) + ('<br>Cooked Mushrooms: <a href="#" onclick="window.__gameStore.setState((s) => { s.boletus_cooked -=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027stat\u0027, \u0027\u0027); return false;"><b>' + ((s as any).boletus_cooked ?? 0) + '</b></a> kg.');
+        ((s as any).stat_texts = (s as any).stat_texts ?? {})['gadukino'] = ((s as any).stat_texts['gadukino'] ?? 0) + ('<br>Cooked Mushrooms: <a href="#" onclick="window.__gameStore.setState((s) => { s.boletus_cooked -=1; return s; }); window.__gameStore.getState().doGoto(\u0027stat\u0027, \u0027\u0027); return false;"><b>' + ((s as any).boletus_cooked ?? 0) + '</b></a> kg.');
       }
       if (((s as any).bilberry ?? 0) > 0) {
-        ((s as any).stat_texts = (s as any).stat_texts ?? {})['gadukino'] = ((s as any).stat_texts['gadukino'] ?? 0) + ('<br>Berries: <a href="#" onclick="window.__gameStore.setState((s) => { s.bilberry -=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027stat\u0027, \u0027\u0027); return false;"><b>' + ((s as any).bilberry ?? 0) + '</b></a> kg.');
+        ((s as any).stat_texts = (s as any).stat_texts ?? {})['gadukino'] = ((s as any).stat_texts['gadukino'] ?? 0) + ('<br>Berries: <a href="#" onclick="window.__gameStore.setState((s) => { s.bilberry -=1; return s; }); window.__gameStore.getState().doGoto(\u0027stat\u0027, \u0027\u0027); return false;"><b>' + ((s as any).bilberry ?? 0) + '</b></a> kg.');
       }
       ((s as any).stat_texts = (s as any).stat_texts ?? {})['gadukino'] = ((s as any).stat_texts['gadukino'] ?? 0) + ('<br>(Click numbers to throw away one a time)');
     }
@@ -1496,7 +1496,7 @@ function enterComputeMisc(s: GameState, scene: SceneBuilder): void {
           if (((s as any).cal_upc_days ?? 0)[((s as any).cal_r ?? 0)?.['i']] === ((s as any).daystart ?? 0) + 1) {
             ((s as any).cal_r = (s as any).cal_r ?? {})['day_lbl'] = 'Tomorrow';
           } else {
-            ((s as any).cal_r = (s as any).cal_r ?? {})['day_lbl'] = qspUntranslated(s, "weekName[func('time', 'get_week_from_daystart', cal_upc_days[cal_r['i']])]", { location: "stat_display_compute" });
+            ((s as any).cal_r = (s as any).cal_r ?? {})['day_lbl'] = (((s as any).weekName ?? 0)?.[qspFunc(s, 'time', 'get_week_from_daystart', qspUntranslated(s, "cal_upc_days[cal_r['i']]", { location: "stat_display_compute" }))] ?? 0);
           }
         }
         if (((s as any).event_vars ?? 0)?.['all_day'] === 1) {
@@ -1700,113 +1700,114 @@ function enterCondCloStyle(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterComputeImages(s: GameState, scene: SceneBuilder): void {
-  while (true) {
-    (s as any).sd_img = undefined;
-    ((s as any).sd_img = (s as any).sd_img ?? {})['count'] = 0;
-    ((s as any).sd_ci = (s as any).sd_ci ?? {})['max'] = 0;
-    ((s as any).sd_ci = (s as any).sd_ci ?? {})['i'] = 0;
-    // LABEL: sd_compute_images_loop
-    ((s as any).sd_ci = (s as any).sd_ci ?? {})['key'] = qspUntranslated(s, "image_order[sd_ci['i']]", { location: "stat_display_compute" });
-    if (((s as any).stat_hide ?? 0)[((s as any).sd_ci ?? 0)?.['key']] === 1) {
-      break;
-    }
-    if (((s as any).sd_ci ?? 0)?.['key'] === 'face') {
-      ((s as any).sd_img = (s as any).sd_img ?? {})['url_face'] = qspFunc(s, '$face_image', '');
-      if (((s as any).face_style ?? 0)?.['type'] !== 2) {
-        ((s as any).sd_img = (s as any).sd_img ?? {})['label_face'] = 'Face';
-      } else {
-        ((s as any).sd_mu_lbl = (s as any).sd_mu_lbl ?? {})[0] = 'Smeared makeup';
-        ((s as any).sd_mu_lbl = (s as any).sd_mu_lbl ?? {})[1] = 'No makeup';
-        ((s as any).sd_mu_lbl = (s as any).sd_mu_lbl ?? {})[2] = 'Light makeup';
-        ((s as any).sd_mu_lbl = (s as any).sd_mu_lbl ?? {})[3] = 'Vibrant makeup';
-        ((s as any).sd_mu_lbl = (s as any).sd_mu_lbl ?? {})[4] = 'Heavy makeup';
-        ((s as any).sd_mu_lbl = (s as any).sd_mu_lbl ?? {})[5] = 'Pro makeup';
-        ((s as any).sd_mu_lbl = (s as any).sd_mu_lbl ?? {})[6] = 'Bimbo makeup';
-        ((s as any).sd_mu_lbl = (s as any).sd_mu_lbl ?? {})[7] = 'Goth makeup';
-        ((s as any).sd_img = (s as any).sd_img ?? {})['label_face'] = ((((s as any).pcs_makeup ?? 0) >= 1  &&  ((s as any).pcs_makeup ?? 0) <= 7) ? ((((s as any).sd_mu_lbl ?? 0)?.[String((s as any).pcs_makeup ?? 0)] ?? 0)) : (((((s as any).pcs_makeup ?? 0) <= 0) ? ('Smeared makeup') : ('Face'))));
-        (s as any).sd_mu_lbl = undefined;
+  (s as any).sd_img = undefined;
+  ((s as any).sd_img = (s as any).sd_img ?? {})['count'] = 0;
+  ((s as any).sd_ci = (s as any).sd_ci ?? {})['max'] = 0;
+  ((s as any).sd_ci = (s as any).sd_ci ?? {})['i'] = 0;
+  do {
+    while (true) {
+      ((s as any).sd_ci = (s as any).sd_ci ?? {})['key'] = qspUntranslated(s, "image_order[sd_ci['i']]", { location: "stat_display_compute" });
+      if (((s as any).stat_hide ?? 0)[((s as any).sd_ci ?? 0)?.['key']] === 1) {
+        break;
       }
-      ((s as any).sd_img = (s as any).sd_img ?? {})['short_face'] = (((s as any).sd_img ?? 0)?.['label_face']);
-      ((s as any).sd_img = (s as any).sd_img ?? {})['cond_face'] = qspFunc(s, 'stat_display_compute', 'cond_face');
-    } else {
-      if (((s as any).sd_ci ?? 0)?.['key'] === 'body') {
-        ((s as any).sd_img = (s as any).sd_img ?? {})['url_body'] = qspFunc(s, '$body_image', '', 'body');
-        ((s as any).sd_img = (s as any).sd_img ?? {})['label_body'] = 'Body';
-        ((s as any).sd_img = (s as any).sd_img ?? {})['short_body'] = 'Body';
-        ((s as any).sd_img = (s as any).sd_img ?? {})['cond_body'] = qspFunc(s, 'stat_display_compute', 'cond_sweat');
-        if ((((s as any).cumloc ?? 0)[6] + ((s as any).cumloc ?? 0)[7] + ((s as any).cumloc ?? 0)[13] + ((s as any).cumloc ?? 0)[16]) > 0) {
-          ((s as any).sd_ci = (s as any).sd_ci ?? {})['cum_line'] = qspFunc(s, 'wrap', 'v_neg', '[cum on body]');
-          ((s as any).sd_img = (s as any).sd_img ?? {})['cond_body'] = 'TODO';
-        }
-      } else {
-        if (((s as any).sd_ci ?? 0)?.['key'] === 'coat') {
-          if (((s as any).coatworntype ?? 0) === 'none'  ||  ((s as any).coatworntype ?? 0) === '') {
-            break;
-          }
-          ((s as any).sd_img = (s as any).sd_img ?? {})['url_coat'] = qspFunc(s, '$body_image', '', 'coat');
-          ((s as any).sd_img = (s as any).sd_img ?? {})['label_coat'] = 'Coat';
-          ((s as any).sd_img = (s as any).sd_img ?? {})['short_coat'] = qspFunc(s, '$item_description', '', 'coat', ((s as any).coatworntype ?? 0), ((s as any).coatwornnumber ?? 0));
-          ((s as any).sd_img = (s as any).sd_img ?? {})['cond_coat'] = qspFunc(s, 'stat_display_compute', 'cond_coat_temp');
+      if (((s as any).sd_ci ?? 0)?.['key'] === 'face') {
+        ((s as any).sd_img = (s as any).sd_img ?? {})['url_face'] = qspFunc(s, '$face_image', '');
+        if (((s as any).face_style ?? 0)?.['type'] !== 2) {
+          ((s as any).sd_img = (s as any).sd_img ?? {})['label_face'] = 'Face';
         } else {
-          if (((s as any).sd_ci ?? 0)?.['key'] === 'clothes') {
-            ((s as any).sd_img = (s as any).sd_img ?? {})['url_clothes'] = qspFunc(s, '$body_image', '', 'clothes');
-            if (((s as any).clothingworntype ?? 0) === 'nude') {
-              ((s as any).sd_img = (s as any).sd_img ?? {})['label_clothes'] = ((((s as any).towel ?? 0) === 1) ? ('Towel') : (((((s as any).robe ?? 0) === 1) ? ('Robe') : ('Naked'))));
-              ((s as any).sd_img = (s as any).sd_img ?? {})['short_clothes'] = (((s as any).sd_img ?? 0)?.['label_clothes']);
-            } else {
-              ((s as any).sd_img = (s as any).sd_img ?? {})['label_clothes'] = 'Clothes';
-              ((s as any).sd_img = (s as any).sd_img ?? {})['short_clothes'] = qspFunc(s, '$short_description', '', ((s as any).clothingworntype ?? 0), ((s as any).clothingwornnumber ?? 0));
-              ((s as any).sd_img = (s as any).sd_img ?? {})['cond_clothes'] = 0;
-              ((s as any).sd_ci = (s as any).sd_ci ?? {})['style_line'] = qspFunc(s, 'stat_display_compute', 'cond_clo_style');
-              if (((s as any).sd_ci ?? 0)?.['style_line'] !== '') {
-                ((s as any).sd_img = (s as any).sd_img ?? {})['cond_clothes'] = 'TODO';
-              }
+          ((s as any).sd_mu_lbl = (s as any).sd_mu_lbl ?? {})[0] = 'Smeared makeup';
+          ((s as any).sd_mu_lbl = (s as any).sd_mu_lbl ?? {})[1] = 'No makeup';
+          ((s as any).sd_mu_lbl = (s as any).sd_mu_lbl ?? {})[2] = 'Light makeup';
+          ((s as any).sd_mu_lbl = (s as any).sd_mu_lbl ?? {})[3] = 'Vibrant makeup';
+          ((s as any).sd_mu_lbl = (s as any).sd_mu_lbl ?? {})[4] = 'Heavy makeup';
+          ((s as any).sd_mu_lbl = (s as any).sd_mu_lbl ?? {})[5] = 'Pro makeup';
+          ((s as any).sd_mu_lbl = (s as any).sd_mu_lbl ?? {})[6] = 'Bimbo makeup';
+          ((s as any).sd_mu_lbl = (s as any).sd_mu_lbl ?? {})[7] = 'Goth makeup';
+          ((s as any).sd_img = (s as any).sd_img ?? {})['label_face'] = ((((s as any).pcs_makeup ?? 0) >= 1  &&  ((s as any).pcs_makeup ?? 0) <= 7) ? ((((s as any).sd_mu_lbl ?? 0)?.[String((s as any).pcs_makeup ?? 0)] ?? 0)) : (((((s as any).pcs_makeup ?? 0) <= 0) ? ('Smeared makeup') : ('Face'))));
+          (s as any).sd_mu_lbl = undefined;
+        }
+        ((s as any).sd_img = (s as any).sd_img ?? {})['short_face'] = (((s as any).sd_img ?? 0)?.['label_face']);
+        ((s as any).sd_img = (s as any).sd_img ?? {})['cond_face'] = qspFunc(s, 'stat_display_compute', 'cond_face');
+      } else {
+        if (((s as any).sd_ci ?? 0)?.['key'] === 'body') {
+          ((s as any).sd_img = (s as any).sd_img ?? {})['url_body'] = qspFunc(s, '$body_image', '', 'body');
+          ((s as any).sd_img = (s as any).sd_img ?? {})['label_body'] = 'Body';
+          ((s as any).sd_img = (s as any).sd_img ?? {})['short_body'] = 'Body';
+          ((s as any).sd_img = (s as any).sd_img ?? {})['cond_body'] = qspFunc(s, 'stat_display_compute', 'cond_sweat');
+          if ((((s as any).cumloc ?? 0)[6] + ((s as any).cumloc ?? 0)[7] + ((s as any).cumloc ?? 0)[13] + ((s as any).cumloc ?? 0)[16]) > 0) {
+            ((s as any).sd_ci = (s as any).sd_ci ?? {})['cum_line'] = qspFunc(s, 'wrap', 'v_neg', '[cum on body]');
+            ((s as any).sd_img = (s as any).sd_img ?? {})['cond_body'] = 'TODO';
+          }
+        } else {
+          if (((s as any).sd_ci ?? 0)?.['key'] === 'coat') {
+            if (((s as any).coatworntype ?? 0) === 'none'  ||  ((s as any).coatworntype ?? 0) === '') {
+              break;
             }
+            ((s as any).sd_img = (s as any).sd_img ?? {})['url_coat'] = qspFunc(s, '$body_image', '', 'coat');
+            ((s as any).sd_img = (s as any).sd_img ?? {})['label_coat'] = 'Coat';
+            ((s as any).sd_img = (s as any).sd_img ?? {})['short_coat'] = qspFunc(s, '$item_description', '', 'coat', ((s as any).coatworntype ?? 0), ((s as any).coatwornnumber ?? 0));
+            ((s as any).sd_img = (s as any).sd_img ?? {})['cond_coat'] = qspFunc(s, 'stat_display_compute', 'cond_coat_temp');
           } else {
-            if (((s as any).sd_ci ?? 0)?.['key'] === 'bra') {
-              ((s as any).sd_img = (s as any).sd_img ?? {})['url_bra'] = qspFunc(s, '$body_image', '', 'bra');
-              if (((s as any).braworntype ?? 0) === 'none'  ||  ((s as any).braworntype ?? 0) === '') {
-                ((s as any).sd_img = (s as any).sd_img ?? {})['label_bra'] = 'Breasts';
-                ((s as any).sd_img = (s as any).sd_img ?? {})['short_bra'] = 'Breasts';
+            if (((s as any).sd_ci ?? 0)?.['key'] === 'clothes') {
+              ((s as any).sd_img = (s as any).sd_img ?? {})['url_clothes'] = qspFunc(s, '$body_image', '', 'clothes');
+              if (((s as any).clothingworntype ?? 0) === 'nude') {
+                ((s as any).sd_img = (s as any).sd_img ?? {})['label_clothes'] = ((((s as any).towel ?? 0) === 1) ? ('Towel') : (((((s as any).robe ?? 0) === 1) ? ('Robe') : ('Naked'))));
+                ((s as any).sd_img = (s as any).sd_img ?? {})['short_clothes'] = (((s as any).sd_img ?? 0)?.['label_clothes']);
               } else {
-                ((s as any).sd_img = (s as any).sd_img ?? {})['label_bra'] = 'Bra';
-                ((s as any).sd_img = (s as any).sd_img ?? {})['short_bra'] = qspFunc(s, '$item_description', '', 'bra', ((s as any).braworntype ?? 0), ((s as any).brawornnumber ?? 0));
-                ((s as any).sd_img = (s as any).sd_img ?? {})['cond_bra'] = qspFunc(s, 'stat_display_compute', 'cond_string', ((s as any).PBraDirt ?? 0), 1, 0, 0);
+                ((s as any).sd_img = (s as any).sd_img ?? {})['label_clothes'] = 'Clothes';
+                ((s as any).sd_img = (s as any).sd_img ?? {})['short_clothes'] = qspFunc(s, '$short_description', '', ((s as any).clothingworntype ?? 0), ((s as any).clothingwornnumber ?? 0));
+                ((s as any).sd_img = (s as any).sd_img ?? {})['cond_clothes'] = 0;
+                ((s as any).sd_ci = (s as any).sd_ci ?? {})['style_line'] = qspFunc(s, 'stat_display_compute', 'cond_clo_style');
+                if (((s as any).sd_ci ?? 0)?.['style_line'] !== '') {
+                  ((s as any).sd_img = (s as any).sd_img ?? {})['cond_clothes'] = 'TODO';
+                }
               }
             } else {
-              if (((s as any).sd_ci ?? 0)?.['key'] === 'panties') {
-                ((s as any).sd_img = (s as any).sd_img ?? {})['url_panties'] = qspFunc(s, '$body_image', '', 'panties');
-                if (((s as any).pantyworntype ?? 0) === 'none'  ||  ((s as any).pantyworntype ?? 0) === '') {
-                  ((s as any).sd_img = (s as any).sd_img ?? {})['label_panties'] = 'Pussy';
-                  ((s as any).sd_img = (s as any).sd_img ?? {})['short_panties'] = 'Pussy';
+              if (((s as any).sd_ci ?? 0)?.['key'] === 'bra') {
+                ((s as any).sd_img = (s as any).sd_img ?? {})['url_bra'] = qspFunc(s, '$body_image', '', 'bra');
+                if (((s as any).braworntype ?? 0) === 'none'  ||  ((s as any).braworntype ?? 0) === '') {
+                  ((s as any).sd_img = (s as any).sd_img ?? {})['label_bra'] = 'Breasts';
+                  ((s as any).sd_img = (s as any).sd_img ?? {})['short_bra'] = 'Breasts';
                 } else {
-                  ((s as any).sd_img = (s as any).sd_img ?? {})['label_panties'] = 'Panties';
-                  ((s as any).sd_img = (s as any).sd_img ?? {})['short_panties'] = qspFunc(s, '$item_description', '', 'panty', ((s as any).pantyworntype ?? 0), ((s as any).pantywornnumber ?? 0));
-                  ((s as any).sd_img = (s as any).sd_img ?? {})['cond_panties'] = qspFunc(s, 'stat_display_compute', 'cond_string', ((s as any).PPanDirt ?? 0), 1, 0, 0);
+                  ((s as any).sd_img = (s as any).sd_img ?? {})['label_bra'] = 'Bra';
+                  ((s as any).sd_img = (s as any).sd_img ?? {})['short_bra'] = qspFunc(s, '$item_description', '', 'bra', ((s as any).braworntype ?? 0), ((s as any).brawornnumber ?? 0));
+                  ((s as any).sd_img = (s as any).sd_img ?? {})['cond_bra'] = qspFunc(s, 'stat_display_compute', 'cond_string', ((s as any).PBraDirt ?? 0), 1, 0, 0);
                 }
               } else {
-                if (((s as any).sd_ci ?? 0)?.['key'] === 'shoes') {
-                  ((s as any).sd_img = (s as any).sd_img ?? {})['url_shoes'] = qspFunc(s, '$body_image', '', 'shoes');
-                  if (((s as any).shoeworntype ?? 0) === 'none'  ||  ((s as any).shoeworntype ?? 0) === '') {
-                    ((s as any).sd_img = (s as any).sd_img ?? {})['label_shoes'] = 'Feet';
-                    ((s as any).sd_img = (s as any).sd_img ?? {})['short_shoes'] = 'Feet';
+                if (((s as any).sd_ci ?? 0)?.['key'] === 'panties') {
+                  ((s as any).sd_img = (s as any).sd_img ?? {})['url_panties'] = qspFunc(s, '$body_image', '', 'panties');
+                  if (((s as any).pantyworntype ?? 0) === 'none'  ||  ((s as any).pantyworntype ?? 0) === '') {
+                    ((s as any).sd_img = (s as any).sd_img ?? {})['label_panties'] = 'Pussy';
+                    ((s as any).sd_img = (s as any).sd_img ?? {})['short_panties'] = 'Pussy';
                   } else {
-                    ((s as any).sd_img = (s as any).sd_img ?? {})['label_shoes'] = 'Shoes';
-                    ((s as any).sd_img = (s as any).sd_img ?? {})['short_shoes'] = qspFunc(s, '$shoe_description', '', ((s as any).shoeworntype ?? 0), ((s as any).shoewornnumber ?? 0));
+                    ((s as any).sd_img = (s as any).sd_img ?? {})['label_panties'] = 'Panties';
+                    ((s as any).sd_img = (s as any).sd_img ?? {})['short_panties'] = qspFunc(s, '$item_description', '', 'panty', ((s as any).pantyworntype ?? 0), ((s as any).pantywornnumber ?? 0));
+                    ((s as any).sd_img = (s as any).sd_img ?? {})['cond_panties'] = qspFunc(s, 'stat_display_compute', 'cond_string', ((s as any).PPanDirt ?? 0), 1, 0, 0);
                   }
-                  ((s as any).sd_img = (s as any).sd_img ?? {})['cond_shoes'] = qspFunc(s, 'stat_display_compute', 'cond_heel_skill');
                 } else {
-                  if (((s as any).sd_ci ?? 0)?.['key'] === 'bodysuit') {
-                    if (((s as any).bodysuitwornnumber ?? 0) === 0  ||  ((s as any).bodysuitworntype ?? 0) === 'none'  ||  ((s as any).bodysuitworntype ?? 0) === '') {
-                      break;
+                  if (((s as any).sd_ci ?? 0)?.['key'] === 'shoes') {
+                    ((s as any).sd_img = (s as any).sd_img ?? {})['url_shoes'] = qspFunc(s, '$body_image', '', 'shoes');
+                    if (((s as any).shoeworntype ?? 0) === 'none'  ||  ((s as any).shoeworntype ?? 0) === '') {
+                      ((s as any).sd_img = (s as any).sd_img ?? {})['label_shoes'] = 'Feet';
+                      ((s as any).sd_img = (s as any).sd_img ?? {})['short_shoes'] = 'Feet';
+                    } else {
+                      ((s as any).sd_img = (s as any).sd_img ?? {})['label_shoes'] = 'Shoes';
+                      ((s as any).sd_img = (s as any).sd_img ?? {})['short_shoes'] = qspFunc(s, '$shoe_description', '', ((s as any).shoeworntype ?? 0), ((s as any).shoewornnumber ?? 0));
                     }
-                    if (((s as any).stat_hide ?? 0)?.['bra'] === 1  &&  ((s as any).stat_hide ?? 0)?.['panties'] === 1) {
-                      break;
+                    ((s as any).sd_img = (s as any).sd_img ?? {})['cond_shoes'] = qspFunc(s, 'stat_display_compute', 'cond_heel_skill');
+                  } else {
+                    if (((s as any).sd_ci ?? 0)?.['key'] === 'bodysuit') {
+                      if (((s as any).bodysuitwornnumber ?? 0) === 0  ||  ((s as any).bodysuitworntype ?? 0) === 'none'  ||  ((s as any).bodysuitworntype ?? 0) === '') {
+                        break;
+                      }
+                      if (((s as any).stat_hide ?? 0)?.['bra'] === 1  &&  ((s as any).stat_hide ?? 0)?.['panties'] === 1) {
+                        break;
+                      }
+                      ((s as any).sd_img = (s as any).sd_img ?? {})['url_bodysuit'] = qspFunc(s, '$body_image', '', 'bodysuit');
+                      ((s as any).sd_img = (s as any).sd_img ?? {})['label_bodysuit'] = 'Bodysuit';
+                      ((s as any).sd_img = (s as any).sd_img ?? {})['short_bodysuit'] = qspFunc(s, '$item_description', '', 'bodysuit', ((s as any).bodysuitworntype ?? 0), ((s as any).bodysuitwornnumber ?? 0));
+                      ((s as any).sd_img = (s as any).sd_img ?? {})['cond_bodysuit'] = qspFunc(s, 'stat_display_compute', 'cond_string', ((s as any).PPanDirt ?? 0), 1, 0, 0);
                     }
-                    ((s as any).sd_img = (s as any).sd_img ?? {})['url_bodysuit'] = qspFunc(s, '$body_image', '', 'bodysuit');
-                    ((s as any).sd_img = (s as any).sd_img ?? {})['label_bodysuit'] = 'Bodysuit';
-                    ((s as any).sd_img = (s as any).sd_img ?? {})['short_bodysuit'] = qspFunc(s, '$item_description', '', 'bodysuit', ((s as any).bodysuitworntype ?? 0), ((s as any).bodysuitwornnumber ?? 0));
-                    ((s as any).sd_img = (s as any).sd_img ?? {})['cond_bodysuit'] = qspFunc(s, 'stat_display_compute', 'cond_string', ((s as any).PPanDirt ?? 0), 1, 0, 0);
                   }
                 }
               }
@@ -1814,21 +1815,18 @@ function enterComputeImages(s: GameState, scene: SceneBuilder): void {
           }
         }
       }
-    }
-    if (((s as any).sd_img ?? 0)['url_' + ((s as any).sd_ci ?? 0)?.['key']] === '') {
+      if (((s as any).sd_img ?? 0)['url_' + ((s as any).sd_ci ?? 0)?.['key']] === '') {
+        break;
+      }
+      ((s as any).sd_img = (s as any).sd_img ?? {})['order_' + String((((s as any).sd_img ?? 0)?.['count']))] = (((s as any).sd_ci ?? 0)?.['key']);
+      ((s as any).sd_img = (s as any).sd_img ?? {})['count'] = ((s as any).sd_img['count'] ?? 0) + (1);
       break;
     }
-    ((s as any).sd_img = (s as any).sd_img ?? {})['order_' + String((((s as any).sd_img ?? 0)?.['count']))] = (((s as any).sd_ci ?? 0)?.['key']);
-    ((s as any).sd_img = (s as any).sd_img ?? {})['count'] = ((s as any).sd_img['count'] ?? 0) + (1);
-    break;
-  }
-  // LABEL: sd_compute_images_next
-  ((s as any).sd_ci = (s as any).sd_ci ?? {})['i'] = ((s as any).sd_ci['i'] ?? 0) + (1);
-  if (((s as any).sd_ci ?? 0)?.['i'] < ((s as any).sd_ci ?? 0)?.['max']) {
-    // TODO-QSP: jump 'sd_compute_images_loop'
-  }
-  (s as any).sd_ci = undefined;
-  return;
+    // LABEL: sd_compute_images_next
+    ((s as any).sd_ci = (s as any).sd_ci ?? {})['i'] = ((s as any).sd_ci['i'] ?? 0) + (1);
+    (s as any).sd_ci = undefined;
+    return;
+  } while (((s as any).sd_ci ?? 0)?.['i'] < ((s as any).sd_ci ?? 0)?.['max']);
   scene.build();
 }
 

@@ -1235,10 +1235,10 @@ function enterBathtubSuctionDildoRemove(s: GameState, scene: SceneBuilder): void
 function enterShowerSuctionDildoApply(s: GameState, scene: SceneBuilder): void {
   scene.text('' + ((s as any).loc ?? 0) + '_suction_dildo += 1');
   if (((s as any).bathtype ?? 0) === 'bathtub shower') {
-    // TODO-QSP: dynamic '<<$loc>>_bath_shower_dildo = 1'
+    scene.text('' + ((s as any).loc ?? 0) + '_bath_shower_dildo = 1');
   } else {
     if ((String(((s as any).bathtype ?? 0)).slice((1)-1, ((1)-1)+(12))) === 'glass shower') {
-      // TODO-QSP: dynamic '<<$loc>>_glass_shower_dildo = 1'
+      scene.text('' + ((s as any).loc ?? 0) + '_glass_shower_dildo = 1');
     }
   }
   ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['dildo_suction'] = ((s as any).mc_inventory['dildo_suction'] ?? 0) - (1);
@@ -1248,10 +1248,10 @@ function enterShowerSuctionDildoApply(s: GameState, scene: SceneBuilder): void {
 function enterShowerSuctionDildoRemove(s: GameState, scene: SceneBuilder): void {
   scene.text('' + ((s as any).loc ?? 0) + '_suction_dildo -= 1');
   if (((s as any).bathtype ?? 0) === 'bathtub shower') {
-    // TODO-QSP: dynamic '<<$loc>>_bath_shower_dildo = 0'
+    scene.text('' + ((s as any).loc ?? 0) + '_bath_shower_dildo = 0');
   } else {
     if ((String(((s as any).bathtype ?? 0)).slice((1)-1, ((1)-1)+(12))) === 'glass shower') {
-      // TODO-QSP: dynamic '<<$loc>>_glass_shower_dildo = 0'
+      scene.text('' + ((s as any).loc ?? 0) + '_glass_shower_dildo = 0');
     }
   }
   ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['dildo_suction'] = ((s as any).mc_inventory['dildo_suction'] ?? 0) + (1);

@@ -1334,23 +1334,6 @@ function enterMorningAfterNoMoney(s: GameState, scene: SceneBuilder): void {
       ((st as any).pharmacy = (st as any).pharmacy ?? {})['morning_after_free'] = ((st as any).pharmacy['morning_after_free'] ?? 0) + (1);
     }
   } },
-      { label: 'Ask Luda for a morning-after pill (meekly)', handler: (st: GameState) => {
-    qspCall(st, 'stat', '');
-    scene.text('<center><b>Pharmacy</b></center>');
-    scene.img('images/locations/pavlovsk/pharmacy/apteka_aunt_1.jpg');
-    if (((st as any).pharmacy ?? 0)?.['morning_after_free'] < 10) {
-      ((st as any).pharmacy = (st as any).pharmacy ?? {})['morning_after_free'] = ((st as any).pharmacy['morning_after_free'] ?? 0) + (1);
-    }
-  } },
-      { label: 'Ask Luda for a morning-after pill (openly)', handler: (st: GameState) => {
-    qspCall(st, 'stat', '');
-    scene.text('<center><b>Pharmacy</b></center>');
-    scene.img('images/locations/pavlovsk/pharmacy/apteka_aunt_1.jpg');
-    if (((st as any).pharmacy ?? 0)?.['morning_after_free'] < 10) {
-      ((st as any).pharmacy = (st as any).pharmacy ?? {})['morning_after_free'] = ((st as any).pharmacy['morning_after_free'] ?? 0) + (1);
-    }
-    // TODO-QSP: end !}
-  } },
     ]);
   }
   scene.build();

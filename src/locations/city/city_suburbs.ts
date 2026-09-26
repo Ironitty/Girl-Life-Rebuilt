@@ -16,11 +16,11 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   if (qspFunc(s, 'car_funcs', 'is_here')) {
     scene.text(`Your <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027carF/u0027, /u0027start/u0027); return false;">${(((s as any).car ?? 0)?.['name'] ?? '')}</a> stands on the street.`);
   }
-  scene.text('The <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.20; return s; }); window.__gameStore.getState().doGoto(\u0027metro\u0027, \u0027suburbs\u0027); return false;">Metro</a> station is a 20 minute walk from here.');
+  scene.text('The <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=20; return s; }); window.__gameStore.getState().doGoto(\u0027metro\u0027, \u0027suburbs\u0027); return false;">Metro</a> station is a 20 minute walk from here.');
   qspCall(s, 'taxi', '');
   if (((s as any).AlexandriaQW ?? 0) > 6) {
     if (((s as any).hour ?? 0) > 7  &&  ((s as any).hour ?? 0) < 20) {
-      scene.text('You can visit <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(\u0027AlexandriaHome\u0027, \u0027intercom\u0027); return false;">Aleksei\'s home</a> if you want to see the cranky wizard.');
+      scene.text('You can visit <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=5; return s; }); window.__gameStore.getState().doGoto(\u0027AlexandriaHome\u0027, \u0027intercom\u0027); return false;">Aleksei\'s home</a> if you want to see the cranky wizard.');
     }
   }
   if (((s as any).bdsmclub ?? 0)?.['unlocked'] === 1) {
@@ -87,7 +87,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
   }, goto: ['bus', 'suburbs'] },
     { label: 'Walk to the canals (0:15)', handler: (st: GameState) => {
-    // TODO-QSP: minut + 15
+    (st as any).minut = ((st as any).minut ?? 0) + 15;
   }, goto: ['city_canals', 'start'] },
     { label: 'View the insane asylum (0:02)', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 2;

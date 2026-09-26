@@ -17,7 +17,6 @@ function enterCoffeeHoleChat(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).NatbelQW ?? 0)?.['uni_nightclub_date'] < 2) {
     return;
-    // TODO-QSP: !! Must have completed the nightclub date first (sets value to 2)
   }
   (s as any).natbel_here = 1;
   if (((s as any).week ?? 0) >= 4) {

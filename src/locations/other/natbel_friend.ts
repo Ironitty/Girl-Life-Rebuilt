@@ -2061,7 +2061,7 @@ function enterBirthdayInvitation(s: GameState, scene: SceneBuilder): void {
       scene.text('"Oh I didn\'t know, probably should have asked you."');
       scene.text('"Don\'t worry. I know it\'s not much but it\'s my mother\'s treat so will you come?"');
       scene.actions([
-        { label: 'Accept (you\'ll give  [1000₽]...]', handler: (st: GameState) => {
+        { label: '', labelFn: (s: GameState) => String('Accept (you\'ll give \' + $func(\'money\', \'string_price\', 1000) + \' towards a present)' ?? ''), handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
     ((st as any).NatbelQW = (st as any).NatbelQW ?? {})['bday_invite'] = 1;
     qspCall(st, 'money', 'pay', 1000);
@@ -2087,7 +2087,7 @@ function enterBirthdayInvitation(s: GameState, scene: SceneBuilder): void {
       { label: 'Return to her room', goto: ['natbelapt', 'natroom'] },
     ]);
   } },
-        { label: 'Decline (you\'ll give  [1000₽]...]', handler: (st: GameState) => {
+        { label: '', labelFn: (s: GameState) => String('Decline (you\'ll give \' + $func(\'money\', \'string_price\', 1000) + \' towards a present)' ?? ''), handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
     ((st as any).NatbelQW = (st as any).NatbelQW ?? {})['bday_invite'] = (-1);
     qspCall(st, 'money', 'pay', 1000);

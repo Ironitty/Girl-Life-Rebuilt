@@ -1,5 +1,3 @@
-import { qspUntranslated } from '../_shared/qspUntranslated';
-
 import { qspCall, qspFunc, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
@@ -289,340 +287,8 @@ function enterHangOutAfter(s: GameState, scene: SceneBuilder): void {
         scene.text('"Yeah, I know. Sucks."');
         qspCall(s, 'sex_ev_after', 'after_sex2');
       } else {
-        scene.text('"Sure, I\'m not doing anything so you can hang out for a while."');
-        ((s as any).sex_ev = (s as any).sex_ev ?? {})['cant_stay'] = 1;
-        scene.text('"Sorry, can\'t. I have something to do and I can\'t leave you here alone."');
-        scene.text('"Ugh, really?"');
-        scene.text('"Yeah, I know. Sucks."');
-        qspCall(s, 'sex_ev_after', 'after_sex2');
         scene.actions([
-          { label: 'Continue', goto: ['sex_ev_leave', 'qspUntranslated(s, "\'exit_into_loc\'}", { location: "sex_ev_leave" })'] },
-        ]);
-      }
-    }
-  }
-  scene.build();
-}
-
-function enterGoOutCheck(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).sex_ev ?? 0)?.['unique_npc'] === 0  &&  ((s as any).hour ?? 0) >= 11  &&  ((s as any).hour ?? 0) <= 20  &&  ((s as any).sex_ev ?? 0)?.['loc'] !== 'house_party'  &&  ((s as any).sex_ev ?? 0)?.['go_out_check'] === 0) {
-    ((s as any).sex_ev = (s as any).sex_ev ?? {})['go_out_check'] = 1;
-    if ((Array.isArray((s as any).date_ev) ? ((s as any).date_ev as any[]).indexOf('lunch_date') : -1) < 0  &&  ((s as any).hour ?? 0) <= 14) {
-      ((s as any).sex_ev = (s as any).sex_ev ?? {})['lunch_flag'] = 1;
-    }
-    if ((Array.isArray((s as any).date_ev) ? ((s as any).date_ev as any[]).indexOf('dinner_date') : -1) < 0  &&  ((s as any).hour ?? 0) >= 17) {
-      ((s as any).sex_ev = (s as any).sex_ev ?? {})['dinner_flag'] = 1;
-    }
-  }
-  scene.build();
-}
-
-function enterScaredExit(s: GameState, scene: SceneBuilder): void {
-  scene.actions([
-    { label: 'Gather your things and leave', handler: (st: GameState) => {
-    scene.text(String(qspFunc(s, 'sex_ev', 'bed_room') || ''));
-    scene.text('After seeing his explosive anger, you don\'t want to stick around any longer than you have to. You throw your clothes on as fast as you can, grab your things, and run out the door.');
-    scene.actions([
-      { label: 'Escape', goto: ['sex_ev_leave', 'exit'] },
-    ]);
-  } },
-  ]);
-  scene.build();
-}
-
-function enterGoOutAfter(s: GameState, scene: SceneBuilder): void {
-  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGoOutCheck(s, scene); (s as any).locArgs = __savedLocArgs; }
-  if ((((s as any).sex_ev ?? 0)?.['lunch_flag'] === 1  ||  ((s as any).sex_ev ?? 0)?.['dinner_flag'] === 1)  &&  ((s as any).sex_ev ?? 0)?.['decline_date'] === 0) {
-    scene.actions([
-      { label: 'Want to grab a bite?', handler: (st: GameState) => {
-    qspCall(st, 'sex_ev_pillow_talk', 'pillow_picture1', 4);
-    if ((Array.isArray((st as any).date_ev) ? ((st as any).date_ev as any[]).indexOf('lunch_date') : -1) < 0) {
-      scene.text('"You hungry? Fancy grabbing something to eat?"');
-    } else {
-      scene.text('"You hungry again by chance? Feel like grabbing some dinner?"');
-    }
-    if (((st as any).sex_ev ?? 0)?.['type'] === 'hookup'  &&  ((st as any).npc_rel_goal ?? 0)?.[String((st as any).npcID ?? 0)] === 'sex'  &&  (!((st as any).date_ev ?? 0))) {
-      if (((st as any).npc_assertive ?? 0)?.[String((st as any).npcID ?? 0)] < 0) {
-        scene.text(`"I'm, uhh... not really looking for anything serious," ${(((st as any).npc_usedname ?? 0)?.[String((st as any).npcID ?? 0)] ?? '')} stammers out. "This was just sex..."`);
-      } else {
-        scene.text(`"I'm not really looking for anything serious," ${(((st as any).npc_usedname ?? 0)?.[String((st as any).npcID ?? 0)] ?? '')} says. "This was just sex."`);
-      }
-      scene.actions([
-        { label: 'Oh... (awkward)', handler: (st: GameState) => {
-    ((st as any).sex_ev = (st as any).sex_ev ?? {})['decline_date'] = 1;
-    scene.text(String(qspFunc(s, 'sex_ev', 'bed_room') || ''));
-    scene.text('"O-oh..."');
-    scene.text('Well, this is awkward.');
-    qspCall(st, 'sex_ev_after', 'after_sex2');
-  } },
-        { label: 'You know that', handler: (st: GameState) => {
-    scene.text('"And this is just food," you snicker, rolling your eyes. "I\'m not talking about dating or anything like that. I\'m just asking if you\'re hungry."');
-    scene.text('"Well... I guess so."');
-    scene.actions([
-      { label: 'Get dressed', goto: ['sex_ev_leave', 'go_out_together'] },
-    ]);
-  } },
-      ]);
-    } else {
-      scene.text(`"Sure, I could go for some food," ${(((st as any).npc_usedname ?? 0)?.[String((st as any).npcID ?? 0)] ?? '')} smiles.`);
-      if (((st as any).clothingworntype ?? 0) === 'nude') {
-        scene.actions([
-          { label: 'Get dressed', goto: ['sex_ev_leave', 'go_out_together'] },
-        ]);
-      } else {
-        scene.actions([
-          { label: 'Go out', goto: ['sex_ev_leave', 'go_out_together'] },
-        ]);
-      }
-    }
-  } },
-    ]);
-  }
-  scene.build();
-}
-
-function enterGoOutTogether(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'outfit', 'restore', 'sex_ev');
-  ((s as any).sex_ev = (s as any).sex_ev ?? {})['undressed_check'] = 0;
-  scene.text(String(qspFunc(s, 'sex_ev', 'hall_way') || ''));
-  scene.text('You both get dressed and head out together.');
-  scene.actions([
-    { label: 'Walk to the local cafe', handler: (st: GameState) => {
-    qspCall(st, 'sex_ev_leave', '');
-  }, goto: ['date_casual_meal', 'start', 'together'] },
-  ]);
-  scene.build();
-}
-
-function enterLeavingDialogue(s: GameState, scene: SceneBuilder): void {
-  scene.text('"I gotta get going," you say.');
-  scene.text('"Okay, see you later."');
-  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterLeavingDialogueChoices(s, scene); (s as any).locArgs = __savedLocArgs; }
-  scene.build();
-}
-
-function enterLeavingDialogueChoices(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).sex_ev ?? 0)?.['mad'] === 1  ||  ((s as any).sex_ev ?? 0)?.['angry_after']) {
-    scene.actions([
-      { label: 'Leave angrily', handler: (st: GameState) => {
-    scene.img('images/shared/romance/misc/depart1.mp4');
-    scene.text('You don\'t reply, just grab your things in irritation and stalk out the door.');
-    scene.actions([
-      { label: 'Leave', goto: ['sex_ev_leave', 'exit'] },
-    ]);
-  } },
-      { label: 'Hide your annoyance', handler: (st: GameState) => {
-    scene.text('"Later," you say flatly and grab your things to stalk out the door.');
-    scene.actions([
-      { label: 'Leave', goto: ['sex_ev_leave', 'exit'] },
-    ]);
-  } },
-    ]);
-  } else {
-    if (((s as any).npc_rel_type ?? 0)?.[String((s as any).npcID ?? 0)] !== '') {
-      if (((s as any).npc_rel_type ?? 0)?.[String((s as any).npcID ?? 0)] === 'sugar_daddy') {
-        scene.actions([
-          { label: 'Text me any time', handler: (st: GameState) => {
-    ((st as any).sex_ev = (st as any).sex_ev ?? {})['leave_dialogue'] = 'Text me any time you want some company';
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeavingAction(st, scene); (st as any).locArgs = __savedLocArgs; }
-  } },
-        ]);
-      } else {
-        scene.actions([
-          { label: '"Text me"', handler: (st: GameState) => {
-    ((st as any).sex_ev = (st as any).sex_ev ?? {})['leave_dialogue'] = 'Text me';
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeavingAction(st, scene); (st as any).locArgs = __savedLocArgs; }
-  } },
-        ]);
-      }
-      if (((s as any).npc_booty_call_date ?? 0)?.[String((s as any).npcID ?? 0)] === ((s as any).daystart ?? 0)  &&  ((s as any).sex_ev ?? 0)?.['sleepover'] === 1) {
-        scene.actions([
-          { label: '"See you soon"', handler: (st: GameState) => {
-    ((st as any).sex_ev = (st as any).sex_ev ?? {})['leave_dialogue'] = 'See you soon';
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeavingAction(st, scene); (st as any).locArgs = __savedLocArgs; }
-  } },
-        ]);
-      } else {
-        if (((s as any).npc_booty_call_date ?? 0)?.[String((s as any).npcID ?? 0)] === ((s as any).daystart ?? 0) + 1) {
-          scene.actions([
-            { label: '"See you tomorrow"', handler: (st: GameState) => {
-    ((st as any).sex_ev = (st as any).sex_ev ?? {})['leave_dialogue'] = 'See you tomorrow';
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeavingAction(st, scene); (st as any).locArgs = __savedLocArgs; }
-  } },
-          ]);
-        } else {
-          scene.actions([
-            { label: '"Till next time"', handler: (st: GameState) => {
-    ((st as any).sex_ev = (st as any).sex_ev ?? {})['leave_dialogue'] = 'Till next time';
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeavingAction(st, scene); (st as any).locArgs = __savedLocArgs; }
-  } },
-          ]);
-        }
-      }
-      scene.actions([
-        { label: '"Let\'s do this again"', handler: (st: GameState) => {
-    ((st as any).sex_ev = (st as any).sex_ev ?? {})['leave_dialogue'] = 'Let\'s do this again sometime';
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeavingAction(st, scene); (st as any).locArgs = __savedLocArgs; }
-  } },
-      ]);
-    }
-    if (((s as any).npc_rel_type ?? 0)?.[String((s as any).npcID ?? 0)] === 'sugar_daddy') {
-      scene.actions([
-        { label: 'Don\'t forget the money', handler: (st: GameState) => {
-    ((st as any).sex_ev = (st as any).sex_ev ?? {})['leave_dialogue'] = 'Just make sure you have the money ready for next time';
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeavingAction(st, scene); (st as any).locArgs = __savedLocArgs; }
-  } },
-      ]);
-    }
-    scene.actions([
-      { label: '"Bye"', handler: (st: GameState) => {
-    ((st as any).sex_ev = (st as any).sex_ev ?? {})['leave_dialogue'] = 'Bye';
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeavingAction(st, scene); (st as any).locArgs = __savedLocArgs; }
-  } },
-      { label: '"See ya"', handler: (st: GameState) => {
-    ((st as any).sex_ev = (st as any).sex_ev ?? {})['leave_dialogue'] = 'See ya';
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeavingAction(st, scene); (st as any).locArgs = __savedLocArgs; }
-  } },
-      { label: '"Toodles"', handler: (st: GameState) => {
-    ((st as any).sex_ev = (st as any).sex_ev ?? {})['leave_dialogue'] = 'Toodles';
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeavingAction(st, scene); (st as any).locArgs = __savedLocArgs; }
-  } },
-    ]);
-  }
-  scene.build();
-}
-
-function enterLeavingAction(s: GameState, scene: SceneBuilder): void {
-  scene.actions([
-    { label: 'Smile', handler: (st: GameState) => {
-    if (((st as any).sex_ev ?? 0)?.['loc'] === 'house_party') {
-      ((st as any).sex_ev = (st as any).sex_ev ?? {})['leave_action'] = ', flashing him a quick smile just before you head back out into the party';
-    } else {
-      ((st as any).sex_ev = (st as any).sex_ev ?? {})['leave_action'] = ', flashing him a quick smile just before you close the door behind you';
-    }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeavingEnd(st, scene); (st as any).locArgs = __savedLocArgs; }
-  } },
-    { label: 'Wave goodbye', handler: (st: GameState) => {
-    if (((st as any).sex_ev ?? 0)?.['loc'] === 'house_party') {
-      ((st as any).sex_ev = (st as any).sex_ev ?? {})['leave_action'] = ', waggling your fingers at him and head back out into the party';
-    } else {
-      ((st as any).sex_ev = (st as any).sex_ev ?? {})['leave_action'] = ', waggling your fingers at him just before you close the door behind you';
-    }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeavingEnd(st, scene); (st as any).locArgs = __savedLocArgs; }
-  } },
-    { label: 'Wink', handler: (st: GameState) => {
-    if (((st as any).sex_ev ?? 0)?.['loc'] === 'house_party') {
-      ((st as any).sex_ev = (st as any).sex_ev ?? {})['leave_action'] = ' with a wink as you head back out into the party';
-    } else {
-      ((st as any).sex_ev = (st as any).sex_ev ?? {})['leave_action'] = ' with a wink just before you close the door behind you';
-    }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeavingEnd(st, scene); (st as any).locArgs = __savedLocArgs; }
-  } },
-    { label: 'Blow him a kiss', handler: (st: GameState) => {
-    if (((st as any).sex_ev ?? 0)?.['loc'] === 'house_party') {
-      ((st as any).sex_ev = (st as any).sex_ev ?? {})['leave_action'] = ', blowing him a kiss just before heading back out into the party';
-    } else {
-      ((st as any).sex_ev = (st as any).sex_ev ?? {})['leave_action'] = ', blowing him a kiss just before you close the door behind you';
-    }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeavingEnd(st, scene); (st as any).locArgs = __savedLocArgs; }
-  } },
-    { label: 'Kiss his cheek', handler: (st: GameState) => {
-    if (((st as any).sex_ev ?? 0)?.['loc'] === 'house_party') {
-      ((st as any).sex_ev = (st as any).sex_ev ?? {})['leave_action'] = ', stopping to give him a quick peck on the cheek before heading back out into the party';
-    } else {
-      ((st as any).sex_ev = (st as any).sex_ev ?? {})['leave_action'] = ', stopping to give him a quick peck on the cheek before heading out the door';
-    }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeavingEnd(st, scene); (st as any).locArgs = __savedLocArgs; }
-  } },
-    { label: 'Kiss him', handler: (st: GameState) => {
-    if (((st as any).sex_ev ?? 0)?.['loc'] === 'house_party') {
-      ((st as any).sex_ev = (st as any).sex_ev ?? {})['leave_action'] = ', stopping to give him a quick peck on the lips before heading back out into the party';
-    } else {
-      ((st as any).sex_ev = (st as any).sex_ev ?? {})['leave_action'] = ', stopping to give him a quick peck on the lips before heading out the door';
-    }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeavingEnd(st, scene); (st as any).locArgs = __savedLocArgs; }
-  } },
-    { label: 'Kiss him deeply', handler: (st: GameState) => {
-    if (((st as any).sex_ev ?? 0)?.['loc'] === 'house_party') {
-      ((st as any).sex_ev = (st as any).sex_ev ?? {})['leave_action'] = ', stopping to give him a long drawn out kiss. It\'s several seconds before you pull away, a string of saliva following your tongue as it exits his mouth. The last thing he sees is the smoldering look you give him before heading back out into the party';
-    } else {
-      ((st as any).sex_ev = (st as any).sex_ev ?? {})['leave_action'] = ', stopping to give him a long drawn out kiss. It\'s several seconds before you pull away, a string of saliva following your tongue as it exits his mouth. The last thing he sees is the smoldering look you give him heading out the door';
-    }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeavingEnd(st, scene); (st as any).locArgs = __savedLocArgs; }
-  } },
-    { label: 'Shake your ass', handler: (st: GameState) => {
-    if (((st as any).sex_ev ?? 0)?.['loc'] === 'house_party') {
-      ((st as any).sex_ev = (st as any).sex_ev ?? {})['leave_action'] = ', giving him a teasing shake of your ass just before you head back out into the party';
-    } else {
-      ((st as any).sex_ev = (st as any).sex_ev ?? {})['leave_action'] = ', giving him a teasing shake of your ass just before you close the door behind it';
-    }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeavingEnd(st, scene); (st as any).locArgs = __savedLocArgs; }
-  } },
-    { label: 'Nonchalant', handler: (st: GameState) => {
-    if (((st as any).sex_ev ?? 0)?.['loc'] === 'house_party') {
-      ((st as any).sex_ev = (st as any).sex_ev ?? {})['leave_action'] = ' nonchalantly and head back out into the party';
-    } else {
-      ((st as any).sex_ev = (st as any).sex_ev ?? {})['leave_action'] = ' nonchalantly and head out the door without a second glance';
-    }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeavingEnd(st, scene); (st as any).locArgs = __savedLocArgs; }
-  } },
-  ]);
-  scene.build();
-}
-
-function enterLeavingEnd(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'sex_ev_stats', 'prostitution_pay_calc');
-  if (((s as any).sex_ev ?? 0)?.['sugar_daddy_paid'] === 0  &&  ((s as any).sex_ev ?? 0)?.['prostitution_paid'] === 0) {
-    if (((s as any).npc_rel_type ?? 0)?.[String((s as any).npcID ?? 0)] === 'sugar_daddy'  &&  ((s as any).sex_ev ?? 0)?.['sugar_daddy_paid'] === 0) {
-      if (((s as any).npc_prostitution_tab ?? 0)?.[String((s as any).npcID ?? 0)] > 0  &&  ((s as any).sex_ev ?? 0)?.['prostitution_bonus'] > 0) {
-        scene.text(`Just before you go, ${((s as any).npcdesc ?? '')} hands you ${qspFunc(s, 'money', 'string_profit', (((s as any).sex_ev ?? 0)?.['prostitution_owed'] ?? ''))}, including the bonus and money he owed you from the last time too.`);
-      } else {
-        if (((s as any).npc_prostitution_tab ?? 0)?.[String((s as any).npcID ?? 0)] > 0) {
-          scene.text(`Just before you go, ${((s as any).npcdesc ?? '')} hands you ${qspFunc(s, 'money', 'string_profit', (((s as any).sex_ev ?? 0)?.['prostitution_owed'] ?? ''))}, including the money he owed you from last time.`);
-        } else {
-          if (((s as any).sex_ev ?? 0)?.['prostitution_bonus'] > 0) {
-            scene.text(`Just before you go, ${((s as any).npcdesc ?? '')} hands you ${qspFunc(s, 'money', 'string_profit', (((s as any).sex_ev ?? 0)?.['prostitution_owed'] ?? ''))}, including the bonus he owes you.`);
-          } else {
-            scene.text(`Just before you go, ${((s as any).npcdesc ?? '')} hands you ${qspFunc(s, 'money', 'string_profit', (((s as any).sex_ev ?? 0)?.['prostitution_owed'] ?? ''))}.`);
-          }
-        }
-      }
-    } else {
-      if (((s as any).sex_ev ?? 0)?.['prostitution'] === 1  &&  ((s as any).sex_ev ?? 0)?.['prostitution_paid'] === 0) {
-        if (((s as any).npc_prostitution_tab ?? 0)?.[String((s as any).npcID ?? 0)] > 0  &&  ((s as any).sex_ev ?? 0)?.['prostitution_bonus'] > 0) {
-          scene.text(`Before you leave, you make sure to collect the ${qspFunc(s, 'money', 'string_profit', (((s as any).sex_ev ?? 0)?.['prostitution_owed'] ?? ''))} promised to you for whoring yourself out to ${((s as any).npcdesc ?? '')}, including the bonus and money he owed you from the last time too.`);
-        } else {
-          if (((s as any).npc_prostitution_tab ?? 0)?.[String((s as any).npcID ?? 0)] > 0) {
-            scene.text(`Before you leave, you make sure to collect the ${qspFunc(s, 'money', 'string_profit', (((s as any).sex_ev ?? 0)?.['prostitution_owed'] ?? ''))} promised to you for whoring yourself out to ${((s as any).npcdesc ?? '')}, including the money he owed you from last time.`);
-          } else {
-            if (((s as any).sex_ev ?? 0)?.['prostitution_bonus'] > 0) {
-              scene.text(`Before you leave, you make sure to collect the ${qspFunc(s, 'money', 'string_profit', (((s as any).sex_ev ?? 0)?.['prostitution_owed'] ?? ''))} promised to you for whoring yourself out to ${((s as any).npcdesc ?? '')}, including the bonus he owes you.`);
-            } else {
-              scene.text(`Just before you go, ${((s as any).npcdesc ?? '')} hands you ${qspFunc(s, 'money', 'string_profit', (((s as any).sex_ev ?? 0)?.['prostitution_owed'] ?? ''))}.`);
-            }
-          }
-        }
-      }
-    }
-  }
-  qspCall(s, 'sex_ev_stats', 'prostitution_pay_code');
-  scene.text(`"${(((s as any).sex_ev ?? 0)?.['leave_dialogue'] ?? '')}," you say${(((s as any).sex_ev ?? 0)?.['leave_action'] ?? '')}.`);
-  qspGoto(s, 'sex_ev_leave', 'leave_options');
-  scene.build();
-}
-
-function enterNpcLeave(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).npcID ?? 0) === 'A34') {
-    qspCall(s, 'sex_ev_A34', 'kolka_leave');
-  } else {
-    scene.actions([
-      { label: '', labelFn: (s: GameState) => 'Get up and leave ' + String(((s as any).npcdesc ?? '') ?? '') + ' in bed', handler: (st: GameState) => {
-    scene.text(String(qspFunc(s, 'sex_ev', 'bed_room') || ''));
-    scene.text(`Not wanting to wake ${((st as any).npcdesc ?? '')}, you sneak over to the door and let yourself out, closing it as gently as you can behind you.`);
-    // TODO-QSP: end}
-    scene.actions([
-      { label: 'Leave', goto: ['sex_ev_leave', 'exit'] },
-      { label: '', labelFn: (s: GameState) => 'Tell ' + String(((st as any).npcdesc ?? '') ?? '') + ' to leave', handler: (st: GameState) => {
+          { label: '', labelFn: (s: GameState) => 'Tell ' + String(((s as any).npcdesc ?? '') ?? '') + ' to leave', handler: (st: GameState) => {
     scene.text(String(qspFunc(s, 'sex_ev', 'bed_room') || ''));
     if (((st as any).sex_ev ?? 0)?.['angry_after'] === 1  ||  ((st as any).sex_ev ?? 0)?.['annoyed'] > 0) {
       scene.text('"You should go," you say flatly.');
@@ -639,9 +305,9 @@ function enterNpcLeave(s: GameState, scene: SceneBuilder): void {
       { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterNpcLeavingAction(st, scene); (st as any).locArgs = __savedLocArgs; }
     }
   } },
-    ]);
-  } },
-    ]);
+        ]);
+      }
+    }
   }
   scene.build();
 }
@@ -702,49 +368,38 @@ function enterNpcLeavingAction(s: GameState, scene: SceneBuilder): void {
 
 function enterNpcLeavingDialogue(s: GameState, scene: SceneBuilder): void {
   if (((s as any).npc_rel_type ?? 0)?.[String((s as any).npcID ?? 0)] === '') {
-    scene.actions([
-      { label: '"Wanna do this again?"', handler: (st: GameState) => {
-    ((st as any).sex_ev = (st as any).sex_ev ?? {})['invite_today'] = 1;
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterNpcLeavingEnd(st, scene); (st as any).locArgs = __savedLocArgs; }
-  } },
-    ]);
   } else {
-    scene.actions([
-      { label: '"Wanna do this again? tomorrow?"', handler: (st: GameState) => {
-    ((st as any).sex_ev = (st as any).sex_ev ?? {})['invite_tomorrow'] = 1;
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterNpcLeavingEnd(st, scene); (st as any).locArgs = __savedLocArgs; }
-  } },
-    ]);
-  }
-  if (((s as any).npc_booty_call_date ?? 0)?.[String((s as any).npcID ?? 0)] === ((s as any).daystart ?? 0)  &&  ((s as any).sex_ev ?? 0)?.['sleepover'] === 1) {
-    scene.actions([
-      { label: '"See you soon"', handler: (st: GameState) => {
-    ((st as any).sex_ev = (st as any).sex_ev ?? {})['leave_dialogue'] = '"See you soon."';
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterNpcLeavingEnd(st, scene); (st as any).locArgs = __savedLocArgs; }
-  } },
-    ]);
-  } else {
-    if (((s as any).npc_booty_call_date ?? 0)?.[String((s as any).npcID ?? 0)] === ((s as any).daystart ?? 0) + 1) {
+    if (((s as any).npc_booty_call_date ?? 0)?.[String((s as any).npcID ?? 0)] === ((s as any).daystart ?? 0)  &&  ((s as any).sex_ev ?? 0)?.['sleepover'] === 1) {
       scene.actions([
-        { label: '"See you tomorrow"', handler: (st: GameState) => {
-    ((st as any).sex_ev = (st as any).sex_ev ?? {})['leave_dialogue'] = '"See you tomorrow."';
+        { label: '"See you soon"', handler: (st: GameState) => {
+    ((st as any).sex_ev = (st as any).sex_ev ?? {})['leave_dialogue'] = '"See you soon."';
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterNpcLeavingEnd(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       ]);
     } else {
-      scene.actions([
-        { label: '"Till next time"', handler: (st: GameState) => {
+      if (((s as any).npc_booty_call_date ?? 0)?.[String((s as any).npcID ?? 0)] === ((s as any).daystart ?? 0) + 1) {
+        scene.actions([
+          { label: '"See you tomorrow"', handler: (st: GameState) => {
+    ((st as any).sex_ev = (st as any).sex_ev ?? {})['leave_dialogue'] = '"See you tomorrow."';
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterNpcLeavingEnd(st, scene); (st as any).locArgs = __savedLocArgs; }
+  } },
+        ]);
+      } else {
+        scene.actions([
+          { label: '"Till next time"', handler: (st: GameState) => {
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['leave_dialogue'] = '"Till next time."';
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterNpcLeavingEnd(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
-        { label: '"Wanna do this again?"', handler: (st: GameState) => {
-    ((st as any).sex_ev = (st as any).sex_ev ?? {})['invite_today'] = 1;
+        ]);
+      }
+    }
+    scene.actions([
+      { label: '"Text me"', handler: (st: GameState) => {
+    ((st as any).sex_ev = (st as any).sex_ev ?? {})['leave_dialogue'] = '"Text me."';
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterNpcLeavingEnd(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
-      ]);
-    }
+    ]);
   }
-  // TODO-QSP: end}
   scene.actions([
     { label: '"Thanks for coming over."', handler: (st: GameState) => {
     if (((st as any).sex_ev ?? 0)?.['sleepover'] === 1) {
@@ -756,14 +411,6 @@ function enterNpcLeavingDialogue(s: GameState, scene: SceneBuilder): void {
   } },
     { label: '"See ya"', handler: (st: GameState) => {
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['leave_dialogue'] = '"See ya."';
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterNpcLeavingEnd(st, scene); (st as any).locArgs = __savedLocArgs; }
-  } },
-    { label: '"Text me"', handler: (st: GameState) => {
-    ((st as any).sex_ev = (st as any).sex_ev ?? {})['leave_dialogue'] = '"Text me."';
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterNpcLeavingEnd(st, scene); (st as any).locArgs = __savedLocArgs; }
-  } },
-    { label: '"Wanna do this again? tomorrow?"', handler: (st: GameState) => {
-    ((st as any).sex_ev = (st as any).sex_ev ?? {})['invite_tomorrow'] = 1;
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterNpcLeavingEnd(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
@@ -1582,7 +1229,7 @@ function enterDressingFinish(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sex_ev ?? 0)?.['sleepover'] === 1  &&  ((s as any).npc_latesleeper ?? 0)?.[String((s as any).npcID ?? 0)] === 1  &&  ((s as any).sex_ev ?? 0)?.['boy_asleep'] !== 0) {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSneakOut1(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterLeavingDialogue(s, scene); (s as any).locArgs = __savedLocArgs; }
+    qspCall(s, 'sex_ev_leave', 'leaving_dialogue');
   }
   scene.build();
 }
@@ -2308,33 +1955,6 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 'hang_out_after':
       enterHangOutAfter(s, scene);
-      break;
-    case 'go_out_check':
-      enterGoOutCheck(s, scene);
-      break;
-    case 'scared_exit':
-      enterScaredExit(s, scene);
-      break;
-    case 'go_out_after':
-      enterGoOutAfter(s, scene);
-      break;
-    case 'go_out_together':
-      enterGoOutTogether(s, scene);
-      break;
-    case 'leaving_dialogue':
-      enterLeavingDialogue(s, scene);
-      break;
-    case 'leaving_dialogue_choices':
-      enterLeavingDialogueChoices(s, scene);
-      break;
-    case 'leaving_action':
-      enterLeavingAction(s, scene);
-      break;
-    case 'leaving_end':
-      enterLeavingEnd(s, scene);
-      break;
-    case 'npc_leave':
-      enterNpcLeave(s, scene);
       break;
     case 'npc_leaving_action':
       enterNpcLeavingAction(s, scene);

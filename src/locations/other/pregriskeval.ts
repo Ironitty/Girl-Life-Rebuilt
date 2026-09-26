@@ -24,7 +24,6 @@ function enter(s: GameState, scene: SceneBuilder): void {
             }
           } else {
             if (((s as any).eff_contra ?? 0) === 1  ||  ((s as any).eff_contra ?? 0) === 7) {
-              // TODO-QSP: !{Definitely delibarately trying to get pregnant. !}
               (s as any).RESULT = 2;
             }
           }

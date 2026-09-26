@@ -43,14 +43,14 @@ function enterEnter(s: GameState, scene: SceneBuilder): void {
   scene.text('\'Second shift - 16:00 to 20:00.\'');
   if (((s as any).job_status ?? 0)?.['pav_factory'] === ''  &&  ((s as any).age ?? 0) < 18) {
     if (qspFunc(s, 'jobs', 'check_employment_possible', 'pav_factory', 0) === 1) {
-      scene.text('You can apply for a <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.15; return s; }); window.__gameStore.getState().doGoto(\u0027pav_factory\u0027, \u0027job_start\u0027); return false;">part-time job</a> here.');
+      scene.text('You can apply for a <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=15; return s; }); window.__gameStore.getState().doGoto(\u0027pav_factory\u0027, \u0027job_start\u0027); return false;">part-time job</a> here.');
     } else {
       scene.text('You see they\'re hiring, but the shift times conflict with your existing schedule.');
     }
   }
   if (((s as any).job_status ?? 0)?.['pav_factory'] === ''  &&  ((s as any).age ?? 0) >= 18) {
     if (qspFunc(s, 'jobs', 'check_employment_possible', 'pav_factory', 1) === 1) {
-      scene.text('You can apply for a <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.15; return s; }); window.__gameStore.getState().doGoto(\u0027pav_factory\u0027, \u0027job_start\u0027); return false;">full-time job</a> here.');
+      scene.text('You can apply for a <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=15; return s; }); window.__gameStore.getState().doGoto(\u0027pav_factory\u0027, \u0027job_start\u0027); return false;">full-time job</a> here.');
     } else {
       scene.text('You see they\'re hiring, but the shift times conflict with your existing schedule.');
     }
@@ -146,7 +146,7 @@ function enterScheduleChange(s: GameState, scene: SceneBuilder): void {
   scene.text('"Don\'t be late," he adds with a slight grin, before heading back to his office.');
   if (qspFunc(s, 'jobs', 'check_employment_possible', 'pav_factory', 1) === 0) {
     scene.text('You realize that the new shift times conflict with your existing schedule. You let the foreman know that you\'re not sure if you can make the new shift work with your other commitments. He looks at you for a moment, then nods understandingly.');
-    // TODO-QSP: "very well, we''ll keep you on the second shift for now. But please try to make it work with your sc...
+    scene.text('very well, we\'ll keep you on the second shift for now. But please try to make it work with your schedule as soon as you can, okay?');
     (s as any).pav_factory_schedule_change_pending = 1;
   } else {
     qspCall(s, 'jobs', 'change_schedule', 'pav_factory', 1);

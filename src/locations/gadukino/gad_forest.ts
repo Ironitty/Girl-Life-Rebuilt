@@ -794,104 +794,103 @@ function enterWalking(s: GameState, scene: SceneBuilder): void {
 function enterPicking(s: GameState, scene: SceneBuilder): void {
   if (((s as any).hour ?? 0) >= 6  &&  ((s as any).hour ?? 0) <= 22  &&  ((s as any).month ?? 0) >= 6  &&  ((s as any).month ?? 0) <= 9  &&  ((s as any).boletus ?? 0) + ((s as any).boletus_cooked ?? 0) + ((s as any).bilberry ?? 0) < 5) {
     if ((((s as any).forest_args1 ?? 0) === 'forest_edge'  &&  ((s as any).edge_pickingday ?? 0) !== ((s as any).daystart ?? 0))  ||  (((s as any).forest_args1 ?? 0) === 'forest_outskirts'  &&  ((s as any).outskirts_pickingday ?? 0) !== ((s as any).daystart ?? 0))  ||  (((s as any).forest_args1 ?? 0) === 'forest_center'  &&  ((s as any).center_pickingday ?? 0) !== ((s as any).daystart ?? 0))  ||  (((s as any).forest_args1 ?? 0) === 'gad_swamp_woods'  &&  ((s as any).swamp_pickingday ?? 0) !== ((s as any).daystart ?? 0))) {
-      if (((s as any).forest_args1 ?? 0) === 'forest_edge') {
-        (s as any).edge_pickingday = ((s as any).daystart ?? 0);
-        (s as any).mushroom_pickers_check = 1;
-        (s as any).max_boletus = 1;
-        (s as any).max_bilberry = 1;
+      scene.actions([
+        { label: '', labelFn: (s: GameState) => String('Look for mushrooms and berries ' + ((qspFunc(s, 'miroslava_schedule', 'is_here')  &&  ((s as any).forest_args1 ?? 0) === 'forest_edge') ? ('with Mira ') : ('')) + '(0:30)' ?? ''), handler: (st: GameState) => {
+    if (((st as any).forest_args1 ?? 0) === 'forest_edge') {
+      (st as any).edge_pickingday = ((st as any).daystart ?? 0);
+      (st as any).mushroom_pickers_check = 1;
+      (st as any).max_boletus = 1;
+      (st as any).max_bilberry = 1;
+    } else {
+      if (((st as any).forest_args1 ?? 0) === 'forest_outskirts') {
+        (st as any).outskirts_pickingday = ((st as any).daystart ?? 0);
+        (st as any).mushroom_pickers_check = 2;
+        (st as any).max_boletus = 2;
+        (st as any).max_bilberry = 2;
       } else {
-        if (((s as any).forest_args1 ?? 0) === 'forest_outskirts') {
-          (s as any).outskirts_pickingday = ((s as any).daystart ?? 0);
-          (s as any).mushroom_pickers_check = 2;
-          (s as any).max_boletus = 2;
-          (s as any).max_bilberry = 2;
+        if (((st as any).forest_args1 ?? 0) === 'forest_center') {
+          (st as any).center_pickingday = ((st as any).daystart ?? 0);
+          (st as any).mushroom_pickers_check = 3;
+          (st as any).max_boletus = 3;
+          (st as any).max_bilberry = 3;
         } else {
-          if (((s as any).forest_args1 ?? 0) === 'forest_center') {
-            (s as any).center_pickingday = ((s as any).daystart ?? 0);
-            (s as any).mushroom_pickers_check = 3;
-            (s as any).max_boletus = 3;
-            (s as any).max_bilberry = 3;
-          } else {
-            if (((s as any).forest_args1 ?? 0) === 'gad_swamp_woods') {
-              (s as any).swamp_pickingday = ((s as any).daystart ?? 0);
-              (s as any).mushroom_pickers_check = 4;
-              (s as any).max_boletus = 4;
-              (s as any).max_bilberry = 4;
-            }
+          if (((st as any).forest_args1 ?? 0) === 'gad_swamp_woods') {
+            (st as any).swamp_pickingday = ((st as any).daystart ?? 0);
+            (st as any).mushroom_pickers_check = 4;
+            (st as any).max_boletus = 4;
+            (st as any).max_bilberry = 4;
           }
         }
       }
-      (s as any).minut = ((s as any).minut ?? 0) + 30;
-      (s as any).new_boletus = 0;
-      (s as any).new_bilberry = 0;
-      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).forest_args1 ?? 0)]; enterBushcraft(s, scene); (s as any).locArgs = __savedLocArgs; }
-      if (((s as any).clothingworntype ?? 0) === 'nude') {
-        if (((s as any).pcs_inhib ?? 0) < 50) {
-          (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + ((Math.floor(Math.random() * 5) + 1));
-        }
-        if (qspFunc(s, 'miroslava_schedule', 'is_here')  &&  ((s as any).forest_args1 ?? 0) === 'forest_edge') {
-          qspCall(s, 'arousal', 'flash', 5);
-          qspCall(s, 'arousal', 'end');
-        }
+    }
+    (st as any).minut = ((st as any).minut ?? 0) + 30;
+    (st as any).new_boletus = 0;
+    (st as any).new_bilberry = 0;
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ((st as any).forest_args1 ?? 0)]; enterBushcraft(st, scene); (st as any).locArgs = __savedLocArgs; }
+    if (((st as any).clothingworntype ?? 0) === 'nude') {
+      if (((st as any).pcs_inhib ?? 0) < 50) {
+        (st as any).inhib_exp = ((st as any).inhib_exp ?? 0) + ((Math.floor(Math.random() * 5) + 1));
       }
-      qspCall(s, 'stat', '');
-      if (((s as any).mushroom_pickers ?? 0) !== ((s as any).mushroom_pickers_check ?? 0)) {
-        (s as any).new_boletus = ((s as any).new_boletus ?? 0) + (((s as any).max_boletus ?? 0));
-        (s as any).new_bilberry = ((s as any).new_bilberry ?? 0) + (((s as any).max_bilberry ?? 0));
-        (s as any).boletus = ((s as any).boletus ?? 0) + (((s as any).new_boletus ?? 0));
-        (s as any).bilberry = ((s as any).bilberry ?? 0) + (((s as any).new_bilberry ?? 0));
-        qspCall(s, 'mood', 'raise', 'tiny');
-        qspCall(s, 'stat', '');
-        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).forest_args1 ?? 0), 'berry']; enterPickingClothes(s, scene); (s as any).locArgs = __savedLocArgs; }
-        scene.text(`After searching for mushrooms and berries for half an hour, you found ${((s as any).new_boletus ?? '')} kg of mushrooms and ${((s as any).new_bilberry ?? '')} kg of berries.`);
-      } else {
-        if (((s as any).mushroom_pickers ?? 0) === ((s as any).mushroom_pickers_check ?? 0)) {
-          (s as any).new_boletus = ((s as any).new_boletus ?? 0) + ((Math.floor(Math.random() * (((s as any).max_boletus ?? 0) - 0 + 1)) + (0)));
-          (s as any).new_bilberry = ((s as any).new_bilberry ?? 0) + ((Math.floor(Math.random() * (((s as any).max_bilberry ?? 0) - 0 + 1)) + (0)));
-          (s as any).boletus = ((s as any).boletus ?? 0) + (((s as any).new_boletus ?? 0));
-          (s as any).bilberry = ((s as any).bilberry ?? 0) + (((s as any).new_bilberry ?? 0));
-          qspCall(s, 'stat', '');
-          if (((s as any).new_boletus ?? 0) > 0  &&  ((s as any).new_bilberry ?? 0) > 0) {
-            qspCall(s, 'mood', 'raise', 'tiny');
-            qspCall(s, 'stat', '');
-            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).forest_args1 ?? 0), 'berry']; enterPickingClothes(s, scene); (s as any).locArgs = __savedLocArgs; }
-            scene.text(`After searching for mushrooms and berries for half an hour, you found ${((s as any).new_boletus ?? '')} kg of mushrooms and ${((s as any).new_bilberry ?? '')} kg of berries.`);
+      if (qspFunc(s, 'miroslava_schedule', 'is_here')  &&  ((st as any).forest_args1 ?? 0) === 'forest_edge') {
+        qspCall(st, 'arousal', 'flash', 5);
+        qspCall(st, 'arousal', 'end');
+      }
+    }
+    qspCall(st, 'stat', '');
+    if (((st as any).mushroom_pickers ?? 0) !== ((st as any).mushroom_pickers_check ?? 0)) {
+      (st as any).new_boletus = ((st as any).new_boletus ?? 0) + (((st as any).max_boletus ?? 0));
+      (st as any).new_bilberry = ((st as any).new_bilberry ?? 0) + (((st as any).max_bilberry ?? 0));
+      (st as any).boletus = ((st as any).boletus ?? 0) + (((st as any).new_boletus ?? 0));
+      (st as any).bilberry = ((st as any).bilberry ?? 0) + (((st as any).new_bilberry ?? 0));
+      qspCall(st, 'mood', 'raise', 'tiny');
+      qspCall(st, 'stat', '');
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ((st as any).forest_args1 ?? 0), 'berry']; enterPickingClothes(st, scene); (st as any).locArgs = __savedLocArgs; }
+      scene.text(`After searching for mushrooms and berries for half an hour, you found ${((st as any).new_boletus ?? '')} kg of mushrooms and ${((st as any).new_bilberry ?? '')} kg of berries.`);
+    } else {
+      if (((st as any).mushroom_pickers ?? 0) === ((st as any).mushroom_pickers_check ?? 0)) {
+        (st as any).new_boletus = ((st as any).new_boletus ?? 0) + ((Math.floor(Math.random() * (((st as any).max_boletus ?? 0) - 0 + 1)) + (0)));
+        (st as any).new_bilberry = ((st as any).new_bilberry ?? 0) + ((Math.floor(Math.random() * (((st as any).max_bilberry ?? 0) - 0 + 1)) + (0)));
+        (st as any).boletus = ((st as any).boletus ?? 0) + (((st as any).new_boletus ?? 0));
+        (st as any).bilberry = ((st as any).bilberry ?? 0) + (((st as any).new_bilberry ?? 0));
+        qspCall(st, 'stat', '');
+        if (((st as any).new_boletus ?? 0) > 0  &&  ((st as any).new_bilberry ?? 0) > 0) {
+          qspCall(st, 'mood', 'raise', 'tiny');
+          qspCall(st, 'stat', '');
+          { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ((st as any).forest_args1 ?? 0), 'berry']; enterPickingClothes(st, scene); (st as any).locArgs = __savedLocArgs; }
+          scene.text(`After searching for mushrooms and berries for half an hour, you found ${((st as any).new_boletus ?? '')} kg of mushrooms and ${((st as any).new_bilberry ?? '')} kg of berries.`);
+        } else {
+          if (((st as any).new_boletus ?? 0) === 0  &&  ((st as any).new_bilberry ?? 0) > 0) {
+            qspCall(st, 'mood', 'raise', 'tiny');
+            qspCall(st, 'stat', '');
+            { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ((st as any).forest_args1 ?? 0), 'berry']; enterPickingClothes(st, scene); (st as any).locArgs = __savedLocArgs; }
+            scene.text(`After searching for mushrooms and berries for half an hour, you found ${((st as any).new_bilberry ?? '')} kg of berries.`);
           } else {
-            if (((s as any).new_boletus ?? 0) === 0  &&  ((s as any).new_bilberry ?? 0) > 0) {
-              qspCall(s, 'mood', 'raise', 'tiny');
-              qspCall(s, 'stat', '');
-              { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).forest_args1 ?? 0), 'berry']; enterPickingClothes(s, scene); (s as any).locArgs = __savedLocArgs; }
-              scene.text(`After searching for mushrooms and berries for half an hour, you found ${((s as any).new_bilberry ?? '')} kg of berries.`);
+            if (((st as any).new_boletus ?? 0) > 0  &&  (!((st as any).new_bilberry ?? 0))) {
+              qspCall(st, 'mood', 'raise', 'tiny');
+              qspCall(st, 'stat', '');
+              { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ((st as any).forest_args1 ?? 0), 'mushroom']; enterPickingClothes(st, scene); (st as any).locArgs = __savedLocArgs; }
+              scene.text(`After searching for mushrooms and berries for half an hour, you found ${((st as any).new_boletus ?? '')} kg of mushrooms.`);
             } else {
-              if (((s as any).new_boletus ?? 0) > 0  &&  (!((s as any).new_bilberry ?? 0))) {
-                qspCall(s, 'mood', 'raise', 'tiny');
-                qspCall(s, 'stat', '');
-                { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).forest_args1 ?? 0), 'mushroom']; enterPickingClothes(s, scene); (s as any).locArgs = __savedLocArgs; }
-                scene.text(`After searching for mushrooms and berries for half an hour, you found ${((s as any).new_boletus ?? '')} kg of mushrooms.`);
-              } else {
-                if (((s as any).new_boletus ?? 0) === 0  &&  (!((s as any).new_bilberry ?? 0))) {
-                  qspCall(s, 'mood', 'lower', 'tiny');
-                  qspCall(s, 'stat', '');
-                  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).forest_args1 ?? 0)]; enterPickingClothesEmpty(s, scene); (s as any).locArgs = __savedLocArgs; }
-                  scene.text('After searching for mushrooms and berries for half an hour, you found nothing.');
-                }
+              if (((st as any).new_boletus ?? 0) === 0  &&  (!((st as any).new_bilberry ?? 0))) {
+                qspCall(st, 'mood', 'lower', 'tiny');
+                qspCall(st, 'stat', '');
+                { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ((st as any).forest_args1 ?? 0)]; enterPickingClothesEmpty(st, scene); (st as any).locArgs = __savedLocArgs; }
+                scene.text('After searching for mushrooms and berries for half an hour, you found nothing.');
               }
             }
           }
         }
       }
-      if (((s as any).forest_args1 ?? 0) === 'gad_swamp_woods') {
-        scene.actions([
-          { label: 'Continue', goto: ['gad_swamp_woods', 'start'] },
-        ]);
-      } else {
-        scene.actions([
-          { label: 'Continue', handler: (st: GameState) => { qspGoto(st, 'gad_forest', ((st as any).forest_args1 ?? '')); } },
-        ]);
-      }
+    }
+    if (((st as any).forest_args1 ?? 0) === 'gad_swamp_woods') {
       scene.actions([
-        { label: 'Look for mushrooms and berries  [+iif(func(\'miroslava_schedule\', \'is_here\'...]', handler: (st: GameState) => {
-    // TODO-QSP: 30)':
+        { label: 'Continue', goto: ['gad_swamp_woods', 'start'] },
+      ]);
+    } else {
+      scene.actions([
+        { label: 'Continue', handler: (st: GameState) => { qspGoto(st, 'gad_forest', ((st as any).forest_args1 ?? '')); } },
+      ]);
+    }
   } },
       ]);
     }

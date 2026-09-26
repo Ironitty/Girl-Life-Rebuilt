@@ -69,21 +69,21 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<tr>');
   (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<td>');
   if (qspFunc(s, 'money', 'can_afford', 1500)) {
-    (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { s.abonement +=s.10; return s; }); window.__gameStore.getState().doGoto(\u0027money\u0027, \u0027pay\u0027, \u00271500 & abonement += 10 & gt \u0027havana\u0027\u0027); return false;">' + qspFunc(s, 'money', 'string_price', 1500) + ' for 10 lessons</a>');
+    (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { s.abonement +=10; return s; }); window.__gameStore.getState().doGoto(\u0027money\u0027, \u0027pay\u0027, \u00271500 & abonement += 10 & gt \u0027havana\u0027\u0027); return false;">' + qspFunc(s, 'money', 'string_price', 1500) + ' for 10 lessons</a>');
   } else {
     (s as any).temp_table = ((s as any).temp_table ?? 0) + ('' + qspFunc(s, 'money', 'string_price', 1500) + ' for 10 lessons');
   }
   (s as any).temp_table = ((s as any).temp_table ?? 0) + ('</td>');
   (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<td>');
   if (qspFunc(s, 'money', 'can_afford', 3000)) {
-    (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { s.abonement +=s.20; return s; }); window.__gameStore.getState().doGoto(\u0027money\u0027, \u0027pay\u0027, \u00273000 & abonement += 20 & gt \u0027havana\u0027\u0027); return false;">' + qspFunc(s, 'money', 'string_price', 3000) + ' for 20 lessons</a>');
+    (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { s.abonement +=20; return s; }); window.__gameStore.getState().doGoto(\u0027money\u0027, \u0027pay\u0027, \u00273000 & abonement += 20 & gt \u0027havana\u0027\u0027); return false;">' + qspFunc(s, 'money', 'string_price', 3000) + ' for 20 lessons</a>');
   } else {
     (s as any).temp_table = ((s as any).temp_table ?? 0) + ('' + qspFunc(s, 'money', 'string_price', 3000) + ' for 20 lessons');
   }
   (s as any).temp_table = ((s as any).temp_table ?? 0) + ('</td>');
   (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<td>');
   if (qspFunc(s, 'money', 'can_afford', 7500)) {
-    (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { s.abonement +=s.50; return s; }); window.__gameStore.getState().doGoto(\u0027money\u0027, \u0027pay\u0027, \u00277500 & abonement += 50 & gt \u0027havana\u0027\u0027); return false;">' + qspFunc(s, 'money', 'string_price', 7500) + ' for 50 lessons</a>');
+    (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { s.abonement +=50; return s; }); window.__gameStore.getState().doGoto(\u0027money\u0027, \u0027pay\u0027, \u00277500 & abonement += 50 & gt \u0027havana\u0027\u0027); return false;">' + qspFunc(s, 'money', 'string_price', 7500) + ' for 50 lessons</a>');
   } else {
     (s as any).temp_table = ((s as any).temp_table ?? 0) + ('' + qspFunc(s, 'money', 'string_price', 7500) + ' for 50 lessons');
   }
@@ -92,21 +92,21 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<tr>');
   (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<td>');
   if (qspFunc(s, 'money', 'can_afford', 14500)) {
-    (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { s.abonement +=s.100; return s; }); window.__gameStore.getState().doGoto(\u0027money\u0027, \u0027pay\u0027, \u002714500 & abonement += 100 & gt \u0027havana\u0027\u0027); return false;">' + qspFunc(s, 'money', 'string_price', 14500) + ' for 100 lessons</a>');
+    (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { s.abonement +=100; return s; }); window.__gameStore.getState().doGoto(\u0027money\u0027, \u0027pay\u0027, \u002714500 & abonement += 100 & gt \u0027havana\u0027\u0027); return false;">' + qspFunc(s, 'money', 'string_price', 14500) + ' for 100 lessons</a>');
   } else {
     (s as any).temp_table = ((s as any).temp_table ?? 0) + ('' + qspFunc(s, 'money', 'string_price', 14500) + ' for 100 lessons');
   }
   (s as any).temp_table = ((s as any).temp_table ?? 0) + ('</td>');
   (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<td>');
   if (qspFunc(s, 'money', 'can_afford', 28500)) {
-    (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { s.abonement +=s.200; return s; }); window.__gameStore.getState().doGoto(\u0027money\u0027, \u0027pay\u0027, \u002728500 & abonement += 200 & gt \u0027havana\u0027\u0027); return false;">' + qspFunc(s, 'money', 'string_price', 28500) + ' for 200 lessons</a>');
+    (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { s.abonement +=200; return s; }); window.__gameStore.getState().doGoto(\u0027money\u0027, \u0027pay\u0027, \u002728500 & abonement += 200 & gt \u0027havana\u0027\u0027); return false;">' + qspFunc(s, 'money', 'string_price', 28500) + ' for 200 lessons</a>');
   } else {
     (s as any).temp_table = ((s as any).temp_table ?? 0) + ('' + qspFunc(s, 'money', 'string_price', 28500) + ' for 200 lessons');
   }
   (s as any).temp_table = ((s as any).temp_table ?? 0) + ('</td>');
   (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<td>');
   if (qspFunc(s, 'money', 'can_afford', 69000)) {
-    (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { s.abonement +=s.500; return s; }); window.__gameStore.getState().doGoto(\u0027money\u0027, \u0027pay\u0027, \u002769000 & abonement += 500 & gt \u0027havana\u0027\u0027); return false;">' + qspFunc(s, 'money', 'string_price', 69000) + ' for 500 lessons</a>');
+    (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { s.abonement +=500; return s; }); window.__gameStore.getState().doGoto(\u0027money\u0027, \u0027pay\u0027, \u002769000 & abonement += 500 & gt \u0027havana\u0027\u0027); return false;">' + qspFunc(s, 'money', 'string_price', 69000) + ' for 500 lessons</a>');
   } else {
     (s as any).temp_table = ((s as any).temp_table ?? 0) + ('' + qspFunc(s, 'money', 'string_price', 69000) + ' for 500 lessons');
   }

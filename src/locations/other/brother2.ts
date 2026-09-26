@@ -1629,16 +1629,6 @@ function enterVideoGamingStop(s: GameState, scene: SceneBuilder): void {
         { label: 'Dare him to flash you', goto: ['brother2', 'flash_dare'] },
       ]);
     }
-    if (((s as any).game_dare ?? 0) >= 2) {
-      scene.actions([
-        { label: 'Dare him to strip', goto: ['brother2', 'strip_dare'] },
-      ]);
-    }
-    if (((s as any).game_dare ?? 0) >= 3) {
-      scene.actions([
-        { label: 'Dare him to do something humiliating', goto: ['brother2', 'humiliating_dare'] },
-      ]);
-    }
   } else {
     if ((!((s as any).game_dare ?? 0))) {
       if (((s as any).gaming_taunt ?? 0) >= 3) {

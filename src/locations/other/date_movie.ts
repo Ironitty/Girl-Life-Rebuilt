@@ -1170,38 +1170,28 @@ function enterMovieInterlude(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     } else {
-      scene.text('"Come on!" he says, ignoring your complaints, and tries to pull your hand towards his lap.');
-      // TODO-QSP: end !}
+      qspCall(st, 'npc_relationship', 'modify', ((st as any).npcID ?? 0), 'dislike');
+      scene.text('"Hmph. Fine," he grumbles, tucking his meat back into his pants and zipping up.');
       scene.actions([
-        { label: 'Acquiesce', handler: (st: GameState) => {
-    ((st as any).date_ev = (st as any).date_ev ?? {})['theater_frisky'] = 'reluctant';
-    scene.text('"Ugh, fine," you sigh, rolling your eyes and bend over to wrap your lips around his cock.');
-    qspCall(st, 'date_movie', 'theater_hj1');
-  } },
+        { label: 'Keep watching', goto: ['date_movie', 'watch_' + String((((st as any).date_ev ?? {})['film_decide'])) + '_movie2'] },
       ]);
     }
-    qspCall(st, 'npc_relationship', 'modify', ((st as any).npcID ?? 0), 'dislike');
-    scene.text('"Hmph. Fine," he grumbles, tucking his meat back into his pants and zipping up.');
-    scene.actions([
-      { label: 'Keep watching', goto: ['date_movie', 'watch_' + String((((st as any).date_ev ?? {})['film_decide'])) + '_movie2'] },
-    ]);
   } },
-    ]);
-  }
-  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterKeepWatching(s, scene); (s as any).locArgs = __savedLocArgs; }
-  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBoredWatching(s, scene); (s as any).locArgs = __savedLocArgs; }
-  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterReachCock(s, scene); (s as any).locArgs = __savedLocArgs; }
-  scene.actions([
-    { label: 'Great idea', handler: (st: GameState) => {
+      { label: 'Great idea', handler: (st: GameState) => {
     scene.text('You grin in the dark and eagerly bend over to wrap your lips around his cock.');
     qspGoto(st, 'date_movie', 'theater_bj_menu');
   } },
-    { label: 'Sigh and comply', handler: (st: GameState) => {
+      { label: 'Sigh and comply', handler: (st: GameState) => {
     ((st as any).date_ev = (st as any).date_ev ?? {})['theater_frisky'] = 'reluctant';
     scene.text('You don\'t quite manage to stifle the sigh that rises up from inside you, but you don\'t want to make a fuss out of this. Without a word, you bend over to suck his dick like he wants.');
     qspGoto(st, 'date_movie', 'theater_bj_menu');
   } },
-  ]);
+    ]);
+  } else {
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterKeepWatching(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBoredWatching(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterReachCock(s, scene); (s as any).locArgs = __savedLocArgs; }
+  }
   scene.build();
 }
 

@@ -1764,94 +1764,148 @@ function enterPeeGive(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).pcs_hairbsh ?? 0) >= 0) {
     if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('rape') : -1) >= 0) {
-      // TODO-QSP: if rand(30, pcs_hairlng) > 30:  pcs_hairbsh = -1
+      if ((Math.floor(Math.random() * (((s as any).pcs_hairlng ?? 0) - 30 + 1)) + (30)) > 30) {
+        (s as any).pcs_hairbsh = (-1);
+      }
     }
     if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('rough') : -1) >= 0) {
-      // TODO-QSP: if rand(30, pcs_hairlng) > 40:  pcs_hairbsh = -1
+      if ((Math.floor(Math.random() * (((s as any).pcs_hairlng ?? 0) - 30 + 1)) + (30)) > 40) {
+        (s as any).pcs_hairbsh = (-1);
+      }
     }
     if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('gangbang') : -1) >= 0) {
-      // TODO-QSP: if rand(30, pcs_hairlng) > 50:  pcs_hairbsh = -1
+      if ((Math.floor(Math.random() * (((s as any).pcs_hairlng ?? 0) - 30 + 1)) + (30)) > 50) {
+        (s as any).pcs_hairbsh = (-1);
+      }
     }
     if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('orgy') : -1) >= 0) {
-      // TODO-QSP: if rand(30, pcs_hairlng) > 60:  pcs_hairbsh = -1
+      if ((Math.floor(Math.random() * (((s as any).pcs_hairlng ?? 0) - 30 + 1)) + (30)) > 60) {
+        (s as any).pcs_hairbsh = (-1);
+      }
     }
     if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('group') : -1) >= 0) {
-      // TODO-QSP: if rand(30, pcs_hairlng) > 70:  pcs_hairbsh = -1
+      if ((Math.floor(Math.random() * (((s as any).pcs_hairlng ?? 0) - 30 + 1)) + (30)) > 70) {
+        (s as any).pcs_hairbsh = (-1);
+      }
     }
     if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('BDSM') : -1) >= 0) {
-      // TODO-QSP: if rand(30, pcs_hairlng) > 80:  pcs_hairbsh = -1
+      if ((Math.floor(Math.random() * (((s as any).pcs_hairlng ?? 0) - 30 + 1)) + (30)) > 80) {
+        (s as any).pcs_hairbsh = (-1);
+      }
     }
     if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('beast') : -1) >= 0) {
-      // TODO-QSP: if rand(30, pcs_hairlng) > 100:  pcs_hairbsh = -1
+      if ((Math.floor(Math.random() * (((s as any).pcs_hairlng ?? 0) - 30 + 1)) + (30)) > 100) {
+        (s as any).pcs_hairbsh = (-1);
+      }
     }
     if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('maso') : -1) >= 0) {
-      // TODO-QSP: if rand(30, pcs_hairlng) > 125:  pcs_hairbsh = rand(-1, 0)
+      if ((Math.floor(Math.random() * (((s as any).pcs_hairlng ?? 0) - 30 + 1)) + (30)) > 125) {
+        (s as any).pcs_hairbsh = (Math.floor(Math.random() * (0 - (-1) + 1)) + ((-1)));
+      }
     }
     if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('prostitution') : -1) >= 0) {
-      // TODO-QSP: if rand(30, pcs_hairlng) > 150:  pcs_hairbsh = rand(-1, 0)
+      if ((Math.floor(Math.random() * (((s as any).pcs_hairlng ?? 0) - 30 + 1)) + (30)) > 150) {
+        (s as any).pcs_hairbsh = (Math.floor(Math.random() * (0 - (-1) + 1)) + ((-1)));
+      }
     }
     if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('unknown') : -1) >= 0) {
-      // TODO-QSP: if rand(30, pcs_hairlng) > 200:  pcs_hairbsh = rand(-1, pcs_hairbsh)
+      if ((Math.floor(Math.random() * (((s as any).pcs_hairlng ?? 0) - 30 + 1)) + (30)) > 200) {
+        (s as any).pcs_hairbsh = (Math.floor(Math.random() * (((s as any).pcs_hairbsh ?? 0) - (-1) + 1)) + ((-1)));
+      }
     }
     if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('anal') : -1) >= 0  ||  (Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('anal_strap') : -1) >= 0) {
-      // TODO-QSP: if rand(30, pcs_hairlng) > 220: pcs_hairbsh = rand(-1, pcs_hairbsh)
+      if ((Math.floor(Math.random() * (((s as any).pcs_hairlng ?? 0) - 30 + 1)) + (30)) > 220) {
+        (s as any).pcs_hairbsh = (Math.floor(Math.random() * (((s as any).pcs_hairbsh ?? 0) - (-1) + 1)) + ((-1)));
+      }
     }
     if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('vaginal') : -1) >= 0  ||  (Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('vaginal_strap') : -1) >= 0) {
-      // TODO-QSP: if rand(30, pcs_hairlng) > 240: pcs_hairbsh = rand(-1, pcs_hairbsh)
+      if ((Math.floor(Math.random() * (((s as any).pcs_hairlng ?? 0) - 30 + 1)) + (30)) > 240) {
+        (s as any).pcs_hairbsh = (Math.floor(Math.random() * (((s as any).pcs_hairbsh ?? 0) - (-1) + 1)) + ((-1)));
+      }
     }
     if (((s as any).pcs_hairbsh ?? 0) > 0) {
       if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('bound') : -1) >= 0) {
-        // TODO-QSP: if rand(30, pcs_hairlng) > 270:  pcs_hairbsh = rand(0, pcs_hairbsh)
+        if ((Math.floor(Math.random() * (((s as any).pcs_hairlng ?? 0) - 30 + 1)) + (30)) > 270) {
+          (s as any).pcs_hairbsh = (Math.floor(Math.random() * (((s as any).pcs_hairbsh ?? 0) - 0 + 1)) + (0));
+        }
       }
       if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('sub') : -1) >= 0) {
-        // TODO-QSP: if rand(30, pcs_hairlng) > 300:  pcs_hairbsh = rand(0, pcs_hairbsh)
+        if ((Math.floor(Math.random() * (((s as any).pcs_hairlng ?? 0) - 30 + 1)) + (30)) > 300) {
+          (s as any).pcs_hairbsh = (Math.floor(Math.random() * (((s as any).pcs_hairbsh ?? 0) - 0 + 1)) + (0));
+        }
       }
     }
   }
   if (((s as any).pcs_makeup ?? 0) > ((s as any).makeup ?? 0)?.['base']) {
     if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('rape') : -1) >= 0) {
-      // TODO-QSP: if rand(pcs_makeup, pcs_makupskl / 10) < 7: pcs_makeup = 0
+      if ((Math.floor(Math.random() * (((s as any).pcs_makupskl ?? 0) / 10 - ((s as any).pcs_makeup ?? 0) + 1)) + (((s as any).pcs_makeup ?? 0))) < 7) {
+        (s as any).pcs_makeup = 0;
+      }
     }
     if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('rough') : -1) >= 0) {
-      // TODO-QSP: if rand(pcs_makeup, pcs_makupskl / 10) < 5: pcs_makeup = 0
+      if ((Math.floor(Math.random() * (((s as any).pcs_makupskl ?? 0) / 10 - ((s as any).pcs_makeup ?? 0) + 1)) + (((s as any).pcs_makeup ?? 0))) < 5) {
+        (s as any).pcs_makeup = 0;
+      }
     }
     if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('gangbang') : -1) >= 0) {
-      // TODO-QSP: if rand(pcs_makeup, pcs_makupskl / 10) < 5: pcs_makeup = 0
+      if ((Math.floor(Math.random() * (((s as any).pcs_makupskl ?? 0) / 10 - ((s as any).pcs_makeup ?? 0) + 1)) + (((s as any).pcs_makeup ?? 0))) < 5) {
+        (s as any).pcs_makeup = 0;
+      }
     }
     if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('beast') : -1) >= 0) {
-      // TODO-QSP: if rand(pcs_makeup, pcs_makupskl / 10) < 4: pcs_makeup = 0
+      if ((Math.floor(Math.random() * (((s as any).pcs_makupskl ?? 0) / 10 - ((s as any).pcs_makeup ?? 0) + 1)) + (((s as any).pcs_makeup ?? 0))) < 4) {
+        (s as any).pcs_makeup = 0;
+      }
     }
     if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('bj') : -1) >= 0  ||  (Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('deepthroat') : -1) >= 0) {
       if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('group') : -1) >= 0) {
-        // TODO-QSP: if rand(pcs_makeup, pcs_makupskl / 10) < 3: pcs_makeup = 0
+        if ((Math.floor(Math.random() * (((s as any).pcs_makupskl ?? 0) / 10 - ((s as any).pcs_makeup ?? 0) + 1)) + (((s as any).pcs_makeup ?? 0))) < 3) {
+          (s as any).pcs_makeup = 0;
+        }
       }
       if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('orgy') : -1) >= 0) {
-        // TODO-QSP: if rand(pcs_makeup, pcs_makupskl / 10) < 3: pcs_makeup = 0
+        if ((Math.floor(Math.random() * (((s as any).pcs_makupskl ?? 0) / 10 - ((s as any).pcs_makeup ?? 0) + 1)) + (((s as any).pcs_makeup ?? 0))) < 3) {
+          (s as any).pcs_makeup = 0;
+        }
       }
       if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('BDSM') : -1) >= 0) {
-        // TODO-QSP: if rand(pcs_makeup, pcs_makupskl / 10) < 3: pcs_makeup = 0
+        if ((Math.floor(Math.random() * (((s as any).pcs_makupskl ?? 0) / 10 - ((s as any).pcs_makeup ?? 0) + 1)) + (((s as any).pcs_makeup ?? 0))) < 3) {
+          (s as any).pcs_makeup = 0;
+        }
       }
       if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('deepthroat') : -1) >= 0) {
         if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('maso') : -1) >= 0) {
-          // TODO-QSP: if rand(pcs_makeup, pcs_makupskl / 10) < 3: pcs_makeup = 0
+          if ((Math.floor(Math.random() * (((s as any).pcs_makupskl ?? 0) / 10 - ((s as any).pcs_makeup ?? 0) + 1)) + (((s as any).pcs_makeup ?? 0))) < 3) {
+            (s as any).pcs_makeup = 0;
+          }
         }
         if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('prostitution') : -1) >= 0) {
-          // TODO-QSP: if rand(pcs_makeup, pcs_makupskl / 10) < 4: pcs_makeup = 0
+          if ((Math.floor(Math.random() * (((s as any).pcs_makupskl ?? 0) / 10 - ((s as any).pcs_makeup ?? 0) + 1)) + (((s as any).pcs_makeup ?? 0))) < 4) {
+            (s as any).pcs_makeup = 0;
+          }
         }
         if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('unknown') : -1) >= 0) {
-          // TODO-QSP: if rand(pcs_makeup, pcs_makupskl / 10) < 4: pcs_makeup = 0
+          if ((Math.floor(Math.random() * (((s as any).pcs_makupskl ?? 0) / 10 - ((s as any).pcs_makeup ?? 0) + 1)) + (((s as any).pcs_makeup ?? 0))) < 4) {
+            (s as any).pcs_makeup = 0;
+          }
         }
         if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('bound') : -1) >= 0) {
-          // TODO-QSP: if rand(pcs_makeup, pcs_makupskl / 10) < 5: pcs_makeup = 0
+          if ((Math.floor(Math.random() * (((s as any).pcs_makupskl ?? 0) / 10 - ((s as any).pcs_makeup ?? 0) + 1)) + (((s as any).pcs_makeup ?? 0))) < 5) {
+            (s as any).pcs_makeup = 0;
+          }
         }
         if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('sub') : -1) >= 0) {
-          // TODO-QSP: if rand(pcs_makeup, pcs_makupskl / 10) < 5: pcs_makeup = 0
+          if ((Math.floor(Math.random() * (((s as any).pcs_makupskl ?? 0) / 10 - ((s as any).pcs_makeup ?? 0) + 1)) + (((s as any).pcs_makeup ?? 0))) < 5) {
+            (s as any).pcs_makeup = 0;
+          }
         }
       }
     }
     if (((s as any).pcs_makeup ?? 0) > ((s as any).makeup ?? 0)?.['base']) {
       if (((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('bj') : -1) >= 0  ||  (Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('cuni_give') : -1) >= 0)) {
-        // TODO-QSP: if rand(pcs_makeup, pcs_makupskl / 10) < 3: pcs_makeup = rand(0, 1)
+        if ((Math.floor(Math.random() * (((s as any).pcs_makupskl ?? 0) / 10 - ((s as any).pcs_makeup ?? 0) + 1)) + (((s as any).pcs_makeup ?? 0))) < 3) {
+          (s as any).pcs_makeup = (Math.floor(Math.random() * 2) + 0);
+        }
       }
     }
   }

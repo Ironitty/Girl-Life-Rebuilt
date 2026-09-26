@@ -160,33 +160,6 @@ function enterExitSet(s: GameState, scene: SceneBuilder): void {
                 }
               }
             }
-            if (((s as any).region ?? 0) === 'pav') {
-              qspGoto(s, 'pav_residential', '');
-            } else {
-              if (((s as any).region ?? 0) === 'pav') {
-                qspGoto(s, 'pav_commercial', '');
-              } else {
-                if (((s as any).region ?? 0) === 'pav_park') {
-                  qspGoto(s, 'pav_park', 'start');
-                } else {
-                  if (((s as any).region ?? 0) === 'city') {
-                    qspGoto(s, 'city_residential', '');
-                  } else {
-                    if (((s as any).region ?? 0) === 'city_center') {
-                      qspGoto(s, 'city_center', '');
-                    } else {
-                      if (((s as any).region ?? 0) === 'city_park') {
-                        qspGoto(s, 'city_park', 'start');
-                      } else {
-                        if (((s as any).region ?? 0) === 'city_island') {
-                          qspGoto(s, 'city_island', '');
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
           }
         }
       }
@@ -607,8 +580,6 @@ function enterFbInvitedStart(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     }
-    scene.text('"I was playing football when I saw your message," you shrug.');
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterFbSweaty(s, scene); (s as any).locArgs = __savedLocArgs; }
     if (((s as any).stat ?? 0)?.['volleyball_day'] === ((s as any).daystart ?? 0)) {
       scene.actions([
         { label: 'Came from volleyball', handler: (st: GameState) => {
@@ -1059,15 +1030,18 @@ function enterStartingRoute(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterImmediateBreakup(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: act'Break up with <<$npc_usedname[$npcID]>>':
-  if (((s as any).npcRelat ?? 0) === 'boyfriend') {
-    scene.text('"I just came over to tell you I\'m breaking up with you."');
-    scene.text('"What?!');
-  } else {
-    scene.text('"I just came over to tell you we\'re through."');
-    scene.text('"What are you talking about?"');
-  }
-  qspCall(s, 'sex_ev_leave', 'breakup_mid');
+  scene.actions([
+    { label: '', labelFn: (s: GameState) => 'Break up with ' + String((((s as any).npc_usedname ?? 0)?.[String((s as any).npcID ?? 0)] ?? '') ?? ''), handler: (st: GameState) => {
+    if (((st as any).npcRelat ?? 0) === 'boyfriend') {
+      scene.text('"I just came over to tell you I\'m breaking up with you."');
+      scene.text('"What?!');
+    } else {
+      scene.text('"I just came over to tell you we\'re through."');
+      scene.text('"What are you talking about?"');
+    }
+    qspCall(st, 'sex_ev_leave', 'breakup_mid');
+  } },
+  ]);
   scene.build();
 }
 
@@ -1409,7 +1383,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
 
 export const sex_ev_start: LocationDef = {
   name: 'sex_ev_start',
-  title: '"I was playing football when I saw your message," you shrug.',
+  title: '"What the fuck?" he says, wrinkling his nose. "You stink."',
   region: 'other',
   enter: enter,
 };

@@ -101,9 +101,7 @@ function enterActivitiesNormal(s: GameState, scene: SceneBuilder): void {
         }
       }
       scene.actions([
-        { label: 'Go for a walk with him  [+iif(daystage = 5 or sunWeather = 0, \'(0]', handler: (st: GameState) => {
-    // TODO-QSP: 10)', '(0:15)')+' ': gt 'pet_dog', 'exercise', 'walk'
-  } },
+        { label: '', labelFn: (s: GameState) => String('Go for a walk with him ' + ((((s as any).daystage ?? 0) === 5  ||  (!((s as any).sunWeather ?? 0))) ? ('(0:10)') : ('(0:15)')) + ' ' ?? ''), goto: ['pet_dog', 'exercise', 'walk'] },
       ]);
     }
   }

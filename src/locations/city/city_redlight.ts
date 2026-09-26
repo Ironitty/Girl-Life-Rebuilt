@@ -47,7 +47,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).hour ?? 0) < 3  ||  ((s as any).hour ?? 0) >= 11) {
-    scene.text('A <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027shop_erotomaniac\u0027, \u0027start\u0027); return false;">seedy looking shop</a> that sells sex toys and other erotic merchandise is open for perverts from all around the city to browse its stock.');
+    scene.text('A <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=1; return s; }); window.__gameStore.getState().doGoto(\u0027shop_erotomaniac\u0027, \u0027start\u0027); return false;">seedy looking shop</a> that sells sex toys and other erotic merchandise is open for perverts from all around the city to browse its stock.');
   } else {
     scene.text('\'A seedy looking shop that sells sex toys and other erotic merchandise. It is currently closed and will reopen at 11:00.\'');
   }
@@ -66,14 +66,14 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'taxi', '');
   if (qspFunc(s, 'car_funcs', 'is_here', 'fuelstation', 'start')) {
-    scene.text(`Your <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(/u0027carF/u0027, /u0027start/u0027); return false;">${(((s as any).car ?? 0)?.['name'] ?? '')}</a> is parked near the gas station.`);
+    scene.text(`Your <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=5; return s; }); window.__gameStore.getState().doGoto(/u0027carF/u0027, /u0027start/u0027); return false;">${(((s as any).car ?? 0)?.['name'] ?? '')}</a> is parked near the gas station.`);
   } else {
     if (qspFunc(s, 'car_funcs', 'is_here', 'city_redlight', 'start')) {
       scene.text(`Your <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027carF/u0027, /u0027start/u0027); return false;">${(((s as any).car ?? 0)?.['name'] ?? '')}</a> sits in the parking lot.`);
     } else {
       if (qspFunc(s, 'car_funcs', 'is_here', 'autoservisF', 'start')) {
         if (qspFunc(s, 'autoservisF', 'is_open')) {
-          scene.text(`Your <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(/u0027carF/u0027, /u0027start/u0027); return false;">${(((s as any).car ?? 0)?.['name'] ?? '')}</a> is parked at the car service center.`);
+          scene.text(`Your <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=5; return s; }); window.__gameStore.getState().doGoto(/u0027carF/u0027, /u0027start/u0027); return false;">${(((s as any).car ?? 0)?.['name'] ?? '')}</a> is parked at the car service center.`);
         } else {
           scene.text('It looks like the repair shop moved your car outside before they closed.');
           ((s as any).car = (s as any).car ?? {})['loc'] = 'city_industrial';
@@ -82,7 +82,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       } else {
         if (qspFunc(s, 'car_funcs', 'is_here', 'autotraidF', 'start')) {
           if (qspFunc(s, 'autotraidF', 'is_open')) {
-            scene.text(`Your <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(/u0027carF/u0027, /u0027start/u0027); return false;">${(((s as any).car ?? 0)?.['name'] ?? '')}</a> is parked at the car dealership.`);
+            scene.text(`Your <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=5; return s; }); window.__gameStore.getState().doGoto(/u0027carF/u0027, /u0027start/u0027); return false;">${(((s as any).car ?? 0)?.['name'] ?? '')}</a> is parked at the car dealership.`);
           } else {
             scene.text('It looks like the car dealership moved your car outside before they closed.');
             ((s as any).car = (s as any).car ?? {})['loc'] = 'city_industrial';
@@ -93,7 +93,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (qspFunc(s, 'car_funcs', 'is_here', 'city_industrial', '')) {
-    scene.text(`Your <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(/u0027carF/u0027, /u0027start/u0027); return false;">${(((s as any).car ?? 0)?.['name'] ?? '')}</a> stands nearby in a parking lot at the redlight district.`);
+    scene.text(`Your <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=5; return s; }); window.__gameStore.getState().doGoto(/u0027carF/u0027, /u0027start/u0027); return false;">${(((s as any).car ?? 0)?.['name'] ?? '')}</a> stands nearby in a parking lot at the redlight district.`);
   }
   if (((s as any).hour ?? 0) >= 20  ||  ((s as any).hour ?? 0) <= 4) {
     scene.text('Prostitutes are working near here.');

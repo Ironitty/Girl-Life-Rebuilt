@@ -45,10 +45,10 @@ function enterCoreBirthday(s: GameState, scene: SceneBuilder): void {
     (s as any).birthmonth = qspFunc(s, 'math', 'int_clamp', ((s as any).birthmonth ?? 0), 1, 12);
     (s as any).birthday = qspFunc(s, 'math', 'int_clamp', ((s as any).birthday ?? 0), 1, ((s as any).monthdays ?? 0));
     scene.text(`<center>${((((s as any).start_type ?? 0)?.['magic'] === 'tg') ? ('Her') : ('Your'))} birthday: <b>${(((s as any).monthName ?? 0)?.[String((s as any).birthmonth ?? 0)] ?? '')} ${((s as any).birthday ?? '')}${qspFunc(s, 'shortgs', 'get_number_suffix', ((s as any).birthday ?? ''))}, ${((s as any).birthyear ?? '')}</b></center>`);
-    scene.text('<center><a href="#" onclick="window.__gameStore.setState((s) => { s.birthday +=s.5; return s; }); window.__gameStore.getState().doGoto(\u0027intro_character_creation\u0027, \u0027core_birthday\u0027); return false;">+5 Days</a></center>');
-    scene.text('<center><a href="#" onclick="window.__gameStore.setState((s) => { s.birthday +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027intro_character_creation\u0027, \u0027core_birthday\u0027); return false;">+1 Day</a></center>');
-    scene.text('<center><a href="#" onclick="window.__gameStore.setState((s) => { s.birthday -=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027intro_character_creation\u0027, \u0027core_birthday\u0027); return false;">-1 Day</a></center>');
-    scene.text('<center><a href="#" onclick="window.__gameStore.setState((s) => { s.birthday -=s.5; return s; }); window.__gameStore.getState().doGoto(\u0027intro_character_creation\u0027, \u0027core_birthday\u0027); return false;">-5 Days</a></center>');
+    scene.text('<center><a href="#" onclick="window.__gameStore.setState((s) => { s.birthday +=5; return s; }); window.__gameStore.getState().doGoto(\u0027intro_character_creation\u0027, \u0027core_birthday\u0027); return false;">+5 Days</a></center>');
+    scene.text('<center><a href="#" onclick="window.__gameStore.setState((s) => { s.birthday +=1; return s; }); window.__gameStore.getState().doGoto(\u0027intro_character_creation\u0027, \u0027core_birthday\u0027); return false;">+1 Day</a></center>');
+    scene.text('<center><a href="#" onclick="window.__gameStore.setState((s) => { s.birthday -=1; return s; }); window.__gameStore.getState().doGoto(\u0027intro_character_creation\u0027, \u0027core_birthday\u0027); return false;">-1 Day</a></center>');
+    scene.text('<center><a href="#" onclick="window.__gameStore.setState((s) => { s.birthday -=5; return s; }); window.__gameStore.getState().doGoto(\u0027intro_character_creation\u0027, \u0027core_birthday\u0027); return false;">-5 Days</a></center>');
     (s as any).bm_td = 'border:1px solid ' + (((s as any).theme_hex ?? 0)?.['goth']) + '; background-color:' + (((s as any).theme_hex ?? 0)?.['table_bg_alt']) + '; padding:6px 12px; text-align:center;';
     (s as any).bm_td_sel = 'border:1px solid ' + (((s as any).theme_hex ?? 0)?.['goth']) + '; background-color:' + (((s as any).theme_hex ?? 0)?.['accent']) + '; padding:6px 12px; text-align:center; color:#ffffff;';
     (s as any).bm_i = 1;
@@ -914,16 +914,16 @@ function enterHair(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'body_desc', 'hair');
   if (((s as any).face_style ?? 0)?.['type'] === 1) {
-    scene.text(`<center><i>${((s as any).hair ?? '')}</i> You may also <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: $face_style[/u0027avatar_hair/u0027] = input(/u0027Enter a description of your hair:/u0027) */ return s; }); window.__gameStore.getState().doGoto(/u0027intro_character_creation/u0027, /u0027hair/u0027); return false;">manually enter a description</a> if you would prefer.</center>`);
+    scene.text(`<center><i>${((s as any).hair ?? '')}</i> You may also <a href="#" onclick="window.__gameStore.setState((s) => { (s.face_style ??= {})/u0027avatar_hair/u0027 = input(/u0027Enter a description of your hair:/u0027); return s; }); window.__gameStore.getState().doGoto(/u0027intro_character_creation/u0027, /u0027hair/u0027); return false;">manually enter a description</a> if you would prefer.</center>`);
   }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetHairNextPrev(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text(`<center>Hair length: ${(((s as any).pc_descWordy ?? 0)?.['hair length'] ?? '')} — <a href="#" onclick="window.__gameStore.setState((s) => { s.pcs_hairlng = ${((s as any).hairlng_next ?? '')}; return s; }); window.__gameStore.getState().doGoto(/u0027intro_character_creation/u0027, /u0027hair/u0027); return false;">Change length</a></center>`);
   (s as any).hairlng_next = undefined;
   (s as any).hairlng_prev = undefined;
   if (((s as any).curly ?? 0) <= 0) {
-    scene.text(`<center>Hair: <a href="#" onclick="window.__gameStore.setState((s) => { s.defcurly = s.1; s.curly = s.2147483647; return s; }); window.__gameStore.getState().doGoto(/u0027intro_character_creation/u0027, /u0027hair/u0027); return false;">straight</a>, <a href="#" onclick="window.__gameStore.setState((s) => { s.pcs_haircol = (pcs_haircol + 1) mod 4; return s; }); window.__gameStore.getState().doGoto(/u0027intro_character_creation/u0027, /u0027hair/u0027); return false;">${((s as any).pcs_haircolor ?? '')}</a></center>`);
+    scene.text(`<center>Hair: <a href="#" onclick="window.__gameStore.setState((s) => { s.defcurly = 1; s.curly = 2147483647; return s; }); window.__gameStore.getState().doGoto(/u0027intro_character_creation/u0027, /u0027hair/u0027); return false;">straight</a>, <a href="#" onclick="window.__gameStore.setState((s) => { s.pcs_haircol = (pcs_haircol + 1) mod 4; return s; }); window.__gameStore.getState().doGoto(/u0027intro_character_creation/u0027, /u0027hair/u0027); return false;">${((s as any).pcs_haircolor ?? '')}</a></center>`);
   } else {
-    scene.text(`<center>Hair: <a href="#" onclick="window.__gameStore.setState((s) => { s.defcurly = s.0; s.curly = s.0; return s; }); window.__gameStore.getState().doGoto(/u0027intro_character_creation/u0027, /u0027hair/u0027); return false;">curly</a>, <a href="#" onclick="window.__gameStore.setState((s) => { s.pcs_haircol = (pcs_haircol + 1) mod 4; return s; }); window.__gameStore.getState().doGoto(/u0027intro_character_creation/u0027, /u0027hair/u0027); return false;">${((s as any).pcs_haircolor ?? '')}</a></center>`);
+    scene.text(`<center>Hair: <a href="#" onclick="window.__gameStore.setState((s) => { s.defcurly = 0; s.curly = 0; return s; }); window.__gameStore.getState().doGoto(/u0027intro_character_creation/u0027, /u0027hair/u0027); return false;">curly</a>, <a href="#" onclick="window.__gameStore.setState((s) => { s.pcs_haircol = (pcs_haircol + 1) mod 4; return s; }); window.__gameStore.getState().doGoto(/u0027intro_character_creation/u0027, /u0027hair/u0027); return false;">${((s as any).pcs_haircolor ?? '')}</a></center>`);
   }
   scene.actions([
 { label: '<b>Done</b>', handler: (st: GameState) => {
@@ -952,22 +952,22 @@ function enterEyes(s: GameState, scene: SceneBuilder): void {
   scene.text(`<center><i>${(((s as any).pc_descFull ?? 0)?.['eyes'] ?? '')}</i></center>`);
   scene.text(`<center><a href="#" onclick="window.__gameStore.setState((s) => { s.pcs_eyecol = (pcs_eyecol + 1) mod 4; return s; }); window.__gameStore.getState().doGoto(/u0027intro_character_creation/u0027, /u0027eyes/u0027); return false;">Change eye color (${((s as any).pcs_eyecolor ?? '')})</a></center>`);
   if (((s as any).pcs_lashes ?? 0) < 2) {
-    scene.text('<center><a href="#" onclick="window.__gameStore.setState((s) => { s.pcs_lashes +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027intro_character_creation\u0027, \u0027eyes\u0027); return false;">Lengthen lashes</a></center>');
+    scene.text('<center><a href="#" onclick="window.__gameStore.setState((s) => { s.pcs_lashes +=1; return s; }); window.__gameStore.getState().doGoto(\u0027intro_character_creation\u0027, \u0027eyes\u0027); return false;">Lengthen lashes</a></center>');
   }
   if (((s as any).pcs_lashes ?? 0) > 0) {
-    scene.text('<center><a href="#" onclick="window.__gameStore.setState((s) => { s.pcs_lashes -=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027intro_character_creation\u0027, \u0027eyes\u0027); return false;">Shorten lashes</a></center>');
+    scene.text('<center><a href="#" onclick="window.__gameStore.setState((s) => { s.pcs_lashes -=1; return s; }); window.__gameStore.getState().doGoto(\u0027intro_character_creation\u0027, \u0027eyes\u0027); return false;">Shorten lashes</a></center>');
   }
   if (((s as any).pcs_eyesize ?? 0) < 3) {
-    scene.text('<center><a href="#" onclick="window.__gameStore.setState((s) => { s.pcs_eyesize +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027intro_character_creation\u0027, \u0027eyes\u0027); return false;">Larger eyes</a></center>');
+    scene.text('<center><a href="#" onclick="window.__gameStore.setState((s) => { s.pcs_eyesize +=1; return s; }); window.__gameStore.getState().doGoto(\u0027intro_character_creation\u0027, \u0027eyes\u0027); return false;">Larger eyes</a></center>');
   }
   if (((s as any).pcs_eyesize ?? 0) > 0) {
-    scene.text('<center><a href="#" onclick="window.__gameStore.setState((s) => { s.pcs_eyesize -=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027intro_character_creation\u0027, \u0027eyes\u0027); return false;">Smaller eyes</a></center>');
+    scene.text('<center><a href="#" onclick="window.__gameStore.setState((s) => { s.pcs_eyesize -=1; return s; }); window.__gameStore.getState().doGoto(\u0027intro_character_creation\u0027, \u0027eyes\u0027); return false;">Smaller eyes</a></center>');
   }
   if ((!((s as any).glass ?? 0))) {
-    scene.text('<center><a href="#" onclick="window.__gameStore.setState((s) => { s.glass = s.1; return s; }); window.__gameStore.getState().doGoto(\u0027intro_character_creation\u0027, \u0027eyes\u0027); return false;">Wear glasses</a></center>');
+    scene.text('<center><a href="#" onclick="window.__gameStore.setState((s) => { s.glass = 1; return s; }); window.__gameStore.getState().doGoto(\u0027intro_character_creation\u0027, \u0027eyes\u0027); return false;">Wear glasses</a></center>');
   }
   if (((s as any).glass ?? 0) === 1) {
-    scene.text('<center><a href="#" onclick="window.__gameStore.setState((s) => { s.glass = s.0; return s; }); window.__gameStore.getState().doGoto(\u0027intro_character_creation\u0027, \u0027eyes\u0027); return false;">Remove glasses</a></center>');
+    scene.text('<center><a href="#" onclick="window.__gameStore.setState((s) => { s.glass = 0; return s; }); window.__gameStore.getState().doGoto(\u0027intro_character_creation\u0027, \u0027eyes\u0027); return false;">Remove glasses</a></center>');
   }
   scene.actions([
 { label: '<b>Done</b>', handler: (st: GameState) => {
@@ -985,10 +985,10 @@ function enterLip(s: GameState, scene: SceneBuilder): void {
   scene.text('<center>Adjust the size of your lips to match your <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = String(qspFunc(s, \u0027$face_image\u0027, \u0027\u0027) || \u0027\u0027); return s; }); return false;">image</a>:</center>');
   scene.text(`<center><i>${(((s as any).pc_descFull ?? 0)?.['lip'] ?? '')}</i></center>`);
   if (((s as any).pcs_lip ?? 0) < 4) {
-    scene.text('<center><a href="#" onclick="window.__gameStore.setState((s) => { s.pcs_lip +=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027intro_character_creation\u0027, \u0027lip\u0027); return false;">Bigger lips</a></center>');
+    scene.text('<center><a href="#" onclick="window.__gameStore.setState((s) => { s.pcs_lip +=1; return s; }); window.__gameStore.getState().doGoto(\u0027intro_character_creation\u0027, \u0027lip\u0027); return false;">Bigger lips</a></center>');
   }
   if (((s as any).pcs_lip ?? 0) > 0) {
-    scene.text('<center><a href="#" onclick="window.__gameStore.setState((s) => { s.pcs_lip -=s.1; return s; }); window.__gameStore.getState().doGoto(\u0027intro_character_creation\u0027, \u0027lip\u0027); return false;">Smaller lips</a></center>');
+    scene.text('<center><a href="#" onclick="window.__gameStore.setState((s) => { s.pcs_lip -=1; return s; }); window.__gameStore.getState().doGoto(\u0027intro_character_creation\u0027, \u0027lip\u0027); return false;">Smaller lips</a></center>');
   }
   scene.actions([
 { label: '<b>Done</b>', handler: (st: GameState) => {

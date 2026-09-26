@@ -85,7 +85,7 @@ function enterBrowse(s: GameState, scene: SceneBuilder): void {
         { label: 'Watch porn', goto: ['komp', 'porno'] },
       ]);
     } else {
-      // TODO-QSP: "<b><<$access['noporn']>></b>"
+      scene.text(`<b>${(((s as any).access ?? 0)?.['noporn'] ?? '')}</b>`);
     }
     if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) < 20) {
       if (((s as any).clothingworntype ?? 0) === 'nude') {
@@ -144,7 +144,7 @@ function enterBrowse(s: GameState, scene: SceneBuilder): void {
           { label: 'Go to MyFreeCams.org', goto: ['komp_cam_MFC_main', 'start'] },
         ]);
       } else {
-        // TODO-QSP: "<b><<$access['nocamshow']>></b>"
+        scene.text(`<b>${(((s as any).access ?? 0)?.['nocamshow'] ?? '')}</b>`);
       }
     }
     if ((((s as any).start_type ?? 0)?.['loc'] === 'sg'  &&  ((s as any).gschoolVars ?? 0)?.['school_diploma'] === 0)  ||  qspFunc(s, 'uniutil', 'student', 'enrolled')) {

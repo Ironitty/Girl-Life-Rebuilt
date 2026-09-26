@@ -268,15 +268,7 @@ function enterIncomingCall(s: GameState, scene: SceneBuilder): void {
   ((s as any).telefonIncC = (s as any).telefonIncC ?? {})['Code'] = ((s as any).locArgs?.[3] ?? 0);
   if (((s as any).sound_settings ?? 0)?.['menu_off'] === 0) {
   }
-  ((s as any).telefon = (s as any).telefon ?? {})['body'] = '';
-  // TODO-QSP: <font size=6><<$telefonIncC["Name"]>> calling</font><br>
-  // TODO-QSP: <img width="200" src="<<$telefonIncC["Icon"]>>"><br>
-  // TODO-QSP: <br>
-  // TODO-QSP: <br>
-  // TODO-QSP: <br>
-  // TODO-QSP: <a href="exec:<<$telefonIncC["Code"]>>"><img src="images/system/phone/call_accept.png"></a>
-  // TODO-QSP: <a href="exec:gt $loc, $loc_arg"><img src="images/system/phone/decline.png"></a><br>
-  // TODO-QSP: <b><font color="red">Your phone is ringing</font></b><br>'
+  ((s as any).telefon = (s as any).telefon ?? {})['body'] = '\n<font size=6>' + (((s as any).telefonIncC ?? 0)?.['Name']) + ' calling</font><br>\n<img width="200" src="' + (((s as any).telefonIncC ?? 0)?.['Icon']) + '"><br>\n<br>\n<br>\n<br>\n<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: /u003c/u003c$telefonIncC[ */ return s; }); return false;"><img src="images/system/phone/call_accept.png"></a>\n<a href="#" onclick="window.__gameStore.getState().doGoto(window.__gameStore.getState().prevLoc, window.__gameStore.getState().prevArg); return false;"><img src="images/system/phone/decline.png"></a><br>\n<b><font color="red">Your phone is ringing</font></b><br>';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDisplay(s, scene); (s as any).locArgs = __savedLocArgs; }
   (s as any).telefonIncC = undefined;
   scene.build();
@@ -361,9 +353,7 @@ function enterShowSms(s: GameState, scene: SceneBuilder): void {
   if ((!((String(((s as any).telefonCon ?? 0)?.['Icon']).indexOf(String('/'))) + 1))) {
     ((s as any).telefonCon = (s as any).telefonCon ?? {})['Icon'] = 'images/system/phone/icons/' + (((s as any).telefonCon ?? 0)?.['Icon']);
   }
-  ((s as any).telefon = (s as any).telefon ?? {})['body'] = '';
-  // TODO-QSP: <font size=6>SMS</font><br>
-  // TODO-QSP: <img height="80" width="80" src="images/system/phone/theme/<<$phonetheme_name[pcs_phonetheme]>>/<<ii...
+  ((s as any).telefon = (s as any).telefon ?? {})['body'] = '\n<font size=6>SMS</font><br>\n<img height="80" width="80" src="images/system/phone/theme/' + (((s as any).phonetheme_name ?? 0)?.[String((s as any).pcs_phonetheme ?? 0)] ?? 0) + '/' + ((((s as any).telefon ?? 0)?.['UnreadSMS']===0) ? ('icon_sms.png') : ('icon_sms_new.gif')) + '"><br>';
   ((s as any).telefon = (s as any).telefon ?? {})['body'] = ((s as any).telefon['body'] ?? 0) + ('<table cellspacing="0" width="80%">');
   ((s as any).telefon = (s as any).telefon ?? {})['body'] = ((s as any).telefon['body'] ?? 0) + ('<tr><table><tr><td align="right" valign="middle"><img height=100 src="' + (((s as any).telefonCon ?? 0)?.['Icon']) + '"></td><td valign="middle">' + (((s as any).telefonCon ?? 0)?.['NPCName']) + '</td></tr></table></tr>');
   ((s as any).telefon = (s as any).telefon ?? {})['body'] = ((s as any).telefon['body'] ?? 0) + ('<tr><td>' + qspUntranslated(s, "SMSMessage[telefon['SMSIndex']]", { location: "telefon" }) + '</td></tr>');
@@ -409,16 +399,14 @@ function enterGetSmsRow(s: GameState, scene: SceneBuilder): void {
     ((s as any).telefon = (s as any).telefon ?? {})['SMSstyle1'] = '';
     ((s as any).telefon = (s as any).telefon ?? {})['SMSstyle2'] = '';
   }
-  // TODO-QSP: </tr>'
+  (s as any).result = '<tr>\n<td><img height=100 src="' + (((s as any).telefon ?? 0)?.['ContactIcon']) + '"></td>\n<td>' + (((s as any).telefon ?? 0)?.['SMSstyle1']) + '' + (((s as any).telefon ?? 0)?.['ContactNickName']) + '' + (((s as any).telefon ?? 0)?.['SMSstyle2']) + '</td>\n<td align="right">' + (((s as any).telefon ?? 0)?.['SMSstyle1']) + '<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027\u0027telefon\u0027\u0027, \u0027\u0027show_sms\u0027\u0027, (((s as any).telefon ?? 0)?.[\u0027SMSIndex\u0027] ?? \u0027\u0027)); return false;">' + (((s as any).telefon ?? 0)?.['SMSTime']) + '</a>' + (((s as any).telefon ?? 0)?.['SMSstyle2']) + '</td>\n<td>' + (((s as any).telefon ?? 0)?.['SMSstyle1']) + '<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027\u0027telefon\u0027\u0027, \u0027\u0027delete_sms\u0027\u0027, (((s as any).telefon ?? 0)?.[\u0027SMSIndex\u0027] ?? \u0027\u0027)); return false;">Delete</a>' + (((s as any).telefon ?? 0)?.['SMSstyle2']) + '</td>\n</tr>';
   return;
   scene.build();
 }
 
 function enterSendSms(s: GameState, scene: SceneBuilder): void {
   ((s as any).telefon = (s as any).telefon ?? {})['backButton'] = 'gs \'telefon\', \'Phone_sms\'';
-  ((s as any).telefon = (s as any).telefon ?? {})['body'] = '';
-  // TODO-QSP: <font size=6>Send SMS</font><br>
-  // TODO-QSP: <img height="80" width="80" src="images/system/phone/theme/<<$phonetheme_name[pcs_phonetheme]>>/<<ii...
+  ((s as any).telefon = (s as any).telefon ?? {})['body'] = '\n<font size=6>Send SMS</font><br>\n<img height="80" width="80" src="images/system/phone/theme/' + (((s as any).phonetheme_name ?? 0)?.[String((s as any).pcs_phonetheme ?? 0)] ?? 0) + '/' + ((((s as any).telefon ?? 0)?.['UnreadSMS']===0) ? ('icon_sms.png') : ('icon_sms_new.gif')) + '"><br>';
   if (((s as any).subscription ?? 0)?.['monthly_calls'] === 0) {
     ((s as any).telefon = (s as any).telefon ?? {})['body'] = ((s as any).telefon['body'] ?? 0) + ('<br/>');
     if (((s as any).subscription ?? 0)?.['metered_calls-sms_limit'] > 0) {
@@ -469,9 +457,7 @@ function enterGetContactsmsRow(s: GameState, scene: SceneBuilder): void {
 
 function enterNpcSendListSms(s: GameState, scene: SceneBuilder): void {
   ((s as any).telefon = (s as any).telefon ?? {})['backButton'] = 'gs \'telefon\', \'send_sms\' ';
-  ((s as any).telefon = (s as any).telefon ?? {})['body'] = '';
-  // TODO-QSP: <font size=6>Send SMS</font><br>
-  // TODO-QSP: <img height="80" width="80" src="images/system/phone/theme/<<$phonetheme_name[pcs_phonetheme]>>/<<ii...
+  ((s as any).telefon = (s as any).telefon ?? {})['body'] = '\n<font size=6>Send SMS</font><br>\n<img height="80" width="80" src="images/system/phone/theme/' + (((s as any).phonetheme_name ?? 0)?.[String((s as any).pcs_phonetheme ?? 0)] ?? 0) + '/' + ((((s as any).telefon ?? 0)?.['UnreadSMS']===0) ? ('icon_sms.png') : ('icon_sms_new.gif')) + '"><br>';
   ((s as any).telefon = (s as any).telefon ?? {})['body'] = ((s as any).telefon['body'] ?? 0) + ('<table cellspacing="0" width="80%">');
   (s as any).telefon_i = 0;
   while (true) {
@@ -492,6 +478,7 @@ function enterNpcSendListSms(s: GameState, scene: SceneBuilder): void {
 
 function enterGetSmsSendRow(s: GameState, scene: SceneBuilder): void {
   ((s as any).telefon = (s as any).telefon ?? {})['ContactNPCcode'] = qspUntranslated(s, "SMSSendContact[ARGS[1]]", { location: "telefon" });
+  (s as any).result = '\n<tr>\n<td>' + (((s as any).npc_nickname ?? 0)?.[(((s as any).telefon ?? 0)?.['ContactNPCcode'])] ?? 0) + '</td>\n<td><a href="#" onclick="window.__gameStore.getState().doGoto(\u0027telefon\u0027, \u0027smsSendMessage\u0027, ((s as any).locArgs?.[0] ?? \u0027\u0027)); return false;">' + qspUntranslated(s, "SMSSendMessage[ARGS[0]]", { location: "telefon" }) + '</a></td>\n</tr>';
   // TODO-QSP: </tr>'
   return;
   scene.build();
@@ -581,9 +568,9 @@ function enterDisplay(s: GameState, scene: SceneBuilder): void {
     if (String((s as any).locArgs?.[1] ?? '') !== 0  &&  String((s as any).locArgs?.[1] ?? '') !== '') {
       ((s as any).telefon = (s as any).telefon ?? {})['backButton'] = 'gs \'stat\' ';
     }
-    // TODO-QSP: pl $func('cleanHTML', $func('telefon', 'get_header_string') + $telefon['body'] + $func('telefon', 'g...
+    scene.text(qspFunc(s, 'cleanHTML', qspFunc(s, 'telefon', 'get_header_string') + (((s as any).telefon ?? {})?.['body'] ?? 0) + qspFunc(s, 'telefon', 'get_footer_string'), 1));
   } else {
-    // TODO-QSP: pl $func('cleanHTML', $func('telefon', 'get_header_string') + $telefon['body'], 1)
+    scene.text(qspFunc(s, 'cleanHTML', qspFunc(s, 'telefon', 'get_header_string') + (((s as any).telefon ?? {})?.['body'] ?? 0), 1));
   }
   return;
   ((s as any).telefon = (s as any).telefon ?? {})['header'] = '$result = $func(\'telefon\', \'get_header_string\')';
@@ -617,7 +604,7 @@ function enterGetFooterString(s: GameState, scene: SceneBuilder): void {
   if (((s as any).telefon ?? 0)?.['backButton'] === '') {
     ((s as any).telefon = (s as any).telefon ?? {})['backButton'] = 'gs \'telefon\', \'Phone_menu\' ';
   }
-  (s as any).result = '<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: ' + qspUntranslated(s, "telefon[\\u0027backButton\\u0027]", { location: "telefon" }) + ' */ return s; }); return false;"><img src="images/system/icons/back.png"></a>';
+  (s as any).result = '<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: /u003c/u003c$telefon[\u0027backButton\u0027]>> */ return s; }); return false;"><img src="images/system/icons/back.png"></a>';
   (s as any).result = ((s as any).result ?? 0) + ('<br><br>');
   (s as any).result = ((s as any).result ?? 0) + ('<a href="exec:gs\'stat\'">Put Phone Away.</a>');
   (s as any).result = ((s as any).result ?? 0) + ('<br>');
@@ -634,19 +621,7 @@ function enterPhoneMenu(s: GameState, scene: SceneBuilder): void {
     if (((s as any).menu_off ?? 0) === 1  &&  (!((s as any).phone_on ?? 0))) {
       qspCall(s, 'obj_din', 'menu_disabled');
     } else {
-      ((s as any).telefon = (s as any).telefon ?? {})['body'] = '';
-      // TODO-QSP: <a href="exec:gs ''telefon'', ''Phone_camera'' "><img height="80" width="80" src="images/system/phon...
-      // TODO-QSP: <a href="exec:gs ''telefon'', ''Phone_calendar'' "><img height="80" width="80" src="images/system/ph...
-      // TODO-QSP: <a href="exec:gs ''telefon'', ''Phone_pictures'' "><img height="80" width="80" src="images/system/ph...
-      // TODO-QSP: <br>
-      // TODO-QSP: <a href="exec:gs ''telefon'', ''Phone_media'' "><img height="80" width="80" src="images/system/phone...
-      // TODO-QSP: <a href="exec:gs ''telefon'', ''Phone_notebook'' "><img height="80" width="80" src="images/system/ph...
-      // TODO-QSP: <a href="exec:gs ''telefon'', ''Phone_wheather'' "><img height="80" width="80" src="images/system/ph...
-      // TODO-QSP: <br>
-      // TODO-QSP: <a href="exec:gs ''telefon'', ''Phone_contactlist'' "><img height="80" width="80" src="images/system...
-      // TODO-QSP: <a href="exec:gs ''telefon'', ''Phone_sms'' "><img height="80" width="80" src="images/system/phone/t...
-      // TODO-QSP: <a href="exec:gs ''telefon'', ''Phone_megafon'' "><img height="80" width="80" src="images/system/pho...
-      // TODO-QSP: <br>'
+      ((s as any).telefon = (s as any).telefon ?? {})['body'] = '\n<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027\u0027telefon\u0027\u0027, \u0027\u0027Phone_camera\u0027\u0027); return false;"><img height="80" width="80" src="images/system/phone/theme/' + (((s as any).phonetheme_name ?? 0)?.[String((s as any).pcs_phonetheme ?? 0)] ?? 0) + '/icon_camera.png"></a>\n<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027\u0027telefon\u0027\u0027, \u0027\u0027Phone_calendar\u0027\u0027); return false;"><img height="80" width="80" src="images/system/phone/theme/' + (((s as any).phonetheme_name ?? 0)?.[String((s as any).pcs_phonetheme ?? 0)] ?? 0) + '/icon_calendar.png"></a>\n<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027\u0027telefon\u0027\u0027, \u0027\u0027Phone_pictures\u0027\u0027); return false;"><img height="80" width="80" src="images/system/phone/theme/' + (((s as any).phonetheme_name ?? 0)?.[String((s as any).pcs_phonetheme ?? 0)] ?? 0) + '/icon_pictures.png"></a>\n<br>\n<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027\u0027telefon\u0027\u0027, \u0027\u0027Phone_media\u0027\u0027); return false;"><img height="80" width="80" src="images/system/phone/theme/' + (((s as any).phonetheme_name ?? 0)?.[String((s as any).pcs_phonetheme ?? 0)] ?? 0) + '/icon_music.png"></a>\n<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027\u0027telefon\u0027\u0027, \u0027\u0027Phone_notebook\u0027\u0027); return false;"><img height="80" width="80" src="images/system/phone/theme/' + (((s as any).phonetheme_name ?? 0)?.[String((s as any).pcs_phonetheme ?? 0)] ?? 0) + '/icon_notebook.png"></a>\n<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027\u0027telefon\u0027\u0027, \u0027\u0027Phone_wheather\u0027\u0027); return false;"><img height="80" width="80" src="images/system/phone/theme/' + (((s as any).phonetheme_name ?? 0)?.[String((s as any).pcs_phonetheme ?? 0)] ?? 0) + '/icon_weather.png"></a>\n<br>\n<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027\u0027telefon\u0027\u0027, \u0027\u0027Phone_contactlist\u0027\u0027); return false;"><img height="80" width="80" src="images/system/phone/theme/' + (((s as any).phonetheme_name ?? 0)?.[String((s as any).pcs_phonetheme ?? 0)] ?? 0) + '/icon_call.png"></a>\n<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027\u0027telefon\u0027\u0027, \u0027\u0027Phone_sms\u0027\u0027); return false;"><img height="80" width="80" src="images/system/phone/theme/' + (((s as any).phonetheme_name ?? 0)?.[String((s as any).pcs_phonetheme ?? 0)] ?? 0) + '/' + ((((s as any).telefon ?? 0)?.['UnreadSMS']===0) ? ('icon_sms.png') : ('icon_sms_new.gif')) + '"></a>\n<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027\u0027telefon\u0027\u0027, \u0027\u0027Phone_megafon\u0027\u0027); return false;"><img height="80" width="80" src="images/system/phone/theme/' + (((s as any).phonetheme_name ?? 0)?.[String((s as any).pcs_phonetheme ?? 0)] ?? 0) + '/icon_megafon.png"></a>\n<br>';
       if (((s as any).menu_off ?? 0) === 1) {
         ((s as any).telefon = (s as any).telefon ?? {})['body'] = ((s as any).telefon['body'] ?? 0) + ('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027obj_din\u0027, \u0027menu_disabled\u0027); return false;"><img height="80" width="80" src="images/system/phone/theme/' + (((s as any).phonetheme_name ?? 0)?.[String((s as any).pcs_phonetheme ?? 0)] ?? 0) + '/icon_settings.png"></a><br>');
       } else {
@@ -667,11 +642,7 @@ function enterPhoneCamera(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPhoneCalendar(s: GameState, scene: SceneBuilder): void {
-  ((s as any).telefon = (s as any).telefon ?? {})['body'] = '';
-  // TODO-QSP: <font size=6>Calendar</font><br>
-  // TODO-QSP: <img height="80" width="80" src="images/system/phone/theme/<<$phonetheme_name[pcs_phonetheme]>>/icon...
-  // TODO-QSP: <b>Today:</b><br>
-  // TODO-QSP: <<$weekName>>, <<day>> <<$monthName>> <<year>><br>'
+  ((s as any).telefon = (s as any).telefon ?? {})['body'] = '\n<font size=6>Calendar</font><br>\n<img height="80" width="80" src="images/system/phone/theme/' + (((s as any).phonetheme_name ?? 0)?.[String((s as any).pcs_phonetheme ?? 0)] ?? 0) + '/icon_calendar.png"><br><br>\n<b>Today:</b><br>\n' + ((s as any).weekName ?? 0) + ', ' + ((s as any).day ?? 0) + ' ' + ((s as any).monthName ?? 0) + ' ' + ((s as any).year ?? 0) + '<br>';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDisplay(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.build();
 }
@@ -682,20 +653,14 @@ function enterPhonePictures(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPhoneMedia(s: GameState, scene: SceneBuilder): void {
-  ((s as any).telefon = (s as any).telefon ?? {})['body'] = '';
-  // TODO-QSP: <font size=6>Media</font><br>
-  // TODO-QSP: <img height="80" width="80" src="images/system/phone/theme/<<$phonetheme_name[pcs_phonetheme]>>/icon...
-  // TODO-QSP: <b>This option is not active</b><br>'
+  ((s as any).telefon = (s as any).telefon ?? {})['body'] = '\n<font size=6>Media</font><br>\n<img height="80" width="80" src="images/system/phone/theme/' + (((s as any).phonetheme_name ?? 0)?.[String((s as any).pcs_phonetheme ?? 0)] ?? 0) + '/icon_music.png"><br>\n<b>This option is not active</b><br>';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDisplay(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.build();
 }
 
 function enterPhoneNotebook(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'housing', 'rent');
-  ((s as any).telefon = (s as any).telefon ?? {})['body'] = '';
-  // TODO-QSP: <font size=6>Planner</font><br>
-  // TODO-QSP: <img height="80" width="80" src="images/system/phone/theme/<<$phonetheme_name[pcs_phonetheme]>>/icon...
-  // TODO-QSP: <<year>>-<<$monthName>>-<<day>>, <<$weekName>><br><br>'
+  ((s as any).telefon = (s as any).telefon ?? {})['body'] = '\n<font size=6>Planner</font><br>\n<img height="80" width="80" src="images/system/phone/theme/' + (((s as any).phonetheme_name ?? 0)?.[String((s as any).pcs_phonetheme ?? 0)] ?? 0) + '/icon_notebook.png"><br>\n' + ((s as any).year ?? 0) + '-' + ((s as any).monthName ?? 0) + '-' + ((s as any).day ?? 0) + ', ' + ((s as any).weekName ?? 0) + '<br><br>';
   (s as any).rent1 = (-1);
   (s as any).rent4 = (-1);
   if (qspFunc(s, 'homes_properties', 'is_property_of_status', 'rented', 'city_apartment')) {
@@ -896,21 +861,13 @@ function enterPhoneNotebook(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPhoneWheather(s: GameState, scene: SceneBuilder): void {
-  ((s as any).telefon = (s as any).telefon ?? {})['body'] = '';
-  // TODO-QSP: <font size=6>Weather</font><br>
-  // TODO-QSP: <img height="80" width="80" src="images/system/phone/theme/<<$phonetheme_name[pcs_phonetheme]>>/icon...
-  // TODO-QSP: <b>Temperature:</b><br>
-  // TODO-QSP: <<$temperature>>. <<$osadki>><br>
-  // TODO-QSP: P.O.P. today is <<weatherFall>>%<br>'
+  ((s as any).telefon = (s as any).telefon ?? {})['body'] = '\n<font size=6>Weather</font><br>\n<img height="80" width="80" src="images/system/phone/theme/' + (((s as any).phonetheme_name ?? 0)?.[String((s as any).pcs_phonetheme ?? 0)] ?? 0) + '/icon_weather.png"><br><br>\n<b>Temperature:</b><br>\n' + ((s as any).temperature ?? 0) + '. ' + ((s as any).osadki ?? 0) + '<br>\nP.O.P. today is ' + ((s as any).weatherFall ?? 0) + '%<br>';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDisplay(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.build();
 }
 
 function enterPhoneContactlist(s: GameState, scene: SceneBuilder): void {
-  ((s as any).telefon = (s as any).telefon ?? {})['body'] = '';
-  // TODO-QSP: <font size=6>Contacts</font><br>
-  // TODO-QSP: <img height="80" width="80" src="images/system/phone/theme/<<$phonetheme_name[pcs_phonetheme]>>/icon...
-  // TODO-QSP: <table cellspacing="0" width="80%">'
+  ((s as any).telefon = (s as any).telefon ?? {})['body'] = '\n<font size=6>Contacts</font><br>\n<img height="80" width="80" src="images/system/phone/theme/' + (((s as any).phonetheme_name ?? 0)?.[String((s as any).pcs_phonetheme ?? 0)] ?? 0) + '/icon_call.png"><br><br>\n<table cellspacing="0" width="80%">';
   (s as any).telefon_i = 0;
   while (true) {
     if (((s as any).telefon_i ?? 0) < Object.keys((s as any).contact ?? {}).length) {
@@ -950,16 +907,14 @@ function enterFormatContactString(s: GameState, scene: SceneBuilder): void {
   if (((s as any).subscription ?? 0)?.['monthly_calls'] === 0  &&  ((s as any).subscription ?? 0)?.['metered_calls'] < 4) {
     (s as any).result = ((s as any).result ?? 0) + ('<td align="right"><b>Call</b></td>');
   } else {
-    (s as any).result = ((s as any).result ?? 0) + ('<td align="right"><b><a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: $callerid = \u0027' + qspUntranslated(s, "telefon[\\u0027ContactIcon\\u0027]", { location: "telefon" }) + '\u0027 */ /* TODO-QSP: ' + qspUntranslated(s, "telefon[\\u0027ContactCallCode\\u0027]", { location: "telefon" }) + ' */ return s; }); return false;">Call</a></b></td>');
+    // TODO-QSP: $result += '<td align="right"><b><a href="exec:$callerid = ''<<$telefon[''ContactIcon'']>>'' & <<$telefon[''ContactCallCode'']>>">Call</a></b></td>'
   }
   (s as any).result = ((s as any).result ?? 0) + ('</tr>');
   scene.build();
 }
 
 function enterPhoneSms(s: GameState, scene: SceneBuilder): void {
-  ((s as any).telefon = (s as any).telefon ?? {})['body'] = '';
-  // TODO-QSP: <font size=6>SMS</font><br>
-  // TODO-QSP: <img height="80" width="80" src="images/system/phone/theme/<<$phonetheme_name[pcs_phonetheme]>>/<<ii...
+  ((s as any).telefon = (s as any).telefon ?? {})['body'] = '\n<font size=6>SMS</font><br>\n<img height="80" width="80" src="images/system/phone/theme/' + (((s as any).phonetheme_name ?? 0)?.[String((s as any).pcs_phonetheme ?? 0)] ?? 0) + '/' + ((((s as any).telefon ?? 0)?.['UnreadSMS']===0) ? ('icon_sms.png') : ('icon_sms_new.gif')) + '"><br>';
   ((s as any).telefon = (s as any).telefon ?? {})['body'] = ((s as any).telefon['body'] ?? 0) + ('<b><a href="#" onclick="window.__gameStore.getState().doGoto(\u0027telefon\u0027, \u0027send_sms\u0027); return false;">Send new SMS</a></b><br>');
   ((s as any).telefon = (s as any).telefon ?? {})['body'] = ((s as any).telefon['body'] ?? 0) + ('<table cellspacing="0" width="80%"><tr><th>Icon</th><th>Name</th><th align="right">Received</th><th></th></tr>');
   ((s as any).telefon = (s as any).telefon ?? {})['UnreadSMS'] = 0;
@@ -1011,31 +966,20 @@ function enterPhoneMegafon(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  ((s as any).telefon = (s as any).telefon ?? {})['body'] = '';
-  // TODO-QSP: <font size=6>MegaFon</font><br>
-  // TODO-QSP: <img height="80" width="80" src="images/system/phone/theme/<<$phonetheme_name[pcs_phonetheme]>>/icon...
-  // TODO-QSP: <b><<$contractmessage>></b>'
+  ((s as any).telefon = (s as any).telefon ?? {})['body'] = '\n<font size=6>MegaFon</font><br>\n<img height="80" width="80" src="images/system/phone/theme/' + (((s as any).phonetheme_name ?? 0)?.[String((s as any).pcs_phonetheme ?? 0)] ?? 0) + '/icon_megafon.png"><br><br>\n<b>' + ((s as any).contractmessage ?? 0) + '</b>';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDisplay(s, scene); (s as any).locArgs = __savedLocArgs; }
   (s as any).contractmessage = undefined;
   scene.build();
 }
 
 function enterPhoneRing(s: GameState, scene: SceneBuilder): void {
-  ((s as any).telefon = (s as any).telefon ?? {})['body'] = '';
-  // TODO-QSP: <font size=6><<$caller>> calling</font><br>
-  // TODO-QSP: <img src="<<$callerid>>"><br>
-  // TODO-QSP: <br>
-  // TODO-QSP: <br>
-  // TODO-QSP: <br>
-  // TODO-QSP: <br>'
+  ((s as any).telefon = (s as any).telefon ?? {})['body'] = '\n<font size=6>' + ((s as any).caller ?? 0) + ' calling</font><br>\n<img src="' + ((s as any).callerid ?? 0) + '"><br>\n<br>\n<br>\n<br>\n<br>';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDisplay(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.build();
 }
 
 function enterPhoneCallReceive(s: GameState, scene: SceneBuilder): void {
-  ((s as any).telefon = (s as any).telefon ?? {})['body'] = '';
-  // TODO-QSP: <font size=6>Talking to <<$caller>></font><br>
-  // TODO-QSP: <img src="<<$callerid>>"><br>'
+  ((s as any).telefon = (s as any).telefon ?? {})['body'] = '\n<font size=6>Talking to ' + ((s as any).caller ?? 0) + '</font><br>\n<img src="' + ((s as any).callerid ?? 0) + '"><br>';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDisplay(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.build();
 }
@@ -1051,10 +995,7 @@ function enterPhoneBalance(s: GameState, scene: SceneBuilder): void {
         (s as any).contractmessage = '<font size=6>You don\'t have a valid contract, you should buy one at MegFon.</font><br>';
       }
     }
-    ((s as any).telefon = (s as any).telefon ?? {})['body'] = '';
-    // TODO-QSP: <<$contractmessage>>
-    // TODO-QSP: <img src="<<$callerid>>"><br><br>
-    // TODO-QSP: <a href="exec:gs ''telefon'', ''Phone_menu'' "><img src="images/system/phone/decline.png"></a><br>'
+    ((s as any).telefon = (s as any).telefon ?? {})['body'] = '\n' + ((s as any).contractmessage ?? 0) + '\n<img src="' + ((s as any).callerid ?? 0) + '"><br><br>\n<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027\u0027telefon\u0027\u0027, \u0027\u0027Phone_menu\u0027\u0027); return false;"><img src="images/system/phone/decline.png"></a><br>';
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDisplay(s, scene); (s as any).locArgs = __savedLocArgs; }
     (s as any).contractmessage = undefined;
     dynamicGoto(s, 'prevLoc', 'prevArg');
@@ -1067,10 +1008,7 @@ function enterPhoneBalance(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPhoneCall(s: GameState, scene: SceneBuilder): void {
-  ((s as any).telefon = (s as any).telefon ?? {})['body'] = '';
-  // TODO-QSP: <font size=6>Calling <<$npc_nickname[''A29'']>></font><br>
-  // TODO-QSP: <img src="images/system/phone/icons/icon_npc1.png"><br><br>
-  // TODO-QSP: <a href="exec:gs ''telefon'', ''Phone_contactlist'' "><img src="images/system/phone/decline.png"></a...
+  ((s as any).telefon = (s as any).telefon ?? {})['body'] = '\n<font size=6>Calling ' + (((s as any).npc_nickname ?? 0)?.['A29']) + '</font><br>\n<img src="images/system/phone/icons/icon_npc1.png"><br><br>\n<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027\u0027telefon\u0027\u0027, \u0027\u0027Phone_contactlist\u0027\u0027); return false;"><img src="images/system/phone/decline.png"></a><br>';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDisplay(s, scene); (s as any).locArgs = __savedLocArgs; }
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   (s as any).callerid = 'images/system/phone/icons/icon_npc1.png';
@@ -1081,10 +1019,7 @@ function enterPhoneCall(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPhoneCallReject(s: GameState, scene: SceneBuilder): void {
-  ((s as any).telefon = (s as any).telefon ?? {})['body'] = '';
-  // TODO-QSP: <font size=6>Calling…</font><br>
-  // TODO-QSP: <img src="<<$callerid>>"><br><br>
-  // TODO-QSP: <a href="exec:gs ''telefon'', ''Phone_contactlist'' "><img src="images/system/phone/decline.png"></a...
+  ((s as any).telefon = (s as any).telefon ?? {})['body'] = '\n<font size=6>Calling…</font><br>\n<img src="' + ((s as any).callerid ?? 0) + '"><br><br>\n<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027\u0027telefon\u0027\u0027, \u0027\u0027Phone_contactlist\u0027\u0027); return false;"><img src="images/system/phone/decline.png"></a><br>';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDisplay(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.build();
 }
@@ -1097,14 +1032,14 @@ function enterEdit_CustomList(s: GameState, scene: SceneBuilder): void {
       (s as any).dummyedit = (((s as any).contact ?? 0)?.[String((s as any).dummyas ?? 0)] ?? 0);
       (s as any).dummyedit1 = 0;
       (s as any).dummyedit2 = (String(((s as any).dummyedit ?? 0)).split('<b>Call</b>').join(((s as any).dummyedit1 ?? 0)));
-      // TODO-QSP: pl $dummyedit2
+      scene.text(String((s as any).dummyedit2 ?? ''));
       break;
     }
     (s as any).dummyas = undefined;
     (s as any).dummyedit = undefined;
     (s as any).dummyedit1 = undefined;
     (s as any).dummyedit2 = undefined;
-    // TODO-QSP: pl '<center><a href="exec: gs ''telefon'', ''Phone_menu'' "><img src="images/system/icons/back.png">...
+    scene.text('<center><a href="#" onclick="window.__gameStore.getState().doGoto(\u0027telefon\u0027, \u0027Phone_menu\u0027); return false;"><img src="images/system/icons/back.png"></a></center>');
   }
   scene.build();
 }

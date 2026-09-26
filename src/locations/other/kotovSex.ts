@@ -1,4 +1,4 @@
-import { qspCall, qspGoto } from '../_shared/qspBridge';
+import { qspCall, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -818,7 +818,7 @@ function enterBellAnal(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.actions([
     { label: 'Make him cum', handler: (st: GameState) => {
-    // TODO-QSP: if rand(0, 1) = 1 : gt 'kotovSex', 'cum1' else gt 'kotovSex'...
+    if (Math.floor(Math.random() * (1 - 0 + 1)) + 0 == 1) { dynamicGoto(st, 'kotovSex', 'cum1'); } else { dynamicGoto(st, 'kotovSex', 'cum5'); }
   } },
   ]);
   scene.build();
@@ -838,7 +838,7 @@ function enterCowAnal1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.actions([
     { label: 'Make him cum', handler: (st: GameState) => {
-    // TODO-QSP: if rand(0, 1) = 1 : gt 'kotovSex', 'cum1' else gt 'kotovSex'...
+    if (Math.floor(Math.random() * (1 - 0 + 1)) + 0 == 1) { dynamicGoto(st, 'kotovSex', 'cum1'); } else { dynamicGoto(st, 'kotovSex', 'cum4'); }
   } },
   ]);
   scene.build();
@@ -854,7 +854,7 @@ function enterDogAnal(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.actions([
     { label: 'Make him cum', handler: (st: GameState) => {
-    // TODO-QSP: if rand(0, 1) = 1 : gt 'kotovSex', 'cum1' else gt 'kotovSex'...
+    if (Math.floor(Math.random() * (1 - 0 + 1)) + 0 == 1) { dynamicGoto(st, 'kotovSex', 'cum1'); } else { dynamicGoto(st, 'kotovSex', 'cum3'); }
   } },
   ]);
   scene.build();
