@@ -142,7 +142,6 @@ function enter_1Hour2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterOld(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: killobj
   (s as any).oldobjmenu = 1;
   if (((s as any).cheatVars ?? 0)?.['console'] === 0) {
   }

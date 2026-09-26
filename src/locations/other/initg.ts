@@ -6,7 +6,6 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
   (s as any).initext = String(((s as any).usrtxt ?? 0));
-  // TODO-QSP: cmdclear
   do {
     (s as any).t = (String(((s as any).initext ?? 0)).slice((1)-1, ((1)-1)+(((String(((s as any).initext ?? 0)).indexOf(String('/n'))) + 1) - 1)));
     (s as any).inittext = [...((s as any).inittext ?? []), ((s as any).t ?? 0)];

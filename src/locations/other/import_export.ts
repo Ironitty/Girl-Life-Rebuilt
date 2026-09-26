@@ -318,7 +318,6 @@ function enterImport(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     (st as any).initext = String(((st as any).usrtxt ?? 0));
-    // TODO-QSP: cmdclear
     if (((st as any).initext ?? 0) === '') {
       return;
     }

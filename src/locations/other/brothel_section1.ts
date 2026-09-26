@@ -541,9 +541,7 @@ function enterSection1ElectroButtplug(s: GameState, scene: SceneBuilder): void {
   scene.text('You can only guess what as you don\'t see what happens behind you, however you feel a cold, probably metallic plug in your anus.');
   if (String((s as any).locArgs?.[1] ?? '') === 0) {
     scene.actions([
-      { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: exit
-  } },
+      // TODO-QSP: act 'Continue': exit
     ]);
   } else {
     scene.actions([
@@ -614,9 +612,7 @@ function enterSection1ElectroReplug(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>"Owwchhh! PLEASE! PLEASE, DON\'T!"</b></center>');
   scene.text('The metallic plug touches your anus again, only to be brutally pushed in, increasing your pain even more.');
   scene.actions([
-    { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: exit
-  } },
+    // TODO-QSP: act 'Continue': exit
   ]);
   scene.build();
 }

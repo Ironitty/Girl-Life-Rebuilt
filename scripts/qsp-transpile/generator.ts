@@ -845,7 +845,7 @@ function generateSceneBody(
         if (node.raw === 'view' || /^view\s/.test(node.raw) || /^VIEW\s/.test(node.raw)) {
           break;
         }
-        if (node.raw === 'killqst' || node.raw === 'freelib' || /^addqst\s/.test(node.raw) || /^inclib\s/.test(node.raw) || /^close\s/.test(node.raw)) {
+        if (node.raw === 'killqst' || node.raw === 'freelib' || /^addqst\s/.test(node.raw) || /^inclib\s/.test(node.raw) || /^close\s/.test(node.raw) || node.raw === 'killobj' || node.raw === 'exit' || /^delact\s/.test(node.raw) || node.raw === 'cmdclear') {
           break;
         }
         const standaloneFuncSetup = node.raw.match(/^func\((.+)\)\s*$/);
@@ -1305,7 +1305,7 @@ function translateInlineAct(
       stateWrites.push(varName);
       continue;
     }
-    if (part === 'cla' || part === '*clr' || part.startsWith('*clr') || part === 'cls' || part === 'view' || /^view\s/.test(part) || /^VIEW\s/.test(part) || part === 'killqst' || part === 'freelib' || /^addqst\s/.test(part) || /^inclib\s/.test(part) || /^close\s/.test(part)) continue;
+    if (part === 'cla' || part === '*clr' || part.startsWith('*clr') || part === 'cls' || part === 'view' || /^view\s/.test(part) || /^VIEW\s/.test(part) || part === 'killqst' || part === 'freelib' || /^addqst\s/.test(part) || /^inclib\s/.test(part) || /^close\s/.test(part) || part === 'killobj' || part === 'exit' || /^delact\s/.test(part) || part === 'cmdclear') continue;
     const savegameInlineMatch = part.match(/^savegame\s*(?:'(.+)')?$/);
     if (savegameInlineMatch) {
       const file = (savegameInlineMatch[1] || '').replace(/''/g, "'");
@@ -3375,7 +3375,7 @@ function convertExecLinks(s: string, stateReads?: string[], todos?: string[], st
       if (st === 'view' || /^view\s/.test(st) || /^VIEW\s/.test(st)) {
         return '';
       }
-      if (st === 'killqst' || st === 'freelib' || /^addqst\s/.test(st) || /^inclib\s/.test(st) || /^close\s/.test(st)) {
+      if (st === 'killqst' || st === 'freelib' || /^addqst\s/.test(st) || /^inclib\s/.test(st) || /^close\s/.test(st) || st === 'killobj' || st === 'exit' || /^delact\s/.test(st) || st === 'cmdclear') {
         return '';
       }
       return `/* TODO-QSP: ${st.replace(/</g, '\\u003c')} */`;

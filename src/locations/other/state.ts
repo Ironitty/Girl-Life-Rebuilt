@@ -24,7 +24,6 @@ function enterPop(s: GameState, scene: SceneBuilder): void {
   (s as any).loc_arg_stack = undefined;
   (s as any).BACKIMAGE = (((s as any).background_stack ?? 0)?.[0] ?? 0);
   (s as any).background_stack = undefined;
-  // TODO-QSP: killobj
   (s as any).object_stack = undefined;
   (s as any).action_stack = undefined;
   scene.text('$stat_stack[arrsize(\'$stat_stack\')-1]');

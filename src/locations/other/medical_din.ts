@@ -313,10 +313,7 @@ function enterMorningAfterPill(s: GameState, scene: SceneBuilder): void {
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMorningAfterPillFunction(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspCall(st, 'stat', '');
   } },
-        { label: 'Reconsider', handler: (st: GameState) => {
-    // TODO-QSP: delact 'Swallow'
-    // TODO-QSP: delact 'Reconsider'
-  } },
+        // TODO-QSP: act 'Reconsider': delact 'Swallow' & delact 'Reconsider'
       ]);
     } else {
       if (((s as any).knowpreg ?? 0) === 1) {
