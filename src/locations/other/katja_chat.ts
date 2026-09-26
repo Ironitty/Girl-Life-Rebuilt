@@ -574,62 +574,77 @@ function enterCoffeeHoleEvent(s: GameState, scene: SceneBuilder): void {
       scene.text('Natasha chimes in. "Pretty much the same here, I fancy aome window shopping but Natalia wants to see a film and we can\'t decide so went for a coffee to have a chat and make up our minds."');
       scene.text('You join the conversation. "Well the cinema is in the mall so maybe you could do both then you\'ll both get to do what you want?"');
       scene.text('This brings a smile to Natalia\'s face. "Yes I\'d love to see that film and it\'s a cultural one so not likely to be on too long. Normally Natasha is happy to go with the flow except when it comes to clothes or makeup. Mention either of those and all other ideas are forgotten!"');
-      // TODO-QSP: If NatbelQW['FriendLover'] < 3:
-      scene.text('This causes you to have a little giggle. "Yes I know that all too well with this one." You say indicating Katja who responds with a playful pout and sticks her tongue out at you. This leads to all four of you having a small laugh.');
-    } else {
-      scene.text('This causes you to have a little giggle. "Well that\'s two of them Natalia!" You say indicating Katja. "Maybe we should let these two go shopping and we\'ll go and see the film?!" Katja responds with a playful pout and sticks her tongue out at you. This leads to all four of you having a small laugh.');
-    }
-    scene.text('Natalia looks at Natasha indicating that they should move on. "Come on you, let\'s get our coffee and leave these two to it before we end up causing an argument."');
-    scene.text('After an exchange of goodbyes they find their table and order their drinks while you and Katja get back to your conversation.');
-    scene.actions([
-      { label: 'Continue to drink you coffee', goto: ['katja_chat', 'coffee_hole_hangout'] },
-    ]);
-  }
-  scene.img('images/characters/pavlovsk/school/girl/katja/uni/Coffe_hole2.jpg');
-  scene.text('Katja begins telling you about the last dorm party she attended. "You know that last dorm party was pretty good, until the usual bad boys started to ruin it," she says. "There was this girl, a freshman I think, clearly not used to these parties or drinking as much as the boys do. Quite cute too," she continues. "It seems that the bad crowd targeted her, and started pushing her to drink."');
-  scene.text('"I didn\'t really pay attention, I was mostly chatting with Vicky and Vanya, but I did notice her being very drunk at some point." She takes a dramatic pause. "BAM! Suddenly a door to one of the room slammed open, and one of the biggest jerks on campus burst out with vomit all over his bare chest."');
-  scene.text('"He was shouting something about a \'fucking bitch\', while he rushed to the bathroom," she says. "So I went into the room, and there was the girl, half undressed and completely drunk, barely conscience and it was clear that she had puked all over him."');
-  if (((s as any).katjaQW ?? 0)?.['coffee_hole_rand'] === 3  &&  ((s as any).npc_rel ?? 0)?.['A152'] >= 30) {
-    scene.img('images/characters/pavlovsk/school/girl/katja/uni/cosplay_feofan_garalt6.jpg');
-    scene.text('A guy you don\'t recognize at first comes into the Coffee Hole. He\'s dressed like a character from a medieval movie, wearing a white shirt and tight leather pants. His hair is long and white, though he clearly isn\'t old. Most prominently, he appears to have two long swords sheathed on his back.');
-    scene.text('He looks around and when he sees you and Katja, he smiles and walks up to you. You look over at Katja, who doesn\'t seem to recognize him either. When he reaches your table, you realize that it is Feofan. He\'s grown a fair bit of stubble and dyed his hair.');
-    scene.text('"Greetings, m\'ladies, you smell wonderful at this funeral."');
-    if (((s as any).clothingworntype ?? 0) === 'nerdvana_cosplay'  &&  ((s as any).clothingwornnumber ?? 0) === 149) {
-      scene.text('"What are you doing, Feofan?" Katja asks.');
-      scene.text('"I\'m testing out my next cosplay. What do you think?" he replies.');
-      scene.text('"I don\'t know, for what?" Katja asks.');
-      scene.text(`"For the next con. You two should totally come. You would make a perfect Triss Marigold, Katja," he says. "I can help you with that. See, ${((s as any).pcs_nickname ?? '')} is ready to go as Yennefer."`);
-      scene.text('"What! Who?!" Katja says, looking completely confused.');
-      scene.text('"From The Witcher. You know, the best video game series ever. Have you been living under a rock?" Feofan says, looking at Katja with mild astonishment.');
-      scene.text('But before he can explain further, a voice behind him calls out. "Geralt, my friend!"');
-      scene.text('Feofan turns around. "Dandelion!" he says to a boy you don\'t know, also dressed up. They start talking and Feofan completely forgets about you and Katja.');
-      scene.text('You explain to Katja what was going on, making sure that she does not feel like she was supposed to know anything about the game as you continue drinking your coffee.');
+      if (((s as any).NatbelQW ?? 0)?.['FriendLover'] < 3) {
+        scene.text('This causes you to have a little giggle. "Yes I know that all too well with this one." You say indicating Katja who responds with a playful pout and sticks her tongue out at you. This leads to all four of you having a small laugh.');
+      } else {
+        scene.text('This causes you to have a little giggle. "Well that\'s two of them Natalia!" You say indicating Katja. "Maybe we should let these two go shopping and we\'ll go and see the film?!" Katja responds with a playful pout and sticks her tongue out at you. This leads to all four of you having a small laugh.');
+      }
+      scene.text('Natalia looks at Natasha indicating that they should move on. "Come on you, let\'s get our coffee and leave these two to it before we end up causing an argument."');
+      scene.text('After an exchange of goodbyes they find their table and order their drinks while you and Katja get back to your conversation.');
       scene.actions([
-        { label: 'Continue to drink your coffee', goto: ['katja_chat', 'coffee_hole_hangout'] },
+        { label: 'Continue to drink you coffee', goto: ['katja_chat', 'coffee_hole_hangout'] },
       ]);
     } else {
-      if (((s as any).clothingworntype ?? 0) === 'nerdvana_cosplay'  &&  ((s as any).clothingwornnumber ?? 0) === 150) {
-        scene.text('"What are you doing, Feofan?" Katja asks.');
-        scene.text('"I\'m testing out my next cosplay. What do you think?" he replies.');
-        scene.text('"I don\'t know, for what?" Katja asks.');
-        scene.text(`"For the next con. You two should totally come. You would make a perfect Triss Marigold, Katja," he says. "I can help you with that. See, ${((s as any).pcs_nickname ?? '')} is ready to go as Ciri."`);
-        scene.text('"What! Who?!" Katja says, looking completely confused.');
-        scene.text('"From The Witcher. You know, the best video game series ever. Have you been living under a rock?" Feofan says, looking at Katja with mild astonishment.');
-        scene.text('But before he can explain further, a voice behind him calls out. "Geralt, my friend!"');
-        scene.text('Feofan turns around. "Dandelion!" he says to a boy you don\'t know, also dressed up. They start talking and Feofan completely forgets about you and Katja.');
-        scene.text('You explain to Katja what was going on, making sure that she does not feel like she was supposed to know anything about the game as you continue drinking your coffee.');
+      if (((s as any).katjaQW ?? 0)?.['coffee_hole_rand'] === 2  &&  ((s as any).university ?? 0)?.['semester_week'] > 1) {
+        scene.img('images/characters/pavlovsk/school/girl/katja/uni/Coffe_hole2.jpg');
+        scene.text('Katja begins telling you about the last dorm party she attended. "You know that last dorm party was pretty good, until the usual bad boys started to ruin it," she says. "There was this girl, a freshman I think, clearly not used to these parties or drinking as much as the boys do. Quite cute too," she continues. "It seems that the bad crowd targeted her, and started pushing her to drink."');
+        scene.text('"I didn\'t really pay attention, I was mostly chatting with Vicky and Vanya, but I did notice her being very drunk at some point." She takes a dramatic pause. "BAM! Suddenly a door to one of the room slammed open, and one of the biggest jerks on campus burst out with vomit all over his bare chest."');
+        scene.text('"He was shouting something about a \'fucking bitch\', while he rushed to the bathroom," she says. "So I went into the room, and there was the girl, half undressed and completely drunk, barely conscience and it was clear that she had puked all over him."');
         scene.actions([
-          { label: 'Continue to drink your coffee', goto: ['katja_chat', 'coffee_hole_hangout'] },
+          { label: 'Katja continues her story', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/girl/katja/uni/Coffe_hole2.jpg');
+    scene.text('"So I started to help her, got Vanya to find something to clean her with, while trying to get her to tell me which room was hers. It was clear that the jerk had gotten her so drunk she couldn\'t resist and thought that he could have his way with her. But she puked before he had gotten much further than just getting some of her clothes off."');
+    scene.text('"Before I was ready to take her home, the jerk come back." Katja raises her voice and almost shouts, "\'Where is the bitch?! She owes me,\' he bellowed while making his way to the room, and I was sort of getting nervous that he might come in and start getting physical."');
+    scene.text('"But Vicky just stood in the doorway and said, \'You aren\'t coming in here! You\'ve already done enough!" Katja says in a rather dramatic impersonation of her sister. "\'I\'m going fuck you bitches,\' he shouted in her face. And she just calmly told him, \'Take your small dick somewhere else, nobody here wants it!\'"');
+    scene.text('"He looked like he was going to explode, but Vanya was now standing behind Vicky, which is probably why he didn\'t hit her." Katja pauses to catch her breath. "Vicky\'s last comment had been heard in the main room, and when he didn\'t come up with a quick rebuttal, everyone started to laugh at him, which clearly hurt his massive ego, and he hurried away."');
+    scene.text('"I got the girl back to her room, and stayed with her until I was sure she would be okay." Katja finishes her story. "If Vicky had\'t been a hero, we would probably have been beat up or worse. Come to think about it, if the girl hadn\'t vomited then the guy would\'ve probably raped her. Guys are so terrible. I sometimes wish there weren\'t any boys, just girls."');
+    scene.actions([
+      { label: 'Continue to drink your coffee', goto: ['katja_chat', 'coffee_hole_hangout'] },
+    ]);
+  } },
         ]);
       } else {
-        scene.text('"What are you doing, Feofan?" Katja asks.');
-        scene.text('"I\'m testing out my next cosplay. What do you think?" he replies.');
-        scene.text('"I don\'t know, for what?" Katja asks.');
-        scene.text('"For the next con. You two should totally come. You would make a perfect Triss Marigold, Katja," he says. "I can help you with that' + ((((s as any).pcs_hotcat ?? 0) > 4) ? ('. You could be Yennefer, ' + ((s as any).pcs_nickname ?? '') + '.') : ('.')) + '"');
-        scene.text('"What! Who?!" Katja says, looking completely confused.');
-        if (((s as any).pcs_hotcat ?? 0) > 4) {
-          scene.actions([
-            { label: 'Cosplaying as Yennefer is cool', handler: (st: GameState) => {
+        if (((s as any).katjaQW ?? 0)?.['coffee_hole_rand'] === 3  &&  ((s as any).npc_rel ?? 0)?.['A152'] >= 30) {
+          scene.img('images/characters/pavlovsk/school/girl/katja/uni/cosplay_feofan_garalt6.jpg');
+          scene.text('A guy you don\'t recognize at first comes into the Coffee Hole. He\'s dressed like a character from a medieval movie, wearing a white shirt and tight leather pants. His hair is long and white, though he clearly isn\'t old. Most prominently, he appears to have two long swords sheathed on his back.');
+          scene.text('He looks around and when he sees you and Katja, he smiles and walks up to you. You look over at Katja, who doesn\'t seem to recognize him either. When he reaches your table, you realize that it is Feofan. He\'s grown a fair bit of stubble and dyed his hair.');
+          scene.text('"Greetings, m\'ladies, you smell wonderful at this funeral."');
+          if (((s as any).clothingworntype ?? 0) === 'nerdvana_cosplay'  &&  ((s as any).clothingwornnumber ?? 0) === 149) {
+            scene.text('"What are you doing, Feofan?" Katja asks.');
+            scene.text('"I\'m testing out my next cosplay. What do you think?" he replies.');
+            scene.text('"I don\'t know, for what?" Katja asks.');
+            scene.text(`"For the next con. You two should totally come. You would make a perfect Triss Marigold, Katja," he says. "I can help you with that. See, ${((s as any).pcs_nickname ?? '')} is ready to go as Yennefer."`);
+            scene.text('"What! Who?!" Katja says, looking completely confused.');
+            scene.text('"From The Witcher. You know, the best video game series ever. Have you been living under a rock?" Feofan says, looking at Katja with mild astonishment.');
+            scene.text('But before he can explain further, a voice behind him calls out. "Geralt, my friend!"');
+            scene.text('Feofan turns around. "Dandelion!" he says to a boy you don\'t know, also dressed up. They start talking and Feofan completely forgets about you and Katja.');
+            scene.text('You explain to Katja what was going on, making sure that she does not feel like she was supposed to know anything about the game as you continue drinking your coffee.');
+            scene.actions([
+              { label: 'Continue to drink your coffee', goto: ['katja_chat', 'coffee_hole_hangout'] },
+            ]);
+          } else {
+            if (((s as any).clothingworntype ?? 0) === 'nerdvana_cosplay'  &&  ((s as any).clothingwornnumber ?? 0) === 150) {
+              scene.text('"What are you doing, Feofan?" Katja asks.');
+              scene.text('"I\'m testing out my next cosplay. What do you think?" he replies.');
+              scene.text('"I don\'t know, for what?" Katja asks.');
+              scene.text(`"For the next con. You two should totally come. You would make a perfect Triss Marigold, Katja," he says. "I can help you with that. See, ${((s as any).pcs_nickname ?? '')} is ready to go as Ciri."`);
+              scene.text('"What! Who?!" Katja says, looking completely confused.');
+              scene.text('"From The Witcher. You know, the best video game series ever. Have you been living under a rock?" Feofan says, looking at Katja with mild astonishment.');
+              scene.text('But before he can explain further, a voice behind him calls out. "Geralt, my friend!"');
+              scene.text('Feofan turns around. "Dandelion!" he says to a boy you don\'t know, also dressed up. They start talking and Feofan completely forgets about you and Katja.');
+              scene.text('You explain to Katja what was going on, making sure that she does not feel like she was supposed to know anything about the game as you continue drinking your coffee.');
+              scene.actions([
+                { label: 'Continue to drink your coffee', goto: ['katja_chat', 'coffee_hole_hangout'] },
+              ]);
+            } else {
+              scene.text('"What are you doing, Feofan?" Katja asks.');
+              scene.text('"I\'m testing out my next cosplay. What do you think?" he replies.');
+              scene.text('"I don\'t know, for what?" Katja asks.');
+              scene.text('"For the next con. You two should totally come. You would make a perfect Triss Marigold, Katja," he says. "I can help you with that' + ((((s as any).pcs_hotcat ?? 0) > 4) ? ('. You could be Yennefer, ' + ((s as any).pcs_nickname ?? '') + '.') : ('.')) + '"');
+              scene.text('"What! Who?!" Katja says, looking completely confused.');
+              if (((s as any).pcs_hotcat ?? 0) > 4) {
+                scene.actions([
+                  { label: 'Cosplaying as Yennefer is cool', handler: (st: GameState) => {
     qspCall(st, 'npc_relationship', 'modify', 'A14', 'dislike');
     qspCall(st, 'npc_relationship', 'modify', 'A152', 'love');
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/cosplay_feofan_garalt6.jpg');
@@ -644,7 +659,7 @@ function enterCoffeeHoleEvent(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue to drink your coffee', goto: ['katja_chat', 'coffee_hole_hangout'] },
     ]);
   } },
-            { label: 'I would rather be Ciri', handler: (st: GameState) => {
+                  { label: 'I would rather be Ciri', handler: (st: GameState) => {
     qspCall(st, 'npc_relationship', 'modify', 'A14', 'dislike');
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/cosplay_feofan_garalt6.jpg');
     scene.text('"I think that Ciri is cooler, I ' + ((((st as any).nerdvana_cosplay ?? 0)[150] === 1) ? ('actually already own a Ciri cosplay outfit.') : (' but I don\'t have a costume.')) + ' It would be more fun dressing up as her."');
@@ -658,10 +673,10 @@ function enterCoffeeHoleEvent(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue to drink your coffee', goto: ['katja_chat', 'coffee_hole_hangout'] },
     ]);
   } },
-          ]);
-        } else {
-          scene.actions([
-            { label: 'Suggest you cosplay as Yennefer', handler: (st: GameState) => {
+                ]);
+              } else {
+                scene.actions([
+                  { label: 'Suggest you cosplay as Yennefer', handler: (st: GameState) => {
     qspCall(st, 'npc_relationship', 'modify', 'A14', 'dislike');
     qspCall(st, 'npc_relationship', 'modify', 'A152', 'like');
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/cosplay_feofan_garalt6.jpg');
@@ -676,7 +691,7 @@ function enterCoffeeHoleEvent(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue to drink your coffee', goto: ['katja_chat', 'coffee_hole_hangout'] },
     ]);
   } },
-            { label: 'Suggest you cosplay as Ciri', handler: (st: GameState) => {
+                  { label: 'Suggest you cosplay as Ciri', handler: (st: GameState) => {
     qspCall(st, 'npc_relationship', 'modify', 'A14', 'dislike');
     qspCall(st, 'npc_relationship', 'modify', 'A152', 'like');
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/cosplay_feofan_garalt6.jpg');
@@ -691,10 +706,10 @@ function enterCoffeeHoleEvent(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue to drink your coffee', goto: ['katja_chat', 'coffee_hole_hangout'] },
     ]);
   } },
-          ]);
-        }
-        scene.actions([
-          { label: 'Look as confused as Katja', handler: (st: GameState) => {
+                ]);
+              }
+              scene.actions([
+                { label: 'Look as confused as Katja', handler: (st: GameState) => {
     qspCall(st, 'npc_relationship', 'modify', 'A14', 'like');
     qspCall(st, 'npc_relationship', 'modify', 'A152', 'dislike');
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/cosplay_feofan_garalt6.jpg');
@@ -710,7 +725,7 @@ function enterCoffeeHoleEvent(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue to drink your coffee', goto: ['katja_chat', 'coffee_hole_hangout'] },
     ]);
   } },
-          { label: 'Explain to Katja but tell him you don\'t like to cosplay', handler: (st: GameState) => {
+                { label: 'Explain to Katja but tell him you don\'t like to cosplay', handler: (st: GameState) => {
     qspCall(st, 'npc_relationship', 'modify', 'A152', 'dislike');
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/cosplay_feofan_garalt6.jpg');
     scene.text('"He is talking about characters from a video game," you tell Katja.');
@@ -724,18 +739,18 @@ function enterCoffeeHoleEvent(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue to drink your coffee', goto: ['katja_chat', 'coffee_hole_hangout'] },
     ]);
   } },
-        ]);
-      }
-    }
-  } else {
-    if (((s as any).katjaQW ?? 0)?.['coffee_hole_rand'] === 4) {
-      scene.img('images/characters/pavlovsk/school/girl/katja/uni/Coffe_hole2.jpg');
-      if (((s as any).katjaQW ?? 0)?.['know_dandd'] === 0) {
-        scene.text('"Have you heard that the nerds from our high school meet here every week?" Katja asks. But before you can answer, she continues, "They are playing some kind of game, dragons and elves or something like that. Julia tried to explain it to me, but I didn\'t really get what it was about."');
-        scene.text('"Apparently, they used to play at the library in Pavlovsk, but it seems like they have gotten braver and don\'t think they need to hide themselves anymore. Which is really good, just because they\'re doing something we don\'t understand, doesn\'t mean that they should be ashamed about it. Luckily, the days, when the stupid jocks or girls like Stasya would try to act important by bullying others for doing things they don\'t understand, are over."');
-        if (((s as any).nerd_game ?? 0)?.['stage'] > 0) {
-          scene.actions([
-            { label: 'Tell Katja that you play with them', handler: (st: GameState) => {
+              ]);
+            }
+          }
+        } else {
+          if (((s as any).katjaQW ?? 0)?.['coffee_hole_rand'] === 4) {
+            scene.img('images/characters/pavlovsk/school/girl/katja/uni/Coffe_hole2.jpg');
+            if (((s as any).katjaQW ?? 0)?.['know_dandd'] === 0) {
+              scene.text('"Have you heard that the nerds from our high school meet here every week?" Katja asks. But before you can answer, she continues, "They are playing some kind of game, dragons and elves or something like that. Julia tried to explain it to me, but I didn\'t really get what it was about."');
+              scene.text('"Apparently, they used to play at the library in Pavlovsk, but it seems like they have gotten braver and don\'t think they need to hide themselves anymore. Which is really good, just because they\'re doing something we don\'t understand, doesn\'t mean that they should be ashamed about it. Luckily, the days, when the stupid jocks or girls like Stasya would try to act important by bullying others for doing things they don\'t understand, are over."');
+              if (((s as any).nerd_game ?? 0)?.['stage'] > 0) {
+                scene.actions([
+                  { label: 'Tell Katja that you play with them', handler: (st: GameState) => {
     ((st as any).katjaQW = (st as any).katjaQW ?? {})['know_dandd'] = 1;
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/Coffe_hole2.jpg');
     scene.text('"It\'s called \'Dungeons and Dragons\' the game we play" you tell Katja, who looks at you a little surprised. "I\'m part of their group, it\'s a lot of fun," you says.');
@@ -744,88 +759,78 @@ function enterCoffeeHoleEvent(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue to drink your coffee', goto: ['katja_chat', 'coffee_hole_hangout'] },
     ]);
   } },
-          ]);
-        }
-        scene.actions([
-          { label: 'Continue to drink your coffee', goto: ['katja_chat', 'coffee_hole_hangout'] },
-        ]);
-      } else {
-        scene.text('"Did you play with the others this week?" Katja asks, refereeing your game night with the other nerds.');
-        scene.actions([
-          { label: 'Yes', handler: (st: GameState) => {
+                ]);
+              }
+              scene.actions([
+                { label: 'Continue to drink your coffee', goto: ['katja_chat', 'coffee_hole_hangout'] },
+              ]);
+            } else {
+              scene.text('"Did you play with the others this week?" Katja asks, refereeing your game night with the other nerds.');
+              scene.actions([
+                { label: 'Yes', handler: (st: GameState) => {
     scene.text('"Yes, we played the other day," you answer.');
     scene.text('"How was it? Did you slay any dragons? Save any princesses?" she asks, and you spend some time talking about what happened. Though you\'re not really sure if Katja is just humoring you to be polite or she\'s actually interested.');
     scene.actions([
       { label: 'Continue to drink your coffee', goto: ['katja_chat', 'coffee_hole_hangout'] },
     ]);
   } },
-          { label: 'No', handler: (st: GameState) => {
+                { label: 'No', handler: (st: GameState) => {
     scene.text('"No, I didn\'t have time this week," you tell her.');
     scene.text('"Why not, what kept you busy?" she ask, and you explain what you were doing.');
     scene.actions([
       { label: 'Continue to drink your coffee', goto: ['katja_chat', 'coffee_hole_hangout'] },
     ]);
   } },
-        ]);
-      }
-    } else {
-      if (((s as any).katjaQW ?? 0)?.['coffee_hole_rand'] === 5) {
-        scene.img('images/characters/pavlovsk/school/girl/katja/uni/Coffe_hole2.jpg');
-        if (((s as any).university ?? 0)?.['enrolled_in'] === 'teaching_studies') {
-          scene.text('"I thought the class that Professor Kovalyov gave the other day was really good," Katja says. "He really underscored the the point, and the example he used really clarified the theory. I\'m glad we have professors like him."');
-          scene.text('You spend time discussing Klim\'s lectures, sharing which parts you find good.');
-        } else {
-          scene.text('"My classes this week have been really interesting," Katja says. "I have this one professor, Klim Kovalyov. He is really good at finding examples that clarify the theory. I\'m glad that I have a professor like him."');
-          scene.text('Katja explains what she learned to you.');
-        }
-        scene.actions([
-          { label: 'Continue to drink your coffee', goto: ['katja_chat', 'coffee_hole_hangout'] },
-        ]);
-      } else {
-        if (((s as any).katjaQW ?? 0)?.['coffee_hole_rand'] === 6) {
-          scene.img('images/characters/pavlovsk/school/girl/katja/uni/Coffe_hole2.jpg');
-          if (((s as any).university ?? 0)?.['enrolled_in'] === 'teaching_studies') {
-            scene.text('"I hate to say it but the lecture Professor Kovalchuk gave the other day was very boring," Katja says. "It\'s not that it was difficult, and the subject is interesting, but the way she lectures just makes you want to sleep."');
-            scene.text('You spend time discussing Selena\'s lectures, coming up with a lot of ways she cloud improve her lectures, but probably wont.');
+              ]);
+            }
           } else {
-            scene.text('"I had an extremely boring lecture this week. It was so dull that I had to start reading the book during class to not fall asleep," Katja says. "I have this one professor, Selena Kovalchuk, who has no idea how to have an engaging class. It\'s a real pity since the subject she teaches is actually interesting."');
-            scene.text('Katja explains all the things she thinks the professor does wrong, and how she could improve.');
-          }
-          scene.actions([
-            { label: 'Continue to drink your coffee', goto: ['katja_chat', 'coffee_hole_hangout'] },
-          ]);
-        } else {
-          if (((s as any).katjaQW ?? 0)?.['coffee_hole_rand'] === 7) {
-            scene.img('images/characters/pavlovsk/school/girl/katja/uni/Coffe_hole2.jpg');
-            scene.text('"Do you think I\'m getting fat?" Katja suddenly asks.');
-            scene.text('"No, of course not. You are still gorgeous," you quickly say.');
-            scene.text('"Thanks," Katja replies with a big smile.');
-            scene.text('"It\'s just that when we were at school, we would had gym class three times a week, and now I do nothing," she says.');
-            scene.text('"Then why don\'t you start on some sport?" you ask her.');
-            scene.text('"I don\'t know. There aren\'t really any sports that interest me that much," she continues. "I might start running. I saw an announcement of cheap yoga classes for students. That might be something as well."');
-            scene.actions([
-              { label: 'Continue to drink your coffee', goto: ['katja_chat', 'coffee_hole_hangout'] },
-            ]);
-          } else {
-            qspGoto(s, 'katja_chat', 'coffee_hole_hangout');
+            if (((s as any).katjaQW ?? 0)?.['coffee_hole_rand'] === 5) {
+              scene.img('images/characters/pavlovsk/school/girl/katja/uni/Coffe_hole2.jpg');
+              if (((s as any).university ?? 0)?.['enrolled_in'] === 'teaching_studies') {
+                scene.text('"I thought the class that Professor Kovalyov gave the other day was really good," Katja says. "He really underscored the the point, and the example he used really clarified the theory. I\'m glad we have professors like him."');
+                scene.text('You spend time discussing Klim\'s lectures, sharing which parts you find good.');
+              } else {
+                scene.text('"My classes this week have been really interesting," Katja says. "I have this one professor, Klim Kovalyov. He is really good at finding examples that clarify the theory. I\'m glad that I have a professor like him."');
+                scene.text('Katja explains what she learned to you.');
+              }
+              scene.actions([
+                { label: 'Continue to drink your coffee', goto: ['katja_chat', 'coffee_hole_hangout'] },
+              ]);
+            } else {
+              if (((s as any).katjaQW ?? 0)?.['coffee_hole_rand'] === 6) {
+                scene.img('images/characters/pavlovsk/school/girl/katja/uni/Coffe_hole2.jpg');
+                if (((s as any).university ?? 0)?.['enrolled_in'] === 'teaching_studies') {
+                  scene.text('"I hate to say it but the lecture Professor Kovalchuk gave the other day was very boring," Katja says. "It\'s not that it was difficult, and the subject is interesting, but the way she lectures just makes you want to sleep."');
+                  scene.text('You spend time discussing Selena\'s lectures, coming up with a lot of ways she cloud improve her lectures, but probably wont.');
+                } else {
+                  scene.text('"I had an extremely boring lecture this week. It was so dull that I had to start reading the book during class to not fall asleep," Katja says. "I have this one professor, Selena Kovalchuk, who has no idea how to have an engaging class. It\'s a real pity since the subject she teaches is actually interesting."');
+                  scene.text('Katja explains all the things she thinks the professor does wrong, and how she could improve.');
+                }
+                scene.actions([
+                  { label: 'Continue to drink your coffee', goto: ['katja_chat', 'coffee_hole_hangout'] },
+                ]);
+              } else {
+                if (((s as any).katjaQW ?? 0)?.['coffee_hole_rand'] === 7) {
+                  scene.img('images/characters/pavlovsk/school/girl/katja/uni/Coffe_hole2.jpg');
+                  scene.text('"Do you think I\'m getting fat?" Katja suddenly asks.');
+                  scene.text('"No, of course not. You are still gorgeous," you quickly say.');
+                  scene.text('"Thanks," Katja replies with a big smile.');
+                  scene.text('"It\'s just that when we were at school, we would had gym class three times a week, and now I do nothing," she says.');
+                  scene.text('"Then why don\'t you start on some sport?" you ask her.');
+                  scene.text('"I don\'t know. There aren\'t really any sports that interest me that much," she continues. "I might start running. I saw an announcement of cheap yoga classes for students. That might be something as well."');
+                  scene.actions([
+                    { label: 'Continue to drink your coffee', goto: ['katja_chat', 'coffee_hole_hangout'] },
+                  ]);
+                } else {
+                  qspGoto(s, 'katja_chat', 'coffee_hole_hangout');
+                }
+              }
+            }
           }
         }
       }
     }
   }
-  scene.actions([
-    { label: 'Katja continues her story', handler: (st: GameState) => {
-    scene.img('images/characters/pavlovsk/school/girl/katja/uni/Coffe_hole2.jpg');
-    scene.text('"So I started to help her, got Vanya to find something to clean her with, while trying to get her to tell me which room was hers. It was clear that the jerk had gotten her so drunk she couldn\'t resist and thought that he could have his way with her. But she puked before he had gotten much further than just getting some of her clothes off."');
-    scene.text('"Before I was ready to take her home, the jerk come back." Katja raises her voice and almost shouts, "\'Where is the bitch?! She owes me,\' he bellowed while making his way to the room, and I was sort of getting nervous that he might come in and start getting physical."');
-    scene.text('"But Vicky just stood in the doorway and said, \'You aren\'t coming in here! You\'ve already done enough!" Katja says in a rather dramatic impersonation of her sister. "\'I\'m going fuck you bitches,\' he shouted in her face. And she just calmly told him, \'Take your small dick somewhere else, nobody here wants it!\'"');
-    scene.text('"He looked like he was going to explode, but Vanya was now standing behind Vicky, which is probably why he didn\'t hit her." Katja pauses to catch her breath. "Vicky\'s last comment had been heard in the main room, and when he didn\'t come up with a quick rebuttal, everyone started to laugh at him, which clearly hurt his massive ego, and he hurried away."');
-    scene.text('"I got the girl back to her room, and stayed with her until I was sure she would be okay." Katja finishes her story. "If Vicky had\'t been a hero, we would probably have been beat up or worse. Come to think about it, if the girl hadn\'t vomited then the guy would\'ve probably raped her. Guys are so terrible. I sometimes wish there weren\'t any boys, just girls."');
-    scene.actions([
-      { label: 'Continue to drink your coffee', goto: ['katja_chat', 'coffee_hole_hangout'] },
-    ]);
-  } },
-  ]);
   scene.build();
 }
 

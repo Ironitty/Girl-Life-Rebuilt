@@ -153,9 +153,9 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'music_actions', 'start');
   if (((s as any).hour ?? 0) >= 21  ||  ((s as any).hour ?? 0) < 8) {
-    // TODO-QSP: If succubusQW = 14 and suchuntday ! daystart:
-    scene.actions([
-      { label: 'Go hunting (this can take a lot of time)', handler: (st: GameState) => {
+    if (((s as any).succubusQW ?? 0) === 14  &&  ((s as any).suchuntday ?? 0) !== ((s as any).daystart ?? 0)) {
+      scene.actions([
+        { label: 'Go hunting (this can take a lot of time)', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + (40 + (Math.floor(Math.random() * 21) + 0) - 5 * ((st as any).succublvl ?? 0));
     qspCall(st, 'stat', '');
     if ((Math.floor(Math.random() * 8) + 0) - ((st as any).succublvl ?? 0) < 2) {
@@ -169,14 +169,15 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   } },
-    ]);
-  }
-  if (((s as any).knowsfairy ?? 0) >= 1  &&  ((s as any).pcs_magik ?? 0) > 4) {
-    scene.actions([
-      { label: 'Find a place the Fairy may be', handler: (st: GameState) => {
+      ]);
+    }
+    if (((s as any).knowsfairy ?? 0) >= 1  &&  ((s as any).pcs_magik ?? 0) > 4) {
+      scene.actions([
+        { label: 'Find a place the Fairy may be', handler: (st: GameState) => {
     (st as any).fairylooking = 1;
   }, goto: ['park_walkeventsrnd', ''] },
-    ]);
+      ]);
+    }
   }
   qspCall(s, 'kseniyaQW', 'events');
   qspCall(s, 'flash', 'park');

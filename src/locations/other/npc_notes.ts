@@ -1130,7 +1130,6 @@ function enter(s: GameState, scene: SceneBuilder): void {
     return;
   }
   (s as any).result = 'Error: No NPC ID provided for NPC_Notes.';
-  // TODO-QSP: --- npc_notes ---------------------------------
   scene.build();
 }
 

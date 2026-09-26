@@ -4049,7 +4049,6 @@ function enterMiss3_2SensationDesc(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: --- sex_ev_miss ---------------------------------
   scene.build();
 }
 

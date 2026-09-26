@@ -173,7 +173,7 @@ export function parseQsp(content: string, fileName: string): QspLocation {
     const trimmed = line.trim();
 
     if (inBlockComment) {
-      if (trimmed.endsWith('!}') || trimmed.endsWith('!!}')) inBlockComment = false;
+      if (trimmed.endsWith('!}') || trimmed.endsWith('!!}') || trimmed === '}') inBlockComment = false;
       if (inBody) bodyLines.push(line);
       continue;
     }
@@ -655,7 +655,7 @@ interface ParseResult {
 
 
     // If block: if condition:
-    const ifMatch = trimmed.match(/^if\s+(.+?)\s*:\s*$/);
+    const ifMatch = trimmed.match(/^if\s+(.+?)\s*:\s*$/i);
     if (ifMatch) {
       const { node: ifNode, nextIdx } = parseIfChain(lines, i + 1, ifMatch[1], unsupported);
       nodes.push(ifNode);
@@ -1860,7 +1860,7 @@ function parseSingleLine(trimmed: string, lines: string[], idx: number, unsuppor
   }
 
   // If block (must come before inline-if so the non-greedy match doesn't stop at a ':' inside a key)
-  const ifMatch = trimmed.match(/^if\s+(.+?)\s*:\s*$/);
+  const ifMatch = trimmed.match(/^if\s+(.+?)\s*:\s*$/i);
   if (ifMatch) {
     const { node: ifNode, nextIdx } = parseIfChain(lines, idx + 1, ifMatch[1], unsupported);
     nodes.push(ifNode);

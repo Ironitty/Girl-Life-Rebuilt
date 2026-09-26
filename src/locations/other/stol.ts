@@ -419,9 +419,10 @@ function enterStudyingExam(s: GameState, scene: SceneBuilder): void {
   if (((s as any).drugVars ?? 0)?.['mentats_dose'] > 0) {
     (s as any).study_mod = ((s as any).study_mod ?? 0) + (30);
   }
-  // TODO-QSP: If pcs_mood < 50:
-  (s as any).study_mod = ((s as any).study_mod ?? 0) - (20);
-  scene.text('You\'re in a bad mood and it clearly affects your studying.');
+  if (((s as any).pcs_mood ?? 0) < 50) {
+    (s as any).study_mod = ((s as any).study_mod ?? 0) - (20);
+    scene.text('You\'re in a bad mood and it clearly affects your studying.');
+  }
   if (((s as any).drugVars ?? 0)?.['heroin_high'] > 0  ||  ((s as any).drugVars ?? 0)?.['weed_high'] > 0) {
     (s as any).study_mod = ((s as any).study_mod ?? 0) - (40);
     scene.text('You\'re stoned, which makes it difficult to concentrate on studying.');

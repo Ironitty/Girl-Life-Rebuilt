@@ -587,7 +587,6 @@ function enterSugarDaddyHaggleLimit(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).ngpPrefResult = undefined;
   (s as any).result = (((s as any).sex_ev ?? 0)?.['haggle_limit']);
-  // TODO-QSP: --- sex_ev_stats ---------------------------------
   scene.build();
 }
 

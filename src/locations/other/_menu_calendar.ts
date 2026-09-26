@@ -7,7 +7,6 @@ import type { SceneBuilder } from '../../core/scene';
 function enter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'calendar', 'show');
   return;
-  // TODO-QSP: --- $menu_calendar ---------------------------------
   scene.build();
 }
 

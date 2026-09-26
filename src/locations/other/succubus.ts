@@ -451,18 +451,19 @@ function enterTatianaask(s: GameState, scene: SceneBuilder): void {
     if (((s as any).sucpcinfo ?? 0) === 3) {
       scene.img('images/locations/city/citycenter/lab/event/main1.jpg');
       (s as any).scpopt = 0;
-      // TODO-QSP: If tatisucsex <> 0:
-      scene.text('Once you finish that unintended feeding and Tatiana has pulled herself back together, she says "Well, that was unexpected, go ahead and get dressed."');
-    } else {
-      scene.text('Looking flushed once she has finished, Tatiana says "Well, that was interesting, go ahead and get dressed."');
-    }
-  }
-  (s as any).sucpcinfo = 4;
-  (s as any).sucinfoday = ((s as any).daystart ?? 0) + 10 + (Math.floor(Math.random() * 8) + 0);
-  scene.actions([
+      if (((s as any).tatisucsex ?? 0) !== 0) {
+        scene.text('Once you finish that unintended feeding and Tatiana has pulled herself back together, she says "Well, that was unexpected, go ahead and get dressed."');
+      } else {
+        scene.text('Looking flushed once she has finished, Tatiana says "Well, that was interesting, go ahead and get dressed."');
+      }
+      (s as any).sucpcinfo = 4;
+      (s as any).sucinfoday = ((s as any).daystart ?? 0) + 10 + (Math.floor(Math.random() * 8) + 0);
+      scene.actions([
 { label: 'Get dressed', goto: ['succubus', 'tatianaask'] },
 ]);
-  return;
+      return;
+    }
+  }
   (s as any).minut = ((s as any).minut ?? 0) + 10;
   scene.img('images/system/1_openings/shared/npc_tatiana.jpg');
   if (((s as any).sucpcinfo ?? 0) >= 4  &&  String((s as any).locArgs?.[1] ?? '') === 0) {

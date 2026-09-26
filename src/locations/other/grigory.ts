@@ -678,14 +678,16 @@ function enterFlower6(s: GameState, scene: SceneBuilder): void {
 
 function enterFlower7(s: GameState, scene: SceneBuilder): void {
   scene.text('Entering the garden, you can see flowers on the ground. Dozens of prairie crocus spread into a heart just inside the gate of the garden.');
-  // TODO-QSP: If Creepy_path = 1:
-  scene.text('Shuddering, you feel a chill settle into your core.');
-  scene.text('You step towards the flowers, kicking them. Many of them go flying, scattering across the ground. At least it breaks the pattern.');
-  scene.text('Feeling only slightly better, you turn away from the remaining flowers.');
-  if (((s as any).Cute_path ?? 0) === 1) {
-    scene.text('Seeing the flowers, you smile as your heart races.');
-    scene.text('Kneeling beside the flowers, you pick up a single one. For a second, you look at it, wondering who left it there. Then on a sudden impulse you tuck the flower into your hair.');
-    scene.text('Maybe whoever left these here for me will see it and finally say something?');
+  if (((s as any).Creepy_path ?? 0) === 1) {
+    scene.text('Shuddering, you feel a chill settle into your core.');
+    scene.text('You step towards the flowers, kicking them. Many of them go flying, scattering across the ground. At least it breaks the pattern.');
+    scene.text('Feeling only slightly better, you turn away from the remaining flowers.');
+  } else {
+    if (((s as any).Cute_path ?? 0) === 1) {
+      scene.text('Seeing the flowers, you smile as your heart races.');
+      scene.text('Kneeling beside the flowers, you pick up a single one. For a second, you look at it, wondering who left it there. Then on a sudden impulse you tuck the flower into your hair.');
+      scene.text('Maybe whoever left these here for me will see it and finally say something?');
+    }
   }
   scene.actions([
     { label: 'Continue', goto: ['grigory', 'dummy'] },
@@ -1097,11 +1099,6 @@ function enterRomanticEvent(s: GameState, scene: SceneBuilder): void {
   scene.text('You look towards the voice, seeing the man who just swept you off your feet in the most physical of ways.');
   scene.text('Reaching out, you wrap your arms around Grigory\'s neck, feeling small but protected in the big man\'s arms, "Was just enjoying the evening."');
   scene.text('"Well Kotenok," You can as much feel as hear his voice as he cradles you against his chest, "If you\'d like, you can enjoy the evening with me?');
-  scene.text('The two of you reach the river and start to walk along the shore until you reach a secluded little bend in the river where you can no longer see any sign of the town behind you.');
-  scene.text('Grigory sits, using his big arms to pull you into his lap, "This is one of my favorite places Kotenok, the way the stars and moon reflect off the water late at night, always makes me feel content."');
-  scene.text('You snuggle closer to him, your head against his chest as you enjoy the warmth of his body against your own.');
-  scene.text('For a long time, the two of you sit along the shore, you can hear his heartbeat from where your head is pressed against his chest, the rhythmic beating putting you at ease.');
-  scene.text('You start to drift off, almost falling to sleep when the rumble of his voice demands your attention, "Kotenok? You going to fall asleep on me? Maybe we should go."');
   scene.actions([
     { label: 'Decline', handler: (st: GameState) => {
     scene.text('You sigh softly, then stretch to kiss him lightly on the cheek, "Maybe another time."');
@@ -1115,14 +1112,21 @@ function enterRomanticEvent(s: GameState, scene: SceneBuilder): void {
     { label: 'Accept', handler: (st: GameState) => {
     scene.text('"Sounds like fun," You say with a smile. He hugs you to him for a second, then lowers you gently back onto your feet. Reaching out, he takes your hand, his big hand engulfing yours in its warmth.');
     scene.text('Setting a liesurely pace, the two of you begin to walk down the road. For several minutes, the two of you walk in silence, enjoying each other\'s presence.');
-    // TODO-QSP: If temper < 5:
-    scene.text('You shiver slightly in the cold night air, making you aware of the chill. Grigory seems to notice, letting go of your hand long enough to take his jacket off and drape it around you. His lingering body warmth makes the coat feel almost like an oven.');
-    scene.text('A little smile touches your lips and you savor the feeling. You look down at yourself, noticing that his jacket is so big that it hangs around you like a dress, reaching just past your knees.');
-    scene.text('Grigory\'s amused expression tells you that he\'s noticed the same.');
-    scene.text('Instead of taking your hand again, this time he slips an arm around you.');
-    scene.text('Taking a deep breath of the evening air, Girogy lets go of your hand. You start to look towars him, wondering what he might be up to, only to have him slip his arm around you, hugging you to his side.');
-  } },
-    { label: 'Stay a little longer', handler: (st: GameState) => {
+    if (((st as any).temper ?? 0) < 5) {
+      scene.text('You shiver slightly in the cold night air, making you aware of the chill. Grigory seems to notice, letting go of your hand long enough to take his jacket off and drape it around you. His lingering body warmth makes the coat feel almost like an oven.');
+      scene.text('A little smile touches your lips and you savor the feeling. You look down at yourself, noticing that his jacket is so big that it hangs around you like a dress, reaching just past your knees.');
+      scene.text('Grigory\'s amused expression tells you that he\'s noticed the same.');
+      scene.text('Instead of taking your hand again, this time he slips an arm around you.');
+    } else {
+      scene.text('Taking a deep breath of the evening air, Girogy lets go of your hand. You start to look towars him, wondering what he might be up to, only to have him slip his arm around you, hugging you to his side.');
+    }
+    scene.text('The two of you reach the river and start to walk along the shore until you reach a secluded little bend in the river where you can no longer see any sign of the town behind you.');
+    scene.text('Grigory sits, using his big arms to pull you into his lap, "This is one of my favorite places Kotenok, the way the stars and moon reflect off the water late at night, always makes me feel content."');
+    scene.text('You snuggle closer to him, your head against his chest as you enjoy the warmth of his body against your own.');
+    scene.text('For a long time, the two of you sit along the shore, you can hear his heartbeat from where your head is pressed against his chest, the rhythmic beating putting you at ease.');
+    scene.text('You start to drift off, almost falling to sleep when the rumble of his voice demands your attention, "Kotenok? You going to fall asleep on me? Maybe we should go."');
+    scene.actions([
+      { label: 'Stay a little longer', handler: (st: GameState) => {
     scene.text('"Can\'t we stay a little longer?" You ask, stifling a yawn as you say it.');
     scene.text('You more feel then hear his soft chuckle, "Whatever makes you happy Kotenok," He sounds happy when he speaks.');
     scene.text('This is nice, you think, closing your eyes for a moment.');
@@ -1140,7 +1144,7 @@ function enterRomanticEvent(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } },
-    { label: 'Lets go', handler: (st: GameState) => {
+      { label: 'Lets go', handler: (st: GameState) => {
     scene.text('"Where were you thinking?" You ask.');
     scene.text('"I can walk you back to your Grandparent\'s home, or you could come back to mine," He looks you in the eye, a hopeful look on his face.');
     if (((st as any).grandmaQW ?? 0)?.['block'] === 0) {
@@ -1166,6 +1170,8 @@ function enterRomanticEvent(s: GameState, scene: SceneBuilder): void {
     scene.text('Holding you effortlessly, he carries you back towards town, only sitting you back down when he nears his truck.');
     scene.text('He opens the door for you and you get in. A few seconds later, he\'s in his side of the truck and you\'re both heading down the road towards his house.');
     scene.text('At his house, you get out your side of the truck before he can get the door for you. He leads you into the house, taking your hand as he makes his way into his bedroom.');
+  } },
+    ]);
   } },
     ]);
   } },
