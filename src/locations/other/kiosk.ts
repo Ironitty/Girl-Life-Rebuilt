@@ -215,7 +215,7 @@ function enterThemes(s: GameState, scene: SceneBuilder): void {
         (s as any).phoneNameTemp = 'Woodshop';
       }
       if (((s as any).phonetheme ?? 0)?.[String((s as any).i ?? 0)] === 0) {
-        scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: VIEW /u0027images/system/phone/previews//u003c/u003c$lcase($phoneNameTemp)>>.png/u0027 */ return s; }); return false;">Preview</a> <a href="#" onclick="window.__gameStore.setState((s) => { (s.phonetheme ??= {})${((s as any).i ?? '')} = 1; return s; }); window.__gameStore.getState().doGoto(/u0027money/u0027, /u0027pay/u0027, /u0027500 & phonetheme[/u0027 + String((s as any).i ?? /u0027/u0027) + /u0027] = 1 & gt //u0027kiosk//u0027/u0027); return false;">Buy</a> the <b>${((s as any).phoneNameTemp ?? '')}</b> theme.`);
+        scene.text(`<a href="exec: VIEW 'images/system/phone/previews/${(String(((s as any).phoneNameTemp ?? '')).toLowerCase())}.png'">Preview</a> <a href="#" onclick="window.__gameStore.setState((s) => { (s.phonetheme ??= {})${((s as any).i ?? '')} = 1; return s; }); window.__gameStore.getState().doGoto(/u0027money/u0027, /u0027pay/u0027, /u0027500 & phonetheme[/u0027 + String((s as any).i ?? /u0027/u0027) + /u0027] = 1 & gt //u0027kiosk//u0027/u0027); return false;">Buy</a> the <b>${((s as any).phoneNameTemp ?? '')}</b> theme.`);
       }
       (s as any).i = ((s as any).i ?? 0) + (1);
       (s as any).phoneNameTemp = undefined;

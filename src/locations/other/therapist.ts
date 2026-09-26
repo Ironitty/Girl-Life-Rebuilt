@@ -87,7 +87,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   }
   scene.img('images/locations/pavlovsk/clinic/therapist/room.jpg');
   scene.text('Stepping into the office of <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027therapist\u0027, \u0027pavlov\u0027); return false;">Dr. Pavlov</a>, you are welcomed with a warm smile.');
-  scene.text('When you look around the room, you are greeted by a warm and inviting atmosphere. The room is illuminated by large windows that overlook the forest beyond. At one end of the room there is a desk with a chair stacked with folders and books pertaining to hypnotherapy and other therapy materials. This includes a laptop that is closed and appears clean, as if it has been seldom used. You see an older <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: VIEW \u0027images/locations/pavlovsk/clinic/therapist/pavlovfamily.jpg\u0027 */ return s; }); return false;">photograph of Dr. Pavlov\'s family</a> in which he appears to be about two decades younger.');
+  scene.text('When you look around the room, you are greeted by a warm and inviting atmosphere. The room is illuminated by large windows that overlook the forest beyond. At one end of the room there is a desk with a chair stacked with folders and books pertaining to hypnotherapy and other therapy materials. This includes a laptop that is closed and appears clean, as if it has been seldom used. You see an older <a href="exec: VIEW \'images/locations/pavlovsk/clinic/therapist/pavlovfamily.jpg\'">photograph of Dr. Pavlov\'s family</a> in which he appears to be about two decades younger.');
   qspCall(s, 'stat', '');
   if (((s as any).therapist_weekly_block ?? 0) === 0  ||  ((s as any).cheatVars ?? 0)?.['therapist_schedule'] > 0) {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterHypnoGreet(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -3451,7 +3451,6 @@ function enterTherapistFucked(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPavlov(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: VIEW 'images/locations/pavlovsk/clinic/therapist/pavlov.jpg'
   scene.text('Dr. Pavlov appears to be a few years over sixty, slightly overweight, but still fit. He still looks charming, but in a grandfatherly way. His hair, or what is left of it, is gray and thinning. He usually wears a dress shirt and sharply ironed pants with dress shoes.');
   scene.text('He is always helpful and has a lot of patience, which likely had been helpful for raising five children.');
   if ((!((s as any).firsthypno ?? 0))) {

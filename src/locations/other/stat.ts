@@ -368,7 +368,6 @@ function enter15MinuteLoop(s: GameState, scene: SceneBuilder): void {
       return;
     }
     (s as any).BACKIMAGE = '';
-    // TODO-QSP: view
     (s as any).cheat_death_alert = undefined;
     (s as any).sucabs_queued_alert = undefined;
     if (((s as any).start_type ?? 0)?.['magic'] !== 'nomagic') {

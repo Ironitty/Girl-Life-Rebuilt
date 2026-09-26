@@ -158,7 +158,7 @@ function enterVodka(s: GameState, scene: SceneBuilder): void {
   scene.text(`When your glasses are empty, ${((s as any).boydesc2 ?? '')} looks at you and asks, with the bottle in his hand: "Ready for another round?"`);
   if (((s as any).pantyworntype ?? 0) === 'none') {
     qspCall(s, 'underwear', 'wear');
-    scene.text('You quickly excuse yourself: "Give me a minute!" and head for the bathroom. These guys are great! They\'re actually treating you like a lady, unlike most guys in Pavlovsk… you don\'t want to give them the wrong idea about you by accidentally flashing them your naked pussy! You quickly put on some <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: VIEW \u0027images/locations/pavlovsk/park/sex/placer_sex129.jpg\u0027 */ return s; }); return false;">panties</a> and return to the living room.');
+    scene.text('You quickly excuse yourself: "Give me a minute!" and head for the bathroom. These guys are great! They\'re actually treating you like a lady, unlike most guys in Pavlovsk… you don\'t want to give them the wrong idea about you by accidentally flashing them your naked pussy! You quickly put on some <a href="exec: VIEW \'images/locations/pavlovsk/park/sex/placer_sex129.jpg\'">panties</a> and return to the living room.');
   }
   scene.actions([
     { label: 'Have another drink', handler: (st: GameState) => {
@@ -756,7 +756,7 @@ function enterTwister(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'foreplay', 30, 'unknown');
   qspCall(s, 'stat', '');
   if (((s as any).pantyworntype ?? 0) === 'none') {
-    scene.text(`At some point during the game, you're constantly adjusting your clothes, desperately trying to hide the fact that you're not wearing panties. ${((s as any).boydesc2 ?? '')}'s face turns very flustered as he <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: VIEW /u0027images/locations/pavlovsk/park/sex/placer_sex95.jpg/u0027 */ return s; }); return false;">stares</a> at your bare pussy, and a few seconds later you can see him whisper something to his friend. Unfortunately for his friend, he's in no position to have a look.`);
+    scene.text(`At some point during the game, you're constantly adjusting your clothes, desperately trying to hide the fact that you're not wearing panties. ${((s as any).boydesc2 ?? '')}'s face turns very flustered as he <a href="exec: VIEW 'images/locations/pavlovsk/park/sex/placer_sex95.jpg'">stares</a> at your bare pussy, and a few seconds later you can see him whisper something to his friend. Unfortunately for his friend, he's in no position to have a look.`);
   }
   qspCall(s, 'arousal', 'flash', 5, 'unknown');
   qspCall(s, 'stat', '');
@@ -1942,10 +1942,9 @@ function enterRape(s: GameState, scene: SceneBuilder): void {
     scene.text(`While all the guys leave, he gives a nod of gratitude to ${((st as any).boydesc2 ?? '')}: "She's hot. Thanks, I owe you one."`);
     scene.text('But then to your surprise, Big C unties the rope binding you and rubs your sore shoulders.');
     scene.text('You automatically reach for his groin, but he stops you: "No. Not like this."');
-    scene.text('He offers you a <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: VIEW \u0027images/locations/pavlovsk/park/sex/placer_sex120.jpg\u0027 */ return s; }); return false;">photo</a>, and says: "You have potential. If you want to become one of them… come find me. Now come, take a shower. I\'ll make sure the guys will let you leave afterwards."');
+    scene.text('He offers you a <a href="exec: VIEW \'images/locations/pavlovsk/park/sex/placer_sex120.jpg\'">photo</a>, and says: "You have potential. If you want to become one of them… come find me. Now come, take a shower. I\'ll make sure the guys will let you leave afterwards."');
     scene.actions([
       { label: 'Take a shower', handler: (st: GameState) => {
-    // TODO-QSP: view
     (st as any).din_dush_text = 'You quietly thank him, and follow him to the bathroom. You take a quick shower, doing your best to rinse the cum from all of your holes. When you finish, you see Big C standing in the bathroom. He\'d been watching you the whole time, while making sure none of the other guys would disturb you.';
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDinDush(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.actions([
@@ -1956,18 +1955,15 @@ function enterRape(s: GameState, scene: SceneBuilder): void {
     (st as any).Big_C = 1;
     scene.img('images/locations/pavlovsk/park/sex/placer_sex121.jpg');
     scene.text('You quietly thank him again, and leave the apartment unharmed. You run for two blocks, and then stop and lean against a wall, trying to take it all in. You just got raped! Despite the orgasms you had, you don\'t feel good at all. The guys were way too rough with you!');
-    scene.text('Then you look at the <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: VIEW \u0027images/locations/pavlovsk/park/sex/placer_sex120.jpg\u0027 */ return s; }); return false;">photo</a> again. You turn it around, and try to focus on the <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: VIEW \u0027images/locations/pavlovsk/park/sex/placer_sex123.jpg\u0027 */ return s; }); return false;">text on the back</a>. It makes no sense! The text is completely illegible, except for the very end. You recognize the initials… BC.');
+    scene.text('Then you look at the <a href="exec: VIEW \'images/locations/pavlovsk/park/sex/placer_sex120.jpg\'">photo</a> again. You turn it around, and try to focus on the <a href="exec: VIEW \'images/locations/pavlovsk/park/sex/placer_sex123.jpg\'">text on the back</a>. It makes no sense! The text is completely illegible, except for the very end. You recognize the initials… BC.');
     scene.text('What could he want with you? Especially after today\'s events?');
     qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Keep the photo and go home', handler: (st: GameState) => {
-    // TODO-QSP: view
     (st as any).Foto = 1;
     qspGoto(st, 'pav_residential', '');
   } },
-      { label: 'Discard the photo and go home', handler: (st: GameState) => {
-    // TODO-QSP: view
-  }, goto: ['pav_residential', ''] },
+      { label: 'Discard the photo and go home', goto: ['pav_residential', ''] },
     ]);
   } },
     ]);
