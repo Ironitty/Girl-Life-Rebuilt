@@ -1569,56 +1569,59 @@ function enterNerdvanaCosplayTalk1(s: GameState, scene: SceneBuilder): void {
     (s as any).temp_act_text = ((s as any).temp_act_text ?? 0) + ('costume');
   }
   (s as any).temp_act_text = ((s as any).temp_act_text ?? 0) + ((((String(((s as any).blackmailQW ?? 0)?.['packages_opened']).length) > 4) ? ('s') : ('')));
-  // TODO-QSP: act $temp_act_text:
-  (s as any).minut = ((s as any).minut ?? 0) + 2;
-  qspCall(s, 'stat', '');
-  scene.img(`images/characters/shared/headshots_main/big${(String(((s as any).npcID ?? '')).slice((2)-1))}.jpg`);
-  if ((String(((s as any).blackmailQW ?? 0)?.['packages_opened']).length) <= 7) {
-    if (((s as any).temp_knows_cosplay ?? 0) === 1) {
-      scene.text('"Hey, I have a question. Could this cosplay have been bought here?" you ask.');
-      scene.text(`${((s as any).Xec ?? '')} gives you quizzical look, but then examines the costume. "Yeah that looks like one of ours."`);
-      scene.text(`"Yes!" you involuntarily shout. You quickly regain control of yourself as ${((s as any).xe ?? '')} gives you a glance.`);
-      scene.text('"Is there a way to see who bought it? It\'s really important!"');
-      scene.text('"I\'m sorry miss, but we\'ve sold a dozen of these in the last month alone."');
-      scene.text('"Without more to go on, I\'m afraid I wouldn\'t be able to help you, even if I wanted to."');
-      scene.text('"And that\'s not even taking into account the fact that we can\'t just give away customer details."');
-    } else {
-      scene.text('"Hey, I have a question… ld this… co…  thingy… have been bought here?" you ask.');
-      scene.text(`${((s as any).npcdesc ?? '')} gives you quizzical look, clearly asking ${((s as any).xemself ?? '')} why you are here, but then examines the costume. "Yeah that looks like one of ours."`);
-      scene.text(`"Yes!" you involuntarily shout. You quickly regain control of yourself as ${((s as any).xe ?? '')} gives you a glance.`);
-      scene.text('"Is there a way to see who bought it? It\'s really important!"');
-      scene.text('"I\'m sorry miss, but we\'ve sold a dozen of these in the last month alone", a hint of annoyance showing through the clerks voice.');
-      scene.text('"Without more to go on, I wouldn\'t be able to help you, even if I wanted to."');
-      scene.text('"And that\'s not even taking into account the fact that we can\'t just give away customer details."');
-    }
-  } else {
-    if (((s as any).temp_knows_cosplay ?? 0) === 1) {
-      scene.text('"Hey, I have a question. Could these cosplays have been bought here?" you ask.');
-      scene.text(`${((s as any).Xec ?? '')} gives you quizzical look, but then examines the costumes. "Yeah these look like ours."`);
-      scene.text(`"Yes!" you involuntarily shout. You quickly regain control of yourself as ${((s as any).xe ?? '')} gives you a glance.`);
-      scene.text('"Is there a way to see who bought them? It\'s really important!"');
-      scene.text('"I\'m sorry miss, but we can\'t just give customer details away."');
-      scene.text(`You feel your face drop as despair slowly flows through you. ${((s as any).npcdesc ?? '')}, noticing the changes across your face, ask "Is everything alright?"`);
-      scene.text('"I really need to know who sent me this, can you help me please."');
-      scene.text(`"Look miss, I can't help you. I'm sorry." ${((s as any).xe ?? '')} says.`);
-    } else {
-      scene.text('"Hey, I have a question… d these… cost… hingies… have been bought here?" you ask.');
-      scene.text(`${((s as any).npcdesc ?? '')} gives you quizzical look, clearly asking ${((s as any).xemself ?? '')} why you are here, but then examines the costumes. "Yeah these look like ours."`);
-      scene.text(`"Yes!" you involuntarily shout. You quickly regain control of yourself as ${((s as any).xe ?? '')} gives you a glance.`);
-      scene.text('"Is there a way to see who bought them? It\'s really important!"');
-      scene.text('"I\'m sorry miss, but we can\'t just give customer details away", a hint of annoyance showing through the clerks voice.');
-      scene.text(`You feel your face drop as despair slowly flows through you. ${((s as any).npcdesc ?? '')}, noticing the changes across your face, softens ${((s as any).xyr ?? '')} tone and asks "Is everything alright?"`);
-      scene.text('"I really need to know who sent me this, can you help me please."');
-      scene.text(`"Look miss, I can't help you. I'm sorry." ${((s as any).xe ?? '')} says. "I could lose my job."`);
-    }
-    scene.actions([
-      { label: '', labelFn: (s: GameState) => 'Try to convince ' + String(((s as any).xem ?? '') ?? ''), goto: ['blackmailer', 'nerdvana_cosplay_talk1_1'] },
-    ]);
-  }
   (s as any).temp_act_text = undefined;
   scene.actions([
-    { label: 'Leave', handler: (st: GameState) => {
+    { label: '', labelFn: (s: GameState) => String(((s as any).temp_act_text ?? '') ?? ''), handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
+    scene.img(`images/characters/shared/headshots_main/big${(String(((st as any).npcID ?? '')).slice((2)-1))}.jpg`);
+    if ((String(((st as any).blackmailQW ?? 0)?.['packages_opened']).length) <= 7) {
+      if (((st as any).temp_knows_cosplay ?? 0) === 1) {
+        scene.text('"Hey, I have a question. Could this cosplay have been bought here?" you ask.');
+        scene.text(`${((st as any).Xec ?? '')} gives you quizzical look, but then examines the costume. "Yeah that looks like one of ours."`);
+        scene.text(`"Yes!" you involuntarily shout. You quickly regain control of yourself as ${((st as any).xe ?? '')} gives you a glance.`);
+        scene.text('"Is there a way to see who bought it? It\'s really important!"');
+        scene.text('"I\'m sorry miss, but we\'ve sold a dozen of these in the last month alone."');
+        scene.text('"Without more to go on, I\'m afraid I wouldn\'t be able to help you, even if I wanted to."');
+        scene.text('"And that\'s not even taking into account the fact that we can\'t just give away customer details."');
+      } else {
+        scene.text('"Hey, I have a question… ld this… co…  thingy… have been bought here?" you ask.');
+        scene.text(`${((st as any).npcdesc ?? '')} gives you quizzical look, clearly asking ${((st as any).xemself ?? '')} why you are here, but then examines the costume. "Yeah that looks like one of ours."`);
+        scene.text(`"Yes!" you involuntarily shout. You quickly regain control of yourself as ${((st as any).xe ?? '')} gives you a glance.`);
+        scene.text('"Is there a way to see who bought it? It\'s really important!"');
+        scene.text('"I\'m sorry miss, but we\'ve sold a dozen of these in the last month alone", a hint of annoyance showing through the clerks voice.');
+        scene.text('"Without more to go on, I wouldn\'t be able to help you, even if I wanted to."');
+        scene.text('"And that\'s not even taking into account the fact that we can\'t just give away customer details."');
+      }
+    } else {
+      if (((st as any).temp_knows_cosplay ?? 0) === 1) {
+        scene.text('"Hey, I have a question. Could these cosplays have been bought here?" you ask.');
+        scene.text(`${((st as any).Xec ?? '')} gives you quizzical look, but then examines the costumes. "Yeah these look like ours."`);
+        scene.text(`"Yes!" you involuntarily shout. You quickly regain control of yourself as ${((st as any).xe ?? '')} gives you a glance.`);
+        scene.text('"Is there a way to see who bought them? It\'s really important!"');
+        scene.text('"I\'m sorry miss, but we can\'t just give customer details away."');
+        scene.text(`You feel your face drop as despair slowly flows through you. ${((st as any).npcdesc ?? '')}, noticing the changes across your face, ask "Is everything alright?"`);
+        scene.text('"I really need to know who sent me this, can you help me please."');
+        scene.text(`"Look miss, I can't help you. I'm sorry." ${((st as any).xe ?? '')} says.`);
+      } else {
+        scene.text('"Hey, I have a question… d these… cost… hingies… have been bought here?" you ask.');
+        scene.text(`${((st as any).npcdesc ?? '')} gives you quizzical look, clearly asking ${((st as any).xemself ?? '')} why you are here, but then examines the costumes. "Yeah these look like ours."`);
+        scene.text(`"Yes!" you involuntarily shout. You quickly regain control of yourself as ${((st as any).xe ?? '')} gives you a glance.`);
+        scene.text('"Is there a way to see who bought them? It\'s really important!"');
+        scene.text('"I\'m sorry miss, but we can\'t just give customer details away", a hint of annoyance showing through the clerks voice.');
+        scene.text(`You feel your face drop as despair slowly flows through you. ${((st as any).npcdesc ?? '')}, noticing the changes across your face, softens ${((st as any).xyr ?? '')} tone and asks "Is everything alright?"`);
+        scene.text('"I really need to know who sent me this, can you help me please."');
+        scene.text(`"Look miss, I can't help you. I'm sorry." ${((st as any).xe ?? '')} says. "I could lose my job."`);
+      }
+      scene.actions([
+        { label: '', labelFn: (s: GameState) => 'Try to convince ' + String(((st as any).xem ?? '') ?? ''), goto: ['blackmailer', 'nerdvana_cosplay_talk1_1'] },
+      ]);
+    }
+    scene.actions([
+      { label: 'Leave', handler: (st: GameState) => {
     qspCall(st, 'blackmailer', '');
+  } },
+    ]);
   } },
   ]);
   scene.build();

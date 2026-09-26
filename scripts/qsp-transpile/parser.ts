@@ -404,6 +404,17 @@ interface ParseResult {
       continue;
     }
 
+    // Act with $var dynamic label: act $var:
+    const actVarBlockMatch = trimmed.match(/^act\s+\$(\w+)\s*:\s*$/i);
+    if (actVarBlockMatch) {
+      const varName = actVarBlockMatch[1];
+      const inner = parseBlock(lines, i + 1, unsupported);
+      const act: QspAct = { kind: 'act', label: `$${varName}`, body: inner.nodes, dynamicLabel: true };
+      nodes.push(act);
+      i = inner.endIdx;
+      continue;
+    }
+
     // Act with iif() dynamic label: act iif(cond, 'a', 'b'): [rest]
     if (/^act\s+iif\s*\(/i.test(trimmed)) {
       const iifStart = trimmed.indexOf('iif(');

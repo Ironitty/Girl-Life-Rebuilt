@@ -363,7 +363,8 @@ function enterSetSexActs2(s: GameState, scene: SceneBuilder): void {
     (st as any).orgasm_or = 'custom';
     qspCall(st, 'arousal', 'trib', 5, 'lesbian', 'no_orgasm_msg');
     qspCall(st, 'arousal', 'end');
-    // TODO-QSP: act $natbel_wakeupsex_endact:
+    scene.actions([
+      { label: '', labelFn: (s: GameState) => String(((st as any).natbel_wakeupsex_endact ?? '') ?? ''), handler: (st: GameState) => {
     (st as any).natbel_wakeupsex_endact = undefined;
     (st as any).temp_last_sexact = undefined;
     qspCall(st, 'outfit', 'wear_last_worn');
@@ -372,6 +373,8 @@ function enterSetSexActs2(s: GameState, scene: SceneBuilder): void {
     } else {
       dynamicGoto(st, 'prevLoc', 'prevArg');
     }
+  } },
+    ]);
   } },
     ]);
   }
@@ -567,11 +570,14 @@ function enterSetSexActs3(s: GameState, scene: SceneBuilder): void {
     (st as any).orgasm_or = 'custom';
     qspCall(st, 'arousal', 'trib', 5, 'lesbian', 'no_orgasm_msg');
     qspCall(st, 'arousal', 'end');
-    // TODO-QSP: act $natbel_wakeupsex_endact:
+    scene.actions([
+      { label: '', labelFn: (s: GameState) => String(((st as any).natbel_wakeupsex_endact ?? '') ?? ''), handler: (st: GameState) => {
     (st as any).natbel_wakeupsex_endact = undefined;
     (st as any).temp_last_sexact = undefined;
     qspCall(st, 'outfit', 'wear_last_worn');
     dynamicGoto(st, 'prevLoc', 'prevArg');
+  } },
+    ]);
   } },
     ]);
   }
