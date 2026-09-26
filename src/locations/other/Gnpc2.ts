@@ -294,7 +294,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if ((!((st as any).discofirsttime ?? 0))) {
       (st as any).diskoIvrand = 0;
     }
-    // TODO-QSP: set $clubDescription = '<h1><center><b><font color="maroon">Inside the club</font></b></center></h1>...
+    (st as any).clubDescription = '<h1><center><b><font color="maroon">Inside the club</font></b></center></h1><center><img ' + ((st as any).set_imgh ?? 0) + ' src="images/locations/pavlovsk/community/disco/club.jpg"></center><br />';
     scene.text(`You accompany ${((st as any).boydesc ?? '')} and when you reach the club he pays the entrance fee and you both walk in. Together with your ${(((st as any).bfTitle ?? 0)?.[String((st as any).numnpc ?? 0)] ?? '')} you head to the dance floor and start dancing.`);
     if (((st as any).diskoIvrand ?? 0) >= 80) {
       (st as any).diskoIvTiperand = (Math.floor(Math.random() * 2) + 0);
@@ -331,9 +331,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
         ]);
       } else {
         scene.text(`The discussion escalates quickly into a fight and soon the Gopniks charge at your ${(((st as any).bfTitle ?? 0)?.[String((st as any).numnpc ?? 0)] ?? '')} in the middle of the club.`);
-        // TODO-QSP: set $bfDiscoBadEnd = 'The Gopniks meanwhile drag <<$boydesc>> into the streets, where they beat him ...
-        // TODO-QSP: set $stumble = 'You stumble and come crashing down to the floor, hitting your head hard.'
-        // TODO-QSP: set $looseTooth = 'You are dazed, bells are ringing in your head and you realize that you are lying ...
+        (st as any).bfDiscoBadEnd = 'The Gopniks meanwhile drag ' + ((st as any).boydesc ?? 0) + ' into the streets, where they beat him some more and steal all his money. Then they take off his shoes and throw him into the bushes.<br />Once you get back to your feet you start looking for your ' + (((st as any).bfTitle ?? 0)?.[String((st as any).numnpc ?? 0)] ?? 0) + ' and find him outside the club, still lying in the bushes. You help him up and bring him home. His face is covered in blood and bruises everywhere.';
+        (st as any).stumble = 'You stumble and come crashing down to the floor, hitting your head hard.';
+        (st as any).looseTooth = 'You are dazed, bells are ringing in your head and you realize that you are lying on the floor. You start to feel severe pain on your jaw and your mouth is full of blood. You spit on the floor and see that they <b>knocked out one of your teeth</b>.';
         qspCall(st, 'willpower', 'skill_base', 'stren', 'force', 'medium');
         if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
           scene.actions([
@@ -365,9 +365,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
         ]);
       } else {
         scene.text('You react just in time and quickly move your head to the side barely avoiding his punch.');
-        // TODO-QSP: set $discoScratch1 = 'You dig your nails into the punk''s face and begin to gouge and rip into it. T...
-        // TODO-QSP: set $discoScratch2 = 'The Gopnik with the scratched face seems to be recovering already because he t...
-        // TODO-QSP: set $discoScratch3 = '<<$boydesc>> puts his arm around your shoulders and you both leave the club.'
+        (st as any).discoScratch1 = 'You dig your nails into the punk\'s face and begin to gouge and rip into it. The Gopnik is in so much pain that he stops attacking ' + ((st as any).boydesc ?? 0) + '. Your ' + (((st as any).bfTitle ?? 0)?.[String((st as any).numnpc ?? 0)] ?? 0) + ' meanwhile topples one of the Gopniks and then manages to punch a second, again and again. The Gopnik falls to the floor like a sack.';
+        (st as any).discoScratch2 = 'The Gopnik with the scratched face seems to be recovering already because he tries to pounce on your ' + (((st as any).bfTitle ?? 0)?.[String((st as any).numnpc ?? 0)] ?? 0) + ' again. Luckily he fails miserably with all this blood flooding his eyes from your handiwork. ' + ((st as any).boydesc ?? 0) + ' punches him in the face knocking him down on his ass. In the meantime, the previous Gopnik got back up. "Okay, motherfucker, we\'ll leave for now. We\'ll get you and your bitch when you least expect it!"';
+        (st as any).discoScratch3 = '' + ((st as any).boydesc ?? 0) + ' puts his arm around your shoulders and you both leave the club.';
         scene.actions([
           { label: 'Punch him in his face', handler: (st: GameState) => {
     if (((st as any).pcs_agil ?? 0) >= 40) {
@@ -418,7 +418,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     }
   } },
           { label: 'Kick him in his balls', handler: (st: GameState) => {
-    // TODO-QSP: set $badKick = 'You try to kick the hooligan between his legs but he saw it coming. He blocks your k...
+    (st as any).badKick = 'You try to kick the hooligan between his legs but he saw it coming. He blocks your kick and shoves you roughly away.';
     if (((st as any).pcs_agil ?? 0) >= 70) {
       (st as any).bollrand = (Math.floor(Math.random() * 2) + 0);
       if ((!((st as any).bollrand ?? 0))) {
@@ -528,7 +528,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.text(`Your ${(((st as any).bfTitle ?? 0)?.[String((st as any).numnpc ?? 0)] ?? '')} gets himself a beer at the bar and in the meantime you continue to dance.`);
     if (((st as any).fame ?? 0)?.['pav_slut'] >= 150) {
       scene.text(`Someone walks up to you "Hey, I've been watching you having fun with your boyfriend here. He still does't know that you are a ${((st as any).gnikname ?? '')}? Maybe I should tell him?"`);
-      // TODO-QSP: set $bfBreakup = 'You tell the guy to go to hell and he walks away with a sullen look on his face. A...
+      (st as any).bfBreakup = 'You tell the guy to go to hell and he walks away with a sullen look on his face. At this point, ' + ((st as any).boydesc ?? 0) + ' comes back and asks, "What did that guy want from you?" You quickly lie, "He wanted to dance with me, but I turned him down." Unfortunately, the guy comes back and pulls your ' + (((st as any).bfTitle ?? 0)?.[String((st as any).numnpc ?? 0)] ?? 0) + ' to the side. After a while, ' + ((st as any).boydesc ?? 0) + ' returns and says "We\'re through. Based on the shit I was just told, I won\'t waste another minute on the likes of a whore like you!"';
       qspCall(st, 'willpower', 'misc', 'self');
       if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
         scene.actions([

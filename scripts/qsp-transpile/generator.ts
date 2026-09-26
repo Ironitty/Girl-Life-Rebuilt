@@ -386,6 +386,7 @@ export function generateTs(loc: QspLocation): GenResult {
   if (body.includes('qspFunc(')) bridgeNames.push('qspFunc');
   if (body.includes('dynamicGoto(')) bridgeNames.push('dynamicGoto');
   if (body.includes('qspGoto(')) bridgeNames.push('qspGoto');
+  if (body.includes('qspSave(')) bridgeNames.push('qspSave');
   if (body.includes('hasLocation(')) bridgeNames.push('hasLocation');
   if (bridgeNames.length > 0) {
     lines.unshift(`import { ${bridgeNames.join(', ')} } from '../_shared/qspBridge';`, '');
@@ -811,6 +812,24 @@ function generateSceneBody(
           const func = args[1]?.replace(/^'|'$/g, '') || '';
           const extraArgs = args.slice(2).map((a: string) => JSON.stringify(a.replace(/^'|'$/g, '').replace(/''/g, "'")));
           out.push(`s.viewImage = String(qspFunc(s, '${module}', '${func}'${extraArgs.length ? `, ${extraArgs.join(', ')}` : ''}) || '');`);
+        }
+        const savegameSetupMatch = node.raw.match(/^savegame\s*(?:'(.+)')?$/);
+        if (savegameSetupMatch) {
+          const file = (savegameSetupMatch[1] || '').replace(/''/g, "'");
+          const slot = file.includes('quicksave') ? '0' : '1';
+          out.push(`qspSave(${slot}, s);`);
+          break;
+        }
+        const setVarSetupMatch = node.raw.match(/^set\s+\$(\w+)\s*=\s*(.+)$/);
+        if (setVarSetupMatch) {
+          const varName = setVarSetupMatch[1];
+          const val = translateValue(setVarSetupMatch[2].trim(), stateReads, todos);
+          out.push(`(s as any).${varName} = ${val};`);
+          stateWrites.push(varName);
+          break;
+        }
+        if (node.raw === 'cls' || node.raw === 'clr' || node.raw === '*clr' || node.raw === 'cla') {
+          break;
         }
         const standaloneFuncSetup = node.raw.match(/^func\((.+)\)\s*$/);
         if (standaloneFuncSetup) {
@@ -3289,6 +3308,21 @@ function convertExecLinks(s: string, stateReads?: string[], todos?: string[], st
           return `dynamicGoto(s, ${jsParts.join(' + ')});`;
         }
         return `dynamicGoto(s, '${inner.replace(/\\/g, '\\\\').replace(/'/g, "\\'")}');`;
+      }
+      const savegameMatch = st.match(/^savegame\s*(?:'(.+)')?$/);
+      if (savegameMatch) {
+        const file = (savegameMatch[1] || '').replace(/''/g, "'");
+        const slot = file.includes('quicksave') ? '0' : '1';
+        return `qspSave(${slot}, s);`;
+      }
+      const setVarMatch = st.match(/^set\s+\$(\w+)\s*=\s*(.+)$/);
+      if (setVarMatch) {
+        const varName = setVarMatch[1];
+        const val = execValToJs(setVarMatch[2].trim());
+        return `(s as any).${varName} = ${val};`;
+      }
+      if (st === 'cls' || st === 'clr' || st === '*clr' || st === 'cla') {
+        return '';
       }
       return `/* TODO-QSP: ${st.replace(/</g, '\\u003c')} */`;
     }).join(' ');

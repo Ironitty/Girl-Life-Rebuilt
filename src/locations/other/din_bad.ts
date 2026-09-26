@@ -111,9 +111,9 @@ function enterDBag(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).mc_inventory ?? 0)?.['travel_mirror'] === 1) {
-    scene.text('You have a <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: cla */ return s; }); window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027d_bag_mirror\u0027); return false;">compact mirror</a> in your purse' + ((((s as any).mc_inventory ?? 0)?.['travel_makeup'] >0) ? (' and some portable makeup.') : ('.')));
+    scene.text('You have a <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027d_bag_mirror\u0027); return false;">compact mirror</a> in your purse' + ((((s as any).mc_inventory ?? 0)?.['travel_makeup'] >0) ? (' and some portable makeup.') : ('.')));
     if (((s as any).mc_inventory ?? 0)?.['lipbalm'] > 0  &&  ((s as any).pcs_lipbalm ?? 0) <= 0) {
-      scene.text('You can apply some <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: cls */ /* TODO-QSP: act \u0027Return\u0027:gs \u0027din_bad\u0027, \u0027d_bag\u0027 */ return s; }); window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027applyLipbalm\u0027 & act \u0027Return\u0027:gs \u0027din_bad\u0027, \u0027d_bag\u0027); return false;">lip balm</a>');
+      scene.text('You can apply some <a href="#" onclick="window.__gameStore.setState((s) => {  /* TODO-QSP: act \u0027Return\u0027:gs \u0027din_bad\u0027, \u0027d_bag\u0027 */ return s; }); window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027applyLipbalm\u0027 & act \u0027Return\u0027:gs \u0027din_bad\u0027, \u0027d_bag\u0027); return false;">lip balm</a>');
     }
   } else {
     if (((s as any).mc_inventory ?? 0)?.['travel_mirror'] === 0  &&  ((s as any).mc_inventory ?? 0)?.['travel_makeup'] >0) {
@@ -575,10 +575,10 @@ function enterDTabletkied(s: GameState, scene: SceneBuilder): void {
       scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027din_bad\u0027, \u0027d_tabletkieda\u0027, \u00275 & gs \u0027din_bad\u0027\u0027); return false;">Dump the strange pills.</a>');
     }
     if (((s as any).birth_control ?? 0)?.['placebo_skip'] === 0) {
-      scene.text('Skip your <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: *clr */ (s.birth_control ??= {})\u0027placebo_skip\u0027 = 1; return s; }); window.__gameStore.getState().doGoto(\u0027din_bad\u0027, \u0027d_tabletkied\u0027); return false;">placebo pills.</a>');
+      scene.text('Skip your <a href="#" onclick="window.__gameStore.setState((s) => {  (s.birth_control ??= {})\u0027placebo_skip\u0027 = 1; return s; }); window.__gameStore.getState().doGoto(\u0027din_bad\u0027, \u0027d_tabletkied\u0027); return false;">placebo pills.</a>');
       scene.text('(Will cause you to no longer menstruate)');
     } else {
-      scene.text('Start taking your <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: *clr */ (s.birth_control ??= {})\u0027placebo_skip\u0027 = 0; return s; }); window.__gameStore.getState().doGoto(\u0027din_bad\u0027, \u0027d_tabletkied\u0027); return false;">placebo pills</a> again.');
+      scene.text('Start taking your <a href="#" onclick="window.__gameStore.setState((s) => {  (s.birth_control ??= {})\u0027placebo_skip\u0027 = 0; return s; }); window.__gameStore.getState().doGoto(\u0027din_bad\u0027, \u0027d_tabletkied\u0027); return false;">placebo pills</a> again.');
       scene.text('(Will cause periods to start back up again in your menstrual cycle)');
     }
   } else {
@@ -631,7 +631,7 @@ function enterDTabletkiedt(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).thinkpreg ?? 0) === 0  &&  (!((s as any).knowpreg ?? 0))) {
       if (((s as any).tabletkiday ?? 0) < ((s as any).daystart ?? 0)) {
-        scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: *clr */ return s; }); window.__gameStore.getState().doGoto(\u0027din_bad\u0027, \u0027d_tabletkieda\u0027, \u00271 & gs \u0027din_bad\u0027\u0027); return false;">Take the birth control pill now.</a>');
+        scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027din_bad\u0027, \u0027d_tabletkieda\u0027, \u00271 & gs \u0027din_bad\u0027\u0027); return false;">Take the birth control pill now.</a>');
       }
       if ((!((s as any).tabletkicheck ?? 0))) {
         if (((s as any).birth_control ?? 0)?.['remind_hour'] === 0) {
@@ -640,16 +640,16 @@ function enterDTabletkiedt(s: GameState, scene: SceneBuilder): void {
           scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027din_bad\u0027, \u0027set_bc_reminder\u0027); return false;">Change your birth control reminder.</a>');
           scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027din_bad\u0027, \u0027turn_off_bc_reminder\u0027); return false;">Turn off your birth control reminder.</a>');
         }
-        scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: *clr */ return s; }); window.__gameStore.getState().doGoto(\u0027din_bad\u0027, \u0027d_tabletkieda\u0027, String(window.__gameStore.getState().2 ?? \u0027\u0027)); return false;">Automatically take your birth control pills.</a>');
+        scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027din_bad\u0027, \u0027d_tabletkieda\u0027, String(window.__gameStore.getState().2 ?? \u0027\u0027)); return false;">Automatically take your birth control pills.</a>');
       } else {
         if (((s as any).tabletkicheck ?? 0) === 1  &&  ((s as any).therapistFuckedPussyStage ?? 0) < 2) {
-          scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: *clr */ return s; }); window.__gameStore.getState().doGoto(\u0027din_bad\u0027, \u0027d_tabletkieda\u0027, \u00273 & gs \u0027din_bad\u0027\u0027); return false;">Stop automatically taking your birth control pills.</a>');
+          scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027din_bad\u0027, \u0027d_tabletkieda\u0027, \u00273 & gs \u0027din_bad\u0027\u0027); return false;">Stop automatically taking your birth control pills.</a>');
         }
       }
     }
-    scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: *clr */ return s; }); window.__gameStore.getState().doGoto(\u0027din_bad\u0027, \u0027d_tabletkieda\u0027, String(window.__gameStore.getState().4 ?? \u0027\u0027)); return false;">Examine the birth control pills.</a>');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027din_bad\u0027, \u0027d_tabletkieda\u0027, String(window.__gameStore.getState().4 ?? \u0027\u0027)); return false;">Examine the birth control pills.</a>');
     if (((s as any).tabletkioddk ?? 0) === 1) {
-      scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: *clr */ return s; }); window.__gameStore.getState().doGoto(\u0027din_bad\u0027, \u0027d_tabletkieda\u0027, \u00275 & gs \u0027din_bad\u0027\u0027); return false;">Dump the strange pills.</a>');
+      scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027din_bad\u0027, \u0027d_tabletkieda\u0027, \u00275 & gs \u0027din_bad\u0027\u0027); return false;">Dump the strange pills.</a>');
     }
   } else {
     scene.text('You are out of birth control pills.');

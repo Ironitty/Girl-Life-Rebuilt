@@ -1,4 +1,4 @@
-import { qspCall, qspGoto } from '../_shared/qspBridge';
+import { qspCall, qspGoto, qspSave } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -70,7 +70,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       scene.text('Don\'t forget to enroll at the university in August if that\'s a goal you wish to pursue.');
     }
   }
-  // TODO-QSP: savegame 'autosave_newgame.sav'
+  qspSave(1, s);
   scene.actions([
     { label: 'Start the game', handler: (st: GameState) => {
     (st as any).music_loop = 0;
@@ -104,7 +104,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
 function enterQuickStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'intro_initialization', 'init');
   (s as any).music_loop = 0;
-  // TODO-QSP: savegame 'autosave_newgame.sav'
+  qspSave(1, s);
   scene.actions([
     { label: 'Start the game', handler: (st: GameState) => {
     if (((st as any).start_type ?? 0)?.['loc'] === 'sg') {

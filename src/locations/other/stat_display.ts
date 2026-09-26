@@ -1,6 +1,6 @@
 import { qspUntranslated } from '../_shared/qspUntranslated';
 
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspSave } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -352,13 +352,13 @@ function enterSecMoney(s: GameState, scene: SceneBuilder): void {
 
 function enterSecLoadsave(s: GameState, scene: SceneBuilder): void {
   if (((s as any).stat_cfg ?? 0)?.['loadsave_mode'] === 1) {
-    (s as any).result = '<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: savegame \u0027quicksave.sav\u0027 */ s.scene = { ...s.scene, mainText: \u0027Quicksave Done\u0027, curActs: [] }; return s; }); return false;">Quick Save</a>';
-    (s as any).result = ((s as any).result ?? 0) + ('  <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: savegame */ return s; }); return false;">Save</a>');
+    (s as any).result = '<a href="#" onclick="window.__gameStore.setState((s) => { qspSave(0, s); s.scene = { ...s.scene, mainText: \u0027Quicksave Done\u0027, curActs: [] }; return s; }); return false;">Quick Save</a>';
+    (s as any).result = ((s as any).result ?? 0) + ('  <a href="#" onclick="window.__gameStore.setState((s) => { qspSave(1, s); return s; }); return false;">Save</a>');
     (s as any).result = ((s as any).result ?? 0) + ('  <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: opengame */ return s; }); return false;">Load</a>');
     (s as any).result = ((s as any).result ?? 0) + ('  <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: if input(\u0027Input Anything to confirm Quick Load\u0027) /u003c> \u0027\u0027: opengame \u0027quicksave.sav\u0027 */ return s; }); return false;">Quick Load</a>');
   } else {
-    (s as any).result = '<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: savegame \u0027quicksave.sav\u0027 */ s.scene = { ...s.scene, mainText: \u0027Quicksave Done\u0027, curActs: [] }; return s; }); return false;"><img src="images/system/icons/stat_qsave.png" height="' + (((s as any).stat_cfg ?? 0)?.['menu_icon_height']) + '"></a>';
-    (s as any).result = ((s as any).result ?? 0) + ('  <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: savegame */ return s; }); return false;"><img src="images/system/icons/stat_save.png" height="' + (((s as any).stat_cfg ?? 0)?.['menu_icon_height']) + '"></a>');
+    (s as any).result = '<a href="#" onclick="window.__gameStore.setState((s) => { qspSave(0, s); s.scene = { ...s.scene, mainText: \u0027Quicksave Done\u0027, curActs: [] }; return s; }); return false;"><img src="images/system/icons/stat_qsave.png" height="' + (((s as any).stat_cfg ?? 0)?.['menu_icon_height']) + '"></a>';
+    (s as any).result = ((s as any).result ?? 0) + ('  <a href="#" onclick="window.__gameStore.setState((s) => { qspSave(1, s); return s; }); return false;"><img src="images/system/icons/stat_save.png" height="' + (((s as any).stat_cfg ?? 0)?.['menu_icon_height']) + '"></a>');
     (s as any).result = ((s as any).result ?? 0) + ('  <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: opengame */ return s; }); return false;"><img src="images/system/icons/stat_load.png" height="' + (((s as any).stat_cfg ?? 0)?.['menu_icon_height']) + '"></a>');
     (s as any).result = ((s as any).result ?? 0) + ('  <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: if input(\u0027Input Anything to confirm Quick Load\u0027) /u003c> \u0027\u0027: opengame \u0027quicksave.sav\u0027 */ return s; }); return false;"><img src="images/system/icons/stat_qload.png" height="' + (((s as any).stat_cfg ?? 0)?.['menu_icon_height']) + '"></a>');
   }
@@ -1677,7 +1677,7 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
 
 function enterFinalize(s: GameState, scene: SceneBuilder): void {
   if (((s as any).stat_cfg ?? 0)?.['android']) {
-    (s as any).sd_android = ((s as any).sd_android ?? 0) + (' <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: savegame \u0027quicksave.sav\u0027 */ s.scene = { ...s.scene, mainText: \u0027Quicksave Done\u0027, curActs: [] }; return s; }); return false;">Q.S</a>  <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: if input(\u0027Input Anything to confirm Quick Load\u0027) /u003c> \u0027\u0027: opengame \u0027quicksave.sav\u0027 */ return s; }); return false;">Q.L</a>');
+    (s as any).sd_android = ((s as any).sd_android ?? 0) + (' <a href="#" onclick="window.__gameStore.setState((s) => { qspSave(0, s); s.scene = { ...s.scene, mainText: \u0027Quicksave Done\u0027, curActs: [] }; return s; }); return false;">Q.S</a>  <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: if input(\u0027Input Anything to confirm Quick Load\u0027) /u003c> \u0027\u0027: opengame \u0027quicksave.sav\u0027 */ return s; }); return false;">Q.L</a>');
     (s as any).sd_android = qspFunc(s, 'stat_display', 'helper_font_wrap', ((s as any).sd_android ?? 0));
   }
   (s as any).sd_font_wrap_o = undefined;
@@ -1704,7 +1704,7 @@ function enterFinalize(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: clear
   }
   (s as any).sd_android = '<b>' + qspFunc(s, 'time', 'get_time_string') + '</b>';
-  (s as any).sd_android = ((s as any).sd_android ?? 0) + ('' + ((s as any).weekName ?? 0) + ' ' + ((s as any).day ?? 0) + '/' + ((s as any).month ?? 0) + ', ' + qspFunc(s, 'money', 'format', ((s as any).money ?? 0)) + ', <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: clr */ s.scene = { ...s.scene, mainText: $sd_android, curActs: [] }; return s; }); return false;">Status</a>');
+  (s as any).sd_android = ((s as any).sd_android ?? 0) + ('' + ((s as any).weekName ?? 0) + ' ' + ((s as any).day ?? 0) + '/' + ((s as any).month ?? 0) + ', ' + qspFunc(s, 'money', 'format', ((s as any).money ?? 0)) + ', <a href="#" onclick="window.__gameStore.setState((s) => {  s.scene = { ...s.scene, mainText: $sd_android, curActs: [] }; return s; }); return false;">Status</a>');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterInit(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'stat_display_compute', 'compute_data');
   if (((s as any).cfg_vars ?? 0)?.['faceturn'] === 1) {

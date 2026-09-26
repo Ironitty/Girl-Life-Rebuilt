@@ -1,4 +1,4 @@
-import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto, qspSave } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -2238,7 +2238,7 @@ function enterPantyGiftGirlfriend(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSleep(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: savegame 'autosave_loverbed_sleep.sav'
+  qspSave(1, s);
   ((s as any).hookup = (s as any).hookup ?? {})['sleepover'] = 1;
   if (((s as any).alko ?? 0) > 6) {
     ((s as any).hookup = (s as any).hookup ?? {})['hangover'] = 1;

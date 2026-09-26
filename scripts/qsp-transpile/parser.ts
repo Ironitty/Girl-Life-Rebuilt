@@ -1048,6 +1048,8 @@ interface ParseResult {
       trimmed.startsWith('play ') ||
       trimmed.startsWith('killvar ') ||
       trimmed.startsWith('wait ') ||
+      trimmed.startsWith('savegame ') ||
+      trimmed.startsWith('set $') ||
       trimmed === '*pl' ||
       trimmed.startsWith('msg ') ||
       trimmed.startsWith("msg'")
@@ -2534,6 +2536,12 @@ function parseSingleLine(trimmed: string, lines: string[], idx: number, unsuppor
     return { nodes, nextIdx: idx + 1 };
   }
 
+  // savegame / set $ / cls / clr / cla
+  if (trimmed.startsWith('savegame ') || trimmed.startsWith('set $') || trimmed === 'cls' || trimmed === 'clr' || trimmed === '*clr' || trimmed === 'cla') {
+    nodes.push({ kind: 'setup', raw: trimmed });
+    return { nodes, nextIdx: idx + 1 };
+  }
+
   // Fallback
   nodes.push({ kind: 'unknown', raw: trimmed });
   if (trimmed.length < 120) unsupported.push(trimmed);
@@ -2554,7 +2562,7 @@ function parseInlineStatement(stmt: string, unsupported: string[]): QspNode[] {
     }
   }
 
-  if (trimmed.startsWith('PLAY ') || trimmed.startsWith('play ') || trimmed.startsWith('cla') || trimmed.startsWith('cls') || trimmed.startsWith('clr') || trimmed.startsWith('*clr') || trimmed.startsWith('*nl') || trimmed.startsWith('killvar ') || trimmed.startsWith('msg ') || trimmed.startsWith("msg'")) {
+  if (trimmed.startsWith('PLAY ') || trimmed.startsWith('play ') || trimmed.startsWith('cla') || trimmed.startsWith('cls') || trimmed.startsWith('clr') || trimmed.startsWith('*clr') || trimmed.startsWith('*nl') || trimmed.startsWith('killvar ') || trimmed.startsWith('msg ') || trimmed.startsWith("msg'") || trimmed.startsWith('savegame ') || trimmed.startsWith('set $')) {
     nodes.push({ kind: 'setup', raw: trimmed });
     return nodes;
   }

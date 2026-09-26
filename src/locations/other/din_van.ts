@@ -1631,10 +1631,10 @@ function enterPrivate(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'piercing_management', 'set_manage_string');
   if (((s as any).fillimplant ?? 0) === 1) {
     if (((s as any).siliconeBag ?? 0) >= 1) {
-      scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: cls */ s.siliconeBag -=1; (s.bodyVars ??= {})\u0027bust_silicone\u0027 +=10; return s; }); window.__gameStore.getState().doGoto(window.__gameStore.getState().prevLoc, window.__gameStore.getState().prevArg); return false;">Inject silicone into your breast implants.</a>');
+      scene.text('<a href="#" onclick="window.__gameStore.setState((s) => {  s.siliconeBag -=1; (s.bodyVars ??= {})\u0027bust_silicone\u0027 +=10; return s; }); window.__gameStore.getState().doGoto(window.__gameStore.getState().prevLoc, window.__gameStore.getState().prevArg); return false;">Inject silicone into your breast implants.</a>');
     }
     if (((s as any).bodyVars ?? 0)?.['bust_silicone'] >= 20) {
-      scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: cls */ (s.bodyVars ??= {})\u0027bust_silicone\u0027 -=10; return s; }); window.__gameStore.getState().doGoto(window.__gameStore.getState().prevLoc, window.__gameStore.getState().prevArg); return false;">Drain silicone from your breast implants.</a>');
+      scene.text('<a href="#" onclick="window.__gameStore.setState((s) => {  (s.bodyVars ??= {})\u0027bust_silicone\u0027 -=10; return s; }); window.__gameStore.getState().doGoto(window.__gameStore.getState().prevLoc, window.__gameStore.getState().prevArg); return false;">Drain silicone from your breast implants.</a>');
     }
   }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBteeth(s, scene); (s as any).locArgs = __savedLocArgs; }

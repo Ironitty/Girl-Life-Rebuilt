@@ -1,4 +1,4 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspSave } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -11,12 +11,12 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 function enterAutosave(s: GameState, scene: SceneBuilder): void {
   if (((s as any).cfg_vars ?? 0)?.['disable_autosave'] === 0) {
     if (((s as any).start_type ?? 0)?.['loc'] === 'city') {
-      // TODO-QSP: savegame 'autosave_city_<<$weekName[week]>>.sav'
+      qspSave(1, s);
     } else {
       if (((s as any).start_type ?? 0)?.['loc'] === 'uni') {
-        // TODO-QSP: savegame 'autosave_uni_<<$weekName[week]>>.sav'
+        qspSave(1, s);
       } else {
-        // TODO-QSP: savegame 'autosave_sg_<<$weekName[week]>>.sav'
+        qspSave(1, s);
       }
     }
   }
