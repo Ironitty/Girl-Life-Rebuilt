@@ -746,7 +746,7 @@ function generateSceneBody(
           out.push(`qspFunc(s, ${funcNameJs}${funcArgs.length ? `, ${funcArgs.join(', ')}` : ''});`);
         }
         const varAssign = node.raw.match(/^\$(\w+)\s*(\+=|-=|=)\s*([\s\S]+)$/);
-
+        
         if (varAssign) {
           const varName = varAssign[1];
           const op = varAssign[2];
@@ -758,6 +758,14 @@ function generateSceneBody(
           } else {
             out.push(`(s as any).${varName} = ((s as any).${varName} ?? 0) - (${value});`);
           }
+          stateWrites.push(varName);
+          break;
+        }
+        const mulAssignSetup = node.raw.match(/^(\w+)\s*\*\s*(.+)$/);
+        if (mulAssignSetup) {
+          const varName = mulAssignSetup[1];
+          const val = translateValue(mulAssignSetup[2].trim(), stateReads, todos);
+          out.push(`(s as any).${varName} = ((s as any).${varName} ?? 0) * (${val});`);
           stateWrites.push(varName);
           break;
         }
@@ -1261,6 +1269,14 @@ function translateInlineAct(
       } else {
         handlerBits.push(`(st as any).${varName} = ((st as any).${varName} ?? 0) - (${val});`);
       }
+      stateWrites.push(varName);
+      continue;
+    }
+    const mulAssignMatch = part.match(/^(\w+)\s*\*\s*(.+)$/);
+    if (mulAssignMatch) {
+      const varName = mulAssignMatch[1];
+      const val = translateValue(mulAssignMatch[2].trim(), stateReads, todos, 'st');
+      handlerBits.push(`(st as any).${varName} = ((st as any).${varName} ?? 0) * (${val});`);
       stateWrites.push(varName);
       continue;
     }

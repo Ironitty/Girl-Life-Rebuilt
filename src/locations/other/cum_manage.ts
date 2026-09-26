@@ -217,7 +217,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
               if (((s as any).sexcontra ?? 0) === 6) {
               } else {
                 if (((s as any).sexcontra ?? 0) === 6  ||  ((s as any).npcCondom ?? 0) === 'sabotaged') {
-                  // TODO-QSP: break_thresh * 3
+                  (s as any).break_thresh = ((s as any).break_thresh ?? 0) * (3);
                   ((s as any).cumarrcpt = (s as any).cumarrcpt ?? {})[String((s as any).cumarrtemp ?? 0)] = ((s as any).cumarrcpt[String((s as any).cumarrtemp ?? 0)] ?? 0) + ((((s as any).cumarrppt ?? 0)?.[String((s as any).cumarrtemp ?? 0)] ?? 0)/3);
                   ((s as any).cumarrcon = (s as any).cumarrcon ?? {})[String((s as any).cumarrtemp ?? 0)] = 6;
                   if (((s as any).temprand ?? 0) <= ((s as any).break_thresh ?? 0)) {
@@ -243,7 +243,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
                   }
                 } else {
                   if (((s as any).sexcontra ?? 0) === 7) {
-                    // TODO-QSP: break_thresh * 3
+                    (s as any).break_thresh = ((s as any).break_thresh ?? 0) * (3);
                     ((s as any).cumarrcpt = (s as any).cumarrcpt ?? {})[String((s as any).cumarrtemp ?? 0)] = ((s as any).cumarrcpt[String((s as any).cumarrtemp ?? 0)] ?? 0) + ((((s as any).cumarrppt ?? 0)?.[String((s as any).cumarrtemp ?? 0)] ?? 0)/3);
                     ((s as any).cumarrcon = (s as any).cumarrcon ?? {})[String((s as any).cumarrtemp ?? 0)] = 7;
                     if (((s as any).temprand ?? 0) <= ((s as any).break_thresh ?? 0)) {

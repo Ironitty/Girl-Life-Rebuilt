@@ -909,6 +909,14 @@ interface ParseResult {
       continue;
     }
 
+    // QSP shorthand: var * value (means var *= value)
+    const mulShorthandMatch = trimmed.match(/^(\w+)\s*\*\s*(.+)$/);
+    if (mulShorthandMatch && !trimmed.startsWith('$')) {
+      for (const n of assignNodes(mulShorthandMatch[1], '*=', mulShorthandMatch[2].trim())) nodes.push(n);
+      i++;
+      continue;
+    }
+
     // Dollar assignment (metadata): $var = value
     // Skip if multi-line string with content on same line (handled by dollarMultiLineContentMatch below)
     const dollarMatch = trimmed.match(/^\$(\w+)\s*=\s*(.+)$/);
@@ -2075,6 +2083,13 @@ function parseSingleLine(trimmed: string, lines: string[], idx: number, unsuppor
   const assignMatch = trimmed.match(/^(\w+)\s*(\+=|-=|\/=|\*=|=)\s*(.+)$/);
   if (assignMatch && !trimmed.startsWith('$')) {
     for (const n of assignNodes(assignMatch[1], assignMatch[2], assignMatch[3].trim())) nodes.push(n);
+    return { nodes, nextIdx: idx + 1 };
+  }
+
+  // QSP shorthand: var * value (means var *= value)
+  const mulShorthandMatch = trimmed.match(/^(\w+)\s*\*\s*(.+)$/);
+  if (mulShorthandMatch && !trimmed.startsWith('$')) {
+    for (const n of assignNodes(mulShorthandMatch[1], '*=', mulShorthandMatch[2].trim())) nodes.push(n);
     return { nodes, nextIdx: idx + 1 };
   }
 
